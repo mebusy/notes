@@ -1,6 +1,6 @@
 
 # 傻子机器学习入门
-    observation 观测数据: 机器学习领域，一般来说，一个观测数据 observation 是对 一个物体或某种情况 的说明。
+    observation 观测数据: 在机器学习领域，一般来说，一个观测数据 observation 是对 一个物体或某种情况 的说明。
     
 [TOC]
 
