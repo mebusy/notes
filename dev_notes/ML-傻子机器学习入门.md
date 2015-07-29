@@ -73,3 +73,103 @@ k-nearest neighbors 方法中，所有属性都一样重要。
 
 真正确保生成的决策树彼此不同诀窍是，随机森林算法 生成决策树时， 会 故意的 随机避免 测试某几个问题。在这种情况下，如果 最好的问题没有被测试，一个次一点的问题，就会被选中测试。 这个过程被称为“属性采样”  attribute sampling 。  
 
+
+## Scikit-Learn 随机森林例子
+
+随机森林是集成学习的一个子类，由于它依靠于策率树的合并。你可以在这找到用python实现集成学习的文档：
+[Scikit 学习文档](http://scikit-learn.org/dev/modules/ensemble.html)
+
+Scikit-Learn是开始使用随机森林的一个很好的方式。
+
+随机森林在scikit-learn中的实现最棒的特性是*n_jobs*参数。
+这将会基于你想使用的核数自动地并行设置随机森林。
+
+```python
+from sklearn.datasets import load_iris
+from sklearn.ensemble import RandomForestClassifier
+import pandas as pd
+import numpy as np
+ 
+#print dir(pd)
+iris =load_iris()
+
+#feature data , feature name
+#print iris.data, iris.feature_names
+"""
+[ 5.1  3.5  1.4  0.2]
+ [ 4.9  3.   1.4  0.2]
+ [ 4.7  3.2  1.3  0.2]]  ['sepal length (cm)', 'sepal width (cm)', 'petal length (cm)', 'petal width (cm)']
+"""
+df =pd.DataFrame(iris.data, columns=iris.feature_names)
+
+#print df 
+"""
+146                6.3               2.5                5.0               1.9
+147                6.5               3.0                5.2               2.0
+148                6.2               3.4                5.4               2.3
+149                5.9               3.0                5.1               1.8
+
+[150 rows x 4 columns]
+"""
+
+# some data is used 4 trainint , some data used for test
+df['is_train'] =np.random.uniform(0, 1, len(df)) <=.75
+
+#print df['is_train']
+"""
+0       True
+1      False
+2       True
+3       True
+4      False
+"""
+#target data, target name 
+#print iris.target, iris.target_names
+"""
+[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2] ['setosa' 'versicolor' 'virginica']
+"""
+df['species'] =pd.Categorical.from_codes(iris.target, iris.target_names)
+df.head()
+
+#print df
+"""
+    is_train    species  
+0       True     setosa  
+1       True     setosa  
+2      False     setosa 
+""" 
+
+train, test =df[df['is_train']==True], df[df['is_train']==False]
+#print train, test
+ 
+features =df.columns[:4]
+"""
+Index([u'sepal length (cm)', u'sepal width (cm)', u'petal length (cm)',
+       u'petal width (cm)'],
+      dtype='object')
+"""
+
+clf =RandomForestClassifier(n_jobs=2)
+#print clf
+
+y, _ =pd.factorize(train['species'])
+
+clf.fit(train[features], y)
+ 
+preds =iris.target_names[clf.predict(test[features])]
+
+print pd.crosstab(test['species'], preds, rownames=['actual'], colnames=['preds'])
+
+"""
+preds       setosa  versicolor  virginica
+actual                                   
+setosa          11           0          0
+versicolor       0           9          0
+virginica        0           2         12
+"""
+```
+
