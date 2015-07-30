@@ -8,21 +8,21 @@
 
 class sklearn.tree.DecisionTreeClassifier(criterion='gini', splitter='best', max_depth=None, min_samples_split=2,min_samples_leaf=1, max_features=None, random_state=None, min_density=None, compute_importances=None,max_leaf_nodes=None)  
 
-> criterion ：规定了该决策树所采用的的最佳分割属性的判决方法，有两种：“gini”，“entropy”。  
-> max_depth ：限定了决策树的最大深度，对于防止过拟合非常有用。  
-> min_samples_leaf ：限定了叶子节点包含的最小样本数，这个属性对于防止上文讲到的数据碎片问题很有作用。 (因为随着树的深度增加，叶子上的样本数会越来越少)  
+> * criterion ：规定了该决策树所采用的的最佳分割属性的判决方法，有两种：“gini”，“entropy”。  
+> * max_depth ：限定了决策树的最大深度，对于防止过拟合非常有用。  
+> * min_samples_leaf ：限定了叶子节点包含的最小样本数，这个属性对于防止上文讲到的数据碎片问题很有作用。 (因为随着树的深度增加，叶子上的样本数会越来越少)  
 
 
 模块中一些重要的属性方法：  
-> n_classes_ ：决策树中的类数量。  
-> classes_ ：返回决策树中的所有种类标签。  
-> feature_importances_ ：feature的重要性，值越大那么越重要。  
-> fit(X, y, sample_mask=None, X_argsorted=None, check_input=True,   sample_weight=None):   将数据集x，和标签集y送入分类器进行训练，这里要注意一个参数是：sample_weright，它和样本的数量一样长，所携带的是每个样本的权重。
-> get_params(deep=True) 得到决策树的各个参数。
-> set_params(**params)  调整决策树的各个参数。
-> predict(X)   送入样本X，得到决策树的预测。可以同时送入多个样本。
-> transform(X, threshold=None): 返回X的较重要的一些feature，相当于裁剪数据。
-> score(X, y, sample_weight=None)   返回在数据集X,y上的测试分数，正确率。
+> * n_classes_ ：决策树中的类数量。  
+> * classes_ ：返回决策树中的所有种类标签。  
+> * feature_importances_ ：feature的重要性，值越大那么越重要。  
+> * fit(X, y, sample_mask=None, X_argsorted=None, check_input=True,   sample_weight=None):   将数据集x，和标签集y送入分类器进行训练，这里要注意一个参数是：sample_weright，它和样本的数量一样长，所携带的是每个样本的权重。
+> * get_params(deep=True) 得到决策树的各个参数。
+> * set_params(**params)  调整决策树的各个参数。
+> * predict(X)   送入样本X，得到决策树的预测。可以同时送入多个样本。
+> * transform(X, threshold=None): 返回X的较重要的一些feature，相当于裁剪数据。
+> * score(X, y, sample_weight=None)   返回在数据集X,y上的测试分数，正确率。
 
 下面是一个应用的例子：
 ```python
@@ -46,10 +46,10 @@ graph.write_pdf("iris.pdf")
 ```
 
 ### 使用建议
-> 当我们数据中的feature较多时，一定要有足够的数据量来支撑我们的算法，不然的话很容易overfitting
-> 善用max_depth参数，缓慢的增加并测试模型，找出最好的那个depth。
-> 善用min_samples_split和min_samples_leaf参数来控制叶子节点的样本数量，防止overfitting。
-> 平衡训练数据中的各个种类的数据，防止被一个种类的数据支配。
+> * 当我们数据中的feature较多时，一定要有足够的数据量来支撑我们的算法，不然的话很容易overfitting
+> * 善用max_depth参数，缓慢的增加并测试模型，找出最好的那个depth。
+> * 善用min_samples_split和min_samples_leaf参数来控制叶子节点的样本数量，防止overfitting。
+> * 平衡训练数据中的各个种类的数据，防止被一个种类的数据支配。
 
 ---
 
