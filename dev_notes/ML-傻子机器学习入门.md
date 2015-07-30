@@ -171,5 +171,26 @@ setosa          11           0          0
 versicolor       0           9          0
 virginica        0           2         12
 """
+
+#save all trees to words
+from sklearn.tree import export_graphviz
+for i in xrange(len(clf.estimators_)):
+    export_graphviz(clf.estimators_[i] , '%d.dot'%i)
+
+
+#save all trees to pdf
+from sklearn import tree  
+from sklearn.externals.six import StringIO    
+import pydot   
+ 
+for i in xrange(len(clf.estimators_)):
+    dot_data = StringIO()   
+    tree.export_graphviz( clf.estimators_[i] , out_file=dot_data)  
+
+    graph = pydot.graph_from_dot_data(dot_data.getvalue())   
+    graph.write_pdf("iris%d.pdf" %  i )   
+    
 ```
+
+
 
