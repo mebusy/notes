@@ -193,7 +193,7 @@ for i in xrange(len(clf.estimators_)):
 ```
 
 
-要打印 pdf， 需要安装graphviz ，以及一下python库
+要打印 pdf， 需要安装graphviz ，以及一下python库 
 安装brew
 sudo su
 curl -L http://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C /usr/local
