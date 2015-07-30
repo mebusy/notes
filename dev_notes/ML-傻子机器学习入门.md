@@ -192,7 +192,7 @@ for i in xrange(len(clf.estimators_)):
     
 ```
 
-`
+
 要打印 pdf， 需要安装graphviz ，以及一下python库
 安装brew
 sudo su
@@ -209,6 +209,6 @@ sudo pip install -Iv https://pypi.python.org/packages/source/p/pyparsing/pyparsi
 sudo pip install GraphViz
 
 sudo pip install pydot2
-`
+
 
 
