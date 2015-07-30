@@ -1,3 +1,8 @@
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
 ## 正交运算符和正交点积
 正交点积是一种向量运算，它具有出乎意料的作用。
 
