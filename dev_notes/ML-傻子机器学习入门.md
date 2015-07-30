@@ -192,5 +192,24 @@ for i in xrange(len(clf.estimators_)):
     
 ```
 
+`
+要打印 pdf， 需要安装graphviz ，以及一下python库
+安装brew
+sudo su
+curl -L http://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C /usr/local
+
+安装 graphviz
+sudo brew install  graphviz
+
+
+安装python库 必须按照顺序安装
+
+sudo pip install -Iv https://pypi.python.org/packages/source/p/pyparsing/pyparsing-1.5.7.tar.gz#md5=9be0fcdcc595199c646ab317c1d9a709
+
+sudo pip install GraphViz
+
+sudo pip install pydot2
+
+`
 
 
