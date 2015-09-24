@@ -86,7 +86,9 @@ plot_decision_boundary(lambda x: clf.predict(x))
 plt.title("Logistic Regression")
 plt.show()
 ```
+
 ![](http://ww1.sinaimg.cn/mw690/6941baebjw1ew6gxgqoncj20gm0dlgmy.jpg)
+
 上图展示了Logistic回归分类器学习到的决策边界。  
 使用一条直线尽量将数据分离开来，但它并不能捕捉到数据的“月形”特征。 
 
