@@ -42,7 +42,8 @@ X, y = sklearn.datasets.make_moons(200, noise=0.20)
 """
 s   : point size ^2
 c   : color 
-cmap: A Colormap instance or registered name. cmap is only used if c is an array of floats. If None, defaults to rc image.cmap.
+cmap: A Colormap instance or registered name. cmap is only used if c is an array of floats. 
+      If None, defaults to rc image.cmap.
 """
 plt.scatter(X[:,0], X[:,1], s=40, c=y, cmap=plt.cm.Spectral)
 
