@@ -2,6 +2,26 @@
 
 scipy.stats包含统计工具和随机过程的概率描述。各种随机过程的随机数生成可在numpy.random中找到。
 
+可以使用下面的语句获得stats模块中所有的连续随机变量：
+
+from scipy import stats
+[k for k,v in stats.__dict__.items() if isinstance(v, stats.rv_continuous)]
+
+['genhalflogistic','triang','rayleigh','betaprime', ...]
+
+
+
+连续随机变量对象都有如下方法：
+
+rvs：对随机变量进行随机取值，可以通过size参数指定输出的数组的大小。
+pdf：随机变量的概率密度函数。
+cdf：随机变量的累积分布函数，它是概率密度函数的积分。
+sf：随机变量的生存函数，它的值是1-cdf(t)。
+ppf：累积分布函数的反函数。
+stat：计算随机变量的期望值和方差。
+fit：对一组随机取样进行拟合，找出最适合取样数据的概率密度函数的系数。
+
+
 ### 1.5.6.1。直方图和概率密度函数
 
 给定一个随机过程的观察，他们的直方图是随机过程的概率密度函数（probability density function）的估计：
