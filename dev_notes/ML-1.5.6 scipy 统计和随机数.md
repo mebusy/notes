@@ -4,11 +4,12 @@ scipy.stats包含统计工具和随机过程的概率描述。各种随机过程
 
 可以使用下面的语句获得stats模块中所有的连续随机变量：
 
+```python
 from scipy import stats
 [k for k,v in stats.__dict__.items() if isinstance(v, stats.rv_continuous)]
 
 ['genhalflogistic','triang','rayleigh','betaprime', ...]
-
+```
 
 
 连续随机变量对象都有如下方法：
