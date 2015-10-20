@@ -158,7 +158,7 @@ plt.show()
 
 ## 移植到lua
 
-lua 没有正态分布的方法(np.random.normal)，我们可以简单的实现一个
+lua 标准库没有正态分布的实现(np.random.normal)，我们可以简单的实现一个
 
 ```lua
 local NV_MAGICCONST = 1.71552776992
