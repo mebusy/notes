@@ -155,3 +155,38 @@ plt.show()
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/random_5.png)
 
+
+## 移植到lua
+
+lua 没有正态分布的方法(np.random.normal)，我们可以简单的实现一个
+
+```lua
+local NV_MAGICCONST = 1.71552776992
+
+local function normalvariate(random, mu, sigma)
+    --[[Normal distribution.
+    
+    mu is the mean, and sigma is the standard deviation.
+    
+    --]]
+    -- mu = mean, sigma = standard deviation
+    
+    -- Uses Kinderman and Monahan method. Reference: Kinderman,
+    -- A.J. and Monahan, J.F., "Computer generation of random
+    -- variables using the ratio of uniform deviates", ACM Trans
+    -- Math Software, 3, (1977), pp257-260.
+    
+    while true do
+        u1 = random()
+        u2 = 1.0 - random()
+        z = NV_MAGICCONST*(u1-0.5)/u2
+        zz = z*z/4.0
+        if zz <= -math.log(u2) then
+            break
+        end
+    end
+        
+    return mu + z*sigma
+
+end
+```
