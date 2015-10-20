@@ -72,7 +72,7 @@ plt.show()
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/random_2.png)
 
-上图绘制的是卡牌A的掉落间隔，X轴是 掉落的次数，Y 轴是 两次掉落 的间隔。
+上图绘制的是卡牌A的掉落间隔，X轴是第几次掉落，Y 轴是 两次掉落 的间隔。
 
 因为卡牌A 的掉率概率是 5%， 所以理想情况是，每20次左右，可以掉落一件。
 图中蓝色的线， 就是 20次间隔线。
