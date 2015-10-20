@@ -147,11 +147,13 @@ for i in xrange(N):
 	p[minj] = np.random.normal(1./wtp[minj], 1./wtp[minj]/3.)
 ```
 
+理解这段代码的关键，是想清楚怎么利用我们之前生成的正态分布的间隔数据， 
+来还原掉落事件。
 
-测试生成的数据
+最后，我们测试一下生成的掉落数据是否满足我们的需求。
 
 ```python
-#计算各个权重的 delta
+#计算各个掉落的间隔delta
 deltas = []
 for j in xrange( len( set( result ) ) ):
 	delta = []
