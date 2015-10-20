@@ -1,0 +1,155 @@
+# 你真的会用随机数么
+
+## 随机数
+生成 50000个 0-100 随机数
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+np.random.seed(0)
+x1 = np.random.rand(50000)*100
+plt.hist(x1, normed=1,  facecolor='green', alpha=0.5)
+plt.title('Histogram')
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/random_1.png)
+
+随机分布，很均匀
+
+
+## 随机分布
+
+假设游戏中，某个卡牌A 的掉率概率是 1/20， 也即 我们希望 每20次可以掉落一件。
+我们使用随机值<=5 来作为卡牌A的掉落条件， 并观察 <=5 的随机数的分布情况： 两次A掉落之间的间隔次数。
+
+先统计 两次A掉落之间的间隔次数
+
+```python
+#创建 delta 数据
+delta = []
+cnt = 0
+for i in x1:
+    cnt +=1
+    if i <= 5 :
+           delta.append( cnt ) 
+           cnt = 0
+```
+
+观察散列图：
+```python
+x = np.linspace( 1,len(delta),num=len(delta) )
+
+#轴命名
+plt.xlabel('drop times')
+plt.ylabel('delta')
+
+
+#画散列图
+plt.scatter(x,delta  , s=2 ,   c="#FF0000" )
+
+
+# 画水平线
+plt.plot( [ x[0] ,x[-1] ] ,  [ 20 , 20 ] , 'b' , linewidth=2  )
+
+
+# title
+plt.title('Scatter'  )
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/random_2.png)
+
+上图绘制的是卡牌A的掉落间隔，X轴是 掉落的次数，Y 轴是 两次掉落 的间隔。
+蓝色的线， 是 20次间隔线，
+可以看到，分布并不是我们所期望的在蓝线附近，
+出现连续掉落的频率非常高（间隔0），而最坏的情况，要间隔160次才会有下一次掉落，这就是大R们抱怨抽卡纯看脸的原因了。
+
+间隔次数delta 的直方图,很清晰的反映了这一点
+
+```python
+plt.hist( delta , normed=1,  facecolor='blue', alpha=0.5)
+plt.title('Histogram')
+plt.show()
+```
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/random_3.png)
+
+delta 的概率密度图，X轴是间隔数，Y 轴 是各间隔次数 出现的频率 
+
+这样的分布很糟糕，我们期望的分布是 20 出现的概率最大， 20左右概率逐渐减小。
+因为正态分布才是符合我们要求的分布。
+
+## 正态分布
+为了方便，直接生成权值为5的卡牌的间隔，检验下正态分布的随机效果。
+我们设置 位置参数 mu＝20  , 尺度参数 sigma = mu /3.0,  看下分布情况。
+
+```python
+np.random.seed(0)
+NN = int(50000 *0.05)
+mu, sigma = 20, 20/3.0
+delta = [int(np.random.normal(mu, sigma)) for i in xrange(NN)]
+plt.hist( delta , normed=1,  facecolor='blue', alpha=0.5)
+plt.title('Histogram')
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/random_4.png)
+
+效果非常好。
+
+
+## 根据权值计算掉落
+现在有4种卡牌，掉落的权重分别 20, 30, 50 
+我们来计算出一个合理的掉落分布
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+N= 50000
+wt = [20, 30, 50 ]
+wtp = [1.*x/sum(wt) for x in wt]
+result = []
+p = [np.random.normal( 1./x, 1./x/3.) for x in wtp]
+for i in xrange(N):
+	minp = 1.e9
+	minj = -1
+	for j, pp in enumerate(p):
+		if pp < minp:
+			minp = pp
+			minj = j
+	result.append(minj)
+	for j, pp in enumerate(p):
+		p[j] -= minp
+	p[minj] = np.random.normal(1./wtp[minj], 1./wtp[minj]/3.)
+```
+
+
+测试生成的数据
+
+```python
+#计算各个权重的 delta
+deltas = []
+for j,v in enumerate (wt):
+	delta = []
+	deltas.append( delta )
+	cnt = 0
+	for i in result:
+		cnt +=1
+		if i==j :
+			delta.append( cnt ) 
+			cnt = 0
+
+
+plt.title('Histogram')
+colors = [  "b" , 'g',"r" , "c" , "m" , "y" , "k" , "#FF00FF" , "#800080"  ]
+
+#plt.ylim(0, 0.5)
+
+plt.hist( deltas ,histtype='barstacked' ,  normed=1,     alpha=0.5  ) #facecolor= colors[j]
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/random_5.png)
+
