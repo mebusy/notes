@@ -131,7 +131,7 @@ for i in xrange(N):
 ```python
 #计算各个权重的 delta
 deltas = []
-for j,v in enumerate (wt):
+for j in xrange( len( set( result ) ) ):
 	delta = []
 	deltas.append( delta )
 	cnt = 0
