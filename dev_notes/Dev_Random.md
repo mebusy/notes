@@ -1,4 +1,4 @@
-# 游戏中掉落概率的正态分布，以及lua实现
+# 让物品掉落符合正态分布，以及lua实现
 
 ps. 以下所有的python代码都是在Mac Os上编写并测试通过。
 
@@ -211,3 +211,5 @@ local function normalvariate(random, mu, sigma)
 
 end
 ```
+
+![参考资料](http://www.cnblogs.com/huangweipro/archive/2015/07/27/4679107.html)
