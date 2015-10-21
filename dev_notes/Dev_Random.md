@@ -233,5 +233,5 @@ local function normalvariate(func_random, mu, sigma)
 end
 ```
 
-![参考资料](http://www.cnblogs.com/huangweipro/archive/2015/07/27/4679107.html)
+![参考文章](http://huangwei.pro/2015-07/game-random/)
 
