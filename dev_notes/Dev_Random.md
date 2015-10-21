@@ -170,6 +170,9 @@ for i in xrange(N):
 
 ```python
 #计算各个掉落的间隔interval
+import numpy as np
+import matplotlib.pyplot as plt
+
 intervals = []
 for j in xrange( len( set( result ) ) ):
 	interval = []
