@@ -42,27 +42,27 @@ end
 先把间隔次数计算出来：
 
 ```python
-#创建 delta 数据
-delta = []
+#创建 interval 数据
+interval = []
 cnt = 0
 for i in x1:
     cnt +=1
     if i <= 5 :
-           delta.append( cnt ) 
+           interval.append( cnt ) 
            cnt = 0
 ```
 
-观察delta数据的散列图：
+观察interval数据的散列图：
 ```python
-x = np.linspace( 1,len(delta),num=len(delta) )
+x = np.linspace( 1,len(interval),num=len(interval) )
 
 #轴命名
 plt.xlabel('drop times')
-plt.ylabel('delta')
+plt.ylabel('interval')
 
 
 #画散列图
-plt.scatter(x,delta  , s=2 ,   c="#FF0000" )
+plt.scatter(x,interval  , s=2 ,   c="#FF0000" )
 
 
 # 画水平线
@@ -87,13 +87,13 @@ plt.show()
 下图很清晰的反映了这一点
 
 ```python
-plt.hist( delta , normed=1,  facecolor='blue', alpha=0.5)
+plt.hist( interval , normed=1,  facecolor='blue', alpha=0.5)
 plt.title('Histogram')
 plt.show()
 ```
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/random_3.png)
 
-delta 的概率密度图，X轴是间隔数，Y 轴 是各间隔的次数 出现的频率 
+interval 的概率密度图，X轴是间隔数，Y 轴 是各间隔的次数 出现的频率 
 
 这样的分布很糟糕，我们期望的分布是 20 出现的频率最大， 20附近频率逐渐减小。 
 
@@ -111,7 +111,7 @@ import matplotlib.pyplot as plt
 np.random.seed(0)
 NN = int(50000 *0.05)
 mu, sigma = 20, 20/3.0
-delta = [int(np.random.normal(mu, sigma)) for i in xrange(NN)]
+interval = [int(np.random.normal(mu, sigma)) for i in xrange(NN)]
 
 plt.figure(figsize=(8,10) )
 #plt.title('Histogram')
@@ -119,12 +119,12 @@ plt.figure(figsize=(8,10) )
 p1 = plt.subplot(211)
 p2 = plt.subplot(212)
 
-p1.hist( delta , normed=1,  facecolor='blue', alpha=0.5)
+p1.hist( interval , normed=1,  facecolor='blue', alpha=0.5)
 
-x = np.linspace( 1,len(delta),num=len(delta) )
+x = np.linspace( 1,len(interval),num=len(interval) )
 p2.xlabel('drop times')
-p2.ylabel('delta')
-p2.scatter(x,delta  , s=2 ,   c="#FF0000" )
+p2.ylabel('interval')
+p2.scatter(x,interval  , s=2 ,   c="#FF0000" )
 p2.plot( [ x[0] ,x[-1] ] ,  [ 20 , 20 ] , 'b' , linewidth=2  )
 
 plt.show()
@@ -169,16 +169,16 @@ for i in xrange(N):
 最后，我们测试一下生成的掉落数据是否满足我们的需求。
 
 ```python
-#计算各个掉落的间隔delta
-deltas = []
+#计算各个掉落的间隔interval
+intervals = []
 for j in xrange( len( set( result ) ) ):
-	delta = []
-	deltas.append( delta )
+	interval = []
+	intervals.append( interval )
 	cnt = 0
 	for i in result:
 		cnt +=1
 		if i==j :
-			delta.append( cnt ) 
+			interval.append( cnt ) 
 			cnt = 0
 
 
@@ -187,7 +187,7 @@ colors = [  "b" , 'g',"r" , "c" , "m" , "y" , "k" , "#FF00FF" , "#800080"  ]
 
 #plt.ylim(0, 0.5)
 
-plt.hist( deltas ,histtype='barstacked' ,  normed=1,     alpha=0.5  ) #facecolor= colors[j]
+plt.hist( intervals ,histtype='barstacked' ,  normed=1,     alpha=0.5  ) #facecolor= colors[j]
 plt.show()
 ```
 
@@ -231,3 +231,4 @@ end
 ```
 
 ![参考资料](http://www.cnblogs.com/huangweipro/archive/2015/07/27/4679107.html)
+
