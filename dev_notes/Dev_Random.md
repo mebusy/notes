@@ -202,7 +202,7 @@ lua 标准库没有正态分布的实现(np.random.normal)，我们可以很容�
 ```lua
 local NV_MAGICCONST = 1.71552776992
 
-local function normalvariate(random, mu, sigma)
+local function normalvariate(func_random, mu, sigma)
     --[[Normal distribution.
     
     mu is the mean, and sigma is the standard deviation.
@@ -214,12 +214,12 @@ local function normalvariate(random, mu, sigma)
     -- A.J. and Monahan, J.F., "Computer generation of random
     -- variables using the ratio of uniform deviates", ACM Trans
     -- Math Software, 3, (1977), pp257-260.
-    
+    local z
     while true do
-        u1 = random()
-        u2 = 1.0 - random()
+        local u1 = func_random()
+        local u2 = 1.0 - func_random()
         z = NV_MAGICCONST*(u1-0.5)/u2
-        zz = z*z/4.0
+        local zz = z*z/4.0
         if zz <= -math.log(u2) then
             break
         end
