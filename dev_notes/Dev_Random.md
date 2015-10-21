@@ -105,11 +105,15 @@ delta 的概率密度图，X轴是间隔数，Y 轴 是各间隔的次数 出现
 我们使用 位置参数 mu＝20  , 尺度参数 sigma = mu /3.0,  看下分布情况。
 
 ```python
+import numpy as np
+import matplotlib.pyplot as plt
+
 np.random.seed(0)
 NN = int(50000 *0.05)
 mu, sigma = 20, 20/3.0
 delta = [int(np.random.normal(mu, sigma)) for i in xrange(NN)]
 
+plt.figure(figsize=(8,10) )
 #plt.title('Histogram')
 
 p1 = plt.subplot(211)
