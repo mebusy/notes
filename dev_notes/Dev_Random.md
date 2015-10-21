@@ -37,7 +37,7 @@ end
 看上去似乎很完美 
 ###吗？
 
-我们来观察一下用这种方式产生的 卡牌A两次掉落间隔次数的情况：
+我们来观察一下用这种方式产生的 卡牌A两次掉落的间隔次数的情况：
 
 先把间隔次数计算出来：
 
@@ -76,7 +76,7 @@ plt.show()
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/random_2.png)
 
-上图绘制的是卡牌A的掉落间隔统计，X轴是第几次掉落，Y 轴是 两次掉落的间隔。
+上图绘制的是卡牌A的掉落的间隔统计，X轴是第几次掉落，Y 轴是 两次掉落的间隔。
 
 因为卡牌A 的掉率概率是 5%， 所以理想情况，我们希望每20次左右，掉落一件。
 图中蓝色的线， 就是 20次间隔线。
@@ -93,14 +93,14 @@ plt.show()
 ```
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/random_3.png)
 
-delta 的概率密度图，X轴是间隔数，Y 轴 是各间隔次数 出现的频率 
+delta 的概率密度图，X轴是间隔数，Y 轴 是各间隔的次数 出现的频率 
 
 这样的分布很糟糕，我们期望的分布是 20 出现的频率最大， 20附近频率逐渐减小。 
 
 正态分布 正好符合我们的分布要求。
 
 ## 正态分布
-为了方便，我们直接生成5%掉落率的卡牌A的掉落间隔，检验下正态分布的效果。 
+为了方便，我们直接生成5%掉落率的卡牌A的掉落的间隔，检验下正态分布的效果。 
 
 我们使用 位置参数 mu＝20  , 尺度参数 sigma = mu /3.0,  看下分布情况。
 
@@ -109,8 +109,20 @@ np.random.seed(0)
 NN = int(50000 *0.05)
 mu, sigma = 20, 20/3.0
 delta = [int(np.random.normal(mu, sigma)) for i in xrange(NN)]
-plt.hist( delta , normed=1,  facecolor='blue', alpha=0.5)
-plt.title('Histogram')
+
+#plt.title('Histogram')
+
+p1 = plt.subplot(211)
+p2 = plt.subplot(212)
+
+p1.hist( delta , normed=1,  facecolor='blue', alpha=0.5)
+
+x = np.linspace( 1,len(delta),num=len(delta) )
+p2.xlabel('drop times')
+p2.ylabel('delta')
+p2.scatter(x,delta  , s=2 ,   c="#FF0000" )
+p2.plot( [ x[0] ,x[-1] ] ,  [ 20 , 20 ] , 'b' , linewidth=2  )
+
 plt.show()
 ```
 
