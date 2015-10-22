@@ -234,5 +234,5 @@ local function normalvariate(func_random, mu, sigma)
 end
 ```
 
-[参考文章 游戏中的随机概率](http://huangwei.pro/2015-07/game-random/)
+[参考文章: 游戏中的随机概率](http://huangwei.pro/2015-07/game-random/)
 
