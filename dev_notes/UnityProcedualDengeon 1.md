@@ -142,7 +142,9 @@ local function TriangulateSquare(square)
 end
 ```
 
-#### create a gameobject to display the mesh.
+## step 4: display the mesh.
+
+create a MeshFilter and MeshRenderer to display the mesh
 
 ```lua
     local objMapGenerator = GameObject.Find("objMapGenerator")    
