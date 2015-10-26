@@ -7,9 +7,9 @@
 
 Ok, lets start to generate a procedural dungeon cave .
 
-The algorithm to create the map is called "Cellular Automata".
+## step 1: Cellular Automata
 
-## step 1: create a random map
+The algorithm to create the map is called "Cellular Automata".
 
 At first , we create a 2 dimension map. We use number **1 to represent wall** while **0 represent floor**.
 
