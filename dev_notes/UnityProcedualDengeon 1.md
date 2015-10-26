@@ -1,6 +1,6 @@
 # Procedual Dungeon by Unity lua
 
-    PS: All codes are written in Lua, developed on Unity5.
+    PS: All codes are written in Lua, developed on Unity5 with ULua.
     The code are used only to explain how the algorithm work, I do not guarantee it can run correctly.
     
     author: golden_slime@hotmail.com    <Mebusy>
