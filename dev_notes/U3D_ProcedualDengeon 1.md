@@ -105,53 +105,97 @@ For more algorithm details , you could check this illustration: [Demo Marching S
 
 By clicking those 4 number marked control-node , you will see how the triangles were created.
 
+Class SquareGrid definition
+
 ```lua
---contruct triangles according to control node config
-local function TriangulateSquare(square) 
-    --0 no triangle
+local SquareGrid = class("SquareGrid")
+function SquareGrid:create(  map,   squareSize )
+    local node = SquareGrid:new()
 
-    --1 control node
-    if square.configuration == 1 then
-        MeshFromPoints(square.centreLeft ,square.centreBottom, square.bottomLeft )
-    elseif square.configuration == 2 then
-        MeshFromPoints(square.bottomRight, square.centreBottom , square.centreRight )
-    elseif square.configuration == 4 then
-        MeshFromPoints(square.topRight, square.centreRight , square.centreTop )
-    elseif square.configuration == 8 then
-        MeshFromPoints(square.topLeft, square.centreTop, square.centreLeft)
+    local nodeCountX = #map 
+    local nodeCountY = #map[1]
+    local mapWidth = nodeCountX * squareSize;
+    local mapHeight = nodeCountY * squareSize;
 
-    --2 control node
-    elseif square.configuration == 3 then
-        MeshFromPoints(square.centreRight, square.bottomRight, square.bottomLeft, square.centreLeft)
-    elseif square.configuration == 6 then
-        MeshFromPoints(square.centreTop, square.topRight, square.bottomRight, square.centreBottom)
-    elseif square.configuration == 9 then
-        MeshFromPoints(square.topLeft, square.centreTop, square.centreBottom, square.bottomLeft)
-    elseif square.configuration == 12 then
-        MeshFromPoints(square.topLeft, square.topRight, square.centreRight, square.centreLeft) 
-
-
-    elseif square.configuration == 5 then
-        MeshFromPoints(square.centreTop, square.topRight, square.centreRight, square.centreBottom, square.bottomLeft, square.centreLeft)
-    elseif square.configuration == 10 then
-        MeshFromPoints(square.topLeft, square.centreTop, square.centreRight, square.bottomRight, square.centreBottom, square.centreLeft)
-
-    --3 control node            
-    elseif square.configuration == 7 then
-        MeshFromPoints(square.centreTop, square.topRight, square.bottomRight, square.bottomLeft, square.centreLeft)
-    elseif square.configuration == 11 then
-        MeshFromPoints(square.topLeft, square.centreTop, square.centreRight, square.bottomRight, square.bottomLeft)
-    elseif square.configuration == 13 then
-        MeshFromPoints(square.topLeft, square.topRight, square.centreRight, square.centreBottom, square.bottomLeft)
-    elseif square.configuration == 14 then
-        MeshFromPoints(square.topLeft, square.topRight, square.bottomRight, square.centreBottom, square.centreLeft)
-
-    --4 control node    
-    elseif square.configuration == 15 then
-        MeshFromPoints(square.topLeft, square.topRight, square.bottomRight, square.bottomLeft)
+    local controlNodes = {}
+    for x = 1,  nodeCountX do
+    	controlNodes[x] = {}
+        for y = 1, nodeCountY do
+            local pos = Vector3( -mapWidth/2 + x * squareSize + squareSize/2, 0, -mapHeight/2 + y * squareSize + squareSize/2) 
+            controlNodes[x][y] = Node:create( pos, map[x][y] == 1 )
+        end
+    end
+    
+    node.squares ={}
+    for x = 1,  nodeCountX-1 do
+    	node.squares[x] = {}
+        for y = 1 ,  nodeCountY-1 do 
+            node.squares[x][y] = Square:create( controlNodes[x][y+1], controlNodes[x+1][y+1], controlNodes[x+1][y], controlNodes[x][y])
+        end
     end
 
+    return node 
 end
+```
+
+Class Square definition
+```lua
+local Square = class("Square")
+function Square:create(   _topLeft,   _topRight,   _bottomRight,   _bottomLeft )
+    local node = Square:new()
+
+    local control_nodes = { _topLeft,   _topRight,   _bottomRight,   _bottomLeft }  
+    local common_nodes = { }
+
+    for i=1, #control_nodes do
+        local ctr_node_1 = control_nodes[ i ]
+        local ctr_node_2 = control_nodes[ i%4 + 1] 
+        common_nodes[i] = Node:create( ( ctr_node_1.position + ctr_node_2.position  )/2 , false )
+    end
+
+    for i , v in ipairs( control_nodes ) do
+        if v.active then
+            common_nodes[i].active = not common_nodes[i].active
+            local another_node_index = i-1==0 and 4 or i-1 
+            common_nodes[ another_node_index ].active = not common_nodes[ another_node_index ].active
+        end
+    end
+    -------
+    node.all_nodes = {}
+    for i=1,4 do
+        node.all_nodes[i*2-1] = control_nodes[i]
+        node.all_nodes[i*2] = common_nodes[i]
+    end
+
+    return node 
+end
+```
+
+Making triangles for each square
+
+```lua
+local function TriangulateSquare(square) 
+    local visibleNodes = {}
+    for _,v in ipairs( square.all_nodes ) do
+        if v.active then
+            table.insert( visibleNodes, v  )
+        end
+    end
+    MeshFromPoints( visibleNodes )
+end
+--======================
+squareGrid =  SquareGrid:create( map, squareSize ) 
+
+vertices = {}
+triangles = {}
+
+--以 square 为单位，构建 三角形
+for x = 1, #squareGrid.squares do
+    for y = 1, #squareGrid.squares[1] do
+        TriangulateSquare(squareGrid.squares[x][y])
+    end --end for x
+end --end for y    
+
 ```
 
 ## step 4: display the mesh.
