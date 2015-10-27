@@ -94,7 +94,8 @@ Now, it looks much better.
 
 Let's image that we shink the map cell . Every 4 cells form a square.  
 
-We call those square vertexes "Control Node" while call the nodes at middle of edge "Common Node".
+We call those square vertexes "Control Node" (bigger white square ) , 
+while call the nodes at middle of edge "Common Node". ( smaller grey one )
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Random_Cave_2.1.png)
 
