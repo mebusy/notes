@@ -11,9 +11,11 @@ Ok, lets start to generate a procedural dungeon cave .
 
 The algorithm to create the map is called "Cellular Automata".
 
-At first , we create a 2 dimension map. We use number **1 to represent wall** while **0 represent floor**.
+At first , we will create a 2 dimension map.  
 
-The following codes create the map which has a 60x40 dimension.
+We use number **1 to represent wall** while **0 represent floor**.
+
+The following codes create the map 60 x 40 .
 
 ```lua
 local width =  60
@@ -36,15 +38,17 @@ end
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Random_Cave_1.png)
 
-The map is still very rough , just like a black image with many many white noise on it.  
+It looks like a black image with many many white noise on it.  
 
-Next we will make it smooth .
+Next we will make it looks like a map.
 
 ## step 2: smooth the map
 
 The core algorithm to smooth the map is : 
 
-For each map cell , calculate the wall number within 8 neighbour cells surrounding it . If the wall count > 4 then turn the cell into wall(1) , if the wall count < 4 then turn the cell into floor(0). 
+For each map cell , calculate the wall number within 8 neighbour cells surrounding it . 
+If the wall count > 4 then turn the cell into wall(1) ,  
+if the wall count < 4 then turn the cell into floor(0). 
 
 Repeat 4-5 times.
 
@@ -64,6 +68,7 @@ end
 ```
 
 ### step 3: show it
+
 Ok, we almost done it. Let's show the map on gizmos and check it.
 
 ```lua
@@ -87,7 +92,9 @@ Now, it looks much better.
 
 ## step 4: Marching Square
 
-Let's image that we shink the map cell . Every 4 cells form a square , we call those square vertexes "Control Node" while call the nodes at middle of edge "Common Node".
+Let's image that we shink the map cell . Every 4 cells form a square.  
+
+We call those square vertexes "Control Node" while call the nodes at middle of edge "Common Node".
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Random_Cave_2.1.png)
 
