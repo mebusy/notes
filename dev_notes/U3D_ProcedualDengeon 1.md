@@ -100,7 +100,7 @@ We call those square vertexes "Control Node" while call the nodes at middle of e
 
 Those 8 nodes (4 control nodes + 4 common node) will be used to triangulate the Square.
 
-For more algorithm details , you could check this illustration: ![Marching Square](https://cdn.rawgit.com/mebusy/html5_examples/master/00_marchingSquare.html)
+For more algorithm details , you could check this illustration: [Marching Square](https://cdn.rawgit.com/mebusy/html5_examples/master/00_marchingSquare.html)
 
 ```lua
 --contruct triangles according to control node config
