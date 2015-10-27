@@ -105,6 +105,8 @@ For more algorithm details , you could check this illustration: **[Demo Marching
 
 By clicking those 4 marked control-node , you will see how the triangles were created.
 
+The following codes are the core algorithm:
+
 Class SquareGrid definition
 
 ```lua
