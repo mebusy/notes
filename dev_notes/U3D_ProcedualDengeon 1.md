@@ -103,7 +103,7 @@ Those 8 nodes (4 control nodes + 4 common node) will be used to triangulate the 
 
 For more algorithm details , you could check this illustration: **[Demo Marching Square](https://cdn.rawgit.com/mebusy/html5_examples/master/00_marchingSquare.html)**
 
-By clicking those 4 number marked control-node , you will see how the triangles were created.
+By clicking those 4 marked control-node , you will see how the triangles were created.
 
 Class SquareGrid definition
 
