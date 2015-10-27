@@ -93,6 +93,8 @@ Let's image that we shink the map cell . Every 4 cells form a square , we call t
 
 Those 8 nodes (4 control nodes + 4 common node) will be used to triangulate the Square.
 
+For more algorithm details , you could check this illustration: ![Marching Square](https://cdn.rawgit.com/mebusy/html5_examples/master/00_marchingSquare.html)
+
 ```lua
 --contruct triangles according to control node config
 local function TriangulateSquare(square) 
