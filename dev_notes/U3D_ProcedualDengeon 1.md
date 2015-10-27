@@ -101,7 +101,7 @@ while call the nodes at middle of edge "Common Node". ( smaller grey one )
 
 Those 8 nodes (4 control nodes + 4 common node) will be used to triangulate the Square.
 
-For more algorithm details , you could check this illustration: **[Demo Marching Square](https://cdn.rawgit.com/mebusy/html5_examples/master/00_marchingSquare.html)**
+For more algorithm details , you could check this illustration: **[Demo Marching Square](https://cdn.rawgit.com/mebusy/html5_examples/a12340a5d32b0c760ef138301b067fb1153ef94b/00_marchingSquare.html)**
 
 By clicking those 4 marked control-node , you will see how the triangles were created.
 
