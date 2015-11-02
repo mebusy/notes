@@ -194,8 +194,8 @@ soup.find_all('a')
 tag的 .contents 属性可以将tag的子节点以列表的方式输出:
 通过tag的 .children 生成器,可以对tag的子节点进行循环:
 
-
 .contents 和 .children属性仅包含tag的直接子节点. 例如,<head>标签只有一个直接子节点<title>
+
 ```python
 head_tag.contents
 # [<title>The Dormouse's story</title>]
