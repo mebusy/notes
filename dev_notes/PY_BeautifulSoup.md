@@ -1,4 +1,6 @@
 
+[markdown版本](https://www.zybuluo.com/qibinyi/note/208683)
+
 # BeautifulSoup
 
     bs 使用 Unicode编码 
