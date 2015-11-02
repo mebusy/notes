@@ -117,7 +117,7 @@ tag中包含的字符串不能编辑,但是可以被替换成其它的字符串,
 ```python
 tag.string.replace_with("No longer bold")
 tag
-# <blockquote>No longer bold</blockquote>
+# < blockquote >No longer bold</blockquote>
 ```
 
 ### BeautifulSoup
@@ -135,7 +135,7 @@ soup.name
 Comment 对象是一个特殊类型的 NavigableString 对象:
 
 ```python
-markup = "<b><!--Hey, buddy. Want to buy a used parser?--></b>"
+markup = "< b ><!--Hey, buddy. Want to buy a used parser?--></b>"
 soup = BeautifulSoup(markup)
 comment = soup.b.string
 type(comment)
@@ -153,7 +153,7 @@ cdata = CData("A CDATA block")
 comment.replace_with(cdata)
 
 print(soup.b.prettify())
-# <b>
+# < b >
 #  <![CDATA[A CDATA block]]>
 # </b>
 ```
@@ -168,10 +168,10 @@ Beautiful Soup提供了许多操作和遍历子节点的属性.
 
 #### tag的名字
 操作文档树最简单的方法就是告诉它你想获取的tag的name.
-下面的代码可以获取<body>标签中的第一个<b>标签:
+下面的代码可以获取< body >标签中的第一个< b >标签:
 ```python
 soup.body.b
-# <b>The Dormouse's story</b>
+# < b >The Dormouse's story</b>
 ```
 
 通过点取属性的方式只能获得当前名字的第一个tag:
@@ -180,7 +180,7 @@ soup.a
 # <a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>
 ```
 
-如果想要得到所有的<a>标签,或是通过名字得到比*一个tag*更多的内容的时候, 
+如果想要得到所有的< a >标签,或是通过名字得到比*一个tag*更多的内容的时候, 
 就需要用到 Searching the tree 中描述的方法,比如: find_all()
 
 ```python
@@ -194,19 +194,19 @@ soup.find_all('a')
 tag的 .contents 属性可以将tag的子节点以列表的方式输出:
 通过tag的 .children 生成器,可以对tag的子节点进行循环:
 
-.contents 和 .children属性仅包含tag的直接子节点. 例如,<head>标签只有一个直接子节点<title>
 
+.contents 和 .children属性仅包含tag的直接子节点. 例如,< head >标签只有一个直接子节点< title >
 ```python
 head_tag.contents
-# [<title>The Dormouse's story</title>]
+# [< title >The Dormouse's story</title>]
 ```
 
-但是<title>标签也包含一个子节点:字符串 “The Dormouse’s story”,这种情况下字符串 “The Dormouse’s story”也属于<head>标签的子孙节点. .descendants 属性可以对所有tag的子孙节点进行递归循环 [5] :
+但是< title >标签也包含一个子节点:字符串 “The Dormouse’s story”,这种情况下字符串 “The Dormouse’s story”也属于< head >标签的子孙节点. .descendants 属性可以对所有tag的子孙节点进行递归循环 [5] :
 
 ```python
 for child in head_tag.descendants:
     print(child)
-    # <title>The Dormouse's story</title>
+    # < title >The Dormouse's story</title>
     # The Dormouse's story
 ```
 
@@ -220,7 +220,7 @@ title_tag.string
 如果一个tag仅有一个子节点,那么这个tag也可以使用 .string 方法,输出结果与当前唯一子节点的 .string 结果相同:
 ```python
 head_tag.contents
-# [<title>The Dormouse's story</title>]
+# [< title >The Dormouse's story</title>]
 
 head_tag.string
 # u'The Dormouse's story'
@@ -272,17 +272,17 @@ for string in soup.stripped_strings:
 ### 父节点
 
 #### .parent
-通过 .parent 属性来获取某个元素的父节点.在例子“爱丽丝”的文档中,<head>标签是<title>标签的父节点:
+通过 .parent 属性来获取某个元素的父节点.在例子“爱丽丝”的文档中,< head >标签是< title >标签的父节点:
 ```python
 title_tag = soup.title
 title_tag
-# <title>The Dormouse's story</title>
+# < title >The Dormouse's story</title>
 title_tag.parent
-# <head><title>The Dormouse's story</title></head>
+# < head >< title >The Dormouse's story</title></head>
 ```
 
 #### .parents
-通过元素的 .parents 属性可以递归得到元素的所有父辈节点,下面的例子使用了 .parents 方法遍历了<a>标签到根节点的所有节点.
+通过元素的 .parents 属性可以递归得到元素的所有父辈节点,下面的例子使用了 .parents 方法遍历了< a >标签到根节点的所有节点.
 ```python
 link = soup.a
 link
@@ -301,17 +301,17 @@ for parent in link.parents:
 
 ### 兄弟节点
 ```python
-sibling_soup = BeautifulSoup("<a><b>text1</b><c>text2</c></b></a>")
+sibling_soup = BeautifulSoup("< a >< b >text1</b>< c >text2</c></b></a>")
 ```
 
 #### .next_sibling 和 .previous_sibling
 在文档树中,使用 .next_sibling 和 .previous_sibling 属性来查询兄弟节点:
 ```python
 sibling_soup.b.next_sibling
-# <c>text2</c>
+# < c >text2</c>
 
 sibling_soup.c.previous_sibling
-# <b>text1</b>
+# < b >text1</b>
 ```
 
 #### .next_siblings 和 .previous_siblings
@@ -340,15 +340,15 @@ Beautiful Soup定义了很多搜索方法,这里着重介绍2个: find() 和 fin
     过滤器中的查找例子，都是查找 tag
 
 #### 字符串
-最简单的过滤器是字符串.在搜索方法中传入一个字符串参数,Beautiful Soup会查找与字符串完整匹配的内容,下面的例子用于查找文档中所有的<b>标签:
+最简单的过滤器是字符串.在搜索方法中传入一个字符串参数,Beautiful Soup会查找与字符串完整匹配的内容,下面的例子用于查找文档中所有的< b >标签:
 ```python
 soup.find_all('b')
-# [<b>The Dormouse's story</b>]
+# [< b >The Dormouse's story</b>]
 ```
 
 #### 正则表达式
 如果传入正则表达式作为参数,Beautiful Soup会通过正则表达式的 match() 来匹配内容. 
-下面例子中找出所有以b开头的标签,这表示<body>和<b>标签都应该被找到:
+下面例子中找出所有以b开头的标签,这表示< body >和< b >标签都应该被找到:
 ```python
 import re
 for tag in soup.find_all(re.compile("^b")):
@@ -365,11 +365,11 @@ for tag in soup.find_all(re.compile("t")):
 
 #### 列表
 如果传入列表参数,Beautiful Soup会将与列表中任一元素匹配的内容返回. 
-下面代码找到文档中所有<a>标签和<b>标签:
+下面代码找到文档中所有< a >标签和< b >标签:
     
 ```python
 soup.find_all(["a", "b"])
-# [<b>The Dormouse's story</b>,
+# [< b >The Dormouse's story</b>,
 #  <a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,
 #  <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>,
 #  <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>]
@@ -425,7 +425,7 @@ name 参数可以查找所有名字为 name 的tag,字符串对象会被自动�
 简单的用法如下:
 ```python
 soup.find_all("title")
-# [<title>The Dormouse's story</title>]
+# [< title >The Dormouse's story</title>]
 ```
 
     重申: 搜索 name 参数的值可以使任一类型的 过滤器 ,字符窜,正则表达式,列表,方法或是 True .
@@ -527,7 +527,7 @@ find_all() 方法没有找到目标是返回空列表, find() 方法找不到目
 
 ```python
 soup.head.title
-# <title>The Dormouse's story</title>
+# < title >The Dormouse's story</title>
 soup.find("head").find("title")
 ```
 
@@ -564,5 +564,4 @@ Beautiful Soup支持大部分的CSS选择器,在 Tag 或 BeautifulSoup 对象的
 soup.get_text("|", strip=True)
 
 和 使用 .stripped_strings 生成器 效果差不多
-
 
