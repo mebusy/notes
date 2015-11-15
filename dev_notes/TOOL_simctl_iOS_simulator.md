@@ -25,6 +25,7 @@ open -a "iOS Simulator" --args -CurrentDeviceUDID udid
 ```bash
 xcrun simctl install booted taobao.app
 ```
+
     参数 booted 指的是当前启动的模拟器
 
 
@@ -41,7 +42,8 @@ xcrun simctl openurl booted taobao://h5.m.taobao.com/guang/index.html
 #### 通过 bundle id 启动 app 
 
     需要确保 设备 状态是 激活状态
-    
+
+
 ```bash
 xcrun simctl launch 945EFCEC-F84E-44AD-AE49-2E61EC7DA29B org.reactjs.native.example.wordShorthand2016
 ```
