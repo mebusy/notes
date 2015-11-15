@@ -24,6 +24,8 @@ watchman watch-list
 watchman -- trigger /path/to/dir triggername [patterns] -- [cmd]
 ```
 
+patterns 必须使用单引号 '' , 如  '*.txt'
+
 ### 删除某个 trigger 
 
 ```bash
@@ -47,12 +49,6 @@ watchman shutdown-server
 ```bash
 ps -ef | grep watchman
 ```
-
-
-
-
-
-
 
 
 
