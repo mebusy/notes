@@ -42,6 +42,8 @@
 ---
 #### Tools
 
-###### [1. facebook watchman ](https://github.com/mebusy/notes/blob/master/dev_notes/TOOL_watchman.md)
+    |   |    |   | 
+--- | --- | --- | ---
+[1. facebook watchman ](https://github.com/mebusy/notes/blob/master/dev_notes/TOOL_watchman.md)   |    [2. simctl ios Simulator ](https://github.com/mebusy/notes/blob/master/dev_notes/TOOL_simctl_iOS_simulator.md)   |
 
 
