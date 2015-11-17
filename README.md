@@ -38,8 +38,7 @@
 
     |   |    |   | 
 --- | --- | --- | ---
-[1.语言 ](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%981-%E8%AF%AD%E8%A8%80.md)   |   [2.表达式 ](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%982-%E8%A1%A8%E8%BE%BE%E5%BC%8F.md)
- |  [3.函数 ](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%983-%E5%87%BD%E6%95%B0.md)
+[1.语言 ](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%981-%E8%AF%AD%E8%A8%80.md)   |   [2.表达式 ](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%982-%E8%A1%A8%E8%BE%BE%E5%BC%8F.md)| [3.函数 ](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%983-%E5%87%BD%E6%95%B0.md)
 
 ###### [2. go格式化输出 ](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG-fmt%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA.md)
 
