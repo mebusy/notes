@@ -62,3 +62,16 @@ org.reactjs.native.example.wordShorthand2016: 11497
 kill -9 pid
 xcrun simctl launch ...
 ```
+
+### 应用
+
+#### 获取 激活设备的 apps目录, 并由此活动名字中包含 nba_heroes 的 app 应用目录
+
+```bash
+BOOTED_DEVICE=`xcrun simctl list  | grep -oE '\([-a-zA-Z0-9]+\)\s+\(Booted\)' | grep -oE '^\([-a-zA-Z0-9]+'  | grep -oE '[-a-zA-Z0-9]+'`
+APP_PATH=`find /Users/qibinyi/Library/Developer/CoreSimulator/Devices/$BOOTED_DEVICE/data/Containers/Bundle/Application -name *.app | grep nba_heroes`
+```
+
+
+
+
