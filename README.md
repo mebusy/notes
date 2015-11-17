@@ -50,3 +50,10 @@
 [1. facebook watchman ](https://github.com/mebusy/notes/blob/master/dev_notes/TOOL_watchman.md)   |    [2. simctl ios Simulator ](https://github.com/mebusy/notes/blob/master/dev_notes/TOOL_simctl_iOS_simulator.md)   |
 
 
+#### Linux
+
+    |   |    |   | 
+--- | --- | --- | ---
+[1. 重定向和管道 ]https://github.com/mebusy/notes/blob/master/dev_notes/LINUX_%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E7%AE%A1%E9%81%93.md   | 
+
+
