@@ -68,14 +68,14 @@ xcrun simctl launch ...
 #### 获取 激活设备的 apps目录, 并由此活动名字中包含 nba_heroes 的 app 应用目录
 
 ```bash
-BOOTED_DEVICE=`xcrun simctl list  | grep -oE '\([-a-zA-Z0-9]+\)\s+\(Booted\)' | grep -oE '^\([-a-zA-Z0-9]+'  | grep -oE '[-a-zA-Z0-9]+'`
+BOOTED_DEVICE=`xcrun simctl list  | pcregrep -o1  '\(([-a-zA-Z0-9]+)\)\s+\(Booted\)'`
 APP_PATH=`find /Users/qibinyi/Library/Developer/CoreSimulator/Devices/$BOOTED_DEVICE/data/Containers/Bundle/Application -name *.app | grep nba_heroes`
 ```
 
 #### 根据指定 bundle id, 重新打开当前device的相关app
 
 ```bash
-BOOTED_DEVICE=`xcrun simctl list  | grep -oE '\([-a-zA-Z0-9]+\)\s+\(Booted\)' | grep -oE '^\([-a-zA-Z0-9]+'  | grep -oE '[-a-zA-Z0-9]+'`
+BOOTED_DEVICE=`xcrun simctl list  | pcregrep -o1  '\(([-a-zA-Z0-9]+)\)\s+\(Booted\)'`
 APP_BID='com.testnba.app'
 PID_FILE='.pid_app'
 
