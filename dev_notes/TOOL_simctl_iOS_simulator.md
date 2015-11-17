@@ -67,6 +67,8 @@ xcrun simctl launch ...
 
 #### 获取 激活设备的 apps目录, 并由此活动名字中包含 nba_heroes 的 app 应用目录
 
+pcregrep -o1 表示，只输出捕获的 group(1)
+
 ```bash
 BOOTED_DEVICE=`xcrun simctl list  | pcregrep -o1  '\(([-a-zA-Z0-9]+)\)\s+\(Booted\)'`
 APP_PATH=`find /Users/qibinyi/Library/Developer/CoreSimulator/Devices/$BOOTED_DEVICE/data/Containers/Bundle/Application -name *.app | grep nba_heroes`
