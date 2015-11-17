@@ -8,8 +8,6 @@ linux shell下常用输入输出操作符是：
 2. 标准输出   (stdout)：代码为 1 ，使用 > 或 >> ； /dev/stdout -> /proc/self/fd/1  1代表：/dev/stdout
 3. 标准错误输出(stderr)：代码为 2 ，使用 2> 或 2>> ； /dev/stderr -> /proc/self/fd/2 2代表：/dev/stderr
 
-
-
     << , >> 是追加操作
 
 ### 输出重定向：
