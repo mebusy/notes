@@ -84,6 +84,9 @@ if len( sys.argv )>3:
 
 		full_path_src = os.path.join(  WATCH_ROOT , v  )
 
+		#flatten dist path , all lua file will in same flat folder
+		_,v  = os.path.split( v )
+		
 		# full path of dist file
 		full_path_dist = os.path.join( DIST_FOLDER, v ) 
 		path , f = os.path.split( full_path_dist )
