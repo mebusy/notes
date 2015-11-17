@@ -72,6 +72,15 @@ BOOTED_DEVICE=`xcrun simctl list  | grep -oE '\([-a-zA-Z0-9]+\)\s+\(Booted\)' | 
 APP_PATH=`find /Users/qibinyi/Library/Developer/CoreSimulator/Devices/$BOOTED_DEVICE/data/Containers/Bundle/Application -name *.app | grep nba_heroes`
 ```
 
+#### 根据指定 bundle id, 重新打开当前device的相关app
 
+```bash
+BOOTED_DEVICE=`xcrun simctl list  | grep -oE '\([-a-zA-Z0-9]+\)\s+\(Booted\)' | grep -oE '^\([-a-zA-Z0-9]+'  | grep -oE '[-a-zA-Z0-9]+'`
+APP_BID='com.testnba.app'
+PID_FILE='.pid_app'
+
+kill -9 $(cat $PID_FILE)
+xcrun simctl launch $BOOTED_DEVICE $APP_BID  | grep -oE '\d+$'  > $PID_FILE
+```
 
 
