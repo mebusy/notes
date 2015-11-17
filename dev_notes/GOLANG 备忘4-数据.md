@@ -74,8 +74,9 @@ fmt.Println(s3, len(s3), cap(s3))   //[000000] 6 6
 data := [...]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 ```
 
-expression  |   slice   | len   | cap   | comment   |
---|--|--|--|--
+
+    expressionslice |   len |   cap |   comment
+---|---|---|---|---
 data[:6:8]  | [0 1 2 3 4 5] |6  | 8 |   省略 low
 data[5:]    | [5 6 7 8 9]   |5  | 5 |   省略 high、max
 data[:3]    | [0 1 2]       |3  |10 |   省略 low、max
