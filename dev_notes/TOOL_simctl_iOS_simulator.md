@@ -83,6 +83,8 @@ PID_FILE='.pid_app'
 
 kill -9 $(cat $PID_FILE)
 xcrun simctl launch $BOOTED_DEVICE $APP_BID  | grep -oE '\d+$'  > $PID_FILE
+
+cat $PID_FILE
 ```
 
 
