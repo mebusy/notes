@@ -18,6 +18,8 @@
             向尾部添加数据,返回新的 slice 对象
             超出 slice.cap 限制, 重新分配底层数组
             及时释放不再使用的slice对象,避免过期引用
+            slice = append(slice, 4,5,6 )  
+            slice = append(slice, slice2…) 
         4.2.3 copy copy( dst , src )
             slice间复制数据，复制长度以 len 小的为准
             两个 slice 可以指向同一底层数组
@@ -151,6 +153,12 @@ data := [][]int{
 ##### 超出 slice.cap 限制, 重新分配底层数组
 
 ##### 及时释放不再使用的slice对象,避免过期引用
+
+##### slice = append(slice, 4,5,6 )  
+
+##### slice = append(slice, slice2…) 
+
+    append a slice 必须展开
 
 ---
 ### 4.2.3 copy   copy( dst , src )
