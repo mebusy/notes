@@ -25,7 +25,9 @@ watchman -- trigger /path/to/dir triggername [patterns] -- [cmd]
 ```
 
 patterns 必须使用单引号 '' , 如  '*.txt'
+
 match 模式：  '*.lua' , 只会出发 根目录下的 lua 文件
+
 正则查询:  -p '.lua$' , 所有 .lua 后缀的文件
 
 ### 删除某个 trigger 
