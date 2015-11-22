@@ -276,6 +276,8 @@ func main() {
     go func() {
         select {
         case v := <-c: fmt.Println(v)
+            //func After(ns int64) <-chan int64
+            //在指定时间段之后，它向返回的channel中传递一个值(当前时间)。
         case <-time.After(time.Second * 3): fmt.Println("timeout.")
         }
         
