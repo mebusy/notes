@@ -52,6 +52,11 @@ ldflags
 -X  |   修改字符串符号值    |   -X main.VER '0.99'
 
 
+    go build -ldflags "-s -w" 可以减小 生成文件的大小
+    -s 去掉符号表，  然后panic 的时候 stack trace的时候，就没有文件名／行号信息了
+    -w 去掉 DWARF 调试信息，得到的程序就不能用 GDB调试了
+
+
 ### 1.2 go install
 
 和 go build 参数相同，将生成文件拷贝到 bin,pkg目录.
