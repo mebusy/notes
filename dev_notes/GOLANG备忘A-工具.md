@@ -1,6 +1,21 @@
-[TOC]
-
 # 工具
+
+    工具集
+        1.1 go build
+        1.2 go install
+        1.3 go clean
+        1.4 go get
+        1.5 go tool objdump
+    条件编译
+        通过 runtime.GOOS/GOARCH判断，或使用编译约束标记
+        "+build"注释, 指示编译器检查相关环境变量
+        多个标记合并, 空格表示OR, 逗号AND, 感叹号NOT
+        如果GOOS,GOARCH条件不符合, 编译器忽略该文件
+        还可使用 文件名来表示编译约束
+        忽略某个文件，或指定编译器版本号
+    跨平台编译
+        首先得生成与平台相关的工具和标准库
+        设置 GOOS GOARCH 环境变量编译目标平台文件
 
 ## 工具集
 
@@ -116,7 +131,7 @@ $ ls -l /usr/local/go/src/pkg/runtime
 
 ##### 忽略某个文件，或指定编译器版本号
 
-```bash
+```go
 // +build ignore
 // +build go1.2   // 最低需要 go 1.2
 ```
