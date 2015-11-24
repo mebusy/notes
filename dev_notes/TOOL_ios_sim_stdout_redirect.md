@@ -1,7 +1,8 @@
 # ios simulator stdout stderr redirect
 
-当 iOS app 脱离xcode，在 simulator 上运行时，查看到详细日志:
+目的: 当 iOS app 脱离xcode，在 simulator 上运行时， 我们希望可以查看到详细的日志
 
+---
 首先, 所有的功能都必须确保只在 模拟器环境下有效
 
 ```objective-c
@@ -10,6 +11,7 @@
 #endif
 ```
 
+---
 我们需要一个方法，来检测 app 是否 运行在 xcode debugger 下.
 
 ```objective-c
@@ -58,6 +60,7 @@ static bool AmIBeingDebugged(void)
 #endif
 ```
 
+---
 如果 app 脱离了 debugger 环境运行,
 
 在 [application: didFinishLaunchingWithOptions] 方法开始,  对输出做重定向。
