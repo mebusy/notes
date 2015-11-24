@@ -50,7 +50,7 @@
 
     |   |    |   | 
 --- | --- | --- | ---
-[1. facebook watchman ](https://github.com/mebusy/notes/blob/master/dev_notes/TOOL_watchman.md)   |    [2. simctl ios Simulator ](https://github.com/mebusy/notes/blob/master/dev_notes/TOOL_simctl_iOS_simulator.md)   |
+[1. facebook watchman ](https://github.com/mebusy/notes/blob/master/dev_notes/TOOL_watchman.md)   |    [2. simctl ios Simulator ](https://github.com/mebusy/notes/blob/master/dev_notes/TOOL_simctl_iOS_simulator.md)   | [3. ios sim stdout ](https://github.com/mebusy/notes/blob/master/dev_notes/TOOL_ios_sim_stdout_redirect.md)   |
 
 
 #### Linux
