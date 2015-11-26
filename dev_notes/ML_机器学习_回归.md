@@ -1,4 +1,26 @@
-[TOC]
+    机器学习分类
+        监督学习 Supervised Learning
+            回归问题 Regression
+            分类 Classification
+        非监督学习 UnSupervised Learning
+            聚类 cluster
+            密度估计
+            降维
+    线性回归 Linear Regression
+        Linear Regression with One Variable
+        Parameter learning
+            1. 梯度下降算法 Gradient descent
+            2. 最小二乘法
+        多元线性回归 Multivariate Linear Regression
+            多元梯度下降
+        梯度下降中的实用方法
+            1: 特征缩放 feature scale
+            2. 均值归一化 Mean normalization
+            3. 确保算法正确工作
+            4. α的选择
+        特征的选择
+        多项式回归 Polynomial regression
+        
 
 # 机器学习分类
 
