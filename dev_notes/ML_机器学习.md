@@ -1,3 +1,2 @@
 
-
-![](http://latex.codecogs.com/gif.latex?X%3D%5Cbegin%7Bbmatrix%7Dx_%7B0%7D%20%5C%5C%20x_%7B1%7D%20%5C%5C%20...%20%5C%5C%20x_%7Bn%7D%20%5Cend%7Bbmatrix%7D%20%5Ctheta%20%3D%20%5Cbegin%7Bbmatrix%7D%5Ctheta_%7B0%7D%20%5C%5C%20%5Ctheta_%7B1%7D%20%5C%5C%20...%20%5C%5C%20%5Ctheta_%7Bn%7D%20%5Cend%7Bbmatrix%7D)
+![](http://latex.codecogs.com/gif.latex?x%3D%5Cbegin%7Bbmatrix%7D%201%20%26%20x_%7B1%7D%20%26%20x_%7B2%7D%20%26%20...%20%26%20x_%7Bn%7D%20%5Cend%7Bbmatrix%7D%20X%3D%5Cbegin%7Bbmatrix%7D-x%5E%7B1%7D-%20%5C%5C%20-x%5E%7B2%7D-%20%5C%5C%20...%20%5C%5C%20-x%5E%7Bm%7D-%20%5Cend%7Bbmatrix%7D%20y%3D%5Cbegin%7Bbmatrix%7Dy%5E%7B1%7D%20%5C%5C%20y%5E%7B2%7D%20%5C%5C%20...%20%5C%5C%20y%5E%7Bm%7D%20%5Cend%7Bbmatrix%7D)
