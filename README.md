@@ -8,6 +8,9 @@
 [4. scipy 统计和随机数](https://github.com/mebusy/notes/blob/master/dev_notes/ML-1.5.6%20scipy%20%E7%BB%9F%E8%AE%A1%E5%92%8C%E9%9A%8F%E6%9C%BA%E6%95%B0.md)   |   [5. scipy 稀疏矩阵](https://github.com/mebusy/notes/blob/master/dev_notes/ML-2.5%20Sparse%20Matrices%20in%20SciPy.md)     |   [6. scipy 图像处理](https://github.com/mebusy/notes/blob/master/dev_notes/ML-2.6%20Scipy%20%E5%A4%84%E7%90%86%E5%9B%BE%E5%83%8F%E6%95%B0%E6%8D%AE.md)  
 [7. sklean机器学习](https://github.com/mebusy/notes/blob/master/dev_notes/ML-3.5%20sklean%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.md)    |    [8. sklearn 随机森林简单介绍](https://github.com/mebusy/notes/blob/master/dev_notes/ML_sklearn%20%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D.md)
 
+    |   |    |   | 
+--- | --- | --- | ---
+[回归](https://github.com/mebusy/notes/blob/master/dev_notes/ML_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_%E5%9B%9E%E5%BD%92.md) |   
 
 ---
 ####游戏中的数学
