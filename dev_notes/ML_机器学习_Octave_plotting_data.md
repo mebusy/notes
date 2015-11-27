@@ -13,6 +13,7 @@
     subplot( row, col , index ) 分格显示
     axis 改变轴刻度
     imagesc 可视化一个矩阵
+    可以改变点的形状和尺寸
 
 ```
 >> setenv("GNUTERM","qt")
@@ -52,4 +53,7 @@
 >> imagesc(A), colorbar, colormap gray % 同时执行3条命令, 使用灰度显示
 ```
 
-
+## tips
+```
+plot(x, y, 'rx', 'MarkerSize', 10); % 改变 点的形状和尺寸
+```
