@@ -1,49 +1,46 @@
 
-Login (email address): golden_slime@hotmail.com
-Token: vLzpcktwEKUerCEb
-
-一般命令
-	更改提示符 PS1
-	帮助命令 help
-	幂
-	逻辑运算
-	打印 disp
-	format
-	矩阵
-		ones
-		zeros
-		rand 随机矩阵
-		正态随机矩阵 randn
-		单位矩阵 eye
-	直方图 hist
-	size 和 length
-	linux 命令: cd / ls / pwd
-	who/whos 查看当前工作环境中存储的所有的变量
-	清除命令 clear [var]
-	保存命令 save
-矩阵数据移动
-矩阵运算
-	加法 A + B , 各元素相加
-	数加 A+1 , 所有元素+1
-	乘法 A*B , 矩阵乘法
-	矩阵点乘 A.*B , 各元素相乘
-	矩阵数乘法 A *2 , 所有元素 *2
-	A.^2 , 所有元素平方
-	1 ./ A , 所有元素的倒数
-	对数log(A)，指数exp(A)
-	abs 绝对值
-	-v % -1*v
-	max(A) 最大值
-	max(A,B) , 返回一个矩阵，元素是 A,B各元素的最大值
-	Filter A <= 3 , 各元素比较的结果
-	find( filter ) : find( A<=3), 注意接受 find返回值的变量个数
-	求和 sum
-	求积 prod
-	floor, ceil
-	Transpose 转置 A'
-	magic 好玩但没卵用
-	invert 逆矩阵 pinv
-	
+	一般命令
+		更改提示符 PS1
+		帮助命令 help
+		幂
+		逻辑运算
+		打印 disp
+		format
+		矩阵
+			ones
+			zeros
+			rand 随机矩阵
+			正态随机矩阵 randn
+			单位矩阵 eye
+		直方图 hist
+		size 和 length
+		linux 命令: cd / ls / pwd
+		who/whos 查看当前工作环境中存储的所有的变量
+		清除命令 clear [var]
+		保存命令 save
+	矩阵数据移动
+	矩阵运算
+		加法 A + B , 各元素相加
+		数加 A+1 , 所有元素+1
+		乘法 A*B , 矩阵乘法
+		矩阵点乘 A.*B , 各元素相乘
+		矩阵数乘法 A *2 , 所有元素 *2
+		A.^2 , 所有元素平方
+		1 ./ A , 所有元素的倒数
+		对数log(A)，指数exp(A)
+		abs 绝对值
+		-v % -1*v
+		max(A) 最大值
+		max(A,B) , 返回一个矩阵，元素是 A,B各元素的最大值
+		Filter A <= 3 , 各元素比较的结果
+		find( filter ) : find( A<=3), 注意接受 find返回值的变量个数
+		求和 sum
+		求积 prod
+		floor, ceil
+		Transpose 转置 A'
+		magic 好玩但没卵用
+		invert 逆矩阵 pinv
+		
 
 # Octave Tutorial
 
