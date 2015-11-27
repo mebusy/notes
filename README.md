@@ -18,7 +18,7 @@ Octave Tutorial
 
     |   |    |   | 
 --- | --- | --- | ---
-[矩阵操作](https://github.com/mebusy/notes/blob/master/dev_notes/ML_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_Octave_%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4_%E7%9F%A9%E9%98%B5%E6%93%8D%E4%BD%9C.md) |   
+[矩阵操作](https://github.com/mebusy/notes/blob/master/dev_notes/ML_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_Octave_%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4_%E7%9F%A9%E9%98%B5%E6%93%8D%E4%BD%9C.md) | [plot data](https://github.com/mebusy/notes/blob/master/dev_notes/ML_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_Octave_plotting_data.md)   |     
 
 
 ---
