@@ -178,7 +178,7 @@ repeate until convergence  { //直到收敛
 
  - 最小二乘法求解Θ, 不需要关心 变量归一化 feature scaling
  - 当n很大时, 比如n=10000，最小二乘法会很慢
- - 逻辑回归这类更负责的算法，无法使用正规方程法
+ - 逻辑回归这类更复杂的算法，无法使用正规方程法
 
 ## 多元线性回归 Multivariate Linear Regression
 
