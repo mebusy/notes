@@ -67,11 +67,11 @@ J(Θ)= 1/m ∑ cost( h(x) , y )
 拆成两个等式 非常不利于计算，利用 y 只能取0和1的特点，我们可以把cost function 简化为一个等式
 
 ```
-cost(h(x),y) = -y log( h(x) ) -(1-y)log( 1-h(x) )
+cost(h(x),y) = -ylog( h(x) ) -(1-y)log( 1-h(x) )
 ```
 
 最终我们获得完整的代价函数:
 
 ```
-J(Θ)= -1/m [∑ y log( h(x) ) + (1-y)log( 1-h(x) )]
+J(Θ)= -1/m [∑ ylog( h(x) ) + (1-y)log( 1-h(x) )]
 ```
