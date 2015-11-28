@@ -64,5 +64,8 @@ J(Θ)= 1/m ∑ cost( h(x) , y )
  - 如果 y=0 ,  h(x)->1 ,  那么 cost(h(x),y) -> ∞
  - 如果 y=1 ,  h(x)->0 ,  那么 cost(h(x),y) -> ∞
  
+拆成两个等式 非常不利于计算，利用 y 只能取0和1的特点，我们可以把cost function 简化为一个等式
+
+cost(h(x),y) = -y log( h(x) ) -(1-y)log( 1-h(x) )
 
 
