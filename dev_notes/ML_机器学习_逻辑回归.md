@@ -75,3 +75,5 @@ cost(h(x),y) = -ylog( h(x) ) -(1-y)log( 1-h(x) )
 ```
 J(Θ)= -1/m [∑ ylog( h(x) ) + (1-y)log( 1-h(x) )]
 ```
+
+![](http://latex.codecogs.com/gif.latex?h_%5Ctheta%28x%29%3D%5Cfrac%7B1%7D%7B1&plus;%20e%5E%7B-%5Ctheta%5E%7BT%7Dx%7D%7D)
