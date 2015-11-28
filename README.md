@@ -12,7 +12,8 @@ Machine Learning Lecture
 
     |   |    |   | 
 --- | --- | --- | ---
-[回归](https://github.com/mebusy/notes/blob/master/dev_notes/ML_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_%E5%9B%9E%E5%BD%92.md) | 
+[线性回归](https://github.com/mebusy/notes/blob/master/dev_notes/ML_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_%E5%9B%9E%E5%BD%92.md) | 
+[逻辑回归](https://github.com/mebusy/notes/blob/master/dev_notes/ML_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92.md) | 
 
 Octave Tutorial
 
