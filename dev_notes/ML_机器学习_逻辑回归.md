@@ -46,21 +46,21 @@ P( y=1|x;Θ ) + P( y=0|x;Θ ) = 1
 
 ## 决策边界  decision boundary
 
-决策边界 是假设函数的一个属性，它包含参数 0
+决策边界 是假设函数的一个属性，它包含参数 Θ
 
 ## 代码函数 cost function J
 
 ##### 逻辑回归 J 应该是个`凸函数 convex` ， 线性回归的J 是`非凸函数`
 
 ```
-J(0)= 1/m ∑ cost( h(x) , y )
+J(Θ)= 1/m ∑ cost( h(x) , y )
 ```
 
 ![](http://latex.codecogs.com/gif.latex?cost%28%20h_%5Ctheta%28x%29%2Cy%29%3D%5Cbegin%7Bcases%7D%20-log%28h_%5Ctheta%28x%29%29%20%26%20%5Ctext%7B%20if%20%7D%20y%3D%201%5C%5C%20-log%281-h_%5Ctheta%28x%29%29%20%26%20%5Ctext%7B%20if%20%7D%20y%3D0%20%5Cend%7Bcases%7D)
 
 `特点`:
 
- - 如果 h(x)=y, 那么 cost(h(x),y)=0  ( y=[0,1] )
+ - 如果 h(x)=y, 那么 cost(h(x),y)=0  ( y=[Θ,1] )
  - 如果 y=0 ,  h(x)->1 ,  那么 cost(h(x),y) -> ∞
  - 如果 y=1 ,  h(x)->0 ,  那么 cost(h(x),y) -> ∞
  
