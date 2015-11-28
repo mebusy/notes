@@ -48,7 +48,7 @@ P( y=1|x;Θ ) + P( y=0|x;Θ ) = 1
 
 决策边界 是假设函数的一个属性，它包含参数 Θ
 
-## 代码函数 cost function J
+## 代价函数 cost function J
 
 ##### 逻辑回归 J 应该是个`凸函数 convex` ， 线性回归的J 是`非凸函数`
 
@@ -79,7 +79,9 @@ J(Θ)= -1/m [∑ ylog( h(x) ) + (1-y)log( 1-h(x) )]
 ![][1]
 
 
+## 梯度下降
 
+![](http://latex.codecogs.com/gif.latex?%5Ctheta_j%3A%3D%5Ctheta_j%20-%20%5Calpha%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h_%5Ctheta%28x%29-y%29x_j)
 
 
 
