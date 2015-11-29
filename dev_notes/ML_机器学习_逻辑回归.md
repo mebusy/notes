@@ -88,6 +88,8 @@ J(Θ)= -1/m [∑ ylog( h(x) ) + (1-y)log( 1-h(x) )]
 
 ![](http://latex.codecogs.com/gif.latex?%5Ctheta%3A%3D%5Ctheta-%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%5B%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x%5E%7B%28i%29%7D%20%5D)
 
+
+
 ---
 ---
 
