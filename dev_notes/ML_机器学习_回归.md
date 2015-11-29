@@ -1,3 +1,4 @@
+
     机器学习分类
         监督学习 Supervised Learning
             回归问题 Regression
@@ -7,7 +8,7 @@
             密度估计
             降维
     线性回归 Linear Regression
-        Linear Regression with One Variable
+        Linear Regression with One Variabl)
         Parameter learning
             1. 梯度下降算法 Gradient descent
             2. 最小二乘法
@@ -72,7 +73,7 @@ x  input / feature
 y  output / target 
 
 (x,y) 表示一个训练样本
-(xⁱ,yⁱ) 表示训练集合中的 第i个 训练样本
+(x⁽ⁱ⁾,y⁽ⁱ⁾) 表示训练集合中的 第i个 训练样本
 ```
 
 
@@ -80,12 +81,12 @@ h 是 预测算法
 
 对于线性回归, hypothesis公式:
 ```
-h(xⁱ)=Θ₀ + Θ₁xⁱ
+h(x⁽ⁱ⁾)=Θ₀ + Θ₁x⁽ⁱ⁾
 ```
 令：
 
 ```
-J(Θ₀,Θ₁) = 1/(2*m) * ∑(h(xⁱ)-yⁱ)²
+J(Θ₀,Θ₁) = 1/(2*m) * ∑(h(x⁽ⁱ⁾)-y⁽ⁱ⁾)²
 ```
 
 `J(Θ₀,Θ₁)` 称为代价函数 `cost function` ， 也称为平方误差函数 `square error function` 
@@ -144,7 +145,7 @@ repeate until convergence  { //直到收敛
  - Θ必须同步更新，即分别计算出temp后,才能更新Θ,避免Θ₀先一步更新后，影响到Θ₁的计算
  - 梯度方向由`J(θ)`对θ 的偏导数决定, 也就是 学习速率`α` 后面的部分,    也就是J曲线在`Θᵢ`点的切线斜率
  - `J(θ)`的偏导数部分计算公式:
-   `(∂/∂θⱼ)J(Θ₀,Θ₁)= 1/(m) * ∑(h(xⁱ)-yⁱ) * xⁱ ` ( j==0的情况, xⁱ = 1 )
+   `(∂/∂θⱼ)J(Θ₀,Θ₁)= 1/(m) * ∑(h(x⁽ⁱ⁾)-y⁽ⁱ⁾) * x⁽ⁱ⁾ ` ( j==0的情况, x⁽ⁱ⁾ = 1 )
  - 这里Θ每次更新，J 都要对所有的样本进行计算，这种也叫"批量"梯度下降
  - 这样的更新规则称为`LMS update rule`（least mean squares）
  - 每一次迭代都考察训练集的所有样本，而称为批量梯度下降`batch gradient descent`
@@ -190,8 +191,8 @@ m  训练集 样本数量
 x  input / feature
 y  output / target 
 
-xⁱ  表示训练集合中的 第i个 训练样本的 feature 向量
-xⁱⱼ 第i个 训练样本的 第j个 feature 值 
+x⁽ⁱ⁾  表示训练集合中的 第i个 训练样本的 feature 向量
+x⁽ⁱ⁾ⱼ 第i个 训练样本的 第j个 feature 值 
 ```
 
 hypothesis公式:
@@ -212,9 +213,9 @@ h(x)= ΘᵀX   (行 x 列)
 ### 多元梯度下降
 
 ```
-Θ₀ = Θ₀ - α* 1/(m) * ∑(h(xⁱ)-yⁱ) * xⁱ₀
-Θ₁ = Θ₁ - α* 1/(m) * ∑(h(xⁱ)-yⁱ) * xⁱ₁
-Θ₂ = Θ₂ - α* 1/(m) * ∑(h(xⁱ)-yⁱ) * xⁱ₂
+Θ₀ = Θ₀ - α* 1/(m) * ∑(h(x⁽ⁱ⁾)-y⁽ⁱ⁾) * x⁽ⁱ⁾₀
+Θ₁ = Θ₁ - α* 1/(m) * ∑(h(x⁽ⁱ⁾)-y⁽ⁱ⁾) * x⁽ⁱ⁾₁
+Θ₂ = Θ₂ - α* 1/(m) * ∑(h(x⁽ⁱ⁾)-y⁽ⁱ⁾) * x⁽ⁱ⁾₂
 ...
 ```
 
@@ -326,5 +327,4 @@ h(x)= Θ₀x₀ + Θ₁x₁ + Θ₂x₂ + Θ₃x₃  //这时，更要注意 均
 ```
 h(x)= Θ₀x₀ + Θ₁x₁ + Θ₂√x₂  // 不会出现下降
 ```
-
 
