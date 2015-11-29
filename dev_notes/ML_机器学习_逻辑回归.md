@@ -84,6 +84,8 @@ J(Θ)= -1/m [∑ ylog( h(x) ) + (1-y)log( 1-h(x) )]
 ![](http://latex.codecogs.com/gif.latex?%5Ctheta_j%3A%3D%5Ctheta_j%20-%20%5Calpha%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h_%5Ctheta%28x%29-y%29x_j)
 
 
+迭代公式和 线性回归基本一样，唯一区别就是 h(x) 不同。
+
 
 ---
 ---
