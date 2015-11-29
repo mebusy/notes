@@ -101,18 +101,23 @@ J(Θ)= -1/m ∑[ ylog( h(x) ) + (1-y)log( 1-h(x) ) ]
 ### 用法
 
 ```
-% 假设 有两个Θ₁ Θ₂参数
+% 假设 有两个Θ₀ Θ₁ 参数
 
 % 首先定义一个costFunction, 返回J 和 一个梯度值
 function [jVal , gradient] = costFunction( theta )
     jval = % 计算代价函数 J(Θ)
     
     gradient = zeroes(2,1) ;
-    gradient[1] = % J(Θ) 对 Θ₁ 的偏导数
-    gradient[2] = % J(Θ) 对 Θ₂ 的偏导数
+    gradient[1] = % J(Θ) 对 Θ₀ 的偏导数
+    gradient[2] = % J(Θ) 对 Θ₁ 的偏导数
 end
 
+% 有了这个 costFunction之后，就可以
 
+options = optimset( 'GradObj' , 'on' , 'MaxIter' , '100' );
+initialTheta = zeros( 2,1 );  % Θ 初始值
+[optTheta, functionVal, exitFlag] ...
+    = fminunc(@costFunction , initialTheta , options );
 ```
 
 
