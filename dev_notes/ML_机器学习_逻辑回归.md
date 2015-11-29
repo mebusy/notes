@@ -89,6 +89,33 @@ J(Θ)= -1/m ∑[ ylog( h(x) ) + (1-y)log( 1-h(x) ) ]
 ![](http://latex.codecogs.com/gif.latex?%5Ctheta%3A%3D%5Ctheta-%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%5B%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x%5E%7B%28i%29%7D%20%5D)
 
 
+## 高级优化
+
+##### 优点
+  - 不需要手动选择𝛼
+  - 一般比梯度下降算法快
+
+##### 缺点
+  - 更加复杂
+
+### 用法
+
+```
+% 假设 有两个Θ₁ Θ₂参数
+
+% 首先定义一个costFunction, 返回J 和 一个梯度值
+function [jVal , gradient] = costFunction( theta )
+    jval = % 计算代价函数 J(Θ)
+    
+    gradient = zeroes(2,1) ;
+    gradient[1] = % J(Θ) 对 Θ₁ 的偏导数
+    gradient[2] = % J(Θ) 对 Θ₂ 的偏导数
+end
+
+
+```
+
+
 
 ---
 ---
