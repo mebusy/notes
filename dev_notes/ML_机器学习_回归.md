@@ -139,6 +139,11 @@ repeate until convergence  { //直到收敛
 }
 ```
 
+![](http://latex.codecogs.com/gif.latex?%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x_%7Bj%7D%5E%7B%28i%29%7D)
+
+![](http://latex.codecogs.com/gif.latex?%5Ctheta%3A%3D%5Ctheta-%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%5B%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x%5E%7B%28i%29%7D%20%5D)
+
+
 说明：
 
  - α是学习速率 learning rate, 决定了我们下山的步子有多大
