@@ -351,14 +351,17 @@ function J = computeCost(X, y, theta)
 	m = length(y); % number of training examples
 
 	predictions = X*theta ;  % all h(x) 矩阵（向量）
-	sqrErrors = (predictions-y).^2 ;   
-
-	J= 1/(2*m) * sum( sqrErrors ) ; 
+	%sqrErrors = (predictions-y).^2 ;   
+	%J= 1/(2*m) * sum( sqrErrors ) ; 
+	
+	%等价
+	cost = (predictions-y)' * (predictions-y) ;   
+	J= 1/(2*m) * cost ; 
 end
 ```
 
 ---
-梯度下降普通做法:
+梯度下降笨算法:
 ```
 function [theta, J_history] = gradientDescent(X, y, theta, alpha, num_iters)
 	m = length(y); % number of training examples
@@ -383,7 +386,7 @@ function [theta, J_history] = gradientDescent(X, y, theta, alpha, num_iters)
 end
 ```
 
-梯度下降 向量化做法1 :
+梯度下降 向量化算法1 :
 
 ```
 function [theta, J_history] = gradientDescent1(X, y, theta, alpha, num_iters)
@@ -402,7 +405,7 @@ function [theta, J_history] = gradientDescent1(X, y, theta, alpha, num_iters)
 end
 ```
 
-梯度下降 向量化做法2 :
+梯度下降 向量化算法2 :
 
 ```
 function [theta, J_history] = gradientDescent2(X, y, theta, alpha, num_iters)
