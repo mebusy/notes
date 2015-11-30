@@ -355,7 +355,11 @@ function J = computeCost(X, y, theta)
 
 	J= 1/(2*m) * sum( sqrErrors ) ; 
 end
+```
 
+---
+梯度下降普通做法:
+```
 function [theta, J_history] = gradientDescent(X, y, theta, alpha, num_iters)
 	m = length(y); % number of training examples
 	J_history = zeros(num_iters, 1);
@@ -377,7 +381,47 @@ function [theta, J_history] = gradientDescent(X, y, theta, alpha, num_iters)
 	end
 
 end
+```
 
+梯度下降 向量化做法1 :
+
+```
+function [theta, J_history] = gradientDescent1(X, y, theta, alpha, num_iters)
+	m = length(y); % number of training examples
+	J_history = zeros(num_iters, 1);
+
+
+	for iter = 1:num_iters
+	    % 注意：因为 A'*B 等价于 sum(A.*B), 所以这里不再需要 sum
+	    theta = theta - alpha *1/m *( (X * theta - y )' * X  )';
+	
+	    % Save the cost J in every iteration    
+	    J_history(iter) = computeCost(X, y, theta);
+	end
+
+end
+```
+
+梯度下降 向量化做法2 :
+
+```
+function [theta, J_history] = gradientDescent2(X, y, theta, alpha, num_iters)
+	m = length(y); % number of training examples
+	J_history = zeros(num_iters, 1);
+
+
+	for iter = 1:num_iters
+	    theta = theta - alpha *1/m *sum( (X * theta - y ) .* X  )';
+	
+	    % Save the cost J in every iteration    
+	    J_history(iter) = computeCost(X, y, theta);
+	end
+
+end
+```
+
+---
+```
 %% =================== Part 2: Plotting ===================
 
 data = load('ex1/ex1data1.txt'); % 装载训练集
