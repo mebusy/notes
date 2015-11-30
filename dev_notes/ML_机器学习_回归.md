@@ -336,3 +336,78 @@ h(x)= Θ₀x₀ + Θ₁x₁ + Θ₂x₂ + Θ₃x₃  //这时，更要注意 均
 h(x)= Θ₀x₀ + Θ₁x₁ + Θ₂√x₂  // 不会出现下降
 ```
 
+# 线性回归流程
+
+```
+%======================================
+function plotData(x, y)
+	plot(x, y, 'rx', 'MarkerSize', 10); % Plot the data 
+	ylabel('Profit in $10,000s'); % Set the y−axis label 
+	xlabel('Population of City in 10,000s'); % Set the x−axis label
+end
+
+
+function J = computeCost(X, y, theta)
+	m = length(y); % number of training examples
+
+	predictions = X*theta ;  % all h(x) 矩阵（向量）
+	sqrErrors = (predictions-y).^2 ;   
+
+	J= 1/(2*m) * sum( sqrErrors ) ; 
+end
+
+function [theta, J_history] = gradientDescent(X, y, theta, alpha, num_iters)
+	m = length(y); % number of training examples
+	J_history = zeros(num_iters, 1);
+
+
+	for iter = 1:num_iters
+
+	    t1 = 0;
+	    t2 = 0;
+	    for i= 1:m
+	        t1 = t1 + (X(i,:) * theta -y(i))*X(i,1);
+	        t2 = t2 + (X(i,:) * theta -y(i))*X(i,2);
+	    end
+	    theta(1) = theta(1) - alpha* 1/m *t1;
+	    theta(2) = theta(2) - alpha* 1/m *t2;
+	
+	    % Save the cost J in every iteration    
+	    J_history(iter) = computeCost(X, y, theta);
+	end
+
+end
+
+%% =================== Part 2: Plotting ===================
+
+data = load('ex1/ex1data1.txt'); % 装载训练集
+X = data(:, 1); y = data(:, 2);  % 抽取 input / target
+m = length(y); % number of training examples
+
+
+% 可视化训练集
+setenv("GNUTERM","qt")
+plotData(X, y);
+
+%% =================== Part 3: Gradient descent ===================
+
+X = [ones(m, 1), data(:,1)]; % X 增加一列 1到左边，对应 x0
+theta = zeros(2, 1); % initialize fitting parameters
+
+% Some gradient descent settings
+iterations = 1500;	% 梯度下降迭代步数
+alpha = 0.01;  % alpha 初始值
+
+computeCost(X, y, theta)  % 计算初始 J 值
+
+% 执行梯度下降算法
+theta = gradientDescent(X, y, theta, alpha, iterations);
+
+
+% 画出拟合的曲线
+hold on; % keep previous plot visible
+plot(X(:,2), X*theta, '-')
+legend('Training data', 'Linear regression')
+hold off % don't overlay any more plots on this figure
+
+```
