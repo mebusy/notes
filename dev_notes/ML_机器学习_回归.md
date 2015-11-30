@@ -507,9 +507,9 @@ plot(theta(1), theta(2), 'rx', 'MarkerSize', 10, 'LineWidth', 2);
 ```
 function [X_norm, mu, sigma] = featureNormalize(X)
 
-mu = mean( X )
-sigma = std( X )
-X_norm = (X_norm-mu)./sigma   % 注意，不是矩阵除法，是点除
+	mu = mean( X )
+	sigma = std( X )
+	X_norm = (X_norm-mu)./sigma   % 注意，不是矩阵除法，是点除
 
 end
 ```
