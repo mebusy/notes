@@ -171,8 +171,19 @@ function plotData(X, y)
     plot(X(neg, 1), X(neg, 2), 'ko', 'MarkerFaceColor', 'y',   'MarkerSize', 7);
      
 end
+```
+
+##### S型函数
 
 ```
+function g = sigmoid(z)
+% Instructions: Compute the sigmoid of each value of z (z can be a matrix,
+%               vector or scalar).
+
+  g = 1./(1+e.^(-1*z))
+end
+```
+
 
 ---
 ---
