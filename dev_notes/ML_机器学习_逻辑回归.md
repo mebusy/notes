@@ -184,6 +184,23 @@ function g = sigmoid(z)
 end
 ```
 
+##### 代价函数
+
+```
+function [J, grad] = costFunction(theta, X, y)
+
+m = length(y); % number of training examples
+
+hx = sigmoid( X * theta );
+J= 1/m * sum(  -y .* log( hx )  - ( 1-y ) .* log( 1- hx ) );
+
+% 梯度 J(Θ)的偏导数
+grad = 1/m *sum( ( hx - y ) .* X  )';
+
+end
+
+```
+
 
 ---
 ---
