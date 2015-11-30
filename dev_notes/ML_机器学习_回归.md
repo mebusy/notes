@@ -403,6 +403,8 @@ computeCost(X, y, theta)  % 计算初始 J 值
 % 执行梯度下降算法
 theta = gradientDescent(X, y, theta, alpha, iterations);
 
+%最小2乘法
+% theta = pinv(X'*X)*X'*y      % 最小2乘法
 
 % 画出拟合的曲线
 hold on; % keep previous plot visible
