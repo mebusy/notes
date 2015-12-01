@@ -201,6 +201,16 @@ end
 
 ```
 
+##### 预测
+
+```
+function p = predict(theta, X)
+  %   p = PREDICT(theta, X) computes the predictions for X using a 
+  %   threshold at 0.5 (i.e., if sigmoid(theta'*x) >= 0.5, predict 1)
+  p = floor( sigmoid( X * theta ) + 0.5 );
+end
+```
+
 ##### 一般流程
 
 ```
@@ -240,6 +250,9 @@ plotDecisionBoundary(theta, X, y);
 
 prob = sigmoid([1 45 85] * theta);  % 0.776289
 
+% 对训练集进行分类，并统计准确度
+p = predict(theta, X);
+fprintf('Train Accuracy: %f\n', mean(double(p == y)) * 100);  % 因为是线性的，只有 89% 准确率
 ```
 
 
