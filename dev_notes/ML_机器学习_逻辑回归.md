@@ -222,10 +222,13 @@ initial_theta = zeros(n + 1, 1);
 [cost, grad] = costFunction(initial_theta, X, y);
 
 %  Set options for fminunc
+%  GradObj: on , 告诉 fminunc 返回 costFunction 的返回值 cost, grad
+%  MaxIter : 400， 最多迭代 400步
 options = optimset('GradObj', 'on', 'MaxIter', 400);
 
 %  Run fminunc to obtain the optimal theta
 %  This function will return theta and the cost 
+%  (@(t)(costFunction(t, X, y)) , 创建一个方法，参数是t，方法会调用 costFunction
 [theta, cost] = fminunc(@(t)(costFunction(t, X, y)), initial_theta, options);
 
 % Plot Boundary
