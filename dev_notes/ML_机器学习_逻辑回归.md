@@ -234,7 +234,7 @@ options = optimset('GradObj', 'on', 'MaxIter', 400);
 % Plot Boundary
 plotDecisionBoundary(theta, X, y);
 
-% 现在可以用 theta 来预测了
+% 预测概率
 %  Predict probability for a student with score 45 on exam 1 
 %  and score 85 on exam 2 
 
