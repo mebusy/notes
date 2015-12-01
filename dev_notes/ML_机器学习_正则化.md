@@ -53,6 +53,8 @@
 
 ### 正规方程组解法
 
+if λ > 0 ,
+
 ![](http://latex.codecogs.com/gif.latex?%5Ctheta%3D%5Cleft%20%28%20X%5ETX&plus;%5Clambda%5Cbegin%7Bbmatrix%7D%200%20%26%20%26%20%26%20%5C%5C%20%26%201%20%26%20%26%20%5C%5C%20%26%20%26%20...%20%26%20%5C%5C%20%26%20%26%20%26%201%20%5Cend%7Bbmatrix%7D%20%5Cright%20%29%5E%7B-1%7DX%5ETy)
 
 ---
