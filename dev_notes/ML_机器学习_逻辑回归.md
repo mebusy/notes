@@ -238,7 +238,7 @@ plotDecisionBoundary(theta, X, y);
 %  Predict probability for a student with score 45 on exam 1 
 %  and score 85 on exam 2 
 
-prob = sigmoid([1 45 85] * theta);
+prob = sigmoid([1 45 85] * theta);  % 0.776289
 
 ```
 
