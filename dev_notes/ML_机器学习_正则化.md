@@ -36,6 +36,11 @@
 
 ### 梯度下降算法:
 
+我们把 梯度下降算法拆成两部分
+
+  1. 对于 Θ₀ , 迭代算法和 梯度下降算法一样
+  2. 对于有 正则化项 参数 , Θ [1,n]  
+
 我们在 线性梯度下降基础上右边加上一项
 
 ![](http://latex.codecogs.com/gif.latex?%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%5Cleft%20%5B%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29x%5E%7B%28i%29%7D_j%20&plus;%5Cfrac%7B%5Clambda%20%7D%7Bm%7D%5Ctheta_j%20%5Cright%20%5D)
