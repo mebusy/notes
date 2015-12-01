@@ -43,7 +43,7 @@
 
 我们在 线性梯度下降基础上右边加上一项
 
-![](http://latex.codecogs.com/gif.latex?%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%5Cleft%20%5B%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29x%5E%7B%28i%29%7D_j%20&plus;%5Cfrac%7B%5Clambda%20%7D%7Bm%7D%5Ctheta_j%20%5Cright%20%5D)
+![][3]
 
 化简一下:
 
@@ -57,6 +57,28 @@ if λ > 0 ,
 
 ![](http://latex.codecogs.com/gif.latex?%5Ctheta%3D%5Cleft%20%28%20X%5ETX&plus;%5Clambda%5Cbegin%7Bbmatrix%7D%200%20%26%20%26%20%26%20%5C%5C%20%26%201%20%26%20%26%20%5C%5C%20%26%20%26%20...%20%26%20%5C%5C%20%26%20%26%20%26%201%20%5Cend%7Bbmatrix%7D%20%5Cright%20%29%5E%7B-1%7DX%5ETy)
 
+
+
+# 正则化 逻辑回归
+
+### 代价函数
+
+和 正则化线性回归 代价函数的处理一样，
+
+正则化逻辑回归代价函数, 也是在 逻辑回归代价函数基础上，加上 正则化项:
+
+![](http://latex.codecogs.com/gif.latex?&plus;%20%5Cfrac%7B%5Clambda%7D%7B2m%7D%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%5Ctheta_j%5E2)
+
+
+### 梯度下降算法
+
+和 正则化线性回归梯度下降算法一致，仅仅是 假设函数h(x) 的不同
+
+![][3]
+
+![][2]
+
+
 ---
 ---
 
@@ -64,4 +86,6 @@ if λ > 0 ,
   
   
   [2]: http://latex.codecogs.com/gif.latex?%5Ctheta_j%20%3A%3D%20%5Ctheta_j%281-%5Calpha%5Cfrac%7B%5Clambda%7D%7Bm%7D%29%20-%20%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29x%5E%7B%28i%29%7D_j
+  
+  [3]: http://latex.codecogs.com/gif.latex?%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%5Cleft%20%5B%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29x%5E%7B%28i%29%7D_j%20&plus;%5Cfrac%7B%5Clambda%20%7D%7Bm%7D%5Ctheta_j%20%5Cright%20%5D
   
