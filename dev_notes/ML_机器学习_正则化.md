@@ -1,4 +1,18 @@
-[TOC]
+
+	过度拟合 overfitting
+	正则化 Regularization
+		正则化 代价函数 Regularization Cost Function
+	正则化线性回归
+		代价函数:
+		梯度下降算法:
+		正规方程组解法
+	正则化 逻辑回归
+		代价函数
+		梯度下降算法
+	正则化处理流程
+		特征映射 feature mapping
+		代价函数，和梯度
+		一般流程
 
 # 过度拟合 overfitting
 
