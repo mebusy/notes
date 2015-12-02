@@ -82,7 +82,7 @@ if λ > 0 ,
 
 ![][2]
 
-# 一般处理流程
+# 正则化处理流程
 
 ##### 特征映射 feature mapping
 
@@ -116,6 +116,12 @@ function out = mapFeature(X1, X2)
 end
 ```
 
+##### 代价函数，和梯度
+
+```
+```
+
+##### 一般流程
 ```
 data = load('ex2data2.txt');
 X = data(:, [1, 2]); y = data(:, 3);
