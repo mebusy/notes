@@ -82,6 +82,47 @@ if λ > 0 ,
 
 ![][2]
 
+# 一般处理流程
+
+##### 特征映射 feature mapping
+
+```
+function out = mapFeature(X1, X2)
+	% MAPFEATURE Feature mapping function to polynomial features
+	%
+	%   MAPFEATURE(X1, X2) maps the two input features
+	%   to quadratic features used in the regularization exercise.
+	%
+	%   Returns a new feature array with more features, comprising of 
+	%   X1, X2, X1.^2, X2.^2, X1*X2, X1*X2.^2, etc..
+	%
+	%   Inputs X1, X2 must be the same size
+	%
+
+	% 当 x1 幂为0时, x2 幂可以为 0-6 ，7 种组合， 其中 (0,0) 组合就是 x0
+	% 当 x1 幂为1时, x2 幂可以为 0-5 ，6 种组合
+	% 当 x1 幂为6时, x2 幂可以为 0   ，1 种组合
+
+	% 所以，最终有 1＋2+3+4+5+6+7 ＝ 28 个 feature 
+
+	degree = 6;  % 最高 6 次方项
+	out = ones(size(X1(:,1)));  % 没必要吧，ones(size(X1)) 也一样
+	for i = 1:degree
+	    for j = 0:i
+	        out(:, end+1) = (X1.^(i-j)).*(X2.^j);   % 这里，end是什么用法？
+	    end
+	end
+
+end
+```
+
+```
+data = load('ex2data2.txt');
+X = data(:, [1, 2]); y = data(:, 3);
+
+% Note that mapFeature also adds a column of ones for us
+X = mapFeature(X(:,1), X(:,2));
+```
 
 ---
 ---
