@@ -128,6 +128,36 @@ X = data(:, [1, 2]); y = data(:, 3);
 
 % Note that mapFeature also adds a column of ones for us
 X = mapFeature(X(:,1), X(:,2));
+
+% Initialize fitting parameters
+initial_theta = zeros(size(X, 2), 1);
+
+% Set regularization parameter lambda to 1
+lambda = 1;
+
+[cost, grad] = costFunctionReg(initial_theta, X, y, lambda);
+
+
+%% ============= Part 2: Regularization and Accuracies =============
+
+% Initialize fitting parameters
+initial_theta = zeros(size(X, 2), 1);
+
+% Set regularization parameter lambda to 1 (you should vary this)
+lambda = 1;
+
+
+% Set Options
+options = optimset('GradObj', 'on', 'MaxIter', 400);
+
+% Optimize
+[theta, J, exit_flag] = ...
+	fminunc(@(t)(costFunctionReg(t, X, y, lambda)), initial_theta, options);
+
+
+% 预测
+% Compute accuracy on our training set
+p = predict(theta, X);
 ```
 
 ---
