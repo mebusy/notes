@@ -12,7 +12,8 @@ Machine Learning Lecture
 
     |   |    |   | 
 --- | --- | --- | ---
-[线性回归](https://github.com/mebusy/notes/blob/master/dev_notes/ML_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_%E5%9B%9E%E5%BD%92.md) | [逻辑回归](https://github.com/mebusy/notes/blob/master/dev_notes/ML_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92.md) | [正则化](https://github.com/mebusy/notes/blob/master/dev_notes/ML_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_%E6%AD%A3%E5%88%99%E5%8C%96.md)    |   
+[线性回归](https://github.com/mebusy/notes/blob/master/dev_notes/ML_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_%E5%9B%9E%E5%BD%92.md) | [逻辑回归](https://github.com/mebusy/notes/blob/master/dev_notes/ML_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92.md) | [正则化](https://github.com/mebusy/notes/blob/master/dev_notes/ML_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_%E6%AD%A3%E5%88%99%E5%8C%96.md)    | [神经网络](https://github.com/mebusy/notes/blob/master/dev_notes/ML_机器学习_神经网络.md)  
+
 
 Octave Tutorial
 
