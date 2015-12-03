@@ -82,3 +82,12 @@
 多个输出单元 : One-vs-all
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural_OneVsAll.png)
+
+# 手写字体识别
+
+5000个训练样本, 每个训练样本是 20x20像素的灰度图,  所以输入数据X 是 5000x400的矩阵,
+
+输出数矩y 是 5000x1 向量，1-10 分别表示 1-9-0 10个数字
+
+##### 可视化部分数据
+
