@@ -1,0 +1,9 @@
+#ignore .DS_Store file in all folder
+.DS_Store
+
+#ignore folder in current folder folder
+#/Temp/
+
+#ignore special file in current folder
+#/*.csproj
+#/*.sln
