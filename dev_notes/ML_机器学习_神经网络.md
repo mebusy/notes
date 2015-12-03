@@ -67,5 +67,9 @@
 
 `h(x) = g( 10 -20x )`  
 
+##### 逻辑 异或非  XNOR:  y=1 if x1=x2
 
+我们可以使用上面的三个神经单元，来实现我们的 XNOR 单元。
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural_XNOR.png)
 
