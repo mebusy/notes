@@ -73,3 +73,6 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural_XNOR.png)
 
+`更一般的理解是，在输入层中，我们只有原始的输入值, 然后我们建立一个隐藏层，用来计算一些稍微复杂的输入量的函数，
+然后通过添加另一个层，我们了一个更加复杂一点的函数，这就是神经网络可以计算较复杂函数的直观解释。
+`
