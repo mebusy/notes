@@ -89,5 +89,16 @@
 
 输出数矩y 是 5000x1 向量，1-10 分别表示 1-9-0 10个数字
 
-##### 可视化部分数据
+##### 可视化部分数字图像数据
+
+```
+load('ex3data1.mat');
+
+setenv('GNUTERM' , 'qt')
+colormap(gray);
+vec_img=X(100,:);  % 取出一个图像数据 1x400 
+matrix_img= reshape( vec_img, 20, 20 ); % reshape to 20x20
+imagesc( matrix_img   );  
+```
+
 
