@@ -59,7 +59,7 @@
 
 ##### 简单的例子: 逻辑与 AND
 
-![]()
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural_AND.png)
 
 如果把权重(Θ参数) 改为 [-10,20,20] , 就能模拟 逻辑或 OR 运算。
 
