@@ -274,6 +274,7 @@ plotDecisionBoundary(theta, X, y);
 prob = sigmoid([1 45 85] * theta);  % 0.776289
 
 % 对训练集进行分类，并统计准确度
+% 说明: double(true) =1 ,  double(false) =0
 p = predict(theta, X);
 fprintf('Train Accuracy: %f\n', mean(double(p == y)) * 100);  % 因为是线性的，只有 89% 准确率
 ```
