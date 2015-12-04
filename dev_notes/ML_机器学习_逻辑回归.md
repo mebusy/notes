@@ -83,7 +83,7 @@ P( y=1|x;θ ) + P( y=0|x;θ ) = 1
 ##### 逻辑回归 J 应该是个`凸函数 convex` ， 线性回归的J 是`非凸函数`
 
 ```
-J(θ)= 1/m ∑ cost( h(x) , y )
+J(θ)= 1/m ∑ cost( h(x) , y )   (∑ i=1,m)
 ```
 
 ![](http://latex.codecogs.com/gif.latex?cost%28%20h_%5Ctheta%28x%29%2Cy%29%3D%5Cbegin%7Bcases%7D%20-log%28h_%5Ctheta%28x%29%29%20%26%20%5Ctext%7B%20if%20%7D%20y%3D%201%5C%5C%20-log%281-h_%5Ctheta%28x%29%29%20%26%20%5Ctext%7B%20if%20%7D%20y%3D0%20%5Cend%7Bcases%7D)
@@ -103,7 +103,7 @@ cost(h(x),y) = -ylog( h(x) ) -(1-y)log( 1-h(x) )
 最终我们获得完整的代价函数:
 
 ```
-J(θ)= -1/m ∑[ ylog( h(x) ) + (1-y)log( 1-h(x) ) ]
+J(θ)= -1/m ∑[ ylog( h(x) ) + (1-y)log( 1-h(x) ) ]    (∑ i=1,m)
 ```
 
 ![][1]
