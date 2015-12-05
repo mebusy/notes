@@ -129,4 +129,61 @@ function [J, grad] = lrCostFunction(theta, X, y, lambda)
 end
 ```
 
+##### 训练所有的分类器
 
+```
+function [all_theta] = oneVsAll(X, y, num_labels, lambda)
+
+m = size(X, 1);
+n = size(X, 2);
+
+% You need to return the following variables correctly 
+all_theta = zeros(num_labels, n + 1);
+
+% Add ones to the X data matrix
+X = [ones(m, 1) X];
+
+% 在二元分类里，我们使用如下步骤求解 theta 
+% initial_theta = zeros(size(X, 2), 1);
+% lambda = 1;
+% options = optimset('GradObj', 'on', 'MaxIter', 400);
+% [theta, J, exit_flag] = fminunc(@(t)(costFunctionReg(t, X, y, lambda)), initial_theta, options);
+
+ initial_theta = zeros(size(X, 2), 1);   % n+1
+ options = optimset('GradObj', 'on', 'MaxIter', 50);
+ for c = 1:num_labels;
+    [all_theta(c,:)] =  fmincg (@(t)(lrCostFunction(t, X, (y == c), lambda)), initial_theta, options);
+ end
+
+end
+```
+
+```
+% 预测
+function p = predictOneVsAll(all_theta, X)
+
+	m = size(X, 1);
+	num_labels = size(all_theta, 1);
+
+	% You need to return the following variables correctly 
+	p = zeros(size(X, 1), 1);
+
+	% Add ones to the X data matrix
+	X = [ones(m, 1) X];
+
+	% 按行求最大值
+	[val , p] = max( sigmoid( X * all_theta' ) ,[],2)  ;
+end
+```
+
+
+##### 多类分类流程
+
+```
+% 训练所有分类器
+lambda = 0.1;
+[all_theta] = oneVsAll(X, y, num_labels, lambda);
+
+% 预测
+pred = predictOneVsAll(all_theta, X);
+```
