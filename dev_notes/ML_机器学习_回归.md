@@ -198,6 +198,9 @@ xⁱ  表示训练集合中的 第i个 训练样本的 feature 向量
 xⁱⱼ 第i个 训练样本的 第j个 feature 值 
 ```
 
+
+我们在输入特征中加入x0 = 1
+
 hypothesis公式:
 
 ![](http://latex.codecogs.com/gif.latex?h_%5Ctheta%28x%29%3D%5Ctheta_0x_0&plus;%5Ctheta_1x_1&plus;...&plus;%5Ctheta_nx_n)
