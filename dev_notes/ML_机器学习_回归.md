@@ -85,9 +85,7 @@ h 是 预测算法
 
 令：
 
-```
-J(θ₀,θ₁) = 1/(2*m) * ∑(h(xⁱ)-yⁱ)²   (∑ i=1,m)
-```
+![](http://latex.codecogs.com/gif.latex?J%28%5Ctheta_0%2C%5Ctheta_1%29%3D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5E2)
 
 `J(θ₀,θ₁)` 称为代价函数 `cost function` ， 也称为平方误差函数 `square error function` 
 
@@ -202,9 +200,7 @@ xⁱⱼ 第i个 训练样本的 第j个 feature 值
 
 hypothesis公式:
 
-```
-h(x)= θ₀x₀ + θ₁x₁ + θ₂x₂ + ... + θⱼxⱼ       (x₀=1)
-```
+![](http://latex.codecogs.com/gif.latex?h_%5Ctheta%28x%29%3D%5Ctheta_0x_0&plus;%5Ctheta_1x_1&plus;...&plus;%5Ctheta_nx_n)
 
 令:
 
