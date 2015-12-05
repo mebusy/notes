@@ -88,7 +88,7 @@ J(θ)= 1/m ∑ cost( h(x) , y )   (∑ i=1,m)
 
 ![](http://latex.codecogs.com/gif.latex?cost%28%20h_%5Ctheta%28x%29%2Cy%29%3D%5Cbegin%7Bcases%7D%20-log%28h_%5Ctheta%28x%29%29%20%26%20%5Ctext%7B%20if%20%7D%20y%3D%201%5C%5C%20-log%281-h_%5Ctheta%28x%29%29%20%26%20%5Ctext%7B%20if%20%7D%20y%3D0%20%5Cend%7Bcases%7D)
 
-log(x) 函数图像:
+-log(x) `粗` , -log(1-x) `西` 函数图像:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ML_logx.png)
 
