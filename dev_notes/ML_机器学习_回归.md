@@ -80,9 +80,9 @@ y  output / target
 h 是 预测算法
 
 对于线性回归, hypothesis公式:
-```
-h(xⁱ)=θ₀ + θ₁xⁱ
-```
+
+![](http://latex.codecogs.com/gif.latex?h_%5Ctheta%28x%5E%7B%28i%29%7D%29%3D%5Ctheta_0&plus;%5Ctheta_1x%5E%7B%28i%29%7D)
+
 令：
 
 ```
