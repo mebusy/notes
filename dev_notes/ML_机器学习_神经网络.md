@@ -187,3 +187,34 @@ lambda = 0.1;
 % 预测
 pred = predictOneVsAll(all_theta, X);
 ```
+
+
+##### 使用3层神经网络 多类分类的示例
+
+Theta1 , Theta2 是训练好的 输入层和隐藏层的 Theta矩阵
+
+```
+function p = predict(Theta1, Theta2, X)
+
+% Useful values
+m = size(X, 1);
+num_labels = size(Theta2, 1);
+
+% You need to return the following variables correctly 
+p = zeros(size(X, 1), 1);
+
+% Add ones to the X data matrix
+X = [ones(m, 1) X];
+
+% 5000x401   (25 x 401)' -> 5000x25
+A2 =   sigmoid( X * Theta1' )  ;
+
+m2 = size(A2, 1);
+A2 = [ones(m2, 1) A2];
+
+% 5000x26   (10 x 26)'  -> 5000x10
+[val , p] = max( sigmoid( A2 * Theta2' ) ,[],2)  ;
+
+end
+
+```
