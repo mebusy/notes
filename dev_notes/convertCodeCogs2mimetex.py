@@ -9,7 +9,6 @@ sys.setdefaultencoding('utf8')
 
 
 RE_PATTERN_CODECOG= re.compile( r"(!\s*\[\s*\]\s*\(\s*http://latex\.codecogs\.com/gif\.latex\?)(.*?)(\))" )
-RE_PATTERN_ESCAPE = re.compile( r"&[a-z][A-Z]+;" )
 
 def visit(arg, dirname, names):
 	for name in names:
@@ -30,7 +29,7 @@ def visit(arg, dirname, names):
 				#"""
 
 				content = re.sub( RE_PATTERN_CODECOG ,  "![](http://www.forkosh.com/cgi-bin/mimetex.cgi?"  + r'\2\3'   , content )
-				content = re.sub( RE_PATTERN_ESCAPE ,   '+'  , content )
+				content = content.replace( "&plus;" , "+" )
 
 				fp = open( path  , "w" )
 				fp.write(content )
