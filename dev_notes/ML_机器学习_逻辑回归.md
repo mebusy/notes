@@ -42,7 +42,7 @@ h(x) = g(θᵀx)
 
 其中,
 
-![](http://www.sciweavers.org/tex2img.php?eq=g%28z%29=%5Cfrac%7B1%7D%7B1&plus;%20e%5E%7B-z%7D%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+![](http://www.sciweavers.org/tex2img.php?eq=g%28z%29=%5Cfrac%7B1%7D%7B1+%20e%5E%7B-z%7D%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
 完整的假设函数如下：
 
@@ -296,7 +296,7 @@ fprintf('Train Accuracy: %f\n', mean(double(p == y)) * 100);  % 因为是线性�
 ---
 ---
 
-  [1]: http://latex.codecogs.com/gif.latex?h_%5Ctheta%28x%29%3D%5Cfrac%7B1%7D%7B1&plus;%20e%5E%7B-%5Ctheta%5E%7BT%7Dx%7D%7D
+  [1]: http://latex.codecogs.com/gif.latex?h_%5Ctheta%28x%29%3D%5Cfrac%7B1%7D%7B1+%20e%5E%7B-%5Ctheta%5E%7BT%7Dx%7D%7D
 
 
  

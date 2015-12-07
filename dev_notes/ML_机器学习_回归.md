@@ -81,7 +81,7 @@ h 是 预测算法
 
 对于线性回归, hypothesis公式:
 
-![](http://www.sciweavers.org/tex2img.php?eq=h_%5Ctheta%28x%5E%7B%28i%29%7D%29%3D%5Ctheta_0&plus;%5Ctheta_1x%5E%7B%28i%29%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+![](http://www.sciweavers.org/tex2img.php?eq=h_%5Ctheta%28x%5E%7B%28i%29%7D%29%3D%5Ctheta_0+%5Ctheta_1x%5E%7B%28i%29%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
 令：
 
@@ -203,7 +203,7 @@ xⁱⱼ 第i个 训练样本的 第j个 feature 值
 
 hypothesis公式:
 
-![](http://www.sciweavers.org/tex2img.php?eq=h_%5Ctheta%28x%29%3D%5Ctheta_0x_0&plus;%5Ctheta_1x_1&plus;...&plus;%5Ctheta_nx_n&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+![](http://www.sciweavers.org/tex2img.php?eq=h_%5Ctheta%28x%29%3D%5Ctheta_0x_0+%5Ctheta_1x_1+...+%5Ctheta_nx_n&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
 令:
 

@@ -28,7 +28,7 @@
 
 所以有:
 
-![](http://www.sciweavers.org/tex2img.php?eq=z_1%5E%7B%282%29%7D%3D%20%5CTheta_%7B10%7D%5E%7B%281%29%7Dx_0&plus;%5CTheta_%7B11%7D%5E%7B%281%29%7Dx_1&plus;%5CTheta_%7B12%7D%5E%7B%281%29%7Dx_2&plus;%5CTheta_%7B13%7D%5E%7B%281%29%7Dx_3&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+![](http://www.sciweavers.org/tex2img.php?eq=z_1%5E%7B%282%29%7D%3D%20%5CTheta_%7B10%7D%5E%7B%281%29%7Dx_0+%5CTheta_%7B11%7D%5E%7B%281%29%7Dx_1+%5CTheta_%7B12%7D%5E%7B%281%29%7Dx_2+%5CTheta_%7B13%7D%5E%7B%281%29%7Dx_3&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
 ## Forward Propagation 前向传播
 
