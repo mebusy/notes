@@ -9,7 +9,7 @@ sys.setdefaultencoding('utf8')
 
 
 RE_PATTERN_CODECOG= re.compile( r"(!\s*\[\s*\]\s*\(\s*http://latex\.codecogs\.com/gif\.latex\?)(.*?)(\))" )
-RE_PATTERN_ESCAPE = re.compile( r"&\w+;" )
+RE_PATTERN_ESCAPE = re.compile( r"&[a-z][A-Z]+;" )
 
 def visit(arg, dirname, names):
 	for name in names:
