@@ -4,6 +4,8 @@
 
 http://codecogs.com/latex/eqneditor.php
 
+http://www.numberempire.com/texequationeditor/equationeditor.php
+
 http://www.forkosh.com/mimetex.html
 
 http://www.forkosh.com/cgi-bin/mimetex.cgi?formdata=%5Ctheta%20%5C%5C%20%5Ctheta%20+%20a
