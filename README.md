@@ -6,9 +6,9 @@ http://codecogs.com/latex/eqneditor.php
 
 http://www.numberempire.com/texequationeditor/equationeditor.php    多行支持 \\ 有问题 
 
-http://www.sciweavers.org/tex2img.php?eq=h_%5Ctheta%28x%5E%7B%28i%29%7D%29%3D%5Ctheta_0&plus;%5Ctheta_1x%5E%7B%28i%29%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=      \\ 第二次会返回 html body
+http://www.sciweavers.org/tex2img.php?eq=1h_%5Ctheta%28x%5E%7B%28i%29%7D%29%3D%5Ctheta_0+%5Ctheta_1x%5E%7B%28i%29%7D&fs=12&ff=arev&edit=0      \\ 第二次会返回 html body
 
-![alt](http://www.sciweavers.org/tex2img.php?eq=h_%5Ctheta%28x%5E%7B%28i%29%7D%29%3D%5Ctheta_0&plus;%5Ctheta_1x%5E%7B%28i%29%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+![alt](http://www.sciweavers.org/tex2img.php?eq=1h_%5Ctheta%28x%5E%7B%28i%29%7D%29%3D%5Ctheta_0+%5Ctheta_1x%5E%7B%28i%29%7D&fs=12&ff=arev&edit=0)
 
 http://mathurl.com/
 
