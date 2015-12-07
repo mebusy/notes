@@ -24,11 +24,11 @@
 
 我们把激活函数表示为:
 
-![](http://www.sciweavers.org/tex2img.php?eq=a_1%5E%7B%282%29%7D%20%3D%20g%28z_1%5E%7B%282%29%7D%20%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+![](http://latex.codecogs.com/gif.latex?a_1%5E%7B%282%29%7D%20%3D%20g%28z_1%5E%7B%282%29%7D%20%29)
 
 所以有:
 
-![](http://www.sciweavers.org/tex2img.php?eq=z_1%5E%7B%282%29%7D%3D%20%5CTheta_%7B10%7D%5E%7B%281%29%7Dx_0&plus;%5CTheta_%7B11%7D%5E%7B%281%29%7Dx_1&plus;%5CTheta_%7B12%7D%5E%7B%281%29%7Dx_2&plus;%5CTheta_%7B13%7D%5E%7B%281%29%7Dx_3&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+![](http://latex.codecogs.com/gif.latex?z_1%5E%7B%282%29%7D%3D%20%5CTheta_%7B10%7D%5E%7B%281%29%7Dx_0&plus;%5CTheta_%7B11%7D%5E%7B%281%29%7Dx_1&plus;%5CTheta_%7B12%7D%5E%7B%281%29%7Dx_2&plus;%5CTheta_%7B13%7D%5E%7B%281%29%7Dx_3)
 
 ## Forward Propagation 前向传播
 
@@ -44,7 +44,7 @@
 
 `z⁽ʲ⁺¹⁾=`Θ`⁽ʲ⁾a⁽ʲ⁾ ` , 这里a是一个4维的向量
 
-![](http://www.sciweavers.org/tex2img.php?eq=z%5E%7B%283%29%7D%3D%5CTheta%5E%7B%282%29%7Da%5E%7B%282%29%7D%20%5C%5C%20h_%5Ctheta%28x%29%3Da%5E%7B%283%29%7D%3Dg%28z%5E%7B%283%29%7D%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+![](http://latex.codecogs.com/gif.latex?z%5E%7B%283%29%7D%3D%5CTheta%5E%7B%282%29%7Da%5E%7B%282%29%7D%20%5C%5C%20h_%5Ctheta%28x%29%3Da%5E%7B%283%29%7D%3Dg%28z%5E%7B%283%29%7D%29)
 
 这个计算 h(x)的过程，称为 `前向传播` , 计算顺序:  输入层->隐藏层->输出层
 

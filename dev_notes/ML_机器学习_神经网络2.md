@@ -17,13 +17,13 @@
 
 为了 min J(Θ)我们需要计算:
 
-![](http://www.sciweavers.org/tex2img.php?eq=%5C%5CJ%28%5CTheta%29%5C%5C%5C%5C%20%5Cfrac%7B%5Cpartial%20%7D%7B%5Cpartial%20%5CTheta_%7Bij%7D%5E%7B%28l%29%7D%7DJ%28%5CTheta%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+![](http://latex.codecogs.com/gif.latex?%5C%5CJ%28%5CTheta%29%5C%5C%5C%5C%20%5Cfrac%7B%5Cpartial%20%7D%7B%5Cpartial%20%5CTheta_%7Bij%7D%5E%7B%28l%29%7D%7DJ%28%5CTheta%29)
 
 记住:
 
 这项是一个实数
 
-![](http://www.sciweavers.org/tex2img.php?eq=%5CTheta_%7Bij%7D%5E%7B%28l%29%7D%20%5C%2C%20%5Cepsilon%5C%2C%20%5Cmathbb%7BR%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
+![](http://latex.codecogs.com/gif.latex?%5CTheta_%7Bij%7D%5E%7B%28l%29%7D%20%5C%2C%20%5Cepsilon%5C%2C%20%5Cmathbb%7BR%7D)
 
 我们使用前向传播计算激励值。
 

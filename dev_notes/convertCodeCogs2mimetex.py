@@ -2,13 +2,10 @@
 #coding:utf8
 
 import os, sys
-import re #, codecs
-
-reload(sys)
-sys.setdefaultencoding('utf8') 
-
+import re
 
 RE_PATTERN_CODECOG= re.compile( r"(!\s*\[\s*\]\s*\(\s*http://latex\.codecogs\.com/gif\.latex\?)(.*?)(\))" )
+RE_PATTERN_ESCAPE = re.compile( r"&\w+;" )
 
 def visit(arg, dirname, names):
 	for name in names:
@@ -28,14 +25,12 @@ def visit(arg, dirname, names):
 					print re.findall( RE_PATTERN_ESCAPE ,  result[1] )
 				#"""
 
-				content = re.sub( RE_PATTERN_CODECOG ,  "![](http://www.sciweavers.org/tex2img.php?eq="  + r"\2" + \
-						"&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=" + r"\3" , content )
+				content = re.gsub( RE_PATTERN_CODECOG ,  "http://www.forkosh.com/cgi-bin/mimetex.cgi?"  + r'\2\3'   , content )
+				content = re.gsub( RE_PATTERN_ESCAPE ,   '+'  , content )
 
-				#content = content.replace( "&plus;" , "+" )
-
-				fp = open( path  , "w" )
-				fp.write(content )
-				fp.close()
+				fp = codecs.open( path  , "w", "utf-8")
+            	fp.write(content )
+            	fp.close()
 
 			except:
 				import traceback
