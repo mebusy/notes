@@ -81,11 +81,11 @@ h 是 预测算法
 
 对于线性回归, hypothesis公式:
 
-![](http://latex.codecogs.com/gif.latex?h_%5Ctheta%28x%5E%7B%28i%29%7D%29%3D%5Ctheta_0&plus;%5Ctheta_1x%5E%7B%28i%29%7D)
+![](http://www.sciweavers.org/tex2img.php?eq=h_%5Ctheta%28x%5E%7B%28i%29%7D%29%3D%5Ctheta_0&plus;%5Ctheta_1x%5E%7B%28i%29%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
 令：
 
-![](http://latex.codecogs.com/gif.latex?J%28%5Ctheta_0%2C%5Ctheta_1%29%3D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5E2)
+![](http://www.sciweavers.org/tex2img.php?eq=J%28%5Ctheta_0%2C%5Ctheta_1%29%3D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5E2&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
 `J(θ₀,θ₁)` 称为代价函数 `cost function` ， 也称为平方误差函数 `square error function` 
 
@@ -137,9 +137,9 @@ repeate until convergence  { //直到收敛
 }
 ```
 
-![](http://latex.codecogs.com/gif.latex?%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x_%7Bj%7D%5E%7B%28i%29%7D)
+![](http://www.sciweavers.org/tex2img.php?eq=%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x_%7Bj%7D%5E%7B%28i%29%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
-![](http://latex.codecogs.com/gif.latex?%5Ctheta%3A%3D%5Ctheta-%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%5B%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x%5E%7B%28i%29%7D%20%5D)
+![](http://www.sciweavers.org/tex2img.php?eq=%5Ctheta%3A%3D%5Ctheta-%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%5B%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x%5E%7B%28i%29%7D%20%5D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
 
 说明：
@@ -161,7 +161,7 @@ repeate until convergence  { //直到收敛
 
 令:
 
-![](http://latex.codecogs.com/gif.latex?x%3D%5Cbegin%7Bbmatrix%7Dx_%7B0%7D%20%5C%5C%20x_%7B1%7D%20%5C%5C%20x_%7B2%7D%20%5C%5C%20...%20%5C%5C%20x_%7Bn%7D%20%5Cend%7Bbmatrix%7D%20%2C%20X%3D%5Cbegin%7Bbmatrix%7D-x%5E%7B1T%7D-%20%5C%5C%20-x%5E%7B2T%7D-%20%5C%5C%20...%20%5C%5C%20-x%5E%7BmT%7D-%20%5Cend%7Bbmatrix%7D%20%2C%20y%3D%5Cbegin%7Bbmatrix%7Dy%5E%7B1%7D%20%5C%5C%20y%5E%7B2%7D%20%5C%5C%20...%20%5C%5C%20y%5E%7Bm%7D%20%5Cend%7Bbmatrix%7D)
+![](http://www.sciweavers.org/tex2img.php?eq=x%3D%5Cbegin%7Bbmatrix%7Dx_%7B0%7D%20%5C%5C%20x_%7B1%7D%20%5C%5C%20x_%7B2%7D%20%5C%5C%20...%20%5C%5C%20x_%7Bn%7D%20%5Cend%7Bbmatrix%7D%20%2C%20X%3D%5Cbegin%7Bbmatrix%7D-x%5E%7B1T%7D-%20%5C%5C%20-x%5E%7B2T%7D-%20%5C%5C%20...%20%5C%5C%20-x%5E%7BmT%7D-%20%5Cend%7Bbmatrix%7D%20%2C%20y%3D%5Cbegin%7Bbmatrix%7Dy%5E%7B1%7D%20%5C%5C%20y%5E%7B2%7D%20%5C%5C%20...%20%5C%5C%20y%5E%7Bm%7D%20%5Cend%7Bbmatrix%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
     m是训练样本的数量，每个x 包含了n个样本feature值，外加一个1,对应θ₀, x转置后变为X中的行。
     
@@ -203,11 +203,11 @@ xⁱⱼ 第i个 训练样本的 第j个 feature 值
 
 hypothesis公式:
 
-![](http://latex.codecogs.com/gif.latex?h_%5Ctheta%28x%29%3D%5Ctheta_0x_0&plus;%5Ctheta_1x_1&plus;...&plus;%5Ctheta_nx_n)
+![](http://www.sciweavers.org/tex2img.php?eq=h_%5Ctheta%28x%29%3D%5Ctheta_0x_0&plus;%5Ctheta_1x_1&plus;...&plus;%5Ctheta_nx_n&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
 令:
 
-![](http://latex.codecogs.com/gif.latex?X%3D%5Cbegin%7Bbmatrix%7Dx_%7B0%7D%20%5C%5C%20x_%7B1%7D%20%5C%5C%20...%20%5C%5C%20x_%7Bn%7D%20%5Cend%7Bbmatrix%7D%20%5Ctheta%20%3D%20%5Cbegin%7Bbmatrix%7D%5Ctheta_%7B0%7D%20%5C%5C%20%5Ctheta_%7B1%7D%20%5C%5C%20...%20%5C%5C%20%5Ctheta_%7Bn%7D%20%5Cend%7Bbmatrix%7D)
+![](http://www.sciweavers.org/tex2img.php?eq=X%3D%5Cbegin%7Bbmatrix%7Dx_%7B0%7D%20%5C%5C%20x_%7B1%7D%20%5C%5C%20...%20%5C%5C%20x_%7Bn%7D%20%5Cend%7Bbmatrix%7D%20%5Ctheta%20%3D%20%5Cbegin%7Bbmatrix%7D%5Ctheta_%7B0%7D%20%5C%5C%20%5Ctheta_%7B1%7D%20%5C%5C%20...%20%5C%5C%20%5Ctheta_%7Bn%7D%20%5Cend%7Bbmatrix%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
 h 就可以写成
 ```

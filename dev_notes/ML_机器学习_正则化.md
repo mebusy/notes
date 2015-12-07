@@ -69,7 +69,7 @@
 
 if λ > 0 ,
 
-![](http://latex.codecogs.com/gif.latex?%5Ctheta%3D%5Cleft%20%28%20X%5ETX&plus;%5Clambda%5Cbegin%7Bbmatrix%7D%200%20%26%20%26%20%26%20%5C%5C%20%26%201%20%26%20%26%20%5C%5C%20%26%20%26%20...%20%26%20%5C%5C%20%26%20%26%20%26%201%20%5Cend%7Bbmatrix%7D%20%5Cright%20%29%5E%7B-1%7DX%5ETy)
+![](http://www.sciweavers.org/tex2img.php?eq=%5Ctheta%3D%5Cleft%20%28%20X%5ETX&plus;%5Clambda%5Cbegin%7Bbmatrix%7D%200%20%26%20%26%20%26%20%5C%5C%20%26%201%20%26%20%26%20%5C%5C%20%26%20%26%20...%20%26%20%5C%5C%20%26%20%26%20%26%201%20%5Cend%7Bbmatrix%7D%20%5Cright%20%29%5E%7B-1%7DX%5ETy&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
 
 
@@ -81,7 +81,7 @@ if λ > 0 ,
 
 正则化逻辑回归代价函数, 也是在 逻辑回归代价函数基础上，加上 正则化项:
 
-![](http://latex.codecogs.com/gif.latex?&plus;%20%5Cfrac%7B%5Clambda%7D%7B2m%7D%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%5Ctheta_j%5E2)
+![](http://www.sciweavers.org/tex2img.php?eq=&plus;%20%5Cfrac%7B%5Clambda%7D%7B2m%7D%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%5Ctheta_j%5E2&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
 
 ### 梯度下降算法

@@ -42,7 +42,7 @@ h(x) = g(θᵀx)
 
 其中,
 
-![](http://latex.codecogs.com/gif.latex?g%28z%29=%5Cfrac%7B1%7D%7B1&plus;%20e%5E%7B-z%7D%7D)
+![](http://www.sciweavers.org/tex2img.php?eq=g%28z%29=%5Cfrac%7B1%7D%7B1&plus;%20e%5E%7B-z%7D%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
 完整的假设函数如下：
 
@@ -86,7 +86,7 @@ P( y=1|x;θ ) + P( y=0|x;θ ) = 1
 J(θ)= 1/m ∑ cost( h(x) , y )   (∑ i=1,m)
 ```
 
-![](http://latex.codecogs.com/gif.latex?cost%28%20h_%5Ctheta%28x%29%2Cy%29%3D%5Cbegin%7Bcases%7D%20-log%28h_%5Ctheta%28x%29%29%20%26%20%5Ctext%7B%20if%20%7D%20y%3D%201%5C%5C%20-log%281-h_%5Ctheta%28x%29%29%20%26%20%5Ctext%7B%20if%20%7D%20y%3D0%20%5Cend%7Bcases%7D)
+![](http://www.sciweavers.org/tex2img.php?eq=cost%28%20h_%5Ctheta%28x%29%2Cy%29%3D%5Cbegin%7Bcases%7D%20-log%28h_%5Ctheta%28x%29%29%20%26%20%5Ctext%7B%20if%20%7D%20y%3D%201%5C%5C%20-log%281-h_%5Ctheta%28x%29%29%20%26%20%5Ctext%7B%20if%20%7D%20y%3D0%20%5Cend%7Bcases%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
 -log(x) `粗` , -log(1-x) `西` 函数图像:
 
@@ -120,9 +120,9 @@ J(θ)= -1/m ∑[ ylog( h(x) ) + (1-y)log( 1-h(x) ) ]    (∑ i=1,m)
 
 ？为什么公式基本一样？ 因为这只是 h(x) 和 y 之间的比较？
 
-![](http://latex.codecogs.com/gif.latex?%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x_%7Bj%7D%5E%7B%28i%29%7D)
+![](http://www.sciweavers.org/tex2img.php?eq=%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x_%7Bj%7D%5E%7B%28i%29%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
-![](http://latex.codecogs.com/gif.latex?%5Ctheta%3A%3D%5Ctheta-%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%5B%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x%5E%7B%28i%29%7D%20%5D)
+![](http://www.sciweavers.org/tex2img.php?eq=%5Ctheta%3A%3D%5Ctheta-%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%5B%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x%5E%7B%28i%29%7D%20%5D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
 
 ## 高级优化
@@ -177,7 +177,7 @@ hⁱ(x) = P( y=i | x ; θ )   (i=1,2,3)
 
 预测的时候，就是求最大值 ？没理解
 
-![](http://latex.codecogs.com/gif.latex?%5Cunderset%7Bi%7D%7Bmax%7D%5C%2C%20h_%5Ctheta%5E%7B%28i%29%7D%28x%29)
+![](http://www.sciweavers.org/tex2img.php?eq=%5Cunderset%7Bi%7D%7Bmax%7D%5C%2C%20h_%5Ctheta%5E%7B%28i%29%7D%28x%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
 代码实现 见第4部分 神经网络
 
