@@ -2,7 +2,7 @@
 #coding:utf8
 
 import os, sys
-import re, codecs
+import re #, codecs
 
 reload(sys)
 sys.setdefaultencoding('utf8') 
@@ -32,7 +32,7 @@ def visit(arg, dirname, names):
 				content = re.sub( RE_PATTERN_CODECOG ,  "http://www.forkosh.com/cgi-bin/mimetex.cgi?"  + r'\2\3'   , content )
 				content = re.sub( RE_PATTERN_ESCAPE ,   '+'  , content )
 
-				fp = codecs.open( path  , "w", "utf-8")
+				fp = open( path  , "w" )
 				fp.write(content )
 				fp.close()
 
