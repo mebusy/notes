@@ -6,9 +6,7 @@ http://codecogs.com/latex/eqneditor.php
 
 http://www.numberempire.com/texequationeditor/equationeditor.php
 
-http://www.forkosh.com/mimetex.html
-
-http://www.forkosh.com/cgi-bin/mimetex.cgi?formdata=%5Ctheta%20%5C%5C%20%5Ctheta%20+%20a
+http://www.sciweavers.org/tex2img.php?eq=h_%5Ctheta%28x%5E%7B%28i%29%7D%29%3D%5Ctheta_0&plus;%5Ctheta_1x%5E%7B%28i%29%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=
 
 
 ####机器学习
