@@ -31,7 +31,7 @@ def visit(arg, dirname, names):
 				content = re.sub( RE_PATTERN_CODECOG ,  "![](http://www.sciweavers.org/tex2img.php?eq="  + r"\2" + \
 						"&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=" + r"\3" , content )
 
-				content = content.replace( "&plus;" , "+" )
+				#content = content.replace( "&plus;" , "+" )
 
 				fp = open( path  , "w" )
 				fp.write(content )
