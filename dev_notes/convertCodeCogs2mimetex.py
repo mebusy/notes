@@ -28,8 +28,10 @@ def visit(arg, dirname, names):
 					print re.findall( RE_PATTERN_ESCAPE ,  result[1] )
 				#"""
 
-				content = re.sub( RE_PATTERN_CODECOG ,  "![](http://www.forkosh.com/cgi-bin/mimetex.cgi?"  + r'\2\3'   , content )
-				content = content.replace( "&plus;" , "+" )
+				content = re.sub( RE_PATTERN_CODECOG ,  "![](http://www.sciweavers.org/tex2img.php?eq="  + r"\2" + \
+						"&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=" + r"\3" , content )
+
+				#content = content.replace( "&plus;" , "+" )
 
 				fp = open( path  , "w" )
 				fp.write(content )
