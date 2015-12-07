@@ -15,6 +15,8 @@ def getSha1( path ):
 	return sha1obj.hexdigest()
 
 def visit(arg, dirname, names):
+	global list_hash_url
+
 	for name in names:
 		if name[-3:] == '.md':
 			#print name
@@ -53,12 +55,18 @@ def visit(arg, dirname, names):
 						#print link
 
 						sha1= getSha1( link )
-						os.system( 'curl "%s" > ../imgs/%s.png' % ( link + str(int(time.time())) , sha1 ) )	
+						#os.system( 'curl "%s" > ../imgs/%s.png' % ( link + str(int(time.time())) , sha1 ) )	
 
 						print 	sha1 , link
 						print urllib.unquote(link)
 
+						list_hash_url.append( "sha1:\t" + sha1 + "\n"  )
 
+						list_hash_url.append( "link:\t" +  link + "\n"   )
+
+						list_hash_url.append( "unquote:\t" + urllib.unquote(link) + "\n"   )
+						list_hash_url.append( "\n"  )
+						list_hash_url.append( "\n"  )
 
 
 				"""
@@ -88,8 +96,13 @@ def visit(arg, dirname, names):
 				traceback.print_exc() 
 
 if __name__=='__main__':
-
+	list_hash_url = []
 	os.path.walk( ".", visit, None )
+
+	output = "".join(list_hash_url )
+	fp =  open( "latex_hash_url.txt"   , "w" )
+	fp.write( output )
+	fp.close()	
 
 	print 'done'
 
