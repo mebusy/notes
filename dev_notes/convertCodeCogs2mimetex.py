@@ -29,7 +29,7 @@ def visit(arg, dirname, names):
 					print re.findall( RE_PATTERN_ESCAPE ,  result[1] )
 				#"""
 
-				content = re.sub( RE_PATTERN_CODECOG ,  "http://www.forkosh.com/cgi-bin/mimetex.cgi?"  + r'\2\3'   , content )
+				content = re.sub( RE_PATTERN_CODECOG ,  "![](http://www.forkosh.com/cgi-bin/mimetex.cgi?"  + r'\2\3'   , content )
 				content = re.sub( RE_PATTERN_ESCAPE ,   '+'  , content )
 
 				fp = open( path  , "w" )
