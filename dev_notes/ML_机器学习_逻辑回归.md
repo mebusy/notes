@@ -175,7 +175,7 @@ initialTheta = zeros( 2,1 );  % θ 初始值
 hⁱ(x) = P( y=i | x ; θ )   (i=1,2,3)
 ```
 
-预测的时候，就是求最大值 ？没理解
+预测的时候，就是获取 最大值的索引
 
 ![](http://latex.codecogs.com/gif.latex?%5Cunderset%7Bi%7D%7Bmax%7D%5C%2C%20h_%5Ctheta%5E%7B%28i%29%7D%28x%29)
 
