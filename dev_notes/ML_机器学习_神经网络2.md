@@ -25,6 +25,7 @@
  - k 表示第几个输出单元
 
 
+
     logistic regression cost function:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/logistical_regression_cost.png)
