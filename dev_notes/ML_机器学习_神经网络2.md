@@ -24,6 +24,12 @@
  - S₄ 表示第4层的单元数，不包括偏差单元 `bias unit`
  - k 表示第几个输出单元
 
+    logistic regression cost function:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/logistical_regression_cost.png)
+
+    neural network cost function:
+
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural_costFunc.png)
 
  - k 代表第几个输出单元
