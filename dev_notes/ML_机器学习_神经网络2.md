@@ -25,7 +25,6 @@
  - k 表示第几个输出单元
 
 
-
     logistic regression cost function:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/logistical_regression_cost.png)
@@ -35,7 +34,6 @@
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural_costFunc.png)
 
  - `h(x) ∊ ℝᴷ`, `(h(x))ᵢ = iᵗʰ output`
- - k 代表第几个输出单元
  - 神经网络的代价函数，左侧部分是对K个输出单元的代价函数的求和
  - 右侧的正则化项
 
