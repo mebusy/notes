@@ -24,6 +24,8 @@
  - S₄ 表示第4层的单元数，不包括偏差单元 `bias unit`
  - k 表示第几个输出单元
 
+---
+
 
     logistic regression cost function:
 
