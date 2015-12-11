@@ -53,7 +53,7 @@ g(z) 称为 S型函数 Sigmoid function 或 逻辑函数 Logistic function
 
 g(z)的函数图像如下：
 
-![](http://images.cnitblog.com/blog/392228/201410/311940295342017.jpg)
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/g_z.png)
 
 当z趋近于-∞，g(z)趋近于0，而z趋近于∞，g(z)趋近于1，从而达到分类的目的。
 
