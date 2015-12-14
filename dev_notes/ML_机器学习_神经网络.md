@@ -68,6 +68,10 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ForwardPropagation.png)
 
+`Neural Network Model:`
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural_network_model.png)
+
+
 # 应用
 
 ##### 简单的例子: 逻辑与 AND
