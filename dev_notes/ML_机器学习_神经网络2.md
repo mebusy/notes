@@ -61,7 +61,8 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/71b7943041878e87ec9ad13ff72c8ef7cf7a54bd.png)
 
-我们使用前向传播计算激励值。
+
+
 
 #### 为了计算导数项，我们采用反向传播算法`Backpropagation`
 
