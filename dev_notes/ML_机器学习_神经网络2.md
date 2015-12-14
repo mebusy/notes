@@ -47,15 +47,23 @@
     hx=a_3;   
    ```
  - 左侧部分是对K个输出单元的代价函数的求和, 使用和 one-vs-all的一样的方法处理y
-   
+   ```
+    % step 2
+    J=0;
+    for k = 1:num_labels
+        J +=  1/m * sum(  - (y==k) .* log( hx(:,k) )  - ( 1-(y==k) ) .* log( 1- hx(:,k) ) ) ;
+    end
+   ```
    `J +=  1/m * sum(-(y==k) .* log( hx(:,k) ) -(1-(y==k)) .* log(1-hx(:,k)));`
  - 右侧的正则化项，需要累加除输出层外的 所有层的 Θ, 
    
    eg: 三层神经网络，需要处理`Θ⁽¹⁾ , Θ⁽²⁾ ` , 且一般不处理 bias unit的权
 
-   `all_params = [Theta1(:,2:end)(:) ; Theta2(:,2:end)(:)];`
-   
-   `J +=  lambda/(2*m )* ( all_params' * all_params )  ; `
+   ```
+   % step 4
+   all_params = [Theta1(:,2:end)(:) ; Theta2(:,2:end)(:)];
+   J +=  lambda/(2*m )* ( all_params' * all_params )  ; 
+   ```
    
    
 ---
