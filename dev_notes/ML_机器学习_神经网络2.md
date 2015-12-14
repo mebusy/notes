@@ -35,9 +35,10 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural_costFunc.png)
 
- - `h(x) ∊ ℝᴷ`, `(h(x))ᵢ = iᵗʰ output`
- - 神经网络的代价函数，左侧部分是对K个输出单元的代价函数的求和
- - 右侧的正则化项，需要累加除输出层外的 所有层的 Θ
+ - 使用前中传播计算出 h(x), 如果有多个输出单元，h(x)是一个向量: `h(x) ∊ ℝᴷ`, `(h(x))ᵢ = iᵗʰ output`
+ - 左侧部分是对K个输出单元的代价函数的求和, 使用和 one-vs-all的一样的方法处理y
+   `J +=  1/m * sum(-(y==k) .* log( hx(:,k) ) -(1-(y==k)) .* log(1-hx(:,k)));`
+ - 右侧的正则化项，需要累加除输出层外的 所有层的 Θ, eg: 三层神经网络，需要处理`Θ⁽¹⁾ , Θ⁽²⁾ `
 
 为了 min J(Θ)我们需要计算:
 
