@@ -46,6 +46,10 @@
    `all_params = [Theta1(:,2:end)(:) ; Theta2(:,2:end)(:)];
    
    J +=  lambda/(2*m )* ( all_params' * all_params )  ; `
+   
+   
+---
+
 
 为了 min J(Θ)我们需要计算:
 
