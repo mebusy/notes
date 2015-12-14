@@ -125,6 +125,10 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BackPropagation_Derivative.png)
 
+D 就是 J(Θ)的偏导数, Δ的均值
+
+---
+
 再回顾一下 反向传播的计算步骤:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BackwardPropagation_desc.png)
