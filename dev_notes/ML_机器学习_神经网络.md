@@ -62,9 +62,6 @@
 
 ---
 
-我们尝试去掉输入层，发现剩下的部分 和逻辑回归单元非常像。 
-
-只是神经网络不是使用 x,而是使用 `a⁽ʲ⁾`, 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ForwardPropagation.png)
 
