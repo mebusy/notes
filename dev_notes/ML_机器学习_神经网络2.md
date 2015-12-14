@@ -127,6 +127,10 @@
 
 D 就是 J(Θ)的偏导数, Δ的均值
 
+    eg: 一个3层神经网络，反向传播计算流程， 注意第3步，需要使用 delta2=delta2(2:end) 去掉 bias unit 的误差
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/steps_4_3layers_network_computer_derivative.png)
+
 ---
 
 再回顾一下 反向传播的计算步骤:
