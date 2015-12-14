@@ -208,7 +208,6 @@ Dvec 是通过反向传播算法计算出来的 J(Θ)对Θ的偏导数
 `eg.`
 
 ```
-% step 3.2
 Theta1 = rand(10,11)*(2*INIT_EPSILON)-INIT_EPSILON
 ```
 
