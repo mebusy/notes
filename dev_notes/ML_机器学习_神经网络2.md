@@ -78,7 +78,7 @@
 这项是一个实数 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/71b7943041878e87ec9ad13ff72c8ef7cf7a54bd.png)
 
 
-
+---
 
 #### 为了计算导数项，我们采用反向传播算法`Backpropagation`
 
@@ -87,6 +87,8 @@
 这样对每一个节点，我们就有了 节点的激励值 ![][2] 和 误差![][1]:
 
 ![][1] = ![][2] - `yⱼ`  ,  其中 ![][2]= `h(x)ⱼ`
+
+---
 
 #### 只有一个训练样本的例子（不重要）:
 
