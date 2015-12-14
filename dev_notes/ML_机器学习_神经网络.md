@@ -69,6 +69,7 @@
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ForwardPropagation.png)
 
 `Neural Network Model:`
+
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural_network_model.png)
 
 
