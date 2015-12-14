@@ -75,9 +75,7 @@
 
 记住:
 
-这项是一个实数
-
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/71b7943041878e87ec9ad13ff72c8ef7cf7a54bd.png)
+这项是一个实数 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/71b7943041878e87ec9ad13ff72c8ef7cf7a54bd.png)
 
 
 
