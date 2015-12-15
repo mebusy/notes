@@ -243,12 +243,6 @@ Theta1 = rand(10,11)*(2*INIT_EPSILON)-INIT_EPSILON;
 ```
 % step 4
 
-a_1 = [ ones( m , 1)  X ];
-a_2 = sigmoid( a_1 * Theta1' );  % 2nd level
-
-a_2= [ ones( size(a_2,1),1 )  a_2 ];
-a_3 = sigmoid( a_2 * Theta2' );  % output level,hx
-
 delta_3 = zeros(size(a_3));
 % for k output units
 for k = 1:num_labels
