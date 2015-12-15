@@ -234,28 +234,39 @@ Theta1 = rand(10,11)*(2*INIT_EPSILON)-INIT_EPSILON;
 
  - 随机初始化权值
  - 对每一个`x⁽ⁱ⁾` 使用前向传播算法计算 `h(x⁽ⁱ⁾)` (输出结果)
- - 计算代价函数 J(Θ)
+ - 计算代价函数 J(Θ) , 这里J(Θ)是非凸函数non-convex`
  - 使用反向传播算法计算 J(Θ) 对Θ的偏导数
 
 
-`伪代码:`
+    计算grad 代码:
 
 ```
-% 第一次实现反向传播算法，建议使用 for循环逐个计算
-for i=1:m {
-    对每一个训练样本,使用 prop,backprop 计算 `a⁽ˡ⁾`,`δ⁽ˡ⁾` , l=2,...,L).
-    累加计算 `Δ⁽ˡ⁾` (公式如下)
-}
+% step 4
+
+a_1 = [ ones( m , 1)  X ];
+a_2 = sigmoid( a_1 * Theta1' );  % 2nd level
+
+a_2= [ ones( size(a_2,1),1 )  a_2 ];
+a_3 = sigmoid( a_2 * Theta2' );  % output level,hx
+
+delta_3 = zeros(size(a_3));
+% for k output units
+for k = 1:num_labels
+	delta_3(:,k) = a_3(:,k) - (y==k) ;
+end
+
+delta_2 =  delta_3 * Theta2 .* sigmoidGradient( [ ones( size(z_2,1),1 )  z_2 ] ) ;
+delta_2 =  delta_2(:, 2:end) ;  % 去掉 bias 单元
+
+Theta2_grad = (delta_3' * a_2 ) / m ;
+Theta1_grad = (delta_2' * a_1 ) / m ;
+
+% Unroll gradients
+grad = [Theta1_grad(:) ; Theta2_grad(:)];
 ```
-使用 Δ⁽ˡ⁾ 计算![][4] . (这时要考虑加入正则项)
-(TODO: 老师这里为什么使用 jkl ?)
 
-![][3]
 
- - 使用Gradient checking 检验 前面得到的 J(Θ)偏导数的值, 检验通过后,去掉gradient checking
- - 使用 梯度下降或高级优化算法，计算 Θ
 
-`注意：这里J(Θ)是非凸函数non-convex`
 
 
 
