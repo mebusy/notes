@@ -161,7 +161,7 @@ thetaVec=[ Theta1(:) ; Theta2(:) ; Theta3(:)  ]
 Theta2 = reshape( thetaVec(111:220), 10,11  )
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BackwardPropagation_practics.png)
+---
 
 #### Gradient checking
 
