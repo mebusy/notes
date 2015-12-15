@@ -35,18 +35,20 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural_costFunc.png)
 
- - 使用前中传播计算出 h(x), 如果有多个输出单元，h(x)是一个向量: `h(x) ∊ ℝᴷ`, `(h(x))ᵢ = iᵗʰ output`
+ - 使用前向传播计算出 h(x), 如果有多个输出单元，h(x)是一个向量: `h(x) ∊ ℝᴷ`, `(h(x))ᵢ = iᵗʰ output`
    ```
     % step 1
     a_1 = [ ones( m , 1)  X ];
-    a_2 = sigmoid( a_1 * Theta1' );  % 2nd level
+    z_2 = a_1 * Theta1' ;  % you'd better work z_2 out, for later using
+    a_2 = sigmoid( z_2 ) ;
+    a_2 = [ ones( size(a_2,1),1 )  a_2 ];  % 2nd level
     
-    a_2= [ ones( size(a_2,1),1 )  a_2 ];
-    a_3 = sigmoid( a_2 * Theta2' );  % output level,hx
+    z_3 = a_2 * Theta2' ;
+    a_3 = sigmoid( z_3 );  % output level,hx
     
     hx=a_3;   
    ```
- - 左侧部分是对K个输出单元的代价函数的求和, 使用和 one-vs-all的一样的方法处理y
+ - 左侧部分是对K个输出单元的代价函数的求和并累加, 使用和 one-vs-all的一样的方法处理y:
    ```
    % step 2
     J=0;
