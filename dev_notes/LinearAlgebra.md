@@ -1,3 +1,35 @@
+
+    理解矩阵和向量的乘法
+    初等矩阵 elemental matrix
+    置换矩阵性质: P⁻¹=Pᵀ
+    矩阵乘法满足结合律
+    左逆和右逆
+    矩阵有逆的条件: 满秩矩阵(方阵)，非奇异
+    逆矩阵求解方程组 Ax=b
+    逆和转置
+    LU分解
+    RᵀR 是 对称矩阵 symmetric matrix
+    向量的投影
+    向量投影矩阵P
+    子空间投影 和 最小二乘法
+    标准正交基
+    正交矩阵
+    Gram-Schmidt正交化
+    方阵的行列式
+    正交矩阵的行列式 |Q|= ±1
+    行列式应用1: 求三角形面积
+    特征向量 特征值
+    特征值方程
+    特征向量 特征值 数学意义
+    矩阵对角化
+    A的幂
+    标准正交基 投影
+    对称矩阵及正定性
+    复数矩阵
+    傅里叶矩阵
+    相似矩阵
+    奇异值分解 SVD Singular Value Decomposition
+
 [TOC]
 
 # 线性代数 Tips
@@ -279,13 +311,13 @@ n个λ 的值，可能有重复的，重复的λ，会导致特征向量缺失�
 
 用A 乘以 特征向量矩阵S, 得到:
 
-![](http://mebusy.xicp.net:8001/bbs/data/attachment/forum/201507/02/200421jvimwdr0klzlku4d.png)
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LinearAlgebra_SAS1.png)
 
 Ax=λx
 
 拆分得到的新矩阵，得到:
 
-![](http://mebusy.xicp.net:8001/bbs/data/attachment/forum/201507/02/200422qn2fvrtwvatkmfm6.png)
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LinearAlgebra_SAS2.png)
 
 所以: AS=SΛ
 
@@ -375,7 +407,8 @@ A²=SΛS⁻¹SΛS⁻¹  =  SΛ²S⁻¹  (S表示特征向量不变, 特征值变
 
 例： F64 -> F32:
 
-![](http://mebusy.xicp.net:8001/bbs/data/attachment/forum/201507/12/113729m3tiaal8i55u4p05.png)
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LinearAlgebra_F64_F32.png)
+
 
 #### 相似矩阵
 
