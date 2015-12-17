@@ -132,7 +132,7 @@ function [J, grad] = lrCostFunction(theta, X, y, lambda)
 	% 添加了 正则化部分
 	J= 1/m * sum(  -y .* log( hx )  - ( 1-y ) .* log( 1- hx ) )  + lambda/(2*m )* ( theta' * theta ) ;	  
 	% 处理 feature 0 case
-	J(1) -= lambda/(2*m )* ( theta(1)^2 ) ;
+	J -= lambda/(2*m )* ( theta(1)^2 ) ;
 
 	% 另一种处理 feature 0 case 的做法
 	% 必须先计算出 grad0 并保存， 因为需要同步更新
