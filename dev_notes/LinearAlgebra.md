@@ -278,10 +278,13 @@ n个λ 的值，可能有重复的，重复的λ，会导致特征向量缺失�
     这些特征向量 组成特征向量矩阵S
 
 用A 乘以 特征向量矩阵S, 得到:
+
 ![](http://mebusy.xicp.net:8001/bbs/data/attachment/forum/201507/02/200421jvimwdr0klzlku4d.png)
+
 Ax=λx
 
 拆分得到的新矩阵，得到:
+
 ![](http://mebusy.xicp.net:8001/bbs/data/attachment/forum/201507/02/200422qn2fvrtwvatkmfm6.png)
 
 所以: AS=SΛ
