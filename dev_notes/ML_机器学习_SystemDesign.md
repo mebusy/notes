@@ -6,6 +6,8 @@
     Handling Skewed Data
         Trading off precision and recall
         how 2 compare precision/recall numbers
+    Use Large Data set
+        Large data rationale
 
 
 # ML System Design
@@ -101,6 +103,27 @@ Algorithm3 | 0.02 | 1.0 |0.51|0.0392
 
  - 最差的情况， P=0 or R=0, F₁Score=0 ,
  - 最好的情况， P=1 and R=1, F₁Score =1.
+
+
+ 
+## Use Large Data set
+
+一个在某个数据集下表现较差的算法， 在另一个大很多的数据集上，可能会表现的最好。
+
+It's not who has the best algorithm that wins. It's who has the most data.
+
+
+#### Large data rationale
+
+大数据情况下的设计原则:
+
+Assume feature x  has sufficient information to predict y accurately. (Useful test: Give the input x , can a human expert confidently predict y ? ）
+
+在这个前提下， 我们设计一个有较多参数(隐藏层)的算法 ， 和一个庞大的 training set (unlikely to overfit). 
+
+较多的参数确保算法 low bias, 庞大的训练集，确保 low variance.
+
+(如果数据集足够大，即便算法不使用 正则化，也会表达的不错)
 
 
  
