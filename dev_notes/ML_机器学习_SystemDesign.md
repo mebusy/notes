@@ -119,7 +119,7 @@ It's not who has the best algorithm that wins. It's who has the most data.
 
 Assume feature x  has sufficient information to predict y accurately. (Useful test: Give the input x , can a human expert confidently predict y ? ）
 
-在这个前提下， 我们设计一个有较多参数(隐藏层)的算法 ， 和一个庞大的 training set (unlikely to overfit). 
+在这个前提下， 我们设计一个有较多参数(隐藏层 )的算法 ( polynomial 不算) ， 和一个庞大的 training set (unlikely to overfit). 
 
 较多的参数确保算法 low bias, 庞大的训练集，确保 low variance.
 
