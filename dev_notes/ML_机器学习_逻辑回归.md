@@ -55,7 +55,7 @@ g(z)的函数图像如下：
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/g_z.png)
 
-当z趋近于-∞，g(z)趋近于0，而z趋近于∞，g(z)趋近于1，从而达到分类的目的。
+当z << 0 (-4 附近)，g(z) 接近0，而当 z >> 0 (4) ，g(z)接近 1，从而达到分类的目的。
 
 整条曲线呈S型, 这也是 "S型" 叫法的由来。
 
