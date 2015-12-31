@@ -40,7 +40,7 @@ class mytest(unittest.TestCase):
       
     #具体的测试用例，一定要以test开头  
     def testMergeSort(self):  
-    	for i in xrange(100):
+    	for i in xrange(1000):
     		size = np.random.randint( 10,30 )
     		lists = list( np.random.randint(0, size,size ) ) #转成 普通list
         	self.assertEqual( cmp( MergeSort(lists) , sorted(lists)  ) , 0, 'test MergeSort fail')  
