@@ -23,17 +23,17 @@ def Merge(left,right):
     reslut += left[l:]
     return reslut
 
-def SortAndCountInversions(lists):
+def Sort_Count_Inv(lists):
     if len(lists) <= 1:  # exit condition
         return 0,lists
-    num = int( len(lists)/2 ) # (1)
-    X , left = SortAndCountInversions(lists[:num])  #(2)
-    Y ,right = SortAndCountInversions(lists[num:]) #(2)
-    Z , D    = MergeAndCountInversion(left, right)  #(3)
+    num = int( len(lists)/2 ) 
+    X , left = Sort_Count_Inv(lists[:num]) 
+    Y ,right = Sort_Count_Inv(lists[num:]) 
+    Z , D    = Merge_Count_Inv(left, right)
 
     return X+Y+Z , D
 
-def MergeAndCountInversion(left,right):
+def Merge_Count_Inv(left,right):
     r, l=0, 0
     cnt = 0
     reslut=[]
@@ -71,9 +71,9 @@ class mytest(unittest.TestCase):
     		lists = list( np.random.randint(0, size, size*2 ) ) #转成 普通list
         	self.assertEqual( cmp( MergeSort(lists) , sorted(lists)  ) , 0, 'test MergeSort fail')  
 
-    def testSortAndCountInversions(self):  
+    def testSort_Count_Inv(self):  
         lists = [1,3,5,3,4,6] 
-        self.assertEqual( cmp( SortAndCountInversions( lists ) , (2, sorted(lists) ) ) , 0 , 'test SortAndCountInversions1 fail') 
+        self.assertEqual( cmp( Sort_Count_Inv( lists ) , (2, sorted(lists) ) ) , 0 , 'test Sort_Count_Inv1 fail') 
 
         def countInversionNN( lists ):
             size = len(lists)
@@ -86,12 +86,12 @@ class mytest(unittest.TestCase):
 
             return cnt , sorted( lists ) 
 
-        self.assertEqual( cmp( SortAndCountInversions( lists ) , countInversionNN( lists )  ) , 0 , 'test SortAndCountInversions2 fail') 
+        self.assertEqual( cmp( Sort_Count_Inv( lists ) , countInversionNN( lists )  ) , 0 , 'test Sort_Count_Inv2 fail') 
 
         for i in xrange(1000):
             size = np.random.randint( 10,30 )
             lists = list( np.random.randint(0, size,size*2 ) ) #转成 普通list
-            self.assertEqual( cmp( SortAndCountInversions(lists) , countInversionNN(lists)  ) , 0, 'test MergeSort fail')  
+            self.assertEqual( cmp( Sort_Count_Inv(lists) , countInversionNN(lists)  ) , 0, 'test MergeSort fail')  
           
           
 
