@@ -1,5 +1,6 @@
 #coding:utf8
 
+import math,sys
 
 def MergeSort(lists):
     if len(lists) <= 1:  # exit condition
@@ -49,7 +50,52 @@ def Merge_Count_Inv(left,right):
     reslut += right[r:]
     reslut += left[l:]
     return cnt , reslut  
-       
+
+def ClosestPair( lists_x, lists_y ):
+    if len(lists_x) == 1:
+        return ( lists_x[0], ( sys.maxint, sys.maxint ) )
+
+
+    if len(lists_x) <= 2:
+        return ( lists_x[0], lists_x[1] )
+
+    #分成两个子数组
+    num = int( len(lists_x)/2 ) 
+    left = MergeSort(lists_x[:num])  
+    right = MergeSort(lists_x[num:]) 
+
+    # 每个子数组分别对 x,y排序，得到新数组
+    left_x  = left # already sorted by x 
+    left_y  = sorted(left, cmp = lambda a,b : cmp( a[1],b[1] ))
+
+    right_x = right # already sorted by y 
+    right_y = sorted(right, cmp = lambda a,b : cmp( a[1],b[1] ))
+
+    # 每个子数组计算 closest pair
+    (p1,q1) = ClosestPair( left_x, left_y )
+    (p2,q2) = ClosestPair( right_x, right_y )
+
+    def D( p, q ) :
+        return pow( p[0]-q[0] ,2 ) + pow( p[1]-q[1] ,2 )
+
+    # 获取子数组最小距离
+    delta = min( D( p1,q1 ) , D( p2,q2) )
+    delta = math.sqrt( delta )
+
+    (p3,q3) = ClosestSplitPair( right_x, right_y , delta )
+
+    return min( [ (p1,q1) ,  (p2,q2) ,   (p3,q3) ] , key=lambda a: D(a[0],a[1]) ) 
+
+def ClosestSplitPair( lists_x, lists_y , delta ):
+    num = int( len(lists_x)/2 ) 
+    x_mean = lists_x[num/2-1][0]
+
+    # lists_y 中，x 在 [ x_mean-delta, x_mean+delta ]
+    Sy = [ p for p in lists_y if abs( p[0] - x_mean ) <= delta ]
+
+    #过滤完成后，
+
+    return (0,0) , (0,0)
 
 import unittest  
 import numpy as np
@@ -98,5 +144,9 @@ class mytest(unittest.TestCase):
 
 
 if __name__=='__main__':
-	unittest.main()  
+    l = [  (3,5),(9,3),(6,7)  ]
+    print ClosestPair( sorted( l , cmp = lambda a,b : cmp( a[0],b[0] )) , sorted( l , cmp = lambda a,b : cmp( a[1],b[1] )) )
+    unittest.main()
+
+
 	
