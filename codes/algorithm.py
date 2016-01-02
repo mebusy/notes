@@ -82,20 +82,41 @@ def ClosestPair( lists_x, lists_y ):
     delta = min( D( p1,q1 ) , D( p2,q2) )
     delta = math.sqrt( delta )
 
+    l = [ (p1,q1) ,  (p2,q2)  ]
+
     (p3,q3) = ClosestSplitPair( right_x, right_y , delta )
 
-    return min( [ (p1,q1) ,  (p2,q2) ,   (p3,q3) ] , key=lambda a: D(a[0],a[1]) ) 
+    if p3 and q3:
+        l += [ ( p3,q3) ]
+
+    return min( l , key=lambda a: D(a[0],a[1]) ) 
 
 def ClosestSplitPair( lists_x, lists_y , delta ):
     num = int( len(lists_x)/2 ) 
     x_mean = lists_x[num/2-1][0]
 
-    # lists_y 中，x 在 [ x_mean-delta, x_mean+delta ]
+    # 只取 x 在 [ x_mean-delta, x_mean+delta ] 中的点，按y排序
     Sy = [ p for p in lists_y if abs( p[0] - x_mean ) <= delta ]
 
+    min_dist = delta*delta
+    bestPair = ( None , None ) 
     #过滤完成后，
 
-    return (0,0) , (0,0)
+    def D( p, q ) :
+        return pow( p[0]-q[0] ,2 ) + pow( p[1]-q[1] ,2 )
+    for i in xrange(  max( len(Sy) - 7 , 1 ) ):
+        for j in xrange( 7 ):
+            if i+j+1 >= len(Sy):
+                continue
+            p = Sy[i] 
+            q = Sy[i+j+1]
+
+            dist =  D( p, q )
+            if dist < min_dist:
+                min_dist = dist 
+                bestPair = ( p , q ) 
+
+    return bestPair
 
 import unittest  
 import numpy as np
@@ -112,7 +133,7 @@ class mytest(unittest.TestCase):
       
     #具体的测试用例，一定要以test开头  
     def testMergeSort(self):  
-    	for i in xrange(1000):
+    	for i in xrange(100):
     		size = np.random.randint( 10,30 )
     		lists = list( np.random.randint(0, size, size*2 ) ) #转成 普通list
         	self.assertEqual( cmp( MergeSort(lists) , sorted(lists)  ) , 0, 'test MergeSort fail')  
@@ -134,7 +155,7 @@ class mytest(unittest.TestCase):
 
         self.assertEqual( cmp( Sort_Count_Inv( lists ) , countInversionNN( lists )  ) , 0 , 'test Sort_Count_Inv2 fail') 
 
-        for i in xrange(1000):
+        for i in xrange(100):
             size = np.random.randint( 10,30 )
             lists = list( np.random.randint(0, size,size*2 ) ) #转成 普通list
             self.assertEqual( cmp( Sort_Count_Inv(lists) , countInversionNN(lists)  ) , 0, 'test MergeSort fail')  
@@ -144,7 +165,7 @@ class mytest(unittest.TestCase):
 
 
 if __name__=='__main__':
-    l = [  (3,5),(9,3),(6,7)  ]
+    l = [  (8,5),(9,3),(6,7)  ]
     print ClosestPair( sorted( l , cmp = lambda a,b : cmp( a[0],b[0] )) , sorted( l , cmp = lambda a,b : cmp( a[1],b[1] )) )
     unittest.main()
 
