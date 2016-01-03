@@ -53,16 +53,15 @@ def Merge_Count_Inv(left,right):
 
 def ClosestPair( lists_x, lists_y ):
     if len(lists_x) == 1:
-        return ( lists_x[0], ( sys.maxint, sys.maxint ) )
+        return ( lists_x[0], ( 999999, 999999 ) )
 
-
-    if len(lists_x) <= 2:
+    if len(lists_x) == 2:
         return ( lists_x[0], lists_x[1] )
 
     #分成两个子数组
     num = int( len(lists_x)/2 ) 
-    left = MergeSort(lists_x[:num])  
-    right = MergeSort(lists_x[num:]) 
+    left = lists_x[:num]
+    right = lists_x[num:]
 
     # 每个子数组分别对 x,y排序，得到新数组
     left_x  = left # already sorted by x 
@@ -84,19 +83,25 @@ def ClosestPair( lists_x, lists_y ):
 
     l = [ (p1,q1) ,  (p2,q2)  ]
 
-    (p3,q3) = ClosestSplitPair( right_x, right_y , delta )
+    (p3,q3) = ClosestSplitPair( lists_x, lists_y , delta )
+    #print p1,q1, ',' , p2,q2 , ',' , p3,q3 , '--'  , delta , lists_x
 
     if p3 and q3:
         l += [ ( p3,q3) ]
+
+    #print "-" , lists_x
+    #print l , delta
 
     return min( l , key=lambda a: D(a[0],a[1]) ) 
 
 def ClosestSplitPair( lists_x, lists_y , delta ):
     num = int( len(lists_x)/2 ) 
-    x_mean = lists_x[num/2-1][0]
+    x_mean = lists_x[num-1][0]
+    #print 'l:' , lists_x[num/2-1] , lists_x
 
     # 只取 x 在 [ x_mean-delta, x_mean+delta ] 中的点，按y排序
     Sy = [ p for p in lists_y if abs( p[0] - x_mean ) <= delta ]
+    #print "filter: " , num , x_mean , delta,  Sy 
 
     min_dist = delta*delta
     bestPair = ( None , None ) 
@@ -104,7 +109,7 @@ def ClosestSplitPair( lists_x, lists_y , delta ):
 
     def D( p, q ) :
         return pow( p[0]-q[0] ,2 ) + pow( p[1]-q[1] ,2 )
-    for i in xrange(  max( len(Sy) - 7 , 1 ) ):
+    for i in xrange(  len(Sy) -1  ):
         for j in xrange( 7 ):
             if i+j+1 >= len(Sy):
                 continue
@@ -159,14 +164,45 @@ class mytest(unittest.TestCase):
             size = np.random.randint( 10,30 )
             lists = list( np.random.randint(0, size,size*2 ) ) #转成 普通list
             self.assertEqual( cmp( Sort_Count_Inv(lists) , countInversionNN(lists)  ) , 0, 'test MergeSort fail')  
-          
-          
 
+    def testClosestPair(self):
+        for i in xrange(100):
+            size = np.random.randint( 10,40 )
+            l = [ ( np.random.randint( size*3 ) , np.random.randint( size*3 )  ) for i in xrange( size ) ]  
+            #print l
+            
+            lx = sorted( l , cmp = lambda a,b : cmp( a[0],b[0] ))
+            ly = sorted( l , cmp = lambda a,b : cmp( a[1],b[1] ))
 
+            def D( p, q ) :
+                return pow( p[0]-q[0] ,2 ) + pow( p[1]-q[1] ,2 )
+            def closestPairNN( lists ):
+                min_dist = sys.maxint
+                bestPair = ( None , None ) 
+                for i in xrange( len(lists)-1 ):
+                    j=i+1
+                    for idx in xrange( size - j ):
+                        p = lists[i] 
+                        q = lists[j+idx]
+
+                        dist =  D( p, q )
+                        if dist < min_dist:
+                            min_dist = dist 
+                            bestPair = ( p , q )     
+                return  bestPair               
+            
+            #print ClosestPair(lx, ly ) , closestPairNN(l) 
+            p1,q1 = ClosestPair(lx, ly )
+            p2,q2 = closestPairNN(l)
+            self.assertEqual( cmp( D(p1,q1) , D(p2,q2 ) ) , 0, 'test ClosestPair fail')  
 
 if __name__=='__main__':
-    l = [  (8,5),(9,3),(6,7)  ]
-    print ClosestPair( sorted( l , cmp = lambda a,b : cmp( a[0],b[0] )) , sorted( l , cmp = lambda a,b : cmp( a[1],b[1] )) )
+    import time
+    np.random.seed(seed=int( time.time() ) ) 
+
+    #l = [(11, 1), (27, 72), (19, 46), (5, 54), (78, 52), (6, 44), (15, 6), (81, 47), (49, 51), (43, 20), (5, 67), (12, 85), (20, 36), (85, 55), (47, 34), 
+    #(13, 28), (64, 20), (77, 77), (62, 70), (27, 72),  (58, 3), (36, 56), (20, 39), (5, 58), (78, 22), (31, 4), (64, 53), (5, 31), (1, 24)]
+    #print ClosestPair( sorted( l , cmp = lambda a,b : cmp( a[0],b[0] )) , sorted( l , cmp = lambda a,b : cmp( a[1],b[1] )) )
     unittest.main()
 
 
