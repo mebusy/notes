@@ -1,16 +1,5 @@
 # 目录
 
-```flow
-st=>start: Start
-op=>operation: Your Operation
-cond=>condition: Yes or No?
-e=>end
-
-st->op->cond
-cond(yes)->e
-cond(no)->op
-```
-
 ##### 在线数学公式生成
 
 http://codecogs.com/latex/eqneditor.php
