@@ -1,8 +1,15 @@
 # 目录
 
-### 2. 书写一个质能守恒公式[^LaTeX]
+```flow
+st=>start: Start
+op=>operation: Your Operation
+cond=>condition: Yes or No?
+e=>end
 
-[^LaTeX]: 支持 **LaTeX** 编辑显示支持，例如：$\sum_{i=1}^n a_i=0$， 访问 [MathJax][4] 参考更多使用方法。
+st->op->cond
+cond(yes)->e
+cond(no)->op
+```
 
 ##### 在线数学公式生成
 
