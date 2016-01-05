@@ -2,6 +2,7 @@
 
 import math,sys
 
+#======================================================================================================================================================
 def MergeSort(lists):
     if len(lists) <= 1:  # exit condition
         return lists
@@ -24,6 +25,7 @@ def Merge(left,right):
     reslut += left[l:]
     return reslut
 
+#======================================================================================================================================================
 def Sort_Count_Inv(lists):
     if len(lists) <= 1:  # exit condition
         return 0,lists
@@ -51,6 +53,7 @@ def Merge_Count_Inv(left,right):
     reslut += left[l:]
     return cnt , reslut  
 
+#======================================================================================================================================================
 def ClosestPair( lists_x, lists_y ):
     if len(lists_x) == 1:
         return ( lists_x[0], ( 999999, 999999 ) )
@@ -122,7 +125,35 @@ def ClosestSplitPair( lists_x, lists_y , delta ):
                 bestPair = ( p , q ) 
 
     return bestPair
+#======================================================================================================================================================
+# [ lo,hi ]
+# return the index
+def BinarySearch( sorted_list , lo, hi , num ):
+    if lo > hi :  #protection
+        return -1   # not found 
 
+    iMid = (lo + hi) /2 
+
+    if sorted_list[iMid]  == num:
+        return iMid
+    elif sorted_list[iMid]  > num:
+        hi = iMid -1
+        return BinarySearch( sorted_list , lo, hi , num )
+    else:
+        lo = iMid +1
+        return BinarySearch( sorted_list , lo, hi , num )
+    
+    return -1
+#======================================================================================================================================================
+
+#======================================================================================================================================================
+
+#======================================================================================================================================================
+
+#======================================================================================================================================================
+#======================================================================================================================================================
+#======================================================================================================================================================
+#======================================================================================================================================================
 import unittest  
 import numpy as np
 
@@ -195,6 +226,15 @@ class mytest(unittest.TestCase):
             p1,q1 = ClosestPair(lx, ly )
             p2,q2 = closestPairNN(l)
             self.assertEqual( cmp( D(p1,q1) , D(p2,q2 ) ) , 0, 'test ClosestPair fail')  
+
+    def testBinarySearch( self ):
+        for i in xrange(1000):
+            size = np.random.randint( 10,30 )
+            lists = list(set( np.random.randint(0, size,  size ) ) )#转成 普通list, 确保没有重复, 
+            lists = sorted(lists)             #确保sorted
+            num = size/2
+            #print BinarySearch(lists , 0, len(lists)-1 , num ) , (num not in lists) and -1 or lists.index( num ) , lists , num
+            self.assertEqual( cmp( BinarySearch(lists , 0, len(lists)-1 , num ) , (num not in lists) and -1 or lists.index( num ) ) , 0, 'test MergeSort fail')          
 
 if __name__=='__main__':
     import time
