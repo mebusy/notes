@@ -146,7 +146,30 @@ def BinarySearch( sorted_list , lo, hi , num ):
     
     return -1
 #======================================================================================================================================================
+# [ lo , hi ]
+def QuickSort( lists , lo , hi  ):
+    if hi - lo < 1 :  # eg. (A,1,2) 2个元素，继续， (A,1,1) 只有1个元素，直接返回
+        return
 
+    iMid =  (lo + hi) /2   # choose mid element as pivot
+    lists[lo],lists[iMid]=lists[iMid],lists[lo]  #swap pivot to 1st position: lo
+
+    p = lists[lo]
+
+    # partition
+    i = lo +1   # i will seperate the elements those <p and >p
+    for j in xrange( i, hi+1 ) : # go through unpartitioned array
+        if lists[j] < p:   # find a element should move 2 left
+            lists[i],lists[j] = lists[j],lists[i]
+            i += 1
+
+    lists[lo] , lists[i-1] = lists[i-1] , lists[lo]
+
+    # recursive
+    QuickSort( lists , i , hi  )  # 大于 等于 P 的 element 
+    QuickSort( lists , lo , i-2  ) # 小于p 的 element ,i-1 是p， 不再进行排序
+
+    pass # end
 #======================================================================================================================================================
 
 #======================================================================================================================================================
@@ -157,6 +180,7 @@ def BinarySearch( sorted_list , lo, hi , num ):
 #======================================================================================================================================================
 import unittest  
 import numpy as np
+import copy
 
 class mytest(unittest.TestCase):  
       
@@ -170,10 +194,16 @@ class mytest(unittest.TestCase):
       
     #具体的测试用例，一定要以test开头  
     def testMergeSort(self):  
-    	for i in xrange(100):
-    		size = np.random.randint( 10,30 )
-    		lists = list( np.random.randint(0, size, size*2 ) ) #转成 普通list
-        	self.assertEqual( cmp( MergeSort(lists) , sorted(lists)  ) , 0, 'test MergeSort fail')  
+        for i in xrange(100):
+            size = np.random.randint( 10,30 )
+            lists = list( np.random.randint(0, size, size*2 ) ) #转成 普通list
+            self.assertEqual( cmp( MergeSort(lists) , sorted(lists)  ) , 0, 'test MergeSort fail')
+
+            # quick sort
+            list_qs = copy.deepcopy( lists )
+            QuickSort( list_qs , 0 , len(list_qs)-1 )
+
+            self.assertEqual( cmp( list_qs , sorted(lists)  ) , 0, 'test QuickSort fail')
 
     def testSort_Count_Inv(self):  
         lists = [1,3,5,3,4,6] 
