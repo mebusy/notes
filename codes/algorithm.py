@@ -112,12 +112,13 @@ def ClosestSplitPair( lists_x, lists_y , delta ):
 
     def D( p, q ) :
         return pow( p[0]-q[0] ,2 ) + pow( p[1]-q[1] ,2 )
+
     for i in xrange(  len(Sy) -1  ):
-        for j in xrange( 7 ):
-            if i+j+1 >= len(Sy):
+        for j in xrange( i+1, i+1+7):
+            if j >= len(Sy):
                 continue
             p = Sy[i] 
-            q = Sy[i+j+1]
+            q = Sy[j]
 
             dist =  D( p, q )
             if dist < min_dist:
