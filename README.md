@@ -31,6 +31,14 @@ Octave Tutorial
 
 
 ---
+
+Algorithm
+    |   |    |   | 
+--- | --- | --- | ---
+[1,2](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_12.md) | 
+
+
+---
 ####游戏中的数学
 
     |   |    |   | 
