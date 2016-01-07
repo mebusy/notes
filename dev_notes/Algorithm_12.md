@@ -649,7 +649,7 @@ def QuickSort( lists , lo , hi  ):
     if hi - lo < 1 : 
         return
 
-    iMid =  (lo + hi) /2   # choose mid element as pivot
+    iMid = random.randint(lo , hi)    # random choose  pivot
     lists[lo],lists[iMid]=lists[iMid],lists[lo]  
 
     p = lists[lo]
