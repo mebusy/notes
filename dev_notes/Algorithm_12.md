@@ -349,7 +349,7 @@ end
  
 第3步 牵涉到两个子数组的遍历，复杂度上很难做到线性，这里我们需要参考merge sort的做法，最后处理两个有序数组会简单的多。
 
-```
+```python
 def Sort_Count_Inv(lists):
     if len(lists) <= 1:  # exit condition
         return 0,lists
@@ -363,7 +363,7 @@ def Sort_Count_Inv(lists):
 
 Merge_Count_Inv 方法的关键: 如果输入array没有逆序存在，那么数组是有序的，且left array的所有元素都 '<=' right array 中的元素。merge的时候，必然是left array中的元素完全被合并光，再开始处理right array. 换句话说，当merge 每次从 right array中合并数据的时候，left array中的剩余元素,都是逆序。
 
-```
+```python
 def Merge_Count_Inv(left,right):
     r, l=0, 0
     cnt = 0
@@ -586,7 +586,7 @@ b: rate of work shrinkage (RWS)
 
 ### * BinarySearch
 
-```
+```python
 def BinarySearch( sorted_list , lo, hi , num ):
     if lo > hi :  #protection
         return -1   # not found 
