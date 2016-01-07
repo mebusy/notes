@@ -1,6 +1,6 @@
 #coding:utf8
 
-import math,sys
+import math,sys,random
 
 #======================================================================================================================================================
 def MergeSort(lists):
@@ -151,7 +151,7 @@ def QuickSort( lists , lo , hi  ):
     if hi - lo < 1 :  # eg. (A,1,2) 2个元素，继续， (A,1,1) 只有1个元素，直接返回
         return
 
-    iMid =  (lo + hi) /2   # choose mid element as pivot
+    iMid = random.randint(lo , hi)    # random choose  pivot ,  randint:Return random integer in range [a, b]
     lists[lo],lists[iMid]=lists[iMid],lists[lo]  #swap pivot to 1st position: lo
 
     p = lists[lo]
