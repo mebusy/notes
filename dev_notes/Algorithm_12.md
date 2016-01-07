@@ -211,7 +211,7 @@ recursion tree: 把 算法过程，用一颗`树`的结构表示出来。分治�
 
 所以对于某一层 level j, 总的 running time = 子问题数*子问题的运行时间= `2ʲx6( n/2ʲ )` = 6n。非常棒，level j 的 running time 和j完全无关。
 
-把所有level的running time相加，的
+把所有level的running time相加，得:
 
 Total Runing time = 6n x (log₂n +1) = `6n·log₂n + 6n` .
 
