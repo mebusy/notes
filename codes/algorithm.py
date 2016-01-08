@@ -172,6 +172,46 @@ def QuickSort( lists , lo , hi  ):
     pass # end
 #======================================================================================================================================================
 
+####  randomize select #####
+# param : order start from 0
+# return: order-th smallest element
+# Caution: will modify raw array 
+def RSelect( lists , lo, hi  , order ):
+    if hi - lo < 1 : 
+        return lists[lo]   
+
+    iMid =  (lo+hi)/2 #random.randint(lo , hi)    # random choose  pivot  
+    lists[lo],lists[iMid]=lists[iMid],lists[lo]  
+
+    #print lists , lo,hi, 'order:' , order  ,   "iMid:" , iMid ,   'p:=' , lists[lo] , "%d:%d <-> %d:%d" % ( lo,lists[iMid] , iMid,lists[lo]) 
+
+    p = lists[lo]
+
+    # partition
+    i = lo +1   # i will seperate the elements those <p and >p
+    for j in xrange( i, hi+1 ) : # go through unpartitioned array
+        if lists[j] < p:   # find a element should move 2 left
+            lists[i],lists[j] = lists[j],lists[i]
+            #print lists ,  "%d:%d <-> %d:%d" % ( i,lists[j] , j,lists[i]) 
+            i += 1
+            
+
+    lists[lo] , lists[i-1] = lists[i-1] , lists[lo]
+
+    pi = i-1  # new index of pivot
+
+    #print lists , "%d:%d <-> %d:%d" % ( lo,lists[i-1] , i-1 ,lists[lo]) ,  'p : %d -> idx: %d' % ( p, pi  ) 
+
+    #print pi, order 
+    if pi == order:
+        return p 
+    elif pi > order: # too more, find in left 1st array
+        return RSelect( lists, lo , pi-1, order )
+    else:  # pi < order 
+        # 这里我们复用原数组，所以 order 不需要变
+        return RSelect( lists, i , hi , order  ) # - (i-lo)  
+
+
 #======================================================================================================================================================
 
 #======================================================================================================================================================
@@ -267,6 +307,14 @@ class mytest(unittest.TestCase):
             #print BinarySearch(lists , 0, len(lists)-1 , num ) , (num not in lists) and -1 or lists.index( num ) , lists , num
             self.assertEqual( cmp( BinarySearch(lists , 0, len(lists)-1 , num ) , (num not in lists) and -1 or lists.index( num ) ) , 0, 'test MergeSort fail')          
 
+    def testRSelect(self):  
+        for i in xrange(1000):
+            size = np.random.randint( 10,30 )
+            lists = list( np.random.randint(0, size, size*2 ) ) #转成 普通list
+            
+            order = random.randint( 0, len(lists)-1 )
+            self.assertEqual( cmp( RSelect(lists , 0, len(lists)-1 , order ) , sorted(lists)[ order ]  ) , 0, 'test testRSelect fail')
+
 if __name__=='__main__':
     import time
     np.random.seed(seed=int( time.time() ) ) 
@@ -275,6 +323,7 @@ if __name__=='__main__':
     #(13, 28), (64, 20), (77, 77), (62, 70), (27, 72),  (58, 3), (36, 56), (20, 39), (5, 58), (78, 22), (31, 4), (64, 53), (5, 31), (1, 24)]
     #print ClosestPair( sorted( l , cmp = lambda a,b : cmp( a[0],b[0] )) , sorted( l , cmp = lambda a,b : cmp( a[1],b[1] )) )
     unittest.main()
+
 
 
 	
