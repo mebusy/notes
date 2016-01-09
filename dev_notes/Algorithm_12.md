@@ -673,3 +673,69 @@ def QuickSort( lists , lo , hi  ):
  - bad case: 快速排序一个sorted array, 每次选 1st element as pivot, 时间复杂度 O(n²)
  - avarage case: 时间复杂度 O(nlogn) , n+(n-1)+(n-2)+...+1
 
+---
+
+## Linear-Time Selection
+
+### * Randomized Selection
+
+ - Input: array with n size
+ - Output: iᵗʰ smallest element (第i小得元素)
+
+> Method 1: Reduction to Sorting - O(nlogn)
+
+ 1. apply merge sort
+ 2. return iᵗʰ element
+
+> Method 2: partition used in QuickSort
+
+在一个长度10的数组中，找5ᵗʰ smallest element, 假设第一次 partition pivot的位置是 3ᵗʰ,那么所求元素就是 右侧子数组的 2ᵗʰ元素。
+
+running time 依赖于 pivot的选择，bad case O(n²), 因为随机选择 pivot的原因，一般不会 bad case， Randomized Selection 期望运行时间为Θ(n).
+
+和 quick sort 相比，Randomized Selection `不需要对整个数组进行排序`，这是O(n)实现的关键。
+
+> RSelect( array A , length n , order  )
+> if n==1 return A[0]
+> random choose pivot from A
+> partition A around p
+  let pi = new index of p (p最终在array中的位置)
+> if pi==order  return p (正好是要找的)
+> if pi>order  return RSelect( 1st part of A , pi-1, order )
+> if pi<order  return RSelect( 2nd part of A , n-pi, order-pi )
+ 
+```python
+# param : order start from 0
+# return: order-th smallest element
+# Caution: will modify raw array 
+def RSelect( lists , lo, hi  , order ):
+    if hi - lo < 1 : 
+        return lists[lo]   
+
+    iMid =  (lo+hi)/2 #random.randint(lo , hi)    # random choose  pivot  
+    lists[lo],lists[iMid]=lists[iMid],lists[lo]  
+
+    p = lists[lo]
+
+    # partition
+    i = lo +1   # i will seperate the elements those <p and >p
+    for j in xrange( i, hi+1 ) : # go through unpartitioned array
+        if lists[j] < p:   # find a element should move 2 left
+            lists[i],lists[j] = lists[j],lists[i]
+            i += 1
+            
+
+    lists[lo] , lists[i-1] = lists[i-1] , lists[lo]
+
+    pi = i-1  # new index of pivot
+
+    #print pi, order 
+    if pi == order:
+        return p 
+    elif pi > order: # too more, find in left 1st array
+        return RSelect( lists, lo , pi-1, order )
+    else:  # pi < order 
+        # 这里我们复用原数组，所以 order 不需要变
+        return RSelect( lists, i , hi , order  ) # - (i-lo) 
+```
+
