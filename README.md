@@ -36,7 +36,7 @@ Algorithm
 
     |   |    |   | 
 --- | --- | --- | ---
-[1,2](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_12.md) | 
+[排序 选择](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_12.md) | 
 
 
 ---
