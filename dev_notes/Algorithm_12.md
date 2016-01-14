@@ -695,15 +695,17 @@ running time 依赖于 pivot的选择，bad case O(n²), 因为随机选择 pivo
 
 和 quick sort 相比，Randomized Selection `不需要对整个数组进行排序`，这是O(n)实现的关键。
 
-> RSelect( array A , length n , order  )
-> if n==1 return A[0]
-> random choose pivot from A
-> partition A around p
-  let pi = new index of p (p最终在array中的位置)
-> if pi==order  return p (正好是要找的)
-> if pi>order  return RSelect( 1st part of A , pi-1, order )
-> if pi<order  return RSelect( 2nd part of A , n-pi, order-pi )
- 
+```
+ RSelect( array A , length n , order  )
+ if n==1 return A[0]
+ random choose pivot from A
+ partition A around p
+ let pi = new index of p (p最终在array中的位置)
+ if pi==order  return p (正好是要找的)
+ if pi>order  return RSelect( 1st part of A , pi-1, order )
+ if pi<order  return RSelect( 2nd part of A , n-pi, order-pi )
+```
+
 ```python
 # param : order start from 0
 # return: order-th smallest element
