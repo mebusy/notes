@@ -40,11 +40,19 @@ Algorithm
 
 
 ---
-####游戏中的数学
+
+#### Linear ALgebra
 
     |   |    |   | 
 --- | --- | --- | ---
-[正交点积](http://htmlpreview.github.io/?https://github.com/mebusy/notes/blob/master/md/MIG_%E6%AD%A3%E4%BA%A4%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%AD%A3%E4%BA%A4%E7%82%B9%E7%A7%AF.html) | [随机数](https://github.com/mebusy/notes/blob/master/dev_notes/Dev_Random.md) | [微积分总览](https://github.com/mebusy/notes/blob/master/dev_notes/微积分总览.md)
+[preface](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra_preface.md) | 
+
+
+#### 其它数学
+
+    |   |    |   | 
+--- | --- | --- | ---
+[正交点积](http://htmlpreview.github.io/?https://github.com/mebusy/notes/blob/master/md/MIG_%E6%AD%A3%E4%BA%A4%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%AD%A3%E4%BA%A4%E7%82%B9%E7%A7%AF.html) | [随机数](https://github.com/mebusy/notes/blob/master/dev_notes/Dev_Random.md) | [微积分总览](https://github.com/mebusy/notes/blob/master/dev_notes/微积分总览.md) | [线性代数摘要](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra.md) | 
 
 
 
