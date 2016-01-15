@@ -33,10 +33,10 @@ How to know if a matrix is invertible? We will not use determinant here. I would
 
 Elimination can convert a matrix into an upper triangular matrix. And this is how MATLAB would find the determinant. It would do elimination, and the determinant of a triangular matrix is just product down the diagonal, the product of the pivots.
 
-```Octave
+```
 # MATLAB may very clever when dealing with fractions
 > [L,U,P] = lu(K)
-> U =
+> U  = 
    2.00000  -1.00000   0.00000   0.00000
    0.00000   1.50000  -1.00000   0.00000
    0.00000   0.00000   1.33333  -1.00000
