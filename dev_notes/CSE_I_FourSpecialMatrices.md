@@ -36,7 +36,7 @@ Elimination can convert a matrix into an upper triangular matrix. And this is ho
 ```
 # MATLAB may very clever when dealing with fractions
 > [L,U,P] = lu(K)
-> U  = 
+> U = 
    2.00000  -1.00000   0.00000   0.00000
    0.00000   1.50000  -1.00000   0.00000
    0.00000   0.00000   1.33333  -1.00000
