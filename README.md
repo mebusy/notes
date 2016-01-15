@@ -38,6 +38,13 @@ Algorithm
 --- | --- | --- | ---
 [排序 选择](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_12.md) | [图 Min Cut](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_GraphMinCut.md) | 
 
+---
+### Computational Science and Engineering I
+
+    |   |    |   | 
+--- | --- | --- | ---
+[4 special matrix](https://github.com/mebusy/notes/blob/master/dev_notes/CSE_I_FourSpecialMatrices.md) |
+
 
 ---
 
