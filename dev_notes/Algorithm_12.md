@@ -542,7 +542,7 @@ a > bᵈ , 所以是case(3) ,  O(nˡᵒᵍ₂³) ≈ O(n¹·⁵⁹)
 
 `T(n)<= 2·T(n) + O(n²) :` 
 
-类似 combine step 是 O(n²)的 merge sort
+Karatsuba算法可能想象成 combine step 的复杂度是 O(n²)的 'merge sort'
 
 a=2
 b=2
