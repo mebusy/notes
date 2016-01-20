@@ -38,7 +38,7 @@ The `crossing edges` of a cut(A,B) are those with :
 
 #### The Minimum Cut Problem
 
-`Input`: an undirected graph G=(V,E) , paralled edges ȯ⋲⋺ȯ allowd
+`Input`: an undirected graph G=(V,E) , paralled edges "node ⋲⋺ node" allowd
 
 `Goal`: find a cut with fewest number of crossing edges ( minimize )
 
