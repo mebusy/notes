@@ -36,7 +36,7 @@ Algorithm
 
     |   |    |   | 
 --- | --- | --- | ---
-[排序 选择](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_12.md) | [图 Min Cut](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_GraphMinCut.md) | 
+[排序 选择](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_12.md) | [图 Min Cut](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_GraphMinCut.md) | [图的搜索和连通](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_GraphSearchConnectivity.md) | 
 
 ---
 ### Computational Science and Engineering I
