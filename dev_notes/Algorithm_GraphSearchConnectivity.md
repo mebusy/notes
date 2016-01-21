@@ -340,9 +340,9 @@ for 2nd pass:
 
 ## exam
 
- 1. Q1: θ(n)
- 2. Q2: 邻接矩阵 vertex s-t path 搜索的时间复杂度： θ(m+n)
- 3. Q3: r<=d
- 4. Q4: Never
- 5. Q5: 给 directed graph G 添加一条边, 一般来说都会减少SCC的数量，仅某些情况下，SCC数量保持不变。
+ 1. Q1: θ(m)
+ 2. Q2: 邻接矩阵 vertex s-t path 搜索的时间复杂度： θ(n²)
+ 3. Q3: r<=d , r>=d/2
+ 4. Q4: Sometimes yes, sometimes no
+ 5. Q5: 给 directed graph G 添加一条边, 一般来说都会减少SCC的数量，但如果图本身是强连通图,SCC数量不变。
 
