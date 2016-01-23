@@ -39,6 +39,35 @@ Cmd + Delete |  | delete object
  - Choose GameObject -> Align with View
  - Also can move camera like an object
 
+### 小技巧
+
+#### 1  区分scene  / game 
+
+如果你有时会在播放模式下改文件，改完以后发现在Play模式下白改了...
+
+那么这个功能还是蛮有用的，点击Edit/Preferences,点击Color, 修改 Playmode tint ,这就是播放模式下的面板颜色。（改成一个醒目的颜色）
+
+#### 2 如何在Play模式下快速调整数值！？
+
+首先点击播放进入Play模式，在这个模式下你可以一次性调整好你要的数值，（这里我们用位置Position举例）
+
+然后右键CopyComponent，回到Scene模式下。
+
+在你复制的Component这里右键PastComponentValue就可以复制刚才你调整的数值~！
+
+记住 一次只能Copy一个Component
+
+#### 3 使用右上角的Layers显示和隐藏物体（适用于Scene视角里编辑多个物体）
+
+#### 4 使用Profiler查看游戏运行性能！
+
+Profiler 可以通过 scene view 右下角的menu 调出
+
+#### 5 Unity有个bug！
+
+有时候 当你用鼠标中键放大物体的时候，物体会消失！这个时候点击Edit/LockView to Selected 或者直接按快捷键Shift+F,物体就可见了！~
+
+
 ---
 
 ## Creating and Integrating Assets
