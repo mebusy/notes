@@ -37,9 +37,12 @@ Initialize:
 // dealt means we've correctly computed shortest path distance from s to every vertex in X
 - A[s] = 0 //computed shortest path distances
 - B[s] = empty path // computed shortest paths
-// A and B will be indexed in the same way. A will store just a number for shortest path distance, B will store an actual path, B is only to help explanation!
+// A and B will be indexed in the same way. 
+//  A will store just a number for shortest path distance, 
+//  B will store an actual path, B is only to help explanation!
 
-// in each iteration it's going to grow and cover up one new vertex , there is 2 idea to pick a new vertex for iteration
+// in each iteration it's going to grow and cover up one new vertex , 
+//  there is 2 idea to pick a new vertex for iteration
 
 MainLoop idea 1
 - while X != V: // X⊆V
