@@ -54,7 +54,7 @@ C = ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/toeplitz_matr
 
 C is also a toeplitz matrix. But it is not invertible. We even can see that without computing determinants. We can see it without doing elimination, too.
 
-I is not invertible is because it's circulant. The diagonal which only has three *-1* circled around to the 4th. The diagonal which has two *0* circled around to other two *0*. The diagonal are not only constant, they loop around. This is a periodic matrix. Periodic matrix can always find a *non-zero vector u* so that Cu=0 (Here is vector [1;1;1;1]) . 
+It is not invertible is because it's circulant. The diagonal which only has three *-1* circled around to the 4th. The diagonal which has two *0* circled around to other two *0*. The diagonal are not only constant, they loop around. This is a periodic matrix. Periodic matrix can always find a *non-zero vector u* so that Cu=0 (Here is vector [1;1;1;1]) . 
 
 Cu=0 definitely means C is not invertible. 
 
