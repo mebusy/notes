@@ -4,23 +4,23 @@
 
 	 * [概率review](#a9d7307d1dc411da0b6eb0ada62927fe)
 
-			 * [Sample Space 样本空间](#0161afd90bc8befe6a9b0095b431d453)
+		 * [Sample Space 样本空间](#0161afd90bc8befe6a9b0095b431d453)
 
-			 * [Events](#87f9f735a1d36793ceaecd4e47124b63)
+		 * [Events](#87f9f735a1d36793ceaecd4e47124b63)
 
-			 * [Random Variables](#8a93f7814e04aeb4a3435d0667b581d7)
+		 * [Random Variables](#8a93f7814e04aeb4a3435d0667b581d7)
 
-			 * [Expectation 期望值](#2426f069e30ba72470f5884dd0d1978b)
+		 * [Expectation 期望值](#2426f069e30ba72470f5884dd0d1978b)
 
-			 * [Linearity of Expectation 期望值的线性特征](#c5b39bd40ef8a8a3021cb9c1f2293b26)
+		 * [Linearity of Expectation 期望值的线性特征](#c5b39bd40ef8a8a3021cb9c1f2293b26)
 
-			 * [Example : Load Balancing Solution](#fb51e66716580be0b390976538460c1a)
+		 * [Example : Load Balancing Solution](#fb51e66716580be0b390976538460c1a)
 
-			 * [Conditional Probability](#eb79da64dba6f5b2add70bb07a77689d)
+		 * [Conditional Probability](#eb79da64dba6f5b2add70bb07a77689d)
 
-			 * [Independence (of Events)](#eb614aadbbb53ab4bdd7a65c0ff5d644)
+		 * [Independence (of Events)](#eb614aadbbb53ab4bdd7a65c0ff5d644)
 
-			 * [Independence (of Random Variable)](#10a907c436cbc968b7b76bb9e0686d49)
+		 * [Independence (of Random Variable)](#10a907c436cbc968b7b76bb9e0686d49)
 
 	 * [Introduce](#19a655d3c2b379ac5f3939da282171ce)
 
