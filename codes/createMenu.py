@@ -21,7 +21,15 @@ def createMenu4MD( path ):
 
 	lines = content.split("\n")
 	
+	bCodeStart = False
 	for i, line in enumerate( lines ):
+		if line[:3]=="```":
+			bCodeStart = not bCodeStart
+
+		if bCodeStart:
+			body += line+'\n'
+			continue
+
 		result = re.search( RE_PATTERN_MENU_SYNTAX , line )
 		if result:
 			sharps = result.group(1)
@@ -40,6 +48,10 @@ def createMenu4MD( path ):
 			body += line+'\n'
 
 	menu += '\n...menuend\n\n\n'  
+	
+	if bCodeStart :
+		raise Exception( "code pair error" )
+
 	#print menu
 
 	fp = open(path , 'w')

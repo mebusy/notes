@@ -7,7 +7,6 @@
      * [BFS vs. DFS](#8f0317dee85f46e2bef49cbc47b53c95)
    * [BFS](#838fea3c1a3e8dd6c22fe9605a701668)
      * [BFS 算法:](#9c054fc83157f4b9181e4cdc4fe6ff82)
- * [[all nodes initially unexplored]](#d176df2069c4df6c60921c3b256ab445)
      * [Application: Shortest Paths](#a607a389d3fa7d06d4ce8c6940b4f3bf)
      * [Application: Undirected Connectivity](#e47cac3e7cfeacdc8aed91eb9e98eea5)
    * [DFS](#c1bb62b63c65be3760b715faad0bdf8d)

@@ -1,17 +1,6 @@
 ...menustart
 
  * [ios simulator stdout stderr redirect](#808223f71402e744750e77a2865d1277)
- * [if TARGET_IPHONE_SIMULATOR](#74ab1a2b1d81a278d3beb1f85be3a145)
- * [endif](#e96d8afc259593a20838480dfb84400b)
- * [if TARGET_IPHONE_SIMULATOR](#74ab1a2b1d81a278d3beb1f85be3a145)
- * [include <assert.h>](#ebc0698cf05d2d8bbf78c2089a5dd7e4)
- * [include <stdbool.h>](#093848d6b19f265b15f0124d33f45079)
- * [include <sys/types.h>](#32614ed8861386b4ee97f921788d04fe)
- * [include <unistd.h>](#72500b52c1addad1fb042b9944382803)
- * [include <sys/sysctl.h>](#4cd69413490417afabba01a5f27fc38c)
- * [endif](#e96d8afc259593a20838480dfb84400b)
- * [if TARGET_IPHONE_SIMULATOR](#74ab1a2b1d81a278d3beb1f85be3a145)
- * [endif](#e96d8afc259593a20838480dfb84400b)
 
 ...menuend
 

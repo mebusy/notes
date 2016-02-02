@@ -27,12 +27,8 @@
        * [Proof Master Method](#62ba17118eebe254d98279c6b41311d1)
      * [* BinarySearch](#2eb8bb773d9f8334d49ff0ded73c5a1e)
      * [* Quick Sort](#09fa4ffc1e0ce3b966b8e18f696c808a)
- * [[ lo , hi ]](#ee42234aeac3963cbbb1928be146f7cb)
    * [Linear-Time Selection](#e9bced6ef0b00f17aa977807b93dc751)
      * [* Randomized Selection](#465c2b7e3cca8883109e9929ea950b48)
- * [param : order start from 0](#54a475b35810d94c5e31f858207584dd)
- * [return: order-th smallest element](#623387d4a7924031688d07fcc97106d6)
- * [Caution: will modify raw array](#7089dbd8f929a0bc138c25176952ec95)
 
 ...menuend
 
