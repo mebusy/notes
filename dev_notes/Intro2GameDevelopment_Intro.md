@@ -1,65 +1,35 @@
 ...menustart
 
-	 * [Intro to U3D](#60073da63a8fe62f03ad41e9dd3257d8)
-
-		 * [U3D Editor Walkthrough](#d1baf48cbf113af8eb5fe82dd6835bd7)
-
-			 * [View Control](#98149d4649b603a544c9c52e4a842c31)
-
-			 * [Object Manipulation](#3a6bba43d17d16a59c5b287ae52383a9)
-
-			 * [Camera Manipulation](#6341038ef23e05b20e67a11b1df8cfad)
-
-		 * [小技巧](#97944c42c1af0393a037161a6f969a8a)
-
-			 * [1  区分scene  / game](#a13e518689723e0780936b80012211ae)
-
-			 * [2 如何在Play模式下快速调整数值！？](#ccd349d281be8d5c207785a3037dd3a4)
-
-			 * [3 使用右上角的Layers显示和隐藏物体（适用于Scene视角里编辑多个物体）](#2d60eef6e7cb6b1489d153f83010c7c2)
-
-			 * [4 使用Profiler查看游戏运行性能！](#d07d9f90950e46921b452a73c8be0108)
-
-			 * [5 Unity有个bug！](#40903d7d8ae23cd3a6de269c23c061db)
-
-	 * [Creating and Integrating Assets](#7cd83a4c3d9124376629e883503fe5c5)
-
-		 * [Game Graphics Concept](#3a666fc0fa871ff40964391fc84261aa)
-
-			 * [Resolution](#b5a4b64b2aa505bd7c11f79b8a9f458d)
-
-			 * [Frame Rate](#9cb334507c95e83a9c863f5014ab317e)
-
-			 * [Model](#a559b87068921eec05086ce5485e9784)
-
-			 * [Bitmap File Formats](#d954d326bf4f38870ad7610986913a5a)
-
-			 * [3D File Formats](#42982212f6c8f711f99351449fddec7e)
-
-		 * [Creating Game Graphics](#97cf7ccbe9cc98650c55677345d94ca3)
-
-			 * [Finding Graphics](#b916431abdc2a84097274818cb0bae18)
-
-		 * [Game Audio Concept](#9653e3c0b73e9abc3cfdd77c294872a1)
-
-			 * [Model](#a559b87068921eec05086ce5485e9784)
-
-			 * [Audio File Formats](#89036a6d4d6e0e480158ac61180cceeb)
-
-		 * [Creating Game Audio](#8a19ec7ba24710f9381af1ee60f19f6a)
-
-			 * [Sound Editing Tools](#be1b94570f67133ffca33a9aaec8b3ae)
-
-			 * [Music](#47dcbd834e669233d7eb8a51456ed217)
-
-			 * [Finding Sound Effects](#a1c71b065d3eb978fd93e5f02f25e91a)
-
-			 * [Finding Music](#6859823ead2a91ee4b87255df0ca6463)
-
-		 * [The Asset Pipeline](#cc0375b28e24087901bf75b252540534)
-
-			 * [Import Settings](#352a228c155779f9e34542d5c4e945ce)
-
+   * [Intro to U3D](#60073da63a8fe62f03ad41e9dd3257d8)
+     * [U3D Editor Walkthrough](#d1baf48cbf113af8eb5fe82dd6835bd7)
+       * [View Control](#98149d4649b603a544c9c52e4a842c31)
+       * [Object Manipulation](#3a6bba43d17d16a59c5b287ae52383a9)
+       * [Camera Manipulation](#6341038ef23e05b20e67a11b1df8cfad)
+     * [小技巧](#97944c42c1af0393a037161a6f969a8a)
+       * [1  区分scene  / game](#a13e518689723e0780936b80012211ae)
+       * [2 如何在Play模式下快速调整数值！？](#ccd349d281be8d5c207785a3037dd3a4)
+       * [3 使用右上角的Layers显示和隐藏物体（适用于Scene视角里编辑多个物体）](#2d60eef6e7cb6b1489d153f83010c7c2)
+       * [4 使用Profiler查看游戏运行性能！](#d07d9f90950e46921b452a73c8be0108)
+       * [5 Unity有个bug！](#40903d7d8ae23cd3a6de269c23c061db)
+   * [Creating and Integrating Assets](#7cd83a4c3d9124376629e883503fe5c5)
+     * [Game Graphics Concept](#3a666fc0fa871ff40964391fc84261aa)
+       * [Resolution](#b5a4b64b2aa505bd7c11f79b8a9f458d)
+       * [Frame Rate](#9cb334507c95e83a9c863f5014ab317e)
+       * [Model](#a559b87068921eec05086ce5485e9784)
+       * [Bitmap File Formats](#d954d326bf4f38870ad7610986913a5a)
+       * [3D File Formats](#42982212f6c8f711f99351449fddec7e)
+     * [Creating Game Graphics](#97cf7ccbe9cc98650c55677345d94ca3)
+       * [Finding Graphics](#b916431abdc2a84097274818cb0bae18)
+     * [Game Audio Concept](#9653e3c0b73e9abc3cfdd77c294872a1)
+       * [Model](#a559b87068921eec05086ce5485e9784)
+       * [Audio File Formats](#89036a6d4d6e0e480158ac61180cceeb)
+     * [Creating Game Audio](#8a19ec7ba24710f9381af1ee60f19f6a)
+       * [Sound Editing Tools](#be1b94570f67133ffca33a9aaec8b3ae)
+       * [Music](#47dcbd834e669233d7eb8a51456ed217)
+       * [Finding Sound Effects](#a1c71b065d3eb978fd93e5f02f25e91a)
+       * [Finding Music](#6859823ead2a91ee4b87255df0ca6463)
+     * [The Asset Pipeline](#cc0375b28e24087901bf75b252540534)
+       * [Import Settings](#352a228c155779f9e34542d5c4e945ce)
 
 ...menuend
 

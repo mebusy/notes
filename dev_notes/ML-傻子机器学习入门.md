@@ -1,47 +1,26 @@
 ...menustart
 
  * [傻子机器学习入门](#3a1b341628a37d459adc8d41c75b642e)
-
-	 * [分类](#d0771a42bbc49a6941f59913fcda35e3)
-
-	 * [分类方法](#9998e9726bd638d12c34f63bdf534092)
-
-		 * [1. 相同的观测数据](#235ff5ca528208b1f235484654e1128c)
-
-		 * [2. 1-nearest neighbors](#24a8418ac1d673fd72c1f273b04ea8e9)
-
-		 * [3. k-nearest neighbors](#a503d796c2293806f5ea687794a0ba41)
-
-	 * [Random Forest 随机森林](#675de25a0968fa5c53e3bfdfc7d1b1a8)
-
-	 * [Scikit-Learn 随机森林例子](#ba4b2c9a639835e917adf9ddab2656a5)
-
+   * [分类](#d0771a42bbc49a6941f59913fcda35e3)
+   * [分类方法](#9998e9726bd638d12c34f63bdf534092)
+     * [1. 相同的观测数据](#235ff5ca528208b1f235484654e1128c)
+     * [2. 1-nearest neighbors](#24a8418ac1d673fd72c1f273b04ea8e9)
+     * [3. k-nearest neighbors](#a503d796c2293806f5ea687794a0ba41)
+   * [Random Forest 随机森林](#675de25a0968fa5c53e3bfdfc7d1b1a8)
+   * [Scikit-Learn 随机森林例子](#ba4b2c9a639835e917adf9ddab2656a5)
  * [print dir(pd)](#595c9f1c43df8ae856832461451de196)
-
  * [feature data , feature name](#60087793b352090322add575fa5acd9b)
-
  * [print iris.data, iris.feature_names](#9161a009ffb95e86a7ccb7d39d9a8edf)
-
  * [print df](#e804629d66d9090f215e6a622984bcdd)
-
  * [some data is used 4 trainint , some data used for test](#4ed54ba56d266549d52afc3b643b2347)
-
  * [print df['is_train']](#bb47b98a06c45181d1a5aad9341e8b66)
-
  * [target data, target name](#c43ebca92fa2e0ff1820faf052f9f5e3)
-
  * [print iris.target, iris.target_names](#2beeae025beee612208b41d87e03f894)
-
  * [print df](#e804629d66d9090f215e6a622984bcdd)
-
  * [print train, test](#e2234d15a576b71c53e4103e0daa26bd)
-
  * [print clf](#991cb900a02cae5fb04bb6de50951d29)
-
  * [save all trees to words](#737e8cc036c3369989220e56145ce961)
-
  * [save all trees to pdf](#59be67e0e891cc5cd4610645bb8676f9)
-
 
 ...menuend
 

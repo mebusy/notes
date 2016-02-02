@@ -1,27 +1,16 @@
 ...menustart
 
  * [sklearn 随机森林简单介绍](#d611c199fb56f4cc3ceece27ebc41a8a)
-
-	 * [1. 决策树](#ac3f05d5330e044468fd526d476de188)
-
-		 * [构造决策树 Sklearn.tree](#417242c55236c9c531e82c5425894faf)
-
-		 * [输出决策树结果](#6b00a3fa8d6c11d615b68019cfea518b)
-
-		 * [使用建议](#1381cce03d257acf549790c944080017)
-
-	 * [随机森林](#a60f6c59122509d3df75f4ed6a768b2e)
-
+   * [1. 决策树](#ac3f05d5330e044468fd526d476de188)
+     * [构造决策树 Sklearn.tree](#417242c55236c9c531e82c5425894faf)
+     * [输出决策树结果](#6b00a3fa8d6c11d615b68019cfea518b)
+     * [使用建议](#1381cce03d257acf549790c944080017)
+   * [随机森林](#a60f6c59122509d3df75f4ed6a768b2e)
  * [拆分训练集和测试集](#8b7050d1e5615ace9d85583d7ff6cd6b)
-
  * [分类型决策树](#bc540adb4062af12d373e6c97348cb43)
-
  * [训练模型](#a162534bb7cd826d9ac8600dfc42c466)
-
  * [评估模型准确率](#102c272d0164bc736117ec13f55a9261)
-
  * [print clf.predict_proba(feature_test[0])](#2c149c4eb45d80a98242e408772afeb7)
-
 
 ...menuend
 

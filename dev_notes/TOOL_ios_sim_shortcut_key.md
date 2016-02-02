@@ -1,11 +1,8 @@
 ...menustart
 
  * [if TARGET_IPHONE_SIMULATOR](#74ab1a2b1d81a278d3beb1f85be3a145)
-
  * [pragma mark 1.快捷键](#4f0e488340c72ec9bf7c87d4cce4703d)
-
  * [endif](#e96d8afc259593a20838480dfb84400b)
-
 
 ...menuend
 

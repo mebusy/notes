@@ -1,47 +1,26 @@
 ...menustart
 
  * [欢迎使用 Cmd Markdown 编辑阅读器](#9c70b61eb0d38711c7af1df62c2afd47)
-
-		 * [[Windows/Mac/Linux 全平台客户端](https://www.zybuluo.com/cmd/)](#2abf8c877a984244fc7ea7097b861283)
-
-	 * [什么是 Markdown](#7a88e6d6b7bf42d87e8fb7e01f8a260b)
-
-		 * [1. 制作一份待办事宜 [Todo 列表](https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#13-待办事宜-todo-列表)](#7bdaf5e11b7c744a8703400040f40c98)
-
-		 * [2. 书写一个质能守恒公式[^LaTeX]](#9ccd76b91a27eb0251742e9938f5e3b8)
-
-		 * [3. 高亮一段代码[^code]](#a5e95a9339f963c4303d52d174e1dcc1)
-
-		 * [4. 高效绘制 [流程图](https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#7-流程图)](#d5bcdbecd4b291be1d3536bfe72c0084)
-
-		 * [5. 高效绘制 [序列图](https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#8-序列图)](#8989d31d8f3ed7662e9929e880ba5f60)
-
-		 * [6. 绘制表格](#72ea702f6bd78a2d58bb680f4831d6c7)
-
-		 * [7. 更详细语法说明](#dda6c62b3deb34e7c4ecaa9f94f2a1ad)
-
-	 * [什么是 Cmd Markdown](#4837aa10a3218ede8a74203e3d416be5)
-
-		 * [1. 实时同步预览](#95ce40a0d9dc1595cb30c1f9d90430be)
-
-		 * [2. 编辑工具栏](#54e7d7e1cdfdc3dc8711a7bd142b2e6f)
-
-		 * [3. 编辑模式](#9694f0a622b8d2aa1beeae0d4403a1bb)
-
-		 * [4. 实时的云端文稿](#393136fb866e38ed86735599b21e648b)
-
-		 * [5. 离线模式](#a23a965a4e8fb0b64cc32e7772ae05db)
-
-		 * [6. 管理工具栏](#378f014aad7bb3d6d14ba567820229d3)
-
-		 * [7. 阅读工具栏](#73bca1b9b3c9007231d45e71da7ac051)
-
-		 * [8. 阅读模式](#581faef44c6c3c81ea42ac8102d1a313)
-
-		 * [9. 标签、分类和搜索](#6da09d4ca6a1183b726778f4b169bc0c)
-
-		 * [10. 文稿发布和分享](#703a7af6292138c24ec77695a27f6856)
-
+     * [[Windows/Mac/Linux 全平台客户端](https://www.zybuluo.com/cmd/)](#2abf8c877a984244fc7ea7097b861283)
+   * [什么是 Markdown](#7a88e6d6b7bf42d87e8fb7e01f8a260b)
+     * [1. 制作一份待办事宜 [Todo 列表](https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#13-待办事宜-todo-列表)](#7bdaf5e11b7c744a8703400040f40c98)
+     * [2. 书写一个质能守恒公式[^LaTeX]](#9ccd76b91a27eb0251742e9938f5e3b8)
+     * [3. 高亮一段代码[^code]](#a5e95a9339f963c4303d52d174e1dcc1)
+     * [4. 高效绘制 [流程图](https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#7-流程图)](#d5bcdbecd4b291be1d3536bfe72c0084)
+     * [5. 高效绘制 [序列图](https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#8-序列图)](#8989d31d8f3ed7662e9929e880ba5f60)
+     * [6. 绘制表格](#72ea702f6bd78a2d58bb680f4831d6c7)
+     * [7. 更详细语法说明](#dda6c62b3deb34e7c4ecaa9f94f2a1ad)
+   * [什么是 Cmd Markdown](#4837aa10a3218ede8a74203e3d416be5)
+     * [1. 实时同步预览](#95ce40a0d9dc1595cb30c1f9d90430be)
+     * [2. 编辑工具栏](#54e7d7e1cdfdc3dc8711a7bd142b2e6f)
+     * [3. 编辑模式](#9694f0a622b8d2aa1beeae0d4403a1bb)
+     * [4. 实时的云端文稿](#393136fb866e38ed86735599b21e648b)
+     * [5. 离线模式](#a23a965a4e8fb0b64cc32e7772ae05db)
+     * [6. 管理工具栏](#378f014aad7bb3d6d14ba567820229d3)
+     * [7. 阅读工具栏](#73bca1b9b3c9007231d45e71da7ac051)
+     * [8. 阅读模式](#581faef44c6c3c81ea42ac8102d1a313)
+     * [9. 标签、分类和搜索](#6da09d4ca6a1183b726778f4b169bc0c)
+     * [10. 文稿发布和分享](#703a7af6292138c24ec77695a27f6856)
 
 ...menuend
 

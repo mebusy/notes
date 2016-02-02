@@ -1,81 +1,43 @@
 ...menustart
 
  * [Raspberry Pi I](#73770efffd056ea55f34a6d0de671dda)
-
-	 * [Hardware Specs](#340e59e0dd03810e21611e4e545262b4)
-
-	 * [ARM Processors](#7c9fb4b83e7d3ff04537e59f0efd1b4d)
-
-	 * [Using Hardware Devices](#bde280fad6339e66144556725e9a6925)
-
-	 * [Setup of the Raspberry Pi](#5ffa42db2af721145d87c6f5177f2d11)
-
-		 * [Installing an OS](#e148dc9454d176896815b2943a6d3dea)
-
-	 * [Raspberry Pi Configuration](#37fa544b8c35fe7e622f6fe9d375ab74)
-
-		 * [Raspi-Config](#bf0ab4cbce41882dd4d047cd031b36ee)
-
-	 * [Overclocking](#96f8e05d2ec50fb2802a469cfae45b56)
-
-		 * [Impact of Overclocking](#ff95fa296ce2fde051c9ff77ec518fb9)
-
-		 * [Impact of Increasing Voltage](#60e76035d1d55222cee3e465d15a17e2)
-
-	 * [Linux Basics](#560f0ad6e27df1074f9399d3fc8c5967)
-
-		 * [File Permissions](#96fd0f31db825baa802614c9f0f49add)
-
-		 * [Process](#b6ec7abeb6ae29cc35a4b47475e12afe)
-
-		 * [GUI](#1e3042b2e2a5550b412b37edd1c36b34)
-
-	 * [Python](#a7f5f35426b927411fc9231b56382173)
-
-	 * [General Purpose IO Pins 通用IO引脚](#5130ecea52dfa86cf8c70e7515c1aa48)
-
-	 * [Protocal Pins](#0b62603acfc59cc53ed92f689037d1e6)
-
-	 * [SPI Communication Pins](#392687a2d5cc2a49bd0d84d8a773d985)
-
-	 * [GPIO Access](#1a7f823397c500781d755ddd598a1422)
-
-	 * [General Purpose IO Pins 2](#f1de82e95e1ab7eafe3700df87c6b177)
-
-		 * [Pin Direction and assignment](#119276386b6010fa9ea006ad235e7732)
-
+   * [Hardware Specs](#340e59e0dd03810e21611e4e545262b4)
+   * [ARM Processors](#7c9fb4b83e7d3ff04537e59f0efd1b4d)
+   * [Using Hardware Devices](#bde280fad6339e66144556725e9a6925)
+   * [Setup of the Raspberry Pi](#5ffa42db2af721145d87c6f5177f2d11)
+     * [Installing an OS](#e148dc9454d176896815b2943a6d3dea)
+   * [Raspberry Pi Configuration](#37fa544b8c35fe7e622f6fe9d375ab74)
+     * [Raspi-Config](#bf0ab4cbce41882dd4d047cd031b36ee)
+   * [Overclocking](#96f8e05d2ec50fb2802a469cfae45b56)
+     * [Impact of Overclocking](#ff95fa296ce2fde051c9ff77ec518fb9)
+     * [Impact of Increasing Voltage](#60e76035d1d55222cee3e465d15a17e2)
+   * [Linux Basics](#560f0ad6e27df1074f9399d3fc8c5967)
+     * [File Permissions](#96fd0f31db825baa802614c9f0f49add)
+     * [Process](#b6ec7abeb6ae29cc35a4b47475e12afe)
+     * [GUI](#1e3042b2e2a5550b412b37edd1c36b34)
+   * [Python](#a7f5f35426b927411fc9231b56382173)
+   * [General Purpose IO Pins 通用IO引脚](#5130ecea52dfa86cf8c70e7515c1aa48)
+   * [Protocal Pins](#0b62603acfc59cc53ed92f689037d1e6)
+   * [SPI Communication Pins](#392687a2d5cc2a49bd0d84d8a773d985)
+   * [GPIO Access](#1a7f823397c500781d755ddd598a1422)
+   * [General Purpose IO Pins 2](#f1de82e95e1ab7eafe3700df87c6b177)
+     * [Pin Direction and assignment](#119276386b6010fa9ea006ad235e7732)
  * [Set the pin direction ( GPIO.IN / GPIO.OUT  )](#b6a2190cb750fd5a0c7dd5751a3def39)
-
  * [Assign value to output pin, True is a high voltage, 3.3v](#89b6501b7899a618ae77a5e0fabc1e9d)
-
-			 * [Example : Blink an LED](#9d938a8190f35d6b752adf0bc4de5c61)
-
-		 * [Reading Input Pins](#28e52f680c5ecc8d5a8306cb86f740ca)
-
+       * [Example : Blink an LED](#9d938a8190f35d6b752adf0bc4de5c61)
+     * [Reading Input Pins](#28e52f680c5ecc8d5a8306cb86f740ca)
  * [Set the pin direction to an input](#5de3b3c90ef8fa92859682ec4b9b4b5d)
-
  * [Read value on input in](#bc8fae84e1abbf544fceb786e00438cb)
-
-	 * [Pulse Width Modulation](#b4d3379cc73eeb7f1e1248ed92af6a9d)
-
-		 * [PVM Initilization and PVM control](#3899d0ca616dbcbb93a6c151e8e134e7)
-
+   * [Pulse Width Modulation](#b4d3379cc73eeb7f1e1248ed92af6a9d)
+     * [PVM Initilization and PVM control](#3899d0ca616dbcbb93a6c151e8e134e7)
  * [mark pin for PVM](#e48c14ced2baceac370929d4f6e9bb5c)
-
  * [second argument is frequency](#68df9db74fa9b383d4669ffbd9d05ddc)
-
  * [after PVM invode, now pin 18 is prepared to generate the pulse width nodulated signal, not it don't actually start generating yet.](#07c3a8de9ac547f5f707201781c899aa)
-
  * [start generating PVM signal](#fa705cfcfa0d7cdfc0f727039e821c21)
-
  * [Arguments is duty cycle , 0 to 100 (0%-100%)](#2fba9813a516a77f0a1f05dfb0ee06dc)
-
  * [assign new duty cycle](#26cd96e5500094e1c39a06cddc9196ac)
-
-		 * [Frequency Control](#c727b8a2292403497d3a210c7dfe6bd2)
-
-	 * [GUI](#1e3042b2e2a5550b412b37edd1c36b34)
-
+     * [Frequency Control](#c727b8a2292403497d3a210c7dfe6bd2)
+   * [GUI](#1e3042b2e2a5550b412b37edd1c36b34)
 
 ...menuend
 

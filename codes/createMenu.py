@@ -31,7 +31,7 @@ def createMenu4MD( path ):
 			m.update( title )
 			id = m.hexdigest()
 
-			menu +=   ( '%s * [%s](#%s)' % ( '\t' * (len(sharps)-1)  , title ,  id  ) )  +  '\n\n'
+			menu +=   ( '%s * [%s](#%s)' % ( '  ' * (len(sharps)-1)  , title ,  id  ) )  +  '\n'
 
 			body += '<h2 id="%s"></h2>\n' % id 
 			#print sharps, title
