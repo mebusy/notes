@@ -1,5 +1,22 @@
+...menustart
+
+ * [linux shell 重定向和管道](#a5b6d6e1787010e24a6983fc8cdc05e8)
+	 * [重定向](#c51dd14a9a9366c6f8f09737d88efde2)
+		 * [输出重定向：](#b055038e72d0aee6b98113e5aa18bca7)
+		 * [输入重定向](#61c2440af0105a4ba9d0629753f0ad3b)
+	 * [管道命令](#4b9705489e3c43bd30937dfd11787372)
+		 * [shell脚本接收管道输入](#0fbce22ca968c3e4c0611f0d78397112)
+ * [!/bin/sh](#79b229b3b4c3182cfe215ebaaafd966d)
+ * [通过标准输入循环读取内容](#0f57fce322b63a2089cc5dc8772c00b9)
+ * [解除标准输入绑定](#d28c73c094fdea31745432f6722fcbb9)
+
+...menuend
+
+
+<h2 id="a5b6d6e1787010e24a6983fc8cdc05e8"></h2>
 # linux shell 重定向和管道
 
+<h2 id="c51dd14a9a9366c6f8f09737d88efde2"></h2>
 ## 重定向
 
 linux shell下常用输入输出操作符是：
@@ -14,6 +31,7 @@ linux shell下常用输入输出操作符是：
 
     << , >> 是追加操作
 
+<h2 id="b055038e72d0aee6b98113e5aa18bca7"></h2>
 ### 输出重定向：
 
     格式： command-line1 [1-n] > file或文件操作符或设备
@@ -56,6 +74,7 @@ linux shell下常用输入输出操作符是：
           如果输出设备错误，将不会进行命令执行
 
 
+<h2 id="61c2440af0105a4ba9d0629753f0ad3b"></h2>
 ### 输入重定向
 
 格式：
@@ -78,6 +97,7 @@ linux shell下常用输入输出操作符是：
     这样当空行输入eof字符，输入自动结束，不用ctrl+D.
 
 
+<h2 id="4b9705489e3c43bd30937dfd11787372"></h2>
 ## 管道命令
 
 管道命令操作符是：”|”,  它仅能处理经由前面一个指令传出的正确输出信息，也就是 standard output 的信息，
@@ -98,9 +118,11 @@ linux shell下常用输入输出操作符是：
     catfile       setTrigger.sh tmp           watch.py
 
 
+<h2 id="0fbce22ca968c3e4c0611f0d78397112"></h2>
 ### shell脚本接收管道输入
 
 ```bash
+<h2 id="79b229b3b4c3182cfe215ebaaafd966d"></h2>
 #!/bin/sh
   
 if [ $# -gt 0 ];then
@@ -112,8 +134,10 @@ while read line
 do
     echo $line;
 done<&0;
+<h2 id="0f57fce322b63a2089cc5dc8772c00b9"></h2>
 #通过标准输入循环读取内容
 
 exec 0&-;
+<h2 id="d28c73c094fdea31745432f6722fcbb9"></h2>
 #解除标准输入绑定
 ```

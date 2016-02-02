@@ -1,4 +1,53 @@
+...menustart
 
+	 * [2.6. 使用 Numpy and Scipy 处理图像数据](#b19a2f80d04c56b985a7e69f63d04915)
+		 * [2.6.1. 打开并写到图像文件](#b28007ec78c21d3a75965fe86a94680b)
+ * [读取数据](#41b02feb95947fe48856ce64a966ac1f)
+ * [保存](#be5fbbe34ce9979bfb6576d9eddc5612)
+ * [显示](#4d775d4cd79e2ed6a2fc66fd1e7139c8)
+	 * [2.6.2. 显示图片](#9c086b0de474c7ee0e6c4994c23475a3)
+ * [Remove axes and ticks](#a05edd5cf5b31129f94723696f5add85)
+ * [vs](#f4842dcb685d490e2a43212b8072a6fe)
+		 * [2.6.3. 基本操作](#6162bb0c1053d06bb0eab255d3d82a53)
+ * [读取图片](#69213ddbb495121bf6012d2313c140e3)
+ * [100-119行，涂成白色](#94cf6166416a7a5e9c0760466aed7334)
+ * [构建一个稀疏 mesh](#818170cc8487e4e92904de8d452dcd53)
+ * [创建一个mask，离图片中心位置超过一定距离的点，标为True](#a2fa15260352c698c950a41565bf7708)
+ * [numpy的强大就在这里体现出来了](#35550f8acb3eb9c5ddee36023c8e92ed)
+ * [mask变黑](#52fd682e5e2707dc6930443933e438ab)
+ * [左上(0,0) 到 (399,399) 画一条白线](#acb1ca044db6a50b1f3cdea9f67431c6)
+			 * [2.6.3.1. 统计信息](#9b81935266796da309310d0f565c1bca)
+			 * [2.6.3.2. 集合变换 Geometrical transformations](#9a60835f1916a50185c8794cc1c2b06c)
+ * [Cropping](#57bb299f73bf5946a8d4790cc4bbd8fb)
+ * [up <-> down flip](#ac117e3b81dd6af4f25e2412c5ddc554)
+ * [rotation](#a5c02a3b57a78ef78fbca4f650029323)
+		 * [2.6.4. Image filtering 图像滤波](#b8bed379bc03325e3f86fb26c21253bd)
+			 * [2.6.4.1. Blurring/smoothing 模糊/平滑](#891cbaca4b10e63615d5fd4702c2db94)
+		 * [2.6.4.2. Sharpening 锐化](#4b0aa8cd2942d9bdd095df1a0ff7ff99)
+		 * [2.6.4.3. Denoising 去燥](#f8962c34d7ddbf921cc3fa7d6bf96cb4)
+ * [中间一个大白块](#857059dfe282a1060d5d406827ffd8d5)
+ * [Distance transform function by a brute force algorithm](#929052aae4d8dd9432259d0bd6f2864c)
+ * [TODO](#b7b1e314614cf326c6e2b6eba1540682)
+		 * [2.6.5. Feature extraction 特征提取](#0fd36be3567167c262fae183a580aa7c)
+			 * [2.6.5.1. Edge detection 边缘检测](#ea0f17b8c9b0298df7e75d7f009a9323)
+			 * [2.6.5.2. Segmentation 分割](#ff7de7467377d111993a153fc8d65657)
+ * [(2,100)](#1e575244d0f86e6085be2eb9e66de7fb)
+ * [points -> int,to modify im](#446c682ff861f54bcd9f8d58e4014fbd)
+ * [Remove small white regions](#0fc077079bca45911783c2a4338c9812)
+ * [Remove small black hole](#3fa06cc936912ae809b8b942f741e376)
+ * [4 circles](#a85a56f90bc4ab05b3709ffcd327ef42)
+ * [Convert the image into a graph with the value of the gradient on](#bf01049fba93dd255d3de85a7d00ff06)
+ * [the edges.](#03fa460280a6933b2187cabeeb54cf83)
+ * [Take a decreasing function of the gradient: we take it weakly](#04135bb23b829fd05008831efd034687)
+ * [dependant from the gradient the segmentation is close to a voronoi](#2cfe5812aa88e0d3d2ea7e95e0c911f5)
+		 * [2.6.6. Measuring objects properties 测量对象属性](#bda5dcbbc5b8462fcde1a64fcc8ffc35)
+ * [这里不明白](#5a2daa8f391a0ac90630d49f9e53e687)
+
+...menuend
+
+
+
+<h2 id="b19a2f80d04c56b985a7e69f63d04915"></h2>
 ##2.6. 使用 Numpy and Scipy 处理图像数据
 
 子模块 scipy.ndimage 提供了 操作 n-维 NumPy 数组的方法.
@@ -8,17 +57,21 @@
 from scipy import ndimage
 ```
 
+<h2 id="b28007ec78c21d3a75965fe86a94680b"></h2>
 ###2.6.1. 打开并写到图像文件
 ```python
+<h2 id="41b02feb95947fe48856ce64a966ac1f"></h2>
 # 读取数据
 from scipy import misc
 l = misc.lena()
 >>> l.shape
 (512, 512)
 
+<h2 id="be5fbbe34ce9979bfb6576d9eddc5612"></h2>
 # 保存
 misc.imsave('lena.png', l) # uses the Image module (PIL)
 
+<h2 id="4d775d4cd79e2ed6a2fc66fd1e7139c8"></h2>
 #显示
 import matplotlib.pyplot as plt
 plt.imshow(l)
@@ -50,6 +103,7 @@ lena_memmap = np.memmap('lena.raw', dtype=np.int64, shape=(512, 512))
 ```
 (数据从文件中读取, 不载如内存)
 
+<h2 id="9c086b0de474c7ee0e6c4994c23475a3"></h2>
 ##2.6.2. 显示图片
 
 显示灰度图
@@ -67,6 +121,7 @@ plt.imshow(l, cmap=plt.cm.gray, vmin=30, vmax=200)
 画轮廓线
 ```python
 plt.contour(l, [60, 211])
+<h2 id="a05edd5cf5b31129f94723696f5add85"></h2>
 # Remove axes and ticks
 plt.axis('off')
 ```
@@ -76,40 +131,50 @@ plt.axis('off')
 强度变化的精细检查
 ```python
 plt.imshow(l[200:220, 200:220], cmap=plt.cm.gray)
+<h2 id="f4842dcb685d490e2a43212b8072a6fe"></h2>
 #vs
 plt.imshow(l[200:220, 200:220], cmap=plt.cm.gray, interpolation='nearest')
 ```
 ![](http://scipy-lectures.github.io/_images/plot_interpolation_lena_1.png)
 
 
+<h2 id="6162bb0c1053d06bb0eab255d3d82a53"></h2>
 ### 2.6.3. 基本操作
 图像是数组， 全部使用 numpy 工具
 ![](http://scipy-lectures.github.io/_images/axis_convention.png)
 
 ```python
+<h2 id="69213ddbb495121bf6012d2313c140e3"></h2>
 #读取图片
 lena = scipy.misc.lena()
 
+<h2 id="94cf6166416a7a5e9c0760466aed7334"></h2>
 #100-119行，涂成白色
 lena[100:120] = 255
 
 
 
+<h2 id="818170cc8487e4e92904de8d452dcd53"></h2>
 #构建一个稀疏 mesh
 lx, ly = lena.shape
 X, Y = np.ogrid[0:lx, 0:ly]
+<h2 id="a2fa15260352c698c950a41565bf7708"></h2>
 #创建一个mask，离图片中心位置超过一定距离的点，标为True
+<h2 id="35550f8acb3eb9c5ddee36023c8e92ed"></h2>
 #numpy的强大就在这里体现出来了
 mask = (X - lx / 2) ** 2 + (Y - ly / 2) ** 2 > lx * ly / 4
+<h2 id="52fd682e5e2707dc6930443933e438ab"></h2>
 #mask变黑
 lena[mask] = 0
 
+<h2 id="acb1ca044db6a50b1f3cdea9f67431c6"></h2>
 # 左上(0,0) 到 (399,399) 画一条白线
 lena[range(400), range(400)] = 255
 ```
 显示如下
 ![](http://scipy-lectures.github.io/_images/plot_numpy_array_1.png)
 
+<h2 id="9b81935266796da309310d0f565c1bca"></h2>
 #### 2.6.3.1. 统计信息
 ```python
 >>> lena = misc.lena()
@@ -119,15 +184,19 @@ lena[range(400), range(400)] = 255
 (245, 25)  #最大最小值
 ```
 
+<h2 id="9a60835f1916a50185c8794cc1c2b06c"></h2>
 ####2.6.3.2. 集合变换 Geometrical transformations
 
 ```python
 lena = misc.lena()
 lx, ly = lena.shape
+<h2 id="57bb299f73bf5946a8d4790cc4bbd8fb"></h2>
 # Cropping
 crop_lena = lena[lx / 4: - lx / 4, ly / 4: - ly / 4]
+<h2 id="ac117e3b81dd6af4f25e2412c5ddc554"></h2>
 # up <-> down flip
 flip_ud_lena = np.flipud(lena)
+<h2 id="a5c02a3b57a78ef78fbca4f650029323"></h2>
 # rotation
 rotate_lena = ndimage.rotate(lena, 45)
 rotate_lena_noreshape = ndimage.rotate(lena, 45, reshape=False)
@@ -135,11 +204,13 @@ rotate_lena_noreshape = ndimage.rotate(lena, 45, reshape=False)
 
 ![](http://scipy-lectures.github.io/_images/plot_geom_lena_1.png)
 
+<h2 id="b8bed379bc03325e3f86fb26c21253bd"></h2>
 ###2.6.4. Image filtering 图像滤波 
 
 本地过滤器：由相邻像素的值的函数 替换掉像素值。
 Neighbourhood：方形（选择尺寸），磁盘，或更复杂的结构元素。
 
+<h2 id="891cbaca4b10e63615d5fd4702c2db94"></h2>
 #### 2.6.4.1. Blurring/smoothing 模糊/平滑
 高斯过滤器: Gaussian filter  from scipy.ndimage:
 ```python
@@ -154,6 +225,7 @@ local_mean = ndimage.uniform_filter(lena, size=11)
 ```
 ![](http://scipy-lectures.github.io/_images/plot_blur_1.png)
 
+<h2 id="4b0aa8cd2942d9bdd095df1a0ff7ff99"></h2>
 ### 2.6.4.2. Sharpening 锐化
 锐化一张被模糊处理过的图片
 ```python
@@ -170,6 +242,7 @@ sharpened = blurred_l + alpha * (blurred_l - filter_blurred_l)
 ```
 ![](http://scipy-lectures.github.io/_images/plot_sharpen_1.png)
 
+<h2 id="f8962c34d7ddbf921cc3fa7d6bf96cb4"></h2>
 ### 2.6.4.3. Denoising 去燥
 noisy lena
 ```python
@@ -307,9 +380,11 @@ im[x, y] = np.arange(8)
 bigger_points = ndimage.grey_dilation(im, size=(5, 5), structure=np.ones((5, 5)))
 
 square = np.zeros((16, 16))
+<h2 id="857059dfe282a1060d5d406827ffd8d5"></h2>
 #中间一个大白块
 square[4:-4, 4:-4] = 1
 
+<h2 id="929052aae4d8dd9432259d0bd6f2864c"></h2>
 #Distance transform function by a brute force algorithm
 dist = ndimage.distance_transform_bf(square)
 dilate_dist = ndimage.grey_dilation(dist, size=(3, 3), \
@@ -379,13 +454,16 @@ reconstruction = ndimage.binary_propagation(eroded_square, mask=square)
 
 Closing: dilation + erosion
 ```python
+<h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 #TODO
 ```
 
 ![](http://scipy-lectures.github.io/_images/morpho_mat.png)
 
+<h2 id="0fd36be3567167c262fae183a580aa7c"></h2>
 ###2.6.5. Feature extraction 特征提取
 
+<h2 id="ea0f17b8c9b0298df7e75d7f009a9323"></h2>
 #### 2.6.5.1. Edge detection 边缘检测
 合成数据
 ```python
@@ -414,6 +492,7 @@ sob = np.hypot(sx, sy)
 
 ![](http://scipy-lectures.github.io/_images/plot_find_edges_1.png)
 
+<h2 id="ff7de7467377d111993a153fc8d65657"></h2>
 ####2.6.5.2. Segmentation 分割
 
 基于直方图的分割（无空间信息）
@@ -423,8 +502,10 @@ n = 10
 l = 256
 im = np.zeros((l, l))
 np.random.seed(1)
+<h2 id="1e575244d0f86e6085be2eb9e66de7fb"></h2>
 #(2,100)
 points = l*np.random.random((2, n**2))
+<h2 id="446c682ff861f54bcd9f8d58e4014fbd"></h2>
 #points -> int,to modify im
 im[(points[0]).astype(np.int), (points[1]).astype(np.int)] = 1
 im = ndimage.gaussian_filter(im, sigma=l/(4.*n))
@@ -453,8 +534,10 @@ plt.imshow(binary_img, cmap=plt.cm.gray, interpolation='nearest')
 使用数学形态来clean up 结果
 
 ```python
+<h2 id="0fc077079bca45911783c2a4338c9812"></h2>
 # Remove small white regions
 open_img = ndimage.binary_opening(binary_img)
+<h2 id="3fa06cc936912ae809b8b942f741e376"></h2>
 # Remove small black hole
 close_img = ndimage.binary_closing(open_img)
 
@@ -487,17 +570,22 @@ circle2 = (x - center2[0])**2 + (y - center2[1])**2 < radius2**2
 circle3 = (x - center3[0])**2 + (y - center3[1])**2 < radius3**2
 circle4 = (x - center4[0])**2 + (y - center4[1])**2 < radius4**2
 
+<h2 id="a85a56f90bc4ab05b3709ffcd327ef42"></h2>
 # 4 circles
 img = circle1 + circle2 + circle3 + circle4
 mask = img.astype(bool)
 img = img.astype(float)
 
 img += 1 + 0.2*np.random.randn(*img.shape)
+<h2 id="bf01049fba93dd255d3de85a7d00ff06"></h2>
 # Convert the image into a graph with the value of the gradient on
+<h2 id="03fa460280a6933b2187cabeeb54cf83"></h2>
 # the edges.
 graph = image.img_to_graph(img, mask=mask)
 
+<h2 id="04135bb23b829fd05008831efd034687"></h2>
 # Take a decreasing function of the gradient: we take it weakly
+<h2 id="2cfe5812aa88e0d3d2ea7e95e0c911f5"></h2>
 # dependant from the gradient the segmentation is close to a voronoi
 graph.data = np.exp(-graph.data/graph.data.std())
 
@@ -509,6 +597,7 @@ label_im[mask] = labels
 ![](http://scipy-lectures.github.io/_images/image_spectral_clustering.png)
 
 
+<h2 id="bda5dcbbc5b8462fcde1a64fcc8ffc35"></h2>
 ### 2.6.6. Measuring objects properties 测量对象属性
 ndimage.measurements : 注意，结果和配图可能会有差异
 
@@ -556,6 +645,7 @@ array([  1.60063299,   2.40109415,   7.5472352 ,   3.4481412 ,
 
 ```python
 mask_size = sizes < 1000
+<h2 id="5a2daa8f391a0ac90630d49f9e53e687"></h2>
 #这里不明白
 remove_pixel = mask_size[label_im]  
 remove_pixel.shape

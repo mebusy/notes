@@ -1,5 +1,21 @@
+...menustart
+
+ * [U3D 官方视频笔记](#7bc3cbf4be4261fd45c4c7b5d33dc6d7)
+	 * [Project Management](#9c1330f0dda3f188a3813b9840d1143f)
+		 * [Mid-size project must have](#3f285537c0fcae175e311accfb41198a)
+		 * [LevelManager](#3d9687e9851018a33e09bce2e1d5f2ec)
+			 * [Why level manager ?](#a2ceed21aa61d341a5508d5f14214d7e)
+			 * [LevelManager Design](#e40882d99c80772070faa494568ff842)
+		 * [PoolManager](#850bbb4af7a4e88699989bdeb4a7527f)
+			 * [Design Rules for PoolManager](#a93b8f8cd4cc57be6fba670068bc24a5)
+
+...menuend
+
+
+<h2 id="7bc3cbf4be4261fd45c4c7b5d33dc6d7"></h2>
 # U3D 官方视频笔记
 
+<h2 id="9c1330f0dda3f188a3813b9840d1143f"></h2>
 ## Project Management
 
 Manager of managers
@@ -19,14 +35,17 @@ GameManager | Manage the core game mechanics , usually project specific.
 SaveManager | Save and load user preference and achievements
 MenuManager | Controls all menus' animations,contents, and behaviors.
 
+<h2 id="3f285537c0fcae175e311accfb41198a"></h2>
 ### Mid-size project must have
 
  - LevelManager
  - PoolManager
  - SaveManager
 
+<h2 id="3d9687e9851018a33e09bce2e1d5f2ec"></h2>
 ### LevelManager
 
+<h2 id="a2ceed21aa61d341a5508d5f14214d7e"></h2>
 #### Why level manager ?
 
 **Issus 1**: You need to know the scene name or the index of the scene which you want to load, but most probably the name or order will be changed later.
@@ -40,6 +59,7 @@ Application.LoadLevel(1);
 
 > Application.LoadLevel("FirstLevel" , ~~LevelArgs~~ );
 
+<h2 id="e40882d99c80772070faa494568ff842"></h2>
 #### LevelManager Design
 
  - Compose a configuration table
@@ -48,6 +68,7 @@ Application.LoadLevel(1);
 
 ---
 
+<h2 id="850bbb4af7a4e88699989bdeb4a7527f"></h2>
 ### PoolManager
 
 *A simple pool design*:
@@ -110,6 +131,7 @@ public void Trim() {
             - Inactive instances
 
 
+<h2 id="a93b8f8cd4cc57be6fba670068bc24a5"></h2>
 #### Design Rules for PoolManager
 
  - As a singleston.

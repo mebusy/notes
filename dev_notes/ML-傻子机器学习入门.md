@@ -1,9 +1,38 @@
+...menustart
 
+ * [傻子机器学习入门](#3a1b341628a37d459adc8d41c75b642e)
+	 * [分类](#d0771a42bbc49a6941f59913fcda35e3)
+	 * [分类方法](#9998e9726bd638d12c34f63bdf534092)
+		 * [1. 相同的观测数据](#235ff5ca528208b1f235484654e1128c)
+		 * [2. 1-nearest neighbors](#24a8418ac1d673fd72c1f273b04ea8e9)
+		 * [3. k-nearest neighbors](#a503d796c2293806f5ea687794a0ba41)
+	 * [Random Forest 随机森林](#675de25a0968fa5c53e3bfdfc7d1b1a8)
+	 * [Scikit-Learn 随机森林例子](#ba4b2c9a639835e917adf9ddab2656a5)
+ * [print dir(pd)](#595c9f1c43df8ae856832461451de196)
+ * [feature data , feature name](#60087793b352090322add575fa5acd9b)
+ * [print iris.data, iris.feature_names](#9161a009ffb95e86a7ccb7d39d9a8edf)
+ * [print df](#e804629d66d9090f215e6a622984bcdd)
+ * [some data is used 4 trainint , some data used for test](#4ed54ba56d266549d52afc3b643b2347)
+ * [print df['is_train']](#bb47b98a06c45181d1a5aad9341e8b66)
+ * [target data, target name](#c43ebca92fa2e0ff1820faf052f9f5e3)
+ * [print iris.target, iris.target_names](#2beeae025beee612208b41d87e03f894)
+ * [print df](#e804629d66d9090f215e6a622984bcdd)
+ * [print train, test](#e2234d15a576b71c53e4103e0daa26bd)
+ * [print clf](#991cb900a02cae5fb04bb6de50951d29)
+ * [save all trees to words](#737e8cc036c3369989220e56145ce961)
+ * [save all trees to pdf](#59be67e0e891cc5cd4610645bb8676f9)
+
+...menuend
+
+
+
+<h2 id="3a1b341628a37d459adc8d41c75b642e"></h2>
 # 傻子机器学习入门
     observation 观测数据: 在机器学习领域，一般来说，一个观测数据 observation 是对 一个物体或某种情况 的说明。
     
 [TOC]
 
+<h2 id="d0771a42bbc49a6941f59913fcda35e3"></h2>
 ## 分类 
 举个 鸢尾花的例子。  
 对于每朵 鸢尾花，我们测量它的4个值： 萼片和花瓣的长宽，这些值称为 属性。  
@@ -23,22 +52,27 @@
 
 为了完成最后一个鸢尾花的分类，我们 使用鸢尾花的属性来判断它的种类。  
 
+<h2 id="9998e9726bd638d12c34f63bdf534092"></h2>
 ## 分类方法
+<h2 id="235ff5ca528208b1f235484654e1128c"></h2>
 ### 1. 相同的观测数据
 从其他的149个观测数据，找到一个属性完全一样的,然后确定 150号鸢尾花的种类。  
 实用性为0  
 
+<h2 id="24a8418ac1d673fd72c1f273b04ea8e9"></h2>
 ### 2. 1-nearest neighbors 
 寻找属性相近的观测数据。  
 distance = ((a-ai)^2 + (b-bi)^2 + (c-ci)^2 + (d-di)^2 )^0.5 。  
 distance最小的就是 最相似的观测数据。  
 
+<h2 id="a503d796c2293806f5ea687794a0ba41"></h2>
 ### 3. k-nearest neighbors 
 当测试数据中包含坏数据，或者不精确的数据时，方法2的结果也会存在很大误差。  
 这种情况下，会找出n个最相思的观测数据，然后这n个观测数据中，某个种类的最大数量，即为第150个观测数据的 种类。  
 
 ---
 
+<h2 id="675de25a0968fa5c53e3bfdfc7d1b1a8"></h2>
 ## Random Forest 随机森林
     一个只有10年的年轻算法
 
@@ -74,6 +108,7 @@ k-nearest neighbors 方法中，所有属性都一样重要。
 真正确保生成的决策树彼此不同诀窍是，随机森林算法 生成决策树时， 会 故意的 随机避免 测试某几个问题。在这种情况下，如果 最好的问题没有被测试，一个次一点的问题，就会被选中测试。 这个过程被称为“属性采样”  attribute sampling 。  
 
 
+<h2 id="ba4b2c9a639835e917adf9ddab2656a5"></h2>
 ## Scikit-Learn 随机森林例子
 
 随机森林是集成学习的一个子类，由于它依靠于策率树的合并。你可以在这找到用python实现集成学习的文档：
@@ -90,10 +125,13 @@ from sklearn.ensemble import RandomForestClassifier
 import pandas as pd
 import numpy as np
  
+<h2 id="595c9f1c43df8ae856832461451de196"></h2>
 #print dir(pd)
 iris =load_iris()
 
+<h2 id="60087793b352090322add575fa5acd9b"></h2>
 #feature data , feature name
+<h2 id="9161a009ffb95e86a7ccb7d39d9a8edf"></h2>
 #print iris.data, iris.feature_names
 """
 [ 5.1  3.5  1.4  0.2]
@@ -102,6 +140,7 @@ iris =load_iris()
 """
 df =pd.DataFrame(iris.data, columns=iris.feature_names)
 
+<h2 id="e804629d66d9090f215e6a622984bcdd"></h2>
 #print df 
 """
 146                6.3               2.5                5.0               1.9
@@ -112,9 +151,11 @@ df =pd.DataFrame(iris.data, columns=iris.feature_names)
 [150 rows x 4 columns]
 """
 
+<h2 id="4ed54ba56d266549d52afc3b643b2347"></h2>
 # some data is used 4 trainint , some data used for test
 df['is_train'] =np.random.uniform(0, 1, len(df)) <=.75
 
+<h2 id="bb47b98a06c45181d1a5aad9341e8b66"></h2>
 #print df['is_train']
 """
 0       True
@@ -123,7 +164,9 @@ df['is_train'] =np.random.uniform(0, 1, len(df)) <=.75
 3       True
 4      False
 """
+<h2 id="c43ebca92fa2e0ff1820faf052f9f5e3"></h2>
 #target data, target name 
+<h2 id="2beeae025beee612208b41d87e03f894"></h2>
 #print iris.target, iris.target_names
 """
 [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -135,6 +178,7 @@ df['is_train'] =np.random.uniform(0, 1, len(df)) <=.75
 df['species'] =pd.Categorical.from_codes(iris.target, iris.target_names)
 df.head()
 
+<h2 id="e804629d66d9090f215e6a622984bcdd"></h2>
 #print df
 """
     is_train    species  
@@ -144,6 +188,7 @@ df.head()
 """ 
 
 train, test =df[df['is_train']==True], df[df['is_train']==False]
+<h2 id="e2234d15a576b71c53e4103e0daa26bd"></h2>
 #print train, test
  
 features =df.columns[:4]
@@ -154,6 +199,7 @@ Index([u'sepal length (cm)', u'sepal width (cm)', u'petal length (cm)',
 """
 
 clf =RandomForestClassifier(n_jobs=2)
+<h2 id="991cb900a02cae5fb04bb6de50951d29"></h2>
 #print clf
 
 y, _ =pd.factorize(train['species'])
@@ -172,12 +218,14 @@ versicolor       0           9          0
 virginica        0           2         12
 """
 
+<h2 id="737e8cc036c3369989220e56145ce961"></h2>
 #save all trees to words
 from sklearn.tree import export_graphviz
 for i in xrange(len(clf.estimators_)):
     export_graphviz(clf.estimators_[i] , '%d.dot'%i)
 
 
+<h2 id="59be67e0e891cc5cd4610645bb8676f9"></h2>
 #save all trees to pdf
 from sklearn import tree  
 from sklearn.externals.six import StringIO    

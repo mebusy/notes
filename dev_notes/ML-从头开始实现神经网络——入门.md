@@ -1,7 +1,41 @@
+...menustart
+
+ * [从头开始实现神经网络——入门](#a8e5e4ff9eab1384c83defd779a4b42a)
+	 * [产生数据集](#0c441b14781795af30c7ef9735a71b26)
+ * [Package imports](#a5a2c9865655969a15f7320480aec481)
+ * [Display plots inline and change default figure size](#8c0e9796e71090b880a14b3df2d6ef71)
+ * [used for ipython](#47e07eed97ae9cf07d261e6a257995f1)
+ * [%matplotlib inline](#05f65ed01981987163a8125a0283a7ab)
+ * [Generate a dataset and plot it](#72dcd42ec73308334057a9fb6dd8084c)
+	 * [Logistic回归](#41b46dfc0b86b27a24f2fd0859601f9f)
+ * [Helper function to plot a decision boundary.](#7c7c86a227a26b95d19624da9530d86f)
+ * [If you don't fully understand this function don't worry, it just generates the contour plot below.](#5a3c539b11b0de8bde1d2c664f561fd1)
+ * [Plot the decision boundary](#fa8b9079f938129811351dc2da540938)
+	 * [训练神经网络](#67fd927dbbde24e0a4e33a49821346bd)
+	 * [神经网络如何预测](#6a77b6aadd74cd5dfaed1b5a42d06268)
+			 * [学习参数](#8a98c75bcbb92feb6675bfa9f7554e68)
+			 * [实现](#38164c8be942882c3e6c233dfc8087ab)
+ * [Gradient descent parameters (I picked these by hand)](#8918c18069d3e2d37825c7a0aa9b8ad7)
+ * [Helper function to evaluate the total loss on the dataset](#24dadccd15c89a6bcae3ea31e48b04e1)
+ * [Helper function to predict an output (0 or 1)](#3d9b2c51cec46ad99f068f3509c50516)
+ * [This function learns parameters for the neural network and returns the model.](#f16f2ee97812ff64f3412a39df93472f)
+ * [- nn_hdim: Number of nodes in the hidden layer](#64c89f28e85aa9c9b9cd26d7b2c64037)
+ * [- num_passes: Number of passes through the training data for gradient descent](#0413112b5c54316c374670810c17b0ec)
+ * [- print_loss: If True, print the loss every 1000 iterations](#52985252a6929bd0b68f7ab8faaa60b7)
+	 * [隐藏层规模为3的神经网络](#9a19b3c2ae83b808232d7a6d84bd9643)
+ * [Build a model with a 3-dimensional hidden layer](#ee776fa8de8791678d3bf348c3d72738)
+ * [Plot the decision boundary](#fa8b9079f938129811351dc2da540938)
+	 * [变换隐藏层的规模](#8f3bd9e9a60d3826fd71b039c4861df3)
+
+...menuend
+
+
+<h2 id="a8e5e4ff9eab1384c83defd779a4b42a"></h2>
 #从头开始实现神经网络——入门
 
 在接下来的文章中，我会探索如何使用Theano写一个高效的神经网络实现。 
 
+<h2 id="0c441b14781795af30c7ef9735a71b26"></h2>
 ## 产生数据集
 scikit-learn提供了一些很有用的数据集产生器，所以我们不需要自己写代码了。 
 我们将从make_moons 函数开始。 
@@ -23,6 +57,7 @@ scikit-learn提供了一些很有用的数据集产生器，所以我们不需�
 
 代码:
 ```python
+<h2 id="a5a2c9865655969a15f7320480aec481"></h2>
 # Package imports
 import matplotlib.pyplot as plt
 import numpy as np
@@ -31,10 +66,14 @@ import sklearn.datasets
 import sklearn.linear_model
 import matplotlib
 
+<h2 id="8c0e9796e71090b880a14b3df2d6ef71"></h2>
 # Display plots inline and change default figure size
+<h2 id="47e07eed97ae9cf07d261e6a257995f1"></h2>
 # used for ipython
+<h2 id="05f65ed01981987163a8125a0283a7ab"></h2>
 #%matplotlib inline
 matplotlib.rcParams['figure.figsize'] = (10.0, 8.0)
+<h2 id="72dcd42ec73308334057a9fb6dd8084c"></h2>
 # Generate a dataset and plot it
 np.random.seed(0)
 X, y = sklearn.datasets.make_moons(200, noise=0.20)
@@ -59,13 +98,16 @@ plt.show()
 
 事实上，这也是神经网络的主要优势。你不用担心特征构建，神经网络的隐藏层会为你学习特征。 
   
+<h2 id="41b46dfc0b86b27a24f2fd0859601f9f"></h2>
 ##Logistic回归
 
 为了证明这个观点，我们来训练一个Logistic回归分类器。它的输入是x和y轴的值，输出预测的分类（0或1）。 
 为了简单，我们使用scikit-learn库里的Logistic回归类。 
 
 ```python
+<h2 id="7c7c86a227a26b95d19624da9530d86f"></h2>
 # Helper function to plot a decision boundary.
+<h2 id="5a3c539b11b0de8bde1d2c664f561fd1"></h2>
 # If you don't fully understand this function don't worry, it just generates the contour plot below.
 def plot_decision_boundary(pred_func):
     # Set min and max values and give it some padding
@@ -81,6 +123,7 @@ def plot_decision_boundary(pred_func):
     plt.contourf(xx, yy, Z, cmap=plt.cm.Spectral)
     plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Spectral)
     
+<h2 id="fa8b9079f938129811351dc2da540938"></h2>
 # Plot the decision boundary
 plot_decision_boundary(lambda x: clf.predict(x))
 plt.title("Logistic Regression")
@@ -92,6 +135,7 @@ plt.show()
 上图展示了Logistic回归分类器学习到的决策边界。  
 使用一条直线尽量将数据分离开来，但它并不能捕捉到数据的“月形”特征。 
 
+<h2 id="67fd927dbbde24e0a4e33a49821346bd"></h2>
 ##训练神经网络
 让我们来建立具有一个输入层、一个隐藏层、一个输出层的三层神经网络。
 输入层的结点数由数据维度决定，这里是2维。类似地，输出层的结点数由类别数决定，也是2。
@@ -118,6 +162,7 @@ plt.show()
 这是一种将原始分数转换为概率的方法。如果你很熟悉logistic回归，可以把softmax看作是它在多类别上的一般化。 
     softmax: 1.用于分类   2.待分类的数量类别数量大于2（等于2也适用）
 
+<h2 id="6a77b6aadd74cd5dfaed1b5a42d06268"></h2>
 ##神经网络如何预测
 神经网络使用前向传播进行预测。 
 前向传播只不过是一堆矩阵相乘并使用我们上面定义的激活函数了。 
@@ -132,6 +177,7 @@ zi是输入层、ai是输出层。W1,b1,W2,b2是需要从训练数据中学习�
 
 现在你明白了为什么增大隐藏层的规模会导致需要训练更多参数。 
 
+<h2 id="8a98c75bcbb92feb6675bfa9f7554e68"></h2>
 ####学习参数
 学习该网络的参数意味着要找到使训练集上错误率最小化的参数(W1,b1,W2,b2)。
 但是如何定义错误率呢？ 
@@ -158,6 +204,7 @@ zi是输入层、ai是输出层。W1,b1,W2,b2是需要从训练数据中学习�
 ![](http://ww2.sinaimg.cn/mw690/6941baebjw1ew6gxfhs9aj205805y0sp.jpg)
 
 
+<h2 id="38164c8be942882c3e6c233dfc8087ab"></h2>
 ####实现
 现在我们要准备开始实现网络了。我们从定义梯度下降一些有用的变量和参数开始：
 ```python
@@ -165,6 +212,7 @@ num_examples = len(X) # training set size
 nn_input_dim = 2 # input layer dimensionality
 nn_output_dim = 2 # output layer dimensionality
  
+<h2 id="8918c18069d3e2d37825c7a0aa9b8ad7"></h2>
 # Gradient descent parameters (I picked these by hand)
 epsilon = 0.01 # learning rate for gradient descent
 reg_lambda = 0.01 # regularization strength
@@ -173,6 +221,7 @@ reg_lambda = 0.01 # regularization strength
 首先要实现我们上面定义的损失函数。以此来衡量我们的模型工作得如何：
 
 ```python
+<h2 id="24dadccd15c89a6bcae3ea31e48b04e1"></h2>
 # Helper function to evaluate the total loss on the dataset
 def calculate_loss(model):
     W1, b1, W2, b2 = model['W1'], model['b1'], model['W2'], model['b2']
@@ -193,6 +242,7 @@ def calculate_loss(model):
 还要实现一个辅助函数来计算网络的输出。它的工作就是传递前面定义的前向传播并返回概率最高的类别。
 
 ```python
+<h2 id="3d9b2c51cec46ad99f068f3509c50516"></h2>
 # Helper function to predict an output (0 or 1)
 def predict(model, x):
     W1, b1, W2, b2 = model['W1'], model['b1'], model['W2'], model['b2']
@@ -208,9 +258,13 @@ def predict(model, x):
 最后是训练神经网络的函数。它使用上文中发现的后向传播导数实现批量梯度下降。
 
 ```python
+<h2 id="f16f2ee97812ff64f3412a39df93472f"></h2>
 # This function learns parameters for the neural network and returns the model.
+<h2 id="64c89f28e85aa9c9b9cd26d7b2c64037"></h2>
 # - nn_hdim: Number of nodes in the hidden layer
+<h2 id="0413112b5c54316c374670810c17b0ec"></h2>
 # - num_passes: Number of passes through the training data for gradient descent
+<h2 id="52985252a6929bd0b68f7ab8faaa60b7"></h2>
 # - print_loss: If True, print the loss every 1000 iterations
 def build_model(nn_hdim, num_passes=20000, print_loss=False):
  
@@ -264,13 +318,16 @@ def build_model(nn_hdim, num_passes=20000, print_loss=False):
     return model
 ```
 
+<h2 id="9a19b3c2ae83b808232d7a6d84bd9643"></h2>
 ##隐藏层规模为3的神经网络
 一起来看看假如我们训练了一个隐藏层规模为3的神经网络会发生什么。
 
 ```python
+<h2 id="ee776fa8de8791678d3bf348c3d72738"></h2>
 # Build a model with a 3-dimensional hidden layer
 model = build_model(3, print_loss=True)
  
+<h2 id="fa8b9079f938129811351dc2da540938"></h2>
 # Plot the decision boundary
 plot_decision_boundary(lambda x: predict(model, x))
 plt.title("Decision Boundary for hidden layer size 3")
@@ -280,6 +337,7 @@ plt.show()
 ![](http://ww2.sinaimg.cn/mw690/6941baebjw1ew6gxf6v1qj20gm0dlta6.jpg)
 耶！这看起来结果相当不错。我们的神经网络能够找到成功区分类别的决策边界。
 
+<h2 id="8f3bd9e9a60d3826fd71b039c4861df3"></h2>
 ##变换隐藏层的规模
 ```python
 plt.figure(figsize=(16, 32))

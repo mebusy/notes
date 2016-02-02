@@ -1,3 +1,31 @@
+...menustart
+
+ * [欢迎使用 Cmd Markdown 编辑阅读器](#9c70b61eb0d38711c7af1df62c2afd47)
+		 * [[Windows/Mac/Linux 全平台客户端](https://www.zybuluo.com/cmd/)](#2abf8c877a984244fc7ea7097b861283)
+	 * [什么是 Markdown](#7a88e6d6b7bf42d87e8fb7e01f8a260b)
+		 * [1. 制作一份待办事宜 [Todo 列表](https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#13-待办事宜-todo-列表)](#7bdaf5e11b7c744a8703400040f40c98)
+		 * [2. 书写一个质能守恒公式[^LaTeX]](#9ccd76b91a27eb0251742e9938f5e3b8)
+		 * [3. 高亮一段代码[^code]](#a5e95a9339f963c4303d52d174e1dcc1)
+		 * [4. 高效绘制 [流程图](https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#7-流程图)](#d5bcdbecd4b291be1d3536bfe72c0084)
+		 * [5. 高效绘制 [序列图](https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#8-序列图)](#8989d31d8f3ed7662e9929e880ba5f60)
+		 * [6. 绘制表格](#72ea702f6bd78a2d58bb680f4831d6c7)
+		 * [7. 更详细语法说明](#dda6c62b3deb34e7c4ecaa9f94f2a1ad)
+	 * [什么是 Cmd Markdown](#4837aa10a3218ede8a74203e3d416be5)
+		 * [1. 实时同步预览](#95ce40a0d9dc1595cb30c1f9d90430be)
+		 * [2. 编辑工具栏](#54e7d7e1cdfdc3dc8711a7bd142b2e6f)
+		 * [3. 编辑模式](#9694f0a622b8d2aa1beeae0d4403a1bb)
+		 * [4. 实时的云端文稿](#393136fb866e38ed86735599b21e648b)
+		 * [5. 离线模式](#a23a965a4e8fb0b64cc32e7772ae05db)
+		 * [6. 管理工具栏](#378f014aad7bb3d6d14ba567820229d3)
+		 * [7. 阅读工具栏](#73bca1b9b3c9007231d45e71da7ac051)
+		 * [8. 阅读模式](#581faef44c6c3c81ea42ac8102d1a313)
+		 * [9. 标签、分类和搜索](#6da09d4ca6a1183b726778f4b169bc0c)
+		 * [10. 文稿发布和分享](#703a7af6292138c24ec77695a27f6856)
+
+...menuend
+
+
+<h2 id="9c70b61eb0d38711c7af1df62c2afd47"></h2>
 # 欢迎使用 Cmd Markdown 编辑阅读器
 
 ------
@@ -13,16 +41,19 @@
 
 除了您现在看到的这个 Cmd Markdown 在线版本，您还可以前往以下网址下载：
 
+<h2 id="2abf8c877a984244fc7ea7097b861283"></h2>
 ### [Windows/Mac/Linux 全平台客户端](https://www.zybuluo.com/cmd/)
 
 > 请保留此份 Cmd Markdown 的欢迎稿兼使用说明，如需撰写新稿件，点击顶部工具栏右侧的 <i class="icon-file"></i> **新文稿** 或者使用快捷键 `Ctrl+Alt+N`。
 
 ------
 
+<h2 id="7a88e6d6b7bf42d87e8fb7e01f8a260b"></h2>
 ## 什么是 Markdown
 
 Markdown 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号以最小的输入代价生成极富表现力的文档：譬如您正在阅读的这份文档。它使用简单的符号标记不同的标题，分割不同的段落，**粗体** 或者 *斜体* 某些文字，更棒的是，它还可以
 
+<h2 id="7bdaf5e11b7c744a8703400040f40c98"></h2>
 ### 1. 制作一份待办事宜 [Todo 列表](https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#13-待办事宜-todo-列表)
 
 - [ ] 支持以 PDF 格式导出文稿
@@ -31,10 +62,12 @@ Markdown 是一种方便记忆、书写的纯文本标记语言，用户可以�
 - [x] 修复 LaTex 公式渲染问题
 - [x] 新增 LaTex 公式编号功能
 
+<h2 id="9ccd76b91a27eb0251742e9938f5e3b8"></h2>
 ### 2. 书写一个质能守恒公式[^LaTeX]
 
 $$E=mc^2$$
 
+<h2 id="a5e95a9339f963c4303d52d174e1dcc1"></h2>
 ### 3. 高亮一段代码[^code]
 
 ```python
@@ -47,6 +80,7 @@ if __name__ == '__main__':
     print 'hello world'
 ```
 
+<h2 id="d5bcdbecd4b291be1d3536bfe72c0084"></h2>
 ### 4. 高效绘制 [流程图](https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#7-流程图)
 
 ```flow
@@ -60,6 +94,7 @@ cond(yes)->e
 cond(no)->op
 ```
 
+<h2 id="8989d31d8f3ed7662e9929e880ba5f60"></h2>
 ### 5. 高效绘制 [序列图](https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#8-序列图)
 
 ```seq
@@ -68,6 +103,7 @@ Note right of Bob: Bob thinks
 Bob-->Alice: I am good thanks!
 ```
 
+<h2 id="72ea702f6bd78a2d58bb680f4831d6c7"></h2>
 ### 6. 绘制表格
 
 | 项目        | 价格   |  数量  |
@@ -76,6 +112,7 @@ Bob-->Alice: I am good thanks!
 | 手机        |   \$12   |   12   |
 | 管线        |    \$1    |  234  |
 
+<h2 id="dda6c62b3deb34e7c4ecaa9f94f2a1ad"></h2>
 ### 7. 更详细语法说明
 
 想要查看更详细的语法说明，可以参考我们准备的 [Cmd Markdown 简明语法手册][1]，进阶用户可以参考 [Cmd Markdown 高阶语法手册][2] 了解更多高级功能。
@@ -84,32 +121,39 @@ Bob-->Alice: I am good thanks!
 
 ---
 
+<h2 id="4837aa10a3218ede8a74203e3d416be5"></h2>
 ## 什么是 Cmd Markdown
 
 您可以使用很多工具书写 Markdown，但是 Cmd Markdown 是这个星球上我们已知的、最好的 Markdown 工具——没有之一 ：）因为深信文字的力量，所以我们和你一样，对流畅书写，分享思想和知识，以及阅读体验有极致的追求，我们把对于这些诉求的回应整合在 Cmd Markdown，并且一次，两次，三次，乃至无数次地提升这个工具的体验，最终将它演化成一个 **编辑/发布/阅读** Markdown 的在线平台——您可以在任何地方，任何系统/设备上管理这里的文字。
 
+<h2 id="95ce40a0d9dc1595cb30c1f9d90430be"></h2>
 ### 1. 实时同步预览
 
 我们将 Cmd Markdown 的主界面一分为二，左边为**编辑区**，右边为**预览区**，在编辑区的操作会实时地渲染到预览区方便查看最终的版面效果，并且如果你在其中一个区拖动滚动条，我们有一个巧妙的算法把另一个区的滚动条同步到等价的位置，超酷！
 
+<h2 id="54e7d7e1cdfdc3dc8711a7bd142b2e6f"></h2>
 ### 2. 编辑工具栏
 
 也许您还是一个 Markdown 语法的新手，在您完全熟悉它之前，我们在 **编辑区** 的顶部放置了一个如下图所示的工具栏，您可以使用鼠标在工具栏上调整格式，不过我们仍旧鼓励你使用键盘标记格式，提高书写的流畅度。
 
 ![tool-editor](https://www.zybuluo.com/static/img/toolbar-editor.png)
 
+<h2 id="9694f0a622b8d2aa1beeae0d4403a1bb"></h2>
 ### 3. 编辑模式
 
 完全心无旁骛的方式编辑文字：点击 **编辑工具栏** 最右测的拉伸按钮或者按下 `Ctrl + M`，将 Cmd Markdown 切换到独立的编辑模式，这是一个极度简洁的写作环境，所有可能会引起分心的元素都已经被挪除，超清爽！
 
+<h2 id="393136fb866e38ed86735599b21e648b"></h2>
 ### 4. 实时的云端文稿
 
 为了保障数据安全，Cmd Markdown 会将您每一次击键的内容保存至云端，同时在 **编辑工具栏** 的最右侧提示 `已保存` 的字样。无需担心浏览器崩溃，机器掉电或者地震，海啸——在编辑的过程中随时关闭浏览器或者机器，下一次回到 Cmd Markdown 的时候继续写作。
 
+<h2 id="a23a965a4e8fb0b64cc32e7772ae05db"></h2>
 ### 5. 离线模式
 
 在网络环境不稳定的情况下记录文字一样很安全！在您写作的时候，如果电脑突然失去网络连接，Cmd Markdown 会智能切换至离线模式，将您后续键入的文字保存在本地，直到网络恢复再将他们传送至云端，即使在网络恢复前关闭浏览器或者电脑，一样没有问题，等到下次开启 Cmd Markdown 的时候，她会提醒您将离线保存的文字传送至云端。简而言之，我们尽最大的努力保障您文字的安全。
 
+<h2 id="378f014aad7bb3d6d14ba567820229d3"></h2>
 ### 6. 管理工具栏
 
 为了便于管理您的文稿，在 **预览区** 的顶部放置了如下所示的 **管理工具栏**：
@@ -125,6 +169,7 @@ Bob-->Alice: I am good thanks!
 <i class="icon-reorder"></i> 列表：所有新增和过往的文稿都可以在这里查看、操作
 <i class="icon-pencil"></i> 模式：切换 普通/Vim/Emacs 编辑模式
 
+<h2 id="73bca1b9b3c9007231d45e71da7ac051"></h2>
 ### 7. 阅读工具栏
 
 ![tool-manager](https://www.zybuluo.com/static/img/toolbar-reader.jpg)
@@ -139,10 +184,12 @@ Bob-->Alice: I am good thanks!
 <i class="icon-desktop"></i> 阅读：心无旁骛的阅读模式提供超一流的阅读体验
 <i class="icon-fullscreen"></i> 全屏：简洁，简洁，再简洁，一个完全沉浸式的写作和阅读环境
 
+<h2 id="581faef44c6c3c81ea42ac8102d1a313"></h2>
 ### 8. 阅读模式
 
 在 **阅读工具栏** 点击 <i class="icon-desktop"></i> 或者按下 `Ctrl+Alt+M` 随即进入独立的阅读模式界面，我们在版面渲染上的每一个细节：字体，字号，行间距，前背景色都倾注了大量的时间，努力提升阅读的体验和品质。
 
+<h2 id="6da09d4ca6a1183b726778f4b169bc0c"></h2>
 ### 9. 标签、分类和搜索
 
 在编辑区任意行首位置输入以下格式的文字可以标签当前文档：
@@ -153,6 +200,7 @@ Bob-->Alice: I am good thanks!
 
 ![file-list](https://www.zybuluo.com/static/img/file-list.png)
 
+<h2 id="703a7af6292138c24ec77695a27f6856"></h2>
 ### 10. 文稿发布和分享
 
 在您使用 Cmd Markdown 记录，创作，整理，阅读文稿的同时，我们不仅希望它是一个有力的工具，更希望您的思想和知识通过这个平台，连同优质的阅读体验，将他们分享给有相同志趣的人，进而鼓励更多的人来到这里记录分享他们的思想和知识，尝试点击 <i class="icon-share"></i> (Ctrl+Alt+P) 发布这份文档给好友吧！

@@ -1,3 +1,35 @@
+...menustart
+
+ * [逻辑回归  Logistic Regression](#a744ec7c08cc41920ead873b18fea870)
+				 * [逻辑回归其实是分类问题 Classification](#6c824d8f49bd24cb5e4905dcffcc3c8a)
+				 * [下面讨论都是`二元分类`问题，即目标值只有`0,1` 两种可能](#62d9775927244743add743a22d28413c)
+	 * [模型 : h(x) = g(θᵀx)](#75e25fe1c9e64282bc5145b5c7b1c01b)
+				 * [logistic回归实质上还是线性回归模型](#9a2a9f503818d6b205474d04d7522f49)
+				 * [逻辑回归的假设函数h(x)的输出，是 y=1的概率的估计值](#454abbd2818af5238a6db55cab4293d3)
+	 * [决策边界  decision boundary](#19e2ea0b618dbf3e78308f272878afcc)
+	 * [代价函数 cost function J](#1ca15edbfdd1a2d9b71659b988bca643)
+				 * [逻辑回归 J 应该是个`凸函数 convex` ， 线性回归的J 是`非凸函数`](#638859c9f3ae47d9bd9d73b7fd40ed77)
+	 * [梯度下降](#b1f126ef3b67138c7e19176b361e6857)
+	 * [高级优化](#b4b363c797bb3a216ac2e0e157b6c85e)
+				 * [优点](#52b8c1841dd7c4f895d655668fee1dd3)
+				 * [缺点](#2e769a755109798027a704351be8f91a)
+		 * [用法](#bc120b21c4200fc94c5fecbdab33be8e)
+ * [多类分类](#848a31140f2770dc2fc104ac797f04ec)
+	 * [1-vs-all 分类思想](#a0295753749d6a5c149f168ef9e17e30)
+ * [review :](#6bd505276b3a44597e818f7aa8140cbf)
+				 * [和线性回归一样，拟合曲线，需要多项式](#5e5d590a7f4d92838d1e91826b3e48fe)
+				 * [h(x) = g( θᵀx ) , θᵀx 图像可以看到决策边界](#5f36b2681dfe7ca40410bba6b36d5edc)
+				 * [逻辑回归的 代价函数 J 总是个凸函数](#b935d26ce83872d01795fcae8a7a7bea)
+ * [一般流程](#869492f5afdb7e6bc022701f149b2c48)
+				 * [可视化](#5f0eec58f36853e40a718b9f250881ab)
+				 * [S型函数](#53d74761d14195e7f96efb99c5d0c541)
+				 * [代价函数](#287340d512ad4b09754b4574719e412f)
+				 * [预测](#fbee26a17a1f4caafca8854456ebbb5d)
+				 * [一般流程](#869492f5afdb7e6bc022701f149b2c48)
+
+...menuend
+
+
 
     逻辑回归 Logistic Regression
             逻辑回归其实是分类问题 Classification
@@ -24,14 +56,19 @@
         代价函数
         预测
 
+<h2 id="a744ec7c08cc41920ead873b18fea870"></h2>
 # 逻辑回归  Logistic Regression
 
+<h2 id="6c824d8f49bd24cb5e4905dcffcc3c8a"></h2>
 ##### 逻辑回归其实是分类问题 Classification
 
+<h2 id="62d9775927244743add743a22d28413c"></h2>
 ##### 下面讨论都是`二元分类`问题，即目标值只有`0,1` 两种可能
 
+<h2 id="75e25fe1c9e64282bc5145b5c7b1c01b"></h2>
 ## 模型 : h(x) = g(θᵀx)
 
+<h2 id="9a2a9f503818d6b205474d04d7522f49"></h2>
 ##### logistic回归实质上还是线性回归模型
 
 我们在 线性回归的连续值 结果上加 一层函数映射 g, 将连续值映射到离散值0/1上
@@ -60,6 +97,7 @@ g(z)的函数图像如下：
 整条曲线呈S型, 这也是 "S型" 叫法的由来。
 
 
+<h2 id="454abbd2818af5238a6db55cab4293d3"></h2>
 ##### 逻辑回归的假设函数h(x)的输出，是 y=1的概率的估计值
 
 ```
@@ -67,6 +105,7 @@ h(x) = P( y=1|x;θ )
 P( y=1|x;θ ) + P( y=0|x;θ ) = 1
 ```
 
+<h2 id="19e2ea0b618dbf3e78308f272878afcc"></h2>
 ## 决策边界  decision boundary
 
 决策边界 是假设函数的一个属性，它包含参数 θ
@@ -78,8 +117,10 @@ P( y=1|x;θ ) + P( y=0|x;θ ) = 1
   - 当 θ 确定后, θᵀx 的图像就是 决策边界
   - 非线性决策边界，需要借助多项式
 
+<h2 id="1ca15edbfdd1a2d9b71659b988bca643"></h2>
 ## 代价函数 cost function J
 
+<h2 id="638859c9f3ae47d9bd9d73b7fd40ed77"></h2>
 ##### 逻辑回归 J 应该是个`凸函数 convex` ， 线性回归的J 是`非凸函数`
 
 ```
@@ -113,6 +154,7 @@ J(θ)= -1/m ∑[ ylog( h(x) ) + (1-y)log( 1-h(x) ) ]    (∑ i=1,m)
 ![][1]
 
 
+<h2 id="b1f126ef3b67138c7e19176b361e6857"></h2>
 ## 梯度下降
 
 
@@ -125,15 +167,19 @@ J(θ)= -1/m ∑[ ylog( h(x) ) + (1-y)log( 1-h(x) ) ]    (∑ i=1,m)
 ![](http://latex.codecogs.com/gif.latex?%5Ctheta%3A%3D%5Ctheta-%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%5B%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x%5E%7B%28i%29%7D%20%5D)
 
 
+<h2 id="b4b363c797bb3a216ac2e0e157b6c85e"></h2>
 ## 高级优化
 
+<h2 id="52b8c1841dd7c4f895d655668fee1dd3"></h2>
 ##### 优点
   - 不需要手动选择𝛼
   - 一般比梯度下降算法快
 
+<h2 id="2e769a755109798027a704351be8f91a"></h2>
 ##### 缺点
   - 更加复杂
 
+<h2 id="bc120b21c4200fc94c5fecbdab33be8e"></h2>
 ### 用法
 
 ```
@@ -156,8 +202,10 @@ initialTheta = zeros( 2,1 );  % θ 初始值
     = fminunc(@costFunction , initialTheta , options );
 ```
 
+<h2 id="848a31140f2770dc2fc104ac797f04ec"></h2>
 # 多类分类
 
+<h2 id="a0295753749d6a5c149f168ef9e17e30"></h2>
 ## 1-vs-all 分类思想
 
 前面的例子，如果 y的值是1,2 怎么处理呢？
@@ -181,17 +229,23 @@ hⁱ(x) = P( y=i | x ; θ )   (i=1,2,3)
 
 代码实现 见第4部分 神经网络
 
+<h2 id="6bd505276b3a44597e818f7aa8140cbf"></h2>
 # review :
 
+<h2 id="5e5d590a7f4d92838d1e91826b3e48fe"></h2>
 ##### 和线性回归一样，拟合曲线，需要多项式
 
+<h2 id="5f36b2681dfe7ca40410bba6b36d5edc"></h2>
 ##### h(x) = g( θᵀx ) , θᵀx 图像可以看到决策边界
 
+<h2 id="b935d26ce83872d01795fcae8a7a7bea"></h2>
 ##### 逻辑回归的 代价函数 J 总是个凸函数
 
 
+<h2 id="869492f5afdb7e6bc022701f149b2c48"></h2>
 # 一般流程
 
+<h2 id="5f0eec58f36853e40a718b9f250881ab"></h2>
 ##### 可视化
 
 ```
@@ -209,6 +263,7 @@ function plotData(X, y)
 end
 ```
 
+<h2 id="53d74761d14195e7f96efb99c5d0c541"></h2>
 ##### S型函数
 
 ```
@@ -220,6 +275,7 @@ function g = sigmoid(z)
 end
 ```
 
+<h2 id="287340d512ad4b09754b4574719e412f"></h2>
 ##### 代价函数
 
 ```
@@ -237,6 +293,7 @@ end
 
 ```
 
+<h2 id="fbee26a17a1f4caafca8854456ebbb5d"></h2>
 ##### 预测
 
 ```
@@ -247,6 +304,7 @@ function p = predict(theta, X)
 end
 ```
 
+<h2 id="869492f5afdb7e6bc022701f149b2c48"></h2>
 ##### 一般流程
 
 ```

@@ -1,3 +1,30 @@
+...menustart
+
+ * [Reflect 反射](#139b6cfcf3c9439de790ce9742996f82)
+				 * [没有运行期类型对象](#0318e04c3f2eb7a1984ee102d5a2ed1c)
+ * [9.4.1 reflect.Type](#8c6859ae778598e709e07536f5173e72)
+				 * [获取struct对象 成员字段信息，包括非导出和匿名字段](#b4f395a0193ad2063ac51bafe5bde7cb)
+				 * [如果是指针，先使用 Elem方法获取目标类型](#68093d5b129ae6d66b666d017e2519a8)
+				 * [value-inferface 和 point-interface 方法集存在差异](#b101897a62b1b9a5ce74504373ba727c)
+				 * [直接使用名称 或 序号 访问字段](#b11cc2af540eb66182778242f042879b)
+				 * [字段标签可实现简单元数据编程](#258b3955c18942a2557b3793fa3877d3)
+				 * [可从基本类型获取所对应的复合类型](#b499e680690478b9e2d378d15701fdc2)
+				 * [方法 Elem 可返回复合类型的 基类型](#0a7afa5b5f0c6e4ce1a3d2ac5ca84728)
+				 * [方法 Implements 判断是否实现了某个接口](#0d8ba38963413fb3e0a37355baac5004)
+				 * [获取对齐信息，对于内存自动分析很有用](#dfa77f624af44f20d93a02df20657a9f)
+	 * [9.4.2 reflect.Value](#34ca7e92d333aacb70ded67fd6989dd0)
+				 * [Value 和 Type 使用方法类似,包括 Elem方法](#e9fae0f567c7b19b714a1e0035740e52)
+				 * [其他复合类型 array , slice ,map 取值示例](#bd597938c7e7c92297b5bbf47c1fbedf)
+				 * [IsNil方法判断 接口 data值是否为空](#18917556ea9e2ef4a2d1352ea9490d13)
+				 * [复合类型修改示例  TODO](#1646349e890242f255aca9e532cedfd6)
+	 * [9.4.3 Method](#61e08fe2cac9cfa9a7ab1048eaa57974)
+				 * [可获取方法参数, 返回值类型等信息](#82f01c4522eb5d25e3ab3e6f60bb72bb)
+				 * [动态调用, 按 in 列表准备所需参数  TODO](#e4e8d5f98a70257af0a0544047a3b167)
+
+...menuend
+
+
+<h2 id="139b6cfcf3c9439de790ce9742996f82"></h2>
 # Reflect 反射
 
     Reflect 反射
@@ -22,10 +49,13 @@
         动态调用, 按 in 列表准备所需参数 TODO
 
 
+<h2 id="0318e04c3f2eb7a1984ee102d5a2ed1c"></h2>
 ##### 没有运行期类型对象
 
+<h2 id="8c6859ae778598e709e07536f5173e72"></h2>
 # 9.4.1 reflect.Type
 
+<h2 id="b4f395a0193ad2063ac51bafe5bde7cb"></h2>
 ##### 获取struct对象 成员字段信息，包括非导出和匿名字段
 
 ```go
@@ -49,6 +79,7 @@ User main.User
 title string
 ```
 
+<h2 id="68093d5b129ae6d66b666d017e2519a8"></h2>
 ##### 如果是指针，先使用 Elem方法获取目标类型
 
 ```go
@@ -66,6 +97,7 @@ func main() {
 ```
 
 
+<h2 id="b101897a62b1b9a5ce74504373ba727c"></h2>
 ##### value-inferface 和 point-interface 方法集存在差异
 
 ```go
@@ -98,6 +130,7 @@ ToString
 test
 ```
 
+<h2 id="b11cc2af540eb66182778242f042879b"></h2>
 ##### 直接使用名称 或 序号 访问字段
 
 ```go
@@ -125,6 +158,7 @@ func main() {
 }
 ```
 
+<h2 id="258b3955c18942a2557b3793fa3877d3"></h2>
 ##### 字段标签可实现简单元数据编程
 
 ```go
@@ -143,6 +177,7 @@ func main() {
 }
 ```
 
+<h2 id="b499e680690478b9e2d378d15701fdc2"></h2>
 ##### 可从基本类型获取所对应的复合类型
 
 ```go
@@ -163,6 +198,7 @@ func main() {
 }
 ```
 
+<h2 id="0a7afa5b5f0c6e4ce1a3d2ac5ca84728"></h2>
 ##### 方法 Elem 可返回复合类型的 基类型
 
 ```go
@@ -172,6 +208,7 @@ func main() {
 }
 ```
 
+<h2 id="0d8ba38963413fb3e0a37355baac5004"></h2>
 ##### 方法 Implements 判断是否实现了某个接口
 
 ```go
@@ -188,6 +225,7 @@ func main() {
 }
 ```
 
+<h2 id="dfa77f624af44f20d93a02df20657a9f"></h2>
 ##### 获取对齐信息，对于内存自动分析很有用
 
 ```go
@@ -203,8 +241,10 @@ func main() {
 }
 ```
 
+<h2 id="34ca7e92d333aacb70ded67fd6989dd0"></h2>
 ## 9.4.2 reflect.Value
 
+<h2 id="e9fae0f567c7b19b714a1e0035740e52"></h2>
 ##### Value 和 Type 使用方法类似,包括 Elem方法
 
 ```go
@@ -249,6 +289,7 @@ func main() {
 }
 ```
 
+<h2 id="bd597938c7e7c92297b5bbf47c1fbedf"></h2>
 ##### 其他复合类型 array , slice ,map 取值示例
 
 ```go
@@ -292,6 +333,7 @@ func main() {
 }
 ```
 
+<h2 id="18917556ea9e2ef4a2d1352ea9490d13"></h2>
 #####  IsNil方法判断 接口 data值是否为空
 
 ```go
@@ -304,12 +346,15 @@ func main() {
 }
 ```
 
+<h2 id="1646349e890242f255aca9e532cedfd6"></h2>
 ##### 复合类型修改示例  TODO
 
 ---
 
+<h2 id="61e08fe2cac9cfa9a7ab1048eaa57974"></h2>
 ## 9.4.3 Method
 
+<h2 id="82f01c4522eb5d25e3ab3e6f60bb72bb"></h2>
 ##### 可获取方法参数, 返回值类型等信息
 
 ```go
@@ -363,6 +408,7 @@ Sum
   out[0] string
 ```
 
+<h2 id="e4e8d5f98a70257af0a0544047a3b167"></h2>
 ##### 动态调用, 按 in 列表准备所需参数  TODO
 
 

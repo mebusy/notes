@@ -1,3 +1,25 @@
+...menustart
+
+ * [让物品掉落符合正态分布，以及lua实现](#43f9b53ed2ee3d129d2574d2936f1b3a)
+	 * [随机数](#5bfedcffafba0b2e774d1ec6d40004c0)
+	 * [平均分布](#8f9d1fad3452cc29769c94d2d285f88d)
+		 * [吗？](#16f7fa08dbbb1144afc6ef34b1dff2e2)
+ * [创建 interval 数据](#fb6c4cc1cfe5108f5d94c242f5757a37)
+ * [轴命名](#9a6abcdb19697955f52efe35340945cc)
+ * [画散列图](#acd9bac73ffe9e696b817e79f94dbcae)
+ * [画水平线](#43a1b6e873ff09124c9dabceee5df103)
+ * [title](#d5d3db1765287eef77d7927cc956f50a)
+	 * [正态分布](#90a89776a42d6ee4f8c0dbe54dc941ea)
+ * [plt.title('Histogram')](#7182bbe14f164b24e2da55447b711a72)
+	 * [根据权重计算掉落](#efe278b43718253190742df876de40fc)
+ * [计算各个掉落的间隔interval](#68897f8c277decaea4a755ad2276dbab)
+ * [plt.ylim(0, 0.5)](#408b91c01f51a33d6f81b0a66556f99d)
+	 * [移植到lua](#c9128e4c3013af1bf48669003ac0efe6)
+
+...menuend
+
+
+<h2 id="43f9b53ed2ee3d129d2574d2936f1b3a"></h2>
 # 让物品掉落符合正态分布，以及lua实现
 
     本文主要关注2个方面：随机数的分布，使用python来验证你的数据。
@@ -6,6 +28,7 @@
     本文所有的python代码都在Mac Os上编写并测试通过。
     golden_slime@hotmail.com
 
+<h2 id="5bfedcffafba0b2e774d1ec6d40004c0"></h2>
 ## 随机数
 我们先来生成 50000个 0-100 随机数， 
 
@@ -27,6 +50,7 @@ plt.show()
 分布地很均匀，似乎一切都很美好。
 
 
+<h2 id="8f9d1fad3452cc29769c94d2d285f88d"></h2>
 ## 平均分布
 
 一只策划狗过来对你说：“我希望5%的概率掉落卡牌A，巴拉巴拉巴拉”。 
@@ -39,6 +63,7 @@ if math.random()<0.05 then
 end
 ```
 看上去似乎很完美 
+<h2 id="16f7fa08dbbb1144afc6ef34b1dff2e2"></h2>
 ###吗？
 
 我们来观察一下用这种方式产生的 卡牌A两次掉落的间隔次数的情况：
@@ -46,6 +71,7 @@ end
 先把间隔次数计算出来：
 
 ```python
+<h2 id="fb6c4cc1cfe5108f5d94c242f5757a37"></h2>
 #创建 interval 数据
 interval = []
 cnt = 0
@@ -60,19 +86,23 @@ for i in x1:
 ```python
 x = np.linspace( 1,len(interval),num=len(interval) )
 
+<h2 id="9a6abcdb19697955f52efe35340945cc"></h2>
 #轴命名
 plt.xlabel('drop times')
 plt.ylabel('interval')
 
 
+<h2 id="acd9bac73ffe9e696b817e79f94dbcae"></h2>
 #画散列图
 plt.scatter(x,interval  , s=2 ,   c="#FF0000" )
 
 
+<h2 id="43a1b6e873ff09124c9dabceee5df103"></h2>
 # 画水平线
 plt.plot( [ x[0] ,x[-1] ] ,  [ 20 , 20 ] , 'b' , linewidth=2  )
 
 
+<h2 id="d5d3db1765287eef77d7927cc956f50a"></h2>
 # title
 plt.title('Scatter'  )
 plt.show()
@@ -103,6 +133,7 @@ interval 的概率密度图，X轴是间隔数，Y 轴 是各间隔的次数 出
 
 正态分布 正好符合我们的分布要求。
 
+<h2 id="90a89776a42d6ee4f8c0dbe54dc941ea"></h2>
 ## 正态分布
 为了方便，我们直接生成5%掉落率的卡牌A的掉落的间隔，检验下正态分布的效果。 
 
@@ -118,6 +149,7 @@ mu, sigma = 20, 20/3.0
 interval = [int(np.random.normal(mu, sigma)) for i in xrange(NN)]
 
 plt.figure(figsize=(8,10) )
+<h2 id="7182bbe14f164b24e2da55447b711a72"></h2>
 #plt.title('Histogram')
 
 p1 = plt.subplot(211)
@@ -139,6 +171,7 @@ plt.show()
 效果非常好，就是我们想要的。
 
 
+<h2 id="efe278b43718253190742df876de40fc"></h2>
 ## 根据权重计算掉落
 现在有3种卡牌，掉落的权重分别 20, 30, 50 
 我们来计算出一个合理的掉落。
@@ -173,6 +206,7 @@ for i in xrange(N):
 最后，我们测试一下生成的掉落数据是否满足我们的需求。
 
 ```python
+<h2 id="68897f8c277decaea4a755ad2276dbab"></h2>
 #计算各个掉落的间隔interval
 import numpy as np
 import matplotlib.pyplot as plt
@@ -192,6 +226,7 @@ for j in xrange( len( set( result ) ) ):
 plt.title('Histogram')
 colors = [  "b" , 'g',"r" , "c" , "m" , "y" , "k" , "#FF00FF" , "#800080"  ]
 
+<h2 id="408b91c01f51a33d6f81b0a66556f99d"></h2>
 #plt.ylim(0, 0.5)
 
 plt.hist( intervals ,histtype='barstacked' ,  normed=1,     alpha=0.5  ) #facecolor= colors[j]
@@ -202,6 +237,7 @@ plt.show()
 
 perfect！
 
+<h2 id="c9128e4c3013af1bf48669003ac0efe6"></h2>
 ## 移植到lua
 
 lua 标准库没有正态分布的实现(np.random.normal)，我们可以很容易就实现一个：

@@ -1,7 +1,27 @@
+...menustart
+
+ * [sklearn 随机森林简单介绍](#d611c199fb56f4cc3ceece27ebc41a8a)
+	 * [1. 决策树](#ac3f05d5330e044468fd526d476de188)
+		 * [构造决策树 Sklearn.tree](#417242c55236c9c531e82c5425894faf)
+		 * [输出决策树结果](#6b00a3fa8d6c11d615b68019cfea518b)
+		 * [使用建议](#1381cce03d257acf549790c944080017)
+	 * [随机森林](#a60f6c59122509d3df75f4ed6a768b2e)
+ * [拆分训练集和测试集](#8b7050d1e5615ace9d85583d7ff6cd6b)
+ * [分类型决策树](#bc540adb4062af12d373e6c97348cb43)
+ * [训练模型](#a162534bb7cd826d9ac8600dfc42c466)
+ * [评估模型准确率](#102c272d0164bc736117ec13f55a9261)
+ * [print clf.predict_proba(feature_test[0])](#2c149c4eb45d80a98242e408772afeb7)
+
+...menuend
+
+
+<h2 id="d611c199fb56f4cc3ceece27ebc41a8a"></h2>
 #sklearn 随机森林简单介绍
 
+<h2 id="ac3f05d5330e044468fd526d476de188"></h2>
 ## 1. 决策树
 
+<h2 id="417242c55236c9c531e82c5425894faf"></h2>
 ### 构造决策树 Sklearn.tree
 
 在强大的机器学习库sklearn中已经集成了决策树模型，所以我们可以利用该模块方便的实施决策树学习。下面介绍一些常用的方法：  
@@ -34,6 +54,7 @@ clf = clf.fit(X, Y)
 clf.predict([[2., 2.]])  
 ```
 
+<h2 id="6b00a3fa8d6c11d615b68019cfea518b"></h2>
 ### 输出决策树结果
 利用python中的pydot模块可以方便的输出决策树的效果图，不过需要注意的是pyparsing必须是旧版本的，比如1.5，另外需要在电脑商安装Graphviz软件。下面是一个例子：
 ```python
@@ -45,6 +66,7 @@ graph = pydot.graph_from_dot_data(dot_data.getvalue())
 graph.write_pdf("iris.pdf")   
 ```
 
+<h2 id="1381cce03d257acf549790c944080017"></h2>
 ### 使用建议
 > * 当我们数据中的feature较多时，一定要有足够的数据量来支撑我们的算法，不然的话很容易overfitting
 > * 善用max_depth参数，缓慢的增加并测试模型，找出最好的那个depth。
@@ -53,25 +75,31 @@ graph.write_pdf("iris.pdf")
 
 ---
 
+<h2 id="a60f6c59122509d3df75f4ed6a768b2e"></h2>
 ## 随机森林
 
 RandomForestClassifier 的一些重要属性，方法:
 ```python
+<h2 id="8b7050d1e5615ace9d85583d7ff6cd6b"></h2>
 #拆分训练集和测试集
 feature_train, feature_test, target_train, target_test = train_test_split(feature, target, test_size=0.1, random_state=42)
 
+<h2 id="bc540adb4062af12d373e6c97348cb43"></h2>
 #分类型决策树
 clf = RandomForestClassifier(n_estimators = 8)
 
+<h2 id="a162534bb7cd826d9ac8600dfc42c466"></h2>
 #训练模型
 s = clf.fit(feature_train , target_train)
 print s
 
+<h2 id="102c272d0164bc736117ec13f55a9261"></h2>
 #评估模型准确率
 r = clf.score(feature_test , target_test)
 print r
 
 print '判定结果：%s' % clf.predict(feature_test[0])
+<h2 id="2c149c4eb45d80a98242e408772afeb7"></h2>
 #print clf.predict_proba(feature_test[0])
 
 print '所有的树:%s' % clf.estimators_

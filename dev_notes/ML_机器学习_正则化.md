@@ -1,3 +1,23 @@
+...menustart
+
+ * [过度拟合 overfitting](#6129858f4f4ae385452b94ae0589e3c2)
+ * [正则化 Regularization](#36360bac2874c6fa4fbebdc1731c80f6)
+	 * [线性回归的例子:](#60a340b4fe60aaefadfb4199d44edda3)
+ * [正则化线性回归](#ec1dbd4eccae79c7bc2091316de35224)
+		 * [代价函数:](#73db361f556832cf91d56357c8203949)
+		 * [梯度下降算法:](#21acf0b2bd3a8d644af69fb6d0f63733)
+		 * [正规方程组解法](#62dc9889b8e1aeda5b4dc46f7665acf6)
+ * [正则化 逻辑回归](#d79c5efa3a07a2273edafc98c34fb708)
+		 * [代价函数](#287340d512ad4b09754b4574719e412f)
+		 * [梯度下降算法](#f072832c961b0762dbec1d78e5504442)
+ * [正则化处理流程](#c87d57915b8ec0bd3094315644b4794f)
+				 * [特征映射 feature mapping](#da4ad33e42cddccf3cc687f937bdfc06)
+				 * [代价函数，和梯度](#d4bb0a33bce7e76d7df296d1f45f3a3d)
+				 * [一般流程](#869492f5afdb7e6bc022701f149b2c48)
+
+...menuend
+
+
 
 	过度拟合 overfitting
 	正则化 Regularization
@@ -14,6 +34,7 @@
 		代价函数，和梯度
 		一般流程
 
+<h2 id="6129858f4f4ae385452b94ae0589e3c2"></h2>
 # 过度拟合 overfitting
 
 如果有太多的feature，假设函数可能会很好的拟合训练集数据，
@@ -26,10 +47,12 @@
 
 
 
+<h2 id="36360bac2874c6fa4fbebdc1731c80f6"></h2>
 # 正则化 Regularization
 
 通过降低某些feature θⱼ参数的值 ，正则化可以得到更简单的假设图像，不容易出现过拟合。
 
+<h2 id="60a340b4fe60aaefadfb4199d44edda3"></h2>
 ## 线性回归的例子:
 
 ![][1]
@@ -42,12 +65,15 @@
 但是如果 λ的值过大, 比如10¹⁰, 会导致大部分的θⱼ接近0, 假设函数就近似h(x)=θ₀, 从而导致欠拟合 `underfitting`.
 
 
+<h2 id="ec1dbd4eccae79c7bc2091316de35224"></h2>
 # 正则化线性回归
 
+<h2 id="73db361f556832cf91d56357c8203949"></h2>
 ### 代价函数:
 
 ![][1]
 
+<h2 id="21acf0b2bd3a8d644af69fb6d0f63733"></h2>
 ### 梯度下降算法:
 
 我们把 梯度下降算法拆成两部分
@@ -65,6 +91,7 @@
 
 可以看到，跟 最新的线性回归算法相比， 正则化迭代算法 只是每次迭代，θⱼ 会略微变小
 
+<h2 id="62dc9889b8e1aeda5b4dc46f7665acf6"></h2>
 ### 正规方程组解法
 
 if λ > 0 ,
@@ -73,8 +100,10 @@ if λ > 0 ,
 
 
 
+<h2 id="d79c5efa3a07a2273edafc98c34fb708"></h2>
 # 正则化 逻辑回归
 
+<h2 id="287340d512ad4b09754b4574719e412f"></h2>
 ### 代价函数
 
 和 正则化线性回归 代价函数的处理一样，
@@ -85,6 +114,7 @@ if λ > 0 ,
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/logistical_regression_cost.png)
 
+<h2 id="f072832c961b0762dbec1d78e5504442"></h2>
 ### 梯度下降算法
 
 和 正则化线性回归梯度下降算法一致，仅仅是 假设函数h(x) 的不同
@@ -97,8 +127,10 @@ if λ > 0 ,
 
 ![][2]
 
+<h2 id="c87d57915b8ec0bd3094315644b4794f"></h2>
 # 正则化处理流程
 
+<h2 id="da4ad33e42cddccf3cc687f937bdfc06"></h2>
 ##### 特征映射 feature mapping
 
 ```
@@ -131,6 +163,7 @@ function out = mapFeature(X1, X2)
 end
 ```
 
+<h2 id="d4bb0a33bce7e76d7df296d1f45f3a3d"></h2>
 ##### 代价函数，和梯度
 
 ```
@@ -160,6 +193,7 @@ function [J, grad] = costFunctionReg(theta, X, y, lambda)
 end
 ```
 
+<h2 id="869492f5afdb7e6bc022701f149b2c48"></h2>
 ##### 一般流程
 
 `注意: λ取值过大,对参数惩罚过大,会导致欠拟合, 取值过小, 会过拟合`

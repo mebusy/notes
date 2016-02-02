@@ -1,3 +1,27 @@
+...menustart
+
+ * [Support Vector Machines 支持向量机](#8cf67260d126306abf039891edbeb656)
+	 * [Large Margin Classification](#2852f2bf2273669c892942a4632b5e1f)
+			 * [SVM 代价函数](#f07329befbc19c84368187cc64f74fb5)
+			 * [SVM Decision Boundary: Linearly separable case](#1d58ae7ced4876c25af27337543af7eb)
+			 * [Large margin classifier in presence of outliers](#d045e7981854a7e1024a50e8fffa4f30)
+			 * [Mathmatics behind large margin classification](#f21ea9d3806d08ffc3fa5223b97063bc)
+	 * [Kernels I  核函数](#aadfb04cedbdd18ddacda45fe038881a)
+			 * [Non-linear Decision Boundary](#c6a4dd2a31e83a1c296bebebf5fea30f)
+	 * [Kernels II](#e3a358193b95ac6eef55c51c9075c131)
+			 * [choosing the landmarks](#af23d091de03c5f83c374172daf63cea)
+			 * [SVM parameters](#3930a1467c8ad5a6fa62e45b57a8cb66)
+	 * [SVMs in Practics](#fc8227001da7daa8afa88151aa3948d2)
+			 * [Using an SVM](#c03a9274f234c4e466bc0a0c3ac19425)
+			 * [Multi-class classification](#c6b78dc7cf73796a127893a56b9d4341)
+			 * [Logistic regression vs. SVMs](#98ab568d1ca127e48f38a822cb48b68c)
+	 * [Spam email filter](#438255910c46d15b146ef8ddeed92ce1)
+			 * [Processing emails](#92a7047ae19e8b71ab2eda1cf656c06e)
+			 * [Vocabulary List](#25905cc6484f60a1d812453a49e5e156)
+
+...menuend
+
+
 
     Support Vector Machines 支持向量机
         Large Margin Classification
@@ -18,10 +42,12 @@
             Processing emails
             Vocabulary List
 
+<h2 id="8cf67260d126306abf039891edbeb656"></h2>
 # Support Vector Machines 支持向量机
 
 SVM 在学习复杂的非线性方程时，提供了一种更清晰更强大的方法
 
+<h2 id="2852f2bf2273669c892942a4632b5e1f"></h2>
 ##  Large Margin Classification
 
 我们看一下 logistic regression 的代价函数 J 和 z( θᵀx )的函数图：
@@ -32,6 +58,7 @@ SVM 在学习复杂的非线性方程时，提供了一种更清晰更强大的�
 
 ---
 
+<h2 id="f07329befbc19c84368187cc64f74fb5"></h2>
 #### SVM 代价函数
 
 和logistic regression 代码函数相比，SVM 的代价函数，有几个变化:
@@ -52,6 +79,7 @@ SVM 在学习复杂的非线性方程时，提供了一种更清晰更强大的�
 
 ---
 
+<h2 id="1d58ae7ced4876c25af27337543af7eb"></h2>
 #### SVM Decision Boundary: Linearly separable case
 
 Linearly separable case： (数据集是)线性可分, 既用一条直线可以区分正负样本。
@@ -64,6 +92,7 @@ Linearly separable case： (数据集是)线性可分, 既用一条直线可以�
 
 SVM会 尽量使用最大的 margin 来分离样本。
 
+<h2 id="d045e7981854a7e1024a50e8fffa4f30"></h2>
 #### Large margin classifier in presence of outliers
 
 大间距分类器有时会受到 异常点(outliers) 的影响, 如图：
@@ -77,6 +106,7 @@ SVM会 尽量使用最大的 margin 来分离样本。
 解释: C 很大，效果类似 λ 很小，过拟合。
 
 
+<h2 id="f21ea9d3806d08ffc3fa5223b97063bc"></h2>
 #### Mathmatics behind large margin classification
 
 代价函数的正则化项，其实就是 θᵀθ， 而对于决策边界 θᵀx, 其实也就是 向量θ 和 向量x的点积，也就是 x在θ上的有向投影p的长度和 θ长度的积。
@@ -102,8 +132,10 @@ p⁽ⁱ⁾·‖θ‖ <=-1,   if y=⁽ⁱ⁾0;
  2. θ 正交与决策边界 (why?)
 
 
+<h2 id="aadfb04cedbdd18ddacda45fe038881a"></h2>
 ## Kernels I  核函数
 
+<h2 id="c6a4dd2a31e83a1c296bebebf5fea30f"></h2>
 #### Non-linear Decision Boundary
 
 构造一个非线性决策边界，一个做法是使用ploynomial特征变量，但是使用polynomial运算量会非常大。
@@ -134,8 +166,10 @@ landmark 点和θ的作用：
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Landmark_and_theta.png)
 
 
+<h2 id="e3a358193b95ac6eef55c51c9075c131"></h2>
 ## Kernels II
 
+<h2 id="af23d091de03c5f83c374172daf63cea"></h2>
 #### choosing the landmarks
 
 每一个样本，映射一个 landmark， 所以共m个landmark, `f ∊ ℝᵐ⁺¹`
@@ -144,6 +178,7 @@ SVM 的代码函数变为 (其中,n=m) :
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SVM_cost_function_f.png)
  
+<h2 id="3930a1467c8ad5a6fa62e45b57a8cb66"></h2>
 #### SVM parameters 
 
 C( = 1/λ ):
@@ -156,8 +191,10 @@ C( = 1/λ ):
  - Large σ² : Features fᵢ vary more smoothly. High bias, lower variance.
  - Small σ² : Features fᵢ vary sharply. Lower bias, higher variance.
  
+<h2 id="fc8227001da7daa8afa88151aa3948d2"></h2>
 ## SVMs in Practics
 
+<h2 id="c03a9274f234c4e466bc0a0c3ac19425"></h2>
 #### Using an SVM
 
 use SVM software package (eg. `liblinear` , `libsvm` , ... ) to solve for parameters θ.
@@ -190,10 +227,12 @@ end
  kernel 需要满足 墨塞尔定理 Mercer's Theorem.
  
 
+<h2 id="c6b78dc7cf73796a127893a56b9d4341"></h2>
 #### Multi-class classification
 
 大多数的SVM 包都已经内置了 多类分类器。 如果没有， 可以使用 one-vs-all 方法进行分类。
 
+<h2 id="98ab568d1ca127e48f38a822cb48b68c"></h2>
 #### Logistic regression vs. SVMs
 
 n = number of features , m = number of traning examples
@@ -204,8 +243,10 @@ n = number of features , m = number of traning examples
 
 
 
+<h2 id="438255910c46d15b146ef8ddeed92ce1"></h2>
 ## Spam email filter
 
+<h2 id="92a7047ae19e8b71ab2eda1cf656c06e"></h2>
 #### Processing emails
 
  - 全部转为 小写
@@ -218,6 +259,7 @@ n = number of features , m = number of traning examples
  - 去掉非字符:  非字符 和标点符号 被去除。所有的 空白（tab, newline, space）都被处理成单个 space 字符。
  
 
+<h2 id="25905cc6484f60a1d812453a49e5e156"></h2>
 #### Vocabulary List
 
 Vocabulary List 是一份积累起来的数据，从大量的垃圾邮件中，找出的出现频率最高的单词 (eg. >100次)

@@ -1,5 +1,51 @@
+...menustart
+
+ * [Raspberry Pi I](#73770efffd056ea55f34a6d0de671dda)
+	 * [Hardware Specs](#340e59e0dd03810e21611e4e545262b4)
+	 * [ARM Processors](#7c9fb4b83e7d3ff04537e59f0efd1b4d)
+	 * [Using Hardware Devices](#bde280fad6339e66144556725e9a6925)
+	 * [Setup of the Raspberry Pi](#5ffa42db2af721145d87c6f5177f2d11)
+		 * [Installing an OS](#e148dc9454d176896815b2943a6d3dea)
+	 * [Raspberry Pi Configuration](#37fa544b8c35fe7e622f6fe9d375ab74)
+		 * [Raspi-Config](#bf0ab4cbce41882dd4d047cd031b36ee)
+	 * [Overclocking](#96f8e05d2ec50fb2802a469cfae45b56)
+		 * [Impact of Overclocking](#ff95fa296ce2fde051c9ff77ec518fb9)
+		 * [Impact of Increasing Voltage](#60e76035d1d55222cee3e465d15a17e2)
+	 * [Linux Basics](#560f0ad6e27df1074f9399d3fc8c5967)
+		 * [File Permissions](#96fd0f31db825baa802614c9f0f49add)
+		 * [Process](#b6ec7abeb6ae29cc35a4b47475e12afe)
+		 * [GUI](#1e3042b2e2a5550b412b37edd1c36b34)
+	 * [Python](#a7f5f35426b927411fc9231b56382173)
+	 * [General Purpose IO Pins 通用IO引脚](#5130ecea52dfa86cf8c70e7515c1aa48)
+	 * [Protocal Pins](#0b62603acfc59cc53ed92f689037d1e6)
+	 * [SPI Communication Pins](#392687a2d5cc2a49bd0d84d8a773d985)
+	 * [GPIO Access](#1a7f823397c500781d755ddd598a1422)
+	 * [General Purpose IO Pins 2](#f1de82e95e1ab7eafe3700df87c6b177)
+		 * [Pin Direction and assignment](#119276386b6010fa9ea006ad235e7732)
+ * [Set the pin direction ( GPIO.IN / GPIO.OUT  )](#b6a2190cb750fd5a0c7dd5751a3def39)
+ * [Assign value to output pin, True is a high voltage, 3.3v](#89b6501b7899a618ae77a5e0fabc1e9d)
+			 * [Example : Blink an LED](#9d938a8190f35d6b752adf0bc4de5c61)
+		 * [Reading Input Pins](#28e52f680c5ecc8d5a8306cb86f740ca)
+ * [Set the pin direction to an input](#5de3b3c90ef8fa92859682ec4b9b4b5d)
+ * [Read value on input in](#bc8fae84e1abbf544fceb786e00438cb)
+	 * [Pulse Width Modulation](#b4d3379cc73eeb7f1e1248ed92af6a9d)
+		 * [PVM Initilization and PVM control](#3899d0ca616dbcbb93a6c151e8e134e7)
+ * [mark pin for PVM](#e48c14ced2baceac370929d4f6e9bb5c)
+ * [second argument is frequency](#68df9db74fa9b383d4669ffbd9d05ddc)
+ * [after PVM invode, now pin 18 is prepared to generate the pulse width nodulated signal, not it don't actually start generating yet.](#07c3a8de9ac547f5f707201781c899aa)
+ * [start generating PVM signal](#fa705cfcfa0d7cdfc0f727039e821c21)
+ * [Arguments is duty cycle , 0 to 100 (0%-100%)](#2fba9813a516a77f0a1f05dfb0ee06dc)
+ * [assign new duty cycle](#26cd96e5500094e1c39a06cddc9196ac)
+		 * [Frequency Control](#c727b8a2292403497d3a210c7dfe6bd2)
+	 * [GUI](#1e3042b2e2a5550b412b37edd1c36b34)
+
+...menuend
+
+
+<h2 id="73770efffd056ea55f34a6d0de671dda"></h2>
 # Raspberry Pi I
 
+<h2 id="340e59e0dd03810e21611e4e545262b4"></h2>
 ## Hardware Specs
 
 Model B+ :
@@ -13,10 +59,12 @@ Model B+ :
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/raspberryPi_B+.PNG)
 
+<h2 id="7c9fb4b83e7d3ff04537e59f0efd1b4d"></h2>
 ## ARM Processors
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ARM_Family.PNG)
 
+<h2 id="bde280fad6339e66144556725e9a6925"></h2>
 ## Using Hardware Devices
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/UsingHardwareDevices.PNG)
@@ -25,6 +73,7 @@ In Linux folder /def/xxx , you got a file in there for every device that's conne
 
 Underneath those files, or behind those, inside the operating system , there's a *device drive*. And what the device driver does is it translates these file accesses into actual hardware device accesses.
 
+<h2 id="5ffa42db2af721145d87c6f5177f2d11"></h2>
 ## Setup of the Raspberry Pi
 
 
@@ -33,6 +82,7 @@ Underneath those files, or behind those, inside the operating system , there's a
  2. Get and operating system
   So you're gonna get a micro SD card and put the OS onto that micro card, that's your goal.
 
+<h2 id="e148dc9454d176896815b2943a6d3dea"></h2>
 ### Installing an OS
 
 The easiest way is to use New Out-Of-Box software (NOOBS).
@@ -51,8 +101,10 @@ One you have NOOBS on micro SD card , plug that into you Raspberry Pi , then you
 
 [Setting up Raspbian](https://learn.sparkfun.com/tutorials/setting-up-raspbian-and-doom)
 
+<h2 id="37fa544b8c35fe7e622f6fe9d375ab74"></h2>
 ## Raspberry Pi Configuration
 
+<h2 id="bf0ab4cbce41882dd4d047cd031b36ee"></h2>
 ### Raspi-Config
 
  - **raspi-config** is a tool which lets you setup various setup/boot options for the Raspberry Pi.
@@ -67,18 +119,21 @@ What's the config option:
  
  - Internationalisation(国际化) and Rastrack  - change Locale , Timezone , keyboard Layout. *Rastrack* is the service that allows Raspberry Pi users to find one another , totally optional , approximate location base on IP.
 
+<h2 id="96f8e05d2ec50fb2802a469cfae45b56"></h2>
 ## Overclocking
 
  - refers to **increasing the clock frequency**
  - refers to **increasing the internal voltage levels**
  - there are serveral different clocks inside a typical device
 
+<h2 id="ff95fa296ce2fde051c9ff77ec518fb9"></h2>
 ### Impact of Overclocking
 
  - instructions are executed more quickly, roughly one instruction per clock period
  - signals have shorter time in which to travel
   Signals must travel between storage elements (eg. register ) in a single clock period. So the risk of over-clocking is , the signal data may not reach destination in time if the clock period was decreased too much.
 
+<h2 id="60e76035d1d55222cee3e465d15a17e2"></h2>
 ### Impact of Increasing Voltage
 
  - Increased voltage swing may increase transistor(晶体管) speed - you have to increase the voltage in order to make signal reach the destination in time if over clocked.
@@ -89,6 +144,7 @@ What's the config option:
 
 
 
+<h2 id="560f0ad6e27df1074f9399d3fc8c5967"></h2>
 ## Linux Basics
 
 bash (bourne again shell) is the default shell for Raspian.
@@ -105,6 +161,7 @@ View a file:
  - head : print the first 10 lines
  - tail : print the last 10 lines (not on MacOS)
 
+<h2 id="96fd0f31db825baa802614c9f0f49add"></h2>
 ### File Permissions
 
  - Files have **owners**
@@ -118,6 +175,7 @@ View a file:
  - `ls -l`  : to view file permissions  
     - eg. drwxr-xr-x :  dir(1)user(3)group(3)other(3) 
     
+<h2 id="b6ec7abeb6ae29cc35a4b47475e12afe"></h2>
 ### Process
 
 view process :  `ps [a]` , if not provide 'a' , it will show only shell itself , "ps a" will list all processes.  Each process has a unique PID.
@@ -128,11 +186,13 @@ Shutdown :
  - Proper shutdown procedure is needed to place data structures in a good state
     - Flush all buffers, close files, etc.
 
+<h2 id="1e3042b2e2a5550b412b37edd1c36b34"></h2>
 ### GUI
 
 After initial login, type "startx". Linux can have it look however you want based on the window manager that you choose , because Linux is separate from the graphics. The manager determines the look.
 
 
+<h2 id="a7f5f35426b927411fc9231b56382173"></h2>
 ## Python
 
 Python is the best supported language for Raspberry Pi.
@@ -142,6 +202,7 @@ Python is the best supported language for Raspberry Pi.
  - This course will use python 3
 
 
+<h2 id="5130ecea52dfa86cf8c70e7515c1aa48"></h2>
 ## General Purpose IO Pins 通用IO引脚
 
  - Dedicated power and ground pins
@@ -164,6 +225,7 @@ Python is the best supported language for Raspberry Pi.
 
 ---
 
+<h2 id="0b62603acfc59cc53ed92f689037d1e6"></h2>
 ## Protocal Pins
 
 I2C Pins
@@ -178,6 +240,7 @@ So , I2C protocal , it's got two wires, SDA and SCL.  SDA sends the data as with
 The idea is that if you had several different , say Raspberry Pis, or other devices that had I2C, you connect all their SDA lines together, and connect all their SCL lines together, and the can communicate usng I2C protocal. Of course you have to write the appropriate code.
 
 
+<h2 id="392687a2d5cc2a49bd0d84d8a773d985"></h2>
 ## SPI Communication Pins
 
 SPI: Serial parallel interface
@@ -196,6 +259,7 @@ This protocal basically involves four wires, at least four.
     - there's also a chip enable. Chip enable is because with SPI, there can be a master, the single master , talking to many slavers. But it can only talk to one slave at a time. So it needs to assert the chip enable for the particular slave that it's taling to, to let that slave know it is communicating , that slave should wake up and listen. So each slave has to have a chip enable associated with it that the master can assert , can pull down, in order to wake them up and have them listen.
     - SPI0_CE0_N , last N means negative, so it's negatively assertive, meaning you have to pull that wire down so the Raspberry Pi will send that from one to zero to let the client knonw. Only 2 chip enable wire on board, you might need more , depending on how many SPI components are on your bus, how many slave you have on your bus. cuz you need a chip enabled for every single slave.
     
+<h2 id="1a7f823397c500781d755ddd598a1422"></h2>
 ## GPIO Access
  
 GPIO Access in Python:
@@ -211,22 +275,27 @@ GPIO Access in Python:
      2. GPIO.setmode(GPIO.BCM) , use Broadcom SoC numbering, changes with different versions of Raspberry Pi
 
 
+<h2 id="f1de82e95e1ab7eafe3700df87c6b177"></h2>
 ## General Purpose IO Pins 2
 
+<h2 id="119276386b6010fa9ea006ad235e7732"></h2>
 ### Pin Direction and assignment
 
 Before you write code to access pins, you need set the pin direction.
 
 ```
+<h2 id="b6a2190cb750fd5a0c7dd5751a3def39"></h2>
 # Set the pin direction ( GPIO.IN / GPIO.OUT  )
 GPIO.setup( 13, GPIO.OUT )
 ```
 
 ```
+<h2 id="89b6501b7899a618ae77a5e0fabc1e9d"></h2>
 # Assign value to output pin, True is a high voltage, 3.3v
 GPIO.output( 13, True )
 ```
 
+<h2 id="9d938a8190f35d6b752adf0bc4de5c61"></h2>
 #### Example : Blink an LED
 
 We connected LED's anode to  pin 13 , and the other cathode goes to ground. 
@@ -243,12 +312,15 @@ while True:
     time.sleep(1)
 ```
 
+<h2 id="28e52f680c5ecc8d5a8306cb86f740ca"></h2>
 ### Reading Input Pins
 
 ```
+<h2 id="5de3b3c90ef8fa92859682ec4b9b4b5d"></h2>
 #Set the pin direction to an input
 GPIO.setup(13, GPIO.IN )
 
+<h2 id="bc8fae84e1abbf544fceb786e00438cb"></h2>
 # Read value on input in
 value = GPIO.input(13)
 ```
@@ -258,6 +330,7 @@ value = GPIO.input(13)
     - No analog-to-digital converter
 
 
+<h2 id="b4d3379cc73eeb7f1e1248ed92af6a9d"></h2>
 ## Pulse Width Modulation
     
 how to generate a pulse width modulated signal （脉冲宽度调制信号） on a GPIO pin.
@@ -272,18 +345,25 @@ The whole idea of this , is to control an analog device from a digital circuit.
 
 PVM functions in GPIO library:
 
+<h2 id="3899d0ca616dbcbb93a6c151e8e134e7"></h2>
 ### PVM Initilization and PVM control
 
 ```python
+<h2 id="e48c14ced2baceac370929d4f6e9bb5c"></h2>
 # mark pin for PVM
+<h2 id="68df9db74fa9b383d4669ffbd9d05ddc"></h2>
 # second argument is frequency
 pvm_obj = GPIO.PVM(18,400)
+<h2 id="07c3a8de9ac547f5f707201781c899aa"></h2>
 # after PVM invode, now pin 18 is prepared to generate the pulse width nodulated signal, not it don't actually start generating yet.
 
+<h2 id="fa705cfcfa0d7cdfc0f727039e821c21"></h2>
 # start generating PVM signal
+<h2 id="2fba9813a516a77f0a1f05dfb0ee06dc"></h2>
 # Arguments is duty cycle , 0 to 100 (0%-100%)
 pvm_obj.start(100)
 
+<h2 id="26cd96e5500094e1c39a06cddc9196ac"></h2>
 # assign new duty cycle
 pvm_obj.ChangeDutyCycle(50)
 ```
@@ -291,6 +371,7 @@ pvm_obj.ChangeDutyCycle(50)
 You should note that the frequency is not accurate on Pi. And it could be off by a lot up to 50% when you get to higher frequencies. What that means is that , if you really need tight pulse width modulated control , you're gonna have to do something else.  There are other ways to go about it. You can't use a standard library function if you want accuracy on a Pi.  Part of the reason why you get this inaccurate behavior is because you're using an operating system.
 
 
+<h2 id="c727b8a2292403497d3a210c7dfe6bd2"></h2>
 ### Frequency Control
 
 You can't change that frequency once you've created it, not easily.  But it is nice to be able to change frequencies because maybe you wanna make tones. Maybe you wanna make beautiful music and you wanna make different sounds.
@@ -308,6 +389,7 @@ while True:
 
 This will give you a square wave, with a 1 Hz frequency. By changing those time value you can change the frequency manually.
 
+<h2 id="1e3042b2e2a5550b412b37edd1c36b34"></h2>
 ## GUI
 
 Event loop

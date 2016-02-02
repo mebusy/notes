@@ -1,6 +1,56 @@
+...menustart
+
+		 * [3.5.1 加载一个数据集](#61f0c3c78cb774f4522759cb5b766e48)
+		 * [3.5.1.1 学习和预测](#9042e2951924403f2563670df6a5907a)
+ * [LinearSVC(...)](#65b7575b6fef3831723996c30003fec6)
+ * [array([0], dtype=int32)](#fbb3e8286a3b1c0acae233e5d2f5afbb)
+		 * [3.5.2. 分类 Classification](#c5e9f6f031f38c79c84a12648b17e5bc)
+			 * [3.5.2.1. k-Nearest neighbors classifierK 最近邻(KNN)分类器](#a928bb9b5283c675ea5b0d403fa28ce6)
+ * [创建并拟合fit一个 最近邻分类器](#9b1884fd152ca6ca40ebcadc3758d2bd)
+			 * [训练集和测试集](#6b142be1538abf7c9b27eceb24a31693)
+ * [创建一个 随机的索引数组](#765c1d67f7c2d42669ddee1a926c904c)
+ * [根据 perm数组，对数据重新排序](#5dcc6eaa8a0d1838d1c74d23355fe877)
+			 * [3.5.2.2 支持向量机（SVM）进行分类](#7608de9c0b5c2ef3728f6a862c34be93)
+			 * [线性支持向量机](#21368cab7e6be750f6930f26872bdd34)
+			 * [3.5.2.2.2. Using kernels 使用内核](#30e6dc519b02a1c9361c44a4e728aa7d)
+ * [degree: polynomial degree](#a009ab3de42b6f3ebb796d81bf522875)
+ * [gamma: inverse of size of radial kernel](#cc00618b1294c114a9357a512bae6771)
+		 * [3.5.3. 聚类 Clustering ：将观测值分组](#df7233c170cd11b783e36cd881fe5f88)
+			 * [3.5.3.1  k均值聚类 K-means clustering](#4fcb97c71c13c4ea699fc9e733ed6b41)
+			 * [应用到图像压缩](#b6716bcc1f4eef556f17e78ffdcc6da2)
+ * [X.shape -> (262144, 1)](#d98bf486da13049d3c944ea9bd526b0f)
+ * [lena_compressed.shape  (262144,)](#9e25d15440e313ddcdb19d43a00a8458)
+ * [lena_compressed.shape  (512, 512)](#29ba98fde37d2c8a1c67c4e21a0e54cf)
+		 * [3.5.4. 用主成分分析(Principal Component Analysis)来降维](#0613c6a0178e373ecd734f761709b23d)
+		 * [3.5.5。全部放在一起：人脸识别](#845933fcaeb6332543e41cb01e51c792)
+ * [.. load data ..](#b4ede334a85781427ad4ae4a64fcb3ca)
+ * [StratifiedKFold: 分层K-折叠交叉验证迭代器](#fa9ffafb9e525de8ddd97d29db32ec64)
+ * [把数据分割为 训练／测试集](#b6590485406120d97498042a2e08ac1f)
+ * [.. 降维 ..](#3de2bcfa7249f4529c4d4de2e8bcd12b)
+ * [.. 分类 ..](#93d9929585bebf4df3d486e4abf08350)
+ * [.. 预测新图像 ..](#0e629c40091a3446dde634e7419bc36a)
+		 * [3.5.6 线性模型：从回归稀疏](#07bc8d8f0c7abc03e7873690065e2bfd)
+			 * [稀疏模型](#8db4f290d806d5df45b60a1a83cddd4b)
+ * [regr.coef_ # very sparse coefficients](#2bccfe2f92e9cc9ba033fe601cdeb84c)
+ * [0.55108354530029779](#bbf4e98d546645ac45dcf2f60f3d2e2a)
+ * [0.58507530226905691](#f992894c5701a3551f499b1e6914df63)
+			 * [同一问题的不同算法](#137b0c419cd6ce6b57e7320eb41b5735)
+		 * [3.5.7。型号选择：选择估值器及其参数](#130526ec2eb670f8b6aef37b9efe2535)
+			 * [3.5.7.1。网格搜索和交叉验证估计](#bcf64e07398790bedec0c72f9f2e7c0b)
+			 * [3.5.7.1.1 网格搜索](#bad9c05bf8d2f051d7ad419947e10e2b)
+ * [0.93200000000000005](#c1a54921f663a178b39ed00f20a747bb)
+ * [{'gamma': 0.00059948425031894088}](#0e9927267480e7aea2fcb651188c82c7)
+			 * [3.5.7.1.2。交叉验证估计器](#0ad88aee957ce82d156a5b067bc31e61)
+ * [The estimator chose automatically its lambda:](#3c8443c677c5d8c4e6407ec30c5d25e1)
+ * [0.012291895087486173](#b0e322dec0b7db89d1cec1bee665b002)
+
+...menuend
+
+
 
 http://scipy-lectures.github.io/index.html
 
+<h2 id="61f0c3c78cb774f4522759cb5b766e48"></h2>
 ### 3.5.1 加载一个数据集
 
 载入 鸢尾花 数据：
@@ -60,6 +110,7 @@ data = digits.images.reshape((digits.images.shape[0], -1))
 
 ======================================
 
+<h2 id="9042e2951924403f2563670df6a5907a"></h2>
 ### 3.5.1.1 学习和预测
 
 在scikit-learn中，我们通过创建一个估计器(estimator)从已经存在的数据中学习，并且调用它的fit(X,Y)方法。
@@ -68,6 +119,7 @@ data = digits.images.reshape((digits.images.shape[0], -1))
 from sklearn import svm
 clf = svm.LinearSVC()
 clf.fit(iris.data, iris.target) # learn from the data 
+<h2 id="65b7575b6fef3831723996c30003fec6"></h2>
 # LinearSVC(...)
 ```
 
@@ -75,6 +127,7 @@ clf.fit(iris.data, iris.target) # learn from the data
 
 ```python
 clf.predict([[ 5.0,  3.6,  1.3,  0.25]])
+<h2 id="fbb3e8286a3b1c0acae233e5d2f5afbb"></h2>
 # array([0], dtype=int32)
 ```
 
@@ -88,8 +141,10 @@ array([[ 0.18423466,  0.45122537, -0.80794548, -0.45071632],
 ```
 
 ======================================
+<h2 id="c5e9f6f031f38c79c84a12648b17e5bc"></h2>
 ### 3.5.2. 分类 Classification
 
+<h2 id="a928bb9b5283c675ea5b0d403fa28ce6"></h2>
 #### 3.5.2.1. k-Nearest neighbors classifierK 最近邻(KNN)分类器
 
 最简单的可能的分类器是最近邻：给定一个新的观测值，将n维空间中最靠近它的训练样本标签给它。其中n是每个样本中特性(features)数。
@@ -98,6 +153,7 @@ k最近邻分类器 内部使用基于球树(ball tree) 来代表它训练的样
 ![](http://scipy-lectures.github.io/_images/iris_knn.png)
 
 ```python
+<h2 id="9b1884fd152ca6ca40ebcadc3758d2bd"></h2>
 # 创建并拟合fit一个 最近邻分类器
 >>> from sklearn import neighbors
 >>> knn = neighbors.KNeighborsClassifier()
@@ -108,13 +164,16 @@ KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
 array([0])
 ```
 
+<h2 id="6b142be1538abf7c9b27eceb24a31693"></h2>
 #### 训练集和测试集
 当验证学习算法时，不要用一个用来拟合估计器的数据来验证估计器的预测非常重要。
 那样的话，使用kNN 我们总能获得 训练集完美的预测。
 
 ```python
+<h2 id="765c1d67f7c2d42669ddee1a926c904c"></h2>
 #创建一个 随机的索引数组
 >>> perm = np.random.permutation(iris.target.size)
+<h2 id="5dcc6eaa8a0d1838d1c74d23355fe877"></h2>
 #根据 perm数组，对数据重新排序
 >>> iris.data = iris.data[perm]
 >>> iris.target = iris.target[perm]
@@ -128,6 +187,7 @@ KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
 
 =====================================
 
+<h2 id="7608de9c0b5c2ef3728f6a862c34be93"></h2>
 #### 3.5.2.2 支持向量机（SVM）进行分类
 
 在机器学习领域，支持向量机SVM(Support Vector Machine）是一个有监督的学习模型，通常用来进行模式识别、分类、以及回归分析。
@@ -135,6 +195,7 @@ SVM的主要思想可以概括为两点：
 ⑴它是针对线性可分情况进行分析，对于线性不可分的情况，通过使用非线性映射算法将低维输入空间线性不可分的样本转化为高维特征空间使其线性可分，从而使得高维特征空间采用线性算法对样本的非线性特征进行线性分析成为可能
 ⑵它基于结构风险最小化理论之上在特征空间中建构最优分割超平面，使得学习器得到全局最优化，并且在整个样本空间的期望风险以某个概率满足一定上界。
 
+<h2 id="21368cab7e6be750f6930f26872bdd34"></h2>
 #### 线性支持向量机
 
 SVMs 支持向量机尝试构建一个超平面，最大限度地发挥这两个类之间的空白。它选择输入数据的一个子集,即最靠近这个超平面的观测数据(称为支持向量)
@@ -156,6 +217,7 @@ scikit-learn中有好几种支持向量机实现。
 “SVC”代表支持向量分类器(Support Vector Classifier)(也存在回归SVMs，在scikit-learn中叫作“SVR”)。
 
 
+<h2 id="30e6dc519b02a1c9361c44a4e728aa7d"></h2>
 #### 3.5.2.2.2. Using kernels 使用内核
 
 类别 不总是可以用超平面分离，所以人们希望能有一些非线性的,多项式或指数的,决策函数：
@@ -170,6 +232,7 @@ svc = svm.SVC(kernel=’linear’)
 多项式核
 ```python
 svc = svm.SVC(kernel=’poly’,degree=3) 
+<h2 id="a009ab3de42b6f3ebb796d81bf522875"></h2>
 # degree: polynomial degree
 ```
 
@@ -179,6 +242,7 @@ svc = svm.SVC(kernel=’poly’,degree=3)
 RBF核(径向基函数 Radial Basis)
 ```python
 svc = svm.SVC(kernel=’rbf’) 
+<h2 id="cc00618b1294c114a9357a512bae6771"></h2>
 # gamma: inverse of size of radial kernel
 ```
 ![](http://scipy-lectures.github.io/_images/svm_kernel_rbf.png)
@@ -187,11 +251,13 @@ PS.前两个对数字数据集有更好的预测性能
 
 ======================================
 
+<h2 id="df7233c170cd11b783e36cd881fe5f88"></h2>
 ### 3.5.3. 聚类 Clustering ：将观测值分组
 
 给定鸢尾花数据集，假如我们只知道共有三种鸢尾花，但是不知道每个数据 对应的种类。
 我们可以尝试非监督学习：我们可以通过某些标准将观测值聚类到几个组别里。
 
+<h2 id="4fcb97c71c13c4ea699fc9e733ed6b41"></h2>
 #### 3.5.3.1  k均值聚类 K-means clustering 
 
 最简单的聚类算法是k均值算法。
@@ -224,6 +290,7 @@ array([0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2])
 ![](http://scipy-lectures.github.io/_images/k_means_iris_8.png)
 
 
+<h2 id="b6716bcc1f4eef556f17e78ffdcc6da2"></h2>
 #### 应用到图像压缩
 
 Lena是经典的图像处理实例 图像, 8位灰度色深, 尺寸512 x 512
@@ -241,6 +308,7 @@ lena = misc.lena().astype(np.float32)
 
 ```python
 X = lena.reshape((-1, 1))
+<h2 id="d98bf486da13049d3c944ea9bd526b0f"></h2>
 # X.shape -> (262144, 1)
 
 k_means = cluster.KMeans(5)
@@ -252,9 +320,11 @@ values = k_means.cluster_centers_.squeeze()
 labels = k_means.labels_
 
 lena_compressed = np.choose(labels, values)
+<h2 id="9e25d15440e313ddcdb19d43a00a8458"></h2>
 #lena_compressed.shape  (262144,)
 
 lena_compressed.shape = lena.shape
+<h2 id="29ba98fde37d2c8a1c67c4e21a0e54cf"></h2>
 #lena_compressed.shape  (512, 512)
 ```
 
@@ -271,6 +341,7 @@ plt.show()
 
 =========================================================
 
+<h2 id="0613c6a0178e373ecd734f761709b23d"></h2>
 ### 3.5.4. 用主成分分析(Principal Component Analysis)来降维
 
 PCA是将训练数据（向量形式）全部转化成其协方差，然后进行SVD拆分，之后它们的用法大致相同，
@@ -304,6 +375,7 @@ plt.show()
 PCA不仅在可视化高维数据集时非常有用。
 它还可以作为预处理步骤来帮助加速对高维数据不那么有效率的监督方法。
 
+<h2 id="845933fcaeb6332543e41cb01e51c792"></h2>
 ### 3.5.5。全部放在一起：人脸识别
 
 一个使用PCA降维和SVM分类来进行人脸识别的例子
@@ -318,13 +390,16 @@ from sklearn import cross_validation as cross_val
 手动下载 [数据](http://vis-www.cs.umass.edu/lfw/lfw-funneled.tgz) 并放到 ~/scikit_learn_data/lfw_home/  目录下
 
 ```python
+<h2 id="b4ede334a85781427ad4ae4a64fcb3ca"></h2>
 # .. load data ..
 lfw_people = datasets.fetch_lfw_people(min_faces_per_person=70, resize=0.4)
 perm = np.random.permutation(lfw_people.target.size)
 lfw_people.data = lfw_people.data[perm]
 lfw_people.target = lfw_people.target[perm]
 faces = np.reshape(lfw_people.data, (lfw_people.target.shape[0], -1))
+<h2 id="fa9ffafb9e525de8ddd97d29db32ec64"></h2>
 #StratifiedKFold: 分层K-折叠交叉验证迭代器
+<h2 id="b6590485406120d97498042a2e08ac1f"></h2>
 #把数据分割为 训练／测试集
 train, test = iter(cross_val.StratifiedKFold(lfw_people.target, n_folds=4)).next()
 
@@ -332,16 +407,19 @@ X_train, X_test = faces[train], faces[test]
 y_train, y_test = lfw_people.target[train], lfw_people.target[test]
 
 
+<h2 id="3de2bcfa7249f4529c4d4de2e8bcd12b"></h2>
 # .. 降维 ..
 pca = decomposition.RandomizedPCA(n_components=150, whiten=True)
 pca.fit(X_train)
 X_train_pca = pca.transform(X_train)
 X_test_pca = pca.transform(X_test)
 
+<h2 id="93d9929585bebf4df3d486e4abf08350"></h2>
 # .. 分类 ..
 clf = svm.SVC(C=5., gamma=0.001)
 clf.fit(X_train_pca, y_train)
 
+<h2 id="0e629c40091a3446dde634e7419bc36a"></h2>
 # .. 预测新图像 ..
 for i in range(10):
     print lfw_people.target_names[clf.predict(X_test_pca[i])[0]]
@@ -350,6 +428,7 @@ for i in range(10):
     _ = raw_input()
 ```
 
+<h2 id="07bc8d8f0c7abc03e7873690065e2bfd"></h2>
 ### 3.5.6 线性模型：从回归稀疏
 
 糖尿病数据集
@@ -366,6 +445,7 @@ diabetes_y_test  = diabetes.target[-20:]
 
 现在的任务是用来从生理指标预测疾病
 
+<h2 id="8db4f290d806d5df45b60a1a83cddd4b"></h2>
 #### 稀疏模型
 
 为了改善这个问题的处理，我们只关注有信息的特性, 将没有信息的特性设置为0。
@@ -376,8 +456,10 @@ diabetes_y_test  = diabetes.target[-20:]
 from sklearn import linear_model
 regr = linear_model.Lasso(alpha=.3)
 regr.fit(diabetes_X_train, diabetes_y_train) 
+<h2 id="2bccfe2f92e9cc9ba033fe601cdeb84c"></h2>
 #regr.coef_ # very sparse coefficients
 regr.score(diabetes_X_test, diabetes_y_test) 
+<h2 id="bbf4e98d546645ac45dcf2f60f3d2e2a"></h2>
 # 0.55108354530029779
 ```
 
@@ -387,17 +469,22 @@ regr.score(diabetes_X_test, diabetes_y_test)
 lin = linear_model.LinearRegression()
 lin.fit(diabetes_X_train, diabetes_y_train) 
 lin.score(diabetes_X_test, diabetes_y_test) 
+<h2 id="f992894c5701a3551f499b1e6914df63"></h2>
 # 0.58507530226905691
 ```
 
+<h2 id="137b0c419cd6ce6b57e7320eb41b5735"></h2>
 #### 同一问题的不同算法
 
 同一数学问题可以用不同算法解决。例如,sklearn中的Lasso对象使用坐标下降(coordinate descent)方法 解决套索回归，这在大数据集时非常有效率。然而，sklearn也提供了LassoLARS对象，使用LARS 在解决权重向量估计非常稀疏，观测值很少的问题时很有效率。
 
+<h2 id="130526ec2eb670f8b6aef37b9efe2535"></h2>
 ###3.5.7。型号选择：选择估值器及其参数
 
+<h2 id="bcf64e07398790bedec0c72f9f2e7c0b"></h2>
 #### 3.5.7.1。网格搜索和交叉验证估计
 
+<h2 id="bad9c05bf8d2f051d7ad419947e10e2b"></h2>
 #### 3.5.7.1.1 网格搜索
 
 scikit-learn提供了一个对象，该对象给定数据，在拟合一个参数网格的估计器时计算分数，并且选择可以最大化交叉验证分数的参数。这个对象在构建时使用一个估计器并且暴露出估计器API：
@@ -412,13 +499,16 @@ clf = grid_search.GridSearchCV(estimator=svc, param_grid=dict(gamma=gammas),
                    n_jobs=-1)
 clf.fit(digits.data[:1000], digits.target[:1000]) 
 clf.best_score
+<h2 id="c1a54921f663a178b39ed00f20a747bb"></h2>
 # 0.93200000000000005
 clf.best_params_
+<h2 id="0e9927267480e7aea2fcb651188c82c7"></h2>
 # {'gamma': 0.00059948425031894088}
 ```
 
 GridSearchCV默认使用三次(3-fold)交叉验证。如果它探测到一个分类器被传递，而不是一个回归量，它使用3次分层验证。
 
+<h2 id="0ad88aee957ce82d156a5b067bc31e61"></h2>
 #### 3.5.7.1.2。交叉验证估计器
 
 交叉验证在 algorithm by algorithm基础上可以更有效地设定参数。 
@@ -432,8 +522,10 @@ X_diabetes = diabetes.data
 y_diabetes = diabetes.target
 lasso.fit(X_diabetes, y_diabetes)
 
+<h2 id="3c8443c677c5d8c4e6407ec30c5d25e1"></h2>
 # The estimator chose automatically its lambda:
 lasso.alpha_
+<h2 id="b0e322dec0b7db89d1cec1bee665b002"></h2>
 # 0.012291895087486173
 ```
 

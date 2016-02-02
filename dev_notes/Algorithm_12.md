@@ -1,10 +1,51 @@
-[quick sort](#quicksort)
-<h1 id='quicksort'></h1>
+...menustart
 
+ * [算法1,2](#db8c4fa2ffa5f5337a11c39e5c3548bf)
+	 * [概率review](#a9d7307d1dc411da0b6eb0ada62927fe)
+			 * [Sample Space 样本空间](#0161afd90bc8befe6a9b0095b431d453)
+			 * [Events](#87f9f735a1d36793ceaecd4e47124b63)
+			 * [Random Variables](#8a93f7814e04aeb4a3435d0667b581d7)
+			 * [Expectation 期望值](#2426f069e30ba72470f5884dd0d1978b)
+			 * [Linearity of Expectation 期望值的线性特征](#c5b39bd40ef8a8a3021cb9c1f2293b26)
+			 * [Example : Load Balancing Solution](#fb51e66716580be0b390976538460c1a)
+			 * [Conditional Probability](#eb79da64dba6f5b2add70bb07a77689d)
+			 * [Independence (of Events)](#eb614aadbbb53ab4bdd7a65c0ff5d644)
+			 * [Independence (of Random Variable)](#10a907c436cbc968b7b76bb9e0686d49)
+	 * [Introduce](#19a655d3c2b379ac5f3939da282171ce)
+		 * [* Karatsuba算法 快速乘法](#6161458df6f5faaf20aa9e3c9b2357fa)
+		 * [* Merge sort 归并排序](#2c25ac4f1d4c0332ec7361b4a588027c)
+			 * [Running time](#2dffdee1d503567d43c631986c599012)
+			 * [Asymptotic analysis 渐近分析](#a3b94ca02e9a48292c9644ca761f6370)
+				 * [Big-Oh](#fede0c757a997bccb043b815fae4b9c0)
+				 * [Big Omega Ω](#daa4de82b37d76981d80c7ccbacabc06)
+				 * [Theta Notation Θ](#f7013ee4fafd97a3dfd919d868a4e46c)
+				 * [Little-Oh Notation](#fd6fd45dcd7b59f02ed1cb5a099d0c8c)
+				 * [例子](#8cb94eb1990adbea3766315549a066d8)
+		 * [* Counting Inversions 计算逆序](#96e912ecc2f216fb4592e14b6fc0f253)
+		 * [* closest pairt 距离最近两个点](#a7821e54d9166580e80d347a40579b9b)
+			 * [Master Method](#3d588385624782d33755dbed1d2055b0)
+			 * [Proof Master Method](#62ba17118eebe254d98279c6b41311d1)
+		 * [* BinarySearch](#2eb8bb773d9f8334d49ff0ded73c5a1e)
+		 * [* Quick Sort](#09fa4ffc1e0ce3b966b8e18f696c808a)
+ * [[ lo , hi ]](#ee42234aeac3963cbbb1928be146f7cb)
+	 * [Linear-Time Selection](#e9bced6ef0b00f17aa977807b93dc751)
+		 * [* Randomized Selection](#465c2b7e3cca8883109e9929ea950b48)
+ * [param : order start from 0](#54a475b35810d94c5e31f858207584dd)
+ * [return: order-th smallest element](#623387d4a7924031688d07fcc97106d6)
+ * [Caution: will modify raw array](#7089dbd8f929a0bc138c25176952ec95)
+
+...menuend
+
+
+[quick sort](#quicksort)
+
+<h2 id="db8c4fa2ffa5f5337a11c39e5c3548bf"></h2>
 # 算法1,2
 
+<h2 id="a9d7307d1dc411da0b6eb0ada62927fe"></h2>
 ## 概率review
 
+<h2 id="0161afd90bc8befe6a9b0095b431d453"></h2>
 #### Sample Space 样本空间
 
  - `sample space Ω`= 'all possible outcomes'  ,(Ω is usually finite)
@@ -15,6 +56,7 @@
 rolling 2 dice, Ω size = 36, p(i) = 1/36
 
 
+<h2 id="87f9f735a1d36793ceaecd4e47124b63"></h2>
 #### Events 
 
  - an `event` is a subset S⊆Ω
@@ -24,6 +66,7 @@ rolling 2 dice, Ω size = 36, p(i) = 1/36
 rolling 2 dice, event S : sum of dice ==7
 P[S] = (1/36) * 6 = 1/6
 
+<h2 id="8a93f7814e04aeb4a3435d0667b581d7"></h2>
 #### Random Variables
 
  - A random variable `X` is a real-valued function `X:Ω->ℝ`
@@ -35,6 +78,7 @@ P[S] = (1/36) * 6 = 1/6
 > example:
 sum of the 2 dice
 
+<h2 id="2426f069e30ba72470f5884dd0d1978b"></h2>
 #### Expectation 期望值
 
 > 期望值是随机变量各个 输出值·概率值的 和, 也叫随机变量均值
@@ -49,6 +93,7 @@ sum of the 2 dice
     P(X=48)=0.01, P(X=-2)=0.99 , E(X) = 48x0.01+(-2)x0.99 = -1.5圆
     购买5注的期望收益为 -1.5*5 = -7.5圆
 
+<h2 id="c5b39bd40ef8a8a3021cb9c1f2293b26"></h2>
 #### Linearity of Expectation 期望值的线性特征
 
 期望值E是一个线形函数。
@@ -68,6 +113,7 @@ E[ X₁+X₂ ] = E[X₁] + E[X₂] = 7 .
 
 在一般情况下，两个随机变量的积的期望值不等于这两个随机变量的期望值的积。特殊情况是当这两个随机变量是相互独立的时候（也就是说一个随机变量的输出不会影响另一个随机变量的输出）.
 
+<h2 id="fb51e66716580be0b390976538460c1a"></h2>
 #### Example : Load Balancing Solution
 
  - need to assign n processes to n servers
@@ -82,6 +128,7 @@ E[ X₁+X₂ ] = E[X₁] + E[X₂] = 7 .
 > - E[Y]=E[ ΣXⱼ ] =Σ E[Xⱼ] =Σ(p[Xⱼ=0]·0 + p[Xⱼ=1]·1) = Σ1/n = 1
 
 
+<h2 id="eb79da64dba6f5b2add70bb07a77689d"></h2>
 #### Conditional Probability
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/conditional_probability.png)
@@ -97,6 +144,7 @@ Y = sum of 2 dices is 7
 P[X|Y] = P[X∩Y]/P[Y] = (2/36)/(6/36) = 1/3
 
 
+<h2 id="eb614aadbbb53ab4bdd7a65c0ff5d644"></h2>
 #### Independence (of Events)
 
 事件A是否发生 对事件B发生的概率没有影响,反之亦然。这样的两个事件叫做`相互独立事件`。
@@ -114,6 +162,7 @@ if X,Y are independent , it holds: `<=> P[X|Y]=P[X] <=> P[Y|X]=P[Y]`
 你对独立事件的直觉，一般都是错的
 
 
+<h2 id="10a907c436cbc968b7b76bb9e0686d49"></h2>
 #### Independence (of Random Variable)
 
 > definition:
@@ -136,12 +185,15 @@ if A,B are independent , then E[A·B]=E[A]·E[B]
 
 ---
  
+<h2 id="19a655d3c2b379ac5f3939da282171ce"></h2>
 ## Introduce
 
+<h2 id="6161458df6f5faaf20aa9e3c9b2357fa"></h2>
 ### * Karatsuba算法 快速乘法
 
 TODO
 
+<h2 id="2c25ac4f1d4c0332ec7361b4a588027c"></h2>
 ### * Merge sort 归并排序
 
 merge sort 是分治法的应用范例。
@@ -189,6 +241,7 @@ def Merge(left,right):
     return reslut
 ```
 
+<h2 id="2dffdee1d503567d43c631986c599012"></h2>
 #### Running time 
 
 `Merge 单次 Running Time:`
@@ -216,6 +269,7 @@ recursion tree: 把 算法过程，用一颗`树`的结构表示出来。分治�
 Total Runing time = 6n x (log₂n +1) = `6n·log₂n + 6n` .
 
 
+<h2 id="a3b94ca02e9a48292c9644ca761f6370"></h2>
 #### Asymptotic analysis 渐近分析
 
 high-level idea: 忽略 低阶项 和 首项系数。
@@ -224,6 +278,7 @@ example:  Merge sort 的 `6n·log₂n + 6n` 在渐近分析中 等价与 `nlog�
 
 Terminology 术语: Merge sort running time = `O( nlogn )`
 
+<h2 id="fede0c757a997bccb043b815fae4b9c0"></h2>
 ##### Big-Oh
 
 算法的时间复杂度是一个函数，它定量描述了该算法的运行时间。
@@ -260,6 +315,7 @@ T(n) = `aⱼuʲ`+ ... + a₁n+ a₀ , 证明 T(n) = O(`nʲ`)
 
 c , n₀ 不可以依赖于 n ，所以假设不成立。
 
+<h2 id="daa4de82b37d76981d80c7ccbacabc06"></h2>
 ##### Big Omega Ω
 
 `Ω 描述T的下限`。
@@ -269,6 +325,7 @@ c , n₀ 不可以依赖于 n ，所以假设不成立。
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Big-Omega.png)
 
 
+<h2 id="f7013ee4fafd97a3dfd919d868a4e46c"></h2>
 ##### Theta Notation Θ
 
 Θ== T
@@ -278,6 +335,7 @@ T(n)=Θ( f(n) )  当且仅当 T(n)=O( f(n) ) and T(n)=Ω( f(n) )。
 等价于: 当且仅当 存在3个常数 c₁,c₂,n₀(n₀>0),  使得对于任意 n>=n₀, c₁·f(n)<=T(n)<=c₂·f(n).
 
 
+<h2 id="fd6fd45dcd7b59f02ed1cb5a099d0c8c"></h2>
 ##### Little-Oh Notation
 
 和 Big-Oh 类似，只是 常数c 只能取正数。
@@ -285,6 +343,7 @@ T(n)=Θ( f(n) )  当且仅当 T(n)=O( f(n) ) and T(n)=Ω( f(n) )。
 eg. for all k>=1 , nᵏ⁻¹=o( nᵏ )
 
 
+<h2 id="8cb94eb1990adbea3766315549a066d8"></h2>
 ##### 例子
 
 题目: T(n)=0.5·n² + 3n , 哪些是对的？
@@ -323,6 +382,7 @@ eg. for all k>=1 , nᵏ⁻¹=o( nᵏ )
 于是: 0.5( f(n) + g(n) ) <= max(f,g) <= ( f(n) + g(n) ) , 得证。
 
 
+<h2 id="96e912ecc2f216fb4592e14b6fc0f253"></h2>
 ### * Counting Inversions 计算逆序
 
 题: 计算一个数组中，逆序的个数, eg. (1,3,4,2,4,6) 逆序个数为 (3,2),(5,2),(5,4) 3个。
@@ -385,6 +445,7 @@ def Merge_Count_Inv(left,right):
 ```
 
 
+<h2 id="a7821e54d9166580e80d347a40579b9b"></h2>
 ### * closest pairt 距离最近两个点
 
 题：有一组点[ (x₁,y₁),(x₂,y₂),...,(xn,yn) ] ,求距离最近的两个点。
@@ -498,6 +559,7 @@ def ClosestSplitPair( lists_x, lists_y , delta ):
 
 
 
+<h2 id="3d588385624782d33755dbed1d2055b0"></h2>
 #### Master Method
 
 如图: 递归方法的T(n)各种情况下的时间复杂度
@@ -554,6 +616,7 @@ a < bᵈ , 所以是case(2) ,  O(n²)
 
 ---
 
+<h2 id="62ba17118eebe254d98279c6b41311d1"></h2>
 #### Proof Master Method
 
 我们看一下 recursive tree 的某一层 level j 的计算量
@@ -584,6 +647,7 @@ b: rate of work shrinkage (RWS)
 
 ---
 
+<h2 id="2eb8bb773d9f8334d49ff0ded73c5a1e"></h2>
 ### * BinarySearch
 
 ```python
@@ -605,6 +669,7 @@ def BinarySearch( sorted_list , lo, hi , num ):
     return -1
 ```
 
+<h2 id="09fa4ffc1e0ce3b966b8e18f696c808a"></h2>
 ### * Quick Sort
 
 > key idea: partition around a pivot
@@ -644,6 +709,7 @@ p|... < p ...|... > p ...| ? unpartitioned
 > quicksort python 实现:
 
 ```python
+<h2 id="ee42234aeac3963cbbb1928be146f7cb"></h2>
 # [ lo , hi ]
 def QuickSort( lists , lo , hi  ):
     if hi - lo < 1 : 
@@ -675,8 +741,10 @@ def QuickSort( lists , lo , hi  ):
 
 ---
 
+<h2 id="e9bced6ef0b00f17aa977807b93dc751"></h2>
 ## Linear-Time Selection
 
+<h2 id="465c2b7e3cca8883109e9929ea950b48"></h2>
 ### * Randomized Selection
 
  - Input: array with n size
@@ -707,8 +775,11 @@ running time 依赖于 pivot的选择，bad case O(n²), 因为随机选择 pivo
 ```
 
 ```python
+<h2 id="54a475b35810d94c5e31f858207584dd"></h2>
 # param : order start from 0
+<h2 id="623387d4a7924031688d07fcc97106d6"></h2>
 # return: order-th smallest element
+<h2 id="7089dbd8f929a0bc138c25176952ec95"></h2>
 # Caution: will modify raw array 
 def RSelect( lists , lo, hi  , order ):
     if hi - lo < 1 : 

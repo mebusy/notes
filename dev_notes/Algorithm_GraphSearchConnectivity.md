@@ -1,9 +1,38 @@
+...menustart
+
+ * [Graphs Search and Connectivity](#f0d7fbb0d536bd31e98c816abecf06db)
+	 * [Overview](#3b878279a04dc47d60932cb294d96259)
+		 * [A few Motivations](#6a5969354d78fb42530a1ba9ef9c8a84)
+		 * [Generic Graph Search](#f7714d50e6db96c58479fdaa5a307a37)
+		 * [BFS vs. DFS](#8f0317dee85f46e2bef49cbc47b53c95)
+	 * [BFS](#838fea3c1a3e8dd6c22fe9605a701668)
+		 * [BFS 算法:](#9c054fc83157f4b9181e4cdc4fe6ff82)
+ * [[all nodes initially unexplored]](#d176df2069c4df6c60921c3b256ab445)
+		 * [Application: Shortest Paths](#a607a389d3fa7d06d4ce8c6940b4f3bf)
+		 * [Application: Undirected Connectivity](#e47cac3e7cfeacdc8aed91eb9e98eea5)
+	 * [DFS](#c1bb62b63c65be3760b715faad0bdf8d)
+		 * [Application: Topological Sort](#c9350e8026b6019e6720cafd1dc497cd)
+			 * [Straightforward Solution](#3543902b9027d30d2b49582942e85295)
+			 * [Topological Sort via DFS (Slick)](#d7a8070d6eb65d2ff093c042be15718d)
+		 * [Computing Strong Components: The Algorithm](#93b138293d718987548fc19b16f45497)
+			 * [Strongly connected components (SCC) of a directed graph 有向图强连通分量](#b231ce60bec70f980b99bd9d572e0197)
+			 * [Why Depth-First Search ?](#fefa6604dfa6c82f161b0fa76c9ea681)
+			 * [Kosaraju's Two-Pass Algorithm](#901a2e2265db7c1c2e2049c90efca06d)
+			 * [Kosaraju Algorithm Analysis](#e3579feaabb0560de815f22184bda921)
+	 * [exam](#654816f85dfe2115674e7115c7d1ea51)
+
+...menuend
 
 
+
+
+<h2 id="f0d7fbb0d536bd31e98c816abecf06db"></h2>
 # Graphs Search and Connectivity
 
+<h2 id="3b878279a04dc47d60932cb294d96259"></h2>
 ## Overview
 
+<h2 id="6a5969354d78fb42530a1ba9ef9c8a84"></h2>
 ### A few Motivations
 
  1. check if a network is connected (can get to anywhere from anywhere else)
@@ -13,6 +42,7 @@
    - nodes: a partially completed puzzle
    - arcs : filling in one new squares
 
+<h2 id="f7714d50e6db96c58479fdaa5a307a37"></h2>
 ### Generic Graph Search
 
 Goal: 
@@ -33,6 +63,7 @@ GenericAlgorithm( given Graph G , vertex s ):
 
 **Claim**: at the end of algorithm, v explored <==> G has a path from s to v. (G undirected or directed)
 
+<h2 id="8f0317dee85f46e2bef49cbc47b53c95"></h2>
 ### BFS vs. DFS
 
 Breadth-First Search (BFS):
@@ -49,15 +80,18 @@ Depth-First Search (DFS):
  - compute connected components in *directed* graphs
  - O(m+n) time using a stack (LIFO or via recursion)
 
+<h2 id="838fea3c1a3e8dd6c22fe9605a701668"></h2>
 ## BFS
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BFS.png)
 
 
+<h2 id="9c054fc83157f4b9181e4cdc4fe6ff82"></h2>
 ### BFS 算法:
 
 ```
 BFS( graph G , start vertex s)
+<h2 id="d176df2069c4df6c60921c3b256ab445"></h2>
 #[all nodes initially unexplored]
 - mark s as explored
 - let Q=queue data structure (FIFO initialized with s)
@@ -74,6 +108,7 @@ BFS( graph G , start vertex s)
  - At the end of BFS, v explored <=> G has a path from s to v.
  - running time of main loop = O(n_s + m_s) , where n_s = number of nodes reachable from s, m_s = number of edges reachable from s.
 
+<h2 id="a607a389d3fa7d06d4ce8c6940b4f3bf"></h2>
 ### Application: Shortest Paths
 
 Goal: compute dist(v), the fewest number of edges on a path from s to v.
@@ -94,6 +129,7 @@ When considering edge(v,w):
 
 At termination , dist(v)=i <=> v in iᵗʰ large ( shortest s-v path has i edges )
 
+<h2 id="e47cac3e7cfeacdc8aed91eb9e98eea5"></h2>
 ### Application: Undirected Connectivity
 
 Most of this stuff about graph search it really doesn't matter undirected or directed, the big exception is when you're computing connectivity.
@@ -125,6 +161,7 @@ Why :
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BFS_connected_components.PNG)   
 
+<h2 id="c1bb62b63c65be3760b715faad0bdf8d"></h2>
 ## DFS
 
 DFS explores aggressively and uses when trying to solve a maze.
@@ -148,6 +185,7 @@ DFS(graph G , start vertex s):
  - At the end of the algorithm , v marked as explored <=> ∃ path from s to v in G.
  - Running time is O(n_s + m_s ) , n_s is number of nodes reachable from s, m_s is number of edges reachable from s. Look at each node in connected compoment of s at most once, each edge at most twice.
 
+<h2 id="c9350e8026b6019e6720cafd1dc497cd"></h2>
 ### Application: Topological Sort
 
 A *topological ordering* of a ***directed*** graph G is a labelling *f* of G's node sucn that:
@@ -166,6 +204,7 @@ So there are only two topological orderings of the directed graph above.
  - Note: G has directed cycle => **NO** topological ordering
  - Theorem: no directed cycle => can compute topological ordering in O(m+n) time
 
+<h2 id="3543902b9027d30d2b49582942e85295"></h2>
 #### Straightforward Solution
 
 Every directed acyclic graph has at least a sink vertex(汇顶点) . That is a vertex without any outgoing arcs. 上面的例子中, t 就是 sink vertex. 
@@ -187,6 +226,7 @@ The final position in the ordering are the sink vertices.
 If you take a directed acyclic graph, and you delete one or more vertices from it, you still gonna have a directed acyclic graph.
  
  
+<h2 id="d7a8070d6eb65d2ff093c042be15718d"></h2>
 #### Topological Sort via DFS (Slick)
 
 ```
@@ -216,6 +256,7 @@ Then maybe after that we tried on S. So, maybe S is the 3rd vertex that the for-
 
 Running Time : O(m+n) , you will not visit a node twice.
 
+<h2 id="93b138293d718987548fc19b16f45497"></h2>
 ### Computing Strong Components: The Algorithm
 
 如果有向图是强连通的，则任两个节点都是相互可达。故必可做一回路经过图中所有各点。
@@ -225,6 +266,7 @@ Running Time : O(m+n) , you will not visit a node twice.
 非强连通图有向图的 极大强连通子图，称为强连通分量(strongly connected components)。
 
 
+<h2 id="b231ce60bec70f980b99bd9d572e0197"></h2>
 #### Strongly connected components (SCC) of a directed graph 有向图强连通分量
 
 G are the equivalence classes of the relation:
@@ -234,12 +276,14 @@ u~v <==> ∃ path u ~~> v and  v ~~> u in G
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SCC.PNG)
 
 
+<h2 id="fefa6604dfa6c82f161b0fa76c9ea681"></h2>
 #### Why Depth-First Search ?
 
 如上图，如果我们从 最右侧的SCC 中的任意一个 node开始查找, DFS可以找到这3个nodes 组成的SCC; 但是 如果最下面的 node开始查找, DFS会找到下方和有方两个SCC的集合; 如果我们直接从最左边的 node 开始查找，则DFS会找到整个graph. 
 
 可以看到，从不同的node开始DFS, 会得到不同的结果. 所以，在应用DFS之前，我们需要一步预处理。
 
+<h2 id="901a2e2265db7c1c2e2049c90efca06d"></h2>
 #### Kosaraju's Two-Pass Algorithm
 
 这个算法利用了一个事实，即转置图（同图中的每边的方向相反）具有和原图完全一样的强连通分量。
@@ -302,6 +346,7 @@ DFS(graph G, node i)
 
 **Running TIme**: 2*DFS = O(m+n)
 
+<h2 id="e3579feaabb0560de815f22184bda921"></h2>
 #### Kosaraju Algorithm Analysis
 
 **Claim**: the SCCs of a directed graph induce an acyclic "meta-graph".
@@ -338,6 +383,7 @@ for 2nd pass:
  - rest of DFS_Loop like recursing on G with C* deleted ( starts in a sink SCC of G-C*)
  
 
+<h2 id="654816f85dfe2115674e7115c7d1ea51"></h2>
 ## exam
 
  1. Q1: θ(m)

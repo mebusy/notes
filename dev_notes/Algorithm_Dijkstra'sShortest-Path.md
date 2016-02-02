@@ -1,9 +1,29 @@
+...menustart
+
+ * [Dijkstra's Shortest-Path](#26e3bfaa6f7cabafa5ca159b210d4d49)
+	 * [Dijkstra's Shortest-Path Algorithm](#9da49bac70bc04960fbddf1ef0a5d2d9)
+		 * [Problem: Single-Source Shortest Paths](#ca071722757a16a38066ef54846aa6c3)
+		 * [Why Another Shortest-Path Algorithm?](#1eaef9d12a746195ea15ef25ebc3a7c8)
+		 * [Pseudo code](#34460a35a20211ec1d40102cc5f52de5)
+	 * [Examples](#ff7c0fcd6a31e735a61c001f75426961)
+	 * [Implementation and Running time](#3e5d3e41b577901d52f5a80509aae808)
+		 * [Heap Review](#377e23358a8c1384601aa5401d0c7af4)
+		 * [Use Heap to Speedup Dijkstra](#6d07a1b2f36548f5400dad288e02b4f8)
+		 * [Maintaining the Invariants](#d52f64236fbf5cf269d2ab1ca15680bd)
+	 * [Running Time Analysis](#e1c6f3377a2758270a95bc56571d46a5)
+
+...menuend
+
+
+<h2 id="26e3bfaa6f7cabafa5ca159b210d4d49"></h2>
 # Dijkstra's Shortest-Path
 
+<h2 id="9da49bac70bc04960fbddf1ef0a5d2d9"></h2>
 ## Dijkstra's Shortest-Path Algorithm
 
 带权重的最短路劲搜索，权重不能为负
 
+<h2 id="ca071722757a16a38066ef54846aa6c3"></h2>
 ### Problem: Single-Source Shortest Paths
 
 Basically what we wanna do is compute something like driving directions. So we're given as input a graph, in the lecture I'm gonna work with directed graph , although the same algorithm would work undirected graphs with cosmetic changes.
@@ -22,6 +42,7 @@ We'll make 2 assumptions for the lectures. One is really just for convenience. T
  - [important] le >=0 , ∀ e ∊ E  ( length of edge is non-negative)
 
 
+<h2 id="1eaef9d12a746195ea15ef25ebc3a7c8"></h2>
 ### Why Another Shortest-Path Algorithm?
 
 Question: doesn't BFS already compute shortest paths in linear time ?
@@ -29,6 +50,7 @@ A: BFS works only in the special case where the length of every edge of the grap
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Dijkstra_illu.PNG)
 
+<h2 id="34460a35a20211ec1d40102cc5f52de5"></h2>
 ### Pseudo code
 
 ```
@@ -59,6 +81,7 @@ MainLoop idea 2
 ```
 
 
+<h2 id="ff7c0fcd6a31e735a61c001f75426961"></h2>
 ## Examples
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Dijkstra_iteration1.PNG)
@@ -67,6 +90,7 @@ MainLoop idea 2
  - 2nd iteration: now there is 3 crossing edges: SW,VW,VT, SW scores 4, SVW scores 3, SVT scores 7 , so we choose (s,v,w)
  - 3rd iteration: now there 2 crossing edges left: VT, WT, SVT score 7, SVWT scores 6 , so the final path is (s,v,w,t)
 
+<h2 id="3e5d3e41b577901d52f5a80509aae808"></h2>
 ## Implementation and Running time
 
 What's the running time of "naive" implementation of Dijkstra's algorithm ?  θ(mn)
@@ -76,6 +100,7 @@ There should be n-1 iterations of while loop . In each iteration, we do naively 
 We can do better by not changing the algorithm but changing how we organize the data as the algorithm proceeds.
 
 
+<h2 id="377e23358a8c1384601aa5401d0c7af4"></h2>
 ### Heap Review
 
  - conceptually , a perfectly balanced binary tree 
@@ -87,6 +112,7 @@ We can do better by not changing the algorithm but changing how we organize the 
 Heaps are generally logically thought of as a complete binary tree, even though they are usually implemented as a laid-out linear array. 
 
 
+<h2 id="6d07a1b2f36548f5400dad288e02b4f8"></h2>
 ### Use Heap to Speedup Dijkstra
 
 Because every itertation of the wild loop is responsible for picking an edge, you might expect that we're going to store edges in the heap. So the first really good idea is to actually use a heap to store vertices rather than edges.
@@ -112,6 +138,7 @@ Show as the pic, there are two different edges(I,II) whose tail is in X , and ha
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Dijkstra_heap_speedup.PNG)
 
 
+<h2 id="d52f64236fbf5cf269d2ab1ca15680bd"></h2>
 ### Maintaining the Invariants
 
 ```
@@ -136,6 +163,7 @@ when W extracted from heap( ie. added to X )
 
 当堆顶元素W被删除后，堆被破快，我们需要重新调调整；W被删除的同时， (w,v) 会成为新的crossing edge, 新的vertex V 只有两种情况： 1) V 原本就在堆里，那V本身就有key[v]值, 这时又会得到一个新的值 A[W]+l_wv, 取2者小的那个作为新的key值； 2) V 不在堆中，key[v] = A[W]+l_wv 加入堆。
 
+<h2 id="e1c6f3377a2758270a95bc56571d46a5"></h2>
 ## Running Time Analysis
 
  - (n-1) Extract mins

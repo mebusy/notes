@@ -1,11 +1,33 @@
+...menustart
+
+ * [Anomaly Detection 异常检测](#8d364c79a6770dc7395296c168efd622)
+	 * [Density estimation](#29c53a82180b5184c50d4d772303e088)
+			 * [Anomaly Detection Example](#347118b310696c7f93c1ff66f8faf8aa)
+			 * [Gaussian (Normal) Distribution](#532e6903300860673cb95c382b974fd0)
+			 * [Parameter estimation](#f084e616e40ec63ecf915155cb46a54c)
+			 * [Anomaly Detection Algorithm](#68a5f465a0d97c3d5229bd80531c4d0e)
+	 * [Building an Anomaly Detection System](#c59486b104ab1cb60cb63f475557ac3d)
+			 * [开发并评估 anomaly detection system](#7e93cc035fcb67fd9180c2e41487373d)
+			 * [Anomaly Detection vs. Supervised learning](#f1f47b770f28badf6af9c7627badbfb5)
+			 * [Choose What features to Use](#711dff46b8015be0217bd08ede807ffb)
+	 * [Multivariate Gaussian Distribution 多元高斯分布](#08a98dde435875e68d7ff5e48688956e)
+			 * [Using Multivariate Gaussian Distribution](#a0d57426b1ce049b2cfafa06eac4786d)
+			 * [Original model vs. Multivariate Gaussian](#a0afe19d45ea8a302c6f1c352e52d417)
+
+...menuend
+
+
 [TOC]
 
+<h2 id="8d364c79a6770dc7395296c168efd622"></h2>
 # Anomaly Detection 异常检测
 
+<h2 id="29c53a82180b5184c50d4d772303e088"></h2>
 ## Density estimation
 
 给定无标签的训练集，build a model for p(x), in another word, 我们将对x的分布概率建模。如果 `p(x_test )< ϵ` => anomaly ; while `p(x_test)>= ϵ` => ok.
 
+<h2 id="347118b310696c7f93c1ff66f8faf8aa"></h2>
 #### Anomaly Detection Example
 
 > Fraud detection 欺诈检测
@@ -25,6 +47,7 @@
  - x₃ = CPU load ; x₄ = CPU load / network traffic
  - ...
 
+<h2 id="532e6903300860673cb95c382b974fd0"></h2>
 #### Gaussian (Normal) Distribution
 
 > Definition:
@@ -42,6 +65,7 @@ Say `x∊ℝ`, if x is a distributed Gaussian with mean(均值) `μ` , variance(
 如果 `σ`变小，图像会变窄，同时就会变得更高。
 
 
+<h2 id="f084e616e40ec63ecf915155cb46a54c"></h2>
 #### Parameter estimation
 
 假设一堆一维实数数据 服从高斯分布 ，  `x~𝒩(μ,σ²)`。
@@ -52,6 +76,7 @@ Say `x∊ℝ`, if x is a distributed Gaussian with mean(均值) `μ` , variance(
 
 统计学中，`σ²`计算通常会用 1/(m-1), 机器学习中，用 1/m .
 
+<h2 id="68a5f465a0d97c3d5229bd80531c4d0e"></h2>
 #### Anomaly Detection Algorithm
 
 > Training set: { x⁽¹⁾,x⁽²⁾,...,x⁽ᵐ⁾ }
@@ -82,8 +107,10 @@ Say `x∊ℝ`, if x is a distributed Gaussian with mean(均值) `μ` , variance(
   ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/anomaly_example.png)
 
 
+<h2 id="c59486b104ab1cb60cb63f475557ac3d"></h2>
 ## Building an Anomaly Detection System
 
+<h2 id="7e93cc035fcb67fd9180c2e41487373d"></h2>
 #### 开发并评估 anomaly detection system
 
 > The importance of real-number evaluation 实数评价法的重要性
@@ -115,6 +142,7 @@ Say `x∊ℝ`, if x is a distributed Gaussian with mean(均值) `μ` , variance(
  - CV set 也可以用来 选择参数 ε
 
  
+<h2 id="f1f47b770f28badf6af9c7627badbfb5"></h2>
 #### Anomaly Detection vs. Supervised learning
 
 既然我们有了带标签的数据，为什么不直接使用 监督学习算法呢？
@@ -140,6 +168,7 @@ Fraud detection 舞弊检测 | 垃圾邮件
 
 注：Fraud detection 中，如果你是大型网站，并且已经收集了足够多的舞弊数据y=1, 这种情况，可能更倾向于使用 监督学习。
 
+<h2 id="711dff46b8015be0217bd08ede807ffb"></h2>
 #### Choose What features to Use
 
 > Non-gaussian features
@@ -171,6 +200,7 @@ Fraud detection 舞弊检测 | 垃圾邮件
 现在怀疑某台电脑执行某个任务死循环了，这种情况，CPU load会很高，但network 流量很小，这种情况，要检测出异样，只需要添加一个feature x₅= CPU load/network traffic , 正常情况下，   CPU load/network traffic 是线性的；如果陷入死循环， CPU load/network traffic 的值会非常大。
 
 
+<h2 id="08a98dde435875e68d7ff5e48688956e"></h2>
 ## Multivariate Gaussian Distribution 多元高斯分布
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/anomaly_detection_problem.png)
@@ -197,6 +227,7 @@ Fraud detection 舞弊检测 | 垃圾邮件
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/multivariate_gaussian_distribution_pic2.png)
 
 
+<h2 id="a0d57426b1ce049b2cfafa06eac4786d"></h2>
 #### Using Multivariate Gaussian Distribution 
 
 > 参数拟合
@@ -218,6 +249,7 @@ Flag an anomaly if p(x) < ε .
 最初的高斯分布模型 ![][2] 其实就是一种特殊的 多元高斯分布模型，约束关系 Σ=对角矩阵,矩阵对角线元素是σ²， 这个模型的 概率密度函数 的 等高线 都是沿坐标轴分布的。 
 
 
+<h2 id="a0afe19d45ea8a302c6f1c352e52d417"></h2>
 #### Original model vs. Multivariate Gaussian
 
 Original model | Multivariate Gaussian

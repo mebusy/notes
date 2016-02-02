@@ -1,4 +1,13 @@
+...menustart
 
+ * [Plotting data](#5973297b1e05d782b78ef41923b083ad)
+	 * [tips](#e4c9479b11955648dad558fe717a4eb2)
+
+...menuend
+
+
+
+<h2 id="5973297b1e05d782b78ef41923b083ad"></h2>
 # Plotting data
 
     plot操作会替换掉当前plot的内容
@@ -53,6 +62,7 @@
 >> imagesc(A), colorbar, colormap gray % 同时执行3条命令, 使用灰度显示
 ```
 
+<h2 id="e4c9479b11955648dad558fe717a4eb2"></h2>
 ## tips
 ```
 plot(x, y, 'rx', 'MarkerSize', 10); % 改变 点的形状和尺寸
