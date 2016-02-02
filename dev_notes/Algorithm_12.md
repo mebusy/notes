@@ -27,6 +27,59 @@
        * [Proof Master Method](#62ba17118eebe254d98279c6b41311d1)
      * [* BinarySearch](#2eb8bb773d9f8334d49ff0ded73c5a1e)
      * [* Quick Sort](#09fa4ffc1e0ce3b966b8e18f696c808a)
+
+	 * [概率review](#a9d7307d1dc411da0b6eb0ada62927fe)
+
+		 * [Sample Space 样本空间](#0161afd90bc8befe6a9b0095b431d453)
+
+		 * [Events](#87f9f735a1d36793ceaecd4e47124b63)
+
+		 * [Random Variables](#8a93f7814e04aeb4a3435d0667b581d7)
+
+		 * [Expectation 期望值](#2426f069e30ba72470f5884dd0d1978b)
+
+		 * [Linearity of Expectation 期望值的线性特征](#c5b39bd40ef8a8a3021cb9c1f2293b26)
+
+		 * [Example : Load Balancing Solution](#fb51e66716580be0b390976538460c1a)
+
+		 * [Conditional Probability](#eb79da64dba6f5b2add70bb07a77689d)
+
+		 * [Independence (of Events)](#eb614aadbbb53ab4bdd7a65c0ff5d644)
+
+		 * [Independence (of Random Variable)](#10a907c436cbc968b7b76bb9e0686d49)
+
+	 * [Introduce](#19a655d3c2b379ac5f3939da282171ce)
+
+		 * [* Karatsuba算法 快速乘法](#6161458df6f5faaf20aa9e3c9b2357fa)
+
+		 * [* Merge sort 归并排序](#2c25ac4f1d4c0332ec7361b4a588027c)
+
+			 * [Running time](#2dffdee1d503567d43c631986c599012)
+
+			 * [Asymptotic analysis 渐近分析](#a3b94ca02e9a48292c9644ca761f6370)
+
+				 * [Big-Oh](#fede0c757a997bccb043b815fae4b9c0)
+
+				 * [Big Omega Ω](#daa4de82b37d76981d80c7ccbacabc06)
+
+				 * [Theta Notation Θ](#f7013ee4fafd97a3dfd919d868a4e46c)
+
+				 * [Little-Oh Notation](#fd6fd45dcd7b59f02ed1cb5a099d0c8c)
+
+				 * [例子](#8cb94eb1990adbea3766315549a066d8)
+
+		 * [* Counting Inversions 计算逆序](#96e912ecc2f216fb4592e14b6fc0f253)
+
+		 * [* closest pairt 距离最近两个点](#a7821e54d9166580e80d347a40579b9b)
+
+			 * [Master Method](#3d588385624782d33755dbed1d2055b0)
+
+			 * [Proof Master Method](#62ba17118eebe254d98279c6b41311d1)
+
+		 * [* BinarySearch](#2eb8bb773d9f8334d49ff0ded73c5a1e)
+
+		 * [* Quick Sort](#09fa4ffc1e0ce3b966b8e18f696c808a)
+
  * [[ lo , hi ]](#ee42234aeac3963cbbb1928be146f7cb)
    * [Linear-Time Selection](#e9bced6ef0b00f17aa977807b93dc751)
      * [* Randomized Selection](#465c2b7e3cca8883109e9929ea950b48)
@@ -37,7 +90,6 @@
 ...menuend
 
 
-[quick sort](#quicksort)
 
 <h2 id="db8c4fa2ffa5f5337a11c39e5c3548bf"></h2>
 # 算法1,2
