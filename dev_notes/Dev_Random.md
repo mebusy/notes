@@ -1,20 +1,35 @@
 ...menustart
 
  * [让物品掉落符合正态分布，以及lua实现](#43f9b53ed2ee3d129d2574d2936f1b3a)
+
 	 * [随机数](#5bfedcffafba0b2e774d1ec6d40004c0)
+
 	 * [平均分布](#8f9d1fad3452cc29769c94d2d285f88d)
+
 		 * [吗？](#16f7fa08dbbb1144afc6ef34b1dff2e2)
+
  * [创建 interval 数据](#fb6c4cc1cfe5108f5d94c242f5757a37)
+
  * [轴命名](#9a6abcdb19697955f52efe35340945cc)
+
  * [画散列图](#acd9bac73ffe9e696b817e79f94dbcae)
+
  * [画水平线](#43a1b6e873ff09124c9dabceee5df103)
+
  * [title](#d5d3db1765287eef77d7927cc956f50a)
+
 	 * [正态分布](#90a89776a42d6ee4f8c0dbe54dc941ea)
+
  * [plt.title('Histogram')](#7182bbe14f164b24e2da55447b711a72)
+
 	 * [根据权重计算掉落](#efe278b43718253190742df876de40fc)
+
  * [计算各个掉落的间隔interval](#68897f8c277decaea4a755ad2276dbab)
+
  * [plt.ylim(0, 0.5)](#408b91c01f51a33d6f81b0a66556f99d)
+
 	 * [移植到lua](#c9128e4c3013af1bf48669003ac0efe6)
+
 
 ...menuend
 

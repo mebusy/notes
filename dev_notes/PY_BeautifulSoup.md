@@ -1,121 +1,237 @@
 ...menustart
 
  * [BeautifulSoup](#c2ed0329d2d3cf54c78317b209d7c0d5)
+
 	 * [bs 解析器](#06129a15a17f5bf8197a5a520e00a2cb)
+
 	 * [对象的种类](#5316642266b09c1a37c74751ff570d00)
+
 		 * [Tag](#c101058e7ea21bbbf2a5ac893088e90b)
+
  * [<class 'bs4.element.Tag'>](#379d263ac1f13fadf734576b207158f8)
+
 			 * [Name](#49ee3087348e8d44e1feda1917443987)
+
  * [u'b'](#f3e42ecd2dbeec820b77af8f68e9afbe)
+
  * [<blockquote class="boldest">Extremely bold</blockquote>](#48eb0f7e0c8e683b47ce8398badc11d1)
+
 			 * [Attributes](#287234a1ff35a314b5b6bc4e5828e745)
+
  * [u'boldest'](#818569ae898d77e819a49412dd3b36a2)
+
  * [{u'class': u'boldest'}](#6448c52afd2e39bd286642d013285e74)
+
 				 * [多值属性](#f7c0b37da30bc4400b27198d2caf96f3)
+
  * [["body", "strikeout"]](#4ff388748a2fa6927182b872cd9f7962)
+
  * [["body"]](#bf8ad6bae11a712db6b4453016568d02)
+
  * ['my id'](#e9659ecbca012d8de395626344f935fb)
+
  * [u'body strikeout'](#bdbd95bc564c4e441f20eaf28120c5ea)
+
 		 * [NavigableString 可以遍历的字符串](#379f03de69572c4d3aa54f8f8650f428)
+
  * [u'Extremely bold'](#c82db753232850157341caacbc6688b0)
+
  * [<class 'bs4.element.NavigableString'>](#852b6fadd30b225f6edd871b29131169)
+
  * [< blockquote >No longer bold</blockquote>](#7b4221a2d88e18c0c299a70bf53550b6)
+
 		 * [BeautifulSoup](#c2ed0329d2d3cf54c78317b209d7c0d5)
+
  * [u'[document]'](#7b673885f8969d7917218b16ef51995d)
+
 		 * [Comment 注释及特殊字符串](#0753968b4545fc501a4836fa6f324d04)
+
  * [<class 'bs4.element.Comment'>](#eaa59af538a938f563bc19a0979fc6d3)
+
  * [u'Hey, buddy. Want to buy a used parser'](#87d72d6f148478325d340583844ab545)
+
  * [< b >](#9fbd1472479a2c39613ab7f747f3a0d8)
+
  * [<![CDATA[A CDATA block]]>](#33c3a5339e8b45e4684f12903e087128)
+
  * [</b>](#5504ceea91e62031eccf9496eab44be7)
+
 	 * [遍历文档树](#8e18b129f83a9689f747b1880e12ed33)
+
 		 * [子节点](#315dcc9412a4499cf846736fdbaaa72a)
+
 			 * [tag的名字](#974c48224a70145276128073c7c0b3e4)
+
  * [< b >The Dormouse's story</b>](#62bcc1918f92e442d7eb21df03512159)
+
  * [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>](#ce92f9e762eed98a5ff4e887ed5f9535)
+
  * [[<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,](#dc437075ca01733bb6f67e3525b5bda5)
+
  * [<a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>,](#ae47fe3861171e4ceef3c831a4d6ff5c)
+
  * [<a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>]](#e3b53f78f3cf4c376d5d53403fcd00be)
+
 			 * [.contents 和 .children 和 .descendants](#5ef69ba35fbd6c33a99a7bdc5c5992b1)
+
  * [[< title >The Dormouse's story</title>]](#c803a9044d0ac57ef4b8134c9af117ca)
+
 			 * [.string](#826098db4d2fd79ad3b0ea00dc4424f8)
+
  * [u'The Dormouse's story'](#e0d478b67daac7d4b47b40003b94e605)
+
  * [[< title >The Dormouse's story</title>]](#c803a9044d0ac57ef4b8134c9af117ca)
+
  * [u'The Dormouse's story'](#e0d478b67daac7d4b47b40003b94e605)
+
  * [None](#6adf97f83acf6453d4a6a4b1070f3754)
+
 			 * [.strings 和 stripped_strings](#f0f015a1c0a337a26cd3e058a356728e)
+
 		 * [父节点](#50200948c0bbd9d2770e21cff2b43d01)
+
 			 * [.parent](#7e9024fe9b16b6df01cb1178eccde435)
+
  * [< title >The Dormouse's story</title>](#a41741141f985f9447cf086d4e2f191b)
+
  * [< head >< title >The Dormouse's story</title></head>](#646b4d124f5facdc0d7ed1c6c9f76ea5)
+
 			 * [.parents](#f84b68a3ba6dbdd825f4d2d61556be28)
+
  * [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>](#ce92f9e762eed98a5ff4e887ed5f9535)
+
  * [p](#83878c91171338902e0fe0fb97a8c47a)
+
  * [body](#841a2d689ad86bd1611447453c22c6fc)
+
  * [html](#fc35fdc70d5fc69d269883a822c7a53e)
+
  * [[document]](#3f45e7bbe073d6872606e0c892e60e9a)
+
  * [None](#6adf97f83acf6453d4a6a4b1070f3754)
+
 		 * [兄弟节点](#6fa498651667a0c6b50860e2a59b3747)
+
 			 * [.next_sibling 和 .previous_sibling](#0ab728758563d908f3cfd5c256c58368)
+
  * [< c >text2</c>](#77483548a9e589ca5534164e9d9e5e44)
+
  * [< b >text1</b>](#d74b99a05dd9960267afc595d6a729da)
+
 			 * [.next_siblings 和 .previous_siblings](#78e321b204d8e94aad526caa22ccf129)
+
 		 * [回退和前进](#2b1854c45093976077cd9e7e92817f93)
+
 			 * [.next_element 和 .previous_element](#5f9f6a3e9a16fa700480d0adf0f83049)
+
 			 * [.next_elements 和 .previous_elements](#f575adec86f5ee8b708ad4844c4809e9)
+
 	 * [搜索文档树](#891834dc47e736b404e84e1fc9067127)
+
 		 * [过滤器](#04bd0c61c9045f9144991ea380edbf3d)
+
 			 * [字符串](#cc4dd1da7e1a754534215f02fb9ba85d)
+
  * [[< b >The Dormouse's story</b>]](#52c367baefec41d1cb18180ffc2edc25)
+
 			 * [正则表达式](#2e576047ae509e55d8e86f36d730caf4)
+
 			 * [列表](#3712972d84adf48acbd6ad24b4d75ad0)
+
  * [[< b >The Dormouse's story</b>,](#e9c3371eea86fc07cd5de26424688080)
+
  * [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,](#333e89849c4a0be964748acb7b45b155)
+
  * [<a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>,](#ae47fe3861171e4ceef3c831a4d6ff5c)
+
  * [<a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>]](#e3b53f78f3cf4c376d5d53403fcd00be)
+
 			 * [True](#f827cf462f62848df37c5e1e94a4da74)
+
  * [html](#fc35fdc70d5fc69d269883a822c7a53e)
+
  * [head](#96e89a298e0a9f469b9ae458d6afae9f)
+
  * [title](#d5d3db1765287eef77d7927cc956f50a)
+
  * [body](#841a2d689ad86bd1611447453c22c6fc)
+
  * [p](#83878c91171338902e0fe0fb97a8c47a)
+
  * [b](#92eb5ffee6ae2fec3ad71c777531578f)
+
  * [p](#83878c91171338902e0fe0fb97a8c47a)
+
  * [a](#0cc175b9c0f1b6a831c399e269772661)
+
  * [a](#0cc175b9c0f1b6a831c399e269772661)
+
  * [a](#0cc175b9c0f1b6a831c399e269772661)
+
  * [p](#83878c91171338902e0fe0fb97a8c47a)
+
 			 * [方法](#ea340b9dda8b893ddf2d9176220aac32)
+
 		 * [find_all( name , attrs , recursive , text , **kwargs )](#9e9956ecd644adb40afec6ad79df7c4b)
+
 			 * [name 参数](#620c64f80d81ac35f42b9200016164a5)
+
  * [[< title >The Dormouse's story</title>]](#c803a9044d0ac57ef4b8134c9af117ca)
+
 			 * [keyword 参数 和 attrs](#7cd7d7c7f2d3bb007817c6c4d9ed06c6)
+
  * [[<a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>]](#890ae64a45fd0ea294bc06f6bde22965)
+
  * [[<a class="sister" href="http://example.com/elsie" id="link1">three</a>]](#d0936af75a47dac228704ed07c987a9d)
+
  * [SyntaxError: keyword can't be an expression](#c01711c9a1216a6946f5323899fc8f9a)
+
  * [[<div data-foo="value">foo!</div>]](#419d9ef5cdb0be8566b3bd7a21098bf2)
+
 			 * [按CSS搜索](#0317b50465de46c94b7d444218895e08)
+
  * [[<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,](#dc437075ca01733bb6f67e3525b5bda5)
+
  * [<a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>,](#ae47fe3861171e4ceef3c831a4d6ff5c)
+
  * [<a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>]](#e3b53f78f3cf4c376d5d53403fcd00be)
+
  * [[<p class="body strikeout"></p>]](#7986c0da21818b08c1e8ef4708d03b63)
+
  * [[<p class="body strikeout"></p>]](#7986c0da21818b08c1e8ef4708d03b63)
+
 			 * [text 参数](#b85ff64b46933e9f70850eb0d1c182a8)
+
 			 * [limit 参数](#3b7c4439f88ee8659212d7d097af17ba)
+
  * [[<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,](#dc437075ca01733bb6f67e3525b5bda5)
+
  * [<a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>]](#ffb43f8496d2f195a26d74537d1fd9a9)
+
 			 * [recursive 参数](#dfb1da32cfedce18e06febd3de8dfaa1)
+
 		 * [像调用 find_all() 一样调用tag](#e87c304af3b634dd48a0c133d8f2d834)
+
 		 * [find( name , attrs , recursive , text , **kwargs )](#eddd24d106b00f012296abf15aecdf7a)
+
  * [< title >The Dormouse's story</title>](#a41741141f985f9447cf086d4e2f191b)
+
 		 * [find_parents() 和 find_parent()](#9a1af792c8edfcf1821778b793c1de1c)
+
 		 * [find_next_siblings() 合 find_next_sibling()](#f0de90db60172672a319539d3c33328b)
+
 		 * [find_previous_siblings() 和 find_previous_sibling()](#c287dbef8cf91421167b4294673a0540)
+
 		 * [find_all_next() 和 find_next()](#aca730699d61e6508ac53886823adabb)
+
 		 * [find_all_previous() 和 find_previous()](#a9427ebd054cb5e6b4869a2d711399c4)
+
 		 * [CSS选择器](#4dab32e8ec6a7a43a9adb0fedaaa7afb)
+
 	 * [修改 soup 文档](#f2fb137262eb44eb2a60a3a1858187f5)
+
 		 * [get_text()](#13f7d242b154ae0c680ecf7cfb1acf7f)
+
 
 ...menuend
 

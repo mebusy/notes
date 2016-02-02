@@ -1,11 +1,17 @@
 ...menustart
 
 	 * [1.5.6。统计数据和随机数：scipy.stats](#13f0949d6c57f6b2f15ff881b61d4308)
+
 		 * [1.5.6.1。直方图和概率密度函数](#52b76b5ffc0d467aa403fe05eb57cf02)
+
  * [注意 bins 和 histogram 的 shape不一致，调整bins](#bcad7992760a8161af2cb8908539a0b8)
+
  * [array([-3.5, -2.5, -1.5, -0.5,  0.5,  1.5,  2.5,  3.5])](#8515666920b8f13d021c4e34a7184793)
+
  * [画图](#b5ff5a85a38ee69f2461234025e4df6e)
+
  * [Parameter estimates for generic data.](#d448c854303f5884523a8ae31b43a65f)
+
 
 ...menuend
 
