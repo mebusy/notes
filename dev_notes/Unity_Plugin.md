@@ -214,6 +214,7 @@ This means we have to DllImport at least one function in some active script.
  - must be **static extern** ?
  - GL.IssuePluginEvent
     - call native function from the **render thread**.
+    - Such callbacks can now also be added to CommandBuffers via CommandBuffer.IssuePluginEvent.
  - TODO
 
 
