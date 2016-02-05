@@ -106,6 +106,12 @@ Algorithm
 
 ###### [2. go格式化输出 ](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG-fmt%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA.md)
 
+#### C
+
+    |   |    |   | 
+--- | --- | --- | ---
+[C89 C99区别](https://github.com/mebusy/notes/blob/master/dev_notes/C_C89_vs_C99.md) |
+
 ---
 #### Tools
 
