@@ -1,6 +1,35 @@
+...menustart
 
+ * [Balanced Search Trees](#9dea71a1a7eb5766489f59228ba59dd8)
+   * [Operations and Applications](#6a80cb76a26187df87a7b43a12c0e0f3)
+   * [Binary Search Tree Basic](#cfeaa05958915b238940497d6bb60414)
+     * [BST Structure](#5704ff3f40edc371aa1479c13ccd29f8)
+     * [Search Tree Property](#944904d121069fa4c08193d75edb01a6)
+     * [The Height of a BST](#b19b9a37c91097b32d94e1eef44f2785)
+     * [To Search for key k in Tree T](#ecc3180ec9081ee32b214c27daaae2dc)
+     * [To Insert a new key k into a tree T](#4edf683a223aa31e0bce675f514dfe32)
+   * [Binary Search Tree Basic 2](#9a415c4437c3ba377c4e3ef8ec6ff928)
+     * [Min, Max](#ed21b107691577d1376cf244d47e82be)
+     * [Predecessor , Succ](#859a60fdae4357963b77e43d7d4d3a63)
+     * [In-order Traversal](#6b1caea37c6abdf318a56b83f9bfaf0b)
+     * [Deletion](#a1998652b01bdc9e7128734efb804780)
+     * [Select and Rank](#3328d40c5cd0a24e4d2840a65e9beb0b)
+   * [Red-Black Tree](#8e1bb9c202334ab96e41eaa92392796b)
+     * [Red Black Invariants](#88981d0dca5ebaf538f272ab76e80299)
+     * [Height Guarantee](#b42092d6d96b1c60391092020571e2f6)
+   * [Rotation](#f1a42bd417390fc63b030a519624607a)
+     * [left Rotation](#ba0e5a778c4af39fa1f5490facee5426)
+     * [Right Rotation](#e6ad724c551d04a2bd3b029a5758250b)
+   * [Insertion in a Red-Black Tree](#8e9eda8747c50f702a6f9f95de2f381e)
+
+...menuend
+
+
+
+<h2 id="9dea71a1a7eb5766489f59228ba59dd8"></h2>
 # Balanced Search Trees
 
+<h2 id="6a80cb76a26187df87a7b43a12c0e0f3"></h2>
 ## Operations and Applications
 
 What's balanced search Tree ?  I recommend thinking about it as a dynamic version of a sorted array.
@@ -25,8 +54,10 @@ deletion | unacceptable  |O(logn) | O(logn) | Really good
  
 ---
 
+<h2 id="cfeaa05958915b238940497d6bb60414"></h2>
 ## Binary Search Tree Basic
 
+<h2 id="5704ff3f40edc371aa1479c13ccd29f8"></h2>
 ### BST Structure 
 
  - exactly one node per key
@@ -36,6 +67,7 @@ deletion | unacceptable  |O(logn) | O(logn) | Really good
     - right child pointer 
     - parent pointer (root has null )
 
+<h2 id="944904d121069fa4c08193d75edb01a6"></h2>
 ### Search Tree Property 
 
  - any arbitrary node of tree with key x
@@ -43,6 +75,7 @@ deletion | unacceptable  |O(logn) | O(logn) | Really good
  - all keys in right subtree > x . (>= if duplicate key allowed)
 
 
+<h2 id="b19b9a37c91097b32d94e1eef44f2785"></h2>
 ### The Height of a BST
 
  - many possible search trees for a set of keys
@@ -54,6 +87,7 @@ deletion | unacceptable  |O(logn) | O(logn) | Really good
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/height_of_BST.PNG)    
 
 
+<h2 id="ecc3180ec9081ee32b214c27daaae2dc"></h2>
 ### To Search for key k in Tree T
 
 for simplicity the first think about the case where there are no duplicated keys.
@@ -64,6 +98,7 @@ for simplicity the first think about the case where there are no duplicated keys
 - return node with key k or NULL
 ```
 
+<h2 id="4edf683a223aa31e0bce675f514dfe32"></h2>
 ### To Insert a new key k into a tree T
 
 ```
@@ -71,12 +106,14 @@ for simplicity the first think about the case where there are no duplicated keys
 - rewire final NULL ptr to point to new node with key k
 ```
 
+<h2 id="9a415c4437c3ba377c4e3ef8ec6ff928"></h2>
 ## Binary Search Tree Basic 2
 
 Q: What's the worst-case running time of **Search(or Insert)** operation in a binary search tree containing n keys ?
 
 A: θ(height)
 
+<h2 id="ed21b107691577d1376cf244d47e82be"></h2>
 ### Min, Max
 
 *To compute the minimum key of A tree*:
@@ -92,6 +129,7 @@ minimum key is always at the left most offspring , so just follow the left child
 
 maximum key is always at the right most offspring, so just follow the right child pointers.
 
+<h2 id="859a60fdae4357963b77e43d7d4d3a63"></h2>
 ### Predecessor , Succ
 
 Predecessor: given key in the tree,  find the next smallest element. eg. show as the pic above, the pred of 3 is 2.
@@ -112,6 +150,7 @@ A: θ(height)
 
 ---
 
+<h2 id="6b1caea37c6abdf318a56b83f9bfaf0b"></h2>
 ### In-order Traversal
 
 To print out keys in increasing order
@@ -125,6 +164,7 @@ To print out keys in increasing order
 
 处理方法近似分治法的思想，每个 recursive call 实际只是 print key of the root, it n(1) , and every key will be printed only once. so the **Running time is O(n)**.
 
+<h2 id="a1998652b01bdc9e7128734efb804780"></h2>
 ### Deletion
 
 In most data structions, deletion is the most difficult operation , and in search trees there is no exception.
@@ -146,6 +186,7 @@ To delete a key from a BST
 
 Runnint time: θ(height)
 
+<h2 id="3328d40c5cd0a24e4d2840a65e9beb0b"></h2>
 ### Select and Rank
 
 IDEA: store a little bit of extra info about each tree node *about the tree itself* .
@@ -175,6 +216,7 @@ Runnint time: θ(height)
 
 --- 
 
+<h2 id="8e1bb9c202334ab96e41eaa92392796b"></h2>
 ## Red-Black Tree
 
 红黑树（Red Black Tree） 是一种自平衡二叉查找树，是在计算机科学中用到的一种数据结构，典型的用途是实现关联数组。
@@ -187,6 +229,7 @@ IDEA: ensure the height always O(logn) [best possible] => Search / Insert / Dele
 
 Example : red-black trees 
 
+<h2 id="88981d0dca5ebaf538f272ab76e80299"></h2>
 ### Red Black Invariants
 
  1. each node red or black
@@ -205,6 +248,7 @@ Example : red-black trees
 
 **Proof**: There is 3 nodes in the tree. The 1st has to be black, so there is 4 possible ways to color the 2nd and 3rd: BB, BR, RB, RR. But really , beacuse of the third invariant , RR is not allowd. If we color 2nd red and 3rd black, the invariant broken: when search 0, you pass through 1 black node, when search 4, you pass through 2 black nodes. Also the BB and BR will lead to same result. so proved.
 
+<h2 id="b42092d6d96b1c60391092020571e2f6"></h2>
 ### Height Guarantee
 
 **Claim*: every red-black tree with n nodes has height <= 2log(n+1).
@@ -225,6 +269,7 @@ Example : red-black trees
 因为操作比如插入、删除和查找某个值的最坏情况时间都要求与树的高度成比例，这个在高度上的理论上限允许红黑树在最坏情况下都是高效的，而不同于普通的二叉查找树。
 
 
+<h2 id="f1a42bd417390fc63b030a519624607a"></h2>
 ## Rotation
 
 当我们在对红黑树进行插入和删除等操作时，对树做了修改，那么可能会违背红黑树的性质。
@@ -235,6 +280,7 @@ Example : red-black trees
     - common to all balanced search tree implementations - red-black, AVL, B+ , etc 
  - **IDEA**: locally re-balance subtrees at a node in O(1) time.
 
+<h2 id="ba0e5a778c4af39fa1f5490facee5426"></h2>
 ### left Rotation
 
   - left Rotation: of the parent x , and right child y
@@ -255,6 +301,7 @@ currently x is the parent and y is the child. We want to rewire a few pointers s
 
 ---
 
+<h2 id="e6ad724c551d04a2bd3b029a5758250b"></h2>
 ### Right Rotation
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RBT_right_rotation.png)
@@ -265,6 +312,7 @@ Rotation Running Time:
 search tree property invariant, can implement in O(1) time.
 
 
+<h2 id="8e9eda8747c50f702a6f9f95de2f381e"></h2>
 ## Insertion in a Red-Black Tree
 
 ***IDEA for insertion/deletion***:
