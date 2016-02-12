@@ -132,6 +132,6 @@ Algorithm
 
     |   |    |   | 
 --- | --- | --- | ---
-[Learn to Learning](https://github.com/mebusy/notes/blob/master/dev_notes/Learn2Learning.md) | [RaspBerryPi I](https://github.com/mebusy/notes/blob/master/dev_notes/RaspberryPi_I.md) | 
+[Learn to Learning](https://github.com/mebusy/notes/blob/master/dev_notes/Learn2Learning.md) | [RaspBerryPi I](https://github.com/mebusy/notes/blob/master/dev_notes/RaspberryPi_I.md) | [Software Debug](https://github.com/mebusy/notes/blob/master/dev_notes/SoftwareDebugging.md) | 
 
 
