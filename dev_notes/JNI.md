@@ -238,7 +238,9 @@ Call a java function which returned an array , don't forget to invoke  `ReleaseB
 ```
 
 
-## dump local referrence table
+## Dump local reference table
+
+You many got crash if the local reference table overflow, so it's useful to dump the info of "local reference table"
 
 ```c
 jclass vm_class = env->FindClass("dalvik/system/VMDebug");
@@ -255,7 +257,7 @@ env->CallStaticVoidMethod( vm_class, dump_mid );
     - 通过NewLocalRef和各种JNI接口创建（FindClass、NewObject、GetObjectClass 和 NewCharArray 等）。
     - 会阻止GC回收所引用的对象，不在本地函数中跨函数使用，不能跨线程使用。
     - 函数返回后局部引用所引用的对象会被JVM自动释放，或调用DeleteLocalRef释放。`(*env)->DeleteLocalRef(env,local_ref)`
-    - 如果返回的是对象，eg. jclass, jstring, 务必 DeleteLocalRef 删除, 以避免 local referrence table overflow
+    - 如果返回的是对象，eg. jclass, jstring, 务必 DeleteLocalRef 删除, 以避免 local reference table overflow
 - 全局引用（Global Reference）
     - 用NewGlobalRef基于局部引用创建，会阻GC回收所引用的对象。可以跨方法、跨线程使用。
     - JVM不会自动释放，必须调用DeleteGlobalRef手动释放(*env)->DeleteGlobalRef(env,g_cls_string); 
