@@ -114,6 +114,14 @@ Algorithm
 [C89 C99区别](https://github.com/mebusy/notes/blob/master/dev_notes/C_C89_vs_C99.md) | [c99](https://github.com/mebusy/notes/blob/master/dev_notes/C99.md) | 
 
 ---
+#### Android
+
+    |   |    |   | 
+--- | --- | --- | ---
+[JNI](https://github.com/mebusy/notes/blob/master/dev_notes/JNI.md) |
+
+
+---
 #### Tools
 
     |   |    |   | 
