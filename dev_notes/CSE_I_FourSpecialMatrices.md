@@ -61,7 +61,7 @@ ans =  5
 
 When is an upper triangular matrix invertible? K is invertible because the diagonal is non-zero. It's got full non-zero pivots.
 
-<a name="cdcc32a064503184053bd2018d1c0e7e"></a>
+<h2 id="cdcc32a064503184053bd2018d1c0e7e"></h2>
 ### Periodic
 
 C = ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/toeplitz_matrix_not_invertible.gif)
