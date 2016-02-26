@@ -19,7 +19,7 @@ K = ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/toeplitz_matr
  1. K=Kᵀ , symmetric.  Symmetric matrix is the most important class of matrices.
  2. Sparse.   **nnz**(K) to calculate the number of none-zero of a matrix.
  3. constant diagonal. Toeplitz is a diagonal-constant matrix: K=**toeplitz**( [-2 -1 0 0] ) . Caution: diagonal-constant matrix is not diagonal matrix. Toeplitz may symmetric or not. eg: K=toeplitz( [2 -1 0 0] , [1 3 0 0 ] )
- 4. K is invertible. Invertible means K·K⁻¹=I . **eye**(n) can create an identity matrix.
+ 4. K is invertible. Invertible means K·K⁻¹=I ,  **eye**(n) can create an identity matrix.
 
 <h2 id="7407fb7e6a4df6392aaabd2368157312"></h2>
 ### Sparse
@@ -47,7 +47,6 @@ How to know if a matrix is invertible? We will not use determinant here. I would
 Elimination can convert a matrix into an upper triangular matrix. And this is how MATLAB would find the determinant. It would do elimination, and the determinant of a triangular matrix is just product down the diagonal, the product of the pivots.
 
 ```
-<h2 id="ab27e59e2dec0aec212d47680e02fff5"></h2>
 # MATLAB may very clever when dealing with fractions
 > [L,U,P] = lu(K)
 > U = 
