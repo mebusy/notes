@@ -79,7 +79,7 @@ Algorithm
 
     |   |    |   | 
 --- | --- | --- | ---
-[Intro 2 U3D](https://github.com/mebusy/notes/blob/master/dev_notes/Intro2GameDevelopment_Intro.md) |
+[Intro 2 U3D](https://github.com/mebusy/notes/blob/master/dev_notes/Intro2GameDevelopment_Intro.md) | [Projects](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_INTRO_2_GAME_Development.md) |
 
 
 
