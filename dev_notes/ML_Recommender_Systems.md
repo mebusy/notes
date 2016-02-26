@@ -1,13 +1,35 @@
+...menustart
+
+ * [Recommender Systems](#bd1e9577d90cd9b99bbc584f4899cdd3)
+   * [Predicting Movie Ratings](#ae4850a11bf72fcf96312dbdaa01416a)
+     * [Problem Formulation](#d3ed97478e5bb62df6a73642fb3eb2cf)
+       * [Example: Predicting movie ratings.](#91256a34c3c416ed111c1c1f0f6d0cf8)
+     * [Content Based Recommendations](#a71ae4758962a9d66c5eed0209ee7790)
+   * [Collaborative Filtering 协同过滤](#1d0676de81840f76265b22da2bd66cfe)
+     * [Optimization algorithm](#89642905e18066000c83d4fadf9e16d6)
+   * [Collaborative Filtering Algorithm](#bda473b95d57bd8ddf09a8e81b15dd0c)
+   * [Low Rank Matrix Factorization](#f97e45631aaf46ad6a70583cf84aeacd)
+     * [Vectorization](#ccc5742e475a0775e47cf832d54606d2)
+       * [Finding related movies](#2c5b941c4e8f1f592ca82323d7a0ed07)
+     * [Implementational Detail: Mean Normalization](#4ea68a58b5d62dbfb35eec3f95eb7494)
+
+...menuend
+
+
+<h2 id="bd1e9577d90cd9b99bbc584f4899cdd3"></h2>
 # Recommender Systems
 
+<h2 id="ae4850a11bf72fcf96312dbdaa01416a"></h2>
 ## Predicting Movie Ratings
 
+<h2 id="d3ed97478e5bb62df6a73642fb3eb2cf"></h2>
 ### Problem Formulation
 
 推荐系统是 machine learning 最重要的应用之一。
 
 Machine learning 界有一个宏大的目标: 自动地替你学习到一组优良的特征量，从而避免手动挑选特征，如我们一直在做的那样。推荐系统就是自动学习特征的例子之一。
 
+<h2 id="91256a34c3c416ed111c1c1f0f6d0cf8"></h2>
 #### Example: Predicting movie ratings.
 
 User rates movies using 0 to 5 stars.
@@ -24,6 +46,7 @@ User rates movies using 0 to 5 stars.
 推荐系统的问题就是，给定这些数据，预测这些 `?` 地方的rating。
 
  
+<h2 id="a71ae4758962a9d66c5eed0209ee7790"></h2>
 ### Content Based Recommendations 
 
 > ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/movie_rating2.png)
@@ -56,6 +79,7 @@ Gradient descent update:
 可以看到，基于内容的推荐，是线性回归的一个变种。 它的关键是假设我们有不同电影的内容的特征。事实上，我们很难得到所有电影的特征，这就需要一种 不基于内容的推荐系统。
 
 
+<h2 id="1d0676de81840f76265b22da2bd66cfe"></h2>
 ## Collaborative Filtering 协同过滤
 
 Collaborative filtering has a very interesting property that it does what is called feature learning.
@@ -64,6 +88,7 @@ Collaborative filtering has a very interesting property that it does what is cal
 
 If we can get these parameters θ from users then it turns out that it becomes possible to try to infer (推理) what are the values of x₁,x₂ for each movie.
 
+<h2 id="89642905e18066000c83d4fadf9e16d6"></h2>
 ### Optimization algorithm
 
 Give `θ⁽¹⁾,θ⁽²⁾,...,θ⁽ⁿᵘ⁾` , to learn `x⁽ⁱ⁾`:
@@ -82,6 +107,7 @@ To lean all x :
 
 `θ -> x -> θ -> x -> ...`
 
+<h2 id="bda473b95d57bd8ddf09a8e81b15dd0c"></h2>
 ## Collaborative Filtering Algorithm
 
 前面我们看到可以重复的计算θ 和 x 来估计特征，实际上，有一个更好的算法，能够讲θ和x同时计算出来。
@@ -106,8 +132,10 @@ Steps:
  
 ---
 
+<h2 id="f97e45631aaf46ad6a70583cf84aeacd"></h2>
 ## Low Rank Matrix Factorization
 
+<h2 id="ccc5742e475a0775e47cf832d54606d2"></h2>
 ### Vectorization 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/matrix_of_movie_rating.png)
@@ -119,6 +147,7 @@ Steps:
 我们可以把 这个矩阵向量化为 XΘᵀ.
 
 
+<h2 id="2c5b941c4e8f1f592ca82323d7a0ed07"></h2>
 #### Finding related movies
 
 我们使用协同过滤算法得到了 电影的feature 后，其实还有其它一些事情可做，就是查找近似的电影。
@@ -128,6 +157,7 @@ How 2 find movie j related to movie i ?
 small `‖x⁽ⁱ⁾ - x⁽ʲ⁾‖` -> movie j and i are "similar".
 
 
+<h2 id="4ea68a58b5d62dbfb35eec3f95eb7494"></h2>
 ### Implementational Detail: Mean Normalization
 
 假设有一个新用户 Eve(5)，没有对任何电影做评分， 协同过滤算法最后结果，就是Eve(5)对所有电影的评分都是0.
