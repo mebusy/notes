@@ -1,4 +1,4 @@
-## Week #1
+## Week 1
 
 ### 1.1: Course Overview 
 
