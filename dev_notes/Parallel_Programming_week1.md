@@ -1,5 +1,38 @@
+...menustart
+
+   * [Week 1](#d6f637a63e7895f9421d593d67341644)
+     * [1.1: Course Overview](#2cdeeb8374a080a7972a9b075f99dcff)
+     * [1.2: Introduction to Heterogeneous Parallel Computing](#cf9294220a0762a8cececdf70c4ea74d)
+       * [CPU vs GPU](#aa7c7d5b4c30ec637fd00228d3ea2c8a)
+       * [CPU: Latency Oriented Design](#6c88a57a4b326d3113cd17afa653818c)
+       * [GPU : Throughput Oriented Design](#1e9ce0b6e6533573d50acdf2f1218504)
+       * [Winning Applications Use Both CPU and GPU](#b9676d64f54e4404bc56bf2aa97ce266)
+     * [1.3: Portability and Scalability in Heterogeneous Parallel Computing](#f5a7578445f570db14a004a201c288cc)
+     * [1.4: Introduction to CUDA, Data Parallelism and Threads](#58169605407651f9f0bc706aaf8f8935)
+       * [Basic concept of CUDA](#f9312ad800b52c07be7869572e85b704)
+     * [1.5 Introduction to CUDA, Memory Allocation and Data Movement API Functions](#c345dcdd0f1480d0615c23660e8ead7f)
+       * [Partical overview of CUDA memories](#171dcfddafc5df8e31c305563aada69b)
+       * [CUDA Device Memory Management API](#bee998a5f82c060231c5da13b586e5da)
+       * [Host-Device Data Transfer API](#d3c85cba12bf184449321d9fcf98e23d)
+       * [Check Error](#249193c955d9a399e5b6d394f125f4ca)
+     * [1.6: Introduction to CUDA, Kernel-Based SPMD Parallel Programming](#c7516ab5ae95323c88e6ba2f6c5a9e87)
+       * [Vector Addition Kernel *Device Code*:](#cc0101d6edf97bca2b29489bd7690fb8)
+       * [Vector Addition Kernel *Host Code*:](#0a3b4fb126a9ddf3c6bad83a6ee3fa2a)
+       * [More on kernel launch *Host Code*:](#8703cc93226ad97ddcc6875e0769e4b1)
+       * [Kernel execution in a nutshell](#23b200f11b54fdd1900c87c76b1d1728)
+       * [More on CUDA Function Declarations](#5fa4b3ab59c14a578c48d78a5822a0e8)
+       * [Compile A CUDA Program](#923b0c37c56ea509b884446ce8f3e4b5)
+     * [1.7: Kernel-based Parallel Programming, Multidimensional Kernel Configuration](#e1042c6b86d63348a1cf26537f0f9c21)
+       * [Precessing a Picture with a 2D Grid](#a5760ea6ff2d89622a671912f7dccbae)
+     * [1.8: Kernel-based Parallel Programming, Basic Matrix-Matrix Multiplication](#a12044933b22603657e15aa252c723b1)
+
+...menuend
+
+
+<h2 id="d6f637a63e7895f9421d593d67341644"></h2>
 ## Week 1
 
+<h2 id="2cdeeb8374a080a7972a9b075f99dcff"></h2>
 ### 1.1: Course Overview 
 
 Recommended Textook/Notes
@@ -8,11 +41,13 @@ Recommended Textook/Notes
  2. Lab assignments 
  3. NVDIA :  NVidia CUDA C Programming Guide v5.0
 
+<h2 id="cf9294220a0762a8cececdf70c4ea74d"></h2>
 ### 1.2: Introduction to Heterogeneous Parallel Computing 
 
  - to learn the major difference between latency devices (CPU cores) and throughput devices (GPU cores)
  - to understand why winning applications increasingly use both types of devices
 
+<h2 id="aa7c7d5b4c30ec637fd00228d3ea2c8a"></h2>
 #### CPU vs GPU
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CPU_vs_GPU.png)
@@ -25,6 +60,7 @@ Recommended Textook/Notes
  4. CPU tends to have sophisticated control logic and therefore there is a big purple block labelled as control
  5. GPU tends to have very simple control but a large number of threads to manage.
 
+<h2 id="6c88a57a4b326d3113cd17afa653818c"></h2>
 #### CPU: Latency Oriented Design
 
  - Powerful ALU (Arithmetic Logic Units 算术逻辑单元)
@@ -35,6 +71,7 @@ Recommended Textook/Notes
     -  Branch prediction for reduced branch latency
     -  Data forwarding for reduced data latency
 
+<h2 id="1e9ce0b6e6533573d50acdf2f1218504"></h2>
 #### GPU : Throughput Oriented Design
 
  - Small caches
@@ -47,6 +84,7 @@ Recommended Textook/Notes
  - Require massive number of threads to tolerate latencies.
     - 多个线程可以同时请求一个数据，这些请求会被打包成一个请求, 这样latency 就被分摊了。
 
+<h2 id="b9676d64f54e4404bc56bf2aa97ce266"></h2>
 #### Winning Applications Use Both CPU and GPU
 
  - CPUs for sequential parts where latency matters
@@ -55,6 +93,7 @@ Recommended Textook/Notes
     - GPUs can be 10+X faster than CPUs for paralled code
 
 
+<h2 id="f5a7578445f570db14a004a201c288cc"></h2>
 ### 1.3: Portability and Scalability in Heterogeneous Parallel Computing
 
 In future , software development cost growing much faster than hardware cose. So future system must minimize software redevelopment. This leads to the consideration of scalability and portability.
@@ -69,6 +108,7 @@ Keys to Software Cost Control:
     - The samp application runs efficiently on systems with different organizations and interfaces
 
 
+<h2 id="58169605407651f9f0bc706aaf8f8935"></h2>
 ### 1.4: Introduction to CUDA, Data Parallelism and Threads
 
 CUDA C , a heterogeneous parallel programming interface that enables exploitation of data parallelism
@@ -83,6 +123,7 @@ The phenomena of data parallelism is that , different parts of the data can actu
 
 A very simple example is vector addition. When we add 2 vector together, the elements can be added together independently.
  
+<h2 id="f9312ad800b52c07be7869572e85b704"></h2>
 #### Basic concept of CUDA
 
 The parallel execution model of CUDA , close to Open CL, are both based on a host plus device kind of arrangement. The basic concept is that when we start executing a piece of code or application , the application will be executing on the host. The host is typically a CPU core. And when we start to execute a parallel part of the application , that's when we start to have an opportunity to use a throughput oriented device. This is done by writing some specialized functions called kernel functions. The kernel functions are very similar to functions in the C programming language. The execution will go between host and device , device in CUDA means parallel execution device , and most of the time, the device are correspond to throughput-oriented GPUs.
@@ -143,6 +184,7 @@ The thread index and block index are not just one-dimensional. In CUDA, block in
 Multidimensional index is very convenient for image processing, or solve three-dimensional partial differential equations, and so on.
 
 
+<h2 id="c345dcdd0f1480d0615c23660e8ead7f"></h2>
 ### 1.5 Introduction to CUDA, Memory Allocation and Data Movement API Functions
 
 Vector addition:
@@ -181,6 +223,7 @@ void vecAdd(float* h_A,float* h_B,float* h_C,int n){
 
 Instead of performing the actual computation, this function is actually going to call a kernel function that will be executed on the device , and before calling that function , this functio also needs to do some outsourcing activity. It needs to copy data from the host memory into the device memory , so that the device is ready to precess data. And eventually after the device completes its computation it needs to copy the data's C vector back into the host memory.
 
+<h2 id="171dcfddafc5df8e31c305563aada69b"></h2>
 #### Partical overview of CUDA memories
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cuda_memory.png)
@@ -196,6 +239,7 @@ Each device have many many threads, remember , these threads are actually virtua
 
 All threads will have access to a shared global memory. It's important that the host code can actually allocate memory in the global memory, and also request data copy between *host memory* and *global memory*. 
 
+<h2 id="bee998a5f82c060231c5da13b586e5da"></h2>
 #### CUDA Device Memory Management API 
 
  - cudaMalloc()
@@ -211,6 +255,7 @@ All threads will have access to a shared global memory. It's important that the 
         -  **pointer** to freed object
             - 注意和cudaMalloc()参数的区别。
 
+<h2 id="d3c85cba12bf184449321d9fcf98e23d"></h2>
 #### Host-Device Data Transfer API
 
  - cudaMemcpy()
@@ -244,6 +289,7 @@ void vecAdd(float* h_A,float* h_B,float* h_C,int n){
 
 In general , when we actually try to get performance from this kind of code, we can not afford to copy data back and forth before and after each kernel invocation. For real applications , we tend to have all data just reside in the device memory and we just keep launching kernels to perform computation on the device memory.  This example is just show you all the pieces of that can be involved.
 
+<h2 id="249193c955d9a399e5b6d394f125f4ca"></h2>
 #### Check Error
 
 In practise , I will encourage you to always check for error conditions.
@@ -259,10 +305,12 @@ if (err != cudaSuccess) {
 }
 ```
    
+<h2 id="c7516ab5ae95323c88e6ba2f6c5a9e87"></h2>
 ### 1.6: Introduction to CUDA, Kernel-Based SPMD Parallel Programming
 
 
 
+<h2 id="cc0101d6edf97bca2b29489bd7690fb8"></h2>
 #### Vector Addition Kernel *Device Code*:
 
 Declare a CUDA kernel:
@@ -285,6 +333,7 @@ This is the vector addition kernel that we will eventually be launching from the
     - `__global__` tells the compile that it's a kernel function
 
 
+<h2 id="0a3b4fb126a9ddf3c6bad83a6ee3fa2a"></h2>
 #### Vector Addition Kernel *Host Code*:
 
 
@@ -309,6 +358,7 @@ int vecAdd(float* h_A, float* h_B, float* h_C , int n) {
     - in other words, we want to have 256 threads in each thread-block, if n=1000, we actually generates 1024 threads to work ,so in vecAddKernel function above, the index **i** may >=1000, eg.1023 . So it's very necessary to test `if (i<n)`.
 
 
+<h2 id="8703cc93226ad97ddcc6875e0769e4b1"></h2>
 #### More on kernel launch *Host Code*:
 
 ```c
@@ -323,6 +373,7 @@ int vecAdd(float* h_A, float* h_B, float* h_C , int n) {
  - DimGrid / DimBlock to initialize the x,y,z value
  - in this case, we're using a 1-D grid, we only need to initialize the x-values of both the DimGrid and DimBlock.
  
+<h2 id="23b200f11b54fdd1900c87c76b1d1728"></h2>
 #### Kernel execution in a nutshell
 
 In the host code, you have a host function, the host function can launch a kernel by calling the kernel function just like any other C function, but with additional configuration parameters.
@@ -331,6 +382,7 @@ Once we launched a kernel, we call the kernel function, then the hardware will g
 
 All the threads have built-in variables: blockIdx, blockDim and threadIdx , there predefined, preinitialized will allow the threads to generate different data indices, so that each thread will be processing a different part of the data.
 
+<h2 id="5fa4b3ab59c14a578c48d78a5822a0e8"></h2>
 #### More on CUDA Function Declarations
 
  keyword | Example | Execute on | Only callable from
@@ -347,6 +399,7 @@ All the threads have built-in variables: blockIdx, blockDim and threadIdx , ther
  - `__device__` keyword tells compile that is a device function.
  
 
+<h2 id="923b0c37c56ea509b884446ce8f3e4b5"></h2>
 #### Compile A CUDA Program
 
 In very file, we're going to have both host function and device function, so the NVCC , the Nvidia C Compile, will automatically identify all the host function and kernels functions and separate them out into two complication paths.
@@ -360,12 +413,14 @@ At run time, there is a JIT compile that will take the PTX binary and generate t
 So then both types of executables will be used for this Heterogeneous Computing Platform, the host path will be used on CPU , while the device binary will be run ont GPU.
 
 
+<h2 id="e1042c6b86d63348a1cf26537f0f9c21"></h2>
 ### 1.7: Kernel-based Parallel Programming, Multidimensional Kernel Configuration
 
 ![Multidimensional][1]
 
 This picture was shown earlier , and we assume that user has specified that we're going to generate a 2-D grid which is reflected by the 2-D indices of the blocks. And then we also assume that each block has 3-D threads. So each thread in this picture has tree indices.
 
+<h2 id="a5760ea6ff2d89622a671912f7dccbae"></h2>
 #### Precessing a Picture with a 2D Grid
 
 a 62*76 picture.
@@ -402,6 +457,7 @@ PictureKernel <<< DimGrid , DimBlock >>> (d_Pin , d_Pout , m,n) ;
 ```
 
 
+<h2 id="a12044933b22603657e15aa252c723b1"></h2>
 ### 1.8: Kernel-based Parallel Programming, Basic Matrix-Matrix Multiplication
 
 一个矩阵乘法的例子
