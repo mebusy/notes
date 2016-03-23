@@ -220,7 +220,7 @@ Asset: Mesh,Material,Texture, Audio,etc...
     - 随安装包完全下载，无法动态更新
  - StreamingAssets
     - 保持文件原始格式
-        - 比如可以存放原始的jpg文件，而不导入成内部更是
+        - 比如可以存放原始的jpg文件，而不导入成内部格式
     - 随安装包完全下载，无法动态更新
     - Application.streamingAssetsPath
  - AssetBundle
