@@ -168,7 +168,7 @@ How Multiple Thread Blocks Work:
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/multiple_array_of_parallel_threads.png)
 
  - Divide thread array into mulitple blocks
- - Threads within a block cooperate via shared memory(exchange data), atomic operations (update same variable) , and barrier synchronization(屏障同步 to force others to wait)
+ - Threads within a block cooperate via **shared memory**(exchange data), **atomic operations** (update same variable) , and **barrier synchronization**(屏障同步 to force others to wait)
  - Threads in different blocks do not interact
 
 Here every thread not only have a thread index , but also have a block index.  There are predefined CUDA variables that we can use in a kernel , and they actually are initialized by the hardware for each thread.
