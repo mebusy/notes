@@ -281,6 +281,7 @@ void vecAdd(float* h_A,float* h_B,float* h_C,int n){
     cudaMalloc( (void**) %d_B , size );
     cudaMemcpy(d_B,h_B,size,cudaMemcpyHostToDevice);
     cudaMalloc( (void**) %d_C , size );
+    cudaMemcpy(d_C,h_C,size,cudaMemcpyHostToDevice);
     
     //kernel invocation code - to be shown later
     
