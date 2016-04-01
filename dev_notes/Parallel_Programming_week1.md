@@ -155,6 +155,8 @@ The number of real processors may be much ,much smaller than the threads that a 
 
 How A Single Thread Block Work:
 
+threads 0-255:
+
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/array_of_parallel_threads.png)
 
 执行同一份代码的threads 称为 thread block. All the thread will run the same code. But every thread has a different thread index value, that is used to compute memory addressed and make controlled decisions.
