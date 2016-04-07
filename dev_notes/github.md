@@ -1,5 +1,15 @@
+...menustart
+
+ * [github](#bf215181b5140522137b3d4f6b73544a)
+   * [github update fork](#f6b73a9a864f02b2d14ad454c6b09e68)
+
+...menuend
+
+
+<h2 id="bf215181b5140522137b3d4f6b73544a"></h2>
 # github 
 
+<h2 id="f6b73a9a864f02b2d14ad454c6b09e68"></h2>
 ## github update fork
 
  - 给fork配置远程上游仓库 
