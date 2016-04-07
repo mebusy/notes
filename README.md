@@ -128,6 +128,13 @@ Algorithm
 [JNI](https://github.com/mebusy/notes/blob/master/dev_notes/JNI.md) |
 
 
+#### Dev
+
+    |   |    |   | 
+--- | --- | --- | ---
+[redis](https://github.com/mebusy/notes/blob/master/dev_notes/redis.md) |
+
+
 ---
 #### Tools
 
