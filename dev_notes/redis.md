@@ -1,8 +1,28 @@
+...menustart
+
+ * [Redis](#e111446745a1825b862f8727ae63bce4)
+   * [安装](#e655a410ff21cd07e7a0150491e04371)
+   * [配置](#224e2ccda861c2514faa683b3683c361)
+   * [启动](#8e54ddfe243a6ecd4e231c9cfa770bd4)
+   * [关闭](#b15d91274e9fc68608c609999e0413fa)
+   * [简介](#e05dce83e5129785b9f316978a14b896)
+     * [Redis支持的键值数据类型](#04be0f8060daa1d85d889605ca8fb2bb)
+     * [其他](#0d98c74797e49d00bcc4c17c9d557a2b)
+     * [多数据库](#fdde913b5f9231dbf0135b5d394cb199)
+     * [redis 命令，中文版](#7bcaab82241af99be9615017fca3cb89)
+   * [mac phpRedisAdmin](#6ef8082fd2f3d06391821ecff428e702)
+   * [TODO](#b7b1e314614cf326c6e2b6eba1540682)
+
+...menuend
+
+
 
 [TOC]
 
+<h2 id="e111446745a1825b862f8727ae63bce4"></h2>
 # Redis
 
+<h2 id="e655a410ff21cd07e7a0150491e04371"></h2>
 ## 安装
 
  1. yum 安装
@@ -15,6 +35,7 @@
     - 安装redis 
         - `yum --enablerepo=remi,remi-test install redis`
 
+<h2 id="224e2ccda861c2514faa683b3683c361"></h2>
 ## 配置
 
  - `mkdir -p /data/app/redis/log`
@@ -49,6 +70,7 @@
     - 最大内存
         - `maxmemory <bytes> `
 
+<h2 id="8e54ddfe243a6ecd4e231c9cfa770bd4"></h2>
 ## 启动
 
 ```
@@ -56,6 +78,7 @@ redis-server /etc/redis.conf
 /etc/init.d/redis start  # 可能需要修复logfile权限
 ```
 
+<h2 id="b15d91274e9fc68608c609999e0413fa"></h2>
 ## 关闭
 
 考虑到Redis 有可能正在将内存中的数据同步到硬盘中，正确停止 Redis 的方式应该是向 Redis 发送 SHUTDOWN 命令，方法为：
@@ -71,8 +94,10 @@ $ redis-cli SHUTDOWN
 ```
 
 
+<h2 id="e05dce83e5129785b9f316978a14b896"></h2>
 ## 简介
 
+<h2 id="04be0f8060daa1d85d889605ca8fb2bb"></h2>
 ### Redis支持的键值数据类型
 
 - 字符串类型  string
@@ -81,6 +106,7 @@ $ redis-cli SHUTDOWN
 - 集合类型     set
 - 有序集合类型   zset
 
+<h2 id="0d98c74797e49d00bcc4c17c9d557a2b"></h2>
 ### 其他
 数据类型不支持嵌套, hash, list 等集合类型，每个元素只能是字符串，不能是另一个集合或散列表 
 
@@ -92,6 +118,7 @@ $ redis-cli SHUTDOWN
 
 支持 发布／订阅的 消息模式，可以基于此构建 聊天室等。
 
+<h2 id="fdde913b5f9231dbf0135b5d394cb199"></h2>
 ### 多数据库
 
 多数据库 没什么卵用
@@ -107,12 +134,14 @@ reds [1]> GET foo
 (nil)
 ```
 
+<h2 id="7bcaab82241af99be9615017fca3cb89"></h2>
 ### redis 命令，中文版
 
 http://www.redis.cn/commands.html
 
 这些数据库 更像一种命名空间，不适合存储不同应用程序的数据。
             
+<h2 id="6ef8082fd2f3d06391821ecff428e702"></h2>
 ## mac phpRedisAdmin
 
 Mac 自带了 apache和php 模块, 所以使用 phpRedisAdmin 除了需要安装一个 phpRedis模块意外, 不需要安装其他东西了, 在本地稍微配置一下环境就可以的了.
@@ -148,6 +177,7 @@ Mac 自带了 apache和php 模块, 所以使用 phpRedisAdmin 除了需要安装
  
  7. 如果是linux系统，注意开放 6379 端口
 
+<h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 ## TODO
  
     
