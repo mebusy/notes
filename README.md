@@ -37,7 +37,7 @@ Algorithm
     |   |    |   | 
 --- | --- | --- | ---
 [排序 选择](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_12.md) | [图 Min Cut](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_GraphMinCut.md) | [图的搜索和连通](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_GraphSearchConnectivity.md) | [Dijkstra Shortest path](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_Dijkstra'sShortest-Path.md)
-[Heap](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_Heap.md) | [Binary Search Tree](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_BinarySearchTree.md)
+[Heap](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_Heap.md) | [Binary Search Tree](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_BinarySearchTree.md) | [hash](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_hash.md)
 
 ---
 ### Computational Science and Engineering I
