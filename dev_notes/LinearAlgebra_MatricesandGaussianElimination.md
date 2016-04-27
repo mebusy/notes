@@ -645,5 +645,5 @@ The new matrix C = PB has good factors:
 
 The pivots for C are 1 and .9999, much better than .0001 and -9999 for B.
 
-We have finally arrived at the fundamental algorithm of numerical linear algebra: ***limination with partial pivoting***. 
+We have finally arrived at the fundamental algorithm of numerical linear algebra: ***elimination with partial pivoting***. 
 
