@@ -371,7 +371,7 @@ The special thing is that the entries below the diagonal are the multipliers *l*
 <h2 id="ee835f91c2c818fd230e9563c6b23a11"></h2>
 ### Row Exchanges and Permutation Matrices
 
-We now have to face a problem that has so far been avoitled: The number we expect to use as a pivot ***might be zero***. This could occur in the middle of a calculation. It will also happen at the very beginning if all = 0. A simple example is:
+We now have to face a problem that has so far been avoided: The number we expect to use as a pivot ***might be zero***. This could occur in the middle of a calculation. It will also happen at the very beginning if all = 0. A simple example is:
 
 ```
 |0 2||u| =  |b₁|
@@ -525,7 +525,7 @@ This is a linear equation for the unknown function u(x). Any combination C + Dx 
 
 The result is a *two-point boundary-value* problem, describing not a transient(瞬时) but a steady- state phenomenon(稳态现象). For example, the temperature distribution in a rod,  with ends fixed at 0° and with a heat source f (x).
 
-Remember that our goal is to produce a discrete problem-in other words, a problem in linear algebra. For that reason we can only accept a finite amount of information about f (x), say its values at n equally spaced point(等距点值) *x = h, x = 2h, . . . , x = nh* . We compute approximate values u₁, . . . , un, for the true solution u at these same points. At the ends x = 0 and x = 1 = (n + 1)h, the boundary values are uo = 0 and un+1 = 0
+Remember that our goal is to produce a discrete problem-in other words, a problem in linear algebra. For that reason we can only accept a finite amount of information about f (x), say its values at n equally spaced point(等距点值) *x = h, x = 2h, . . . , x = nh* . We compute approximate values u₁, . . . , un, for the true solution u at these same points. At the ends x = 0 and x = 1 = (n + 1)h, the boundary values are u0 = 0 and un+1 = 0
 
 
 
@@ -537,7 +537,7 @@ For the second derivative there is just one combination that uses only the value
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2nd_derivative_approximate.png)
 
-The right-hand side approaches the true value of d2u/dx2 as h -+ 0, but we have to stop at a positive h.
+The right-hand side approaches the true value of d2u/dx2 as h -> 0, but we have to stop at a positive h.
 
 At each meshpoint x = jh, the equation -d²u/dx² = f(x) is replaced by its discrete analogue (5). We multiplied through by h2 to reach n equations Au = b:
 
