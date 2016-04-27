@@ -556,7 +556,7 @@ From now on, we will work with this equation (6). The matrix A possesses many sp
  1. ***The matrix A is tridiagonal. ***
     - All nonzero entries lie on the main diagonal and the two adjacent diagonals. Outside this band all entries are aᵢⱼ = 0. These zeros will bring a tremendous simplification to Gaussian elimination.
  2. ***The matrix is symmetric. ***
-    - Aᵀ = A , U = Lᵀ , A = LDLᵀ
+    - Aᵀ = A , U = Lᵀ , A = LDLᵀ (不是所有的对称矩阵都有LDLᵀ)
  3. ***The matrix is positive definite.***
     - This extra property says that the *pivots are positive*. Row exchanges are unnecessary in theory and in practice.
 
