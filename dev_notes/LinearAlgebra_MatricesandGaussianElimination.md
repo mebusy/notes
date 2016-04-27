@@ -547,7 +547,7 @@ At each meshpoint x = jh, the equation -d²u/dx² = f(x) is replaced by its disc
 
 The first and last equations (j = 1 and j = n) include u(0)=0 and u(n+1)=0 , which are known from the boundary conditions. These values would be shifted to the right-hand side of the equation if they were not zero.
 
-The structure of these n equations (5) can be better visualized in matrix form. We choose h = 6, to get a 5 by 5 matrix A:
+The structure of these n equations (5) can be better visualized in matrix form. We choose h = 1/6, to get a 5 by 5 matrix A:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_1.7_derivative_matrix_equation.png)
 
