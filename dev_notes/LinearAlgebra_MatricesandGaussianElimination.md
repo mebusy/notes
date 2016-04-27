@@ -620,7 +620,7 @@ u + 1.0001v = 2      u + 1.0001v = 2.0001
 
 The solution to the first is u = 2, v = 0. The solution to the second is u = v = 1. 
 
-*A change in the fifth digit of b was amplified to a change in the first digit of the solution. No numerical method can avoid this sensitivity to small perturbations. *
+*A change in the fifth digit of b was amplified to a change in the first digit of the solution. No numerical method can avoid this sensitivity to small perturbations.*
 
 **Even a well-conditioned matrix like B can be ruined by a poor algorithm.**
 
