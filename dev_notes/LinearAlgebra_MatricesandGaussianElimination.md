@@ -633,7 +633,7 @@ Elimination on B with small pivot:
       u + v = 2                  -9999v = -9998.
 ```
 
-Roundoff will produce - 10,000v = -10,000, or v = 1.  his is correct to three decimal places. 
+Roundoff will produce - 10,000v = -10,000, or v = 1.  This is correct to three decimal places. 
 
 The small pivot .0001 brought instability, and the remedy is clear - exchange rows.
 
