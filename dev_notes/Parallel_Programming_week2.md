@@ -117,6 +117,13 @@ Every time a warp is executs, all the 32 threads will be executed by the SIMD un
     - Threads within a single warp take different paths
  - Different execution paths are serialized in current GPUs
     - The control paths taken by the threads in a warp are traversed one at a time until there is no more.
+ 
+ - Example of GPU shader
+ - If your shaders must use branches, follow these recommendations:
+    - Best performance: Branch on a constant known when the shader is compiled.
+    - Acceptable: Branch on a uniform variable.
+    - Potentially slow: Branch on a value computed inside the shader.
+ - Eliminate Loops for performance
 
 <h2 id="2b5d215bd8a777456df7e1798de92043"></h2>
 #### Control Divergence Examples
