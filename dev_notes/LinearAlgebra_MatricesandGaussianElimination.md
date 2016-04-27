@@ -43,7 +43,7 @@ Two ways to solve thest equations: *elimination* and *determinants*.
 
 When n is much large( eg. 1000 ), direct use of the determinant formular for 1000 equations would be total disaster. We will find that fomular (Cramer's Rule) in Chapter 4, but we want a good method to solve 1000 equations in Chapter 1.
 
-The good method is ***Gaussian Elimination***. This is the algorithm that is constantly used to solve large systems of equations. Elimination is even the best way to compute determinants. It wukk become the basis for half of this book, simplifying a matrix so that we can understand it.
+The good method is ***Gaussian Elimination***. This is the algorithm that is constantly used to solve large systems of equations. Elimination is even the best way to compute determinants. It will become the basis for half of this book, simplifying a matrix so that we can understand it.
 
 **Four deeper aspects** in this chapter:
 
@@ -150,7 +150,7 @@ u  +  v +  w = 2
 3u +  v + 4w = 6
 ```
 
-The first two left sides add up to the third. On the right side that fails: 2 + 5 6. Equation 1 plus equation 2 minus equation 3 is the impossible statement 0 = 1. 
+The first two left sides add up to the third. On the right side that fails: 2 + 5 != 6. Equation 1 plus equation 2 minus equation 3 is the impossible statement 0 = 1. 
 
 Another singular system, close to this one, has an **infinity of solutions**. When the 6 in the last equation becomes 7, the three equations combine to give 0 = 0.  Now the third equation is the sum of the first two. In that case the three planes have a whole line in common (Figure 1.5c)
 
