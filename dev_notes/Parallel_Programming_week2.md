@@ -257,7 +257,7 @@ Every A element in the shared memory and every B element in the shared memory wi
 <h2 id="05f6e5f0aec3c722b0c365e005707ab6"></h2>
 #### Barrier Synchronization
 
-One all the threads finish loading a tile, then they can go ahead and consume the elements from the shared memory. Once all threads completed their calculation based on the shared memory, they can go ahread and load next tile from glocal memory into shared memory and overwrite the contents of the shared memory. And this requires coordination, something has to make sure that all the activities have ended in the previous phase and before you can move start the next phase. And this is accomplished in parallel computing with Barrier Synchronization.
+Once all the threads finish loading a tile, then they can go ahead and consume the elements from the shared memory. Once all threads completed their calculation based on the shared memory, they can go ahread and load next tile from glocal memory into shared memory and overwrite the contents of the shared memory. And this requires coordination, something has to make sure that all the activities have ended in the previous phase and before you can move start the next phase. And this is accomplished in parallel computing with Barrier Synchronization.
 
 Barrier Synchronization is a very important primitive for parallel computing for exactly the reason that I have just discussed before.
 
