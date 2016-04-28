@@ -113,7 +113,7 @@ Every time a warp is executs, all the 32 threads will be executed by the SIMD un
 <h2 id="3a61428f682a64764c8ee10cb08047c9"></h2>
 #### Control Flow Instructions
 
- - Main performance concern with branching is divergence 发散
+ - Main performance concern with branching is  **control divergence**
     - Threads within a single warp take different paths
  - Different execution paths are serialized in current GPUs
     - The control paths taken by the threads in a warp are traversed one at a time until there is no more.
@@ -128,7 +128,7 @@ Every time a warp is executs, all the 32 threads will be executed by the SIMD un
 <h2 id="2b5d215bd8a777456df7e1798de92043"></h2>
 #### Control Divergence Examples
     
- - Divergence can arise only when branch condition is a function(or condition) of thread indices
+ - Divergence can arise only when **branch condition is a function(or condition) of thread indices**
  - Example with divergence:
     - If (threadIdx.x >2 ) {} 
     - This creates 2 different control paths for threads in a block
