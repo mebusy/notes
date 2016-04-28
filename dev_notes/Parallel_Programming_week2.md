@@ -107,7 +107,7 @@ Every time a warp is executs, all the 32 threads will be executed by the SIMD un
     - Thus you can use this knowledge in control flow
     - Howere, the exact size of warps may change from generation to generation 
     - Covered nect
- - DO NOT rely on any ording within or between warps
+ - DO NOT rely on any ordering within or between warps
     - If there are any dependencies  between thread, you must __syncthreads() to get correct result(more later) 
 
 <h2 id="3a61428f682a64764c8ee10cb08047c9"></h2>
