@@ -132,7 +132,7 @@ Every time a warp is executs, all the 32 threads will be executed by the SIMD un
  - Example with divergence:
     - If (threadIdx.x >2 ) {} 
     - This creates 2 different control paths for threads in a block
-    - Branch granularity < warp size;  threads 0,1,2 follow follow different path than the rest of the threads in the first warp
+    - Branch granularity < warp size;  threads 0,1,2 follow different path than the rest of the threads in the first warp
  - Example without divergence:
     - If (blockIdx.x >2 ) {}
     - Branch granularity is a multiple of blocks size; all threads in any given warp follow the same path.
