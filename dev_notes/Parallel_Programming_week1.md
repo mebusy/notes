@@ -11,7 +11,7 @@
      * [1.4: Introduction to CUDA, Data Parallelism and Threads](#58169605407651f9f0bc706aaf8f8935)
        * [Basic concept of CUDA](#f9312ad800b52c07be7869572e85b704)
      * [1.5 Introduction to CUDA, Memory Allocation and Data Movement API Functions](#c345dcdd0f1480d0615c23660e8ead7f)
-       * [Partical overview of CUDA memories](#171dcfddafc5df8e31c305563aada69b)
+       * [Partial overview of CUDA memories](#171dcfddafc5df8e31c305563aada69b)
        * [CUDA Device Memory Management API](#bee998a5f82c060231c5da13b586e5da)
        * [Host-Device Data Transfer API](#d3c85cba12bf184449321d9fcf98e23d)
        * [Check Error](#249193c955d9a399e5b6d394f125f4ca)
@@ -226,7 +226,7 @@ void vecAdd(float* h_A,float* h_B,float* h_C,int n){
 Instead of performing the actual computation, this function is actually going to call a kernel function that will be executed on the device , and before calling that function , this functio also needs to do some outsourcing activity. It needs to copy data from the host memory into the device memory , so that the device is ready to precess data. And eventually after the device completes its computation it needs to copy the data's C vector back into the host memory.
 
 <h2 id="171dcfddafc5df8e31c305563aada69b"></h2>
-#### Partical overview of CUDA memories
+#### Partial overview of CUDA memories
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cuda_memory.png)
 
