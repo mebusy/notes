@@ -67,7 +67,7 @@
         - decompose key k into r+1 digits
         - each digit in the set {0,1,...,m-1}
         - k 的m进制表示
-    - a = <a₀,a₁,...aᵣ>
+    - `a = <a₀,a₁,...aᵣ>`
         - aᵢ is choosen randomly from {0,1,...,m-1}
         - 随机m进制数
     - Define `hₐ(k)=Σaᵢkᵢ mod m`. 
