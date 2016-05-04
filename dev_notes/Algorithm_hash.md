@@ -1,3 +1,62 @@
+# 概览: 摘自算法导论
+
+ - 映射方法
+    1. 除法
+        - `h(k)= k mod m`
+        - pick m to be a ***prime*** , not too close to a power of 2 or 10
+        - sometimes , make the table size a prime is inconvenient
+    2. 乘法
+        - `m = 2ʳ` , `w`-bit words
+        - `h(k)=(A·k mod 2ʷ) rsh (w-r)`
+        - A is an odd integer `2ʷ⁻¹ < A < 2ʷ`
+        - Don't pick A too close to 2ʷ⁻¹ or 2ʷ
+ 
+ - 映射冲突解决方法
+    - 链表法
+        - 在冲突位置添加新节点
+    - open addressing
+        - 按照某种规则向后，或左右探测
+            1. Linear probing: 线性探测
+                - `h(k,i)=(h'(k)+i) mod m`
+            2. Double hashing
+                - `h(k,i)=(h₁(k)+i·h₂(k)) mod m` 
+                - h₂(k) must be relatively prime to m
+                - one way is to make m a power of 2 and design h₂(k) to produce only odd numbers
+        - the expected number of probe is : `1/(1-a)`
+            - if the table is half full, then the expected number of probes is 1/(1-0.5)=2  
+            - if the table is 90% full, then the expected number of probes is 1/(1-0.9)=10
+ 
+ - Universal hashing
+    - hash函数的弱点: 总能找到一组key, 使得hashing到同一个slot i
+    - 解决方案: choose the hash function at random, independently of the keys
+    - the chance of a collision between x and y is 1/m if we choose h randomly from H.
+
+ - 构造 Universal hashing
+    - let `m` be prime
+    - `k=<k₀,k₁,...kᵣ>` , 0 <= kᵢ < m
+        - decompose key k into r+1 digits
+        - each digit in the set {0,1,...,m-1}
+        - k 的m进制表示
+    - a = <a₀,a₁,...aᵣ>
+        - aᵢ is choosen randomly from {0,1,...,m-1}
+        - 随机m进制数
+    - Define `hₐ(k)=Σaᵢkᵢ mod m`. 
+        - Dot product mode m
+    - Fact from number theory
+        - Theorem: let m be prime. For any z ∈ Zm such that z ≠ 0, there exists a unique z⁻¹ ∈ Zm , such that `z·z⁻¹=1 (mod m)`
+        
+ - Perfect hashing
+    - 给定一组键集,构建一个静态hash table, 如果要查某个key是否在表中，在最坏的情况下，怎么做的做好。
+    - eg: 假定表中存的是1000个最常用英文单词，判断一个单词是否是常用单词，我要的不是预期的性能，我要确保最坏情况的性能。有没有相应的建表方法，能让我快速的查找。
+    - Given n keys, construct a static hash table of size m=O(n) (不需要很大的表)，使得在最坏的情况下，查找的时间是O(1).
+    - Perfect hashing 采用2级结构
+    - 每一级上都采用 universal hashing
+    - 第一级按照正常 universal hashing, 可能发生冲突
+    - 第二级hash table 大小由此处碰撞个数nᵢ个数决定: `mᵢ=nᵢ²` , 第二级没有冲突
+    - Theorem: Let H be a class of universal hash functions for a table of size m=n², then we use a random h ∈ H to hash n keys into the table , then expected number of collisions is at most 1/2.
+    - 构造所有第二级的hash(多试几个hash)
+    
+
 # HASHING: THE BASICS
 
 ## 问题描述
@@ -108,7 +167,7 @@ Collision: distinct x,y∈U, such that h(x)=h(y)
         3. 对于64位整数而言，这个乘数是11400714819323198485
     - 这几个“理想乘数”是如何得出来的呢？这跟一个法则有关，叫黄金分割法则，而描述黄金分割法则的最经典表达式无疑就是著名的斐波那契数列，即如此形式的序列：0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610， 987, 1597, 2584, 4181, 6765, 10946，…
     -  对我们常见的32位整数而言
-    -  公式：index = (value * 2654435769) >> 28
+    -  公式：index = ((value * 2654435769) mod ((2^32)-1) ) >> 28
 
 如果用这种斐波那契散列法的话，那上面的图就变成这样了：
 
