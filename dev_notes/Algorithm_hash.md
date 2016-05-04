@@ -1,3 +1,33 @@
+...menustart
+
+ * [概览: 摘自算法导论](#fb32c843c921072812bf05b533054f83)
+ * [HASHING: THE BASICS](#25e0268e3f5cf769aafd10960e38b1b1)
+   * [问题描述](#254dd6d2171da29e092b8bc744f88ca4)
+   * [什么是哈希表？](#70b417d317f96c97342f24b2162f8181)
+   * [问题解析：](#9e47a4227f80888ea0bbc430f8b21e3a)
+   * [Operations and Applications](#6a80cb76a26187df87a7b43a12c0e0f3)
+   * [Hash Tables: Implementation Details, Part I](#92ffd2c2de9bc0f3039d04a65c39a0ee)
+     * [High Idea](#4ffbe3079f98cd2fbc806015b3e4c153)
+     * [Resolving Collisions](#eb4987790cb2c3221c8e48bbe272a16c)
+     * [适用范围](#901c0de56e3d0915b902ba4936d73b2f)
+     * [基本原理及要点](#2192051ba975e2eb7ae425bc5558bc4d)
+   * [Hash Tables: Implementation Details, Part II](#334bf74dec0bc5468db8c60ee4c6faee)
+     * [Bad Hash Functions](#57df1977a6166abba33bf37ae26eb795)
+ * [Universal Hashing](#e29d3271fc0ee41bcd9d68a53bb5a685)
+ * [BLOOM FILTERS (Week 6)](#1677ab99cbc7f9e8ca194063ad970bf5)
+   * [提出问题](#46dde4160b0f015ac00170215190d0db)
+   * [分析问题](#a0b60bc4215f3d8bb94748402ee71527)
+   * [解决问题](#0483f6d1fd5732d1a68dc08c894592fa)
+   * [Standard Bloom Filter](#db54f791d1ccc68ce2802d5f1aa64772)
+   * [Bloom Filters: the basic](#3aeddc1c1fa5389ff2b55738649e1755)
+     * [Application](#e498749f3c42246d50b15c81c101d988)
+     * [Under the hood](#fcec44f1a0d81c1745f18badee25e351)
+   * [Bloom Filters: Heuristic Analysis](#f103c4b9b2bd171e07dae9ebf1ebdade)
+
+...menuend
+
+
+<h2 id="fb32c843c921072812bf05b533054f83"></h2>
 # 概览: 摘自算法导论
 
  - 映射方法
@@ -57,13 +87,16 @@
     - 构造所有第二级的hash(多试几个hash)
     
 
+<h2 id="25e0268e3f5cf769aafd10960e38b1b1"></h2>
 # HASHING: THE BASICS
 
+<h2 id="254dd6d2171da29e092b8bc744f88ca4"></h2>
 ## 问题描述
 
 搜索引擎会通过日志文件把用户每次检索使用的所有检索串都记录下来，每个查询串的长度为1-255字节。假设目前有一千万个记录（这些查询串的重复度比较高，虽然总数是1千万，但如果除去重复后，不超过3百万个。一个查询串的重复度越高，说明查询它的用户越多，也就是越热门。），请你统计最热门的10个查询串，要求使用的内存不能超过1G。
 
 
+<h2 id="70b417d317f96c97342f24b2162f8181"></h2>
 ## 什么是哈希表？
 哈希表（Hash table，也叫散列表），是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。
 
@@ -73,6 +106,7 @@
 
 哈希表适用于 有大量查找的场合。
 
+<h2 id="9e47a4227f80888ea0bbc430f8b21e3a"></h2>
 ## 问题解析：
 
 要统计最热门查询，首先就是要统计每个Query出现的次数，然后根据统计结果，找出Top 10。所以我们可以基于这个思路分两步来设计该算法。
@@ -89,6 +123,7 @@
     - 算法一：普通排序
     - 算法二：堆排序
 
+<h2 id="6a80cb76a26187df87a7b43a12c0e0f3"></h2>
 ## Operations and Applications
 
 **Purpose**: maintain a (possibly evolving) set of stuff. (transactions, people associated data, IP address, etc. )
@@ -118,8 +153,10 @@ All operations in O(1) time!
  - search algorithms , eg. in a chess playing program , the game tree exploration
     - use hash table to avoid exploring any configuration more than once.
 
+<h2 id="92ffd2c2de9bc0f3039d04a65c39a0ee"></h2>
 ## Hash Tables: Implementation Details, Part I
 
+<h2 id="4ffbe3079f98cd2fbc806015b3e4c153"></h2>
 ### High Idea
 
  1. pick n= #buckets , with n ≈ |S|
@@ -131,6 +168,7 @@ All operations in O(1) time!
 
 所以，hash 出现 collision 的概率是非常高的。
 
+<h2 id="eb4987790cb2c3221c8e48bbe272a16c"></h2>
 ### Resolving Collisions
 
 Collision: distinct x,y∈U, such that h(x)=h(y)
@@ -173,10 +211,12 @@ Collision: distinct x,y∈U, such that h(x)=h(y)
 
 ![](http://hi.csdn.net/attachment/201103/17/8394323_130035338777Q4.jpg)
 
+<h2 id="901c0de56e3d0915b902ba4936d73b2f"></h2>
 ### 适用范围
 
 快速查找，删除的基本数据结构，通常需要总数据量可以放入内存。
 
+<h2 id="2192051ba975e2eb7ae425bc5558bc4d"></h2>
 ### 基本原理及要点
 
 hash函数选择，针对字符串，整数，排列，具体相应的hash方法。 
@@ -184,6 +224,7 @@ hash函数选择，针对字符串，整数，排列，具体相应的hash方法
 
 
  
+<h2 id="334bf74dec0bc5468db8c60ee4c6faee"></h2>
 ## Hash Tables: Implementation Details, Part II
 
  -  ***Note***: in hash table with chaining, Insert is θ(1)
@@ -196,16 +237,20 @@ hash函数选择，针对字符串，整数，排列，具体相应的hash方法
         - gold standard: completely random hashing
     2. should be easy to store / very fast to evaluated
 
+<h2 id="57df1977a6166abba33bf37ae26eb795"></h2>
 ### Bad Hash Functions
 
 06:57
 
+<h2 id="e29d3271fc0ee41bcd9d68a53bb5a685"></h2>
 # Universal Hashing
 
 TODO
 
+<h2 id="1677ab99cbc7f9e8ca194063ad970bf5"></h2>
 # BLOOM FILTERS (Week 6)
 
+<h2 id="46dde4160b0f015ac00170215190d0db"></h2>
 ## 提出问题
 
 Google的爬虫每天需要抓取大量的网页。于是就有一个问题：每当爬虫分析出一个url的时候，是抓呢，还是不抓呢？如何知道这个url已经爬过了？
@@ -214,12 +259,14 @@ Google的爬虫每天需要抓取大量的网页。于是就有一个问题：�
 
 给定一个集合S（注意，这里的集合是传统意义上的集合：元素彼此不同。本文不考虑multiset），给定一个元素e，需要判断e∈S 是否成立。（学术界一般称为membership问题）
 
+<h2 id="a0b60bc4215f3d8bb94748402ee71527"></h2>
 ## 分析问题
 
 都有哪些方案可以解决这个问题？
 
 一种简单的想法是把url存储在一个哈希表中，每次去表里look up下判断是否存在。假如每个url占用40B，那么10亿条url将占用大概30多GB的内存！Can this be more space efficient ?
 
+<h2 id="0483f6d1fd5732d1a68dc08c894592fa"></h2>
 ## 解决问题
 
 我们可不可以不存url本身？这样子所需空间就会大大减少了。于是我们想到一个很经典的做法：bitmap（位图）。将集合S中的url哈希到bitmap上，给定一个url，只需要将它hash，得到它在bitmap的下标，检查该位置是否为1即可。
@@ -230,6 +277,7 @@ Google的爬虫每天需要抓取大量的网页。于是就有一个问题：�
 
 如何降低false positive的概率呢？Bloom Filter的想法是使用多个独立的哈希函数。
 
+<h2 id="db54f791d1ccc68ce2802d5f1aa64772"></h2>
 ## Standard Bloom Filter
 
 在传统的Bloom Filter中，我们有：
@@ -255,6 +303,7 @@ hash value = hf1(key) + i*hf2(key)
 其中i=0、1、2…k-1
 
 
+<h2 id="3aeddc1c1fa5389ff2b55738649e1755"></h2>
 ## Bloom Filters: the basic
 
 more space efficient
@@ -265,6 +314,7 @@ more space efficient
     - can actually make mistakes
     - might say x has been inserted even though it hasn't been
 
+<h2 id="e498749f3c42246d50b15c81c101d988"></h2>
 ### Application
 
  - Original: early spellchecker
@@ -272,6 +322,7 @@ more space efficient
  - Modern: network routers
     - limit memory need to be super-fast
 
+<h2 id="fcec44f1a0d81c1745f18badee25e351"></h2>
 ### Under the hood
 
 Ingredient: 
@@ -301,6 +352,7 @@ Note:
  - but false postive
     - if all k hi(x) is already set to 1 by other insertions.
 
+<h2 id="f103c4b9b2bd171e07dae9ebf1ebdade"></h2>
 ## Bloom Filters: Heuristic Analysis 
     
 TODO
