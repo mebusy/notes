@@ -535,12 +535,12 @@ The first question is: How do we replace the derivative *d²u/dx²* ?
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/1st_derivative_approximate.png)
 
-how to figure U(x+h)  ? It’s something called Taylor series. If I move a little bit, I start from the point x and then there is a little correction and that's given by the derivative and then there's further correnct if I want to go the second order correction, times the second derivative.
+how to figure u(x+h)  ? It’s something called Taylor series. If I move a little bit, I start from the point x and then there is a little correction and that's given by the derivative and then there's further correnct if I want to go the second order correction, times the second derivative. Second order accuracy is often the goal in scientific compute .
 
 ```
-U(x+h) = U(x) + hU’(x) + h²/2·U”(x) + .. .
-U(x-h) = U(x) - hU’(x) + h²/2·U”(x) + .. .
-U(x+h)-U(x-h) = 2hU’(x)  => (U(x+h)-U(x-h)) / 2h = U'(x)
+u(x+h) = u(x) + hU’(x) + h²/2·u”(x) + .. .
+u(x-h) = u(x) - hU’(x) + h²/2·u”(x) + .. .
+u(x+h)-u(x-h) = 2hU’(x)  => (u(x+h)-u(x-h)) / 2h = u'(x)
 ```
 
 It makes the key point. That the center defference gives the correct derivative.
@@ -550,7 +550,7 @@ For the second derivative there is just one combination that uses only the value
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2nd_derivative_approximate.png)
 
-The right-hand side approaches the true value of d2u/dx2 as h -> 0, but we have to stop at a positive h.
+The right-hand side approaches the true value of d²u/dx² as h -> 0, but we have to stop at a positive h.
 
 At each meshpoint x = jh, the equation -d²u/dx² = f(x) is replaced by its discrete analogue (5). We multiplied through by h2 to reach n equations Au = b:
 
