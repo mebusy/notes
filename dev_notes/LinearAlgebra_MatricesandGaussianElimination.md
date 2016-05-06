@@ -521,6 +521,8 @@ It comes from changing a differential equation to a matrix equation. As a simple
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_1.7_derivative_equation.png)
 
+Second derivatives are essentially negative definite things so that minus sign is to really make it positive definite.
+
 This is a linear equation for the unknown function u(x). Any combination C + Dx could be added to any solution, since the second derivative of C + Dx contributes nothing.
 
 The result is a *two-point boundary-value* problem, describing not a transient(瞬时) but a steady- state phenomenon(稳态现象). For example, the temperature distribution in a rod,  with ends fixed at 0° and with a heat source f (x).
