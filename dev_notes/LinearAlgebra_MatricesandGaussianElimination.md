@@ -535,6 +535,17 @@ The first question is: How do we replace the derivative *d²u/dx²* ?
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/1st_derivative_approximate.png)
 
+how to figure U(x+h)  ? It’s something called Taylor series. If I move a little bit, I start from the point x and then there is a little correction and that's given by the derivative and then there's further correnct if I want to go the second order correction, times the second derivative.
+
+```
+U(x+h) = U(x) + hU’(x) + h²/2·U”(x) + .. .
+U(x-h) = U(x) - hU’(x) + h²/2·U”(x) + .. .
+U(x+h)-U(x-h) = 2hU’(x)  => (U(x+h)-U(x-h)) / 2h = U'(x)
+```
+
+It makes the key point. That the center defference gives the correct derivative.
+
+
 For the second derivative there is just one combination that uses only the values at x and x ± h:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2nd_derivative_approximate.png)
