@@ -67,12 +67,13 @@ Algorithm
 ---
 #### Python
 
-###### [1. BeautifulSoup](https://github.com/mebusy/notes/blob/master/dev_notes/PY_BeautifulSoup.md)
-
-###### [2. python多线程](https://github.com/mebusy/notes/blob/master/dev_notes/PY_multiprocessing.md)
+    |   |    |   | 
+--- | --- | --- | ---
+[tips](https://github.com/mebusy/notes/blob/master/dev_notes/python_tips_1.md) | [BeautifulSoup](https://github.com/mebusy/notes/blob/master/dev_notes/PY_BeautifulSoup.md)  | [python多线程](https://github.com/mebusy/notes/blob/master/dev_notes/PY_multiprocessing.md) | 
 
 
 ---
+
 #### Intro to Game Development
 
     |   |    |   | 
