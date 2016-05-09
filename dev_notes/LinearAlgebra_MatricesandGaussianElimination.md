@@ -507,6 +507,8 @@ Suppose A = Aᵀ can be factored into A = LDU without row exchanges. Then U is t
 
 The transpose of A = LDU gives Aᵀ = UᵀDᵀLᵀ. Since A = Aᵀ, Lᵀ must be identical to U.
 
+Inverse of symmetric is symmetric.
+
 <h2 id="ed0eb6118820d3734285fd1a953dab73"></h2>
 ## 1.7 SPECIAL MATRICES AND APPLICATIONS
 
