@@ -1,6 +1,3 @@
-[TOC]
-
-# Linear Algebra 
 
 # Vector Spaces
 
