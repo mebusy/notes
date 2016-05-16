@@ -53,7 +53,7 @@ Algorithm
 
     |   |    |   | 
 --- | --- | --- | ---
-[preface](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra_preface.md) | [Elimination](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra_MatricesandGaussianElimination.md) | 
+[preface](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra_preface.md) | [Elimination](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra_MatricesandGaussianElimination.md) | [Vector Space](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra_VectorSpace.md)  | 
 
 
 #### 其它数学
