@@ -272,9 +272,9 @@ If b belongs to the column space, the solutions of Ax = b are easy to find. The 
 
 `X_complete = X_particular + X_nullspace`
 
-The particular solution in equation (4) comes from solving the equation with *all free variables set to zero*. That is the only new part, since the nullspace is already computed. When you multiply the highlighted equation by A, you get Axcompiete = b + 0.
+The particular solution in equation (4) comes from solving the equation with *all free variables set to zero*. That is the only new part, since the nullspace is already computed. When you multiply the highlighted equation by A, you get Ax_complete = b + 0.
 
-Geometrically, the solutions again fill a two-dimensional surface - but it is not a subspace. It does not contain x = 0. It is parallel to the nullspace we had before, shifted by the particular solution xP as in Figure 2.2. Equation (4) is a good way to write the answer:
+Geometrically, the solutions again fill a two-dimensional surface - but it is not a subspace. It does not contain x = 0. It is parallel to the nullspace we had before, shifted by the particular solution x_p as in Figure 2.2. Equation (4) is a good way to write the answer:
 
  1. Reduce Ax = b to Ux = c.
  2. With free variables = 0, find a particular solution to Ax_p = b and Ux_p = c.
