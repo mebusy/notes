@@ -1,4 +1,5 @@
 
+
 # Vector Spaces
 
 ## 2.1 VECTOR SPACES AND SUBSPACES
@@ -183,7 +184,7 @@ Here is *PA = LU* for all matrices:
 
  - **2B:** For any m by n matrix A there is a permutation P, a lower triangular L with unit diagonal, and an m by n echelon matrix U, such that *PA = LU*
 
-*Now comes **R***. We can go further than U, to make the matrix even simpler. Divide the second row by its pivot 3, so that ***all pivots are 1***. Then use the pivot row to produce ***zero above the pivot*** (This time we subtract a row from *a higher row*). The final result (the best form we can get) is the ***reduced row echelon form R*** :
+*Now comes* ***R***. We can go further than U, to make the matrix even simpler. Divide the second row by its pivot 3, so that ***all pivots are 1***. Then use the pivot row to produce ***zero above the pivot*** (This time we subtract a row from *a higher row*). The final result (the best form we can get) is the ***reduced row echelon form R*** :
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_ReducedEchelon.png)
 
@@ -278,4 +279,3 @@ Geometrically, the solutions again fill a two-dimensional surface - but it is no
  1. Reduce Ax = b to Ux = c.
  2. With free variables = 0, find a particular solution to Ax_p = b and Ux_p = c.
  3. Find the special solutions to Ax = 0 (or Ux = 0 or Rx = 0). Each free variable, in turn, is 1. Then x = x_p + (any combination x_n of special solutions).
- 
