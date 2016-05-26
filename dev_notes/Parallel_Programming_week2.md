@@ -201,7 +201,7 @@ __global__ void MatrxMulKernel( int m , int n , int k, ...  )
  - divide global memory content into tiles
  - focus the computation of threads on one or a small number of tiles at each point in time
 
-按交通为例, Tiled Parallel Algorithms 就是把相同形成的客人座同一辆车，从而减少车的总量，缓解交通压力。
+按交通为例, Tiled Parallel Algorithms 就是把相同行程的客人座同一辆车，从而减少车的总量，缓解交通压力。
 
 所以好的情况是客人都拥有相同的 schedule, 坏的情况是客人的schedule 都不同。
 
