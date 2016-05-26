@@ -114,7 +114,7 @@ Keys to Software Cost Control:
 CUDA C , a heterogeneous parallel programming interface that enables exploitation of data parallelism
 
  - Hierarchical thread organization
- - Main interfaces for launching launching parallel execution
+ - Main interfaces for launching parallel execution
  - Thread index to data index mapping
 
 The phenomena of data parallelism is that , different parts of the data can actually be processed independently of each other. 
