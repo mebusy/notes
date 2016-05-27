@@ -97,6 +97,8 @@ Say `x∊ℝ`, if x is a distributed Gaussian with mean(均值) `μ` , variance(
  
      ![][2]
 
+    样本各个feature的概率的乘积
+
     Anomaly if p(x) < ϵ .
     
 
