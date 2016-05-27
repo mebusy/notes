@@ -80,7 +80,7 @@ Say `x∊ℝ`, if x is a distributed Gaussian with mean(均值) `μ` , variance(
 #### Anomaly Detection Algorithm
 
 > Training set: { x⁽¹⁾,x⁽²⁾,...,x⁽ᵐ⁾ }
-> Each example is xⱼ ∊ ℝ
+> Each example is x ∊ ℝⁿ
 
 所以，训练样本是 mxn矩阵。
 
