@@ -68,7 +68,10 @@
 plot(x, y, 'rx', 'MarkerSize', 10); % 改变 点的形状和尺寸
 ```
 
+
+For brew octave plotting error:
+
 ```
-# for brew octave plotting error
-brew reinstall gnuplot --with-acquaterm
+brew uninstall gnuplot;
+brew install gnuplot --with-x11
 ```
