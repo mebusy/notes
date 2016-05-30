@@ -111,7 +111,7 @@ Algorithm
 
     |   |    |   | 
 --- | --- | --- | ---
-[week1](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week1.md) | [week2](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week2.md) |   [week3](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week3.md) |  
+[week1](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week1.md) | [week2](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week2.md) |   [week3](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_programming_week3.md) |  
 
 #### C
 
