@@ -73,5 +73,5 @@ For brew octave plotting error:
 
 ```
 brew uninstall gnuplot;
-brew install gnuplot --with-x11
+brew install gnuplot --with-qt
 ```
