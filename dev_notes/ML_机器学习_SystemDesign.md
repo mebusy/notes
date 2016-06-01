@@ -16,15 +16,6 @@
 
 
 
-    Spam classification example
-        model
-        how 2 spend your time to make it have low error
-        Error Analysis
-    Handling Skewed Data
-        Trading off precision and recall
-        how 2 compare precision/recall numbers
-    Use Large Data set
-        Large data rationale
 
 
 <h2 id="0f37957d7f1f5bd5de2a41d8bc2c1d8f"></h2>

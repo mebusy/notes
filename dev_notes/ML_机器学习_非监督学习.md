@@ -24,24 +24,6 @@
 
 
 
-    Clustering 聚类
-        K-Means Algorithm (K均值算法)
-        K-means for non-separated clusters
-        Optimization Objective 优化目标
-        Random Initialization
-        Choosing the number of clusters
-    Dimensionality Reduction (降维)
-        Motivation I : Data Compression
-            应用：数据压缩
-        Motivation II : Data Visualization
-    Principal Component Analysis (主成分分析法)
-        PCA algorithm
-        PCA 后面的数学知识点
-        举例
-    Applying PCA
-        Reconstruction from Compressed Representation
-        Choosing k ( Number of Principal Components )
-        Advice for Applying PCA
 
 [TOC]
 

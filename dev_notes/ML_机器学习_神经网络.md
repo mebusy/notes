@@ -19,20 +19,6 @@
 
 
 
-	Neural Networks
-		模型表示
-		Forward Propagation 前向传播
-			向量化实现
-	应用
-		简单的例子: 逻辑与 AND
-		逻辑 异或非 XNOR: y=1 if x1=x2
-	多类分类
-	手写字体识别
-		可视化部分数字图像数据
-		Regularized Logistic Regression 代价函数
-		训练所有的分类器
-		多类分类流程
-		使用3层神经网络 多类分类的示例
 
 <h2 id="6b347be0e79381eeb5689396d9e59438"></h2>
 # Neural Networks 

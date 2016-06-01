@@ -31,30 +31,6 @@
 
 
 
-    逻辑回归 Logistic Regression
-            逻辑回归其实是分类问题 Classification
-        模型 : h(x) = g(θᵀx)
-            logistic回归实质上还是线性回归模型
-            逻辑回归的假设函数h(x)的输出，是 y=1的概率的估计值
-        决策边界 decision boundary
-        代价函数 cost function J
-            逻辑回归 J 应该是个凸函数 convex ， 线性回归的J 是非凸函数
-        梯度下降
-        高级优化
-            优点
-            缺点
-            用法
-    多类分类
-        1-vs-all 分类思想
-    review :
-        和线性回归一样，拟合曲线，需要多项式
-        h(x) = g( θᵀx ) , θᵀx 图像可以看到决策边界
-        逻辑回归的 代价函数 J 总是个凸函数
-    一般流程
-        可视化
-        S型函数
-        代价函数
-        预测
 
 <h2 id="a744ec7c08cc41920ead873b18fea870"></h2>
 # 逻辑回归  Logistic Regression

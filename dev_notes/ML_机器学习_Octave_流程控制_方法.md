@@ -15,16 +15,6 @@
 
 
 
-    控制语句
-        for
-        while
-        if elseif else
-        break, continue
-    方法
-        定义 function RETURN = FUNC_NAME( PARAMS )
-        多个返回值 function [RET1, RET2] = FUNC_NAME( PARAMS )
-        例子: 代价函数J
-        addpath(path) 添加搜索路径，以便 Octave 发现方法定义文件
 
 
 <h2 id="ea5302a4c0247998e1de210b879bef5f"></h2>

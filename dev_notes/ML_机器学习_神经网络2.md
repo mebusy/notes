@@ -18,19 +18,6 @@
 
 
 
-    反向传播
-        代价函数 和 反向传播 Backpropagation
-        为了计算导数项，我们采用反向传播算法Backpropagation
-        只有一个训练样本的例子（不重要）:
-        大量训练样本情况下，反向传播算法的应用:
-    反向传播练习
-        unrolling parameters
-        Gradient checking
-        应用 Gradient Checking的步骤
-    随机初始化
-    put all together
-        选择神经网络架构
-        训练神经网络
         
 
 <h2 id="4ae61d8a3733358bcef0f73d62e69a15"></h2>

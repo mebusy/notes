@@ -23,24 +23,6 @@
 
 
 
-    Support Vector Machines 支持向量机
-        Large Margin Classification
-            SVM 代价函数
-            SVM Decision Boundary: Linearly separable case
-            Large margin classifier in presence of outliers
-            Mathmatics behind large margin classification
-        Kernels I 核函数
-            Non-linear Decision Boundary
-        Kernels II
-            choosing the landmarks
-            SVM parameters
-        SVMs in Practics
-            Using an SVM
-            Multi-class classification
-            Logistic regression vs. SVMs
-        Spam email filter
-            Processing emails
-            Vocabulary List
 
 <h2 id="8cf67260d126306abf039891edbeb656"></h2>
 # Support Vector Machines 支持向量机
