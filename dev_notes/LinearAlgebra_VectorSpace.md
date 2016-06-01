@@ -1,7 +1,23 @@
+...menustart
+
+ * [Vector Spaces](#2f21953656c07a77cad97b71c89a69de)
+   * [2.1 VECTOR SPACES AND SUBSPACES](#972dab9e05beb3d5443db66ec0eabd2e)
+     * [The Column Space of A](#8181c20bb270d985c5745507fd8a273b)
+     * [The Nullspace of A](#3c94b747c25e8b676e5f7af1a67da8a5)
+   * [2.2 SOLVING Ax=0 and Ax=b](#1e0304a592cf2dccbcb3c7e858021d8d)
+     * [Echelon Form(梯形) *U* and Row Reduced Form *R*](#fb0727e770a06722aa7b9d64a9b6af91)
+     * [Pivot Variables and Free Variables](#1e32c695f24ac4d5108ba9cca53ac86a)
+     * [Solving Ax = b, Ux = c, and Rx = d](#0aa8bb162b1e64c4edd71e634be16382)
+
+...menuend
 
 
+
+
+<h2 id="2f21953656c07a77cad97b71c89a69de"></h2>
 # Vector Spaces
 
+<h2 id="972dab9e05beb3d5443db66ec0eabd2e"></h2>
 ## 2.1 VECTOR SPACES AND SUBSPACES
 
 For the concept of a ***vector space***, we start immediately with the most important spaces. They are denoted by **R¹, R², R³**, ... ; the space **Rⁿ** consists of all column vectors with ***n*** components.
@@ -35,6 +51,7 @@ Notice in particular that ***the zero vector will belong to every subspace***. T
 Start from the vector space of 3 by 3 matrices. One possible subspace is the set of lower triangular matrices. Another is the set of symmetric matrices. A + B and cA are lower triangular if A and B are lower triangular, and they are symmetric if A and B are
 symmetric. Of course, the zero matrix is in both subspaces.
 
+<h2 id="8181c20bb270d985c5745507fd8a273b"></h2>
 ### The Column Space of A
 
 We now come to the key examples, the **column space** and the **nullspace** of a matrix A.
@@ -57,6 +74,7 @@ What is important is that this plane is not just a subset of R³; it is a **subs
 
 Then C(A) can be somewhere between the zero space and the whole space **Rᵐ**. Together with its perpendicular space, it gives one of our two approaches to understanding Ax = b.
 
+<h2 id="3c94b747c25e8b676e5f7af1a67da8a5"></h2>
 ### The Nullspace of A
 
 The second approach to Ax = b is "dual" to the first. 
@@ -101,6 +119,7 @@ The vectors b are in the column space and the vectors x are in the nullspace.
 
 We hope to end up by understanding all four of the subspaces that are intimately related to each other and to A - the ***column space*** of A, the ***nullspace*** of A, and their two perpendicular spaces.
 
+<h2 id="1e0304a592cf2dccbcb3c7e858021d8d"></h2>
 ## 2.2 SOLVING Ax=0 and Ax=b
 
 Chapter 1 concentrated on square invertible matrices. There was one solution to Ax = b, and it was x = A⁻¹b. That solution was found by elimination (not by computing A⁻¹). 
@@ -129,6 +148,7 @@ For an invertible matrix, the nullspace contains only x = 0 (multiply Ax = 0 by 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_completeSolution.png)
 
+<h2 id="fb0727e770a06722aa7b9d64a9b6af91"></h2>
 ### Echelon Form(梯形) *U* and Row Reduced Form *R*
 
 We start by simplifying this 3 by 4 matrix, first to U and then further to R:
@@ -197,6 +217,7 @@ For a 5 by 8 matrix with four pivots, Figure 2.3 shows the reduced form R. **It 
  - From R we will quickly find the nullspace of A. 
  - *Rx = 0* has the same solutions as *Ux = 0* and *Ax=0*
 
+<h2 id="1e32c695f24ac4d5108ba9cca53ac86a"></h2>
 ### Pivot Variables and Free Variables
 
 Our goal is to read off all the solutions to Rx = 0. The pivots are crucial:
@@ -237,6 +258,7 @@ There must be infinitely many solutions, since any multiple cx will also satisfy
 
 This central idea-the ***dimension*** of a subspace-is made precise in the next section. We count the free variables for the nullspace. We count the pivot variables for the column space!
 
+<h2 id="0aa8bb162b1e64c4edd71e634be16382"></h2>
 ### Solving Ax = b, Ux = c, and Rx = d
 
 The case b≠0 is quite different from b = 0. The row operations on A must act also on the right-hand side (on b). 
