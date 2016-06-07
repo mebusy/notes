@@ -297,7 +297,7 @@ x = (feature-value - avg ) / range
 
 -0.5 <= x <= 0.5
 
-    注意： 不要对 θ₀ 做 feature scale 处理
+    注意： 不要对 x₀ 做 feature scale 处理
 
 
 <h2 id="67aae18504608dd415e0474604df6822"></h2>
