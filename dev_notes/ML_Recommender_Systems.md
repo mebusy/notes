@@ -124,8 +124,8 @@ Minimizing `x⁽¹⁾,x⁽²⁾,...,x⁽ⁿᵐ⁾` and `θ⁽¹⁾,θ⁽²⁾,..
 // pesudo code
 D = ( X * Theta'   - Y ).* R ;
 J = 0.5* sum( sum( D.^2 ) ) ;
-J += 0.5* lambda * sum( sum( X.^2 ) )
-J += 0.5* lambda * sum( sum( Theta.^2 ) )
+J += 0.5* lambda * sum( sum( X.^2 ) ) ;
+J += 0.5* lambda * sum( sum( Theta.^2 ) ) ;
 ```
 
 很重要的一点，当我们用这种方法去学习特征时，我们必须去掉bias项: x₀=1. 所以在这个算法里， 我们学习的 x ∊ ℝⁿ and also θ ∊ ℝⁿ .
@@ -137,6 +137,12 @@ Steps:
   > ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/collaborative_filtering_gradient_descent.png)
 
  3. For a user with parameter θ and a movie with (learned) feature x, predict a star rating of θᵀx .
+
+```
+X_grad = sum( D* Theta ) + lambda* X ;
+Theta_grad = sum( D'* X ) + lambda * Theta ;
+grad = [X_grad(:); Theta_grad(:)];
+```
  
 ---
 
