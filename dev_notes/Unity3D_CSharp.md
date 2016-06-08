@@ -1,7 +1,7 @@
 ...menustart
 
  - [CSharp](#83925001a044cdfe0c64e9a44345b66d)
-     - [Basic Type](#c15a09266c6dbf2bcb4bcabd6fb14f39)
+   - [Basic Type](#c15a09266c6dbf2bcb4bcabd6fb14f39)
    - [Namespacing](#c2eafc39088c6121225cd7b36a014621)
    - [Add Library Project](#7de94d9ed336931705ec2921af14270a)
    - [Enum-ination](#74ef71a5f19a745d9aa9326cdb6d5801)

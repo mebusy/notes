@@ -1,7 +1,7 @@
 ...menustart
 
  - [欢迎使用 Cmd Markdown 编辑阅读器](#9c70b61eb0d38711c7af1df62c2afd47)
-     - [[Windows/Mac/Linux 全平台客户端](https://www.zybuluo.com/cmd/)](#2abf8c877a984244fc7ea7097b861283)
+   - [[Windows/Mac/Linux 全平台客户端](https://www.zybuluo.com/cmd/)](#2abf8c877a984244fc7ea7097b861283)
    - [什么是 Markdown](#7a88e6d6b7bf42d87e8fb7e01f8a260b)
      - [1. 制作一份待办事宜 [Todo 列表](https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#13-待办事宜-todo-列表)](#7bdaf5e11b7c744a8703400040f40c98)
      - [2. 书写一个质能守恒公式[^LaTeX]](#9ccd76b91a27eb0251742e9938f5e3b8)

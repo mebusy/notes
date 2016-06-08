@@ -11,9 +11,9 @@
      - [代价函数](#287340d512ad4b09754b4574719e412f)
      - [梯度下降算法](#f072832c961b0762dbec1d78e5504442)
  - [正则化处理流程](#c87d57915b8ec0bd3094315644b4794f)
-         - [特征映射 feature mapping](#da4ad33e42cddccf3cc687f937bdfc06)
-         - [代价函数，和梯度](#d4bb0a33bce7e76d7df296d1f45f3a3d)
-         - [一般流程](#869492f5afdb7e6bc022701f149b2c48)
+       - [特征映射 feature mapping](#da4ad33e42cddccf3cc687f937bdfc06)
+       - [代价函数，和梯度](#d4bb0a33bce7e76d7df296d1f45f3a3d)
+       - [一般流程](#869492f5afdb7e6bc022701f149b2c48)
 
 ...menuend
 

@@ -22,6 +22,8 @@ def createMenu4MD( path ):
 	lines = content.split("\n")
 	
 	bCodeStart = False
+
+	all_title_level = set([])
 	for i, line in enumerate( lines ):
 		if line[:3]=="```":
 			bCodeStart = not bCodeStart
@@ -39,7 +41,10 @@ def createMenu4MD( path ):
 			m.update( title )
 			id = m.hexdigest()
 
-			menu +=   ( '%s - [%s](#%s)' % ( '  ' * (len(sharps)-1)  , title ,  id  ) )  +  '\n'
+			curTitleActualLevel = len(sharps) 
+			all_title_level.add( curTitleActualLevel )
+
+			menu +=   ( '%s - [%s](#%s)' % ( '  ' * (  sorted(all_title_level).index( curTitleActualLevel )  )  , title ,  id  ) )  +  '\n'
 
 			body += '<h2 id="%s"></h2>\n' % id 
 			#print sharps, title
