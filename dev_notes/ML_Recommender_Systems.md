@@ -139,6 +139,7 @@ Steps:
  3. For a user with parameter θ and a movie with (learned) feature x, predict a star rating of θᵀx .
 
 ```
+// 矩阵相乘 包含了 Σ
 X_grad = ( D* Theta ) + lambda* X ;
 Theta_grad = ( D'* X ) + lambda * Theta ;
 grad = [X_grad(:); Theta_grad(:)];
