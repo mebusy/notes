@@ -1,11 +1,11 @@
 ...menustart
 
- * [linux shell 重定向和管道](#a5b6d6e1787010e24a6983fc8cdc05e8)
-	 * [重定向](#c51dd14a9a9366c6f8f09737d88efde2)
-		 * [输出重定向：](#b055038e72d0aee6b98113e5aa18bca7)
-		 * [输入重定向](#61c2440af0105a4ba9d0629753f0ad3b)
-	 * [管道命令](#4b9705489e3c43bd30937dfd11787372)
-		 * [shell脚本接收管道输入](#0fbce22ca968c3e4c0611f0d78397112)
+ - [linux shell 重定向和管道](#a5b6d6e1787010e24a6983fc8cdc05e8)
+   - [重定向](#c51dd14a9a9366c6f8f09737d88efde2)
+     - [输出重定向：](#b055038e72d0aee6b98113e5aa18bca7)
+     - [输入重定向](#61c2440af0105a4ba9d0629753f0ad3b)
+   - [管道命令](#4b9705489e3c43bd30937dfd11787372)
+     - [shell脚本接收管道输入](#0fbce22ca968c3e4c0611f0d78397112)
 
 ...menuend
 
