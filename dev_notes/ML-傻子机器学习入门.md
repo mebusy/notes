@@ -112,13 +112,10 @@ from sklearn.ensemble import RandomForestClassifier
 import pandas as pd
 import numpy as np
  
-<h2 id="595c9f1c43df8ae856832461451de196"></h2>
 #print dir(pd)
 iris =load_iris()
 
-<h2 id="60087793b352090322add575fa5acd9b"></h2>
 #feature data , feature name
-<h2 id="9161a009ffb95e86a7ccb7d39d9a8edf"></h2>
 #print iris.data, iris.feature_names
 """
 [ 5.1  3.5  1.4  0.2]
@@ -127,7 +124,6 @@ iris =load_iris()
 """
 df =pd.DataFrame(iris.data, columns=iris.feature_names)
 
-<h2 id="e804629d66d9090f215e6a622984bcdd"></h2>
 #print df 
 """
 146                6.3               2.5                5.0               1.9
@@ -138,11 +134,9 @@ df =pd.DataFrame(iris.data, columns=iris.feature_names)
 [150 rows x 4 columns]
 """
 
-<h2 id="4ed54ba56d266549d52afc3b643b2347"></h2>
 # some data is used 4 trainint , some data used for test
 df['is_train'] =np.random.uniform(0, 1, len(df)) <=.75
 
-<h2 id="bb47b98a06c45181d1a5aad9341e8b66"></h2>
 #print df['is_train']
 """
 0       True
@@ -151,9 +145,7 @@ df['is_train'] =np.random.uniform(0, 1, len(df)) <=.75
 3       True
 4      False
 """
-<h2 id="c43ebca92fa2e0ff1820faf052f9f5e3"></h2>
 #target data, target name 
-<h2 id="2beeae025beee612208b41d87e03f894"></h2>
 #print iris.target, iris.target_names
 """
 [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -165,7 +157,6 @@ df['is_train'] =np.random.uniform(0, 1, len(df)) <=.75
 df['species'] =pd.Categorical.from_codes(iris.target, iris.target_names)
 df.head()
 
-<h2 id="e804629d66d9090f215e6a622984bcdd"></h2>
 #print df
 """
     is_train    species  
@@ -175,7 +166,6 @@ df.head()
 """ 
 
 train, test =df[df['is_train']==True], df[df['is_train']==False]
-<h2 id="e2234d15a576b71c53e4103e0daa26bd"></h2>
 #print train, test
  
 features =df.columns[:4]
@@ -186,7 +176,6 @@ Index([u'sepal length (cm)', u'sepal width (cm)', u'petal length (cm)',
 """
 
 clf =RandomForestClassifier(n_jobs=2)
-<h2 id="991cb900a02cae5fb04bb6de50951d29"></h2>
 #print clf
 
 y, _ =pd.factorize(train['species'])
@@ -205,14 +194,12 @@ versicolor       0           9          0
 virginica        0           2         12
 """
 
-<h2 id="737e8cc036c3369989220e56145ce961"></h2>
 #save all trees to words
 from sklearn.tree import export_graphviz
 for i in xrange(len(clf.estimators_)):
     export_graphviz(clf.estimators_[i] , '%d.dot'%i)
 
 
-<h2 id="59be67e0e891cc5cd4610645bb8676f9"></h2>
 #save all trees to pdf
 from sklearn import tree  
 from sklearn.externals.six import StringIO    
