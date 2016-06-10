@@ -274,13 +274,11 @@ GPIO Access in Python:
 Before you write code to access pins, you need set the pin direction.
 
 ```
-<h2 id="b6a2190cb750fd5a0c7dd5751a3def39"></h2>
 # Set the pin direction ( GPIO.IN / GPIO.OUT  )
 GPIO.setup( 13, GPIO.OUT )
 ```
 
 ```
-<h2 id="89b6501b7899a618ae77a5e0fabc1e9d"></h2>
 # Assign value to output pin, True is a high voltage, 3.3v
 GPIO.output( 13, True )
 ```
@@ -306,11 +304,9 @@ while True:
 ### Reading Input Pins
 
 ```
-<h2 id="5de3b3c90ef8fa92859682ec4b9b4b5d"></h2>
 #Set the pin direction to an input
 GPIO.setup(13, GPIO.IN )
 
-<h2 id="bc8fae84e1abbf544fceb786e00438cb"></h2>
 # Read value on input in
 value = GPIO.input(13)
 ```
@@ -339,21 +335,15 @@ PVM functions in GPIO library:
 ### PVM Initilization and PVM control
 
 ```python
-<h2 id="e48c14ced2baceac370929d4f6e9bb5c"></h2>
 # mark pin for PVM
-<h2 id="68df9db74fa9b383d4669ffbd9d05ddc"></h2>
 # second argument is frequency
 pvm_obj = GPIO.PVM(18,400)
-<h2 id="07c3a8de9ac547f5f707201781c899aa"></h2>
 # after PVM invode, now pin 18 is prepared to generate the pulse width nodulated signal, not it don't actually start generating yet.
 
-<h2 id="fa705cfcfa0d7cdfc0f727039e821c21"></h2>
 # start generating PVM signal
-<h2 id="2fba9813a516a77f0a1f05dfb0ee06dc"></h2>
 # Arguments is duty cycle , 0 to 100 (0%-100%)
 pvm_obj.start(100)
 
-<h2 id="26cd96e5500094e1c39a06cddc9196ac"></h2>
 # assign new duty cycle
 pvm_obj.ChangeDutyCycle(50)
 ```

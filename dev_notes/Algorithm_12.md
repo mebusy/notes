@@ -704,7 +704,6 @@ p|... < p ...|... > p ...| ? unpartitioned
 > quicksort python 实现:
 
 ```python
-<h2 id="ee42234aeac3963cbbb1928be146f7cb"></h2>
 # [ lo , hi ]
 def QuickSort( lists , lo , hi  ):
     if hi - lo < 1 : 
@@ -770,11 +769,8 @@ running time 依赖于 pivot的选择，bad case O(n²), 因为随机选择 pivo
 ```
 
 ```python
-<h2 id="54a475b35810d94c5e31f858207584dd"></h2>
 # param : order start from 0
-<h2 id="623387d4a7924031688d07fcc97106d6"></h2>
 # return: order-th smallest element
-<h2 id="7089dbd8f929a0bc138c25176952ec95"></h2>
 # Caution: will modify raw array 
 def RSelect( lists , lo, hi  , order ):
     if hi - lo < 1 : 

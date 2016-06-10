@@ -119,7 +119,6 @@ linux shell下常用输入输出操作符是：
 ### shell脚本接收管道输入
 
 ```bash
-<h2 id="79b229b3b4c3182cfe215ebaaafd966d"></h2>
 #!/bin/sh
   
 if [ $# -gt 0 ];then
@@ -131,10 +130,8 @@ while read line
 do
     echo $line;
 done<&0;
-<h2 id="0f57fce322b63a2089cc5dc8772c00b9"></h2>
 #通过标准输入循环读取内容
 
 exec 0&-;
-<h2 id="d28c73c094fdea31745432f6722fcbb9"></h2>
 #解除标准输入绑定
 ```

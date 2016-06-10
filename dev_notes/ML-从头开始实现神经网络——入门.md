@@ -40,7 +40,6 @@ scikit-learn提供了一些很有用的数据集产生器，所以我们不需�
 
 代码:
 ```python
-<h2 id="a5a2c9865655969a15f7320480aec481"></h2>
 # Package imports
 import matplotlib.pyplot as plt
 import numpy as np
@@ -49,14 +48,10 @@ import sklearn.datasets
 import sklearn.linear_model
 import matplotlib
 
-<h2 id="8c0e9796e71090b880a14b3df2d6ef71"></h2>
 # Display plots inline and change default figure size
-<h2 id="47e07eed97ae9cf07d261e6a257995f1"></h2>
 # used for ipython
-<h2 id="05f65ed01981987163a8125a0283a7ab"></h2>
 #%matplotlib inline
 matplotlib.rcParams['figure.figsize'] = (10.0, 8.0)
-<h2 id="72dcd42ec73308334057a9fb6dd8084c"></h2>
 # Generate a dataset and plot it
 np.random.seed(0)
 X, y = sklearn.datasets.make_moons(200, noise=0.20)
@@ -88,9 +83,7 @@ plt.show()
 为了简单，我们使用scikit-learn库里的Logistic回归类。 
 
 ```python
-<h2 id="7c7c86a227a26b95d19624da9530d86f"></h2>
 # Helper function to plot a decision boundary.
-<h2 id="5a3c539b11b0de8bde1d2c664f561fd1"></h2>
 # If you don't fully understand this function don't worry, it just generates the contour plot below.
 def plot_decision_boundary(pred_func):
     # Set min and max values and give it some padding
@@ -106,7 +99,6 @@ def plot_decision_boundary(pred_func):
     plt.contourf(xx, yy, Z, cmap=plt.cm.Spectral)
     plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Spectral)
     
-<h2 id="fa8b9079f938129811351dc2da540938"></h2>
 # Plot the decision boundary
 plot_decision_boundary(lambda x: clf.predict(x))
 plt.title("Logistic Regression")
@@ -195,7 +187,6 @@ num_examples = len(X) # training set size
 nn_input_dim = 2 # input layer dimensionality
 nn_output_dim = 2 # output layer dimensionality
  
-<h2 id="8918c18069d3e2d37825c7a0aa9b8ad7"></h2>
 # Gradient descent parameters (I picked these by hand)
 epsilon = 0.01 # learning rate for gradient descent
 reg_lambda = 0.01 # regularization strength
@@ -204,7 +195,6 @@ reg_lambda = 0.01 # regularization strength
 首先要实现我们上面定义的损失函数。以此来衡量我们的模型工作得如何：
 
 ```python
-<h2 id="24dadccd15c89a6bcae3ea31e48b04e1"></h2>
 # Helper function to evaluate the total loss on the dataset
 def calculate_loss(model):
     W1, b1, W2, b2 = model['W1'], model['b1'], model['W2'], model['b2']
@@ -225,7 +215,6 @@ def calculate_loss(model):
 还要实现一个辅助函数来计算网络的输出。它的工作就是传递前面定义的前向传播并返回概率最高的类别。
 
 ```python
-<h2 id="3d9b2c51cec46ad99f068f3509c50516"></h2>
 # Helper function to predict an output (0 or 1)
 def predict(model, x):
     W1, b1, W2, b2 = model['W1'], model['b1'], model['W2'], model['b2']
@@ -241,13 +230,9 @@ def predict(model, x):
 最后是训练神经网络的函数。它使用上文中发现的后向传播导数实现批量梯度下降。
 
 ```python
-<h2 id="f16f2ee97812ff64f3412a39df93472f"></h2>
 # This function learns parameters for the neural network and returns the model.
-<h2 id="64c89f28e85aa9c9b9cd26d7b2c64037"></h2>
 # - nn_hdim: Number of nodes in the hidden layer
-<h2 id="0413112b5c54316c374670810c17b0ec"></h2>
 # - num_passes: Number of passes through the training data for gradient descent
-<h2 id="52985252a6929bd0b68f7ab8faaa60b7"></h2>
 # - print_loss: If True, print the loss every 1000 iterations
 def build_model(nn_hdim, num_passes=20000, print_loss=False):
  
@@ -306,11 +291,9 @@ def build_model(nn_hdim, num_passes=20000, print_loss=False):
 一起来看看假如我们训练了一个隐藏层规模为3的神经网络会发生什么。
 
 ```python
-<h2 id="ee776fa8de8791678d3bf348c3d72738"></h2>
 # Build a model with a 3-dimensional hidden layer
 model = build_model(3, print_loss=True)
  
-<h2 id="fa8b9079f938129811351dc2da540938"></h2>
 # Plot the decision boundary
 plot_decision_boundary(lambda x: predict(model, x))
 plt.title("Decision Boundary for hidden layer size 3")

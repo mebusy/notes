@@ -1,11 +1,13 @@
 
+#coding:utf8
+
 import re
 import md5
 import os
 
 RE_PATTERN_MENU_BODY= re.compile( r"\.\.\.menustart[\s\S]*\.\.\.menuend\n\n\n" )
 RE_PATTERN_MENU_SYNTAX= re.compile( r"^(\#+)(.*?)$" )
-RE_PATTERN_MENU_JUMP_ID = re.compile( r"^<h\d\sid=" )
+RE_PATTERN_MENU_JUMP_ID = re.compile( r"^<h\d*\s+id=" )
 
 def createMenu4MD( path ):
 	print 'parsing' , path
@@ -29,7 +31,8 @@ def createMenu4MD( path ):
 			bCodeStart = not bCodeStart
 
 		if bCodeStart:
-			body += line+'\n'
+			if not re.search( RE_PATTERN_MENU_JUMP_ID , line  ):
+				body += line+'\n'
 			continue
 
 		result = re.search( RE_PATTERN_MENU_SYNTAX , line )
@@ -82,7 +85,7 @@ def visit( arg, dirname, fnames):
 
 if '__main__' == __name__ :
 
-	#createMenu4MD( '../dev_notes/Learn2Learning.md' )
+	#createMenu4MD( '../dev_notes/ML-傻子机器学习入门.md' )
 	os.path.walk( "../dev_notes" , visit , None )
 
 

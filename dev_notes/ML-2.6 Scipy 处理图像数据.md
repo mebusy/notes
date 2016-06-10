@@ -32,18 +32,15 @@ from scipy import ndimage
 <h2 id="b28007ec78c21d3a75965fe86a94680b"></h2>
 ###2.6.1. 打开并写到图像文件
 ```python
-<h2 id="41b02feb95947fe48856ce64a966ac1f"></h2>
 # 读取数据
 from scipy import misc
 l = misc.lena()
 >>> l.shape
 (512, 512)
 
-<h2 id="be5fbbe34ce9979bfb6576d9eddc5612"></h2>
 # 保存
 misc.imsave('lena.png', l) # uses the Image module (PIL)
 
-<h2 id="4d775d4cd79e2ed6a2fc66fd1e7139c8"></h2>
 #显示
 import matplotlib.pyplot as plt
 plt.imshow(l)
@@ -93,7 +90,6 @@ plt.imshow(l, cmap=plt.cm.gray, vmin=30, vmax=200)
 画轮廓线
 ```python
 plt.contour(l, [60, 211])
-<h2 id="a05edd5cf5b31129f94723696f5add85"></h2>
 # Remove axes and ticks
 plt.axis('off')
 ```
@@ -103,7 +99,6 @@ plt.axis('off')
 强度变化的精细检查
 ```python
 plt.imshow(l[200:220, 200:220], cmap=plt.cm.gray)
-<h2 id="f4842dcb685d490e2a43212b8072a6fe"></h2>
 #vs
 plt.imshow(l[200:220, 200:220], cmap=plt.cm.gray, interpolation='nearest')
 ```
@@ -116,30 +111,23 @@ plt.imshow(l[200:220, 200:220], cmap=plt.cm.gray, interpolation='nearest')
 ![](http://scipy-lectures.github.io/_images/axis_convention.png)
 
 ```python
-<h2 id="69213ddbb495121bf6012d2313c140e3"></h2>
 #读取图片
 lena = scipy.misc.lena()
 
-<h2 id="94cf6166416a7a5e9c0760466aed7334"></h2>
 #100-119行，涂成白色
 lena[100:120] = 255
 
 
 
-<h2 id="818170cc8487e4e92904de8d452dcd53"></h2>
 #构建一个稀疏 mesh
 lx, ly = lena.shape
 X, Y = np.ogrid[0:lx, 0:ly]
-<h2 id="a2fa15260352c698c950a41565bf7708"></h2>
 #创建一个mask，离图片中心位置超过一定距离的点，标为True
-<h2 id="35550f8acb3eb9c5ddee36023c8e92ed"></h2>
 #numpy的强大就在这里体现出来了
 mask = (X - lx / 2) ** 2 + (Y - ly / 2) ** 2 > lx * ly / 4
-<h2 id="52fd682e5e2707dc6930443933e438ab"></h2>
 #mask变黑
 lena[mask] = 0
 
-<h2 id="acb1ca044db6a50b1f3cdea9f67431c6"></h2>
 # 左上(0,0) 到 (399,399) 画一条白线
 lena[range(400), range(400)] = 255
 ```
@@ -162,13 +150,10 @@ lena[range(400), range(400)] = 255
 ```python
 lena = misc.lena()
 lx, ly = lena.shape
-<h2 id="57bb299f73bf5946a8d4790cc4bbd8fb"></h2>
 # Cropping
 crop_lena = lena[lx / 4: - lx / 4, ly / 4: - ly / 4]
-<h2 id="ac117e3b81dd6af4f25e2412c5ddc554"></h2>
 # up <-> down flip
 flip_ud_lena = np.flipud(lena)
-<h2 id="a5c02a3b57a78ef78fbca4f650029323"></h2>
 # rotation
 rotate_lena = ndimage.rotate(lena, 45)
 rotate_lena_noreshape = ndimage.rotate(lena, 45, reshape=False)
@@ -352,11 +337,9 @@ im[x, y] = np.arange(8)
 bigger_points = ndimage.grey_dilation(im, size=(5, 5), structure=np.ones((5, 5)))
 
 square = np.zeros((16, 16))
-<h2 id="857059dfe282a1060d5d406827ffd8d5"></h2>
 #中间一个大白块
 square[4:-4, 4:-4] = 1
 
-<h2 id="929052aae4d8dd9432259d0bd6f2864c"></h2>
 #Distance transform function by a brute force algorithm
 dist = ndimage.distance_transform_bf(square)
 dilate_dist = ndimage.grey_dilation(dist, size=(3, 3), \
@@ -426,7 +409,6 @@ reconstruction = ndimage.binary_propagation(eroded_square, mask=square)
 
 Closing: dilation + erosion
 ```python
-<h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 #TODO
 ```
 
@@ -474,10 +456,8 @@ n = 10
 l = 256
 im = np.zeros((l, l))
 np.random.seed(1)
-<h2 id="1e575244d0f86e6085be2eb9e66de7fb"></h2>
 #(2,100)
 points = l*np.random.random((2, n**2))
-<h2 id="446c682ff861f54bcd9f8d58e4014fbd"></h2>
 #points -> int,to modify im
 im[(points[0]).astype(np.int), (points[1]).astype(np.int)] = 1
 im = ndimage.gaussian_filter(im, sigma=l/(4.*n))
@@ -506,10 +486,8 @@ plt.imshow(binary_img, cmap=plt.cm.gray, interpolation='nearest')
 使用数学形态来clean up 结果
 
 ```python
-<h2 id="0fc077079bca45911783c2a4338c9812"></h2>
 # Remove small white regions
 open_img = ndimage.binary_opening(binary_img)
-<h2 id="3fa06cc936912ae809b8b942f741e376"></h2>
 # Remove small black hole
 close_img = ndimage.binary_closing(open_img)
 
@@ -542,22 +520,17 @@ circle2 = (x - center2[0])**2 + (y - center2[1])**2 < radius2**2
 circle3 = (x - center3[0])**2 + (y - center3[1])**2 < radius3**2
 circle4 = (x - center4[0])**2 + (y - center4[1])**2 < radius4**2
 
-<h2 id="a85a56f90bc4ab05b3709ffcd327ef42"></h2>
 # 4 circles
 img = circle1 + circle2 + circle3 + circle4
 mask = img.astype(bool)
 img = img.astype(float)
 
 img += 1 + 0.2*np.random.randn(*img.shape)
-<h2 id="bf01049fba93dd255d3de85a7d00ff06"></h2>
 # Convert the image into a graph with the value of the gradient on
-<h2 id="03fa460280a6933b2187cabeeb54cf83"></h2>
 # the edges.
 graph = image.img_to_graph(img, mask=mask)
 
-<h2 id="04135bb23b829fd05008831efd034687"></h2>
 # Take a decreasing function of the gradient: we take it weakly
-<h2 id="2cfe5812aa88e0d3d2ea7e95e0c911f5"></h2>
 # dependant from the gradient the segmentation is close to a voronoi
 graph.data = np.exp(-graph.data/graph.data.std())
 
@@ -617,7 +590,6 @@ array([  1.60063299,   2.40109415,   7.5472352 ,   3.4481412 ,
 
 ```python
 mask_size = sizes < 1000
-<h2 id="5a2daa8f391a0ac90630d49f9e53e687"></h2>
 #这里不明白
 remove_pixel = mask_size[label_im]  
 remove_pixel.shape

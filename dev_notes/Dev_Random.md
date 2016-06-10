@@ -63,7 +63,6 @@ end
 先把间隔次数计算出来：
 
 ```python
-<h2 id="fb6c4cc1cfe5108f5d94c242f5757a37"></h2>
 #创建 interval 数据
 interval = []
 cnt = 0
@@ -78,23 +77,19 @@ for i in x1:
 ```python
 x = np.linspace( 1,len(interval),num=len(interval) )
 
-<h2 id="9a6abcdb19697955f52efe35340945cc"></h2>
 #轴命名
 plt.xlabel('drop times')
 plt.ylabel('interval')
 
 
-<h2 id="acd9bac73ffe9e696b817e79f94dbcae"></h2>
 #画散列图
 plt.scatter(x,interval  , s=2 ,   c="#FF0000" )
 
 
-<h2 id="43a1b6e873ff09124c9dabceee5df103"></h2>
 # 画水平线
 plt.plot( [ x[0] ,x[-1] ] ,  [ 20 , 20 ] , 'b' , linewidth=2  )
 
 
-<h2 id="d5d3db1765287eef77d7927cc956f50a"></h2>
 # title
 plt.title('Scatter'  )
 plt.show()
@@ -141,7 +136,6 @@ mu, sigma = 20, 20/3.0
 interval = [int(np.random.normal(mu, sigma)) for i in xrange(NN)]
 
 plt.figure(figsize=(8,10) )
-<h2 id="7182bbe14f164b24e2da55447b711a72"></h2>
 #plt.title('Histogram')
 
 p1 = plt.subplot(211)
@@ -198,7 +192,6 @@ for i in xrange(N):
 最后，我们测试一下生成的掉落数据是否满足我们的需求。
 
 ```python
-<h2 id="68897f8c277decaea4a755ad2276dbab"></h2>
 #计算各个掉落的间隔interval
 import numpy as np
 import matplotlib.pyplot as plt
@@ -218,7 +211,6 @@ for j in xrange( len( set( result ) ) ):
 plt.title('Histogram')
 colors = [  "b" , 'g',"r" , "c" , "m" , "y" , "k" , "#FF00FF" , "#800080"  ]
 
-<h2 id="408b91c01f51a33d6f81b0a66556f99d"></h2>
 #plt.ylim(0, 0.5)
 
 plt.hist( intervals ,histtype='barstacked' ,  normed=1,     alpha=0.5  ) #facecolor= colors[j]

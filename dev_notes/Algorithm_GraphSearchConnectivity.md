@@ -90,7 +90,6 @@ Depth-First Search (DFS):
 
 ```
 BFS( graph G , start vertex s)
-<h2 id="d176df2069c4df6c60921c3b256ab445"></h2>
 #[all nodes initially unexplored]
 - mark s as explored
 - let Q=queue data structure (FIFO initialized with s)

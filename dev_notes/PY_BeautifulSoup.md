@@ -92,7 +92,6 @@ Beautiful Soup将复杂HTML文档转换成一个复杂的树形结构,每个节�
 soup = BeautifulSoup('<b class="boldest">Extremely bold</b>')
 tag = soup.b
 type(tag)
-<h2 id="379d263ac1f13fadf734576b207158f8"></h2>
 # <class 'bs4.element.Tag'>
 ```
 
@@ -104,7 +103,6 @@ tag中最重要的属性: name和attributes
 每个tag都有自己的名字,通过 .name 来获取:
 ```python
 tag.name
-<h2 id="f3e42ecd2dbeec820b77af8f68e9afbe"></h2>
 # u'b'
 ```
 
@@ -112,7 +110,6 @@ tag.name
 ```python
 tag.name = "blockquote"
 tag
-<h2 id="48eb0f7e0c8e683b47ce8398badc11d1"></h2>
 # <blockquote class="boldest">Extremely bold</blockquote>
 ```
 
@@ -123,7 +120,6 @@ tag
 一个tag可能有很多个属性. tag <b class="boldest"> 有一个 “class” 的属性,值为 “boldest” . tag的属性的操作方法与字典相同:
 ```python
 tag['class']
-<h2 id="818569ae898d77e819a49412dd3b36a2"></h2>
 # u'boldest'
 ```
 
@@ -131,7 +127,6 @@ tag['class']
 
 ```python
 tag.attrs
-<h2 id="6448c52afd2e39bd286642d013285e74"></h2>
 # {u'class': u'boldest'}
 ```
 
@@ -148,12 +143,10 @@ HTML 4定义了一系列可以包含多个值的属性.
 ```python
 css_soup = BeautifulSoup('<p class="body strikeout"></p>')
 css_soup.p['class']
-<h2 id="4ff388748a2fa6927182b872cd9f7962"></h2>
 # ["body", "strikeout"]
 
 css_soup = BeautifulSoup('<p class="body"></p>')
 css_soup.p['class']
-<h2 id="bf8ad6bae11a712db6b4453016568d02"></h2>
 # ["body"]
 ```
 
@@ -161,7 +154,6 @@ css_soup.p['class']
 ```python
 id_soup = BeautifulSoup('<p id="my id"></p>')
 id_soup.p['id']
-<h2 id="e9659ecbca012d8de395626344f935fb"></h2>
 # 'my id'
 ```
 
@@ -169,7 +161,6 @@ id_soup.p['id']
 ```python
 xml_soup = BeautifulSoup('<p class="body strikeout"></p>', 'xml')
 xml_soup.p['class']
-<h2 id="bdbd95bc564c4e441f20eaf28120c5ea"></h2>
 # u'body strikeout'
 ```
 
@@ -181,10 +172,8 @@ Beautiful Soup用 NavigableString 类来包装tag中的字符串:
 
 ```python
 tag.string
-<h2 id="c82db753232850157341caacbc6688b0"></h2>
 # u'Extremely bold'
 type(tag.string)
-<h2 id="852b6fadd30b225f6edd871b29131169"></h2>
 # <class 'bs4.element.NavigableString'>
 ```
 
@@ -198,7 +187,6 @@ tag中包含的字符串不能编辑,但是可以被替换成其它的字符串,
 ```python
 tag.string.replace_with("No longer bold")
 tag
-<h2 id="7b4221a2d88e18c0c299a70bf53550b6"></h2>
 # < blockquote >No longer bold</blockquote>
 ```
 
@@ -210,7 +198,6 @@ BeautifulSoup 对象表示的是一个文档的全部内容.大部分时候,可�
 
 ```python
 soup.name
-<h2 id="7b673885f8969d7917218b16ef51995d"></h2>
 # u'[document]'
 ```
 
@@ -224,11 +211,9 @@ markup = "< b ><!--Hey, buddy. Want to buy a used parser?--></b>"
 soup = BeautifulSoup(markup)
 comment = soup.b.string
 type(comment)
-<h2 id="eaa59af538a938f563bc19a0979fc6d3"></h2>
 # <class 'bs4.element.Comment'>
 
 comment
-<h2 id="87d72d6f148478325d340583844ab545"></h2>
 # u'Hey, buddy. Want to buy a used parser'
 ```
 
@@ -240,11 +225,8 @@ cdata = CData("A CDATA block")
 comment.replace_with(cdata)
 
 print(soup.b.prettify())
-<h2 id="9fbd1472479a2c39613ab7f747f3a0d8"></h2>
 # < b >
-<h2 id="33c3a5339e8b45e4684f12903e087128"></h2>
 #  <![CDATA[A CDATA block]]>
-<h2 id="5504ceea91e62031eccf9496eab44be7"></h2>
 # </b>
 ```
 
@@ -266,14 +248,12 @@ Beautiful Soup提供了许多操作和遍历子节点的属性.
 下面的代码可以获取< body >标签中的第一个< b >标签:
 ```python
 soup.body.b
-<h2 id="62bcc1918f92e442d7eb21df03512159"></h2>
 # < b >The Dormouse's story</b>
 ```
 
 通过点取属性的方式只能获得当前名字的第一个tag:
 ```python
 soup.a
-<h2 id="ce92f9e762eed98a5ff4e887ed5f9535"></h2>
 # <a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>
 ```
 
@@ -282,11 +262,8 @@ soup.a
 
 ```python
 soup.find_all('a')
-<h2 id="dc437075ca01733bb6f67e3525b5bda5"></h2>
 # [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,
-<h2 id="ae47fe3861171e4ceef3c831a4d6ff5c"></h2>
 #  <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>,
-<h2 id="e3b53f78f3cf4c376d5d53403fcd00be"></h2>
 #  <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>]
 ```
 
@@ -301,7 +278,6 @@ tag的 .contents 属性可以将tag的子节点以列表的方式输出:
 
 ```python
 head_tag.contents
-<h2 id="c803a9044d0ac57ef4b8134c9af117ca"></h2>
 # [< title >The Dormouse's story</title>]
 ```
 
@@ -320,25 +296,21 @@ for child in head_tag.descendants:
 如果tag只有一个 NavigableString 类型子节点,那么这个tag可以使用 .string 得到子节点:
 ```python
 title_tag.string
-<h2 id="e0d478b67daac7d4b47b40003b94e605"></h2>
 # u'The Dormouse's story'
 ```
 
 如果一个tag仅有一个子节点,那么这个tag也可以使用 .string 方法,输出结果与当前唯一子节点的 .string 结果相同:
 ```python
 head_tag.contents
-<h2 id="c803a9044d0ac57ef4b8134c9af117ca"></h2>
 # [< title >The Dormouse's story</title>]
 
 head_tag.string
-<h2 id="e0d478b67daac7d4b47b40003b94e605"></h2>
 # u'The Dormouse's story'
 ```
 
 如果tag包含了多个子节点,tag就无法确定 .string 方法应该调用哪个子节点的内容, .string 的输出结果是 None :
 ```python
 print(soup.html.string)
-<h2 id="6adf97f83acf6453d4a6a4b1070f3754"></h2>
 # None
 ```
 
@@ -391,10 +363,8 @@ for string in soup.stripped_strings:
 ```python
 title_tag = soup.title
 title_tag
-<h2 id="a41741141f985f9447cf086d4e2f191b"></h2>
 # < title >The Dormouse's story</title>
 title_tag.parent
-<h2 id="646b4d124f5facdc0d7ed1c6c9f76ea5"></h2>
 # < head >< title >The Dormouse's story</title></head>
 ```
 
@@ -405,22 +375,16 @@ title_tag.parent
 ```python
 link = soup.a
 link
-<h2 id="ce92f9e762eed98a5ff4e887ed5f9535"></h2>
 # <a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>
 for parent in link.parents:
     if parent is None:
         print(parent)
     else:
         print(parent.name)
-<h2 id="83878c91171338902e0fe0fb97a8c47a"></h2>
 # p
-<h2 id="841a2d689ad86bd1611447453c22c6fc"></h2>
 # body
-<h2 id="fc35fdc70d5fc69d269883a822c7a53e"></h2>
 # html
-<h2 id="3f45e7bbe073d6872606e0c892e60e9a"></h2>
 # [document]
-<h2 id="6adf97f83acf6453d4a6a4b1070f3754"></h2>
 # None
 ```
 
@@ -437,11 +401,9 @@ sibling_soup = BeautifulSoup("< a >< b >text1</b>< c >text2</c></b></a>")
 在文档树中,使用 .next_sibling 和 .previous_sibling 属性来查询兄弟节点:
 ```python
 sibling_soup.b.next_sibling
-<h2 id="77483548a9e589ca5534164e9d9e5e44"></h2>
 # < c >text2</c>
 
 sibling_soup.c.previous_sibling
-<h2 id="d74b99a05dd9960267afc595d6a729da"></h2>
 # < b >text1</b>
 ```
 
@@ -486,7 +448,6 @@ Beautiful Soup定义了很多搜索方法,这里着重介绍2个: find() 和 fin
 最简单的过滤器是字符串.在搜索方法中传入一个字符串参数,Beautiful Soup会查找与字符串完整匹配的内容,下面的例子用于查找文档中所有的< b >标签:
 ```python
 soup.find_all('b')
-<h2 id="52c367baefec41d1cb18180ffc2edc25"></h2>
 # [< b >The Dormouse's story</b>]
 ```
 
@@ -517,13 +478,9 @@ for tag in soup.find_all(re.compile("t")):
     
 ```python
 soup.find_all(["a", "b"])
-<h2 id="e9c3371eea86fc07cd5de26424688080"></h2>
 # [< b >The Dormouse's story</b>,
-<h2 id="333e89849c4a0be964748acb7b45b155"></h2>
 #  <a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,
-<h2 id="ae47fe3861171e4ceef3c831a4d6ff5c"></h2>
 #  <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>,
-<h2 id="e3b53f78f3cf4c376d5d53403fcd00be"></h2>
 #  <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>]
 ```
 
@@ -534,27 +491,16 @@ True 可以匹配任何值,下面代码查找到所有的tag,但是不会返回�
 ```python
 for tag in soup.find_all(True):
     print(tag.name)
-<h2 id="fc35fdc70d5fc69d269883a822c7a53e"></h2>
 # html
-<h2 id="96e89a298e0a9f469b9ae458d6afae9f"></h2>
 # head
-<h2 id="d5d3db1765287eef77d7927cc956f50a"></h2>
 # title
-<h2 id="841a2d689ad86bd1611447453c22c6fc"></h2>
 # body
-<h2 id="83878c91171338902e0fe0fb97a8c47a"></h2>
 # p
-<h2 id="92eb5ffee6ae2fec3ad71c777531578f"></h2>
 # b
-<h2 id="83878c91171338902e0fe0fb97a8c47a"></h2>
 # p
-<h2 id="0cc175b9c0f1b6a831c399e269772661"></h2>
 # a
-<h2 id="0cc175b9c0f1b6a831c399e269772661"></h2>
 # a
-<h2 id="0cc175b9c0f1b6a831c399e269772661"></h2>
 # a
-<h2 id="83878c91171338902e0fe0fb97a8c47a"></h2>
 # p
 ```
 
@@ -595,7 +541,6 @@ name 参数可以查找所有名字为 name 的tag,字符串对象会被自动�
 简单的用法如下:
 ```python
 soup.find_all("title")
-<h2 id="c803a9044d0ac57ef4b8134c9af117ca"></h2>
 # [< title >The Dormouse's story</title>]
 ```
 
@@ -607,7 +552,6 @@ soup.find_all("title")
 如果一个指定名字的参数不是搜索内置的参数名,搜索时会把该参数当作 *指定名字tag的属性* 来搜索,如果包含一个名字为 id 的参数,Beautiful Soup会搜索每个tag的”id”属性.
 ```python
 soup.find_all(id='link2')
-<h2 id="890ae64a45fd0ea294bc06f6bde22965"></h2>
 # [<a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>]
 ```
 
@@ -616,7 +560,6 @@ soup.find_all(id='link2')
 使用多个指定名字的参数可以同时过滤tag的多个属性:
 ```python
 soup.find_all(href=re.compile("elsie"), id='link1')
-<h2 id="d0936af75a47dac228704ed07c987a9d"></h2>
 # [<a class="sister" href="http://example.com/elsie" id="link1">three</a>]
 ```
 
@@ -624,14 +567,12 @@ soup.find_all(href=re.compile("elsie"), id='link1')
 ```python
 data_soup = BeautifulSoup('<div data-foo="value">foo!</div>')
 data_soup.find_all(data-foo="value")
-<h2 id="c01711c9a1216a6946f5323899fc8f9a"></h2>
 # SyntaxError: keyword can't be an expression
 ```
 
 但是可以通过 find_all() 方法的 attrs 参数定义一个字典参数来搜索包含特殊属性的tag:
 ```python
 data_soup.find_all(attrs={"data-foo": "value"})
-<h2 id="419d9ef5cdb0be8566b3bd7a21098bf2"></h2>
 # [<div data-foo="value">foo!</div>]
 ```
 
@@ -643,11 +584,8 @@ data_soup.find_all(attrs={"data-foo": "value"})
 
 ```python
 soup.find_all("a", class_="sister")
-<h2 id="dc437075ca01733bb6f67e3525b5bda5"></h2>
 # [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,
-<h2 id="ae47fe3861171e4ceef3c831a4d6ff5c"></h2>
 #  <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>,
-<h2 id="e3b53f78f3cf4c376d5d53403fcd00be"></h2>
 #  <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>]
 ```
 
@@ -658,11 +596,9 @@ tag的 class 属性是 多值属性.
 ```python
 css_soup = BeautifulSoup('<p class="body strikeout"></p>')
 css_soup.find_all("p", class_="strikeout")
-<h2 id="7986c0da21818b08c1e8ef4708d03b63"></h2>
 # [<p class="body strikeout"></p>]
 
 css_soup.find_all("p", class_="body")
-<h2 id="7986c0da21818b08c1e8ef4708d03b63"></h2>
 # [<p class="body strikeout"></p>]
 ```
 
@@ -679,9 +615,7 @@ find_all() 方法返回全部的搜索结构,如果文档树很大那么搜索�
 
 ```python
 soup.find_all("a", limit=2)
-<h2 id="dc437075ca01733bb6f67e3525b5bda5"></h2>
 # [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,
-<h2 id="ffb43f8496d2f195a26d74537d1fd9a9"></h2>
 #  <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>]
 ```
 
@@ -721,7 +655,6 @@ find_all() 方法没有找到目标是返回空列表, find() 方法找不到目
 
 ```python
 soup.head.title
-<h2 id="a41741141f985f9447cf086d4e2f191b"></h2>
 # < title >The Dormouse's story</title>
 soup.find("head").find("title")
 ```

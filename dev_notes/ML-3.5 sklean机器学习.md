@@ -96,7 +96,6 @@ data = digits.images.reshape((digits.images.shape[0], -1))
 from sklearn import svm
 clf = svm.LinearSVC()
 clf.fit(iris.data, iris.target) # learn from the data 
-<h2 id="65b7575b6fef3831723996c30003fec6"></h2>
 # LinearSVC(...)
 ```
 
@@ -104,7 +103,6 @@ clf.fit(iris.data, iris.target) # learn from the data
 
 ```python
 clf.predict([[ 5.0,  3.6,  1.3,  0.25]])
-<h2 id="fbb3e8286a3b1c0acae233e5d2f5afbb"></h2>
 # array([0], dtype=int32)
 ```
 
@@ -130,7 +128,6 @@ k最近邻分类器 内部使用基于球树(ball tree) 来代表它训练的样
 ![](http://scipy-lectures.github.io/_images/iris_knn.png)
 
 ```python
-<h2 id="9b1884fd152ca6ca40ebcadc3758d2bd"></h2>
 # 创建并拟合fit一个 最近邻分类器
 >>> from sklearn import neighbors
 >>> knn = neighbors.KNeighborsClassifier()
@@ -147,10 +144,8 @@ array([0])
 那样的话，使用kNN 我们总能获得 训练集完美的预测。
 
 ```python
-<h2 id="765c1d67f7c2d42669ddee1a926c904c"></h2>
 #创建一个 随机的索引数组
 >>> perm = np.random.permutation(iris.target.size)
-<h2 id="5dcc6eaa8a0d1838d1c74d23355fe877"></h2>
 #根据 perm数组，对数据重新排序
 >>> iris.data = iris.data[perm]
 >>> iris.target = iris.target[perm]
@@ -209,7 +204,6 @@ svc = svm.SVC(kernel=’linear’)
 多项式核
 ```python
 svc = svm.SVC(kernel=’poly’,degree=3) 
-<h2 id="a009ab3de42b6f3ebb796d81bf522875"></h2>
 # degree: polynomial degree
 ```
 
@@ -219,7 +213,6 @@ svc = svm.SVC(kernel=’poly’,degree=3)
 RBF核(径向基函数 Radial Basis)
 ```python
 svc = svm.SVC(kernel=’rbf’) 
-<h2 id="cc00618b1294c114a9357a512bae6771"></h2>
 # gamma: inverse of size of radial kernel
 ```
 ![](http://scipy-lectures.github.io/_images/svm_kernel_rbf.png)
@@ -285,7 +278,6 @@ lena = misc.lena().astype(np.float32)
 
 ```python
 X = lena.reshape((-1, 1))
-<h2 id="d98bf486da13049d3c944ea9bd526b0f"></h2>
 # X.shape -> (262144, 1)
 
 k_means = cluster.KMeans(5)
@@ -297,11 +289,9 @@ values = k_means.cluster_centers_.squeeze()
 labels = k_means.labels_
 
 lena_compressed = np.choose(labels, values)
-<h2 id="9e25d15440e313ddcdb19d43a00a8458"></h2>
 #lena_compressed.shape  (262144,)
 
 lena_compressed.shape = lena.shape
-<h2 id="29ba98fde37d2c8a1c67c4e21a0e54cf"></h2>
 #lena_compressed.shape  (512, 512)
 ```
 
@@ -367,16 +357,13 @@ from sklearn import cross_validation as cross_val
 手动下载 [数据](http://vis-www.cs.umass.edu/lfw/lfw-funneled.tgz) 并放到 ~/scikit_learn_data/lfw_home/  目录下
 
 ```python
-<h2 id="b4ede334a85781427ad4ae4a64fcb3ca"></h2>
 # .. load data ..
 lfw_people = datasets.fetch_lfw_people(min_faces_per_person=70, resize=0.4)
 perm = np.random.permutation(lfw_people.target.size)
 lfw_people.data = lfw_people.data[perm]
 lfw_people.target = lfw_people.target[perm]
 faces = np.reshape(lfw_people.data, (lfw_people.target.shape[0], -1))
-<h2 id="fa9ffafb9e525de8ddd97d29db32ec64"></h2>
 #StratifiedKFold: 分层K-折叠交叉验证迭代器
-<h2 id="b6590485406120d97498042a2e08ac1f"></h2>
 #把数据分割为 训练／测试集
 train, test = iter(cross_val.StratifiedKFold(lfw_people.target, n_folds=4)).next()
 
@@ -384,19 +371,16 @@ X_train, X_test = faces[train], faces[test]
 y_train, y_test = lfw_people.target[train], lfw_people.target[test]
 
 
-<h2 id="3de2bcfa7249f4529c4d4de2e8bcd12b"></h2>
 # .. 降维 ..
 pca = decomposition.RandomizedPCA(n_components=150, whiten=True)
 pca.fit(X_train)
 X_train_pca = pca.transform(X_train)
 X_test_pca = pca.transform(X_test)
 
-<h2 id="93d9929585bebf4df3d486e4abf08350"></h2>
 # .. 分类 ..
 clf = svm.SVC(C=5., gamma=0.001)
 clf.fit(X_train_pca, y_train)
 
-<h2 id="0e629c40091a3446dde634e7419bc36a"></h2>
 # .. 预测新图像 ..
 for i in range(10):
     print lfw_people.target_names[clf.predict(X_test_pca[i])[0]]
@@ -433,10 +417,8 @@ diabetes_y_test  = diabetes.target[-20:]
 from sklearn import linear_model
 regr = linear_model.Lasso(alpha=.3)
 regr.fit(diabetes_X_train, diabetes_y_train) 
-<h2 id="2bccfe2f92e9cc9ba033fe601cdeb84c"></h2>
 #regr.coef_ # very sparse coefficients
 regr.score(diabetes_X_test, diabetes_y_test) 
-<h2 id="bbf4e98d546645ac45dcf2f60f3d2e2a"></h2>
 # 0.55108354530029779
 ```
 
@@ -446,7 +428,6 @@ regr.score(diabetes_X_test, diabetes_y_test)
 lin = linear_model.LinearRegression()
 lin.fit(diabetes_X_train, diabetes_y_train) 
 lin.score(diabetes_X_test, diabetes_y_test) 
-<h2 id="f992894c5701a3551f499b1e6914df63"></h2>
 # 0.58507530226905691
 ```
 
@@ -476,10 +457,8 @@ clf = grid_search.GridSearchCV(estimator=svc, param_grid=dict(gamma=gammas),
                    n_jobs=-1)
 clf.fit(digits.data[:1000], digits.target[:1000]) 
 clf.best_score
-<h2 id="c1a54921f663a178b39ed00f20a747bb"></h2>
 # 0.93200000000000005
 clf.best_params_
-<h2 id="0e9927267480e7aea2fcb651188c82c7"></h2>
 # {'gamma': 0.00059948425031894088}
 ```
 
@@ -499,10 +478,8 @@ X_diabetes = diabetes.data
 y_diabetes = diabetes.target
 lasso.fit(X_diabetes, y_diabetes)
 
-<h2 id="3c8443c677c5d8c4e6407ec30c5d25e1"></h2>
 # The estimator chose automatically its lambda:
 lasso.alpha_
-<h2 id="b0e322dec0b7db89d1cec1bee665b002"></h2>
 # 0.012291895087486173
 ```
 

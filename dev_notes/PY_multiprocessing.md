@@ -421,7 +421,6 @@ Pool可以提供指定数量的进程，供用户调用，当有新的请求提�
 ### 例7.1：使用进程池
 
 ```python
-<h2 id="7394ea981823ef76983ff09f666c1f89"></h2>
 #coding: utf-8
 import multiprocessing
 import time

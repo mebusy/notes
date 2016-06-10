@@ -75,26 +75,21 @@ graph.write_pdf("iris.pdf")
 
 RandomForestClassifier 的一些重要属性，方法:
 ```python
-<h2 id="8b7050d1e5615ace9d85583d7ff6cd6b"></h2>
 #拆分训练集和测试集
 feature_train, feature_test, target_train, target_test = train_test_split(feature, target, test_size=0.1, random_state=42)
 
-<h2 id="bc540adb4062af12d373e6c97348cb43"></h2>
 #分类型决策树
 clf = RandomForestClassifier(n_estimators = 8)
 
-<h2 id="a162534bb7cd826d9ac8600dfc42c466"></h2>
 #训练模型
 s = clf.fit(feature_train , target_train)
 print s
 
-<h2 id="102c272d0164bc736117ec13f55a9261"></h2>
 #评估模型准确率
 r = clf.score(feature_test , target_test)
 print r
 
 print '判定结果：%s' % clf.predict(feature_test[0])
-<h2 id="2c149c4eb45d80a98242e408772afeb7"></h2>
 #print clf.predict_proba(feature_test[0])
 
 print '所有的树:%s' % clf.estimators_

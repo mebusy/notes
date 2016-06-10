@@ -48,12 +48,9 @@ fit：对一组随机取样进行拟合，找出最适合取样数据的概率�
 a = np.random.normal(size=1000)
 bins = np.arange(-4, 5)
 histogram = np.histogram(a, bins=bins, normed=True)[0]
-<h2 id="bcad7992760a8161af2cb8908539a0b8"></h2>
 #注意 bins 和 histogram 的 shape不一致，调整bins
 bins = 0.5*(bins[1:] + bins[:-1])
-<h2 id="8515666920b8f13d021c4e34a7184793"></h2>
 # array([-3.5, -2.5, -1.5, -0.5,  0.5,  1.5,  2.5,  3.5])
-<h2 id="b5ff5a85a38ee69f2461234025e4df6e"></h2>
 #画图
 pl.plot(bins, histogram)
 
@@ -68,7 +65,6 @@ pl.plot(bins, b)
 这里，我们对观测数据做一个正态拟合:
 
 ```python
-<h2 id="d448c854303f5884523a8ae31b43a65f"></h2>
 # Parameter estimates for generic data.
 >>> loc, std = stats.norm.fit(a)
 >>> loc     
