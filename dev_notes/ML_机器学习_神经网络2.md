@@ -39,13 +39,15 @@
 ---
 
 
-    logistic regression cost function:
+logistic regression cost function:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/logistical_regression_cost.png)
 
-    neural network cost function:
+由于神经网络的输出层通常有多个输出，属于k维向量，因此用如下的方式定义神经网络的Cost function:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural_costFunc.png)
+
+注意，对于训练集的每一个样本，都需要对输出层所有的输出单元计算cost并求和。
 
  - 使用前向传播计算出 h(x), 如果有多个输出单元，h(x)是一个向量: `h(x) ∊ ℝᴷ`, `(h(x))ᵢ = iᵗʰ output`
    ```
