@@ -106,7 +106,7 @@ Algorithm
     |   |    |   | 
 --- | --- | --- | ---
 [Basic](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week1.md) | [Tiled](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week2.md) |   [Convolution](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_programming_week3.md) |  [Reduction, Scan](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week4.md)  
-
+[Histo](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week5.md) |
 
 
 #### C
