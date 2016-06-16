@@ -26,42 +26,41 @@
 <h2 id="b9af6d27e0fe127a70b5f0104eb1aeb2"></h2>
 #### Evaluating a hypothesis 
 
-    split the data we have into 2 portions.
-    The 1st portion is going to be our usual training set. (70%)
-    The 2nd portion is going to be our test set. (30%)
-    
-    It there is any sort of ordinary to the data.
-    That should be better to shuffle training/test set randomly.
+ - split the data we have into 2 portions.
+    - The 1st portion is going to be our usual training set. (70%)
+    - The 2nd portion is going to be our test set. (30%)
+    - It there is any sort of ordinary to the data. That should be better to shuffle training/test set randomly.
 
 
 <h2 id="8a9c44e950f9cc7463bb7b9ac3d17180"></h2>
 #### training/testing procedure
 
-    - Learn parameter θ from training data.
-    - use θ to compute test set error 
-      
-      for linear regression : error = J(θ) (with out regularization)
-      for logistic regression:   set  err( h(x), y ) = (h(x)>=0.5, y=0 or h(x)<0.5, y=1) and 1 or 0
-    	error = 1/m_test ∑ err( h(x_test), y_test )
+ - Learn parameter θ from training data.
+ - use θ to compute test set error 
+    - for linear regression : 
+        - error = J(θ) (with out regularization)
+    - for logistic regression:   
+        - set  err( h(x), y ) = (h(x)>=0.5, y=0 or h(x)<0.5, y=1) and 1 or 0
+        - error = 1/m_test ∑ err( h(x_test), y_test )
 
 
 <h2 id="2f0617787b3e1c5f3b6b37a52cbd7ed1"></h2>
 #### Model Selection and Train/Validation/Test Sets
 
-    Try serveral models with different degree of polynomial , such as:
-    d=1, h(x)=θ₀+θ₁x
-    d=2, h(x)=θ₀+θ₁x+θ₂x²
-    ...
-    d=10, h(x)=θ₀+θ₁x+ ... +θ₁₀x¹⁰
+ - Try serveral models with different degree of polynomial , such as:
+    - d=1, h(x)=θ₀+θ₁x
+    - d=2, h(x)=θ₀+θ₁x+θ₂x²
+    - ...
+    - d=10, h(x)=θ₀+θ₁x+ ... +θ₁₀x¹⁰
 
-    split the data into 3 pieces.
-    1st part, training set  (60%)
-    2nd part, cross validation (CV) set  (20%)
-    3rd part, test set  (20%)
+ - split the data into 3 pieces.
+    - 1st part, training set  (60%)
+    - 2nd part, cross validation (CV) set  (20%)
+    - 3rd part, test set  (20%)
 
-    - Learn parameter θ from training data.
-    - compute CV set error , pick the best model with lowest error.
-    - estimate generalization error for test set.
+ - Learn parameter θ from training data.
+ - compute CV set error , pick the best model with lowest error.
+ - estimate generalization error for test set.
     
     
 <h2 id="a52f9a77971bc5c163e9040d5142a50a"></h2>
@@ -74,20 +73,15 @@
 
 BiasVsVariance.png
 
-    Bias(underfit)
+ - Bias(underfit)
+    - J(θ) of train set will be high,
+    - J(θ) of CV also will be high.
+    - J_train ≈ J_cv
     
-        J(θ) of train set will be high,
-        J(θ) of CV also will be high.
-        
-        J_train ≈ J_cv
-    
-    
-    Variance(overfit)
-    
-        J(θ) of train set will be low,
-        J(θ) of CV also will be high.
-        
-        J_cv >> J_train
+ - Variance(overfit)
+    - J(θ) of train set will be low,
+    - J(θ) of CV also will be high.
+    - J_cv >> J_train
 
 
 <h2 id="322ae1bc590fce3811ec460541460d63"></h2>
