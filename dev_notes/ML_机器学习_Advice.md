@@ -103,7 +103,7 @@ large (eg.100) | heavily penalized → 0 | High Bias(underfit)
  - Try serveral different λs. eg. λ=0 , λ=0.01, λ=0.02, λ=0.04  , ... , λ=10.24 (start from no regularization, and with *2 step )
  - minimize J_train(θ) with regularization and computer the parameter θ with each λ
  - computer the J_cv(θ) with the different θ (without regularization), and pick the best θ with lowest error (eg. θ₄)
- - see how θ₄ works on test set (without regularization).
+ - see how θ₄ works on test set (without regularization 既然已经计算出θ了，就不需要正则了).
 
 ---
 
