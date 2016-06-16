@@ -29,7 +29,7 @@
  - split the data we have into 2 portions.
     - The 1st portion is going to be our usual training set. (70%)
     - The 2nd portion is going to be our test set. (30%)
-    - It there is any sort of ordinary to the data. That should be better to shuffle training/test set randomly.
+ - It there is any sort of ordinary to the data. That should be better to shuffle training/test set randomly.
 
 
 <h2 id="8a9c44e950f9cc7463bb7b9ac3d17180"></h2>
