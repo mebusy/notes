@@ -140,7 +140,7 @@ Assume feature x  has sufficient information to predict y accurately. (Useful te
 
 在这个前提下， 我们设计一个有较多参数(隐藏层 )的算法 ( polynomial 不算) ， 和一个庞大的 training set (unlikely to overfit). 
 
-较多的参数确保算法 low bias, 庞大的训练集，确保 low variance.
+可以选择较多的参数确保算法 low bias, 庞大的训练集，可以确保 low variance.
 
 (如果数据集足够大，即便算法不使用 正则化，也会表达的不错)
 
