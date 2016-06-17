@@ -58,7 +58,7 @@ We set the feature to 1 if the feature (word) appears in email , while set to 0 
 ##### recommended approach
 
 - Start a simple algorithm that you can implement quickly
-  Implement it ant test it on your cross-validation data.
+  - Implement it and test it on your cross-validation data.
 - Plot learning curve to decide if more data , more feature , etc, are likely to help.
 - Error analysis: Manually examine the examples(in `cross validation` set) that your algorithm made errors on.
  
@@ -142,7 +142,7 @@ Assume feature x  has sufficient information to predict y accurately. (Useful te
 
 可以选择较多的参数确保算法 low bias, 庞大的训练集，可以确保 low variance.
 
-(如果数据集足够大，即便算法不使用 正则化，也会表达的不错)
+(如果数据集足够大，即便算法不使用 正则化，也会表现的不错)
 
 
  
