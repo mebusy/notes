@@ -131,6 +131,10 @@ Plot learning curve give you a better sense of whether there is a bias or varian
  - compute the training set error on training subset
  - compute CV set error over the **entire** cross validation set
 
+使用Learning Curve 确定是bias 还是variance，Jtrain 和 Jcv随着样本数m的增加最终收敛到一起，说明是bias，增加m并不能解决high bias的问题。
+
+
+
 <h2 id="bea09adf1a4b8e8ccb2a6f3cd2d04e84"></h2>
 #### What should you try next ?
 
