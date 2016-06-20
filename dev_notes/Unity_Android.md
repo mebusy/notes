@@ -383,12 +383,15 @@ adb shell cat /sys/class/net/wlan0/address
 ```
 
 <h2 id="77d859151d2b9aac587527c1db9e176f"></h2>
-### android get Current Application
+### unity android get Current Application context
 
 ```
-public static Application getApplicationUsingReflection() throws Exception {
-    return (Application) Class.forName("android.app.ActivityThread")
-            .getMethod("currentApplication").invoke(null, (Object[]) null);
+using(AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer")) {
+	AndroidJavaObject activityContext = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
+
+	AndroidJavaClass cls = new AndroidJavaClass( "com.ubisoft.jdc_androidtools.androidtools" );
+	cls.CallStatic("setContext", activityContext );
+	cls.Dispose ();
 }
 ```
 
