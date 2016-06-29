@@ -1,10 +1,27 @@
+...menustart
 
+ - [Gradient Descent with Large Datasets](#f76fe91515c665720b0e43fa5fe0e9dc)
+   - [Stochastic(随机) Gradient Descent](#a15f477ff9ba7b33f7616f6feb95b0b1)
+   - [Mini-Batch Gradient Descent](#34beb6ea7ec5d6cc52927d78751d4ff9)
+   - [Stochastic Gradient Descent Convergence](#85695b2541e3126709fe45b213bef57e)
+     - [Checking for convergence](#51e0544e48aab59893bfbf63d0b50570)
+ - [Advanced Topics](#41ef0c7e3aa81f83c8172c71f9986dfb)
+   - [Online Learning](#1a1b4213089da03d151647442f86c8d5)
+     - [Other online learning example:](#5e500c2b37846f8bc8c9fbfbaa15608d)
+   - [Map Reduce and Data Parallelism](#046be23b70007e2aedcbe8de6813f338)
+
+...menuend
+
+
+
+<h2 id="f76fe91515c665720b0e43fa5fe0e9dc"></h2>
 ## Gradient Descent with Large Datasets
 
 When m is very large, the computing this derivative term can be very expensive, and it's very hard to load all data into memory.
 
 传统的梯度下降算法也叫 `Batch Gradient Descent`, the term batch refer to the fact that we'er looking at all of the training examples at a time.
 
+<h2 id="a15f477ff9ba7b33f7616f6feb95b0b1"></h2>
 ### Stochastic(随机) Gradient Descent
 
 下面以线性回归为例，当然也适用于逻辑回归，神经网络
@@ -36,6 +53,7 @@ Let's recall the batch gradient descent:
  - 然后是第二个，第三个样本，知道遍历完所有样本
  - 重复遍历多次 1-10次，如果样本数量足够大(eg.3亿),1次遍历可能就足够了
 
+<h2 id="34beb6ea7ec5d6cc52927d78751d4ff9"></h2>
 ### Mini-Batch Gradient Descent
 
 Mini-batch gradient descent | use *b* examples in each iteration
@@ -47,10 +65,12 @@ Stochastic gradient descent | use *1* example in each iteration
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mini_batch_gradient_descent.png)
 
+<h2 id="85695b2541e3126709fe45b213bef57e"></h2>
 ### Stochastic Gradient Descent Convergence
 
 When useing Stochastic Gradient Descent how to make sure it is converging okey , and how do you tune the learning rate ɑ ?
 
+<h2 id="51e0544e48aab59893bfbf63d0b50570"></h2>
 #### Checking for convergence
 
  - Batch gradient descent:
@@ -75,8 +95,10 @@ Stochastic gradient descent 的J(Θ)图像一般有4种情况:
 
 一种典型的方法来设置ɑ的值，是让ɑ等于某个常数1 除以迭代次数加某个常数2 : a = const1/( iterationNumber + const2 ), 但是这样就需要额外的工作来确定 const1 和 const2， 所以很少采用逐渐减小ɑ值的方法。
 
+<h2 id="41ef0c7e3aa81f83c8172c71f9986dfb"></h2>
 ## Advanced Topics
 
+<h2 id="1a1b4213089da03d151647442f86c8d5"></h2>
 ### Online Learning
 
 Shipping service website where user comes, specifies origin and destination, you offer to ship their package for some asking price, and users sometimes choose to use your shipping service(y=1), sometimes not(y=0).
@@ -94,6 +116,7 @@ Repeat forever {
 
 因为数据是无限的, 所以不必保留，用完丢弃; also, can adopt to change user preference.
 
+<h2 id="5e500c2b37846f8bc8c9fbfbaa15608d"></h2>
 #### Other online learning example:
 
  - Product search (learning to search)
@@ -104,6 +127,7 @@ Repeat forever {
     - Learn *p(y=1|x;Θ)*.
     - Use to show user the 10 phones they're most likely to click on. Other examples: Choosing special offers to show user; customized selection of news articles, product recommendation;...
 
+<h2 id="046be23b70007e2aedcbe8de6813f338"></h2>
 ### Map Reduce and Data Parallelism
 
  - 分隔数据

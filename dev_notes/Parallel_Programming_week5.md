@@ -1,11 +1,45 @@
+...menustart
+
+ - [Week5](#25920ae7a2a6fa8497cb554670bd4767)
+   - [Lecture 5.1: Parallel Computation Patterns - Histogramming](#58997de450d57cd85d02ccf09f2e2abd)
+     - [Histogramming](#0f39b900b08ff634a8f210cf9ea18fa2)
+     - [A Histogram Example](#e00d95c8bf8108f0383cf23e1ee248e9)
+     - [Iteration #1 – 1st letter in each section](#cecb00877fc1ee8d286513d59d676d81)
+   - [Lecture 5.2: Parallel Computation Patterns - Atomic Operations](#292fcfab7969a7f0c452cb4828222d78)
+     - [A Common Parallel Coordination Pattern](#76dcecf2c662e26592bafa2d3783442a)
+     - [Atomic Operations](#eaa1709ae37b41b0f052cd5eae6a14b4)
+   - [Lecture 5.3: Parallel Computation Patterns - Atomic Operations in CUDA](#b86c5421464bfb4b3760fb3253ccb8cc)
+     - [Atomic Operations in General](#e850c6d1bca94e185e6934bf7014ae80)
+     - [Atomic Operations in CUDA](#0b926d25c67b0f91f3602829806ca6d3)
+     - [More Atomic Adds in CUDA](#f66f0c25c7798013930725d00f53caf5)
+     - [Uncoalesced memory accesses in Sectoned Histogram Algorithm](#056df4bf1bf3d6fbc89379597169cb9b)
+     - [A Better Thread to Data Mapping](#248c001700eb0ec840c18dd5d3b7711d)
+     - [A Basic Histogram Kernel](#d47212ebdb72e211e492b58dc19235c5)
+   - [Lecture 5.4: Parallel Computation Patters - Atomic Operations Performance](#d3796b1cce8dbf0223e0f4fa4fd82f98)
+     - [Atomic Operations on DRAM](#4a3720472ae67754378c84d9d0907dde)
+     - [Latency determines throughput](#9a94be20a1d3213c0c86924a4febff7d)
+     - [Hardware Improvements](#e02a081794adc5f41802f522a901e5eb)
+   - [Lecture 5.5: Parallel Computation Patterns - A Privatized Histogram Kernel](#e81801010304a2c41dba8d36139dcca7)
+     - [Histogram Privatization](#8b827d905dd0d9428a134f198f6546d7)
+     - [Atomics in Shared Memory Requires Privatization](#cd5e53e4691603e32d958875fe5ac4ec)
+     - [Build Private Histogram](#5059b97b67f882680b3493ed08fb35db)
+     - [Build Final Histogram](#4021b789d0b1fc634fc88867cf649d92)
+     - [More on Privatization](#9b8d74978162365fbf93789fae84e077)
+
+...menuend
+
+
+<h2 id="25920ae7a2a6fa8497cb554670bd4767"></h2>
 ## Week5
 
+<h2 id="58997de450d57cd85d02ccf09f2e2abd"></h2>
 ### Lecture 5.1: Parallel Computation Patterns - Histogramming 
 
 To learn the parallel histogram computation pattern:
 
  - threads will interference when they write into their outputs
 
+<h2 id="0f39b900b08ff634a8f210cf9ea18fa2"></h2>
 #### Histogramming
 
  - A method for extracting notable features and patterns from large data sets
@@ -14,6 +48,7 @@ To learn the parallel histogram computation pattern:
     - ...
  - Basic histograms - for each element in the data set, use the value to identify a “bin” to increment.
 
+<h2 id="e00d95c8bf8108f0383cf23e1ee248e9"></h2>
 #### A Histogram Example
 
  - In sentence “Programming Massively Parallel Processors” build a histogram of frequencies of each letter
@@ -23,17 +58,20 @@ To learn the parallel histogram computation pattern:
     - Have each thread to take a section of the input
     - For each input letter, use atomic operations to build the histogram
 
+<h2 id="cecb00877fc1ee8d286513d59d676d81"></h2>
 #### Iteration #1 – 1st letter in each section
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/histo_step1.png)
      
       
+<h2 id="292fcfab7969a7f0c452cb4828222d78"></h2>
 ### Lecture 5.2: Parallel Computation Patterns - Atomic Operations 
 
  - To understand atomic operations
     - Read-modify-write in parallel computation
     - Race conditions when performing read-modifywrite
 
+<h2 id="76dcecf2c662e26592bafa2d3783442a"></h2>
 #### A Common Parallel Coordination Pattern
 
  - Multiple bank tellers出纳员 count the total amount of cash in the safe
@@ -44,6 +82,7 @@ To learn the parallel histogram computation pattern:
  - A bad outcome
     - Some of the piles were not accounted for 
 
+<h2 id="eaa1709ae37b41b0f052cd5eae6a14b4"></h2>
 #### Atomic Operations
 
 If Mem[x] was initially 0, what would the value of Mem[x] be after threads 1 and 2 have completed?
@@ -54,8 +93,10 @@ The answer may vary due to data races. To avoid data races, you should use atomi
 
 
 
+<h2 id="b86c5421464bfb4b3760fb3253ccb8cc"></h2>
 ### Lecture 5.3: Parallel Computation Patterns - Atomic Operations in CUDA 
 
+<h2 id="e850c6d1bca94e185e6934bf7014ae80"></h2>
 #### Atomic Operations in General
 
  - Performed by a **single instruction** on a memory location address
@@ -64,6 +105,7 @@ The answer may vary due to data races. To avoid data races, you should use atomi
     - Any other threads that access the location will typically be held in a queue until its turn
     - All threads perform the atomic operation serially if they modify the same location
 
+<h2 id="0b926d25c67b0f91f3602829806ca6d3"></h2>
 #### Atomic Operations in CUDA
 
  - Function calls that are translated into single instructions (a.k.a. intrinsic functions or intrinsics)
@@ -76,6 +118,7 @@ The answer may vary due to data races. To avoid data races, you should use atomi
     - computes (old + val), and stores the result back to memory at the same address. 
     - The function returns old.
     
+<h2 id="f66f0c25c7798013930725d00f53caf5"></h2>
 #### More Atomic Adds in CUDA
 
  - Unsigned 32-bit integer atomic add
@@ -85,6 +128,7 @@ The answer may vary due to data races. To avoid data races, you should use atomi
  - Single-precision floating-point atomic add (capability > 2.0)
     - float atomicAdd(float* address, float val);  
 
+<h2 id="056df4bf1bf3d6fbc89379597169cb9b"></h2>
 #### Uncoalesced memory accesses in Sectoned Histogram Algorithm 
 
 分区域直方图算法中的 非联合内存访问
@@ -94,6 +138,7 @@ The answer may vary due to data races. To avoid data races, you should use atomi
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/histo_uncoalesced.png)
 
+<h2 id="248c001700eb0ec840c18dd5d3b7711d"></h2>
 #### A Better Thread to Data Mapping
 
  - Reads from the input array are coalesced
@@ -102,6 +147,7 @@ The answer may vary due to data races. To avoid data races, you should use atomi
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/histo_better_mem_access.png)
 
+<h2 id="d47212ebdb72e211e492b58dc19235c5"></h2>
 #### A Basic Histogram Kernel
 
  - The kernel receives a pointer to the input buffer of byte values
@@ -125,6 +171,7 @@ __global__ void histo_kernel(unsigned char *buffer, long size,
 }
 ```
 
+<h2 id="d3796b1cce8dbf0223e0f4fa4fd82f98"></h2>
 ### Lecture 5.4: Parallel Computation Patters - Atomic Operations Performance 
 
  - main performance considerations of atomic operations
@@ -134,6 +181,7 @@ __global__ void histo_kernel(unsigned char *buffer, long size,
     - Atomic operation on shared memory
 
 
+<h2 id="4a3720472ae67754378c84d9d0907dde"></h2>
 #### Atomic Operations on DRAM
 
  - An atomic operation starts with a read, with a latency of a few hundred cycles
@@ -142,6 +190,7 @@ __global__ void histo_kernel(unsigned char *buffer, long size,
  - Each Load-Modify-Store has two full memory access delays
     - All atomic operations on the same variable (DRAM location) are serialized 
 
+<h2 id="9a94be20a1d3213c0c86924a4febff7d"></h2>
 #### Latency determines throughput
 
  - Throughput of an atomic operation is the rate at which the application can execute an atomic operation.  
@@ -149,6 +198,7 @@ __global__ void histo_kernel(unsigned char *buffer, long size,
  - This means that if many threads attempt to do atomic operation on the same location (contention), the memory bandwidth is reduced to <
     - using atomic operation **extremely dangerous** if we're not careful, we can accidentally serialize all the threads. 
  
+<h2 id="e02a081794adc5f41802f522a901e5eb"></h2>
 #### Hardware Improvements 
 
  - Atomic operations on Fermi L2 cache
@@ -162,12 +212,14 @@ __global__ void histo_kernel(unsigned char *buffer, long size,
     - Private to each thread block
     - Need algorithm work by programmers(more later)
 
+<h2 id="e81801010304a2c41dba8d36139dcca7"></h2>
 ### Lecture 5.5: Parallel Computation Patterns - A Privatized Histogram Kernel
 
  - write a high performance histogram kernel
     - ***Privatization technique*** for reducing latency, increasing throughput, and reducing serialization
     - Practical use of shared memory and L2 cache atomic operations
 
+<h2 id="8b827d905dd0d9428a134f198f6546d7"></h2>
 #### Histogram Privatization
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/histogram_privatization.png)
@@ -177,6 +229,7 @@ __global__ void histo_kernel(unsigned char *buffer, long size,
     - all the threads in the thread block just accumulate their findings into the private histogram
     - at the end of the kernel , all the threads in the thread block will collaborate , and update a final copy of the histogram based on the contents of it's local or private histogram.
 
+<h2 id="cd5e53e4691603e32d958875fe5ac4ec"></h2>
 #### Atomics in Shared Memory Requires Privatization
 
 ```
@@ -191,6 +244,7 @@ __global__ void histo_kernel(unsigned char *buffer,
 
 ```
     
+<h2 id="5059b97b67f882680b3493ed08fb35db"></h2>
 #### Build Private Histogram
 
 ```
@@ -205,6 +259,7 @@ __global__ void histo_kernel(unsigned char *buffer,
     }
 ```
 
+<h2 id="4021b789d0b1fc634fc88867cf649d92"></h2>
 #### Build Final Histogram
 
 ```
@@ -216,6 +271,7 @@ __global__ void histo_kernel(unsigned char *buffer,
 }
 ```
 
+<h2 id="9b8d74978162365fbf93789fae84e077"></h2>
 #### More on Privatization
 
  - Privatization is a powerful and frequently used techniques for parallelizing applications

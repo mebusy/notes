@@ -1,4 +1,3 @@
-
 ...menustart
 
  - [Advice for Applying Machine Learning](#68d3cfbbc89d95b35d0d45b599f6cf74)
@@ -14,6 +13,7 @@
      - [What should you try next ?](#bea09adf1a4b8e8ccb2a6f3cd2d04e84)
 
 ...menuend
+
 
 
 

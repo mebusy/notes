@@ -27,7 +27,7 @@
    - [Misc](#74248c725e00bf9fe04df4e35b249a19)
      - [获取 android id](#169abc368db1ed3b7ced23a4f442cb7b)
      - [获取 mac address](#83dc2a583afc95dfd2221b8220e16748)
-     - [android get Current Application](#77d859151d2b9aac587527c1db9e176f)
+     - [unity android get Current Application context](#cf00f742bf3ddb4dbebe6f4dbd32f96c)
      - [jar 打包](#29701a188748cb389ef5d6db4b65d70d)
 
 ...menuend
@@ -382,7 +382,7 @@ adb shell settings get secure android_id
 adb shell cat /sys/class/net/wlan0/address  
 ```
 
-<h2 id="77d859151d2b9aac587527c1db9e176f"></h2>
+<h2 id="cf00f742bf3ddb4dbebe6f4dbd32f96c"></h2>
 ### unity android get Current Application context
 
 ```
