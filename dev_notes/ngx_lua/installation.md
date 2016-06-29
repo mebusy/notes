@@ -15,6 +15,8 @@
  	- nginx 指定配置文件
  		- `nginx -c /opt/nginx/conf/nginx.conf` 启动时，指定配置文件	
  		- nginx.conf 会 `include mime.types` 文件， 所以要把 mime.types 拷贝到新的 配置文件目录。
+ 	- 查看 nginx 配置信息
+ 		- nginx -V	
  	- nginx 检查修改后的配置的正确性
  		- sudo /usr/local/nginx/sbin/nginx -t
  	- nginx 重启
