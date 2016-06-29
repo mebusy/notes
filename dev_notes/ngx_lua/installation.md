@@ -17,6 +17,14 @@
  	- OSX otool
  		- `otool -L /usr/local/nginx/sbin/nginx`
 
+ - 新建项目
+ 	- 创建 openresty-test 目录，并在该目录下创建 logs 和 conf 子目录分别用于存放日志和配置文件。
+ 	- 拷贝 nginx.conf , mime.types 到 conf 目录
+ 		- cp /usr/local/etc/nginx/mime.types conf/
+ 		- cp /usr/local/etc/nginx/nginx.conf conf/
+ 	- 启动
+ 		- nginx -p openresty-test -c conf/nginx.conf 	
+
  - 常用命令
  	- nginx 修改端口
  		- `nginx.conf`
