@@ -1,9 +1,9 @@
 # 目录
 
-##### 在线数学公式生成
 
-http://codecogs.com/latex/eqneditor.php
+[在线数学公式生成](http://codecogs.com/latex/eqneditor.php)
 
+[ngx_lua](https://github.com/mebusy/notes/blob/master/dev_notes/ngx_lua/readme.md)
 
 ####机器学习
 
