@@ -24,6 +24,7 @@
    - [防止 SQL 注入](#f96743151321aae02f6c3d2c0f24ca6d)
    - [如何发起新 HTTP 请求](#042d5977081f357a19a120018ae11d33)
      - [利用 proxy_pass](#cf2ce2505b174e42b2adc163b2a615b1)
+     - [利用 cosocket](#b888cd5bb81793b53547243438aa8df6)
 
 ...menuend
 
@@ -677,7 +678,8 @@ http {
  - 借用 nginx 周边成熟组件力量，为了发起一个 HTTP 请求，我们需要绕好几个弯子，甚至还有可能踩到坑（upstream 中长连接的细节处理），显然没有足够优雅，所以我们继续看下一章节。
 
 
-利用 cosocket:
+<h2 id="b888cd5bb81793b53547243438aa8df6"></h2>
+#### 利用 cosocket
 
 ```
 http {
