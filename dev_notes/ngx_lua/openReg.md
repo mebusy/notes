@@ -392,7 +392,8 @@ ngx.log(ngx.ERR, "err:" , "error" )
 ngx.log(ngx.INFO, " string:" )
 ```
 
-日志会输出到 logs/error.log ,  日志输出级别 会过滤掉一部分日志
+ - 日志会输出到 logs/error.log ,  日志输出级别 会过滤掉一部分日志
+ - 日志会输是异步的
 
 日志级别:
 
