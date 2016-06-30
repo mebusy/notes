@@ -7,6 +7,7 @@
  - [Machine Learning](https://github.com/mebusy/notes/blob/master/dev_notes/ML_readme.md)
  - [Golang](https://github.com/mebusy/notes/blob/master/dev_notes/golang_readme.md)
  - [Parallel Programming](https://github.com/mebusy/notes/blob/master/dev_notes/ParallelProgramming_readme.md)
+ - [Unity](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_readme.md)
 
 
 
@@ -35,23 +36,6 @@
 [tips](https://github.com/mebusy/notes/blob/master/dev_notes/python_tips_1.md) | [BeautifulSoup](https://github.com/mebusy/notes/blob/master/dev_notes/PY_BeautifulSoup.md)  | [python多线程](https://github.com/mebusy/notes/blob/master/dev_notes/PY_multiprocessing.md) | 
 
 
----
-
-#### Intro to Game Development
-
-    |   |    |   | 
---- | --- | --- | ---
-[Intro 2 U3D](https://github.com/mebusy/notes/blob/master/dev_notes/Intro2GameDevelopment_Intro.md) | [Projects](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_INTRO_2_GAME_Development.md) |
-
-
-
----
-#### U3D
-
-    |   |    |   | 
---- | --- | --- | ---
-[U3D Procedual Dengeon Part1](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_ProcedualDengeon%201.md) | [U3D官方视频笔记](https://github.com/mebusy/notes/blob/master/dev_notes/U3D%E5%AE%98%E6%96%B9%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0.md) | [Coroutine](https://github.com/mebusy/notes/blob/master/dev_notes/Unity_coroutine.md) | [Plugin](https://github.com/mebusy/notes/blob/master/dev_notes/Unity_Plugin.md)
-[CSharp](https://github.com/mebusy/notes/blob/master/dev_notes/Unity3D_CSharp.md) | [prefab 研究](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_prefab_tips.md) |  [timeScale](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_timescale.md)  | [Android](https://github.com/mebusy/notes/blob/master/dev_notes/Unity_Android.md) 
 
 
 #### C
