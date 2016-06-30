@@ -1,10 +1,45 @@
+...menustart
+
+ - [Week 7](#5f723efe7dc9cef80c50e92f6ff538cb)
+   - [Lecture 7.1: Related Programming Models - OpenCL Data Parallelism Model](#c7432b7a0748ce1e4849f27287b2333d)
+     - [Background](#a9ded1e5ce5d75814730bb4caaf49419)
+     - [OpenCL Programs](#c7ccad9560480aff2b55dfed320a2552)
+     - [OpenCL Execution Model](#9c2fa1176ab9635cb70ebdce90fd024d)
+     - [Mapping between OpenCL and CUDA data parallelism model concepts.](#48786de47093a4dc47410e6d9a6406b4)
+     - [OpenCL Kernels](#458797bd2ad3871d5a600521e053c82c)
+     - [Array of Work Items](#c07a54e204d8fdd5fb6f0748617b5f12)
+     - [Work Groups: Scalable Cooperation](#dbea784301db812486aeaeec74f99543)
+     - [OpenCL Dimensions and Indices](#86b62dec366f72cb574136cfe3f65ffd)
+     - [Multidimensional Work Indexing](#1a9d2ea89cc54694eeccb82c720ef43c)
+     - [OpenCL Data Parallel Model Summary](#456b94dd241c5e2db2f7d1b37353034f)
+   - [Lecture 7.2: Related Programming Models - OpenCL Device Architecture](#b6389fb0bc37cad8e59a895ce8148d89)
+     - [OpenCL Hardware Abstraction](#e25bbe40f8fc005857691ead14f6f2f2)
+     - [OpenCL Device Memory Types](#217d5909b588812167add57a0b209c8e)
+     - [OpenCL Context](#415ebc36fe3195a3b7bc91e9b9b6458a)
+   - [Lecture 7.3: Related Programming Models - OpenCL Host Code Part 1](#9fb6db7a7cf024295eced05c3c28caf9)
+     - [OpenCL Context](#415ebc36fe3195a3b7bc91e9b9b6458a)
+     - [OpenCL Context Setup Code (simple)](#88652bebc36b7fb6cdd9d090fb1d2efe)
+     - [OpenCL Kernel Compilation: vadd](#6cde352c0f9b0354bd2c1c1dce55fa27)
+     - [OpenCL Device Memory Allocation](#77e8e9cb5211e6b6f0e53fca7015bff4)
+     - [OpenCL Device Memory Allocation (cont.)](#5bcd279a1826871953f9e811106ee3c0)
+     - [OpenCL Device Command Execution](#8cb6a1858f1a479d95624664b07bad4f)
+   - [Lecture 7.4: Related Programming Models - OpenCL Host Code (Cont.)](#b5042a717cbffdf9640808b5b8c2ddd9)
+   - [Lecture 7.5: Related Programming Models - OpenACC](#f355a4597adb366f8398f58948887325)
+   - [Lecture 7.6: Related Programming Models - OpenACC Details](#f52c7b9c0c1619f30488b93abed9a99c)
+
+...menuend
+
+
+<h2 id="5f723efe7dc9cef80c50e92f6ff538cb"></h2>
 ## Week 7
 
 
+<h2 id="c7432b7a0748ce1e4849f27287b2333d"></h2>
 ### Lecture 7.1: Related Programming Models - OpenCL Data Parallelism Model 
 
  - OpenCL programming model
 
+<h2 id="a9ded1e5ce5d75814730bb4caaf49419"></h2>
 #### Background
 
  - OpenCL was initiated by Apple and maintained by the Khronos Group (also home of OpenGL) as an industry standard API
@@ -13,6 +48,7 @@
     - Easy to learn for CUDA programmers 
  - OpenCL host code is much more complex and tedious due to desire to maximize portability and to minimize burden on vendors
 
+<h2 id="c7ccad9560480aff2b55dfed320a2552"></h2>
 #### OpenCL Programs
 
  - An OpenCL “program” is a C program that contains one or more “kernels” and any supporting routines that run on a target device
@@ -20,12 +56,14 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/openCL_program.png)
 
+<h2 id="9c2fa1176ab9635cb70ebdce90fd024d"></h2>
 #### OpenCL Execution Model
 
  - Integrated host+device app C program
     - Serial or modestly parallel parts in host C code
     - Highly parallel parts in device SPMD kernel C code
  
+<h2 id="48786de47093a4dc47410e6d9a6406b4"></h2>
 #### Mapping between OpenCL and CUDA data parallelism model concepts.
 
 OpenCL Parallelism Concept | CUDA Equivalent
@@ -38,6 +76,7 @@ NDRange (index space) | grid
 work item | thread
 work group | block
 
+<h2 id="458797bd2ad3871d5a600521e053c82c"></h2>
 #### OpenCL Kernels
 
  - Code that executes on target devices
@@ -59,6 +98,7 @@ __kernel void vadd(__global const float *a, __global const float *b,
 }
 ```
 
+<h2 id="c07a54e204d8fdd5fb6f0748617b5f12"></h2>
 #### Array of Work Items
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/openCL_workItems.png)
@@ -67,6 +107,7 @@ __kernel void vadd(__global const float *a, __global const float *b,
     - All work items run the same code (SPMD)
     - Each work item can call get_global_id() to get its index for computing memory addresses and make control decisions
 
+<h2 id="dbea784301db812486aeaeec74f99543"></h2>
 #### Work Groups: Scalable Cooperation
 
  - Divide monolithic work item array into work groups
@@ -74,6 +115,7 @@ __kernel void vadd(__global const float *a, __global const float *b,
  - Work items in different work groups cannot cooperate
     - OpenCL equivalent of CUDA Thread Blocks
 
+<h2 id="86b62dec366f72cb574136cfe3f65ffd"></h2>
 #### OpenCL Dimensions and Indices
 
 OpenCL API | Call Explanation | CUDA Equivalent
@@ -83,10 +125,12 @@ get_local_id(0) | local index of the work item within the work group in the x di
 get_global_size(0); | size of NDRange in the x dimension | gridDim.x*blockDim.x
 get_local_size(0); | Size of each work group in the x dimension | blockDim.x
 
+<h2 id="1a9d2ea89cc54694eeccb82c720ef43c"></h2>
 #### Multidimensional Work Indexing
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/openCL_Multidimensional.png)
 
+<h2 id="456b94dd241c5e2db2f7d1b37353034f"></h2>
 #### OpenCL Data Parallel Model Summary
 
  - Parallel work is submitted to devices by launching kernels
@@ -96,12 +140,14 @@ get_local_size(0); | Size of each work group in the x dimension | blockDim.x
 
 
      
+<h2 id="b6389fb0bc37cad8e59a895ce8148d89"></h2>
 ### Lecture 7.2: Related Programming Models - OpenCL Device Architecture 
 
  -  OpenCL device architecture
     - Foundation to terminology used in the host code
     - Also needed to understand the memory model for kernels
 
+<h2 id="e25bbe40f8fc005857691ead14f6f2f2"></h2>
 #### OpenCL Hardware Abstraction
 
  - OpenCL exposes CPUs, GPUs, and other Accelerators as “devices”
@@ -114,6 +160,7 @@ get_local_size(0); | Size of each work group in the x dimension | blockDim.x
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/OpenCLDeviceArchitecture.png)
 
+<h2 id="217d5909b588812167add57a0b209c8e"></h2>
 #### OpenCL Device Memory Types
 
 Memory Type | Host access | Device access | CUDA Equivalent
@@ -123,6 +170,7 @@ local memory | Dynamic allocation; no access | Static allocation; shared read-wr
 constant memory | Dynamic allocation; read/write access | Static allocation; read-only access by all work items.| constant memory
 global memory | Dynamic allocation; Read/write access | No allocation; Read/write access by all work items in all work groups, large and slow but may be cached in some devices. | global memory
 
+<h2 id="415ebc36fe3195a3b7bc91e9b9b6458a"></h2>
 #### OpenCL Context
 
  - Contains one or more devices
@@ -131,6 +179,7 @@ global memory | Dynamic allocation; Read/write access | No allocation; Read/writ
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/openCLContext.png)
 
 
+<h2 id="9fb6db7a7cf024295eced05c3c28caf9"></h2>
 ### Lecture 7.3: Related Programming Models - OpenCL Host Code Part 1 
 
  - to write OpenCL host code
@@ -141,6 +190,7 @@ global memory | Dynamic allocation; Read/write access | No allocation; Read/writ
     - Kernel launch
     - Host-device data copy
 
+<h2 id="415ebc36fe3195a3b7bc91e9b9b6458a"></h2>
 #### OpenCL Context
 
  - Contains one or more devices
@@ -155,6 +205,7 @@ global memory | Dynamic allocation; Read/write access | No allocation; Read/writ
 
 
     
+<h2 id="88652bebc36b7fb6cdd9d090fb1d2efe"></h2>
 #### OpenCL Context Setup Code (simple)
 
 ```
@@ -172,6 +223,7 @@ cl_command_queue clcmdq = clCreateCommandQueue(clctx,
 cldevs[0], 0, &clerr); 
 ```
 
+<h2 id="6cde352c0f9b0354bd2c1c1dce55fa27"></h2>
 #### OpenCL Kernel Compilation: vadd
 
 ```
@@ -191,6 +243,7 @@ clerr = clBuildProgram(clpgm, 0, NULL, clcompileflags, NULL, NULL);
 cl_kernel clkern = clCreateKernel(clpgm, "vadd", &clerr); 
 ```
 
+<h2 id="77e8e9cb5211e6b6f0e53fca7015bff4"></h2>
 #### OpenCL Device Memory Allocation
 
  - **clCreateBuffer()**
@@ -206,6 +259,7 @@ cl_kernel clkern = clCreateKernel(clpgm, "vadd", &clerr);
     - Frees object 
         - Pointer to freed object
 
+<h2 id="5bcd279a1826871953f9e811106ee3c0"></h2>
 #### OpenCL Device Memory Allocation (cont.)
 
  - Code example: 
@@ -224,6 +278,7 @@ d_a = clCreateBuffer(clctx, CL_MEM_READ_ONLY, size, NULL, NULL);
 clReleaseMemObject(d_a);
 ```
 
+<h2 id="8cb6a1858f1a479d95624664b07bad4f"></h2>
 #### OpenCL Device Command Execution
 
  - This pic shows how we be able to execute memory copies and kernel launches and so on, in order to, perform the equivalent of what we have been doing in CUDA
@@ -234,13 +289,16 @@ clReleaseMemObject(d_a);
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/openCLDeviceCommandExecution.png)
 
 
+<h2 id="b5042a717cbffdf9640808b5b8c2ddd9"></h2>
 ### Lecture 7.4: Related Programming Models - OpenCL Host Code (Cont.) 
 
 
 
+<h2 id="f355a4597adb366f8398f58948887325"></h2>
 ### Lecture 7.5: Related Programming Models - OpenACC 
 
 
  
+<h2 id="f52c7b9c0c1619f30488b93abed9a99c"></h2>
 ### Lecture 7.6: Related Programming Models - OpenACC Details 
 

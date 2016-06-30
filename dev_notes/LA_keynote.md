@@ -1,4 +1,23 @@
+...menustart
 
+ - [Preface](#5cf06822087ff10dec2ac74cf1e20d30)
+ - [Elimination](#37ce2a99728857da54756961009fe633)
+   - [Row Picture , Column Picture](#e3b14c3d3017ac3bb230a442e7e757ef)
+   - [消元矩阵](#19c0e5b53cd312dea89ed35c4445ca18)
+   - [矩阵乘法](#12127f40ff36ed84744a1af8c6e336be)
+   - [LU 分解](#9ef9abc9eda686571cb1d8e4e47c3d10)
+   - [置换矩阵](#2f79a6b54ab5e88029090d5fe24a83bf)
+   - [INVERSES AND TRANSPOSE](#3a9e344c1e6d675b13d40464c481227f)
+   - [Symmetric Matrices](#b899f85c23e42aea33f7684a076389ca)
+   - [partial pivoting](#4c6c909215a7371958d82af08be17233)
+ - [Vector Spaces](#2f21953656c07a77cad97b71c89a69de)
+   - [subspace](#50d531aa756e5c11625170cc1c9cfbda)
+
+...menuend
+
+
+
+<h2 id="5cf06822087ff10dec2ac74cf1e20d30"></h2>
 ## Preface
 
  - n vectors in m - dimensional space
@@ -12,8 +31,10 @@
  	- The whole space of vectors moves--it is "transformed" by A (eg. 2D vector -> 3D)
 
 
+<h2 id="37ce2a99728857da54756961009fe633"></h2>
 ## Elimination
 
+<h2 id="e3b14c3d3017ac3bb230a442e7e757ef"></h2>
 ### Row Picture , Column Picture
 
  - 矩阵的行 => 线性方程 => 几何平面
@@ -33,6 +54,7 @@
  		- 这也是为什么 matlab进行LU分解，返回值包含一个 转置矩阵。
 
 
+<h2 id="19c0e5b53cd312dea89ed35c4445ca18"></h2>
 ### 消元矩阵
 
 One Elimination Step:
@@ -43,6 +65,7 @@ E₃₁ = | 0  1  0|   has E₃₁·b = |  b₂  |
       |-l  0  1|               |b₃-lb₁|
 ```
 
+<h2 id="12127f40ff36ed84744a1af8c6e336be"></h2>
 ### 矩阵乘法
 
  - 矩阵乘法
@@ -52,6 +75,7 @@ E₃₁ = | 0  1  0|   has E₃₁·b = |  b₂  |
  	- distributive
  		- **A(B+C) =AB+AC and (B+C)D=BD+CD**
 
+<h2 id="9ef9abc9eda686571cb1d8e4e47c3d10"></h2>
 ### LU 分解
 
  - **Triangular factorization A = LU with no exchanges of rows**
@@ -61,6 +85,7 @@ E₃₁ = | 0  1  0|   has E₃₁·b = |  b₂  |
  	- The triangular factorization can be written A = LDU
  		- where L and U have 1 on the diagonal and D is the diagonal matrix of pivots.
 
+<h2 id="2f79a6b54ab5e88029090d5fe24a83bf"></h2>
 ### 置换矩阵
 
  - Permutation Matrices
@@ -83,6 +108,7 @@ A*P = // column exchange
    4   3
 ```
 
+<h2 id="3a9e344c1e6d675b13d40464c481227f"></h2>
 ### INVERSES AND TRANSPOSE
 
  - INVERSES 
@@ -94,6 +120,7 @@ A*P = // column exchange
 	- **(AB)ᵀ = BᵀAᵀ**
 	- **(A⁻¹)ᵀ = (Aᵀ)⁻¹** #转置的逆,等于 逆的转置
 
+<h2 id="b899f85c23e42aea33f7684a076389ca"></h2>
 ### Symmetric Matrices
 
  - **Aᵀ = A**
@@ -103,6 +130,7 @@ A*P = // column exchange
  		- LU misses the symmetry, but LDLᵀ captures it perfectly.
  		- 不是所有的对称矩阵都有LDLᵀ 分解
 
+<h2 id="4c6c909215a7371958d82af08be17233"></h2>
 ### partial pivoting
 
  - Roundoff Error
@@ -112,9 +140,14 @@ A*P = // column exchange
 
 
 
+<h2 id="2f21953656c07a77cad97b71c89a69de"></h2>
 ## Vector Spaces
 
+<h2 id="50d531aa756e5c11625170cc1c9cfbda"></h2>
+### subspace
 
+ - a nonempty subset that satisfies **Linear combinations**
+   - the zero vector will belong to every subspace
 
 
 

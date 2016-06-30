@@ -1,9 +1,37 @@
+...menustart
+
+ - [Linear Algebra](#eee5ea614c3474d72c29c96917c356e9)
+ - [Vector Spaces](#2f21953656c07a77cad97b71c89a69de)
+   - [2.1 VECTOR SPACES AND SUBSPACES](#972dab9e05beb3d5443db66ec0eabd2e)
+     - [The Column Space of A](#8181c20bb270d985c5745507fd8a273b)
+     - [The Nullspace of A](#3c94b747c25e8b676e5f7af1a67da8a5)
+   - [2.2 SOLVING Ax=0 and Ax=b](#1e0304a592cf2dccbcb3c7e858021d8d)
+     - [Echelon Form(梯形) *U* and Row Reduced Form *R*](#fb0727e770a06722aa7b9d64a9b6af91)
+     - [Pivot Variables and Free Variables](#1e32c695f24ac4d5108ba9cca53ac86a)
+     - [Solving Ax = b, Ux = c, and Rx = d](#0aa8bb162b1e64c4edd71e634be16382)
+   - [2.3 LINEAR INDEPENDENCE, BASIS, AND DIMENSION](#42daec4d086da007d1b961361ec0814f)
+     - [Spanning a Subspace](#bc14e48a52e7371d448ce8db40cccf14)
+     - [Basis for a Vector Space](#9702e33bd5c5df4fb7ee415a1ab6e26f)
+     - [Dimension of a Vector Space](#277acc5b1627dc1a1e613976782c994b)
+   - [2.4 THE FOUR FUNDAMENTAL SUBSPACES](#a1e826e3adda502b8e640e95e34a88d8)
+     - [Summarize](#10fabddaa26f740c259e8adcfd5e32d4)
+     - [Existence of Inverses](#f934c3a267dc016627d494171b3c77c7)
+     - [Matrices of Rank 1](#e9da9069b202c4de3612d6edae5b5d07)
+   - [2.5 GRAPHICS NETWORKS](#734ef82f504a5a0b7c94fe20dcc0135c)
+   - [2.6 LINEAR TRANSFORMATIONS](#aa8fafd1a0c4fb58a6ba9373adaf258f)
+
+...menuend
+
+
 [TOC]
 
+<h2 id="eee5ea614c3474d72c29c96917c356e9"></h2>
 # Linear Algebra 
 
+<h2 id="2f21953656c07a77cad97b71c89a69de"></h2>
 # Vector Spaces
 
+<h2 id="972dab9e05beb3d5443db66ec0eabd2e"></h2>
 ## 2.1 VECTOR SPACES AND SUBSPACES
 
 For the concept of a ***vector space***, we start immediately with the most important spaces. They are denoted by **R¹, R², R³**, ... ; the space **Rⁿ** consists of all column vectors with ***n*** components.
@@ -37,6 +65,7 @@ Notice in particular that ***the zero vector will belong to every subspace***. T
 Start from the vector space of 3 by 3 matrices. One possible subspace is the set of lower triangular matrices. Another is the set of symmetric matrices. A + B and cA are lower triangular if A and B are lower triangular, and they are symmetric if A and B are
 symmetric. Of course, the zero matrix is in both subspaces.
 
+<h2 id="8181c20bb270d985c5745507fd8a273b"></h2>
 ### The Column Space of A
 
 We now come to the key examples, the **column space** and the **nullspace** of a matrix A.
@@ -59,6 +88,7 @@ What is important is that this plane is not just a subset of R³; it is a **subs
 
 Then C(A) can be somewhere between the zero space and the whole space **Rᵐ**. Together with its perpendicular space, it gives one of our two approaches to understanding Ax = b.
 
+<h2 id="3c94b747c25e8b676e5f7af1a67da8a5"></h2>
 ### The Nullspace of A
 
 The second approach to Ax = b is "dual" to the first. 
@@ -103,6 +133,7 @@ The vectors b are in the column space and the vectors x are in the nullspace.
 
 We hope to end up by understanding all four of the subspaces that are intimately related to each other and to A - the ***column space*** of A, the ***nullspace*** of A, and their two perpendicular spaces.
 
+<h2 id="1e0304a592cf2dccbcb3c7e858021d8d"></h2>
 ## 2.2 SOLVING Ax=0 and Ax=b
 
 Chapter 1 concentrated on square invertible matrices. There was one solution to Ax = b, and it was x = A⁻¹b. That solution was found by elimination (not by computing A⁻¹). 
@@ -131,6 +162,7 @@ For an invertible matrix, the nullspace contains only x = 0 (multiply Ax = 0 by 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_completeSolution.png)
 
+<h2 id="fb0727e770a06722aa7b9d64a9b6af91"></h2>
 ### Echelon Form(梯形) *U* and Row Reduced Form *R*
 
 We start by simplifying this 3 by 4 matrix, first to U and then further to R:
@@ -199,6 +231,7 @@ For a 5 by 8 matrix with four pivots, Figure 2.3 shows the reduced form R. **It 
  - From R we will quickly find the nullspace of A. 
  - *Rx = 0* has the same solutions as *Ux = 0* and *Ax=0*
 
+<h2 id="1e32c695f24ac4d5108ba9cca53ac86a"></h2>
 ### Pivot Variables and Free Variables
 
 Our goal is to read off all the solutions to Rx = 0. The pivots are crucial:
@@ -239,6 +272,7 @@ There must be infinitely many solutions, since any multiple cx will also satisfy
 
 This central idea-the ***dimension*** of a subspace-is made precise in the next section. We count the free variables for the nullspace. We count the pivot variables for the column space!
 
+<h2 id="0aa8bb162b1e64c4edd71e634be16382"></h2>
 ### Solving Ax = b, Ux = c, and Rx = d
 
 The case b≠0 is quite different from b = 0. The row operations on A must act also on the right-hand side (on b). 
@@ -310,6 +344,7 @@ You see how the rank r is crucial. It counts the pivot rows in the "row space" a
 good example in page 84.
 
 
+<h2 id="42daec4d086da007d1b961361ec0814f"></h2>
 ## 2.3 LINEAR INDEPENDENCE, BASIS, AND DIMENSION
 
 矩阵中，非独立的行/列, 对于解  Ax = 0 毫无影响。
@@ -339,6 +374,7 @@ To check any set of vectors v₁.... , vn for independence, put them in the colu
 
 Because as a disguised from 2C:  Every m by n system Ax = 0 has nonzero solutions if n > m.
 
+<h2 id="bc14e48a52e7371d448ce8db40cccf14"></h2>
 ### Spanning a Subspace
 
 Now we define what it means for a set of vectors to span a space. The column space of A is spanned by the columns. **Their combinations produce the whole space:**
@@ -347,6 +383,7 @@ Now we define what it means for a set of vectors to span a space. The column spa
 
 The column space of A is exactly ***the space that is spanned by its columns***. The row space is spanned by the rows. Multiplying A by any x gives a combination of the columns; it is a vector Ax in the column space.
 
+<h2 id="9702e33bd5c5df4fb7ee415a1ab6e26f"></h2>
 ### Basis for a Vector Space
 
  - To decide if b is a combination of the columns, we try to solve Ax = b. 
@@ -389,6 +426,7 @@ To summarize:
     - whether the matrix is square or rectangular.
  - If we are asking the columns to be a basis for the whole space Rⁿ, then the matrix must be ***square*** and ***invertible***. 
 
+<h2 id="277acc5b1627dc1a1e613976782c994b"></h2>
 ### Dimension of a Vector Space
 
 **2J**: Any two bases for a vector space **V** contain the same number of vectors. This number. which is shared by all bases and expresses the number of "degrees of freedom" of the space, is the ***dimension*** of **V**.
@@ -406,6 +444,7 @@ You must notice that the word "dimensional" is used in two different ways.
     
 We never use the terms "basis of a matrix" or "rank of a space" or "dimension of a basis." These phrases have no meaning. It is the ***dimension of the column space*** that equals the ***rank of the matrix***, as we prove in the coming section.
 
+<h2 id="a1e826e3adda502b8e640e95e34a88d8"></h2>
 ## 2.4 THE FOUR FUNDAMENTAL SUBSPACES
 
 Subspaces can be described in two ways:
@@ -486,6 +525,7 @@ For novelty, we take the four subspaces in a more interesting order.
     - The m - r solutions to yᵀA = 0 are hiding somewhere in elimination. The rows of A combine to produce the m-r zero rows of U.
     
 
+<h2 id="10fabddaa26f740c259e8adcfd5e32d4"></h2>
 ### Summarize
 
 Fundamental Theorem of Linear Algebra, Part I
@@ -509,6 +549,7 @@ A = |1 2|  , has m = n = 2, and rank r = 1.
     - write it as a column vector, since strictly,speaking it is in the column space of Aᵀ
  4. The left nullspace contains all multiples of y = [-3 1]ᵀ
 
+<h2 id="f934c3a267dc016627d494171b3c77c7"></h2>
 ### Existence of Inverses
 
 From the rank of a matrix, it is easy to decide which matrices actually have these inverses. Roughly speaking, ***an inverse exists only when the rank is as large as possible***.
@@ -573,6 +614,7 @@ When a square matrix if **full rank**:
  8. AᵀA is positive definite.
 
 
+<h2 id="e9da9069b202c4de3612d6edae5b5d07"></h2>
 ### Matrices of Rank 1
   
 One basic theme of mathematics is, given something complicated, to show how it can be broken into simple pieces. For linear algebra, the simple pieces are matrices of ***rank 1***:
@@ -597,6 +639,7 @@ A = (col)(row) =| 4  2  2 | = | 2|
 
 The row space and column space are lines-the easiest case.
 
+<h2 id="734ef82f504a5a0b7c94fe20dcc0135c"></h2>
 ## 2.5 GRAPHICS NETWORKS
 
  - ***incidence matrices of graphs***
@@ -638,6 +681,7 @@ The equation Ax = b asks: Given the differences b1.... , b5, find the actual pot
 
 **TODO**
 
+<h2 id="aa8fafd1a0c4fb58a6ba9373adaf258f"></h2>
 ## 2.6 LINEAR TRANSFORMATIONS
 
  - We know how a matrix moves subspaces around when we multiply by A.
