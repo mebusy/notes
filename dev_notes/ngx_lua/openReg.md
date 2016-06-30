@@ -425,6 +425,10 @@ lua_package_path 'abs_lua_path/?.lua;;';
 # 对于开发研究，可以对代码 cache 进行关闭，这样不必每次都重新加载 nginx。
 lua_code_cache off;
 
+#初始化lua
+#lua module中的数据, worker 共享
+init_by_lua_file lua/_init.lua;
+
 server {
     listen 80;
 
