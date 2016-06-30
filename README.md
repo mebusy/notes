@@ -5,6 +5,8 @@
  - [ngx_lua](https://github.com/mebusy/notes/blob/master/dev_notes/ngx_lua/readme.md)
  - [algorithm](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_readme.md)
  - [Machine Learning](https://github.com/mebusy/notes/blob/master/dev_notes/ML_readme.md)
+ - [Golang](https://github.com/mebusy/notes/blob/master/dev_notes/golang_readme.md)
+ - [Parallel Programming](https://github.com/mebusy/notes/blob/master/dev_notes/ParallelProgramming_readme.md)
 
 
 
@@ -50,31 +52,6 @@
 --- | --- | --- | ---
 [U3D Procedual Dengeon Part1](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_ProcedualDengeon%201.md) | [U3D官方视频笔记](https://github.com/mebusy/notes/blob/master/dev_notes/U3D%E5%AE%98%E6%96%B9%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0.md) | [Coroutine](https://github.com/mebusy/notes/blob/master/dev_notes/Unity_coroutine.md) | [Plugin](https://github.com/mebusy/notes/blob/master/dev_notes/Unity_Plugin.md)
 [CSharp](https://github.com/mebusy/notes/blob/master/dev_notes/Unity3D_CSharp.md) | [prefab 研究](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_prefab_tips.md) |  [timeScale](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_timescale.md)  | [Android](https://github.com/mebusy/notes/blob/master/dev_notes/Unity_Android.md) 
-
-
-
-
-
----
-#### golang
-
-
-    |   |    |   | 
---- | --- | --- | ---
-[1.语言 ](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%981-%E8%AF%AD%E8%A8%80.md)   |   [2.表达式](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%982-%E8%A1%A8%E8%BE%BE%E5%BC%8F.md)| [3.函数 ](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%983-%E5%87%BD%E6%95%B0.md) | [4.数据 ](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%984-%E6%95%B0%E6%8D%AE.md)
-[5.方法和接口](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%985-%E6%96%B9%E6%B3%95%E5%92%8C%E6%8E%A5%E5%8F%A3.md)  | [7.并发](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%987-%E5%B9%B6%E5%8F%91.md)  |  [8.包](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%988-%E5%8C%85.md)    | [9.反射](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%E5%A4%87%E5%BF%989-%E5%8F%8D%E5%B0%84.md)   
-[10.工具](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%E5%A4%87%E5%BF%98A-%E5%B7%A5%E5%85%B7.md) |[11.测试](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%E5%A4%87%E5%BF%98B-%E6%B5%8B%E8%AF%95.md)
-
-
-###### [2. go格式化输出 ](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG-fmt%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA.md)
-
-
-#### Heterogeneous Parallel Programming
-
-    |   |    |   | 
---- | --- | --- | ---
-[Basic](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week1.md) | [Tiled](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week2.md) |   [Convolution](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_programming_week3.md) |  [Reduction, Scan](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week4.md)  
-[Histo](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week5.md) |  [Stream](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week6.md)    | [Key Note](https://github.com/mebusy/notes/blob/master/dev_notes/CUDA_keynote.md)    | 
 
 
 #### C
