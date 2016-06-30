@@ -14,4 +14,5 @@
  4. [Reduction, Scan](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week4.md)  
  5. [Histo](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week5.md) 
  6. [Stream](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week6.md)   
- 7. [Key Note](https://github.com/mebusy/notes/blob/master/dev_notes/CUDA_keynote.md) 
+ 7. [Related Programming Models](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week7.md) 
+ 8. [Key Note](https://github.com/mebusy/notes/blob/master/dev_notes/CUDA_keynote.md) 
