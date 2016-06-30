@@ -1,23 +1,9 @@
-...menustart
+[TOC]
 
- - [Vector Spaces](#2f21953656c07a77cad97b71c89a69de)
-   - [2.1 VECTOR SPACES AND SUBSPACES](#972dab9e05beb3d5443db66ec0eabd2e)
-     - [The Column Space of A](#8181c20bb270d985c5745507fd8a273b)
-     - [The Nullspace of A](#3c94b747c25e8b676e5f7af1a67da8a5)
-   - [2.2 SOLVING Ax=0 and Ax=b](#1e0304a592cf2dccbcb3c7e858021d8d)
-     - [Echelon Form(梯形) *U* and Row Reduced Form *R*](#fb0727e770a06722aa7b9d64a9b6af91)
-     - [Pivot Variables and Free Variables](#1e32c695f24ac4d5108ba9cca53ac86a)
-     - [Solving Ax = b, Ux = c, and Rx = d](#0aa8bb162b1e64c4edd71e634be16382)
+# Linear Algebra 
 
-...menuend
-
-
-
-
-<h2 id="2f21953656c07a77cad97b71c89a69de"></h2>
 # Vector Spaces
 
-<h2 id="972dab9e05beb3d5443db66ec0eabd2e"></h2>
 ## 2.1 VECTOR SPACES AND SUBSPACES
 
 For the concept of a ***vector space***, we start immediately with the most important spaces. They are denoted by **R¹, R², R³**, ... ; the space **Rⁿ** consists of all column vectors with ***n*** components.
@@ -51,7 +37,6 @@ Notice in particular that ***the zero vector will belong to every subspace***. T
 Start from the vector space of 3 by 3 matrices. One possible subspace is the set of lower triangular matrices. Another is the set of symmetric matrices. A + B and cA are lower triangular if A and B are lower triangular, and they are symmetric if A and B are
 symmetric. Of course, the zero matrix is in both subspaces.
 
-<h2 id="8181c20bb270d985c5745507fd8a273b"></h2>
 ### The Column Space of A
 
 We now come to the key examples, the **column space** and the **nullspace** of a matrix A.
@@ -74,7 +59,6 @@ What is important is that this plane is not just a subset of R³; it is a **subs
 
 Then C(A) can be somewhere between the zero space and the whole space **Rᵐ**. Together with its perpendicular space, it gives one of our two approaches to understanding Ax = b.
 
-<h2 id="3c94b747c25e8b676e5f7af1a67da8a5"></h2>
 ### The Nullspace of A
 
 The second approach to Ax = b is "dual" to the first. 
@@ -119,7 +103,6 @@ The vectors b are in the column space and the vectors x are in the nullspace.
 
 We hope to end up by understanding all four of the subspaces that are intimately related to each other and to A - the ***column space*** of A, the ***nullspace*** of A, and their two perpendicular spaces.
 
-<h2 id="1e0304a592cf2dccbcb3c7e858021d8d"></h2>
 ## 2.2 SOLVING Ax=0 and Ax=b
 
 Chapter 1 concentrated on square invertible matrices. There was one solution to Ax = b, and it was x = A⁻¹b. That solution was found by elimination (not by computing A⁻¹). 
@@ -148,7 +131,6 @@ For an invertible matrix, the nullspace contains only x = 0 (multiply Ax = 0 by 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_completeSolution.png)
 
-<h2 id="fb0727e770a06722aa7b9d64a9b6af91"></h2>
 ### Echelon Form(梯形) *U* and Row Reduced Form *R*
 
 We start by simplifying this 3 by 4 matrix, first to U and then further to R:
@@ -217,7 +199,6 @@ For a 5 by 8 matrix with four pivots, Figure 2.3 shows the reduced form R. **It 
  - From R we will quickly find the nullspace of A. 
  - *Rx = 0* has the same solutions as *Ux = 0* and *Ax=0*
 
-<h2 id="1e32c695f24ac4d5108ba9cca53ac86a"></h2>
 ### Pivot Variables and Free Variables
 
 Our goal is to read off all the solutions to Rx = 0. The pivots are crucial:
@@ -258,7 +239,6 @@ There must be infinitely many solutions, since any multiple cx will also satisfy
 
 This central idea-the ***dimension*** of a subspace-is made precise in the next section. We count the free variables for the nullspace. We count the pivot variables for the column space!
 
-<h2 id="0aa8bb162b1e64c4edd71e634be16382"></h2>
 ### Solving Ax = b, Ux = c, and Rx = d
 
 The case b≠0 is quite different from b = 0. The row operations on A must act also on the right-hand side (on b). 
@@ -294,10 +274,508 @@ If b belongs to the column space, the solutions of Ax = b are easy to find. The 
 
 `X_complete = X_particular + X_nullspace`
 
-The particular solution in equation (4) comes from solving the equation with *all free variables set to zero*. That is the only new part, since the nullspace is already computed. When you multiply the highlighted equation by A, you get Ax_complete = b + 0.
+The particular solution in equation (4) comes from solving the equation with *all free variables set to zero*. That is the only new part, since the nullspace is already computed. When you multiply the highlighted equation by A, you get Axcompiete = b + 0.
 
-Geometrically, the solutions again fill a two-dimensional surface - but it is not a subspace. It does not contain x = 0. It is parallel to the nullspace we had before, shifted by the particular solution x_p as in Figure 2.2. Equation (4) is a good way to write the answer:
+Geometrically, the solutions again fill a two-dimensional surface - but it is not a subspace. It does not contain x = 0. It is parallel to the nullspace we had before, shifted by the particular solution xP as in Figure 2.2. Equation (4) is a good way to write the answer:
 
  1. Reduce Ax = b to Ux = c.
  2. With free variables = 0, find a particular solution to Ax_p = b and Ux_p = c.
  3. Find the special solutions to Ax = 0 (or Ux = 0 or Rx = 0). Each free variable, in turn, is 1. Then x = x_p + (any combination x_n of special solutions).
+
+When the equation was Ax = 0, the particular solution was the zero vector!
+
+**Question**: How does the reduced form *R* make this solution even clearer? 
+
+While producing Rx = d from Ux = c , these operations change c = (1, 3, 0) to a new vector d = (-2, 1, 0):
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_rx_equal_d.png)
+
+Our particular solution xp (**one choice out of many**) has free variables v = y = 0. Columns 2 and 4 can be ignored. Then we immediately have u = -2 and w = 1, exactly as in equation (4). **The entries of d go directly into x_p.**  This is because the identity matrix is sitting in the pivot columns of R!
+
+```
+| 1 0 |·|u| = |-1|
+| 0 1 | |w|   | 1|
+```
+
+Elimination reveals the pivot variables and free variables. ***If there are r pivots, there are r pivot variables and n - r free variables***. That important number r will be given a name-it is the ***rank of the matrix***.
+
+**2D:**
+
+ - 2D Suppose elimination reduces Ax = b to Ux = c and Rx = d, with r pivot rows and r pivot columns. ***The rank of those matrices is r***. The last m - r **rows** of U and R are zero, so there is a solution only if the last m - r *entries of c and d* are also zero.
+ - The complete solution is x =x_p + x_n. One particular solution x_p has all free variables zero. Its pivot variables are the first r entries of d, so Rx_p= d.
+ - The nullspace solutions x are combinations of n - r special solutions, with one free variable equal to 1. The pivot variables in that special solution can be found in the corresponding column of R (with sign reversed).
+ 
+You see how the rank r is crucial. It counts the pivot rows in the "row space" and the pivot columns in the column space. There are *n - r special solutions* in the nullspace. There are *m - r solvability conditions* on b or c or d.
+
+good example in page 84.
+
+
+## 2.3 LINEAR INDEPENDENCE, BASIS, AND DIMENSION
+
+矩阵中，非独立的行/列, 对于解  Ax = 0 毫无影响。
+
+The important number that is beginning to emerge (the true size) is the ***rank r***. The rank was introduced as the number of pivots in the elimination process. Equivalently, the final matrix U has r nonzero rows. The rank counts the number of genuinely independent rows in the matrix A.
+
+The goal of this section is to explain and use four ideas:
+
+ 1. Linear independence or dependence.
+ 2. Spanning a subspace.
+ 3. Basis for a subspace (a set of vectors).
+ 4. Dimension of a subspace (a number).
+ 
+The first step is to define ***linear independence***. 
+
+**2E**: Suppose c₁v₁ + ... + ckvk = 0 only happens when c₁ = ... = ck = 0. Then the vectors v₁, ... , vk are ***linearly independent***. If any c's are nonzero. the v's are ***linearly dependent***. One vector is a combination of the others.
+
+Linear dependence is easy to visualize in three-dimensional space, when all vectors go out from the origin. Two vectors are dependent if they lie on the same line. *Three vectors are dependent if they lie in the same plane*. A random choice of three vectors, without any special accident, should produce linear independence (not in a plane). Four vectors are always linearly dependent in **R³**.
+
+***The columns of A are independent exactly when N (A) = {zero vector}.***
+
+**2F**: The r nonzero rows of an echelon matrix U and a reduced matrix R are linearly independent. So are the r columns that contain pivots.
+
+To check any set of vectors v₁.... , vn for independence, put them in the columns of A. Then solve the system Ac = 0.
+
+**2G**: A set of n vectors in Rᵐ must be linearly dependent if n > m.
+
+Because as a disguised from 2C:  Every m by n system Ax = 0 has nonzero solutions if n > m.
+
+### Spanning a Subspace
+
+Now we define what it means for a set of vectors to span a space. The column space of A is spanned by the columns. **Their combinations produce the whole space:**
+
+**2H**: If a vector space V consists of all linear combinations of w₁, ..., wl, then these vectors span the space. Every vector v in V is some combination of the w's: **Every v comes from w's**. v = c₁w₁ + ... + clwl, for some coefficients cᵢ.
+
+The column space of A is exactly ***the space that is spanned by its columns***. The row space is spanned by the rows. Multiplying A by any x gives a combination of the columns; it is a vector Ax in the column space.
+
+### Basis for a Vector Space
+
+ - To decide if b is a combination of the columns, we try to solve Ax = b. 
+ - To decide if the columns are independent, we solve Ax = 0. 
+
+***Spanning involves the column space, and independence involves the nullspace***. 
+
+The coordinate vectors e₁, ... , en span **Rⁿ** and they are linearly independent. Roughly speaking, ***no vectors in that set are wasted***. This leads to the crucial idea of a ***basis***.
+
+**2I**: A ***basis for V*** is a sequence of vectors having two properties at once:
+
+ 1. The vectors are linearly independent (not too many vectors).
+ 2. They span the space V (not too few vectors).
+ 
+This combination of properties means that every vector in the space is a combination of the basis vectors, because they span. It also means that the combination is **unique**: If v = a₁v₁ + ... + akvk and also
+v = b₁v₁ + ... + bkvk, then subtraction gives 0 = ∑(aᵢ-bᵢ)vᵢ. (不同基组合可以得到相同的结果，但是只要确定了基，某一结果的组合就是唯一的。因为唯一，所以坐标系可以用来定位). ***There is one and only one way to write v as a combination of the basis vectors.***
+
+We had better say at once that the coordinate vectors e₁, ... , en are not the only basis for **Rⁿ**. A vector space has ***infinitely many different bases***. 
+
+Example 8: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_x_y_plane_basic.png)
+
+ - x-y plane in R²
+ - A spanning set v₁, v₂, v₃, certainly span R², but are not independent.
+ - Bases: v₁, v₂ and v₁, v₃ and v₂, v₃.
+
+Example 9: 
+
+```
+     | 1 3 3 2|
+U -> | 0 0 3 3|
+     | 0 0 0 0|
+```
+
+These four columns span the column space of U, but they are not independent. There are many possibilities for a basis, but we propose a specific choice: ***The columns that contain pivots are a basis for the column space***. In this case the first and third, which correspond to the basic variables. These columns are independent, and it is easy to see that they span the space. In fact, the column space of U is just the x-y plane within R³. C(U) is *not the same as* the column space C(A) before elimination - but the number of independent columns didn't change.
+
+To summarize: 
+
+ - *The columns of any matrix span its column space.*
+ - If they are independent, they are a basis for the column space
+    - whether the matrix is square or rectangular.
+ - If we are asking the columns to be a basis for the whole space Rⁿ, then the matrix must be ***square*** and ***invertible***. 
+
+### Dimension of a Vector Space
+
+**2J**: Any two bases for a vector space **V** contain the same number of vectors. This number. which is shared by all bases and expresses the number of "degrees of freedom" of the space, is the ***dimension*** of **V**.
+
+**2K**: If v₁, ... , vm and w₁, ... , wn are both bases for the same vector space, then m=n, The number of vectors is the same.
+
+*In a subspace of dimension k, no set of more than k vectors can be independent, and no set of fewer than k vectors can span the space.*
+ 
+You must notice that the word "dimensional" is used in two different ways. 
+
+ - We speak about a four-dimensional ***vector***, meaning a vector in **R⁴**. 
+ - Now we have defined a four-dimensional ***subspace***;
+    - an example is the set of vectors in **R⁶** whose first and last components are zero. 
+    - The members of this four-dimensional subspace are six- dimensional ***vectors*** like (0, 5, 1, 3, 4, 0). 
+    
+We never use the terms "basis of a matrix" or "rank of a space" or "dimension of a basis." These phrases have no meaning. It is the ***dimension of the column space*** that equals the ***rank of the matrix***, as we prove in the coming section.
+
+## 2.4 THE FOUR FUNDAMENTAL SUBSPACES
+
+Subspaces can be described in two ways:
+
+ 1. First, we may be given a set of vectors that span the space.
+    - Example: The columns span the column space. 
+    - such description may include useless vectors (dependent columns)
+ 2. Second, we may be told which conditions the vectors in the space must satisfy.
+    - Example: The nullspace consists of all vectors that satisfy Ax = 0. 
+    - such description may include repeated conditions (dependent rows) ?
+
+When elimination on A produces an echelon matrix U or a reduced R, we will find a basis for each of the subspaces associated with A. Then we have to look at the extreme case of **full rank**:
+
+*When the rank is as large as possible, r = n or r = m or r = m = n, the matrix has a left-inverse B or a right-inverse C or a two-sided A⁻¹*.
+
+**4 subspaces in full rank**:
+
+ 1. The ***column space*** of A is denoted by C(A). Its dimension is the rank *r*.
+ 2. The ***nullspace*** of A is denoted by N(A). Its dimension is *n-r*.
+ 3. The ***row space*** of A is the column space of Aᵀ. It is C(Aᵀ), and it is spanned by the rows of A. Its dimension is also *r*.
+ 4. The ***left nullspace*** of A is the nullspace of Aᵀ. It contains all vectors y such that Aᵀy = 0, and it is written N(Aᵀ). Its dimension is __ ?.
+
+If A is an m by n matrix, you can see which "host" spaces contain the four subspaces by looking at the number of components:
+
+ - The nullspace N(A) and row space C(Aᵀ) are subspaces of **Rⁿ**.
+ - The left nullspace N(Aᵀ) and column space C(A) are subspaces of **Rᵐ**.
+ 
+The rows have *n* components and the columns have *m*. For a simple matrix like:
+
+```
+A = U = R = |1 0 0|
+            |1 0 0|
+```
+
+The column space is the line through [1 0]ᵀ, the row space is the line through [1 0 0]ᵀ. It is in **R³**. The nullspace is a plane in **R³** and the left nullspace is a line in **R²**:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_4subspace_01.png)
+
+Note that all vectors are column vectors. Even the rows are transposed, and the row space of A is the *column space* of Aᵀ. Our problem will be to connect the four spaces for U (after elimination) to the four spaces for A:
+
+```
+    | 1 3 3 2|                  | 1  3  3  2|
+U = | 0 0 3 3|  came from   A = | 2  6  9  7|.
+    | 0 0 0 0|                  |-1 -3  3  4|
+```
+
+For novelty, we take the four subspaces in a more interesting order.
+
+ - 3 **The row space of A**
+    - For an echelon matrix like U, the row space is clear. A similar rule applies to every echelon matrix U or R, with r pivots and r nonzero rows: ***The nonzero rows are a basis, and the row space has dimension r.***
+    - The row space of A has the same dimensions as the row space of U, and it has the same bases, because the ***row spaces of A and U (and R) are the same***.
+        - The reason is that each elementary operation leaves the row space unchanged.
+        - The rows in U are combinations of the original rows in A. The rows of A can be recovered from U. It is true that A and U have different rows, but the combinations of the rows are identical: same space!
+
+ - 2 The nullspace of A**
+    - Elimination simplifies a system of linear equations without changing the solutions. The system Ax = 0 is reduced to Ux = 0, and this process is reversible.
+    - ***The nullspace of A is the same as the nullspace of U and R. ***.
+    - Choosing the n - r "special solutions" to Ax = 0 provides a definite basis for the nullspace:
+    - The nallspace has dimension *n-r*. The 'special solutions" are a basis - each tree yariablc is given the value 1. while the other free variables are 0. 
+    - The nullspace is also called the *kernel* of A, and its dimension *n-r* is the *nullity*.
+
+ - 1 **The column space of A**
+    - The column space is sometimes called the **range**. x is in the domain and f (x) is in the range. In our case the function is f (x) = Ax. 
+    - Our problem is to find bases for the column spaces of U and A. ***Those spaces are different*** (just look at the matrices!) but their dimensions are the same.
+        - The first and third columns of U are a basis for its column space. They are the ***columns with pivots***.
+        - ***The pivot columns of A are a basis for its column space.***
+    - *If a set of columns of A is independent, then so are the corresponding columns of U, and vice versa.*
+    - The dimension of the column space C(A) equals the rank r, which also equals the dimension of the row space: ***The number of independent columns equals the number of independent rows***. 
+        - **row rank = column rank!** This is one of the most important theorems in linear algebra.
+        - pivots shared by row and column ?
+
+ - 4 **The left nullspace of A** (= the nullspace of Aᵀ)
+    - Aᵀy = 0 means yᵀA = 0, this is why called "left nullspace"
+    - If A is an m by n matrix, then Aᵀ is n by m.  Its, Aᵀ, nullspace is a subspace of **Rᵐ**; the vector y has m components.
+    - For any matrix, ***the number of pivot variables + the number of free variables must match the total number of columns***. In other words, rank plus nullity equals n:
+        - ***dimension of C(A) + dimension of N(A) = number of columns.*** 
+    - So r + dimension (N(Aᵀ)) = m. The left nullspace N(Aᵀ) has dimension m-r.
+    - The m - r solutions to yᵀA = 0 are hiding somewhere in elimination. The rows of A combine to produce the m-r zero rows of U.
+    
+
+### Summarize
+
+Fundamental Theorem of Linear Algebra, Part I
+
+ 1. C(A)  = column space of A; dimension r
+ 2. N(A)  = nullspace of A; dimension n-r
+ 3. C(Aᵀ) = row space of A; dimension r
+ 4. N(Aᵀ) = left nullspace of A; dimension m-r
+
+**Example**:
+
+```
+A = |1 2|  , has m = n = 2, and rank r = 1.
+    |3 6|
+```
+
+ 1. The column space contains all multiples of [1 3]ᵀ
+ 2. The nullspace contains all multiples of [-2 1]ᵀ 
+    - This vector satisfies Ax = 0.
+ 3. The row space contains all multiples of [1 2]ᵀ
+    - write it as a column vector, since strictly,speaking it is in the column space of Aᵀ
+ 4. The left nullspace contains all multiples of y = [-3 1]ᵀ
+
+### Existence of Inverses
+
+From the rank of a matrix, it is easy to decide which matrices actually have these inverses. Roughly speaking, ***an inverse exists only when the rank is as large as possible***.
+
+ - The rank always satisfies r ≤ m and also r ≤ n. 
+ - We want to prove that when r = m there is a right-inverse, and Ax = b always has a solution. When r = n there is a left-inverse, and the solution (***if it exists***) is unique.
+ - Only a square matrix can have both r = m and r = n, and therefore only a square matrix can achieve both existence and uniqueness.
+    - Only a square matrix has a two-sided inverse.
+
+**2Q** 
+
+ - **EXISTENCE: Full row rank r = m**.
+    - x = b has ***at least*** one solution x for every b if and only if the columns span **Rᵐ**.
+    - Then A has a **right-inverse** C such that AC=I(mxm)
+    - This is possible onh if in < rt
+    - The number of solutions  is 1 or ∞.
+ - **UNIQUENESS: Full column rank r = n**.
+    - Ax = b has ***at most*** one solution x for every b if and only if the columns are linearly independent.  
+    - Then A has an nxm **left-inverse** B such that BA = I(nxn).
+    - This is possible only if m > n
+    - The number of solutions is 0 or 1.
+
+**One-sided inverses**:
+
+```
+B = (AᵀA)⁻¹Aᵀ and C = Aᵀ(AAᵀ)⁻¹
+```
+
+Certainly BA = I and AC = I.  AᵀA does have an inverse if the rank is n, and AAᵀ has an inverse when the rank is m. 
+
+**Example2**:         
+
+```
+A = |4 0 0|
+    |0 5 0|
+```
+
+Since r=m=2, the theorem guarantees a right-inverse C:
+
+```
+A = |4 0 0|·|1/4   0 | = |1 0|
+    |0 5 0| |0    1/5|   |0 1|    
+            |C₃₁  C₃₂|
+```
+
+There are many right-inverses because the last row of C is completely arbitrary. This is a case of existence but not uniqueness. 
+
+The matrix A has no left-inverse because the last column of BA is certain to be zero (not **I**) .
+
+The specific right-inverse C = Aᵀ(AAᵀ)⁻¹ chooses C₃₁ and C₃₂ to be zero, This is the *pseudoinverse*.
+
+When a square matrix if **full rank**:
+
+ 1. The columns span **Rⁿ**, so Ax = b has at least one solution for every b.
+ 2. The columns are independent, so Ax = 0 has only the solution x = 0.
+    - This list can be made much longer, especially if we look ahead to later chapters. Every condition is equivalent to every other, and ensures that A is invertible.
+ 3. The rows of A span **Rⁿ**.
+ 4. The rows are linearly independent.
+ 5. Elimination can be completed: PA = LDU, with all n pivots.
+ 6. The determinant of A is not zero.
+ 7. Zero is not an eigenvalue of A.
+ 8. AᵀA is positive definite.
+
+
+### Matrices of Rank 1
+  
+One basic theme of mathematics is, given something complicated, to show how it can be broken into simple pieces. For linear algebra, the simple pieces are matrices of ***rank 1***:
+
+```
+    | 2  1  1 |
+A = | 4  2  2 |   , has r=1
+    | 8  4  4 |
+    |-2 -1 -1 |
+```
+
+We can write the whole matrix as the product of a column vector and a row vector:
+
+```
+                | 2  1  1 |   | 1|·|2 1 1|
+A = (col)(row) =| 4  2  2 | = | 2|
+                | 8  4  4 |   | 4|
+                |-2 -1 -1 |   |-1|
+```
+
+ - ***Every matrix of rank 1 has the simple form A = uvᵀ = column x row.***
+
+The row space and column space are lines-the easiest case.
+
+## 2.5 GRAPHICS NETWORKS
+
+ - ***incidence matrices of graphs***
+    - every entry is 1, -1, or 0. 
+    
+This section is *optional*, but it gives a chance to see rectangular matrices in action - and how the square symmetric matrix AᵀA turns up in the end.
+
+ - A ***graph*** consists of a set of vertices or *nodes*, and a set of *edges* that connect them. 
+ - The graph in Figure 2.6 has 4 nodes and 5 edges. It does not have an edge between nodes1 and 4 
+    - (and edges from a node to itself are forbidden). 
+ - This graph is directed, because of the arrow in each edge.
+ 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_directed_graph.png)
+
+ - The ***edge-node incidence matrix*** is 5x4
+    - with a row for every edge. 
+ - ***If the edge goes from node j to node k, then that row has -1 in column j and +1 in column k.*** 
+    - Row 1 shows the edge from node 1 to node 2. 
+    - Row 5 comes from the fifth edge, from node 3 to node 4.
+    
+ - Notice the columns of A. Column 3 gives information about node 3 - it tells which edges enter and leave. 
+    - Edges 2 and 3 go in, 
+    - Edge 5 goes out (with the minus sign). 
+
+A is sometimes called the *connectivity* matrix, or the *topology* matrix. When the graph has m edges and n nodes, A is m by n (and normally m > n). Its transpose is the *"node-edge" incidence matrix*.
+
+Each of the four fundamental subspaces has a meaning in terms of the graph. 
+
+We can do linear algebra, or write about voltages and currents. We do both!
+
+
+**Nullspace** of A:the answer comes from elimination, but here it comes at a glance. The columns add up to the zero column. The nullspace contains x = (1, 1, 1, 1), since Ax = 0. 
+
+This has a meaning if we think of x1, x2, x3, x4 as the ***potentials*** (the voltages) ***at the nodes***. The five components of Ax (rows) give the ***differences*** in potential across the five edges. 
+
+The difference across edge 1 is x2 - x1, from the ±1 in the first row. 
+
+The equation Ax = b asks: Given the differences b1.... , b5, find the actual potentials x1, ... , x4. But that is impossible to do! We can raise or lower all the potentials by the same constant c, and the differences will not change - confirming that x = (c, c, c, c) is in the nullspace of A.  Those are the only vectors in the nullspace, since Ax = 0 means equal potentials across every edge. The nullspace of this incidence matrix is one-dimensional. The ***rank is 4 - 1 = 3***.
+
+**TODO**
+
+## 2.6 LINEAR TRANSFORMATIONS
+
+ - We know how a matrix moves subspaces around when we multiply by A.
+    - The nullspace goes into the zero vector. 
+        - A=[1 1 ; 2 2 ]
+        - A*[1 ; 2] = [3;6]
+        - A*[1 ;-1] = [0;0]
+    - All vectors go into the column space, since Ax is always a combination of the columns. 
+    
+You will soon see something beautiful - that A takes its row space into its column space, and on those spaces of dimension r it is 100 percent invertible. That is the real action of A. It is partly hidden by nullspaces and left nullspaces, which lie at right angles and go their own way (toward zero). ???
+
+Suppose A is n by n , x is an n-dimensional vector. When A multiplies x, it transforms that vector into a new vector Ax. The whole space is transformed, or "mapped into itself," by the matrix A.
+
+Four transformations that come from matrices:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_matrix_transformations.png)
+
+```
+A1= |c 0| , A2= |0 -1| , A3= |0 1| , A4= |1 0|
+    |0 c|       |1  0|       |1 0|       |0 0|
+```
+
+ 1. A multiple of the identity matrix, A = cI. ***stretches*** every vector by the same factor c. The whole space expands or contracts (收缩, or somehow goes through the origin and out the opposite side, when c is negative).
+ 2. A ***rotation*** matrix turns the whole space around the origin. This example turns all vectors through 90° transforming every point (x, y) to (-y, x).
+ 3. A reflection matrix transforms every vector into its image on the opposite side of a mirror. 
+    - In this example the mirror is the 45° line y = x, and a point like (2, 2) is unchanged. 
+    - A point like (2, -2) is reversed to (-2, 2). 
+    - On a combination like v = (2, 2) + (2, -2) = (4, 0), the matrix leaves one part and reverses the other part. The output is A =_(2, 2) + (-2, 2) = (0, 4).
+    - That reflection matrix is also a permutation matrix! It is algebraically so simple, sending (x, y) to (y, x), that the geometric picture was concealed. 
+ 4. A ***projection*** matrix takes the whole space onto a lower-dimensional subspace (not invertible). The example transforms each vector (x, y) in the plane to the nearest point (x, 0) on the horizontal axis. That axis is the column space of A. The y-axis that projects to (0, 0) is the nullspace.
+
+
+It is also important to recognize that matrices cannot do everything, and some transformations T(x) are *not possible* with Ax:
+
+ 1. It is impossible to move the origin, since AO = 0 for every matrix.
+ 2. If the vector x -> x', then 2x must -> 2x'. 
+    - In general cx must go to cx', since A(cx) = c(Ax).
+ 3. If the vectors x,y -> x',y', then  x + y must -> x' + y'
+    - since A(x + y) = Ax + Ay.
+
+Those rules can be combined into one requirement:
+
+```
+A(cx+dy) =c(Ax)+d(Ay)   (1)
+```
+
+Every transformation *T(x)* that meets this requirement is a ***linear transformation***.
+
+Any matrix leads immediately to a linear transformation. Also, every linear transformation lead to a matrix.
+
+
+ - Most transformations are not linear-for example, 
+    - to square the polynomial (Ap = p²)
+    - or to add 1 (Ap = p + 1)
+    - or to keep the positive coefficients (A(t - t²) = t). 
+ - It will be linear transformations, and only those, that lead us back to matrices.
+ 
+Linearity has a crucial consequence: ***If we know Ax for each vector in a basis, then we know Ax for each vector in the entire space***.
+
+```
+Linearity If x = c₁x₁ + ... + cnxn then 
+            Ax = c₁(Ax₁) + ... + cn(Axn).   (4)
+```
+
+**Example 4**:
+
+What linear transformation takes x₁ and x₂ to Ax₁, and Ax₂?
+
+```
+                     |2|                         |4|
+x₁= |1|  goes to Ax₁=|3|;   x₂= |0|  goes to Ax₂=|6|;  
+    |0|              |4|        |1|              |8|
+```
+
+It must be multiplication T(x) = Ax by the matrix:
+
+```
+    |2 4|
+A = |3 6|
+    |4 8|
+```
+
+Starting with a different basis (1, 1) and (2, -1), this same A is also the only linear transformation with:
+
+```
+        | 6|                |0|
+A·|1| = | 9|  and A·| 2| =  |0|
+  |1|   |12|        |-1|    |0|
+```
+
+---
+
+Next we find matrices that represent differentiation and integration. ***First we must decide on a basis***. For the polynomials of degree 3 there is a natural choice for the four basis vectors:
+
+
+**Basis for P₃**:  p₁=1, p₂=t , p₃=t², p₄=t³
+
+That basis is not unique (it never is), but some choice is necessary and this is the most convenient. The derivatives of those four basis vectors are 0, 1, 2t, 3t²:
+
+***Action of d/dt***:  Ap₁ = 0, Ap₂ = p₁, Ap₃ = 2p₂ Ap₄ = 3p₃ (5)
+
+"d/dt" is acting exactly like a matrix, but which matrix? Suppose we were in the usual 4-dimensional space with the usual basis - the coordinate vectors p₁ = (1, 0, 0, 0), p₂ = (0, 1, 0, 0), p₃ = (0, 0, 1, 0), p₄ = (0, 0, 0, 1). The matrix is decided by equa- tion (5):
+
+
+```
+        |0 1 0 0|
+Adiff = |0 0 2 0|
+        |0 0 0 3|
+        |0 0 0 0|
+```
+
+ - Ap₁ is its first column, which is zero.
+ - Ap₂ is the second column, which is p₁.
+ - Ap₃ is 2p₂, and Ap₄ is 3p₃
+ - The nullspace contains p₁ (the derivative of a constant is zero).
+ - The column space contains p₁, p₂, p₃ (the derivative of a cubic is a quadratic).
+ - The derivative of a combination like p = 2 + t - t² - t³ is decided by linearity
+
+The matrix can differentiate that p(t), because matrices build in linearity!
+
+```
+             |0 1 0 0| | 2|   | 1|
+dp/dt = Ap = |0 0 2 0|·| 1| = |-2|  -> 1 - 2t - 3t²
+             |0 0 0 3| |-1|   |-3|
+             |0 0 0 0| |-1|   | 0|
+```
+
+In short, ***the matrix carries all the essential information***. If the basis is known, and the matrix is known, then the transformation of every vector is known.
+
+The coding of the information is simple. To transform a space to itself, one basis is enough. A transformation from one space to another requires a basis for each(源空间 和 目标空间).
+
+Suppose the vectors x₁,…, xn , arc a basis for the space V, and vectors y₁,…,ym, are a basis for W. Each linear transformation T from V to W is representeed by it matrix A. 
+
+The jth column is found by applying T to the jth basis vector `xⱼ`, and writing `T(xⱼ)` as a combination of the y’s:
+
+```
+Column j of A:  T(xⱼ)= Axⱼ = a₁ⱼy₁ + a₂ⱼy₂ + … + a_mⱼ·ym  (6)
+```
+
+
+  
