@@ -4,6 +4,7 @@
 [在线数学公式生成](http://codecogs.com/latex/eqneditor.php)
 
 [ngx_lua](https://github.com/mebusy/notes/blob/master/dev_notes/ngx_lua/readme.md)
+[algorithm](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_readme.md)
 
 ####机器学习
 
@@ -29,16 +30,6 @@ Octave Tutorial
     |   |    |   | 
 --- | --- | --- | ---
 [矩阵操作](https://github.com/mebusy/notes/blob/master/dev_notes/ML_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_Octave_%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4_%E7%9F%A9%E9%98%B5%E6%93%8D%E4%BD%9C.md) | [plot data](https://github.com/mebusy/notes/blob/master/dev_notes/ML_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_Octave_plotting_data.md)   |  [流程控制/方法](https://github.com/mebusy/notes/blob/master/dev_notes/ML_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_Octave_%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6_%E6%96%B9%E6%B3%95.md)   |     
-
-
----
-
-Algorithm
-
-    |   |    |   | 
---- | --- | --- | ---
-[排序 选择](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_12.md) | [图 Min Cut](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_GraphMinCut.md) | [图的搜索和连通](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_GraphSearchConnectivity.md) | [Dijkstra Shortest path](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_Dijkstra'sShortest-Path.md)
-[Heap](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_Heap.md) | [Binary Search Tree](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_BinarySearchTree.md) | [hash](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_hash.md)
 
 
 ---
