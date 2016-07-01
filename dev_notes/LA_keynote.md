@@ -12,6 +12,13 @@
    - [partial pivoting](#4c6c909215a7371958d82af08be17233)
  - [Vector Spaces](#2f21953656c07a77cad97b71c89a69de)
    - [subspace](#50d531aa756e5c11625170cc1c9cfbda)
+   - [Column Space  C(A)](#684f816b438089969d265be5216aa435)
+   - [Nullspace N(A)](#23705503ad60700b867022f40a8543dc)
+   - [SOLVING Ax=0 and Ax=b](#9405663c8d12328a80ae3457c45d5995)
+     - [Echelon Form(梯形) U ,  and Row Reduced Form R](#bee5654627ea92bad93731a29fd8d7bc)
+   - [Basis for Vector Space](#7d21299ec6409c5d95f4c4c2dde8468c)
+   - [Dimension of a Vector Space](#277acc5b1627dc1a1e613976782c994b)
+   - [4 FUNDAMENTAL SUBSPACES](#ab80affa0ab7ca1586b19dd67f41f505)
 
 ...menuend
 
@@ -170,16 +177,19 @@ A = |2 3| 构成的是一个过原点的 平面子空间
     |4 1|
 ```   
 
+<h2 id="684f816b438089969d265be5216aa435"></h2>
 ### Column Space  C(A)
 
  - a subspace of **Rᵐ**
  - Ax=b , 如果b 在 C(A) 中, 则有解
 
+<h2 id="23705503ad60700b867022f40a8543dc"></h2>
 ### Nullspace N(A)
 
  - a subspace of **Rⁿ**
  - The solutions to Ax = O ,  are from N(A)
 
+<h2 id="9405663c8d12328a80ae3457c45d5995"></h2>
 ### SOLVING Ax=0 and Ax=b
 
  - 如果方程组 多余 未知数, 可能无解
@@ -197,6 +207,7 @@ A = |2 3| 构成的是一个过原点的 平面子空间
    - To decide if b is a combination of the columns, we try to solve Ax = b.
    - To decide if the columns are independent, we solve Ax = 0.
 
+<h2 id="bee5654627ea92bad93731a29fd8d7bc"></h2>
 #### Echelon Form(梯形) U ,  and Row Reduced Form R
  - Echelon U
    - 消元法 即使主元不能避免的变0 也继续下去
@@ -209,6 +220,7 @@ A = |2 3| 构成的是一个过原点的 平面子空间
    - Rx = 0 has the same solutions as Ux = 0 and Ax=0
 
 
+<h2 id="7d21299ec6409c5d95f4c4c2dde8468c"></h2>
 ### Basis for Vector Space
 
  - 不同基组合可以得到相同的结果，但是只要确定了基，某一结果的组合就是唯一的
@@ -218,6 +230,7 @@ A = |2 3| 构成的是一个过原点的 平面子空间
  - If we are asking the columns to be a basis for the whole space Rⁿ, then the matrix must be square and invertible.
 
 
+<h2 id="277acc5b1627dc1a1e613976782c994b"></h2>
 ### Dimension of a Vector Space
  
  - 矩阵不同的字空间拥有不同的维度
@@ -234,6 +247,7 @@ You must notice that the word "dimensional" is used in two different ways.
  - It is the **dimension of the column space** that equals the **rank of the matrix**, as we prove in the coming section.
 
 
+<h2 id="ab80affa0ab7ca1586b19dd67f41f505"></h2>
 ### 4 FUNDAMENTAL SUBSPACES
 
 4 subspaces in full rank:
