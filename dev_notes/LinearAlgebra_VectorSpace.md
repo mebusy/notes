@@ -224,7 +224,7 @@ Here is *PA = LU* for all matrices:
 
 This matrix R is the final result of elimination on A. MATLAB would use the command **R = rref (A)**. Of course rref(R) would give R again!
 
-If A is a square invertible matrix , in that case , rref(R) is *identity matrix*.  ***rref (A) = 1***, when A is invertible.
+If A is a square invertible matrix , in that case , rref(R) is *identity matrix*.  ***rref (A) = I***, when A is invertible.
 
 For a 5 by 8 matrix with four pivots, Figure 2.3 shows the reduced form R. **It still contains an identity matrix, in the four pivot rows and four pivot columns**. 
 
@@ -335,7 +335,7 @@ Elimination reveals the pivot variables and free variables. ***If there are r pi
 
 **2D:**
 
- - 2D Suppose elimination reduces Ax = b to Ux = c and Rx = d, with r pivot rows and r pivot columns. ***The rank of those matrices is r***. The last m - r **rows** of U and R are zero, so there is a solution only if the last m - r *entries of c and d* are also zero.
+ - Suppose elimination reduces Ax = b to Ux = c and Rx = d, with r pivot rows and r pivot columns. ***The rank of those matrices is r***. The last m - r **rows** of U and R are zero, so there is a solution only if the last m - r *entries of c and d* are also zero.
  - The complete solution is x =x_p + x_n. One particular solution x_p has all free variables zero. Its pivot variables are the first r entries of d, so Rx_p= d.
  - The nullspace solutions x are combinations of n - r special solutions, with one free variable equal to 1. The pivot variables in that special solution can be found in the corresponding column of R (with sign reversed).
  
