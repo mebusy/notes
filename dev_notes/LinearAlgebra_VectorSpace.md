@@ -70,7 +70,7 @@ symmetric. Of course, the zero matrix is in both subspaces.
 
 We now come to the key examples, the **column space** and the **nullspace** of a matrix A.
 
-***The column space contains all linear combinations of the columns of A***. It is a subspace of **Rⁿ**. We illustrate by a system of m = 3 equations in n = 2 unknowns:
+***The column space contains all linear combinations of the columns of A***. It is a subspace of **Rᵐ**. We illustrate by a system of m = 3 equations in n = 2 unknowns:
 
 ```
 |1  0| |u|   |b₁|

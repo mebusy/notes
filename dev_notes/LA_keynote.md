@@ -149,7 +149,13 @@ A*P = // column exchange
  - a nonempty subset that satisfies **Linear combinations**
    - the zero vector will belong to every subspace
 
+### Column Space  C(A)
+ - a subspace of **Rᵐ**
+ - Ax=b 如果b 在 C(A) 中, 则有解
 
+### Nullspace N(A)
+ - The solutions to Ax = O ,  are from N(A)
+ - 
 
 
 
