@@ -65,6 +65,12 @@ Notice in particular that ***the zero vector will belong to every subspace***. T
 Start from the vector space of 3 by 3 matrices. One possible subspace is the set of lower triangular matrices. Another is the set of symmetric matrices. A + B and cA are lower triangular if A and B are lower triangular, and they are symmetric if A and B are
 symmetric. Of course, the zero matrix is in both subspaces.
 
+
+ - 两个子空间的交集，还是一个子空间
+    - S⋂T is a subplace
+
+ - PS. **Ax=b解不是子空间，因为解不包含0向量**
+
 <h2 id="8181c20bb270d985c5745507fd8a273b"></h2>
 ### The Column Space of A
 
@@ -87,6 +93,8 @@ We can describe all combinations of the two columns geometrically: *Ax = b* can 
 What is important is that this plane is not just a subset of R³; it is a **subspace**. It is the column space of A, consisting of all combinations of the columns. It is denoted by ***C(A)***.
 
 Then C(A) can be somewhere between the zero space and the whole space **Rᵐ**. Together with its perpendicular space, it gives one of our two approaches to understanding Ax = b.
+
+是指矩阵的列向量组构成的空间，也就是将列向量组的极大线性无关组找出来，然后做线性组合而生成的所有向量构成的空间。
 
 <h2 id="3c94b747c25e8b676e5f7af1a67da8a5"></h2>
 ### The Nullspace of A
@@ -132,6 +140,12 @@ We want to be able, for any system Ax = b, to find C(A) and N(A): all attainable
 The vectors b are in the column space and the vectors x are in the nullspace. 
 
 We hope to end up by understanding all four of the subspaces that are intimately related to each other and to A - the ***column space*** of A, the ***nullspace*** of A, and their two perpendicular spaces.
+
+ - matlab 可以通过 null 指令求出
+
+```
+#TODO
+```
 
 <h2 id="1e0304a592cf2dccbcb3c7e858021d8d"></h2>
 ## 2.2 SOLVING Ax=0 and Ax=b
@@ -344,6 +358,16 @@ You see how the rank r is crucial. It counts the pivot rows in the "row space" a
 good example in page 84.
 
 
+### 满秩
+
+满秩          |  列满秩      |   行满秩    |  一般
+--- | --- | --- | ---
+r=m=m     |  r = n < m      |   r = m < n    |  r < m, r < n
+R = I    |  \| I \|      |   R=\|I F\|    |    \| I  F\|
+ －     |      \|0\|       |                  |          \|0 0\|
+唯一解   |    0 或 1解  |    ∞ 解       |   0 或 ∞ 解 
+
+
 <h2 id="42daec4d086da007d1b961361ec0814f"></h2>
 ## 2.3 LINEAR INDEPENDENCE, BASIS, AND DIMENSION
 
@@ -426,6 +450,12 @@ To summarize:
     - whether the matrix is square or rectangular.
  - If we are asking the columns to be a basis for the whole space Rⁿ, then the matrix must be ***square*** and ***invertible***. 
 
+
+向量组的基 Basis是指，一组向量 v1,v2, … , vd, 拥有两大性质:
+
+    - 1.线性无关
+    - 2.他们生成整个空间
+
 <h2 id="277acc5b1627dc1a1e613976782c994b"></h2>
 ### Dimension of a Vector Space
 
@@ -443,6 +473,8 @@ You must notice that the word "dimensional" is used in two different ways.
     - The members of this four-dimensional subspace are six- dimensional ***vectors*** like (0, 5, 1, 3, 4, 0). 
     
 We never use the terms "basis of a matrix" or "rank of a space" or "dimension of a basis." These phrases have no meaning. It is the ***dimension of the column space*** that equals the ***rank of the matrix***, as we prove in the coming section.
+
+ - 基向量的个数，就是列空间C(A)的维数 (注意维数是空间的属性)
 
 <h2 id="a1e826e3adda502b8e640e95e34a88d8"></h2>
 ## 2.4 THE FOUR FUNDAMENTAL SUBSPACES
@@ -548,6 +580,12 @@ A = |1 2|  , has m = n = 2, and rank r = 1.
  3. The row space contains all multiples of [1 2]ᵀ
     - write it as a column vector, since strictly,speaking it is in the column space of Aᵀ
  4. The left nullspace contains all multiples of y = [-3 1]ᵀ
+
+---
+
+
+
+
 
 <h2 id="f934c3a267dc016627d494171b3c77c7"></h2>
 ### Existence of Inverses
