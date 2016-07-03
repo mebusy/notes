@@ -262,6 +262,8 @@ If A is an m by n matrix:
  - The nullspace N(A) and row space C(Aᵀ) are subspaces of **Rⁿ**.
  - The left nullspace N(Aᵀ) and column space C(A) are subspaces of **Rᵐ**.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_4subspaces.png)
+
 
 
 

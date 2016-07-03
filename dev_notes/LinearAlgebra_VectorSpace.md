@@ -583,7 +583,7 @@ A = |1 2|  , has m = n = 2, and rank r = 1.
 
 ---
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_4subspaces.png)
 
 
 
