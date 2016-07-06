@@ -849,7 +849,7 @@ dp/dt = Ap = |0 0 2 0|·| 1| = |-2|  -> 1 - 2t - 3t²
 
 In short, ***the matrix carries all the essential information***. If the basis is known, and the matrix is known, then the transformation of every vector is known.
 
-The coding of the information is simple. To transform a space to itself, one basis is enough. A transformation from one space to another requires a basis for each(源空间 和 目标空间).
+The coding of the information is simple. To transform a space to itself, one basis is enough. A transformation from one space to another requires a basis for each(输入空间 和 输出空间 可以用相同的基，也可以用不同的基).
 
 Suppose the vectors x₁,…, xn , arc a basis for the space V, and vectors y₁,…,ym, are a basis for W. Each linear transformation T from V to W is representeed by it matrix A. 
 
@@ -859,5 +859,7 @@ The jth column is found by applying T to the jth basis vector `xⱼ`, and writin
 Column j of A:  T(xⱼ)= Axⱼ = a₁ⱼy₁ + a₂ⱼy₂ + … + a_mⱼ·ym  (6)
 ```
 
+如何发现隐藏在一个 linear transmation 后面的 变换矩阵。 只要知道了 基的 linear transmation , 就能确定这个矩阵。
 
+特征向量基 是一组很好的基，it leads to 对角矩阵 Λ ， 对角线上都是特征值 。
   
