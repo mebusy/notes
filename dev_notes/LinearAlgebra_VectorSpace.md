@@ -851,7 +851,7 @@ In short, ***the matrix carries all the essential information***. If the basis i
 
 The coding of the information is simple. To transform a space to itself, one basis is enough. A transformation from one space to another requires a basis for each(输入空间 和 输出空间 可以用相同的基，也可以用不同的基).
 
-Suppose the vectors x₁,…, xn , arc a basis for the space V, and vectors y₁,…,ym, are a basis for W. Each linear transformation T from V to W is representeed by it matrix A. 
+**2U**: Suppose the vectors x₁,…, xn , arc a basis for the space V, and vectors y₁,…,ym, are a basis for W. Each linear transformation T from V to W is representeed by it matrix A. 
 
 The jth column is found by applying T to the jth basis vector `xⱼ`, and writing `T(xⱼ)` as a combination of the y’s:
 
@@ -859,7 +859,37 @@ The jth column is found by applying T to the jth basis vector `xⱼ`, and writin
 Column j of A:  T(xⱼ)= Axⱼ = a₁ⱼy₁ + a₂ⱼy₂ + … + a_mⱼ·ym  (6)
 ```
 
-如何发现隐藏在一个 linear transmation 后面的 变换矩阵。 只要知道了 基的 linear transmation , 就能确定这个矩阵。
 
-特征向量基 是一组很好的基，it leads to 对角矩阵 Λ ， 对角线上都是特征值 。
-  
+ - 如何发现隐藏在一个 linear transmation 后面的 变换矩阵。 只要知道了 基的 linear transmation , 就能确定这个矩阵。
+    - 特征向量基 是一组很好的基，it leads to 对角矩阵 Λ ， 对角线上都是特征值 。
+ - 2U 解释了如何 确定变换矩阵的 列向量
+
+TODO, Example
+
+
+### Rotations Q, Projections P, and Reflections H
+
+This section began with 90° rotations, projections onto the x-axis, and reflections through the 45° line. 
+
+Their matrices were especially simple:
+
+```
+Q = |0 -1|   P = |1 0|   H = |0 1|
+    |1  0|       |0 0|       |1 0|
+```
+
+
+Rotations through other angles, projections onto other lines, and reflections in other mirrors are almost as easy to visualize.   They are still linear transformations, provided that the origin is fixed: AO = 0.
+
+They *must* be represented by matrices. Using the natural basis [1 0]ᵀ and [0 1]ᵀ , we want to discover those matrices.
+
+**1. Rotation**  
+
+
+
+
+
+
+
+
+
