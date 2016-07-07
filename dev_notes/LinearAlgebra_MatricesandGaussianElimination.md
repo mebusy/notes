@@ -423,6 +423,11 @@ A good elimination code saves L and U and P.
 
 Those matrices carry the information that originally came in A - and they carry it in a more usable form. Ax = b reduces to two triangular systems. This is the practical equivalent of the calculation we do next to find the inverse matrix A⁻¹ and the solution x = A⁻¹b.
 
+ - LU分解不借助 行交换的关键是是 中间不能出现 0 pivot
+  - 但是对最后一个 pivot 没有 非0的要求
+  - 因为奇异矩阵也有LU分解
+
+
 <h2 id="4d72fafca6d677bb749ef5048ba77fa6"></h2>
 ## 1.6 INVERSES AND TRANSPOSE
 
