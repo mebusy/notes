@@ -893,7 +893,49 @@ Figure 2.10 shows rotation through an angle θ. It also shows the effect on the 
     - we use c and s for cos θ and sin θ.
  - The second basis vector (0, 1) rotates into (-sin θ, cos θ). 
  - By rule (6), those numbers go into the columns of the matrix 
- - 
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Q_theta.png)
+ - The last case contains the first two. 
+    - The inverse appears when φ is -θ
+    - the square appears when φ is +θ. 
+ - All three questions were decided by trigonometric identities 
+    - and they give a new way, to remember those identities. 
+
+**2V** Suppose A and B are linear transformations from V to W and from U to V. Their product AB starts with a vector u in U, goes to Bu in V. and finishes with ABu in W. This "composition" AB is again a linear transformation (from U to
+W). Its matrix is the product of the individual matrices representing A and B.
+
+
+**2. Projection**
+
+ - Figure 2.10 also shows the projection of (1, 0) onto the 6-line. 
+    - The length of the projection is c = cos θ. 
+    - Notice that the point of projection is not (c, s), we must multiply by c. 
+ - Similarly the projection of (0, 1) has length s, and falls at s(c, s) = (cs, s²). 
+    - That gives the second column of the projection matrix P:
+
+```
+Projection onto θ-line:  P = |c² cs|
+                             |cs s²|
+```
+
+ - This matrix has no inverse, because the transformation has no inverse. 
+ - Points on the perpendicular line (through zero vector) are projected onto the origin
+    - that line is the nullspace of P. 
+- Points on the θ-line are projected to themselves! 
+- Projecting twice is the same as projecting once, and ***p² = P***:
+
+```
+P² = |c² cs|² = |c²(c²+s²) cs(c²+s²)| = P
+     |cs s²|    |cs(c²+s²) s²(c²+s²)|
+```
+ 
+ - Of course c²+s² = cos²θ + sin²θ = 1
+ - ***A projection matrix equals its own square***.
+
+
+**3. Reflection**
+
+
+
 
 
 
