@@ -934,6 +934,7 @@ P² = |c² cs|² = |c²(c²+s²) cs(c²+s²)| = P
 
 **3. Reflection**
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Reflection_thetaLine.png)
 
 
 
