@@ -102,6 +102,10 @@ E₃₁ = | 0  1  0|   has E₃₁·b = |  b₂  |
  		- where L and U have 1 on the diagonal and D is the diagonal matrix of pivots.
  - For any m by n matrix A there is a permutation P, a lower triangular L with unit diagonal, and an m by n echelon matrix U, such that PA = LU     
 
+ - LU分解不借助 行交换的关键是是 中间不能出现 0 pivot
+   - 但是对最后一个 pivot 没有 非0的要求
+   - 因为奇异矩阵也有LU分解
+
 <h2 id="2f79a6b54ab5e88029090d5fe24a83bf"></h2>
 ### 置换矩阵
 
