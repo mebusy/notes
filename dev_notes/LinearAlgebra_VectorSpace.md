@@ -885,11 +885,15 @@ They *must* be represented by matrices. Using the natural basis [1 0]ᵀ and [0 
 
 **1. Rotation**  
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_rotation_projection_theta_line.png)
 
+Figure 2.10 shows rotation through an angle θ. It also shows the effect on the 2 basis vectors.
 
-
-
-
+ - The first one (1,0) goes to (cos θ, sin θ) , it lies on the "θ-line". 
+    - we use c and s for cos θ and sin θ.
+ - The second basis vector (0, 1) rotates into (-sin θ, cos θ). 
+ - By rule (6), those numbers go into the columns of the matrix 
+ - 
 
 
 
