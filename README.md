@@ -9,7 +9,7 @@
  - [Parallel Programming](https://github.com/mebusy/notes/blob/master/dev_notes/ParallelProgramming_readme.md)
  - [Unity](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_readme.md)
 
-
+ - [iOS related](https://github.com/mebusy/notes/blob/master/dev_notes/ios/ios_readme.md)
 
 ---
 
