@@ -418,6 +418,16 @@ data = base64.b64decode( data )
 result_data = base64.b64encode( result_data)
 ```
 
+### md5
+
+```
+>>> import md5
+>>> m = md5.new()
+>>> m.update("Nobody inspects")
+>>> m.update(" the spammish repetition")
+>>> m.digest()
+```
+
 ---
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
