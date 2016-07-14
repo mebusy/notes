@@ -9,6 +9,7 @@
      - [Echelon Form(梯形) *U* and Row Reduced Form *R*](#fb0727e770a06722aa7b9d64a9b6af91)
      - [Pivot Variables and Free Variables](#1e32c695f24ac4d5108ba9cca53ac86a)
      - [Solving Ax = b, Ux = c, and Rx = d](#0aa8bb162b1e64c4edd71e634be16382)
+     - [满秩](#176eb4a957bc2a4950033ca9e1ec5ede)
    - [2.3 LINEAR INDEPENDENCE, BASIS, AND DIMENSION](#42daec4d086da007d1b961361ec0814f)
      - [Spanning a Subspace](#bc14e48a52e7371d448ce8db40cccf14)
      - [Basis for a Vector Space](#9702e33bd5c5df4fb7ee415a1ab6e26f)
@@ -19,6 +20,7 @@
      - [Matrices of Rank 1](#e9da9069b202c4de3612d6edae5b5d07)
    - [2.5 GRAPHICS NETWORKS](#734ef82f504a5a0b7c94fe20dcc0135c)
    - [2.6 LINEAR TRANSFORMATIONS](#aa8fafd1a0c4fb58a6ba9373adaf258f)
+     - [Rotations Q, Projections P, and Reflections H](#72e0a765ceae5f613d42b3da5afdedd9)
 
 ...menuend
 
@@ -358,6 +360,7 @@ You see how the rank r is crucial. It counts the pivot rows in the "row space" a
 good example in page 84.
 
 
+<h2 id="176eb4a957bc2a4950033ca9e1ec5ede"></h2>
 ### 满秩
 
 满秩          |  列满秩      |   行满秩    |  一般
@@ -867,6 +870,7 @@ Column j of A:  T(xⱼ)= Axⱼ = a₁ⱼy₁ + a₂ⱼy₂ + … + a_mⱼ·ym  (
 TODO, Example
 
 
+<h2 id="72e0a765ceae5f613d42b3da5afdedd9"></h2>
 ### Rotations Q, Projections P, and Reflections H
 
 This section began with 90° rotations, projections onto the x-axis, and reflections through the 45° line. 
@@ -960,7 +964,16 @@ One approach is through the relationship of reflections to projections: *H = 2P 
 
 Other transformations Ax can increase the length of x; stretching and shearing are in the exercises. Each example has a matrix to represent it - which is the main point of this section. But there is also the question of choosing a basis, and we emphasize that the matrix depends on the choice of basis. Suppose the first basis vector is ***on the θ-line*** and the second basis vector is ***perpendicular***:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_transformations_theata_line_basis.png)
 
+The goal is to make the matrix diagonal, as achieved for P and H. To make Q diagonal requires complex vectors, since all real vectors are rotated.
+
+We mention here the effect on the matrix of a change of basis, while the linear transformation stays the same. 
+
+ - The matrix A (or Q or P or H) is altered to ***S⁻¹AS***. 
+ - Thus a single transformation is represented by different matrices (via different bases, accounted for by S). 
+
+ The theory of eigenvectors will lead to this formula S⁻¹AS, and to the best basis.
 
 
 

@@ -37,6 +37,7 @@
      - [写 带中文字符的文件](#771f3b745b95ab3097fd1242137e2912)
    - [encrypt](#53c82eba31f6d416f331de9162ebe997)
      - [base64](#95a1446a7120e4af5c0c8878abb7e6d2)
+     - [md5](#1bc29b36f623ba82aaf6724fd3b16718)
    - [Misc](#74248c725e00bf9fe04df4e35b249a19)
      - [try - except 打印错误](#636a8076c1d8da426394e0c3e15c3ec2)
      - [run in 32bit mode](#61ca7c49201549fda5414272579e0413)
@@ -418,6 +419,7 @@ data = base64.b64decode( data )
 result_data = base64.b64encode( result_data)
 ```
 
+<h2 id="1bc29b36f623ba82aaf6724fd3b16718"></h2>
 ### md5
 
 ```
