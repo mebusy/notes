@@ -937,6 +937,30 @@ P² = |c² cs|² = |c²(c²+s²) cs(c²+s²)| = P
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Reflection_thetaLine.png)
 
 
+Figure 2.11 shows the reflection of (1, 0) in the θ-line. The length of the reflection equals the length of the original, as it did after rotation. The perpendicular line reverses direction; all points go straight through the mirror. Linearity decides the rest.
+
+```
+Reflection matrix   H = |2c²-1   2cs |
+                        | 2cs   2s²-1|
+```
+
+This matrix H has the remarkable property H² = I. 
+
+ - ***Two reflections bring back the original***.
+    - A reflection is its own inverse, *H = H⁻¹* 
+    - which is clear from the geometry but less clear from the matrix
+
+One approach is through the relationship of reflections to projections: *H = 2P - I*. 
+
+ - This means that Hx + x = 2Px
+ - the image plus the original equals twice the projection. It also confirms that H² = I:
+    - `H² = (2P-I)2² = 4P²-4P +I = I, since P²=P`
+
+---
+
+Other transformations Ax can increase the length of x; stretching and shearing are in the exercises. Each example has a matrix to represent it - which is the main point of this section. But there is also the question of choosing a basis, and we emphasize that the matrix depends on the choice of basis. Suppose the first basis vector is ***on the θ-line*** and the second basis vector is ***perpendicular***:
+
+
 
 
 
