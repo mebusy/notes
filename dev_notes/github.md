@@ -25,3 +25,16 @@
         - `git push origin master`
 
         
+## run html on github
+
+ - visit `http://rawgit.com/`
+ - 输入你需要执行的 html 网页，会给出两个链接
+    - https://rawgit.com/mebusy/html5_examples/master/XXXX.html
+        - url for production
+    - https://cdn.rawgit.com/mebusy/html5_examples/master/XXXX.html
+        - url for dev/testing
+ - 注意： cdn.rawgit.com 上的文件，第一次访问后会被 永久cache，从而导致 拉取不到最新的文件。
+    - 所以一般访问的时候，会指定 某个 commit hash  ， 或使用最新的 HEAD
+    - `https://cdn.rawgit.com/mebusy/html5_examples/a12340a5d32b0c760ef138301b067fb1153ef94b/00_marchingSquare.html`
+    - or `https://cdn.rawgit.com/mebusy/html5_examples/HEAD/00_marchingSquare.html`
+
