@@ -156,15 +156,24 @@ Nullspace ⟂ Row space :   vᵀx = (Aᵀz)ᵀx = zᵀAx = zᵀ0 = 0.    (8)
  - The vector v is the projection onto the subspace V. 
  - The orthogonal component w is the projection of x onto W. 
 
-Figure 3.4 summarizes the fundamental theorem of linear algebra. It illustrates the true effect of a matrix - what is happening inside the multiplication Ax. 
+Figure 3.4 summarizes the fundamental theorem of linear algebra.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Figure_3.4.png)
 
  - The nullspace is carried to the zero vector. 
  - Every Ax is in the column space. 
  - Nothing is carried to the left nullspace. 
- - The real action is between the row space and column space, and you see it by looking at a typical vector x. It has a "row space component" and a "nullspace component," with `x = xᵣ+ xn`,  When multiplied by A, this is `Ax = Axᵣ + Axn`:
+ - The real action is between the row space and column space, and you see it by looking at a typical vector ***x*** :
+ 	- It has a "row space component" and a "nullspace component," with `x = xᵣ+ xn`,  When multiplied by A, this is `Ax = Axᵣ + Axn`:
  	- The nullspace component goes to zero: Axn = 0.
  	- The row space component goes to the column space: `Axᵣ = Ax`.
 
+Of course everything goes to the column space - the matrix cannot do anything else. I tried to make the row and column spaces the same size, with equal dimension r.
 
+**3F** From the row space to the column space. A is actually invertible. Every vector b in the column space comes from exactly one vector xᵣ , in the row space.
+
+***Proof*** Every b in the column space is a combination Ax of the columns. In fact, b is Axᵣ with xᵣ in the row space, since the nullspace component gives Ax = 0. If another vector x, in the row space gives Ax'ᵣ = b, then A(xᵣ - x'ᵣ) = b - b = 0. This puts xᵣ - x'ᵣ in the nullspace and the row space, which makes it orthogonal to itself. Therefore it is zero, and xᵣ = x'ᵣ . Exactly one vector in the row space is carried to b.
+
+***Every matrix transforms its row space onto its column space.***
 
 
