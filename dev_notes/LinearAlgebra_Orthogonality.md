@@ -152,6 +152,18 @@ Nullspace ⟂ Row space :   vᵀx = (Aᵀz)ᵀx = zᵀAx = zᵀ0 = 0.    (8)
 
 **The Matrix and the Subspaces**
 
+ - Splitting Rⁿ into orthogonal parts V and W , will split every vector into x = v + w. 
+ - The vector v is the projection onto the subspace V. 
+ - The orthogonal component w is the projection of x onto W. 
+
+Figure 3.4 summarizes the fundamental theorem of linear algebra. It illustrates the true effect of a matrix - what is happening inside the multiplication Ax. 
+
+ - The nullspace is carried to the zero vector. 
+ - Every Ax is in the column space. 
+ - Nothing is carried to the left nullspace. 
+ - The real action is between the row space and column space, and you see it by looking at a typical vector x. It has a "row space component" and a "nullspace component," with `x = xᵣ+ xn`,  When multiplied by A, this is `Ax = Axᵣ + Axn`:
+ 	- The nullspace component goes to zero: Axn = 0.
+ 	- The row space component goes to the column space: `Axᵣ = Ax`.
 
 
 
