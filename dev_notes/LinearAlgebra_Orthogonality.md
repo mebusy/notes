@@ -1,6 +1,17 @@
+...menustart
 
+ - [Orthogonality](#878bcbccb5d63db01d2193f2e15cae28)
+   - [3.1 ORTHOGONAL VECTORS AND SUBSPACES](#70835fd4404a5ddec835801ba42ecfb0)
+   - [3.2 COSINES PROJECTIONS ONTO LINES](#870df6062f5bb62d6f82187a8efebbe1)
+
+...menuend
+
+
+
+<h2 id="878bcbccb5d63db01d2193f2e15cae28"></h2>
 # Orthogonality
 
+<h2 id="70835fd4404a5ddec835801ba42ecfb0"></h2>
 ## 3.1 ORTHOGONAL VECTORS AND SUBSPACES
 
  - In choosing a basis, we tend to choose an orthogonal basis , to make those calculations simple. 
@@ -185,6 +196,7 @@ When A⁻¹ fails to exist, the best substitute is the ***pseudoinverse*** A⁺.
 
 
 
+<h2 id="870df6062f5bb62d6f82187a8efebbe1"></h2>
 ## 3.2 COSINES PROJECTIONS ONTO LINES
 
 
