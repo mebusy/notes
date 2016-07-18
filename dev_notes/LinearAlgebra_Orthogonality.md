@@ -176,4 +176,16 @@ Of course everything goes to the column space - the matrix cannot do anything el
 
 ***Every matrix transforms its row space onto its column space.***
 
+On those r-dimensional spaces A is invertible (if x in row space ). On its nullspace A is zero. When A is diagonal, you see the invertible submatrix holding the r nonzeros.
+
+
+Aᵀ goes in the opposite direction, from Rᵐ to Rⁿ and from C(A) back to C(Aᵀ). Of course the transpose is not the inverse! Aᵀ moves the spaces correctly, but not the individual vectors. That honor belongs to A⁻¹ if it exists - and it only exists if r = m = n. We cannot ask A⁻¹ to bring back a whole nullspace out of the zero vector.
+
+When A⁻¹ fails to exist, the best substitute is the ***pseudoinverse*** A⁺. This inverts A where that is possible: A⁺Ax = x for x in the row space. On the left nullspace, nothing can be done: A⁺y = 0. Thus A⁺ inverts A where it is invertible, and has the same rank r. One formula for A⁺ depends on the ***singular value decomposition*** - for which we first need to know about eigenvalues.
+
+
+
+## 3.2 COSINES PROJECTIONS ONTO LINES
+
+
 
