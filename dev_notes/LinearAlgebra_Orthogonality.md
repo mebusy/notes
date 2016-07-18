@@ -220,14 +220,26 @@ A formula for p is easy when the subspace is a line.   Projection onto a higher 
 
 Relationship of inner products and angles.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_innerProduct_and_angle.png)
 
+Figure 3.6 The cosine of the angle θ = β - α using inner products.
 
+ - The length ‖a‖ is the hypotenuse 斜边 in the triangle OαQ. 
+ 	- So the sine and cosine of a are : `sinα = a₂/‖a‖ , cosα = a₁/‖a‖` 
+ 	- For the angle β , `sinα = b₂/‖b‖ , cosα = b₁/‖b‖` 
+ 	- **cosθ = cos(β - α) = cosβcosα + sinβsinα = ( a₁b₁ + a₂b₂ ) / ‖a‖·‖b‖**  ,  (1)
 
+The numerator in formula (1) is exactly the inner product of a and b. It gives the relationship between aᵀb and cos θ:
 
+**3G** The cosine of the angle between any *nonzero vectors* a and b is :  **cosθ = aᵀb / ‖a‖·‖b‖**  (2)
 
+**Projection onto a Line**
 
-
-
+ - Now we want to find the projection point p. 
+ - This point must be some multiple p = xa of the given vector a 
+ 	- every point on the line is a multiple of a. 
+ - The problem is to compute the coefficient x. 
+ - All we need is the geometrical fact that the line from b to the closest point p = ia is perpendicular to the vector a:
 
 
 
