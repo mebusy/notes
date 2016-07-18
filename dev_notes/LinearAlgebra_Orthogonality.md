@@ -204,4 +204,36 @@ When A⁻¹ fails to exist, the best substitute is the ***pseudoinverse*** A⁺.
 
 **Figure 3.5** The projection p is the point ( on the line through a ) closest to b.
 
-The situation is the same when we are given a plane (or any subspace S) instead of a line. Again the problem is to find the point p on that subspace that is closest to b. This point p is the projection of b onto the subspace. A perpendicular line from b to S meets the subspace at p. Geometrically, that gives the distance between points b and
+The situation is the same when we are given a plane (or any subspace S) instead of a line. Again the problem is to find the point p on that subspace that is closest to b. ***This point p is the projection of b onto the subspace***. Geometrically, that gives the distance between points b and subspaces S. But there are two questions that need to be asked:
+
+ 1. Does this projection actually arise in practical applications?
+ 2. If we have a basis for the subspace S, is there a formula for the projection p ?
+
+The answers are certainly yes. This is exactly the problem of the ***least-squares*** solution to an overdetermined system. The vector b represents the data from experiments or questionnaires, and it contains too many errors to be found in the subspace S. The equations are inconsistent, and Ax = b has no solution.
+
+The least-squares method selects p as the best choice to replace b. 
+
+A formula for p is easy when the subspace is a line.   Projection onto a higher dimensional subspace is by far the most important case; it corresponds to a least-squares problem with several parameters. The formulas are even simpler when we produce an orthogonal basis for S.
+
+
+**Inner Products and Cosines**
+
+Relationship of inner products and angles.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
