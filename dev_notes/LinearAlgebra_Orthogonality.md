@@ -200,4 +200,8 @@ When A⁻¹ fails to exist, the best substitute is the ***pseudoinverse*** A⁺.
 ## 3.2 COSINES PROJECTIONS ONTO LINES
 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_projection_onto_line.png)
 
+**Figure 3.5** The projection p is the point ( on the line through a ) closest to b.
+
+The situation is the same when we are given a plane (or any subspace S) instead of a line. Again the problem is to find the point p on that subspace that is closest to b. This point p is the projection of b onto the subspace. A perpendicular line from b to S meets the subspace at p. Geometrically, that gives the distance between points b and
