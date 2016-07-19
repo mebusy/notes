@@ -235,13 +235,17 @@ The numerator in formula (1) is exactly the inner product of a and b. It gives t
 
 **Projection onto a Line**
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_projection_onto_line2.png)
+
  - Now we want to find the projection point p. 
- - This point must be some multiple p = xa of the given vector a 
+ - This point must be some multiple p = x̂a of the given vector a 
  	- every point on the line is a multiple of a. 
- - The problem is to compute the coefficient x. 
- - All we need is the geometrical fact that the line from b to the closest point p = ia is perpendicular to the vector a:
+ - The problem is to compute the coefficient `x̂`. 
+ - All we need is the geometrical fact that ***the line from b to the closest point p = x̂a is perpendicular to the vector a***:
 
+```
 
+```
 
 
 
