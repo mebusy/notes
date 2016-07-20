@@ -111,8 +111,8 @@ l.sort(cmp=lambda x,y:cmp( x.lower(), y.lower()  ))
 [('a', 3), ('b', 2), ('c', 1)]
 >>> sorted(d.items() , key=lambda x:x[1])    # 对 值 进行排序， 返回 元组 list
 [('c', 1), ('b', 2), ('a', 3)]
->>> dict(sorted(d.items() , key=lambda x:x[1]) )   # 对 值 进行排序，dict
-{'a': 3, 'c': 1, 'b': 2}
+>>> sorted(d.items() , key=lambda x:x[1] , reverse = True )
+[('a', 3), ('b', 2), ('c', 1)]
 ```
 
 
@@ -539,4 +539,3 @@ os.chmod(_path,  stat.S_IREAD)
 ```
 os.chmod(_path, stat.S_IWRITE | stat.S_IREAD)
 ```
-
