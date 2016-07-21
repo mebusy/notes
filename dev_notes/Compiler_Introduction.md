@@ -42,7 +42,7 @@ position = initial + rate * 60
  5. rate is a lexeme that is mapped into the token < id, 3 > , where 3 points to the symbol-table entry for rate.
  6. \* is a lexeme that is mapped into the token < \* >.
  7. 60 is a lexeme that is mapped into the token < 60 >
-    - TechnicaUy speaking, for the lexeme 60 we should make up a token like < number, 4 > , but we shall defer the discussion of tokens for numbers until Chapter 2.
+    - Technically speaking, for the lexeme 60 we should make up a token like < number, 4 > , but we shall defer the discussion of tokens for numbers until Chapter 2.
 
 
 Blanks separating the lexemes would be discarded by the lexical analyzer.
