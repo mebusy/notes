@@ -59,7 +59,7 @@ After lexical analysis as the sequence of tokens `<id, 1> <=> <id, 2> <+> <id, 3
 The second phase of the compiler is ***syntax analysis*** or ***parsing***. 
 
  - The parser create a tree-like intermediate representation that depicts the grammatical structure of the token stream. 
- 	- by useing the first components of the tokens produced by the lexical analyzer
+ 	- by using the first components of the tokens produced by the lexical analyzer
  - A typical representation is a ***syntax tree*** 
  	- in which each interior node represents an operation 
  	- and the children of the node represent the arguments of the operation. 
@@ -86,7 +86,7 @@ The subsequent phases of the compiler use the grammatical structure to help anal
 ### 1.2.3 Semantic Analysis
 
  - The ***semantic analyzer*** checks the source program for semantic consistency with the language definition.  
- 	- by useing the syntax tree and the information in the symbol table
+ 	- by using the syntax tree and the information in the symbol table
  - It also gathers type information and saves it in either the syntax tree or the symbol table
  	- for subsequent use during intermediate-code generation.
  - An important part of semantic analysis is ***type checking***, where the compiler checks that each operator has matching operands. 
