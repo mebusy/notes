@@ -25,7 +25,7 @@
         - < token-name, attribute-value >
         - the 1st component *token-name* is an abstract symbol that is used during syntax analysis
         - the 2nd component *attribute-value* points to an entry in the symbol table for this token
-        - Information from the symbol-table entry 'is needed for semantic analysis and code generation
+        - Information from the symbol-table entry is needed for semantic analysis and code generation
 
 For example: 
 
