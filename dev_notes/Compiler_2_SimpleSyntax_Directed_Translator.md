@@ -111,18 +111,18 @@ Tokens is ofen terminal.
 
 A context-free grammar has four components:
 
- - 1 A set of ***terminal*** symbols, sometimes referred to as "tokens." 
+ 1. A set of ***terminal*** symbols, sometimes referred to as "tokens." 
  	- The terminal are the elementary symbols of the language defined by the grammar.
- - 2 A set of ***nonterminals***, sometimes called "syntactic variables." 
+ 2. A set of ***nonterminals***, sometimes called "syntactic variables." 
  	- Each non­terminal represents a set of strings of terminals
- - 3 A set of ***productions***
+ 3. A set of ***productions***
  	- each production consists of a nonterminal, called the *head* or *lefe side* of the production, 
  	- an arrow, 
  	- and a sequence of terminals and/or nonterminals, called the *body* or *right side* of the produc­ tion. 
  	- The intuitive intent of a production is to specify one of the written forms of a construct; 
  		- if the head nonterminal represents a construct, 
  		- then the body represents a written form of the construct.
- - 4 A designation of one of the nonterminals as the *start* symbol.
+ 4. A designation of one of the nonterminals as the *start* symbol.
 
 
 
