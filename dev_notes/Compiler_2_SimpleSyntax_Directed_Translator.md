@@ -63,5 +63,13 @@ For example, the postfix form of the expression `9 - 5 + 2` is `95 - 2+`.
 
 Translation into postfix form is rich enough to illustrate syntax analysis, yet simple enough. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_frontend_model.png)
 
+Figure 2.3: A model of a compiler front end
 
+ - A lexical analyzer allows a translator to handle multicharacter constructs like identifiers , but are treated as units called tokens during syntax analysis
+ - Next, we consider intermediate-code generation
+ 	- 2 forms of intermedi­ate code :
+ 		- 1. *abstract syntax trees* or simply *syntax trees*
+ 			- represents the hierarchical syntactic structure of the source program
+ 		- 2. "three-address" instructions
