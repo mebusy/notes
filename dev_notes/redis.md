@@ -178,6 +178,10 @@ Mac 自带了 apache和php 模块, 所以使用 phpRedisAdmin 除了需要安装
  7. 如果是linux系统，注意开放 6379 端口
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
-## TODO
+## Mac Resis
+
+ - brew install redis
+ - brew services start redis  #开机启动
+ - 
  
     
