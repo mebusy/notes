@@ -86,9 +86,118 @@ jacksontian 1438 0.0 0.2 3022452 12704 s003 S 3:25AM 0:00.14 /usr/local/bin/node
 jacksontian 1437 0.0 0.2 3031668 12696 s003 S 3:25AM 0:00.15 /usr/local/bin/node ./worker.js
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_master_worker.png)
 
 
+图9-1就是著名的Master-Worker模式，又称主从模式。图中的进程分为：主进程和工作进程。这是典型的分布式架构中用于并行处理业务的模式。
 
+ - 主进程不负责具体的业务处理，而是负责调度或管理工作进程，它是趋向于稳定的。
+ - 工作进程负责具体的业务处理
+
+fork() 进程是昂贵的。好在Node通过事件驱动的方式在单线程上解决了大并发的问题，这里启动多个进程只是为了充分将CPU资源利用起来，而不是为了解决并发问题。
+
+
+### 9.2.1 创建子进程
+
+child_process 模块提供了4个方法用于创建子进程
+
+ - spawn(): 启动一个子进程来执行命令
+ - exec(): 启动一个子进程来执行命令，与spawn不同的是接口, 它有一个回调函数获知子进程的状况
+ - execFile(): 启动一个子进程来执行文件
+ - fork(): 与 spawn 类似, 不同点在于它创建Node的子进程只需指定要执行的JavaScript文件模块即可
+
+
+`node worker.js` 这个命令分别用 上述4种方法实现:
+
+```
+var cp = require('child_process');
+
+cp.spawn('node', ['worker.js']);
+cp.exec('node worker.js', function (err, stdout, stderr) {
+	// some code 
+});
+cp.execFile('worker.js', function (err, stdout, stderr) { 
+	// some code
+}); 
+cp.fork('./worker.js');
+```
+
+类型 | 回调/异常 | 进程类型 | 执行类型 ｜ 可设置超时
+--- | --- | --- | --- | --- | ---
+spawn | x | 任意 | 命令 | x
+exec | ✓ |  任意 | 命令 | ✓
+execFile | ✓ |  任意 | 可执行文件 | ✓
+fork | x | Node | JavaScript 文件 | x 
+
+这里的可执行文件是指可以直接执行的文件，如果是 JavaScript 文件通过 execFile()执行, 它的首行内容必须添加如下代码：
+
+```
+ #!/usr/bin/env node
+```
+
+事实上，后面3种方法都是 spawn() 的延伸应用。
+
+### 9.2.2 进程间通信
+
+在前端浏览器中，JavaScript 主线程与UI渲染公用同一个线程，两者互相阻塞。
+
+为了解决这个问题，HTML5 提出了 WebWorker API, 允许创建工作线程并在后台运行，使得一些阻塞较为严重的计算不影响主线程的UI渲染。
+
+它的API 如下所示
+
+```
+var worker = new Worker('worker.js'); 
+worker.onmessage = function (event) {
+	document.getElementById('result').textContent = event.data; 
+};
+```
+
+worker.js:
+
+```
+var n = 1;
+search: while (true) {
+	n += 1;
+	for (var i = 2; i <= Math.sqrt(n); i += 1)
+		if (n%i == 0) 
+			continue search;
+     // found a prime
+	postMessage(n); 
+}
+```
+
+主线程和工作线程之间通过 onmessage() 和 postMessage() 进行通信。
+
+
+Node 主/子进程之间的通信 API 一定程度上相似, 进程间 通过 send()方法 发送数据，message 事件接收数据。
+
+```
+// parent.js
+var cp = require('child_process');
+var n = cp.fork(__dirname + '/sub.js');
+n.on('message', function (m) { 
+	console.log('PARENT got message:', m);
+});
+n.send({hello: 'world'});
+```
+
+```
+// sub.js
+process.on('message', function (m) { 
+	console.log('CHILD got message:', m);
+});
+process.send({foo: 'bar'});
+```
+
+通过fork() 或者其他 API，创建子进程之后, 为了实现父子进程之间的通信, 父子进程之间将会创建IPC通道。通过 IPC 通道，父子进程之间才能通过 message和send() 传递消息。
+
+***进程间通信原理***
+
+IPC的全称是 Inter-Process Communication. 实现进程间通信的技术有很多，如命名管道，匿名管道，socket，信号量，共享内存，消息队列，Domain Socket等。
+
+Node中实现IPC通道的是管道(pipe)技术，但此管道非彼管道。在Node中管道是个抽象层面的称呼，具体细节实现由libuv提供, unix系统采用 Unix Domain Socket实现。表现在应用层上的进程间通信只有简单的message事件和send()方法。
+
+父进程在实际创建子进程前，会创建IPC通道并监听它，然后才真正创建出子进程，并通过环境变量( NODE_CHANNEL_FD ) 告诉子进程这个IPC通道的文件描述符。子进程在启动过程中，根据文件描述符去链接这个已经存在的IPC通道，从而完成父子进程之间的连接。
 
 
 
