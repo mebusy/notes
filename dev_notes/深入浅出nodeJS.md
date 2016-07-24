@@ -614,6 +614,106 @@ process.on('uncaughtException', function (err) {
 <h2 id="19e7bc0667e049833d1138b93611b7e1"></h2>
 #### 2. 限量重启
 
+工作进程不能无限制的重启，如果启动的过程中就发生了错误，或者启动后接到连接就收到错误会导致工作进程被频繁重启。
+
+为了消除这种无意义的重启，在满足一定规则的限制下，不应当反复重启。比如在单位时间内规定只能重启多少次，超过限制就触发 giveup事件，告知放弃重启。
+
+```JavaScript
+// 重启次数 
+var limit = 10;
+// 时间单位
+var during = 60000;
+var restart = [];
+
+var isTooFrequently = function () {
+	// 记录重启时间
+	var time = Date.now();
+	var length = restart.push(time); 
+	if (length > limit) {
+		// 取出最后10个纪录
+		restart = restart.slice(limit * -1); 
+	}
+	// 最后一次重启到前10次重启之间的时间间隔
+	return restart.length >= limit && restart[restart.length - 1] - restart[0] < during; 
+};
+
+
+var workers = {};
+var createWorker = function () {
+	// 检查是否太过频繁
+	if (isTooFrequently()) {
+		// 触发giveup事件后, 不再重启
+		process.emit('giveup', length, during); 
+		return;
+	}
+
+	var worker = fork(__dirname + '/worker.js');
+	...
+```
+
+giveup 事件是比 uncaughtException 更严重的异常事件。
+
+
+### 9.3.3 负载均衡
+
+Node 默认提供的机制是采用操作系统的抢占式策略。 一般而言，抢占式策略对大家是公平的，各个进程可以根据自己的繁忙度来进行抢占。但是对于Node而言，需要分清的是它的繁忙是由CPU,I/O 两个部分构成的，影响抢占的是CPU的繁忙度。 对不同的业务，可能存在 I/O繁忙，而CPU较为空闲的情况，这可能造成某个进程能够抢到较多请求，行程负载不均衡的情况。
+
+为此 Node在 v0.11中提供了一种新的策略使得负载均衡更合理: Round-Robin, 又叫轮叫调度。 轮叫调度的工作方式是由主进程接收连接， 将其一次分发给工作进程。 分发的策略是在 N个工作进程中，每次选择第 i=(i+1) mod n . 在 cluster 模块中启用它的方式如下:
+
+```JavaScript
+// 启用 Round-Robin
+cluster.schedulingPolicy = cluster.SCHED_RR 
+// 不启用Round-Robin
+cluster.schedulingPolicy = cluster.SCHED_NONE
+```
+
+或者在环境变量中设置: NODE_CLUSTER_SCHED_POLICY 的值
+
+```bash
+export NODE_CLUSTER_SCHED_POLICY=rr
+export NODE_CLUSTER_SCHED_POLICY=none
+```
+
+Round-Robin 非常简单, 可以避免 CPU 和 I/O 繁忙差异导致的负载不均衡。Round-Robin 策略也可以通过代理服务器来实现，但是它会导致服务器上消耗的文件描述符是平常的两倍。
+
+
+### 9.3.4 状态共享
+
+Node 进程中不宜存放太多数据, 
+
+ - 因为它会加重垃圾回收的负担，进而影响性能。
+ - 同时，Node也不允许在多个进程之间共享数据。
+
+但在实际的业务中, 往往需要共享一些数据，譬如配置数据, 这在多个进程中应当是一致的。为此，在不允许共享数据的情况下，我们需要一种方案和机制来实现数据在多个进程之间的共享。
+
+
+***第三方数据存储***
+
+解决数据共享最直接，简单的方式就是通过第三方来进行数据存储，比如将数据存放到 数据库，磁盘文件， 缓存服务(如 Redis) 中，所有工作进程启动时将其读取进内存。但这种方式存在的问题是，如果数据发生变化，还需要一种机制通知各个子进程，使得它们的内部状态也得到更新。
+
+实现状态同步的机制有两种:
+
+1. 各个子进程 向第三方进行定时轮询
+	- 轮询带来的问题是，轮询时间不能过密，也不能过长
+2. 主动通知
+	- 当数据发生更新时，主动通知子进程
+	- 仍需要一种机制来及时获取数据的改变，这个过程仍然不能脱离轮询，但可以减少轮询的进程数量。
+
+我们将 这种 用来发送通知 和查询状态是否更改 的进程叫 通知进程。为了不混合业务逻辑，可以将这个进程设计为只进行轮询和通知，不处理任何业务逻辑。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
