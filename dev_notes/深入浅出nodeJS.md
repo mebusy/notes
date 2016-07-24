@@ -772,6 +772,26 @@ cluster.isMaster = (cluster.isWorker === false);
 
 在cluster 内部隐式创建TCP服务器的方式对使用者来说十分透明，但也正是这种方式使得它无法入直接使用child_process 那样灵活。在 cluster 模块应用中, 一个主进程只能管理一组工作进程； 而通过 child_process 可以更灵活地控制工作进程，甚至控制多组工作进程。其原因在于 child_process 可以隐式地创建多个TCP服务器，使得子进程可以共享多个的服务端socket.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_cluster_workers.png)
+
+
+### 9.4.2 Cluster 事件
+
+对于健壮性处理, cluster 模块也暴露了相当多的事情。
+
+ - fork: 复制一个工作进程后触发该事件
+ - online: 复制好一个工作进程后, 工作进程主动发送一条 online 消息给主进程，主进程得到消息后, 触发该事件
+ - listening: 工作进程中调用 listen() (共享了服务端Socket)后，发送一条listening 消息给主进程，主进程收到消息后，触发该事件。
+ - disconnect: 主进程和工作进程之间IPC通道断开后会触发该事件
+ - exit: 有工作进程退出时触发该事件
+ - setup: cluster.setupMaster() 执行后触发该事件
+
+这些事件大多跟 child_process 模块的事件相关，在进程间消息传递的基础上完成的封装，这些事件对于增强应用的健壮性已经足够了。
+
+
+## 9.5 总结
+
+尽管通过 child_process 模块可以大幅提升Node的稳定性，但是一旦主进程出现问题，所有的子进程将会失去管理。在Node的进程管理之外，还需要用监听进程数量或监听日志的方式确保整个系统的稳定性，即使主进程出错退出，也能及时得到监控警报。
 
 
 
