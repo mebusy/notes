@@ -109,7 +109,7 @@ child_process 模块提供了4个方法用于创建子进程
 
 `node worker.js` 这个命令分别用 上述4种方法实现:
 
-```
+```JavaScript
 var cp = require('child_process');
 
 cp.spawn('node', ['worker.js']);
@@ -131,7 +131,7 @@ fork | x | Node | JavaScript 文件 | x
 
 这里的可执行文件是指可以直接执行的文件，如果是 JavaScript 文件通过 execFile()执行, 它的首行内容必须添加如下代码：
 
-```
+```JavaScript
  #!/usr/bin/env node
 ```
 
@@ -145,7 +145,7 @@ fork | x | Node | JavaScript 文件 | x
 
 它的API 如下所示
 
-```
+```JavaScript
 var worker = new Worker('worker.js'); 
 worker.onmessage = function (event) {
 	document.getElementById('result').textContent = event.data; 
@@ -154,7 +154,7 @@ worker.onmessage = function (event) {
 
 worker.js:
 
-```
+```JavaScript
 var n = 1;
 search: while (true) {
 	n += 1;
@@ -171,7 +171,7 @@ search: while (true) {
 
 Node 主/子进程之间的通信 API 一定程度上相似, 进程间 通过 send()方法 发送数据，message 事件接收数据。
 
-```
+```JavaScript
 // parent.js
 var cp = require('child_process');
 var n = cp.fork(__dirname + '/sub.js');
@@ -181,7 +181,7 @@ n.on('message', function (m) {
 n.send({hello: 'world'});
 ```
 
-```
+```JavaScript
 // sub.js
 process.on('message', function (m) { 
 	console.log('CHILD got message:', m);
@@ -204,7 +204,8 @@ Node中实现IPC通道的是管道(pipe)技术，但此管道非彼管道。在N
 Node中，IPC通道被抽象为 Stream 对象，在调用 send() 时发送数据(类似 write())，在接收到消息会通过message事件( 类似于 data)
 触发给应用层。
 
-**注意**：只有启动的子进程是Node进程时，子进程才会根据环境变量去链接IPC通道，对于其他类型的子进程则无法实现进程间通信，除非其他进程也按约定去连接这个已经创建好的IPC通道。
+**注意**：只有启动的子进程是Node进程时，子进程才会根据环境变
+量去链接IPC通道，对于其他类型的子进程则无法实现进程间通信，除非其他进程也按约定去连接这个已经创建好的IPC通道。
 
 
 ### 9.2.3 句柄传递
@@ -214,6 +215,101 @@ Node中，IPC通道被抽象为 Stream 对象，在调用 send() 时发送数据
 问题描述: 如果启动多个服务器实例来监听，无法同时监听同一个端口。 这个问题破坏了我们将多个进程监听同一个端口的想法。
 
 要解决问题，通常的做法是每个进程监听不同的端口，其中主进程监听主端口(80), 主进程对外接收所有的网络请求，再将这些请求分别代理道不同的端口的进程上。
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_proxy.png)
+
+通过代理，可以避免端口不能重复监听的问题，甚至可以在代理进程上做适当的负载均衡。 由于进程每接收到一个连接，将会用掉一个文件描述描述符，因此代理方案中客户端连接到工作进程，需要用掉两个文件描述符。操作系统的文件描述符是有限的，代理方案浪费掉一倍数量的文件描述符的做法影响了系统的扩展能力。
+
+为了解决上述问题，Node在0.5.9版本引入了进程间发送句柄的功能。send()方法除了能通过IPC发送数据外，还能发送句柄，第二个可选参数就是句柄：
+
+```JavaScript
+child.send(message, [sendHandle])
+```
+
+句柄是一种可以用来标识资源的引用，他的内部包含了指向对象的文件描述符。比如句柄可以用来标识一个服务器socket对象，一个客户端socket对象，一个UDP套接字，一个管道等。
+
+发送句柄意味着什么？ 在前一个问题中，我们可以去掉代理这种方案，使主进程接收到socket请求后，将这个socket直接发送给工作进程，而不是重新与工作进程之间建立新的socket连接来转发数据，以解决文件描述符浪费的问题。
+
+```JavaScript
+// parent.js
+var cp = require('child_process'); 
+var child1 = cp.fork('child.js'); 
+var child2 = cp.fork('child.js');
+
+// Open up the server object and send the handle 
+var server = require('net').createServer(); 
+server.on('connection', function (socket) {
+	socket.end('handled by parent\n'); 
+});
+server.listen(1337, function () {
+	// 发送句柄给 子进程
+	child1.send('server', server); 
+	child2.send('server', server);
+});
+```
+
+```JavaScript
+// child.js
+process.on('message', function (m, server) { 
+	if (m === 'server') {
+		server.on('connection', function (socket) {
+			socket.end('handled by child, pid is ' + process.pid + '\n');
+		}); 
+	}
+});
+```
+
+这个示例中，直接将一个TCP服务发送给了子进程。用curl测试:
+
+```bash
+$ curl "http://127.0.0.1:1337/" handled by child, pid is 24673 
+$ curl "http://127.0.0.1:1337/" handled by parent
+$ curl "http://127.0.0.1:1337/" handled by child, pid is 24672
+```
+
+测试的结果每次出现的结果都可能不同，结果可能被父进程处理，也可能被子进程处理。并且这是在TCP层面上完成的事情，我们尝试将其转化到HTTP层面来试试。 对于主进程来而言，我们甚至想要它更轻量一点，那么是否将服务器句柄发送给子进程之后，就可以关掉服务器的监听，让子进程来处理请求呢？
+
+```JavaScript
+// parent.js
+var cp = require('child_process');
+
+var child1 = cp.fork('child.js'); 
+var child2 = cp.fork('child.js');
+
+// Open up the server object and send the handle 
+var server = require('net').createServer(); 
+server.listen(1337, function () {
+	// 发送句柄给 子进程
+	child1.send('server', server); 
+	child2.send('server', server);
+	// 关 
+	server.close();
+});
+```
+
+```JavaScript
+// child.js
+var http = require('http');
+var server = http.createServer(function (req, res) {
+	res.writeHead(200, {'Content-Type': 'text/plain'});
+	res.end('handled by child, pid is ' + process.pid + '\n'); 
+});
+process.on('message', function (m, tcp) { 
+	if (m === 'server') {
+		tcp.on('connection', function (socket) {
+			server.emit('connection', socket);
+		});
+    }
+});
+```
+
+```bash
+$ curl "http://127.0.0.1:1337/" handled by child, pid is 24852 
+$ curl "http://127.0.0.1:1337/" handled by child, pid is 24851
+```
+
+这样以来，所有的请求都是由子进程处理了。
+
 
 
 
