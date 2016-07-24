@@ -439,9 +439,110 @@ process.kill( process.pid , 'SIGTERM' ) ;
 
 有了父子进程之间的相关事件后，就可以在这些关系之间创建出需要的机制了。  至少我们能够监听子进程的 exit 事件来获知其退出的消息, 接着前文的多进程架构，我们在主进程上要加入一些子进程管理的机制，比如重新启动一个工作进程来继续服务。
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_restart_subprocess.png)
+
 ```JavaScript
+// master.js
+var fork = require('child_process').fork; 
+var cpus = require('os').cpus();
+
+var server = require('net').createServer(); 
+server.listen(1337);
+
+var workers = {};
+var createWorker = function () {
+	var worker = fork(__dirname + '/worker.js'); 
+	// 􏶥退出时重􏶦启动􏶦的进程
+	worker.on('exit', function () {
+		console.log('Worker ' + worker.pid + ' exited.'); 
+		delete workers[worker.pid];
+		createWorker();
+	});
+	// 句柄转发
+	worker.send('server', server); 
+	workers[worker.pid] = worker;
+	console.log('Create worker. pid: ' + worker.pid);
+};
+
+for (var i = 0; i < cpus.length; i++) { 
+	createWorker();
+}
+// 进程自己退出时, 所有工作进程􏶥退出
+process.on('exit', function () {
+	for (var pid in workers) { 
+		workers[pid].kill();
+	} 
+});	
 ```
 
+在实际业务中，可能有隐藏的bug导致工作进程退出，那么我们需要仔细地处理这种异常，如下所示:
+
+```JavaScript
+// worker.js
+var http = require('http');
+var server = http.createServer(function (req, res) {
+	res.writeHead(200, {'Content-Type': 'text/plain'});
+	res.end('handled by child, pid is ' + process.pid + '\n'); 
+});
+var worker;
+process.on('message', function (m, tcp) {
+	if (m === 'server') {
+		worker = tcp;
+		worker.on('connection', function (socket) {
+			server.emit('connection', socket); 
+		});
+	} 
+});
+
+process.on('uncaughtException', function () {
+	// 􏶮􏶯停止接收新的链接
+	worker.close(function () {
+		// 所有已有链接断开后，退出进程
+		process.exit(1); 
+	});
+});
+```
+
+上述代码的处理流程是， 一旦有未捕获的异常出现，工作进程就会立即停止接收新的链接； 当所有的连接断开后，退出进程。 主进程在 监听到工作进程的exit后，将会立即启动新的进程服务，以此保证整个集群中 总是有进程在为用户服务的。
+
+#### 自杀信号
+
+上述代码存在的问题是 要等到所有链接断开后 进程才会退出， 在极端的情况下， 所有工作进程都停止接收新的链接，全处在等待退出的状态。 但是等到进程完全退出才重启的过程中，会丢到大部分请求。
+
+为此需要改进这个过程， 不能等到工作进程退出后才重启新的工作进程。 当然也不能暴力退出进程，因为这样会导致以连接的用户直接断开。 于是我们在退出的流程中增加一个自杀(suicide)信号。 工作进程在得知要退出时，向主进程发送一个自杀信号，然后才停止接收新的链接，当所有连接断开后才退出。 主进程在接收到自杀信号后，立即创建新的工作进程服务。
+
+```JavaScript
+// worker.js
+process.on('uncaughtException', function (err) {
+	process.send({act: 'suicide'}); 
+	// 􏶮􏶯停止接收新的连接 
+	worker.close(function () {
+		// 所有已有链接断开后，退出进程
+		process.exit(1); 
+	});
+});	
+```
+
+主进程将重启工作进程的任务，从 exit 事件的处理函数中转移到 message 事件的处理函数中：
+
+```JavaScript
+var createWorker = function () {
+	var worker = fork(__dirname + '/worker.js'); 
+	// 自杀时 启动􏶦新的进程
+	worker.on('message', function (message) {
+		if (message.act === 'suicide') { 
+			createWorker();
+		} 
+	});
+	worker.on('exit', function () {
+		console.log('Worker ' + worker.pid + ' exited.');
+		delete workers[worker.pid]; 
+	});
+	worker.send('server', server); 
+	workers[worker.pid] = worker;
+	console.log('Create worker. pid: ' + worker.pid);
+};	
+```
 
 
 
