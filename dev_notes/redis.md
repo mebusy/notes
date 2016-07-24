@@ -11,7 +11,7 @@
      - [多数据库](#fdde913b5f9231dbf0135b5d394cb199)
      - [redis 命令，中文版](#7bcaab82241af99be9615017fca3cb89)
    - [mac phpRedisAdmin](#6ef8082fd2f3d06391821ecff428e702)
-   - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
+   - [Mac Resis](#5eb6909a1e0d0356a26e2c49bf854243)
 
 ...menuend
 
@@ -177,7 +177,7 @@ Mac 自带了 apache和php 模块, 所以使用 phpRedisAdmin 除了需要安装
  
  7. 如果是linux系统，注意开放 6379 端口
 
-<h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
+<h2 id="5eb6909a1e0d0356a26e2c49bf854243"></h2>
 ## Mac Resis
 
  - brew install redis

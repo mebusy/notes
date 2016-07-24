@@ -1,4 +1,15 @@
+...menustart
 
+ - [A Simple Syntax-Directed anslator](#7bb979e48c0b2e41ffcc943354eea3dd)
+   - [2.1 Introduction](#af0cf6c4627b1e734c8a7fc86c534ac9)
+   - [2.2 Syntax Definition](#49e3a75fe90809fc7abafbcfbc51fd7b)
+     - [2.2.1 Definition of Grammars](#034fe90866337af0fbb672df1de0b66d)
+
+...menuend
+
+
+
+<h2 id="7bb979e48c0b2e41ffcc943354eea3dd"></h2>
 # A Simple Syntax-Directed anslator
 
 This chapter is an introduction to the compiling techniques in Chapters 3 through 6 of this book
@@ -44,6 +55,7 @@ Figure 2.1: A code fragment to be translated
 Figure 2.2: Simpli ed intermediate code 
 
 
+<h2 id="af0cf6c4627b1e734c8a7fc86c534ac9"></h2>
 ## 2.1 Introduction
 
 For review:
@@ -83,6 +95,7 @@ Figure 2.3: A model of a compiler front end
  			- a three­ address instruction carries out at most one operation, typically a computation, a comparison, or a branch.	
 
 
+<h2 id="49e3a75fe90809fc7abafbcfbc51fd7b"></h2>
 ## 2.2 Syntax Definition
 
  - We introduce a notation - the "context-free grammar," or "grammar" for short 
@@ -97,6 +110,7 @@ Figure 2.3: A model of a compiler front end
 			- lexical elements like the keyword if and the paren­theses are called ***terminals***
 			- Variables like expr and stmt represent *sequences of terminals* and are called ***nonterminals***.
 
+<h2 id="034fe90866337af0fbb672df1de0b66d"></h2>
 ### 2.2.1 Definition of Grammars
 
 Tokens is ofen terminal.

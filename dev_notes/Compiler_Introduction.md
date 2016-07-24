@@ -1,7 +1,27 @@
+...menustart
+
+ - [Chapter 1 Introduction](#ae6212de98066cfe7c4f284fb7bb0795)
+   - [1.2 The Structure of a Compiler](#63ae37c8857aa96df730388676adc2ca)
+     - [1.2.1 Lexical Analysis](#57d98a0f3632f4cb940598f6256ecdfc)
+     - [1.2.2 Syntax Analysis](#fb2142e810f2e9a15030f6d78c437bae)
+     - [1.2.3 Semantic Analysis](#7789dd8d5a08e6298027a099409c1443)
+     - [1.2.4 Intermediate Code Generation](#2a40a73e86de0c4274e59ac45cef1f7b)
+     - [1.2.5 Code Optimization](#5b9a8770c747a97b075151171355ecb8)
+     - [1.2.6 Code Generation](#f867ceceefb3b47936eac11f9a2e08cd)
+     - [1.2.7 Symbol-Table Management](#f0b723a9df83685761f99355086abeda)
+     - [1.2.8 The Grouping of Phases into Passes](#0cceed88f71885842f77f164b25c71cc)
+     - [1.2.9 Compiler-Construction Tools](#57b05cd7416d7b9ca9b6f8a630f258c3)
+   - [1 .3 The Evolution of Programming Languages](#b47c0652562ded5280a48bb68a3745ac)
+
+...menuend
 
 
+
+
+<h2 id="ae6212de98066cfe7c4f284fb7bb0795"></h2>
 # Chapter 1 Introduction
 
+<h2 id="63ae37c8857aa96df730388676adc2ca"></h2>
 ## 1.2 The Structure of a Compiler
 
  - analysis
@@ -17,6 +37,7 @@
 
 
 
+<h2 id="57d98a0f3632f4cb940598f6256ecdfc"></h2>
 ### 1.2.1 Lexical Analysis
 
  - The first phase of a compiler is called ***lexical analysis*** or ***scanning***
@@ -54,6 +75,7 @@ After lexical analysis as the sequence of tokens `<id, 1> <=> <id, 2> <+> <id, 3
 
 
 
+<h2 id="fb2142e810f2e9a15030f6d78c437bae"></h2>
 ### 1.2.2 Syntax Analysis
 
 The second phase of the compiler is ***syntax analysis*** or ***parsing***. 
@@ -83,6 +105,7 @@ The subsequent phases of the compiler use the grammatical structure to help anal
  - syntax-directed definitions 
 
 
+<h2 id="7789dd8d5a08e6298027a099409c1443"></h2>
 ### 1.2.3 Semantic Analysis
 
  - The ***semantic analyzer*** checks the source program for semantic consistency with the language definition.  
@@ -104,6 +127,7 @@ The subsequent phases of the compiler use the grammatical structure to help anal
  - notice that the output of the semantic analyzer has an extra node for the operator inttofloat, which explicitly converts its integer argument into a floating-point number
 
 
+<h2 id="2a40a73e86de0c4274e59ac45cef1f7b"></h2>
 ### 1.2.4 Intermediate Code Generation
 
  - In the process of translating a source program into target code, a compiler may construct one or more intermediate representations
@@ -128,6 +152,7 @@ There are several points worth noting about three-address instructions.
  - Third, some "three-address instructions" like the first and last , have fewer than three operands.
 
 
+<h2 id="5b9a8770c747a97b075151171355ecb8"></h2>
 ### 1.2.5 Code Optimization
 
  - The machine-independent code-optimization phase attempts to improve the intermediate code so that better target code will result. 
@@ -141,6 +166,7 @@ There are several points worth noting about three-address instructions.
  	- Moreover, t3 is used only once to transmit its value to id1 so the optimizer can transform into the shorter sequence.
 
 
+<h2 id="f867ceceefb3b47936eac11f9a2e08cd"></h2>
 ### 1.2.6 Code Generation
 
  - The code generator takes as input , an intermediate representation of the source program 
@@ -165,6 +191,7 @@ For example, using registers R1 and R2.
 This discussion of code generation has ignored the important issue of stor­age allocation for the identifiers in the source program. As we shall see in Chapter 7, the organization of storage at run-time depends on the language be­ing compiled. Storage-allocation decisions are made either during intermediate code generation or during code generation.
 
 
+<h2 id="f0b723a9df83685761f99355086abeda"></h2>
 ### 1.2.7 Symbol-Table Management
 
  - An essential function of a compiler is to record the variable names used in the source program and collect information about various attributes of each name. 
@@ -177,6 +204,7 @@ This discussion of code generation has ignored the important issue of stor­age 
  	- The data structure should be designed to allow the compiler to find the record for each name quickly 
  	- and to store or retrieve data from that record quickly. 
 
+<h2 id="0cceed88f71885842f77f164b25c71cc"></h2>
 ### 1.2.8 The Grouping of Phases into Passes
 
  - The discussion of phases deals with the logical organization of a compiler. 
@@ -190,6 +218,7 @@ This discussion of code generation has ignored the important issue of stor­age 
  - Similarly, we can produce compilers for different target machines, by combining a front end with back ends for different target machines.
 
 
+<h2 id="57b05cd7416d7b9ca9b6f8a630f258c3"></h2>
 ### 1.2.9 Compiler-Construction Tools
 
 
@@ -205,6 +234,7 @@ The most suc­cessful tools are those that hide the details of the generation al
  6. ***Compiler-construction toolkits*** that provide an integrated set of routines for constructing various phases of a compiler.
 
 
+<h2 id="b47c0652562ded5280a48bb68a3745ac"></h2>
 ## 1 .3 The Evolution of Programming Languages
 
 
