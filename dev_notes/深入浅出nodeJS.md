@@ -308,9 +308,38 @@ $ curl "http://127.0.0.1:1337/" handled by child, pid is 24852
 $ curl "http://127.0.0.1:1337/" handled by child, pid is 24851
 ```
 
-这样以来，所有的请求都是由子进程处理了。
+这样以来，所有的请求都是由子进程处理了。这个过程中，服务的过程发生了一次改变：
 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_9.5.png)  ->  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_9.6.png)
+
+我们发现，多个子进程可以同时监听相同端口，再没有 EAADINUSE 一场发生了。
+
+***1. 句柄发送和还原***
+
+上文介绍的虽然是句柄发送，但是仔细看看，句柄发送 跟 我们直接将服务器对象发送给 子进程 有没有差别？  它是否真的将服务器对象发送给了 子进程？ 为什么它可以发送到多个子进程？ 发送给子进程 为什么父进程中还存在这个对象？ 
+
+目前 send() 	方法可以发送的句柄类型包括如下几种：
+
+ - net.Socket   TCP 套接字
+ - net.Server   TCP服务器， 任意建立在TCP服务上的应用层服务都可以享受到它带来的好处。
+ - net.Native   C++层面的TCP套接字 或 IPC管道
+ - dgram.Socket  UDP 套接字
+ - dgram.Native   C++ 层面的UDP套接字
+
+send() 方法在将消息发送到 IPC 管道前，将消息组装成两个对象, 一个对象是 handle, 另一个对象是 message.  message 参数如下:
+
+```JSON
+{
+	cmd: 'NODE_HANDLE', 
+	type: 'net.Server', 
+	msg: message
+}
+```
+
+发送到IPC管道中的实际上是我们要发送的句柄文件描述符，文件描述符实际上是一个整数值。这个message对象在写入到ICP管道时也会通过 JSON.stringify() 进行序列化。 所以最终发送到ICP管道中的信息都是字符串， send()方法能发送消息和句柄，并不意味着它能发送任意对象。
+
+连接了IPC通道的子进程可以读取到父进程发来的消息， 将字符串通过 JSON.parse()解析还原为对象后，才出发message事件将消息体传递给应用层使用。 在这个过程中，消息对象还要被进行过滤处理，message.cmd 的值如果以NODE_ 为前缀，它将响应一个内部事件 internalMessage。
 
 
 
