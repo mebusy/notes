@@ -315,7 +315,7 @@ $ curl "http://127.0.0.1:1337/" handled by child, pid is 24851
 
 我们发现，多个子进程可以同时监听相同端口，再没有 EAADINUSE 一场发生了。
 
-***1. 句柄发送和还原***
+#### 1. 句柄发送和还原
 
 上文介绍的虽然是句柄发送，但是仔细看看，句柄发送 跟 我们直接将服务器对象发送给 子进程 有没有差别？  它是否真的将服务器对象发送给了 子进程？ 为什么它可以发送到多个子进程？ 发送给子进程 为什么父进程中还存在这个对象？ 
 
@@ -329,7 +329,7 @@ $ curl "http://127.0.0.1:1337/" handled by child, pid is 24851
 
 send() 方法在将消息发送到 IPC 管道前，将消息组装成两个对象, 一个对象是 handle, 另一个对象是 message.  message 参数如下:
 
-```JSON
+```json
 {
 	cmd: 'NODE_HANDLE', 
 	type: 'net.Server', 
@@ -343,8 +343,104 @@ send() 方法在将消息发送到 IPC 管道前，将消息组装成两个对�
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_handle_send.png)
 
+ 以发送的TCP服务器句柄为例， 子进程收到消息后的 还原过程如下:
+
+```JavaScript
+function(message, handle, emit) {
+	var self = this;
+	// 子进程根据 message.type 创建对应 TCP服务器对象
+	var server = new net.Server(); 
+	// 然后监听到 文件描述符上
+	server.listen(handle, function() {
+		emit(server);  
+	});
+}
+```
+
+所以在子进程中， 开发者会有一种服务器就是从 父进程中直接传递过来的错觉。 **值得注意：** Node进程之间只有消息传递，不会真正传递对象。
+
+目前 Node 只支持上述提到的几种句柄，并非任意类型的句柄都能在进程之间传递，除非它有完整的发送和还原过程。
+
+#### 2. 端口共同监听 
+
+ - 独立启动的多个进程中， TCP服务器端 socket套接字的文件描述符 并不相同，导致监听到相同的端口时会抛出异常
+ - Node 底层对每个端口监听都设置了 SO_REUSEADDR 选项，这个选项的含义是 不同的进程 可以就相同的网卡和端口进行监听，这个套接字可以被不同的进程复用
+ 	- 对于 send() 发送的句柄还原出服务而言, 他们的文件描述符是相同的，所以监听相同端口不会引起一场。
+
+```C
+setsockopt(tcp->io_watcher.fd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on))
+```
+
+ - 多个应用监听相同端口时， 文件描述符同一时间只能被某个进程所用。 也就是说， 网络请求向服务端发送时， 只有一个幸运的进程能够抢到链接，只有它能为这个请求服务。这些进程服务是抢占式的。
 
 
+
+## 9.3 集群稳定之路
+
+搭建好了集群，充分利用了CPU资源，似乎就可以迎接客户端大量的请求了。但我们还有一些细节需要考虑。
+
+ - 性能问题
+ - 多个工作进程的存货状态管理
+ - 工作进程的平滑重启
+ - 配置活着静态数据的动态重新载入
+ - 其他细节
+
+是的，虽然我们创建了很多工作进程，但每个工作进程依然是在单线程上执行的，他的稳定性还不能得到完全的保障。 我们需要建立起一个健全的机制来保障Node应用的健壮性.
+
+### 9.3.1􏰀 􏲒􏲓􏶎􏶏
+
+再次回到子进程对向上，除了引人关注的 send() 方法 和 message 事件外，子进程还有些什么? 
+
+除message事件外, 父进程能监听到的子进程相关事件:
+
+ - error:  当子进程 无法被复制创建, 无法被杀死，无法发送消息时， 会触发改事件
+ - exit:  子进程退出时 触发该事件。 如果是正常退出，第一个参数是 退出码，否则为 null. 如果进程是通过 kill() 方法杀死的, 会得到第二个参数，他表示杀死进程时的信号.
+ - close:  在子进程的标准输入输出流 终止时， 触发该事件
+ - disconnect:  在父进程 或 子进程中 调用 disconnect() 方法时触发该事件
+ 	- 在调用调用 disconnect() 方法时 将关闭监听 IPC 通道
+
+除了 send() 外， 还能通过 kill() 方法给子进程发送消息。 kill() 方法并不能真正地将 通过IPC相连的子进程杀死，它只是给子进程发送了一个系统信号。 默认情况下，kill() 方法会发送一个 SIGTERM 信号。它与进程默认的kill() 方法类似:
+
+```JavaScript
+// 发送给子进程
+child.kill([signal]);
+// 发送给 目标进程
+process.kill(pid, [signal]);
+```
+
+POSIX 标准中，， 有一套完备的信号系统， `kill -l` 可以看到详细的信号列表:
+
+```bash
+$ kill -l
+ 1) SIGHUP	 2) SIGINT	 3) SIGQUIT	 4) SIGILL
+ 5) SIGTRAP	 6) SIGABRT	 7) SIGEMT	 8) SIGFPE
+ 9) SIGKILL	10) SIGBUS	11) SIGSEGV	12) SIGSYS
+13) SIGPIPE	14) SIGALRM	15) SIGTERM	16) SIGURG
+17) SIGSTOP	18) SIGTSTP	19) SIGCONT	20) SIGCHLD
+21) SIGTTIN	22) SIGTTOU	23) SIGIO	24) SIGXCPU
+25) SIGXFSZ	26) SIGVTALRM	27) SIGPROF	28) SIGWINCH
+29) SIGINFO	30) SIGUSR1	31) SIGUSR2
+```
+
+Node 提供了这些信号对应的信号事件， 每个进程都可以监听这些信号事件。 如 SIGTERM 是软件终止信号，进程收到该信号时应当退出。
+
+```JavaScript
+process.on('SIGTERM', function() { 
+	console.log('Got a SIGTERM, exiting...'); 
+	process.exit(1);
+});
+
+console.log( 'server running with PID:' , process.pid );
+process.kill( process.pid , 'SIGTERM' ) ;
+```
+
+
+### 9.3.2 自动重启
+
+有了父子进程之间的相关事件后，就可以在这些关系之间创建出需要的机制了。  至少我们能够监听子进程的 exit 事件来获知其退出的消息, 接着前文的多进程架构，我们在主进程上要加入一些子进程管理的机制，比如重新启动一个工作进程来继续服务。
+
+```JavaScript
+```
 
 
 
