@@ -701,9 +701,76 @@ Node 进程中不宜存放太多数据,
 
 我们将 这种 用来发送通知 和查询状态是否更改 的进程叫 通知进程。为了不混合业务逻辑，可以将这个进程设计为只进行轮询和通知，不处理任何业务逻辑。
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_notify_process.png)
 
+这种推送机制 如果按进程间信号传递，在跨多台服务器会无效(因为其他服务器无法获取配置文件)，是故可以考虑采用 TCP或UDP的方案。 进程在启动时从通知服务处 读取第一次数据外，还将进程信息注册到通知服务处。 一旦发现数据更新后，根据注册信息，将更新后的数据发送给工作进程。
 
+## 9.4 Cluster 模块
 
+前文介绍如何通过 child_process 模块构件强大的单机集群。 上述提及的问题，Node在v0.8版本时新增的 cluster 模块就能解决。 child_process 来实现单机集群，有这么的细节要处理，对普通工程师而言是一件相对较难的工作，于是v0.8直接引入了 cluster 模块，用于解决多核 CPU的利用率问题，同时也提供了较晚上的API，用以处理进程的健壮性问题。
+
+```JavaScript
+// cluster.js
+// 创建进程集群
+var cluster = require('cluster');
+cluster.setupMaster({ 
+	exec: "worker.js"
+});
+
+var cpus = require('os').cpus();
+for (var i = 0; i < cpus.length; i++) {
+	cluster.fork(); 
+}
+```
+
+就官方的文档而言，它更喜欢如下的形式作为示例:
+
+```JavaScript
+var cluster = require('cluster');
+var http = require('http');
+var numCPUs = require('os').cpus().length;
+
+if (cluster.isMaster) {
+	// Fork workers
+	for (var i = 0; i < numCPUs; i++) {
+		cluster.fork(); 
+	}
+	
+	cluster.on('exit', function(worker, code, signal) {
+		console.log('worker ' + worker.process.pid + ' died');
+	});
+} else {
+	// Workers can share any TCP connection
+	// In this case its a HTTP server 
+	http.createServer(function(req, res) {
+		res.writeHead(200);
+        res.end("hello world\n");
+    }).listen(8000);
+}
+```
+
+在进程中判断是主进程还是工作进程，主要取决于环境变量中是否有 NODE_UNIQUE_ID, 如下所示:
+
+```JavaScript
+cluster.isWorker = ('NODE_UNIQUE_ID' in process.env); 
+cluster.isMaster = (cluster.isWorker === false);
+```
+
+但是官方示例中，忽而判断cluster.isMaster, 忽而判断cluster.isWorker，对于代码可读性十分差。我建议用 cluster.setupMaster()这个API, 将主进程和工作进程从代码上完全剥离。 
+
+通过cluster.setMaster()创建子进程而不是食用 cluster.fork(), 程序结构不在凌乱，逻辑分明，代码的可读性和可维护性较好。
+
+### 9.4.1 Cluster 工作原理
+
+事实上 cluster 模块就是 child_process 和 net 模块的组合应用。
+
+ - cluster 启动时，会在内部启动TCP服务器
+ - cluster.fork() 子进程时， 将这个 TCP 服务器端socket的文件描述符发送给工作进程。
+ 	- 如果进程时通过 cluster.fork() 复制出来的，那么它的环境变量里就存在 NODE_UNIQUE_ID, 
+ 	- 如果工作进程中存在 listern()监听端口的调用，它将拿到该文件描述符，通过SO_REUSEADDR 端口重用, 从而实现多个子进程共享端口。
+ 	- 对于普通方式启动的进程，则不存在文件描述符传点共享等事情
+
+在cluster 内部隐式创建TCP服务器的方式对使用者来说十分透明，但也正是这种方式使得它无法入直接使用child_process 那样灵活。在 cluster 模块应用中, 一个主进程只能管理一组工作进程； 而通过 child_process 可以更灵活地控制工作进程，甚至控制多组工作进程。其原因在于 child_process 可以隐式地创建多个TCP服务器，使得子进程可以共享多个的服务端socket.
 
 
 
