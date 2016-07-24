@@ -1,9 +1,9 @@
 ...menustart
 
  - [Four special matrices](#523995f0bde7f6f864950a61566a59a5)
-   - [Sparse](#7407fb7e6a4df6392aaabd2368157312)
-   - [Invertible](#6279ece7c95ba205cea508f2082ab1c8)
-   - [Periodic](#cdcc32a064503184053bd2018d1c0e7e)
+	 - [Sparse](#7407fb7e6a4df6392aaabd2368157312)
+	 - [Invertible](#6279ece7c95ba205cea508f2082ab1c8)
+	 - [Periodic](#cdcc32a064503184053bd2018d1c0e7e)
 
 ...menuend
 

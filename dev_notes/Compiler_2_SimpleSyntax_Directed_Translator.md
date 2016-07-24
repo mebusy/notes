@@ -1,9 +1,9 @@
 ...menustart
 
  - [A Simple Syntax-Directed anslator](#7bb979e48c0b2e41ffcc943354eea3dd)
-   - [2.1 Introduction](#af0cf6c4627b1e734c8a7fc86c534ac9)
-   - [2.2 Syntax Definition](#49e3a75fe90809fc7abafbcfbc51fd7b)
-     - [2.2.1 Definition of Grammars](#034fe90866337af0fbb672df1de0b66d)
+	 - [2.1 Introduction](#af0cf6c4627b1e734c8a7fc86c534ac9)
+	 - [2.2 Syntax Definition](#49e3a75fe90809fc7abafbcfbc51fd7b)
+		 - [2.2.1 Definition of Grammars](#034fe90866337af0fbb672df1de0b66d)
 
 ...menuend
 
