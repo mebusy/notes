@@ -47,7 +47,7 @@ def createMenu4MD( path ):
 			curTitleActualLevel = len(sharps) 
 			all_title_level.add( curTitleActualLevel )
 
-			menu +=   ( '%s - [%s](#%s)' % ( '  ' * (  sorted(all_title_level).index( curTitleActualLevel )  )  , title ,  id  ) )  +  '\n'
+			menu +=   ( '%s - [%s](#%s)' % ( '\t' * (  sorted(all_title_level).index( curTitleActualLevel )  )  , title ,  id  ) )  +  '\n'
 
 			body += '<h2 id="%s"></h2>\n' % id 
 			#print sharps, title
