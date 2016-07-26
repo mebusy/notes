@@ -677,6 +677,75 @@ Deferred.prototype.progress = function (data) {
 };
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_promise_state.png)
+
+利用Promise/A 提议的模式，我们可以把一个典型的响应对象:
+
+```JavaScript
+res.setEncoding('utf8'); 
+res.on('data', function (chunk) {
+	console.log('BODY: ' + chunk); 
+});
+res.on('end', function () { 
+	// Done
+});
+res.on('error', function (err) {
+	// Error 
+});
+```
+
+封装为:
+
+```JavaScript
+res.then(function () { 
+	// Done
+}, function (err) { 
+	// Error
+}, function (chunk) { 
+	console.log('BODY: ' + chunk);
+});
+```
+
+要实现如此简单的API，只需要简单地改造一下即可:
+
+```JavaScript
+var promisify = function (res) { 
+	var deferred = new Deferred(); 
+	var result = '';
+	res.on('data', function (chunk) {
+    	result += chunk;
+		deferred.progress(chunk); 
+	});
+	res.on('end', function () { 
+		deferred.resolve(result);
+	});
+	res.on('error', function (err) {
+		deferred.reject(err); 
+	});
+	return deferred.promise;
+};
+```
+
+返回 deferred.promise 的目的是为了不让外部程序调用 resolve()和reject()方法，更改内部状态的行为交由定义者处理。
+
+下面为定义好 Promise后的调用示例:
+
+```JavaScript
+promisify(res).then(function () { 
+	// Done
+}, function (err) { 
+	// Error
+}, function (chunk) {
+	// progress
+	console.log('BODY: ' + chunk);
+});
+```
+
+这里会到 Promise和Deferred的差别上。从上面的代码可以看出， Deferred主要用于内部，用于维护异步模型的状态； Promise则作用于外部，通过 then()方法暴露给外部以添加自定义逻辑。
+
+Promise和Deferred 整体关系如图:
+
+
 
 ---
 
