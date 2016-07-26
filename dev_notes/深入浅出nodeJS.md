@@ -745,6 +745,76 @@ promisify(res).then(function () {
 
 Promise和Deferred 整体关系如图:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_promise_deferred_relationship.png)
+
+Promise/Deferred 模式 将 业务中不可变的部分封装在 Deferred中，将可变部分交给了 promise。 此时问题就来了，对于不同的场景，都需要去封装和改造其Deferred部分，然后才能得到简洁的接口。如果场景不常用，封装花费的时间与带来的简洁相比 并不一定划算。
+
+Promise是高级接口，时间是低级接口。低级接口可以构成更多更复杂的场景，高级接口一单定义，不太容易变化，不再有低级接口的灵活性，但对于解决典型问题非常有效。
+
+Q模块是 Promise/A 规范的一个实现。
+
+TODO
+
+### 4.3.2.1 JavaScript 原生支持 Promise
+
+所谓Promise，字面上可以理解为“承诺”，
+
+ - 就是说A调用B，B 先返回一个“承诺”给A，
+ - 然后A就可以在写计划的时候这么写：
+ 	- 当B返回结果给我的时候，A执行方案S1，
+ 	- 反之如果B因为什么原因没有给到A想要的结果，那么A执行应急方案S2，
+ - 这样一来，所有的潜在风险都在A的可控范围之内了。
+
+上面这段话，翻译成代码类似
+
+```JavaScript
+var resB = B();
+var runA = function() {
+    resB.then(execS1, execS2);
+};
+runA();
+```
+
+
+
+
+用法:
+
+```JavaScript
+promise.then(function(result) {
+  console.log(result); // "Stuff worked!"
+}, function(err) {
+  console.log(err); // Error: "It broke"
+});
+```
+
+与其他库的兼容性：
+
+JavaScript Promise 的 API 会把任何包含有 then 方法的对象当作“类 Promise”（或者用术语来说就是 thenable。叹气）的对象，这些对象经过 Promise.cast() 处理之后就和原生的 JavaScript Promise 实例没有任何区别了。所以如果你使用的库返回一个 Q Promise，那没问题，无缝融入新的 JavaScript Promise。
+
+```JavaScript
+var jsPromise = Promise.cast($.ajax('/whatever.json'));
+```
+
+
+
+### 4.3.3 流程控制库
+
+#### 2. async 模块
+
+长期占据 NPM 依赖榜前三名
+
+
+## 4.4 异步并发控制
+
+
+# 5. 内存控制
+
+
+
+
+
+
 
 
 ---
@@ -1466,8 +1536,59 @@ cluster.isMaster = (cluster.isWorker === false);
 尽管通过 child_process 模块可以大幅提升Node的稳定性，但是一旦主进程出现问题，所有的子进程将会失去管理。在Node的进程管理之外，还需要用监听进程数量或监听日志的方式确保整个系统的稳定性，即使主进程出错退出，也能及时得到监控警报。
 
 
+# JS 规范
+
+### C.2.3 比较操作
+
+如果是无容忍的场景，请尽量使用 === 代替 ==
+
+```JavaScript
+'0' == 0; // true 
+'' == 0 // true
+'0' === '' // false
+```
+
+0、undefined、 null、false、''  都代表逻辑非
 
 
+### C.2.6 数组和对象
+
+2. for in 循环
+
+```JavaScript
+var foo = []; 
+foo[100] = 100;
+for (var i in foo) {
+	console.log(i); } // 100
+for (var i = 0; i < foo.length; i++) { 
+	console.log(i); // 0--100
+}
+```
+
+### C.2.8 继承
+
+#### 1. 类继承
+
+一般情况下, 我们采用 Node推荐的类继承方式：
+
+```JavaScript
+function Socket(options) { 
+	// ...
+	stream.Stream.call(this);
+	// ... 
+}
+util.inherits(Socket, stream.Stream);
+```
+
+#### 2. 导出
+
+当需要将文件当作一个类导出时, 需要通过如下的方式挂载:
+
+```JavaScript
+module.exprots = Class;
+```
+
+而不是通过 `exports = Class;`
 
 
 
