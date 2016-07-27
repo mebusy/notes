@@ -139,8 +139,65 @@ A context-free grammar has four components:
  4. A designation of one of the nonterminals as the *start* symbol.
 
 
+We specify grammars by listing their productions
+
+ - with the productions for the start symbol listed first
+ - We assume that digits, signs such as < and <=, and boldface strings such as **while** are terminals
+ - and any nonitalicized name or symbol may be assumed to be a terminal.
+ - For notational convenience, productions with the same nonterminal as the head can have their bodies grouped, with the alternative bodies separated
+by the symbol "|" , which we read as "or."
+
+Example : lists of digits separated by plus or minus signs
+
+```java
+list → list + digit 		(2.1)
+list → list - digit 		(2.2)
+list → digit  				(2.3)
+digit → 0|1|2|3|4|5|6|7|8|9		(2.4)	
+```
+
+The first 3 productions with nonterminal *list* as head , equivalently can be grouped:
+
+```
+list → list + digit | list - digit |  digit
+```
+
+According to our conventions, the terminals of the grammar are the symbols: `+ - 1 2 3 4 5 6 7 8 9` ,
+
+The nonterminals are the italicized names *list* and *digit*, with *list* being the start symbol because its productions are given first. 
+
+We say a production is *for* a nonterminal if the nonterminal is the head of the production. A string of terminals is a sequence of zero or more terminals. The string of zero terminals, written as `ε`, is called the *empty* string.
+
+### 2.2.2 Derivations
+
+ - A grammar derives strings by beginning with the start symbol 
+ - and repeatedly replacing a nonterminal by the body of a production for that nonterminal. 
+ - The terminal strings that can be derived from the start symbol form the *language* defined by the grammar.
+
+For example, we can use grammars 2.1 to deduce that 9-5+2 is a list as follows.
+
+ - a) 9 is a list by production (2.3), since 9 is a digit.
+ - b) 9-5 is a list by production (2.2), since 9 is a list and 5 is a digit.
+ - c) 9-5+2 is a list by production (2.1), since 9-5 is a list and 2 is a digit.
 
 
 
+Example 2.3  function call , may have 0,1,2 parameters
+
+```java
+	call → id ( optparams ) 
+optparams → params | ε
+   params → params , param | param
+```
+
+We have not shown the productions for *param*, since parameters are really arbitrary expressions. Shortly, we shall discuss the appropriate productions for the various language constructs, such as expressions, statements, and so on.
+
+ - *Parsing* is the problem of taking a string of terminals and figuring out how to derive it from the start symbol of the grammar, 
+ - and if it cannot be derived from the start symbol of the grammar, then reporting syntax errors within the string. 
+ - Parsing is one of the most fundamental problems in all of compiling; 
+ 	- In this chapter, for simplicity, we begin with source programs like 9-5+2 in which each character is a terminal; 
+ - in general, a source program has multicharacter lexemes that are grouped by the lexical analyzer into tokens, whose first components are the terminals processed by the parser.
+
+### 2.2.3 Parse trees
 
 
