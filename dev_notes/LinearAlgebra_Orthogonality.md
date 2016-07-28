@@ -111,7 +111,7 @@ Ax = | 				 | |  |	  | |
  	- Their inner product is zero; 
  - Every right-hand side is zero, so x is orthogonal to every row. 
  	- Therefore x is orthogonal to every combination of the rows. 
- - Each x in the nullspace is orthogonal to each vector in the row space, so ***N(A) ⟂ C(Aᵀ)*** .
+ - Each x in the nullspace is orthogonal to each vector in the row space, so ***N(A) ⟂ C(Aᵀ)*** ⊥.
 
 
 The other pair of orthogonal subspaces comes from Aᵀy = 0, or yᵀA = 0:
