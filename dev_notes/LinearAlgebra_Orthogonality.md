@@ -72,7 +72,7 @@ Useful fact: **If nonzero vectors v₁, ... , vk are mutually orthogonal** (ever
  - The subspace {0} is orthogonal to all subspaces. 
  - A line can be orthogonal to another line, or it can be orthogonal to a plane
  - **but a plane cannot be orthogonal to a plane in R³**.
- 	- because 2 orthogonal plane has deminsion 4 in total , they must intersect in a line in R³ 
+ 	- because 2 orthogonal plane has dimension 4 in total , they must intersect in a line in R³ 
  	- 2 vectors in a same line are not orthogonal
  	- **2 orthogonal subspace never intersect in any none zero vector**
  	- I have to admit that the front wall and side wall of a room look like perpendicular planes in R³. But by our definition, that is not so!
@@ -244,10 +244,12 @@ The numerator in formula (1) is exactly the inner product of a and b. It gives t
  - All we need is the geometrical fact that ***the line from b to the closest point p = x̂a is perpendicular to the vector a***:
 
 ```
-
+(b - x̂a) ⊥ a ,  or  aᵀ(b - x̂a) = 0 ,  or  x̂ = (aᵀb / aᵀa) 
 ```
 
+That gives the formula for the number x̂ and the projection p:
 
+**3H** The projection of the vector b onto the line in the direction of a is p = x̂a:
 
 
 
