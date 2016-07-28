@@ -7,6 +7,34 @@
 		 - [1.5.1 I/O 密集型](#ef7ae775712dcc6ec2888d01b7b6189c)
 		 - [1.5.2 是否不擅长CPU密集型业务](#7f94465afa6516fbea09da8fc65f0022)
  - [2. 模块机制](#b5b4754699837a6839e68942ce084e48)
+ - [3. 异步 I/O](#2367caed1a6e1e77cf9db86076f7aaa7)
+	 - [3.4 非 I/O 异步API](#2337531cc9139c59877ef36fbe2f3962)
+		 - [3.4.1 定时器](#31ac8a1326f32681e79abd3278bc69ac)
+		 - [3.4.2 process.nextTick()](#be8b5d001a7c00b8073f8f7e053440fa)
+		 - [3.4.3 setImmediate()](#04fa1451735bee3cf6caedd92bf2b1e2)
+ - [4. 异步编程](#3d20eb4a2ae33e18c172493235772c67)
+	 - [4.1 高阶函数](#a4620b7af85eaa10c0a2df9696da3f31)
+		 - [4.1.2 偏函数用法](#39532868ebcb07b7a1891833339d5248)
+	 - [4.2 异步编程的优势和难点](#71ff94b3da3d6699c8e1a2a3dac5ce72)
+		 - [4.2.2 难点](#6562e98bb931f236fdb3e091ccea9d78)
+			 - [1. 难点1: 异常处理](#0e1a6cc5b16e25447f3676cf14c04aef)
+			 - [2. 难点2: 函数嵌套过深](#44705c9e7e56b500230516088df608d5)
+			 - [3. 难点3: 阻塞代码](#5eab8f1e7b69fe7c62c17d2f44bb1f6c)
+			 - [4. 难点4: 多线程编程](#ee5a42a7970b3edae9f7e8e6e5503d38)
+	 - [4.3 异步编程解决方案](#8ecb6a4c652752dfb8ee242f96ab5bf4)
+		 - [4.3.1 事件发布/订阅 模式](#88d41eeed95175364778a7a38b2eead0)
+			 - [1. 继承events模块](#d82777e48424864ec4352051f8666061)
+			 - [2. 利用事件队列解决雪崩问题](#319e41239eb876ed6d3d20a0354f119e)
+			 - [3. 多异步之间的协作方案](#e7c29eb75b8977147bad098916b1c34c)
+			 - [4. EventProxy 原理](#394e27f99b5a2939568813a50652e0d2)
+			 - [5. EventProxy的异常处理](#65d938e36eedd2876a6f17452dc959a7)
+		 - [4.3.2 Promise/Deferred 模式](#3773f3ef6511db68bb7a0305b7804a37)
+			 - [1. Promise/A](#06ec402fc85a1a0d551871ca8373f8a9)
+		 - [4.3.2.1 JavaScript 原生支持 Promise](#a076eefe6a0114acc06b5d1d730e6fb2)
+		 - [4.3.3 流程控制库](#cc7fbc3eae1133c3de0ce5ea8b5798da)
+			 - [2. async 模块](#f2137150612430950433017f8775c07a)
+	 - [4.4 异步并发控制](#b730a8c959f1d0c0b4f1e429d0a87d45)
+ - [5. 内存控制](#8bd7c6f2d26215b3cf56aa262149a347)
  - [9. 玩转进程](#f2034d1194cb14b32dfd43ad3db3ef3a)
 	 - [9.2 多进程架构](#1e2a8f43da09b9e970bdfbd9995b5751)
 		 - [9.2.1 创建子进程](#394f2abd6f7bb2dcc7325eec4cbfe80f)
@@ -19,6 +47,18 @@
 		 - [9.3.2 自动重启](#26b69febcd523f91ed7df3f4b4af5c23)
 			 - [自杀信号](#6bcdd9159198086f18f0a641531859c8)
 			 - [2. 限量重启](#19e7bc0667e049833d1138b93611b7e1)
+		 - [9.3.3 负载均衡](#4ad0e6a3fe7b4262a75ada13106da44e)
+		 - [9.3.4 状态共享](#6898072c368861f2d840c640e3f9770a)
+	 - [9.4 Cluster 模块](#deb69daa8affa64afe0e85b120d622a2)
+		 - [9.4.1 Cluster 工作原理](#2a868bc8f903b6e33b76342f0bf5bd22)
+		 - [9.4.2 Cluster 事件](#8ebd1ca8e8de01263812a161bf26bc50)
+	 - [9.5 总结](#82daa52b91a58226f55dc91795b01097)
+ - [JS 规范](#dcc5da07746efe166316fcbed0caf575)
+		 - [C.2.3 比较操作](#b99d8ee1b84b04125f1a4707817090d7)
+		 - [C.2.6 数组和对象](#ac5f03819112eb3a57eb8acdf7793560)
+		 - [C.2.8 继承](#4990f90b8d16b00619e6b52e995136d9)
+			 - [1. 类继承](#b1de39d2ae2b4cdf8933cb354409cd7d)
+			 - [2. 导出](#b20f9122c53dfd232e38443679d8b7ec)
 
 ...menuend
 
@@ -78,12 +118,15 @@ I/O密集的优势主要在于Node利用事件循环的处理能力，而不是�
 # 2. 模块机制
 
 
+<h2 id="2367caed1a6e1e77cf9db86076f7aaa7"></h2>
 # 3. 异步 I/O
 
+<h2 id="2337531cc9139c59877ef36fbe2f3962"></h2>
 ## 3.4 非 I/O 异步API
 
 Node其实还存在一些与 I/O 无关的异步API, 这一部分也值得略微关注一下，它们分别是 setTimeout(), setInterval(), setImmediate() 和 process.nextTick();
 
+<h2 id="31ac8a1326f32681e79abd3278bc69ac"></h2>
 ### 3.4.1 定时器
 
 setTimeout() 和 setInterval() (setInterval 重复调用)与浏览器中的API是一致的，分别用于单次和多次定时执行任务。
@@ -96,6 +139,7 @@ setTimeout() 和 setInterval() (setInterval 重复调用)与浏览器中的API�
 定时器的问题在于，它并非精准的（在容忍范围内）。定时器的触发，受影响与其他任务的执行。
 
 
+<h2 id="be8b5d001a7c00b8073f8f7e053440fa"></h2>
 ### 3.4.2 process.nextTick()
 
 在未了解 process.nextTick() 之间，很多人也许为了 立即异步执行一个任务，会这样调用：
@@ -130,6 +174,7 @@ process.nextTick = function(callback) {
 每次调用process.nextTick()方法，只会将回调函数放入队列中，在下一轮Tick时取出执行。红黑树的操作事件复杂度为O(lgn) ， nextTick() 的事件复杂度为 O(1)。 相较之下，process.nextTick() 更高效。
 
 
+<h2 id="04fa1451735bee3cf6caedd92bf2b1e2"></h2>
 ### 3.4.3 setImmediate()
 
 setImmediate()方法 与 process.nextTick() 方法十分类似，都是将回调函数延迟执行。
@@ -160,12 +205,15 @@ console.log('正常执行');
 我们基本勾勒出了事件驱动的实质，即 **通过主循环加事件触发的方式来运行程序**。
 
 
+<h2 id="3d20eb4a2ae33e18c172493235772c67"></h2>
 # 4. 异步编程
 
+<h2 id="a4620b7af85eaa10c0a2df9696da3f31"></h2>
 ## 4.1 高阶函数
 
 高阶函数在JavaScript中比比皆是，其中 ECMAScript5 中提供的一些数组方法 foreach, map, reduce , reduceRight, filter, every, some 十分典型
 
+<h2 id="39532868ebcb07b7a1891833339d5248"></h2>
 ### 4.1.2 偏函数用法
 
 偏函数用法是指创建一个函数， 这个函数调用另外一个 部分参数或变量已经预置 的函数。
@@ -196,10 +244,13 @@ var isFunction = isType('Function');
 
 这种通过指定部分参数来产生一个新的定制函数的形式，就是偏函数。
 
+<h2 id="71ff94b3da3d6699c8e1a2a3dac5ce72"></h2>
 ## 4.2 异步编程的优势和难点
 
+<h2 id="6562e98bb931f236fdb3e091ccea9d78"></h2>
 ### 4.2.2 难点
 
+<h2 id="0e1a6cc5b16e25447f3676cf14c04aef"></h2>
 #### 1. 难点1: 异常处理
 
 过去我们处理异常时，通常使用 Java的 try/catch/final 语句块进行一场捕获，但这对于异步编程而言并不一定是用。
@@ -279,6 +330,7 @@ callback();
 在编写异步方法时，只要将异常正确地传递给用户的回调方法即可，无须过多处理。
 
 
+<h2 id="44705c9e7e56b500230516088df608d5"></h2>
 #### 2. 难点2: 函数嵌套过深
 
 ```JavaScript
@@ -293,16 +345,19 @@ fs.readFile(template_path, 'utf8', function (err, template) {
 
 这在结果的保证上是没有问题的，问题在于这并没有利用好异步I/O带来的并行优势。这是异步编程的典型问题。
 
+<h2 id="5eab8f1e7b69fe7c62c17d2f44bb1f6c"></h2>
 #### 3. 难点3: 阻塞代码
 
 是用 setTimeout() 方法
 
 
+<h2 id="ee5a42a7970b3edae9f7e8e6e5503d38"></h2>
 #### 4. 难点4: 多线程编程
 
 child_process 是基础API, cluster 模块是更深层次的应用。
 
 
+<h2 id="8ecb6a4c652752dfb8ee242f96ab5bf4"></h2>
 ## 4.3 异步编程解决方案
 
  - 事件发布/订阅 模式
@@ -310,6 +365,7 @@ child_process 是基础API, cluster 模块是更深层次的应用。
  - 流程控制库
 
 
+<h2 id="88d41eeed95175364778a7a38b2eead0"></h2>
 ### 4.3.1 事件发布/订阅 模式
 
 事件监听模式是一种广泛用于异步编程的模式, 是回调函数的事件化, 又称 发布/订阅 模式.
@@ -339,6 +395,7 @@ Node对事件发布／订阅的机制做了一些额外处理:
  - 为了处理异常， EventEmitter 对象对 error事件进行了特殊对待。如果运行期间的错误触发error事件，EventEmitter 会检查是否有对 error事件添加触发器。 如果添加了，这个错误将交由监听器处理，否则这个错误将会作为异常抛出。如果外部没有捕获这个异常，将会引起线程退出。一个健壮的EventEmitter 实例应该对error事件做处理。
 
 
+<h2 id="d82777e48424864ec4352051f8666061"></h2>
 #### 1. 继承events模块
 
 实现一个继承EventEmitter 的类是十分简单的，以下代码是Node中Stream对象继承EventEmitter的例子:
@@ -353,6 +410,7 @@ util.inherits(Stream, events.EventEmitter);
 
 Node在 util模块中封装了继承的方法。可以通过这样的方式轻松的继承 EventEmitter类。Node提供的核心模块中， 有近半数都继承自EventEmitter。
 
+<h2 id="319e41239eb876ed6d3d20a0354f119e"></h2>
 #### 2. 利用事件队列解决雪崩问题
 
 在事件订阅／发布模式中，通常也有一个once()方法，通过它添加的监听器只能执行一次，在执行之后就会将它与事件的关联移除。
@@ -411,6 +469,7 @@ var select = function (callback) {
 此处可能因为存在监听器过多引发的警告，需要调用setMaxListeners(0)移除警告，或者设更大的警告阀值。
 
 
+<h2 id="e7c29eb75b8977147bad098916b1c34c"></h2>
 #### 3. 多异步之间的协作方案
 
 一般而言，事件与监听者的关系是一对多，但在异步编程中，也会出现事件与监听者的关系是多对一的情况，也就是说，一个业务逻辑可能依赖两个通过回调或事件传递的结果。前面提及的回调嵌套过深的原因即是如此。
@@ -516,8 +575,10 @@ proxy.after("data", 10, function (datas) {
 });
 ```
 
+<h2 id="394e27f99b5a2939568813a50652e0d2"></h2>
 #### 4. EventProxy 原理
 
+<h2 id="65d938e36eedd2876a6f17452dc959a7"></h2>
 #### 5. EventProxy的异常处理
 
 ```JavaScript
@@ -573,6 +634,7 @@ done()方法也接收一个函数作为参数。
 这里的fail() 和 done() 十分类似 Promise模式中的 fail()和done()。
 
 
+<h2 id="3773f3ef6511db68bb7a0305b7804a37"></h2>
 ### 4.3.2 Promise/Deferred 模式
 
 使用事件的方式时，执行流程需要被预先设定。即便是分支，也需要预先设定，这是由发布／订阅模式的运行机制所决定的。 下面为普通的 Ajax 调用
@@ -606,6 +668,7 @@ $.get('/api')
 
 异步编程一旦出现深度的嵌套，就会让编程的体验变得不愉快，而 Promise/Deferred模式在一定程度上缓解了这个问题。 这里我们着重介绍 Promise/A 来以点带面介绍 Promise/Deferred 模式。
 
+<h2 id="06ec402fc85a1a0d551871ca8373f8a9"></h2>
 #### 1. Promise/A
 
 Promise/Deferred 模式其实包含两部分，即 Promise和Deferred。 
@@ -755,6 +818,7 @@ Q模块是 Promise/A 规范的一个实现。
 
 TODO
 
+<h2 id="a076eefe6a0114acc06b5d1d730e6fb2"></h2>
 ### 4.3.2.1 JavaScript 原生支持 Promise
 
 所谓Promise，字面上可以理解为“承诺”，
@@ -798,16 +862,20 @@ var jsPromise = Promise.cast($.ajax('/whatever.json'));
 
 
 
+<h2 id="cc7fbc3eae1133c3de0ce5ea8b5798da"></h2>
 ### 4.3.3 流程控制库
 
+<h2 id="f2137150612430950433017f8775c07a"></h2>
 #### 2. async 模块
 
 长期占据 NPM 依赖榜前三名
 
 
+<h2 id="b730a8c959f1d0c0b4f1e429d0a87d45"></h2>
 ## 4.4 异步并发控制
 
 
+<h2 id="8bd7c6f2d26215b3cf56aa262149a347"></h2>
 # 5. 内存控制
 
 
@@ -1396,6 +1464,7 @@ var createWorker = function () {
 giveup 事件是比 uncaughtException 更严重的异常事件。
 
 
+<h2 id="4ad0e6a3fe7b4262a75ada13106da44e"></h2>
 ### 9.3.3 负载均衡
 
 Node 默认提供的机制是采用操作系统的抢占式策略。 一般而言，抢占式策略对大家是公平的，各个进程可以根据自己的繁忙度来进行抢占。但是对于Node而言，需要分清的是它的繁忙是由CPU,I/O 两个部分构成的，影响抢占的是CPU的繁忙度。 对不同的业务，可能存在 I/O繁忙，而CPU较为空闲的情况，这可能造成某个进程能够抢到较多请求，行程负载不均衡的情况。
@@ -1419,6 +1488,7 @@ export NODE_CLUSTER_SCHED_POLICY=none
 Round-Robin 非常简单, 可以避免 CPU 和 I/O 繁忙差异导致的负载不均衡。Round-Robin 策略也可以通过代理服务器来实现，但是它会导致服务器上消耗的文件描述符是平常的两倍。
 
 
+<h2 id="6898072c368861f2d840c640e3f9770a"></h2>
 ### 9.3.4 状态共享
 
 Node 进程中不宜存放太多数据, 
@@ -1447,6 +1517,7 @@ Node 进程中不宜存放太多数据,
 
 这种推送机制 如果按进程间信号传递，在跨多台服务器会无效(因为其他服务器无法获取配置文件)，是故可以考虑采用 TCP或UDP的方案。 进程在启动时从通知服务处 读取第一次数据外，还将进程信息注册到通知服务处。 一旦发现数据更新后，根据注册信息，将更新后的数据发送给工作进程。
 
+<h2 id="deb69daa8affa64afe0e85b120d622a2"></h2>
 ## 9.4 Cluster 模块
 
 前文介绍如何通过 child_process 模块构件强大的单机集群。 上述提及的问题，Node在v0.8版本时新增的 cluster 模块就能解决。 child_process 来实现单机集群，有这么的细节要处理，对普通工程师而言是一件相对较难的工作，于是v0.8直接引入了 cluster 模块，用于解决多核 CPU的利用率问题，同时也提供了较晚上的API，用以处理进程的健壮性问题。
@@ -1502,6 +1573,7 @@ cluster.isMaster = (cluster.isWorker === false);
 
 通过cluster.setMaster()创建子进程而不是食用 cluster.fork(), 程序结构不在凌乱，逻辑分明，代码的可读性和可维护性较好。
 
+<h2 id="2a868bc8f903b6e33b76342f0bf5bd22"></h2>
 ### 9.4.1 Cluster 工作原理
 
 事实上 cluster 模块就是 child_process 和 net 模块的组合应用。
@@ -1517,6 +1589,7 @@ cluster.isMaster = (cluster.isWorker === false);
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_cluster_workers.png)
 
 
+<h2 id="8ebd1ca8e8de01263812a161bf26bc50"></h2>
 ### 9.4.2 Cluster 事件
 
 对于健壮性处理, cluster 模块也暴露了相当多的事情。
@@ -1531,13 +1604,16 @@ cluster.isMaster = (cluster.isWorker === false);
 这些事件大多跟 child_process 模块的事件相关，在进程间消息传递的基础上完成的封装，这些事件对于增强应用的健壮性已经足够了。
 
 
+<h2 id="82daa52b91a58226f55dc91795b01097"></h2>
 ## 9.5 总结
 
 尽管通过 child_process 模块可以大幅提升Node的稳定性，但是一旦主进程出现问题，所有的子进程将会失去管理。在Node的进程管理之外，还需要用监听进程数量或监听日志的方式确保整个系统的稳定性，即使主进程出错退出，也能及时得到监控警报。
 
 
+<h2 id="dcc5da07746efe166316fcbed0caf575"></h2>
 # JS 规范
 
+<h2 id="b99d8ee1b84b04125f1a4707817090d7"></h2>
 ### C.2.3 比较操作
 
 如果是无容忍的场景，请尽量使用 === 代替 ==
@@ -1551,6 +1627,7 @@ cluster.isMaster = (cluster.isWorker === false);
 0、undefined、 null、false、''  都代表逻辑非
 
 
+<h2 id="ac5f03819112eb3a57eb8acdf7793560"></h2>
 ### C.2.6 数组和对象
 
 2. for in 循环
@@ -1565,8 +1642,10 @@ for (var i = 0; i < foo.length; i++) {
 }
 ```
 
+<h2 id="4990f90b8d16b00619e6b52e995136d9"></h2>
 ### C.2.8 继承
 
+<h2 id="b1de39d2ae2b4cdf8933cb354409cd7d"></h2>
 #### 1. 类继承
 
 一般情况下, 我们采用 Node推荐的类继承方式：
@@ -1580,6 +1659,7 @@ function Socket(options) {
 util.inherits(Socket, stream.Stream);
 ```
 
+<h2 id="b20f9122c53dfd232e38443679d8b7ec"></h2>
 #### 2. 导出
 
 当需要将文件当作一个类导出时, 需要通过如下的方式挂载:
