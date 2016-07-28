@@ -111,7 +111,7 @@ Ax = | 				 | |  |	  | |
  	- Their inner product is zero; 
  - Every right-hand side is zero, so x is orthogonal to every row. 
  	- Therefore x is orthogonal to every combination of the rows. 
- - Each x in the nullspace is orthogonal to each vector in the row space, so ***N(A) ⟂ C(Aᵀ)*** ⊥.
+ - Each x in the nullspace is orthogonal to each vector in the row space, so ***N(A) ⊥ C(Aᵀ)*** .
 
 
 The other pair of orthogonal subspaces comes from Aᵀy = 0, or yᵀA = 0:
@@ -130,18 +130,18 @@ yᵀA = |u  ...  u| = [0 ... 0]
  - The equation says , from the zeros on the right-hand side , the vector y is orthogonal to every column.
  	- Therefore y is orthogonal to every combination of the columns.
  - y is orthogonal to the column space, and it is a typical vector in the left nullspace:
- 	- ***N(Aᵀ) ⟂ C(A)***
+ 	- ***N(Aᵀ) ⊥ C(A)***
 
 
 
 ***Second proof***  If x is in the nullspace then Ax = 0. If v is in the row space, it is a combination of the rows: v = Aᵀz for some vector z. Now, in one line:
 
 ```
-Nullspace ⟂ Row space :   vᵀx = (Aᵀz)ᵀx = zᵀAx = zᵀ0 = 0.    (8)
+Nullspace ⊥ Row space :   vᵀx = (Aᵀz)ᵀx = zᵀAx = zᵀ0 = 0.    (8)
 ```
 
 
-**DEFINITION** Given a subspace V of Rⁿ, the space of all vectors orthogonal to V is called the **orthogonal complement** of V. It is denoted by **V⟂ = "V perp."**  (⟂ 在右上角)
+**DEFINITION** Given a subspace V of Rⁿ, the space of all vectors orthogonal to V is called the **orthogonal complement** of V. It is denoted by **V⊥ = "V perp."**  (⊥ 在右上角)
 
  - the nullspace is the orthogonal complement of the row space
  	- A vector z can't be orthogonal to the nullspace but outside the row space
