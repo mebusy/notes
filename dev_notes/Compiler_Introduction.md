@@ -68,7 +68,11 @@ position = initial + rate * 60
 
 Blanks separating the lexemes would be discarded by the lexical analyzer.
 
-After lexical analysis as the sequence of tokens `<id, 1> <=> <id, 2> <+> <id, 3> <*> <60>`
+After lexical analysis as the sequence of tokens 
+
+```
+<id, 1> <=> <id, 2> <+> <id, 3> <*> <60>
+```
 
 ![][1] ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_symbol_table.png)
 
