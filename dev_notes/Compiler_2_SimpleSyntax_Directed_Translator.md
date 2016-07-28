@@ -203,10 +203,18 @@ We have not shown the productions for *param*, since parameters are really arbit
 
  - A parse tree pictorially shows how the start symbol of a grammar derives a string in the language. 
  - If nonterminal A has a production A → XYZ, then a parse tree may have an interior node labeled A with three children labeled X, Y, and Z, from left to right:
- 	- 
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compilers_parse_tree_AXYZ.png)
+ - Formally, given a context-free grammar, a parse tree according to the gram­mar is a tree with the following properties:
+ 	- The root is labeled by the start symbol
+ 	- Each leaf is labeled by a terminal or by ε.
+ 	- Each interior node is labeled by a nonterminal.
+ 	- If A is the nonterminal labeling some interior node and X₁ , X₂ , ... , Xn are the labels of the children of that node from left to right, then there must be a production A → X₁X₂...Xn. Here, X₁,X2,... ,Xn each stand for a symbol that is either a terminal or a nonterminal. 
 
 
+Example 2.4 : The derivation of 9-5+2 in Example 2.2 is illustrated by the tree in Fig. 2.5.
 
+ - Parse tree for 9-5+2 according to the grammar in Example 2.1
+ - 
 
 
 
