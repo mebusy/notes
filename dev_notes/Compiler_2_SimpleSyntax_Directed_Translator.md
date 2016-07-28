@@ -432,14 +432,28 @@ Scanning from the left, we first encounter the plus sign. Looking to its left we
 
 ### 2.3.2 Synthesized Attributes
 
+The idea of associating quantities with programming constructs -for example, values and types with expressions- can be expressed in terms of grammars. 
 
+ - We associate attributes with nonterminals and terminals. 
+ - Then, we attach rules to the productions of the grammar; 
+ 	- these rules describe how the attributes are computed at those nodes of the parse tree where the production in question is used to relate a node to its children.
 
+A *syntax-directed definition* associates
 
+ 1. With each grammar symbol, a set of attributes, and
+ 2. With each production, a set of semantic rules for computing the values of the attributes associated with the symbols appearing in the production
 
+Attributes can be evaluated as follows. 
 
+ - For a given input string x, construct a parse tree for x. 
+ - Then, apply the semantic rules to evaluate attributes at each node in the parse tree, as follows.
 
+Suppose a node N in a parse tree is labeled by the grammar symbol X . 
 
+ - We write X.a to denote the value of attribute a of X at that node. 
+ - A parse tree showing the attribute values at each node is called an annotated parse tree. 
 
+ For example, Fig. 2.9 shows an annotated parse tree for 9-5+2 with an attribute t associated with the nonterminals *expr* and *term*. The value 95-2+ of the attribute at the root is the postfix notation for 9-5+2. We shall see shortly how these expressions are computed.
 
 
 
