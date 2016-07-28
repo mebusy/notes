@@ -10,7 +10,7 @@
 
 
 <h2 id="7bb979e48c0b2e41ffcc943354eea3dd"></h2>
-# A Simple Syntax-Directed anslator
+# A Simple Syntax-Directed Translator
 
 This chapter is an introduction to the compiling techniques in Chapters 3 through 6 of this book
 
@@ -129,10 +129,11 @@ A context-free grammar has four components:
  	- The terminal are the elementary symbols of the language defined by the grammar.
  2. A set of ***nonterminals***, sometimes called "syntactic variables." 
  	- Each non­terminal represents a set of strings of terminals
- 3. A set of ***productions***
- 	- each production consists of a nonterminal, called the *head* or *lefe side* of the production, 
+ 3. A set of ***productions*** 
+ 	- each *production* consists of :
+ 	- a nonterminal, called the *head* or *lefe side* of the production, 
  	- an arrow, 
- 	- and a sequence of terminals and/or nonterminals, called the *body* or *right side* of the produc­ tion. 
+ 	- and a sequence of terminals and/or nonterminals, called the *body* or *right side* of the produc­tion. 
  	- The intuitive intent of a production is to specify one of the written forms of a construct; 
  		- if the head nonterminal represents a construct, 
  		- then the body represents a written form of the construct.
@@ -144,8 +145,8 @@ We specify grammars by listing their productions
  - with the productions for the start symbol listed first
  - We assume that digits, signs such as < and <=, and boldface strings such as **while** are terminals
  - and any nonitalicized name or symbol may be assumed to be a terminal.
- - For notational convenience, productions with the same nonterminal as the head can have their bodies grouped, with the alternative bodies separated
-by the symbol "|" , which we read as "or."
+ - For notational convenience, productions with the ***same nonterminal*** as the head can have their bodies grouped
+ 	- with the alternative bodies separated by the symbol "|" , which we read as "or."
 
 Example : lists of digits separated by plus or minus signs
 
@@ -172,7 +173,7 @@ We say a production is *for* a nonterminal if the nonterminal is the head of the
 
  - A grammar derives strings by beginning with the start symbol 
  - and repeatedly replacing a nonterminal by the body of a production for that nonterminal. 
- - The terminal strings that can be derived from the start symbol form the *language* defined by the grammar.
+ - The terminal strings , that can be derived from the start symbol,  ***form*** the *language* which defined by the grammar.
 
 For example, we can use grammars 2.1 to deduce that 9-5+2 is a list as follows.
 
@@ -200,6 +201,9 @@ We have not shown the productions for *param*, since parameters are really arbit
 
 ### 2.2.3 Parse trees
 
+ - A parse tree pictorially shows how the start symbol of a grammar derives a string in the language. 
+ - If nonterminal A has a production A → XYZ, then a parse tree may have an interior node labeled A with three children labeled X, Y, and Z, from left to right:
+ 	- 
 
 
 
