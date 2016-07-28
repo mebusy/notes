@@ -527,8 +527,12 @@ A *depth-first* traversal starts at the root and recursively visits the children
  	- that is, after translations at the children have surely been computed. 
  - In general, the actions associated with a traversal can be whatever we choose, or nothing at all.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_deep_first_trav.png)
+
+A syntax-directed definition does not impose any specific order for the eval­uation of attributes on a parse tree; any evaluation order that computes an attribute *a* after all the other attributes that *a* depends on is acceptable. Syn­thesized attributes can be evaluated during any *bottom-up* traversal, that is, a traversal that evaluates attributes at a node after having evaluated attributes at its children. In general, with both synthesized and inherited attributes, the matter of evaluation order is quite complex; see Section 5.2.
 
 
+### 2.3.5 Translation Schemes
 
 
 
