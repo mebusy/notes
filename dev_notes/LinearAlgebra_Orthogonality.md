@@ -231,7 +231,13 @@ Figure 3.6 The cosine of the angle θ = β - α using inner products.
 
 The numerator in formula (1) is exactly the inner product of a and b. It gives the relationship between aᵀb and cos θ:
 
-**3G** The cosine of the angle between any *nonzero vectors* a and b is :  **cosθ = aᵀb / ‖a‖·‖b‖**  (2)
+**3G** The cosine of the angle between any *nonzero vectors* a and b is :  
+
+```
+cosθ = aᵀb / ‖a‖·‖b‖  (2)
+```
+
+
 
 **Projection onto a Line**
 
@@ -244,12 +250,33 @@ The numerator in formula (1) is exactly the inner product of a and b. It gives t
  - All we need is the geometrical fact that ***the line from b to the closest point p = x̂a is perpendicular to the vector a***:
 
 ```
-(b - x̂a) ⊥ a ,  or  aᵀ(b - x̂a) = 0 ,  or  x̂ = (aᵀb / aᵀa) 
+(b - x̂a) ⊥ a ,  or  aᵀ(b - x̂a) = 0 ,  or  x̂ = (aᵀb / aᵀa)   (4)
 ```
 
 That gives the formula for the number x̂ and the projection p:
 
 **3H** The projection of the vector b onto the line in the direction of a is p = x̂a:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_projection_onto_a_line.png)
+
+This leads to the **Schwarz inequality** in equation (6), which is the most important inequality in mathematics.  A special case is the fact that arithmetic means ½(x + y) ≥ geometric mean  √xy . 
+
+```
+Schwarz inequality:  |aᵀb| ≤ ‖a‖·‖b‖    (6)
+```
+
+All vectors a and b satisfy the ***Schwarz inequality***, which is |cosθ| ≤ 1 in Rⁿ.
+
+One final observation about `|aᵀb| ≤ ‖a‖·‖b‖` . Equality holds *if and only if* b is a multiple of a. The angle is θ = 0° or θ = 180° and the cosine is 1 or -1. In this case b is identical with its projection p, and the distance between b and the line is zero.
+
+
+
+
+
+
+
+
+
 
 
 
