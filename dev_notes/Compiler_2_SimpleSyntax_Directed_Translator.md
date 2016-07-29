@@ -572,7 +572,7 @@ A syntax-directed translation scheme is a notation for specifying a transla­tio
 Program fragments embedded within production bodies are called *semantic actions*. The position at which an action is to be executed is shown by enclosing it between curly braces `{ }` and writing it within the production body, as in 
 
 ```java
-rest → term {print('+')} rest₁
+rest → + term {print('+')} rest₁
 ```
 
  - We shall see such rules when we consider an alternative form of grammar for expressions:
@@ -582,9 +582,15 @@ rest → term {print('+')} rest₁
 
 When drawing a parse tree for a translation scheme, 
 
- - we indicate an action by constructing an extra child for it, 
+ - We indicate an action by constructing an extra child for it, 
  	- that child connected by a dashed line to the node that corresponds to the head of the production. 
- - For example, the portion of the parse tree for the above production and action is shown in Fig 2.13. The node for a semantic action has no children, so the action is performed when that node is first seen.
+ - For example, the portion of the parse tree for the above production and action is shown in Fig 2.13. 
+ 	- The node for a semantic action has no children, so the action is performed when that node is first seen.
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.13.png)
 
+
+Example 2.12 : The parse tree in Fig 2.14 has print statements at extra leaves, which are attached by dashed lines to interior nodes of the parse tree. 
+
+The translation scheme appears in Fig 2.15. The underlying grammar gen­erates expressions consisting of digits separated by plus and minus signs. The actions embedded in the production bodies translate such expressions into post­fix notation, provided(in case) we perform a left-to-right depth-first traversal of the tree and execute each print statement when we visit its leaf.
 
 
