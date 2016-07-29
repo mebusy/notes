@@ -270,14 +270,37 @@ All vectors a and b satisfy the ***Schwarz inequality***, which is |cosθ| ≤ 1
 One final observation about `|aᵀb| ≤ ‖a‖·‖b‖` . Equality holds *if and only if* b is a multiple of a. The angle is θ = 0° or θ = 180° and the cosine is 1 or -1. In this case b is identical with its projection p, and the distance between b and the line is zero.
 
 
+**Projection Matrix of Rank 1**
+
+The projection of *b* onto the line through *a* lies at p = a(aᵀb/aᵀa). That is our formula p = x̂a, but the vector *a* is put before the number x̂ = aᵀb/aᵀa. Projection onto a line is carried out by a ***projection matrix P***, and written in this new order we can see what it is. 
+
+P is the matrix that multiplies b and produces p:
+
+```
+p = Pb ,  P = aaᵀ/aᵀa    (7)
+```
+
+That is a column times a row -a square matrix- divided by the number aᵀa .  (aaᵀ 是一个秩1矩阵)
+
+This matrix has two properties that we will see as typical of projections:
+
+ 1. **P is a symmetric matrix**.    ( aaᵀ 对称)
+ 2. **Its square is itself: P²= P**.
 
 
+Every column is a multiple of a, and so is Pb = x̂a. The vectors that project to p = 0 are especially important. They satisfy aᵀb = 0 -- they are perpendicular to a and their component along the line is zero. They lie in the nullspace , the perpendicular plane.
+
+Actually that example is too perfect. It has the nullspace orthogonal to the column space, which is haywire. The nullspace should be orthogonal to the row space. But because P is symmetric, its row and column spaces are the same.
+
+**Remark on scaling**: The projection matrix aaᵀ/aᵀa  is the same if a is doubled:
+
+ - if a = [1 1 1]ᵀ , P 的所有元素 = 1/3 
+ - if a = [2 2 2]ᵀ , P 的所有元素仍然 = 1/3 
 
 
+The line through a is the same, and that's all the projection matrix cares about. If a has unit length, the denominator is aᵀa = 1 and the matrix is just P = aaᵀ .
 
-
-
-
+Example 3: Project onto the "θ-direction" in the x-y plane. The line goes through *a = (cosθ, sinθ)* and the matrix is symmetric with P² = P:
 
 
 
