@@ -639,7 +639,7 @@ Most parsing methods fall into one of two classes, called the *top-down* and *bo
 
 ### 2.4.1 Top-Down Parsing
 
-
+We introduce top-down parsing by considering a grammar that is well-suited for this class of methods. Later in this section, we consider the construction of top-down parsers in general. The grammar in Fig. 2.16 generates a subset of the statements of C or Java. We use the boldface terminals if and for for the keywords "**if**" and "**for**", respectively, to emphasize that these character sequences are treated as units, i.e., as single terminal symbols. Further, the terminal expr represents expressions; a more complete grammar would use a nonterminal expr and have productions for nonterminal expr. Similarly, other is a terminal representing other statement constructs.
 
 
 
