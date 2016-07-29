@@ -382,7 +382,42 @@ We may use geometry or calculus to determine x̂ . In n dimensions, we prefer th
  1. All vectors perpendicular to the column space lie in the left nullspace. Thus the error vector e = b - Ax̂ must be in the nullspace of Aᵀ:
  	- `Aᵀ(b-Ax̂) = 0  , or AᵀAx̂ = Aᵀb`
  	- 在坏方程左右乘上 Aᵀ ,就是好方程。 AᵀA 是本章的核心
- 2. The error vector must be perpendicular to each column al, ... , an of A:
+ 2. The error vector must be perpendicular to each column a₁ , ... , an of A:
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_errorVector_perpend_t_column.png)
+ 	- This is agin `Aᵀ(b-Ax̂) = 0  , or AᵀAx̂ = Aᵀb`.
+
+The fastest way is just to multiply the unsolvable equation Ax = b by Aᵀ. All these equivalent methods produce a square coefficient matrix AᵀA. It is symmetric (its transpose is not AAᵀ!) and it is the fundamental matrix of this chapter.
+
+The equations AᵀAx̂ = Aᵀb are known in statistics as the **normal equations**.
+
+
+**3L**:  
+
+ - When Ax b is inconsistent, its least-squares solution minimizes ‖Ax - b‖²  
+ 	- **normal equations** :  `AᵀAx̂ = Aᵀb`     (1)
+ - AᵀA is invertible exactly when the columns of A are linearly independent! Then,
+ 	- **Best estimate x̂**:  `x̂ = (AᵀA)⁻¹Aᵀb`		(2)
+ 	- AᵀA has same rank as A
+ - The projection of b onto the column space is the nearest point Ax̂:
+ 	- **Projection**:  `p = Ax̂ = A·(AᵀA)⁻¹Aᵀb` 	(3)
+ 	- `also:  p = Pb = A(AᵀA)⁻¹Aᵀ·b`
+
+
+Remark:
+
+ 1. Suppose b is actually in the column space of A. Then the projection of b is still b:
+ 	- **b in column space**:  *p = A(AᵀA)⁻¹Aᵀ·Ax = Ax = b* .
+ 	- The closest point p is just b itself.
+ 2. At the other extreme, suppose b is perpendicular to every column, so Aᵀb = 0. In this case b projects to the zero vector
+ 	- **b in left nullspace**:  *p = A(AᵀA)⁻¹Aᵀ·b = A(AᵀA)⁻¹ 0 = 0*.
+ 3. When A is square and invertible, the column space is the whole space. Every vector projects to itself, p equals b, and x = x̂:
+ 	- **If A is invertible**:  *p = A(AᵀA)⁻¹Aᵀ·b = AA⁻¹(Aᵀ)⁻¹Aᵀ b = b*.
+ 4. Suppose A has only one column, containing a. Then the matrix AᵀA is the number aᵀa and x̂ is aᵀb/aᵀa. We return to the earlier formula.
+
+
+**The Cross-Product Matrix of AᵀA**
+
+
 
 
 
