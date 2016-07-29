@@ -377,8 +377,12 @@ Again the problem is to choose x̂ so as to minimize the error, and again this m
 
 We may use geometry or calculus to determine x̂ . In n dimensions, we prefer the appeal of geometry; p must be the "projection of b onto the column space." The error vector e = b - Ax̂ must be perpendicular to that space (Figure 3.8). Finding x̂ and the projection p = Ax̂ is so fundamental that we do it in two ways:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F3.8.png)
 
-
+ 1. All vectors perpendicular to the column space lie in the left nullspace. Thus the error vector e = b - Ax̂ must be in the nullspace of Aᵀ:
+ 	- `Aᵀ(b-Ax̂) = 0  , or AᵀAx̂ = Aᵀb`
+ 	- 在坏方程左右乘上 Aᵀ ,就是好方程。 AᵀA 是本章的核心
+ 2. The error vector must be perpendicular to each column al, ... , an of A:
 
 
 
