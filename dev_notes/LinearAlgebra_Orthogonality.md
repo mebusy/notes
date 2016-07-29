@@ -395,9 +395,8 @@ The equations AᵀAx̂ = Aᵀb are known in statistics as the **normal equations
 
  - When Ax b is inconsistent, its least-squares solution minimizes ‖Ax - b‖²  
  	- **normal equations** :  `AᵀAx̂ = Aᵀb`     (1)
- - AᵀA is invertible exactly when the columns of A are linearly independent! Then,
+ - AᵀA is invertible exactly when the columns of A are linearly independent ( ?列不需要满秩吗? ) ! Then,
  	- **Best estimate x̂**:  `x̂ = (AᵀA)⁻¹Aᵀb`		(2)
- 	- AᵀA has same rank as A
  - The projection of b onto the column space is the nearest point Ax̂:
  	- **Projection**:  `p = Ax̂ = A·(AᵀA)⁻¹Aᵀb` 	(3)
  	- `also:  p = Pb = A(AᵀA)⁻¹Aᵀ·b`
