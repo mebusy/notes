@@ -58,7 +58,7 @@ Figure 2.1: A code fragment to be translated
 14:
 ```
 
-Figure 2.2: Simpli ed intermediate code 
+Figure 2.2: Simplified intermediate code 
 
 
 <h2 id="af0cf6c4627b1e734c8a7fc86c534ac9"></h2>
@@ -119,7 +119,7 @@ Figure 2.3: A model of a compiler front end
 <h2 id="034fe90866337af0fbb672df1de0b66d"></h2>
 ### 2.2.1 Definition of Grammars
 
-Tokens is ofen terminal.
+Tokens is often terminal.
 
  - In a compiler, the lexical analyzer reads the characters of the source pro­gram, groups them into lexically meaningful units called *lexemes*, and pro­duces as output tokens representing these lexemes. 
  - A token consists of two components, a token name and an attribute value. 
