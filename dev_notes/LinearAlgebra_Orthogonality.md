@@ -363,7 +363,25 @@ Squared error  E² = (2x - b₁)² + (3x - b₂)² + (4x - b₃)² .
 dE²/dx = 2[(2x - b₁)2 + (3x - b₂)3 + (4x - b₃)4] = 0. 
 ```
 
-Solving for x, the least-squares solution of this model system ax = b is denoted by x̂:
+Solving for x, the least-squares solution of this model system ax = b is denoted by x̂ :  (you need some calculus)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_least_square_solution_example.png)  
+
+**3K**:  The least-squares solution to a problem ax = b  in one unknon is x̂ = aaᵀ/aᵀa .
+
+**Least-Squares Problems with Several Variables**
+
+Now we are ready for the serious step, to ***project b onto a subspace*** . This problem arises from Ax = b when A is an m by n matrix.   The number m of observations is still larger than the number n of unknowns, so it must be expected that Ax = b will be inconsistent. *Probably, there will not exist a choice of x that perfectly fits the data b*. In other words, the vector b probably will not be a combination of the columns of A; it will be outside the column space.
+
+Again the problem is to choose x̂ so as to minimize the error, and again this minimization will be done in the least-squares sense. The error is E = ‖Ax - b‖, and ***this is exactly the distance from b to the point Ax in the column space***. Searching for the least-squares solution x̂ , which minimizes E, is the same as locating the point p = Ax̂ that is closer to b than any other point in the column space.
+
+We may use geometry or calculus to determine x̂ . In n dimensions, we prefer the appeal of geometry; p must be the "projection of b onto the column space." The error vector e = b - Ax̂ must be perpendicular to that space (Figure 3.8). Finding x̂ and the projection p = Ax̂ is so fundamental that we do it in two ways:
+
+
+
+
+
+
 
 
 
