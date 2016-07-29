@@ -633,7 +633,6 @@ Most parsing methods fall into one of two classes, called the *top-down* and *bo
 
  - In top-down parsers, construction starts at the root and proceeds towards the leaves 
  - while in bottom-up parsers, construction starts at the leaves and proceeds towards the root. 
-
  - The popularity of top-down parsers is due to the fact that efficient parsers can be constructed more easily by hand using top-down methods. 
  - Bottom-up parsing, however, can handle a larger class of grammars and translation schemes, so software tools for generating parsers directly from grammars often use bottom-up methods.
 
