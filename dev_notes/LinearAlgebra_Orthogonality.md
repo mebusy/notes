@@ -302,6 +302,69 @@ The line through a is the same, and that's all the projection matrix cares about
 
 Example 3: Project onto the "θ-direction" in the x-y plane. The line goes through *a = (cosθ, sinθ)* and the matrix is symmetric with P² = P:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_3.2_example3.png)
+
+Here c is cosθ, s is sinθ, and c2 + s2 = 1 in the denominator. This matrix P was discovered in Section 2.6 on linear transformations. Now we know P in any number of dimensions. We emphasize that it produces the projection p:
+
+
+***To project b onto a, multiply by the projection matrix P:  p = Pb***
+
+---
+
+**Transposes from Inner Products**
+
+Finally we connect inner products to Aᵀ. Up to now, Aᵀ is simply the reflection of A across its main diagonal; the rows of A become the columns of Aᵀ, and vice versa. The entry in row i, column j of Aᵀ is the (j, i) entry of A:
+
+ **Transpose by reflection**: (Aᵀ)ᵢⱼ = (A)ⱼᵢ
+
+There is a deeper significance to Aᵀ. Its close connection to inner products gives a new and much more "abstract" definition of the transpose:
+
+**3J** The transpose Aᵀ can be defined by the following property:  
+
+ - The inner product of Ax with y equals the inner product Of x with Aᵀy. Formally, this simply means:
+
+```
+(Ax)ᵀy = xᵀAᵀy = xᵀ(Aᵀy)     (8)
+```
+
+This definition gives us another (better) way to verify the formula (AB)ᵀ = BᵀAᵀ. Use equation (8) twice:
+
+```
+Move A then move B:  (ABx)ᵀy = (Bx)ᵀ(Aᵀy) = xᵀ(BᵀAᵀy)
+```
+
+The transposes turn up in reverse order on the right side, just as the inverses do in the formula (AB)⁻¹ = B⁻¹ A⁻¹. We mention again that these two formulas meet to give the remarkable combination (A⁻¹)ᵀ = (Aᵀ)⁻¹ .
+
+
+## 3.3 PROJECTIONS LEAST SQUARES
+
+Up to this point, Ax = b either has a solution or not. If b is not in the column space C(A), the system is inconsistent and Gaussian elimination fails. This failure is almost certain when there are several equations and only one unknown:
+
+```
+More equations 	2x = b₁
+than unknowns-	3x = b₂
+no solution?	4x = b₃
+```
+
+This is solvable when b1, b2, b3 are in the ratio 2:3:4. The solution x will exist only if b is on the same line as the column a = (2, 3, 4).
+
+In spite of their unsolvability, inconsistent equations arise all the time in practice. They have to be solved!  Rather than expecting no error in some equations and large errors in the others, it is much better to *choose the x that minimizes an average error E in the m equations*.
+
+The most convenient "average" comes from the *sum of squares*:
+
+```
+Squared error  E² = (2x - b₁)² + (3x - b₂)² + (4x - b₃)² .
+```
+
+ - If there is an exact solution, the minimum error is E = 0. 
+ - In the more likely case that b is not proportional to a, the graph of E² will be a parabola ( para 'beside' + bolē 'a throw' -> 抛物线). The minimum error is at the lowest point, where the derivative is zero:
+
+```
+dE²/dx = 2[(2x - b₁)2 + (3x - b₂)3 + (4x - b₃)4] = 0. 
+```
+
+Solving for x, the least-squares solution of this model system ax = b is denoted by x̂:
+
 
 
 
