@@ -593,4 +593,42 @@ Example 2.12 : The parse tree in Fig 2.14 has print statements at extra leaves, 
 
 The translation scheme appears in Fig 2.15. The underlying grammar gen­erates expressions consisting of digits separated by plus and minus signs. The actions embedded in the production bodies translate such expressions into post­fix notation, provided(in case) we perform a left-to-right depth-first traversal of the tree and execute each print statement when we visit its leaf.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.14.png)
+
+ - The root of Fig 2.14 represents the first production in Fig 2.15. 
+ - In a postorder traversal, we first perform all the actions in the leftmost subtree of the root, for the left operand, also labeled *expr* like the root. 
+ - We then visit the leaf + at which there is no action. 
+ - We next perform the actions in the subtree for the right operand *term* 
+ - and finally, the semantic action { print('+') } at the extra node.
+
+---
+
+ - Since the productions for *term* have only a digit on the right side, *that digit is printed* by the actions for the productions. 
+ - No output is necessary for the production *expr* → *term*, and only the operator needs to be printed in the action for each of the first two productions. 
+ - When executed during a postorder traversal of the parse tree, the actions in Fig 2.14 print 95-2+.
+
+
+Note that although the schemes in Fig 2.10 and Fig 2.15 produce the same translation, they construct it differently; 
+
+ - Fig 2.10 attaches strings as attributes to the nodes in the parse tree 
+ - while the scheme in Fig 2.15 prints the translation incrementally, through semantic actions.
+
+The semantic actions in the parse tree in Fig 2.14 translate the infix ex­pression 9-5+2 into 95-2+ by printing each character in 9-5+2 exactly once, without using any storage for the translation of subexpressions. When the out­put is created incrementally in this fashion, ***the order in which the characters are printed is significant***.
+
+ - The implementation of a translation scheme must ensure that semantic ac­tions are performed in the order they would appear during a postorder traversal of a parse tree. 
+ - The implementation need not actually construct a parse tree (often it does not), as long as it ensures that the semantic actions are per­formed as if we constructed a parse tree and then executed the actions during a postorder traversal.
+
+
+## 2.4 Parsing
+
+
+
+
+
+
+
+
+
+
+
 
