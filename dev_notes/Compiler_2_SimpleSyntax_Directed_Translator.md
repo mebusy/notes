@@ -222,7 +222,7 @@ We have not shown the productions for *param*, since parameters are really arbit
 Example 2.4 : The derivation of 9-5+2 in Example 2.2 is illustrated by the tree in Fig. 2.5.
 
  - Parse tree for 9-5+2 according to the grammar in Example 2.1
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_parse_tree_2.2)
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_parse_tree_2.2.png)
  	- Each node in the tree is labeled by a *grammar symbol*
  	- An interior node and its children correspond to a *production*
  		- the interior node corresponds to the head of the production
