@@ -640,7 +640,30 @@ Most parsing methods fall into one of two classes, called the *top-down* and *bo
 
 We introduce top-down parsing by considering a grammar that is well-suited for this class of methods. Later in this section, we consider the construction of top-down parsers in general. 
 
-The grammar in Fig 2.16 generates a subset of the statements of C or Java. We use the boldface terminals **if** and **for** for the keywords "if" and "for", respectively, to emphasize that these character sequences are treated as units, i.e., as single terminal symbols. Further, the terminal *expr* represents expressions; a more complete grammar would use a nonterminal *expr* and have productions for nonterminal *expr*. Similarly, other is a terminal representing other statement constructs.
+The grammar in Fig 2.16 generates a subset of the statements of C or Java:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F.2.16.png)
+
+ - We use the boldface terminals **if** and **for** for the keywords "if" and "for", respectively, to emphasize that these character sequences are treated as units, i.e., as single terminal symbols. 
+ - Further, the terminal *expr* represents expressions; a more complete grammar would use a nonterminal *expr* and have productions for nonterminal *expr*. 
+ - Similarly, **other** is a terminal representing other statement constructs.
+
+The top-down construction of a parse tree like the one in Fig. 2.17:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F.2.17.png)
+
+It is done by starting with the root, labeled with the starting nonterminal *stmt*, and re­peatedly performing the following two steps.
+
+ 1. At node N, labeled with nonterminal A, select one of the productions for A and construct children at N for the symbols in the production body.
+ 2. Find the next node at which a subtree is to be constructed, typically the leftmost unexpanded nonterminal of the tree.
+
+For some grammars, the above steps can be implemented during a single left-to-right scan of the input string. The current terminal being scanned in the input is frequently referred to as the lookahead symbol. Initially, the lookhead symbol is the first, i.e., leftmost, terminal of the input string. Figure 2.18 illustrates the construction of the parse tree in Fig. 2.17 for the input string:
+
+**for ( ; expr ; expr ) other**
+
+
+
+
 
 
 
