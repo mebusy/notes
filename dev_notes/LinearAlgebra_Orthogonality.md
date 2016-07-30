@@ -3,6 +3,7 @@
  - [Orthogonality](#878bcbccb5d63db01d2193f2e15cae28)
 	 - [3.1 ORTHOGONAL VECTORS AND SUBSPACES](#70835fd4404a5ddec835801ba42ecfb0)
 	 - [3.2 COSINES PROJECTIONS ONTO LINES](#870df6062f5bb62d6f82187a8efebbe1)
+	 - [3.3 PROJECTIONS LEAST SQUARES](#4a2df06c2d276ad56402eecaa894e5d5)
 
 ...menuend
 
@@ -336,6 +337,7 @@ Move A then move B:  (ABx)ᵀy = (Bx)ᵀ(Aᵀy) = xᵀ(BᵀAᵀy)
 The transposes turn up in reverse order on the right side, just as the inverses do in the formula (AB)⁻¹ = B⁻¹ A⁻¹. We mention again that these two formulas meet to give the remarkable combination (A⁻¹)ᵀ = (Aᵀ)⁻¹ .
 
 
+<h2 id="4a2df06c2d276ad56402eecaa894e5d5"></h2>
 ## 3.3 PROJECTIONS LEAST SQUARES
 
 Up to this point, Ax = b either has a solution or not. If b is not in the column space C(A), the system is inconsistent and Gaussian elimination fails. This failure is almost certain when there are several equations and only one unknown:
