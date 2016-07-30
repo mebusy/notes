@@ -657,10 +657,13 @@ It is done by starting with the root, labeled with the starting nonterminal *stm
  1. At node N, labeled with nonterminal A, select one of the productions for A and construct children at N for the symbols in the production body.
  2. Find the next node at which a subtree is to be constructed, typically the leftmost unexpanded nonterminal of the tree.
 
-For some grammars, the above steps can be implemented during a single left-to-right scan of the input string. The current terminal being scanned in the input is frequently referred to as the lookahead symbol. Initially, the lookhead symbol is the first, i.e., leftmost, terminal of the input string. Figure 2.18 illustrates the construction of the parse tree in Fig. 2.17 for the input string:
+For some grammars, the above steps can be implemented during a single left-to-right scan of the input string. 
+
+The current terminal being scanned in the input is frequently referred to as the *lookahead* symbol. Initially, the lookahead symbol is the first, i.e., leftmost, terminal of the input string. Figure 2.18 illustrates the construction of the parse tree in Fig. 2.17 for the input string:
 
 **for ( ; expr ; expr ) other**
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F.2.18.png)
 
 
 
