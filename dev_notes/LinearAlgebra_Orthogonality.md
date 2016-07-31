@@ -514,7 +514,37 @@ This is an *overdetermined* system, with m equations and only two unknowns. If e
 	|1 tm|		  |bm|
 ```
 
-The best solution (Ĉ, D̂) is the x̂ that minimizes the squared error E²:
+The best solution (Ĉ, D̂) is the x̂ that minimizes the squared error E².
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F3.9.png)
+
+The vector p = Ax̂ is as close as possible to b. (Figure 3.9). On the graph, the errors are the ***vertical distances*** `b - C - Dt` to the straight line (not perpendicular distances!). It is the vertical distances that are squared, summed, and minimized.
+
+```octave
+	|1 -1| |C|	|1|
+	|1  1|·|D| =|1|.
+	|1  2|		|3|
+```
+
+If those equations Ax = b could be solved, there would be no errors. They can't be solved because the points are not on a line. Therefore they are solved by least squares:
+
+```bash
+AᵀAx̂ = Aᵀb  is :  |3 2|·|Ĉ|= |5|
+				  |2 6| |D̂|  |6|	
+```
+
+The best solution is Ĉ = 9/7, D̂ = 4/7 and the best line is `9/7 + 4/7·t`.
+
+Note the beautiful connections between the two figures. The problem is the same but the art shows it differently. In Figure 3.9b, b is not a combination of the columns (1, 1, 1) and (-1, 1, 2). In Figure 3.9, the three points are not on a line. Least squares replaces points b that are not on a line by points p that are! ***Unable to solve Ax = b, we solve Ax̂ = p***.
+
+ - Figure 3.9b is in three dimensions (or m dimensions if there are m points) 
+ - and Figure 3.9a is in two dimensions (or n dimensions if there are n parameters).
+
+**3Oß**  The measurements b₁, ..., bm are given at distinct points t₁ , ..., tm. Then the straight line C + Dt which minimizes E² comes from least squares:
+
+
+ 
+
 
 
 
