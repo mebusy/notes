@@ -496,6 +496,25 @@ To repeat: We cannot invert the separate parts Aᵀ and A when those matrices ar
 
 Suppose we do a series of experiments, and expect the output b to be a linear function of the input t. We look for a ***straight line*** b = C + Dt. 
 
+```octave
+	C + Dt₁ = b₁
+	C + Dt₂ = b₂
+		...
+	C + Dtm = bm
+```
+
+This is an *overdetermined* system, with m equations and only two unknowns. If errors are present, it will have no solution. A has two columns, and x = (C, D) : 
+
+```octave
+	|1 t₁|		  |b₁|
+	|1 t₂|		  |b₂|
+	| .  | |C|  = |. |   , or Ax = b.   (7)
+	| .  | |D|	  |. |
+	| .  |		  |. |
+	|1 tm|		  |bm|
+```
+
+The best solution (Ĉ, D̂) is the x̂ that minimizes the squared error E²:
 
 
 
