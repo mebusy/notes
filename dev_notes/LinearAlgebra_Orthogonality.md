@@ -47,7 +47,7 @@ proof:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_inner_product_xTy.png)
 
-***zero vector is orthogonal to any vector***.
+> ***zero vector is orthogonal to any vector***.
 
 Useful fact: **If nonzero vectors v₁, ... , vk are mutually orthogonal** (every vector is perpendicular to every other), **then those vectors are linearly independent**.
 
@@ -99,7 +99,7 @@ The important orthogonal subspaces don't come by accident, and they come two at 
 
 ***First proof***  Suppose x is a vector in the nullspace. Then Ax = 0 , and this system of *m* equations can be written out as rows of A multiplying x:
 
-```
+```octave
 	 | ... row 1 ... | |x₁|   |0|
 	 | ... row 2 ... |·|x₂| = |0|
 Ax = | 				 | |  |	  | |
@@ -117,7 +117,7 @@ Ax = | 				 | |  |	  | |
 
 The other pair of orthogonal subspaces comes from Aᵀy = 0, or yᵀA = 0:
 
-```
+```octave
 	  |c 	   c|
 	  |o 	   o|
 	  |l 	   l|
@@ -137,8 +137,8 @@ yᵀA = |u  ...  u| = [0 ... 0]
 
 ***Second proof***  If x is in the nullspace then Ax = 0. If v is in the row space, it is a combination of the rows: v = Aᵀz for some vector z. Now, in one line:
 
-```
-Nullspace ⊥ Row space :   vᵀx = (Aᵀz)ᵀx = zᵀAx = zᵀ0 = 0.    (8)
+```octave
+	Nullspace ⊥ Row space :   vᵀx = (Aᵀz)ᵀx = zᵀAx = zᵀ0 = 0.    (8)
 ```
 
 
@@ -186,7 +186,7 @@ Of course everything goes to the column space - the matrix cannot do anything el
 
 ***Proof*** Every b in the column space is a combination Ax of the columns. In fact, b is Axᵣ with xᵣ in the row space, since the nullspace component gives Ax = 0. If another vector x, in the row space gives Ax'ᵣ = b, then A(xᵣ - x'ᵣ) = b - b = 0. This puts xᵣ - x'ᵣ in the nullspace and the row space, which makes it orthogonal to itself. Therefore it is zero, and xᵣ = x'ᵣ . Exactly one vector in the row space is carried to b.
 
-***Every matrix transforms its row space onto its column space.***
+> ***Every matrix transforms its row space onto its column space.***
 
 On those r-dimensional spaces A is invertible (if x in row space ). On its nullspace A is zero. When A is diagonal, you see the invertible submatrix holding the r nonzeros.
 
@@ -234,8 +234,8 @@ The numerator in formula (1) is exactly the inner product of a and b. It gives t
 
 **3G** The cosine of the angle between any *nonzero vectors* a and b is :  
 
-```
-cosθ = aᵀb / ‖a‖·‖b‖  (2)
+```octave
+	cosθ = aᵀb / ‖a‖·‖b‖  (2)
 ```
 
 
@@ -250,8 +250,8 @@ cosθ = aᵀb / ‖a‖·‖b‖  (2)
  - The problem is to compute the coefficient `x̂`. 
  - All we need is the geometrical fact that ***the line from b to the closest point p = x̂a is perpendicular to the vector a***:
 
-```
-(b - x̂a) ⊥ a ,  or  aᵀ(b - x̂a) = 0 ,  or  x̂ = (aᵀb / aᵀa)   (4)
+```octave
+	(b - x̂a) ⊥ a ,  or  aᵀ(b - x̂a) = 0 ,  or  x̂ = (aᵀb / aᵀa)   (4)
 ```
 
 That gives the formula for the number x̂ and the projection p:
@@ -262,8 +262,8 @@ That gives the formula for the number x̂ and the projection p:
 
 This leads to the **Schwarz inequality** in equation (6), which is the most important inequality in mathematics.  A special case is the fact that arithmetic means ½(x + y) ≥ geometric mean  √xy . 
 
-```
-Schwarz inequality:  |aᵀb| ≤ ‖a‖·‖b‖    (6)
+```octave
+	Schwarz inequality:  |aᵀb| ≤ ‖a‖·‖b‖    (6)
 ```
 
 All vectors a and b satisfy the ***Schwarz inequality***, which is |cosθ| ≤ 1 in Rⁿ.
@@ -277,8 +277,8 @@ The projection of *b* onto the line through *a* lies at p = a(aᵀb/aᵀa). That
 
 P is the matrix that multiplies b and produces p:
 
-```
-p = Pb ,  P = aaᵀ/aᵀa    (7)
+```octave
+	p = Pb ,  P = aaᵀ/aᵀa    (7)
 ```
 
 That is a column times a row -a square matrix- divided by the number aᵀa .  (aaᵀ 是一个秩1矩阵)
@@ -324,14 +324,14 @@ There is a deeper significance to Aᵀ. Its close connection to inner products g
 
  - The inner product of Ax with y equals the inner product Of x with Aᵀy. Formally, this simply means:
 
-```
-(Ax)ᵀy = xᵀAᵀy = xᵀ(Aᵀy)     (8)
+```octave
+	(Ax)ᵀy = xᵀAᵀy = xᵀ(Aᵀy)     (8)
 ```
 
 This definition gives us another (better) way to verify the formula (AB)ᵀ = BᵀAᵀ. Use equation (8) twice:
 
-```
-Move A then move B:  (ABx)ᵀy = (Bx)ᵀ(Aᵀy) = xᵀ(BᵀAᵀy)
+```octave
+	Move A then move B:  (ABx)ᵀy = (Bx)ᵀ(Aᵀy) = xᵀ(BᵀAᵀy)
 ```
 
 The transposes turn up in reverse order on the right side, just as the inverses do in the formula (AB)⁻¹ = B⁻¹ A⁻¹. We mention again that these two formulas meet to give the remarkable combination (A⁻¹)ᵀ = (Aᵀ)⁻¹ .
@@ -342,10 +342,10 @@ The transposes turn up in reverse order on the right side, just as the inverses 
 
 Up to this point, Ax = b either has a solution or not. If b is not in the column space C(A), the system is inconsistent and Gaussian elimination fails. This failure is almost certain when there are several equations and only one unknown:
 
-```
-More equations 	2x = b₁
-than unknowns-	3x = b₂
-no solution?	4x = b₃
+```octave
+	More equations 	2x = b₁
+	than unknowns-	3x = b₂
+	no solution?	4x = b₃
 ```
 
 This is solvable when b1, b2, b3 are in the ratio 2:3:4. The solution x will exist only if b is on the same line as the column a = (2, 3, 4).
@@ -354,15 +354,15 @@ In spite of their unsolvability, inconsistent equations arise all the time in pr
 
 The most convenient "average" comes from the *sum of squares*:
 
-```
-Squared error  E² = (2x - b₁)² + (3x - b₂)² + (4x - b₃)² .
+```octave
+	Squared error  E² = (2x - b₁)² + (3x - b₂)² + (4x - b₃)² .
 ```
 
  - If there is an exact solution, the minimum error is E = 0. 
  - In the more likely case that b is not proportional to a, the graph of E² will be a parabola ( para 'beside' + bolē 'a throw' -> 抛物线). The minimum error is at the lowest point, where the derivative is zero:
 
-```
-dE²/dx = 2[(2x - b₁)2 + (3x - b₂)3 + (4x - b₃)4] = 0. 
+```octave
+	dE²/dx = 2[(2x - b₁)2 + (3x - b₂)3 + (4x - b₃)4] = 0. 
 ```
 
 Solving for x, the least-squares solution of this model system ax = b is denoted by x̂ :  (you need some calculus)
@@ -418,8 +418,83 @@ Remark:
 
 **The Cross-Product Matrix of AᵀA**
 
+The matrix AᵀA is certainly symmetric. Its transpose is (AᵀA)ᵀ = AᵀAᵀᵀ, which is AᵀA again. Its i, j entry (and j, i entry) is the inner product of column i of A with column j of A. The key question is the invertibility of AᵀA, and fortunately：
 
+>**AᵀA has the same nullspace as A.**
 
+Certainly if Ax = 0 then AᵀAx = 0. Vectors x in the nullspace of A are also in the nullspace of AᵀA. 
+
+To go in the other direction, start by supposing that AᵀAx = 0, and take the inner product with x to show that Ax = 0:
+
+```octave
+	xᵀAᵀAx = 0,  or ‖Ax‖² = 0 ,  or Ax = 0.
+```
+
+The two nullspaces are identical. In particular, if A has independent columns (and only x = 0 is in its nullspace), then the same is true for AᵀA:
+
+**3M** If A has independent columns, then AᵀA is square, symmetric, and invertible.
+
+We show later that AᵀA is also positive definite (all pivots and eigenvalues are positive). This case is by far the most common and most important. Independence is not so hard in m-dimensional space if m > n. We assume it in what follows.
+
+---
+
+**Projection Matrices**
+
+We have shown that the closest point to b is p = A(AᵀA)⁻¹Aᵀb. This formula expresses in matrix terms the construction of a perpendicular line from b to the column space of A. The matrix that gives p is a projection matrix, denoted by P:
+
+```octave
+	Projection Matrix:  P = A(AᵀA)⁻¹Aᵀ      (4)
+```
+
+ - This matrix projects any vector b onto the column space of A.  
+	- In other words, p = Pb is the component of b in the column space, 
+	- and the error e = b - Pb is the component in the orthogonal complement. 
+ - I - P is also a projection matrix! 
+ 	- It projects b onto the orthogonal complement, 
+ 	- and the projection is b - Pb (e).
+
+In short, we have a matrix formula for splitting any b into two perpendicular components. Pb is in the column space C(A), and the other component (I - P)b is in the left nullspace N(AT) - which is orthogonal to the column space.
+
+These projection matrices can be understood geometrically and algebraically.
+
+**3N** The projection matrix P = A(AᵀA)⁻¹Aᵀ has two basic properties:
+
+ 1. It equals its square: P² = P.
+ 2. It equals its transpose: Pᵀ = P
+
+Conversely, any symmetric matrix with P² = P represents projection.
+
+***Proof*** It is easy to see why P² = P. 
+
+To prove that *P* is also symmetric, take its transpose. Multiply the transposes in reverse order, and use symmetry of (AᵀA)⁻¹, to come back to P:
+
+```octave
+	Pᵀ = (Aᵀ)ᵀ((AᵀA)⁻¹)ᵀAᵀ = A((AᵀA)ᵀ)⁻¹Aᵀ = A(AᵀA)⁻¹Aᵀ = P.
+```
+
+For the converse, we have to deduce from P² = P and Pᵀ = P that Pb ***is the projection of b onto the column space of P***. The error vector b - Pb is orthogonal to the space. For any vector Pc in the space, the inner product is zero:
+
+```octave
+	(b-Pb)ᵀPc = bᵀ(I-P)ᵀPc=bᵀ(P-P²)c = 0.  # PS: (I-P)ᵀ = (I-P)
+```
+
+Thus b - Pb is orthogonal to the space, and Pb is the projection onto the column space.
+
+Suppose A is actually invertible. If it is 4 x 4, then its four columns are independent and its column space is all of R⁴. What is the projection onto the whole space? It is the identity matrix.
+
+```octave
+	P = A(AᵀA)⁻¹Aᵀ = AA⁻¹(Aᵀ)⁻¹Aᵀ = I.		(5)
+```
+
+The identity matrix is symmetric, I² = I, and the error b - Ib is zero.
+
+To repeat: We cannot invert the separate parts Aᵀ and A when those matrices are rectangular. It is the square matrix AᵀA that is invertible , not Aᵀ and A.
+
+---
+
+**Least-Squares Fitting of Data**
+
+Suppose we do a series of experiments, and expect the output b to be a linear function of the input t. We look for a ***straight line*** b = C + Dt. 
 
 
 
