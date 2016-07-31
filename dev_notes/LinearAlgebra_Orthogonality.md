@@ -4,6 +4,7 @@
 	 - [3.1 ORTHOGONAL VECTORS AND SUBSPACES](#70835fd4404a5ddec835801ba42ecfb0)
 	 - [3.2 COSINES PROJECTIONS ONTO LINES](#870df6062f5bb62d6f82187a8efebbe1)
 	 - [3.3 PROJECTIONS LEAST SQUARES](#4a2df06c2d276ad56402eecaa894e5d5)
+	 - [3.4 ORTHOGONAL BASES AND GRAM-SCHMIDT](#09bbcb83a58fddde91f52c847cd92d46)
 
 ...menuend
 
@@ -542,8 +543,16 @@ Note the beautiful connections between the two figures. The problem is the same 
 
 **3Oß**  The measurements b₁, ..., bm are given at distinct points t₁ , ..., tm. Then the straight line C + Dt which minimizes E² comes from least squares:
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_3O.png)
  
+--- 
+
+TODO **Weighted Least Squares**
+
+---
+
+<h2 id="09bbcb83a58fddde91f52c847cd92d46"></h2>
+## 3.4 ORTHOGONAL BASES AND GRAM-SCHMIDT
 
 
 
