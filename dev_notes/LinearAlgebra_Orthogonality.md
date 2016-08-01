@@ -554,6 +554,128 @@ TODO **Weighted Least Squares**
 <h2 id="09bbcb83a58fddde91f52c847cd92d46"></h2>
 ## 3.4 ORTHOGONAL BASES AND GRAM-SCHMIDT
 
+In an orthogonal basis, every vector is perpendicular to every other vector. The coordinate axes are mutually orthogonal. That is just about optimal, and the one possible improvement is easy: Divide each vector by its length, to make it a unit vector. That changes an ***orthogonal*** basis into an ***orthonormal*** basis of q's:
+
+**3P** The vectors q₁, ..., qn are ***orthonormal*** if 
+
+```octave
+	qᵢᵀqⱼ = ⎰ 0 whenever i ≠ j, giving the orthogonality; 
+			⎱ 1 whenever i = j, giving the normalization.
+```
+
+***A matrix with orthonormal columns will be called Q***. ( square or rectangular )
+ 
+The most important example is the *standard basis*. For the x-y plane, the bestknown axes e₁ = (1, 0) and e₂ = (0, 1) are not only perpendicular but horizontal and vertical. Q is the 2 x 2 identity matrix. In n dimensions the standard basis e₁, ... , en again consists of *the columns of Q = I*:
+
+```octave
+				|1|			|0|		  		 |0|
+				|0|			|1|		  		 |0|
+				|0|			|0|		  		 |0|
+ Standard  e₁ = |.|,   e₂ = |.|, ... , 	en = |.|
+   basis		|.|			|.|		  		 |.|
+				|.|			|.|		  		 |.|
+				|0|			|0|		  		 |1|
+```
+
+That is not the only orthonormal basis! We can rotate the axes without changing the right angles at which they meet. These rotation matrices will be examples of Q.
+
+If we have a subspace of Rⁿ, the standard vectors eᵢ might not lie in that subspace. But the subspace always has an orthonormal basis, and it can be constructed in a simple way out of any basis whatsoever. This construction, which converts a skewed set of axes into a perpendicular set, is known as ***Gram-Schmidt orthogonalization***.
+
+To summarize, the three topics basic to this section are:
+
+ 1. The definition and properties of orthogonal matrices Q.
+ 2. The solution of Qx = b, either n x n or rectangular (least squares).
+ 3. The Gram-Schmidt process and its interpretation as a new factorization A = QR.
+
+**3Q**  If Q (square or rectangular) has orthonormal columns, then QᵀQ = I:
+
+```octave
+				⎡-- q₁ᵀ --⎤ ⎡|  |  | ⎤   ⎡1 0 · 0⎤  
+ Orthonormal	⎢-- q₂ᵀ --⎥·⎢q₁ q₂ qn⎥ = ⎢0 1 · 0⎥ = I.		(1)
+   columens 	⎢		  ⎥ ⎢|  |  | ⎥   ⎢· · · ·⎥
+				⎣-- qnᵀ --⎦ ⎣|  |  | ⎦   ⎣0 0 · 1⎦
+```
+
+ - ***An orthogonal matrix is a square matrix with orthonormal columns.***  Then **Qᵀ is Q⁻¹** , ***the transpose is the inverse***.
+ 	-  *Orthonormal matrix* would have been a better name, but it is too late to change. 
+ 	- Also, there is no accepted word for a rectangular matrix with orthonormal columns. We still write Q, but we won't call it an "orthogonal matrix" unless it is square.
+ 	- 只有Q是方阵的情况下，我们才称之为: 正交矩阵
+ 	- orthonormal 是 Qᵀ = Q⁻¹ 的前提之一 !
+ - Note that QᵀQ = I even if Q is rectangular. But then Qᵀ is only a left-inverse.
+
+**3R** Multiplication by any Q preserves lengths:
+
+```octave
+	Lengths unchanged:  ‖Qx‖ = ‖x‖   for ever vector x.  (2)
+```
+
+ - eg. rotations and reflection matrix.
+
+It also preserves innerproducts and angles, since (Qx)ᵀ(Qy) = `xᵀQᵀQy = xᵀy`.
+
+The preservation of lengths comes directly from QᵀQ = I:
+
+```octave
+	‖Qx‖² = ‖x‖²  because  (Qx)ᵀ(Qx) = xᵀQᵀQx = xᵀx.  (3)
+```
+
+We come now to the calculation that uses the special property Qᵀ is Q⁻¹. If we have a basis, then any vector is a combination of the basis vectors. This is exceptionally simple for an orthonormal basis, which will be a key idea behind Fourier series. The problem is to *find the coefficients of the basis vectors*:
+
+&nbsp;&nbsp;&nbsp;&nbsp;***Write b as a combination b = x₁q₁ + x₂q₂ + ... + x<sub>n</sub>q<sub>n</sub>***
+
+To compute x₁ there is a neat trick. *Multiply both sides of the equation by q₁ᵀ*.  We are left with q₁ᵀb = x₁q₁ᵀq₁. Since q₁ᵀq₁ = 1, we have found x₁ = q₁b. 
+
+Each piece of b has a simple formula, and recombining the pieces gives back b:
+
+&nbsp;&nbsp;&nbsp;&nbsp;***Every vector b is equal to (q₁ᵀb)q₁ + (q₂ᵀb)q₂ + ... + (q<sub>n</sub>ᵀb)q<sub>n</sub> .  &nbsp;&nbsp;&nbsp;&nbsp;(4)***
+
+ - 向量b 乘上 某个基向量(of Q)的转置, 得到在这个基上的系数。
+
+
+I can't resist putting this orthonormal basis into a square matrix Q. The vector equation x₁q₁ + ... + x<sub>n</sub>q<sub>n</sub>= b is identical to Qx = b.  Its solution is x = Q⁻¹b. But since Q⁻¹ = Qᵀ -- this is where orthonormality enters -- the solution is also x = Qᵀb:
+
+```octave
+			  ⎡-- q₁ᵀ --⎤⎡ ⎤   ⎡q₁ᵀb⎤
+	x = Qᵀb = ⎢         ⎥⎢b⎥ = ⎢    ⎥     (5)
+			  ⎣-- qnᵀ --⎦⎣ ⎦   ⎣qnᵀb⎦
+```
+
+The components of x are the inner products qᵢᵀb, as in equation (4).
+
+**Remark 1**: The ratio aᵀb/aᵀa appeared earlier, when we projected b onto a line. Here a is q₁, the denominator is 1, and the projection is (q₁ᵀb)q₁. Thus we have a new interpretation for formula (4): *Every vector b is the sum of its one-dimensional projections onto the lines through the q's*.
+
+ - b 等于 b 在各个基向量上投影的和。
+
+**Remark 2**: ***The rows of a square matrix are orthonormal whenever the columns are. ***
+
+```octave
+		⎡1/√3   1/√2   1/√6⎤
+	Q = ⎢1/√3    0	  -2/√6⎥
+		⎣1/√3  -1/√2   1/√6⎦  
+```
+
+
+---
+
+**Rectangular Matrices with Orthonormal Columns**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
