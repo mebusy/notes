@@ -612,7 +612,8 @@ Orthonormal columns:
 **3R** Multiplication by any Q preserves lengths:
 
 ```
-Lengths unchanged: ‖Qx‖ = ‖x‖  for ever vector x.  (2)
+Lengths unchanged: 
+	‖Qx‖ = ‖x‖  for ever vector x.  (2)
 ```
 
  - eg. rotations and reflection matrix.
@@ -683,7 +684,7 @@ QᵀQx̂ = Qᵀb , normal equation for the best x̂ -- in which QᵀQ = I.
 
 PS. For rectangular matrics , QQᵀ ≠ I :
 
-```
+```octave
 octave:11> Q = [1 0 ; 0 1 ; 0 0 ]
 Q =
 
@@ -706,7 +707,8 @@ ans =
 ```
 
 ```
-	The projection matrix: P = Q(QᵀQ)⁻¹Qᵀ ,  or P = QQᵀ     (7)
+The projection matrix: 
+	P = Q(QᵀQ)⁻¹Qᵀ ,  or P = QQᵀ     (7)
 ```
 
 QQᵀ is the zero matrix on the othogonal complement ( the nullspace of Qᵀ ).  -- 不理解
@@ -756,7 +758,7 @@ At this point q₁ and q₂ are set. The third orthogonal direction starts with 
 
 ```
 Third Vector 	
-  C = c - (q₁ᵀc)q₁ - (q₂ᵀc)q₂ , and q₃ = C/‖C‖.  (10)
+C = c -(q₁ᵀc)q₁ -(q₂ᵀc)q₂ , and q₃ = C/‖C‖.  (10)
 ```
 
 This is the one idea of the whole Gram-Schmidt process, ***to subtract from every new vector  its components in the directions that are already settled***. That idea is used over and over again. When there is a 4th vector, we subtract away its components in the direction of q₁,
@@ -765,7 +767,7 @@ q₂,q₃.
 **3T** The Gram-Schmidt process starts with independent vectors a₁, ... , a<sub>n</sub>	and end with orthogonal vectors q₁, ... , q<sub>n</sub>. At step j it substracts from aⱼ its components in the directions q₁, ... , qⱼ₋₁ that are already settled:
 
 ```
-Aⱼ = aⱼ - (q₁ᵀaⱼ)q₁ - ... - (qⱼ₋₁ᵀaⱼ)qⱼ₋₁.     (11)
+Aⱼ = aⱼ -(q₁ᵀaⱼ)q₁ - ... -(qⱼ₋₁ᵀaⱼ)qⱼ₋₁.  (11)
 ```
 
 *Remark on the calculations*  I think it is easier to compute the orthogonal a, B, C, without forcing their lengths to equal one. Then square roots enter only at the end, when dividing by those lengths. 
@@ -784,12 +786,16 @@ The idea is to write the a's as combinations of the q's. The vector b in Figure 
 
 Every vector in the plane is the sum of its q₁ and q₂ components. Similarly c is the sum of its q₁,q₂,q₃ components: 
 
-`c = (q₁ᵀc)q₁ + (q₂ᵀc)q₂ + (q₃ᵀc)q₃`. If we express that in matrix form we have ***the new factorization A = QR***:
+`c = (q₁ᵀc)q₁ + (q₂ᵀc)q₂ + (q₃ᵀc)q₃`. 
+
+If we express that in matrix form we have ***the new factorization A = QR***:
 
 ```
-			   ⎡     ⎤   ⎡        ⎤⎡q₁ᵀa q₁ᵀb q₁ᵀc⎤
-QR factors A = ⎢a b c⎥ = ⎢q₁ q₂ q₃⎥⎢     q₂ᵀb q₂ᵀc⎥ = QR.	(12)
-			   ⎣     ⎦   ⎣        ⎦⎣          q₃ᵀc⎦
+QR factors :
+
+	⎡     ⎤   ⎡        ⎤⎡q₁ᵀa q₁ᵀb q₁ᵀc⎤
+A = ⎢a b c⎥ = ⎢q₁ q₂ q₃⎥⎢     q₂ᵀb q₂ᵀc⎥ = QR.	(12)
+	⎣     ⎦   ⎣        ⎦⎣          q₃ᵀc⎦
 ```
 
 
