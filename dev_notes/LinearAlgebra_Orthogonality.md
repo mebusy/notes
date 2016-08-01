@@ -598,7 +598,7 @@ To summarize, the three topics basic to this section are:
 Orthonormal columns:
 	⎡-- q₁ᵀ --⎤ ⎡|  |  | ⎤   ⎡1 0 · 0⎤  
 	⎢-- q₂ᵀ --⎥·⎢q₁ q₂ qn⎥ = ⎢0 1 · 0⎥ = I.		(1)
-	⎢		  ⎥ ⎢|  |  | ⎥   ⎢· · · ·⎥
+	⎢         ⎥ ⎢|  |  | ⎥   ⎢· · · ·⎥
 	⎣-- qnᵀ --⎦ ⎣|  |  | ⎦   ⎣0 0 · 1⎦
 ```
 
