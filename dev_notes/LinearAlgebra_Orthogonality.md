@@ -508,10 +508,8 @@ This is an *overdetermined* system, with m equations and only two unknowns. If e
 
 ```octave
 	|1 t₁|		  |b₁|
-	|1 t₂|		  |b₂|
-	| .  | |C|  = |. |   , or Ax = b.   (7)
+	|1 t₂| |C|  = |b₂|   , or Ax = b.   (7)
 	| .  | |D|	  |. |
-	| .  |		  |. |
 	|1 tm|		  |bm|
 ```
 
@@ -568,13 +566,11 @@ In an orthogonal basis, every vector is perpendicular to every other vector. The
 The most important example is the *standard basis*. For the x-y plane, the bestknown axes e₁ = (1, 0) and e₂ = (0, 1) are not only perpendicular but horizontal and vertical. Q is the 2 x 2 identity matrix. In n dimensions the standard basis e₁, ... , en again consists of *the columns of Q = I*:
 
 ```octave
-				|1|			|0|		  		 |0|
-				|0|			|1|		  		 |0|
-				|0|			|0|		  		 |0|
- Standard  e₁ = |.|,   e₂ = |.|, ... , 	en = |.|
-   basis		|.|			|.|		  		 |.|
-				|.|			|.|		  		 |.|
-				|0|			|0|		  		 |1|
+				 |1|		 |0|		  	   |0|
+  Standard		 |0|		 |1|		  	   |0|
+   basis	e₁ = |0|,   e₂ = |0|, ... ,   en = |0|
+				 |.|		 |.|		  	   |.|
+				 |0|		 |0|		  	   |1|
 ```
 
 That is not the only orthonormal basis! We can rotate the axes without changing the right angles at which they meet. These rotation matrices will be examples of Q.
@@ -741,6 +737,68 @@ The method is simple. We are given a,b,c and we want q₁,q₂,q₃. There is no
 ```
 
 B is orthogonal to q₁. It is the part of b that goes in a new direction , and not in the direction of a.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F3.10.png)
+
+At this point q₁ and q₂ are set. The third orthogonal direction starts with c. It will not be in the plance of q₁ and q₂, which is the plane of a and b. However, it may have a component in that plane, and that has to be substracted. What is left is the component C we want, the part that is in a new direction perpendicular to the plane:
+
+```octave
+	Third Vector 	C = c - (q₁ᵀc)q₁ - (q₂ᵀc)q₂ ,  and q₃ = C/‖C‖.	  (10)
+```
+
+This is the one idea of the whole Gram-Schmidt process, ***to subtract from every new vector  its components in the directions that are already settled***. That idea is used over and over again. When there is a 4th vector, we subtract away its components in the direction of q₁,
+q₂,q₃.
+
+**3T** The Gram-Schmidt process starts with independent vectors a₁, ... , a<sub>n</sub>	and end with orthogonal vectors q₁, ... , q<sub>n</sub>. At step j it substracts from aⱼ its components in the directions q₁, ... , qⱼ₋₁ that are already settled:
+
+```octave
+	Aⱼ = aⱼ - (q₁ᵀaⱼ)q₁ - ... - (qⱼ₋₁ᵀaⱼ)qⱼ₋₁.		(11)
+```
+
+*Remark on the calculations*  I think it is easier to compute the orthogonal a, B, C, without forcing their lengths to equal one. Then square roots enter only at the end, when dividing by those lengths. 
+
+---
+
+**The Factorization A = QR**
+
+We started with a matrix A, whose columns were a, b, c. We ended with a matrix Q, whose columns are q₁,q₂,q₃. What is the relation between those matrices? The matrices A and Q are m x n when the n vectors are in m-dimensional space, and there has to be a third matrix that connects them.
+
+The idea is to write the a's as combinations of the q's. The vector b in Figure 3.10 is a combination of the orthonormal q₁ and q₂, and we know what combination it is:
+
+```octave
+	b = (q₁ᵀb)q₁ + (q₂ᵀb)q₂.
+```
+
+Every vector in the plane is the sum of its q₁ and q₂ components. Similarly c is the sum of its q₁,q₂,q₃ components: 
+
+`c = (q₁ᵀc)q₁ + (q₂ᵀc)q₂ + (q₃ᵀc)q₃`. If we express that in matrix form we have ***the new factorization A = QR***:
+
+```octave
+			   ⎡     ⎤   ⎡        ⎤⎡q₁ᵀa q₁ᵀb q₁ᵀc⎤
+QR factors A = ⎢a b c⎥ = ⎢q₁ q₂ q₃⎥⎢     q₂ᵀb q₂ᵀc⎥ = QR.	(12)
+			   ⎣     ⎦   ⎣        ⎦⎣          q₃ᵀc⎦
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
