@@ -764,13 +764,57 @@ C = c -(q₁ᵀc)q₁ -(q₂ᵀc)q₂ , and q₃ = C/‖C‖.  (10)
 This is the one idea of the whole Gram-Schmidt process, ***to subtract from every new vector  its components in the directions that are already settled***. That idea is used over and over again. When there is a 4th vector, we subtract away its components in the direction of q₁,
 q₂,q₃.
 
+
+**Example 5 Gram-Schmidt** Suppose the independent vectors are a, b, c:
+
+```
+	⎡1⎤      ⎡1⎤      ⎡2⎤         
+a = ⎢0⎥, b = ⎢0⎥, c = ⎢1⎥.
+	⎣1⎦      ⎣0⎦      ⎣0⎦         
+
+	 ⎡1/√2⎤
+q₁ = ⎢ 0  ⎥.
+	 ⎣1/√2⎦
+```
+
+```
+	⎡1⎤       ⎡1/√2⎤       ⎡ 1⎤
+B = ⎢0⎥ - 1/√2⎢ 0  ⎥  = 1/2⎢ 0⎥.
+	⎣0⎦       ⎣1/√2⎦       ⎣-1⎦
+
+	 ⎡ 1/√2⎤
+q₂ = ⎢  0  ⎥.
+	 ⎣-1/√2⎦	
+```
+
+```
+	⎡2⎤     ⎡1/√2⎤     ⎡ 1/√2⎤    ⎡0⎤
+C = ⎢1⎥ - √2⎢ 0  ⎥ - √2⎢  0  ⎥  = ⎢1⎥.
+	⎣0⎦     ⎣1/√2⎦     ⎣-1/√2⎦    ⎣0⎦   
+```
+
+
 **3T** The Gram-Schmidt process starts with independent vectors a₁, ... , a<sub>n</sub>	and end with orthogonal vectors q₁, ... , q<sub>n</sub>. At step j it substracts from aⱼ its components in the directions q₁, ... , qⱼ₋₁ that are already settled:
 
 ```
 Aⱼ = aⱼ -(q₁ᵀaⱼ)q₁ - ... -(qⱼ₋₁ᵀaⱼ)qⱼ₋₁.  (11)
 ```
 
-*Remark on the calculations*  I think it is easier to compute the orthogonal a, B, C, without forcing their lengths to equal one. Then square roots enter only at the end, when dividing by those lengths. 
+*Remark on the calculations*  I think it is easier to compute the orthogonal a, B, C, without forcing their lengths to equal one. Then square roots enter only at the end, when dividing by those lengths. The example above would have the same B and C, without using square roots.
+
+*Notice the 1/2 from aᵀb/aᵀa instead of 1/√2 from qᵀb*.
+
+```
+	⎡1⎤      ⎡1⎤    ⎡ 1/2⎤
+B = ⎢0⎥ - 1/2⎢0⎥  = ⎢  0 ⎥,
+	⎣0⎦      ⎣1⎦    ⎣-1/2⎦
+
+	⎡2⎤   ⎡1⎤    ⎡ 1/2⎤    ⎡0⎤
+C = ⎢1⎥ - ⎢0⎥ - 2⎢  0 ⎥  = ⎢1⎥.
+	⎣0⎦   ⎣1⎦    ⎣-1/2⎦    ⎣0⎦   
+```
+
+
 
 ---
 
@@ -798,14 +842,41 @@ A = ⎢a b c⎥ = ⎢q₁ q₂ q₃⎥⎢     q₂ᵀb q₂ᵀc⎥ = QR.	(12)
 	⎣     ⎦   ⎣        ⎦⎣          q₃ᵀc⎦
 ```
 
+R is upper triangular because of the way Gram-Schmidt was done. The first vectors a and q₁ fell on the same line. Then q₁, q₂ were in the same plane as a, b. The third vectors c and q₃ were not involved until step 3.
+
+The QR factorization is like A = LU, except that the first factor Q has orthonormal columns. The second factor is called R, because the nonzeros are to the *right* of the diagonal (and the letter U is already taken). 
+
+```
+	⎡1 1 2⎤   ⎡1/√2  1/√2  0 ⎤⎡√2  1/√2  √2⎤
+A = ⎢0 0 1⎥ = ⎢  0    0    1 ⎥⎢    1/√2  √2⎥ = QR.
+	⎣1 0 0⎦   ⎣1/√2 -1/√2  0 ⎦⎣          1 ⎦
+```
+
+*You see the lengths of a, B, C on the diagonal of R*. The orthonormal vectors q₁,q₂,q₃, which are the whole object of orthogonalization, are in the first factor Q. 
+
+The entries rᵢⱼ = qᵢᵀaⱼ.
 
 
+**3U** Every m x n matrix with independent columns canbe factored into A = QR. The columns of Q are orthonormal, and R is upper triangular and invertible. When m = n and all matrices are square, Q becomes an orthogonal matrix.
 
+I must not forget the main point of orthogonalization. It simplifies the least-squares problem Ax = b. The normal equations are still correct, but AᵀA becomes easier:
 
+```
+AᵀA = RᵀQᵀQR = RᵀR. 	(14)
+```
 
+The fundamental equation AᵀAx̂ = Aᵀb simplifies to a triangular system:
 
+```
+RᵀRx̂ = RᵀQᵀb ,   or  Rx̂ = Qᵀb.	 (15)
+```
+Instead of solving QRx = b, which can't be done, we solve Rx̂ = Qᵀb, which is just back-substitution because R is triangular. The real cost is the mn² operations of Gram-Schmidt, which are needed to find Q and R in the first place.
 
+The same idea of orthogonality applies to functions. The sines and cosines are orthogonal; the powers 1, x, x² are not. When f(x) is written as a combination of sines and cosines, that is a ***Fourier series***. Each term is a projection onto a line -- the line in function space containing multiples of cosnx or sinnx. It is completely parallel to the vector case, and very important. And finally we have a job for Schmidt: To orthogonalize the powers of x and produce the Legendre polynomials.
 
+---
+
+**Function Spaces and Fourier Series**
 
 
 
