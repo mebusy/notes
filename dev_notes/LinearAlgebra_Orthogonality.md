@@ -139,7 +139,8 @@ yᵀA = |u  ...  u| = [0 ... 0]
 ***Second proof***  If x is in the nullspace then Ax = 0. If v is in the row space, it is a combination of the rows: v = Aᵀz for some vector z. Now, in one line:
 
 ```octave
-	Nullspace ⊥ Row space :   vᵀx = (Aᵀz)ᵀx = zᵀAx = zᵀ0 = 0.    (8)
+Nullspace ⊥ Row space :   
+	vᵀx = (Aᵀz)ᵀx = zᵀAx = zᵀ0 = 0.    (8)
 ```
 
 
@@ -252,7 +253,9 @@ The numerator in formula (1) is exactly the inner product of a and b. It gives t
  - All we need is the geometrical fact that ***the line from b to the closest point p = x̂a is perpendicular to the vector a***:
 
 ```octave
-	(b - x̂a) ⊥ a ,  or  aᵀ(b - x̂a) = 0 ,  or  x̂ = (aᵀb / aᵀa)   (4)
+	  (b - x̂a) ⊥ a ,  
+  or  aᵀ(b - x̂a) = 0 ,  
+  or  x̂ = (aᵀb / aᵀa)   (4)
 ```
 
 That gives the formula for the number x̂ and the projection p:
@@ -264,7 +267,7 @@ That gives the formula for the number x̂ and the projection p:
 This leads to the **Schwarz inequality** in equation (6), which is the most important inequality in mathematics.  A special case is the fact that arithmetic means ½(x + y) ≥ geometric mean  √xy . 
 
 ```octave
-	Schwarz inequality:  |aᵀb| ≤ ‖a‖·‖b‖    (6)
+Schwarz inequality:  |aᵀb| ≤ ‖a‖·‖b‖    (6)
 ```
 
 All vectors a and b satisfy the ***Schwarz inequality***, which is |cosθ| ≤ 1 in Rⁿ.
@@ -332,7 +335,7 @@ There is a deeper significance to Aᵀ. Its close connection to inner products g
 This definition gives us another (better) way to verify the formula (AB)ᵀ = BᵀAᵀ. Use equation (8) twice:
 
 ```octave
-	Move A then move B:  (ABx)ᵀy = (Bx)ᵀ(Aᵀy) = xᵀ(BᵀAᵀy)
+Move A then move B: (ABx)ᵀy = (Bx)ᵀ(Aᵀy) = xᵀ(BᵀAᵀy)
 ```
 
 The transposes turn up in reverse order on the right side, just as the inverses do in the formula (AB)⁻¹ = B⁻¹ A⁻¹. We mention again that these two formulas meet to give the remarkable combination (A⁻¹)ᵀ = (Aᵀ)⁻¹ .
