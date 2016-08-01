@@ -629,9 +629,6 @@ Each piece of b has a simple formula, and recombining the pieces gives back b:
 
 &nbsp;&nbsp;&nbsp;&nbsp;***Every vector b is equal to (q₁ᵀb)q₁ + (q₂ᵀb)q₂ + ... + (q<sub>n</sub>ᵀb)q<sub>n</sub> .  &nbsp;&nbsp;&nbsp;&nbsp;(4)***
 
- - 向量b 乘上 某个基向量(of Q)的转置, 得到在这个基上的系数。
-
-
 I can't resist putting this orthonormal basis into a square matrix Q. The vector equation x₁q₁ + ... + x<sub>n</sub>q<sub>n</sub>= b is identical to Qx = b.  Its solution is x = Q⁻¹b. But since Q⁻¹ = Qᵀ -- this is where orthonormality enters -- the solution is also x = Qᵀb:
 
 ```octave
@@ -640,7 +637,7 @@ I can't resist putting this orthonormal basis into a square matrix Q. The vector
 			  ⎣-- qnᵀ --⎦⎣ ⎦   ⎣qnᵀb⎦
 ```
 
-The components of x are the inner products qᵢᵀb, as in equation (4).
+***The components of x are the inner products*** **qᵢᵀb** , as in equation (4) . 
 
 **Remark 1**: The ratio aᵀb/aᵀa appeared earlier, when we projected b onto a line. Here a is q₁, the denominator is 1, and the projection is (q₁ᵀb)q₁. Thus we have a new interpretation for formula (4): *Every vector b is the sum of its one-dimensional projections onto the lines through the q's*.
 
@@ -704,6 +701,46 @@ ans =
 ```octave
 	The projection matrix: P = Q(QᵀQ)⁻¹Qᵀ ,  or P = QQᵀ     (7)
 ```
+
+QQᵀ is the zero matrix on the othogonal complement ( the nullspace of Qᵀ ).  -- 不理解
+
+**Example 3** The following case is simple but typical. Suppose we project a point b = (x,y,z) onto the x-y plane. It's projection is p = (x,y,0), and this is the sum of the separate projections on the x- and y-axes:
+
+```octave
+		 ⎡1⎤				  ⎡x⎤	
+	q₁ = ⎢0⎥  and  (q₁ᵀb)q₁ = ⎢0⎥; 	
+		 ⎣0⎦  				  ⎣0⎦  
+
+		 ⎡0⎤				  ⎡0⎤	
+	q₂ = ⎢1⎥  and  (q₂ᵀb)q₂ = ⎢y⎥.
+		 ⎣0⎦  				  ⎣0⎦  
+```
+
+The overall projection matrix is :
+
+```octave
+						⎡1 0 0⎤			  ⎡x⎤	⎡x⎤	
+	P = q₁q₁ᵀ + q₂q₂ᵀ = ⎢0 1 0⎥,   and   P⎢y⎥ = ⎢y⎥ 
+						⎣0 0 0⎦  		  ⎣z⎦	⎣0⎦  
+```
+
+***Projection onto a plane = sum of projections onto orthonormal q₁ and q₂***.
+
+Orthogonal columns are so much better that it is worth changing to that case. And it leads to a factorization A = QR that is nearly as famous as A = LU.
+
+---
+
+**The Gram-Schmidt Process**
+
+Now we propose to find a way to ***make*** them orthogonal.
+
+The method is simple. We are given a,b,c and we want q₁,q₂,q₃. There is no problem with q₁: it can go in the direction of a. We divide by the length , so that q₁ = a/‖a‖ is a unit vector. The real problem begins with q₂ -- which has to be orthogonal to q₁. If the second vector b has any component in the direction of q₁ (or a) , ***that component has to be subtracted***:
+
+```octave
+	Second Vector  	B = b - (q₁ᵀb)q₁ , and q₂ = B/‖B‖.     (9)
+```
+
+B is orthogonal to q₁. It is the part of b that goes in a new direction , and not in the direction of a.
 
 
 

@@ -427,6 +427,8 @@ Those matrices carry the information that originally came in A - and they carry 
   - 但是对最后一个 pivot 没有 非0的要求
   - 因为奇异矩阵也有LU分解
 
+> 即使矩阵不可逆，LU仍然可能存在。实际上，如果一个秩为k的矩阵的前k个顺序主子式不为零，那么它就可以进行LU分解，但反之则不然。
+
 
 <h2 id="4d72fafca6d677bb749ef5048ba77fa6"></h2>
 ## 1.6 INVERSES AND TRANSPOSE
