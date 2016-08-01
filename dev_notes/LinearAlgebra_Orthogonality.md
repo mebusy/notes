@@ -600,7 +600,7 @@ To summarize, the three topics basic to this section are:
  	-  *Orthonormal matrix* would have been a better name, but it is too late to change. 
  	- Also, there is no accepted word for a rectangular matrix with orthonormal columns. We still write Q, but we won't call it an "orthogonal matrix" unless it is square.
  	- 只有Q是方阵的情况下，我们才称之为: 正交矩阵
- 	- orthonormal 是 Qᵀ = Q⁻¹ 的前提之一 !
+ 	- orthonormal 是 QᵀQ = I, Qᵀ = Q⁻¹ 的前提之一 !
  - Note that QᵀQ = I even if Q is rectangular. But then Qᵀ is only a left-inverse.
 
 **3R** Multiplication by any Q preserves lengths:
@@ -659,17 +659,51 @@ The components of x are the inner products qᵢᵀb, as in equation (4).
 
 **Rectangular Matrices with Orthonormal Columns**
 
+This chapter is about Ax = b, when A is not necessarily square.
 
+For Qx = b we now admit the same possibility -- there may be more rows than columns. The n orthonormal vectors qᵢ in the columns of Q have m > n components. Then Q is an m x n matrix and we cannot expect to solve Qx = b exactly. *We solve it by least squares*.
 
+If there is any justice, orthonormal columns should make the problem simple. It worked for square matrices, and now it will work for rectangular matrices. The key is to notice that we still have QᵀQ = I. So Qᵀ is still the ***left-inverse*** of Q.
 
+For least squares that is all we need. Now the normal equations are QᵀQx̂ = Qᵀb. But QᵀQ is the identity matrix!  Therefore x̂ = Qᵀb, whether Q is square and x̂ is an exact solution, or Q is rectangular and we need least squares.
 
+**3S** If Q has orthonormal columns, the least-squares problem becomes easy:
 
+```
+	  Qx = b   ,	rectangular system with no solution for most b.
+	QᵀQx̂ = Qᵀb , 	normal equation for the best x̂ -- in which QᵀQ = I.
+	   x̂ = Qᵀb ,	x̂ᵢ = qᵢᵀb 
+	   p = Qx̂  ,	the projection of b is (q₁ᵀb)q₁ + ... + (qnᵀb)qn.
+	   p = QQᵀb,	the projection matrix is P = QQᵀ ( here QQᵀ ≠ I )
+```
 
+PS. For rectangular matrics , QQᵀ ≠ I :
 
+```octave
+octave:11> Q = [1 0 ; 0 1 ; 0 0 ]
+Q =
 
+   1   0
+   0   1
+   0   0
 
+octave:12> Q'*Q
+ans =
 
+   1   0
+   0   1
 
+octave:13> Q*Q'
+ans =
+
+   1   0   0
+   0   1   0
+   0   0   0
+```
+
+```octave
+	The projection matrix: P = Q(QᵀQ)⁻¹Qᵀ ,  or P = QQᵀ     (7)
+```
 
 
 
