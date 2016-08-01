@@ -566,8 +566,8 @@ In an orthogonal basis, every vector is perpendicular to every other vector. The
 **3P** The vectors q₁, ..., qn are ***orthonormal*** if 
 
 ```
-	qᵢᵀqⱼ = ⎰ 0 whenever i ≠ j, giving the orthogonality; 
-			⎱ 1 whenever i = j, giving the normalization.
+qᵢᵀqⱼ = ⎰ 0 whenever i ≠ j, giving the orthogonality; 
+		⎱ 1 whenever i = j, giving the normalization.
 ```
 
 ***A matrix with orthonormal columns will be called Q***. ( square or rectangular )
@@ -575,11 +575,11 @@ In an orthogonal basis, every vector is perpendicular to every other vector. The
 The most important example is the *standard basis*. For the x-y plane, the bestknown axes e₁ = (1, 0) and e₂ = (0, 1) are not only perpendicular but horizontal and vertical. Q is the 2 x 2 identity matrix. In n dimensions the standard basis e₁, ... , en again consists of *the columns of Q = I*:
 
 ```
-				 |1|		 |0|		  	   |0|
-  Standard		 |0|		 |1|		  	   |0|
-   basis	e₁ = |0|,   e₂ = |0|, ... ,   en = |0|
-				 |.|		 |.|		  	   |.|
-				 |0|		 |0|		  	   |1|
+			   |1|		 |0|		  	 |0|
+Standard	   |0|		 |1|		  	 |0|
+ basis	  e₁ = |0|, e₂ = |0|, ... , en = |0|
+			   |.|		 |.|		  	 |.|
+			   |0|		 |0|		  	 |1|
 ```
 
 That is not the only orthonormal basis! We can rotate the axes without changing the right angles at which they meet. These rotation matrices will be examples of Q.
@@ -595,10 +595,11 @@ To summarize, the three topics basic to this section are:
 **3Q**  If Q (square or rectangular) has orthonormal columns, then QᵀQ = I:
 
 ```
-				⎡-- q₁ᵀ --⎤ ⎡|  |  | ⎤   ⎡1 0 · 0⎤  
- Orthonormal	⎢-- q₂ᵀ --⎥·⎢q₁ q₂ qn⎥ = ⎢0 1 · 0⎥ = I.		(1)
-   columens 	⎢		  ⎥ ⎢|  |  | ⎥   ⎢· · · ·⎥
-				⎣-- qnᵀ --⎦ ⎣|  |  | ⎦   ⎣0 0 · 1⎦
+Orthonormal columns:
+	⎡-- q₁ᵀ --⎤ ⎡|  |  | ⎤   ⎡1 0 · 0⎤  
+	⎢-- q₂ᵀ --⎥·⎢q₁ q₂ qn⎥ = ⎢0 1 · 0⎥ = I.		(1)
+	⎢		  ⎥ ⎢|  |  | ⎥   ⎢· · · ·⎥
+	⎣-- qnᵀ --⎦ ⎣|  |  | ⎦   ⎣0 0 · 1⎦
 ```
 
  - ***An orthogonal matrix is a square matrix with orthonormal columns.***  Then **Qᵀ is Q⁻¹** , ***the transpose is the inverse***.
@@ -611,7 +612,7 @@ To summarize, the three topics basic to this section are:
 **3R** Multiplication by any Q preserves lengths:
 
 ```
-	Lengths unchanged:  ‖Qx‖ = ‖x‖   for ever vector x.  (2)
+Lengths unchanged: ‖Qx‖ = ‖x‖  for ever vector x.  (2)
 ```
 
  - eg. rotations and reflection matrix.
@@ -621,12 +622,13 @@ It also preserves innerproducts and angles, since (Qx)ᵀ(Qy) = `xᵀQᵀQy = x�
 The preservation of lengths comes directly from QᵀQ = I:
 
 ```
-	‖Qx‖² = ‖x‖²  because  (Qx)ᵀ(Qx) = xᵀQᵀQx = xᵀx.  (3)
+		 ‖Qx‖² = ‖x‖²  
+because  (Qx)ᵀ(Qx) = xᵀQᵀQx = xᵀx.  (3)
 ```
 
 We come now to the calculation that uses the special property Qᵀ is Q⁻¹. If we have a basis, then any vector is a combination of the basis vectors. This is exceptionally simple for an orthonormal basis, which will be a key idea behind Fourier series. The problem is to *find the coefficients of the basis vectors*:
 
-&nbsp;&nbsp;&nbsp;&nbsp;***Write b as a combination b = x₁q₁ + x₂q₂ + ... + x<sub>n</sub>q<sub>n</sub>***
+&nbsp;&nbsp;***Write b as a combination b = x₁q₁ + x₂q₂ + ... + x<sub>n</sub>q<sub>n</sub>***
 
 To compute x₁ there is a neat trick. *Multiply both sides of the equation by q₁ᵀ*.  We are left with q₁ᵀb = x₁q₁ᵀq₁. Since q₁ᵀq₁ = 1, we have found x₁ = q₁b. 
 
@@ -637,9 +639,9 @@ Each piece of b has a simple formula, and recombining the pieces gives back b:
 I can't resist putting this orthonormal basis into a square matrix Q. The vector equation x₁q₁ + ... + x<sub>n</sub>q<sub>n</sub>= b is identical to Qx = b.  Its solution is x = Q⁻¹b. But since Q⁻¹ = Qᵀ -- this is where orthonormality enters -- the solution is also x = Qᵀb:
 
 ```
-			  ⎡-- q₁ᵀ --⎤⎡ ⎤   ⎡q₁ᵀb⎤
-	x = Qᵀb = ⎢         ⎥⎢b⎥ = ⎢    ⎥     (5)
-			  ⎣-- qnᵀ --⎦⎣ ⎦   ⎣qnᵀb⎦
+		  ⎡-- q₁ᵀ --⎤⎡ ⎤   ⎡q₁ᵀb⎤
+x = Qᵀb = ⎢         ⎥⎢b⎥ = ⎢    ⎥    (5)
+		  ⎣-- qnᵀ --⎦⎣ ⎦   ⎣qnᵀb⎦
 ```
 
 ***The components of x are the inner products*** **qᵢᵀb** , as in equation (4) . 
@@ -672,11 +674,11 @@ For least squares that is all we need. Now the normal equations are QᵀQx̂ = Q
 **3S** If Q has orthonormal columns, the least-squares problem becomes easy:
 
 ```
-	  Qx = b   ,	rectangular system with no solution for most b.
-	QᵀQx̂ = Qᵀb , 	normal equation for the best x̂ -- in which QᵀQ = I.
-	   x̂ = Qᵀb ,	x̂ᵢ = qᵢᵀb 
-	   p = Qx̂  ,	the projection of b is (q₁ᵀb)q₁ + ... + (qnᵀb)qn.
-	   p = QQᵀb,	the projection matrix is P = QQᵀ ( here QQᵀ ≠ I )
+  Qx = b   , rectangular system with no solution for most b.
+QᵀQx̂ = Qᵀb , normal equation for the best x̂ -- in which QᵀQ = I.
+   x̂ = Qᵀb , x̂ᵢ = qᵢᵀb 
+   p = Qx̂  , the projection of b is (q₁ᵀb)q₁ + ... + (qnᵀb)qn.
+   p = QQᵀb, the projection matrix is P = QQᵀ ( here QQᵀ ≠ I )
 ```
 
 PS. For rectangular matrics , QQᵀ ≠ I :
@@ -724,9 +726,9 @@ QQᵀ is the zero matrix on the othogonal complement ( the nullspace of Qᵀ ). 
 The overall projection matrix is :
 
 ```
-						⎡1 0 0⎤			  ⎡x⎤	⎡x⎤	
-	P = q₁q₁ᵀ + q₂q₂ᵀ = ⎢0 1 0⎥,   and   P⎢y⎥ = ⎢y⎥ 
-						⎣0 0 0⎦  		  ⎣z⎦	⎣0⎦  
+					⎡1 0 0⎤			⎡x⎤	  ⎡x⎤	
+P = q₁q₁ᵀ + q₂q₂ᵀ = ⎢0 1 0⎥,  and  P⎢y⎥ = ⎢y⎥ 
+					⎣0 0 0⎦  		⎣z⎦	  ⎣0⎦  
 ```
 
 ***Projection onto a plane = sum of projections onto orthonormal q₁ and q₂***.
@@ -742,7 +744,8 @@ Now we propose to find a way to ***make*** them orthogonal.
 The method is simple. We are given a,b,c and we want q₁,q₂,q₃. There is no problem with q₁: it can go in the direction of a. We divide by the length , so that q₁ = a/‖a‖ is a unit vector. The real problem begins with q₂ -- which has to be orthogonal to q₁. If the second vector b has any component in the direction of q₁ (or a) , ***that component has to be subtracted***:
 
 ```
-	Second Vector  	B = b - (q₁ᵀb)q₁ , and q₂ = B/‖B‖.     (9)
+Second Vector  	
+	B = b - (q₁ᵀb)q₁ , and q₂ = B/‖B‖.     (9)
 ```
 
 B is orthogonal to q₁. It is the part of b that goes in a new direction , and not in the direction of a.
@@ -752,7 +755,8 @@ B is orthogonal to q₁. It is the part of b that goes in a new direction , and 
 At this point q₁ and q₂ are set. The third orthogonal direction starts with c. It will not be in the plance of q₁ and q₂, which is the plane of a and b. However, it may have a component in that plane, and that has to be substracted. What is left is the component C we want, the part that is in a new direction perpendicular to the plane:
 
 ```
-	Third Vector 	C = c - (q₁ᵀc)q₁ - (q₂ᵀc)q₂ ,  and q₃ = C/‖C‖.	  (10)
+Third Vector 	
+  C = c - (q₁ᵀc)q₁ - (q₂ᵀc)q₂ , and q₃ = C/‖C‖.  (10)
 ```
 
 This is the one idea of the whole Gram-Schmidt process, ***to subtract from every new vector  its components in the directions that are already settled***. That idea is used over and over again. When there is a 4th vector, we subtract away its components in the direction of q₁,
@@ -761,7 +765,7 @@ q₂,q₃.
 **3T** The Gram-Schmidt process starts with independent vectors a₁, ... , a<sub>n</sub>	and end with orthogonal vectors q₁, ... , q<sub>n</sub>. At step j it substracts from aⱼ its components in the directions q₁, ... , qⱼ₋₁ that are already settled:
 
 ```
-	Aⱼ = aⱼ - (q₁ᵀaⱼ)q₁ - ... - (qⱼ₋₁ᵀaⱼ)qⱼ₋₁.		(11)
+Aⱼ = aⱼ - (q₁ᵀaⱼ)q₁ - ... - (qⱼ₋₁ᵀaⱼ)qⱼ₋₁.     (11)
 ```
 
 *Remark on the calculations*  I think it is easier to compute the orthogonal a, B, C, without forcing their lengths to equal one. Then square roots enter only at the end, when dividing by those lengths. 
