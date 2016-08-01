@@ -100,7 +100,7 @@ The important orthogonal subspaces don't come by accident, and they come two at 
 
 ***First proof***  Suppose x is a vector in the nullspace. Then Ax = 0 , and this system of *m* equations can be written out as rows of A multiplying x:
 
-```c
+```
 	 | ... row 1 ... | |x₁|   |0|
 	 | ... row 2 ... |·|x₂| = |0|
 Ax = | 				 | |  |	  | |
@@ -118,7 +118,7 @@ Ax = | 				 | |  |	  | |
 
 The other pair of orthogonal subspaces comes from Aᵀy = 0, or yᵀA = 0:
 
-```c
+```
 	  |c 	   c|
 	  |o 	   o|
 	  |l 	   l|
@@ -138,7 +138,7 @@ yᵀA = |u  ...  u| = [0 ... 0]
 
 ***Second proof***  If x is in the nullspace then Ax = 0. If v is in the row space, it is a combination of the rows: v = Aᵀz for some vector z. Now, in one line:
 
-```c
+```
 Nullspace ⊥ Row space :   
 	vᵀx = (Aᵀz)ᵀx = zᵀAx = zᵀ0 = 0.    (8)
 ```
@@ -236,7 +236,7 @@ The numerator in formula (1) is exactly the inner product of a and b. It gives t
 
 **3G** The cosine of the angle between any *nonzero vectors* a and b is :  
 
-```c
+```
 	cosθ = aᵀb / ‖a‖·‖b‖  (2)
 ```
 
@@ -252,7 +252,7 @@ The numerator in formula (1) is exactly the inner product of a and b. It gives t
  - The problem is to compute the coefficient `x̂`. 
  - All we need is the geometrical fact that ***the line from b to the closest point p = x̂a is perpendicular to the vector a***:
 
-```c
+```
 	  (b - x̂a) ⊥ a ,  
   or  aᵀ(b - x̂a) = 0 ,  
   or  x̂ = (aᵀb / aᵀa)   (4)
@@ -266,7 +266,7 @@ That gives the formula for the number x̂ and the projection p:
 
 This leads to the **Schwarz inequality** in equation (6), which is the most important inequality in mathematics.  A special case is the fact that arithmetic means ½(x + y) ≥ geometric mean  √xy . 
 
-```c
+```
 Schwarz inequality:  |aᵀb| ≤ ‖a‖·‖b‖    (6)
 ```
 
@@ -281,7 +281,7 @@ The projection of *b* onto the line through *a* lies at p = a(aᵀb/aᵀa). That
 
 P is the matrix that multiplies b and produces p:
 
-```c
+```
 	p = Pb ,  P = aaᵀ/aᵀa    (7)
 ```
 
@@ -328,13 +328,13 @@ There is a deeper significance to Aᵀ. Its close connection to inner products g
 
  - The inner product of Ax with y equals the inner product Of x with Aᵀy. Formally, this simply means:
 
-```c
+```
 	(Ax)ᵀy = xᵀAᵀy = xᵀ(Aᵀy)     (8)
 ```
 
 This definition gives us another (better) way to verify the formula (AB)ᵀ = BᵀAᵀ. Use equation (8) twice:
 
-```c
+```
 Move A then move B: 
 	(ABx)ᵀy = (Bx)ᵀ(Aᵀy) = xᵀ(BᵀAᵀy)
 ```
@@ -347,7 +347,7 @@ The transposes turn up in reverse order on the right side, just as the inverses 
 
 Up to this point, Ax = b either has a solution or not. If b is not in the column space C(A), the system is inconsistent and Gaussian elimination fails. This failure is almost certain when there are several equations and only one unknown:
 
-```c
+```
 	More equations 	2x = b₁
 	than unknowns-	3x = b₂
 	no solution?	4x = b₃
@@ -359,7 +359,7 @@ In spite of their unsolvability, inconsistent equations arise all the time in pr
 
 The most convenient "average" comes from the *sum of squares*:
 
-```c
+```
 Squared error  
 	E² = (2x-b₁)² + (3x-b₂)² + (4x-b₃)² .
 ```
@@ -367,7 +367,7 @@ Squared error
  - If there is an exact solution, the minimum error is E = 0. 
  - In the more likely case that b is not proportional to a, the graph of E² will be a parabola ( para 'beside' + bolē 'a throw' -> 抛物线). The minimum error is at the lowest point, where the derivative is zero:
 
-```c
+```
 dE²/dx = 2[(2x-b₁)2 +(3x-b₂)3 +(4x-b₃)4] = 0. 
 ```
 
@@ -432,7 +432,7 @@ Certainly if Ax = 0 then AᵀAx = 0. Vectors x in the nullspace of A are also in
 
 To go in the other direction, start by supposing that AᵀAx = 0, and take the inner product with x to show that Ax = 0:
 
-```c
+```
   xᵀAᵀAx = 0,  or ‖Ax‖² = 0 ,  or Ax = 0.
 ```
 
@@ -448,7 +448,7 @@ We show later that AᵀA is also positive definite (all pivots and eigenvalues a
 
 We have shown that the closest point to b is p = A(AᵀA)⁻¹Aᵀb. This formula expresses in matrix terms the construction of a perpendicular line from b to the column space of A. The matrix that gives p is a projection matrix, denoted by P:
 
-```c
+```
   Projection Matrix:  P = A(AᵀA)⁻¹Aᵀ    (4)
 ```
 
@@ -474,7 +474,7 @@ Conversely, any symmetric matrix with P² = P represents projection.
 
 To prove that *P* is also symmetric, take its transpose. Multiply the transposes in reverse order, and use symmetry of (AᵀA)⁻¹, to come back to P:
 
-```c
+```
 	Pᵀ = (Aᵀ)ᵀ((AᵀA)⁻¹)ᵀAᵀ 
 	   = A((AᵀA)ᵀ)⁻¹Aᵀ 
 	   = A(AᵀA)⁻¹Aᵀ = P.
@@ -482,7 +482,7 @@ To prove that *P* is also symmetric, take its transpose. Multiply the transposes
 
 For the converse, we have to deduce from P² = P and Pᵀ = P that Pb ***is the projection of b onto the column space of P***. The error vector b - Pb is orthogonal to the space. For any vector Pc in the space, the inner product is zero:
 
-```c
+```
 	// PS: (I-P)ᵀ = (I-P)
 	(b-Pb)ᵀPc = bᵀ(I-P)ᵀPc=bᵀ(P-P²)c = 0.  
 
@@ -492,7 +492,7 @@ Thus b - Pb is orthogonal to the space, and Pb is the projection onto the column
 
 Suppose A is actually invertible. If it is 4 x 4, then its four columns are independent and its column space is all of R⁴. What is the projection onto the whole space? It is the identity matrix.
 
-```c
+```
   P = A(AᵀA)⁻¹Aᵀ = AA⁻¹(Aᵀ)⁻¹Aᵀ = I.  (5)
 ```
 
@@ -506,7 +506,7 @@ To repeat: We cannot invert the separate parts Aᵀ and A when those matrices ar
 
 Suppose we do a series of experiments, and expect the output b to be a linear function of the input t. We look for a ***straight line*** b = C + Dt. 
 
-```c
+```
 	C + Dt₁ = b₁
 	C + Dt₂ = b₂
 		...
@@ -528,7 +528,7 @@ The best solution (Ĉ, D̂) is the x̂ that minimizes the squared error E².
 
 The vector p = Ax̂ is as close as possible to b. (Figure 3.9). On the graph, the errors are the ***vertical distances*** `b - C - Dt` to the straight line (not perpendicular distances!). It is the vertical distances that are squared, summed, and minimized.
 
-```c
+```
 	|1 -1| |C|	|1|
 	|1  1|·|D| =|1|.
 	|1  2|		|3|
@@ -565,7 +565,7 @@ In an orthogonal basis, every vector is perpendicular to every other vector. The
 
 **3P** The vectors q₁, ..., qn are ***orthonormal*** if 
 
-```c
+```
 	qᵢᵀqⱼ = ⎰ 0 whenever i ≠ j, giving the orthogonality; 
 			⎱ 1 whenever i = j, giving the normalization.
 ```
@@ -574,7 +574,7 @@ In an orthogonal basis, every vector is perpendicular to every other vector. The
  
 The most important example is the *standard basis*. For the x-y plane, the bestknown axes e₁ = (1, 0) and e₂ = (0, 1) are not only perpendicular but horizontal and vertical. Q is the 2 x 2 identity matrix. In n dimensions the standard basis e₁, ... , en again consists of *the columns of Q = I*:
 
-```c
+```
 				 |1|		 |0|		  	   |0|
   Standard		 |0|		 |1|		  	   |0|
    basis	e₁ = |0|,   e₂ = |0|, ... ,   en = |0|
@@ -594,7 +594,7 @@ To summarize, the three topics basic to this section are:
 
 **3Q**  If Q (square or rectangular) has orthonormal columns, then QᵀQ = I:
 
-```c
+```
 				⎡-- q₁ᵀ --⎤ ⎡|  |  | ⎤   ⎡1 0 · 0⎤  
  Orthonormal	⎢-- q₂ᵀ --⎥·⎢q₁ q₂ qn⎥ = ⎢0 1 · 0⎥ = I.		(1)
    columens 	⎢		  ⎥ ⎢|  |  | ⎥   ⎢· · · ·⎥
@@ -610,7 +610,7 @@ To summarize, the three topics basic to this section are:
 
 **3R** Multiplication by any Q preserves lengths:
 
-```c
+```
 	Lengths unchanged:  ‖Qx‖ = ‖x‖   for ever vector x.  (2)
 ```
 
@@ -620,7 +620,7 @@ It also preserves innerproducts and angles, since (Qx)ᵀ(Qy) = `xᵀQᵀQy = x�
 
 The preservation of lengths comes directly from QᵀQ = I:
 
-```c
+```
 	‖Qx‖² = ‖x‖²  because  (Qx)ᵀ(Qx) = xᵀQᵀQx = xᵀx.  (3)
 ```
 
@@ -636,7 +636,7 @@ Each piece of b has a simple formula, and recombining the pieces gives back b:
 
 I can't resist putting this orthonormal basis into a square matrix Q. The vector equation x₁q₁ + ... + x<sub>n</sub>q<sub>n</sub>= b is identical to Qx = b.  Its solution is x = Q⁻¹b. But since Q⁻¹ = Qᵀ -- this is where orthonormality enters -- the solution is also x = Qᵀb:
 
-```c
+```
 			  ⎡-- q₁ᵀ --⎤⎡ ⎤   ⎡q₁ᵀb⎤
 	x = Qᵀb = ⎢         ⎥⎢b⎥ = ⎢    ⎥     (5)
 			  ⎣-- qnᵀ --⎦⎣ ⎦   ⎣qnᵀb⎦
@@ -650,7 +650,7 @@ I can't resist putting this orthonormal basis into a square matrix Q. The vector
 
 **Remark 2**: ***The rows of a square matrix are orthonormal whenever the columns are. ***
 
-```c
+```
 		⎡1/√3   1/√2   1/√6⎤
 	Q = ⎢1/√3    0	  -2/√6⎥
 		⎣1/√3  -1/√2   1/√6⎦  
@@ -681,7 +681,7 @@ For least squares that is all we need. Now the normal equations are QᵀQx̂ = Q
 
 PS. For rectangular matrics , QQᵀ ≠ I :
 
-```c
+```
 octave:11> Q = [1 0 ; 0 1 ; 0 0 ]
 Q =
 
@@ -703,7 +703,7 @@ ans =
    0   0   0
 ```
 
-```c
+```
 	The projection matrix: P = Q(QᵀQ)⁻¹Qᵀ ,  or P = QQᵀ     (7)
 ```
 
@@ -711,7 +711,7 @@ QQᵀ is the zero matrix on the othogonal complement ( the nullspace of Qᵀ ). 
 
 **Example 3** The following case is simple but typical. Suppose we project a point b = (x,y,z) onto the x-y plane. It's projection is p = (x,y,0), and this is the sum of the separate projections on the x- and y-axes:
 
-```c
+```
 		 ⎡1⎤				  ⎡x⎤	
 	q₁ = ⎢0⎥  and  (q₁ᵀb)q₁ = ⎢0⎥; 	
 		 ⎣0⎦  				  ⎣0⎦  
@@ -723,7 +723,7 @@ QQᵀ is the zero matrix on the othogonal complement ( the nullspace of Qᵀ ). 
 
 The overall projection matrix is :
 
-```c
+```
 						⎡1 0 0⎤			  ⎡x⎤	⎡x⎤	
 	P = q₁q₁ᵀ + q₂q₂ᵀ = ⎢0 1 0⎥,   and   P⎢y⎥ = ⎢y⎥ 
 						⎣0 0 0⎦  		  ⎣z⎦	⎣0⎦  
@@ -741,7 +741,7 @@ Now we propose to find a way to ***make*** them orthogonal.
 
 The method is simple. We are given a,b,c and we want q₁,q₂,q₃. There is no problem with q₁: it can go in the direction of a. We divide by the length , so that q₁ = a/‖a‖ is a unit vector. The real problem begins with q₂ -- which has to be orthogonal to q₁. If the second vector b has any component in the direction of q₁ (or a) , ***that component has to be subtracted***:
 
-```c
+```
 	Second Vector  	B = b - (q₁ᵀb)q₁ , and q₂ = B/‖B‖.     (9)
 ```
 
@@ -751,7 +751,7 @@ B is orthogonal to q₁. It is the part of b that goes in a new direction , and 
 
 At this point q₁ and q₂ are set. The third orthogonal direction starts with c. It will not be in the plance of q₁ and q₂, which is the plane of a and b. However, it may have a component in that plane, and that has to be substracted. What is left is the component C we want, the part that is in a new direction perpendicular to the plane:
 
-```c
+```
 	Third Vector 	C = c - (q₁ᵀc)q₁ - (q₂ᵀc)q₂ ,  and q₃ = C/‖C‖.	  (10)
 ```
 
@@ -760,7 +760,7 @@ q₂,q₃.
 
 **3T** The Gram-Schmidt process starts with independent vectors a₁, ... , a<sub>n</sub>	and end with orthogonal vectors q₁, ... , q<sub>n</sub>. At step j it substracts from aⱼ its components in the directions q₁, ... , qⱼ₋₁ that are already settled:
 
-```c
+```
 	Aⱼ = aⱼ - (q₁ᵀaⱼ)q₁ - ... - (qⱼ₋₁ᵀaⱼ)qⱼ₋₁.		(11)
 ```
 
@@ -774,7 +774,7 @@ We started with a matrix A, whose columns were a, b, c. We ended with a matrix Q
 
 The idea is to write the a's as combinations of the q's. The vector b in Figure 3.10 is a combination of the orthonormal q₁ and q₂, and we know what combination it is:
 
-```c
+```
 	b = (q₁ᵀb)q₁ + (q₂ᵀb)q₂.
 ```
 
@@ -782,7 +782,7 @@ Every vector in the plane is the sum of its q₁ and q₂ components. Similarly 
 
 `c = (q₁ᵀc)q₁ + (q₂ᵀc)q₂ + (q₃ᵀc)q₃`. If we express that in matrix form we have ***the new factorization A = QR***:
 
-```c
+```
 			   ⎡     ⎤   ⎡        ⎤⎡q₁ᵀa q₁ᵀb q₁ᵀc⎤
 QR factors A = ⎢a b c⎥ = ⎢q₁ q₂ q₃⎥⎢     q₂ᵀb q₂ᵀc⎥ = QR.	(12)
 			   ⎣     ⎦   ⎣        ⎦⎣          q₃ᵀc⎦
