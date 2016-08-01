@@ -361,14 +361,14 @@ The most convenient "average" comes from the *sum of squares*:
 
 ```c
 Squared error  
-	E² = (2x - b₁)² + (3x - b₂)² + (4x - b₃)² .
+	E² = (2x-b₁)² + (3x-b₂)² + (4x-b₃)² .
 ```
 
  - If there is an exact solution, the minimum error is E = 0. 
  - In the more likely case that b is not proportional to a, the graph of E² will be a parabola ( para 'beside' + bolē 'a throw' -> 抛物线). The minimum error is at the lowest point, where the derivative is zero:
 
 ```c
-dE²/dx = 2[(2x-b₁)2 + (3x-b₂)3 + (4x-b₃)4] = 0. 
+dE²/dx = 2[(2x-b₁)2 +(3x-b₂)3 +(4x-b₃)4] = 0. 
 ```
 
 Solving for x, the least-squares solution of this model system ax = b is denoted by x̂ :  (you need some calculus)
@@ -433,7 +433,7 @@ Certainly if Ax = 0 then AᵀAx = 0. Vectors x in the nullspace of A are also in
 To go in the other direction, start by supposing that AᵀAx = 0, and take the inner product with x to show that Ax = 0:
 
 ```c
-	xᵀAᵀAx = 0,  or ‖Ax‖² = 0 ,  or Ax = 0.
+  xᵀAᵀAx = 0,  or ‖Ax‖² = 0 ,  or Ax = 0.
 ```
 
 The two nullspaces are identical. In particular, if A has independent columns (and only x = 0 is in its nullspace), then the same is true for AᵀA:
@@ -449,7 +449,7 @@ We show later that AᵀA is also positive definite (all pivots and eigenvalues a
 We have shown that the closest point to b is p = A(AᵀA)⁻¹Aᵀb. This formula expresses in matrix terms the construction of a perpendicular line from b to the column space of A. The matrix that gives p is a projection matrix, denoted by P:
 
 ```c
-	Projection Matrix:  P = A(AᵀA)⁻¹Aᵀ      (4)
+  Projection Matrix:  P = A(AᵀA)⁻¹Aᵀ    (4)
 ```
 
  - This matrix projects any vector b onto the column space of A.  
@@ -475,13 +475,17 @@ Conversely, any symmetric matrix with P² = P represents projection.
 To prove that *P* is also symmetric, take its transpose. Multiply the transposes in reverse order, and use symmetry of (AᵀA)⁻¹, to come back to P:
 
 ```c
-	Pᵀ = (Aᵀ)ᵀ((AᵀA)⁻¹)ᵀAᵀ = A((AᵀA)ᵀ)⁻¹Aᵀ = A(AᵀA)⁻¹Aᵀ = P.
+	Pᵀ = (Aᵀ)ᵀ((AᵀA)⁻¹)ᵀAᵀ 
+	   = A((AᵀA)ᵀ)⁻¹Aᵀ 
+	   = A(AᵀA)⁻¹Aᵀ = P.
 ```
 
 For the converse, we have to deduce from P² = P and Pᵀ = P that Pb ***is the projection of b onto the column space of P***. The error vector b - Pb is orthogonal to the space. For any vector Pc in the space, the inner product is zero:
 
 ```c
-	(b-Pb)ᵀPc = bᵀ(I-P)ᵀPc=bᵀ(P-P²)c = 0.  # PS: (I-P)ᵀ = (I-P)
+	// PS: (I-P)ᵀ = (I-P)
+	(b-Pb)ᵀPc = bᵀ(I-P)ᵀPc=bᵀ(P-P²)c = 0.  
+
 ```
 
 Thus b - Pb is orthogonal to the space, and Pb is the projection onto the column space.
@@ -489,7 +493,7 @@ Thus b - Pb is orthogonal to the space, and Pb is the projection onto the column
 Suppose A is actually invertible. If it is 4 x 4, then its four columns are independent and its column space is all of R⁴. What is the projection onto the whole space? It is the identity matrix.
 
 ```c
-	P = A(AᵀA)⁻¹Aᵀ = AA⁻¹(Aᵀ)⁻¹Aᵀ = I.		(5)
+  P = A(AᵀA)⁻¹Aᵀ = AA⁻¹(Aᵀ)⁻¹Aᵀ = I.  (5)
 ```
 
 The identity matrix is symmetric, I² = I, and the error b - Ib is zero.
@@ -512,10 +516,10 @@ Suppose we do a series of experiments, and expect the output b to be a linear fu
 This is an *overdetermined* system, with m equations and only two unknowns. If errors are present, it will have no solution. A has two columns, and x = (C, D) : 
 
 ```c
-	|1 t₁|		  |b₁|
-	|1 t₂| |C|  = |b₂|   , or Ax = b.   (7)
-	| .  | |D|	  |. |
-	|1 tm|		  |bm|
+|1 t₁|		  |b₁|
+|1 t₂| |C|  = |b₂|   , or Ax = b.   (7)
+| .  | |D|	  |. |
+|1 tm|		  |bm|
 ```
 
 The best solution (Ĉ, D̂) is the x̂ that minimizes the squared error E².
