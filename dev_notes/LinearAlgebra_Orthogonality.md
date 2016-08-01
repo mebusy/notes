@@ -515,8 +515,8 @@ Suppose we do a series of experiments, and expect the output b to be a linear fu
 
 This is an *overdetermined* system, with m equations and only two unknowns. If errors are present, it will have no solution. A has two columns, and x = (C, D) : 
 
-```c
-|1 t₁|		  |b₁| 
+```
+|1 t₁|        |b₁|
 |1 t₂| |C|  = |b₂|   , or Ax = b.   (7)
 | .  | |D|	  |. |
 |1 tm|		  |bm|
