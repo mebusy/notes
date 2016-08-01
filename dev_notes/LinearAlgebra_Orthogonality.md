@@ -878,7 +878,33 @@ The same idea of orthogonality applies to functions. The sines and cosines are o
 
 **Function Spaces and Fourier Series**
 
+This is a brief and optional section, but it has a number of good intentions:
 
+ 1. to introduce the most famous infinite-dimensional vector space (Hilbert space);
+ 2. to extend the ideas of length and inner product from vectors v to functions f(x);
+ 3. to recoginze the Fourier series as a sum of one-dimensional projections ( the orthogonal "columns" are the sines and cosines);
+ 4. to apply Gram-Schmidt orthogonalization to the polynomials 1, x, x², ... ; and
+ 5. to find the best approximation to f(x) by a straight line.
+
+We will try to follow this outline, which opens up a range of new-applications for linear algebra, in a systematic way.
+
+ 1. Hilbert space
+ 	- After studying Rⁿ, it is natural to think of the space R<sup>∞</sup>. The infinite series must converge to a finite sum. This leaves (1, 1/2, 1/3, ...) but not (1, 1, 1, ...).  
+ 	- Hilbert space is the natural way to let the number of dimensions become infinite, and at the same time to keep the geometry of ordinary Euclidean space. Ellipses "..." become infinite-dimensional ellipsoids, and perpendicular lines are recognized exactly as before. The vectors v and w are orthogonal when their inner product is zero: 
+ 	- `vᵀw = v₁w₁ + v₂w₂ + v₃w₃ + ... = 0`.
+ 	- This snm is guaranteed to converge, and for any two vectors it still obeys the Schwarz inequality `‖vᵀw‖ < ‖v‖‖w‖` . The cosine, even in Hilbert space, is never larger than 1.
+ 	- There is another remarkable thing about this space: It is found under a great many different disguises. Its "vectors" can turn into functions, which is the second point.
+
+ 2. Lengths and Inner Products.
+ 	- 
+
+
+
+
+TODO
+
+
+---
 
 
 
