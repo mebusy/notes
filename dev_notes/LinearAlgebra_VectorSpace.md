@@ -496,7 +496,7 @@ When elimination on A produces an echelon matrix U or a reduced R, we will find 
  1. The ***column space*** of A is denoted by C(A). Its dimension is the rank *r*.
  2. The ***nullspace*** of A is denoted by N(A). Its dimension is *n-r*.
  3. The ***row space*** of A is the column space of Aᵀ. It is C(Aᵀ), and it is spanned by the rows of A. Its dimension is also *r*.
- 4. The ***left nullspace*** of A is the nullspace of Aᵀ. It contains all vectors y such that Aᵀy = 0, and it is written N(Aᵀ). Its dimension is *m-r* ?.
+ 4. The ***left nullspace*** of A is the nullspace of Aᵀ. It contains all vectors y such that Aᵀy = 0, and it is written N(Aᵀ). Its dimension is *m-r* .
 
 If A is an m by n matrix, you can see which "host" spaces contain the four subspaces by looking at the number of components:
 
