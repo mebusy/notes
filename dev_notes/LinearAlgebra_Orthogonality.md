@@ -896,7 +896,7 @@ We will try to follow this outline, which opens up a range of new-applications f
  	- There is another remarkable thing about this space: It is found under a great many different disguises. Its "vectors" can turn into functions, which is the second point.
 
  2. Lengths and Inner Products.
- 	- Suppose f(x) = sin x on the interval 0 < x < 2𝜋.
+ 	- Suppose f(x) = sin x on the interval 0 < x < 2π.
 
 
 
