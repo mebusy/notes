@@ -856,6 +856,7 @@ A = ⎢0 0 1⎥ = ⎢  0    0    1 ⎥⎢    1/√2  √2⎥ = QR.
 
 The entries rᵢⱼ = qᵢᵀaⱼ.
 
+PS. if j>i , aⱼ is always perpendent to the previous settled qᵢ. 这点确保了 R is upper triangular.
 
 **3U** Every m x n matrix with independent columns canbe factored into A = QR. The columns of Q are orthonormal, and R is upper triangular and invertible. When m = n and all matrices are square, Q becomes an orthogonal matrix.
 
