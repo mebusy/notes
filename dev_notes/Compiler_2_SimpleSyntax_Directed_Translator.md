@@ -791,14 +791,28 @@ where α and β are sequences of terminals and nonterminals that do not start wi
 
 nonterminal A = *expr*, string α = +*term*, and string β = *term*.
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.20.png)
 
 The nonterminal A and its production are said to be *left recursive*. Repeated application of this production builds up a sequence of a's to the right of A, as in Fig. 2.20(a). When A is finally replaced by β , we have a β followed by a sequence of zero or more a's.
 
 The same effect can be achieved, as in Fig. 2.20(b), by rewriting the pro­ductions for A in the following manner, using a new nonterminal R:
 
+```
+	A → βR
+	R → αR | ε
+```
 
+Nonterminal R and its production `R → αR` are *right recursive* because this pro­duction for R has R itself as the last symbol on the right side.
 
+Right-recursive productions lead to trees that grow down towards the right, as in Fig. 2.20(b). Trees growing down to the right make it harder to translate expressions con­taining left-associative operators, such as minus. 
+
+In Section 2.5.2, however, we shall see that the proper translation of expressions into postfix notation can still be attained by a careful design of the translation scheme.
+
+In Section 4.3.3, we shall consider more general forms of left recursion and show how all left recursion can be eliminated from a grammar.
+
+---
+
+## 2.5 A Translator for Simple Expressions
 
 
 
