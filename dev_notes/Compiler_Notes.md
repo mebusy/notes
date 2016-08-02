@@ -75,18 +75,19 @@ term → 0             {print('0')}
 
 #### Top-Down Parsing
 
- - more efficient , easy 
+ - 可以较容易地手工构造出高效的语法分析器
 
 #### Bottom-up Parsing
-
- - can handle a larger class of grammars and translation schemes,
-    - software tools for generating parsers directly from grammars often use bottom-up methods.
+ 
+ - can handle a larger class of grammars and translation schemes
+   - software tools for generating parsers directly from grammars often use bottom-up methods.
 
 #### Predictive Parsing
 
  - a simple form of recursive-descent parsing
     - the lookahead symbol unambiguously determines the flow of control
- -  
+ - is a program consisting of a procedure for every nonterminal
+ - FIRST(α) 
 
 
 ---
