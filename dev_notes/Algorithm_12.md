@@ -319,6 +319,18 @@ c , n₀ 不可以依赖于 n ，所以假设不成立。
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Big-Omega.png)
 
+note:
+
+大O符号表示函数在增长到一定程度时总小于一个特定函数的常数倍
+大Ω符号则表示 总大于。
+
+设函数f ( n )代表某一算法在输入大小为n的情况下的工作量（效率），则在n趋向很大的时候，我们将f (n)与另一行为已知的函数g(n)进行比较：
+
+4）如果f(n)在数量级上小于或等于g(n)，则记为f (n)=O( g(n))。
+5）如果f(n)在数量级上大于或等于g(n)，则记为f (n)=Ω( g(n))。
+
+
+
 
 <h2 id="f7013ee4fafd97a3dfd919d868a4e46c"></h2>
 ##### Theta Notation Θ

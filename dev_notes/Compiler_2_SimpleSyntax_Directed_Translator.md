@@ -146,8 +146,7 @@ A context-free grammar has four components:
  	- The terminal are the elementary symbols of the language defined by the grammar.
  2. A set of ***nonterminals***, sometimes called "syntactic variables." 
  	- Each non­terminal represents a set of strings of terminals
- 3. A set of ***productions*** 
- 	- each *production* consists of :
+ 3. A set of ***productions*** , each *production* consists of :
  	- a nonterminal, called the *head* or *lefe side* of the production, 
  	- an arrow, 
  	- and a sequence of terminals and/or nonterminals, called the *body* or *right side* of the produc­tion. 
@@ -182,7 +181,7 @@ list → list + digit | list - digit |  digit
 
 According to our conventions, the terminals of the grammar are the symbols: `+ - 1 2 3 4 5 6 7 8 9` ,
 
-The nonterminals are the italicized names *list* and *digit*, with *list* being the start symbol because its productions are given first. 
+The nonterminals are the italicized names *list* and *digit*, with *list* being the start symbol because *its productions are given first*. 
 
 We say a production is *for* a nonterminal if the nonterminal is the head of the production. A string of terminals is a sequence of zero or more terminals. The string of zero terminals, written as `ε`, is called the *empty* string.
 
@@ -717,6 +716,37 @@ Procedure *match(t)* com­pares its argument t with the lookahead symbol and adv
 
 <h2 id="c601306090856b08c316efc502d5c4a5"></h2>
 ### 2.4.3 When to Use ε-Productions
+
+Our predictive parser uses an ε-production as a default when no other produc­ tion can be used. 
+
+With the input of Fig. 2.18, after the terminals **for** and **(** are matched, the lookahead symbol is **;** . At this point procedure *optexpr* is called, and the code in its body is executed. Nonterminal *optexpr* has two productions, with bodies **expr** and ε. The lookahead symbol ";" does not match the terminal **expr**, so the production with body **expr** cannot apply. In fact, the procedure returns without changing the lookahead symbol or doing anything else. Doing nothing corresponds to applying an ε-production.
+
+
+### 2.4.4 Designing a Predictive Parser
+
+We can generalize the technique introduced informally in Section 2.4.2 - predictive parsing. To apply to any grammar that has disjoint FIRST sets for the production bodies belonging to any nonterminal. We shall also see that when we have a translation scheme - that is, a grammar with embedded actions - it is possible to execute those actions as part of the procedures designed for the parser.
+
+Recall that a *predictive parser* is a program consisting of a procedure for every nonterminal. The procedure for nonterminal A does two things.
+
+ 1. It decides which A-production to use by examining the lookahead symbol. 
+ 	- The production with body α (where α is not ε, the empty string) is used if the lookahead symbol is in FIRST( α ). 
+ 	- If there is a conflict between two nonempty bodies for any lookahead symbol, then we cannot use this parsing method on this grammar. 
+ 	- In addition, the ε-production for A, if it exists, is used if the lookahead symbol is not in the FIRST set for any other production body for A.
+ 2. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
