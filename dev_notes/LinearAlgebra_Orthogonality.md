@@ -556,6 +556,8 @@ Note the beautiful connections between the two figures. The problem is the same 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_3O.png)
 
+---
+
 Normal equation 也可以用来拟合2次曲线. eg. 过原点的2次曲线 Ct + Dt² = y. 
 
 eg.  (1,1) , (2,5) , (-1,-2)

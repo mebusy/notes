@@ -1151,9 +1151,98 @@ The invariant assertion in this section is that when the lexical analyzer return
 
 ### 2.6.3 Constants
 
+Anytime a single digit appears in a grammar for expressions, it seems reasonable to allow an arbitrary integer constant in its place. 
+
+ - Integer constants can be allowed either by creating a terminal symbol, say "num", for such constants 
+ - or by incorporating the syntax of integer constants into the grammar. 
+
+Numbers can be treated as single units during parsing and translation.
+
+When a sequence of digits appears in the input stream, the lexical analyzer passes to the parser a token that consisting of the terminal "num" along with an integer-vaiued attribute computed from the digits. 
+
+If we write tokens as tuples enclosed between ( ), the input 31 + 28 + 59 is transformed into the sequence:
+
+```
+	<num,31> <+> <num,28> <+> <num,59>
+```
+
+Hete, the terminal symbol + has no attributes, so its tuple is simply (+). The pseudocode in Fig. 2.30 reads the digits in an integer and accumulates the value of the integer using variable *v*.
+
+```java
+if ( peek holds a digit ) { 
+	v= 0;
+	do {
+		v = v * 10 + integer value of digit peek; 
+		peek = next input character;
+	} while ( peek holds a digit ); 
+	return token <num, v>;
+}
+```
+
+Figure 2.30: Grouping digits into integers
+
+---
+
+### 2.6.4 Recognizing Keywords and Identifiers
+
+Most languages use fixed character strings such as **for**, **do**, and **if**, as punctua­tion marks or to identify constructs. Such character strings are called *keywords*.
+
+Character strings are also used as identifiers to name variables, arrays, func­tions, and the like. Grammars routinely treat identifiers as **terminals** to sim­plify the parser, which can then expect the same terminal, say **id**.
+
+For example, on input:
+
+```java
+  count = count + increment;  (2.6)
+```
+
+the tuples for the input stream 2.6 are:
+
+```java
+  <id, "count"> <=> <id, "count"> <+> <id, "increment"> <;>
+```
+
+Keywords generally satisfy the rules for forming identifiers. So a mechanism is needed for deciding when a lexeme forms a keyword and when it forms an identifier.
+
+The problem is easier to resolve if keywords are *reserved*; i.e., if they cannot be used as identifiers.  Then, a character string forms an identifier only if it is not a keyword.
+
+The lexical analyzer in this section solves two problems by using a table to hold character strings:
+
+ - Single Representation.
+ 	- A string table can insulate the rest of the compiler from the representation of strings, since the phases of the compiler can work with references or pointers to the string in the table. 
+ 	- References can also be manipulated more efficiently than the strings themselves.
+ - Reserved Words
+ 	- Reserved words can be implemented by initializing the string table with the reserved strings and their tokens. 
+ 	- When the lexical analyzer reads a string or lexeme that could form an identifier, it first checks whether the lexeme is in the string table. If so, it returns the token from the table (**keyword** or **id**); otherwise, it returns a token with terminal **id**.
+
+In Java, a string table can be implemented as a hash table using a class called Hashtable. The declaratIon:
+
+```java
+  Hashtable words = new Hashtable();
+```
+ - key: lexeme
+ - value: token
+
+We shall use it to map lexemes to tokens. The pseudocode in Fig. 2.31 uses the operation get to look up reserved words.
+
+```java
+if ( peek holds a letter ) {
+	collect letters or digits into a buffer b;
+	s = string formed from the characters in b; 
+	w = token returned by words.get(s);
+	if( w is not null ) return w;
+	else { 
+		Enter the key-value pair (s, <id, s)>) into words 
+		return token  <id, s>;
+	} 
+}
+```
+
+Figure 2.31: Distinguishing keywords from identifiers
 
 
+---
 
+### 2.6.5 A Lexical Analyzer
 
 
 
