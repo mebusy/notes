@@ -1,13 +1,14 @@
 # 目录
 
-
  - [在线数学公式生成](http://codecogs.com/latex/eqneditor.php)
- - [ngx_lua](https://github.com/mebusy/notes/blob/master/dev_notes/ngx_lua/readme.md)
- - [algorithm](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_readme.md)
+ - 
  - [Linear ALgebra](https://github.com/mebusy/notes/blob/master/dev_notes/LA_readme.md) 
+ - [algorithm](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_readme.md)
  - [Machine Learning](https://github.com/mebusy/notes/blob/master/dev_notes/ML_readme.md)
- - [Golang](https://github.com/mebusy/notes/blob/master/dev_notes/golang_readme.md)
+ - [Compiler](https://github.com/mebusy/notes/blob/master/dev_notes/Compiler_readme.md)
  - [Parallel Programming](https://github.com/mebusy/notes/blob/master/dev_notes/ParallelProgramming_readme.md)
+ - [ngx_lua](https://github.com/mebusy/notes/blob/master/dev_notes/ngx_lua/readme.md)
+ - [Golang](https://github.com/mebusy/notes/blob/master/dev_notes/golang_readme.md)
  - [Unity](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_readme.md)
  - [iOS related](https://github.com/mebusy/notes/blob/master/dev_notes/ios/ios_readme.md)
 
@@ -18,7 +19,7 @@
 
     |   |    |   | 
 --- | --- | --- | ---
-[正交点积](http://htmlpreview.github.io/?https://github.com/mebusy/notes/blob/master/md/MIG_%E6%AD%A3%E4%BA%A4%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%AD%A3%E4%BA%A4%E7%82%B9%E7%A7%AF.html) | [随机数](https://github.com/mebusy/notes/blob/master/dev_notes/Dev_Random.md) | [微积分总览](https://github.com/mebusy/notes/blob/master/dev_notes/微积分总览.md) | [线性代数摘要](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra.md) | 
+[随机数](https://github.com/mebusy/notes/blob/master/dev_notes/Dev_Random.md) | [微积分总览](https://github.com/mebusy/notes/blob/master/dev_notes/微积分总览.md) | 
 
 
 
