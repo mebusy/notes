@@ -841,8 +841,8 @@ Of course, there may be more than one left-recursive part on the right-hand side
 by
 
 ```
-	A  → β₁A' | β₂A' | ... βmA'
-	A' → α₁A' | α₂A' | ... αmA'
+	A  → β₁A' | β₂A' | ... βmA'		// 列出所有 非递归 production body
+	A' → α₁A' | α₂A' | ... αmA'		// right-recursive
 ```
 
 ---
@@ -911,19 +911,30 @@ The grouping of subexpressions by the grammar in Fig. 2.21 is similar to their g
 
 The left-recursion-elimination technique sketched in Fig. 2.20 can also be ap­plied to productions containing semantic actions. 
 
-First, the technique extends to multiple productions for A. In our example, A is *expr*, and there are two left­ recursive productions for *expr* and one is not. The technique transforms the productions A → Aα | Aβ | γ into
+ - First, the technique extends to multiple productions for A. 
+
+ In our example, A is *expr*, and there are two left­ recursive productions for *expr* and one is not. The technique transforms the productions A → Aα | Aβ | γ into
 
 ```
 	A → γR
 	γ → αR | βR | ε
 ```
 
+ - Second, we need to transform productions that have embedded actions, not just terminals and nonterminals. 
+
+Semantic actions embedded in the productions are simply carried along in the transformation, as if they were terminals.
 
 
+Example 2.13 : Consider the translation scheme of Fig. 2.15. Let :
 
+```
+	A = expr
+	α = + term { print('+') }
+	β = - term { print('-') }
+	γ = term
+```
 
-
-
+Then the left-recursion-eliminating transformation produces the translation scheme in Fig. 2.23. The expr productions in Fig. 2.21 have been transformed into the productions for expr, and a new nonterminal rest plays the role of R. The productions for term are repeated from Fig. 2.21. Figure 2.24 shows how 9-5+2 is translated using the grammar in Fig. 2.23. 0
 
 
 
