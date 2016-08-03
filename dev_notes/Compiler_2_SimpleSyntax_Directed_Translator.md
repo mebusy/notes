@@ -606,6 +606,9 @@ The translation scheme appears in Fig 2.15. The underlying grammar gen­erates e
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.14.png)
 
+![2.15][1]
+
+
  - The root of Fig 2.14 represents the first production in Fig 2.15. 
  - In a postorder traversal, we first perform all the actions in the leftmost subtree of the root, for the left operand, also labeled *expr* like the root. 
  - We then visit the leaf + at which there is no action. 
@@ -814,6 +817,11 @@ In Section 4.3.3, we shall consider more general forms of left recursion and sho
 
 ## 2.5 A Translator for Simple Expressions
 
+![2.15][1]
 
 
+
+---
+
+  [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.15.png
 
