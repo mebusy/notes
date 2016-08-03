@@ -4,21 +4,14 @@
  - [在线数学公式生成](http://codecogs.com/latex/eqneditor.php)
  - [ngx_lua](https://github.com/mebusy/notes/blob/master/dev_notes/ngx_lua/readme.md)
  - [algorithm](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_readme.md)
+ - [Linear ALgebra](https://github.com/mebusy/notes/blob/master/dev_notes/LA_readme.md) 
  - [Machine Learning](https://github.com/mebusy/notes/blob/master/dev_notes/ML_readme.md)
  - [Golang](https://github.com/mebusy/notes/blob/master/dev_notes/golang_readme.md)
  - [Parallel Programming](https://github.com/mebusy/notes/blob/master/dev_notes/ParallelProgramming_readme.md)
  - [Unity](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_readme.md)
-
  - [iOS related](https://github.com/mebusy/notes/blob/master/dev_notes/ios/ios_readme.md)
 
 ---
-
-#### Linear ALgebra
-
-    |   |    |   | 
---- | --- | --- | ---
-[preface](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra_preface.md) | [Elimination](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra_MatricesandGaussianElimination.md) | [Vector Space](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra_VectorSpace.md)  | [Orthogonality](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra_Orthogonality.md)
-[Determinants](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra_Determinants.md) | 
 
 
 #### 其它数学
