@@ -11,6 +11,7 @@
  - [Golang](https://github.com/mebusy/notes/blob/master/dev_notes/golang_readme.md)
  - [Unity](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_readme.md)
  - [iOS related](https://github.com/mebusy/notes/blob/master/dev_notes/ios/ios_readme.md)
+ 
 
 ---
 
@@ -19,7 +20,7 @@
 
     |   |    |   | 
 --- | --- | --- | ---
-[随机数](https://github.com/mebusy/notes/blob/master/dev_notes/Dev_Random.md) | [微积分总览](https://github.com/mebusy/notes/blob/master/dev_notes/微积分总览.md) | 
+[随机数](https://github.com/mebusy/notes/blob/master/dev_notes/Dev_Random.md) | [微积分总览](https://github.com/mebusy/notes/blob/master/dev_notes/微积分总览.md) | [Tricks](https://github.com/mebusy/notes/blob/master/dev_notes/Tricks.md) | 
 
 
 

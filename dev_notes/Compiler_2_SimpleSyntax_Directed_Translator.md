@@ -19,6 +19,10 @@
 		 - [2.4.1 Top-Down Parsing](#f17ccb955a076df374b5842f7e7c8a7f)
 		 - [2.4.2 Predictive Parsing](#99a9f275f59362168c3615e281bca19a)
 		 - [2.4.3 When to Use ε-Productions](#c601306090856b08c316efc502d5c4a5)
+		 - [2.4.4 Designing a Predictive Parser](#66972cfc9c080d80ea54706369483340)
+		 - [2.4.5 Left Recursion](#4a2d5ee1151a64b791b34dc425b2d95e)
+	 - [2.5 A Translator for Simple Expressions](#dc36424ed69c3a7f569433fa185a4d31)
+		 - [2.5.1 Abstract and Concrete Syntax](#fe6d9d9777fded4d7cc0bea999b3490f)
 
 ...menuend
 
@@ -740,6 +744,7 @@ Our predictive parser uses an ε-production as a default when no other produc­ 
 
 
 
+<h2 id="66972cfc9c080d80ea54706369483340"></h2>
 ### 2.4.4 Designing a Predictive Parser
 
 We can generalize predictive parser , to apply to any grammar that has disjoint FIRST sets for the production bodies belonging to any nonterminal. We shall also see that when we have a translation scheme , it is possible to execute those actions as part of the procedures designed for the parser.
@@ -768,6 +773,7 @@ An algo­rithm for this purpose is given in Section 5.4. The following limited c
 
 
 
+<h2 id="4a2d5ee1151a64b791b34dc425b2d95e"></h2>
 ### 2.4.5 Left Recursion
 
 It is possible for a ＊recursive-descent＊ parser to loop forever. A problem arises with "left-recursive" productions like:
@@ -815,6 +821,7 @@ In Section 4.3.3, we shall consider more general forms of left recursion and sho
 
 ---
 
+<h2 id="dc36424ed69c3a7f569433fa185a4d31"></h2>
 ## 2.5 A Translator for Simple Expressions
 
 We now construct a syntax­ directed translator, in the form of a working Java program, that translates arithmetic expressions into postfix form. 
@@ -839,6 +846,7 @@ By eliminating the left recursion in Fig. 2.21, we can obtain a grammar suitable
 
 ---
 
+<h2 id="fe6d9d9777fded4d7cc0bea999b3490f"></h2>
 ### 2.5.1 Abstract and Concrete Syntax
 
 A useful starting point for designing a translator is a data structure called an *abstract syntax tree*.

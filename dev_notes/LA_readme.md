@@ -1,4 +1,12 @@
+...menustart
 
+ - [Linear ALgebra](#bd8cfe5912b0bee7fd7d191afedf8995)
+
+...menuend
+
+
+
+<h2 id="bd8cfe5912b0bee7fd7d191afedf8995"></h2>
 # Linear ALgebra
 
  - [preface](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra_preface.md) 
