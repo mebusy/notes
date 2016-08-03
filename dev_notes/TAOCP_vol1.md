@@ -4,6 +4,8 @@
  - [BASIC CONCEPTS](#df75a5f0aea7cf7cc075da817b518350)
 	 - [1.1 ALGORITHMS](#ea17b4667598db12d332dcfb28af6d6f)
 		 - [Algorithm E (Euclid ’s algorithm).](#98230acef1ea79f00d054abf063049b8)
+	 - [1.2. MATHEMATICAL PRELIMINARIES](#b0a028097eeef8c671b55c21acb734aa)
+		 - [1.2.1. Mathematical Induction 数学归纳法](#c9c5e422aa21b3673c8ea74c36d80e73)
 
 ...menuend
 
@@ -43,8 +45,10 @@ E0. [Ensure m ≥ n.] if m < n , exchange m ⟷ n.
 ```
 
 
+<h2 id="b0a028097eeef8c671b55c21acb734aa"></h2>
 ## 1.2. MATHEMATICAL PRELIMINARIES
 
 1.2.10 要特别注意！！
 
+<h2 id="c9c5e422aa21b3673c8ea74c36d80e73"></h2>
 ### 1.2.1. Mathematical Induction 数学归纳法

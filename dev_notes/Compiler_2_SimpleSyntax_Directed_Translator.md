@@ -23,6 +23,10 @@
 		 - [2.4.5 Left Recursion](#4a2d5ee1151a64b791b34dc425b2d95e)
 	 - [2.5 A Translator for Simple Expressions](#dc36424ed69c3a7f569433fa185a4d31)
 		 - [2.5.1 Abstract and Concrete Syntax](#fe6d9d9777fded4d7cc0bea999b3490f)
+		 - [2.5.3 Procedures for the Nonterminals](#01d4e2ca5af7ec1b23af29a3c6c8cedb)
+		 - [2.5.4 Simplifying the Translator](#d018fd5adc4547a6ad51aa356e41b6b0)
+		 - [2.5.5 The Complete Program](#1a1ea37b9c37e0e1025a499311325dfe)
+	 - [2.6 Lexical Analysis](#1124c548716947bf1d9af7327cd25a88)
 
 ...menuend
 
@@ -922,7 +926,7 @@ The left-recursion-elimination technique sketched in Fig. 2.20 can also be ap­p
 
  - Second, we need to transform productions that have embedded actions, not just terminals and nonterminals. 
 
-Semantic actions embedded in the productions are simply carried along in the transformation, as if they were terminals.
+***Semantic actions embedded in the productions are simply carried along in the transformation, as if they were terminals***.
 
 
 Example 2.13 : Consider the translation scheme of Fig. 2.15. Let :
@@ -934,7 +938,152 @@ Example 2.13 : Consider the translation scheme of Fig. 2.15. Let :
 	γ = term
 ```
 
-Then the left-recursion-eliminating transformation produces the translation scheme in Fig. 2.23. The expr productions in Fig. 2.21 have been transformed into the productions for expr, and a new nonterminal rest plays the role of R. The productions for term are repeated from Fig. 2.21. Figure 2.24 shows how 9-5+2 is translated using the grammar in Fig. 2.23. 0
+Then the left-recursion-eliminating transformation produces the translation scheme in Fig. 2.23. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.23.png)
+
+ - The *expr* productions have been transformed into the productions for *expr*, and a new nonterminal *rest* 
+ 	- *rest* plays the role of R. 
+ - The productions for *term* do not be changed. 
+
+Figure 2.24 shows how 9-5+2 is translated.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.24.png)   
+
+Left-recursion elimination must be done carefully, to ensure that we preserve the ordering of semantic actions. 
+
+For example, the transformed scheme in Fig. 2.23 has the actions { print('+') } and { print('-') } in the middle of a production body, in each case between nonterminals *term and rest*. 
+
+If the actions were to be moved to the end, after rest, then the translations would become incorrect.
+
+<h2 id="01d4e2ca5af7ec1b23af29a3c6c8cedb"></h2>
+### 2.5.3 Procedures for the Nonterminals
+
+Functions *expr*, *rest*, and *term* in Fig. 2.25 implement the syntax-directed trans­lation scheme in Fig. 2.23. These functions mimic the production bodies of the corresponding nonterminals. 
+
+```java
+void expr() { 
+	term(); rest();
+}
+void rest() { 
+	if ( lookahead == '+') {
+  		match('+'); term(); print('+'); rest();
+	}else if ( lookahead == '-' ) {
+		match('-'); term(); print('-'); rest();
+	}
+	else { } /* ε : do nothing with the input */ 
+}
+void term() {
+	if ( lookahead is a digit ) {
+		t = lookahead; match(lookahead); print(t); 
+	} else report("syntax error");
+}
+```
+
+Figure 2.25: Pseudocode for nonterminals *expr*, *rest*, and *term*.
+
+Function *expr* implements the production `expr → term rest` by the calls term() followed by rest().
+
+Function *rest* implements the three productions for nonterminal *rest*.
+
+The 10 productions for *term* generate the 10 digits. 
+
+---
+
+<h2 id="d018fd5adc4547a6ad51aa356e41b6b0"></h2>
+### 2.5.4 Simplifying the Translator
+
+Before showing a complete program, we shall make 2 simplifying transfor­mations to the code in Fig. 2.25. 
+
+The simplications will fold procedure *rest* into procedure *expr*. When expressions with multiple levels of precedence are translated, such simplications reduce the number of procedures needed.
+
+
+ - First, certain recursive calls can be replaced by iterations. 
+ 	- When the last statement executed in a procedure body is a recursive call to the same proce­dure, the call is said to be *tail recursive*. 
+ 		- eg., in function rest, the calls of rest() with lookahead + and - .
+ 	- For a procedure without parameters, a tail-recursive call can be replaced by a jump to the beginning of the procedure. 
+ 		- The code for *rest* can be rewritten as the pseudocode of Fig. 2.26. 
+
+
+```java
+void rest() {
+	while( true ) {
+		if( lookahead == '+' ) {
+			match('+'); term(); print('+'); continue;
+		} else if ( lookahead == '-' ) {
+			match('-'); term(); print('-'); continue;
+		} 
+		break ;  // do nothing for ε
+	}
+}
+```
+
+Figure 2.26: Eliminating tail recursion in the procedure rest of Fig. 2.25.
+
+
+ - Second, once the tail-recursive calls are replaced by iterations, the only remaining call to *rest* is from within procedure *expr*. 
+ 	- The two procedures can therefore be integrated into one.
+ 	- 去掉 rest() 方法, 原来的 rest()调用， 改用 while 循环 替代
+
+> As a minor optimization, we could print before calling match to avoid the need to save the digit , in this example. 
+> In general, changing the order of actions and grammar symbols is risky, since it could change what the translation does.
+
+
+<h2 id="1a1ea37b9c37e0e1025a499311325dfe"></h2>
+### 2.5.5 The Complete Program
+
+```java
+import java.io.*; 
+
+class Parser {
+	static int lookahead;
+
+	public Parser() throws IOException { 
+		lookahead = System.in.read(); //read 1 char
+	}
+	void expr() throws IOException { 
+		term() ;
+		// rest()
+		while (true) {  
+			if( lookahead == '+' ) {
+				match('+'); term(); System.out.write('+');
+			}
+			else if( lookahead == '-' ) {
+				match('-'); term(); System.out.write('-');
+			}
+			else return;
+		}
+	}
+	void term() throws IOException {
+		if( Character.isDigit( (char)lookahead) ) {
+			System.out.write((char)lookahead) ; 
+			match(lookahead) ;
+		}
+		else throw new Error("syntax error") ;
+	}
+	void match(int t) throws IOException {
+		//read 1 char
+		if( lookahead == t ) lookahead = System.in.read(); 
+		else throw new Error("syntax error") ;
+	} 
+}
+
+public class Postfix {
+	public static void main(String[] args) throws IOException {
+		Parser parse = new Parser() ;
+		parse.expr() ; System.out.write('\n') ;
+	}
+}
+```
+
+Figure 2.27: Java program to translate in x expressions into post x form
+
+这段程序可以将 digit [+/- digit] 的字符串, 输出为 digit [digit +/-].
+
+---
+
+<h2 id="1124c548716947bf1d9af7327cd25a88"></h2>
+## 2.6 Lexical Analysis
 
 
 
@@ -943,9 +1092,7 @@ Then the left-recursion-eliminating transformation produces the translation sche
 
 
 
-
-
-
+---
 
 ---
 
