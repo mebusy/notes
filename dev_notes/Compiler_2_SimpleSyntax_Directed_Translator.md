@@ -1106,7 +1106,7 @@ Section 3.5 de­scribes a tool called *Lex* that generates a lexical analyzer fr
 
 ---
 
-2.6.1 Removal of White Space and Comments
+### 2.6.1 Removal of White Space and Comments
 
 The expression translator in Section 2.5 sees every character in the input, so extraneous characters, such as blanks, will cause it to fail. 
 
@@ -1244,7 +1244,27 @@ Figure 2.31: Distinguishing keywords from identifiers
 
 ### 2.6.5 A Lexical Analyzer
 
+The pseudocode fragments so far in this section fit together to form a function *scan* that returns token objects, as follows:
 
+```java
+Token scan() {
+	skip white space, as in Section 2.6.1;
+	handle numbers, as in Section 2.6.3;
+	handle reserved words and identifiers, as in Section 2.6.4;
+	/* if we get here, treat read-ahead character peek as a token */
+	Token t = new Token(peek);
+	peek = blank /* initialization, as discussed in Section 2.6.2 */ ; 
+	return t;
+}
+```
+
+The rest of this section implements function *scan* as part of a Java package for lexical analysis. The package, called **lexer** has classes for tokens and a class **Lexer** containing  iction **scan**.
+
+The classes for tokens and their fields are illustrated in Fig. 2.32; their methods are not shown. 
+
+ - Class **Token** has a field **tag** that is used for parsing decisions. 
+ - Subclass **Num** adds a field **value** for an integer value. 
+ - Subclass **Word** adds a field **lexeme** that is used for reserved words and identifiers.
 
 ---
 
