@@ -1095,6 +1095,62 @@ The lexical analyzer in this section allows numbers, identifiers, and "white spa
 
 Since the expression grammar of Fig. 2.21 must be extended to allow numbers and identifiers, we shall take this opportunity to allow multiplication and division as well. The extended translation scheme appears in Fig. 2.28.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.28.png)   
+
+ - The terminal **num** is assumed to have an attribute **num**.value, 
+ 	which gives the integer value corresponding to this occurrence of **num** . 
+ - Terminal **id** has a string-valued attribute written as **id**.lexeme; 
+ 	- we assume this string is the actual lexeme comprising this instance of the token id.
+
+Section 3.5 de­scribes a tool called *Lex* that generates a lexical analyzer from a specification. Symbol tables or data structures for holding information about identifiers are considered in Section 2.7.
+
+---
+
+2.6.1 Removal of White Space and Comments
+
+The expression translator in Section 2.5 sees every character in the input, so extraneous characters, such as blanks, will cause it to fail. 
+
+Most languages allow arbitrary amounts of white space to appear between tokens. Comments are likewise ignored during parsing, so they may also be treated as white space. If white space is eliminated by the lexical analyzer, the parser will never have to consider it.
+
+
+```java
+for ( ; ; peek = next input character ) {
+	if ( peek is a blank or a tab ) do nothing; 
+	else if ( peek is a newline ) line = line+1; 
+	else break;
+}
+```
+	
+Figure 2.29: Skipping white spac
+
+ - Variable peek holds the next input character. 
+ - Line numbers and context are useful within error messages to help pinpoint errors; 
+ - the code uses variable line to count newline characters in the input.
+
+
+
+### 2.6.2 Reading Ahead
+
+A lexical analyzer may need to read ahead some characters before it can decide on the token to be returned to the parser. 
+
+For example, a lexical analyzer for C or Java must read ahead after it sees the character >. 
+
+ - If the next character is =, then > is part of the character sequence >=, the lexeme for the token for the "greater than or equal to" operator. 
+ - Otherwise > itself forms the "greater than" operator, 
+ - and the lexical analyzer has read one character too many.
+
+A general approach to reading ahead on the input, is to maintain an *input buffer* ,from which the lexical analyzer can read and push back characters. 
+
+Input buffers can be justified on efficiency grounds alone, since fetching a block of characters is usually more efficient than fetching one character at a time. A pointer keeps track of the portion of the input that has been analyzed; pushing back a character is implemented by moving back the pointer. Techniques for input buffering are discussed in Section 3.2.
+
+One-character read-ahead usually suffices, so a simple solution is to use a variable, say peek, to hold the next input character. The lexical analyzer in this section reads ahead one character while it collects digits for numbers or characters for identifiers; e.g., it reads past 1 to distinguish between 1 and 10, and it reads past t to distinguish between t and true.
+
+The lexical analyzer reads ahead only when it must. An operator like * can be identified without reading ahead. In such cases, peek is set to a blank, which will be skipped when the lexical analyzer is called to find the next token. 
+
+The invariant assertion in this section is that when the lexical analyzer returns a token, variable *peek* either holds the character beyond the lexeme for the current token, or it holds a blank.
+
+### 2.6.3 Constants
+
 
 
 
