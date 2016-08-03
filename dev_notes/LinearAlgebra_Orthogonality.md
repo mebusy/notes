@@ -144,7 +144,7 @@ Nullspace ⊥ Row space :
 ```
 
 
-**DEFINITION** Given a subspace V of Rⁿ, the space of all vectors orthogonal to V is called the **orthogonal complement** of V. It is denoted by **V⊥ = "V perp."**  (⊥ 在右上角)
+**DEFINITION** Given a subspace V of Rⁿ, the space of all vectors orthogonal to V is called the **orthogonal complement** of V. It is denoted by **V<sup>⊥</sup> = "V perp."**  
 
  - the nullspace is the orthogonal complement of the row space
  	- A vector z can't be orthogonal to the nullspace but outside the row space
@@ -182,6 +182,9 @@ Figure 3.4 summarizes the fundamental theorem of linear algebra.
  	- The nullspace component goes to zero: Axn = 0.
  	- The row space component goes to the column space: `Axᵣ = Ax`.
 
+ - 事实上, 任意 vector a 都可以拆分 两部分, 一部分是在某个子空间S 上的投影， 另一部分是在 S的正交补 S<sup>⊥</sup> 上的投影
+ 	- *Ia = Pa + P<sup>⊥</sup>a*  =>  **I = P + P<sup>⊥</sup>**
+  
 Of course everything goes to the column space - the matrix cannot do anything else. I tried to make the row and column spaces the same size, with equal dimension r.
 
 **3F** From the row space to the column space. A is actually invertible. Every vector b in the column space comes from exactly one vector xᵣ , in the row space.
