@@ -1085,6 +1085,15 @@ Figure 2.27: Java program to translate in x expressions into post x form
 <h2 id="1124c548716947bf1d9af7327cd25a88"></h2>
 ## 2.6 Lexical Analysis
 
+So far, there has been no need to distinguish between the terms "token" and "terminal", since the parser ignores the attribute values that are carried by a token. In this section, a token is a terminal ***along with additional information***.
+
+A sequence of input characters that comprises a single token is called a *lexeme*.
+
+Thus, we can say that the lexical analyzer insulates (隔离) a parser from the lexeme representation of tokens.
+
+The lexical analyzer in this section allows numbers, identifiers, and "white space" (blanks, tabs, and newlines) to appear within expressions. It can be used to extend the expression translator of the previous section. 
+
+Since the expression grammar of Fig. 2.21 must be extended to allow numbers and identifiers, we shall take this opportunity to allow multiplication and division as well. The extended translation scheme appears in Fig. 2.28.
 
 
 
