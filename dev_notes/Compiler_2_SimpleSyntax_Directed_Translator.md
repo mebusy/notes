@@ -817,7 +817,38 @@ In Section 4.3.3, we shall consider more general forms of left recursion and sho
 
 ## 2.5 A Translator for Simple Expressions
 
+We now construct a syntax­ directed translator, in the form of a working Java program, that translates arithmetic expressions into postfix form. 
+
+We start with expressions consisting of digits separated by binary plus and minus signs. We extend the program in Section 2.6 to translate ex­pressions that include numbers and other operators. 
+
+It is worth studying the translation of expressions in detail, since they appear as a construct in so many languages .
+
+A syntax-directed translation scheme often serves as the specification for a translator. The scheme in Fig. 2.21 (repeated from Fig. 2.15) defines the translation to be performed here.
+
 ![2.15][1]
+
+Often, the underlying grammar of a given scheme has to be modified before it can be parsed with a predictive parser. In particular, the grammar underlying the scheme in Fig. 2.21 is left recursive, and as we saw in the last section, a predictive parser cannot handle a left-recursive grammar.
+We appear to have a conflict: 
+
+ - on the one hand we need a grammar that facilitates translation, 
+ - on the other hand we need a significantly different gram­mar that facilitates parsing. 
+
+The solution is to begin with the grammar for easy translation and carefully transform it to facilitate parsing. 
+
+By eliminating the left recursion in Fig. 2.21, we can obtain a grammar suitable for use in a predictive recursive-descent translator.
+
+---
+
+### 2.5.1 Abstract and Concrete Syntax
+
+A useful starting point for designing a translator is a data structure called an *abstract syntax tree*.
+
+In an *abstract syntax tree* for an expression, 
+
+ - each interior node represents an operator; 
+ - the children of the node represent the operands of the operator. 
+
+More generally, any programming construct can be handled by making up an operator for the construct and treating as operands, the semantically meaningful components of that construct.
 
 
 

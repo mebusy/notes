@@ -26,6 +26,11 @@
     - leaf  --  terminal or eps
         - from left to right, the leaves form the *yield* of the tree
 
+### abstract syntax tree
+
+ - interior --  an operator
+ - children of the node -- the operands of the operator
+
 ### Precedence of Operators 操作符优先级
 
  - Idea to any number n of precedence levels
