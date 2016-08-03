@@ -184,6 +184,7 @@ Figure 3.4 summarizes the fundamental theorem of linear algebra.
 
  - 事实上, 任意 vector a 都可以拆分 两部分, 一部分是在某个子空间S 上的投影， 另一部分是在 S的正交补 S<sup>⊥</sup> 上的投影
  	- *Ia = Pa + P<sup>⊥</sup>a*  =>  **I = P + P<sup>⊥</sup>**
+ 	- S<sup>⊥</sup> 其实就是 法线空间,  **I = P + P<sub>N</sub>**
   
 Of course everything goes to the column space - the matrix cannot do anything else. I tried to make the row and column spaces the same size, with equal dimension r.
 

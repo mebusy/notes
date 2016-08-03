@@ -258,7 +258,7 @@ Our goal is to read off all the solutions to Rx = 0. The pivots are crucial:
  - One group contains the ***pivot variables***, those that correspond to ***columns with pivots***.
  - The other group is made up of the ***free variables***, corresponding to ***columns without pivots***.
 
-To find the most general solution to Rx = 0 (or, equivalently, to Ax = 0) we may assign arbitrary values to the free variables. Suppose we call these values simply v and y. The pivot variables are completely determined in terms of v and y:
+To find the most general solution to Rx = 0 (or, equivalently, to Ax = 0) we may ***assign arbitrary values to the free variables***. Suppose we call these values simply v and y. The pivot variables are completely determined in terms of v and y:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_R_free_solution.png)
 
