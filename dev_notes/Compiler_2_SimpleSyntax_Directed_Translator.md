@@ -780,7 +780,7 @@ where the *leftmost symbol of the body* is the same as the head.
 
 Suppose the procedure for *expr* decides to apply this production. The body begins with *expr* so the procedure for *expr* is called recursively. Since the lookahead symbol changes only when a terminal in the body is matched, no change to the input took place between recursive calls of *expr*. As a result, the second call to expr does exactly what the first call did, which means a third call to *expr*, and so on, forever.
 
-A left-recursive production can be eliminated by rewriting the offending production. Consider a nonterminal A with two productions:
+**Solution**: A left-recursive production can be eliminated by rewriting the offending production. Consider a nonterminal A with two productions:
 
 ```
 	A → Aα | β
@@ -849,6 +849,49 @@ In an *abstract syntax tree* for an expression,
  - the children of the node represent the operands of the operator. 
 
 More generally, any programming construct can be handled by making up an operator for the construct and treating as operands, the semantically meaningful components of that construct.
+
+In the abstract syntax tree for 9-5+2 in Fig. 2.22, 
+
+ - the root represents the operator +. 
+ - The subtrees of the root represent the subexpressions 9-5 and 2. 
+ 	- The grouping of 9-5 as an operand reflects the left-to-right evaluation of operators at the same precedence level. 
+ 	- Since - and + have the same precedence, 9-5+2 is equivalent to (9-5) +2.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.22_ast_952.png)
+
+Abstract syntax trees, or simply ***syntax trees***, resemble parse trees to an extent.  However, in the syntax tree, interior nodes represent programming constructs while in the parse tree, the interior nodes represent nonterminals. 
+
+Many nonterminals of a grammar represent programming constructs, but others are "helpers" of one sort of another, such as those representing terms, factors, or other variations of expressions. 
+
+In the syntax tree, these helpers typically are not needed and are hence dropped. To emphasize the contrast, a ***parse tree*** is sometimes called a ***concrete syntax tree***, and the underlying grammar is called a ***concrete syntax*** for the language.
+
+In the syntax tree in Fig. 2.22, each interior node is associated with an operator, with no "helper" nodes for *single productions* (a production whose body consists of a single nonterminal,and nothing else) like *expr* → *term* or for ε-productions like rest → ε.
+
+It is desirable for a translation scheme to be based on a grammar whose parse trees are as close to syntax trees as possible. 
+
+The grouping of subexpressions by the grammar in Fig. 2.21 is similar to their grouping in syntax trees. For example, subexpressions of the addition operator are given by *expr* and *term* in the production body *expr* + *term*.
+
+---
+
+2.5.2 Adapting the Translation Scheme
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

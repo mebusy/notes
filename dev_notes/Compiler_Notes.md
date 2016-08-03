@@ -17,7 +17,7 @@
     - CFG itself is specified by listing their productions.
     - Parser的任务是 find a parse tree for a given string of terminals
 
-### syntax tree 
+### Concrete syntax tree 
 
  - derivation 的过程
     - root  -- start symbol
@@ -26,10 +26,14 @@
     - leaf  --  terminal or eps
         - from left to right, the leaves form the *yield* of the tree
 
-### abstract syntax tree
+ - **CST 其实就是 parse tree**。
+ - CST只是概念上的语法术，大部分编译器都使用AST。        
+
+### (abstract) syntax tree
 
  - interior --  an operator
  - children of the node -- the operands of the operator
+ - AST 是一种数据结构
 
 ### Precedence of Operators 操作符优先级
 
@@ -121,14 +125,6 @@ term → 0             {print('0')}
 
     
 
-----------
-
-Concrete syntax tree
-    CST 其实就是 parse tree。内部节点表示非终结符，叶子节点都是终结符，这些终结符构成了 可以由产生式 推导出来的 输入串。
-    CST只是概念上的语法术，大部分编译器都使用AST。
-
-Abstract syntax tree
-   AST 是一种数据结构，在表达式的AST中，每个内部节点表示一个操作符，内部节点的子节点代表操作数。
 
 
 
