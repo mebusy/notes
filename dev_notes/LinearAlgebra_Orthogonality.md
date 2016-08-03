@@ -552,10 +552,22 @@ Note the beautiful connections between the two figures. The problem is the same 
  - Figure 3.9b is in three dimensions (or m dimensions if there are m points) 
  - and Figure 3.9a is in two dimensions (or n dimensions if there are n parameters).
 
-**3Oß**  The measurements b₁, ..., bm are given at distinct points t₁ , ..., tm. Then the straight line C + Dt which minimizes E² comes from least squares:
+**3O**  The measurements b₁, ..., bm are given at distinct points t₁ , ..., tm. Then the straight line C + Dt which minimizes E² comes from least squares:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_3O.png)
- 
+
+Normal equation 也可以用来拟合2次曲线. eg. 过原点的2次曲线 Ct + Dt² = y. 
+
+eg.  (1,1) , (2,5) , (-1,-2)
+
+```
+	⎡ 1  1⎤			⎡ 1⎤
+A = ⎢ 2  4⎥ ,   b = ⎢ 5⎥
+	⎣-1  1⎦  		⎣-2⎦
+```
+
+A 第1列是 t, 第2列是 t².
+
 --- 
 
 TODO **Weighted Least Squares**
