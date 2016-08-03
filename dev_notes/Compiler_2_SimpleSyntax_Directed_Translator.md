@@ -1266,6 +1266,126 @@ The classes for tokens and their fields are illustrated in Fig. 2.32; their meth
  - Subclass **Num** adds a field **value** for an integer value. 
  - Subclass **Word** adds a field **lexeme** that is used for reserved words and identifiers.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.32.png)
+
+```java
+package lexer ; // File Token.java 
+public class Token {
+	public final int tag;
+	// constructor: new Token('+');
+	public Token(int t) { tag = t; }   
+}
+```
+
+```
+package lexer; // File Tag.java
+public class Tag {
+	public final static int
+		NUM = 256, ID = 257, TRUE = 258, FALSE = 259;  
+}
+```
+
+> ASCII characters are typically converted into integers between 0 and 255. We therefore use integers greater than 255 for terminals.
+
+In addition to the integer-valued fields NUM and ID, this class de nes two addi­tional fields, TRUE anq FALSE, for future use; they will be used to illustrate the treatment of reserved keywords.
+
+The Java code refers toTag.NUM and Tag.ID in places where the pseudocode referred to terminals **num** and **id**. The only requirement is that Tag.NUM and Tag.ID must be initialized with distinct values that differ from each other and from the constants representing single-character tokens, such as '+' or '\*' .
+
+```java
+package lexer; // File Num.java
+
+public class Num extends Token { 
+	public final int value;
+	public Num(int v) { super(Tag.NUM) ; value = v; 
+}
+```
+
+```java
+package lexer ; // File Word.java 
+
+public class Word extends Token {
+	public final String lexeme; 
+	public Word(int t, String s) {
+		super(t) ; lexeme = new String(s) ;
+	}
+}
+```
+
+Figure 2.33: Subclasses Num and Word of Token
+
+An object for the reserved word **true** can be created by executing
+
+```java
+	new Word(Tag.TRUE, "true")
+```
+
+Class **Lexer** for lexical analysis appears in Figs. 2.34 and 2.35. 
+
+```java
+package lexer ; // File Lexer.java 
+
+import java.io.*; 
+import java.util.*;
+
+public class Lexer {
+	public int line = 1;
+	private char peek =' ';
+	private Hashtable words = new Hashtable() ;
+	void reserve(Word t) {  words.put(t.lexeme, t) ;  } 
+	public Lexer() {
+		reserve( new Word(Tag.TRUE, "true") ) ; 
+		reserve( new Word(Tag.FALSE, "false") ) ;
+	}
+	public Token scan() throws IOException {
+		// skips blank, tab, and newline characters
+		for( ; ; peek = (char)System.in.read() ) {
+			if( peek == ' ' || peek == '\t' ) continue; 
+			else if( peek == '\n' ) line = line + 1; 
+			else break;
+		}
+
+		// reading a sequence of digits
+		if ( Character.isDigit (peek) ) { 
+			int v = 0;
+			do {
+				v = 10*v + Character . digit (peek , 10) ;
+				peek = (char)System.in.read();
+			} while ( Character . isDigit (peek) ) ; 
+			return new Num(v) ;
+		}
+
+		// analyze reserved words and identifiers
+		if( Character.isLetter(peek) ) { 
+			StringBuffer b = new StringBuffer () ; 
+			do {
+				b.append(peek) ;
+				peek = (char)System.in.read();
+			} while ( Character . isLetterOrDigit (peek) ) ; 
+			String s = b.toString();
+			Word w = (Word)words.get(s);
+			if( w != null ) return w;
+			w = new Word(Tag.ID, s);
+			words.put(s, w);
+			return w;
+		}
+		Token t = new Token (peek) ; 
+		peek = ' ' ;
+		return t;
+	} 
+}
+```
+
+Figure 2.35: Code for a lexical analyzer.
+
+The integer variable **line** on line 4 counts input lines, and character variable **peek** on line 5 holds the next input character.
+
+---
+
+## 2.7 Symbol Tables
+
+
+
+
 ---
 
 ---
