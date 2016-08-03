@@ -28,7 +28,7 @@
 
 
 [龙书练习答案](https://github.com/fool2fish/dragon-book-exercise-answers)
-
+[dragon-book exercise](http://dragon-book.jcf94.com/book/index.html)
 
 <h2 id="30a63c77c1af80be66640ae14eeb6ad5"></h2>
 # A Simple Syntax-Directed Translator
@@ -776,7 +776,7 @@ An algo­rithm for this purpose is given in Section 5.4. The following limited c
 <h2 id="4a2d5ee1151a64b791b34dc425b2d95e"></h2>
 ### 2.4.5 Left Recursion
 
-It is possible for a ＊recursive-descent＊ parser to loop forever. A problem arises with "left-recursive" productions like:
+It is possible for a *recursive-descent* parser to loop forever. A problem arises with "left-recursive" productions like:
 
 ```
 	expr → expr + term 
@@ -784,40 +784,66 @@ It is possible for a ＊recursive-descent＊ parser to loop forever. A problem a
 
 where the *leftmost symbol of the body* is the same as the head. 
 
-Suppose the procedure for *expr* decides to apply this production. The body begins with *expr* so the procedure for *expr* is called recursively. Since the lookahead symbol changes only when a terminal in the body is matched, no change to the input took place between recursive calls of *expr*. As a result, the second call to expr does exactly what the first call did, which means a third call to *expr*, and so on, forever.
+就是一个直接左递归的例子。 这规则的递归下降分析器(recursive descent parser)可能会像这样：
 
-**Solution**: A left-recursive production can be eliminated by rewriting the offending production. Consider a nonterminal A with two productions:
+```java
+function Expr()
+{  
+    Expr();  match('+');  Term();
+}
+```
+
+然后这个递归下降分析器在尝试去解析包含此规则的文法时，会陷入一个无穷的递归。
+
+
+A left-recursive production can be eliminated by rewriting the offending production. 
+
+For an example , consider a nonterminal A with two productions (ps. Immediate left recursion 句型):
 
 ```
 	A → Aα | β
 ```
 
-where α and β are sequences of terminals and nonterminals that do not start with A. For example, in
+where α and β are sequences of terminals and nonterminals that do not start with A. 
 
-```
-	expr → expr + term | term
-```
-
-nonterminal A = *expr*, string α = +*term*, and string β = *term*.
-
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.20.png)
+ - in `expr → expr + term | term` , nonterminal A = *expr*, string α = +*term*, and string β = *term*.
 
 The nonterminal A and its production are said to be *left recursive*. Repeated application of this production builds up a sequence of a's to the right of A, as in Fig. 2.20(a). When A is finally replaced by β , we have a β followed by a sequence of zero or more a's.
 
-The same effect can be achieved, as in Fig. 2.20(b), by rewriting the pro­ductions for A in the following manner, using a new nonterminal R:
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.20.png)
+
+The same effect can be achieved, as in Fig. 2.20(b),  ***introduce a new nonterminal R*** and rewrite the rule as :
 
 ```
 	A → βR
-	R → αR | ε
+	R → αR | ε 
 ```
 
-Nonterminal R and its production `R → αR` are *right recursive* because this pro­duction for R has R itself as the last symbol on the right side.
+ - α ≠ ε is assumed.
+
+Nonterminal R and its production `R → αR` are ***right recursive*** because this pro­duction for R has R itself as the last symbol on the right side.
 
 Right-recursive productions lead to trees that grow down towards the right, as in Fig. 2.20(b). Trees growing down to the right make it harder to translate expressions con­taining left-associative operators, such as minus. 
 
-In Section 2.5.2, however, we shall see that the proper translation of expressions into postfix notation can still be attained by a careful design of the translation scheme.
+Thus the production `E → E + T | T` can be replaced by::
 
-In Section 4.3.3, we shall consider more general forms of left recursion and show how all left recursion can be eliminated from a grammar.
+```
+	E → T E' 
+	E' → +T E' | ε	
+```
+
+Of course, there may be more than one left-recursive part on the right-hand side. The general rule is to replace:
+
+```
+	A → Aα₁ | Aα₂ | ... Aαm |  β₁ | β₂ | ... βm 
+```
+
+by
+
+```
+	A  → β₁A' | β₂A' | ... βmA'
+	A' → α₁A' | α₂A' | ... αmA'
+```
 
 ---
 
@@ -883,7 +909,14 @@ The grouping of subexpressions by the grammar in Fig. 2.21 is similar to their g
 
 2.5.2 Adapting the Translation Scheme
 
+The left-recursion-elimination technique sketched in Fig. 2.20 can also be ap­plied to productions containing semantic actions. 
 
+First, the technique extends to multiple productions for A. In our example, A is *expr*, and there are two left­ recursive productions for *expr* and one is not. The technique transforms the productions A → Aα | Aβ | γ into
+
+```
+	A → γR
+	γ → αR | βR | ε
+```
 
 
 
