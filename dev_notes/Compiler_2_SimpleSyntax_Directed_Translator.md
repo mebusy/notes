@@ -1591,9 +1591,19 @@ For example, the semantically meaningful components of a C while-statement
 
 are the expression *expr* and the statement *stmt*. The syntax-tree node for such a while-statement has an operator, which we call **while**, and two children -- the syntax trees for the *expr* and the *stmt*.
 
-The translation scheme in Fig. 2.39 constructs syntax trees for a repre­sentative, but very limited, language of expressions and statements. All the nonterminals in the translation scheme have an attribute *n*, which is a node of the syntax tree. Nodes are implemented as objects of class *Node*.
+The translation scheme in Fig. 2.39 constructs syntax trees for a repre­sentative language of expressions and statements. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.39.png)
 
+All the nonterminals in the translation scheme have an attribute *n*, which is a node of the syntax tree. Nodes are implemented as objects of class *Node*.
+
+Class *Node* has two immediate subclasses: *Expr* for all kinds of expressions, and *Stmt* for all kinds of statements. 
+
+Each type of statement has a corresponding subclass of *Stmt*;  for example , for while statement, operator **while** corresponds to subclass *while*. A syntax-tree node for operator **while** with children x and y is created by the pseudocode 
+
+```
+	new While(x,y)
+```
 
 
 
