@@ -1509,8 +1509,17 @@ Since the translation of an expression *E₁* **op** *E₂* , for a typical oper
 
 Example 2.17 : The translation scheme in Fig. 2.38 illustrates how class Env can be used. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.38.png)
 
 Figure 2.38: The use of symbol tables for translating a language with blocks
+
+The translation scheme concentrates on scopes, declarations, and uses. It implements the translation described in Example 2.14. As noted earlier, on input 
+
+`{ int x; char y; { bool y; x; y; } x; y; }` , 
+
+the transltion scheme strips the declarations and produces  
+
+`{ { x:int; y:bool; } x:int; y:char; }`.
 
 
 ---
