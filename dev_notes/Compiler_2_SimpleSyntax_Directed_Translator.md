@@ -1605,9 +1605,50 @@ Each type of statement has a corresponding subclass of *Stmt*;  for example , fo
 	new While(x,y)
 ```
 
+When we study the detailed code in Appendix A, we shall see how methods are placed where they belong in this hierarchy of classes. In this section, we shall discuss only a few of the methods, informally.
 
+We shall consider each of the productions and rules of Fig. 2.39, in turn. 
+
+First, the productions defining different types of statements are explained, fol­lowed by the productions that define our limited types of expressions.
 
 ---
+
+### Syntax Trees for Statements
+
+For each statement construct, we define an operator in the abstract syntax.	
+
+> 每个语句定义一个 operator
+
+For constructs that begin with a keyword, we shall use the keyword for the operator. 
+
+> keyword 开头的语句，这个 keyword 就作为 operator 
+
+Thus, there is an operator **while** for while-statements and an operator **do** for do-while statements. Conditionals can be handled by defining two operators **ifelse** and **if** for if-statements with and without an else part,respectively. 
+
+In our simple example language, we do not use **else**, and so have only an if-statement. Adding **else** presents some parsing issues, which we discuss in Section 4.8.2.
+
+Each statement operator has a corresponding class of the *same name*, with a capital first letter; e.g., class *If* corresponds to **if**. In addition, we define the subclass *Seq*, which represents a sequence of statements. This subclass corresponds to the nonterminal *stmts* of the grammar. Each of these classes are subclasses of *Stmt*, which is a subclass of Node.
+
+A typical rule in Fig.2.39 is the one for if-statements:
+
+```
+  stmt → if (expr) stmt₁ { stmt.n = new If(expr.n, stmt₁.n); }
+```
+
+ - The meaningful components of the if-statement are *expr* and *stmt₁* .
+ - The se­mantic action defines the node *stmt.n* as a new object of subclass *If* . 
+
+Expression statements do not begin with a keyword, so we define a new op­erator **eval** and class *Eval*, which is a subclass of *Stmt*, to represent expressions that are statements. The relevant rule is:
+
+```
+  stmt → expr ; { stmt.n = new Eval(expr.n); }
+```
+---
+
+**Representing Blocks in Syntax Trees**
+
+
+
 
 ---
 
