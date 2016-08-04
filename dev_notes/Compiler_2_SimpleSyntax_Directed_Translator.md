@@ -1324,7 +1324,6 @@ Class **Lexer** for lexical analysis appears in Figs. 2.34 and 2.35.
 ```java
 package lexer ; // File Lexer.java 
 
-
 import java.io.*; 
 import java.util.*;
 
@@ -1366,7 +1365,9 @@ public class Lexer {
             } while ( Character . isLetterOrDigit (peek) ) ; 
             String s = b.toString();
             Word w = (Word)words.get(s);
+            // token exists
             if( w != null ) return w;
+            // insert new token
             w = new Word(Tag.ID, s);
             words.put(s, w);
             return w;
@@ -1394,6 +1395,48 @@ The integer variable **line** on line 4 counts input lines, and character variab
 ---
 
 ## 2.7 Symbol Tables
+
+*Symbol tables* are data structures that are used by compilers to hold information about source-program constructs. 
+
+The information is collected incrementally by the analysis phases of a compiler and used by the synthesis phases to generate the target code. 
+
+Entries in the symbol table contain information about an identifier such as its character string (or lexeme) , its type, its position in storage, and any other relevant information. 
+
+Symbol tables typically need to support multiple declarations of the same identifier within a program.
+
+
+From Section 1.6.1, the scope of a declaration is the portion of a program to which the declaration applies. We shall *implement scopes by setting up a separate symbol table for each scope*. 
+
+A program block with declarations will have its own symbol table , with an entry for each declaration in the block. This approach also works for other constructs that set up scopes; for example, a class would have its own table, with an entry for each field and method.
+
+
+A program consists of blocks with optional declara­tions and "statements" consisting of single identifiers. Each such statement represents a use of the identifier. Here is a sample program in this language:
+
+```
+  { int x; char y; { bool y; x; y; } x; y; } (2.7)
+```
+
+The task we shall perform is to print a revised program, in which the decla­rations have been removed and each "statement" has its identifier followed by a colon and its type.
+
+Example 2.14: On the above input (2.7), the goal is to produce:
+
+```java
+  { { x:int; y:bool; } x:int; y:char; }
+```
+
+---
+
+2.7.1 Symbol Table Per Scope
+
+> **Optimization of Symbol Tables for Blocks**
+
+> Implementations of symbol tables for blocks can take advantage of the most-closely nested rule. Nesting ensures that the chain of applicable symbol tables forms a stack. At the top of the stack is the table for the current block. Below it in the stack are the tables for the enclosing blocks: Thus, symbol tables can be allocated and deallocated in a stack­ like fashion.
+
+> Some compilers maintain a single hash table of accessible entries; that is, of entries that are not hidden by a declaration in a nested block. Such a hash table supports essentially constant-time lookups, at the expense of inserting and deleting entries on block entry and exit. Upon exit from a block B, the compiler must undo any changes to the hash table due to declarations in block B. It can do so by using an auxiliary stack to keep track of changes to the hash table while block B is processed.
+
+The *most-closely nested* rule for blocks is that an identifier *x* is in the scope of the most-closely nested declaration of x.
+
+The most-closely nested rule for blocks can be implemented by *chaining symbol tables*. That is, the table for a nested block points to the table for its enclosing block.
 
 
 
