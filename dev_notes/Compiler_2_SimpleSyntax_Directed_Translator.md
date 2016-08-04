@@ -1438,7 +1438,79 @@ The *most-closely nested* rule for blocks is that an identifier *x* is in the sc
 
 The most-closely nested rule for blocks can be implemented by *chaining symbol tables*. That is, the table for a nested block points to the table for its enclosing block.
 
+Example 2.15 :
 
+```
+1)	{ 	int x₁; int y₁ ; 
+2)		{   int w₂, bool y₂; int z₂;
+3)			...w₂... ; ...x₁... ; ...
+4)		}
+5)		...w₀...;  ... x₁...; ...y₁...;
+6)	}
+```
+
+The subscript is not part of an identifier; it is in fact the line number of the declaration that applies to the identifier. 
+
+
+Example 2.16  symbol tables for the pseudocode in Exam­ple 2.15:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F.2.36.png)
+
+ - B₁ is for the block starting on line 1 
+ - B₂ is for the block starting at line 2. 
+ - At the top of the figure is an additional symbol table B₀ for any global or default declarations provided by the language. 
+ - During the time that we are analyzing lines 2 through 4, the environment is represented by a reference to the lowest symbol table - the one for B₂
+ 	- When we move to line 5, the symbol table for B₂ becomes inaccessible, and the environment refers instead to the symbol table for B₁ , from which we can reach the global symbol table, but not the table for B₂ •
+
+Fig. 2.37 is a java implementation of chained symbol tables , class Symbol is not implemented yet .
+
+```java
+package symbols;
+
+import java.util.*;
+
+public class Env {
+	private Hashtable table; 
+	protected Env prev;
+	
+	// Create a new symbol table.
+	public Env (Env p) {
+		table = new Hashtable() ; prev = p;
+	}
+
+	// Put a new entry in current symbol table.
+	public void put ( String s , Symbol sym) {
+		table.put(s, sym);
+	}
+
+	// Get an entry for an identifier 
+	// by searching the chain of tables
+	// start with the table for the current block
+	public Symbol get(String s) { 
+		for( Env e=this; e !=null; e=e.prev) {
+			Symbol found = (Symbol)(e.table.get(s));
+			if( found != null ) return found;
+		}
+		return null;
+	}
+}
+```
+
+> "Environment" is another term for the collection of symbol tables that are relevant at a point in the program.
+
+### 2.7.2 The Use of Symbol Tables
+
+In effect, the role of a symbol table is to pass information from declarations to uses. 
+
+ - A semantic action "puts" information about identifier *x* into the symbol table, when the declaration of *x* is analyzed. 
+ - Subsequently, a semantic action associated with a production such as *factor* → **id** "gets" information about the identifier from the symbol table. 
+
+Since the translation of an expression *E₁* **op** *E₂* , for a typical operator **op**, depends only on the translations of *E₁* and *E₂* , and does not directly depend on the symbol table, we can add any number of operators without changing the *basic flow of information from declarations to uses*, through the symbol table.
+
+Example 2.17 : The translation scheme in Fig. 2.38 illustrates how class Env can be used. 
+
+
+Figure 2.38: The use of symbol tables for translating a language with blocks
 
 
 ---
