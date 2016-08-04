@@ -1296,7 +1296,7 @@ package lexer; // File Num.java
 
 public class Num extends Token { 
 	public final int value;
-	public Num(int v) { super(Tag.NUM) ; value = v; 
+	public Num(int v) { super(Tag.NUM) ; value = v; }
 }
 ```
 
@@ -1324,54 +1324,66 @@ Class **Lexer** for lexical analysis appears in Figs. 2.34 and 2.35.
 ```java
 package lexer ; // File Lexer.java 
 
+
 import java.io.*; 
 import java.util.*;
 
 public class Lexer {
-	public int line = 1;
-	private char peek =' ';
-	private Hashtable words = new Hashtable() ;
-	void reserve(Word t) {  words.put(t.lexeme, t) ;  } 
-	public Lexer() {
-		reserve( new Word(Tag.TRUE, "true") ) ; 
-		reserve( new Word(Tag.FALSE, "false") ) ;
+    public int line = 1;
+    private char peek =' ';
+    private Hashtable words = new Hashtable() ;
+    // reserve is to add reserve keyword
+    void reserve(Word t) {  words.put(t.lexeme, t) ;  } 
+    public Lexer() {
+        reserve( new Word(Tag.TRUE, "true") ) ; 
+        reserve( new Word(Tag.FALSE, "false") ) ;
+    }
+    public Token scan() throws IOException {
+        // skips blank, tab, and newline characters
+        for( ; ; peek = (char)System.in.read() ) {
+            if( peek == ' ' || peek == '\t' ) continue; 
+            else if( peek == '\n' ) line = line + 1; 
+            else break;
+        }
+
+        // reading a sequence of digits
+        if ( Character.isDigit (peek) ) { 
+            int v = 0;
+            do {
+                v = 10*v + Character . digit (peek , 10) ;
+                peek = (char)System.in.read();
+            } while ( Character . isDigit (peek) ) ; 
+            return new Num(v) ;
+        }
+
+        // analyze reserved words and identifiers
+        if( Character.isLetter(peek) ) { 
+            StringBuffer b = new StringBuffer () ; 
+            do {
+                b.append(peek) ;
+                // read ahead
+                peek = (char)System.in.read();
+            } while ( Character . isLetterOrDigit (peek) ) ; 
+            String s = b.toString();
+            Word w = (Word)words.get(s);
+            if( w != null ) return w;
+            w = new Word(Tag.ID, s);
+            words.put(s, w);
+            return w;
+        }
+        Token t = new Token (peek) ; 
+        peek = ' ' ;
+        
+        return t;
+    } 
+    
+	public static void main(String[] args) throws IOException {
+		Lexer lex = new Lexer() ;
+		while(true) {
+			Token token = lex.scan() ;
+			System.out.println( "token:" +  token.toString() + " tag: " + token.tag );
+		}
 	}
-	public Token scan() throws IOException {
-		// skips blank, tab, and newline characters
-		for( ; ; peek = (char)System.in.read() ) {
-			if( peek == ' ' || peek == '\t' ) continue; 
-			else if( peek == '\n' ) line = line + 1; 
-			else break;
-		}
-
-		// reading a sequence of digits
-		if ( Character.isDigit (peek) ) { 
-			int v = 0;
-			do {
-				v = 10*v + Character . digit (peek , 10) ;
-				peek = (char)System.in.read();
-			} while ( Character . isDigit (peek) ) ; 
-			return new Num(v) ;
-		}
-
-		// analyze reserved words and identifiers
-		if( Character.isLetter(peek) ) { 
-			StringBuffer b = new StringBuffer () ; 
-			do {
-				b.append(peek) ;
-				peek = (char)System.in.read();
-			} while ( Character . isLetterOrDigit (peek) ) ; 
-			String s = b.toString();
-			Word w = (Word)words.get(s);
-			if( w != null ) return w;
-			w = new Word(Tag.ID, s);
-			words.put(s, w);
-			return w;
-		}
-		Token t = new Token (peek) ; 
-		peek = ' ' ;
-		return t;
-	} 
 }
 ```
 
