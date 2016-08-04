@@ -23,10 +23,21 @@
 		 - [2.4.5 Left Recursion](#4a2d5ee1151a64b791b34dc425b2d95e)
 	 - [2.5 A Translator for Simple Expressions](#dc36424ed69c3a7f569433fa185a4d31)
 		 - [2.5.1 Abstract and Concrete Syntax](#fe6d9d9777fded4d7cc0bea999b3490f)
+		 - [2.5.2 Adapting the Translation Scheme](#af23deae5c2b14d5574f5833d7540a17)
 		 - [2.5.3 Procedures for the Nonterminals](#01d4e2ca5af7ec1b23af29a3c6c8cedb)
 		 - [2.5.4 Simplifying the Translator](#d018fd5adc4547a6ad51aa356e41b6b0)
 		 - [2.5.5 The Complete Program](#1a1ea37b9c37e0e1025a499311325dfe)
 	 - [2.6 Lexical Analysis](#1124c548716947bf1d9af7327cd25a88)
+		 - [2.6.1 Removal of White Space and Comments](#4ffe382825aa482e44d922e6011d438e)
+		 - [2.6.2 Reading Ahead](#8e6167f7cfe35d955af94e9fd07a69c8)
+		 - [2.6.3 Constants](#eae3ef9a16e0a5126020316b892f2f8b)
+		 - [2.6.4 Recognizing Keywords and Identifiers](#1e169be343415b0e2313599ace15555c)
+		 - [2.6.5 A Lexical Analyzer](#bac8700bcbb6552788ffed034f760ceb)
+	 - [2.7 Symbol Tables](#434f55fe88fd25c8152d796e3570a9f3)
+		 - [2.7.1 Symbol Table Per Scope](#0b968b1c0e10984c774f810fa51a6f63)
+		 - [2.7.2 The Use of Symbol Tables](#fbc602841eaa84d8266b8cd68a9b0eca)
+	 - [2.8 Intermediate Code Generation](#34e5a4a6d3a58ed77921d67b06e25cb5)
+		 - [2.8.1 Two Kinds of Intermediate Representations](#66c733687afcb7c5eb00b1d5d1579e9b)
 
 ...menuend
 
@@ -911,7 +922,8 @@ The grouping of subexpressions by the grammar in Fig. 2.21 is similar to their g
 
 ---
 
-2.5.2 Adapting the Translation Scheme
+<h2 id="af23deae5c2b14d5574f5833d7540a17"></h2>
+### 2.5.2 Adapting the Translation Scheme
 
 The left-recursion-elimination technique sketched in Fig. 2.20 can also be ap­plied to productions containing semantic actions. 
 
@@ -1106,6 +1118,7 @@ Section 3.5 de­scribes a tool called *Lex* that generates a lexical analyzer fr
 
 ---
 
+<h2 id="4ffe382825aa482e44d922e6011d438e"></h2>
 ### 2.6.1 Removal of White Space and Comments
 
 The expression translator in Section 2.5 sees every character in the input, so extraneous characters, such as blanks, will cause it to fail. 
@@ -1129,6 +1142,7 @@ Figure 2.29: Skipping white spac
 
 
 
+<h2 id="8e6167f7cfe35d955af94e9fd07a69c8"></h2>
 ### 2.6.2 Reading Ahead
 
 A lexical analyzer may need to read ahead some characters before it can decide on the token to be returned to the parser. 
@@ -1149,6 +1163,7 @@ The lexical analyzer reads ahead only when it must. An operator like * can be id
 
 The invariant assertion in this section is that when the lexical analyzer returns a token, variable *peek* either holds the character beyond the lexeme for the current token, or it holds a blank.
 
+<h2 id="eae3ef9a16e0a5126020316b892f2f8b"></h2>
 ### 2.6.3 Constants
 
 Anytime a single digit appears in a grammar for expressions, it seems reasonable to allow an arbitrary integer constant in its place. 
@@ -1183,6 +1198,7 @@ Figure 2.30: Grouping digits into integers
 
 ---
 
+<h2 id="1e169be343415b0e2313599ace15555c"></h2>
 ### 2.6.4 Recognizing Keywords and Identifiers
 
 Most languages use fixed character strings such as **for**, **do**, and **if**, as punctua­tion marks or to identify constructs. Such character strings are called *keywords*.
@@ -1242,6 +1258,7 @@ Figure 2.31: Distinguishing keywords from identifiers
 
 ---
 
+<h2 id="bac8700bcbb6552788ffed034f760ceb"></h2>
 ### 2.6.5 A Lexical Analyzer
 
 The pseudocode fragments so far in this section fit together to form a function *scan* that returns token objects, as follows:
@@ -1394,6 +1411,7 @@ The integer variable **line** on line 4 counts input lines, and character variab
 
 ---
 
+<h2 id="434f55fe88fd25c8152d796e3570a9f3"></h2>
 ## 2.7 Symbol Tables
 
 *Symbol tables* are data structures that are used by compilers to hold information about source-program constructs. 
@@ -1426,7 +1444,8 @@ Example 2.14: On the above input (2.7), the goal is to produce:
 
 ---
 
-2.7.1 Symbol Table Per Scope
+<h2 id="0b968b1c0e10984c774f810fa51a6f63"></h2>
+### 2.7.1 Symbol Table Per Scope
 
 > **Optimization of Symbol Tables for Blocks**
 
@@ -1498,6 +1517,7 @@ public class Env {
 
 > "Environment" is another term for the collection of symbol tables that are relevant at a point in the program.
 
+<h2 id="fbc602841eaa84d8266b8cd68a9b0eca"></h2>
 ### 2.7.2 The Use of Symbol Tables
 
 In effect, the role of a symbol table is to pass information from declarations to uses. 
@@ -1524,7 +1544,40 @@ the transltion scheme strips the declarations and produces
 
 ---
 
+<h2 id="34e5a4a6d3a58ed77921d67b06e25cb5"></h2>
 ## 2.8 Intermediate Code Generation
+
+The front end of a compiler constructs an intermediate representation of the source program from which the back end generates the target program. 
+
+<h2 id="66c733687afcb7c5eb00b1d5d1579e9b"></h2>
+### 2.8.1 Two Kinds of Intermediate Representations
+
+ - Trees, including parse trees and (abstract) syntax trees.
+ - Linear representations, especially "three-address code."
+
+As analysis proceeds, information is added to the nodes in the form of *attributes associated with the nodes*. The choice of attributes depends on the translation to be performed.
+
+Three-address code is a sequence of elementary program steps, such as the addition of two values. Unlike the tree, there is no hierarchical structure. We need this representation if we are to do any significant optimization of code.    In that case, we break the long sequence of three-address statements into "basic blocks", which are sequences of statements that are always executed one-after-the-other, with no branching.
+
+In addition to creating an intermediate representation, a compiler front end checks that the source program follows the syntactic and semantic rules of the source language. This checking is called *static checking*; in general "static" means "done by the compiler." Static checking assures that certain kinds of programming errors, including type mismatches, are detected and reported during compilation.
+
+It is possible that a compiler will construct a syntax tree at the same time it emits steps of three-address code. 
+
+ - it is common for compilers to emit the three-address code while the parser "goes through the motions" of constructing a syntax tree, 
+ - without actually constructing the complete tree data structure. 
+ - Rather, the compiler stores nodes and their attributes needed for semantic checking or other purposes, along with the data structure used for parsing. 
+ - By so doing, those parts of the syntax tree that are needed to construct the three-address code are available when needed, but disappear when no longer needed. We take up the details of this process in Chapter 5.
+
+---
+
+### 2.8.2 Construction of Syntax Trees
+
+We shall first give a translation scheme that constructs syntax trees, and later, in section 2.8.4, show how the scheme can be modified to emit three-address code, along with, or instead of, the syntax tree.
+
+
+
+
+
 
 
 ---
