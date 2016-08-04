@@ -1574,7 +1574,24 @@ It is possible that a compiler will construct a syntax tree at the same time it 
 
 We shall first give a translation scheme that constructs syntax trees, and later, in section 2.8.4, show how the scheme can be modified to emit three-address code, along with, or instead of, the syntax tree.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_E1_op_E2.png)
 
+This syntax tree represents an expression formed by applying the operator **op** to the subexpres­sions represented by E₁ and E₂.
+
+ - Syntax trees can be created for any construct, not just expressions. 
+ - Each construct is represented by a node, with children for the semantically meaningful components of the construct. 
+
+For example, the semantically meaningful components of a C while-statement
+
+```c
+	while ( expr ) stmt
+```
+
+> The right parenthesis serves only to separate the expression from the statement. The left parenthesis actually has no meaning; it is there only to please the eye, since without it, C would allow unbalanced parentheses.
+
+are the expression *expr* and the statement *stmt*. The syntax-tree node for such a while-statement has an operator, which we call **while**, and two children -- the syntax trees for the *expr* and the *stmt*.
+
+The translation scheme in Fig. 2.39 constructs syntax trees for a repre­sentative, but very limited, language of expressions and statements. All the nonterminals in the translation scheme have an attribute *n*, which is a node of the syntax tree. Nodes are implemented as objects of class *Node*.
 
 
 
