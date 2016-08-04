@@ -1524,6 +1524,11 @@ the transltion scheme strips the declarations and produces
 
 ---
 
+## 2.8 Intermediate Code Generation
+
+
+---
+
 ---
 
   [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.15.png
