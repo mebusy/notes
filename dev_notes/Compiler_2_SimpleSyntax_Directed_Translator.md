@@ -38,6 +38,10 @@
 		 - [2.7.2 The Use of Symbol Tables](#fbc602841eaa84d8266b8cd68a9b0eca)
 	 - [2.8 Intermediate Code Generation](#34e5a4a6d3a58ed77921d67b06e25cb5)
 		 - [2.8.1 Two Kinds of Intermediate Representations](#66c733687afcb7c5eb00b1d5d1579e9b)
+		 - [2.8.2 Construction of Syntax Trees](#ae16ee3868feeaebf52a44b7030a9257)
+			 - [Syntax Trees for Statements](#a575ff09f5b0e915ba023178f4e8156b)
+			 - [Representing Blocks in Syntax Trees](#0e2d70ac0a5f7fe503cc3c18910291f3)
+			 - [Syntax  ees for Expressions](#255fe8c064c07ee497427684a87f269a)
 
 ...menuend
 
@@ -1570,6 +1574,7 @@ It is possible that a compiler will construct a syntax tree at the same time it 
 
 ---
 
+<h2 id="ae16ee3868feeaebf52a44b7030a9257"></h2>
 ### 2.8.2 Construction of Syntax Trees
 
 We shall first give a translation scheme that constructs syntax trees, and later, in section 2.8.4, show how the scheme can be modified to emit three-address code, along with, or instead of, the syntax tree.
@@ -1613,7 +1618,8 @@ First, the productions defining different types of statements are explained, fol
 
 ---
 
-### Syntax Trees for Statements
+<h2 id="a575ff09f5b0e915ba023178f4e8156b"></h2>
+#### Syntax Trees for Statements
 
 For each statement construct, we define an operator in the abstract syntax.	
 
@@ -1645,7 +1651,8 @@ Expression statements do not begin with a keyword, so we define a new op­erator
 ```
 ---
 
-**Representing Blocks in Syntax Trees**
+<h2 id="0e2d70ac0a5f7fe503cc3c18910291f3"></h2>
+#### Representing Blocks in Syntax Trees
 
 The remaining statement construct in Fig. 2.39 is the block, consisting of a sequence of statements. Consider the rules:
 
@@ -1676,10 +1683,40 @@ as in
 
 Example 2.18 : In FIg. 2.40 we see part of a syntax tree representing a block or statement list. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.40.png)
+
+There are two statements in the list, the first an if-statement and the second a while-statement. 
+
+<h2 id="255fe8c064c07ee497427684a87f269a"></h2>
+#### Syntax  ees for Expressions 
+
+Previously, we handled the higher precedence of * over + by using three non­terminals *expr*, *term*, and *factor*. The number of nonterminals is precisely one plus the number of levels of precedence in expressions. In Fig. 2.39, we have two comparison bperators, < and <= at one precedence level, as well as the usual + and * operators, so we have added one additional nonterminal, called *add*.
+
+Abstract syntax allows us to group "similar" operators to reduce the number of cases and subclasses of nodes in an implementation of expressions. 
+
+> group 表达式
+
+In this chapter, we take "similar" to mean that the type-checking and code-generation rules for the operators are similar. 
+
+For example, typically the operators + and * can be grouped, since they can be handled in the same way -- their requirements regarding the types of operands are the same, and they each result in a single three-address instruction that applies one operator to two values. 
+
+In general, the grouping of operators in the abstract syntax is based on the needs of the later phases of the compiler. The table in Fig. 2.41 specifies the correspondence between the concrete and abstract syntax for several of the operators of Java.
 
 
-There are two statements in the list, the  rst an if-statement and the second a while-statement. We do not show the portion of the tree above this statement list, and we show only as a triangle each of the necessary
-subtrees: two expression trees for the conditions of the if- and while-statements
+CONCRETE SYNTAX | ABSTRACT SYNTAX
+--- | ---
+ = 		| assign
+ \|\| 	| cond
+ && 	| cond
+ == !=	| rel
+ < <= >= > 	| rel
+ + - 	| op
+ * / %	| op
+ !		| not
+ -<sub>unary</sub> 一元	| minus
+ []		| access
+
+Figure 2.41: Concrete and abstract syntax for several Java operators
 
 
 
