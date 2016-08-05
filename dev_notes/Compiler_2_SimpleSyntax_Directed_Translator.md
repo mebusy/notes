@@ -1691,7 +1691,7 @@ Example 2.18 : In FIg. 2.40 we see part of a syntax tree representing a block or
 There are two statements in the list, the first an if-statement and the second a while-statement. 
 
 <h2 id="255fe8c064c07ee497427684a87f269a"></h2>
-#### Syntax  ees for Expressions 
+#### Syntax  Trees for Expressions 
 
 Previously, we handled the higher precedence of * over + by using three non­terminals *expr*, *term*, and *factor*. The number of nonterminals is precisely one plus the number of levels of precedence in expressions. In Fig. 2.39, we have two comparison bperators, < and <= at one precedence level, as well as the usual + and * operators, so we have added one additional nonterminal, called *add*.
 
