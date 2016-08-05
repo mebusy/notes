@@ -1856,6 +1856,30 @@ The layout in Fig. 2.42 illustrates the translation of **if** *expr* **then** st
 	ifFalse x goto after
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.42.png)
+
+For concreteness, we show the pseudocode for class *If* in Fig. 2.43. 
+
+``` java
+class If extends Stmt { 
+	Expr E; Stmt S;
+	public If(Expr x, Stmt y) { 
+		E = x; S = y; after = newlabel(); 
+	} 
+	public void gen() {
+		Expr n = E.rvalue();
+		emit( "ifFalse " + n.toString() + " goto " + after); 
+
+		// to generate three-address code
+		// for this kind of statement
+		S.gen();
+		emit(after+ ":");
+	} 
+}
+```
+
+The constructor *If* in Fig. 2.43 creates syntax-tree nodes for if-statements. 
+The constructor also assigns attribute *after* a unique new label, by calling function newlabel() . The label will be used according to the layout in Fig. 2.42.
 
 
 
