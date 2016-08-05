@@ -1742,7 +1742,7 @@ Not only do they assure that a program can be compiled successfully, but they al
  	- There is more to syntax than grammars. For ex­ample, There are often many constraints are syntactic, although they are not encoded in, or enforced by, a grammar used for parsing.
  		- eg. an identifier being declared at most once in a scope, 
  		- eg. a break statement must have an enclosing loop or switch statement,
- - *Checking* 
+ - *Type Checking* 
  	- The type rules of a language assure that an operator or function is applied to the right number and type of operands. 
  	- If conversion between types is necessary, e.g., when an integer is added to a float, then the type-checker can insert an operator into the syntax tree to represent that conversion. We discuss type conversion, using the common term "*coercion*". 
 
