@@ -42,6 +42,9 @@
 			 - [Syntax Trees for Statements](#a575ff09f5b0e915ba023178f4e8156b)
 			 - [Representing Blocks in Syntax Trees](#0e2d70ac0a5f7fe503cc3c18910291f3)
 			 - [Syntax  ees for Expressions](#255fe8c064c07ee497427684a87f269a)
+		 - [2.8.3 Static Checking](#9d5cecdb99d5dae795be316ef310ad3b)
+			 - [L-values and R-values](#a226617c26f0efa2fab04802a7ecb968)
+			 - [Type Checking](#ef0b52f08f0934c7369102646a8a9f6d)
 
 ...menuend
 
@@ -1694,7 +1697,7 @@ Previously, we handled the higher precedence of * over + by using three non­ter
 
 Abstract syntax allows us to group "similar" operators to reduce the number of cases and subclasses of nodes in an implementation of expressions. 
 
-> group 表达式
+> group similar oprator, 程序实现上就是 使用同一个class来处理 相近的操作符
 
 In this chapter, we take "similar" to mean that the type-checking and code-generation rules for the operators are similar. 
 
@@ -1704,19 +1707,98 @@ In general, the grouping of operators in the abstract syntax is based on the nee
 
 
 CONCRETE SYNTAX | ABSTRACT SYNTAX
---- | ---
+:---:| ---
  = 		| assign
  \|\| 	| cond
  && 	| cond
- == !=	| rel
+ == !=	| rel ( relational comparison )
  < <= >= > 	| rel
  + - 	| op
  * / %	| op
  !		| not
- -<sub>unary</sub> 一元	| minus
+ -<sub>unary</sub> 	| minus (一元)
  []		| access
 
 Figure 2.41: Concrete and abstract syntax for several Java operators
+
+The lines are in order of increasing precedence; e.g., == has higher precedence than the oper­ ators && and =. 
+
+The mapping between concrete and abstract syntax can be implemented by writing a translation scheme.  The semantic actions in productions , for nonterminals such like *expr*, *rel*, *add*, *term*, and *factor* , create syntax-tree nodes. For example, the rule
+
+```
+  term → term₁ * factor { term.n = new Op('*', term₁.n, factor.n); }
+```
+
+creates a node of class *Op*, which implements the operators **op** . The constructor *Op* has a parameter '*' to identify the actual operator.
+
+<h2 id="9d5cecdb99d5dae795be316ef310ad3b"></h2>
+### 2.8.3 Static Checking
+
+Static checks are consistency checks that are done during compilation. 
+
+Not only do they assure that a program can be compiled successfully, but they also have the potential for catching programming errors early, before a program is run. Static checking includes:
+
+ - *Syntactic Checking*
+ 	- There is more to syntax than grammars. For ex­ample, There are often many constraints are syntactic, although they are not encoded in, or enforced by, a grammar used for parsing.
+ 		- eg. an identifier being declared at most once in a scope, 
+ 		- eg. a break statement must have an enclosing loop or switch statement,
+ - *Checking* 
+ 	- The type rules of a language assure that an operator or function is applied to the right number and type of operands. 
+ 	- If conversion between types is necessary, e.g., when an integer is added to a float, then the type-checker can insert an operator into the syntax tree to represent that conversion. We discuss type conversion, using the common term "*coercion*". 
+
+
+<h2 id="a226617c26f0efa2fab04802a7ecb968"></h2>
+#### L-values and R-values
+
+We now consider some simple static checks that can be done during the con­struction of a syntax tree for a sburce program. 
+
+In general, complex static checks may need to be done by first constructing an intermediate representation and then analyzing it.
+
+There is a distinction between the meaning of identifiers on the left and right sides of an assignment. In each of the assignments
+
+```
+	i = 5;
+	i = i + 1;
+```
+
+ - the right side specifies an integer value, 
+ - while the left side specifies where the value is to be stored. 
+
+The terms *l-value* and *r-value* refer to values that are appropriate on the left and right sides of an assignnient, respectively. That is 
+
+ - r-values are what we usually think of as "values," 
+ - while l-values are locations.
+
+Static checking must assure that the left side of an assignment denotes an l-value.  eg. a constant like 2 is not appropriate on the left side of an assignment, since it has an r-value, but not an l-value.
+
+<h2 id="ef0b52f08f0934c7369102646a8a9f6d"></h2>
+#### Type Checking
+
+Type checking assures that the type of a construct matches that expected by its context. 
+
+For example, in the if-statement
+
+```
+	if ( expr ) stmt
+```
+
+the expression *expr* is expected to have type **boolean**.
+
+Type checking rules follow the operator/operand structure of the abstract syntax. 
+
+Assume the operator **rel** represents relational operators such as <=. The type rule for the operator group **rel** is that its two operands must have the same type, and the result has type boolean. Using attribute *type* for the type of an expression, let *E* consist of **rel** applied to *E₁* and *E₂* • The type of *E* can be checked when its node is constructed, by executing code like the following:
+
+```java
+if ( E₁.type == E₂.type ) E.type = boolean;
+else error;
+```
+
+The idea of matching actual with expected types continues to apply, even in the following situations:
+
+ - *Coercions*
+ 	- A *coercion* occurs if the type of an operand is automatically converted to the type expected by the operator. 
+ 	- The language definition specifies the allowable coercions. For example, the actual rule for **rel** discussed above might be that E₁.type and E₂.type are convertible to the same type. In that case, it would be legal to compare, say, an integer with a float.
+ - a
 
 
 
