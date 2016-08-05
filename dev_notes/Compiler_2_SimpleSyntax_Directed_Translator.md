@@ -1647,6 +1647,39 @@ Expression statements do not begin with a keyword, so we define a new op­erator
 
 **Representing Blocks in Syntax Trees**
 
+The remaining statement construct in Fig. 2.39 is the block, consisting of a sequence of statements. Consider the rules:
+
+```
+  stmt → block { stmt.n = block.n; } 
+  block → '{' stmts '}' { block.n = stmts.n; }
+```
+
+The first says that when a statement is a block, it has the same syntax tree as the block. 
+
+The second rule says that the syntax tree for nonterminal block is simply the syntax tree for the sequence of statements in the block.
+
+For simplicity, the language in Fig. 2.39 does not include declarations. Even when declarations are included in Appendix A, we shall see that *the syntax tree for a block is still the syntax tree for the statements in the block*. *Since information from declarations is incorporated into the symbol table*, they are not needed in the syntax tree. 
+
+***Blocks, with or without declarations, therefore appear to be just another statement construct in intermediate code***.
+
+A sequence of statements is represented by 
+ 
+ - using a leaf **null** for an empty statement 
+ - and a operator **seq** for a sequence of statements, 
+
+as in
+
+```
+  stmts → stmts₁ stmt { stmts.n = new Seq(stmts₁.n, stmt.n); }
+  		|  ε  		  { stmts.n = null; }
+```
+
+Example 2.18 : In FIg. 2.40 we see part of a syntax tree representing a block or statement list. 
+
+
+
+There are two statements in the list, the  rst an if-statement and the second a while-statement. We do not show the portion of the tree above this statement list, and we show only as a triangle each of the necessary
+subtrees: two expression trees for the conditions of the if- and while-statements
 
 
 
