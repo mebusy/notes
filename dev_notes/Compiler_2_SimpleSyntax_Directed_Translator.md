@@ -1798,7 +1798,65 @@ The idea of matching actual with expected types continues to apply, even in the 
  - *Coercions*
  	- A *coercion* occurs if the type of an operand is automatically converted to the type expected by the operator. 
  	- The language definition specifies the allowable coercions. For example, the actual rule for **rel** discussed above might be that E₁.type and E₂.type are convertible to the same type. In that case, it would be legal to compare, say, an integer with a float.
- - a
+ - *Overloading*
+ 	- The operator + in Java represents *addition* when applied to integers; it means *concatenation* when applied to strings. 
+ 	- A symbol is said to be overloaded if it has different meanings depending on its context. Thus, + is overloaded in Java. 
+ 	- The meaning of an overloaded operator is determined by considering the known types of its operands and results. 
+ 		- For example, we know that the + in z = x + Y is concatenation if we know that any of x, y, or z is of type string.
+
+---
+
+### 2.8.4 Three-Address Code
+
+Once syntax trees are constructed, further analysis and synthesis can be done by evaluating attributes and executing code fragments at nodes in the tree. 
+
+We illustrate the possibilities by walking syntax trees to generate three-address code. Specifically, we show how to write functions that process the syntax tree and, as a side-effect, emit the necessary three-address code.
+
+#### Three-Address Instructions
+
+Three-address code is a sequence of instructions of the form
+
+```
+	x = y op z
+```
+
+where x, y, and z are names, constants, or compiler-generated temporaries; and **op** stands for an operator.
+
+Arrays will be handled by using the following two variants of instructions:
+
+```
+	x[y] = z 
+	x = y[z]
+```
+
+Three-address instructions are executed in numerical sequence unless forced to do otherwise by a conditional or unconditional jump. We choose the following instructions for control flow:
+
+|
+---|---
+**ifFalse** x **goto** L | 
+**ifTrue** x **goto** L |
+**goto** L | 
+
+
+A label L can be attached to any instruction by prepending a prefix *L:* . An instruction can have more than one label.
+
+Finally, we need instructions that copy a value. The following three-address instruction copies the value of y into x:
+
+```
+	x = y
+```
+
+#### Translation of Statements
+
+Statements are translated into three-address code by using jump instructions to implement the flow of control through the statement. 
+
+The layout in Fig. 2.42 illustrates the translation of **if** *expr* **then** stmt₁ . The jump instruction in the layout
+
+```
+	ifFalse x goto after
+```
+
+
 
 
 
