@@ -1833,8 +1833,8 @@ Three-address instructions are executed in numerical sequence unless forced to d
 
 |
 ---|---
-**ifFalse** x **goto** L | 
-**ifTrue** x **goto** L |
+**ifFalse** x **goto** L | if x is false, jump to L
+**ifTrue** x **goto** L | if x is true, jump to L
 **goto** L | 
 
 
@@ -1868,10 +1868,11 @@ class If extends Stmt {
 	} 
 	public void gen() {
 		Expr n = E.rvalue();
-		emit( "ifFalse " + n.toString() + " goto " + after); 
+		emit("ifFalse " + n.toString() 
+				+ " goto " + after); 
 
-		// to generate three-address code
-		// for this kind of statement
+		//to generate three-address code
+		//for this kind of statement
 		S.gen();
 		emit(after+ ":");
 	} 
@@ -1879,8 +1880,63 @@ class If extends Stmt {
 ```
 
 The constructor *If* in Fig. 2.43 creates syntax-tree nodes for if-statements. 
-The constructor also assigns attribute *after* a unique new label, by calling function newlabel() . The label will be used according to the layout in Fig. 2.42.
+The constructor also assigns attribute *after* a unique new label, by calling function newlabel() , which is used for jumping.
 
+Once the entire syntax tree for a source program is constructed, the function *gen* is called at the root of the syntax tree. 
+
+Since a program is a block in our simple language, the root of the syntax tree represents the sequence of statements in the block. *All statement classes contain a function gen*.
+
+In this example, function *gen* calls *E.rvalue*() to translate the expression *E* and saves the result node returned by *E*.  Translation of expressions will be discussed shortly. Function *gen* then emits a conditional jump and calls S.gen() to translate the substatement S.
+
+#### Translation of Expressions
+
+We now illustrate the translation of expressions by considering expressions con­taining binary operators **op**, array accesses, and assignments, in addition to constants and identifiers. For simplicity, in an array access y[z] , we require that y be an identifier. For a detailed discussion of intermediate code generation for expressions, see Section 6.4.
+
+We shall take the simple approach of generating one three-address instruc­tion for each operator node in the syntax tree for an expression. 
+
+No code is generated for identifiers and constants, since they can appear as addresses in instructions. If a node *x* of class *Expr* has operator **op**, then an instruction is emitted to compute the value at node *x* into a compiler generated "temporary" name, say *t*. Thus, i-j+k translates into two instructions
+
+```
+	t1 = i - j 
+	t2 = t1 + k
+```
+
+With array accesses and assignments comes the need to distinguish between l-values and r-values. 
+
+For example, 2*a[i] can be translated by computing the r-value of a[i] into a temporary, as in
+
+```
+	t1 = a[i] 
+	t2 = 2 * t1
+```
+
+But if a [i] appears on the left side of an assignment, we cannot simply use a temporary in place of a[i] . 
+
+The simple approach uses the two functions lvalue and rvalue. 
+
+ - When function rvalue is applied to a nonleaf node x, it generates instructions to compute x into a temporary, and returns a new node representing the temporary. 
+ - When function lvalue is applied to a nonleaf, it also generates instructions to compute the subtrees below x, and returns a node representing the "address" for x .
+
+```java
+Expr lvalue( x : Expr) {
+	// if node is for an identifier
+	if ( x is an Id node ) return x ;
+	else if ( x is an Access (y, z) node 
+			and y is an Id node ) {
+		return new Access(y, rvalue(z)); 
+	}
+	else error;
+}
+```
+
+Figure 2.44: Pseudocode for function lvalue
+
+ - When applied to a node x, function lvalue simply returns x if it is the node for an identifier.
+ - In this case, x will have the form Access(y,z), where class *Access* is a subclass of Expr, 
+ 	- y represents the name of the accessed array, 
+ 	- and z represents the offset (index) of the chosen element in that array.  
+ - function lvalue calls rvalue(z) to generate instructions, if needed, to compute the r-value of z
+ - function lvalue then constructs and returns a new Access node with children for the array name y and the r-value of z.
 
 
 
