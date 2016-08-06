@@ -2041,13 +2041,6 @@ But, if j+k is a subexpression, as in `j+k+1`, then the null result address in i
 
 ---
 
-## 2.9 Summary of Chapter 2
-
-The syntax-directed techniques in this chapter can be used to construct compiler front ends, such as those illustrated in Fig. 2.46.
-
-
-
-
 
 
 ---
