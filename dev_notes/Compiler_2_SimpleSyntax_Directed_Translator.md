@@ -1831,8 +1831,8 @@ Arrays will be handled by using the following two variants of instructions:
 
 Three-address instructions are executed in numerical sequence unless forced to do otherwise by a conditional or unconditional jump. We choose the following instructions for control flow:
 
-|
----|---
+ | 
+--- | ---
 **ifFalse** x **goto** L | if x is false, jump to L
 **ifTrue** x **goto** L | if x is true, jump to L
 **goto** L | 
