@@ -1932,11 +1932,121 @@ Expr lvalue( x : Expr) {
 Figure 2.44: Pseudocode for function lvalue
 
  - When applied to a node x, function lvalue simply returns x if it is the node for an identifier.
- - In this case, x will have the form Access(y,z), where class *Access* is a subclass of Expr, 
+ - In this case, x will have the form Access(y,z), where class *Access* is a subclass of *Expr*, 
  	- y represents the name of the accessed array, 
  	- and z represents the offset (index) of the chosen element in that array.  
  - function lvalue calls rvalue(z) to generate instructions, if needed, to compute the r-value of z
  - function lvalue then constructs and returns a new Access node with children for the array name y and the r-value of z.
+
+Example 2.19 : When node x represents the array access a[2*k] , the call lvalue(x) generates an instruction `t = 2 * k` and returns a new node x' representing the l-value a[t] , where *t* is a new temporary name.
+
+In detail, the code fragment `return new Access (y, rvalue(z)); ` is reached with 
+
+	- y being the node for a 
+	- and z being the node for expression 2*k. 
+
+The call rvalue(z) generates code for the expression 2*k and returns the new node z' representing the temporary name t. 
+
+Function *rvalue* in Fig. 2.45 generates instructions and returns a possibly new node.
+
+```java
+Expr rvalue(x : Expr) {
+	if ( x is an Id or a Constant node ) return X; 
+	else if (x is an Op(op,y,z) or a Rel(op,y,z) node) {
+		t = new temporary;
+		emit string for t = rvalue(y) op rvalue(z) ; 
+		return a new node for t;
+	}
+	else if ( x is an Access (y, z) node ) { 
+		t = new temporary;
+		call lvalue(x) , which returns Access (y, z') ; 
+		emit string for t = Access(y,z');
+		return a new node for t;
+	}
+	else if ( x is an Assign (y, z) node ) { 
+		z' = rvalue(z) ;
+		emit string for lvalue(y) = z'; 
+		return z' ;
+	} 
+}
+```
+
+Figure 2.45: Pseudocode for function rvalue
+
+ - When x represents an identifier or a constant, rvalue returns x itself. 
+ - In all other cases, it returns an Id node for a new temporary t. 
+
+The cases are as follows:
+
+ - When x represents y **op** z, the code first computes y' = rvalue(y) and z' = rvalue(z). It creates a new temporary t and generates an instruction t = y' **op** z'. It returns a node for identifier t.
+ - When x represents an array access y[z], we can reuse function *lvalue*. The call lvalue(x) returns an access y[z'] , where z' represents an identifier holding the offset for the array access. The code creates a new temporary t, generates an instruction based on t = y[z'] , and returns a node for t .
+ - When x represents y = z, then the code first computes z' = rvalue(z). It generates an instruction based on lvalue(y) = z' and returns the node z'.
+
+Example 2.20 : When applied to the syntax tree for
+
+```java
+	a[i] = 2*a[j-k]
+```
+
+function *rvalue* generates
+
+```
+	t3 = j - k
+	t2 = a[t3] 
+	t1 = 2 * t2 
+	a[i] = t1
+```
+
+ - the root is an *Assign* node with a[i] and 2*a[j -k] .
+ - Thus, the third case applies, function *rvalue* recursively evaluates 2*a[j-kJ.
+ 	- subtree is the *Op* node for *
+ 		- which causes a new temporary t1 to be created
+ 		- constant 2 generates no three-address code, and its r-value is returned as a Constant node with value 2.
+ 		- a[j-k] is an Access node, which causes a new temporary t2 to be created, before function lvalue is called on this node
+ - Recursively, rvalue is called on the expression j - k
+ 	- As a side-effect of this call, the three­ address statement t3 = j - k is generated
+ - Then, returning to the call of lvalue on a[j -k] , the temporary t2 is assigned the r-value of the entire access-expression, that is, t2 = a [ t3 J .
+ - Now, we return to the call of *rvalue* on the *Op* node 2*a [j -k] , which earlier created temporary t1 . A three-address statement t1 = 2 * t2 is generated as a side-effect.
+ - Last, the call to rvalue on the whole expression completes by calling *lvalue* on the left side a[iJ and then generating a three-address instruction a[iJ = t1.
+
+#### Better Code for Expressions
+
+We can improve on function *rvalue* in Fig. 2.45 and generate fewer three-address instructions, in several ways:
+
+ - Reduce the number of copy instructions in a subsequent optimization phase. 
+ 	- For example, the pair of instructions `t = i+1` and `i = t` can be combined into `i = i+ 1` , if there are no subsequent uses of t .
+ - Generate fewer instructions in the first place by taking context into ac­count. 
+ 	- For example, if the left side of a three-address assignment is an array access a[t] , then the right side must be a name, a constant, or a temporary, all of which use just one address. But if the left side is a name x, then the right side can be an operation y **op** z that uses two addresses.
+
+We can avoid some copy instructions by modifying the translation functions to generate a partial instruction that computes, say j+k, but does not commit to where the result is to be placed, signified by a null address for the result:
+
+```java
+	null = j + k 	(2.8)
+```
+
+The null result address is later replaced by either an identifier or a temporary, as appropriate. 
+
+If j+k is on the right side of an assigriment, as in `i=j+k ;` , *null* is replaced by an identifier. 
+
+```java
+	i = j + k
+```
+
+But, if j+k is a subexpression, as in `j+k+1`, then the null result address in is replaced by a new temporary t, and a new partial instruction is generated
+
+```java
+	t = j + k
+	null = t + 1
+```
+
+---
+
+## 2.9 Summary of Chapter 2
+
+The syntax-directed techniques in this chapter can be used to construct compiler front ends, such as those illustrated in Fig. 2.46.
+
+
+
 
 
 
