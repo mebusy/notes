@@ -41,10 +41,15 @@
 		 - [2.8.2 Construction of Syntax Trees](#ae16ee3868feeaebf52a44b7030a9257)
 			 - [Syntax Trees for Statements](#a575ff09f5b0e915ba023178f4e8156b)
 			 - [Representing Blocks in Syntax Trees](#0e2d70ac0a5f7fe503cc3c18910291f3)
-			 - [Syntax  ees for Expressions](#255fe8c064c07ee497427684a87f269a)
+			 - [Syntax  Trees for Expressions](#b0181a55a85e25b720ba8728cab22c31)
 		 - [2.8.3 Static Checking](#9d5cecdb99d5dae795be316ef310ad3b)
 			 - [L-values and R-values](#a226617c26f0efa2fab04802a7ecb968)
 			 - [Type Checking](#ef0b52f08f0934c7369102646a8a9f6d)
+		 - [2.8.4 Three-Address Code](#5c6ea36a95209bc29141acbedc432405)
+			 - [Three-Address Instructions](#58323055fdcda7a470037de00dc07353)
+			 - [Translation of Statements](#325e35ed8e9e36ec01949e91f99bec8c)
+			 - [Translation of Expressions](#1b4f954d64e096fe675d68b0988fa58a)
+			 - [Better Code for Expressions](#db95f2e74506a3daa31c97e26bf78cc6)
 
 ...menuend
 
@@ -1690,7 +1695,7 @@ Example 2.18 : In FIg. 2.40 we see part of a syntax tree representing a block or
 
 There are two statements in the list, the first an if-statement and the second a while-statement. 
 
-<h2 id="255fe8c064c07ee497427684a87f269a"></h2>
+<h2 id="b0181a55a85e25b720ba8728cab22c31"></h2>
 #### Syntax  Trees for Expressions 
 
 Previously, we handled the higher precedence of * over + by using three non­terminals *expr*, *term*, and *factor*. The number of nonterminals is precisely one plus the number of levels of precedence in expressions. In Fig. 2.39, we have two comparison bperators, < and <= at one precedence level, as well as the usual + and * operators, so we have added one additional nonterminal, called *add*.
@@ -1806,12 +1811,14 @@ The idea of matching actual with expected types continues to apply, even in the 
 
 ---
 
+<h2 id="5c6ea36a95209bc29141acbedc432405"></h2>
 ### 2.8.4 Three-Address Code
 
 Once syntax trees are constructed, further analysis and synthesis can be done by evaluating attributes and executing code fragments at nodes in the tree. 
 
 We illustrate the possibilities by walking syntax trees to generate three-address code. Specifically, we show how to write functions that process the syntax tree and, as a side-effect, emit the necessary three-address code.
 
+<h2 id="58323055fdcda7a470037de00dc07353"></h2>
 #### Three-Address Instructions
 
 Three-address code is a sequence of instructions of the form
@@ -1846,6 +1853,7 @@ Finally, we need instructions that copy a value. The following three-address ins
 	x = y
 ```
 
+<h2 id="325e35ed8e9e36ec01949e91f99bec8c"></h2>
 #### Translation of Statements
 
 Statements are translated into three-address code by using jump instructions to implement the flow of control through the statement. 
@@ -1888,6 +1896,7 @@ Since a program is a block in our simple language, the root of the syntax tree r
 
 In this example, function *gen* calls *E.rvalue*() to translate the expression *E* and saves the result node returned by *E*.  Translation of expressions will be discussed shortly. Function *gen* then emits a conditional jump and calls S.gen() to translate the substatement S.
 
+<h2 id="1b4f954d64e096fe675d68b0988fa58a"></h2>
 #### Translation of Expressions
 
 We now illustrate the translation of expressions by considering expressions con­taining binary operators **op**, array accesses, and assignments, in addition to constants and identifiers. For simplicity, in an array access y[z] , we require that y be an identifier. For a detailed discussion of intermediate code generation for expressions, see Section 6.4.
@@ -2009,6 +2018,7 @@ function *rvalue* generates
  - Now, we return to the call of *rvalue* on the *Op* node 2*a [j -k] , which earlier created temporary t1 . A three-address statement t1 = 2 * t2 is generated as a side-effect.
  - Last, the call to rvalue on the whole expression completes by calling *lvalue* on the left side a[iJ and then generating a three-address instruction a[iJ = t1.
 
+<h2 id="db95f2e74506a3daa31c97e26bf78cc6"></h2>
 #### Better Code for Expressions
 
 We can improve on function *rvalue* in Fig. 2.45 and generate fewer three-address instructions, in several ways:

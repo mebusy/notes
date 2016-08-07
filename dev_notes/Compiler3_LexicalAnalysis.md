@@ -1,4 +1,21 @@
+...menustart
 
+ - [Lexical Analysis](#c9137c1c04dbfe3f1e2cd3a2c6f56ddf)
+	 - [3.1 The Role of the Lexical Analyzer](#503dc2cfa99223a98a1fa20ddd7aa67a)
+		 - [3.1.1 Lexical Analysis Versus Parsing](#cb56a27f159fc337bddaa026a491cfa6)
+		 - [3.1.2 Tokens, Patterns, and Lexemes](#4f54dc373bb9d6a8db7b4534ebcae01f)
+		 - [3.1.3 Attributes for Tokens](#b8c4a7ce665bbd5521e7531b5f56049d)
+		 - [3.1.4 Lexical Errors](#d401b0f8d4a56f8357ac6c0e053efe83)
+	 - [3.2 Input Buffering](#48d05be5115ab5c35d376d2eae488b78)
+		 - [3.2.1 Buffer Pairs](#b05d3f12b9ea3730efff70e2ca88648a)
+		 - [3.2.2 Sentinels](#fff01af6a53288aa02eb09337c31967f)
+	 - [3.3 Speci cation of Tokens](#385328dcd658028123f7add4eb75d737)
+
+...menuend
+
+
+
+<h2 id="c9137c1c04dbfe3f1e2cd3a2c6f56ddf"></h2>
 # Lexical Analysis
 
  - We begin the study of lexical-analyzer generators by introducing regular expressions. 
@@ -10,6 +27,7 @@
 
 ---
 
+<h2 id="503dc2cfa99223a98a1fa20ddd7aa67a"></h2>
 ## 3.1 The Role of the Lexical Analyzer
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.1.png)
@@ -29,6 +47,7 @@ Sometimes, lexical analyzers are divided into a cascade of two processes:
 
 ---
 
+<h2 id="cb56a27f159fc337bddaa026a491cfa6"></h2>
 ### 3.1.1 Lexical Analysis Versus Parsing
 
 There are a number of reasons why the analysis portion of a compiler is normally separated into lexical analysis and parsing (syntax analysis) phases.
@@ -42,6 +61,7 @@ There are a number of reasons why the analysis portion of a compiler is normally
 
 ---
 
+<h2 id="4f54dc373bb9d6a8db7b4534ebcae01f"></h2>
 ### 3.1.2 Tokens, Patterns, and Lexemes
 
 When discussing lexical analysis, we use three related but distinct terms:
@@ -84,6 +104,7 @@ In many programming languages, the following classes cover most or all of the to
 
 ---
 
+<h2 id="b8c4a7ce665bbd5521e7531b5f56049d"></h2>
 ### 3.1.3 Attributes for Tokens
 
 When more than one lexeme can match a pattern, the lexical analyzer must provide additional information about the par­ticular lexeme that matched, for the subsequent compiler phases. 
@@ -124,6 +145,7 @@ are written below as a sequence of pairs.
 
 ---
 
+<h2 id="d401b0f8d4a56f8357ac6c0e053efe83"></h2>
 ### 3.1.4 Lexical Errors
 
 It is hard for a lexical analyzer to tell, without the aid of other components, that there is a source-code error. 
@@ -155,7 +177,8 @@ Transformations like these may be tried in an attempt to repair the input. The s
 
 ---
 
-### 3.2 Input Buffering
+<h2 id="48d05be5115ab5c35d376d2eae488b78"></h2>
+## 3.2 Input Buffering
 
 We often have to look one or more characters beyond the next lexeme before we can be sure we have the right lexeme.
 
@@ -163,17 +186,60 @@ We shall introduce a two-buffer scheme that handles large lookaheads safely. We 
 
 ---
 
+<h2 id="b05d3f12b9ea3730efff70e2ca88648a"></h2>
 ### 3.2.1 Buffer Pairs
 
 Specialized buffering techniques have been developed to reduce the amount of overhead required to process a single input character.  An impor­tant scheme involves two buffers that are alternately reloaded, as suggested in Fig. 3.3.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.3.png)
 
+Each buffer is of the same size N , and N is usually the size of a disk block, e.g., 4096 bytes. 
 
+Using one system read command we can read N characters into a buffer, rather than using one system call per character.  
 
+If fewer than N characters remain in the input file, then a special character, represented by **eof**, marks the end of the source file and is different from any possible character of the source program.
 
+Two pointers to the input are maintained:
 
+ 1. Pointer **lexemeBegin**
+ 	- marks the beginning of the current lexeme, whose extent we are attempting to determine.
+ 2. Pointer **forward** 
+ 	- scans ahead until a pattern match is found.
 
+Once the next lexeme is determined, **forward** is set to the character at its right end. Then, after the lexeme is recorded as an attribute value of a token returned to the parser, lexemeBegin is set to the character immediately after the lexeme just found. 
 
+Advancing **forward** requires that we first test whether we have reached the end of one of the buffers, and if so, we must reload the other buffer from the input, and move forward to the beginning of the newly loaded buffer. As long as we never need to look so far ahead of the actual lexeme that the sum of the lexeme's length plus the distance we look ahead is greater than N, we shall never overwrite the lexeme in its buffer before determining it.
+
+---
+
+<h2 id="fff01af6a53288aa02eb09337c31967f"></h2>
+### 3.2.2 Sentinels
+
+We must check, each time we advance forward, that we have not moved off one of the buffers; if we do, then we must also reload the other buffer. Thus, for each character read, we make two tests: 
+
+ - one for the end of the buffer, 
+ - and one to determine what character is read. 
+
+We can combine the buffer-end test with the test for the current character if we extend each buffer to hold a sentinel character at the end. The sentinel is a special character that cannot be part of the source program, and a natural choice is the character **eof**.
+
+--- 
+
+<h2 id="385328dcd658028123f7add4eb75d737"></h2>
+## 3.3 Speci cation of Tokens
+
+Regular expressions are an important notation for specifying lexeme patterns. 
+
+While they cannot express all possible patterns, regular expressions are very effective in specifying those types of patterns that we actually need for tokens.
+
+---
+
+### 3.3.1 Strings and Languages
+
+An *alphabet* is any finite set of symbols. Typical examples of symbols are let­ters, digits, and punctuation. 
+
+The set {0, 1} is the binary alphabet. ASCII is an important example of an alphabet; it is used in many software systems. 
+
+Uni-
 
 
 
