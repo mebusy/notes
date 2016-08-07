@@ -31,6 +31,153 @@ Sometimes, lexical analyzers are divided into a cascade of two processes:
 
 ### 3.1.1 Lexical Analysis Versus Parsing
 
+There are a number of reasons why the analysis portion of a compiler is normally separated into lexical analysis and parsing (syntax analysis) phases.
+
+ 1. Simplicity of design is the most important consideration. 
+ 	- The separation of lexical and syntactic analysis often allows us to simplify at least one of these tasks. 
+ 2. Compiler efficiency is improved. 
+ 	- A separate lexical analyzer allows us to apply specialized techniques that serve only the lexical task, not the job of parsing. In addition, specialized buffering techniques for reading input characters can speed up the compiler significantly.
+ 3. Compiler portability is enhanced. 
+ 	- Input-device-specific peculiarities can be restricted to the lexical analyzer.
+
+---
+
+### 3.1.2 Tokens, Patterns, and Lexemes
+
+When discussing lexical analysis, we use three related but distinct terms:
+
+ - A *token* is a pair consisting of a token name and an optional attribute value. 
+ 	- The token name is an abstract symbol representing a kind of lexical unit, e.g., a keyword, or an identifier. 
+ - A *pattern* is a description of the form that the lexemes of a token may take. 
+ 	- In the case of a keyword as a token, the pattern is just the sequence of characters that form the keyword. For identifiers and some other tokens, the pattern is a more complex structure that is matched by many strings.
+ - A *lexeme* is a sequence of characters in the source program that matches the pattern for a token and is identified by the lexical analyzer as an instance of that token.
+
+
+TOKEN | INFORMAL DESCRIPTION | SAMPLE LEXEMES
+--- | --- | ---
+**if** | characters i,f 	| if
+**else** | characters e,l,s,e 	| else
+**comparison** | < or > or <= or >= or == or != |	<=, !=
+**id** | letter followed by letters and digits |  pi, score, D2
+**number** | any numeric constant |	3.14159 , 6.02e23
+**literal** | anything but ", surrounded by "'s  | "core dumped"
+
+Figure 3.2: Examples of tokens
+
+Example 3.1: 
+
+```c
+	printf("Total = %d\ ", score);
+```
+
+ - printf and score are lexemes matching the pattern for token **id**
+ - "Total = %d\n" is a lexeme matching **literal**.
+
+In many programming languages, the following classes cover most or all of the tokens:
+
+ - One token for ***each keyword***. 
+ 	- The pattern for a keyword is the same as the keyword itself. 
+ - Tokens for the ***operators***, either individually or in classes such as the token comparison mentioned in Fig. 3.2.
+ - One token representing all ***identifiers***.
+ - One or more tokens representing ***constants***, such as numbers and literal strings .
+ - Tokens for each ***punctuation symbol***, such as left and right parentheses, comma, and semicolon.
+
+---
+
+### 3.1.3 Attributes for Tokens
+
+When more than one lexeme can match a pattern, the lexical analyzer must provide additional information about the par­ticular lexeme that matched, for the subsequent compiler phases. 
+
+For example, the pattern for token **number** matches both 0 and 1, but it is extremely important for the code generator to know which lexeme was found in the source program. 
+
+Thus, in many cases the lexical analyzer returns to the parser not only a token name, but an attribute value that describes the lexeme represented by the tokenl
+
+The token name in­fluences parsing decisions, while the attribute value influences translation of tokens after the parse.
+
+We shall assume that tokens have at most one associated attribute, although this attribute may have a structure that combines several pieces of information. 
+
+The most important example is the token **id**, where we need to associate with the token a great deal of information. 
+
+Normally, information about an identi­fier -- e.g., its lexeme, its type, and the location at which it is first found  -- is kept in the symbol table. Thus, the appropriate attribute value for an identifier is a pointer to the symbol-table entry for that identifier.
+
+Example 3.2 : The token names and associated attribute values for the For­ tran statement
+
+```
+	E = M * C ** 2
+```
+
+are written below as a sequence of pairs.
+
+```
+<id, pointer to symbol-table entry for E> 
+< assign_op>
+<id, pointer to symbol-table entry for M> 
+<mult_op>
+<id, pointer to symbol-table entry for C> 
+<exp_op>
+<number, integer value 2>
+```
+
+ - in certain pairs, especially operators, punctuation, and keywords, there is no need for an attribute value. 
+ - In this example, the token **number** has been given an integer-valued attribute. 
+ 	- In practice, a typical compiler would instead store a character string representing the constant and use as an attribute value for **number** a pointer to that string. 
+
+---
+
+### 3.1.4 Lexical Errors
+
+It is hard for a lexical analyzer to tell, without the aid of other components, that there is a source-code error. 
+
+For instance, if the string **fi** is encountered for the first time in a C program in the context:
+
+```c
+	fi ( a == f(x)) ...
+```
+
+a lexical analyzer cannot tell whether **fi** is a misspelling of the keyword **if** or an undeclared function identifier. Since fi is a valid lexeme for the token **id**, the lexical analyzer must return the token id to the parser and let some other phase of the compiler handle an error.
+
+However, suppose a situation arises in which the lexical analyzer is unable to proceed because none of the patterns for tokens matches any prefix of the remaining input. 
+
+The simplest recovery strategy is "panic mode" recovery. We delete successive characters from the remaining input, until the lexical analyzer can find a well-formed token at the beginning of what input is left. 
+
+> 从剩下的输入中,连续删除字符，直到 lexical analyzer 找到一个合适的 token
+
+This recovery technique may confuse the parser, but in an interactive computing environment it may be quite adequate.
+
+Other possible error-recovery actions are:
+
+ 1. Delete one character from the remaining input.
+ 2. Insert a missing character into the remaining input.
+ 3. Replace a character by another character.
+ 4. Transpose two adjacent characters.
+
+Transformations like these may be tried in an attempt to repair the input. The simplest such strategy is to see whether a prefix of the remaining input can be transformed into a valid lexeme by a single transformation. This strategy makes sense, since in practice most lexical errors involve a single character. A more general correction strategy is to find the smallest number of transforma­tions needed to convert the source program into one that consists only of valid lexemes, but this approach is considered too expensive in practice to be worth the effort.
+
+---
+
+### 3.2 Input Buffering
+
+We often have to look one or more characters beyond the next lexeme before we can be sure we have the right lexeme.
+
+We shall introduce a two-buffer scheme that handles large lookaheads safely. We then consider an improvement involving "sentinels" that saves time checking for the ends of buffers.
+
+---
+
+### 3.2.1 Buffer Pairs
+
+Specialized buffering techniques have been developed to reduce the amount of overhead required to process a single input character.  An impor­tant scheme involves two buffers that are alternately reloaded, as suggested in Fig. 3.3.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
