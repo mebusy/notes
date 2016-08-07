@@ -222,6 +222,31 @@ We must check, each time we advance forward, that we have not moved off one of t
 
 We can combine the buffer-end test with the test for the current character if we extend each buffer to hold a sentinel character at the end. The sentinel is a special character that cannot be part of the source program, and a natural choice is the character **eof**.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.4.png)
+
+Figure 3.4 shows the same arrangement as Fig. 3.3, but with the sentinels added. 
+
+Note that **eof** retains its use as a marker for the end of the entire input. Any **eof** that appears other than at the end of a buffer means that the input is at an end.
+
+
+```java
+switch ( *forward++ ) { 
+case eof:
+	if (forward is at end of first buffer ) { 
+		reload second buffer;
+		forward = beginning of second buffer;
+	}else if (forward is at end of second buffer ) { 
+		reload first buffer;
+		forward = beginning of first buffer;
+	}else /* eof within a buffer marks the end of input */ 
+		terminate lexical analysis;
+	break;
+Cases for the other characters
+}
+```
+
+Figure 3.5: Loo head code with sentinels
+
 --- 
 
 <h2 id="385328dcd658028123f7add4eb75d737"></h2>
@@ -231,6 +256,8 @@ Regular expressions are an important notation for specifying lexeme patterns.
 
 While they cannot express all possible patterns, regular expressions are very effective in specifying those types of patterns that we actually need for tokens.
 
+
+
 ---
 
 ### 3.3.1 Strings and Languages
@@ -239,11 +266,34 @@ An *alphabet* is any finite set of symbols. Typical examples of symbols are let�
 
 The set {0, 1} is the binary alphabet. ASCII is an important example of an alphabet; it is used in many software systems. 
 
-Uni-
+Unicode, which includes approximately 100,000 characters from alphabets around the world, is another important example of an alphabet.
 
+A ***string*** over an alphabet is a finite sequence of symbols drawn from that alphabet. In language theory, the terms "sentence" and "word" are often used as synonyms for "string". The length of a string s, usually written |s| . For example, ***banana*** is a string of length six. The ***empty string***, denoted ε, is the string of length zero.
 
+A *language* is any countable set of strings over some fixed alphabet. This definition is very broad. 
 
+Abstract languages like ∅, the empty set, or {ε}, the set containing only the empty string, are languages under this definition. 
 
+> A *subsequence* of s is any string formed by deleting zero or more ***not necessarily consecutive*** positions of s. For example, baan is a subsequence of banana.
+
+If x and y are strings, then the concatenation of x and y, denoted xy, is the string formed by appending y to x. For example, if x = dog and y = house, then xy = doghouse. The empty string is the identity under concatenation; that is , for any string s, εs = sε = s.
+
+If we think of concatenation as a product, we can define the "exponentiation" of strings as follows. Define s⁰ to be ε, and for all i>0, define sⁱ to be sⁱ⁻¹s. 
+
+Since εs = s, it follows that s¹=s. Then s²=ss, s³=sss, and so on.
+
+---
+
+### 3.3.2 Operations on Languages
+
+In lexical analysis, the most important operations on languages are union, con­catenation, and closure, which are defined formally in Fig. 3.6. 
+
+OPERATION | DEFINITION AND NOTATION
+--- | ---
+Union of L and M | L ∪ M = { s \| s is in L  or s is in M }
+Concatenation of L and M | LM = { st \| s is in L  and t is in M }
+Kleene closure of L | L<sup>*</sup>  = ∪<sup>∞</sup>`ᵢ₌₀ Lⁱ`
+Positive closure of L | L⁺  = ∪<sup>∞</sup>`ᵢ₌₁ Lⁱ`
 
 
 
