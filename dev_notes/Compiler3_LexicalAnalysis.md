@@ -327,6 +327,44 @@ Suppose **r** and **s** are regular expressions denoting languages L(*r*) and L(
  4. (*r*) is a regular expression denoting L(*r*). 
  	- This last rule says that we can add additional pairs of parentheses around expressions without changing the language they denote.
 
+As defined, regular expressions often contain unnecessary pairs of paren­theses. We may drop certain pairs of parentheses if we adopt the conventions that :
+
+ - a) The unary operator * has highest precedence and is left associative.
+ - b) Concatenation has second highest precedence and is left associative.
+ - c) | has lowest precedence and is left associative.
+
+Under these conventions, for example, we may replace the regular expression `(a)|((b)*(c))` by `a|b*c`. 
+
+A language that can be defined by a regular expression is called a *regular set*. 
+
+> *regular set* is a language
+
+If two regular expressions r and s denote the same regular set, we say they are *equivalent* and write r = s. For instance, `(a|b) = (b|a)`.
+
+LAW | DESCRIPTION
+--- | ---
+r\|s = s\|r  |  \| is commutative
+r\|(s\|t) = (r\|s)\|t  | \| is associative
+r(st) = (rs)t | Concatenation is associative
+r(s\|t) = rs\|rt; (s\|t)r = sr\|tr | Concatenation distributes over \|
+εr = rε = r | ε is the identity for concatenation  
+r<sup>*</sup> = (r\|ε)<sup>*</sup> | ε is guaranteed in a closure
+r<sup>*</sup><sup>*</sup> | * is idempotent
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
