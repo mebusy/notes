@@ -323,7 +323,7 @@ Suppose **r** and **s** are regular expressions denoting languages L(*r*) and L(
 
  1. (*r*)|(*s*) is a regular expression , denoting the language L(*r*) U L(*s*).
  2. (*r*)(*s*) is a regular expression  , denoting the language L(*r*)L(*s*).
- 3. (*r*)<sup>*</sup> is a regular expression denoting (L(*r*))<sup>*</sup>.
+ 3. (*r*)<sup>\*</sup> is a regular expression denoting (L(*r*))<sup>\*</sup>.
  4. (*r*) is a regular expression denoting L(*r*). 
  	- This last rule says that we can add additional pairs of parentheses around expressions without changing the language they denote.
 
@@ -348,8 +348,8 @@ r\|(s\|t) = (r\|s)\|t  | \| is associative
 r(st) = (rs)t | Concatenation is associative
 r(s\|t) = rs\|rt; (s\|t)r = sr\|tr | Concatenation distributes over \|
 εr = rε = r | ε is the identity for concatenation  
-r<sup>*</sup> = (r\|ε)<sup>*</sup> | ε is guaranteed in a closure
-r<sup>*</sup><sup>*</sup> | * is idempotent
+r<sup>\*</sup> = (r\|ε)<sup>\*</sup> | ε is guaranteed in a closure
+r<sup>\*\*</sup> = r<sup>\*</sup> | * is idempotent
 
 
 
