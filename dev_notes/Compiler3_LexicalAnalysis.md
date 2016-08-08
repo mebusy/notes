@@ -482,5 +482,44 @@ The patterns for these tokens are described using regular definitions, as in Fig
 
 Figure 3.11: Patterns for tokens of Example 3.8
 
+To simplify matters, we make the common assumption that keywords are also *reserved words*: that is, they are not identifiers, even though their lexemes match the pattern for identifiers.
+
+In addition, we assign the lexical analyzer the job of stripping out white­ space, by recognizing the "token" *ws* defined by:
+
+```
+	ws → ( black | tab | newline)+
+```
+
+Token *ws* is different from the other tokens in that,  we do not return it to the parser.
+
+Our goal for the lexical analyzer is summarized in Fig. 3.12. 
+
+LEXEMES | TOKEN NAME | ATTRIBUTE VALUE
+--- | --- | ---
+Any ws | - | -
+if | **if** | -
+then | **then** | -
+else | **else** | -
+Any id | **id** | Pointer to table entry
+Any number | **number** | Pointer to table entry
+< | **relop** | LT
+<= | **relop** | LE
+= | **relop** | EQ
+<> | **relop** | NE
+> | **relop** | GT
+>= | **relop** | GE
+
+Figure 3.12: Tokens, their patterns, and attribute values
+
+---
+
+### 3.4.1  ansition Diagrams
+
+
+
+
+
+
+ 
 
 
