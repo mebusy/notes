@@ -348,8 +348,8 @@ r\|(s\|t) = (r\|s)\|t  | \| is associative
 r(st) = (rs)t | Concatenation is associative
 r(s\|t) = rs\|rt; (s\|t)r = sr\|tr | Concatenation distributes over \|
 εr = rε = r | ε is the identity for concatenation  
-r<sup>\*</sup> = (r\|ε)<sup>\*</sup> | ε is guaranteed in a closure
-r<sup>\*\*</sup> = r<sup>\*</sup> | * is idempotent
+r<sup>* </sup> = (r\|ε)<sup>* </sup> | ε is guaranteed in a closure
+r<sup>\*\*</sup> = r<sup>* </sup> | * is idempotent
 
 
 
