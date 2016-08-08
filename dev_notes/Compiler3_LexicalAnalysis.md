@@ -10,6 +10,12 @@
 		 - [3.2.1 Buffer Pairs](#b05d3f12b9ea3730efff70e2ca88648a)
 		 - [3.2.2 Sentinels](#fff01af6a53288aa02eb09337c31967f)
 	 - [3.3 Speci cation of Tokens](#385328dcd658028123f7add4eb75d737)
+		 - [3.3.1 Strings and Languages](#74e49ac16ef34367b51793af0f048840)
+		 - [3.3.2 Operations on Languages](#4cbd840ba5cb383f70147e16ae7a05de)
+		 - [3.3.3 Regular Expressions](#fb4a5b3852381b6aadac0887d6ff4ae2)
+		 - [3.3.4 Regular Definitions](#9a75776dfb73fcfebabbb99bf3422851)
+		 - [3.3.5 Extensions of Regular Expressions](#7cedf7c26570a4666ecad1a2eb8730a0)
+	 - [3.4 Recognition of Tokens](#ebea52fcade7fe28010bd99d30398b5d)
 
 ...menuend
 
@@ -260,6 +266,7 @@ While they cannot express all possible patterns, regular expressions are very ef
 
 ---
 
+<h2 id="74e49ac16ef34367b51793af0f048840"></h2>
 ### 3.3.1 Strings and Languages
 
 An *alphabet* is any finite set of symbols. Typical examples of symbols are let­ters, digits, and punctuation. 
@@ -284,6 +291,7 @@ Since εs = s, it follows that s¹=s. Then s²=ss, s³=sss, and so on.
 
 ---
 
+<h2 id="4cbd840ba5cb383f70147e16ae7a05de"></h2>
 ### 3.3.2 Operations on Languages
 
 In lexical analysis, the most important operations on languages are union, con­catenation, and closure, which are defined formally in Fig. 3.6. 
@@ -298,7 +306,8 @@ Positive closure of L | L⁺  = ∪<sup>∞</sup>`ᵢ₌₁ Lⁱ`
 
 ---
 
-## 3.3.3 Regular Expressions
+<h2 id="fb4a5b3852381b6aadac0887d6ff4ae2"></h2>
+### 3.3.3 Regular Expressions
 
 We describe the language of C identifiers by:
 
@@ -351,20 +360,127 @@ r(s\|t) = rs\|rt; (s\|t)r = sr\|tr | Concatenation distributes over \|
 r<sup>* </sup> = (r\|ε)<sup>* </sup> | ε is guaranteed in a closure
 r<sup>\*\*</sup> = r<sup>* </sup> | * is idempotent
 
+Figure 3.7: Algebraic laws for regular expressions
 
+---
 
+<h2 id="9a75776dfb73fcfebabbb99bf3422851"></h2>
+### 3.3.4 Regular Definitions
 
+For notational convenience, we may wish to give names to certain regular ex­pressions and use those names in subsequent expressions, as if the names were themselves symbols.
 
+If Σ is an alphabet of basic symbols, then a *regular definition* is a sequence of definitions of the form:
 
+```
+	d₁ → r₁
+	d₂ → r₂ 
+	  ...
+	d𝒏 → r𝘯
+```
 
+where:
 
+ 1. Each dᵢ is a new symbol, not in Σ and not the same as any other of the d's, and
+ 2. Each rᵢ is a regular expression over the alphabet Σ U{ d₁,d₂,...,dᵢ₋₁ }·
 
+By restricting rᵢ to Σ and the previously defined d's, we avoid recursive defini­tions, and we can construct a regular expression over Σ alone, for each rᵢ. 
 
+We do so by first replacing uses of d₁ in r₂ (which cannot use any of the d's except for d₁ ) , then replacing uses of d₁ and d₂ in r₃ by r₁ and (the substituted) r₂ , and so on. Finally,in r𝘯 we replace each dᵢ, for i=1,2,...,n-1, by the substituted version of rᵢ , each of which has only symbols of Σ .
 
+Example3.5: Here is a regular definition for the language of C identifiers.
 
+```
+	letter_ → A | B | ... | Z | a | b | ... | z | _
+	  digit → 0 | 1 | ... | 9
+	  	 id → letter_( letter_ | digit )*   
+```
 
+Example 3.6 : Unsigned numbers (integer or floating point) are strings such as 5280, 0.01234, 6.336E4, or 1.89E-4
 
+```
+	         digit → 0 | 1 | ... | 9
+        	digits → digit digit*
+  optionalFraction → . digits | ε
+  optionalExponent → ( E ( +|-|ε ) digits ) | ε
+  			number → digits optionalFraction optionalExponent
+```
 
+ - this specification does not match `1.` 
+
+---
+
+<h2 id="7cedf7c26570a4666ecad1a2eb8730a0"></h2>
+### 3.3.5 Extensions of Regular Expressions
+
+ 1. *One or more instances*. `+`
+ 	- The operator + has the same precedence and associativity as the operator \*
+ 	- Two useful algebraic laws, r\* = r+ | ε,   and r+ = rr\* = r\*r
+ 2. *Ze  or one instance*.   `?`
+ 	- r? is equivalent to r | ε
+ 	- L(r?) = L(r) U {c}
+ 	- The ? operator has the same precedence and associativity as \* and +.
+ 3. *Character classes*.
+ 	- A regular expression a₁|a₂|...|a𝘯 , can be replaced by the shorthand [ a₁a₂...a𝘯 ]
+ 	- More importantly, when a₁,a₂,...,a𝘯 form a *logical se­quence*, we can replace them by a₁-a𝘯, that is, just the first and last separated by a hyphen '-'. 
+ 	- Thus, [abc] is shorthand for a|b|c, and [a-z] is shorthand for a|b|...|z.
+
+Example 3.7 : Using these shorthands, we can rewrite the regular definition of Example 3.5 as:
+
+```
+	letter_ → [A-Za-z_]
+	  digit → [0-9]
+	     id → letter_( letter | digit)*  
+```
+
+```
+	 digit → [0-9]
+	digits → digit+
+	number → digits (. digits)? ( E[+-]? digits)?
+```
+
+---
+
+<h2 id="ebea52fcade7fe28010bd99d30398b5d"></h2>
+## 3.4 Recognition of Tokens
+
+ - study how to take the patterns for all the needed tokens 
+ - and build a piece of code that examines the input string and finds a prefix that is a lexeme matching one of the patterns
+
+Our discussion will make use of the following running example.
+
+```
+stmt → if expr then stmt
+	 | if expr then stmt else stmt 
+	 | ε
+expr → term relop term
+	 | term
+term → id
+	 | number
+```
+
+Figure 3.10: A grammar for branching statements
+
+Example 3.8 : The grammar fragment of Fig. 3.10 describes a simple form of branching statements and conditional expressions. This syntax is similar to that of the language Pascal, in that **then** appears explicitly after conditions.
+
+For **relop**, we use the comparison operators of languages like Pascal or SQL, where = is "equals" and <> is "not equals", because it presents an interesting structure of lexemes.
+
+The terminals of the grammar, which are **if**, **then**, **else**, **relop**, **id**, and **number** , are the names of tokens as far as the lexical analyzer is concerned. 
+
+The patterns for these tokens are described using regular definitions, as in Fig. 3.11 . The patterns for ***id*** and ***number*** are similar to what we saw in Example 3.7.
+
+```
+	digit → [0-9]
+   digits → digit+
+   number → digits (. digits)? (E [+-]? digits)?
+   letter → [A-Za-z]
+   	   id → letter( letter | digits)*
+   	   if → if
+   	 then → then
+   	 else → else
+   	relop → < | > | <= | >= | = | <>
+```
+
+Figure 3.11: Patterns for tokens of Example 3.8
 
 
 
