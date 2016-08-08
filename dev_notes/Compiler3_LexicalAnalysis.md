@@ -296,9 +296,36 @@ Kleene closure of L | L<sup>*</sup>  = ∪<sup>∞</sup>`ᵢ₌₀ Lⁱ`
 Positive closure of L | L⁺  = ∪<sup>∞</sup>`ᵢ₌₁ Lⁱ`
 
 
+---
 
+## 3.3.3 Regular Expressions
 
+We describe the language of C identifiers by:
 
+```
+letter_ ( letter_ | digit )*
+```
+
+ - letter_ is for any letter or the underscore
+
+The regular expressions are built recursively out of smaller regular expres­sions, using the rules described below. 
+
+Each regular expression r denotes a language L(r), which is also defined recursively from the languages denoted by r's subexpressions. Here are the rules that define the regular expressions over some alphabet Σ and the languages that those expressions denote.
+
+BASIS: There are two rules that form the basis:
+
+ 1. ε is a regular expression, and L(ε) is {ε}, that is, the language whose sole member is the empty string.
+ 2. If *a* is a symbol in Σ ,then **a** is a regular expression, and L(**a**) = {*a*}, that is, the language with one string, of length one, with *a* in its one position. Note that by convention, we use italics for symbols, and boldface for their corresponding regular expression.
+
+INDUCTION: There are four parts to the induction whereby larger regular expressions are built from smaller ones. 
+
+Suppose **r** and **s** are regular expressions denoting languages L(*r*) and L(*s*), respectively.
+
+ 1. (*r*)|(*s*) is a regular expression , denoting the language L(*r*) U L(*s*).
+ 2. (*r*)(*s*) is a regular expression  , denoting the language L(*r*)L(*s*).
+ 3. (*r*)<sup>*</sup> is a regular expression denoting (L(*r*))<sup>*</sup>.
+ 4. (*r*) is a regular expression denoting L(*r*). 
+ 	- This last rule says that we can add additional pairs of parentheses around expressions without changing the language they denote.
 
 
 
