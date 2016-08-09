@@ -20,6 +20,7 @@
 		 - [3.4.2 Recognition of Reserved Words and Identifiers](#ac3ab235083c381748fdce42a4c1bb54)
 		 - [3.4.3 Completion of the Running Example](#97611c49db1511feaedefc22ac6ada49)
 		 - [3.4.4 Architecture of a Transition-Diagram-Based Lexical Analyzer](#d0fb312e375ee37b45a48c9c487d131a)
+	 - [3.5 The Lexical-Analyzer Generator Lex](#921b7eb0390c2aa2b73abf6edb74ab44)
 
 ...menuend
 
@@ -604,16 +605,86 @@ Note that in state 24, we have found a block of consecutive whitespace character
 <h2 id="d0fb312e375ee37b45a48c9c487d131a"></h2>
 ### 3.4.4 Architecture of a Transition-Diagram-Based Lexical Analyzer
 
+There are several ways that a collection of transition diagrams can be used to build a lexical analyzer. 
+
+Each state is represented by a piece of code. We may imagine a variable state holding the number of the current state for a transition diagram. A switch based on the value of state takes us to code for each of the possible states, where we find the action of that state. Often, the code for a state is itself a switch statement or multiway branch that determines the next state by reading and examining the next input character.
+
+```
+TOKEN getRelop() {
+	TOKEN retToken = new(RELOP) ;
+	while(1) {  /* repeat character processing until 
+				a return or failure occurs */ 
+	switch(state) {
+		case 0: 
+			c = nextChar();
+			if(c =='<')state=1;
+			elseif(c =='=')state=5;
+			else if ( c == '>' ) state = 6;
+			/* lexeme is not a relop */
+			else fail() ; 
+			break;
+		case 1: ...
+		...
+		case 8: 
+			retract();
+			retToken.attribute = GT;
+			return(retToken);
+
+	} // end switch
+	} // end while
+}
+```
+
+Figure 3.18: Sketch of implementation of **relop** transition diagram
 
 
+Example 3.10 : In Fig. 3.18 we see a sketch of getRelop() , a C++ function whose job is to simulate the transition diagram of Fig. 3.13 and return an object of type TOKEN, that is, a pair consisting of the token name (**relop** in this case) and an attribute value (the code for one of the six comparison operators in this case). 
+
+ - getRelop() first creates a new object retToken and initializes its first component to RELOP, the symbolic code for token **relop**.
+ - We see the typical behavior of a state in case 0, the case where the current state is O. 
+ 	- A function nextChar() obtains the next character from the input . 
+ 	- If the next input character is not one that can begin a comparison operator, then a function **fail**() is called.
+ 	- What fail() does depends on the global error­ recovery strategy of the lexical analyzer.
+ 		- It should reset the *forward* pointer to *lexemeBegin*, in order to allow another transition diagram to be applied to the true beginning of the unprocessed input.
+ 		- It might then change the value of state to be the start state for another transition diagram, which will search for another token. 
+ 		- Alternatively, if there is no other transition diagram that remains unused, fail() could initiate an error-correction phase that will try to repair the input and find a lexeme, as discussed in Section 3.1.4.
+ - We also show the action for state 8 in Fig. 3.18. Because state 8 bears a \* 
+ 	- we must retract the input pointer one position (i.e., put c back on the input stream) . 
+ 	- That task is accomplished by the function retract() . 
+ 	- Since state 8 represents the recognition of lexeme >=, we set the second component of the returned object, which we suppose is named attribute, to GT, the code for this operator. 
+
+To place the simulation of one transition diagram in perspective, let us consider the ways code like Fig. 3.18 could fit into the entire lexical analyzer.
+
+ 1. We could arrange for the transition diagrams for each token to be tried sequentially.  按顺序一个个尝试
+ 	- Then, the function fail() resets the pointer *forward* and starts the next transition diagram, each time it is called. 
+ 		- This method allows us to use transition diagrams for the individual key­words, like the one suggested in Fig. 3.15.
+ 		- We have only to use these before we use the diagram for **id**, in order for the keywords to be reserved words.
+ 2. We could run the various transition diagrams "in parallel," feeding the next input character to all of them and allowing each one to make what­ ever transitions it required. 
+ 	- If we use this strategy, we must be careful to resolve the case where one diagram finds a lexeme that matches its pattern, while one or more other diagrams are still able to process input.
+	- The normal strategy is to ***take the longest prefix of the input*** that matches any pattern. 
+		- That rule allows us to prefer identifier the next to keyword then, or the operator -> to - , for example.
+ 3. The preferred approach, and the one we shall take up in the following sections, is to combine all the transition diagrams into one. 
+ 	- We allow the transition diagram to read input until there is no possible next state, and then take the longest lexeme that matched any pattern. 
+ 	- In our running example, this combination is easy, because no two tokens can start with the same character;
+ 	- However, in general, the problem of combining transition diagrams for several tokens is more complex, as we shall see shortly.
 
 
+---
 
+<h2 id="921b7eb0390c2aa2b73abf6edb74ab44"></h2>
+## 3.5 The Lexical-Analyzer Generator Lex
 
+In this section, we introduce a tool called **Lex**, or in a more recent implemen­tation **Flex**, that allows one to specify a lexical analyzer by specifying regular expressions to describe patterns for tokens. 
 
+ - The input notation for the Lex tool is referred to as the Lex language,  and the tool itself is the Lex compiler. 
+ - Behind the scenes, the Lex compiler transforms the input patterns into a transition diagram and generates code, in a file called lex.yy.c, that simulates this tran­sition diagram. 
+ - The mechanics of how this translation from regular expressions to transition diagrams occurs is the subject of the next sections; here we only learn the Lex language.
 
+---
 
+### 3.5.1 Use of Lex
 
+Figure 3.22 suggests how Lex is used. 
 
 
 
