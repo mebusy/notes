@@ -554,9 +554,16 @@ Example 3.9 : Figure 3.13 is a transition diagram that recognizes the lexemes ma
 
 Recognizing keywords and identifiers presents a problem. Usually, keywords like **if** or **then** are reserved, so they are not identifiers even though they look like identifiers. Thus, although we typically use a transition diagram like that of Fig. 3.14 to search for identifier lexemes, this diagram will also recognize the keywords **if** , **then**, and **else** of our running example.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.14.png)
 
+There are two ways that we can handle reserved words that look like iden­tifiers :
 
-
+ 1. Install the reserved words in the symbol table initially. 
+ 	- A field of the symbol-table entry indicates that these strings are never ordinary identi­fiers, and tells which token they represent. 
+ 	- We have supposed that this method is in use in Fig. 3.14. When we find an identifier, a call to *installID* places it in the symbol table if it is not already there and returns a pointer to the symbol-table entry for the lexeme found. 
+ 2. Create separate transition diagrams for each keyword; 
+ 	- an example for the keyword **then** is shown in Fig. 3.15. 
+ 	- Note that such a transition diagram consists of states representing the situation after each successive letter of the keyword is seen, followed by a test for a "nonletter-or-digit," i.e., any character that cannot be the continuation of an identi er. It is necessary to check that the identi er has ended, or else we would return token then in situations where the correct token was id, with a lexeme like thenextvalue that has then as a proper pre x. If we adopt this approach, then we must prioritize the tokens so that the reserved-word
 
 
 
