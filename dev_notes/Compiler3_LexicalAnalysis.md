@@ -513,12 +513,25 @@ Figure 3.12: Tokens, their patterns, and attribute values
 
 ---
 
-### 3.4.1  ansition Diagrams
+### 3.4.1 Transition Diagrams
 
+As an intermediate step in the construction of a lexical analyzer, we first convert patterns into stylized flowcharts, called "*transition diagrams*". 
 
+In this section, we perform the conversion from regular-expression patterns to transition dia­grams by hand, but in Section 3.6, we shall see that there is a mechanical way to construct these diagrams from collections of regular expressions.
 
+*Transition diagrams* have a collection of nodes or circles, called *states*. Each state represents a condition that could occur during the process of scanning the input looking for a lexeme that matches one of several patterns. We may think of a state as summarizing all we need to know about what characters we have seen between the *lexemeBegin* pointer and the *forward* pointer (as in the situation of Fig. 3.3).
 
+*Edges* are directed from one state of the transition diagram to another. Each edge is *labeled* by a symbol or set of symbols. If we are in some state s, and the next input symbol is a, we look for an edge out of state s labeled by a (and perhaps by other symbols, as well).   
 
+If we find such an edge, we advance the *forward* pointer and enter the state of the transition diagram to which that edge leads. We shall assume that all our transition diagrams are *deterministic*, meaning that there is never more than one edge out of a given state with a given symbol among its labels. 
+
+Starting in Section 3.5, we shall relax the condition of determinism, making life much easier for the designer of a lexical analyzer, although trickier for the implementer. Some important conventions about transition diagrams are:
+
+ 1. Certain states are said to be *accepting*, of *final*. 
+ 	- These states indicate that a lexeme has been found, although the actual lexeme may not consist of all positions between the *lexemeBegin* and *forward* pointers. We always indicate an accepting state by a double circle, and if there is an action to be taken -- typically returning a token and an attribute value to the parser -- we shall attach that action to the accepting state.
+ 2. In addition, if it is necessary to retract the *forward* pointer one position (i.e., the lexeme does not include the symbol that got us to the accepting state) , then we shall additionally place a \* near that accepting state. 
+ 	- In our example, it is never necessary to retract forward by more than one position, but if it were, we could attach any number of \* 's to the accepting state.
+ 
 
  
 
