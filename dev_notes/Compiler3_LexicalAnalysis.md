@@ -531,8 +531,44 @@ Starting in Section 3.5, we shall relax the condition of determinism, making lif
  	- These states indicate that a lexeme has been found, although the actual lexeme may not consist of all positions between the *lexemeBegin* and *forward* pointers. We always indicate an accepting state by a double circle, and if there is an action to be taken -- typically returning a token and an attribute value to the parser -- we shall attach that action to the accepting state.
  2. In addition, if it is necessary to retract the *forward* pointer one position (i.e., the lexeme does not include the symbol that got us to the accepting state) , then we shall additionally place a \* near that accepting state. 
  	- In our example, it is never necessary to retract forward by more than one position, but if it were, we could attach any number of \* 's to the accepting state.
- 
 
- 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.13.png)
+
+Example 3.9 : Figure 3.13 is a transition diagram that recognizes the lexemes matching the token **relop**. 
+
+ - We begin in state 0, the start state.   
+ 	- we see < as the first input symbol, then among the lexemes that match the pattern for **relop** we can only be looking at <, <>, or <=. 
+ - We therefore go to state 1, and look at the next character. 
+ 	- If it is =, then we recognize lexeme <=, enter state 2, and return the token **relop** with attribute LE, the symbolic constant representing this particular comparison operator. 
+ 	- If in state 1 the next character is > , then instead we have lexeme <>, and enter state 3 to return an indication that the not-equals operator has been found. 
+ 	- On any other character, the lexeme is <, and we enter state 4 to return that information. 
+ 		- Note, however, *that state 4 has a * to indicate that we must retract the input one position*. 
+ - On the other hand, if in state 0 the first character we see is =, then this one character must be the lexeme. We immediately return that fact from state 5.
+ - The remaining possibility is that the first character is >. Then, we must enter state 6 and decide whether the lexeme is >= , or just > . 
+ 	- Note that if, in state 0, we see any character besides <, =, or >, we can not possibly be seeing a **relop** lexeme, so this transition diagram will not be used. 
+
+
+---
+
+### 3.4.2 Recognition of Reserved Words and Identifiers
+
+Recognizing keywords and identifiers presents a problem. Usually, keywords like **if** or **then** are reserved, so they are not identifiers even though they look like identifiers. Thus, although we typically use a transition diagram like that of Fig. 3.14 to search for identifier lexemes, this diagram will also recognize the keywords **if** , **then**, and **else** of our running example.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
