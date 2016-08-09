@@ -577,10 +577,17 @@ When we first encounter anything but a letter or digit, we go to state 11 and ac
 
 The transition diagram for token **number** is shown in Fig. 3.16, and is so far the most complex diagram we have seen. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.16.png)
+
+ - Beginning in state 12, if we see a digit, we go to state 13. In that state, we can read any number of additional digits. 
+ - However, if we see anything but a digit or a dot, we have seen a number in the form of an integer; 
+ 	- 123 is an example. 
+ 	- That case is handled by entering state 20, where we return token **number** and a pointer to a table of constants where the found lexeme is entered. These mechanics are not shown on the diagram but are analogous to the way we handled identifiers.
+
+The final transition diagram, shown in Fig. 3.17, is for whitespace. 
 
 
-Beginning in state 12, if we see a digit, we go to state 13. In that state, we can read any number of additional digits. However, if we see anything but a digit or a dot, we have seen a number in the form of an integer; 123 is an example. That case is handled by entering state 20, where we return token number and a pointer to a table of constants where the found lexeme is entered. These mechanics are not shown on the diagram but are analogous to the way we handled identi ers.
-
+In that diagram, we look for one or more "whitespace" characters, represented by delim in that diagram - typically these characters would be blank, tab, newline, and perhaps other characters that are not considered by the language design to be part of any token.
 
 
 
