@@ -16,6 +16,10 @@
 		 - [3.3.4 Regular Definitions](#9a75776dfb73fcfebabbb99bf3422851)
 		 - [3.3.5 Extensions of Regular Expressions](#7cedf7c26570a4666ecad1a2eb8730a0)
 	 - [3.4 Recognition of Tokens](#ebea52fcade7fe28010bd99d30398b5d)
+		 - [3.4.1 Transition Diagrams](#0503745a655577520a59327358161a9f)
+		 - [3.4.2 Recognition of Reserved Words and Identifiers](#ac3ab235083c381748fdce42a4c1bb54)
+		 - [3.4.3 Completion of the Running Example](#97611c49db1511feaedefc22ac6ada49)
+		 - [3.4.4 Architecture of a Transition-Diagram-Based Lexical Analyzer](#d0fb312e375ee37b45a48c9c487d131a)
 
 ...menuend
 
@@ -513,6 +517,7 @@ Figure 3.12: Tokens, their patterns, and attribute values
 
 ---
 
+<h2 id="0503745a655577520a59327358161a9f"></h2>
 ### 3.4.1 Transition Diagrams
 
 As an intermediate step in the construction of a lexical analyzer, we first convert patterns into stylized flowcharts, called "*transition diagrams*". 
@@ -550,6 +555,7 @@ Example 3.9 : Figure 3.13 is a transition diagram that recognizes the lexemes ma
 
 ---
 
+<h2 id="ac3ab235083c381748fdce42a4c1bb54"></h2>
 ### 3.4.2 Recognition of Reserved Words and Identifiers
 
 Recognizing keywords and identifiers presents a problem. Usually, keywords like **if** or **then** are reserved, so they are not identifiers even though they look like identifiers. Thus, although we typically use a transition diagram like that of Fig. 3.14 to search for identifier lexemes, this diagram will also recognize the keywords **if** , **then**, and **else** of our running example.
@@ -569,6 +575,7 @@ There are two ways that we can handle reserved words that look like iden­tifier
 
 ---
 
+<h2 id="97611c49db1511feaedefc22ac6ada49"></h2>
 ### 3.4.3 Completion of the Running Example
 
 The transition diagram for **id**'s that we saw in Fig. 3.14 has a simple structure. 
@@ -586,8 +593,21 @@ The transition diagram for token **number** is shown in Fig. 3.16, and is so far
 
 The final transition diagram, shown in Fig. 3.17, is for whitespace. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.17.png)
 
-In that diagram, we look for one or more "whitespace" characters, represented by delim in that diagram - typically these characters would be blank, tab, newline, and perhaps other characters that are not considered by the language design to be part of any token.
+In that diagram, we look for one or more "whitespace" characters, represented by delim in that diagram -- typically these characters would be blank, tab, newline, and perhaps other characters that are not considered by the language design to be part of any token.
+
+Note that in state 24, we have found a block of consecutive whitespace characters, followed by a nonwhitespace character. We retract the input to begin at the nonwhitespace, but we do not return to the parser. Rather, we must restart the process of lexical analysis after the whitespace.
+
+---
+
+<h2 id="d0fb312e375ee37b45a48c9c487d131a"></h2>
+### 3.4.4 Architecture of a Transition-Diagram-Based Lexical Analyzer
+
+
+
+
+
 
 
 
