@@ -563,8 +563,23 @@ There are two ways that we can handle reserved words that look like iden­tifier
  	- We have supposed that this method is in use in Fig. 3.14. When we find an identifier, a call to *installID* places it in the symbol table if it is not already there and returns a pointer to the symbol-table entry for the lexeme found. 
  2. Create separate transition diagrams for each keyword; 
  	- an example for the keyword **then** is shown in Fig. 3.15. 
- 	- Note that such a transition diagram consists of states representing the situation after each successive letter of the keyword is seen, followed by a test for a "nonletter-or-digit," i.e., any character that cannot be the continuation of an identi er. It is necessary to check that the identi er has ended, or else we would return token then in situations where the correct token was id, with a lexeme like thenextvalue that has then as a proper pre x. If we adopt this approach, then we must prioritize the tokens so that the reserved-word
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.15.png)
+ 	- Note that such a transition diagram consists of states representing the situation after each successive letter of the keyword is seen, followed by a test for a "nonletter-or-digit". 
 
+
+---
+
+### 3.4.3 Completion of the Running Example
+
+The transition diagram for **id**'s that we saw in Fig. 3.14 has a simple structure. 
+
+When we first encounter anything but a letter or digit, we go to state 11 and accept the lexeme found. Since the last character is not part of the identifier, we must retract the input one position , we enter what we have found in the symbol table and determine whether we have a keyword or a true identifier.
+
+The transition diagram for token **number** is shown in Fig. 3.16, and is so far the most complex diagram we have seen. 
+
+
+
+Beginning in state 12, if we see a digit, we go to state 13. In that state, we can read any number of additional digits. However, if we see anything but a digit or a dot, we have seen a number in the form of an integer; 123 is an example. That case is handled by entering state 20, where we return token number and a pointer to a table of constants where the found lexeme is entered. These mechanics are not shown on the diagram but are analogous to the way we handled identi ers.
 
 
 
