@@ -686,8 +686,97 @@ In this section, we introduce a tool called **Lex**, or in a more recent impleme
 
 Figure 3.22 suggests how Lex is used. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.22.png)
+
+ - The normal use of the compiled C program, referred to as a.out , is as a subroutine ofthe parser. 
+ - It is a C function that returns an integer ? , which is a code for one of the possible token names. 
+ - The attribute value, whether it be another numeric code, a pointer to the symbol table, or nothing, is placed in a global variable **yylval**, which is shared between the lexical analyzer and parser, thereby making it simple to return both the name and an attribute value of a token.
+
+---
+
+3.5.2 Structure of Lex Programs
+
+A Lex program has the following form:
+
+```
+	declarations
+	%%
+	translation rules
+	%%
+	auxiliary functions
+```
+
+ - The *declarations* section includes declarations of 
+ 	- variables, 
+ 	- *manifest constants* 
+ 		- (identifiers declared to stand for a constant, e.g., the name of a token), 
+ 	- and regular definitions 
+ - The *translation rules* each have the form
+ 	- `Pattern { Action }`
+ 	- Each pattern is a regular expression 
+ 		- which may use the regular definitions of the declaration section. 
+ 	- The actions are fragments of code, typically written in C, although many variants of Lex using other languages have been created.
+ - The *auxiliary functions* holds whatever additional functions are used in the actions. 
+ 	- Alternatively, these functions can be compiled separately and loaded with the lexical analyzer.
+
+The lexical analyzer created by **Lex** behaves in concert with the parser as follows. 
+
+ - When called by the parser, the lexical analyzer begins reading its remaining input, one character at a time, until it finds the longest prefix of the input that matches one of the patterns Pᵢ
+ - It then executes the associated action Aᵢ. 
+ 	- Typically, Aᵢ will return to the parser, 
+ 	- but if it does not (e.g., because Pᵢ describes whitespace or comments), then the lexical analyzer proceeds to find additional lexemes, until one of the corresponding actions causes a return to the parser. 
+ - The lexical analyzer returns a single value, the token name, to the parser, but uses the shared, integer variable **yylval** to pass additional information about the lexeme found, if needed.
 
 
+Example 3.11 : Figure 3.23 is a Lex program that recognizes the tokens of Fig. 3.12 and returns the token found. 
+
+```
+%{
+	/* definitions of manifest constants 
+	LT, LE, EQ, NE, GT, GE,
+	IF, THEN, ELSE, ID, NUMBER, RELOP */
+%}
+
+/* regular definitions */
+delim 	[ \t\n]
+ws 		{delim}+
+letter 	[A-Za-z]
+digit 	[0-9]
+id 		{letter} ({letter}|{digit})*
+number 	{digit}+ (\. {digit}+)? (E [+-]?{digit}+)?
+
+%%
+
+{ws} 	{/* no action and no return */} 
+if 		{return(IF);}
+then 	{return(THEN);}
+else 	{return(ELSE);}
+{id} 	{yylval =(int) installID() ; return(ID);}
+{number} {yylval =(int) installNum() ;return(NUMBER) ; }
+"<"		{yylval = LT; return(RELOP);} 
+"<="	{yylval = LE; return(RELOP);} 
+"="		{yylval = EQ; return(RELOP) j} 
+"<>"	{yylval = NE; return(RELOP);} 
+">"		{yylval = GT; return(RELOP);} 
+">="	{yylval = GE; return(RELOP);}
+
+%%
+
+int installID() {
+	/* function to install the lexeme, 
+	whose first character is pointed to by yytext,
+	a d whose length is yyleng, 
+	into the symbol table and 
+	return a pointer thereto */
+}
+
+int installNum() {
+	/* similar to installID, but puts numer­ical 
+	constants into a separate table */
+}
+```
+
+Figure 3.23: Lex program for the tokens of Fig. 3.12
 
 
 
