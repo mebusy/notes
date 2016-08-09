@@ -21,6 +21,11 @@
 		 - [3.4.3 Completion of the Running Example](#97611c49db1511feaedefc22ac6ada49)
 		 - [3.4.4 Architecture of a Transition-Diagram-Based Lexical Analyzer](#d0fb312e375ee37b45a48c9c487d131a)
 	 - [3.5 The Lexical-Analyzer Generator Lex](#921b7eb0390c2aa2b73abf6edb74ab44)
+		 - [3.5.1 Use of Lex](#d96ef03e4ef48fad67844a05f42082c8)
+		 - [3.5.2 Structure of Lex Programs](#657b471d853e0944613b1fc41f7988bd)
+		 - [3.5.3 Conflict Resolution in Lex](#cab9b67a202a7627adfcf2587ce702df)
+		 - [3.5.4 The Lookahead Operator](#f57723412a7038cb7392678e61a02b76)
+	 - [3.6 Finite Automata](#adab9833ab2dcc6edab8a39432584e49)
 
 ...menuend
 
@@ -682,6 +687,7 @@ In this section, we introduce a tool called **Lex**, or in a more recent impleme
 
 ---
 
+<h2 id="d96ef03e4ef48fad67844a05f42082c8"></h2>
 ### 3.5.1 Use of Lex
 
 Figure 3.22 suggests how Lex is used. 
@@ -694,7 +700,8 @@ Figure 3.22 suggests how Lex is used.
 
 ---
 
-3.5.2 Structure of Lex Programs
+<h2 id="657b471d853e0944613b1fc41f7988bd"></h2>
+### 3.5.2 Structure of Lex Programs
 
 A Lex program has the following form:
 
@@ -777,6 +784,124 @@ int installNum() {
 ```
 
 Figure 3.23: Lex program for the tokens of Fig. 3.12
+
+A few observations about this code will introduce us to many of the important features of **Lex**.
+
+ - a pair of special brackets, %{ and %}. 
+ 	- Anything within these brackets is copied directly to the file lex.yy.c , and is not treated as a regular definition. 
+ 	- It is common to place there the definitions of the manifest constants, using **C #define** statements to associate unique integer codes with each of the manifest constants. 
+ 	- In our example, we have listed in a comment the names of the manifest constants, LT, IF, and so on, but have not shown them defined to be particular integers
+ 		- If Lex is used along with Yacc, then it would be normal to define the manifest constants in the Yacc program and use them without definition in the Lex program. 
+ - Also in the declarations section is a sequence of regular definitions. 
+ 	- These use the extended notation for regular expressions. 
+ 	- Regular definitions that are used in later definitions or in the patterns of the translation rules are surrounded by curly braces '{ }'. 
+ 	- In the definition of ***id*** and ***number***, parentheses are used as grouping meta symbols.
+ - In the auxiliary-function section, we see two such functions, installID() and installNum(). 
+ 	- Like the portion of the declaration section that appears between %{ ... %} , everything in the auxiliary section is copied directly to file lex.yy.c, but may be used in the actions.
+ - patterns and rules
+ 	- *ws*, , has an associated empty action. If we find whitespace, we do not return to the parser, but look for another lexeme. 
+ 	- **if**. Should we see the two letters *if* on the input, and they are not followed by another letter or digit (which would cause the lexical analyzer to find a longer prefix of the input matching the pattern for **id**) , then the lexical analyzer consumes these two letters from the input and returns the token name IF, that is, the integer for which the manifest constant IF stands. 
+ 	- Keywords **then** and **else** are treated similarly.
+ - The 5th token has the pattern defined by **id**. 
+ 	- although keywords like **if** match this pattern as well as an earlier pattern, Lex chooses whichever pattern is listed first in situations where the longest matching prefix matches two or more patterns. 
+
+The action taken when **id** is matched is threefold:
+
+ 1. Function installID() is called to place the lexeme found in the symbol table.
+ 2. This function returns a pointer to the symbol table, which is placed in global variable yylval, where it can be used by the parser or a later component of the compiler. 
+ 	- Note that installID() has available to it two variables that are set automatically by the lexical analyzer that Lex generates :
+ 	- (a) yytext is a pointer to the beginning of the lexeme
+ 	- (b) yyleng is the length of the lexeme found.
+ 3. The token name ID is returned to the parser.
+
+
+---
+
+<h2 id="cab9b67a202a7627adfcf2587ce702df"></h2>
+### 3.5.3 Conflict Resolution in Lex
+
+We have alluded to the two rules that Lex uses to decide on the proper lexeme to select, when several prefixes of the input match one or more patterns:
+
+ 1. Always prefer a longer prefix to a shorter prefix.
+ 2. If the longest possible prefix matches two or more patterns, prefer the pattern listed first in the Lex program.
+ 	- this rule makes keywords reserved
+
+---
+
+<h2 id="f57723412a7038cb7392678e61a02b76"></h2>
+### 3.5.4 The Lookahead Operator
+
+Lex automatically reads one character ahead of the last character that forms the selected lexeme, and then retracts the input so only the lexeme itself is consumed from the input. 
+
+However, sometimes, we want a certain pattern to be matched to the input only when it is followed by a certain other characters. 
+
+If so, we may use the slash in a pattern to indicate the end of the part of the pattern that matches the lexeme. What follows / is additional pattern that must be matched before we can decide that the token in question was seen, but what matches this second pattern is not part of the lexeme.
+
+Example 3.13 : In Fortran and some other languages, keywords are not re­served. That situation creates problems, such as a statement
+
+```Fortran
+	IF(I,J) = 3
+```
+where IF is the name of an array, not a keyword. This statement contrasts with statements of the form
+
+```Fortran
+	IF( condition ) THEN ...
+```
+
+where IF is a keyword. 
+
+Fortunately, we can be sure that the keyword IF is always followed by a left parenthesis, some text - the condition - that may contain parentheses, a right parenthesis and a letter. Thus, we could write a Lex rule for the keyword IF like:
+
+```
+	IF / \( .* \) {letter}
+```
+
+Note that in order for this pattern to be foolproof, we must preprocess the input to delete whitespace. We have in the pattern neither provision for whitespace, nor can we deal with the possibility that the condition extends over lines, since the dot will not match a newline character.
+For instance, suppose this pattern is asked to match a prefix of input:
+
+```Fortran
+	IF(A<(B+C)*D)THEN...
+```
+
+We conclude that the letters IF constitute the lexeme, and they are an instance of token **if**.
+
+---
+
+<h2 id="adab9833ab2dcc6edab8a39432584e49"></h2>
+## 3.6 Finite Automata
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
