@@ -92,6 +92,10 @@ We can regard this method as an *algorithmic proof procedure*. In fact, the foll
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_Algorithm_I.png)
 
+Since this algorithm clearly presents a proof of P(n), for any given n, the proof technique consisting of steps (a) and (b) is logically valid. It is called *proof by mathematical induction*.
+
+---
+
 
 
 
