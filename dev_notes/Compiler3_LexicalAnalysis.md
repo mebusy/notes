@@ -879,8 +879,28 @@ At the heart of the transition is the formalism known as ***finite automata***. 
 		- A symbol can label several edges out of the same state, and ε, the empty string, is a possible label.
 	- (b) *Deterministic finite automata* (DFA) have, for each state, and for each symbol of its input alphabet, exactly one edge with that symbol leaving that state.
 
+Both deterministic and nondeterministic finite automata are capable of rec­ognizing the same languages -- the regular languages.
+
+---
+
+### 3.6.1 Nondeterministic Finite Automata
+
+A ***nondeterministic finite automaton*** (NFA) consists of:
+
+ 1. A finite set of states S
+ 2. A set of input symbols Σ, the *input alphabet*. 
+ 	- We assume that ε is never a member of Σ .
+ 3. A *transition function* that gives, for each state, and for each symbol in Σ U {ε}, a set of *next states*.
+ 4. A state s₀ from S that is distinguished as the *start state* (or *initial state*) .
+ 5. A set of states F, a subset of S, that is distinguished as the *accepting states* (or *final states*).
 
 
+We can represent either an NFA or DFA by a ***transition graph***, where the nodes are states and the labeled edges represent the transition function. 
+
+There is an edge labeled *α* from state *s* to state *t* if and only if *t* is one of the next states for state *s* and input *α* . This graph is very much like a transition diagram, except:
+
+ - a) The same symbol can label edges from one state to several different states, and
+ - b) An edge may be labeled by ε, instead of, or in addition to, symbols from the input alphabet.
 
 
 
