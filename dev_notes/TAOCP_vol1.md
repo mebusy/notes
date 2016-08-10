@@ -94,12 +94,41 @@ We can regard this method as an *algorithmic proof procedure*. In fact, the foll
 
 Since this algorithm clearly presents a proof of P(n), for any given n, the proof technique consisting of steps (a) and (b) is logically valid. It is called *proof by mathematical induction*.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_F3.png)
+
 ---
 
+We define the *Fibonacci sequence* F₀, F₁, F₂, ...,  by the rule that F₀ = 0, F₁ = 1, and every further term is the sum of the preceding two. Thus the sequence begins 0, 1, 1, 2, 3, 5, 8, 13, ..., we will investigate it in detail in Section 1.2.8. We will now prove that if ∅ is the number (1+ √5)/2 we have
 
+```
+	F𝑛 ≤ ∅ⁿ⁻¹	(3)
+```
 
+for all positive integers n. Call this formula P(n).
 
+If n= 1,then F₁ = 1 = ∅⁰, so step (a) has been done. For step (b) we notice first that P(2) is also true, since F₂ = 1 < 1.6 < ∅¹. Now, if all of P(1), P(2), ... , P(n) are true and n > 1, we know in particular that P(n —1) and P(n) are true; so F𝑛₋₁ ≤ ∅ⁿ⁻² and F𝑛 ≤ ∅ⁿ⁻¹. Adding these inequalities, we get
 
+```
+F𝑛₊₁ = F𝑛₋₁ + F𝑛 ≤ ∅ⁿ⁻² + ∅ⁿ⁻¹ = ∅ⁿ⁻²(1+∅).   (4)
+```
+
+The important property of the number ∅,indeed the reason we chose this number for this problem in the first place, is that
+
+```
+1 + ∅ = ∅ⁿ 	(5)
+```
+
+So we get `F𝑛₊₁ ≤ ∅ⁿ` , which is P(n+1). So step (b) has been done, and (3) has been proved by mathematical induction.
+
+Notice that we approached step (b) in two different ways here: We proved P(n+ 1) directly when n = 1, and we used an inductive method when n > 1. This was necessary,since when n = 1 our referenceto P(n —1) = P(O) would not have been legitimate.
+
+Mathematical induction can also be used to prove things about algorithms. Consider the following generalization of Euclid’s algorithm.
+
+#### Algorithm E (Extended Euclid’s algorithm).
+
+Given two positive integers m and n, we compute their greatest common divisor d and two integers a and b, such that am + bn = d.
+
+ - E1. [Initialize] Set a’ ← b ← 1, a ← b’ ← 0, c ←m, d ←n.
 
 
 
