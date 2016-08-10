@@ -90,6 +90,8 @@ We can regard this method as an *algorithmic proof procedure*. In fact, the foll
  - I3. [ProveP(k + 1).] According to (b), output a proof that “If all of P(1), ... , P(k) are true, then P(k + 1) is true.” Also output “We have already proved P(1), ... ,P(k); hence P(k + 1) is true.”
  - I4. [Increase 13.] Increase k by 1 and go to step I2.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_Algorithm_I.png)
+
 
 
 
