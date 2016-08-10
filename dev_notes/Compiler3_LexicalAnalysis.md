@@ -902,6 +902,17 @@ There is an edge labeled *α* from state *s* to state *t* if and only if *t* is 
  - a) The same symbol can label edges from one state to several different states, and
  - b) An edge may be labeled by ε, instead of, or in addition to, symbols from the input alphabet.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.24.png)
+
+Example 3.14 : The transition graph for an NFA recognizing the language of regular expression **(a|b)\*abb** . 
+
+---
+
+### 3.6.2 Transition Tables
+
+We can also represent an NFA by a ***transition table***, whose rows correspond to states, and whose columns correspond to the input symbols and ε. 
+
+The entry for a given state and input is the value of the transition function applied to those arguments. If the transition function has no information about that state-input pair, we put 0 in the table for the pair.
 
 
 
