@@ -912,10 +912,15 @@ Example 3.14 : The transition graph for an NFA recognizing the language of regul
 
 We can also represent an NFA by a ***transition table***, whose rows correspond to states, and whose columns correspond to the input symbols and ε. 
 
-The entry for a given state and input is the value of the transition function applied to those arguments. If the transition function has no information about that state-input pair, we put 0 in the table for the pair.
+The entry for a given state and input is the value of the transition function applied to those arguments. If the transition function has no information about that state-input pair, we put ∅ in the table for the pair.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.25.png)
 
+The transition table has the advantage that we can easily find the transitions on a given state and input. Its disadvantage is that it takes a lot of space, when the *input alphabet* is large, yet most states do not have any moves on most of the input symbols.
 
+---
+
+### 3.6.3 Acceptance of Input Strings by Automata
 
 
 
