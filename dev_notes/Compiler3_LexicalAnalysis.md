@@ -743,7 +743,6 @@ Example 3.11 : Figure 3.23 is a Lex program that recognizes the tokens of Fig. 3
 	LT, LE, EQ, NE, GT, GE,
 	IF, THEN, ELSE, ID, NUMBER, RELOP */
 %}
-
 /* regular definitions */
 delim 	[ \t\n]
 ws 		{delim}+
@@ -776,7 +775,6 @@ int installID() {
 	into the symbol table and 
 	return a pointer thereto */
 }
-
 int installNum() {
 	/* similar to installID, but puts numer­ical 
 	constants into a separate table */
@@ -870,9 +868,16 @@ We conclude that the letters IF constitute the lexeme, and they are an instance 
 <h2 id="adab9833ab2dcc6edab8a39432584e49"></h2>
 ## 3.6 Finite Automata
 
+We shall now discover how **Lex** turns its input program into a lexical analyzer. 
 
+At the heart of the transition is the formalism known as ***finite automata***. These are essentially graphs, like transition diagrams, with a few differences:
 
+ 1. Finite automata are ***recognizers***; they simply say "yes" or "no" about each possible input string.
+ 2. Finite automata come in two flavors:
 
+	- (a) *Nondeterministic finite automata* (NFA) have no restrictions on the labels of their edges. 
+		- A symbol can label several edges out of the same state, and ε, the empty string, is a possible label.
+	- (b) *Deterministic finite automata* (DFA) have, for each state, and for each symbol of its input alphabet, exactly one edge with that symbol leaving that state.
 
 
 
