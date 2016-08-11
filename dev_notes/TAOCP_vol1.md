@@ -180,6 +180,9 @@ Equations (11), (12), and (14) are the fundamental rules for manipulating logari
 ### 1.2.3. Sums and Products
 
  - a) *The distributive law*, for products of sums:
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_4.png)
+ 	- To understand this law, consider for example the speical case:
+ 		- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_4.1.png)
 
 
 
