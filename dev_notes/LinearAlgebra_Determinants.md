@@ -60,23 +60,23 @@ We emphasize that the rules apply to *square matrices* of any size.
  1. **det I = 1**
  	- The determinant of the identity matrix is 1.
  2. *The determinant changes sign when two rows are exchanged*.
- 3. *The determinant depends linearly on the first row*. 
- 	1. Add vectors in row 1
+ 3. *The determinant depends linearly on one row*. 
+ 	1. Add vectors in row
  		- 
  		```
  		|a+a' b+b'| =|a b| + |a' b'|
       	|c    d   |  |c d|   |c  d |
  		```
- 	2. Multiply by tin row 1
+ 		- det2A = 2ⁿ detA
+ 	2. Multiply by *t* in row
  		- 
  		```
 		|ka kb| = k |a b|
     	| c  d|     |c d|
     	```
-
-Suppose A, B, C are the same from the second row down -- and row 1 of A is a linear combination of the first rows of B and C. Then the rule says: det A is the same combination of det B and det C.
-
-Linear combinations involve two operations-adding vectors and multiplying by scalars. Therefore this rule can be split into two parts:
+ 4. *If two rows of A are equal, then det A = 0.*
+ 	- deduce from rule 2 ,  r = -r => r = 0 
+ 5. 
 
 
 
