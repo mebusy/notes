@@ -26,6 +26,10 @@
 		 - [3.5.3 Conflict Resolution in Lex](#cab9b67a202a7627adfcf2587ce702df)
 		 - [3.5.4 The Lookahead Operator](#f57723412a7038cb7392678e61a02b76)
 	 - [3.6 Finite Automata](#adab9833ab2dcc6edab8a39432584e49)
+		 - [3.6.1 Nondeterministic Finite Automata](#a46bbbffe97f741d7522f9d7eba5483b)
+		 - [3.6.2 Transition Tables](#2ebef3028849a4dc0909d534069b2316)
+		 - [3.6.3 Acceptance of Input Strings by Automata](#7de19e880b9825779ec50e33458727d7)
+		 - [3.6.4 Deterministic Finite Automata](#4870f1974b0dd964c769b59b181d7226)
 
 ...menuend
 
@@ -883,6 +887,7 @@ Both deterministic and nondeterministic finite automata are capable of rec­ogni
 
 ---
 
+<h2 id="a46bbbffe97f741d7522f9d7eba5483b"></h2>
 ### 3.6.1 Nondeterministic Finite Automata
 
 A ***nondeterministic finite automaton*** (NFA) consists of:
@@ -908,6 +913,7 @@ Example 3.14 : The transition graph for an NFA recognizing the language of regul
 
 ---
 
+<h2 id="2ebef3028849a4dc0909d534069b2316"></h2>
 ### 3.6.2 Transition Tables
 
 We can also represent an NFA by a ***transition table***, whose rows correspond to states, and whose columns correspond to the input symbols and ε. 
@@ -920,6 +926,7 @@ The transition table has the advantage that we can easily find the transitions o
 
 ---
 
+<h2 id="7de19e880b9825779ec50e33458727d7"></h2>
 ### 3.6.3 Acceptance of Input Strings by Automata
 
 An NFA *accepts* input string x if and only if there is some path in the transition graph from the *start state* to one of the ***accepting states***, such that the symbols along the path spell out x. Note that ε labels along the path are effectively ignored, since the empty string does not contribute to the string constructed along the path.
@@ -928,6 +935,21 @@ The language *defined* (or *accepted*) by an NFA is the set of strings labeling 
 
 As was mentioned, the NFA of Fig. 3.24 defines the same language as does the regular expression **(a|b)\*abb**, that is, all strings from the alphabet {a, b} that end in *abb*. We may use L(A) to stand for the language accepted by automaton A.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.26.png)
+
+Example 3.17: Figure 3.26 is an NFA accepting L(aa\*|bb\*). String *aaa* is accepted. 
+
+---
+
+<h2 id="4870f1974b0dd964c769b59b181d7226"></h2>
+### 3.6.4 Deterministic Finite Automata
+
+A *deterministic finite automaton* (DFA) is a special case of an NFA where:
+
+ 1. There are no moves on input ε, and
+ 2. For each state S and input symbol α, there is exactly one edge out of s labeled α.
+
+If we are using a transition table to represent a DFA, then each entry is a single state. we may therefore represent this state without the curly braces (eg.`{0,1}`)  that we use to form sets.
 
 
 

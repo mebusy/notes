@@ -6,6 +6,7 @@
 		 - [Algorithm E (Euclid ’s algorithm).](#98230acef1ea79f00d054abf063049b8)
 	 - [1.2. MATHEMATICAL PRELIMINARIES](#b0a028097eeef8c671b55c21acb734aa)
 		 - [1.2.1. Mathematical Induction 数学归纳法](#c9c5e422aa21b3673c8ea74c36d80e73)
+			 - [Algorithm E (Extended Euclid’s algorithm).](#e34888a37bff7ab2db8c92522280445b)
 
 ...menuend
 
@@ -124,6 +125,7 @@ Notice that we approached step (b) in two different ways here: We proved P(n+ 1)
 
 Mathematical induction can also be used to prove things about algorithms. Consider the following generalization of Euclid’s algorithm.
 
+<h2 id="e34888a37bff7ab2db8c92522280445b"></h2>
 #### Algorithm E (Extended Euclid’s algorithm).
 
 Given two positive integers m and n, we compute their greatest common divisor d and two integers a and b, such that am + bn = d.
