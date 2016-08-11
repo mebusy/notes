@@ -131,9 +131,55 @@ Mathematical induction can also be used to prove things about algorithms. Consid
 Given two positive integers m and n, we compute their greatest common divisor d and two integers a and b, such that am + bn = d.
 
  - E1. [Initialize] Set a’ ← b ← 1, a ← b’ ← 0, c ←m, d ←n.
+ - E2. [Divide] Let q and r be the quotient and remainder, respectively, of c divided by d. (We have c = qd + r and 0 ≤ r < d.)
+ - E3. [Remainder zero?] If r = 0, the algorithm terminates; we have in this case am + bn = d as desired.
+ - E4. [Recycle] Set c ← d, d ← r, t ← a’, a’ ← a, a ← t - qa, t ← b’, b’ ← b, b ← t — qb, and go back to E2.
+
+如果从这个算法中删除变量 a,b,a',b', 而且实用 m 和 n 作为辅助变量 c,d ， 我们就得到原先的算法 1.1E.
+
+TODO
+
+EXERCISES 
+
+(a) Prove the following theorem of Nicomachus(A.D. c. 100) by induction:
+
+```
+1³= 1, 2³= 3+ 5, 3³= 7+ 9+ 11, 4³= 13+ 15+ 17+ 19 ,etc.
+```
+
+(b)Usethisresultto prove the remarkable formula 
+
+```
+1³+ 2³+ ... + n³ = (1 + 2 + ... + n)².
+```
+
+---
+
+### 1.2.2. Numbers, Powers, and Logarithms
 
 
+**log<sub>b</sub>(xy) = log<sub>b</sub>x + log<sub>b</sub>y, if x>0, y>0**. &nbsp;&nbsp;&nbsp; (11)
 
+
+**log<sub>b</sub>(cʸ) = ylog<sub>b</sub>c, if c>0**. &nbsp;&nbsp;&nbsp;  (12)
+
+Relationship between lg and log₁₀ :
+
+**log₁₀x  = log₁₀(2<sup>lgx</sup>) = (lgx)(log₁₀2)**
+
+Hence lgx = log₁₀x/log₁₀2 , and in general we find that
+
+**log<sub>c</sub>x =  log<sub>b</sub>x / log<sub>b</sub>c **. &nbsp;&nbsp;&nbsp;  (14)
+
+Equations (11), (12), and (14) are the fundamental rules for manipulating logarithms.
+
+**lnx = log<sub>e</sub>x**.  &nbsp;&nbsp;&nbsp;  (15)
+
+---
+
+### 1.2.3. Sums and Products
+
+ - a) *The distributive law*, for products of sums:
 
 
 
