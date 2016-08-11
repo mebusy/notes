@@ -30,6 +30,7 @@
 		 - [3.6.2 Transition Tables](#2ebef3028849a4dc0909d534069b2316)
 		 - [3.6.3 Acceptance of Input Strings by Automata](#7de19e880b9825779ec50e33458727d7)
 		 - [3.6.4 Deterministic Finite Automata](#4870f1974b0dd964c769b59b181d7226)
+	 - [3.7  From Regular Expressions to Automata](#d4dc4b389443b309af7bde97bedef3ff)
 
 ...menuend
 
@@ -951,19 +952,42 @@ A *deterministic finite automaton* (DFA) is a special case of an NFA where:
 
 If we are using a transition table to represent a DFA, then each entry is a single state. we may therefore represent this state without the curly braces (eg.`{0,1}`)  that we use to form sets.
 
+While the NFA is an abstract representation of an algorithm to recognize the strings of a certain language, the DFA is a simple, concrete algorithm for recognizing strings. 
 
+It is fortunate indeed that every regular expression and every NFA can be converted to a DFA accepting the same language, because it is the DFA that we really implement or simulate when building lexical analyzers. 
 
+The following algorithm shows how to apply a DFA to a string.
 
+Algorithm 3.18 : Simulating a DFA.
 
+ - INPUT: An input string x terminated by an end-of-file character **eof**. A **DFA** *D* with start state *s₀*, accepting states *F*, and transition function *move*.
+ - OUTPUT: Answer "yes" if D accepts x; "no" otherwise.
+ - METHOD: Apply the algorithm in Fig. 3.27 to the input string x. The function move(s, c) gives the state to which there is an edge from state s on input c. The function *nextChar* returns the next character of the input string x.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.27.png)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.28.png)
 
+Example 3.19 : In Fig. 3.28 we see the transition graph of a DFA accepting the language **(a|b)\*abb**. Given the input string *ababb*, this DFA enters the sequence of states 0,1,2,1,2,3 and returns "yes." 
 
+---
 
+<h2 id="d4dc4b389443b309af7bde97bedef3ff"></h2>
+## 3.7 From Regular Expressions to Automata
 
+Often it is important to convert an NFA to a DFA that accepts the same language.
 
+ - We first show how to convert NFA's to DFA's. 
+ - Then, we use this technique, known as "the subset construction," to give a useful algorithm for simulating NFA's directly, 
+	- in situations (other than lexical analysis) where the NFA-to-DFA conversion takes more time than the direct simulation. 
+ - Next, we show how to convert regular expressions to NFA's, 
+	- from which a DFA can be constructed if desired. 
 
+We conclude with a discussion of the time-space tradeoffs inherent in the various methods for implementing regular expressions, and see how to choose the appropriate method for your application.
 
+---
+
+### 3.7.1 Conversion of an NFA to a DFA
 
 
 
