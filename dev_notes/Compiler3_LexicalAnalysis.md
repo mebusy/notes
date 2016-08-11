@@ -922,6 +922,12 @@ The transition table has the advantage that we can easily find the transitions o
 
 ### 3.6.3 Acceptance of Input Strings by Automata
 
+An NFA *accepts* input string x if and only if there is some path in the transition graph from the *start state* to one of the ***accepting states***, such that the symbols along the path spell out x. Note that ε labels along the path are effectively ignored, since the empty string does not contribute to the string constructed along the path.
+
+The language *defined* (or *accepted*) by an NFA is the set of strings labeling some path from the start to an accepting state. 
+
+As was mentioned, the NFA of Fig. 3.24 defines the same language as does the regular expression **(a|b)\*abb**, that is, all strings from the alphabet {a, b} that end in *abb*. We may use L(A) to stand for the language accepted by automaton A.
+
 
 
 
