@@ -183,7 +183,12 @@ Equations (11), (12), and (14) are the fundamental rules for manipulating logari
  	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_4.png)
  	- To understand this law, consider for example the speical case:
  		- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_4.1.png)
-
+ - b) *Change of variable:*
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_5.png)
+ 	- For example:
+ 		- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_6.png)
+ 	- The replacement of j by p(j) cannot be done for all infinite sums. The operation is always valid if p(j) = c ± j, 
+ - c) *Interchanging order of summation:*
 
 
 
