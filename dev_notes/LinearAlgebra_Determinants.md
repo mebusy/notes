@@ -353,7 +353,7 @@ Actually it is not just the pivots, but the entire upper-left corners of L, D, a
 
 What we see in the first two rows and columns is exactly the factorization of the corner submatrix A₂. This is a general rule if there are no row exchanges:
 
- - **4D:** If A is factored into LDU, the upper left corners satisfy A<sub>k</sub> = L<sub>k</sub>D<sub>k</sub>U<sub>k</sub> . For every k, the submatrix A<sub>k</sub> is going through a Gaussian elimination of its own.
+ - **4D** If A is factored into LDU, the upper left corners satisfy A<sub>k</sub> = L<sub>k</sub>D<sub>k</sub>U<sub>k</sub> . For every k, the submatrix A<sub>k</sub> is going through a Gaussian elimination of its own.
 
 The proof is to see that this corner can be settled first, before even looking at other eliminations. Or use the laws for ***block multiplication***:
 
@@ -367,12 +367,12 @@ Comparing the last matrix with A, the corner L<sub>k</sub>D<sub>k</sub>U<sub>k</
 
 We can isolate each pivot d<sub>k</sub> as ***a ratio of determinants***:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_formular_for_pivots.png)
 
+From equation (5) we can finally read off the answer to our original question:
 
+***The pivot entries are all nonzero whenever the numbers det A<sub>k</sub> are all nonzero:***
 
-
-
-
-
+ - **4E** Elimination can be completed without row exchanges (so P = I and A= LU), if and only if the leading submatrice,, A₁, A₂, ... , A<sub>𝑛</sub>  are all nonsingular.
 
 
