@@ -61,14 +61,14 @@ We emphasize that the rules apply to *square matrices* of any size.
  2. *The determinant changes sign when two rows are exchanged*.
  3. *The determinant depends linearly on one row*. 
  	1. Add vectors in row
- 		- 
+ 	
  		```
  		|a+a' b+b'| =|a b| + |a' b'|
       	|c    d   |  |c d|   |c  d |
  		```
  		- det2A = 2ⁿ detA
  	2. Multiply by *t* in row
- 		- 
+
  		```
 		|ka kb| = k |a b|
     	| c  d|     |c d|
@@ -80,14 +80,15 @@ We emphasize that the rules apply to *square matrices* of any size.
  	- 几何意义: 向量ab,cd, 向量ab不变，平行四边型的底不变; 向量cd 沿着 ab 方向发生切变，平行四边型的高不变，所以ab,cd 构成的面积不变。
  6. *If A has a row of zeros, then det A = 0*.
  	- deduce from 3
- 	 
- 	- ```
+
+ 	```
     5|0 0| =|0 0| ,  5x =x -> x=0 
      |c d|  |c d|
     ```
  7. *If A is triangular, then det A is the product of the diagonal entries*. 
  	- If the triangular A has 1s along the diagonal, then det A = 1.
- 	- ```
+
+ 	```
      |a b|= ad, |a 0|= ad 
      |0 d|      |c d|
     ```
@@ -102,7 +103,8 @@ We emphasize that the rules apply to *square matrices* of any size.
  	- This rule is the most surprising
  	- A particular case of this rule gives the determinant of A⁻¹: `detA⁻¹ = 1 / detA`:
  		- because (det A) (det A⁻¹) = det AA⁻¹ = det I = 1. 
- 10. 
+ 10. *detAᵀ = detA*.
+ 	- 
 
 
 
