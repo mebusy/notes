@@ -18,7 +18,6 @@ We can list four of the main uses of determinants:
  1. They test for invertibility. 
  	- ***If the determinant of A is zero, then A is singular***. 
  	- ***If det A ≠ 0, then A is invertible*** (and A⁻¹ involves 1/detA).
- 	- 
  	- The most important application, and the reason this chapter is essential to the book, is to the family of matrices A - λI. The parameter λ is subtracted all along the main diagonal, and the problem is to find the eigenvalues for which A - λI is singular. The test is det(A - λI) = 0. This polynomial of degree n in X has exactly n roots. The matrix has n eigenvalues. This is a fact that follows from the determinant formula, and not from a computer.
  2. The determinant of A equals the ***volume*** of a box in n-dimensional space. 
  	- The edges of the box come from the rows of A . The columns of A would give an entirely different box with the same volume.
@@ -76,20 +75,19 @@ We emphasize that the rules apply to *square matrices* of any size.
     	```
  4. *If two rows of A are equal, then det A = 0.*
  	- deduce from rule 2 ,  r = -r => r = 0 
- 5. *Subtracting k*row i from row j , leaves the same determinant.*
+ 5. *Subtracting k*row i from row j , leaves the same determinant*.  
  	- deduce from 3.1,3.2
  	- 几何意义: 向量ab,cd, 向量ab不变，平行四边型的底不变; 向量cd 沿着 ab 方向发生切变，平行四边型的高不变，所以ab,cd 构成的面积不变。
  6. *If A has a row of zeros, then det A = 0*.
  	- deduce from 3
- 	- 
- 	```
+ 	 
+ 	- ```
     5|0 0| =|0 0| ,  5x =x -> x=0 
      |c d|  |c d|
     ```
  7. *If A is triangular, then det A is the product of the diagonal entries*. 
  	- If the triangular A has 1s along the diagonal, then det A = 1.
- 	- 
- 	```
+ 	- ```
      |a b|= ad, |a 0|= ad 
      |0 d|      |c d|
     ```
@@ -100,9 +98,11 @@ We emphasize that the rules apply to *square matrices* of any size.
  	- If A is nonsingular, elimination puts the pivots d₁, ..., d𝑛, on the main diagonal. We have a "product of pivots" formula for det A! The sign depends on whether the number of row exchanges is even or odd:
  		- **Product of pivots**:  detA = ± detU = ± d₁d₂ ... d𝑛 .
  9. *The determinant of AB is the product of det A times det B*.
- 	- 
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Det_ProductRule.png)
  	- This rule is the most surprising
-
+ 	- A particular case of this rule gives the determinant of A⁻¹: `detA⁻¹ = 1 / detA`:
+ 		- because (det A) (det A⁻¹) = det AA⁻¹ = det I = 1. 
+ 10. 
 
 
 
