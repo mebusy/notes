@@ -78,6 +78,7 @@ We emphasize that the rules apply to *square matrices* of any size.
  5. *Subtracting k*row i from row j , leaves the same determinant*.  
  	- deduce from 3.1,3.2 : 消元不改变 determinant
  	- 几何意义: 向量ab,cd, 向量ab不变，平行四边型的底不变; 向量cd 沿着 ab 方向发生切变，平行四边型的高不变，所以ab,cd 构成的面积不变。
+ 	
  6. *If A has a row of zeros, then det A = 0*.
  	- deduce from 3
 
@@ -85,6 +86,7 @@ We emphasize that the rules apply to *square matrices* of any size.
     5|0 0| =|0 0| ,  5x =x -> x=0 
      |c d|  |c d|
     ```
+
  7. *If A is triangular, then det A is the product of the diagonal entries*. 
  	- If the triangular A has 1s along the diagonal, then det A = 1.
 
@@ -94,10 +96,12 @@ We emphasize that the rules apply to *square matrices* of any size.
     ```
     - ***Proof:*** Suppose the diagonal entries are nonzero. Then elimination can remove all the off-diagonal entries (and keep the same pivot, 那些off-diagonal entries都是打酱油的), without changing the determinant (by rule 5)
     - *If a diagonal entry is 0 then elimination will produce a 0 row.* This is a key property: **All singular matrices have a zero determinant**.
+
  8. *If A is singular, then det A = 0. If A is invertible, then det A ≠ 0.*
  	- If A is singular, elimination leads to a zero row in U. Then det A = det U = 0. 
  	- If A is nonsingular, elimination puts the pivots d₁, ..., d𝑛, on the main diagonal. We have a "product of pivots" formula for det A! The sign depends on whether the number of row exchanges is even or odd:
- 		- **Product of pivots**:  detA = ± detU = ± d₁d₂ ... d𝑛 .
+ 		- **Product of pivots**:  detA = ± detU = ± d₁d₂ ... d𝑛 .  (also see 4A)
+
  9. *detAB = detA x detB*.
  	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Det_ProductRule.png)
  	- This rule is the most surprising
@@ -106,6 +110,7 @@ We emphasize that the rules apply to *square matrices* of any size.
  	- **Proof:** 
  		- If either A or B is singular , the AB is singular, detAB = detA x detB  = 0
  		- otherwise, For a diagonal matrix, det DB = (det D) (det B), follows by factoring each dᵢ from its row. Reduce a general matrix A to D by elimination -- rom A to U as usual, and from U to D by upward elimination (see rule 7). The determinant does not change, except for a sign reversal when rows are exchanged. The same steps reduce AB to DB, with precisely the same effect on the determinant. 
+
  10. *detAᵀ = detA*.
  	- **Proof:** 
  		- If A is singular, then detAᵀ = detA = 0 
@@ -118,12 +123,19 @@ We emphasize that the rules apply to *square matrices* of any size.
 
 ---
 
-## 4.3 FORMULAS FORTE DETERMINANT
+## 4.3 FORMULAS FOR THE DETERMINANT
 
+The first formula has already appeared. Row operations produce the pivots in D:
 
+**4A**: If A is invertible, then PA = LDU and det P = ±1. The product rule gives:
 
+```
+detA = ± detL detD detU = ±(Product of the pivots).  (1)
+```
 
+The sign ±1 depends on whether the number of row exchanges is even or odd. 
 
+The triangular factors have detL = detU = 1 , and detD = d₁...d𝑛 .
 
 
 
