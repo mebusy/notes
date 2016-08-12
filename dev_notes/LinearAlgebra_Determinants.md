@@ -265,10 +265,15 @@ This section follows through on four major applications:
 
 The 2 by 2 case shows how cofactors go into A⁻¹:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_apply_inverse.png)
+
+We are dividing by the determinant, and A is invertible exactly when det A is nonzero.
+
+That is the clue we need: **A⁻¹ divides the cofactors by det A**.
 
 
 
-
+**Cofactor matrix C is transposed !**.
 
 
 
