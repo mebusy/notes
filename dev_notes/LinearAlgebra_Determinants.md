@@ -304,18 +304,49 @@ Dividing by the number detA (if it is not zero!) gives `A⁻¹ = Cᵀ / detA`.
 
 The connection between the determinant and the volume is clearest when all angles are *right angles* -- the edges are perpendicular, and the box is rectangular. 
 
-Then the volume is the product of the edge lengths: volume = l₁l₂...l<sub>𝑛</sub>.
+Then the volume is the product of the edge lengths: volume = *l₁l₂...l<sub>𝑛</sub>*.
 
-We want to obtain the same l₁l₂...l<sub>𝑛</sub> from detA, *when the edges of that box are the rows of A*. With right angles, these rows are orthogonal and AAᵀ is diagonal:
+We want to obtain the same *l₁l₂...l<sub>𝑛</sub>* from detA, *when the edges of that box are the rows of A*. With right angles, these rows are orthogonal and AAᵀ is diagonal (QQᵀ = I ):
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_right_angle_box.png)
 
 
+&nbsp;&nbsp;&nbsp;&nbsp; Right-angle case:  *l₁²l₂²...l<sub>𝑛</sub>²* = det(AAᵀ) = (detA)(detAᵀ) = (detA)².
 
+The square root of this equation says that ***the determinant equals the volume***.  The sign of detA will indicate whether the edges form a "right-handed" set of coordinates, as in the usual x-y-z system, or a left-handed system like y-x-z.
+
+---
+
+If the angles are not 90°, the volume is not the product of the lengths.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F4.2.png)
 
 The "volume" of a parallelogram equals the base l times the height h. 
 
-The key point is this: By rule 5, detA is unchanged when a multiple of row 1 is subtracted from row 2 (here is b-p). 
+The key point is this: By rule 5, detA is unchanged when a multiple of row 1 is subtracted from row 2 (here is b-p).  *We can change the parallelogram to a rectangle*, where it is already proved that volume = determinant.
+
+This completes the link between volumes and determinants, but it is worth coming back one more time to the simplest case. We know that
+
+```
+det ⎡1 0⎤ = 1 ,  det ⎡1 0⎤ = 1
+	⎣0 1⎦   		 ⎣c 1⎦
+```
+
+These determinants give the volumes-or areas, since we are in two dimensions-drawn in Figure 4.3. The parallelogram has unit base and unit height; its area is also 1.
+
+
+#### 4. A Formula for the Pivots.
+
+We can finally discover when elimination is possible without row exchanges.
+
+The key observation is that the first k pivots are completely determined by the submatrix A<sub>k</sub> in the upper left corner of A.
+
+*The remaining rows and columns of A have no effect on this corner of the problem:*
+
+
+
+
+
 
 
 
