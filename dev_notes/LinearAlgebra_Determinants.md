@@ -157,6 +157,7 @@ To start, each row can be broken down into vectors in the coordinate directions:
 
 Then we apply the property of linearity, first in row 1 and then in row 2:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_2x2_factor.png)
 
 
 
