@@ -86,9 +86,19 @@ We emphasize that the rules apply to *square matrices* of any size.
     5|0 0| =|0 0| ,  5x =x -> x=0 
      |c d|  |c d|
     ```
- 7. 
-
-
+ 7. *If A is triangular, then det A is the product of the diagonal entries*. 
+ 	- If the triangular A has 1s along the diagonal, then det A = 1.
+ 	- 
+ 	```
+     |a b|= ad, |a 0|= ad 
+     |0 d|      |c d|
+    ```
+    - ***Proof:*** Suppose the diagonal entries are nonzero. Then elimination can remove all the off-diagonal entries (and keep the same pivot, 那些off-diagonal entries都是打酱油的), without changing the determinant (by rule 5)
+    - *If a diagonal entry is 0 then elimination will produce a 0 row.* This is a key property: **All singular matrices have a zero determinant**.
+ 8. *If A is singular, then det A = 0. If A is invertible, then det A ≠ 0.*
+ 	- If A is singular, elimination leads to a zero row in U. Then det A = det U = 0. 
+ 	- If A is nonsingular, elimination puts the pivots d₁, ..., d𝑛, on the main diagonal. We have a "product of pivots" formula for det A! The sign depends on whether the number of row exchanges is even or odd:
+ 		- 
 
 
 
