@@ -357,6 +357,22 @@ What we see in the first two rows and columns is exactly the factorization of th
 
 The proof is to see that this corner can be settled first, before even looking at other eliminations. Or use the laws for ***block multiplication***:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_block_multiple.png)
+
+Comparing the last matrix with A, the corner L<sub>k</sub>D<sub>k</sub>U<sub>k</sub> coincides with A<sub>k</sub>. Then:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *detA<sub>k</sub> = detL<sub>k</sub>detD<sub>k</sub>detU<sub>k</sub> = detD<sub>k</sub> = d₁d₂...d<sub>k</sub>*.
+
+*The product of the first k pivots is the determinant of A<sub>k</sub>*. 
+
+We can isolate each pivot d<sub>k</sub> as ***a ratio of determinants***:
+
+
+
+
+
+
+
 
 
 
