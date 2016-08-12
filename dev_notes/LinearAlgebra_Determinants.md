@@ -343,7 +343,11 @@ The key observation is that the first k pivots are completely determined by the 
 
 *The remaining rows and columns of A have no effect on this corner of the problem:*
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_matrix_corner.png)
 
+Certainly the first pivot depended only on the first row and column. The second pivot (ad - bc)/a depends only on the 2 by 2 corner submatrix A₂. The rest of A does not enter until the third pivot. 
+
+Actually it is not just the pivots, but the entire upper-left corners of L, D, and U, that are determined by the upper-left corner of A:
 
 
 
