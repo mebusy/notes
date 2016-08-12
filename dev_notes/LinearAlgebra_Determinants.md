@@ -302,5 +302,22 @@ Dividing by the number detA (if it is not zero!) gives `A⁻¹ = Cᵀ / detA`.
 
 #### 3. The Volume of a Box.
 
+The connection between the determinant and the volume is clearest when all angles are *right angles* -- the edges are perpendicular, and the box is rectangular. 
+
+Then the volume is the product of the edge lengths: volume = l₁l₂...l<sub>𝑛</sub>.
+
+We want to obtain the same l₁l₂...l<sub>𝑛</sub> from detA, *when the edges of that box are the rows of A*. With right angles, these rows are orthogonal and AAᵀ is diagonal:
+
+
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F4.2.png)
+
+The "volume" of a parallelogram equals the base l times the height h. 
+
+The key point is this: By rule 5, detA is unchanged when a multiple of row 1 is subtracted from row 2 (here is b-p). 
+
+
+
 
 
