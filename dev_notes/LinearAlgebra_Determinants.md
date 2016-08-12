@@ -277,5 +277,20 @@ That is the clue we need: **A⁻¹ divides the cofactors by det A**.
 
 Our goal is to verify this formu1 for A⁻¹. We have to see why ACᵀ = (detA) I:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_apply_inverse3.png)  (2)
+
+The critical question is: *Why do we get zeros off the diagonal*? If we combine the entries a₁ⱼ from row 1 with the cofactors C₂ⱼ for row 2, why is the result zero?
+
+&nbsp;&nbsp;&nbsp;&nbsp; a₁₁C₂₁ + a₁₂C₂₂ + ... + a₁<sub>𝑛</sub>C₂<sub>𝑛</sub> = 0 . (3)
+
+The answer is: We are computing the determinant of a new matrix B (indicate by C₂ⱼ), with a new row 2. The first row of A (a₁ⱼ) is copied into the second row of B . 
+
+Then B has two equal rows, and det B = 0.
+
+Dividing by the number detA (if it is not zero!) gives `A⁻¹ = Cᵀ / detA`.
+
+**Example 1:**  The inverse of a sum matrix is a difference matrix:
+
+
 
 
