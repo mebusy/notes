@@ -188,5 +188,43 @@ The determinant of A is now reduced to six separate and much simpler determinant
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_3x3_6terms2.png)  (5)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_bigFormula.png)   (6)
+
+It remains to find the determinant of P. Row exchanges transform it to the identity matrix, and each exchange reverses the sign of the determinant:
+
+ - det P = +1 or - 1 , ***for an even or odd number of row exchanges***.
+
+```
+					|1    |
+(1,3,2) is odd so 	|    1| = -1 ,
+					|  1  |  
+
+					|    1|
+(3,1,2) is even so 	|1    | = 1 .
+					|  1  |  
+```
+
+It is possible to see why it has properties 1-3. 
+
+ 1. For A = I, every product of the aᵢⱼ will be zero, except for the column sequence (1, 2, ... , n). This term gives det I = 1. 
+ 2. Property 2 will be checked in the next section, because here we are most interested in property 3: 
+ 3. The determinant should depend linearly on the first row a₁₁, a₁₂, ... , a₁<sub>𝑛</sub>.
+
+Look at all the terms a₁ₐ, a₂ᵦ, ... ,  a<sub>𝑛</sub>ᵧ , involving a₁₁.  The first column is α = 1. This leaves some permutation (β, ... , γ) of the remaining columns (2, ... , n).  We collect all these terms together as a₁₁C₁₁  , where the coefficient of a₁₁ is a smaller determinant--with row 1 and column 1 removed:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
