@@ -298,3 +298,9 @@ Dividing by the number detA (if it is not zero!) gives `A⁻¹ = Cᵀ / detA`.
 
 **4C:** Cramer's rule: The jth component of x = A⁻¹b is the ratio
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_cramer_rule.png)
+
+#### 3. The Volume of a Box.
+
+
+
