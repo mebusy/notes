@@ -291,6 +291,10 @@ Dividing by the number detA (if it is not zero!) gives `A⁻¹ = Cᵀ / detA`.
 
 **Example 1:**  The inverse of a sum matrix is a difference matrix:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_inverse_of_sum_matrix.png)
 
 
+#### 2. The Solution of Ax = b.
+
+**4C:** Cramer's rule: The jth component of x = A⁻¹b is the ratio
 
