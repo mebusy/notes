@@ -159,6 +159,17 @@ Then we apply the property of linearity, first in row 1 and then in row 2:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_2x2_factor.png)
 
+Every row splits into n coordinate directions, so this expansion has nⁿ terms. 
+
+Most of those terms (all but n! ) will be automatically zero. When two rows are inthe same coordinate direction, one will be a multiple of the other, and 
+
+```
+	|a 0|= 0,  |0 b|= 0 
+	|c 0|      |0 d|
+```
+
+We pay attention *only when the rows point in different directions*. ***The nonzero terms have to come in different columns***. 
+
 
 
 
