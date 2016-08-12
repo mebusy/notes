@@ -186,5 +186,7 @@ Those are the 3! = 6 permutations of (1, 2, 3); the first one is the identity.
 
 The determinant of A is now reduced to six separate and much simpler determinants. Factoring out the aᵢⱼ, there is a term for every one of the six permutations:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_3x3_6terms2.png)  (5)
+
 
 
