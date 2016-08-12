@@ -271,10 +271,11 @@ We are dividing by the determinant, and A is invertible exactly when det A is no
 
 That is the clue we need: **A⁻¹ divides the cofactors by det A**.
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_apply_inverse2.png)
 
 **Cofactor matrix C is transposed !**.
 
+Our goal is to verify this formu1 for A⁻¹. We have to see why ACᵀ = (detA) I:
 
 
 
