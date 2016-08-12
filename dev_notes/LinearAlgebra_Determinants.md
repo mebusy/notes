@@ -349,9 +349,13 @@ Certainly the first pivot depended only on the first row and column. The second 
 
 Actually it is not just the pivots, but the entire upper-left corners of L, D, and U, that are determined by the upper-left corner of A:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_matrix_corner2.png)
 
+What we see in the first two rows and columns is exactly the factorization of the corner submatrix A₂. This is a general rule if there are no row exchanges:
 
+ - **4D:** If A is factored into LDU, the upper left corners satisfy A<sub>k</sub> = L<sub>k</sub>D<sub>k</sub>U<sub>k</sub> . For every k, the submatrix A<sub>k</sub> is going through a Gaussian elimination of its own.
 
+The proof is to see that this corner can be settled first, before even looking at other eliminations. Or use the laws for ***block multiplication***:
 
 
 
