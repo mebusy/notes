@@ -218,7 +218,7 @@ Similarly, the entry a₁₂ is multiplied by some smaller determinant C₁₂.
 
 Grouping all the terms that start with the same a₁₁, formula (6) becomes
 
-**Cofactors along row 1** det A = a₁₁C₁₁ + a₁₂C₁₂ + ... + a₁<sub>𝑛</sub>C₁<sub>𝑛</sub>. (8)
+**Cofactors along row 1:** det A = a₁₁C₁₁ + a₁₂C₁₂ + ... + a₁<sub>𝑛</sub>C₁<sub>𝑛</sub>. (8)
 
 This shows that detA depends linearly on the entries a₁₁, ... , a₁<sub>𝑛</sub> of the first row.
 
@@ -235,6 +235,40 @@ We want one more formula for the determinant. If this meant starting again from 
 We know that C₁ⱼ depends on rows 2, ... , n.  Row 1 is already accounted for by a₁ⱼ.  
 
 What we are really doing is splitting the determinant into the following sum:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_cofactor_filter.png)
+
+For a determinant of order n, this splitting gives n smaller determinants (***minors***) of order n - 1;  The submatrix M₁ⱼ is formed by throwing away row 1 and column j.
+
+There is a similar expansion on any other row, say row i :
+
+**4B** The determinant of A is a combination of any row i times its cofactors:
+
+&nbsp;&nbsp;&nbsp;&nbsp;**det A bs cofactors:** det A = aᵢ₁Cᵢ₁ + aᵢ₂Cᵢ₂ + ... + aᵢ<sub>𝑛</sub>Cᵢ<sub>𝑛</sub>. (10)
+
+The cofactor is the determinant of Mᵢⱼ , wyith the correct sign:
+
+&nbsp;&nbsp;&nbsp;&nbsp;**delete row i and column j:** Cᵢⱼ = (-1)ⁱ⁺ʲ detMᵢⱼ.   (11)
+
+---
+
+## 4.4 APPLICATIONS OF DETERMINANTS
+
+This section follows through on four major applications: 
+	- *inverse of A*, 
+	- *solving Ax = b*, 
+	- *volumes of boxes*, 
+	- and *pivots*. 
+
+
+#### 1. Computation of A⁻¹
+
+The 2 by 2 case shows how cofactors go into A⁻¹:
+
+
+
+
+
 
 
 
