@@ -170,6 +170,21 @@ Most of those terms (all but n! ) will be automatically zero. When two rows are 
 
 We pay attention *only when the rows point in different directions*. ***The nonzero terms have to come in different columns***. 
 
+Suppose the first row has a nonzero term in column α, the second row is nonzero in column β , and finally the 𝑛th row in column v. The column numbers α, β, ... , v are all different. They are a reordering, or ***permutation***, of the numbers 1 , 2, ... , n. 
+
+The 3 by 3 case produces 3! = 6 determinants:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_3x3_6terms.png)
+
+All but these n! determinants are zero, because a column is repeated.   In other words, ***there are n! ways to permute the numbers 1, 2, ... , n***. The column numbers give the permutations:
+
+```
+Column numbers (α, β, v) = (1, 2, 3), (2, 3, 1), (3, 1, 2), (1, 3, 2), (2, 1, 3), (3, 2, 1).
+```
+
+Those are the 3! = 6 permutations of (1, 2, 3); the first one is the identity.
+
+The determinant of A is now reduced to six separate and much simpler determinants. Factoring out the aᵢⱼ, there is a term for every one of the six permutations:
 
 
 
