@@ -195,6 +195,23 @@ Equations (11), (12), and (14) are the fundamental rules for manipulating logari
  	- By Eq. (7), these two are equal; this says no more than
  		- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_8.png)
  		- where we let bᵢ = aᵢ₁ and cᵢ = aᵢ₂.
+ 	- The operation of interchanging the order of summation is extremely useful, since it often happens that know simple form for Σ<sub>R</sub>₍ᵢ₎ aᵢⱼ , but not for Σ<sub>S</sub>₍ⱼ₎ aᵢⱼ.
+ 	- TODO
+
+---
+
+### 1.2.4 Integer Functions and Elementary Number Theory
+
+If a is any real number, we write   ⎣x⎦ = floor(x) , ⎡x⎤ = ceil(x).
+
+ - ⎣-x⎦ = - ⎡x⎤
+
+We define:  x mod y = x — y⎣x / y⎦ , if y ≠ 0; x mod 0 = x. (1)
+
+
+
+
+
 
 
 
