@@ -98,8 +98,10 @@ We emphasize that the rules apply to *square matrices* of any size.
  8. *If A is singular, then det A = 0. If A is invertible, then det A ≠ 0.*
  	- If A is singular, elimination leads to a zero row in U. Then det A = det U = 0. 
  	- If A is nonsingular, elimination puts the pivots d₁, ..., d𝑛, on the main diagonal. We have a "product of pivots" formula for det A! The sign depends on whether the number of row exchanges is even or odd:
- 		- 
-
+ 		- **Product of pivots**:  detA = ± detU = ± d₁d₂ ... d𝑛 .
+ 9. *The determinant of AB is the product of det A times det B*.
+ 	- 
+ 	- This rule is the most surprising
 
 
 
