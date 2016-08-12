@@ -78,7 +78,7 @@ We emphasize that the rules apply to *square matrices* of any size.
  5. *Subtracting k*row i from row j , leaves the same determinant*.  
  	- deduce from 3.1,3.2 : 消元不改变 determinant
  	- 几何意义: 向量ab,cd, 向量ab不变，平行四边型的底不变; 向量cd 沿着 ab 方向发生切变，平行四边型的高不变，所以ab,cd 构成的面积不变。
- 	
+
  6. *If A has a row of zeros, then det A = 0*.
  	- deduce from 3
 
@@ -136,6 +136,16 @@ detA = ± detL detD detU = ±(Product of the pivots).  (1)
 The sign ±1 depends on whether the number of row exchanges is even or odd. 
 
 The triangular factors have detL = detU = 1 , and detD = d₁...d𝑛 .
+
+In the 2 by 2 case, the standard LDU factorization is:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_LDU_2x2.png)
+
+The product of the pivots is ad - bc.
+
+For n = 2, we will be proving that ad - bc is correct. For n = 3, the determinant formula is again pretty well known (it has six terms):
+
+
 
 
 
