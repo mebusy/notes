@@ -145,7 +145,17 @@ The product of the pivots is ad - bc.
 
 For n = 2, we will be proving that ad - bc is correct. For n = 3, the determinant formula is again pretty well known (it has six terms):
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_3x3.png)
 
+Our goal is to derive these formulas directly from the defining properties 1-3 of det A. If we can handle n = 2 and n = 3 in an organized way, you will see the pattern.
+
+To start, each row can be broken down into vectors in the coordinate directions:
+
+```
+[a b] = [a 0] + [0 b] and [c d] = [c 0] + [0 d].
+```
+
+Then we apply the property of linearity, first in row 1 and then in row 2:
 
 
 
