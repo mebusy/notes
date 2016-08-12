@@ -212,18 +212,29 @@ It is possible to see why it has properties 1-3.
 
 Look at all the terms a₁ₐ, a₂ᵦ, ... ,  a<sub>𝑛</sub>ᵧ , involving a₁₁.  The first column is α = 1. This leaves some permutation (β, ... , γ) of the remaining columns (2, ... , n).  We collect all these terms together as a₁₁C₁₁  , where the coefficient of a₁₁ is a smaller determinant--with row 1 and column 1 removed:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_cofactor.png)
 
+Similarly, the entry a₁₂ is multiplied by some smaller determinant C₁₂. 
 
+Grouping all the terms that start with the same a₁₁, formula (6) becomes
 
+**Cofactors along row 1** det A = a₁₁C₁₁ + a₁₂C₁₂ + ... + a₁<sub>𝑛</sub>C₁<sub>𝑛</sub>. (8)
 
+This shows that detA depends linearly on the entries a₁₁, ... , a₁<sub>𝑛</sub> of the first row.
 
+**Example 2** For a 3 by 3 matrix, this way of collecting terms gives
 
+```
+detA = a₁₁(a₂₂a₃₃ - a₂₃a₃₂) + a₁₂(a₂₃a₃₁ - a₂₁a₃₃) + a₁₃(a₂₁a₃₂ - a₂₂a₃₁) (9)
+```
 
+#### Expansion of detA in Cofactors
 
+We want one more formula for the determinant. If this meant starting again from scratch, it would be too much. But the formula is already discovered--it is (8), and the only point is to identify the cofactors C₁ⱼ that multiply a₁ⱼ.
 
+We know that C₁ⱼ depends on rows 2, ... , n.  Row 1 is already accounted for by a₁ⱼ.  
 
-
-
+What we are really doing is splitting the determinant into the following sum:
 
 
 
