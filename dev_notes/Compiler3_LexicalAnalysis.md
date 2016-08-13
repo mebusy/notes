@@ -315,7 +315,7 @@ OPERATION | DEFINITION AND NOTATION
 --- | ---
 Union of L and M | L ∪ M = { s \| s is in L  or s is in M }
 Concatenation of L and M | LM = { st \| s is in L  and t is in M }
-Kleene closure of L | L<sup>*</sup>  = ∪<sup>∞</sup>`ᵢ₌₀ Lⁱ`
+Kleene closure of L | L<sup>\*</sup>  = ∪<sup>∞</sup>`ᵢ₌₀ Lⁱ`
 Positive closure of L | L⁺  = ∪<sup>∞</sup>`ᵢ₌₁ Lⁱ`
 
 
@@ -390,7 +390,7 @@ If Σ is an alphabet of basic symbols, then a *regular definition* is a sequence
 	d₁ → r₁
 	d₂ → r₂ 
 	  ...
-	d𝒏 → r𝘯
+	dn → rn
 ```
 
 where:
@@ -400,7 +400,7 @@ where:
 
 By restricting rᵢ to Σ and the previously defined d's, we avoid recursive defini­tions, and we can construct a regular expression over Σ alone, for each rᵢ. 
 
-We do so by first replacing uses of d₁ in r₂ (which cannot use any of the d's except for d₁ ) , then replacing uses of d₁ and d₂ in r₃ by r₁ and (the substituted) r₂ , and so on. Finally,in r𝘯 we replace each dᵢ, for i=1,2,...,n-1, by the substituted version of rᵢ , each of which has only symbols of Σ .
+We do so by first replacing uses of d₁ in r₂ (which cannot use any of the d's except for d₁ ) , then replacing uses of d₁ and d₂ in r₃ by r₁ and (the substituted) r₂ , and so on. Finally,in rn we replace each dᵢ, for i=1,2,...,n-1, by the substituted version of rᵢ , each of which has only symbols of Σ .
 
 Example3.5: Here is a regular definition for the language of C identifiers.
 
@@ -430,13 +430,13 @@ Example 3.6 : Unsigned numbers (integer or floating point) are strings such as 5
  1. *One or more instances*. `+`
  	- The operator + has the same precedence and associativity as the operator \*
  	- Two useful algebraic laws, r\* = r+ | ε,   and r+ = rr\* = r\*r
- 2. *Ze  or one instance*.   `?`
+ 2. *Zero or one instance*.   `?`
  	- r? is equivalent to r | ε
  	- L(r?) = L(r) U {c}
  	- The ? operator has the same precedence and associativity as \* and +.
  3. *Character classes*.
- 	- A regular expression a₁|a₂|...|a𝘯 , can be replaced by the shorthand [ a₁a₂...a𝘯 ]
- 	- More importantly, when a₁,a₂,...,a𝘯 form a *logical se­quence*, we can replace them by a₁-a𝘯, that is, just the first and last separated by a hyphen '-'. 
+ 	- A regular expression a₁|a₂|...|an , can be replaced by the shorthand [ a₁a₂...an ]
+ 	- More importantly, when a₁,a₂,...,an form a *logical se­quence*, we can replace them by a₁-an, that is, just the first and last separated by a hyphen '-'. 
  	- Thus, [abc] is shorthand for a|b|c, and [a-z] is shorthand for a|b|...|z.
 
 Example 3.7 : Using these shorthands, we can rewrite the regular definition of Example 3.5 as:
