@@ -989,13 +989,32 @@ We conclude with a discussion of the time-space tradeoffs inherent in the variou
 
 ### 3.7.1 Conversion of an NFA to a DFA
 
+The general idea behind the subset construction is that each state of the constructed DFA corresponds to a set of NFA states. After reading input a₁a₂...an, the DFA is in that state which corresponds to the set of states that the NFA can reach, from its start state, following paths labeled a₁a₂...an. 
 
+It is possible that the number of DFA states is exponential in the number of NFA states, which could lead to diffculties when we try to implement this DFA.  However, part of the power of the automaton-based approach to lexical analysis is that for real languages, the NFA and DFA have approximately the same number of states, and the exponential behavior is not seen.
 
+Algorithm 3.20 : The *subset construction* of a DFA from an NFA. 
 
+ - INPUT: An NFA *N*.
+ - OUTPUT: A DFA *D* accepting the same language as N
+ - METHOD: Our algorithm constructs a transition table *Dtran* for D. 
+ 	- Each state of D is a set of NFA states, 
+ 		- and we construct Dtran so D will simulate "in parallel" all possible moves N can make on a given input string. 
+ 	- Our first problem is to deal with ε-transitions of N properly. 
+ 		- In Fig. 3.31 we see the definitions of several functions that describe basic computations on the states of N that are needed in the algorithm. 
 
+Note that s is a single state of N, while T is a set of states of N.
 
+OPERATION | DESCRIPTION
+--- | ---
+ε-closure(s) | Set of NFA states reachable from NFA state s on ε-transitions alone.
+ε-closure(T) | Set of NFA states reachable from some NFA state s in set T on ε-transitions alone; = U<sub>s in T</sub> ε-closure(s).
+move(T,a) | Set of NFA states to which there is a transition on input symbol α from some state s in T.
 
+Figure 3.31: Operations on NFA states
 
+As a basis, before reading the first input symbol, N can be in any of the states of ε-closure(s₀), where s₀ is its start state. 
 
+For the induction, suppose that N can be in set of states T after reading input string x. If it next reads input a , then N can immediately go to any of the states in move(T, a) . 
 
 
