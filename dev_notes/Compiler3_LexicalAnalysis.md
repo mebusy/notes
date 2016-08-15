@@ -1052,4 +1052,15 @@ while ( stack is not empty ) {
 Figure 3.33: Computing ε-closure(T)
 
 
+Example 3.21 : Figure 3.34 shows another NFA accepting **(a|b)\*abb**; it hap­pens to be the one we shall construct directly from this regular expression in Section 3.7. Let us apply Algorithm 3.20 to Fig. 3.29.
+
+
+
+
+
+
+
+
+
+
 
