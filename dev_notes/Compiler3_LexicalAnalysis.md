@@ -1054,11 +1054,38 @@ Figure 3.33: Computing ε-closure(T)
 
 Example 3.21 : Figure 3.34 shows another NFA accepting **(a|b)\*abb**; it hap­pens to be the one we shall construct directly from this regular expression in Section 3.7. Let us apply Algorithm 3.20 to Fig. 3.29.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.34.png)
+
+The start state A ofthe equivalent DFA is ε-closure(O), or A = {O, 1, 2, 4, 7}. Note that a path can have zero edges, so state 0 is reachable from itself by an ε-labeled path.
+
+The input alphabet is {a, b}. Thus, our first step is to mark A and compute Dtran[A, a] = ε-closure( move(A, a)) and Dtran[A, b] = ε-closure(move(A, b)).
+
+Among the states 0, 1, 2, 4, and 7, only 2 and 7 have transitions on a, to 3 and 8, respectively. Thus, move(A, a) = {3, 8}. Also, ε-closure({3, 8} = {1, 2, 3, 4, 6, 7, 8}, so we conclude
+
+```
+Dtran[A,a]= ε-closure(move(A,a))= ε-closure({3,8})= {1,2,3,4,6,7,8}
+```
+
+Let us call this set B, so Dtran[A, a] = B.
 
 
+Now, we must compute Dtran[A, b]. Among the states in A, only 4 has a transition on b, and it goes to 5. Thus,
 
+```
+Dtran[A, b] = ε-closure({5}) = {1, 2, 4, 6, 7}
+```
 
+Let us call the above set C, so Dtran[A, b] = C.
 
+NFA STATE | DFA STATE | a | b
+--- | --- | --- | ---
+{0,1,2,4,7} |  A | B| C 
+{1,2,3,4,6,7,8} | B | B| D 
+{1,2,4,5,6,7}  | C | B | C 
+{1,2,4,5,6,7,9} | D | B| E 
+{1,2,3,5,6,7,10} | E | B| C
+
+Figure 3.35:  Transition table Dtran for DFA D
 
 
 
