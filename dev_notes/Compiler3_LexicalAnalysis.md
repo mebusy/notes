@@ -1015,6 +1015,41 @@ Figure 3.31: Operations on NFA states
 
 As a basis, before reading the first input symbol, N can be in any of the states of ε-closure(s₀), where s₀ is its start state. 
 
-For the induction, suppose that N can be in set of states T after reading input string x. If it next reads input a , then N can immediately go to any of the states in move(T, a) . 
+For the induction, suppose that N can be in set of states T after reading input string x. If it next reads input α , then N can immediately go to any of the states in move(T, α). However, after reading α, it may also make several ε-transitions; thus N could be in any state of ε-closure(move(T, α)) after reading input xα. Following these ideas, the construction of the set of D's states, *Dstates*, and its transition function *Dtran*, is shown in Fig.3.32.
+
+```java
+while ( there is an unmarked state T in Dstates ) {
+	mark T;
+	for ( each input symbol a ) {
+		U = ε-closure(move(T,a)); 
+		if ( U is not in Dstates )
+			add U as an unmarked state to Dstates; 
+		Dtran[T, a] = U;
+	}
+}
+```  
+
+Figure 3.32: The subset construction
+
+The start state of D is ε-closure(s₀), and the accepting states of D are all those sets of N's states that include at least one accepting state of N. To complete our description of the subset construction, we need only to show how initially, ε-closure(s₀) is the only state in Dstates, and it is unmarked; ε-closure(T) is computed for any set of NFA states T. 
+
+This process, shown in Fig. 3.33, is a straightforward search in a graph from a set of states. In this case, imagine that only the ε-labeled edges are available in the graph.
+
+
+```java
+push all states of T onto stack;
+initialize ε-closure(T) to T; 
+while ( stack is not empty ) {
+	pop t, the top element, off stack;
+	for(each state u with an edge from t to u labeled ε)
+		if ( u is not in ε-closure(T) ) { 
+			add u to ε-closure(T);
+			push u onto stack; 
+		}
+}
+```
+
+Figure 3.33: Computing ε-closure(T)
+
 
 
