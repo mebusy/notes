@@ -1096,8 +1096,27 @@ The five different DFA states we actually construct, their correspond­ing sets 
 The transition table for the DFA D are shown in Fig. 3.35, and the transition graph for D is in Fig. 3.36.
 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.36.png)
 
 > Figure 3.36: Result of applying the subset construction to Fig. 3.34
+
+State A is the start state, and state E, which contains state 10 of the NFA, is the only accepting state.
+
+Note that D has one more state than the DFA of Fig. 3.28 for the same lan­guage. States A and C have the same move function, and so can be merged. We discuss the matter of minimizing the number of states of a DFA in Section 3.9.6.
+
+---
+
+### 3.7.2 Simulation of an NFA
+
+
+
+
+
+
+
+
+
+
 
 
 
