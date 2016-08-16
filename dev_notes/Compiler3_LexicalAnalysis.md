@@ -1085,7 +1085,23 @@ NFA STATE | DFA STATE | a | b
 {1,2,4,5,6,7,9} | D | B| E 
 {1,2,3,5,6,7,10} | E | B| C
 
-Figure 3.35:  Transition table Dtran for DFA D
+> Figure 3.35:  Transition table Dtran for DFA D
+
+If we continue this process with the unmarked sets B and C, we eventually reach a point where all the states of the DFA are marked. 
+
+This conclusion is guaranteed, since there are "only" 2¹¹ different subsets of a set of eleven NFA states.
+
+The five different DFA states we actually construct, their correspond­ing sets of NFA states.
+
+The transition table for the DFA D are shown in Fig. 3.35, and the transition graph for D is in Fig. 3.36.
+
+
+
+> Figure 3.36: Result of applying the subset construction to Fig. 3.34
+
+
+
+
 
 
 
