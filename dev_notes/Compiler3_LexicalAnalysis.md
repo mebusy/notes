@@ -1056,7 +1056,7 @@ Example 3.21 : Figure 3.34 shows another NFA accepting **(a|b)\*abb**; it hap­p
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.34.png)
 
-The start state A ofthe equivalent DFA is ε-closure(O), or A = {O, 1, 2, 4, 7}. Note that a path can have zero edges, so state 0 is reachable from itself by an ε-labeled path.
+The start state A of the equivalent DFA is ε-closure(0), or A = {0, 1, 2, 4, 7}. Note that a path can have zero edges, so state 0 is reachable from itself by an ε-labeled path.
 
 The input alphabet is {a, b}. Thus, our first step is to mark A and compute Dtran[A, a] = ε-closure( move(A, a)) and Dtran[A, b] = ε-closure(move(A, b)).
 
@@ -1072,10 +1072,10 @@ Let us call this set B, so Dtran[A, a] = B.
 Now, we must compute Dtran[A, b]. Among the states in A, only 4 has a transition on b, and it goes to 5. Thus,
 
 ```
-Dtran[A, b] = ε-closure({5}) = {1, 2, 4, 6, 7}
+Dtran[A, b] = ε-closure({5}) = {1, 2, 4, **5** 6, 7}
 ```
 
-Let us call the above set C, so Dtran[A, b] = C.
+Let us call the above set C, so Dtran[A, b] = C.  (注: 原书中并没有状态5， 但是按理应该有状态5)
 
 NFA STATE | DFA STATE | a | b
 --- | --- | --- | ---
