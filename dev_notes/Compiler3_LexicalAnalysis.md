@@ -1108,16 +1108,88 @@ Note that D has one more state than the DFA of Fig. 3.28 for the same lan­guage
 
 ### 3.7.2 Simulation of an NFA
 
+A strategy that has been used in a number of text-editing programs is to con­struct an NFA from a regular expression and then simulate the NFA using something like an on-the-fly subset construction. The simulation is outlined below.
 
+Algorithm 3.22 : Simulating an NFA.
 
+ - INPUT: 
+ 	- An input string *x* terminated by an end-of-flle character **eof**. 
+ 	- An NFA *N* with start state s₀, accepting states *F*, and transition function *move*.
+ - OUTPUT: Answer "yes" if *M* accepts *x* ; "no" otherwise.
+ - METHOD: The algorithm keeps a set of current states S, those that are reached from s₀ following a path labeled by the inputs read so far. If c is the next input character, read by the function *nextChar*(), then we first compute *move*(S, c) and then close that set using ε-closure(). The algorithm is sketched in Fig.3.37.
 
+```java
+S = ε-closure(s₀);  // 1)
+c = nextChar();
+while( c!=eof ) {
+	S = ε-closure(move(S, c)) ;  // 4)
+	c = nextChar();
+}
+if( S ∩ F != ∅ )return "yes";
+else return "no" ;
+```
 
+> Figure 3.37: Simulating an NFA
 
+---
 
+3.7.3 Effciency of NFA Simulation
 
+If carefully implemented, Algorithm 3.22 can be quite effcient.
 
+As the ideas involved are useful in a number of similar algorithms involving search of graphs, we shall look at this implementation in additional detail. The data structures we need are:
 
+ 1. Two stacks, each of which holds a set of NFA states. 
+ 	- One of these stacks, *oldStates*, holds the "current" set of states, 
+ 		- i.e., S in *move*(S, c) of line (4)  
+ 	- The second, *newStates*, holds the "next" set of states 
+ 		- S on the left side of line (4) . Unseen is a step where, as we go around the loop of lines (3) through (6), newStates is transferred to oldStates.
+ 2. A boolean array *alreadyOn* 
+ 	- indexed by the NFA states, to indicate which states are in *newStates*. 
+ 	- While the array and stack hold the same infor­mation, it is much faster to interrogate *alreadyOn*[s] than to search for state s on the stack *newStates*. 
+ 3. A two-dimensional array *mover*[s,a]
+ 	- holding the transition table of the NFA. 
+ 	- The entries in this table, which are sets of states, are represented by linked lists.
 
+To implement line (1) of Fig. 3.37, we need to set each entry in array *al­readyOn* to FALSE, then for each state s in ε-closure(s₀), push s onto *oldStates* and set alreadyOn[s] to TRUE.  This operation on state s, (line (4) as well) , are facilitated by a function we shall call *addState*(s).
+
+```java
+addState(s) {
+	push s onto newStates;
+	alreadyOn[sJ = TRUE; 
+	for ( t on move[s,ε] )
+		if ( ! alreadyOn(t) ) 
+			addState(t) ;
+}
+```
+
+> Figure 3.38: Adding a new state s, which is known not to be on newStates
+
+This function calls itself recursively on the states in move[s,ε] in order to further the computation of ε-closure(s).
+
+We implement line (4) of Fig. 3.37 by looking at each state s on *oldStates*.
+
+We first find the set of states move[s, c],  and for each of those states that is not already on *newStates*, we apply *addState* to it. Note that *addState* has the effect of computing the ε-closure and adding all those states to newStates as well, if they were not already on. This sequence of steps is summarized in Fig. 3.39.
+
+```java
+for ( s on oldStates ) {   // 16
+	for ( t on move[s, c] )
+		if ( ! alreadyOn[t] ) 
+			addState(t) ;
+		pop s from oldStates;  // 20
+}
+for ( s on newStates ) {  // 22
+	pop s from newStates; 
+	push s onto oldStates; 
+	alreadyOn[s] = FALSE;
+}
+```
+
+> Figure 3.39: Implementation of step (4) of Fig. 3.37
+
+---
+
+### 3.7.4 Construction of an NFA from a Regular Expression
 
 
 
