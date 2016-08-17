@@ -1309,11 +1309,18 @@ One issue that may favor an NFA is that the subset construction can exponentiate
 AUTOMATON | INITIAL | PER STRING
 --- | --- | ---
 NFA | O(\|r\|) | O(\|r\| x \|x\|)
-DFA typical case | O(\|r³\|) | O(\|x\|)
+DFA typical case | O(\|r\|³) | O(\|x\|)
 DFA worst case | O(\|r\|²2<sup>\|r\|</sup>)  | O(\|x\|)
 
+---
 
+## 3.8 Design of a Lexical-Analyzer Generator
 
+In this section we shall apply the techniques presented in Section 3.7 to see how a lexical-analyzer generator such as **Lex** is architected. We discuss two approaches, based on NFA's and DFA's; the latter is essentially the implementation of **Lex**.
+
+---
+
+### 3.8.1 The Structure of the Generated Analyzer
 
 
 
