@@ -1213,7 +1213,24 @@ where again *i* and *f* are new states, the start and accepting states, respecti
 
 **INDUCTION**: Suppose *N(s)* and *N(t)* are NFA's for regular expressions *s* and *t*, respectively.
 
- 1. Suppose r = s|t. Then N(r) is constructed as in Fig. 3.40.
- 	- 
+ - a) Suppose r = s|t. Then N(r) is constructed as in Fig. 3.40.
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.40.png)
+ 	- Here, *i* and *j* are new states, the start and accepting states of *N(r)* , respectively.
+ 	- There are ε-transitions from *i* to the start states of *N(s)* and *N(t)*, and each of their accepting states have ε-transitions to the accepting state *j*.
+ 	- Note that the accepting states of *N(s)* and *N(t)* are not accepting in *N(r)*.
+ 		- Since any path from i to j must pass through either N(s) or N(t) exclusively, 
+ 		- and since the label of that path is not changed by the ε's leaving i or entering j.
+ 	- we conclude that *N(r)* accepts *L(s) ∪ L(t)*, which is the same as *L(r)*. That is, Fig. 3.40 is a correct construction for the union operator.
+ - b) Suppose *r* = *st*. Then construct *N(r)* as in Fig. 3.41.
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.41.png)
+ 	- The start state of *N(s)* becomes the start state of *N(r)*, and the accepting state of *N(t)* is the only accepting state of *N(r)*.
+ 	- The accepting state of *N(s)* and the start state of *N(t)* are merged into a single state.
+ 	- A path from i to j in Fig. 3.41 must go first through N(s), and therefore its label will begin with some string in L(s). The path then continues through N(t), so the path's label  finishes with a string in L(t). 
+ 	- As we shall soon argue, accepting states never have edges out and start states never have edges in, so it is not possible for a path to re-enter N(s) after leaving it. Thus, *N(r)* accepts exactly *L(s)L(t)*, and is a correct NFA for *r=st*.
+ - c) 
+
+
+
+
 
 
