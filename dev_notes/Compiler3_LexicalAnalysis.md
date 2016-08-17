@@ -1302,6 +1302,17 @@ We merge states 7 and 7'. Continuing in this fashion with new NFA's for the two 
 <h2 id="d3b6cfc6bff4c4985298cd4b6ccd8806"></h2>
 ### 3.7.5 Efficiency of String-Processing Algorithms
 
+We observed that Algorithm 3.18 processes a string x in time *O(|x|)*, while in Section 3.7.3 we concluded that we could simulate an NFA in time proportional to the product of *|x|* and the size of the NFA's transition graph. Obviously, it is faster to have a DFA to simulate than an NFA, so we might wonder whether it ever makes sense to simulate an NFA.
+
+One issue that may favor an NFA is that the subset construction can exponentiate the number of states ( in worst case ). While in principle, the number of DFA states does not influence the running time of Algorithm 3.18, should the number of states become so large that the transition table does not fit in main memory, then the true running time would have to include disk I/O and therefore rise noticeably.
+
+AUTOMATON | INITIAL | PER STRING
+--- | --- | ---
+NFA | O(\|r\|) | O(\|r\| x \|x\|)
+DFA typical case | O(\|r³\|) | O(\|x\|)
+DFA worst case | O(\|r\|²2<sup>\|r\|</sup>)  | O(\|x\|)
+
+
 
 
 
