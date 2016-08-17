@@ -1278,6 +1278,8 @@ The NFA for r₄ = (r₃) is the same at that for r₃.
 
 The NFA for *r₅ = (r₃)\** is then as shown in Fig. 3.45. We have used the construction in Fig. 3.42 to build this NFA.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.45.png)
 
+Now, consider subexpression r₆ , whlch is another **a**. We use the basis con­struction for *a* again, but we must use new states. It is not permissible to reuse the NFA we constructed for r₁ , even though r₁ and r₆ are the same expression. The NFA for T₆ is:
 
 
