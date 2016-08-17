@@ -886,6 +886,21 @@ At the heart of the transition is the formalism known as ***finite automata***. 
 
 Both deterministic and nondeterministic finite automata are capable of rec­ognizing the same languages -- the regular languages.
 
+
+***DFA和NFA的概念***
+
+ - 首先对于美一个正则表达式都有一个对应的DFA可以来表示 ，还有NFA 。
+ - NFA对于一个字符的输入有可能存在多个以上的状态转移，而DFA对于没一个输入只存在一个选择。
+ 	- 所以每一个NFA都可以转化为一个DFA，但是一个DFA可以转化为多个NFA。 
+ - 一般实践过程中DFA的状态转移要多，所以DFA相对来说要难构造一些，同时DFA比NFA需要的内存空间更大。
+ - 因为在NFA中一个状态可能向多个状态转移，在极端的情况下其效率比不过DFA。 
+ - 对于NFA不同的实现, 效率会不一样
+ 	- 一些老的Unix工具是用的 Thompson NFA算法实现 算法，比如Awk，Tcl，GNU grep等，
+ 	- 而一些更通用的编程语言用的是基于回溯的一种NFA实现，比如Perl/Python。
+ 	- 通过数据比较，在最坏的情况下用Thompson NFA实现的awk表现比匹配回溯的NFA要好很多倍。
+ 		- 最坏情况下的复杂度 ，回溯NFA是O(2^N)，而Thompson的复杂度是O(N^2)。
+
+
 ---
 
 <h2 id="a46bbbffe97f741d7522f9d7eba5483b"></h2>
@@ -1241,7 +1256,15 @@ We shall list several properties of the constructed NFA's
  	- This bound follows from the fact that each step of the algorithm creates at most two new states.
  2. *N(r)* has one start state and one accepting state. 
  	- The accepting state has no outgoing transitions, and the start state has no incoming transitions.
- 3. Each state of *N(r)* other than the accepting state has either one outgoing transition on a symbol in Σ or two outgoing transitions, both on ε.
+ 3. Each state of *N(r)* other than the accepting state has either one outgoing transition on a symbol in Σ or two outgoing transitions, both on ε. ???
+
+Example 3.24 : Let us use Algorithm 3.23 to construct an NFA for r = **(a|b)\*abb**.
+
+
+
+Figure 3.43 shows a parse tree for *r* that is analogous to the parse trees constructed for Arithmetic expressions in Section 2.2.3. 
+
+For subexpression r₁ , the first a, we construct the NFA:
 
 
 
