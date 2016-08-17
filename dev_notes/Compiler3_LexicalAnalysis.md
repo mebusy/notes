@@ -1203,9 +1203,17 @@ Algorithm 3.23 : The McNaughton-Yamada-Thompson algorithm to convert a regular e
  	- The rules for constructing an NFA &nbsp; consist of basis rules for handling subexpressios with no operators, 
  	- and inductive rules for constructing larger NFA's from the NFA's for the immediate subexpressions of a given expression.
 
-BASIS: For expression ε construct the NFA 
+**BASIS**: For expression ε construct the NFA ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_NFA_for_eps.png)
 
+Here, *i* is a new state, the start state of this NFA, and *f* is another new state, the accepting state for the NFA.
 
+For any subexpressiop *a* in Σ , construct the NFA ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_NFA_for_any_expr.png)
 
+where again *i* and *f* are new states, the start and accepting states, respectively. Note that in both of the basis constructions, we construct a distinct NFA, with new states, for every occurrence of ε or some *a* as a subexpression of *r*.
+
+**INDUCTION**: Suppose *N(s)* and *N(t)* are NFA's for regular expressions *s* and *t*, respectively.
+
+ 1. Suppose r = s|t. Then N(r) is constructed as in Fig. 3.40.
+ 	- 
 
 
