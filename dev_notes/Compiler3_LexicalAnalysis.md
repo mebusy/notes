@@ -1360,6 +1360,9 @@ Note that these three patterns present some con icts of the type discussed in Se
 
 Fig. 3.52 shows these three NFA's combined into a single NFA by the addition of start state 0 and three ε-transitions. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.51.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.52.png)
 
 ---
 
