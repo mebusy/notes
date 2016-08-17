@@ -30,7 +30,11 @@
 		 - [3.6.2 Transition Tables](#2ebef3028849a4dc0909d534069b2316)
 		 - [3.6.3 Acceptance of Input Strings by Automata](#7de19e880b9825779ec50e33458727d7)
 		 - [3.6.4 Deterministic Finite Automata](#4870f1974b0dd964c769b59b181d7226)
-	 - [3.7  From Regular Expressions to Automata](#d4dc4b389443b309af7bde97bedef3ff)
+	 - [3.7 From Regular Expressions to Automata](#6fb5154a96390d272c49cb3c414c0fb4)
+		 - [3.7.1 Conversion of an NFA to a DFA](#178a1d8d1d4772d490da973fd009261e)
+		 - [3.7.2 Simulation of an NFA](#d72575cbdcfb9adb060d4493ead39c36)
+		 - [3.7.4 Construction of an NFA from a Regular Expression](#63ba62bd1272233558990dfb81e26ee2)
+		 - [3.7.5 Efficiency of String-Processing Algorithms](#d3b6cfc6bff4c4985298cd4b6ccd8806)
 
 ...menuend
 
@@ -987,7 +991,7 @@ Example 3.19 : In Fig. 3.28 we see the transition graph of a DFA accepting the l
 
 ---
 
-<h2 id="d4dc4b389443b309af7bde97bedef3ff"></h2>
+<h2 id="6fb5154a96390d272c49cb3c414c0fb4"></h2>
 ## 3.7 From Regular Expressions to Automata
 
 Often it is important to convert an NFA to a DFA that accepts the same language.
@@ -1002,6 +1006,7 @@ We conclude with a discussion of the time-space tradeoffs inherent in the variou
 
 ---
 
+<h2 id="178a1d8d1d4772d490da973fd009261e"></h2>
 ### 3.7.1 Conversion of an NFA to a DFA
 
 The general idea behind the subset construction is that each state of the constructed DFA corresponds to a set of NFA states. After reading input a₁a₂...an, the DFA is in that state which corresponds to the set of states that the NFA can reach, from its start state, following paths labeled a₁a₂...an. 
@@ -1121,6 +1126,7 @@ Note that D has one more state than the DFA of Fig. 3.28 for the same lan­guage
 
 ---
 
+<h2 id="d72575cbdcfb9adb060d4493ead39c36"></h2>
 ### 3.7.2 Simulation of an NFA
 
 A strategy that has been used in a number of text-editing programs is to con­struct an NFA from a regular expression and then simulate the NFA using something like an on-the-fly subset construction. The simulation is outlined below.
@@ -1204,6 +1210,7 @@ for ( s on newStates ) {  // 22
 
 ---
 
+<h2 id="63ba62bd1272233558990dfb81e26ee2"></h2>
 ### 3.7.4 Construction of an NFA from a Regular Expression
 
 We now give an algorithm for converting any regular expression to an NFA that defines the same language. 
@@ -1280,6 +1287,22 @@ The NFA for *r₅ = (r₃)\** is then as shown in Fig. 3.45. We have used the co
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.45.png)
 
-Now, consider subexpression r₆ , whlch is another **a**. We use the basis con­struction for *a* again, but we must use new states. It is not permissible to reuse the NFA we constructed for r₁ , even though r₁ and r₆ are the same expression. The NFA for T₆ is:
+Now, consider subexpression r₆ , whlch is another **a**. We use the basis con­struction for *a* again, but we must use new states. It is not permissible to reuse the NFA we constructed for r₁ , even though r₁ and r₆ are the same expression. The NFA for r₆ is: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.45_r6.png)
+
+To obtain the NFA for r₇ = r₅|r₆, we apply the construction of Fig. 3.41. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.46.png)
+
+We merge states 7 and 7'. Continuing in this fashion with new NFA's for the two subexpressions b called r₈ and r₁₀ , we eventually construct the NFA for **(a|b)\*abb** that we first met in Fig. 3.34. 
+
+---
+
+<h2 id="d3b6cfc6bff4c4985298cd4b6ccd8806"></h2>
+### 3.7.5 Efficiency of String-Processing Algorithms
+
+
+
+
+
 
 

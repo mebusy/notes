@@ -7,6 +7,9 @@
 	 - [1.2. MATHEMATICAL PRELIMINARIES](#b0a028097eeef8c671b55c21acb734aa)
 		 - [1.2.1. Mathematical Induction 数学归纳法](#c9c5e422aa21b3673c8ea74c36d80e73)
 			 - [Algorithm E (Extended Euclid’s algorithm).](#e34888a37bff7ab2db8c92522280445b)
+		 - [1.2.2. Numbers, Powers, and Logarithms](#a669d5d2df4ad6ad6cf4835f7f05fcff)
+		 - [1.2.3. Sums and Products](#27e7dea388786b255b61cbfa9ee7e2c0)
+		 - [1.2.4 Integer Functions and Elementary Number Theory](#b07d9a8cd6c423d1d592afc67680b012)
 
 ...menuend
 
@@ -155,6 +158,7 @@ EXERCISES
 
 ---
 
+<h2 id="a669d5d2df4ad6ad6cf4835f7f05fcff"></h2>
 ### 1.2.2. Numbers, Powers, and Logarithms
 
 
@@ -177,6 +181,7 @@ Equations (11), (12), and (14) are the fundamental rules for manipulating logari
 
 ---
 
+<h2 id="27e7dea388786b255b61cbfa9ee7e2c0"></h2>
 ### 1.2.3. Sums and Products
 
  - a) *The distributive law*, for products of sums:
@@ -200,6 +205,7 @@ Equations (11), (12), and (14) are the fundamental rules for manipulating logari
 
 ---
 
+<h2 id="b07d9a8cd6c423d1d592afc67680b012"></h2>
 ### 1.2.4 Integer Functions and Elementary Number Theory
 
 If a is any real number, we write   ⎣x⎦ = floor(x) , ⎡x⎤ = ceil(x).
