@@ -33,6 +33,7 @@
 	 - [3.7 From Regular Expressions to Automata](#6fb5154a96390d272c49cb3c414c0fb4)
 		 - [3.7.1 Conversion of an NFA to a DFA](#178a1d8d1d4772d490da973fd009261e)
 		 - [3.7.2 Simulation of an NFA](#d72575cbdcfb9adb060d4493ead39c36)
+		 - [3.7.3 Effciency of NFA Simulation](#8906dbe3b6522fc4916054cac3ea1bf6)
 		 - [3.7.4 Construction of an NFA from a Regular Expression](#63ba62bd1272233558990dfb81e26ee2)
 		 - [3.7.5 Efficiency of String-Processing Algorithms](#d3b6cfc6bff4c4985298cd4b6ccd8806)
 
@@ -1154,7 +1155,8 @@ else return "no" ;
 
 ---
 
-3.7.3 Effciency of NFA Simulation
+<h2 id="8906dbe3b6522fc4916054cac3ea1bf6"></h2>
+### 3.7.3 Effciency of NFA Simulation
 
 If carefully implemented, Algorithm 3.22 can be quite effcient.
 
