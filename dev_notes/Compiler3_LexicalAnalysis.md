@@ -1227,7 +1227,22 @@ where again *i* and *f* are new states, the start and accepting states, respecti
  	- The accepting state of *N(s)* and the start state of *N(t)* are merged into a single state.
  	- A path from i to j in Fig. 3.41 must go first through N(s), and therefore its label will begin with some string in L(s). The path then continues through N(t), so the path's label  finishes with a string in L(t). 
  	- As we shall soon argue, accepting states never have edges out and start states never have edges in, so it is not possible for a path to re-enter N(s) after leaving it. Thus, *N(r)* accepts exactly *L(s)L(t)*, and is a correct NFA for *r=st*.
- - c) 
+ - c) Suppose *r* = *s\** . Then for *r* we construct the NFA *N(r)* shown in Fig. 3.42. 
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.42.png)
+ 	- Here, *i* and *f* are new states, the start state and lone accepting state of *N(r)*.
+ 	- So the entire set of strings accepted by *N(r)* is *L(s\*)*.
+ - d) Finally, suppose *r* = *(s)*. Then *L(r)* = *L(s)*, and we can use the NFA *N(s)* as *N(r)*.
+
+The method description in Algorithm 3.23 contains hints as to why the inductive construction works as it should.
+
+We shall list several properties of the constructed NFA's 
+
+ 1. *N(r)* has at most twice as many states as there are operators and operands in *r*. 
+ 	- This bound follows from the fact that each step of the algorithm creates at most two new states.
+ 2. *N(r)* has one start state and one accepting state. 
+ 	- The accepting state has no outgoing transitions, and the start state has no incoming transitions.
+ 3. Each state of *N(r)* other than the accepting state has either one outgoing transition on a symbol in Σ or two outgoing transitions, both on ε.
+
 
 
 
