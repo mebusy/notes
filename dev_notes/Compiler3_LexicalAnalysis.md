@@ -1195,6 +1195,15 @@ We now give an algorithm for converting any regular expression to an NFA that de
 
 The algorithm is syntax-directed, in the sense that it works recursively up the parse tree for the regular expression. For each subexpression the algorithm constructs an NFA with a single accepting state.
 
+Algorithm 3.23 : The McNaughton-Yamada-Thompson algorithm to convert a regular expression to an NFA.
+
+ - INPUT: A regular expressioll *r* over alphabet Σ.  
+ - OUTPUT: An NFA *N* accepting *L(r)*.
+ - METHOD: Begin by parsing *r* into its constituent subexpressions. 
+ 	- The rules for constructing an NFA &nbsp; consist of basis rules for handling subexpressios with no operators, 
+ 	- and inductive rules for constructing larger NFA's from the NFA's for the immediate subexpressions of a given expression.
+
+BASIS: For expression ε construct the NFA 
 
 
 
