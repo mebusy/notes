@@ -1260,14 +1260,23 @@ We shall list several properties of the constructed NFA's
 
 Example 3.24 : Let us use Algorithm 3.23 to construct an NFA for r = **(a|b)\*abb**.
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.43.png)
 
 Figure 3.43 shows a parse tree for *r* that is analogous to the parse trees constructed for Arithmetic expressions in Section 2.2.3. 
 
-For subexpression r₁ , the first a, we construct the NFA:
+For subexpression r₁ , the first a, we construct the NFA: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.43_r1.png)
 
+State numbers have been chosen for consistency with what follows. 
 
+For r₂ we construct: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.43_r2.png)
 
+We can now combine N(r₁) and N(r₂), using the construction of Fig. 3.40 to obtain the NFA for *r₃ = r₁|r₂* :
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.44.png)
+
+The NFA for r₄ = (r₃) is the same at that for r₃.
+
+The NFA for *r₅ = (r₃)\** is then as shown in Fig. 3.45. We have used the construction in Fig. 3.42 to build this NFA.
 
 
 
