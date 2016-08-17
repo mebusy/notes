@@ -1191,7 +1191,9 @@ for ( s on newStates ) {  // 22
 
 ### 3.7.4 Construction of an NFA from a Regular Expression
 
+We now give an algorithm for converting any regular expression to an NFA that defines the same language. 
 
+The algorithm is syntax-directed, in the sense that it works recursively up the parse tree for the regular expression. For each subexpression the algorithm constructs an NFA with a single accepting state.
 
 
 
