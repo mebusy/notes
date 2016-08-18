@@ -5,12 +5,18 @@ import re
 import md5
 import os
 
+import urllib
+
 RE_PATTERN_MENU_BODY= re.compile( r"\.\.\.menustart[\s\S]*\.\.\.menuend\n\n\n" )
 RE_PATTERN_MENU_SYNTAX= re.compile( r"^(\#+)(.*?)$" )
 RE_PATTERN_MENU_JUMP_ID = re.compile( r"^<h\d*\s+id=" )
 
 def createMenu4MD( path ):
 	print 'parsing' , path
+
+	_path, _name = os.path.split( path )
+	global all_md_filenames
+	all_md_filenames[ _name ] = path 
 
 	fp = open(path)
 	content = fp.read()
@@ -85,8 +91,33 @@ def visit( arg, dirname, fnames):
 
 if '__main__' == __name__ :
 
+	all_md_filenames = {}
 	#createMenu4MD( '../dev_notes/ML-傻子机器学习入门.md' )
 	os.path.walk( "../dev_notes" , visit , None )
 
+	print '-----'
+	
+	RE_PATTERN_LINK_FILE = re.compile( r"\[.*?\]\(.*?(?=[^/]+\.md)([^/]+\.md)\s*\)" )
+	linkFiles = [] 
+	for key in all_md_filenames:
+		if key.lower().endswith( "readme.md" ):
+			#print key
+			fp = open( all_md_filenames[key] )
+			data = fp.read()
+			fp.close()
 
+			urls = re.findall( RE_PATTERN_LINK_FILE , data )
+			for url in urls:
+
+				unescape_url = urllib.unquote(  url ) 
+				if all_md_filenames.has_key( unescape_url):
+					linkFiles.append( unescape_url )
+				else:
+					print 'no such key: ' , unescape_url
+
+	for linkFile in linkFiles:
+		del all_md_filenames[linkFile] 
+		pass
+
+	print all_md_filenames
 
