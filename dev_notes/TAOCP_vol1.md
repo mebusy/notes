@@ -190,9 +190,14 @@ Equations (11), (12), and (14) are the fundamental rules for manipulating logari
  		- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_4.1.png)
  - b) *Change of variable:*
  	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_5.png)
- 	- For example:
- 		- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_6.png)
+ 	- This equation represents two kinds of transformations. 
+ 		- In the first case we are simply changing the name of the index variable from i to j. 
+ 		- The second case is more interesting: Here p(j) is a function of j that represents a *permutation* of the range; 
+ 			-  more precisely, for each integer i satisfying the relation r(i), there must be exactly one integer j satisfying the relation p(j) = i. 
+ 			- This condition is always satisfied in the important cases p(j) = c + j and p[j] = c —j, where c is an integer not depending on j, and these are the cases used most frequently in applications. For example:
+ 				- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_6.png)
  	- The replacement of j by p(j) cannot be done for all infinite sums. The operation is always valid if p(j) = c ± j, 
+ 	- p(j) = `c + j = i`  → `j = i - c` 
  - c) *Interchanging order of summation:*
  	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_7.png)
  	- Let us consider a very simple special case of this equation:
