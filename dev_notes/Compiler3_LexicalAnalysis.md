@@ -9,7 +9,7 @@
 	 - [3.2 Input Buffering](#48d05be5115ab5c35d376d2eae488b78)
 		 - [3.2.1 Buffer Pairs](#b05d3f12b9ea3730efff70e2ca88648a)
 		 - [3.2.2 Sentinels](#fff01af6a53288aa02eb09337c31967f)
-	 - [3.3 Speci cation of Tokens](#385328dcd658028123f7add4eb75d737)
+	 - [3.3 Specification of Tokens](#200e4745c8f29de556808e708a402ac2)
 		 - [3.3.1 Strings and Languages](#74e49ac16ef34367b51793af0f048840)
 		 - [3.3.2 Operations on Languages](#4cbd840ba5cb383f70147e16ae7a05de)
 		 - [3.3.3 Regular Expressions](#fb4a5b3852381b6aadac0887d6ff4ae2)
@@ -36,6 +36,12 @@
 		 - [3.7.3 Effciency of NFA Simulation](#8906dbe3b6522fc4916054cac3ea1bf6)
 		 - [3.7.4 Construction of an NFA from a Regular Expression](#63ba62bd1272233558990dfb81e26ee2)
 		 - [3.7.5 Efficiency of String-Processing Algorithms](#d3b6cfc6bff4c4985298cd4b6ccd8806)
+	 - [3.8 Design of a Lexical-Analyzer Generator](#9be0f70930b6a8eaced083f8e54612e4)
+		 - [3.8.1 The Structure of the Generated Analyzer](#bc1a201f9c5d4a767a356a8f7c8e2539)
+		 - [3.8.2 Pattern Matching Based on NFA's](#591c0cef90e7cc631724a82526181aa7)
+		 - [3.8.3 DFA's for Lexical Analyzers](#560deab5107ca190345913cc30cdd379)
+		 - [3.8.4 Implementing the Lookahead Operator](#842ebc90f1674282757f47268758cd3a)
+	 - [3.9 Optimization of DFA-Based Pattern Matchers](#fd5afa6bcd74b9b2aa4ece82a8f4e8c2)
 
 ...menuend
 
@@ -275,7 +281,7 @@ Figure 3.5: Loo head code with sentinels
 
 --- 
 
-<h2 id="385328dcd658028123f7add4eb75d737"></h2>
+<h2 id="200e4745c8f29de556808e708a402ac2"></h2>
 ## 3.3 Specification of Tokens
 
 Regular expressions are an important notation for specifying lexeme patterns. 
@@ -1314,12 +1320,14 @@ DFA worst case | O(\|r\|²2<sup>\|r\|</sup>)  | O(\|x\|)
 
 ---
 
+<h2 id="9be0f70930b6a8eaced083f8e54612e4"></h2>
 ## 3.8 Design of a Lexical-Analyzer Generator
 
 In this section we shall apply the techniques presented in Section 3.7 to see how a lexical-analyzer generator such as **Lex** is architected. We discuss two approaches, based on NFA's and DFA's; the latter is essentially the implementation of **Lex**.
 
 ---
 
+<h2 id="bc1a201f9c5d4a767a356a8f7c8e2539"></h2>
 ### 3.8.1 The Structure of the Generated Analyzer
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.49.png)
@@ -1366,6 +1374,7 @@ Fig. 3.52 shows these three NFA's combined into a single NFA by the addition of 
 
 ---
 
+<h2 id="591c0cef90e7cc631724a82526181aa7"></h2>
 ### 3.8.2 Pattern Matching Based on NFA's
 
 If the lexical analyzer simulates an NFA such as that of Fig. 3.52, then it must read input beginning at the point on its input which we have referred to as *lexemeBegin*. As it moves the pointer called *forward* ahead in the input, it calculates the set of states it is in at each point, following Algorithm 3.22 (Simulating an NFA).
@@ -1396,6 +1405,7 @@ prefix *aab* is the longest prefix that gets us to an accepting state. We theref
 
 ---
 
+<h2 id="560deab5107ca190345913cc30cdd379"></h2>
 ### 3.8.3 DFA's for Lexical Analyzers
 
 Another architecture, resembling the output of **Lex**, is to convert the NFA for all the patterns into an equivalent DFA, using the subset construction of Algorithm 3.20. 
@@ -1416,6 +1426,7 @@ Example 3.29 : Suppose the DFA of Fig. 3.54 is given input *abba*. The se­quenc
 
 ---
 
+<h2 id="842ebc90f1674282757f47268758cd3a"></h2>
 ### 3.8.4 Implementing the Lookahead Operator
 
 Recall from Section 3.5.4 that the **Lex** lookahead operator / in a Lex pattern r₁/r₂ is sometimes necessary, because the pattern r₁ for a particular token may need to describe some trailing context r₂ in order to correctly identify the actual lexeme.
@@ -1450,6 +1461,7 @@ In fact, the problem is harder than it appears, since an NFA-to-DFA construction
 
 ---
 
+<h2 id="fd5afa6bcd74b9b2aa4ece82a8f4e8c2"></h2>
 ## 3.9 Optimization of DFA-Based Pattern Matchers
 
 
