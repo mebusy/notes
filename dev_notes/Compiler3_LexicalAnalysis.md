@@ -1464,8 +1464,26 @@ In fact, the problem is harder than it appears, since an NFA-to-DFA construction
 <h2 id="fd5afa6bcd74b9b2aa4ece82a8f4e8c2"></h2>
 ## 3.9 Optimization of DFA-Based Pattern Matchers
 
+In this section we present three algorithms that have been used to implement and optimize pattern matchers constructed from regular expressions.
 
+ 1. The first algorithm is useful in a **Lex** compiler, because it constructs a DFA directly from a regular expression, without constructing an interme­diate NFA. 
+ 	- The resulting DFA also may have fewer states than the DFA constructed via an NFA.
+2. The second algorithm minimizes the number of states of any DFA, by combining states that have the same future behavior. 
+	- The algorithm itself is quite efficient, running in time O(nlogn), where n is the number of states of the DFA.
+3. The third algorithm produces more compact representations of transition tables than the standard, two-dimensional table.
 
+---
+
+### 3.9.1 Important States of an NFA
+
+To begin our discussion of how to go directly from a regular expression to a DFA, we must first dissect the NFA construction of Algorithm 3.23 and consider the roles played by various states. 
+
+We call a state of an NFA *important* if it ***has*** a non-ε out-transition. Notice that the subset construction (Algorithm 3.20) uses only the important states in a set *T* when it computes *ε-closure(move(T, a))*, the set of states reachable from *T* on input *a*. That is, the set of states *move(s, a)* is nonempty only if state *s* is important. 
+
+During the subset construction, two sets of NFA states can be identified (treated as if they were the same set) if they:
+
+ 1. Have the same important states, and
+ 2. Either both have accepting states or neither does.
 
 
 
