@@ -1404,10 +1404,33 @@ Within each DFA state, if there are one or more accepting NFA states, determine 
 
 Example 3.28 : Figure 3.54 shows a transition diagram based on the DFA that is constructed by the subset construction from the NFA in Fig. 3.52. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.54.png)
+
+The accepting states are labeled by the pattern that is identified by that state. 
+
+For instance, the state {6, 8} has two accepting states, corresponding to patterns **abb** and **a\*b+**. Since the former is listed first, that is the pattern associated withstate{6,8}. 
+
+We use the DFA in a lexical analyzer much as we did the NFA. We simulate the DFA until at some point there is no next state (or strictly speaking, the next state is ∅, the *dead state* corresponding to the empty set of NFA states) . At that point, we back up through the sequence of states we entered and, as soon as we meet an accepting DFA state, we perform the action associated with the pattern for that state.
+
+Example 3.29 : Suppose the DFA of Fig. 3.54 is given input *abba*. The se­quence of states entered is 0137, 247, 58, 68, and at the final *a* there is no tran­sition out of state 68. Thus, we consider the sequence from the end, and in this case, 68 itself is an accepting state that reports pattern p₂ = **abb**.
+
+---
+
+### 3.8.4 Implementing the Lookahead Operator
+
+Recall from Section 3.5.4 that the **Lex** lookahead operator / in a Lex pattern r₁/r₂ is sometimes necessary, because the pattern r₁ for a particular token may need to describe some trailing context r₂ in order to correctly identify the actual lexeme.
+
+When converting the pattern r₁/r₂ to an NFA, we treat the / as if it were ε, so we do not actually look for a / on the input. However, if the NFA recognizes a prefix *xy* of the input buffer *as matching this regular expression*, the end of the lexeme is not where the NFA entered its accepting state. Rather the end occurs when the NFA enters a state *s* such that
+
+ 1. *s* has an ε-transition on the (imaginary) /
+ 2. There is a path from the start state of the NFA to state *s* that spells out *x*.
+ 3. There is a path from state *s* to the accepting state that spells out *y*.
+ 4. *x* is as long as possible for any *xy* satisfying conditions 1-3.
+
+If there is only one ε-transition state on the imaginary / in the NFA, then the end of the lexeme occurs when this state is entered for the last time as the following example illustrates. If the NFA has more than one ε-transition state on the imaginary /, then the general problem of finding the correct state *s* is much more difficult.
 
 
 
-The accepting states are labeled by the pattern that is identi ed by that state. For instance, the state {6, 8} has two accepting states, corresponding to patterns abb and a*b+. Since the former is listed  rst, that is the pattern associated withstate{6,8}. 0
 
 
 
