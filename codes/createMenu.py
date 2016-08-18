@@ -93,7 +93,7 @@ if '__main__' == __name__ :
 
 	all_md_filenames = {}
 	#createMenu4MD( '../dev_notes/ML-傻子机器学习入门.md' )
-	os.path.walk( "../dev_notes" , visit , None )
+	os.path.walk( "../" , visit , None )
 
 	print '-----'
 	
@@ -119,5 +119,6 @@ if '__main__' == __name__ :
 		del all_md_filenames[linkFile] 
 		pass
 
-	print all_md_filenames
+	for key in  all_md_filenames:
+		print key
 
