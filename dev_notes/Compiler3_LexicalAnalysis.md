@@ -1368,5 +1368,51 @@ Fig. 3.52 shows these three NFA's combined into a single NFA by the addition of 
 
 ### 3.8.2 Pattern Matching Based on NFA's
 
+If the lexical analyzer simulates an NFA such as that of Fig. 3.52, then it must read input beginning at the point on its input which we have referred to as *lexemeBegin*. As it moves the pointer called *forward* ahead in the input, it calculates the set of states it is in at each point, following Algorithm 3.22 (Simulating an NFA).
+
+Eventually, the NFA simulation reaches a point on the input where there are no next states. At that point, there is no hope that any longer prefix of the input would ever get the NFA to an accepting state; rather, the set of states will always be empty. Thus, we are ready to decide on the longest prefix that is a lexeme matching some pattern.
+
+We look backwards in the sequence of sets of states, until we find a set that includes one or more accepting states. 
+
+If there are several accepting states in that set, pick the one associated with the earliest pattern pᵢ in the list from the **Lex** program. Move the *forward* pointer back to the end of the lexeme, and perform the action Aᵢ associated with pattern pᵢ.
+
+Example 3.27 : Suppose we have the patterns of Example 3.26 and the input begins aaba. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.53.png)
+
+Figure 3.53 shows the sets of states of the NFA of Fig. 3.52 that we enter, 
+
+ - starting with ε-closure of the initial state 0, which is {O, 1, 3, 7}, and proceeding from there. 
+ - After reading the fourth input symbol, we are in an empty set of states, since in Fig. 3.52, there are no transitions out of state 8 on input a.
+
+Thus, we need to back up, looking for a set of states that includes an ac­cepting state. 
+
+Notice that, as indicated in Fig. 3.53, 
+
+ - after reading *a* we are in a set that includes state 2 and therefore indicates that the pattern **a** has been matched. 
+ - However, after reading *aab*, we are in state 8, which indicates that **a\*b+** has been matched; 
+
+prefix *aab* is the longest prefix that gets us to an accepting state. We therefore select *aab* as the lexeme, and execute action A₃ , which should include a return to the parser indicating that the token whose pattern is P₃ = **a\*b+** has been found.
+
+---
+
+### 3.8.3 DFA's for Lexical Analyzers
+
+Another architecture, resembling the output of **Lex**, is to convert the NFA for all the patterns into an equivalent DFA, using the subset construction of Algorithm 3.20. 
+
+Within each DFA state, if there are one or more accepting NFA states, determine the first pattern whose accepting state is represented, and make that pattern the output of the DFA state.
+
+Example 3.28 : Figure 3.54 shows a transition diagram based on the DFA that is constructed by the subset construction from the NFA in Fig. 3.52. 
+
+
+
+
+The accepting states are labeled by the pattern that is identi ed by that state. For instance, the state {6, 8} has two accepting states, corresponding to patterns abb and a*b+. Since the former is listed  rst, that is the pattern associated withstate{6,8}. 0
+
+
+
+
+
+
 
 
