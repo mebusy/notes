@@ -36,7 +36,7 @@
 <h2 id="8443a5022727ccc209d315492559f16f"></h2>
 #### 其它数学
 
-|   |    |   | 
+ |   |    |   | 
 --- | --- | --- | ---
 [随机数](https://github.com/mebusy/notes/blob/master/dev_notes/Dev_Random.md) | [微积分总览](https://github.com/mebusy/notes/blob/master/dev_notes/微积分总览.md) | [Tricks](https://github.com/mebusy/notes/blob/master/dev_notes/Tricks.md) | 
 
@@ -46,7 +46,7 @@
 <h2 id="a7f5f35426b927411fc9231b56382173"></h2>
 #### Python
 
-|   |    |   | 
+ |   |    |   | 
 --- | --- | --- | ---
 [tips](https://github.com/mebusy/notes/blob/master/dev_notes/python_tips_1.md) | [BeautifulSoup](https://github.com/mebusy/notes/blob/master/dev_notes/PY_BeautifulSoup.md)  | [python多线程](https://github.com/mebusy/notes/blob/master/dev_notes/PY_multiprocessing.md) | 
 
@@ -56,7 +56,7 @@
 <h2 id="0d61f8370cad1d412f80b84d143e1257"></h2>
 #### C
 
-|   |    |   | 
+ |   |    |   | 
 --- | --- | --- | ---
 [C89 C99区别](https://github.com/mebusy/notes/blob/master/dev_notes/C_C89_vs_C99.md) | [c99](https://github.com/mebusy/notes/blob/master/dev_notes/C99.md) | 
 
@@ -64,7 +64,7 @@
 <h2 id="e84e30b9390cdb64db6db2c9ab87846d"></h2>
 #### Android
 
-|   |    |   | 
+ |   |    |   | 
 --- | --- | --- | ---
 [JNI](https://github.com/mebusy/notes/blob/master/dev_notes/JNI.md) |
 
@@ -72,7 +72,7 @@
 <h2 id="55f37d1fd483f6a85379640fe51aafa8"></h2>
 #### Dev
 
-|   |    |   | 
+ |   |    |   | 
 --- | --- | --- | ---
 [redis](https://github.com/mebusy/notes/blob/master/dev_notes/redis.md) |
 
@@ -81,7 +81,7 @@
 <h2 id="8625e1de7be14c39b1d14dc03d822497"></h2>
 #### Tools
 
-|   |    |   | 
+ |   |    |   | 
 --- | --- | --- | ---
 [1. facebook watchman ](https://github.com/mebusy/notes/blob/master/dev_notes/TOOL_watchman.md)   |    [2. simctl ios Simulator ](https://github.com/mebusy/notes/blob/master/dev_notes/TOOL_simctl_iOS_simulator.md)   | [3. ios sim stdout ](https://github.com/mebusy/notes/blob/master/dev_notes/TOOL_ios_sim_stdout_redirect.md)   | [4. ios sim 添加快捷键](https://github.com/mebusy/notes/blob/master/dev_notes/TOOL_ios_sim_shortcut_key.md)
 
@@ -90,7 +90,7 @@
 <h2 id="edc9f0a5a5d57797bf68e37364743831"></h2>
 #### Linux
 
-|   |    |   | 
+ |   |    |   | 
 --- | --- | --- | ---
 [1. 重定向和管道 ](https://github.com/mebusy/notes/blob/master/dev_notes/LINUX_%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E7%AE%A1%E9%81%93.md)  | 
 
