@@ -1485,7 +1485,9 @@ During the subset construction, two sets of NFA states can be identified (treate
  1. Have the same important states, and
  2. Either both have accepting states or neither does.
 
+When the NFA is constructed from a regular expression by Algorithm 3.23, we can say more about the important states. The only important states are those introduced as initial states in the basis part for a particular symbol posi­tion in the regular expression. That is, each important state corresponds to a particular operand in the regular expression.
 
+The constructed NFA has only one accepting state, but this state, having no out-transitions, is not an important state. By concatenating a unique right endmarker # to a regular expression *r*, we give the accepting state for *r* a transition on #, making it an important state of the NFA for (r)#. In other words, by using the *augmented* regular expression (r)#, we can forget about accepting states as the subset construction proceeds; when the construction is complete, any state with a transition on # must be an accepting state.
 
 
 
