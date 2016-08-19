@@ -42,6 +42,8 @@
 		 - [3.8.3 DFA's for Lexical Analyzers](#560deab5107ca190345913cc30cdd379)
 		 - [3.8.4 Implementing the Lookahead Operator](#842ebc90f1674282757f47268758cd3a)
 	 - [3.9 Optimization of DFA-Based Pattern Matchers](#fd5afa6bcd74b9b2aa4ece82a8f4e8c2)
+		 - [3.9.1 Important States of an NFA](#cfa97bca3bad7182d66db81969204ef9)
+		 - [3.9.2 Functions Computed From the Syntax Tree](#ccaa63c1798e41e31f9f8e8a2091aac9)
 
 ...menuend
 
@@ -1474,6 +1476,7 @@ In this section we present three algorithms that have been used to implement and
 
 ---
 
+<h2 id="cfa97bca3bad7182d66db81969204ef9"></h2>
 ### 3.9.1 Important States of an NFA
 
 To begin our discussion of how to go directly from a regular expression to a DFA, we must first dissect the NFA construction of Algorithm 3.23 and consider the roles played by various states. 
@@ -1511,6 +1514,7 @@ The numbered states in the NFA and the positions in the syntax tree correspond i
 
 ---
 
+<h2 id="ccaa63c1798e41e31f9f8e8a2091aac9"></h2>
 ### 3.9.2 Functions Computed From the Syntax Tree
 
 To construct a DFA directly from a regular expression, we construct its syntax tree and then compute four functions: ***nullable***, ***firstpos***, ***lastpos***, and ***followpos***, defined as follows.
