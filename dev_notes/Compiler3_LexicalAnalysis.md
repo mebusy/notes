@@ -1489,8 +1489,9 @@ When the NFA is constructed from a regular expression by Algorithm 3.23, we can 
 
 The constructed NFA has only one accepting state, but this state, having no out-transitions, is not an important state. By concatenating a unique right endmarker # to a regular expression *r*, we give the accepting state for *r* a transition on #, making it an important state of the NFA for (r)#. In other words, by using the *augmented* regular expression (r)#, we can forget about accepting states as the subset construction proceeds; when the construction is complete, any state with a transition on # must be an accepting state.
 
+The important states of the NFA correspond directly to the positions in the regular expression that hold symbols of the alphabet. It is useful, as we shall see, to present the regular expression by its syntax tree, where the leaves correspond to operands and the interior nodes correspond to operators. An interior node is called a *cat-node*, *or-node*, or *star-node* if it is labeled by the concatenation operator (dot) , union operator | , or star operator \*, respectively. We can construct a syntax tree for a regular expression just as we did for arithmetic expressions in Section 2.5.1.
 
-
+Example 3.31 : Figure 3.56 shows the syntax tree for the regular expression of our running example. 
 
 
 
