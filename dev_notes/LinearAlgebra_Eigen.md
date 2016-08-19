@@ -155,6 +155,10 @@ Determinant :
 
 This is the *characteristic polynomial*. Its roots, where the determinant is zero, are the eigenvalues. They come from the general formula for the roots of a quadratic, or from factoring into λ² - λ - 2 = (λ + 1) (λ - 2).  That is zero if λ = -1 or λ = 2, as the general formula confirms:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigen_eigenvalues_4_exmaple.png)
+
+**There are two eigenvalues, because a quadratic has two roots.** Every 2 by 2 matrix A - λI has λ² (and no higher power of λ²) in its determinant.
+
 
 
 
