@@ -159,6 +159,44 @@ This is the *characteristic polynomial*. Its roots, where the determinant is zer
 
 **There are two eigenvalues, because a quadratic has two roots.** Every 2 by 2 matrix A - λI has λ² (and no higher power of λ²) in its determinant.
 
+The values λ = -1 and λ = 2 lead to a solution of Ax = λx or (A - λI )x = 0. A matrix with zero determinant is singular, so there must be nonzero vectors x in its nullspace. In fact the nullspace contains a whole line of eigenvectors; it is a subspace!
+
+```
+λ₁ = -1: (A - λ₁I)x = ⎡5  -5⎤⎡y⎤ = ⎡0⎤.
+					  ⎣2  -2⎦⎣z⎦   ⎣0⎦
+```
+
+The solution (the first eigenvector) is any nonzero multiple of x₁:
+
+```
+Eigenvector for λ₁ :
+
+x₁ = ⎡1⎤.
+	 ⎣1⎦
+```
+
+The computation for λ₂ is done separately:
+
+```
+λ₂ = 2: (A - λ₂I)x = ⎡2  -5⎤⎡y⎤ = ⎡0⎤.
+					 ⎣2  -5⎦⎣z⎦   ⎣0⎦
+```
+
+The second eigenvector is any nonzero multiple of x₂:
+
+```
+Eigenvector for λ₂ :
+
+x₂ = ⎡5⎤.
+	 ⎣2⎦
+```
+
+You might notice that the columns of A - λ₁I give x₂, and the columns of A - λ₂I are multiples of x₁. *This is special (and useful) for 2 by 2 matrices*.
+
+In the 3 by 3 case, I often set a component of x equal to 1 and solve (A - λI)x = 0 for the other components(因为满足条件的x很多). Of course if x is an eigenvector then so is 7x and so is -x. All vectors in the nullspace of A - λI (which we call the *eigenspace*) will satisfy Ax = λx. In our example the eigenspaces are the lines through x₁ = (1, 1) and x₂ = (5, 2).
+
+Before going back to the application (the differential equation), we emphasize the steps in solving Ax = λx:
+
 
 
 
