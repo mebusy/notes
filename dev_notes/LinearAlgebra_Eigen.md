@@ -79,6 +79,84 @@ or in vector notation:
 
 This is the whole key to differential equations du/dt = Au:  ***Look for pure exponential solutions***. Substituting v = e<sup>λ</sup>ᵗy and w = e<sup>λ</sup>ᵗz into the equation, we find
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigen_dif_equation.png)
+
+he factor e<sup>λ</sup>ᵗ is common to every term, and can be removed. This cancellation is the reason for assuming the same exponent λ for both unknowns; it leaves
+
+```
+Eigenvalue problem :
+
+4y - 5z = λy
+2y - 3z = λz.	  (7)
+```
+
+That is the eigenvalue equation. 
+
+In matrix form it is Ax = λx. You can see it again if we use u = e<sup>λ</sup>ᵗx -- a number e<sup>λ</sup>ᵗ that grows or decays times a fixed vector x. ***Substituting into du/dt = Au gives λe<sup>λ</sup>ᵗx = Ae<sup>λ</sup>ᵗx. The cancellation of eat produces***
+
+```
+Eigenvalue equation :
+
+Ax = λx.	(8)
+```
+
+Now we have the fundamental equation of this chapter. It involves two unknowns λ and x. It is an algebra problem, and differential equations can be forgotten! The number λ (lambda) is an ***eigenvalue*** of the matrix A, and the vector x is the associated ***eigenvector***.
+Our goal is to find the eigenvalues and eigenvectors, λ's and x's, and to use them.
+
+---
+
+**The Solutions of Ax = λx**
+
+Notice that Ax = λx is a nonlinear equation; λ multiplies x. If we could discover λ., then the equation for x would be linear. In fact we could write λIx in place of λx, and bring this term over to the left side:
+
+```
+(A - λI)x = 0.		(9)
+```
+
+The identity matrix keeps matrices and vectors straight; the equation (A - λ)x = 0 is
+shorter, but mixed up. This is the key to the problem:
+
+ - ***The vector x is in the nullspace of A - λI***.
+ - ***The number λ, is chosen so that A - λI has a nullspace***.
+
+Of course every matrix has a nullspace. We want a *nonzero* eigenvector x.  The goal is to build u(t) out of exponentials e<sup>λ</sup>ᵗx , and *we are interested only in those particular values λ for which there is a nonzero eigenvector x.  To be of any use, the nullspace of A - λI must contain vectors other than zero. In short, A - λI ***must be singular***.
+
+For this, the determinant gives a conclusive test.
+
+**5A**: The number λ is an eigenvalue of A if and only if A - λI is singular:
+
+```
+det( A - λI ) = 0.		(10)
+```
+
+This is the characteristic equation. Each λ is associated with eigenvectors x:
+
+```
+(A - λI)x = 0	or 	 Ax = λx.	(11)
+```
+
+In our example, we shift A by λI to make it singular:
+
+```
+Subtract λI :
+
+A - λI = ⎡4-λ   -5 ⎤.
+		 ⎣ 2   -3-λ⎦
+```
+
+Note that λ is subtracted only from the main diagonal (because it multiplies I).
+
+
+```
+Determinant :
+
+|A - λI| = (4 - λ)(-3 - λ) + 10   or   λ² - λ - 2.
+```
+
+This is the *characteristic polynomial*. Its roots, where the determinant is zero, are the eigenvalues. They come from the general formula for the roots of a quadratic, or from factoring into λ² - λ - 2 = (λ + 1) (λ - 2).  That is zero if λ = -1 or λ = 2, as the general formula confirms:
+
+
+
 
 
 
