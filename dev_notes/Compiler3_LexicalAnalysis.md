@@ -1505,6 +1505,25 @@ The positions in the syntax tree correspond to the important states of the const
 
 Example 3.32 : Figure 3.57 shows the NFA for the same regular expression as Fig. 3.56, with the important states numbered and other states represented by letters.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.57.png)
 
 The numbered states in the NFA and the positions in the syntax tree correspond in a way we shall soon see.
+
+---
+
+### 3.9.2 Functions Computed From the Syntax Tree
+
+To construct a DFA directly from a regular expression, we construct its syntax tree and then compute four functions: ***nullable***, ***firstpos***, ***lastpos***, and ***followpos***, defined as follows.
+
+Each definition refers to the syntax tree for a particular augmented regular expression (r)#.
+
+
+
+
+
+
+
+
+
+
 
