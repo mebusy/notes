@@ -1493,10 +1493,18 @@ The important states of the NFA correspond directly to the positions in the regu
 
 Example 3.31 : Figure 3.56 shows the syntax tree for the regular expression of our running example. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.56.png)
+
+Cat-nodes are represented by circles.
+
+Leaves in a syntax tree are labeled by ε or by an alphabet symbol. To each leaf not labeled ε , we attach a unique integer. We refer to this integer as the *position* of the leaf and also as a position of its symbol.
+
+Note that a symbol can have several positions; for instance, *a* has positions 1 and 3 in Fig. 3.56.
+
+The positions in the syntax tree correspond to the important states of the constructed NFA.
+
+Example 3.32 : Figure 3.57 shows the NFA for the same regular expression as Fig. 3.56, with the important states numbered and other states represented by letters.
 
 
-
-
-
-
+The numbered states in the NFA and the positions in the syntax tree correspond in a way we shall soon see.
 
