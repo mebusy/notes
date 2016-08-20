@@ -197,6 +197,13 @@ In the 3 by 3 case, I often set a component of x equal to 1 and solve (A - λI)x
 
 Before going back to the application (the differential equation), we emphasize the steps in solving Ax = λx:
 
+ 1. ***Compute the determinant of A - λI***. 
+ 	- With λ, subtracted along the diagonal, this determinant is a polynomial of degree n. It starts with (-λ)ⁿ.
+ 2. ***Find the roots of this polynomial***. 
+ 	- The n roots are the eigenvalues of A.
+ 3. ***For each eigenvalue solve the equation (A - λI)x = 0***. 
+ 	- Since the determinant is zero, there are solutions other than x = 0. Those are the eigenvectors.
+
 
 
 
