@@ -1534,7 +1534,9 @@ Example 3.33 : Consider the cat-node n in Fig. 3.56 that corresponds to the expr
 
 We claim nullable(n) is false, since this node generates all strings of a's and b's ending in an *a*; it does not generate ε . On the other hand, the star-node below it is nullable; it generates ε along with all other strings of a's and b's.
 
-Firstpos(n)= {1,2,3}.
+Firstpos(n)= {1,2,3}
+
+
 
 
 
