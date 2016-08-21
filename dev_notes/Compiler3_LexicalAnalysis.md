@@ -1521,7 +1521,20 @@ To construct a DFA directly from a regular expression, we construct its syntax t
 
 Each definition refers to the syntax tree for a particular augmented regular expression (r)#.
 
+ 1. *nullable(n)* is true for a syntax-tree node n if and only if the subexpression represented by n has ε in its language. 
+ 	- That is, the subexpression can be "made null" or the empty string, even though there may be other strings it can represent as well.
+ 2. *firstpos(n)* is the set of positions in the subtree rooted at n 
+ 	- Those positions corre­spond to the first symbol of at least one string in the language of the subexpression rooted at n.
+ 3. *lastpos(n)* is the set of positions in the subtree rooted at n 
+ 	- Those positionst corre­spond to the last symbol of at least one string in the language of the subexpression rooted at n.
+ 4. *followpos(p)*, for a position *p*, is the set of positions *q* in the entire syntax tree 
+ 	- such that there is some string x = a₁a₂...a<sub>n</sub> in L((r)#) such that for some *i*, there is a way to explain the membership of x in L((r)#) by matching aᵢ to position *p* of the syntax tree and aᵢ₊₁ to position *q*.
 
+Example 3.33 : Consider the cat-node n in Fig. 3.56 that corresponds to the expression **(a|b)\*a**. 
+
+We claim nullable(n) is false, since this node generates all strings of a's and b's ending in an *a*; it does not generate ε . On the other hand, the star-node below it is nullable; it generates ε along with all other strings of a's and b's.
+
+Firstpos(n)= {1,2,3}.
 
 
 
