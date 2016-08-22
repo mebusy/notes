@@ -234,6 +234,43 @@ Probably the homeliest example is that of soldiers going over a bridge.  Traditi
 
 **Summary and Examples**
 
+To summarize, this introduction has shown how λ and x appear naturally and automatically when solving du/dt = Au. Such an equation has pure exponential solutions u = e<sup>λ</sup>ᵗx ; the eigenvalue gives the rate of growth or decay, and the eigenvector x develops at this rate. The other solutions will be mixtures of these pure solutions, and the mixture is adjusted to fit the initial conditions.
+
+The key equation was Ax = λx. Most vectors x will not satisfy such an equation. They change direction when multiplied by A, so that Ax is not a multiple of x. This means that ***only certain special numbers λ are eigenvalues, and only certain special vectors x are eigenvectors***. We can watch the behavior of each eigenvector, and then combine these "normal modes" to find the solution. To say the same thing in another way, the underlying matrix can be diagonalized.
+
+The diagonalization in Section 5.2 will be applied to difference equations, Fibonacci numbers, and Markov processes, and also to differential equations. In every example, we start by computing the eigenvalues and eigenvectors; there is no shortcut to avoid that. Symmetric matrices are especially easy. "Defective matrices" lack a full set of eigenvectors, so they are not diagonalizable. Certainly they have to be discussed, but we will not allow them to take over the book. We start with examples of particularly good matrices.
+
+Example 1: Everything is clear when A is a ***diagonal matrix***:
+
+```
+A = ⎡3 0⎤ has λ₁ = 3 with x₁ = ⎡1⎤,  λ₂ = 2 with x₂ = ⎡0⎤.
+	⎣0 2⎦  					   ⎣0⎦					  ⎣1⎦
+```
+
+On each eigenvector A acts like a multiple of the identity: Ax₁ = 3x₁ and Ax₂ = 2x₂. Other vectors like x = (1, 5) are mixtures x₁ + 5x₂ of the two eigenvectors, and when A multiplies x₁ and x₂ it produces the eigenvalues  λ₁ = 3 and x₂ = 2:
+
+```
+A  times  x₁+5x₂  is 3x₁+10x₂ = ⎡ 3⎤.  
+								⎣10⎦
+```
+
+This is Ax for a typical vector x -- not an eigenvector. But the action of A is determined by its eigenvectors and eigenvalues.
+
+
+
+Example 2: The eigenvalues of a ***projection matrix*** are 1 or 0!
+
+```
+A = ⎡1/2 1/2⎤ has λ₁ = 1 with x₁ = ⎡1⎤,  λ₂ = 0 with x₂ = ⎡ 1⎤.
+	⎣1/2 1/2⎦  					   ⎣1⎦					  ⎣-1⎦
+```
+
+
+
+
+
+
+
 
 
 
