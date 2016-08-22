@@ -1571,7 +1571,26 @@ Example 3.34 : Of all the nodes in Fig. 3.56 only the star-node is nullable. We 
  - The star-node is nullable, because every star-node is nullable. 
  - Finally, each of the cat-nodes, having at least one nonnullable child, is not nullable.
 
-The computation of *firstpos* and *lastpos* for each of the nodes is shown in Fig. 3.59, with firstpos(n) to the left of node n, and lastpos(n) to its right. Each of the leaves has only itself for firstpos and lastpos, as required by the rule for non-ε leaves in Fig. 3.58. For the or-node, we take the union of firstpos at the children and do the same for lastpos. The rule for the star-node says that we take the value of firstpos or lastpos at the one child of that node.
+The computation of *firstpos* and *lastpos* for each of the nodes is shown in Fig. 3.59, with firstpos(n) to the left of node n, and lastpos(n) to its right.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.59.png)
+
+ - Each of the leaves has only itself for firstpos and lastpos, as required by the rule for non-ε leaves in Fig. 3.58. 
+ - For the or-node, we take the union of firstpos at the children and do the same for lastpos. 
+ - The rule for the star-node says that we take the value of firstpos or lastpos at the one child of that node.
+ - Now, consider the lowest cat-node, which we shall call n. 
+ 	- To compute firstpos(n), we first consider whether the left operand is nullable, which it is in this case. Therefore, firstpos for n is the union of firstpos for each of its children, that is {1, 2} ∪ {3} = {1, 2, 3}. 
+ 	- The rule for lastpos does not ap­pear explicitly in Fig. 3.58, but as we mentioned, the rules are the same as for firstpos, with the children interchanged. That is, to compute lastpos(n) we must ask whether its right child (the leaf with position 3) is nullable, which it is not. Therefore, lastpos(n) is the same as lastpos of the right child, or {3}.
+
+---
+
+### 3.9.4 Computing followpos
+
+There are only two ways that a position of a regular expression can be made to follow another.
+
+
+
+
 
 
 
