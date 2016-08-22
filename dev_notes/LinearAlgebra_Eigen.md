@@ -205,15 +205,25 @@ Before going back to the application (the differential equation), we emphasize t
  	- Since the determinant is zero, there are solutions other than x = 0. Those are the eigenvectors.
 
 
+In the differential equation, this produces the special solutions u = e<sup>λ</sup>ᵗx . They are the *pure exponential solutions* to du/dt = Au. Notice e⁻ᵗ and e²ᵗ:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigen_eigenvalues_4_exmaple_001.png)
 
+There two special solutions give the complete solution. They can be multiplied by any numbers c₁ and c₂, and they can be added together. When u₁ and u₂ satisfy the linear equation du/dt = Au, so does their sum u₁ + u₂.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigen_eigenvalues_4_exmaple_012.png)
 
+This is ***superposition***, and it applies to differential equations (homogeneous and linear) just as it applied to matrix equations Ax = 0. The nullspace is always a subspace, and combinations of solutions are still solutions.
 
+Now we have two free parameters c₁ and c₂, and it is reasonable to hope that they can be chosen to satisfy the initial condition u = u(0) at t = 0:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigen_eigenvalues_4_exmaple_013.png)
 
+The constants are c₁ = 3 and c₂ = 1, and the solution to the original equation is
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigen_eigenvalues_4_exmaple_014.png)
 
+Writing the two components separately, we have v (0) = 8 and w (0) = 5:
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigen_eigenvalues_4_exmaple_014.1.png)
 
