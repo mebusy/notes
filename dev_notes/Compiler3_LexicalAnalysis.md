@@ -1552,7 +1552,24 @@ We claim nullable(n) is false, since this node generates all strings of a's and 
 
 ### 3.9.3 Computing *nullable*, *firstpos*, and *lastpos*
 
+We can compute *nullable*, *firstpos*, and *lastpos* by a straightforward recursion on the height of the tree. The basis and inductive rules for *nullable* and *firstpos* are summarized in Fig. 3.58. The rules for *lastpos* are essentially the same as for firstpos, but the roles of children c₁ and c₂ must be swapped in the rule for a cat-node.
 
+ Node n | *nullable(n)* | *firstpos(n)*
+--- | --- | ---
+A leaf labeled ε | true | ∅
+A leaf with position i | false | {i}
+An or-node n = c₁ \| c₂ | nullable(c₁) or nullable(c₂) | firstpos(c₁) ∪ firstpos(c₂)
+A cat-node n = c₁c₂ | nullable(c₁) and nullable(c₂) | if(nullable(c₁))  firstpos(c₁) U firstpos(c₂)  else firstpos(c₁)
+A star-node n = C₁\* | true | firstpos(c₁)
+
+> Figure 3.58: Rules for computing *nullable* and *firstpos*
+
+
+Example 3.34 : Of all the nodes in Fig. 3.56 only the star-node is nullable. We note from the table of Fig. 3.58 that none of the leaves are nullable, because they each correspond to non-ε operands. 
+
+ - The or-node is not nullable, because neither of its children is. 
+ - The star-node is nullable, because every star-node is nullable. 
+ - Finally, each of the cat-nodes, having at least one nonnullable child, is not nullable.
 
 
 
