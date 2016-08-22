@@ -261,13 +261,24 @@ This is Ax for a typical vector x -- not an eigenvector. But the action of A is 
 Example 2: The eigenvalues of a ***projection matrix*** are 1 or 0!
 
 ```
-A = ⎡1/2 1/2⎤ has λ₁ = 1 with x₁ = ⎡1⎤,  λ₂ = 0 with x₂ = ⎡ 1⎤.
+P = ⎡1/2 1/2⎤ has λ₁ = 1 with x₁ = ⎡1⎤,  λ₂ = 0 with x₂ = ⎡ 1⎤.
 	⎣1/2 1/2⎦  					   ⎣1⎦					  ⎣-1⎦
 ```
 
+We have λ = 1 when x projects to itself, and λ = 0 when x projects to the zero vector. The column space of P is filled with eigenvectors, and so is the nullspace. If those spaces have dimension r and n - r, then k = 1 is repeated r times and A = 0 is repeated n - r times (always n λ's):
 
+```
+Four eigenvalues allowing repeats:
 
+	⎡1 0 0 0⎤
+P = ⎢0 0 0 0⎥ 	has λ = 1,1,0,0
+ 	⎢0 0 0 0⎥   
+	⎣0 0 0 1⎦ 
+```
 
+***There is nothing exceptional about λ = 0***. Like every other number, zero might be an eigenvalue and it might not. If it is, then its eigenvectors satisfy Ax = Ox. Thus x is in the nullspace of A. A zero eigenvalue signals that A is singular (not invertible); its determinant is zero. Invertible matrices have all λ ≠ 0.
+
+Example 3: The eigenvalues are on the main diagonal when A is ***triangular***:
 
 
 
