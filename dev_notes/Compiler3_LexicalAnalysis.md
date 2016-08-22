@@ -44,6 +44,9 @@
 	 - [3.9 Optimization of DFA-Based Pattern Matchers](#fd5afa6bcd74b9b2aa4ece82a8f4e8c2)
 		 - [3.9.1 Important States of an NFA](#cfa97bca3bad7182d66db81969204ef9)
 		 - [3.9.2 Functions Computed From the Syntax Tree](#ccaa63c1798e41e31f9f8e8a2091aac9)
+		 - [3.9.3 Computing *nullable*, *firstpos*, and *lastpos*](#9d510c7a831f62018cae56836a266769)
+		 - [3.9.4 Computing followpos](#cb99b99a4bf8d9971dafc9579d962576)
+		 - [3.9.5 Converting a Regular Expression Directly to a DFA](#fd0a77b3813cb5692d1689d95568daf7)
 
 ...menuend
 
@@ -1550,6 +1553,7 @@ We claim nullable(n) is false, since this node generates all strings of a's and 
 
 ---
 
+<h2 id="9d510c7a831f62018cae56836a266769"></h2>
 ### 3.9.3 Computing *nullable*, *firstpos*, and *lastpos*
 
 We can compute *nullable*, *firstpos*, and *lastpos* by a straightforward recursion on the height of the tree. The basis and inductive rules for *nullable* and *firstpos* are summarized in Fig. 3.58. The rules for *lastpos* are essentially the same as for firstpos, but the roles of children c₁ and c₂ must be swapped in the rule for a cat-node.
@@ -1584,6 +1588,7 @@ The computation of *firstpos* and *lastpos* for each of the nodes is shown in Fi
 
 ---
 
+<h2 id="cb99b99a4bf8d9971dafc9579d962576"></h2>
 ### 3.9.4 Computing followpos
 
 There are only two ways that a position of a regular expression can be made to follow another.
@@ -1620,6 +1625,7 @@ It should come as no surprise that the graph for *followpos* is almost an NFA wi
 
 --- 
 
+<h2 id="fd0a77b3813cb5692d1689d95568daf7"></h2>
 ### 3.9.5 Converting a Regular Expression Directly to a DFA
 
 **Algorithm 3.36** : Construction of a DFA from a regular expression *r*.

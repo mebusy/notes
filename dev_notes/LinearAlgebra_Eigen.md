@@ -317,3 +317,6 @@ det(A-λI) = det |a-λ   b | = λ² - (trace)λ + determinat
 				| c   d-λ|
 ```
 
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigenvalue_formular_for_2x2.png)
+
+ 
