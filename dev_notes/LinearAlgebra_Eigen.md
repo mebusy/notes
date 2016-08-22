@@ -280,9 +280,40 @@ P = ⎢0 0 0 0⎥ 	has λ = 1,1,0,0
 
 Example 3: The eigenvalues are on the main diagonal when A is ***triangular***:
 
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigen_example_3.png)
 
+The determinant is just the product of the diagonal entries. It is zero if λ=1, λ=3/4, or λ=1/2; the eigenvalues were already sitting along the main diagonal.
 
+This example , in which the eigenvalues can be found by inspection, points to one main theme of the chapter: To transform A into a diagonal or triangular matrix *without changing its eigenvalues*. We emphasize once more that the Gaussian factorization A = LU is not suited to this purpose. The eigenvalues of *U* may be visible on the diagonal, but they are ***not*** the eigenvalues of A.
 
+For most matrices, there is no doubt that the eigenvalue problem is computationally more difficult that Ax = b.
 
+With linear systems, a finite number of elimination steps produced the exact answer in a finite time. (Or equivalently, Cramer's rule gave an exact formula for the solution.) No such formula can give the eigenvalues, or Galois would turn in his grave. For a 5 by 5 matrix, det (A - λI) involves λ⁵. Galois and Abel proved that there can be no algebraic formula for the roots of a fifth-degree polynomial.
 
+All they will allow is a few simple checks on the eigenvalues, *after* they have been computed, and we mention two good ***sum and product***.
+
+**5B**: The ***sum*** of the n eigenvalues equals the sum of the n diagonal entries.
+
+```
+Trace of A = λ₁ + ... + λn = a₁₁ + ... + ann   (15)
+```
+
+Furthermore, the ***product*** of the n eigenvalues equals the ***determinant*** of A.
+
+---
+
+The projection matrix *P* had diagonal entries 1/2, 1/2 and eigenvalues 1, 0.  Then 1/2 + 1/2
+agrees with 1 + 0 as it should. So does the determinant, which is 0·1 = 0. *A singular matrix, with zero determinant, has one or more of its eigenvalues equal to zero*.
+
+There should be no confusion between the diagonal entries and the eigenvalues. For a triangular matrix they are the same -- but that is exceptional. Normally the pivots, diagonal entries, and eigenvalues are completely different. And for a 2 by 2 matrix, the trace and determinant tell us everything:
+
+```
+⎡a b⎤ has trace a+d , and determinant ad-bc
+⎣c d⎦
+```
+
+```
+det(A-λI) = det |a-λ   b | = λ² - (trace)λ + determinat 
+				| c   d-λ|
+```
 
