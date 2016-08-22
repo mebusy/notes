@@ -1559,7 +1559,7 @@ We can compute *nullable*, *firstpos*, and *lastpos* by a straightforward recurs
 A leaf labeled ε | true | ∅
 A leaf with position i | false | {i}
 An or-node n = c₁ \| c₂ | nullable(c₁) or nullable(c₂) | firstpos(c₁) ∪ firstpos(c₂)
-A cat-node n = c₁c₂ | nullable(c₁) and nullable(c₂) | if(nullable(c₁))  firstpos(c₁) U firstpos(c₂)  else firstpos(c₁)
+A cat-node n = c₁c₂ | nullable(c₁) and nullable(c₂) | if(nullable(c₁))  firstpos(c₁)∪firstpos(c₂)  else firstpos(c₁)
 A star-node n = C₁\* | true | firstpos(c₁)
 
 > Figure 3.58: Rules for computing *nullable* and *firstpos*
