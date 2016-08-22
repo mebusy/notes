@@ -1588,11 +1588,30 @@ The computation of *firstpos* and *lastpos* for each of the nodes is shown in Fi
 
 There are only two ways that a position of a regular expression can be made to follow another.
 
+ 1. If n is a cat-node with left child c₁ and right child c₂ , then for every position i in *lastpos(c₁)*, all positions in *firstpos(c₂)* are in *followpos(i)*.
+ 2. If n is a star-node, and i is a position in *lastpos(n)*, then all positions in *firstpos(n)* are in followpos(i).
+
+Example 3.35: Rule 1 for *followpos* requires that we look at each cat-node, and put each position in firstpos of its right child in followpos for each position in lastpos of its left child. 
+
+For the lowest cat-hode in Fig. 3.59, that rule says position 3 is in followpos(1) and followpos(2). The next cat-node above says that 4 is in followpos(3), and the remaining two cat-nodes give us 5 in followpos(4) and 6 in followpos(5).
+
+We must also apply rule 2 to the star-node. That rule tells us positions 1 and 2 are in both followpos(1) and followpos(2), since both *firstpos* and *lastpos* for this node are {1, 2}. The complete sets *followpos* are summarized in Fig. 3.60.
+
+NODE n | followpos(n)
+--- | ---
+1 	| {1,2,3}
+2 	| {1,2,3}
+3 	| {4}
+4	| {5}
+5	| {6}
+6 	| ∅
+
+> Figure 3.60: The function followpos
+
+We can represent the function *followpos* by creating a directed graph with a node for each position and an arc from position i to position j if and only if j is in followpos(i). Figure 3.61 shows this graph for the function of Fig. 3.60.
 
 
-
-
-
+It should come as no surprise that the graph for jollowpos is almost an NFA without E-transitions for the underlying regular expression, and would become one if we:
 
 
 
