@@ -1610,9 +1610,26 @@ NODE n | followpos(n)
 
 We can represent the function *followpos* by creating a directed graph with a node for each position and an arc from position i to position j if and only if j is in followpos(i). Figure 3.61 shows this graph for the function of Fig. 3.60.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.61.png)
 
-It should come as no surprise that the graph for jollowpos is almost an NFA without E-transitions for the underlying regular expression, and would become one if we:
+It should come as no surprise that the graph for *followpos* is almost an NFA without ε-transitions for the underlying regular expression, and would become one if we:
 
+ 1. Make all positions in firstpos of the root be initial states,
+ 2. Label each arc from i to j by the symbol at position i, and
+ 3. Make the position associated with endmarker # be the only accepting state.
+
+--- 
+
+### 3.9.5 Converting a Regular Expression Directly to a DFA
+
+**Algorithm 3.36** : Construction of a DFA from a regular expression *r*.
+
+ - INPUT: A regular expression r.
+ - OUTPUT: A DFA D that recognizes L(r).
+ - METHOD:
+ 	1. Construct a syntax tree T from the augmented regular expression (r)#.
+ 	2. Compute *nullable*, *firstpos*, *lastpos* , and *followpos* for T, using the methods of Sections 3.9.3 and 3.9.4.
+ 	3. Construct *Dstates*, the set of states of DFA D, and *Dtran*, the transition function for *D*, by the procedure of Fig. 3.62. The states of *D* are sets of positions in T. Initially, each state is "unmarked," and a state becomes "marked" just before we consider its out-transitions. The start state of *D* is *firstpos(n₀)*, where node n₀ is the root of T. The accepting states are those containing the position for the endmarker symbol #.
 
 
 
