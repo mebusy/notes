@@ -1560,7 +1560,7 @@ A leaf labeled ε | true | ∅
 A leaf with position i | false | {i}
 An or-node n = c₁ \| c₂ | nullable(c₁) or nullable(c₂) | firstpos(c₁) ∪ firstpos(c₂)
 A cat-node n = c₁c₂ | nullable(c₁) and nullable(c₂) | if(nullable(c₁))  firstpos(c₁)∪firstpos(c₂)  else firstpos(c₁)
-A star-node n = C₁\* | true | firstpos(c₁)
+A star-node n = c₁\* | true | firstpos(c₁)
 
 > Figure 3.58: Rules for computing *nullable* and *firstpos*
 
@@ -1571,6 +1571,7 @@ Example 3.34 : Of all the nodes in Fig. 3.56 only the star-node is nullable. We 
  - The star-node is nullable, because every star-node is nullable. 
  - Finally, each of the cat-nodes, having at least one nonnullable child, is not nullable.
 
+The computation of *firstpos* and *lastpos* for each of the nodes is shown in Fig. 3.59, with firstpos(n) to the left of node n, and lastpos(n) to its right. Each of the leaves has only itself for firstpos and lastpos, as required by the rule for non-ε leaves in Fig. 3.58. For the or-node, we take the union of firstpos at the children and do the same for lastpos. The rule for the star-node says that we take the value of firstpos or lastpos at the one child of that node.
 
 
 
