@@ -1365,10 +1365,10 @@ abb { action A₂ for pattern p₂ }
 a*b+ { action A₃ for pattern p₃ }
 ```
 
-Note that these three patterns present some con icts of the type discussed in Section 3.5.3. 
+Note that these three patterns present some conflict of the type discussed in Section 3.5.3. 
 
  - string **abb** matches both the second and third patterns, but we shall consider it a lexeme for pattern P₂ 
- 	- since that pattern is listed  rst in the above Lex program
+ 	- since that pattern is listed first in the above Lex program
  - Then, input strings such as *aabbb*... have many prefixes that match the third pattern. The Lex rule is to take the longest
 
 Fig. 3.52 shows these three NFA's combined into a single NFA by the addition of start state 0 and three ε-transitions. 
@@ -1473,9 +1473,9 @@ In this section we present three algorithms that have been used to implement and
 
  1. The first algorithm is useful in a **Lex** compiler, because it constructs a DFA directly from a regular expression, without constructing an interme­diate NFA. 
  	- The resulting DFA also may have fewer states than the DFA constructed via an NFA.
-2. The second algorithm minimizes the number of states of any DFA, by combining states that have the same future behavior. 
+ 2. The second algorithm minimizes the number of states of any DFA, by combining states that have the same future behavior. 
 	- The algorithm itself is quite efficient, running in time O(nlogn), where n is the number of states of the DFA.
-3. The third algorithm produces more compact representations of transition tables than the standard, two-dimensional table.
+ 3. The third algorithm produces more compact representations of transition tables than the standard, two-dimensional table.
 
 ---
 
