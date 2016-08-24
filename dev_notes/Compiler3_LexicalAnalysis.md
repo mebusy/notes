@@ -1365,10 +1365,10 @@ abb { action A₂ for pattern p₂ }
 a*b+ { action A₃ for pattern p₃ }
 ```
 
-Note that these three patterns present some con icts of the type discussed in Section 3.5.3. 
+Note that these three patterns present some conflict of the type discussed in Section 3.5.3. 
 
  - string **abb** matches both the second and third patterns, but we shall consider it a lexeme for pattern P₂ 
- 	- since that pattern is listed  rst in the above Lex program
+ 	- since that pattern is listed first in the above Lex program
  - Then, input strings such as *aabbb*... have many prefixes that match the third pattern. The Lex rule is to take the longest
 
 Fig. 3.52 shows these three NFA's combined into a single NFA by the addition of start state 0 and three ε-transitions. 
