@@ -633,7 +633,7 @@ Note that in state 24, we have found a block of consecutive whitespace character
 
 There are several ways that a collection of transition diagrams can be used to build a lexical analyzer. 
 
-Each state is represented by a piece of code. We may imagine a variable state holding the number of the current state for a transition diagram. A switch based on the value of state takes us to code for each of the possible states, where we find the action of that state. Often, the code for a state is itself a switch statement or multiway branch that determines the next state by reading and examining the next input character.
+Each state is represented by a piece of code. We may imagine a variable *state* holding the number of the current state for a transition diagram. A switch based on the value of state takes us to code for each of the possible states, where we find the action of that state. Often, the code for a state is itself a switch statement or multiway branch that determines the next state by reading and examining the next input character.
 
 ```
 TOKEN getRelop() {
@@ -688,7 +688,7 @@ To place the simulation of one transition diagram in perspective, let us conside
  2. We could run the various transition diagrams "in parallel," feeding the next input character to all of them and allowing each one to make what­ ever transitions it required. 
  	- If we use this strategy, we must be careful to resolve the case where one diagram finds a lexeme that matches its pattern, while one or more other diagrams are still able to process input.
 	- The normal strategy is to ***take the longest prefix of the input*** that matches any pattern. 
-		- That rule allows us to prefer identifier the next to keyword then, or the operator -> to - , for example.
+		- That rule allows us to prefer identifier *thenext* to keyword *then*, or the operator -> to - , for example.
  3. The preferred approach, and the one we shall take up in the following sections, is to combine all the transition diagrams into one. 
  	- We allow the transition diagram to read input until there is no possible next state, and then take the longest lexeme that matched any pattern. 
  	- In our running example, this combination is easy, because no two tokens can start with the same character;
@@ -906,7 +906,7 @@ Both deterministic and nondeterministic finite automata are capable of rec­ogni
 ***DFA和NFA的概念***
 
  - 首先对于美一个正则表达式都有一个对应的DFA可以来表示 ，还有NFA 。
- - NFA对于一个字符的输入有可能存在多个以上的状态转移，而DFA对于没一个输入只存在一个选择。
+ - NFA对于一个字符的输入有可能存在多个以上的状态转移，而DFA对于每一个输入只存在一个选择。
  	- 所以每一个NFA都可以转化为一个DFA，但是一个DFA可以转化为多个NFA。 
  - 一般实践过程中DFA的状态转移要多，所以DFA相对来说要难构造一些，同时DFA比NFA需要的内存空间更大。
  - 因为在NFA中一个状态可能向多个状态转移，在极端的情况下其效率比不过DFA。 
