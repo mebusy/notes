@@ -1635,7 +1635,12 @@ It should come as no surprise that the graph for *followpos* is almost an NFA wi
  - METHOD:
  	1. Construct a syntax tree T from the augmented regular expression (r)#.
  	2. Compute *nullable*, *firstpos*, *lastpos* , and *followpos* for T, using the methods of Sections 3.9.3 and 3.9.4.
- 	3. Construct *Dstates*, the set of states of DFA D, and *Dtran*, the transition function for *D*, by the procedure of Fig. 3.62. The states of *D* are sets of positions in T. Initially, each state is "unmarked," and a state becomes "marked" just before we consider its out-transitions. The start state of *D* is *firstpos(n₀)*, where node n₀ is the root of T. The accepting states are those containing the position for the endmarker symbol #.
+ 	3. Construct *Dstates*, the set of states of DFA D, and *Dtran*, the transition function for *D*, by the procedure of Fig. 3.62. 
+ 		- The states of *D* are sets of positions in T. 
+ 		- Initially, each state is "unmarked," and a state becomes "marked" just before we consider its out-transitions. 
+ 		- The start state of *D* is *firstpos(n₀)*, where node n₀ is the root of T. 
+ 		- The accepting states are those containing the position for the endmarker symbol #.
+
 
 
 
