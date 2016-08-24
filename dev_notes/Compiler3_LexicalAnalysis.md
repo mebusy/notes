@@ -1473,9 +1473,9 @@ In this section we present three algorithms that have been used to implement and
 
  1. The first algorithm is useful in a **Lex** compiler, because it constructs a DFA directly from a regular expression, without constructing an interme­diate NFA. 
  	- The resulting DFA also may have fewer states than the DFA constructed via an NFA.
-2. The second algorithm minimizes the number of states of any DFA, by combining states that have the same future behavior. 
+ 2. The second algorithm minimizes the number of states of any DFA, by combining states that have the same future behavior. 
 	- The algorithm itself is quite efficient, running in time O(nlogn), where n is the number of states of the DFA.
-3. The third algorithm produces more compact representations of transition tables than the standard, two-dimensional table.
+ 3. The third algorithm produces more compact representations of transition tables than the standard, two-dimensional table.
 
 ---
 
