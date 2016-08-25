@@ -1736,6 +1736,19 @@ Algorithm 3.39 : Minimizing the number of states of a DFA.
  		- b)
  		- c)
 
+---
+
+***Eliminating the Dead State***
+
+The minimization algorithm sometimes produces a DFA with one dead state - one that is not accepting and transfers to itself on each input symbol. 
+
+This state is technically needed, because a DFA must have a transition from every state on every symbol. However, as discussed in Section 3.8.3, we often want to know when there is no longer any possibility of acceptance, so we can establish that the proper lexeme has already been seen. Thus, we may wish to eliminate the dead state and use an automaton that is missing some transitions. This automaton has one fewer state than the minimum-state DFA, but is strictly speaking not a DFA, because of the missing transitions to the dead state.
+
+---
+
+
+
+
 
 ---
 
