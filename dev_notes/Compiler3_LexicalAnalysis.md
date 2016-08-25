@@ -1732,9 +1732,32 @@ Algorithm 3.39 : Minimizing the number of states of a DFA.
  		```
  	3. If ∏<sub>new</sub> = ∏ , let ∏<sub>final</sub> = ∏  and continue with step (4). Otherwise, repeat step (2) with ∏<sub>new</sub> in place of ∏.
  	4. Choose one state in each group of ∏<sub>final</sub> as the representative for that group. The representatives will be the states of the minimum-state DFA D'. The other components of D' are constructed as follows:
- 		- a)
- 		- b)
- 		- c)
+ 		- a) The start state of D' is the representative of the group containing the start state of D.
+ 		- b) The accepting states of D' are the representatives of those groups that contain an accepting state of D. 
+ 			- Note that each group contains either only accepting states, or only nonaccepting states, because we started by separating those two classes of states, and the procedure of Fig. 3.64 always forms new groups that are subgroups ofpreviously constructed groups.
+ 		- c) Let *s* be the representative of some group G of ∏<sub>final</sub> , and let the transition of D from *s* on input *a* be to state *t*. Let *r* be the rep­resentative of t's group H. Then in D', there is a transition from *s* to *r* on input *a*. Note that in D, every state in group G must go to some state of group H on input *a*, or else, group G would have been split according to Fig. 3.64.
+
+
+Example 3AO : Let us reconsider the DFA of Fig. 3.36. The initial partition consists of the two groups {A, B, C, D} {E}, which are respectively the nonac­cepting states and the accepting states. 
+
+To construct ∏<sub>new</sub>, the procedure of Fig. 3.64 considers both groups and inputs *a* and *b*. The group {E} cannot be split, because it has only one state, so {E} will remain intact in ∏<sub>new</sub> .
+
+The other group {A, B, C, D} can be split, so we must consider the effect of each input symbol. On input *a*, each of these states goes to state B , so there is no way to distinguish these states using strings that begin with *a*. On input *b*, states A, B, and C go to members of group {A, B, C, D}, while state D goes to E, a member of another group. Thus, in ∏<sub>new</sub>, group {A, B, C, D} is split into {A, B, C}{D}, and ∏<sub>new</sub> for this round is {A, B, C}{D}{E}.
+
+In the next round, we can split {A,B,C} into {A,C}{B}, since A and C each go to a member of {A,B,C} on input *b*, while B goes to a member of another group, {D}. Thus, after the second round, ∏<sub>new</sub> = {A,C}{B}{D}{E}. For the third round, we cannot split the one remaining group with more than one state, since A and C each go to the same state (and therefore to the same group) on each input. We conclude that ∏<sub>final</sub> = {A,C}{B}{D}{E}.
+
+Now, we shall construct the minimum-state DFA. It has four states, corre­sponding to the four groups of ∏<sub>final</sub>, and let us pick A, B, D, and E as the representatives of these groups. The initial state is A, and the only accepting state is E. Figure 3.65 shows the transition function for the DFA. 
+
+ STATE | a | b
+:---:| --- | ---
+ A | B | A
+ B | B | D
+ D | B | E
+ E | B | A
+
+> Figure 3.65: Transition table of minimum-state DFA
+
+For instance, the transition from state E on input *b* is to A, since in the original DFA, E goes to C on input *b*, and A is the representative of C's group. For the same reason, the transition on *b* from state A is to A itself, while all other transitions are as in Fig. 3.36. 
 
 ---
 
@@ -1745,6 +1768,42 @@ The minimization algorithm sometimes produces a DFA with one dead state - one th
 This state is technically needed, because a DFA must have a transition from every state on every symbol. However, as discussed in Section 3.8.3, we often want to know when there is no longer any possibility of acceptance, so we can establish that the proper lexeme has already been seen. Thus, we may wish to eliminate the dead state and use an automaton that is missing some transitions. This automaton has one fewer state than the minimum-state DFA, but is strictly speaking not a DFA, because of the missing transitions to the dead state.
 
 ---
+
+---
+
+### 3.9.7  State Minimization in Lexical Analyzers
+
+To apply the state minimization procedure to the DFA's generated in Sec­tion 3.8.3, we must begin Algorithm 3.39 with the partition that groups to­gether all states that recognize a particular token, and also places in one group all those states that do not indicate any token. An example should make the extension clear.
+
+Example 3.41 : For the DFA of Fig. 3.54, the initial partition is
+
+```
+  {0137,7}{247}{8,58}{7}{68}{∅}
+```
+
+ - That is, states 0137 and 7 belong together because neither announces any token. 
+ - States 8 and 58 belong together because they both announce token a*b+. 
+ - Note that we have added a dead state ∅, which we suppose has transitions to itself on inputs a and b. 
+ 	- The dead state is also the target of missing transitions on *a* from states 8, 58, and 68.
+
+We must split 0137 from 7, because they go to different groups on input *a*. We also split 8 from 58, because they go to different groups on *b*. Thus, all states are in groups by themselves, and Fig. 3.54 is the minimum-state DFA recognizing its thress tokens.
+
+Recall that a DFA serving as a lexical analyzer will normally drop the dead state, while we treat missing transitions as a signal to end token recognition.
+
+---
+
+### 3.9.8  Trading Time for Space in DFA Simulation
+
+The simplest and fastest way to represent the transition function of a DFA is a two-dimensional table indexed by states and characters. 
+
+Since a typical lexical analyzer has several hundred states in its DFA and involves the ASCII alphabet of 128 input characters, the array consumes less than a megabyte.
+
+However, compilers are also appearing in very small devices, where even a megabyte of storage may be too much. 
+
+For such situations, there are many methods that can be used to compact the transition table. For instance, we can represent each state by a list of transitions -- that is, character-state pairs -- ended by a default state that is to be chosen for any input character not on the list. If we choose as the default the most frequently occurring next state, we can often reduce the amount of storage needed by a large factor.
+
+TODO 
+
 
 
 
