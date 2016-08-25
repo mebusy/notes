@@ -1731,6 +1731,10 @@ Algorithm 3.39 : Minimizing the number of states of a DFA.
  			replace G in ∏_new by the set of all subgroups formed; }
  		```
  	3. If ∏<sub>new</sub> = ∏ , let ∏<sub>final</sub> = ∏  and continue with step (4). Otherwise, repeat step (2) with ∏<sub>new</sub> in place of ∏.
+ 	4. Choose one state in each group of ∏<sub>final</sub> as the representative for that group. The representatives will be the states of the minimum-state DFA D'. The other components of D' are constructed as follows:
+ 		- a)
+ 		- b)
+ 		- c)
 
 
 ---
