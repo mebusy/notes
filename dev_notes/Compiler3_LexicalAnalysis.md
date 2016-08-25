@@ -1499,7 +1499,7 @@ The important states of the NFA correspond directly to the positions in the regu
 
 Example 3.31 : Figure 3.56 shows the syntax tree for the regular expression of our running example. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.56.png)
+![][1]
 
 Cat-nodes are represented by circles.
 
@@ -1638,13 +1638,51 @@ It should come as no surprise that the graph for *followpos* is almost an NFA wi
  	3. Construct *Dstates*, the set of states of DFA D, and *Dtran*, the transition function for *D*, by the procedure of Fig. 3.62. 
  		- The states of *D* are sets of positions in T. 
  		- Initially, each state is "unmarked," and a state becomes "marked" just before we consider its out-transitions. 
- 		- The start state of *D* is *firstpos(n₀)*, where node n₀ is the root of T. 
+ 		- The ***start state*** of *D* is *firstpos(n₀)*, where node n₀ is the ***root*** of T. 
+ 			- 根节点的 firstpos -> start state
  		- The accepting states are those containing the position for the endmarker symbol #.
 
+```
+initialize Dstates to contain only the unmarked state fistpos(n₀), 
+	where n₀ is the root of syntax tree T for (r)#;
+
+while ( there is an unmarked state S in Dstates ) { 
+	mark S;
+	for ( each input symbol a ) {
+		let U be the union of followpos(p) for all p
+			in S that correspond to a; 
+		if( U is not in Dstates )
+			add U as an unmarked state to Dstates; 
+		Dtran[S, a] = U;
+	} 
+}
+```
+
+> Figure 3.62: Construction of a DFA directly from a regular expression
+
+
+
+Example 3.37: We can now put together the steps of our running example to construct a DFA for the regular expression r = **(a|b)\*abb**. The syntax tree for (r)# appeared in Fig. 3.56. 
+
+![][1]
+
+We observed that for this tree, *nullable* is true only for the star-node, and we exhibited firstpos and lastpos in Fig. 3.59. The values of followpos appear in Fig. 3.60.
+
+ - The value of firstpos for the root of the tree is {1, 2, 3}, so this set is the start state of D. 
+ 	- Call this set of states A. 
+ - We must compute Dtran[A,a] and Dtran[A, b] . 
+ 	- Among the positions of A, 1 and 3 correspond to a, while 2 corresponds to b. 
+ 	- Thus, Dtran[A, a] = followpos(1) U followpos(3) = {1, 2, 3, 4},
+ 	- and Dtran[A, b] = followpos(2) = {1, 2, 3}. 
+ - The latter is state A, and so does not have to be added to *Dstates*, but the former, B= {1,2,3,4},is new,so we add it to *Dstates* and proceed to compute its transitions. 
+ - The complete DFA is shown in Fig. 3.63. 
 
 
 
 
+---
+
+[1]:  https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.56.png
 
 
 
