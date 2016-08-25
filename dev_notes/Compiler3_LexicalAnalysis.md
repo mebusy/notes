@@ -1677,7 +1677,7 @@ We observed that for this tree, *nullable* is true only for the star-node, and w
  - The latter is state A, and so does not have to be added to *Dstates*, but the former, B= {1,2,3,4},is new,so we add it to *Dstates* and proceed to compute its transitions. 
  - The complete DFA is shown in Fig. 3.63. 
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.63.png)
 
 
 ---
