@@ -1128,7 +1128,7 @@ The five different DFA states we actually construct, their correspond­ing sets 
 The transition table for the DFA D are shown in Fig. 3.35, and the transition graph for D is in Fig. 3.36.
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.36.png)
+![][336]
 
 > Figure 3.36: Result of applying the subset construction to Fig. 3.34
 
@@ -1677,13 +1677,43 @@ We observed that for this tree, *nullable* is true only for the star-node, and w
  - The latter is state A, and so does not have to be added to *Dstates*, but the former, B= {1,2,3,4},is new,so we add it to *Dstates* and proceed to compute its transitions. 
  - The complete DFA is shown in Fig. 3.63. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.63.png)
+![][363]
+
+---
+
+### 3.9.6 Minimizing the Number of States of a DFA
+
+There can be many DFA's that recognize the same language. 
+
+For instance, note that the DFA's of Figs. 3.36 and 3.63 both recognize language L((a|b)\*abb). 
+
+> Fig 3.36: ![][336]
+
+Not only do these automata have states with different names, but they don't even have the same number of states. 
+
+If we implement a lexical analyzer as a DFA, we would generally prefer a DFA with as few states as possible, since each state requires entries in the table that describes the lexical analyzer.
+
+The matter of the names of states is minor. We shall say that two automata are *the same up to state names* if one can be transformed into the other by doing nothing more than changing the names of states. Figures 3.36 and 3.63 are not the same up to state names. However, there is a close relationship between the
+states of each. 
+
+States A and C of Fig. 3.36 are actually equivalent, in the sense that neither is an accepting state, and on any input they transfer to the same state. Moreover, both states A and C behave like state 123 of Fig. 3.63. Likewise, state B of Fig. 3.36 behaves like state 1234 of Fig. 3.63, state D behaves like state 1235, and state E behaves like state 1236.
+
+It turns out that there is always a unique (up to state names) minimum state DFA for any regular language. Moreover, this minimum-state DFA can be constructed from any DFA for the same language by grouping sets of equivalent states. In the case ofL ((a|b)\*abb), Fig.3.63 is the minimum-state DFA, and it can be constructed by partitioning the states of Fig. 3.36 as {A,C} {B} {D} {E}.
+
+In order to understand the algorithm for creating the partition of states that converts any DFA into its minimum-state equivalent DFA, we need to see how input strings distinguish states from one another. We say that string *x* ***distinguishes*** state *s* from state *t* if exactly one of the states reached from *s* and *t* by following the path with label *x* is an accepting state. State *s* is ***distinguishable*** from state *t* if there is some string that distinguishes them.
+
+Example 3.38 : The empty string distinguishes any accepting state from any nonaccepting state. In Fig. 3.36, the string bb distinguishes state A from state B, since bb takes A to a nonaccepting state C, but takes B to accepting state E.
+
+
+
+
 
 
 ---
 
 [1]:  https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.56.png
-
+[336]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.36.png
+[363]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.63.png
 
 
 
