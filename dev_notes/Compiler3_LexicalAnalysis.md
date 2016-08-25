@@ -1702,11 +1702,35 @@ It turns out that there is always a unique (up to state names) minimum state DFA
 
 In order to understand the algorithm for creating the partition of states that converts any DFA into its minimum-state equivalent DFA, we need to see how input strings distinguish states from one another. We say that string *x* ***distinguishes*** state *s* from state *t* if exactly one of the states reached from *s* and *t* by following the path with label *x* is an accepting state. State *s* is ***distinguishable*** from state *t* if there is some string that distinguishes them.
 
+> 存在一个 x, 状态 s 转移到一个 nonaccepting state , while 状态 t 转移到一个  accepting state.
+
 Example 3.38 : The empty string distinguishes any accepting state from any nonaccepting state. In Fig. 3.36, the string bb distinguishes state A from state B, since bb takes A to a nonaccepting state C, but takes B to accepting state E.
 
+The state-minimization algorithm works by partitioning the states of a DFA into groups of states that cannot be distinguished. Each group of states is then merged into a single state of the minimum-state DFA. The algorithm works by maintaining a partition, whose groups are sets of states that have not yet been distinguished, while any two states from different groups are known to be distinguishable. When the partition cannot be refined further by breaking any group into smaller groups, we have the minimum-state DFA.
 
+Initially, the partition consists of two groups: the accepting states and the nonaccepting states. 
 
+The fundamental step is to take some group of the current partition, say A={s₁,s₂,... ,s<sub>k</sub>}, and some input symbol *a*, and see whether *a* can be used to distinguish between any states in group A. We examine the transitions from each of s₁,s₂,... ,s<sub>k</sub> on input *a*, and if the states reached fall into two or more groups of the current partition, we split A into a collection of groups, so that sᵢ and sⱼ are in the same group if and only if they go to the same group on input *a*. We repeat this process of splitting groups, until for no group, and for no input symbol, can the group be split further. The idea is formalized in the next algorithm.
 
+Algorithm 3.39 : Minimizing the number of states of a DFA.
+
+ - INPUT: A DFA D with set of states S, input alphabet Σ , state state s₀ , and set of accepting states F.
+ - OUTPUT: A DFA D' accepting the same language as D and having as few states as possible.
+ - METHOD:
+ 	1. Start with an initial partition ∏ with two groups, F and S - F, the accepting and nonaccepting states of D.
+ 	2. Apply the procedure of Fig. 3.64 to construct a new partition a new partition ∏<sub>new</sub>·
+ 		- Figure 3.64: Construction of  ∏<sub>new</sub> 
+ 		```
+ 		initially, let ∏_new = ∏  ;
+ 		for ( each group G of ∏ ) {
+ 			partition G into subgroups such that two states s and t
+ 				are in the same subgroup if and only if for all
+ 				input symbols a, states s and t have transitions on a 
+ 				to states in the same group of ∏ ;
+ 			/* at worst, a state will be in a subgroup by itself */
+ 			replace G in ∏_new by the set of all subgroups formed; }
+ 		```
+ 	3. If ∏<sub>new</sub> = ∏ , let ∏<sub>final</sub> = ∏  and continue with step (4). Otherwise, repeat step (2) with ∏<sub>new</sub> in place of ∏.
 
 
 ---
