@@ -32,18 +32,79 @@ We expect the parser to report any syntax errors in an intelligible fashion and 
 
 Conceptually, for well-formed programs, the parser constructs a parse tree and passes it to the rest of the compiler for further processing. In fact, the parse tree need not be constructed explicitly, since checking and translation actions can be interspersed with parsing, as we shall see. Thus, the parser and the rest of the front end could well be implemented by a single module.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.1png.png)
+
+There are three general types of parsers for grammars: 
+
+ - universal, 
+	- such as the Cocke-Younger-Kasami algorithm and Earley's algorithm
+	- too inefficient to use in production compilers.
+ - top-down, 
+	- commonly used
+	- build parse trees from the top (root) to the bottom (leaves)
+	- the input to the parser is scanned from left to right, one symbol at a time.
+ - and bottom-up. 
+	- commonly used
+	- build parse trees start from the leaves and work their way up to the root
+	- the input to the parser is scanned from left to right, one symbol at a time.
+
+The most efficient top-down and bottom-up methods work only for sub­classes of grammars, but several of these classes, particularly, LL and LR gram­mars, are expressive enough to describe most of the syntactic constructs in modern programming languages. 
+
+> LL : Left to Right, Leftmost derivation
+> LR : Left to Right, Rightmost derivation
+
+ - Parsers implemented by hand often use LL grammars; 
+ 	- for example, the predictive-parsing approach of Section 2.4.2 works for LL grammars.  
+ - Parsers for the larger class of LR grammars are usually constructed using automated tools.
+
+In this chapter, we assume that the output of the parser is some represent­ action of the parse tree for the stream of tokens that comes from the lexical analyzer. In practice, there are a number of tasks that might be conducted during parsing, such as 
+
+ - collecting information about various tokens into the symbol table, 
+ - performing type checking and other kinds of semantic analysis, 
+ - and generating intermediate code. 
+
+We have lumped all of these activities into the "rest of the front end" box in Fig. 4.1. These activities will be covered in detail in subsequent chapters.
+
+---
+
+### 4.1.2 Representative Grammars
+
+Some of the grammars that will be examined in this chapter are presented here for ease of reference. 
+
+Constructs that begin with keywords like **while** or **int**, are relatively easy to parse, because the keyword guides the choice of the grammar production that must be applied to match the input. We therefore concentrate on expressions, which present more of challenge, because of the associativity and precedence of operators.
+
+Associativity and precedence are captured in the following grammar, which is similar to ones used in Chapter 2 for describing expressions, terms, and factors. *E* represents expressions consisting of terms separated by + signs, *T* represents terms consisting of factors separated by \* signs, and *F* represents factors that can be either parenthesized expressions or identifiers:
+
+```
+E → E + T | T
+T → T * F | F 	(4.1) 
+F → ( E ) | id
+```
+
+Expression grammar (4.1) belongs to the class of LR grammars that are suitable for bottom-up parsing. This grammar can be adapted to handle additional operators and additional levels of precedence. However, it cannot be used for top-down parsing because it is left recursive.
+
+> left recursive 只能使用 bottom-up parsing
+
+The following non-left-recursive variant of the expression grammar (4.1) will be used for top-down parsing:
+
+```
+E  → T E'
+E' → + T E' | ε
+T  → F T'			(4.2)
+T' → * F T' | ε
+F  → ( E ) | id  
+```
+
+The following grammar treats + and * alike, so it is useful for illustrating techniques for handling ambiguities during parsing:
+
+```
+E → E + E | E * E | ( E ) | id 		(4.3)
+```
+
+Here, E represents expressions of all types. Grammar (4.3) permits more than one parse tree for expressions like a + b \* c.
 
 
-
-
-
-
-
-
-
-
-
-
+### 4.1.3 Syntax Error Handling
 
 
 
