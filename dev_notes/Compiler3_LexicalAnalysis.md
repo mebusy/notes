@@ -47,6 +47,9 @@
 		 - [3.9.3 Computing *nullable*, *firstpos*, and *lastpos*](#9d510c7a831f62018cae56836a266769)
 		 - [3.9.4 Computing followpos](#cb99b99a4bf8d9971dafc9579d962576)
 		 - [3.9.5 Converting a Regular Expression Directly to a DFA](#fd0a77b3813cb5692d1689d95568daf7)
+		 - [3.9.6 Minimizing the Number of States of a DFA](#5f8d48865d5cddabffbed51ce176bcbb)
+		 - [3.9.7  State Minimization in Lexical Analyzers](#6968fda06e8f79559037d7f27f3360f9)
+		 - [3.9.8  Trading Time for Space in DFA Simulation](#af4e82fbb4a2e52c6d19d63130637e95)
 
 ...menuend
 
@@ -1681,6 +1684,7 @@ We observed that for this tree, *nullable* is true only for the star-node, and w
 
 ---
 
+<h2 id="5f8d48865d5cddabffbed51ce176bcbb"></h2>
 ### 3.9.6 Minimizing the Number of States of a DFA
 
 There can be many DFA's that recognize the same language. 
@@ -1771,6 +1775,7 @@ This state is technically needed, because a DFA must have a transition from ever
 
 ---
 
+<h2 id="6968fda06e8f79559037d7f27f3360f9"></h2>
 ### 3.9.7  State Minimization in Lexical Analyzers
 
 To apply the state minimization procedure to the DFA's generated in Sec­tion 3.8.3, we must begin Algorithm 3.39 with the partition that groups to­gether all states that recognize a particular token, and also places in one group all those states that do not indicate any token. An example should make the extension clear.
@@ -1792,6 +1797,7 @@ Recall that a DFA serving as a lexical analyzer will normally drop the dead stat
 
 ---
 
+<h2 id="af4e82fbb4a2e52c6d19d63130637e95"></h2>
 ### 3.9.8  Trading Time for Space in DFA Simulation
 
 The simplest and fastest way to represent the transition function of a DFA is a two-dimensional table indexed by states and characters. 
