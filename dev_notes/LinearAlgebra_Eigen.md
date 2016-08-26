@@ -326,6 +326,9 @@ There is a MATLAB demo (just type eigshow), displaying the eigenvalue problem fo
 
 It starts with the unit vector x = (1, 0). *The mouse makes this vector move around the unit circle*. At the same time the screen shows Ax, in color and also moving. Possibly Ax is ahead of x. Possibly Ax is behind x. Sometimes Ax is parallel to x. At that parallel moment, Ax = λx (twice in the second figure).
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigenshow.png)
+
+The eigenvalue λ is the length of Ax, when the ***unit*** eigenvector x is parallel. The built-in choices for A illustrate three possibilities: 0, 1, or 2 real eigenvectors.
 
 
 
