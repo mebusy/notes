@@ -330,10 +330,28 @@ It starts with the unit vector x = (1, 0). *The mouse makes this vector move aro
 
 The eigenvalue λ is the length of Ax, when the ***unit*** eigenvector x is parallel. The built-in choices for A illustrate three possibilities: 0, 1, or 2 real eigenvectors.
 
+ 1. There are *no real eigenvectors*. Ax *stays behind or ahead of* x. 
+ 	This means the eigenvalues and eigenvectors are complex, as they are for the rotation Q.
+ 2. There is only one line of eigenvectors (unusual).  The moving directions Ax and x meet but don't cross. 
+ 	- This happens for the last 2 by 2 matrix below.
+ 3. There are eigenvectors in two independent directions. This is typical! 
+ 	- Ax crosses x at the first eigenvector x₁, and it crosses back at the second eigenvector x₂.
+
+Suppose A is singular (rank 1). Its column space is a line. The vector Ax has to stay on that line while x circles around. 
+
+One eigenvector x is along the line. Another eigenvector appears when Ax₂ = 0. Zero is an eigenvalue of a singular matrix.
+
+You can mentally follow x and Ax for these six matrices. How many eigenvectors and where? When does Ax go clockwise, instead of counterclockwise with x ?
+
+```
+A = ⎡2 0⎤ ⎡2  0⎤ ⎡0 1⎤ ⎡ 0 1⎤ ⎡1 1⎤ ⎡1 1⎤ 
+	⎣0 1⎦ ⎡0 -1⎤ ⎡1 0⎤ ⎡-1 0⎤ ⎡1 1⎤ ⎡0 1⎤ 
+```
 
 
+---
 
-
+## 5.2 DIAGONALIZATION OF A MATRIX
 
 
 
