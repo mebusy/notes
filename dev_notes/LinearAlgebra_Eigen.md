@@ -377,6 +377,93 @@ AS = ⎢ x₁ x₂ ... xn	⎥ = ⎢λ₁x₁ λ₂x₂ ... λnxn ⎥.
  	 ⎣ |  |      |  ⎦	⎣ |    |        |   ⎦
 ```
 
+> A * eigenvector x, 就会 引出 eigenvalue.
+
+Then the trick is to split this last matrix into a quite different product SA:
+
+```
+	 ⎡ 					⎤	⎡ 			   ⎤ ⎡λ₁       ⎤
+AS = ⎢λ₁x₁ λ₂x₂ ... λnxn⎥ = ⎢ x₁ x₂ ... xn ⎥ ⎢  λ₂ 	   ⎥.
+	 ⎢ 					⎥	⎢ 			   ⎥ ⎢    ...  ⎥
+ 	 ⎣ 					⎦	⎣ 			   ⎦ ⎣       λn⎦
+```
+
+```
+AS = SΛ , or S⁻¹AS = Λ , or A = SΛS⁻¹	(2)
+```
+
+S is invertible, because its columns (the eigenvectors) were assumed to be independent. 
+
+We add four remarks before giving any examples or applications.
+
+***Remark 1*** If the matrix A has no repeated eigenvalues -- the numbers λ₁,...,λn are distinct -- then its n eigenvectors are automatically independent (see 5D below). Therefore ***any matrix with distinct eigenvalues can be diagonalized***.
+
+> TODO: [1 0 ; 0 1] has 2 same eigenvalue.
+
+***Remark 2*** The diagonalizing matrix S is *not unique*. An eigenvector x can be multiplied by a constant, and remains an eigenvector. We can multiply the columns of S by any nonzero constants, and produce a new diagonalizing S. 
+
+Repeated eigenvalues leave even more freedom in S. For the trivial example A = I, any invertible S will do: SIS⁻¹ is always diagonal (Λ is just I). All vectors are eigenvectors of the identity.
+
+
+***Remark 3*** *Other matrices S will not produce a diagonal Λ*. Suppose the first column of S is y. Then the first column of SΛ is λ₁y. If this is to agree with the first column of AS, which by matrix multiplication is Ay, then y must be an eigenvector: Ay = λ₁y. The *order* of the eigenvectors in S and the eigenvalues in Λ is automatically the same.
+
+
+***Remark 4*** Not all matrices possess n linearly independent eigenvectors, so not all matrices are diagonalizable.  The standard example of a "defective matrix" is
+
+```
+A = ⎡0 1⎤. 
+	⎣0 0⎦ 
+```
+
+Its eigenvalues are λ₁ = λ₂ = 0, since it is triangular with zeros on the diagonal:
+
+```
+det( A-λI ) = det⎡-λ  1⎤ = λ² . 
+				 ⎣ 0 -λ⎦ 
+```
+
+All eigenvectors of this A are multiples of the vector (1, 0):
+
+```
+  ⎡0 1⎤x = ⎡0⎤,  or x = ⎡c⎤. 
+  ⎣0 0⎦    ⎣0⎦ 			⎣0⎦ 
+```
+
+λ = 0 is a double eigenvalue -- its *algebraic multiplicity* (代数重数) is 2. But the *geometric multiplicity* is 1 -- there is only one independent eigenvector. We can't construct S.
+
+Here is a more direct proof that this A is not diagonalizable. Since λ₁ = λ₂ = 0, Λ would have to be the zero matrix. But if Λ = S⁻¹AS = 0, then we premultiply by S and postmultiply by S⁻¹, to deduce falsely that A = 0. There is no invertible S.
+
+That failure of diagonalization was ***not*** a result of λ = 0. It came from λ₁ = λ₂ :
+
+```
+Repeated eigenvalues:
+
+A = ⎡3 1⎤  and A = ⎡2 -1⎤. 
+    ⎣0 3⎦    	   ⎣1  0⎦ 
+```
+
+Their eigenvalues are 3, 3 and 1, 1. They are not singular! The problem is the shortage of eigenvectors -- which are needed for S. That needs to be emphasized:
+
+ - ***Diagonalizability of A depends on enough eigenvectors***. 
+ - ***Invertibility of A depends on nonzero eigenvalues***.
+
+There is no connection between diagonalizability (n independent eigenvectors) and invertibility (no zero eigenvalues). 
+
+The only indication given by the eigenvalues is this: *Diagonalization can fail only if there are repeated eigenvalues*. (注意是 ***can***) Even then, it does not always fail. A = I has repeated eigenvalues 1 , 1, ... , 1 but it is already diagonal! There is no shortage of eigenvectors in that case.
+
+The test is to check, for an eigenvalue that is repeated *p* times, whether there are *p* independent eigenvectors -- in other words, whether A - λI has rank n - *p*. To complete that circle of ideas, we have to show that *distinct* eigenvalues present no problem.
+
+**5D** If eigenvectors x₁, ..., x<sub>k</sub> correspond to *different* eigenvalue λ₁,...,λ<sub>k</sub>  then those eigenvectors are linearly independent.
+
+Suppose first that k = 2, and that some combination of x₁ and x₂ produces zero: c₁x₁ + c₂x₂ = 0. Multiplying by A, we find c₁λ₁x₁ + c₂λ₂x₂ = 0. Subtracting λ₂ times the previous equation, the vector x₂ disappears:
+
+```
+  c₁(λ₁-λ₂)x₁ = 0.
+```
+
+
+
+
 
 
 
