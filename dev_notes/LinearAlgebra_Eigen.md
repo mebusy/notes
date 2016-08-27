@@ -284,7 +284,7 @@ Example 3: The eigenvalues are on the main diagonal when A is ***triangular***:
 
 The determinant is just the product of the diagonal entries. It is zero if λ=1, λ=3/4, or λ=1/2; the eigenvalues were already sitting along the main diagonal.
 
-This example , in which the eigenvalues can be found by inspection, points to one main theme of the chapter: To transform A into a diagonal or triangular matrix *without changing its eigenvalues*. We emphasize once more that the Gaussian factorization A = LU is not suited to this purpose. The eigenvalues of *U* may be visible on the diagonal, but they are ***not*** the eigenvalues of A.
+This example , in which the eigenvalues can be found by inspection, points to one main theme of the chapter: *To transform A into a diagonal or triangular matrix* ***without changing its eigenvalues***. We emphasize once more that the Gaussian factorization A = LU is not suited to this purpose. The eigenvalues of *U* may be visible on the diagonal, but they are ***not*** the eigenvalues of A.
 
 For most matrices, there is no doubt that the eigenvalue problem is computationally more difficult that Ax = b.
 
