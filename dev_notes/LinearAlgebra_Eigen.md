@@ -345,7 +345,7 @@ You can mentally follow x and Ax for these six matrices. How many eigenvectors a
 
 ```
 A = ⎡2 0⎤ ⎡2  0⎤ ⎡0 1⎤ ⎡ 0 1⎤ ⎡1 1⎤ ⎡1 1⎤ 
-	⎣0 1⎦ ⎡0 -1⎤ ⎡1 0⎤ ⎡-1 0⎤ ⎡1 1⎤ ⎡0 1⎤ 
+	⎣0 1⎦ ⎣0 -1⎦ ⎣1 0⎦ ⎣-1 0⎦ ⎣1 1⎦ ⎣0 1⎦ 
 ```
 
 
@@ -353,10 +353,29 @@ A = ⎡2 0⎤ ⎡2  0⎤ ⎡0 1⎤ ⎡ 0 1⎤ ⎡1 1⎤ ⎡1 1⎤
 
 ## 5.2 DIAGONALIZATION OF A MATRIX
 
+We start right off with the one essential computation. It is perfectly simple and will be used in every section of this chapter. ***The eigenvectors diagonalize a matrix***:
 
+**5C** Suppose the n by n matrix A has n linearly independent eigenvectors.If these eigenvectors are the columns of a matrix S. then S⁻¹AS is a diagonal matrix Λ. The eigenvalues of A are on the diagonal of Λ:
 
+```
+Diagonalization:
 
+				⎡λ₁       ⎤
+   S⁻¹AS = Λ =  ⎢  λ₂ 	  ⎥.	(1)
+   				⎢    ...  ⎥
+  				⎣       λn⎦
+```
 
+We call S the "eigenvector matrix" and Λ the "eigenvalue matrix".
+
+***Proof*** Put the eigenvectors xᵢ in the columns of S, and compute AS by columns:
+
+```
+	 ⎡ |  |      |  ⎤	⎡ |    |        |   ⎤
+AS = ⎢ x₁ x₂ ... xn	⎥ = ⎢λ₁x₁ λ₂x₂ ... λnxn ⎥.
+	 ⎢ |  |	     |  ⎥	⎢ |    |	    |   ⎥
+ 	 ⎣ |  |      |  ⎦	⎣ |    |        |   ⎦
+```
 
 
 
