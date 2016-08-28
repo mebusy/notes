@@ -461,7 +461,13 @@ Suppose first that k = 2, and that some combination of x₁ and x₂ produces ze
   c₁(λ₁-λ₂)x₁ = 0.
 ```
 
+Since λ₁ ≠ λ₂ and x₁ ≠ 0, we are forced into c₁ = 0. Similarly c2 = 0, and the two vectors are independent; only the trivial combination gives zero.
 
+This same argument extends to any number of eigenvectors. Therefore eigenvectors that come from distinct eigenvalues are automatically independent.
+
+A matrix with n distinct eigenvalues can be diagonalized. This is the typical case.
+
+**Examples of Diagoinalization**
 
 
 
