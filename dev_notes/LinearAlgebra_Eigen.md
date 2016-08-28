@@ -371,10 +371,10 @@ We call S the "eigenvector matrix" and Λ the "eigenvalue matrix".
 ***Proof*** Put the eigenvectors xᵢ in the columns of S, and compute AS by columns:
 
 ```
-     ⎡ |  |      |  ⎤	⎡ |    |        |   ⎤
+     ⎡ |  |      |  ⎤   ⎡ |    |        |   ⎤
 AS = ⎢ x₁ x₂ ... xn ⎥ = ⎢λ₁x₁ λ₂x₂ ... λnxn ⎥.
-     ⎢ |  |	 |  ⎥	⎢ |    |	|   ⎥
-     ⎣ |  |      |  ⎦	⎣ |    |        |   ⎦
+     ⎢ |  |      |  ⎥   ⎢ |    |	|   ⎥
+     ⎣ |  |      |  ⎦   ⎣ |    |        |   ⎦
 ```
 
 > A * eigenvector x, 就会 引出 eigenvalue.
@@ -382,7 +382,7 @@ AS = ⎢ x₁ x₂ ... xn ⎥ = ⎢λ₁x₁ λ₂x₂ ... λnxn ⎥.
 Then the trick is to split this last matrix into a quite different product SA:
 
 ```
-     ⎡ 			⎤   ⎡              ⎤ ⎡λ₁       ⎤
+     ⎡                  ⎤   ⎡              ⎤ ⎡λ₁       ⎤
 AS = ⎢λ₁x₁ λ₂x₂ ... λnxn⎥ = ⎢ x₁ x₂ ... xn ⎥ ⎢  λ₂     ⎥.
      ⎢                  ⎥   ⎢              ⎥ ⎢    ...  ⎥
      ⎣                  ⎦   ⎣              ⎦ ⎣       λn⎦
@@ -460,7 +460,6 @@ Suppose first that k = 2, and that some combination of x₁ and x₂ produces ze
 ```
   c₁(λ₁-λ₂)x₁ = 0.
 ```
-
 
 
 
