@@ -360,10 +360,10 @@ We start right off with the one essential computation. It is perfectly simple an
 ```
 Diagonalization:
 
-				⎡λ₁       ⎤
-   S⁻¹AS = Λ =  ⎢  λ₂ 	  ⎥.	(1)
-   				⎢    ...  ⎥
-  				⎣       λn⎦
+              ⎡λ₁       ⎤
+  S⁻¹AS = Λ = ⎢  λ₂     ⎥.	(1)
+              ⎢    ...  ⎥
+              ⎣       λn⎦
 ```
 
 We call S the "eigenvector matrix" and Λ the "eigenvalue matrix".
@@ -373,7 +373,7 @@ We call S the "eigenvector matrix" and Λ the "eigenvalue matrix".
 ```
      ⎡ |  |      |  ⎤   ⎡ |    |        |   ⎤
 AS = ⎢ x₁ x₂ ... xn ⎥ = ⎢λ₁x₁ λ₂x₂ ... λnxn ⎥.
-     ⎢ |  |      |  ⎥   ⎢ |    |	|   ⎥
+     ⎢ |  |      |  ⎥   ⎢ |    |        |   ⎥
      ⎣ |  |      |  ⎦   ⎣ |    |        |   ⎦
 ```
 
