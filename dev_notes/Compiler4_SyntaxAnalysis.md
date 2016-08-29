@@ -361,7 +361,7 @@ Note that (4.9) is a rightmost derivation.
 
 Using our notational conventions, every leftmost step can be written as ωAγ ⇒<sub>lm</sub> ωδγ, where ω consists of terminals only, A ⇒ δ is the production and γ is a string of grammar symbols. To emphasize that a derives by a leftmost derivation , we write α ⇒<sup>\*</sup><sub>lm</sub> β . If S ⇒<sup>\*</sup><sub>lm</sub> α, then we say that α is a *left-sentential form* of the grammar at hand.
 
-Analogous de nitions hold for rightmost derivations. Rightmost derivations are sometimes called *canonical* derivations.
+Analogous definitions hold for rightmost derivations. Rightmost derivations are sometimes called *canonical* derivations.
 
 --- 
 
