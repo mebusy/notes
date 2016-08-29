@@ -510,6 +510,40 @@ Colloquially, we say that ***"finite automata cannot count,"*** meaning that a f
 
 ## 4.3 Writing a Grammar
 
+Grammars are capable of describing most, but not all, of the syntax of pro­gramming languages. For instance, the requirement that identifiers be declared before they are used, cannot be described by a context-free grammar. Therefore, the sequences of tokens accepted by a parser form a superset of the program­ming language; subsequent phases of the compiler must analyze the output of the parser to ensure compliance with rules that are not checked by the parser.
+
+This section begins with a discussion of how to divide work between a lexical analyzer and a parser. We then consider several transformations that could be applied to get a grammar more suitable for parsing. 
+
+ - One technique can elim­inate ambiguity in the grammar, 
+ - and other techniques -- left-recursion elimi­nation and left factoring -- are useful for rewriting grammars so they become suitable for top-down parsing. 
+
+We conclude this section by considering some programming language constructs that cannot be described by any grammar.
+
+---
+
+### 4.3.1 Lexical Versus Syntactic Analysis
+
+As we observed in Section 4.2.7, everything that can be described by a regular expression can also be described by a grammar. We may therefore reasonably ask: "Why use regular expressions to define the lexical syntax of a language?" There are several reasons.
+
+ 1. Separating the syntactic structure of a language into lexical and non­ lexical parts provides a convenient way of modularizing the front end of a compiler into two manageable-sized components.
+ 2. The lexical rules of a language are frequently quite simple, and to describe them we do not need a notation as powerful as grammars.
+ 3. Regular expressions generally provide a more concise and easier-to-under­ stand notation for tokens than grammars.
+ 4. More efficient lexical analyzers can be constructed automatically from regular expressions than from arbitrary grammars.
+
+There are no firm guidelines as to what to put into the lexical rules, as op­posed to the syntactic rules. 
+
+ - Regular expressions are most useful for describing the structure of constructs such as identifiers, constants, keywords, and white space. 
+ - Grammars, on the other hand, are most useful for describing nested structures such as balanced parentheses, matching begin-end's, corresponding if-then-else's, and so on. 
+
+These nested structures cannot be described by regular expressions.
+
+---
+
+### 4.3.2 Eliminating Ambiguity
+
+
+
+
 
 
 
