@@ -498,8 +498,19 @@ We can construct mechanically a grammar to recognize the same language as a nond
 
 On the other hand, the language L = {aⁿbⁿ | n ≥ 1} with an equal number of a's and b's is a prototypical example of a language that can be described by a grammar but not by a regular expression. 
 
-To see why, suppose L were the language defined by some regular expression. We could construct a DFA D with a finite number of states, say k, to accept L. Since D has only k states, for an input beginning with more than k a's, D must enter some state twice, say sᵢ, as in Fig. 4.6. Suppose that the path from Si back to itself is labeled with a sequence ai-i. Since aibi is in the language, there must be a path labeled bi
-from Si to an accepting state f. But, then there is also a path from the initial state So through Si to f labeled ajbi, as shown in Fig. 4.6. Thus, D also accepts ajbi, which is not in the language, contradicting the assumption that L is the language accepted by D.
+To see why, suppose L were the language defined by some regular expression. We could construct a DFA D with a finite number of states, say k, to accept L. Since D has only k states, for an input beginning with more than k a's, D must enter some state twice, say sᵢ, as in Fig. 4.6. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.6.png)
+
+Suppose that the path from sᵢ back to itself is labeled with a sequence aʲ⁻¹. Since aⁱbⁱ is in the language, there must be a path labeled bⁱ from sⁱ to an accepting state f. But, then there is also a path from the initial state s₀ through sⁱ to f labeled aʲbⁱ, as shown in Fig. 4.6. Thus, D also accepts aʲbⁱ, which is not in the language, contradicting the assumption that L is the language accepted by D.
+
+Colloquially, we say that ***"finite automata cannot count,"*** meaning that a finite automaton cannot accept a language like {aⁿbⁿ | n ≥ 1} that would require it to keep count of the number of a's before it sees the b's. Likewise, "a grammar can count two items but not three," as we shall see when we consider non-context-free language constructs in Section 4.3.5.
+
+---
+
+## 4.3 Writing a Grammar
+
+
 
 
 
