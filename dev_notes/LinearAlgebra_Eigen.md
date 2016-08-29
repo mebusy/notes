@@ -2,6 +2,7 @@
 
  - [Elgenvalues and Elgenvectors](#8358d3063f9f8db669067bc62cf5ea5e)
 	 - [5.1 INTRODUCTION](#103445c268b50fae9bd814331a04faa4)
+	 - [5.2 DIAGONALIZATION OF A MATRIX](#a208ce5ccf9b8c57cd42ced0c19eca2e)
 
 ...menuend
 
@@ -351,6 +352,7 @@ A = ⎡2 0⎤ ⎡2  0⎤ ⎡0 1⎤ ⎡ 0 1⎤ ⎡1 1⎤ ⎡1 1⎤
 
 ---
 
+<h2 id="a208ce5ccf9b8c57cd42ced0c19eca2e"></h2>
 ## 5.2 DIAGONALIZATION OF A MATRIX
 
 We start right off with the one essential computation. It is perfectly simple and will be used in every section of this chapter. ***The eigenvectors diagonalize a matrix***:

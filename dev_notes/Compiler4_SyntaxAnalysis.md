@@ -7,6 +7,11 @@
 		 - [4.1.3 Syntax Error Handling](#0a62177a1bdeb055824f516840c228b4)
 		 - [4.1.4 Error-Recovery Strategies](#e1251b5a6af9cbf01527a7b7594bc9a0)
 	 - [4.2 Context-Free Grammars](#e18a685fdcbfe35bcf7b3ef29c5dbfee)
+		 - [4.2.1 The Formal Definition of a Context-free Grammar](#04d3df637c892628792484e05c357c42)
+		 - [4.2.2 Notational Conventions](#75f9deb3c12ebfe2f88ee567cbb334af)
+		 - [4.2.3 Derivations](#d4831fa5d1357d7549aa40ad8f772c8d)
+		 - [4.2.4 Parse Trees and Derivations](#b7e854d42d024d8174345cb2a65ac968)
+		 - [4.2.5 Ambiguity](#059218b78640920f2df8cc7048533516)
 
 ...menuend
 
@@ -210,6 +215,7 @@ Do note that a closest correct program may not be what the programmer had in min
 
 ---
 
+<h2 id="04d3df637c892628792484e05c357c42"></h2>
 ### 4.2.1 The Formal Definition of a Context-free Grammar
 
 A context-free grammar (grammar for short) consists of terminals, nonterminals, a start symbol, and productions.
@@ -254,6 +260,7 @@ expression → term
 
 ---
 
+<h2 id="75f9deb3c12ebfe2f88ee567cbb334af"></h2>
 ### 4.2.2 Notational Conventions
 
 To avoid always having to state that "these are the terminals," "these are the nonterminals," and so on, the following notational conventions for grammars will be used throughout the remainder of this book.
@@ -289,6 +296,7 @@ The notational conventions tell us that E, T, and F are nonterminals, with E the
 
 ---
 
+<h2 id="d4831fa5d1357d7549aa40ad8f772c8d"></h2>
 ### 4.2.3 Derivations
 
 The construction of a parse tree can be made precise by taking a derivational view, in which productions are treated as rewriting rules. 
@@ -365,6 +373,7 @@ Analogous definitions hold for rightmost derivations. Rightmost derivations are 
 
 --- 
 
+<h2 id="b7e854d42d024d8174345cb2a65ac968"></h2>
 ### 4.2.4 Parse Trees and Derivations
 
 A parse tree (CST)is a graphical representation of a derivation that filters out the order in which productions are applied to replace nonterminals. 
@@ -376,14 +385,34 @@ A parse tree (CST)is a graphical representation of a derivation that filters out
 
 For example, the parse tree for -(id + id) in Fig. 4.3, results from the derivation (4.8) as well as derivation (4.9).
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.3.png)
 
+The leaves of a parse tree are labeled by ***nonterminals or terminals*** and, read from left to right, constitute a sentential form, called the ***yield*** or ***frontier*** of the tree.
 
+To see the relationship between derivations and parse trees, consider any derivation α₁ ⇒ α₂ ⇒ ... ⇒ αn , where `α₁` is a single nonterminal A. For each sentential form αᵢ in the derivation, we can construct a parse tree whose yield is αᵢ.  The process is an induction on i.
 
+**BASIS**: The tree for `α₁` = A is a single node labeled A.
 
+**INDUCTION**: Suppose we already have constructed a parse tree with yield αᵢ₋₁ = X₁X₂...X<sub>k</sub> (note that according to our notational conventions, each grammar symbol Xᵢ is either a nonterminal or a terminal). Suppose αᵢ is derived from αᵢ₋₁ by replacing Xⱼ, a nonterminal, by β = Y₁Y₂...Y<sub>m</sub>. That is, at the *i*th step of the derivation, production Xⱼ → β is applied to αᵢ₋₁ to deriveai= X₁X₂...Xⱼ₋₁βXⱼ₊₁...X.
 
+To model this step of the derivation, find the *j*th leaf from the left in the current parse tree. This leaf is labeled Xⱼ . Give this leaf m children, labeled Y₁Y₂...Y<sub>m</sub> from the left. Asaspecialcase,if m = 0, then β = ε, and we give the *j*th leaf one child labeled ε .
 
+Example 4.10 : The sequence of parse trees constructed from the derivation (4.8) is shown in Fig. 4.4. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.4.png)
 
+In the first step of the derivation, E ⇒ -E. To model this step, add two children, labeled `-` and `E`, to the root `E` of the initial tree. The result is the second tree.
+
+In the secorid step of the derivation, -E ⇒ -(E) . Consequently, add three children, labeled `(`, `E`, and `)`, to the leaf labeled `E` of the second tree, to obtain the third tree with yield -(E) . Continuing in this fashion we obtain the complete parse tree as the sixth tree.
+
+Since a parse tree ignores variations in the order in which symbols in senten­tial forms are replaced, there is a many-to-one relationship between derivations and parse trees. For example, both derivations (4.8) and (4.9), are associated with the same final parse tree of Fig. 4.4.
+
+In what follows, we shall frequently parse by producing a leftmost or a rightmost derivation, since there is a one-to-one relationship between parse trees and either leftmost or rightmost derivations. Both leftmost and rightmost derivations pick a particular order for replacing symbols in sentential forms, so they too  filter out variations in the order. It is not hard to show that every parse tree has associated with it a unique leftmost and a unique rightmost derivation.
+
+---
+
+<h2 id="059218b78640920f2df8cc7048533516"></h2>
+### 4.2.5 Ambiguity
 
 
 
