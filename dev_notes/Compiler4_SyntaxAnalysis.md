@@ -414,8 +414,9 @@ In what follows, we shall frequently parse by producing a leftmost or a rightmos
 <h2 id="059218b78640920f2df8cc7048533516"></h2>
 ### 4.2.5 Ambiguity
 
+From Section 2.2.4, a grammar that produces more than one parse tree for some sentence is said to be ***ambiguous***. Put another way, an ambiguous grammar is one that produces more than one leftmost derivation or more than one rightmost derivation for the same sentence.
 
-
+Example 4.11 : The arithmetic expression grammar (4.3) permits two distinct leftmost derivations for the sentence id + id * id:
 
 
 
