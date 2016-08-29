@@ -367,8 +367,14 @@ Analogous definitions hold for rightmost derivations. Rightmost derivations are 
 
 ### 4.2.4 Parse Trees and Derivations
 
+A parse tree (CST)is a graphical representation of a derivation that filters out the order in which productions are applied to replace nonterminals. 
 
+ - Each interior node of a parse tree represents the application of a production. 
+ - The interior node is labeled with the nonterminal A in the head of the production; 
+ - the children of the node are labeled, from left to right, by the symbols in the body of the production 
+ 	- by which this A was replaced during the derivation.
 
+For example, the parse tree for -(id + id) in Fig. 4.3, results from the derivation (4.8) as well as derivation (4.9).
 
 
 
