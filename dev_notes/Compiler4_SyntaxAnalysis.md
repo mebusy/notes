@@ -315,7 +315,7 @@ which is read, "E derives -E." The production E → ( E ) can be applied to repl
 
 We call such a sequence of replacements a ***derivation*** of -(id) from E. This derivation provides a proof that the string -(**id**) is one particular instance of an expression.
 
-For a general definition of derivation, consider a nonterminal A in the middle of a sequence of grammar symbols, as in αAβ , where α and β are arbitrary strings of grammar symbols. Suppose A → γ is a production. Then, we write αAβ ⇒ αγβ. The symbol ⇒ means, "derives in one step." When a sequence of derivation steps α₁ ⇒ α₂ ⇒ ... ⇒ αn rewrites α₁ to αn, we say at ***derives*** an. 
+For a general definition of derivation, consider a nonterminal A in the middle of a sequence of grammar symbols, as in αAβ , where α and β are arbitrary strings of grammar symbols. Suppose A → γ is a production. Then, we write αAβ ⇒ αγβ. The symbol ⇒ means, "derives in one step." When a sequence of derivation steps α₁ ⇒ α₂ ⇒ ... ⇒ αn rewrites α₁ to αn, we say α₁ ***derives*** an. 
 
 Often, we wish to say, "derives in zero or more steps." For this purpose, we can use the symbol ⇒<sup>\*</sup>. Thus,
 
@@ -366,7 +366,6 @@ Analogous de nitions hold for rightmost derivations. Rightmost derivations are s
 --- 
 
 ### 4.2.4 Parse Trees and Derivations
-
 
 
 
