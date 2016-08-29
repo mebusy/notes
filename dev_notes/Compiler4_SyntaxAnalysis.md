@@ -471,10 +471,35 @@ proving that *w* = (x)y is also derivable from S.
 
 ### 4.2.7 Context-free Grammars Versus Regular Expressions
 
+Before leaving this section on grammars and their properties, we establish that grammars are a more powerful notation than regular expressions. 
+
+Every con­struct that can be described by a regular expression can be described by a gram­mar, but not vice-versa. Alternatively, every regular language is a context-free language, but not vice-versa.
+
+For example, the regular expression **(a|b)\*abb** and the grammar
 
 
+```
+A₀ → aA₀ | bA₀ | aA₁ 
+A₁ → bA₂
+A₂ → bA₃
+A₃ → ε
+```
 
+describe the same language, the set of strings of a's and b's ending in *abb*.
 
+We can construct mechanically a grammar to recognize the same language as a nondeterministic finite automaton (NFA). The grammar above was con­structed from the NFA in Fig. 3.24 using the following construction:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.24.png)
+
+ 1. For each state i of the NFA, create a nonterminal Aᵢ.
+ 2. If state i has a transition to state j on input a, add the production Aᵢ → aAⱼ. If state i goes to state j on input ε, add the production Aᵢ → Aⱼ.
+ 3. IF i is an accepting state, add Aᵢ → ε.
+ 4. If i is the start state, make Aᵢ be the start symbol of the grammar.
+
+On the other hand, the language L = {aⁿbⁿ | n ≥ 1} with an equal number of a's and b's is a prototypical example of a language that can be described by a grammar but not by a regular expression. 
+
+To see why, suppose L were the language defined by some regular expression. We could construct a DFA D with a finite number of states, say k, to accept L. Since D has only k states, for an input beginning with more than k a's, D must enter some state twice, say sᵢ, as in Fig. 4.6. Suppose that the path from Si back to itself is labeled with a sequence ai-i. Since aibi is in the language, there must be a path labeled bi
+from Si to an accepting state f. But, then there is also a path from the initial state So through Si to f labeled ajbi, as shown in Fig. 4.6. Thus, D also accepts ajbi, which is not in the language, contradicting the assumption that L is the language accepted by D.
 
 
 
