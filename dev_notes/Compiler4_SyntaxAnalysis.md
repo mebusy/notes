@@ -557,7 +557,10 @@ if E₁ then S₁ else if E₂ then S₂ else E₃
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.8.png)
 
-has the parse tree shown in Fig. 4.8.1 Grammar (4.14) is ambiguous since the string
+has the parse tree shown in Fig. 4.8.1 
+
+
+Grammar (4.14) is ambiguous since the string
 
 ```
 if E₁ then if E₂ then S₁ else S₂     (4.15)
@@ -565,8 +568,11 @@ if E₁ then if E₂ then S₁ else S₂     (4.15)
 
 has the two parse trees shown in Fig. 4.9.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.9.png)
 
+In all programming languages with conditional statements of this form, the first parse tree is preferred. The general rule is, "Match each **else** with the closest unmatched **then**."  
 
+This disambiguating rule can theoretically be in­ corporated directly into a grammar, but in practice it is rarely built into the productions.
 
 
 
