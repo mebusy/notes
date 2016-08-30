@@ -541,12 +541,19 @@ These nested structures cannot be described by regular expressions.
 
 ### 4.3.2 Eliminating Ambiguity
 
+Sometimes an ambiguous grammar can be rewritten to eliminate the ambiguity. As an example, we shall eliminate the ambiguity from the following "dangling­ else" grammar:
 
+```
+stmt → if expr then stmt 		(4.14)
+	 | if expr then stmt else stmt 
+	 | other
+```
 
+Here **"other"** stands for any other statement. According to this grammar, the compound conditional statement
 
-
-
-
+```
+if E1 then S1 else if E2 then S2 else E3
+```
 
 
 
