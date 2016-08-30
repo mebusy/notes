@@ -552,8 +552,24 @@ stmt → if expr then stmt 		(4.14)
 Here **"other"** stands for any other statement. According to this grammar, the compound conditional statement
 
 ```
-if E1 then S1 else if E2 then S2 else E3
+if E₁ then S₁ else if E₂ then S₂ else E₃
 ```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.8.png)
+
+has the parse tree shown in Fig. 4.8.1 Grammar (4.14) is ambiguous since the string
+
+```
+if E₁ then if E₂ then S₁ else S₂     (4.15)
+```
+
+has the two parse trees shown in Fig. 4.9.
+
+
+
+
+
+
 
 
 
