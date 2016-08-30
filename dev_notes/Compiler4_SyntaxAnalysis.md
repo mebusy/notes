@@ -574,10 +574,76 @@ In all programming languages with conditional statements of this form, the first
 
 This disambiguating rule can theoretically be in­ corporated directly into a grammar, but in practice it is rarely built into the productions.
 
+Example 4.16 : We can rewrite the dangling-else grammar (4.14) as the fol­lowing unambiguous grammar. 
 
+The idea is that a statement appearing between a **then** and an **else** must be "matched"; that is, the interior statement must not end with an unmatched or open **then**. A *matched statement* is either an **if-then-else** statement containing no open statements or it is any other kind of unconditional statement. 
 
+Thus, we may use the grammar in Fig. 4.10. This grammar generates the same strings as the dangling-else grammar (4.14), but it allows only one parsing for string (4.15); namely, the one that associates each **else** with the closest previous unmatched **then**.
 
+```
+			stmt → matched_stmt
+     			 | open_stmt
+	matched_stmt → if expr then matched_stmt else matched_stmt
+				 | other
+	   open_stmt → if expr then stmt
+	   			 | if expr then matched_stmt else open_stmt
+```
 
+> Figure 4.10: Unambiguous grammar for if-then-else statements
+
+---
+
+### 4.3.3 Elimination of Left Recursion
+
+> 所谓 immediate left recursion ，就是指 只要1步 derivation 就出现 左递归形态。
+
+A grammar is ***left recursive*** if it has a nonterminal A such that there is a derivation A ⇒⁺ Aα for some string α. Top-down parsing methods cannot
+handle left-recursive grammars, so a transformation is needed to eliminate left recursion. In Section 2.4.5, we discussed ***immediate left recursion***, where there is a production of the form A → Aα. Here, we study the general case. In Section 2.4.5, we showed how the left-recursive pair of productions A → Aα | β   could be replaced by the non-left-recursive productions:
+
+```
+A  → βA'
+A' → αA' | ε   
+```
+
+> α ≠ ε is assumed 
+
+without changing the strings derivable from A. This rule by itself suffices for many grammars.
+
+Example 4.17 : The non-left-recursive expression grammar (4.2), repeated here,
+
+```
+E  → T E'
+E' → + T E'  | ε
+T  → F T'			(4.2)
+T' → * F T'  | ε
+F  → ( E ) | id  
+```
+
+> 注意, 原书中, 第2，4行 没有了 `| ε`
+
+is obtained by eliminating immediate left recursion from the expression gram­mar (4.1). The left-recursive pair of productions `E → E + T | T` are replaced by `E  → T E'` and `E' → + T E'  | ε` . The new productions for T and T' are obtained similarly by eliminating immediate left recursion.
+
+Immediate left recursion can be eliminated by the following technique, which works for any number of A-productions. First, group the productions as
+
+```
+A → Aα₁ | Aα₂ | ... ｜ Aαm |  β₁ | β₂ | ... ｜βn
+```
+
+where no βᵢ begins with an A. Then, replace the A-productions by
+
+```
+A  → β₁A' | β₂A' | ... | βnA'		// 列出所有 非递归 production body
+A' → α₁A' | α₂A' | ... | αmA' | ε		// right-recursive
+```
+
+The nonterminal A generates the same strings as before but is no longer left recursive. This procedure eliminates all left recursion from the A and A' pro­ductions (provided no aᵢ is ε), but it does not eliminate left recursion involving derivations of two or more steps. For example, consider the grammar
+
+```
+S → Aa | b
+A → Ac | Sd | ε
+```
+
+The nonterminal S is left recursive because S ⇒ Aa ⇒ Sda, but it is ***not*** immediately left recursive.
 
 
 

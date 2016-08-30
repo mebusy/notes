@@ -852,25 +852,8 @@ Nonterminal R and its production `R → αR` are ***right recursive*** because t
 
 Right-recursive productions lead to trees that grow down towards the right, as in Fig. 2.20(b). Trees growing down to the right make it harder to translate expressions con­taining left-associative operators, such as minus. 
 
-Thus the production `E → E + T | T` can be replaced by::
 
-```
-	E → T E' 
-	E' → +T E' | ε	
-```
-
-Of course, there may be more than one left-recursive part on the right-hand side. The general rule is to replace:
-
-```
-	A → Aα₁ | Aα₂ | ... Aαm |  β₁ | β₂ | ... βm 
-```
-
-by
-
-```
-	A  → β₁A' | β₂A' | ... βmA'		// 列出所有 非递归 production body
-	A' → α₁A' | α₂A' | ... αmA'		// right-recursive
-```
+> 通用规则，见 4.3.3 **Elimination of Left Recursion**
 
 ---
 
