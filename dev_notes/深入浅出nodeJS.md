@@ -1671,6 +1671,20 @@ module.exprots = Class;
 而不是通过 `exports = Class;`
 
 
+# NPM 
+
+```
+npm config list
+npm config set https-proxy "https://byqi:Guardiola9@sha-net-bcproxy.ubisoft.org:3128/" --global
+npm config set proxy "http://byqi:Guardiola9@sha-net-bcproxy.ubisoft.org:3128/" --global
+npm config set registry "http://registry.npmjs.org/" --global
+
+npm install colors 
+npm uninstall 
+使用 -g 安装的全局 module，需要指定 NODE_PATH ?
+```
+
+
 
 
 
