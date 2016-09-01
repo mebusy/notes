@@ -59,6 +59,8 @@
 		 - [C.2.8 继承](#4990f90b8d16b00619e6b52e995136d9)
 			 - [1. 类继承](#b1de39d2ae2b4cdf8933cb354409cd7d)
 			 - [2. 导出](#b20f9122c53dfd232e38443679d8b7ec)
+ - [NPM](#00a5cdc4be82fd4ba549d52988ef9e14)
+	 - [正则表达式替换](#58649fadacd370d9b6ba4950e91f0833)
 
 ...menuend
 
@@ -1671,6 +1673,7 @@ module.exprots = Class;
 而不是通过 `exports = Class;`
 
 
+<h2 id="00a5cdc4be82fd4ba549d52988ef9e14"></h2>
 # NPM 
 
 ```
@@ -1685,6 +1688,7 @@ npm uninstall
 ```
 
 
+<h2 id="58649fadacd370d9b6ba4950e91f0833"></h2>
 ## 正则表达式替换
 
 a=b 替换为 a="b"
