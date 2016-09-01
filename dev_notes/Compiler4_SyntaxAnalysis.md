@@ -639,13 +639,53 @@ A' → α₁A' | α₂A' | ... | αmA' | ε		// right-recursive
 The nonterminal A generates the same strings as before but is no longer left recursive. This procedure eliminates all left recursion from the A and A' pro­ductions (provided no aᵢ is ε), but it does not eliminate left recursion involving derivations of two or more steps. For example, consider the grammar
 
 ```
-S → Aa | b
+S → Aa | b  			(4.18)
 A → Ac | Sd | ε
 ```
 
 The nonterminal S is left recursive because S ⇒ Aa ⇒ Sda, but it is ***not*** immediately left recursive.
 
+Algorithm 4.19 : Eliminating left recursion.
 
+ - INPUT: Grammar G with no cycles or ε-productions.
+ - OUTPUT: An equivalent grammar with no left recursion.
+ - METHOD: Apply the algorithm in Fig. 4.11 to G. 
+ 	- Note that the resulting non-left-recursive grammar ***may have ε-productions***.
+
+```
+arrange the nonterminals in some order A₁,A₂, ... ,An.
+for ( each i from 1 to n) {
+	for ( each j from 1 to i-1 ) {
+		replace each production of the form Aᵢ → Aⱼγ  by the
+		productions Aᵢ → δ₁γ | δ₂γ | ... | δ_kγ , where
+		Aⱼ → δ₁ | δ₂ | ... | δ_k are all current Aⱼ-productions
+	} 
+	eliminate the immediate left recursion among the Aᵢ-productions
+}
+```
+
+> Figure 4.11: Algorithm to eliminate left recursion from a grammar
+
+
+Example 4.20 : Let us apply Algorithm 4.19 to the grammar (4.18). Techni­cally, the algorithm is not guaranteed to work, because of the ε-production, but in this case, the production A → ε turns out to be harmless.
+
+We order the nonterminals S, A. There is no immediate left recursion among the S-productions, so nothing happens during the outer loop for i= 1. For i= 2, we substitute for S in A → Sd to obtain the following A-productions.
+
+```
+A → Ac | Aad | bd | ε
+```
+
+Eliminating the immediate left recursion among these A-productions yields the following grammar.
+
+```
+S  → Aa | b 
+A  → bdA' | A' 
+A' → cA' | adA' | ε
+```
+
+---
+
+### 4.3.4 Left Factoring
 
 
 
