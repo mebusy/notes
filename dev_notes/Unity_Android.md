@@ -389,7 +389,7 @@ adb shell cat /sys/class/net/wlan0/address
 using(AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer")) {
 	AndroidJavaObject activityContext = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
 
-	AndroidJavaClass cls = new AndroidJavaClass( "com.ubisoft.jdc_androidtools.androidtools" );
+	AndroidJavaClass cls = new AndroidJavaClass( "com.usft.jdc_androidtools.androidtools" );
 	cls.CallStatic("setContext", activityContext );
 	cls.Dispose ();
 }
@@ -399,11 +399,11 @@ using(AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.
 ### jar 打包
 
 ```
-jar cvfM test.jar -C build/intermediates/classes/release/ com/ubisoft
+jar cvfM test.jar -C build/intermediates/classes/release/ com/usft
 ```
 
- - 将 build/intermediates/classes/release/ 目录下的com/ubisoft子目录，文件打包成 test.jar 
+ - 将 build/intermediates/classes/release/ 目录下的com/xxxx 子目录，文件打包成 test.jar 
  - M : 不创建 manifest 文件
- - -C : 指定root目录，这些目录层级不会被打包进jar , com/ubisoft 目录层级会被打包
+ - -C : 指定root目录，这些目录层级不会被打包进jar , com/usft 目录层级会被打包
 
 ---

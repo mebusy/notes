@@ -1675,8 +1675,8 @@ module.exprots = Class;
 
 ```
 npm config list
-npm config set https-proxy "https://byqi:Guardiola9@sha-net-bcproxy.ubisoft.org:3128/" --global
-npm config set proxy "http://byqi:Guardiola9@sha-net-bcproxy.ubisoft.org:3128/" --global
+npm config set https-proxy "https://xxxxx" --global
+npm config set proxy "http://xxxx" --global
 npm config set registry "http://registry.npmjs.org/" --global
 
 npm install colors 
@@ -1685,7 +1685,14 @@ npm uninstall
 ```
 
 
+## 正则表达式替换
 
+a=b 替换为 a="b"
+
+```
+var reg = /(\w+)=(\w+)/ ;
+var res = process.argv[i].replace( reg , '$1="$2"' ) ;
+```
 
 
 
