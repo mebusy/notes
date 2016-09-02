@@ -471,6 +471,179 @@ A matrix with n distinct eigenvalues can be diagonalized. This is the typical ca
 
 **Examples of Diagoinalization**
 
+The main point of this section is S⁻¹AS = Λ. The eegenvector matrix S converts A into its eigenvalue matrix Λ (diagonal). We see this for projections and rotations.
+
+Example 1: The projection A = [0.5 0.5 ; 0.5 0.5] has eigenvalue matrix [1 0 ; 0 0]. The eigenvectors go into the the columens of S:
+
+```
+A = ⎡1  1⎤  and AS = SΛ = ⎡1 0⎤. 
+    ⎣1 -1⎦    	   		  ⎣1 0⎦ 
+```
+
+The last equation can be verified at a glance. Therefore S⁻¹AS = Λ.
+
+Example 2: The eigenvalues themselves are not so clear for a ***rotation***:
+
+```
+90° rotation 	K = ⎡0 -1⎤  has   det(K - λI)=λ² + 1 
+			        ⎣1  0⎦    	
+```
+
+***How can a vector be rotated and still have its direction unchanged?*** Apparently it can't -- except for the zero vector, which is useless. But there must be eigenvalues, and we must be able to solve du/dt = Ku. The characteristic polynomial A² + 1 should still have two roots  -- but those roots are *not real*.
+
+The eigenvalues of K are *imaginary numbers*, A₁ = i and A₂ = -i. The eigenvectors are also not real. Somehow, in turning through 90°, they are multiplied by i or -i:
+
+```
+(K-λ₁I)x₁ = ⎡-i -1⎤⎡y⎤ = ⎡0⎤  and  x₁ = ⎡ 1⎤
+    		⎣ 1 -i⎦⎣z⎦   ⎣0⎦ 			⎣-i⎦ 
+
+(K-λ₂I)x₂ = ⎡ i -1⎤⎡y⎤ = ⎡0⎤  and  x₂ = ⎡ 1⎤. 
+    		⎣ 1  i⎦⎣z⎦   ⎣0⎦ 			⎣-i⎦ 
+```
+
+The eigenvalues are distinct, even if imaginary, and the eigenvectors are independent. They go into the columns of S:
+
+```
+S = ⎡ 1 1⎤  and   S⁻¹KS = ⎡i  0⎤. 
+    ⎣-i i⎦    	   		  ⎣0 -i⎦ 
+```
+
+We are faced with an inescapable fact, that ***complex numbers are needed even for real matrices***. If there are too few real eigenvalues, there are always n complex eigenvalues. (Complex includes real, when the imaginary part is zero.) If there are too few eigenvectors in the real world R³, or in Rⁿ, we look in C³ or Cⁿ. The space Cⁿ contains all column vectors with complex components, and it has new definitions of length and inner product and orthogonality. But it is not more difficult than Rⁿ , and in Section 5.5 we make an easy conversion to the complex case.
+
+**Powers and Products: Aᵏ and AB**
+
+There is one more situation in which the calculations are easy. ***The eigenvalues of A² are exactly λ₁², ... , λn² , and every eigenvector of A is also an eigenvector of A²***. We start from Ax = λx, and multiply again by A:
+
+```
+A²x = Aλx = λAx = λ²x.		(3)
+```
+
+Thus λ² is an eigenvalue of A², with the same eigenvector x.  If the first multiplication by A leaves the direction of x unchanged, then so does the second.
+
+The same result comes from diagonalization, by squaring S⁻¹AS = Λ:
+
+```
+Eigenvalues of A²
+
+(S⁻¹AS)(S⁻¹AS) = Λ²   or  S⁻¹A²S = Λ
+```
+
+The matrix A² is diagonalized by the same S, *so the eigenvectors are unchanged*. The eigenvalues are squared. This continues to hold for any power of A:
+
+**5E** The eigenvalues of Aᵏ are λ₁ᵏ, ... , λnᵏ, and each eigenvector of A is still an eigenvector of Aᵏ. When S diagonalizes A. it also diagonalizes Aᵏ:
+
+```
+Λᵏ = (S⁻¹AS)(S⁻¹AS)...(S⁻¹AS) = S⁻¹AᵏS.		(4)
+```
+
+If A is invertible this rule also applies to its inverse (the power k = -1). ***The eigenvalues of A⁻¹ are 1/λᵢ***. That can be seen even without diagonalizing:
+
+```
+if Ax = λx  then  x = λA⁻¹x  and  (1/λ)x = A⁻¹x.
+```
+
+Example 3: If K is rotation through 90°, then K² is rotation through 180° (which means -I) and K⁻¹ is rotation through -90°:
+
+```
+K = ⎡0 -1⎤,  K² = ⎡-1  0⎤,  and  K⁻¹ = ⎡ 0  1⎤.
+    ⎣1  0⎦ 		  ⎣0  -1⎦ 			   ⎣-1  0⎦ 
+```
+
+The eigenvalues of K are i and -i; their squares are -1 and -1; their reciprocals 倒数 are 1/i = -i and 1/(-i) = i. Then K⁴ is a complete rotation through 360°:
+
+```
+K⁴ = ⎡1 0⎤  and also  Λ⁴ = ⎡i⁴   0  ⎤ = ⎡1 0⎤.
+     ⎣0 1⎦                 ⎣0  (-i)⁴⎦   ⎣0 1⎦ 
+```
+
+For a ***product of two matrices***, we can ask about the eigenvalues of AB -- but we won't get a good answer. It is very tempting to try the same reasoning, hoping to prove what is *not in general true*. If λ is an eigenvalue of A and μ is an eigenvalue of B, here is the false proof that AB has the eigenvalue μλ:
+
+```
+False proof: ABx = μλx.
+```
+
+The mistake lies in assuming that A and B share the *same* eigenvector x. In general, they do not. We could have two matrices with zero eigenvalues, while AB has λ = 1:
+
+```
+AB = ⎡0 1⎤ ⎡0 0⎤ = ⎡1 0⎤.
+     ⎣0 0⎦ ⎣1 0⎦   ⎣0 0⎦ 
+```
+
+The eigenvectors of this A and B are completely different, which is typical. For the same reason, the eigenvalues of A + B generally have nothing to do with λ + μ.
+
+If the eigenvector is the same for A and B, then the eigenvalues multiply and AB has the eigenvalue μλ. But there is something more important. There is an easy way to recognize when A and B share a full set of eigenvectors, and that is a key question in quantum mechanics:
+
+**5F** Diagonalizable matrices share the same eigenvectormatrix S if and only if AB = BA.
+
+***Proof*** If the same S diagonalizes both A = SΛ₁S⁻¹ and B = SΛ₂S⁻¹, we can multiply in either order:
+
+```
+AB = SΛ₁S⁻¹ SΛ₂S⁻¹ = SΛ₁Λ₂S⁻¹ and  BA = SΛ₂S⁻¹ SΛ₁S⁻¹ = SΛ₂Λ₁S⁻¹.
+```
+
+Since Λ₁Λ₂ = Λ₂Λ₁ (diagonal matrices always commute) we have AB = BA. (this is what means commute)
+
+In the opposite direction, suppose AB = BA. Starting from Ax = λx, we have
+
+```
+ABx = BAx = Bλx = λBx.
+```
+
+Thus x and Bx are both eigenvectors of A, sharing the same λ, (or else Bx = 0). If we assume for convenience that the eigenvalues of A are distinct -- the eigenspaces are all one-dimensional -- then Bx must be a multiple of x. In other words x is an eigenvector of B as well as A. The proof with repeated eigenvalues is a little longer.  _
+
+
+
+***Heisenberg's uncertainty principle*** comes from noncommuting matrices, like position P and momentum Q. Position is symmetric, momentum is skew-symmetric, and together they satisfy QP - PQ = I. The uncertainty principle follows directly from the Schwarz inequality (Qx)ᵀ(Px) ≤ ‖Qx‖ ‖Px‖ of Section 3.2:
+
+```
+‖x‖² = xᵀx = xᵀ(QP - PQ)x ≤ 2 ‖Qx‖ ‖Px‖ .
+```
+
+The product of ‖Qx‖/‖x‖ and ‖Px‖/‖x‖ -- momentum and position errors, when the wave function is x -- is at least 1/2. It is impossible to get both errors small, because when you try to measure the position of a particle you change its momentum.
+
+At the end we come back to A = SΛS⁻¹. ***That factorization is particularly suited to take powers of A***, and the simplest case A² makes the point. The LU factorization is hopeless when squared, but SΛS⁻¹ is perfect. The square is SΛ²S⁻¹, and the eigenvectors are unchanged. By following those eigenvectors we will solve difference equations and differential equations.
+
+---
+
+## 5.3 DIFFERENCE EQUATIONS AND POWERS Aᵏ
+
+Difference equations u<sub>k</sub>₊₁ = Au<sub>k</sub> move forward in a finite number of finite steps. 
+
+A differential equation takes an infinite number of infinitesimal 无穷小 steps, but the two theories stay absolutely in parallel. 
+
+It is the same analogy between the discrete and the continuous that appears over and over in mathematics. A good illustration is compound interest, when the time step gets shorter.
+
+Suppose you invest $1000 at 6% interest. Compounded once a year, the principal P is multiplied by 1.06. *This is a difference equation P<sub>k</sub>₊₁ = AP<sub>k</sub> = 1.06 P<sub>k</sub> with a time step of one year*. After 5 years, the original P₀ = 1000 has been multiplied 5 times:
+
+```
+Yearly P₅ = (1.06)⁵P₀   which is   (1.06)⁵ 1000 = $1338.
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
