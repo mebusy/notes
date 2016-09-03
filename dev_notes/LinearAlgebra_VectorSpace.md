@@ -530,9 +530,9 @@ For novelty, we take the four subspaces in a more interesting order.
         - The reason is that each elementary operation leaves the row space unchanged.
         - The rows in U are combinations of the original rows in A. The rows of A can be recovered from U. It is true that A and U have different rows, but the combinations of the rows are identical: same space!
 
- - 2 The nullspace of A**
+ - 2 **The nullspace of A**
     - Elimination simplifies a system of linear equations without changing the solutions. The system Ax = 0 is reduced to Ux = 0, and this process is reversible.
-    - ***The nullspace of A is the same as the nullspace of U and R. ***.
+    - ***The nullspace of A is the same as the nullspace of U and R***.
     - Choosing the n - r "special solutions" to Ax = 0 provides a definite basis for the nullspace:
     - The nallspace has dimension *n-r*. The 'special solutions" are a basis - each tree yariablc is given the value 1. while the other free variables are 0. 
     - The nullspace is also called the *kernel* of A, and its dimension *n-r* is the *nullity*.
