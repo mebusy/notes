@@ -167,7 +167,7 @@ For an invertible matrix, the nullspace contains only x = 0 (multiply Ax = 0 by 
  2. When the column space doesn't contain every b in Rᵐ, we need the conditions on b that make Ax = b solvable.
 
 ```
-|1  1|
+|1  1| = b.
 |2  2|
 ```
 
