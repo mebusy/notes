@@ -879,7 +879,7 @@ Q = |0 -1|   P = |1 0|   H = |0 1|
 ```
 
 
-Rotations through other angles, projections onto other lines, and reflections in other mirrors are almost as easy to visualize.   They are still linear transformations, provided that the origin is fixed: AO = 0.
+Rotations through other angles, projections onto other lines, and reflections in other mirrors are almost as easy to visualize.   They are still linear transformations, provided that the origin is fixed: A0 = 0.
 
 They *must* be represented by matrices. Using the natural basis [1 0]ᵀ and [0 1]ᵀ , we want to discover those matrices.
 
