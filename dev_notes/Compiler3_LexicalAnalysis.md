@@ -1742,7 +1742,7 @@ Algorithm 3.39 : Minimizing the number of states of a DFA.
  		- c) Let *s* be the representative of some group G of ∏<sub>final</sub> , and let the transition of D from *s* on input *a* be to state *t*. Let *r* be the rep­resentative of t's group H. Then in D', there is a transition from *s* to *r* on input *a*. Note that in D, every state in group G must go to some state of group H on input *a*, or else, group G would have been split according to Fig. 3.64.
 
 
-Example 3AO : Let us reconsider the DFA of Fig. 3.36. The initial partition consists of the two groups {A, B, C, D} {E}, which are respectively the nonac­cepting states and the accepting states. 
+Example 340 : Let us reconsider the DFA of Fig. 3.36. The initial partition consists of the two groups {A, B, C, D} {E}, which are respectively the nonac­cepting states and the accepting states. 
 
 To construct ∏<sub>new</sub>, the procedure of Fig. 3.64 considers both groups and inputs *a* and *b*. The group {E} cannot be split, because it has only one state, so {E} will remain intact in ∏<sub>new</sub> .
 

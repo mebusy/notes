@@ -105,7 +105,7 @@ The second approach to Ax = b is "dual" to the first.
 
 We are concerned not only with attainable right-hand sides b, but also with the solutions x that attain them. 
 
-The right- hand side b = 0 always allows the solution x = 0, but there may be infinitely many other solutions. (There always are, if there are more unknowns than equations, n > m.) ***The solutions to Ax = O form a vector space - the nullspace of A***.
+The right- hand side b = 0 always allows the solution x = 0, but there may be infinitely many other solutions. (There always are, if there are more unknowns than equations, n > m.) ***The solutions to Ax = 0 form a vector space - the nullspace of A***.
 
 The ***nullspace*** of a matrix consists of all vectors x such that Ax = 0. It is denoted by It is a subspace of **Rⁿ**(n维子空间), just as the column space was a subspace of **Rᵐ**.
 
@@ -753,7 +753,7 @@ A1= |c 0| , A2= |0 -1| , A3= |0 1| , A4= |1 0|
 
 It is also important to recognize that matrices cannot do everything, and some transformations T(x) are *not possible* with Ax:
 
- 1. It is impossible to move the origin, since AO = 0 for every matrix.
+ 1. It is impossible to move the origin, since A0 = 0 for every matrix.
  2. If the vector x -> x', then 2x must -> 2x'. 
     - In general cx must go to cx', since A(cx) = c(Ax).
  3. If the vectors x,y -> x',y', then  x + y must -> x' + y'

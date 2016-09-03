@@ -191,7 +191,7 @@ A = |2 3| 构成的是一个过原点的 平面子空间
 ### Nullspace N(A)
 
  - a subspace of **Rⁿ**
- - The solutions to Ax = O ,  are from N(A)
+ - The solutions to Ax = 0 ,  are from N(A)
 
 <h2 id="9405663c8d12328a80ae3457c45d5995"></h2>
 ### SOLVING Ax=0 and Ax=b
