@@ -87,7 +87,7 @@ Useful fact: **If nonzero vectors v₁, ... , vk are mutually orthogonal** (ever
 
 **Example 2**: Suppose V is the plane spanned by v₁ = (1, 0, 0, 0) and v₂ = (1, 1, 0, 0). If W is the line spanned by w = (0, 0, 4, 5), then w is orthogonal to both v's. The line W will be orthogonal to the whole plane V.
 
-In this case, with subspaces of dimension 2 and *l* in R4, there is room for a third subspace. The line L through z = (0, 0, 5, -4) is perpendicular to V and W. Then the dimensions add to 2 + 1 + 1 = 4. What space is perpendicular to all of V, W, and L ?
+In this case, with subspaces of dimension 2 and 1 in R4, there is room for a third subspace. The line L through z = (0, 0, 5, -4) is perpendicular to V and W. Then the dimensions add to 2 + 1 + 1 = 4. What space is perpendicular to all of V, W, and L ?
 
 
 The important orthogonal subspaces don't come by accident, and they come two at a time. In fact orthogonal subspaces are unavoidable: ***They are the fundamental subspaces***! The first pair is the *nullspace and row space*. Those are subspaces of **Rⁿ** - the rows have n components and so does the vector x in Ax = 0. We have to show, using Ax = 0, that ***the rows of A are orthogonal to the nullspace vector x***.
