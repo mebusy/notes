@@ -701,5 +701,89 @@ A' → cA' | adA' | ε
 <h2 id="be643cb3f54982ef5068037f07328208"></h2>
 ### 4.3.4 Left Factoring
 
+Left factoring is a grammar transformation that is useful for producing a gram­mar suitable for predictive, or top-down, parsing. 
+
+When the choice between two alternative A-productions is not clear, we may be able to rewrite the pro­ductions to defer the decision until enough of the input has been seen that we can make the right choice.
+
+For example, if we have the two productions
+
+```
+stmt → if expr then stmt else stmt
+	 | if expr then stmt
+```
+
+on seeing the input **if**, we cannot immediately tell which production to choose to expand stmt. In general, if A → αβ₁ | αβ₂ are two A-productions, and the input begins with a nonempty string derived from α, we do not know whether to expand A to αβ₁ or αβ₂. However, we may defer the decision by expanding A to αA'. Then, after seeing the input derived from a, we expand A' to β₁ or to β₂. That is, left-factored, the original productions become
+
+```
+A  → aA' 
+A' → β₁ | β₂
+```
+
+Algorithm 4.21 : Left factoring a grammar.
+
+ - INPUT: Grammar G.
+ - OUTPUT: An equivalent left-factored grammar.
+ - METHOD: For each nonterminal A, find the longest prefix α common to two or more of its alternatives. If α ≠ ε -- i.e., there is a nontrivial common prefix -- replace all of the A-productions A -> αβ₁ | αβ₂ | ... | αβn | γ , where γ represents all alternatives that do not begin with α,  by 
+
+```
+A  → aA' | γ
+A' → β₁ | β₂ | ... | βn 
+```
+
+Here A' is a new nonterminal. Repeatedly apply this transformation until no two alternatives for a nonterminal have a common prefix.
+
+Example 4.22 : The following grammar abstracts the "dangling-else" prob­lem:
+
+```
+S → i E t S | i E t S e S | α 	(4.23)
+E → b
+```
+
+Here, i, t, and e stand for **if**, **then**, and **else**; E and S stand for "conditional expression" and "statement." Left-factored, this grammar becomes:
+
+```
+S  → i E t S S' | α   	(4.24)
+S' → e S | ε
+E → b
+```
+
+Thus, we may expand S to iEtSS' on input i, and wait until iEtS has been seen to decide whether to expand S' to eS or to ε. Of course, these grammars are both ambiguous, and on input e , it will not be clear which alternative for S' should be chosen. Example 4.33 discusses a way out of this dilemma.
+
+---
+
+### 4.3.5 Non-Context-Free Language Constructs
+
+A few syntactic constructs found in typical programming languages cannot be specified using grammars alone. Here, we consider two of these constructs, using simple abstract languages to illustrate the difficulties.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
