@@ -4,7 +4,7 @@
 ## GOPATH 设置
 
 ```
-export GO_3rd=/Volumes/WORK/WORK/mebusy_git_codeLib
+export GO_3rd=/Volumes/WORK/WORK/mebusy_git_codeLib/go_3rd_lib
 export GOPATH=${GO_3rd}
 export PATH=$PATH:${GO_3rd}/bin
 ```
