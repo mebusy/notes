@@ -788,7 +788,7 @@ Example4.27: The sequence of parse trees in Fig.4.12 for the input **id+id\*id**
 E  → T E'
 E' → + T E' | ε
 T  → F T'			(4.28)
-T' → * F T' | ε
+T' → * F T' | ε`
 F  → ( E ) | id  
 ```
 
@@ -798,15 +798,48 @@ At each step of a top-down parse, the key problem is that of determining the pro
 
 The section begins with a general form of top-down parsing, called *recursive­ descent parsing*, which may require backtracking to find the correct A-production to be applied. Section 2.4.2 introduced predictive parsing, a special case of recursive-descent parsing, where no backtracking is required. Predictive parsing chooses the correct A-production by looking ahead at the input a fixed number of symbols, typically we may look only at one (that is, the next input symbol).
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.12.png)
 
+For example, consider the top-down parse in Fig. 4.12, which constructs a tree with two nodes labeled E'. At the first E' node (in preorder), the production E' → + T E'  is chosen; at the second E' node, the production E' → ε is chosen. A predictive parser can choose between E'-productions by looking at the next input symbol.
 
+The class of grammars for which we can construct predictive parsers looking k symbols ahead in the input is sometimes called the LL(k) class. We discuss the LL(1) class in Section 4.4.3, but introduce certain computations, called FIRST and FOLLOW, in a preliminary Section 4.4.2.  om the **FIRST** and **FOLLOW** sets for a grammar, we shall construct "predictive parsing tables," which make explicit the choice of production during top-down parsing. These sets are also
+useful during bottom-up parsing,
 
+In Section 4.4.4 we give a nonrecursive parsing algorithm that maintains a stack explicitly, rather than implicitly via recursive calls. Finally, in Sec­ tion 4.4.5 we discuss error recovery during top-down parsing.
 
+---
 
+### 4.4.1 Recursive-Descent Parsing
 
+```
+void A() {
+	Choose an A-production, A → X₁X₂...Xk ;  (1)
+	for ( i = 1 to k ) {
+		if ( Xi is a nonterminal )
+			call procedure Xi();
+		else if ( Xi equals the current input symbol α )
+			advance the input to the next symbol;
+		else /* an error has occurred */ ;  (7)
+	}
+}
+```
 
+> Figure 4.13: A typical procedure for a nonterminal in a top-down parser
 
+A recursive-descent parsing program consists of a set of procedures, one for each nonterminal. Execution begins with the procedure for the start symbol, which halts and announces success if its procedure body scans the entire input string. Pseudocode for a typical nonterminal appears in Fig. 4.13. Note that this pseudocode is nondeterministic, since it begins by choosing the A-production to apply in a manner that is not specified.
 
+General recursive-descent may require backtracking; that is, it may require repeated scans over the input. However, backtracking is rarely needed to parse programming language constructs, so backtracking parsers are ***not seen fre­quently***. Even for situations like natural language parsing, backtracking is ***not very efficient***, and tabular methods such as the dynamic programming algo­rithm of Exercise 4.4.9 or the method of Earley (see the bibliographic notes) are preferred.
+
+To allow backtracking, the code of Fig. 4.13 needs to be modified. First, we cannot choose a unique A-production at line ( 1 ) , so we must try each of several productions in some order. Then, failure at line (7) is not ultimate failure, but suggests only that we need to return to line (1) and try another A-production. Only if there are no more A-productions to try do we declare that an input error has been found. In order to try another A-production, we need to be able to reset the input pointer to where it was when we first reached line (1). Thus, a local variable is needed to store this input pointer for future use.
+
+Example 4.29 : Consider the grammar
+
+```
+S → cAd
+A → ab | a
+```
+
+To construct a parse tree top-down for the input string w = cad, begin with a tree consisting of a single node labeled S, and the input pointer pointing to c, the first symbol of w. S has only one production, so we use it to expand S and obtain the tree of Fig. 4.14(a) . The leftmost leaf, labeled c, matches the first symbol of input w, so we advance the input pointer to a, the second symbol of w, and consider the next leaf, labeled A.
 
 
 
