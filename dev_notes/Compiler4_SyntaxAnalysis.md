@@ -861,7 +861,12 @@ Define FIRST(α), where α is any string of grammar symbols, to be the set of te
 
 
 
+> Figure 4.15: Terminal *c* is in FIRST(A) and *a* is in FOLLOW(A)
 
+
+For a preview of how FIRST can be used during predictive parsing, consider two A-productions A → α | β  , where FIRST(α) and FIRST(β) are disjoint sets. We can then choose between these A-productions by looking at the next input symbol *a* since *a* can be in at most one of FIRST(α) and FIRST(β), not both. For instance if *a* is in FIRST(β) choose the production A → β . This idea will be explored when LL(l) grammars are defined in Section 4.4.3.
+
+Define *FOLLOW(A)* , for nonterminal A, to be the set of terminals a that can appear immediately to the right of A in some sentential form; that is� the set of terminals a such that there exists a derivation of the form S   aAa � for some a and  � as in Fig. 4.15. Note that there may have been symbols between A and a� at some time during the derivation� but if so� they derived E and disappeared. In addition� if A can be the rightmost sympol in some sentential form� then $ is in FOLLOW(A); recall that $ is a special "endmarker" symbol that is assumed not to be a symbol of any grammar.
 
 
 
