@@ -31,5 +31,8 @@ Normal | Black | Red | Green | Yellow | blue | Megenta | Cyan | White
  - \e[31m 表示 red
  - \e[1;31m 表示 bright red
  - 最后的 \e[0m 表示颜色复位
+ - pattern 以 ; 分割； 越往前优先级越高
+ - $& 表示整个匹配
+ - $1 表示 \1 , $2 表示 \2
 
 
