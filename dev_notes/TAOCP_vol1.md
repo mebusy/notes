@@ -150,7 +150,7 @@ EXERCISES
 1³= 1, 2³= 3+ 5, 3³= 7+ 9+ 11, 4³= 13+ 15+ 17+ 19 ,etc.
 ```
 
-(b)Usethisresultto prove the remarkable formula 
+(b)Use this result to prove the remarkable formula 
 
 ```
 1³+ 2³+ ... + n³ = (1 + 2 + ... + n)².
