@@ -77,13 +77,13 @@ We emphasize that the rules apply to *square matrices* of any size.
  		|a+a' b+b'| =|a b| + |a' b'|
       	|c    d   |  |c d|   |c  d |
  		```
- 		- det2A = 2ⁿ detA
  	2. Multiply by *t* in row
 
  		```
 		|ka kb| = k |a b|
     	| c  d|     |c d|
     	```
+ 		- det2A = 2ⁿ detA
  4. *If two rows of A are equal, then det A = 0.*
  	- deduce from rule 2 ,  r = -r => r = 0 
  5. *Subtracting k*row i from row j , leaves the same determinant*.  
@@ -120,7 +120,7 @@ We emphasize that the rules apply to *square matrices* of any size.
  		- because (det A) (det A⁻¹) = det AA⁻¹ = det I = 1. 
  	- **Proof:** 
  		- If either A or B is singular , the AB is singular, detAB = detA x detB  = 0
- 		- otherwise, For a diagonal matrix, det DB = (det D) (det B), follows by factoring each dᵢ from its row. Reduce a general matrix A to D by elimination -- rom A to U as usual, and from U to D by upward elimination (see rule 7). The determinant does not change, except for a sign reversal when rows are exchanged. The same steps reduce AB to DB, with precisely the same effect on the determinant. 
+ 		- otherwise, For a diagonal matrix, det DB = (det D) (det B), follows by factoring each dᵢ from its row. Reduce a general matrix A to D by elimination -- from A to U as usual, and from U to D by upward elimination (see rule 7). The determinant does not change, except for a sign reversal when rows are exchanged. The same steps reduce AB to DB, with precisely the same effect on the determinant. 
 
  10. *detAᵀ = detA*.
  	- **Proof:** 
