@@ -485,8 +485,8 @@ The last equation can be verified at a glance. Therefore S⁻¹AS = Λ.
 Example 2: The eigenvalues themselves are not so clear for a ***rotation***:
 
 ```
-90° rotation 	K = ⎡0 -1⎤  has   det(K - λI)=λ² + 1 
-			        ⎣1  0⎦    	
+90° rotation    K = ⎡0 -1⎤  has   det(K - λI)=λ² + 1 
+                    ⎣1  0⎦    	
 ```
 
 ***How can a vector be rotated and still have its direction unchanged?*** Apparently it can't -- except for the zero vector, which is useless. But there must be eigenvalues, and we must be able to solve du/dt = Ku. The characteristic polynomial A² + 1 should still have two roots  -- but those roots are *not real*.
