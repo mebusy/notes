@@ -154,6 +154,104 @@ Here is the definitions section for the yacc input file:
 	- `[-+]         return *yytext;        /* return operator */`
 	- the character value for minus or plus is returned
 
+Here is the complete lex input specification for our calculator:
+
+```
+%{
+#include <stdlib.h>
+void yyerror(char *);
+#include "y.tab.h"
+%}
+
+%% 
+
+[0-9]+	{
+			yylval = atoi(yytext);
+    		return INTEGER;
+		}		
+[-+\n]	return *yytext;
+[ \t]	; /* skip whitespace */
+.		yyerror("invalid character");
+
+%%
+
+int yywrap(void) {
+       return 1;
+}
+```
+
+> 只匹配 数字, +/-, 空白， 换行， 其他字符报错
+
+ - Internally yacc maintains two stacks in memory; a parse stack and a value stack. 
+ - The parse stack contains terminals and nonterminals that represent the current parsing state. 
+ - The value stack is an array of YYSTYPE elements and associates a value with each element in the parse stack. 
+
+For example when lex returns an INTEGER token yacc shifts this token to the parse stack. At the same time the corresponding yylval is shifted to the value stack. The parse and value stacks are always synchronized so finding a value related to a token on the stack is easily accomplished. Here is the yacc input specification for our calculator:
+
+```
+
+%{
+    #include <stdio.h>
+    int yylex(void);
+    void yyerror(char *);
+%}
+%token INTEGER
+
+%%
+
+program:
+        program expr '\n'	{ printf("%d\n", $2); }
+        |
+        ;
+expr:	
+		INTEGER				{ $$ = $1; }
+		| expr '+' expr		{ $$ = $1 + $3; }
+		| expr '-' expr		{ $$ = $1 - $3; }
+		;
+%%
+void yyerror(char *s) {
+    fprintf(stderr, "%s\n", s);
+}
+int main(void) {
+    yyparse();
+	return 0; 
+}
+
+
+```
+
+The rules section resembles the BNF grammar. 
+
+The left-hand side of a production, or nonterminal, is entered left-justified and followed by a colon. 
+This is followed by the right-hand side of the production. Actions associated with a rule are entered in braces.
+
+With left-recursion, we have specified that a program consists of zero or more expressions. Each expression terminates with a newline. When a newline is detected we print the value of the expression. When we apply the rule
+
+```
+expr: expr '+' expr { $$ = $1 + $3; }
+```
+
+we replace the right-hand side of the production in the parse stack with the left-hand side of the same production. 
+
+In this case we pop “expr '+' expr” and push “expr”. We have reduced the stack by popping three terms off the stack and pushing back one term. 
+
+We may reference positions in the value stack in our C code by specifying “$1” for the first term on the right-hand side of the production, “$2” for the second, and so on. “$$” designates the top of the stack after reduction has taken place. The above action adds the value associated with two expressions, pops three terms off the value stack, and pushes back a single sum. As a consequence the parse and value stacks remain synchronized.
+
+Numeric values are initially entered on the stack when we reduce from INTEGER to expr. After INTEGER is shifted to the stack we apply the rule
+
+```
+expr: INTEGER        { $$ = $1; }
+```
+
+The **INTEGER** token is popped off the parse stack followed by a push of **expr**.  For the value stack we pop the integer value off the stack and then push it back on again.  Finally, when a newline is encountered, the value associated with **expr** is printed. 
+
+In the event of syntax errors yacc calls the user-supplied function **yyerror**. 
+
+This example still has an ambiguous grammar. Although yacc will issue shift-reduce warnings it will still process the grammar using shift as the default operation.
+
+# Practice, Part II
+
+
 
 
 
