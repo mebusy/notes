@@ -397,6 +397,8 @@ extern YYSTYPE yylval;
 /* node pointer */
 ```
 
+Constants, variables, and nodes can be represented by **yylval** in the parser’s value stack. A more accurate representation of decimal integers is given below. This is similar to C/C++ where integers that begin with 0 are classified as octal.
+
 
 
 
