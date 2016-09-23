@@ -251,6 +251,151 @@ This example still has an ambiguous grammar. Although yacc will issue shift-redu
 
 # Practice, Part II
 
+ - + arithmetic operators multiply and divide. 
+ - + Parentheses may be used to over-ride operator precedence, 
+ - + single-character variables may be specified in assignment statements.
+
+
+The lexical analyzer returns **VARIABLE** and **INTEGER** tokens. 
+
+For variables **yylval** specifies an index to the symbol table ***sym***. When **INTEGER** tokens are returned, **yylval** contains the number scanned. Here is the input specification for lex:
+
+```
+%{
+       #include <stdlib.h>
+       void yyerror(char *);
+       #include "y.tab.h"
+%}
+
+%%
+
+   /* variables */
+[a-z]       {
+               yylval = *yytext - 'a';
+               return VARIABLE;
+           }
+   /* integers */
+[0-9]+      {
+               yylval = atoi(yytext);
+               return INTEGER;
+           }
+   /* operators */
+[-+()=/*\n] { return *yytext; }
+   /* skip whitespace */
+[ \t]        ;
+   /* anything else is an error */
+.               yyerror("invalid character");
+
+%%
+
+int yywrap(void) {
+       return 1;
+}
+```
+
+> 3.l
+
+The input specification for yacc follows. 
+
+ - We may specify %left, for left-associative or %right for right associative. 
+ - The last definition listed has the highest precedence. 
+ 	- Using this simple technique we are able to disambiguate our grammar.
+
+```
+
+%token INTEGER VARIABLE
+%left '+' '-'
+%left '*' '/'
+%{
+	#include <stdio.h>
+    void yyerror(char *);
+    int yylex(void);
+    int sym[26];
+%}
+%%
+program:
+		program statement '\n'
+				|
+				;
+statement:
+        expr					{ printf("%d\n", $1); }
+        | VARIABLE '=' expr		{ sym[$1] = $3; }
+        ;
+expr:
+        INTEGER
+		| VARIABLE		{ $$ = sym[$1]; }
+		| expr '+' expr	{$$=$1+$3;}
+		| expr '-' expr	{$$=$1-$3;}
+		| expr '*' expr	{$$=$1*$3;}
+		| expr '/' expr {$$=$1/$3;}		
+		| '(' expr ')'	{$$=$2;} 
+		;
+%%
+void yyerror(char *s) {
+    fprintf(stderr, "%s\n", s);
+}
+int main(void) {
+    yyparse();
+	return 0; 
+}
+```
+
+> 3.y
+
+
+# Calculator
+
+This version of the calculator is substantially more complex than previous versions. Major changes include control constructs such as **if-else** and **while**. 
+
+In addition a syntax tree is constructed during parsing. After parsing we walk the syntax tree to produce output. Three versions of the tree walk routine are supplied:
+
+ - an interpreter that executes statements during the tree walk
+ - a compiler that generates code for a hypothetical stack-based machine
+ - a version that generates a syntax tree of the original program
+
+To make things more concrete, here is a sample program,
+
+```
+x = 0;
+while (x < 3) {
+	print x;
+	x = x + 1; 
+}
+```
+
+The include file contains declarations for the syntax tree and symbol table. 
+
+ - Symbol table (**sym**) allows for single-character variable names. 
+ - A node in the syntax tree may hold a constant (**conNodeType**), an identifier (**idNodeType**), or an internal node with an operator (**oprNodeType**). 
+
+A union encapsulates all three variants and **nodeType.type** is used to determine which structure we have.
+
+The lex input file contains patterns for **VARIABLE** and **INTEGER** tokens. In addition, tokens are defined for 2-character operators such as **EQ** and **NE**. Single-character operators are simply returned as themselves.
+
+The yacc input file defines **YYSTYPE**, the type of **yylval**, as
+
+```
+%union {
+       int iValue;
+       char sIndex;
+       nodeType *nPtr;
+};
+```
+
+This causes the following to be generated in y.tab.h:
+
+```
+typedef union {
+    int iValue;
+	char sIndex;
+    nodeType *nPtr;
+} YYSTYPE;
+extern YYSTYPE yylval;
+
+/* integer value */
+/* symbol table index */
+/* node pointer */
+```
 
 
 
