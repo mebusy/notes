@@ -525,7 +525,7 @@ The same result comes from diagonalization, by squaring S⁻¹AS = Λ:
 ```
 Eigenvalues of A²
 
-(S⁻¹AS)(S⁻¹AS) = Λ²   or  S⁻¹A²S = Λ
+(S⁻¹AS)(S⁻¹AS) = Λ²   or  S⁻¹A²S = Λ²
 ```
 
 The matrix A² is diagonalized by the same S, *so the eigenvectors are unchanged*. The eigenvalues are squared. This continues to hold for any power of A:
@@ -618,7 +618,6 @@ Suppose you invest $1000 at 6% interest. Compounded once a year, the principal P
 ```
 Yearly P₅ = (1.06)⁵P₀   which is   (1.06)⁵ 1000 = $1338.
 ```
-
 
 
 
