@@ -117,6 +117,14 @@ int main(int argc, char *argv[]) {
 
 # Yacc
 
+ - To parse an expression
+ - Instead of starting with a single nonterminal (start symbol) and generating an expression from a grammar
+ - we need to reduce an expression to a single nonterminal.
+
+This is known as bottom-up or shift-reduce parsing and uses a stack for storing terms.  
+
+
+
 ```
 ... definitions ...
 %%
@@ -399,12 +407,797 @@ extern YYSTYPE yylval;
 
 Constants, variables, and nodes can be represented by **yylval** in the parser’s value stack. A more accurate representation of decimal integers is given below. This is similar to C/C++ where integers that begin with 0 are classified as octal.
 
+```
+0               {
+                   yylval.iValue = atoi(yytext);
+                   return INTEGER;
+                }
+[1-9][0-9]*     {
+                   yylval.iValue = atoi(yytext);
+                   return INTEGER;
+                }
+```
+
+Notice the type definitions
+
+```
+%token <iValue> INTEGER
+%type <nPtr> expr
+```
+
+This binds **expr** to **nPtr**, and **INTEGER** to **iValue** in the **YYSTYPE** union. This is required so that yacc can generate the correct code. For example, the rule
+
+```
+expr: INTEGER { $$ = con($1); }
+```
+
+should generate the following code. Note that **yyvsp[0]** addresses the top of the value stack, or the value associated with **INTEGER**.
+
+```
+yylval.nPtr = con(yyvsp[0].iValue);
+```
+
+The unary minus operator is given higher priority than binary operators as follows:
+
+```
+%left GE LE EQ NE '>' '<'
+%left '+' '-'
+%left '*' '/'
+%nonassoc UMINUS
+```
+
+The **%nonassoc** indicates no associativity is implied. It is frequently used in conjunction with %prec to specify precedence of a rule. Thus, we have
+
+```
+expr: '-' expr %prec UMINUS 	{ $$ = node(UMINUS, 1, $2); }
+```
+
+indicating that the precedence of the rule is the same as the precedence of token **UMINUS**. And **UMINUS** (as defined above) has higher precedence than the other operators. A similar technique is used to remove ambiguity associated with the if-else statement (see If-Else Ambiguity).
+
+After the tree is built function **ex** is called to do a depth-first walk of the syntax tree. Three versions of **ex** are included: an interpretive version, a compiler version, and a version that generates a syntax tree.
+
+**Include File: calc3.h**
+
+```c
+typedef enum { typeCon, typeId, typeOpr } nodeEnum;
+/* constants */
+typedef struct {
+    int value;      /* value of constant */
+} conNodeType;
+
+/* identifiers */
+typedef struct {
+    int i;          /* subscript to sym array */
+} idNodeType;
+
+/* operators */
+typedef struct {
+    int oper;       /* operator */
+    int nops;       /* number of operands */
+    struct nodeTypeTag *op[1];  /* operands, extended at runtime */
+} oprNodeType;
+
+typedef struct nodeTypeTag {
+    nodeEnum type;          /* type of node */
+    union {
+        conNodeType con;    /* constants */
+        idNodeType id;      /* identifiers */
+        oprNodeType opr;    /* operators */
+    };
+} nodeType;
+extern int sym[26];                        
+```
 
 
 
+**Lex Input**
+
+```
+%{
+#include <stdlib.h>
+#include "calc3.h"
+#include "y.tab.h"
+void yyerror(char *);
+%}
+
+%%
+
+[a-z]       {
+                yylval.sIndex = *yytext - 'a';
+                return VARIABLE;
+            }
+0           {
+                yylval.iValue = atoi(yytext);
+                return INTEGER;
+            }
+[1-9][0-9]* {
+                yylval.iValue = atoi(yytext);
+                return INTEGER;
+            }
+[-()<>=+*/;{}.] {
+                        return *yytext;
+                }
+">="        return GE;
+"<="        return LE;
+"=="        return EQ;
+"!="        return NE;
+"while"     return WHILE;
+"if"        return IF;
+"else"      return ELSE;
+"print"     return PRINT;
+
+[ \t\n]+    ;       /* ignore whitespace */
+
+.           yyerror("Unknown character");
+
+%%
+
+int yywrap(void) {
+    return 1;
+}                                          
+```
+
+
+**Yacc Input**
+
+```
+%{
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include "calc3.h"
+
+/* prototypes */
+nodeType *opr(int oper, int nops, ...);
+nodeType *id(int i);
+nodeType *con(int value);
+void freeNode(nodeType *p);
+int ex(nodeType *p);
+int yylex(void);
+
+void yyerror(char *s);
+int sym[26];			/* symbol table */
+%}
+
+%union {
+    int iValue;			/* integer value */
+    char sIndex;		/* symbol table index */
+    nodeType *nPtr;		/* node pointer */
+};
+
+%token <iValue> INTEGER
+%token <sIndex> VARIABLE
+%token WHILE IF PRINT
+%nonassoc IFX
+%nonassoc ELSE
+
+%left GE LE EQ NE '>' '<'
+%left '+' '-'
+%left '*' '/'
+%nonassoc UMINUS
+
+%type <nPtr> stmt expr stmt_list
+
+%%
+
+program:
+  	function	{ exit(0); }
+	;
+function:
+    function stmt		{ ex($2); freeNode($2); }
+	|                  /* NULL */ 
+    ;
+stmt: 
+	';'			{$$= opr(';', 2, NULL, NULL); } 
+	| expr ';'		{$$= $1; }
+	| PRINT expr ';'		{$$= opr(PRINT, 1, $2); }
+	| VARIABLE '=' expr ';'		{$$= opr('=', 2, id($1), $3); }
+	| WHILE '(' expr ')' stmt { $$ = opr(WHILE, 2, $3, $5); }
+	| IF '(' expr ')' stmt %prec IFX 	{ $$ = opr(IF, 2, $3, $5); } 
+	| IF '(' expr ')' stmt ELSE stmt	{ $$ = opr(IF, 3, $3, $5, $7); } 
+	| '{' stmt_list '}'					{ $$= $2; }
+    ;
+
+stmt_list:
+    stmt				{ $$=$1;}
+  | stmt_list stmt		{ $$ = opr(';', 2, $1, $2); }
+  ;
+
+expr:
+    INTEGER			{ $$ = con($1); }
+	| VARIABLE		{ $$ = id($1); }
+	| '-' expr %prec UMINUS { $$ = opr(UMINUS, 1, $2); }
+	| expr '+' expr			{ $$ = opr('+', 2, $1, $3); }
+	| expr '-' expr			{ $$ = opr('-', 2, $1, $3); }
+	| expr '*' expr			{ $$ = opr('*', 2, $1, $3); }
+	| expr '/' expr			{ $$ = opr('/', 2, $1, $3); }
+	| expr '<' expr			{ $$ = opr('<', 2, $1, $3); }
+	| expr '>' expr			{ $$ = opr('>', 2, $1, $3); }
+	| expr GE expr			{ $$ = opr(GE, 2, $1, $3); }
+	| expr LE expr			{ $$ = opr(LE, 2, $1, $3); }
+	| expr NE expr			{ $$ = opr(NE, 2, $1, $3); }
+	| expr EQ expr			{ $$ = opr(EQ, 2, $1, $3); }
+	| '(' expr ')'			{ $$=$2;}
+	;
+
+%%
+
+#define SIZEOF_NODETYPE ((char *)&p->con - (char *)p)
+
+nodeType *con(int value) {
+    nodeType *p;
+    
+	/* allocate node */
+    if ((p = malloc(sizeof(nodeType))) == NULL)
+        yyerror("out of memory");
+    
+	/* copy information */
+    p->type = typeCon;
+    p->con.value = value;
+
+	return p; 
+}
+
+nodeType *id(int i) {
+    nodeType *p;
+
+    /* allocate node */
+    if ((p = malloc(sizeof(nodeType))) == NULL)
+        yyerror("out of memory");
+
+    /* copy information */
+    p->type = typeId;
+    p->id.i = i;
+	return p; 
+}
+
+          
+nodeType *opr(int oper, int nops, ...) {
+    va_list ap;
+    nodeType *p;
+    int i;
+    
+	/* allocate node, extending op array */
+    if ((p = malloc(sizeof(nodeType) +
+            (nops-1) * sizeof(nodeType *))) == NULL)
+        yyerror("out of memory");
+    
+	/* copy information */
+    p->type = typeOpr;
+    p->opr.oper = oper;
+    p->opr.nops = nops;
+    va_start(ap, nops);
+    for (i = 0; i < nops; i++)
+        p->opr.op[i] = va_arg(ap, nodeType*);
+    va_end(ap);
+	return p; 
+}
+
+void freeNode(nodeType *p) {
+    int i;
+    if (!p) return;
+    if (p->type == typeOpr) {
+        for (i = 0; i < p->opr.nops; i++)
+            freeNode(p->opr.op[i]);
+	}
+	free (p); 
+}
+
+void yyerror(char *s) {
+    fprintf(stdout, "%s\n", s);
+}
+
+int main(void) {
+    yyparse();
+	return 0; 
+}
+```
+
+**Interpreter**
+
+```c
+#include <stdio.h>
+#include "calc3.h"
+#include "y.tab.h"
+
+int ex(nodeType *p) {
+    if (!p) return 0;
+    switch(p->type) {
+    case typeCon:   return p->con.value;
+    case typeId:    return sym[p->id.i];
+    case typeOpr:
+    switch(p->opr.oper) {
+      case WHILE:   while(ex(p->opr.op[0]))
+                        ex(p->opr.op[1]);
+                    return 0;
+      case IF:      if (ex(p->opr.op[0]))
+                            ex(p->opr.op[1]);
+                        else if (p->opr.nops > 2)
+                            ex(p->opr.op[2]);
+                    return 0;
+      case PRINT:   printf("%d\n", ex(p->opr.op[0]));
+                    return 0;
+      case ';':     ex(p->opr.op[0]); return ex(p->opr.op[1]);
+      case '=':     return sym[p->opr.op[0]->id.i] = ex(p->opr.op[1]);
+      case UMINUS:  return -ex(p->opr.op[0]);
+      case '+':     return ex(p->opr.op[0]) + ex(p->opr.op[1]);
+      case '-':     return ex(p->opr.op[0]) - ex(p->opr.op[1]);
+      case '*':     return ex(p->opr.op[0]) * ex(p->opr.op[1]);
+      case '/':     return ex(p->opr.op[0]) / ex(p->opr.op[1]);
+      case '<':     return ex(p->opr.op[0]) < ex(p->opr.op[1]);
+      case '>':     return ex(p->opr.op[0]) > ex(p->opr.op[1]);
+      case GE:      return ex(p->opr.op[0]) >= ex(p->opr.op[1]);
+      case LE:      return ex(p->opr.op[0]) <= ex(p->opr.op[1]);
+      case NE:      return ex(p->opr.op[0]) != ex(p->opr.op[1]);
+      case EQ:      return ex(p->opr.op[0]) == ex(p->opr.op[1]);
+    }
+    }
+    return 0;
+}                                                                          
+```
+
+
+**Compiler**
+
+```
+#include <stdio.h>
+#include "calc3.h"
+#include "y.tab.h"
+
+static int lbl;
+
+int ex(nodeType *p) {
+    int lbl1, lbl2;
+
+    if (!p) return 0;
+    switch(p->type) {
+    case typeCon:
+        printf("\tpush\t%d\n", p->con.value);
+        break;
+    case typeId:
+        printf("\tpush\t%c\n", p->id.i + 'a');
+        break;
+    case typeOpr:
+        switch(p->opr.oper) {
+        case WHILE:
+            printf("L%03d:\n", lbl1 = lbl++);
+            ex(p->opr.op[0]);
+            printf("\tjz\tL%03d\n", lbl2 = lbl++);
+            ex(p->opr.op[1]);
+            printf("\tjmp\tL%03d\n", lbl1);
+            printf("L%03d:\n", lbl2);
+            break;
+        case IF:
+            ex(p->opr.op[0]);
+            if (p->opr.nops > 2) {
+                /* if else */
+                printf("\tjz\tL%03d\n", lbl1 = lbl++);
+                ex(p->opr.op[1]);
+                printf("\tjmp\tL%03d\n", lbl2 = lbl++);
+                printf("L%03d:\n", lbl1);
+                ex(p->opr.op[2]);
+                printf("L%03d:\n", lbl2);
+            } else {
+                /* if */
+                printf("\tjz\tL%03d\n", lbl1 = lbl++);
+                ex(p->opr.op[1]);
+                printf("L%03d:\n", lbl1);
+            }
+             break;
+        case PRINT:
+            ex(p->opr.op[0]);
+            printf("\tprint\n");
+            break;
+
+        case '=':
+            ex(p->opr.op[1]);
+            printf("\tpop\t%c\n", p->opr.op[0]->id.i + 'a');
+            break;
+        case UMINUS:
+            ex(p->opr.op[0]);
+            printf("\tneg\n");
+            break;
+        default:
+            ex(p->opr.op[0]);
+            ex(p->opr.op[1]);
+            switch(p->opr.oper) {
+                    case '+':   printf("\tadd\n"); break;
+                    case '-':   printf("\tsub\n"); break;
+                    case '*':   printf("\tmul\n"); break;
+                    case '/':   printf("\tdiv\n"); break;
+                    case '<':   printf("\tcompLT\n"); break;
+                    case '>':   printf("\tcompGT\n"); break;
+                    case GE:    printf("\tcompGE\n"); break;
+                    case LE:    printf("\tcompLE\n"); break;
+                    case NE:    printf("\tcompNE\n"); break;
+                    case EQ:    printf("\tcompEQ\n"); break;
+            }
+        }
+    }
+    return 0;
+}
+```
+
+**Graph**
+
+```
+
+/* source code courtesy of Frank Thomas Braun */
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdarg.h>
+#include <string.h>
+#include "calc3.h"
+#include "y.tab.h"
+
+int del = 1; /* distance of graph columns */
+int eps = 3; /* distance of graph lines */
+
+/* interface for drawing (can be replaced by "real" graphic using GD or other) */
+void graphInit (void);
+void graphFinish();
+void graphBox (char *s, int *w, int *h);
+void graphDrawBox (char *s, int c, int l);
+void graphDrawArrow (int c1, int l1, int c2, int l2);
+
+/* recursive drawing of the syntax tree */
+void exNode (nodeType *p, int c, int l, int *ce, int *cm);
+
+/***********************************************************/
+/* main entry point of the manipulation of the syntax tree */ 
+int ex (nodeType *p) {
+	int rte, rtm;
+    graphInit ();
+    exNode (p, 0, 0, &rte, &rtm);
+    graphFinish();
+    return 0;
+}
+/*c----cm---ce---->			drawing of leaf-nodes
+ l leaf-info
+ */
+
+/*c---------------cm--------------ce----> drawing of non-leaf-nodes 
+l		    	 node-info
+*					|
+* 		------------- ...----
+*		|		|			| 
+*		v		v			v
+* 	child1	 child2 ...	 child-n
+*	 che	 che		   che 
+*	cs	 	cs 		cs 		cs 
+*
+*/
+
+void exNode(  
+		 nodeType *p,
+        int c, int l,		/* start column and line of node */
+        int *ce, int *cm          /* resulting end column and mid of node */
+) 
+{
+	int w, h;      /* node width and height */
+	char *s; 		/* node text */
+	int cbar;    /* "real" start column of node (centred above subnodes)*/
+    int k;     /* child number */
+    int che, chm;     /* end column and mid of children */
+    int cs;     /* start column of children */
+    char word[20];     /* extended node text */
+    if (!p) return;
+
+ 
+	strcpy (word, "???"); /* should never appear */
+	s = word;
+	switch(p->type) {
+		case typeCon: sprintf (word, "c(%d)", p->con.value); break; 
+		case typeId: sprintf (word, "id(%c)", p->id.i + 'A'); break; 
+		case typeOpr:
+        switch(p->opr.oper){
+            case WHILE:		s = "while"; break;
+            case IF:		s = "if";    break;
+            case PRINT:		s = "print"; break;
+            case ';':		s = "[;]";  break;
+            case '=':		s = "[=]";  break;
+            case UMINUS:	s = "[_]";  break;
+            case '+':		s = "[+]";  break;
+            case '-':		s = "[-]";  break;
+            case '*':		s = "[*]";  break;
+            case '/':		s = "[/]";  break;
+            case '<':		s = "[<]";	break;
+            case '>':		s = "[>]";  break;	
+            case GE:		s = "[>=]"; break;
+            case LE:		s = "[<=]"; break;
+            case NE:		s = "[!=]"; break;
+            case EQ:		s = "[==]"; break;
+		}
+		break;
+	}
+	/* construct node text box */
+	graphBox (s, &w, &h);
+	cbar = c;
+	*ce = c + w;
+	*cm = c + w / 2;
+
+	/* node is leaf */
+	if (p->type == typeCon || p->type == typeId || p->opr.nops == 0) {
+    	graphDrawBox (s, cbar, l);
+		return; 
+	}
+
+	/* node has children */
+    cs = c;
+    for (k = 0; k < p->opr.nops; k++) {
+		exNode (p->opr.op[k], cs, l+h+eps, &che, &chm);
+		cs = che; 
+	}
+    /* total node width */
+    if (w < che - c) {
+        cbar += (che - c - w) / 2;
+        *ce = che;
+        *cm = (c + che) / 2;
+	}	
+    
+	/* draw node */
+    graphDrawBox (s, cbar, l);
+
+	/* draw arrows (not optimal: children are drawn a second time) */ 
+	cs = c;
+	for (k = 0; k < p->opr.nops; k++) {
+		exNode (p->opr.op[k], cs, l+h+eps, &che, &chm); 
+		graphDrawArrow (*cm, l+h, chm, l+h+eps-1);
+		cs = che;
+	} 
+}
+
+/* interface for drawing */
+
+#define lmax 200
+#define cmax 200
+
+char graph[lmax][cmax]; /* array for ASCII-Graphic */ 
+int graphNumber = 0;
+
+void graphTest (int l, int c)
+{   
+	int ok;
+	ok = 1;
+	if (l < 0) ok = 0;
+	if (l >= lmax) ok = 0;
+	if (c < 0) ok = 0;
+	if (c >= cmax) ok = 0;
+	if (ok) return;
+	printf ("\n+++error: l=%d, c=%d not in drawing rectangle 0, 0 ... %d, %d" ,l, c, lmax, cmax); 
+	exit (1); 
+}
+
+void graphInit (void) {
+    int i, j;
+    for (i = 0; i < lmax; i++) {
+        for (j = 0; j < cmax; j++) {
+            graph[i][j] = ' ';
+        }
+	} 
+}
+
+void graphFinish() {
+    int i, j;
+    for (i = 0; i < lmax; i++) {
+        for (j = cmax-1; j > 0 && graph[i][j] == ' '; j--);
+        graph[i][cmax-1] = 0;
+        if (j < cmax-1) graph[i][j+1] = 0;
+        if (graph[i][j] == ' ') graph[i][j] = 0;
+	}
+	for (i = lmax-1; i > 0 && graph[i][0] == 0; i--); 
+	printf ("\n\nGraph %d:\n", graphNumber++);
+	for (j = 0; j <= i; j++) printf ("\n%s", graph[j]); 
+	printf("\n");
+}
+
+void graphBox (char *s, int *w, int *h) {
+    *w = strlen (s) + del;
+    *h = 1;
+}
+
+void graphDrawBox (char *s, int c, int l) {
+    int i;
+    graphTest (l, c+strlen(s)-1+del);
+    for (i = 0; i < strlen (s); i++) {
+        graph[l][c+i+del] = s[i];
+    }
+}
 
 
 
+void graphDrawArrow (int c1, int l1, int c2, int l2) {
+    int m;
+    graphTest (l1, c1);
+    graphTest (l2, c2);
+    m = (l1 + l2) / 2;
+    while (l1 != m) {
+        graph[l1][c1] = '|'; if (l1 < l2) l1++; else l1--;
+    }
+    while (c1 != c2) {
+        graph[l1][c1] = '-'; if (c1 < c2) c1++; else c1--;
+	}
+	while (l1 != l2) {
+		graph[l1][c1] =	'|'; if (l1 < l2) l1++; else l1--;
+	}
+    graph[l1][c1] = '|';
+}
+```
 
 
+# More Lex 
+
+## Strings
+
+Here is one way to match a string in lex:
+
+```
+%{
+    char *yylval;
+    #include <string.h>
+%}
+
+%%
+
+\"[^"\n]*["\n] {
+           yylval = strdup(yytext+1);  // value 不包括引号
+           if (yylval[yyleng-2] != '"')
+               warning("improperly terminated string");
+           else
+               yylval[yyleng-2] = 0;
+           printf("found '%s'\n", yylval);
+		}
+```
+
+If we wish to add escape sequences, such as \n or \", start states simplify matters:
+	
+```
+%{
+char buf[100];
+char *s;
+%}
+%x STRING
+
+%%
+
+\"				{ BEGIN STRING; s = buf; }
+<STRING>\\n 	{ *s++ = '\n'; }
+<STRING>\\t 	{ *s++ = '\t'; }
+<STRING>\\\" 	{ *s++ = '\"'; }
+<STRING>\" 		{
+					*s = 0;
+					BEGIN 0;
+					printf("found '%s'\n", buf);
+				}
+<STRING>\n 		{ printf("invalid string"); exit(1); }
+<STRING>. 		{ *s++ = *yytext; }
+```
+
+Exclusive start state **STRING** is defined in the definition section. When the scanner detects a quote the **BEGIN** macro shifts lex into the **STRING** state. Lex stays in the **STRING** state and recognizes only patterns that begin with **\<STRING\>** until another **BEGIN** is executed. Thus we have a mini-environment for scanning strings. When the trailing quote is recognized we switch back to initial state 0.
+
+## Reserved Words
+
+If your program has a large collection of reserved words it is more efficient to let lex simply match a string and determine in your own code whether it is a variable or reserved word. 
+
+For example, instead of coding
+
+```
+"if"            return IF;
+"then"          return THEN;
+"else"          return ELSE;
+{letter}({letter}|{digit})*  {
+						        yylval.id = symLookup(yytext);
+						        return IDENTIFIER;
+						    }
+```
+
+where **symLookup** returns an index into the symbol table, it is better to detect reserved words and identifiers simultaneously, as follows:
+
+```
+{letter}({letter}|{digit})*  {
+            int i;
+            if ((i = resWord(yytext)) != 0)
+                return (i);
+            yylval.id = symLookup(yytext);
+            return (IDENTIFIER);
+        }
+```
+
+This technique significantly reduces the number of states required, and results in smaller scanner tables.
+
+## Debugging Lex
+
+The code generated by lex in file **lex.yy.c** includes debugging statements that are enabled by specifying command-line option “-d”. Debug output in flex (a GNU version of lex) may be toggled on and off by setting **yy_flex_debug**. Output includes the rule applied and corresponding matched text. If you’re running lex and yacc together then specify the following in your yacc input file:
+
+```
+extern int yy_flex_debug;
+int main(void) {
+	yy_flex_debug = 1;
+	yyparse(); 
+}
+```
+
+Alternatively, you may write your own debug code by defining functions that display information for the token value and each variant of the yylval union. This is illustrated in the following example. 
+
+When **DEBUG** is defined the debug functions take effect and a trace of tokens and associated values is displayed.
+
+```
+%union {
+       int ivalue;
+       ... 
+       };
+
+%{
+#ifdef DEBUG
+	int dbgToken(int tok, char *s) {
+    	printf("token %s\n", s);
+		return tok; 
+	}
+	int dbgTokenIvalue(int tok, char *s) {
+		printf("token %s (%d)\n", s, yylval.ivalue);
+		return tok; 
+	}
+	#define RETURN(x) return dbgToken(x, #x)
+	#define RETURN_ivalue(x) return dbgTokenIvalue(x, #x) 
+#else
+	#define RETURN(x) return(x)
+	#define RETURN_ivalue(x) return(x)
+#endif
+%}
+
+%%
+
+[0-9]+ {
+                   yylval.ivalue = atoi(yytext);
+                   RETURN_ivalue(INTEGER);
+               }
+"if"        RETURN(IF);
+"else"      RETURN(ELSE);
+
+```
+
+# More Yacc
+
+## Recursion
+
+A list may be specified with left recursion
+
+```
+list:
+		item
+         | list ',' item
+         ;
+```
+
+or right recursion.
+
+```
+list:
+		item
+         | item ',' list
+
+```
+
+If right recursion is used then all items on the list are pushed on the stack. After the last item is pushed we start reducing. 
+
+With left recursion we never have more than three terms on the stack since we reduce as we go along. For this reason it is advantageous to use left recursion.
+
+## If-Else Ambiguity
+
+A shift-reduce conflict that frequently occurs involves the if-else construct. Assume we have the following rules:
+
+```
+stmt:
+      IF expr stmt
+      | IF expr stmt ELSE stmt
+      ...
+```
+
+and the following state:
+
+```
+IF expr stmt IF expr stmt . ELSE stmt
+```
+
+We need to decide if we should shift the ELSE or reduce the IF expr stmt at the top of the stack. If we shift then we have
 
