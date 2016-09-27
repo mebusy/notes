@@ -857,7 +857,7 @@ A left-recursive grammar can cause a recursive-descent parser, even one with bac
 
 The construction of both top-down and bottom-up parsers is aided by two functions, FIRST and FOLLOW, associated with a grammar G. During top­ down parsing, FIRST and FOLLOW allow us to choose which production to apply, based on the next input symbol. During panic-mode error recovery, sets of tokens produced by FOLLOW can be used as synchronizing tokens.
 
-Define FIRST(α), where α is any string of grammar symbols, to be the set of terminals that begin strings derived from α. if α ⇒<sup>\*</sup> ε, then ε is also in FIRST(ε) . For example, in Fig. 4.15, A ⇒<sup>\*</sup> cγ , so c is in FIRST(A).
+Define FIRST(α), where α is any string of grammar symbols, to be the set of terminals that begin strings derived from α. if α ⇒<sup>\*</sup> ε, then ε is also in FIRST(α) . For example, in Fig. 4.15, A ⇒<sup>\*</sup> cγ , so c is in FIRST(A).
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.15.png)
 
@@ -874,7 +874,6 @@ To compute FIRST(X) for all grammar symbols X, apply the following rules until n
  2. If X is a nonterminal and X → Y₁Y₂...Yk is a production for some k ≥ 1, then place *a* in FIRST(X) if for some i, *a* is in FIRST(Yᵢ), and ε is in all of FIRST(Y₁), ... , FIRST( Yᵢ₋₁); that is, Y₁...Yᵢ₋₁ ⇒<sup>\*</sup> ε . If ε is in FIRST(Yⱼ) for all j = 1, 2, ... , k, then add ε to FIRST(X). 
  	- For example, everything in FIRST(Y₁) is surely in FIRST(X). If Y₁ does not derive ε , then we add nothing more to FIRST(X), but if Y₁ ⇒<sup>\*</sup> ε , then we add FIRST(Y₂), and so on.
  3. If X → ε is a production, then add ε to FIRST(X).
-
 
 
 
