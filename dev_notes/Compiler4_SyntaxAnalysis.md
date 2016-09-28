@@ -925,19 +925,71 @@ F  → ( E ) | id
 
 Predictive parsers, that is, recursive-descent parsers needing no backtracking, can be constructed for a class of grammars called LL(I), The first "L" in LL(1) stands for scanning the input from left to right, the second "L" for producing a leftmost derivation, and the "1" for using one input symbol of lookahead at each step to make parsing action decisions.
 
+The class of LL(1) grammars is rich enough to cover most programming constructs, although care is needed in writing a suitable grammar for the source language. For example, **no left-recursive or ambiguous grammar can be LL(1)**.
 
-Transition Diagrams for Predictive Parsers
+A grammar G is LL(1) if and only if whenever A → α|β are two distinct productions of G, the following conditions hold:
+
+ 1. For no terminal a do both α and β derive strings beginning with a.
+ 2. At most one of α and β can derive the empty string.
+ 3. If β ⇒<sup>\*</sup> ε , then α does not derive any string beginning with a terminal in FOLLOW(A). Likewise, if α ⇒<sup>\*</sup> ε  , then  β does not derive any string beginning with a terminal in FOLLOW(A) .
+
+The first two conditions are equivalent to the statement that FIRST(α) and FIRST(β) are disjoint sets. The third condition is equivalent to stating that if ε is in FIRST(β), then FIRST(α) and FOLLOW(A) are disjoint sets, and likewise if ε is in FIRST(α).
+
+Predictive parsers can be constructed for LL(l) grammars since the proper production to apply for a nonterminal can be selected by looking only at the current input symbol. Flow-of-control constructs, with their distinguishing key­ words, generally satisfy the LL(l) constraints. For instance, if we have the
+
+Predictive parsers can be constructed for LL(1) grammars since the proper production to apply for a nonterminal can be selected by looking only at the current input symbol. Flow-of-control constructs, with their distinguishing key­ words, generally satisfy the LL(1) constraints. For instance, if we have the productions
+
+```
+stmt → if ( expr ) stmt else stmt 
+	 | while ( expr ) stmt
+	 | { stmLlist }
+```
+
+then the keywords **if**, **while**, and the symbol **{** tell us which alternative is the only one that could possibly succeed if we are to find a statement.
+
+The next algorithm collects the information from FIRST and FOLLOW sets into a predictive parsing table M[A, a], a two-dimensional array, where A is a nonterminal, and a is a terminal or the symbol $, the input endmarker. The algorithm is based on the following idea: the production A → α is chosen if the next input symbol a is in FIRST(a). The only complication occurs when a = ε or, more generally, a ⇒<sup>\*</sup> ε. In this case, we should again choose A → α, if the current input symbol is i n FOLLOW (A) , or if the $ on the input has been reached and $ is in FOLLOW(A).
+
+**Algorithm 4.31** : Construction of a predictive parsing table.
+
+ - INPUT: Grammar G.
+ - OUTPUT: Parsing table M.
+ - METHOD: For each production A → α of the grammar, do the following:
+
+TODO
+
+---
+
+**Transition Diagrams for Predictive Parsers**
 
 Transition diagrams are useful for visualizing predictive parsers. For exam­ple, the transition diagrams for nonterminals E and E' of grammar (4.28) appear in Fig. 4.16(a). 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.16.png)
+
+> Figure 4.16:  Transition diagrams for nonterminals E and E' of grammar 4.28.
+
 To construct the transition diagram from a gram­mar, first eliminate left recursion and then left factor the grammar. Then, for each nonterminal A:
 
+ 1. Create an initial and final (return) state.
+ 2. For each production A -  X₁X₂...X<sub>k</sub> , create a path from the initial to the final state, with edges labeled X₁, X₂, ... , X<sub>k</sub> .   A → ε, the path is an edge labeled ε.
+
+Tansition diagrams for predictive parsers differ from those for lexical analyzers. Parsers have one diagram for each nonterminal. The labels of edges can be tokens or nonterminals. A transition on a token (terminal) means that we take that transition if that token is the next input symbol. A transition on a nonterminal A is a call of the procedure for A.
+
+With an LL(1) grammar, the ambiguity of whether or not to take an ε-edge can be resolved by making ε-transitions the default choice.
+
+Tansition diagrams can be simplified, provided the sequence of gram­mar symbols along paths is preserved. We may also substitute the dia­gram for a nonterminal A in place of an edge labeled A. The diagrams in Fig. 4.16(a) and (b) are equivalent: if we trace paths from E to an accept­ing state and substitute for E' , then, in both sets of diagrams, the grammar symbols along the paths make up strings of the form T + T + ... + T. The diagram in (b) can be obtained from (a) by transformations akin to those in Section 2.5.4, where we used tail-recursion removal and substitution of procedure bodies to optimize the procedure for a nonterminal.
+
+---
+
+TODO
 
 
+### 4.4.4 Nonrecursive Predictive Parsing
 
+A nonrecursive predictive parser can be built by maintaining a stack explicitly, rather than implicitly via recursive calls. The parser mimics a leftmost deriva­tion. If *w* is the input that has been matched so far, then the stack holds a sequence of grammar symbols α such that S ⇒<sup>\*</sup><sub>lm</sub> wα .
 
+> Figure 4.19: Model of a table-driven predictive parser
 
-
+The table-driven parser in Fig. 4.19 has an input bu er, a stack containing a sequence of grammar symbols, a parsing table constructed by Algorithm 4.31, and an output stream. The input bu er contains the string to be parsed, followed by the endmarker $. We reuse the symbol $ to mark the bottom of the stack, which initially contains the start symbol of the grammar on top of $.
 
 
 
