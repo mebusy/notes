@@ -923,6 +923,15 @@ F  → ( E ) | id
 <h2 id="de9f8354ab89765d867d91fd4d65a576"></h2>
 ### 4.4.3 LL(1) Grammars
 
+Predictive parsers, that is, recursive-descent parsers needing no backtracking, can be constructed for a class of grammars called LL(I), The first "L" in LL(1) stands for scanning the input from left to right, the second "L" for producing a leftmost derivation, and the "1" for using one input symbol of lookahead at each step to make parsing action decisions.
+
+
+Transition Diagrams for Predictive Parsers
+
+Transition diagrams are useful for visualizing predictive parsers. For exam­ple, the transition diagrams for nonterminals E and E' of grammar (4.28) appear in Fig. 4.16(a). 
+
+To construct the transition diagram from a gram­mar, first eliminate left recursion and then left factor the grammar. Then, for each nonterminal A:
+
 
 
 
