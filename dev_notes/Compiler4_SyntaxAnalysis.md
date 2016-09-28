@@ -19,6 +19,10 @@
 		 - [4.3.2 Eliminating Ambiguity](#abe716f7277a95401ed271fa2ae04e46)
 		 - [4.3.3 Elimination of Left Recursion](#624a0832310d892b64c0055c925a43b5)
 		 - [4.3.4 Left Factoring](#be643cb3f54982ef5068037f07328208)
+		 - [4.3.5 Non-Context-Free Language Constructs](#6ab35fc39c91036ee511ab32ec742e63)
+		 - [4.4.1 Recursive-Descent Parsing](#47aaef28c6f12ae46c447c552fea2bfc)
+		 - [4.4.2 FIRST and FOLLOW](#0c9442bd1b7a93aefc72edca1708382f)
+		 - [4.4.3 LL(1) Grammars](#de9f8354ab89765d867d91fd4d65a576)
 
 ...menuend
 
@@ -751,6 +755,7 @@ Thus, we may expand S to iEtSS' on input i, and wait until iEtS has been seen to
 
 ---
 
+<h2 id="6ab35fc39c91036ee511ab32ec742e63"></h2>
 ### 4.3.5 Non-Context-Free Language Constructs
 
 A few syntactic constructs found in typical programming languages cannot be specified using grammars alone. Here, we consider two of these constructs, using simple abstract languages to illustrate the difficulties.
@@ -788,7 +793,7 @@ Example4.27: The sequence of parse trees in Fig.4.12 for the input **id+id\*id**
 E  → T E'
 E' → + T E' | ε
 T  → F T'			(4.28)
-T' → * F T' | ε`
+T' → * F T' | ε
 F  → ( E ) | id  
 ```
 
@@ -809,6 +814,7 @@ In Section 4.4.4 we give a nonrecursive parsing algorithm that maintains a stack
 
 ---
 
+<h2 id="47aaef28c6f12ae46c447c552fea2bfc"></h2>
 ### 4.4.1 Recursive-Descent Parsing
 
 ```
@@ -853,6 +859,7 @@ A left-recursive grammar can cause a recursive-descent parser, even one with bac
 
 ---
 
+<h2 id="0c9442bd1b7a93aefc72edca1708382f"></h2>
 ### 4.4.2 FIRST and FOLLOW
 
 The construction of both top-down and bottom-up parsers is aided by two functions, FIRST and FOLLOW, associated with a grammar G. During top­ down parsing, FIRST and FOLLOW allow us to choose which production to apply, based on the next input symbol. During panic-mode error recovery, sets of tokens produced by FOLLOW can be used as synchronizing tokens.
@@ -875,13 +882,46 @@ To compute FIRST(X) for all grammar symbols X, apply the following rules until n
  	- For example, everything in FIRST(Y₁) is surely in FIRST(X). If Y₁ does not derive ε , then we add nothing more to FIRST(X), but if Y₁ ⇒<sup>\*</sup> ε , then we add FIRST(Y₂), and so on.
  3. If X → ε is a production, then add ε to FIRST(X).
 
+To compute FOLLOW(A) for all nonterminals A, apply the following rules until nothing can be added to any FOLLOW set.
+
+ 1. Place $ in FOLLOW(S), where S is the start symbol, and $ is the input right endmarker.
+ 2. If there is a production A → αBβ , then everything in FIRST( β ) except ε is in FOLLOW(B).
+ 	- B have right brother β 
+ 3. If there is a production A → αB, or a production A → αBβ , where FIRST( β ) contains ε, then everything in FOLLOW(A) is in FOLLOW(B).
+ 	- B have no right brother , or right bother β is rightmost , and β ⇒<sup>\*</sup> ε  , then check the right brother of B's parent -- A.
+ 	- start symbol S 既没有 right brother , 也 没有  parent, 所以添加 $ 到 FOLLOW(S)
 
 
+Example 4.30 : Consider again the non-left-recursive grammar (4.28) . Then:
 
+```
+E  → T E'
+E' → + T E' | ε
+T  → F T'			(4.28)
+T' → * F T' | ε
+F  → ( E ) | id  
+```
 
+ 1. FIRST(F) = FIRST(T) = FIRST(E) = { `(`, `id` }. 
+ 	- T has only one production, and its body starts with F. Since F does not derive ε, FIRST(T) must be the same as FIRST(F). 
+ 	- The same argument covers FIRST(E).
+ 2. FIRST(E') = { `+`, `ε` }. 
+ 3. FIRST(T') = { `*`, `ε` }. 
+ 4. FOLLOW(E) = FOLLOW(E') = { `)`, `$` }. 
+ 	- Since E is the start symbol, FOLLOW(E) must contain $. 
+ 	- The production body `( E )` explains why the right parenthesis is in FOLLOW(E). 
+ 	- For E', note that this nonterminal appears only at the ends of bodies of E-productions. Thus, FOLLOW(E') must be the same as FOLLOW(E).
+ 5. FOLLOW(T)= FOLLOW(T')= { `+`, `)` ,`$` }. 
+ 	- Notice that T appears in bodies only followed by E'. Thus, everything except ε in FIRST(E') must be in FOLLOW(T); that explains the symbol `+`. 
+ 	- However, since FIRST(E') contains `ε`, and E' is the entire string following T in the bodies of the E-productions, everything in FOLLOW(E) must also be in FOLLOW(T). That explains the symbols `$` and the right parenthesis `)`. 
+ 	- As for T', since it appears only at the ends ofthe T-productions, it must be that FOLLOW(T') = FOLLOW(T).
+ 6. FOLLOW(F) = { `+`, `*`, `)`, `$` }. 
+ 	- The reasoning is analogous to that for T in point (5),
 
+---
 
-
+<h2 id="de9f8354ab89765d867d91fd4d65a576"></h2>
+### 4.4.3 LL(1) Grammars
 
 
 

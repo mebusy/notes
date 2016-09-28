@@ -3,6 +3,7 @@
  - [Elgenvalues and Elgenvectors](#8358d3063f9f8db669067bc62cf5ea5e)
 	 - [5.1 INTRODUCTION](#103445c268b50fae9bd814331a04faa4)
 	 - [5.2 DIAGONALIZATION OF A MATRIX](#a208ce5ccf9b8c57cd42ced0c19eca2e)
+	 - [5.3 DIFFERENCE EQUATIONS AND POWERS Aᵏ](#b7b97b347a818a45c3aa318285ba99b7)
 
 ...menuend
 
@@ -605,6 +606,7 @@ At the end we come back to A = SΛS⁻¹. ***That factorization is particularly 
 
 ---
 
+<h2 id="b7b97b347a818a45c3aa318285ba99b7"></h2>
 ## 5.3 DIFFERENCE EQUATIONS AND POWERS Aᵏ
 
 Difference equations u<sub>k</sub>₊₁ = Au<sub>k</sub> move forward in a finite number of finite steps. 
