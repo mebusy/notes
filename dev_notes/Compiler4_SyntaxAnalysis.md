@@ -23,6 +23,8 @@
 		 - [4.4.1 Recursive-Descent Parsing](#47aaef28c6f12ae46c447c552fea2bfc)
 		 - [4.4.2 FIRST and FOLLOW](#0c9442bd1b7a93aefc72edca1708382f)
 		 - [4.4.3 LL(1) Grammars](#de9f8354ab89765d867d91fd4d65a576)
+		 - [4.4.4 Nonrecursive Predictive Parsing](#701a22fbfddb88b2efe7d4931f27ff61)
+	 - [4.5 Bottom-Up Parsing](#f9623de73450682a749169cc00ff525f)
 
 ...menuend
 
@@ -983,16 +985,34 @@ Tansition diagrams can be simplified, provided the sequence of gram­mar symbols
 TODO
 
 
+<h2 id="701a22fbfddb88b2efe7d4931f27ff61"></h2>
 ### 4.4.4 Nonrecursive Predictive Parsing
 
 A nonrecursive predictive parser can be built by maintaining a stack explicitly, rather than implicitly via recursive calls. The parser mimics a leftmost deriva­tion. If *w* is the input that has been matched so far, then the stack holds a sequence of grammar symbols α such that S ⇒<sup>\*</sup><sub>lm</sub> wα .
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.19.png)
+
 > Figure 4.19: Model of a table-driven predictive parser
 
-The table-driven parser in Fig. 4.19 has an input bu er, a stack containing a sequence of grammar symbols, a parsing table constructed by Algorithm 4.31, and an output stream. The input bu er contains the string to be parsed, followed by the endmarker $. We reuse the symbol $ to mark the bottom of the stack, which initially contains the start symbol of the grammar on top of $.
+The table-driven parser in Fig. 4.19 has an input buffer, a stack containing a sequence of grammar symbols, a parsing table constructed by Algorithm 4.31, and an output stream. The input buffer contains the string to be parsed, followed by the endmarker $. We reuse the symbol $ to mark the bottom of the stack, which initially contains the start symbol of the grammar on top of $.
+
+The parser is controlled by a program that considers X, the symbol on top of the stack, and a, the current input symbol. If X is a nonterminal, the parser chooses an X-production by consulting entry M[X, a] of the parsing table M. (Additional code could be executed here, for example, code to construct a node in a parse tree.) Otherwise, it checks for a match between the terminal X and current input symbol a.
+
+The behavior of the parser can be described in terms of its ***configurations***, which give the stack contents and the remaining input. The next algorithm describes how configurations are manipulated.
+
+***Algorithm 4.34*** : Table-driven predictive parsing.
+
+ - INPUT: A string *w* and a parsing table M for grammar G.
+ - OUTPUT: If *w* is ih L(G), a leftmost derivation of *w* ; otherwise, an error indication.
+ - METHOD: 
 
 
+TODO
 
+---
+
+<h2 id="f9623de73450682a749169cc00ff525f"></h2>
+## 4.5 Bottom-Up Parsing
 
 
 
