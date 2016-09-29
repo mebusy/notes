@@ -873,7 +873,7 @@ Define FIRST(α), where α is any string of grammar symbols, to be the set of te
 > Figure 4.15: Terminal *c* is in FIRST(A) and *a* is in FOLLOW(A)
 
 
-For a preview of how FIRST can be used during predictive parsing, consider two A-productions A → α | β  , where FIRST(α) and FIRST(β) are disjoint sets. We can then choose between these A-productions by looking at the next input symbol *a* since *a* can be in at most one of FIRST(α) and FIRST(β), not both. For instance if *a* is in FIRST(β) choose the production A → β . This idea will be explored when LL(l) grammars are defined in Section 4.4.3.
+For a preview of how FIRST can be used during predictive parsing, consider two A-productions A → α | β  , where FIRST(α) and FIRST(β) are disjoint sets. We can then choose between these A-productions by looking at the next input symbol *a* since *a* can be in at most one of FIRST(α) and FIRST(β), not both. For instance if *a* is in FIRST(β) choose the production A → β . This idea will be explored when LL(1) grammars are defined in Section 4.4.3.
 
 Define *FOLLOW(A)* , for nonterminal A, to be the set of terminals *a* that can appear immediately to the right of A in some sentential form; that is, the set of terminals *a* such that there exists a derivation of the form S ⇒<sup>\*</sup> αAaβ for some α and β , as in Fig. 4.15. Note that there may have been symbols between A and *a* at some time during the derivation, but if so, they derived ε and disappeared. In addition, if A can be the rightmost symbol in some sentential form, then $ is in FOLLOW(A); recall that $ is a special "endmarker" symbol that is assumed not to be a symbol of any grammar.
 
@@ -937,7 +937,7 @@ A grammar G is LL(1) if and only if whenever A → α|β are two distinct produc
 
 The first two conditions are equivalent to the statement that FIRST(α) and FIRST(β) are disjoint sets. The third condition is equivalent to stating that if ε is in FIRST(β), then FIRST(α) and FOLLOW(A) are disjoint sets, and likewise if ε is in FIRST(α).
 
-Predictive parsers can be constructed for LL(l) grammars since the proper production to apply for a nonterminal can be selected by looking only at the current input symbol. Flow-of-control constructs, with their distinguishing key­ words, generally satisfy the LL(l) constraints. For instance, if we have the
+Predictive parsers can be constructed for LL(1) grammars since the proper production to apply for a nonterminal can be selected by looking only at the current input symbol. Flow-of-control constructs, with their distinguishing key­ words, generally satisfy the LL(1) constraints. For instance, if we have the
 
 Predictive parsers can be constructed for LL(1) grammars since the proper production to apply for a nonterminal can be selected by looking only at the current input symbol. Flow-of-control constructs, with their distinguishing key­ words, generally satisfy the LL(1) constraints. For instance, if we have the productions
 
@@ -1014,10 +1014,69 @@ TODO
 <h2 id="f9623de73450682a749169cc00ff525f"></h2>
 ## 4.5 Bottom-Up Parsing
 
-A bottom-up parse corresponds to the construction of a parse tree for an input string beginning at the leaves (the bottom) and working up towards the root (the top). It is convenient to describe parsing as the process of building parse trees, although a front end may in fact carry out a translation directly without building an explicit tree. The sequence of tree snapshots in Fig. 4.25 illustrates
+A bottom-up parse corresponds to the construction of a parse tree for an input string beginning at the leaves (the bottom) and working up towards the root (the top). It is convenient to describe parsing as the process of building parse trees, although a front end may in fact carry out a translation directly without building an explicit tree. The sequence of tree snapshots in Fig. 4.25 illustrates a bottom-up parse of the token stream **id \* id**, with respect to the expression grammar (4.1).
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.25.png)
 
 > Figure 4.25: A bottom-up parse for **id \* id**
+
+This section introduces a general style of bottom-up parsing known as *shift­ reduce parsing*. 
+
+The largest class of grammars for which shift-reduce parsers can be built, the LR grammars, will be discussed in Sections 4.6 and 4.7. 
+
+Although it is too much work to build an LR parser by hand, tools called automatic parser generators make it easy to construct efficient LR parsers from suitable gram­mars. The concepts in this section are helpful for writing suitable grammars to make effective use of an LR parser generator. Algorithms for implementing parser generators appear in Section 4.7.
+
+
+### 4.5.1 Reductions
+
+We can think of bottom-up parsing as the process of "reducing" a string *w* to the **start symbol** of the grammar. 
+
+At each reduction step, a specific substring matching the body of a production is replaced by the nonterminal at the head of that production.
+
+> matched production body -> production head 
+
+The key decisions during bottom-up parsing are about when to reduce and about what production to apply, as the parse proceeds.
+
+Example 4.37 : The snapshots in Fig. 4.25 illustrate a sequence of reductions; the grammar is the expression grammar (4.1). The reductions will be discussed in terms of the sequence of strings
+
+```
+id*id, F*id, T*id, T*F, T, E
+```
+
+The strings in this sequence are formed from the roots of all the subtrees in the snapshots. The sequence starts with the input string id \* id. The first reduction produces F \* id by reducing the leftmost **id** to F, using the production F → id. The second reduction produces T \* id by reducing F to T.
+
+Now, we have a choice between *reducing the string T*, which is the body of E → T, and *the string consisting of the second* **id**, which is the body of F → id. 
+
+Rather than reduce T to E, the second id is reduced to T, resulting in the string T \* F. This string then reduces to T. The parse completes with the reduction of T to the start symboi E.
+
+By definition, a reduction is the reverse of a step in a derivation (recall that in a derivation, a nonterminal in a sentential form is replaced by the body of one of its productions) . The goal of bottom-up parsing is therefore to construct a derivation in reverse. The following derivation corresponds to the parse in Fig. 4.25:
+
+```
+E ⇒ T ⇒ T*F ⇒ T*id ⇒ F*id ⇒ id*id
+```
+
+This derivation is in fact a rightmost derivation.
+
+> leftmost reduction <=> rightmost derivation
+
+---
+
+### 4.5.2 Handle Pruning
+
+Bottom-up parsing during a left-to-right scan of the input constructs a right­most derivation in reverse. Informally, a "handle" is a substring that matches the body of a production, and whose reduction represents one step along the reverse of a rightmost derivation.
+
+For example, adding subscripts to the tokens **id** for clarity, the handles during the parse of id₁ \* id₂ according to the expression grammar (4.1) are as in Fig. 4.26. 
+
+RIGHT SENTENTIAL FORM | HANDLE | REDUCING PRODOCUTION
+--- | --- | ---
+id₁ \* id₂ | id₁ | F → id
+F \* id₂ | F | T → F
+T \* id₂ | id₂ | F → id
+T \* F |  T \* F | E → T \* F
+
+> Figure 4.26: Handles during a parse of id₁ \* id₂
+
+Although T is the body of the production E → T, the symbol T is not a handle in the sentential form T \* id₂ . If T were indeed replaced by E, we would get the string E \* id2 , which cannot be derived from the start symbol E . Thus, the leftmost substring that matches the body of some production need not be a handle.
+
 
 
