@@ -25,6 +25,10 @@
 		 - [4.4.3 LL(1) Grammars](#de9f8354ab89765d867d91fd4d65a576)
 		 - [4.4.4 Nonrecursive Predictive Parsing](#701a22fbfddb88b2efe7d4931f27ff61)
 	 - [4.5 Bottom-Up Parsing](#f9623de73450682a749169cc00ff525f)
+		 - [4.5.1 Reductions](#75dad4de7472da6fd89ec89afdeead2a)
+		 - [4.5.2 Handle Pruning](#9ccb465b120d57587de0becf98dc5d13)
+		 - [4.5.3 Shift-Reduce Parsing](#9b6a846be2d88d97f6ed2aee1262fac8)
+		 - [4.5.4 Conflicts During Shift-Reduce Parsing](#1a4801efb2e3561712ddc97ef0ee0039)
 
 ...menuend
 
@@ -1027,6 +1031,7 @@ The largest class of grammars for which shift-reduce parsers can be built, the L
 Although it is too much work to build an LR parser by hand, tools called automatic parser generators make it easy to construct efficient LR parsers from suitable gram­mars. The concepts in this section are helpful for writing suitable grammars to make effective use of an LR parser generator. Algorithms for implementing parser generators appear in Section 4.7.
 
 
+<h2 id="75dad4de7472da6fd89ec89afdeead2a"></h2>
 ### 4.5.1 Reductions
 
 We can think of bottom-up parsing as the process of "reducing" a string *w* to the **start symbol** of the grammar. 
@@ -1061,6 +1066,7 @@ This derivation is in fact a rightmost derivation.
 
 ---
 
+<h2 id="9ccb465b120d57587de0becf98dc5d13"></h2>
 ### 4.5.2 Handle Pruning
 
 Bottom-up parsing during a left-to-right scan of the input constructs a right­most derivation in reverse. Informally, a "handle" is a substring that matches the body of a production, and whose reduction represents one step along the reverse of a rightmost derivation.
@@ -1098,6 +1104,7 @@ We then repeat this process. That is; we locate the handle β<sub>n-1</sub> in �
 
 ---
 
+<h2 id="9b6a846be2d88d97f6ed2aee1262fac8"></h2>
 ### 4.5.3 Shift-Reduce Parsing
 
 Shift-reduce parsing is a form of bottom-up parsing in which 
@@ -1196,6 +1203,7 @@ In both cases, after making a reduction the parser had to shift zero or more sym
 
 ---
 
+<h2 id="1a4801efb2e3561712ddc97ef0ee0039"></h2>
 ### 4.5.4 Conflicts During Shift-Reduce Parsing
 
 ***There are context-free grammars for which shift-reduce parsing cannot be used***. 
@@ -1229,8 +1237,36 @@ Another common setting for conflicts occurs when we know we have a han­dle, but
 
 Example 4.39 : Suppose we have a lexical analyzer that returns the token name **id** for all names, regardless of their type. Suppose also that out lan­guage invokes procedures by giving their names, with parameters surrounded by parentheses, and that arrays are referenced by the same syntax. Since the translation of indices in array references and parameters in procedure calls are different, we want to use different productions to generate lists of actual parameters and indices. Our grammar might therefore have (among others) productions such as those in Fig. 4.30.
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.30.png)
 
 > Figure 4.30: Productions involving procedure calls and array references
+
+A statement beginning with p(i , j) would appear as the token stream **id**(**id**, **id**) to the parser. After shifting the first three tokens onto the stack, a shift-reduce parser would be in configuration
+
+STACK | INPUT
+:--- | ---:
+... id ( id | , id ) ...
+
+It is evident that the **id** on top of the stack must be reduced, but by which production ? 
+
+The correct choice is production (5) if p is a procedure, but pro­duction (7) if p is an array. The stack does not tell which; information in the symbol table obtained from the declaration of p must be used.
+
+One solution is to change the token **id** in production (1) to **procid** and to use a more sophisticated lexical analyzer that returns the token name procid when it recognizes a lexeme that is the name of a procedure. Doing so would require the lexical analyzer to consult the symbol table before returning a token.
+
+If we made this modification, then on processing p(i , j) the parser would be either in the configuration
+
+STACK | INPUT
+:--- | ---:
+... procid ( id | , id ) ...
+
+or in the configuration above. 
+
+In the former case, we choose reduction by production (5); in the latter case by production (7). Notice how the symbol third from the top of the stack determines the reduction to be made, even though it is not involved in the reduction. Shift-reduce parsing can utilize information far down in the stack to guide the parse.
+
+---
+
+4.6 Introduction to LR Parsing: Simple LR
+
+
 
 
