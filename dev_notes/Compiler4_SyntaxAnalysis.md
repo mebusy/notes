@@ -1090,7 +1090,7 @@ Notice that the string w to the right of the handle must contain only terminal s
 
 A rightmost derivation in reverse can be obtained by "handle pruning." That is, we start with a string of terminals w to be parsed. If w is a sentence of the grammar at hand, then let w = γ<sub>n</sub>, where γ<sub>n</sub> is the ***n***th right-sentential form of some as yet unknown rightmost derivation
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_handle_pruning.png)
 
 
 
