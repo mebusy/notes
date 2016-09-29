@@ -1156,6 +1156,7 @@ In case (1), A is replaced by βBy, and then the rightmost nonterminal B in the 
 
 In other words:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F429_in_other_words.png)
 
 
 
