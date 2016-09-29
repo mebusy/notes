@@ -1078,12 +1078,20 @@ T \* F |  T \* F | E → T \* F
 
 Although T is the body of the production E → T, the symbol T is not a handle in the sentential form T \* id₂ . If T were indeed replaced by E, we would get the string E \* id2 , which cannot be derived from the start symbol E . Thus, the leftmost substring that matches the body of some production need not be a handle.
 
-Formally, if S ⇒<sup>\*</sup> αAw ⇒ αβw , as in Fig. 4.27, 
+Formally, if S ⇒<sup>\*</sup><sub>rm</sub> αAw ⇒<sub>rm</sub> αβw , as in Fig. 4.27, 
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.27.png)
 
 > Figure 4.27: A handle A → β in the parse tree for αβw
 
-then production A     rm rm
-in the position following a is a handle of a w. Alternatively, a handle of a right-sentential form   is a production A     and a position of   where the string   may be found, such that replacing   at that position by A produces the previous right-sentential form in a rightmost derivation of  .
+then production A → β in the position following α is a ***handle*** of αβw. Alternatively, a handle of a right-sentential form γ is a production A → β  and a position of γ where the string β may be found, such that replacing β at that position by A produces the previous right-sentential form in a rightmost derivation of γ.
+
+Notice that the string w to the right of the handle must contain only terminal symbols. For convenience, we refer to the body β rather than A → β as a handle. Note we say "a handle" rather than "the handle," because the grammar could be ambiguous, with more than one rightmost derivation of αβw. If a grammar is unambiguous, then every right-sentential form of the grammar has exactly one handle.
+
+A rightmost derivation in reverse can be obtained by "handle pruning." That is, we start with a string of terminals w to be parsed. If w is a sentence of the grammar at hand, then let w = γ<sub>n</sub>, where γ<sub>n</sub> is the ***n***th right-sentential form of some as yet unknown rightmost derivation
+
+
+
+
+
 
