@@ -1092,6 +1092,70 @@ A rightmost derivation in reverse can be obtained by "handle pruning." That is, 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_handle_pruning.png)
 
+To reconstruct this derivation in reverse order, we locate the handle β<sub>n</sub> in γ<sub>n</sub> and replace β<sub>n</sub> by the head of the relevant production A<sub>n</sub> → β<sub>n</sub> to obtain the previous right-sentential form γ<sub>n-1</sub>. Note that we do not yet know how handles are to be found, but we shall see methods of doing so shortly.
+
+We then repeat this process. That is; we locate the handle β<sub>n-1</sub> in γ<sub>n-1</sub> and reduce this handle to obtain the right-sentential form γ<sub>n-2</sub> .  by continuing this process we produce a right-sentential form consisting only of the start symbol S, then we halt and announce successful completion of parsing. The reverse of the sequence of productions used in the reductions is a rightmost derivation for the input string.
+
+---
+
+### 4.5.3 Shift-Reduce Parsing
+
+Shift-reduce parsing is a form of bottom-up parsing in which 
+
+ - a stack holds grammar symbols 
+ - and an input buffer holds the rest of the string to be parsed. 
+ - the handle always appears at the top of the stack just before it is identified as the handle.
+
+We use $ to mark the bottom of the stack and also the right end of the input. Conventionally, when discussing bottom-up parsing, we show the top of the stack on the right, rather than on the left as we did for top-down parsing. Initially, the stack is empty, and the string w is on the input, as follows:
+
+STACK | INPUT
+:--- | ---:
+$ | w$
+
+During a left-to-right scan of the input string, the parser shifts zero or more input symbols onto the stack, until it is ready to reduce a string β of grammar symbols on top of the stack. It then reduces β to the head of the appropriate production. The parser repeats this cycle until it has detected an error or until the stack contains the start symbol and the input is empty:
+
+STACK | INPUT
+:--- | ---:
+$S | $
+
+Upon entering this configuration, the parser halts and announces successful completion of parsing. Figure 4.28 steps through the actions a shift-reduce parser might take in parsing the input string id₁ \* id₂ according to the expression grammar (4.1).
+
+STACK | INPUT | ACTION
+:--- | ---:| ---
+$ | id₁ \* id₂ $ | shift
+$id₁ |  \* id₂ $ | reduce by F → id
+$F |  \* id₂ $ | reduce by T → F
+$T |  \* id₂ $ | shift
+$T \* |   id₂ $ | shift
+$T \* id₂ |   $ | reduce by F → id
+$T \* F |   $ | reduce by T → T \* F
+$T  |   $ | reduce by E → T
+$E  |   $ | accept
+
+> Figure 4.28: Configurations of a shift-reduce parser on input id₁ \* id₂
+
+While the primary operations are shift and reduce, there are actually four possible actions a shift-reduce parser can make: (1) shift, (2) reduce, (3) accept, and (4) error.
+
+ 1. Shift 
+ 	- Shift the next input symbol onto the top of the stack.
+ 2. Reduce
+ 	- The right end of the string to be reduced must be at the top of the stack. 
+ 	- Locate the left end of the string within the stack and decide with what nonterminal to replace the string.
+ 3. Accept
+ 	- Announce successful completion of parsing.
+ 4. Error
+ 	- Discover a syntax error and call an error recovery routine.
+
+The use of a stack in shift-reduce parsing is justified by an important fact: the handle will always eventually appear on top of the stack, never inside. 
+
+This fact can be shown by considering the possible forms of two successive steps in any rightmost derivation. Figure 4.29 illustrates the two possible cases. In case (1), A is replaced by  By, and then the rightmost nonterminal B in the body  By is replaced by  . In case (2), A is again expanded  rst, but this time the body is a string y of terminals only. The next rightmost nonterminal B will be somewhere to the left of y .
+
+
+
+
+
+
+
 
 
 
