@@ -1014,5 +1014,10 @@ TODO
 <h2 id="f9623de73450682a749169cc00ff525f"></h2>
 ## 4.5 Bottom-Up Parsing
 
+A bottom-up parse corresponds to the construction of a parse tree for an input string beginning at the leaves (the bottom) and working up towards the root (the top). It is convenient to describe parsing as the process of building parse trees, although a front end may in fact carry out a translation directly without building an explicit tree. The sequence of tree snapshots in Fig. 4.25 illustrates
+
+
+
+> Figure 4.25: A bottom-up parse for **id \* id**
 
 
