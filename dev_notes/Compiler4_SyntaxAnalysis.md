@@ -20,6 +20,7 @@
 		 - [4.3.3 Elimination of Left Recursion](#624a0832310d892b64c0055c925a43b5)
 		 - [4.3.4 Left Factoring](#be643cb3f54982ef5068037f07328208)
 		 - [4.3.5 Non-Context-Free Language Constructs](#6ab35fc39c91036ee511ab32ec742e63)
+	 - [4.4 Top-Down Parsing](#fdd5630c22d395b531ee91bd1e3729ac)
 		 - [4.4.1 Recursive-Descent Parsing](#47aaef28c6f12ae46c447c552fea2bfc)
 		 - [4.4.2 FIRST and FOLLOW](#0c9442bd1b7a93aefc72edca1708382f)
 		 - [4.4.3 LL(1) Grammars](#de9f8354ab89765d867d91fd4d65a576)
@@ -789,7 +790,8 @@ with suitable productions for ***expr***. Checking that the number of parameters
 
 ---
 
-4.4 Top-Down Parsing
+<h2 id="fdd5630c22d395b531ee91bd1e3729ac"></h2>
+## 4.4 Top-Down Parsing
 
 Top-down parsing can be viewed as the problem of constructing a parse tree for the input string, starting from the root and creating the nodes of the parse tree in preorder (depth-first, as discussed in Section 2.3.4). Equivalently, top-down parsing can be viewed as finding a leftmost derivation for an input string.
 
