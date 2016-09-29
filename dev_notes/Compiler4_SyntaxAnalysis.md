@@ -1078,5 +1078,12 @@ T \* F |  T \* F | E → T \* F
 
 Although T is the body of the production E → T, the symbol T is not a handle in the sentential form T \* id₂ . If T were indeed replaced by E, we would get the string E \* id2 , which cannot be derived from the start symbol E . Thus, the leftmost substring that matches the body of some production need not be a handle.
 
+Formally, if S ⇒<sup>\*</sup> αAw ⇒ αβw , as in Fig. 4.27, 
 
+
+
+> Figure 4.27: A handle A → β in the parse tree for αβw
+
+then production A     rm rm
+in the position following a is a handle of a w. Alternatively, a handle of a right-sentential form   is a production A     and a position of   where the string   may be found, such that replacing   at that position by A produces the previous right-sentential form in a rightmost derivation of  .
 
