@@ -1158,11 +1158,79 @@ In other words:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F429_in_other_words.png)
 
+Consider case (1) in reverse, where a shift-reduce parser has just reached the configuration
+
+STACK | INPUT
+:--- | ---:
+$αβγ | yz$
+
+
+The parser reduces the handle γ to B to reach the configuration
+
+STACK | INPUT
+:--- | ---:
+$αβB | yz$
+
+The parser can now shift the string *y* onto the stack by a sequence of zero or more shift moves to reach the configuration
+
+STACK | INPUT
+:--- | ---:
+$αβBy | z$
+
+with the handle βBy on top of the stack, and it gets reduced to A.
+
+
+Now consider case (2). In configuration
+
+STACK | INPUT
+:--- | ---:
+$αγ | xyz$
+
+the handle γ is on top of the stack. After reducing the handle γ to B, the parser can shift the string xy to get the next handle *y* on top of the stack, ready to be reduced to A:
+
+STACK | INPUT
+:--- | ---:
+$αBxy | z$
+
+In both cases, after making a reduction the parser had to shift zero or more symbols to get the next handle onto the stack. It never had to go into the stack to find the handle.
+
+---
+
+### 4.5.4 Conflicts During Shift-Reduce Parsing
+
+***There are context-free grammars for which shift-reduce parsing cannot be used***. 
+
+Every shift-reduce parser for such a grammar can reach a configuration in which the parser, knowing the entire stack contents and the next input symbol, cannot decide whether to shift or to reduce (***a shift /reduce conflict***), or cannot decide which of several reductions to make (***a reduce/reduce conflict***).
+
+We now give some examples of syntactic constructs that give rise to such grammars. Techni­cally, these grammars are not in the LR(k) class of grammars defined in Section 4.7; we refer to them as non-LR grammars. The k in LR(k) refers to the number of symbols of lookahead on the input. Grammars used in compiling usually fall in the LR(1) class, with one symbol of lookahead at most.
+
+Example 4.38 : An ambiguous grammar can never be LR. For example, con­sider the dangling-else grammar (4.14) of Section 4.3:
+
+```
+stmt → if expr then stmt 		(4.14)
+	 | if expr then stmt else stmt 
+	 | other
+```
+
+If we have a shift-reduce parser in configuration
+
+STACK | INPUT
+:--- | ---:
+$ ... if expr then stmt  | else ... $
+
+we cannot tell whether `if expr then stmt` is the handle, no matter what appears below it on the stack. Here there is a shift/reduce conflict. 
+
+Depending on what follows the **else** on the input, it might be correct to reduce `if expr then stmt` to ***stmt***, or it might be correct to shift **else** and then to look for another ***stmt*** to complete the alternative `if expr then stmt else stmt`.
+
+Note that shift-reduce parsing can be adapted to parse certain ambigu­ous grammars, such as the `if-then-else` grammar above. If we resolve the shift/reduce conflict on **else** in favor of shifting, the parser will behave as we expect, associating each **else** with the previous unmatched **then**. We discuss parsers for such ambiguous grammars in Section 4.8.
+
+
+Another common setting for conflicts occurs when we know we have a han­dle, but the stack contents and the next input symbol are insufficient to de­termine which production should be used in a reduction. The next example illustrates this situation.
+
+Example 4.39 : Suppose we have a lexical analyzer that returns the token name **id** for all names, regardless of their type. Suppose also that out lan­guage invokes procedures by giving their names, with parameters surrounded by parentheses, and that arrays are referenced by the same syntax. Since the translation of indices in array references and parameters in procedure calls are different, we want to use different productions to generate lists of actual parameters and indices. Our grammar might therefore have (among others) productions such as those in Fig. 4.30.
 
 
 
-
-
-
+> Figure 4.30: Productions involving procedure calls and array references
 
 
