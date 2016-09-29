@@ -1148,7 +1148,13 @@ While the primary operations are shift and reduce, there are actually four possi
 
 The use of a stack in shift-reduce parsing is justified by an important fact: the handle will always eventually appear on top of the stack, never inside. 
 
-This fact can be shown by considering the possible forms of two successive steps in any rightmost derivation. Figure 4.29 illustrates the two possible cases. In case (1), A is replaced by  By, and then the rightmost nonterminal B in the body  By is replaced by  . In case (2), A is again expanded  rst, but this time the body is a string y of terminals only. The next rightmost nonterminal B will be somewhere to the left of y .
+This fact can be shown by considering the possible forms of two successive steps in any rightmost derivation. Figure 4.29 illustrates the two possible cases. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.29.png)
+
+In case (1), A is replaced by βBy, and then the rightmost nonterminal B in the body  By is replaced by γ . In case (2), A is again expanded first, but this time the body is a string *y* of terminals only. The next rightmost nonterminal B will be somewhere to the left of *y* .
+
+In other words:
 
 
 
