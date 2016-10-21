@@ -462,8 +462,17 @@ This works, but it has problems.
 
 ### Reserved Words in the Symbol Table
 
-
-
+ - take the specific patterns for function names out of the lexer and put them in the symbol table
+ - add a new field to each symbol table entry: **funcptr**, a pointer to the C function to call if this entry is a function name.
+ ```
+ struct symtab {
+	char *name;
+	double (*funcptr) (); 	/* 1 */
+	double value;
+ } symtab[NSYMS];
+ ```
+ - calls the new routine **addfunc()** in **main()** to add each of the function names to the symbol table, then calls yyparse().
+ - We define a token **FUNC** to represent function names
 
 
 
