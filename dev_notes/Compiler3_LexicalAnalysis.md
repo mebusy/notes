@@ -472,6 +472,10 @@ Example 3.7 : Using these shorthands, we can rewrite the regular definition of E
 	number → digits (. digits)? ( E[+-]? digits)?
 ```
 
+yacc 中 , `.` 代表的是除换行外 任意字符。
+
+
+
 ---
 
 <h2 id="ebea52fcade7fe28010bd99d30398b5d"></h2>
