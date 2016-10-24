@@ -18,7 +18,7 @@
 		 - [size 和 length](#68f9be08cd9ecf22559e6344c3e26112)
 		 - [linux 命令: cd / ls / pwd](#bdefbd70450fa0311d2375e510b2c921)
 		 - [who/whos 查看当前工作环境中存储的所有的变量](#0de0197f8e28460fd27562a1bf797b8d)
-		 - [清除命令 clear [var]](#321c0450a7c9ea0dde8fce6ffd6dad42)
+		 - [清除命令 clear \[var\]](#321c0450a7c9ea0dde8fce6ffd6dad42)
 		 - [保存命令 save](#b7041e9f097d9daaa93af683073f1d7d)
 	 - [矩阵数据移动](#8354745ee8accd9d217e9405250ef364)
 	 - [矩阵运算](#ba5e7829f63ffdcc50f799fa90bbe124)
