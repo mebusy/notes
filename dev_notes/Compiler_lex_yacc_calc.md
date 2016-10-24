@@ -1,7 +1,23 @@
+...menustart
+
+ - [Yacc](#f4892ae9e5ea764a416fcc3b54a5bad9)
+	 - [A Yacc Parser](#04c3eaf154277491767399176f9e1cab)
+	 - [The Lexer](#9186d80d21b4c0a934c9a685bf9b3e78)
+	 - [Arithmetic Expressions and Ambiguity](#c22bb56c30e059edbf2ee5f6a7177e48)
+	 - [Variables and Typed Tokens](#f30b224b5f5b850b587e0d7b3e6ce825)
+	 - [Symbol Tables](#743974c76894dcbff127f41b4dcaa71b)
+	 - [Functions and Reserved Words](#8c439d47137d2b02b587a9cb733a993a)
+	 - [Reserved Words in the Symbol Table](#3ffc9c6bc2ffcb3c6cd4ac1be2b51ae4)
+
+...menuend
 
 
+
+
+<h2 id="f4892ae9e5ea764a416fcc3b54a5bad9"></h2>
 ## Yacc
 
+<h2 id="04c3eaf154277491767399176f9e1cab"></h2>
 ### A Yacc Parser
 
 ```
@@ -37,6 +53,7 @@ int main(void) {
 ```
 
 
+<h2 id="9186d80d21b4c0a934c9a685bf9b3e78"></h2>
 ### The Lexer
 
 Here is is a simple lexer to provide tokens for our parser:
@@ -68,6 +85,7 @@ In this first example, we explicitly declare **yylval**. In more complex parsers
 
 
 
+<h2 id="c22bb56c30e059edbf2ee5f6a7177e48"></h2>
 ### Arithmetic Expressions and Ambiguity
 
 > calc.y
@@ -121,6 +139,7 @@ here, we use '%prec UMINUS' to tell yacc to use the precedence of UMINUS   for t
 
 
 
+<h2 id="f30b224b5f5b850b587e0d7b3e6ce825"></h2>
 ### Variables and Typed Tokens
 
 to handle variables with single letter names.
@@ -266,6 +285,7 @@ The new declaration **%type** sets the type for non-terminals which otherwise ne
 ```
 
 
+<h2 id="743974c76894dcbff127f41b4dcaa71b"></h2>
 ### Symbol Tables
 
 Now we add the ability to use longer variable names.
@@ -426,6 +446,7 @@ int yywrap(void) {
 }
 ```
 
+<h2 id="8c439d47137d2b02b587a9cb733a993a"></h2>
 ### Functions and Reserved Words
 
 Now we will adds mathematical functions for square root, exponential, and logarithm.
@@ -460,6 +481,7 @@ This works, but it has problems.
 	- i.e., you cannot use **sqrt** as a variable name. This may or may not be a problem, depending on your intentions.
 
 
+<h2 id="3ffc9c6bc2ffcb3c6cd4ac1be2b51ae4"></h2>
 ### Reserved Words in the Symbol Table
 
  - take the specific patterns for function names out of the lexer and put them in the symbol table
