@@ -611,7 +611,7 @@ At the end we come back to A = SΛS⁻¹. ***That factorization is particularly 
 
 Difference equations u<sub>k</sub>₊₁ = Au<sub>k</sub> move forward in a finite number of finite steps. 
 
-A differential equation takes an infinite number of infinitesimal 无穷小 steps, but the two theories stay absolutely in parallel. 
+A differential equation takes an infinite number of infinitesimal (无穷小) steps, but the two theories stay absolutely in parallel. 
 
 It is the same analogy between the discrete and the continuous that appears over and over in mathematics. A good illustration is compound interest, when the time step gets shorter.
 
@@ -622,18 +622,26 @@ Yearly P₅ = (1.06)⁵P₀   which is   (1.06)⁵ 1000 = $1338.
 ```
 
 
+Now suppose the time step is reduced to a month. The new difference equation is P<sub>k</sub>₊₁ = (1 + .06/12)P<sub>k</sub>  . After 5 years, or 60 months, you have $11 more:
+
+```
+Monthly P₆₀ = (1 + .06/12)⁶⁰P₀   which is   (1.005)⁶⁰ 1000 = $1349.
+```
 
 
+The next step is to compound every day, on 5(365) days. This only helps a little:
 
+```
+Daily compounding   (1 + .06/365)⁵ˣ³⁶⁵ 1000  = $1349.83.
+```
 
+Finally, to keep their employees really moving, banks offer *continuous compounding*. The interest is added on at every instant, and the difference equation breaks down. You can hope that the treasurer does not know calculus (which is all about limits as Δt → 0). The bank could compound the interest N times a year, so Δt = 1/N:
 
+```
+Continuously   (1 + .06/N)⁵ˣᴺ 1000  → e·³⁰ 1000 = $1349.87.
+```
 
-
-
-
-
-
-
+Or the bank can switch to a differential equation - the limit of the difference equation P<sub>k</sub>₊₁ = (1 + .06 Δt)P<sub>k</sub>  . Moving P<sub>k</sub> to the left side and dividing by Δt,
 
 
 
