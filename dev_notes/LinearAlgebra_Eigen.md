@@ -644,15 +644,23 @@ Continuously   (1 + .06/N)⁵ˣᴺ 1000  → e·³⁰ 1000 = $1349.87.
 Or the bank can switch to a differential equation - the limit of the difference equation P<sub>k</sub>₊₁ = (1 + .06 Δt)P<sub>k</sub>  . Moving P<sub>k</sub> to the left side and dividing by Δt,
 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Discrete_continuous.png)
 
 
+*The solution is p(t) = e·⁰⁶ᵗ p₀*.   After t = 5 years, this again amounts to $1349.87. The principal stays finite, even when it is compounded every instant and the improvement over compounding every day is only four cents.
 
 
+### Fibonacci Numbers
 
+The main object of this section is to solve u<sub>k</sub>₊₁ = Au<sub>k</sub>. That leads us to Aᵏ and **powers of matrices**. Our second example is the famous ***Fibonacci sequence***:
 
+```
+Fibonacci numbers:  0, 1, 1, 2, 3, 5, 8, 13, ... 
+```
 
+**Fibonacci equation**: F<sub>k</sub>₊₂ = F<sub>k</sub>₊₁ + F<sub>k</sub>.   (2)
 
+That is the difference equation. It turns up in a most fantastic variety of applications, and deserves a book of its own. Leaves grow in a spiral pattern, and on the apple or oak you find five growths for every two turns around the stem. The pear tree has eight for every three turns, and the willow is 13:5. The champion seems to be a sunflower whose seeds chose an almost unbelievable ratio of F₁₂/F₁₃ = 144/233.
 
-
-
+How could we find the 1000th Fibonacci number, without starting at F₀ = 0 and F₁ = 1, and working all the way out to F₁₀₀₀? The goal is to solve the difference equation F<sub>k</sub>₊₂ = F<sub>k</sub>₊₁ + F<sub>k</sub>. **This can be reduced to a one-step equation u<sub>k</sub>₊₁ = Au<sub>k</sub>. Every step multiplies u<sub>k</sub> = (F<sub>k</sub>₊₁ , F<sub>k</sub>) by a matrix A**:
 
