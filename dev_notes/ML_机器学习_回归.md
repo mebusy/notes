@@ -23,7 +23,7 @@
 	 - [特征的选择](#b1505ac0c1809ef54996c36249ac3b2d)
 	 - [多项式回归 Polynomial regression](#e305d31c6b4117d97bf94a78f95187ee)
  - [线性回归一般流程](#32657d9928f53ceeadbcd4af4e8eb664)
-			 - [feature normalize](#904ecae43db6d1d30f2e51afe79291ca)
+	 - [feature normalize](#904ecae43db6d1d30f2e51afe79291ca)
 
 ...menuend
 

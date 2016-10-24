@@ -51,6 +51,11 @@ def createMenu4MD( path ):
 			id = m.hexdigest()
 
 			curTitleActualLevel = len(sharps) 
+
+			if len(all_title_level) > 0 :
+				if sorted(all_title_level)[0] == curTitleActualLevel:
+					all_title_level.clear()
+
 			all_title_level.add( curTitleActualLevel )
 
 			escaped_title = title.replace( "["  , "\\[")
