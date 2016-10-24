@@ -664,3 +664,23 @@ That is the difference equation. It turns up in a most fantastic variety of appl
 
 How could we find the 1000th Fibonacci number, without starting at F₀ = 0 and F₁ = 1, and working all the way out to F₁₀₀₀? The goal is to solve the difference equation F<sub>k</sub>₊₂ = F<sub>k</sub>₊₁ + F<sub>k</sub>. **This can be reduced to a one-step equation u<sub>k</sub>₊₁ = Au<sub>k</sub>. Every step multiplies u<sub>k</sub> = (F<sub>k</sub>₊₁ , F<sub>k</sub>) by a matrix A**:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Fibonacci_equation.png)
+
+The one-step system u<sub>k</sub>₊₁ = Au<sub>k</sub> is easy to solve. It starts from u₀. After one step it produces u₁ = Au₀. Then u₂ is Au₁, which is A²u₀. *Every step brings a multiplication by A*, and after k steps there are k multiplications:
+
+***The solution to a difference equation u<sub>k</sub>₊₁ = Au<sub>k</sub> is u<sub>k</sub> = Aᵏu₀.***
+
+The real problem is to find some quick way to compute the powers Aᵏ, and thereby find the 1000th Fibonacci number. The key lies in the eigenvalues and eigenvectors:
+
+**5G** If A can be diagonalized, A = SΛS⁻¹, then Aᵏ comes from Λᵏ:
+
+&nbsp;&nbsp;&nbsp;&nbsp; u<sub>k</sub> = Aᵏu₀ = (SΛS⁻¹)(SΛS⁻¹)...(SΛS⁻¹)u₀ = SΛᵏS⁻¹u₀.		&nbsp;&nbsp;&nbsp;&nbsp;(4)
+
+
+The columns of S are the eigenvectors of A. Writing S⁻¹u₀ = c, the solution becomes:
+
+
+
+
+
+
