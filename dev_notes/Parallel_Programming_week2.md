@@ -82,7 +82,7 @@ Multiple Processing Units controlled by the same control signals that the contro
 
  - If 3 blocks are assigned to an SM and each block has 256 threads, how many Warps are there in an SM ?
     - Each Block is divided into 256/32 = 8 Warps
-    - There are 8*3 = 24 Warps
+    - There are 8\*3 = 24 Warps
 
 Every time a warp is executs, all the 32 threads will be executed by the SIMD unit at the same time.
 

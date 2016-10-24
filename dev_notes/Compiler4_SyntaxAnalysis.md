@@ -30,6 +30,8 @@
 		 - [4.5.2 Handle Pruning](#9ccb465b120d57587de0becf98dc5d13)
 		 - [4.5.3 Shift-Reduce Parsing](#9b6a846be2d88d97f6ed2aee1262fac8)
 		 - [4.5.4 Conflicts During Shift-Reduce Parsing](#1a4801efb2e3561712ddc97ef0ee0039)
+		 - [4.6.1 Why LR Parsers?](#a2c6f8cde9a7fef6d36589483fdf000a)
+		 - [4.6.2 Items and the LR(O) Automaton](#4e6a3d241cec350eaca302f9ae19d4b3)
 
 ...menuend
 
@@ -1276,6 +1278,7 @@ Section 4.7 introduces two, more complex methods - canonical-LR and LALR - that 
 
 ---
 
+<h2 id="a2c6f8cde9a7fef6d36589483fdf000a"></h2>
 ### 4.6.1 Why LR Parsers?
 
 LR parsers are table-driven, much like the nonrecursive LL parsers of Sec­ tion 4.4.4. A grammar for which we can construct a parsing table using one of the methods in this section and the next is said to be an *LR grammar*. Intu­itively, for a grammar to be LR it is sufficient that a left-to-right shift-reduce parser be able to recognize handles of right-sentential forms when they appear on top of the stack.
@@ -1291,6 +1294,7 @@ The principal drawback of the LR method is that it is too much work to construct
 
 ---
 
+<h2 id="4e6a3d241cec350eaca302f9ae19d4b3"></h2>
 ### 4.6.2 Items and the LR(O) Automaton
 
 How does a shift-reduce parser know when to shift and when to reduce? For example, with stack contents $T and next input symbol \* in Fig. 4.28, how does the parser know that T on the top of the stack is not a handle, so the appropriate action is to shift and not to reduce T to E ?

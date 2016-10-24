@@ -480,9 +480,9 @@ As another example, the postfix notation for 9- (5+2) is 952+-. That is, 5+2 is 
 ***No parentheses are needed in postfix notation***, because the position and ***arity*** (number of arguments) of the operators permits only one decoding of a postfix expression. The "trick" is to repeatedly scan the postfix string from the left, until you find an operator. Then, look to the left for the proper number of operands, and group this operator with its operands. Evaluate the operator on the operands, and replace them by the result. Then repeat the process, continuing to the right and searching for another operator.
 
 
-Example 2.9 : Consider the postfix expression 952+-3*. 
+Example 2.9 : Consider the postfix expression 952+-3\*. 
 
-Scanning from the left, we first encounter the plus sign. Looking to its left we find operands 5 and 2. Their sum, 7, replaces 52+, and we have the string 97-3*. Now, the leftmost operator is the minus sign, and its operands are 9 and 7. Replacing these by the result of the subtraction leaves 23*. Last, the multiplication sign applies to 2 and 3, giving the result 6.  
+Scanning from the left, we first encounter the plus sign. Looking to its left we find operands 5 and 2. Their sum, 7, replaces 52+, and we have the string 97-3\*. Now, the leftmost operator is the minus sign, and its operands are 9 and 7. Replacing these by the result of the subtraction leaves 23\*. Last, the multiplication sign applies to 2 and 3, giving the result 6.  
 
 
 <h2 id="b7a3a963137495701696a042acfa2d64"></h2>
@@ -1930,14 +1930,14 @@ Figure 2.44: Pseudocode for function lvalue
  - function lvalue calls rvalue(z) to generate instructions, if needed, to compute the r-value of z
  - function lvalue then constructs and returns a new Access node with children for the array name y and the r-value of z.
 
-Example 2.19 : When node x represents the array access a[2*k] , the call lvalue(x) generates an instruction `t = 2 * k` and returns a new node x' representing the l-value a[t] , where *t* is a new temporary name.
+Example 2.19 : When node x represents the array access a[2\*k] , the call lvalue(x) generates an instruction `t = 2 * k` and returns a new node x' representing the l-value a[t] , where *t* is a new temporary name.
 
 In detail, the code fragment `return new Access (y, rvalue(z)); ` is reached with 
 
 	- y being the node for a 
-	- and z being the node for expression 2*k. 
+	- and z being the node for expression 2\*k. 
 
-The call rvalue(z) generates code for the expression 2*k and returns the new node z' representing the temporary name t. 
+The call rvalue(z) generates code for the expression 2\*k and returns the new node z' representing the temporary name t. 
 
 Function *rvalue* in Fig. 2.45 generates instructions and returns a possibly new node.
 
@@ -1997,9 +1997,9 @@ function *rvalue* generates
  		- a[j-k] is an Access node, which causes a new temporary t2 to be created, before function lvalue is called on this node
  - Recursively, rvalue is called on the expression j - k
  	- As a side-effect of this call, the three­ address statement t3 = j - k is generated
- - Then, returning to the call of lvalue on a[j -k] , the temporary t2 is assigned the r-value of the entire access-expression, that is, t2 = a [ t3 J .
+ - Then, returning to the call of lvalue on a[j -k] , the temporary t2 is assigned the r-value of the entire access-expression, that is, t2 = a [ t3 ] .
  - Now, we return to the call of *rvalue* on the *Op* node 2*a [j -k] , which earlier created temporary t1 . A three-address statement t1 = 2 * t2 is generated as a side-effect.
- - Last, the call to rvalue on the whole expression completes by calling *lvalue* on the left side a[iJ and then generating a three-address instruction a[iJ = t1.
+ - Last, the call to rvalue on the whole expression completes by calling *lvalue* on the left side a[iJ and then generating a three-address instruction a[i] = t1.
 
 <h2 id="db95f2e74506a3daa31c97e26bf78cc6"></h2>
 #### Better Code for Expressions

@@ -27,26 +27,6 @@
 <h2 id="139b6cfcf3c9439de790ce9742996f82"></h2>
 # Reflect 反射
 
-    Reflect 反射
-        没有运行期类型对象
-    9.4.1 reflect.Type
-        获取struct对象 成员字段信息，包括非导出和匿名字段
-        如果是指针，先使用 Elem方法获取目标类型
-        value-inferface 和 point-interface 方法集存在差异
-        直接使用名称 或 序号 访问字段
-        字段标签可实现简单元数据编程
-        可从基本类型获取所对应的复合类型
-        方法 Elem 可返回复合类型的 基类型
-        方法 Implements 判断是否实现了某个接口
-        获取对齐信息，对于内存自动分析很有用
-    9.4.2 reflect.Value
-        Value 和 Type 使用方法类似,包括 Elem方法
-        其他复合类型 array , slice ,map 取值示例
-        IsNil方法判断 接口 data值是否为空
-        复合类型修改示例 TODO
-    9.4.3 Method
-        可获取方法参数, 返回值类型等信息
-        动态调用, 按 in 列表准备所需参数 TODO
 
 
 <h2 id="0318e04c3f2eb7a1984ee102d5a2ed1c"></h2>

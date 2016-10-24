@@ -253,7 +253,7 @@ Example : red-black trees
 
 **Claim*: every red-black tree with n nodes has height <= 2log(n+1).
 
-***Proof*: 
+***Proof***: 
 
  - size n> 2ᵏ-1 , where k = minimum #nodes of root-null path (in a binary tree).
     - => k<=log₂(n+1) 

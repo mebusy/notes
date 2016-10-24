@@ -611,7 +611,7 @@ At the end we come back to A = SΛS⁻¹. ***That factorization is particularly 
 
 Difference equations u<sub>k</sub>₊₁ = Au<sub>k</sub> move forward in a finite number of finite steps. 
 
-A differential equation takes an infinite number of infinitesimal 无穷小 steps, but the two theories stay absolutely in parallel. 
+A differential equation takes an infinite number of infinitesimal (无穷小) steps, but the two theories stay absolutely in parallel. 
 
 It is the same analogy between the discrete and the continuous that appears over and over in mathematics. A good illustration is compound interest, when the time step gets shorter.
 
@@ -622,27 +622,132 @@ Yearly P₅ = (1.06)⁵P₀   which is   (1.06)⁵ 1000 = $1338.
 ```
 
 
+Now suppose the time step is reduced to a month. The new difference equation is P<sub>k</sub>₊₁ = (1 + .06/12)P<sub>k</sub>  . After 5 years, or 60 months, you have $11 more:
+
+```
+Monthly P₆₀ = (1 + .06/12)⁶⁰P₀   which is   (1.005)⁶⁰ 1000 = $1349.
+```
+
+
+The next step is to compound every day, on 5(365) days. This only helps a little:
+
+```
+Daily compounding   (1 + .06/365)⁵ˣ³⁶⁵ 1000  = $1349.83.
+```
+
+Finally, to keep their employees really moving, banks offer *continuous compounding*. The interest is added on at every instant, and the difference equation breaks down. You can hope that the treasurer does not know calculus (which is all about limits as Δt → 0). The bank could compound the interest N times a year, so Δt = 1/N:
+
+```
+Continuously   (1 + .06/N)⁵ˣᴺ 1000  → e·³⁰ 1000 = $1349.87.
+```
+
+Or the bank can switch to a differential equation - the limit of the difference equation P<sub>k</sub>₊₁ = (1 + .06 Δt)P<sub>k</sub>  . Moving P<sub>k</sub> to the left side and dividing by Δt,
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Discrete_continuous.png)
+
+
+*The solution is p(t) = e·⁰⁶ᵗ p₀*.   After t = 5 years, this again amounts to $1349.87. The principal stays finite, even when it is compounded every instant and the improvement over compounding every day is only four cents.
+
+
+### Fibonacci Numbers
+
+The main object of this section is to solve u<sub>k</sub>₊₁ = Au<sub>k</sub>. That leads us to Aᵏ and **powers of matrices**. Our second example is the famous ***Fibonacci sequence***:
+
+```
+Fibonacci numbers:  0, 1, 1, 2, 3, 5, 8, 13, ... 
+```
+
+**Fibonacci equation**: F<sub>k</sub>₊₂ = F<sub>k</sub>₊₁ + F<sub>k</sub>.   (2)
+
+That is the difference equation. It turns up in a most fantastic variety of applications, and deserves a book of its own. Leaves grow in a spiral pattern, and on the apple or oak you find five growths for every two turns around the stem. The pear tree has eight for every three turns, and the willow is 13:5. The champion seems to be a sunflower whose seeds chose an almost unbelievable ratio of F₁₂/F₁₃ = 144/233.
+
+How could we find the 1000th Fibonacci number, without starting at F₀ = 0 and F₁ = 1, and working all the way out to F₁₀₀₀? The goal is to solve the difference equation F<sub>k</sub>₊₂ = F<sub>k</sub>₊₁ + F<sub>k</sub>. **This can be reduced to a one-step equation u<sub>k</sub>₊₁ = Au<sub>k</sub>. Every step multiplies u<sub>k</sub> = (F<sub>k</sub>₊₁ , F<sub>k</sub>) by a matrix A**:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Fibonacci_equation.png)
+
+The one-step system u<sub>k</sub>₊₁ = Au<sub>k</sub> is easy to solve. It starts from u₀. After one step it produces u₁ = Au₀. Then u₂ is Au₁, which is A²u₀. *Every step brings a multiplication by A*, and after k steps there are k multiplications:
+
+***The solution to a difference equation u<sub>k</sub>₊₁ = Au<sub>k</sub> is u<sub>k</sub> = Aᵏu₀.***
+
+The real problem is to find some quick way to compute the powers Aᵏ, and thereby find the 1000th Fibonacci number. The key lies in the eigenvalues and eigenvectors:
+
+**5G** If A can be diagonalized, A = SΛS⁻¹, then Aᵏ comes from Λᵏ:
+
+&nbsp;&nbsp;&nbsp;&nbsp; u<sub>k</sub> = Aᵏu₀ = (SΛS⁻¹)(SΛS⁻¹)...(SΛS⁻¹)u₀ = SΛᵏS⁻¹u₀.		&nbsp;&nbsp;&nbsp;&nbsp;(4)
+
+
+The columns of S are the eigenvectors of A. Writing S⁻¹u₀ = c, the solution becomes:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_5g.png)
+
+After k steps, u<sub>k</sub> is a combination of the n "pure solutions" λᵏx.
+
+These formulas give two different approaches to the same solution u<sub>k</sub> = SΛᵏS⁻¹u₀. The first formula recognized that Aᵏ is identical with SΛᵏS⁻¹, and we could stop there.
+But the second approach brings out the analogy with a differential equation: ***The pure exponential solutions e<sup>λit</sup>xᵢ are now the pure powers λᵢᵏxᵢ***. ? The eigenvectors xᵢ are amplified by the eigenvalues λᵢ. By combining these special solutions to match u₀ - that is where *c* came from - we recover the correct solution u<sub>k</sub> = SΛᵏS⁻¹u₀.
+
+In any specific example like Fibonacci's, the first step is to find the eigenvalues:
+
+```
+A - λI = ⎡1-λ   1 ⎤  has det(A - λI) = λ² - λ - 1
+		 ⎣ 1   -λ ⎦
+
+Two eigenvalues: λ₁ = ( 1 + √5 ) / 2 m
+				 λ₂ = ( 1 + √5 ) / 2 .
+```
+
+The second row of A - λI is (1, -λ). To get (A - λI )x = O, the eigen vector is x = (λ, 1). The first Fibonacci numbers F₀ = 0 and F₁ = 1 go into u₀, and S⁻¹u₀ = c:
+
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Fib1.png)
+
+Those are the constants in u<sub>k</sub> = c₁λ₁ᵏx₁ + c₂λ₂ᵏx₂. Both eigenvectors x₁ and x₂ have second component 1. That leaves F<sub>k</sub> = c₁λ₁ᵏ + c₂λ₂ᵏ  in the second component of u<sub>k</sub>:
+
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Fib2.png)
+
+This is the answer we wanted.
+
+The fractions and square roots look surprising because Fibonacci's rule F<sub>k</sub>₊₂ = F<sub>k</sub>₊₁ + F<sub>k</sub> must produce whole numbers. Somehow that formula for F<sub>k</sub> must give an integer. In fact, since the second term [ ( 1-√5 ) /2 ] / √5  is always less than 2, it must just move the first term to the nearest integer:
+
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Fib3.png)
+
+This is an enormous number, and F₁₀₀₁ will be even bigger. The fractions are becoming insignificant, and the ratio F₁₀₀₁ /F₁₀₀₀ must be very close to (1 + √5 )/2 ≈ 1.618. Since λ₂ᵏ is insignificant compared to λ₁ᵏ, the ratio F<sub>k</sub>₊₁ / F<sub>k</sub> approaches λ₁.
+
+That is a typical difference equation, leading to the powers of 
+
+```
+A = ⎡1 1⎤ .
+    ⎣1 0⎦
+```
+
+It involved √5 because the eigenvalues did. If we choose a matrix with λ₁ = 1 and λ₂ = 6, we can focus on the simplicity of the computation -- after A has been diagonalized:
+
+```
+A = ⎡-4 -5⎤  has λ 1 and 6,  with x₁ = ⎡ 1⎤, and x₂ = ⎡-1⎤.
+    ⎣10 11⎦                            ⎣-1⎦           ⎣ 2⎦
+```
+
+```
+Aᵏ = SΛᵏS⁻¹ is ⎡ 1 -1⎤⎡1ᵏ 0 ⎤⎡2 1⎤ = ⎡  2-6ᵏ    1-6ᵏ ⎤.
+               ⎣-1  2⎦⎣0  6ᵏ⎦⎣1 1⎦   ⎣-2+2·6ᵏ -1+2·6ᵏ⎦
+```
+
+The powers 6ᵏ and 1ᵏ appear in that last matrix Aᵏ, mixed in by the eigenvectors.
+
+For the difference equation u<sub>k</sub>₊₁ = Au<sub>k</sub>, we emphasize the main point. Every eigenvector x produces a "pure solution" with powers of λ:
+
+```
+One solution is   u₀ = x, u₁ = λx, u₂ = λ²x, ...
+```
+
+When the initial u₀ is an eigenvector x, this is the solution: u<sub>k</sub> = λᵏx. In general u₀ is not an eigenvector. But if u₀ is a combination of eigenvectors, the solution u<sub>k</sub> is the same combination of these special solutions.
+
+**5H** If u₀ = c₁x₁ + ... + cnxn, then after k steps u<sub>k</sub> = c₁ᵏx₁ + ... + cnᵏxn. Choose the c's to match the starting vector u₀ :
+
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Fib6.png)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### Markov Matrices
 
 
 

@@ -133,7 +133,7 @@ Show as the pic, there are two different edges(I,II) whose tail is in X , and ha
     - 在算法执行过程中key的值是在不断逼近最终结果但在过程中不一定就等于长度。
  
 
-**Points**: by invariants , Extract-min yields correct vertex W* to add to X next. and we set A[W*] to key[W*]
+**Points**: by invariants , Extract-min yields correct vertex W\* to add to X next. and we set A[W\*] to key[W\*]
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Dijkstra_heap_speedup.PNG)
 

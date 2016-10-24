@@ -128,7 +128,7 @@ B[ty][Col]
  - Commonly used for audio processing
     - Mask size is usually an ***odd*** number of elements for symmetry 
  - Calculation of P[2] = 57
- - P[3] = 2*3 + 3*4 + 4*5 + 5*4 + 6*3 = 76
+ - P[3] = 2\*3 + 3\*4 + 4\*5 + 5\*4 + 6\*3 = 76
  
 <h2 id="3b58f1cfbef85d38d2d05cd13d6092c7"></h2>
 #### 1D Convolution Boundary Condition

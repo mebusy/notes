@@ -4,7 +4,7 @@
 	 - [1.GDB](#6d2dd9e13619a9a30d228258e738bf79)
 	 - [2. Data Race](#083909d82e2fa7cbd29182329ca0af32)
  - [测试](#db06c78d1e24cf708a14ce81c9b617ec)
-		 - [自带代码测试,性能测试,覆盖率测试框架](#cdc2fd32f8686b30a27eec945d4c89c2)
+	 - [自带代码测试,性能测试,覆盖率测试框架](#cdc2fd32f8686b30a27eec945d4c89c2)
 	 - [1. Test](#3e6d52aaaab83cf1b430ee1b852f8e80)
 		 - [使用 testing.T 的相关方法 决定测试流程和状态](#7c48b716c9cbed3ac77ee9481f9719ef)
 		 - [默认go test执行所有单元测试函数,支持go build参数](#3dc0daaccf38c2fd1bccb719ea603476)
@@ -20,23 +20,6 @@
 ...menuend
 
 
-
-    调试
-        1.GDB
-        2. Data Race
-    测试
-            自带代码测试,性能测试,覆盖率测试框架
-        1. Test
-            使用 testing.T 的相关方法 决定测试流程和状态
-            默认go test执行所有单元测试函数,支持go build参数
-            可重写TestMain 函数,处理一下setup/teardown操作
-        2. Benchmark
-            性能测试要运行足够多的次数
-            go test不会执行性能测试函数,需使用-bench 参数
-        3. Example
-        4. Cover
-            用浏览器输出结果
-        5.PProf
 
 
 <h2 id="b7c0bfff1b6f1cc255716a1cb8b68011"></h2>

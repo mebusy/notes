@@ -51,9 +51,17 @@ def createMenu4MD( path ):
 			id = m.hexdigest()
 
 			curTitleActualLevel = len(sharps) 
+
+			if len(all_title_level) > 0 :
+				if sorted(all_title_level)[0] == curTitleActualLevel:
+					all_title_level.clear()
+
 			all_title_level.add( curTitleActualLevel )
 
-			menu +=   ( '%s - [%s](#%s)' % ( '\t' * (  sorted(all_title_level).index( curTitleActualLevel )  )  , title ,  id  ) )  +  '\n'
+			escaped_title = title.replace( "["  , "\\[")
+			escaped_title = escaped_title.replace( "]"  , "\\]")
+			
+			menu +=   ( '%s - [%s](#%s)' % ( '\t' * (  sorted(all_title_level).index( curTitleActualLevel )  )  , escaped_title ,  id  ) )  +  '\n'
 
 			body += '<h2 id="%s"></h2>\n' % id 
 			#print sharps, title
