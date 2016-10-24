@@ -743,9 +743,11 @@ When the initial u₀ is an eigenvector x, this is the solution: u<sub>k</sub> =
 
 **5H** If u₀ = c₁x₁ + ... + cnxn, then after k steps u<sub>k</sub> = c₁ᵏx₁ + ... + cnᵏxn. Choose the c's to match the starting vector u₀ :
 
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Fib6.png)
 
 
 
+### Markov Matrices
 
 
 
