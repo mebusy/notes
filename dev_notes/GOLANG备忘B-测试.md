@@ -21,23 +21,6 @@
 
 
 
-    调试
-        1.GDB
-        2. Data Race
-    测试
-            自带代码测试,性能测试,覆盖率测试框架
-        1. Test
-            使用 testing.T 的相关方法 决定测试流程和状态
-            默认go test执行所有单元测试函数,支持go build参数
-            可重写TestMain 函数,处理一下setup/teardown操作
-        2. Benchmark
-            性能测试要运行足够多的次数
-            go test不会执行性能测试函数,需使用-bench 参数
-        3. Example
-        4. Cover
-            用浏览器输出结果
-        5.PProf
-
 
 <h2 id="b7c0bfff1b6f1cc255716a1cb8b68011"></h2>
 # 调试

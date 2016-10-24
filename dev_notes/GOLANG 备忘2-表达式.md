@@ -37,40 +37,6 @@
 
 
 
-    2.2 运算符
-        表达式(Expressions)
-            一元操作符
-            二元操作符
-            ^作为一元操作符是求反,作为2元操作符是异或，&^组合表示c中的&(~)
-            ++ 和 –- 不再是表达式，而是语句. *p++是(*p)++，而不是*(p++)
-    2.3 初始化
-        初始化复合对象,必须使⽤用类型标签,且左⼤大括号必须在类型尾部。
-        初始化值以 "," 分隔。可以多⾏,但最后一⾏必须以 "," 或 "}" 结尾。
-    2.4 控制流
-        2.4.1 if - else if - if
-            支持初始化语句,可定义代码块局部变量
-            不支持三元操作符 "a > b ? a : b"
-        2.4.2 for
-            常规循环 : for i, n := 0, len(s); i < n; i++ {
-            替代while : for n > 0 {
-            替代while(true) : for {
-            在初始化语句中计算循环需要的数据是个好主意, 例如 计算长度
-        2.4.3 Range 类似迭代器操作,返回 (索引, 值) 或 (键, 值)。
-            for i := range s //忽略2nd value
-            for _, c := range s { //忽略 1st value
-            for range s { // 忽略返回值
-            !!! 注意: range 会复制对象
-        2.4.4 Switch
-            分支表达式可以是任意类型，不限于常量
-            自动 break
-            使用 fallthrough 继续下一个分支，不再判断条件。
-            可以省略条件表达式，当 if - else if - else 用
-        2.4.5 Goto, Break, Continue
-            配合标签，goto,break,continue可以在循环内跳转
-            break 可用语 for, switch, select
-            continue 只能用语 for 循环
-
-
 
 <h2 id="d7e9882ce8a2f889bafef2117c8667bb"></h2>
 ## 2.2 运算符
