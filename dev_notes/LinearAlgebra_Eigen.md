@@ -679,6 +679,23 @@ The real problem is to find some quick way to compute the powers Aᵏ, and there
 
 The columns of S are the eigenvectors of A. Writing S⁻¹u₀ = c, the solution becomes:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_5g.png)
+
+After k steps, u<sub>k</sub> is a combination of the n "pure solutions" λᵏx.
+
+These formulas give two different approaches to the same solution u<sub>k</sub> = SΛᵏS⁻¹u₀. The first formula recognized that Aᵏ is identical with SΛᵏS⁻¹, and we could stop there.
+But the second approach brings out the analogy with a differential equation: ***The pure exponential solutions e<sup>λit</sup>xᵢ are now the pure powers λᵢᵏxᵢ***. ? The eigenvectors xᵢ are amplified by the eigenvalues λᵢ. By combining these special solutions to match u₀ - that is where *c* came from - we recover the correct solution u<sub>k</sub> = SΛᵏS⁻¹u₀.
+
+In any specific example like Fibonacci's, the first step is to find the eigenvalues:
+
+```
+A - λI = ⎡1-λ   1 ⎤  has det(A - λI) = λ² - λ - 1
+		 ⎣ 1   -λ ⎦
+
+Two eigenvalues: λ = ( 1 ± √5 ) / 2 .
+```
+
+
 
 
 
