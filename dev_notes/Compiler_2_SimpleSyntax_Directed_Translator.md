@@ -1997,9 +1997,9 @@ function *rvalue* generates
  		- a[j-k] is an Access node, which causes a new temporary t2 to be created, before function lvalue is called on this node
  - Recursively, rvalue is called on the expression j - k
  	- As a side-effect of this call, the three­ address statement t3 = j - k is generated
- - Then, returning to the call of lvalue on a[j -k] , the temporary t2 is assigned the r-value of the entire access-expression, that is, t2 = a [ t3 J .
+ - Then, returning to the call of lvalue on a[j -k] , the temporary t2 is assigned the r-value of the entire access-expression, that is, t2 = a [ t3 ] .
  - Now, we return to the call of *rvalue* on the *Op* node 2*a [j -k] , which earlier created temporary t1 . A three-address statement t1 = 2 * t2 is generated as a side-effect.
- - Last, the call to rvalue on the whole expression completes by calling *lvalue* on the left side a[iJ and then generating a three-address instruction a[iJ = t1.
+ - Last, the call to rvalue on the whole expression completes by calling *lvalue* on the left side a[iJ and then generating a three-address instruction a[i] = t1.
 
 <h2 id="db95f2e74506a3daa31c97e26bf78cc6"></h2>
 #### Better Code for Expressions
