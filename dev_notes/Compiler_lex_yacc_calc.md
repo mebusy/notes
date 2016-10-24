@@ -472,7 +472,7 @@ This works, but it has problems.
  } symtab[NSYMS];
  ```
  - calls the new routine **addfunc()** in **main()** to add each of the function names to the symbol table, then calls yyparse().
- - We define a token **FUNC** to represent function names
+
 
 
 
