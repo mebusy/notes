@@ -426,9 +426,9 @@ This picture was shown earlier , and we assume that user has specified that we'r
 <h2 id="a5760ea6ff2d89622a671912f7dccbae"></h2>
 #### Precessing a Picture with a 2D Grid
 
-a 62*76 picture.
+a 62\*76 picture.
 
-We assume that we're going to be using a 16*16 thread block , 16 threads in the y , 16 threads in the x , to process the picture.
+We assume that we're going to be using a 16\*16 thread block , 16 threads in the y , 16 threads in the x , to process the picture.
 
 So we need launch in total 4 threads blocks in the y to cover all the 62 pixels , so that we have 64 threads.
 
