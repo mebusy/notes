@@ -692,8 +692,58 @@ In any specific example like Fibonacci's, the first step is to find the eigenval
 A - λI = ⎡1-λ   1 ⎤  has det(A - λI) = λ² - λ - 1
 		 ⎣ 1   -λ ⎦
 
-Two eigenvalues: λ = ( 1 ± √5 ) / 2 .
+Two eigenvalues: λ₁ = ( 1 + √5 ) / 2 m
+				 λ₂ = ( 1 + √5 ) / 2 .
 ```
+
+The second row of A - λI is (1, -λ). To get (A - λI )x = O, the eigen vector is x = (λ, 1). The first Fibonacci numbers F₀ = 0 and F₁ = 1 go into u₀, and S⁻¹u₀ = c:
+
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Fib1.png)
+
+Those are the constants in u<sub>k</sub> = c₁λ₁ᵏx₁ + c₂λ₂ᵏx₂. Both eigenvectors x₁ and x₂ have second component 1. That leaves F<sub>k</sub> = c₁λ₁ᵏ + c₂λ₂ᵏ  in the second component of u<sub>k</sub>:
+
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Fib2.png)
+
+This is the answer we wanted.
+
+The fractions and square roots look surprising because Fibonacci's rule F<sub>k</sub>₊₂ = F<sub>k</sub>₊₁ + F<sub>k</sub> must produce whole numbers. Somehow that formula for F<sub>k</sub> must give an integer. In fact, since the second term [ ( 1-√5 ) /2 ] / √5  is always less than 2, it must just move the first term to the nearest integer:
+
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Fib3.png)
+
+This is an enormous number, and F₁₀₀₁ will be even bigger. The fractions are becoming insignificant, and the ratio F₁₀₀₁ /F₁₀₀₀ must be very close to (1 + √5 )/2 ≈ 1.618. Since λ₂ᵏ is insignificant compared to λ₁ᵏ, the ratio F<sub>k</sub>₊₁ / F<sub>k</sub> approaches λ₁.
+
+That is a typical difference equation, leading to the powers of 
+
+```
+A = ⎡1 1⎤ .
+    ⎣1 0⎦
+```
+
+It involved √5 because the eigenvalues did. If we choose a matrix with λ₁ = 1 and λ₂ = 6, we can focus on the simplicity of the computation -- after A has been diagonalized:
+
+```
+A = ⎡-4 -5⎤  has λ 1 and 6,  with x₁ = ⎡ 1⎤, and x₂ = ⎡-1⎤.
+    ⎣10 11⎦                            ⎣-1⎦           ⎣ 2⎦
+```
+
+```
+Aᵏ = SΛᵏS⁻¹ is ⎡ 1 -1⎤⎡1ᵏ 0 ⎤⎡2 1⎤ = ⎡  2-6ᵏ    1-6ᵏ ⎤.
+               ⎣-1  2⎦⎣0  6ᵏ⎦⎣1 1⎦   ⎣-2+2·6ᵏ -1+2·6ᵏ⎦
+```
+
+The powers 6ᵏ and 1ᵏ appear in that last matrix Aᵏ, mixed in by the eigenvectors.
+
+For the difference equation u<sub>k</sub>₊₁ = Au<sub>k</sub>, we emphasize the main point. Every eigenvector x produces a "pure solution" with powers of λ:
+
+```
+One solution is   u₀ = x, u₁ = λx, u₂ = λ²x, ...
+```
+
+When the initial u₀ is an eigenvector x, this is the solution: u<sub>k</sub> = λᵏx. In general u₀ is not an eigenvector. But if u₀ is a combination of eigenvectors, the solution u<sub>k</sub> is the same combination of these special solutions.
+
+**5H** If u₀ = c₁x₁ + ... + cnxn, then after k steps u<sub>k</sub> = c₁ᵏx₁ + ... + cnᵏxn. Choose the c's to match the starting vector u₀ :
+
+
 
 
 
