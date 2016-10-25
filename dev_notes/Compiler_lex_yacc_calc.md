@@ -8,6 +8,9 @@
 	 - [Symbol Tables](#743974c76894dcbff127f41b4dcaa71b)
 	 - [Functions and Reserved Words](#8c439d47137d2b02b587a9cb733a993a)
 	 - [Reserved Words in the Symbol Table](#3ffc9c6bc2ffcb3c6cd4ac1be2b51ae4)
+ - [A Menu Generation Language](#7c126d1eae3bd63f0f8148348ee5a9ac)
+	 - [Overview of the MGL](#d504e2653122de9057c354b89fbf789b)
+ - [Parsing SQL](#696fd52bce92183aa43d6186ed737d33)
 
 ...menuend
 
@@ -614,8 +617,10 @@ char *s;
 ```
 
 
+<h2 id="7c126d1eae3bd63f0f8148348ee5a9ac"></h2>
 ## A Menu Generation Language
 
+<h2 id="d504e2653122de9057c354b89fbf789b"></h2>
 ### Overview of the MGL
 
 We’ll develop a languagethat can be used to generatecustom menu interfaces.
@@ -784,6 +789,7 @@ item "main"	 command main  action menu main
 	- we precede the choice of visible or invisible with the new keyword **attribute**
 - TODO
 
+<h2 id="696fd52bce92183aa43d6186ed737d33"></h2>
 ## Parsing SQL
 
 

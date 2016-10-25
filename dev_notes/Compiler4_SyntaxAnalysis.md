@@ -32,6 +32,10 @@
 		 - [4.5.4 Conflicts During Shift-Reduce Parsing](#1a4801efb2e3561712ddc97ef0ee0039)
 		 - [4.6.1 Why LR Parsers?](#a2c6f8cde9a7fef6d36589483fdf000a)
 		 - [4.6.2 Items and the LR(O) Automaton](#4e6a3d241cec350eaca302f9ae19d4b3)
+	 - [4.8 Using Ambiguous Grammars](#becfa08423ca76c3b66ebef33635a92e)
+		 - [4.8.1 Precedence and Associativity to Resolve Conflicts](#b5c45cae2166b520f13ac35f70fe79df)
+		 - [4.8.2 The "Dangling-Else" Ambiguity](#74ef872b3b507835141a77ac0067aa66)
+		 - [4.8.3 Error Recovery in LR Parsing (TODO)](#90be1bacbbcce10de3867b08f49b8ca7)
 
 ...menuend
 
@@ -1361,6 +1365,7 @@ TODO
 
 ---
 
+<h2 id="becfa08423ca76c3b66ebef33635a92e"></h2>
 ## 4.8 Using Ambiguous Grammars
 
 It is a fact that every ambiguous grammar fails to be LR and thus is not in any of the classes of grammars discussed in the previous two sections.
@@ -1371,6 +1376,7 @@ Although the grammars we use are ambiguous, in all cases we specify dis­ambigua
 
 We stress that ambiguous constructs should be used sparingly and in a strictly controlled fashion; otherwise, there can be no guarantee as to what language is recognized by a parser.
 
+<h2 id="b5c45cae2166b520f13ac35f70fe79df"></h2>
 ### 4.8.1 Precedence and Associativity to Resolve Conflicts
 
 ```
@@ -1411,6 +1417,7 @@ Proceeding in this way, we obtain the LR parsing table shown in Fig. 4.49.
 
 Productions 1 through 4 are `E → E+E`,`E → E*E`, `→ (E)`,and `E → id`, respectively. It is interesting that a similar parsing action table would be produced by eliminating the reductions by the single productions E → T and T → F from the SLR table for the unambiguous expression grammar (4.1) shown in Fig. 4.37. Ambiguous grammars like the one for expressions can be handled in a similar way in the context of LALR  and canonical LR parsing.
 
+<h2 id="74ef872b3b507835141a77ac0067aa66"></h2>
 ### 4.8.2 The "Dangling-Else" Ambiguity
 
 ```
@@ -1432,14 +1439,36 @@ S  → i S e S | i S | a
 
 The sets of LR(O) items for grammar (4.67) are shown in Fig. 4.50. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.50.png)
+
+The ambi­guity in (4.67) gives rise to a shift/reduce conflict in I₄. There, `S  → iS·eS` calls for a shift of *e* and, since FOLLOW(S) = {e, $}, item `S  → iS·` calls for reduction by `S  → iS` on input *e*.
+
+Translating back to the if-then-else terminology, given
+
+```
+	if expr then stmt
+```
+
+on the stack and **else** as the first input symbol, should we shift **else** onto the stack (i.e., shift *e*) or reduce `if expr then stmt` (i.e, reduce by S → iS)? The answer is that we should shift **else**, because it is "associated" with the previous **then**. In the terminology of grammar (4.67) , the *e* on the input, standing for **else**, can only form part of the body beginning with the `iS` now on the top of the stack. If what follows *e* on the input cannot be parsed as an `S`, completing body `iSeS`, then it can be shown that there is no other parse possible.
+
+We conclude that the shift/reduce conflict in I₄ should be resolved in favor of shift on input *e*. The SLR parsing table constructed from the sets of items of Fig. 4.48, using this resolution of the parsing-action conflict in I₄ on input *e*, is shown in Fig. 4.51. Productions 1 through 3 are `S  → i S e S `, `S  → i S`, and `S  → a `, respectively.
 
 
-
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.51.png)
 > Figure 4.51: LR parsing table for the "dangling-else" grammar
 
+For example, on input `iiaea`, the parser makes the moves shown in Fig. 4.52, corresponding to the correct resolution ofthe "dangling-else." At line (5), state 4 selects the shift action on input e, whereas at line (9) , state 4 calls for reduction by `S  → i S` is on input $.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.52.png)
 
+By way of comparison, if we are unable to use an ambiguous grammar to specify conditional statements, then we would have to use a bulkier (笨重的) grammar along the lines of Example 4.16.
+
+---
+
+<h2 id="90be1bacbbcce10de3867b08f49b8ca7"></h2>
+### 4.8.3 Error Recovery in LR Parsing (TODO)
+
+---
 
 
 
