@@ -35,6 +35,8 @@ The most general approach to syntax-directed translation is to construct a parse
 
 A *syntax-directed definition* (SDD) is a context-free grammar together with attributes and rules. Attributes are associated with grammar symbols and rules are associated with productions. If X is a symbol and a is one of its attributes, then we write X.a to denote the value of a at a particular parse-tree node labeled X. If we implement the nodes of the parse tree by records or objects, then the attributes of X can be implemented by data fields in the records that represent the nodes for X. Attributes may be of any kind: numbers, types, table references, or strings, for instance. The strings may even be long sequences of code, say code in the intermediate language used by a compiler.
 
+---
+
 ### 5.1.1 Inherited and Synthesized Attributes
 
 We shall deal with two kinds of attributes for nonterminals:
@@ -47,6 +49,40 @@ While we do not allow an inherited attribute at node N to be defined in terms of
 Terminals can have synthesized attributes, but not inherited attributes. At­tributes for terminals have lexical values that are supplied by the lexical ana­lyzer; there are no semantic rules in the SDD itself for computing the value of an attribute for a terminal.
 
 Example 5.1 : The SDD in Fig. 5.1 is based on our familiar grammar for arithmetic expressions with operators + and \*. It evaluates expressions termi­nated by an endmarker n. In the SDD, each of the nonterminals has a single synthesized attribute, called val. We also suppose that the terminal **digit** has a synthesized attribute *lexval*, which is an integer value returned by the lexical analyzer.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F5.1.png)
+
+> Figure 5.1: Syntax-directed de nition of a simple desk calculator
+
+
+An SDD that involves only synthesized attributes is called S-attributed; the SDD in Fig. 5.1 has this property. In an S-attributed SDD, each rule computes an attribute for the nonterminal at the head of a production from attributes taken from the body of the production.
+
+For simplicity, the examples in this section have semantic rules without side effects. In practice, it is convenient to allow SDD's to have limited side effects, such as printing the result computed by a desk calculator or interacting with a symbol table. Once the order of evaluation of attributes is discussed in Section 5.2, we shall allow semantic rules to compute arbitrary functions, possibly involving side effects.
+
+An S-attributed SDD can be implemented naturally in conjunction with an LR parser. In fact, the SDD in Fig. 5.1 mirrors the Yacc program of Fig. 4.58, which illustrates translation during LR parsing. The difference is that, in the rule for production 1, the Yacc program prints the value E.val as a side effect, instead of defining the attribute L.val.
+
+An SDD without side effects is sometimes called an attribute grammar. The rules in an attribute grammar define the value of an attribute purely in terms of the values of other attributes and constants.
+
+---
+
+### 5.1.2 Evaluating an SDD at the Nodes of a Parse Tree  (TODO)
+
+---
+
+## 5.3 Applications of Syntax-Directed Translation
+
+The syntax-directed translation techniques in this chapter will be applied in Chapter 6 to type checking and intermediate-code generation. Here, we consider selected examples to illustrate some representative SDD's.
+
+The main application in this section is the construction of syntax trees. Since some compilers use syntax trees as an intermediate representation, a common form of SDD turns its input string into a tree. To complete the translation to intermediate code, the compiler may then walk the syntax tree, using another set of rules that are in effect an SDD on the syntax tree rather than the parse tree. (Chapter 6 also discusses approaches to intermediate-code generation that apply an SDD without ever constructing a tree explicitly.) 
+
+We consider two SDD's for constructing syntax trees for expressions. The first, an S-attributed definition, is suitable for use during bottom-up parsing. The second, L-attributed, is suitable for use during top-down parsing.
+
+The final example of this section is an L-attributed definition that deals with basic and array types.
+
+
+---
+
+### 5.3.1 Construction of Syntax Trees  (TODO)
 
 
 
