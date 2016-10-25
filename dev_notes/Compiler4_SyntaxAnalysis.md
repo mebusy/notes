@@ -1407,4 +1407,46 @@ In summary, assuming + is left associative, the action of state 7 on input + sho
 
 Proceeding in this way, we obtain the LR parsing table shown in Fig. 4.49.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compile_F4.49.png)
+
+Productions 1 through 4 are `E → E+E`,`E → E*E`, `→ (E)`,and `E → id`, respectively. It is interesting that a similar parsing action table would be produced by eliminating the reductions by the single productions E → T and T → F from the SLR table for the unambiguous expression grammar (4.1) shown in Fig. 4.37. Ambiguous grammars like the one for expressions can be handled in a similar way in the context of LALR  and canonical LR parsing.
+
+### 4.8.2 The "Dangling-Else" Ambiguity
+
+```
+stmt → if expr then stmt 		(4.14)
+	 | if expr then stmt else stmt 
+	 | other
+```
+
+This grammar is ambiguous because it does not resolve the dangling-else ambiguity.
+
+To simplify the discussion, let us consider an abstraction of this grammar, where *i* stands for `if expr then`, *e* stands for `else`, and *a* stands for "all other productions." 
+
+We can then write the grammar, with augmenting production S' → S , as
+
+```
+S' → S 						(4.67)
+S  → i S e S | i S | a
+```
+
+The sets of LR(O) items for grammar (4.67) are shown in Fig. 4.50. 
+
+
+
+
+
+> Figure 4.51: LR parsing table for the "dangling-else" grammar
+
+
+
+
+
+
+
+
+
+
+
+
 
