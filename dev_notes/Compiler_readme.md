@@ -14,4 +14,5 @@
  - [Lexical Analysis](https://github.com/mebusy/notes/blob/master/dev_notes/Compiler3_LexicalAnalysis.md)
  - [Syntax Analysis](https://github.com/mebusy/notes/blob/master/dev_notes/Compiler4_SyntaxAnalysis.md)
  - [Syntax-Directed Translation](https://github.com/mebusy/notes/blob/master/dev_notes/Compiler5_SyntaxDirectedTranslation.md) 
+ - [Intermediate-Code Generation](https://github.com/mebusy/notes/blob/master/dev_notes/Compiler6_IntermediateCodeGeneration.md)
  - [笔记](https://github.com/mebusy/notes/blob/master/dev_notes/Compiler_Notes.md)
