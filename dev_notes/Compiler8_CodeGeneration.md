@@ -397,6 +397,69 @@ return
 
 Figure 8.4 shows the target program for this three-address code. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F8.4.png)
+
+We use the pseudo instruction ACTION to represent the sequence of machine instructions to execute the statement action, which represents three-address code that is not relevant for this discussion. We arbitrarily start the code for procedure c at address 100 and for procedure p at address 200. We that assume each ACTION instruction takes 20 bytes. We further assume that the activation records for these procedures are statically allocated starting at locations 300 and 364; re­spectively.
+
+The instructions starting at address 100 implement the statements `action1; call p; action2; halt` ofthe rstprocedurec.  
+
+Execution therefore starts with the instruction ACTION1 at address 100. The ST instruction at address 120 saves the return address 140 in the machine-status field, which is the first word in the activation record of p. The BR instruction at address 132 transfers control the first instruction in the target code of the called procedure p.
+
+After executing ACTION3, the jump instruction at location 220 is executed. Since location 140 was saved at address 364 by the call sequence above, *364 represents 140 when the BR statement at address 220 is executed. Therefore, when procedure p terminates, control returns to address 140 and execution of procedure c resumes. 
 
 
-We use the pseudoinstruction ACTION to represent the sequence of machine instructions to execute the statement action, which represents three-address code that is not relevant for this discussion. We arbitrarily start the code for procedure c at address 100 and for procedure p at address 200. We that assume each ACTION instruction takes 20 bytes. We further assume that the activation records for these procedures are statically allocated starting at locations 300 and 364; re­ spectively.
+---
+
+### 8.3.2 Stack Allocation
+
+Static allocation can become stack allocation by using relative addresses for storage in activation records. In stack allocation, however, the position of an activation record for a procedure is not known until runtime. This position is usually stored in a register, so words in the activation record can be accessed as offsets from the value in this register. The indexed address mode of our target machine is convenient for this purpose.
+
+Relative addresses in an activation record can be taken as offsets from any known position in the activation record, as we saw in Chapter 7. For convenience, we shall use positive offsets by maintaining in a register SP a pointer to the beginning of the activation record on top of the stack. When a procedure call occurs, the calling procedure increments SP and transfers control to the called procedure. After control returns to the caller, we decrement SP, thereby deallocating the activation record of the called procedure.
+
+The code for the first procedure initializes the stack by setting SP to the start of the stack area in memory:
+
+```
+LD SP , #stackStart // initialize the stack
+code for the first procedure
+HALT 				// terminate exection
+```
+
+A procedure call sequence increments SP, saves the return address, and transfers control to the called procedure:
+
+```
+ADD SP , SP , #caller.recordSize 	// increment stack pointer
+ST *SP , #here + 16					// save return address
+BR callee.codeArea 					// return to caller
+```
+
+The operand #caller.recordSize represents the size of an activation record, so the ADD instruction makes SP point to the next activation record. The operand #here + 16 in the ST instruction is the address of the instruction following BR; it is saved in the address pointed to by SP.
+
+The return sequence consists of two parts. The called procedure transfers control to the return address using
+
+```
+BR *O (SP) // return to caller
+```
+
+The reason for using *0 (SP) in the BR instruction is that we need two levels of indirection: 0 (SP) is the address of the first word in the activation record and *O(SP) is the return address saved there.
+
+The second part of the return sequence is in the caller, which decrements SP, thereby restoring SP to its previous value. That is, after the subtraction SP points to the beginning of the activation record of the caller:
+
+```
+SUB SP , SP , #caller.recordSize // decrement stack pointer
+```
+
+Chapter 7 contains a broader discussion of calling sequences and the trade­offs in the division of labor between the calling and called procedures.
+
+Example 8.4 : The program in Fig. 8.5 is an abstraction of the quicksort program in the previous chapter. Procedure q is recursive, so more than one activation of q can be alive at the same time.
+
+
+Suppose that the sizes of the activation records for procedures m , p, and q have been determined to be msize, psize, and qsize, respectively. The first word in each activation record will hold a return address. We arbitrarily assume that the code for these procedures starts at addresses 100, 200, and 300, respectively, and that the stack starts at address 600. The target program is shown in Figure 8.6.
+
+
+
+
+
+
+
+
+
