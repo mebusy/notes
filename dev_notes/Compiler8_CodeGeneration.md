@@ -524,17 +524,83 @@ Algorithm 8.5 : Partitioning three-address instructions into basic blocks.
 Example 8.6 : The intermediate code in Fig. 8.7 turns a 10 x 10 matrix a into an identity matrix. 
 
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F8.7.png)
 
 > Figure 8.7: Intermediate code to set a 10 x 10 matrix to an identity matrix
 
-Although it is not important where this code comes from, it might be the translation of the pseudocode in Fig. 8.8. In generating the intermediate code, we have assumed that the real-valued array elements take 8 bytes each, and that the matrix a is stored in row-major form.
+Although it is not important where this code comes from, it might be the translation of the pseudocode in Fig. 8.8. 
+
+```java
+for i from 1 to 10 do
+	for j from 1 to 10 do
+		a[i,j]= 0.0; 
+
+for i from 1 to 10 do
+	a[i,i]= 1.0;
+```
+
+> Figure 8.8: Source code for Fig. 8.7
+
+In generating the intermediate code, we have assumed that the real-valued array elements take 8 bytes each, and that the matrix a is stored in row-major form.
+
+First, instruction 1 is a leader by rule (1) of Algorithm 8.5. 
+
+To find the other leaders, we first need to find the jumps. In this example, there are three jumps, all conditional, at instructions 9, 11, and 17. 
+
+By rule (2), the targets of these jumps are leaders; they are instructions 3, 2, and 13, respectively. 
+
+Then, by rule (3) , each instruction following a jump is a leader; those are instructions 10 and 12. 
+
+Note that no instruction follows 17 in this code, but if there were code following, the 18th instruction would also be a leader.
+
+We conclude that the leaders are instructions 1, 2, 3, 10, 12, and 13. The basic block of each leader contains all the instructions from itself until just before the next leader. Thus, the basic block of 1 is just 1, for leader 2 the block is just 2. Leader 3, however, has a basic block consisting of instructions 3 through 9, inclusive. Instruction 10's block is 10 and 11; instruction 12's block is just 12, and instruction 13's block is 13 through 17. 
+
+---
+
+### 8.4.2 Next-Use Information
+
+Knowing when the value of a variable will be used next is essential for generating good code. If the value of a variable that is currently in a register will never be referenced subsequently, then that register can be assigned to another variable.
+
+The ＊use＊ of a name in a three-address statement is defined as follows. Suppose three-address statement *i* assigns a value to *x*.   statement *j* has x as an operand, and control can flow from statement *i* to *j* along a path that has no intervening assignments to *x*, then we say statement *j* uses the value of *x* computed at statement *i*. We further say that *x* is *live* at statement *i*.
+
+We wish to determine for each three-address statement `x = y + z` what the next uses of *x*, *y*, and *z* are. For the present, we do not concern ourselves with uses outside the basic block containing this three-address statement.
+
+Our algorithm to determine liveness and next-use information makes a back­ward pass over each basic block. We store the information in the symbol table. We can easily scan a stream of three-address statements to find the ends of ba­sic blocks as in Algorithm 8.5. Since procedures can have arbitrary side effects, we assume for convenience that each procedure call starts a new basic block.
+
+Algorithm8.7: Determining the liveness and next-use information for each statement in a basic block.
+
+ - INPUT: A basic block B of three-address statements. We assume that the symbol table initially shows all nontemporary variables in B as being live on exit.
+ - OUTPUT: At each statement i: x = y + z in B, we attach to i the liveness and next-use information of x, y, and z .
+ - METHOD: We start at the last statement in B and scan backwards to the beginning of B. At each statement i: x = y + z in B, we do the following:
+ 	- 1. Attach to statement i the information currently found in the symbol table regarding the next use and liveness of *x* , *y*, and *y* .
+ 	- 2. In the symbol table, set *x* to "not live" and "no next use."
+ 	- 3. In the symbol table, set *y* and *z* to "live" and the next uses of *y* and *z* to *i*.
+
+Here we have used + as a symbol representing any operator. If the three-address statement i is of the form  x = +Y or x = y, the steps are the same as above, ignoring z. Note that the order of steps (2) and (3) may not be interchanged because x may be y or z.
+
+---
+
+### 8.4.3 Flow Graphs
+
+Once an intermediate-code program is partitioned into basic blocks, we repre­sent the flow of control between them by a flow graph. The nodes of the flow graph are the basic blocks. There is an edge from block B to block C if and only if it is possible for the first instruction in block C to immediately follow the last instruction in block B. There are two ways that such an edge could be justified:
+
+ - There is a conditional or unconditional jump from the end of B to the beginning of C.
+ - C immediately follows B in the original order of the three-address instruc­tions, and B does not end in an unconditional jump.
+
+We say that B is a predecessor of C, and C is a successor of B.
+
+Often we add two nodes, called the *entry* and *exit*, that do not correspond to executable intermediate instructions. 
+
+ - There is an edge from the *entry* to the first executable node of the flow graph, that is, to the basic block that comes from the first instruction of the intermediate code. 
+ 	- entry -> 最先开始的代码块
+ - There is an edge to the *exit* from any basic block that contains an instruction that could be the last executed instruction of the program. 
+ 	- 可能最后执行的代码块 -> exit 
+ 	- If the final instruction of the program is not an unconditional jump, then the block containing the final instruction of the program is one predecessor of the *exit*, but so is any basic block that has a jump to code that is not part of the program.
+
+Example 8.8 : The set of basic blocks constructed in Example 8.6 yields the flow graph of Fig. 8.9. 
 
 
-
-
-
-
+The entry points to basic block B1 , since Bl contains the  rst instruction of the program. The only successor of Bl is B2 , because Bl does not end in an unconditional jump, and the leader of B2 immediately follows the end of B1 .
 
 
 
