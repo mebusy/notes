@@ -11,6 +11,10 @@
 		 - [8.2.1 A Simple Target Machine Model](#c9b2afcb3e1b79afecbf6a464ffd634a)
 		 - [8.2.2 Program and Instruction Costs](#e495518feaac3d8e7e4b5882920d1d83)
 	 - [8.3 Addresses in the Target Code](#6d4d798ee603fff7b45373e0dd5c31dd)
+		 - [8.3.1 Static Allocation](#bda4c525efeeaf310fd933902ea0b7c1)
+		 - [8.3.2 Stack Allocation](#3ae25ae0f1fb53ecdb143a7fb20ad988)
+		 - [8.3.3 Run-Time Addresses for Names](#e01e13bc01c76ae3d6a93af6781a8d38)
+	 - [8.4 Basic Blocks and Flow Graphs](#2c3c856092398efb26997bf43f94919d)
 
 ...menuend
 
@@ -347,6 +351,7 @@ In this section, we show how names in the IR can be converted into addresses in 
 
 ---
 
+<h2 id="bda4c525efeeaf310fd933902ea0b7c1"></h2>
 ### 8.3.1 Static Allocation
 
 To illustrate code generation for simplified procedure calls and returns, we shall focus on the following three-address statements:
@@ -410,6 +415,7 @@ After executing ACTION3, the jump instruction at location 220 is executed. Since
 
 ---
 
+<h2 id="3ae25ae0f1fb53ecdb143a7fb20ad988"></h2>
 ### 8.3.2 Stack Allocation
 
 Static allocation can become stack allocation by using relative addresses for storage in activation records. In stack allocation, however, the position of an activation record for a procedure is not known until runtime. This position is usually stored in a register, so words in the activation record can be accessed as offsets from the value in this register. The indexed address mode of our target machine is convenient for this purpose.
@@ -452,8 +458,77 @@ Chapter 7 contains a broader discussion of calling sequences and the trade­offs
 
 Example 8.4 : The program in Fig. 8.5 is an abstraction of the quicksort program in the previous chapter. Procedure q is recursive, so more than one activation of q can be alive at the same time.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F8.5.png)
 
 Suppose that the sizes of the activation records for procedures m , p, and q have been determined to be msize, psize, and qsize, respectively. The first word in each activation record will hold a return address. We arbitrarily assume that the code for these procedures starts at addresses 100, 200, and 300, respectively, and that the stack starts at address 600. The target program is shown in Figure 8.6.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F8.6.png)
+
+We assume that ACTION4 contains a conditional jump to the address 456 of the return sequence from q; otherwise, the recursive procedure q is condemned to call itself forever.
+
+if msize, psize, and qsize are 20, 40, and 60, respectively, the first instruction at address 100 initializes the SP to 600, the starting address of the stack. SP holds 620 just before control transfers from m to q, because msize is 20. Subsequently, when q calls p, the instruction at address 320 increments SP to 680, where the activation record for p begins; SP reverts to 620 after control returns to q. If the next two recursive calls of q return immediately, the maximum value of SP during this executioil 680. Note, however, that the last stack location used is 739, since the activation record of q starting at location 680 extends for 60 bytes.
+
+---
+
+<h2 id="e01e13bc01c76ae3d6a93af6781a8d38"></h2>
+### 8.3.3 Run-Time Addresses for Names
+
+The storage-allocation strategy and the layout of local data in an activation record for a procedure determine how the storage for names is accessed. In Chapter 6, we assumed that a name in a three-address statement is really a pointer to a symbol-table entry for that name. This approach has a significant advantage; it makes the compiler more portable, since the front end need not be changed even when the compiler is moved to a different machine where a different run-time organization is needed. On the other hand, generating the specific sequence of access steps while generating intermediate code can be of significant advantage in an optimizing compiler, since it lets the optimizer take advantage of details it would not see in the simple three-address statement.
+
+In either case, names must eventually be replaced by code to access storage locations. We thus consider some elaborations of the simple three-address copy statement x = 0. After the declarations in a procedure are processed, suppose the symbol-table entry for x contains a relative address 12 for x. For consider the case in which x is in a statically allocated area beginning at address static. Then the actual run-time address of x is *static* + 12. Although the compiler can eventually determine the value of *static* + 12 at compile time, the position of the static area may not be known when intermediate code to access the name is generated. In that case, it makes sense to generate three-address code to "compute" *static* + 12, with the understanding that this computation will be carried out during the code generation phase, or possibly by the loader, before the program runs. The assignment x = 0 then translates into
+
+```
+static[12] = 0
+```
+
+If the static area starts at address 100, the target code for this statement is
+
+```
+LD 112 , #0
+```
+
+---
+
+<h2 id="2c3c856092398efb26997bf43f94919d"></h2>
+## 8.4 Basic Blocks and Flow Graphs
+
+This section introduces a graph representation of intermediate code that is help­ful for discussing code generation even if the graph is not constructed explicitly by a code-generation algorithm. Code generation benefits from context. We can do a better job of register allocation if we know how values are defined and used, as we shall see in Section 8.8. We can do a better job of instruction selection by looking at sequences of three-address statements, as we shall see in Section 8.9.
+
+The representation is constructed as follows:
+
+ 1. Partition the intermediate code into basic blocks, which are maximal se­quences of consecutive three-address instructions with the properties that
+ 	- (a) The flow of control can only enter the basic block through the first instruction in the block. That is, there are no jumps into the middle of the block.
+ 	- Control will leave the block without halting or branching, except possibly at the last instruction in the block.
+ 2. The basic blocks become the nodes of a flow graph, whose edges indicate which blocks can follow which other blocks.
+
+Starting in Chapter 9, we discuss transformations on flow graphs that turn the original intermediate code into "optimized" intermediate code from which better target code can be generated. The "optimized" intermediate code is turned into machine code using the code-generation techniques in this chapter.
+
+---
+
+### 8.4.1 Basic Blocks
+
+Our first job is to partition a sequence of three-address instructions into basic blocks. We begin a new basic block with the first instruction and keep adding instructions until we meet either a jump, a conditional jump, or a label on the following instruction. In the absence of jumps and labels, control proceeds sequentially from one instruction to the next. This idea is formalized in the following algorithm.
+
+Algorithm 8.5 : Partitioning three-address instructions into basic blocks.
+
+ - INPUT: A sequence of three-address instructions.
+ - OUTPUT: A list of the basic blocks for that sequence in which each instruction is assigned to exactly one basic block.
+ - METHOD : 
+ 	- First, we determine those instructions in the intermediate code that are leaders, that is, the first instructions in some basic block. The instruction just past the end of the intermediate program is not included as a leader. The rules for finding leaders are:
+	 	- 1. The first three-address instruction in the intermediate code is a leader.
+	 	- 2. Any instruction that is the target of a conditional or unconditional jump is a leader.
+	 	- 3. Any instruction that immediately follows a conditional or unconditional jump is a leader.
+	- Then, for each leader, its basic block consists of itself and all instructions up to but not including the next leader or the end of the intermediate program. 
+
+
+Example 8.6 : The intermediate code in Fig. 8.7 turns a 10 x 10 matrix a into an identity matrix. 
+
+
+
+
+> Figure 8.7: Intermediate code to set a 10 x 10 matrix to an identity matrix
+
+Although it is not important where this code comes from, it might be the translation of the pseudocode in Fig. 8.8. In generating the intermediate code, we have assumed that the real-valued array elements take 8 bytes each, and that the matrix a is stored in row-major form.
 
 
 
