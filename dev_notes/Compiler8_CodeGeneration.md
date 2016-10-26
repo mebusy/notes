@@ -599,8 +599,107 @@ Often we add two nodes, called the *entry* and *exit*, that do not correspond to
 
 Example 8.8 : The set of basic blocks constructed in Example 8.6 yields the flow graph of Fig. 8.9. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F8.9.png)
 
-The entry points to basic block B1 , since Bl contains the  rst instruction of the program. The only successor of Bl is B2 , because Bl does not end in an unconditional jump, and the leader of B2 immediately follows the end of B1 .
+The entry points to basic block B1 , since B1 contains the first instruction of the program. The only successor of B1 is B2 , because B1 does not end in an unconditional jump, and the leader of B2 immediately follows the end of B1 .
+
+Block B3 has two successors. One is itself, because the leader of B3 , instruc­tion 3, is the target of the conditional jump at the end of B3 , instruction 9 . The other successor is B4 , because control can fall through the conditional jump at the end of B3 and next enter the leader of B4 .
+
+Only B6 points to the exit of the flow graph, since the only way to get to code that follows the program from which we constructed the flow graph is to fall through the conditional jump that ends B6 .
+
+---
+
+### 8.4.4 Representation of Flow Graphs
+
+First, note from Fig. 8.9 that in the flow graph, it is normal to replace the jumps to instruction numbers or labels by jumps to basic blocks. Recall that every conditional or unconditional jump is to the leader of some basic block, and it is to this block that the jump will now refer. The reason for this change is that after constructing the flow graph, it is common to make substantial changes to the instructions in the various basic blocks. If jumps were to instructions, we would have to fix the targets of the jumps every time one of the target instructions was changed.
+
+Flow graphs, being quite ordinary graphs, can be represented by any of the data structures appropriate for graphs. The content of nodes (basic blocks) need their own representation. We might represent the content of a node by a pointer to the leader in the array of three-address instructions, together with a count of the number of instructions or a second pointer to the last instruction. However, since we may be changing the number of instructions in a basic block frequently, it is likely to be more efficient to create a linked list of instructions for each basic block.
+
+---
+
+### 8.4.5 Loops
+
+Programming-language constructs like while-statements, do-while-statements, andfor-statements naturally give rise to loops in programs. Since virtually every program spends most of its time in executing its loops, it is especially important for a compiler to generate good code for loops. Many code transformations depend upon the identification of "loops" in a flow graph. We say that a set of nodes L in a flow graph is a loop if
+
+ 1. There is a node in L called the loop *entry* with the property that no other node in L has a predecessor outside L. That is, every path from the entry of the entire flow graph to any node in L goes through the loop entry.
+ 2. Every node in L has a nonempty path, completely within L, to the entry of L.
+
+Example 8.9 : The flow graph of Fig. 8.9 has three loops:
+
+ 1. B3 by itself.
+ 2. B6 by itself.
+ 3. {B2,B3,B4}
+
+The first two are single nodes with an edge to the node itself. For instance, B3 forms a loop with B3 as its entry. Note that the second requirement for a loop is that there be a nonempty path from B3 to itself. Thus, a single node like B2, which does not have an edge B2 → B2, is not a loop, since there is no nonempty path from B2 to itself within { B2 } .
+
+The third loop, L = {B2, B3, B4}, has B2 as its loop entry. Note that among these three nodes, only B2 has a predecessor, B1 , that is not in L.  Further, each of the three nodes has a nonempty path to B2 staying within L. For instance, B2 has the path B2 → B3 → B4 → B2.
+
+
+---
+
+## 8.5 Optimization of Basic Blocks
+
+We can often obtain a substantial improvement in the running time of code merely by performing local optimization within each basic block by itself. More thorough global optimization, which looks at how information flows among the basic blocks of a program, is covered in later chapters, starting with Chapter 9. It is a complex subject, with many different techniques to consider.
+
+---
+
+### 8.5.1 The DAG Representation of Basic Blocks
+
+Many important techniques for local optimization begin by transforming a basic block into a DAG (directed acyclic graph). In Section 6.1.1, we introduced the DAG as a representation for single expressions. The idea extends naturally to the collection of expressions that are created within one basic block. We construct a DAG for a basic block as follows:
+
+ 1. There is a node in the DAG for each of the initial values of the variables appearing in the basic block.
+ 2. There is a node *N* associated with each statement *s* within the block. The children of *N* are those nodes corresponding to statements that are the last definitions, prior to *s*, of the operands used by *s* .
+ 3. Node *N* i s labeled by the operator applied at *s* , and also attached to *N* is the list of variables for which it is the last definition within the block.
+ 4. Certain nodes are designated output nodes. These are the nodes whose variables are *live on exit* from the block; that is, their values may be used later, in another block of the flow graph. Calculation of these "live variables" is a matter for global flow analysis, discussed in Section 9.2.5.
+
+
+The DAG representation of a basic block lets us perform several code­ improving transformations on the code represented by the block.
+
+ - a) We can eliminate local common subexpressions, that is, instructions that compute a value that has already been computed.
+ - b) We can eliminate dead code, that is, instructions that compute a value that is never used.
+ - c) We can reorder statements that do not depend on one another; such reordering may reduce the time a temporary value needs to be preserved in a register.
+ - d) We can apply algebraic laws to reorder operands of three-address instruc­tions, and sometimes thereby simplify the computation.
+
+---
+
+### 8.5.2 Finding Local Common Subexpressions  (TODO)
+
+TODO
+
+---
+
+## 8.6 A Simple Code Generator
+
+In this section, we shall consider an algorithm that generates code for a single basic block. It considers each three-address instruction in turn, and keeps track of what values are in what registers so it can avoid generating unnecessary loads and stores.
+
+One of the primary issues during code generation is deciding how to use registers to best advantage. There are four principal uses of registers:
+
+ - In most machine architectures, some or all of the operands of an operation must be in registers in order to perform the operation.
+ - Registers make good temporaries -- places to hold the result of a subex­pression while a larger expression is being evaluated, or more generally, a place to hold a variable that is used only within a single basic block.
+ - Registers are used to hold (global) values that are computed in one basic block and used in other blocks, for example, a loop index that is incre­mented going around the loop and is used several times within the loop.
+ - Registers are often used to help with run-time storage management, for example, to manage the run-time stack, including the maintenance of stack pointers and possibly the top elements of the stack itself.
+
+These are competing needs, since the number of registers available is limited.
+
+The algorithm in this section assumes that some set of registers is available to hold the values that are used within the block. Typically, this set of regis­ters does not include all the registers of the machine, since some registers are reserved for global variables and managing the stack. 
+
+We assume that the basic block has already been transformed into a preferred sequence of three-address instructions, by transformations such as combining common subexpressions. We further assume that for each operator, there is exactly one machine instruc­tion that takes the necessary operands in registers and performs that operation, leaving the result in a register. The machine instructions are of the form
+
+ - LD reg, mem
+ - ST mem, reg
+ - OP reg, reg, reg
+
+---
+
+### 8.6.1 Register and Address Descriptors
+
+
+
+
+
+
+
+
 
 
 
