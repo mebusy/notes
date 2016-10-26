@@ -86,6 +86,95 @@ In this chapter, we shall use a very simple RISC-like computer as our target mac
 
 ### 8.1.3 Instruction Selection
 
+                                                                                                                                                                                                                                                                                                                                                                                        
+The code generator must map the IR program into a code sequence that can be executed by the target machine. The complexity of performing this mapping is determined by a factors such as
+
+ - the level of the IR
+ - the nature of the instruction-set architecture
+ - the desired quality of the generated code.
+
+If the IR is high level, the code generator may translate each IR statement into a sequence of machine instructions using code templates. Such statement­-by-statement code generation, however, often produces poor code that needs further optimization. 
+
+If the IR reflects some of the low-level details of the un­derlying machine, then the code generator can use this information to generate more efficient code sequences.
+
+The nature of the instruction set of the target machine has a strong effect on the difficulty of instruction selection. For example, the uniformity and com­pleteness of the instruction set are important factors. If the target machine does not support each data type in a uniform manner, then each exception to the general rule requires special handling. On some machines, for example, floating-point operations are done using separate registers.
+
+Instruction speeds and machine idioms are other important factors. If we do not care about the efficiency of the target program, instruction selection is straightforward. For each type of three-address statement, we can design a code skeleton that defines the target code to be generated for that construct. For example, every three-address statement of the form x = y + Z , where x, y, and Z are statically allocated, can be translated into the code sequence
+
+```
+LD  R0 , y       // R0 = y  (load y into register R0)
+ADD R0 , R0 , z  // R0 = R0 + z  (ad z to R0)
+ST  x , R0       // x = R0  (store R0 into x)
+```
+
+This strategy often produces redundant loads and stores. For example, the sequence of three-address statements
+
+```
+a = b + c
+d = a + e
+```
+
+would be translated into
+
+```
+LD RO,b
+ADD RO, RO, c 
+ST a,RO
+
+LD RO, a 
+ADD RO, RO, e 
+ST d, RO
+```
+
+Here, the fourth statement is redundant since it loads a value that has just been stored, and so is the third if a is not subsequently used.
+
+The quality of the generated code is usually determined by its speed and size. On most machines, a given IR program can be implemented by many diffierent code sequences, with significant cost differences between the different implementations. A naive translation of the intermediate code may therefore lead to correct but unacceptably inefficient target code.
+
+For example, if the target machine has an "increment" instruction (INC), then the three-address statement a = a + 1 may be implemented more efficiently by the single instruction `INC a`, rather than by a more obvious sequence that loads `a` into a register, adds one to the register, and then stores the result back into a.
+
+We need to know instruction costs in order to design good code sequences but, unfortunately, accurate cost information is often difficult to obtain. De­ciding which machine-code sequence is best for a given three-address construct may also require knowledge about the context in which that construct appears.
+
+In Section 8.9 we shall see that instruction selection can be modeled as a tree-pattern matching process in which we represent the IR and the machine instructions as trees. We then attempt to "tile" an IR tree with a set of sub­ trees that correspond to machine instructions. If we associate a cost with each machine-instruction subtree, we can use dynamic programming to generate op­timal code sequences. Dynamic programming is discussed in Section 8.11.
+
+
+### 8.1.4 Register Allocation
+
+A key problem in code generation is deciding what values to hold in what registers. Registers are the fastest computational unit on the target machine, but we usually do not have enough of them to hold all values. Values not held in registers need to reside in memory. Instructions involving register operands are invariably shorter and faster than those involving operands in memory, so efficient utilization of registers is particularly important.
+
+The use of registers is often subdivided into two subproblems:
+
+ 1. *Register allocation*, during which we select the set of variables that will reside in registers at each point in the program.
+ 2. *Register assignment*, during which we pick the specific register that a variable will reside in.
+
+Finding an optimal assignment of registers to variables is difficult, even with single-register machines. Mathematically, the problem is NP-complete. The problem is further complicated because the hardware and/or the operating system of the target machine may require that certain register-usage conventions be observed.
+
+
+Example 8.1 : Certain machines require *register-pairs* (an even and next odd­ numbered register) for some operands and results. For example, on some ma­chines, integer multiplication and integer division involve register pairs. The multiplication instruction is of the form
+
+```
+M  x , y
+```
+
+where x, the multiplicand, is the even register of an even/odd register pair and y, the multiplier, is the odd register. The product occupies the entire even/odd register pair. The division instruction is of the form
+
+```
+D  x , y 
+```
+
+where the dividend occupies an even/odd register pair whose even register is x; the divisor is y . After division, the even register holds the remainder and the odd register the quotient.
+
+Now, consider the two three-address code sequences in Fig. 8.2 in which the only difference in (a) and (b) is the operator in the second statement. The shortest assembly-code sequences for (a) and (b) are given in Fig. 8.3.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
