@@ -41,3 +41,10 @@ When NES is on ,
  - CHR copied to PPU
  - CPU write to the PPU 
  	- to modify the background and the sprites
+
+
+
+# CPU / PPU address space
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/6502_CPU_PPU_address_space.png)
+
