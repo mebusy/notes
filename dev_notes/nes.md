@@ -161,10 +161,47 @@ METHODS		|		// draw code 	| ; modify sprites
 # Palettes
 
  - Less than 60 total colors
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NES_palette.png)
  - PPU IO ports : $2006 , $2007
  	- you write to the palette table by using PPU $2006, $2007 ports
  - Sprite palette: $3F10
  - Background palette :  $3F00
+
+
+# Background
+
+ - 32x30 tiles (256*240)
+ - Tiles are 8x8 pixels
+ - Four unique colors for every 2x2 tiles
+ - Background is static , but can be scrolled
+ - Text is usually background tiles
+
+# Controller Input
+
+ - Call load on Controller port
+ 	- LDA $4016 (player #1)
+ 	- LDA $4017 (player #2)
+ - Each call returns the status of the next button
+ 	- A,B,Select, Start , Up, Down, Left, Right
+
+
+# Playing Sounds
+
+ - APU 5 channels
+ 	- Square 1, 2  -- Hollow sound
+ 	- Triangle -- Smooth sound
+ 	- Noise  - Explosions
+ 	- DMC	 - prerecorded, like voices
+ - Write to $4015 to enable sounds
+ - $4000 to $4003 modify sound properties
+
+# NES ROM Image
+
+ - Generate with NES assemble
+ 	- NESASM3
+ - Play with NES emulator
+ 	- FCEUXD
+ - Tools exist for playing on actual NES hardware
 
 
 
