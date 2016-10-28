@@ -1,6 +1,8 @@
 
 # Deep Learning 
 
+## SOFTMAX
+
 The way to turn scores into probabilities is to use **softmax** function , will be denoted by *S*. It can take any kind of scores and turn them into proper probabilities. 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_softmax.png)
@@ -32,4 +34,16 @@ Caution:
 
  1. if we multiply scores by 10 , then probabilities get close to either 0.0 or 1.0
  2. if we divide scored by 10 , probabilities get close to the uniform distribution.
+
+
+
+## CROSS-ENTROPY
+
+
+```
+D(S,L) = -Σ Lᵢ log(Sᵢ)
+```
+
+Cross-entropy is not symmetric :   D(S,L) != D(L,S)
+
 
