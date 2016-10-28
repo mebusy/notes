@@ -99,6 +99,33 @@ MEAN :   	Xᵢ = 0
 VARIANCE:  	σ(Xᵢ) = σ(Xⱼ)
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_numerical_stability.png)
+
+### Images
+
+If you dealing with images, you can take the pixel value of your image, they are typically between 0 and 255 , and simply subtract 128 and divide by128 `( C - 128) / 128 ` .
+
+It doesn't change the content of your image, but it makes it much easier for the optimization to proceed numerically.
+
+### Weight initialization
+
+You also want your weights and biases to be initialized at a good enough starting point for the gradient descent to preceed. There are lots of fancy schemes to find good initialization values , but we're going to focus on a simple , general method.
+
+Draw the weights randomly from a Gaussian distribution with mean zero and standard deviation sigma.
+
+
+
+The sigma value determines the order of magnitude of you outputs at the initial point of your optimization.  Because of the softmax on top of it, the order of magnitude also determines the peakiness of your initial probability distribution.
+
+ - A large sigma means that your distribution will have large peaks. It's going to be very opinionated.
+ - A small sigma means that your distribution is very uncertain about things.
+
+It's usually better to begin with an uncertain distribution and let the optimization become more confident as the train progress.
+
+***So use a small sigma to begin with***.
+
+
+
 
 
 
