@@ -315,6 +315,10 @@ removeBody: function(obj) {
 
 # Sound
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/HTML5_sound.png)
+
+一般的游戏， 只需要  Sound -> Gain -> OUTPUT  这条线
+
  - Checking for Compatibility
 
 ```
@@ -390,13 +394,115 @@ playSound: function(path , settings) {
 ```
 
  - Stopping Sounds 
+ 	- eg: stop all sound , while level changing 
  	- The way we do that , is by simply disconnection our main node from the node graph ; creating a new one in its place, and connecting it to our output.
 
 ```
 stopAll: function() {
-	
+	this._mainNode.disconnect();
+	this._mainNode = this._context.createGainNode(0) ;
+	this._mainNode.connect( this._context.destination ) ;
 }
 ```
+
+ - Muting Sounds
+
+```
+togglemute: function() {
+	if( this._mainNode.gain.value > 0 )
+		this._mainNode.gain.value = 0 ;
+	else 
+		this._mainNode.gain.value = 1 ; 
+}
+```
+
+ - Play World Sound  ( 远近效果 )
+
+```
+playWorldSound: function( soundURL , x , y ) {
+	if(this.gPlayer0 === null ) return ;
+
+	var gMap = gGameEngine.gMap ;
+
+	// fade out volume based upon distance to me 
+	var viewSize = Math.max(gMap.viewRect.w . gMap.viewRect.h) * 0.5 ;
+	var oCenter = this.gPlayer0.pos ;
+	var dx = Math.abs(oCenter.x -x ) ;
+	var dy = Math.abs(oCenter.y -y ) ;
+	var distToObserver = Math.sqrt( dx * dx , dy * dy ) ;
+	var normDist = distToObserver / viewSize ;
+	if(normDist > 1 )  normDist = 1 ;
+	if(normDist < 0 )  return ;  // don't play
+
+	var volumn = 1.0 - normDist ; 
+
+	var sound = gSM.loadAsync(soundURL  , function( sObj) {
+		gSM.playSound(sObj.path , {
+			looping: false ,
+			volume: volume
+		} );
+	};
+}
+```
+
+
+---
+
+# Asset Loading
+
+ - all file I/O function in JavaScript are by definition asynchronous.
+
+## Asset Manager
+
+ - Cached Asset management
+ - Async callbacks on load
+ - batches asset loading
+
+
+## Caching images
+
+## Batches
+
+ - to allow us to pass a list of files to load , and receive one callback once they've all been loaded
+
+```
+function loadAssets(assetList, callbackFcn) {
+	// All the information we need to keep track of 
+	// for this batch
+	var loadBatch = {
+		count: 0  ,
+		total: assetList.count , 
+		cb: callbackFcn
+	};
+
+	for (var i=0 ; i< assetList.length ; i ++ ) {
+		if(gCachedAssets[assetname] == null) {
+			var img = new Image() ;
+			img.onload = function() {
+				onLoadedCallback(img, loadBatch) ;
+			} ;
+			img.src = assetName ;
+
+			gCachedAssets[assetName] = img ;
+		} else {
+			onLoadedCallback( gCachedAssets[assetList[i]] , loadBatch )
+		}
+	}
+}
+
+function onLoadedCallback( asset , batch ) {
+	batch.count ++ ;
+	if(batch.count == batch.total) {
+		batch.cb(asset) ;
+	}
+}
+```
+
+## Loading javascript
+
+
+
+
 
 
 
