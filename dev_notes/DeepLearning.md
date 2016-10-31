@@ -230,7 +230,7 @@ machine learning 竞赛网站
 
 # Deep Neural Networks
 
-## Linear Model
+## Linear Model Limited
 
  - Linear operations are really nice 
  	- Big matrix multiplies are exactly what GPUs were design for
@@ -242,6 +242,22 @@ machine learning 竞赛网站
 We're going to construct our new function in the simplest way that we can think of.
 
 Instead of having a single matrix multiplier as our classifier , we're going to insert a RELU right in the middle.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_RELU.png)
+
+We now have two matrices. 
+
+ - one going from the inputs to the RELUs ,
+ - and another one connecting the RELUs to the classifier.
+
+Our function is now nonlinear thanks to the RELU in the middle , and we now have a new knob that we can tune , this number H ( in blue ) which corresponds to the number of RELU units that we have in the classifier. We can make it as big as we want.
+
+## The Chain Rule
+
+One reason to build this network by stacking simple operations is that it makes tha math very simple .
+
+
+
 
 
 
