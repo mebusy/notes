@@ -256,8 +256,13 @@ Our function is now nonlinear thanks to the RELU in the middle , and we now have
 
 One reason to build this network by stacking simple operations is that it makes tha math very simple .
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_RELU_math.png)
 
+The key mathematical insight is the chain rule : `[g( f(x ))]' = g'( f(x) ) * f'(x)  ` . 
 
+ - if you have 2 functions that get composed , that is , one is applied to the output of the other , then the chain rule tells you that you can compute the derivatives of that function simply by taking the product of the derivatives of the components.
+
+As long as you know how to write the derivatives of your individual functions , there is a simple graphical way to combine them together and compute the derivative for the whole function.
 
 
 
