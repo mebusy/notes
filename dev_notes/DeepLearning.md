@@ -222,10 +222,26 @@ open http://`docker-machine ip default`:8888
 ```
 
 
-## TRAINING / VALIDATION / TESTING
+## The Kaggle Challenge
+
+machine learning 竞赛网站
+
+---
+
+# Deep Neural Networks
+
+## Linear Model
+
+ - Linear operations are really nice 
+ 	- Big matrix multiplies are exactly what GPUs were design for
+ - The derivative of a linear function is nice too , it's a constant !
 
 
+## Network of ReLUs
 
+We're going to construct our new function in the simplest way that we can think of.
+
+Instead of having a single matrix multiplier as our classifier , we're going to insert a RELU right in the middle.
 
 
 
