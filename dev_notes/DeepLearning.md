@@ -1,6 +1,8 @@
 
 # Deep Learning 
 
+# From Machine Learning to Deep Learning
+
 ## SOFTMAX
 
 The way to turn scores into probabilities is to use **softmax** function , will be denoted by *S*. It can take any kind of scores and turn them into proper probabilities. 
@@ -113,7 +115,7 @@ You also want your weights and biases to be initialized at a good enough startin
 
 Draw the weights randomly from a Gaussian distribution with mean zero and standard deviation sigma.
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_weights_initialization.png)
 
 The sigma value determines the order of magnitude of you outputs at the initial point of your optimization.  Because of the softmax on top of it, the order of magnitude also determines the peakiness of your initial probability distribution.
 
@@ -123,6 +125,105 @@ The sigma value determines the order of magnitude of you outputs at the initial 
 It's usually better to begin with an uncertain distribution and let the optimization become more confident as the train progress.
 
 ***So use a small sigma to begin with***.
+
+
+### Initialization of the lgistic classifier
+
+Now we actually have everythings we need to actually train this classifier.
+
+ - We've got our training data `X` 
+ 	- which is normalized to have zerom mean (pixels - 128)/128 , and unit variance.
+ - We multiply `X` by a large matrix `W` 
+ 	- `W` is intialized with random weights
+ - We apply the softmax and then the cross entropy loss 
+ - and we calculate the average of this loss over the entire traning data.
+
+--- ASSIGNMENT
+
+安装
+
+```
+brew install docker docker-machine
+```
+
+启动 docker-machine
+
+建立並啟動一個 VM 作為 docker 的環境 , 這邊我使用的 driver 為 VirtualBox，名字設定為 default：
+
+```
+docker-machine create --driver virtualbox default
+```
+
+启动 VM
+
+接下來為重點，我們執行 docker-machine env default，可以查看 default 所設定的參數，而這些參數用於指定 docker 的 client 所要連線的參數：
+
+```
+$ docker-machine env default
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="/Users/qibinyi/.docker/machine/machines/default"
+export DOCKER_MACHINE_NAME="default"
+# Run this command to configure your shell: 
+# eval $(docker-machine env default)
+```
+
+照着上面说的，执行最后一句
+
+```
+$ NO_PROXY=`docker-machine ip default` docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+```
+
+dock-machine 设置代理
+
+```
+docker-machine ssh default
+
+# now the command prompt will say something like:
+# docker@default:~$
+
+# we need root access:
+sudo -s
+
+# now the command prompt will say something like:
+# root@default:~$
+
+# now configure the proxy
+echo "export HTTP_PROXY=http://[uid]:[pw]@corporate.proxy.com:[port]" >> /var/lib/boot2docker/profile
+echo "export HTTPS_PROXY=http://[uid]:[pw]@corporate.proxy.com:[port]" >> /var/lib/boot2docker/profile
+
+# for verification
+cat /var/lib/boot2docker/profile
+
+# exit out of ssh session
+exit
+exit
+
+# restart
+docker-machine restart default
+
+# now you should be able to proceed with installation steps
+docker run hello-world
+```
+
+---
+
+```
+NO_PROXY=`` docker run -p 8888:8888 --name tensorflow-udacity -it gcr.io/tensorflow/udacity-assignments:0.6.0
+```
+
+ - docker-machine ip default :  docker host IP
+
+访问:
+
+```
+open http://`docker-machine ip default`:8888
+```
+
+
+## TRAINING / VALIDATION / TESTING
+
 
 
 
