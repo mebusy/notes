@@ -293,4 +293,56 @@ In particular each block of the back prop often takes about twice the memory tha
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_BackProp.png)
 
+---
+
+## Training a Deep Learning Network 
+
+2-layer Neural Network
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_RELU.png)
+
+
+You can make it bigger , more complex , by increasing the size of that hidden layer in the middle.  But it turns out that increasing this H is not particularly efficient in general .  You need to make it very , very big , and then it gets really hard to train. This is where the central idea of deep learning comes into play.
+
+Instead , you can also add more layers and make your model deeper.  There are lots of good reasons to do that.
+
+ - one is parameter efficiency
+ 	- You can typically get much more performance with fewer parameters by going deeper rather than wider.
+ - another 1 is that a lot of natual phenomena that you might be interested in , tend to have a hierarchical structure which deep model naturally capture.
+
+
+## Regularization Intro
+
+Why did we not figure out earlier that deep-models were effective ?
+
+Manu reasons, but mostly because deep-models only really shine if you have enough data to train them. It's only in recent years that large enough data sets have made their way to the academic world.  
+
+We'll look at another reason now, we know better today how to train very very big models using better regularization techniques. There is a general issue when you're doing numerical optimization which I call the skinny jeans problem.  Skinny jeans look great, they fit perfectly , but they're really really hard to get into .  So most people end up waring jeans that are just a bit too big.  It's exactly the same with deep networks. The network that's just the right size for your data is very very hard to optimize .
+
+So in practice , we always try networks that are way too big for our data and then we try our best to prevent them from overfitting.
+
+
+## Regularization
+
+Regularizing means applying artificial constraints on your network that implicityly reduce the number of free parameters while not making it more difficult to optimize.
+
+In the skinny jeans analogy , think stretch pants.  The fit just as well , but because they're flexible , they don't make things harder to fit in.
+
+The stretch pants of deep learning are called L2 Regularization.  
+
+The idea is to add another term to the loss ,which penalizes large weights.  It's typically achieved by adding the L2 norm of your weights to the loss.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
