@@ -291,4 +291,6 @@ And you're going to repeat that all over again, many, many times. This is how yo
 
 In particular each block of the back prop often takes about twice the memory that's needed forward prop and twice the compute.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_BackProp.png)
+
 
