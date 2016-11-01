@@ -330,10 +330,28 @@ In the skinny jeans analogy , think stretch pants.  The fit just as well , but b
 
 The stretch pants of deep learning are called L2 Regularization.  
 
-The idea is to add another term to the loss ,which penalizes large weights.  It's typically achieved by adding the L2 norm of your weights to the loss.
+The idea is to add another term to the loss ,which penalizes large weights.  It's typically achieved by adding the L2 norm of your weights to the loss , multiply by a small constant β.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_regularization.png)
 
 
+## Dropout
 
+There's another important technique for regularization that only emerged relatively recently and works amazingly well. It also looks insane the first time you see it , so bear with me . It's called dropout.
+
+Dropout works likes this. 
+
+1
+
+Imagine that you have one layer that connects to another layer. The values that go from one layer to the next are often called activations.  Now take those activations and randomly for every example you train your network on, set half of them to zero.  Completely randomly ,  you basically take half of the data that's flowing through your network and just destroy it. And then randomly again. If that doesn't sound crazy to you then you might qualify to become a student of Jeffery Hinto who pioneered the technique.
+
+So what happens with dropout?
+
+2
+
+Your network can never rely on any given activation to be present , because they might be squashed at any given moment. So it is forced to learn a redundant representation for everything to make sure that at least some of the information remains.
+
+It's like a game of whack-a-mole.  One activations gets smashed , but there's always one or more that do the same job and that don't get killed. So every thing remains fine at the end.
 
 
 
