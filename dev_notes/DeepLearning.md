@@ -264,9 +264,31 @@ The key mathematical insight is the chain rule : `[g( f(x ))]' = g'( f(x) ) * f'
 
 As long as you know how to write the derivatives of your individual functions , there is a simple graphical way to combine them together and compute the derivative for the whole function.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_RELU_math2.png)
 
+There's even better news for the compute scientist in you.  There is a way to write this chain rule that is very efficient computationally.
 
+ - efficient data pipeline !
+ - lots of data reuse !
 
+## Back prop 
 
+Here is an example.  Imagine your network is a stack of simple operations ( 1st line : x -> y  ) . 
+
+Some have parameters like the matrix transforms ( ie. w1 , w2 ) , some don't like .  When you apply your data to some input x , you have data flowing through the stack up to your predictions y .
+
+To compute the derivatives , you create another graph that looks like this. ( 2nd line:  <- ȳ )
+
+The data in the new graph flows backwards through the network ,  get's combined using the chain rule and preduces gradients.
+
+That graph can be derived completely automatically from the individual operations in your network. So most deep learning frameworks will just do it for you. This is called back-propagation, and it's a very powerful concept. It makes computing derivatives of complex function very efficient as long as the function is make up of simple blocks with simple derivatives.
+
+Running the model up to the predictions is often called the forward prop, and the model that goes backwards is called the back prop.
+
+So , to recap, to run stochastic gradient descent for every single little batch of your data in your training set,  you're going to run the forward prop, and then the back prop. And that will give you gradients for each of your weights in your model ( Δw₁, Δw₂ ).  Then you're going to apply those gradients with the learning rates ( α) to your original weights ( w₁, w₂ ) , and update them.
+
+And you're going to repeat that all over again, many, many times. This is how your entire model gets optimized.
+
+In particular each block of the back prop often takes about twice the memory that's needed forward prop and twice the compute.
 
 
