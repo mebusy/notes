@@ -1,10 +1,26 @@
+...menustart
 
+ - [LLVM Tutorial: Table of Contents](#b56cad0e202690071ef63f030c12fc18)
+ - [Implementing a Language with LLVM](#5d92cbb1c83f3094343f6913b9a2aba1)
+	 - [1. Tutorial Introduction and the Lexer](#223a7ae77e03289fe4e7135306e273b5)
+		 - [1.2. The Basic Language](#8c3e7ff9f5a07b5ecc04dd9a7e7bba55)
+		 - [1.3. The Lexer](#8a9476222388ff60664b1598fe119cb6)
+ - [llvm tools](#38d4148bfdd1ae5a9f94b2081008fa00)
+
+...menuend
+
+
+
+<h2 id="b56cad0e202690071ef63f030c12fc18"></h2>
 # LLVM Tutorial: Table of Contents
 
+<h2 id="5d92cbb1c83f3094343f6913b9a2aba1"></h2>
 # Implementing a Language with LLVM
 
+<h2 id="223a7ae77e03289fe4e7135306e273b5"></h2>
 ## 1. Tutorial Introduction and the Lexer
 
+<h2 id="8c3e7ff9f5a07b5ecc04dd9a7e7bba55"></h2>
 ### 1.2. The Basic Language
 
 Kaleidoscope is a procedural language that allows you to 
@@ -25,11 +41,13 @@ Because we want to keep things simple, the only datatype in Kaleidoscope is a 64
 As such, all values are implicitly double precision and the language doesn’t require type declarations. This gives the language a very nice and simple syntax. For example, the following simple example computes Fibonacci numbers:
 
 
+<h2 id="8a9476222388ff60664b1598fe119cb6"></h2>
 ### 1.3. The Lexer
 
 
 ---
 
+<h2 id="38d4148bfdd1ae5a9f94b2081008fa00"></h2>
 # llvm tools
 
 install 

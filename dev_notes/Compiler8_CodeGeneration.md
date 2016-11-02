@@ -15,6 +15,16 @@
 		 - [8.3.2 Stack Allocation](#3ae25ae0f1fb53ecdb143a7fb20ad988)
 		 - [8.3.3 Run-Time Addresses for Names](#e01e13bc01c76ae3d6a93af6781a8d38)
 	 - [8.4 Basic Blocks and Flow Graphs](#2c3c856092398efb26997bf43f94919d)
+		 - [8.4.1 Basic Blocks](#5382830f44c8ab1f0f2d56fe8cf4ac65)
+		 - [8.4.2 Next-Use Information](#21d7d35b190002b687bfd4fbe96db30f)
+		 - [8.4.3 Flow Graphs](#2e0f84d0f92e1f49404739bec34b3dd2)
+		 - [8.4.4 Representation of Flow Graphs](#d9681c5961ade940b16db92265f07922)
+		 - [8.4.5 Loops](#57ba69ba8ce34a37752db17e8dc9e160)
+	 - [8.5 Optimization of Basic Blocks](#895e7d88eb5f9758b1bb9bcad8448f0d)
+		 - [8.5.1 The DAG Representation of Basic Blocks](#66e1b4db709e780933b28a758e46d599)
+		 - [8.5.2 Finding Local Common Subexpressions  (TODO)](#2ca093ee9b3646bbed3c5a7150480019)
+	 - [8.6 A Simple Code Generator](#3cac79754c1e27df5c39a1578a7df8a3)
+		 - [8.6.1 Register and Address Descriptors](#e2391a4ecbd6fee9999aecdd40eecb75)
 
 ...menuend
 
@@ -505,6 +515,7 @@ Starting in Chapter 9, we discuss transformations on flow graphs that turn the o
 
 ---
 
+<h2 id="5382830f44c8ab1f0f2d56fe8cf4ac65"></h2>
 ### 8.4.1 Basic Blocks
 
 Our first job is to partition a sequence of three-address instructions into basic blocks. We begin a new basic block with the first instruction and keep adding instructions until we meet either a jump, a conditional jump, or a label on the following instruction. In the absence of jumps and labels, control proceeds sequentially from one instruction to the next. This idea is formalized in the following algorithm.
@@ -557,6 +568,7 @@ We conclude that the leaders are instructions 1, 2, 3, 10, 12, and 13. The basic
 
 ---
 
+<h2 id="21d7d35b190002b687bfd4fbe96db30f"></h2>
 ### 8.4.2 Next-Use Information
 
 Knowing when the value of a variable will be used next is essential for generating good code. If the value of a variable that is currently in a register will never be referenced subsequently, then that register can be assigned to another variable.
@@ -580,6 +592,7 @@ Here we have used + as a symbol representing any operator. If the three-address 
 
 ---
 
+<h2 id="2e0f84d0f92e1f49404739bec34b3dd2"></h2>
 ### 8.4.3 Flow Graphs
 
 Once an intermediate-code program is partitioned into basic blocks, we repre­sent the flow of control between them by a flow graph. The nodes of the flow graph are the basic blocks. There is an edge from block B to block C if and only if it is possible for the first instruction in block C to immediately follow the last instruction in block B. There are two ways that such an edge could be justified:
@@ -609,6 +622,7 @@ Only B6 points to the exit of the flow graph, since the only way to get to code 
 
 ---
 
+<h2 id="d9681c5961ade940b16db92265f07922"></h2>
 ### 8.4.4 Representation of Flow Graphs
 
 First, note from Fig. 8.9 that in the flow graph, it is normal to replace the jumps to instruction numbers or labels by jumps to basic blocks. Recall that every conditional or unconditional jump is to the leader of some basic block, and it is to this block that the jump will now refer. The reason for this change is that after constructing the flow graph, it is common to make substantial changes to the instructions in the various basic blocks. If jumps were to instructions, we would have to fix the targets of the jumps every time one of the target instructions was changed.
@@ -617,6 +631,7 @@ Flow graphs, being quite ordinary graphs, can be represented by any of the data 
 
 ---
 
+<h2 id="57ba69ba8ce34a37752db17e8dc9e160"></h2>
 ### 8.4.5 Loops
 
 Programming-language constructs like while-statements, do-while-statements, andfor-statements naturally give rise to loops in programs. Since virtually every program spends most of its time in executing its loops, it is especially important for a compiler to generate good code for loops. Many code transformations depend upon the identification of "loops" in a flow graph. We say that a set of nodes L in a flow graph is a loop if
@@ -637,12 +652,14 @@ The third loop, L = {B2, B3, B4}, has B2 as its loop entry. Note that among thes
 
 ---
 
+<h2 id="895e7d88eb5f9758b1bb9bcad8448f0d"></h2>
 ## 8.5 Optimization of Basic Blocks
 
 We can often obtain a substantial improvement in the running time of code merely by performing local optimization within each basic block by itself. More thorough global optimization, which looks at how information flows among the basic blocks of a program, is covered in later chapters, starting with Chapter 9. It is a complex subject, with many different techniques to consider.
 
 ---
 
+<h2 id="66e1b4db709e780933b28a758e46d599"></h2>
 ### 8.5.1 The DAG Representation of Basic Blocks
 
 Many important techniques for local optimization begin by transforming a basic block into a DAG (directed acyclic graph). In Section 6.1.1, we introduced the DAG as a representation for single expressions. The idea extends naturally to the collection of expressions that are created within one basic block. We construct a DAG for a basic block as follows:
@@ -662,12 +679,14 @@ The DAG representation of a basic block lets us perform several code­ improving
 
 ---
 
+<h2 id="2ca093ee9b3646bbed3c5a7150480019"></h2>
 ### 8.5.2 Finding Local Common Subexpressions  (TODO)
 
 TODO
 
 ---
 
+<h2 id="3cac79754c1e27df5c39a1578a7df8a3"></h2>
 ## 8.6 A Simple Code Generator
 
 In this section, we shall consider an algorithm that generates code for a single basic block. It considers each three-address instruction in turn, and keeps track of what values are in what registers so it can avoid generating unnecessary loads and stores.
@@ -691,6 +710,7 @@ We assume that the basic block has already been transformed into a preferred seq
 
 ---
 
+<h2 id="e2391a4ecbd6fee9999aecdd40eecb75"></h2>
 ### 8.6.1 Register and Address Descriptors
 
 

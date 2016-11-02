@@ -6,6 +6,8 @@
 	 - [5.3 DIFFERENCE EQUATIONS AND POWERS Aᵏ](#b7b97b347a818a45c3aa318285ba99b7)
 		 - [Fibonacci Numbers](#fdd5b4c8c15384ed3cceda4fe4cc38d6)
 		 - [Markov Matrices](#bdfe38b6c05d238d6cb0df431aea8cb7)
+		 - [Stability of u<sub>k+1</sub> = Au<sub>k</sub>](#ececb2267f15a71d7ecad9272b25ab4a)
+		 - [Positive Matrices and Applications in Economics](#ee24aae762a9409f153f67ec07bbee34)
 
 ...menuend
 
@@ -771,7 +773,7 @@ We solve this Markov difference equation using **u<sub>k</sub> = SΛᵏS⁻¹u�
 
 ```
 A - λI = ⎡.9-λ  .2  ⎤  has det(A - λI) = λ² - 1.7λ + .7
-         ⎣ .1  -8-λ ⎦
+         ⎣ .1  .8-λ ⎦
 
 λ₁ = 1 and λ₂ = .7:   A = SΛS⁻¹ = ⎡2/3  1/3⎤ ⎡1    ⎤ ⎡1   1⎤.
                                   ⎣1/3 -1/3⎦ ⎣   .7⎦ ⎣1  -2⎦
@@ -789,8 +791,124 @@ To find Aᵏ, and the distribution after k years, change SΛS⁻¹ to SΛᵏS⁻
 
 Those two terms are c₁λ₁ᵏx₁ + c₂λ₂ᵏx₂.  In the long run, the other factor (.7)ᵏ becomes extremely small.  ***The solution approaches a limiting state*** u<sub>∞</sub> = (y<sub>∞</sub>, z<sub>∞</sub>):
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Markov_Steady_status.png)
+
+The total population is still y₀ + z₀, but in the limit 2/3 of this population is outside California and 1/3 inside.  This is true no matter what the initial distribution may have been !   If the year start with 2/3 outside and 1/3 inside , then it ends the same way : 
+
+```
+⎡.9  .2 ⎤ ⎡2/3⎤ = ⎡2/3⎤ .  or   Au∞ = u∞ .
+⎣.1  .8 ⎦ ⎣1/3⎦   ⎣1/3⎦
+```
+
+***The steady state is the eigenvector of A corresponding to λ = 1. ***  Multiplication by A, from one time step to the next, leaves u<sub>∞</sub> unchanged.
+
+The theory of Markov processes is illustrated by that California example:
+
+**5I** A Markov matrix A has all aᵢⱼ ≥  0, with each column adding to 1.
+
+ - (a) λ₁ = 1 is an eigenvalue of A.
+ - (b) Its eigenvector x₁ is nonnegative -- and it is a steady state, since Ax₁ = x₁.
+ - (c) The other eigenvalues satisfy λᵢ ≤ 1.
+ - (d) If A or any power of A has all positive entries, these other |λᵢ| are below 1.  The solution Aᵏu₀ approaches a multiple of x₁ -- which is the steady state u<sub>∞</sub> .
+
+To find the right multiple of x₁, use the fact that the total population stays the same. If California started with all 90 million people out, it ended with 60 million out and 30 million in. It ends the same way if all 90 million were originally inside.
+
+We note that many authors transpose the matrix so its *rows* add to 1.
+
+***Remark*** Our description of a Markov process was deterministic; populations moved in fixed proportions. But if we look at a single individual, the fractions that move become probabilities. With probability 1/10, an individual outside California moves in. If inside, the probability of moving out is 2/10. The movement becomes a *random process*, and A is called a ***transition matrix***.
+
+The components of u<sub>k</sub> = Aᵏu₀ specify the probability that the individual is outside or inside the state. These probabilities are never negative, and add to 1 -- everybody has to be somewhere. That brings us back to the two fundamental properties of a Markov matrix:  Each column adds to 1, and no entry is negative.
+
+Why is λ = 1 always an eigenvalue ?   Each column of *A - I* adds up to 1 - 1 = 0.  Therefore the rows of A - I add up to the zero row, they are linearly dependent, and det(A-I)=0.
+
+Except for very special cases, u<sub>k</sub> will approach the corresponding eigenvector. (If everybody outside moves in and everybody inside moves out, then the populations are reversed every year and there is no steady state.)
+
+In the formula u<sub>k</sub> = c₁λ₁ᵏx₁ + ... + cnλnᵏxn , no eigenvalue can be larger than 1. (Otherwise the probabilities u<sub>k</sub> would blow up.)  If all other eigenvalues are strictly smaller than λ₁ = 1, then the first term in the formula will be dominant.  The other λᵢᵏ go to zero, and
+u<sub>k</sub> → c₁x₁ = u<sub>∞</sub> = steady state.
+
+This is an example of one of the central themes of this chapter: Given information about A, find information about its eigenvalues. Here we found λ<sub>max</sub> = 1.
+
+<h2 id="ececb2267f15a71d7ecad9272b25ab4a"></h2>
+### Stability of u<sub>k+1</sub> = Au<sub>k</sub>
+
+There is an obvious difference between Fibonacci numbers and Markov processes.  The numbers F<sub>k</sub> become larger and larger, while by definition any "probability" is between 0 and 1. The Fibonacci equation is *unstable*.  So is the compound interest equation P<sub>k+1</sub> = 1.06P<sub>k</sub>; the principal keeps growing forever.  If the Markov probabilities decreased to zero, that equation would be stable; but they do not, since at every stage they must add to 1. Therefore a Markov process is *neutrally stable*.
+
+We want to study the behavior of u<sub>k+1</sub> = Au<sub>k</sub> as k → ∞. Assuming that A can be diagonalized, u<sub>k</sub> will be a combination of pure solutions:
+
+&nbsp;&nbsp;&nbsp;&nbsp; **Solution at time k:**  u<sub>k</sub> = SΛᵏS⁻¹u₀ = c₁λ₁ᵏx₁ + ... + cnλnᵏxn .
+
+The growth of u<sub>k</sub> is governed by the λᵢᵏ. ***Stability depends on the eigenvalues***:
+
+**5J:** The difference equation u<sub>k+1</sub> = Au<sub>k</sub> is 
+
+ - ***stable*** if all eigenvalues satisfy |λᵢ| < 1;
+ - ***neutrally stable*** if some |λᵢ| = 1 and all the other |λᵢ| < 1; and
+ - ***unstable*** if at least one eigenvalue has |λᵢ| > 1.
+
+In the stable case, the powers Aᵏ approach zero and so does u<sub>k</sub> = Aᵏu₀.
+
+Example 1 : This matrix A is certainly stable:
+
+```
+    A = ⎡0  4 ⎤  has eigenvalues  0 and 1/2.
+        ⎣0 1/2⎦
+```
+
+<h2 id="ee24aae762a9409f153f67ec07bbee34"></h2>
+### Positive Matrices and Applications in Economics
+
+By developing the Markov ideas we can find a small gold mine (entirely optional) of matrix applications in economics.
 
 
+Example 2: Leontief's input-output matrix
+
+This is one of the first great successes of mathematical economics. To illustrate it, we construct a *consumption matrix* -- in which aᵢⱼ gives the amount of product *j* that is needed to create one unit of product *i* :
+
+```
+    ⎡.4  0 .1⎤     (steel)
+A = ⎢ 0 .1 .8⎥.    (food)
+    ⎣.5 .7 .1⎦     (labor)
+```
+
+The first question is: Can we produce y₁ units of steel, y₂ units of food, and y₃ units of labor? We must start with larger amounts p₁, p₂, p₃, because some part is consumed by the production itself. The amount consumed is Ap, and it leaves a net production of p - Ap.
+
+```
+  Problem:  To find a vector p such that p - Ap = y, or p = (I - A)⁻¹y.
+```
+
+On the surface, we are only asking if I - A is invertible. But there is a nonnegative twist to the problem.  Demand and production, y and p, are nonnegative. Since p is (I - A)⁻¹y , the real question is about the matrix that multiplies y:
+
+***&nbsp;&nbsp;&nbsp;&nbsp;  When is (I - A)⁻¹ a nonnegative matrix?***
+
+Roughly speaking, A cannot be too large. If production consumes too much, nothing is left as output. The key is in the largest eigenvalue λ₁ of A, which must be below 1: 
+
+ - If λ₁ > 1, (I - A)⁻¹ fails to be nonnegative.
+ - If λ₁ = 1, (I - A)⁻¹ fails to exist.
+ - If λ₁ < 1, (I - A)⁻¹ is a converging sum of nonnegative matrices:
+ 	- **Geometric series:**   (I - A)⁻¹ = I + A + A² + A³ + ...  (7)
+
+The 3 by 3 example has λ₁ = .9, and output exceeds input. Production can go on.
+
+Those are easy to prove, once we know the main fact about a nonnegative matrix like A: ***Not only is the largest eigenvalue λ₁ positive, but so is the eigenvector x₁.***  Then (I - A)⁻¹ has the same eigenvector (why?), with eigenvalue 1/(1 - λ₁).  
+
+If λ₁ exceeds 1, that last number is negative. The matrix (I - A)⁻¹ will take the positive vector x₁ to a negative vector x₁/(1 - λ₁). In that case (I - A)⁻¹ is definitely not nonnegative. If λ₁ = 1, then I - A is singular. The productive case is λ₁ < 1, when the powers of A go to zero (stability) and the infinite series I + A + A² + ...  converges.  Multiplying this series by *I - A* leaves the identity matrix -- all higher powers cancel -- so (I - A)⁻¹ is a sum of nonnegative matrices. We give two examples:
+
+```
+A = ⎡0  2⎤ has λ₁=2  and the economy is lost 
+    ⎣2  0⎦
+
+A = ⎡.5 2⎤ has λ₁=0.5  and we can produce anything.
+    ⎣0 .5⎦
+```
+
+The matrices (I - A)⁻¹ in those two cases are 
+
+```
+-1/3 ⎡1  2⎤  and  ⎡2  8⎤. 
+     ⎣2  1⎦       ⎣0  2⎦
+```
+
+Leontief's inspiration was to find a model that uses genuine data from the real economy. The table for 1958 contained 83 industries in the United States, with a "transactions table" of consumption and production for each one. The theory also reaches beyond (I - A)⁻¹, to decide natural prices and questions of optimization. Normally labor is in limited supply and ought to be minimized. And, of course, the economy is not always linear.
 
 
 
