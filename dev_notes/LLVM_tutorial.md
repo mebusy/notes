@@ -27,3 +27,72 @@ As such, all values are implicitly double precision and the language doesn’t r
 
 ### 1.3. The Lexer
 
+
+---
+
+# llvm tools
+
+install 
+
+```
+brew reinstall llvm --with-all-targets
+
+brew info llvm 
+```
+
+查看 llc 支持的后端
+
+```
+llc --version
+LLVM (http://llvm.org/):
+  LLVM version 3.9.0
+  Optimized build.
+  Default target: x86_64-apple-darwin16.1.0
+  Host CPU: sandybridge
+
+  Registered Targets:
+    amdgcn  - AMD GCN GPUs
+    arm     - ARM
+    armeb   - ARM (big endian)
+    nvptx   - NVIDIA PTX 32-bit
+    nvptx64 - NVIDIA PTX 64-bit
+    r600    - AMD GPUs HD2XXX-HD6XXX
+    thumb   - Thumb
+    thumbeb - Thumb (big endian)
+    x86     - 32-bit X86: Pentium-Pro and above
+    x86-64  - 64-bit X86: EM64T and AMD64
+```
+
+
+生成字节码 .bc
+
+```
+clang -emit-llvm -c test.c
+```
+
+生成 .ll
+
+```
+# 从源文件
+clang -emit-llvm -S test.c
+
+# 从字节码
+llvm-dis test.bc
+```
+
+生成 .s
+
+```
+llc test.ll
+or 
+llc test.bc
+```
+
+
+
+
+c -> cpp 
+
+```
+llc -mtriple=cpp hello.s -o hello.cpp 
+```

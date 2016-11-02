@@ -353,9 +353,11 @@ Your network can never rely on any given activation to be present , because they
 
 It's like a game of whack-a-mole.  One activations gets smashed , but there's always one or more that do the same job and that don't get killed. So every thing remains fine at the end.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_dropout3.png)
+
 Forceing your network to learn redundant representations might sound very inefficient. But in practice , it makes things more rebust and prevents overfitting.  It also makes your network act as if taking the consensus over an ensemble of networks. Which is always a good way to improve performance. 
 
-
+Dropout is one of the most important techniques to emerge in the last few years. It the dropout doesn't work for you, you should probably be using a bigger network.
 
 
 
