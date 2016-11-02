@@ -860,7 +860,7 @@ Example 1 : This matrix A is certainly stable:
 By developing the Markov ideas we can find a small gold mine (entirely optional) of matrix applications in economics.
 
 
-Example 2: Leontief's input-output matrix
+**Example 2: Leontief's input-output matrix**
 
 This is one of the first great successes of mathematical economics. To illustrate it, we construct a *consumption matrix* -- in which aᵢⱼ gives the amount of product *j* that is needed to create one unit of product *i* :
 
@@ -910,7 +910,29 @@ The matrices (I - A)⁻¹ in those two cases are
 
 Leontief's inspiration was to find a model that uses genuine data from the real economy. The table for 1958 contained 83 industries in the United States, with a "transactions table" of consumption and production for each one. The theory also reaches beyond (I - A)⁻¹, to decide natural prices and questions of optimization. Normally labor is in limited supply and ought to be minimized. And, of course, the economy is not always linear.
 
+**Example 3: The prices in a closed input-output model**
 
+The model is called "closed" when everything produced is also consumed.  Nothing goes outside the system. In that case A goes back to a *Markov matrix*. ***The columns add up to 1***.  We might be talking about the *value* of steel and food and labor, instead of the number of units. The vector p represents prices instead of production levels. 
+
+Suppose p₀ is a vector of prices. Then Ap₀ multiplies prices by amounts to give the value of each product. That is a new set of prices which the system uses for the next set of values A²p₀. The question is whether the prices approach equilibrium (均衡). Are there prices such that p = Ap, and does the system take us there ?
+
+You recognize p as the (nonnegative) eigenvector of the Markov matrix A, with λ = 1. It is the steady state p<sub>∞</sub>, and it is approached from any starting point p₀. By repeating a transaction over and over, the price tends to equilibrium.
+
+The "Perron-Frobenius theorem" gives the key properties of a ***positive matrix*** -- not to be confused with a *positive definite* matrix, which is symmetric and has all its eigenvalues positive. Here all the entries aᵢⱼ are positive.
+
+**5K:** If A is a positive matrix, so is its largest eigenvalue: λ₁ > all other |λᵢ| . Every component of the corresponding eigenvector x₁ is also positive.
+
+***Proof: *** 
+
+Suppose A > 0. The key idea is to look at all numbers *t* such that Ax ≥ tx for some nonnegative vector x (other than x = 0). We are allowing inequality in Ax ≥ tx in order to have many positive candidates t. For the largest value t<sub>max</sub> (which is attained), we will show that ***equality holds***: Ax = t<sub>max</sub>x.
+
+Otherwise, if Ax ≥ t<sub>max</sub>x is not an equality, multiply by A. Because A is positive, that produces a strict inequality A²x > t<sub>max</sub>Ax. Therefore the positive vector y = Ax satisfies Ay > t<sub>max</sub>y, and t<sub>max</sub> could have been larger. This contradiction forces the equality Ax = t<sub>max</sub>x, and we have an eigenvalue. Its eigenvector x is positive (not just nonnegative) because on the left-hand side of that equality Ax is sure to be positive.
+
+To see that no eigenvalue can be larger than t<sub>max</sub>, suppose Az = λz. Since λ and z may involve negative or complex numbers, we take absolute values:|λ||z|= |Az| ≤ A|z| by the "triangle inequality." This |z| is a nonnegative vector, so |λ| is one of the possible candidates *t*. Therefore |λ| cannot exceed λ₁, which was t<sub>max</sub>.
+
+***Example4: Von Neumann'c model of an expanding economy***
+
+We go back to the 3 by 3 matrix A that gave the consumption of steel, food, and labor. If the outputs are s₁, f₁, l₁, then the required inputs are
 
 
 
