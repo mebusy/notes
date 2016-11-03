@@ -407,6 +407,38 @@ Dropout is one of the most important techniques to emerge in the last few years.
 
 When you evaluate the network that's been trained with drop out, you obvioulsy no longer want this randomness.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_dropout_2.png)
+
+You want something deterministic. Instead , you're going to want to take the consensus over these redundant models.  You get the consensus opinion by averaging the activations.
+
+You want *Ye* here to be the average of all the *Yt*s that you got during training. 
+
+Here's the trick to make sure this expectation holds. During training , not only do you use zero out so the activations that you drop out, but you also scale the remaining activations by a factor of 2.  This way, when it comes time to average them during evaluation, you just remove these dropouts and scaling operations from your neural net. And the result is an average of these activations that is properly scaled. 
+
+
+---
+
+# Convolutional Neural Network
+
+## Statistical Inveriance
+
+You have an image and you want your network to say it's an image with a cat in it.  It doesn't really matter where the cat is , it's still an image with a cat.
+
+If your network has to learn about cat in the left corner and about cat in the right corner independently , that's a lot of work that is has to do . 
+
+How about you telling it instead , explicitly , that objects and images are largely the same whether they're on the left or on the right of the picture. That's what called translation invariance.  Different positions, same cat. 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
