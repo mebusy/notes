@@ -934,7 +934,11 @@ To see that no eigenvalue can be larger than t<sub>max</sub>, suppose Az = λz. 
 
 We go back to the 3 by 3 matrix A that gave the consumption of steel, food, and labor. If the outputs are s₁, f₁, l₁, then the required inputs are
 
-
+```
+     ⎡.4  0 .1⎤ ⎡s₁⎤
+u₀ = ⎢ 0 .1 .8⎥ ⎢f₁⎥ = Au₁
+     ⎣.5 .7 .1⎦ ⎣l₁⎦
+```
 
 
 

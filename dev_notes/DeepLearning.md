@@ -403,7 +403,9 @@ Forceing your network to learn redundant representations might sound very ineffi
 
 Dropout is one of the most important techniques to emerge in the last few years. It the dropout doesn't work for you, you should probably be using a bigger network.
 
+---
 
+When you evaluate the network that's been trained with drop out, you obvioulsy no longer want this randomness.
 
 
 
