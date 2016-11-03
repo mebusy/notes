@@ -940,6 +940,29 @@ u₀ = ⎢ 0 .1 .8⎥ ⎢f₁⎥ = Au₁
      ⎣.5 .7 .1⎦ ⎣l₁⎦
 ```
 
+In economics the difference equation is backward! Instead of u₁ = Au₀ we have u₀ = Au₁.  If A is small (as it is), then production does not consume everything -- and the economy can grow. The eigenvalues of A⁻¹ will govern this growth.  But again there is a nonnegative twist, since steel, food, and labor cannot come in negative amounts. Von Neumann asked for the maximum rate *t* at which the economy can expand and still stay nonnegative, meaning that u₁ ≥ tu₀ ≥ 0.
+
+Thus the problem requires u₁ > tAu₁. It is like the Perron-Frobenius theorem, with A on the other side. As before, equality holds when t reaches t<sub>max</sub> -- which is the eigenvalue associated with the positive eigenvector of A⁻¹. In this example the expansion factor is s :
+
+```
+     ⎡.4  0 .1⎤ ⎡1⎤   ⎡0.9⎤
+Ax = ⎢ 0 .1 .8⎥ ⎢5⎥ = ⎢4.5⎥ = (9/10)x .
+     ⎣.5 .7 .1⎦ ⎣5⎦   ⎣4.5⎦
+```
+With steel-food-labor in the ratio 1-5-5, the economy grows as quickly as possible:  ***The maximum growth rate is 1/λ₁***.
+
+--- 
+
+## 5.4 DIFFERENTIAL EQUATIONS AND eᴬᵗ  (TODO)
+
+--- 
+
+## 5.5 COMPLEX MATRICES
+
+--- 
+
+## 5.6 SIMILARITY TRANSFORMATIONS
+
 
 
 
