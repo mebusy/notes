@@ -440,13 +440,68 @@ spline(float x, int nknots, float *knot)
 	c2 = CR10*knot[0] + CRll*knot[l] + CR12*knot[2] + CR13*knot[3]; 
 	cl = CR20*knot[0] + CR21*knot[l] + CR22*knot[2] + CR23*knot[3]; 
 	cO = CR30*knot[0] + CR31*knot[l] + CR32*knot[2] + CR33*knot[3];
-	
+
 	return ((c3*x + c2)*x + cl)*x + cO;
+}
+```
+
+A graph of a particular example of the spline function is shown in Figure 2.16.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_spline.png)
+
+This code can easily be adapted to work with knots that are colors or points. Just do the same thing three times, once for each of the components of the knots. In
+other words,
+
+```
+spline(parameter, (xl,yl,zl), . . . , (xN,yN,zN))
+```
+
+is exactly equivalent to
+
+```
+( spline(parameter, xl, . . . , xN), 
+  spline(parameter, yl, . . . , yN), 
+  spline(parameter, zl, . . . , zN) )
+```
+
+The spline function is used to map a number into another number or into a color.  A spline can approximate any function on the [0, 1] interval by giving values of the function at equally spaced sample points as the knots of the spline. In other words, the spline can interpolate function values from a table of known values at equally spaced values of the input parameter. A spline with colors as knots can be used as a *color map* or *color table*.
+
+An example of this technique is a shader that simulates a shiny metallic surface by a procedural reflection map texture. The shader computes the reflection direction R of the viewer vector V. The vertical component of R in world space is used to look up a color value in a spline that goes from brown earth color below to pale bluish-white at the horizon and then to deeper shades of blue in the sky. Note that the shading language’s built-in *vtransform* function properly converts a direction vector from the current rendering space to another coordinate system specified by name.
+
+```
+#define BROWN color (0.1307,0.0609,0.0355) 
+#define BLUEO color (0.4274,0.5880,0.9347) 
+#define BLUE1 color (0.1221,0.3794,0.9347) 
+#define BLUE2 color (0.1090,0.3386,0.8342) 
+#define BLUES color (0.0643,0.2571,0.6734) 
+#define BLUE4 color (0.0513,0.2053,0.5377) 
+#define BLUES color (0.0326,0.1591,0.4322) 
+#define BLACK color (0,0,0)
+
+surface 
+metallic( ) {
+	point Nf = normalize(faceforward(N, I)); V = normalize(-I);
+	point V = normalize(-I);
+	point R; /* reflection direction */
+	point Rworld; /* R in world space */
+	color Ct;
+	float altitude;
+
+	R = 2 * Nf * (Nf . V ) - V ; 
+	Rworld = normalize(vtransform(“world”, R)); 
+	altitude = 0.5 * zcomp(Rworld) + 0.5;
+	Ct = spline(altitude,
+			BROWN, BROWN, BROWN, BROWN, BROWN, 
+			BROWN, BLUEO, BLUE1, BLUE2, BLUES, 
+			BLUE4, BLUES, BLACK);
+	Oi = Os;
+	Ci = Os * Cs * Ct;
 }
 ```
 
 
 
+Figure 2.17 is an image shaded with the metallic reflection map shader.
 
 
 
