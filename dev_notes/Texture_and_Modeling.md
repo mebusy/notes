@@ -300,8 +300,39 @@ float
 clamp(float x, float a, float b) {
 	return (x < a ? a: (x > b ? b : x));
 }
+```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_clamp.png)
+
+The well-known min and max functions are closely related to clamp. In fact, min and max can be written as clamp calls, as follows:
 
 ```
+min(x, b) ≡ clamp(x, x, b)
+max(x, a) ≡ clamp(x, a, x)
+```
+
+Alternatively, clamp can be expressed in terms of min and max:
+
+```
+clamp(x, a, b) ≡ min(max(x, a), b)
+```
+
+Another special conditional function is the *abs* function.
+
+In additional , RenderMan shading language provides a “smooth” conditional function called *smoothstep*. This function is similar to step, but instead of a sharp transition from 0 to 1 at a specified threshold, smoothstep(a,b,x) makes a gradual transition from 0 to 1 beginning at threshold a and ending at threshold b.  In order to do this, smoothstep contains a cubic function whose slope is 0 at a and b and whose value is 0 at a and 1 at b.  There is only one cubic function that has these properties for a = 0 and b = 1, namely, the function 3x² − 2x³. 
+
+```
+float
+smoothstep(float a, float b, float x) {
+	if (x < a) return 0;
+	if (x >= b) return 1;
+	x = (x - a)/(b - a); 
+	return (x*x * (3 - 2*x));
+}
+```
+
+
+
 
 
 
