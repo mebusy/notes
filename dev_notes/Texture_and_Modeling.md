@@ -663,5 +663,60 @@ Blinn (1978), the paper that introduced bump mapping, describes how a bump of he
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.23.png)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_bump_U.png)
+
+Let’s analyze the expression for U. Note that the cross product `N x (∂P/∂v)` is perpendicular to N and therefore lies in the tangent plane of the surface. It is also perpendicular to the partial derivative of P, the surface position, with respect to v. This derivative lies in the tangent plane and indicates the direction in which P changes as the surface parameter v is increased.  If the parametric directions are perpendicular (usually they are only approximately perpendicular), adding a perturbation to N along the direction of this cross product would tilt N as if there were an upward slope in the surface along the u direction. The partial derivative `∂F/∂u` gives the slope of the bump function in the u direction.
+
+This technique looks somewhat frightening, but is fairly easy to implement if you already have the normal vector and the parametric derivatives of P. In the RenderMan shading language, N, dPdu, and dPdv contain these values. The differencing operators Du and Dv allow you to approximate the parametric derivatives of any expression. So Blinn’s method of bump mapping could be implemented using the following shading language code:
+
+```
+float F; point U, V, D;
+F = /* fill in some bump function here */ 
+U = Du(F) * (N ^ dPdv);
+V = -(Dv(F) * (N ^ dPdu));
+D = 1/length(N) * (U + V);
+Nf = N + D;
+Nf = normalize(faceforward(Nf, I));
+```
+
+Then use Nf in the shading model just as you normally would. The resulting surface shading should give the appearance of a pattern of bumps determined by F.
+
+Fortunately, the shading language provides a more easily remembered way to implement bump mapping and even displacement mapping.
+
+```
+float F; point PP;
+F = /* fill in some bump function here */
+PP = P + F * normalize(N);
+Nf = calculatenormal(PP);
+Nf = normalize(faceforward(Nf, I));
+```
+
+In this code fragment, a new position PP is computed by moving along the direction of the normal a distance determined by the bump height F. Then the built-in function *calculatenormal* is used to compute the normal vector of the modified surface PP. *calculatenormal(PP)* does nothing more than return the cross product of the parametric derivatives of the modified surface:
+
+```
+point 
+calculatenormal(point PP) {
+	return Du(PP) ^ Dv(PP);
+}
+```
+
+To create actual geometric bumps by displacement mapping, you use very similar shading language code:
+
+```
+float F;
+F = /* fill in some bump function here */
+p = p + F * normalize(N); 
+N = calculatenormal(P);
+```
+
+
+
+
+
+
+
+
+
+
 
 
