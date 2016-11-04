@@ -514,8 +514,21 @@ gammacorrect(float gamma, float x) {
 
 Figure 2.18 shows the shape of the gamma correction function for gamma values of 0.4 and 2.3. If x varies over the [0, 1] interval, then the result is also in that interval.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ML_gamma_correction.png)
+
+The zero and one end points of the interval are mapped to themselves. Other values are shifted upward toward one if gamma is greater than one, and shifted downward toward zero if gamma is between zero and one.
+
+Perlin and Hoffert (1989) use a version of the gamma correction function that they call the *bias* function. The bias function replaces the gamma parameter with a parameter b, defined such that bias(b,0.5) = b.
+
+```
+float
+bias(float b, float x) {
+	return pow(x, log(b)/log(0.5)); 
+}
+```
+
+Figure 2.19 shows the shape of the bias function for different choices of b.
 
 
 
-
-
+> FIGURE 2.19 The bias function.
