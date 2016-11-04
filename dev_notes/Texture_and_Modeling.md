@@ -354,5 +354,5 @@ mod(float a, float b) {
 
 A graph of the periodic sawtooth function mod(x,a)/a is shown in Figure 2.14. This function has an amplitude of one and a period of a.
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ML_mod_sawteech.png)
 
