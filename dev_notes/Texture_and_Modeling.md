@@ -593,13 +593,63 @@ This section presents a procedural texture generator for a simple brick pattern 
 
 The bricks are separated by a mortar that has a different color than the bricks. Figure 2.21 is a diagram of the brick pattern.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.21.png)
 
+The following is a listing of the shading language code for the brick shader, with explanatory remarks inserted here and there.
 
+```
+#define BRICKWIDTH 0.25 
+#define BRICKHEIGHT 0.08 
+#define MORTARTHICKNESS 0.01
 
+#define BMWIDTH (BRICKWIDTH + MORTARTHICKNESS) 
+#define BMHEIGHT (BRICKHEIGHT + MORTARTHICKNESS)
 
+#define MWF (MORTARTHICKNESS *0.5 /BMWIDTH) 
+#define MHF (MORTARTHICKNESS *0.5 /BMHEIGHT)
 
+surface brick(
+	uniform float Ka = 1;
+	uniform float Kd = 1;
+	uniform color Cbrick = color (0.5, 0.15, 0.14); 
+	uniform color Cmortar = color (0.5, 0.5, 0.5); )
+{
+	color Ct;
+	point Nf;
+	float ss, tt, sbrick, tbrick, w, h; 
+	float scoord = s;
+	float tcoord = t;
 
+	Nf = normalize(faceforward(N, I));
+	
+	ss = scoord / BMWIDTH; 
+	tt = tcoord / BMHEIGHT;
+	if (mod(tt*0.5,1) > 0.5)
+		ss += 0.5; /* shift alternate rows */
 
+	sbrick = floor(ss); /* which brick? */ 
+	tbrick = floor(tt); /* which brick? */ 
+	ss -= sbrick;
+	tt -= tbrick;
+
+	w = step(MWF,ss) - step(1-MWF,ss);  // PULSE  MWF , 1-MWF
+	h = step(MHF,tt) - step(1-MHF,tt);
+
+	Ct = mix(Cmortar, Cbrick, w*h);
+
+	/* diffuse reflection model */
+	Oi = Os;
+	Ci = Os * Ct * (Ka * ambient() + Kd * diffuse(Nf));
+}
+```
+
+ - The texture coordinates *scoord* and *tcoord* begin with the values of the standard texture coordinates s and t
+ - and then are divided by the dimensions of a brick (including one-half of the mortar around the brick) to obtain new coordinates ss and tt that vary from 0 to 1 within a single brick
+ - *scoord* and *tcoord* become the coordinates of the upper-left corner of the brick containing the point being shaded
+ - Alternate rows of bricks are offset by one-half brick width to simulate the usual way in which bricks are laid.
+ - Having identified which brick contains the point being shaded, as well as the texture coordinates of the point within the brick, it remains to determine whether the point is in the brick proper or in the mortar between the bricks.
+ - The rectangular brick shape results from two pulses , a horizontal pulse w and a vertical pulse h . w * h is nonzero only when the point is within the brick region both horizontally and vertically
+ 
 
 
 
