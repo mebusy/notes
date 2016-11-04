@@ -649,8 +649,19 @@ surface brick(
  - Alternate rows of bricks are offset by one-half brick width to simulate the usual way in which bricks are laid.
  - Having identified which brick contains the point being shaded, as well as the texture coordinates of the point within the brick, it remains to determine whether the point is in the brick proper or in the mortar between the bricks.
  - The rectangular brick shape results from two pulses , a horizontal pulse w and a vertical pulse h . w * h is nonzero only when the point is within the brick region both horizontally and vertically
- 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.22.png)
+
+
+### Bump-Mapped Brick
+
+Now let’s try our hand at some procedural bump mapping.
+
+Recall that bump mapping involves modifying the surface normal vectors to give the appearance that the surface has bumps or indentations. 
+
+Blinn (1978), the paper that introduced bump mapping, describes how a bump of height F(u, v) along the normal vector N can be simulated. The modified or “perturbed” normal vector is N′ = N + D.  The perturbation vector D lies in the tangent plane of the surface and is therefore perpendicular to N. D is based on the sum of two separate perturbation vectors U and V (Figure 2.23).
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.23.png)
 
 
 
