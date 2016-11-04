@@ -319,7 +319,7 @@ clamp(x, a, b) ≡ min(max(x, a), b)
 
 Another special conditional function is the *abs* function.
 
-In additional , RenderMan shading language provides a “smooth” conditional function called *smoothstep*. This function is similar to step, but instead of a sharp transition from 0 to 1 at a specified threshold, smoothstep(a,b,x) makes a gradual transition from 0 to 1 beginning at threshold a and ending at threshold b.  In order to do this, smoothstep contains a cubic function whose slope is 0 at a and b and whose value is 0 at a and 1 at b.  There is only one cubic function that has these properties for a = 0 and b = 1, namely, the function 3x² − 2x³. 
+In addition to the “pure” or “sharp” conditionals step, clamp, min, max, and abs, RenderMan shading language provides a “smooth” conditional function called *smoothstep*. This function is similar to step, but instead of a sharp transition from 0 to 1 at a specified threshold, smoothstep(a,b,x) makes a gradual transition from 0 to 1 beginning at threshold a and ending at threshold b.  In order to do this, smoothstep contains a cubic function whose slope is 0 at a and b and whose value is 0 at a and 1 at b.  There is only one cubic function that has these properties for a = 0 and b = 1, namely, the function 3x² − 2x³. 
 
 ```
 float
@@ -331,11 +331,28 @@ smoothstep(float a, float b, float x) {
 }
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ML_smoothStep.png)
 
 
+## Periodic Functions
 
+The best-known periodic functions are sin and cos.  It can be shown that other functions can be built up from a sum of sinusoidal terms of different frequencies and phases.
 
+Another important periodic function is the *mod* function. *mod(a,b)* gives the positive remainder obtained when dividing a by b.  C users beware! Although C has a built-in integer remainder operator “%” and math library functions fmod and fmodf for double and float numbers, all of these are really remainder functions, not modulus functions, in that they will return a negative result if the first operand, a, is negative.  Instead, you might use the following C implementation of mod:
 
+```
+
+float
+mod(float a, float b) {
+	int n = (int)(a/b); 
+	a -= n*b;
+	if (a < 0)
+		a += b; 
+	return a;
+}
+```
+
+A graph of the periodic sawtooth function mod(x,a)/a is shown in Figure 2.14. This function has an amplitude of one and a period of a.
 
 
 
