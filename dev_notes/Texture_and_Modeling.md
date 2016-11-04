@@ -217,4 +217,61 @@ The best approach to writing a complex texture pattern generator is to build it 
 
 One technique is *layering*, in which simple patterns are placed on top of one another. 
 
+For example, the colors of two texture layers could be added together. Usually, it is better to have some texture function control how the layers are combined. The *mix* function is a convenient way of doing this.
+
+```
+C = mix(C0, C1, f);
+```
+
+ - The number f, between 0 and 1, is used to select one of the colors C0 and C1
+ - If f is 0, the result of themixisC0
+ - If f is 1, the result isC1
+ - If f is between 0 and 1, the re- sult is a linearly interpolated mixture of C0 and C1
+
+
+```
+color
+mix(color C0, color Cl, float f) {
+	return (1-f) * C0 + f * Cl;
+}
+```
+
+When two colors are multiplied together in the shading language, the result is a color , whose RGB components are the product of the corresponding components from the input colors. Color multiplication can simulate the ***filtering*** of one color by the other. If color C0 represents the transparency of a filter to red, green, and blue light, then C0*C1 represents the color C1 as viewed through the filter.
+
+Be careful when using a four-channel image texture that was created from an RGBA image (an image with an opacity or “alpha” channel) because the colors in such an image are normally premultiplied by the value of the alpha channel. In this case, it is not correct simply to combine the RGB channels with another color under control of the alpha channel. The correct way to merge an RGBA texture over another texture color Ct is
+
+```
+color C; float A;
+C = color texture(“mytexture”,s,t); 
+A = texture(“mytexture”[3],s,t); 
+result = C + (1-A) * Ct;
+```
+
+ - C is the image texture color, and A is the alpha channel of the image texture (channel number 3)
+ - Since C has already been multiplied by A, the expression C + (1—A)*Ct is the right way to *lerp* between C and Ct.
+
+Another way to combine simple functions to make complex functions is *functional composition*, using the outputs of one or more simple functions as the inputs of another function. Composition is very powerful and is so fundamental to programming that you really can’t avoid using it.
+
+
+## Steps, Clamps, and Conditionals
+
+function *step(a,x)* returns the value 0 when x is less than a and returns 1 otherwise.
+
+```c
+float
+step(float a, float x) {
+	return (float) (x >= a);
+}
+```
+
+
+
+
+
+
+
+
+
+
+
 
