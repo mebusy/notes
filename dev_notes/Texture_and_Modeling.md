@@ -665,5 +665,3 @@ Blinn (1978), the paper that introduced bump mapping, describes how a bump of he
 
 
 
-
-
