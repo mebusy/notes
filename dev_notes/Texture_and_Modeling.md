@@ -473,14 +473,14 @@ An example of this technique is a shader that simulates a shiny metallic surface
 #define BLUEO color (0.4274,0.5880,0.9347) 
 #define BLUE1 color (0.1221,0.3794,0.9347) 
 #define BLUE2 color (0.1090,0.3386,0.8342) 
-#define BLUES color (0.0643,0.2571,0.6734) 
+#define BLUE3 color (0.0643,0.2571,0.6734) 
 #define BLUE4 color (0.0513,0.2053,0.5377) 
-#define BLUES color (0.0326,0.1591,0.4322) 
+#define BLUE5 color (0.0326,0.1591,0.4322) 
 #define BLACK color (0,0,0)
 
 surface 
 metallic( ) {
-	point Nf = normalize(faceforward(N, I)); V = normalize(-I);
+	point Nf = normalize(faceforward(N, I)); 
 	point V = normalize(-I);
 	point R; /* reflection direction */
 	point Rworld; /* R in world space */
@@ -488,26 +488,31 @@ metallic( ) {
 	float altitude;
 
 	R = 2 * Nf * (Nf . V ) - V ; 
-	Rworld = normalize(vtransform(“world”, R)); 
+	Rworld = normalize(vtransform("world", R)); 
 	altitude = 0.5 * zcomp(Rworld) + 0.5;
 	Ct = spline(altitude,
 			BROWN, BROWN, BROWN, BROWN, BROWN, 
-			BROWN, BLUEO, BLUE1, BLUE2, BLUES, 
-			BLUE4, BLUES, BLACK);
+			BROWN, BLUEO, BLUE1, BLUE2, BLUE3, 
+			BLUE4, BLUE5, BLACK);
 	Oi = Os;
 	Ci = Os * Cs * Ct;
 }
 ```
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_teapot_spline.jpg)
 
 Figure 2.17 is an image shaded with the metallic reflection map shader.
 
+Since *mix* functions and so many other selection functions are controlled by values that range over the [0, 1] interval, mappings from the unit interval to itself can be especially useful. Monotonically increasing functions on the unit interval can be used to change the distribution of values in the interval. The best-known example of such a function is the “gamma correction” function used to compensate for the nonlinearity of CRT display systems:
 
+```c
+float
+gammacorrect(float gamma, float x) {
+	return pow(x, 1/gamma);
+}
+```
 
-
-
-
+Figure 2.18 shows the shape of the gamma correction function for gamma values of 0.4 and 2.3. If x varies over the [0, 1] interval, then the result is also in that interval.
 
 
 
