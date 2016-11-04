@@ -356,3 +356,11 @@ A graph of the periodic sawtooth function mod(x,a)/a is shown in Figure 2.14. Th
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ML_mod_sawteech.png)
 
+By applying mod to the inputs of some other function, we can make the other function periodic too. Take any function, say, f (x), defined on the interval from 0 to 1 (technically, on the half-open interval [0, 1]). Then f (mod(x,a)/a) is a periodic function.  To make this work out nicely, it is best if f(0) = f(1) and even better if the derivatives of f are also equal at 0 and 1. 
+
+For example, the pulse function PULSE(0.4,0.6,x) can be combined with the mod function to get the periodic square wave function PULSE(0.4,0.6,mod(x,a)/a) with its period equal to a (see Figure 2.15).
+
+
+
+
+
