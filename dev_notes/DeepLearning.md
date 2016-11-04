@@ -19,6 +19,9 @@
 	 - [Regularization Intro](#949b893e589d45ecfe63894272b7b754)
 	 - [Regularization](#853cc01c0ad043a93a400b3b1dc15614)
 	 - [Dropout](#09bb9294aa4a843883a3f401aeaf8b5b)
+ - [Convolutional Neural Network](#02ed75b713cdaf7bbe2faae40ba76279)
+	 - [Statistical Inveriance](#78289659377fe0ce4edb6cc2c3e44939)
+	 - [Convolutional Networks , or CONVNETS](#4f15f700f5c4dc733c503ae470344017)
 
 ...menuend
 
@@ -418,8 +421,10 @@ Here's the trick to make sure this expectation holds. During training , not only
 
 ---
 
+<h2 id="02ed75b713cdaf7bbe2faae40ba76279"></h2>
 # Convolutional Neural Network
 
+<h2 id="78289659377fe0ce4edb6cc2c3e44939"></h2>
 ## Statistical Inveriance
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_cats.png)
@@ -439,6 +444,7 @@ The way you achieve this in your own networks is using what is called **weight s
 It is a very important idea. Statisitcal invariants , things that don't change on average across time or space , are every where. For images, the idea of weight sharing will get us to study convolutinal networks.  For text and sequences in general , it will lead us to embeddings and recurrent neural networks.
 
 
+<h2 id="4f15f700f5c4dc733c503ae470344017"></h2>
 ## Convolutional Networks , or CONVNETS
 
 

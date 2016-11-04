@@ -1,6 +1,27 @@
+...menustart
 
+ - [Textuer and Modeling](#ca9e235d09110401a16af79048fda2c4)
+ - [Renderman Shading Language](#1788370b6ffe3e0fccf62aa9f5c4146d)
+ - [CHAPTER 2  BUILDING PROCEDURAL TEXTURES](#d033f70e239df7ab34718d5d84cb09a8)
+	 - [INTRODUCTION](#5933ba40c36942af6d85eae2b87d1ac5)
+	 - [PROCEDURAL PATTERN GENERATION](#1a38b8dc7a6f3cc864aeb4087f7eaefa)
+	 - [Shading Models](#c1c57c5f10d610630830380ed9b332fe)
+	 - [Pattern Generation](#e4cd46bef3dc3447197083c7ac518e60)
+	 - [Texture Spaces](#9a9839c8b7e66591077ec5e354ef3952)
+	 - [Layering and Composition](#b4a79de0915ebf290a02cc4dec4ed3cb)
+	 - [Steps, Clamps, and Conditionals](#2d8bf93ca75aca5774f21a431ba5e3de)
+	 - [Periodic Functions](#12c2ac8397180317852f7ac6343465e7)
+	 - [Splines and Mappings](#36921c934698e556132ccd41df579bf0)
+	 - [Example: Brick Texture](#95e100e8006b35e4017b4ac5e98f590e)
+
+...menuend
+
+
+
+<h2 id="ca9e235d09110401a16af79048fda2c4"></h2>
 # Textuer and Modeling
 
+<h2 id="1788370b6ffe3e0fccf62aa9f5c4146d"></h2>
 # Renderman Shading Language
 
 ```
@@ -94,8 +115,10 @@ surface helloWorld(
 
 
 
+<h2 id="d033f70e239df7ab34718d5d84cb09a8"></h2>
 # CHAPTER 2  BUILDING PROCEDURAL TEXTURES
 
+<h2 id="5933ba40c36942af6d85eae2b87d1ac5"></h2>
 ## INTRODUCTION
 
 Throughout the short history of computer graphics, researchers have sought to improve the realism of their synthetic images by finding better ways to render the appearance of surfaces. This work can be divided into *shading* and *texturing*.
@@ -109,6 +132,7 @@ The simplest realistic shading model, and the one that was used first in compute
 
 All of the shading models described above are so-called local models, which deal only with light arriving at the surface directly from light sources. In the early 1980s, most research on shading models turned to the problem of simulating global illumination effects, which result from indirect lighting due to reflection, refraction, and scattering of light from other surfaces or participating media in the scene. Raytracing and radiosity techniques typically are used to simulate global illumination effects.
 
+<h2 id="1a38b8dc7a6f3cc864aeb4087f7eaefa"></h2>
 ## PROCEDURAL PATTERN GENERATION
 
 Most surface shaders can be split into two components called *pattern generation* and the *shading model*.
@@ -116,6 +140,7 @@ Most surface shaders can be split into two components called *pattern generation
  - Pattern generation defines the texture pattern and sets the values of surface properties that are used by the shading model. 
  - Shading model simulates the behavior of the surface material with respect to diffuse and specular re- flection.
 
+<h2 id="c1c57c5f10d610630830380ed9b332fe"></h2>
 ## Shading Models
 
 Most surface shaders use one of a small number of shading models. The most common model includes diffuse and specular reflection and is called the “plastic” shading model. It is expressed in the RenderMan shading language as follows:
@@ -166,6 +191,7 @@ The plastic shading model is flexible enough to include the other two most com- 
 
 The plastic shader is a good starting point for many procedural texture shaders. We will simply replace the Cs in the last statement of the shader with a new color variable Ct, the texture color that is computed by the pattern generation part of the shader.
 
+<h2 id="e4cd46bef3dc3447197083c7ac518e60"></h2>
 ## Pattern Generation
 
  - usually the hard part
@@ -183,6 +209,7 @@ Ct = texture(“name.tx”,s,t);
 The shading language also provides an *environment* function whose 2D texture space is accessed using a 3D direction vector that is converted internally into 2D form to access a latitude-longitude or cube-face environment map.
 
 
+<h2 id="9a9839c8b7e66591077ec5e354ef3952"></h2>
 ## Texture Spaces
 
 The RenderMan shading language provides many different built-in coordinate systems (also called *spaces*). 
@@ -211,6 +238,7 @@ Using the 2D surface texture coordinates (s, t) or the surface parameters (u, v)
 
 It is a simplification to say that a texture is defined in terms of a single texture space. In general a texture is a combination of a number of separate “features,” each of which might be defined in terms of its own *feature* space. If the various feature spaces that are used in creating the texture are not based on one underlying texture space, great care must be exercised to be sure that texture features don’t shift with respect to one another. The feature spaces should have a fixed relationship that doesn’t change when the camera or the object moves.
 
+<h2 id="b4a79de0915ebf290a02cc4dec4ed3cb"></h2>
 ## Layering and Composition
 
 The best approach to writing a complex texture pattern generator is to build it up from simple parts. There are a number of ways to combine simple patterns to make complex patterns.
@@ -253,6 +281,7 @@ result = C + (1-A) * Ct;
 Another way to combine simple functions to make complex functions is *functional composition*, using the outputs of one or more simple functions as the inputs of another function. Composition is very powerful and is so fundamental to programming that you really can’t avoid using it.
 
 
+<h2 id="2d8bf93ca75aca5774f21a431ba5e3de"></h2>
 ## Steps, Clamps, and Conditionals
 
 function *step(a,x)* returns the value 0 when x is less than a and returns 1 otherwise.
@@ -334,6 +363,7 @@ smoothstep(float a, float b, float x) {
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ML_smoothStep.png)
 
 
+<h2 id="12c2ac8397180317852f7ac6343465e7"></h2>
 ## Periodic Functions
 
 The best-known periodic functions are sin and cos.  It can be shown that other functions can be built up from a sum of sinusoidal terms of different frequencies and phases.
@@ -385,6 +415,7 @@ A closely related function is the ceiling function ceil(x).  The following macro
 #define CEIL(x) ((int)(x) + ((x) > 0 && (x) != (int)(x)))
 ```
 
+<h2 id="36921c934698e556132ccd41df579bf0"></h2>
 ## Splines and Mappings
 
 Built-in *spline* function is a one-dimensional Catmull-Rom interpolating spline through a set of so-called *knot* values. The parameter of the spline is a floating-point number.
@@ -544,6 +575,21 @@ gain(float g, float x) {
 		return 1 - bias(1-g, 2 - 2*x)/2;
 }
 ```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_gain.png)
+
+Regardless of the value of g, all gain functions return 0.5 when x is 0.5.  Above and below 0.5, the gain function consists of two scaled-down bias curves forming an S-shaped curve.
+
+Schlick (1994) presents approximations to bias and gain that can be evaluated more quickly than the power functions given here.
+
+<h2 id="95e100e8006b35e4017b4ac5e98f590e"></h2>
+## Example: Brick Texture
+
+
+
+
+
+
 
 
 

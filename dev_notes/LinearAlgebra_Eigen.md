@@ -8,6 +8,9 @@
 		 - [Markov Matrices](#bdfe38b6c05d238d6cb0df431aea8cb7)
 		 - [Stability of u<sub>k+1</sub> = Au<sub>k</sub>](#ececb2267f15a71d7ecad9272b25ab4a)
 		 - [Positive Matrices and Applications in Economics](#ee24aae762a9409f153f67ec07bbee34)
+	 - [5.4 DIFFERENTIAL EQUATIONS AND eᴬᵗ  (TODO)](#6949286af35bec96be99401b85d929c5)
+	 - [5.5 COMPLEX MATRICES](#8790e803d7a4cc615fb758ad25c12f30)
+	 - [5.6 SIMILARITY TRANSFORMATIONS](#752452230e3a6aebda46452d7a021688)
 
 ...menuend
 
@@ -953,14 +956,17 @@ With steel-food-labor in the ratio 1-5-5, the economy grows as quickly as possib
 
 --- 
 
+<h2 id="6949286af35bec96be99401b85d929c5"></h2>
 ## 5.4 DIFFERENTIAL EQUATIONS AND eᴬᵗ  (TODO)
 
 --- 
 
+<h2 id="8790e803d7a4cc615fb758ad25c12f30"></h2>
 ## 5.5 COMPLEX MATRICES
 
 --- 
 
+<h2 id="752452230e3a6aebda46452d7a021688"></h2>
 ## 5.6 SIMILARITY TRANSFORMATIONS
 
 
