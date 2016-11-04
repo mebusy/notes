@@ -360,6 +360,101 @@ By applying mod to the inputs of some other function, we can make the other func
 
 For example, the pulse function PULSE(0.4,0.6,x) can be combined with the mod function to get the periodic square wave function PULSE(0.4,0.6,mod(x,a)/a) with its period equal to a (see Figure 2.15).
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ML_periodic_pulse.png)
+
+It’s often preferable to use another mod-like idiom instead of mod in your shaders. We can think of xf = mod(a,b)/b as the fractional part of the ratio a/b.  In many cases it is useful to have the integer part of the ratio, xi, as well.
+
+```
+float xf, xi; 
+xf = a/b;
+xi = floor(xf); 
+xf -= xi;
+```
+
+In C, the following macro is an alternative to the built-in floor function:
+
+```
+#define FLOOR(x) ((int)(x) - ((x) < 0 && (x) != (int)(x)))
+```
+
+FLOOR isn’t precisely the same as floor, because FLOOR returns a value of int type rather than double type.  Be sure that the argument passed to FLOOR is the name of a variable, since the macro may evaluate its argument up to four times.
+
+A closely related function is the ceiling function ceil(x).  The following macro is an alternative to the C library function:
+
+```
+#define CEIL(x) ((int)(x) + ((x) > 0 && (x) != (int)(x)))
+```
+
+## Splines and Mappings
+
+Built-in *spline* function is a one-dimensional Catmull-Rom interpolating spline through a set of so-called *knot* values. The parameter of the spline is a floating-point number.
+
+```
+result = spline(parameter,
+		knotl, knot2, . . . , knotN-1, knotN);
+```
+
+In the shading language, the knots can be numbers, colors, or points (but all knots must be of the same type). The result has the same data type as the knots.   If parameter is 0, the result is knot2. If parameter is 1, the result is knotN-1.  For values of parameter between 0 and 1, the value of result interpolates smoothly between the values of the knots from **knot2** to **knotN-1**.  The knotl and knotN values determine the derivatives of the spline at its end points.  Because the spline is a cubic polynomial, there must be at least four knots.
+
+Here is a C language implementation of spline in which the knots must be floating-point numbers:
+
+```
+/* Coefficients of basis matrix. */
+#define CROO  -0.5
+#define CR01   1.5
+#define CR02  -1.5
+#define CR03   0.5
+#define CR10   1.0
+#define CR11  -2.5
+#define CR12   2.0
+#define CR13  -0.5
+#define CR20  -0.5
+#define CR21   0.0
+#define CR22   0.5
+#define CR23   0.0
+#define CR30   0.0
+#define CR31   1.0
+#define CR32   0.0
+#define CR33   0.0
+
+float
+spline(float x, int nknots, float *knot) 
+{
+	int span;
+	int nspans = nknots - 3;
+	float cO, cl, c2, c3; /* coefficients of the cubic.*/ 
+	if (nspans < 1){/* illegal */
+		fprintf(stderr, “Spline has too few knots.\n”); 
+		return 0;
+	}
+	/* Find the appropriate 4-point span of the spline. */ 
+	x = clamp(x, 0, 1) * nspans;
+	span = (int) x;
+	if (span >= nknots - 3)
+		span = nknots - 3; 
+	x -= span;
+	knot += span;
+	
+	/* Evaluate the span cubic at x using Horner’s rule. */
+	c3 = CROO*knot[0] + CR01*knot[l] + CR02*knot[2] + CR03*knot[3]; 
+	c2 = CR10*knot[0] + CRll*knot[l] + CR12*knot[2] + CR13*knot[3]; 
+	cl = CR20*knot[0] + CR21*knot[l] + CR22*knot[2] + CR23*knot[3]; 
+	cO = CR30*knot[0] + CR31*knot[l] + CR32*knot[2] + CR33*knot[3];
+	
+	return ((c3*x + c2)*x + cl)*x + cO;
+}
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
