@@ -529,6 +529,28 @@ bias(float b, float x) {
 
 Figure 2.19 shows the shape of the bias function for different choices of b.
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_bias.png)
 
 > FIGURE 2.19 The bias function.
+
+Perlin and Hoffert (1989) present another function to remap the unit interval. This function is called *gain* and can be implemented as follows:
+
+```c
+float
+gain(float g, float x) {
+	if (x < 0.5)
+		return bias(1-g, 2*x)/2;
+	else
+		return 1 - bias(1-g, 2 - 2*x)/2;
+}
+```
+
+
+
+
+
+
+
+
+
+
