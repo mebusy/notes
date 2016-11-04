@@ -264,8 +264,32 @@ step(float a, float x) {
 }
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_step.png)
 
+The main use of the step function is to replace an if statement or to produce a sharp transition between one type of texture and another type of texture. For example, an if statement such as 
 
+```
+if (u < 0.5)
+	Ci = color (1, 1, .5);
+else
+	Ci = color ( .5 , .3, 1);
+```
+
+can be rewritten to use the step function as follows:
+
+```
+Ci = mix(color (1,1,.5), color (.5,.3,1), step(0.5, u));
+```
+
+Later in this chapter when we examine antialiasing, you’ll learn how to create an antialiased version of the step function. Writing a procedural texture with a lot of if statements instead of step functions can make antialiasing much harder.
+
+Two step functions can be used to make a rectangular pulse as follows:
+
+```
+#define PULSE(a,b,x) (step((a),(x)) - step((b),(x)))
+```
+
+This preprocessor macro generates a pulse that begins at x = a and ends at x = b.
 
 
 
