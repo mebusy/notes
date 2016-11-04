@@ -585,7 +585,13 @@ Schlick (1994) presents approximations to bias and gain that can be evaluated mo
 <h2 id="95e100e8006b35e4017b4ac5e98f590e"></h2>
 ## Example: Brick Texture
 
+One of the standard texture pattern clichés in computer graphics is the checkerboard pattern. This pattern was especially popular in a variety of early papers on anti-aliasing. 
 
+Generating a checkerboard procedurally is quite easy. It is simply a matter of determining which square of the checkerboard contains the sample point and then testing the parity of the sum of the row and column to determine the color of that square.
+
+This section presents a procedural texture generator for a simple brick pattern that is related to the checkerboard but is a bit more interesting. The pattern consists of rows of bricks in which alternate rows are offset by one-half the width of a brick.
+
+The bricks are separated by a mortar that has a different color than the bricks. Figure 2.21 is a diagram of the brick pattern.
 
 
 
