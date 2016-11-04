@@ -291,8 +291,17 @@ Two step functions can be used to make a rectangular pulse as follows:
 
 This preprocessor macro generates a pulse that begins at x = a and ends at x = b.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_pulse.png)
 
+function *clamp(x,a,b)* returns the value a when x is less than a, the value of x when x is between a and b, and the value b when x is greater than b. The clamp function can be written in C as follows:
 
+```
+float
+clamp(float x, float a, float b) {
+	return (x < a ? a: (x > b ? b : x));
+}
+
+```
 
 
 
