@@ -562,7 +562,6 @@ Figure 2.19 shows the shape of the bias function for different choices of b.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_bias.png)
 
-> FIGURE 2.19 The bias function.
 
 Perlin and Hoffert (1989) present another function to remap the unit interval. This function is called *gain* and can be implemented as follows:
 
