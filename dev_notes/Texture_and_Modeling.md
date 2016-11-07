@@ -792,10 +792,11 @@ The star pattern seems quite difficult until you think about it in polar coordin
 Figure 2.26 shows that each point of a five-pointed star is 72 degrees wide. Each half-point (36 degrees) is described by a single edge.
 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.26.png)
 
 > FIGURE 2.26 The geometry of a star.
 
-
+The end points of the edge are a point at radius rmin from the center of the star and another point at radius rmax from the center of the star.
 
 
 
