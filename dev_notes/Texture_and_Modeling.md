@@ -709,9 +709,9 @@ p = p + F * normalize(N);
 N = calculatenormal(P);
 ```
 
+Instead of creating a new variable PP that represents the bumped surface, this code assigns a new value to the original surface position P.  In the shading language this means that the positions of points on the surface are actually moved by the shader to create bumps in the geometry. Similarly, the true normal vector N is recomputed so that it matches the displaced surface properly.  We’ve omitted the last line that computes Nf because displacement mapping should be done in a separate displacement shader, not in the surface shader.
 
-
-
+To get a better understanding of bump mapping, let’s add bump-mapped mortar grooves to our brick texture. The first step is to design the shape of the groove profile, that is, the vertical cross section of the bump function.  Figure 2.24 is a diagram of the profile of the bricks and mortar grooves.
 
 
 
