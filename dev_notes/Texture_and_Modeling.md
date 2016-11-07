@@ -713,8 +713,16 @@ Instead of creating a new variable PP that represents the bumped surface, this c
 
 To get a better understanding of bump mapping, let’s add bump-mapped mortar grooves to our brick texture. The first step is to design the shape of the groove profile, that is, the vertical cross section of the bump function.  Figure 2.24 is a diagram of the profile of the bricks and mortar grooves.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_brick_groove_profile.png)
 
+In order to realistically render the mortar groove between the bricks, we want the brick shader to compute a ***procedural bump-mapping function*** that will be used to ***adjust the normal vector before shading***.  To this end, we add the following code to the brick shader, immediately before the last statement (the one that computes Ci from the shading model).
 
+```
+/* compute bump-mapping function for mortar grooves */ 
+sbump = smoothstep(0,MWF,ss) - smoothstep(1-MWF,1,ss); 
+tbump = smoothstep(0,MHF,tt) - smoothstep(1-MHF,1,tt); 
+stbump = sbump * tbump;
+```
 
 
 
