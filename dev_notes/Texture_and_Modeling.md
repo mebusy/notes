@@ -143,7 +143,7 @@ Most surface shaders can be split into two components called *pattern generation
 <h2 id="c1c57c5f10d610630830380ed9b332fe"></h2>
 ## Shading Models
 
-Most surface shaders use one of a small number of shading models. The most common model includes diffuse and specular reflection and is called the “plastic” shading model. It is expressed in the RenderMan shading language as follows:
+Most surface shaders use one of a small number of shading models. The most common model includes diffuse and specular reflection and is called the "plastic" shading model. It is expressed in the RenderMan shading language as follows:
 
 ```
 surface
@@ -183,7 +183,7 @@ color specularcolor = color (1,1,1))
  	- diffuse computes the sum of the intensity of each light source multiplied by the dot product of the direction to the light source and the surface normal Nf (which is passed as a parameter to diffuse).
 
 
-The plastic shading model is flexible enough to include the other two most com- mon RenderMan shading models, the “matte” model and the “metal” model, as special cases. 
+The plastic shading model is flexible enough to include the other two most com- mon RenderMan shading models, the "matte" model and the "metal" model, as special cases. 
 
  - The matte model is a perfectly diffuse reflector, which is equivalent to plastic with a Kd of 1 and a Ks of 0. ( 没有高光反射 )
  - The metal model is a perfectly specular reflector ， which is equivalent to plastic with a Kd of 0, a Ks of 1, and a specularcolor the same as Cs.
@@ -199,10 +199,10 @@ The plastic shader is a good starting point for many procedural texture shaders.
 If the texture pattern is simply an image texture, the shader can call the built-in function *texture*:
 
 ```
-Ct = texture(“name.tx”,s,t);
+Ct = texture("name.tx",s,t);
 ```
 
- - texture function looks up pixel values from the specified image texture “name.tx” and performs filtering calculations as needed to prevent aliasing artifacts.
+ - texture function looks up pixel values from the specified image texture "name.tx" and performs filtering calculations as needed to prevent aliasing artifacts.
  - texture function has the usual 2D texture space with the texture image in the unit square.
  - built-in variables *s* and *t* are the standard RenderMan texture coordinates range over the interval [0, 1] , 
 
@@ -236,7 +236,7 @@ It is very important to choose the right texture space when defining your textur
 
 Using the 2D surface texture coordinates (s, t) or the surface parameters (u, v) is fairly safe, but might cause problems due to nonuniformities in the scale of the parameter space (e.g., compression of the parameter space at the poles of a sphere). Solid textures avoid that problem because they are defined in terms of the 3D coordinates of the sample point.  If a solid texture is based on the *camera* space coordinates of the point , the texture on a surface will change whenever either the camera or the object is moved. If the texture is based on world space coordinates, it will change whenever the object is moved.  In most cases, solid textures should be based on the shader space coordinates of the shading samples, so that the texture will move properly with the object.  The shader space is defined when the shader is invoked, and that can be done at a suitable place in the transformation hierarchy of the model so that everything works out.
 
-It is a simplification to say that a texture is defined in terms of a single texture space. In general a texture is a combination of a number of separate “features,” each of which might be defined in terms of its own *feature* space. If the various feature spaces that are used in creating the texture are not based on one underlying texture space, great care must be exercised to be sure that texture features don’t shift with respect to one another. The feature spaces should have a fixed relationship that doesn’t change when the camera or the object moves.
+It is a simplification to say that a texture is defined in terms of a single texture space. In general a texture is a combination of a number of separate "features," each of which might be defined in terms of its own *feature* space. If the various feature spaces that are used in creating the texture are not based on one underlying texture space, great care must be exercised to be sure that texture features don’t shift with respect to one another. The feature spaces should have a fixed relationship that doesn’t change when the camera or the object moves.
 
 <h2 id="b4a79de0915ebf290a02cc4dec4ed3cb"></h2>
 ## Layering and Composition
@@ -266,12 +266,12 @@ mix(color C0, color Cl, float f) {
 
 When two colors are multiplied together in the shading language, the result is a color , whose RGB components are the product of the corresponding components from the input colors. Color multiplication can simulate the ***filtering*** of one color by the other. If color C0 represents the transparency of a filter to red, green, and blue light, then C0*C1 represents the color C1 as viewed through the filter.
 
-Be careful when using a four-channel image texture that was created from an RGBA image (an image with an opacity or “alpha” channel) because the colors in such an image are normally premultiplied by the value of the alpha channel. In this case, it is not correct simply to combine the RGB channels with another color under control of the alpha channel. The correct way to merge an RGBA texture over another texture color Ct is
+Be careful when using a four-channel image texture that was created from an RGBA image (an image with an opacity or "alpha" channel) because the colors in such an image are normally premultiplied by the value of the alpha channel. In this case, it is not correct simply to combine the RGB channels with another color under control of the alpha channel. The correct way to merge an RGBA texture over another texture color Ct is
 
 ```
 color C; float A;
-C = color texture(“mytexture”,s,t); 
-A = texture(“mytexture”[3],s,t); 
+C = color texture("mytexture",s,t); 
+A = texture("mytexture"[3],s,t); 
 result = C + (1-A) * Ct;
 ```
 
@@ -348,7 +348,7 @@ clamp(x, a, b) ≡ min(max(x, a), b)
 
 Another special conditional function is the *abs* function.
 
-In addition to the “pure” or “sharp” conditionals step, clamp, min, max, and abs, RenderMan shading language provides a “smooth” conditional function called *smoothstep*. This function is similar to step, but instead of a sharp transition from 0 to 1 at a specified threshold, smoothstep(a,b,x) makes a gradual transition from 0 to 1 beginning at threshold a and ending at threshold b.  In order to do this, smoothstep contains a cubic function whose slope is 0 at a and b and whose value is 0 at a and 1 at b.  There is only one cubic function that has these properties for a = 0 and b = 1, namely, the function 3x² − 2x³. 
+In addition to the "pure" or "sharp" conditionals step, clamp, min, max, and abs, RenderMan shading language provides a "smooth" conditional function called *smoothstep*. This function is similar to step, but instead of a sharp transition from 0 to 1 at a specified threshold, smoothstep(a,b,x) makes a gradual transition from 0 to 1 beginning at threshold a and ending at threshold b.  In order to do this, smoothstep contains a cubic function whose slope is 0 at a and b and whose value is 0 at a and 1 at b.  There is only one cubic function that has these properties for a = 0 and b = 1, namely, the function 3x² − 2x³. 
 
 ```
 float
@@ -368,7 +368,7 @@ smoothstep(float a, float b, float x) {
 
 The best-known periodic functions are sin and cos.  It can be shown that other functions can be built up from a sum of sinusoidal terms of different frequencies and phases.
 
-Another important periodic function is the *mod* function. *mod(a,b)* gives the positive remainder obtained when dividing a by b.  C users beware! Although C has a built-in integer remainder operator “%” and math library functions fmod and fmodf for double and float numbers, all of these are really remainder functions, not modulus functions, in that they will return a negative result if the first operand, a, is negative.  Instead, you might use the following C implementation of mod:
+Another important periodic function is the *mod* function. *mod(a,b)* gives the positive remainder obtained when dividing a by b.  C users beware! Although C has a built-in integer remainder operator "%" and math library functions fmod and fmodf for double and float numbers, all of these are really remainder functions, not modulus functions, in that they will return a negative result if the first operand, a, is negative.  Instead, you might use the following C implementation of mod:
 
 ```
 
@@ -455,7 +455,7 @@ spline(float x, int nknots, float *knot)
 	int nspans = nknots - 3;
 	float cO, cl, c2, c3; /* coefficients of the cubic.*/ 
 	if (nspans < 1){/* illegal */
-		fprintf(stderr, “Spline has too few knots.\n”); 
+		fprintf(stderr, "Spline has too few knots.\n"); 
 		return 0;
 	}
 	/* Find the appropriate 4-point span of the spline. */ 
@@ -534,7 +534,7 @@ metallic( ) {
 
 Figure 2.17 is an image shaded with the metallic reflection map shader.
 
-Since *mix* functions and so many other selection functions are controlled by values that range over the [0, 1] interval, mappings from the unit interval to itself can be especially useful. Monotonically increasing functions on the unit interval can be used to change the distribution of values in the interval. The best-known example of such a function is the “gamma correction” function used to compensate for the nonlinearity of CRT display systems:
+Since *mix* functions and so many other selection functions are controlled by values that range over the [0, 1] interval, mappings from the unit interval to itself can be especially useful. Monotonically increasing functions on the unit interval can be used to change the distribution of values in the interval. The best-known example of such a function is the "gamma correction" function used to compensate for the nonlinearity of CRT display systems:
 
 ```c
 float
@@ -658,7 +658,7 @@ Now let’s try our hand at some procedural bump mapping.
 
 Recall that bump mapping involves modifying the surface normal vectors to give the appearance that the surface has bumps or indentations. 
 
-Blinn (1978), the paper that introduced bump mapping, describes how a bump of height F(u, v) along the normal vector N can be simulated. The modified or “perturbed” normal vector is N′ = N + D.  The perturbation vector D lies in the tangent plane of the surface and is therefore perpendicular to N. D is based on the sum of two separate perturbation vectors U and V (Figure 2.23).
+Blinn (1978), the paper that introduced bump mapping, describes how a bump of height F(u, v) along the normal vector N can be simulated. The modified or "perturbed" normal vector is N′ = N + D.  The perturbation vector D lies in the tangent plane of the surface and is therefore perpendicular to N. D is based on the sum of two separate perturbation vectors U and V (Figure 2.23).
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.23.png)
 
@@ -718,6 +718,7 @@ In order to realistically render the mortar groove between the bricks, we want t
 
 ```
 /* compute bump-mapping function for mortar grooves */ 
+/* function F above */
 sbump = smoothstep(0,MWF,ss) - smoothstep(1-MWF,1,ss); 
 tbump = smoothstep(0,MHF,tt) - smoothstep(1-MHF,1,tt); 
 stbump = sbump * tbump;
@@ -734,6 +735,72 @@ Ci = Os * Ct * (Ka * ambient() + Kd * diffuse(Nf));
 ```
 
 Finally, the shading normal Nf is computed based on the bump height as described earlier in this section. The shader ends as before by using the texture color Ct and bump-mapped normal Nf in a diffuse shading model to shade the surface. Figure 2.25 is an image of the bump-mapped brick texture.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.25.png)
+
+> FIGURE 2.25 The bump-mapped brick texture.
+
+增加的 bump shader 代码如下：
+
+```c
+Ct = mix(Cmortar, Cbrick, w*h);
+
+// code added ...
+float sbump, tbump, stbump ;
+/* compute bump-mapping function for mortar grooves */ 
+/* function F above */
+sbump = smoothstep(0,MWF,ss) - smoothstep(1-MWF,1,ss); 
+tbump = smoothstep(0,MHF,tt) - smoothstep(1-MHF,1,tt); 
+stbump = sbump * tbump;
+
+/* compute shading normal */
+Nf = calculatenormal(P + normalize(N) * stbump); 
+Nf = normalize(faceforward(Nf, I));
+// code add end ...
+
+/* diffuse reflection model */
+Oi = Os;
+```
+
+---
+
+
+There is a subtle issue hidden in this example.
+
+Recall that the shader displaces the surface position by a bump height stbump along the normal vector.  Since the built-in normal vector N was used without modification, the displacement is defined in the shader’s current space, not in shader space. Even though the bump function itself is locked to the surface because it is defined in terms of the s and t surface texture coordinates, the height of the bumps could change if the object is scaled relative to the world space. 
+
+To avoid this problem, we could have transformed the surface point and normal vector into shader space, done the displacement there, and transformed the new normal back to current space, as follows:
+
+```c
+point Nsh, Psh;
+Psh = transform("shader", P);
+Nsh = normalize(ntransform("shader", N)); 
+Nsh = calculatenormal(Psh + Nsh * stbump); 
+Nf = ntransform("shader", "current", Nsh); 
+Nf = normalize(faceforward(Nf, I));
+```
+
+***Note the use of *ntransform* rather than *transform* to transform normal vectors from one space to another***.  Normal vectors are transformed differently than points or direction vectors. The second *ntransform* uses two space names to request a transformation from shader space to current space.
+
+
+## Example: Procedural Star Texture
+
+Now let’s try to generate a texture pattern that consists of a yellow five-pointed star on a background color Cs.
+
+The star pattern seems quite difficult until you think about it in polar coordinates. This is an example of how choosing the appropriate feature space makes it much easier to generate a tricky feature.
+
+Figure 2.26 shows that each point of a five-pointed star is 72 degrees wide. Each half-point (36 degrees) is described by a single edge.
+
+
+
+> FIGURE 2.26 The geometry of a star.
+
+
+
+
+
+
+
 
 
 
