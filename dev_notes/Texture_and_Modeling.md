@@ -723,6 +723,18 @@ tbump = smoothstep(0,MHF,tt) - smoothstep(1-MHF,1,tt);
 stbump = sbump * tbump;
 ```
 
+The first two statements define the bump profile along the s and t directions independently. The first smoothstep call in each statement provides the positive slope of the bump function at the start of the brick, and the last smoothstep call in each statement provides the negative slope at the end of the brick.   The last statement com- bines the sbump vertical groove and tbump horizontal groove to make an overall bump value stbump.
+
+```
+/* compute shading normal */
+Nf = calculatenormal(P + normalize(N) * stbump); 
+Nf = normalize(faceforward(Nf, I));
+Oi = Os;
+Ci = Os * Ct * (Ka * ambient() + Kd * diffuse(Nf));
+```
+
+Finally, the shading normal Nf is computed based on the bump height as described earlier in this section. The shader ends as before by using the texture color Ct and bump-mapped normal Nf in a diffuse shading model to shade the surface. Figure 2.25 is an image of the bump-mapped brick texture.
+
 
 
 
