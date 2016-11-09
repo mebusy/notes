@@ -798,8 +798,45 @@ Figure 2.26 shows that each point of a five-pointed star is 72 degrees wide. Eac
 
 The end points of the edge are a point at radius rmin from the center of the star and another point at radius rmax from the center of the star.
 
+```c
+surface
+star(
+	uniform float Ka = 1;
+	uniform float Kd = 1;
+	uniform color starcolor = color (1.0000,0.5161,0.0000); 
+	uniform float npoints = 5;
+	uniform float sctr = 0.5;
+	uniform float tctr = 0.5;
+) {
+	point Nf = normalize(faceforward(N, I)); 
+	color Ct;
+	float ss, tt, angle, r, a, in_out;
+	uniform float rmin = 0.07, rmax = 0.2; 
+	uniform float starangle = 2*PI/npoints;  // 1.257 , 72 degree
+	uniform point p0 = rmax*(cos(0),sin(0), 0);  // ( 0.2, 0, 0 )
+	uniform point pi = rmin*(cos(starangle/2),sin(starangle/2),0);  // (0.057, 0.041, 0)
+	uniform point d0 = pi - p0; 
+	point d1;
+	ss = s - sctr; tt = t - tctr;
+	angle = atan(ss, tt) + PI;
+	r = sqrt(ss*ss + tt*tt);   // mark: 1
 
+	a = mod(angle, starangle)/starangle; 
+	if (a >= 0.5)
+		a = 1 - a;    // mark: 2
+	dl = r*(cos(a), sin(a),0) - p0; 
+	in_out = step(0, zcomp(d0^d1) );
+	Ct = mix(Cs, starcolor, in_out);
+	/* diffuse (“matte”) shading model */ Oi = Os;
+	Ci = Os * Ct * (Ka * ambient() + Kd * diffuse(Nf));		
+}
+```
 
+ 1. At this point, the shader has computed polar coordinates relative to the center of the star. These coordinates r and angle act as the feature space for the star.
+ 2. Now the shader has computed the coordinates of the sample point (r,a) in a new feature space: the space of one point of the star. 
+ 	- a is first set to range from 0 to 1 over each star point. 
+ 	- To avoid checking both of the edges that define the “V” shape of the star point, sample points in the upper half of the star point are reflected through the center line of the star point. 
+ 	- The new sample point (r,a) is inside the star if and only if the original sample point was inside the star, due to the symmetry of the star point around its center line.
 
 
 

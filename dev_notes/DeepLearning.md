@@ -447,12 +447,19 @@ It is a very important idea. Statisitcal invariants , things that don't change o
 <h2 id="4f15f700f5c4dc733c503ae470344017"></h2>
 ## Convolutional Networks , or CONVNETS
 
+Convnets are neural networks that share their parameters across space.
+
+Imagine you have a image.
+
+It can be represented as a flat pancake . It has width , height. And because you typically have red, green and blue channels , it also has a depth.  In this instance, depth is 3 ,  that's your input.
+
+Now imagine taking a small patch of this image and running a tiny neural network on it , with say, K outputs.
 
 
+Let's represent those outputs vertically, in a tiny column like this.
 
 
-
-
+Now let's slide that little neural network across the image without changing the weights. Just slide across , and vertically like we're painting it with a brush. On the output, we've drawn another image.
 
 
 
