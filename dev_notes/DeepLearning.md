@@ -482,7 +482,14 @@ At the bottom you have this big image but very shallow, just RGB.  You're going 
 
 So that is the general idea. If you're going to implement this , there are lots of little details to get right and a fair bit of lingo to get used to. 
 
-you've met the concept of patch and depth.  Patches are sometimes called kernels.  Each pancake in your stack is called a feature map.  Here , you're mapping three feature maps to K feature maps.  Another term that you need to know is stride.
+you've met the concept of patch and depth.  Patches are sometimes called kernels.  Each pancake in your stack is called a feature map.  Here , you're mapping three feature maps to K feature maps.  Another term that you need to know is stride.  It's the number of pixels that you're shifting each time you move your filter.  A strider of 1 makes the output roughly the same size as the input. A strider is 2 means it's about half the size. 
+
+---
+
+That's it.  You can build a simple convnet with just this.  Stack up your convolutions , which thankfully you don't have to implement yourselves,  then use trieds to reduce the dimensional and increase the depth of your network, layer after layer. And once you have a deep and narrow representation, connect the whole thing to a few regular fully connected layers and you're ready to train your classifier.
+
+You might wonder what happends to training , into the chain rule in particular , when you use shared weights like this.   Nothing really happens.
+
 
 
 
