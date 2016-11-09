@@ -986,3 +986,58 @@ The final answer is given by the ***Jordan form***, with which the chapter ends.
 
 These combinations M⁻¹AM arise in a differential or difference equation, when a "change of variables" u = Mv introduces the new unknown v:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_MAM_diff.png)
+
+The new matrix in the equation is M⁻¹AM. In the special case M = S, the system is uncoupled because Λ = S⁻¹AS is diagonal. The eigenvectors evolve independently. This is the maximum simplification, but other M's are also useful. We try to make M⁻¹AM easier to work with than A .
+
+The family of matrices M⁻¹AM includes A itself, by choosing M = I. Any of these similar matrices can appear in the differential and difference equations, by the change u = Mv, so they ought to have something in common, and they do: ***Similar matrices share the same eigenvalues***.
+
+**5P** Suppose that B = M⁻¹AM. Then A and B have the **same eigenvalues. Every eigenvector x of A corresponds to an eigenvector M⁻¹x of B**.
+
+Start from Ax = λx and substitute A = MBM⁻¹:
+
+```
+  Same eigenvalue:  MBM⁻¹x = λx   which is B(M⁻¹x) = λ(M⁻¹x). 		(1)
+```
+
+The eigenvalue of B is still λ. The eigenvector has changed from x to M⁻¹x.
+
+We can also check that A - λI and B - λI have the same determinant:
+
+```
+Product of matrices      B - λI =  M⁻¹AM - λI = M⁻¹(A - λI)M
+Product rule        det(B - λI) = detM⁻¹ det(A - λI) detM = det(A - λI). 
+```
+
+The polynomials det(A - λI) and det(B - λI) are equal. Their roots -- the eigenvalues of A and B -- are the same. Here are matrices B similar to A.
+
+Example 1:
+
+```
+A = ⎡1 0⎤ has eigenvalues 1 and 0. Each B is M⁻¹AM:
+    ⎣0 0⎦
+
+
+  if M = ⎡1 b⎤ , then B = ⎡1 b⎤ : triangular with λ = 1 and 0.
+         ⎣0 1⎦            ⎣0 0⎦
+  if M = ⎡ 1 1⎤ , then B = ⎡1/2 1/2⎤ : projection with λ = 1 and 0.
+         ⎣-1 1⎦            ⎣1/2 1/2⎦
+  if M = ⎡a b⎤ , then B = an arbitrary matrix with λ = 1 and 0.
+         ⎣c d⎦            
+```
+
+In this case we can produce any B that has the correct eigenvalues. It is an easy case, because the eigenvalues 1 and 0 are distinct. The diagonal A was actually Λ, the outstanding member of this family of similar matrices (the capo). The Jordan form will worry about repeated eigenvalues and a possible shortage of eigenvectors. All we say now is that every M⁻¹AM has the same number of independent eigenvectors as A (each eigenvector is multiplied by M⁻¹).
+
+The first step is to look at the linear transformations that lie behind the matrices.  Rotations, reflections, and projections act on n-dimensional space. The transformation can happen without linear algebra, but linear algebra turns it into matrix multiplication.
+
+---
+
+### Change of Basis = Similarity Transformation
+
+
+
+
+
+
+
+

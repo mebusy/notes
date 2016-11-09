@@ -159,9 +159,79 @@ Next, what is the driving **environment** that the taxi will face?
 Any taxi driver must deal with a variety of roads, ranging from rural lanes and urban alleys to 12-lane freeways. The roads contain other traffic, pedestrians, stray animals, road works, police cars, puddles, and potholes.  The taxi must also interact with potential and actual passengers. There are also some optional choices. The taxi might need to operate in Southern California, where snow is seldom a problem, or in Alaska, where it seldom is not.  It could always be driving on the right, or we might want it to be flexible enough to drive on the left when in Britain or Japan. Obviously, the more restricted the environment, the easier the design problem.
 
 
+2.3.2 Properties of task environments
+
+**Fully observable vs. partially observable :**  
+
+If an agent's sensors give it access to the complete state of the environment at each point in time, then we say that the task environ- ment is fully observable. A task environment is effectively fully observable if the sensors detect all aspects that are relevant to the choice of action; relevance, in turn, depends on the performance measure. Fully observable environments are convenient because the agent need not maintain any internal state to keep track of the world. 
+
+An environment might be partially observable because of noisy and inaccurate sensors or because parts of the state are simply missing from the sensor data—for example, a vacuum agent with only a local dirt sensor cannot tell whether there is dirt in other squares.
+
+**Single agent vs. multiagent:**
+
+The distinction between single-agent and multiagent environments may seem simple enough.  For example, an agent solving a crossword puzzle by itself is clearly in a single-agent environment, whereas an agent playing chess is in a two- agent environment.
+
+There are, however, some subtle issues. First, we have described how an entity ***may*** be viewed as an agent, but we have not explained which entities ***must*** be viewed as agents.  Does an agent A (the taxi driver for example) have to treat an object B (another vehicle) as an agent. or can it be treated merely as an object behaving according to the laws of physics, analogous to waves at the beach or leaves blowing in the wind?  *The key distinction is whether B's behavior is best described as maximizing a performance measure whose value depends on agent A's behavior.* 
+
+For example, in chess, the opponent entity B is trying to maximize its performance measure, which, by the rules of chess, minimizes agent As per- formance measure. Thus, chess is a competitive multiagent environment. In the taxi-driving environment, on the other hand, avoiding collisions maximizes the performance measure of all agents, so it is a partially cooperative multiagent environment. It is also partially competitive because, for example, only one car can occupy a parking space. 
+
+The agent-design problems in multiagent environments are often quite different from those in single-agent en- vironments; for example, communication often emerges as a rational behavior in multiagent environments; in some competitive environments, **randomized behavior is rational because** it avoids the pitfalls of predictability.
 
 
+**Deterministic vs. stochastic.**
 
+If the next state of the environment is completely determined by the current state and the action executed by the agent, then we say the environment is deterministic; otherwise, it is stochastic.
+
+In principle, an agent need not worry about uncertainty in a fully observable, deterministic environment. (In our definition, we ignore uncertainty that arises purely from the actions of other agents in a multiagent environment: thus, a game can be deterministic even though each agent may be unable to predict the actions of the others.) 
+
+If the environment is partially observable, however, then it could appear to be stochastic.  Taxi driving is clearly stochastic in this sense, because one can never predict the behavior of traffic exactly.  We say an environment is **uncertain** if it is not fully observable or not deterministic. 
+
+One final note: our use of the word "stochastic" generally implies that uncertainty about outcomes is quantified in terms of probabilities; **a nondeterministic environment is one in which actions are** characterized by their *possible* outcomes, but no probabilities are attached to them. Nondetenninistic environment descriptions are usually associated with performance measures that require the agent to succeed for all possible outcomes of its actions.
+
+**Episodic vs. sequential:**
+
+In an episodic task environment, the agent's experience is divided into atomic episodes. In each episode the agent receives a percept and then performs a single action. Crucially, the next episode does not depend on the actions taken in previous episodes.  Many classification tasks are episodic. 
+
+In sequential environments, on the other hand, the current decision could affect all future clecisions.  Chess and taxi driving arc sequential.
+
+Episodic environments are much simpler than sequential environments because the agent does not need to think ahead.
+
+**Static vs. dynamic:**
+
+If the environment can change while an agent is deliberating, then we say the environment is dynamic for that agent; otherwise, it is static. 
+
+Static environments are easy to deal with because the agent need not keep looking at the world while it is deciding on an action, nor need it worry about the passage of time. 
+
+Dynamic environments, on the other hand. are continuously asking the agent what it wants to do; if it hasn't decided yet. that counts as deciding to do nothing. I
+
+If the environment itself does not change with the passage of time but the agent's performance score does, then we say the environment is semidynamic. 
+
+Taxi driving is clearly dynamic. Chess, when played with a clock, is semidynamic. Crossword puzzles are static.
+
+**Discrete vs. continuous:**
+
+The discrete/continuous distinction applies to the *state* of the environment, to the way *time* is handled, and to the *percepts* and *actions* of the agent. 
+
+For example, the chess environment has a finite number of distinct states (excluding the clock), Chess also has a discrete set of percepts and actions. 
+
+Taxi driving is a continuous-state and continuous-time problem: the speed and location of the taxi and of the other vehicles sweep through a range of continuous values and do so smoothly over time.   Input from digital cameras is discrete, strictly speak- ing, but is typically treated as representing continuously varying intensities and locations.
+
+**Known vs. unknown:**
+
+Strictly speaking, this distinction refers not to the environment itself but to the agent's or designer's state of knowledge about the "laws of physics" of the environment. 
+
+In a known environment, the outcomes (or outcome probabilities if the environment is stochastic) for all actions are given.
+
+Obviously, if the environment is unknown, the agent will have to learn how it works in order to make good decisions.
+
+Note that the distinction between known and unknown environments is not the same as the one between fully and partially observable environments.  It is quite possible for a *known* environment to be *partially* observable —- for example, in solitaire card games, I know the rules but am still unable to *see* the cards that have not yet been turned over. Conversely, an *unknown* environment can be fully observable -— in a new video game, the screen may show the entire game state but I still don't know what the buttons do until I try them.
+
+As one might expect, the hardest case is *partially observable, multiagent, stochastic, sequential, dynamic, continuous, and unknown*. 
+
+
+---
+
+## 2.4 THE STRUCTURE OF AGENTS
 
 
 
