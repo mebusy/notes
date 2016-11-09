@@ -969,8 +969,20 @@ With steel-food-labor in the ratio 1-5-5, the economy grows as quickly as possib
 <h2 id="752452230e3a6aebda46452d7a021688"></h2>
 ## 5.6 SIMILARITY TRANSFORMATIONS
 
+Virtually every step in this chapter has involved the combination S⁻¹AS.  The eigenvectors of A went into the columns of S , and that made S⁻¹AS a diagonal matrix (called Λ).
 
+When A was symmetric (对称矩阵A的不同特征值所对应的特征向量是正交的), we wrote Q instead of S, choosing the eigenvectors to be orthonormal.
 
+Now we look at all combinations M⁻¹AM -- *formed with any invertible M on the right and its inverse on the left*.  The invertible eigenvector matrix S may fail to exist (the defective case), or we may not know it, or we may not want to use it.
 
+First a new word: ***The matrices A and M⁻¹AM are "similar."***   Going from one to the other is a ***similarity transformation***. It is the natural step for differential equations or matrix powers or eigenvalues -- just as elimination steps were natural for Ax = b. Elimination multiplied A on the left by L⁻¹, but not on the right by L. So U is not similar to A, and the pivots are not the eigenvalues.   So U is not similar to A, and the pivots are not the eigenvalues.
 
+A whole family of matrices M⁻¹AM is similar to A, and there are two questions:
+
+ 1. What do these similar matrices M⁻¹AM have in common?
+ 2. With a special choice of M, what special form can be achieved by M⁻¹AM ?
+
+The final answer is given by the ***Jordan form***, with which the chapter ends.
+
+These combinations M⁻¹AM arise in a differential or difference equation, when a "change of variables" u = Mv introduces the new unknown v:
 

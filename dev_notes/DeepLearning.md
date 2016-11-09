@@ -490,6 +490,15 @@ That's it.  You can build a simple convnet with just this.  Stack up your convol
 
 You might wonder what happends to training , into the chain rule in particular , when you use shared weights like this.   Nothing really happens.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_chain_rules_with_sharing.png)
+
+The math just works. You just add up the derivatives from all of the possible locations on the image.
+
+---
+
+## Explore The Design Space
+
+
 
 
 
