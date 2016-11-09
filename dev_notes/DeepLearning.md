@@ -451,19 +451,31 @@ Convnets are neural networks that share their parameters across space.
 
 Imagine you have a image.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_convent_1.png)
+
 It can be represented as a flat pancake . It has width , height. And because you typically have red, green and blue channels , it also has a depth.  In this instance, depth is 3 ,  that's your input.
 
 Now imagine taking a small patch of this image and running a tiny neural network on it , with say, K outputs.
 
-
 Let's represent those outputs vertically, in a tiny column like this.
 
 
-Now let's slide that little neural network across the image without changing the weights. Just slide across , and vertically like we're painting it with a brush. On the output, we've drawn another image.
+Now let's slide that little neural network across the image without changing the weights. Just slide across , and vertically like we're painting it with a brush. On the output, we've drawn another image. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_convent_2.png)
+
+It's got a different witdh, a different height, and more importantly , it's got a different depth. Instead of RGB , now you have an output that's got many color channels , K of them. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_convent_3.png)
+
+This operation is called a convolution.  
+
+If your patch size were the size of the whole image, it would be no different than a regular layer of a neural network. But because we have this small patch instead, we have many fewer weights and they are shared across space.
+
+A convent is going to basically be a deep network where instead of having stacks of matrix multiply layers. we're going to have stacks of convolutions. The general idea is that they will form from a pyramid. 
 
 
-
-
+At the bottom you have this big image but very shallow, just RGB.  You're going to apply convolutions that are going to progressively squeeze the spatial dimensions while increasing the depth, which corresponds roughly to the semantic complexity of your representation.  An the top you can put your classifier . You have a representation where all the spatial information has been squeezed out and only parameters that map to contents of the image remain.
 
 
 
