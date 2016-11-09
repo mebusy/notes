@@ -478,8 +478,11 @@ A convent is going to basically be a deep network where instead of having stacks
 
 At the bottom you have this big image but very shallow, just RGB.  You're going to apply convolutions that are going to progressively squeeze the spatial dimensions while increasing the depth, which corresponds roughly to the semantic complexity of your representation.  An the top you can put your classifier . You have a representation where all the spatial information has been squeezed out and only parameters that map to contents of the image remain.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_convolution_lingo.png)
 
+So that is the general idea. If you're going to implement this , there are lots of little details to get right and a fair bit of lingo to get used to. 
 
+you've met the concept of patch and depth.  Patches are sometimes called kernels.  Each pancake in your stack is called a feature map.  Here , you're mapping three feature maps to K feature maps.  Another term that you need to know is stride.
 
 
 
