@@ -474,6 +474,7 @@ If your patch size were the size of the whole image, it would be no different th
 
 A convent is going to basically be a deep network where instead of having stacks of matrix multiply layers. we're going to have stacks of convolutions. The general idea is that they will form from a pyramid. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_convolution_pyramid.png)
 
 At the bottom you have this big image but very shallow, just RGB.  You're going to apply convolutions that are going to progressively squeeze the spatial dimensions while increasing the depth, which corresponds roughly to the semantic complexity of your representation.  An the top you can put your classifier . You have a representation where all the spatial information has been squeezed out and only parameters that map to contents of the image remain.
 
