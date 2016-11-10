@@ -233,6 +233,114 @@ As one might expect, the hardest case is *partially observable, multiagent, stoc
 
 ## 2.4 THE STRUCTURE OF AGENTS
 
+The joh of Al is to design an **agent program** that implements the agent function -— the mapping from percepts to actions.  We assume this program will run on some sort of computing device with physical sensors and actuators —- we call this the **architecture**:
+
+```
+  agent = architecture + program .
+```
+
+### 2.4.1 Agent programs
+
+The agent programs that we design in this book all have the same skeleton:
+
+they take the current percept as input from the sensors and return an action to the actuators. 
+
+Notice the difference between the agent program, which takes the current percept as input, and the agent function, which takes the entire percept history.  
+
+The agent program takes just the current percept as input because nothing more is available from the environment; if the agent's actions need to depend on the entire percept sequence, the agent will have to remember the percepts.
+
+For example, Figure 2.7 shows a rather trivial agent program that keeps track of the percept sequence and then uses it to index into a table of actions to decide what to do, The table—an example of which is given for the vacuum world in Figure 2.3—represents explicitly the agent function that the agent program embodies.
+
+```
+function TABLE-DRIVEN-AGENT(percept) returns an action
+	persistent percepts, a sequence, initially empty
+		table, a table of actions, indexed by percept sequences, initially fully specified
+
+	append percept to the end of percepts 
+	action LOOKUP( percepts,table)
+	return action
+```
+
+> Figure 2.7 The TABLE DRIVEN AGENT program is invoked for each new percept and returns an action each time. It retains the complete percept sequence in memory.
+
+
+To huild a rational agent in this way, we as designers must construct a table that contains the appropriate action for every possible percept sequence.
+
+It is instructive to consider why the table-driven approach to agent construction is doomed to failure.  The table may become massive large.
+
+Despite all this, TARLE-DRIVEN-AGFNT does do what we want: it implements the desired agent function.  The key challenge for AI is to find out how to write programs that, to the extent possible, produce rational behavior from a smallish program rather than from a vast table. 
+
+We outline four basic kinds of agent programs that embody the principles underlying almost all intelligent systems:
+
+ - Simple reflex agents;
+ - Model-based reflex agents;
+ - Goal-based agents; 
+ - Utility-based agents.
+
+
+Each kind of agent program combines particular components in particular ways to generate actions. Section / 4.7 describes the variety of ways in which the components themselves can be represented within the agent. This variety provides a major organizing principle for the field and for the book itself.
+
+
+### 2.4.2 Simple reflex agents
+
+The simplest kind of agent is the **simple reflex agent**.
+
+These agents select actions on the basis of the *current* percept, ignoring the rest of the percept history. 
+
+For example, the vacuum agent whose agent function is tabulated in Figure 2.3 is a simple reflex agent, because its decision is based only on the current location and on whether that location contains dirt. Art agent program for this agent is shown in Figure 2.8.
+ 
+```
+function REFLEX-VACUUM-AGENT( [location,status] ) returns an action
+	if status = Dirty then return Suck
+	else if location = A then return Right
+	else if location = B then return Left
+```
+
+> Figure 2.8 The agent program for a simple reflex agent in the two-state vacuum environ- ment. This program implements the agent function tabulated in Figure 2.3.
+
+The program in Figure 2,8 is specific to one particular vacuum environment. A more general and flexible approach is first to build a general-purpose interpreter for condition-action rules and then to create rule sets for specific task environments.  Figure 2.9 gives the structure of this general program in schematic form, showing how the condition-action rules allow the agent to make the connection from percept to action. 
+
+```
+function SIMPLE-REFLEX-AGENT( percept) returns an action
+	persistent, rates, a set of condition—action rules
+
+	state <- INTERPRET-INPUT(percept)
+	rule <- RULE MATCH(state, ruie)
+	action <— rule.ACTION
+	return action
+```
+
+> Figure 2.10 A simple reflex agent It acts according to a vile whose condition matches the current state, as defined by the percept.
+
+
+*The agent in Figure 2.10 will work only if the correct decision can be made on the basis of only the current percept—that is. only if the environment is fully observable*. 
+
+
+### 2.4.3 Model-based reflex agents
+
+The most effective way to handle partial observability is for the agent to *keep track of the past of the world it can't see now*.
+
+That is, the agent should maintain some sort of **internal state** that depends on the percept history and thereby reflects at least some of the unobserved aspects of the current state. 
+
+For the braking problem, the internal state is not too extensive— just the previous frame from the camera, allowing the agent to detect when two red lights at the edge of the vehicle go on or off simultaneously. 
+
+Updating this internal state information as time goes by requires two kinds of knowl- edge to be encoded in the agent program.
+
+ - First, we need some information about how the world evolves independently of the agent
+ 	- for example, that an overtaking car generally will be closer behind than it was a moment ago. 
+ 	- 所处世界的发展
+ - Second, we need some information about how the agent's own actions affect the world
+ 	- for example, that when the agent turns the steering wheel clockwise, the car turns to the right, or that after driving for five minutes northbound
+on the freeway, one is usually about five miles north of where one was five minutes ago. 
+ 	- agent 的行为对世界的影响
+
+
+This knowledge about "how the world works"—whether implemented in simple Boolean circuits or in complete scientific theories -— is called a **model** of the world. An agent that uses such a model is called a **model-based agent**.
+
+
+
+
+
 
 
 
