@@ -76,6 +76,24 @@ The rule-based expert systems were developed in a burst of enthusiasm about the 
 
 FORWARD-CHAINING
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AI_FC_RBES.png)
+
+
+# 21. Probabilistic Inference I 
+
+BELIEF NETS
+
+联合概率可以做很多事情，但缺点是 需要全部的事件的概率 ， 数据太多了。
+
+ - BASIC
+ 	- 1. 0 <= P(a) <= 1
+ 	- 2. P(TRUE) = 2 , P(FALSE) = 0
+ 	- 3. P(a) + P(b) - P(a,b) = P(aUb)
+
+ - CONDITIONAL PROBABILITY
+ 	- P(a|b) = P(a,b) / P(b) 
+ 		- 大饼变小饼
+
 
 
 
