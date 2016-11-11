@@ -70,7 +70,11 @@ What we're going to do is, apply all safe transforms. That's our first step. The
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AI_GRASP_EXAMPLE.png)
 
+**Rule-based expert system**
 
+The rule-based expert systems were developed in a burst of enthusiasm about the prospects for commercial applications of artificial intelligence in the mid-1980s.
+
+FORWARD-CHAINING
 
 
 
