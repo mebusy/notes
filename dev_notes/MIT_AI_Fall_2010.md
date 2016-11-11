@@ -85,15 +85,31 @@ BELIEF NETS
 
 联合概率可以做很多事情，但缺点是 需要全部的事件的概率 ， 数据太多了。
 
- - BASIC
+
+
+
+
+---
+
+ 1. **BASIC**
  	- 1. 0 <= P(a) <= 1
  	- 2. P(TRUE) = 2 , P(FALSE) = 0
  	- 3. P(a) + P(b) - P(a,b) = P(aUb)
 
- - CONDITIONAL PROBABILITY
- 	- P(a|b) = P(a,b) / P(b) 
+ 2. **CONDITIONAL PROBABILITY**
+ 	- P(a|b) = P(a,b) / P(b)
+ 		- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/condition_prob_intuition.png) 
  		- 大饼变小饼
+ 	- P(a,b) = P(a|b)·P(b)
+ 	- P(a,b,c) = P(a , (b,c)) = P(a|bc)P(b,c) = P(a|bc)P(b|c)P(c)
+ 		- 扩展到 多个变元
+ 		- a depends on 2 things ; b depends on 1 thing and nothing to the left ;  c depends on nothing and nothing to the left. 
+ 	- ***independence definition***:
+ 		- `P(a|b) = P(a)  , if a independent of b` 
+ 	- ***conditional definition independence:***
+ 		- P(a|bz) = P(a|z) 
 
+ 3. **CHAIN RULE**
 
 
 
