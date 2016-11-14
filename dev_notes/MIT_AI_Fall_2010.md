@@ -1,6 +1,21 @@
+...menustart
 
+ - [MIT AI , Fall 2010](#02cfbc450a484e485cfcb5a8b6293485)
+ - [1. Introduce and Scope](#0642dcdd47a2b0dedd3a1b7be3447ef6)
+ - [2. Reasoning: Goal Trees and Problem Solving](#5a7296bc9aaf9ebd3c7128ce7338fc8a)
+ - [3. Reasoning : Goal Trees and Rule-Based Expert System](#ef3e76fa72903f6a29d73611f289c069)
+ - [21. Probabilistic Inference](#5c63798bd670c15157052fdd1197b58f)
+	 - [全概率理论](#c9c0f393c7d6fb89c37d4e7d49ef4d76)
+	 - [BAYES](#4658c50b8646a0292b3c9f1824805f62)
+
+...menuend
+
+
+
+<h2 id="02cfbc450a484e485cfcb5a8b6293485"></h2>
 # MIT AI , Fall 2010
 
+<h2 id="0642dcdd47a2b0dedd3a1b7be3447ef6"></h2>
 # 1. Introduce and Scope
 
  - ALGORITHMS ENABLED BY 
@@ -39,6 +54,7 @@ We call this the ***Rumpelstiltskin Principle*** , perhaps The first of our powe
  - Rumpelstiltskin Principle
 
 
+<h2 id="5a7296bc9aaf9ebd3c7128ce7338fc8a"></h2>
 # 2. Reasoning: Goal Trees and Problem Solving
 
 Goal Trees , also known as and-or tree.
@@ -57,6 +73,7 @@ What we're going to do is, apply all safe transforms. That's our first step. The
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AI_GoalTree.png)
 
 
+<h2 id="ef3e76fa72903f6a29d73611f289c069"></h2>
 # 3. Reasoning : Goal Trees and Rule-Based Expert System
 
 一个 类似 汉诺塔 版砖块的演示例子
@@ -79,6 +96,7 @@ FORWARD-CHAINING
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AI_FC_RBES.png)
 
 
+<h2 id="5c63798bd670c15157052fdd1197b58f"></h2>
 # 21. Probabilistic Inference 
 
 
@@ -244,6 +262,7 @@ Let's we have TTF.   ( B is True, R is True, and D is False )
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AI_prob_calc.png)
 
+<h2 id="c9c0f393c7d6fb89c37d4e7d49ef4d76"></h2>
 ## 全概率理论
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Prob04.png)
@@ -260,6 +279,7 @@ P(B) =  P(A₁)·P(B|A₁)
 ```
 
 
+<h2 id="4658c50b8646a0292b3c9f1824805f62"></h2>
 ## BAYES
 
 

@@ -11,6 +11,7 @@
 	 - [5.4 DIFFERENTIAL EQUATIONS AND eᴬᵗ  (TODO)](#6949286af35bec96be99401b85d929c5)
 	 - [5.5 COMPLEX MATRICES](#8790e803d7a4cc615fb758ad25c12f30)
 	 - [5.6 SIMILARITY TRANSFORMATIONS](#752452230e3a6aebda46452d7a021688)
+		 - [Change of Basis = Similarity Transformation](#5f520f3a47da08c25d74016f54696110)
 
 ...menuend
 
@@ -1032,6 +1033,7 @@ The first step is to look at the linear transformations that lie behind the matr
 
 ---
 
+<h2 id="5f520f3a47da08c25d74016f54696110"></h2>
 ### Change of Basis = Similarity Transformation
 
 

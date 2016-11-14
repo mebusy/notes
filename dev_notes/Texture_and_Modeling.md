@@ -13,6 +13,8 @@
 	 - [Periodic Functions](#12c2ac8397180317852f7ac6343465e7)
 	 - [Splines and Mappings](#36921c934698e556132ccd41df579bf0)
 	 - [Example: Brick Texture](#95e100e8006b35e4017b4ac5e98f590e)
+		 - [Bump-Mapped Brick](#4b8a4928c80dbb90832685f625d39bb4)
+	 - [Example: Procedural Star Texture](#3f9e2847ee4cdb15d32b99840caec017)
 
 ...menuend
 
@@ -652,6 +654,7 @@ surface brick(
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.22.png)
 
 
+<h2 id="4b8a4928c80dbb90832685f625d39bb4"></h2>
 ### Bump-Mapped Brick
 
 Now let’s try our hand at some procedural bump mapping.
@@ -783,6 +786,7 @@ Nf = normalize(faceforward(Nf, I));
 ***Note the use of *ntransform* rather than *transform* to transform normal vectors from one space to another***.  Normal vectors are transformed differently than points or direction vectors. The second *ntransform* uses two space names to request a transformation from shader space to current space.
 
 
+<h2 id="3f9e2847ee4cdb15d32b99840caec017"></h2>
 ## Example: Procedural Star Texture
 
 Now let’s try to generate a texture pattern that consists of a yellow five-pointed star on a background color Cs.

@@ -22,6 +22,7 @@
  - [Convolutional Neural Network](#02ed75b713cdaf7bbe2faae40ba76279)
 	 - [Statistical Inveriance](#78289659377fe0ce4edb6cc2c3e44939)
 	 - [Convolutional Networks , or CONVNETS](#4f15f700f5c4dc733c503ae470344017)
+	 - [Explore The Design Space](#3e6416a016525c87f33de8dad90df107)
 
 ...menuend
 
@@ -496,6 +497,7 @@ The math just works. You just add up the derivatives from all of the possible lo
 
 ---
 
+<h2 id="3e6416a016525c87f33de8dad90df107"></h2>
 ## Explore The Design Space
 
 
