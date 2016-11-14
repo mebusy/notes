@@ -215,8 +215,13 @@ So there are two of these variables (B R). So there are four combinations.
 
 What I really want to do is to calculate all of these probabilities that give the probability of the dog condition of the burglar and the raccoon. Similarly I want to calculate the probability of B happening doesn't depend on anything else.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AI_BRD.png)
 
+Step 2, I'm going to extend these tables a little bit so I can keep track the tallies. 
 
+ - one is going to be all the ones that end up in a particular row. 
+ - one is for which D is true.
 
+Similarly, I'm going to extend P(b) in order to keey track of some tallies. 
 
 
