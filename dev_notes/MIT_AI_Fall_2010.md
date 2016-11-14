@@ -79,7 +79,7 @@ FORWARD-CHAINING
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AI_FC_RBES.png)
 
 
-# 21. Probabilistic Inference I 
+# 21. Probabilistic Inference 
 
 
 
@@ -242,9 +242,58 @@ Let's we have TTF.   ( B is True, R is True, and D is False )
 
 通过在 扩展表中 记录实验结果，我们最后可以计算出 network 表中，需要的概率。
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AI_prob_calc.png)
+
+## 全概率理论
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Prob04.png)
+
+ - 把样本空间分为 若干块  A₁,A₂,A₃ , 就知道了 P(Aᵢ) , 且Aᵢ相互独立？
+ - 只要再 知道 每小块 中B 发生的概率 P(B|Aᵢ)
+ - 就可以计算出 P(B)
+
+```
+P(B) =  P(A₁)·P(B|A₁)
+       +P(A₂)·P(B|A₂)
+       +P(A₃)·P(B|A₃)
+     = ΣP(Aᵢ)·P(B|Aᵢ)
+```
+
+
+## BAYES
 
 
 
+ - 知道 P(Aᵢ) , P(B|Aᵢ)  (和全概率模型一样)
+ - 就可以计算出 P(B) = `ΣP(Aⱼ)·P(B|Aⱼ)`
+ - 在此基础上，我们就能计算出 `P(Aᵢ|B)`
+
+```
+P(Aᵢ|B) = P(Aᵢ, B) / P(B)
+        = P(Aᵢ)·P(B|Aᵢ) / P(B)
+        = P(Aᵢ)·P(B|Aᵢ) / ΣP(Aⱼ)·P(B|Aⱼ)
+```
+
+---
+
+```
+P(a|b) = p(a,b)/P(b)
+
+P(a|b)P(b) = P(a,b) = P(b|a)P(a)
+
+P(a|b) = P(b|a)P(a)/P(b)
+``` 
+
+知道 a,b各自的概率，以及任意 条件概率， 可以得到 另一条件概率。
+
+```
+P(Aᵢ|B) = P(B|Aᵢ)P(Aᵢ) / P(B)
+        = P(B₁|Aᵢ)P(B₂|Aᵢ)...P(Bn|Aᵢ)P(Aᵢ) / P(B)
+```
+
+应用： a collection of independent events
+
+扔两次硬币结果:  HT , which coin did I pick ?
 
 
 
