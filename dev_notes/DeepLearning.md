@@ -500,8 +500,36 @@ The math just works. You just add up the derivatives from all of the possible lo
 <h2 id="3e6416a016525c87f33de8dad90df107"></h2>
 ## Explore The Design Space
 
+To improve a simple convnet
 
+ - POOLING
+ - 1x1 Convolutions
+ - INCEPTION
 
+The 1st improvement is a better way to reduce the spatial extent of your feature maps in the convolutional pyramid.  Until now, we've used striding to shift the filters by a few pixel each time and reduce the future map size.  This is a very aggressive way to downsample an image.  It removes a lot of information. 
+
+What if instead of skipping one in every two convolutions, we still ran with a very small stride, say for example one. But then took all the convolutions in a neighborhood and combined them somehow. That operation is called **pooling**, and there are a few ways to go about it.
+
+The most common is max pooling.  At every point in the feature map, look at a small neighborhood around that point and compute the maximum of all the responses around it.
+
+ - ADVANTAGE
+ 	- **PARAMETER-FREE** , it doesn't add to your number of parameters. So you don't risk an increasing over fitting.
+ 	- **OFTEN MORE ACCURATE**
+ - DISADVANTAGE
+ 	- MORE EXPENSIVE
+ 	- MORE HYPER PARAMETERS
+ 		- POOLING SIZE
+ 		- POOLING STRIDE
+
+A very typical architecture for a convnet is a few layers alternating convolutions and max pooling , followed by a few fully connnected layers at the top.
+
+The 1st famouse model to use this architectuer was LENET-5 . Modern convolutional networkds such as ALEXNET.
+
+Another notable form of pooling is average pooling. Instead of taking the max, just take an average over the window of pixels around a specific location. It's a little bit like providing a blurred low resolution view of the feature map below.  We're going to take advantage of that shortly.
+
+## 1x1 Convolutions
+
+But first , I want to introduce you to another idea , it's the idea of one by one convolutions.
 
 
 
