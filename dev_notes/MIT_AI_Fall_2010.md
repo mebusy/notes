@@ -81,11 +81,9 @@ FORWARD-CHAINING
 
 # 21. Probabilistic Inference I 
 
-BELIEF NETS
-
-联合概率可以做很多事情，但缺点是 需要全部的事件的概率 ， 数据太多了。
 
 
+联合概率可以做很多事情，但缺点是 需要全部的事件的概率 ， 数据太多了。 一般利用条件概率 来减少数据量。
 
 
 
@@ -104,16 +102,24 @@ BELIEF NETS
  	- P(a,b,c) = P(a , (b,c)) = P(a|bc)P(b,c) = P(a|bc)P(b|c)P(c)
  		- 扩展到 多个变元
  		- a depends on 2 things ; b depends on 1 thing and nothing to the left ;  c depends on nothing and nothing to the left. 
- 	- ***independence definition***:
- 		- `P(a|b) = P(a)  , if a independent of b` 
- 	- ***conditional definition independence:***
- 		- P(a|bz) = P(a|z) 
-
  3. **CHAIN RULE**
+ 	- P(a,b,c) 扩展到 P(x1, ... , xn )
+
+ 4. **INDEPENDENCE**
+	- `P(a|b) = P(a)  , if a independent of b` 
+	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/independence_intuition.png)
+
+ 5. ***conditional definition independence:***
+	- P(a|bz) = P(a|z) 
+	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/conditional_indepence_intuition.png)
+	- P(a b|z) = P(a|z)P(b|z)   , if a independent of b
+		- P(a b|z) = P(a,b,z) / P(z) = P(a|bz)P(b|z)P(z) / P(z) = P(a|bz)P(b|z) = P(a|z)P(b|z)
+
+ 6. **BELIEF NETS**
+ 	- 
 
 
-
-
+> 举例: 使用条件概率， 可以用 10个数据，表示  2⁵ = 32 的联合概率
 
 
 
