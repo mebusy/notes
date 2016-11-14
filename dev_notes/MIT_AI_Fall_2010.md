@@ -116,12 +116,104 @@ FORWARD-CHAINING
 		- P(a b|z) = P(a,b,z) / P(z) = P(a|bz)P(b|z)P(z) / P(z) = P(a|bz)P(b|z) = P(a|z)P(b|z)
 
  6. **BELIEF NETS**
- 	- 
+ 	- below
 
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AI_belief_nets.png)
 
 > 举例: 使用条件概率， 可以用 10个数据，表示  2⁵ = 32 的联合概率
 
+```
+P(p,d,b,t,r) = P(p|d b t r) P(d|b t r) P(b|t r) P(t|r) P(r)
 
+according to conditional definition independence:
+
+P(p,d,b,t,r) = P(p|d ) P(d|b  r) P(b ) P(t|r) P(r)
+```
+
+Any variable on this graph is independent of any other non-descendant given its parents.
+
+Independent of any non-descendant given its parents.
+
+That means the probability of the dog barking , given its parents (B,R) , doesn't depend on T, the trash can being overturned. 
+
+Becuase the intuition is all of the causility is flowing through the parents (B, R) and can't get to this variable D without going through the parents.
+
+使用 条件概率 来替代 联合概率的核心是 chain rule. 应用chain rule的关键是 变量的顺序, x₂的发生应该独立于x₁ , x₃的发生应该独立于 x₂ , 以此类推。
+
+So one thing i'm going to do before I think about probability is I'm going to make a linear list of all these variables.
+
+And the way I'm going to make it is I'm going to chew away at those variables from the bottom. I've taken advantage of a very important property of these nets. And that is there is no loops. So there's always going to be a bottom.
+
+So what I'm going to do is I'm going to say  there are two bottom here,  there's P and T,  I'm going to choose P. So I'm going to take that (P) off and pretend it's not there anymore.
+
+```
+P 
+```
+
+Then I take out D , that's now a bottom because there's nothing below it.
+
+```
+P D
+```
+
+Now I have got B,R,T . B no longer has anything below it. So I can list it next.
+
+```
+P D B
+```
+
+Now over here I've got raccoon and trash can. But trashcan is at the bottom. So I've got to take it next.
+
+```
+P D B T
+```
+
+I want to ensure that there are no descendants before we list it in the list.  So finally I get to raccoon.
+
+```
+P D B T R
+```
+
+So the way I constructed this list like so ensure that this list arranges the elements so that for any paritcular element , none of its descendants appear to its left. And now that's the magical order for which I want to use the chain rule. 
+
+
+```
+P(p,d,b,t,r) = P(p|d b t r) P(d|b t r) P(b|t r) P(t|r) P(r)
+```
+
+First of all ,none of those expressions condition any of the variables on anything other than non-descendants, all right ?
+
+这些表达式都不会对非后代之外的任何变量 有影响。
+
+That's just because of the way I've arranged the variables. And I can always do that because there are no loop.
+
+Oh wait, When I draw this diagram , I asserted that no variable depends on any non-descendant given its parents. So if I know the parents of a variable , I know that the variable is independant of all other non-descentands.  
+
+Now I can start scratching stuff out.
+
+I know that P , from my diagram, has only 1 parent, D. So given its parent , it's independent of all other non-descendants (B R T) . 
+
+D has 2 parents B R , given that, I can scratch out any other non-descendent T. 
+
+B is conditional on T R , but B has no parent. So it actually is independent of those 2 guys.
+
+T , is dependent on R. And R , the final thing in the chain , that's just a probability.
+
+So now I have a way of calculating any entry in that table (whole 联合概率)  because any entry in that table is going to be some combination of values for all those variables.
+
+So anything I can do with a table, I can do in principle with this little network. 
+
+But now the question is , I've got some probabilities I'm going to have to figure out here.
+
+-----
+
+So up here we've got the a priori probability of B.  Down here with the dog , I've got a bigger table because I've got probabilities that depend on the values of it's parent. The probability of dog barking depends on the condition of the parents , nothign else.
+
+So there are two of these variables (B R). So there are four combinations.
+
+What I really want to do is to calculate all of these probabilities that give the probability of the dog condition of the burglar and the raccoon. Similarly I want to calculate the probability of B happening doesn't depend on anything else.
 
 
 
