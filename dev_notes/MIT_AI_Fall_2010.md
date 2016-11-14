@@ -228,7 +228,23 @@ Similarly, I'm going to extend P(b) in order to keey track of some tallies.
 
 And now suppose that my first experiment comes roaring in. And it's all T's. ( B is True, R is True, and D is True )
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AI_BRD_extend_TTT.png)
+
 Let's suppose that the next thing happens be all false.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AI_BRD_extend_FFF.png)
+
 Let's we have TTF.   ( B is True, R is True, and D is False )
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AI_BRD_extend_TTF.png)
+
+---
+
+通过在 扩展表中 记录实验结果，我们最后可以计算出 network 表中，需要的概率。
+
+
+
+
+
+
 
