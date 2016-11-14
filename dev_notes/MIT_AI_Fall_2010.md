@@ -224,4 +224,11 @@ Step 2, I'm going to extend these tables a little bit so I can keep track the ta
 
 Similarly, I'm going to extend P(b) in order to keey track of some tallies. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AI_BRD_extend.png)
+
+And now suppose that my first experiment comes roaring in. And it's all T's. ( B is True, R is True, and D is True )
+
+Let's suppose that the next thing happens be all false.
+
+Let's we have TTF.   ( B is True, R is True, and D is False )
 
