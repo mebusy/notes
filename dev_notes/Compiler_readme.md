@@ -1,6 +1,7 @@
 ...menustart
 
  - [Compiler](#3bb7c24fcd6eb6468ddc51ea1dfdcee5)
+ - [Yacc / Lex](#ecef701cf8281ee7177e68fb367afa0f)
 
 ...menuend
 
@@ -17,3 +18,10 @@
  - [Intermediate-Code Generation](https://github.com/mebusy/notes/blob/master/dev_notes/Compiler6_IntermediateCodeGeneration.md)
  - [Code Generation](https://github.com/mebusy/notes/blob/master/dev_notes/Compiler8_CodeGeneration.md)
  - [笔记](https://github.com/mebusy/notes/blob/master/dev_notes/Compiler_Notes.md)
+
+
+<h2 id="ecef701cf8281ee7177e68fb367afa0f"></h2>
+# Yacc / Lex
+
+ - [Compiler_lex_yacc_calc](https://github.com/mebusy/notes/blob/master/dev_notes/Compiler_lex_yacc_calc.md)
+ - [Compiler_lex_yacc_tutor](https://github.com/mebusy/notes/blob/master/dev_notes/Compiler_lex_yacc_tutor.md)

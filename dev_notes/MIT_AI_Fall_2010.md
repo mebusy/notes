@@ -313,7 +313,7 @@ P(Aᵢ|B) = P(B|Aᵢ)P(Aᵢ) / P(B)
 
 应用： a collection of independent events
 
-扔两次硬币结果:  HT , which coin did I pick ?
+
 
 
 
