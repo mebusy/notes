@@ -721,6 +721,41 @@ The equation Ax = b asks: Given the differences b1.... , b5, find the actual pot
 <h2 id="aa8fafd1a0c4fb58a6ba9373adaf258f"></h2>
 ## 2.6 LINEAR TRANSFORMATIONS
 
+ - Notes：
+ - 在线性空间中的选定基之后, 向量刻画对象, 矩阵刻画对象的运动，用矩阵与向量的乘法 施加运动
+ - 在一个线性空间V里的一个线性变换T, 当选定一组基之后，就可以表示为矩阵 ?
+ - 线性变换，就是从一个线性空间V的某一个点, 跃迁到 另一个线性空间W的另一个点的运动
+ 	- 这句话里蕴含着一层意思，就是说一个点不仅可以变换到同一个线性空间中的另一个点，而且变换到另一个线性空间中的另一个点去
+ 	- 不管你怎么变，只要变换前后都是线性空间中的对象，这个变化就一定是线性变换，也就一定可以用一个非奇异矩阵来描述 ； 而你用一个非奇异矩阵去描述一个变换，一定是一个线性变换。
+ - 最后，我们把矩阵的定义完善如下: 矩阵是线性空间中的 线性变换的 一个**描述**。
+ 	- 注意，这里用的是 **描述**, 因为同一个线性变换可以有多个描述。
+ 	- 好比，给人A拍照，只要选定一个镜头位置，这张照片就是A的一个描述，但只是一个片面的描述；换个镜头位置，可以得到另一个不同的描述; 所有的照片都是同一个人的描述，但是由都不是A本身
+ - 同样的, 对一个线性变换，只要你选定一组基，那么就可以找到一个矩阵来描述这个线性变换。换一组基，就得到一个不同的矩阵。 所有这些矩阵都是这同一个线性变换的描述，但又都不是线性变换本身。
+ - 若矩阵 A 与 B 是同一个线性变化的两个不同的描述，则一定能找到一个非奇异矩阵 P , 是的 A，B之间满足:
+ 	- `A = P⁻¹BP`
+ 	- 所以相似矩阵, 就是同一个线性变换 的不同的描述矩阵
+ 	- 矩阵P, 其实就是A矩阵所基于的基，与 B矩阵所基于的基， 这两组基之间的一个变换关系。
+ - \*\*\*\*\*\*\*\*
+ - 矩阵不仅可以作为线性变换的描述，而且可以作为一组基的描述。 
+ 	- 不仅可以把线性空间中的一个点，变换到另一个点去，也能把线性空间中的一个坐标系（基）变换到另一个坐标系（基）去。而且变换点与坐标系，具有异曲同工的效果。
+ - **运动等价于 坐标系变换 ，或, 对象的变换等价于坐标系的变换 , 或, 固定坐标系下，一个对象的变换，等价于固定对象所处的坐标系的变换。**
+ - Ma = b 
+ 	- 向量a ,经过矩阵M所描述的变换，变成了向量b
+ 	- 有一个向量，它在坐标系M的度量下得到的度量结果是a ，那么它在坐标系 I 的度量下，结果是b : `Ma = Ib`
+ 	- 在M为坐标系的意义下，`Ma` 这种形式，我们可以认为这是 **对向量a的一个环境声明。**
+ 	- 注意到, M矩阵表示的坐标系，由一组基组成。那组基由向量构成，同样存在这组向量是在哪个坐标系下度量而成的问题。所以 M其实是 IM, 也就是说，M中的那组基的度量是在 I坐标系中得出来的。 从这个视角来说， MxN 也不是什么矩阵乘法，而是声明了一个 在M坐标系中量出的另一个坐标系 N , 其中，M本身是在 I 坐标系中度量出来的。
+ - 对坐标系施加变化的办法，就是让 表示那个坐标系的矩阵 与表示那个变化的矩阵相乘。 ( 变换x坐标 ? )
+ 	- 再一次 MxN
+ 	- 一方面表示 坐标系N 在 运动 M 下的变换结果
+ 	- 另一方面, 在M坐标系度量下，有另一个坐标系 N。 这个坐标系 N 如果放在 I坐标系中度量，其结果为 坐标系 MxN
+ 	 
+
+
+
+
+
+---
+
  - We know how a matrix moves subspaces around when we multiply by A.
     - The nullspace goes into the zero vector. 
         - A=[1 1 ; 2 2 ]
@@ -770,18 +805,20 @@ Every transformation *T(x)* that meets this requirement is a ***linear transform
 Any matrix leads immediately to a linear transformation. Also, every linear transformation lead to a matrix.
 
 
- - Most transformations are not linear-for example, 
+ - Most transformations are not linear -- for example, 
     - to square the polynomial (Ap = p²)
     - or to add 1 (Ap = p + 1)
     - or to keep the positive coefficients (A(t - t²) = t). 
  - It will be linear transformations, and only those, that lead us back to matrices.
- 
+
 Linearity has a crucial consequence: ***If we know Ax for each vector in a basis, then we know Ax for each vector in the entire space***.
 
 ```
 Linearity If x = c₁x₁ + ... + cnxn then 
             Ax = c₁(Ax₁) + ... + cn(Axn).   (4)
 ```
+
+ - 我们平时说向量x, 是指在单位矩阵中，基的一个坐标 的向量表示
 
 **Example 4**:
 
@@ -818,7 +855,7 @@ Next we find matrices that represent differentiation and integration. ***First w
 
 That basis is not unique (it never is), but some choice is necessary and this is the most convenient. The derivatives of those four basis vectors are 0, 1, 2t, 3t²:
 
-***Action of d/dt***:  Ap₁ = 0, Ap₂ = p₁, Ap₃ = 2p₂ Ap₄ = 3p₃ (5)
+***Action of d/dt***:  Ap₁ = 0, Ap₂ = p₁, Ap₃ = 2p₂ Ap₄ = 3p₃  (5)
 
 "d/dt" is acting exactly like a matrix, but which matrix? Suppose we were in the usual 4-dimensional space with the usual basis - the coordinate vectors p₁ = (1, 0, 0, 0), p₂ = (0, 1, 0, 0), p₃ = (0, 0, 1, 0), p₄ = (0, 0, 0, 1). The matrix is decided by equa- tion (5):
 
@@ -858,6 +895,7 @@ The jth column is found by applying T to the jth basis vector `xⱼ`, and writin
 Column j of A:  T(xⱼ)= Axⱼ = a₁ⱼy₁ + a₂ⱼy₂ + … + a_mⱼ·ym  (6)
 ```
 
+ 
 
  - 如何发现隐藏在一个 linear transmation 后面的 变换矩阵。 只要知道了 基的 linear transmation , 就能确定这个矩阵。
     - 特征向量基 是一组很好的基，it leads to 对角矩阵 Λ ， 对角线上都是特征值 。
@@ -969,7 +1007,7 @@ We mention here the effect on the matrix of a change of basis, while the linear 
  - The matrix A (or Q or P or H) is altered to ***S⁻¹AS***. 
  - Thus a single transformation is represented by different matrices (via different bases, accounted for by S). 
 
- The theory of eigenvectors will lead to this formula S⁻¹AS, and to the best basis.
+The theory of eigenvectors will lead to this formula S⁻¹AS, and to the best basis.
 
 
 

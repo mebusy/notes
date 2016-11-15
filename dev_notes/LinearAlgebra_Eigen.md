@@ -1036,6 +1036,25 @@ The first step is to look at the linear transformations that lie behind the matr
 <h2 id="5f520f3a47da08c25d74016f54696110"></h2>
 ### Change of Basis = Similarity Transformation
 
+The similar matrix B = M⁻¹AM is closely connected to A, if we go back to linear transformations. 
+
+Remember the key idea: ***Every linear transformation is represented by a matrix***. The matrix depends on the choice of basis! If we change the basis by M we change the matrix A to a similar matrix B.
+
+***Similar matrices represent the same transformation T with respect to different bases.***  The algebra is almost straightforward. Suppose we have a basis v₁, ... , vn. The jth column of A comes from applying T to vⱼ:
+
+```
+Tvⱼ = combination of the basis vectors = a₁ⱼv₁ + ... + anⱼvn.   (2)
+```
+
+For a new basis V₁, ... , Vn, the new matrix B is constructed in the same way: TVⱼ = combination of the basis vectors = b₁ⱼV₁ + ... + bnⱼVn .   But also each V must be a combination of the old basis vectors: Vⱼ = Σ mᵢⱼvᵢ . 
+
+That matrix *M* is really representing the *identity transformation* (!) when the only thing happening is the change of basis (T is I). The inverse matrix M⁻¹ also represents the identity transformation, when the basis is changed from the v's back to the V's. 
+
+Now the product rule gives the result we want:
+
+**5Q** The matrices A and B that represent the same linear transformation T with respect to two different bases (the u's and the V's) are similar:
+
+
 
 
 

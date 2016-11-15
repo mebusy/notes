@@ -512,6 +512,8 @@ What if instead of skipping one in every two convolutions, we still ran with a v
 
 The most common is max pooling.  At every point in the feature map, look at a small neighborhood around that point and compute the maximum of all the responses around it.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_max_pooling.png)
+
  - ADVANTAGE
  	- **PARAMETER-FREE** , it doesn't add to your number of parameters. So you don't risk an increasing over fitting.
  	- **OFTEN MORE ACCURATE**
@@ -526,6 +528,8 @@ A very typical architecture for a convnet is a few layers alternating convolutio
 The 1st famouse model to use this architectuer was LENET-5 . Modern convolutional networkds such as ALEXNET.
 
 Another notable form of pooling is average pooling. Instead of taking the max, just take an average over the window of pixels around a specific location. It's a little bit like providing a blurred low resolution view of the feature map below.  We're going to take advantage of that shortly.
+
+
 
 ## 1x1 Convolutions
 
