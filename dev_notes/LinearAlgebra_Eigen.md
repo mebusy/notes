@@ -1060,6 +1060,13 @@ I think an example is the best way to explain B = M⁻¹AM. Suppose T is project
 
 Figure 5.5 offers two choices, the standard basis v₁ = (1, 0), v₂ = (0, 1) and a basis V₁, V₂ chosen especially for T.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F5.5.png)
+
+In fact TV₁ = V₁ (since V₁ is already on the line L) and TV₂ = 0 (since V₂ is perpendicular to the line). In that eigenvector basis, the matrix is diagonal:
+
+The other thing is the change of basis matrix M. For that we express V₁ as a combination v₁ cosθ + v₂ sinθ and put those coefficients into column 1. Similarly V₂ (or I V₂, the transformation is the identity) is -v₁ sinθ + v₂ cosθ, producing column 2:
+
+The inverse matrix M⁻¹ (which is here the transpose) goes from v to V. Combined with B and M, it gives the projection matrix in the standard basis of v's:
 
 
 
