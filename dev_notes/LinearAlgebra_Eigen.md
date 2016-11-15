@@ -1064,9 +1064,39 @@ Figure 5.5 offers two choices, the standard basis v₁ = (1, 0), v₂ = (0, 1) a
 
 In fact TV₁ = V₁ (since V₁ is already on the line L) and TV₂ = 0 (since V₂ is perpendicular to the line). In that eigenvector basis, the matrix is diagonal:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F5.5_example_01.png)
+
 The other thing is the change of basis matrix M. For that we express V₁ as a combination v₁ cosθ + v₂ sinθ and put those coefficients into column 1. Similarly V₂ (or I V₂, the transformation is the identity) is -v₁ sinθ + v₂ cosθ, producing column 2:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F5.5_example_02.png)
+
 The inverse matrix M⁻¹ (which is here the transpose) goes from v to V. Combined with B and M, it gives the projection matrix in the standard basis of v's:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F5.5_example_03.png)
+
+We can summarize the main point. The way to simplify that matrix A -- in fact to diagonalize it -- is to find its eigenvectors. 
+
+They go into the columns of M (or S) and M⁻¹AM is diagonal. The algebraist says the same thing in the language of linear transformations: *Choose a basis consisting of eigenvectors*. The standard basis led to A, which was not simple. The right basis led to B, which was diagonal.
+
+We emphasize again that M⁻¹AM does not arise in solving Ax = b. There the basic operation was to multiply A (on the left side only!) by a matrix that subtracts a multiple of one row from another. Such a transformation preserved the nullspace and row space of A; it normally changes the eigenvalues.
+
+***Eigenvalues are actually calculated by a sequence of simple similarities.*** The matrix goes gradually toward a triangular form, and the eigenvalues gradually appear on the main diagonal. (Such a sequence is described in Chapter 7.) This is much better than trying to compute det(A- λI), whose roots should be the eigenvalues. For a large matrix, it is numerically impossible to concentrate all that information into the polynomial and then get it out again.
+
+---
+
+### Triangular Forms with a Unitary M
+
+Our first move beyond the eigenvector matrix M = S is a little bit crazy: Instead of a more general M, we go the other way and restrict M to be unitary. M⁻¹AM can achieve a triangular form T under this restriction.  The columns of M = U are orthonormal (in the real case, we would write M = Q). Unless the eigenvectors of A are orthogonal, a diagonal U⁻¹AU is impossible. But "Schur's lemma" in **5R** is very useful -- at least to the theory. (The rest of this chapter is devoted more to theory than to applications. The Jordan form is independent of this triangular form.)
+
+**5R** There is a unitary matrix M = U such that U⁻¹AU = T is triangular. The eigenvalues Of A appear along the diagonal of this similar matrix T.
+
+
+
+
+
+
+
+
 
 
 
