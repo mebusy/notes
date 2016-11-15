@@ -23,6 +23,7 @@
 	 - [Statistical Inveriance](#78289659377fe0ce4edb6cc2c3e44939)
 	 - [Convolutional Networks , or CONVNETS](#4f15f700f5c4dc733c503ae470344017)
 	 - [Explore The Design Space](#3e6416a016525c87f33de8dad90df107)
+	 - [1x1 Convolutions](#557f2cb10e34586ed5a05c43c0c3d26a)
 
 ...menuend
 
@@ -531,6 +532,7 @@ Another notable form of pooling is average pooling. Instead of taking the max, j
 
 
 
+<h2 id="557f2cb10e34586ed5a05c43c0c3d26a"></h2>
 ## 1x1 Convolutions
 
 But first , I want to introduce you to another idea , it's the idea of one by one convolutions.

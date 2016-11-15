@@ -12,6 +12,7 @@
 	 - [5.5 COMPLEX MATRICES](#8790e803d7a4cc615fb758ad25c12f30)
 	 - [5.6 SIMILARITY TRANSFORMATIONS](#752452230e3a6aebda46452d7a021688)
 		 - [Change of Basis = Similarity Transformation](#5f520f3a47da08c25d74016f54696110)
+		 - [Triangular Forms with a Unitary M](#510cbf6c3c7df26df1f68a8cbe622731)
 
 ...menuend
 
@@ -1084,6 +1085,7 @@ We emphasize again that M⁻¹AM does not arise in solving Ax = b. There the bas
 
 ---
 
+<h2 id="510cbf6c3c7df26df1f68a8cbe622731"></h2>
 ### Triangular Forms with a Unitary M
 
 Our first move beyond the eigenvector matrix M = S is a little bit crazy: Instead of a more general M, we go the other way and restrict M to be unitary. M⁻¹AM can achieve a triangular form T under this restriction.  The columns of M = U are orthonormal (in the real case, we would write M = Q). Unless the eigenvectors of A are orthogonal, a diagonal U⁻¹AU is impossible. But "Schur's lemma" in **5R** is very useful -- at least to the theory. (The rest of this chapter is devoted more to theory than to applications. The Jordan form is independent of this triangular form.)
