@@ -1054,8 +1054,11 @@ Now the product rule gives the result we want:
 
 **5Q** The matrices A and B that represent the same linear transformation T with respect to two different bases (the u's and the V's) are similar:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_similarity3.png)
 
+I think an example is the best way to explain B = M⁻¹AM. Suppose T is projection onto the line L at angle θ. This linear transformation is completely described without the help of a basis. But to represent T by a matrix, we do need a basis.
 
+Figure 5.5 offers two choices, the standard basis v₁ = (1, 0), v₂ = (0, 1) and a basis V₁, V₂ chosen especially for T.
 
 
 
