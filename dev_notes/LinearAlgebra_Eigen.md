@@ -13,6 +13,9 @@
 	 - [5.6 SIMILARITY TRANSFORMATIONS](#752452230e3a6aebda46452d7a021688)
 		 - [Change of Basis = Similarity Transformation](#5f520f3a47da08c25d74016f54696110)
 		 - [Triangular Forms with a Unitary M](#510cbf6c3c7df26df1f68a8cbe622731)
+		 - [Diagonalizing Symmetric And Hermitian Matrices (TODO)](#97abb27c8c0d35b2c185aac74120c90f)
+		 - [The Jordan Form](#cd4ea5c462d3c197d41831bb1412b043)
+		 - [Properties of Eigenvalues and Eigenvectors](#8f4c9d7683a46ccaaf20e8b6bd1fa4b3)
 
 ...menuend
 
@@ -1132,10 +1135,12 @@ The only line of the eigenvectors goes through (1,1). After dividing by √2 , t
 
 ---
 
+<h2 id="97abb27c8c0d35b2c185aac74120c90f"></h2>
 ### Diagonalizing Symmetric And Hermitian Matrices (TODO)
 
 ---
 
+<h2 id="cd4ea5c462d3c197d41831bb1412b043"></h2>
 ### The Jordan Form
 
 This section has done its best while requiring M to be a unitary matrix U. We got M⁻¹AM into a triangular form T. 
@@ -1227,6 +1232,7 @@ I hope the following table will be a convenient summary.
  - if A is orthogonal or unitary , then all |λᵢ| = 1 are on the unit circle.
 
 
+<h2 id="8f4c9d7683a46ccaaf20e8b6bd1fa4b3"></h2>
 ### Properties of Eigenvalues and Eigenvectors
 
 How are the properties of a matrix reflected in its eigenvalues and eigenvectors? This question is fundamental throughout Chapter 5. 
