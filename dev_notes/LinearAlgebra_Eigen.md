@@ -1182,12 +1182,33 @@ We now check that. The determinants all equal 1. The traces (the sums down the m
 For T, B, and J, which are triangular, the eigenvalues are on the diagonal. We want to show that these matrices are similar -- they all belong to the same family.
 
  - (T) From T to J, the job is to change 2 to 1, and a diagonal M will do it:
- 	- 
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_JordanForm_Ex4_T.png)
  - (B) From B to J, the job is to transpose the matrix. A permutation does that:
- 	- 
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_JordanForm_Ex4_B.png)
  - (A) From A to J, we go first to T as in equation (4). Then change 2 to 1:
- 	- 
- 	
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_JordanForm_Ex4_A.png)
+
+
+Example 5:
+
+```
+    ⎡0 1 2⎤          ⎡0 0 1⎤
+A = ⎢0 0 1⎥ and  B = ⎢0 0 0⎥.
+    ⎣0 0 0⎦          ⎣0 0 0⎦
+```
+
+Zero is a triple eigenvalue for A and B, so it will appear in all their Jordan blocks. 
+
+There can be a single 3 by 3 block, or a 2 by 2 and a 1 by 1 block, or three 1 by 1 blocks. 
+
+Then A and B have three *possible* Jordan forms:
+
+```
+     ⎡0 1 0⎤        ⎡0 1 0⎤       ⎡0 0 0⎤
+J₁ = ⎢0 0 1⎥,  J₂ = ⎢0 0 0⎥, J₃ = ⎢0 0 0⎥
+     ⎣0 0 0⎦        ⎣0 0 0⎦       ⎣0 0 0⎦
+```
+
 ---
 
 
