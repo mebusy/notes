@@ -1203,13 +1203,60 @@ There can be a single 3 by 3 block, or a 2 by 2 and a 1 by 1 block, or three 1 b
 
 Then A and B have three *possible* Jordan forms:
 
-```
-     ⎡0 1 0⎤        ⎡0 1 0⎤       ⎡0 0 0⎤
-J₁ = ⎢0 0 1⎥,  J₂ = ⎢0 0 0⎥, J₃ = ⎢0 0 0⎥
-     ⎣0 0 0⎦        ⎣0 0 0⎦       ⎣0 0 0⎦
-```
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_3_possible_JordanForm.png)
 
----
+> 疑问： 这路为什么只考虑 组合情况， 不考虑排列?
+
+The only eigenvector of A is (1, 0, 0). Its Jordan form has only one block, and A must be similar to J₁.  The matrix B has the additional eigenvector (0, 1, 0), and its Jordan form is J₂ with two blocks. As for J₃ = zero matrix, it is in a family by itself; the only matrix similar to J₃ is M⁻¹0M = 0.  A count of the eigenvectors will determine J when there is nothing more complicated than a triple eigenvalue.
+
+
+I hope the following table will be a convenient summary.
+
+**Similarity Transformations**
+ 
+ 1. A is ***diagonalizable***: The columns of S are eigenvectors and S⁻¹AS = Λ.
+ 2. A is ***arbitrary***: The columns of M include "generalized eigenvectors" of A, and the Jordan form M⁻¹AM  = J is block diagonal.
+ 3. A is ***arbitrary***: The unitary U can he chosen so that U⁻¹AU = T is triangular.
+ 4. A is ***normal***, AAᴴ = AᴴA: then U can be chosen so that U⁻¹AU = Λ.
+
+***Special cases of normal matrices, all with orthonormal eigenvectors***:
+ 
+ - if A = Aᴴ is Hermitian , then all λᵢ are real.
+ - if A = Aᵀ is real symmetric , then Λ is real and U = Q is orthogonal.
+ - if A = -Aᴴ is skew-Hermitian, then all λᵢ are purely imaginary.
+ - if A is orthogonal or unitary , then all |λᵢ| = 1 are on the unit circle.
+
+
+### Properties of Eigenvalues and Eigenvectors
+
+How are the properties of a matrix reflected in its eigenvalues and eigenvectors? This question is fundamental throughout Chapter 5. 
+
+MATRICES | EIGENVALUES | EIGENVECTORS
+--- | --- | --- 
+Symmetric: Aᵀ = A | real λ's | orthogonal xᵢᵀxⱼ = 0
+Orthogonal: Qᵀ = Q⁻¹ | all &#124;λ&#124;=1 | orthogonal x̄ᵢᵀxⱼ = 0
+Skew-symmetric: Aᵀ = -A | imaginary λ's  | orthogonal x̄ᵢᵀxⱼ = 0
+Complex Hermitian: Āᵀ = A  | real λ's |  orthogonal x̄ᵢᵀxⱼ = 0
+Positive definite: xᵀAx > 0 | all λ > 0 | orthogonal
+Similar matrix: B = M⁻¹AM | λ(B) = λ(A) | x(B) = M⁻¹x(A)
+Projection: P = P² = Pᵀ | λ= 1; 0 |  column space; nullspace
+Reflection: I - 2uuᵀ | λ=-1; 1, ... ,1 | u; u<sup>⊥</sup>
+Rank-1 matrix: uvᵀ | λ = vᵀu; 0, ... ,0 | u; v<sup>⊥</sup>
+Inverse: A⁻¹ | 1/λ(A) | eigenvectors of A
+Shift: A + cI | λ(A) + c | eigenvectors of A
+Stable powers: Aⁿ → 0 | all &#124;λ&#124;<1 | 
+Stable exponential: e<sup>At</sup> → 0 | all Re λ < 0 | 
+Markov: mᵢⱼ > 0,  Σ<sub>i=1,n</sub>mᵢⱼ = 1 | λ<sub>max</sub> = 1 | steady state x > 0
+Cyclic permutation: Pⁿ = I | λ<sub>k</sub> = e<sup>2π i k/n</sup> | x<sub>k</sub> = ( 1, λ<sub>k</sub> , ... , λ<sub>k</sub><sup>n-1</sup> )
+Diagonalizable: SΛS⁻¹ | diagonal of Λ | columns of S are independent
+Symmetric: QΛQᵀ | diagonal of Λ (real) | columns of Q are independent
+Jordan: J = M⁻¹AM | diagonal of J | each block gives 1 eigenvector
+Every matrix: A = UΣVᵀ | rank(A) = rank(Σ) | eigenvectors of AᵀA, AAᵀ in V, U
+
+--- 
+
+END
+
 
 
 
