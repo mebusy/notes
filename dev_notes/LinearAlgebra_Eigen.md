@@ -1103,16 +1103,24 @@ A = ⎡2 -1⎤ has the eigenvalue λ = 1 (twice).
 
 The only line of the eigenvectors goes through (1,1). After dividing by √2 , this is the first column of U, and the triangular U⁻¹AU = T has the eigenvalues on its diagonal:
 
-```
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Unitary_M_example2.png)
 
-```
+---
 
+### Diagonalizing Symmetric And Hermitian Matrices (TODO)
 
+---
 
+### The Jordan Form
 
+This section has done its best while requiring M to be a unitary matrix U. We got M⁻¹AM into a triangular form T. 
 
+Now we lift this restriction on M. Any matrix is allowed, and the goal is to make *M⁻¹AM as nearly diagonal as possible*.
 
+The result of this supreme effort at diagonalization is the ***Jordan form J***. If A has a full set of eigenvectors, we take M = S and arrive at J = S⁻¹AS = Λ. Then the Jordan form coincides with the diagonal Λ. This is impossible for a defective (nondiagonalizable) matrix. *For every missing eigenvector, the Jordan form will have a 1 just above its main diagonal*. The eigenvalues appear on the diagonal because *J* is triangular. And distinct eigenvalues can always be decoupled.
+ 
+It is only a repeated λ that may (or may not!) require an off-diagonal 1 in J.
 
-
+**5U** If A has *s* independent eigenvectors, it is similar to a matrix with *s* blocks:
 
 
