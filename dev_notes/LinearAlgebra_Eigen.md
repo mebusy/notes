@@ -9,7 +9,7 @@
 		 - [Stability of u<sub>k+1</sub> = Au<sub>k</sub>](#ececb2267f15a71d7ecad9272b25ab4a)
 		 - [Positive Matrices and Applications in Economics](#ee24aae762a9409f153f67ec07bbee34)
 	 - [5.4 DIFFERENTIAL EQUATIONS AND eᴬᵗ  (TODO)](#6949286af35bec96be99401b85d929c5)
-	 - [5.5 COMPLEX MATRICES](#8790e803d7a4cc615fb758ad25c12f30)
+	 - [5.5 COMPLEX MATRICES (TODO)](#aaf3eb9f0a15dc1d5d6ea54dec5a1a2e)
 	 - [5.6 SIMILARITY TRANSFORMATIONS](#752452230e3a6aebda46452d7a021688)
 		 - [Change of Basis = Similarity Transformation](#5f520f3a47da08c25d74016f54696110)
 		 - [Triangular Forms with a Unitary M](#510cbf6c3c7df26df1f68a8cbe622731)
@@ -966,8 +966,8 @@ With steel-food-labor in the ratio 1-5-5, the economy grows as quickly as possib
 
 --- 
 
-<h2 id="8790e803d7a4cc615fb758ad25c12f30"></h2>
-## 5.5 COMPLEX MATRICES
+<h2 id="aaf3eb9f0a15dc1d5d6ea54dec5a1a2e"></h2>
+## 5.5 COMPLEX MATRICES (TODO)
 
 --- 
 
