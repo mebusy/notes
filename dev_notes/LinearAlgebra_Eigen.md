@@ -1088,12 +1088,24 @@ We emphasize again that M⁻¹AM does not arise in solving Ax = b. There the bas
 <h2 id="510cbf6c3c7df26df1f68a8cbe622731"></h2>
 ### Triangular Forms with a Unitary M
 
+n阶复方阵U的n个列向量是U空间的一个标准正交基，则U是酉矩阵(Unitary Matrix)。显然酉矩阵是正交矩阵往复数域上的推广。 ???
+
 Our first move beyond the eigenvector matrix M = S is a little bit crazy: Instead of a more general M, we go the other way and restrict M to be unitary. M⁻¹AM can achieve a triangular form T under this restriction.  The columns of M = U are orthonormal (in the real case, we would write M = Q). Unless the eigenvectors of A are orthogonal, a diagonal U⁻¹AU is impossible. But "Schur's lemma" in **5R** is very useful -- at least to the theory. (The rest of this chapter is devoted more to theory than to applications. The Jordan form is independent of this triangular form.)
 
 **5R** There is a unitary matrix M = U such that U⁻¹AU = T is triangular. The eigenvalues Of A appear along the diagonal of this similar matrix T.
 
+Example 2:
 
+```
+A = ⎡2 -1⎤ has the eigenvalue λ = 1 (twice).
+    ⎣1  0⎦
+```
 
+The only line of the eigenvectors goes through (1,1). After dividing by √2 , this is the first column of U, and the triangular U⁻¹AU = T has the eigenvalues on its diagonal:
+
+```
+
+```
 
 
 
