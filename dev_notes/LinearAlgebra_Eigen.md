@@ -977,6 +977,8 @@ When A was symmetric (对称矩阵A的不同特征值所对应的特征向量是
 
 Now we look at all combinations M⁻¹AM -- *formed with any invertible M on the right and its inverse on the left*.  The invertible eigenvector matrix S may fail to exist (the defective case), or we may not know it, or we may not want to use it.
 
+> for bad case, repeated eigenvalues , 此时 特征向量可能不再是 线性无关的，矩阵可能无法对角化。
+
 First a new word: ***The matrices A and M⁻¹AM are "similar."***   Going from one to the other is a ***similarity transformation***. It is the natural step for differential equations or matrix powers or eigenvalues -- just as elimination steps were natural for Ax = b. Elimination multiplied A on the left by L⁻¹, but not on the right by L. So U is not similar to A, and the pivots are not the eigenvalues.   So U is not similar to A, and the pivots are not the eigenvalues.
 
 A whole family of matrices M⁻¹AM is similar to A, and there are two questions:
@@ -986,21 +988,38 @@ A whole family of matrices M⁻¹AM is similar to A, and there are two questions
 
 The final answer is given by the ***Jordan form***, with which the chapter ends.
 
+
+
 These combinations M⁻¹AM arise in a differential or difference equation, when a "change of variables" u = Mv introduces the new unknown v:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_MAM_diff.png)
 
 The new matrix in the equation is M⁻¹AM. In the special case M = S, the system is uncoupled because Λ = S⁻¹AS is diagonal. The eigenvectors evolve independently. This is the maximum simplification, but other M's are also useful. We try to make M⁻¹AM easier to work with than A .
 
-The family of matrices M⁻¹AM includes A itself, by choosing M = I. Any of these similar matrices can appear in the differential and difference equations, by the change u = Mv, so they ought to have something in common, and they do: ***Similar matrices share the same eigenvalues***.
+The family of matrices M⁻¹AM includes A itself, by choosing M = I. 
+
+> repeated eigenvalues 的情况下 , 特例是 矩阵 `nI` , 它只和自己相似 ； 另一类大家庭是 三角矩阵，这些矩阵 有相同的 特征向量。 尽管不能被对角化，但这类三角矩阵中有一个 Jordan Form, 是最好的 -- 挑出的最简洁的, 最接近对角阵的一个， 但又不能完全对角化。
+
+Any of these similar matrices can appear in the differential and difference equations, by the change u = Mv, so they ought to have something in common, and they do: ***Similar matrices share the same eigenvalues***.
 
 **5P** Suppose that B = M⁻¹AM. Then A and B have the **same eigenvalues. Every eigenvector x of A corresponds to an eigenvector M⁻¹x of B**.
 
-Start from Ax = λx and substitute A = MBM⁻¹:
+Proof: Start from Ax = λx and substitute A = MBM⁻¹:
 
 ```
   Same eigenvalue:  MBM⁻¹x = λx   which is B(M⁻¹x) = λ(M⁻¹x). 		(1)
 ```
+
+OR:
+
+```
+       Ax = λx
+   AMM⁻¹x = λx 
+M⁻¹AMM⁻¹x = λM⁻¹x 
+    BM⁻¹x = λM⁻¹x
+       Bx = λx
+```
+
 
 The eigenvalue of B is still λ. The eigenvector has changed from x to M⁻¹x.
 
@@ -1028,7 +1047,13 @@ A = ⎡1 0⎤ has eigenvalues 1 and 0. Each B is M⁻¹AM:
          ⎣c d⎦            
 ```
 
-In this case we can produce any B that has the correct eigenvalues. It is an easy case, because the eigenvalues 1 and 0 are distinct. The diagonal A was actually Λ, the outstanding member of this family of similar matrices (the capo). The Jordan form will worry about repeated eigenvalues and a possible shortage of eigenvectors. All we say now is that every M⁻¹AM has the same number of independent eigenvectors as A (each eigenvector is multiplied by M⁻¹).
+In this case we can produce any B that has the correct eigenvalues. It is an easy case, because the eigenvalues 1 and 0 are distinct. The diagonal A was actually Λ, the outstanding member of this family of similar matrices (the capo). 
+
+> 如果 矩阵的特征值没有重复, 且相同， 则矩阵相似
+
+> 但是如果有重复的 特征值, 即使 **eigenvalue 相同 , same number of eigenvectors ， 并不能确保矩阵就是相似的，还要确保 same Jordan Block**.
+
+The Jordan form will worry about repeated eigenvalues and a possible shortage of eigenvectors. All we say now is that every M⁻¹AM has the same number of independent eigenvectors as A (each eigenvector is multiplied by M⁻¹).
 
 The first step is to look at the linear transformations that lie behind the matrices.  Rotations, reflections, and projections act on n-dimensional space. The transformation can happen without linear algebra, but linear algebra turns it into matrix multiplication.
 
@@ -1118,9 +1143,55 @@ This section has done its best while requiring M to be a unitary matrix U. We go
 Now we lift this restriction on M. Any matrix is allowed, and the goal is to make *M⁻¹AM as nearly diagonal as possible*.
 
 The result of this supreme effort at diagonalization is the ***Jordan form J***. If A has a full set of eigenvectors, we take M = S and arrive at J = S⁻¹AS = Λ. Then the Jordan form coincides with the diagonal Λ. This is impossible for a defective (nondiagonalizable) matrix. *For every missing eigenvector, the Jordan form will have a 1 just above its main diagonal*. The eigenvalues appear on the diagonal because *J* is triangular. And distinct eigenvalues can always be decoupled.
- 
+
+> 相似矩阵有很多, Jordan Form 是最接近 对角矩阵的
+  
 It is only a repeated λ that may (or may not!) require an off-diagonal 1 in J.
 
 **5U** If A has *s* independent eigenvectors, it is similar to a matrix with *s* blocks:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Jordan_form.png)
+
+Each Jordan block, Jᵢ is a triangular matrix that has only a single eigenvalue and only one eigenvector:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Jordan_block.png)
+
+The same λᵢ will appear in several blocks, if it has several independent eigenvectors. Two matrices are similar if and only if they share the same Jordan form J.
+
+Many authors have made this theorem the climax of their linear algebra course. Frankly, I think that is a mistake. It is certainly true that not all matrices are diagonalizable, and the Jordan form is the most general case. For that very reason, its construction is both technical and extremely unstable. (A slight change in A can put back all the missing eigenvectors, and remove the off-diagonal 1s.)   
+
+> 但是，一般矩阵很难化简为 Jordan Form， because it depends on these eigenvalues being exactly same. You'd have to know exactly the eigenvalue and you'd have to know exactly the rank and the slightest change in numbers will change those eigenvalues.
+
+> Every square A is similar to a Jordan matrix J -- the matrix consists of Jordan Blocks. For good case , J is Λ. 关注good case 就好了，求 Jordan Matrix 是30年前的东西。
+
+Therefore the right place for the details is in the appendix, and the best way to start on the Jordan form is to look at some specific and manageable examples.
+
+Example4
+
+```
+T = ⎡1 2⎤ and A = ⎡2 -1⎤ and B =⎡1 0⎤  all lead to J =⎡1 1⎤
+    ⎣0 1⎦         ⎣1  0⎦        ⎣1 1⎦                 ⎣0 1⎦
+```
+
+These four matrices have eigenvalues 1 and 1 with *only one eigenvector* -- so J consists of one block.
+
+> J block 数, 等于 特征向量个数
+
+We now check that. The determinants all equal 1. The traces (the sums down the main diagonal) are 2. The eigenvalues satisfy 1 · 1 = 1 and 1 + 1 = 2.
+
+For T, B, and J, which are triangular, the eigenvalues are on the diagonal. We want to show that these matrices are similar -- they all belong to the same family.
+
+ - (T) From T to J, the job is to change 2 to 1, and a diagonal M will do it:
+ 	- 
+ - (B) From B to J, the job is to transpose the matrix. A permutation does that:
+ 	- 
+ - (A) From A to J, we go first to T as in equation (4). Then change 2 to 1:
+ 	- 
+ 	
+---
+
+
+
+
 
 
