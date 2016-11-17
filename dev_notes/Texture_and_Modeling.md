@@ -817,34 +817,84 @@ star(
 	float ss, tt, angle, r, a, in_out;
 	uniform float rmin = 0.07, rmax = 0.2; 
 	uniform float starangle = 2*PI/npoints;  // 1.257 , 72 degree
-	uniform point p0 = rmax*(cos(0),sin(0), 0);  // ( 0.2, 0, 0 )
-	uniform point pi = rmin*(cos(starangle/2),sin(starangle/2),0);  // (0.057, 0.041, 0)
-	uniform point d0 = pi - p0; 
+
+	// (r,0) @ ( 0.2, 0, 0 )  
+	uniform point p0 = rmax*(cos(0),sin(0), 0);  
+	// ( rmin ,  starangle/2 ) @ (0.057, 0.041, 0) , clockwise , cuz (s,t) , t is downward
+	uniform point pi = rmin*(cos(starangle/2),sin(starangle/2),0);  
+	uniform point d0 = pi - p0; # thick line (left in picture)
 	point d1;
 	ss = s - sctr; tt = t - tctr;
-	angle = atan(ss, tt) + PI;
-	r = sqrt(ss*ss + tt*tt);   // mark: 1
+	angle = atan(ss, tt) + PI;  // mark: 1
+	r = sqrt(ss*ss + tt*tt);   // mark: 2
 
 	a = mod(angle, starangle)/starangle; 
 	if (a >= 0.5)
-		a = 1 - a;    // mark: 2
-	dl = r*(cos(a), sin(a),0) - p0; 
-	in_out = step(0, zcomp(d0^d1) );
+		a = 1 - a;    // mark: 3
+
+	d1 = r*(cos(a), sin(a),0) - p0;  // mark:4
+	in_out = step(0, zcomp(d0^d1) ); // outward z is negtive
 	Ct = mix(Cs, starcolor, in_out);
-	/* diffuse (“matte”) shading model */ Oi = Os;
+	/* diffuse (“matte”) shading model */ 
+	Oi = Os;
 	Ci = Os * Ct * (Ka * ambient() + Kd * diffuse(Nf));		
 }
 ```
 
- 1. At this point, the shader has computed polar coordinates relative to the center of the star. These coordinates r and angle act as the feature space for the star.
- 2. Now the shader has computed the coordinates of the sample point (r,a) in a new feature space: the space of one point of the star. 
+ 1. 这里使用了一个小技巧: 极坐标 0弧度 是 水平向右
+ 	- 通过 交换 atan的两个参数, 使 图像顺时针旋转90度
+ 	- 最后加上 + PI , 使 star 正方向向上
+ 2. 计算以 star 中心为 原点的 极坐标
+ 3. Now the shader has computed the coordinates of the sample point (r,a) in a new feature space: the space of one point of the star. 
  	- a is first set to range from 0 to 1 over each star point. 
  	- To avoid checking both of the edges that define the “V” shape of the star point, sample points in the upper half of the star point are reflected through the center line of the star point. 
  	- The new sample point (r,a) is inside the star if and only if the original sample point was inside the star, due to the symmetry of the star point around its center line.
+ 4. To test whether (r,a) is inside the star, 我们使用叉积来判断， 注意 z轴正向是朝里的
+ 	- `zcomp(d0^d1)` 判断只 适用于 36度区域, 为了使 另外的36度也 使用 d0来判断，我们对 `a` 做镜像处理
+ 	- 代码中的 [0,1] normalization 并不是必须的, `a = mod(angle, starangle);  if (a >= starangle／2) a = starangle - a;` 同样可以
 
 
+## Spectral Synthesis  光谱合成
+
+Procedural methods could generate remarkably complex and natural-looking textures simply by using a combination of sinusoidal 正弦波 component functions of differing frequencies , amplitudes, and phases.
+
+The theory of Fourier analysis tells us that functions can be represented as a sum of sinusoidal terms.  The Fourier transform takes a function from the temporal or spatial domain, where it is usually defined, into the *frequency domain*, where it is represented by the amplitude and phase of a series of sinusoidal waves.  When the series of sinusoidal waves is summed together, it reproduces the original function; this is called the *inverse Fourier transform*.
+
+ - Spectral synthesis is a rather inefficient implementation of the inverse discrete Fourier transform, 
+ 	- which takes a function from the frequency domain back to the spatial domain.  Given the amplitude and phase for each sinusoidal component, we can sum up the waves to get the desired function. 
+ - The efficient way to do this is the inverse fast Fourier transform (FFT) algorithm, but that method generates the inverse Fourier transform for a large set of points all at once.
+  	- In an implicit procedural texture we have to generate the inverse Fourier transform for a single sample point, and the best way to do that seems to be a direct summation of the sine wave components.
+
+In procedural texture generation, we usually don’t have all of the frequency domain information needed to reconstruct some function exactly. Instead, we want a function with some known characteristics, usually its power spectrum, and we don’t care too much about the details of its behavior. 
+
+It is possible to take a scanned image of a texture, compute its frequency domain representation using a fast Fourier trans- form, and use the results to determine coefficients for a spectral synthesis procedural texture, but in our experience that approach is rarely taken.
+
+One of Gardner’s simplest examples is a 2D texture that can be applied to a flat sky plane to simulate clouds. Here is a RenderMan shader that generates such a texture:
 
 
+```
+TODO
+```
 
+
+This texture is a sum of five components, each of which is a cosine function with a different frequency, amplitude, and phase. The frequencies, amplitudes, and phases are chosen according to rules discovered by Gardner in his experiments. 
+
+Gardner’s technique is somewhat unusual for spectral synthesis in that the phase of each component is coupled to the value of the previous component in the other coordinate (for example, the x phase depends on the value of the preceding y component).
+
+Making an acceptable cloud texture in this way is a battle to avoid regular patterns in the texture.   Natural textures usually don’t have periodic patterns that repeat exactly.
+
+Spectral synthesis relies on complexity to hide its underlying regularity and periodicity. There are several “magic numbers” strewn throughout this shader in an attempt to prevent regular patterns from appearing in the texture. 
+
+Fourier spectral synthesis using a finite number of sine waves will always generate a periodic function, but the period can be made quite long so that the periodicity is not obvious to the observer. 
+
+---
+
+You could go a long way using just the methods described so far. 
+
+Some of these techniques can produce rich textures with a lot of varied detail, but even more variety is possible. In particular, we haven’t yet discussed the noise function, the most popular of all procedural texture primitives. 
+
+But first, let’s digress a bit and examine one of the most important issues that affect procedural textures, namely, the difficulties of aliasing and antialiasing.
+
+## ALIASING AND HOW TO PREVENT IT
 
 
