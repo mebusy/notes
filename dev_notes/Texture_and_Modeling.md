@@ -897,4 +897,18 @@ But first, let’s digress a bit and examine one of the most important issues th
 
 ## ALIASING AND HOW TO PREVENT IT
 
+The next section presents an informal discussion of basic signal processing concepts, including aliasing. 
+
+### Signal Processing
+
+As shown in Figure 2.29, a continuous signal can be converted into a discrete form by measuring its value at equally spaced sample points. 
+
+
+
+> FIGURE 2.29 Sampling and reconstruction.
+
+
+> FIGURE 2.30 Aliasing.
+
+
 
