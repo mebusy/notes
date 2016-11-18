@@ -15,6 +15,10 @@
 	 - [Example: Brick Texture](#95e100e8006b35e4017b4ac5e98f590e)
 		 - [Bump-Mapped Brick](#4b8a4928c80dbb90832685f625d39bb4)
 	 - [Example: Procedural Star Texture](#3f9e2847ee4cdb15d32b99840caec017)
+	 - [Spectral Synthesis  光谱合成](#5783f81ef8917c860636ac9d7d695102)
+	 - [ALIASING AND HOW TO PREVENT IT](#57e6091478ea0070020ae98a10147920)
+		 - [Signal Processing](#fb93336ab960d4ccca06e3a9ff73596b)
+	 - [Methods of Antialiasing Procedural Textures](#5daadabdd389ed925f78dd58dc8a4d68)
 
 ...menuend
 
@@ -854,6 +858,7 @@ star(
  	- 代码中的 [0,1] normalization 并不是必须的, `a = mod(angle, starangle);  if (a >= starangle／2) a = starangle - a;` 同样可以
 
 
+<h2 id="5783f81ef8917c860636ac9d7d695102"></h2>
 ## Spectral Synthesis  光谱合成
 
 Procedural methods could generate remarkably complex and natural-looking textures simply by using a combination of sinusoidal 正弦波 component functions of differing frequencies , amplitudes, and phases.
@@ -895,10 +900,12 @@ Some of these techniques can produce rich textures with a lot of varied detail, 
 
 But first, let’s digress a bit and examine one of the most important issues that affect procedural textures, namely, the difficulties of aliasing and antialiasing.
 
+<h2 id="57e6091478ea0070020ae98a10147920"></h2>
 ## ALIASING AND HOW TO PREVENT IT
 
 The next section presents an informal discussion of basic signal processing concepts, including aliasing. 
 
+<h2 id="fb93336ab960d4ccca06e3a9ff73596b"></h2>
 ### Signal Processing
 
 As shown in Figure 2.29, a continuous signal can be converted into a discrete form by measuring its value at equally spaced sample points. 
@@ -968,12 +975,14 @@ If we can build a better form of antialiasing into the procedural texture, the r
 
 The brick texture from earlier in the chapter provides a concrete example of the aliasing problem. Figure 2.31 shows how the brick texture looks when the sampling rate is low. 
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.31.png)
 
 Notice that the width of the mortar grooves appears to vary in different parts of the image due to aliasing. This is the original version of the texture, without bump-mapped grooves. Later in the chapter we’ll see how to add antialiasing techniques to the brick texture to alleviate the aliases.
 
+---
 
-
+<h2 id="5daadabdd389ed925f78dd58dc8a4d68"></h2>
+## Methods of Antialiasing Procedural Textures
 
 
 
