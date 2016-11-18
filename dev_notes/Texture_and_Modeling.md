@@ -1094,7 +1094,6 @@ Clamping works very well for spectral synthesis textures created with sine waves
 
 Even if the primitive is perfectly band-limited to frequencies lower than its nominal frequency, clamping is imperfect as a means of antialiasing.  In this case, clamping will eliminate aliasing, but the character of the texture may change as high frequencies are removed because each component contains low frequencies that are removed along with the high frequencies.
 
-
 ## Analytic Prefiltering
 
 A procedural texture can be filtered explicitly by computing the convolution of the texture function with a filter function. This is difficult in general, but if we choose a simple filter, the technique can be implemented successfully. The simplest filter of all is the box filter; the value of a box filter is simply the average of the input function value over the area of the box filter.
@@ -1105,11 +1104,43 @@ This sounds tough, but it’s easy if the function is simple enough.
 
 Consider the *step* function shown in Figure 2.8. The step function is rather ill-behaved because it is discontinuous at its threshold value.  Let’s apply a box filter extending from x to x + w to the function step(b,x).  The result is the box-filtered step function, boxstep(a,b,x), where a = b - w (Figure 2.32). 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.32.png)
 
+Boxstep is a linear ramp from 0 to 1 starting at a and ending at b. The slope of the ramp is 1/w.
 
+The boxstep function can be written as a preprocessor macro in C or the shading language as follows:
 
+```
+#define boxstep(a,b,x) clamp(((x)-(a))/((b)-(a)),0,1)
+```
 
+Now the step(b,x) can be replaced with boxstep(b-w,b,x). If the filter width w is chosen correctly, the boxstep function should reduce aliasing compared to the step function.
 
+## Better Filters
 
+The box filter is far from ideal for antialiasing. A better filter usually results in fewer artifacts or less unnecessary blurring.  A better alternative to *boxstep* is the *smoothstep* function that was discussed earlier in this chapter. 
 
+Filtering of the step with a first- order filter (box) gives a second-order function, namely, the linear ramp. 
+
+Filtering of the step with a third-order filter (quadratic) gives a fourth-order function, namely, the cubic smoothstep.
+
+Using smoothstep to replace step is like filtering with a quadratic filter, which is a better approximation to the ideal sinc filter than the box filter is.
+
+The boxstep macro is designed to be plug-compatible with smoothstep. The call boxstep(WHERE-swidth, WHERE, s) can be replaced with the call smoothstep(WHERE-swidth, WHERE, s). This is the filtered version of step(WHERE, s), given a filter extending from s to s+swidth.
+
+```
+step -> boxstep -> smoothstep
+```
+
+Using the smoothstep cubic function as a filtered step is convenient and efficient because it is a standard part of the shading language. 
+
+However, there are other filters and other filtered steps that are preferable in many applications. In particular, some filters such as the sinc and Catmull-Rom filters have ***negative lobes*** -- the filter values dip below zero at some points. Such filters generally produce sharper texture patterns, although ringing artifacts are sometimes visible. 
+
+A Catmull-Rom filter can be convolved with a step function (which is equivalent to integrating the filter function) to produce a *catstep* filtered step function that has been used with good results.
+
+## Integrals and Summed-Area Tables
+
+Crow (1984) introduced the summed-area table method of antialiasing image textures. 
+
+A summed-area table is an image made from the texture image. 
 

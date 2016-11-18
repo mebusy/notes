@@ -342,11 +342,12 @@ Updating this internal state information as time goes by requires two kinds of k
 on the freeway, one is usually about five miles north of where one was five minutes ago. 
  	- agent 的行为对世界的影响
 
-
-This knowledge about "how the world works"—whether implemented in simple Boolean circuits or in complete scientific theories -— is called a **model** of the world. An agent that uses such a model is called a **model-based agent**.
-
+This knowledge about "how the world works" -— whether implemented in simple Boolean circuits or in complete scientific theories -— is called a **model** of the world. An agent that uses such a model is called a **model-based agent**. 
 
 
+> FIGURE 2.33 The summed-area table: 
+>	(a) table entry (s, t) stores area of shaded region; 
+>	(b) four entries A, B, C, D are used to compute shaded area.
 
 
 
