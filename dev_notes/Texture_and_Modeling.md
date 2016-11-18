@@ -984,6 +984,131 @@ Notice that the width of the mortar grooves appears to vary in different parts o
 <h2 id="5daadabdd389ed925f78dd58dc8a4d68"></h2>
 ## Methods of Antialiasing Procedural Textures
 
+Various ways to build low-pass filtering into procedural textures: 
+
+ - clamping, 
+ - analytic prefiltering, 
+ - integrals, 
+ - and alternative antialiasing methods.
+
+Clamping is a special-purpose filtering method that applies only to textures created by spectral synthesis
+
+Analytic prefiltering techniques are ways to compute low-pass-filtered values for some of the primitive functions that are used to build procedural textures.
+
+One class of analytic prefiltering methods is based on the ability to compute the integral of the texture function over a rectangular region. 
+
+Finally, we’ll consider alternatives to low-pass filtering that can be used when proper filtering is not practical.
+
+Some procedural texture primitives are inherently band-limited; that is, they contain only a limited, bounded set of frequencies. *sin* is an obvious example of such a function. 
+The *texture* function and its relatives have built-in filtering, so they are also band-limited. Unfortunately, some common language constructs such as *if* and *step* create sharp changes in value that generate arbitrarily high frequencies. Sharp changes in the shading function must be avoided. *smoothstep* is a smoothed replacement for step that can reduce the tendency to alias.  Can we simply replace *step* functions with *smoothstep* functions? Not an adequate solution. If the shader is tuned for a particular view, the smoothstep will alias when the texture is viewed from further away because the fixed-width smoothstep will be too sharp.On the other hand, when the texture is viewed from close up, the smoothstep edge is too blurry. A properly antialiased edge should look equally sharp at all scales. To achieve this effect, the *smoothstep* width must be varied based on the sampling rate.
+
+## Determining the Sampling Rate
+
+To do low-pass filtering properly, the procedural texture function must know the sampling rate at which the renderer is sampling the texture.
+
+The sampling rate is just the reciprocal of the spacing between adjacent samples in the relevant texture space or feature space. This is called the ***sampling interval***. For simple box filtering, the sampling interval is also the usual choice for the width of the box filter.
+
+Obviously, the sampling interval cannot be determined from a single sample in isolation.  The procedural texture is invoked many times by the renderer to evaluate the texture at different sample points, but each invocation is independent of all of the others.
+
+To determine the sampling rate or sampling interval without changing this model of procedural texture, the renderer must provide some extra information to each invocation of the procedural texture. In the RenderMan shading language, this information is in the form of built-in variables called ***du*** and ***dv*** and functions called ***Du*** and ***Dv***. 
+
+The *du* and *dv* variables give the sampling intervals for the surface parameters (u, v). If the texture is written in terms of (u, v), the filter widths can be taken directly from *du* and *dv*. 
+
+In most cases, procedural textures are written in terms of the standard texture coordinates (s, t), which are scaled and translated versions of (u, v), or in terms of texture coordinates computed from the 3D coordinates of the surface point P in some space.  In these cases, it is harder to determine the sampling interval, and the functions ***Du*** and ***Dv*** must be used. 
+
+Du(a) gives an approximation to the derivative of some computed quantity *a* with respect to the surface parameter *u*.
+
+Similarly, Dv(a) gives an approximation to the derivative of some computed quantity *a* with respect to the surface parameter *v*.
+
+By multiplying the derivatives by the (u, v) sampling intervals, the procedural texture can estimate the sampling interval for a particular computed texture coordinate *a*.
+
+In general, it is not safe to assume that the texture coordinate changes only when u changes or only when v changes. Changes along both parametric directions have to be considered and combined to get a good estimate, *awidth*, of the sampling interval for *a*:
+
+```
+awidth = abs(Du(a)*du) + abs(Dv(a)*dv);
+```
+
+The sum of the absolute values gives an upper bound on the sampling interval; if this estimate is in error, it tends to make the filter too wide so that the result is blurred too much. This is safer than making the filter too narrow, which would allow aliasing to occur.
+
+It is desirable for the sampling interval estimate to remain constant or change smoothly. Sudden changes in the sampling interval result in sudden changes in the texture filtering, and that can be a noticeable and annoying flaw in itself.  Even if the derivatives Du and Dv are accurate and change smoothly, there is no guarantee that the renderer’s sampling intervals in (u, v) will also behave themselves. A surface seen in perspective could have sudden changes in sampling intervals between the nearer and more dis- tant parts of the surface. A renderer that uses adaptive sampling based on some estimate of apparent detail might end up using the values returned by the procedural texture itself to determine the appropriate sampling rates. That would be an interesting situation indeed —- one that might make proper low-pass filtering in the texture a very difficult task.
+
+The remedy for cases in which the renderer’s sampling interval is varying in an undesirable way is to use some other estimate of the sampling interval, an estimate that is both less accurate and smoother than the one described above. One such trick is to use the distance between the camera and the surface position to control the low-pass filtering:
+
+```
+awidth = length(I) * k;
+```
+
+The filter width (sampling interval estimate) is proportional to the distance from the camera (length(I)), but some experimentation is needed to get the right scaling factor k.
+
+It is especially tricky to find the right filter width to antialias a bump height func- tion for a bump-mapping texture. Since the bump height affects the normal vector used in shading, specular highlights can appear on the edges of bumps.
+
+## Clamping
+
+Clamping is a very direct method of eliminating high frequencies from texture patterns that are generated by spectral synthesis. Since each frequency component is explicitly added to a spectral synthesis texture, it is fairly easy to omit every component whose frequency is greater than the Nyquist frequency.
+
+Let’s begin with the following simple spectral synthesis loop, with a texture coordinate s:
+
+```c
+value = 0;
+for (f = MINFREQ; f < MAXFREQ; f *= 2)
+	value += sin(2*PI*f*s)/f;
+```
+
+ - The loop begins at a frequency of MINFREQ and ends at a frequency less than MAXFREQ
+ - doubling the frequency on each successive iteration of the loop
+ - The amplitude of each sinusoidal component is the reciprocal of its frequency.
+
+The following version is antialiased using the simplest form of clamping. The sampling interval in *s* is *swidth*.
+
+```c
+value = 0;
+cutoff = clamp(0.5/swidth, 0, MAXFREQ); 
+
+for (f = MINFREQ; f < cutoff; f *= 2)
+	value += sin(2*PI*f*s)/f;
+```
+
+ - In this version the loop stops at a frequency less than *cutoff* , which is the Nyquist frequency for the sampling rate *1/swidth* 
+ 	- 要确保 <= Nyquist frequency/2 , 所以这里是  0.5/swidth
+
+In order to avoid “pops,” sudden changes in the texture as the sampling rate changes (e.g., as we zoom in toward the textured surface), it is important to fade out each component gradually as the Nyquist frequency approaches the component frequency. The following texture function incorporates this gradual fade-out strategy:
+
+```c
+value = 0;
+cutoff = clamp(0.5/swidth, 0, MAXFREQ); 
+
+for (f = MINFREQ; f < 0.5*cutoff; f *= 2)
+	value += sin(2*PI*f*s)/f;
+
+fade = clamp(2*(cutoff-f)/cutoff, 0, 1); 
+value += fade * sin(2*PI*f*s)/f;
+```
+
+ - The loop ends one component earlier than before
+ - and that last component (whose frequency is between 0.5*cutoff and cutoff) is added in after the loop and is scaled by fade.
+ - The fade value gradually drops from 1 to 0 as the frequency of the component increases from 0.5*cutoff toward cutoff
+
+This is really a result of changes in *swidth* and therefore in *cutoff*, rather than changes in the set of frequency components in the texture pattern.
+
+Clamping works very well for spectral synthesis textures created with sine waves. But when the spectral synthesis uses some primitive that has a richer frequency spectrum of its own, clamping doesn’t work as well.
+
+Even if the primitive is perfectly band-limited to frequencies lower than its nominal frequency, clamping is imperfect as a means of antialiasing.  In this case, clamping will eliminate aliasing, but the character of the texture may change as high frequencies are removed because each component contains low frequencies that are removed along with the high frequencies.
+
+
+## Analytic Prefiltering
+
+A procedural texture can be filtered explicitly by computing the convolution of the texture function with a filter function. This is difficult in general, but if we choose a simple filter, the technique can be implemented successfully. The simplest filter of all is the box filter; the value of a box filter is simply the average of the input function value over the area of the box filter.
+
+To compute the convolution of a function with a box filter the function must be integrated over the area under the filter.
+
+This sounds tough, but it’s easy if the function is simple enough. 
+
+Consider the *step* function shown in Figure 2.8. The step function is rather ill-behaved because it is discontinuous at its threshold value.  Let’s apply a box filter extending from x to x + w to the function step(b,x).  The result is the box-filtered step function, boxstep(a,b,x), where a = b - w (Figure 2.32). 
+
+
+
+
+
 
 
 
