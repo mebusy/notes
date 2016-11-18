@@ -903,12 +903,79 @@ The next section presents an informal discussion of basic signal processing conc
 
 As shown in Figure 2.29, a continuous signal can be converted into a discrete form by measuring its value at equally spaced sample points. 
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.29.png)
 
 > FIGURE 2.29 Sampling and reconstruction.
 
+This is called *sampling*. The original signal can be reconstructed later from the sample values by interpolation.
+
+**Sampling and reconstruction are fundamental to computer graphics.** 
+
+Raster images are discrete digital representations of the continuous optical signals that nature delivers to our eyes and to our cameras. Synthetic images are made by sampling of geometric models that are mathematically continuous. 
+
+Signal processing originally was developed to deal with the one-dimensional time-varying signals encountered in communications. The field of image processing is in essence the two-dimensional extension of signal processing techniques to deal with images.
+
+Fortunately for computer graphics, the process of sampling and reconstruction is guaranteed to work under certain conditions, namely, when the amount of information in the original signal does not exceed the amount of information that can be captured by the samples. This is known as the ***sampling theorem***. 
+
+The amount of information in the original signal is called its ***bandwidth***. The amount of information that can be captured by the samples is dependent upon the ***sampling rate***, the number of sample points per unit distance.  
+
+Unfortunately for computer graphics, the conditions for correct sampling and reconstruction are not always easy to meet, and when they are not met, aliasing occurs.
+
+In Fourier “frequency domain.” , a signal with limited bandwidth will have a maximum frequency in its frequency domain representation.  
+
+*If that frequency is less than or equal to one-half of the sampling rate, the signal can be correctly sampled and reconstructed without aliasing*. Aliasing will occur if the maximum frequency exceeds one-half of the sampling rate (this is called the ***Nyquist frequency***). 
+
+The maximum frequency in the reconstructed signal cannot exceed the Nyquist frequency, but the energy contributed to the original signal by the excessively high frequency components does not simply disappear.  Instead, it appears in the reconstructed signal as erroneous lower-frequency energy, which is called an ***alias*** of the high-frequency energy in the original signal.  
+
+The problem of aliasing can be addressed by changing the sample points to be closer together, or by modifying the original signal to eliminate the high frequencies.  
+
+If it is possible to increase the sampling rate, that is always beneficial. With more samples, the original signal can be reconstructed more accurately. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.30.png)
 
 > FIGURE 2.30 Aliasing.
+
+---
+
+Unfortunately, there is always some practical limit on the resolution of an image due to memory space or display limitations, and the sampling rate of an image is proportional to its resolution. It is impossible for an image to show details that are too small to be visible at the resolution of the image.
+
+Therefore, it is vital to **take** excessively high frequencies **out of** the original signal so that they don’t show up as aliases and detract from the part of the signal that *can* be seen given the available resolution.
+
+There is another reason why increasing the sampling rate is never a complete solution to the problem of aliasing. Some signals have unlimited bandwidth, so there is no maximum frequency.  No matter how great the image resolution, increasing the sampling rate to any finite value cannot eliminate aliasing when sampling such signals. This is why sloped lines are jaggy on even the highest resolution displays (unless they have been antialiased properly).
+
+Since aliasing can’t always be solved by increasing the sampling rate, we are forced to figure out how to remove high frequencies from the signal before sampling.
+
+The technique is called ***low-pass filtering*** because it passes low-frequency information while eliminating higher-frequency information. The visual effect of low-pass filtering is to blur the image. The challenge is to blur the image as little as possible while adequately attenuating the unwanted high frequencies.
+
+It is often difficult to low-pass-filter the signal before sampling.
+
+A common strategy in computer graphics is to *supersample* or *oversample* the signal, that is, to sample it at a higher rate than the desired output sampling rate. 。。。 Unfortunately, frequencies higher than the Nyquist frequency of the supersamples will still appear as aliases in the reconstructed signal.
+
+An alternative approach to antialiasing is to supersample the signal at irregularly spaced points. This is called ***stochastic sampling***。 The energy from frequencies above the Nyquist frequency of the supersamples appears in the reconstructed signal as random noise rather than as a structured low-frequency alias. People are far less likely to notice this noise in the rendered image than they are to notice a low-frequency alias pattern. But it is preferable to low-pass-filter the signal before sampling because in that case no noise will be added to the reconstructed signal.
+
+In summary, to produce an antialiased image with a specified resolution, the most effective strategy is to remove excessively high frequencies from the signal by low-pass filtering before sampling. If it isn’t possible to filter the signal, the best strategy is to stochastically supersample it at as high a rate as is practical, and apply a discrete low-pass filter to the supersamples.
+
+ - 先应用 低通滤波 过滤
+ - 如果没有解决问题, 采用 随机超采样， 再对超采样部分 使用低通滤波 过滤
+
+The next section discusses ways to build low-pass filtering into procedural textures to eliminate aliasing artifacts.
+
+In fact, most renderers have some antialiasing scheme to prevent aliasing artifacts that result from sharp edges in the geometric model. Renderers that support image textures usually include some texture antialiasing in the texture mapping software. 
+
+But these forms of antialiasing do not solve the aliasing problem for procedural textures.
+
+If we can build a better form of antialiasing into the procedural texture, the result will look cleaner and the renderer can be freed of the need to compute expensive supersamples of the procedural texture.
+
+The brick texture from earlier in the chapter provides a concrete example of the aliasing problem. Figure 2.31 shows how the brick texture looks when the sampling rate is low. 
+
+
+
+Notice that the width of the mortar grooves appears to vary in different parts of the image due to aliasing. This is the original version of the texture, without bump-mapped grooves. Later in the chapter we’ll see how to add antialiasing techniques to the brick texture to alleviate the aliases.
+
+
+
+
+
 
 
 
