@@ -345,9 +345,7 @@ on the freeway, one is usually about five miles north of where one was five minu
 This knowledge about "how the world works" -— whether implemented in simple Boolean circuits or in complete scientific theories -— is called a **model** of the world. An agent that uses such a model is called a **model-based agent**. 
 
 
-> FIGURE 2.33 The summed-area table: 
->	(a) table entry (s, t) stores area of shaded region; 
->	(b) four entries A, B, C, D are used to compute shaded area.
+
 
 
 

@@ -1144,3 +1144,9 @@ Crow (1984) introduced the summed-area table method of antialiasing image textur
 
 A summed-area table is an image made from the texture image. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.33.png)
+
+> FIGURE 2.33 The summed-area table: 
+>	(a) table entry (s, t) stores area of shaded region; 
+>	(b) four entries A, B, C, D are used to compute shaded area.
+
