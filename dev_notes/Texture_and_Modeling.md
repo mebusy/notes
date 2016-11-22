@@ -1480,5 +1480,80 @@ float turbulence(point Q) {
 
 Figure 2.38 shows a slice of the fractalsum function on the left and a slice of the turbulence function on the right. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.38.png)
 
+> FIGURE 2.38 Slices of fractalsum and turbulence functions.
+
+The fractalsum is very cloudlike in appearance, while turbulence is apparently lumpier, with sharper changes in value.
+
+Spectral synthesis loops should use clamping to prevent aliasing. Here is a version of turbulence with clamping included:
+
+
+```
+float turbulence(point Q) {
+	float value = 0;
+	float cutoff = clamp(0.5/Qwidth, 0, MAXFREQ); 
+	float fade;
+	for (f = MINFREQ; f < 0.5*cutoff; f *= 2) 
+		value += abs(snoise(Q * f))/f;
+	fade = clamp(2*(cutoff-f)/cutoff, 0, 1); 
+	value += fade * abs(snoise(Q * f))/f; 
+	return value;
+}
+```
+
+Marble is a material that is typically simulated using an irregular texture based on spectral synthesis. The following marble shader uses a four-octave spectral synthesis based on *noise* to build up a stochastic value called *marble* that is similar to *fractalsum*.
+
+```
+#define PALE_BLUE 		color (0.25, 0.25, 0.35) 
+#define MEDIUM_BLUE 	color (0.10, 0.10, 0.30) 
+#define DARK_BLUE 		color (0.05, 0.05, 0.26)
+#define DARKER_BLUE 	color (0.03, 0.03, 0.20) 
+#define NNOISE			4
+
+#define snoise(x) (2 * noise(x) - 1)
+
+color
+marble_color(float m)
+{
+    return color spline(
+        clamp(2*m + .75, 0, 1),
+        PALE_BLUE, PALE_BLUE,
+        MEDIUM_BLUE, MEDIUM_BLUE, MEDIUM_BLUE,
+        PALE_BLUE, PALE_BLUE,
+        DARK_BLUE, DARK_BLUE,
+        DARKER_BLUE, DARKER_BLUE,
+        PALE_BLUE, DARKER_BLUE);
+}
+
+surface
+blue_marble(
+    uniform float Ka = 1;
+    uniform float Kd = 0.8;
+    uniform float Ks = 0.2;
+    uniform float texturescale = 2.5;
+    uniform float roughness = 0.1;
+     )
+{
+    color Ct;
+    point NN;
+    point PP;
+    float i, f, marble;
+
+    NN = normalize(faceforward(N, I));
+    PP = transform("shader", P) * texturescale;
+
+    marble = 0; f = 1;
+    for (i = 0; i < NNOISE; i += 1) {
+        marble += snoise(PP * f)/f;
+        f *= 2.17;
+    }
+    Ct = marble_color(marble);
+
+    Ci = Os * (Ct * (Ka * ambient() + Kd * diffuse(NN))
+        + Ks * specular(NN, normalize(-I), roughness));
+}
+```
+
+The function marble_color maps the floating-point number marble into a color using a color spline. Figure 2.40 shows an example of the marble texture.
 
