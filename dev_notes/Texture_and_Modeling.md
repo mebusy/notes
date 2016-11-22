@@ -1557,3 +1557,69 @@ blue_marble(
 
 The function marble_color maps the floating-point number marble into a color using a color spline. Figure 2.40 shows an example of the marble texture.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.40.png)
+
+> FIGURE 2.40 Blue marble texture.
+
+
+## Perturbed 扰乱的 Regular Patterns 
+
+Purely stochastic patterns tend to have an amorphous character. Often the goal is a more structured pattern with some appearance of regularity.
+
+The usual approach is to start with a regular pattern and add noise to it in order to make it look more interesting and more natural.
+
+For example, the brick texture described on page 39 is unrealistically regular, as if the bricklayer were inhumanly precise.  To add some variety to the texture, *noise* can be used to modify the relative positions of the bricks in the different rows.
+
+The following is the code from the original shader that calculates which brick contains the sample point.
+
+```
+sbrick = floor(ss); /* which brick? */ 
+tbrick = floor(tt); /* which brick? */ 
+ss -= sbrick;
+tt -= tbrick;
+```
+
+To perturb the ss location of the bricks, we can rewrite this code as follows:
+
+```
+tbrick = floor(tt); /* which brick? */ 
+ss += 0.1 * snoise(tbrick+0.5);
+sbrick = floor(ss); /* which brick? */ 
+
+ss -= sbrick;
+tt -= tbrick;
+```
+
+ - The call to *snoise* uses *tbrick* rather than *tt* so that the noise value is constant over the entire brick. 
+ 	- Otherwise, the stochastic offset would vary over the height of the brick and make the vertical edges of the brick wavy. 
+ - Of course, we had to reorder the calculation of *sbrick* and *tbrick* so that *sbrick* can depend on *tbrick*.
+ - Since *snoise* is a gradient noise that is zero at all integer points, the perturbation always would be zero if the shader used `snoise(tbrick)`. 
+ 	- Instead, it uses `snoise(tbrick + 0.5)` to sample the value of the noise halfway between the integer points, where it should have an interesting value. 
+ - The 0.1 multiplier on the *snoise* simply controls the size of the irregularity added to the texture. It can be adjusted as desired.
+
+
+## Perturbed Image Textures
+
+Another valuable trick is to use a stochastic function to modify the texture coordinates used to access an image texture. This is very easy to do. For example, the sim- ple texture access
+
+```
+Ct = texture(“example.tx”, s, t);
+```
+
+using the built-in texture coordinates s and t can be replaced with the following:
+
+```
+point Psh;
+float ss, tt;
+Psh = transform(“shader”, P);
+ss = s + 0.2 * snoise(Psh);
+tt = t + 0.2 * snoise(Psh+(1.5,6.7,3.4)); 
+Ct = texture(“example.tx”, ss, tt);
+```
+
+In this example, snoise based on the 3D surface position in “shader” space is used to modify the texture coordinates slightly. Figure 2.41(a) shows the original im- age texture, and Figure 2.41(b) is a texture produced by perturbing the image texture with the code above.
+
+
+
+
+> FIGURE 2.41 Perturbing an image texture: (a) original image; (b) perturbed image.
