@@ -1140,7 +1140,7 @@ A Catmull-Rom filter can be convolved with a step function (which is equivalent 
 
 ## Integrals and Summed-Area Tables
 
-Crow (1984) introduced the summed-area table method of antialiasing image textures. 
+Crow (1984) introduced the ***summed-area table*** method of antialiasing image textures. 
 
 A summed-area table is an image made from the texture image. 
 
@@ -1149,4 +1149,78 @@ A summed-area table is an image made from the texture image.
 > FIGURE 2.33 The summed-area table: 
 >	(a) table entry (s, t) stores area of shaded region; 
 >	(b) four entries A, B, C, D are used to compute shaded area.
+
+As illustrated in Figure 2.33(a), the pixel value at coordinates (s, t) in the summed-area table is the sum of all of the pixels in the rectangular area (0:s, 0:t) in the texture image.
+
+The summed-area table makes it easy to compute the sum of all of the texture image pixels in any axis-aligned rectangular region. Figure 2.33(b) shows how this is done. The pixel values at the corners of the region A, B, C, D are obtained from the summed-area table (four pixel accesses). The sum over the desired region is then simply D + A − B − C. This sum divided by the area of the region is the average value of the texture image over the region.
+
+If the region corresponds to the size and position of a ***box*** filter in the (s, t) space, the average value from the summed-area table calculation can be used as an antialiased texture value. The cost of the antialiasing is constant **regardless** of the size of the region covered by the filter, which is very desirable.
+
+### Example: Antialiased Brick Texture
+
+The first step is to add the code needed to determine the filter width. 
+
+```
+float swidth, twidth;
+```
+
+To compute the filter widths, we can add two lines of code just before the **two** lines that compute the brick numbers sbrick and tbrick:
+
+```
+swidth = abs(Du(ss)*du) + abs(Dv(ss)*dv); 
+twidth = abs(Du(tt)*du) + abs(Dv(tt)*dv); 
+sbrick = floor(ss); /* which brick? */ 
+tbrick = floor(tt); /* which brick? */
+```
+
+The actual antialiasing is done by replacing the following two lines of the origi- nal shader that determine where to change from mortar color to brick color:
+
+```
+w = step(MWF,ss) - step(1-MWF,ss);  // old code
+h = step(MHF,tt) - step(1-MHF,tt);
+```
+
+with an antialiased version of the code:
+
+```
+w = boxstep(MWF-swidth,MWF,ss)
+     - boxstep(1-MWF-swidth,1-MWF,ss);
+h = boxstep(MHF-twidth,MHF,tt)
+     - boxstep(l-MHF-twidth,l-MHF,tt);
+```
+
+This is just the same code using boxstep instead of step.
+
+If the texture pattern consisted of a single brick in an infinite field of mortar, this would be sufficient. Unfortunately, more is required in order to handle a periodic pattern like the brick texture.
+
+The brick texture depends on a mod-like folding of the texture coordinates to convert a single pulse into a periodic sequence of pulses. But a wide filter positioned inside one brick can overlap another brick, a situation that is not properly accounted for in this periodic pulse scheme.
+
+To solve the aliasing problem in a more general way, we can apply the integration technique described in the previous section. The integral of a sequence of square wave pulses is a function that consists of upward-sloping ramps and plateaus. The ramps correspond to the intervals where the pulses have a value of 1, and the plateaus correspond to the intervals where the pulses have a value of 0.  In other words the slope of the integral is either 0 or 1, depending on the pulse value. The slope is the derivative of the integral, which is obviously the same as the original function.
+
+The integrals of the periodic pulse functions in the *ss* and *tt* directions are given by the following preprocessor macros:
+
+```
+#define frac(x)  mod((x),1)  # 1 ?
+#define sintegral(ss)  (floor(ss)*(1–2*MWF) + max(0,frac(ss)-MWF))
+#define tintegral(tt)  (floor(tt)*(1–2*MHF) + max(0,frac(tt)-MHF))
+```
+
+These are definite integrals from 0 to ss and 0 to tt.  The ss integral consists of the integral of all of the preceding complete pulses (the term involving the floor func- tion) plus the contribution of the current partial pulse (the term involving the frac- tional part of the coordinate).
+
+To compute the antialiased value of the periodic pulse function, the shader must determine the value of the definite integral over the area of the filter. The value of the integral is divided by the area of the filter to get the average value of the periodic pulse function in the filtered region.
+
+
+```
+w = (sintegral(ss+swidth) - sintegral(ss))/swidth; 
+h = (tintegral(tt+twidth) - tintegral(tt))/twidth;
+```
+
+When using this method of antialiasing, you should remove the following lines of code from the shader:
+
+```
+ss -= sbrick; 
+tt -= tbrick;
+```
+
+because the floor and mod operations in the integrals provide the necessary periodicity for the pulse sequence. Forcing ss and tt to lie in the unit interval interferes with the calculation of the correct integral values.
 
