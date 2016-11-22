@@ -1200,9 +1200,9 @@ To solve the aliasing problem in a more general way, we can apply the integratio
 The integrals of the periodic pulse functions in the *ss* and *tt* directions are given by the following preprocessor macros:
 
 ```
-#define frac(x)  mod((x),1)  # 1 ?
-#define sintegral(ss)  (floor(ss)*(1–2*MWF) + max(0,frac(ss)-MWF))
-#define tintegral(tt)  (floor(tt)*(1–2*MHF) + max(0,frac(tt)-MHF))
+#define frac(x)  mod((x),1) // 1 ?
+#define sintegral(ss)  (floor(ss)*(1-2*MWF) + max(0,frac(ss)-MWF))
+#define tintegral(tt)  (floor(tt)*(1-2*MHF) + max(0,frac(tt)-MHF))
 ```
 
 These are definite integrals from 0 to ss and 0 to tt.  The ss integral consists of the integral of all of the preceding complete pulses (the term involving the floor func- tion) plus the contribution of the current partial pulse (the term involving the frac- tional part of the coordinate).
@@ -1222,5 +1222,9 @@ ss -= sbrick;
 tt -= tbrick;
 ```
 
-because the floor and mod operations in the integrals provide the necessary periodicity for the pulse sequence. Forcing ss and tt to lie in the unit interval interferes with the calculation of the correct integral values.
+because the *floor* and *mod* operations in the integrals provide the necessary periodicity for the pulse sequence. Forcing ss and tt to lie in the unit interval interferes with the calculation of the correct integral values.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.34.png)
+
+> FIGURE 2.34 Box-filtered version of the brick texture.
 
