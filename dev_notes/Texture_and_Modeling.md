@@ -1619,7 +1619,27 @@ Ct = texture(“example.tx”, ss, tt);
 
 In this example, snoise based on the 3D surface position in “shader” space is used to modify the texture coordinates slightly. Figure 2.41(a) shows the original im- age texture, and Figure 2.41(b) is a texture produced by perturbing the image texture with the code above.
 
-
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.41.png)
 
 > FIGURE 2.41 Perturbing an image texture: (a) original image; (b) perturbed image.
+
+
+## Random Placement Patterns
+
+A random placement pattern is a texture pattern that consists of a number of regular or irregular subpatterns or “bombs” that are dropped in random positions and orientations to form the texture. 
+
+The most obvious implementation is to store the positions of bombs in a table and to search the table for each sample point. This is rather inefficient and is especially hard to implement in the RenderMan shading language since **the language has no tables or arrays**.
+
+With a little ingenuity, we can devise a method of bombing that uses only *noise* to determine the bomb positions relevant to a sample point. 
+
+The texture space is divided into a grid of square cells, with a bomb located at a random position within each cell.
+
+In the following example shader, the bomb is the star pattern created by the procedural texture on page 46.
+
+
+
+
+
+
+
+
