@@ -1228,3 +1228,144 @@ because the *floor* and *mod* operations in the integrals provide the necessary 
 
 > FIGURE 2.34 Box-filtered version of the brick texture.
 
+
+## MAKING NOISES
+
+To generate irregular procedural textures, we need an irregular primitive function, usually called **noise**.
+
+We discussed the importance of aliasing and antialiasing before covering irregular patterns because issues related to antialiasing are of key importance in the design of stochastic texture primitives.
+
+The obvious stochastic texture primitive is ***white noise***, a source of random numbers, uniformly distributed with no correlation whatsoever between successive numbers. 
+
+A pseudorandom number generator produces a fair approximation to white noise. But is white noise really what we need?  
+
+It is not. 
+
+White noise is never the same twice. We need a function that is apparently random but is a repeatable function of some inputs. 
+
+But even this repeatable sort of white noise isn’t quite what is needed in a stochastic texture primitive. If we view an object from a new camera angle, the positions of the sample points at which the texture function is evaluated will change. A good PRN function will change its value markedly if the inputs change even slightly. Consequently, the texture will change when the camera is moved, and we don’t want that to happen.
+
+To keep our procedural textures stable and to keep them from aliasing, we need a stochastic function that is smoother than white noise. ***The solution is to use a low- pass-filtered version of white noise.***   In the remainder of this chapter, we refer to these filtered noise functions simply as **noise** functions.
+
+The properties of an ideal ***noise*** function are as follows:
+
+ - noise is a repeatable pseudorandom function of its inputs.
+ - noise has a known range, namely, from −1 to 1.
+ - noise is band-limited, with a maximum frequency of about 1.
+ - noise doesn’t exhibit obvious periodicities or regular patterns. Such pseudorandom functions are always periodic, but the period can be made very long and therefore the periodicity is not conspicuous.
+ 	- 不明显的表现出周期性
+ - noise is *stationary* 静止的 -— that is, its statistical character 统计特性 should be translationally invariant 平移不变 .
+ - noise is *isotropic* 各向同性 -— that is, its statistical character should be rotationally invariant 旋转不变.
+
+
+### Lattice Noises
+
+Lattice noises are the most popular implementations of noise for procedural texture applications. 
+
+The generation of a lattice noise begins with one or more uniformly distributed PRNs at every point in the texture space whose coordinates are integers. These points form the ***integer lattice***.  The necessary low-pass filtering of the noise is accomplished by a smooth interpolation between the PRNs. 
+
+All lattice noises need some way to generate one or more pseudorandom numbers at every lattice point. The *noise* functions in this chapter use a table of PRNs that is generated the first time *noise* is called.  To find the PRNs in the table that are to be used for a particular integer lattice point (ix,iy,iz), we’ll use the following code:
+
+```c
+#define TABSIZE		256
+#define TABMASK		(TABSIZE-1)
+#define PERM(x)		perm[(x)&TABMASK]
+#define INDEX(ix,iy,iz) PERM((ix)+PERM((iy)+PERM(iz)))
+```
+
+The macro *INDEX* returns an index into an array with *TABSIZE* entries. The selected entry provides the PRNs needed for the lattice point.  Note that TABSIZE must be a power of two so that performing `i&TABMASK` is equivalent to `i%TABSIZE`.  As noted on page 31, using `i%TABSIZE` isn’t safe, because it will yield a negative result if i is negative. Using the bitwise AND operation “&” avoids this problem.
+
+The array *perm* contains a previously generated random permutation of the integers from zero to TABMASK onto themselves.
+
+```c
+static unsigned char perm[TABSIZE] = {
+        225,155,210,108,175,199,221,144,203,116, 70,213, 69,158, 33,252,
+          5, 82,173,133,222,139,174, 27,  9, 71, 90,246, 75,130, 91,191,
+        169,138,  2,151,194,235, 81,  7, 25,113,228,159,205,253,134,142,
+        248, 65,224,217, 22,121,229, 63, 89,103, 96,104,156, 17,201,129,
+         36,  8,165,110,237,117,231, 56,132,211,152, 20,181,111,239,218,
+        170,163, 51,172,157, 47, 80,212,176,250, 87, 49, 99,242,136,189,
+        162,115, 44, 43,124, 94,150, 16,141,247, 32, 10,198,223,255, 72,
+         53,131, 84, 57,220,197, 58, 50,208, 11,241, 28,  3,192, 62,202,
+         18,215,153, 24, 76, 41, 15,179, 39, 46, 55,  6,128,167, 23,188,
+        106, 34,187,140,164, 73,112,182,244,195,227, 13, 35, 77,196,185,
+         26,200,226,119, 31,123,168,125,249, 68,183,230,177,135,160,180,
+         12,  1,243,148,102,166, 38,238,251, 37,240,126, 64, 74,161, 40,
+        184,149,171,178,101, 66, 29, 59,146, 61,254,107, 42, 86,154,  4,
+        236,232,120, 21,233,209, 45, 98,193,114, 78, 19,206, 14,118,127,
+         48, 79,147, 85, 30,207,219, 54, 88,234,190,122, 95, 67,143,109,
+        137,214,145, 93, 92,100,245,  0,216,186, 60, 83,105, 97,204, 52
+};
+```
+
+### Value Noise
+
+Given a PRN between −1 and 1 at each lattice point, a noise function can be computed by interpolating among these random values. This is called value noise. The following routine will initialize a table of PRNs for value noise:
+
+```c
+#define RANDMASK Ox0fffffff
+#define RANDNBR ((random() & RANDMASK)/(double) RANDMASK)
+
+float valueTab[TABSIZE];
+
+void
+valueTabInit(int seed) {
+	float *table = valueTab;
+	int i;
+	srandom(seed);
+	for(i = 0; i < TABSIZE; i++) 
+		*table++ = 1. - 2.* RANDNBR;
+}
+
+float
+vlattice(int ix, int iy, int iz) {		// mark 1
+	return valueTab[INDEX(ix,iy,iz)]; 
+}
+
+float
+vnoise(float x, float y, float z) {  // mark2
+	int ix, iy, iz;
+	int i, j, k;
+	float fx, fy, fz;
+	float xknots[4], yknots[4], zknots[4]; 
+	static int initialized = 0;
+
+	if (!initialized) { 
+		valueTabInit(665); 
+		initialized = 1;
+	}
+	ix = FLOOR(x); 
+	fx = x - ix;
+	iy = FLOOR(y); 
+	fy = y - iy;
+	iz = FLOOR(z); 
+	fz = z - iz;
+
+	for (k = -1; k <= 2; k++) { 
+		for (j = -1; j <= 2; j++) { 
+			for (i = -1; i <= 2; i++)
+				xknots[i+1] = vlattice(ix+i,iy+j,iz+k); 
+			yknots[j+1] = spline(fx, 4, xknots);
+		}
+		zknots[k+1] = spline(fy, 4, yknots); 
+	}
+	return spline(fz, 4, zknots);
+```
+
+
+
+ - mark 1: Given this table, it is straightforward to generate the PRN for an integer lattice point with coordinates ix, iy, and iz
+ - mark 2: The key decision to be made in implementing value noise is how to interpolate among the lattice PRNs.
+
+A graph of a 1D sample of vnoise is shown in Figure 2.35(a), and an image of a 2D slice of the function is shown in Figure 2.36(a). Figure 2.37(a) shows its power spectrum. The noise obviously meets the criterion of being band-limited; it has no significant energy at frequencies above 1.
+
+
+
+> FIGURE 2.35 Graphs of various noises: (a) vnoise; (b) gnoise (Perlin’s noise); (c) vnoise + gnoise; (d) Ward’s Hermite noise; (e) vcnoise; (f) scnoise.
+
+> FIGURE 2.36 2D slices of various noises: (a) vnoise; (b) gnoise (Perlin’s noise); (c) vnoise + gnoise; (d) Ward’s Hermite noise; (e) vcnoise; (f) scnoise.
+
+> FIGURE 2.37 The power spectra of various noises: (a) vnoise; (b) gnoise (Perlin’s noise); (c) vnoise + gnoise; (d) Ward’s Hermite noise; (e) vcnoise; (f) scnoise.
+
+
+
