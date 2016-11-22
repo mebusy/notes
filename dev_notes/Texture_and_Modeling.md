@@ -1393,8 +1393,92 @@ A graph of a 1D sample of vnoise is shown in Figure 2.35(a), and an image of a 2
 <h2 id="7d2055bc181beddaa2492eac27f6391b"></h2>
 ### Gradient Noise (TODO)
 
+### Value-Gradient Noise (TODO)
+
+### Lattice Convolution Noise (TODO)
+
+### Sparse Convolution Noise (TODO)
+
 ---
 
+## GENERATING IRREGULAR PATTERNS
+
+Armed with the stochastic primitive functions from the preceding section, we can now begin to generate irregular texture patterns.
+
+The ***noise*** function in the RenderMan shading language is an implementation of the lattice gradient noise described in the preceding section. 
+
+The RenderMan function is unusual in that it has been ***scaled and offset to range from 0 to 1***, instead of the more usual range of −1 to 1.  This means that the RenderMan noise function has a value of 0.5 at the integer lattice points. The −1 to 1 range is sometimes more convenient, and we can use the following signed noise macro in RenderMan shaders to get a noise in this range:
+
+```c
+#define snoise(x) (2 * noise(x) - 1)
+```
+
+The RenderMan noise function can be called with a 1D, 2D, or 3D input point, and will return a 1D or 3D result (a number, a point, or a color).
+
+Most textures need several calls to noise to independently determine a variety of stochastic properties of the material. Remember that repeated calls to noise with the same inputs will give the same results. Different results can be obtained by shifting to another position in the noise space. It is common to call
+
+```c
+noise(Q * frequency + offset)
+```
+
+where *offset* is of the same type as the coordinate *Q* and has the effect of establishing a new noise space with a different origin point.
+
+There are two approaches to generating time-dependent textures. Textures that move or flow can be produced by moving through the 3D noise space over time:
+
+```
+f = noise(P - time*D);
+```
+
+can be used to make the texture appear to move in the direction and rate given by the vector *D* as time advances. 
+
+Periodic noise ***pnoise*** , 
+
+For example, if a period of 30 is specified, pnoise will give the same value for input x + 30 as for input x.  Here are some typical pnoise calls:
+
+```
+pnoise(f, 30 );
+pnoise(s, t, 30, 30) 
+pnoise(P, point (10, 15, 30))
+```
+
+It is easy to implement pnoise by making the choice of lattice PRNs periodic with the desired period. This technique is limited to integer periods.
+
+## Spectral Synthesis
+
+The discussion on page 48 , Several calls to noise can be combined to build up a stochastic spectral function with a particular frequency/power spectrum. A noise loop of the form
+
+```
+value = 0;
+for (f = MINFREQ; f < MAXFREQ; f *= 2)
+	value += amplitude * snoise(Q * f);
+```
+
+with amplitude varying as a function of frequency f will build up a value with a desired spectrum. Q is the sample point in some texture space.
+
+Perlin’s well-known *turbulence* function is essentially a stochastic function of this type with a “fractal” power spectrum, that is, a power spectrum in which amplitude is proportional to 1/f.
+
+```
+float fractalsum(point Q) {
+	float value = 0;
+	for (f = MINFREQ; f < MAXFREQ; f *= 2)
+		value += snoise(Q * f)/f; 
+	return value;
+}
+```
+
+
+This isn’t quite the same as turbulence, however. Derivative discontinuities are added to the turbulence function by using the absolute value of the snoise function. 
+
+```
+float turbulence(point Q) {
+	float value = 0;
+	for (f = MINFREQ; f < MAXFREQ; f *= 2)
+		value += abs(snoise(Q * f))/f; 
+	return value;
+}
+```
+
+Figure 2.38 shows a slice of the fractalsum function on the left and a slice of the turbulence function on the right. 
 
 
 
