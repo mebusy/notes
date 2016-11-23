@@ -1637,8 +1637,77 @@ The texture space is divided into a grid of square cells, with a bomb located at
 In the following example shader, the bomb is the star pattern created by the procedural texture on page 46.
 
 
+```
 
+#define NCELLS 10
+#define CELLSIZE (1/NCELLS)
+#define snoise(s,t)	(2*noise((s),(t))-1)
 
+surface
+wallpaper(
+    uniform float Ka = 1;
+    uniform float Kd = 1;
+    uniform color starcolor = color (1.0000,0.5161,0.0000);
+    uniform float npoints = 5;
+     )
+{
+    color Ct;
+    point Nf;
+    float ss, tt, angle, r, a, in_out;
+    float sctr, tctr, scell, tcell;
+    float scellctr, tcellctr;
+    float i, j;
+    uniform float rmin = 0.01, rmax = 0.03;
+    uniform float starangle = 2*PI/npoints;
+    uniform point p0 = rmax*(cos(0),sin(0),0);
+    uniform point p1 = rmin*
+        (cos(starangle/2),sin(starangle/2),0);
+    uniform point d0 = p1 - p0;
+    point d1;
+
+    scellctr = floor(s*NCELLS);
+    tcellctr = floor(t*NCELLS);
+    in_out = 0;
+
+    for (i = -1; i <= 1; i += 1) {
+        for (j = -1; j <= 1; j += 1) {
+	    scell = scellctr + i;
+	    tcell = tcellctr + j;
+	    if ( noise(3*scell-9.5,7*tcell+7.5) < 0.55) {
+                sctr = CELLSIZE * (scell + 0.5
+                     + 0.6 * snoise(scell+0.5, tcell+0.5));
+                tctr = CELLSIZE * (tcell + 0.5
+                     + 0.6 * snoise(scell+3.5, tcell+8.5));
+                ss = s - sctr;
+                tt = t - tctr;
+            
+                angle = atan(ss, tt) + PI;
+                r = sqrt(ss*ss + tt*tt);
+                a = mod(angle, starangle)/starangle;
+            
+                if (a >= 0.5)
+                    a = 1 - a;
+                d1 = r*(cos(a), sin(a),0) - p0;
+                in_out += step(0, zcomp(d0^d1));
+            }
+        }
+    }
+    Ct = mix(Cs, starcolor, step(0.5,in_out));
+
+    /* "matte" reflection model */
+    Nf = normalize(faceforward(N, I));
+    Oi = Os;
+    Ci = Os * Ct * (Ka * ambient() + Kd * diffuse(Nf));
+}
+```
+
+ - A separate noise value for each cell could be tested to see whether the cell should contain a star.
+ 	- If a star is so far from the center of a cell that it protrudes outside the cell, this shader will clip off the part of the star that is outside the cell.
+ - The tests can be done by a pair of nested for loops that iterate over −1, 0, and 1. The nested loops generate nine different values for the cell coordinate pair (scell, tcell). 
+ 	- The star in each cell is tested against the sample point.
+ - The first *noise* call is used to decide whether or not to put a star in the cell. 
+ 	- Note that the value of *in_out* can now be as high as 9.
+ 	- The additional *step* call in the last line converts it back to a 0 to 1 range so that the mix will work properly. 
 
 
 
