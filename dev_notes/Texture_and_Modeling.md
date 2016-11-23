@@ -29,6 +29,14 @@
 		 - [Lattice Noises](#96cdfd02d5849846686f2eecc6bc24bf)
 		 - [Value Noise](#dc84a69bdc96850f89b6c4a9b9de5adb)
 		 - [Gradient Noise (TODO)](#7d2055bc181beddaa2492eac27f6391b)
+		 - [Value-Gradient Noise (TODO)](#c4c1767627f4d536aaa1f5d36e06766e)
+		 - [Lattice Convolution Noise (TODO)](#90a621169450e7dda33fc8525a104e57)
+		 - [Sparse Convolution Noise (TODO)](#52b2eb22dca333a7d0e00fcb3fd94634)
+	 - [GENERATING IRREGULAR PATTERNS](#8d18618ccbae1c5db4a02e261d5013ef)
+	 - [Spectral Synthesis](#b5b337d45c62d6e1c218bb5b93d105cb)
+	 - [Perturbed 扰乱的 Regular Patterns](#fcbfd4afc8873594d0a5a5b78dd16fda)
+	 - [Perturbed Image Textures](#d441872eec16d305851e98aa1b90393c)
+	 - [Random Placement Patterns](#33a888b2462b6062c56320b035b02c89)
 
 ...menuend
 
@@ -1393,14 +1401,18 @@ A graph of a 1D sample of vnoise is shown in Figure 2.35(a), and an image of a 2
 <h2 id="7d2055bc181beddaa2492eac27f6391b"></h2>
 ### Gradient Noise (TODO)
 
+<h2 id="c4c1767627f4d536aaa1f5d36e06766e"></h2>
 ### Value-Gradient Noise (TODO)
 
+<h2 id="90a621169450e7dda33fc8525a104e57"></h2>
 ### Lattice Convolution Noise (TODO)
 
+<h2 id="52b2eb22dca333a7d0e00fcb3fd94634"></h2>
 ### Sparse Convolution Noise (TODO)
 
 ---
 
+<h2 id="8d18618ccbae1c5db4a02e261d5013ef"></h2>
 ## GENERATING IRREGULAR PATTERNS
 
 Armed with the stochastic primitive functions from the preceding section, we can now begin to generate irregular texture patterns.
@@ -1443,6 +1455,7 @@ pnoise(P, point (10, 15, 30))
 
 It is easy to implement pnoise by making the choice of lattice PRNs periodic with the desired period. This technique is limited to integer periods.
 
+<h2 id="b5b337d45c62d6e1c218bb5b93d105cb"></h2>
 ## Spectral Synthesis
 
 The discussion on page 48 , Several calls to noise can be combined to build up a stochastic spectral function with a particular frequency/power spectrum. A noise loop of the form
@@ -1562,6 +1575,7 @@ The function marble_color maps the floating-point number marble into a color usi
 > FIGURE 2.40 Blue marble texture.
 
 
+<h2 id="fcbfd4afc8873594d0a5a5b78dd16fda"></h2>
 ## Perturbed 扰乱的 Regular Patterns 
 
 Purely stochastic patterns tend to have an amorphous character. Often the goal is a more structured pattern with some appearance of regularity.
@@ -1598,6 +1612,7 @@ tt -= tbrick;
  - The 0.1 multiplier on the *snoise* simply controls the size of the irregularity added to the texture. It can be adjusted as desired.
 
 
+<h2 id="d441872eec16d305851e98aa1b90393c"></h2>
 ## Perturbed Image Textures
 
 Another valuable trick is to use a stochastic function to modify the texture coordinates used to access an image texture. This is very easy to do. For example, the sim- ple texture access
@@ -1624,6 +1639,7 @@ In this example, snoise based on the 3D surface position in “shader” space i
 > FIGURE 2.41 Perturbing an image texture: (a) original image; (b) perturbed image.
 
 
+<h2 id="33a888b2462b6062c56320b035b02c89"></h2>
 ## Random Placement Patterns
 
 A random placement pattern is a texture pattern that consists of a number of regular or irregular subpatterns or “bombs” that are dropped in random positions and orientations to form the texture. 
@@ -1708,6 +1724,13 @@ wallpaper(
  - The first *noise* call is used to decide whether or not to put a star in the cell. 
  	- Note that the value of *in_out* can now be as high as 9.
  	- The additional *step* call in the last line converts it back to a 0 to 1 range so that the mix will work properly. 
+
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.42.png)
+
+> FIGURE 2.42 Random placement wallpaper texture.
+
 
 
 

@@ -28,7 +28,7 @@
  - [Unity](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_readme.md)
  - [iOS related](https://github.com/mebusy/notes/blob/master/dev_notes/ios/ios_readme.md)
  - [TAOCP](https://github.com/mebusy/notes/blob/master/dev_notes/TAPCP_readme.md)
-
+ - [Texture and Modeling](https://github.com/mebusy/notes/blob/master/dev_notes/textAndModeling_readme.md)
 
 ---
 
