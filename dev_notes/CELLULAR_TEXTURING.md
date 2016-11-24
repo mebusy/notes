@@ -59,5 +59,22 @@ F₄ and other high **n** start looking similar, but the lower values of n (up t
 
 Figure 4.3 shows 20 sample surfaces that are all just examples of combinations of these low-n basis functions.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F4.3.png) 
 
 > FIGURE 4.3 A variety of example appearances formed by linear combinations of the F<sub>n</sub>  functions.
+
+These patterns are interesting and useful, but we can also use the basis functions to make *fractal* versions, much like noise is used to produce fractal noise. By computing multiple “scales” of the function at different weights and scaling factors, a more visually complex appearance can be made. 
+
+This is a simple loop, computing a function G<sub>n</sub> = Σ 2⁻ⁱF<sub>n</sub>(2ⁱx) for moderate ranges of i (i = 0–5), and using G<sub>n</sub> as the index for colors and bumps.
+
+The fractal versions of any of the basic basis function combinations become extremely appealing. Figure 4.4 shows a fractal version of F₁ forming the spotted pattern and bumps on the hide of a creature.
+
+
+
+FIGURE 4.4 Natural-looking reptile hide using fractal-versions of the F<sub>n</sub> functions.
+
+Fractal noise is used for the tongue, and a linear gradient is applied to the main body for color variation. Other fractal versions of primitives are shown in the row of cut tori in Figure 4.5.
+
+
+
+
