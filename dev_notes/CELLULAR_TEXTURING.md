@@ -85,9 +85,19 @@ The fractal version of F₁ is perhaps the most useful.
 
 Applied solely as a bump map, the surface becomes crumpled like paper or tinfoil.  This surface has been extremely popular with artists as a way to break up a smooth surface, providing a subtle roughening with an appearance unlike fractal noise bumps.
 
-A surprising discovery was that a reflective, bumped-map plane with this “crumple” appearance bears an excellent resemblance to seawater, as shown in Figure 4.6. 
+A surprising discovery was that a reflective, bumped-map plane with this “crumple” appearance bears an excellent resemblance to seawater, as shown in Figure 4.6. This bump-only fractal texture has become extremely popular in many renderers.
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F4.6.png) 
 
 > FIGURE 4.6 Sea surface formed from bump-mapped fractal F₁ functions.
+
+Since the cellular texture is a family of bases, it’s fun to try more advanced incestuous combinations!  Nonlinear combinations of simple polynomial products such as F₁F₂ or F₃² − F₂² are also interesting and useful texture bases.  Again, renormalizing by empirically testing the output range makes the new basis easier to apply to color maps.
+
+If the F₁ function returns a unique ID number to represent the closest feature point’s identity, this number can be used to form features that are constant over a cell, for example, to shade the entire cell a single constant color. When combined with bumping based on F₂ − F₁, quite interesting flagstonelike surfaces can be easily generated.  Figure 4.7 shows this technique, which also uses fractal noise discoloration in each cell. 
+
+
+
+> FIGURE 4.7 3D flagstone texture shows Voronoi cells.
+
+
 
