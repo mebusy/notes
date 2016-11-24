@@ -47,11 +47,17 @@ The functions F have some interesting properties.
 
 These careful definitions are very useful when we want to start making interesting textures. Mapping values of the function into a color and normal displacement can produce visually interesting and impressive effects. In the simplest case, F₁(x) can be mapped into a color spline and bump. The character of F₁ is very simple, since the function increases radially around each feature point. Thus, mapping a color to small values of F₁ will cause a surface texture to place spots around each feature point -— polka dots! Figure 4.2 shows this radial behavior in the upper left.
 
-
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F4.2.png) 
 
 > FIGURE 4.2 Gradient-mapped samples of F₁, F₂, F₃, and F₂ − F₁.
 
+Much more interesting behavior begins when we examine F₂ and F₃. These have more rapid changes and internal structure and are slightly more visually interesting. 
+
+These two can be directly mapped into colors and bumps, but they can also produce even more interesting patterns by forming linear combinations with each other.  For example, since F₂ ≥ F₁ for all x, the function F₂(x) − F₁(x) is well defined and very interesting, as shown in the bottom right of the figure. This combination has a value of 0 where F₁ = F₂, which occurs at the Voronoi boundaries. 
+
+F₄ and other high **n** start looking similar, but the lower values of n (up to 4) are quite interesting and distinct.  More importantly, linear combinations of these F<sub>n</sub> have more “character” than the plain F<sub>n</sub> , particularly differences of two or more simple bases. 
+
+Figure 4.3 shows 20 sample surfaces that are all just examples of combinations of these low-n basis functions.
 
 
-
+> FIGURE 4.3 A variety of example appearances formed by linear combinations of the F<sub>n</sub>  functions.
