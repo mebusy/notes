@@ -69,12 +69,25 @@ This is a simple loop, computing a function G<sub>n</sub> = Σ 2⁻ⁱF<sub>n</s
 
 The fractal versions of any of the basic basis function combinations become extremely appealing. Figure 4.4 shows a fractal version of F₁ forming the spotted pattern and bumps on the hide of a creature.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F4.4.png) 
+
+> FIGURE 4.4 Natural-looking reptile hide using fractal-versions of the F<sub>n</sub> functions.
+
+Fractal noise is used for the tongue, and a linear gradient is applied to the main body for color variation. 
+
+Other fractal versions of primitives are shown in the row of cut tori in Figure 4.5.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F4.5.png) 
+
+> FIGURE 4.5 More examples of fractal combinations.
+
+The fractal version of F₁ is perhaps the most useful.
+
+Applied solely as a bump map, the surface becomes crumpled like paper or tinfoil.  This surface has been extremely popular with artists as a way to break up a smooth surface, providing a subtle roughening with an appearance unlike fractal noise bumps.
+
+A surprising discovery was that a reflective, bumped-map plane with this “crumple” appearance bears an excellent resemblance to seawater, as shown in Figure 4.6. 
 
 
-FIGURE 4.4 Natural-looking reptile hide using fractal-versions of the F<sub>n</sub> functions.
 
-Fractal noise is used for the tongue, and a linear gradient is applied to the main body for color variation. Other fractal versions of primitives are shown in the row of cut tori in Figure 4.5.
-
-
-
+> FIGURE 4.6 Sea surface formed from bump-mapped fractal F₁ functions.
 
