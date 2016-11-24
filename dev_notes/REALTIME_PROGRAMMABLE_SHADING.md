@@ -176,6 +176,10 @@ Heidrich and Seidel’s lighting model was designed to execute efficiently on gr
 
 ### TODO , stop @ pdf page 143 of 722
 
+---
+
+---
+
 
 
 
