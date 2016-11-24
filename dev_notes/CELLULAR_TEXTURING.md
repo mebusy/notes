@@ -95,9 +95,31 @@ Since the cellular texture is a family of bases, it’s fun to try more advanced
 
 If the F₁ function returns a unique ID number to represent the closest feature point’s identity, this number can be used to form features that are constant over a cell, for example, to shade the entire cell a single constant color. When combined with bumping based on F₂ − F₁, quite interesting flagstonelike surfaces can be easily generated.  Figure 4.7 shows this technique, which also uses fractal noise discoloration in each cell. 
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F4.7.png) 
 
 > FIGURE 4.7 3D flagstone texture shows Voronoi cells.
+
+Bump mapping of the flagstonelike areas is particularly effective, and it is cheap to add since the gradient of F<sub>n</sub> is just the radial unit vector pointing away from the appropriate feature point toward the sample location.
+
+## IMPLEMENTATION STRATEGY
+
+It’s not necessary to understand how to implement the cellular texture basis function in order to use it. 
+
+But more than noise, the basis seems to encourage modifications and adaptations of the main algorithm to produce new effects, often with a very different behavior than the original version.
+
+The following sections describe my implementation method, hopefully to allow you to modify it to make your own alternatives. 
+
+The first step is to define how feature points are spread through space. The density and distribution of points will change the character of the basis functions.
+
+Our first assumption is that we want an *isotropic* function, to avoid any underlying pattern aligned with the world’s axes. A simple idea like adding a point at every integer gridpoint and jittering their locations is easy to implement, but that underlying grid will bias the pattern, and it will be easy to see that “array” point layout.
+
+The correct way to eliminate this bias is to keep the idea of splitting space into cubes, but choosing the number of points inside each cube in a way that will completely obscure the underlying cube pattern. We’ll analyze this separately later.
+
+### Dicing Space
+
+Since space will be filled with an infinite number of feature points, we need to be able to generate and test just a limited region of space at a time. The easiest way to do this is to dice space into cubes and deal with feature points inside each cube. This allows us to look at the points near our sample by examining the cube that the sample location is in plus the immediate neighbor cubes.  An example is shown in Figure 4.8
+
+
 
 
 
