@@ -119,6 +119,45 @@ The correct way to eliminate this bias is to keep the idea of splitting space in
 
 Since space will be filled with an infinite number of feature points, we need to be able to generate and test just a limited region of space at a time. The easiest way to do this is to dice space into cubes and deal with feature points inside each cube. This allows us to look at the points near our sample by examining the cube that the sample location is in plus the immediate neighbor cubes.  An example is shown in Figure 4.8
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F4.8.png) 
+
+> FIGURE 4.8 Searching for local feature points in neighboring cubes of space.
+
+where the “X” marks our sample location and dots show feature points in each cube. We can ignore the more distant cubes as long as we’re assured that the feature points will lie within the 3 × 3 grid of local cubes.
+
+Each “cube” in space can be uniquely represented by its integer coordinates, and by simple floor operations we can determine, for example, that a point like (1.2, 3.33, 2.3) lies within the cube indexed by (1, 3, 2).
+
+Now we determine how many and where feature points lie inside this cube. The “random” number we use to determine the number of points in a cube obviously must be unique to that cube and reproducible at need. There is a similar requirement in the noise function, which also uses a cubic lattice with fixed values associated with each gridpoint. We also need this seed to generate the location of the feature points themselves.
+
+The solution to this problem is to hash the three integer coordinates of a cube into a single 32-bit integer that is used as the seed for a fast random number generator.  This is easy to compute as something like `702395077x + 915488749y + 2120969693z mod 2³²`.  The constants are random but chosen to be odd, and not simple multiples of each other. Like linear congruential random number generators, the low-order bits of this seed value are not very random.
+
+We compute the number of points in the cube using this seed to pick a value from a short lookup table of 256 possibilities.  This hardwired array of possible point populations is carefully precomputed (as described on page 145) to give us the “keep the points isotropic” magic property we desire.  We use the high-order bits from our seed to index into the table to decide how many feature points to add into the cube. Since our table is a nice length of 256, we can just use the eight high-order bits of the seed value to get the index.
+
+### Neighbor Testing
+
+Next, we compute the locations of the *m* feature points inside the sample cube. 
+
+Again, these are values that are random, but fixed for each cube. We use the already initialized random number generator to compute the XYZ locations of each of the feature points. These coordinates are relative to the base of the cube and always range from 0 to 1 for each coordinate.
+
+As we generate each point, we compute its distance to the original function evaluation location and keep a sorted list of the n smallest distances we’ve seen so far.  As we test each point in turn, we effectively do an ***insertion sort*** to include the new point in the current list.  
+
+This procedure finds the closest feature points and the values of F₁ to F<sub>n</sub> for the points within the current cube of space (the one that contains the hit point). However, the feature points within a neighboring cube could quite possibly contain a feature point even closer than the ones we have found already, so we must iterate among the boundary cubes too.  We could just test all 26 immediate neighboring cubes, but by checking the closest distance we’ve computed so far (our tentative nth closest feature distance) we can throw out whole rows of cubes at once by deciding when no point in the neighbor cube could possibly contribute to our list.
+
+Figure 4.9 shows this elimination in a 2D example. 
+
+
+
+The central cube has three feature points. We compute F₁ based on the feature point closest to the sample location (marked by “X”). 
+
+
+
+
+
+
+
+
+
+
 
 
 
