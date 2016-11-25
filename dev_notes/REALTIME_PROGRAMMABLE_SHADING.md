@@ -1,9 +1,29 @@
+...menustart
+
+ - [REAL-TIME PROGRAMMABLE SHADING](#d28a0486786f74d1b8b87e4f0f4ba0d8)
+	 - [What Makes Real-Time Shading Different?](#ac3b68d5bc77b0af11c49582c731effc)
+	 - [What You Need to Learn Elsewhere](#bceaf8901c4bf8e690d273b9ca06e873)
+	 - [Object Space Shading versus Screen Space Shading](#194e16940099edf5d5feb9cf49cd534c)
+	 - [Parallelism](#374424d359c920b4d388c77660224bd7)
+	 - [Hardware Data Types](#08dfcbeeca887b168a095c5853221419)
+	 - [Resource Limits](#febe674abc9aa524c322edbbd8ec668c)
+	 - [Memory Bandwidth and Performance Tuning](#eb87a55c812665df93a3f47793d84492)
+	 - [SIMPLE EXAMPLES](#67141f3d173330f740c944f069952a6f)
+		 - [Vertex and Fragment Code in the Stanford Shading System](#b2f1e90c968407082785bde9f97eec3d)
+		 - [Two Versions of the Heidrich/Banks Anisotropic Shader](#28e05f431b21ce4215b2a2fa4f7dd5a1)
+		 - [TODO , stop @ pdf page 143 of 722](#16eaf98c8673903dab1be6ce345c07c9)
+
+...menuend
 
 
+
+
+<h2 id="d28a0486786f74d1b8b87e4f0f4ba0d8"></h2>
 # REAL-TIME PROGRAMMABLE SHADING
 
 There are some significant differences between real-time programmable shading and offline programmable shading. 
 
+<h2 id="ac3b68d5bc77b0af11c49582c731effc"></h2>
 ## What Makes Real-Time Shading Different?
 
  - *Most applications are interactive.*
@@ -13,12 +33,14 @@ There are some significant differences between real-time programmable shading an
  	- Graphics hardware provides high performance at low cost, but imposes certain restrictions on shading programs in order to obtain this high performance.
 
 
+<h2 id="bceaf8901c4bf8e690d273b9ca06e873"></h2>
 ## What You Need to Learn Elsewhere
 
 If you are writing a complete real-time graphics application, you will need to understand the entire graphics pipeline, not just the programmable shading parts of it. 
 
 There are two major interfaces for controlling the entire graphics pipeline -— Direct3D and OpenGL.
 
+<h2 id="194e16940099edf5d5feb9cf49cd534c"></h2>
 ## Object Space Shading versus Screen Space Shading
 
  - Hardware graphics pipelines perform some programmable shading in object space (at vertices) 
@@ -68,6 +90,7 @@ One minor, but sometimes annoying, implication of the different rendering approa
  - In 2002-generation graphics hardware, only the shading normal *N* is available in vertex programs.
 
 
+<h2 id="374424d359c920b4d388c77660224bd7"></h2>
 ## Parallelism
 
 Graphics hardware relies heavily on several forms of parallelism to achieve high performance. 
@@ -86,6 +109,7 @@ The situation is different for vertex computations. Some 2002-generation hardwar
 
 The SIMD computation model is less expensive to implement in hardware than the SPMD model because the instruction storage, fetch, and decode hardware can be shared among many processing units. Furthermore, SIMD execution can easily guarantee that the computations for different fragments complete in the correct order. However, data-dependent looping is valuable for algorithms such as anisotropic filtering, antialiasing of turbulent noise functions, and traversal of complex data structures. For these reasons, it is likely that graphics hardware will eventually incorporate direct support for conditional branch instructions in fragment programs.  Maybe.
 
+<h2 id="08dfcbeeca887b168a095c5853221419"></h2>
 ## Hardware Data Types
 
 Graphics hardware has historically used low-precision, fixed-point data types for fragment computations.
@@ -96,6 +120,7 @@ For these reasons, 2002-generation hardware supports 32-bit floating-point fragm
 
 
 
+<h2 id="febe674abc9aa524c322edbbd8ec668c"></h2>
 ## Resource Limits
 
 In general, graphics hardware has limits on resources of various types. 
@@ -107,6 +132,7 @@ In general, graphics hardware has limits on resources of various types.
  - Memory for textures and frame buffer
 
 
+<h2 id="eb87a55c812665df93a3f47793d84492"></h2>
 ## Memory Bandwidth and Performance Tuning
 
 Z-buffered rendering consumes an enormous amount of memory bandwidth for reading and writing the frame buffer. If surfaces are texture mapped, additional memory bandwidth is required to read the texels from texture memory. As a result, the performance of real-time graphics hardware has historically been limited primarily by memory bandwidth, especially when rendering large polygons.
@@ -124,8 +150,10 @@ Detailed approaches to performance tuning are hardware dependent, but we will de
  - Second, for programs that are limited by memory bandwidth, it may be possible to improve performance by more effectively utilizing the hardware’s texture cache.
  	- In general, reducing the size of a texture will improve performance, as will restructuring programs that use table lookups so that they are more likely to repeatedly access the same table entries.
 
+<h2 id="67141f3d173330f740c944f069952a6f"></h2>
 ## SIMPLE EXAMPLES
 
+<h2 id="b2f1e90c968407082785bde9f97eec3d"></h2>
 ### Vertex and Fragment Code in the Stanford Shading System
 
 Most of the commercially available GPU programming languages require that the user write two separate programs -— a vertex program and a fragment program.
@@ -166,6 +194,7 @@ The compiler is responsible for using these rules to split the user’s single p
 
 This unified vertex/fragment programming model is very convenient for straight-line code, but it becomes unwieldly in a language that supports imperative looping constructs, such as “for” and “while” loops. The Stanford language doesn’t support these constructs, but the newer commercially available languages do, and therefore they require the user to write separate vertex and fragment programs. 
 
+<h2 id="28e05f431b21ce4215b2a2fa4f7dd5a1"></h2>
 ### Two Versions of the Heidrich/Banks Anisotropic Shader
 
 One of the most important advantages of programmable graphics hardware is that it can be used to implement almost any lighting model. 
@@ -174,6 +203,7 @@ For anisotropic surfaces, one lighting model that is especially appropriate for 
 
 Heidrich and Seidel’s lighting model was designed to execute efficiently on graphics hardware. The vertex-processing hardware computes a pair of dot products, and these dot products are used as indices for a 2D table lookup at each fragment. The 2D table is precomputed and stored in a 2D texture map. 
 
+<h2 id="16eaf98c8673903dab1be6ce345c07c9"></h2>
 ### TODO , stop @ pdf page 143 of 722
 
 ---

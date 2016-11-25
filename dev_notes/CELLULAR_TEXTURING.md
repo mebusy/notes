@@ -1,4 +1,17 @@
+...menustart
 
+ - [CELLULAR TEXTURING](#eb512174cb9eab61d18d2b32ac10d757)
+	 - [THE NEW BASES](#d69d9e02dafa3af0d24ce1601f70a74f)
+	 - [IMPLEMENTATION STRATEGY](#281ce9a8a2a4d6b847c885aeadb20d87)
+		 - [Dicing Space](#4edf7eb38d47853aa36e3402b93cf234)
+		 - [Neighbor Testing](#fa5e753bb6b23904853dbf0639e6201a)
+		 - [The Subtle Population Table](#46504218a9420f71f7daaed533bed27a)
+
+...menuend
+
+
+
+<h2 id="eb512174cb9eab61d18d2b32ac10d757"></h2>
 # CELLULAR TEXTURING
 
 Procedural texturing uses fractal noise extensively. 
@@ -20,6 +33,7 @@ They often split space into small, randomly tiled regions , called cells. Even t
 
 
 
+<h2 id="d69d9e02dafa3af0d24ce1601f70a74f"></h2>
 ## THE NEW BASES
 
 The cellular texturing basis functions are based on the fundamental idea of randomly scattering “feature points” throughout 3D space , and building a scalar function based on the distribution of the points near the sample location. 
@@ -101,6 +115,7 @@ If the F₁ function returns a unique ID number to represent the closest feature
 
 Bump mapping of the flagstonelike areas is particularly effective, and it is cheap to add since the gradient of F<sub>n</sub> is just the radial unit vector pointing away from the appropriate feature point toward the sample location.
 
+<h2 id="281ce9a8a2a4d6b847c885aeadb20d87"></h2>
 ## IMPLEMENTATION STRATEGY
 
 It’s not necessary to understand how to implement the cellular texture basis function in order to use it. 
@@ -115,6 +130,7 @@ Our first assumption is that we want an *isotropic* function, to avoid any under
 
 The correct way to eliminate this bias is to keep the idea of splitting space into cubes, but choosing the number of points inside each cube in a way that will completely obscure the underlying cube pattern. We’ll analyze this separately later.
 
+<h2 id="4edf7eb38d47853aa36e3402b93cf234"></h2>
 ### Dicing Space
 
 Since space will be filled with an infinite number of feature points, we need to be able to generate and test just a limited region of space at a time. The easiest way to do this is to dice space into cubes and deal with feature points inside each cube. This allows us to look at the points near our sample by examining the cube that the sample location is in plus the immediate neighbor cubes.  An example is shown in Figure 4.8
@@ -133,6 +149,7 @@ The solution to this problem is to hash the three integer coordinates of a cube 
 
 We compute the number of points in the cube using this seed to pick a value from a short lookup table of 256 possibilities.  This hardwired array of possible point populations is carefully precomputed (as described on page 145) to give us the “keep the points isotropic” magic property we desire.  We use the high-order bits from our seed to index into the table to decide how many feature points to add into the cube. Since our table is a nice length of 256, we can just use the eight high-order bits of the seed value to get the index.
 
+<h2 id="fa5e753bb6b23904853dbf0639e6201a"></h2>
 ### Neighbor Testing
 
 Next, we compute the locations of the *m* feature points inside the sample cube. 
@@ -145,20 +162,30 @@ This procedure finds the closest feature points and the values of F₁ to F<sub>
 
 Figure 4.9 shows this elimination in a 2D example. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F4.9.png) 
 
+> FIGURE 4.9 We don’t need to test neighbor cubes that are too distant.
 
 The central cube has three feature points. We compute F₁ based on the feature point closest to the sample location (marked by “X”). 
 
+We don’t know yet what points are in the adjoining cubes marked by “?,” but if we examine a circle of radius F₁, we can see that it’s possible that the cubes labeled A, B, and C *might* contribute a closer feature point, so we have to check them.  
 
+If we want to make sure our computation of F₂ is accurate, we have to look at a larger circle and additionally test cubes D and E. 
 
+In practice, we can make these decisions quickly since it’s easy to compare the current F distance to the distance of the neighbor cubes (especially since we can just compare the squared distances, which are faster to compute).
 
+This kind of analysis also shows us that we need ***sufficient feature point density*** to make sure that one layer of neighbor cubes is enough to guarantee that we’ve found the closest point. We ***could*** start checking cubes that are even more distant neighbors, but that becomes more and more expensive. Checking all neighbors requires at most 3³=27 cubes, but including more distant neighbors 2 cubes away would need 5³=125 cubes.
 
+After we’ve checked all of the necessary neighbors, we’ve finished computing our values of F. If we computed Fn, we were effectively finding values for all F₁, F₂ , . . . , F<sub>n</sub> simultaneously, which is very convenient. 
 
+<h2 id="46504218a9420f71f7daaed533bed27a"></h2>
+### The Subtle Population Table
 
+The desire for an isotropic distribution of points in space requires careful design. It can be done by choosing the number of points in each cube randomly but using a ***Poisson 泊松 distribution***. 
 
+This distribution gives the probability of finding a specific number of points in a region when given a mean density. 
 
+There may be more or less than this expected number of points in the region; the exact probabilities of any number of points in a region can be computed by using the discrete Poisson distribution function.
 
-
-
-
+If we generate the points inside of each cube randomly, with the population based on the Poisson probabilities, the feature points will be truly isotropic and the texture function will have no grid bias at all.
 
