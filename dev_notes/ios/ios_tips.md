@@ -21,3 +21,19 @@ alias symbolicatecrash="/Applications/Xcode.app/Contents/SharedFrameworks/DVTFou
 把你的.crash文件.app文件和.dSYM文件放在同一个目录下然后运行：
 symbolicatecrash -v ScaryCrash.crash > Symbolicated.crash
 ```
+
+## IAP create , app -> ipa
+
+```
+#!/bin/bash  
+
+APPNAME="justdance"  
+ZIPNAME="${APPNAME}zip" 
+IPANAME="${APPNAME}IPA" 
+  
+mkdir -p ./ipa/Payload  
+cp -r ./${APPNAME}.app ./ipa/Payload  
+cd ipa  
+zip -r ${ZIPNAME} *  
+mv ${ZIPNAME}.zip ${IPANAME}.ipa  
+```
