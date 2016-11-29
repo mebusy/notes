@@ -24,7 +24,7 @@ symbolicatecrash -v ScaryCrash.crash > Symbolicated.crash
 
 ## IAP create , app -> ipa
 
-```
+```shell
 #!/bin/bash  
 
 APPNAME="justdance"  
