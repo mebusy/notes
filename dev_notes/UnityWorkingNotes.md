@@ -520,3 +520,74 @@ if (obj) {
 image.sprite = [your sprite]
 ```
 
+## c/c++ plugin Log
+
+C# code:
+
+```c#
+using UnityEngine;
+using System ;
+using System.Collections;
+using System.Runtime.InteropServices;
+
+public class PluginTools : MonoBehaviour {
+
+	#if UNITY_IPHONE || UNITY_XBOX360
+	[DllImport ("__Internal")]
+	#else
+	[DllImport ("BR_Plugin")]
+	#endif
+
+	private static extern void SetDebugFunction( IntPtr fp );
+
+
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public delegate void MyDelegate(string str);
+
+	static void CallBackFunction(string str)
+	{
+		Debug.Log(":: " + str);
+	}
+		
+	public static void Init () {
+		MyDelegate callback_delegate = new MyDelegate( CallBackFunction );
+		IntPtr intptr_delegate =
+			Marshal.GetFunctionPointerForDelegate(callback_delegate);
+		SetDebugFunction( intptr_delegate );
+	}
+
+}
+```
+
+c/c++ code
+
+```c
+#include <string.h>
+#include <stdio.h>
+
+typedef void (*FuncPtr)( const char * );
+FuncPtr _DebugFunc;
+
+void SetDebugFunction(FuncPtr fp )
+{
+    _DebugFunc = fp;
+}
+
+```
+
+for using:
+
+```c
+typedef void (*FuncPtr)( const char * );
+extern FuncPtr _DebugFunc;
+
+#define DebugLog(  fmt, ... )    \
+do { \
+static char log_buf[1024] ; \
+memset( log_buf , 0 , sizeof(log_buf)); \
+sprintf(log_buf,  fmt, ##__VA_ARGS__); \
+_DebugFunc( log_buf ); \
+} while (0)
+
+```
