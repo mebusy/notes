@@ -542,9 +542,10 @@ public class PluginTools : MonoBehaviour {
 
 
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	//[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public delegate void MyDelegate(string str);
 
+	[MonoPInvokeCallback(typeof(MyDelegate))]
 	static void CallBackFunction(string str)
 	{
 		Debug.Log(":: " + str);
