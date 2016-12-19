@@ -14,3 +14,25 @@ def trim(im):
 		return im
 	return im.crop(bbox)
 ```
+
+## RGB 2 HLS
+
+```python
+def rgb2hls(t):
+	""" convert PIL-like RGB tuple (0 .. 255) to colorsys-like
+	HSL tuple (0.0 .. 1.0) """
+	r,g,b,a = t
+	r /= 255.0
+	g /= 255.0
+	b /= 255.0
+	return rgb_to_hls(r,g,b)
+
+def hls2rgb(t):
+	""" convert a colorsys-like HSL tuple (0.0 .. 1.0) to a
+	PIL-like RGB tuple (0 .. 255) """
+	r,g,b = hls_to_rgb(*t)
+	r *= 255
+	g *= 255
+	b *= 255
+	return (int(r),int(g),int(b))
+```
