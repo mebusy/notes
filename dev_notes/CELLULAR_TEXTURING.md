@@ -189,3 +189,4 @@ There may be more or less than this expected number of points in the region; the
 
 If we generate the points inside of each cube randomly, with the population based on the Poisson probabilities, the feature points will be truly isotropic and the texture function will have no grid bias at all.
 
+Each cube in space may contain zero, one, or more feature points. We determine this on the fly quite simply by noting that the Poisson random distribution function describes the exact probabilities of each of the possible number of feature points occurring in the cube. 
