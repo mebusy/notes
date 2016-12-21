@@ -1,30 +1,24 @@
-
 D			[0-9]
 L			[a-zA-Z_]
 H			[a-fA-F0-9]
-E			([Ee][+-]?{D}+)
-P                       ([Pp][+-]?{D}+)
+E			[Ee][+-]?{D}+
 FS			(f|F|l|L)
-IS                      ((u|U)|(u|U)?(l|L|ll|LL)|(l|L|ll|LL)(u|U))
+IS			(u|U|l|L)*
 
 %{
 #include <stdio.h>
 #include "y.tab.h"
 
-void count(void);
+void count();
 %}
 
 %%
 "/*"			{ comment(); }
-"//"[^\n]*              { /* consume //-comment */ }
-
 
 "auto"			{ count(); return(AUTO); }
-"_Bool"			{ count(); return(BOOL); }
 "break"			{ count(); return(BREAK); }
 "case"			{ count(); return(CASE); }
 "char"			{ count(); return(CHAR); }
-"_Complex"		{ count(); return(COMPLEX); }
 "const"			{ count(); return(CONST); }
 "continue"		{ count(); return(CONTINUE); }
 "default"		{ count(); return(DEFAULT); }
@@ -37,12 +31,9 @@ void count(void);
 "for"			{ count(); return(FOR); }
 "goto"			{ count(); return(GOTO); }
 "if"			{ count(); return(IF); }
-"_Imaginary"		{ count(); return(IMAGINARY); }
-"inline"		{ count(); return(INLINE); }
 "int"			{ count(); return(INT); }
 "long"			{ count(); return(LONG); }
 "register"		{ count(); return(REGISTER); }
-"restrict"		{ count(); return(RESTRICT); }
 "return"		{ count(); return(RETURN); }
 "short"			{ count(); return(SHORT); }
 "signed"		{ count(); return(SIGNED); }
@@ -60,19 +51,15 @@ void count(void);
 {L}({L}|{D})*		{ count(); return(check_type()); }
 
 0[xX]{H}+{IS}?		{ count(); return(CONSTANT); }
-0[0-7]*{IS}?		{ count(); return(CONSTANT); }
-[1-9]{D}*{IS}?		{ count(); return(CONSTANT); }
-L?'(\\.|[^\\'\n])+'	{ count(); return(CONSTANT); }
+0{D}+{IS}?		{ count(); return(CONSTANT); }
+{D}+{IS}?		{ count(); return(CONSTANT); }
+L?'(\\.|[^\\'])+'	{ count(); return(CONSTANT); }
 
 {D}+{E}{FS}?		{ count(); return(CONSTANT); }
-{D}*"."{D}+{E}?{FS}?	{ count(); return(CONSTANT); }
-{D}+"."{D}*{E}?{FS}?	{ count(); return(CONSTANT); }
-0[xX]{H}+{P}{FS}?	{ count(); return(CONSTANT); }
-0[xX]{H}*"."{H}+{P}?{FS}?     { count(); return(CONSTANT); }
-0[xX]{H}+"."{H}*{P}?{FS}?     { count(); return(CONSTANT); }
+{D}*"."{D}+({E})?{FS}?	{ count(); return(CONSTANT); }
+{D}+"."{D}*({E})?{FS}?	{ count(); return(CONSTANT); }
 
-
-L?\"(\\.|[^\\"\n])*\"	{ count(); return(STRING_LITERAL); }
+L?\"(\\.|[^\\"])*\"	{ count(); return(STRING_LITERAL); }
 
 "..."			{ count(); return(ELLIPSIS); }
 ">>="			{ count(); return(RIGHT_ASSIGN); }
@@ -122,33 +109,38 @@ L?\"(\\.|[^\\"\n])*\"	{ count(); return(STRING_LITERAL); }
 "?"			{ count(); return('?'); }
 
 [ \t\v\n\f]		{ count(); }
-.			{ /* Add code to complain about unmatched characters */ }
+.			{ /* ignore bad characters */ }
 
 %%
 
-int yywrap(void)
+yywrap()
 {
-	return 1;
+	return(1);
 }
 
 
-void comment(void)
+comment()
 {
-	char c, prev = 0;
-  
-	while ((c = input()) != 0)      /* (EOF maps to 0) */
+	char c, c1;
+
+loop:
+	while ((c = input()) != '*' && c != 0)
+		putchar(c);
+
+	if ((c1 = input()) != '/' && c != 0)
 	{
-		if (c == '/' && prev == '*')
-			return;
-		prev = c;
+		unput(c1);
+		goto loop;
 	}
-	error("unterminated comment");
+
+	if (c != 0)
+		putchar(c1);
 }
 
 
 int column = 0;
 
-void count(void)
+void count()
 {
 	int i;
 
@@ -164,20 +156,20 @@ void count(void)
 }
 
 
-int check_type(void)
+int check_type()
 {
 /*
 * pseudo code --- this is what it should check
 *
 *	if (yytext == type_name)
-*		return TYPE_NAME;
+*		return(TYPE_NAME);
 *
-*	return IDENTIFIER;
+*	return(IDENTIFIER);
 */
 
 /*
 *	it actually will only return IDENTIFIER
 */
 
-	return IDENTIFIER;
+	return(IDENTIFIER);
 }

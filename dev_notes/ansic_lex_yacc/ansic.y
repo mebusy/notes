@@ -4,9 +4,8 @@
 %token SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
 %token XOR_ASSIGN OR_ASSIGN TYPE_NAME
 
-%token TYPEDEF EXTERN STATIC AUTO REGISTER INLINE RESTRICT
+%token TYPEDEF EXTERN STATIC AUTO REGISTER
 %token CHAR SHORT INT LONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
-%token BOOL COMPLEX IMAGINARY
 %token STRUCT UNION ENUM ELLIPSIS
 
 %token CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
@@ -30,8 +29,6 @@ postfix_expression
 	| postfix_expression PTR_OP IDENTIFIER
 	| postfix_expression INC_OP
 	| postfix_expression DEC_OP
-	| '(' type_name ')' '{' initializer_list '}'
-	| '(' type_name ')' '{' initializer_list ',' '}'
 	;
 
 argument_expression_list
@@ -165,8 +162,6 @@ declaration_specifiers
 	| type_specifier declaration_specifiers
 	| type_qualifier
 	| type_qualifier declaration_specifiers
-	| function_specifier
-	| function_specifier declaration_specifiers
 	;
 
 init_declarator_list
@@ -197,9 +192,6 @@ type_specifier
 	| DOUBLE
 	| SIGNED
 	| UNSIGNED
-	| BOOL
-	| COMPLEX
-	| IMAGINARY
 	| struct_or_union_specifier
 	| enum_specifier
 	| TYPE_NAME
@@ -246,8 +238,6 @@ struct_declarator
 enum_specifier
 	: ENUM '{' enumerator_list '}'
 	| ENUM IDENTIFIER '{' enumerator_list '}'
-	| ENUM '{' enumerator_list ',' '}'
-	| ENUM IDENTIFIER '{' enumerator_list ',' '}'
 	| ENUM IDENTIFIER
 	;
 
@@ -263,12 +253,7 @@ enumerator
 
 type_qualifier
 	: CONST
-	| RESTRICT
 	| VOLATILE
-	;
-
-function_specifier
-	: INLINE
 	;
 
 declarator
@@ -276,17 +261,10 @@ declarator
 	| direct_declarator
 	;
 
-
 direct_declarator
 	: IDENTIFIER
 	| '(' declarator ')'
-	| direct_declarator '[' type_qualifier_list assignment_expression ']'
-	| direct_declarator '[' type_qualifier_list ']'
-	| direct_declarator '[' assignment_expression ']'
-	| direct_declarator '[' STATIC type_qualifier_list assignment_expression ']'
-	| direct_declarator '[' type_qualifier_list STATIC assignment_expression ']'
-	| direct_declarator '[' type_qualifier_list '*' ']'
-	| direct_declarator '[' '*' ']'
+	| direct_declarator '[' constant_expression ']'
 	| direct_declarator '[' ']'
 	| direct_declarator '(' parameter_type_list ')'
 	| direct_declarator '(' identifier_list ')'
@@ -341,11 +319,9 @@ abstract_declarator
 direct_abstract_declarator
 	: '(' abstract_declarator ')'
 	| '[' ']'
-	| '[' assignment_expression ']'
+	| '[' constant_expression ']'
 	| direct_abstract_declarator '[' ']'
-	| direct_abstract_declarator '[' assignment_expression ']'
-	| '[' '*' ']'
-	| direct_abstract_declarator '[' '*' ']'
+	| direct_abstract_declarator '[' constant_expression ']'
 	| '(' ')'
 	| '(' parameter_type_list ')'
 	| direct_abstract_declarator '(' ')'
@@ -360,23 +336,7 @@ initializer
 
 initializer_list
 	: initializer
-	| designation initializer
 	| initializer_list ',' initializer
-	| initializer_list ',' designation initializer
-	;
-
-designation
-	: designator_list '='
-	;
-
-designator_list
-	: designator
-	| designator_list designator
-	;
-
-designator
-	: '[' constant_expression ']'
-	| '.' IDENTIFIER
 	;
 
 statement
@@ -396,17 +356,19 @@ labeled_statement
 
 compound_statement
 	: '{' '}'
-	| '{' block_item_list '}'
+	| '{' statement_list '}'
+	| '{' declaration_list '}'
+	| '{' declaration_list statement_list '}'
 	;
 
-block_item_list
-	: block_item
-	| block_item_list block_item
-	;
-
-block_item
+declaration_list
 	: declaration
-	| statement
+	| declaration_list declaration
+	;
+
+statement_list
+	: statement
+	| statement_list statement
 	;
 
 expression_statement
@@ -425,8 +387,6 @@ iteration_statement
 	| DO statement WHILE '(' expression ')' ';'
 	| FOR '(' expression_statement expression_statement ')' statement
 	| FOR '(' expression_statement expression_statement expression ')' statement
-	| FOR '(' declaration expression_statement ')' statement
-	| FOR '(' declaration expression_statement expression ')' statement
 	;
 
 jump_statement
@@ -450,13 +410,9 @@ external_declaration
 function_definition
 	: declaration_specifiers declarator declaration_list compound_statement
 	| declaration_specifiers declarator compound_statement
+	| declarator declaration_list compound_statement
+	| declarator compound_statement
 	;
-
-declaration_list
-	: declaration
-	| declaration_list declaration
-	;
-
 
 %%
 #include <stdio.h>
@@ -470,7 +426,6 @@ char *s;
 	fflush(stdout);
 	printf("\n%*s\n%*s\n", column, "^", column, s);
 }
-
 
 int main(void) {
     yyparse();
