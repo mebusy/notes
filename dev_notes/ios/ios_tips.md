@@ -2,6 +2,7 @@
 
  - [Tips](#a0d4cc0f54602c3f247c72f15a7d2dbf)
 	 - [符号化crash 日志](#f3339d94a6bf27a7a019412ed2bd3ba9)
+	 - [IAP create , app -> ipa](#baf92b6a6a0ac6be9b16cf0d77c0a8c4)
 
 ...menuend
 
@@ -22,6 +23,7 @@ alias symbolicatecrash="/Applications/Xcode.app/Contents/SharedFrameworks/DVTFou
 symbolicatecrash -v ScaryCrash.crash > Symbolicated.crash
 ```
 
+<h2 id="baf92b6a6a0ac6be9b16cf0d77c0a8c4"></h2>
 ## IAP create , app -> ipa
 
 ```shell

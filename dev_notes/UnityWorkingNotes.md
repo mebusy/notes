@@ -36,6 +36,7 @@
 	 - [ClearChildren](#d847f9321932800f839faa27122a8046)
 	 - [Force canvas sorting order](#c5efce759624fef37e581461dc508df7)
 	 - [change Image's Source Image](#3f5ccb63301562c1f2962e4fc33e13c8)
+	 - [c/c++ plugin Log](#b172f09ca5430b87593e0828ad617151)
 
 ...menuend
 
@@ -520,6 +521,7 @@ if (obj) {
 image.sprite = [your sprite]
 ```
 
+<h2 id="b172f09ca5430b87593e0828ad617151"></h2>
 ## c/c++ plugin Log
 
 C# code:

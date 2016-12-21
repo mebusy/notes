@@ -1,5 +1,14 @@
+...menustart
+
+ - [Trim Image Whitespace](#044b8396fbd6ae9de3416b0b6ac5322a)
+	 - [RGB 2 HLS](#e347469f9fd55367a3a83c5761256a2c)
+
+...menuend
 
 
+
+
+<h2 id="044b8396fbd6ae9de3416b0b6ac5322a"></h2>
 # Trim Image Whitespace
 
 ```python
@@ -15,6 +24,7 @@ def trim(im):
 	return im.crop(bbox)
 ```
 
+<h2 id="e347469f9fd55367a3a83c5761256a2c"></h2>
 ## RGB 2 HLS
 
 ```python
