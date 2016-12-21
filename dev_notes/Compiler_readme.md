@@ -29,6 +29,11 @@
 
 # ANSI C grammar 最新的 Lex 和 Yacc 描述
 
-http://www.quut.com/c/ANSI-C-grammar-l-1998.html
+ - http://www.quut.com/c/ANSI-C-grammar-l-1998.html
+ - http://www.quut.com/c/ANSI-C-grammar-y-1998.html
 
-http://www.quut.com/c/ANSI-C-grammar-y-1998.html
+## native files:
+
+ - [ansic lex](https://github.com/mebusy/notes/blob/master/dev_notes/ansic_lex_yacc/ansic.l)
+ - [ansic yacc](https://github.com/mebusy/notes/blob/master/dev_notes/ansic_lex_yacc/ansic.y)
+
