@@ -25,3 +25,8 @@
 
  - [Compiler_lex_yacc_calc](https://github.com/mebusy/notes/blob/master/dev_notes/Compiler_lex_yacc_calc.md)
  - [Compiler_lex_yacc_tutor](https://github.com/mebusy/notes/blob/master/dev_notes/Compiler_lex_yacc_tutor.md)
+ 
+
+# ANSI C grammar 最新的 Lex 和 Yacc 描述
+http://www.quut.com/c/ANSI-C-grammar-l-1998.html
+http://www.quut.com/c/ANSI-C-grammar-y-1998.html
