@@ -82,7 +82,7 @@ int yywrap(void) {
 }
 ```
 
-Wheneverthe lexer returns a token to the parser, if the token has an associated value, the lexer must store the value in **yylval** before returning. 
+**Wheneverthe lexer returns a token to the parser, if the token has an associated value, the lexer must store the value in** ***yylval*** **before returning**. 
 
 In this first example, we explicitly declare **yylval**. In more complex parsers, yacc defines **yylval** as a union and puts the definition in *y.tab.b* .
 
