@@ -316,7 +316,7 @@ struct symtab *symlook( ) ;
 The parser changes only slightly to use the symbol table . The value for a **NAME** token is now a pointer into the symbol table rather than an index as before.
 
  - We change the **%union** and call the pointer field **symp**.
- - We use **strdup()** to make a permanent copy of the name string.
+ - **We use** ***strdup()*** **to make a permanent copy of the name string**.
  	- Since each subsequent token overwrites **yytext**, we need to make a copy ourselves here.
  - Sequential search is too slow for symbol tables of appreciable size, so use hashing or some other faster search function.
 
