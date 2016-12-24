@@ -28,7 +28,7 @@
  - [Unity](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_readme.md)
  - [iOS related](https://github.com/mebusy/notes/blob/master/dev_notes/ios/ios_readme.md)
  - [TAOCP](https://github.com/mebusy/notes/blob/master/dev_notes/TAPCP_readme.md)
-
+ - [Texture and Modeling](https://github.com/mebusy/notes/blob/master/dev_notes/textAndModeling_readme.md)
 
 ---
 
@@ -48,7 +48,7 @@
 
  |   |    |   | 
 --- | --- | --- | ---
-[tips](https://github.com/mebusy/notes/blob/master/dev_notes/python_tips_1.md) | [BeautifulSoup](https://github.com/mebusy/notes/blob/master/dev_notes/PY_BeautifulSoup.md)  | [python多线程](https://github.com/mebusy/notes/blob/master/dev_notes/PY_multiprocessing.md) | 
+[tips](https://github.com/mebusy/notes/blob/master/dev_notes/python_tips_1.md) | [BeautifulSoup](https://github.com/mebusy/notes/blob/master/dev_notes/PY_BeautifulSoup.md)  | [python多线程](https://github.com/mebusy/notes/blob/master/dev_notes/PY_multiprocessing.md) | [PIL_Tips](https://github.com/mebusy/notes/blob/master/dev_notes/PIL_tips.md) 
 
 
 
@@ -101,6 +101,7 @@
  |   |    |   | 
 --- | --- | --- | ---
 [Learn to Learning](https://github.com/mebusy/notes/blob/master/dev_notes/Learn2Learning.md) | [RaspBerryPi I](https://github.com/mebusy/notes/blob/master/dev_notes/RaspberryPi_I.md) | [RaspPi 2](https://github.com/mebusy/notes/blob/master/dev_notes/RASPI_2.md) | [Software Debug](https://github.com/mebusy/notes/blob/master/dev_notes/SoftwareDebugging.md) 
-[github](https://github.com/mebusy/notes/blob/master/dev_notes/github.md) | [sublime](https://github.com/mebusy/notes/blob/master/dev_notes/sublime.md)   | [深入浅出nodeJS](https://github.com/mebusy/notes/blob/master/dev_notes/深入浅出nodeJS.md)
+[github](https://github.com/mebusy/notes/blob/master/dev_notes/github.md) | [sublime](https://github.com/mebusy/notes/blob/master/dev_notes/sublime.md)   | [深入浅出nodeJS](https://github.com/mebusy/notes/blob/master/dev_notes/深入浅出nodeJS.md)	| [Html5 Game Program](https://github.com/mebusy/notes/blob/master/dev_notes/Html5GameProgramming.md)
+[MacOSX Tips](https://github.com/mebusy/notes/blob/master/dev_notes/MacOSX_Tips.md) | [workingTips](https://github.com/mebusy/notes/blob/master/dev_notes/workingTips.md)	| 
 
 

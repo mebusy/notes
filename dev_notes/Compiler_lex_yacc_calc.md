@@ -8,6 +8,9 @@
 	 - [Symbol Tables](#743974c76894dcbff127f41b4dcaa71b)
 	 - [Functions and Reserved Words](#8c439d47137d2b02b587a9cb733a993a)
 	 - [Reserved Words in the Symbol Table](#3ffc9c6bc2ffcb3c6cd4ac1be2b51ae4)
+ - [A Menu Generation Language](#7c126d1eae3bd63f0f8148348ee5a9ac)
+	 - [Overview of the MGL](#d504e2653122de9057c354b89fbf789b)
+ - [Parsing SQL](#696fd52bce92183aa43d6186ed737d33)
 
 ...menuend
 
@@ -79,7 +82,7 @@ int yywrap(void) {
 }
 ```
 
-Wheneverthe lexer returns a token to the parser, if the token has an associated value, the lexer must store the value in **yylval** before returning. 
+**Wheneverthe lexer returns a token to the parser, if the token has an associated value, the lexer must store the value in** ***yylval*** **before returning**. 
 
 In this first example, we explicitly declare **yylval**. In more complex parsers, yacc defines **yylval** as a union and puts the definition in *y.tab.b* .
 
@@ -313,7 +316,7 @@ struct symtab *symlook( ) ;
 The parser changes only slightly to use the symbol table . The value for a **NAME** token is now a pointer into the symbol table rather than an index as before.
 
  - We change the **%union** and call the pointer field **symp**.
- - We use **strdup()** to make a permanent copy of the name string.
+ - **We use** ***strdup()*** **to make a permanent copy of the name string**.
  	- Since each subsequent token overwrites **yytext**, we need to make a copy ourselves here.
  - Sequential search is too slow for symbol tables of appreciable size, so use hashing or some other faster search function.
 
@@ -486,17 +489,308 @@ This works, but it has problems.
 
  - take the specific patterns for function names out of the lexer and put them in the symbol table
  - add a new field to each symbol table entry: **funcptr**, a pointer to the C function to call if this entry is a function name.
- ```
- struct symtab {
+
+
+> ch3hdr.h
+
+```
+#define NSYMS	20 /* maximum number of symbols */
+struct symtab {
 	char *name;
 	double (*funcptr) (); 	/* 1 */
-	double value;
- } symtab[NSYMS];
- ```
+	double value; 
+} symtab[NSYMS];
+
+struct symtab *symlook( ) ;
+```
+
  - calls the new routine **addfunc()** in **main()** to add each of the function names to the symbol table, then calls yyparse().
 
 
+> calc.l 
 
+not changed
+
+> calc.y
+
+```
+
+%{
+#include "ch3hdr.h"   
+#include <stdio.h>		
+void yyerror(char *s) ;
+
+double vbltable [26] ;   
+%}
+
+
+%union {				 
+	double dval;
+	/*int vblno;*/
+	struct symtab *symp;	 
+}
+
+%token <symp> NAME  
+%token <dval>	NUMBER
+%left '-' '+'
+%left '*' '/'
+%nonassoc UMINUS
+
+%type <dval> expression		 
+
+%%
+
+	
+statement_list:	statement '\n'		 
+		| 		statement_list statement '\n'
+		;
+
+statement: 	NAME '=' expression		{ $1->value = $3; }    
+		|	expression	{ printf("= %g\n" , $1); }
+		;
+
+expression:	expression '+' expression	{ $$ = $1 + $3; }
+		|	expression '-' expression	{ $$ = $1 - $3; }
+		|	expression '*' expression	{ $$ = $1 * $3; }
+		|	expression '/' expression	{ if ($3==0.0)		  
+										yyerror("divide by 0");
+									  else
+									  	$$ = $1 / $3; 
+									}
+		|	'-' expression	%prec UMINUS		{ $$ = -$2; }
+		|	'(' expression	')'		{ $$ = $2; }
+		|	NUMBER					{ $$ = $1; }
+		|	NAME					{ $$ = $1->value; }	   
+		|   NAME '(' expression	')'	{ $$ = ($1->funcptr)($3); }  /* 3 */
+		;
+
+%%
+
+	/* needed for MacOSX */
+void yyerror(char *s) {
+    fprintf(stdout, "%s\n", s);
+}
+
+int main(void) {
+	extern double sqrt() , exp(), log();  /* 1 */
+	addfunc("sqrt" , sqrt) ;
+	addfunc("exp" , exp) ;
+	addfunc("log" , log) ;
+
+    yyparse();
+	return 0; 
+}
+
+
+	/* 2 */
+addfunc( name , func )
+char* name ;
+double (*func)() ; 
+{
+	struct symtab * sp = symlook(name);
+	sp->funcptr = func ;
+}
+
+/* look up a symbol table entry, add if not present */ 
+struct symtab * symlook(s)
+char *s;
+{
+	char *p; 
+	struct symtab *sp;
+
+	for(sp = symtab; sp < &symtab[NSYMS]; sp++) { 
+		/* is it already here? */
+		if(sp->name && ! strcmp(sp->name, s))
+			return sp;
+
+		/* is it free */ 
+		if(!sp->name) {
+			sp->name = strdup(s); 
+			return sp;
+		}
+		/* otherwise continue to next */
+	}
+	yyerror("Too many symbols");
+	exit(1);   /* cannot continue */ 
+	
+} /* symlook */
+```
+
+
+<h2 id="7c126d1eae3bd63f0f8148348ee5a9ac"></h2>
+## A Menu Generation Language
+
+<h2 id="d504e2653122de9057c354b89fbf789b"></h2>
+### Overview of the MGL
+
+We’ll develop a languagethat can be used to generatecustom menu interfaces.
+
+It will take as input a description file and produce a C program that can be compiled to create this output on a user’s terminal, using the standard *curses* library to draw the menus on the screen.
+
+
+
+The menu description consists of the following:
+
+ 1. A name for the menu screen
+ 2. A title or titles
+ 3. A list of menu items, each consisting of:
+ 	- item
+ 	- [ command ]
+ 	- action
+ 	- [ attribute ]
+ 	-  where *item* is the text string that appears on the menu, *command* is the mnemonic used to provide command-line accessto the functions of the menu system, 
+ 	- *action* is the procedure that should be performed when a menu item is chosen, and *attribute* indicates how this item should be handled. The bracketed items are optional.
+ 4. A terminator
+
+A sample menu description file is:
+
+```
+screen myMenu
+title "My First Menu" 
+title "by Tony Mason"
+
+item "List Things to Do" 
+command "to—do"
+action execute list-things-todo 
+attribute comnand
+
+item "Quit" 
+command “quit" 
+action quit
+
+end myMenu
+```
+
+A more general description of this format is:
+
+```
+screen<name> 
+title <string>
+
+
+item <string>
+[ command <string> ]
+action {execute | menu | quit | ignore} <name> 
+[attribute {visiblel | invisible}
+
+end <name>
+```
+
+When the resulting program is executed, it creates the following menu:
+
+```
+	My First Menu 
+	by Tony Mason
+
+
+1) List Things to Do 
+2) Quit
+
+```
+
+we start with the keyword *command*, which indicates a menu choice or command that a user can issue to access some function.
+
+
+```
+ws 		[ \t]+
+nl 		\n
+%%
+{ws}	;
+command 	{ return COMMAND; }
+{nl} 	{lineno++ ;}
+.		{return yytext[0]; }
+```
+
+and its corresponding yacc grammar:
+
+```
+%{
+#include <stdio.h> 
+%}
+
+%token COMMAND
+%%
+start:	COMMAND
+		;
+```
+
+
+Each item on a menu should have an action associated with it. We can introduce the keyword **action**.
+
+
+One action might be to ignore the item (for unimplemented or unavailable commands), and another might be to execute a program; we can add the keywords **ignore** and **execute**.
+
+
+Thus, a sample item using our modified vocabulary might be:
+
+```
+command action execute
+```
+
+We must tell it What to execute, so we add our first noncommand argument, a string.
+
+we will presume that a program name is a quoted string. Now our sample item becomes:
+
+```
+choice action execute "/bin/sh"
+```
+
+> First version of MGL lexer : mgl.l
+
+```
+TODO
+```
+
+An alternative way to handle keywords as presever words.
+
+
+---
+
+We do not want to match beyond a newline because a missing closing quotation mark could cause the lexical analyzer to plow through the rest of the ■le, which is certainly not what the user wants, and may over■ow internal lex buffers and make the program fail.
+
+:First version of MGL parser : mgl.y
+
+```
+TODO
+
+```
+
+
+
+
+- A recursive definition allows multiple lines.
+- The addition of title lines does imply that we must add a new, higher-level rule to consist of either items or titles. 
+- We defined a new rule ***screen***,to contains a complete menu with both titles and items.
+- When we wish to reference a particular menu screen, say, “first,” we can use a line such as:
+	- `item "first" command first action menu first`
+- Thus, a sample screen specification might be something like this:
+```
+screen main
+title "Main screen"
+item "fruits" command fruits action menu fruits
+item "grains" command grains action menu grains
+item "quit"	  command quit   action quit
+end main
+
+screen fruits
+title "Fruits"
+item "grape" command grape action execute "/fruit/grape"
+item "melon" command melon action execute "/fruit/melon"
+item "main"	 command main  action menu main
+end fruits
+
+screen grains
+title "Grains"
+item "wheat"  command wheat  action execute "/grain/wheat"
+item "barley" command barley action execute "/grain/barley"
+item "main"	 command main  action menu main
+```
+- For each item, we wish to indicate if it is visibleor invisible.
+	- we precede the choice of visible or invisible with the new keyword **attribute**
+- TODO
+
+<h2 id="696fd52bce92183aa43d6186ed737d33"></h2>
+## Parsing SQL
 
 
 
