@@ -134,3 +134,17 @@ sh /media/cdrom/VBoxLinuxAdditions.run
 ## Get Proxy Info
 
 chrome: `chrome://net-internals/#proxy`
+
+
+## lldb 调试 Segment Fault on MacOSX
+ 
+ - 编译加上 `+g` 选项
+ - `ulimit -c unlimited`
+ - /cores/core.xxx 文件生成
+ - `lldb appname core.15667`
+ - 运行， crash后，输入 `bt` 打印跟踪堆栈
+
+
+ 
+ 
+ 
