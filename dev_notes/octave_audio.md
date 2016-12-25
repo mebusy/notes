@@ -1,10 +1,11 @@
 # install
 
 ```
-brew reinstall octave --with-sndfile --with-libsndfile
+brew reinstall octave --with-sndfile --with-libsndfile --enable-bounds-check 
 ```
 
---with-portaudio
+--with-portaudio --with-openblas
+
 
 # 音频信息
 
@@ -52,7 +53,7 @@ samples = [1, fs)
 我们会从一个余弦值创建一个 ogg 文件。采样率是每秒 44100 次，这个文件最少进行 10 秒的采样。余弦信号的频率是 440 Hz。
 
 ```
-filename='cosine.ogg';
+filename='cosine.wav';
 fs=44100;
 t=0:1/fs:10;
 w=2*pi*440*t;
