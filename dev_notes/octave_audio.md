@@ -112,4 +112,26 @@ audiowrite(sig2,cos(w2),fs);
 plot(y1)
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/octave_audio_s1.png)
+
+信号 2 的图像（880 赫兹）
+
+```
+[y2, fs] = audioread(sig2);
+plot(y2)
+```
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/octave_audio_s2.png)
+
+
+## 2. 把两个信号叠加
+
+
+
+
+
+
+
+
+
+
 
