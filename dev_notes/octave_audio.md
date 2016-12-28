@@ -105,5 +105,11 @@ audiowrite(sig2,cos(w2),fs);
 
 ## 1.1 绘制出两个信号的图像
 
+信号 1 的图像（440 赫兹）
+
+```
+[y1, fs] = audioread(sig1);
+plot(y1)
+```
 
 
