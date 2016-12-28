@@ -15,7 +15,7 @@ brew reinstall octave --with-sndfile --with-libsndfile --with-docs
 
 
 ```
->> info = audioinfo ('testing.ogg')
+info = audioinfo ('testing.ogg')
 ```
 
 ## 读取音频文件
@@ -30,9 +30,9 @@ M 是一个一列或两列的矩阵，取决于信道的数量，fs 是采样率
 下面的操作都可以读取音频文件：
 
 ```
->> [y, fs] = audioread (filename, samples)
->> [y, fs] = audioread (filename, datatype)
->> [y, fs] = audioread (filename, samples, datatype)
+[y, fs] = audioread (filename, samples)
+[y, fs] = audioread (filename, datatype)
+[y, fs] = audioread (filename, samples, datatype)
 ```
 
  - samples 指定开始帧和结束帧
@@ -120,14 +120,35 @@ plot(y1)
 [y2, fs] = audioread(sig2);
 plot(y2)
 ```
+
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/octave_audio_s2.png)
 
 
 ## 2. 把两个信号叠加
 
+```
+sumres=y1+y2;
+plot(sumres)
+```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/octave_audio_sum.png)
 
+## 3. 两个信号的乘积
 
+```
+sig1='cos440.wav';                  %creating the audio file @440 Hz
+sig2='cos880.wav';                  %creating the audio file @880 Hz
+product='prod.wav';                 %creating the audio file for product
+fs=44100;                           %generating the parameters values (Period, sampling frequency and angular frequency)
+t=0:1/fs:0.02;
+w1=2*pi*440*t;
+w2=2*pi*880*t;
+audiowrite(sig1, cos(w1), fs);      %writing the function cos(w) on the files created
+audiowrite(sig2, cos(w2), fs);[y1,fs]=audioread(sig1);[y2,fs]=audioread(sig2);
+audiowrite(product, y1.*y2, fs);    %performing the product
+[yprod,fs]=audioread(product);
+plot(yprod);       					%plotting the product
+```
 
 
 
