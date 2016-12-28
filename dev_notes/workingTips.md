@@ -15,6 +15,7 @@
 	 - [CentOS yum 无法更新](#16c9778b7075982cf3d39ff738d292f0)
 	 - [Vbox CentOS instal Guest Addition](#0afd0f413908f4cc7cddd138dde0ddd6)
 	 - [Get Proxy Info](#ca07600a3602fddc156831a6716fae12)
+	 - [lldb 调试 Segment Fault on MacOSX](#93bc8417f2018ae4424cbad9060081fa)
 
 ...menuend
 
@@ -136,6 +137,7 @@ sh /media/cdrom/VBoxLinuxAdditions.run
 chrome: `chrome://net-internals/#proxy`
 
 
+<h2 id="93bc8417f2018ae4424cbad9060081fa"></h2>
 ## lldb 调试 Segment Fault on MacOSX
  
  - 编译加上 `+g` 选项
