@@ -150,9 +150,31 @@ audiowrite(product, y1.*y2, fs);    %performing the product
 plot(yprod);       					%plotting the product
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/octave_audio_multiply.png)
 
+两个基本频率相差很大的信号相乘后的图表效果（调制原理）
 
+## 3.1 生成两个频率为 220 赫兹的声音信号
 
+```
+fs=44100;
+t=0:1/fs:0.03;
+w=2*pi*220*t;
+y1=cos(w);
+plot(y1);
+```
 
+## 3.2 生成一个 22000 赫兹的高频调制信号
+
+```
+y2=cos(100*w);
+plot(y2);
+```
+
+## 3.3 把两个信号相乘并绘出图像
+
+```
+plot(y1.*y2);
+```
 
 
