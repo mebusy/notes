@@ -9,7 +9,7 @@
  - [信号叠加](#907979cef2ac1030b1862469aab35c41)
 	 - [1. 产生两个不同频率的信号](#7859357f85cdd30bf0efeae9e4d5f6ff)
 	 - [1.1 绘制出两个信号的图像](#529d85ceb420010bbae4ff8ddfc8ac23)
-	 - [2. 把两个信号叠加](#59d18b11b5cd25370a5d3c548d81d2d3)
+	 - [1.2 把两个信号叠加](#777d069853661fb6fb9cd8e67b116e81)
 	 - [3. 两个信号的乘积](#49bd8db4f8d3299524f11771f93554ce)
 	 - [3.1 生成两个频率为 220 赫兹的声音信号](#3a964a6ddc88e66ce54d2b99a7614a25)
 	 - [3.2 生成一个 22000 赫兹的高频调制信号](#de12d6d99cdc4745c70e4ee1a8a92ab1)
@@ -154,8 +154,8 @@ plot(y2)
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/octave_audio_s2.png)
 
 
-<h2 id="59d18b11b5cd25370a5d3c548d81d2d3"></h2>
-## 2. 把两个信号叠加
+<h2 id="777d069853661fb6fb9cd8e67b116e81"></h2>
+## 1.2 把两个信号叠加
 
 ```
 sumres=y1+y2;
