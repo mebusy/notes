@@ -46,9 +46,24 @@ CELL VALUE | TYPE
 
  - 把一个随机的房间形 放在在网格的某个地方
  - (可选)记录最多4个 门的位置
+ 	- chooseRandomDoorSites
+ 		- 房间的墙，是可能的门的位置，除了墙角
+    	- 所以，符合这个要求的 tile, 它的上下左右，必然只有 1个 是 floor, 其他都是 花岗岩
+    	- 检测是否是 可能的门的放置点 的方法 : directionOfDoorSite
+    	- directionOfDoorSite 返回合法的门朝向后，在这个方向上 检测10个tile, 确保不会和房间本身相交
+    		- C 形房间 可能出现这个问题
+
  - (可选)如果 attachHallway is true, 将会在4个标准门站之一 上添加一个垂直的走廊, 
  	- 并且从走廊尽头 重新安置3个门
  - RoomTypeFrequencies  指定每个房间类型的概率
+
+
+## ROOM 构建流程
+
+ 1. 建立 反 T 形的 first room
+ 2. attach 标准 BASIC room , 最多搭建 35个room，最多尝试 35次
+
+
 
 
 
