@@ -52,6 +52,7 @@ CELL VALUE | TYPE
     	- 检测是否是 可能的门的放置点 的方法 : directionOfDoorSite
     	- directionOfDoorSite 返回合法的门朝向后，在这个方向上 检测10个tile, 确保不会和房间本身相交
     		- C 形房间 可能出现这个问题
+    	- 所有的合法门位置种，随机选取4个门，每个方向一个， 保存到 doorSites[dir]
 
  - (可选)如果 attachHallway is true, 将会在4个标准门站之一 上添加一个垂直的走廊, 
  	- 并且从走廊尽头 重新安置3个门
