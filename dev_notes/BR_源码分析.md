@@ -1,5 +1,17 @@
+...menustart
+
+ - [dungeon grid:  short\[\]\[\]](#10df90b45c7197ec6a3b41830e711272)
+ - [8 种 room type](#613d5eda83a93341aa4af1d532915ace)
+ - [4 种 dungeon Profile](#31c4a6f18acb8397634b67978b7b6398)
+ - [designRandomRoom](#20ebe4265fa72799ee79717e0be19438)
+ - [ROOM 构建流程](#bb168d2d6231793ce94f3c1ff263d3f6)
+
+...menuend
 
 
+
+
+<h2 id="10df90b45c7197ec6a3b41830e711272"></h2>
 ## dungeon grid:  short[][]
 
 CELL VALUE | TYPE
@@ -11,6 +23,7 @@ CELL VALUE | TYPE
 
 
 
+<h2 id="613d5eda83a93341aa4af1d532915ace"></h2>
 ## 8 种 room type 
 
  INDEX | ROOM KIND | desc
@@ -26,6 +39,7 @@ CELL VALUE | TYPE
 
 
 
+<h2 id="31c4a6f18acb8397634b67978b7b6398"></h2>
 ## 4 种 dungeon Profile
 
  1. 基本地牢
@@ -42,6 +56,7 @@ CELL VALUE | TYPE
  - 有走廊的几率
 
 
+<h2 id="20ebe4265fa72799ee79717e0be19438"></h2>
 ## designRandomRoom
 
  - 把一个随机的房间形 放在在网格的某个地方
@@ -51,7 +66,7 @@ CELL VALUE | TYPE
     	- 所以，符合这个要求的 tile, 它的上下左右，必然只有 1个 是 floor, 其他都是 花岗岩
     	- 检测是否是 可能的门的放置点 的方法 : directionOfDoorSite
     	- directionOfDoorSite 返回合法的门朝向后，在这个方向上 检测10个tile, 确保不会和房间本身相交
-    		- C 形房间 可能出现这个问题
+    		- E 形房间 可能出现这个问题
     	- 在所有的合法的 门位置上，随机选取4个门，每个方向一个， 保存到 doorSites[dir]
 
  - (可选)如果 attachHallway is true, 将会在4个标准门站之一 上添加一个垂直的走廊, 
@@ -61,11 +76,13 @@ CELL VALUE | TYPE
  - RoomTypeFrequencies  指定每个房间类型的概率
 
 
+<h2 id="bb168d2d6231793ce94f3c1ff263d3f6"></h2>
 ## ROOM 构建流程
 
  1. 建立 反 T 形的 first room
  2. attach 标准 BASIC room , 最多搭建 35个room，最多尝试 35次
  	- 最后5次尝试 不生成走廊
+ 	- room 生成后, 随机测试 主地图的cell，看是否能放下生成的room
  3. 
 
 
