@@ -27,6 +27,25 @@
 			 - [Search Algorithm Properties](#6dda6174af1ce92b505f3c29643504c3)
 			 - [Depth-First Search (DFS) Properties](#62a9189e6707b0db89f80a7a5bb6c15e)
 		 - [Breadth-First Search](#ae5c4b868b5b24149decba70c74165c2)
+			 - [Breadth-First Search (BFS) Properties](#0d9bfd747ee897d1720abf029faddae4)
+			 - [Iterative Deepening](#fcbd892c255445e0e3c99ceeb0dbc2e9)
+		 - [Cost-Sensitive Search](#ea10a2ff2bc1cbc4cb292e4f88cad9e9)
+			 - [Uniform Cost Search](#1bd1e9029adb17c5893239e7288210a9)
+			 - [Uniform Cost Search (UCS) Properties](#8fcce2120d7405462b72fce3bf1fcaaa)
+		 - [DFS vs BFS vs UCS](#46ea5fe25e20e5c9f2466692baeb1848)
+	 - [Search and Models](#7f1afff8243e3009eb892111dcc4413f)
+	 - [Some Hints for P1](#b04314d7dafd45796af0bf245e3ae8e8)
+ - [Informed Search](#29990be19ae238ca1071a838229e85f3)
+	 - [The One Queue](#6fa04493ae42918af4621de6aae2ccc2)
+	 - [Uniform Cost Issues](#eec9120ae950a6604e2b58e9a3ca0035)
+	 - [Search Heuristics](#fdb1b92add98d8aa548a1d33445c6a67)
+		 - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
+	 - [Greedy Search](#6f166f2a80c5f26b9e59a2ed903c09c7)
+	 - [A* search](#4eb045a9450d6e7de8a9b8cb2e420c89)
+		 - [Combining UCS and Greedy](#07e5a0c69feece254a168e7da5932151)
+		 - [When should A* terminate?](#9fa7d37bafbf919eec2833224d5de03c)
+		 - [Admissible Heuristics](#bf8f38651446764fc008980354ad6746)
+		 - [Optimality of A* Tree Search](#3073e988edee383f5983f6a7fc2212a2)
 
 ...menuend
 
@@ -369,6 +388,7 @@ end function
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BFS.png)
 
 
+<h2 id="0d9bfd747ee897d1720abf029faddae4"></h2>
 #### Breadth-First Search (BFS) Properties
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_bfs_property.png)
@@ -388,6 +408,7 @@ end function
 
 
 
+<h2 id="fcbd892c255445e0e3c99ceeb0dbc2e9"></h2>
 #### Iterative Deepening
 
  - Idea: get DFS’s space advantage with BFS’s time / shallow-solution advantages
@@ -400,6 +421,7 @@ end function
  		- 计算量按指数级别展开，所以重复计算的计算量比例并不大
 
 
+<h2 id="ea10a2ff2bc1cbc4cb292e4f88cad9e9"></h2>
 ### Cost-Sensitive Search
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_cost_sensitive_search.png)
@@ -409,6 +431,7 @@ end function
  - We will now cover a similar algorithm which does find the least-cost path.  
 
 
+<h2 id="1bd1e9029adb17c5893239e7288210a9"></h2>
 #### Uniform Cost Search
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_uniform_cost_search.png)
@@ -418,6 +441,7 @@ end function
  - Fringe is a priority queue (priority: cumulative cost)
  - 注意, 这个例子中，当搜索至 ...e->r->f 时，下一步展开不是 f->G , 而是 S->e 
 
+<h2 id="8fcce2120d7405462b72fce3bf1fcaaa"></h2>
 #### Uniform Cost Search (UCS) Properties
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ucs_property.png)
@@ -437,6 +461,7 @@ end function
 
 
 
+<h2 id="46ea5fe25e20e5c9f2466692baeb1848"></h2>
 ### DFS vs BFS vs UCS
 
  \ | DFS | BFS | UCS 
@@ -452,6 +477,7 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
 
 
 
+<h2 id="7f1afff8243e3009eb892111dcc4413f"></h2>
 ## Search and Models
 
  - Search operates over models of the world
@@ -459,6 +485,7 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
  	- Planning is all “in simulation”
  	- Your search is only as good as your models
 
+<h2 id="b04314d7dafd45796af0bf245e3ae8e8"></h2>
 ## Some Hints for P1
 
  - Graph search is almost always better than tree search (when not?)
@@ -467,6 +494,7 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
 
 ---
 
+<h2 id="29990be19ae238ca1071a838229e85f3"></h2>
 # Informed Search 
 
  - Informed Search
@@ -478,6 +506,7 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
 Those 3 informed search do a lot of duplicate work and graph search will be our solution to that to avoid that duplicate work.
 
 
+<h2 id="6fa04493ae42918af4621de6aae2ccc2"></h2>
 ## The One Queue
 
  - All these search algorithms are the same except for fringe strategies
@@ -487,6 +516,7 @@ Those 3 informed search do a lot of duplicate work and graph search will be our 
  	- Can even code one implementation that takes a variable queuing object
 
 
+<h2 id="eec9120ae950a6604e2b58e9a3ca0035"></h2>
 ## Uniform Cost Issues
 
  - Remember: UCS explores increasing cost contours
@@ -498,6 +528,7 @@ Those 3 informed search do a lot of duplicate work and graph search will be our 
  - We’ll fix that soon!
 
 
+<h2 id="fdb1b92add98d8aa548a1d33445c6a67"></h2>
 ## Search Heuristics
 
  - A heuristic is:
@@ -507,6 +538,7 @@ Those 3 informed search do a lot of duplicate work and graph search will be our 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_heruistics_euclidean_distance.png)
 
+<h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 ### Example
 
 For romania traveling problem:  constructor a cost table h(x) with straight-line distance to Bucharest.
@@ -521,6 +553,7 @@ h(x) = the number of the largest pancake that is still out of place
 
 ---
 
+<h2 id="6f166f2a80c5f26b9e59a2ed903c09c7"></h2>
 ## Greedy Search
 
 启发式搜索的一种:
@@ -536,8 +569,10 @@ h(x) = the number of the largest pancake that is still out of place
 
 ---
 
-## A\* search
+<h2 id="4eb045a9450d6e7de8a9b8cb2e420c89"></h2>
+## A* search
 
+<h2 id="07e5a0c69feece254a168e7da5932151"></h2>
 ### Combining UCS and Greedy
 
  - Uniform-cost orders by path cost, or backward cost  g(n) 
@@ -560,6 +595,7 @@ h(x) = the number of the largest pancake that is still out of place
  	- S -> a -> e -> d -> G , {b,d}
 
 
+<h2 id="9fa7d37bafbf919eec2833224d5de03c"></h2>
 ### When should A* terminate?
 
  - Should we stop when we enqueue a goal?
@@ -583,15 +619,52 @@ What would pull from the frige next ? This 1 over here , `S-A : f = 4` . So we p
 
 Now we pulled this one from the fringe , we pull something from the fringe that achieves the goal at this point we want to declare success and we did indeed find the optimal path to the goal. 
 
- - 
+ - Is A* Optimal?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_wrong_example.png)
+
+```
+    S : f=7
+=>  S-A : f=7
+    S-G : f=5 
+```
+
+We pull `S-G` from fringe , but it is not optimal !
+
+ - What went wrong?
+ 	- h value 6 here is too high. 
+ 	- 6 is much higher than 3. In fact anytime it's higher than the real cost you can have this problem.
+ - Actual bad goal cost < estimated good goal cost (h)
+ - We need estimates to be less than actual costs!
+
+
+<h2 id="bf8f38651446764fc008980354ad6746"></h2>
+### Admissible Heuristics
+
+ - Inadmissible (pessimistic) heuristics break optimality by trapping good plans on the fringe
+ - Admissible (optimistic) heuristics slow down bad plans but never outweigh true costs
+
+ - A heuristic *h* is **admissible** (optimistic) if:
+ 	- 0 <= h(n) <= h\*(n)
+ 	- where h\*(n) is the true cost to a nearest goal
+ - Coming up with admissible heuristics is most of what’s involved in using A\* in practice
+
+
+<h2 id="3073e988edee383f5983f6a7fc2212a2"></h2>
+### Optimality of A* Tree Search
 
 
 
+ - Assume:
+	- A is an optimal goal node
+	- B is a suboptimal goal node
+	- h is admissible
+ - Claim:
+	- A will exit the fringe before B
 
 
 ---
 
-h value 6 here is too high. 6 is much higher than 3. In fact anytime it's higher than the real cost you can have this problem.
 
 you lose you optimality guarantee , but your A star starts to look a little more like greedy , mean that you might not find out the path to goal but you might find a path to goal more quickly. 
 
