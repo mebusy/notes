@@ -665,10 +665,22 @@ We pull `S-G` from fringe , but it is not optimal !
 
 **Proof:**
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_optimality_of_Astar_proof.png)
+
  - Imagine B is on the fringe
  - Some ancestor n of A is on the fringe, too (maybe A!)
  - Claim: n will be expanded before B
-	1. f(n) is less or equal to f(A)
+	1. f(n) <= f(A)
+	2. f(A) <= f(B)
+		- g(A) < g(B) , B is suboptimal
+		- f(A) < f(B) , h = 0 at a goal.
+	3. n expands before B
+		- f(n) <= f(A) <= f(B)
+ - All ancestors of A expand before B
+ - A expands before B
+ - A\* search is optimal
+
+
 
 
 ---
