@@ -653,7 +653,7 @@ We pull `S-G` from fringe , but it is not optimal !
 <h2 id="3073e988edee383f5983f6a7fc2212a2"></h2>
 ### Optimality of A* Tree Search
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_optimality_of_Astar.png)
 
  - Assume:
 	- A is an optimal goal node
@@ -661,6 +661,14 @@ We pull `S-G` from fringe , but it is not optimal !
 	- h is admissible
  - Claim:
 	- A will exit the fringe before B
+
+
+**Proof:**
+
+ - Imagine B is on the fringe
+ - Some ancestor n of A is on the fringe, too (maybe A!)
+ - Claim: n will be expanded before B
+	1. f(n) is less or equal to f(A)
 
 
 ---
