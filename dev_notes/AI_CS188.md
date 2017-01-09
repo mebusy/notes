@@ -681,6 +681,10 @@ We pull `S-G` from fringe , but it is not optimal !
  - A\* search is optimal
 
 
+### Properties of A*
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_property.png)
+
 
 
 ---
