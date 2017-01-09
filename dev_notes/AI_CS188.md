@@ -540,13 +540,50 @@ h(x) = the number of the largest pancake that is still out of place
 
 ### Combining UCS and Greedy
 
- - Uniform-cost orders by path cost, or backward cost  g(n)
+ - Uniform-cost orders by path cost, or backward cost  g(n) 
+ 	- g 是累加的实际cost
  - Greedy orders by goal proximity, or forward cost  h(n)
+ 	- h 是 该节点的预测值
  - A\* Search orders by the sum: f(n) = g(n) + h(n)
+ 	- for node X  : f = (exact cost from S to X) + h(X) 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_graph.png)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_tree.png)
+
+ - UCS
+ 	- S -> a -> {b,d,e}
+ 	- S -> a -> b -> c -> {d,e}
+ 	- S -> a -> b -> c -> d -> G , {e}
+ - Greedy
+ 	- S -> a -> {b,d,e}
+ 	- S -> a -> e -> d -> G , {b,d}
+
+
+### When should A* terminate?
+
+ - Should we stop when we enqueue a goal?
+ - **No: only stop when we dequeue a goal**
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_when_terminate.png)
+
+```
+    S : f = h + g = 3 + 0 = 3
+=>  S-A : f = h + g = 2 + 2 = 4
+    S-B : f = 2 + 1 = 3
+=>  S-A : f = h + g = 2 + 2 = 4
+    S-B-G : f= 2 + 3 = 5
+```
+
+At this point , we put something onto the fringe that reaches the goal . If we declare success now because we found a path to the goal we did not find the optimal path to goal. The claim success right now is too soon and you know from the tree-search pseudocode it is too soon. 
+
+We need to wait be patient. We need to wait till we pull it from the French. 
+
+What would pull from the frige next ? This 1 over here , `S-A : f = 4` . So we pull this one from the fringe , we get ``S-A-G` = 4` on our fringe. 
+
+Now we pulled this one from the fringe , we pull something from the fringe that achieves the goal at this point we want to declare success and we did indeed find the optimal path to the goal. 
+
+ - 
 
 
 
