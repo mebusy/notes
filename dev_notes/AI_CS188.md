@@ -781,6 +781,21 @@ Average nodes expanded when the optimal path has…
 
 ### Trivial Heuristics, Dominance
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_semi_heuristic.png)
+
+ - Dominance: ha ≥ hc if
+ 	- ∀n : ha(n) >= hc(n)
+ - Heuristics form a semi-lattice:
+ 	- Max of admissible heuristics is admissible
+ 	- h(n) = max( ha(n) , hb(n) )
+ 	- ha, hb 有大有小，很难比较, 可以通过去最大值 合成一个 Heuristics
+
+
+## Graph Search
+
+ - Tree Search: Extra Work! 
+ - Failure to detect repeated states can cause exponentially more work.  
+
 
 
 
