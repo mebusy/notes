@@ -686,11 +686,45 @@ We pull `S-G` from fringe , but it is not optimal !
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_property.png)
 
 
+## Comparison
+
+DFS:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_DFS.png)
+
+BFS:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_BFS.png)
+
+UCS:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_UCS.png)
+
+Greedy:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_gredy.png)
+
+A\* :
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_Astar.png)
+
+
+---
+
+## Creating Heuristics
+
+Creating Admissible Heuristics
+
+ - Most of the work in solving hard search problems optimally is in coming up with admissible heuristics
+ - Often, admissible heuristics are solutions to *relaxed problems*, where new actions are available
+ - Inadmissible heuristics are often useful too
+ 	- In the case you lose you optimality guarantee , but your A star starts to look a little more like greedy , mean that you might not find out the path to goal but you might find a path to goal more quickly. 
+
 
 ---
 
 
-you lose you optimality guarantee , but your A star starts to look a little more like greedy , mean that you might not find out the path to goal but you might find a path to goal more quickly. 
+
 
 
  - Whould it be admissible ?
