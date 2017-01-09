@@ -796,6 +796,18 @@ Average nodes expanded when the optimal path has…
  - Tree Search: Extra Work! 
  - Failure to detect repeated states can cause exponentially more work.  
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_repeate_work_tree_search.png)
+
+ - Idea: never **expand** a state twice
+ - How to implement: 
+ 	- Tree search + set of expanded states (“closed set”)
+ 	- Expand the search tree node-by-node, but…
+ 	- Before expanding a node, check to make sure its state has never been expanded before
+ 	- If not new, skip it, if new add to closed set
+ - Important: **store the closed set as a set**, not a list
+ - Can graph search wreck completeness?  Why/why not?
+ - How about optimality?
+
 
 
 
