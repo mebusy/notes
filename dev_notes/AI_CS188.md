@@ -721,18 +721,76 @@ Creating Admissible Heuristics
  	- In the case you lose you optimality guarantee , but your A star starts to look a little more like greedy , mean that you might not find out the path to goal but you might find a path to goal more quickly. 
 
 
+### Example: 8 Puzzle
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_8Puzzle.png)
+
+ - What are the states?
+ - How many states?
+ - What are the actions? 
+ 	- up to 4 directions moves to empty space 
+ - How many successors from the start state?
+ 	- 4
+ - What should the costs be?
+ 	- cost 1 per action take
+
+
+8 Puzzle I:
+
+ - Heuristic: Number of tiles misplaced
+ - Why is it admissible?
+ 	- every misplaced tile must move at least once , so that you can never do more moves than the number of tiles that currently misplaced. 
+ - h(start) = 8
+ - This is a relaxed-problem heuristic
+
+8 Puzzle II:
+
+ - What if we had an easier 8-puzzle where any tile could slide any direction at any time, ignoring other tiles?
+ 	- give a more accurate estimate of how many moves you still need to make before you can reach the goal.
+ - Total Manhattan distance
+ 	- 所有tile 独立自由移动到 目标位置所需的部数
+ - Why is it admissible?
+ - h(start) = 3 + 1 + 2 + … = 18
+
+
+Average nodes expanded when the optimal path has…
+
+ \ | 4 steps | 8 steps | 12 steps
+ --- | --- | ---
+ UCS | 112  | 6300 | 3.6 * 10⁶
+ TILES | 13 | 39 | 227 
+ MANHATTAN | 12 | 25 | 73
+
+
+8 Puzzle III:
+
+ - How about using the actual cost as a heuristic?
+	- Whould it be admissible ?
+		- Yes
+	- Would we save on nodes expanded ?
+		- Yes
+	- What's wroing with it ?
+		- it can be quit expensive
+
+
+ - With A\* :  a trade-off between quality of estimate and work per node
+	- As heuristics get closer to the true cost, you will expand fewer nodes but usually do more work per node to compute the heuristic itself
+
+
+## Semi-Lattice of Heuristics  半启发式
+
+### Trivial Heuristics, Dominance
+
+
+
+
 ---
 
 
 
 
 
- - Whould it be admissible ?
- 	- Yes
- - Would we save on nodes expanded ?
- 	- Yes
- - What's wroing with it ?
- 	- it can be quit expensive
+
 
 
 
