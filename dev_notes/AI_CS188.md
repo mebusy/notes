@@ -262,7 +262,7 @@ Goal test | is (x,y) == END | dots all flase
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_state_space_graph.png)
 
- - In a search graph, also each state occurs only once!
+ - In a search graph, each state also occurs only once!
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_graph.png)
 
