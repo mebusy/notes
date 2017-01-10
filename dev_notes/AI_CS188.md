@@ -46,6 +46,13 @@
 		 - [When should A* terminate?](#9fa7d37bafbf919eec2833224d5de03c)
 		 - [Admissible Heuristics](#bf8f38651446764fc008980354ad6746)
 		 - [Optimality of A* Tree Search](#3073e988edee383f5983f6a7fc2212a2)
+		 - [Properties of A*](#26e3cfa1ee4375a33dca3b380348e972)
+	 - [Comparison](#f6c0e3a1c3cfabd32ae8d3ae741fcf0a)
+	 - [Creating Heuristics](#042138393e72af1a16d8c31facd84ab1)
+		 - [Example: 8 Puzzle](#f8097ec9827afc9065c89741a344d53f)
+	 - [Semi-Lattice of Heuristics  半启发式](#7e9aa2fe208a956ac44d1ee31a5035d9)
+		 - [Trivial Heuristics, Dominance](#30887de01fbff37aef091345781445d5)
+	 - [Graph Search](#00ba899c02fa6651c15e5e948a7a4aac)
 
 ...menuend
 
@@ -681,11 +688,13 @@ We pull `S-G` from fringe , but it is not optimal !
  - A\* search is optimal
 
 
+<h2 id="26e3cfa1ee4375a33dca3b380348e972"></h2>
 ### Properties of A*
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_property.png)
 
 
+<h2 id="f6c0e3a1c3cfabd32ae8d3ae741fcf0a"></h2>
 ## Comparison
 
 DFS:
@@ -711,6 +720,7 @@ A\* :
 
 ---
 
+<h2 id="042138393e72af1a16d8c31facd84ab1"></h2>
 ## Creating Heuristics
 
 Creating Admissible Heuristics
@@ -721,6 +731,7 @@ Creating Admissible Heuristics
  	- In the case you lose you optimality guarantee , but your A star starts to look a little more like greedy , mean that you might not find out the path to goal but you might find a path to goal more quickly. 
 
 
+<h2 id="f8097ec9827afc9065c89741a344d53f"></h2>
 ### Example: 8 Puzzle
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_8Puzzle.png)
@@ -777,8 +788,10 @@ Average nodes expanded when the optimal path has…
 	- As heuristics get closer to the true cost, you will expand fewer nodes but usually do more work per node to compute the heuristic itself
 
 
+<h2 id="7e9aa2fe208a956ac44d1ee31a5035d9"></h2>
 ## Semi-Lattice of Heuristics  半启发式
 
+<h2 id="30887de01fbff37aef091345781445d5"></h2>
 ### Trivial Heuristics, Dominance
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_semi_heuristic.png)
@@ -791,6 +804,7 @@ Average nodes expanded when the optimal path has…
  	- ha, hb 有大有小，很难比较, 可以通过去最大值 合成一个 Heuristics
 
 
+<h2 id="00ba899c02fa6651c15e5e948a7a4aac"></h2>
 ## Graph Search
 
  - Tree Search: Extra Work! 

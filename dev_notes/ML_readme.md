@@ -45,6 +45,10 @@
  3. [流程控制/方法](https://github.com/mebusy/notes/blob/master/dev_notes/ML_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0_Octave_%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6_%E6%96%B9%E6%B3%95.md)     
 
 
+**CS188 A***
+
+ 1. [Search](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188.md)
+
 **Others**
 
  1. [MIT AI Fall 2010](https://github.com/mebusy/notes/blob/master/dev_notes/MIT_AI_Fall_2010.md) 
