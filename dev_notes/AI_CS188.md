@@ -891,7 +891,7 @@ Average nodes expanded when the optimal path has…
 
  - Sketch: consider what A* does with a consistent heuristic:
 	- Fact 1: In tree search, A* expands nodes in increasing total f value (f-contours)
-	- Fact 2: For every state s, nodes that reach s optimally are expanded before nodes that reach s suboptimally
+	- Fact 2: For every state s, nodes that reach ***s*** optimally are expanded before nodes that reach ***s*** suboptimally
 	- Result: A* graph search is optimal
 
 
