@@ -846,6 +846,8 @@ Average nodes expanded when the optimal path has…
 <h2 id="00ba899c02fa6651c15e5e948a7a4aac"></h2>
 ## Graph Search
 
+Admissible heuristic with tree search is optimal but graph search no guarantees.
+
  - Tree Search: Extra Work! 
  - Failure to detect repeated states can cause exponentially more work.  
 
@@ -990,4 +992,4 @@ end // func
 ---
 
 
-admissible heuristic with tree search is optimal but graph search no guarantees.
+
