@@ -857,6 +857,102 @@ Average nodes expanded when the optimal path has…
 	- Result: A* graph search is optimal
 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Optimality_Astar_GraphSearch.png)
+
+---
+
+### Optimality
+
+ - Tree search:
+	- A* is optimal if heuristic is admissible
+	- UCS is a special case (h = 0)
+ - Graph search:
+	- A* optimal if heuristic is consistent
+	- UCS optimal (h = 0 is consistent)
+ - Consistency implies admissibility
+ - In general, most natural admissible heuristics tend to be consistent, especially if from relaxed problems
+
+---
+
+## A*: Summary
+
+ - A* uses both backward costs and (estimates of) forward costs
+ - A* is optimal with admissible / consistent heuristics
+ - Heuristic design is key: often use relaxed problems
+
+### Tree Search Pseudo-Code
+
+```
+function TREE-SEARCH(problem,fringe) return a solution,or failure
+	fringe <- INSERT(MAKE-NODE(INITIAL-STATE[problem]),fringe)
+	loop do
+		if fringe is empty then 
+			return failure
+		end
+		node <- REMOVE-FRONT(fringe)
+		if GOAL-TEST(problem,STATE[node]) then
+			return node
+		end
+		for child-node in EXPAND(STATE[node],problem) do
+			fringe <- INSERT(child-node,fringe)
+		end
+	end
+end // func
+```
+
+### Graph Search Pseudo-Code
+
+```
+function GRAPH-SEARCH(problem,fringe) return a solution, or failure
+	closed <- an empty set
+	fringe <- INSERT(MAKE-NODE(INITIAL-STATE[problem]),fringe)
+	loop do
+		if fringe is empty then
+			return failure
+		end
+		node <- REMOVE-FRONT(fringe)
+		if GOAL-TEST(problem,STATE[node]) then 
+			return node
+		end
+		if STATE[node] is not in closed then
+			add STATE[node] to closed
+			for child-node in EXPAND(STATE[node],problem) do
+				fringe <- INSERT(child-node,fringe)
+			end
+		end
+	end
+end // func
+```
+
+### Optimality of A* Graph Search
+
+ - Consider what A* does:
+ 	- Expands nodes in increasing total f value (f-contours)
+ 	- Reminder: f(n) = g(n) + h(n) = cost to n + heuristic
+	- Proof idea: the optimal goal(s) have the lowest f value, so it must get expanded first
+ - Proof:
+	- New possible problem: some n on path to G* isn’t in queue when we need it, because some worse n’ for the same state dequeued and expanded first (disaster!)
+	- Take the highest such n in tree
+	- Let p be the ancestor of n that was on the queue when n’ was popped
+	- f(p) < f(n) because of consistency
+	- f(n) < f(n’) because n’ is suboptimal
+	- p would have been expanded before n’
+	- Contradiction!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ---
 
 
