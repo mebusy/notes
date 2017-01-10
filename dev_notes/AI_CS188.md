@@ -659,7 +659,7 @@ h(x) = the number of the largest pancake that is still out of place
 
 At this point , we put something onto the fringe that reaches the goal . If we declare success now because we found a path to the goal we did not find the optimal path to goal. The claim success right now is too soon and you know from the tree-search pseudocode it is too soon. 
 
-We need to wait be patient. We need to wait till we pull it from the French. 
+We need to wait. Be patient. We need to wait till we pull it from the French. 
 
 What would pull from the frige next ? This 1 over here , `S-A : f = 4` . So we pull this one from the fringe , we get ``S-A-G` = 4` on our fringe. 
 
@@ -806,7 +806,7 @@ Creating Admissible Heuristics
 Average nodes expanded when the optimal path has…
 
  \ | 4 steps | 8 steps | 12 steps
- --- | --- | ---
+ --- | --- | --- | --- 
  UCS | 112  | 6300 | 3.6 * 10⁶
  TILES | 13 | 39 | 227 
  MANHATTAN | 12 | 25 | 73
