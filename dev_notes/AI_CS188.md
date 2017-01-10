@@ -939,30 +939,12 @@ end // func
 	- p would have been expanded before n’
 	- Contradiction!
 
-
-
-
-
-
-
-
-
-
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_optimality_AStar.png)
 
 
 
 
 ---
-
-
-
-
-
-
-
-
-
 
 
 admissible heuristic with tree search is optimal but graph search no guarantees.
