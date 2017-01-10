@@ -829,8 +829,20 @@ Average nodes expanded when the optimal path has…
 
 ### A* Graph Search Gone Wrong?
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_go_wrong.png)
 
+### Consistency of Heuristics
 
+ - Main idea: 
+ 	- estimated heuristic costs ≤ actual costs
+ 	- Admissibility: heuristic cost ≤ actual cost to goal
+		- h(A) ≤ actual cost from A to G
+	- Consistency: heuristic “arc” cost ≤ actual cost for each arc
+		- h(A) – h(C) ≤ cost(A to C)
+ - Consequences of consistency:
+	- The f value along a path never decreases
+		- h(A) ≤ cost(A to C) + h(C)
+	- A* graph search is optimal
 
 ---
 
