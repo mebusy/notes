@@ -33,6 +33,7 @@
 			 - [Uniform Cost Search](#1bd1e9029adb17c5893239e7288210a9)
 			 - [Uniform Cost Search (UCS) Properties](#8fcce2120d7405462b72fce3bf1fcaaa)
 		 - [DFS vs BFS vs UCS](#46ea5fe25e20e5c9f2466692baeb1848)
+	 - [Graph Search VS Tree Search](#f2ef45f33145362c2a215128cc677ccc)
 	 - [Search and Models](#7f1afff8243e3009eb892111dcc4413f)
 	 - [Some Hints for P1](#b04314d7dafd45796af0bf245e3ae8e8)
  - [Informed Search](#29990be19ae238ca1071a838229e85f3)
@@ -53,6 +54,14 @@
 	 - [Semi-Lattice of Heuristics  半启发式](#7e9aa2fe208a956ac44d1ee31a5035d9)
 		 - [Trivial Heuristics, Dominance](#30887de01fbff37aef091345781445d5)
 	 - [Graph Search](#00ba899c02fa6651c15e5e948a7a4aac)
+		 - [A* Graph Search Gone Wrong?](#9afaf22785328c0bf6267acf13add5da)
+		 - [Consistency of Heuristics](#cb964f845fc822953ddb83ca6d124e6b)
+		 - [Optimality of A* Graph Search](#ea9a7016fa68c3fd6434c9c0fb4afa3d)
+		 - [Optimality](#c1e81f3c2f720c3a2e3a765ba6a11d59)
+	 - [A*: Summary](#e418daaa73025a84fd16637fbf3b2d0d)
+		 - [Tree Search Pseudo-Code](#b9ab5ba1566688494ce5474bb592f8c4)
+		 - [Graph Search Pseudo-Code](#1388b32869f8288febeb18f8ec802b42)
+		 - [Optimality of A* Graph Search](#ea9a7016fa68c3fd6434c9c0fb4afa3d)
 
 ...menuend
 
@@ -485,7 +494,33 @@ Time | O(bᵐ) |  O(bˢ)  |  O(b<sup>C\*/ε</sup>)
 Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
 
 
+---
 
+<h2 id="f2ef45f33145362c2a215128cc677ccc"></h2>
+## Graph Search VS Tree Search
+
+ - 树是图，图不一定是树，树是图的子集
+ - 树有一个根节点，图没有
+ - 树可以递归遍历，图要看情况
+ - 树有层次划分，图没有
+ - 树的非根节点必定有一个父节点，图不一定
+ - 树是一种“层次”关系，图是“网络”关系
+
+--- 
+
+ - In **Graph Search** you hold a list of explored nodes, while in **Tree Search** you don't!
+ - when you have **undirected cycled** graph,these two searches produce different outputs because in Graph Search you know which node has been explored(visited) and then you don't expand it, but in Tree Search you don't know and you expand it again.
+ 	- but this doesn't mean Tree Search is dumb because it doesn't hold such list. sometimes for example in games you have repeated states and you have to explore them again.
+
+---
+
+ - In simple words, tree does not contain cycles and where as graph can. So when we do search, we should avoid cycles in graphs so that we don't get into infinite loops.
+ - Another aspect is tree will typically have some kind of topological sorting or  a property like binary search tree which makes search so fast and easy compared to graphs.
+ 
+---
+
+ - In a tree you usually have some property that tells you something about the subtrees. For instance in a binary search tree, the nodes in the left subtree have smaller keys than the root and the nodes in the right subtree have bigger keys compared to the root. Because of that info, you can know in which subtree the thing you are searching can be.
+ - In graphs you have some network of nodes that are connected in some way (there can be back edges that form a cycle, edges can be bidirectional , ...) where the edges have some weight (usually 1 or greater). In a graph you don't have any property that would tell you in which direction you should search, that's why you don't see the logarithm complexity. The structure itself is a bit more general and gives you less information about where things are.
 
 
 <h2 id="7f1afff8243e3009eb892111dcc4413f"></h2>
@@ -827,10 +862,12 @@ Average nodes expanded when the optimal path has…
  - How about optimality?
 
 
+<h2 id="9afaf22785328c0bf6267acf13add5da"></h2>
 ### A* Graph Search Gone Wrong?
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_go_wrong.png)
 
+<h2 id="cb964f845fc822953ddb83ca6d124e6b"></h2>
 ### Consistency of Heuristics
 
  - Main idea: 
@@ -849,6 +886,7 @@ Average nodes expanded when the optimal path has…
 
 ---
 
+<h2 id="ea9a7016fa68c3fd6434c9c0fb4afa3d"></h2>
 ### Optimality of A* Graph Search
 
  - Sketch: consider what A* does with a consistent heuristic:
@@ -861,6 +899,7 @@ Average nodes expanded when the optimal path has…
 
 ---
 
+<h2 id="c1e81f3c2f720c3a2e3a765ba6a11d59"></h2>
 ### Optimality
 
  - Tree search:
@@ -874,12 +913,14 @@ Average nodes expanded when the optimal path has…
 
 ---
 
+<h2 id="e418daaa73025a84fd16637fbf3b2d0d"></h2>
 ## A*: Summary
 
  - A* uses both backward costs and (estimates of) forward costs
  - A* is optimal with admissible / consistent heuristics
  - Heuristic design is key: often use relaxed problems
 
+<h2 id="b9ab5ba1566688494ce5474bb592f8c4"></h2>
 ### Tree Search Pseudo-Code
 
 ```
@@ -900,6 +941,7 @@ function TREE-SEARCH(problem,fringe) return a solution,or failure
 end // func
 ```
 
+<h2 id="1388b32869f8288febeb18f8ec802b42"></h2>
 ### Graph Search Pseudo-Code
 
 ```
@@ -924,6 +966,7 @@ function GRAPH-SEARCH(problem,fringe) return a solution, or failure
 end // func
 ```
 
+<h2 id="ea9a7016fa68c3fd6434c9c0fb4afa3d"></h2>
 ### Optimality of A* Graph Search
 
  - Consider what A* does:
