@@ -47,7 +47,7 @@
 
 **CS188 A***
 
- 1. [Search](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188.md)
+ 1. [1~3 Search](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188.md)
 
 **Others**
 
