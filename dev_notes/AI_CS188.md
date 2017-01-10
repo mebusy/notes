@@ -61,9 +61,13 @@
 <h2 id="aea7deb258843dff16f9b84b46ec1461"></h2>
 # AI , CS 188
 
-http://ai.berkeley.edu/lecture_slides.html
+http://inst.eecs.berkeley.edu/~cs188/pacman/home.html
 
-https://edge.edx.org/courses/BerkeleyX/CS188x-8/Artificial_Intelligence/info
+edx , 登陆后作业
+
+https://edge.edx.org
+
+https://courses.edx.org/courses/course-v1:ColumbiaX+CSMM.101x+1T2017/info
 
 
 <h2 id="0b79795d3efc95b9976c7c5b933afce2"></h2>
@@ -821,6 +825,9 @@ Average nodes expanded when the optimal path has…
  - Important: **store the closed set as a set**, not a list
  - Can graph search wreck completeness?  Why/why not?
  - How about optimality?
+
+
+### A* Graph Search Gone Wrong?
 
 
 
