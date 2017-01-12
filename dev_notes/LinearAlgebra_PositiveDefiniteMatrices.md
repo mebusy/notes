@@ -58,14 +58,32 @@ These second derivatives 4, 4, 2 contain the answer. Since they are the same for
 
 If the stationary point of F is at x = α, y = β, the only change would be to use the second derivatives at α, β:  
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_minima_quad_part_of_F.png)
 
 This f(x, y) behaves near (0, 0) in the same way that F(x, y) behaves near (α, β).
 
 
-The third derivatives are drawn into the problem when the second derivatives fail to give a definite decision. That happens when the quadratic part is singular. For a true
- 
+The third derivatives are drawn into the problem when the second derivatives fail to give a definite decision. That happens when the quadratic part is singular. For a true minimum, f is allowed to vanish only at x = y = 0. When f(x, y) is strictly positive at all other points (the bowl goes up), it is called ***positive definite***.
 
+### Definite versus Indefinite: Bowl versus Saddle  (TODO)
+
+TODO
+
+### Higher Dimensions: Linear Algebra
+
+Calculus would be enough to find our conditions F<sub>xx</sub> > 0 and F<sub>xx</sub>F<sub>yy</sub> > F<sub>xy</sub>² for a minimum. But linear algebra is ready to do more, because the second derivatives fit into a symmetric matrix A. The terms ax² and cy² appear *on the diagonal*. The cross derivative 2bxy is split between the same entry b above and below.  A quadratic f(x, y) comes directly from a symmetric 2 by 2 matrix! 
+
+```
+xᵀAx in R² :  
+
+ax² + 2bxy + cy² = [x y]⎡a b⎤⎡x⎤.    (4)
+                        ⎣b c⎦⎣y⎦
+```
+
+This identity (please multiply it out) is the key to the whole chapter.  It generalizes immediately to n dimensions, and it is a perfect shorthand for studying maxima and minima. When the variables are x₁, ... , xn, they go into a column vector x. ***For any symmetric matrix A, the product xᵀAx is a pure quadratic form f(x₁, ... , xn) = a₁₁x₁² + 2a₁₂x₁x₂ + ... + a<sub>nn</sub>x<sub>n</sub>²*** . 
+
+
+There are no higher-order terms or lower-order terms-only second-order. The function is zero at x = (0, ... , 0), and its first derivatives are zero. The tangent is flat; this is a stationary point. We have to decide if x = 0 is a minimum or a maximum or a saddle point of the function f = xᵀAx.
 
 
 
