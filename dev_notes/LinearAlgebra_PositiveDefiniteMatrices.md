@@ -35,6 +35,14 @@ f(x,y) = 2x² + 4xy + y²
 
 Does either F(x, y) or f(x, y) have a minimum at the point x = y = 0 ?
 
-***Remark I*** The ***zero-order*** terms F(0, 0) = 7 and f(0, 0) = 0 have no effect on the answer. They simply raise or lower the graphs of F and f .
+***Remark 1*** The ***zero-order*** terms F(0, 0) = 7 and f(0, 0) = 0 have no effect on the answer. They simply raise or lower the graphs of F and f .
 
 ***Remark 2*** The ***linear terms*** give a necessary condition: To have any chance of a minimum, the first derivatives must vanish at x = y = 0:
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_minima_example.png)
+
+Thus (x,y) = (0,0) is a stationary point for both functions.  The surface z = F(x,y) is tangent to the horizontal plane z = 7 , and the surface z = f(x,y) is tangent to the plane z = 0.  The question is whether the graphs *go above those planes or not*, as we move away from the tangency point x = y = 0.
+
+***Remark 3*** The second derivatives at (0, 0) are decisive:
+
