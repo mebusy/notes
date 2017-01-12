@@ -46,3 +46,18 @@ Thus (x,y) = (0,0) is a stationary point for both functions.  The surface z = F(
 
 ***Remark 3*** The second derivatives at (0, 0) are decisive:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_minima_remark3.png)
+
+These second derivatives 4, 4, 2 contain the answer. Since they are the same for F and f, they must contain the same answer. The two functions behave in exactly the same way near the origin. ***F has a minimum if and only if f has a minimum***. I am going to show that those functions don't!
+
+***Remark 4*** The *higher-degree terms* in F have no effect on the question of a local minimum, but they can prevent it from being a global minimum. In our example the term -x³ must sooner or later pull F toward -∞. For f(x, y), with no higher terms, all the action is at (0, 0).
+
+*Every quadratic form f = ax² + 2bxy + cy² has a stationary point at the origin, where ∂f/∂x = ∂f/∂y = 0.*  A local minimum would also be a global minimum. The surface z = f (x, y) will then be shaped like a bowl, resting on the origin (Figure 6.1).
+
+
+
+
+
+
+
+
