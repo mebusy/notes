@@ -869,6 +869,10 @@ Admissible heuristic with tree search is optimal but graph search no guarantees.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_go_wrong.png)
 
+SAC can not expand because C is in closed set.
+
+
+
 <h2 id="cb964f845fc822953ddb83ca6d124e6b"></h2>
 ### Consistency of Heuristics
 
@@ -885,6 +889,8 @@ Admissible heuristic with tree search is optimal but graph search no guarantees.
 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ConsistencyofHeuristics.png)
+
+PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitive-Closed-Set 来解决，见最后代码. 但是会导致计算量增加。
 
 ---
 
@@ -946,14 +952,22 @@ end // func
 <h2 id="1388b32869f8288febeb18f8ec802b42"></h2>
 ### Graph Search Pseudo-Code
 
+ - even if a node is ***added*** to the fringe multiple times it will not be ***expanded*** more than once
+
 ```
 function GRAPH-SEARCH(problem,fringe) return a solution, or failure
 	closed <- an empty set
+	// pop into fringe 
+	// 可以 添加重复node
+	// 实际上，这些重复的node g 值很可能是不同的
 	fringe <- INSERT(MAKE-NODE(INITIAL-STATE[problem]),fringe)
 	loop do
 		if fringe is empty then
 			return failure
 		end
+
+		// pull from fringe
+		// 只有在 这个时候 检查 closed,
 		node <- REMOVE-FRONT(fringe)
 		if GOAL-TEST(problem,STATE[node]) then 
 			return node
@@ -967,6 +981,63 @@ function GRAPH-SEARCH(problem,fringe) return a solution, or failure
 	end
 end // func
 ```
+
+**Memory Efficient Graph Search**
+
+如果在 pop onto fringe 过程中，发现 node 已经在 fringe中存在, 比较这两个node , 如果
+
+ - new node cost < node in fringe cost ,  replace the old 1
+ - new node cost >= node in fringe cost , ignore it
+
+
+算法唯一区别是 INSERT 方法
+
+
+```
+function SPECIAL-INSERT(node, fringe, closed) return fringe
+	// by pass node already in closed
+	if STATE[node] not in closed set then
+		if STATE[node] is not in STATE[fringe] then
+			// same 
+			fringe <- INSERT(node,fringe)
+		else if STATE[node] cost < STATE[node] cost in fringe then
+			// Memory Efficient 
+			fringe <- REPLACE(node,fringe)
+		end
+	end
+end // func
+```
+
+By doing this the fringe needs less memory, however insertion becomes more computationally expensive.
+
+**A\*-graph-search-with-Cost-Sensitive-Closed-Set**
+
+使用这个算法，仅保证 admissible , 就可以得到最优解, 但是同一个 node 可能会多次 expand, 计算量可能会近似 tree search
+
+```
+function GRAPH-SEARCH(problem,fringe) return a solution, or failure
+	closed <- an empty dictionary  // 1
+	fringe <- INSERT(MAKE-NODE(INITIAL-STATE[problem]),fringe)
+	loop do
+		if fringe is empty then
+			return failure
+		end
+		node <- REMOVE-FRONT(fringe)
+		if GOAL-TEST(problem,STATE[node]) then 
+			return node
+		end
+		if STATE[node] is not in closed  
+			or COST[node] < closed[STATE[node]]   // 2
+		then
+			closed[STATE[node]] <- COST[node]  // 3
+			for child-node in EXPAND(STATE[node],problem) do
+				fringe <- INSERT(child-node,fringe)
+			end
+		end
+	end
+end // func
+```
+
 
 <h2 id="ea9a7016fa68c3fd6434c9c0fb4afa3d"></h2>
 ### Optimality of A* Graph Search
