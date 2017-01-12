@@ -100,4 +100,33 @@ A = ⎡2 2⎤  -> saddle point.
     ⎣2 1⎦
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_2x2_4xy_y2.png)
+
+> f = 2x² + 4xy + y²
+
+**Example 5**
+
+```
+f = 2x₁² - 2x₁x₂ + 2x₂² - 2x₂x₃ + 2x₃² 
+
+    ⎡ 2 -1  0⎤
+A = ⎢-1  2 -1⎥
+    ⎣ 0 -1  2⎦
+```
+
+minimum at (0, 0, 0).
+
+---
+
+Any function F(x₁, ... , xn) is approached in the same way. At a stationary point all first derivatives are zero.  A is the **"second-derivative matrix"** with entries **aᵢⱼ = ∂²F / ∂xᵢ∂xⱼ**. This automatically equals **aⱼᵢ = ∂²F / ∂xⱼ∂xᵢ** , so A is symmetric.  ***Then F has a minimum when the pure quadratic xᵀAx is positive definite.***
+
+
+
+
+
+
+
+
+
+
 
