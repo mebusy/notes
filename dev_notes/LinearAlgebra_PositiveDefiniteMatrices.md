@@ -54,8 +54,17 @@ These second derivatives 4, 4, 2 contain the answer. Since they are the same for
 
 *Every quadratic form f = ax² + 2bxy + cy² has a stationary point at the origin, where ∂f/∂x = ∂f/∂y = 0.*  A local minimum would also be a global minimum. The surface z = f (x, y) will then be shaped like a bowl, resting on the origin (Figure 6.1).
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F6.1.png)
+
+If the stationary point of F is at x = α, y = β, the only change would be to use the second derivatives at α, β:  
 
 
+
+This f(x, y) behaves near (0, 0) in the same way that F(x, y) behaves near (α, β).
+
+
+The third derivatives are drawn into the problem when the second derivatives fail to give a definite decision. That happens when the quadratic part is singular. For a true
+ 
 
 
 
