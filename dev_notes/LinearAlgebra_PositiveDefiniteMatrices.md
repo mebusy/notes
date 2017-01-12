@@ -56,6 +56,10 @@ These second derivatives 4, 4, 2 contain the answer. Since they are the same for
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F6.1.png)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_graph_x2_2xy_y2.png)
+
+> function graph of f = x² + 2xy + y²
+
 If the stationary point of F is at x = α, y = β, the only change would be to use the second derivatives at α, β:  
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_minima_quad_part_of_F.png)
@@ -85,6 +89,15 @@ This identity (please multiply it out) is the key to the whole chapter.  It gene
 
 There are no higher-order terms or lower-order terms-only second-order. The function is zero at x = (0, ... , 0), and its first derivatives are zero. The tangent is flat; this is a stationary point. We have to decide if x = 0 is a minimum or a maximum or a saddle point of the function f = xᵀAx.
 
+---
 
+**Example 3** 
+
+```
+f = 2x² + 4xy + y² and 
+
+A = ⎡2 2⎤  -> saddle point.
+    ⎣2 1⎦
+```
 
 
