@@ -215,4 +215,11 @@ Thus A<sub>k</sub> is positive definite. Its eigenvalues (not the same λᵢ!) m
 
 I want to split xᵀAx into xᵀLDLᵀx:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_positive_definite_LDLT_2.png)
+
+So xᵀAx is a sum of squares with the pivots 2, 3/2, and 4/3 as coefficients:
+
+
+
+
 
