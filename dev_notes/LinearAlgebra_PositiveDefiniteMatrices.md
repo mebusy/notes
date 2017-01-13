@@ -201,5 +201,16 @@ If every λᵢ > 0, then equation (2) shows that xᵀAx > 0.  Thus condition 2 i
 
 *If condition 1 holds, so does condition 3*: The determinant of A is the product of the eigenvalues. And if condition 1 holds, we already know that these eigenvalues are positive. But we also have to deal with every upper left submatrix A<sub>k</sub>. The trick is to look at all nonzero vectors whose last n - k components are zero: 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_atAx_n-k_components.png)
+
+Thus A<sub>k</sub> is positive definite. Its eigenvalues (not the same λᵢ!) must be positive. Its determinant is their product, so all upper left determinants are positive.
+
+*If condition 3 holds, so does condition 4* :  According to Section 4.4, the kth pivot d<sub>k</sub> is the ratio of det(A<sub>k</sub>) to det(A<sub>k-1</sub>). If the determinants are all positive, so are the pivots.
+
+*If condition 4 holds, so does condition 1* : We are given positive pivots, and must deduce that xᵀAx > 0. This is what we did in the 2 by 2 case, by completing the square. The pivots were the numbers outside the squares. To see how that happens for symmetric matrices of any size, we go back to *elimination on a symmetric matrix* : A = LDLᵀ .
+
+**Example 1** : 
+
+
 
 
