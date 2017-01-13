@@ -16,7 +16,7 @@
 <h2 id="105dbfd27d203f637ce0d3c08eb78878"></h2>
 ## 准备文件
 
- 1. 开发者证书导出 .p12 文件, 比如 `PushChatKey.p12`
+ 1. (ios push services )开发者证书导出 .p12 文件, 比如 `PushChatKey.p12`
  2. Apple ID 配置 开启 push notification 功能后， 并下载证书 `aps_development.cer`
 
 <h2 id="8cdf041fee866eecab95555346b07394"></h2>
