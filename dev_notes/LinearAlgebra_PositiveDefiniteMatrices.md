@@ -209,8 +209,10 @@ Thus A<sub>k</sub> is positive definite. Its eigenvalues (not the same λᵢ!) m
 
 *If condition 4 holds, so does condition 1* : We are given positive pivots, and must deduce that xᵀAx > 0. This is what we did in the 2 by 2 case, by completing the square. The pivots were the numbers outside the squares. To see how that happens for symmetric matrices of any size, we go back to *elimination on a symmetric matrix* : A = LDLᵀ .
 
-**Example 1** : 
+**Example 1** : Positive pivots 2, 3/2 , 4/3 :
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_positive_definite_LDLT.png)
 
+I want to split xᵀAx into xᵀLDLᵀx:
 
 
