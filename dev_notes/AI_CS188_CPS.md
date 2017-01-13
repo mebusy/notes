@@ -11,12 +11,42 @@
 
 CPS
 
- - a single agent
- - deterministic actions
- - fully observed state
- 	- you KNOW the configuration that you start in
- 	- and then you plan about exactly how the world will evolve
- - discrete state space
+
+## What is Search For?
+
+ - Assumptions about the world:  
+ 	- a single agent
+ 	- deterministic actions
+ 	- fully observed state
+ 		- you KNOW the configuration that you start in
+ 		- and then you plan about exactly how the world will evolve
+ 	- discrete state space
+
+ - Planning: sequences of actions
+ 	- The path to the goal is the important thing
+ 	- Paths have various costs, depths
+ 	- Heuristics give problem-specific guidance
+
+ - Identification: assignments to variables
+ 	- The goal itself is important, not the path
+ 	- All paths at the same depth (for some formulations)
+ 	- CSPs are specialized for identification problems
+
+## Constraint Satisfaction Problems
+
+ - Standard search problems:
+ 	- State is a “black box”: arbitrary data structure
+ 	- Goal test can be any function over states
+ 	- Successor function can also be anything
+ - Constraint satisfaction problems (CSPs):
+ 	- A special subset of search problems
+ 	- State is defined by ***variables Xᵢ***  with values from a ***domain D** (sometimes D depends on i)
+ 	- Goal test is a ***set of constraints*** specifying allowable combinations of values for subsets of variables
+ - Allows useful general-purpose algorithms with more power than standard search algorithms
+
+## CSP Example: Map Coloring
+
+
 
 
 
