@@ -16,22 +16,21 @@
 <h2 id="105dbfd27d203f637ce0d3c08eb78878"></h2>
 ## 准备文件
 
- 1. ***开发者证书***导出 .p12 文件, 比如 `PushChatKey.p12`
- 	- PS: 不是 push services 证书
- 2. Apple ID 配置 开启 push notification 功能后， 并下载证书 `aps_development.cer`
+做苹果推送服务器，很重要的一步，就是生成与苹果APNS连接的证书，一般是.pem文件；
 
-<h2 id="8cdf041fee866eecab95555346b07394"></h2>
-## 制作
+ 1. 首先在苹果开发者中心 生成 aps_devlopment.cer文件；然后下载；双击导入钥匙串；
+ 2. 打开钥匙串 -选择登录--证书--找到 Apple Development iOS Push Server证书右键导出--生成apns_dev_cert.p12文件 不要设置密码
+ 3. 然后 选择 密钥 -- 找到 User下面的--Apple Development iOS Push Server密钥---右键---生成 apns_dev_key.p12文件 不要设置密码
+ 3. 打开终端，把上面的p12文件生成 .pem文件
+	- openssl pkcs12 -clcerts -nokeys -out apns-dev-cert.pem -in apns_dev_cert.p12  生成apns-dev-cert.pem
+	- openssl pkcs12 -nocerts -out apns-dev-key.pem -in apns_dev_key.p12   生成apns-dev-key.pem 
+		- 这个要输入密码，记住输入的密码；
+	- openssl rsa -in apns-dev-key.pem -out apns-dev-key-noenc.pem  生成 apns-dev-key-noenc.pem 
+		- 因为上面的 apns-dev-key.pem有密码，这一步生成的就是把密码取消的文件；
+	- cat apns-dev-cert.pem apns-dev-key-noenc.pem > apns-dev.pem 
+		- 合并 apns-dev-cert.pem apns-dev-key-nonec.pem 把这两个文件合成 apns-dev-cert.pem ;
 
- - 转换证书 .cer 文件到 .pem 文件格式：
- 	- `openssl x509 -in aps_developer_identity.cer -inform der -out PushChatCert.pem`
- - 转换私钥 .p12 文件 到 .pem 文件格式:
- 	- 如果需要设置密码:
- 		- `openssl pkcs12 -nocerts -out PushChatKey.pem -in PushChatKey.p12`
- 	- 如果不想设置密码: 
-		- `$openssl pkcs12 -in key.p12 -out key.pem  -nodes`
- - 最后，如果需要，我们把这两个文件合并成一个 .pem 文件：	
- 	- `cat PushChatCert.pem PushChatKey.pem > ck.pem`
+最后在服务器端使用apns-dev-cert.pem就可以了；
 
 
 <h2 id="81f55b42ec661d67d432330fd47cd07c"></h2>
@@ -49,8 +48,7 @@ Escape character is '^]'.
  - 试一试用私钥和证书进行SSL加密连接：
 
 ```
-openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert PushChatCert.pem -key PushChatKey.pem
-Enter pass phrase for PushChatKey.pem:
+openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert apns-dev-cert.pem -key apns-dev-key-noenc.pem 
 ```
 
 <h2 id="0c64cd168e7b43ebccec68a62f1d85e7"></h2>
