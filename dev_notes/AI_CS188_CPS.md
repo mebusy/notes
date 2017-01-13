@@ -1,4 +1,12 @@
+...menustart
 
+ - [Constraint Satisfaction Problems I](#8c8072703357c878142be0f423e13a69)
+
+...menuend
+
+
+
+<h2 id="8c8072703357c878142be0f423e13a69"></h2>
 # Constraint Satisfaction Problems I
 
 CPS

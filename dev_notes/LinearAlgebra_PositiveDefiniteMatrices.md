@@ -2,6 +2,10 @@
 
  - [6 Positive Definite Matrices](#c4ac5577c068be490d5dc0e124314e32)
 	 - [6.1 MINIMA , MAXIMA , AND SADDLE POINTS](#b7b91c67e89390f8298af104c60585f7)
+		 - [Definite versus Indefinite: Bowl versus Saddle  (TODO)](#e0e36c552eecb66daf84e448cf5ed7e8)
+		 - [Higher Dimensions: Linear Algebra](#e59a80ec6d81dedf197cebeea3a20a00)
+	 - [6.2 TESTS FOR POSITIVE DEFINITENESS](#76c7d53a0682ab1c09ff64d5d3549d0f)
+		 - [Positive Definite Matrices and Least Squares](#01201db7b9090769e9708a314cf02459)
 
 ...menuend
 
@@ -69,10 +73,12 @@ This f(x, y) behaves near (0, 0) in the same way that F(x, y) behaves near (α, 
 
 The third derivatives are drawn into the problem when the second derivatives fail to give a definite decision. That happens when the quadratic part is singular. For a true minimum, f is allowed to vanish only at x = y = 0. When f(x, y) is strictly positive at all other points (the bowl goes up), it is called ***positive definite***.
 
+<h2 id="e0e36c552eecb66daf84e448cf5ed7e8"></h2>
 ### Definite versus Indefinite: Bowl versus Saddle  (TODO)
 
 TODO
 
+<h2 id="e59a80ec6d81dedf197cebeea3a20a00"></h2>
 ### Higher Dimensions: Linear Algebra
 
 Calculus would be enough to find our conditions F<sub>xx</sub> > 0 and F<sub>xx</sub>F<sub>yy</sub> > F<sub>xy</sub>² for a minimum. But linear algebra is ready to do more, because the second derivatives fit into a symmetric matrix A. The terms ax² and cy² appear *on the diagonal*. The cross derivative 2bxy is split between the same entry b above and below.  A quadratic f(x, y) comes directly from a symmetric 2 by 2 matrix! 
@@ -132,6 +138,7 @@ The next section contains the tests to decide whether xᵀAx is positive (the bo
 
 ---
 
+<h2 id="76c7d53a0682ab1c09ff64d5d3549d0f"></h2>
 ## 6.2 TESTS FOR POSITIVE DEFINITENESS
 
 Which symmetric matrices have the property that xᵀAx > 0 for all nonzero vectors x?
@@ -218,6 +225,40 @@ I want to split xᵀAx into xᵀLDLᵀx:
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_positive_definite_LDLT_2.png)
 
 So xᵀAx is a sum of squares with the pivots 2, 3/2, and 4/3 as coefficients:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_positive_definite_LDLT_3.png)
+
+Those positive pivots in D multiply perfect squares to make xᵀAx positive. Thus condition 4 implies condition 1 , and the proof is complete.
+
+It is beautiful that elimination and completing the square are actually the same. Elimination removes x₁ from all later equations.  Similarly, the first square accounts for all terms in xᵀAx involving x₁. The sum of squares has the pivots outside. *The multipliers lᵢⱼ are inside* ! You can see the numbers -1/2 and -2/3 inside the squares in the example.
+
+*Every diagonal entry aᵢᵢ must be positive* . As we know from the examples, however, it is ***far from sufficient*** to look only at the diagonal entries.
+
+The pivots dᵢ are not to be confused with the eigenvalues. For a typical positive definite matrix, they are two completely different sets of positive numbers. In our 3 by 3 example, probably the determinant test is the easiest:
+
+```
+Determinant test
+  det(A₁) = 2, det(A₂) = 3, det(A₃) = det A = 4.
+```
+
+The pivots are the ratios d₁ = 2, d₂ = 3/2, d₃ = 4/3. 
+
+Ordinarily the eigenvalue test is the longest computation. For this A we know the λ's are all positive:
+
+
+```
+Eigenvalue test
+  λ₁ = 2 - √2, λ₂ = 2, λ₃ = 2 + √2.
+```
+
+Even though it is the hardest to apply to a single matrix, eigenvalues can be the most useful test for theoretical purposes. ***Each test is enough by itself***.
+
+---
+
+<h2 id="01201db7b9090769e9708a314cf02459"></h2>
+### Positive Definite Matrices and Least Squares
+
+
 
 
 
