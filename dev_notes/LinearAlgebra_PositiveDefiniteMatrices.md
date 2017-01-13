@@ -161,6 +161,8 @@ One more preliminary remark. The two parts of this book were linked by the chapt
 
 If a = c = -1 and b = 0, then det(A) = 1 but A = -I = negative definite.  The determinant test should apply not only to A itself, giving ac - b² > 0, but also to the 1 by 1 submatrix a in the upper left-hand corner.
 
+The natural generalization will involve all n of the upper left submatrices of A:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_n_submatrices_of_A.png)
 
 
