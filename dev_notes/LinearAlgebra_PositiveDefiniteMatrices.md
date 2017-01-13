@@ -165,4 +165,41 @@ The natural generalization will involve all n of the upper left submatrices of A
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_n_submatrices_of_A.png)
 
+Here is the main theorem on positive definiteness, and a reasonably detailed proof:
+
+**6B** ***Each of*** the following tests is a necessary and sufficient condition for the ***real symmetric*** matrix A to be ***positive definite***:
+
+ 1. xᵀAx > 0 for all non zero real vectors x.
+ 2. All the eigenvalues of A satisfy λᵢ > 0.
+ 3. All the upper left submatrices A<sub>k</sub> have positive determinants.
+ 4. All the pivots (without row exchanges) satisfy d<sub>k</sub> > 0.
+
+**Proof**:  Condition 1. defines a positive definite matrix. Our first step shows that each eigenvalue will be positive:
+
+```
+  If Ax = λx, then xᵀAx = xᵀλx = λ·‖x‖² .
+```
+
+***A positive definite matrix has positive eigenvalues, since xᵀAx > 0***.
+
+Now we go in the other direction. If all λᵢ > 0, we have to prove xᵀAx > 0 for every vector x (not just the eigenvectors).
+
+Since symmetric matrices have a full set of orthonormal eigenvectors, any x is a combination c₁x₁ + ... + cnxn. Then
+
+```
+Ax = c₁Ax₁ + ... + cnAxn = c₁λx₁ + ... + cnλxn.
+```
+
+Because of the orthogonality xᵢᵀxⱼ = 0, and the normalization xᵢᵀxᵢ = 1 , 
+
+```
+xᵀAx = (c₁x₁ᵀ + ... + cnxnᵀ )(c₁λx₁ + ... + cnλxn)
+	 = c₁²λx₁ + ... + cn²λ
+```
+
+If every λᵢ > 0, then equation (2) shows that xᵀAx > 0.  Thus condition 2 implies condition 1 .
+
+*If condition 1 holds, so does condition 3*: The determinant of A is the product of the eigenvalues. And if condition 1 holds, we already know that these eigenvalues are positive. But we also have to deal with every upper left submatrix A<sub>k</sub>. The trick is to look at all nonzero vectors whose last n - k components are zero: 
+
+
 
