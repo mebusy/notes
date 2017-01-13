@@ -151,10 +151,15 @@ From those conditions, ***both eigenvalues are positive***.
 
 Looking at a and ac - b², it is even possible to spot the appearance of the ***pivots***. They turned up when we decomposed xᵀAx into a sum of squares:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_sum_of_square.png)
 
+Those coefficients a and (ac - b²)/a are the pivots for a 2 by 2 matrix. For larger matrices the pivots still give a simple test for positive definiteness: xᵀAx stays positive when n independent squares are multiplied by ***positive pivots***.
 
+One more preliminary remark. The two parts of this book were linked by the chapter on determinants. Therefore we ask what part determinants play.
 
+***It is not enough to require that the determinant of A is positive***.
 
+If a = c = -1 and b = 0, then det(A) = 1 but A = -I = negative definite.  The determinant test should apply not only to A itself, giving ac - b² > 0, but also to the 1 by 1 submatrix a in the upper left-hand corner.
 
 
 
