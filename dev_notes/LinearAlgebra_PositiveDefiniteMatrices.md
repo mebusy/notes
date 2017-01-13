@@ -118,9 +118,38 @@ minimum at (0, 0, 0).
 
 ---
 
-Any function F(x₁, ... , xn) is approached in the same way. At a stationary point all first derivatives are zero.  A is the **"second-derivative matrix"** with entries **aᵢⱼ = ∂²F / ∂xᵢ∂xⱼ**. This automatically equals **aⱼᵢ = ∂²F / ∂xⱼ∂xᵢ** , so A is symmetric.  ***Then F has a minimum when the pure quadratic xᵀAx is positive definite.***
+Any function F(x₁, ... , xn) is approached in the same way. At a stationary point all first derivatives are zero.  A is the **"second-derivative matrix"** with entries **aᵢⱼ = ∂²F / ∂xᵢ∂xⱼ**. This automatically equals **aⱼᵢ = ∂²F / ∂xⱼ∂xᵢ** , so A is symmetric.  ***Then F has a minimum when the pure quadratic xᵀAx is positive definite.*** These second-order terms control F near the stationary point:
 
 
+```
+Taylor series:   F(x) = F(0) + xᵀ(grad F) + 1/2·xᵀAx + higher order terms.   (6)
+```
+
+At a stationary point, grad F = (∂F/∂x₁, ... , ∂F/∂xn) is a vector of zeros. The second derivatives in xᵀAx take the graph up or down (or saddle). If the stationary point is at x₀  instead of 0, F(x) and all derivatives are computed at x₀. Then x changes to x - x₀ on the right-hand side.
+
+
+The next section contains the tests to decide whether xᵀAx is positive (the bowl goes up from x = 0). Equivalently, the tests decide whether the matrix A is positive definite -- which is the main goal of the chapter.
+
+---
+
+## 6.2 TESTS FOR POSITIVE DEFINITENESS
+
+Which symmetric matrices have the property that xᵀAx > 0 for all nonzero vectors x?
+
+There are 4 or 5 different ways to answer this question, and we hope to find all of them. The previous section began with some hints about the signs of eigenvalues, but that gave place to the tests on a, b, c:
+
+```
+A = ⎡a b⎤  is positive definite when a > 0 and ac - b² > 0.
+    ⎣b c⎦
+```
+
+From those conditions, ***both eigenvalues are positive***.  
+
+ - Their product λ₁λ₂ is the determinant ac - b² > 0, so the eigenvalues are either both positive or both negative. 
+ 	- c must be positive
+ - They must be positive because their sum is the trace a + c > 0.
+
+Looking at a and ac - b², it is even possible to spot the appearance of the ***pivots***. They turned up when we decomposed xᵀAx into a sum of squares:
 
 
 
