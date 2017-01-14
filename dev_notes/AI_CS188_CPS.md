@@ -46,11 +46,17 @@ CPS
 
 ## CSP Example: Map Coloring
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_map_coloring.png)
 
+ - Variables: WA, NT, Q, NSW, V, SA, T
+ - Domains: D = {red, green, blue}
+ - Constraints: adjacent regions must have different colors
+ 	- Implicit: WA ≠ NT 
+ 	- Explicit: (WA, NT) ∈ { (red,green),(red,blue), ... }
+ - Solutions are assignments satisfying all constraints, e.g.
+ 	- {WA=red, NT=green, Q=red, NSW=green, V=red, SA=blue, T=green}
 
-
-
-N-Queens
+## Exampe: N-Queens
 
 Formulation 2:
 
