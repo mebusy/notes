@@ -128,10 +128,86 @@ there are boxes which are constraints and the boxes are connected to all of the 
 
 ### Example: The Waltz Algorithm
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Waltz_algorithm.png)
+
+ - The Waltz algorithm is for interpreting line drawings of solid polyhedra as 3D objects
+ - An early example of an AI computation posed as a CSP 
+
+Approach:
+ 
+ - Each intersection is a variable
+ - Adjacent intersections impose constraints on each other
+ - Solutions are physically realizable 3D interpretations
+
+## Varieties of CSPs and Constraints
+
+### Varieties of CSPs
+
+ - Discrete Variables
+	- Finite domains
+		- Size d means O(dn) complete assignments
+		- E.g., Boolean CSPs, including Boolean satisfiability (NP-complete)
+	- Infinite domains (integers, strings, etc.)
+		- E.g., job scheduling, variables are start/end times for each job
+		- Linear constraints solvable, nonlinear undecidable
+
+ - Continuous variables
+	- E.g., start/end times for Hubble Telescope observations
+	- Linear constraints solvable in polynomial time by LP methods (see cs170 for a bit of this theory)
+
+### Varieties of Constraints
+
+ - Varieties of Constraints
+	- Unary constraints involve a single variable (equivalent to reducing domains), e.g.:
+		- SA ≠ green
+	- Binary constraints involve pairs of variables, e.g.:
+		- SA ≠ WA
+	- Higher-order constraints involve 3 or more variables: 
+		- e.g., cryptarithmetic column constraints
+
+- Preferences (soft constraints):
+	- E.g., red is better than green
+	- Often representable by a cost for each variable assignment
+	- Gives constrained optimization problems
+	- (We’ll ignore these until we get to Bayes’ nets)
+
+## Solving CSPs
+
+### Standard Search Formulation
+
+ - Standard search formulation of CSPs
+ - States defined by the values assigned so far (partial assignments)
+	- Initial state: 
+		- the empty assignment, {}
+	- Successor function: 
+		- assign a value to an ***unassigned*** variable
+	- Goal test: 
+		- the current assignment is complete and satisfies all constraints
+
+We’ll start with the straightforward, naïve approach, then improve it
+
+
+### Backtracking Search 
+
+ - Backtracking search is the basic ***uninformed*** algorithm for solving CSPs
+ - Idea 1: One variable at a time
+	- Variable assignments are commutative, so fix ordering
+	- I.e., [WA = red then NT = green] same as [NT = green then WA = red]
+	- Only need to consider assignments to a single variable at each step
+
+ - Idea 2: Check constraints as you go
+	- I.e. consider only values which do not conflict previous assignments
+	- Might have to do some computation to check the constraints
+	- “Incremental goal test”
+
+ - Depth-first search with these two improvements
+	is called backtracking search (not the best name)
+
+ - Can solve n-queens for n <= 25
 
 
 
-Backtracking Search 
+
 
 
 for each value in that value , you loop through them in some order
