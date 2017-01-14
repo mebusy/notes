@@ -1,6 +1,24 @@
 ...menustart
 
  - [Constraint Satisfaction Problems I](#8c8072703357c878142be0f423e13a69)
+	 - [What is Search For?](#6135abe1c86a58db9f536d2f0279d4b1)
+	 - [Constraint Satisfaction Problems](#ff7da4833835bc7f3506b068905f376c)
+	 - [CSP Example: Map Coloring](#7c497b01fb991be051180f4dd6bc4dfd)
+	 - [Exampe: N-Queens](#aee23a02cf0a428f8a3380804926c5ba)
+	 - [Constraint Graphs](#5e3fadab67cd58dfc836b52e0eec6403)
+		 - [Example : Cryptarithmetic](#e4f09537d31b275d624175f497d7a7a0)
+		 - [Example: Sudoku](#1b0c55d7a4c5a4fc32c6095016869b4e)
+		 - [Example: The Waltz Algorithm](#de9c82c8eb4d71f6d701b657ce8528b9)
+	 - [Varieties of CSPs and Constraints](#b9434fb596306e69d9867441d7d9fa5f)
+		 - [Varieties of CSPs](#62e238fa7cf63ce3e6bcd9fe1ebead89)
+		 - [Varieties of Constraints](#03a54c9ac014bf6015d74f7b0468f36c)
+	 - [Solving CSPs](#c7847ab059ee8aebf6d6b477f0c5c5a3)
+		 - [Standard Search Formulation](#8aac949f2dcb8f35a610fe421087b36d)
+		 - [Backtracking Search](#fe6282319a2be73c021b58a6d190368e)
+		 - [Improving Backtracking](#b9b8d3f554a684894d60e5c3a7cdcf8e)
+		 - [Filtering](#9a588db8471730dbfebac65cd5467ad8)
+			 - [Forward Checking](#2dc9675ac8062df94ad72d42c57f68e1)
+			 - [Constraint Propagation](#7e161a29d4c082578ae409a87a8988f0)
 
 ...menuend
 
@@ -12,6 +30,7 @@
 CPS
 
 
+<h2 id="6135abe1c86a58db9f536d2f0279d4b1"></h2>
 ## What is Search For?
 
  - Assumptions about the world:  
@@ -32,6 +51,7 @@ CPS
  	- All paths at the same depth (for some formulations)
  	- CSPs are specialized for identification problems
 
+<h2 id="ff7da4833835bc7f3506b068905f376c"></h2>
 ## Constraint Satisfaction Problems
 
  - Standard search problems:
@@ -44,6 +64,7 @@ CPS
  	- Goal test is a ***set of constraints*** specifying allowable combinations of values for subsets of variables
  - Allows useful general-purpose algorithms with more power than standard search algorithms
 
+<h2 id="7c497b01fb991be051180f4dd6bc4dfd"></h2>
 ## CSP Example: Map Coloring
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_map_coloring.png)
@@ -56,6 +77,7 @@ CPS
  - Solutions are assignments satisfying all constraints, e.g.
  	- {WA=red, NT=green, Q=red, NSW=green, V=red, SA=blue, T=green}
 
+<h2 id="aee23a02cf0a428f8a3380804926c5ba"></h2>
 ## Exampe: N-Queens
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_N_queens.png)
@@ -82,6 +104,7 @@ Formulation 2:
  	- Explicit: (Q₁,Q₂) ∈ { (1,3),(1,4), ... } , ...
 
 
+<h2 id="5e3fadab67cd58dfc836b52e0eec6403"></h2>
 ## Constraint Graphs
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_constraints_graph.png)
@@ -94,6 +117,7 @@ Formulation 2:
  	- E.g., Tasmania is an independent subproblem!
 
 
+<h2 id="e4f09537d31b275d624175f497d7a7a0"></h2>
 ### Example : Cryptarithmetic
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Cryptarithmetic.png)
@@ -111,6 +135,7 @@ Formulation 2:
 
 there are boxes which are constraints and the boxes are connected to all of the variables that participate in that constraints. 
 
+<h2 id="1b0c55d7a4c5a4fc32c6095016869b4e"></h2>
 ### Example: Sudoku
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_example_sudoku.png)
@@ -126,6 +151,7 @@ there are boxes which are constraints and the boxes are connected to all of the 
  	- (or can have a bunch of pairwise inequality constraints)
 
 
+<h2 id="de9c82c8eb4d71f6d701b657ce8528b9"></h2>
 ### Example: The Waltz Algorithm
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Waltz_algorithm.png)
@@ -139,8 +165,10 @@ Approach:
  - Adjacent intersections impose constraints on each other
  - Solutions are physically realizable 3D interpretations
 
+<h2 id="b9434fb596306e69d9867441d7d9fa5f"></h2>
 ## Varieties of CSPs and Constraints
 
+<h2 id="62e238fa7cf63ce3e6bcd9fe1ebead89"></h2>
 ### Varieties of CSPs
 
  - Discrete Variables
@@ -155,6 +183,7 @@ Approach:
 	- E.g., start/end times for Hubble Telescope observations
 	- Linear constraints solvable in polynomial time by LP methods (see cs170 for a bit of this theory)
 
+<h2 id="03a54c9ac014bf6015d74f7b0468f36c"></h2>
 ### Varieties of Constraints
 
  - Varieties of Constraints
@@ -171,8 +200,10 @@ Approach:
 	- Gives constrained optimization problems
 	- (We’ll ignore these until we get to Bayes’ nets)
 
+<h2 id="c7847ab059ee8aebf6d6b477f0c5c5a3"></h2>
 ## Solving CSPs
 
+<h2 id="8aac949f2dcb8f35a610fe421087b36d"></h2>
 ### Standard Search Formulation
 
  - Standard search formulation of CSPs
@@ -187,6 +218,7 @@ Approach:
 We’ll start with the straightforward, naïve approach, then improve it
 
 
+<h2 id="fe6282319a2be73c021b58a6d190368e"></h2>
 ### Backtracking Search 
 
  - Backtracking search is the basic ***uninformed*** algorithm for solving CSPs
@@ -232,6 +264,7 @@ function RECURSIVE-BACKTRACKING( assignment, csp ) return soln/failure
  - What are the choice points?
 
 
+<h2 id="b9b8d3f554a684894d60e5c3a7cdcf8e"></h2>
 ### Improving Backtracking
 
  - General-purpose ideas give huge gains in speed
@@ -244,10 +277,12 @@ function RECURSIVE-BACKTRACKING( assignment, csp ) return soln/failure
  	- Can we exploit the problem structure?
  	- Do things like notice tasmanis separate and solve it separately
 
+<h2 id="9a588db8471730dbfebac65cd5467ad8"></h2>
 ### Filtering
 
 Filtering is about ruling out suspects.
 
+<h2 id="2dc9675ac8062df94ad72d42c57f68e1"></h2>
 #### Forward Checking
 
 Filtering | Forward checking
@@ -262,13 +297,17 @@ in forward checking every time I assign a variable right which collapses its dom
 
 example 
 
-WA <- red
-remove red choice from NT , SA
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_forward_checking_example.png)
 
-so that basic idean when I assigned something I look at its neighbors in the graph and cross things off, that's called forward checking.
+If we assigned red to WA , we should remove red choice from NT , SA.
+
+so that basic idea when I assigned something I look at its ***neighbors*** in the graph and cross things off, that's called forward checking.
+
+forward checking doesn't check interactions between unassigned variables just checks interactions between assigned variables and their neighbors.  只检测 比邻的 变量
 
 
-forward checking doesn't check interactions between unassigned variables just checks interactions between assigned variables and their neighbors.
+<h2 id="7e161a29d4c082578ae409a87a8988f0"></h2>
+#### Constraint Propagation
 
 
 the idea of checking single arcs
