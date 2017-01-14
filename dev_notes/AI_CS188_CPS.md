@@ -84,11 +84,17 @@ Formulation 2:
 
 ## Constraint Graphs
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_constraints_graph.png)
+
+ - Binary CSP: 
+ 	- each constraint relates (at most) two variables
+ - Binary constraint graph: 
+ 	- nodes are variables, arcs show constraints
+ - General-purpose CSP algorithms use the graph structure to speed up search. 
+ 	- E.g., Tasmania is an independent subproblem!
 
 
-
-
-Example : Cryptarithmetic
+### Example : Cryptarithmetic
 
 
 there are boxes which are constraints and the boxes are connected to all of the variables that participate in that constraints. 
