@@ -96,6 +96,18 @@ Formulation 2:
 
 ### Example : Cryptarithmetic
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Cryptarithmetic.png)
+
+ - Variables:
+ 	- F T U W R O X₁ X₂ X₃
+ - Domains:
+ 	- { 0,1,2,3,4,5,6,7,8,9 }
+ - Constraints:
+ 	- all diff ( F T U W R O  )
+ 	- O + O = R + 10·X₁   进位
+ 	- ...
+
+
 
 there are boxes which are constraints and the boxes are connected to all of the variables that participate in that constraints. 
 
