@@ -58,9 +58,34 @@ CPS
 
 ## Exampe: N-Queens
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_N_queens.png)
+
+Formulation 1:
+
+ - Variables: Xᵢⱼ
+ - Domains: {0,1}
+ - Constraints
+ 	- ∀i,j,k (Xᵢⱼ,X<sub>ik</sub>) ∈ { (0,0), (0,1), (1,0) }
+ 	- ∀i,j,k (Xᵢⱼ,X<sub>kj</sub>) ∈ { (0,0), (0,1), (1,0) }
+ 	- ∀i,j,k (Xᵢⱼ,X<sub>i+k,j+k</sub>) ∈ { (0,0), (0,1), (1,0) }
+ 	- ∀i,j,k (Xᵢⱼ,X<sub>i+k,j-k</sub>) ∈ { (0,0), (0,1), (1,0) }
+ 	- Σ Xᵢⱼ = N
+
+
 Formulation 2:
 
-Domains:  in each row , the value is going to be where the Queen for that row is.
+ - Variables: Q<sub>k</sub>
+ 	- in each row , the value is going to be where the Queen for that row is.
+ - Domains: {1,2,3, ... , N } 
+ - Constraints:
+ 	- Implicit: ∀i,j non-threatening(Qᵢ,Qⱼ) 
+ 	- Explicit: (Q₁,Q₂) ∈ { (1,3),(1,4), ... } , ...
+
+
+## Constraint Graphs
+
+
+
 
 
 Example : Cryptarithmetic
