@@ -113,6 +113,22 @@ there are boxes which are constraints and the boxes are connected to all of the 
 
 ### Example: Sudoku
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_example_sudoku.png)
+
+ - Variablels:
+ 	- Each (open) square
+ - Domains:
+ 	- { 1,2, ... , 9 }
+ - Constraints:
+ 	- 9-way alldiff for each columen
+ 	- 9-way alldiff for each row
+ 	- 9-way alldiff for each region
+ 	- (or can have a bunch of pairwise inequality constraints)
+
+
+### Example: The Waltz Algorithm
+
+
 
 
 Backtracking Search 
