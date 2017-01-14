@@ -65,10 +65,10 @@ Formulation 1:
  - Variables: Xᵢⱼ
  - Domains: {0,1}
  - Constraints
- 	- ∀i,j,k (Xᵢⱼ,X<sub>ik</sub>) ∈ { (0,0), (0,1), (1,0) }
- 	- ∀i,j,k (Xᵢⱼ,X<sub>kj</sub>) ∈ { (0,0), (0,1), (1,0) }
- 	- ∀i,j,k (Xᵢⱼ,X<sub>i+k,j+k</sub>) ∈ { (0,0), (0,1), (1,0) }
- 	- ∀i,j,k (Xᵢⱼ,X<sub>i+k,j-k</sub>) ∈ { (0,0), (0,1), (1,0) }
+ 	- ∀i,j,k (Xᵢⱼ, X<sub>ik</sub>) ∈ { (0,0), (0,1), (1,0) }
+ 	- ∀i,j,k (Xᵢⱼ, X<sub>kj</sub>) ∈ { (0,0), (0,1), (1,0) }
+ 	- ∀i,j,k (Xᵢⱼ, X<sub>i+k, j+k</sub>) ∈ { (0,0), (0,1), (1,0) }
+ 	- ∀i,j,k (Xᵢⱼ, X<sub>i+k, j-k</sub>) ∈ { (0,0), (0,1), (1,0) }
  	- Σ Xᵢⱼ = N
 
 
@@ -107,9 +107,12 @@ Formulation 2:
  	- O + O = R + 10·X₁   进位
  	- ...
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Cryptarithmetic_graph.png)
 
 there are boxes which are constraints and the boxes are connected to all of the variables that participate in that constraints. 
+
+### Example: Sudoku
+
 
 
 Backtracking Search 
