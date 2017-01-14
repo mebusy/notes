@@ -205,26 +205,57 @@ We’ll start with the straightforward, naïve approach, then improve it
 
  - Can solve n-queens for n <= 25
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_backtrack_search_example.png)
+
+```
+function BACKTRACKING-SEARCH( csp ) return solution/failure
+	return RECURSIVE-BACKTRACKING( {} , csp )
+
+function RECURSIVE-BACKTRACKING( assignment, csp ) return soln/failure
+	if assignment is complete then return assignment
+	var <- SELECT-UNASSIGNED-VARIABLE( VARIABLES[csp], assigment, csp )
+
+	// for each value in that values , you loop through them in some order
+	for each value in ORDER-DOMAIN-VALUES( var, assignment , csp ) do
+		// for each of those values you check if
+		// this variable takes this new value did I break a constraint.
+		if value is consistent with assigment given CONSTRAINTS[csp] then
+			add {var = value} to assignment
+			result <- RECURSIVE-BACKTRACKING( assignment , csp )
+			if result ≠ failure then return result
+			// result is failure
+			remove {var = value} from assignment
+	return failure
+```
+
+ - Backtracking = DFS + variable-ordering + fail-on-violation
+ - What are the choice points?
 
 
+### Improving Backtracking
 
+ - General-purpose ideas give huge gains in speed
+ - Ordering:
+	- Which variable should be assigned next?  变量顺序
+	- In what order should its values be tried?  值选择顺序
+ - Filtering: 
+ 	- Can we detect inevitable failure early?
+ - Structure: 
+ 	- Can we exploit the problem structure?
+ 	- Do things like notice tasmanis separate and solve it separately
 
+### Filtering
 
-for each value in that value , you loop through them in some order
+Filtering is about ruling out suspects.
 
-for each of those values you check if this value takes this new value did I break a constraint.
+#### Forward Checking
 
+Filtering | Forward checking
+--- | ---
+Keep track of domains for unassigned variables and cross off bad options | Cross off values that violate a constraint when added to the existing assignment
 
-Structure:
-
-   can we do things like notice tasmanis separate and solve it separately
-
-
-
-filtering is about ruling out suspects.
 
 idea : keep track of all of the unassigned variables , keep track of what values they might reasonably take when we finally get to them.
-
 
 in forward checking every time I assign a variable right which collapses its domain to a single choice for now , I checked to see whether there are other unassigned variables that have some illegal values when I take into account that new assignment. 
 
