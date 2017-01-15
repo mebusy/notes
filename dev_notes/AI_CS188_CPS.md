@@ -372,9 +372,18 @@ end func
 
 #### Limitations of Arc Consistency
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_arc_consistency_wrong.png)
+
+ - After enforcing arc consistency:
+ 	- Can have one solution left
+ 	- Can have multiple solutions left
+ 	- Can have no solutions left 
+ 	- Not know it
+
+ - Arc consistency still runs inside a backtracking search!
 
 
-
+### Ordering
 
 
 
