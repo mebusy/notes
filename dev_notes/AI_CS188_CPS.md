@@ -395,7 +395,17 @@ end func
  	- Also called “most constrained variable”
 	- “Fail-fast” ordering
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ordering_MRV.png)
 
+--- 
 
+#### Ordering: Least Constraining Value
 
+ - Value Ordering: Least Constraining Value
+ 	- Given a choice of variable, choose the least constraining value
+ 		- 选择这个值，产生的约束最少
+ 	- I.e., the one that rules out the fewest values in the remaining variables
+	- Note that it may take some computation to determine this!  (E.g., rerunning filtering)
+ - Why least rather than most?
+	- Combining these ordering ideas makes 1000 queens feasible
 
