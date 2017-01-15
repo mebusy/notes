@@ -309,6 +309,18 @@ forward checking doesn't check interactions between unassigned variables just ch
 <h2 id="7e161a29d4c082578ae409a87a8988f0"></h2>
 #### Constraint Propagation
 
+Forward checking propagates information from assigned to unassigned variables, but doesn't provide early detection for all failures:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_constraints_propagation.png)
+
+NT and SA cannot both be blue! Why didn’t we detect this yet?
+
+Constraint propagation: reason from constraint to constraint.
+
+#### Consistency of A Single Arc
+
+An arc X → Y is consistent if for every x in the tail there is some y in the head which could be assigned without violating a constraint
+
 
 the idea of checking single arcs
 
