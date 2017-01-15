@@ -319,7 +319,13 @@ Constraint propagation: reason from constraint to constraint.
 
 #### Consistency of A Single Arc
 
-An arc X → Y is consistent if for every x in the tail (arrow) there is some y in the head which could be assigned without violating a constraint
+The idea of checking single arcs:
+
+so far we talked about checking an assignment against its neighbors and here we were talking just in this last slide about checking between two unassigned variables.
+
+what does it mean to check an arc ?  we look at an arc what it means to check it is formally we check whether or not is consistent so we say: 
+
+An arc X → Y is consistent if for every x in the tail ( not arrow ) there is some y in the head which could be assigned without violating a constraint
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_consistency_of_Arc.png)
 
@@ -329,11 +335,48 @@ Forward checking: Enforcing consistency of arcs pointing to each new assignment
 
 A simple form of propagation makes sure all arcs are consistent:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_arc_consistenct_of_an_entire_CSP.png)
+
+***Remember: Delete from  the tail!***
+
+ - Important: If X loses a value, neighbors of X need to be rechecked!
+ - Arc consistency detects failure earlier than forward checking
+ - Can be run as a preprocessor or after each assignment 
+ - What’s the downside of enforcing arc consistency?
+
+#### Enforcing Arc Consistency in a CSP
+
+```
+function AC-3(csp) return the CSP, possibly with reduced domains
+	inputs: csp // a binary CSP with variables {X₁, X₂, ... ,Xn}
+	local variables: queue // a queue of arcs, initially all the arcs in csp
+	while queue is not empty do
+		(Xᵢ, Xⱼ) <- REMOVE-FIRST(queue)
+		if REMOVE-INCONSISTENT-VALUES(Xᵢ, Xⱼ) then
+			for each X_k in NEIGHBORS[Xᵢ] do
+				add (X_k, Xᵢ) to queue
+end func
+
+function REMOVE-INCONSISTENT-VALUES(Xᵢ, Xⱼ) returns true iff succeeds
+	removed <- false
+	for each x in DOMAIN[Xᵢ] do
+		if no value y in DOMAIN[Xⱼ] allows (x,y) to satisfy the constraint Xᵢ <-> Xⱼ
+			then delete x from DOMAIN[Xᵢ]; removed <- true
+	return removed
+end func
+```
+
+ - Runtime: O(n²d³), can be reduced to O(n²d²)
+ - but detecting all possible future problems is NP-hard 
 
 
-the idea of checking single arcs
+#### Limitations of Arc Consistency
 
-so far we talked about checking an assignment against its neighbors and here we were talking just in this last slide about checking between two unassigned variables.
 
-what does it mean to check an arc ?  we look at an arc what it means to check it is formally we check whether or not is consistent so we say an arc is consistent if for every x in the tail 
+
+
+
+
+
+
 
