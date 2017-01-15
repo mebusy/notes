@@ -409,3 +409,10 @@ end func
  - Why least rather than most?
 	- Combining these ordering ideas makes 1000 queens feasible
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ordering_LCV1.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ordering_LCV2.png)
+
+
+
+
