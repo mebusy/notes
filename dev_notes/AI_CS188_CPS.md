@@ -319,7 +319,16 @@ Constraint propagation: reason from constraint to constraint.
 
 #### Consistency of A Single Arc
 
-An arc X → Y is consistent if for every x in the tail there is some y in the head which could be assigned without violating a constraint
+An arc X → Y is consistent if for every x in the tail (arrow) there is some y in the head which could be assigned without violating a constraint
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_consistency_of_Arc.png)
+
+Forward checking: Enforcing consistency of arcs pointing to each new assignment
+
+#### Arc Consistency of an Entire CSP
+
+A simple form of propagation makes sure all arcs are consistent:
+
 
 
 the idea of checking single arcs
