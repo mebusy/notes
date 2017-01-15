@@ -385,6 +385,16 @@ end func
 
 ### Ordering
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_backtracking_ording.png)
+
+#### Ordering: Minimum Remaining Values
+
+ - Variable Ordering:  Minimum remaining values (MRV):
+ 	- Choose the variable with the fewest legal left values in its domain
+ - Why min rather than max?
+ 	- Also called “most constrained variable”
+	- “Fail-fast” ordering
+
 
 
 
