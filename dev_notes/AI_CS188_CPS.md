@@ -277,6 +277,8 @@ function RECURSIVE-BACKTRACKING( assignment, csp ) return soln/failure
  	- Can we exploit the problem structure?
  	- Do things like notice tasmanis separate and solve it separately
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_CSP_order_filter.png)
+
 <h2 id="9a588db8471730dbfebac65cd5467ad8"></h2>
 ### Filtering
 
