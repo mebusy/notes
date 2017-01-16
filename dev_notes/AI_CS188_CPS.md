@@ -524,6 +524,37 @@ Finding smallest cut-set is np-hard.
 
 Tree Decomposition
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_algorithm_iterative_improvement.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_improvement_nqueens1.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_improvement_nqueens2.png)
+
+
+very few constraints  and ver many  constraints are both great.  There's a magical critical ratio where things suddenly get really really hard because it's kind of just constrained and often just really tough. You got your problem ,your prolbem probably not randomly generated : you were there (critical ratio) too.
+
+
+Local Search
+
+So far the search algorithms we've talked about is not local. They have a fringe where you trying some particular branch of the tree and effective workout you went back to the fringe and you tried your other backup strategies.  The fringe is a safety net.
+
+In local search you don't have the safety net.  You got one position that you are currently at and you're trying to hill climb in some way. 
+
+You have a new idea of a successor function. The successor function now does not take a plan and extend the plan , instead it takes a complete assignment of some kind and modifies it.  Your successor function is more about modification than about extension.
+
+Complete ? No. 
+Optimal ? No.
+
+may reach local maximum.
+
+Good about:  you can start anywhere you can do the best you can and there are a wide range of problems in the real world where kind of any solution will work , and you'd like to make it as good as possible and you know you can't get to the optimal solution.
+
+
+
+
+
+
+
 
 
 
