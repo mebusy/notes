@@ -344,7 +344,8 @@ A simple form of propagation makes sure all arcs are consistent:
  - Important: If X loses a value, neighbors of X need to be rechecked!
  - Arc consistency detects failure earlier than forward checking
  - Can be run as a preprocessor or after each assignment 
- - What’s the downside of enforcing arc consistency?
+ 	- must return after each assignment !
+ 	- you run it after every assignment at every step in the backtracking search
 
 #### Enforcing Arc Consistency in a CSP
 
@@ -414,6 +415,114 @@ end func
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ordering_LCV1.png)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ordering_LCV2.png)
+
+
+---------
+
+# Constraint Satisfaction Problems II
+
+## Reminder: CSPs
+
+ - CSPS:
+ 	- Variables
+ 	- Domains
+ 	- Constraints
+ 		- Implicit ( provide code to compute )
+ 		- Explicit ( provide a list of the legal tuples )
+ 		- Unary / Binary / N-ary
+ - Goals:
+ 	- Here : find any solution
+ 	- Also:  find all , find best , etc.
+
+
+## Arc Consitency of an Entire CSP:
+
+ - A simple form of propagation makes sure ***all*** arcs are simultaneously consistent:
+ - Limitations of Arc Consistency:
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_arc_consistency_wrong.png)
+ 	- The reason why our consistency in this bottom case  wasn't sufficient to discorve the inevitable failures because it only looks at parents. So you might think maybe we need a stronger notion in our consistency , maybe we need to look beyond Paris 
+
+
+## K-Consistency
+
+
+## Structure
+
+So far the big ways we have accelerated are csp solvers , have been to exploit ordering , filtering. Now we can do something very different. We can look at the structure of the CSP.
+
+Sometimes you look at a CSP that you're trying to solve and you see it has some special graph structure and based on that graph structuer there will be some technique available to you that allows you to solve it in a particularly efficient way and we're going to see a couple examples.
+
+So for example if your CSP involved this giant criminal robot network you might think you should go after that guy in the center. That would be an example of exploiting structure.
+
+
+So here is the constraint graph for the problem of map coloring Australia and an extreme case of problems structure is when you look at your constraint graph. Remember the constraint graph tells you which variables have constraints it doesn't tell you what those are. We know in this particular case any inequality ??? constraints but the constraint graph doesn't tell you that.
+
+In particular case we look at it we see that this graph is broken into two pieces. There's the mainland and then there is the tiny little CSP of a single node for Tasmania . That's an extreme case of structure where we have independent subproblems. Independent problems are great because you can solve them separately , you know devide and conquer.
+
+How do we tell we have independence to solve problems ? You can do a connected component analysis of it. For example started some nodes and you search and when you have multiple connected components then they can be solved independently. 
+
+
+This is RARE to actually see separate subproblems. So let's see if we can come up with some methods that are more broadly applicable.
+
+
+## Tree-Structured CSPs
+
+Here is a case where your graph doesn't have to be broken into pieces but it's still simple in some way and this is a very important case that will see coming up over and over in this class. That's the case where you constraint graph it's not separated into pieces but it's not a general graph either.   
+
+Here is a case of a constraint graph has tree structure which means no loops, no cycles in the constraint graph . It is a theorem that if the constraint graph has no loops then the CSP can be solved in time that is linear in the size of graph and quadratic in the size of domains.  That's so much better thatn general CSPs worst exponential.
+
+
+
+How are we going to solve a tree-structured CSP you can just break it into 2 pieces like we do with independent subproblems.
+
+Here is a algorithm for a tree-structured CSP :
+
+ - the first step is to take this tree structure and order it.
+ 	- It means you pick a root variable , any variable works , so you grab the CSP by some root variable you gotta pick up by its anchor and that everything else hanging down. 
+
+
+
+
+let's make there arcs consistent . We will start with F , and we will work our way leftward.  When we visit F, we gonna say what arcs comes into you , how many arcs can come into F ?  1 , because it's a tree , VERY IMPORTANT !
+
+So I look at D->F , so I remove blue in D.
+
+Now we go to E , D->E , that arc is already consistent.
+
+Noe I go to D,  B->D ,that arc is already consistent.
+
+B->C ,  remove green in B.
+
+A->B , remove blue in A.
+
+
+When assigning , everything is safe. 
+
+This algorithm guarantees you that in this forward assignment phase there will always be a consistent solution at each point you pick it and you move on. Which means no backtracking and so this whole thing was pretty efficient.
+
+Am I sure it is enough just kind of enforce consistency of the arcs once ?
+
+
+Improving Structure
+
+So we can use this great algorithm on tree-structured CSP.  But CSP is probably not tree-structured either. So we need some way of taking graphs which are not in these wonderful configurations but or maybe closer. 
+
+Nearly Tree-Structured CSPs
+
+What are we gonna do about SA to get rid of it. This technique called conditioning.  We are going to assign a value to it . Once we've assigned a value to it and we imagine that  that value we assigned to SA is fixed. Then kind of the rest of the graph can forget that variable exists , and you can strengthen existed on an arc touching SA  can now turn into a unary constraint on the other end.
+
+If we assign SA red, the constraint says essentially the WA can't be red .  So we can remove SA from the graph and add a unary constraint placed on WA.
+
+So we get a simple graph once we instantiate SA and then remove it. 
+
+So the algorithm we have for making something that is nearly tree-structured into a tree structure is called  ***cut-set*** conditioning.
+
+Cutset Conditioning 
+
+Finding smallest cut-set is np-hard.
+
+
+Tree Decomposition
 
 
 
