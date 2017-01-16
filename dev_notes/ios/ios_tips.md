@@ -39,3 +39,10 @@ cd ipa
 zip -r ${ZIPNAME} *  
 mv ${ZIPNAME}.zip ${IPANAME}.ipa  
 ```
+
+## mobile provision file 解码
+
+```
+security cms -D -i example.mobileprovision
+```
+
