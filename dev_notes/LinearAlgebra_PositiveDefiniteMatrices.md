@@ -371,9 +371,14 @@ A = ⎡5 4⎤ and  xᵀAx = 5u² + 8uv + 5v² = 1.
 
 That ellipse is centered at u = v = 0, but the axes are not so clear. The off-diagonal 4s leave the matrix positive definite, but they rotate the ellipse -- its axes no longer line up with the coordinate axes.
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F6.2.png)
 
 > Figure 6.2  its principal axes.
+
+To locate the ellipse we compute λ₁ = 1 and λ₂ = 9.  The unit eigenvectors are (1, -1)/√2 and (1, 1)/√2.  Those are at 45° angles with the u-v axes, and they are lined up with the axes of the ellipse. The way to see the ellipse properly is to rewrite xᵀAx = 1:
+
+**New squares** 
+
 
 
 
