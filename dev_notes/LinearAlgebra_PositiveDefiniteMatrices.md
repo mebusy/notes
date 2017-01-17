@@ -258,6 +258,71 @@ Even though it is the hardest to apply to a single matrix, eigenvalues can be th
 <h2 id="01201db7b9090769e9708a314cf02459"></h2>
 ### Positive Definite Matrices and Least Squares
 
+We connected positive definite matrices to pivots (Chapter 1), determinants (Chapter 4), and eigenvalues (Chapter 5). Now we see them in the least-squares problems of Chapter 3, coming from the rectangular matrices of Chapter 2.
+
+The rectangular matrix will be R and the least-squares problem will be Rx = b.  It has m equations with m ≥ n (square systems are included). 
+
+The least-squares choice x̂ is the solution of RᵀRx̂ = Rᵀb.  That matrix A = RᵀRis not only symmetric but positive definite, as we now show -- provided that the n columns of R are linearly independent:
+
+**6C**: The symmetric matrix A is positive definite if and only if
+
+ - (V) There is a matrix R with independent columns such that A = RᵀR.
+
+*The key is to recognize xᵀAx as xᵀRᵀRx = (Rx)ᵀ(Rx).*  This squared length ‖Rx‖² is positive (unless x = 0), because R has independent columns. (If x is nonzero then Rx is nonzero.) Thus xᵀRᵀRx  > 0 and RᵀR is positive definite.
+
+It remains to find an R for which A = RᵀR . We have almost done this twice already:
+
+ - **Elimination**: A = LDLᵀ = (L√D)(√DLᵀ) . So take R = √DLᵀ .
+
+This ***Cholesky decomposition*** has the pivots split evenly between L and Lᵀ.
+
+ - **Eigenvalues**: A = QΛQᵀ = (Q√Λ)(√ΛQᵀ).  So take R = √ΛQᵀ   (3)
+
+A third possibility is R = Q√ΛQᵀ , the ***symmetric positive definite square root*** of A. 
+
+There are many other choices, square or rectangular, and we can see why. If you multiply any R by a matrix Q with orthonormal columns, then (QR)ᵀ(QR) = RᵀQᵀQR = RᵀIR = A. Therefore QR is another choice.
+
+Applications of positive definite matrices are developed in my earlier book ***Introduction to Applied Mathematics*** and also the new ***Applied Mathematics and Scientific Computing***  (see www. wellesleycambridge. com). 
+
+We mention that Ax = λMx arises constantly in engineering analysis. If A and M are positive definite, this generalized problem is parallel to the familiar Ax = λx, and A > 0. M is a mass matrix for the finite element method in Section 6.4.
+
+
+### Semidefinite Matrices
+
+The tests for semidefiniteness will relax xᵀAx > 0, A > 0, d > 0, and det > 0, to allow zeros to appear. The main point is to see the analogies with the positive definite case.
+
+**6D**:  Each of the following tests is a necessary and sufficient condition for it symmetric matrix A to be ***positive smidefinite***:
+
+ 1. xᵀAx ≥ 0 for all vectors x.  ( non zero real vectos for positive definite )
+ 2. All the eigenvalues of A satisfy λᵢ ≥ 0.
+ 3. No principal submatriccs have negative determinants.   
+ 4. No pivots are negative.
+ 5. There is a matrix R, possibly with dependent columns, such that A = RᵀR.
+
+The diagonalization A = QΛQᵀ leads to xᵀAx = xᵀQΛQᵀx = yᵀΛy. If A has rank r, there are r nonzero λ's and r perfect squares in yᵀΛy = λ₁y₁² + ... + λᵣyᵣ² .
+
+***Note*** The novelty is that condition 3' applies to all the principal submatrices, not only those in the upper left-hand corner. Otherwise, we could not distinguish between two matrices whose upper left determinants were all zero:
+
+
+```
+⎡0 0⎤ is positive semidefinite , and ⎡0  0⎤ is negative semidefinite.  
+⎣0 1⎦                                ⎣0 -1⎦
+```
+
+A row exchange comes with the same column exchange to maintain symmetry.
+
+**Example 2**
+
+```
+    ⎡ 2 -1 -1⎤
+A = ⎢-1  2 -1⎥  is positive semidefinite, by all five tests:
+    ⎣-1 -1  2⎦
+```
+
+ 1. xᵀAx = (x₁ - x₂)² + (x₁ - x₃)² + (x₂ - x₃)² > 0 (zero if x₁ = x₂ = x₃)  
+ 2. The eigenvalues are 0, λ₁ = 0 , λ₂ = λ₃ = 3 (a zero eigenvalue).
+ 3. det A = 0 and smaller determinants are positive.
+ 4. 
 
 
 
