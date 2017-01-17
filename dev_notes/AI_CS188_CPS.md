@@ -19,6 +19,35 @@
 		 - [Filtering](#9a588db8471730dbfebac65cd5467ad8)
 			 - [Forward Checking](#2dc9675ac8062df94ad72d42c57f68e1)
 			 - [Constraint Propagation](#7e161a29d4c082578ae409a87a8988f0)
+			 - [Consistency of A Single Arc](#4a6018d8655776208482f8b34d58f268)
+			 - [Arc Consistency of an Entire CSP](#0ca5bb56dad2fa5871eec95372182139)
+			 - [Enforcing Arc Consistency in a CSP](#a579dbdec94528eb11f12d92e857c911)
+			 - [Limitations of Arc Consistency](#86e7f886811c7ef1bc00bf5730d39c8b)
+		 - [Ordering](#12ad9074a51088cf63b8e33236d8cc13)
+			 - [Ordering: Minimum Remaining Values](#185f95a07ab7600e42ac6b4d80c987c5)
+			 - [Ordering: Least Constraining Value](#f03154f0f61b618719c8b5dc67557aaf)
+ - [Constraint Satisfaction Problems II](#1dff507c8d0411804d4fbae07a040c72)
+	 - [Reminder: CSPs](#acc9764e38986d7c5f932a1db3eaf43d)
+	 - [Arc Consitency of an Entire CSP:](#838c78b5c5b72f9770550d74bf0213df)
+	 - [K-Consistency](#8bba60b06aea42c1d4246dd17c987e0b)
+		 - [Strong K-Consistency](#b2f18a946e39a98cdff46b0f465f22db)
+	 - [Structure](#dc4c71563b9bc39a65be853457e6b7b6)
+	 - [Tree-Structured CSPs](#28db87697415187402d34b1a3b3d0de3)
+	 - [Improving Structure](#709ac339582a9376bc2eeca7e10d07cc)
+		 - [Nearly Tree-Structured CSPs](#130b46626de2ded14ad9027586d218d2)
+		 - [Cutset Conditioning](#c81f59e20d96cc96fb1a78af50455703)
+		 - [Tree Decomposition](#15a6670cc8efa82fc50198c0cce30f04)
+	 - [Iterative Improvement](#4dbd4d648c894941f112d1a8d83cae25)
+		 - [Iterative Algorithms for CSPs](#846761c44202fc6587390df7e27e33f8)
+		 - [Example: 4-Queens](#d0813c5b61b7d928b7b0bd53bc40b3e2)
+		 - [Performance of Min-Conflicts](#e9c367ec703849cbd55be1cc17396330)
+	 - [Summary: CSPs](#240e072c49e1269d63abd125b0dd5ede)
+	 - [Local Search](#e1ea5bc107355233f10e2288fe7fc0ae)
+		 - [Hill Climbing](#3b09835fc58a6f4c68cdf9d702bb59c6)
+		 - [Hill Climbing Diagram](#6d905a5baf3b8995646bc1c96ff9bae4)
+		 - [Simulated Annealing 退火](#d675d0b56bdafe850c953b589d02838d)
+		 - [Genetic Algorithems](#0a02d3b8f5cb85d83848b73ba2b78219)
+			 - [Example: N-Queens](#e8cba6398fc6216fef8e64d0a854ea7f)
 
 ...menuend
 
@@ -321,6 +350,7 @@ NT and SA cannot both be blue! Why didn’t we detect this yet?
 
 Constraint propagation: reason from constraint to constraint.
 
+<h2 id="4a6018d8655776208482f8b34d58f268"></h2>
 #### Consistency of A Single Arc
 
 The idea of checking single arcs:
@@ -335,6 +365,7 @@ An arc X → Y is consistent if for every x in the tail ( not arrow ) there is s
 
 Forward checking: Enforcing consistency of arcs pointing to each new assignment
 
+<h2 id="0ca5bb56dad2fa5871eec95372182139"></h2>
 #### Arc Consistency of an Entire CSP
 
 A simple form of propagation makes sure all arcs are consistent:
@@ -349,6 +380,7 @@ A simple form of propagation makes sure all arcs are consistent:
  	- must return after each assignment !
  	- you run it after every assignment at every step in the backtracking search
 
+<h2 id="a579dbdec94528eb11f12d92e857c911"></h2>
 #### Enforcing Arc Consistency in a CSP
 
 ```
@@ -375,6 +407,7 @@ end func
  - but detecting all possible future problems is NP-hard 
 
 
+<h2 id="86e7f886811c7ef1bc00bf5730d39c8b"></h2>
 #### Limitations of Arc Consistency
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_arc_consistency_wrong.png)
@@ -388,10 +421,12 @@ end func
  - Arc consistency still runs inside a backtracking search!
 
 
+<h2 id="12ad9074a51088cf63b8e33236d8cc13"></h2>
 ### Ordering
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_backtracking_ording.png)
 
+<h2 id="185f95a07ab7600e42ac6b4d80c987c5"></h2>
 #### Ordering: Minimum Remaining Values
 
  - Variable Ordering:  Minimum remaining values (MRV):
@@ -404,6 +439,7 @@ end func
 
 --- 
 
+<h2 id="f03154f0f61b618719c8b5dc67557aaf"></h2>
 #### Ordering: Least Constraining Value
 
  - Value Ordering: Least Constraining Value
@@ -421,8 +457,10 @@ end func
 
 ---------
 
+<h2 id="1dff507c8d0411804d4fbae07a040c72"></h2>
 # Constraint Satisfaction Problems II
 
+<h2 id="acc9764e38986d7c5f932a1db3eaf43d"></h2>
 ## Reminder: CSPs
 
  - CSPS:
@@ -437,6 +475,7 @@ end func
  	- Also:  find all , find best , etc.
 
 
+<h2 id="838c78b5c5b72f9770550d74bf0213df"></h2>
 ## Arc Consitency of an Entire CSP:
 
  - A simple form of propagation makes sure ***all*** arcs are simultaneously consistent:
@@ -445,6 +484,7 @@ end func
  	- The reason why our consistency in this bottom case  wasn't sufficient to discorve the inevitable failures because it only looks at parents. So you might think maybe we need a stronger notion in our consistency , maybe we need to look beyond Paris 
 
 
+<h2 id="8bba60b06aea42c1d4246dd17c987e0b"></h2>
 ## K-Consistency
 
  - Increasing degrees of consistency
@@ -456,6 +496,7 @@ end func
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_k-consitency.png)
 
+<h2 id="b2f18a946e39a98cdff46b0f465f22db"></h2>
 ### Strong K-Consistency
 
  - Strong k-consistency: also k-1, k-2, … 1 consistent
@@ -470,6 +511,7 @@ end func
  - Lots of middle ground between arc consistency and n-consistency!  (e.g. k=3, called path consistency)
 
 
+<h2 id="dc4c71563b9bc39a65be853457e6b7b6"></h2>
 ## Structure
 
 So far the big ways we have accelerated are csp solvers , have been to exploit ordering , filtering. Now we can do something very different. We can look at the structure of the CSP.
@@ -504,6 +546,7 @@ This is RARE to actually see separate subproblems. So let's see if we can come u
 	- (4)(2²⁰) = 0.4 seconds at 10 million nodes/sec
 
 
+<h2 id="28db87697415187402d34b1a3b3d0de3"></h2>
 ## Tree-Structured CSPs
 
 Here is a case where your graph doesn't have to be broken into pieces but it's still simple in some way and this is a very important case that will see coming up over and over in this class. That's the case where you constraint graph it's not separated into pieces but it's not a general graph either.   
@@ -560,10 +603,12 @@ Am I sure it is enough just kind of enforce consistency of the arcs once ?
  - Note: we’ll see this basic idea again with Bayes’ nets
 
 
+<h2 id="709ac339582a9376bc2eeca7e10d07cc"></h2>
 ## Improving Structure
 
 So we can use this great algorithm on tree-structured CSP.  But CSP is probably not tree-structured either. So we need some way of taking graphs which are not in these wonderful configurations but or maybe closer. 
 
+<h2 id="130b46626de2ded14ad9027586d218d2"></h2>
 ### Nearly Tree-Structured CSPs
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_nearly_tree_structure_csp.png)
@@ -586,6 +631,7 @@ So the algorithm we have for making something that is nearly tree-structured int
 
 
 
+<h2 id="c81f59e20d96cc96fb1a78af50455703"></h2>
 ### Cutset Conditioning 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_cutset_conditioning.png)
@@ -593,6 +639,7 @@ So the algorithm we have for making something that is nearly tree-structured int
 
 Finding smallest cut-set is np-hard !
 
+<h2 id="15a6670cc8efa82fc50198c0cce30f04"></h2>
 ### Tree Decomposition
 
 Another approach :
@@ -605,8 +652,10 @@ Another approach :
 
 ---
 
+<h2 id="4dbd4d648c894941f112d1a8d83cae25"></h2>
 ## Iterative Improvement
 
+<h2 id="846761c44202fc6587390df7e27e33f8"></h2>
 ### Iterative Algorithms for CSPs
 
  - Local search methods typically work with “complete” states, i.e., all variables assigned
@@ -621,6 +670,7 @@ Another approach :
 		- Choose a value that violates the fewest constraints
 		- I.e., hill climb with h(n) = total number of violated constraints
 
+<h2 id="d0813c5b61b7d928b7b0bd53bc40b3e2"></h2>
 ### Example: 4-Queens
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_algorithm_4-queens.png)
@@ -641,6 +691,7 @@ Another approach :
 
 ---
 
+<h2 id="e9c367ec703849cbd55be1cc17396330"></h2>
 ### Performance of Min-Conflicts
 
  - Given random initial state, can solve n-queens in almost constant time for arbitrary n with high probability (e.g., n = 10,000,000)!
@@ -655,6 +706,7 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
 
 ---
 
+<h2 id="240e072c49e1269d63abd125b0dd5ede"></h2>
 ## Summary: CSPs
 
  - CSPs are a special kind of search problem:
@@ -668,6 +720,7 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
  - Iterative min-conflicts is often effective in practice
 
 
+<h2 id="e1ea5bc107355233f10e2288fe7fc0ae"></h2>
 ## Local Search
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_local_search.png)
@@ -681,6 +734,7 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
  	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_local_search_local_change.png)
  - Generally much faster and more memory efficient (but incomplete and suboptimal)
 
+<h2 id="3b09835fc58a6f4c68cdf9d702bb59c6"></h2>
 ### Hill Climbing
 
  - Simple, general idea:
@@ -694,10 +748,12 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
  - What’s good about it?
  	- you can start anywhere you can do the best you can and there are a wide range of problems in the real world where kind of any solution will work , and you'd like to make it as good as possible and you know you can't get to the optimal solution.
 
+<h2 id="6d905a5baf3b8995646bc1c96ff9bae4"></h2>
 ### Hill Climbing Diagram
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hill_climbing_diagram.png)
 
+<h2 id="d675d0b56bdafe850c953b589d02838d"></h2>
 ### Simulated Annealing 退火
 
 You have some current state just like any local search algorithm and you're going to look at the successors just like any local search algorithm. The difference is you have this other concept of a temperature. And the idea is when the temperature is high you're bouncing around like crazy and essentially you're going to go to a neighbor whether it's better than you or not. So what you do is you pick a random successor not the best success. You figure out is it better or worse than me . It's better than me I'll take it. If it's worse than me maybe I'll take it. I'll take it when the temperature is high . So you just kinds of bouncing around like crazy. 
@@ -722,6 +778,7 @@ You will spend more times at higher places on the mountain. So essentially *e* h
 
 
 
+<h2 id="0a02d3b8f5cb85d83848b73ba2b78219"></h2>
 ### Genetic Algorithems
 
 Genetic algorithms are kind of local search in this case not one hypothesis but a bunch of pypothesis. And rather than just locally improving all of them , it is just mutation.
@@ -736,7 +793,10 @@ You keep the best hypotheses at each step . In adition to just keeping the best 
  - Possibly the most misunderstood, misapplied (and even maligned) technique around
 
 
+<h2 id="e8cba6398fc6216fef8e64d0a854ea7f"></h2>
 #### Example: N-Queens
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_genetic_algorithm_N-queens.png)
 
 
 
