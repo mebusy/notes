@@ -324,8 +324,56 @@ A = ⎢-1  2 -1⎥  is positive semidefinite, by all five tests:
  3. det A = 0 and smaller determinants are positive.
  4. ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_positive_semidefinite_example_2_test_4.png)
  5. A = RᵀR with dependent columns in R:
- 	
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_positive_semidefinite_example_2_test_5.png)
 
+
+***Remark***: The conditions for semidefiniteness could also be deduced from the original conditions 1~5 for definiteness by the following trick: Add a small multiple of the identity, giving a positive definite matrix A + εI. Then let ε approach zero. Since the determinants and eigenvalues depend continuously on ε, they will be positive until the very last moment. At ε = 0 they must still be nonnegative.
+
+My class often asks about *unsymmetric* positive definite matrices. I never use that term.  One reasonable definition is that the symmetric part 1/2 (A + Aᵀ) should be positive definite. That guarantees that *the real parts of the eigenvalues are positive*.  But it is not necessary: 
+
+```
+A = ⎡1 4⎤ has λ > 0 , but 1/2(A + Aᵀ) = ⎡1 2⎤ is indefinite.  
+    ⎣0 1⎦                               ⎣2 1⎦  
+```
+
+If Ax = λx, then xᴴAx = λxᴴx and xᴴAᴴx = λ̅xᴴx .
+
+Adding , 1/2·xᴴ(A+Aᴴ)x = (Re λ)xᴴx > 0 , so that Re λ > 0 . ?
+
+
+### Ellipsoids in n Dimensions
+
+For a positive definite matrix and its xᵀAx, we finally get a figure that is curved.  It is an ellipse in two dimensions, and an ellipsoid in n dimensions.
+
+**The equation to consider is xᵀAx = 1**.  A is the identity matrix, this simplifies to x₁² + x₂² + ... + xn² = 1.  This is the equation of the "unit sphere" in Rⁿ. If A = 4I, the sphere gets smaller. The equation changes to 4x₁² + 4x₂² + ... + 4xn² = 1.  Instead of ( 1 , 0, ... , 0), it goes through ( 1/2, 0, ... , 0).  The center is at the origin, because if x satisfies xᵀAx = 1, so does the opposite vector -x.  The important step is to go from the identity matrix to a diagonal matrix:
+
+```
+Ellipsoid:
+
+    ⎡4       ⎤
+A = ⎢   1    ⎥ , the equation is xᵀAx = 4x₁² + x₂² + 1/9·x₃² = 1. 
+    ⎣     1/9⎦
+```
+
+Since the entries are unequal (and positive!) the sphere changes to an ellipsoid.
+
+One solution is x = (2, 0, 0) along the first axis. Another is x = (0, 1, 0). The major axis has the farthest point x = (0, 0, 3). It is like a football or a rugby ball, but
+not quite -- Those are closer to x₁² + x₂² + 1/2·x₃² = 1.  The two equal coefficients make them circular in the X₁-x₂ plane, and much easier to throw!
+
+Now comes the final step, to allow nonzeros away from the diagonal of A.
+
+**Example 3**:
+
+```
+A = ⎡5 4⎤ and  xᵀAx = 5u² + 8uv + 5v² = 1.   
+    ⎣4 5⎦     
+```
+
+That ellipse is centered at u = v = 0, but the axes are not so clear. The off-diagonal 4s leave the matrix positive definite, but they rotate the ellipse -- its axes no longer line up with the coordinate axes.
+
+
+
+> Figure 6.2  its principal axes.
 
 
 
