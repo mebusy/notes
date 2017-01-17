@@ -452,7 +452,20 @@ end func
  - Higher k more expensive to compute
  - (You need to know the k=2 case: arc consistency)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_k-consitency.png)
 
+### Strong K-Consistency
+
+ - Strong k-consistency: also k-1, k-2, … 1 consistent
+ - Claim: strong n-consistency means we can solve without backtracking!
+ - Why?
+ 	- Choose any assignment to any variable
+ 	- Choose a new variable
+ 	- By 2-consistency, there is a choice consistent with the first
+ 	- Choose a new variable
+ 	- By 3-consistency, there is a choice consistent with the first 2
+	…
+ - Lots of middle ground between arc consistency and n-consistency!  (e.g. k=3, called path consistency)
 
 
 ## Structure
