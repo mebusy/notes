@@ -566,18 +566,28 @@ So we can use this great algorithm on tree-structured CSP.  But CSP is probably 
 
 ### Nearly Tree-Structured CSPs
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_nearly_tree_structure_csp.png)
 
+What are we gonna do about SA to get rid of it. This technique called conditioning. 
 
+We are going to assign a value to it . Once we've assigned a value to it and we imagine that  that value we assigned to SA is fixed. Then kind of the rest of the graph can forget that variable exists , and you can strengthen existed on an arc touching SA  can now turn into a unary constraint on the other end.
 
-What are we gonna do about SA to get rid of it. This technique called conditioning.  We are going to assign a value to it . Once we've assigned a value to it and we imagine that  that value we assigned to SA is fixed. Then kind of the rest of the graph can forget that variable exists , and you can strengthen existed on an arc touching SA  can now turn into a unary constraint on the other end.
-
-If we assign SA red, the constraint says essentially the WA can't be red .  So we can remove SA from the graph and add a unary constraint placed on WA.
+If we assign SA red, the constraint says essentially the WA , NT , ... ,  can't be red .  So we can remove SA from the graph and add a unary constraint placed on WA.
 
 So we get a simple graph once we instantiate SA and then remove it. 
 
 So the algorithm we have for making something that is nearly tree-structured into a tree structure is called  ***cut-set*** conditioning.
 
-Cutset Conditioning 
+ - Conditioning: 
+ 	- instantiate a variable, prune (修剪) its neighbors' domains
+ - Cutset conditioning: 
+ 	- instantiate (in all ways) a set of variables such that the remaining constraint graph is a tree
+ - Cutset size c gives runtime O( (d<sup>c</sup>) (n-c) d² ), very fast for small c
+
+
+
+### Cutset Conditioning 
+
 
 Finding smallest cut-set is np-hard.
 
