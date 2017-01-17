@@ -552,15 +552,22 @@ This algorithm guarantees you that in this forward assignment phase there will a
 Am I sure it is enough just kind of enforce consistency of the arcs once ?
 
  - Claim 1: After backward pass, all root-to-leaf arcs are consistent
+ - Proof: Each X→Y was made consistent at one point and Y’s domain could not have been reduced thereafter (because Y’s children were processed before Y)
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_tree_structured_cps_consistency_proof.png)
+ - Claim 2: If root-to-leaf arcs are consistent, forward assignment will not backtrack
+ - Proof: Induction on position
+ - This algorithm will not work with cycles in the constraint graph
+ - Note: we’ll see this basic idea again with Bayes’ nets
 
 
-
-
-Improving Structure
+## Improving Structure
 
 So we can use this great algorithm on tree-structured CSP.  But CSP is probably not tree-structured either. So we need some way of taking graphs which are not in these wonderful configurations but or maybe closer. 
 
-Nearly Tree-Structured CSPs
+### Nearly Tree-Structured CSPs
+
+
+
 
 What are we gonna do about SA to get rid of it. This technique called conditioning.  We are going to assign a value to it . Once we've assigned a value to it and we imagine that  that value we assigned to SA is fixed. Then kind of the rest of the graph can forget that variable exists , and you can strengthen existed on an arc touching SA  can now turn into a unary constraint on the other end.
 
