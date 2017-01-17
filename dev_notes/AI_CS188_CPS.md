@@ -516,21 +516,22 @@ It is a theorem that if the constraint graph has no loops then the CSP can be so
 
  - Theorem: if the constraint graph has no loops, the CSP can be solved in O(n·d²) time
 	- Compare to general CSPs, where worst-case time is O(dⁿ)
+ - This property also applies to probabilistic reasoning (later): 
+ 	- an example of the relation between syntactic restrictions and the complexity of reasoning
 
 ---
 
  - Algorithm for solving a tree-structured CSPs:
- 	- Order: Choose a root variable, order variables so that parents precede children
+ 	- 1. Order: Choose a root variable, order variables so that parents precede children
  		- the first step is to take this tree structure and order it.
  		- It means you pick a root variable , any variable works , so you grab the CSP by some root variable you gotta pick up by its anchor and that everything else hanging down. (拎住A 提起来)
- 		- 
- - This property also applies to probabilistic reasoning (later): 
- 	- an example of the relation between syntactic restrictions and the complexity of reasoning
+ 		- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_tree_structure_order.png)
+ 	- 2. Remove backward: For i = n : 2, apply RemoveInconsistent(Parent(Xᵢ),Xᵢ)
+ 	- 3. Assign forward: For i = 1 : n, assign Xᵢ consistently with Parent(Xᵢ)
+ - Runtime: O(n·d²) 
 
 
-
-
-let's make there arcs consistent . We will start with F , and we will work our way leftward.  When we visit F, we gonna say what arcs comes into you , how many arcs can come into F ?  1 , because it's a tree , VERY IMPORTANT !
+let's make there arcs consistent . We will start with F , and we will work our way leftward.  When we visit F, we gonna say what arcs comes into you , how many arcs can come into F ?  1 , because it's a tree , ***VERY IMPORTANT*** !
 
 So I look at D->F , so I remove blue in D.
 
@@ -542,12 +543,17 @@ B->C ,  remove green in B.
 
 A->B , remove blue in A.
 
-
-When assigning , everything is safe. 
+Now start assigning. When assigning , everything is safe. 
 
 This algorithm guarantees you that in this forward assignment phase there will always be a consistent solution at each point you pick it and you move on. Which means no backtracking and so this whole thing was pretty efficient.
 
+---
+
 Am I sure it is enough just kind of enforce consistency of the arcs once ?
+
+ - Claim 1: After backward pass, all root-to-leaf arcs are consistent
+
+
 
 
 Improving Structure
