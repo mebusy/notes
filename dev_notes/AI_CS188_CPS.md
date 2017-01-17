@@ -670,16 +670,22 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
 
 ## Local Search
 
-So far the search algorithms we've talked about is not local. They have a fringe where you trying some particular branch of the tree and effective workout you went back to the fringe and you tried your other backup strategies.  The fringe is a safety net.
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_local_search.png)
 
-In local search you don't have the safety net.  You got one position that you are currently at and you're trying to hill climb in some way. 
-
-You have a new idea of a successor function. The successor function now does not take a plan and extend the plan , instead it takes a complete assignment of some kind and modifies it.  Your successor function is more about modification than about extension.
+ - Tree search keeps unexplored alternatives on the fringe (ensures completeness)
+ 	- So far the search algorithms we've talked about is not local. They have a fringe where you trying some particular branch of the tree and effective workout you went back to the fringe and you tried your other backup strategies.  The fringe is a safety net.
+ - Local search: improve a single option until you can’t make it better (no fringe!)
+ 	- In local search you don't have the safety net.  You got one position that you are currently at and you're trying to hill climb in some way. 
+ - New successor function: local changes
+ 	- You have a new idea of a successor function. The successor function now does not take a plan and extend the plan , instead it takes a complete assignment of some kind and modifies it.  Your successor function is more about modification than about extension.
+ 	- 
 
 Complete ? No. 
 Optimal ? No.
 
 may reach local maximum.
+
+
 
 Good about:  you can start anywhere you can do the best you can and there are a wide range of problems in the real world where kind of any solution will work , and you'd like to make it as good as possible and you know you can't get to the optimal solution.
 
