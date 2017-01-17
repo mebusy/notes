@@ -397,7 +397,61 @@ The other axes are along the other eigenvectors. Their lengths are 1 / √λ₂ 
 
 An indefinite equation y₁² - 9y₂² = 1 describes a hyperbola and not an ellipse. A hyperbola is a cross-section through a saddle, and an ellipse is a cross-section through a bowl.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_hyperbola.png)
 
+The change from x to y = Qᵀx rotates the axes of the space, to match the axes of the ellipsoid. In the y variables we can see that it is an ellipsoid, because the equation
+becomes so manageable:
+
+**6E**: Suppose A = QΛQᵀ with λᵢ > 0. Rotating y = Qᵀx simplifies xᵀAx = 1 :
+
+```
+	xᵀQΛQᵀx = 1 , yᵀΛy = 1 , and λ₁y₁² + ... + λnyn² = 1.
+```
+
+This is the equation of an ellipsoid. Its axes have lengths 1 / √λ₁,   ... , 1 / √λn  from the center. In the original x-space they point along the eigenvectors of A.
+
+
+### The Law of Inertia
+
+For elimination and eigenvalues, matrices become simpler by elementary operations. The essential thing is to know which properties of the matrix stay unchanged. 
+
+When a multiple of one row is subtracted from another, the row space, nullspace, rank, and determinant all remain the same.
+
+For eigenvalues, the basic operation was a similarity transformation A → S⁻¹AS (or A → M⁻¹AM). The eigenvalues are unchanged (and also the Jordan form). 
+
+Now we ask the same question for symmetric matrices: *What are the elementary operations and their invariants for xᵀAx* ?
+
+The basic operation on a quadratic form is to change variables. A new vector y is related to x by some nonsingular matrix, x = Cy. The quadratic form becomes yᵀCᵀACy. This shows the fundamental operation on A:
+
+```
+Congruence transformation 同余转换
+
+A → CᵀAC for some NONsingular C. (6)
+```
+
+The symmetry of A is preserved, since CᵀAC remains symmetric.  The real question is, What other properties are shared by A and CᵀAC ? 
+
+The answer is given by Sylvester's ***law of inertia***.
+
+**6F**: CᵀAC has the same number of positive eigenvahies, negative eigenvalues, and zero eigenvalues as A.
+
+The *signs* of the eigenvalues (and not the eigenvalues themselves) are preserved by a congruence transformation.  In the proof, we will suppose that A is nonsingular. Then CᵀAC is also nonsingular, and there are no zero eigenvalues to worry about.  (Otherwise we can work with the nonsingular A + εI and A - εI, and at the end let ε → 0.)
+
+Proof: skip...
+
+**Example 4**: Suppose A = I. Then CᵀAC = CᵀC is positive definite. Both I and CᵀC haven positive eigenvalues, confirming the law of inertia.
+
+**Example 5**: If A = [ 1 0 ; 0 -1 ] , then CᵀAC has a negative determinant :
+
+```
+	det( CᵀAC ) = (detCᵀ) (detA) (detC) = -(det C)² < 0 .
+```
+
+Then CᵀAC must have one positive and one negative eigenvalue, like A.
+
+**Example 6**: This application is the important one:
+
+**6G** For am symmetric matrix A,  ***the signs of the pivots agree with the signs of the eigenvalues***. The eigenvalue matrix Λ and the pivot matrix D have the same number of positive entries , negative entries, and zero entries.
 
 
 
