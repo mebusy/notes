@@ -510,18 +510,22 @@ Here is a case where your graph doesn't have to be broken into pieces but it's s
 
 Here is a case of a constraint graph has tree structure which means no loops, no cycles in the constraint graph . 
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_tree_structure_of_CSPs.png)
 
 It is a theorem that if the constraint graph has no loops then the CSP can be solved in time that is linear in the size of graph and quadratic in the size of domains.  That's so much better thatn general CSPs worst exponential.
 
+ - Theorem: if the constraint graph has no loops, the CSP can be solved in O(n·d²) time
+	- Compare to general CSPs, where worst-case time is O(dⁿ)
 
+---
 
-How are we going to solve a tree-structured CSP you can just break it into 2 pieces like we do with independent subproblems.
-
-Here is a algorithm for a tree-structured CSP :
-
- - the first step is to take this tree structure and order it.
- 	- It means you pick a root variable , any variable works , so you grab the CSP by some root variable you gotta pick up by its anchor and that everything else hanging down. 
+ - Algorithm for solving a tree-structured CSPs:
+ 	- Order: Choose a root variable, order variables so that parents precede children
+ 		- the first step is to take this tree structure and order it.
+ 		- It means you pick a root variable , any variable works , so you grab the CSP by some root variable you gotta pick up by its anchor and that everything else hanging down. (拎住A 提起来)
+ 		- 
+ - This property also applies to probabilistic reasoning (later): 
+ 	- an example of the relation between syntactic restrictions and the complexity of reasoning
 
 
 
