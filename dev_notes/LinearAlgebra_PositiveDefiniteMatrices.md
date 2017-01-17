@@ -379,6 +379,26 @@ To locate the ellipse we compute λ₁ = 1 and λ₂ = 9.  The unit eigenvectors
 
 **New squares** 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_new_squres_xTAx.png)
+
+λ = 1 and λ = 9 are outside the squares. The eigenvectors are inside. This is different from completing the square to 5·(u + 4/5·v)² + 9/5·v², with the pivots outside.
+
+The first square equals 1 at (1/√2, -1/√2 ) at the end of the major axis. The minor axis is one-third as long, since we need (1/3)² to cancel the 9.
+
+Any ellipsoid xᵀAx = 1 can be simplified in the same way.  *The key step is to diagonalize A = QΛQᵀ* .  We straightened the picture by rotating the axes. Algebraically, the change to y = Qᵀx produces a sum of squares:
+
+```
+xᵀAx = (xᵀQ)Λ(Qᵀx) = yᵀΛy = λ₁y₁² + λ₂y₂² + ... + λnyn² = 1.  (5)
+```
+
+The major axis has y₁ = 1 / √λ₁ along the eigenvector with the smallest eigenvalue.
+
+The other axes are along the other eigenvectors. Their lengths are 1 / √λ₂ , ... , 1 / √λn . Notice that the λ's must be positive -- the matrix must be positive definite -- or these square roots are in trouble. 
+
+An indefinite equation y₁² - 9y₂² = 1 describes a hyperbola and not an ellipse. A hyperbola is a cross-section through a saddle, and an ellipse is a cross-section through a bowl.
+
+
+
 
 
 
