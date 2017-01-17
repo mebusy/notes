@@ -711,9 +711,14 @@ You will spend more times at higher places on the mountain. So essentially *e* h
  - Idea:  Escape local maxima by allowing downhill moves
 	- But make them rarer as time goes on
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_simulated_annealing_function.png)
+
+ - Theoretical guarantee:
+ 	- Stationary distribution: 
 
 
-Genetic Algorithems
+
+## Genetic Algorithems
 
 Genetic algorithms are kind of local search in this case not one hypothesis but a bunch of pypothesis. And rather than just locally improving all of them , it is just mutation.
 
