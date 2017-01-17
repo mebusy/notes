@@ -601,6 +601,25 @@ Another approach :
  - Each mega-variable encodes part of the original CSP
  - Subproblems overlap to ensure consistent solutions
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_tree_decomposition.png)
+
+---
+
+## Iterative Improvement
+
+### Iterative Algorithms for CSPs
+
+ - Local search methods typically work with “complete” states, i.e., all variables assigned
+ - To apply to CSPs:
+ 	- Take an assignment with unsatisfied constraints
+ 	- Operators reassign variable values
+ 	- No fringe!  Live on the edge.
+ - Algorithm: While not solved,
+	- Variable selection: randomly select any conflicted variable
+	- Value selection: min-conflicts heuristic:
+		- Choose a value that violates the fewest constraints
+		- I.e., hill climb with h(n) = total number of violated constraints
+
 
 
 
@@ -609,6 +628,7 @@ Another approach :
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_improvement_nqueens1.png)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_improvement_nqueens2.png)
+
 
 
 very few constraints  and ver many  constraints are both great.  There's a magical critical ratio where things suddenly get really really hard because it's kind of just constrained and often just really tough. You got your problem ,your prolbem probably not randomly generated : you were there (critical ratio) too.
