@@ -728,7 +728,15 @@ Genetic algorithms are kind of local search in this case not one hypothesis but 
 
 You keep the best hypotheses at each step . In adition to just keeping the best one, you find pairs and you do cross-over , you made them (2 robots -> big robot ).
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_genetic_algorithm.png)
 
+ - Genetic algorithms use a natural selection metaphor
+	- Keep best N hypotheses at each step (selection) based on a fitness function
+	- Also have pairwise crossover operators, with optional mutation to give variety
+ - Possibly the most misunderstood, misapplied (and even maligned) technique around
+
+
+#### Example: N-Queens
 
 
 
