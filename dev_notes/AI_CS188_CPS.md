@@ -107,7 +107,9 @@ Formulation 2:
 <h2 id="5e3fadab67cd58dfc836b52e0eec6403"></h2>
 ## Constraint Graphs
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_constraints_graph.png)
+![][1]
+
+
 
  - Binary CSP: 
  	- each constraint relates (at most) two variables
@@ -476,8 +478,14 @@ Sometimes you look at a CSP that you're trying to solve and you see it has some 
 
 So for example if your CSP involved this giant criminal robot network you might think you should go after that guy in the center. That would be an example of exploiting structure.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_structure.png)
+
+---
 
 So here is the constraint graph for the problem of map coloring Australia and an extreme case of problems structure is when you look at your constraint graph. Remember the constraint graph tells you which variables have constraints it doesn't tell you what those are. We know in this particular case any inequality ??? constraints but the constraint graph doesn't tell you that.
+
+![][1]
+
 
 In particular case we look at it we see that this graph is broken into two pieces. There's the mainland and then there is the tiny little CSP of a single node for Tasmania . That's an extreme case of structure where we have independent subproblems. Independent problems are great because you can solve them separately , you know devide and conquer.
 
@@ -486,12 +494,25 @@ How do we tell we have independence to solve problems ? You can do a connected c
 
 This is RARE to actually see separate subproblems. So let's see if we can come up with some methods that are more broadly applicable.
 
+ - Extreme case: independent subproblems
+	- Example: Tasmania and mainland do not interact
+ - Independent subproblems are identifiable as connected components of constraint graph
+ - Suppose a graph of n variables can be broken into subproblems of only c variables:
+	- Worst-case solution cost is O((n/c)(d<sup>c</sup>)), linear in n
+	- E.g., n = 80, d = 2, c =20
+	- 2⁸⁰ = 4 billion years at 10 million nodes/sec
+	- (4)(2²⁰) = 0.4 seconds at 10 million nodes/sec
+
 
 ## Tree-Structured CSPs
 
 Here is a case where your graph doesn't have to be broken into pieces but it's still simple in some way and this is a very important case that will see coming up over and over in this class. That's the case where you constraint graph it's not separated into pieces but it's not a general graph either.   
 
-Here is a case of a constraint graph has tree structure which means no loops, no cycles in the constraint graph . It is a theorem that if the constraint graph has no loops then the CSP can be solved in time that is linear in the size of graph and quadratic in the size of domains.  That's so much better thatn general CSPs worst exponential.
+Here is a case of a constraint graph has tree structure which means no loops, no cycles in the constraint graph . 
+
+
+
+It is a theorem that if the constraint graph has no loops then the CSP can be solved in time that is linear in the size of graph and quadratic in the size of domains.  That's so much better thatn general CSPs worst exponential.
 
 
 
@@ -593,4 +614,7 @@ You keep the best hypotheses at each step . In adition to just keeping the best 
 
 
 
+---
 
+
+  [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_constraints_graph.png
