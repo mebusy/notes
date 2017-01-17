@@ -714,11 +714,15 @@ You will spend more times at higher places on the mountain. So essentially *e* h
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_simulated_annealing_function.png)
 
  - Theoretical guarantee:
- 	- Stationary distribution: 
+ 	- Stationary distribution:  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_simulated_annealing_stationary_distribution.png)
+ 	- If T decreased slowly enough, will converge to optimal state!
+ - Sounds like magic, but reality is reality:
+	- The more downhill steps you need to escape a local optimum, the less likely you are to ever make them all in a row
+	- People think hard about ridge operators which let you jump around the space in better ways
 
 
 
-## Genetic Algorithems
+### Genetic Algorithems
 
 Genetic algorithms are kind of local search in this case not one hypothesis but a bunch of pypothesis. And rather than just locally improving all of them , it is just mutation.
 
