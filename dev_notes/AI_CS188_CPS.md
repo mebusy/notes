@@ -645,13 +645,30 @@ Another approach :
 
  - Given random initial state, can solve n-queens in almost constant time for arbitrary n with high probability (e.g., n = 10,000,000)!
  - The same appears to be true for any randomly-generated CSP except in a narrow range of the ratio
- - 
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_performance_of_min_conflicts.png)
+
+Very few constraints  and ver many  constraints are both great.  There's a magical critical ratio where things suddenly get really really hard because it's kind of just constrained and often just really tough. 
+
+But you got your problem ,your prolbem probably not randomly generated : you were there (critical ratio) too.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_performance_of_min_conflicts_hard.png)
+
+---
+
+## Summary: CSPs
+
+ - CSPs are a special kind of search problem:
+	- States are partial assignments
+	- Goal test defined by constraints
+ - Basic solution:  backtracking search
+ - Speed-ups:
+ 	- Ordering
+ 	- Filtering 
+ 	- Structure
+ - Iterative min-conflicts is often effective in practice
 
 
-Very few constraints  and ver many  constraints are both great.  There's a magical critical ratio where things suddenly get really really hard because it's kind of just constrained and often just really tough. You got your problem ,your prolbem probably not randomly generated : you were there (critical ratio) too.
-
-
-Local Search
+## Local Search
 
 So far the search algorithms we've talked about is not local. They have a fringe where you trying some particular branch of the tree and effective workout you went back to the fringe and you tried your other backup strategies.  The fringe is a safety net.
 
