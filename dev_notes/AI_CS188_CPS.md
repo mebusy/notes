@@ -445,6 +445,15 @@ end func
 
 ## K-Consistency
 
+ - Increasing degrees of consistency
+ 	- 1-Consistency (Node Consistency): Each single node’s domain has a value which meets that node’s unary constraints
+ 	- 2-Consistency (Arc Consistency): For each pair of nodes, any consistent assignment to one can be extended to the other
+ 	- K-Consistency: For each k nodes, any consistent assignment to k-1 can be extended to the kth node.
+ - Higher k more expensive to compute
+ - (You need to know the k=2 case: arc consistency)
+
+
+
 
 ## Structure
 
@@ -550,7 +559,21 @@ may reach local maximum.
 Good about:  you can start anywhere you can do the best you can and there are a wide range of problems in the real world where kind of any solution will work , and you'd like to make it as good as possible and you know you can't get to the optimal solution.
 
 
+Simulated Annealing 退火
 
+You have some current state just like any local search algorithm and you're going to look at the successors just like any local search algorithm. The difference is you have this other concept of a temperature. And the idea is when the temperature is high you're bouncing around like crazy and essentially you're going to go to a neighbor whether it's better than you or not. So what you do is you pick a random successor not the best success. You figure out is it better or worse than me . It's better than me I'll take it. If it's worse than me maybe I'll take it. I'll take it when the temperature is high . So you just kinds of bouncing around like crazy. 
+
+You lower the temperature and you take these downhill steps less and less often. But if it's only one downhill step away from making huge progress you know you'll sit there bouncing around for a while eventually escaped and continue going.
+
+
+You will spend more times at higher places on the mountain. So essentially *e* here is your fitness function. If the fitness function is high you'll spend more time up there because it takes you longer to bounce.  As the temperature decreases you tend to get stuck where you are.  You get the beautiful guarantee that such as T goes to 0 you got to do it right then you will converge to the optimal state. And you will spend kind of infinitely much time . 
+
+
+Genetic Algorithems
+
+Genetic algorithms are kind of local search in this case not one hypothesis but a bunch of pypothesis. And rather than just locally improving all of them , it is just mutation.
+
+You keep the best hypotheses at each step . In adition to just keeping the best one, you find pairs and you do cross-over , you made them (2 robots -> big robot ).
 
 
 
