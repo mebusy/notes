@@ -322,7 +322,9 @@ A = ⎢-1  2 -1⎥  is positive semidefinite, by all five tests:
  1. xᵀAx = (x₁ - x₂)² + (x₁ - x₃)² + (x₂ - x₃)² > 0 (zero if x₁ = x₂ = x₃)  
  2. The eigenvalues are 0, λ₁ = 0 , λ₂ = λ₃ = 3 (a zero eigenvalue).
  3. det A = 0 and smaller determinants are positive.
- 4. 
+ 4. ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_positive_semidefinite_example_2_test_4.png)
+ 5. A = RᵀR with dependent columns in R:
+ 	
 
 
 
