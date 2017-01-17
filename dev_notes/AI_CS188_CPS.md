@@ -614,11 +614,14 @@ Another approach :
  	- Take an assignment with unsatisfied constraints
  	- Operators reassign variable values
  	- No fringe!  Live on the edge.
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_algorithm.png)
  - Algorithm: While not solved,
 	- Variable selection: randomly select any conflicted variable
 	- Value selection: min-conflicts heuristic:
 		- Choose a value that violates the fewest constraints
 		- I.e., hill climb with h(n) = total number of violated constraints
+
+### Example: 4-Queens
 
 
 
