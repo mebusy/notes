@@ -694,8 +694,11 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
  - What’s good about it?
  	- you can start anywhere you can do the best you can and there are a wide range of problems in the real world where kind of any solution will work , and you'd like to make it as good as possible and you know you can't get to the optimal solution.
 
+### Hill Climbing Diagram
 
-Simulated Annealing 退火
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hill_climbing_diagram.png)
+
+### Simulated Annealing 退火
 
 You have some current state just like any local search algorithm and you're going to look at the successors just like any local search algorithm. The difference is you have this other concept of a temperature. And the idea is when the temperature is high you're bouncing around like crazy and essentially you're going to go to a neighbor whether it's better than you or not. So what you do is you pick a random successor not the best success. You figure out is it better or worse than me . It's better than me I'll take it. If it's worse than me maybe I'll take it. I'll take it when the temperature is high . So you just kinds of bouncing around like crazy. 
 
@@ -703,6 +706,11 @@ You lower the temperature and you take these downhill steps less and less often.
 
 
 You will spend more times at higher places on the mountain. So essentially *e* here is your fitness function. If the fitness function is high you'll spend more time up there because it takes you longer to bounce.  As the temperature decreases you tend to get stuck where you are.  You get the beautiful guarantee that such as T goes to 0 you got to do it right then you will converge to the optimal state. And you will spend kind of infinitely much time . 
+
+
+ - Idea:  Escape local maxima by allowing downhill moves
+	- But make them rarer as time goes on
+
 
 
 Genetic Algorithems
