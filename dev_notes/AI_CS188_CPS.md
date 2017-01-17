@@ -623,8 +623,15 @@ Another approach :
 
 ### Example: 4-Queens
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_algorithm_4-queens.png)
 
+ - States: 
+ 	- 4 queens in 4 columns (4⁴ = 256 states)
+ - Operators: move queen in column
+ - Goal test: no attacks
+ - Evaluation: c(n) = number of attacks
 
+---
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_algorithm_iterative_improvement.png)
 
@@ -632,9 +639,16 @@ Another approach :
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_improvement_nqueens2.png)
 
+---
+
+### Performance of Min-Conflicts
+
+ - Given random initial state, can solve n-queens in almost constant time for arbitrary n with high probability (e.g., n = 10,000,000)!
+ - The same appears to be true for any randomly-generated CSP except in a narrow range of the ratio
+ - 
 
 
-very few constraints  and ver many  constraints are both great.  There's a magical critical ratio where things suddenly get really really hard because it's kind of just constrained and often just really tough. You got your problem ,your prolbem probably not randomly generated : you were there (critical ratio) too.
+Very few constraints  and ver many  constraints are both great.  There's a magical critical ratio where things suddenly get really really hard because it's kind of just constrained and often just really tough. You got your problem ,your prolbem probably not randomly generated : you were there (critical ratio) too.
 
 
 Local Search
