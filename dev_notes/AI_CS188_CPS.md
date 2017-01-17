@@ -678,16 +678,21 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
  	- In local search you don't have the safety net.  You got one position that you are currently at and you're trying to hill climb in some way. 
  - New successor function: local changes
  	- You have a new idea of a successor function. The successor function now does not take a plan and extend the plan , instead it takes a complete assignment of some kind and modifies it.  Your successor function is more about modification than about extension.
- 	- 
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_local_search_local_change.png)
+ - Generally much faster and more memory efficient (but incomplete and suboptimal)
 
-Complete ? No. 
-Optimal ? No.
+### Hill Climbing
 
-may reach local maximum.
-
-
-
-Good about:  you can start anywhere you can do the best you can and there are a wide range of problems in the real world where kind of any solution will work , and you'd like to make it as good as possible and you know you can't get to the optimal solution.
+ - Simple, general idea:
+	- Start wherever
+	- Repeat: move to the best neighboring state
+	- If no neighbors better than current, quit
+ - What’s bad about this approach?
+ 	- Complete ? No. 
+	- Optimal ? No.
+	- may reach local maximum.
+ - What’s good about it?
+ 	- you can start anywhere you can do the best you can and there are a wide range of problems in the real world where kind of any solution will work , and you'd like to make it as good as possible and you know you can't get to the optimal solution.
 
 
 Simulated Annealing 退火
