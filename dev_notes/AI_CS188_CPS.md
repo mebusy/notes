@@ -588,11 +588,21 @@ So the algorithm we have for making something that is nearly tree-structured int
 
 ### Cutset Conditioning 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_cutset_conditioning.png)
 
-Finding smallest cut-set is np-hard.
+
+Finding smallest cut-set is np-hard !
+
+### Tree Decomposition
+
+Another approach :
+
+ - Idea: create a tree-structured graph of mega-variables
+ - Each mega-variable encodes part of the original CSP
+ - Subproblems overlap to ensure consistent solutions
 
 
-Tree Decomposition
+
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_algorithm_iterative_improvement.png)
 
