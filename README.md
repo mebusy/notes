@@ -103,6 +103,6 @@
 --- | --- | --- | ---
 [Learn to Learning](https://github.com/mebusy/notes/blob/master/dev_notes/Learn2Learning.md) | [RaspBerryPi I](https://github.com/mebusy/notes/blob/master/dev_notes/RaspberryPi_I.md) | [RaspPi 2](https://github.com/mebusy/notes/blob/master/dev_notes/RASPI_2.md) | [Software Debug](https://github.com/mebusy/notes/blob/master/dev_notes/SoftwareDebugging.md) 
 [github](https://github.com/mebusy/notes/blob/master/dev_notes/github.md) | [sublime](https://github.com/mebusy/notes/blob/master/dev_notes/sublime.md)   | [深入浅出nodeJS](https://github.com/mebusy/notes/blob/master/dev_notes/深入浅出nodeJS.md)	| [Html5 Game Program](https://github.com/mebusy/notes/blob/master/dev_notes/Html5GameProgramming.md)
-[MacOSX Tips](https://github.com/mebusy/notes/blob/master/dev_notes/MacOSX_Tips.md) | [workingTips](https://github.com/mebusy/notes/blob/master/dev_notes/workingTips.md)	| 
+[MacOSX Tips](https://github.com/mebusy/notes/blob/master/dev_notes/MacOSX_Tips.md) | [workingTips](https://github.com/mebusy/notes/blob/master/dev_notes/workingTips.md)	|  [VIM](https://github.com/mebusy/notes/blob/master/dev_notes/vim.md)
 
 
