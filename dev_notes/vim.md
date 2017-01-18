@@ -88,13 +88,13 @@ vim +BundleInstall +qall
  	- 这时提示你一些第三方依赖缺失，执行下面的命令
  		- `git submodule update --init --recursive`
   - `sudo ./install.py --system-libclang --clang-completer --omnisharp-completer --gocode-completer --tern-completer`
- 	- reinstall : 
-   - `vim +PluginInstall`
+  - reinstall : 
+    - `vim +PluginInstall`
  - `msbuild or xbuild is required to build Omnisharp`
-  - You used --all, so you need to install mono for C sharp completion. If you don't want C sharp completion, use different flags.
-  - install MonoFrameWork
+    - You used `--all`, so you need to install mono for C sharp completion. If you don't want C sharp completion, use different flags.
+    - install MonoFrameWork
  - `vim +PluginInstall` YouCompleteMe 有时 helptags 会报错
-  - 修复报错 目录权限 `chmod -R 777 xxx` 
+    - 修复报错 目录权限 `chmod -R 777 xxx` 
 
 
 
