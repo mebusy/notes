@@ -101,12 +101,12 @@ P( y=1|x;θ ) + P( y=0|x;θ ) = 1
 	- 从 x₁ 中选择 最大／最小两个值，最为 直线两个端点的 x 坐标
 	- 确定 两个端点的 y 坐标:
 		- 
-    ```
-    Theta*x = [t0,t1,t2] dot [x0,x1,x2] = t0 + t1*x1 + t2*x2  = 0
-    => t0 + t1*plot_x + t2*plot_y = 0
-    => t0 + t1*plot_x = -t2*plot_y   
-    => (t0 + t1*plot_x)/(-t2) = plot_y
-    ```
+        ```
+        Theta*x = [t0,t1,t2] dot [x0,x1,x2] = t0 + t1*x1 + t2*x2  = 0
+        => t0 + t1*plot_x + t2*plot_y = 0
+        => t0 + t1*plot_x = -t2*plot_y   
+        => (t0 + t1*plot_x)/(-t2) = plot_y
+        ```
  - 决策边界是曲线:
  	- TODO
  
