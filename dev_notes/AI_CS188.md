@@ -76,7 +76,11 @@ edx , 登陆后作业
 
 https://edge.edx.org
 
-https://courses.edx.org/courses/course-v1:ColumbiaX+CSMM.101x+1T2017/info
+https://edge.edx.org/courses/BerkeleyX/CS188x-8/Artificial_Intelligence/courseware/c78976d210314651abb740912d8279bb/0460a6606a3e4630b0b4e913dd88c135/
+
+what's that fuck ?
+
+> https://courses.edx.org/courses/course-v1:ColumbiaX+CSMM.101x+1T2017/info
 
 
 <h2 id="0b79795d3efc95b9976c7c5b933afce2"></h2>
