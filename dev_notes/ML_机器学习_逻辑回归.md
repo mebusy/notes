@@ -107,7 +107,8 @@ P( y=1|x;θ ) + P( y=0|x;θ ) = 1
 		=> t0 + t1*plot_x = -t2*plot_y   
 		=> (t0 + t1*plot_x)/(-t2) = plot_y   
 		```
-    
+    - 
+
  - 决策边界是曲线:
  	- TODO
  
