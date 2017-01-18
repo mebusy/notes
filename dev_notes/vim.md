@@ -84,15 +84,16 @@ vim +BundleInstall +qall
  - python 报错
  	- brew unlink python
  - `YouCompleteMe unavailable: No module named future`
- 	- 进入YouCompleteMe目录，执行 `./install.py -all`
+ 	- 进入YouCompleteMe目录，执行 `./install.py --all`
  	- 这时提示你一些第三方依赖缺失，执行下面的命令
  		- `git submodule update --init --recursive`
-  - `./install.py -all`
- 	- reinstall : vim +PluginInstall
+  - `./install.py --system-libclang  --clang-completer --omnisharp-completer --gocode-completer --tern-completer`
+ 	- reinstall : 
+   - `vim +PluginInstall`
  - `msbuild or xbuild is required to build Omnisharp`
   - You used --all, so you need to install mono for C sharp completion. If you don't want C sharp completion, use different flags.
   - install MonoFrameWork
- - `brew install rust`
+  
 
 
 
