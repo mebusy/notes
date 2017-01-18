@@ -92,6 +92,7 @@ vim +BundleInstall +qall
  - `msbuild or xbuild is required to build Omnisharp`
   - You used --all, so you need to install mono for C sharp completion. If you don't want C sharp completion, use different flags.
   - install MonoFrameWork
+ - `brew install rust`
 
 
 
