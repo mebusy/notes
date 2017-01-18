@@ -93,8 +93,8 @@ vim +BundleInstall +qall
  - `msbuild or xbuild is required to build Omnisharp`
   - You used --all, so you need to install mono for C sharp completion. If you don't want C sharp completion, use different flags.
   - install MonoFrameWork
- - `vim +PluginInstall` YouCompleteMe 有时 helptags 会报错 
-  - 修复报错 目录权限 `chmod -R 777 xxx` 
+ - `vim +PluginInstall` YouCompleteMe 有时 helptags 会报错
+  - 修复报错 目录权限 `chmod -R 777 xxx` 
 
 
 
