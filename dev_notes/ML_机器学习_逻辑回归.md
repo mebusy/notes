@@ -84,7 +84,7 @@ P( y=1|x;θ ) + P( y=0|x;θ ) = 1
 <h2 id="19e2ea0b618dbf3e78308f272878afcc"></h2>
 ## 决策边界  decision boundary
 
-决策边界 是假设函数的一个属性，它包含参数 θ
+决策边界 是 θᵀx 的一个属性，它包含参数 θ
 
 我们观察 g(z)的函数图 , 可以看到
 
@@ -92,7 +92,24 @@ P( y=1|x;θ ) + P( y=0|x;θ ) = 1
   - 当 z< 0, 也即 θᵀx <  0 时， 函数值 < 0.5
   - 当 θ 确定后, θᵀx = 0 ? 的图像就是 决策边界
   - 非线性决策边界，需要借助多项式
+  
+### 画决策边界
 
+ - 数据: X , y , 训练完成的 θ
+ - 决策边界是直线:  1 bias x₀ + 2 features x₁,x₂
+ 	- Only need 2 points to define a line
+	- 从 x₁ 中选择 最大／最小两个值，最为 直线两个端点的 x 坐标
+	- 确定 两个端点的 y 坐标:
+		- ```
+		Theta*x = [t0,t1,t2] dot [x0,x1,x2] = t0 + t1*x1 + t2*x2  = 0
+		=> t0 + t1*plot_x + t2*plot_y = 0
+		=> t0 + t1*plot_x = -t2*plot_y   
+		=> (t0 + t1*plot_x)/(-t2) = plot_y   
+		```
+ - 决策边界是曲线:
+ 	- TODO
+ 
+ 
 <h2 id="1ca15edbfdd1a2d9b71659b988bca643"></h2>
 ## 代价函数 cost function J
 
