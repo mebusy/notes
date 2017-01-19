@@ -687,14 +687,15 @@ Tree Decomposition is another approach :
 
  - Local search methods typically work with “complete” states, i.e., all variables assigned
  - To apply to CSPs:
- 	- Take an assignment with unsatisfied constraints
- 	- Operators reassign variable values
+ 	- Algorithm starts by assigning some value to each of the variables
+        - ignoring the constraints when doing so
  	- No fringe!  Live on the edge.
  	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_algorithm.png)
- - Algorithm: While not solved,
-	- Variable selection: randomly select any conflicted variable
+ - while at least one constraint is violated,  repeat: 
+	- Variable selection: 
+        - randomly select any conflicted variable
 	- Value selection: min-conflicts heuristic:
-		- Choose a value that violates the fewest constraints
+		- Choose a value that violates the fewest constraints( among all possible selections of values in its domain )
 		- I.e., hill climb with h(n) = total number of violated constraints
 
 <h2 id="d0813c5b61b7d928b7b0bd53bc40b3e2"></h2>
