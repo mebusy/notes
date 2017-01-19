@@ -97,4 +97,8 @@ vim +BundleInstall +qall
     - 修复报错 目录权限 `chmod -R 777 xxx` 
 
 
+## Markdown 
+
+ - chrome 安装插件 :  [Markdown Preview Plus](https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl)
+ - 打开 `chrome://extensions/` ， 在设置页中勾选 “Allow access to file URLs”
 
