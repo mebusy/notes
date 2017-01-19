@@ -467,6 +467,21 @@ If arc consistency had resulted in all domains having a single value left, we wo
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ordering_LCV2.png)
 
 
+---
+
+So here are steps for solving CPS with enforcing arc consistency:
+
+ 1. Unary Constraints at first
+ 2. do enforce arc consistency
+ 3. got solution ?
+    - one solution left : solved
+    - no solutions left : no solution
+    - multiple solutions left : start backtrack searching
+ 4. MRV + LCV , assign a value to a variable
+ 5. After assigning a variable, backtrack search with arc consistency 
+    - enforces arc consistency before proceeding to the next variable.
+
+
 ---------
 
 <h2 id="1dff507c8d0411804d4fbae07a040c72"></h2>
