@@ -600,6 +600,7 @@ It is a theorem that if the constraint graph has no loops then the CSP can be so
  	- 3. Assign forward: For i = 1 : n, assign Xᵢ consistently with Parent(Xᵢ)
  - Runtime: O(n·d²) 
 
+因为 step3 赋值是有顺序的，所以 consistency check 简单了.
 
 let's make there arcs consistent . We will start with F , and we will work our way leftward.  When we visit F, we gonna say what arcs comes into you , how many arcs can come into F ?  1 , because it's a tree , ***VERY IMPORTANT*** !
 
