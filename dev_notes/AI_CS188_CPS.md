@@ -527,7 +527,7 @@ So here are steps for solving CPS with enforcing arc consistency:
 ### Strong K-Consistency
 
  - Strong k-consistency: also k-1, k-2, … 1 consistent
- - Claim: strong n-consistency means we can solve without backtracking!
+ - Claim: ***strong n-consistency means we can solve without backtracking***!
  - Why?
  	- Choose any assignment to any variable
  	- Choose a new variable
@@ -615,7 +615,7 @@ A->B , remove blue in A.
 
 Now start assigning. When assigning , everything is safe. 
 
-This algorithm guarantees you that in this forward assignment phase there will always be a consistent solution at each point you pick it and you move on. Which means no backtracking and so this whole thing was pretty efficient.
+This algorithm guarantees you that in this forward assignment phase there will always be a consistent solution at each point you pick it and you move on. Which means ***no backtracking*** and so this whole thing was pretty efficient.
 
 ---
 
@@ -669,7 +669,7 @@ Finding smallest cut-set is np-hard !
 <h2 id="15a6670cc8efa82fc50198c0cce30f04"></h2>
 ### Tree Decomposition
 
-Another approach :
+Tree Decomposition is another approach :
 
  - Idea: create a tree-structured graph of mega-variables
  - Each mega-variable encodes part of the original CSP
@@ -744,7 +744,7 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
  	- Ordering
  	- Filtering 
  	- Structure
- - Iterative min-conflicts is often effective in practice
+ - ***Iterative min-conflicts is often effective in practice***
 
 
 <h2 id="e1ea5bc107355233f10e2288fe7fc0ae"></h2>
