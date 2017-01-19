@@ -853,7 +853,7 @@ Average nodes expanded when the optimal path has…
 Admissible heuristic with tree search is optimal but graph search no guarantees.
 
  - Tree Search: Extra Work! 
- - Failure to detect repeated states can cause exponentially more work.  
+ - Failure to detect repeated states in search-graph can cause exponentially more work.  
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_repeate_work_tree_search.png)
 
@@ -866,7 +866,7 @@ Admissible heuristic with tree search is optimal but graph search no guarantees.
  - Important: **store the closed set as a set**, not a list
  - Can graph search wreck completeness?  Why/why not?
  - How about optimality?
-
+    - Unfortunately close list will introduce another problem 
 
 <h2 id="9afaf22785328c0bf6267acf13add5da"></h2>
 ### A* Graph Search Gone Wrong?
