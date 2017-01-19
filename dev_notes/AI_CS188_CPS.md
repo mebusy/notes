@@ -204,7 +204,7 @@ Approach:
 
  - Discrete Variables
 	- Finite domains
-		- Size d means O(dⁿ) complete assignments
+		- Size d means O(ⁿⁿ) complete assignments
 		- E.g., Boolean CSPs, including Boolean satisfiability (NP-complete)
 	- Infinite domains (integers, strings, etc.)
 		- E.g., job scheduling, variables are start/end times for each job
@@ -363,6 +363,8 @@ An arc X → Y is consistent if for every x in the tail ( not arrow ) there is s
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_consistency_of_Arc.png)
 
+无论 X 选什么值，Y 都有相应的选择满足约束。 这样无论以后Y 怎么赋值，都不会破坏 X → Y 约束关系。
+
 Forward checking: Enforcing consistency of arcs pointing to each new assignment
 
 <h2 id="0ca5bb56dad2fa5871eec95372182139"></h2>
@@ -406,6 +408,15 @@ end func
  - Runtime: O(n²d³), can be reduced to O(n²d²)
  - but detecting all possible future problems is NP-hard 
 
+---
+
+ - some tips on enforcing arc consistency
+    - 1. Unary Constraints at first
+    - 2. avoid adding duplicate arc to queue while enforcing a binary arc 
+        - 注意： binary 约束是双向的，都需要 enforce, 因为node的赋值要求不依赖顺序 
+
+If arc consistency had resulted in all domains having a single value left, we would have already found a solution. Otherwise we need to start searching.
+
 
 <h2 id="86e7f886811c7ef1bc00bf5730d39c8b"></h2>
 #### Limitations of Arc Consistency
@@ -416,7 +427,6 @@ end func
  	- Can have one solution left
  	- Can have multiple solutions left
  	- Can have no solutions left 
- 	- Not know it
 
  - Arc consistency still runs inside a backtracking search!
 
@@ -447,6 +457,8 @@ end func
  		- 选择这个值，产生的约束最少
  	- I.e., the one that rules out the fewest values in the remaining variables
 	- Note that it may take some computation to determine this!  (E.g., rerunning filtering)
+ - To choose which value is the least-constraining value, enforce arc consistency for each value (on a scratch piece of paper). 
+    - For each value, count the total number of values remaining over all variables.   
  - Why least rather than most?
 	- Combining these ordering ideas makes 1000 queens feasible
 
