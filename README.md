@@ -12,10 +12,6 @@
 
 ...menuend
 
-https://mau.gdl.netease.com/jdc-web/jdc/stream/jdcchickchick_1473402141565/jdcchickchick_tv.mp4
-
-
-
 <h2 id="767fa455bb6826f4b550c21a6bca7182"></h2>
 # 目录
 
