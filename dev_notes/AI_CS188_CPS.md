@@ -89,7 +89,7 @@ CPS
  	- Successor function can also be anything
  - Constraint satisfaction problems (CSPs):
  	- A special subset of search problems
- 	- State is defined by ***variables Xᵢ***  with values from a ***domain D** (sometimes D depends on i)
+ 	- State is defined by ***variables Xᵢ***  with values from a ***domain D*** (sometimes D depends on i)
  	- Goal test is a ***set of constraints*** specifying allowable combinations of values for subsets of variables
  - Allows useful general-purpose algorithms with more power than standard search algorithms
 
