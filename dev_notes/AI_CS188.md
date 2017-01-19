@@ -462,7 +462,7 @@ end function
 
  - Strategy: 
  	- expand a cheapest node first:
- - Fringe is a priority queue (priority: cumulative cost)
+ - Fringe is a priority queue (priority: cumulative cost so far)
  - 注意, 这个例子中，当搜索至 ...e->r->f 时，下一步展开不是 f->G , 而是 S->e 
 
 <h2 id="8fcce2120d7405462b72fce3bf1fcaaa"></h2>
@@ -626,11 +626,11 @@ h(x) = the number of the largest pancake that is still out of place
 ### Combining UCS and Greedy
 
  - Uniform-cost orders by path cost, or backward cost  g(n) 
- 	- g 是累加的实际cost
+ 	- g is cumulate actual cost so far
  - Greedy orders by goal proximity, or forward cost  h(n)
- 	- h 是 该节点的预测值
+ 	- h is heuristic distance value to goal
  - A\* Search orders by the sum: f(n) = g(n) + h(n)
- 	- for node X  : f = (exact cost from S to X) + h(X) 
+ 	- for node X  : f = g(X) + h(X) 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_graph.png)
 
