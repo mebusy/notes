@@ -69,7 +69,7 @@ Bundle "groenewege/vim-less"
 Bundle "evanmiller/nginx-vim-syntax"
 Bundle "Lokaltog/vim-easymotion"
 Bundle "tomasr/molokai"
-" Bundle "klen/python-mode"
+Bundle "klen/python-mode"
 Bundle "Valloric/YouCompleteMe"
 ```
 
