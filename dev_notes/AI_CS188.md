@@ -462,7 +462,7 @@ end function
 
  - Strategy: 
  	- expand a cheapest node first:
- - Fringe is a priority queue (priority: cumulative cost)
+ - Fringe is a priority queue (priority: cumulative cost so far)
  - 注意, 这个例子中，当搜索至 ...e->r->f 时，下一步展开不是 f->G , 而是 S->e 
 
 <h2 id="8fcce2120d7405462b72fce3bf1fcaaa"></h2>
@@ -626,11 +626,11 @@ h(x) = the number of the largest pancake that is still out of place
 ### Combining UCS and Greedy
 
  - Uniform-cost orders by path cost, or backward cost  g(n) 
- 	- g 是累加的实际cost
+ 	- g is cumulate actual cost so far
  - Greedy orders by goal proximity, or forward cost  h(n)
- 	- h 是 该节点的预测值
+ 	- h is heuristic distance value to goal
  - A\* Search orders by the sum: f(n) = g(n) + h(n)
- 	- for node X  : f = (exact cost from S to X) + h(X) 
+ 	- for node X  : f = g(X) + h(X) 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_graph.png)
 
@@ -853,7 +853,7 @@ Average nodes expanded when the optimal path has…
 Admissible heuristic with tree search is optimal but graph search no guarantees.
 
  - Tree Search: Extra Work! 
- - Failure to detect repeated states can cause exponentially more work.  
+ - Failure to detect repeated states in search-graph can cause exponentially more work.  
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_repeate_work_tree_search.png)
 
@@ -866,7 +866,7 @@ Admissible heuristic with tree search is optimal but graph search no guarantees.
  - Important: **store the closed set as a set**, not a list
  - Can graph search wreck completeness?  Why/why not?
  - How about optimality?
-
+    - Unfortunately close list will introduce another problem 
 
 <h2 id="9afaf22785328c0bf6267acf13add5da"></h2>
 ### A* Graph Search Gone Wrong?

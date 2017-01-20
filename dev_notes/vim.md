@@ -87,7 +87,7 @@ vim +BundleInstall +qall
  	- 进入YouCompleteMe目录，执行 `./install.py --all`
  	- 这时提示你一些第三方依赖缺失，执行下面的命令
  		- `git submodule update --init --recursive`
-  - `sudo ./install.py --system-libclang --clang-completer --omnisharp-completer --gocode-completer --tern-completer`
+  - `sudo ./install.py  --clang-completer --omnisharp-completer --gocode-completer --tern-completer`
   - reinstall : 
     - `vim +PluginInstall`
  - `msbuild or xbuild is required to build Omnisharp`

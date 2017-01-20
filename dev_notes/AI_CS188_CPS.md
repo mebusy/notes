@@ -474,9 +474,11 @@ So here are steps for solving CPS with enforcing arc consistency:
  1. Unary Constraints at first
  2. do enforce arc consistency
  3. got solution ?
-    - one solution left : solved
-    - no solutions left : no solution
-    - multiple solutions left : start backtrack searching
+    - solved, stop : 
+        - filtered domains of all of the not yet assigned variables each having exactly one value left
+    - unsolved , do backtrack search
+        - filtered domains of one of the not yet assigned variables having more than one value left
+        - filtered domains of one of the not yet assigned variables is empty 
  4. MRV + LCV , assign a value to a variable
  5. After assigning a variable, backtrack search with arc consistency 
     - enforces arc consistency before proceeding to the next variable.
