@@ -32,6 +32,9 @@ bundle分为三类，比较常用就是第二种：
 将安装的插件在~/.vimrc配置最后
 
 ```
+" 使用Vundle来管理Vundle
+:Bundle 'gmarik/vundle'
+ 
 " Define bundles via Github repos
 Bundle 'christoomey/vim-run-interactive'
 Bundle 'croaky/vim-colors-github'
