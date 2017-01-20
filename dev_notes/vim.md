@@ -33,7 +33,7 @@ bundle分为三类，比较常用就是第二种：
 
 ```
 " 使用Vundle来管理Vundle
-:Bundle 'gmarik/vundle'
+Bundle 'gmarik/vundle'
  
 " Define bundles via Github repos
 Bundle 'christoomey/vim-run-interactive'
@@ -69,7 +69,6 @@ Bundle "groenewege/vim-less"
 Bundle "evanmiller/nginx-vim-syntax"
 Bundle "Lokaltog/vim-easymotion"
 Bundle "tomasr/molokai"
-Bundle "klen/python-mode"
 Bundle "Valloric/YouCompleteMe"
 ```
 
