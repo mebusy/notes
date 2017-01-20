@@ -83,16 +83,40 @@ So we need to replace the terminal utilities in the minimax algorithm with what'
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_resource_limitation_pacman_example2.png)
 
+For this example , if we look forward just a couple steps , we're going to need know it won't be able to see actually eating of the dot or any future collisions with the ghost.  We can not see whether or not we can be closer or farther from the dot. But we have to have an evaluation function that says that. 
+
+If we can see all the way into the future , we can see the whole game play out on this board. The critical thing is that the blue ghost is going to go somewhere and once it goes somewhere it's committed. So what we should do now is moving towards the orange ghost because we are still not in any danger.  If you look deeply enough into the tree you see that what this allows you to do is force the blue ghost to make a decision before you have to.
 
 
+Evaluation Functions
+
+a function takes a non-terminal state and return some number. Just like the heuristic value in Astar search , in this case we want that number to return the actual minimax value of that position. That is not going to happen. In practice what peaple do is they try to come up with some function which on average is positive when the minimax value is positive , is negative when the minimax value is negative. 
 
 
+pacman example : starve ( loop in a range  )
+
+danger of replanning agents
+
+the plan they have in their head does not really have to be consistent. Every step you do a new plan. 
+
+10 points for a dot.
+
+The problem is if we take the right branch , look at that state ( right,  2nd level ) , it's just like the state of the root . (1 is a bit left, another is a bit of right) 
+
+so we trash.  
+
+solution: closer to a dot  score point as well.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_adversarial_search_pacman_example2.png)
+
+What's going on here each agent is separately doing their own searches. But they see that the other one constrols , they treat it like min node (???). So even though each agent is actually doing its own search because they are both assuming the other one shares its evaluation function that is also minimax agent. We're goint to see cooperation emerge.
+
+This shows you how you can get cooperation without programming it in, simply they're both trying to achieve the same goal. 
 
 
+Alpha-Beta Pruning properties
 
-
-
-
+you must apply it after doing some actions.
 
 
 
