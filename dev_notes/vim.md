@@ -97,8 +97,10 @@ vim +BundleInstall +qall
     - install MonoFrameWork
  - `vim +PluginInstall` YouCompleteMe 有时 helptags 会报错
     - 修复报错 目录权限 `chmod -R 777 xxx` 
-
-
+ - Tagbar 需要安装 ctags 
+    - `brew install ctags`
+    - use : `TagbarToggle`
+    
 ## Markdown 
 
  - chrome 安装插件 :  [Markdown Preview Plus](https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl)
