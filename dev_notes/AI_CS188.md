@@ -986,31 +986,7 @@ function GRAPH-SEARCH(problem,fringe) return a solution, or failure
 end // func
 ```
 
-demo code in python: 
 
-```python
-# author: qibinyi                                                          
-def graphSearch( problem, fringe):                                         
-                                                                           
-    closed = {}                                                            
-    # node is a tuple: ( state , path , cumulate cost )                    
-    fringe.push( (problem.getStartState(),[], 0 ) )                        
-    while True:                                                            
-        # expand                                                           
-        if fringe.isEmpty():                                               
-            return []                                                      
-        state , path , costs  = fringe.pop()                               
-        if problem.isGoalState(state):                                     
-            return path                                                    
-                                                                           
-        if state not in closed:                                            
-            closed[state] = 1                                              
-            for sucState , action, cost  in problem.getSuccessors( state ):
-                fringe.push( ( sucState , path+[action] , costs + cost )  )
-        pass                                                               
-                                                                           
-    return []                                                              
-```
 
 ---
 
@@ -1092,7 +1068,35 @@ end // func
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_optimality_AStar.png)
 
 
+---
 
+## demo code in python
+
+###  python graph search
+
+```python
+# author: qibinyi                                                          
+def graphSearch( problem, fringe):                                         
+                                                                           
+    closed = {}                                                            
+    # node is a tuple: ( state , path , cumulate cost )                    
+    fringe.push( (problem.getStartState(),[], 0 ) )                        
+    while True:                                                            
+        # expand                                                           
+        if fringe.isEmpty():                                               
+            return []                                                      
+        state , path , costs  = fringe.pop()                               
+        if problem.isGoalState(state):                                     
+            return path                                                    
+                                                                           
+        if state not in closed:                                            
+            closed[state] = 1                                              
+            for sucState , action, cost  in problem.getSuccessors( state ):
+                fringe.push( ( sucState , path+[action] , costs + cost )  )
+        pass                                                               
+                                                                           
+    return []                                                              
+```
 
 ---
 
