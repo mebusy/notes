@@ -986,6 +986,36 @@ function GRAPH-SEARCH(problem,fringe) return a solution, or failure
 end // func
 ```
 
+demo code in python: 
+
+```python
+# author: qibinyi                                                          
+def graphSearch( problem, fringe):                                         
+                                                                           
+    closed = {}                                                            
+    # node is a tuple: ( state , path , cumulate cost )                    
+    fringe.push( (problem.getStartState(),[], 0 ) )                        
+    while True:                                                            
+        # expand                                                           
+        if fringe.isEmpty():                                               
+            return []                                                      
+        state , path , costs  = fringe.pop()                               
+        if problem.isGoalState(state):                                     
+            return path                                                    
+                                                                           
+        if state not in closed:                                            
+            closed[state] = 1                                              
+            for sucState , action, cost  in problem.getSuccessors( state ):
+                fringe.push( ( sucState , path+[action] , costs + cost )  )
+        pass                                                               
+                                                                           
+    return []                                                              
+```
+
+---
+
+几个算法变种:
+
 **Memory Efficient Graph Search**
 
 如果在 pop onto fringe 过程中，发现 node 已经在 fringe中存在, 比较这两个node , 如果
