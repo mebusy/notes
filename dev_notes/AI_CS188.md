@@ -889,7 +889,7 @@ SAC can not expand because C is in closed set.
  - Consequences of consistency:
 	- The f value along a path never decreases
 		- h(A) ≤ cost(A to C) + h(C)
-        - 由公式可知，c 陡然变大也是允许的，只要注意不要破坏 admissibility ; c 变小也是可以的, 只要不破坏 consistency
+        - 由公式可知，h(C) 陡然变大也是允许的，只要不破坏 admissibility ; h(C) 慢慢变小也是可以的, 只要不破坏 consistency
 	- A\* graph search is optimal
 
 
