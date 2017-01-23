@@ -889,7 +889,8 @@ SAC can not expand because C is in closed set.
  - Consequences of consistency:
 	- The f value along a path never decreases
 		- h(A) ≤ cost(A to C) + h(C)
-	- A* graph search is optimal
+        - 由公式可知，c 陡然变大也是允许的，只要注意不要破坏 admissibility ; c 变小也是可以的, 只要不破坏 consistency
+	- A\* graph search is optimal
 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ConsistencyofHeuristics.png)
@@ -962,9 +963,6 @@ end // func
 function GRAPH-SEARCH(problem,fringe) return a solution, or failure
 	closed <- an empty set
 	// pop into fringe 
-	// 可以 添加重复node
-	// 实际上，这些重复的node g 值很可能是不同的
-	fringe <- INSERT(MAKE-NODE(INITIAL-STATE[problem]),fringe)
 	loop do
 		if fringe is empty then
 			return failure
@@ -976,9 +974,17 @@ function GRAPH-SEARCH(problem,fringe) return a solution, or failure
 		if GOAL-TEST(problem,STATE[node]) then 
 			return node
 		end
+
+        # 除了 (x,y) 位置，state 还可以包含其他信息
+        # 这些额外信息 可以让我们的solution 多次通过某一段path
 		if STATE[node] is not in closed then
 			add STATE[node] to closed
-			for child-node in EXPAND(STATE[node],problem) do
+			 
+	        // 可以 添加重复node
+	        // 实际上，这些重复的node g 值很可能是不同的
+	        fringe <- INSERT(MAKE-NODE(INITIAL-STATE[problem]),fringe)
+            
+            for child-node in EXPAND(STATE[node],problem) do
 				fringe <- INSERT(child-node,fringe)
 			end
 		end
@@ -1050,14 +1056,14 @@ end // func
 
 
 <h2 id="ea9a7016fa68c3fd6434c9c0fb4afa3d"></h2>
-### Optimality of A* Graph Search
+### Optimality of A\* Graph Search
 
- - Consider what A* does:
+ - Consider what A\* does:
  	- Expands nodes in increasing total f value (f-contours)
  	- Reminder: f(n) = g(n) + h(n) = cost to n + heuristic
 	- Proof idea: the optimal goal(s) have the lowest f value, so it must get expanded first
  - Proof:
-	- New possible problem: some n on path to G* isn’t in queue when we need it, because some worse n’ for the same state dequeued and expanded first (disaster!)
+	- New possible problem: some n on path to G\* isn’t in queue when we need it, because some worse n’ for the same state dequeued and expanded first (disaster!)
 	- Take the highest such n in tree
 	- Let p be the ancestor of n that was on the queue when n’ was popped
 	- f(p) < f(n) because of consistency
@@ -1082,13 +1088,14 @@ def graphSearch( problem, fringe):
     # node is a tuple: ( state , path , cumulate cost )                    
     fringe.push( (problem.getStartState(),[], 0 ) )                        
     while True:                                                            
-        # expand                                                           
+        # test                                                           
         if fringe.isEmpty():                                               
             return []                                                      
         state , path , costs  = fringe.pop()                               
         if problem.isGoalState(state):                                     
             return path                                                    
-                                                                           
+        
+        # expand
         if state not in closed:                                            
             closed[state] = 1                                              
             for sucState , action, cost  in problem.getSuccessors( state ):
@@ -1097,6 +1104,12 @@ def graphSearch( problem, fringe):
                                                                            
     return []                                                              
 ```
+
+ - case1: find a path to dst position in a maze
+    - every game state of problem need only the position: (x,y)
+ - case2: reach 4 corners in a maze
+    - every game state of problem need record the position , and status of visit of corners 
+    - heuristic value 的设计需要注意, 要确保 admissible consistency. 
 
 ---
 
