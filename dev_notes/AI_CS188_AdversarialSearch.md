@@ -161,6 +161,13 @@ def value(state):
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_minimax_example.png)
 
+ - 第2层
+    - 最左节点, min-value 计算的 3
+    - 中间节点
+        - 1st successor is 2 , than means the min value of parent is ≤ 2. 
+        - so the value of rest successor is not important now, because they will not influence the choice of max-value ,calculated by the first level node
+        - computation break
+
 
 
 Pacman game sample:
