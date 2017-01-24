@@ -104,9 +104,11 @@ The difference now is in each of these possible futures the ghost can move left 
 So we need to think about now what a value is in the case of an adversary. This is going to give us the idea of a ***minimax*** value. 
 
 
-Minimax Values
+## Minimax Values
 
-It's still gonna be the best outcome we can achieve under perfect play against an optimal adversary. 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_minimaxValues.png)
+
+8 is still gonna be the best outcome we can achieve under perfect play against an optimal adversary. 
 
 We still know the value of Terminal States. For a state that is under my opponents control I imagine that this ghost is out there to minimize my value , so it will be -10.
 
