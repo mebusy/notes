@@ -124,6 +124,32 @@ Blue one moves first.
 The value of root will be one of { -1,1,0 }.
 
 
+## Adversarial Search (Minimax)
+
+ - Deterministic, zero-sum games:
+    - Tic-tac-toe, chess, checkers
+    - One player maximizes result
+    - The other minimizes result
+
+ - Minimax search:
+    - A state-space search tree
+    - Players alternate turns
+    - Compute each node’s minimax value: the best achievable utility against a rational (optimal) adversary
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_minimax.png)
+
+## Minimax Implementation
+
+ - Dispatch
+
+```python
+def value(state):
+    if the state is a terminal state: return the state’s utility
+    if the next agent is MAX: return max-value(state)
+    if the next agent is MIN: return min-value(state)
+```
+
+
 Pacman game sample:
 
 you get points when you win , you get points when you get a dot , you lost a point every step. 
