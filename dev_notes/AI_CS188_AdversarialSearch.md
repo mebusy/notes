@@ -213,6 +213,19 @@ So we can only search just some limited depth from the tree. Now the problem is 
 
 So we need to replace the terminal utilities in the minimax algorithm with what's called evaluation function, which takes a non-terminal position and gives us some estimate of what the terminal utility under that tree would be under minimax plan.
 
+
+## Depth Matters
+
+ - Evaluation functions are always imperfect
+ - The deeper in the tree the evaluation function is buried, the less the quality of the evaluation function matters
+ - An important example of the tradeoff between complexity of features and complexity of computation
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_depth_matters.png)
+
+
+----
+
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_resource_limitation_pacman_example2.png)
 
 For this example , if we look forward just a couple steps , we're going to need know it won't be able to see actually eating of the dot or any future collisions with the ghost.  We can not see whether or not we can be closer or farther from the dot. But we have to have an evaluation function that says that. 
@@ -220,10 +233,20 @@ For this example , if we look forward just a couple steps , we're going to need 
 If we can see all the way into the future , we can see the whole game play out on this board. The critical thing is that the blue ghost is going to go somewhere and once it goes somewhere it's committed. So what we should do now is moving towards the orange ghost because we are still not in any danger.  If you look deeply enough into the tree you see that what this allows you to do is force the blue ghost to make a decision before you have to.
 
 
-Evaluation Functions
+## Evaluation Functions
 
-a function takes a non-terminal state and return some number. Just like the heuristic value in Astar search , in this case we want that number to return the actual minimax value of that position. That is not going to happen. In practice what peaple do is they try to come up with some function which on average is positive when the minimax value is positive , is negative when the minimax value is negative. 
+A function takes a non-terminal state and return some number,just like the heuristic value in Astar search . 
 
+In this case we want that number to return the actual minimax value of that position. That is not going to happen. In practice what peaple do is they try to come up with some function which on average is positive when the minimax value is positive , is negative when the minimax value is negative. 
+
+ - Evaluation functions score non-terminals in depth-limited search
+ - Ideal function: returns the actual minimax value of the position
+ - In practice: typically weighted linear sum of features:
+    - 
+ 
+
+
+---
 
 pacman example : starve ( loop in a range  )
 
