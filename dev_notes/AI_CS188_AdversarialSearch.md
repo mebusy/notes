@@ -168,17 +168,48 @@ def value(state):
         - so the value of rest successor is not important now, because they will not influence the choice of max-value ,calculated by the first level node
         - computation break
 
+## Minimax Efficiency
+
+ - How efficient is minimax?
+    - Just like (exhaustive) DFS
+    - Time: O(bᵐ)
+    - Space: O(bm)
+ - Pacma mple: For chess, b ≈35, m ≈100
+    - Exact solution is completely infeasible
+    - But, do we need to explore the whole tree?
 
 
-Pacman game sample:
+## Minimax Properties
+
+game sample:
 
 you get points when you win , you get points when you get a dot , you lost a point every step. 
 
 If you play against a perfect player  you want to use minimax but if you are not playing against a player move random  then minimax is going to be overly pessimistic. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_minimax_properties.png)
 
 
-Resource Limits
+## Resource Limits
+
+ - Problem: In realistic games, cannot search to leaves!
+
+ - Solution: Depth-limited search
+    - Instead, search only to a limited depth in the tree
+    - Replace terminal utilities with an evaluation function for non-terminal positions
+
+ - Example:
+    - Suppose we have 100 seconds, can explore 10K nodes / sec
+    - So can check 1M nodes per move
+    - α-β reaches about depth 8 – decent chess program
+
+ - Guarantee of optimal play is ***gone***
+
+More plies makes a BIG difference
+
+Use iterative deepening for an anytime algorithm
+
+
 
 For a chess game, we can't possibly search the whole game tree. Essentially we've got resource limits in this case time. That tell us we can only look forward so far into the tree before the exponential growth of the tree gets this.
 
