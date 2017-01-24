@@ -61,7 +61,9 @@
 	 - [A*: Summary](#e418daaa73025a84fd16637fbf3b2d0d)
 		 - [Tree Search Pseudo-Code](#b9ab5ba1566688494ce5474bb592f8c4)
 		 - [Graph Search Pseudo-Code](#1388b32869f8288febeb18f8ec802b42)
-		 - [Optimality of A* Graph Search](#ea9a7016fa68c3fd6434c9c0fb4afa3d)
+		 - [Optimality of A\* Graph Search](#53d3b2a00e84590355f57034c84cc1a0)
+	 - [demo code in python](#c9f86c35957917fe5e25e926f8923c75)
+		 - [ python graph search](#41ac4b4e9e2441a0a74f1372fbca3c52)
 
 ...menuend
 
@@ -1055,7 +1057,7 @@ end // func
 ```
 
 
-<h2 id="ea9a7016fa68c3fd6434c9c0fb4afa3d"></h2>
+<h2 id="53d3b2a00e84590355f57034c84cc1a0"></h2>
 ### Optimality of A\* Graph Search
 
  - Consider what A\* does:
@@ -1076,8 +1078,10 @@ end // func
 
 ---
 
+<h2 id="c9f86c35957917fe5e25e926f8923c75"></h2>
 ## demo code in python
 
+<h2 id="41ac4b4e9e2441a0a74f1372fbca3c52"></h2>
 ###  python graph search
 
 ```python
@@ -1110,6 +1114,17 @@ def graphSearch( problem, fringe):
  - case2: reach 4 corners in a maze
     - every game state of problem need record the position , and status of visit of corners 
     - heuristic value 的设计需要注意, 要确保 admissible consistency. 
+        - naive solution: number of corner unvisited
+        - better solution: distance to the next corner ( key corners in clockwise order )
+        - more metter solution: the distance to closest corner, plus the sum of the distance between remaining corners in order.
+ - case3: east all food
+    - naive solution: distance to next food
+    - better solution: sort food in "nunu" shape, h_val = dist2closestFood + sum( distsBetweenFoods )\*0.5
+    - Sometimes, even with A\* and a good heuristic, finding the optimal path through all the dots is hard.  
+        -  In these cases, we'd still like to find a reasonably good path, quickly
+        - eg. greedily eats the closest dot
+
+ 
 
 ---
 

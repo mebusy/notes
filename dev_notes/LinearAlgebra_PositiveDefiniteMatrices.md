@@ -6,6 +6,9 @@
 		 - [Higher Dimensions: Linear Algebra](#e59a80ec6d81dedf197cebeea3a20a00)
 	 - [6.2 TESTS FOR POSITIVE DEFINITENESS](#76c7d53a0682ab1c09ff64d5d3549d0f)
 		 - [Positive Definite Matrices and Least Squares](#01201db7b9090769e9708a314cf02459)
+		 - [Semidefinite Matrices](#3a253363875ecbb15417db17ec79c263)
+		 - [Ellipsoids in n Dimensions](#1eaac00e8e99433d989fe0d999f52f5d)
+		 - [The Law of Inertia](#7d343fcdccb1d971e655a18f0ae0cb60)
 
 ...menuend
 
@@ -287,6 +290,7 @@ Applications of positive definite matrices are developed in my earlier book ***I
 We mention that Ax = λMx arises constantly in engineering analysis. If A and M are positive definite, this generalized problem is parallel to the familiar Ax = λx, and A > 0. M is a mass matrix for the finite element method in Section 6.4.
 
 
+<h2 id="3a253363875ecbb15417db17ec79c263"></h2>
 ### Semidefinite Matrices
 
 The tests for semidefiniteness will relax xᵀAx > 0, A > 0, d > 0, and det > 0, to allow zeros to appear. The main point is to see the analogies with the positive definite case.
@@ -341,6 +345,7 @@ If Ax = λx, then xᴴAx = λxᴴx and xᴴAᴴx = λ̅xᴴx .
 Adding , 1/2·xᴴ(A+Aᴴ)x = (Re λ)xᴴx > 0 , so that Re λ > 0 . ?
 
 
+<h2 id="1eaac00e8e99433d989fe0d999f52f5d"></h2>
 ### Ellipsoids in n Dimensions
 
 For a positive definite matrix and its xᵀAx, we finally get a figure that is curved.  It is an ellipse in two dimensions, and an ellipsoid in n dimensions.
@@ -411,6 +416,7 @@ becomes so manageable:
 This is the equation of an ellipsoid. Its axes have lengths 1 / √λ₁,   ... , 1 / √λn  from the center. In the original x-space they point along the eigenvectors of A.
 
 
+<h2 id="7d343fcdccb1d971e655a18f0ae0cb60"></h2>
 ### The Law of Inertia
 
 For elimination and eigenvalues, matrices become simpler by elementary operations. The essential thing is to know which properties of the matrix stay unchanged. 

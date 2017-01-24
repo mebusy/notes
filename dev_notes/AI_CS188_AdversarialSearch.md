@@ -1,4 +1,12 @@
+...menustart
 
+ - [Adversarial Search](#6778eced7db02d1b66c03c39306bc708)
+
+...menuend
+
+
+
+<h2 id="6778eced7db02d1b66c03c39306bc708"></h2>
 # Adversarial Search
 
 
