@@ -240,9 +240,10 @@ A function takes a non-terminal state and return some number,just like the heuri
 In this case we want that number to return the actual minimax value of that position. That is not going to happen. In practice what peaple do is they try to come up with some function which on average is positive when the minimax value is positive , is negative when the minimax value is negative. 
 
  - Evaluation functions score non-terminals in depth-limited search
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_eval_func_chess.png)
  - Ideal function: returns the actual minimax value of the position
  - In practice: typically weighted linear sum of features:
-    - 
+    - Eval(s)=w₁f₁(s) + w₂f₂(s) + ... + w<sub>n</sub>f<sub>n</sub>(s)
  
 
 
