@@ -149,6 +149,12 @@ def value(state):
     if the next agent is MIN: return min-value(state)
 ```
 
+ - Minimax Implementation  
+    - recursive call
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_func_max_value.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_func_min_value.png)
 
 Pacman game sample:
 
