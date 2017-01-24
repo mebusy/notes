@@ -112,7 +112,12 @@ So we need to think about now what a value is in the case of an adversary. This 
 
 We still know the value of Terminal States. For a state that is under my opponents control I imagine that this ghost is out there to minimize my value , so it will be -10.
 
-Tic-Tac-Toe Game Tree
+---
+
+
+##  Tic-Tac-Toe Game Tree
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_ticTac_game_tree.png)
 
 Blue one moves first. 
 
