@@ -51,10 +51,13 @@ That's not going to work here because we don't control our opponent. So we can't
 
 
 
+## Adversarial Search
 
-Adversarial Search
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_adversarial_search_illustration.png)
 
-we're going to have an agent is trying to figure out what to do. Just like a regular single-agent search before the way you're going to decide what to do is we're going to think about consquences of our actions. 
+we're going to have an agent is trying to figure out what to do. Just like a regular single-agent search. 
+
+Before the way you're going to decide what to do is we're going to think about consquences of our actions. 
 
 The differences rather than thinking about sequence of actions that I can perform , I need think about my opponent. 
 
@@ -63,7 +66,7 @@ So I imagine taking an action and then I imagine my opponent will then be in the
 
 ---
 
-Single-Agent Trees
+## Single-Agent Trees
 
 some of there paths go forever , some of these paths end because it meet the last of the game terminates. 
 
