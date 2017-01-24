@@ -265,6 +265,18 @@ so we trash.
 
 solution: closer to a dot  score point as well.
 
+
+
+
+---
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_adversarial_search_pacman_example2.png)
+
+What's going on here each agent is separately doing their own searches. But they see that the other one constrols , they treat it like min node (???). So even though each agent is actually doing its own search because they are both assuming the other one shares its evaluation function that is also minimax agent. We're goint to see cooperation emerge.
+
+This shows you how you can get cooperation without programming it in, simply they're both trying to achieve the same goal. 
+
+
 ---
 
 
@@ -326,20 +338,41 @@ def min-value(state , α, β):
     return v
 ```
 
+### Alpha-Beta Pruning Properties
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_alpha-beta-properties.png)
+
+ - This pruning has ***no effect*** on minimax value computed for the root!
+
+ - Values of intermediate nodes might be wrong
+    - Important: children of the root may have the wrong value
+    - So the most naive version won’t let you do action selection
+
+ - Good child ordering improves effectiveness of pruning
+
+ - With “perfect ordering”:
+    - Time complexity drops to O(b<sup>m/2</sup>)
+    - Doubles solvable depth!
+    - Full search of, e.g. chess, is still hopeless…
+
+
+***You must apply it after doing some actions***.
 
 ---
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_adversarial_search_pacman_example2.png)
+## Iterative Deepening
 
-What's going on here each agent is separately doing their own searches. But they see that the other one constrols , they treat it like min node (???). So even though each agent is actually doing its own search because they are both assuming the other one shares its evaluation function that is also minimax agent. We're goint to see cooperation emerge.
+ - Iterative deepening uses DFS as a subroutine:
+    1. Do a DFS which only searches for paths of length 1 or less.  i
+        - (DFS gives up on any path of length 2)
+    2. If “1” failed, do a DFS which only searches paths of length 2 or less.
+    3. If “2” failed, do a DFS which only searches paths of length 3 or less.
+        - ... and so on.
 
-This shows you how you can get cooperation without programming it in, simply they're both trying to achieve the same goal. 
 
 
-Alpha-Beta Pruning properties
 
-you must apply it after doing some actions.
+
 
 
 
