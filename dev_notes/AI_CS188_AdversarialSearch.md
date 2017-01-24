@@ -150,7 +150,6 @@ def value(state):
 ```
 
  - Minimax Implementation  
-    - recursive call
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_func_max_value.png)
 
@@ -271,6 +270,24 @@ solution: closer to a dot  score point as well.
 
 ## Game Tree Pruning 
 
+
+
+### Alpha-Beta Pruning
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_alpha_beta_pruning.png)
+
+ - General configuration (MIN version)
+    - We’re computing the MIN-VALUE at some node n
+    - We’re looping over n’s children
+    - n’s estimate of the childrens’ min is dropping
+    - Who cares about n’s value?  MAX
+    - Let α be the best value that MAX can get at any choice point along the current path from the root
+    - If n becomes worse than α, MAX will avoid it, so we can stop considering n’s other children (it’s already bad enough that it won’t be played)
+ - MAX version is symmetric
+
+### Pruning Exampe
+
+
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_minimax_example.png)
 
  - 第2层
@@ -279,6 +296,35 @@ solution: closer to a dot  score point as well.
         - 1st successor is 2 , than means the min value of parent is ≤ 2. 
         - so the value of rest successor is not important now, because they will not influence the choice of max-value ,calculated by the first level node
         - computation break
+
+### Alpha-Beta Implementation
+
+ - α: MAX’s best option on path to root
+ - β: MIN’s best option on path to root
+
+```python
+def max-value(state, α, β):
+    initialize v = -∞
+    for each successor of state:
+        v = max(v, value(successor, α, β))
+        # top min-value not care what remains, if v ≥ β
+        if v ≥ β return v
+        # update global max value
+        α = max(α, v)
+    return v
+```
+
+```python
+def min-value(state , α, β):
+    initialize v = +∞
+    for each successor of state:
+        v = min(v, value(successor, α, β))
+        # top max-value not care what remains, if v ≤ α
+        if v ≤ α return v
+        # update global min value
+        β = min(β, v)
+    return v
+```
 
 
 
