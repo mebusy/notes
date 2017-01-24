@@ -86,7 +86,7 @@ well in this state I have a choice I can get 8 or I can get whatever is down bel
 In single-agent case, we choose maximum value.
 
  - Value of a state: The best achievable outcome (utility) from that state
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_value_of_a_state.png)
 
 
 ---
