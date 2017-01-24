@@ -130,3 +130,24 @@ vim +BundleInstall +qall
  - chrome 安装插件 :  [Markdown Preview Plus](https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl)
  - 打开 `chrome://extensions/` ， 在设置页中勾选 “Allow access to file URLs”
 
+---
+
+## 搜索
+
+### 文件夹搜索
+
+```
+vimgrep /pattern/gj path
+```
+
+ - 参数:
+    - g: 一行中出现多次，只显示一次
+    - j: 只列出匹配的行
+ - path
+    - `./*.c`  当前文件夹下 c 文件中查找
+    - `**/*.*`  包括子文件夹下 所有文件
+
+
+搜索完毕 copen 或 cw 查看搜索列表
+
+
