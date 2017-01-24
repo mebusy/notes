@@ -91,7 +91,15 @@ In single-agent case, we choose maximum value.
 
 ---
 
-Let's think about the case where we have an adversary . In the state of root , we can still do the same thought : move left or move right. The difference now is in each of these possible futures the ghost can move left or right. So there's still the tree of of possible futures. 
+## Adversarial Game Trees
+
+Let's think about the case where we have an adversary . 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_game_trees.png)
+
+In the state of root , we can still do the same thought : move left or move right. 
+
+The difference now is in each of these possible futures the ghost can move left or right. So there's still the tree of of possible futures. 
 
 So we need to think about now what a value is in the case of an adversary. This is going to give us the idea of a ***minimax*** value. 
 
