@@ -156,6 +156,13 @@ def value(state):
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_func_min_value.png)
 
+
+## Minimax Example
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_minimax_example.png)
+
+
+
 Pacman game sample:
 
 you get points when you win , you get points when you get a dot , you lost a point every step. 
