@@ -519,8 +519,16 @@ Any m by n matrix A can be factored into
 The columns of U (m by m) are eigenvectors of AAᵀ, and the columns of V (n by n) are eigenvectors of AᵀA. 
 The r singular values on the diagonal of Σ (m by n) are the square roots of the nonzero eigenvalues of both AAᵀ and AᵀA. 
 
+**Remark 1** For positive definite matrices, Σ is Λ and UΣVᵀ is identical to QΛQᵀ. For other symmetric matrices, any negative eigenvalues in Λ become positive in Σ.
 
+**Remark 2** U and V give orthonormal bases for *all four fundamental subspaces*:
 
+ - first   r  columns of U:  column space of A
+ - first  m-r columns of U:  left nullspace of A
+ - first   r  columns of V:  row space of A
+ - first  n-r columns of V:  nullspace of A
+
+**Remark 3** The SVD chooses those bases in an extremely special way. :
 
 
 
