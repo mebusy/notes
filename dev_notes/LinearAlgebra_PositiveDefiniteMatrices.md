@@ -459,6 +459,69 @@ Then CᵀAC must have one positive and one negative eigenvalue, like A.
 
 **6G** For am symmetric matrix A,  ***the signs of the pivots agree with the signs of the eigenvalues***. The eigenvalue matrix Λ and the pivot matrix D have the same number of positive entries , negative entries, and zero entries.
 
+We will assume that A allows the symmetric factorization A = LDLᵀ (without row exchanges). 
+
+By the law of inertia, A has the same number of positive eigenvalues as D. But the eigenvalues of D are just its diagonal entries (the pivots). Thus the number of positive pivots matches the number of positive eigenvalues of A.
+
+That is both beautiful and practical. 
+
+It is beautiful because it brings together (for symmetric matrices) two parts of this book that were previously separate: *pivots* and *eigenvalues*. 
+It is also practical, because the pivots can locate the eigenvalues:
+
+**A has positive pivots, A- 2I has a negative pivot**
+
+```
+    ⎡ 3  3 0⎤        ⎡ 1 3 0⎤
+A = ⎢ 3 10 7⎥  A-2I =⎢ 3 8 7⎥ 
+    ⎣ 0  7 8⎦        ⎣ 0 7 6⎦
+```
+
+A has positive eigenvalues, by our test. But we know that λ<sub>min</sub> *is smaller than* 2, because subtracting 2 dropped it below zero. The next step looks at A - I, to see if λ<sub>min</sub> < 1. (It is, because A - I has a negative pivot.) That interval containing λ is cut in half at every
+step by checking the signs of the pivots.
+
+### The Generalized Eigenvalue Problem (TODO)
+
+Physics, engineering, and statistics are usually kind enough to produce symmetric matrices in their eigenvalue problems. 
+
+***But sometimes Ax = λx is replaced by Ax = λMx.*** *There are two matrices rather than one*.
+
+TODO
+
+
+## 6.3 SINGULAR VALUE DECOMPOSITION
+
+A great matrix factorization has been saved for the end of the basic course. 
+
+UΣVᵀ joins with LU from elimination and QR from orthogonalization (Gauss and Gram-Schmidt).
+
+A = UΣVᵀ is known as the "SVD" or the ***singular value decomposition***. 
+
+The SVD is closely associated with the eigenvalue-eigenvector factorization QΛQᵀ of a positive definite matrix. 
+The eigenvalues are in the diagonal matrix Λ. 
+The eigenvector matrix Q is orthogonal (QᵀQ = I) because eigenvectors of a symmetric matrix can be chosen to be orthonormal.
+
+For most matrices that is not true, and for rectangular matrices it is ridiculous (eigenvalues undefined).  
+But now we allow the Q on the left and the Qᵀ on the right to be *any two orthogonal matrices U and Vᵀ* -- not necessarily transposes of each other. Then every matrix will split into A = UΣVᵀ.
+
+The diagonal (but rectangular) matrix Σ has eigenvalues from AᵀA, not from A!
+Those positive entries (also called sigma) will be σ1, ... , σᵣ. They are the ***singular values*** of A.
+They fill the first r places on the main diagonal of Σ--when A has rank r. The rest of Σ is zero.
+
+With rectangular matrices, the key is almost always to consider AᵀA and AAᵀ. 
+
+**Singular Value Decomposition**:
+
+```
+Any m by n matrix A can be factored into 
+    A = UΣVᵀ = (orthogonal)(diagonal)(orthogonal)
+```
+
+The columns of U (m by m) are eigenvectors of AAᵀ, and the columns of V (n by n) are eigenvectors of AᵀA. 
+The r singular values on the diagonal of Σ (m by n) are the square roots of the nonzero eigenvalues of both AAᵀ and AᵀA. 
+
+
+
+
 
 
 
