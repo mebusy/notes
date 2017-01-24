@@ -68,18 +68,26 @@ So I imagine taking an action and then I imagine my opponent will then be in the
 
 ## Single-Agent Trees
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_single_agent_trees.png)
+
 some of there paths go forever , some of these paths end because it meet the last of the game terminates. 
 
-And what we actually do ? We image there is  associated values with this. Let's say this is the best possible outcome where I go straight to the dot ate it. And there are various other outcomes buried further in the other trees and I can associate numbers with them.
+And what we actually do ? 
+
+We image there is  associated values with this. Let's say this is the best possible outcome where I go straight to the dot ate it. And there are various other outcomes buried further in the other trees and I can associate numbers with them.
 
 In the case of single-agent , I get to pick any outcome I like.  In this  actual search case , showed as the pic , we should make that value-8 outcome happen.
 
 
 For terminal state the value is known. What about the other ones?  
 
-well in this state I have a choice I can get 8 or I can get whatever is down below the left path. So I can write the value of the state is defined to be the maximum over the values of its children. 
+well in this state I have a choice I can get 8 or I can get whatever is down below the left path (4-n-6). So I can write the value of the state is defined to be the maximum over the values of its children. 
 
 In single-agent case, we choose maximum value.
+
+ - Value of a state: The best achievable outcome (utility) from that state
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/
+
 
 ---
 
