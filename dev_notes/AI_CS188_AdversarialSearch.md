@@ -157,16 +157,6 @@ def value(state):
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_func_min_value.png)
 
 
-## Minimax Example
-
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_minimax_example.png)
-
- - 第2层
-    - 最左节点, min-value 计算的 3
-    - 中间节点
-        - 1st successor is 2 , than means the min value of parent is ≤ 2. 
-        - so the value of rest successor is not important now, because they will not influence the choice of max-value ,calculated by the first level node
-        - computation break
 
 ## Minimax Efficiency
 
@@ -244,12 +234,16 @@ In this case we want that number to return the actual minimax value of that posi
  - Ideal function: returns the actual minimax value of the position
  - In practice: typically weighted linear sum of features:
     - Eval(s)=w₁f₁(s) + w₂f₂(s) + ... + w<sub>n</sub>f<sub>n</sub>(s)
- 
+    - eg. f₁(s)=(num white queens – num black queens), etc.
 
 
 ---
 
-pacman example : starve ( loop in a range  )
+## Why Pacman Starves
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_why_pacman_starves.png)
+
+issue  : starve ( loop in a range  )
 
 danger of replanning agents
 
@@ -261,7 +255,34 @@ The problem is if we take the right branch , look at that state ( right,  2nd le
 
 so we trash.  
 
+
+ - A danger of replanning agents!
+    - He knows his score will go up by eating the dot now (west, east)
+    - He knows his score will go up just as much by eating the dot later (east, west)
+    - There are no point-scoring opportunities after eating the dot (within the horizon, two here)
+    - Therefore, waiting seems just as good as eating: he may go east, then back west in the next round of replanning!
+
+
+
 solution: closer to a dot  score point as well.
+
+---
+
+
+## Game Tree Pruning 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_minimax_example.png)
+
+ - 第2层
+    - 最左节点, min-value 计算的 3
+    - 中间节点
+        - 1st successor is 2 , than means the min value of parent is ≤ 2. 
+        - so the value of rest successor is not important now, because they will not influence the choice of max-value ,calculated by the first level node
+        - computation break
+
+
+
+---
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_adversarial_search_pacman_example2.png)
 
