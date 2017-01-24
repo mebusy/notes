@@ -369,6 +369,8 @@ def min-value(state , α, β):
     3. If “2” failed, do a DFS which only searches paths of length 3 or less.
         - ... and so on.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_deepening.png)
+
 
 
 
