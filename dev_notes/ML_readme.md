@@ -49,6 +49,7 @@
 
  1. [1~3 Search](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188.md)
  2. [4~5 CSP](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_CPS.md)
+ 3. [6 AdversarialSearch](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_AdversarialSearch.md)
 
 **Others**
 
