@@ -9,21 +9,46 @@
 <h2 id="6778eced7db02d1b66c03c39306bc708"></h2>
 # Adversarial Search
 
+## Types of Games
 
-We will talk about zero sum and deterministic games. They are games of perfect information.
+ - Axes
+    - Deterministic or stochastic?
+    - One, two, or more players?
+    - Zero sum?
+    - Perfect information (can you see the state)?
+
+ 
+ We will talk about zero sum and deterministic games. They are games of perfect information.
 
 Think about how this is different from search. 
 
 In search I gave you the search problem , and what you gave me back is a plan or path it is a sequences of actions that executed and it was guaranteed to succeed.
 
-That's not going to work here because we don't control our opponent. So we can't just give a plan that guarantes to succeed. What we need to do is we need a function which tells us in any given state what to do . That is the policy in the game case it's often called strategy. 
+That's not going to work here because we don't control our opponent. So we can't just give a plan that guarantes to succeed. What we need to do is we need a function which tells us in any given state what to do . That is the **policy** in the game case it's often called strategy. 
 
 
-Deterministic Games
+## Deterministic Games
 
-Terminal Utilities:  this tell us for an end-state how much it is worth to each of the players.
+ - Many possible formalizations, one is:
+    - States: S (start at s₀)
+    - Players: P={1...N} (usually take turns)
+    - Actions: A (may depend on player / state)
+    - Transition Function: SxA →S
+    - Terminal Test: S →{t,f}
+    - Terminal Utilities: SxP →R
+        - Terminal Utilities:  this tell us for an end-state how much it is worth to each of the players.
+ - Solution for a player is a ***policy***: S → A
+    - the solution to a game like this is a policy which map states to actions.
 
-the solution to a game like this is a policy which map states to actions.
+
+## Zero-Sum Games
+
+ Zero-Sum Games | General Games
+ --- | --- 
+ Agents have opposite utilities (values on outcomes) | Agents have independent utilities (values on outcomes)
+ Lets us think of a single value that one maximizes and the other minimizes | Cooperation, indifference, competition, and more are all possible
+ Adversarial, pure competition | More later on non-zero-sum games
+
 
 
 
