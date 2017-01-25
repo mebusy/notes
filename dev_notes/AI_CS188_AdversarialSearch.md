@@ -372,6 +372,71 @@ def min-value(state , α, β):
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_deepening.png)
 
 
+---
+
+# Expectimax and Utilities
+
+Idea for day is going to think about the case where all uncertainty is controlled by chance and not by an adversary.
+
+## Expectimax Search 
+
+left node will be 10
+
+for the right node ,  if 9 and 100 happens equally likely, the value will be  (100+9)/2 = 54.5. 
+
+so we should probably take the right node. 
+
+---
+
+Expectimax can not apply pruning.
+
+---
+
+## Depth-Limited Expectimax
+
+we have 2 layers corresponding to the 2 sequence of random ghost actions before pacman moves again. 
+
+## What Probabilities to Use ?
+
+One important thing to remember is that just because we assign probabilities that reflect our believes to the outcome , does not mean that the thing on the other side of flipping a coin. 
+
+If I think there is a 20% chance that the ghost go to left , it doesn't mean that the ghost has a random number generator. It just means that given my model which may be a simplification that's the best i can say given my evidence. 
+
+### Quiz: Informed Probabilities
+
+In general expectimax is the more general search procedures. You should always in principle use expectimax.
+
+
+## Modeling Assumptions
+
+## Utilities
+
+why do we want the goal is to be the input and the optimal behavior to be the output of the computation. why don't you just let the agent picks their own utilities? 
+
+vacuum cleaner  example: the agent would like to do nothing ,and so easy to do nothing. 
+
+why not prescribe ?  it's very hard to write down , complicated and context-defpendent.
+
+idea: utilities go in , behavior comes out.
+
+## Preferences
+
+Agent has to have preferences among various things. 
+
+for example 0,1,2 ice cream scoops ,it has to have preferences among them called prizes, specific outcomes.  A and B might   be various numbers of scoops. we have to have preference among the prizes. but we also have to be able to order our preferences among the lotteries , which are situations where you're not sure which prize are going to get and not shown here. 
+
+prizes are atomic outcomes and your lotteries which are mixtures with a certain probability. 
+
+so there lotteries and prizes  we must have preference, means an agent has to prefer one of the other.  and the question is just other utilities that reflect those preferences. we say lotteries here we do not mean the actual act of gambling in the lotteries. someone plays gambling just because we like to play. 
+
+
+## Rationality
+
+
+
+
+ 
+
 
 
 
