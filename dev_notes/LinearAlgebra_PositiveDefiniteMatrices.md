@@ -494,6 +494,16 @@ A great matrix factorization has been saved for the end of the basic course.
 
 UΣVᵀ joins with LU from elimination and QR from orthogonalization (Gauss and Gram-Schmidt).
 
+> hint 1: 
+
+行空间中找个典型向量 v₁， 然后变换到列空间的某个向量 u₁ : `u₁ = Av₁`
+目标是，找出 行空间中的一组正交基， 经过矩阵A变化后，得到 列空间中的一组正交基 : `AV=U∑` 
+
+```
+AV=U∑ => A = U∑V⁻¹ = U∑Vᵀ   (由目标可知，V正交，正交矩阵 逆等于转置换)
+```
+
+
 A = UΣVᵀ is known as the "SVD" or the ***singular value decomposition***. 
 
 The SVD is closely associated with the eigenvalue-eigenvector factorization QΛQᵀ of a positive definite matrix. 
@@ -528,8 +538,31 @@ The r singular values on the diagonal of Σ (m by n) are the square roots of the
  - first   r  columns of V:  row space of A
  - first  n-r columns of V:  nullspace of A
 
-**Remark 3** The SVD chooses those bases in an extremely special way. :
+**Remark 3** The SVD chooses those bases in an extremely special way. They are more than just orthonormal. *When A multiplies a column vⱼ of V, it produces σⱼ times a
+column of U*. That comes directly from AV = UΣ, looked at a column at a time.
 
+> hint 2
+
+如何找出 U和V ?
+
+**Remark 4** Eigenvectors of AAᵀ and AᵀA must go into the columns of U and V :
+
+```
+A = UΣVᵀ
+AAᵀ = (UΣVᵀ)(VΣᵀUᵀ) = UΣΣᵀUᵀ  and, similarly,  AᵀA = VΣᵀΣVᵀ. (1)
+```
+
+∑ᵀ∑ 是对角矩阵 , 所以，V就是 AᵀA 的特征向量矩阵. U 同理。
+
+*U must be the eigenvector matrix for* AAᵀ. The eigenvalue matrix in the middle is ΣΣᵀ -- which is m by m with σ₁²,...,σᵣ²  on the diagonal.
+
+The V matrix must be the eigenvector matrix for AᵀA. The diagonal matrix ΣᵀΣ has the same σ₁²,...,σᵣ² , but it is n by n.
+
+**Remark 5** There is the reason that Avⱼ = σⱼuⱼ. Start with AᵀAvⱼ = σⱼ²vⱼ:
+
+```
+Multiply by A => AAᵀAvⱼ = σⱼ²Avⱼ    (2)
+```
 
 
 
