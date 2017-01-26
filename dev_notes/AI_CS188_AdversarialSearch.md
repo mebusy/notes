@@ -492,7 +492,7 @@ To address this issue we list six constraints that we require any reasonable pre
     - given any 2 lotteries , a rational agent must either prefer one to ther other , or else rate the two as equally preferable.
     - that is , the agent cannot avoid deciding.
  - Transitivity 
-    - (A≻B)∧(B≻C)⟹  (A≻C)
+    - (A≻B)∧(B≻C)⇒ (A≻C)
  - Continuity
     - if you like A better than C , and some lottery B is between A and C in preference , then there is some probability *p* for which the rational agent will be indifferent between getting B for sure and the lottery that yields A with probability *p* and C with probability *1-p* .
  - Substitutability
