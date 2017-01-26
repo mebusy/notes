@@ -669,7 +669,7 @@ x = Qᵀb = ⎢         ⎥⎢b⎥ = ⎢    ⎥    (5)
 
  - b 等于 b 在各个基向量上投影的和。
 
-**Remark 2**: ***The rows of a square matrix are orthonormal whenever the columns are. ***
+**Remark 2**: ***The rows of a square matrix are orthonormal whenever the columns are***.
 
 ```
 		⎡1/√3   1/√2   1/√6⎤
