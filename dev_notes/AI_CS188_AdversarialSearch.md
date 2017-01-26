@@ -412,25 +412,6 @@ In general expectimax is the more general search procedures. You should always i
 ## Utilities
 
 
-=== from book
-
-Intuitively, the principle of Maximum Expected Utility (141EU) seems like a reasonable way to make decisions, but it is by no means obvious that it is the only rational way.
-
-After all, why should maximizing the average utility be so special? What's wrong with an agent that maximizes the weighted sum of the cubes of the possible utilities, or tries to minimize the worst possible loss?  Could an agent act rationally just by expressing preferences between states, without giving them numeric values? Finally, why should a utility function with the required properties exist at all? 
-
-These questions can be answered by writing down some constraints on the preferences that a rational agent should have and then showing that the MEU principle can be derived from the constraints. We use the following notation to describe an agent's preferences:
-
-We use the following notation to describe an agent's preferences:
-
- NOTATION | preference 
- --- | --- 
-  A ≻ B  | the agent prefers A over B
-  A ~ B | the agent is indifferent between A and B
-  A ⪰ B | the agent prefers A over B , or is indifferent between them
-
-
-
-=== end from book
 
 
 
@@ -473,15 +454,50 @@ But there are certain kinds of preferences just make no sense and so we need to 
 It robot like C beter it will pay 1 cent to get C . So it's backwards started except now you have 3 spends. 
 
 
+=== from book
+
+Intuitively, the principle of Maximum Expected Utility (141EU) seems like a reasonable way to make decisions, but it is by no means obvious that it is the only rational way.
+
+After all, why should maximizing the average utility be so special? What's wrong with an agent that maximizes the weighted sum of the cubes of the possible utilities, or tries to minimize the worst possible loss?  Could an agent act rationally just by expressing preferences between states, without giving them numeric values? Finally, why should a utility function with the required properties exist at all? 
+
+These questions can be answered by writing down some constraints on the preferences that a rational agent should have and then showing that the MEU principle can be derived from the constraints. We use the following notation to describe an agent's preferences:
+
+We use the following notation to describe an agent's preferences:
+
+ NOTATION | preference 
+ --- | --- 
+  A ≻ B  | the agent prefers A over B
+  A ~ B | the agent is indifferent between A and B
+  A ≥ B | the agent prefers A over B , or is indifferent between them
+
+现在显而易见的问题是，什么样的东西是A和B? 
+他们可能是世界的状态，但往往不确定的是什么是真正提供的。 例如，提供意大利面菜或鸡的航空公司乘客不知道在锡箔盖下方潜藏着什么。
+
+The pasta could be delicious or congealed, the chicken juicy or overcooked beyond recognition. 
+We can think of the set of outcomes for each action as a ***lottery*** -- think of each action as a ticket. A lottery ***L*** with possible outcomes S₁,...,S<sub>n</sub> , that occur with probabilities p₁,...,p<sub>n</sub> is writte
+
+```
+L = (p₁,S₁; p₂,S₂; ... ; pn,Sn)
+```
+
+In general, each outcome Sᵢ of a lottery can be either an atomic state or another lottery. 
+The primary issue for utility theory is to understand how preferences between complex lotteries are related to preferences between the underlying states in those lotteries. 
+To address this issue we list six constraints that we require any reasonable preference relation to obey:
+
+=== end from book
+
+
  - Orderability
-    - given 2 things, you either like A better or you like B better ,  or else rate the two as equally preferable.
+    - (A≻B)∨(B≻A)∨(A~B)
+    - given any 2 lotteries , a rational agent must either prefer one to ther other , or else rate the two as equally preferable.
+    - that is , the agent cannot avoid deciding.
  - Transitivity 
-    - if A is better than B and B is better than C , then A should better than C 
+    - (A≻B)∧(B≻C)⟹  (A≻C)
  - Continuity
     - if you like A better than C , and some lottery B is between A and C in preference , then there is some probability *p* for which the rational agent will be indifferent between getting B for sure and the lottery that yields A with probability *p* and C with probability *1-p* .
  - Substitutability
     - if an agent is indifferent between two lotteries A and B , then the agent is indifferent betwwen two more complex lotteries that are the same except that B is substituted for A in one of them. This holds regardless of the probabilities and the other outcome(s) in the lotteries.
- - 
+ - - 
  
 
 
