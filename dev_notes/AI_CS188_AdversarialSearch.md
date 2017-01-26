@@ -412,7 +412,7 @@ In general expectimax is the more general search procedures. You should always i
 ## Utilities
 
 
-
+https://www.authorea.com/users/5754/articles/6087/_show_article
 
 
 why do we want the goal is to be the input and the optimal behavior to be the output of the computation. why don't you just let the agent picks their own utilities? 
@@ -451,7 +451,10 @@ There is a wide variety of preferences that are ok : maybe the agent wants to ma
 
 But there are certain kinds of preferences just make no sense and so we need to constraints.  Here's one constraint the axiom of transitivity 传递性公理.This says if you prefer A to B and you prefer B to C , you better prefer A to C. 
 
-It robot like C beter it will pay 1 cent to get C . So it's backwards started except now you have 3 spends. 
+Suppose that the agent has the nontransitive preferences A≻B≻C≻A, where A, B, and C are goods that can be freely exchanged. If the agent currently has A, then we could offer to trade C for A plus one cent. The agent prefers C, and so would be willing to make this trade. We could then offer to trade B for C, extracting another cent, and finally trade A for B. This brings us back where we started from, except that the agent has given us three cents. We can keep going around the cycle until the agent has no money at all. Clearly, the agent has acted irrationally in this case.
+
+
+
 
 
 === from book
@@ -468,7 +471,7 @@ We use the following notation to describe an agent's preferences:
  --- | --- 
   A ≻ B  | the agent prefers A over B
   A ~ B | the agent is indifferent between A and B
-  A ≥ B | the agent prefers A over B , or is indifferent between them
+  A ≻= B | the agent prefers A over B , or is indifferent between them
 
 现在显而易见的问题是，什么样的东西是A和B? 
 他们可能是世界的状态，但往往不确定的是什么是真正提供的。 例如，提供意大利面菜或鸡的航空公司乘客不知道在锡箔盖下方潜藏着什么。
@@ -477,7 +480,7 @@ The pasta could be delicious or congealed, the chicken juicy or overcooked beyon
 We can think of the set of outcomes for each action as a ***lottery*** -- think of each action as a ticket. A lottery ***L*** with possible outcomes S₁,...,S<sub>n</sub> , that occur with probabilities p₁,...,p<sub>n</sub> is writte
 
 ```
-L = (p₁,S₁; p₂,S₂; ... ; pn,Sn)
+L = [p₁,S₁; p₂,S₂; ... ; pn,Sn]
 ```
 
 In general, each outcome Sᵢ of a lottery can be either an atomic state or another lottery. 
@@ -493,14 +496,73 @@ To address this issue we list six constraints that we require any reasonable pre
     - that is , the agent cannot avoid deciding.
  - Transitivity 
     - (A≻B)∧(B≻C)⇒ (A≻C)
+    - given any 3 lotteries , if an agent prefers A to B and prefers B to C , then the agent must prefer A to C
  - Continuity
-    - if you like A better than C , and some lottery B is between A and C in preference , then there is some probability *p* for which the rational agent will be indifferent between getting B for sure and the lottery that yields A with probability *p* and C with probability *1-p* .
+    - A≻B≻C ⇒ ∃p[p,A; 1-p,C] ~ B
+    - if some lottery B is between A and C in preference , then there is some probability *p* for which the rational agent will be indifferent between getting B for sure and the lottery that yields A with probability *p* and C with probability *1-p* .
  - Substitutability
+    - A~B ⇒ [p,A; 1-p,C] ~ [p,B; 1-p,C]
     - if an agent is indifferent between two lotteries A and B , then the agent is indifferent betwwen two more complex lotteries that are the same except that B is substituted for A in one of them. This holds regardless of the probabilities and the other outcome(s) in the lotteries.
- - - 
+ - Monotonicity 单调性
+    - A≻B ⇒ (p≥q ⇔ [p,A; 1-p,B] ≻= [q,A; 1-q,B]) 
+    - suppose 2 lotteries have the same two possible outcomes, A and B. If an agent prefers A to B , then the agent must prefer the lottery that has a higher probability for A (and vice versa)
+    - you prefer more A in the mix
+
+These constraints are known as the axioms of utility theory. 
  
+Each axiom can be motivated by showing that an agent that violates it will exhibit patently irrational behavior in some situations. 在某些情况下违反这些公理的agent会表现出不合理的行为。 For example, we can motivate transitivity by making an agent with nontransitive preferences give us all its money. 比如上面的 robot例子。
+
+---
+
+Basically if you accept these axioms there is an axiom says all of your preferences can be described with the utiity function. 
+So if you obey these axioms we give you the stamp of rationality. and that means the preferences violate these are irrational preferences and meet this irrational. 
 
 
+**Preferences lead to utility**
+
+Notice that the axioms of utility theory are really axioms about preferences--they say nothing about a utility function. 
+But in fact from the axioms of utility we can derive the following consequences :
+
+ - Existence of Utility Function
+    - U(A)>U(B) ⇔ A≻B
+    - U(A)=U(B) ⇔ A=B
+    - U(A)≥U(B) ⇔ A≻=B
+    - If an agent's preferences obey the axioms of utility, then there exists a function U such that U(A) > U(B) if and only if A is preferred to B, and U(A) = U(B) if and only if the agent is indifferent between A and B.
+ - Expected Utility of a Lottery:
+    - `U[p₁,S₁; p₂,S₂; ... ; pn,Sn] = ΣpᵢU(Sᵢ)`.
+    - The utility of a lottery is the sum of the probability of each outcome times the utility of that outcome.
+
+In other words, once the probabilities and utilities of the possible outcome states are specified. the utility of a compound lottery involving those states is completely determined. 
+
+## Utility Scales
+
+QALY, or quality-adjusted life year. Patients with a disability are willing to accept a shorter life expectancy to be restored to full health. For example. kidney patients on average are indifferent between living two years on a dialysis machine and one year at full health.
+
+
+## Example: Human Rationality
+
+Decision theory is a ***normative theory***: it describes how a rational agent should act.A descriptive theory, on the other hand, describes how actual agents -- for example, humans really do act. 
+
+The application of economic theory would be greatly enhanced if the two coincided, but there appears to be same experimental evidence io the contrary.
+The evideine suggests that humans are "predictably irrational".
+
+The best-known problem is the Allais paradox (Allais, 1953). People are given a choice between lotteries A and B and thcn between C and D, which have the following prizes:
+
+```
+A : 80% chance of $4000     C : 20% chance of $4000 
+B : 100% chance of $3000    D : 25% chance of $3000
+```
+
+Most people consistently prefer B over A (taking the sure thing), and C over D (taking the higher EMV).  The normative analysis disagrees? 
+
+In that case, then B ≻ A implies that U($3000) > 0.8 U($4000), whereas C ≻ D implies exactly the reverse. In other words, there is no utility function that is consistent with these choices.
+
+One explanation for the apparently irrational preferences is the **certainty effect** : people are strongly attracted to gains that are certain. There are several reasons why this may be so.
+
+First, people may prefer to reduce their computational burden; by choosing certain outcomes, they don't have to compute with probabilities. But the effect persists even when the computations involved are very easy ones. Second, people may distrust the legitimacy of the stated probabilities. 
+Third, people may be accounting for their emotional state as well as their financial state. People know they would experience regret if they gave up a certain reward (B) for an 80% chance at a higher reward and then lost. In other words, if A is chosen, there is a 20% chance of getting no money and feeling like a complete idiot, which is worse than just getting no money. 
+
+So perhaps people who choose B over A and C over D are not being irrational; they are just saying that they are willing to give up $200 of F.MV to avoid a 20% chance of feeling like an idiot.
 
 
 
