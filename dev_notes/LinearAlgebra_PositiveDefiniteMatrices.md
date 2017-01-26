@@ -497,10 +497,10 @@ UΣVᵀ joins with LU from elimination and QR from orthogonalization (Gauss and 
 > hint 1: 
 
 行空间中找个典型向量 v₁， 然后变换到列空间的某个向量 u₁ : `u₁ = Av₁`
-目标是，找出 行空间中的一组正交基， 经过矩阵A变化后，得到 列空间中的一组正交基 : `AV=U∑` 
+目标是，找出 行空间中的一组标准正交基， 经过矩阵A变化后，得到 列空间中的一组标准正交基 : `AV=U∑` 
 
 ```
-AV=U∑ => A = U∑V⁻¹ = U∑Vᵀ   (由目标可知，V正交，正交矩阵 逆等于转置换)
+AV=U∑ => A = U∑V⁻¹ = U∑Vᵀ   (由目标可知，V标准正交，正交矩阵 逆等于转置换)
 ```
 
 
