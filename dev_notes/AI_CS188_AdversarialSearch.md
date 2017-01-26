@@ -411,6 +411,29 @@ In general expectimax is the more general search procedures. You should always i
 
 ## Utilities
 
+
+=== from book
+
+Intuitively, the principle of Maximum Expected Utility (141EU) seems like a reasonable way to make decisions, but it is by no means obvious that it is the only rational way.
+
+After all, why should maximizing the average utility be so special? What's wrong with an agent that maximizes the weighted sum of the cubes of the possible utilities, or tries to minimize the worst possible loss?  Could an agent act rationally just by expressing preferences between states, without giving them numeric values? Finally, why should a utility function with the required properties exist at all? 
+
+These questions can be answered by writing down some constraints on the preferences that a rational agent should have and then showing that the MEU principle can be derived from the constraints. We use the following notation to describe an agent's preferences:
+
+We use the following notation to describe an agent's preferences:
+
+ NOTATION | preference 
+ --- | --- 
+  A ≻ B  | the agent prefers A over B
+  A ~ B | the agent is indifferent between A and B
+  A ⪰ B | the agent prefers A over B , or is indifferent between them
+
+
+
+=== end from book
+
+
+
 why do we want the goal is to be the input and the optimal behavior to be the output of the computation. why don't you just let the agent picks their own utilities? 
 
 vacuum cleaner  example: the agent would like to do nothing ,and so easy to do nothing. 
@@ -434,7 +457,31 @@ so there lotteries and prizes  we must have preference, means an agent has to pr
 
 
 
+We want utilities, we know we have to have preferences. Are they kind of good preferences? and bad preferences? are there always utility functions ?
 
+Rational Preferences
+
+preferences with start point 
+we are going to try to figure out under what circumstance those preferences can be boiled down to utility function. 
+
+so we'd like to constraints on these preferences before we call them rational . 
+
+There is a wide variety of preferences that are ok : maybe the agent wants to make money, maybe the agent want to spend money , maybe agent like ice cream , maybe agent hate ice cream , these are all prefectly good preferences. 
+
+But there are certain kinds of preferences just make no sense and so we need to constraints.  Here's one constraint the axiom of transitivity 传递性公理.This says if you prefer A to B and you prefer B to C , you better prefer A to C. 
+
+It robot like C beter it will pay 1 cent to get C . So it's backwards started except now you have 3 spends. 
+
+
+ - Orderability
+    - given 2 things, you either like A better or you like B better ,  or else rate the two as equally preferable.
+ - Transitivity 
+    - if A is better than B and B is better than C , then A should better than C 
+ - Continuity
+    - if you like A better than C , and some lottery B is between A and C in preference , then there is some probability *p* for which the rational agent will be indifferent between getting B for sure and the lottery that yields A with probability *p* and C with probability *1-p* .
+ - Substitutability
+    - if an agent is indifferent between two lotteries A and B , then the agent is indifferent betwwen two more complex lotteries that are the same except that B is substituted for A in one of them. This holds regardless of the probabilities and the other outcome(s) in the lotteries.
+ - 
  
 
 
