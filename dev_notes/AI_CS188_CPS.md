@@ -314,13 +314,13 @@ function RECURSIVE-BACKTRACKING( assignment, csp ) return soln/failure
 ### Filtering
 
 Filtering is about ruling out suspects.
+Keep track of domains for unassigned variables and cross off bad options.
 
+ 
 <h2 id="2dc9675ac8062df94ad72d42c57f68e1"></h2>
 #### Forward Checking
 
-Filtering | Forward checking
---- | ---
-Keep track of domains for unassigned variables and cross off bad options | Cross off values that violate a constraint when added to the existing assignment
+Cross off values that violate a constraint when added to the existing assignment.
 
 
 idea : keep track of all of the unassigned variables , keep track of what values they might reasonably take when we finally get to them.
