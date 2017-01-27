@@ -204,7 +204,7 @@ Approach:
 
  - Discrete Variables
 	- Finite domains
-		- Size d means O(ⁿⁿ) complete assignments
+		- Size d means O(dn) complete assignments
 		- E.g., Boolean CSPs, including Boolean satisfiability (NP-complete)
 	- Infinite domains (integers, strings, etc.)
 		- E.g., job scheduling, variables are start/end times for each job
