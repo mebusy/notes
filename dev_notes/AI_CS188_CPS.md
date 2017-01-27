@@ -325,7 +325,7 @@ Cross off values that violate a constraint when added to the existing assignment
 
 idea : keep track of all of the unassigned variables , keep track of what values they might reasonably take when we finally get to them.
 
-in forward checking every time I assign a variable right which collapses its domain to a single choice for now , I checked to see whether there are other unassigned variables that have some illegal values when I take into account that new assignment. 
+in forward checking every time I assign a variable which collapses its domain to a single choice for now , I checked to see whether there are other unassigned variables that have some illegal values when I take into account that new assignment. 
 
 
 example 
