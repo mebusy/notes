@@ -357,7 +357,7 @@ The idea of checking single arcs:
 
 so far we talked about checking an assignment against its neighbors and here we were talking just in this last slide about checking between two unassigned variables.
 
-what does it mean to check an arc ?  we look at an arc what it means to check it is formally we check whether or not is consistent so we say: 
+what does it mean to check an arc ?  Formally we check whether or not is consistent. So we say: 
 
 An arc X → Y is consistent if for every x in the tail ( not arrow ) there is some y in the head which could be assigned without violating a constraint
 
