@@ -9,6 +9,8 @@
 		 - [安装](#e655a410ff21cd07e7a0150491e04371)
 		 - [安装排错](#154a11cd7a6e424863c28aa29ad576d1)
 	 - [Markdown](#2182a74bab7188d959e795d9301e87ff)
+	 - [搜索](#e5f71fc31e7246dd6ccc5539570471b0)
+		 - [文件夹搜索](#4d36d00db257fed5fe7d2a2036ad930f)
 
 ...menuend
 
@@ -132,8 +134,10 @@ vim +BundleInstall +qall
 
 ---
 
+<h2 id="e5f71fc31e7246dd6ccc5539570471b0"></h2>
 ## 搜索
 
+<h2 id="4d36d00db257fed5fe7d2a2036ad930f"></h2>
 ### 文件夹搜索
 
 ```

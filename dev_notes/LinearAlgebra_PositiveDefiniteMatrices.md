@@ -9,6 +9,8 @@
 		 - [Semidefinite Matrices](#3a253363875ecbb15417db17ec79c263)
 		 - [Ellipsoids in n Dimensions](#1eaac00e8e99433d989fe0d999f52f5d)
 		 - [The Law of Inertia](#7d343fcdccb1d971e655a18f0ae0cb60)
+		 - [The Generalized Eigenvalue Problem (TODO)](#f2b49424030a50bcf8c0ca9cd03ed896)
+	 - [6.3 SINGULAR VALUE DECOMPOSITION](#d8d1378d745dd94a25a4c239c7c6702b)
 
 ...menuend
 
@@ -479,6 +481,7 @@ A = ⎢ 3 10 7⎥  A-2I =⎢ 3 8 7⎥
 A has positive eigenvalues, by our test. But we know that λ<sub>min</sub> *is smaller than* 2, because subtracting 2 dropped it below zero. The next step looks at A - I, to see if λ<sub>min</sub> < 1. (It is, because A - I has a negative pivot.) That interval containing λ is cut in half at every
 step by checking the signs of the pivots.
 
+<h2 id="f2b49424030a50bcf8c0ca9cd03ed896"></h2>
 ### The Generalized Eigenvalue Problem (TODO)
 
 Physics, engineering, and statistics are usually kind enough to produce symmetric matrices in their eigenvalue problems. 
@@ -488,6 +491,7 @@ Physics, engineering, and statistics are usually kind enough to produce symmetri
 TODO
 
 
+<h2 id="d8d1378d745dd94a25a4c239c7c6702b"></h2>
 ## 6.3 SINGULAR VALUE DECOMPOSITION
 
 A great matrix factorization has been saved for the end of the basic course. 

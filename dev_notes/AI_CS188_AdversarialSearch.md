@@ -1,6 +1,39 @@
 ...menustart
 
  - [Adversarial Search](#6778eced7db02d1b66c03c39306bc708)
+	 - [Types of Games](#82c396e55e8a69361a547039258d0479)
+	 - [Deterministic Games](#cc82ac9a2727eb1d5950b8affab7d93b)
+	 - [Zero-Sum Games](#d821b153288450f3f70a8b5429bd79e7)
+	 - [Adversarial Search](#6778eced7db02d1b66c03c39306bc708)
+	 - [Single-Agent Trees](#06c1352495eca3c370be92255d91cc6e)
+	 - [Adversarial Game Trees](#d21873e6049038af1b9127a1c8220791)
+	 - [Minimax Values](#a4d1f6cf51517d66b29531f7e039ffb0)
+	 - [Tic-Tac-Toe Game Tree](#0a6312d7d59a7975900e968c851dadd1)
+	 - [Adversarial Search (Minimax)](#dcf0514b6a79cf87fcd3bd43487c2421)
+	 - [Minimax Implementation](#a58343ec090ddd8a61a686ba6cb80359)
+	 - [Minimax Efficiency](#86563aad0e1c5702c26fc95c039b8f5d)
+	 - [Minimax Properties](#41f6acef7d955252a54191e4a588c49d)
+	 - [Resource Limits](#febe674abc9aa524c322edbbd8ec668c)
+	 - [Depth Matters](#1d6bb0121e05033d0b24687e099f1cd7)
+	 - [Evaluation Functions](#374868e68849b0b659b2677c21e7e73d)
+	 - [Why Pacman Starves](#60f84bbd0786516b9c113184771ff9ad)
+	 - [Game Tree Pruning](#89d4e1dda46082b0db4e378df9ea47fa)
+		 - [Alpha-Beta Pruning](#358c18c4263b1fc77ce96e4af26835e5)
+		 - [Pruning Exampe](#c19957d4c3956796b41234017dc153e6)
+		 - [Alpha-Beta Implementation](#e846bcc2e55ec4d7cfa03d4713218f5b)
+		 - [Alpha-Beta Pruning Properties](#ec4a6665d642ea66a394cbde7e464a8d)
+	 - [Iterative Deepening](#fcbd892c255445e0e3c99ceeb0dbc2e9)
+ - [Expectimax and Utilities](#a45c912b3f29a85dfaf265df7e679a37)
+	 - [Expectimax Search](#6ecc2099b9f0d08ca4a5fe81a800cacb)
+	 - [Depth-Limited Expectimax](#ab3291e21188d4069affc1afa9072371)
+	 - [What Probabilities to Use ?](#09e97ac67711291782476420d32639a6)
+		 - [Quiz: Informed Probabilities](#28f9be702977991f6e9af6eac821e5bf)
+	 - [Modeling Assumptions](#96c41e6537362c1152d9cffd89d3ce2d)
+	 - [Utilities](#ceba282b7418b7f199798b645e1cba56)
+	 - [Preferences](#d0834fcec6337785ee749c8f5464f6f6)
+	 - [Rationality](#63000348f12e5505f8ea8b0b2b208698)
+	 - [Utility Scales](#21657c7363e3c0a908c10915dce59712)
+	 - [Example: Human Rationality](#9fb9837709420f7dfb61a9c21dd50531)
 
 ...menuend
 
@@ -9,6 +42,7 @@
 <h2 id="6778eced7db02d1b66c03c39306bc708"></h2>
 # Adversarial Search
 
+<h2 id="82c396e55e8a69361a547039258d0479"></h2>
 ## Types of Games
 
  - Axes
@@ -27,6 +61,7 @@ In search I gave you the search problem , and what you gave me back is a plan or
 That's not going to work here because we don't control our opponent. So we can't just give a plan that guarantes to succeed. What we need to do is we need a function which tells us in any given state what to do . That is the **policy** in the game case it's often called strategy. 
 
 
+<h2 id="cc82ac9a2727eb1d5950b8affab7d93b"></h2>
 ## Deterministic Games
 
  - Many possible formalizations, one is:
@@ -41,6 +76,7 @@ That's not going to work here because we don't control our opponent. So we can't
     - the solution to a game like this is a policy which map states to actions.
 
 
+<h2 id="d821b153288450f3f70a8b5429bd79e7"></h2>
 ## Zero-Sum Games
 
  Zero-Sum Games | General Games
@@ -51,6 +87,7 @@ That's not going to work here because we don't control our opponent. So we can't
 
 
 
+<h2 id="6778eced7db02d1b66c03c39306bc708"></h2>
 ## Adversarial Search
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_adversarial_search_illustration.png)
@@ -66,6 +103,7 @@ So I imagine taking an action and then I imagine my opponent will then be in the
 
 ---
 
+<h2 id="06c1352495eca3c370be92255d91cc6e"></h2>
 ## Single-Agent Trees
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_single_agent_trees.png)
@@ -91,6 +129,7 @@ In single-agent case, we choose maximum value.
 
 ---
 
+<h2 id="d21873e6049038af1b9127a1c8220791"></h2>
 ## Adversarial Game Trees
 
 Let's think about the case where we have an adversary . 
@@ -104,6 +143,7 @@ The difference now is in each of these possible futures the ghost can move left 
 So we need to think about now what a value is in the case of an adversary. This is going to give us the idea of a ***minimax*** value. 
 
 
+<h2 id="a4d1f6cf51517d66b29531f7e039ffb0"></h2>
 ## Minimax Values
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_minimaxValues.png)
@@ -115,6 +155,7 @@ We still know the value of Terminal States. For a state that is under my opponen
 ---
 
 
+<h2 id="0a6312d7d59a7975900e968c851dadd1"></h2>
 ##  Tic-Tac-Toe Game Tree
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_ticTac_game_tree.png)
@@ -124,6 +165,7 @@ Blue one moves first.
 The value of root will be one of { -1,1,0 }.
 
 
+<h2 id="dcf0514b6a79cf87fcd3bd43487c2421"></h2>
 ## Adversarial Search (Minimax)
 
  - Deterministic, zero-sum games:
@@ -138,6 +180,7 @@ The value of root will be one of { -1,1,0 }.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_minimax.png)
 
+<h2 id="a58343ec090ddd8a61a686ba6cb80359"></h2>
 ## Minimax Implementation
 
  - Dispatch
@@ -157,6 +200,7 @@ def value(state):
 
 
 
+<h2 id="86563aad0e1c5702c26fc95c039b8f5d"></h2>
 ## Minimax Efficiency
 
  - How efficient is minimax?
@@ -168,6 +212,7 @@ def value(state):
     - But, do we need to explore the whole tree?
 
 
+<h2 id="41f6acef7d955252a54191e4a588c49d"></h2>
 ## Minimax Properties
 
 game sample:
@@ -179,6 +224,7 @@ If you play against a perfect player  you want to use minimax but if you are not
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_minimax_properties.png)
 
 
+<h2 id="febe674abc9aa524c322edbbd8ec668c"></h2>
 ## Resource Limits
 
  - Problem: In realistic games, cannot search to leaves!
@@ -203,6 +249,7 @@ So we can only search just some limited depth from the tree. Now the problem is 
 So we need to replace the terminal utilities in the minimax algorithm with what's called evaluation function, which takes a non-terminal position and gives us some estimate of what the terminal utility under that tree would be under minimax plan.
 
 
+<h2 id="1d6bb0121e05033d0b24687e099f1cd7"></h2>
 ## Depth Matters
 
  - Evaluation functions are always imperfect
@@ -222,6 +269,7 @@ For this example , if we look forward just a couple steps , we're going to need 
 If we can see all the way into the future , we can see the whole game play out on this board. The critical thing is that the blue ghost is going to go somewhere and once it goes somewhere it's committed. So what we should do now is moving towards the orange ghost because we are still not in any danger.  If you look deeply enough into the tree you see that what this allows you to do is force the blue ghost to make a decision before you have to.
 
 
+<h2 id="374868e68849b0b659b2677c21e7e73d"></h2>
 ## Evaluation Functions
 
 A function takes a non-terminal state and return some number,just like the heuristic value in Astar search . 
@@ -238,6 +286,7 @@ In this case we want that number to return the actual minimax value of that posi
 
 ---
 
+<h2 id="60f84bbd0786516b9c113184771ff9ad"></h2>
 ## Why Pacman Starves
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_why_pacman_starves.png)
@@ -280,10 +329,12 @@ This shows you how you can get cooperation without programming it in, simply the
 ---
 
 
+<h2 id="89d4e1dda46082b0db4e378df9ea47fa"></h2>
 ## Game Tree Pruning 
 
 
 
+<h2 id="358c18c4263b1fc77ce96e4af26835e5"></h2>
 ### Alpha-Beta Pruning
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_alpha_beta_pruning.png)
@@ -297,6 +348,7 @@ This shows you how you can get cooperation without programming it in, simply the
     - If n becomes worse than α, MAX will avoid it, so we can stop considering n’s other children (it’s already bad enough that it won’t be played)
  - MAX version is symmetric
 
+<h2 id="c19957d4c3956796b41234017dc153e6"></h2>
 ### Pruning Exampe
 
 
@@ -309,6 +361,7 @@ This shows you how you can get cooperation without programming it in, simply the
         - so the value of rest successor is not important now, because they will not influence the choice of max-value ,calculated by the first level node
         - computation break
 
+<h2 id="e846bcc2e55ec4d7cfa03d4713218f5b"></h2>
 ### Alpha-Beta Implementation
 
  - α: MAX’s best option on path to root
@@ -338,6 +391,7 @@ def min-value(state , α, β):
     return v
 ```
 
+<h2 id="ec4a6665d642ea66a394cbde7e464a8d"></h2>
 ### Alpha-Beta Pruning Properties
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_alpha-beta-properties.png)
@@ -360,6 +414,7 @@ def min-value(state , α, β):
 
 ---
 
+<h2 id="fcbd892c255445e0e3c99ceeb0dbc2e9"></h2>
 ## Iterative Deepening
 
  - Iterative deepening uses DFS as a subroutine:
@@ -374,10 +429,12 @@ def min-value(state , α, β):
 
 ---
 
+<h2 id="a45c912b3f29a85dfaf265df7e679a37"></h2>
 # Expectimax and Utilities
 
 Idea for day is going to think about the case where all uncertainty is controlled by chance and not by an adversary.
 
+<h2 id="6ecc2099b9f0d08ca4a5fe81a800cacb"></h2>
 ## Expectimax Search 
 
 left node will be 10
@@ -392,23 +449,28 @@ Expectimax can not apply pruning.
 
 ---
 
+<h2 id="ab3291e21188d4069affc1afa9072371"></h2>
 ## Depth-Limited Expectimax
 
 we have 2 layers corresponding to the 2 sequence of random ghost actions before pacman moves again. 
 
+<h2 id="09e97ac67711291782476420d32639a6"></h2>
 ## What Probabilities to Use ?
 
 One important thing to remember is that just because we assign probabilities that reflect our believes to the outcome , does not mean that the thing on the other side of flipping a coin. 
 
 If I think there is a 20% chance that the ghost go to left , it doesn't mean that the ghost has a random number generator. It just means that given my model which may be a simplification that's the best i can say given my evidence. 
 
+<h2 id="28f9be702977991f6e9af6eac821e5bf"></h2>
 ### Quiz: Informed Probabilities
 
 In general expectimax is the more general search procedures. You should always in principle use expectimax.
 
 
+<h2 id="96c41e6537362c1152d9cffd89d3ce2d"></h2>
 ## Modeling Assumptions
 
+<h2 id="ceba282b7418b7f199798b645e1cba56"></h2>
 ## Utilities
 
 
@@ -423,6 +485,7 @@ why not prescribe ?  it's very hard to write down , complicated and context-defp
 
 idea: utilities go in , behavior comes out.
 
+<h2 id="d0834fcec6337785ee749c8f5464f6f6"></h2>
 ## Preferences
 
 Agent has to have preferences among various things. 
@@ -434,6 +497,7 @@ prizes are atomic outcomes and your lotteries which are mixtures with a certain 
 so there lotteries and prizes  we must have preference, means an agent has to prefer one of the other.  and the question is just other utilities that reflect those preferences. we say lotteries here we do not mean the actual act of gambling in the lotteries. someone plays gambling just because we like to play. 
 
 
+<h2 id="63000348f12e5505f8ea8b0b2b208698"></h2>
 ## Rationality
 
 
@@ -534,11 +598,13 @@ But in fact from the axioms of utility we can derive the following consequences 
 
 In other words, once the probabilities and utilities of the possible outcome states are specified. the utility of a compound lottery involving those states is completely determined. 
 
+<h2 id="21657c7363e3c0a908c10915dce59712"></h2>
 ## Utility Scales
 
 QALY, or quality-adjusted life year. Patients with a disability are willing to accept a shorter life expectancy to be restored to full health. For example. kidney patients on average are indifferent between living two years on a dialysis machine and one year at full health.
 
 
+<h2 id="9fb9837709420f7dfb61a9c21dd50531"></h2>
 ## Example: Human Rationality
 
 Decision theory is a ***normative theory***: it describes how a rational agent should act.A descriptive theory, on the other hand, describes how actual agents -- for example, humans really do act. 
