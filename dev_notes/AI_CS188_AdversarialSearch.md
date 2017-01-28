@@ -67,11 +67,18 @@ That's not going to work here because we don't control our opponent. So we can't
  - Many possible formalizations, one is:
     - States: S (start at s₀)
     - Players: P={1...N} (usually take turns)
+        - Defines which player has the move in a state.
     - Actions: A (may depend on player / state)
+        - Retums the set of legal moves in a state.
     - Transition Function: SxA →S
+        - the result of a move.
     - Terminal Test: S →{t,f}
+        - which is true when the game is over and false otherwise. 
+        - States where the game has ended are called ***terminal states*** .
     - Terminal Utilities: SxP →R
-        - Terminal Utilities:  this tell us for an end-state how much it is worth to each of the players.
+        - defines the final numeric value for a game that ends in terminal state ***s*** for a player ***p***
+        - This tell us for an end-state how much it is worth to each of the players.
+        - In chess, the outcome is a win, loss, or draw, with values +1, 0, or -1
  - Solution for a player is a ***policy***: S → A
     - the solution to a game like this is a policy which map states to actions.
 
