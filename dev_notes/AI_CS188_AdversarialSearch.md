@@ -171,6 +171,14 @@ Blue one moves first.
 
 The value of root will be one of { -1,1,0 }.
 
+ - From the initial state, MAX has nine possible moves. 
+ - Play alternates between MAX 's placing an `x` and MIN's placing an `o` until we reach leaf nodes corresponding to terminal states . 
+ - The number on each leaf node indicates the utility value of the terminal state from the point of view of MAX: high values are assumed to be good for MAX and bad for MIN
+ - For tic-tac-toe the game tree is relatively small—fewer than 9! = 362, 880 terminal nodes.
+ - But for chess there are over 10⁴⁰ nodes, so the game tree is best thought of as a theoretical construct that we cannot realize in the physical world. 
+ - But regardless of the size of the game tree, it is MAX's job to search for a good move. We use the term search tree for a tree that is superimposed on the full game tree, and examines enough nodes to allow a player to determine what move to make.
+
+
 
 <h2 id="dcf0514b6a79cf87fcd3bd43487c2421"></h2>
 ## Adversarial Search (Minimax)
