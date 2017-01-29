@@ -473,14 +473,45 @@ def min-value(state , α, β):
     - Chance nodes are like min nodes but the outcome is uncertain
     - Calculate their expected utilities
     - I.e. take weighted average (expectation) of children
+ - Later, we’ll learn how to formalize the underlying uncertain-result problems as Markov Decision Processes
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/expectimax_search_01.png)
+
+
 
 left node will be 10
-
 for the right node ,  if 9 and 100 happens equally likely, the value will be  (100+9)/2 = 54.5. 
-
 so we should probably take the right node. 
 
 ---
+
+## Expectimax Pseudocode
+
+```python
+def value(state):
+    if the state is a terminal state: return the state’s utility
+    if the next agent is MAX: 
+        return max-value(state)
+    if the next agent is EXP: 
+        return exp-value(state)
+```
+
+```python
+def max-value(state):
+    initialize v = -∞
+    for each successor of state:
+        v = max(v, value(successor))
+    return v
+```
+
+```python
+def exp-value(state):
+    initialize v = 0
+    for each successor of state:
+        p = probability(successor)
+        v += p * value(successor)
+    return v
+```
 
 Expectimax can not apply pruning.
 
