@@ -454,15 +454,25 @@ def min-value(state , α, β):
 
 ### Worst-Case vs. Average Case
 
- - Idea: 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/uncertain_outcomes.png)
+
+ - Idea for today: 
     - Uncertain outcomes controlled by chance, not an adversary!
 
 
-
-Idea for day is going to think about the case where all uncertainty is controlled by chance and not by an adversary.
-
 <h2 id="6ecc2099b9f0d08ca4a5fe81a800cacb"></h2>
 ## Expectimax Search 
+
+ - Why wouldn’t we know what the result of an action will be?
+    - Explicit randomness: rolling dice
+    - Unpredictable opponents: the ghosts respond randomly
+    - Actions can fail: when moving a robot, wheels might slip
+ - Values should now reflect average-case (expectimax) outcomes, not worst-case (minimax) outcomes
+ - Expectimax search: compute the average score under optimal play
+    - Max nodes as in minimax search
+    - Chance nodes are like min nodes but the outcome is uncertain
+    - Calculate their expected utilities
+    - I.e. take weighted average (expectation) of children
 
 left node will be 10
 
