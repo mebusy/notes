@@ -477,11 +477,13 @@ def min-value(state , α, β):
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/expectimax_search_01.png)
 
-
-
 left node will be 10
 for the right node ,  if 9 and 100 happens equally likely, the value will be  (100+9)/2 = 54.5. 
 so we should probably take the right node. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Expectimax_value1.png)
+
+v = (1/2) (8) + (1/3) (24) + (1/6) (-12) = 10
 
 ---
 
@@ -512,6 +514,8 @@ def exp-value(state):
         v += p * value(successor)
     return v
 ```
+
+## Expectimax Pruning?
 
 Expectimax can not apply pruning.
 
