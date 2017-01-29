@@ -230,10 +230,6 @@ def value(state):
 <h2 id="41f6acef7d955252a54191e4a588c49d"></h2>
 ## Minimax Properties
 
-game sample:
-
-you get points when you win , you get points when you get a dot , you lost a point every step. 
-
 If you play against a perfect player  you want to use minimax but if you are not playing against a player move random  then minimax is going to be overly pessimistic. 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_minimax_properties.png)
@@ -306,13 +302,15 @@ In this case we want that number to return the actual minimax value of that posi
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_why_pacman_starves.png)
 
+
+Earning 10 points for eating a dot.
+
 issue  : starve ( loop in a range  )
 
 danger of replanning agents
 
 the plan they have in their head does not really have to be consistent. Every step you do a new plan. 
 
-10 points for a dot.
 
 The problem is if we take the right branch , look at that state ( right,  2nd level ) , it's just like the state of the root . (1 is a bit left, another is a bit of right) 
 
@@ -322,7 +320,7 @@ so we trash.
  - A danger of replanning agents!
     - He knows his score will go up by eating the dot now (west, east)
     - He knows his score will go up just as much by eating the dot later (east, west)
-    - There are no point-scoring opportunities after eating the dot (within the horizon, two here)
+    - There are no point-scoring opportunities after eating the dots (within the horizon, two here)
     - Therefore, waiting seems just as good as eating: he may go east, then back west in the next round of replanning!
 
 
@@ -354,6 +352,8 @@ This shows you how you can get cooperation without programming it in, simply the
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_alpha_beta_pruning.png)
 
+This figure shows the general case for alpha–beta pruning: If ***α*** is better than ***n*** for Player, we will never get to ***n*** in play.
+
  - General configuration (MIN version)
     - We’re computing the MIN-VALUE at some node n
     - We’re looping over n’s children
@@ -369,12 +369,12 @@ This shows you how you can get cooperation without programming it in, simply the
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_minimax_example.png)
 
- - 第2层
-    - 最左节点, min-value 计算的 3
-    - 中间节点
-        - 1st successor is 2 , than means the min value of parent is ≤ 2. 
-        - so the value of rest successor is not important now, because they will not influence the choice of max-value ,calculated by the first level node
-        - computation break
+ - 第2层 - 
+ - 最左节点, min-value 计算的 3
+ - 中间节点
+    - 1st successor is 2 , than means the min value of parent is ≤ 2. 
+    - so the value of rest successor is not important now, because they will not influence the choice of max-value ,calculated by the first level node
+    - computation break
 
 <h2 id="e846bcc2e55ec4d7cfa03d4713218f5b"></h2>
 ### Alpha-Beta Implementation
@@ -412,20 +412,23 @@ def min-value(state , α, β):
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_alpha-beta-properties.png)
 
  - This pruning has ***no effect*** on minimax value computed for the root!
-
+    - in the case that pic shows, root MAX encounters 10-10 , it may choose the right sub-tree.
  - Values of intermediate nodes might be wrong
     - Important: children of the root may have the wrong value
     - So the most naive version won’t let you do action selection
 
  - Good child ordering improves effectiveness of pruning
-
+    - The effectiveness of alpha–beta pruning is highly dependent on the order in which the states are examined
  - With “perfect ordering”:
     - Time complexity drops to O(b<sup>m/2</sup>)
     - Doubles solvable depth!
     - Full search of, e.g. chess, is still hopeless…
 
 
-***You must apply it after doing some actions***.
+***You must apply pruning after doing some actions***.
+
+
+
 
 ---
 
@@ -446,6 +449,15 @@ def min-value(state , α, β):
 
 <h2 id="a45c912b3f29a85dfaf265df7e679a37"></h2>
 # Expectimax and Utilities
+
+## Uncertainty and Utilities
+
+### Worst-Case vs. Average Case
+
+ - Idea: 
+    - Uncertain outcomes controlled by chance, not an adversary!
+
+
 
 Idea for day is going to think about the case where all uncertainty is controlled by chance and not by an adversary.
 
