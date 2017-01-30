@@ -567,7 +567,7 @@ we have 2 layers corresponding to the 2 sequence of random ghost actions before 
 
 
 <h2 id="09e97ac67711291782476420d32639a6"></h2>
-## What Probabilities to Use ?
+### What Probabilities to Use ?
 
  - In expectimax search, we have a probabilistic model of how the opponent (or environment) will behave in any state
     - Model could be a simple uniform distribution (roll a die)
@@ -599,6 +599,16 @@ In general expectimax is the more general search procedures. You should always i
 
 <h2 id="96c41e6537362c1152d9cffd89d3ce2d"></h2>
 ## Modeling Assumptions
+
+### The Dangers of Optimism and Pessimism
+
+ Dangerous Optimism | Dangerous Pessimism
+ :--- | ---:
+ Assuming chance when the world is adversarial. - | Assuming the worst case when it’s not likely.
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_optimism.png) | ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_pessimism.png)
+
+
+
 
 <h2 id="ceba282b7418b7f199798b645e1cba56"></h2>
 ## Utilities
