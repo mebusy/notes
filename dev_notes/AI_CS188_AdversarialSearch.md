@@ -24,8 +24,12 @@
 		 - [Alpha-Beta Pruning Properties](#ec4a6665d642ea66a394cbde7e464a8d)
 	 - [Iterative Deepening](#fcbd892c255445e0e3c99ceeb0dbc2e9)
  - [Expectimax and Utilities](#a45c912b3f29a85dfaf265df7e679a37)
+	 - [Uncertainty and Utilities](#6149fc2d88c6c1923cb69bc8cb99a646)
+		 - [Worst-Case vs. Average Case](#f061a414b47ce02e647fdb25d80714af)
 	 - [Expectimax Search](#6ecc2099b9f0d08ca4a5fe81a800cacb)
-	 - [Depth-Limited Expectimax](#ab3291e21188d4069affc1afa9072371)
+		 - [Expectimax Pseudocode](#ce695dc2a23c6c72b11e27d31153eceb)
+		 - [Expectimax Pruning?](#b6996c09f631626a1825a6d8fac7b02c)
+		 - [Depth-Limited Expectimax](#ab3291e21188d4069affc1afa9072371)
 	 - [What Probabilities to Use ?](#09e97ac67711291782476420d32639a6)
 		 - [Quiz: Informed Probabilities](#28f9be702977991f6e9af6eac821e5bf)
 	 - [Modeling Assumptions](#96c41e6537362c1152d9cffd89d3ce2d)
@@ -450,8 +454,10 @@ def min-value(state , α, β):
 <h2 id="a45c912b3f29a85dfaf265df7e679a37"></h2>
 # Expectimax and Utilities
 
+<h2 id="6149fc2d88c6c1923cb69bc8cb99a646"></h2>
 ## Uncertainty and Utilities
 
+<h2 id="f061a414b47ce02e647fdb25d80714af"></h2>
 ### Worst-Case vs. Average Case
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/uncertain_outcomes.png)
@@ -487,7 +493,8 @@ v = (1/2) (8) + (1/3) (24) + (1/6) (-12) = 10
 
 ---
 
-## Expectimax Pseudocode
+<h2 id="ce695dc2a23c6c72b11e27d31153eceb"></h2>
+### Expectimax Pseudocode
 
 ```python
 def value(state):
@@ -515,16 +522,46 @@ def exp-value(state):
     return v
 ```
 
-## Expectimax Pruning?
+<h2 id="b6996c09f631626a1825a6d8fac7b02c"></h2>
+### Expectimax Pruning?
 
 Expectimax can not apply pruning.
 
 ---
 
 <h2 id="ab3291e21188d4069affc1afa9072371"></h2>
-## Depth-Limited Expectimax
+### Depth-Limited Expectimax
+
+Estimate of true expectimax value (which would require a lot of work to compute)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/depth_limited_expectimax.png)
 
 we have 2 layers corresponding to the 2 sequence of random ghost actions before pacman moves again. 
+
+---
+
+## Probabilities
+
+### Reminder: Probabilities
+
+ - A random variable represents an event whose outcome is unknown
+ - A probability distribution is an assignment of weights to outcomes
+ - Example: Traffic on freeway
+    - Random variable: T = whether there’s traffic
+    - Outcomes: T in {none, light, heavy}
+    - Distribution: P(T=none) = 0.25, P(T=light) = 0.50, P(T=heavy) = 0.25
+ - Some laws of probability (more later):
+    - Probabilities are always non-negative
+    - Probabilities over all possible outcomes sum to one
+ - As we get more evidence, probabilities may change:
+    - P(T=heavy) = 0.25, P(T=heavy | Hour=8am) = 0.60
+    - We’ll talk about methods for reasoning and updating probabilities later
+
+### Reminder: Expectations
+
+ - The expected value of a function of a random variable is the average, weighted by the probability distribution over outcomes
+ - Example: How long to get to the airport?
+
 
 <h2 id="09e97ac67711291782476420d32639a6"></h2>
 ## What Probabilities to Use ?
