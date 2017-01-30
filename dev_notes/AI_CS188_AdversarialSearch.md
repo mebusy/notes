@@ -634,6 +634,35 @@ The result is not bad while an expectimax pacmas vs a random ghost.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mixed_layer.png)
 
+### Example: Backgammon
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_backgammon.png)
+
+ - Dice rolls increase b: 21 possible rolls with 2 dice
+    - Backgammon ~ 20 legal moves
+    - Depth 2 = 20 x (21 x 20)³ = 1.2 x 10⁹
+
+ - As depth increases, probability of reaching a given search node shrinks
+    - So usefulness of search is diminished
+    - So limiting depth is less damaging
+    - But pruning is trickier 困难的…
+
+ - Historic AI: TDGammon uses depth-2 search + very good evaluation function + reinforcement learning: 
+    - world-champion level play
+    - 1st AI world champion in any game!
+
+
+### Multi-Agent Utilities
+
+ - What if the game is not zero-sum, or has multiple players?
+
+ - Generalization of minimax:
+    - Terminals have utility tuples
+    - Node values are also utility tuples
+    - Each player maximizes its own component
+    - Can give rise to cooperation and competition dynamically…
+
+
 <h2 id="ceba282b7418b7f199798b645e1cba56"></h2>
 ## Utilities
 
