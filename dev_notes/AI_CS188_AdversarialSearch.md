@@ -561,6 +561,17 @@ we have 2 layers corresponding to the 2 sequence of random ghost actions before 
 
  - The expected value of a function of a random variable is the average, weighted by the probability distribution over outcomes
  - Example: How long to get to the airport?
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Expectations.png)
+
+### What Probabilities to Use?
+
+ - In expectimax search, we have a probabilistic model of how the opponent (or environment) will behave in any state
+    - Model could be a simple uniform distribution (roll a die)
+    - Model could be sophisticated and require a great deal of computation
+    - We have a chance node for any outcome out of our control: opponent or environment
+    - The model might say that adversarial actions are likely!
+
+ - For now, assume each chance node magically comes along with probabilities that specify the distribution over its outcomes
 
 
 <h2 id="09e97ac67711291782476420d32639a6"></h2>
