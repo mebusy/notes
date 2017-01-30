@@ -623,6 +623,17 @@ In general expectimax is the more general search procedures. You should always i
 
 The result is not bad while an expectimax pacmas vs a random ghost.
 
+## Other Game Types
+
+### Mixed Layer Types
+
+ - E.g. Backgammon
+ - Expectiminimax
+    - Environment is an extra “random agent” player that moves after each min/max agent
+    - Each node computes the appropriate combination of its children
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mixed_layer.png)
+
 <h2 id="ceba282b7418b7f199798b645e1cba56"></h2>
 ## Utilities
 
