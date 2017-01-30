@@ -607,8 +607,21 @@ In general expectimax is the more general search procedures. You should always i
  Assuming chance when the world is adversarial. - | Assuming the worst case when it’s not likely.
  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_optimism.png) | ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_pessimism.png)
 
+### Assumptions vs. Reality
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_assumption_vs_reality.png)
 
+ - Pacman used depth 4 search with an eval function that avoids trouble
+ - Ghost used depth 2 search with an eval function that seeks Pacman
+
+---
+
+ \\ | Adversarial Ghost | Random Ghost
+ --- | --- | ---
+ Minimax Pacman |  Won 5/5 ,  Avg. Score: 483 | Won 5/5 ,  Avg. Score: 493
+ Expectimax Pacman | Won 1/5 ,  Avg. Score: -303 | Won 5/5 ,  Avg. Score: 503
+
+The result is not bad while an expectimax pacmas vs a random ghost.
 
 <h2 id="ceba282b7418b7f199798b645e1cba56"></h2>
 ## Utilities
