@@ -808,6 +808,9 @@ Each axiom can be motivated by showing that an agent that violates it will exhib
 Basically if you accept these axioms there is an theorem  says all of your preferences can be described with the utiity function. 
 So if you obey these axioms we give you the stamp of rationality. and that means the preferences violate these are irrational preferences and meet this irrational. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rational_stamp.png)
+
+### MEU Principle
 
 **Preferences lead to utility**
 
@@ -825,8 +828,16 @@ But in fact from the axioms of utility we can derive the following consequences 
 
 In other words, once the probabilities and utilities of the possible outcome states are specified. the utility of a compound lottery involving those states is completely determined. 
 
+ - I.e. values assigned by U preserve preferences of both prizes and lotteries!
+
+ - Maximum expected utility (MEU) principle:
+    - Choose the action that maximizes expected utility
+    - Note: an agent can be entirely rational (consistent with MEU) without ever representing or manipulating utilities and probabilities
+    - E.g., a lookup table for perfect tic-tac-toe, a reflex vacuum cleaner
+
+
 <h2 id="21657c7363e3c0a908c10915dce59712"></h2>
-## Utility Scales
+### Utility Scales
 
 QALY, or quality-adjusted life year. Patients with a disability are willing to accept a shorter life expectancy to be restored to full health. For example. kidney patients on average are indifferent between living two years on a dialysis machine and one year at full health.
 
