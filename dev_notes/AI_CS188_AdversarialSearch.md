@@ -713,7 +713,9 @@ idea: utilities go in , behavior comes out.
 
  - An agent must have preferences among:
     - ***Prizes***: A, B, etc.
-    - ***Lotteries***: situations with uncertain prizes
+    - ***Lotteries***: situations with uncertain prize
+    
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_preference_prize_lottery.png)s
 
 
 Intuitively, the principle of Maximum Expected Utility (MEU) seems like a reasonable way to make decisions, but it is by no means obvious that it is the only rational way.
@@ -751,21 +753,18 @@ so there lotteries and prizes  we must have preference, means an agent has to pr
 <h2 id="63000348f12e5505f8ea8b0b2b208698"></h2>
 ## Rationality
 
+### Rational Preferences
 
+ - We want some constraints on preferences before we call them rational, such as:
+    - Axiom of Transitivity: `(A≻B)∧(B≻C)⇒ (A≻C)` 
 
-We want utilities, we know we have to have preferences. Are they kind of good preferences? and bad preferences? are there always utility functions ?
-
-Rational Preferences
-
-preferences with start point 
-we are going to try to figure out under what circumstance those preferences can be boiled down to utility function. 
-
-so we'd like to constraints on these preferences before we call them rational . 
 
 There is a wide variety of preferences that are ok : maybe the agent wants to make money, maybe the agent want to spend money , maybe agent like ice cream , maybe agent hate ice cream , these are all prefectly good preferences. 
 
 But there are certain kinds of preferences just make no sense and so we need to constraints.  Here's one constraint the axiom of transitivity 传递性公理.This says if you prefer A to B and you prefer B to C , you better prefer A to C. 
 
+For example : an agent with intransitive preferences can be induced to give away all of its money .
+    
 Suppose that the agent has the nontransitive preferences A≻B≻C≻A, where A, B, and C are goods that can be freely exchanged. If the agent currently has A, then we could offer to trade C for A plus one cent. The agent prefers C, and so would be willing to make this trade. We could then offer to trade B for C, extracting another cent, and finally trade A for B. This brings us back where we started from, except that the agent has given us three cents. We can keep going around the cycle until the agent has no money at all. Clearly, the agent has acted irrationally in this case.
 
 
