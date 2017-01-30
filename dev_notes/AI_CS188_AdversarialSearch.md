@@ -703,18 +703,49 @@ https://www.authorea.com/users/5754/articles/6087/_show_article
 
 idea: utilities go in , behavior comes out.
 
+### Utilities: Uncertain Outcomes
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_gettingIceCream.png)
 
 
 <h2 id="d0834fcec6337785ee749c8f5464f6f6"></h2>
 ## Preferences
 
-Agent has to have preferences among various things. 
+ - An agent must have preferences among:
+    - ***Prizes***: A, B, etc.
+    - ***Lotteries***: situations with uncertain prizes
+
+
+Intuitively, the principle of Maximum Expected Utility (MEU) seems like a reasonable way to make decisions, but it is by no means obvious that it is the only rational way.
+
+After all, why should maximizing the average utility be so special? What's wrong with an agent that maximizes the weighted sum of the cubes of the possible utilities, or tries to minimize the worst possible loss?  Could an agent act rationally just by expressing preferences between states, without giving them numeric values? Finally, why should a utility function with the required properties exist at all? 
+
+These questions can be answered by writing down some constraints on the preferences that a rational agent should have and then showing that the MEU principle can be derived from the constraints. We use the following notation to describe an agent's preferences:
+
+We use the following notation to describe an agent's preferences:
+
+ NOTATION | preference 
+ --- | --- 
+  A ≻ B  | the agent prefers A over B
+  A ~ B | the agent is indifferent between A and B
+  A ≻= B | the agent prefers A over B , or is indifferent between them
+
+现在显而易见的问题是，什么样的东西是A和B? 
+他们可能是世界的状态，但往往不确定的是什么是真正提供的。 例如，提供意大利面菜或鸡的航空公司,乘客不知道在锡箔盖下方潜藏着什么。
+
+The pasta could be delicious or congealed, the chicken juicy or overcooked beyond recognition. 
+We can think of the set of outcomes for each action as a ***lottery*** -- think of each action as a ticket. A lottery ***L*** with possible outcomes S₁,...,S<sub>n</sub> , that occur with probabilities p₁,...,p<sub>n</sub> is writte
+
+```
+L = [p₁,S₁; p₂,S₂; ... ; pn,Sn]
+```
+
 
 for example 0,1,2 ice cream scoops ,it has to have preferences among them called prizes, specific outcomes.  A and B might   be various numbers of scoops. we have to have preference among the prizes. but we also have to be able to order our preferences among the lotteries , which are situations where you're not sure which prize are going to get and not shown here. 
 
 prizes are atomic outcomes and your lotteries which are mixtures with a certain probability. 
 
-so there lotteries and prizes  we must have preference, means an agent has to prefer one of the other.  and the question is just other utilities that reflect those preferences. we say lotteries here we do not mean the actual act of gambling in the lotteries. someone plays gambling just because we like to play. 
+so there lotteries and prizes  we must have preference, means an agent has to prefer one of the other.  and the question is just other utilities that reflect those preferences.
 
 
 <h2 id="63000348f12e5505f8ea8b0b2b208698"></h2>
@@ -742,30 +773,6 @@ Suppose that the agent has the nontransitive preferences A≻B≻C≻A, where A,
 
 
 === from book
-
-Intuitively, the principle of Maximum Expected Utility (141EU) seems like a reasonable way to make decisions, but it is by no means obvious that it is the only rational way.
-
-After all, why should maximizing the average utility be so special? What's wrong with an agent that maximizes the weighted sum of the cubes of the possible utilities, or tries to minimize the worst possible loss?  Could an agent act rationally just by expressing preferences between states, without giving them numeric values? Finally, why should a utility function with the required properties exist at all? 
-
-These questions can be answered by writing down some constraints on the preferences that a rational agent should have and then showing that the MEU principle can be derived from the constraints. We use the following notation to describe an agent's preferences:
-
-We use the following notation to describe an agent's preferences:
-
- NOTATION | preference 
- --- | --- 
-  A ≻ B  | the agent prefers A over B
-  A ~ B | the agent is indifferent between A and B
-  A ≻= B | the agent prefers A over B , or is indifferent between them
-
-现在显而易见的问题是，什么样的东西是A和B? 
-他们可能是世界的状态，但往往不确定的是什么是真正提供的。 例如，提供意大利面菜或鸡的航空公司乘客不知道在锡箔盖下方潜藏着什么。
-
-The pasta could be delicious or congealed, the chicken juicy or overcooked beyond recognition. 
-We can think of the set of outcomes for each action as a ***lottery*** -- think of each action as a ticket. A lottery ***L*** with possible outcomes S₁,...,S<sub>n</sub> , that occur with probabilities p₁,...,p<sub>n</sub> is writte
-
-```
-L = [p₁,S₁; p₂,S₂; ... ; pn,Sn]
-```
 
 In general, each outcome Sᵢ of a lottery can be either an atomic state or another lottery. 
 The primary issue for utility theory is to understand how preferences between complex lotteries are related to preferences between the underlying states in those lotteries. 
