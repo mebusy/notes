@@ -742,6 +742,9 @@ We can think of the set of outcomes for each action as a ***lottery*** -- think 
 L = [p₁,S₁; p₂,S₂; ... ; pn,Sn]
 ```
 
+In general, each outcome Sᵢ of a lottery can be either an atomic state or another lottery. 
+
+---
 
 for example 0,1,2 ice cream scoops ,it has to have preferences among them called prizes, specific outcomes.  A and B might   be various numbers of scoops. we have to have preference among the prizes. but we also have to be able to order our preferences among the lotteries , which are situations where you're not sure which prize are going to get and not shown here. 
 
@@ -767,17 +770,13 @@ For example : an agent with intransitive preferences can be induced to give away
     
 Suppose that the agent has the nontransitive preferences A≻B≻C≻A, where A, B, and C are goods that can be freely exchanged. If the agent currently has A, then we could offer to trade C for A plus one cent. The agent prefers C, and so would be willing to make this trade. We could then offer to trade B for C, extracting another cent, and finally trade A for B. This brings us back where we started from, except that the agent has given us three cents. We can keep going around the cycle until the agent has no money at all. Clearly, the agent has acted irrationally in this case.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rational_preferences.png)
 
 
+---
 
-
-=== from book
-
-In general, each outcome Sᵢ of a lottery can be either an atomic state or another lottery. 
 The primary issue for utility theory is to understand how preferences between complex lotteries are related to preferences between the underlying states in those lotteries. 
 To address this issue we list six constraints that we require any reasonable preference relation to obey:
-
-=== end from book
 
 
  - Orderability
@@ -804,7 +803,9 @@ Each axiom can be motivated by showing that an agent that violates it will exhib
 
 ---
 
-Basically if you accept these axioms there is an axiom says all of your preferences can be described with the utiity function. 
+ - Theorem: Rational preferences imply behavior describable as maximization of expected utility
+
+Basically if you accept these axioms there is an theorem  says all of your preferences can be described with the utiity function. 
 So if you obey these axioms we give you the stamp of rationality. and that means the preferences violate these are irrational preferences and meet this irrational. 
 
 
