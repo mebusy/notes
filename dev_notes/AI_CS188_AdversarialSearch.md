@@ -662,12 +662,27 @@ The result is not bad while an expectimax pacmas vs a random ghost.
     - Each player maximizes its own component
     - Can give rise to cooperation and competition dynamically…
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_multi_agent_utilities.png)
+
 
 <h2 id="ceba282b7418b7f199798b645e1cba56"></h2>
 ## Utilities
 
 
 https://www.authorea.com/users/5754/articles/6087/_show_article
+
+### Maximum Expected Utility
+
+ - Why should we average utilities?  Why not minimax?
+ - Principle of maximum expected utility:
+    - A rational agent should chose the action that maximizes its expected utility, given its knowledge
+
+### What Utilities to Use?
+
+ - For worst-case minimax reasoning, terminal function scale doesn’t matter
+    - We just want better states to have higher evaluations (get the ordering right)
+    - We call this insensitivity to monotonic transformations
+    - 
 
 
 why do we want the goal is to be the input and the optimal behavior to be the output of the computation. why don't you just let the agent picks their own utilities? 
