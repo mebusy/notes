@@ -682,16 +682,28 @@ https://www.authorea.com/users/5754/articles/6087/_show_article
  - For worst-case minimax reasoning, terminal function scale doesn’t matter
     - We just want better states to have higher evaluations (get the ordering right)
     - We call this insensitivity to monotonic transformations
-    - 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_utilities_scale.png)
+ - For average-case expectimax reasoning, we need *magnitudes* to be meaningful
 
+### Utilities
 
-why do we want the goal is to be the input and the optimal behavior to be the output of the computation. why don't you just let the agent picks their own utilities? 
+ - Utilities are functions from outcomes (states of the world) to real numbers that describe an agent’s preferences
 
-vacuum cleaner  example: the agent would like to do nothing ,and so easy to do nothing. 
+ - Where do utilities come from?
+    - In a game, may be simple (+1/-1)
+    - Utilities summarize the agent’s goals
+    - Theorem: any “rational” preferences can be summarized as a utility function
 
-why not prescribe ?  it's very hard to write down , complicated and context-defpendent.
+ - We hard-wire utilities and let behaviors emerge
+    - Why don’t we let agents pick utilities?
+        - why do we want the goal is to be the input and the optimal behavior to be the output of the computation?  why don't you just let the agent picks their own utilities? 
+        - vacuum cleaner  example: the agent would like to do nothing ,and so easy to do nothing. 
+    - Why don’t we prescribe behaviors?
+        -  it's very hard to write down , complicated and context-defpendent.
 
 idea: utilities go in , behavior comes out.
+
+
 
 <h2 id="d0834fcec6337785ee749c8f5464f6f6"></h2>
 ## Preferences
