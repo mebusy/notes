@@ -563,7 +563,11 @@ we have 2 layers corresponding to the 2 sequence of random ghost actions before 
  - Example: How long to get to the airport?
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Expectations.png)
 
-### What Probabilities to Use?
+
+
+
+<h2 id="09e97ac67711291782476420d32639a6"></h2>
+## What Probabilities to Use ?
 
  - In expectimax search, we have a probabilistic model of how the opponent (or environment) will behave in any state
     - Model could be a simple uniform distribution (roll a die)
@@ -573,9 +577,7 @@ we have 2 layers corresponding to the 2 sequence of random ghost actions before 
 
  - For now, assume each chance node magically comes along with probabilities that specify the distribution over its outcomes
 
-
-<h2 id="09e97ac67711291782476420d32639a6"></h2>
-## What Probabilities to Use ?
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_probability_use.png)
 
 One important thing to remember is that just because we assign probabilities that reflect our believes to the outcome , does not mean that the thing on the other side of flipping a coin. 
 
@@ -583,6 +585,14 @@ If I think there is a 20% chance that the ghost go to left , it doesn't mean tha
 
 <h2 id="28f9be702977991f6e9af6eac821e5bf"></h2>
 ### Quiz: Informed Probabilities
+
+ - Let’s say you know that your opponent is actually running a depth 2 minimax, using the result 80% of the time, and moving randomly otherwise
+ - Question: What tree search should you use?  
+ - Answer: Expectimax!
+    - To figure out EACH chance node’s probabilities, you have to run a simulation of your opponent
+    - This kind of thing gets very slow very quickly
+    - Even worse if you have to simulate your opponent simulating you…
+    - … except for minimax, which has the nice property that it all collapses into one game tree
 
 In general expectimax is the more general search procedures. You should always in principle use expectimax.
 
