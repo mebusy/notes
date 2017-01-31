@@ -839,13 +839,34 @@ In other words, once the probabilities and utilities of the possible outcome sta
 <h2 id="21657c7363e3c0a908c10915dce59712"></h2>
 ### Utility Scales
 
-QALY, or quality-adjusted life year. Patients with a disability are willing to accept a shorter life expectancy to be restored to full health. For example. kidney patients on average are indifferent between living two years on a dialysis machine and one year at full health.
+ - Normalized utilities: u+ = 1.0, u- = 0.0
+ - Micromorts: one-millionth chance of death, useful for paying to reduce product risks, etc.
+ - QALYs: quality-adjusted life years, useful for medical decisions involving substantial risk
+    - QALY, or quality-adjusted life year. Patients with a disability are willing to accept a shorter life expectancy to be restored to full health. For example. kidney patients on average are indifferent between living two years on a dialysis machine and one year at full health.
+ - Note: behavior is invariant under positive linear transformation
+    - with a positive linear transformation of leaf values , i.e., transforming a value x to ax + b where a > 0, the choice of move remains unchanged in a game tree, even when there are chance nodes.
+ - With deterministic prizes only (no lottery choices), only ordinal utility can be determined, i.e., total order on prizes
+
+
+### Example: Insurance
+
+ - Consider the lottery [0.5, $1000;  0.5, $0]
+    - What is its expected monetary value?  ($500)
+    - What is its certainty equivalent?
+        - Monetary value acceptable in lieu of lottery
+        - $400 for most people
+ - Difference of $100 is the insurance premium
+    - There’s an insurance industry because people will pay to reduce their risk
+    - If everyone were risk-neutral, no insurance needed!
+ - It’s win-win: you’d rather have the $400 and the insurance company would rather have the lottery (their utility curve is flat and they have many lotteries)
 
 
 <h2 id="9fb9837709420f7dfb61a9c21dd50531"></h2>
-## Example: Human Rationality
+## Example: Human Rationality ?
 
-Decision theory is a ***normative theory***: it describes how a rational agent should act.A descriptive theory, on the other hand, describes how actual agents -- for example, humans really do act. 
+Decision theory is a ***normative theory***: it describes how a rational agent should act.
+
+A descriptive theory, on the other hand, describes how actual agents -- for example, humans really do act. 
 
 The application of economic theory would be greatly enhanced if the two coincided, but there appears to be same experimental evidence io the contrary.
 The evideine suggests that humans are "predictably irrational".
