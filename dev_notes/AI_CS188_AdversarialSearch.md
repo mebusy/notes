@@ -367,6 +367,8 @@ This figure shows the general case for alpha–beta pruning: If ***α*** is bett
     - If n becomes worse than α, MAX will avoid it, so we can stop considering n’s other children (it’s already bad enough that it won’t be played)
  - MAX version is symmetric
 
+PS: 采用了 pruning 算法, 节点的取值可能就不是 最大／最小值了
+
 <h2 id="c19957d4c3956796b41234017dc153e6"></h2>
 ### Pruning Exampe
 
