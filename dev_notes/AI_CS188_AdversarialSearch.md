@@ -667,6 +667,9 @@ The result is not bad while an expectimax pacmas vs a random ghost.
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_multi_agent_utilities.png)
 
 
+The leaf utilities are now written as pairs (U<sub>A</sub> , U<sub>B</sub>, U<sub>C</sub> ). In this generalized setting, A seeks to maximize U<sub>A</sub>, the first component, while B seeks to maximize U<sub>B</sub> , the second component.
+
+
 <h2 id="ceba282b7418b7f199798b645e1cba56"></h2>
 ## Utilities
 
