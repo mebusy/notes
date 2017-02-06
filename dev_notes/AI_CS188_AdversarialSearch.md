@@ -382,6 +382,14 @@ PS: 采用了 pruning 算法, 节点的取值可能就不是 最大／最小值�
     - so the value of rest successor is not important now, because they will not influence the choice of max-value ,calculated by the first level node
     - computation break
 
+For a minimizer node *m* , pruning its children is possible , when both of the following conditions are met:
+
+ 1. the value of another child of *m* has been metermined
+    - leftmost children can not be pruned
+ 2. somewhere on the path from *m* to the root node, there is a maximizer mode *M* for which an alternative option has already been explored
+
+
+
 <h2 id="e846bcc2e55ec4d7cfa03d4713218f5b"></h2>
 ### Alpha-Beta Implementation
 
@@ -669,6 +677,7 @@ The result is not bad while an expectimax pacmas vs a random ghost.
 
 The leaf utilities are now written as pairs (U<sub>A</sub> , U<sub>B</sub>, U<sub>C</sub> ). In this generalized setting, A seeks to maximize U<sub>A</sub>, the first component, while B seeks to maximize U<sub>B</sub> , the second component.
 
+In above example , the leftmost green node should be:  ***(1,6,6)***
 
 <h2 id="ceba282b7418b7f199798b645e1cba56"></h2>
 ## Utilities
