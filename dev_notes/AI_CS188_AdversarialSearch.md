@@ -388,7 +388,9 @@ For a minimizer node *m* , pruning its children is possible , when both of the f
     - leftmost children can not be pruned
  2. somewhere on the path from *m* to the root node, there is a maximizer mode *M* for which an alternative option has already been explored
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/pruning_impossible.png)
 
+so all pruning shape showed in above pic will not be achieved.
 
 <h2 id="e846bcc2e55ec4d7cfa03d4713218f5b"></h2>
 ### Alpha-Beta Implementation
