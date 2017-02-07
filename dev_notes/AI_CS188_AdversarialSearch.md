@@ -892,6 +892,33 @@ In other words, once the probabilities and utilities of the possible outcome sta
  - With deterministic prizes only (no lottery choices), only ordinal utility can be determined, i.e., total order on prizes
 
 
+### The utility of money
+
+Suppose you have triumphed over the other competitors in a television game show. 
+
+The host now offers you a choice: either you can take the $1,000,000 prize or you can gamble it on the flip of a coin. If the coin comes up heads, you end up with nothing, but if it comes up tails, you get $2,500,000. If you're like most people, you would decline the gamble and pocket the million. Are you being irrational?
+
+Assuming the coin is fair, the ***expected monetary value*** (EMV) of the gamble is 0.5\*($) + 0.5\*($2,500,000) = $1,250,000, which is more than the original $1,000,000. But that does not necessarily mean that accepting the gamble is a better decision. 
+
+Suppose we use S<sub>n</sub> to denote the state of possessing total wealth $<sub>n</sub>, and that your current wealth is $<sub>k</sub>. Then the ***expected utilities*** of the two actions of accepting and declining the gamble are
+
+ - EU(Accept) = 0.5·U(S<sub>k</sub>) + 0.5·U(S<sub>k + 2,500,000</sub>)
+ - EU(Reject) = U(S<sub>k + 1,000,000</sub>)
+
+To determine what to do, we need to assign utilities to the outcome states.Utility is not directly proportional to monetary value, because the utility for your **first million is very high** (or so they say), whereas the utility for an additional million is smaller.
+
+Suppose you assign a utility of 5 to your current financial status (Sk), a 9 to the state S<sub>k + 2,500,000</sub> , and an 8 to the state S<sub>k + 1,000,000</sub> .  Then the rational action would be to decline, because the expected utility of accepting is only 7 (less than the 8 for declining). On the other hand, a billionaire 亿万富翁  would most likely have a utility function that is locally linear over the range of a few million more, and thus would accept the gamble.
+
+----
+
+ - Money does not behave as a utility function, but we can talk about the utility of having money (or being in debt)
+ - Given a lottery L = [p, $X; (1-p), $Y]
+    - The ***expected monetary value*** EMV(L) is p\*X + (1-p)\*Y
+    - U(L) = p\*U($X) + (1-p)\*U($Y)
+    - Typically, U(L) < U( EMV(L) )
+
+
+
 ### Example: Insurance
 
  - Consider the lottery [0.5, $1000;  0.5, $0]
