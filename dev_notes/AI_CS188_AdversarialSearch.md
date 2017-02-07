@@ -916,7 +916,12 @@ Suppose you assign a utility of 5 to your current financial status (Sk), a 9 to 
     - The ***expected monetary value*** EMV(L) is p\*X + (1-p)\*Y
     - U(L) = p\*U($X) + (1-p)\*U($Y)
     - Typically, U(L) < U( EMV(L) )
+    - In this sense, people are risk-averse
+    - When deep in debt, people are risk-prone
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_utility_of_money.png)
+
+The value an agent will accept in lieu of a lottery is called the ***certainty equivalent*** of the lottery. 
 
 
 ### Example: Insurance
@@ -930,6 +935,10 @@ Suppose you assign a utility of 5 to your current financial status (Sk), a 9 to 
     - There’s an insurance industry because people will pay to reduce their risk
     - If everyone were risk-neutral, no insurance needed!
  - It’s win-win: you’d rather have the $400 and the insurance company would rather have the lottery (their utility curve is flat and they have many lotteries)
+    - People would rather pay a small insurance premium than gamble the price of their house against the chance of a fire.
+    - From the insurance company's point of view, the price of the house is very small compared with the firm's total reserves. This means that the insurer's utility curve is approximately linear over such a small region, and the gamble costs the company almost nothing.
+
+
 
 
 <h2 id="9fb9837709420f7dfb61a9c21dd50531"></h2>
