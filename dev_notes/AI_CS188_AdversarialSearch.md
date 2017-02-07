@@ -949,7 +949,10 @@ Suppose you assign a utility of 5 to your current financial status (Sk), a 9 to 
  - Money does not behave as a utility function, but we can talk about the utility of having money (or being in debt)
  - Given a lottery L = [p, $X; (1-p), $Y]
     - The ***expected monetary value*** EMV(L) is p\*X + (1-p)\*Y
+        - eg. L = [0.6,$0; 0.4,$100] , EMV(L) = 40
     - U(L) = p\*U($X) + (1-p)\*U($Y)
+        - compute U(L) need know U($0) and U($100)
+        - ***keep in mind:  U([p,A; 1-p,B]) is NOT equal U(pA + (1-p)B)***
     - Typically, U(L) < U( EMV(L) )
     - In this sense, people are risk-averse
     - When deep in debt, people are risk-prone
@@ -957,6 +960,11 @@ Suppose you assign a utility of 5 to your current financial status (Sk), a 9 to 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_utility_of_money.png)
 
 The value an agent will accept in lieu of a lottery is called the ***certainty equivalent*** of the lottery. 
+
+
+
+
+
 
 
 <h2 id="dad93deae38068bd9b575b9c56b23afe"></h2>
