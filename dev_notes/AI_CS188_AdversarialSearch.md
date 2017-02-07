@@ -961,9 +961,18 @@ Suppose you assign a utility of 5 to your current financial status (Sk), a 9 to 
 
 The value an agent will accept in lieu of a lottery is called the ***certainty equivalent*** of the lottery. 
 
+Example:
 
+Consider the utility function shown below.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_quiz_certainty_equivalent_value.png)
 
+Under the above utility function, what is the certainty equivalent monetary value in dollars ($) of the lottery [0.6,$0; 0.4,$100] ?
+
+Solve: 
+
+ - U([0.6,$0; 0.4,$100]) = 0.6 \* U($0) + 0.4 \* U($100) = 0.6 \* 0 + 0.4 \* 1000 = 400.
+ - because U($10) = 400 , so the certainty equivalent monetary value is **10** .
 
 
 
