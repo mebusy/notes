@@ -974,6 +974,14 @@ Solve:
  - U([0.6,$0; 0.4,$100]) = 0.6 \* U($0) + 0.4 \* U($100) = 0.6 \* 0 + 0.4 \* 1000 = 400.
  - because U($10) = 400 , so the certainty equivalent monetary value is **10** .
 
+---
+
+Function Graph of risk behavior 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_fungraph_of_risk.png)
+
+---
+
 
 
 <h2 id="dad93deae38068bd9b575b9c56b23afe"></h2>
