@@ -550,6 +550,23 @@ Estimate of true expectimax value (which would require a lot of work to compute)
 
 we have 2 layers corresponding to the 2 sequence of random ghost actions before pacman moves again. 
 
+
+### Example of depth-limited search
+
+ - Consider the following Pacman configuration
+    - At each time step, Pacman can move either West (left) or East (right) and is using limited-depth minimax search to choose his next move
+        - (where the minimizing agent does not really do anything) 
+    - Pacman is 3 East moves away from the food
+    - and chooses from the following state evaluation functions:
+        - F1(state) = -Number of food pellets left
+        - F2(state) = -Number of food pellets left + 0.5/(distance to closest food pellet + 1); distance to closest food pellet is taken as 0 when no food remains.
+
+
+Normally , we say a search depth of 2 means the search considers of up to 2 actions by the maximizer (or minimizer).
+
+ 
+
+
 ---
 
 ## Probabilities
