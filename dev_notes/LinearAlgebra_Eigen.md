@@ -123,7 +123,7 @@ shorter, but mixed up. This is the key to the problem:
  - ***The vector x is in the nullspace of A - λI***.
  - ***The number λ, is chosen so that A - λI has a nullspace***.
 
-Of course every matrix has a nullspace. We want a *nonzero* eigenvector x.  The goal is to build u(t) out of exponentials e<sup>λ</sup>ᵗx , and *we are interested only in those particular values λ for which there is a nonzero eigenvector x.  To be of any use, the nullspace of A - λI must contain vectors other than zero. In short, A - λI ***must be singular***.
+Of course every matrix has a nullspace. We want a *nonzero* eigenvector x.  The goal is to build u(t) out of exponentials e<sup>λ</sup>ᵗx , and we are interested only in those particular values λ for which there is a nonzero eigenvector x.  To be of any use, the nullspace of A - λI must contain vectors other than zero. In short, A - λI ***must be singular***.
 
 For this, the determinant gives a conclusive test.
 
@@ -479,7 +479,7 @@ The main point of this section is S⁻¹AS = Λ. The egenvector matrix S convert
 Example 1: The projection A = [0.5 0.5 ; 0.5 0.5] has eigenvalue matrix [1 0 ; 0 0]. The eigenvectors go into the the columens of S:
 
 ```
-A = ⎡1  1⎤  and AS = SΛ = ⎡1 0⎤. 
+S = ⎡1  1⎤  and AS = SΛ = ⎡1 0⎤. 
     ⎣1 -1⎦    	   		  ⎣1 0⎦ 
 ```
 
