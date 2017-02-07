@@ -30,14 +30,32 @@
 		 - [Expectimax Pseudocode](#ce695dc2a23c6c72b11e27d31153eceb)
 		 - [Expectimax Pruning?](#b6996c09f631626a1825a6d8fac7b02c)
 		 - [Depth-Limited Expectimax](#ab3291e21188d4069affc1afa9072371)
-	 - [What Probabilities to Use ?](#09e97ac67711291782476420d32639a6)
+		 - [Example of depth-limited search](#6aaf3cf66d3305bdc35b0f67041a57dc)
+	 - [Probabilities](#bc078a4ec09e22213bd1e3f41d17bed5)
+		 - [Reminder: Probabilities](#0d8aebbdf090456382759c0b150f34e4)
+		 - [Reminder: Expectations](#a5d4bf7a63230c8571ac6c2e4ccbe07c)
+		 - [What Probabilities to Use ?](#09e97ac67711291782476420d32639a6)
 		 - [Quiz: Informed Probabilities](#28f9be702977991f6e9af6eac821e5bf)
 	 - [Modeling Assumptions](#96c41e6537362c1152d9cffd89d3ce2d)
+		 - [The Dangers of Optimism and Pessimism](#173903fff204e9fa2902106ecc393c8a)
+		 - [Assumptions vs. Reality](#5db156685ba988e993b5d79d16d83b78)
+	 - [Other Game Types](#36a5d8463dcd3e452a6804e1f817860e)
+		 - [Mixed Layer Types](#4d83149ccdc520d6725e433ae1277e06)
+		 - [Example: Backgammon](#eaefbf5d721da4a937661b4c220a4bbb)
+		 - [Multi-Agent Utilities](#3c4af92d68993b46c547310f35e6f8eb)
 	 - [Utilities](#ceba282b7418b7f199798b645e1cba56)
+		 - [Maximum Expected Utility](#eabc9c95ab9e6d9e17f2ecd517a1670b)
+		 - [What Utilities to Use?](#f0400acd1ae1ee97ec4a2afe860937cd)
+		 - [Utilities](#ceba282b7418b7f199798b645e1cba56)
+		 - [Utilities: Uncertain Outcomes](#84c1a66a044dc64ee4f3cf4fadc6cdb6)
 	 - [Preferences](#d0834fcec6337785ee749c8f5464f6f6)
 	 - [Rationality](#63000348f12e5505f8ea8b0b2b208698)
-	 - [Utility Scales](#21657c7363e3c0a908c10915dce59712)
-	 - [Example: Human Rationality](#9fb9837709420f7dfb61a9c21dd50531)
+		 - [Rational Preferences](#1e6df6b0bb22997a095d015d4ac31630)
+		 - [MEU Principle](#6128ac98c4876851331c1db2897f6253)
+		 - [Utility Scales](#21657c7363e3c0a908c10915dce59712)
+		 - [The utility of money](#bdd76b2b194dadbe5e0a331ee46a45fd)
+		 - [Example: Insurance](#dad93deae38068bd9b575b9c56b23afe)
+	 - [Example: Human Rationality ?](#f0a715611d4f38f774d419d0be398be6)
 
 ...menuend
 
@@ -551,6 +569,7 @@ Estimate of true expectimax value (which would require a lot of work to compute)
 we have 2 layers corresponding to the 2 sequence of random ghost actions before pacman moves again. 
 
 
+<h2 id="6aaf3cf66d3305bdc35b0f67041a57dc"></h2>
 ### Example of depth-limited search
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_pacman_depth_limited_search_example.png)
@@ -580,8 +599,10 @@ Normally , we say a search depth of 2 means the search considers of up to 2 acti
 
 ---
 
+<h2 id="bc078a4ec09e22213bd1e3f41d17bed5"></h2>
 ## Probabilities
 
+<h2 id="0d8aebbdf090456382759c0b150f34e4"></h2>
 ### Reminder: Probabilities
 
  - A random variable represents an event whose outcome is unknown
@@ -597,6 +618,7 @@ Normally , we say a search depth of 2 means the search considers of up to 2 acti
     - P(T=heavy) = 0.25, P(T=heavy | Hour=8am) = 0.60
     - We’ll talk about methods for reasoning and updating probabilities later
 
+<h2 id="a5d4bf7a63230c8571ac6c2e4ccbe07c"></h2>
 ### Reminder: Expectations
 
  - The expected value of a function of a random variable is the average, weighted by the probability distribution over outcomes
@@ -640,6 +662,7 @@ In general expectimax is the more general search procedures. You should always i
 <h2 id="96c41e6537362c1152d9cffd89d3ce2d"></h2>
 ## Modeling Assumptions
 
+<h2 id="173903fff204e9fa2902106ecc393c8a"></h2>
 ### The Dangers of Optimism and Pessimism
 
  Dangerous Optimism | Dangerous Pessimism
@@ -647,6 +670,7 @@ In general expectimax is the more general search procedures. You should always i
  Assuming chance when the world is adversarial. - | Assuming the worst case when it’s not likely.
  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_optimism.png) | ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_pessimism.png)
 
+<h2 id="5db156685ba988e993b5d79d16d83b78"></h2>
 ### Assumptions vs. Reality
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_assumption_vs_reality.png)
@@ -663,8 +687,10 @@ In general expectimax is the more general search procedures. You should always i
 
 The result is not bad while an expectimax pacmas vs a random ghost.
 
+<h2 id="36a5d8463dcd3e452a6804e1f817860e"></h2>
 ## Other Game Types
 
+<h2 id="4d83149ccdc520d6725e433ae1277e06"></h2>
 ### Mixed Layer Types
 
  - E.g. Backgammon
@@ -674,6 +700,7 @@ The result is not bad while an expectimax pacmas vs a random ghost.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mixed_layer.png)
 
+<h2 id="eaefbf5d721da4a937661b4c220a4bbb"></h2>
 ### Example: Backgammon
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_backgammon.png)
@@ -692,6 +719,7 @@ The result is not bad while an expectimax pacmas vs a random ghost.
     - 1st AI world champion in any game!
 
 
+<h2 id="3c4af92d68993b46c547310f35e6f8eb"></h2>
 ### Multi-Agent Utilities
 
  - What if the game is not zero-sum, or has multiple players?
@@ -715,12 +743,14 @@ In above example , the leftmost green node should be:  ***(1,6,6)***
 
 https://www.authorea.com/users/5754/articles/6087/_show_article
 
+<h2 id="eabc9c95ab9e6d9e17f2ecd517a1670b"></h2>
 ### Maximum Expected Utility
 
  - Why should we average utilities?  Why not minimax?
  - Principle of maximum expected utility:
     - A rational agent should chose the action that maximizes its expected utility, given its knowledge
 
+<h2 id="f0400acd1ae1ee97ec4a2afe860937cd"></h2>
 ### What Utilities to Use?
 
  - For worst-case minimax reasoning, terminal function scale doesn’t matter
@@ -729,6 +759,7 @@ https://www.authorea.com/users/5754/articles/6087/_show_article
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_utilities_scale.png)
  - For average-case expectimax reasoning, we need *magnitudes* to be meaningful
 
+<h2 id="ceba282b7418b7f199798b645e1cba56"></h2>
 ### Utilities
 
  - Utilities are functions from outcomes (states of the world) to real numbers that describe an agent’s preferences
@@ -747,6 +778,7 @@ https://www.authorea.com/users/5754/articles/6087/_show_article
 
 idea: utilities go in , behavior comes out.
 
+<h2 id="84c1a66a044dc64ee4f3cf4fadc6cdb6"></h2>
 ### Utilities: Uncertain Outcomes
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_gettingIceCream.png)
@@ -800,6 +832,7 @@ so there lotteries and prizes  we must have preference, means an agent has to pr
 <h2 id="63000348f12e5505f8ea8b0b2b208698"></h2>
 ## Rationality
 
+<h2 id="1e6df6b0bb22997a095d015d4ac31630"></h2>
 ### Rational Preferences
 
  - We want some constraints on preferences before we call them rational, such as:
@@ -854,6 +887,7 @@ So if you obey these axioms we give you the stamp of rationality. and that means
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rational_stamp.png)
 
+<h2 id="6128ac98c4876851331c1db2897f6253"></h2>
 ### MEU Principle
 
 **Preferences lead to utility**
@@ -892,6 +926,7 @@ In other words, once the probabilities and utilities of the possible outcome sta
  - With deterministic prizes only (no lottery choices), only ordinal utility can be determined, i.e., total order on prizes
 
 
+<h2 id="bdd76b2b194dadbe5e0a331ee46a45fd"></h2>
 ### The utility of money
 
 Suppose you have triumphed over the other competitors in a television game show. 
@@ -924,6 +959,7 @@ Suppose you assign a utility of 5 to your current financial status (Sk), a 9 to 
 The value an agent will accept in lieu of a lottery is called the ***certainty equivalent*** of the lottery. 
 
 
+<h2 id="dad93deae38068bd9b575b9c56b23afe"></h2>
 ### Example: Insurance
 
  - Consider the lottery [0.5, $1000;  0.5, $0]
@@ -941,7 +977,7 @@ The value an agent will accept in lieu of a lottery is called the ***certainty e
 
 
 
-<h2 id="9fb9837709420f7dfb61a9c21dd50531"></h2>
+<h2 id="f0a715611d4f38f774d419d0be398be6"></h2>
 ## Example: Human Rationality ?
 
 Decision theory is a ***normative theory***: it describes how a rational agent should act.
