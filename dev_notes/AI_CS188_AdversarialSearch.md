@@ -553,6 +553,8 @@ we have 2 layers corresponding to the 2 sequence of random ghost actions before 
 
 ### Example of depth-limited search
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_pacman_depth_limited_search_example.png)
+
  - Consider the following Pacman configuration
     - At each time step, Pacman can move either West (left) or East (right) and is using limited-depth minimax search to choose his next move
         - (where the minimizing agent does not really do anything) 
@@ -564,7 +566,16 @@ we have 2 layers corresponding to the 2 sequence of random ghost actions before 
 
 Normally , we say a search depth of 2 means the search considers of up to 2 actions by the maximizer (or minimizer).
 
- 
+ - when using F1 as the state evaluation function 
+    - East could be an optimal action if do 1,2,3,4,5 depth-limited search 
+    - West could be an optimal action if do 1,2,    5 depth-limited search
+    - For depth 1,2 , action East and West are both optimal action , there are ties 
+    - For depth 3,4 , action East will be optimal because it ate the dot , while action West can not
+    - For depth 5,  both are optimal because they all can eat the dot.
+ - when using F2 as the state evaluation function
+    - East could be an optimal action if do 1,2,3,4,5 depth-limited search 
+    - West could be an optimal action only if do 5 depth-limited search
+
 
 
 ---
