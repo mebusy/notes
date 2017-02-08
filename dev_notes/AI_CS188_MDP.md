@@ -141,12 +141,59 @@ iteration 7: from left-bottom square , I can not only get there in the lucky way
 
 iteration 100: most of the states are pretty good. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it1.png)
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it2.png)
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it3.png)
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it5.png)
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it6.png)
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it7.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it100.png)
 
 
+## Computing Time-Limited Values
 
+assuming it's a whole tree.
 
+in the bottom , there's a lot of repeat status. It's terminal state, nothing else happens  so no more rewards. That means I got lots of copies of V₀ -- lots of depth-0 expectimax , and in fact we know it be 0, 0 for any state.
 
+Now what's in this layer upon the bottom ?  Each one of these computations is a depth-1 expectimax computation. Which means in fact all we have is a whole bunch of copies of V₁ in this layer. 
 
+Then at the very top where only computing one value but conceptually this top layer is well represented by the collection of V₄ .
+
+So you see at the bottom even though the tree has grown immensely it's still only 3 values, and each layer is V<sub>k</sub> for K . So this actually gives us an idea of how we can compute these values in an efficient way where we don't get the explosion in depth because you can see at the bottom it's no worse than at the top. That's now going called value iteration.
+
+## Value Iteration
+
+You can think of this as basically building your computation from bottom up all the way up to the top where you will receive the computation that expectimax would have done but with a whole lot less work assuming we have a small number of states.
+
+V₀(s)   what's this actually look like in code ?  It's a vector. There is 0 for every state in this vector. This is different than expectimax which you think about is computing for one state -- this is all states , the vector of zeroes. 
+
+To compute V<sub>k+1</sub> , we will recurse into a expectimax tree V<sub>k</sub> that we've already computed, We already have that entire vector for every state. 
+
+So what does this actually do ? It goes from 0 to 1 , to 2 , and we keep going until we decide to stop. When are we gonna stop ? What is that magic value K ? Because we're going bottom-up we can keep doing this until it converges. 
+
+Complexity of each iteration: O(S²A).  It's good in that it doesn't grow with the number of iterations like expectimax grows with the depth. It's bad in that expectimax doesn't have to touch every state if it doesn't go to deep, this always touches every state.  So it's all about the trade-off of how many states you have and how connected they are and how deep you need to into the tree. 
+
+### Example: Value Iteration 
+
+...
+
+So what we see ?  
+
+ 1. As I go further up the numbers are increasing and that make sense becaues as I have more time steps in this MDP I can get more rewards
+ 2. I also see that every layer it's better to be in the cool state than to be in the warm state.
+    - of course it's better because you can then safely go fast. 
+
+Now you can look at this you can probably figure out the optimal policy. The optimal policy is if you're cool go fast and once you warm up you go slow and you never risk overheating. Now that optimal policy is actually already found at V₁ . These number 2,1,0 already reflect it. But it takes longer for the values to actually figure out how good that is . In general , V₁ is not enough to find the vest policy and in particular in this MDP because there's no discount the Vs aren't going to converge. 
+ 
+## Convergence 
+
+How do we know ?
+
+First of all we don't. Because if there's no discount and the rewards are all positive and the game never going to end like for racing the values are infinite and you're never going to get there.  But there are cases where we can show that it will converge. 
+
+Case 1: 
 
 
 
