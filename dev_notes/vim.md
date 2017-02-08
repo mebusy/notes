@@ -142,6 +142,9 @@ vim +BundleInstall +qall
 ```
 \(exp1\)\@<=exp2
 ```
+
+look exp2 behind exp1  
+
 搜索 exp2， 但 前面必须匹配 exp1
 
 
