@@ -143,7 +143,10 @@ vim +BundleInstall +qall
 \(exp1\)\@<=exp2
 ```
 
-搜索 exp2， start with exp1 
+搜索 exp2， start with exp1 .
+
+固定模式：  `\(exp\)` + `pattern` 
+
 
 ### 前向肯定搜索 lookahead
 
