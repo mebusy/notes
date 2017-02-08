@@ -137,16 +137,21 @@ vim +BundleInstall +qall
 <h2 id="e5f71fc31e7246dd6ccc5539570471b0"></h2>
 ## 搜索
 
-### 反向肯定预查搜索
+### 反向肯定搜索 lookahead
 
 ```
 \(exp1\)\@<=exp2
 ```
 
-look exp2 behind exp1  
+搜索 exp2， start with exp1 
 
-搜索 exp2， 但 前面必须匹配 exp1
+### 前向肯定搜索 lookahead
 
+搜索 exp1, followed by exp2
+
+```
+exp1\(exp2\)\@=
+```
 
 <h2 id="4d36d00db257fed5fe7d2a2036ad930f"></h2>
 ### 文件夹搜索
