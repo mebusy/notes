@@ -185,3 +185,7 @@ small `‖x⁽ⁱ⁾ - x⁽ʲ⁾‖` -> movie j and i are "similar".
 
 However , unlike some other applications of feature scaling, we did not scale the movie rating by dividing by the rage(max-min value). This is because all the movie rating are already comparable (eg. 0-5 stars) , so they are already on similar scales.
 
+---
+
+
+
