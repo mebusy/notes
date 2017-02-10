@@ -106,4 +106,13 @@ P(Ace) = P({黑桃A}) + P({草花A}) + P({红心A}) + P({方块A}) = 1/52 + 1/52
  - P(∅) = 0 
  - P(A) = 1 - P(A<sup>c</sub>)
 
+---
+
+ - P(A) = P(A-B) + P(A∩B)
+    - 一个事件的概率，可以表示为 它 与另一个事件的差集 和 交集的 概率之和
+ - 证明：
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_deduction.png)
+
+
+
     
