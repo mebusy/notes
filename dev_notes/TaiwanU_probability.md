@@ -127,6 +127,19 @@ P(Ace) = P({黑桃A}) + P({草花A}) + P({红心A}) + P({方块A}) = 1/52 + 1/52
  - 切面包定理: 
     - 若C₁,C₂,...,C<sub>n</sub> 互斥，且 C₁ ∪ C₂ ∪ ... ∪ C<sub>n</sub> = S , 则
     - 对任何事件 A: P(A) = P(A∩C₁) + P(A∩C₂) + ... + P(A ∩ C<sub>n</sub>)
+ - 证明
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_deduction_02.png)
+ - Ex: 阿宅心仪某可爱女店员。她的笑容打开了他封 闭的心。阿宅注意到她笑容会受生意的影响，于是 每天忠实记录该店生意与她有无对他笑。店生意有 满、普、惨三态，而她有笑、怒二态。根据记录:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_deduction_example_lovely_girl.png)
+    - P(笑) = 1/20 + 5/20 + 5/20 = 11/20
+
+---
+
+ - 若 A ⊂ B , 则 P(A) ≤ P(B)
+
+---
+
+
 
 
 
