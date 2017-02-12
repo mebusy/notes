@@ -139,6 +139,21 @@ P(Ace) = P({黑桃A}) + P({草花A}) + P({红心A}) + P({方块A}) = 1/52 + 1/52
 
 ---
 
+ - Boole's 不等式
+    - 对任意 n 个事件 A₁ , A₂ , ... , A<sub>n</sub> 而言, 没有互斥要求
+        - P(∪ⁿ<sub>i=1</sub> Aᵢ ) ≤ Σⁿ<sub>i=1</sub>P(Aᵢ ) 
+
+---
+
+ - Bonferroni's 不等式
+    - 对任意n个事件A₁ , A₂ , ... , A<sub>n</sub> 而言, 没有互斥要求
+        - P(∩ⁿ<sub>i=1</sub> Aᵢ ) ≥  1-Σⁿ<sub>i=1</sub>P(Aᵢ<sup>c</sup> )
+
+---
+
+## 2.2 条件概率
+
+
 
 
 
