@@ -210,8 +210,10 @@ P(Ace) = P({黑桃A}) + P({草花A}) + P({红心A}) + P({方块A}) = 1/52 + 1/52
 
  - 若C₁,C₂,...,C<sub>n</sub> 互斥,且 C₁ ∪ C₂ ∪ ... ∪ C<sub>n</sub> = S , 则对任意事件 𝑨 ，我们有：
     - **P(Cⱼ|A) = P(A|Cⱼ)P(Cⱼ) / Σⁿ<sub>i=1</sub> P(A|Cⱼ)·P(Cⱼ)**
+ - Proof:
+    - P(Cⱼ|A) = ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_bayes_proof.png)
  - Bayes' Rule 用在很多时候，我们关心的事件(A) 根条件事件C 互换位置。
-    - 其实就是全概率定理在 条件概率上的某个应用
+    - 其实就是全概率定理 和  条件概率的 联合使用
  - Ex: 一日，老板见可爱店员笑， 请问在此情况下，当日生意满座之机率为何？
     - P(满|笑) = P(满∩笑)/P(笑) = P(笑|满)·P(满) / (9/24) = 1/6·1/4 / (9/24) = 1/9
 
