@@ -31,6 +31,12 @@ De Morgan’s Law：
 
  - 证明：在数学上，要证明两个集合是同一个集合的独门心法是：  你中有我，我中有你.
 
+ - 重要应用:
+    -    (AUB)<sup>c</sup> = A<sup>c</sup> ∩  B<sup>c</sup>    
+    - => P( (AUB)<sup>c</sup>  ) = P( A<sup>c</sup> ∩  B<sup>c</sup>  )
+    - => 1 - P(AUB) = P( A<sup>c</sup> ∩  B<sup>c</sup>  )
+    - 集合变补，符号变反，概率 求补
+
 ## 1.3 概率名词
 
  - 实验 (Experiment)
