@@ -235,6 +235,19 @@ def value(state):
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_func_min_value.png)
 
+---
+
+具体实现上，一般你需要:
+
+ 1. 一个返回当前 合法 action 的方法
+    - 如果 合法 action 为 空，说明没有后续了，返回 状态的 evaluationFunction 值
+ 2. 一个根据 action -> successor game state 的方法, 
+ 3. 可以跟踪的迭代 depth，到达搜索 depth-limit后，返回 状态的evaluationFunction 值
+
+
+---
+
+
 
 
 <h2 id="86563aad0e1c5702c26fc95c039b8f5d"></h2>
