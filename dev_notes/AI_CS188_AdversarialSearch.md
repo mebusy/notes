@@ -438,7 +438,7 @@ def max-value(state, α, β):
     for each successor of state:
         v = max(v, value(successor, α, β))
         # top min-value not care what remains, if v ≥ β
-        if v ≥ β return v
+        if v > β return v  # must not prune on equality
         # update global max value
         α = max(α, v)
     return v
@@ -450,7 +450,7 @@ def min-value(state , α, β):
     for each successor of state:
         v = min(v, value(successor, α, β))
         # top max-value not care what remains, if v ≤ α
-        if v ≤ α return v
+        if v < α return v # must not prune on equality
         # update global min value
         β = min(β, v)
     return v
