@@ -291,7 +291,7 @@ So we need to replace the terminal utilities in the minimax algorithm with what'
 具体实现上，一般你需要:
 
  1. 一个返回当前 合法 action 的方法
-    - 如果 合法 action 为 空，说明没有后续了,eg. win/lost ，返回 状态的 evaluationFunction 值
+    - 如果 合法 action 为 空，说明没有后续状态了,eg. win/lost ，返回 状态的 evaluationFunction 值
  2. 一个根据 action -> successor game state 的方法, 
  3. 可以跟踪的迭代 depth，到达搜索 depth-limit后，返回 状态的evaluationFunction 值
 
