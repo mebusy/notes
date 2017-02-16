@@ -235,6 +235,9 @@ def value(state):
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_func_min_value.png)
 
+
+具体实现时，max-value / min-valu 直接调用 value 方法，在value方法中作分发。
+
 ---
 
 
@@ -456,6 +459,8 @@ def min-value(state , α, β):
     return v
 ```
 
+***注意，alpha，beta 不能使用全局变量，而是应该一层一层值传递下去*** 。
+
 <h2 id="ec4a6665d642ea66a394cbde7e464a8d"></h2>
 ### Alpha-Beta Pruning Properties
 
@@ -463,6 +468,7 @@ def min-value(state , α, β):
 
  - This pruning has ***no effect*** on minimax value computed for the root!
     - in the case that pic shows, root MAX encounters 10-10 , it may choose the right sub-tree.
+    - if the algorithm will not prune on equality , then this case will no happen.
  - Values of intermediate nodes might be wrong
     - Important: children of the root may have the wrong value
     - So the most naive version won’t let you do action selection
