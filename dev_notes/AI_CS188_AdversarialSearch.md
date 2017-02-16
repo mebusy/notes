@@ -574,6 +574,9 @@ def exp-value(state):
     return v
 ```
 
+实现上和 Minimax 非常接近。
+
+
 <h2 id="b6996c09f631626a1825a6d8fac7b02c"></h2>
 ### Expectimax Pruning?
 
