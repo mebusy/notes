@@ -33,6 +33,8 @@ MDP : the way of formalizing the idea of non-deterministic search which is searc
 
 why would we be unsure what the outcomes of our actions is going to be ?  Well, maybe we've got a robot on a ledge and we take the action across the ledge, what's gonna happen ? Maybe we'll cross the ledge ,maybe we will fall into the fire pit. We're not sure we can commit to the action. But of course the outcome is entirely under our control. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_robot_illustration.png)
+
 maybe you're a can opener robot and you take the can and you open it , and what's underneath ? More can! 
 
 
