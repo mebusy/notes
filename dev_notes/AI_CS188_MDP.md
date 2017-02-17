@@ -314,6 +314,17 @@ This shows the Q values. From each state , except for the exit state , you got 4
 
 So we want to be able to compute these values. We'd like to be able to take an MDP and compute these expectimax values for a state and actully we usually do with these algorithms we compute the values for all of the states. We'll see that there are ways to save time by doing all the states at once provided your MDP is small enough that you can actually go through all the states. 
 
+ - Fundamental operation: compute the (expectimax) value of a state
+    - Expected utility under optimal action
+    - Average sum of (discounted) rewards
+    - This is just what expectimax computed!
+ - Recursive definition of value:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_values_of_states.png)
+
+
+
+
+
 <h2 id="91f1e32998454ca46d598646f7260d3c"></h2>
 ### Racing Search Tree
 
