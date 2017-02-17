@@ -42,11 +42,19 @@ maybe you're a can opener robot and you take the can and you open it , and what'
 <h2 id="92a5227a1ada900fd758bfb60872e6a2"></h2>
 ## Example : Grid World 
 
-Noisy movement: for example : North action
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_grid_war.png)
 
-Reward : 2 kinds of rewards.  one are the terminal utilities, shown as the plus 1 and minus 1(also the exit to game end). Another kind of reward which is every step take comes along with a little tiny reward , and this is sometimes called a living reward or a living penalty based on whether it's positive or negative. 
-
-Goal: in general the agent is going to involve getting to a big reward and taking it. 
+ - Noisy movement: actions do not always go as planned
+    - 80% of the time, the action North takes the agent North ( if there is no wall there)
+    - 10% of the time, North takes the agent West; 10% East
+    - If there is a wall in the direction the agent would have been taken, the agent stays put
+ - The agent receives rewards each time step
+    - Small “living” reward each step (can be negative)
+        - this is sometimes called a living reward or a living penalty based on whether it's positive or negative.
+    - Big rewards come at the end (good or bad)
+        - terminal utilities, shown as the plus 1 and minus 1(also the exit to game end).
+ - Goal: maximize sum of rewards 
+    - in general the agent is going to involve getting to a big reward and taking it. 
 
 <h2 id="7b549072ca47e93fb374c9eb1a430bca"></h2>
 ## Grid World Actions
