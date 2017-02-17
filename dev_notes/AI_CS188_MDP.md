@@ -377,6 +377,15 @@ Example:
  - iteration 100: 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it100.png)
     - most of the states are pretty good. 
+    - In right-top square (1.0) , where the only action available is to exit. Upon which you immediately receive a reward of +1, you value is +1. 
+    - In left-bottom square (0.49) , you're not usually gonna get 0.49. Sometimes you get more, sometimes you get less. This is the long-term average you're going to get. That average bakes in a lot of things. It bakes in the fact that you're going to get a small penelty each step until you get to the exit and if your actions mess up you might get that penalty more. It bakes in the fact that the +1 is far away and by the time you get there  it will be discounted. It bakes in all of the probabilities in the transition function. If you act optimally you'll get .49 as your ***average*** score. 
+
+**Very important points**  about there values and rewards: 
+
+ - rewards are for one time step  
+ - value are from that point forward to the end of the game or forever if the game doesn't end.
+ - reward are instantaneous , values are cumulative.
+
 
 
 
@@ -462,6 +471,112 @@ But there are cases where we can show that it will converge.
  - Case 2: If the discount is less than 1
     - as k increases, the values converge
     - Proof: pass
+
+---
+
+---
+
+## Recap: MPDS 
+
+
+Values:  the value of a state is what you expect your future utility to be under optimal action. So remember that when we talk about the value of state it's not the next reward you're gonna receive. It's not a certain number --  I know I'm going to get 10 points -- because you don't know what your actions will do. This is an average outcome under optimal action. 
+
+What you often think about is for any given state *s* what is this notion of value. It's not what I'm definitely going to achieve, It can't be that because I don't control my actions perfectly. 
+
+For MDP, sometimes we were interested in the values, but usually were interested in policies.
+
+---
+
+Value iteration is just a fixed point method of solving this system of equations. This system of equations is hard to solve because it's got averages and also max's. So it's not a linear thing. And we have to solve it somehow. Value iteration is one way to do it. Expected max is really another way to do it. And they have trade offs to which one is actually more efficient. 
+
+Now in value iteration the vectors V<sub>k</sub> themselves were  interpretable as time-limited values.
+
+## Policy Methods
+
+finding optimal policies that work over the policies themselves and make the policies better rather than simply working over the values trying to make the values better. 
+
+## Policy Evaluation
+
+You got a policy in your hand, maybe it's good meybe it's bad . What you want to know is for this policy ,which is presumably suboptimal , how good is it ? How will I perform if I follow it. For each state what will the value be not under optimal action but under this specific policy. 
+
+## Fixed Policies
+
+If I have a policy π which tells me what action to take , I no longer have all of these choices a , the tree looks like this : ... pic ...
+
+Right now I'm only doing what π tells me -- not the optimal thing. That means the max node  just got a whole lot simpler rather than having a whole set of actions that they have to consider. There's only one action permitted that whatever π says to do and so the tree doesn't branch at the max node. Of course it's still branches of the chance node because we don't know what's gonna happen when we execute the action.  But from state *s* there's only one action allowed, it's π(s).  That makes the tree simpler and it means the computing are going to be simpler and faster. 
+
+Of course the value at the root is presumably going to be worse unless the π(s) is in fact the optimal policy. 
+
+## Utilities for a Fixed Policy 
+
+To compute the utility for a fixed policy  is easy.
+
+So we imagine we've got some policy π , it presumably bad but we're stuck with it. We're trying to do is compute for every state *s* what score I will get on average if I follow π.  
+
+V<sup>π</sup>(s) : the π indicates that we're following π , it used to be a star which meant we were acting optimally.
+
+公式: it's the same kind of bellman equation but the "maximum" is gone.  
+
+π : the function π is a policy. it takes a state and returns an action. It has no information about past or future . So far it is a function from states to actions. What is actually living inside the implementation of π ? It could be a lookup table, or it could be a snippet of code which executes expectimax. Now π is implemented by on-demand expectimax computations which is not what value iteration does. 
+
+## Example : Policy Evaluation
+
+Always Go Right
+Always Go Forward
+
+In fact go-forward policy is probably the optimal policy but when you have this policy in front you don't actually know that right now. All you know is you've got some policy and you're supposed to evaluate it. 
+
+So you look in your head and you think what will happen if i use this policy? And presumably the outcomes will be better and therefore the values will be higher. So here are 2 policies and I can compare them. For example if one had higher values I can choose it if this were a choice I had to make. 
+
+So what are the actual values under these policies ? 
+
+--- pic ---
+
+These are all the states on a grid world where basically the kind of center corridor is a bridge where you can move safely , there's a reward at the end of the top. If you fall to the left or the right then you receive a negative 10 when you fall into the fire pit. 
+
+You can see the policy "always go right" , it's not so bad if you're on the exit where you have no choice but to exit.  But anywhere else is pretty bad. It's not a very good policy. But it has valuse. It's super-important : states have optimal values and they also have values -- just higher or low for any specific policy. 
+
+Why do we evaluate policies ?
+
+Sometimes we actually have a policy we just want to know how good it is but we're going to see important algorithms that let us come up with better policies by starting with one , evaluating it , and looking for ways to improve it.  
+
+## Policy Evaluation
+
+
+## Policy Extraction
+
+Policy evaluation was about taking a policy and figuring out for each state how good it was. 
+
+Now we're going to look at the opposite direction : what happens if I give you the values and I asked you the question what policy should I use if these valuse are correct. 
+
+## Computing Actions from Valuse 
+
+see that pic , there are the optimal valuse. Then we can ask questions like how should I act ? 
+
+for example , let's look at the 0.89 square. What should I do ? Should I take the action north ? Should I choose the action west ? 
+
+The values let you figure out that the square to the north of you is better than you but they don't tell you how to get there. 
+
+So it's actually not obvious at all.  How would you figure out from optimal values how to act ? 
+
+The answer is basically you've got to do expectimax. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   
