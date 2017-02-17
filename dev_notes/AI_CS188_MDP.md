@@ -125,7 +125,7 @@ So this is important property in MDP is to make sure that you define your transi
  - In deterministic single-agent search problems, we wanted an optimal plan, or sequence of actions, from start to a goal
     - but it does not work for MDPs. because we don't know what actions are gonna to do.  
     - The relevant idea is not a plan now but a policy. Policy is a mapping from states to actions and tells  in each state what action to take. 
- - For MDPs, we want an optimal policy π\* : S → A
+ - For MDPs, we want an optimal policy π<sup>\*</sup> : S → A
     - A policy π gives an action for each state
     - An optimal policy is one that maximizes expected utility if followed
     - An explicit policy defines a reflex agent
@@ -273,7 +273,6 @@ Here are multiple possible solutions, in general we're gonna have discounts that
     - Policy = Choice of action for each state
     - Utility = sum of (discounted) rewards
 
-    
 
 <h2 id="b2bfba9db087cb6ccda7abec663dd720"></h2>
 ## Solving MDPs
@@ -281,19 +280,34 @@ Here are multiple possible solutions, in general we're gonna have discounts that
 <h2 id="60dc1ec3b23db40849df64de46bcd91a"></h2>
 ### Optimal Quantities 
 
-what the star means is  this is the value under optimal action.
+![][1]    
+
+ - The value (utility) of a state s:
+    - V<sup>\*</sup>(s) = expected utility starting in s and acting optimally
+    - what the star means is  this is the value under optimal action.
+ - ***The value (utility) of a q-state (s,a):***
+    - Q<sup>\*</sup>(s,a) = expected utility starting out having taken action a from state s and (thereafter) acting optimally
+ - The optimal policy:
+    - π<sup>\*</sup>(s) = optimal action from state s
+
+
+---
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_Optimal_Quantities_example.png)
 
-Look at the left-bottom square with 0.49. The arrow is the policy.  What's that 0.49?  That is if you started in this state and you ran this game over and over again and sometimes you slipped, and sometimes you didn't , and you added up all of those utilities on average you would get 0.49, and you will achieve it by trying to go north whenever you're in the state. 
+Look at the left-bottom square with 0.49. The arrow is the policy.  What's that 0.49?  That is if you started in this square  and you ran this game over and over again and sometimes you slipped, and sometimes you didn't , and you added up all of those utilities on average you would get 0.49, and you will achieve it by trying to go north whenever you're in the square. 
 
-You can see it's better to be at 0.85 square by the exit that it is to be over here 0.49 square. Why ? Because if you're over here you have to pay that living reward and some discount to even get to the exit. The best thing is to actually be in the exit. 
+You can see it's better to be at 0.85 square by the exit than it is to be over here 0.49 square. Why ? Because if you're over here you have to pay that living reward and some discount to even get to the exit. The best thing is to actually be in the exit. 
 
 Similarly you can see if you're essentially 2 steps from the exit, it's better to be at 0.74 square than at 0.57 next to the pit , because when something goes wrong , .74  is not a big deal, while .57 you fall into the pit and lose.
+
+---
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_Optimal_Quantities_example_qstate.png)
 
 This shows the Q values. From each state , except for the exit state , you got 4 choices of actions . If you are in the 0.57 state next to the pit, and the action you've committed to is north , then you get that same .57. 
+
+---
 
 <h2 id="80597d513b9a36fc1e61e869000ff30f"></h2>
 ## Values of States 
@@ -377,6 +391,11 @@ First of all we don't. Because if there's no discount and the rewards are all po
 
 Case 1: 
 
+
+
+---
+
+[1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_recap.png
 
 
  
