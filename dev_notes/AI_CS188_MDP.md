@@ -174,12 +174,16 @@ It's very like an expectimax tree but we'll see very shortly why we might not wa
 <h2 id="b92430f9047d02bbe1a11b4118967089"></h2>
 ## MDP Search Trees
 
-Queue State: when I'm in a state and I take an action I end up in a queue state , which you can think of as kind of the pair of the state and the action where I've committed to the action but I haven't done it yet. 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_mdpSearchTree.png)
+
+ - Each MDP state projects an expectimax-like search tree
+    - That is kind of expectimax tree except ...
+        1. the probabilities are given to you by the transition function and 
+        2. the rewards instead of *being at the bottom* are smeared throughout the tree, they ***come to you step-by-step***.
+ - Queue State: 
+    - when I'm in a state and I take an action I end up in a queue state (green circle) , which you can think of as kind of the pair of the state and the action where I've committed to the action but I haven't done it yet. 
  
-That is kind of expectimax tree except ...
  
- 1. the probabilities are given to you by the transition function and 
- 2. the rewards instead of being at the bottom are smeared throughout the tree, they come to you step-by-step.
 
 <h2 id="e25373331ca3b1a3b334be0d44204fd0"></h2>
 ## Utilities of Sequences
