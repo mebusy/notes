@@ -10,6 +10,8 @@
 		 - [安装排错](#154a11cd7a6e424863c28aa29ad576d1)
 	 - [Markdown](#2182a74bab7188d959e795d9301e87ff)
 	 - [搜索](#e5f71fc31e7246dd6ccc5539570471b0)
+		 - [反向肯定搜索 lookahead](#32b92ada221fd37f58c6db5897bd605c)
+		 - [前向肯定搜索 lookahead](#852639e354e873ce19ce571888957160)
 		 - [文件夹搜索](#4d36d00db257fed5fe7d2a2036ad930f)
 
 ...menuend
@@ -137,6 +139,7 @@ vim +BundleInstall +qall
 <h2 id="e5f71fc31e7246dd6ccc5539570471b0"></h2>
 ## 搜索
 
+<h2 id="32b92ada221fd37f58c6db5897bd605c"></h2>
 ### 反向肯定搜索 lookahead
 
 ```
@@ -148,6 +151,7 @@ vim +BundleInstall +qall
 固定模式：  `\(exp\)` + `pattern` 
 
 
+<h2 id="852639e354e873ce19ce571888957160"></h2>
 ### 前向肯定搜索 lookahead
 
 搜索 exp1, followed by exp2
