@@ -192,11 +192,26 @@ In a MDP the rewards come to you step-by-step , we need to figure out what our u
 
 For example shown here 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_utilities_of_sequences.png)
 
 you might care whether or not you get these 4 gems step-by-step or all at the end in one big prize. This raises a general question for MDPs: what preferences or utilities should an agent have for rewards sequences. 
 
+ - What preferences should an agent have over reward sequences?
+ - More or less?  [1,2,2]  or  [2,3,4]
+ - Now or later?  [0,0,1]  or  [1,0,0]
+
+
 <h2 id="339bfa7ae181495413ac7e41d61c714c"></h2>
 ## Discounting 
+
+ - It’s reasonable to maximize the sum of rewards
+ - It’s also reasonable to prefer rewards now to rewards later
+ - One solution: values of rewards decay exponentially
+    - worth now: 1
+    - worth next step : γ
+    - worth in two steps : γ²
+
+
 
 <h2 id="945d15839357ecf3965c8cfb2f679995"></h2>
 ## Stationary Preferences
