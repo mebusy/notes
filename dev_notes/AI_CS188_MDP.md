@@ -384,9 +384,12 @@ Example:
 <h2 id="24539dd5879397f8300a78d2bebba208"></h2>
 ## Computing Time-Limited Values
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_compute_time_limited_values.png)
+
+
 assuming it's a whole tree.
 
-in the bottom , there's a lot of repeat status. It's terminal state, nothing else happens  so no more rewards. That means I got lots of copies of V₀ -- lots of depth-0 expectimax , and in fact we know it be 0, 0 for any state.
+in the bottom , there's a lot of repeat status. It's terminal state, nothing else happens.  So no more rewards. That means I got lots of copies of V₀ -- lots of depth-0 expectimax , and in fact we know it be 0, 0 for any state.
 
 Now what's in this layer upon the bottom ?  Each one of these computations is a depth-1 expectimax computation. Which means in fact all we have is a whole bunch of copies of V₁ in this layer. 
 
