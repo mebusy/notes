@@ -109,12 +109,25 @@ Now, it looks much better.
 <h2 id="7baaaa63b8783cbfefac4bc92daca856"></h2>
 ## step 4: Marching Square
 
-Let's image that we shrink the map cell . Every 4 cells form a square.  
+So far , every block has only 2 status: full black or full white.
 
-We call those square vertexes "Control Node" (bigger white square ) , 
-while call the nodes at middle of edge "Common Node". ( smaller grey one )
+Let's image that we shrink those blocks towards there in the center.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/marching_square.png)
+
+
+Now the blocks  was shrinked into those bigger white/black block ,  such that each block actually represents the corner of a square , we call those "Control Node". 
+
+
+For any square , each corner is one of those function blocks which is acting as a switch : on means it's wall , off means it's not a wall. 
+
+Each of these switches is representing one digit in a 4bit binary number bXXXX .
+
+we also add some  extra  nodes at middle of edge  ( smaller grey one ), called them  "Common Node".
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Random_Cave_2.1.png)
+
+each square actually repersents  the center quarter parts of adjacent 4 map blocks.
 
 Those 8 nodes (4 control nodes + 4 common node) will be used to triangulate the Square.
 
