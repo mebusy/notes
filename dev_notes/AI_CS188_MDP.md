@@ -349,25 +349,36 @@ So we want to be able to compute these values. We'd like to be able to take an M
 
 What's a time step ? It's a reward. 
 
-when you achieve the exit, you must take extra "exit" action to end game and get the reward.
+Example: 
 
-iteration 2:  from the squre between wall and pit, I have time to do very stupid things -- going to the pit and receive a negative -- but that's not the optimal.  The optimal thing is kind of anything else. So I have zero. But if it allowed 3 steps I can get some rewards even from there. 
+ - PS: when you achieve the exit, you must take extra "exit" action to end game and get the reward.
+
+---
+
+ - iteraction 0:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it0.png)
+    - zeroes everywhere , because exit action need 1 step
+ - iteraction 1:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it1.png)
+ - iteration 2:  
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it2.png)
+    - from the squre between wall and pit, I have time to do very stupid things -- going to the pit and receive a negative -- but that's not the optimal.  The optimal thing is kind of anything else. So I have zero. But if it allowed 3 steps I can get some rewards even from there. 
+ - iteration 3:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it3.png)
+ - iteraction 5:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it5.png)
+
+ - iteration 6: 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it6.png)
+    - from left-bottom square , I am now possible to  get to a positive reward.
+ - iteration 7: 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it7.png)
+    - from left-bottom square , I can not only get there in the lucky way where nothing goes wrong I can also get there in various ways where something goes wrong once. 
+ - iteration 100: 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it100.png)
+    - most of the states are pretty good. 
 
 
-
-iteration 6: from left-bottom square , I am now possible to  get to a positive reward.
-iteration 7: from left-bottom square , I can not only get there in the lucky way where nothing goes wrong I can also get there in various ways where something goes wrong once. 
-
-iteration 100: most of the states are pretty good. 
-
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it1.png)
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it2.png)
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it3.png)
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it5.png)
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it6.png)
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it7.png)
-
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it100.png)
 
 
 <h2 id="24539dd5879397f8300a78d2bebba208"></h2>
