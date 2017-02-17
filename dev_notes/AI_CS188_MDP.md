@@ -27,6 +27,7 @@
 ...menuend
 
 
+# Markov Decision Processes
 
 
 MDP : the way of formalizing the idea of non-deterministic search which is search when your actions outcomes are uncertain.
@@ -211,6 +212,20 @@ you might care whether or not you get these 4 gems step-by-step or all at the en
     - worth next step : γ
     - worth in two steps : γ²
 
+---
+
+ - How to discount?
+    - Each time we descend a level, we multiply in the discount once
+ - Why discount?
+    - Sooner rewards probably do have higher utility than later rewards
+    - Also helps our algorithms converge
+ - Example: discount of 0.5
+    - U([1,2,3]) = 1\*1 + 0.5\*2 + 0.25\*3
+    - U([1,2,3]) < U([3,2,1])
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_discounting.png)
+
+
 
 
 <h2 id="945d15839357ecf3965c8cfb2f679995"></h2>
@@ -222,13 +237,43 @@ stick the same reward in front of both
 
 if I liked A better than B now I should like it better shifted into the future as well and vice versa. 
 
+ - Theorem: if we assume ***stationary preferences***:
+    - [a₁,a₂,...] ≻  [b₁,b₂,...]  <=> [r, a₁,a₂,...] ≻  [r, b₁,b₂,...] 
+ - Then: there are only two ways to define utilities
+    - Additive utility:    U( [r₀,r₁,r₂,...] ) = r₀ + r₁ + r₂ + ...
+    - Discounted utility:  U( [r₀,r₁,r₂,...] ) = r₀ + γ·r₁ + γ²·r₂ + ... 
+     
+
+
 <h2 id="1148a36cad988c80eafafde4e7a9daf0"></h2>
 ## Infinite Utilities ?!
 
-Here are multiple possible solutions, in general we'er gonna have discounts that usually saves us. 
+ - Problem: What if the game lasts forever?  Do we get infinite rewards?
+ - Solutions:
+    - Finite horizon: (similar to depth-limited search)
+        - Terminate episodes after a fixed T steps (e.g. life)
+        - Gives nonstationary policies ( π depends on time left)
+    - Discounting: use 0 < γ < 1
+        - U( [r₀,r₁,r₂,...] ) = r₀ + γ·r₁ + γ²·r₂ + ... <= R<sub>max</sub>/(1-γ)
+        - Smaller γ means smaller “horizon” – shorter term focus
+    - Absorbing state: guarantee that for every policy, a terminal state will eventually be reached (like “overheated” for racing)
+ 
+Here are multiple possible solutions, in general we're gonna have discounts that usually saves us. 
 
 <h2 id="37aad9792c79680719c1e086fd0c815a"></h2>
 ## Recap: Defining MDPs
+
+ - Markov decision processes:
+    - Set of states S
+    - Start state s₀
+    - Set of actions A
+    - Transitions P(s’|s,a) (or T(s,a,s’))
+    - Rewards R(s,a,s’) (and discount γ )
+ - MDP quantities so far:
+    - Policy = Choice of action for each state
+    - Utility = sum of (discounted) rewards
+
+    
 
 <h2 id="b2bfba9db087cb6ccda7abec663dd720"></h2>
 ## Solving MDPs
