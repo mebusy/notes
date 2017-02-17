@@ -328,8 +328,22 @@ So we want to be able to compute these values. We'd like to be able to take an M
 <h2 id="91f1e32998454ca46d598646f7260d3c"></h2>
 ### Racing Search Tree
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_racing_car_search_tree_infinite.png)
+
+ - We’re doing way too much work with expectimax!
+ - Problem: States are repeated 
+    - Idea: Only compute needed quantities once
+ - Problem: Tree goes on forever
+    - Idea: Do a depth-limited computation, but with increasing depths until change is small
+    - Note: deep parts of the tree eventually don’t matter if γ < 1
+    
+
 <h2 id="50ca9febbd3c1377d708c024f60310fc"></h2>
 ## Time-Limited Values
+
+ - Key idea: time-limited values
+ - Define V<sub>k</sub>(s) to be the optimal value of *s* if the game ends in *k* more time steps
+
 
 What's a time step ? It's a reward. 
 
