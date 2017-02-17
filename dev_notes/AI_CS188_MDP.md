@@ -415,9 +415,20 @@ Complexity of each iteration: O(S²A).  It's good in that it doesn't grow with t
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_value_iteration.png)
 
+---
+
  - Start with V₀(s) = 0: no time steps left means an expected reward sum of zero
  - Given vector of V<sub>k</sub>(s) values, do one ply of expectimax from each state:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_calc_formular.png)
+ - Repeat until convergence
+ - Complexity of each iteration: O(S²A)
+    - states 多少是 计算量的关键
+ - Theorem: will converge to unique optimal values
+    - Basic idea: approximations get refined towards optimal values
+    - Policy may converge long before values do
 
+    
+  
 
 
 ...
