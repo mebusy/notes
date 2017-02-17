@@ -150,6 +150,16 @@ What happens if we make this living penalty more severe ? check those rest 3 cas
 <h2 id="b2f5ac1e017207a93a053f4d77b1c9b3"></h2>
 ## Example: Racing
 
+ - A robot car wants to travel far, quickly
+ - Three states: Cool, Warm, Overheated
+ - Two actions: Slow, Fast
+ - Going faster gets double reward
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mpd_racing_car.png)
+
+
+
 <h2 id="91f1e32998454ca46d598646f7260d3c"></h2>
 ### Racing Search Tree
 
