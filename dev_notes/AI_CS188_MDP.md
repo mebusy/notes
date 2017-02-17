@@ -163,6 +163,9 @@ What happens if we make this living penalty more severe ? check those rest 3 cas
 <h2 id="91f1e32998454ca46d598646f7260d3c"></h2>
 ### Racing Search Tree
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_racing_car_search_tree.png)
+
+
 Any MDP is defining a search tree. So if you're in some particular state , for example if you're in the state where the car is cool, you have 2 actions: slow or fast. 
 
 It's very like an expectimax tree but we'll see very shortly why we might not want to use expectimax to solve it. You can already see hints of it : it's a big tree but it's kinds of same blue and red stuff over and over again. There's just not that many states. This is the case where expectimax will do a lot of work. 
