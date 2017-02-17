@@ -343,6 +343,8 @@ So we want to be able to compute these values. We'd like to be able to take an M
 
  - Key idea: time-limited values
  - Define V<sub>k</sub>(s) to be the optimal value of *s* if the game ends in *k* more time steps
+    - Equivalently, it’s what a depth-k expectimax would give from s
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_vk.png)
 
 
 What's a time step ? It's a reward. 
