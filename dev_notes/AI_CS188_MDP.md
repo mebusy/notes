@@ -434,7 +434,8 @@ Complexity of each iteration: O(S²A).  It's good in that it doesn't grow with t
 
 Assume no discount!
 
-![][2]
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_value_iteraction_example.png)
+
 
 
 So what we see ?  
@@ -443,16 +444,30 @@ So what we see ?
  2. I also see that every layer it's better to be in the cool state than to be in the warm state.
     - of course it's better because you can then safely go fast. 
 
-Now you can look at this you can probably figure out the optimal policy. The optimal policy is if you're cool go fast and once you warm up you go slow and you never risk overheating. Now that optimal policy is actually already found at V₁ . These number 2,1,0 already reflect it. But it takes longer for the values to actually figure out how good that is . In general , V₁ is not enough to find the vest policy and in particular in this MDP because there's no discount the Vs aren't going to converge. 
+Now you can look at this, you can probably figure out the optimal policy. 
+
+The optimal policy is if you're cool go fast and once you warm up you go slow and you never risk overheating. Now that optimal policy is actually already found at V₁ . These number 2,1,0 already reflect it. But it takes longer for the values to actually figure out how good that is . In general , V₁ is not enough to find the vest policy and in particular in this MDP because there's no discount the V<sub>s</sub> aren't going to converge. 
  
 <h2 id="8645457c64703c956325a6f44824acdb"></h2>
 ## Convergence 
 
 How do we know ?
 
-First of all we don't. Because if there's no discount and the rewards are all positive and the game never going to end like for racing the values are infinite and you're never going to get there.  But there are cases where we can show that it will converge. 
+ - How do we know the V<sub>k</sub> vectors are going to converge?
+    - First of all we don't. Because if there's no discount and the rewards are all positive and the game never going to end like for racing the values are infinite and you're never going to get there.  
 
-Case 1: 
+But there are cases where we can show that it will converge. 
+
+ - Case 1: If the tree has maximum depth M, then VV<sub>M</sub> holds the actual untruncated values
+ - Case 2: If the discount is less than 1
+    - as k increases, the values converge
+    - Proof: pass
+
+
+  
+
+
+
 
 
 
