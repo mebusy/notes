@@ -138,9 +138,14 @@ So on one hand expectimax is a way of solving these problems and on the other ha
 <h2 id="d115341e528ef1f1b013adbf6f075f21"></h2>
 ## Optimal Policies
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_optimal_policies.png)
+
+See the pic where R(s) = -0.01: 
+
 The funny thing is the square left to "-1" squre. It's going into the wall. Why is it going into the wall?  This is an example of we feed the rules of the game in , we compute the optimal behavior , sometimes the behavior is not what we expected but it's still optimal. In this example, if you did anything else you would risk the pit. The agaent is pressing its check against the wall and justing waiting waiting waiting until it gets out of this scary situation safely. So this agent is very very conservative because each time step cost very little. 
 
-What happens if we make this living penalty more severe. 
+What happens if we make this living penalty more severe ? check those rest 3 cases!
+ 
 
 <h2 id="b2f5ac1e017207a93a053f4d77b1c9b3"></h2>
 ## Example: Racing
