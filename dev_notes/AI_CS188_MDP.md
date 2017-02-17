@@ -400,6 +400,25 @@ So you see at the bottom even though the tree has grown immensely it's still onl
 <h2 id="4b0084dc52868eb35410667a6679229a"></h2>
 ## Value Iteration
 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_value_iteration.png)
+
+---
+
+ - Start with V₀(s) = 0: no time steps left means an expected reward sum of zero
+ - Given vector of V<sub>k</sub>(s) values, do one ply of expectimax from each state:
+    - ![][2]
+ - Repeat until convergence
+ - Complexity of each iteration: O(S²A)
+    - the number of states is the key of computation
+ - Theorem: will converge to unique optimal values
+    - Basic idea: approximations get refined towards optimal values
+    - Policy may converge long before values do
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_value_iteration2.png)
+
+---
+
 You can think of this as basically building your computation from bottom up all the way up to the top where you will receive the computation that expectimax would have done but with a whole lot less work assuming we have a small number of states.
 
 V₀(s)   what's this actually look like in code ?  It's a vector. There is 0 for every state in this vector. This is different than expectimax which you think about is computing for one state -- this is all states , the vector of zeroes. 
@@ -413,25 +432,10 @@ Complexity of each iteration: O(S²A).  It's good in that it doesn't grow with t
 <h2 id="d5cac644e6c3bb194c235c0b55977d1d"></h2>
 ### Example: Value Iteration 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_value_iteration.png)
+Assume no discount!
 
----
+![][2]
 
- - Start with V₀(s) = 0: no time steps left means an expected reward sum of zero
- - Given vector of V<sub>k</sub>(s) values, do one ply of expectimax from each state:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_calc_formular.png)
- - Repeat until convergence
- - Complexity of each iteration: O(S²A)
-    - states 多少是 计算量的关键
- - Theorem: will converge to unique optimal values
-    - Basic idea: approximations get refined towards optimal values
-    - Policy may converge long before values do
-
-    
-  
-
-
-...
 
 So what we see ?  
 
@@ -455,6 +459,6 @@ Case 1:
 ---
 
 [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_recap.png
-
+[2]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_calc_formular.png
 
  
