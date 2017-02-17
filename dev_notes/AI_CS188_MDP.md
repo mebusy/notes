@@ -413,6 +413,13 @@ Complexity of each iteration: O(S²A).  It's good in that it doesn't grow with t
 <h2 id="d5cac644e6c3bb194c235c0b55977d1d"></h2>
 ### Example: Value Iteration 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_value_iteration.png)
+
+ - Start with V₀(s) = 0: no time steps left means an expected reward sum of zero
+ - Given vector of V<sub>k</sub>(s) values, do one ply of expectimax from each state:
+
+
+
 ...
 
 So what we see ?  
