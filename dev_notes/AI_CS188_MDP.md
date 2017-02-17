@@ -56,6 +56,9 @@ maybe you're a can opener robot and you take the can and you open it , and what'
  - Goal: maximize sum of rewards 
     - in general the agent is going to involve getting to a big reward and taking it. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_stochastic_grid_world.png)
+
+
 <h2 id="7b549072ca47e93fb374c9eb1a430bca"></h2>
 ## Grid World Actions
 
@@ -67,32 +70,67 @@ if you take north , you may move left, and it's bad.  So when you plan you're go
 <h2 id="1ccc83e0a393554a640bc1e194680b67"></h2>
 ## Markov Decision Processes
 
+ - An MDP is defined by:
+    - A set of states s ∈ S
+    - A set of actions a ∈ A
+    - A transition function T(s, a, s’)
+        - Probability that *a* from *s* leads to *s’*, i.e., P(s’| s, a)
+        - Also called the model or the dynamics
+    - A reward function R(s, a, s’) 
+        - Sometimes just R(s) or R(s’)
+    - A start state
+    - Maybe a terminal state
+
+ - MDPs are non-deterministic search problems
+    - One way to solve them is with expectimax search
+    - We’ll have a new tool soon
+
+
 MDP is a lot like a search problem. 
 
-unlike : successor function . unlike in search , we're going to take the successor function and break it into a few pieces. We're going to have an idea of actions which are the actions you take like north ,south, east, west. We're then gonna have a transition function . 
+**UNLIKE** : 
 
-T(s,a,s')  :  in some state s , you take some action a , s' is a possible result. The function T(s,a,s')  tells you how likely that result is and in that sense it's a conditional probability. 
+ - successor function  (unlike) 
+    - unlike in search , we're going to take the successor function and break it into a few pieces. 
+    - We're going to have an idea of actions which are the actions you take like north ,south, east, west. We're then gonna have a transition function . 
+    - T(s,a,s')  :  in some state *s* , you take some action *a* , *s'* is a ***possible*** result. The function T(s,a,s')  tells you how likely that result is and in that sense it's a conditional probability. 
+    - The transition function is basically the successor function. The differences is now there are lots of differents s's that can happen and they all have various probabilities t associated with them. 
 
-The transition function is basically the successor function. The differences is now there are lots of differents s's that can happen and they all have various probabilities t associated with them. 
+ - Reward function (unlike)  
+    - R(s,a,s')  means you get a reward that depends on the state you are in , the action you took, and the outcome. 
+    - You might not know your actual reward until you see whether or not you fell into the pit.  
+    - In some formulations R will only depend on s and s'. What is this ?  This is basically the cost function from search. In seach the cost would be small and in the case of MDPs in general we want the rewards to be big. 
 
-Reward function (unlike)  R(s,a,s')  means you get a reward that depends on the state you are in , the action you took, and the outcome. You might not know your actual reward until you see whether or not you fell into the pit.  In some formulations R will only depend on s and s'. What is this ?  This is basically the cost function from search. In seach the cost would be small and in the case of MDPs in general we want the rewards to be big. 
-
-Terminal state :   another import difference between MDPs and search problems is  MDP's very ofren go on forever .
+ - Terminal state (unlike)     
+    - another import difference between MDPs and search problems is  MDP's very ofren go on forever .
 
 MDP is basically taking search that we know and love , and adding the necessary machinery to support the idea that actions can have multiple outcomes. 
 
 <h2 id="1713fea7ca38d867ec082e94dcc902e8"></h2>
 ## What is Markov about MDPs ?
 
-MDP means the probability distribution over your outcomes depends only on the current state and action , not on the whole histroy of how you got there.
+ - “Markov” generally means that given the present state, the future and the past are independent
+ - For Markov decision processes, “Markov” means action outcomes depend only on the current state
+    - P(S<sub>t+1</sub> = s' | S<sub>t</sub>=s<sub>t</sub>,A<sub>t</sub>=a<sub>t</sub>,S<sub>t-1</sub>=s<sub>t-1</sub>,A<sub>t-1</sub>=a<sub>t-1</sub>,..., S₀=s₀) = P(S<sub>t+1</sub> = s' | S<sub>t</sub>=s<sub>t</sub>,A<sub>t</sub>=a<sub>t</sub>)
+ - This is just like search,the probability distribution over your outcomes depends only on the current state and action , not on the whole histroy of how you got there. 
 
+
+ 
 So this is important property in MDP is to make sure that you define your transition function and your state in such a way that the transition probabilities depend only on the current state and action. 
 
 <h2 id="9e476387322a5c250893cf9c5c4ce78c"></h2>
 ## Policies
 
-1 not work for MDPs. because we don't know what actions are gonna to do.  The relevant idea is not a plan now but a policy. Policy is a mapping from states to actions and tells  in each state what action to take. 
-
+ - In deterministic single-agent search problems, we wanted an optimal plan, or sequence of actions, from start to a goal
+    - but it does not work for MDPs. because we don't know what actions are gonna to do.  
+    - The relevant idea is not a plan now but a policy. Policy is a mapping from states to actions and tells  in each state what action to take. 
+ - For MDPs, we want an optimal policy π\* : S → A
+    - A policy π gives an action for each state
+    - An optimal policy is one that maximizes expected utility if followed
+    - An explicit policy defines a reflex agent
+ - Expectimax didn’t compute entire policies
+    - It computed the action for a single state only
+     
 Expectimax didn't really compute an explicit policy in this sense. What expectimax did for these kinds of problems is from a given state it did a forward-thinking computation that produced one entry of the policy which you then took and wherever you land and you run expectimax again. 
 
 So on one hand expectimax is a way of solving these problems and on the other hand it doesn't compute an explicit policy. That chould be a good thing or bad thing. It can be bad because you might redo a lot of work if you keep in the same state. It could be good because there are so many states you coundn't write down an explicit policy anyway. 
