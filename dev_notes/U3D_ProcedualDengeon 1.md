@@ -109,7 +109,7 @@ Now, it looks much better.
 <h2 id="7baaaa63b8783cbfefac4bc92daca856"></h2>
 ## step 4: Marching Square
 
-Let's image that we shink the map cell . Every 4 cells form a square.  
+Let's image that we shrink the map cell . Every 4 cells form a square.  
 
 We call those square vertexes "Control Node" (bigger white square ) , 
 while call the nodes at middle of edge "Common Node". ( smaller grey one )
