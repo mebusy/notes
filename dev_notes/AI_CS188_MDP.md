@@ -559,7 +559,135 @@ The values let you figure out that the square to the north of you is better than
 
 So it's actually not obvious at all.  How would you figure out from optimal values how to act ? 
 
-The answer is basically you've got to do expectimax. 
+The answer is basically you've got to do expectimax.  I need basically unroll and expertimax one layer and do a one-step lookahead. 
+
+So what I'll do is to consider every action *a* from state *s* and figure out which is the good one. So I need to consider every action *a* , and then for each action I need to consider all of the results s' that action could have. Now for each action *a*, we know the score is gonna be an average over the s's. 
+
+formular...
+
+Luckily the discounted future I've assumed I actually have already (V<sub>\*</sub>(s)). So this is all the expectimax I need to do. 
+
+Argmax means consider all the values , rather than taking the maximum , give me the value of *a* which achieved the maximum. 
+
+Action selection from values is kind of a pain. This process by which I take values which maybe optimal or may not and I computer a one-step lookahead policy according to them is called ***policy extraction***. Because what is does is it digs out the policy that those values imply. It requires a one-step expectimax from every state to reconstruct. 
+
+## Computing Actions from Q-Values
+
+What about Q-Values ?  Q-Values is kind of weird.  
+
+ - How should we act ?
+    - The Q-values make it super easy to decide actions. 
+    - Completely trivial to decide !
+
+
+## Policy Iteration 
+
+***Policy Iteration*** combines the idea of evaluating one policy , with the idea of improving that policy on the basis of those values. 
+
+You can think of policy iteration as you've got a policy in front of you and you're constantly trying to make it better.
+
+### Problems with value iteration
+
+Just think about why value iteration is not always the the best solution.
+
+What value iteration does is essentially mimics 模仿 the bellman updates. You have iteractions where K gets larger and larger starting at 0. For each iteration you visit each state and for each state you look at each action and for each action you look at each outcome. 
+
+ - Slow 
+
+The reason it's slow is each iteration not only looks at every kind of source and target state , so is s² , but also it has to consider each action each time and there're often may actions. 
+
+ - Problem 
+
+Although you've considered all of these actions the maximum often doesn't change. 
+
+
+Example:
+
+1. arrows eventually stop changing after 8-9 iteractions.
+2. the number of lower-left changes , but it takes a while before the changes become large enough that they impact one of the arrows.
+
+
+The maximum -- the best action you got -- usually doesn't change. So you wasted all that time if you have a hundred actions checking the other 99 that weren't very good. Last round they're still not good but you still check them all. 
+
+Policy tends to finish long before the values converge. 
+
+So what can we do?  The idea herer is an algorithm called policy iteration.  Which is an alternative approach and the basic sketch is we're going to have 2 steps that we alternate. 
+
+step 1 is policy evaluation.  we're gonna have some fixed policy , it's generally not going to be an optimal policy , but we're going to figure out it's values using policy evaluation. 
+
+step 2  Then we take those valuse and we extract a better policy from them. That called policy improvement. 
+
+---
+
+Evaluation: For fixed ...
+
+Step 1 is evaluation. So I fix some policy π and I'm going to compute V<sup>π</sup>. So I do this simplified update where I don't maximum over the actions. I assume that my policy π is fixed, and I only do the averaging of the chance nodes. So this thing is fast because I don't consider all the actions. 
+
+Once the thing converges or gets close enough I then stopped and I say let's give the actions a chance to change because we've done enough of this evaluation that maybe by now some of the actions need to change.  So again we're going to do a one-step look ahead and just unroll that expected max one layer and say the new policy is the action that I would get if I did a one-step expectimax , and then plugged in the values -- not optimal values but the valuse computed -- against my old policy. 
+
+That's a little weird. We do one stop of actual expectimax and our truncation function is our old policy. Now why should that be better ? Maybe the old policy was good or maybe the old policy was bad. But whatever it was good or bad we just pushed it one step into the future and that step where we did that one-layer expectimax -- that layer in so far as a layer can be optimal -- did the optimal computation.  We've got one layer of real optimal expectimax and then the truncation function is the old values.
+
+Every time we do this we push the old stuff farther and father into the future and thereby make progress. 
+
+If you think about this it actually turns out the improvement step is just like value iteraction we loop over all the actions and for each action we loop over all of the results of s'. 
+
+So the improvement step isn't going to be particularly fast. It's essentially the evaluation step where we get a big speed up over value iteration. Because the evaluation step happends many times before we allow an improvement step we got a big speed up. 
+
+Another way of looking at this algorithm is thinking that we're doing value iteration but on most rounds we just go with the last action that optimized for this state rather than considering them all. 
+
+### Comparison 
+
+
+Why would you ever do value iteration ? It's simpler and in cases where there are a small number of actions you might do it. 
+
+
+## Double Bandits
+
+Blue: a good machine, when you pull the handle you get 1$.
+
+Red: you pull the handle and you're either gonna get 2$(P=75%) or 0$(P=25%).
+
+You can think this is a MDP.  It's actually a super boring won the state structure isn't very interesting. The interesting thing is the actions.  
+
+There's 2 states in this. But there really shouldn't be. In essence you're always in the same state which is what should I do.  The reason why we have 2 states in this formalization is because in order to actually make this idea workout that you might get 0$ or 2$. It's a little tricky because the rewards so far haven't been non-deterministic. 
+
+So in order to have different rewards for winning and losing I need different states for winning. 
+
+So here's one way to formalize this MDP: the actions are blue and red, the states are I just won or I just lost the last pull. 
+
+Let's first look at the blue action. Blue slot machine always wins with probability 1 you get a dollar and transition to the WON state. 
+
+The red-bandit wins 75% and give you 2$ and losses 25% and give 0$.  So this transition structure relfects that.  It's a little redundant because the reaction does the same thing whether you just one or just lost. That's the kind of independence that you can't see from the diagram here. 
+
+
+Which state to start ?
+
+It doesn't matter which state you're at because the actions do the same thing from the states. 
+
+
+## Offline Planning
+
+We're gonna solve this MDP in head. 
+
+what's the value for playing blue?  You always get 1$ and if you only play blue -- that's a policy -- and play 100 times you get 100$.  So assuming dollars here are the utilities for this agent,  the value of the play blue policy is 100. The value of the play red policy is a 150. 
+
+Yet I know the values I know the optimal policy : always play red.  
+
+### Lets play
+
+We played 10 times. $2, $2, $0, $2, $2, $2, $2, $0, $0, $0.
+
+So we just played our policy how did we do ? 
+
+Looks like we got 12$. What the values suggest we would get ? One average we should have gotten 15 so we're a little bit unlucky but not ridiculously unlucky. Here it's very important we solved it offline in our heads we actually played in the real world using the policy that we determined to be optimal in our heads. 
+
+
+Let's change the rules. We don't know the probabilities of red machine.  What's the optimal policy ? What should I do ? 
+
+I don't know.  We don't know the MDP and if you don't know the MDP you can't figure out the values in your head , and you can't figure out whether playing red or playing blue is the better policy. 
+
+This is a different setting where there is an MDP that you know red has a payoff but you don't know what it is.  So in essence there's an MDP but you don't know its parameters. how are you going to figure out what to do ? 
+
 
 
 
