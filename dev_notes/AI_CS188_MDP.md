@@ -287,6 +287,7 @@ Here are multiple possible solutions, in general we're gonna have discounts that
     - what the star means is  this is the value under optimal action.
  - ***The value (utility) of a q-state (s,a):***
     - Q<sup>\*</sup>(s,a) = expected utility starting out having taken action a from state s and (thereafter) acting optimally
+    - 每个 action 都有一个 Q-value
  - The optimal policy:
     - π<sup>\*</sup>(s) = optimal action from state s
 
@@ -433,6 +434,8 @@ You can think of this as basically building your computation from bottom up all 
 V₀(s)   what's this actually look like in code ?  It's a vector. There is 0 for every state in this vector. This is different than expectimax which you think about is computing for one state -- this is all states , the vector of zeroes. 
 
 To compute V<sub>k+1</sub> , we will recurse into a expectimax tree V<sub>k</sub> that we've already computed, We already have that entire vector for every state. 
+
+( 每个 iteraton 计算所有state 的 V<sub>k</sub> , 这样下次迭代  V<sub>k+1</sub> 就不需要再计算任何 V<sub>k</sub> 了 )
 
 So what does this actually do ? It goes from 0 to 1 , to 2 , and we keep going until we decide to stop. When are we gonna stop ? What is that magic value K ? Because we're going bottom-up we can keep doing this until it converges. 
 
