@@ -594,14 +594,21 @@ The answer is basically you've got to do expectimax.  I need basically unroll an
 
 So what I'll do is to consider every action *a* from state *s* and figure out which is the good one. So I need to consider every action *a* , and then for each action I need to consider all of the results s' that action could have. Now for each action *a*, we know the score is gonna be an average over the s's.  
 
- -Let’s imagine we have the optimal values V<sup>\*</sup>(s)
+ - Let’s imagine we have the optimal values V<sup>\*<sup>(s)
+ - How should we act?
+    - It’s not obvious!
+ - We need to do a mini-expectimax (one step)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_argmax.png)
+    - *argmax* means consider all the values , rather than taking the maximum , give me the action  *a* which achieved the maximum. 
+    - Luckily the discounted future I've assumed I actually have already (V<sup>\*</sup>(s)). So this is all the expectimax I need to do. 
+        - 注意 公式里没有 K+1 , K 之间的关系
+ - This is called ***policy extraction*** , since it gets the policy implied by the values
+    - Action selection from values is kind of a pain. This process by which I take values which maybe optimal or may not and I computer a one-step lookahead policy according to them is called ***policy extraction***. Because what is does is it digs out the policy that those values imply. It requires a one-step expectimax from every state to reconstruct. 
 
 
-Luckily the discounted future I've assumed I actually have already (V<sub>\*</sub>(s)). So this is all the expectimax I need to do. 
 
-Argmax means consider all the values , rather than taking the maximum , give me the value of *a* which achieved the maximum. 
 
-Action selection from values is kind of a pain. This process by which I take values which maybe optimal or may not and I computer a one-step lookahead policy according to them is called ***policy extraction***. Because what is does is it digs out the policy that those values imply. It requires a one-step expectimax from every state to reconstruct. 
+
 
 ## Computing Actions from Q-Values
 
