@@ -504,7 +504,7 @@ finding optimal policies that work over the policies themselves and make the pol
 
 You got a policy in your hand, maybe it's good meybe it's bad . What you want to know is for this policy ,which is presumably suboptimal , how good is it ? How will I perform if I follow it. For each state what will the value be not under optimal action but under this specific policy. 
 
-## Fixed Policies
+### Fixed Policies
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_fixed_policies.png)
 
@@ -520,7 +520,7 @@ Of course the value at the root is presumably going to be worse unless the π(s)
 
 
 
-## Utilities for a Fixed Policy 
+### Utilities for a Fixed Policy 
 
  - Another basic operation: compute the utility of a state s under a fixed (generally non-optimal) policy
     - To compute the utility for a fixed policy  is easy.
@@ -536,7 +536,7 @@ So we imagine we've got some policy π , it presumably bad but we're stuck with 
 
 π : the function π is a policy. it takes a state and returns an action. It has no information about past or future . So far it is a function from states to actions. What is actually living inside the implementation of π ? It could be a lookup table, or it could be a snippet of code which executes expectimax. Now π is implemented by on-demand expectimax computations which is not what value iteration does. 
 
-## Example : Policy Evaluation
+### Example : Policy Evaluation
 
 2 policies:
 
@@ -560,7 +560,7 @@ Why do we evaluate policies ?
 
 Sometimes we actually have a policy we just want to know how good it is but we're going to see important algorithms that let us come up with better policies by starting with one , evaluating it , and looking for ways to improve it.  
 
-## Policy Evaluation
+### Policy Evaluation
 
  - How do we calculate the V’s for a fixed policy π
  - Idea 1: Turn recursive Bellman equations into updates (like value iteration)
@@ -577,7 +577,10 @@ Policy evaluation was about taking a policy and figuring out for each state how 
 
 Now we're going to look at the opposite direction : what happens if I give you the values and I asked you the question what policy should I use if these values are correct. 
 
-## Computing Actions from Valuse 
+### Computing Actions from Valuse 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_policy_extraction_example.png)
+
 
 see that pic , there are the optimal values. Then we can ask questions like how should I act ? 
 
@@ -589,9 +592,10 @@ So it's actually not obvious at all.  How would you figure out from optimal valu
 
 The answer is basically you've got to do expectimax.  I need basically unroll and expertimax one layer and do a one-step lookahead. 
 
-So what I'll do is to consider every action *a* from state *s* and figure out which is the good one. So I need to consider every action *a* , and then for each action I need to consider all of the results s' that action could have. Now for each action *a*, we know the score is gonna be an average over the s's. 
+So what I'll do is to consider every action *a* from state *s* and figure out which is the good one. So I need to consider every action *a* , and then for each action I need to consider all of the results s' that action could have. Now for each action *a*, we know the score is gonna be an average over the s's.  
 
-formular...
+ -Let’s imagine we have the optimal values V<sup>\*</sup>(s)
+
 
 Luckily the discounted future I've assumed I actually have already (V<sub>\*</sub>(s)). So this is all the expectimax I need to do. 
 
