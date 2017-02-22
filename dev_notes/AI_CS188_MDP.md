@@ -671,10 +671,14 @@ Policy iteration is an alternative approach and the basic sketch is we're going 
     - Can converge (much) faster under some conditions
 
 
----
+--- 
 
  - Evaluation: For fixed current policy π,  find values with policy evaluation:
     - Iterate until values converge:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_policy_iteration_evaluation.png)
+ - Improvement: For fixed values, get a better policy using policy extraction
+    - One-step look-ahead:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_policy_iteration_improvement.png)
 
 
 
@@ -692,10 +696,30 @@ So the improvement step isn't going to be particularly fast. It's essentially th
 
 Another way of looking at this algorithm is thinking that we're doing value iteration but on most rounds we just go with the last action that optimized for this state rather than considering them all. 
 
-### Comparison 
+## Comparison 
 
+ - Both value iteration and policy iteration compute the same thing (all optimal values)
+ - In value iteration:
+    - Every iteration updates both the values and (implicitly) the policy
+    - We don’t track the policy, but taking the max over actions implicitly recomputes it
+ - In policy iteration:
+    - We do several passes that update utilities with fixed policy (each pass is fast because we consider only one action, not all of them)
+    - After the policy is evaluated, a new policy is chosen (slow like a value iteration pass)
+    - The new policy will be better (or we’re done)
+ - Both are dynamic programs for solving MDPs
+ - Why would you ever do value iteration ? 
+    - It's simpler and in cases where there are a small number of actions you might do it. 
 
-Why would you ever do value iteration ? It's simpler and in cases where there are a small number of actions you might do it. 
+## Summary: MDP Algorithms
+
+ - So you want to….
+    - Compute optimal values: use value iteration or policy iteration
+    - Compute values for a particular policy: use policy evaluation
+    - Turn your values into a policy: use policy extraction (one-step lookahead)
+ - These all look the same!
+    - They basically are – they are all variations of Bellman updates
+    - They all use one-step lookahead expectimax fragments
+    - They differ only in whether we plug in a fixed policy or max over actions
 
 
 ## Double Bandits
