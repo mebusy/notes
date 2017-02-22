@@ -496,6 +496,8 @@ Now in value iteration the vectors V<sub>k</sub> themselves were  interpretable 
 
 ## Policy Methods
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_policy_methods.png)
+
 finding optimal policies that work over the policies themselves and make the policies better rather than simply working over the values trying to make the values better. 
 
 ## Policy Evaluation
