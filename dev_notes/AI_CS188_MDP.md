@@ -727,10 +727,17 @@ Another way of looking at this algorithm is thinking that we're doing value iter
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_double_bandits.png)
 
 Blue: a good machine, when you pull the handle you get 1$.
-
 Red: you pull the handle and you're either gonna get 2$(P=75%) or 0$(P=25%).
-
 You can think this is a MDP.  It's actually a super boring won the state structure isn't very interesting. The interesting thing is the actions.  
+
+ - Actions: Blue, Red
+ - States: Win, Lose
+ - No discount
+    -100 time steps
+    - Both states have the same value
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_doube_bandit_MDP.ong.png)
+
 
 There's 2 states in this. But there really shouldn't be. In essence you're always in the same state which is what should I do.  The reason why we have 2 states in this formalization is because in order to actually make this idea workout that you might get 0$ or 2$. It's a little tricky because the rewards so far haven't been non-deterministic. 
 
@@ -749,6 +756,12 @@ It doesn't matter which state you're at because the actions do the same thing fr
 
 
 ## Offline Planning
+
+ - Solving MDPs is offline planning
+    - You determine all quantities through computation
+    - You need to know the details of the MDP
+    - You do not actually play the game!
+
 
 We're gonna solve this MDP in head. 
 
@@ -773,6 +786,27 @@ This is a different setting where there is an MDP that you know red has a payoff
 
 
 
+### What Just Happened?
+
+ - That wasn’t planning, it was learning!
+    - Specifically, reinforcement learning
+    - There was an MDP, but you couldn’t solve it with just computation
+    - You needed to actually act to figure it out
+ - Important ideas in reinforcement learning that came up
+    - Exploration: you have to try unknown actions to get information
+    - Exploitation: eventually, you have to use what you know
+    - Regret: even if you learn intelligently, you make mistakes
+    - Sampling: because of chance, you have to try things repeatedly
+    - Difficulty: learning can be much harder than solving a known MDP
+
+
+## Asynchronous Value Iteration \*
+
+ - In value iteration, we update every state in each iteration
+ - Actually, *any* sequences of Bellman updates will converge if every state is visited infinitely often
+ - In fact, we can update the policy as seldom or often as we like, and we will still converge
+ - Idea: Update states whose value we expect to change:
+    - if | Vᵢ₊₁(s) = Vᵢ(s) | is large then update predecessors of s
 
 
 
