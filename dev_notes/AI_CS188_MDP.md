@@ -500,27 +500,39 @@ Now in value iteration the vectors V<sub>k</sub> themselves were  interpretable 
 
 finding optimal policies that work over the policies themselves and make the policies better rather than simply working over the values trying to make the values better. 
 
-## Policy Evaluation
+### Policy Evaluation
 
 You got a policy in your hand, maybe it's good meybe it's bad . What you want to know is for this policy ,which is presumably suboptimal , how good is it ? How will I perform if I follow it. For each state what will the value be not under optimal action but under this specific policy. 
 
-## Fixed Policies
+### Fixed Policies
 
-If I have a policy π which tells me what action to take , I no longer have all of these choices a , the tree looks like this : ... pic ...
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_fixed_policies.png)
 
-Right now I'm only doing what π tells me -- not the optimal thing. That means the max node  just got a whole lot simpler rather than having a whole set of actions that they have to consider. There's only one action permitted that whatever π says to do and so the tree doesn't branch at the max node. Of course it's still branches of the chance node because we don't know what's gonna happen when we execute the action.  But from state *s* there's only one action allowed, it's π(s).  That makes the tree simpler and it means the computing are going to be simpler and faster. 
+If I have a policy π which tells me what action to take , I no longer have all of these choices a , the tree looks like the right picture.
+
+Right now I'm only doing what π tells me -- not the optimal thing. That means the *max* node  just got a whole lot simpler rather than having a whole set of actions that they have to consider. There's only one action permitted that whatever π says to do and so the tree doesn't branch at the *max* node. Of course it's still branches of the chance node because we don't know what's gonna happen when we execute the action.  But from state *s* there's only one action allowed, it's π(s).  That makes the tree simpler and it means the computing are going to be simpler and faster. 
 
 Of course the value at the root is presumably going to be worse unless the π(s) is in fact the optimal policy. 
 
+ - Expectimax trees max over all actions to compute the optimal values
+ - If we fixed some policy π(s), then the tree would be simpler – only one action per state
+    - … though the tree’s value would depend on which policy we fixed
+
+
+
 ## Utilities for a Fixed Policy 
 
-To compute the utility for a fixed policy  is easy.
+ - Another basic operation: compute the utility of a state s under a fixed (generally non-optimal) policy
+    - To compute the utility for a fixed policy  is easy.
 
 So we imagine we've got some policy π , it presumably bad but we're stuck with it. We're trying to do is compute for every state *s* what score I will get on average if I follow π.  
 
-V<sup>π</sup>(s) : the π indicates that we're following π , it used to be a star which meant we were acting optimally.
-
-公式: it's the same kind of bellman equation but the "maximum" is gone.  
+ - Define the utility of a state s, under a fixed policy π:
+    - V<sup>π</sup>(s) : = expected total discounted rewards starting in s and following π
+        - the π indicates that we're following π , it used to be a star which meant we were acting optimally.
+ 
+ - Recursive relation (one-step look-ahead / Bellman equation):
+    - it's the same kind of bellman equation but the "maximum" is gone, and the action *a* replace by π(s)
 
 π : the function π is a policy. it takes a state and returns an action. It has no information about past or future . So far it is a function from states to actions. What is actually living inside the implementation of π ? It could be a lookup table, or it could be a snippet of code which executes expectimax. Now π is implemented by on-demand expectimax computations which is not what value iteration does. 
 
