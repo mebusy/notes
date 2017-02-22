@@ -724,6 +724,8 @@ Another way of looking at this algorithm is thinking that we're doing value iter
 
 ## Double Bandits
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_double_bandits.png)
+
 Blue: a good machine, when you pull the handle you get 1$.
 
 Red: you pull the handle and you're either gonna get 2$(P=75%) or 0$(P=25%).
