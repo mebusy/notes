@@ -601,22 +601,24 @@ So what I'll do is to consider every action *a* from state *s* and figure out wh
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_argmax.png)
     - *argmax* means consider all the values , rather than taking the maximum , give me the action  *a* which achieved the maximum. 
     - Luckily the discounted future I've assumed I actually have already (V<sup>\*</sup>(s)). So this is all the expectimax I need to do. 
-        - 注意 公式里没有 K+1 , K 之间的关系
  - This is called ***policy extraction*** , since it gets the policy implied by the values
     - Action selection from values is kind of a pain. This process by which I take values which maybe optimal or may not and I computer a one-step lookahead policy according to them is called ***policy extraction***. Because what is does is it digs out the policy that those values imply. It requires a one-step expectimax from every state to reconstruct. 
 
 
 
-
-
-
-## Computing Actions from Q-Values
+### Computing Actions from Q-Values
 
 What about Q-Values ?  Q-Values is kind of weird.  
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_compute_action_from_q_values.png)
+
+
+ - Let’s imagine we have the optimal q-values:
  - How should we act ?
     - The Q-values make it super easy to decide actions. 
     - Completely trivial to decide !
+    - π<sup>\*</sup>(s) = argmaxₐ Q<sup>\*</sup>(s,a)
+ - Important lesson: actions are easier to select from q-values than values!
 
 
 ## Policy Iteration 
@@ -631,16 +633,16 @@ Just think about why value iteration is not always the the best solution.
 
 What value iteration does is essentially mimics 模仿 the bellman updates. You have iteractions where K gets larger and larger starting at 0. For each iteration you visit each state and for each state you look at each action and for each action you look at each outcome. 
 
- - Slow 
+ - Problem 1: It’s slow – O(S²A) per iteration
+    - The reason it's slow is each iteration not only looks at every kind of source and target state , so is s² , but also it has to consider each action each time and there're often may actions. 
 
-The reason it's slow is each iteration not only looks at every kind of source and target state , so is s² , but also it has to consider each action each time and there're often may actions. 
+ - Problem 2: The “max” at each state rarely changes
+    - Although you've considered all of these actions the maximum often doesn't change. 
+ 
+ - Problem 3: The policy often converges long before the values
 
- - Problem 
 
-Although you've considered all of these actions the maximum often doesn't change. 
-
-
-Example:
+Example (TODO):
 
 1. arrows eventually stop changing after 8-9 iteractions.
 2. the number of lower-left changes , but it takes a while before the changes become large enough that they impact one of the arrows.
@@ -650,15 +652,31 @@ The maximum -- the best action you got -- usually doesn't change. So you wasted 
 
 Policy tends to finish long before the values converge. 
 
-So what can we do?  The idea herer is an algorithm called policy iteration.  Which is an alternative approach and the basic sketch is we're going to have 2 steps that we alternate. 
+So what can we do?  The idea herer is an algorithm called ***policy iteration***. i
 
-step 1 is policy evaluation.  we're gonna have some fixed policy , it's generally not going to be an optimal policy , but we're going to figure out it's values using policy evaluation. 
+## policy iteration
 
-step 2  Then we take those values and we extract a better policy from them. That called policy improvement. 
+
+Policy iteration is an alternative approach and the basic sketch is we're going to have 2 steps that we alternate. 
+
+ - Alternative approach for optimal values:
+    - ***Step 1: Policy evaluation***: calculate utilities for some fixed policy (not optimal utilities!) until convergence
+        - It's generally not going to be an optimal policy , but we're going to figure out it's values using policy evaluation. 
+    - ***Step 2: Policy improvement***: update policy using one-step look-ahead with resulting converged (but not optimal!) utilities as future values
+        - Then we take those values and we extract a better policy from them. That called policy improvement. 
+    - Repeat steps until policy converges
+
+ - This is policy iteration
+    - It’s still optimal!
+    - Can converge (much) faster under some conditions
+
 
 ---
 
-Evaluation: For fixed ...
+ - Evaluation: For fixed current policy π,  find values with policy evaluation:
+    - Iterate until values converge:
+
+
 
 Step 1 is evaluation. So I fix some policy π and I'm going to compute V<sup>π</sup>. So I do this simplified update where I don't maximum over the actions. I assume that my policy π is fixed, and I only do the averaging of the chance nodes. So this thing is fast because I don't consider all the actions. 
 
