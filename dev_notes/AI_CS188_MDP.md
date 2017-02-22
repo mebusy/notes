@@ -500,11 +500,11 @@ Now in value iteration the vectors V<sub>k</sub> themselves were  interpretable 
 
 finding optimal policies that work over the policies themselves and make the policies better rather than simply working over the values trying to make the values better. 
 
-### Policy Evaluation
+## Policy Evaluation
 
 You got a policy in your hand, maybe it's good meybe it's bad . What you want to know is for this policy ,which is presumably suboptimal , how good is it ? How will I perform if I follow it. For each state what will the value be not under optimal action but under this specific policy. 
 
-### Fixed Policies
+## Fixed Policies
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_fixed_policies.png)
 
@@ -529,7 +529,7 @@ So we imagine we've got some policy π , it presumably bad but we're stuck with 
 
  - Define the utility of a state s, under a fixed policy π:
     - V<sup>π</sup>(s) : = expected total discounted rewards starting in s and following π
-        - the π indicates that we're following π , it used to be a star which meant we were acting optimally.
+    - the π indicates that we're following π , it used to be a star which meant we were acting optimally.
  
  - Recursive relation (one-step look-ahead / Bellman equation):
     - it's the same kind of bellman equation but the "maximum" is gone, and the action *a* replace by π(s)
@@ -538,8 +538,9 @@ So we imagine we've got some policy π , it presumably bad but we're stuck with 
 
 ## Example : Policy Evaluation
 
-Always Go Right
-Always Go Forward
+2 policies:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_2_policies.png)
 
 In fact go-forward policy is probably the optimal policy but when you have this policy in front you don't actually know that right now. All you know is you've got some policy and you're supposed to evaluate it. 
 
@@ -547,11 +548,13 @@ So you look in your head and you think what will happen if i use this policy? An
 
 So what are the actual values under these policies ? 
 
---- pic ---
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_2_policies_evaluation.png)
 
 These are all the states on a grid world where basically the kind of center corridor is a bridge where you can move safely , there's a reward at the end of the top. If you fall to the left or the right then you receive a negative 10 when you fall into the fire pit. 
 
-You can see the policy "always go right" , it's not so bad if you're on the exit where you have no choice but to exit.  But anywhere else is pretty bad. It's not a very good policy. But it has valuse. It's super-important : states have optimal values and they also have values -- just higher or low for any specific policy. 
+You can see the policy "always go right" , it's not so bad if you're on the exit where you have no choice but to exit.  But anywhere else is pretty bad. It's not a very good policy. But it has values. 
+
+It's super-important : states have optimal values and they also have values -- just higher or low for any specific policy. 
 
 Why do we evaluate policies ?
 
@@ -559,16 +562,24 @@ Sometimes we actually have a policy we just want to know how good it is but we'r
 
 ## Policy Evaluation
 
+ - How do we calculate the V’s for a fixed policy π
+ - Idea 1: Turn recursive Bellman equations into updates (like value iteration)
+    - Efficiency: O(S²) per iteration
+ - Idea 2: Without the maxes, the Bellman equations are just a linear system
+    - Solve with Matlab (or your favorite linear system solver)
+
+
+ 
 
 ## Policy Extraction
 
 Policy evaluation was about taking a policy and figuring out for each state how good it was. 
 
-Now we're going to look at the opposite direction : what happens if I give you the values and I asked you the question what policy should I use if these valuse are correct. 
+Now we're going to look at the opposite direction : what happens if I give you the values and I asked you the question what policy should I use if these values are correct. 
 
 ## Computing Actions from Valuse 
 
-see that pic , there are the optimal valuse. Then we can ask questions like how should I act ? 
+see that pic , there are the optimal values. Then we can ask questions like how should I act ? 
 
 for example , let's look at the 0.89 square. What should I do ? Should I take the action north ? Should I choose the action west ? 
 
@@ -632,7 +643,7 @@ So what can we do?  The idea herer is an algorithm called policy iteration.  Whi
 
 step 1 is policy evaluation.  we're gonna have some fixed policy , it's generally not going to be an optimal policy , but we're going to figure out it's values using policy evaluation. 
 
-step 2  Then we take those valuse and we extract a better policy from them. That called policy improvement. 
+step 2  Then we take those values and we extract a better policy from them. That called policy improvement. 
 
 ---
 
@@ -640,7 +651,7 @@ Evaluation: For fixed ...
 
 Step 1 is evaluation. So I fix some policy π and I'm going to compute V<sup>π</sup>. So I do this simplified update where I don't maximum over the actions. I assume that my policy π is fixed, and I only do the averaging of the chance nodes. So this thing is fast because I don't consider all the actions. 
 
-Once the thing converges or gets close enough I then stopped and I say let's give the actions a chance to change because we've done enough of this evaluation that maybe by now some of the actions need to change.  So again we're going to do a one-step look ahead and just unroll that expected max one layer and say the new policy is the action that I would get if I did a one-step expectimax , and then plugged in the values -- not optimal values but the valuse computed -- against my old policy. 
+Once the thing converges or gets close enough I then stopped and I say let's give the actions a chance to change because we've done enough of this evaluation that maybe by now some of the actions need to change.  So again we're going to do a one-step look ahead and just unroll that expected max one layer and say the new policy is the action that I would get if I did a one-step expectimax , and then plugged in the values -- not optimal values but the values computed -- against my old policy. 
 
 That's a little weird. We do one stop of actual expectimax and our truncation function is our old policy. Now why should that be better ? Maybe the old policy was good or maybe the old policy was bad. But whatever it was good or bad we just pushed it one step into the future and that step where we did that one-layer expectimax -- that layer in so far as a layer can be optimal -- did the optimal computation.  We've got one layer of real optimal expectimax and then the truncation function is the old values.
 
