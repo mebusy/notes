@@ -247,7 +247,7 @@ you might care whether or not you get these 4 gems step-by-step or all at the en
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_discounting.png)
 
-
+不合理的 discount 可能会阻止你找到optimal solution. 过小的 discount 会更倾向于 short-term rewards. Iff the MDP's transition model is deterministic and the MDP has zero rewards everywhere, except for a single transition at the goal with a positive reward,  optimal policy will still be found regardless discount value .
 
 
 <h2 id="945d15839357ecf3965c8cfb2f679995"></h2>
@@ -502,6 +502,34 @@ But there are cases where we can show that it will converge.
 
 ---
 
+### Value Iteration Convergence
+
+ - 1 action: go
+ - transitioning to each of the next states is equally likely
+    - once you are in state with no outgoing arrows , you stay in them for all future times. 
+ - reward: 1 for each transition 
+    - staying in state with no outgoing arrows   gets a reward of zero
+ - discount factor = 0.5
+ - initialize the value of each state to 0.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_value_iteraction_converage1.png)
+
+ - After how many iterations of value iteration will the value for state F have become exactly equal to the true optimum? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal.)
+    - 0
+ - After how many iterations of value iteration will the value for state A have become exactly equal to the true optimum? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal.)
+    - 4
+ - How many iterations of value iteration will it take for the values of all states to converge to the true optimal values? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal.)
+    - 4
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_value_iteraction_converage2.png)
+
+ - After how many iterations of value iteration will the value for state B have become exactly equal to the true optimum? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal.)
+    - inf
+ - After how many iterations of value iteration will the value function have become exactly equal to the true optimal values? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal)
+    - inf
+
+
+
 ---
 
 <h2 id="6360b3155b74ca6b340e7332e5354ede"></h2>
@@ -558,7 +586,7 @@ Of course the value at the root is presumably going to be worse unless the π(s)
 So we imagine we've got some policy π , it presumably bad but we're stuck with it. We're trying to do is compute for every state *s* what score I will get on average if I follow π.  
 
  - Define the utility of a state s, under a fixed policy π:
-    - V<sup>π</sup>(s) : = expected total discounted rewards starting in s and following π
+    - V<sup>π</sup>(s) : = expected total discounted rewards ***starting in s and following π***
     - the π indicates that we're following π , it used to be a star which meant we were acting optimally.
  
  - Recursive relation (one-step look-ahead / Bellman equation):
