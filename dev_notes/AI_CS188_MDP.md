@@ -463,6 +463,9 @@ So what does this actually do ? It goes from 0 to 1 , to 2 , and we keep going u
 
 Complexity of each iteration: O(S²A).  It's good in that it doesn't grow with the number of iterations like expectimax grows with the depth. It's bad in that expectimax doesn't have to touch every state if it doesn't go to deep, this always touches every state.  So it's all about the trade-off of how many states you have and how connected they are and how deep you need to into the tree. 
 
+
+Actually , Value iteration will converge to the same vector of values (V<sup>\*</sup>) no matter what values we use to initialize V.
+
 <h2 id="d5cac644e6c3bb194c235c0b55977d1d"></h2>
 ### Example: Value Iteration 
 
@@ -632,6 +635,7 @@ So what I'll do is to consider every action *a* from state *s* and figure out wh
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_argmax.png)
     - *argmax* means consider all the values , rather than taking the maximum , give me the action  *a* which achieved the maximum. 
     - Luckily the discounted future I've assumed I actually have already (V<sup>\*</sup>(s)). So this is all the expectimax I need to do. 
+        - 对每个action， 计算 K+1 的q-value
  - This is called ***policy extraction*** , since it gets the policy implied by the values
     - Action selection from values is kind of a pain. This process by which I take values which maybe optimal or may not and I computer a one-step lookahead policy according to them is called ***policy extraction***. Because what is does is it digs out the policy that those values imply. It requires a one-step expectimax from every state to reconstruct. 
 
