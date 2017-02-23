@@ -263,6 +263,11 @@ recursion tree: 把 算法过程，用一颗`树`的结构表示出来。分治�
 
 Total Runing time = 6n x (log₂n +1) = `6n·log₂n + 6n` .
 
+#### Mergesort: practical improvements
+
+ - Mergesort has too much overhead for tiny subarrays
+ - 对于小数组，eg. len < 8 , use insertion-sort instead
+ 
 
 <h2 id="a3b94ca02e9a48292c9644ca761f6370"></h2>
 #### Asymptotic analysis 渐近分析
