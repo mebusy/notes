@@ -579,7 +579,15 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
  - Ex 幸运之轮  F<sub>X</sub>(0.5) = P(X≤0.5) = 1/2
  
  
+### CDF 有什么用?
  
+ - 最有用的用途: 计算 𝑿 落在某范围内的机率
+    - P(3< X≤ 5 ) = P(X≤ 5) - P( X<= 3)
+    - **= F<sub>X</sub>(5) - F<sub>X</sub>(3)**
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_cdf_ab.png)
+ - P( a < X ≤ b ) = F<sub>X</sub>(b) - F<sub>X</sub>(a)
+ - P( a ≤ X ≤ b ) = F<sub>X</sub>(b) - F<sub>X</sub>(a) + P(X=a)
+
 
 
 
