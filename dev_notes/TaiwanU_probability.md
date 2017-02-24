@@ -636,6 +636,10 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
     - P<sub>X</sub>(x) = F<sub>X</sub>(x⁺) - F<sub>X</sub>(x⁻)
 
 
+### 机率分布 (Probability Distribution)
+
+ - 任何一个 PMF(或是之后介绍的 PDF)都称作是一种 ***机率分布*** (将总和为 𝟏 的机率分布在点上之故)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_PD.png)
 
  
 
