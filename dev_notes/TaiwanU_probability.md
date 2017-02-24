@@ -591,14 +591,35 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
 ### 离散随机变数的 CDF 长怎样?
 
  - Ex:𝑿为骰子的点数，故𝑷(𝑿=𝟏) =𝑷(𝑿=𝟐) =𝑷(𝑿=𝟑) =𝑷(𝑿=𝟒) =𝑷(𝑿=𝟓) =𝑷(𝑿=𝟔) =𝟏/𝟔
- - F<sub>X</sub>(x) = P(X ≤ x)
+ - CDF: F<sub>X</sub>(x) = P(X ≤ x)
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_discrete_pdf.png)
  - P( 3< X≤ 5 ) = F<sub>X</sub>(5) - F<sub>X</sub>(3) = 5/6 - 3/6 = 2/6
  - P( 3< X< 5 ) = P( 3< X≤ 5⁻ ) = F<sub>X</sub>(5⁻) - F<sub>X</sub>(3)  = F<sub>X</sub>(5) - P(X=5) - F<sub>X</sub>(3) = 1/6
 
 ### 连续随机变数的 CDF 长怎样?
 
+ - Ex: 𝑿 为幸运之轮所停下的数字，X ∈ [ 0,1 )    
+    - CDF: F<sub>X</sub>(x) = P( X ≤ x )
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_conti_cdf.png)
+ - P( 0.3< X≤ 0.5 ) = F<sub>X</sub>(0.5) - F<sub>X</sub>(0.3) = 0.5 - 0.3 = 0.2
+ - P( 0.3< X< 0.5 ) = F<sub>X</sub>(0.5⁻) - F<sub>X</sub>(0.3) = 0.5 - 0.3 = 0.2
 
+
+### CDF 的性质
+
+ - 离散随机变数之CDF:
+    - F<sub>X</sub>(x⁺) = F<sub>X</sub>(x)
+    - F<sub>X</sub>(x⁻) = F<sub>X</sub>(x) - P(X=x)
+ - 连续随机变数之CDF:
+    - F<sub>X</sub>(x⁺) = F<sub>X</sub>(x⁻)  = F<sub>X</sub>(x) 
+ - 共同性质
+    - F<sub>X</sub>(-∞) = P(X≤-∞) = 0
+    - F<sub>X</sub>( ∞) = P(X≤ ∞) = 1  
+    - 0 ≤ F<sub>X</sub>(x) ≤1
+ 
+---
+
+## 4.3 机率质量函数 PMF (PROBABILITY MASS FUNCTION)
 
 
 
