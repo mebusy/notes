@@ -621,6 +621,22 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
 
 ## 4.3 机率质量函数 PMF (PROBABILITY MASS FUNCTION)
 
+ - 只有 离散随机变数 有 PMF
+ - 对任一个整数值的 ***离散随机变数*** X , 我们定义其 PMF 为函数:
+    - p<sub>X</sub>(x) = P(X=x)
+    - p 大小写无所谓？
+ - Ex: 𝑿 为公平骰子之点数
+    - p<sub>X</sub>(3) = P(X=3) = 1/6
 
+### PMF 跟 CDF 的关系?
+
+ - PMF -> CDF
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_cdf_pmf.png)
+ - CDF -> PMF
+    - P<sub>X</sub>(x) = F<sub>X</sub>(x⁺) - F<sub>X</sub>(x⁻)
+
+
+
+ 
 
     
