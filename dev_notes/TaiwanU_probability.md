@@ -641,6 +641,26 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
  - 任何一个 PMF(或是之后介绍的 PDF)都称作是一种 ***机率分布*** (将总和为 𝟏 的机率分布在点上之故)
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_PD.png)
 
- 
+---
 
+## 4.4 离散机率分布 I (DISCRETE PROBABILITY DISTRIBUTIONS)
+ 
+ - 观察一下
+    - 丢掷铜板:非正面，即反面，正面机率为 0.5
+    - 出门天气:非晴天，即雨天，晴天机率为 0.6
+ - 𝟏 次实验，𝟐 种结果。 在意某结果发生否  Bernoulli 机率分布
     
+
+### Bernoulli 机率分布
+
+ - PMF: 若实验成功机率为 𝒑 , 作 𝟏 次实验， 𝑿 表成功次数
+ - CDF 见右图
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_bernoulli.png)
+
+
+
+
+
+
+
