@@ -36,7 +36,7 @@ When m is very large, the computing this derivative term can be very expensive, 
 ```
 Repeat {
     for i=1,...,m {
-        θⱼ:=θⱼ-ɑ( hθ( x⁽ⁱ⁾-y⁽ⁱ⁾ )·xⱼ⁽ⁱ⁾ )
+        θⱼ:=θⱼ-ɑ( hθ( x⁽ⁱ⁾)-y⁽ⁱ⁾ )·xⱼ⁽ⁱ⁾ )
     }
 }
 ```
