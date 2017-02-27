@@ -720,4 +720,17 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_pascal.png)
 
 
+### Poisson 机率分布
+ 
+ - 观察一下  
+    - 转角夜宵:在晚上 平均每小时会有 10 人 来 跟转角哥买夜宵。 问摆摊 5 小时 有 60 人光顾之机率?
+    - 费雯被嘘:费雯兄 po 文后， 平均每分钟会有 5 人嘘之 。 问发文后 二十分钟 变成 XX (100 嘘) 之机率?
+ - 某结果出现之平均速率(rate: 次数/时间)已知。问持续观察某 时间长度后，看到该结果出现 𝒌 次之机率? --> Poisson 机率分布
+ - 已知某事发生速率为每单位时间 𝝀 次，观察时间为 𝑻 时间单位。 𝑿 为该观察时间 内发生该事的总次数。则:
+    - PFM: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_poisson_PMF.png)
+    - CDF: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_poisson_CDF.png)
+ - 费雯被嘘:费雯兄 po 文后，平均 每分钟会有 5 人嘘之。问发文后 20 分钟变 成 XX (100 嘘) 之机率?
+    - 𝝀 = 𝟓 嘘/分，若定义随机变量 𝑿 为 𝟐𝟎 分钟内的嘘数
+    - => X ~ POI(λT) = POI(100) = e⁻¹⁰⁰·100¹⁰⁰ / 100! 
+    - 若条件是 每小时 300人嘘之，答案一样
 
