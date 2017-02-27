@@ -716,6 +716,8 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
     - 所求机率 =  C(8,4) x 0.9⁴ x 0.1⁵ 
  - 六脉神剑:那妈宝废物段誉每次要打六脉神 剑，打的出来的机率为 𝒑 。成功 𝒌 次便功力耗尽。 他在第 𝑿 次尝试才成功打出 𝒌 次六脉神剑。 𝑿 = 𝒙 的机率?
     - C(x-1, k-1) x (1-p)<sup>x-k</sup> x pᵏ
+ - 若实验成功机率为 𝒑 , 到第 𝒌 次成功为止共作了 𝑿 次
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_pascal.png)
 
 
 
