@@ -9,9 +9,22 @@ For now we take an action which we essentially submit to the environment by doin
 
 We want to act ot maximize our rewards but we have to learn to do that , because in this setting we won't know what actions will produce rewards until we try them. 
 
-Because we're actually trying things in the environment ,all of the learning ,all of the ways we have available to us,  to make decision, are mediated by what we experience -- which are samples of outcomes.  
+Because we're actually trying things in the environment ,all of the learning  all of the ways we have available to us  to make decision, are mediated by what we experience -- which are samples of outcomes.  
 
 When you take an action you see what happens but you don't see everything that might have happended.  
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_1.png)
+
+
+ - Basic idea:
+    - Receive feedback in the form of ***rewards***
+    - Agent’s utility is defined by the reward function
+    - Must (learn to) act so as to ***maximize expected rewards***
+    - All learning is based on observed samples of outcomes!
+ 
+
+    
 
 
 ## Reinforcement Learning
@@ -20,10 +33,20 @@ We don't know the transition function , we don't know the rewards , that is even
 
 Of course because we're trying things out from a state of partial information , we're gonna make some mistakes and so there is always going to be this process of trying things out not all of which work optimally. 
 
--- race car example
+For the race car example -- you still know whether you'er cool , warmer, overheated, and you still know that you can move faster or slow. 
 
-You still know whether you'er cool , warmer, overheated, and you still know that you can move faster or slow. What you don't know is what fast and slow do. So for all you know fast is the best idea ever or is the best idea ever , you try some things maybe you end up going too slow or maybe you overheat. And you have to try things again and slowly learn what these actions do from each state. 
+What you don't know is what fast and slow do. So far all you know fast is the best idea ever or slow is the best idea ever.  You try some things maybe you end up going too slow or maybe you overheat. And you have to try things again and slowly learn what these actions do from each state. 
 
+ - Still assume a Markov decision process (MDP):
+    - A set of states s ∈ S
+    - A set of actions (per state) A
+    - A model T(s,a,s’)
+    - A reward function R(s,a,s’)
+ - Still looking for a policy π(s)
+ - New twist: ***don’t know T or R***
+    - I.e. we don’t know which states are good or what the actions do
+    - Must actually try actions and states out to learn
+    
 
 ## Offline (MDPs) vs. Online (RL)
 
