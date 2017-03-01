@@ -608,6 +608,63 @@ V =  1
 
 Example 2: Now A has rank 2, and AAᵀ = [ 2 -1 ; -1 2 ] with λ = 3 and 1:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_svd_example2.png)
+
+Notice √3 and √1. The columns of U are *left* singular vectors (unit eigenvectors of AAᵀ).  The columns of V are *right* singular vectors (unit eigenvectors of AᵀA).
+
+```
+octave:5> a = [-1 1 0  ; 0 -1 1]
+a =
+
+  -1   1   0
+   0  -1   1
+
+octave:6> [U, S , V] = svd(a)
+U =
+
+  -0.70711   0.70711
+   0.70711   0.70711
+
+S =
+
+Diagonal Matrix
+
+   1.7321        0        0
+        0   1.0000        0
+
+V =
+
+   4.0825e-01  -7.0711e-01   5.7735e-01
+  -8.1650e-01  -2.7756e-16   5.7735e-01
+   4.0825e-01   7.0711e-01   5.7735e-01
+
+```
+
+
+---
+
+### Applications of the SVD
+
+The SVD is terrific for numerically stable computations, because U and V are orthogonal matrices. 
+
+They never change the length of a vector. Since multiplication by U cannot destroy the scaling.
+
+Of course ∑ could multiply by a large σ or (more commonly) divide by a small σ, and overflow the computer. But still ∑ is as good as possible.It reveals exactly what is large and what is small.  The ratio σ<sub>max</sub> / σ<sub>min</sub> is the ***condition number*** of an invertible n by n matrix. The availability of that information is another reason for the popularity of the SVD. We come back to this in the second application.
+
+--- 
+#### 1. Image processing
+
+Suppose a satellite takes a picture, and wants to send it to Earth. The picture may contain 1000 by 1000 "pixels"-a million little squares , each with a definite color. Do we must send back 1,000,000 numbers?
+
+The key is in the singular values (in ∑). Typically, some σ's are significant and others are extremely small.  If we keep 20 and throw away 980, then we send only the corresponding 20 columns of U and V.  The other 980 columns are multiplied in UΣVᵀ by the small σ's that are being ignored. *We can do the matrix multiplication as columns times rows* :
+
+```
+A = UΣVᵀ = u₁σ₁v₁ᵀ + u₂σ₂v₂ᵀ + ... + uᵣσᵣvᵣᵀ.      (3)
+```
+
+Any matrix is the sum of *r* matrices of rank 1.   If only 20 terms are kept, we send 20 time 2000 numbers instead of a million (25 to 1 compression).
+
+The cost is in computing the SVD -- this has become much more efficient, but it is expensive for a big matrix.
 
 
 
