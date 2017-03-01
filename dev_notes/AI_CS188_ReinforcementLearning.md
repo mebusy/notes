@@ -276,7 +276,10 @@ So that a big idea of --
 
 ## Temporal Difference Learning 
 
-...
+ - Big idea: learn from every experience!
+    - Update V(s) each time we experience a transition (s, a, s’, r)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_td_learning.png)
+    - Likely outcomes s’ will contribute updates more often
 
 It is a little tricky because we only get one sample of what might have happended , so we need somehow make sure that over time we accumulate the right averages. But right now we've got one sample we've got ot incorporate it and move on. 
 
@@ -284,41 +287,64 @@ The reason this is called temporal difference learning is because we compare our
 
 We've doing temporal difference learning right now of values. So the policy is still going to be fixed. We're still evaluating this policy. We're still not worrying about how to choose actions that will come later. The idea is we're going to move the values towards whatever we actually see happen. It's gonna be some kind of running average but we got to be careful. 
 
-So here's the idea. We imagine we were at state s . Before we took any action we had some estimate of how good it was that encapsulates all of our knowledge to date. So we've got some estimate V(s) -- it's not correct , it's an approximation.  From *s* we take an action -- in this case we do π tells us -- and we land in some particular sample outcomes s'. So we get one of the many possible outcomes .   We get the reward associated with it -- R, and then we get put in a state s' for which we have an estimated future utility from s'. 
+So here's the idea. We imagine we were at state s . Before we took any action we had some estimate of how good it was that encapsulates all of our knowledge to date. So we've got some estimate V(s) -- it's not correct , it's an approximation.  
+
+From *s* we take an action -- in this case we do what π tells us -- and we land in some particular sample outcomes s'. So we get one of the many possible outcomes .   We get the reward associated with it -- R, and then we get put in a state s' for which we have an estimated future utility from s'. 
 
 So on one hand we think we're going to get V(s) that's what our past experience has told us , on the other hand this particular time it looks like we're on track to get this sample. It looks like we're on track to get the instantaneous reward  + V<sup>π</sup>(s'). So we've got our old experiences all summarized in our value but then we have this new experience we need to incorporate which includes a real-world reward R and then an approximation that's been discoutned into the future.  
 
-So how do we take the average of one thing ?   -- see 公式  "Update to V(s)"
+So how do we take the average of one thing ?
+
+ - Temporal difference learning of values
+    - Policy still fixed, still doing evaluation!
+    - Move values toward value of whatever successor occurs: running average
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_td_learning_update.png)
 
 One thing we do is we keep around our old value with some weight and we average in the new thing with some weight. So we interpolate them. There's some value α called learning rate. α is usually small , like 0.1 or something like that , maybe even smaller. Every time we get a sample of the new value which is a reward + discounted future , we average it in by interpolating it with the old value esitmate . 
 
 Why do we use α ? Why don't we keep track of every experience we've ever had ?  If we really really want an even average that would be a way to achieve it. It turns out this is not only easier but it's in fact better. 
 
-Same Update:
 
 this update it says take your value and add to it α times the difference between what you thought would happen and what actually did. You can think of that as an error. And this says whenever you see an error in your estimates adjust your estimate in the direction of the error by some small step size α. 
 
 
-Demo:
+Demo: a = 0.5 , no time step reward.
+
+0
 
 We are about to do temporal different learning of values. That means we keep a big table of values and they also offer 0 because we have no idea what's going on in this grid. 
 
 The blue dot represens the agent. I'm going to issue commands and the agent will then watch what happends.
 
+1
+ 
 I went north. In this version the living reward set to 0 so that we can see how the exit rewards propagate. In this case no update happened because I thought that I was going to receive a total utility of 0 from the start state. I in fact received 0 and I landed in the state where I thought there was 0 left to come. 
 
 So I thought I was going to get a 0 . I do seem to be on track to get 0 , nothing to do. 
 
-Nothing interesting happens util I receive a non-zero reward which I receive no when I enter this right-top square but when I exit it. Right now I think I'm going to get a 0 total future score.  When I tack the exit action I will in fact receive a +1 and then I'll be forced to reconcile the +1 I got with the 0 I thought I was going to get and right now it was set to 0.5 and so the average value will now be 0.5 , and I update my array. 
+2
 
 
-I play again. What happens when I move into the square left to top-right square ? From here I'm about to move east I think I'm going to get a total score of 0. I go east. What did I receive that time step ? 0 . But I landed in the state that looks right now to be worth 0.5. On one hand I thought my total would be 0 , on the other hand this experience says I'm going to get 0 + 0.5 . I average them and I get 0.25.  That's going to continue happening as I exit here that 0.5 approaches 1 because I'm gonna get 1 every time . I is now (0.5+1) /2 = 0.75.
+Nothing interesting happens util I receive a non-zero reward which I receive not when I enter this right-top square but when I exit it. Right now I think I'm going to get a 0 total future score.  When I tack the exit action I will in fact receive a +1 and then I'll be forced to reconcile the +1 I got with the 0 I thought I was going to get and right now α was set to 0.5 and so the average value will now be 0.5 , and I update my array. 
+
+3
+
+
+I play again. What happens when I move into the square left to top-right square ? 
+
+4
+
+From here I'm about to move east I think I'm going to get a total score of 0. I go east. What did I receive that time step ? 0 . But I landed in the state that looks right now to be worth 0.5. On one hand I thought my total would be 0 , on the other hand this experience says I'm going to get 0 + 0.5 . I average them and I get 0.25.  That's going to continue happening as I exit here that 0.5 approaches 1 because I'm gonna get 1 every time . I is now (0.5+1) /2 = 0.75.
+
+5
 
 Play again, the values would be  (0+0.25)/2 = 0.13 ,  ( 0.25 + 0.75 ) /2 = 0.5 , ( 0.75+1)/2 = 0.88.
 
+
+
 Every time we enter a non-zero square from a 0-value square, notice that we learn about the square we leave because when I leave this square I'm going to learn that my estimate of 0 isn't the best I can do. I can do better.  
 
-So you learn about the state you leave , not the state you land in. 
+So you learn about ***the state you leave , not the state you land in***. 
 
 I'm learning the values of these squares and the values under the policy that I'm executing. What would happen if I went the other way around ? ( move right from 0.13)
 
