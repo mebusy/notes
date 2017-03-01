@@ -500,7 +500,8 @@ UΣVᵀ joins with LU from elimination and QR from orthogonalization (Gauss and 
 
 > hint 1: 
 
-行空间中找个典型向量 v₁， 然后变换到列空间的某个向量 u₁ : `u₁ = Av₁`
+行空间中找个典型向量 v₁， 然后变换到列空间的某个向量 u₁ : `u₁ = Av₁`.
+
 目标是，找出 行空间中的一组标准正交基， 经过矩阵A变化后，得到 列空间中的一组标准正交基 : `AV=U∑` 
 
 ```
@@ -532,6 +533,8 @@ Any m by n matrix A can be factored into
 
 The columns of U (m by m) are eigenvectors of AAᵀ, and the columns of V (n by n) are eigenvectors of AᵀA. 
 The r singular values on the diagonal of Σ (m by n) are the square roots of the nonzero eigenvalues of both AAᵀ and AᵀA. 
+
+Because U , V are both orthogonal , so UᵀU = I, VᵀV = I .
 
 **Remark 1** For positive definite matrices, Σ is Λ and UΣVᵀ is identical to QΛQᵀ. For other symmetric matrices, any negative eigenvalues in Λ become positive in Σ.
 
@@ -662,11 +665,13 @@ The key is in the singular values (in ∑). Typically, some σ's are significant
 A = UΣVᵀ = u₁σ₁v₁ᵀ + u₂σ₂v₂ᵀ + ... + uᵣσᵣvᵣᵀ.      (3)
 ```
 
-Any matrix is the sum of *r* matrices of rank 1.   If only 20 terms are kept, we send 20 time 2000 numbers instead of a million (25 to 1 compression).
+Any matrix is the sum of *r* matrices of rank 1( mxn ).   If only 20 terms are kept, we send 20 time 2000 numbers instead of a million (25 to 1 compression).  (20 uᵢ , 20 vᵢ , 20 σᵢ).
 
 The cost is in computing the SVD -- this has become much more efficient, but it is expensive for a big matrix.
 
+多元统计分析中经典的主成分分析就是这样做的。 主成分分析就是对数据的协方差矩阵进行了类似的分解（特征值分解），但这种分解只适用于对称的矩阵，而 SVD 则是对任意大小和形状的矩阵都成立。
 
+只是为了用图像压缩来介绍 SVD 的性质，实际使用中常见的图片格式（png，jpeg等）其压缩原理更复杂，且效果往往更好.
 
 
 
