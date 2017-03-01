@@ -576,8 +576,37 @@ This says that Avⱼ is an eigenvector of AAᵀ.  We just moved parentheses to (
 vᵀAᵀAvⱼ = σⱼ²vⱼᵀvⱼ  gives ‖Avⱼ‖² = σⱼ².
 ```
 
-So the unit eigenvector Avⱼ/σⱼ = uⱼ. *** In other words, AV = U∑***.
+So the unit eigenvector Avⱼ/σⱼ = uⱼ. ***In other words, AV = U∑***.
 
+Example 1: This A has only one column: rank r = 1. Then ∑ has only σ₁ = 3:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_svd_example_1.png)
+
+AᵀA is 1 by 1, whereas AAᵀ is 3 by 3.  They both have eigenvalue 9 (whose square root is the 3 in ∑ ).  
+
+The two zero eigenvalues of AAᵀ  leave some freedom for the eigenvectors in columns 2 and 3 of U.  We kept that matrix orthogonal.
+
+```
+> [U, S , V] = svd(a)
+U =
+
+  -0.33333   0.66667   0.66667
+   0.66667   0.66667  -0.33333
+   0.66667  -0.33333   0.66667
+
+S =
+
+Diagonal Matrix
+
+   3
+   0
+   0
+
+V =  1
+```
+---
+
+Example 2: Now A has rank 2, and AAᵀ = [ 2 -1 ; -1 2 ] with λ = 3 and 1:
 
 
 
