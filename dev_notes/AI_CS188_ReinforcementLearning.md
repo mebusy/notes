@@ -7,9 +7,9 @@ When the action is resolved what the agent receive back is 2 things: one is the 
 
 For now we take an action which we essentially submit to the environment by doing it and the environment returns to us a state which is the result and a reward which we want to maximize.   
 
-We want to act ot maximize our rewards but we have to learn to do that because in this setting we won't know what actions will produce rewards until we try them. 
+We want to act ot maximize our rewards but we have to learn to do that , because in this setting we won't know what actions will produce rewards until we try them. 
 
-Because we're actually trying things in the environment ,all of the learning ,all of the ways we have available to us to make decision, are mediated by what we experience -- which are samples of outcomes.  
+Because we're actually trying things in the environment ,all of the learning ,all of the ways we have available to us,  to make decision, are mediated by what we experience -- which are samples of outcomes.  
 
 When you take an action you see what happens but you don't see everything that might have happended.  
 
