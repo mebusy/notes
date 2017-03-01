@@ -414,18 +414,14 @@ In full reinforcement learning we would like to be able to compute optimal polic
     - Given V<sub>k</sub>, calculate the depth k+1 values for all states:
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_calc_formular.png)
 
-
-
-
 We can't do this update with samples because it's not an average but Max. And the only thing we can do with samples is computing averages of things. 
 
-...
-
-Q-Values
-
-discount of future value. I might be tempted to write (s') here , but I'm not learning values , I'm learning Q values. So I need to do 1 more layer. What is the value ? The value of the state is just the maximum of all the Q values going out of that states -- I have to maximize over all of the actions that I could take from that state.
-
-The max is still there , the average is still there.  But this equation is an average and therefore this equation we can do with samples. 
+ - But Q-values are more useful, so compute them instead
+    - Start with Q₀(s,a) = 0, which we know is right
+    - Given Q<sub>k</sub>, calculate the depth k+1 q-values for all q-states:
+        - ![][3]
+        - For the part of discount of future value. I might be tempted to write (s') here , but I'm not learning values , I'm learning Q values. So I need to do 1 more layer. What is the value ? The value of the state is just the maximum of all the Q values going out of that states -- I have to maximize over all of the actions that I could take from that state.
+        - The max is still there , the average is still there.  But this equation is an average and therefore this equation we can do with samples. 
 
 
 ---
@@ -434,7 +430,8 @@ The max is still there , the average is still there.  But this equation is an av
 
 Q-Learning is the key algorithm that allows us to do a lot of great things with reinforcement learning. 
 
-Learn
+ - Q-Learning: sample-based Q-value iteration
+    - ![][3]
 
 Every time we're in a state *s* , we take some action *a*. When we dothat we're going to learning something about how good (s,a) is. So what we're going to maintain a table that looks something like this. 
 
@@ -482,5 +479,5 @@ every square on the bottom is bad , and the exit on the right is good.
  
  [2]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_grid_learnedmodel.png
 
-
+ [3]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_q_values_calc.png
 
