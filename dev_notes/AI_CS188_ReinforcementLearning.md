@@ -433,11 +433,20 @@ Q-Learning is the key algorithm that allows us to do a lot of great things with 
  - Q-Learning: sample-based Q-value iteration
     - ![][3]
 
-Every time we're in a state *s* , we take some action *a*. When we dothat we're going to learning something about how good (s,a) is. So what we're going to maintain a table that looks something like this. 
+Every time we're in a state *s* , we take some action *a*. When we do that we're going to learning something about how good (s,a) is. So what we're going to maintain a table that looks something like this. 
 
 For every state and every action , it's going to maintain a number which is the q-value approximation. 
 
 We're going to get some sample on the basis of the action we picked , the key learning algorithm doesn't actually care how the action was chosen , it does the same update no matter how it was chosen.   We get a sample -- we were in *s* we choose action *a* -- we are going to learn something about Q of (s,a) -- that is how good is that action from the state.  We landed in s' this time and we received a reward *r* . 
+
+ - Learn Q(s,a) values as you go
+    - Receive a sample (s,a,s’,r)
+    - Consider your old estimate: ***Q(s,a)***
+    - Consider your new sample estimate:
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rd_q_learning_sample.png)
+    - Incorporate the new estimate into a running average:
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_q_learning_interpolation.png)
+
 
 Demo:
 
