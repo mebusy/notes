@@ -213,6 +213,8 @@ PCA 之前，一般要先进行 均值归一化 。
  - 计算 协方差矩阵 sigma的 特征向量 eigen vectors
  
   `[U,S,V]= svd(sigma)`  (octave 奇异值函数,对于正定矩阵,svd比 eig方法更稳定)
+  
+   For positive definite matrices, Σ is Λ and UΣVᵀ is identical to QΛQᵀ. 
 
   U,S,V都是 nxn矩阵
 
