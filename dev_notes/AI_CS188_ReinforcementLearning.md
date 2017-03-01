@@ -94,11 +94,16 @@ Now there are a lot of small points here that are very important like how do you
 
 ### Example : Model-Based Learning 
 
+ - Input Policy π , Assume: λ = 1
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_grid_input_policy.png)
+ - Observed Episodes (Training) , and  Learned Model
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_grid_learnedmodel.png)
+  
+
 Let's say we're in a grid world , and somebody gives us this policy π and so we're going to be following this policy. I'm trying to find out how we know how to act. 
 
 We're going to look at this policy and say 'alright we're going to do this'. We image our γ is 1 so there is no discount to make this example simple. and we have some experiences. 
 
--- pic Episode 1...
 
 4 times playing this game
 
@@ -114,7 +119,7 @@ Similarly EAST from C we know that 3/4 of the time it actually went EAST into D 
 
 So what comes out ? We've learned now a model where we have transitions and reward functions. 
 
--- pic T, R
+see  T, R in the picture.
 
 Of course we've only learned about the things we've actually. But let's set that aside until later. 
 
@@ -137,6 +142,15 @@ There's something else you can do with the samples rather than trying to reconst
 We could do what is called "model-free" approaches here. We average the samples directly giving each sample equal weight. When I do this model-free stuff the averages are unweighted. Why does that work ? Because samples appear with the right frequencies -- ages are more frequent show up in more samples. 
 
 This is the high level view of model-based vs model-free. In model-based you learn the probability distributions and then you reduce it the case of solving a known MDP. In model-free case we just take our sample as they come and average them together. 
+
+ - Goal: Compute expected age of cs188 students
+    - Known P(A) : E[A] =  ∑ₐ P(a)·a
+    - Unknown P(A): instead collect samples [a₁, a₂, … a<sub>n</sub>]
+        - Model Based
+            - P̂(a) = num(a)/N
+            - E[A] ≈  ∑ₐ P̂(a)·a  
+        - Model Free
+            - E[A] ≈ 1/N·∑ᵢ aᵢ 
 
 ## Model-Free Learning
 
