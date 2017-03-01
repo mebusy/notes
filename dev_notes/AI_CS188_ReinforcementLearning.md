@@ -448,11 +448,22 @@ We're going to get some sample on the basis of the action we picked , the key le
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_q_learning_interpolation.png)
 
 
-Demo:
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_q_values_after_100_it.png)
 
-every square on the bottom is bad , and the exit on the right is good. 
+
 
 ## Q-Learning Properties 
+
+ - Amazing result: Q-learning converges to optimal policy -- even if you’re acting suboptimally!
+ - This is called ***off-policy learning***
+ - Caveats:
+    - You have to explore enough
+    - You have to eventually make the learning rate small enough
+    - … but not decrease it too quickly
+    - Basically, in the limit, it doesn’t matter how you select actions (!)
+
+
+
 
 
 
