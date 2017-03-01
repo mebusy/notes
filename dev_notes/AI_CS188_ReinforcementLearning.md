@@ -310,37 +310,36 @@ this update it says take your value and add to it α times the difference betwee
 
 Demo: a = 0.5 , no time step reward.
 
-0
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example0.png)
 
 We are about to do temporal different learning of values. That means we keep a big table of values and they also offer 0 because we have no idea what's going on in this grid. 
 
 The blue dot represens the agent. I'm going to issue commands and the agent will then watch what happends.
 
-1
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example1.png)
  
 I went north. In this version the living reward set to 0 so that we can see how the exit rewards propagate. In this case no update happened because I thought that I was going to receive a total utility of 0 from the start state. I in fact received 0 and I landed in the state where I thought there was 0 left to come. 
 
 So I thought I was going to get a 0 . I do seem to be on track to get 0 , nothing to do. 
 
-2
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example2.png)
 
 Nothing interesting happens util I receive a non-zero reward which I receive not when I enter this right-top square but when I exit it. Right now I think I'm going to get a 0 total future score.  When I tack the exit action I will in fact receive a +1 and then I'll be forced to reconcile the +1 I got with the 0 I thought I was going to get and right now α was set to 0.5 and so the average value will now be 0.5 , and I update my array. 
 
-3
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example3.png)
 
 I play again. What happens when I move into the square left to top-right square ? 
 
-4
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example4.png)
 
 From here I'm about to move east I think I'm going to get a total score of 0. I go east. What did I receive that time step ? 0 . But I landed in the state that looks right now to be worth 0.5. On one hand I thought my total would be 0 , on the other hand this experience says I'm going to get 0 + 0.5 . I average them and I get 0.25.  That's going to continue happening as I exit here that 0.5 approaches 1 because I'm gonna get 1 every time . I is now (0.5+1) /2 = 0.75.
 
-5
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example5.png)
 
 Play again, the values would be  (0+0.25)/2 = 0.13 ,  ( 0.25 + 0.75 ) /2 = 0.5 , ( 0.75+1)/2 = 0.88.
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example6.png)
 
 Every time we enter a non-zero square from a 0-value square, notice that we learn about the square we leave because when I leave this square I'm going to learn that my estimate of 0 isn't the best I can do. I can do better.  
 
@@ -348,9 +347,13 @@ So you learn about ***the state you leave , not the state you land in***.
 
 I'm learning the values of these squares and the values under the policy that I'm executing. What would happen if I went the other way around ? ( move right from 0.13)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example7.png)
+
 When I get to the square down to 0.98 and I go north , even I've never been in the state before and this is my first experience with it as soon as I see that going north lands me at 0.98 , I know that going north is pretty good and so I have an update (0 -> 0.49). That's exactly the effect the direct evaluation didn't have. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example8.png)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example9.png)
 
 ## Exponential Moving Average 
 
