@@ -261,7 +261,7 @@ We already know how to take averages without knowing the weights. We look at sam
 ## Sample-Based Policy Evaluation ?
 
  - We want to improve our estimate of V by computing these averages:
-    - 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_policy_evaluation.png)
  - Idea: Take samples of outcomes s’ (by doing the action!) and average
     - maybe this approach ...
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_wrong_sample_based_pv.png)
