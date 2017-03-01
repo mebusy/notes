@@ -50,9 +50,13 @@ What you don't know is what fast and slow do. So far all you know fast is the be
 
 ## Offline (MDPs) vs. Online (RL)
 
-Offline solution is when you know what your actions will do and in computation in simulation in your head you think about consequences , you realize the jumping into the pit is a bad idea because you know it has negative reward. so you never actually do it. 
+ - Offline Solution
+    - Offline solution is when you know what your actions will do and in computation in simulation in your head you think about consequences , you realize the jumping into the pit is a bad idea because you know it has negative reward. so you never actually do it. 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_online_solution.png)
+ - Online Learning
+    - When you do online learning , you have to actually jump into the pit before you know it is bad. you might imagine that over time this increases the cost of the robots. 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_online_learning.png)
 
-When you do online learning , you have to actually jump into the pit before you know it is bad. you might imagine that over time this increases the cost of the robots. 
 
 ## Model-Based Learning
 
@@ -64,10 +68,11 @@ In model-based learning we reduce the reinforcement learning problem to the prev
 
 So how do we do that ? 
 
-Whan we try to build a model we try to figure out what the transitions and rewards do , and then pretend that's the truth. 
+When we try to build a model we try to figure out what the transitions and rewards do , and then pretend that's the truth. 
  
  - Model-based Idea:
-    - Learn an approximate ...
+    - Learn an approximate model based on experiences
+    - Solve for values as if the learned model were correct
 
 
 So first step is to learn some MDP that we can use to run things like value iteraction. How can we do that ?  We're going to at times find youself in certain state *s* and take certain action *a* -- let's not worry for now about how we decide what action to take. Whenever we're in state *s* and we take action *a* , various things happen. So we end up with various s' outcomes.
@@ -75,6 +80,15 @@ So first step is to learn some MDP that we can use to run things like value iter
 Overtime we count them up -- some of them happen more and some of them happen less. When we take those counts and normalize them we get probabilities. That is our estimate of the transition function for (s,a).  We do that for all (state , action)  pairs. In addition we discover the rewards that are associated with (s,a) and s' whenever we experience that transition.  
 
 So we're going to act for a while , we're gonna accumulate counts of various things , we're gonna turn them into probabilities. Once that's all done we have a transition function T and a rewards function R. They're probably not correct but they are structurally what we need to run things like value iteration. So we learned a MDP. And then we solve it.
+
+ - Step 1: Learn empirical MDP model
+    - Count outcomes s' for each s, a
+    - Normalize to give an estimate of T̂(s,a,s')
+    - Discover each  R̂(s,a,s') when we experience (s, a, s')
+ - Step 2: Solve the learned MDP
+    - For example, use value iteration, as before
+
+
 
 Now there are a lot of small points here that are very important like how do you know how to act , how do you know how many counts you need , how do you know how close you're gonna be. We're not going to get very much into those details now , we'll come back to the idea of how to learn a good model. 
 
