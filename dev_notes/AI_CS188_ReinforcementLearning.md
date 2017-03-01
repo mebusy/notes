@@ -199,14 +199,12 @@ The idea of direct evaluation is super simple. All we're gonna do is watch actio
     - Average those samples
  - This is called direct evaluation
   
-这个算法需要保存 所有的 sample value... 后面有改进方法
 
 ### Example: Direct Evaluation 
 
  ![][1]
 
  ![][2]
-
 
 
 Remember: this is passive reinforcement learning. We're only doing policy evaluation. 
@@ -223,6 +221,9 @@ Episode 3: +8 from E
 
 Episode 4: -12 from E
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_direct_evaluation_output.png)
+
+
 ---
 
 What we learned here?  Will this process work in the end ?  Sure. We're going to execute over and over and over from every state will eventually learn that some of states are good and some of the states are bad. Eventually they'll all be right. Because each state will eventually have a bunch of executions and the averages are work out in the end. 
@@ -233,19 +234,29 @@ So somehow even though this is going to work in the limit , we've thrown out a h
 
 ## Problems with Direct Evaluation 
 
-...
+ - What’s good about direct evaluation?
+    - It’s easy to understand
+    - It doesn’t require any knowledge of T, R
+    - It eventually computes the correct average values, using just sample transitions
 
 They are not optimal values , they are values for the policy being executed ,  it does the right thing in the end.
 
-Bad:
+ - What bad about it?
+    - It wastes information about state connections
+    - Each state must be learned separately
+    - So, it takes a long time to learn
+
 
 We waste information about how the states connect up to each other. If we know the state is good and we know another state leads to it , that state should be good as well. Because we're learning each state separately , we're failing to exploit information across episodes. 
 
 ## Why Not Use Policy Evaluation ?
 
-...
+Policy Evaluation exploited the connections between the states , Unfortunately, we need T and R to do it!
 
 We already know how to take averages without knowing the weights. We look at samples of the things we're average and we add up those samples with equal weight.  How can we turn that into an algorithm ?
+
+ - Key question: how can we do this update to V without knowing T and R?
+    - In other words, how to we take a weighted average without knowing the weights ?
 
 ## Sample-Based Policy Evaluation ?
 
