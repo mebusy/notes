@@ -385,19 +385,37 @@ This idea of learning Q values make action selection model-free as well because 
 
 ## Active Reinforcement Learning 
 
-ARL  You have to try things. Sometimes when you try something bad you get a negative reward and you keep on going. You probably won't try that thing again but you paid the price. 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_arl.png)
+
+You have to try things. Sometimes when you try something bad you get a negative reward and you keep on going. You probably won't try that thing again but you paid the price. 
 
 In full reinforcement learning we would like to be able to compute optimal policies like value iteration did. Of course we're gonna make mistakes along the way that's going to a notion ,that we'll talk about later, called regret.  But we'd like to eventually learn the optimal thing.   
 
 ---
 
-trade-off :  of doing things that are known to be pretty good  versus learning about things like what happens when I jump off the cliff. 
+
+ - Full reinforcement learning: optimal policies (like value iteration)
+    - You don’t know the transitions T(s,a,s’)
+    - You don’t know the rewards R(s,a,s’)
+    - You choose the actions now
+    - ***Goal: learn the optimal policy / values***
+ - In this case:
+    - Learner makes choices!
+    - Fundamental tradeoff:  exploitation vs. exploration 
+        - of doing things that are known to be pretty good  versus learning about things like what happens when I jump off the cliff. 
+    - This is NOT offline planning!  You actually take actions in the world and find out what happens…
+
 
 
 ## Detour: Q-Value Iteration
 
+ - Value iteration: find successive (depth-limited) values
+    - Start with V₀(s) = 0, which we know is right
+    - Given V<sub>k</sub>, calculate the depth k+1 values for all states:
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_calc_formular.png)
 
-...
+
+
 
 We can't do this update with samples because it's not an average but Max. And the only thing we can do with samples is computing averages of things. 
 
