@@ -463,30 +463,9 @@ We're going to get some sample on the basis of the action we picked , the key le
     - Basically, in the limit, it doesn’t matter how you select actions (!)
 
 
+---
+---
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
- 
- 
 
 # Reinforcement Learning II
 
