@@ -565,8 +565,21 @@ The V matrix must be the eigenvector matrix for AᵀA. The diagonal matrix Σᵀ
 **Remark 5** There is the reason that Avⱼ = σⱼuⱼ. Start with AᵀAvⱼ = σⱼ²vⱼ:
 
 ```
-Multiply by A => AAᵀAvⱼ = σⱼ²Avⱼ    (2)
+Multiply by 
+ 
+  AAᵀAvⱼ = σⱼ²Avⱼ    (2)
 ```
+
+This says that Avⱼ is an eigenvector of AAᵀ.  We just moved parentheses to (AAᵀ)(Avⱼ). The length of this eigenvector Avⱼ is σⱼ, because 
+
+```
+vᵀAᵀAvⱼ = σⱼ²vⱼᵀvⱼ  gives ‖Avⱼ‖² = σⱼ².
+```
+
+So the unit eigenvector Avⱼ/σⱼ = uⱼ. *** In other words, AV = U∑***.
+
+
+
 
 
 
