@@ -357,13 +357,31 @@ When I get to the square down to 0.98 and I go north , even I've never been in t
 
 ## Exponential Moving Average 
 
+ - Exponential moving average 
+    - The running interpolation update:
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_interpolation_update.png)
+    - Makes recent samples more important:
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rd_tdl_xn.png)
+    - Forgets about the past (distant past values were wrong anyway)
+ - Decreasing learning rate (alpha) can give converging averages
+
+
 ## Problems with TD Value Learning 
 
-TD value learning is not going to work for the general problem of active reinforcement learning where we want to not only evaluate but also choose actions . Why is that? Well let's imagine we run this thing and we've got this big table of state values. For every state I can tell you according the policy we've been running it's worth 7.0 in total and so on. The problem is if we want to turn those values into a policy and in particular will want to turn them into a new policy which is hopefully better than the old policy. Now we're sunk. We know how to produce a policy from values but it involves one step of expectimax. We would say the policy is whatever action achieved the largest Q value for that state. But of course those Q values involve an average of their outcomes and we can't do that because again we don't have T & R. 
+TD value learning is not going to work for the general problem of active reinforcement learning where we want to not only evaluate but also choose actions . 
+
+Why is that? Well let's imagine we run this thing and we've got this big table of state values. For every state I can tell you according the policy we've been running it's worth 7.0 in total and so on. The problem is if we want to turn those values into a policy and in particular will want to turn them into a new policy which is hopefully better than the old policy. Now we're sunk. We know how to produce a policy from values but it involves one step of expectimax. We would say the policy is whatever action achieved the largest Q value for that state. But of course those Q values involve an average of their outcomes and we can't do that because again we don't have T & R. 
 
 The idea here is that if we want to be able to do action selection as well we sould be learning not just the values as we have been but the Q values. In fact this is why we even have a notion of Q values because they're critical for choosing action as in reinforcement learning. 
 
 This idea of learning Q values make action selection model-free as well because we just look at the Q values and choose whichever one is best. 
+
+ - TD value leaning is a model-free way to do policy evaluation, mimicking Bellman updates with running sample averages
+ - However, if we want to turn values into a (new) policy, we’re sunk:
+ - Idea: learn Q-values, not values
+ - Makes action selection model-free too!
+
+
 
 ## Active Reinforcement Learning 
 
