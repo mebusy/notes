@@ -27,4 +27,8 @@ One key to this chapter is to see the geometric meaning of ***linear inequalitie
 
 Figure 8.1 would look almost the same in three dimensions. The boundary becomes a plane like x + 2y + z = 4, and above it is the halfspace x + 2y + z ≥ 4. In n dimensions, the "plane" has dimension n - 1.  
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F8.1.png)
+
+> Figure 8.1 Equations give lines and planes. Inequalities give halfspaces.
+
 
