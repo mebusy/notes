@@ -1,6 +1,16 @@
+...menustart
 
+ - [8 linear Prograffiffliog and Game Theory](#adb23269688b0aa7f8855b8987514b14)
+	 - [8.1  LINEAR INEQUALITIES](#4d62bef35d1beae693322a0f9c87ffb7)
+
+...menuend
+
+
+
+<h2 id="adb23269688b0aa7f8855b8987514b14"></h2>
 # 8 linear Prograffiffliog and Game Theory
 
+<h2 id="4d62bef35d1beae693322a0f9c87ffb7"></h2>
 ## 8.1  LINEAR INEQUALITIES
 
 Algebra is about equations, and analysis is often about inequalities. But I have realized that this chapter is a counterexample: ***linear programming is about inequalities***,  but it is unquestionably a part of linear algebra.  It is also extremely useful -- business decisions are more likely to involve linear programming than determinants or eigenvalues.

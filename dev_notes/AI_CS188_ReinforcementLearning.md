@@ -1,4 +1,32 @@
+...menustart
 
+ - [Reinforcement Learning I](#222b7b1e6c2303acdbfb4c0dbc31aeb8)
+	 - [Reinforcement Learning](#44f8995701f5e6cc074e161e0e2f6f24)
+	 - [Offline (MDPs) vs. Online (RL)](#fa7a57352e7766a41e16ad0c7512f002)
+	 - [Model-Based Learning](#59625ed88ee3303c9d5bbb05dcd878d1)
+		 - [Example : Model-Based Learning](#649cab67d1a5faba80f08355ba3f468b)
+		 - [Example: Expected Age](#ee455b40b88c7bf5b65e5d7b95ebaddc)
+	 - [Model-Free Learning](#873e73c28eb2e383f892a21d8ff49827)
+	 - [Passive Reinforcement Learning](#dd0e9af361861e9d611430c8132e7d5d)
+	 - [Direct Evaluation](#6be4a86e5c5f149ec4fe321811c28f03)
+		 - [Example: Direct Evaluation](#539ea74ae630f5a093e0d00dd1d6d4c3)
+	 - [Problems with Direct Evaluation](#47acc2a68b2bdf55855a781553d71aa6)
+	 - [Why Not Use Policy Evaluation ?](#09c2a431928cce9d30f7b080b8520765)
+	 - [Sample-Based Policy Evaluation ?](#1249deda865401b3c63bbe67c870bdd6)
+	 - [Temporal Difference Learning](#feec14513956127a8ae7c515e76e1928)
+	 - [Exponential Moving Average](#f014b2f80d6cee4d42ed6c19b0fdaadb)
+	 - [Problems with TD Value Learning](#1f7e6611a83a4f6ff38b6ad2c39e9d76)
+	 - [Active Reinforcement Learning](#4257de889e9b4c2ff394f77e8c8f2a3d)
+	 - [Detour: Q-Value Iteration](#9c44f6960e40910e0ab9dd050471404e)
+	 - [Q-Learning](#e4d17333d58040b1db710abe36cd5aec)
+	 - [Q-Learning Properties](#f87765bc4a6754139d81d47c5c59fc65)
+ - [Reinforcement Learning II](#03bcb6b7c0cf2da8df829ce2604b1487)
+
+...menuend
+
+
+
+<h2 id="222b7b1e6c2303acdbfb4c0dbc31aeb8"></h2>
 # Reinforcement Learning I
 
 The basic idea is you have an agent who's acting as always. The agent has actions available to it and choose an action. The environment then does what it always does which is it resolves in some way that's not entirely determined by the action. 
@@ -27,6 +55,7 @@ When you take an action you see what happens but you don't see everything that m
     
 
 
+<h2 id="44f8995701f5e6cc074e161e0e2f6f24"></h2>
 ## Reinforcement Learning
 
 We don't know the transition function , we don't know the rewards , that is even though based on my state in my action there's certain set of outcomes with a certain probability distribution , I don't know which probability and distribution it is. The only way we really know  what our actions do and where the rewards come from , is to try things out and then learn from our samples that we experience. 
@@ -48,6 +77,7 @@ What you don't know is what fast and slow do. So far all you know fast is the be
     - Must actually try actions and states out to learn
     
 
+<h2 id="fa7a57352e7766a41e16ad0c7512f002"></h2>
 ## Offline (MDPs) vs. Online (RL)
 
  - Offline Solution
@@ -58,6 +88,7 @@ What you don't know is what fast and slow do. So far all you know fast is the be
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_online_learning.png)
 
 
+<h2 id="59625ed88ee3303c9d5bbb05dcd878d1"></h2>
 ## Model-Based Learning
 
 The question is how are we going to be able to learn how to act when we don't know what the actions do or what rewards will get. 
@@ -92,6 +123,7 @@ So we're going to act for a while , we're gonna accumulate counts of various thi
 
 Now there are a lot of small points here that are very important like how do you know how to act , how do you know how many counts you need , how do you know how close you're gonna be. We're not going to get very much into those details now , we'll come back to the idea of how to learn a good model. 
 
+<h2 id="649cab67d1a5faba80f08355ba3f468b"></h2>
 ### Example : Model-Based Learning 
 
  - Input Policy π , Assume: λ = 1
@@ -127,6 +159,7 @@ Now we have a MDP,  maybe a wrong  MDP  , but we still know how to solve it.
 
 ---
 
+<h2 id="ee455b40b88c7bf5b65e5d7b95ebaddc"></h2>
 ### Example: Expected Age 
 
 My goal was to compute the average age of people in cs188 class. So I want to compute the expected age -- the weighted average. How would I do that. We all know how to compute expectations. For example if I know the probability distribution over ages -- how many people are each age -- then I would have a straight forward way of computing this weighted average. The way I do that is I say "well , the expectation of this random variable A , I sum over all of the possible ages weighted by its probability". Easy ! In fact this kind of expectation  is all really going on in these MDPs. 
@@ -152,6 +185,7 @@ This is the high level view of model-based vs model-free. In model-based you lea
         - Model Free
             - E[A] ≈ 1/N·∑ᵢ aᵢ 
 
+<h2 id="873e73c28eb2e383f892a21d8ff49827"></h2>
 ## Model-Free Learning
 
 In model-free learning we don't construct a model of the transition function. What we do is we take actions , and every time we take an action we compare what we thought was going to happen to what actually did happen. Whenever something is better or worse than what we expected we adjust our values up and down. 
@@ -159,6 +193,7 @@ In model-free learning we don't construct a model of the transition function. Wh
 So what we track in a model-free approach is the values of interest themselves , not the transition functins and the rewards.  
 
 
+<h2 id="dd0e9af361861e9d611430c8132e7d5d"></h2>
 ## Passive Reinforcement Learning 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_passive_reinforcement_learning.png)
@@ -186,6 +221,7 @@ This is policy evaluation. We're watching or executing a fixed policy and we're 
     - This is NOT offline planning!  You actually take actions in the world.
 
 
+<h2 id="6be4a86e5c5f149ec4fe321811c28f03"></h2>
 ## Direct Evaluation
 
 The simplest way you could imagine doing model-free is what's called ***direct evaluation***.
@@ -200,6 +236,7 @@ The idea of direct evaluation is super simple. All we're gonna do is watch actio
  - This is called direct evaluation
   
 
+<h2 id="539ea74ae630f5a093e0d00dd1d6d4c3"></h2>
 ### Example: Direct Evaluation 
 
  ![][1]
@@ -232,6 +269,7 @@ But at least for now we've learned something that's slightly insane. Why is that
 
 So somehow even though this is going to work in the limit , we've thrown out a huge amount of information about how the states are connected together. 
 
+<h2 id="47acc2a68b2bdf55855a781553d71aa6"></h2>
 ## Problems with Direct Evaluation 
 
  - What’s good about direct evaluation?
@@ -249,6 +287,7 @@ They are not optimal values , they are values for the policy being executed ,  i
 
 We waste information about how the states connect up to each other. If we know the state is good and we know another state leads to it , that state should be good as well. Because we're learning each state separately , we're failing to exploit information across episodes. 
 
+<h2 id="09c2a431928cce9d30f7b080b8520765"></h2>
 ## Why Not Use Policy Evaluation ?
 
 Policy Evaluation exploited the connections between the states , Unfortunately, we need T and R to do it!
@@ -258,6 +297,7 @@ We already know how to take averages without knowing the weights. We look at sam
  - Key question: how can we do this update to V without knowing T and R?
     - In other words, how to we take a weighted average without knowing the weights ?
 
+<h2 id="1249deda865401b3c63bbe67c870bdd6"></h2>
 ## Sample-Based Policy Evaluation ?
 
  - We want to improve our estimate of V by computing these averages:
@@ -274,6 +314,7 @@ So what do we need to do ? We need somehow be satisfied with the one-sample we g
 
 So that a big idea of --
 
+<h2 id="feec14513956127a8ae7c515e76e1928"></h2>
 ## Temporal Difference Learning 
 
  - Big idea: learn from every experience!
@@ -355,6 +396,7 @@ When I get to the square down to 0.98 and I go north , even I've never been in t
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example9.png)
 
+<h2 id="f014b2f80d6cee4d42ed6c19b0fdaadb"></h2>
 ## Exponential Moving Average 
 
  - Exponential moving average 
@@ -366,6 +408,7 @@ When I get to the square down to 0.98 and I go north , even I've never been in t
  - Decreasing learning rate (alpha) can give converging averages
 
 
+<h2 id="1f7e6611a83a4f6ff38b6ad2c39e9d76"></h2>
 ## Problems with TD Value Learning 
 
 TD value learning is not going to work for the general problem of active reinforcement learning where we want to not only evaluate but also choose actions . 
@@ -383,6 +426,7 @@ This idea of learning Q values make action selection model-free as well because 
 
 
 
+<h2 id="4257de889e9b4c2ff394f77e8c8f2a3d"></h2>
 ## Active Reinforcement Learning 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_arl.png)
@@ -407,6 +451,7 @@ In full reinforcement learning we would like to be able to compute optimal polic
 
 
 
+<h2 id="9c44f6960e40910e0ab9dd050471404e"></h2>
 ## Detour: Q-Value Iteration
 
  - Value iteration: find successive (depth-limited) values
@@ -426,6 +471,7 @@ We can't do this update with samples because it's not an average but Max. And th
 
 ---
 
+<h2 id="e4d17333d58040b1db710abe36cd5aec"></h2>
 ## Q-Learning
 
 Q-Learning is the key algorithm that allows us to do a lot of great things with reinforcement learning. 
@@ -452,6 +498,7 @@ We're going to get some sample on the basis of the action we picked , the key le
 
 
 
+<h2 id="f87765bc4a6754139d81d47c5c59fc65"></h2>
 ## Q-Learning Properties 
 
  - Amazing result: Q-learning converges to optimal policy -- even if you’re acting suboptimally!
@@ -467,6 +514,7 @@ We're going to get some sample on the basis of the action we picked , the key le
 ---
 
 
+<h2 id="03bcb6b7c0cf2da8df829ce2604b1487"></h2>
 # Reinforcement Learning II
 
 

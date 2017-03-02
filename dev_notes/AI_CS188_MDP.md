@@ -24,6 +24,7 @@
 	 - [Value Iteration](#4b0084dc52868eb35410667a6679229a)
 		 - [Example: Value Iteration](#d5cac644e6c3bb194c235c0b55977d1d)
 	 - [Convergence](#8645457c64703c956325a6f44824acdb)
+		 - [Value Iteration Convergence](#9223390b107c103d49be9c7fbe9cc601)
 	 - [Recap: MPDS](#6360b3155b74ca6b340e7332e5354ede)
 	 - [Policy Methods](#0d2fefe88e5d008dbb325c962c5b6f0e)
 	 - [Policy Evaluation](#abdad08f23e1ad71d82cbdd56cfcdd30)
@@ -502,6 +503,7 @@ But there are cases where we can show that it will converge.
 
 ---
 
+<h2 id="9223390b107c103d49be9c7fbe9cc601"></h2>
 ### Value Iteration Convergence
 
  - 1 action: go

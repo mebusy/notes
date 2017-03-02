@@ -22,6 +22,26 @@
 		 - [数数如何应用在算机率上](#587045c58639efa8ee1a5a3b582c6112)
 		 - [N球放M盒问题](#0760fa0f6cf4fe4a2eb599fb87be9867)
 		 - [Quiz:](#db021f4670ba22ce77ef0acb0aba7ba0)
+	 - [4.1 随机变数 (RANDOM VARIABLE)](#a4c3bd594c5ea4f3fc9fcce3586fbf18)
+		 - [探究它的本质!](#a33ac1d92bc31a31da5665a97aadb111)
+		 - [随机变数的种类](#e644c0d51064d3032fe3d27919ffe3da)
+		 - [神马叫可数?神马叫不可数?](#5bf91f651f94a7d5ba4a11ac547d51d6)
+		 - [随机变量的函数?](#1665de2424d65db6d533386753911167)
+	 - [4.2 累积分布函数 CDF (CUMULATIVE DISTRIBUTION FUNCTION)](#d6fd0c71fd9be392edd5a91921b0eaf3)
+		 - [CDF 有什么用?](#c3d3b89aedf13c4a6de6f558a6a0cfa9)
+		 - [离散随机变数的 CDF 长怎样?](#917493f1d72a878df54e59714b677430)
+		 - [连续随机变数的 CDF 长怎样?](#7f7cd8bcf7af60bb124933e0f7db3150)
+		 - [CDF 的性质](#d3f28a5c19885b5e4ef1cb86d56b356b)
+	 - [4.3 机率质量函数 PMF (PROBABILITY MASS FUNCTION)](#df629b43f1e17bdd8b59ff70feb570a8)
+		 - [PMF 跟 CDF 的关系?](#a8699842209b391b17b7623a4c1b85d8)
+		 - [机率分布 (Probability Distribution)](#5a70965e6e318af45220c5484c2b8dc4)
+	 - [4.4 离散机率分布 I (DISCRETE PROBABILITY DISTRIBUTIONS)](#68e8045f19a785d2e1b77ac7870d2076)
+		 - [Bernoulli 机率分布](#ed43ca1c9bb0671f81bb3bdeaf8c6095)
+		 - [Binomial 机率分布](#e0dc24e9ac7e53085bd7bc2a2775917e)
+		 - [Uniform 机率分布](#f7bf1cb803a0ab0539a6dc3ed526dd4f)
+		 - [Geometric 机率分布](#7903bb94dad83aeea3bf8559e6cdd143)
+		 - [Pascal 机率分布](#f7b44a579af87c25b4b1cf0b98602a56)
+		 - [Poisson 机率分布](#66e278878307932e688a55d600961fdf)
 
 ...menuend
 
@@ -509,6 +529,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
 
 ---
 
+<h2 id="a4c3bd594c5ea4f3fc9fcce3586fbf18"></h2>
 ## 4.1 随机变数 (RANDOM VARIABLE)
 
  - 考虑前面费雯兄的例子, 若根据统计，费雯兄一楼推文 不同型态只有4种, 若
@@ -534,6 +555,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
  - 前面例子中的 𝑿 就是所谓的 ***随机变数***
  - 随机变数通常都是用 ***大写的英文字母*** 表示!
 
+<h2 id="a33ac1d92bc31a31da5665a97aadb111"></h2>
 ### 探究它的本质!
 
  - 随机变量的本质是什么?
@@ -542,6 +564,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
  - 随机变数 𝑿 其实是一种函数，喂 𝑿 吃一个 outcome ，就吐出一个对应的数字。数学上的表示法:
     - X: S → ℝ
 
+<h2 id="e644c0d51064d3032fe3d27919ffe3da"></h2>
 ### 随机变数的种类
 
  - 离散随机变数 (Discrete R. V.)
@@ -553,6 +576,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
     - 连续 R.V. 的值是有无穷多个，而且是「不可数」的无穷多个
 
 
+<h2 id="5bf91f651f94a7d5ba4a11ac547d51d6"></h2>
 ### 神马叫可数?神马叫不可数?
 
  - 重要性质:𝟎 到 𝟏 之间的所有数字的集合是不可数的!
@@ -560,6 +584,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
  - 「长度为一的线段上的点」跟「边长为一的正方形上的点」， 这两个集合，哪一个点的数量比较多?  一样多
  - 因为都可以找到一对一对应的方法。
 
+<h2 id="1665de2424d65db6d533386753911167"></h2>
 ### 随机变量的函数?
 
  - 阿宅若看到店员微笑，就会点$𝟐𝟎𝟎 的套餐。如果店员不笑，他就买 $𝟏𝟓 的饮料。 请问阿宅的消费金额 𝑾 是随机变数吗?
@@ -570,6 +595,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
 
 ---
 
+<h2 id="d6fd0c71fd9be392edd5a91921b0eaf3"></h2>
 ## 4.2 累积分布函数 CDF (CUMULATIVE DISTRIBUTION FUNCTION)
 
  - 对任一个随机变数 𝑿 ，我们定义 其 CDF 为函数:
@@ -579,6 +605,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
  - Ex 幸运之轮  F<sub>X</sub>(0.5) = P(X≤0.5) = 1/2
  
  
+<h2 id="c3d3b89aedf13c4a6de6f558a6a0cfa9"></h2>
 ### CDF 有什么用?
  
  - 最有用的用途: 计算 𝑿 落在某范围内的机率
@@ -588,6 +615,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
  - P( a < X ≤ b ) = F<sub>X</sub>(b) - F<sub>X</sub>(a)
  - P( a ≤ X ≤ b ) = F<sub>X</sub>(b) - F<sub>X</sub>(a) + P(X=a)
 
+<h2 id="917493f1d72a878df54e59714b677430"></h2>
 ### 离散随机变数的 CDF 长怎样?
 
  - Ex:𝑿为骰子的点数，故𝑷(𝑿=𝟏) =𝑷(𝑿=𝟐) =𝑷(𝑿=𝟑) =𝑷(𝑿=𝟒) =𝑷(𝑿=𝟓) =𝑷(𝑿=𝟔) =𝟏/𝟔
@@ -596,6 +624,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
  - P( 3< X≤ 5 ) = F<sub>X</sub>(5) - F<sub>X</sub>(3) = 5/6 - 3/6 = 2/6
  - P( 3< X< 5 ) = P( 3< X≤ 5⁻ ) = F<sub>X</sub>(5⁻) - F<sub>X</sub>(3)  = F<sub>X</sub>(5) - P(X=5) - F<sub>X</sub>(3) = 1/6
 
+<h2 id="7f7cd8bcf7af60bb124933e0f7db3150"></h2>
 ### 连续随机变数的 CDF 长怎样?
 
  - Ex: 𝑿 为幸运之轮所停下的数字，X ∈ [ 0,1 )    
@@ -605,6 +634,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
  - P( 0.3< X< 0.5 ) = F<sub>X</sub>(0.5⁻) - F<sub>X</sub>(0.3) = 0.5 - 0.3 = 0.2
 
 
+<h2 id="d3f28a5c19885b5e4ef1cb86d56b356b"></h2>
 ### CDF 的性质
 
  - 离散随机变数之CDF:
@@ -619,6 +649,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
  
 ---
 
+<h2 id="df629b43f1e17bdd8b59ff70feb570a8"></h2>
 ## 4.3 机率质量函数 PMF (PROBABILITY MASS FUNCTION)
 
  - 只有 离散随机变数 有 PMF
@@ -628,6 +659,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
  - Ex: 𝑿 为公平骰子之点数
     - p<sub>X</sub>(3) = P(X=3) = 1/6
 
+<h2 id="a8699842209b391b17b7623a4c1b85d8"></h2>
 ### PMF 跟 CDF 的关系?
 
  - PMF -> CDF
@@ -636,6 +668,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
     - P<sub>X</sub>(x) = F<sub>X</sub>(x⁺) - F<sub>X</sub>(x⁻)
 
 
+<h2 id="5a70965e6e318af45220c5484c2b8dc4"></h2>
 ### 机率分布 (Probability Distribution)
 
  - 任何一个 PMF(或是之后介绍的 PDF)都称作是一种 ***机率分布*** (将总和为 𝟏 的机率分布在点上之故)
@@ -643,6 +676,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
 
 ---
 
+<h2 id="68e8045f19a785d2e1b77ac7870d2076"></h2>
 ## 4.4 离散机率分布 I (DISCRETE PROBABILITY DISTRIBUTIONS)
  
  - 观察一下
@@ -651,6 +685,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
  - 𝟏 次实验，𝟐 种结果。 在意某结果发生否  Bernoulli 机率分布
     
 
+<h2 id="ed43ca1c9bb0671f81bb3bdeaf8c6095"></h2>
 ### Bernoulli 机率分布
 
  - PMF: 若实验成功机率为 𝒑 , 作 𝟏 次实验， 𝑿 表成功次数
@@ -659,6 +694,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_bernoulli.png)
 
 
+<h2 id="e0dc24e9ac7e53085bd7bc2a2775917e"></h2>
 ### Binomial 机率分布
 
  - 观察一下
@@ -674,6 +710,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_binomial2.png)
 
 
+<h2 id="f7bf1cb803a0ab0539a6dc3ed526dd4f"></h2>
 ### Uniform 机率分布
 
  - 观察一下        
@@ -687,6 +724,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_uniform1.png)
 
 
+<h2 id="7903bb94dad83aeea3bf8559e6cdd143"></h2>
 ### Geometric 机率分布
 
  - 观察一下
@@ -703,6 +741,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
  - 有失忆性！
 
 
+<h2 id="f7b44a579af87c25b4b1cf0b98602a56"></h2>
 ### Pascal 机率分布
 
  - 观察一下   
@@ -720,6 +759,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_pascal.png)
 
 
+<h2 id="66e278878307932e688a55d600961fdf"></h2>
 ### Poisson 机率分布
  
  - 观察一下  

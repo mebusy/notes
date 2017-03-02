@@ -52,7 +52,7 @@
 
  |   |    |   | 
 --- | --- | --- | ---
-[随机数](https://github.com/mebusy/notes/blob/master/dev_notes/Dev_Random.md) | [微积分总览](https://github.com/mebusy/notes/blob/master/dev_notes/微积分总览.md) | [Tricks](https://github.com/mebusy/notes/blob/master/dev_notes/Tricks.md) | 
+[随机数](https://github.com/mebusy/notes/blob/master/dev_notes/Dev_Random.md) | [微积分总览](https://github.com/mebusy/notes/blob/master/dev_notes/微积分总览.md) | [Tricks](https://github.com/mebusy/notes/blob/master/dev_notes/Tricks.md) |  [台大概率笔记](https://github.com/mebusy/notes/blob/master/dev_notes/TaiwanU_probability.md)
 
 
 

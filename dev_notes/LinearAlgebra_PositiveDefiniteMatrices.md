@@ -11,6 +11,11 @@
 		 - [The Law of Inertia](#7d343fcdccb1d971e655a18f0ae0cb60)
 		 - [The Generalized Eigenvalue Problem (TODO)](#f2b49424030a50bcf8c0ca9cd03ed896)
 	 - [6.3 SINGULAR VALUE DECOMPOSITION](#d8d1378d745dd94a25a4c239c7c6702b)
+		 - [Applications of the SVD](#21c1532cf380b35ae96c0d9ac3e130b0)
+			 - [1. Image processing](#d16545b4b82233fb918b1cb0cb4c09d1)
+			 - [4. Least squares  TODO](#9cd2bf30f6aa7178d87488ff1960bc07)
+	 - [6.4 MINIMUM PRINCIPLES  TODO](#fff4369d5b0d5f3458ca8c052d7c2174)
+	 - [6.5 THE FINITE ELEMENT METHOD  TODO](#913394de1beecf34e858dc7068c2ee86)
 
 ...menuend
 
@@ -646,6 +651,7 @@ V =
 
 ---
 
+<h2 id="21c1532cf380b35ae96c0d9ac3e130b0"></h2>
 ### Applications of the SVD
 
 The SVD is terrific for numerically stable computations, because U and V are orthogonal matrices. 
@@ -655,6 +661,7 @@ They never change the length of a vector. Since multiplication by U cannot destr
 Of course ∑ could multiply by a large σ or (more commonly) divide by a small σ, and overflow the computer. But still ∑ is as good as possible.It reveals exactly what is large and what is small.  The ratio σ<sub>max</sub> / σ<sub>min</sub> is the ***condition number*** of an invertible n by n matrix. The availability of that information is another reason for the popularity of the SVD. We come back to this in the second application.
 
 --- 
+<h2 id="d16545b4b82233fb918b1cb0cb4c09d1"></h2>
 #### 1. Image processing
 
 Suppose a satellite takes a picture, and wants to send it to Earth. The picture may contain 1000 by 1000 "pixels"-a million little squares , each with a definite color. Do we must send back 1,000,000 numbers?
@@ -674,6 +681,7 @@ The cost is in computing the SVD -- this has become much more efficient, but it 
 只是为了用图像压缩来介绍 SVD 的性质，实际使用中常见的图片格式（png，jpeg等）其压缩原理更复杂，且效果往往更好.
 
 
+<h2 id="9cd2bf30f6aa7178d87488ff1960bc07"></h2>
 #### 4. Least squares  TODO
 
 For a rectangular system Ax = b, the least-squares solution comes from the normal equations AᵀAx̂ = Aᵀb. 
@@ -694,8 +702,10 @@ TODO
 
 ---
 
+<h2 id="fff4369d5b0d5f3458ca8c052d7c2174"></h2>
 ## 6.4 MINIMUM PRINCIPLES  TODO
 
+<h2 id="913394de1beecf34e858dc7068c2ee86"></h2>
 ## 6.5 THE FINITE ELEMENT METHOD  TODO
 
 

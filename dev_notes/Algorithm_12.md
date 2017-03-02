@@ -15,6 +15,7 @@
 		 - [* Karatsuba算法 快速乘法](#6161458df6f5faaf20aa9e3c9b2357fa)
 		 - [* Merge sort 归并排序](#2c25ac4f1d4c0332ec7361b4a588027c)
 			 - [Running time](#2dffdee1d503567d43c631986c599012)
+			 - [Mergesort: practical improvements](#f1579c6456d1081d1fb1fab0538c9fd0)
 			 - [Asymptotic analysis 渐近分析](#a3b94ca02e9a48292c9644ca761f6370)
 				 - [Big-Oh](#fede0c757a997bccb043b815fae4b9c0)
 				 - [Big Omega Ω](#daa4de82b37d76981d80c7ccbacabc06)
@@ -263,6 +264,7 @@ recursion tree: 把 算法过程，用一颗`树`的结构表示出来。分治�
 
 Total Runing time = 6n x (log₂n +1) = `6n·log₂n + 6n` .
 
+<h2 id="f1579c6456d1081d1fb1fab0538c9fd0"></h2>
 #### Mergesort: practical improvements
 
  - Mergesort has too much overhead for tiny subarrays
