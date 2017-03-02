@@ -508,6 +508,7 @@ We're going to get some sample on the basis of the action we picked , the key le
     - You have to eventually make the learning rate small enough
     - … but not decrease it too quickly
     - Basically, in the limit, it doesn’t matter how you select actions (!)
+        - as long as you basically try everthing all the time.
 
 
 ---
@@ -516,6 +517,176 @@ We're going to get some sample on the basis of the action we picked , the key le
 
 <h2 id="03bcb6b7c0cf2da8df829ce2604b1487"></h2>
 # Reinforcement Learning II
+
+## Exploration vs. Exploitation 
+
+This brings us to one of the most important ideans in RL. That is because you want to do the opimal thing but you don't know what it is yet , you have the inevitable trade-off between exploration where you try things -- which may of course be disastrous -- and exploitation where you do the things which currently appear to be good.
+
+You meet this all the time in your daily life.  Some new restaurant opens and you have a choice. You can go to your favorite place which you know will bring you good rewards or you can try the new thing which is probably bad but may be your favorite restaurant. So inevitably the outcome is you have to try some stuff and that means you have to make some mistakes. 
+
+## How To Explore ?
+
+Q-learning did not specify how we select actions. It just required that they have sufficient variety to converge to the optimal policy and q values. Now we're taling about how to select actions in a way that will enable q-learning to its magic. 
+
+ε-greedy
+
+Which means we often go to our favorite place but every now and then when the coin comes up random  we try something at random. 
+
+Problems  Example
+
+ε: 0.8   
+
+It's lot exploration.  And it's not however a lot of progress. Now with this work q-larning works just fine with lots of random actions, just doesn't necessarily work quickly. 
+
+skipped a 1M steps
+
+Now it actually turns out that this bot has had a lot of experiences since I fast-forward it. Presumably it should have learned something. why is it not making any progress (依旧原地尝试) ?   Well we're forcing it to act randomly 80% of the time. If whenever you walk your left leg , 80% of time you flew out at some random angle , you wouldn't make fast progress. 
+
+What happens if I turn ε down ? Turn ε to 0 --  just let it go. Be optimal .  Well it's not so bad. 
+
+So Q-learning learned the right thing but the exploration was preventing you from doing it. There were a couple issues there. 
+
+One issue is you do eventually explore the space you eventually learn the right thing but you still kee trashing around if you keep ε high. So you have to stop exploring so much random. Eventually you would have to stop doing so exploration and allow your self to exploit this optimal policy you learned. 
+
+Another problem with ε-greedy is that kind of the exploration is unstructured. you try random things whether you need or not even if you know what the all actions do. If you know what all the actions do you shouldn't necessarily be exploring anymore. 
+
+So one solution here is we just lower ε over time , and let the randomness decrease. But there are better ways. One simple one is called ***exploration functions***.  
+
+## Exploration Functions 
+
+When should we explore ?  Well random actions explore a fixed amount and the kind of explore uniformly everywhere. Every state has an equal chance of doing an exploration action.  Here's a better idea:  why don't we think about our actions and thereby q-values  as being something we're trying to learn ?  
+
+Now sometimes we know what they are. When we know what they are we don't have to try them anymore.  You got food poisoning a couple times and you just stopped. On the other hand when we don't know something and our uncertainty is high it should be a pretty high priority to figure that out right now.  So when the restaurant opens you try it because your uncertainty is high. Once you've tried it a couple times now you know.
+
+So how can we encode this?  we'd like something that forces us to explore whose badness is not yet established but eventually stopped.  The basic idea here is "in the face of uncertainty you should have optimism".  So fly into those unknown caves and see what's in their optimism. 
+
+---
+
+Optimism shouldn't last forever. So we might have a function like this. Here's a very crude way of doing it but this basically accomplishes the goal I sektched. Which is rather than looking at just utilities of Q-status or states, we have a function which considers guess at the utility you  and the number of times we've been there. And for a q-state  number of times we've been there means the number of we've tried that action out.  So we take the utility and we add to it a bonus that decreases as we visit the state more times *n*. 
+
+-- propagates
+
+Not only does it tell you that a q-state you haven't tried has higher value , but also it will propagate this bonus back. So you don't just try things that are unknown , you try things that are known to lead to states that are unknown. That's great. 
+
+-- bot example
+
+ε is 0.1.  It's still doing a tiny tiny bit of exploration through randomness. But it's implementing a exploration function. As time goes on the exploration function will contribute less and less. That means even though at the beginning it's trying all kinds of stuff very quickly , it figures out that it actually knows what those actions do and the dominant behavior is now one of the exploitation. It's slightly weird policy but it is moving forward. Unlike the other one which had to run 1M of steps and then I had to turn its exploration off , this one is already moving after a very small number of iterations. 
+
+This brings us the idea **regret**.
+
+## Regret 
+
+The basic idea of *regret* is even though you learn the optimal policy eventually  , because your transitions and rewards are initially unknown it's inevitable that you will make some mistakes along the way.  So you don't get to be the wise optimal robot without making some mistakes in your youth. 
+
+So for example here this robot it's wise it's optimal and it's remembering back to its youth where it jumped into that fire pit , now it knows not to do that and you can think of this as regret. But a certain amount of fire pit jumping is inevitable because you just had no way of knowing whether or not it was a fire pit until you try it. 
+
+-- measure
+
+There's this idea that there's a total volume of mistakes you made compared to having the optimal policy , we'd like to minimize that. 
+
+We've already seen the q-learning subject to some mild conditions will eventually learn the optimal policy. You're going to be optimal in the end. So really in practice the game is minimizing your regret -- get to that optimal policy while making as few suboptimal in retrospect actions as possible. 
+
+Minimizing regret is more than learning to be optimal. It's more like optimally learning to be optimal. 
+
+Q: in exploration function, how much is k ?
+A: it's hard to know. 
+ 
+---
+
+## Approximate Q-Learning
+
+Now we're going to think about the problems of what you do in a game like pac-man where there are so many states that you can't learn about each one.
+
+The basic idean we'er going to have is called approximate q-learning. And boils down to the fact when you learn that ghost is in scary -- for example through one experience. You should transfer that to all other states that similar. 
+
+### Generalizeing Across States
+
+So we want to be able to generalize across states because there's just so many of them. 
+
+In basic q-learning -- if you think about the algorithm -- it keeps a table of all of the q-values. That looks something like this: where you have your agent and for every cell of grid world and for every action you have a number that you're storing. That's fine when there aren't too many q states. 
+
+In any kind of realistic situation this won't actually work. The reason it won't work is because we can't learn about every single state. 
+
+There are multiple reasons why we can't learn about every single state. There are too many of them to visit them all in training. You just can't get yourself in every configuration of pac-man. In addition even if you could there's too many states to even hold the q-values in memory. So even if you wanted to do exhaustive q-learning it's not an option.
+
+In general for a game like pac-man , if you had the q tables it would just be this infinite library and that's not going to work. So we want to do is we want to generalize. 
+
+We'd like to be able to take some small number of training examples -- our experiences -- in some small number of games and generalize them to similar situations. This is actually a fundamental idea of machine learning. We'll see it over and over again in this course.  You actually want to be able to generalize not just to save on time and storage but also because it's better -- you're going to learn faster if you don't have to repeat the lessons in every similar state. 
+
+### Example: Pacman
+
+Or even this one!
+
+It's missing a dot. It's a totally different state as far as q-learning is concerned.  Something is wrong here if you've got to learn about the ghosts in every configuration of not only ghosts but also dots. 
+
+Q-learn may work in 2x3 pacman board , but it hardly work even in 3x5 pacman board.
+
+---
+
+### Feature-Based Representations
+
+So what's the solution ? You actually know the solution because you already implemented in project 2. 
+
+The solution is to take a state , and rather than thinking about it as its own black box whose q-values are special and unlike any other states' q-values INSTEAD we say really boiled down to a small number of properties which we will call features. 
+
+So we describe the state using a vector of features.  Just like we did for evaluation function . So what features ? They take a state and they return a real number. Sometimes it's 0-1 indicating something and sometimes it's a number indicating something.  For example we might have the distance to the closest ghost , or the number of ghost , or 1 / square distance to a dot , or is pacman in a tunnel that might be a 0/1 thing -- you can learn that being in a tunnel is dangerous. 
+
+In project 2, the thing you described with features was a state value. So you computed value for that state by taking your features and doing some weighted linear combination.  
+
+Of course now we're going to have to describe q-states which gives us features like am I moving towards the ghost with this action. 
+
+### Linear Value Functions 
+
+This gives you linear value functions. 
+
+disadvantage:  for example if there are 2 ghosts close to you it matters a lot whether they're on either side of you or both on the same side. 
+
+Ok you job is to come up with features that make sure that important differences in value are reflected in differences and features , so that the learning algorithm can do its job. 
+
+---
+
+How are we going to do q-learning with these q-functions ? 
+
+The first part of q-learning algorithm doesn't actually care where the q-value came from. It says give me a transition so that I can learn. And you do it. Then you take a difference . I say alright I thought I was going to get Q of (s,a) -- that was my old guess on one hand and on the other hand I now think I'm going to get this reward + my estimate of the value of the landing state which is max over its actions.  You you compute this kind of error term -- the difference what you thought you were going to get and what you actually seem to be about to get on the basis of this one step ahead experience. 
+
+Now what's the update ? For an exact q-learner the update looks like this.  This is just an algebraic rewrite of the update that says take α of one and (1-α) of the other. 
+
+So we basically do is we keep our Q value around but we nudge it in the direction of this difference. So if we appear to be getting something a lot higher than we thought well we should raise our estimat. 
+
+Now if your q-valuse are a big table you simple look up this entry (s,a) you see it's 9.3, you cross out the 9.3 and you replace it with 9.8. It's really easy to increment a table. 
+
+The problem is now the only knobs we have are the weights.   You can't increment a single value in the q function. (see Approximate Q's) But what you can do is you can say all right might q-value wasn't high enough for the state so what I need to do is change the weights so that it will be higher. And the way we do that is instead of increasing teh q-value directly we increase the weights.  But which way should we increase ? You increase all of them but in proportion to the feature value. So if a certain feature is off we don't change its weight. If it's negative we're actually going to decrease its weight because of the sign change. And then features that fire more strongly have a bigger effect on the update. So this is the difference. It's the same idea you compute how wrong you were and then you try to make that error less except now we're tweaking the weights rather than the q-values directly. 
+
+
+That looks like you've got these sliders like how bad is a ghost. And whenever you're near a ghost and something bad happens , blame the ghost , so you write down ghosts are little worse than they were before. 
+
+The intuitive interpretation is adjusting these weights . So if something bad happens all of the features that are active get a penalty and so on. 
+
+---
+
+### Example : Q-Pacman
+
+ - dot feature
+    - how close will I be to the dot if I take action *a* , and I'll take the reciprocal of that distance.
+    - so a big number means I'm basically getting close to a dot.
+ - ghost feature
+    - similar thing , if I close to a ghost , f<sub>ghost</sub> gets bigger 
+
+
+f<sub>dot</sub> is 0.5 because the closest dot is 2 away.  f<sub>ghost</sub> is might be 1.0 because the closest ghost is 1 away. We compute that approximate Q is +1 for this Q state (s,NORTH).
+
+What does that mean ? That means that according to our approximate q-value we think our score for the game from this point forward is going to be +1. Well what happens?  You move north you die.  You receive a negative 500 reward and you end up in a state where the game is over and therefore the Q values are 0 by definition. So now we think hard we say will I used to think before I had this experience that this state on the left was worth +1. Apparently that isn't what happened this time. This time it looks like I'm on track for the -500 I received plus a future discounted reward of 0 because the game ended. 
+
+Alright so I compare there 2 things, it looks like I overestimated by 501 , so my difference here is -500 , and that means I should probably lower the q-value. Now remember I can't lower the q-value directly , I have to lower it via the weights. 
+
+Ans so I do this update: the weights mostly stay the same but I move them in the appropriate direction by an amount that is proportional to my error -- the learning rate α , it's a step size here -- and the activation of the feature. 
+
+
+
+
+
+
+
 
 
 
