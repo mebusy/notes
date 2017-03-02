@@ -674,5 +674,43 @@ The cost is in computing the SVD -- this has become much more efficient, but it 
 只是为了用图像压缩来介绍 SVD 的性质，实际使用中常见的图片格式（png，jpeg等）其压缩原理更复杂，且效果往往更好.
 
 
+#### 4. Least squares  TODO
+
+For a rectangular system Ax = b, the least-squares solution comes from the normal equations AᵀAx̂ = Aᵀb. 
+
+***If A has dependent columns then AᵀA is not invertible and x̂ is not determined*** . Any vector in the nullspace could be added to x̂. We can now complete Chapter 3, by choosing a "best" (shortest) x̂ for every Ax = b.
+
+Ax = b has two possible difficulties: *Dependent rows or dependent columns*. 
+
+With dependent rows, Ax = b may have no solution. That happens when b is outside the column space of A.Instead of Ax = b, we solve AᵀAx̂ = Aᵀb. 
+
+But if A has dependent columns, this x̂  will not be unique. We have to choose a particular solution of AᵀAx̂ = Aᵀb, and we choose the shortest.
+
+***The optimal solution of Ax = b is the minimum length solution of AᵀAx̂ = Aᵀb***. 
+
+
+TODO
+
+
+---
+
+## 6.4 MINIMUM PRINCIPLES  TODO
+
+## 6.5 THE FINITE ELEMENT METHOD  TODO
+
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
 
 
