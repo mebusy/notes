@@ -23,4 +23,8 @@ There are three ways to approach the underlying mathematics:
 
 These approaches are developed in Sections 8.1, 8.2, and 8.3. Then Section 8.4 is about problems (like marriage) in which the solution is an integer. Section 8.5 discusses poker and other matrix games. 
 
+One key to this chapter is to see the geometric meaning of ***linear inequalities***. An inequality divides n-dimensional space into a ***halfspace*** in which the inequality is satisfie,  and a halfspace in which it is not.  A typical example is x + 2y ≥ 4. . The boundary between the two halfspaces is the line x + 2y = 4 , where the inequality is "tight". 
+
+Figure 8.1 would look almost the same in three dimensions. The boundary becomes a plane like x + 2y + z = 4, and above it is the halfspace x + 2y + z ≥ 4. In n dimensions, the "plane" has dimension n - 1.  
+
 
