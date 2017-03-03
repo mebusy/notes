@@ -681,7 +681,54 @@ Alright so I compare there 2 things, it looks like I overestimated by 501 , so m
 
 Ans so I do this update: the weights mostly stay the same but I move them in the appropriate direction by an amount that is proportional to my error -- the learning rate α , it's a step size here -- and the activation of the feature. 
 
+So the ghost feature was more active here than the dot feature. So it's gonna receive a large update. 
 
+When I execute these updates I end up with a new Q function (the blue 1) which has the same functional form uses the same features but has different weights. We like dots slightly less  and we really don't like ghosts now because they were right there when all the bad stuff happended. 
+
+Now we'll continue acting but it seems reasonable that this is what we learn. We still like the dots but now we're more scared of ghosts. Seems like a good outcome.  Let's see what happends in practice. 
+
+What's nice about this is you learned so quickly from even 1 experience you can learn the ghosts ard bad. What you realize is the first time you eat a dot , you get a feedback that lets you learn that maybe dots are good, and the first time you hit a ghost have an opportunity to learn the ghosts are bad. So instead of that kind of error and error and error and finally after 2000 tries we master a 2 by 2 board , lets see what happens (a big board).   
+
+
+## Q-Learning and Least Squares
+
+Now we're going to take a quick look and see why this update make sense. I told you this intuitive explanation which was look at your error and adjust the weight so that error gets smaller. In face we can use that idean to formally justify this approximate q-learning update. And the way we do that is we think back to a more general case of least square. 
+
+So in general we might want do some kind of linear approximation. In particular we have some feature vector maybe we've only got one feature f₁ of our input X. And we can have an prediction function which is linear *y* .  This can happen in multiple dimensions as well. 
+
+
+### Optimization: Least Squares *
+
+### Minimizing Error * 
+
+Really what that means is for a small step size α you take your weight and you take a step in the direction away from the derivative with us of the error with respect to the weight and that is exactly our online q update which corresponds to fiddling to this line up and down. 
+
+Now how does it work in q-learning ? The weights are the weights , the target that you're trying to reach right is your experience from a one-step look ahead and your prediction is your linear function. So in fact this approximate q-learning that had an intuitive explanation but came out nowhere. In fact it corresponds to exactly the case of online least square. 
+
+### Overfitting : Why Limiting Capacity Can Help *
+
+## Policy Search 
+
+One last important thing about how these things work in practice is in general q-learning will only take you so far and what peaple often do in practice to make these really work  is something called policy Search. 
+
+In policy search what you do is you directly try to improve the policy.
+
+And problem with things like q-learning is what is q-learning do ? It tries to figure out the q-value of the state , it's modeling the states, but that may not be the same setting of the weights that makes good decisions. 
+
+So in particular and project , you wrote down `5 x dist_to_dot - 2 x dist_to_ghost` , that was almost certainly not the actual value of the state but distinguished good states from bad states. 
+
+That's a general thing : 
+
+q-learning tries to get the values close. it does not try explicitly to make the best action from a state have a higher value than the worst action from the state. It doesn't try to order the Q values. For action selection you only care about the ordering.  Of course the q values were close enough their orders would be correct as well , but were never prefect and so there's a trade-off between these things. We'll also see this in much greater detail in the second half of the course that there's a trade-off between modeling geting the values right and prediction getting the ordering right making the correct decision. 
+
+The solution to this is to learn policies that maximize your rewards and do that directly in some way. And to not try so hard to figure out what the values that predict the rewards are , just learn the policies. 
+
+So policy search in general start something "ok" solution.  For example you might do some Q-learning for a while or if you've got like a helicopter os something that's expensive to replace you might get an initial policy based on domain kownledge or simulation and the you fine-tune by essentially hill climbing on the feature weights.  When you hill climbing  you just change the feature weights and you see whether your rewards over  time are better as opposed to just a one-step look ahead and then do a Q magnitude update. 
+
+
+---
+
+## Conclusion
 
 
 
