@@ -518,6 +518,45 @@ We're going to get some sample on the basis of the action we picked , the key le
 <h2 id="03bcb6b7c0cf2da8df829ce2604b1487"></h2>
 # Reinforcement Learning II
 
+## Example of RL :  Flappy Bird
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_flappybird.png)
+
+ - State space
+    - Discretized vertical distance from lower pipe
+    - Discretized horizontal distance from next pair of pipes
+    - Life: Dead or Living
+ - Actions
+    - Click
+    - Do nothing
+ - Rewards
+    +1 if Flappy Bird still alive
+    -1000 if Flappy Bird is dead
+ - 6-7 hours of Q-learning
+
+
+## The Story So Far: MDPs and RL
+
+ MDP | Goal |  Technique
+---: | --- | ---
+Known MDP: Offline Solutioni | Compute V<sup>\*</sup>, Q<sup>\*</sup>, π<sup>\*</sup> | Value/Policy Iteration
+  -    |  Evaluate a fixed policy π | Policy evaluation
+Unknown MDP: Model-Based |  Compute V<sup>\*</sup>, Q<sup>\*</sup>, π<sup>\*</sup>  | VI/PI on approx. MDP
+  -    |  Evaluate a fixed policy π | PE on approx. 
+Unknown MDP: Model-Free | Compute V<sup>\*</sup>, Q<sup>\*</sup>, π<sup>\*</sup>  | Q-learning
+  -    |  Evaluate a fixed policy π | Value Learning
+
+
+## Model-free (temporal difference) learning
+
+ - Experience world through episodes
+    - like a stream
+    - (s,a,r,s',a',r',s'',a'',r'',s''',... )
+ - Update estimates each transition (s,a,r,s')
+ - Over time, updates will mimic Bellman updates
+
+
+
 ## Exploration vs. Exploitation 
 
 This brings us to one of the most important ideans in RL. That is because you want to do the opimal thing but you don't know what it is yet , you have the inevitable trade-off between exploration where you try things -- which may of course be disastrous -- and exploitation where you do the things which currently appear to be good.
