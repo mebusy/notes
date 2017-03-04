@@ -529,6 +529,14 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
  - In graphs you have some network of nodes that are connected in some way (there can be back edges that form a cycle, edges can be bidirectional , ...) where the edges have some weight (usually 1 or greater). In a graph you don't have any property that would tell you in which direction you should search, that's why you don't see the logarithm complexity. The structure itself is a bit more general and gives you less information about where things are.
 
 
+## Uniform cost search vs. Dijkstra's Algorithm 
+
+It's essentially the same algorithm. One difference might be that uniform-cost search is usually formulated on trees rather than general graphs,which simplifies the implementation a little bit, since you don't have to worry about the case where a newly discovered edge reveals a cheaper path to a vertex that is already in the priority queue waiting to be visited. In other words you only need to worry about remove-min and insert operations in your priority queue and not about decrease-priority operations.
+
+
+
+
+
 <h2 id="7f1afff8243e3009eb892111dcc4413f"></h2>
 ## Search and Models
 
