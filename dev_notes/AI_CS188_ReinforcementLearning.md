@@ -565,13 +565,22 @@ You meet this all the time in your daily life.  Some new restaurant opens and yo
 
 ## How To Explore ?
 
-Q-learning did not specify how we select actions. It just required that they have sufficient variety to converge to the optimal policy and q values. Now we're taling about how to select actions in a way that will enable q-learning to its magic. 
+Q-learning did not specify how we select actions. It just required that they have sufficient variety to converge to the optimal policy and q values. Now we're talking about how to select actions in a way that will enable q-learning to its magic. 
 
-ε-greedy
+ - Several schemes for forcing exploration
+    - Simplest: random actions ( ε-greedy)
+    - Every time step, flip a coin
+    - With (small) probability ε , act randomly
+    - With (large) probability 1-ε , act on current policy
+
+ - Problems with random actions?
+    - You do eventually explore the space, but keep thrashing around once learning is done
+    - One solution: lower ε  over time
+    - Another solution: exploration functions ( better way )
 
 Which means we often go to our favorite place but every now and then when the coin comes up random  we try something at random. 
 
-Problems  Example
+Example: 挖掘机学步
 
 ε: 0.8   
 
@@ -585,7 +594,7 @@ What happens if I turn ε down ? Turn ε to 0 --  just let it go. Be optimal .  
 
 So Q-learning learned the right thing but the exploration was preventing you from doing it. There were a couple issues there. 
 
-One issue is you do eventually explore the space you eventually learn the right thing but you still kee trashing around if you keep ε high. So you have to stop exploring so much random. Eventually you would have to stop doing so exploration and allow your self to exploit this optimal policy you learned. 
+One issue is you do eventually explore the space you eventually learn the right thing but you still keep trashing around if you keep ε high. So you have to stop exploring so much random. Eventually you would have to stop doing so exploration and allow your self to exploit this optimal policy you learned. 
 
 Another problem with ε-greedy is that kind of the exploration is unstructured. you try random things whether you need or not even if you know what the all actions do. If you know what all the actions do you shouldn't necessarily be exploring anymore. 
 
@@ -593,9 +602,12 @@ So one solution here is we just lower ε over time , and let the randomness decr
 
 ## Exploration Functions 
 
-When should we explore ?  Well random actions explore a fixed amount and the kind of explore uniformly everywhere. Every state has an equal chance of doing an exploration action.  Here's a better idea:  why don't we think about our actions and thereby q-values  as being something we're trying to learn ?  
+ - When to explore?
+    - Random actions: explore a fixed amount 
+        - the kind of explore uniformly everywhere. Every state has an equal chance of doing an exploration action.  
+    - Better idea: explore areas whose badness is not (yet) established, eventually stop exploring
 
-Now sometimes we know what they are. When we know what they are we don't have to try them anymore.  You got food poisoning a couple times and you just stopped. On the other hand when we don't know something and our uncertainty is high it should be a pretty high priority to figure that out right now.  So when the restaurant opens you try it because your uncertainty is high. Once you've tried it a couple times now you know.
+You got food poisoning a couple times and you just stopped. On the other hand when we don't know something and our uncertainty is high it should be a pretty high priority to figure that out right now.  So when the restaurant opens you try it because your uncertainty is high. Once you've tried it a couple times , now you know.
 
 So how can we encode this?  we'd like something that forces us to explore whose badness is not yet established but eventually stopped.  The basic idea here is "in the face of uncertainty you should have optimism".  So fly into those unknown caves and see what's in their optimism. 
 
