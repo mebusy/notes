@@ -580,9 +580,7 @@ Q-learning did not specify how we select actions. It just required that they hav
 
 Which means we often go to our favorite place but every now and then when the coin comes up random  we try something at random. 
 
-Example: 挖掘机学步
-
-ε: 0.8   
+Example: 挖掘机学步   ε = 0.8   
 
 It's lot exploration.  And it's not however a lot of progress. Now with this work q-larning works just fine with lots of random actions, just doesn't necessarily work quickly. 
 
@@ -622,34 +620,34 @@ So how can we encode this?  we'd like something that forces us to explore whose 
         - Modified Q-Update: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_explor_func_modified.png)
             - for a q-state , number of times we've been there means the number of we've tried that action out.
     - Note: this propagates the “bonus” back to states that lead to unknown states as well!
+        - Not only does it tell you that a q-state you haven't tried has higher value , but also it will propagate this bonus back. So you don't just try things that are unknown , you try things that are known to lead to states that are unknown. That's great. 
 
-Optimism shouldn't last forever. So we might have a function like this. Here's a very crude way of doing it but this basically accomplishes the goal I sektched. Which is rather than looking at just utilities of Q-status or states, we have a function which considers guess at the utility you  and the number of times we've been there. And  
+So we take the utility and we add to it a bonus that decreases as we visit the state more times *n*. 
 
- So we take the utility and we add to it a bonus that decreases as we visit the state more times *n*. 
+-- example 挖掘机学步  ε = 0.1  
 
--- propagates
-
-Not only does it tell you that a q-state you haven't tried has higher value , but also it will propagate this bonus back. So you don't just try things that are unknown , you try things that are known to lead to states that are unknown. That's great. 
-
--- bot example
-
-ε is 0.1.  It's still doing a tiny tiny bit of exploration through randomness. But it's implementing a exploration function. As time goes on the exploration function will contribute less and less. That means even though at the beginning it's trying all kinds of stuff very quickly , it figures out that it actually knows what those actions do and the dominant behavior is now one of the exploitation. It's slightly weird policy but it is moving forward. Unlike the other one which had to run 1M of steps and then I had to turn its exploration off , this one is already moving after a very small number of iterations. 
+It's still doing a tiny tiny bit of exploration through randomness. But it's implementing a exploration function. As time goes on the exploration function will contribute less and less. That means even though at the beginning it's trying all kinds of stuff very quickly , it figures out that it actually knows what those actions do and the dominant behavior is now one of the exploitation. It's slightly weird policy but it is moving forward. Unlike the other one which had to run 1M of steps and then I had to turn its exploration off , this one is already moving after a very small number of iterations. 
 
 This brings us the idea **regret**.
 
 ## Regret 
 
+ - Even if you learn the optimal policy, you still make mistakes along the way!
+
 The basic idea of *regret* is even though you learn the optimal policy eventually  , because your transitions and rewards are initially unknown it's inevitable that you will make some mistakes along the way.  So you don't get to be the wise optimal robot without making some mistakes in your youth. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_regret_robot.png)
 
 So for example here this robot it's wise it's optimal and it's remembering back to its youth where it jumped into that fire pit , now it knows not to do that and you can think of this as regret. But a certain amount of fire pit jumping is inevitable because you just had no way of knowing whether or not it was a fire pit until you try it. 
 
--- measure
+ - Regret is a measure of your total mistake cost: 
+    - the difference between your (expected) rewards, including youthful suboptimality, and optimal (expected) rewards
 
 There's this idea that there's a total volume of mistakes you made compared to having the optimal policy , we'd like to minimize that. 
 
 We've already seen the q-learning subject to some mild conditions will eventually learn the optimal policy. You're going to be optimal in the end. So really in practice the game is minimizing your regret -- get to that optimal policy while making as few suboptimal in retrospect actions as possible. 
 
-Minimizing regret is more than learning to be optimal. It's more like optimally learning to be optimal. 
+Minimizing regret is more than learning to be optimal. It's more like ***optimally learning to be optimal***. 
 
 Q: in exploration function, how much is k ?
 A: it's hard to know. 
