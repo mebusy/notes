@@ -620,9 +620,12 @@ So how can we encode this?  we'd like something that forces us to explore whose 
     - Takes a value estimate u and a visit count n, and returns an optimistic utility, e.g. `f(u,n) = u + k/n`
         - Regular Q-Update: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_explor_func_regular.png)
         - Modified Q-Update: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_explor_func_modified.png)
+            - for a q-state , number of times we've been there means the number of we've tried that action out.
     - Note: this propagates the “bonus” back to states that lead to unknown states as well!
 
-Optimism shouldn't last forever. So we might have a function like this. Here's a very crude way of doing it but this basically accomplishes the goal I sektched. Which is rather than looking at just utilities of Q-status or states, we have a function which considers guess at the utility you  and the number of times we've been there. And for a q-state  number of times we've been there means the number of we've tried that action out.  So we take the utility and we add to it a bonus that decreases as we visit the state more times *n*. 
+Optimism shouldn't last forever. So we might have a function like this. Here's a very crude way of doing it but this basically accomplishes the goal I sektched. Which is rather than looking at just utilities of Q-status or states, we have a function which considers guess at the utility you  and the number of times we've been there. And  
+
+ So we take the utility and we add to it a bonus that decreases as we visit the state more times *n*. 
 
 -- propagates
 
