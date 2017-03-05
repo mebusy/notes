@@ -691,9 +691,15 @@ This is actually a fundamental idea of machine learning. We'll see it over and o
 
 ### Example: Pacman
 
-Or even this one!
-
-It's missing a dot. It's a totally different state as far as q-learning is concerned.  Something is wrong here if you've got to learn about the ghosts in every configuration of not only ghosts but also dots. 
+ - Let’s say we discover through experience that this state is bad:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_generalize_pacman1.png)
+ - In naïve q-learning, we know nothing about this state:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_generalize_pacman1.png)
+ - Or even this one!
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_generalize_pacman1.png)
+    - It's missing a dot. It's a totally different state as far as q-learning is concerned.  
+    
+Something is wrong here if you've got to learn about the ghosts in every configuration of not only ghosts but also dots. 
 
 Q-learn may work in 2x3 pacman board , but it hardly work even in 3x5 pacman board.
 
