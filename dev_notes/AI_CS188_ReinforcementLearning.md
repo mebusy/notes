@@ -664,15 +664,30 @@ The basic idean we'er going to have is called approximate q-learning. And boils 
 
 So we want to be able to generalize across states because there's just so many of them. 
 
+ - Basic Q-Learning keeps a table of all q-values
+
 In basic q-learning -- if you think about the algorithm -- it keeps a table of all of the q-values. That looks something like this: where you have your agent and for every cell of grid world and for every action you have a number that you're storing. That's fine when there aren't too many q states. 
 
-In any kind of realistic situation this won't actually work. The reason it won't work is because we can't learn about every single state. 
+ - In realistic situations, we cannot possibly learn about every single state!
+    - Too many states to visit them all in training
+    - Too many states to hold the q-tables in memory
 
 There are multiple reasons why we can't learn about every single state. There are too many of them to visit them all in training. You just can't get yourself in every configuration of pac-man. In addition even if you could there's too many states to even hold the q-values in memory. So even if you wanted to do exhaustive q-learning it's not an option.
 
 In general for a game like pac-man , if you had the q tables it would just be this infinite library and that's not going to work. So we want to do is we want to generalize. 
 
-We'd like to be able to take some small number of training examples -- our experiences -- in some small number of games and generalize them to similar situations. This is actually a fundamental idea of machine learning. We'll see it over and over again in this course.  You actually want to be able to generalize not just to save on time and storage but also because it's better -- you're going to learn faster if you don't have to repeat the lessons in every similar state. 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_q_table_pacman.png)
+
+ - Instead, we want to generalize:
+    - Learn about some small number of training states from experience
+    - Generalize that experience to new, similar situations
+    - This is a fundamental idea in machine learning, and we’ll see it over and over again
+
+We'd like to be able to take some small number of training examples -- our experiences -- in some small number of games and generalize them to similar situations. 
+
+This is actually a fundamental idea of machine learning. We'll see it over and over again in this course.  You actually want to be able to generalize not just to save on time and storage but also because it's better -- you're going to learn faster if you don't have to repeat the lessons in every similar state. 
+
+--- 
 
 ### Example: Pacman
 
