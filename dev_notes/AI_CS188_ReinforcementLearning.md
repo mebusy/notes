@@ -711,17 +711,36 @@ So what's the solution ? You actually know the solution because you already impl
 
 The solution is to take a state , and rather than thinking about it as its own black box whose q-values are special and unlike any other states' q-values INSTEAD we say really boiled down to a small number of properties which we will call features. 
 
+
+ - Solution: describe a state using a vector of features (properties)
+    - Features are functions from states to real numbers (often 0/1) that capture important properties of the state
+    - Example features:
+        - Distance to closest ghost
+        - Distance to closest dot
+        - Number of ghosts
+        - 1 / (dist to dot)2
+        - Is Pacman in a tunnel? (0/1)
+        - …… etc.
+        - Is it the exact state on this slide?
+    - Can also describe a q-state (s, a) with features (e.g. action moves closer to food)
+
 So we describe the state using a vector of features.  Just like we did for evaluation function . So what features ? They take a state and they return a real number. Sometimes it's 0-1 indicating something and sometimes it's a number indicating something.  For example we might have the distance to the closest ghost , or the number of ghost , or 1 / square distance to a dot , or is pacman in a tunnel that might be a 0/1 thing -- you can learn that being in a tunnel is dangerous. 
 
 In project 2, the thing you described with features was a state value. So you computed value for that state by taking your features and doing some weighted linear combination.  
 
 Of course now we're going to have to describe q-states which gives us features like am I moving towards the ghost with this action. 
 
+
 ### Linear Value Functions 
 
 This gives you linear value functions. 
 
-disadvantage:  for example if there are 2 ghosts close to you it matters a lot whether they're on either side of you or both on the same side. 
+ - Using a feature representation, we can write a q function (or value function) for any state using a few weights:
+    - V(s) = w₁f₁(s) + w₂f₂(s) + ... + w<sub>n</sub>f<sub>n</sub>(s) 
+    - Q(s,a) = w₁f₁(s,a) + w₂f₂(s,a) + ... + w<sub>n</sub>f<sub>n</sub>(s,a) 
+ - Advantage: our experience is summed up in a few powerful numbers
+ - Disadvantage: states may share features but actually be very different in value!
+    - for example if there are 2 ghosts close to you it matters a lot whether they're on either side of you or both on the same side. 
 
 Ok you job is to come up with features that make sure that important differences in value are reflected in differences and features , so that the learning algorithm can do its job. 
 
