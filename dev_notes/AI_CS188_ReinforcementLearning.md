@@ -765,14 +765,14 @@ The problem is now the only knobs we have are the weights.   You can't increment
 
 That looks like you've got these sliders like how bad is a ghost. And whenever you're near a ghost and something bad happens , blame the ghost , so you write down ghosts are little worse than they were before. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_pacman_weight_adjust.png)
+
 The intuitive interpretation is adjusting these weights . So if something bad happens all of the features that are active get a penalty and so on. 
 
  - Intuitive interpretation:
     - Adjust weights of active features
     - E.g., if something unexpectedly bad happens, blame the features that were on: disprefer all states with that state’s features
  - Formal justification: online least squares
-
-
 
 
 ---
