@@ -787,6 +787,7 @@ The intuitive interpretation is adjusting these weights . So if something bad ha
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_qpacman_s.png)
 
+ - Q(s,a) = 4.0·f<sub>dot</sub>(s,a) - 1.0·f<sub>ghost</sub>(s,a)
  - f<sub>dot</sub>(s, NORTH) = 0.5 
     - because the closest dot is 2 away.  
  - f<sub>ghost</sub>(s,NORTH) = 1.0 
@@ -796,17 +797,27 @@ The intuitive interpretation is adjusting these weights . So if something bad ha
 
 What does that mean ? That means that according to our approximate q-value we think our score for the game from this point forward is going to be +1. Well what happens?  You move north you die.  You receive a -500 reward and you end up in a state where the game is over and therefore the Q values are 0 by definition. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_qpacman_sp.png)   
+ - a = NORTH , r = -500 => 
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_qpacman_sp.png)   
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_qpacman_3.png)
+ - Q(s', . ) = 0
 
-So now we think hard we say will I used to think before I had this experience that this state on the left was worth +1. Apparently that isn't what happened this time. This time it looks like I'm on track for the -500 I received plus a future discounted reward of 0 because the game ended. 
+
+So now we think hard we say well I used to think before I had this experience that this state on the left was worth +1. Apparently that isn't what happened this time. This time it looks like I'm on track for the -500 I received plus a future discounted reward of 0 because the game ended. 
 
 Alright so I compare there 2 things, it looks like I overestimated by 501 , so my difference here is -500 , and that means I should probably lower the q-value. Now remember I can't lower the q-value directly , I have to lower it via the weights. 
 
 Ans so I do this update: the weights mostly stay the same but I move them in the appropriate direction by an amount that is proportional to my error -- the learning rate α , it's a step size here -- and the activation of the feature. 
 
+ - difference = -501  =>
+    - w<sub>dot</sub>   ←  4.0 + α·[-501]·0.5
+    - w<sub>ghost</sub> ← -1.0 + α·[-501]·1.0
+
 So the ghost feature was more active here than the dot feature. So it's gonna receive a large update. 
 
-When I execute these updates I end up with a new Q function (the blue 1) which has the same functional form uses the same features but has different weights. We like dots slightly less  and we really don't like ghosts now because they were right there when all the bad stuff happended. 
+When I execute these updates I end up with a new Q function  which has the same functional form uses the same features but has different weights. We like dots slightly less  and we really don't like ghosts now because they were right there when all the bad stuff happended. 
+
+ - Q(s,a) = 3.0·f<sub>dot</sub>(s,a) - 3.0·f<sub>ghost</sub>(s,a)   
 
 Now we'll continue acting but it seems reasonable that this is what we learn. We still like the dots but now we're more scared of ghosts. Seems like a good outcome.  Let's see what happends in practice. 
 
@@ -830,28 +841,62 @@ Now how does it work in q-learning ? The weights are the weights , the target th
 
 ### Overfitting : Why Limiting Capacity Can Help *
 
+---
+
+
 ## Policy Search 
 
 One last important thing about how these things work in practice is in general q-learning will only take you so far and what peaple often do in practice to make these really work  is something called policy Search. 
 
 In policy search what you do is you directly try to improve the policy.
 
-And problem with things like q-learning is what is q-learning do ? It tries to figure out the q-value of the state , it's modeling the states, but that may not be the same setting of the weights that makes good decisions. 
+ - Problem: often the feature-based policies that work well (win games, maximize utilities) aren’t the ones that approximate V / Q best
+    - E.g. your value functions from project 2 were probably horrible estimates of future rewards, but they still produced good decisions
+        - So in particular and project , you wrote down `5 x dist_to_dot - 2 x dist_to_ghost` , that was almost certainly not the actual value of the state but distinguished good states from bad states. 
+    - Q-learning’s priority: get Q-values close (modeling)
+    - Action selection priority: get ordering of Q-values right (prediction)
+    - We’ll see this distinction between modeling and prediction again later in the course
 
-So in particular and project , you wrote down `5 x dist_to_dot - 2 x dist_to_ghost` , that was almost certainly not the actual value of the state but distinguished good states from bad states. 
 
 That's a general thing : 
 
 q-learning tries to get the values close. it does not try explicitly to make the best action from a state have a higher value than the worst action from the state. It doesn't try to order the Q values. For action selection you only care about the ordering.  Of course the q values were close enough their orders would be correct as well , but were never prefect and so there's a trade-off between these things. We'll also see this in much greater detail in the second half of the course that there's a trade-off between modeling geting the values right and prediction getting the ordering right making the correct decision. 
 
-The solution to this is to learn policies that maximize your rewards and do that directly in some way. And to not try so hard to figure out what the values that predict the rewards are , just learn the policies. 
+The solution to this is to learn policies that maximize your rewards and do that directly in some way. And to not try so hard to figure out what the values that predict the rewards are , just learn the policies.
 
-So policy search in general start something "ok" solution.  For example you might do some Q-learning for a while or if you've got like a helicopter os something that's expensive to replace you might get an initial policy based on domain kownledge or simulation and the you fine-tune by essentially hill climbing on the feature weights.  When you hill climbing  you just change the feature weights and you see whether your rewards over  time are better as opposed to just a one-step look ahead and then do a Q magnitude update. 
+ - Solution: learn policies that maximize rewards, not the values that predict them
+  
+
+ - Policy search: start with an ok solution (e.g. Q-learning) then fine-tune by hill climbing on feature weights
+
+So policy search in general start something "ok" solution.  
+
+For example you might do some Q-learning for a while or if you've got like a helicopter or something that's expensive to replace you might get an initial policy based on domain kownledge or simulation and the you fine-tune by essentially hill climbing on the feature weights.  When you hill climbing  you just change the feature weights and you see whether your rewards over  time are better as opposed to just a one-step look ahead and then do a Q magnitude update. 
+
+---
+
+ - Simplest policy search:
+    - Start with an initial linear value function or Q-function
+    - Nudge each feature weight up and down and see if your policy is better than before
+ - Problems:
+    - How do we tell the policy got better?
+    - Need to run many sample episodes!
+    - If there are a lot of features, this can be impractical
+ - Better methods exploit lookahead structure, sample wisely, change multiple parameters…
 
 
 ---
 
 ## Conclusion
+
+ - We’re done with Part I: Search and Planning!
+ - We’ve seen how AI methods can solve problems in:
+    - Search
+    - Constraint Satisfaction Problems
+    - Games
+    - Markov Decision Problems
+    - Reinforcement Learning
+ - Next up: Part II: Uncertainty and Learning!
 
 
 
