@@ -785,10 +785,20 @@ The intuitive interpretation is adjusting these weights . So if something bad ha
  - ghost feature
     - similar thing , if I close to a ghost , f<sub>ghost</sub> gets bigger 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_qpacman_s.png)
 
-f<sub>dot</sub> is 0.5 because the closest dot is 2 away.  f<sub>ghost</sub> is might be 1.0 because the closest ghost is 1 away. We compute that approximate Q is +1 for this Q state (s,NORTH).
+ - f<sub>dot</sub>(s, NORTH) = 0.5 
+    - because the closest dot is 2 away.  
+ - f<sub>ghost</sub>(s,NORTH) = 1.0 
+    - because the closest ghost is 1 away.  ???
+ - Q(s,NORTH) = +1
+    - We compute that approximate Q is +1 for this Q state (s,NORTH).
 
-What does that mean ? That means that according to our approximate q-value we think our score for the game from this point forward is going to be +1. Well what happens?  You move north you die.  You receive a negative 500 reward and you end up in a state where the game is over and therefore the Q values are 0 by definition. So now we think hard we say will I used to think before I had this experience that this state on the left was worth +1. Apparently that isn't what happened this time. This time it looks like I'm on track for the -500 I received plus a future discounted reward of 0 because the game ended. 
+What does that mean ? That means that according to our approximate q-value we think our score for the game from this point forward is going to be +1. Well what happens?  You move north you die.  You receive a -500 reward and you end up in a state where the game is over and therefore the Q values are 0 by definition. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_qpacman_sp.png)   
+
+So now we think hard we say will I used to think before I had this experience that this state on the left was worth +1. Apparently that isn't what happened this time. This time it looks like I'm on track for the -500 I received plus a future discounted reward of 0 because the game ended. 
 
 Alright so I compare there 2 things, it looks like I overestimated by 501 , so my difference here is -500 , and that means I should probably lower the q-value. Now remember I can't lower the q-value directly , I have to lower it via the weights. 
 
