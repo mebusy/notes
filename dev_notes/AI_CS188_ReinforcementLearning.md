@@ -744,24 +744,36 @@ This gives you linear value functions.
 
 Ok you job is to come up with features that make sure that important differences in value are reflected in differences and features , so that the learning algorithm can do its job. 
 
----
+### Approximate Q-Learning
 
 How are we going to do q-learning with these q-functions ? 
 
-The first part of q-learning algorithm doesn't actually care where the q-value came from. It says give me a transition so that I can learn. And you do it. Then you take a difference . I say alright I thought I was going to get Q of (s,a) -- that was my old guess on one hand and on the other hand I now think I'm going to get this reward + my estimate of the value of the landing state which is max over its actions.  You you compute this kind of error term -- the difference what you thought you were going to get and what you actually seem to be about to get on the basis of this one step ahead experience. 
+The first part of q-learning algorithm doesn't actually care where the q-value came from. It says give me a transition so that I can learn. And you do it. Then you take a difference . I say alright I thought I was going to get Q of (s,a) -- that was my old guess on one hand and on the other hand I now think I'm going to get this reward + my estimate of the value of the landing state which is max over its actions.  You compute this kind of error term -- the difference what you thought you were going to get and what you actually seem to be about to get on the basis of this one step ahead experience. 
 
-Now what's the update ? For an exact q-learner the update looks like this.  This is just an algebraic rewrite of the update that says take α of one and (1-α) of the other. 
+ - Q-learning with linear Q-functions:
+    - transition = (s,a,r,s')
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_a_exact_qs.png)
+        - For an exact q-learner the update looks like this.  This is just an algebraic rewrite of the update that says take α of one and (1-α) of the other. 
+    - `wᵢ ← wᵢ + α[difference]fᵢ(s,a)`    ( Approximate Q’s )
 
-So we basically do is we keep our Q value around but we nudge it in the direction of this difference. So if we appear to be getting something a lot higher than we thought well we should raise our estimat. 
+So we basically do is we keep our Q value around but we nudge it in the direction of this difference. So if we appear to be getting something a lot higher than we thought well we should raise our estimate. 
 
 Now if your q-valuse are a big table you simple look up this entry (s,a) you see it's 9.3, you cross out the 9.3 and you replace it with 9.8. It's really easy to increment a table. 
 
-The problem is now the only knobs we have are the weights.   You can't increment a single value in the q function. (see Approximate Q's) But what you can do is you can say all right might q-value wasn't high enough for the state so what I need to do is change the weights so that it will be higher. And the way we do that is instead of increasing teh q-value directly we increase the weights.  But which way should we increase ? You increase all of them but in proportion to the feature value. So if a certain feature is off we don't change its weight. If it's negative we're actually going to decrease its weight because of the sign change. And then features that fire more strongly have a bigger effect on the update. So this is the difference. It's the same idea you compute how wrong you were and then you try to make that error less except now we're tweaking the weights rather than the q-values directly. 
+The problem is now the only knobs we have are the weights.   You can't increment a single value in the q function. (see Approximate Q's) But what you can do is you can say all right might q-value wasn't high enough for the state so what I need to do is change the weights so that it will be higher. And the way we do that is instead of increasing the q-value directly we increase the weights.  But which way should we increase ? You increase all of them but in proportion to the feature value. So if a certain feature is off we don't change its weight. If it's negative we're actually going to decrease its weight because of the sign change. And then features that fire more strongly have a bigger effect on the update. So this is the difference. It's the same idea you compute how wrong you were and then you try to make that error less except now we're tweaking the weights rather than the q-values directly. 
 
 
 That looks like you've got these sliders like how bad is a ghost. And whenever you're near a ghost and something bad happens , blame the ghost , so you write down ghosts are little worse than they were before. 
 
 The intuitive interpretation is adjusting these weights . So if something bad happens all of the features that are active get a penalty and so on. 
+
+ - Intuitive interpretation:
+    - Adjust weights of active features
+    - E.g., if something unexpectedly bad happens, blame the features that were on: disprefer all states with that state’s features
+ - Formal justification: online least squares
+
+
+
 
 ---
 
