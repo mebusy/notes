@@ -28,4 +28,14 @@ The reason we care about joint distribution is because we want to infer things a
 dⁿ
 
 
+vs CSP
+
+Sometimes the main different is that here you have true/false values saying whether it's allowed to have an association or not. 
+
+
+## Marginal Distributions
+
+corresponds to a sub-table of the original joint distribution  where you consider only a subset of the random variables.
+
+
  
