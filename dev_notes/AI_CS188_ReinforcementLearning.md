@@ -800,7 +800,7 @@ The first part of q-learning algorithm doesn't actually care where the q-value c
  - Q-learning with linear Q-functions:
     - transition = (s,a,r,s')
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_a_exact_qs.png)
-        - For an exact q-learner the update looks like this.  This is just an algebraic rewrite of the update that says take α of one and (1-α) of the other. 
+        - For an exact q-learner the update looks like this.  This is just an algebraic rewrite of the update that says take α of one and (1-α) of the other. This can delay calculation of α. 
     - `wᵢ ← wᵢ + α[difference]fᵢ(s,a)`    ( Approximate Q’s )
 
 So we basically do is we keep our Q value around but we nudge it in the direction of this difference. So if we appear to be getting something a lot higher than we thought well we should raise our estimate. 
@@ -915,7 +915,17 @@ In s' , 2 actions are available :
 
 So the value of the sample = `r + γ·V(s') = 9 + 11 = 20`. And `difference` = 20 - Q(s, West) = -11 
 
-你猜测 Q(s,West) 可以获得 31收益，实际你发现只有 20， 出现了 -11的收益偏差。
+ - 你猜测 Q(s,West) 可以获得 31收益， 实际并不是这样，出现了 -11的收益偏差。
+ - 这里计算 difference 使用了一个小技巧, 先不加入 α 的计算。 等最后更新 weights的时候，再加入α 的计算 
+ - 你也可以使用 bellman update 正常计算 α[ difference ] 。
+ 
+```
+Q(s,a) = (1-α)Q(s,a) + α[ r + γV(s') ] 
+       = Q(s,a) + α·Q(s,a) + α[ r + γV(s') ] 
+       = Q(s,a) + α[ r + γV(s') - Q(s,a) ]
+       = Q(s,a) + α[ difference ] 
+```  
+
 
 Now we should add the difference to weights:
 
