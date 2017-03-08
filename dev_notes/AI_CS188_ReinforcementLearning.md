@@ -837,9 +837,9 @@ The intuitive interpretation is adjusting these weights . So if something bad ha
 
  - Q(s,a) = 4.0·f<sub>dot</sub>(s,a) - 1.0·f<sub>ghost</sub>(s,a)
  - f<sub>dot</sub>(s, NORTH) = 0.5 
-    - because the closest dot is 2 away.  
+    - because the closest dot is 2 away ???   , after having executed action a in state s
  - f<sub>ghost</sub>(s,NORTH) = 1.0 
-    - because the closest ghost is 1 away.  ???
+    - because the closest ghost is 1 away , after having executed action a in state s
  - Q(s,NORTH) = +1
     - We compute that approximate Q is +1 for this Q state (s,NORTH).
 
