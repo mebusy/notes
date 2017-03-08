@@ -21,6 +21,26 @@
 	 - [Q-Learning](#e4d17333d58040b1db710abe36cd5aec)
 	 - [Q-Learning Properties](#f87765bc4a6754139d81d47c5c59fc65)
  - [Reinforcement Learning II](#03bcb6b7c0cf2da8df829ce2604b1487)
+	 - [Example of RL :  Flappy Bird](#f9a4dc6ca04dd7f381391682fe726a9d)
+	 - [The Story So Far: MDPs and RL](#29c79992d5caf68d44b3fb65e9b012fd)
+	 - [Model-free (temporal difference) learning](#915129bb469e127e787304e5d49bb4d7)
+	 - [Exploration vs. Exploitation](#6887d347f473c82f866b53ab67baeee7)
+	 - [How To Explore ?](#7f41348c29c7350b667f261729b08433)
+	 - [Exploration Functions](#2ba1d8903e326a683ab1fb8eee1ff2cf)
+	 - [Regret](#3141af4744f17a254e58c913ae90281e)
+	 - [Approximate Q-Learning](#668619154180bf7f1109c15ddd7bb574)
+		 - [Generalizeing Across States](#38a0a5072b333125a17507e211474044)
+		 - [Example: Pacman](#1901b8793773f8b3217bebefb14159e4)
+		 - [Feature-Based Representations](#0b5d3ca99a43d01394248c1aa1ef3313)
+		 - [Linear Value Functions](#57e2e557640ea36670bca3275dc3baef)
+		 - [Approximate Q-Learning](#668619154180bf7f1109c15ddd7bb574)
+		 - [Example : Q-Pacman](#9f255bd21e3c3e685bca408fc92e97d4)
+	 - [Q-Learning and Least Squares](#dfd9c3589510f42d75cc643582c741ee)
+		 - [Optimization: Least Squares *](#7c2917ddb383d4aca5702f57b1bf97a6)
+		 - [Minimizing Error *](#431c26cfba3b0e63e31187e82c47bdd4)
+		 - [Overfitting : Why Limiting Capacity Can Help *](#4d834ce4e64c89be3da78e77c76c4357)
+	 - [Policy Search](#20e0fd886eda9402c6c8c3dd18b4bb87)
+	 - [Conclusion](#6f8b794f3246b0c1e1780bb4d4d5dc53)
 
 ...menuend
 
@@ -519,6 +539,7 @@ We're going to get some sample on the basis of the action we picked , the key le
 <h2 id="03bcb6b7c0cf2da8df829ce2604b1487"></h2>
 # Reinforcement Learning II
 
+<h2 id="f9a4dc6ca04dd7f381391682fe726a9d"></h2>
 ## Example of RL :  Flappy Bird
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_flappybird.png)
@@ -536,6 +557,7 @@ We're going to get some sample on the basis of the action we picked , the key le
  - 6-7 hours of Q-learning
 
 
+<h2 id="29c79992d5caf68d44b3fb65e9b012fd"></h2>
 ## The Story So Far: MDPs and RL
 
  MDP | Goal |  Technique
@@ -548,6 +570,7 @@ Unknown MDP: Model-Free | Compute V<sup>\*</sup>, Q<sup>\*</sup>, π<sup>\*</sup
   -    |  Evaluate a fixed policy π | Value Learning
 
 
+<h2 id="915129bb469e127e787304e5d49bb4d7"></h2>
 ## Model-free (temporal difference) learning
 
  - Experience world through episodes
@@ -558,12 +581,14 @@ Unknown MDP: Model-Free | Compute V<sup>\*</sup>, Q<sup>\*</sup>, π<sup>\*</sup
 
 
 
+<h2 id="6887d347f473c82f866b53ab67baeee7"></h2>
 ## Exploration vs. Exploitation 
 
 This brings us to one of the most important ideans in RL. That is because you want to do the opimal thing but you don't know what it is yet , you have the inevitable trade-off between exploration where you try things -- which may of course be disastrous -- and exploitation where you do the things which currently appear to be good.
 
 You meet this all the time in your daily life.  Some new restaurant opens and you have a choice. You can go to your favorite place which you know will bring you good rewards or you can try the new thing which is probably bad but may be your favorite restaurant. So inevitably the outcome is you have to try some stuff and that means you have to make some mistakes. 
 
+<h2 id="7f41348c29c7350b667f261729b08433"></h2>
 ## How To Explore ?
 
 Q-learning did not specify how we select actions. It just required that they have sufficient variety to converge to the optimal policy and q values. Now we're talking about how to select actions in a way that will enable q-learning to its magic. 
@@ -599,6 +624,7 @@ Another problem with ε-greedy is that kind of the exploration is unstructured. 
 
 So one solution here is we just lower ε over time , and let the randomness decrease. But there are better ways. One simple one is called ***exploration functions***.  
 
+<h2 id="2ba1d8903e326a683ab1fb8eee1ff2cf"></h2>
 ## Exploration Functions 
 
  - When to explore?
@@ -646,6 +672,7 @@ A: it's hard to know.
 
 where 𝜏is a temperature parameter that is decreased over time.
 
+<h2 id="3141af4744f17a254e58c913ae90281e"></h2>
 ## Regret 
 
  - Even if you learn the optimal policy, you still make mistakes along the way!
@@ -668,12 +695,14 @@ Minimizing regret is more than learning to be optimal. It's more like ***optimal
  
 ---
 
+<h2 id="668619154180bf7f1109c15ddd7bb574"></h2>
 ## Approximate Q-Learning
 
 Now we're going to think about the problems of what you do in a game like pac-man where there are so many states that you can't learn about each one.
 
 The basic idean we'er going to have is called approximate q-learning. And boils down to the fact when you learn that ghost is in scary -- for example through one experience. You should transfer that to all other states that similar. 
 
+<h2 id="38a0a5072b333125a17507e211474044"></h2>
 ### Generalizeing Across States
 
 So we want to be able to generalize across states because there's just so many of them. 
@@ -703,6 +732,7 @@ This is actually a fundamental idea of machine learning. We'll see it over and o
 
 --- 
 
+<h2 id="1901b8793773f8b3217bebefb14159e4"></h2>
 ### Example: Pacman
 
  - Let’s say we discover through experience that this state is bad:
@@ -719,6 +749,7 @@ Q-learn may work in 2x3 pacman board , but it hardly work even in 3x5 pacman boa
 
 ---
 
+<h2 id="0b5d3ca99a43d01394248c1aa1ef3313"></h2>
 ### Feature-Based Representations
 
 So what's the solution ? You actually know the solution because you already implemented in project 2. 
@@ -745,6 +776,7 @@ In project 2, the thing you described with features was a state value. So you co
 Of course now we're going to have to describe q-states which gives us features like am I moving towards the ghost with this action. 
 
 
+<h2 id="57e2e557640ea36670bca3275dc3baef"></h2>
 ### Linear Value Functions 
 
 This gives you linear value functions. 
@@ -758,6 +790,7 @@ This gives you linear value functions.
 
 Ok you job is to come up with features that make sure that important differences in value are reflected in differences and features , so that the learning algorithm can do its job. 
 
+<h2 id="668619154180bf7f1109c15ddd7bb574"></h2>
 ### Approximate Q-Learning
 
 How are we going to do q-learning with these q-functions ? 
@@ -791,6 +824,7 @@ The intuitive interpretation is adjusting these weights . So if something bad ha
 
 ---
 
+<h2 id="9f255bd21e3c3e685bca408fc92e97d4"></h2>
 ### Example : Q-Pacman
 
  - dot feature
@@ -838,6 +872,7 @@ Now we'll continue acting but it seems reasonable that this is what we learn. We
 What's nice about this is you learned so quickly from even 1 experience you can learn the ghosts ard bad. What you realize is the first time you eat a dot , you get a feedback that lets you learn that maybe dots are good, and the first time you hit a ghost have an opportunity to learn the ghosts are bad. So instead of that kind of error and error and error and finally after 2000 tries we master a 2 by 2 board , lets see what happens (a big board).   
 
 
+<h2 id="dfd9c3589510f42d75cc643582c741ee"></h2>
 ## Q-Learning and Least Squares
 
 Now we're going to take a quick look and see why this update make sense. I told you this intuitive explanation which was look at your error and adjust the weight so that error gets smaller. In face we can use that idean to formally justify this approximate q-learning update. And the way we do that is we think back to a more general case of least square. 
@@ -845,19 +880,23 @@ Now we're going to take a quick look and see why this update make sense. I told 
 So in general we might want do some kind of linear approximation. In particular we have some feature vector maybe we've only got one feature f₁ of our input X. And we can have an prediction function which is linear *y* .  This can happen in multiple dimensions as well. 
 
 
+<h2 id="7c2917ddb383d4aca5702f57b1bf97a6"></h2>
 ### Optimization: Least Squares *
 
+<h2 id="431c26cfba3b0e63e31187e82c47bdd4"></h2>
 ### Minimizing Error * 
 
 Really what that means is for a small step size α you take your weight and you take a step in the direction away from the derivative with us of the error with respect to the weight and that is exactly our online q update which corresponds to fiddling to this line up and down. 
 
 Now how does it work in q-learning ? The weights are the weights , the target that you're trying to reach right is your experience from a one-step look ahead and your prediction is your linear function. So in fact this approximate q-learning that had an intuitive explanation but came out nowhere. In fact it corresponds to exactly the case of online least square. 
 
+<h2 id="4d834ce4e64c89be3da78e77c76c4357"></h2>
 ### Overfitting : Why Limiting Capacity Can Help *
 
 ---
 
 
+<h2 id="20e0fd886eda9402c6c8c3dd18b4bb87"></h2>
 ## Policy Search 
 
 One last important thing about how these things work in practice is in general q-learning will only take you so far and what peaple often do in practice to make these really work  is something called policy Search. 
@@ -901,6 +940,7 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 ---
 
+<h2 id="6f8b794f3246b0c1e1780bb4d4d5dc53"></h2>
 ## Conclusion
 
  - We’re done with Part I: Search and Planning!

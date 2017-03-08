@@ -34,6 +34,7 @@
 			 - [Uniform Cost Search (UCS) Properties](#8fcce2120d7405462b72fce3bf1fcaaa)
 		 - [DFS vs BFS vs UCS](#46ea5fe25e20e5c9f2466692baeb1848)
 	 - [Graph Search VS Tree Search](#f2ef45f33145362c2a215128cc677ccc)
+	 - [Uniform cost search vs. Dijkstra's Algorithm](#e609c39a6581f06c0e176c5be71abfa3)
 	 - [Search and Models](#7f1afff8243e3009eb892111dcc4413f)
 	 - [Some Hints for P1](#b04314d7dafd45796af0bf245e3ae8e8)
  - [Informed Search](#29990be19ae238ca1071a838229e85f3)
@@ -529,6 +530,7 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
  - In graphs you have some network of nodes that are connected in some way (there can be back edges that form a cycle, edges can be bidirectional , ...) where the edges have some weight (usually 1 or greater). In a graph you don't have any property that would tell you in which direction you should search, that's why you don't see the logarithm complexity. The structure itself is a bit more general and gives you less information about where things are.
 
 
+<h2 id="e609c39a6581f06c0e176c5be71abfa3"></h2>
 ## Uniform cost search vs. Dijkstra's Algorithm 
 
 It's essentially the same algorithm. One difference might be that uniform-cost search is usually formulated on trees rather than general graphs,which simplifies the implementation a little bit, since you don't have to worry about the case where a newly discovered edge reveals a cheaper path to a vertex that is already in the priority queue waiting to be visited. In other words you only need to worry about remove-min and insert operations in your priority queue and not about decrease-priority operations.

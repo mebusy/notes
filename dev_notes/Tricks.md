@@ -5,10 +5,16 @@
 		 - [e](#e1671797c52e15f763380b45e841ec32)
 		 - [弧度θ 对应的单位扇形面积](#c7112c6a637487ace192a1747cc4e5a9)
 		 - [geometric series](#b287a415393520b5c5e9a45cf7f0ba02)
+		 - [对数函数](#13dab3aef82bac1ad3d1eba135dab6cd)
+		 - [选择时间最短路径](#a6cf0efcef5764df8b0aa13f2bc2a8cf)
+		 - [求√9.06](#ede6fd698e87ea72dbb43980639c76f6)
 	 - [Algorithm](#4afa80e77a07f7488ce4d1bdd8c4977a)
 		 - [二分法](#0608141511400ff7717263f89537faaf)
-			 - [求数组中的逆序数](#bb0a8ee4ec6c3520a9cf5fd4604aac07)
-			 - [closest pairt 距离最近两个点](#a95c72911ec10a8e9f3522ce7acd395a)
+		 - [求数组中的逆序数](#bb0a8ee4ec6c3520a9cf5fd4604aac07)
+		 - [已知顶点，求三角形面积](#c6456da5a90171a0792d3687af299d73)
+		 - [3维向量a,b,c 是否共面](#bcb9bc222a8bdf672334e86daa37bb8f)
+		 - [两直线 L1,L2 是否共面](#f75c18c4e881cdf5fa2244c7cf436b58)
+		 - [判断两个运动物体 何时碰撞](#664289c474abb7133d2e064e03c82e62)
 
 ...menuend
 
@@ -56,6 +62,7 @@ for |x| < 1 , 1 + x + x² + ... = 1/(1-x)
 for  x  ≠ 1 , 1 + x + x² + ... = (1- xᵏ⁺¹)/(1-x)
 ```
 
+<h2 id="13dab3aef82bac1ad3d1eba135dab6cd"></h2>
 ### 对数函数
 
 换底公式:
@@ -74,6 +81,7 @@ logₐ(M/N) = logₐM - logₐN
 
 
 
+<h2 id="a6cf0efcef5764df8b0aa13f2bc2a8cf"></h2>
 ### 选择时间最短路径
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ToMIT.png)
@@ -82,6 +90,7 @@ logₐ(M/N) = logₐM - logₐN
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ToMIT2.png)
 
+<h2 id="ede6fd698e87ea72dbb43980639c76f6"></h2>
 ### 求√9.06
 
 线性近似:
@@ -115,6 +124,7 @@ f'(a) = 1/6
 
 
 
+<h2 id="c6456da5a90171a0792d3687af299d73"></h2>
 ### 已知顶点，求三角形面积
 
  - 已经三角形的三个顶点：(x1,y1),(x2,y2),(x3,y3),
@@ -136,11 +146,13 @@ f'(a) = 1/6
                  |x3,y3|
 ```
 
+<h2 id="bcb9bc222a8bdf672334e86daa37bb8f"></h2>
 ### 3维向量a,b,c 是否共面
 
  - (a×b)·c称为abc的混合积，几何意义为abc所形成的平行六面体的体积。
  - a,b,c 如果共面，则 (a×b)·c =0 , 即 a,b,c组成的行列式 为0
 
+<h2 id="f75c18c4e881cdf5fa2244c7cf436b58"></h2>
 ### 两直线 L1,L2 是否共面
 
 ```
@@ -153,6 +165,7 @@ f'(a) = 1/6
     如果 L1, L2 共面，则 (axb)·p = 0
 ```
 
+<h2 id="664289c474abb7133d2e064e03c82e62"></h2>
 ### 判断两个运动物体 何时碰撞
 
  - Collision prediction.

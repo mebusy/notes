@@ -2,6 +2,8 @@
 
  - [8 linear Prograffiffliog and Game Theory](#adb23269688b0aa7f8855b8987514b14)
 	 - [8.1  LINEAR INEQUALITIES](#4d62bef35d1beae693322a0f9c87ffb7)
+		 - [The Feasible Set and the Cost Function](#8775939e2cfb40d13172e60558b51fea)
+		 - [Slack Variables](#690c20def841af809622d7d42099c17a)
 
 ...menuend
 
@@ -37,6 +39,7 @@ Another constraint is fundamental to linear programming: x and y are required to
 
 > Figure 8.2 The feasible set with flat sides, and the costs 2x + 3y, touching at B.
 
+<h2 id="8775939e2cfb40d13172e60558b51fea"></h2>
 ### The Feasible Set and the Cost Function 
 
 The important step is to impose all three inequalities at once.  They combine to give the shaded region in Figure 8.2. 
@@ -67,6 +70,7 @@ The empty and unbounded cases should be very uncommon for a genuine problem in e
 
 ---
 
+<h2 id="690c20def841af809622d7d42099c17a"></h2>
 ### Slack Variables
 
 

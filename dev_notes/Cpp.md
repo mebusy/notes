@@ -1,8 +1,41 @@
+...menustart
+
+ - [2](#c81e728d9d4c2f636f067f89cc14862c)
+	 - [2.4  Graph as data structure](#8b8ba54e7ed58d6969a51a91d54e1545)
+		 - [List representation](#eabdefffaadf27a2e17eac89b418d03c)
+		 - [Matrix vs. list directed graph](#3304451984d7d4ffea5486e84e449302)
+		 - [Dijkstra shortest path](#227230825bf5db0b29a77b5e8f635b19)
+ - [C++ B](#3a82c7106488509941d71fa688027345)
+	 - [1.4 Iterator Categories](#5f12fc29b222aa9424266e81f94a342f)
+	 - [1.6 Bidiretional Iterator](#7ea3be90d2db0c633e1a4bb97b65fbb6)
+	 - [1.7 Random Acess Iteractor](#b199fd823ad561a75c1164f72f3a25da)
+	 - [1.9 Associative Containers](#38835a39d07b751a0f52392548224352)
+	 - [1.10 STL:Algorithms Library](#b99045ec5edde01d7405cdd9d484e67c)
+	 - [1.11 Non-mutating Algorithm](#9d2a97889138dd384b60bcde90d22559)
+	 - [1.12 Lambda Expressions : for_each Function](#8c9a9aba5d3082f61648829828108863)
+		 - [old style for_each()](#1dc1f865d68d3023ddd5ccccd3fe2f88)
+		 - [lambda c++11](#f846829c9d3760db36427428211f1e0b)
+		 - [Mutating Function](#2a200b3f9c1c0b836ece23a6ea362f17)
+	 - [1.13 Numerical algorithms](#9220fb7c282f0c6605d9f35e13c57944)
+	 - [1.14 Functional Objects](#e87d732617748bf074865fbbce1a4582)
+		 - [Generator Object](#2025d93d18bf7503037e013bbfda141a)
+	 - [1.15 Define Function Object Classes:  Function Adapters](#3861b29161427b38210b5fdbbffa7a1b)
+	 - [2.3 Basic of Inheritance](#de828ad4dbe13bf1a9930b26a5aa502e)
+	 - [2.4 C++11 Feature : "final"](#62083d2f266cdfad9baa4aaa5ce8531d)
+	 - [2.14 Virtual Function Selection](#20281bb92cdbc42ed96aaafa8336dba8)
+	 - [2.15 Virtual Confusion with Overloading](#18ee821d94f99da3b611714b62c27a81)
+		 - [Restrictions on Virtual Functions](#80ec8c1aa9d77641d66b2d65f1a819b3)
+
+...menuend
 
 
 
+
+
+<h2 id="c81e728d9d4c2f636f067f89cc14862c"></h2>
 # 2
 
+<h2 id="8b8ba54e7ed58d6969a51a91d54e1545"></h2>
 ## 2.4  Graph as data structure
 
  - Connectitiy matrix (also distances)
@@ -12,6 +45,7 @@
     - Most real world problems are relatively sparse
  - Tradeoffs - Graph as an ADT 
 
+<h2 id="eabdefffaadf27a2e17eac89b418d03c"></h2>
 ### List representation 
 
 A representation of a directed graph with n vertices can use a list , for example , an array of n lists of vertices.
@@ -22,6 +56,7 @@ A representation of a directed graph with n vertices can use a list , for exampl
  - An ***undirected graph*** my be represented by having vertex *j* in the list for vertex *i* , and vertex *i* in the list for vertex *j*.
 
  
+<h2 id="3304451984d7d4ffea5486e84e449302"></h2>
 ### Matrix vs. list directed graph
 
 ```
@@ -38,13 +73,16 @@ A representation of a directed graph with n vertices can use a list , for exampl
 2 3
 ```
 
+<h2 id="227230825bf5db0b29a77b5e8f635b19"></h2>
 ### Dijkstra shortest path
 
 We're going to use undirected graphs with weights(cost). So costs are going to all be non-negative.
 
 
+<h2 id="3a82c7106488509941d71fa688027345"></h2>
 # C++ B
 
+<h2 id="5f12fc29b222aa9424266e81f94a342f"></h2>
 ## 1.4 Iterator Categories
 
 ```c++
@@ -60,10 +98,12 @@ square(w.begin(), w.end() );
 for (auto i:w) ...
 ```
 
+<h2 id="7ea3be90d2db0c633e1a4bb97b65fbb6"></h2>
 ## 1.6 Bidiretional Iterator 
 
 Iteractor both support ++ and -- operator.
 
+<h2 id="b199fd823ad561a75c1164f72f3a25da"></h2>
 ## 1.7 Random Acess Iteractor
 
 ```c++
@@ -77,6 +117,7 @@ RandomAcess pickRandEI( RandomAccess first , RandomAccess last ) {
 ```
 
 
+<h2 id="38835a39d07b751a0f52392548224352"></h2>
 ## 1.9 Associative Containers
 
 map Program
@@ -98,6 +139,7 @@ int main() {
 ```
 
 
+<h2 id="b99045ec5edde01d7405cdd9d484e67c"></h2>
 ## 1.10 STL:Algorithms Library
 
 Sorting Algorithm Prototypes
@@ -108,6 +150,7 @@ Sorting Algorithm Prototypes
     - Stable sorting algorithm over elements b to e
     - elements remain in their relative same position
 
+<h2 id="9d2a97889138dd384b60bcde90d22559"></h2>
 ## 1.11 Non-mutating Algorithm
 
  - template <class InputIter, Class T> InputIter find ( InputIter b, InputIter e, const T& t ) ;
@@ -130,8 +173,10 @@ where = find(words, words+5, "hop") ;
 
 ```
 
+<h2 id="8c9a9aba5d3082f61648829828108863"></h2>
 ## 1.12 Lambda Expressions : for_each Function
 
+<h2 id="1dc1f865d68d3023ddd5ccccd3fe2f88"></h2>
 ### old style for_each()
 
 ```c++
@@ -146,6 +191,7 @@ int main() {
 }
 ```
 
+<h2 id="f846829c9d3760db36427428211f1e0b"></h2>
 ### lambda c++11
 
  - [] : lambda 
@@ -155,6 +201,7 @@ int main() {
     - [](int n) -> int {return ++n} ;  // explicit
 
 
+<h2 id="2a200b3f9c1c0b836ece23a6ea362f17"></h2>
 ### Mutating Function
 
  - template <class InputIter,class OutputIter> 
@@ -164,6 +211,7 @@ int main() {
         - Position returned is end of copy
 
 
+<h2 id="9220fb7c282f0c6605d9f35e13c57944"></h2>
 ## 1.13 Numerical algorithms
 
  - Sums
@@ -188,11 +236,13 @@ int main() {
 }
 ```
 
+<h2 id="e87d732617748bf074865fbbce1a4582"></h2>
 ## 1.14 Functional Objects
 
  - Function objects are clases that have `operator()` defined 
  - sum = accumulate( v1, v1+3, 0.0 , minus<int>() ) ;  // sum = -7
 
+<h2 id="2025d93d18bf7503037e013bbfda141a"></h2>
 ### Generator Object
 
 ```c++
@@ -209,6 +259,7 @@ class gen {
  - next `()` means parameter in this case is void
 
 
+<h2 id="3861b29161427b38210b5fdbbffa7a1b"></h2>
 ## 1.15 Define Function Object Classes:  Function Adapters
 
  - Function Adapters
@@ -217,6 +268,7 @@ class gen {
     - Binders for binding a function argument
     - Adapters for pointer to function 
 
+<h2 id="de828ad4dbe13bf1a9930b26a5aa502e"></h2>
 ## 2.3 Basic of Inheritance
 
 ```
@@ -225,6 +277,7 @@ class point: public duo {
     }
 ```
 
+<h2 id="62083d2f266cdfad9baa4aaa5ce8531d"></h2>
 ## 2.4 C++11 Feature : "final"
  
 ```
@@ -233,6 +286,7 @@ class point3d final : public point { // no further inheritance
 ```
 
 
+<h2 id="20281bb92cdbc42ed96aaafa8336dba8"></h2>
 ##  2.14 Virtual Function Selection
 
  - normal overrided function in the derived class , got selected based on , not the instance being pointed to , but instead the type of pointer. 
@@ -257,10 +311,12 @@ class point3d final : public point { // no further inheritance
     - 将派生类指针指向基类对象，会产生编译错误 
 
 
+<h2 id="18ee821d94f99da3b611714b62c27a81"></h2>
 ## 2.15 Virtual Confusion with Overloading 
 
 基类 有虚函数重载，派生类 要避免 override 这个overload 的部分方法，否则会出现混乱
 
+<h2 id="80ec8c1aa9d77641d66b2d65f1a819b3"></h2>
 ### Restrictions on Virtual Functions 
 
  - only non-static member functions virtual 
