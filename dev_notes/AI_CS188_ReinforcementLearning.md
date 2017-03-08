@@ -732,7 +732,7 @@ The solution is to take a state , and rather than thinking about it as its own b
         - Distance to closest ghost
         - Distance to closest dot
         - Number of ghosts
-        - 1 / (dist to dot)2
+        - 1 / (dist to dot)²
         - Is Pacman in a tunnel? (0/1)
         - …… etc.
         - Is it the exact state on this slide?
