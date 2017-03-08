@@ -812,7 +812,7 @@ You will spend more times at higher places on the mountain. So essentially *e* h
 <h2 id="0a02d3b8f5cb85d83848b73ba2b78219"></h2>
 ### Genetic Algorithems
 
-Genetic algorithms are kind of local search in this case not one hypothesis but a bunch of pypothesis. And rather than just locally improving all of them , it is just mutation.
+Genetic algorithms are kind of local search in this case not one hypothesis but a bunch of hypothesis. And rather than just locally improving all of them , it is just mutation.
 
 You keep the best hypotheses at each step . In adition to just keeping the best one, you find pairs and you do cross-over , you made them (2 robots -> big robot ).
 
