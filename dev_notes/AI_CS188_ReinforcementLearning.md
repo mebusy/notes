@@ -915,6 +915,8 @@ In s' , 2 actions are available :
 
 So the value of the sample = `r + γ·V(s') = 9 + 11 = 20`. And `difference` = 20 - Q(s, West) = -11 
 
+你猜测 Q(s,West) 可以获得 31收益，实际你发现只有 20， 出现了 -11的收益偏差。
+
 Now we should add the difference to weights:
 
  - w₁ = w₁ + α·difference· f₁(s,West) = 1 + 0.5 * -11 * 1 = -4.5
