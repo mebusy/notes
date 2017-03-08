@@ -631,6 +631,21 @@ It's still doing a tiny tiny bit of exploration through randomness. But it's imp
 
 This brings us the idea **regret**.
 
+--- 
+
+Q: in exploration function, how much is k ?
+A: it's hard to know. 
+
+--- 
+
+使用 带 visit count 的 Exploration function, 可以合理的兼顾 exploration and exploitation.
+
+一些指数函数也可以达到这个效果，比如：
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_action_selection_prob_e_function.png)
+
+where 𝜏is a temperature parameter that is decreased over time.
+
 ## Regret 
 
  - Even if you learn the optimal policy, you still make mistakes along the way!
@@ -650,8 +665,6 @@ We've already seen the q-learning subject to some mild conditions will eventuall
 
 Minimizing regret is more than learning to be optimal. It's more like ***optimally learning to be optimal***. 
 
-Q: in exploration function, how much is k ?
-A: it's hard to know. 
  
 ---
 
