@@ -506,7 +506,8 @@ We're going to get some sample on the basis of the action we picked , the key le
  - Caveats:
     - You have to explore enough
     - You have to eventually make the learning rate small enough
-    - … but not decrease it too quickly
+        - … but not decrease it too quickly
+        - 随着时间推移，α is decreased to 0...
     - Basically, in the limit, it doesn’t matter how you select actions (!)
         - as long as you basically try everthing all the time.
 
