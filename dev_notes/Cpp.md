@@ -217,10 +217,58 @@ class gen {
     - Binders for binding a function argument
     - Adapters for pointer to function 
 
+## 2.3 Basic of Inheritance
+
+```
+class point: public duo {
+    ...
+    }
+```
+
+## 2.4 C++11 Feature : "final"
+ 
+```
+class point3d final : public point { // no further inheritance
+...
+```
 
 
+##  2.14 Virtual Function Selection
+
+ - normal overrided function in the derived class , got selected based on , not the instance being pointed to , but instead the type of pointer. 
+ - Typically base has virtual function and derived has their versions for function
+ - Pointer to base class can point at either base or derived class objects
+ - Member function selected depends on class of object being pointed at, not on pointer type
+ - In absence of derived type member , base class virtual function used by default 
+
+---
+
+ - 派生类对象也“是”基类对象，但两者不同。
+    - 派生类对象可以当做基类对象，这是因为派生类包含基类的所有成员。
+    - 但是基类对象无法被当做成派生类对象，因为派生类可能具有只有派生类才有的成员。
+    - 所以，将派生类指针指向基类对象的时候要进行显示的强制转换，否则会使基类对象中的派生类成员成为未定义的。
+ - 总结：基类指针和派生类指针指向基类对象和派生类对象的4中方法：
+    - 基类指针指向基类对象，简单。只需要通过基类指针简单地调用基类的功能。
+    - 派生类指针指向派生类对象，简单。只需要通过派生类指针简单地调用派生类功能。
+    - 将基类指针指向派生类对象是安全的，因为派生类对象“是”它的基类的对象。
+        - 但是要注意的是，这个指针只能用来调用基类的成员函数。如果试图通过基类指针调用派生类才有的成员函数，则编译器会报错
+        - 为了避免这种错误，必须将基类指针强制转化为派生类指针。然后派生类指针可以用来调用派生类的功能。这称为向下强制类型转换，这是一种潜在的危险操作。
+        - 如果在基类和派生来中定义了虚函数（通过继承和重写），并同过基类指针在派生类对象上调用这个虚函数，则实际调用的是这个函数的派生类版本。
+    - 将派生类指针指向基类对象，会产生编译错误 
 
 
+## 2.15 Virtual Confusion with Overloading 
+
+基类 有虚函数重载，派生类 要避免 override 这个overload 的部分方法，否则会出现混乱
+
+### Restrictions on Virtual Functions 
+
+ - only non-static member functions virtual 
+ - virtual characteristic is inherited 
+    - derrived class function automatically virtual ,  virtual keyword ont needed
+ - Constructors can not be virtual 
+ - but destructors can be virtual. 
+ 
 
 
 
