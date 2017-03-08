@@ -56,6 +56,45 @@ for |x| < 1 , 1 + x + x² + ... = 1/(1-x)
 for  x  ≠ 1 , 1 + x + x² + ... = (1- xᵏ⁺¹)/(1-x)
 ```
 
+### 对数函数
+
+换底公式:
+
+> logₐx = logᵦx / logᵦa
+
+指系, 互换, 倒数, 链式公式:
+
+> ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/log_exp_serious.png)
+
+和差公式:
+
+> logₐMN = logₐM + logₐN 
+logₐ(M/N) = logₐM - logₐN 
+
+
+
+
+### 选择时间最短路径
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ToMIT.png)
+
+开车到MIT， 从家开车到麻省高速的车速是30,的垂直距离是a, 麻省高速的车速为60， 求最省时间的开车路线（红色)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ToMIT2.png)
+
+### 求√9.06
+
+线性近似:
+
+```
+f(x) = √x = x⁰ᐧ⁵
+f'(x) = 1/2 · x⁻⁰ᐧ⁵
+choose a=9
+f(a)=3
+f'(a) = 1/6
+√9.06 ≈ 3 + (9.06-9)*1/6 = 3.01
+```
+
 
 <h2 id="4afa80e77a07f7488ce4d1bdd8c4977a"></h2>
 ## Algorithm
@@ -64,7 +103,7 @@ for  x  ≠ 1 , 1 + x + x² + ... = (1- xᵏ⁺¹)/(1-x)
 ### 二分法
 
 <h2 id="bb0a8ee4ec6c3520a9cf5fd4604aac07"></h2>
-#### 求数组中的逆序数
+### 求数组中的逆序数
 
  1. 把输入array 拆成两部分
  2. 对两个子数组 计算逆序数 X,Y  (*)
@@ -74,17 +113,45 @@ for  x  ≠ 1 , 1 + x + x² + ... = (1- xᵏ⁺¹)/(1-x)
  - 所以 第2部需要同时对 子数组排序，并返回  (*) 
 
 
-<h2 id="a95c72911ec10a8e9f3522ce7acd395a"></h2>
-#### closest pairt 距离最近两个点
-
-有一组点[ (x₁,y₁),(x₂,y₂),...,(x<sub>n</sub>,y<sub>n</sub>) ] ,求距离最近的两个点。
-
-`1-D case:`
 
 
+### 已知顶点，求三角形面积
 
+ - 已经三角形的三个顶点：(x1,y1),(x2,y2),(x3,y3),
+	- 求面积:
+    -  解： 
 
+```           
+                 |x1 y1 1|
+     S= 1/2 det  |x2 y2 1|
+                 |x3 y3 1|
+```                     
+                     
+ - PS。必须补1,不能补0,否则行列式就等于0了
+ - 补3个1，其实就是把 三角形平移到原点
+ - 如果有个顶点是原点,比如(x1,y1)=(0,0)
+   
+```                  
+     S =  1/2 det|x2,y2|
+                 |x3,y3|
+```
 
+### 3维向量a,b,c 是否共面
+
+ - (a×b)·c称为abc的混合积，几何意义为abc所形成的平行六面体的体积。
+ - a,b,c 如果共面，则 (a×b)·c =0 , 即 a,b,c组成的行列式 为0
+
+### 两直线 L1,L2 是否共面
+
+```
+    L1, L2 上分别取1个点 p1,p2,
+    
+    p = p2-p1
+    a : L1 的向量
+    b： L2 的向量
+    
+    如果 L1, L2 共面，则 (axb)·p = 0
+```
 
 
 
