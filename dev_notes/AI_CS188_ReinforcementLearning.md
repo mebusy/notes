@@ -872,6 +872,63 @@ Now we'll continue acting but it seems reasonable that this is what we learn. We
 What's nice about this is you learned so quickly from even 1 experience you can learn the ghosts ard bad. What you realize is the first time you eat a dot , you get a feedback that lets you learn that maybe dots are good, and the first time you hit a ghost have an opportunity to learn the ghosts are bad. So instead of that kind of error and error and error and finally after 2000 tries we master a 2 by 2 board , lets see what happens (a big board).   
 
 
+### Another example
+
+ - Q-function:  Q(s,a) = w₁f₁(s,a) + w₂f₂(s,a)
+ - with
+    - f₁(s,a) = 1/ ( manhanttan distance to nearest dot after executing action *a* in *s* )
+    - f₂(s,a) = ( manhanttan distance to nearest ghost after executing action *a* in *s* ) 
+ - initial w₁ = 1, w₂ = 10
+ 
+For the state s shown below, which action should pacman take ? Assume that the red and blue ghosts are both sitting on top of a dot. 
+ 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_feature_rep_update_example1.png)
+
+So there 2 action available :
+
+ - WEST 
+    - f₁(s,West) = 1 
+    - f₂(s,West) = 3
+    - Q(s,West) = 1\*1 + 10\*3 = 31
+ - SOUTH  
+    - f₁(s,South) = 1 
+    - f₂(s,South) = 1
+    - Q(s,South) = 1\*1 + 10\*1 = 11
+
+Based on this approximate Q-function , action WEST will be taken.
+
+Now we are entering state s':
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_feature_rep_update_example2.png)
+
+Assume γ =1 , α = 0.5.
+
+The reward for this transition is r = +10 -1 = 9. (+10: for food pellet eating, -1 for time passed).
+
+So far we don't know the value of this sample. We need calculate the value of state s' at first. 
+
+In s' , 2 actions are available : 
+
+ - Q(s' , West ) = 11
+ - Q(s' , East ) = 11 
+ - V(s') = 11
+
+So the value of the sample = `r + γ·V(s') = 9 + 11 = 20`. And `difference` = 20 - Q(s, West) = -11 
+
+Now we should add the difference to weights:
+
+ - w₁ = w₁ + α·difference· f₁(s,West) = 1 + 0.5 * -11 * 1 = -4.5
+ - w₂ = w₂ + α·difference· f₂(s,West) = 10 + 0.5 * -11 * 3 = -6.5
+
+
+### 总结
+
+ - 根据Q-function ， 可以计算出每个 state 的 Q-Value 
+ - 任意 sample (s,a,r,s') , 计算 sample value 和 Q(s,a) 的差值
+ - update weights by difference. 
+
+
+
 <h2 id="dfd9c3589510f42d75cc643582c741ee"></h2>
 ## Q-Learning and Least Squares
 
