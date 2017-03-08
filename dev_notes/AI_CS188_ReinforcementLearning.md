@@ -915,7 +915,7 @@ In s' , 2 actions are available :
 
 So the value of the sample = `r + γ·V(s') = 9 + 11 = 20`. And `difference` = 20 - Q(s, West) = -11 
 
- - 你猜测 Q(s,West) 可以获得 31收益， 实际并不是这样，出现了 -11的收益偏差。
+ - 你猜测 Q(s,West) 可以获得 31收益， 实际并不是这样，出现了 α·-11 的收益偏差。
  - 这里计算 difference 使用了一个小技巧, 先不加入 α 的计算。 等最后更新 weights的时候，再加入α 的计算 
  - 你也可以使用 bellman update 正常计算 α[ difference ] 。
  
