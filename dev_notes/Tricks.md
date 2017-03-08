@@ -162,8 +162,29 @@ f'(a) = 1/6
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_time_2particle_collide.png)
 
+
  - Δv=(Δvx, Δvy) = (vxᵢ −vxⱼ, vyᵢ −vyⱼ)
  - Δr=(Δrx, Δry) = (rxᵢ −rxⱼ, ryᵢ −ryⱼ)
+
+ - collision time :
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_time_2particle_collide_solution.png)
+    - `d =(Δv⋅Δr)² − (Δv·Δv) (Δr·Δr - σ²)    ,  σ = σᵢ + σⱼ, σ is radius`
+
+eg. let particle radius = 0.5 , σ =0.5+0.5 =1 ,  p1=( 1,0 ) , v1 = (2,0) ; p2=(3,0) , v2 = (1,0)
+
+得:  dr = p1-p2 =  ( -2 , 0 ) , dv = ( 1,0 )  , dvdr = -2 
+
+d = (-2)² - ( 1+0 )( 4+0 - 1 ) = 4-3 = 1
+
+t = - (-2 + 1) / 1 = 1.
+
+
+
+ 
+
+
+
+
 
 
 
