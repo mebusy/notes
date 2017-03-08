@@ -153,6 +153,19 @@ f'(a) = 1/6
     如果 L1, L2 共面，则 (axb)·p = 0
 ```
 
+### 判断两个运动物体 何时碰撞
+
+ - Collision prediction.
+    - Particle i: radius sᵢ, position (rxᵢ, ryᵢ), velocity (vxᵢ, vyᵢ).
+    - Particle j: radius sⱼ, position (rxⱼ, ryⱼ), velocity (vxⱼ, vyⱼ).
+    - Will particles i and j collide? If so, when?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_time_2particle_collide.png)
+
+ - Δv=(Δvx, Δvy) = (vxᵢ −vxⱼ, vyᵢ −vyⱼ)
+ - Δr=(Δrx, Δry) = (rxᵢ −rxⱼ, ryᵢ −ryⱼ)
+
+
 
 
 
