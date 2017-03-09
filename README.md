@@ -63,7 +63,6 @@
  |   |    |   | 
 --- | --- | --- | ---
 [Advanced Data Structure](https://github.com/mebusy/notes/blob/master/dev_notes/python_highlevel_datastructure.md) [lib for Functional] (https://github.com/mebusy/notes/blob/master/dev_notes/python_functional_programming.md)  |  [tips](https://github.com/mebusy/notes/blob/master/dev_notes/python_tips_1.md) | 
-
 [BeautifulSoup](https://github.com/mebusy/notes/blob/master/dev_notes/PY_BeautifulSoup.md)  | [python多线程](https://github.com/mebusy/notes/blob/master/dev_notes/PY_multiprocessing.md) | [PIL_Tips](https://github.com/mebusy/notes/blob/master/dev_notes/PIL_tips.md) | [numpy tips](https://github.com/mebusy/notes/blob/master/dev_notes/numpy_tips.md) 
 
 
