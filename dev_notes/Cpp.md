@@ -203,9 +203,9 @@ int main() {
 
  - [] : lambda 
     - // goest where the function object is required
-    - [](int n) {return n\*5.5;}   // double returned
+    - `[](int n) {return n * 5.5;}`   // double returned
         - deduces the return value -- no return void
-    - [](int n) -> int {return ++n} ;  // explicit
+    - `[](int n) -> int {return ++n}` ;  // explicit
 
 
 <h2 id="2a200b3f9c1c0b836ece23a6ea362f17"></h2>
