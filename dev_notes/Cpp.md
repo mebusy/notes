@@ -326,8 +326,89 @@ class point3d final : public point { // no further inheritance
  - but destructors can be virtual. 
  
 
+## 3.2 Some Further Constructors
+
+```
+explicit my_container (T * b ) : my_container()  {
+    ...}
+```
+
+ - explicit : recall , turn off conversion 
+ - `: my_container` : derived from other constructor, reuse code
 
 
+## 3.10 Abstract Base Class = 0  Notation 
+
+```
+class LeafNode: public Node {
+    friend class Tree ;
+    void print( ostream& o  ) = 0 ;
+    virtual int eval() = 0 ;   
+}
+```
+
+ - abstract function is still undetermined , still without definition , we need to override it.
+
+
+## 4.6 Asserts and Exceptions
+
+ - Static_asserts added to C++ 11  allow ***compiler*** to statically test conditions
+ - `static_assert( bool_constexpr , string )`
+    - bool_constexpr  : a boolean constant expression evaluated at compile time
+    - string : your error message,  string literal that will be a compiler error if bool_constexpr is false 
+
+
+## 4.8 Exception 
+
+ - `throw your_string_message`
+    - eg, `throw "This will Abort";`
+
+```c++
+try {
+    ...
+} catch() {
+    ...   
+}
+```
+
+## 4.10 C++11 Standard
+
+ - tuple  -- pair and more
+ - array  -- fixed length array container
+ - forward_list -- single pointer list
+ - unordered_map, unordered_set  -- hashing used
+ - thread  -- uniform thread interface + other libraries
+ - regex  -- regular expressions
+ - type traits  -- type characteristics 
+
+## 4.11 Thread 
+
+ - `<thread>`
+ - related lib 
+    - `<mutex>`
+    - `<future>` 
+    - `<atomic>`
+    - `<condition_variable>`
+
+## 4.12 tuple 
+
+```
+#include <tuple>
+
+...
+
+tuple<double , double, double> p ; 
+
+...
+
+p = make_tuple( 0,0,0 ) ;
+
+... 
+
+double firstElem = get<0>(p) ;
+
+```
+     
 
 
 
