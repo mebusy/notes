@@ -1,12 +1,44 @@
+...menustart
 
+ - [Python 函数编程](#8c5c087e0c5a8cc7b9b93b25b2c875e9)
+ - [1 functools](#2a2f51b05edd33abf66dacf9304424b6)
+	 - [1.1 partial](#ba09583a56014588200eaa53d180e1a9)
+	 - [1.2 wraps](#5d263813f69178751d70424c59cdee20)
+ - [2 itertools](#b612aad04ade02b19166cee46c341e50)
+	 - [2.1 无限迭代器](#ff51bae37f24ceb18d6d2d81f8063b78)
+		 - [count  无限迭代器](#f594ed00d28bc0f7476c777ded59495b)
+		 - [cycle  序列无限重复迭代](#d402e1690ea518e23f0cba4e7188b905)
+		 - [repeat   单个元素无限重复](#87d41276df027e3669417b92abee4d63)
+	 - [2.2 chain](#4cf0a06ae713c449e5d0a2c2c9bde51c)
+	 - [2.3 compress](#0aabef0c08cf2c354f56079765745e2a)
+	 - [2.4 islice](#334d719ce9b5c4527613cec8c3fdc4e2)
+	 - [2.5 tee](#cf5c625225eafccddf03b9db8f2394a3)
+	 - [2.6 starmap](#4c2de9d318d774a4c9d8a62206b0cea8)
+	 - [2.7 takewhile](#faee88589f727d9802725a3e66ce4965)
+	 - [2.8 dropwhile](#0006b90f02273f75bf19dec5f3fce8ab)
+	 - [2.9 groupby](#c29a94df9214fee8966e388efd6cad07)
+	 - [2.10 排列组合 generators](#7978b3de3d720ef7b201fdcde21e2908)
+		 - [product](#f5bf48aa40cad7891eb709fcf1fde128)
+		 - [permutations](#adeebd07309c91963b1828767e65f35c)
+		 - [combinations](#9256e4c379ff4a504a88c567d54dcb97)
+		 - [combinations_with_replacement](#a91d298eb5ba90bb529e821f71c0c97f)
+ - [3 operator](#cd1b27ed52ee8d15aac88997bc02be24)
+
+...menuend
+
+
+
+<h2 id="8c5c087e0c5a8cc7b9b93b25b2c875e9"></h2>
 # Python 函数编程
 
 functools, itertools, operator是Python标准库为我们提供的支持函数式编程的三大模块
 
+<h2 id="2a2f51b05edd33abf66dacf9304424b6"></h2>
 # 1 functools
 
 functools 提供了一些非常有用的高阶函数。
 
+<h2 id="ba09583a56014588200eaa53d180e1a9"></h2>
 ## 1.1 partial
 
 ```python
@@ -19,6 +51,7 @@ functools 提供了一些非常有用的高阶函数。
 basetwo('10010')实际上等价于调用int('10010', base=2)
 
 
+<h2 id="5d263813f69178751d70424c59cdee20"></h2>
 ## 1.2 wraps
 
  - 装饰器会遗失被装饰函数的__name__和__doc__等属性，可以使用@wraps来恢复。
@@ -46,12 +79,15 @@ def example():
 
 ---
 
+<h2 id="b612aad04ade02b19166cee46c341e50"></h2>
 # 2 itertools
 
 itertools 提供了非常有用的用于操作迭代对象的函数
 
+<h2 id="ff51bae37f24ceb18d6d2d81f8063b78"></h2>
 ## 2.1 无限迭代器
 
+<h2 id="f594ed00d28bc0f7476c777ded59495b"></h2>
 ### count  无限迭代器
 
  - count(start=0, step=1) 会返回一个无限的整数iterator
@@ -66,6 +102,7 @@ from itertools import count
 (3, 'c')
 ```
 
+<h2 id="d402e1690ea518e23f0cba4e7188b905"></h2>
 ### cycle  序列无限重复迭代 
 
  - cycle(iterable) 
@@ -83,6 +120,7 @@ from itertools import count
 (5, 'c')
 ```
 
+<h2 id="87d41276df027e3669417b92abee4d63"></h2>
 ### repeat   单个元素无限重复
 
  - repeat(object[, times]) 
@@ -99,6 +137,7 @@ from itertools import count
 (5, 'over-and-over')
 ```
 
+<h2 id="4cf0a06ae713c449e5d0a2c2c9bde51c"></h2>
 ## 2.2 chain 
 
  - itertools.chain( \* iterables)可以将多个iterable组合成一个iterator。
@@ -118,6 +157,7 @@ from itertools import count
 ['A', 'B', 'C', 'D', 'E', 'F']
 ```
 
+<h2 id="0aabef0c08cf2c354f56079765745e2a"></h2>
 ## 2.3 compress
 
  - compress(data, selectors)
@@ -131,6 +171,7 @@ from itertools import count
 ```
 
 
+<h2 id="334d719ce9b5c4527613cec8c3fdc4e2"></h2>
 ## 2.4 islice
 
  - islice(iterable, stop) 
@@ -148,6 +189,7 @@ from itertools import count
 30
 ```
 
+<h2 id="cf5c625225eafccddf03b9db8f2394a3"></h2>
 ## 2.5 tee
 
  - tee(iterable, n=2) 
@@ -160,6 +202,7 @@ from itertools import count
 # tee 调用后， r 失效
 ```
 
+<h2 id="4c2de9d318d774a4c9d8a62206b0cea8"></h2>
 ## 2.6 starmap
 
  - 和 map 类似，只是 把list 中的每个元素 作为迭代器， 迭代结果 作为函数调用参数
@@ -172,6 +215,7 @@ from itertools import count
 ['a/b/c', 'c/d/f']
 ```
 
+<h2 id="faee88589f727d9802725a3e66ce4965"></h2>
 ## 2.7 takewhile
 
  - takewhile(predicate, iterable) 
@@ -187,6 +231,7 @@ itertools.takewhile(is_even, itertools.count())
 => 0
 ```
 
+<h2 id="0006b90f02273f75bf19dec5f3fce8ab"></h2>
 ## 2.8 dropwhile
 
  - dropwhile(predicate, iterable) 
@@ -200,6 +245,7 @@ itertools.dropwhile(is_even, itertools.count())
 => 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ...
 ```
 
+<h2 id="c29a94df9214fee8966e388efd6cad07"></h2>
 ## 2.9 groupby
 
  - groupby(iterable, key=None)
@@ -220,8 +266,10 @@ B ['B', 'B', 'B']
 
 ---
 
+<h2 id="7978b3de3d720ef7b201fdcde21e2908"></h2>
 ## 2.10 排列组合 generators
 
+<h2 id="f5bf48aa40cad7891eb709fcf1fde128"></h2>
 ### product
 
  - product( \* iterables, repeat=1)
@@ -236,6 +284,7 @@ B ['B', 'B', 'B']
 [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
 ```
 
+<h2 id="adeebd07309c91963b1828767e65f35c"></h2>
 ### permutations
 
  - permutations(iterable, r=None)
@@ -251,6 +300,7 @@ B ['B', 'B', 'B']
 [(0,), (1,), (2,)]
 ```
 
+<h2 id="9256e4c379ff4a504a88c567d54dcb97"></h2>
 ### combinations
 
  - combinations(iterable, r) 
@@ -266,6 +316,7 @@ B ['B', 'B', 'B']
 [(0, 1, 2)]
 ```
 
+<h2 id="a91d298eb5ba90bb529e821f71c0c97f"></h2>
 ### combinations_with_replacement 
 
  - 可重复选取的 组合
@@ -280,6 +331,7 @@ B ['B', 'B', 'B']
 [(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 1, 1), (0, 1, 2), (0, 2, 2), (1, 1, 1), (1, 1, 2), (1, 2, 2), (2, 2, 2)]
 ```
 
+<h2 id="cd1b27ed52ee8d15aac88997bc02be24"></h2>
 # 3 operator
 
 这个模块提供了一系列的函数操作。比如，operator.add(x, y)等于x+y 
