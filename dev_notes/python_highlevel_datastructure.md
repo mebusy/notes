@@ -1,10 +1,28 @@
+...menustart
+
+ - [High Level Datastructure In Python](#7fd56e59b5fba7ede4bdfe85d4ca3e80)
+ - [1 Collections](#255caa31493a976f6d48a798880b037d)
+	 - [1.1 Counter()](#fdfff165187c00eddf4de38373dae439)
+	 - [1.2 Deque](#6a7d8a9f9964930eeb69ad32b992c975)
+	 - [1.3 Defaultdict](#79c19eeedbe88e9f7463649482c2d96c)
+ - [2 Heapq](#accc7ea4c2626a83ee808ea519a956a1)
+ - [3 Bisect](#bdcdfbb57bb9cc2e3ffde8fe201d6778)
+ - [4 Copy](#487df11c262ee217b21843a7dfe5d472)
+ - [5 Pprint](#ec77e0a5fa7be31d129ddd57e635c4bc)
+
+...menuend
 
 
+
+
+<h2 id="7fd56e59b5fba7ede4bdfe85d4ca3e80"></h2>
 # High Level Datastructure In Python 
 
 
+<h2 id="255caa31493a976f6d48a798880b037d"></h2>
 # 1 Collections
 
+<h2 id="fdfff165187c00eddf4de38373dae439"></h2>
 ## 1.1 Counter()
 
  - 可以 统计一个 元素 在给定序列中 ， 一共出现了多少次
@@ -17,6 +35,7 @@
 Counter({'Dog': 3, 42: 2, 'Cat': 2, 'Mouse': 1})
 ```
 
+<h2 id="6a7d8a9f9964930eeb69ad32b992c975"></h2>
 ## 1.2 Deque 
 
  - double-ended queue 
@@ -44,6 +63,7 @@ deque([2, 3, 4, 0, 1])
 deque([3, 4, 0, 1, 2])
 ```
 
+<h2 id="79c19eeedbe88e9f7463649482c2d96c"></h2>
 ## 1.3 Defaultdict
 
  - 拥有和普通dict 相同的操作 
@@ -62,6 +82,7 @@ defaultdict(<type 'list'>, {})
 defaultdict(<type 'list'>, {'not exist': []})
 ```
 
+<h2 id="accc7ea4c2626a83ee808ea519a956a1"></h2>
 # 2 Heapq
 
  - priority queue , implemented by heap 
@@ -117,6 +138,7 @@ class PriorityQueue:
         return len(self.heap) == 0                                              
 ```
 
+<h2 id="bdcdfbb57bb9cc2e3ffde8fe201d6778"></h2>
 # 3 Bisect
 
  - 提供 保持list 元素序列的支持，使用了二分法完成大部分的工作
@@ -140,6 +162,7 @@ class PriorityQueue:
 4
 ```
 
+<h2 id="487df11c262ee217b21843a7dfe5d472"></h2>
 # 4 Copy 
 
 ```python
@@ -151,6 +174,7 @@ class PriorityQueue:
 ```
 
 
+<h2 id="ec77e0a5fa7be31d129ddd57e635c4bc"></h2>
 # 5 Pprint 
 
  - 提供比较优雅的数据结构打印方式

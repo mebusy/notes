@@ -25,6 +25,13 @@
 	 - [2.14 Virtual Function Selection](#20281bb92cdbc42ed96aaafa8336dba8)
 	 - [2.15 Virtual Confusion with Overloading](#18ee821d94f99da3b611714b62c27a81)
 		 - [Restrictions on Virtual Functions](#80ec8c1aa9d77641d66b2d65f1a819b3)
+	 - [3.2 Some Further Constructors](#a86bfb8c341e12c9b614fd2a4c94c24e)
+	 - [3.10 Abstract Base Class = 0  Notation](#fe7f80120156a50493bf86436ed5dedf)
+	 - [4.6 Asserts and Exceptions](#3b7f38abea242fd2c0d2de96986f2551)
+	 - [4.8 Exception](#022c2a7f8dad1e47d6f88eade9351b64)
+	 - [4.10 C++11 Standard](#5be82f8b49f7de553e3463e57899e4e6)
+	 - [4.11 Thread](#f38f209014f0a6500ff416757a4c9a4d)
+	 - [4.12 tuple](#8e4f88e4e3418d17c64f080cd4b28cef)
 
 ...menuend
 
@@ -326,6 +333,7 @@ class point3d final : public point { // no further inheritance
  - but destructors can be virtual. 
  
 
+<h2 id="a86bfb8c341e12c9b614fd2a4c94c24e"></h2>
 ## 3.2 Some Further Constructors
 
 ```
@@ -337,6 +345,7 @@ explicit my_container (T * b ) : my_container()  {
  - `: my_container` : derived from other constructor, reuse code
 
 
+<h2 id="fe7f80120156a50493bf86436ed5dedf"></h2>
 ## 3.10 Abstract Base Class = 0  Notation 
 
 ```
@@ -350,6 +359,7 @@ class LeafNode: public Node {
  - abstract function is still undetermined , still without definition , we need to override it.
 
 
+<h2 id="3b7f38abea242fd2c0d2de96986f2551"></h2>
 ## 4.6 Asserts and Exceptions
 
  - Static_asserts added to C++ 11  allow ***compiler*** to statically test conditions
@@ -358,6 +368,7 @@ class LeafNode: public Node {
     - string : your error message,  string literal that will be a compiler error if bool_constexpr is false 
 
 
+<h2 id="022c2a7f8dad1e47d6f88eade9351b64"></h2>
 ## 4.8 Exception 
 
  - `throw your_string_message`
@@ -371,6 +382,7 @@ try {
 }
 ```
 
+<h2 id="5be82f8b49f7de553e3463e57899e4e6"></h2>
 ## 4.10 C++11 Standard
 
  - tuple  -- pair and more
@@ -381,6 +393,7 @@ try {
  - regex  -- regular expressions
  - type traits  -- type characteristics 
 
+<h2 id="f38f209014f0a6500ff416757a4c9a4d"></h2>
 ## 4.11 Thread 
 
  - `<thread>`
@@ -390,6 +403,7 @@ try {
     - `<atomic>`
     - `<condition_variable>`
 
+<h2 id="8e4f88e4e3418d17c64f080cd4b28cef"></h2>
 ## 4.12 tuple 
 
 ```

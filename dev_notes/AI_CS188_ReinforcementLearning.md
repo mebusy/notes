@@ -35,6 +35,8 @@
 		 - [Linear Value Functions](#57e2e557640ea36670bca3275dc3baef)
 		 - [Approximate Q-Learning](#668619154180bf7f1109c15ddd7bb574)
 		 - [Example : Q-Pacman](#9f255bd21e3c3e685bca408fc92e97d4)
+		 - [Another example](#1a76030ec4ea873977b1ed0668f5f87a)
+		 - [总结](#25f9c7fa3b50aebe5125112ac1187777)
 	 - [Q-Learning and Least Squares](#dfd9c3589510f42d75cc643582c741ee)
 		 - [Optimization: Least Squares *](#7c2917ddb383d4aca5702f57b1bf97a6)
 		 - [Minimizing Error *](#431c26cfba3b0e63e31187e82c47bdd4)
@@ -872,6 +874,7 @@ Now we'll continue acting but it seems reasonable that this is what we learn. We
 What's nice about this is you learned so quickly from even 1 experience you can learn the ghosts ard bad. What you realize is the first time you eat a dot , you get a feedback that lets you learn that maybe dots are good, and the first time you hit a ghost have an opportunity to learn the ghosts are bad. So instead of that kind of error and error and error and finally after 2000 tries we master a 2 by 2 board , lets see what happens (a big board).   
 
 
+<h2 id="1a76030ec4ea873977b1ed0668f5f87a"></h2>
 ### Another example
 
  - Q-function:  Q(s,a) = w₁f₁(s,a) + w₂f₂(s,a)
@@ -933,6 +936,7 @@ Now we should add the difference to weights:
  - w₂ = w₂ + α·difference· f₂(s,West) = 10 + 0.5 * -11 * 3 = -6.5
 
 
+<h2 id="25f9c7fa3b50aebe5125112ac1187777"></h2>
 ### 总结
 
  - 根据Q-function ， 可以计算出每个 state 的 Q-Value 
