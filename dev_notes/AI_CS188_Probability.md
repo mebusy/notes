@@ -232,37 +232,65 @@ It's a way to go from joint distributions to conditional distributions and has s
 
  - General case:
     - All variables: X₁,X₂,...,X<sub>n</sub>
-    - Evidence variables: E₁,...,E<sub>k</sub> = e₁,...,e<sub>k</sub>
-    - Query<sup>\*</sup> variable: Q
-    - Hidden variables: H₁, ..., Hᵣ
+        - Evidence variables: E₁,...,E<sub>k</sub> = e₁,...,e<sub>k</sub>
+        - Query<sup>\*</sup> variable: Q
+        - Hidden variables: H₁, ..., Hᵣ
+    - We Want :
+        P(Q | e₁,...,e<sub>k</sub> )
 
+ - Step 1: Select the entries consistent with the evidence 
+    - 联合概率表中，找出 和 evidence 相符的 entry
+ - Step 2: Sum out H to get joint of Query and evidence
+ - Step 3: Normalize
 
+--- 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_joint_table_STWP.png)
 
-P(W)      Q=W, E=∅ , H={S,T}
+ - P(W)      
+    - Q=W, E=∅ , H={S,T}
                                 
 P(W) | / 
 --- | ---
 s   | 0.65
 r   | 0.35
 
+---
 
 
-
-P(W|winter)    Q=W, E=S , H=T
+ - P(W|winter)    
+    - Q=W, E=S , H=T
 
 P(W | winter) | /
 --- | ---
 s   |  0.25 / 0.5 = 0.5 
 r   |  0.25 / 0.5 = 0.5
 
+--- 
 
-P(W| winter ,hot)    Q=W , E=winter,hot, H=∅
+ - P(W| winter ,hot)    
+    - Q=W , E=winter,hot, H=∅
 
 P(W| winter ,hot) | /
 --- | ---
 s   |  0.10/0.15 = 2/3
 r   |  o.05/0.15 = 1/3
+
+---
+
+ - Obvious problems:
+    - Worst-case time complexity O(dⁿ) 
+    - Space complexity O(dⁿ) to store the joint distribution
+
+## The Product Rule
+
+ - Sometimes have conditional distributions but want the joint
+ - P(y) P(x|y) = P(x,y)
+
+## The Chain Rule
+
+
+
 
 
 
