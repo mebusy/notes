@@ -170,8 +170,25 @@ cold | rain | true
 
 corresponds to a sub-table of the original joint distribution  where you consider only a subset of the random variables.
 
+ - Marginal distributions are sub-tables which eliminate variables 
+ - Marginalization (summing out): Combine collapsed rows by adding
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_margial_distribution.png)
+
+
+
+
+
 <h2 id="d22ece9f9682b018dfb17860cc5aedd7"></h2>
+## Conditional Probabilities
+
+ - A simple relation between joint and conditional probabilities
+    - In fact, this is taken as the definition of a conditional probability
+ - `P(a|b) = P(a,b) / P(b)`
+
+
 ## Conditional Distribution
+
 
 P(W|T)  is a set of tables -- one table for each value T can take on and then for a fixed value of T you get a conditional distribution table.
 
