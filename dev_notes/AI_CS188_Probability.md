@@ -22,35 +22,148 @@ In part 2 we will assume that the models are given to us.
 
 demo: ghost busters
 
-In this grid, somewhere is ghost who is hiding. We don't know where the ghost is but we know there is exactly 1. If we happen to measure on top of the ghost , we don't know that we measure on top of the ghost. All we get is a color back -- we get red, orange, yellow, or green back.   These 4 colors, how does show up depends probabilisticly on how close we to the ghost. 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_ghostbuster.png)
 
-On top of ghost, we usually get red, but we could get green. We don't know ahead of time.  It's a nosiy sense. 
-
+ - A ghost is in the grid somewhere
+ - Sensor readings tell how close a square is to the ghost
+    - On the ghost: red
+    - 1 or 2 away: orange
+    - 3 or 4 away: yellow
+    - 5+ away: green
+ - On top of ghost, we usually get red, but we could get green.   It's a nosiy sense. 
+ - Sensors are noisy, but we know P(Color | Distance)
 
 ---
 
+ P( red|3 )| P( orange|3 )   | P( yellow|3 )   |P( green|3 )
+ --- | --- | --- | --- 
+ 0.05 | 0.15 | 0.5 | 0.3 
+   
+---
+
+## Uncertainty
+
 When we deal with an uncertainty usually we can split the random variables into 2 groups. one group is the group of random variables that would get to observe. We get to measure them and usually then we want to do is somehow  in first something about the variables we don't get to measure -- the hidden variables , the unobserved variables -- and do that in some structured way. And the way that is structures using a probability model that tells us measurements related a noisy way to these hidden variables that we don't get to observe. 
+
+ - General situation:
+    - **Observed variables (evidence)**: 
+        - Agent knows certain things about the state of the world (e.g., sensor readings or symptoms)
+    - **Unobserved variables**: 
+        - Agent needs to reason about other aspects (e.g. where an object is or what disease is present)
+    - **Model**: 
+        - Agent knows something about how the known variables relate to the unknown variables
+ - Probabilistic reasoning gives us a framework for managing our beliefs and knowledge
+
+
 
 <h2 id="8a93f7814e04aeb4a3435d0667b581d7"></h2>
 ## Random Variables
 
-driving time could be continuous.
+ - A random variable is some aspect of the world about which we (may) have uncertainty
+    - R = Is it raining?
+    - T = Is it hot or cold?
+    - D = How long will it take to drive to work?
+    - L = Where is the ghost?
+ - We denote random variables with capital letters
+ - Like variables in a CSP, random variables have domains
+    - R in {true, false}   (often write as {+r, -r})
+    - T in {hot, cold}
+    - D in [0, ∞ )
+        - could be continuous.
+    - L in possible locations, maybe {(0,0), (0,1), …}
+
+
 
 <h2 id="65b393733707f82733184765aa503081"></h2>
 ## Probability Distribution 
+
+ - Associate a probability with each value
+
+**Temperature:  P(T)**
+
+ T | P 
+ --- | --- 
+ hot | 0.5
+ cold | 0.5
+
+**Weather: P(W)**
+
+ W | P 
+ --- | --- 
+ sun | 0.6
+ rain | 0.1
+ fog | 0.3
+ memeor | 0.0
+
+
+ - A distribution is a TABLE of probabilities of values
+ - A probability (lower case value) is a single number
+    - P(W = rain ) = 0.1 
+    - shorthand notation: P(rain) = P(W=rain), OK if all domain entries are unique
+ - Must have:  ∀x P(X=x) ≥ 0 , and ∑ᵪ P(X=x) = 1
+
+
+
+---
+
+
 
 <h2 id="7d5c8826b9086639339acd137cdef0cc"></h2>
 ## Joint Distributions
 
 The reason we care about joint distribution is because we want to infer things about variables we haven't observed based on observations we made of these observed variables. 
 
-dⁿ
+ - A joint distribution over a set of random variables: X₁,X₂, ... X<sub>n</sub> specifies a real number for each assignment (or outcome): 
+    - P(X₁=x₁ ,X₂=x₂ , ... , X<sub>n</sub>=x<sub>n</sub>)
+    - P(x₁ ,x₂ , ... , x<sub>n</sub>)
+ - Size of distribution if n variables with domain sizes d :
+    - dⁿ
+    - For all but the smallest distributions, impractical to write out!
+
+---
+
+P(T,W)
+
+T | W | P 
+--- | --- | --- 
+hot | sun | 0.4
+hot | rain | 0.1
+cold | sun | 0.2
+cold | rain | 0.3 
+
+---
 
 
-vs CSP
 
-Sometimes the main different is that here you have true/false values saying whether it's allowed to have an association or not. 
+## Probabilistic Models
 
+ - A probabilistic model is a joint distribution over a set of random variables
+    - see that ***Distribution over T,W*** in privous paragraph
+ - Probabilistic models:
+    - (Random) variables with domains 
+    - Assignments are called outcomes
+    - Joint distributions: say whether assignments (outcomes) are likely
+    - Normalized: sum to 1.0
+    - Ideally: only certain variables directly interact
+ - Constraint satisfaction problems:
+    - Variables with domains
+    - Constraints: state whether assignments are possible
+    - Ideally: only certain variables directly interact
+
+ - Sometimes the main different is that here you have true/false values saying whether it's allowed to have an association or not. 
+
+---
+
+***Constraint over T,W***
+
+T | W | P          
+--- | --- | ---     
+hot | sun | true     
+hot | rain | false    
+cold | sun | false  
+cold | rain | true  
+
+---
 
 <h2 id="34b3d41097573990cabbad8ae1d9c969"></h2>
 ## Marginal Distributions
