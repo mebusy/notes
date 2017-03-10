@@ -209,9 +209,35 @@ It's a way to go from joint distributions to conditional distributions and has s
 
  All entries sum to 1. 
 
+## Probabilistic Inference
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_probabilistic_inference.png)
+
+ - Probabilistic inference: compute a desired probability from other known probabilities (e.g. conditional from joint)
+ - We generally compute conditional probabilities
+    - P(on time | no reported accidents) = 0.90
+    - These represent the agent’s beliefs given the evidence
+ - Probabilities change with new evidence:
+    - P(on time | no accidents, 5 a.m.) = 0.95
+    - P(on time | no accidents, 5 a.m., raining) = 0.80
+    - Observing new evidence causes beliefs to be updated
+
+
+
+
+---
 
 <h2 id="314fa4378b3b188832e3f68fd46ac015"></h2>
 ## Inference by Enumeration
+
+ - General case:
+    - All variables: X₁,X₂,...,X<sub>n</sub>
+    - Evidence variables: E₁,...,E<sub>k</sub> = e₁,...,e<sub>k</sub>
+    - Query<sup>\*</sup> variable: Q
+    - Hidden variables: H₁, ..., Hᵣ
+
+
+
 
 P(W)      Q=W, E=∅ , H={S,T}
                                 
