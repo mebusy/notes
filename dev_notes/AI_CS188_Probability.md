@@ -202,6 +202,8 @@ Each of these individual tables sums to 1.
 
 It's a way to go from joint distributions to conditional distributions and has slightly quicker way and also a little more mechanical. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_normalize_trick.png)
+
 <h2 id="730a75b3c3a77c4efa7e801fc1f306ea"></h2>
 ## To Normalize 
 
