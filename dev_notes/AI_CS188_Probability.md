@@ -189,6 +189,9 @@ corresponds to a sub-table of the original joint distribution  where you conside
 
 ## Conditional Distribution
 
+ - Conditional distributions are probability distributions over some variables given fixed values of others
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_conditional_distribution.png)
 
 P(W|T)  is a set of tables -- one table for each value T can take on and then for a fixed value of T you get a conditional distribution table.
 
