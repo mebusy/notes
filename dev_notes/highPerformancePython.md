@@ -54,6 +54,20 @@ python -m cProfile -s cumulative julia1_nopil.py
  - -s cumulative flag tells cProfile to sort by cumulative time spent inside each function;
 	- this gives us a view into the slowest parts of a section of code
 
+
+### use line_profile 
+
+line_profiler is the strongest tool for identifying the cause of CPU-bound problems in Python code. 
+
+It works by profiling individual func‐ tions on a line-by-line basis, so you should start with cProfile and use the high-level view to guide which functions to profile with line_profiler.
+
+ - `pip install line_profiler`
+ - 在需要profile 的函数上， 加上 @profile   修饰
+ - `python /Library/Python/2.7/site-packages/kernprof.py  -lv diffusion_python.py`
+    - -l for line-by-line (rather than function-level) profiling
+    - -v for verbose output. Without -v you receive an .lprof output that you can later analyze with the line_profiler module.
+
+
 ## Memory profile 
 
  - install 
@@ -85,7 +99,63 @@ def binary_search(needle, haystack):
 
  - 使用 bisect 可以更简单的实现 2分查找
 
-## 4 Dictionaries and Sets 
+## 6 Matrix and Vector Computation
+
+
+### problem with  Allocating Too Much
+
+ - memory allocations are not cheap, must take its time to talk to the operating system in order to allocate the new space.
+ - reuse it if possible
+ 
+### Memory Fragmentation
+ 
+ - doing `grid[5][2]` requires us to first do a list lookup for index 5 on the list grid. This will return a pointer to where the data at that location is stored. Then we need to do another list lookup on this returned object, for the element at index 2.
+    - The overhead for one such lookup is not big and can be, in most cases, disregarded.
+ - However, if the data we wanted was located in one contiguous block in memory, we could move all of the data in one operation instead of needing two operations for each element. 
+ - This is one of the major points with data fragmentation:
+    - when your data is fragmented, you must move each piece over individually instead of moving the entire block over. 
+    - This means you are invoking more memory transfer overhead, and you are forcing the CPU to wait while data is being transferred. 
+ - The CPU does a good job with mechanisms called branch prediction and pipelining, which try to predict the next instruction and load the relevant portions of memory into the cache while still working on the current instruction. 
+ - However, the best way to minimize the effects of the bottle‐ neck is to be smart about how we allocate our memory and how we do our calculations over our data.
+
+  
+### Enter numpy
+
+numpy stores data in contiguous chunks of memory and supports vectorized operations on its data. 
+
+### Memory Allocations and In-Place Operations
+
+> In-place operations reducing memory allocations
+
+```bash
+>>> import numpy as np
+>>> array1 = np.random.random((10,10)) 
+>>> array2 = np.random.random((10,10)) 
+>>> id(array1)
+140199765947424 # 1
+>>> array1 += array2
+>>> id(array1)
+140199765947424 # 2
+>>> array1 = array1 + array2
+>>> id(array1)
+140199765969792 # 3
+```
+
+### Making most numpy operations in-place
+
+```python
+def evolve(grid, dt, out, D=1): 
+	laplacian(grid, out) 
+	out*=D*dt
+	out += grid
+```
+
+# 8 Concurrency   page 200
+
+# 9 The multiprocessing Module
+
+# 
+
 
 
 
