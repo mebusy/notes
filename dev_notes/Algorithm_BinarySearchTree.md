@@ -52,7 +52,9 @@ insertion | unacceptable |O(logn) | O(logn) | Really good
 deletion | unacceptable  |O(logn) | O(logn) | Really good
  
 
-**注意** 这里BST 的 O(lgn)算法都是 average case，worst case 是O(n) , 实际复杂度依赖于 h: heigt of the tree, and  h≈lgn if keys inserted in random order !!!
+**注意** 这里BST 的 O(lgn)算法都是 balanced search tree. 
+
+普通的binary search tree, 这些操作都是 O(n) , 实际中 复杂度依赖于 h: heigt of the tree, and  h≈lgn if keys inserted in random order !!!
  
 ---
 
