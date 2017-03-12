@@ -51,6 +51,8 @@ output in sorted order | O(n) |O(n) |
 insertion | unacceptable |O(logn) | O(logn) | Really good
 deletion | unacceptable  |O(logn) | O(logn) | Really good
  
+
+**注意** 这里BST 的 O(lgn)算法都是 average case，worst case 是O(n) , 实际复杂度依赖于 h: heigt of the tree, and  h≈lgn if keys inserted in random order !!!
  
 ---
 
@@ -171,16 +173,16 @@ In most data structions, deletion is the most difficult operation , and in searc
 
 To delete a key from a BST
 
-```
-- search for k  # find where it is
-  EASY CASE ( k's node has no children )
-- just delete the k's node from tree
-  MEDIUM CASE ( k's node has 1 child )
-- delete the node that you want to delete, that creates a hole in the tree, the unique child will take that hole. 
-  DIFFICULT CASE ( k's node has 2 children )
-- compute k's predecessor l
-- SWAP k and l , NOTE definitly new position k has no right child , now k's node has 1 or 0 child , we know how to delete it already.
-```
+
+ - search for k  # find where it is
+ - EASY CASE ( k's node has no children )
+    - just delete the k's node from tree
+ - MEDIUM CASE ( k's node has 1 child )
+    - delete the node that you want to delete, that creates a hole in the tree, the unique child will take that hole. 
+ - DIFFICULT CASE ( k's node has 2 children )
+    - compute k's predecessor l
+    - SWAP k and l , NOTE definitly new position k has no right child , now k's node has 1 or 0 child , we know how to delete it already.
+
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BST_insert.png)
 
@@ -206,10 +208,10 @@ How to select iᵗʰ ordered statistic from augmented searth tree (with subtree 
 
 ```
 - start at root x, with children y and z
-- let a = size(y) # a=0 if x has no left child
-- if a=i-1 return key of x  #BEST CASE
-- if a> i-1 , recursively compute iᵗʰ ordered statistic of search tree rooted at y
-- if a < i-1 recursively compute (i-a-1)ᵗʰ ordered statistic of search tree rooted a z
+- let size_leftChild = size(y) # size_leftChild=0 if x has no left child
+- if size_leftChild=i-1 return key of x  #BEST CASE
+- if size_leftChild> i-1 , recursively compute iᵗʰ ordered statistic of search tree rooted at y
+- if size_leftChild < i-1 recursively compute (i-1 -size_leftChild)ᵗʰ ordered statistic of search tree rooted at z
 ```
  
 Runnint time: θ(height)
