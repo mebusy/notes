@@ -229,6 +229,20 @@ print "Intersects:", [k for k in some_dict if k in another_dict]
 print "Intersects:", filter(another_dict.has_key, some_dict.keys())
 ```
 
+### dict key/value 反转
+
+```python
+>>> m = {"a":1,"b":2,"c":3}
+>>> dict( zip( m.values(), m.keys() ) )
+{1: 'a', 2: 'b', 3: 'c'}
+```
+
+or
+
+```python
+>>> {v:k for k,v in m.iteritems() }
+{1: 'a', 2: 'b', 3: 'c'}
+```
 
 <h2 id="ab8027b580ee885ee2c146add9957e1c"></h2>
 ### 类型判断
