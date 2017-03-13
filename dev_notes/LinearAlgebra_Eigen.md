@@ -783,10 +783,41 @@ A = SΛS⁻¹ = ⎡2/3  1/3⎤⎡1   ⎤⎡1  1⎤.
 
 To find Aᵏ, and the distribution after k years, change SAS⁻¹ to SAᵏS⁻¹:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_markov_matrix_example.png)
+
+Those 2 terms are c₁λ₁ᵏx₁ + c₂λ₂ᵏx₂. The factor λ₁ᵏ=1 is hidden in the first term.  In the long term , the other factor (.7)ᵏ becomes extremely small. ***The solution approaches a limiting state u∞ = (y∞, z∞):***
+
+```
+Stead state   ⎡y∞⎤ =(y₀+z₀)⎡2/3⎤.
+              ⎣z∞⎦         ⎣1/3⎦   
 ```
 
+The total population is still y₀+z₀.  but in the limit 2/3 of this population is outside California and 1/3 is inside. 
+
+This is true no matter what the initial distribution may have been ! If the year starts with 2/3 outside and 1/3 sinde , then it tneds the same way : 
 
 ```
+⎡.9 .2⎤⎡2/3⎤ = ⎡2/3⎤,   or Au∞ = u∞.
+⎣.1 .8⎦⎣1/3⎦   ⎣1/3⎦
+```
+
+***The steady state is the eigenvector of A corresponding to λ = 1***. Multiplication by A, from one time step to the next, leaves u∞ unchanged.
+
+---
+
+**5I**  A Markov matrix A has all aᵢⱼ > 0, with each column adding to 1.
+
+ - λ₁ = 1 is an eigenvalue of A.
+ - Its eigenvector x₁ is nonnegative -- and it is a steady state, since Ax₁ = x₁.
+ - The other eigenvalues satisfy |λᵢ| ≤ 1
+ - If A or any power of A has all *positive* entries, these other |λᵢ|  are below 1. The solution Aᵏu₀ approaches a multiple of x₁ -- which is the steady state u∞. 
+
+We note that many authors transpose the matrix so its rows add to 1.
+
+...
+
+This is an example of one of the central themes of this chapter: Given information about A, find information about its eigenvalues. Here we found λ<sub>max</sub> = 1.
+
 
 
 
