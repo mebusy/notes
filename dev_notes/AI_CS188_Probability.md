@@ -282,22 +282,87 @@ r   |  o.05/0.15 = 1/3
     - Worst-case time complexity O(dⁿ) 
     - Space complexity O(dⁿ) to store the joint distribution
 
+---
+
+
 ## The Product Rule
 
  - Sometimes have conditional distributions but want the joint
  - P(y) P(x|y) = P(x,y)
 
+
+
+
 ## The Chain Rule
 
 
 
+That means you have `n!` ways using the chain rule!. 
 
 
+## Bayes' Rule
 
 
+### Inference with Bayes' Rule
+
+It's often easier somehow elicit the conditional distribution P(effect|cause) , rather than the other way around. 
+
+It's could be a ... sensor of center position and that sense might not be prefectly accurate. But you would do before you just need a chance to check. Well if I don't worry about where the sensor measuring a map and how much noise during that process. That's what you're correct gradual you're building this conditional P(effect|cause).
+
+For diseases it might be that you can build statistic : when  we know a patient has certain disease -- let's say meningitis -- , how often do they have a stiff nect. That's the distribution you can build. You just look at all the people with meningitis and then having our conditional distribution. 
+
+--- Example givens ---
+
+Let's say when a person  have stiff neck , what's the probability he have meningitis is ?  
+
+This is an application of bayes' rule.  One thing you'll notice that when you apply bayes' rule , usually often the thing at the bottom , P(+s), is not given to you implicitly. But you can easily compute it using total probability model.   
+
+So Bayes' rule can help us make dicisions:  should this person see a doctor or not ?
+
+--- why ? ---
+
+Because the cost of undiagnosed meningitis is really high. 
 
 
+### Quiz: Bayes's Rule 
 
+P( sun | dry  )  = (0.9\*0.8) / (0.9\*0.8 + 0.3\*0.2) 
+
+P( rain | dry  ) = 1-P(sun|dry) 
+
+---
+
+## Ghostbusters, Revisited 
+
+∝ : proportional to 
+
+∝<sub>g</sub> means that , P(c) is almost 1, but not 1.
+
+
+## Independcence
+
+
+## Conditional Independence 
+
+You go to the dentist. You might have a toothache or not, you might have a cavity or not.
+
+
+Traffic / Umbrella / Raining
+
+What is a reasonable condition assumption in this scenario?  
+
+There could be rain or not . The rain could result in more or less traffic. And rain could result in whether or not somebody carries an umbrella. Now if we know wheter it's raning or not , then it telling us that robot carrying  an umbrella is independent whether there will be traffic or not.
+
+T ⫫ U | R 
+
+---
+
+A ⫫ S|F  is not true
+
+A ⫫ F|S  is true
+
+
+ 
 
 
 
