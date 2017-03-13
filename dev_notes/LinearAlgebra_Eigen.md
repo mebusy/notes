@@ -753,6 +753,40 @@ When the initial u₀ is an eigenvector x, this is the solution: u<sub>k</sub> =
 <h2 id="bdfe38b6c05d238d6cb0df431aea8cb7"></h2>
 ### Markov Matrices
 
+Each year 1/10 of the people outside California move in, and 2/10 of the people inside California move out. We start with y₀ people outside and z₀ inside.
+
+At the end of the first year the numbers outside and inside are y₁ and z₁:
+
+```
+y₁ = .9y₀ + .2z₀
+z₁ = .1y₀ + .8z₀
+
+or 
+
+⎡y₁⎤ =⎡.9 .2⎤⎡y₀⎤
+⎣z₁⎦  ⎣.1 .8⎦⎣y₁⎦
+```
+
+This problem and its matrix have the two essential properties of a ***Markov process***:
+
+ 1. The total number of people stays fixed: ***Each column of the Markov matrix adds up to 1***. Nobody is gained or lost.
+ 2. The numbers outside and inside can never become negative: ***The matrix has no negative entries***. The powers Aᵏ are all nonnegative.
+ 
+We solve this Markov difference equation using u<sub>k</sub> = SΛᵏS⁻¹u₀. Then we show that the population approaches a "steady state." First A has to be diagonalized:
+
+```
+λ₁=1 , λ₂=.7:
+
+A = SΛS⁻¹ = ⎡2/3  1/3⎤⎡1   ⎤⎡1  1⎤.    
+            ⎣1/3 -1.3⎦⎣. .7⎦⎣1 -2⎦    
+```
+
+To find Aᵏ, and the distribution after k years, change SAS⁻¹ to SAᵏS⁻¹:
+
+```
+
+```
+
 
 
 
