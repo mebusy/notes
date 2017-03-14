@@ -50,8 +50,10 @@
  1. [1~3 Search](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188.md)
  2. [4~5 CSP](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_CPS.md)
  3. [6~7 AdversarialSearch](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_AdversarialSearch.md)
- 3. [8~9 MDP](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_MDP.md)
- 3. [10-11 Reinforcement Learning](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_ReinforcementLearning.md)
+ 4. [8~9 MDP](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_MDP.md)
+ 5. [10-11 Reinforcement Learning](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_ReinforcementLearning.md)
+ 6. [12 Probability](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_Probability.md)
+ 7. [13 Markov Models](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_Markov_Models.md)
 
 **Others**
 

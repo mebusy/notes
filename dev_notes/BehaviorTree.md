@@ -1,4 +1,12 @@
+...menustart
 
+ - [Behavior Tree](#65960f0506f5463f2851a8de00e13354)
+
+...menuend
+
+
+
+<h2 id="65960f0506f5463f2851a8de00e13354"></h2>
 # Behavior Tree
 
 ![](http://hi.csdn.net/attachment/201012/27/0_1293415268tlV4.gif)

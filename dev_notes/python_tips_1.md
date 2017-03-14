@@ -17,6 +17,7 @@
 		 - [dict get](#f3fb87677ab41e55ff2069660fddcebf)
 		 - [dict setdefault](#f911a4fc9f3eb152b05e1a9f4b9269a2)
 		 - [dict insection](#2292cf7bac8199cfa91cb22160b26f76)
+		 - [dict key/value 反转](#734d33eb4b09a4486fff62a4f1498c3c)
 		 - [类型判断](#ab8027b580ee885ee2c146add9957e1c)
 		 - [方法内全部局部变量](#76a7e51a79a55462350aaed109577894)
 		 - [python 下划线变量](#379e1d911a58f6e847ad68e52703c7eb)
@@ -229,6 +230,7 @@ print "Intersects:", [k for k in some_dict if k in another_dict]
 print "Intersects:", filter(another_dict.has_key, some_dict.keys())
 ```
 
+<h2 id="734d33eb4b09a4486fff62a4f1498c3c"></h2>
 ### dict key/value 反转
 
 ```python

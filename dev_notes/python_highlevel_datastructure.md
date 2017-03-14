@@ -7,6 +7,8 @@
 	 - [1.3 Defaultdict](#79c19eeedbe88e9f7463649482c2d96c)
  - [2 Heapq](#accc7ea4c2626a83ee808ea519a956a1)
  - [3 Bisect](#bdcdfbb57bb9cc2e3ffde8fe201d6778)
+	 - [Searching Sorted Lists](#2f868162e8d150124929f479e23cbf03)
+	 - [Other Examples](#08b87bb6671fe3c2c92f77e4f561e7fb)
  - [4 Copy](#487df11c262ee217b21843a7dfe5d472)
  - [5 Pprint](#ec77e0a5fa7be31d129ddd57e635c4bc)
 
@@ -162,6 +164,7 @@ class PriorityQueue:
 4
 ```
 
+<h2 id="2f868162e8d150124929f479e23cbf03"></h2>
 ##  Searching Sorted Lists
 
 The above bisect() functions are useful for finding insertion points but can be tricky or awkward to use for common searching tasks. The following five functions show how to transform them into the standard lookups for sorted lists:
@@ -205,6 +208,7 @@ def find_ge(a, x):
 ```
 
 
+<h2 id="08b87bb6671fe3c2c92f77e4f561e7fb"></h2>
 ## Other Examples
 
 The bisect() function can be useful for numeric table lookups.

@@ -1,3 +1,28 @@
+...menustart
+
+ - [Calculus One](#37c5cffe5f40cb8a09855f57171e9646)
+	 - [limit of  sinx / x](#0da07c5934b4b53cf509da017f8ad52a)
+		 - [f(x) = sinx / x , 求 lim x→0](#ad4e9bc62cea4aecede40005fb701b5a)
+		 - [limit of product](#4483c04fa3ccf44c111cde358f218561)
+		 - [lim<sub>x→3</sub> x/(x-3)](#2b2077c392ecb1166a2447a64365cf3e)
+		 - [Continuity](#f73d2c55dc3628b7071e45104874c485)
+			 - [One-Sided Limit:](#5573e33b0dfdea6caa96ddf3f7165cfd)
+			 - [Continuous:](#fb5871c79f8440fc2a2836470cdba81f)
+			 - [Intermediate Value Theorem](#1a8e4c42735dd5a29342c3b0badaa173)
+			 - [How to approximate √2 ?](#6a73f242eea2fe23cbe69f07c9597926)
+		 - [Infinity](#eb2ac5b04180d8d6011a016aeb8f75b3)
+			 - [Why is there an x so that f(x) = x](#589b6a791407525e9ab8f6723184c6a5)
+			 - [What means lim<sub>x→a</sub>f(x) = ∞ ?](#31d71cf51302b193ce93c8b285844bb6)
+			 - [What means lim<sub>x→∞</sub>f(x) = L ?](#78a1c1c2fa16d034391c0bdd36f154fe)
+	 - [Derivative](#70ae6e285cc14c8486e3cf5bec39d1fd)
+		 - [What are derivatives](#de47fb5a83cb8dd572de532fa514a58f)
+			 - [definition](#30618b3b44fa316257d07e387759fae5)
+			 - [Why is f(x) = |x| not differentiable at x =0 ?](#f4d55e88765552127f1f67cba00e367f)
+			 - [How does wiggling x affect f(x) ?](#96bad87f34b364bbd46c6a9956c56a84)
+
+...menuend
+
+
 
 
 
@@ -157,10 +182,13 @@ more precise :
 
 ---
 
+<h2 id="70ae6e285cc14c8486e3cf5bec39d1fd"></h2>
 ## Derivative
 
+<h2 id="de47fb5a83cb8dd572de532fa514a58f"></h2>
 ### What are derivatives
 
+<h2 id="30618b3b44fa316257d07e387759fae5"></h2>
 #### definition 
 
 The ***derivative*** of f at the point x is defined to be :
@@ -178,6 +206,7 @@ The ***derivative*** of f at the point x is defined to be :
 
  - **Derivative is slope !**
 
+<h2 id="f4d55e88765552127f1f67cba00e367f"></h2>
 #### Why is f(x) = |x| not differentiable at x =0 ? 
 
 When I say a function is differentiable , what I really mean is that when I zoom in, the function looks like a straight line, but not  `f(x) = |x|` .
@@ -190,6 +219,7 @@ f'(0) = lim<sub>x→0</sub> |h|/h , DNE.
 
 ---
 
+<h2 id="96bad87f34b364bbd46c6a9956c56a84"></h2>
 #### How does wiggling x affect f(x) ?
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/caculus1_slope_f201.png)
