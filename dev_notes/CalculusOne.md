@@ -190,6 +190,10 @@ f'(0) = lim<sub>x→0</sub> |h|/h , DNE.
 
 ---
 
+#### How does wiggling x affect f(x) ?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/caculus1_slope_f201.png)
+
 f'(x) = 3x , f(2) = 4,  f(2.01) = ? 
 
 f(2.01) = f(2) + 0.01·f'(2) = 4 + 0.01·6 = 4.06.
