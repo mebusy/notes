@@ -167,9 +167,11 @@ The ***derivative*** of f at the point x is defined to be :
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus1_derivative_def.png)
 
-或 等价的定义：
+其他等价的定义：
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Calculus1_derivative_def2.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Calculus1_derivative_def3.png) 
 
 If the derivative of f exists at x , we say that the function is ***differentiable*** at x.
 
