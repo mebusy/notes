@@ -169,10 +169,11 @@ The ***derivative*** of f at the point x is defined to be :
 
 其他等价的定义：
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Calculus1_derivative_def2.png)  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Calculus1_derivative_def3.png)
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Calculus1_derivative_def2.png) , or  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Calculus1_derivative_def3.png)
 
-If the derivative of f exists at x , we say that the function is ***differentiable*** at x.
-
+ - If the derivative of f exists at x , we say that the function is **differentiable** at x.
+ - If the derivative of f exists at x ,  whenever x is between a and b, then we say that f is **defferentiable** on (a,b).
+ - The **derivative** of f at the point x , is written as f'(x).
 
 
 
