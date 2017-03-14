@@ -174,6 +174,25 @@ The ***derivative*** of f at the point x is defined to be :
  - If the derivative of f exists at x , we say that the function is **differentiable** at x.
  - If the derivative of f exists at x ,  whenever x is between a and b, then we say that f is **defferentiable** on (a,b).
  - The **derivative** of f at the point x , is written as f'(x).
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Calculus1_derivative_written.png)
+
+ - **Derivative is slope !**
+
+#### Why is f(x) = |x| not differentiable at x =0 ? 
+
+When I say a function is differentiable , what I really mean is that when I zoom in, the function looks like a straight line, but not  `f(x) = |x|` .
+
+f'(0) = lim<sub>x→0</sub> |h|/h , DNE.
+
+ - Why should you care about differentiable function at all ?
+    - If a terrible looking function is differentiable , if I zoom in on some point, the thing looks like a straight line. 
+    - Calculus is all about replacing the curved objects that we can't understand with straight line , which we have some hope of understanding.
+
+---
+
+f'(x) = 3x , f(2) = 4,  f(2.01) = ? 
+
+f(2.01) = f(2) + 0.01·f'(2) = 4 + 0.01·6 = 4.06.
 
 
 
