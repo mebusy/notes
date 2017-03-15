@@ -587,11 +587,11 @@ We're going to get some sample on the basis of the action we picked , the key le
  MDP | Goal |  Technique
 ---: | --- | ---
 Known MDP: Offline Solutioni | Compute V<sup>\*</sup>, Q<sup>\*</sup>, π<sup>\*</sup> | Value/Policy Iteration
-  -    |  Evaluate a fixed policy π | Policy evaluation
+  ·    |  Evaluate a fixed policy π | Policy evaluation
 Unknown MDP: Model-Based |  Compute V<sup>\*</sup>, Q<sup>\*</sup>, π<sup>\*</sup>  | VI/PI on approx. MDP
-  -    |  Evaluate a fixed policy π | PE on approx. 
+  ·    |  Evaluate a fixed policy π | PE on approx. 
 Unknown MDP: Model-Free | Compute V<sup>\*</sup>, Q<sup>\*</sup>, π<sup>\*</sup>  | Q-learning
-  -    |  Evaluate a fixed policy π | Value Learning
+  ·    |  Evaluate a fixed policy π | Value Learning
 
 
 <h2 id="915129bb469e127e787304e5d49bb4d7"></h2>
