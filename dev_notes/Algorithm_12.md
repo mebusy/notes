@@ -483,12 +483,21 @@ def Merge_Count_Inv(left,right):
  2. 坏的情况: closest pair, p在一个子数组中，q在另一个。我们需要额外的计算 closest split pair (CSP)的情况。
 
 ```python
+def D( p, q ) :
+    return pow( p[0]-q[0] ,2 ) + pow( p[1]-q[1] ,2 )                      
+              
+from itertools import combinations 
+import operator                    
+def ClosestPairIn3Points( l ) :    
+    c = list(combinations( l , 2  ))
+    dists = [ D(p,q) for p,q in c ]
+    index , val = min(enumerate(dists), key=operator.itemgetter(1))
+    return c[index]                
+              
 def ClosestPair( lists_x, lists_y ):
-    if len(lists_x) == 1:
-        return ( lists_x[0], ( 999999, 999999 ) )
-
-    if len(lists_x) == 2:
-        return ( lists_x[0], lists_x[1] )
+              
+    if len(lists_x) <= 3:          
+        return ClosestPairIn3Points( lists_x  )
 
     #分成两个子数组
     num = int( len(lists_x)/2 ) 
@@ -545,30 +554,29 @@ def ClosestSplitPair( lists_x, lists_y , delta ):
     num = int( len(lists_x)/2 ) 
     x_mean = lists_x[num-1][0]
     #print 'l:' , lists_x[num/2-1] , lists_x
-
+          
     # 只取 x 在 [ x_mean-delta, x_mean+delta ] 中的点，按y排序
     Sy = [ p for p in lists_y if abs( p[0] - x_mean ) <= delta ]
     #print "filter: " , num , x_mean , delta,  Sy 
-
+          
     min_dist = delta*delta
     bestPair = ( None , None ) 
     #过滤完成后，
-
-    def D( p, q ) :
-        return pow( p[0]-q[0] ,2 ) + pow( p[1]-q[1] ,2 )
+          
     for i in xrange(  len(Sy) -1  ):
-        for j in xrange( 7 ):
-            if i+j+1 >= len(Sy):
+        for j in xrange( i+1, i+1+5): # 7 -> 5 
+            if j >= len(Sy):
                 continue
             p = Sy[i] 
-            q = Sy[i+j+1]
-
+            q = Sy[j]
+          
             dist =  D( p, q )
             if dist < min_dist:
                 min_dist = dist 
                 bestPair = ( p , q ) 
-
+          
     return bestPair
+
 ```
 
 

@@ -58,11 +58,12 @@ def D( p, q ) :
     return pow( p[0]-q[0] ,2 ) + pow( p[1]-q[1] ,2 )
 
 from itertools import combinations
+import operator 
 def ClosestPairIn3Points( l ) :
     c = list(combinations( l , 2  ))
     dists = [ D(p,q) for p,q in c ]
-    print c, dists 
-    return c[min(dists)]
+    index , val = min(enumerate(dists), key=operator.itemgetter(1))
+    return c[index]
 
 def ClosestPair( lists_x, lists_y ):
 
@@ -116,11 +117,8 @@ def ClosestSplitPair( lists_x, lists_y , delta ):
     bestPair = ( None , None ) 
     #过滤完成后，
 
-    def D( p, q ) :
-        return pow( p[0]-q[0] ,2 ) + pow( p[1]-q[1] ,2 )
-
     for i in xrange(  len(Sy) -1  ):
-        for j in xrange( i+1, i+1+7):
+        for j in xrange( i+1, i+1+5): # 7 -> 5 
             if j >= len(Sy):
                 continue
             p = Sy[i] 
