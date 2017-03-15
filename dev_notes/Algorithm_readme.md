@@ -15,4 +15,6 @@
  7. [hash](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_hash.md)
  8. [Dynamic Programming](https://github.com/mebusy/notes/blob/master/dev_notes/DynamicProgramming.md)
 
- 
+---
+
+ - [2D clostest pair](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_closestPair.md) 
