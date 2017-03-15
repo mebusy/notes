@@ -16,3 +16,6 @@
 ---
 
  - [2D clostest pair](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_closestPair.md) 
+ - [Fast Distance 2D](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_fastdistance2D.md)
+
+
