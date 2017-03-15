@@ -5,11 +5,11 @@
 		 - [eval 环境](#49bdb1b4a214a6bc00824eb4f7b2c5f1)
 		 - [获取变量x的内存地址](#f372cdc8f82db5bb3a311edc6743e412)
 		 - [for i, v  枚举](#5bd260e9c2d18f7f2ff4c30f274ebc6b)
+		 - [min return both value and index](#898381b273cf9617a8b33660e4e27953)
 		 - [数组排序](#d4c8995bb39e2f93cb9604c56fa777d5)
 		 - [字典排序 sorted](#ab7c2e3bc42c80125290e5763dcad146)
 		 - [迭代和组合](#7b6bcc5e50cc1ddd83a25620f5739920)
 		 - [bisect模块保持列表排序](#04539cb02f80127546f36cb81567946d)
-		 - [使用dict 和 set 测试成员](#8ef97ea188949155eb5ac819fdaa6330)
 		 - [url unescape](#18bf7f45d4c0960b7a240195d229cdbc)
 		 - [序列 ()](#1c65ec66e824c6ab4c57603cf633a25d)
 		 - [自省的核心 getattr 函数](#95cc82c5a8eea453d65f25f13121bd7c)
@@ -29,6 +29,8 @@
 	 - [字符处理](#fa931b43907b0ba8b8616487e1a14097)
 		 - [ascii列表 -> 字符串](#47785be60ccbe583a8c3f8a1c3b80d00)
 		 - [编码](#cc6c35a3e0f97fb9747905dc13e9b625)
+			 - [string -> decode -> unicode](#0aaa38f82a7ef026cb4f1021bc6c2e78)
+			 - [unicode -> encode -> string](#40619c71d05ce7768e3ff72d8b7da13f)
 			 - [char <-> ascii](#837e36b7cae11bd0e8b44252a6d61d1f)
 			 - [unichr  <-> unicode string](#8f9892ac178f204eda8bbf3961d55d42)
 			 - [unicode -> special encoded string](#97293b0a09ebeed137930a0ca33f6e3a)
@@ -88,6 +90,7 @@ id(x)
 for i, item in enumerate(  iterable ):
 ```
 
+<h2 id="898381b273cf9617a8b33660e4e27953"></h2>
 ### min return both value and index 
 
 ```python
@@ -354,8 +357,10 @@ def f7(list):
 <h2 id="cc6c35a3e0f97fb9747905dc13e9b625"></h2>
 ### 编码
 
+<h2 id="0aaa38f82a7ef026cb4f1021bc6c2e78"></h2>
 ####  string -> decode -> unicode 
 
+<h2 id="40619c71d05ce7768e3ff72d8b7da13f"></h2>
 ####  unicode -> encode -> string 
 
 
