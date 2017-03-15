@@ -57,12 +57,17 @@ def Merge_Count_Inv(left,right):
 def D( p, q ) :
     return pow( p[0]-q[0] ,2 ) + pow( p[1]-q[1] ,2 )
 
-def ClosestPair( lists_x, lists_y ):
-    if len(lists_x) == 1:
-        return ( lists_x[0], ( 999999, 999999 ) )
+from itertools import combinations
+def ClosestPairIn3Points( l ) :
+    c = list(combinations( l , 2  ))
+    dists = [ D(p,q) for p,q in c ]
+    print c, dists 
+    return c[min(dists)]
 
-    if len(lists_x) == 2:
-        return ( lists_x[0], lists_x[1] )
+def ClosestPair( lists_x, lists_y ):
+
+    if len(lists_x) <= 3:
+        return ClosestPairIn3Points( lists_x  )
 
     #分成两个子数组
     num = int( len(lists_x)/2 ) 

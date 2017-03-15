@@ -354,9 +354,9 @@ def f7(list):
 <h2 id="cc6c35a3e0f97fb9747905dc13e9b625"></h2>
 ### 编码
 
-### string -> decode -> unicode 
+####  string -> decode -> unicode 
 
-### unicode -> encode -> string 
+####  unicode -> encode -> string 
 
 
 <h2 id="837e36b7cae11bd0e8b44252a6d61d1f"></h2>
