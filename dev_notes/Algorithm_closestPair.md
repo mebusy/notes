@@ -47,7 +47,9 @@
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_2d_cloestPair_pseudo.png)
         - optimization:
             - the condition `if |Px| == 2` can be optimized by `if |Px| <=3 ` 
-            - 更精确的划分，只需要 检查 后面5个位置？ [5 Proof](http://www.cs.mcgill.ca/~cs251/ClosestPair/ClosestPairDQ.html)
+            - 第三部分merge 可以只考虑 pᵢ 在left array,pⱼ 在right array 的情况
+                - 这样 只需要考虑 后面的 7个位置  
+                - 更精确的划分，只需要 检查 后面5个位置 ？ [5 Proof](http://www.cs.mcgill.ca/~cs251/ClosestPair/ClosestPairDQ.html)
 
     - Total Running Time
         - Divide set of points in half each time:
@@ -56,7 +58,7 @@
             - Recurrence: T(n) ≤ 2T(n/2) + cn
         - Same as MergeSort ⇒  O(n log n) time.
 
- - steps for this algorithm 
+ - Improved  Algorithm 
     1. Divide the set into two equal sized parts by the line l, and recursively compute the minimal distance in each part.
     2. Let d be the minimal of the two minimal distances.
     3. Eliminate points that lie farther than d apart from l
