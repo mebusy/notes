@@ -88,6 +88,16 @@ id(x)
 for i, item in enumerate(  iterable ):
 ```
 
+### min return both value and index 
+
+```python
+mport operator
+>>> scores = [30, 10,20 ]
+>>> min(enumerate(scores ), key=operator.itemgetter(1))
+(1, 10)
+```
+
+
 <h2 id="d4c8995bb39e2f93cb9604c56fa777d5"></h2>
 ### 数组排序
 
@@ -139,10 +149,6 @@ l.sort(cmp=lambda x,y:cmp( x.lower(), y.lower()  ))
 >>> bisect.insort(list, element) 
 ```
 
-<h2 id="8ef97ea188949155eb5ac819fdaa6330"></h2>
-### 使用dict 和 set 测试成员
-
-hash实现, 查找效率可以达到O(1)
 
 <h2 id="18bf7f45d4c0960b7a240195d229cdbc"></h2>
 ### url unescape
@@ -263,13 +269,13 @@ Python has a locals() function which gives you back a dictionary of local variab
 
 核心风格：避免用下划线作为变量名的开始。
 
- - _xxx      
-    - 不能用'from module import *'导入 
+ - `_xxx`      
+    - 不能用'from module import \*'导入 
     - **保护变量**，意思是只有 类对象和子类对象自己 能访问到这些变量
- - __xxx    
+ - `__xxx`    
     - 类中的私有变量名
     - **私有成员**，意思是只有类对象自己能访问，连子类对象也不能访问到这个数据
- - __xxx__ 
+ - `__xxx__`
     - 系统定义名字 
     - python里特殊方法专用的标识
 
@@ -347,6 +353,11 @@ def f7(list):
 
 <h2 id="cc6c35a3e0f97fb9747905dc13e9b625"></h2>
 ### 编码
+
+### string -> decode -> unicode 
+
+### unicode -> encode -> string 
+
 
 <h2 id="837e36b7cae11bd0e8b44252a6d61d1f"></h2>
 #### char <-> ascii

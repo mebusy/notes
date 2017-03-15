@@ -54,6 +54,9 @@ def Merge_Count_Inv(left,right):
     return cnt , reslut  
 
 #======================================================================================================================================================
+def D( p, q ) :
+    return pow( p[0]-q[0] ,2 ) + pow( p[1]-q[1] ,2 )
+
 def ClosestPair( lists_x, lists_y ):
     if len(lists_x) == 1:
         return ( lists_x[0], ( 999999, 999999 ) )
@@ -77,8 +80,6 @@ def ClosestPair( lists_x, lists_y ):
     (p1,q1) = ClosestPair( left_x, left_y )
     (p2,q2) = ClosestPair( right_x, right_y )
 
-    def D( p, q ) :
-        return pow( p[0]-q[0] ,2 ) + pow( p[1]-q[1] ,2 )
 
     # 获取子数组最小距离
     delta = min( D( p1,q1 ) , D( p2,q2) )
@@ -268,7 +269,7 @@ class mytest(unittest.TestCase):
             self.assertEqual( cmp( Sort_Count_Inv(lists) , countInversionNN(lists)  ) , 0, 'test MergeSort fail')  
 
     def testClosestPair(self):
-        for i in xrange(100):
+        for i in xrange(1000):
             size = np.random.randint( 10,40 )
             l = [ ( np.random.randint( size*3 ) , np.random.randint( size*3 )  ) for i in xrange( size ) ]  
             #print l
