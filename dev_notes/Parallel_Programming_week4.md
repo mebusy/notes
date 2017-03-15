@@ -54,12 +54,15 @@
 
 
 <h2 id="c0f0499c1d3dba37926904cc9e90fcbf"></h2>
+
 ## Week4 
 
 <h2 id="aeaa9f4ca5b2bf8b19cb777e7278d654"></h2>
+
 ### Lecture 4.1: Parallel Computation Patterns - Reduction 
 
 <h2 id="1c0715018a1caf7151f90192c915cb5f"></h2>
+
 #### Partition and Summarize
 
  - A commonly used strategy for processing large input data sets
@@ -73,6 +76,7 @@
  - We will focus on the reduction tree step for now.
 
 <h2 id="cf261a00e1b4f2b9a8f4dd4b1f2f00fa"></h2>
+
 #### Reduction enables other techniques
 
  - Reduction is also needed to clean up after some commonly used parallelizing transformations
@@ -82,6 +86,7 @@
     - Use a reduction tree to combine the values of private locations into the original output location
 
 <h2 id="2f6e81ef7affb65b152072e9c3f8fcc4"></h2>
+
 #### What is a reduction computation?
 
  - Mathmatically a reduction is a computation that summarize a set of input values into one value using a “reduction operation”
@@ -95,6 +100,7 @@
     - Has a well-defined identity value (e.g., 0 for sum)
 
 <h2 id="b01c83d92b8a7ff0b0392079b8f7ef94"></h2>
+
 #### An Efficient Sequential Reduction O(N)
 
 We can write a fairly efficient sequential reduction program by following this procedure: 
@@ -108,6 +114,7 @@ We can write a fairly efficient sequential reduction program by following this p
     - N reduction operations performed for N input values
 
 <h2 id="d4047f39a5dfe14c06d3bd67fc2c0c02"></h2>
+
 #### A prarallel reduction tree algorithm log(N)
 
 perferms N-1 Operations in log(N)
@@ -115,11 +122,13 @@ perferms N-1 Operations in log(N)
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/parallel_reduction_tree.png)
 
 <h2 id="a61800fca54767d7e8735d739544f8cc"></h2>
+
 #### A tournament is a reduction tree with "max" operation
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/tournament_reduction.png)
 
 <h2 id="560ca2205021d730842ddfe22863176d"></h2>
+
 #### A Quick Analysis
 
  - For N input values, the reduction tree performs
@@ -137,9 +146,11 @@ perferms N-1 Operations in log(N)
 ---
 
 <h2 id="0bef1d4dab0fac95cc340b5c23265404"></h2>
+
 ### Lecture 4.2: Parallel Computation Patterns - A Basic Reduction Kernel 
 
 <h2 id="0e7020c5758cd75dd6ad712bde16054e"></h2>
+
 #### Parallel Sum Reduction
 
  - Parallel implementation:
@@ -154,11 +165,13 @@ perferms N-1 Operations in log(N)
     - Thread block size limits n to be less than or equal to 2,048
 
 <h2 id="f6499d11435a023441189f8d0d360bc1"></h2>
+
 #### A Parallel Sum Reduction Example
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/example_parallel_sum.png)
 
 <h2 id="f75e9b3cc0cd6f5fee1230d34c078ca7"></h2>
+
 #### A Naive Thread Index to Data Mapping
 
  - Each thread is responsible of an even-index location of the partial sum vector
@@ -167,6 +180,7 @@ perferms N-1 Operations in log(N)
  - In each step, one of the inputs comes from an increasing distance away
 
 <h2 id="6a3a05ba1420deecba6fcec0f888a3ce"></h2>
+
 #### A Simple Thread Block Design
 
  - Each thread block takes 2* BlockDim.x input elements
@@ -186,6 +200,7 @@ partialSum[blockDim+t] = input[start + blockDim.x+t]; // .x ?
 ```
 
 <h2 id="8ff91097401c2919190ae598411f6c9a"></h2>
+
 #### The Reduction Steps
 
 ```
@@ -204,6 +219,7 @@ Why do we need `__syncthreads()`?
 
 
 <h2 id="9d70d17ae65408f5db037d631dfff0a6"></h2>
+
 #### Back to the Global Picture
 
  - At the end of the kernel, Thread 0 in each thread block writes the sum of the thread block in partialSum[0] into a vector indexed by the blockIdx.x
@@ -212,9 +228,11 @@ Why do we need `__syncthreads()`?
  - If there are only a small number of sums, the host can simply transfer the data back and add them together.
 
 <h2 id="9c4fcd7e9f05381d1cd36268b6b9ed1f"></h2>
+
 ### Lecture 4.3: Parallel Computation Patterns - A Better Reduction Kernel 
 
 <h2 id="ac9cb8a0168ea0e456aa0926259b6301"></h2>
+
 #### Some Observations on the naïve reduction kernel
 
  - In each iteration, two control flow paths will be sequentially traversed for each warp
@@ -226,6 +244,7 @@ Why do we need `__syncthreads()`?
         - This can go on for a while, up to 6 more steps (stride = 32, 64, 128, 256, 512, 1024), where each active warp only has one productive thread until all warps in a block retire.
 
 <h2 id="37c3d4291301abf75c0fee9420923f2c"></h2>
+
 #### Thread Index Usage Matters
 
  - In some algorithms, one can shift the index usage to improve the divergence behavior
@@ -234,11 +253,13 @@ Why do we need `__syncthreads()`?
  - Keep the active threads consecutive
         
 <h2 id="ef3182056377764da7c1a9a822b66541"></h2>
+
 #### An Example of 4 threads
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/better_reduction_kernel.png)
 
 <h2 id="376ef169b4e1bbf6c451654012ae1a3d"></h2>
+
 #### A Better Reduction Kernel
 
 ```
@@ -251,6 +272,7 @@ for (unsigned int stride = blockDim.x; stride > 0; stride /= 2)
 ```
 
 <h2 id="560ca2205021d730842ddfe22863176d"></h2>
+
 #### A Quick Analysis
 
  - For a 1024 thread block
@@ -261,11 +283,13 @@ for (unsigned int stride = blockDim.x; stride > 0; stride /= 2)
 
 
 <h2 id="46490c84b972ecaa1fe8aabfd000ebbb"></h2>
+
 ### Lecture 4.4: Parallel Computation Patterns - Scan (Prefix Sum)     
 
 Scan is a key primitive in many parallel algorithms to convert serial computation into parallel computation.
 
 <h2 id="c775451a0b299cfbc6fd2d11342afb6c"></h2>
+
 #### (Inclusive) Prefix-Sum (Scan) Definition
 
 Inclusive scan is a mathmatical operation on a sequence of numbers.
@@ -281,6 +305,7 @@ and returns the array:
 Inclusive: all elements in the cumulative
 
 <h2 id="9e9415a5c57ba5727e474b44e65df2aa"></h2>
+
 #### An Inclusive Scan Application Example
 
  - Assume that we have a 100-inch sausage to feed 10 person
@@ -294,6 +319,7 @@ Inclusive: all elements in the cumulative
     - 现在我们知道每次切割下刀的位置，这样就可以用10把刀同时切割
 
 <h2 id="cbac52bf90def927041c166fed4ec0ff"></h2>
+
 #### Typical Applications of Scan
 
  - Scan is a simple and useful parallel building block
@@ -311,6 +337,7 @@ scan(out, temp);
     - Radix sort,Quicksort,String comparison,Lexical analysis,Stream compaction,Polynomial evaluation,Solving recurrences,Tree operations,Histograms, ....
 
 <h2 id="20ec4d167d8798728069d999936fe733"></h2>
+
 #### Other Applications
 
  - Assigning camp slots
@@ -320,6 +347,7 @@ scan(out, temp);
  - ...
 
 <h2 id="613761fdbf6491219db20c19d42aac9c"></h2>
+
 #### An Inclusive Sequential Addition Scan
 
  - Given a sequence [x₀, x₁, x₂, ... ]
@@ -328,6 +356,7 @@ scan(out, temp);
  - Using a recursive definition: `yᵢ= yᵢ₋₁ + xᵢ`
 
 <h2 id="a64e5c3e49a52ec193d3027296c4839e"></h2>
+
 #### A Work Efficient C Implementation
 
 Sequential implementation:
@@ -344,6 +373,7 @@ Computationally efficient:
  - Only slightly more expensive than sequential reduction.
 
 <h2 id="bc02aadae515035b9956a8fe671eca93"></h2>
+
 #### A Naive Inclusive Parallel Scan
 
  - Assign one thread to calculate each y element
@@ -357,9 +387,11 @@ this is really naive and ridiculous.
 ---
 
 <h2 id="5a2b1b2acedd52dcb3aac55a008473dc"></h2>
+
 ### Lecture 4.5: Parallel Computation Patterns - A Work-Inefficient Scan Kernel 
 
 <h2 id="a855de72927ce0139a0f83684d43f048"></h2>
+
 #### A Better Parallel Scan Algorithm
 
  1. Read input from device global memory to shared memory
@@ -378,6 +410,7 @@ this is really naive and ridiculous.
     - 因为 add的结果会破坏输入数据，所以在write之前需要一次同步。 
 
 <h2 id="dffe84b2187f1e40e27cdeacefeefacb"></h2>
+
 #### Handling Dependencies
 
  - During every iteration, each thread can overwrite the input of another thread.
@@ -387,6 +420,7 @@ this is really naive and ridiculous.
     - All threads perform Addition and write output
 
 <h2 id="660ff954d48ac24d346abc89442aa629"></h2>
+
 #### A Work-Inefficient Scan Kernel
 
 伪代码，可能有错误.
@@ -417,6 +451,7 @@ __global__ void scan_kernel(float *X, float *Y, int InputSize) {
 ```
 
 <h2 id="c5564ecb1a74fb30ed13221d23cce574"></h2>
+
 #### Work Efficiency Considerations
 
  - This Scan executes log(n) parallel iterations
@@ -429,6 +464,7 @@ __global__ void scan_kernel(float *X, float *Y, int InputSize) {
 
  
 <h2 id="ca5e0cd6c706332a25e7d1ecbf3344a5"></h2>
+
 ### Lecture 4.6: Parallel Computation Patterns - A Work-Efficient Parallel Scan Kernel 
 
  - Two-phased balanced tree traversal
@@ -436,6 +472,7 @@ __global__ void scan_kernel(float *X, float *Y, int InputSize) {
  - Reducing control divergence with more complex thread index to data index mapping
 
 <h2 id="d9bdb0942bdb7d67ba698a9e5b01c726"></h2>
+
 #### Improving Efficiency
 
  - Balanced Trees
@@ -450,6 +487,7 @@ __global__ void scan_kernel(float *X, float *Y, int InputSize) {
     - Traverse back up the tree, building the output from the partial sums
 
 <h2 id="2e24488df2941dbb4abac45c7ba2b9ed"></h2>
+
 #### Parallel Scan - Reduction Phase
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/parallel_scan_reduction.png)
@@ -457,6 +495,7 @@ __global__ void scan_kernel(float *X, float *Y, int InputSize) {
  - start by having all the elements in the shared memory array
 
 <h2 id="0371410754a0b5e9631ddc1c1382fec7"></h2>
+
 #### Reduction Phase Kernel Code
 
 ```
@@ -477,6 +516,7 @@ for (int stride = 1;stride <= BLOCK_SIZE; stride *= 2) {
 ```
 
 <h2 id="525770428e48c34332527f7d40f9886a"></h2>
+
 #### Parallel Scan - Post Reduction Reverse Phase
 
  - after we have all these partial results in these element positions
@@ -487,6 +527,7 @@ for (int stride = 1;stride <= BLOCK_SIZE; stride *= 2) {
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/parallel_scan_post_reduction.png)
 
 <h2 id="a87ae3f880365fff7bbf1f8e9950b268"></h2>
+
 #### Putting it together
  
  - 16 elements case
@@ -495,6 +536,7 @@ for (int stride = 1;stride <= BLOCK_SIZE; stride *= 2) {
 
 
 <h2 id="e29c9087d46c31243ecaf5f90e42c4cf"></h2>
+
 #### Post Reduction Reverse Phase Kernel Code
 
 ```
@@ -518,12 +560,14 @@ if (i < InputSize) Y[i] = XY[threadIdx.x];
 ```
 
 <h2 id="b88e6b938174e02984499e9c436cee31"></h2>
+
 ### Lecture 4.7: Parallel Computation Patterns - More on Parallel Scan
 
  - Exclusive scan
  - Handling large input vectors
  
 <h2 id="f6f7f1fff77178ee96105850c0e22231"></h2>
+
 #### Work Analysis of the Work Efficient Kernel
 
  - kernel executes log(n) parallel iterations in the reduction step
@@ -537,6 +581,7 @@ if (i < InputSize) Y[i] = XY[threadIdx.x];
     
 
 <h2 id="b38797dc349b3d3b01f21c51164d033e"></h2>
+
 #### Some Tradeoffs
 
  - The work efficient scan kernel is normally more desirable
@@ -547,6 +592,7 @@ if (i < InputSize) Y[i] = XY[threadIdx.x];
     
 
 <h2 id="85d2aaee757f7c733d132425d887bf0f"></h2>
+
 #### Exclusive Scan Definition
 
 **Definition**: The exclusive scan operation takes a binary associative operator ⊕, and an array of n elements:
@@ -568,6 +614,7 @@ Example:
  - return: [0 3 4 11 11 15 16 22]
  
 <h2 id="96e50a65e67dd5e28805f5dcc664fd7f"></h2>
+
 #### Why Exclusive Scan
 
  - To find the beginning address of allocated buffers
@@ -578,6 +625,7 @@ Example:
 
 
 <h2 id="039f2d6ee172a0a91f7a327bcda95c86"></h2>
+
 #### A simple exclusive scan kernel
 
  - Adapt an inclusive, work in-efficient scan kernel
@@ -591,6 +639,7 @@ Example:
     - All elements should be shifted by only one position
 
 <h2 id="9923d832c9dd35da518cb5a8bc32d6c1"></h2>
+
 #### Handling large Input Vectors
 
  - Build on the work efficient scan kernel 

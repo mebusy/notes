@@ -40,6 +40,7 @@
 
 
 <h2 id="2bd2c1678bf6f4fb2b3dd646a0a4e689"></h2>
+
 # Learn to learning
 
 Essentials:
@@ -62,12 +63,15 @@ Essentials:
  - 每天先处理困难的工作。
 
 <h2 id="4e36467da5395675d149e37f963f3104"></h2>
+
 ## What's Learning
 
 <h2 id="0f6a929f75505cb21bd825944116c43f"></h2>
+
 ### Focus mode & Diffuse mode
 
 <h2 id="bac5132fb0ee5ab40c519090027a968b"></h2>
+
 ### Procrastination 拖延症
 
 预防拖延症的方法： Pomodoro 番茄钟工作法
@@ -80,6 +84,7 @@ Essentials:
 
  
 <h2 id="a072d2c627e5b08f8e5989de60fcb2d7"></h2>
+
 ### Practice Makes Permanent
 
 大脑需要时间巩固新知识点，稳定突触之间的联系。
@@ -88,14 +93,17 @@ Essentials:
 
 
 <h2 id="efc1e102396e433f648596b57b7ae114"></h2>
+
 ### importance of Sleeping
 
 睡觉的时候，大脑会删除一些不重要的信息，并且清除白天产生的一些毒素。
 
 <h2 id="e3f24dcebca8aac7bab918766483f604"></h2>
+
 ## Chucking
 
 <h2 id="a602bb85e559e3f1ea7b161de23fb4ce"></h2>
+
 ### how to form a chuck
 
 Focus 模式下，我们的注意力就像一只大章鱼，会在必要时把它的触须穿过 working momery 的4哥插槽，链接到我们的部分 永久记忆区，注意这和发散模式下的`随机链接`不一样。
@@ -109,6 +117,7 @@ Focus 模式下，我们的注意力就像一只大章鱼，会在必要时把�
  - `Practice` 组块化的第三步，是获取背景知识。背景是指超越最初的问题，看的更宽更远。举例：如果你不知道如何使用某个工具，这个工具对你就没有用处。
  
 <h2 id="fe277330ca69df73206e1dfaaf097fd1"></h2>
+
 ### Illusions of Competence
 
 > Recall 回顾的重要性
@@ -123,9 +132,11 @@ Focus 模式下，我们的注意力就像一只大章鱼，会在必要时把�
 
 
 <h2 id="46d62627b35abfd75ef163f4b042d9d1"></h2>
+
 ## Seeing Big Picture
 
 <h2 id="292b4cb887c20bf0e19be79527ad829d"></h2>
+
 ### The Value of a Library Chucks
 
 Chucks can help you understand new concepts through a process called `transfer`.
@@ -136,6 +147,7 @@ Chucks can help you understand new concepts through a process called `transfer`.
  - Holistic ("Global ") 通过整体性的直觉 -> Diffuse mode
 
 <h2 id="064516143e195a393abf464c6bfceee9"></h2>
+
 ### Overlearning, Choking , Einstellung Effect , and Interleaving
 
 > Overlearning
@@ -162,9 +174,11 @@ Chucks can help you understand new concepts through a process called `transfer`.
 
 
 <h2 id="b8dc875571b9d741352f7405b0ba2df0"></h2>
+
 ## Procrastination and Memory
 
 <h2 id="26bb1e0b2b8ac68e3b3773fc26cd7cff"></h2>
+
 ## Procrastination
 
 了解你心中的 Zombie,即你的大脑在面对特殊暗示时所表现出的常规和习惯性反应。这些“僵尸反应”通常是为了让此时此刻更方便。
@@ -182,6 +196,7 @@ Chucks can help you understand new concepts through a process called `transfer`.
 你学得越深入，对抗拖延就显得越重要。从前有用的习惯甚至可能反过头来攻击你。
 
 <h2 id="238fbdc9e156b940090ab007553155b1"></h2>
+
 ### Zombie everywhere
 
 chunk的形成与习惯有关。 习惯是我们的节能机制，它让我们的大脑可以同时处理其它的活动。当你习惯了做某件事，你无须集中全部的注意力，这就为你节省了能量。
@@ -195,6 +210,7 @@ chunk的形成与习惯有关。 习惯是我们的节能机制，它让我们�
  
 
 <h2 id="08e17bbc60fab2684773d89d5cfb7935"></h2>
+
 ### Surf's up! Process versus product 过程和结果
 
 让你的学习变得更有效的方法之一就是 利用心理方法和技巧来激励，鼓舞自己。
@@ -214,6 +230,7 @@ chunk的形成与习惯有关。 习惯是我们的节能机制，它让我们�
 关键在于，当干扰不可避免的产生时，你要锻炼自己顺其自然，自己不为所动，使干扰最小化也是一个好主意。安静的环境活着减噪耳机都可以帮助集中注意力。
 
 <h2 id="4eeaacf44b691a992a034ae43a2f5653"></h2>
+
 ### Harnessing Your Zombie to Help You
 
 使用习惯的力量避免拖延症，并且尽量少地动用毅力。
@@ -251,6 +268,7 @@ chunk的形成与习惯有关。 习惯是我们的节能机制，它让我们�
 
 
 <h2 id="d372b78c2d8b98ad75e5c4c8c3fda023"></h2>
+
 ### Juggling Life and Learning
 
  - weekly list of key tasks
@@ -267,6 +285,7 @@ chunk的形成与习惯有关。 习惯是我们的节能机制，它让我们�
 每天早晨尽量先开始最重要且最讨厌的工作，至少完成一个番茄周期，这及其有效。
 
 <h2 id="e2db86db91ea165e87a7ec1bb17d417f"></h2>
+
 ### Summing Up Procrastination
 
 应对拖延的要点：
@@ -280,9 +299,11 @@ chunk的形成与习惯有关。 习惯是我们的节能机制，它让我们�
  
 
 <h2 id="4789f23283b3a61f858b641a1bef19a3"></h2>
+
 ## Memory
 
 <h2 id="fbdfd8abc41ecb72c86d10a25b1bbb1d"></h2>
+
 ### Diving Deeper into Memory
 
 你的大脑天生就擅长记忆不同地点的概况。如果能够充分发挥天生就很强大的视觉和空间记忆能力，你的记忆潜能就能极大提高。
@@ -297,6 +318,7 @@ Two things should happen to move something from `working memory` to `long term m
 手写令记忆编码更深刻，通过编码可以把你想要学的知识转化成神经记忆结构。
 
 <h2 id="7b1193c9a52e69dcddad0996ac1824ca"></h2>
+
 ### What's long term memory
 
 记忆 is not fixed， 它是大脑内活跃，有生命的部分，它们会一直改变。每当你展开回忆时，记忆会变化，这个过程称为 reconsolidation 巩固。
@@ -309,6 +331,7 @@ Short term memory 通过 reconsolidation 变为 Long term Memory。 长时记忆
 
 
 <h2 id="6cbacda9f4d5ae1bcc40f39df139e202"></h2>
+
 ### Creating Meaningful Groups and the Memory Palace Techinque
 
 创造有意义的 意群来简化材料。
@@ -318,6 +341,7 @@ Memory Palace Techinque 可以高效地将你要记的东西分类，它包括�
 记忆技巧帮助人们拓展工作记忆，更容易形成长期记忆，另外，记忆过程变成了创造力的训练。
 
 <h2 id="555181f0b7edca758c534ca303110a7a"></h2>
+
 ### Summing up memory
 
  - long term memory, 分时学习，
@@ -328,9 +352,11 @@ Memory Palace Techinque 可以高效地将你要记的东西分类，它包括�
  
 
 <h2 id="88ee954f42aa06e7b8351c45e96e2ed7"></h2>
+
 ## Renaissance Learning and Unlocking Your Potential
 
 <h2 id="ec80a83755a5f5f3ce5b329214dd5af7"></h2>
+
 ### How 2 become a better learner
 
  1. the best gift that you can give your brain is physical exercise (体育锻炼)!!!    
@@ -340,6 +366,7 @@ Memory Palace Techinque 可以高效地将你要记的东西分类，它包括�
   大脑发展有几个黄金时期，那时某些特定能力会突然提高。你要意识到这点并让大脑准备好。学习母语的黄金时期一直延续到青春期; 0-2岁 是双眼深度知觉，即立体视觉成熟的黄金时期。
 
 <h2 id="0b79795d3efc95b9976c7c5b933afce2"></h2>
+
 ### Introduction 
 
  - Learn Using metaphor (隐喻) and analogy (类比)
@@ -349,6 +376,7 @@ Memory Palace Techinque 可以高效地将你要记的东西分类，它包括�
 逻辑上讲，学习不是线性增长的过程。在构建"知识墙"时可能会受到冲击，一些曾经合理的东西会瞬间变得让人困惑不已。
  
 <h2 id="9a41d955461d5fa549dd9c17d63c0e21"></h2>
+
 ### Create a Lively Visual Metaphor or Analogy
 
 Metaphors and models are often vitally important in giving a physical understanding of the central idea behind the process or concept you are trying to understand.
@@ -356,6 +384,7 @@ Metaphors and models are often vitally important in giving a physical understand
 Metaphors and analogies are useful for getting peaple out of **Einstellung** that is , being blocked by thinking about a problem in the wrong way.
 
 <h2 id="8f05251fdb9bb0980f85cc4121849c4d"></h2>
+
 ### No Need for Genius Envy
 
 Being smater often equates to have a larger working memory , you may be able to hold 9 things in mind instead of 4 and you can make it easier to learn. But guess what, it also make it more difficult for you to be creative. A superb working memory can hold its thoughts so tightly that new thoughts can't easily peek through.
@@ -366,6 +395,7 @@ Particularly deliberate practice on the toughest aspects of the material that ca
 
 
 <h2 id="ae41910f3609ea059d036da64fe2f29b"></h2>
+
 ### Change Your Thoughts , Change Your Life
 
 灵活地改变自己想法，并承认错误的能力
@@ -376,9 +406,11 @@ Particularly deliberate practice on the toughest aspects of the material that ca
 ---
 
 <h2 id="ae8c3dac9a834d7875650d17745701ef"></h2>
+
 ## Renaissance Learning and Unlocking Your Potential II
 
 <h2 id="281817eba8b3e8e9eac01121e955eb42"></h2>
+
 ### The Value of Teamwork
 
 The right hemisphere helps us step back and put our work into big picture perspective. 
@@ -388,11 +420,13 @@ The right hemisphere helps us step back and put our work into big picture perspe
 朋友和队友的作用，就像是脑外进行的diffuse mode, 他们不断提出一位，并从宏观角度看问题。
 
 <h2 id="956f55483f0081051ece73b963dbaa39"></h2>
+
 ### A Test Checklist
 
 Testing is itself an extraordinarily powerful, learning experience. 1小时的测试 远比 1小时学习 获得和学习到的东西多。
 
 <h2 id="a599948930af2c011ac7d8bc42d082fd"></h2>
+
 ### Hard Start - Jump to Easy
 
 考试技巧的，从难题开始，如果遇到解题困难，迅速转向容易的问题。再去尝试解另一道难题，。。。
@@ -402,6 +436,7 @@ Testing is itself an extraordinarily powerful, learning experience. 1小时的�
 这个方法唯一的窍门就是，你必须具有强大的自制力，一旦在某题处停滞超过一到两分钟，你就要果断转向下一题。
 
 <h2 id="7ef04fda1aeb46c259b043e32430f19d"></h2>
+
 ### Final Helpful Hints for Tests
 
  - 如果有考试焦虑症，深呼吸，迅速把注意力转移到呼吸上

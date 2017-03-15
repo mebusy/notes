@@ -20,12 +20,15 @@
 
 
 <h2 id="59c9428d4e21d63aefeb230c919dcfe3"></h2>
+
 # Trick
 
 <h2 id="6da89265a9a8b0b28eb4946bb2ec0c6d"></h2>
+
 ## Match
 
 <h2 id="e1671797c52e15f763380b45e841ec32"></h2>
+
 ### e
 
 ```octave
@@ -43,6 +46,7 @@
 ```
 
 <h2 id="c7112c6a637487ace192a1747cc4e5a9"></h2>
+
 ### 弧度θ 对应的单位扇形面积
 
 ```octave
@@ -50,6 +54,7 @@ S = πr²/(2π) * θ = θ/2
 ```
 
 <h2 id="b287a415393520b5c5e9a45cf7f0ba02"></h2>
+
 ### geometric series
 
 ```octave
@@ -62,6 +67,7 @@ for  x  ≠ 1 , 1 + x + x² + ... = (1- xᵏ⁺¹)/(1-x)
 ```
 
 <h2 id="13dab3aef82bac1ad3d1eba135dab6cd"></h2>
+
 ### 对数函数
 
 换底公式:
@@ -81,6 +87,7 @@ logₐ(M/N) = logₐM - logₐN
 
 
 <h2 id="a6cf0efcef5764df8b0aa13f2bc2a8cf"></h2>
+
 ### 选择时间最短路径
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ToMIT.png)
@@ -90,6 +97,7 @@ logₐ(M/N) = logₐM - logₐN
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ToMIT2.png)
 
 <h2 id="ede6fd698e87ea72dbb43980639c76f6"></h2>
+
 ### 求√9.06
 
 线性近似:
@@ -105,12 +113,15 @@ f'(a) = 1/6
 
 
 <h2 id="4afa80e77a07f7488ce4d1bdd8c4977a"></h2>
+
 ## Algorithm
 
 <h2 id="0608141511400ff7717263f89537faaf"></h2>
+
 ### 二分法
 
 <h2 id="bb0a8ee4ec6c3520a9cf5fd4604aac07"></h2>
+
 ### 求数组中的逆序数
 
  1. 把输入array 拆成两部分
@@ -124,6 +135,7 @@ f'(a) = 1/6
 
 
 <h2 id="c6456da5a90171a0792d3687af299d73"></h2>
+
 ### 已知顶点，求三角形面积
 
  - 已经三角形的三个顶点：(x1,y1),(x2,y2),(x3,y3),
@@ -146,12 +158,14 @@ f'(a) = 1/6
 ```
 
 <h2 id="bcb9bc222a8bdf672334e86daa37bb8f"></h2>
+
 ### 3维向量a,b,c 是否共面
 
  - (a×b)·c称为abc的混合积，几何意义为abc所形成的平行六面体的体积。
  - a,b,c 如果共面，则 (a×b)·c =0 , 即 a,b,c组成的行列式 为0
 
 <h2 id="f75c18c4e881cdf5fa2244c7cf436b58"></h2>
+
 ### 两直线 L1,L2 是否共面
 
 ```
@@ -165,6 +179,7 @@ f'(a) = 1/6
 ```
 
 <h2 id="664289c474abb7133d2e064e03c82e62"></h2>
+
 ### 判断两个运动物体 何时碰撞
 
  - Collision prediction.

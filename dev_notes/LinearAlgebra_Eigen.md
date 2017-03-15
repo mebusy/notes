@@ -11,10 +11,12 @@
 
 
 <h2 id="8358d3063f9f8db669067bc62cf5ea5e"></h2>
+
 # Elgenvalues and Elgenvectors
 
 
 <h2 id="103445c268b50fae9bd814331a04faa4"></h2>
+
 ## 5.1 INTRODUCTION
 
 This chapter begins the "second half" of linear algebra. 
@@ -355,6 +357,7 @@ A = ⎡2 0⎤ ⎡2  0⎤ ⎡0 1⎤ ⎡ 0 1⎤ ⎡1 1⎤ ⎡1 1⎤
 ---
 
 <h2 id="a208ce5ccf9b8c57cd42ced0c19eca2e"></h2>
+
 ## 5.2 DIAGONALIZATION OF A MATRIX
 
 We start right off with the one essential computation. It is perfectly simple and will be used in every section of this chapter. ***The eigenvectors diagonalize a matrix***:
@@ -608,6 +611,7 @@ At the end we come back to A = SΛS⁻¹. ***That factorization is particularly 
 ---
 
 <h2 id="b7b97b347a818a45c3aa318285ba99b7"></h2>
+
 ## 5.3 DIFFERENCE EQUATIONS AND POWERS Aᵏ
 
 Difference equations u<sub>k</sub>₊₁ = Au<sub>k</sub> move forward in a finite number of finite steps. 
@@ -652,6 +656,7 @@ Or the bank can switch to a differential equation - the limit of the difference 
 
 
 <h2 id="fdd5b4c8c15384ed3cceda4fe4cc38d6"></h2>
+
 ### Fibonacci Numbers
 
 The main object of this section is to solve u<sub>k</sub>₊₁ = Au<sub>k</sub>. That leads us to Aᵏ and **powers of matrices**. Our second example is the famous ***Fibonacci sequence***:
@@ -750,6 +755,7 @@ When the initial u₀ is an eigenvector x, this is the solution: u<sub>k</sub> =
 
 
 <h2 id="bdfe38b6c05d238d6cb0df431aea8cb7"></h2>
+
 ### Markov Matrices
 
 Each year 1/10 of the people outside California move in, and 2/10 of the people inside California move out. We start with y₀ people outside and z₀ inside.

@@ -10,9 +10,11 @@
 
 
 <h2 id="348c880664f2e1458b899ced2a3518e6"></h2>
+
 # sublime 
 
 <h2 id="9b170543939c6cd7f1429de2594d607c"></h2>
+
 ## Install "Package Control"
 
  - 下载地址：https://github.com/wbond/sublime_package_control
@@ -21,6 +23,7 @@
  - restart sublime
 
 <h2 id="16f3f1badf0bd7511a11113a33732008"></h2>
+
 ## Set Proxy
 
  - 点击Preferences > Package Settings > Package Control > Settings – User
@@ -35,6 +38,7 @@
    
 
 <h2 id="ba3b64da711156e4984775335117b21d"></h2>
+
 ## Use Package Control Install Plugins
 
  - Cmd +Shift+P（菜单 – Tools – Command Paletter）
@@ -42,6 +46,7 @@
  - 选择 plugin
 
 <h2 id="bb38096ab39160dc20d44f3ea6b44507"></h2>
+
 ## Plugins
 
  - markdown : **OmniMarkupPreviewer**

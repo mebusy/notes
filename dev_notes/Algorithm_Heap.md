@@ -24,12 +24,15 @@
 
 
 <h2 id="556e9a86db9c921373c6b5097817214a"></h2>
+
 # Heap
 
 <h2 id="6a80cb76a26187df87a7b43a12c0e0f3"></h2>
+
 ## Operations and Applications
 
 <h2 id="fe48233bd336fbef597492f11f356edd"></h2>
+
 ### Supported Operations
 
 A heap is a container for objects , and each of these object should have a key , like a number , so that for any given objects you can compare their keys and say one key is bigger than other key. Duplicate key is allowed ?
@@ -59,6 +62,7 @@ Additional Operations:
 
 
 <h2 id="08cd128c9ca3be690cc6651adce74187"></h2>
+
 ### Application: Sorting
 
 What should trigger you to think that maybe you want to use a heap data structure in some task?  
@@ -70,6 +74,7 @@ So the most common reason to use a heap is you notice that your programm is doin
 
 
 <h2 id="d47eaadb4edbed6e7e32232a56fe6ab7"></h2>
+
 ### Application: Event Manager
 
 In this application it will be natural to call a heap by a synonymous name , a priority queue. 
@@ -84,6 +89,7 @@ So when you have event records like this , there's a very natural key , which is
  - Extract min => yields the next scheduled event.
 
 <h2 id="a3edde8e4fb37f8fffb3bb1638ed8c2f"></h2>
+
 ### Application: Median Maintenence
 
 The way this is gonna work is that you and I gonna play a little game. So on my side , what I'm going to do is I'm going to pass you index cards, on a time,  where there's a number written on each index card. Your responsibility is to tell me at each time step the median of the number that I've passed you so far. So, after I've given you the 1st 11 numbers you should tell me as quickly as possible the sixth smallest number , after I've given 13 numbers you should tell me the 7th smallest number , and so on.
@@ -95,9 +101,11 @@ The way this is gonna work is that you and I gonna play a little game. So on my 
 
 
 <h2 id="274729aa40769d044d57c22c1dc27210"></h2>
+
 ### Application: Speeding Up Dijkstra
 
 <h2 id="c2b2b81b0d6751c1aa98cc1822ba50b1"></h2>
+
 ## Implementation Details
 
 2 views of heap:
@@ -106,6 +114,7 @@ The way this is gonna work is that you and I gonna play a little game. So on my 
  - a array
 
 <h2 id="07a0bc991ad48c42bffcdc727ac7e1f7"></h2>
+
 ###Tree Implementation
 
  - **Conceptually**: rooted, binary , as complete as possible
@@ -120,6 +129,7 @@ The way this is gonna work is that you and I gonna play a little game. So on my 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/heap_tree_arrange.PNG)
 
 <h2 id="0b3df9e7addfc4dc5f269bcec5350c1c"></h2>
+
 ### Array Implementation
 
 array implementation for the right side heap in above picture:
@@ -136,6 +146,7 @@ child of i : 2i, 2i+1
 ```
 
 <h2 id="3c7c6efe37b146b0fe72114e7b76b3d3"></h2>
+
 ### Insert and Bubble-Up
 
 remember heaps are always suppose be perfectly balanced binary trees. 
@@ -148,9 +159,11 @@ So if we wanna maintain the property that this tree is perfectly balanced  is pr
 
 
 <h2 id="fb9b85ad5e4b637de2cc3f9c843ecbc0"></h2>
+
 #### Implementation of Insert (given key K)
 
 <h2 id="5a038405dd485cc75328e937e1a0e04e"></h2>
+
 ##### step1: stick K at end of last level
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/heap_insert.PNG)
@@ -162,6 +175,7 @@ Is there some way we can restore the heap property ?  A natural idea is just to 
 So in general , as you push up this 5 up the tree, there's only going to be one possible edge that could be out of order and ths's between where the five currently resides and whatever its parent is.
         
 <h2 id="f6012bfc00a02971d91e1f780fefeca1"></h2>
+
 ##### step2: Bubble-Up K until heap property is restored (eg. key of K's parent is <= k ).
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/heap_insert_step2.PNG)
@@ -169,19 +183,23 @@ So in general , as you push up this 5 up the tree, there's only going to be one 
 Runtime: O(logn)
 
 <h2 id="5c6ff897d82e15d93c5b33b4fef2c66b"></h2>
+
 ### Extract-Min and Bubble-Donw
 
 It pretty much have to wipe out the root. Remember the minimum is guaranteed to be at the root. 
 
 <h2 id="773e70dc32cc881e63bf17c3cd0c7e78"></h2>
+
 #### Implementation of Extract-Min
 
 <h2 id="41df81a127489688d43f7fafb1dce56d"></h2>
+
 ##### step1: Delete root
 
 Well, there's pretty much only one node that could fill the hole without causing other problems with the tree structure. And that is the **very last node**. So the rightmost leaf at buttom level , one that simple fix is to swap that up and have that take the place of the original root. So in this case ,the 13 is going to get a massive promotion ans get teleported all the way to be the new root of this tree. 
 
 <h2 id="e1e112957103fc145d1136e58c9e68c8"></h2>
+
 ##### step2: move last leaf to be new root
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/heap_extract_min1.PNG)
@@ -193,6 +211,7 @@ Now when you're trying to push notes down to the rightful position in the tree, 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/heap_extract_min3.PNG) 
 
 <h2 id="6ecc659c1121beb421ef62658552858f"></h2>
+
 ##### step3: Bubble-Down until heap property has be restored
 
 RunningTime: O(logn)

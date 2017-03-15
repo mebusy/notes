@@ -11,6 +11,7 @@
 
 
 <h2 id="eb512174cb9eab61d18d2b32ac10d757"></h2>
+
 # CELLULAR TEXTURING
 
 Procedural texturing uses fractal noise extensively. 
@@ -33,6 +34,7 @@ They often split space into small, randomly tiled regions , called cells. Even t
 
 
 <h2 id="d69d9e02dafa3af0d24ce1601f70a74f"></h2>
+
 ## THE NEW BASES
 
 The cellular texturing basis functions are based on the fundamental idea of randomly scattering “feature points” throughout 3D space , and building a scalar function based on the distribution of the points near the sample location. 
@@ -115,6 +117,7 @@ If the F₁ function returns a unique ID number to represent the closest feature
 Bump mapping of the flagstonelike areas is particularly effective, and it is cheap to add since the gradient of F<sub>n</sub> is just the radial unit vector pointing away from the appropriate feature point toward the sample location.
 
 <h2 id="281ce9a8a2a4d6b847c885aeadb20d87"></h2>
+
 ## IMPLEMENTATION STRATEGY
 
 It’s not necessary to understand how to implement the cellular texture basis function in order to use it. 
@@ -130,6 +133,7 @@ Our first assumption is that we want an *isotropic* function, to avoid any under
 The correct way to eliminate this bias is to keep the idea of splitting space into cubes, but choosing the number of points inside each cube in a way that will completely obscure the underlying cube pattern. We’ll analyze this separately later.
 
 <h2 id="4edf7eb38d47853aa36e3402b93cf234"></h2>
+
 ### Dicing Space
 
 Since space will be filled with an infinite number of feature points, we need to be able to generate and test just a limited region of space at a time. The easiest way to do this is to dice space into cubes and deal with feature points inside each cube. This allows us to look at the points near our sample by examining the cube that the sample location is in plus the immediate neighbor cubes.  An example is shown in Figure 4.8
@@ -149,6 +153,7 @@ The solution to this problem is to hash the three integer coordinates of a cube 
 We compute the number of points in the cube using this seed to pick a value from a short lookup table of 256 possibilities.  This hardwired array of possible point populations is carefully precomputed (as described on page 145) to give us the “keep the points isotropic” magic property we desire.  We use the high-order bits from our seed to index into the table to decide how many feature points to add into the cube. Since our table is a nice length of 256, we can just use the eight high-order bits of the seed value to get the index.
 
 <h2 id="fa5e753bb6b23904853dbf0639e6201a"></h2>
+
 ### Neighbor Testing
 
 Next, we compute the locations of the *m* feature points inside the sample cube. 
@@ -178,6 +183,7 @@ This kind of analysis also shows us that we need ***sufficient feature point den
 After we’ve checked all of the necessary neighbors, we’ve finished computing our values of F. If we computed Fn, we were effectively finding values for all F₁, F₂ , . . . , F<sub>n</sub> simultaneously, which is very convenient. 
 
 <h2 id="46504218a9420f71f7daaed533bed27a"></h2>
+
 ### The Subtle Population Table
 
 The desire for an isotropic distribution of points in space requires careful design. It can be done by choosing the number of points in each cube randomly but using a ***Poisson 泊松 distribution***. 

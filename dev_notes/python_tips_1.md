@@ -56,14 +56,17 @@
 
 
 <h2 id="e7c8aa5b143e53ecad41b3612dab23ed"></h2>
+
 # python tips
 
 ---
 
 <h2 id="cd82da5cf3ee760792e950b087be3d29"></h2>
+
 ## 语法技巧
 
 <h2 id="49bdb1b4a214a6bc00824eb4f7b2c5f1"></h2>
+
 ### eval 环境
    
 eval() 默认使用当前环境的名字空间，也可以带入自定义字典
@@ -77,6 +80,7 @@ eval("x+y" , ns )
 
 
 <h2 id="f372cdc8f82db5bb3a311edc6743e412"></h2>
+
 ### 获取变量x的内存地址
 
 ```
@@ -84,6 +88,7 @@ id(x)
 ```
 
 <h2 id="5bd260e9c2d18f7f2ff4c30f274ebc6b"></h2>
+
 ### for i, v  枚举
 
 ```
@@ -91,6 +96,7 @@ for i, item in enumerate(  iterable ):
 ```
 
 <h2 id="898381b273cf9617a8b33660e4e27953"></h2>
+
 ### min return both value and index 
 
 ```python
@@ -102,6 +108,7 @@ mport operator
 
 
 <h2 id="d4c8995bb39e2f93cb9604c56fa777d5"></h2>
+
 ### 数组排序
 
 ```
@@ -115,6 +122,7 @@ l.sort(cmp=lambda x,y:cmp( x.lower(), y.lower()  ))
 ```
 
 <h2 id="ab7c2e3bc42c80125290e5763dcad146"></h2>
+
 ### 字典排序 sorted
 
 ```
@@ -131,6 +139,7 @@ l.sort(cmp=lambda x,y:cmp( x.lower(), y.lower()  ))
 
 
 <h2 id="7b6bcc5e50cc1ddd83a25620f5739920"></h2>
+
 ### 迭代和组合
 
 了解itertools模块：  该模块对迭代和组合是非常有效的
@@ -143,6 +152,7 @@ l.sort(cmp=lambda x,y:cmp( x.lower(), y.lower()  ))
 ```
 
 <h2 id="04539cb02f80127546f36cb81567946d"></h2>
+
 ### bisect模块保持列表排序
 
 这是一个免费的二分查找实现和快速插入有序序列的工具。你已將一个元素插入列表中, 而你不需要再次调用 sort() 来保持容器的排序, 因为这在长序列中这会非常昂贵. 
@@ -154,6 +164,7 @@ l.sort(cmp=lambda x,y:cmp( x.lower(), y.lower()  ))
 
 
 <h2 id="18bf7f45d4c0960b7a240195d229cdbc"></h2>
+
 ### url unescape
 
 ```
@@ -172,11 +183,13 @@ txt = html_parser.unescape(html)
 
 
 <h2 id="1c65ec66e824c6ab4c57603cf633a25d"></h2>
+
 ### 序列 ()  
 
 速度比列表快，  可以作为字典关键字
 
 <h2 id="95cc82c5a8eea453d65f25f13121bd7c"></h2>
+
 ### 自省的核心 getattr 函数
 
 ```
@@ -190,6 +203,7 @@ for i in  dir( obj ):
 ```
 
 <h2 id="765d2ec94553b7cf4c971e7dfcf0e851"></h2>
+
 ### callable
 
 ```
@@ -197,6 +211,7 @@ methodList = [method for method in dir(object) if callable(getattr(object, metho
 ```
 
 <h2 id="f3fb87677ab41e55ff2069660fddcebf"></h2>
+
 ### dict get
 
 从字典中获取一个值 
@@ -215,6 +230,7 @@ print d.get('key', 'not found')
 ```    
 
 <h2 id="f911a4fc9f3eb152b05e1a9f4b9269a2"></h2>
+
 ### dict setdefault
 
 dict 插入key-value时，如果key不存在，先初始化为默认值(一般用于value是list, dict 类型)
@@ -225,6 +241,7 @@ def addword2dict(word, pagenumber):
 ```
 
 <h2 id="2292cf7bac8199cfa91cb22160b26f76"></h2>
+
 ### dict insection
 
 找出两个字典的交集 
@@ -240,6 +257,7 @@ print "Intersects:", filter(another_dict.has_key, some_dict.keys())
 ```
 
 <h2 id="734d33eb4b09a4486fff62a4f1498c3c"></h2>
+
 ### dict key/value 反转
 
 ```python
@@ -256,6 +274,7 @@ or
 ```
 
 <h2 id="ab8027b580ee885ee2c146add9957e1c"></h2>
+
 ### 类型判断
 
 ```
@@ -263,11 +282,13 @@ isinstance(u'a', unicode)
 ```
 
 <h2 id="76a7e51a79a55462350aaed109577894"></h2>
+
 ### 方法内全部局部变量
 
 Python has a locals() function which gives you back a dictionary of local variables within the function
 
 <h2 id="379e1d911a58f6e847ad68e52703c7eb"></h2>
+
 ### python 下划线变量
 
 核心风格：避免用下划线作为变量名的开始。
@@ -283,6 +304,7 @@ Python has a locals() function which gives you back a dictionary of local variab
     - python里特殊方法专用的标识
 
 <h2 id="8160fc3170b680fdd05d32a93937bcb9"></h2>
+
 ### re.sub group: number after \number
 
 ```
@@ -295,9 +317,11 @@ re.sub(r'(foo)', r'\g<1>123', 'foobar')
 ---
 
 <h2 id="4155a2d7d71ebf1611555bda413d2961"></h2>
+
 ## 数字进制转换
 
 <h2 id="4b65978fe4cba7b22aecf6375e8737db"></h2>
+
 ### 10进制数字 => 2,8,16进制字符串
 
 ```
@@ -307,6 +331,7 @@ hex(10)   # 16
 ```
 
 <h2 id="819934946947aa7e3778247b469c1e4c"></h2>
+
 ### 2,8,16进制字符串 ==> 10进制数字 
 
 ```
@@ -314,6 +339,7 @@ int('022',8)
 ```
 
 <h2 id="44ecb2e9ff829c50b0b0f9f4e9f7b918"></h2>
+
 ### 格式化数字为16进制字符串
 
 ```
@@ -333,9 +359,11 @@ int('022',8)
 ---
 
 <h2 id="fa931b43907b0ba8b8616487e1a14097"></h2>
+
 ## 字符处理
 
 <h2 id="47785be60ccbe583a8c3f8a1c3b80d00"></h2>
+
 ### ascii列表 -> 字符串
 
 good 1
@@ -355,16 +383,20 @@ def f7(list):
 ```
 
 <h2 id="cc6c35a3e0f97fb9747905dc13e9b625"></h2>
+
 ### 编码
 
 <h2 id="0aaa38f82a7ef026cb4f1021bc6c2e78"></h2>
+
 ####  string -> decode -> unicode 
 
 <h2 id="40619c71d05ce7768e3ff72d8b7da13f"></h2>
+
 ####  unicode -> encode -> string 
 
 
 <h2 id="837e36b7cae11bd0e8b44252a6d61d1f"></h2>
+
 #### char <-> ascii
 
 ```
@@ -377,6 +409,7 @@ a
 `'2' == '\x32' == '\062'`
 
 <h2 id="8f9892ac178f204eda8bbf3961d55d42"></h2>
+
 #### unichr  <-> unicode string
 
 ```
@@ -387,6 +420,7 @@ a
 ```
 
 <h2 id="97293b0a09ebeed137930a0ca33f6e3a"></h2>
+
 #### unicode -> special encoded string
 
 ```
@@ -398,6 +432,7 @@ utf16string = unicodestring.encode("utf-16")
 ```
 
 <h2 id="f9b40cb363b4e4cd89aa132855dd8d41"></h2>
+
 #### special encoded string -> unicode
 
 ```
@@ -416,9 +451,11 @@ unicode 可以使用 u"\uxxxx" 表示，但是当我们从某处获取 "\uxxxx"�
 ---
 
 <h2 id="c4e5abc4816842dea936c9f1f20b431e"></h2>
+
 ## 中文处理
 
 <h2 id="7ab8dd9eb1e1a86afb68efff05a2e355"></h2>
+
 ### 改变脚本本地编码
 
 ```
@@ -427,6 +464,7 @@ sys.setdefaultencoding('utf8')
 ```
 
 <h2 id="771f3b745b95ab3097fd1242137e2912"></h2>
+
 ### 写 带中文字符的文件
 
 ```
@@ -438,9 +476,11 @@ fp.close()
 ---
 
 <h2 id="53c82eba31f6d416f331de9162ebe997"></h2>
+
 ## encrypt
 
 <h2 id="95a1446a7120e4af5c0c8878abb7e6d2"></h2>
+
 ### base64
 
 ```
@@ -452,6 +492,7 @@ result_data = base64.b64encode( result_data)
 ```
 
 <h2 id="1bc29b36f623ba82aaf6724fd3b16718"></h2>
+
 ### md5
 
 ```
@@ -465,9 +506,11 @@ result_data = base64.b64encode( result_data)
 ---
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
+
 ## Misc
 
 <h2 id="636a8076c1d8da426394e0c3e15c3ec2"></h2>
+
 ### try - except 打印错误
 
 ```
@@ -484,6 +527,7 @@ print "Error '%s' happened on line %d" % (s[1],s[2].tb_lineno)
 ```
 
 <h2 id="61ca7c49201549fda5414272579e0413"></h2>
+
 ### run in 32bit mode
 
 ```
@@ -491,6 +535,7 @@ arch -i386 python2.7
 ```
 
 <h2 id="eadbf8dd738ffd6eb430b8630c92d74c"></h2>
+
 ### python 并行任务技巧
 
  - 使用带有并发功能的map
@@ -509,6 +554,7 @@ pool.join()
 ```
 
 <h2 id="7d97481b1fe66f4b51db90da7e794d9f"></h2>
+
 ### profile
 
 ```
@@ -523,6 +569,7 @@ profile.run ( 'func_name')
 ```
 
 <h2 id="74343fa59d92ff47cbb14750228abd8f"></h2>
+
 ### 强制浮点数运算
 
 ```
@@ -532,6 +579,7 @@ profile.run ( 'func_name')
 ```
 
 <h2 id="dd6b35cfcf7bc2919f28aaba9e65fa92"></h2>
+
 ### 输出一个对象各个成员的名称和值
 
 ```
@@ -539,6 +587,7 @@ profile.run ( 'func_name')
 >>> g(obj)
 ```
 <h2 id="210dd2176d44f2bd7f0c112101e62490"></h2>
+
 ### 读取文件特定行
 
 ```
@@ -549,6 +598,7 @@ theline = linecache.getline(thefilepath, desired_line_number)
 ```        
 
 <h2 id="4b373365b500e18ab7c0b8f5a83dc802"></h2>
+
 ### 文件修改／创建时间
 
 ```
@@ -558,6 +608,7 @@ time.ctime(os.stat( "d:/learn/flash.txt ").st_ctime)   #文件的创建时间
 ```
 
 <h2 id="3fbb096fc383c2a61ad0a6685b17c0de"></h2>
+
 ### python 写 只读文件
 
 读之前：

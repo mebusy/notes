@@ -70,6 +70,7 @@
 
 
 <h2 id="aea7deb258843dff16f9b84b46ec1461"></h2>
+
 # AI , CS 188
 
 http://inst.eecs.berkeley.edu/~cs188/pacman/home.html
@@ -86,14 +87,17 @@ what's that fuck ?
 
 
 <h2 id="0b79795d3efc95b9976c7c5b933afce2"></h2>
+
 # Introduction
 
 <h2 id="9fa835a40078a81e452b0cbb4362a6f5"></h2>
+
 ## What is AI
 
 The science of making machines that: 
 
 <h2 id="113b7e5d42d49b2f76a69a3517ebcde9"></h2>
+
 ## Rational Decisions
 
  - We’ll use the term **rational** in a very specific, technical way:
@@ -108,6 +112,7 @@ A better title for this course would be:
 
 
 <h2 id="04052b6bc5dad6a9f6a00dfb9cd988da"></h2>
+
 ## Designing Rational Agents
 
  - An **agent** is an entity that *perceives* and *acts*.
@@ -121,6 +126,7 @@ A better title for this course would be:
 
 
 <h2 id="e3a18b70b77602c474ec9b3140b582e3"></h2>
+
 ## Course Topics
 
  - Part I: Making Decisions
@@ -137,6 +143,7 @@ A better title for this course would be:
 
 
 <h2 id="faccc055dce5dfee94eba9a23ec379bc"></h2>
+
 # Uninformed Search
 
  - Agents that Plan Ahead
@@ -150,6 +157,7 @@ Uninformed means that when we are exploring search tree we have no idea if we're
 
 
 <h2 id="9ef57e59fc5834eb1f86775a80163590"></h2>
+
 ## Reflex Agents
 
  - Reflex agents
@@ -164,6 +172,7 @@ Uninformed means that when we are exploring search tree we have no idea if we're
  	- vacuum cleaner moving towards nearest dirt
 
 <h2 id="b35ab1adff6f2f91e25f048a1f1ecfcc"></h2>
+
 ## Planning Agents
  
  - Planning agents
@@ -177,6 +186,7 @@ Uninformed means that when we are exploring search tree we have no idea if we're
 
 
 <h2 id="fc72ba154e470ee2e177ed8e75ee4de2"></h2>
+
 ## Search Problems
 
  - A **search problem** consists of:
@@ -189,9 +199,11 @@ Uninformed means that when we are exploring search tree we have no idea if we're
 
 
 <h2 id="0a9e0b58d3ed416bdb73713846200baa"></h2>
+
 ## Search Problems Are Models
 
 <h2 id="30f0fbd7fae0ee74806b20a52d15e3ee"></h2>
+
 ### Example: Traveling in Romania
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_travel_i_romania.png)
@@ -208,6 +220,7 @@ Uninformed means that when we are exploring search tree we have no idea if we're
 
 
 <h2 id="e753d55f3a61b93cba852a33216321e0"></h2>
+
 ## What’s in a State Space ?
 
  - The **world state** includes every last detail of the environment
@@ -224,6 +237,7 @@ Goal test | is (x,y) == END | dots all flase
 
 
 <h2 id="05eb0fb2a7cf700d9734545149fc43fb"></h2>
+
 ## State Space Sizes ?
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_state_space_size.png)
@@ -246,6 +260,7 @@ Goal test | is (x,y) == END | dots all flase
 
 
 <h2 id="10f2374e81dfff89cef5eecf517b70ef"></h2>
+
 ## Quiz: Safe Passage
 
  - Problem: eat all dots while keeping the ghosts permanent-scared
@@ -254,9 +269,11 @@ Goal test | is (x,y) == END | dots all flase
 
 
 <h2 id="12227407175834cc50274fb425cf4e2d"></h2>
+
 ## State Space Graphs and Search Trees
 
 <h2 id="91fa96e85b0a665a30ab89661d0137c4"></h2>
+
 ### State Space Graphs
 
  - State space graph: A mathematical representation of a search problem
@@ -273,6 +290,7 @@ Goal test | is (x,y) == END | dots all flase
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_graph.png)
 
 <h2 id="fa3d63f947f57a28158a9af70e100ef3"></h2>
+
 ### Search Trees
 
  - A search tree:
@@ -286,6 +304,7 @@ Goal test | is (x,y) == END | dots all flase
 
 
 <h2 id="3371ddd82f34162d684dfd1d1f40d8b3"></h2>
+
 ### State Space Graphs vs. Search Trees
 
  - Each NODE in in the search tree is an entire PATH in the state space graph.
@@ -296,6 +315,7 @@ Goal test | is (x,y) == END | dots all flase
 
 
 <h2 id="76acaf4079e010db2a41f612ceae95f4"></h2>
+
 ### Quiz: State Space Graphs vs. Search Trees
 
 Consider this 4-state graph: 
@@ -312,9 +332,11 @@ How big is its search tree (from S)?
 ---
 
 <h2 id="6281565533d78912ee355e95d1263fef"></h2>
+
 ## Tree Search
 
 <h2 id="643025d557c3b9f6d43cdd62b77f5530"></h2>
+
 ### Searching with a Search Tree
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_with_a_search_tree.png)
@@ -326,6 +348,7 @@ How big is its search tree (from S)?
 
 
 <h2 id="a23c40de844ed1e2415dc477845012af"></h2>
+
 ### General Tree Search
 
 ```
@@ -357,6 +380,7 @@ end function
 
 
 <h2 id="d292eaede65eb34e66db0db9ebb6b9bc"></h2>
+
 ### Depth-First Search
 
  - Strategy: 
@@ -369,6 +393,7 @@ end function
 > leftmost DFS
 
 <h2 id="6dda6174af1ce92b505f3c29643504c3"></h2>
+
 #### Search Algorithm Properties
 
 - **Cartoon of search tree**:
@@ -387,6 +412,7 @@ end function
 
 
 <h2 id="62a9189e6707b0db89f80a7a5bb6c15e"></h2>
+
 #### Depth-First Search (DFS) Properties
 
  - What nodes DFS expand?
@@ -404,6 +430,7 @@ end function
 
 
 <h2 id="ae5c4b868b5b24149decba70c74165c2"></h2>
+
 ### Breadth-First Search
 
  - Strategy: 
@@ -415,6 +442,7 @@ end function
 
 
 <h2 id="0d9bfd747ee897d1720abf029faddae4"></h2>
+
 #### Breadth-First Search (BFS) Properties
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_bfs_property.png)
@@ -435,6 +463,7 @@ end function
 
 
 <h2 id="fcbd892c255445e0e3c99ceeb0dbc2e9"></h2>
+
 #### Iterative Deepening
 
  - Idea: get DFS’s space advantage with BFS’s time / shallow-solution advantages
@@ -448,6 +477,7 @@ end function
 
 
 <h2 id="ea10a2ff2bc1cbc4cb292e4f88cad9e9"></h2>
+
 ### Cost-Sensitive Search
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_cost_sensitive_search.png)
@@ -458,6 +488,7 @@ end function
 
 
 <h2 id="1bd1e9029adb17c5893239e7288210a9"></h2>
+
 #### Uniform Cost Search
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_uniform_cost_search.png)
@@ -468,6 +499,7 @@ end function
  - 注意, 这个例子中，当搜索至 ...e->r->f 时，下一步展开不是 f->G , 而是 S->e 
 
 <h2 id="8fcce2120d7405462b72fce3bf1fcaaa"></h2>
+
 #### Uniform Cost Search (UCS) Properties
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ucs_property.png)
@@ -488,6 +520,7 @@ end function
 
 
 <h2 id="46ea5fe25e20e5c9f2466692baeb1848"></h2>
+
 ### DFS vs BFS vs UCS
 
  \ | DFS | BFS | UCS 
@@ -503,6 +536,7 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
 ---
 
 <h2 id="f2ef45f33145362c2a215128cc677ccc"></h2>
+
 ## Graph Search VS Tree Search
 
  - 树是图，图不一定是树，树是图的子集
@@ -530,6 +564,7 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
 
 
 <h2 id="e609c39a6581f06c0e176c5be71abfa3"></h2>
+
 ## Uniform cost search vs. Dijkstra's Algorithm 
 
 It's essentially the same algorithm. One difference might be that uniform-cost search is usually formulated on trees rather than general graphs,which simplifies the implementation a little bit, since you don't have to worry about the case where a newly discovered edge reveals a cheaper path to a vertex that is already in the priority queue waiting to be visited. In other words you only need to worry about remove-min and insert operations in your priority queue and not about decrease-priority operations.
@@ -539,6 +574,7 @@ It's essentially the same algorithm. One difference might be that uniform-cost s
 
 
 <h2 id="7f1afff8243e3009eb892111dcc4413f"></h2>
+
 ## Search and Models
 
  - Search operates over models of the world
@@ -547,6 +583,7 @@ It's essentially the same algorithm. One difference might be that uniform-cost s
  	- Your search is only as good as your models
 
 <h2 id="b04314d7dafd45796af0bf245e3ae8e8"></h2>
+
 ## Some Hints for P1
 
  - Graph search is almost always better than tree search (when not?)
@@ -556,6 +593,7 @@ It's essentially the same algorithm. One difference might be that uniform-cost s
 ---
 
 <h2 id="29990be19ae238ca1071a838229e85f3"></h2>
+
 # Informed Search 
 
  - Informed Search
@@ -568,6 +606,7 @@ Those 3 informed search do a lot of duplicate work and graph search will be our 
 
 
 <h2 id="6fa04493ae42918af4621de6aae2ccc2"></h2>
+
 ## The One Queue
 
  - All these search algorithms are the same except for fringe strategies
@@ -578,6 +617,7 @@ Those 3 informed search do a lot of duplicate work and graph search will be our 
 
 
 <h2 id="eec9120ae950a6604e2b58e9a3ca0035"></h2>
+
 ## Uniform Cost Issues
 
  - Remember: UCS explores increasing cost contours
@@ -590,6 +630,7 @@ Those 3 informed search do a lot of duplicate work and graph search will be our 
 
 
 <h2 id="fdb1b92add98d8aa548a1d33445c6a67"></h2>
+
 ## Search Heuristics
 
  - A heuristic is:
@@ -600,6 +641,7 @@ Those 3 informed search do a lot of duplicate work and graph search will be our 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_heruistics_euclidean_distance.png)
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
+
 ### Example
 
 For romania traveling problem:  constructor a cost table h(x) with straight-line distance to Bucharest.
@@ -615,6 +657,7 @@ h(x) = the number of the largest pancake that is still out of place
 ---
 
 <h2 id="6f166f2a80c5f26b9e59a2ed903c09c7"></h2>
+
 ## Greedy Search
 
 启发式搜索的一种:
@@ -631,9 +674,11 @@ h(x) = the number of the largest pancake that is still out of place
 ---
 
 <h2 id="4eb045a9450d6e7de8a9b8cb2e420c89"></h2>
+
 ## A* search
 
 <h2 id="07e5a0c69feece254a168e7da5932151"></h2>
+
 ### Combining UCS and Greedy
 
  - Uniform-cost orders by path cost, or backward cost  g(n) 
@@ -657,6 +702,7 @@ h(x) = the number of the largest pancake that is still out of place
 
 
 <h2 id="9fa7d37bafbf919eec2833224d5de03c"></h2>
+
 ### When should A* terminate?
 
  - Should we stop when we enqueue a goal?
@@ -700,6 +746,7 @@ We pull `S-G` from fringe , but it is not optimal !
 
 
 <h2 id="bf8f38651446764fc008980354ad6746"></h2>
+
 ### Admissible Heuristics
 
  - Inadmissible (pessimistic) heuristics break optimality by trapping good plans on the fringe
@@ -712,6 +759,7 @@ We pull `S-G` from fringe , but it is not optimal !
 
 
 <h2 id="3073e988edee383f5983f6a7fc2212a2"></h2>
+
 ### Optimality of A* Tree Search
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_optimality_of_Astar.png)
@@ -743,12 +791,14 @@ We pull `S-G` from fringe , but it is not optimal !
 
 
 <h2 id="26e3cfa1ee4375a33dca3b380348e972"></h2>
+
 ### Properties of A*
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_property.png)
 
 
 <h2 id="f6c0e3a1c3cfabd32ae8d3ae741fcf0a"></h2>
+
 ## Comparison
 
 DFS:
@@ -775,6 +825,7 @@ A\* :
 ---
 
 <h2 id="042138393e72af1a16d8c31facd84ab1"></h2>
+
 ## Creating Heuristics
 
 Creating Admissible Heuristics
@@ -786,6 +837,7 @@ Creating Admissible Heuristics
 
 
 <h2 id="f8097ec9827afc9065c89741a344d53f"></h2>
+
 ### Example: 8 Puzzle
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_8Puzzle.png)
@@ -843,9 +895,11 @@ Average nodes expanded when the optimal path has…
 
 
 <h2 id="7e9aa2fe208a956ac44d1ee31a5035d9"></h2>
+
 ## Semi-Lattice of Heuristics  半启发式
 
 <h2 id="30887de01fbff37aef091345781445d5"></h2>
+
 ### Trivial Heuristics, Dominance
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_semi_heuristic.png)
@@ -859,6 +913,7 @@ Average nodes expanded when the optimal path has…
 
 
 <h2 id="00ba899c02fa6651c15e5e948a7a4aac"></h2>
+
 ## Graph Search
 
 Admissible heuristic with tree search is optimal but graph search no guarantees.
@@ -880,6 +935,7 @@ Admissible heuristic with tree search is optimal but graph search no guarantees.
     - Unfortunately close list will introduce another problem 
 
 <h2 id="9afaf22785328c0bf6267acf13add5da"></h2>
+
 ### A* Graph Search Gone Wrong?
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_go_wrong.png)
@@ -889,6 +945,7 @@ SAC can not expand because C is in closed set.
 
 
 <h2 id="cb964f845fc822953ddb83ca6d124e6b"></h2>
+
 ### Consistency of Heuristics
 
  - Main idea: 
@@ -911,6 +968,7 @@ PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitiv
 ---
 
 <h2 id="ea9a7016fa68c3fd6434c9c0fb4afa3d"></h2>
+
 ### Optimality of A* Graph Search
 
  - Sketch: consider what A* does with a consistent heuristic:
@@ -924,6 +982,7 @@ PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitiv
 ---
 
 <h2 id="c1e81f3c2f720c3a2e3a765ba6a11d59"></h2>
+
 ### Optimality
 
  - Tree search:
@@ -938,6 +997,7 @@ PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitiv
 ---
 
 <h2 id="e418daaa73025a84fd16637fbf3b2d0d"></h2>
+
 ## A*: Summary
 
  - A* uses both backward costs and (estimates of) forward costs
@@ -945,6 +1005,7 @@ PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitiv
  - Heuristic design is key: often use relaxed problems
 
 <h2 id="b9ab5ba1566688494ce5474bb592f8c4"></h2>
+
 ### Tree Search Pseudo-Code
 
 ```
@@ -966,6 +1027,7 @@ end // func
 ```
 
 <h2 id="1388b32869f8288febeb18f8ec802b42"></h2>
+
 ### Graph Search Pseudo-Code
 
  - even if a node is ***added*** to the fringe multiple times it will not be ***expanded*** more than once
@@ -1067,6 +1129,7 @@ end // func
 
 
 <h2 id="53d3b2a00e84590355f57034c84cc1a0"></h2>
+
 ### Optimality of A\* Graph Search
 
  - Consider what A\* does:
@@ -1088,9 +1151,11 @@ end // func
 ---
 
 <h2 id="c9f86c35957917fe5e25e926f8923c75"></h2>
+
 ## demo code in python
 
 <h2 id="41ac4b4e9e2441a0a74f1372fbca3c52"></h2>
+
 ###  python graph search
 
 ```python

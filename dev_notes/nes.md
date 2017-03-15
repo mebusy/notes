@@ -17,9 +17,11 @@
 
 
 <h2 id="8d93d9819942f8e443fdde4fc2d67bc2"></h2>
+
 # NES
 
 <h2 id="2d242bb36ec91b32005f9296ff03a912"></h2>
+
 # Architecture
 
 NES Console
@@ -62,6 +64,7 @@ When NES is on ,
 
 
 <h2 id="2be3d76538a593e1735d07715f79b68d"></h2>
+
 # CPU / PPU address space
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/6502_CPU_PPU_address_space.png)
@@ -95,6 +98,7 @@ from PPU
 
 
 <h2 id="b240c56be56568f36b4c5fdc76556e61"></h2>
+
 # 6502 Assembly
 
  - Directives 
@@ -110,6 +114,7 @@ from PPU
 
 
 <h2 id="4d0e908847f66f494010fd565b1f6c4c"></h2>
+
 # 6502 Opcodes
 
 you should take special considerations if your values are going to add to more than 256
@@ -130,6 +135,7 @@ you should take special considerations if your values are going to add to more t
 
 
 <h2 id="0b0a01d40c7bdf214e285f59726626bf"></h2>
+
 # Assembly Starter
 
  \ | C   |  6502  | Desc
@@ -170,6 +176,7 @@ METHODS		|		// draw code 	| ; modify sprites
 
 
 <h2 id="51f2b7b14433aa22c67d1f4fc18943cd"></h2>
+
 # Sprite
 
  - Can be created with programs like YY-CHR
@@ -181,6 +188,7 @@ METHODS		|		// draw code 	| ; modify sprites
 
 
 <h2 id="5b9ee9aa42c46ecdbaae966ca84cc8fa"></h2>
+
 # Palettes
 
  - Less than 60 total colors
@@ -192,6 +200,7 @@ METHODS		|		// draw code 	| ; modify sprites
 
 
 <h2 id="a9ded1e5ce5d75814730bb4caaf49419"></h2>
+
 # Background
 
  - 32x30 tiles (256*240)
@@ -201,6 +210,7 @@ METHODS		|		// draw code 	| ; modify sprites
  - Text is usually background tiles
 
 <h2 id="47b8dd4685c135e432339d9c07f3502b"></h2>
+
 # Controller Input
 
  - Call load on Controller port
@@ -211,6 +221,7 @@ METHODS		|		// draw code 	| ; modify sprites
 
 
 <h2 id="ed9cf94969b1915b1fb44110a9fba599"></h2>
+
 # Playing Sounds
 
  - APU 5 channels
@@ -222,6 +233,7 @@ METHODS		|		// draw code 	| ; modify sprites
  - $4000 to $4003 modify sound properties
 
 <h2 id="1ccd04b836dc65aa6c64598136974e04"></h2>
+
 # NES ROM Image
 
  - Generate with NES assemble

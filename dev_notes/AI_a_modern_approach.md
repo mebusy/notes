@@ -17,12 +17,15 @@
 
 
 <h2 id="c62ead95f43ef8c14dc28648f9c47276"></h2>
+
 # AI a modern approach
 
 <h2 id="15ce9fbc84080f91c8cb9d4e393edfe3"></h2>
+
 # 2 INTELLIGENT AGENTS
 
 <h2 id="6702b776b41280cc2e02257c5c19388e"></h2>
+
 ## 2.1 AGENTS AND ENVIRONMENTS
 
 An **agent** is anything that can be viewed as perceiving its **environment** through **sensors** and acting upon that environment through **actuators**.
@@ -69,6 +72,7 @@ Looking at Figure 2.3, we see that various vacuum-world agents can be defined si
 
 
 <h2 id="92194ef3836de8d78c7bd799f7633850"></h2>
+
 ## 2.2 GOOD BEHAVIOR: THE CONCEPT OF RATIONALITY
 
 When an agent is plunked down in an environment, it generates a sequence of actions according to the percepts it receives. 
@@ -84,6 +88,7 @@ Obviously, there is not one fixed performance measure for all tasks and agents; 
 *As a general rule, it is better to design performance measures according to what one actually wants in the environment, rather than according to how one thinks the agent should behave.*
 
 <h2 id="3de59719cfab591d512a1bf2e5a2cc21"></h2>
+
 ### 2.2.1 Rationality
 
 What is rational at any given time depends on four things:
@@ -112,6 +117,7 @@ One can see easily that the same agent would be irrational under different circu
 
 
 <h2 id="4e2fd726ab99f5c2c4b7ad83eadfcd74"></h2>
+
 ### 2.2.2 Omniscience, learning, and autonomy
 
 We need to be careful to distinguish between rationality and **omniscience**.
@@ -133,6 +139,7 @@ To the extent that an agent relies on the prior knowledge of its designer rather
 
 
 <h2 id="8df182984a83ad2336b0ad2626607054"></h2>
+
 ## 2.3 THE NATURE OF ENVIRONMENTS
  
 Now that we have a definition of rationality, we are almost ready to think about building rational agents.
@@ -140,6 +147,7 @@ Now that we have a definition of rationality, we are almost ready to think about
 First, however, we must think about **task environments**, which are essentially the "problems" to which rational agents are the "solutions." We begin by showing how to specify a task environment, illustrating the process with a number of examples. We then show that task environments come in a variety of flavors. The flavor of the task environment directly affects the appropriate design for the agent program.
 
 <h2 id="9e8265c81b48b2d26cd334c14409800e"></h2>
+
 ### 2.3.1 Specifying the task environment
 
 In our discussion of the rationality of the simple vacuum-cleaner agent, we had to specify the performance measure, the environment, and the agent's actuators and sensors. We group all these under the heading of the **task environment**.  For the acronymically minded, we call this the **PEAS** (Performance, Environment, Actuators, Sensors) description.   In designing an agent, the first step must always be to specify the task environment as filly as possible (尽可能完全).
@@ -235,6 +243,7 @@ As one might expect, the hardest case is *partially observable, multiagent, stoc
 ---
 
 <h2 id="8e67ef0e8e93c6690e1c4b55db8d684d"></h2>
+
 ## 2.4 THE STRUCTURE OF AGENTS
 
 The joh of Al is to design an **agent program** that implements the agent function -— the mapping from percepts to actions.  We assume this program will run on some sort of computing device with physical sensors and actuators —- we call this the **architecture**:
@@ -244,6 +253,7 @@ The joh of Al is to design an **agent program** that implements the agent functi
 ```
 
 <h2 id="09c46478094a90a64ea9e9ad293d7b1e"></h2>
+
 ### 2.4.1 Agent programs
 
 The agent programs that we design in this book all have the same skeleton:
@@ -287,6 +297,7 @@ Each kind of agent program combines particular components in particular ways to 
 
 
 <h2 id="31c5073999a66ea32fe6acc0a0abc311"></h2>
+
 ### 2.4.2 Simple reflex agents
 
 The simplest kind of agent is the **simple reflex agent**.
@@ -323,6 +334,7 @@ function SIMPLE-REFLEX-AGENT( percept) returns an action
 
 
 <h2 id="6261389ad3eb83ac0f742a4bb898b180"></h2>
+
 ### 2.4.3 Model-based reflex agents
 
 The most effective way to handle partial observability is for the agent to *keep track of the past of the world it can't see now*.

@@ -8,6 +8,7 @@
 
 
 <h2 id="5cf06822087ff10dec2ac74cf1e20d30"></h2>
+
 #Preface
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/preface_la_vectorSpace.png)
@@ -24,6 +25,7 @@ The interplay of columns and rows is the heart of linear algebra. Here are 4 of 
  4. `Elimination` (the good way to find the rank of a matrix)
 
 <h2 id="f2864cfd076d07529c709b68323c5f0a"></h2>
+
 ## Web Pages
 
 Linear Algebra page:
@@ -35,6 +37,7 @@ strang 教授的 MIT page:
 http://ocw.mit.edu/faculty/gilbert-strang/
  
 <h2 id="651012eed3bc0d1a932a2738caba9457"></h2>
+
 ## Structure of the Course
 
 The two fundamental problems are `Ax=b` and `Ax=λx` for square matrics A.

@@ -21,9 +21,11 @@
 
 
 <h2 id="c4ac5577c068be490d5dc0e124314e32"></h2>
+
 # 6 Positive Definite Matrices
 
 <h2 id="b7b91c67e89390f8298af104c60585f7"></h2>
+
 ## 6.1 MINIMA , MAXIMA , AND SADDLE POINTS
 
 Up to now, we have hardly thought about the **signs of the eigenvalues**. 
@@ -82,11 +84,13 @@ This f(x, y) behaves near (0, 0) in the same way that F(x, y) behaves near (α, 
 The third derivatives are drawn into the problem when the second derivatives fail to give a definite decision. That happens when the quadratic part is singular. For a true minimum, f is allowed to vanish only at x = y = 0. When f(x, y) is strictly positive at all other points (the bowl goes up), it is called ***positive definite***.
 
 <h2 id="e0e36c552eecb66daf84e448cf5ed7e8"></h2>
+
 ### Definite versus Indefinite: Bowl versus Saddle  (TODO)
 
 TODO
 
 <h2 id="e59a80ec6d81dedf197cebeea3a20a00"></h2>
+
 ### Higher Dimensions: Linear Algebra
 
 Calculus would be enough to find our conditions F<sub>xx</sub> > 0 and F<sub>xx</sub>F<sub>yy</sub> > F<sub>xy</sub>² for a minimum. But linear algebra is ready to do more, because the second derivatives fit into a symmetric matrix A. The terms ax² and cy² appear *on the diagonal*. The cross derivative 2bxy is split between the same entry b above and below.  A quadratic f(x, y) comes directly from a symmetric 2 by 2 matrix! 
@@ -147,6 +151,7 @@ The next section contains the tests to decide whether xᵀAx is positive (the bo
 ---
 
 <h2 id="76c7d53a0682ab1c09ff64d5d3549d0f"></h2>
+
 ## 6.2 TESTS FOR POSITIVE DEFINITENESS
 
 Which symmetric matrices have the property that xᵀAx > 0 for all nonzero vectors x?
@@ -264,6 +269,7 @@ Even though it is the hardest to apply to a single matrix, eigenvalues can be th
 ---
 
 <h2 id="01201db7b9090769e9708a314cf02459"></h2>
+
 ### Positive Definite Matrices and Least Squares
 
 We connected positive definite matrices to pivots (Chapter 1), determinants (Chapter 4), and eigenvalues (Chapter 5). Now we see them in the least-squares problems of Chapter 3, coming from the rectangular matrices of Chapter 2.
@@ -296,6 +302,7 @@ We mention that Ax = λMx arises constantly in engineering analysis. If A and M 
 
 
 <h2 id="3a253363875ecbb15417db17ec79c263"></h2>
+
 ### Semidefinite Matrices
 
 The tests for semidefiniteness will relax xᵀAx > 0, A > 0, d > 0, and det > 0, to allow zeros to appear. The main point is to see the analogies with the positive definite case.
@@ -351,6 +358,7 @@ Adding , 1/2·xᴴ(A+Aᴴ)x = (Re λ)xᴴx > 0 , so that Re λ > 0 . ?
 
 
 <h2 id="1eaac00e8e99433d989fe0d999f52f5d"></h2>
+
 ### Ellipsoids in n Dimensions
 
 For a positive definite matrix and its xᵀAx, we finally get a figure that is curved.  It is an ellipse in two dimensions, and an ellipsoid in n dimensions.
@@ -422,6 +430,7 @@ This is the equation of an ellipsoid. Its axes have lengths 1 / √λ₁,   ... 
 
 
 <h2 id="7d343fcdccb1d971e655a18f0ae0cb60"></h2>
+
 ### The Law of Inertia
 
 For elimination and eigenvalues, matrices become simpler by elementary operations. The essential thing is to know which properties of the matrix stay unchanged. 
@@ -485,6 +494,7 @@ A has positive eigenvalues, by our test. But we know that λ<sub>min</sub> *is s
 step by checking the signs of the pivots.
 
 <h2 id="f2b49424030a50bcf8c0ca9cd03ed896"></h2>
+
 ### The Generalized Eigenvalue Problem (TODO)
 
 Physics, engineering, and statistics are usually kind enough to produce symmetric matrices in their eigenvalue problems. 
@@ -495,6 +505,7 @@ TODO
 
 
 <h2 id="d8d1378d745dd94a25a4c239c7c6702b"></h2>
+
 ## 6.3 SINGULAR VALUE DECOMPOSITION
 
 A great matrix factorization has been saved for the end of the basic course. 
@@ -650,6 +661,7 @@ V =
 ---
 
 <h2 id="21c1532cf380b35ae96c0d9ac3e130b0"></h2>
+
 ### Applications of the SVD
 
 The SVD is terrific for numerically stable computations, because U and V are orthogonal matrices. 
@@ -660,6 +672,7 @@ Of course ∑ could multiply by a large σ or (more commonly) divide by a small 
 
 --- 
 <h2 id="d16545b4b82233fb918b1cb0cb4c09d1"></h2>
+
 #### 1. Image processing
 
 Suppose a satellite takes a picture, and wants to send it to Earth. The picture may contain 1000 by 1000 "pixels"-a million little squares , each with a definite color. Do we must send back 1,000,000 numbers?
@@ -680,6 +693,7 @@ The cost is in computing the SVD -- this has become much more efficient, but it 
 
 
 <h2 id="9cd2bf30f6aa7178d87488ff1960bc07"></h2>
+
 #### 4. Least squares  TODO
 
 For a rectangular system Ax = b, the least-squares solution comes from the normal equations AᵀAx̂ = Aᵀb. 
@@ -701,9 +715,11 @@ TODO
 ---
 
 <h2 id="fff4369d5b0d5f3458ca8c052d7c2174"></h2>
+
 ## 6.4 MINIMUM PRINCIPLES  TODO
 
 <h2 id="913394de1beecf34e858dc7068c2ee86"></h2>
+
 ## 6.5 THE FINITE ELEMENT METHOD  TODO
 
 

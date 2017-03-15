@@ -17,9 +17,11 @@
 
 
 <h2 id="e9baed1ff669cdf45540a3cc4a489e1d"></h2>
+
 # 并行计算key concept
 
 <h2 id="7013df2804f996276490d1bd5ed46b62"></h2>
+
 ## why thread block?
 
  - Divide thread array into mulitple blocks. 
@@ -32,6 +34,7 @@
 
 
 <h2 id="e371125d3bb809b1dff55732564b5247"></h2>
+
 ## Control Divergence
 
  - Divergence can arise only when branch condition is a function(or condition) of **thread indices**
@@ -39,6 +42,7 @@
 
 
 <h2 id="b48c04522007f86979cc8d0ab4bfa014"></h2>
+
 ## Tiled Parallel Algorithms：
 
  - 把需要处理的数据 分割成 tile, 每个事件处理一个或多个 tile的计算。
@@ -46,12 +50,14 @@
 
 
 <h2 id="fa0f0ae43fdca46d1d68255409ec0b89"></h2>
+
 ## Convolution
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/1DConvolutionExample.jpg)
 
 
 <h2 id="9e834f13e35e4edf64863ab414a6217a"></h2>
+
 ## Reduction
 
  - process large input data sets
@@ -63,6 +69,7 @@
  - prevent divergence in warp
 
 <h2 id="22efdbe132eabc102306bd7a334fb434"></h2>
+
 ## Scan
 
 `[x₀,x₁,...,xn₋₁] => [x₀,(x₀⊕x₁),...,(x₀⊕x₁⊕...⊕xn₋₁)]`
@@ -71,6 +78,7 @@
 
 
 <h2 id="0f39b900b08ff634a8f210cf9ea18fa2"></h2>
+
 ## Histogramming
 
  - A method for extracting notable features and patterns from large data sets
@@ -78,9 +86,11 @@
  
 
 <h2 id="eaa1709ae37b41b0f052cd5eae6a14b4"></h2>
+
 ### Atomic Operations
 
 <h2 id="64d108ae7d98c064d5d748811072d5de"></h2>
+
 ### Privatization technique
 
  - Privatization is a powerful and frequently used techniques for parallelizing applications
@@ -88,6 +98,7 @@
 
 
 <h2 id="98d55f70bc1bc9116f3127e60600d3ac"></h2>
+
 ### DMA transfers
 
  - cudaMemcpy() is implemented as one or more DMA transfers
@@ -95,6 +106,7 @@
  - CPU memory that serve as the source , or destination , of a DMA transfer must be allocated as pinned memory
  
 <h2 id="002e6af863fe6857b7152c49678d364f"></h2>
+
 ### Task Parallelism
 
  - CUDA Streams

@@ -30,9 +30,11 @@
 
 
 <h2 id="34d3b17eb545626b3da04f656b32dba5"></h2>
+
 ## OpenResty
 
 <h2 id="b10a8db164e0754105b7a99be72e3fe5"></h2>
+
 ### Hello World
 
 ```
@@ -48,6 +50,7 @@ location / {
  -  openresty 1.9.3.2 以上，content_by_lua 改成了 content_by_lua_block
 
 <h2 id="0e9ddb16cae12bbe4dc2ef1dee9a519a"></h2>
+
 ### 与其他 location 配合
 
 利用不同 location 的功能组合，我们可以完成：
@@ -58,6 +61,7 @@ location / {
  - 等几大不同方式
 
 <h2 id="7e7169cfd1010b3a75a35c7035c9f49c"></h2>
+
 #### 内部调用 internal
 
  - 例如对数据库、内部公共函数的统一接口，可以把它们放到统一的 location 中。
@@ -91,6 +95,7 @@ location = /app/test {
 
 
 <h2 id="74c5b1f8490c21f2b3ef0d2078285193"></h2>
+
 #### 并行请求结果 capture_multi
 
 ```
@@ -109,6 +114,7 @@ location = /app/test_parallels {
 ```
 
 <h2 id="b9aa5c9bccf29ad02876bfb302515ddd"></h2>
+
 #### 流水线方式跳转 exec
 
 ```
@@ -132,6 +138,7 @@ location /download_internal {
  - 这里的两个 location 更像是流水线上工人之间的协作关系。第一环节的工人对完成自己处理部分后，直接交给第二环节处理人（实际上可以有更多环节），它们之间的数据流是定向的。
 
 <h2 id="6204c6255e2094adcdb78a9304a12985"></h2>
+
 #### 外部重定向 redirect
 
 不知道大家什么时候开始注意的，百度的首页已经不再是 HTTP 协议，它已经全面修改到了 HTTPS 协议上。但是对于大家的输入习惯，估计还是在地址栏里面输入 baidu.com ，回车后发现它会自动跳转到 https://www.baidu.com ，这时候就需要的外部重定向了。
@@ -160,9 +167,11 @@ location = / {
 ---
 
 <h2 id="6332af131d6935bf3d7818c230e932b4"></h2>
+
 ### 获取 uri 参数  
  
 <h2 id="8ad1878074c1c4d4922029f0801edd4c"></h2>
+
 #### 获取请求 uri 参数
 
 uri 中 "?"后面的参数?
@@ -200,6 +209,7 @@ curl --noproxy 127.0.0.1  '127.0.0.1:8080/print_param?a=1&b=2' -d 'c=3&d=4'
 
 
 <h2 id="131c02d5387e97c6a12a5d003d064608"></h2>
+
 #### 传递请求 uri 参数
 
  - 调用 ngx.encode_args 进行转义
@@ -223,6 +233,7 @@ location /test {
 ---
 
 <h2 id="501f0447592ecf46d66b8d0c33bfa998"></h2>
+
 ### 获取请求 body
 
  - 在 Nginx 的典型应用场景中，几乎都是只读取 HTTP 头即可，
@@ -281,6 +292,7 @@ location /test {
 
 
 <h2 id="9cdce21d64b3eda20ffd4a1d985a93e2"></h2>
+
 ### 输出响应体
 
 HTTP响应报文分为三个部分：
@@ -298,6 +310,7 @@ HTTP响应报文分为三个部分：
 - ngx.say 与 ngx.print 均为异步输出
 
 <h2 id="5a133c7df0632cdd9da980956e49341c"></h2>
+
 #### ngx.say 与 ngx.print 均为异步输出
 
 也就是说当调用 ngx.say 后并不会立刻输出响应体。参考下面的例子：
@@ -338,6 +351,7 @@ location /test3 {
 
 
 <h2 id="01730ff5798a5ad9fd0470f2fd9a847e"></h2>
+
 #### 如何优雅处理响应体过大的输出
 
  - 1. 输出内容本身体积很大，例如超过 2G 的文件下载
@@ -377,9 +391,11 @@ hello, world: true or false: nil
 
 
 <h2 id="d5cbc6b298e61668d9142904c323a565"></h2>
+
 ### 日志输出
 
 <h2 id="ae14caf007373643facb2990a75fc3d9"></h2>
+
 #### 标准日志输出
 
 OpenResty 的标准日志输出原句为 ngx.log(log_level, ...) ，几乎可以在任何 ngx_lua 阶段进行日志的输出 。（ngx.ERR,ngx.INFO, ...）
@@ -407,6 +423,7 @@ ngx.log(ngx.INFO, " string:" )
 
 
 <h2 id="5d35b34aac80d856a0a8800c9ad8c855"></h2>
+
 #### 网络日志输出
 
  - lua-resty-logger-socket 的目标是替代 Nginx 标准的 ngx_http_log_module 以非阻塞 IO 方式推送 access log 到远程服务器上。
@@ -414,6 +431,7 @@ ngx.log(ngx.INFO, " string:" )
 
 
 <h2 id="e25752827350f8b953dbed96b1e2146b"></h2>
+
 ### 简单API Server框架
 
 ```
@@ -450,6 +468,7 @@ server {
 
 
 <h2 id="0fed4bfac6edad9599bbda093993abc2"></h2>
+
 ### 使用 Nginx 内置绑定变量
 
 Example:
@@ -495,6 +514,7 @@ location /download {
 ```
 
 <h2 id="3b3ff6cfc8a6826438c02a8f663e35dc"></h2>
+
 ### 子查询 capture/capture_multi
 
  - 发起非阻塞的内部请求访问目标 location。
@@ -561,6 +581,7 @@ location /blah {
 ```
 
 <h2 id="84e72e59fc559138e049799de3c59ada"></h2>
+
 ### 不同阶段共享变量 ngx.ctx
 
  - 几种需要共享数据的场合
@@ -598,6 +619,7 @@ location /test {
 
 
 <h2 id="f96743151321aae02f6c3d2c0f24ca6d"></h2>
+
 ### 防止 SQL 注入
 
  - MySQL 
@@ -608,9 +630,11 @@ location /test {
 
 
 <h2 id="042d5977081f357a19a120018ae11d33"></h2>
+
 ### 如何发起新 HTTP 请求
 
 <h2 id="cf2ce2505b174e42b2adc163b2a615b1"></h2>
+
 #### 利用 proxy_pass
 
 利用 proxy_pass 完成 HTTP 接口访问的成熟配置+调用方法:
@@ -682,6 +706,7 @@ http {
 
 
 <h2 id="b888cd5bb81793b53547243438aa8df6"></h2>
+
 #### 利用 cosocket
 
 ```

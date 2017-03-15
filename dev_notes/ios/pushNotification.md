@@ -9,9 +9,11 @@
 
 
 <h2 id="1294a83ff96c5c0ee3c4b9620dd74edf"></h2>
+
 # APNS 服务器证书制作，客户端部分代码
 
 <h2 id="105dbfd27d203f637ce0d3c08eb78878"></h2>
+
 ## 准备文件
 
 做苹果推送服务器，很重要的一步，就是生成与苹果APNS连接的证书，一般是.pem文件；
@@ -35,6 +37,7 @@
 
 
 <h2 id="81f55b42ec661d67d432330fd47cd07c"></h2>
+
 ## 证书测试
 
  - 首先确认网络是否可以 正确连接到 苹果推送服务器
@@ -53,6 +56,7 @@ openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert apns-dev-cer
 ```
 
 <h2 id="0c64cd168e7b43ebccec68a62f1d85e7"></h2>
+
 ## 客户端修改
 
  - applicationDidFinishLaunching  方法里，加上3句代码

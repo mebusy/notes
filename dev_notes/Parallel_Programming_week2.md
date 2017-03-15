@@ -40,9 +40,11 @@
 
 
 <h2 id="65c4ba2387f7eb9eb19a3404f6e9e578"></h2>
+
 ## Week 2
 
 <h2 id="0002eb0b09283b59a8dfd367e68f2828"></h2>
+
 ### Lecture 2.1: Kernel-based Parallel Programming - Thread Scheduling 
 
 The thread are actually executed by a hardware called **streaming multiprocessor** or SM, and these streaming multiprocessors are very similar to the CPU cores in a CPU design.
@@ -57,6 +59,7 @@ The thread are actually executed by a hardware called **streaming multiprocessor
  - SM manages / schedules thread execution
 
 <h2 id="585e29d9c9ba7bf2c1b5471e7378a866"></h2>
+
 #### the Von-Neumann model with SIMD units
 
 In a CUDA hardware, it actually implements a **SIMD(Single Instruction Multiple Data)** extention to the Von-Neumann processor model.
@@ -66,6 +69,7 @@ In a CUDA hardware, it actually implements a **SIMD(Single Instruction Multiple 
 Multiple Processing Units controlled by the same control signals that the control unit sends out.
 
 <h2 id="a90029d0415e65f69dd99367923c951a"></h2>
+
 #### Warps(变形) as Scheduling Units
 
  - Each block is executed as 32-thread warps
@@ -76,6 +80,7 @@ Multiple Processing Units controlled by the same control signals that the contro
         - so 32 of these CUDA threads will actually be executed in the SIMD execution mode.
 
 <h2 id="789c3a65c368f07af19c9140ed4fcee9"></h2>
+
 #### Warp Example
 
  - If 3 blocks are assigned to an SM and each block has 256 threads, how many Warps are there in an SM ?
@@ -85,6 +90,7 @@ Multiple Processing Units controlled by the same control signals that the contro
 Every time a warp is executs, all the 32 threads will be executed by the SIMD unit at the same time.
 
 <h2 id="80b1f47d5a822a86d12e6c89a809528c"></h2>
+
 #### Block Granularity Considerations
 
  - For matrix multiplication using multiple blocks, should I use 8x8,16x16,32x32 blocks for Fermi ?
@@ -93,9 +99,11 @@ Every time a warp is executs, all the 32 threads will be executed by the SIMD un
     - For 32x32, we would have 1024 threads per Block. Only one block can fit into an SM for Fermi. Using only 2/3 of the thread capacity of an SM. Also, this works for CUDA 3.0 and beyond, but too large for some early CUDA versions.
 
 <h2 id="4bbd287817b082c0c66c8d3511e8561c"></h2>
+
 ### Lecture 2.2: Control Divergence 
 
 <h2 id="839b56bd18fadb576e93f6cad503342c"></h2>
+
 #### How thread blocks are partitioned
 
  - Thread blocks are partitioned into warps
@@ -109,6 +117,7 @@ Every time a warp is executs, all the 32 threads will be executed by the SIMD un
     - If there are any dependencies  between thread, you must __syncthreads() to get correct result(more later) 
 
 <h2 id="3a61428f682a64764c8ee10cb08047c9"></h2>
+
 #### Control Flow Instructions
 
  - Main performance concern with branching is  **control divergence**
@@ -124,6 +133,7 @@ Every time a warp is executs, all the 32 threads will be executed by the SIMD un
  - Eliminate Loops for performance
 
 <h2 id="2b5d215bd8a777456df7e1798de92043"></h2>
+
 #### Control Divergence Examples
     
  - Divergence can arise only when **branch condition is a function(or condition) of thread indices**
@@ -137,6 +147,7 @@ Every time a warp is executs, all the 32 threads will be executed by the SIMD un
 
 
 <h2 id="1f0e12d8037b1360b152b3919758c50f"></h2>
+
 ### Lecture 2.3: Memory Model and Locality -- CUDA Memories
 
 Programmer View of CUDA memory:
@@ -161,6 +172,7 @@ Declaring CUDA Variables:
 如果一个线程修改了global memory，the change may not be immediately visible to other threads and thread blocks. Until the kernel terminates.
     
 <h2 id="1219239487fe58703cbeef6926565678"></h2>
+
 #### Shared Memory in CUDA
 
  - A special type of memory whose contents are explicitly declared and used in the source code
@@ -170,11 +182,13 @@ Declaring CUDA Variables:
     - A form of scratchpad memory in computer architecture
 
 <h2 id="b219e36479cf5b980f9392c55e0ebf6c"></h2>
+
 #### Hardware view of CUDA memory
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/hw_view_cuda_memory.png)
 
 <h2 id="3183ab10ebc57b727dff3bb7ab220612"></h2>
+
 #### A Common Programming Strategy
 
  - Partition data into ***subsets*** or ***tiles*** that fit into shared memory
@@ -184,6 +198,7 @@ Declaring CUDA Variables:
     - Upon completion , writing results from shared memory to global memory
 
 <h2 id="7d42b61796363f73a5cb34b3454dd847"></h2>
+
 #### Matrix Multiplication Kernel Shared Memory Variable Declaration
 
 ```
@@ -194,6 +209,7 @@ __global__ void MatrxMulKernel( int m , int n , int k, ...  )
 ```
     
 <h2 id="fa264df43ed0c870866e5a1189dfca2d"></h2>
+
 ### Lecture 2.4: Tiled Parallel Algorithms
 
  - divide global memory content into tiles
@@ -208,6 +224,7 @@ __global__ void MatrxMulKernel( int m , int n , int k, ...  )
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/tiles_parallel.png)
 
 <h2 id="c9f42b2d9c227c29799c484b06381309"></h2>
+
 #### Outline of Tiling Technique
 
  - Identify a tile of global memory content that are accessed by multiple threads
@@ -216,9 +233,11 @@ __global__ void MatrxMulKernel( int m , int n , int k, ...  )
  - Move the on-chip memory
 
 <h2 id="df7f258b3c190a7786a73969f40c7876"></h2>
+
 ### Lecture 2.5: Tiled Matrix Multiplication
 
 <h2 id="e6bb7ec2f47353d90a937519a9bbdcd0"></h2>
+
 #### Tiled Matrix Multiplication
 
  - Break up the execution of the kernel into phases so that the data accesses in each phase are focused on one tile of A and one tile of B
@@ -226,6 +245,7 @@ __global__ void MatrxMulKernel( int m , int n , int k, ...  )
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TiledMatrixMultiplication.jpg)
 
 <h2 id="54c3487cbed905442216bd53f2aa807d"></h2>
+
 #### Loading a Tile
 
  - All threads in a block participate
@@ -233,6 +253,7 @@ __global__ void MatrxMulKernel( int m , int n , int k, ...  )
  - Assign the loaded element to each thread such that the accesses within each warp is coalesced(合并) into a DRAM burst(more later)
 
 <h2 id="e7ae5e8476caaef36b7b325efe6ea38f"></h2>
+
 #### Phase 0 Load for Block (0,0)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Phase0Load4Block00.jpg)
@@ -246,6 +267,7 @@ Every thread is going to be generate one step of the dot product out of the enti
 Every A element in the shared memory and every B element in the shared memory will be used by two threads.
 
 <h2 id="4e844bfec02b6eb7144678d613169a5e"></h2>
+
 #### Phase 1 Load for Block (0,0)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Phase0Load4Block00_3.jpg)
@@ -253,6 +275,7 @@ Every A element in the shared memory and every B element in the shared memory wi
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Phase0Load4Block00_4.jpg)
 
 <h2 id="05f6e5f0aec3c722b0c365e005707ab6"></h2>
+
 #### Barrier Synchronization
 
 Once all the threads finish loading a tile, then they can go ahead and consume the elements from the shared memory. Once all threads completed their calculation based on the shared memory, they can go ahread and load next tile from glocal memory into shared memory and overwrite the contents of the shared memory. And this requires coordination, something has to make sure that all the activities have ended in the previous phase and before you can move start the next phase. And this is accomplished in parallel computing with Barrier Synchronization.
@@ -271,6 +294,7 @@ Any thread that executes **__syncthreads**()  will begin to wait for everyone el
 Caution: __syncthreads() can significantly reduce active threads in a block. This is one of the reasons why we will want to have multiple thread blocks executing in an SN whenever we execute the tile algorithm, becuase some of the thread blocks may be doing barrier synchronization and they may not be able to utilize the hardware resources while waiting for the last thread to finish. 
 
 <h2 id="8c20d72295f054dfec39cceaff3d05b6"></h2>
+
 ### Lecture 2.6: Tiled Matrix Multiplication Kernel
 
 ```
@@ -301,6 +325,7 @@ __global__ void MatrixMulKernel(int m, int n, int k, float* A,float* B, float* C
 ```
      
 <h2 id="d341490ecbbce14eba0d2e9cf03b4fcd"></h2>
+
 #### First-order Size Considerations
 
  - Each ***thread block*** should have many threads
@@ -310,6 +335,7 @@ __global__ void MatrixMulKernel(int m, int n, int k, float* A,float* B, float* C
  - For 32, each block performs 2*1024 = 2048 float loads from global memory for 1024 * (2 * 32) = 65,536 mul/add operations. (memory traffic reduced by a factor of 32)
     
 <h2 id="b26dad104ff5019d6d087dec37d62783"></h2>
+
 #### Shared Memory and Threading
  - Each SM (Streaming Multiprocessor) in Fermi has 16KB or 48KB shared memory (configurable vs. L1 cache)
     - Shared memory size is implementation dependent!
@@ -327,6 +353,7 @@ __global__ void MatrixMulKernel(int m, int n, int k, float* A,float* B, float* C
     - More thread blocks can be advantageous
 
 <h2 id="afb88027399d01d622718722195efb3b"></h2>
+
 #### Device Query
  - Number of devices in the system
 ```
@@ -347,9 +374,11 @@ for (i = 0; i < dev_count; i++) {
  
     
 <h2 id="632e348b2be685fb56cf013fe7edea7e"></h2>
+
 ### Lecture 2.7: Handling Boundary Conditions in Tiling
 
 <h2 id="36163dc0760ea3b315915b599cd4fa2b"></h2>
+
 #### Handling Matrix of Arbitrary Size
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Arbitary_dims_CUDA_matrix_multiply.jpg)
@@ -360,6 +389,7 @@ for (i = 0; i < dev_count; i++) {
 
 
 <h2 id="81697492e4e1b62b3f2352852d2c0fb8"></h2>
+
 #### Major Cases in Toy Example
 
 - Threads that calculate valid C elements but can step outside valid input
@@ -368,9 +398,11 @@ for (i = 0; i < dev_count; i++) {
     - Phase 0 of Block(1,1), Thread(1,0), assigned to calculate non-existent C[3,2] but need to participate in loading tile element B[1,2] 
     
 <h2 id="8d2db0c8d46de05bfb88b8206028adca"></h2>
+
 ### Lecture 2.8: A Tiled Kernel for Arbitrary Matrix Dimensions
 
 <h2 id="980269dfb458cf354a27f8af783f6cc1"></h2>
+
 #### A “Simple” Solution
  - When a thread is to load any input element, test if it is in the valid index range
     - If valid, proceed to load
@@ -383,6 +415,7 @@ for (i = 0; i < dev_count; i++) {
     - This way, the thread does not need to be turned off by an if-statement like in the basic kernel; it can participate in the tile loading process
     
 <h2 id="f19c19580a27edbfffc35f335206a7d3"></h2>
+
 #### Boundary Condition for Input A Tile
 
  - Each thread loads
@@ -398,6 +431,7 @@ Else , load 0
 ```
  
 <h2 id="c99cbcd4928e3eed824dec8e069f9af9"></h2>
+
 #### Boundary Condition for Input B Tile
 
  - Each thread loads
@@ -413,6 +447,7 @@ Else , load 0
 ```
 
 <h2 id="bcadae33273a0da5fc70f9ec2e3e311e"></h2>
+
 #### Loading Elements – with boundary check
 
 ```

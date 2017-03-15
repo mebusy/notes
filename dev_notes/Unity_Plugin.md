@@ -17,9 +17,11 @@
 
 
 <h2 id="2962917f23f1d3e579023b279d5a53e5"></h2>
+
 # Unity Plugin
 
 <h2 id="f4af3b85dca0c4507ca55336825a6a50"></h2>
+
 ## Plugin Inspector
 
 From v5 onwards, plugins can be placed at any convenient place in the project, since the target platforms are now selected from the inspector.
@@ -35,11 +37,13 @@ eg.
 
  
 <h2 id="334c3c4f311455f3445d04c4b67a2dbd"></h2>
+
 ## Managed Plugins
 
 It is possible to compile a script to a dynamically linked library (DLL) using an external compiler.
 
 <h2 id="615030f8cecae4a4ce7e6e4680b9e71f"></h2>
+
 ### Creating a DLL
 
 If the DLL contains no code that depends on the Unity API then you can simply compile it to a DLL using the appropriate compiler options. 
@@ -63,6 +67,7 @@ mcs -r:/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll
  - Assuming all goes well, the resulting DLL file will appear shortly in the same folder as the source file.
 
 <h2 id="ccb1d2c22ab430836b0ac9c8fd75cef7"></h2>
+
 ### Using the DLL
 
 DLLTest.dll into the Assets folder to use.
@@ -71,6 +76,7 @@ DLLTest.dll into the Assets folder to use.
 
 
 <h2 id="a0c7997f40bf2289c6f6f3600ad4c990"></h2>
+
 ### Step by Step Guide for MonoDevelop and Visual Studio
 
 [More details](http://docs.unity3d.com/Manual/UsingDLL.html)
@@ -79,6 +85,7 @@ DLLTest.dll into the Assets folder to use.
 ---
 
 <h2 id="7724ec709771ed12ee9db9d817ec7ec4"></h2>
+
 ## Native Plugins
 
 Native Plugins are libraries of native code written in C, C++, Objective-C, etc. 
@@ -97,6 +104,7 @@ It is also possible for Unity to call functions exported by the native plugin wh
 
 
 <h2 id="45f4836b184bb61e6897d414e2adaa3a"></h2>
+
 ## Low-level Native Plugin Interface
 
 In addition to the basic script interface, Native Code Plugins in Unity can receive callbacks when certain events happen. 
@@ -104,6 +112,7 @@ In addition to the basic script interface, Native Code Plugins in Unity can rece
 This is mostly used to implement low-level rendering in your plugin and enable it to work with Unity’s multithreaded rendering.
 
 <h2 id="21e58543396d6ee441246b0e6483dba9"></h2>
+
 ### Interface Registry
 
 A plugin should export ***UnityPluginLoad*** and ***UnityPluginUnload*** to handle main Unity events. 
@@ -111,11 +120,13 @@ A plugin should export ***UnityPluginLoad*** and ***UnityPluginUnload*** to hand
 See IUnityInterface.h for the correct signatures. IUnityInterfaces is provided to the plugin to access further Unity APIs.
 
 <h2 id="e7dedd682cf6b74d514fab90df8ed549"></h2>
+
 ### Access to the Graphics Device
 
 A plugin can access generic graphics device functionality by getting the IUnityGraphics interface. In earlier versions of Unity a UnitySetGraphicsDevice function had to be exported in order to receive notification about events on the graphics device. Starting with Unity 5.2 the new IUnityGraphics interface (found in IUnityGraphics.h) provides a way to register a callback.
 
 <h2 id="2df08455093d0b5c92d03c8e2109a55f"></h2>
+
 ### Plugin Callbacks on the Rendering Thread
 
 Rendering in Unity can be multithreaded if the platform and number of available CPUs will allow for it.
@@ -128,6 +139,7 @@ In order to do any rendering from the plugin, you should call ***GL.IssuePluginE
 
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
+
 ## Example
 
 An example of function exposed in plugin:

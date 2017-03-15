@@ -17,9 +17,11 @@
 
 
 <h2 id="5dad7f6f2d7af4cc1196128ec251af8a"></h2>
+
 # MacOSX 
 
 <h2 id="c585405730fcd92667781471df41f4fb"></h2>
+
 ## vim 设置
 
  - `cp /usr/share/vim/vimrc ~/.vimrc`
@@ -36,6 +38,7 @@ set ts=4  # table 4 bytes
 ```
 
 <h2 id="d1b5bbfe80897599d07253429886f700"></h2>
+
 ## 设置 目录访问权限(禁止别的用户浏览)
 
 ```
@@ -51,11 +54,13 @@ rwx           |         rwx          |         rwx
 
 
 <h2 id="2921868f08055ef268441139489a6130"></h2>
+
 ## sidebar 丢失
 
 OPTION/Alt+COMMAND+S
 
 <h2 id="1c305ad1fad7ba14dd448d08a73f3ab8"></h2>
+
 ## openofficer error
 
 ```bash
@@ -63,9 +68,11 @@ rm -rf ~/Library/Saved Application State/org.openoffice.script.savedState
 ```
 
 <h2 id="ec69fb46be4996fda376dcb4054c528b"></h2>
+
 ## Useful Commands
 
 <h2 id="25c04b9b782789c092a38c06cc87632a"></h2>
+
 ### xxd 
 
  - `xxd  <filename>`   以16进制显示文件内容
@@ -84,11 +91,13 @@ unsigned int note_txt_len = 61;
 ```
 
 <h2 id="0968ea4dc36ecbcdc0810a8ca0f674c8"></h2>
+
 ### mdfind
 
  - `mdfind -name <xxxxx>`   快速查找文件
 
 <h2 id="724874d1be77f450a09b305fc1534afb"></h2>
+
 ### alias 
 
 ```bash
@@ -100,6 +109,7 @@ alias blender='/Volumes/WORK/Tools/Blender/blender.app/Contents/MacOS/blender'
     - 查看所有别名
 
 <h2 id="726e07a4bf9abb9ebcdce89b16eb7807"></h2>
+
 ### man ascii  字符表
 
 ```
@@ -111,6 +121,7 @@ alias blender='/Volumes/WORK/Tools/Blender/blender.app/Contents/MacOS/blender'
 ```
 
 <h2 id="e1bde9f80b42328020cb6b0a4c7d26ab"></h2>
+
 ### cal 日历
 
  - `cal` 当月
@@ -119,5 +130,6 @@ alias blender='/Volumes/WORK/Tools/Blender/blender.app/Contents/MacOS/blender'
 
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
+
 ## TODO
 

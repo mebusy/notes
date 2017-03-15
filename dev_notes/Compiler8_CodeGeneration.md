@@ -30,6 +30,7 @@
 
 
 <h2 id="830e73effc335657c8837f820d540d29"></h2>
+
 # Chapter 8 : Code Generation
 
 intermediate representation (IR)
@@ -65,6 +66,7 @@ The remaining sections explore instruction selection and register allocation.
 ---
 
 <h2 id="5ff1fce12b9d8a95fd5edf15e993fcbf"></h2>
+
 ## 8.1 Issues in the Desjgn of a Code Generator
 
 While the details are dependent on the specifics of the intermediate represen­tation, the target language, and the run-time system, tasks such as instruction selection, register allocation and assignment, and instruction ordering are en­countered in the design of almost all code generators.
@@ -74,6 +76,7 @@ The most important criterion for a code generator is that it produce cor­rect c
 ---
 
 <h2 id="109887e516084b34d2dad7ecc5b5bc40"></h2>
+
 ### 8.1.1 Input to the Code Generator
 
 The input to the code generator is the intermediate representation of the source program produced by the front end, along with information in the symbol table that is used to determine the run-time addresses of the data objects denoted by the names in the IR.
@@ -94,6 +97,7 @@ In this chapter, we assume that the front end has scanned, parsed, and translate
 ---
 
 <h2 id="10880c231144de03f241dd50ed847e89"></h2>
+
 ### 8.1.2 The Target Program
 
 The most common target-machine architectures are RISC (reduced instruction set computer), CISC (complex instruction set computer), and stack based.
@@ -119,6 +123,7 @@ In this chapter, we shall use a very simple RISC-like computer as our target mac
 ---
 
 <h2 id="c07ebb13842b3d7df40404463e0d96e9"></h2>
+
 ### 8.1.3 Instruction Selection
 
                                                                                                                                                                                                                                                                                                                                                                                         
@@ -173,6 +178,7 @@ In Section 8.9 we shall see that instruction selection can be modeled as a tree-
 
 
 <h2 id="42a67b9586b929e789e5441b0b46b433"></h2>
+
 ### 8.1.4 Register Allocation
 
 A key problem in code generation is deciding what values to hold in what registers. Registers are the fastest computational unit on the target machine, but we usually do not have enough of them to hold all values. Values not held in registers need to reside in memory. Instructions involving register operands are invariably shorter and faster than those involving operands in memory, so efficient utilization of registers is particularly important.
@@ -209,6 +215,7 @@ Strategies for register allocation and assignment are discussed in Section 8.8. 
 
 
 <h2 id="37c2c790f0774513a8b2ce5189028ba1"></h2>
+
 ### 8.1.5 Evaluation Order
 
 The order in which computations are performed can affect the efficiency of the target code. As we shall see, some computation orders require fewer registers to hold intermediate results than others. However, picking a best order in the general case is a difficult NP-complete problem. Initially, we shall avoid the problem by generating code for the three-address statements in the order in which they have been produced by the intermediate code generator. In Chapter 10, we shall study code scheduling for pipelined machines that can execute several operations in a single clock cycle.
@@ -216,12 +223,14 @@ The order in which computations are performed can affect the efficiency of the t
 ---
 
 <h2 id="e62e84c1a57e7550603a734b7765510e"></h2>
+
 ## 8.2 The Target Language
 
 Familiarity with the target machine and its instruction set is a prerequisite for designing a good code generator. Unfortunately, in a general discussion of code generation it is not possible to describe any target machine in sufficient detail to generate good code for a complete language on that machine. In this chapter, we shall use as a target language assembly code for a simple computer that is representative of many register machines. However, the code­-generation techniques presented in this chapter can be used on many other classes of machines as well.
 
 
 <h2 id="c9b2afcb3e1b79afecbf6a464ffd634a"></h2>
+
 ### 8.2.1 A Simple Target Machine Model
 
 Our target computer models a three-address machine with load and store oper­ations, computation operations, jump operations, and conditional jumps. 
@@ -323,6 +332,7 @@ Here, M is the label that represents the first machine instruction generated fro
 --- 
 
 <h2 id="e495518feaac3d8e7e4b5882920d1d83"></h2>
+
 ### 8.2.2 Program and Instruction Costs
 
 We often associate a cost with compiling and running a program. Depending on what aspect of a program we are interested in optimizing, some common cost measures are the length of compilation time and the size, running time and power consumption of the target program.
@@ -344,6 +354,7 @@ In this chapter we assume the cost of a target-language program on a given input
 ---
 
 <h2 id="6d4d798ee603fff7b45373e0dd5c31dd"></h2>
+
 ## 8.3 Addresses in the Target Code
 
 In this section, we show how names in the IR can be converted into addresses in the target code by looking at code generation for simple procedure calls and returns using static and stack allocation. In Section 7.1, we described how each executing program runs in its own logical address space that was partitioned into four code and data areas:
@@ -361,6 +372,7 @@ In this section, we show how names in the IR can be converted into addresses in 
 ---
 
 <h2 id="bda4c525efeeaf310fd933902ea0b7c1"></h2>
+
 ### 8.3.1 Static Allocation
 
 To illustrate code generation for simplified procedure calls and returns, we shall focus on the following three-address statements:
@@ -425,6 +437,7 @@ After executing ACTION3, the jump instruction at location 220 is executed. Since
 ---
 
 <h2 id="3ae25ae0f1fb53ecdb143a7fb20ad988"></h2>
+
 ### 8.3.2 Stack Allocation
 
 Static allocation can become stack allocation by using relative addresses for storage in activation records. In stack allocation, however, the position of an activation record for a procedure is not known until runtime. This position is usually stored in a register, so words in the activation record can be accessed as offsets from the value in this register. The indexed address mode of our target machine is convenient for this purpose.
@@ -480,6 +493,7 @@ if msize, psize, and qsize are 20, 40, and 60, respectively, the first instructi
 ---
 
 <h2 id="e01e13bc01c76ae3d6a93af6781a8d38"></h2>
+
 ### 8.3.3 Run-Time Addresses for Names
 
 The storage-allocation strategy and the layout of local data in an activation record for a procedure determine how the storage for names is accessed. In Chapter 6, we assumed that a name in a three-address statement is really a pointer to a symbol-table entry for that name. This approach has a significant advantage; it makes the compiler more portable, since the front end need not be changed even when the compiler is moved to a different machine where a different run-time organization is needed. On the other hand, generating the specific sequence of access steps while generating intermediate code can be of significant advantage in an optimizing compiler, since it lets the optimizer take advantage of details it would not see in the simple three-address statement.
@@ -499,6 +513,7 @@ LD 112 , #0
 ---
 
 <h2 id="2c3c856092398efb26997bf43f94919d"></h2>
+
 ## 8.4 Basic Blocks and Flow Graphs
 
 This section introduces a graph representation of intermediate code that is help­ful for discussing code generation even if the graph is not constructed explicitly by a code-generation algorithm. Code generation benefits from context. We can do a better job of register allocation if we know how values are defined and used, as we shall see in Section 8.8. We can do a better job of instruction selection by looking at sequences of three-address statements, as we shall see in Section 8.9.
@@ -515,6 +530,7 @@ Starting in Chapter 9, we discuss transformations on flow graphs that turn the o
 ---
 
 <h2 id="5382830f44c8ab1f0f2d56fe8cf4ac65"></h2>
+
 ### 8.4.1 Basic Blocks
 
 Our first job is to partition a sequence of three-address instructions into basic blocks. We begin a new basic block with the first instruction and keep adding instructions until we meet either a jump, a conditional jump, or a label on the following instruction. In the absence of jumps and labels, control proceeds sequentially from one instruction to the next. This idea is formalized in the following algorithm.
@@ -568,6 +584,7 @@ We conclude that the leaders are instructions 1, 2, 3, 10, 12, and 13. The basic
 ---
 
 <h2 id="21d7d35b190002b687bfd4fbe96db30f"></h2>
+
 ### 8.4.2 Next-Use Information
 
 Knowing when the value of a variable will be used next is essential for generating good code. If the value of a variable that is currently in a register will never be referenced subsequently, then that register can be assigned to another variable.
@@ -592,6 +609,7 @@ Here we have used + as a symbol representing any operator. If the three-address 
 ---
 
 <h2 id="2e0f84d0f92e1f49404739bec34b3dd2"></h2>
+
 ### 8.4.3 Flow Graphs
 
 Once an intermediate-code program is partitioned into basic blocks, we repre­sent the flow of control between them by a flow graph. The nodes of the flow graph are the basic blocks. There is an edge from block B to block C if and only if it is possible for the first instruction in block C to immediately follow the last instruction in block B. There are two ways that such an edge could be justified:
@@ -622,6 +640,7 @@ Only B6 points to the exit of the flow graph, since the only way to get to code 
 ---
 
 <h2 id="d9681c5961ade940b16db92265f07922"></h2>
+
 ### 8.4.4 Representation of Flow Graphs
 
 First, note from Fig. 8.9 that in the flow graph, it is normal to replace the jumps to instruction numbers or labels by jumps to basic blocks. Recall that every conditional or unconditional jump is to the leader of some basic block, and it is to this block that the jump will now refer. The reason for this change is that after constructing the flow graph, it is common to make substantial changes to the instructions in the various basic blocks. If jumps were to instructions, we would have to fix the targets of the jumps every time one of the target instructions was changed.
@@ -631,6 +650,7 @@ Flow graphs, being quite ordinary graphs, can be represented by any of the data 
 ---
 
 <h2 id="57ba69ba8ce34a37752db17e8dc9e160"></h2>
+
 ### 8.4.5 Loops
 
 Programming-language constructs like while-statements, do-while-statements, andfor-statements naturally give rise to loops in programs. Since virtually every program spends most of its time in executing its loops, it is especially important for a compiler to generate good code for loops. Many code transformations depend upon the identification of "loops" in a flow graph. We say that a set of nodes L in a flow graph is a loop if
@@ -652,6 +672,7 @@ The third loop, L = {B2, B3, B4}, has B2 as its loop entry. Note that among thes
 ---
 
 <h2 id="895e7d88eb5f9758b1bb9bcad8448f0d"></h2>
+
 ## 8.5 Optimization of Basic Blocks
 
 We can often obtain a substantial improvement in the running time of code merely by performing local optimization within each basic block by itself. More thorough global optimization, which looks at how information flows among the basic blocks of a program, is covered in later chapters, starting with Chapter 9. It is a complex subject, with many different techniques to consider.
@@ -659,6 +680,7 @@ We can often obtain a substantial improvement in the running time of code merely
 ---
 
 <h2 id="66e1b4db709e780933b28a758e46d599"></h2>
+
 ### 8.5.1 The DAG Representation of Basic Blocks
 
 Many important techniques for local optimization begin by transforming a basic block into a DAG (directed acyclic graph). In Section 6.1.1, we introduced the DAG as a representation for single expressions. The idea extends naturally to the collection of expressions that are created within one basic block. We construct a DAG for a basic block as follows:
@@ -679,6 +701,7 @@ The DAG representation of a basic block lets us perform several code­ improving
 ---
 
 <h2 id="2ca093ee9b3646bbed3c5a7150480019"></h2>
+
 ### 8.5.2 Finding Local Common Subexpressions  (TODO)
 
 TODO
@@ -686,6 +709,7 @@ TODO
 ---
 
 <h2 id="3cac79754c1e27df5c39a1578a7df8a3"></h2>
+
 ## 8.6 A Simple Code Generator
 
 In this section, we shall consider an algorithm that generates code for a single basic block. It considers each three-address instruction in turn, and keeps track of what values are in what registers so it can avoid generating unnecessary loads and stores.
@@ -710,6 +734,7 @@ We assume that the basic block has already been transformed into a preferred seq
 ---
 
 <h2 id="e2391a4ecbd6fee9999aecdd40eecb75"></h2>
+
 ### 8.6.1 Register and Address Descriptors
 
 

@@ -64,7 +64,7 @@ def createMenu4MD( path ):
 			
 			menu +=   ( '%s - [%s](#%s)' % ( '\t' * (  sorted(all_title_level).index( curTitleActualLevel )  )  , escaped_title ,  id  ) )  +  '\n'
 
-			body += '<h2 id="%s"></h2>\n' % id 
+			body += '<h2 id="%s"></h2>\n\n' % id 
 			#print sharps, title
 
 		if not re.search( RE_PATTERN_MENU_JUMP_ID , line  ):

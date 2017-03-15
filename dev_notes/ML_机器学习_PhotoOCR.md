@@ -23,14 +23,17 @@
 [TOC]
 
 <h2 id="e65885a24642ea6caa9b4cc3fa9648d4"></h2>
+
 ## Photo OCR
 
 <h2 id="c05b00495e12d4e6e63699b01eef0e5f"></h2>
+
 ### Problem Description and Pipeline
 
 Photo optical character recognition 照片光学字符识别
 
 <h2 id="c75bffa5028e099b547517e79ecbedb6"></h2>
+
 #### Photo OCR pipeline
 
  1. Text detection
@@ -41,9 +44,11 @@ Photo optical character recognition 照片光学字符识别
     - 识别每个字符 
  
 <h2 id="a413de0b7d3ca5e448aa7c58535e57ef"></h2>
+
 ### Sliding Windows
 
 <h2 id="059f4dd0bafb0e73889c8660d52c1a5c"></h2>
+
 #### Supervised learning for pedestrian detection
  
  - 照片中找出行人
@@ -51,6 +56,7 @@ Photo optical character recognition 照片光学字符识别
     - 可能是行人y=1, 可能不是y=0
 
 <h2 id="45cc6d3b5bf3f3b586155dcbc5e04d88"></h2>
+
 #### Sliding window detection
 
  - 从照片中获取82x36区域, 判断是否是行人
@@ -59,11 +65,13 @@ Photo optical character recognition 照片光学字符识别
  - use a bigger windows, re-size the window content to 82x36,...
 
 <h2 id="69b71ae7534d013b30aa980fedf1d6fd"></h2>
+
 #### Text detection
 
 现在从行人改为text. 发现text的地方使用白色块，否则黑色，这样就得到了一张黑白图。最后，通过expansion处理，使得白块区域变大邻接起来。
 
 <h2 id="e55dfb0a899b9302b944074fbd127e65"></h2>
+
 #### 1D Sliding window for character segmentation
 
 如何分割字符？ 还是使用 sliding window
@@ -72,6 +80,7 @@ Photo optical character recognition 照片光学字符识别
  - y=0, 图像块中间没有分隔线
 
 <h2 id="f6c38a87532bcba6d340d665a5f4db8b"></h2>
+
 ### Getting Lots of Data and Artificial Data
 
 要想获得一个高效的机器学习系统，一种最可靠的方法就是，选择一个 low bias的算法，然后用一个巨大的训练集来训练它。
@@ -82,6 +91,7 @@ Photo optical character recognition 照片光学字符识别
  - turn small training data set to a large set
 
 <h2 id="d44110b04e334d5138f9080526090261"></h2>
+
 #### Artificial data synthesis for photo OCR
 
  - 选择任意的字体，然后加上随机的背景，这样就可以获得一个大的data set。
@@ -91,6 +101,7 @@ Photo optical character recognition 照片光学字符识别
 
 
 <h2 id="d0489633abcc536d20de1ac15bc32041"></h2>
+
 #### Synthesizing data by introducing distortions: Speech recognition
 
 假如说你有一段音频片段,你希望通过对这段音频的学习,识别出这段音频中,出现了哪些单词。
@@ -103,6 +114,7 @@ Photo optical character recognition 照片光学字符识别
  
 
 <h2 id="3cac9850b41b50b8e4c44d5de7de1148"></h2>
+
 #### Synthesizing data by introducing distortions
 
  - Distortion introduced should be representation of the type of noise/distortions in the test set
@@ -111,6 +123,7 @@ Photo optical character recognition 照片光学字符识别
     - 变形后的样本，应该是在某些场合下，确实会出现的，是有意义的。
 
 <h2 id="aaf61b0c47bdfa1a04301b1e0efb7b17"></h2>
+
 #### Discussion on getting more data
 
  1. Make sure you have a low bias classifier before expending the effort.(Plot learning curves)
@@ -123,11 +136,13 @@ Photo optical character recognition 照片光学字符识别
 
 
 <h2 id="3157909fcba2bb0204f25acba117af96"></h2>
+
 ### Ceiling Analysis: What Part of the Pipeline to Work on Next
 
 上限分析
 
 <h2 id="fa04582d22d410df441e1c1170299998"></h2>
+
 #### Estimating the errors due to each component(ceiling analysis)
 
 Image -> Text detection -> Character segmentation -> Character recognition
@@ -156,6 +171,7 @@ Character recognition | 100%
 ---
 
 <h2 id="97ac67a319b4892c162d49f2693870de"></h2>
+
 ## Summary: Main topics
 
  - Supervised Learning

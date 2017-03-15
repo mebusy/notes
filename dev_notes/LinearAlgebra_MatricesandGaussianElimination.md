@@ -30,9 +30,11 @@
 
 
 <h2 id="abb8dacb4b3a6b2753a9bf368b0f04e2"></h2>
+
 # Matrices and Gaussian Elimination
 
 <h2 id="550db00849ad37a0926e6ec4f59d71c7"></h2>
+
 ## 1.1 Introduction
 
 The central problem of linear algebra: *solving linear equations*. The most importance case , and the simplest, is when the number of unknowns equals the number of equations. 
@@ -65,6 +67,7 @@ The final result of this chapter will be an elimination algorithm that is about 
    
 
 <h2 id="992f66663115d5ef2e15386d995e53e9"></h2>
+
 ## 1.2 The Geometry of Linear Equations
 
 ```
@@ -107,12 +110,14 @@ The second plane is 4u - 6v = -2. It is drawn vertically, because w can take any
 Finally the third plane intersects this line in a point.
 
 <h2 id="f3e2771bb4ba31fb79a43ae62aaab1e6"></h2>
+
 ### n Dimensions
 
 The point is that linear algebra can operate with any number of equations.
 The 1st equation produces an (n-1) dimemsional "plane" in *n* dimemsions. The second "plane" intersects it (we hope) in a small set of "dimension n-2".  Assuming all goes well , every new "plane" (every new equation) reduce the dimension by 1. At the end, when all n planes are accounted for, the intersection has dimension zero. It's a *point* , it lies on all planes, and its coordinates satisfy all n equations. It's the solution!
 
 <h2 id="c2da619cbc890f55d4715ed875a9eb64"></h2>
+
 ### Column Vectors and Linear Combinations
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/linearAlgebra_column_form.png)  (2)
@@ -133,6 +138,7 @@ Row picture : Intersection of planes | Column picture : Combination of columns
 
 
 <h2 id="eef9ce517195c244778811d97ec80a8f"></h2>
+
 ### The Singular case
 
 In 2 dimensions , parallel lines are the only possibility for breakdown. But 3 planes in 3 dimensions can even be in trouble without being parallel.
@@ -173,6 +179,7 @@ The truth is that we knew the columns would combine to give zero, because the ro
 行空间的平面不相交为1点，那么所有列向量必然位于同一平面。
 
 <h2 id="aeb6fbe1b69d56ea9622eb6766ea5c39"></h2>
+
 ## 1.3 AN EXAMPLE OF GAUSSIAN ELIMINATION
 
 ```
@@ -209,6 +216,7 @@ One good way to write down the forward elimination steps is to include the right
 By definition, ***pivots cannot be zero***.
 
 <h2 id="2b33b6ac684eea3a04b7a90f58554d3b"></h2>
+
 ### The Breakdown of Elimination
 
 In elimination , if a zero appears in a pivot position, elimination has to stop - either temporarily or permanently. The system might or might not be singular.
@@ -218,11 +226,13 @@ Temporary breakdown can be solved by exchanging rows.
 只有 non-singular 的情况, 才能得到a full set of pivots (全部非0主元)，但是即便non-singular，消元也可能breakdown, 这种情况可以通过 row exchanges  来解决。这也是为什么 matlab进行LU分解，返回值包含一个 转置矩阵。
 
 <h2 id="b34d1b23e46d808504dce8cc095fee73"></h2>
+
 ### The Cost of Elimination
 
 A good estimate for the number of operations is **n³/3**.
 
 <h2 id="9ac25990605bccf45a2c61dea50093d6"></h2>
+
 ## 1.4 MATRIX NOTATION AND MATRIX MULTIPLICATION
 
 We now introduce **matrix notation** to describe the original system, and **matrix multiplication** to describe the operations that make it simpler. 
@@ -236,6 +246,7 @@ A = | 4 -6  0|
 ```
 
 <h2 id="5c58db5a1c2e2903f1fbeec62d6ea4a5"></h2>
+
 ### Multiplication of a Matrix and a Vector
 
 Matrix form Ax = b:
@@ -251,6 +262,7 @@ Matrix form Ax = b:
     - and produces an m-dimensional vector
 
 <h2 id="8afd4d0866e9cda428c450f1f4723feb"></h2>
+
 ### The Matrix Form of One Elimination Step
 
 The first step subtracted 2 times the first equation from the second. 
@@ -278,6 +290,7 @@ E₃₁ = | 0  1  0|   has E₃₁·b = |  b₂  |
 
 
 <h2 id="fe759ee30ec010c2c1f589ed520c3a0f"></h2>
+
 ### Matrix Multiplication
 
  - (EA times x) equals (E times Ax). 
@@ -310,6 +323,7 @@ Some rules:
 
 
 <h2 id="6e9d018eb5ce2e083a4703bfcb7526d2"></h2>
+
 ## 1.5 TRIANGULAR FACTORS AND ROW EXCHANGES
 
 We want to look again at elimination, there were three elimination steps, with multipliers 2, -1, -1:
@@ -357,6 +371,7 @@ The special thing is that the entries below the diagonal are the multipliers *l*
 
 
 <h2 id="17f5e1579a1578ab8db20e0eb910d224"></h2>
+
 ### One Linear System = Two Triangular Systems
 
 **Ax = b**  ->  LUx = b  ->  Ux = L⁻¹b  ->  **Ux = c**
@@ -369,6 +384,7 @@ The special thing is that the entries below the diagonal are the multipliers *l*
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_LDU_factorize.png)
 
 <h2 id="ee835f91c2c818fd230e9563c6b23a11"></h2>
+
 ### Row Exchanges and Permutation Matrices
 
 We now have to face a problem that has so far been avoided: The number we expect to use as a pivot ***might be zero***. This could occur in the middle of a calculation. It will also happen at the very beginning if all = 0. A simple example is:
@@ -417,6 +433,7 @@ We can display all 3 by 3 permutations (there are 3! = 6 matrices):
 
 
 <h2 id="5c3fc1e2610b8235f0cf01bfd463f2eb"></h2>
+
 ### Elimination in a Nutshell: PA = LU
 
 A good elimination code saves L and U and P. 
@@ -432,6 +449,7 @@ Those matrices carry the information that originally came in A - and they carry 
  	- U 就是 echelon 形式
 
 <h2 id="4d72fafca6d677bb749ef5048ba77fa6"></h2>
+
 ## 1.6 INVERSES AND TRANSPOSE
 
 Inverse matrix :
@@ -456,6 +474,7 @@ There is no stupid matrix that satisfy : A⁻¹·0 = x.
  - **Inverse of ABC:  (ABC)⁻¹ = C⁻¹B⁻¹A⁻¹**
 
 <h2 id="5dd7a646b2bb1011c052239ac7a3ce0a"></h2>
+
 ### The Calculation of A⁻¹: The Gauss-Jordan Method
 
 A = LU
@@ -478,11 +497,13 @@ A⁻¹ = U⁻¹·L⁻¹
     - since we only need back-substitution for x (and forward substitution produced c).
 
 <h2 id="09b826c4478f9e67a2a6854f8783bd64"></h2>
+
 ### ***Invertible = Nonsingular (n pivots)***
 
 If A is invertible, it has n pivots. 
 
 <h2 id="242b3600224bb5f3c1f4b6458cf7b658"></h2>
+
 ### The Transpose Matrix
 
 Transpose:
@@ -496,6 +517,7 @@ Transpose:
 ```
 
 <h2 id="b899f85c23e42aea33f7684a076389ca"></h2>
+
 ### Symmetric Matrices
 
 ***A symmetric matrix is a matrix that equals its own transpose: Aᵀ = A.***
@@ -503,6 +525,7 @@ Transpose:
 ***Multiplying any matrix R by Rᵀ gives a symmetric matrix.***
 
 <h2 id="1385c8c79787a12139bf60e1624cc87f"></h2>
+
 ### Symmetric Products RᵀR, RRᵀ, and LDLᵀ
 
 ```
@@ -518,6 +541,7 @@ The transpose of A = LDU gives Aᵀ = UᵀDᵀLᵀ. Since A = Aᵀ, Lᵀ must be
 Inverse of symmetric is symmetric.
 
 <h2 id="ed0eb6118820d3734285fd1a953dab73"></h2>
+
 ## 1.7 SPECIAL MATRICES AND APPLICATIONS
 
 This section has two goals. 
@@ -605,6 +629,7 @@ A **band matrix** has aᵢⱼ = 0 except in the band |i - j| < w. The "half band
 For each column, elimination requires w(w - 1) operations: a row of length w acts on w - 1 rows below. Elimination on the n columns of a band matrix requires about ***w²n*** operations.
 
 <h2 id="84cbf7b58bea5dda0f6a3e9f8dbc31c4"></h2>
+
 ### Roundoff Error
 
 For a system of moderate size, say 100 by 100, elimination involves a third of a million operations (n³/3). With each operation we must expect a roundoff error. Normally, we keep a fixed number of significant digits (say three, for an extremely weak computer).

@@ -18,15 +18,19 @@
 
 
 <h2 id="d53cfc4bdeb96eaee47dd710b3c2ed21"></h2>
+
 # VIM 
 
 <h2 id="78d0b83eb54eb1aa949d4600958cb397"></h2>
+
 ## 插件安装
 
 <h2 id="5a8a69602edd805333aea10c2817e37e"></h2>
+
 ### 插件管理工具vunble
 
 <h2 id="f1c28a7da5182846402b968966299c4c"></h2>
+
 #### 安装vundle
 
 ```
@@ -35,6 +39,7 @@ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 
 <h2 id="88320719ea4a6c706aeaa3ae1d8c133d"></h2>
+
 #### 在.vimrc配置文件中添加vundle支持
 
 ```
@@ -44,6 +49,7 @@ call vundle#rc()
 ```
 
 <h2 id="7a886abbb5da4373ffcfd88df9575954"></h2>
+
 ### 配置插件
 
 bundle分为三类，比较常用就是第二种：
@@ -97,6 +103,7 @@ Bundle "Valloric/YouCompleteMe"
 ```
 
 <h2 id="e655a410ff21cd07e7a0150491e04371"></h2>
+
 ### 安装
 
 打开vim，运行 `:BundleInstall` 或在shell中直接运行
@@ -107,6 +114,7 @@ vim +BundleInstall +qall
 ```
 
 <h2 id="154a11cd7a6e424863c28aa29ad576d1"></h2>
+
 ### 安装排错
 
  - python 报错
@@ -128,6 +136,7 @@ vim +BundleInstall +qall
     - use : `TagbarToggle`
     
 <h2 id="2182a74bab7188d959e795d9301e87ff"></h2>
+
 ## Markdown 
 
  - chrome 安装插件 :  [Markdown Preview Plus](https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl)
@@ -136,9 +145,11 @@ vim +BundleInstall +qall
 ---
 
 <h2 id="e5f71fc31e7246dd6ccc5539570471b0"></h2>
+
 ## 搜索
 
 <h2 id="32b92ada221fd37f58c6db5897bd605c"></h2>
+
 ### 反向肯定搜索 lookahead
 
 ```
@@ -151,6 +162,7 @@ vim +BundleInstall +qall
 
 
 <h2 id="852639e354e873ce19ce571888957160"></h2>
+
 ### 前向肯定搜索 lookahead
 
 搜索 exp1, followed by exp2
@@ -160,6 +172,7 @@ exp1\(exp2\)\@=
 ```
 
 <h2 id="4d36d00db257fed5fe7d2a2036ad930f"></h2>
+
 ### 文件夹搜索
 
 ```

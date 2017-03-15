@@ -17,9 +17,11 @@
 
 
 <h2 id="ae6212de98066cfe7c4f284fb7bb0795"></h2>
+
 # Chapter 1 Introduction
 
 <h2 id="63ae37c8857aa96df730388676adc2ca"></h2>
+
 ## 1.2 The Structure of a Compiler
 
  - analysis
@@ -36,6 +38,7 @@
 
 
 <h2 id="57d98a0f3632f4cb940598f6256ecdfc"></h2>
+
 ### 1.2.1 Lexical Analysis
 
  - The first phase of a compiler is called ***lexical analysis*** or ***scanning***
@@ -78,6 +81,7 @@ After lexical analysis as the sequence of tokens
 
 
 <h2 id="fb2142e810f2e9a15030f6d78c437bae"></h2>
+
 ### 1.2.2 Syntax Analysis
 
 The second phase of the compiler is ***syntax analysis*** or ***parsing***. 
@@ -108,6 +112,7 @@ The subsequent phases of the compiler use the grammatical structure to help anal
 
 
 <h2 id="7789dd8d5a08e6298027a099409c1443"></h2>
+
 ### 1.2.3 Semantic Analysis
 
  - The ***semantic analyzer*** checks the source program for semantic consistency with the language definition.  
@@ -130,6 +135,7 @@ The subsequent phases of the compiler use the grammatical structure to help anal
 
 
 <h2 id="2a40a73e86de0c4274e59ac45cef1f7b"></h2>
+
 ### 1.2.4 Intermediate Code Generation
 
  - In the process of translating a source program into target code, a compiler may construct one or more intermediate representations
@@ -155,6 +161,7 @@ There are several points worth noting about three-address instructions.
 
 
 <h2 id="5b9a8770c747a97b075151171355ecb8"></h2>
+
 ### 1.2.5 Code Optimization
 
  - The machine-independent code-optimization phase attempts to improve the intermediate code so that better target code will result. 
@@ -169,6 +176,7 @@ There are several points worth noting about three-address instructions.
 
 
 <h2 id="f867ceceefb3b47936eac11f9a2e08cd"></h2>
+
 ### 1.2.6 Code Generation
 
  - The code generator takes as input , an intermediate representation of the source program 
@@ -194,6 +202,7 @@ This discussion of code generation has ignored the important issue of stor­age 
 
 
 <h2 id="f0b723a9df83685761f99355086abeda"></h2>
+
 ### 1.2.7 Symbol-Table Management
 
  - An essential function of a compiler is to record the variable names used in the source program and collect information about various attributes of each name. 
@@ -207,6 +216,7 @@ This discussion of code generation has ignored the important issue of stor­age 
  	- and to store or retrieve data from that record quickly. 
 
 <h2 id="0cceed88f71885842f77f164b25c71cc"></h2>
+
 ### 1.2.8 The Grouping of Phases into Passes
 
  - The discussion of phases deals with the logical organization of a compiler. 
@@ -221,6 +231,7 @@ This discussion of code generation has ignored the important issue of stor­age 
 
 
 <h2 id="57b05cd7416d7b9ca9b6f8a630f258c3"></h2>
+
 ### 1.2.9 Compiler-Construction Tools
 
 
@@ -237,6 +248,7 @@ The most suc­cessful tools are those that hide the details of the generation al
 
 
 <h2 id="b47c0652562ded5280a48bb68a3745ac"></h2>
+
 ## 1 .3 The Evolution of Programming Languages
 
 

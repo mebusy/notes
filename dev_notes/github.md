@@ -8,9 +8,11 @@
 
 
 <h2 id="bf215181b5140522137b3d4f6b73544a"></h2>
+
 # github 
 
 <h2 id="f6b73a9a864f02b2d14ad454c6b09e68"></h2>
+
 ## github update fork
 
  - 给fork配置远程上游仓库 
@@ -27,6 +29,7 @@
 
         
 <h2 id="606e5c37337c2f05305ab4a4a0dc2691"></h2>
+
 ## run html on github
 
  - visit `http://rawgit.com/`

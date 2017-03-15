@@ -11,6 +11,7 @@
 
 
 <h2 id="43e65c30acbdf24696f10a6f143c27c0"></h2>
+
 # Procedual Dungeon by Unity lua , part 1
 
     PS: All codes are written in Lua, developed on Unity5 with ULua.
@@ -21,6 +22,7 @@
 Ok, lets start to generate a procedural dungeon cave .
 
 <h2 id="3e74269609b1bde9df6bc382ab44e8ca"></h2>
+
 ## step 1: Cellular Automata
 
 The algorithm to create the map is called "Cellular Automata".
@@ -57,6 +59,7 @@ It looks like a black image with many many white noise on it.
 Next we will make it looks like a map.
 
 <h2 id="b8e64cb13c04f49bcd939e396573ba96"></h2>
+
 ## step 2: smooth the map
 
 The core algorithm to smooth the map is : 
@@ -83,6 +86,7 @@ end
 ```
 
 <h2 id="d98bd06ab1fed4ab8982111c42278c1e"></h2>
+
 ### step 3: show it
 
 Ok, we almost done it. Let's show the map on gizmos and check it.
@@ -107,6 +111,7 @@ end
 Now, it looks much better. 
 
 <h2 id="7baaaa63b8783cbfefac4bc92daca856"></h2>
+
 ## step 4: Marching Square
 
 So far , every block has only 2 status: full black or full white.
@@ -231,6 +236,7 @@ end --end for y
 ```
 
 <h2 id="e5320da03725702c294687a92b03dfe1"></h2>
+
 ## step 4: display the mesh.
 
 create a MeshFilter and MeshRenderer to display the mesh

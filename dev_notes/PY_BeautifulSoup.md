@@ -56,12 +56,14 @@
 [markdown版本](https://www.zybuluo.com/qibinyi/note/208683)
 
 <h2 id="c2ed0329d2d3cf54c78317b209d7c0d5"></h2>
+
 # BeautifulSoup
 
     bs 使用 Unicode编码 
     
 
 <h2 id="06129a15a17f5bf8197a5a520e00a2cb"></h2>
+
 ## bs 解析器
 
 除了标准的 "html.parser" 解析器, 还支持第三方解析器：
@@ -79,12 +81,14 @@
 
 
 <h2 id="5316642266b09c1a37c74751ff570d00"></h2>
+
 ## 对象的种类
 
 Beautiful Soup将复杂HTML文档转换成一个复杂的树形结构,每个节点都是Python对象,所有对象可以归纳为4种: 
 **Tag , NavigableString , BeautifulSoup , Comment**
 
 <h2 id="c101058e7ea21bbbf2a5ac893088e90b"></h2>
+
 ### Tag
 
 ```python
@@ -97,6 +101,7 @@ type(tag)
 tag中最重要的属性: name和attributes
 
 <h2 id="49ee3087348e8d44e1feda1917443987"></h2>
+
 #### Name
 
 每个tag都有自己的名字,通过 .name 来获取:
@@ -114,6 +119,7 @@ tag
 
 
 <h2 id="287234a1ff35a314b5b6bc4e5828e745"></h2>
+
 #### Attributes
 
 一个tag可能有很多个属性. tag <b class="boldest"> 有一个 “class” 的属性,值为 “boldest” . tag的属性的操作方法与字典相同:
@@ -133,6 +139,7 @@ tag的属性可以被添加,删除或修改. 再说一次, tag的属性操作方
 
 
 <h2 id="f7c0b37da30bc4400b27198d2caf96f3"></h2>
+
 ##### 多值属性
 
 HTML 4定义了一系列可以包含多个值的属性. 
@@ -164,6 +171,7 @@ xml_soup.p['class']
 ```
 
 <h2 id="379f03de69572c4d3aa54f8f8650f428"></h2>
+
 ### NavigableString 可以遍历的字符串
 
 字符串常被包含在tag内. 
@@ -190,6 +198,7 @@ tag
 ```
 
 <h2 id="c2ed0329d2d3cf54c78317b209d7c0d5"></h2>
+
 ### BeautifulSoup
 
 BeautifulSoup 对象表示的是一个文档的全部内容.大部分时候,可以把它当作 Tag 对象.
@@ -201,6 +210,7 @@ soup.name
 ```
 
 <h2 id="0753968b4545fc501a4836fa6f324d04"></h2>
+
 ### Comment 注释及特殊字符串
 
 Comment 对象是一个特殊类型的 NavigableString 对象:
@@ -230,9 +240,11 @@ print(soup.b.prettify())
 ```
 
 <h2 id="8e18b129f83a9689f747b1880e12ed33"></h2>
+
 ## 遍历文档树
 
 <h2 id="315dcc9412a4499cf846736fdbaaa72a"></h2>
+
 ### 子节点
 
 一个Tag可能包含多个字符串或其它的Tag,这些都是这个Tag的子节点. 
@@ -241,6 +253,7 @@ Beautiful Soup提供了许多操作和遍历子节点的属性.
     注意: Beautiful Soup中字符串节点不支持这些属性,因为字符串没有子节点
 
 <h2 id="974c48224a70145276128073c7c0b3e4"></h2>
+
 #### tag的名字
 
 操作文档树最简单的方法就是告诉它你想获取的tag的name.
@@ -267,6 +280,7 @@ soup.find_all('a')
 ```
 
 <h2 id="5ef69ba35fbd6c33a99a7bdc5c5992b1"></h2>
+
 #### .contents 和 .children 和 .descendants
 
 tag的 .contents 属性可以将tag的子节点以列表的方式输出:
@@ -290,6 +304,7 @@ for child in head_tag.descendants:
 ```
 
 <h2 id="826098db4d2fd79ad3b0ea00dc4424f8"></h2>
+
 #### .string
 
 如果tag只有一个 NavigableString 类型子节点,那么这个tag可以使用 .string 得到子节点:
@@ -314,6 +329,7 @@ print(soup.html.string)
 ```
 
 <h2 id="f0f015a1c0a337a26cd3e058a356728e"></h2>
+
 #### .strings 和 stripped_strings
 
 如果tag中包含多个字符串 [2] ,可以使用 .strings 来循环获取:
@@ -353,9 +369,11 @@ for string in soup.stripped_strings:
 ```    
 
 <h2 id="50200948c0bbd9d2770e21cff2b43d01"></h2>
+
 ### 父节点
 
 <h2 id="7e9024fe9b16b6df01cb1178eccde435"></h2>
+
 #### .parent
 
 通过 .parent 属性来获取某个元素的父节点.在例子“爱丽丝”的文档中,< head >标签是< title >标签的父节点:
@@ -368,6 +386,7 @@ title_tag.parent
 ```
 
 <h2 id="f84b68a3ba6dbdd825f4d2d61556be28"></h2>
+
 #### .parents
 
 通过元素的 .parents 属性可以递归得到元素的所有父辈节点,下面的例子使用了 .parents 方法遍历了< a >标签到根节点的所有节点.
@@ -388,6 +407,7 @@ for parent in link.parents:
 ```
 
 <h2 id="6fa498651667a0c6b50860e2a59b3747"></h2>
+
 ### 兄弟节点
 
 ```python
@@ -395,6 +415,7 @@ sibling_soup = BeautifulSoup("< a >< b >text1</b>< c >text2</c></b></a>")
 ```
 
 <h2 id="0ab728758563d908f3cfd5c256c58368"></h2>
+
 #### .next_sibling 和 .previous_sibling
 
 在文档树中,使用 .next_sibling 和 .previous_sibling 属性来查询兄弟节点:
@@ -407,26 +428,31 @@ sibling_soup.c.previous_sibling
 ```
 
 <h2 id="78e321b204d8e94aad526caa22ccf129"></h2>
+
 #### .next_siblings 和 .previous_siblings
 
 通过 .next_siblings 和 .previous_siblings 属性可以对当前节点的兄弟节点迭代输出:
 
 
 <h2 id="2b1854c45093976077cd9e7e92817f93"></h2>
+
 ### 回退和前进
 
 <h2 id="5f9f6a3e9a16fa700480d0adf0f83049"></h2>
+
 #### .next_element 和 .previous_element
 
 .next_element 属性指向解析过程中下一个被解析的对象(字符串或tag),结果可能与 .next_sibling 相同,但通常是不一样的.
 
 <h2 id="f575adec86f5ee8b708ad4844c4809e9"></h2>
+
 #### .next_elements 和 .previous_elements
 
 通过 .next_elements 和 .previous_elements 的迭代器就可以向前或向后访问文档的解析内容,就好像文档正在被解析一样:
 
 
 <h2 id="891834dc47e736b404e84e1fc9067127"></h2>
+
 ## 搜索文档树
 
 Beautiful Soup定义了很多搜索方法,这里着重介绍2个: find() 和 find_all() .其它方法的参数和用法类似,请读者举一反三.
@@ -434,6 +460,7 @@ Beautiful Soup定义了很多搜索方法,这里着重介绍2个: find() 和 fin
 使用 find_all() 类似的方法可以查找到想要查找的文档内容
 
 <h2 id="04bd0c61c9045f9144991ea380edbf3d"></h2>
+
 ### 过滤器
 
 介绍 find_all() 方法前,先介绍一下过滤器的类型,这些过滤器贯穿整个搜索的API. 
@@ -442,6 +469,7 @@ Beautiful Soup定义了很多搜索方法,这里着重介绍2个: find() 和 fin
     过滤器中的查找例子，都是查找 tag
 
 <h2 id="cc4dd1da7e1a754534215f02fb9ba85d"></h2>
+
 #### 字符串
 
 最简单的过滤器是字符串.在搜索方法中传入一个字符串参数,Beautiful Soup会查找与字符串完整匹配的内容,下面的例子用于查找文档中所有的< b >标签:
@@ -451,6 +479,7 @@ soup.find_all('b')
 ```
 
 <h2 id="2e576047ae509e55d8e86f36d730caf4"></h2>
+
 #### 正则表达式
 
 如果传入正则表达式作为参数,Beautiful Soup会通过正则表达式的 match() 来匹配内容. 
@@ -470,6 +499,7 @@ for tag in soup.find_all(re.compile("t")):
     注意一下这里和 字符串过滤器的区别
 
 <h2 id="3712972d84adf48acbd6ad24b4d75ad0"></h2>
+
 #### 列表
 
 如果传入列表参数,Beautiful Soup会将与列表中任一元素匹配的内容返回. 
@@ -484,6 +514,7 @@ soup.find_all(["a", "b"])
 ```
 
 <h2 id="f827cf462f62848df37c5e1e94a4da74"></h2>
+
 #### True
 
 True 可以匹配任何值,下面代码查找到所有的tag,但是不会返回字符串节点
@@ -505,6 +536,7 @@ for tag in soup.find_all(True):
 
 
 <h2 id="ea340b9dda8b893ddf2d9176220aac32"></h2>
+
 #### 方法
 
 如果没有合适过滤器,那么还可以定义一个方法,方法只接受一个元素参数 , 
@@ -529,10 +561,12 @@ for tag in soup.find_all(surrounded_by_strings):
 
 
 <h2 id="9e9956ecd644adb40afec6ad79df7c4b"></h2>
+
 ### find_all( name , attrs , recursive , text , **kwargs )
 
 
 <h2 id="620c64f80d81ac35f42b9200016164a5"></h2>
+
 #### name 参数
 
 name 参数可以查找所有名字为 name 的tag,字符串对象会被自动忽略掉.
@@ -546,6 +580,7 @@ soup.find_all("title")
     重申: 搜索 name 参数的值可以使任一类型的 过滤器 ,字符窜,正则表达式,列表,方法或是 True .
 
 <h2 id="7cd7d7c7f2d3bb007817c6c4d9ed06c6"></h2>
+
 #### keyword 参数 和 attrs
 
 如果一个指定名字的参数不是搜索内置的参数名,搜索时会把该参数当作 *指定名字tag的属性* 来搜索,如果包含一个名字为 id 的参数,Beautiful Soup会搜索每个tag的”id”属性.
@@ -576,6 +611,7 @@ data_soup.find_all(attrs={"data-foo": "value"})
 ```
 
 <h2 id="0317b50465de46c94b7d444218895e08"></h2>
+
 #### 按CSS搜索
 
 按照CSS类名搜索tag的功能非常实用,但标识CSS类名的关键字 class 在Python中是保留字,使用 class 做参数会导致语法错误. 
@@ -602,12 +638,14 @@ css_soup.find_all("p", class_="body")
 ```
 
 <h2 id="b85ff64b46933e9f70850eb0d1c182a8"></h2>
+
 #### text 参数
 通过 text 参数可以搜搜文档中的字符串内容.与 name 参数的可选值一样, 
 
     text 参数接受 字符串 , 正则表达式 , 列表, True . 看例子:
 
 <h2 id="3b7c4439f88ee8659212d7d097af17ba"></h2>
+
 #### limit 参数
 
 find_all() 方法返回全部的搜索结构,如果文档树很大那么搜索会很慢.如果我们不需要全部结果,可以使用 limit 参数限制返回结果的数量.效果与SQL中的limit关键字类似,当搜索到的结果数量达到 limit 的限制时,就停止搜索返回结果.
@@ -619,12 +657,14 @@ soup.find_all("a", limit=2)
 ```
 
 <h2 id="dfb1da32cfedce18e06febd3de8dfaa1"></h2>
+
 #### recursive 参数
 
 调用tag的 find_all() 方法时, Beautiful Soup会检索当前tag的所有子孙节点, 
 如果只想搜索tag的直接子节点,可以使用参数 recursive=False .
 
 <h2 id="e87c304af3b634dd48a0c133d8f2d834"></h2>
+
 ### 像调用 find_all() 一样调用tag
 
 find_all() 几乎是Beautiful Soup中最常用的搜索方法,所以我们定义了它的简写方法. BeautifulSoup 对象和 tag 对象可以被当作一个方法来使用, 
@@ -644,6 +684,7 @@ soup.title(text=True)
 
 
 <h2 id="eddd24d106b00f012296abf15aecdf7a"></h2>
+
 ### find( name , attrs , recursive , text , **kwargs )
 
 find_all() 方法的返回结果是值包含一个元素的列表,而 find() 方法直接返回结果.
@@ -661,6 +702,7 @@ soup.find("head").find("title")
     tag 作为方法调用 等价 findall， tag 作为 键值调用 等价 find
 
 <h2 id="9a1af792c8edfcf1821778b793c1de1c"></h2>
+
 ### find_parents() 和 find_parent()
 
 find_parents( name , attrs , recursive , text , **kwargs )
@@ -670,35 +712,42 @@ find_parent( name , attrs , recursive , text , **kwargs )
 
 
 <h2 id="f0de90db60172672a319539d3c33328b"></h2>
+
 ### find_next_siblings() 合 find_next_sibling()
 
 这2个方法通过 .next_siblings 属性对当tag的所有后面解析的兄弟tag节点进行迭代
 
 
 <h2 id="c287dbef8cf91421167b4294673a0540"></h2>
+
 ### find_previous_siblings() 和 find_previous_sibling()
 
 这2个方法通过 .previous_siblings 属性对当前tag的前面解析的兄弟tag节点进行迭代
 
 <h2 id="aca730699d61e6508ac53886823adabb"></h2>
+
 ### find_all_next() 和 find_next()
 
 这2个方法通过 .next_elements 属性对当前tag的之后的tag和字符串进行迭代
 
 <h2 id="a9427ebd054cb5e6b4869a2d711399c4"></h2>
+
 ###find_all_previous() 和 find_previous()
 
 这2个方法通过 .previous_elements 属性对当前节点前面的tag和字符串进行迭代
 
 <h2 id="4dab32e8ec6a7a43a9adb0fedaaa7afb"></h2>
+
 ### CSS选择器
 
 Beautiful Soup支持大部分的CSS选择器,在 Tag 或 BeautifulSoup 对象的 .select() 方法中传入字符串参数,即可使用CSS选择器的语法找到tag:
 
 <h2 id="f2fb137262eb44eb2a60a3a1858187f5"></h2>
+
 ## 修改 soup 文档
 
 <h2 id="13f7d242b154ae0c680ecf7cfb1acf7f"></h2>
+
 ### get_text() 
 
 指定tag的文本内容的分隔符，去除获得文本内容的前后空白

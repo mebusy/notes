@@ -9,6 +9,7 @@
 
 
 <h2 id="523995f0bde7f6f864950a61566a59a5"></h2>
+
 # Four special matrices
 
 K = ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/toeplitz_matrix.gif)
@@ -21,6 +22,7 @@ K = ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/toeplitz_matr
  4. K is invertible. Invertible means K·K⁻¹=I ,  **eye**(n) can create an identity matrix.
 
 <h2 id="7407fb7e6a4df6392aaabd2368157312"></h2>
+
 ### Sparse
 
 If a matrix is sparse , Sparse MATLAB is the way to improve the performance of computation. To create a sparse matrix: KS = **parse**(K).
@@ -39,6 +41,7 @@ If a matrix is sparse , Sparse MATLAB is the way to improve the performance of c
 ```
 
 <h2 id="6279ece7c95ba205cea508f2082ab1c8"></h2>
+
 ### Invertible
 
 How to know if a matrix is invertible? We will not use determinant here. I would do row reduce, that's the default option in linear algebra. Row reduce aiming for a triangular matrix. If a matrix is triangular then I can see immediately everything. 
@@ -61,6 +64,7 @@ ans =  5
 When is an upper triangular matrix invertible? K is invertible because the diagonal is non-zero. It's got full non-zero pivots.
 
 <h2 id="cdcc32a064503184053bd2018d1c0e7e"></h2>
+
 ### Periodic
 
 C = ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/toeplitz_matrix_not_invertible.gif)

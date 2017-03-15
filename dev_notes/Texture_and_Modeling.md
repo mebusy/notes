@@ -42,9 +42,11 @@
 
 
 <h2 id="ca9e235d09110401a16af79048fda2c4"></h2>
+
 # Textuer and Modeling
 
 <h2 id="1788370b6ffe3e0fccf62aa9f5c4146d"></h2>
+
 # Renderman Shading Language
 
 ```
@@ -139,9 +141,11 @@ surface helloWorld(
 
 
 <h2 id="d033f70e239df7ab34718d5d84cb09a8"></h2>
+
 # CHAPTER 2  BUILDING PROCEDURAL TEXTURES
 
 <h2 id="5933ba40c36942af6d85eae2b87d1ac5"></h2>
+
 ## INTRODUCTION
 
 Throughout the short history of computer graphics, researchers have sought to improve the realism of their synthetic images by finding better ways to render the appearance of surfaces. This work can be divided into *shading* and *texturing*.
@@ -156,6 +160,7 @@ The simplest realistic shading model, and the one that was used first in compute
 All of the shading models described above are so-called local models, which deal only with light arriving at the surface directly from light sources. In the early 1980s, most research on shading models turned to the problem of simulating global illumination effects, which result from indirect lighting due to reflection, refraction, and scattering of light from other surfaces or participating media in the scene. Raytracing and radiosity techniques typically are used to simulate global illumination effects.
 
 <h2 id="1a38b8dc7a6f3cc864aeb4087f7eaefa"></h2>
+
 ## PROCEDURAL PATTERN GENERATION
 
 Most surface shaders can be split into two components called *pattern generation* and the *shading model*.
@@ -164,6 +169,7 @@ Most surface shaders can be split into two components called *pattern generation
  - Shading model simulates the behavior of the surface material with respect to diffuse and specular re- flection.
 
 <h2 id="c1c57c5f10d610630830380ed9b332fe"></h2>
+
 ## Shading Models
 
 Most surface shaders use one of a small number of shading models. The most common model includes diffuse and specular reflection and is called the "plastic" shading model. It is expressed in the RenderMan shading language as follows:
@@ -215,6 +221,7 @@ The plastic shading model is flexible enough to include the other two most com- 
 The plastic shader is a good starting point for many procedural texture shaders. We will simply replace the Cs in the last statement of the shader with a new color variable Ct, the texture color that is computed by the pattern generation part of the shader.
 
 <h2 id="e4cd46bef3dc3447197083c7ac518e60"></h2>
+
 ## Pattern Generation
 
  - usually the hard part
@@ -233,6 +240,7 @@ The shading language also provides an *environment* function whose 2D texture sp
 
 
 <h2 id="9a9839c8b7e66591077ec5e354ef3952"></h2>
+
 ## Texture Spaces
 
 The RenderMan shading language provides many different built-in coordinate systems (also called *spaces*). 
@@ -262,6 +270,7 @@ Using the 2D surface texture coordinates (s, t) or the surface parameters (u, v)
 It is a simplification to say that a texture is defined in terms of a single texture space. In general a texture is a combination of a number of separate "features," each of which might be defined in terms of its own *feature* space. If the various feature spaces that are used in creating the texture are not based on one underlying texture space, great care must be exercised to be sure that texture features don’t shift with respect to one another. The feature spaces should have a fixed relationship that doesn’t change when the camera or the object moves.
 
 <h2 id="b4a79de0915ebf290a02cc4dec4ed3cb"></h2>
+
 ## Layering and Composition
 
 The best approach to writing a complex texture pattern generator is to build it up from simple parts. There are a number of ways to combine simple patterns to make complex patterns.
@@ -305,6 +314,7 @@ Another way to combine simple functions to make complex functions is *functional
 
 
 <h2 id="2d8bf93ca75aca5774f21a431ba5e3de"></h2>
+
 ## Steps, Clamps, and Conditionals
 
 function *step(a,x)* returns the value 0 when x is less than a and returns 1 otherwise.
@@ -387,6 +397,7 @@ smoothstep(float a, float b, float x) {
 
 
 <h2 id="12c2ac8397180317852f7ac6343465e7"></h2>
+
 ## Periodic Functions
 
 The best-known periodic functions are sin and cos.  It can be shown that other functions can be built up from a sum of sinusoidal terms of different frequencies and phases.
@@ -439,6 +450,7 @@ A closely related function is the ceiling function ceil(x).  The following macro
 ```
 
 <h2 id="36921c934698e556132ccd41df579bf0"></h2>
+
 ## Splines and Mappings
 
 Built-in *spline* function is a one-dimensional Catmull-Rom interpolating spline through a set of so-called *knot* values. The parameter of the spline is a floating-point number.
@@ -605,6 +617,7 @@ Regardless of the value of g, all gain functions return 0.5 when x is 0.5.  Abov
 Schlick (1994) presents approximations to bias and gain that can be evaluated more quickly than the power functions given here.
 
 <h2 id="95e100e8006b35e4017b4ac5e98f590e"></h2>
+
 ## Example: Brick Texture
 
 One of the standard texture pattern clichés in computer graphics is the checkerboard pattern. This pattern was especially popular in a variety of early papers on anti-aliasing. 
@@ -676,6 +689,7 @@ surface brick(
 
 
 <h2 id="4b8a4928c80dbb90832685f625d39bb4"></h2>
+
 ### Bump-Mapped Brick
 
 Now let’s try our hand at some procedural bump mapping.
@@ -808,6 +822,7 @@ Nf = normalize(faceforward(Nf, I));
 
 
 <h2 id="3f9e2847ee4cdb15d32b99840caec017"></h2>
+
 ## Example: Procedural Star Texture
 
 Now let’s try to generate a texture pattern that consists of a yellow five-pointed star on a background color Cs.
@@ -876,6 +891,7 @@ star(
 
 
 <h2 id="5783f81ef8917c860636ac9d7d695102"></h2>
+
 ## Spectral Synthesis  光谱合成
 
 Procedural methods could generate remarkably complex and natural-looking textures simply by using a combination of sinusoidal 正弦波 component functions of differing frequencies , amplitudes, and phases.
@@ -918,11 +934,13 @@ Some of these techniques can produce rich textures with a lot of varied detail, 
 But first, let’s digress a bit and examine one of the most important issues that affect procedural textures, namely, the difficulties of aliasing and antialiasing.
 
 <h2 id="57e6091478ea0070020ae98a10147920"></h2>
+
 ## ALIASING AND HOW TO PREVENT IT
 
 The next section presents an informal discussion of basic signal processing concepts, including aliasing. 
 
 <h2 id="fb93336ab960d4ccca06e3a9ff73596b"></h2>
+
 ### Signal Processing
 
 As shown in Figure 2.29, a continuous signal can be converted into a discrete form by measuring its value at equally spaced sample points. 
@@ -999,6 +1017,7 @@ Notice that the width of the mortar grooves appears to vary in different parts o
 ---
 
 <h2 id="5daadabdd389ed925f78dd58dc8a4d68"></h2>
+
 ## Methods of Antialiasing Procedural Textures
 
 Various ways to build low-pass filtering into procedural textures: 
@@ -1020,6 +1039,7 @@ Some procedural texture primitives are inherently band-limited; that is, they co
 The *texture* function and its relatives have built-in filtering, so they are also band-limited. Unfortunately, some common language constructs such as *if* and *step* create sharp changes in value that generate arbitrarily high frequencies. Sharp changes in the shading function must be avoided. *smoothstep* is a smoothed replacement for step that can reduce the tendency to alias.  Can we simply replace *step* functions with *smoothstep* functions? Not an adequate solution. If the shader is tuned for a particular view, the smoothstep will alias when the texture is viewed from further away because the fixed-width smoothstep will be too sharp.On the other hand, when the texture is viewed from close up, the smoothstep edge is too blurry. A properly antialiased edge should look equally sharp at all scales. To achieve this effect, the *smoothstep* width must be varied based on the sampling rate.
 
 <h2 id="1d1c18f28e90a17dd98ca3a3805cf950"></h2>
+
 ## Determining the Sampling Rate
 
 To do low-pass filtering properly, the procedural texture function must know the sampling rate at which the renderer is sampling the texture.
@@ -1061,6 +1081,7 @@ The filter width (sampling interval estimate) is proportional to the distance fr
 It is especially tricky to find the right filter width to antialias a bump height func- tion for a bump-mapping texture. Since the bump height affects the normal vector used in shading, specular highlights can appear on the edges of bumps.
 
 <h2 id="296d6837655d97560e6ec0d135dee4db"></h2>
+
 ## Clamping
 
 Clamping is a very direct method of eliminating high frequencies from texture patterns that are generated by spectral synthesis. Since each frequency component is explicitly added to a spectral synthesis texture, it is fairly easy to omit every component whose frequency is greater than the Nyquist frequency.
@@ -1114,6 +1135,7 @@ Clamping works very well for spectral synthesis textures created with sine waves
 Even if the primitive is perfectly band-limited to frequencies lower than its nominal frequency, clamping is imperfect as a means of antialiasing.  In this case, clamping will eliminate aliasing, but the character of the texture may change as high frequencies are removed because each component contains low frequencies that are removed along with the high frequencies.
 
 <h2 id="53ec4b61ddd25eb11d220ad40fcfb118"></h2>
+
 ## Analytic Prefiltering
 
 A procedural texture can be filtered explicitly by computing the convolution of the texture function with a filter function. This is difficult in general, but if we choose a simple filter, the technique can be implemented successfully. The simplest filter of all is the box filter; the value of a box filter is simply the average of the input function value over the area of the box filter.
@@ -1137,6 +1159,7 @@ The boxstep function can be written as a preprocessor macro in C or the shading 
 Now the step(b,x) can be replaced with boxstep(b-w,b,x). If the filter width w is chosen correctly, the boxstep function should reduce aliasing compared to the step function.
 
 <h2 id="e0c69d35a15d0876291ee3c294639c89"></h2>
+
 ## Better Filters
 
 The box filter is far from ideal for antialiasing. A better filter usually results in fewer artifacts or less unnecessary blurring.  A better alternative to *boxstep* is the *smoothstep* function that was discussed earlier in this chapter. 
@@ -1160,6 +1183,7 @@ However, there are other filters and other filtered steps that are preferable in
 A Catmull-Rom filter can be convolved with a step function (which is equivalent to integrating the filter function) to produce a *catstep* filtered step function that has been used with good results.
 
 <h2 id="ee6bda864552024462560f79bf0e5d54"></h2>
+
 ## Integrals and Summed-Area Tables
 
 Crow (1984) introduced the ***summed-area table*** method of antialiasing image textures. 
@@ -1179,6 +1203,7 @@ The summed-area table makes it easy to compute the sum of all of the texture ima
 If the region corresponds to the size and position of a ***box*** filter in the (s, t) space, the average value from the summed-area table calculation can be used as an antialiased texture value. The cost of the antialiasing is constant **regardless** of the size of the region covered by the filter, which is very desirable.
 
 <h2 id="c7143f12bd99e3604f7d8adf4e8e0804"></h2>
+
 ### Example: Antialiased Brick Texture
 
 The first step is to add the code needed to determine the filter width. 
@@ -1253,6 +1278,7 @@ because the *floor* and *mod* operations in the integrals provide the necessary 
 
 
 <h2 id="5fff91936d2b35e5829804e2f21bd376"></h2>
+
 ## MAKING NOISES
 
 To generate irregular procedural textures, we need an irregular primitive function, usually called **noise**.
@@ -1283,6 +1309,7 @@ The properties of an ideal ***noise*** function are as follows:
 
 
 <h2 id="96cdfd02d5849846686f2eecc6bc24bf"></h2>
+
 ### Lattice Noises
 
 Lattice noises are the most popular implementations of noise for procedural texture applications. 
@@ -1324,6 +1351,7 @@ static unsigned char perm[TABSIZE] = {
 ```
 
 <h2 id="dc84a69bdc96850f89b6c4a9b9de5adb"></h2>
+
 ### Value Noise
 
 Given a PRN between −1 and 1 at each lattice point, a noise function can be computed by interpolating among these random values. This is called value noise. The following routine will initialize a table of PRNs for value noise:
@@ -1398,20 +1426,25 @@ A graph of a 1D sample of vnoise is shown in Figure 2.35(a), and an image of a 2
 > FIGURE 2.37 The power spectra of various noises: (a) vnoise; (b) gnoise (Perlin’s noise); (c) vnoise + gnoise; (d) Ward’s Hermite noise; (e) vcnoise; (f) scnoise.
 
 <h2 id="7d2055bc181beddaa2492eac27f6391b"></h2>
+
 ### Gradient Noise (TODO)
 
 <h2 id="c4c1767627f4d536aaa1f5d36e06766e"></h2>
+
 ### Value-Gradient Noise (TODO)
 
 <h2 id="90a621169450e7dda33fc8525a104e57"></h2>
+
 ### Lattice Convolution Noise (TODO)
 
 <h2 id="52b2eb22dca333a7d0e00fcb3fd94634"></h2>
+
 ### Sparse Convolution Noise (TODO)
 
 ---
 
 <h2 id="8d18618ccbae1c5db4a02e261d5013ef"></h2>
+
 ## GENERATING IRREGULAR PATTERNS
 
 Armed with the stochastic primitive functions from the preceding section, we can now begin to generate irregular texture patterns.
@@ -1455,6 +1488,7 @@ pnoise(P, point (10, 15, 30))
 It is easy to implement pnoise by making the choice of lattice PRNs periodic with the desired period. This technique is limited to integer periods.
 
 <h2 id="b5b337d45c62d6e1c218bb5b93d105cb"></h2>
+
 ## Spectral Synthesis
 
 The discussion on page 48 , Several calls to noise can be combined to build up a stochastic spectral function with a particular frequency/power spectrum. A noise loop of the form
@@ -1575,6 +1609,7 @@ The function marble_color maps the floating-point number marble into a color usi
 
 
 <h2 id="fcbfd4afc8873594d0a5a5b78dd16fda"></h2>
+
 ## Perturbed 扰乱的 Regular Patterns 
 
 Purely stochastic patterns tend to have an amorphous character. Often the goal is a more structured pattern with some appearance of regularity.
@@ -1612,6 +1647,7 @@ tt -= tbrick;
 
 
 <h2 id="d441872eec16d305851e98aa1b90393c"></h2>
+
 ## Perturbed Image Textures
 
 Another valuable trick is to use a stochastic function to modify the texture coordinates used to access an image texture. This is very easy to do. For example, the sim- ple texture access
@@ -1639,6 +1675,7 @@ In this example, snoise based on the 3D surface position in “shader” space i
 
 
 <h2 id="33a888b2462b6062c56320b035b02c89"></h2>
+
 ## Random Placement Patterns
 
 A random placement pattern is a texture pattern that consists of a number of regular or irregular subpatterns or “bombs” that are dropped in random positions and orientations to form the texture. 

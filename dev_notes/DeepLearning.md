@@ -29,12 +29,15 @@
 
 
 <h2 id="6a68b6412b3d8a605c374d3c59e02694"></h2>
+
 # Deep Learning 
 
 <h2 id="d41184f514356348f59aa91ad4f37c98"></h2>
+
 # From Machine Learning to Deep Learning
 
 <h2 id="1d993169621e0855bad00d71c005cf1b"></h2>
+
 ## SOFTMAX
 
 The way to turn scores into probabilities is to use **softmax** function , will be denoted by *S*. It can take any kind of scores and turn them into proper probabilities. 
@@ -72,6 +75,7 @@ Caution:
 
 
 <h2 id="e227f3d7f7e740bb759f0066342ff799"></h2>
+
 ## CROSS-ENTROPY
 
 
@@ -92,6 +96,7 @@ This entire setting is often called multinominal logistic classification.
 ---
 
 <h2 id="0b3ff0c33c38d07fc732b5ec92ce1647"></h2>
+
 ## Minimizing Cross Entropy
 
 The question of course is how we're going to find those weights w and biases b that will get our classifier to do what we want it to do.
@@ -112,6 +117,7 @@ Ways:
 
 
 <h2 id="6bd7e96f5a6e9231f7d947c5fc18e876"></h2>
+
 ## Numerical Stability
 
 In particular , adding very small values to a very large value can introduce a lot of errors.
@@ -139,6 +145,7 @@ VARIANCE:  	σ(Xᵢ) = σ(Xⱼ)
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_numerical_stability.png)
 
 <h2 id="fff0d600f8a0b5e19e88bfb821dd1157"></h2>
+
 ### Images
 
 If you dealing with images, you can take the pixel value of your image, they are typically between 0 and 255 , and simply subtract 128 and divide by128 `( C - 128) / 128 ` .
@@ -146,6 +153,7 @@ If you dealing with images, you can take the pixel value of your image, they are
 It doesn't change the content of your image, but it makes it much easier for the optimization to proceed numerically.
 
 <h2 id="9457fbceb006e0a464b95be0ee804d83"></h2>
+
 ### Weight initialization
 
 You also want your weights and biases to be initialized at a good enough starting point for the gradient descent to preceed. There are lots of fancy schemes to find good initialization values , but we're going to focus on a simple , general method.
@@ -165,6 +173,7 @@ It's usually better to begin with an uncertain distribution and let the optimiza
 
 
 <h2 id="caa736eb798e357900ffcd35d1a78e99"></h2>
+
 ### Initialization of the lgistic classifier
 
 Now we actually have everythings we need to actually train this classifier.
@@ -261,6 +270,7 @@ open http://`docker-machine ip default`:8888
 
 
 <h2 id="0c4981f443dd7633e4286cbaa482c579"></h2>
+
 ## The Kaggle Challenge
 
 machine learning 竞赛网站
@@ -268,9 +278,11 @@ machine learning 竞赛网站
 ---
 
 <h2 id="87b3239cbf57b3e46249505264571228"></h2>
+
 # Deep Neural Networks
 
 <h2 id="f880aa9c184596fc12ff27937ebaf8ca"></h2>
+
 ## Linear Model Limited
 
  - Linear operations are really nice 
@@ -279,6 +291,7 @@ machine learning 竞赛网站
 
 
 <h2 id="9be412d16c60d2fa986ffc1f194643c0"></h2>
+
 ## Network of ReLUs
 
 We're going to construct our new function in the simplest way that we can think of.
@@ -295,6 +308,7 @@ We now have two matrices.
 Our function is now nonlinear thanks to the RELU in the middle , and we now have a new knob that we can tune , this number H ( in blue ) which corresponds to the number of RELU units that we have in the classifier. We can make it as big as we want.
 
 <h2 id="62568a512f5b51ee525d33114a235b26"></h2>
+
 ## The Chain Rule
 
 One reason to build this network by stacking simple operations is that it makes tha math very simple .
@@ -315,6 +329,7 @@ There's even better news for the compute scientist in you.  There is a way to wr
  - lots of data reuse !
 
 <h2 id="d93c592036c29f14635824ddf09aab87"></h2>
+
 ## Back prop 
 
 Here is an example.  Imagine your network is a stack of simple operations ( 1st line : x -> y  ) . 
@@ -340,6 +355,7 @@ In particular each block of the back prop often takes about twice the memory tha
 ---
 
 <h2 id="3964943701fa3f4989658e59f88cc110"></h2>
+
 ## Training a Deep Learning Network 
 
 2-layer Neural Network
@@ -357,6 +373,7 @@ Instead , you can also add more layers and make your model deeper.  There are lo
 
 
 <h2 id="949b893e589d45ecfe63894272b7b754"></h2>
+
 ## Regularization Intro
 
 Why did we not figure out earlier that deep-models were effective ?
@@ -369,6 +386,7 @@ So in practice , we always try networks that are way too big for our data and th
 
 
 <h2 id="853cc01c0ad043a93a400b3b1dc15614"></h2>
+
 ## Regularization
 
 Regularizing means applying artificial constraints on your network that implicityly reduce the number of free parameters while not making it more difficult to optimize.
@@ -383,6 +401,7 @@ The idea is to add another term to the loss ,which penalizes large weights.  It'
 
 
 <h2 id="09bb9294aa4a843883a3f401aeaf8b5b"></h2>
+
 ## Dropout
 
 There's another important technique for regularization that only emerged relatively recently and works amazingly well. It also looks insane the first time you see it , so bear with me . It's called dropout.
@@ -423,9 +442,11 @@ Here's the trick to make sure this expectation holds. During training , not only
 ---
 
 <h2 id="02ed75b713cdaf7bbe2faae40ba76279"></h2>
+
 # Convolutional Neural Network
 
 <h2 id="78289659377fe0ce4edb6cc2c3e44939"></h2>
+
 ## Statistical Inveriance
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_cats.png)
@@ -446,6 +467,7 @@ It is a very important idea. Statisitcal invariants , things that don't change o
 
 
 <h2 id="4f15f700f5c4dc733c503ae470344017"></h2>
+
 ## Convolutional Networks , or CONVNETS
 
 Convnets are neural networks that share their parameters across space.
@@ -498,6 +520,7 @@ The math just works. You just add up the derivatives from all of the possible lo
 ---
 
 <h2 id="3e6416a016525c87f33de8dad90df107"></h2>
+
 ## Explore The Design Space
 
 To improve a simple convnet
@@ -532,6 +555,7 @@ Another notable form of pooling is average pooling. Instead of taking the max, j
 
 
 <h2 id="557f2cb10e34586ed5a05c43c0c3d26a"></h2>
+
 ## 1x1 Convolutions
 
 But first , I want to introduce you to another idea , it's the idea of one by one convolutions.

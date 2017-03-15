@@ -15,17 +15,21 @@
 
 
 <h2 id="ef556f8430878dce1c4748706e6134b4"></h2>
+
 # TAOCP vol1
 
 <h2 id="df75a5f0aea7cf7cc075da817b518350"></h2>
+
 # BASIC CONCEPTS
 
 <h2 id="ea17b4667598db12d332dcfb28af6d6f"></h2>
+
 ## 1.1 ALGORITHMS
 
 我们使用 4级title 来标记算法
 
 <h2 id="98230acef1ea79f00d054abf063049b8"></h2>
+
 #### Algorithm E (Euclid ’s algorithm). 
 
 Given two positive integers m and n, find their greatest common divisor, that is, the largest positive integer that evenly divides both m and n.
@@ -49,11 +53,13 @@ E0. [Ensure m ≥ n.] if m < n , exchange m ⟷ n.
 
 
 <h2 id="b0a028097eeef8c671b55c21acb734aa"></h2>
+
 ## 1.2. MATHEMATICAL PRELIMINARIES
 
 1.2.10 要特别注意！！
 
 <h2 id="c9c5e422aa21b3673c8ea74c36d80e73"></h2>
+
 ### 1.2.1. Mathematical Induction 数学归纳法
 
 Let P(n) be some statement about the integer n; for example, P(n) might be "n times (n+ 3) is an even number", or "if n ≥ 10, then 2ⁿ > n³ ". Suppose we want to prove that P(n) is true for all positive integers n. An important way to do this is:
@@ -128,6 +134,7 @@ Notice that we approached step (b) in two different ways here: We proved P(n+ 1)
 Mathematical induction can also be used to prove things about algorithms. Consider the following generalization of Euclid’s algorithm.
 
 <h2 id="e34888a37bff7ab2db8c92522280445b"></h2>
+
 #### Algorithm E (Extended Euclid’s algorithm).
 
 Given two positive integers m and n, we compute their greatest common divisor d and two integers a and b, such that am + bn = d.
@@ -158,6 +165,7 @@ EXERCISES
 ---
 
 <h2 id="a669d5d2df4ad6ad6cf4835f7f05fcff"></h2>
+
 ### 1.2.2. Numbers, Powers, and Logarithms
 
 
@@ -181,6 +189,7 @@ Equations (11), (12), and (14) are the fundamental rules for manipulating logari
 ---
 
 <h2 id="27e7dea388786b255b61cbfa9ee7e2c0"></h2>
+
 ### 1.2.3. Sums and Products
 
  - a) *The distributive law*, for products of sums:
@@ -210,6 +219,7 @@ Equations (11), (12), and (14) are the fundamental rules for manipulating logari
 ---
 
 <h2 id="b07d9a8cd6c423d1d592afc67680b012"></h2>
+
 ### 1.2.4 Integer Functions and Elementary Number Theory
 
 If a is any real number, we write   ⎣x⎦ = floor(x) , ⎡x⎤ = ceil(x).

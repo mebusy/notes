@@ -10,9 +10,11 @@
 
 
 <h2 id="878bcbccb5d63db01d2193f2e15cae28"></h2>
+
 # Orthogonality
 
 <h2 id="70835fd4404a5ddec835801ba42ecfb0"></h2>
+
 ## 3.1 ORTHOGONAL VECTORS AND SUBSPACES
 
  - In choosing a basis, we tend to choose an orthogonal basis , to make those calculations simple. 
@@ -203,6 +205,7 @@ When A⁻¹ fails to exist, the best substitute is the ***pseudoinverse*** A⁺.
 
 
 <h2 id="870df6062f5bb62d6f82187a8efebbe1"></h2>
+
 ## 3.2 COSINES PROJECTIONS ONTO LINES
 
 
@@ -346,6 +349,7 @@ The transposes turn up in reverse order on the right side, just as the inverses 
 
 
 <h2 id="4a2df06c2d276ad56402eecaa894e5d5"></h2>
+
 ## 3.3 PROJECTIONS LEAST SQUARES
 
 Up to this point, Ax = b either has a solution or not. If b is not in the column space C(A), the system is inconsistent and Gaussian elimination fails. This failure is almost certain when there are several equations and only one unknown:
@@ -576,6 +580,7 @@ TODO **Weighted Least Squares**
 ---
 
 <h2 id="09bbcb83a58fddde91f52c847cd92d46"></h2>
+
 ## 3.4 ORTHOGONAL BASES AND GRAM-SCHMIDT
 
 In an orthogonal basis, every vector is perpendicular to every other vector. The coordinate axes are mutually orthogonal. That is just about optimal, and the one possible improvement is easy: Divide each vector by its length, to make it a unit vector. That changes an ***orthogonal*** basis into an ***orthonormal*** basis of q's:
