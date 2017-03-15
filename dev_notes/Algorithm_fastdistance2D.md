@@ -31,4 +31,24 @@ nt FastDistance2D(int x, int y)
 		- 上式最后一项影响已经很小了，舍去即可得到与原算法相同的表达式： x + y - (x>>1) - (x>>2) + (x>>4)
 
 
+---
 
+```python
+def float_to_binary(num):
+    exponent=0
+    shifted_num=num
+    while shifted_num != int(shifted_num):        
+        shifted_num*=2
+        exponent+=1
+    if exponent==0:
+        return '{0:0b}'.format(int(shifted_num))
+    binary='{0:0{1}b}'.format(int(shifted_num),exponent+1)
+    integer_part=binary[:-exponent]
+    fractional_part=binary[-exponent:].rstrip('0')
+    return '{0}.{1}'.format(integer_part,fractional_part)
+```
+
+```python
+>>> float_to_binary( 0.3284 )
+'0.0101010000010010000001011011110000000001101000110111'
+```
