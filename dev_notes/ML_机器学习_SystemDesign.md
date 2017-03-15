@@ -15,9 +15,6 @@
 ...menuend
 
 
-
-
-
 <h2 id="0f37957d7f1f5bd5de2a41d8bc2c1d8f"></h2>
 # ML System Design
 

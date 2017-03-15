@@ -9,7 +9,6 @@
 ...menuend
 
 
-
 <h2 id="c2bfb8f194cb52abbd9cc9397dafc5d4"></h2>
 #numpy tips
 

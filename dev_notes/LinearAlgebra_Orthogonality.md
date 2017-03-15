@@ -9,7 +9,6 @@
 ...menuend
 
 
-
 <h2 id="878bcbccb5d63db01d2193f2e15cae28"></h2>
 # Orthogonality
 

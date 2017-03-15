@@ -28,7 +28,6 @@
 ...menuend
 
 
-
 <h2 id="6a68b6412b3d8a605c374d3c59e02694"></h2>
 # Deep Learning 
 

@@ -15,9 +15,6 @@
 ...menuend
 
 
-
-
-
 <h2 id="68d3cfbbc89d95b35d0d45b599f6cf74"></h2>
 # Advice for Applying Machine Learning
 

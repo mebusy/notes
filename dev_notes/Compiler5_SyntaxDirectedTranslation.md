@@ -10,7 +10,6 @@
 ...menuend
 
 
-
 <h2 id="540b35b48067336ac81ed72b19b2d25d"></h2>
 # Chapter 5 : Syntax-Directed Translation
 

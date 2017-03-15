@@ -19,7 +19,6 @@
 ...menuend
 
 
-
 <h2 id="59c9428d4e21d63aefeb230c919dcfe3"></h2>
 # Trick
 

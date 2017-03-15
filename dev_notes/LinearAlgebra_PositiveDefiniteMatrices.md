@@ -20,8 +20,6 @@
 ...menuend
 
 
-
-
 <h2 id="c4ac5577c068be490d5dc0e124314e32"></h2>
 # 6 Positive Definite Matrices
 

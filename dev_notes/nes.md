@@ -16,9 +16,6 @@
 ...menuend
 
 
-
-
-
 <h2 id="8d93d9819942f8e443fdde4fc2d67bc2"></h2>
 # NES
 

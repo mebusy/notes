@@ -18,8 +18,6 @@
 ...menuend
 
 
-
-
 <h2 id="6b347be0e79381eeb5689396d9e59438"></h2>
 # Neural Networks 
 

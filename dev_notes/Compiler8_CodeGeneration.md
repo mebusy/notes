@@ -29,7 +29,6 @@
 ...menuend
 
 
-
 <h2 id="830e73effc335657c8837f820d540d29"></h2>
 # Chapter 8 : Code Generation
 

@@ -30,6 +30,7 @@ def createMenu4MD( path ):
 	lines = content.split("\n")
 	
 	bCodeStart = False
+        bFollowLinkID = True 
 
 	all_title_level = set([])
 	for i, line in enumerate( lines ):
@@ -67,7 +68,13 @@ def createMenu4MD( path ):
 			#print sharps, title
 
 		if not re.search( RE_PATTERN_MENU_JUMP_ID , line  ):
-			body += line+'\n'
+                        if bFollowLinkID and line.strip()=="" :
+                            pass 
+			else :
+                            bFollowLinkID = False
+                            body += line+'\n'
+                else:
+                    bFollowLinkID = True
 
 	menu += '\n...menuend\n\n\n'  
 	

@@ -47,7 +47,6 @@
 ...menuend
 
 
-
 <h2 id="222b7b1e6c2303acdbfb4c0dbc31aeb8"></h2>
 # Reinforcement Learning I
 

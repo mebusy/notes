@@ -11,7 +11,6 @@
 ...menuend
 
 
-
 <h2 id="02cfbc450a484e485cfcb5a8b6293485"></h2>
 # MIT AI , Fall 2010
 

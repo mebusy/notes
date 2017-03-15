@@ -14,7 +14,6 @@
 ...menuend
 
 
-
 <h2 id="ef556f8430878dce1c4748706e6134b4"></h2>
 # TAOCP vol1
 

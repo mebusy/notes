@@ -6,7 +6,6 @@
 ...menuend
 
 
-
 <h2 id="2b9d12e2be9c88ae4472d67fb4f304a8"></h2>
 # Chapter 6 : Intermediate-Code Generation
 

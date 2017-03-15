@@ -8,7 +8,6 @@
 ...menuend
 
 
-
 <h2 id="a0d4cc0f54602c3f247c72f15a7d2dbf"></h2>
 # Tips
 

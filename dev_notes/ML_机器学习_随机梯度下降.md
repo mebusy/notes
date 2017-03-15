@@ -13,7 +13,6 @@
 ...menuend
 
 
-
 <h2 id="f76fe91515c665720b0e43fa5fe0e9dc"></h2>
 ## Gradient Descent with Large Datasets
 

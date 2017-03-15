@@ -15,8 +15,6 @@
 ...menuend
 
 
-
-
 <h2 id="f4892ae9e5ea764a416fcc3b54a5bad9"></h2>
 ## Yacc
 

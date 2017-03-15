@@ -23,8 +23,6 @@
 ...menuend
 
 
-
-
 <h2 id="f0d7fbb0d536bd31e98c816abecf06db"></h2>
 # Graphs Search and Connectivity
 

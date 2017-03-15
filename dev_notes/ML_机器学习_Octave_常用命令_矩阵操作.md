@@ -49,8 +49,6 @@
 ...menuend
 
 
-
-
 <h2 id="7b7506511ca80c5b54b8e2f1784aab67"></h2>
 # Octave Tutorial
 

@@ -6,7 +6,6 @@
 ...menuend
 
 
-
 <h2 id="a11f9fe43dfed0d30be3a8fbf4d57420"></h2>
 # 7 Computations with Matrices
 

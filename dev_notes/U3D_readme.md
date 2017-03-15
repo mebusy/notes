@@ -6,9 +6,6 @@
 ...menuend
 
 
-
-
-
 <h2 id="f1ab9c403a278470b521f050cf149ff5"></h2>
 ## U3D
 

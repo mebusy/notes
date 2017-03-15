@@ -29,7 +29,6 @@
 ...menuend
 
 
-
 <h2 id="abd3b2611419856b6b8afe54983197ce"></h2>
 # HTML5 Game Programming
 

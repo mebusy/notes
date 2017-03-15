@@ -15,8 +15,6 @@
 ...menuend
 
 
-
-
 <h2 id="7fd56e59b5fba7ede4bdfe85d4ca3e80"></h2>
 # High Level Datastructure In Python 
 

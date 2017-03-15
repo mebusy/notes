@@ -24,7 +24,6 @@
 ...menuend
 
 
-
 http://scipy-lectures.github.io/index.html
 
 <h2 id="61f0c3c78cb774f4522759cb5b766e48"></h2>

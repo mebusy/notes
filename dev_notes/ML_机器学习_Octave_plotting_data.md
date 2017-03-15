@@ -6,7 +6,6 @@
 ...menuend
 
 
-
 <h2 id="5973297b1e05d782b78ef41923b083ad"></h2>
 # Plotting data
 

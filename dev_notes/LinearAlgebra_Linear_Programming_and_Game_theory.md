@@ -8,7 +8,6 @@
 ...menuend
 
 
-
 <h2 id="adb23269688b0aa7f8855b8987514b14"></h2>
 # 8 linear Prograffiffliog and Game Theory
 

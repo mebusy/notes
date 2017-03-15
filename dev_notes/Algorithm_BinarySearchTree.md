@@ -25,7 +25,6 @@
 ...menuend
 
 
-
 <h2 id="9dea71a1a7eb5766489f59228ba59dd8"></h2>
 # Balanced Search Trees
 

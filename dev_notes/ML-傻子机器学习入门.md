@@ -12,7 +12,6 @@
 ...menuend
 
 
-
 <h2 id="3a1b341628a37d459adc8d41c75b642e"></h2>
 # 傻子机器学习入门
     observation 观测数据: 在机器学习领域，一般来说，一个观测数据 observation 是对 一个物体或某种情况 的说明。

@@ -22,8 +22,6 @@
 ...menuend
 
 
-
-
 <h2 id="8cf67260d126306abf039891edbeb656"></h2>
 # Support Vector Machines 支持向量机
 

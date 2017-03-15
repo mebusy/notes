@@ -23,9 +23,6 @@
 ...menuend
 
 
-
-
-
 <h2 id="37c5cffe5f40cb8a09855f57171e9646"></h2>
 # Calculus One
 

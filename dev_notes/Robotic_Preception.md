@@ -6,9 +6,6 @@
 ...menuend
 
 
-
-
-
 <h2 id="197f41e79f4b1f7f2fc647d43822b98d"></h2>
 ## 1.3 More On Perspective
 

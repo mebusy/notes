@@ -5,7 +5,6 @@
 ...menuend
 
 
-
 **Dynamic programming** (also known as **dynamic optimization**) is a method for solving a complex problem by 
 
  - breaking it down into a collection of simpler subproblems, in a recursive manner

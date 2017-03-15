@@ -16,7 +16,6 @@
 ...menuend
 
 
-
 <h2 id="c62ead95f43ef8c14dc28648f9c47276"></h2>
 # AI a modern approach
 

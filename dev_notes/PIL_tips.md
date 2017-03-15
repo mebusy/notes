@@ -6,8 +6,6 @@
 ...menuend
 
 
-
-
 <h2 id="044b8396fbd6ae9de3416b0b6ac5322a"></h2>
 # Trim Image Whitespace
 

@@ -8,7 +8,6 @@
 ...menuend
 
 
-
 <h2 id="523995f0bde7f6f864950a61566a59a5"></h2>
 # Four special matrices
 

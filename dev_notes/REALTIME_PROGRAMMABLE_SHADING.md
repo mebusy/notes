@@ -16,8 +16,6 @@
 ...menuend
 
 
-
-
 <h2 id="d28a0486786f74d1b8b87e4f0f4ba0d8"></h2>
 # REAL-TIME PROGRAMMABLE SHADING
 

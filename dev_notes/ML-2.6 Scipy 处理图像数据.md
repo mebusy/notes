@@ -18,7 +18,6 @@
 ...menuend
 
 
-
 <h2 id="b19a2f80d04c56b985a7e69f63d04915"></h2>
 ##2.6. 使用 Numpy and Scipy 处理图像数据
 
