@@ -245,7 +245,53 @@ f'(x) = 3x , f(2) = 4,  f(2.01) = ?
 f(2.01) = f(2) + 0.01·f'(2) = 4 + 0.01·6 = 4.06.
 
 
+---
 
+### Why would I care to find derivatives ?
+
+#### Why is sqrt(9999) so close to 99.995? 
+
+ - √9999 = √(10000-1) ≈ √10000 - 1·(derivate at 10000) = 100 - 1· 1/(2·100) = 100 - 0.005 = 99.995
+
+
+#### What information is recorded in the sign of the derivative ?
+
+```
+f(x+h) ≈ f(x) + h·f'(x) 
+```
+
+It means that if the sign of f'(x) is negative , f(x+h) is decreasing , otherwise it is increasing.
+
+---
+
+### How do differentiability and continuity relate ? 
+
+#### Why is a differentiable function necessarily continuous ?
+
+ - Theorem :  if *f* is differentiable at *a* , then *f* is continuous at *a*.
+    - 可微必(原)连续
+ - Proof:
+    - if f'(a) exist , then  lim<sub>x→a</sub> (f(x)-f(a)) = 0·f'(a) = 0 
+    - that means  f(x) = f(a) , while lim<sub>x→a</sub> , it is the definition of continuity. 
+
+#### 可微分、连续与可导的关系？
+
+ - 一元函数：
+    - 可导必 连续，连续推不出可导，
+    - 可导与可微等价。
+ - 多元函数：
+    - 可偏导与连续之间没有联系，也就是说可偏导推不出连续，连续推不出可偏导。
+    - 可微必可偏导，可微必连续，可偏导推不出可微，但若一阶偏导具有连续性则可推出可微。
+        - 某点处偏导数存在与否与该点连续性无关.（即使所有偏导数都存在也不能保证该点连续）.
+        - 偏导数存在是可微的必要条件,但非充分条件（可微一定偏导数存在,反之不然）； 
+        - 偏导数存在且偏导数连续是可微的充分条件,但非必要条件（偏导数存在且(导)连续一定可微,反之不然）.
+
+
+---
+
+### How do I find the derivative ?
+
+ - `d/dx xⁿ = n·xⁿ⁻¹`
 
 
 ------
