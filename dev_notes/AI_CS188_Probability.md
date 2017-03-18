@@ -344,6 +344,15 @@ That means you have `n!` ways using the chain rule!.
 
 ## Bayes' Rule
 
+ - Two ways to factor a joint distribution over two variables:
+    - P(x,y) = P(x|y)P(y) = P(y|x)P(x)
+ - Dividing 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_bayes_rule.png)
+ - Why is this at all helpful?
+     - build one conditional from its reverse
+     - Often one conditional is tricky but the other one is simple
+     - Foundation of many systems we’ll see later (e.g. ASR, MT)
+ - In the running for most important AI equation!
 
 <h2 id="534db09beb168ffccbe6a4f375c4c83d"></h2>
 
