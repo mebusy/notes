@@ -400,14 +400,35 @@ P( rain | dry  ) = 1-P(sun|dry)
 
 ## Ghostbusters, Revisited 
 
-∝ : proportional to 
+ - Let’s say we have two distributions:
+    - Prior distribution over ghost location: P(G)
+        - Let’s say this is uniform
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_ghostbuster1.png)
+    - Sensor reading model: P(R | G)
+        - Given: we know what our sensors do
+        - R = reading color measured at (1,1)
+        - E.g. P(R = yellow | G=(1,1)) = 0.1
+ - We can calculate the posterior distribution P(G|r) over ghost locations given a reading using Bayes’ rule:
+    - P( g|r) ∝ P(r|g)P(g) 
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_ghostbuster2.png)
+        - ∝ : proportional to 
+        - ∝<sub>g</sub> means that , P(c) is almost 1, but not 1.
+        - TODO, 不理解！
 
-∝<sub>g</sub> means that , P(c) is almost 1, but not 1.
 
 
 <h2 id="a64838254ea118409679a4e28005fefb"></h2>
 
 ## Independcence
+
+ - Two variables are independent `X⫫Y`  in a joint distribution if:
+    - P(X,Y) = P(X)P(Y)
+    - ∀<sub>x,y</sub> P(x,y) = P(x)P(y)
+    - Says the joint distribution factors into a product of two simple ones
+    - Usually variables aren’t independent!
+ - Can use independence as a modeling assumption
+    - Independence can be a simplifying assumption
+    - Empirical  joint distributions: at best “close” to independent
 
 
 <h2 id="0f1513d04ac32269de73d0f17465488e"></h2>
@@ -415,6 +436,20 @@ P( rain | dry  ) = 1-P(sun|dry)
 ## Conditional Independence 
 
 You go to the dentist. You might have a toothache or not, you might have a cavity or not.
+
+ - P(Toothache, Cavity, Catch)
+ - If I have a cavity, the probability that the probe catches in it doesn't depend on whether I have a toothache:
+    - P(+catch | +toothache, +cavity) = P(+catch | +cavity)
+ - The same independence holds if I don’t have a cavity:
+    - P(+catch | +toothache, -cavity) = P(+catch| -cavity)
+ - Catch is conditionally independent of Toothache given Cavity:
+    - P(Catch | Toothache, Cavity) = P(Catch | Cavity)
+ - Equivalent statements:
+    - P(Toothache | Catch , Cavity) = P(Toothache | Cavity)
+    - P(Toothache, Catch | Cavity) = P(Toothache | Cavity) P(Catch | Cavity)
+    - One can be derived from the other easily
+ 
+---
 
 
 Traffic / Umbrella / Raining
