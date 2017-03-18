@@ -473,6 +473,11 @@ T ⫫ U | R
 
 ---
 
+
+Fire / Smoke / Alarm
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_conditional_independent.png)
+
 A ⫫ S|F  is not true
 
 A ⫫ F|S  is true
