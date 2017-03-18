@@ -327,6 +327,14 @@ r   |  o.05/0.15 = 1/3
 
 ## The Chain Rule
 
+ - More generally, can always write any joint distribution as an incremental product of conditional distributions
+
+```
+P(x₁,x₂,x₃) = P(x₁)P(x₂|x₁)P(x₃|x₁,x₂)
+```
+
+P(x₁,...,x<sub>n</sub>) = ∏ᵢ P(xᵢ|x₁,...,xᵢ₋₁)
+
 
 
 That means you have `n!` ways using the chain rule!. 
