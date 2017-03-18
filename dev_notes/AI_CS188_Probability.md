@@ -372,6 +372,10 @@ This is an application of bayes' rule.  One thing you'll notice that when you ap
 
 So Bayes' rule can help us make dicisions:  should this person see a doctor or not ?
 
+ - M: meningitis, S: stiff neck
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_bayerule_patient.png)
+ - P(+m|+s) = P(+s|+m)P(+m) / P(+s) = P(+s|+m)P(+m) / ( P(+s|+m)P(+m) + P(+s|-m)P(-m) ) = 0.8x0.0001 / (0.8x0.0001+0.01x0.999)
+
 --- why ? ---
 
 Because the cost of undiagnosed meningitis is really high. 
