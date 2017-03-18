@@ -385,6 +385,11 @@ Because the cost of undiagnosed meningitis is really high.
 
 ### Quiz: Bayes's Rule 
 
+ - given:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_quiz_bayes_rule.png)
+ - What is P(W | dry) ? 
+
+
 P( sun | dry  )  = (0.9\*0.8) / (0.9\*0.8 + 0.3\*0.2) 
 
 P( rain | dry  ) = 1-P(sun|dry) 
