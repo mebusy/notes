@@ -437,6 +437,8 @@ P( rain | dry  ) = 1-P(sun|dry)
 
 You go to the dentist. You might have a toothache or not, you might have a cavity or not.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_probeCavity.png)
+
  - P(Toothache, Cavity, Catch)
  - If I have a cavity, the probability that the probe catches in it doesn't depend on whether I have a toothache:
     - P(+catch | +toothache, +cavity) = P(+catch | +cavity)
@@ -451,6 +453,15 @@ You go to the dentist. You might have a toothache or not, you might have a cavit
  
 ---
 
+ - Unconditional (absolute) independence very rare (why?)
+ - Conditional independence is our most basic and robust form of knowledge about uncertain environments.
+ - X is conditionally independent of Y given Z -- X ⫫ Y | Z 
+    - if and only if:
+        - ∀<sub>x,y,z</sub> : P(x,y | z) = P(x|z)P(y|z)
+    - or, equivalently, if and only if:
+        - ∀<sub>x,y,z</sub> : P(x | z,y) = P(x|z)
+
+--- 
 
 Traffic / Umbrella / Raining
 
