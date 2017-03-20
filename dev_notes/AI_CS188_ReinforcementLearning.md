@@ -843,7 +843,7 @@ The first part of q-learning algorithm doesn't actually care where the q-value c
         - For an exact q-learner the update looks like this.  This is just an algebraic rewrite of the update that says take α of one and (1-α) of the other. This can delay calculation of α. 
     - `wᵢ ← wᵢ + α[difference]fᵢ(s,a)`    ( Approximate Q’s )
         - wᵢ + α[difference]·xᵢ
-
+    - 实现上，也可能每个 (state, action) 拥有特定的feature vector
 So we basically do is we keep our Q value around but we nudge it in the direction of this difference. So if we appear to be getting something a lot higher than we thought well we should raise our estimate. 
 
 Now if your q-valuse are a big table you simple look up this entry (s,a) you see it's 9.3, you cross out the 9.3 and you replace it with 9.8. It's really easy to increment a table. 
