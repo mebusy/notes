@@ -348,11 +348,20 @@ That means you have `n!` ways using the chain rule!.
     - P(x,y) = P(x|y)P(y) = P(y|x)P(x)
  - Dividing 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_bayes_rule.png)
+    - 我们把P(A)称为"先验概率"（Prior probability），即在B事件发生之前，我们对A事件概率的一个判断。
+    - P(A|B)称为"后验概率"（Posterior probability），即在B事件发生之后，我们对A事件概率的重新评估。
+    - P(B|A)/P(B)称为"可能性函数"（Likelyhood），这是一个调整因子，使得预估概率更接近真实概率。
+    - 条件概率可以理解成下面的式子： 后验概率 = 先验概率 x 调整因子
+        - 这就是贝叶斯推断的含义。我们先预估一个"先验概率"，然后加入实验结果，看这个实验到底是增强还是削弱了"先验概率"，由此得到更接近事实的"后验概率"。
+        - 如果"可能性函数"P(B|A)/P(B)>1，意味着"先验概率"被增强，事件A的发生的可能性变大；如果"可能性函数"=1，意味着B事件无助于判断事件A的可能性；如果"可能性函数"<1，意味着"先验概率"被削弱，事件A的可能性变小。>
  - Why is this at all helpful?
      - build one conditional from its reverse
      - Often one conditional is tricky but the other one is simple
      - Foundation of many systems we’ll see later (e.g. ASR, MT)
  - In the running for most important AI equation!
+
+ - Approximate Bayesian Computation
+    - ?? 
 
 <h2 id="534db09beb168ffccbe6a4f375c4c83d"></h2>
 
