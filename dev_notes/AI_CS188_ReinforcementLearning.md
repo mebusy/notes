@@ -690,6 +690,11 @@ This brings us the idea **regret**.
 Q: in exploration function, how much is k ?
 A: it's hard to know. 
 
+---
+
+ - ***α == 0 :  stop learning*** 
+ - ***ε == 0 :  disable exploration***
+
 --- 
 
 使用 带 visit count 的 Exploration function, 可以合理的兼顾 exploration and exploitation.
