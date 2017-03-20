@@ -586,7 +586,7 @@ We're going to get some sample on the basis of the action we picked , the key le
 
  MDP | Goal |  Technique
 ---: | --- | ---
-Known MDP: Offline Solutioni | Compute V<sup>\*</sup>, Q<sup>\*</sup>, π<sup>\*</sup> | Value/Policy Iteration
+Known MDP: Offline Solutioin | Compute V<sup>\*</sup>, Q<sup>\*</sup>, π<sup>\*</sup> | Value/Policy Iteration
   ·    |  Evaluate a fixed policy π | Policy evaluation
 Unknown MDP: Model-Based |  Compute V<sup>\*</sup>, Q<sup>\*</sup>, π<sup>\*</sup>  | VI/PI on approx. MDP
   ·    |  Evaluate a fixed policy π | PE on approx. 
@@ -671,8 +671,8 @@ So how can we encode this?  we'd like something that forces us to explore whose 
 
  - Exploration function
     - Takes a value estimate u and a visit count n, and returns an optimistic utility, e.g. `f(u,n) = u + k/n`
-        - Regular Q-Update: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_explor_func_regular.png)
-        - Modified Q-Update: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_explor_func_modified.png)
+        - Regular Q-Update: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_explor_func_regular.png) ?
+        - Modified Q-Update: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_explor_func_modified.png) ?
             - for a q-state , number of times we've been there means the number of we've tried that action out.
     - Note: this propagates the “bonus” back to states that lead to unknown states as well!
         - Not only does it tell you that a q-state you haven't tried has higher value , but also it will propagate this bonus back. So you don't just try things that are unknown , you try things that are known to lead to states that are unknown. That's great. 
@@ -730,7 +730,7 @@ Minimizing regret is more than learning to be optimal. It's more like ***optimal
 
 Now we're going to think about the problems of what you do in a game like pac-man where there are so many states that you can't learn about each one.
 
-The basic idean we'er going to have is called approximate q-learning. And boils down to the fact when you learn that ghost is in scary -- for example through one experience. You should transfer that to all other states that similar. 
+The basic idea we'er going to have is called approximate q-learning. And boils down to the fact when you learn that ghost is in scary -- for example through one experience. You should transfer that to all other states that similar. 
 
 <h2 id="38a0a5072b333125a17507e211474044"></h2>
 
@@ -818,8 +818,8 @@ This gives you linear value functions.
  - Using a feature representation, we can write a q function (or value function) for any state using a few weights:
     - V(s) = w₁f₁(s) + w₂f₂(s) + ... + w<sub>n</sub>f<sub>n</sub>(s) 
     - Q(s,a) = w₁f₁(s,a) + w₂f₂(s,a) + ... + w<sub>n</sub>f<sub>n</sub>(s,a) 
- - Advantage: our experience is summed up in a few powerful numbers
- - Disadvantage: states may share features but actually be very different in value!
+ - **Advantage**: our experience is summed up in a few powerful numbers
+ - **Disadvantage**: states may share features but actually be very different in value!
     - for example if there are 2 ghosts close to you it matters a lot whether they're on either side of you or both on the same side. 
 
 Ok you job is to come up with features that make sure that important differences in value are reflected in differences and features , so that the learning algorithm can do its job. 
@@ -837,6 +837,7 @@ The first part of q-learning algorithm doesn't actually care where the q-value c
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_a_exact_qs.png)
         - For an exact q-learner the update looks like this.  This is just an algebraic rewrite of the update that says take α of one and (1-α) of the other. This can delay calculation of α. 
     - `wᵢ ← wᵢ + α[difference]fᵢ(s,a)`    ( Approximate Q’s )
+        - wᵢ + α[difference]·xᵢ
 
 So we basically do is we keep our Q value around but we nudge it in the direction of this difference. So if we appear to be getting something a lot higher than we thought well we should raise our estimate. 
 
