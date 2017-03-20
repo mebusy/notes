@@ -223,7 +223,7 @@ It's very like an expectimax tree but we'll see very shortly why we might not wa
 
 ## Utilities of Sequences
 
-In a MDP the rewards come to you step-by-step , we need to figure out what our unility function acutally is. In the simplest case you just add up the rewards but it can be little more subtle than that.
+In a MDP the rewards come to you step-by-step , we need to figure out what our utility function acutally is. In the simplest case you just add up the rewards but it can be little more subtle than that.
 
 For example shown here 
 
