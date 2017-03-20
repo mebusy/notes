@@ -134,6 +134,8 @@ vim +BundleInstall +qall
  - Tagbar 需要安装 ctags 
     - `brew install ctags`
     - use : `TagbarToggle`
+ - python 语法检查
+    - `pip install flake8`
     
 <h2 id="2182a74bab7188d959e795d9301e87ff"></h2>
 
