@@ -316,6 +316,20 @@ Why is it true ?
 
 ### How do I differentiate a quotient ?
 
+```
+Let h(x) = f(x)/g(x).
+
+If g(a) ≠ 0 , and 
+    f and g are differentiable at a , then
+```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_derivative_quotient_rule.png)
+
+
+下乘上导，减上乘下导，除以 下下
+
+
+
 
 ------
 
