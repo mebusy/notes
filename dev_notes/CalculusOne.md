@@ -308,6 +308,14 @@ d/dx ((1+2x)·(1+x²))
     = 2 + 2x + 6x²
 ```
  
+Why is it true ?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_one_derivative_of_product_area_change.png)
+
+---
+
+### How do I differentiate a quotient ?
+
 
 ------
 
