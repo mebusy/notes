@@ -293,6 +293,21 @@ It means that if the sign of f'(x) is negative , f(x+h) is decreasing , otherwis
 
  - `d/dx xⁿ = n·xⁿ⁻¹`
 
+---
+
+### How do I differentiate a product ?
+
+```
+d/dx (f(x)·g(x)) = f'(x)·g(x) + f(x)·g'(x)
+```
+
+```
+d/dx ((1+2x)·(1+x²)) 
+    = 2·(1+x²) + (1+2x)·2x 
+    = 2 + 2x² + 2x + 4x² 
+    = 2 + 2x + 6x²
+```
+ 
 
 ------
 
