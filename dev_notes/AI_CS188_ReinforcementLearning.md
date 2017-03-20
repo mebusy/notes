@@ -843,7 +843,6 @@ The first part of q-learning algorithm doesn't actually care where the q-value c
         - For an exact q-learner the update looks like this.  This is just an algebraic rewrite of the update that says take α of one and (1-α) of the other. This can delay calculation of α. 
     - `wᵢ ← wᵢ + α[difference]fᵢ(s,a)`    ( Approximate Q’s )
         - wᵢ + α[difference]·xᵢ
- - 具体实现上，if we assigns a single feature to every (state,action) pair , then Approximate Q-Learning 和 Normal Q-Learning 仅仅在 update 和 getQValue 两个方法上不同。
 
 So we basically do is we keep our Q value around but we nudge it in the direction of this difference. So if we appear to be getting something a lot higher than we thought well we should raise our estimate. 
 
