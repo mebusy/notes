@@ -675,7 +675,7 @@ Now we're going to look at the opposite direction : what happens if I give you t
 
 <h2 id="d3c84b4d1da7be2539b5bc4c322529d7"></h2>
 
-### Computing Actions from Valuse 
+### Computing Actions from Values 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_policy_extraction_example.png)
 
@@ -757,7 +757,7 @@ The maximum -- the best action you got -- usually doesn't change. So you wasted 
 
 Policy tends to finish long before the values converge. 
 
-So what can we do?  The idea herer is an algorithm called ***policy iteration***. i
+So what can we do?  The idea herer is an algorithm called ***policy iteration***. 
 
 <h2 id="adafb823f7939e061bf30caad4dddbae"></h2>
 
@@ -771,7 +771,7 @@ Policy iteration is an alternative approach and the basic sketch is we're going 
         - It's generally not going to be an optimal policy , but we're going to figure out it's values using policy evaluation. 
     - ***Step 2: Policy improvement***: update policy using one-step look-ahead with resulting converged (but not optimal!) utilities as future values
         - Then we take those values and we extract a better policy from them. That called policy improvement. 
-    - Repeat steps until policy converges
+    - ***3: Repeat steps until policy converges*** 
 
  - This is policy iteration
     - It’s still optimal!
