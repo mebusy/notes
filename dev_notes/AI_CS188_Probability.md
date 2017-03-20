@@ -409,12 +409,10 @@ P( rain | dry  ) = 1-P(sun|dry)
         - R = reading color measured at (1,1)
         - E.g. P(R = yellow | G=(1,1)) = 0.1
  - We can calculate the posterior distribution P(G|r) over ghost locations given a reading using Bayes’ rule:
-    - P( g|r) ∝ P(r|g)P(g) 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_ghostbuster2.png)
+    - P( g|r) ∝<sub>g</sub> P(r|g)P(g) 
         - ∝ : proportional to 
-        - ∝<sub>g</sub> means that , P(c) is almost 1, but not 1.
-        - TODO, 不理解！
-
+        - ∝<sub>g</sub> means that , P(r) is almost 1, but not 1 (看上面的例子，分母接近1) .
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_ghostbuster2.png)
 
 
 <h2 id="a64838254ea118409679a4e28005fefb"></h2>
