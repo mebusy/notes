@@ -703,7 +703,9 @@ A: it's hard to know.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_action_selection_prob_e_function.png)
 
-where 𝜏is a temperature parameter that is decreased over time.
+where 𝜏 is a temperature parameter that is decreased over time.
+
+和 softmax 有点像。。。
 
 <h2 id="3141af4744f17a254e58c913ae90281e"></h2>
 
