@@ -51,7 +51,7 @@
 
  a | b | c | d
 --- | --- | --- | ---
-[Advanced Data Structure](https://github.com/mebusy/notes/blob/master/dev_notes/python_highlevel_datastructure.md) |  [lib for Functional](https://github.com/mebusy/notes/blob/master/dev_notes/python_functional_programming.md)  |  [tips](https://github.com/mebusy/notes/blob/master/dev_notes/python_tips_1.md) | 
+[Advanced Data Structure](https://github.com/mebusy/notes/blob/master/dev_notes/python_highlevel_datastructure.md) |  [lib for Functional](https://github.com/mebusy/notes/blob/master/dev_notes/python_functional_programming.md) | [OOP](https://github.com/mebusy/notes/blob/master/dev_notes/python_oop.md)  |  [tips](https://github.com/mebusy/notes/blob/master/dev_notes/python_tips_1.md) | 
 [BeautifulSoup](https://github.com/mebusy/notes/blob/master/dev_notes/PY_BeautifulSoup.md)  | [python多线程](https://github.com/mebusy/notes/blob/master/dev_notes/PY_multiprocessing.md) | [PIL_Tips](https://github.com/mebusy/notes/blob/master/dev_notes/PIL_tips.md) | [numpy tips](https://github.com/mebusy/notes/blob/master/dev_notes/numpy_tips.md) 
 
 
@@ -113,6 +113,6 @@
 --- | --- | --- | ---
 [Learn to Learning](https://github.com/mebusy/notes/blob/master/dev_notes/Learn2Learning.md) | [RaspBerryPi I](https://github.com/mebusy/notes/blob/master/dev_notes/RaspberryPi_I.md) | [RaspPi 2](https://github.com/mebusy/notes/blob/master/dev_notes/RASPI_2.md) | [Software Debug](https://github.com/mebusy/notes/blob/master/dev_notes/SoftwareDebugging.md) 
 [github](https://github.com/mebusy/notes/blob/master/dev_notes/github.md) | [sublime](https://github.com/mebusy/notes/blob/master/dev_notes/sublime.md)   | [深入浅出nodeJS](https://github.com/mebusy/notes/blob/master/dev_notes/深入浅出nodeJS.md)	| [Html5 Game Program](https://github.com/mebusy/notes/blob/master/dev_notes/Html5GameProgramming.md)
-[MacOSX Tips](https://github.com/mebusy/notes/blob/master/dev_notes/MacOSX_Tips.md) | [workingTips](https://github.com/mebusy/notes/blob/master/dev_notes/workingTips.md)	|  [VIM](https://github.com/mebusy/notes/blob/master/dev_notes/vim.md)
+[MacOSX Tips](https://github.com/mebusy/notes/blob/master/dev_notes/MacOSX_Tips.md) | [workingTips](https://github.com/mebusy/notes/blob/master/dev_notes/workingTips.md)	|  [VIM](https://github.com/mebusy/notes/blob/master/dev_notes/vim.md) | [lib tcod](https://github.com/mebusy/notes/blob/master/dev_notes/libtcod_python.md) 
 
 
