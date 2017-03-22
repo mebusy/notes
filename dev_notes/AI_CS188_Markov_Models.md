@@ -40,6 +40,13 @@ Markov model means sequence of random variables.
 
 This case let's look at just 4 variables. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_4state_joint_distribution.png)
+
+ - Joint distribution:
+    - P(X₁, X₂, X₃, X₄) = P(X₁)·P(X₂|X₁)·P(X₃|X₂)·P(X₄|X₃)
+ - More generally
+    - P(X₁, X₂, ..., X<sub>T</sub>) = P(X₁)·P(X₂|X₁)·P(X₃|X₂)...P(X<sub>T</sub>|X<sub>T-1</sub>)
+
 <h2 id="1584c0069936b81fd7e2d00d4dc7186a"></h2>
 
 ### Chain Rule and Markov Models
