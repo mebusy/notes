@@ -62,11 +62,18 @@ This case let's look at just 4 variables.
  - results in the expression posited on the previous slide: 
     - P(X₁, X₂, X₃, X₄) = P(X₁)·P(X₂|X₁)·P(X₃|X₂)·P(X₄|X₃)
 
+--- 
+
+ - generally
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_chain_rule_generally.png)
+
+
 <h2 id="5627b13e1756dc92c82a9b3998e04960"></h2>
 
 ### Implied Conditional Independencies 
 
-
+ - We assumed : `X₃ ⫫ X₁|X₂`  , and `X₄ ⫫ X₁,X₂ | X₃` 
+ - We also have :  `X₁ ⫫ X₃,X₄ |X₂`
 
 <h2 id="464ada4a5a716b995c9e27993b0c4662"></h2>
 
