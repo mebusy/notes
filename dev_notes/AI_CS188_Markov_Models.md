@@ -16,12 +16,6 @@
 
 # Markov Models
 
-User attention:
-
-let's say you tried to follow where you just pay attention on the screen you attract your attention to your advertising , for example.
-
----
-
 
 <h2 id="d656a155bed68a7dec83cd56ff973bbc"></h2>
 
@@ -29,8 +23,11 @@ let's say you tried to follow where you just pay attention on the screen you att
 
 Markov model means sequence of random variables. 
 
-X₁ has an influence on X₂ going to be , X₂ has an influcence on X₃ going to be , ... 
-
+ - Value of X at a given time is called the state
+    - X₁ -> X₂ -> X₃ -> X₄ -> ...
+    - X₁ has an influence on X₂ going to be , X₂ has an influcence on X₃ going to be , ... 
+    - P(X₁)
+    - P(X<sub>t</sub> | X<sub>t-1</sub>) 
 
  - Parameters: called ***transition probabilities*** or dynamics, specify how the state evolves over time (also, initial state probabilities)
  - Stationarity assumption: transition probabilities the same at all times
