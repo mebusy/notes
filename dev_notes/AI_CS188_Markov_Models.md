@@ -74,10 +74,23 @@ This case let's look at just 4 variables.
 
  - We assumed : `X₃ ⫫ X₁|X₂`  , and `X₄ ⫫ X₁,X₂ | X₃` 
  - We also have :  `X₁ ⫫ X₃,X₄ |X₂`
+ - proof:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_implied_conditional_probability.png)
+ - Additional explicit assumption
+    - P(X<sub>t</sub>|X<sub>t-1</sub>) is the same for all t   // TODO  why ?
 
-<h2 id="464ada4a5a716b995c9e27993b0c4662"></h2>
+### Conditional Independence
 
-### Markov Models Recap 
+ - Basic conditional independence:
+    - Past and future independent of the present
+    - Each time step only depends on the previous
+    - This is called the (first order) Markov property
+ - Note that the chain is just a (growable) BN
+    - We can always use generic BN reasoning on it if we truncate the chain at a fixed length
+
+
+
+
 
 <h2 id="a3e9d92d013e8bd559c093cbca5a7684"></h2>
 
