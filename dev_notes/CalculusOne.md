@@ -332,7 +332,7 @@ If g(a) ≠ 0 , and
 
 ### d/dx is just a function
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusOne_ddx_is_func.png)
 
 
 ------
