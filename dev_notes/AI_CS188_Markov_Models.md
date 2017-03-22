@@ -123,10 +123,39 @@ P(X₂=sun) = P(X₂=sun,X₁=sun) + P(X₂=sun,X₁=rain)
           = 0.9·1 + 0.3·0 = 0.9
 ```
 
-<h2 id="913aa6b09921c6acd9c30a9b77986973"></h2>
+### Mini-Forward Algorithm
 
-### Example Run of Mini-Forward Algorithm
+ - Question: What’s P(X) on some day t?
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_forward_simulation.png)
 
-the stationary distribution of Markov Model
 
+### Stationary Distributions
 
+ - For most chains:
+	- Influence of the initial distribution gets less and less over time.
+    - The distribution we end up in is independent of the initial distribution
+ - Stationary distribution:
+	- The distribution we end up with is called the stationary distribution           of the chain
+	- It satisfies  
+
+```
+octave:6> a = [ 0.9 0.3 ; 0.1 0.7 ]
+a =
+
+   0.90000   0.30000
+   0.10000   0.70000
+
+octave:7> [V,LAMBDA] = eig(a)
+V =
+
+   0.94868  -0.70711
+   0.31623   0.70711
+
+LAMBDA =
+
+Diagonal Matrix
+
+   1.00000         0
+         0   0.60000
+
+```
