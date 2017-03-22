@@ -5,9 +5,11 @@
 		 - [Joint Distribution of a Markov Model](#2549029b268b93144235df84effeb97d)
 		 - [Chain Rule and Markov Models](#1584c0069936b81fd7e2d00d4dc7186a)
 		 - [Implied Conditional Independencies](#5627b13e1756dc92c82a9b3998e04960)
-		 - [Markov Models Recap](#464ada4a5a716b995c9e27993b0c4662)
+		 - [Conditional Independence](#0f1513d04ac32269de73d0f17465488e)
 		 - [Example Markov Chain : Weather](#a3e9d92d013e8bd559c093cbca5a7684)
-		 - [Example Run of Mini-Forward Algorithm](#913aa6b09921c6acd9c30a9b77986973)
+		 - [Mini-Forward Algorithm](#cd0df25e7ecc8f5591d125ef5318fae1)
+		 - [Stationary Distributions](#cff3dc4ffa629a6c5051471a4665a6c7)
+	 - [Application of Stationary Distribution: Web Link Analysis](#485984b095c6416cdcac20510c1c3a37)
 
 ...menuend
 
@@ -79,6 +81,8 @@ This case let's look at just 4 variables.
  - Additional explicit assumption
     - P(X<sub>t</sub>|X<sub>t-1</sub>) is the same for all t   // TODO  why ?
 
+<h2 id="0f1513d04ac32269de73d0f17465488e"></h2>
+
 ### Conditional Independence
 
  - Basic conditional independence:
@@ -123,11 +127,15 @@ P(X₂=sun) = P(X₂=sun,X₁=sun) + P(X₂=sun,X₁=rain)
           = 0.9·1 + 0.3·0 = 0.9
 ```
 
+<h2 id="cd0df25e7ecc8f5591d125ef5318fae1"></h2>
+
 ### Mini-Forward Algorithm
 
  - Question: What’s P(X) on some day t?
  - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_forward_simulation.png)
 
+
+<h2 id="cff3dc4ffa629a6c5051471a4665a6c7"></h2>
 
 ### Stationary Distributions
 
@@ -165,6 +173,8 @@ Diagonal Matrix
 ```
 
 ---
+
+<h2 id="485984b095c6416cdcac20510c1c3a37"></h2>
 
 ## Application of Stationary Distribution: Web Link Analysis
 

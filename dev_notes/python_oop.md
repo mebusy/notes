@@ -1,6 +1,18 @@
+...menustart
 
+ - [oop for python](#cad1f4790e85f2b08e65e3c6fd4ce14b)
+	 - [Singleton](#6ff5f73c8b5ebd311406568c8ef50bfd)
+	 - [disable dynamically define new fields to a class](#0b45bfca581dfd81b42b816b63798e78)
+	 - [class property](#0766b2e74f5159a8c7d793f1f1cee8a6)
+
+...menuend
+
+
+<h2 id="cad1f4790e85f2b08e65e3c6fd4ce14b"></h2>
 
 # oop for python
+
+<h2 id="6ff5f73c8b5ebd311406568c8ef50bfd"></h2>
 
 ## Singleton 
 
@@ -22,6 +34,8 @@ class MyClass(BaseClass, metaclass=Singleton):
 ```
 
 
+<h2 id="0b45bfca581dfd81b42b816b63798e78"></h2>
+
 ## disable dynamically define new fields to a class 
 
 Python can we dynamically define new fields to a class during runtime. 
@@ -37,6 +51,8 @@ It's possible to restrict the instance attributes that can be added through the 
 ...         self.another_attribute = 'two'
 ```
 
+
+<h2 id="0766b2e74f5159a8c7d793f1f1cee8a6"></h2>
 
 ## class property 
 

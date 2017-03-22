@@ -33,7 +33,7 @@
 		 - [Example : Policy Evaluation](#1a1b5dffe87b8d0f61d62897935810f1)
 		 - [Policy Evaluation](#abdad08f23e1ad71d82cbdd56cfcdd30)
 	 - [Policy Extraction](#51f9aace37db4e0d0e8573fee03ea997)
-		 - [Computing Actions from Valuse](#d3c84b4d1da7be2539b5bc4c322529d7)
+		 - [Computing Actions from Values](#34833eb820b21cf1bc001e77769ade32)
 		 - [Computing Actions from Q-Values](#6fcb06d49e1d3878ae11e06deb275042)
 	 - [Policy Iteration](#93eb2ac210d009dea486d01934ca6116)
 		 - [Problems with value iteration](#d9622bd26a30e7e2d9272dc2488415cd)
@@ -673,7 +673,7 @@ Policy evaluation was about taking a policy and figuring out for each state how 
 
 Now we're going to look at the opposite direction : what happens if I give you the values and I asked you the question what policy should I use if these values are correct. 
 
-<h2 id="d3c84b4d1da7be2539b5bc4c322529d7"></h2>
+<h2 id="34833eb820b21cf1bc001e77769ade32"></h2>
 
 ### Computing Actions from Values 
 

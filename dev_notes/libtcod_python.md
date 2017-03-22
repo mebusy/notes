@@ -1,6 +1,17 @@
+...menustart
 
+ - [Libtcode](#929971f04c4142e97ea5552d6a21c106)
+	 - [Install](#349838fb1d851d3e2014b9fe39203275)
+	 - [Make your project](#def3540c3112ac40cf6a34f764f1f994)
+
+...menuend
+
+
+<h2 id="929971f04c4142e97ea5552d6a21c106"></h2>
 
 # Libtcode
+
+<h2 id="349838fb1d851d3e2014b9fe39203275"></h2>
 
 ## Install 
 
@@ -17,6 +28,8 @@ autoreconf -i
 make
 cd ../..
 ```
+
+<h2 id="def3540c3112ac40cf6a34f764f1f994"></h2>
 
 ## Make your project 
 

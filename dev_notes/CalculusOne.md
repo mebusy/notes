@@ -19,6 +19,16 @@
 			 - [definition](#30618b3b44fa316257d07e387759fae5)
 			 - [Why is f(x) = |x| not differentiable at x =0 ?](#f4d55e88765552127f1f67cba00e367f)
 			 - [How does wiggling x affect f(x) ?](#96bad87f34b364bbd46c6a9956c56a84)
+		 - [Why would I care to find derivatives ?](#7b4dd7708b6861a409a55f8ae5f03d2f)
+			 - [Why is sqrt(9999) so close to 99.995?](#233cda2b0da7e06ce36ab30e5002482a)
+			 - [What information is recorded in the sign of the derivative ?](#e89d54795bc4804fe364603cdb6baed4)
+		 - [How do differentiability and continuity relate ?](#164411132b76dd8051c2291ff508048b)
+			 - [Why is a differentiable function necessarily continuous ?](#399fa607fbcbfea19b9078d5cac8c8e7)
+			 - [可微分、连续与可导的关系？](#d20283b049281436b4b7c193d945d561)
+		 - [How do I find the derivative ?](#03435db2c86b05d2ec72446257663903)
+		 - [How do I differentiate a product ?](#f196de79cd46bd81851a3f8fed50f480)
+		 - [How do I differentiate a quotient ?](#1fd4d879c6db3b22c521e30c2fb08385)
+		 - [d/dx is just a function](#1288f1095d59ece946013bc62c26a401)
 
 ...menuend
 
@@ -247,12 +257,18 @@ f(2.01) = f(2) + 0.01·f'(2) = 4 + 0.01·6 = 4.06.
 
 ---
 
+<h2 id="7b4dd7708b6861a409a55f8ae5f03d2f"></h2>
+
 ### Why would I care to find derivatives ?
+
+<h2 id="233cda2b0da7e06ce36ab30e5002482a"></h2>
 
 #### Why is sqrt(9999) so close to 99.995? 
 
  - √9999 = √(10000-1) ≈ √10000 - 1·(derivate at 10000) = 100 - 1· 1/(2·100) = 100 - 0.005 = 99.995
 
+
+<h2 id="e89d54795bc4804fe364603cdb6baed4"></h2>
 
 #### What information is recorded in the sign of the derivative ?
 
@@ -264,7 +280,11 @@ It means that if the sign of f'(x) is negative , f(x+h) is decreasing , otherwis
 
 ---
 
+<h2 id="164411132b76dd8051c2291ff508048b"></h2>
+
 ### How do differentiability and continuity relate ? 
+
+<h2 id="399fa607fbcbfea19b9078d5cac8c8e7"></h2>
 
 #### Why is a differentiable function necessarily continuous ?
 
@@ -273,6 +293,8 @@ It means that if the sign of f'(x) is negative , f(x+h) is decreasing , otherwis
  - Proof:
     - if f'(a) exist , then  lim<sub>x→a</sub> (f(x)-f(a)) = 0·f'(a) = 0 
     - that means  f(x) = f(a) , while lim<sub>x→a</sub> , it is the definition of continuity. 
+
+<h2 id="d20283b049281436b4b7c193d945d561"></h2>
 
 #### 可微分、连续与可导的关系？
 
@@ -289,11 +311,15 @@ It means that if the sign of f'(x) is negative , f(x+h) is decreasing , otherwis
 
 ---
 
+<h2 id="03435db2c86b05d2ec72446257663903"></h2>
+
 ### How do I find the derivative ?
 
  - `d/dx xⁿ = n·xⁿ⁻¹`
 
 ---
+
+<h2 id="f196de79cd46bd81851a3f8fed50f480"></h2>
 
 ### How do I differentiate a product ?
 
@@ -314,6 +340,8 @@ Why is it true ?
 
 ---
 
+<h2 id="1fd4d879c6db3b22c521e30c2fb08385"></h2>
+
 ### How do I differentiate a quotient ?
 
 ```
@@ -329,6 +357,8 @@ If g(a) ≠ 0 , and
 下乘上导，减上乘下导，除以 下下
 
 --- 
+
+<h2 id="1288f1095d59ece946013bc62c26a401"></h2>
 
 ### d/dx is just a function
 
