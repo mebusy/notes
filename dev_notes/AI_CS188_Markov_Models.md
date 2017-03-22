@@ -46,15 +46,21 @@ This case let's look at just 4 variables.
     - P(X₁, X₂, X₃, X₄) = P(X₁)·P(X₂|X₁)·P(X₃|X₂)·P(X₄|X₃)
  - More generally
     - P(X₁, X₂, ..., X<sub>T</sub>) = P(X₁)·P(X₂|X₁)·P(X₃|X₂)...P(X<sub>T</sub>|X<sub>T-1</sub>)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_4state_joint_distribution_generally.png)
+ - 简化版 Chain Rule
 
 <h2 id="1584c0069936b81fd7e2d00d4dc7186a"></h2>
 
 ### Chain Rule and Markov Models
 
-X₃ ⫫ X₁|X₂  
-
-What dose that mean ?  That means that once somebody tells you the value of X₂,  you write the distribution of X₃ ; somebody then tells you what X₁ is and the distribution of X₃ doesn't change -- stays the same. 
-
+ - From the chain rule, every joint distribution over X₁, X₂, X₃, X₄ , can can be written as:
+    - P(X₁, X₂, X₃, X₄) = P(X₁)·P(X₂|X₁)·P(X₃|X₁,X₂)·P(X₄|X₁,X₂,X₃)  
+ - Assuming that
+    - X₃ ⫫ X₁|X₂  
+        - What dose that mean ?  That means that once somebody tells you the value of X₂,  you write the distribution of X₃ ; somebody then tells you what X₁ is and the distribution of X₃ doesn't change -- stays the same. 
+    - X₄ ⫫ X₁,X₂ | X₃ 
+ - results in the expression posited on the previous slide: 
+    - P(X₁, X₂, X₃, X₄) = P(X₁)·P(X₂|X₁)·P(X₃|X₂)·P(X₄|X₃)
 
 <h2 id="5627b13e1756dc92c82a9b3998e04960"></h2>
 
