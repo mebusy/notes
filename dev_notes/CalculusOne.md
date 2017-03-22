@@ -328,6 +328,10 @@ If g(a) ≠ 0 , and
 
 下乘上导，减上乘下导，除以 下下
 
+--- 
+
+### d/dx is just a function
+
 
 
 
