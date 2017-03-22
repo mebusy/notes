@@ -136,7 +136,11 @@ P(X₂=sun) = P(X₂=sun,X₁=sun) + P(X₂=sun,X₁=rain)
     - The distribution we end up in is independent of the initial distribution
  - Stationary distribution:
 	- The distribution we end up with is called the stationary distribution           of the chain
-	- It satisfies  
+	- It satisfies  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_stationary_distributions.png)
+
+ - As the property of markov matrix , it will converge to 0.94868/0.31623 = 3:1, that means:
+	- P<sub>∞</sub>(sun) = 3/4
+	- P<sub>∞</sub>(rain) = 1/4 
 
 ```
 octave:6> a = [ 0.9 0.3 ; 0.1 0.7 ]
@@ -159,3 +163,22 @@ Diagonal Matrix
          0   0.60000
 
 ```
+
+---
+
+## Application of Stationary Distribution: Web Link Analysis
+
+ - PageRank over a web graph
+    - Each web page is a state
+    - Initial distribution: uniform over pages
+    - Transitions:
+        - With prob. c, uniform jump to a random page
+        - With prob. 1-c, follow a random outlink
+ - Stationary distribution
+    - Will spend more time on highly reachable pages
+        - E.g. many ways to get to the Acrobat Reader download page
+    - Somewhat robust to link spam
+    - Google 1.0 returned the set of pages containing all your keywords in decreasing rank, now all search engines use link analysis along with many other factors (rank actually getting less important over time)
+
+
+
