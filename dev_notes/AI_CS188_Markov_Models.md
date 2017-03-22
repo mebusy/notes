@@ -96,6 +96,33 @@ This case let's look at just 4 variables.
 
 ### Example Markov Chain : Weather
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_chain_example_weather.png)
+
+ - States: X = {rain, sun}
+ - Initial distribution: 1.0 sun
+
+---
+
+ t-1 | t | P(X<sub>t</sub>|X<sub>t-1</sub>):
+--- | --- | --- 
+sun | sun | 0.9
+sun | rain | 0.1
+rain | sun | 0.3
+rain | rain | 0.7
+
+---
+
+ - Two new ways of representing the same CPT
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_chain_example_weather_2_new_repr.png)
+ 
+ - What is the probability distribution after one step : P(X₂=sun) ?
+
+``` 
+P(X₂=sun) = P(X₂=sun,X₁=sun) + P(X₂=sun,X₁=rain)
+          = P(X₂=sun|X₁=sun)·P(X₁=sun) + P(X₂=sun|X₁=rain)·P(X₁=rain)
+          = 0.9·1 + 0.3·0 = 0.9
+```
+
 <h2 id="913aa6b09921c6acd9c30a9b77986973"></h2>
 
 ### Example Run of Mini-Forward Algorithm
