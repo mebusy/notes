@@ -329,4 +329,21 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
  - As we get observations, beliefs get reweighted, uncertainty “decreases”
  - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_observation.png)
 
+---
+
+### Example: Weather HMM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
