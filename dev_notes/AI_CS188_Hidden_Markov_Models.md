@@ -341,10 +341,12 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
  - We are given evidence at each time and want to know
     - B<sub>t</sub> (X) = P(X<sub>t</sub>|e<sub>1:t</sub>)
+ - We can derive the following updates:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_the_forawrd_algorithm.png)
 
+The forward algorithm is a dynamic program for computing at each time slice , the distribution over the state at that time given all the evidence to date. 
 
-
-
+TODO
 
 
 
