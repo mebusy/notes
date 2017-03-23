@@ -1,4 +1,15 @@
+...menustart
 
+ - [Hidden Markov Model](#70359ede2a47ed4a3c8ca9b6521d7629)
+	 - [Markov Models](#d656a155bed68a7dec83cd56ff973bbc)
+		 - [Conditional Independence](#0f1513d04ac32269de73d0f17465488e)
+	 - [Hidden Markov Models](#94d2b6fed9dd768fe2edec7e6c85546f)
+		 - [Example : Weather HMM](#c7624bc33d3af36dde93578541120635)
+
+...menuend
+
+
+<h2 id="70359ede2a47ed4a3c8ca9b6521d7629"></h2>
 
 # Hidden Markov Model 
 
@@ -6,6 +17,8 @@ This pacman can eat ghost but first he has to find them. So soon as pacman start
 
 Now let's say I want to eat the orange ghost. If you could somehow take these numbers over time and combine them with your model of how the world works --  means where are the walls, where are the maze -- and also your model of how the ghosts move , and figure out where they are. 
 
+
+<h2 id="d656a155bed68a7dec83cd56ff973bbc"></h2>
 
 ## Markov Models
 
@@ -21,6 +34,8 @@ Now let's say I want to eat the orange ghost. If you could somehow take these nu
         - here is no action, you just watching 
 
 
+<h2 id="0f1513d04ac32269de73d0f17465488e"></h2>
+
 ### Conditional Independence
 
  - Basic conditional independence:
@@ -32,6 +47,8 @@ Now let's say I want to eat the orange ghost. If you could somehow take these nu
     - We can always use generic BN reasoning on it if we truncate the chain at a fixed length
 
 ---
+
+<h2 id="94d2b6fed9dd768fe2edec7e6c85546f"></h2>
 
 ## Hidden Markov Models
 
@@ -54,6 +71,8 @@ But hidden Markov model says 2 things: I know how the world changes in a time st
         - what we're gonna have is that every time there's ganna be a hidden variable that structure like a markov chain and each time the evidence depends only on the state observed but only on the state at that time (E | X). 
 
 ---
+
+<h2 id="c7624bc33d3af36dde93578541120635"></h2>
 
 ### Example : Weather HMM 
 
