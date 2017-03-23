@@ -89,6 +89,6 @@ So what do we need to define the HMM ?
     - That is called emission model. This tells you what probability of seeing various evidences values is  for each underlying state. 
     - In this case it says that when it's raining you see the umbrella 90% of time , but when it's not raining you still see it 20% of time. 
 
-
+So from a single observation of an 
 
 
