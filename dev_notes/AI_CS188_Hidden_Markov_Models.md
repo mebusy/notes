@@ -308,9 +308,12 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 ## Observation  (case 1)
 
- - B'(X<sub>t+1</sub>) = P(X<sub>t+1</sub>|e<sub>1:t</sub>)
-
-
+ - Assume we have current belief P(X | previous evidence):
+    - B'(X<sub>t+1</sub>) = P(X<sub>t+1</sub>|e<sub>1:t</sub>)
+    - I have a belief vector that says here's my probability distribution over what's going on at a centain time BEFORE I see my evidence. 
+ - Then , after the evidence tomorrow comes in: 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_observation.png)
+    
 
 
 
