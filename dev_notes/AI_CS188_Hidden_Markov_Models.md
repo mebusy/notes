@@ -255,6 +255,8 @@ P(x₁|e₁) = P(x₁,e₁)/P(e₁)
          = P(x₁)·P(e₁|x₁)
 ```
 
+大家都无视 P(e₁) ， 最后重新 normalize 
+
 ---
 
 The other base case is this.
@@ -264,6 +266,8 @@ The other base case is this.
 You have a distribution over X₁ and rather than seeing evidence , time passes by one step. Well in this case I know P(X₁) , and I know P(X₂|X₁) . But I want is P(X₂).
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_base_case_2_formulation.png)
+
+全概率模型
 
 ---
 
@@ -275,6 +279,13 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
  - Assume we have current belief P(X | evidence to date)
     - B(X<sub>t</sub>) = P(X<sub>t</sub>|e<sub>1:t</sub>)
+ - Then, after one time step passes:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_passage_of_time.png)
+        - step1: 条件概率的 全概率展开 (case 2)
+        - step2: 条件概率版 product rule
+        - step3: independent 
+    - you take your input P(X<sub>t</sub>|e<sub>1:t</sub>)  ,  which is your current beliefs. You take them multiply them by the transition probabilities , and then you sum out all the sources and now you have the probabilities over all of the targets. 
+
 
 
 
