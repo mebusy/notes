@@ -333,7 +333,14 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 ### Example: Weather HMM
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs1188_hmm_example_wather_hmm_2.png)
 
+---
+
+## The Forward Algorithm
+
+ - We are given evidence at each time and want to know
+    - B<sub>t</sub> (X) = P(X<sub>t</sub>|e<sub>1:t</sub>)
 
 
 
