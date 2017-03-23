@@ -89,6 +89,33 @@ So what do we need to define the HMM ?
     - That is called emission model. This tells you what probability of seeing various evidences values is  for each underlying state. 
     - In this case it says that when it's raining you see the umbrella 90% of time , but when it's not raining you still see it 20% of time. 
 
-So from a single observation of an 
+---
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_HMM_example_weather.png)
+
+So from a single observation of an umbrella you don't know very much , but if day after day you're seeing the umbrella you start to kind of gain some confidence.
+
+---
+
+ - An HMM is defined by:
+    - Initial distribution:  P(X₁)
+    - Transitions:  P(X|X₋₁)
+        - how the world evolved in a single time step
+    - Emissions:   P(E|X)
+        - the probability of various evidence values given the underlying state , which we then used to predict the opposite -- something about x.
+
+---
+
+### Example: GhostBusters HMM
+
+ - P(X₁) = uniform
+    - that is where you see 0.02 everywhere on map in demo
+ - P(X|X') = usually move clockwise, but sometimes move in a random direction or stay in place
+
+
+---
+
+
+
 
 
