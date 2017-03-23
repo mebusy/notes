@@ -109,7 +109,8 @@ So from a single observation of an umbrella you don't know very much , but if da
 ### Example: GhostBusters HMM
 
  - P(X₁) = uniform
-    - that is where you see 0.02 everywhere on map in demo
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_HMM_example_ghostbuster_x1.png)
+    - in the course demo, it is  0.02 that you see everywhere on map.
  - P(X|X') = usually move clockwise, but sometimes move in a random direction or stay in place
 
 
