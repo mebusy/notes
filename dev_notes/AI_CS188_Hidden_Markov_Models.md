@@ -68,7 +68,7 @@ But hidden Markov model says 2 things: I know how the world changes in a time st
     - As a Bayes' net :
         - pic
         - structure:  1 hidden variable , and 1 observed variable 
-        - what we're gonna have is that every time there's ganna be a hidden variable that structure like a markov chain and each time the evidence depends only on the state observed but only on the state at that time (E | X). 
+        - what we're gonna have is that every time there's ganna be a hidden variable that structure like a markov chain and each time the evidence depends only on the state unobserved but only on the state at that time (E | X). 
 
 ---
 
@@ -77,7 +77,11 @@ But hidden Markov model says 2 things: I know how the world changes in a time st
 ### Example : Weather HMM 
 
  - the hidden variable: where or not it's raining -- True or False
- - the observed variable: 
+ - the observed variable: an umbrella
+
+So what do we need to define the HMM ? 
+ 
+ - we need 1 function which says how rain on one day depends on the previous day. 
 
 
 
