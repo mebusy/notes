@@ -180,6 +180,10 @@ The task is to figure out at any given time what do I believe is happening in th
 
 ### Example:  Robot Localization
 
+The robot doesn't know where it is . It knows the map -- somebody gave blueprints . 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_RobotLocalization_robot.png)
+
 
 
 
