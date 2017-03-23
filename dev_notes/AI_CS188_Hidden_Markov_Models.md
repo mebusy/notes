@@ -313,8 +313,13 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
     - I have a belief vector that says here's my probability distribution over what's going on at a centain time BEFORE I see my evidence. 
  - Then , after the evidence tomorrow comes in: 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_observation.png)
-    
-
-
+        - take you current vector which represents the various probabilities right now , for each probability multiply by the evidence factor. So if the evidence is totally inconsistent with that state then even if somthing had high probability suddenly it might get zero out if it can't produce the evidence. 
+        - so you go to each probability of each state you multiply each one by the evidence.  
+        - so the blue thing is your probability before you saw your evidence , you waited by the evidence, and then this vector doesn't add to 1 anymore. So you re-normalized it now it adds up to 1 again , now the red thing is including the evidence you just saw. 
+ - Or:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_observation_compactly.png)
+    - you take your vector (blue) , you do point product with the evidence vector, and you normalize them.  Now you have your new beliefs.  
+ - Basic idea: beliefs “reweighted” by likelihood of evidence
+ - Unlike passage of time, we have to renormalize
 
 
