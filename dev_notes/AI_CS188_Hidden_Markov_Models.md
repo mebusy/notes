@@ -346,7 +346,9 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 The forward algorithm is a dynamic program for computing at each time slice , the distribution over the state at that time given all the evidence to date. 
 
-TODO
+TODO  57:45
+
+
 
 
 
