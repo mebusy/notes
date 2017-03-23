@@ -288,8 +288,8 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
  - Or, compactly :
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_passage_of_time_compactly.png)
     - it says: you want to know the probability tomorrow of being at some particular X<sub>t+1</sub>. You consider how likely it is to get to X<sub>t+1</sub> from each location. So you want to know how likely it is that I'll end up at this particular X<sub>t+1</sub> , you consider all the places that could get you there , in one time step. and you say : what's the probability of being , here at A and then moving there , what's the probability ? ans whatelse if at B, C, ... 
-        - 
-
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_passage_of_time_ABCD.png)
+    - 
 
 
 
