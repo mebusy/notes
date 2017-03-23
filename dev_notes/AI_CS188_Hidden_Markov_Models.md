@@ -165,7 +165,7 @@ You get the evidence at every time and you usually want to figure out the state 
 
 ---
 
-### Filtering / Monitoring
+## Filtering / Monitoring
 
 Now we are going to talk about how to keep track of what you believe about a variable X -- the state variable -- as evidence comes it and time passes, and from this we'll build up the full-forward algorithm. 
 
@@ -217,7 +217,7 @@ As I continue reading north and south walls , what will happen is there will be 
 
 ---
 
-### Inference: Base Cases
+## Inference: Base Cases
 
 Inference in Markov model is acutally the approximate inference .
 
@@ -275,7 +275,7 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 ---
 
-### Passage of Time
+## Passage of Time  (case 2)
 
  - Assume we have current belief P(X | evidence to date)
     - B(X<sub>t</sub>) = P(X<sub>t</sub>|e<sub>1:t</sub>)
@@ -300,6 +300,15 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
  - As time passes, uncertainty “accumulates”
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_passage_of_time.png)
     - (Transition model: ghosts usually go clockwise)
+ - That's basically your robot knows what's going on today and sooner or later if you never get any more evidence , the robot will become more and more confused until it has no idea what's going on. 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_passage_of_time_robot.png)
+
+
+--- 
+
+## Observation  (case 1)
+
+ - B'(X<sub>t+1</sub>) = P(X<sub>t+1</sub>|e<sub>1:t</sub>)
 
 
 
