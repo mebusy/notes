@@ -56,7 +56,7 @@ A Markov model can talk about how the world changes , but if I forecast into the
 
 But hidden Markov model says 2 things: I know how the world changes in a time step which let me figure out roughly what's gonna happen in the absense of evidence and at every time step I also getting some kind of reading -- I got some evidence that helps me sharpen my belief about what's happening. So as the same time that time passes ,evidence also comes in. The robot moves and takes another sonar reading.
 
--- pic
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_00.png)
 
 ---
 
@@ -134,12 +134,52 @@ So from a single observation of an umbrella you don't know very much , but if da
         -  same as MM. 
     - Current observation independent of all else given current state
         - given X₃ , E₃ is independent of all everything else X₃.
+ - Quiz: does this mean that evidence variables are guaranteed to be independent ?
+    - If I don't observe anything I could say : Is the evidence I see at time₁ independent of the evidence I see at time₂ ? 
+    - It is like the umbrella on tuesday is independent of the umbrella on Wednesday. 
+    - So It seems like it shouldn't be. The evidence variables are absolutely not independent. They're only conditionally independent. 
 
 
 
 
 
 ---
+
+### Real HMM Examples
+
+For every HMM there is a hidden state -- which is usually the thing you want to figure out -- , and an evidence variable -- which is the thing you got to observe. 
+
+You get the evidence at every time and you usually want to figure out the state at every time.  
+
+ - Speech recognition HMMs:
+    - Observations are acoustic signals (continuous valued)
+    - States are specific positions in specific words (so, tens of thousands)
+
+ - Machine translation HMMs:
+    - Observations are words (tens of thousands)
+    - States are translation options
+
+ - Robot tracking:
+    - Observations are range readings (continuous)
+    - States are positions on a map (continuous)
+
+---
+
+### Filtering / Monitoring
+
+Now we are going to talk about how to keep track of what you believe about a variable X -- the state variable -- as evidence comes it and time passes, and from this we'll build up the full-forward algorithm. 
+
+The task is to figure out at any given time what do I believe is happening in the hidden state ( B<sub>t</sub>(X) ) given all the evidence from the first time step all the way up to the current time. 
+
+ - Filtering, or monitoring, is the task of tracking the distribution B<sub>t</sub>(X) = P<sub>t</sub>(X<sub>t</sub> | e₁, …, e<sub>t</sub>) (the belief state) over time
+ - We start with B₁(X) in an initial setting, usually uniform
+ - As time passes, or we get observations, we update B(X)
+ - The Kalman filter was invented in the 60’s and first implemented as a method of trajectory estimation for the Apollo program
+
+---
+
+### Example:  Robot Localization
+
 
 
 
