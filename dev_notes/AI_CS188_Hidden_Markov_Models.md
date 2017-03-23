@@ -263,8 +263,18 @@ The other base case is this.
 
 You have a distribution over X₁ and rather than seeing evidence , time passes by one step. Well in this case I know P(X₁) , and I know P(X₂|X₁) . But I want is P(X₂).
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_base_case_2_formulation.png)
 
+---
 
+ - Those 2 pieces assembled to do everything you need in HMMs. 
+
+---
+
+### Passage of Time
+
+ - Assume we have current belief P(X | evidence to date)
+    - B(X<sub>t</sub>) = P(X<sub>t</sub>|e<sub>1:t</sub>)
 
 
 
