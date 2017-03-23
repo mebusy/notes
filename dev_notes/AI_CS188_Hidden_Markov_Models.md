@@ -210,5 +210,11 @@ Time passes.
 As I continue reading north and south walls , what will happen is there will be fewer and fewer places which are consistent with my history of readings.
 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_rl_t2.png)
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_rl_t3.png)
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_rl_t4.png)
+
+
+
 
 
