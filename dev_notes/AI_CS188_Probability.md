@@ -277,6 +277,8 @@ It's a way to go from joint distributions to conditional distributions and has s
 
  - P(W)      
     - Q=W, E=∅ , H={S,T}
+
+---
                                 
 P(W) | / 
 --- | ---
@@ -289,6 +291,8 @@ r   | 0.35
  - P(W|winter)    
     - Q=W, E=S , H=T
 
+---
+
 P(W | winter) | /
 --- | ---
 s   |  0.25 / 0.5 = 0.5 
@@ -298,6 +302,8 @@ r   |  0.25 / 0.5 = 0.5
 
  - P(W| winter ,hot)    
     - Q=W , E=winter,hot, H=∅
+
+---
 
 P(W| winter ,hot) | /
 --- | ---

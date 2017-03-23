@@ -81,18 +81,6 @@ This case let's look at just 4 variables.
  - Additional explicit assumption
     - P(X<sub>t</sub>|X<sub>t-1</sub>) is the same for all t   // TODO  why ?
 
-<h2 id="0f1513d04ac32269de73d0f17465488e"></h2>
-
-### Conditional Independence
-
- - Basic conditional independence:
-    - Past and future independent of the present
-    - Each time step only depends on the previous
-    - This is called the (first order) Markov property
- - Note that the chain is just a (growable) BN
-    - We can always use generic BN reasoning on it if we truncate the chain at a fixed length
-
-
 
 
 
