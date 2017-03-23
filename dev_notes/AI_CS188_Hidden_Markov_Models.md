@@ -213,6 +213,51 @@ As I continue reading north and south walls , what will happen is there will be 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_rl_t2.png)
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_rl_t3.png)
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_rl_t4.png)
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_rl_t5.png)
+
+---
+
+### Inference: Base Cases
+
+Inference in Markov model is acutally the approximate inference .
+
+Let's do the base cases. There's really 2 things that happen in HMMs. 
+
+One is time passes.  You go from X at a certain time to X at the next time.  The other thing happens you see evidence.  There things are interleaved. 
+
+
+
+
+But if all you had was a single time slice, you had X₁ and you saw evidence at time₁ E₁ , and you want to compute what's probability over my hidden state X₁ given my evidence E₁. So you just want to compute this conditional probability : P(X₁|e₁).  
+
+ - I know P(X₁) , this is what before I see the evidence. 
+ - Now I also know a distribution that tells me how the evidence relates to X₁ : P( E₁ | X₁ ). 
+ 
+That's not quite what I want. What I want is P(X₁|e₁). 
+
+ - X is capital because it's a vector here. I need one of these numbers for each value of X.
+ - e is lowercase because there's a specific value , it's scalar. 
+
+```
+P(X₁|e₁) = P(X₁,e₁)/P(e₁)
+         = P(e₁|X₁)·P(X₁) /P(e₁) 
+```
+
+The above manipulation I just did has nothing to do with HMMs. Now what I don't know is `P(e₁)`. But that is a constant as I vary X (not understand!).
+
+So as you saw with the variable elimination I can just ignore it. So the actual reasoning goes something a little bit more cpmpactly . 
+
+I'm instead going to compute P( X₁,e₁ ) and normalize in the end. I know how to compute it -- `P(X₁,e₁) = P(e₁|X₁)·P(X₁)`. So I compute all of these products: current probability times evidence probability. And then once I have that whole vector of those I re-normalize and now I have the conditional distribution of P(X₁|e₁). That is what happens when you incorporate evidence: you take your current vector of probabilities P(X₁) ,you multiply each one by the appropriate evidence factor and then you renormalize it. 
+
+```
+P(x₁|e₁) = P(x₁,e₁)/P(e₁)
+         ∝ P(x₁,e₁)
+         = P(x₁)·P(e₁|x₁)
+```
+
+---
+
+
 
 
 
