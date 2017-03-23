@@ -119,7 +119,23 @@ So from a single observation of an umbrella you don't know very much , but if da
         - This is your assumptions about the world , you might learn them from data, for now that's just an input.
     - That's what happens from that one state.  But you generally don't know what state you're in, and you need to sum over all the options , that's  the forward algorithm was about.
  - P(Rᵢⱼ|X) = same sensor model as before: red means close, green means far away.
+    - somewhere there has to be specified precisely the probability of reading at a certain position given the underlying state. 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_HMM_example_ghostbuster_sonar.png)
+    - so it might say if you read at (3,3) and the ghost is there , your probability of getting red is 0.9. Those facts live in the emission model , they say how the evidence directly relates to the state at that time. 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_HMM_example_ghostbuster_model.png)
+    
+
+---
+
+### HMM Conditional Independence 
+
+ - HMMs have 2 import independence properties
+    - Markov hidden process:  future depends on past  via the present 
+        -  same as MM. 
+    - Current observation independent of all else given current state
+        - given X₃ , E₃ is independent of all everything else X₃.
+
+
 
 
 
