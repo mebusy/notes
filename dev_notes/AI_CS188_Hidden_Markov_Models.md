@@ -322,4 +322,11 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
  - Basic idea: beliefs “reweighted” by likelihood of evidence
  - Unlike passage of time, we have to renormalize
 
+---
+
+### Example of Observation 
+
+ - As we get observations, beliefs get reweighted, uncertainty “decreases”
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_observation.png)
+
 
