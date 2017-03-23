@@ -184,8 +184,19 @@ The robot doesn't know where it is . It knows the map -- somebody gave blueprint
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_RobotLocalization_robot.png)
 
+It is going down the corridor and all do is shoot out lasers in each direction and see how close they bounced off a wall. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_RobotLocalization_map.png)
+
+ - Sensor model: can read in which directions there is a wall, never more than 1 mistake
+ - Motion model: may not execute action with small prob.
 
 
+So it knows there's a wall right here , but no wall in front of me. And if it gets a reading that says there's wall on my left and right but not in front or behind, then suddenly it shouldn't think it's anywhere in this building.  Where should I think it is? It is kind of think it's in the corridors, corridors look like that. It's the sensor model , formly is conditioned on my current position, I need say a distribution over readings.  Let's image that instead of the continuous readings , the readings are wall or not in each direction.
 
+So if I sense that is a wall above and below I should have pretty hight probability of my belief distribution of being in the dark gray squares. 
+
+ - t=1
+ - Lighter grey: was possible to get the reading, but less likely b/c required 1 mistake
 
 
