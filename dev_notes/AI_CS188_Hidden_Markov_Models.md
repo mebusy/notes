@@ -82,7 +82,8 @@ But hidden Markov model says 2 things: I know how the world changes in a time st
 So what do we need to define the HMM ? 
  
  - we need 1 function which says how rain on one day depends on the previous day. 
-
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_HMM_example_weather_define_func1.png)
+ - 
 
 
 
