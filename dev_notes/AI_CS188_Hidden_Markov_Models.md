@@ -66,7 +66,7 @@ But hidden Markov model says 2 things: I know how the world changes in a time st
     - Underlying Markov chain over states *S*
     - You observe outpus (effects) at each time step
     - As a Bayes' net :
-        - pic
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_HMM_hmm.png)
         - structure:  1 hidden variable , and 1 observed variable 
         - what we're gonna have is that every time there's ganna be a hidden variable that structure like a markov chain and each time the evidence depends only on the state unobserved but only on the state at that time (E | X). 
 
