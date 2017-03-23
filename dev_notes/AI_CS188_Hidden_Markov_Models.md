@@ -225,7 +225,7 @@ Let's do the base cases. There's really 2 things that happen in HMMs.
 
 One is time passes.  You go from X at a certain time to X at the next time.  The other thing happens you see evidence.  There things are interleaved. 
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_base_case1.png)
 
 
 But if all you had was a single time slice, you had X₁ and you saw evidence at time₁ E₁ , and you want to compute what's probability over my hidden state X₁ given my evidence E₁. So you just want to compute this conditional probability : P(X₁|e₁).  
@@ -256,6 +256,12 @@ P(x₁|e₁) = P(x₁,e₁)/P(e₁)
 ```
 
 ---
+
+The other base case is this.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_base_case2.png)
+
+You have a distribution over X₁ and rather than seeing evidence , time passes by one step. Well in this case I know P(X₁) , and I know P(X₂|X₁) . But I want is P(X₂).
 
 
 
