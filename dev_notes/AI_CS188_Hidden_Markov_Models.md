@@ -112,7 +112,12 @@ So from a single observation of an umbrella you don't know very much , but if da
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_HMM_example_ghostbuster_x1.png)
     - in the course demo, it is  0.02 that you see everywhere on map.
  - P(X|X') = usually move clockwise, but sometimes move in a random direction or stay in place
-
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_HMM_example_ghostbuster_ghost.png)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_HMM_example_ghostbuster_x2.png)
+        - for that red square , it's 50% precent probability of moving right , 1/6 probability that you'll stand, 1/6 probability to go in other direction.
+ - Where do these conditional probabilities come from ?
+    - This is your assumptions about the world , you might learn them from data, for now that's just an input.
+ - That's what happens from that one state.  But you generally don't know what state you're in, and you need to sum over all the options , that's  the forward algorithm was about.
 
 ---
 
