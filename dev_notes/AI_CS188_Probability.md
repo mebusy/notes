@@ -57,7 +57,11 @@ demo: ghost busters
 
 ## Uncertainty
 
-When we deal with an uncertainty usually we can split the random variables into 2 groups. one group is the group of random variables that would get to observe. We get to measure them and usually then we want to do is somehow  in first something about the variables we don't get to measure -- the hidden variables , the unobserved variables -- and do that in some structured way. And the way that is structures using a probability model that tells us measurements related a noisy way to these hidden variables that we don't get to observe. 
+When we deal with an uncertainty usually we can split the random variables into 2 groups. 
+
+ - one group is the group of random variables that would get to observe. We get to measure them.
+ - something about the variables we don't get to measure -- the hidden variables , the unobserved variables -- and do that in some structured way. 
+ 
 
  - General situation:
     - **Observed variables (evidence)**: 
