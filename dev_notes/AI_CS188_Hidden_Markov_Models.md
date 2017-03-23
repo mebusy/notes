@@ -194,9 +194,21 @@ It is going down the corridor and all do is shoot out lasers in each direction a
 
 So it knows there's a wall right here , but no wall in front of me. And if it gets a reading that says there's wall on my left and right but not in front or behind, then suddenly it shouldn't think it's anywhere in this building.  Where should I think it is? It is kind of think it's in the corridors, corridors look like that. It's the sensor model , formly is conditioned on my current position, I need say a distribution over readings.  Let's image that instead of the continuous readings , the readings are wall or not in each direction.
 
-So if I sense that is a wall above and below I should have pretty hight probability of my belief distribution of being in the dark gray squares. 
+---
+
+So if I sense that is a wall above and below I should have pretty hight probability of my belief distribution of being in the dark gray squares. I should have some smaller probability of being in the lighter grey square.  
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_rl_t1.png)
 
  - t=1
  - Lighter grey: was possible to get the reading, but less likely b/c required 1 mistake
+
+---
+ 
+Time passes. 
+
+As I continue reading north and south walls , what will happen is there will be fewer and fewer places which are consistent with my history of readings.
+
+
 
 
