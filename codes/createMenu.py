@@ -10,7 +10,7 @@ import urllib
 RE_PATTERN_MENU_BODY = re.compile( r"\.\.\.menustart[\s\S]*\.\.\.menuend\n\n\n" )
 RE_PATTERN_MENU_SYNTAX = re.compile( r"^(\#+)(.*?)$" )
 RE_PATTERN_MENU_JUMP_ID = re.compile( r"^<h\d*\s+id=" )
-RE_PATTERN_TABLE = re.compile( r"\s*---(\s*\|\s*---)+" )
+RE_PATTERN_TABLE = re.compile( r"^\s*---(\s*\|\s*---)+" )
 
 
 def createMenu4MD( path ):
@@ -77,6 +77,14 @@ def createMenu4MD( path ):
                 body += line+'\n'
         else:
             bFollowLinkID = True
+
+        # error checking
+        if re.search( RE_PATTERN_TABLE, line  ):
+            # print 'table' , line 
+            table_sep_count = line.count( r"|" )
+            table_1stline_sep_count = lines[i-1].replace( r"\|" , "" ).count ( r"|" ) 
+            if table_sep_count != table_1stline_sep_count:
+                print "table error:" , i-1,  lines[i-1] , 
 
     menu += '\n...menuend\n\n\n'  
     

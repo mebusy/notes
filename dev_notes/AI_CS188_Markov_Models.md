@@ -94,7 +94,7 @@ This case let's look at just 4 variables.
 
 ---
 
- t-1 | t | P(X<sub>t</sub>|X<sub>t-1</sub>):
+ t-1 | t | P(X<sub>t</sub>\|X<sub>t-1</sub>):
 --- | --- | --- 
 sun | sun | 0.9
 sun | rain | 0.1

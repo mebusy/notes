@@ -1006,8 +1006,8 @@ cp.execFile('worker.js', function (err, stdout, stderr) {
 cp.fork('./worker.js');
 ```
 
-类型 | 回调/异常 | 进程类型 | 执行类型 ｜ 可设置超时
---- | --- | --- | --- | --- | ---
+类型 | 回调/异常 | 进程类型 | 执行类型 | 可设置超时
+--- | --- | --- | --- | --- 
 spawn | x | 任意 | 命令 | x
 exec | ✓ |  任意 | 命令 | ✓
 execFile | ✓ |  任意 | 可执行文件 | ✓
