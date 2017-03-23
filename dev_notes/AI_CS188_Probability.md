@@ -47,7 +47,7 @@ demo: ghost busters
 
 ---
 
- P( red|3 )| P( orange|3 )   | P( yellow|3 )   |P( green|3 )
+ P( red\|3 )| P( orange\|3 )   | P( yellow\|3 )   |P( green\|3 )
  --- | --- | --- | --- 
  0.05 | 0.15 | 0.5 | 0.3 
    
