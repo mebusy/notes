@@ -83,8 +83,11 @@ So what do we need to define the HMM ?
  
  - we need 1 function which says how rain on one day depends on the previous day. 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_HMM_example_weather_define_func1.png)
- - 
-
+    - This is the rain to sun transition probability 
+ - we also need a function says given rain and separately given sun, what's probability of seeing an umbrella
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_HMM_example_weather_define_func2.png)
+    - That is called emission model. This tells you what probability of seeing various evidences values is  for each underlying state. 
+    - In this case it says that when it's raining you see the umbrella 90% of time , but when it's not raining you still see it 20% of time. 
 
 
 
