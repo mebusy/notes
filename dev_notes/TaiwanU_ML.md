@@ -73,7 +73,22 @@
  - huge computational complexity ( worsen with big data )
     - novel hardware / architecture: like mini-batch with GPU
 
+---
+
+ - Simple Deep Learning
+    - for l=1,...,L , pre-train { w⁽ˡ⁾ } assuming w⁽¹⁾, ... ,w⁽ˡ⁻¹⁾ fixed
+        - 一层一层 一次决定  初始 权重值
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ml_dl_weight_init.png)
  
+# Autodecoder
+
+Autodecoder 是 实现好的 pre-training 的一个方式。
+
+ - basic autoencoder :
+    - d-d'-d NNet with error function: 平方差
+
+
+
 
 
 
