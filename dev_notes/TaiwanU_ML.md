@@ -54,6 +54,31 @@
  - NNet 是这样的一个模型，每一次都在做所谓的  ***pattern extraction***
     - pattern extraction with layers of ***connection weights***
 
+---
+
+# Deep Learning
+
+## Challenges and Key Techniques for Deep Learning
+
+ - difficult ***structural decisions***:
+    - 怎么选择一个好的模型
+    - subjective with ***domain knowledge***: like ***convolutional NNet*** for images
+ - high model complexity:
+    - no big worries if big enough data
+    - regularization towards noise-tolerant: like
+        - dropout ( tolerant when network corrupted ) 丢弃坏掉的神经元
+        - denoising ( tolerant when input corrupted ) 丢弃坏掉的输入
+ - hard optimization problem:
+    - careful initialization to avoid bad local minimum: called **pre-training**. 而不是采用 random initialization.
+ - huge computational complexity ( worsen with big data )
+    - novel hardware / architecture: like mini-batch with GPU
+
+ 
+
+
+
+
+
  
 
 
