@@ -365,6 +365,27 @@ If g(a) ≠ 0 , and
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusOne_ddx_is_func.png)
 
 
+---
+
+## Extreme values 
+
+### How can I find extreme values ?
+
+ - If either f'(c) does not exist , or f'(c) = 0 , call *c* a ***critical point*** of f.
+ 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_derivative_func_graph.png)
+
+
+### How do I differentiate eˣ ?
+
+f(x) = 1 + x + x²/2 + x³/6 + x⁴/24 + ...  = eˣ
+
+
+
+
+
+
+
 ------
 
 
