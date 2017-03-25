@@ -1,7 +1,25 @@
+...menustart
+
+ - [Neural Network : Notivation](#5974f31b4017afa6df21ffb9b31e2666)
+	 - [Linear Aggregation of Perceptrons : Pictorial View](#38ccc56b9a6fc2fd501fcc0bd27a0b45)
+	 - [Multi-layer Perceptrons : Basic Neural Network](#57bc3e3d04ba0a7c8184820673a233ed)
+ - [Neural Network Hypothesis: Output](#6e543476b9761e3e5988cfc245333417)
+	 - [Transformation function](#ad0de27f8c1618cd8eb6d8738e12ab57)
+	 - [结构](#8a95a6d10dea403031ff71630d469a27)
+ - [Deep Learning](#6a68b6412b3d8a605c374d3c59e02694)
+	 - [Challenges and Key Techniques for Deep Learning](#4e961821374743cc679d4351f5717263)
+ - [Autodecoder](#9703d584c6cdcaf305edeb3f0567cd9e)
+ - [Network Structure:](#43751e4eda3557fca7ab0f1b99c3e6c7)
+ - [Techniques to Train Neural Network](#20c649642589dd245bfa69669261e277)
+
+...menuend
 
 
+<h2 id="5974f31b4017afa6df21ffb9b31e2666"></h2>
 
 # Neural Network : Notivation
+
+<h2 id="38ccc56b9a6fc2fd501fcc0bd27a0b45"></h2>
 
 ## Linear Aggregation of Perceptrons : Pictorial View 
 
@@ -17,6 +35,8 @@
     - XOR 不是 线性可分
  - How to implement XOR(g₁,g₂) ?
 
+<h2 id="57bc3e3d04ba0a7c8184820673a233ed"></h2>
+
 ## Multi-layer Perceptrons : Basic Neural Network
 
  - one more layer of AND transform ?
@@ -26,11 +46,15 @@
 ---
 
 
+<h2 id="6e543476b9761e3e5988cfc245333417"></h2>
+
 # Neural Network Hypothesis: Output
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ml_nn_output.png)
 
  - OUTPUT: simply a ***linear model*** with s = wᵀ· ϕ⁽²⁾(ϕ⁽¹⁾(x)) 
+
+<h2 id="ad0de27f8c1618cd8eb6d8738e12ab57"></h2>
 
 ## Transformation function
 
@@ -40,6 +64,8 @@
         - 如果全部都是 linear transform function ， 那个整个网络也是一个 linear transform 转换，就蜕变成 单个perceptron 模型了. So :
  - 神经网络中，一般使用如下 转换函数， 和 逻辑回归总的 s 函数很有渊源
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ml_h_function_inNN.png)
+
+<h2 id="8a95a6d10dea403031ff71630d469a27"></h2>
 
 ## 结构
 
@@ -56,7 +82,11 @@
 
 ---
 
+<h2 id="6a68b6412b3d8a605c374d3c59e02694"></h2>
+
 # Deep Learning
+
+<h2 id="4e961821374743cc679d4351f5717263"></h2>
 
 ## Challenges and Key Techniques for Deep Learning
 
@@ -80,6 +110,8 @@
         - 一层一层 一次决定  初始 权重值
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ml_dl_weight_init.png)
  
+<h2 id="9703d584c6cdcaf305edeb3f0567cd9e"></h2>
+
 # Autodecoder
 
 Autodecoder 是 实现好的 pre-training 的一个方式。
@@ -89,8 +121,53 @@ Autodecoder 是 实现好的 pre-training 的一个方式。
 
 
 
+---
 
+ - 一天搞懂深度学习
+    - https://www.youtube.com/watch?v=ZrEsLwCjdxY
+ - 深度学习 TensorFlow Deep Learning 第一堂课
+    - https://www.youtube.com/watch?v=Li5sVEXTIJw
 
+---
+
+<h2 id="43751e4eda3557fca7ab0f1b99c3e6c7"></h2>
+
+# Network Structure: 
+ 
+ - hidden layer width:
+    - Usually less than 1000
+ - hidden layer height:
+    - Sample/parameter ration usually between 5~30
+    - 样本数／所有hidden layer的总权重数
+ - thin-tall is better than fat-short
+ - active function is always "non-linear"
+ - 常用 active function
+    - Sigmoid: 
+        - 优点：好微分，计算快 ， 缺点：网路层数很深的时候，反向传播过程中 gradient会越来越小，到 input layer的时候接近0
+    - ReLu: 
+        - 没有 Sigmoid  vanishing gradient 的问题
+        - most commonly used
+    - Tanh: 
+        - ranging from -1 to 1
+        - commonly used when the features range from negatives , eg. NLP
+ - Loss Function
+    - Cross entropy:
+        - More suitable for predicting categorical labels
+        - 收敛更快
+    - Squared Error:
+        - More suitalbe for predicting continuous values ( eg. tomorrow's temperature )
+ 
+<h2 id="20c649642589dd245bfa69669261e277"></h2>
+
+# Techniques to Train Neural Network 
+
+ - Conquer overfitting
+    - Dropout
+    - Regularization
+ - Mini-batch
+ - Stochastic gradient descent
+ - Learning Rate
+ - Advanced skills ( such as Ada Grad )
 
 
 

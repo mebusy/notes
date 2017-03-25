@@ -5,6 +5,18 @@
 		 - [Conditional Independence](#0f1513d04ac32269de73d0f17465488e)
 	 - [Hidden Markov Models](#94d2b6fed9dd768fe2edec7e6c85546f)
 		 - [Example : Weather HMM](#c7624bc33d3af36dde93578541120635)
+		 - [Example: GhostBusters HMM](#29e2fd6f91ff2c795e0611725208492a)
+		 - [HMM Conditional Independence](#70edd3baf536c5134e73a1c0aa1b5e9d)
+		 - [Real HMM Examples](#a28d273e7e37d7b9dac9b8648afa65c2)
+	 - [Filtering / Monitoring](#7d5a5544b159698a3c0d234ed796ab6c)
+		 - [Example:  Robot Localization](#8eb802f81a304b8d30bbde98a9341934)
+	 - [Inference: Base Cases](#6cdd6a9a5085ef26dcbe01cba728e9fa)
+	 - [Passage of Time  (case 2)](#3fd013cbb540e9c1e999d77ef692dc16)
+		 - [Example: Passage of Time](#25cfc18fb11a92c7484035257a6e5d7d)
+	 - [Observation  (case 1)](#2690e7eb741e31d792c0834583a6dcc9)
+		 - [Example of Observation](#22a77e6cdda4b68b0d0175942f8c991b)
+		 - [Example: Weather HMM](#75fc03589b48053de414b7e5d43b25a6)
+	 - [The Forward Algorithm](#6dbc07cd7c694bd7ba7917098b848d8b)
 
 ...menuend
 
@@ -106,6 +118,8 @@ So from a single observation of an umbrella you don't know very much , but if da
 
 ---
 
+<h2 id="29e2fd6f91ff2c795e0611725208492a"></h2>
+
 ### Example: GhostBusters HMM
 
  - P(X₁) = uniform
@@ -127,6 +141,8 @@ So from a single observation of an umbrella you don't know very much , but if da
 
 ---
 
+<h2 id="70edd3baf536c5134e73a1c0aa1b5e9d"></h2>
+
 ### HMM Conditional Independence 
 
  - HMMs have 2 import independence properties
@@ -144,6 +160,8 @@ So from a single observation of an umbrella you don't know very much , but if da
 
 
 ---
+
+<h2 id="a28d273e7e37d7b9dac9b8648afa65c2"></h2>
 
 ### Real HMM Examples
 
@@ -165,6 +183,8 @@ You get the evidence at every time and you usually want to figure out the state 
 
 ---
 
+<h2 id="7d5a5544b159698a3c0d234ed796ab6c"></h2>
+
 ## Filtering / Monitoring
 
 Now we are going to talk about how to keep track of what you believe about a variable X -- the state variable -- as evidence comes it and time passes, and from this we'll build up the full-forward algorithm. 
@@ -177,6 +197,8 @@ The task is to figure out at any given time what do I believe is happening in th
  - The Kalman filter was invented in the 60’s and first implemented as a method of trajectory estimation for the Apollo program
 
 ---
+
+<h2 id="8eb802f81a304b8d30bbde98a9341934"></h2>
 
 ### Example:  Robot Localization
 
@@ -216,6 +238,8 @@ As I continue reading north and south walls , what will happen is there will be 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_rl_t5.png)
 
 ---
+
+<h2 id="6cdd6a9a5085ef26dcbe01cba728e9fa"></h2>
 
 ## Inference: Base Cases
 
@@ -275,6 +299,8 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 ---
 
+<h2 id="3fd013cbb540e9c1e999d77ef692dc16"></h2>
+
 ## Passage of Time  (case 2)
 
  - Assume we have current belief P(X | evidence to date)
@@ -295,6 +321,8 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 ---
 
+<h2 id="25cfc18fb11a92c7484035257a6e5d7d"></h2>
+
 ### Example: Passage of Time
 
  - As time passes, uncertainty “accumulates”
@@ -305,6 +333,8 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 
 --- 
+
+<h2 id="2690e7eb741e31d792c0834583a6dcc9"></h2>
 
 ## Observation  (case 1)
 
@@ -324,6 +354,8 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 ---
 
+<h2 id="22a77e6cdda4b68b0d0175942f8c991b"></h2>
+
 ### Example of Observation 
 
  - As we get observations, beliefs get reweighted, uncertainty “decreases”
@@ -331,11 +363,15 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 ---
 
+<h2 id="75fc03589b48053de414b7e5d43b25a6"></h2>
+
 ### Example: Weather HMM
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs1188_hmm_example_wather_hmm_2.png)
 
 ---
+
+<h2 id="6dbc07cd7c694bd7ba7917098b848d8b"></h2>
 
 ## The Forward Algorithm
 
