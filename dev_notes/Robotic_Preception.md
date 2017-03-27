@@ -79,7 +79,15 @@
         - x̃ = l̃₁ x l̃₂
     - 同时，两个点确定的直线方程的齐次表达为：
         - l = x̃₁ x x̃₂
- - 
+ - 2.3.为什么更易用于仿射变换？
+    - 对于一个2维点p=(x,y)仿射变换(T)是线性变换(Ap)和平移变换(+t)的叠加:
+        - T(p) = Ap + t
+    - 线性变换在欧式空间中可以表示为矩阵乘积形式，如旋转变换和缩放变换,而平移变换却不能用矩阵相乘的形式表达。
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_linear_transform.png)
+    - 现在引入齐次坐标系表达 p̃ =(x,y,1) (尺度不变性，实际上在高一维的空间映射到w=1w=1平面, 这样计算后结果直接可导出到欧式空间)。可以将rotate,scale,transfer变换表示为：
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_affine_transform.png)
+    - 然后我们可以导出仿射变换的矩阵形式，
+        - 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_homogeneous_coordinates.png)
 
