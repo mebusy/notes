@@ -67,12 +67,15 @@
     
  - 2.1 平面点
     - 欧式坐标表示：  X = (x,y) ∈ ℝ²
-    - 齐次坐标表示：  X̃ = (x̂,ŷ,w) ∈ ℙ²
-    - w=0 时称为无穷点(points at infinity)， 其中 ℙ² = ℝ³-(0,0,0)  为2D投影空间. 齐次矢量 X̃ 可转换为欧式表示：
-        - X̃ = (x̂,ŷ,w) = w(x,y,1) = wX̃ , X̃ 称为增广矢量(augmented vector)。
+    - 齐次坐标表示：  x̃ = (x̂,ŷ,w) ∈ ℙ²
+    - w=0 时称为无穷点(points at infinity)， 其中 ℙ² = ℝ³-(0,0,0)  为2D投影空间. 齐次矢量  x̃  可转换为欧式表示：
+        -  x̃ = (x̂,ŷ,w) = w(x,y,1) = wX̄ , X̄ 称为增广矢量(augmented vector)。
  - 2.2 平面线 
-    - 
-    
+    - 齐次表示： l̃ =(a,b,c)
+    - 对应欧式空间直线方程： X̄·l̃ = ax+by+c = 0 
+    - 例外是在 l̃ = (0,0,1) 时为无穷线，包含了所有的2维无穷点。
+
+
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_homogeneous_coordinates.png)
 
 ## Projective lines
@@ -80,9 +83,8 @@
  - What does a line in the image correspond to in projective space?
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_projective_lines.png)
     - A line is a plane of rays through origin
-        - image上的line，是通过原点的rays 的一个平面
-            - all rays (x,y,z) satisfying: ax + by + cz = 0
-            - [a,b,c]·[x,y,z] = l·p = 0
+        - all rays (x,y,z) satisfying: ax + by + cz = 0
+        - (a,b,c)·(x,y,z) = l·p = 0
     - A line is also represented as a homogeneous 3-vector l
 
 
