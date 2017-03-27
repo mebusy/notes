@@ -74,6 +74,7 @@
     - 齐次表示： l̃ =(a,b,c)
     - 对应欧式空间直线方程： X̄·l̃ = ax+by+c = 0 
     - 例外是在 l̃ = (0,0,1) 时为无穷线，包含了所有的2维无穷点。
+    - 见 后面的 Line Representation
 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_homogeneous_coordinates.png)
@@ -86,6 +87,26 @@
         - all rays (x,y,z) satisfying: ax + by + cz = 0
         - (a,b,c)·(x,y,z) = l·p = 0
     - A line is also represented as a homogeneous 3-vector l
+        - l is just the surface normal ob the set of planes
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_projective_lines2.png)
+
+image plane上的line  ，是投影空间中，rays 组成的一个平面
+
+## Line Representation
+
+ - 极坐标系下的直线方程
+    - 在直角坐标系中有一条直线l，原点到该直线的垂直距离为ρ，垂线与x轴的夹角为θ，这这一条直线式唯一的，且其直线方程为：
+    - `ρ = xcosθ + ysinθ`    
+ - a line is `ρ = xcosθ + ysinθ`
+    - ρ is the distance from the origin to the line
+    - θ is the norm direction of the line
+ - It can also be written as
+    - cosθ = a/√(a²+b²)
+    - sinθ = b/√(a²+b²)
+    - ρ = -c/√(a²+b²)
+    - => -c/√(a²+b²) = a/√(a²+b²)·x + b/√(a²+b²)·y => -c = ax + by  => ax + by + c = 0  
+
 
 
 
