@@ -123,11 +123,14 @@ Autodecoder 是 实现好的 pre-training 的一个方式。
 
 ---
 
+# 资料
+
  - 一天搞懂深度学习
     - https://www.youtube.com/watch?v=ZrEsLwCjdxY
  - 深度学习 TensorFlow Deep Learning 第一堂课
     - https://www.youtube.com/watch?v=Li5sVEXTIJw
-
+ - CS231n课程笔记翻译：卷积神经网络笔记
+    - https://zhuanlan.zhihu.com/p/22038289
 ---
 
 <h2 id="43751e4eda3557fca7ab0f1b99c3e6c7"></h2>
