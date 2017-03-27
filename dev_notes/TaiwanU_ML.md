@@ -9,6 +9,7 @@
  - [Deep Learning](#6a68b6412b3d8a605c374d3c59e02694)
 	 - [Challenges and Key Techniques for Deep Learning](#4e961821374743cc679d4351f5717263)
  - [Autodecoder](#9703d584c6cdcaf305edeb3f0567cd9e)
+ - [资料](#447564e4e2b0171973515a26650e66a2)
  - [Network Structure:](#43751e4eda3557fca7ab0f1b99c3e6c7)
  - [Techniques to Train Neural Network](#20c649642589dd245bfa69669261e277)
 
@@ -122,6 +123,8 @@ Autodecoder 是 实现好的 pre-training 的一个方式。
 
 
 ---
+
+<h2 id="447564e4e2b0171973515a26650e66a2"></h2>
 
 # 资料
 

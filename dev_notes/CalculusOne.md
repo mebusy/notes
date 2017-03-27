@@ -29,6 +29,13 @@
 		 - [How do I differentiate a product ?](#f196de79cd46bd81851a3f8fed50f480)
 		 - [How do I differentiate a quotient ?](#1fd4d879c6db3b22c521e30c2fb08385)
 		 - [d/dx is just a function](#1288f1095d59ece946013bc62c26a401)
+	 - [Extreme values](#93e451770dec5a687c7f5e9d86cfd9f5)
+		 - [How can I find extreme values ?](#e6d5a5e9b5cdbf14227d36c1605a0ff2)
+		 - [How do I differentiate eˣ ?](#b2286c3f62faeddddcc3845afcb3deec)
+	 - [Chain Rule](#d5db07312793e93df00d060926688e40)
+		 - [What is the Chain Rule](#ac719cc56a1f9d666b2ce221292d434d)
+		 - [How do I find the tangent line to a curve ?](#6a7b8b5beb5c33160b2c36e47bf112d4)
+		 - [How do I find the derivative of an inverse function ?](#dc089fc1ed5dcef804ace2ddbfe24ad8)
 
 ...menuend
 
@@ -367,7 +374,11 @@ If g(a) ≠ 0 , and
 
 ---
 
+<h2 id="93e451770dec5a687c7f5e9d86cfd9f5"></h2>
+
 ## Extreme values 
+
+<h2 id="e6d5a5e9b5cdbf14227d36c1605a0ff2"></h2>
 
 ### How can I find extreme values ?
 
@@ -376,13 +387,19 @@ If g(a) ≠ 0 , and
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_derivative_func_graph.png)
 
 
+<h2 id="b2286c3f62faeddddcc3845afcb3deec"></h2>
+
 ### How do I differentiate eˣ ?
 
 f(x) = 1 + x + x²/2 + x³/6 + x⁴/24 + ...  = eˣ
 
 ---
 
+<h2 id="d5db07312793e93df00d060926688e40"></h2>
+
 ## Chain Rule
+
+<h2 id="ac719cc56a1f9d666b2ce221292d434d"></h2>
 
 ### What is the Chain Rule
 
@@ -393,6 +410,8 @@ f(x) = 1 + x + x²/2 + x³/6 + x⁴/24 + ...  = eˣ
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusOne_chain_rule.png)
 
+
+<h2 id="6a7b8b5beb5c33160b2c36e47bf112d4"></h2>
 
 ### How do I find the tangent line to a curve ?
 
@@ -407,6 +426,8 @@ x³ + y³ - 9xy = 0
 ( 3y² - 9x )·dy/dx = - 3x² + 9y
 dy/dx = (- 3x² + 9y) / ( 3y² - 9x ) 
 ```
+
+<h2 id="dc089fc1ed5dcef804ace2ddbfe24ad8"></h2>
 
 ### How do I find the derivative of an inverse function ?
 
