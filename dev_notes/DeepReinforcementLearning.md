@@ -93,8 +93,9 @@
 
  - Now random variable x is a whole trajectory 
     - τ = (s₀,a₀,r₀,s₁,r₁, ..., s<sub>T-1</sub> , a<sub>T-1</sub> , r<sub>T-1</sub> , S<sub>T</sub> )
-    - ∇<sub>θ</sub> E<sub>τ</sub> [R(τ)] = E<sub>τ</sub> [ ∇<sub>θ</sub>log p(τ|θ)R(τ) ]
-
+    - ∇<sub>θ</sub> E<sub>τ</sub> [R(τ)] = E<sub>τ</sub> [ ∇<sub>θ</sub>log p(τ|θ)R(τ) ] 
+ - Just need to write out p(τ|θ)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DRL_score_function_gradient_estimator_for_policy.png)
 
 
 
