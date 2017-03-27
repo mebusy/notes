@@ -168,6 +168,20 @@ l = cross(p1,p2) = [129 176 -30410]
 ≈ [a b c]
 ```
 
+## Quiz
+
+ - When does the line has the form (a, b, 0)? 
+    
+ - When does the line has the form (0, 0, 1)?
+
+## Points from two lines
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_points_from_two_lines.png)
+
+x = l x l'
+
+---
+
 
 
 
