@@ -391,6 +391,11 @@ f(x) = 1 + x + x²/2 + x³/6 + x⁴/24 + ...  = eˣ
     - g'(f(x)) :   change in g(f(x)) / change in f(x)
     - f'(x)  :  change in f(x) / change in x
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusOne_chain_rule.png)
+
+
+
+
 
 
 
