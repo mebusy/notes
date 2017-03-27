@@ -75,7 +75,11 @@
     - 对应欧式空间直线方程： X̄·l̃ = ax+by+c = 0 
     - 例外是在 l̃ = (0,0,1) 时为无穷线，包含了所有的2维无穷点。
     - 见 后面的 Line Representation
-
+    - 采用齐次坐标系时，可求得两条直线的交点的齐次表达：
+        - x̃ = l̃₁ x l̃₂
+    - 同时，两个点确定的直线方程的齐次表达为：
+        - l = x̃₁ x x̃₂
+ - 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_homogeneous_coordinates.png)
 
@@ -108,6 +112,13 @@ image plane上的line  ，是投影空间中，rays 组成的一个平面
     - ρ = -c/√(a²+b²)
     - => -c/√(a²+b²) = a/√(a²+b²)·x + b/√(a²+b²)·y => -c = ax + by  => ax + by + c = 0  
 
+## Example of Line
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_example_of_line.png)
+
+---
+
+# 
 
 
 
