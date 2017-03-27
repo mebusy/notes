@@ -137,7 +137,17 @@ image plane上的line  ，是投影空间中，rays 组成的一个平面
 
 ---
 
-# 
+# 1.6 Projective projection2
+
+##  Projective lines from two points 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_projective_lines_from_2_points.png)
+
+## Line passing through two points
+
+l = *x* x *x'*
+
+
 
 
 
