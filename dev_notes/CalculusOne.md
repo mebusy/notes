@@ -384,7 +384,7 @@ f(x) = 1 + x + x²/2 + x³/6 + x⁴/24 + ...  = eˣ
 
 ## Chain Rule
 
-### China Rule
+### What is the Chain Rule
 
  - d/dx g(f(x)) = g'(f(x))·f'(x)
     - d/dx g(f(x))  :  change in g(f(x)) / change in x
@@ -394,6 +394,21 @@ f(x) = 1 + x + x²/2 + x³/6 + x⁴/24 + ...  = eˣ
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusOne_chain_rule.png)
 
 
+### How do I find the tangent line to a curve ?
+
+ - x³ + y³ - 9xy = 0 
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CalclusOne_graph_leaf.png)
+ - This in NOT the graph of a function, it's really a relation , a equation.
+
+```
+x³ + y³ - 9xy = 0    
+3x² + 3y²·dy/dx - 9y - 9x·dy/dx = 0
+3x² - 9y + ( 3y² - 9x )·dy/dx = 0
+( 3y² - 9x )·dy/dx = - 3x² + 9y
+dy/dx = (- 3x² + 9y) / ( 3y² - 9x ) 
+```
+
+### How do I find the derivative of an inverse function ?
 
 
 
