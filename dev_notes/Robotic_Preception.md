@@ -37,5 +37,17 @@
     - Each point (x,y) on the plane is represented by a ray (sx,sy,s)
     - all points on the ray are equivalent:  (x, y, 1) ≅ (sx, sy, s)
 
+## Point
+
+ - Homogeneous coordinates
+    - represent coordinates in 2 dimensions with a 3-vector
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_homogeneous_coordinates.png)
+
+
+
+
+
+
 
 
