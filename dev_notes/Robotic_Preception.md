@@ -98,6 +98,7 @@ image plane上的line  ，是投影空间中，rays 组成的一个平面
  - 极坐标系下的直线方程
     - 在直角坐标系中有一条直线l，原点到该直线的垂直距离为ρ，垂线与x轴的夹角为θ，这这一条直线式唯一的，且其直线方程为：
     - `ρ = xcosθ + ysinθ`    
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_line_representation.png)
  - a line is `ρ = xcosθ + ysinθ`
     - ρ is the distance from the origin to the line
     - θ is the norm direction of the line
