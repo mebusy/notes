@@ -92,8 +92,8 @@
 ### Score Function Gradient Estimator for Policies 
 
  - Now random variable x is a whole trajectory 
-    - 𝜏 = (s₀,a₀,r₀,s₁,r₁, ..., s<sub>T-1</sub> , a<sub>T-1</sub> , r<sub>T-1</sub> , S<sub>T</sub> )
-    - ∇<sub>θ</sub> E<sub>𝜏</sub> [R(𝜏)] 
+    - τ = (s₀,a₀,r₀,s₁,r₁, ..., s<sub>T-1</sub> , a<sub>T-1</sub> , r<sub>T-1</sub> , S<sub>T</sub> )
+    - ∇<sub>θ</sub> E<sub>τ</sub> [R(τ)] 
 
 
 
