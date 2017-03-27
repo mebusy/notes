@@ -380,6 +380,16 @@ If g(a) ≠ 0 , and
 
 f(x) = 1 + x + x²/2 + x³/6 + x⁴/24 + ...  = eˣ
 
+---
+
+## Chain Rule
+
+### China Rule
+
+ - d/dx g(f(x)) = g'(f(x))·f'(x)
+    - d/dx g(f(x))  :  change in g(f(x)) / change in x
+    - g'(f(x)) :   change in g(f(x)) / change in f(x)
+    - f'(x)  :  change in f(x) / change in x
 
 
 
