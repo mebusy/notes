@@ -27,8 +27,15 @@
 
 ---
 
-#  
+# 1.5 Projective projection
 
+## The projective plane
+
+ - What is the geometric intuition?
+    - a point in the image is a *ray* in projective space
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_projective_plane.png)
+    - Each point (x,y) on the plane is represented by a ray (sx,sy,s)
+    - all points on the ray are equivalent:  (x, y, 1) ≅ (sx, sy, s)
 
 
 
