@@ -147,8 +147,26 @@ image plane上的line  ，是投影空间中，rays 组成的一个平面
 
 l = *x* x *x'*
 
+## Example of Line
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_example_of_test_point_on_line.png)
 
+ - Verify p2 lies on the line
+
+```
+(px,py,w)·(a,b,c) = 218*0.6+13*0.8 + 1* -139.4 = 1.80 
+
+非常接近0，不等于0是因为作图误差
+```
+
+ - Test line: 
+
+```
+p1 = [42,142,1];
+p2 = [218,13,1];
+l = cross(p1,p2) = [129 176 -30410]
+≈ [a b c]
+```
 
 
 
