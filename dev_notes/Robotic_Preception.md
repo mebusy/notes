@@ -43,6 +43,15 @@
  - Homogeneous coordinates 齐次坐标
     - represent coordinates in 2 dimensions with a 3-vector
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_projective_lines2.png)
+
+image plane上的line  ，是投影空间中，rays 组成的一个平面
+
+---
+
+## 齐次坐标 
+
+
  - 1.1.齐次坐标的引入
     - 在欧式空间里，两条共面的平行线无法相交，然而在投影空间(Projective Space)内却不是这样
     - 欧式空间采用(x,y,z)来表示一个三维点，但是无穷远点(∞,∞,∞)在欧式空间里是没有意义的, 但是在投影空间中进行图形和几何运算并不是一个简单的问题
@@ -87,7 +96,12 @@
     - 现在引入齐次坐标系表达 p̃ =(x,y,1) (尺度不变性，实际上在高一维的空间映射到w=1w=1平面, 这样计算后结果直接可导出到欧式空间)。可以将rotate,scale,transfer变换表示为：
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_affine_transform.png)
     - 然后我们可以导出仿射变换的矩阵形式，
-        - 
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_affine_transform_maxtrix_multiply.png)
+    - 其中O₁ₓ₂=[0,0], 仿射变换保留了点的共线/面性质及比例, 这在图形处理中非常重要，比如对于 平面上的一个几何形状进行变换，只需要对其顶点进行变换就可实现.而齐次坐标系的 引入使仿射变换能以紧凑统一的矩阵形式表达和计算，这体现了其对仿射变换的重要性。
+ - 2.4.为什么能够明确区分向量和点？
+    - [a,b,1] 点
+    - [a,b,0] 向量
+
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_homogeneous_coordinates.png)
 
@@ -101,9 +115,6 @@
     - A line is also represented as a homogeneous 3-vector l
         - l is just the surface normal ob the set of planes
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_projective_lines2.png)
-
-image plane上的line  ，是投影空间中，rays 组成的一个平面
 
 ## Line Representation
 
