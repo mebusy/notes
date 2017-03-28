@@ -499,6 +499,22 @@ So when time passed I just picked a future -- just like regular sampling , but h
 There's one more trick. If I did this my samples would kind of go all over the place , and rather than clustering in the high probability regions , they just kind of drift around and some of them will get big weights and some of them will get small. So I'd like to as samples become very small , I'd like to kind of naturally and correctly have samples move over to where they're needed. And the way that works is even though I'm strictly speaking multiplying the each sample by the evidence weight is enough to incorporate the evidence I want to get back to unweighted samples that we're kind of the look where samples all have the same weight and tend to cluster in high probability regions.
 
  
+---
+
+### Particle Filtering: Resample
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_particle_filtering_resample.png)
+
+
+ - Rather than tracking weighted samples, we resample
+    - we're not going to track these samples under their weights. So I line up my 10 waited samples , and I get 10 new ones according to my distribution. 
+    - So we're going to get 10 new particles , and for each new particle we're gonna pick one of the old ones in proportion to their weights. 
+    - That means (3,2) had a pretty high weight. So even though we get rid of all the old particles there going to be a lot of new ones which choose (3,2).
+ - N times, we choose from our weighted sample distribution (i.e. draw with replacement)
+ - This is equivalent to renormalizing the distribution
+ - Now the update is complete for this time step, continue with the next one
+
+
 
 
 
