@@ -431,7 +431,10 @@ dy/dx = (- 3x² + 9y) / ( 3y² - 9x )
 
 ### How do I find the derivative of an inverse function ?
 
-
+ - What is inverse function ?
+    - f⁻¹(f(x)) = f⁻¹(y) = x
+    - inverse function 就是 互换了 x轴 和 y轴
+      
 
 
 
