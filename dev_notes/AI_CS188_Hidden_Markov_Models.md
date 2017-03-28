@@ -385,15 +385,38 @@ The forward algorithm is a dynamic program for computing at each time slice , th
 
 ---
 
+## Online Belief Updates
+
+ - Every time step, we start with current P(X | evidence)
+ - We update for time:
+    - 
+ - We update for evidence:
+    - 
+ - The forward algorithm does both at once (and doesn’t normalize)
+
+
+
+---
+
 ## Particle Filtering 
 
 Let's thought about something different. Let's say you look at that, and you say all right I get these  variable eliminations,  I can compute big tables of probability distribution over X , and I can do these online , I can do these on step-by-step update. But there's actually a couple problems. 
 
 One question is there's enough sums and products that can kind of become a little unclear what the equations doing until you're familiar with it. That's a temporary problem but there are permanent problems as well with the exact inference. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_particle_filtering_map.png)
+
 One is sometimes the space X is really really big and there's almost no chance that you're at anywhere except a couple locations. So think about you discrete tile compus down to 100 cm x 100 cm , and you have a robot that's right here . You started here and you run it for a minute but you kind of don't know if it's going to be 3 feet of 7 feet in that direction.  But youk know that it's not going to kind of be in sproul plaza. So you have the giant state-space , you're only using a small little piece of it and so somehow we like to not have to have our computation be proportional to the number of states and in fact is proportional to the O(n²).  
 
+Secondly there are more complicated versions of HMMs called dynamic business for which inference actually gets quite difficult. 
 
+So what are we gonna do ?
+
+We are going to replace the idea of a probability distribution that for each possible value of X returns your number -- was a lookup table for every state you get a numbe. Instead we're going to keep around a collection of hypotheses that may or may not be correct , and the hypotheses are going to embody a distribution as samples. So it's going to look something like this -- you got a map and instead of each 10cm² piece of that map having a tiny probability attached ot it, I'm just going to have 300 places I might be. Now if I look these samples I don't exactly know where I am. Each sample says something different but I would guess that I'm somewhere in the upper right. And that's the idea.
+
+   
+
+ 
 
 
 
