@@ -96,6 +96,11 @@
     - ∇<sub>θ</sub> E<sub>τ</sub> [R(τ)] = E<sub>τ</sub> [ ∇<sub>θ</sub>log p(τ|θ)R(τ) ] 
  - Just need to write out p(τ|θ)
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DRL_score_function_gradient_estimator_for_policy.png)
+ - Interpretation: using good trajectories (high R) as supervised examples in classification/regression
+
+## Policy Gradient: Use Temporal Structure
+
+ 
 
 
 
