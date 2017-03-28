@@ -474,10 +474,29 @@ Now what do I do ?  I might start with my particles uniform or I have some parti
     - If enough samples, close to exact values before and after (consistent)
     - so someone gives me a HMM, that means they've given me the transition probabilities. I take my particles and each particle get simulated. That is like letting time pass in my model.   That's how in particle filtering time passes.
 
+---
+
+### Particle Filtering: Observe
+
+What happens when I get evidence ?  It's a little tricky.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_particle_filtering_observe.png)
+
+ - Slightly trickier:
+    - Don’t sample observation, fix it
+    - Similar to likelihood weighting, downweight samples based on the evidence
+        - w(x) = P(e|x)
+        - B(X) ∝ P(e|X)B'(x)
+ - As before, the probabilities don’t sum to one, since all have been downweighted (in fact they now sum to (N times) an approximation of P(e))
 
 
+Let's say here are my 10 particles . What happens when I get evidence that there's a reading of red meaning the ghost is close right here in this square (3,2).  We'll remember how evidence works in the that case: I take each of my probabilities and I downweighted by the probability of the evidence.  In that analog of that here is to take each of your particles and give it a weight that reflects how likely the evidence is from that location.  So this green particle at (3,2) maybe the probability of seeing red if you actually are at (3,2) is 0.9.  So this is a reasonable hypothesis.  But this guy at top-left square has a very low probability of seeing this reading. 
 
-   
+---
+
+So when time passed I just picked a future -- just like regular sampling , but here I'm stuck with the observation I have. So instead of generating it I force each sample to accept this future and some of them accept with a high probability and some of them accept with a low probability , and now there tiny little samples that have small weight. 
+
+There's one more trick. If I did this my samples would kind of go all over the place , and rather than clustering in the high probability regions , they just kind of drift around and some of them will get big weights and some of them will get small. So I'd like to as samples become very small , I'd like to kind of naturally and correctly have samples move over to where they're needed. And the way that works is even though I'm strictly speaking multiplying the each sample by the evidence weight is enough to incorporate the evidence I want to get back to unweighted samples that we're kind of the look where samples all have the same weight and tend to cluster in high probability regions.
 
  
 
