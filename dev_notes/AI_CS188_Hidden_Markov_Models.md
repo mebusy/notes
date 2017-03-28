@@ -455,6 +455,25 @@ We are going to replace the idea of a probability distribution that for each pos
 
 ### Particle Filtering : Elapse Time 
 
+Now what do I do ?  I might start with my particles uniform or I have some particular belief and when time passes I need to move these particles around to reflect that. So I pick up each particle -- let's pick up the green one , a hypothesis of (3,3) -- where will it be next time in the next time slice? Well I grab my transition model -- which might say counterclockwise motion with hight probability -- , so I grap this particle and I say you're no longer a distribution, you're a single value of X , you maybe wrong but you'er a single value of X and for that particular value of X. 
+
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_particle_filtering_elapse_time.png)
+
+ - Each particle is moved by sampling its next position from the transition model
+    - `x' = sample( P(X'|x) )`
+    - This is like prior sampling -- samples’ frequencies reflect the transition probabilities
+    - Here, most samples move clockwise, but some move in another direction or stay in place
+ - 解释:
+    - I have a transition function `P(X'|x)`  that says from that specific square here is where I go in with what probability. 
+    - Now this is one particle and I can't do all of the things that might happen. So I flip a coin, this is a sampling. I take this particle and I pick one of the things that might evolve into , and I pick in proportion to the conditional proabability given by the transition function. So I get a new sampe `x'`, which might be in the same place or it might go couterclockwise. and if I do that to each one of these 10 particles I might get these 10 particles(bottom of pic) out. 
+    - I don't create particles , don't destroy particles, I picked them up 1 by 1 and I simulate what might happen to that particle in the next time step.
+    - so there  might be 5 particles on (3,3) but they might not all get the same future because I flip a coin for each one. They might spread out in this case they do.
+ - This captures the passage of time
+    - If enough samples, close to exact values before and after (consistent)
+    - so someone gives me a HMM, that means they've given me the transition probabilities. I take my particles and each particle get simulated. That is like letting time pass in my model.   That's how in particle filtering time passes.
+
 
 
 
