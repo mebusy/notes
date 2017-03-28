@@ -32,4 +32,40 @@ Pong is just a fun toy test case, something we play with while we figure out how
 
 > Our policy network is a 2-layer fully-connected net.
 
+### implement this policy network in Python/numpy
+
+```python
+h = np.dot(W1, x) # compute hidden layer neuron activations
+h[h<0] = 0 # ReLU nonlinearity: threshold at zero
+logp = np.dot(W2, h) # compute log probability of going up
+p = 1.0 / (1.0 + np.exp(-logp)) # sigmoid function (gives probability of going up)>]
+```
+
+ - in this snippet W1 and W2 are two matrices that we initialize randomly. 
+ - We’re not using biases because meh.
+ - Notice that we use the sigmoid non-linearity at the end, which squashes the output probability to the range [0,1]
+ - Intuitively, the neurons in the hidden layer (which have their weights arranged along the rows of W1) can detect various game scenarios (e.g. the ball is in the top, and our paddle is in the middle), and the weights in W2 can then decide if in each case we should be going UP or DOWN. 
+
+## preprocessing
+
+ - Ideally you’d want to feed at least 2 frames to the policy network so that it can detect motion
+ - To make things a bit simpler , I’ll do a tiny bit of preprocessing. 
+    - e.g. we’ll actually feed difference frames to the network (i.e. subtraction of current and last frame).
+
+## It sounds kind of impossible.
+
+ - We get 100,800 numbers (210\*160\*3) and forward our policy network (which easily involves on order of a million parameters in W1 and W2). 
+ - Suppose that we decide to go UP. The game might respond that we get 0 reward this time step and gives us another 100,800 numbers for the next frame. We could repeat this process for hundred timesteps before we get any non-zero reward!
+    - E.g. suppose we finally get a +1. That’s great, but how can we tell what made that happen? Was it something we did just now? Or maybe 76 frames ago? Or maybe it had something to do with frame 10 and then frame 90? 
+    - And how do we figure out which of the million knobs to change and how, in order to do better in the future? 
+ - We call this the *credit assignment problem*
+ - In the specific case of Pong we know that we get a +1 if the ball makes it past the opponent. The *true* cause is that we happened to bounce the ball on a good trajectory, but in fact we did so many frames ago 
+    - e.g. maybe about 20 in case of Pong, and every single action we did afterwards had zero effect on whether or not we end up getting the reward.
+ - In other words we’re faced with a very difficult problem and things are looking quite bleak.
+
+ 
+
+  
+
+
 
