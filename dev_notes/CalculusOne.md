@@ -497,8 +497,13 @@ But use *log* can make things tricky :  使用 log 来简化一大堆的 指数
 
 ```
 logy = 5log(1+x²) + 8log(1+x³) - 7log(1+x⁴)
-
+      now differentiate it
 ```
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_derivative_of_complex_function_solve.png)
+
+
 
 
 
