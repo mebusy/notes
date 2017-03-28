@@ -434,9 +434,58 @@ dy/dx = (- 3x² + 9y) / ( 3y² - 9x )
  - What is inverse function ?
     - f⁻¹(f(x)) = f⁻¹(y) = x
     - inverse function 就是 互换了 x轴 和 y轴
-      
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusOne_inverse_function_exmaple.png)
+ - What is the derivative of an inverse function ?
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusOne_derivative_inverse_function.png)
+    - since derivate is just the slope, and inverse function exchange the x axis and y axis, so 
+    - if the derivative of *f(x)* is m , then the derivative of *f⁻¹(y)*  = 1/m.  注意：这里 x，y并不相等
 
 
+```
+   f(x) = x² 
+=> f'(x) = 2x
+
+   f⁻¹(x) = √x
+=> (f⁻¹)'(x) = 1/f'( f⁻¹(x) ) = 1/f'(√x) = 1/(2√x) 
+```
+
+#### What is the derivative of log ?
+
+```
+eˣ = y
+y = logx 
+
+eˣ⁺ʸ= eˣeʸ
+log(ab)  = loga + logb // this is a big reason why we care so much about logs
+```
+
+```
+f(x) = eˣ 
+(f⁻¹)'(x) = 1/f'( f⁻¹(x) )  
+          the neat thing is f'(x)==f(x)
+          = 1/f( f⁻¹(x) )  
+          = 1/x
+```
+
+```
+f(x) = logₐx 
+f'(x) = d/dx( logx/loga )
+      since loga is constant 
+      = 1/loga · d/dx(logx) 
+      = 1/loga · 1/x 
+      = 1/( xloga )
+```
+
+```
+f(x) = 2ˣ , 我们知道了怎么求 eˣ,logx 的 导数
+f'(x) = d/dx( eˡºᵍ² )ˣ
+      = d/dx e⁽ˡºᵍ²⁾ˣ
+      apply chain rule
+      = e⁽ˡºᵍ²⁾ˣ·log2
+      = 2ˣ·log2
+```
+
+#### What is logarithmic differentiation ?
 
 
 
