@@ -196,7 +196,7 @@ It pretty much have to wipe out the root. Remember the minimum is guaranteed to 
 
 ##### step1: Delete root
 
-Well, there's pretty much only one node that could fill the hole without causing other problems with the tree structure. And that is the **very last node**. So the rightmost leaf at buttom level , one that simple fix is to swap that up and have that take the place of the original root. So in this case ,the 13 is going to get a massive promotion ans get teleported all the way to be the new root of this tree. 
+Well, there's pretty much only one node that could fill the hole without causing other problems with the tree structure. And that is the **very last node**. So the rightmost leaf at buttom level , one that simple fix is to swap that up and have that take the place of the original root. So in this case ,the 13 is going to get a massive promotion and get teleported all the way to be the new root of this tree. 
 
 <h2 id="e1e112957103fc145d1136e58c9e68c8"></h2>
 

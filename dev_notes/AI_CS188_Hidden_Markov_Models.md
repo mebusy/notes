@@ -313,7 +313,7 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
     - you take your input P(X<sub>t</sub>|e<sub>1:t</sub>)  ,  which is your current beliefs. You take them multiply them by the transition probabilities , and then you sum out all the sources and now you have the probabilities over all of the targets. 
  - Or, compactly :
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_passage_of_time_compactly.png)
-    - it says: you want to know the probability tomorrow of being at some particular X<sub>t+1</sub>. You consider how likely it is to get to X<sub>t+1</sub> from each locations (X'). So you want to know how likely it is that I'll end up at this particular X<sub>t+1</sub> , you consider all the places that could get you there , in one time step. and you say : what's the probability of being , here at A and then moving there , what's the probability ? ans whatelse if at B, C, ... 
+    - it says: you want to know the probability tomorrow of being at some particular X<sub>t+1</sub>. You consider how likely it is to get to X<sub>t+1</sub> from each locations (X'). So you want to know how likely it is that I'll end up at this particular X<sub>t+1</sub> , you consider all the places that could get you there , in one time step. and you say : what's the probability of being , here at A and then moving there , what's the probability ? and whatelse if at B, C, ... 
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_passage_of_time_ABCD.png)
     - that is this, you  summer(∑) all of the places you could have been , you look how likely it is that you were there ( B(x<sub>t</sub>) ) to begin with , times how likely it is had you been there to get to X'.  
  - Basic idea: beliefs get “pushed” through the transitions
@@ -379,12 +379,19 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
     - B<sub>t</sub> (X) = P(X<sub>t</sub>|e<sub>1:t</sub>)
  - We can derive the following updates:
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_the_forawrd_algorithm.png)
+ - This is exactly variable elimination with order X₁,X₂,...
 
 The forward algorithm is a dynamic program for computing at each time slice , the distribution over the state at that time given all the evidence to date. 
 
-TODO  57:45
+---
 
+## Particle Filtering 
 
+Let's thought about something different. Let's say you look at that, and you say all right I get these  variable eliminations,  I can compute big tables of probability distribution over X , and I can do these online , I can do these on step-by-step update. But there's actually a couple problems. 
+
+One question is there's enough sums and products that can kind of become a little unclear what the equations doing until you're familiar with it. That's a temporary problem but there are permanent problems as well with the exact inference. 
+
+One is sometimes the space X is really really big and there's almost no chance that you're at anywhere except a couple locations. So think about you discrete tile compus down to 100 cm x 100 cm , and you have a robot that's right here . You started here and you run it for a minute but you kind of don't know if it's going to be 3 feet of 7 feet in that direction.  But youk know that it's not going to kind of be in sproul plaza. So you have the giant state-space , you're only using a small little piece of it and so somehow we like to not have to have our computation be proportional to the number of states and in fact is proportional to the O(n²).  
 
 
 

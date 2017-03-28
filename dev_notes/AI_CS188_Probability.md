@@ -430,7 +430,7 @@ P( rain | dry  ) = 1-P(sun|dry)
  - We can calculate the posterior distribution P(G|r) over ghost locations given a reading using Bayes’ rule:
     - P( g|r) ∝<sub>g</sub> P(r|g)P(g) 
         - ∝ : proportional to 
-        - ∝<sub>g</sub> means that , P(r) is almost 1, but not 1 (看上面的例子，分母接近1) .
+        - ∝<sub>g</sub> means that if compute the thing on right for each value of *g* and normalize, I'll get the things on the left. 
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_ghostbuster2.png)
 
 
