@@ -416,18 +416,25 @@ We are going to replace the idea of a probability distribution that for each pos
 
 ---
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_particle_filtering_pic.png)
+
  - Filtering: approximate solution
  - Sometimes |X| is too big to use exact inference
     - |X| may be too big to even store B(X)
     - E.g. X is continuous
  - Solution: approximate inference
     - Track samples of X, not all values
+        - instead of keeping track of a map from X to real numbers , I'm gonna keep track of a list of samples.
+        - here are 10 samples each red dot is a sample 
+        - and in this case my samples live on some but not all of the location on the grid. 
     - Samples are called particles
     - Time per step is linear in the number of samples
     - But: number needed may be large
     - In memory: list of particles, not states
  - This is how robot localization works in practice
  - Particle is just new name for sample
+
+
 
    
 
