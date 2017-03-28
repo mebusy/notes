@@ -389,9 +389,9 @@ The forward algorithm is a dynamic program for computing at each time slice , th
 
  - Every time step, we start with current P(X | evidence)
  - We update for time:
-    - 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_online_belief_update_time.png)
  - We update for evidence:
-    - 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_online_belief_update_evidence.png)
  - The forward algorithm does both at once (and doesn’t normalize)
 
 
@@ -413,6 +413,21 @@ Secondly there are more complicated versions of HMMs called dynamic business for
 So what are we gonna do ?
 
 We are going to replace the idea of a probability distribution that for each possible value of X returns your number -- was a lookup table for every state you get a numbe. Instead we're going to keep around a collection of hypotheses that may or may not be correct , and the hypotheses are going to embody a distribution as samples. So it's going to look something like this -- you got a map and instead of each 10cm² piece of that map having a tiny probability attached ot it, I'm just going to have 300 places I might be. Now if I look these samples I don't exactly know where I am. Each sample says something different but I would guess that I'm somewhere in the upper right. And that's the idea.
+
+---
+
+ - Filtering: approximate solution
+ - Sometimes |X| is too big to use exact inference
+    - |X| may be too big to even store B(X)
+    - E.g. X is continuous
+ - Solution: approximate inference
+    - Track samples of X, not all values
+    - Samples are called particles
+    - Time per step is linear in the number of samples
+    - But: number needed may be large
+    - In memory: list of particles, not states
+ - This is how robot localization works in practice
+ - Particle is just new name for sample
 
    
 
