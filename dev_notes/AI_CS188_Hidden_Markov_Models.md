@@ -345,7 +345,7 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_observation.png)
         - take you current vector which represents the various probabilities right now , for each probability multiply by the evidence factor. So if the evidence is totally inconsistent with that state then even if somthing had high probability suddenly it might get zero out if it can't produce the evidence. 
         - so you go to each probability of each state you multiply each one by the evidence.  
-        - so the blue thing is your probability before you saw your evidence , you waited by the evidence, and then this vector doesn't add to 1 anymore. So you re-normalized it now it adds up to 1 again , now the red thing is including the evidence you just saw. 
+        - so the blue thing is your probability before you saw your evidence , you weighted by the evidence, and then this vector doesn't add to 1 anymore. So you re-normalized it now it adds up to 1 again , now the red thing is including the evidence you just saw. 
  - Or:
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_observation_compactly.png)
     - you take your vector (blue) , you do point product with the evidence vector, and you normalize them.  Now you have your new beliefs.  
@@ -507,17 +507,30 @@ There's one more trick. If I did this my samples would kind of go all over the p
 
 
  - Rather than tracking weighted samples, we resample
-    - we're not going to track these samples under their weights. So I line up my 10 waited samples , and I get 10 new ones according to my distribution. 
+    - we're not going to track these samples under their weights. So I line up my 10 weighted samples , and I get 10 new ones according to my distribution. 
     - So we're going to get 10 new particles , and for each new particle we're gonna pick one of the old ones in proportion to their weights. 
     - That means (3,2) had a pretty high weight. So even though we get rid of all the old particles there going to be a lot of new ones which choose (3,2).
+    - So you go from the position like in top of pic, where part of the information of the distribution is in the location of the hypothesis -- the particles, and part of it is in their weights. You now have a new sampling ( bottom of pic ) , where all of the information is in their location -- they are now equally weighted. Where did the weights go? They went into the multiplicities -- the fact (3,2) has a high weight leads to more particles get clone from it , and  (1,3) has a low weight that's reflected in the fact that probably it's not going to get chosen for the new team. 
  - N times, we choose from our weighted sample distribution (i.e. draw with replacement)
  - This is equivalent to renormalizing the distribution
+    - procedurally the idea is when you see evidence in your particle filter , you line up your particles , you weight them by the evidence and then you clone new particles through your old particles , and now the weights are all gone. 
  - Now the update is complete for this time step, continue with the next one
 
+---
 
+## Recap: Particle Filtering
 
+ - Particles: track samples of states rather than an explicit distribution
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_particle_filtering_recap.png)
 
+You have some belief function. It is represented by a list of particles of things that might be true , and they are all kind of the particles represent your distribution at samples. 
+
+When time passes, you take your particles and you don't add or delete particles. For each one you pick a future for it through simulation -- you flip coin. That's like prior sampling. 
+
+When evidence comes in , you weight the particles based on a factor from the evidence , so some particles get shrunk down to almost zero, other particles that match the evidence still have a pretty substantial weight. 
+
+Then you decide you don't actually want these weighted particles. So you resample and new() particles and each one clones an old particle , that means some old particles now kind of have multiplicity and some of them are gone. 
 
 
 
