@@ -434,6 +434,28 @@ We are going to replace the idea of a probability distribution that for each pos
  - This is how robot localization works in practice
  - Particle is just new name for sample
 
+---
+
+### Prepresentation: Particles
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_particle_filtering_repr.png)
+
+ - Our representation of P(X) is now a list of N particles (samples)
+    - Generally, N << |X|
+    - Storing map from X to counts would defeat the point
+    - here instead of writing 9 numbers which is 1 probability for each square I'm gonna have maybe 10 particles. 
+        - Each particle has a specific value of X , eg. green particle (3,3), and it's not the only particle that represents that hypothesis , we actually have 5 completely different particle that all predicting the same state. 
+        - so what's the probability of (3,3) ?   50% ! It's probably wrong but that's what the particles say.
+ - P(x) approximated by number of particles with value x
+    - So, many x may have P(x) = 0! 
+    - More particles, more accuracy
+ - For now, all particles have a weight of 1
+
+---
+
+### Particle Filtering : Elapse Time 
+
+
 
 
    
