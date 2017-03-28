@@ -2,6 +2,8 @@
 
 # Pong From Pixel 
 
+[pong from pixel](http://karpathy.github.io/2016/05/31/rl/)
+
  - the game works as follows:
     - we receive an image frame (a 210x160x3 byte array (integers from 0 to 255 giving pixel values)) 
     - and we get to decide if we want to move the paddle UP or DOWN (i.e. a binary choice). 
