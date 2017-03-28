@@ -65,6 +65,8 @@ p = 1.0 / (1.0 + np.exp(-logp)) # sigmoid function (gives probability of going u
 
 ## Supervised Learning. 
 
+I’d like to remind you briefly about supervised learning because, as we’ll see, RL is very similar. 
+
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/pong_supervised_learning.png)
 
  - In ordinary supervised learning we would feed an image to the network and get some probabilities,  e.g. for two classes UP and DOWN.
@@ -74,10 +76,41 @@ p = 1.0 / (1.0 + np.exp(-logp)) # sigmoid function (gives probability of going u
     - In an implementation we would enter gradient of 1.0 on the log probability of UP and run backprop to compute the gradient vector 
     - ∇<sub>w</sub> log p(y=UP|x)
     - This gradient would tell us how we should change every one of our million parameters to make the network slightly more likely to predict UP
-    - For example, one of the million parameters in the network might have a gradient of -2.1, which means that if we were to increase that parameter by a small positive amount (e.g. 0.001), the log probability of UP would decrease by 2.1 * 0.001 (decrease due to the negative sign). 
-    - If we then did a parameter update then, yay, our network would now be slightly more likely to predict UP when it sees a very similar image in the future.
+  
 
-## Policy Gradients. 
+## Policy Gradients
+
+but what do we do if we do not have the correct label in the Reinforcement Learning setting?
+
+Here is the Policy Gradients solution.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Pong_rl_policyGradients.png)
+
+ - Our policy network calculated probability of going UP as 30% (logprob -1.2) and DOWN as 70% (logprob -0.36).
+ - We will now sample an action from this distribution; E.g. suppose we sample DOWN, and we will execute it in the game. 
+ - At this point notice one interesting fact: We could immediately fill in a gradient of 1.0 for DOWN as we did in supervised learning,and find the gradient vector that would encourage the network to be slightly more likely to do the DOWN action in the future.
+ - So we can immediately evaluate this gradient and that’s great, but the problem is that at least for now we do not yet know if going DOWN is good.
+ - But the critical point is that that’s okay, because we can simply wait a bit and see! 
+    - For example in Pong we could wait until the end of the game, then take the reward we get (either +1 if we won or -1 if we lost), and enter that scalar as the gradient for the action we have taken (DOWN in this case). 
+ - In the example, going DOWN ended up to us losing the game (-1 reward).
+ - So if we fill in -1 for log probability of DOWN and do backprop we will find a gradient that discourages the network to take the DOWN action for that input in the future
+
+## Training protocol
+
+So here is how the training will work in detail.
+
+ - We will initialize the policy network with some W1, W2 and play 100 games of Pong (we call these policy “rollouts”).
+ -  Lets assume that each game is made up of 200 frames so in total we’ve made 20,000 decisions for going UP or DOWN and for each one of these we know the parameter gradient, which tells us how we should change the parameters if we wanted to encourage that decision in that state in the future. 
+ -  
+
+
+
+
+
+
+
+
+
 
 
 
