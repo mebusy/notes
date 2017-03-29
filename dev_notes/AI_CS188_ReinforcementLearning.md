@@ -1077,10 +1077,20 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 
 
+---
 
+# Q Learning  VS. Policy Gradient
 
-
-
+ · |  Q Learning  |  Policy Gradient
+--- | --- | --- 
+model-free  | off-policy model-free control | policy optimization
+目的 | 求出Q\*(s, a) | 优化expected reward，并不关心Q\*(s, a).
+适用场合 | 一般针对离散空间 | 针对连续场景
+学习方法 | 基于值函数估计的强化学习方法 | 策略搜索强化学习方法
+学习方法类比 | 可类比Naive Bayes——通过估计后验概率来得到预测 | 可类比SVM——不估计后验概率而直接优化学习目标
+求解方法 | 采用值迭代方法。以value推policy | 直接在策略空间求解，泛化更好，直推policy
+最优解 | 在离散状态空间中理论上可以收敛到最优策略，但收敛速度可能极慢。在使用函数逼近后（例如使用神经网络策略模型）则不一定 | Policy Gradient由于使用梯度方法求解非凸目标，只能收敛到不动点，不能证明收敛到最优策略。
+存在问题 | 基于值函数的方法存在策略退化问题，即值函数估计已经很准确了，但通过值函数得到的策略仍然不是最优。使用值函数近似时，策略退化现象非常常见 |  Policy Gradient不会出现策略退化现象，其目标表达更直接，求解方法更现代，还能够直接求解stochastic policy等等优点更加实用。
 
 ---
 
