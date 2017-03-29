@@ -97,11 +97,12 @@ Here is the Policy Gradients solution.
 
 ## Training protocol
 
-So here is how the training will work in detail.
+ - How training will work ?
+    - initialize the policy network with W1,W2, play 100 games (rollout)
+    - assume
+        - each game is made up of 200 frames
+        - 
 
- - We will initialize the policy network with some W1, W2 and play 100 games of Pong (we call these policy “rollouts”).
- -  Lets assume that each game is made up of 200 frames so in total we’ve made 20,000 decisions for going UP or DOWN and for each one of these we know the parameter gradient, which tells us how we should change the parameters if we wanted to encourage that decision in that state in the future. 
- -  
 
 
 
