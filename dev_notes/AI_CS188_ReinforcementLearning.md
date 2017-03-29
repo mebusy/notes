@@ -1101,6 +1101,17 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 ## 具体更新步骤
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_pg_update_step.png)
+
+ - 观测的信息通过神经网络分析, 选出了左边的行为
+ - 我们直接进行反向传递, 使之下次被选的可能性增加.
+ - 但是奖惩信息却告诉我们, 这次的行为是不好的, 那我们的动作可能性增加的幅度 随之被减低.
+ - 这样就能靠奖励来左右我们的神经网络反向传递
+ - 再来举个例子, 假如这次的观测信息让神经网络选择了右边的行为, 
+ - 右边的行为随之想要进行反向传递, 使右边的行为下次被多选一点,
+ - 这时, 奖惩信息也来了, 告诉我们这是好行为, 那我们就在这次反向传递的时候加大力度, 让它下次被多选的幅度更猛烈! 这
+ - 这就是 Policy Gradients 的核心思想
+
 
 
 
