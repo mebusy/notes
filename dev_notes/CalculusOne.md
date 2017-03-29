@@ -504,7 +504,64 @@ logy = 5log(1+x²) + 8log(1+x³) - 7log(1+x⁴)
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_derivative_of_complex_function_solve.png)
 
 
+---
 
+### How can I multiply numbers quickly ?
+
+```
+  2038074743
+x 4222234741
+= ?
+``` 
+
+ - Quarter Squares
+    - a·b = (a+b)²/4 - (a-b)²/4 
+    - eg.  3·2 = (3+2)²/4 - (3-2)²/4 = 6 
+
+n | n²/4
+--- | ---
+1 | 1/4
+2 | 1
+3 | 2 + 1/4
+4 | 4
+5 | 6 + 1/4 
+
+--- 
+
+ - Admittedly, people don't talk too much about quarter squares nowadays.
+ - What you've probably heard a lot more about is logaritms.
+    - log(a·b) = loga + logb
+    - you can this log to multiply very quickly, provide you have a log table. 
+
+---
+
+### How do I justify the derivative rules ?
+
+#### justify the power fule 
+
+ - negative n
+    - d/dx (1/x) = -1/x²
+    - d/dx (x⁻ⁿ) = -n·x<sup>-(n+1)</sup>  
+    - works as well
+
+#### logarithms help to prove the product rule 
+
+```
+f(x)>0, g(x)>0
+log(f(x)·g(x)) = log f(x) + log g(x)
+
+differentiate
+
+1/(f(x)g(x))·d/dx( f(x)g(x) ) = 1/f(x)·f'(x) + 1/g(x)·g'(x)
+
+d/dx( f(x)g(x) ) = g(x)·f'(x) + f(x)·g'(x)
+```
+
+#### How do we prove the quotient rule 
+
+ - use chain rule
+
+#### 
 
 
 ------
