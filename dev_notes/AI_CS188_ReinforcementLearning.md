@@ -1076,6 +1076,33 @@ For example you might do some Q-learning for a while or if you've got like a hel
  - Next up: Part II: Uncertainty and Learning!
 
 
+---
+
+# Policy Gradients
+
+## 和以往的强化学习方法不同
+
+ - 强化学习是一个通过奖惩来学习正确行为的机制.
+    - 有学习奖惩值, 根据自己认为的高价值选行为 , 比如 Q learning, Deep Q Network,
+        - 无法在 无穷多的动作中计算价值, 从而选择行为
+    - 也有不通过分析奖励值, 直接输出行为的方法,   Policy Gradients 
+        - 能在一个连续区间内挑选动作
+
+## 更新不同之处
+    
+ - Policy Gradients 的误差又是什么呢?
+    - 没有误差! 
+ - 但是他的确是在进行某一种的反向传递. 
+    - 这种反向传递的目的是让这次被选中的行为更有可能在下次发生.
+ - 但是我们要怎么确定这个行为是不是应当被增加被选的概率呢?
+    - reward
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_pg_error.png)
+
+## 具体更新步骤
+
+
+
 
 ---
 
