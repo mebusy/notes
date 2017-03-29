@@ -1092,7 +1092,7 @@ For example you might do some Q-learning for a while or if you've got like a hel
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_deep_ql.png)
 
  - Deep Q Learning 依然是Q Learning , 只是用神经网络去代替了Q Table
- - 那还有一种更加 End to End的方法，叫做Policy Gradient
+ - 还有一种更加 End to End的方法，叫做Policy Gradient
 
 ## Policy Gradient
 
@@ -1101,7 +1101,16 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_pg_network.png)
 
-
+ - 优点
+    - 更加的 End to End，不用借用强化学习的理论框架。
+    - 可以通过直接输出动作相应的连续量处理连续的控制量
+        - 比如对于汽车来说，油门的力度，刹车力度，转向角度
+        - 用通过Ｑ值选动作的方法则无法处理连续量
+ - 在　Policy Gradient　中我们希望学会一个策略能够达到最大的期望回馈
+    - π<sub>θ</sub>(s) 表示策略 
+    - θ 表示 策略网络的 weight 
+    - 通过学习不断更新。目标函数可以表示为 J(θ) = E<sub>π(θ)</sub>[r] 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_pg_derivative_J_theta.png)
 
 ---
 
