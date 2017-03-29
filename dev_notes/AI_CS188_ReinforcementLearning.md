@@ -1091,6 +1091,16 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_deep_ql.png)
 
+ - Deep Q Learning 依然是Q Learning , 只是用神经网络去代替了Q Table
+ - 那还有一种更加 End to End的方法，叫做Policy Gradient
+
+## Policy Gradient
+
+ - Deep Q Learning 用Ｑ网络去估计Q 表然后在规定一种策略去依据Ｑ值采取行动不同
+ - Policy Gradient 的策略网络直接输出的就是策略，比如采取每一种行动的概率（对于离散控制问题），或者每一个动作的值（对于连续控制问题）。
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_pg_network.png)
+
 
 
 ---
