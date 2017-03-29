@@ -57,7 +57,7 @@
 
  1. [MIT AI Fall 2010](https://github.com/mebusy/notes/blob/master/dev_notes/MIT_AI_Fall_2010.md) 
  2. [台大 机器学习技法](https://github.com/mebusy/notes/blob/master/dev_notes/TaiwanU_ML.md)
-
+ 3. [OpenAI GYM](https://github.com/mebusy/notes/blob/master/dev_notes/openAI_gym.md)
 
 
 
