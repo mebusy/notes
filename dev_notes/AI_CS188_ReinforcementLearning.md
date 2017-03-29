@@ -1115,8 +1115,6 @@ For example you might do some Q-learning for a while or if you've got like a hel
         - 利用Gradient ascent的方法 ， 不停地更新 θ 训练一个能够达到最大期望回馈的策略网络。
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_pg_update_theta.png)
 
-## Deep Deterministic Policy Gradient
-
  - PG 听起来很美好 , 实践中会有很多致命的问题让它很难收敛
     - 1. 反馈分配: 反馈在大多时候都是不存在的
         - 比如赛车游戏，只有游戏结束，例如到达终点或者撞墙而亡的时候才收到反馈
@@ -1125,7 +1123,33 @@ For example you might do some Q-learning for a while or if you've got like a hel
         - 但是实际上，在游戏进行的过程中，同一时间段前后的抽样是明显具有相关性的，这个iid假设并不成立，也就会影响到学习的效果
     - 3. 反馈噪音 
         - 在我们通过获取反馈，折扣，然后ＴＤ来更新Ｑ值的方法，或者直接估计策略的方法中，这些反馈信号都有非常多的噪声，这些噪声可能会让整个网络很难收敛，甚至很容易发散。
-    
+ - 直到发现这个更加高级的方法DDPG
+
+## Deep Deterministic Policy Gradient
+
+ - 动作网络 Actor Network 用于直接估计动作
+    - 就像低配版 Policy Gradient中的 Policy Network，输入State，给出动作值 Actions
+    - 从Critic Network 对应 Actions 输入计算出的导数来进行更新。
+ - 校正网络 Critic Network 用来估计Q值
+    - 输入 State 的同时还输入由Actor Network 产生的 Actions，给出相应的 Q 值
+    - 并不断的用 bellman equation来进行更新 
+ - 动作方程 actor function 表示为: μ(s|θ<sup>μ</sup>)
+ - 校正方程 critic function 表示为: Q(s,a | θ<sup>Q</sup> ) 
+ - Cost function J 对于\theta的导数为：
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_DDPG_derivative_J_theta.png)
+ - 这个算法将对动作的Q值估计和策略估计给分离，让 agent 能够在探索更多的同时保持对一个确定策略的学习，让整个网络学习变得更容易。
+ - 其他 更有利于网络的收敛 的小技巧 （小，但是很有用）
+    - Replay Buffer
+        - 近乎于无限大的缓存，每次进行动作以后得到的 状态-动作-反馈- 新状态 (s<sub>t</sub>,a<sub>t</sub>, r<sub>t</sub>,s<sub>t+1</sub> ) 都会被保存到这个缓存中去
+        - 不同于之前直接拿游戏进行过程中得到的 (s<sub>t</sub>,a<sub>t</sub>, r<sub>t</sub>,s<sub>t+1</sub> )  来进行训练
+        - 采用了Replay Buffer 以后，训练采用的 sample 则从这个缓存中随机抽样，通过这样的方法，理论上可以打破抽样直接的相关性，解决iid假设不成立的困扰
+    - Target Network
+        - 在训练过程中，由于环境是相对混沌的，用于更新Q网络的反馈具有很大的噪声
+        - 直接训练一个网络会非常容易让它发散而非收敛。
+        - 目标网络Target Network 用来创建 Actor和Critic网络的副本, μ'(s|θ<sup>μ</sup>)  ,  Q'(s,a | θ<sup>Q</sup> ) 来计算目标值，然后以τ 的比例缓慢的跟随原网络更新
+            - τθ' ← τθ + (1-τ)θ'
+
+
 
 ---
 
