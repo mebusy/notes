@@ -1111,6 +1111,21 @@ For example you might do some Q-learning for a while or if you've got like a hel
     - θ 表示 策略网络的 weight 
     - 通过学习不断更新。目标函数可以表示为 J(θ) = E<sub>π(θ)</sub>[r] 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_pg_derivative_J_theta.png)
+        - 由此导数，我们可以把每轮的折扣回馈 v<sub>t</sub> 看作改 state 真实价值 G<sub>t</sub> 的无偏估计
+        - 利用Gradient ascent的方法 ， 不停地更新 θ 训练一个能够达到最大期望回馈的策略网络。
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_pg_update_theta.png)
+
+## Deep Deterministic Policy Gradient
+
+ - PG 听起来很美好 , 实践中会有很多致命的问题让它很难收敛
+    - 1. 反馈分配: 反馈在大多时候都是不存在的
+        - 比如赛车游戏，只有游戏结束，例如到达终点或者撞墙而亡的时候才收到反馈
+        - 如何将反馈很好的和之前进行的一系列策略和动作联系到一起去是一个很大的问题
+    - 2. 算法有一个内在的假设，假设所有的抽样都是独立，并且处于相同分布的(independently and identically distributed, iid )
+        - 但是实际上，在游戏进行的过程中，同一时间段前后的抽样是明显具有相关性的，这个iid假设并不成立，也就会影响到学习的效果
+    - 3. 反馈噪音 
+        - 在我们通过获取反馈，折扣，然后ＴＤ来更新Ｑ值的方法，或者直接估计策略的方法中，这些反馈信号都有非常多的噪声，这些噪声可能会让整个网络很难收敛，甚至很容易发散。
+    
 
 ---
 
