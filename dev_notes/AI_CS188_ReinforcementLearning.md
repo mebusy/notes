@@ -1078,6 +1078,24 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 ---
 
+# More About Reinforcement Learning
+
+## Q-Learning 的问题
+
+ - 如果state 很多，我们维护这么大的一个 q-value table
+    - Feature-Based Representations 是一个解决方法
+    - 但是如果输入是一张 raw pic , 不容易从 picture 中提取 feature
+ - Neural Network可以很好对图片提取特征信息，进行抽象，分类等
+
+## Deep Q Learning
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_deep_ql.png)
+
+
+
+---
+
+
 # Policy Gradients
 
 ## 和以往的强化学习方法不同
