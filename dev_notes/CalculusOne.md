@@ -561,7 +561,14 @@ d/dx( f(x)g(x) ) = g(x)·f'(x) + f(x)·g'(x)
 
  - use chain rule
 
-#### 
+
+---
+
+---
+
+## Derivatives of Transcendental (Trigonometric) Functions
+
+
 
 
 ------
