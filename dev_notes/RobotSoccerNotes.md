@@ -123,8 +123,29 @@
         - specifies the rewards for transitions from active states Sᵢ to terminal states Gᵢ
  - A subtask can also take parameters
     -  different bindings of parameters specify different instances of a subtask
- - 
-
+ - Primitive actions are treated as primitive subtasks 
+    - such that they are always executable and will terminate immediately after execution.
+ - This hierarchical structure can be represented as a directed acyclic graph -- the *task graph*
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robotsoccer_task_graph.png)
+    - a subtask in the task graph is also a (macro)action of its parent
+    - root task M₀ has three macroactions: M₁, M₂, and M₃ ( i.e., A₀ = {M₁, M₂, M₃}).
+    - Subtasks M₁, M₂, and M₃ , are sharing lower-level primitive actions Mᵢ (4 ≤ i ≤ 8) as their subtasks
+    - Each subtask must be fulfilled by a policy, unless it is a primitive action
+ - Given the hierarchical structure, a *hierarchical policy π* is defined as a set of policies for each subtask π = { π₀, π₁, ... π<sub>n</sub>} ,
+    - πᵢ for subtask Mᵢ , is a mapping from its active states to actions πᵢ: Sᵢ → Aᵢ
+ - The *projected value function* V<sup>π</sup>(i,s) is defined as the expected cumulative reward 
+    - follow a hierarchical policy π = { π₀, π₁, ... π<sub>n</sub>}
+    - starting from state s
+    - until Mᵢ terminates at one of its terminal states g ∈ Gᵢ.
+ - the action value function Q<sup>π</sup> (i, s, a) for subtask Mᵢ is defined as the expected cumulative reward of
+    - first performing action Mₐ (which is also a subtask) in state *s*
+    - then following policy π until the termination of Mᵢ
+    - 状态s，首先执行 Ma，直到 子任务 Mᵢ 终止
+    - Notice that for primitive subtasks Mₐ , we have V<sup>π</sup> (a, s) = R(s, a)  ? .
+ - value functions of a hierarchical policy π 
+    - Q<sup>π</sup> (i, s, a) = V<sup>π</sup> (i, s) + C<sup>π</sup> (i, s, a), where
+        - V<sup>π</sup> (i, s) = R(s,i), if Mᵢ is primitive  
+        - Q<sup>π</sup> (i, s, π(s))  , otherwise 
 
 
 
