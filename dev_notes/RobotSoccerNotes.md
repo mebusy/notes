@@ -113,7 +113,7 @@
 
  - decomposes the original MDP M into a set of sub-MDPs arranged over a hierarchical structure
  - Each sub-MDP is treated as an macroaction for high-level MDPs
- - Specifically, let the decomposed MDPs be {M₀, M₁,..., Mn}, then M₀ is the root subtask such that solving M0 solves the original MDP M
+ - Specifically, let the decomposed MDPs be {M₀, M₁,..., Mn}, then M₀ is the root subtask such that solving M₀ solves the original MDP M
  - Each subtask Mᵢ is defined as a tuple < τᵢ, Aᵢ, R̃ᵢ >
     - τᵢ: *termination predicate*  
         - partitions the state space into a set of active states Sᵢ, and a set of terminal states Gᵢ ( also known as subgoals )
@@ -133,20 +133,32 @@
     - Each subtask must be fulfilled by a policy, unless it is a primitive action
  - Given the hierarchical structure, a *hierarchical policy π* is defined as a set of policies for each subtask π = { π₀, π₁, ... π<sub>n</sub>} ,
     - πᵢ for subtask Mᵢ , is a mapping from its active states to actions πᵢ: Sᵢ → Aᵢ
- - The *projected value function* V<sup>π</sup>(i,s) is defined as the expected cumulative reward 
+ - The *projected value function* V<sup>π</sup>(i,s) is defined as the ***expected cumulative reward***
     - follow a hierarchical policy π = { π₀, π₁, ... π<sub>n</sub>}
     - starting from state s
     - until Mᵢ terminates at one of its terminal states g ∈ Gᵢ.
- - the action value function Q<sup>π</sup> (i, s, a) for subtask Mᵢ is defined as the expected cumulative reward of
+    - 状态s 开始，到 Mᵢ 执行到一个中止状态  ；如果 Mᵢ 是primitive subtasks，则 V就是 R(s,a) , 否则就是 固定 π(s)的Q<sup>π</sup>  ;
+ - the action value function Q<sup>π</sup> (i, s, a) for subtask Mᵢ is defined as the ***expected cumulative reward*** of
     - first performing action Mₐ (which is also a subtask) in state *s*
     - then following policy π until the termination of Mᵢ
     - 状态s，首先执行 Ma，直到 子任务 Mᵢ 终止
-    - Notice that for primitive subtasks Mₐ , we have V<sup>π</sup> (a, s) = R(s, a)  ? .
- - value functions of a hierarchical policy π 
-    - Q<sup>π</sup> (i, s, a) = V<sup>π</sup> (i, s) + C<sup>π</sup> (i, s, a), where
-        - V<sup>π</sup> (i, s) = R(s,i), if Mᵢ is primitive  
-        - Q<sup>π</sup> (i, s, π(s))  , otherwise 
+    - 和 V<sup>π</sup> 相比，Q<sup>π</sup> 必须从 动作 Mₐ 开始
+    - V / Q 的意义和 普通的RL中的都不一样， 因为任何一个 subtask Mᵢ 的结束都不一定 导致 状态 transform, 所以不能使用 普通RL的 value iteration.
 
+ - It has been shown that the value functions of a hierarchical policy π can be expressed recursively as follows 
+    - Q<sup>π</sup> (i, s, a) = V<sup>π</sup> (a, s) + C<sup>π</sup> (i, s, a), where
+        - V<sup>π</sup> (i, s) = R(s,i), if Mᵢ is primitive  
+        - V<sup>π</sup> (i, s) = Q<sup>π</sup> (i, s, π(s))  , otherwise ( 固定  π(s)的Q  )
+    - C<sup>π</sup> (i, s, a)  is the *completion function* that specifies the expected cumulative reward
+        - obtained after finishing subtask Mₐ
+        - but before completing Mᵢ
+        - when following the hierarchical policy π, defined as
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robotSoccer_c_pi.png)
+        - Pr is also *T*
+        - Pr(s' , N | s, a) is the probability that subtask Mₐ will terminate in state s after N timesteps of execution. 
+ - A *recursively optimal policy* π<sup>\*</sup> can be found by recursively computing the optimal projected value function:
+    - Q<sup>\*</sup> (i, s, a) = V<sup>\*</sup> (a, s) + C<sup>\*</sup> (i, s, a)
+        - 
 
 
 
