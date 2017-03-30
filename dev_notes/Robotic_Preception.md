@@ -183,6 +183,58 @@ x = l x l'
 
 ---
 
+# 1.7 Point and line duality
+
+点和线的对偶性： 齐次坐标下，点表现为一个三维坐标，平面（线）也是，因为可以相同的看待 点和面
+
+ - Points and lines are dual in projective space
+ - given any formula, can switch the meanings of points and lines to get another formula
+
+## Points from two lines
+
+ - When P has the form (x,y,0)?
+ - Point at infinity
+    - Consider two parallel lines:  x=1, x=2  ( Image plane 上的两条平行竖线 )
+    - 齐次坐标下的 可表示为:  (-1, 0  ,1),  ( -1, 0, -2 )
+    - Intersection = [0 1 0]
+    - Point at infinity in the direction of y
+ - w==0, 说明它是一个  vanishing point, 在竖直方向上无限远的一个点
+    - 图像中的 vanishing point 就是由平行线相交得到的
+    - 图像中的平行线在实际中并不相交，但我们依然可以做 cross product
+
+
+```
+octave:2> cross( [-1 0 1] , [-1 0 2] )
+ans =   0   1   0
+``` 
+
+## Point at infinity, Ideal points
+
+ - l = (a,b,c)  , l' = (a,b,c')
+ - l x l' = (c'-c)(b,-a,0)ᵀ
+ - Any point (x₁,x₂,0) is intersection of lines at infinity
+
+## Points at infinity
+
+ - Under projective transformation, 
+    - All parallel lines intersects at the point at infinity 
+    - line l = (a,b,c)ᵀ , intersects at (b,-a, 0)ᵀ
+
+---
+
+## Line at infinity
+
+ - A line passing all points at infinity:
+    - l<sub>∞</sub> = (0,0,1)ᵀ
+ - because:
+
+```
+        ⎡x₁⎤
+[0,0,1]·⎢x₂⎥ = 0 . 
+        ⎣0 ⎦
+```
+
+
 
 
 
