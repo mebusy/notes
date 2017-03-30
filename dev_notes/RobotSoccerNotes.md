@@ -160,7 +160,13 @@
     - Q<sup>\*</sup> (i, s, a) = V<sup>\*</sup> (a, s) + C<sup>\*</sup> (i, s, a)    -- (8)
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robotSoccer_Q_star.png)
  - In Equation (8), C<sup>\*</sup> (i, s, a) = C<sup>π\*</sup> (i, s, a) ,  is the completion function of the recursively optimal policy π<sup>\*</sup>
-    - 
+ - Given the optimal value functions, the optimal policy πᵢ<sup>\*</sup> for subtask Mᵢ is then given as
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robotSoccer_pi_i_star.png)
+ 
+# 4. ONLINE PLANNING WITH MAXQ
+
+
+  
 
 
 
