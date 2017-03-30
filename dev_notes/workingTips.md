@@ -90,6 +90,12 @@ sudo -E easy_install pip
 sudo -E pip install PyYAML
 ```
 
+## pip upgrade all outdated package
+
+```
+pip list --outdated | cut -d' ' -f1 | xargs pip install --upgrade
+```
+
 <h2 id="24ef4c36ec66c15ef9f0c96fe27c0e0b"></h2>
 
 ## bazel 
