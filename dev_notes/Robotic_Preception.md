@@ -192,6 +192,8 @@ x = l x l'
 
 ## Points from two lines
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_pts_from_2_lines.png)
+
  - When P has the form (x,y,0)?
  - Point at infinity
     - Consider two parallel lines:  x=1, x=2  ( Image plane 上的两条平行竖线 )
@@ -233,6 +235,19 @@ ans =   0   1   0
 [0,0,1]·⎢x₂⎥ = 0 . 
         ⎣0 ⎦
 ```
+
+
+## Ideal points and lines
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_ideal_pt_line.png)
+
+ - Ideal point (“point at infinity”)
+    - p ≅ (x, y, 0) – parallel to image plane
+    - It has infinite image coordinates
+ - Ideal line
+    - l ≅ (a, b, 0) – parallel to image plane
+    - Corresponds to a line in the image (finite coordinates)
+
 
 
 
