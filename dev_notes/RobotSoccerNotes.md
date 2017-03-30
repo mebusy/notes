@@ -157,9 +157,10 @@
         - Pr is also *T*
         - Pr(s' , N | s, a) is the probability that subtask Mₐ will terminate in state s after N timesteps of execution. 
  - A *recursively optimal policy* π<sup>\*</sup> can be found by recursively computing the optimal projected value function:
-    - Q<sup>\*</sup> (i, s, a) = V<sup>\*</sup> (a, s) + C<sup>\*</sup> (i, s, a)
-        - 
-
+    - Q<sup>\*</sup> (i, s, a) = V<sup>\*</sup> (a, s) + C<sup>\*</sup> (i, s, a)    -- (8)
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robotSoccer_Q_star.png)
+ - In Equation (8), C<sup>\*</sup> (i, s, a) = C<sup>π\*</sup> (i, s, a) ,  is the completion function of the recursively optimal policy π<sup>\*</sup>
+    - 
 
 
 
