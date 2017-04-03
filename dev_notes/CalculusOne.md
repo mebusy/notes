@@ -592,6 +592,21 @@ d/dx( f(x)g(x) ) = g(x)·f'(x) + f(x)·g'(x)
 
 ## Derivatives of Transcendental (Trigonometric) Functions
 
+### What is Trigonometric ?
+
+cscθ = 1/sinθ 
+
+secθ = 1/cosθ 
+
+tanθ = sinθ / cosθ 
+
+cotθ = 1/tanθ 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calclusone_Trigonometric_functions.png)
+
+
+### How can I differentiate trig functions ?
+
 
 
 
