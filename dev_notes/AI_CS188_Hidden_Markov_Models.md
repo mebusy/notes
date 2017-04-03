@@ -225,7 +225,7 @@ So it knows there's a wall right here , but no wall in front of me. And if it ge
 
 ---
 
-So if I sense that is a wall above and below I should have pretty hight probability of my belief distribution of being in the dark gray squares. I should have some smaller probability of being in the lighter grey square.  
+So if I sense that is a wall above and below I should have pretty high  probability of my belief distribution of being in the dark gray squares. I should have some smaller probability of being in the lighter grey square.  
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_rl_t1.png)
 
@@ -470,7 +470,7 @@ We are going to replace the idea of a probability distribution that for each pos
 
 ### Particle Filtering : Elapse Time 
 
-Now what do I do ?  I might start with my particles uniform or I have some particular belief and when time passes I need to move these particles around to reflect that. So I pick up each particle -- let's pick up the green one , a hypothesis of (3,3) -- where will it be next time in the next time slice? Well I grab my transition model -- which might say counterclockwise motion with hight probability -- , so I grap this particle and I say you're no longer a distribution, you're a single value of X , you maybe wrong but you'er a single value of X and for that particular value of X. 
+Now what do I do ?  I might start with my particles uniform or I have some particular belief and when time passes I need to move these particles around to reflect that. So I pick up each particle -- let's pick up the green one , a hypothesis of (3,3) -- where will it be next time in the next time slice? Well I grab my transition model -- which might say counterclockwise motion with high  probability -- , so I grap this particle and I say you're no longer a distribution, you're a single value of X , you maybe wrong but you'er a single value of X and for that particular value of X. 
 
 
 
