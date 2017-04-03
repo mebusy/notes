@@ -52,6 +52,7 @@
  5. [10-11 Reinforcement Learning](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_ReinforcementLearning.md)
  6. [12 Probability](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_Probability.md)
  7. [13 Markov Models](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_Markov_Models.md)
+ 8. [14 HMM](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_Hidden_Markov_Models.md)
 
 **Others**
 

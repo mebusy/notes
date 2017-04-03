@@ -1,3 +1,17 @@
+...menustart
+
+ - [MAXQ-OP](#3671bc7cbc9bd1056af8587cbea6fb26)
+ - [1. Introduce](#36b4cc2ccb642e8a023f180968cd5d48)
+ - [2. RELATED WORK](#d293cec1c68216b097f0e838a7e8ffe8)
+ - [3. Background](#ce299cb2c59ef259932ce124c943dd1f)
+	 - [3.1 MDP](#ec611cd465394d15a6bffb6e3ffa4b05)
+	 - [3.2. MAXQ Hierarchical Decomposition](#dc0487d5842259239fe7dbbf7ddc0f37)
+ - [4. ONLINE PLANNING WITH MAXQ](#c7d5283deeab21f16b4eb0d5b8392c90)
+
+...menuend
+
+
+<h2 id="3671bc7cbc9bd1056af8587cbea6fb26"></h2>
 
 # MAXQ-OP
 
@@ -5,6 +19,8 @@
     - that utilizes MAXQ hierarchical decomposition in online settings.
  - able to reach much more deeper states in the search tree with relatively less computation time
     - by exploiting MAXQ hierarchical decomposition online
+
+<h2 id="36b4cc2ccb642e8a023f180968cd5d48"></h2>
 
 # 1. Introduce 
 
@@ -72,6 +88,8 @@
 
 ---
 
+<h2 id="d293cec1c68216b097f0e838a7e8ffe8"></h2>
+
 # 2. RELATED WORK
 
  - online planning for MDPs
@@ -100,7 +118,11 @@
         - we address this challenge by introducing a termination distribution for each subtask over its terminal states and assuming that subtasks will take care of the local policies to achieve the termination distributions. 
 
 
+<h2 id="ce299cb2c59ef259932ce124c943dd1f"></h2>
+
 # 3. Background
+
+<h2 id="ec611cd465394d15a6bffb6e3ffa4b05"></h2>
 
 ## 3.1 MDP
 
@@ -108,6 +130,8 @@
     - for all g ∈ G and a ∈ A, we have T(g | g, a) = 1 and R(g, a) = 0
  - If the discount factor γ = 1 , the resulting MDP is then called *undiscounted goal-directed* MDP
  - It has been proved that any MDP can be transformed into an equivalent undiscounted negative-reward goal-directed MDP where the reward for nongoal states is strictly negative
+
+<h2 id="dc0487d5842259239fe7dbbf7ddc0f37"></h2>
 
 ## 3.2. MAXQ Hierarchical Decomposition
 
@@ -163,6 +187,8 @@
  - Given the optimal value functions, the optimal policy πᵢ<sup>\*</sup> for subtask Mᵢ is then given as
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robotSoccer_pi_i_star.png)
  
+<h2 id="c7d5283deeab21f16b4eb0d5b8392c90"></h2>
+
 # 4. ONLINE PLANNING WITH MAXQ
 
 

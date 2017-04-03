@@ -1,4 +1,18 @@
+...menustart
 
+ - [Pong From Pixel](#14c8bcab6d8cbd9dd30f671937d1930e)
+	 - [Policy network](#c8ec2431da786d1805ac35666846a034)
+		 - [implement this policy network in Python/numpy](#8527e311e4e8e7b217e4eb3df745bacf)
+	 - [preprocessing](#4da478b2dea92208e1212e4dfc88e520)
+	 - [It sounds kind of impossible.](#ba0a2315087f7fb29261db63e3183a76)
+	 - [Supervised Learning.](#43db94d830cd7723a6d7a21a311d9bf4)
+	 - [Policy Gradients](#6c11e2dd65ad60a6dd6cf3a2be08fa0c)
+	 - [Training protocol](#abc3a1be8d17524478c2cc2d1399fe32)
+
+...menuend
+
+
+<h2 id="14c8bcab6d8cbd9dd30f671937d1930e"></h2>
 
 # Pong From Pixel 
 
@@ -19,6 +33,8 @@ Pong is just a fun toy test case, something we play with while we figure out how
 
 ---
 
+<h2 id="c8ec2431da786d1805ac35666846a034"></h2>
+
 ## Policy network
 
  - This network will take the state of the game and decide what we should do (move UP or DOWN). 
@@ -31,6 +47,8 @@ Pong is just a fun toy test case, something we play with while we figure out how
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/pong_policy_2layer_network.png)
 
 > Our policy network is a 2-layer fully-connected net.
+
+<h2 id="8527e311e4e8e7b217e4eb3df745bacf"></h2>
 
 ### implement this policy network in Python/numpy
 
@@ -46,11 +64,15 @@ p = 1.0 / (1.0 + np.exp(-logp)) # sigmoid function (gives probability of going u
  - Notice that we use the sigmoid non-linearity at the end, which squashes the output probability to the range [0,1]
  - Intuitively, the neurons in the hidden layer (which have their weights arranged along the rows of W1) can detect various game scenarios (e.g. the ball is in the top, and our paddle is in the middle), and the weights in W2 can then decide if in each case we should be going UP or DOWN. 
 
+<h2 id="4da478b2dea92208e1212e4dfc88e520"></h2>
+
 ## preprocessing
 
  - Ideally you’d want to feed at least 2 frames to the policy network so that it can detect motion
  - To make things a bit simpler , I’ll do a tiny bit of preprocessing. 
     - e.g. we’ll actually feed difference frames to the network (i.e. subtraction of current and last frame).
+
+<h2 id="ba0a2315087f7fb29261db63e3183a76"></h2>
 
 ## It sounds kind of impossible.
 
@@ -62,6 +84,8 @@ p = 1.0 / (1.0 + np.exp(-logp)) # sigmoid function (gives probability of going u
  - In the specific case of Pong we know that we get a +1 if the ball makes it past the opponent. The *true* cause is that we happened to bounce the ball on a good trajectory, but in fact we did so many frames ago 
     - e.g. maybe about 20 in case of Pong, and every single action we did afterwards had zero effect on whether or not we end up getting the reward.
  - In other words we’re faced with a very difficult problem and things are looking quite bleak.
+
+<h2 id="43db94d830cd7723a6d7a21a311d9bf4"></h2>
 
 ## Supervised Learning. 
 
@@ -77,6 +101,8 @@ I’d like to remind you briefly about supervised learning because, as we’ll s
     - ∇<sub>w</sub> log p(y=UP|x)
     - This gradient would tell us how we should change every one of our million parameters to make the network slightly more likely to predict UP
   
+
+<h2 id="6c11e2dd65ad60a6dd6cf3a2be08fa0c"></h2>
 
 ## Policy Gradients
 
@@ -94,6 +120,8 @@ Here is the Policy Gradients solution.
     - For example in Pong we could wait until the end of the game, then take the reward we get (either +1 if we won or -1 if we lost), and enter that scalar as the gradient for the action we have taken (DOWN in this case). 
  - In the example, going DOWN ended up to us losing the game (-1 reward).
  - So if we fill in -1 for log probability of DOWN and do backprop we will find a gradient that discourages the network to take the DOWN action for that input in the future
+
+<h2 id="abc3a1be8d17524478c2cc2d1399fe32"></h2>
 
 ## Training protocol
 

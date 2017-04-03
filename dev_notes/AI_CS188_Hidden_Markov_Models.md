@@ -17,6 +17,13 @@
 		 - [Example of Observation](#22a77e6cdda4b68b0d0175942f8c991b)
 		 - [Example: Weather HMM](#75fc03589b48053de414b7e5d43b25a6)
 	 - [The Forward Algorithm](#6dbc07cd7c694bd7ba7917098b848d8b)
+	 - [Online Belief Updates](#dec94cde56942725d8a224ed9c065de2)
+	 - [Particle Filtering](#410d3f5a2938bf0efb5fb0b5ef6ca702)
+		 - [Prepresentation: Particles](#66e6211dd1d94379d2e996793264b1b9)
+		 - [Particle Filtering : Elapse Time](#853995ed6d9bf9986864449b043774f2)
+		 - [Particle Filtering: Observe](#48c6c2f783c106c655abca3552e166b3)
+		 - [Particle Filtering: Resample](#988c88ad650c59ea6c4f609059420535)
+	 - [Recap: Particle Filtering](#5d32a4d32d2126113fcc6cc88fde5a32)
 
 ...menuend
 
@@ -385,6 +392,8 @@ The forward algorithm is a dynamic program for computing at each time slice , th
 
 ---
 
+<h2 id="dec94cde56942725d8a224ed9c065de2"></h2>
+
 ## Online Belief Updates
 
  - Every time step, we start with current P(X | evidence)
@@ -397,6 +406,8 @@ The forward algorithm is a dynamic program for computing at each time slice , th
 
 
 ---
+
+<h2 id="410d3f5a2938bf0efb5fb0b5ef6ca702"></h2>
 
 ## Particle Filtering 
 
@@ -436,6 +447,8 @@ We are going to replace the idea of a probability distribution that for each pos
 
 ---
 
+<h2 id="66e6211dd1d94379d2e996793264b1b9"></h2>
+
 ### Prepresentation: Particles
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_particle_filtering_repr.png)
@@ -452,6 +465,8 @@ We are going to replace the idea of a probability distribution that for each pos
  - For now, all particles have a weight of 1
 
 ---
+
+<h2 id="853995ed6d9bf9986864449b043774f2"></h2>
 
 ### Particle Filtering : Elapse Time 
 
@@ -475,6 +490,8 @@ Now what do I do ?  I might start with my particles uniform or I have some parti
     - so someone gives me a HMM, that means they've given me the transition probabilities. I take my particles and each particle get simulated. That is like letting time pass in my model.   That's how in particle filtering time passes.
 
 ---
+
+<h2 id="48c6c2f783c106c655abca3552e166b3"></h2>
 
 ### Particle Filtering: Observe
 
@@ -501,6 +518,8 @@ There's one more trick. If I did this my samples would kind of go all over the p
  
 ---
 
+<h2 id="988c88ad650c59ea6c4f609059420535"></h2>
+
 ### Particle Filtering: Resample
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_particle_filtering_resample.png)
@@ -517,6 +536,8 @@ There's one more trick. If I did this my samples would kind of go all over the p
  - Now the update is complete for this time step, continue with the next one
 
 ---
+
+<h2 id="5d32a4d32d2126113fcc6cc88fde5a32"></h2>
 
 ## Recap: Particle Filtering
 

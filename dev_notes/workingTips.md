@@ -9,6 +9,7 @@
 	 - [Install Pip use proxy](#e6674e04c08bcf49fad7d19ca0d8a4bd)
 	 - [set proxy for python](#7c3ae4a79fa7e554e876889719101165)
 	 - [pip install package with proxy](#762fac82abbaaf86cfc10780f5b7cc58)
+	 - [pip upgrade all outdated package](#1bca9692962e3deeda270ab8db1b80f2)
 	 - [bazel](#24ef4c36ec66c15ef9f0c96fe27c0e0b)
 	 - [FileMerge](#19a991a87a69e4435918f98d2ffc8421)
 	 - [tcpkill](#0dcd3e0e4377857453bb9a2db4a20139)
@@ -89,6 +90,8 @@ sudo -E easy_install pip
 ```
 sudo -E pip install PyYAML
 ```
+
+<h2 id="1bca9692962e3deeda270ab8db1b80f2"></h2>
 
 ## pip upgrade all outdated package
 

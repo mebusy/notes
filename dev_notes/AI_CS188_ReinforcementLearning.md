@@ -43,6 +43,16 @@
 		 - [Overfitting : Why Limiting Capacity Can Help *](#4d834ce4e64c89be3da78e77c76c4357)
 	 - [Policy Search](#20e0fd886eda9402c6c8c3dd18b4bb87)
 	 - [Conclusion](#6f8b794f3246b0c1e1780bb4d4d5dc53)
+ - [More About Reinforcement Learning](#96bbd2b31616de4e05850fa5d1d2da71)
+	 - [Q-Learning 的问题](#39e455faa2cee078107349ed5a79c485)
+	 - [Deep Q Learning](#61f0ce8542a3f21f795b45c4c133c04c)
+	 - [Policy Gradient](#d4680878cbefd1ce084325dd933e82f9)
+	 - [Deep Deterministic Policy Gradient](#60ca1673615c7ff54bc9af8925335b66)
+ - [Policy Gradients](#6c11e2dd65ad60a6dd6cf3a2be08fa0c)
+	 - [和以往的强化学习方法不同](#241bce13578cf2fc98c72f432c5bc204)
+	 - [更新不同之处](#1a843b1039c85dd724a126708a375915)
+	 - [具体更新步骤](#edc520f80b6440121e2920f7f2caf86b)
+ - [Q Learning  VS. Policy Gradient](#60e65bfe1069d9e782077a65bdd16a2a)
 
 ...menuend
 
@@ -1078,7 +1088,11 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 ---
 
+<h2 id="96bbd2b31616de4e05850fa5d1d2da71"></h2>
+
 # More About Reinforcement Learning
+
+<h2 id="39e455faa2cee078107349ed5a79c485"></h2>
 
 ## Q-Learning 的问题
 
@@ -1087,12 +1101,16 @@ For example you might do some Q-learning for a while or if you've got like a hel
     - 但是如果输入是一张 raw pic , 不容易从 picture 中提取 feature
  - Neural Network可以很好对图片提取特征信息，进行抽象，分类等
 
+<h2 id="61f0ce8542a3f21f795b45c4c133c04c"></h2>
+
 ## Deep Q Learning
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_deep_ql.png)
 
  - Deep Q Learning 依然是Q Learning , 只是用神经网络去代替了Q Table
  - 还有一种更加 End to End的方法，叫做Policy Gradient
+
+<h2 id="d4680878cbefd1ce084325dd933e82f9"></h2>
 
 ## Policy Gradient
 
@@ -1125,6 +1143,8 @@ For example you might do some Q-learning for a while or if you've got like a hel
         - 在我们通过获取反馈，折扣，然后ＴＤ来更新Ｑ值的方法，或者直接估计策略的方法中，这些反馈信号都有非常多的噪声，这些噪声可能会让整个网络很难收敛，甚至很容易发散。
  - 直到发现这个更加高级的方法DDPG
 
+<h2 id="60ca1673615c7ff54bc9af8925335b66"></h2>
+
 ## Deep Deterministic Policy Gradient
 
  - 动作网络 Actor Network 用于直接估计动作
@@ -1154,7 +1174,11 @@ For example you might do some Q-learning for a while or if you've got like a hel
 ---
 
 
+<h2 id="6c11e2dd65ad60a6dd6cf3a2be08fa0c"></h2>
+
 # Policy Gradients
+
+<h2 id="241bce13578cf2fc98c72f432c5bc204"></h2>
 
 ## 和以往的强化学习方法不同
 
@@ -1163,6 +1187,8 @@ For example you might do some Q-learning for a while or if you've got like a hel
         - 无法在 无穷多的动作中计算价值, 从而选择行为
     - 也有不通过分析奖励值, 直接输出行为的方法,   Policy Gradients 
         - 能在一个连续区间内挑选动作
+
+<h2 id="1a843b1039c85dd724a126708a375915"></h2>
 
 ## 更新不同之处
     
@@ -1174,6 +1200,8 @@ For example you might do some Q-learning for a while or if you've got like a hel
     - reward
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_pg_error.png)
+
+<h2 id="edc520f80b6440121e2920f7f2caf86b"></h2>
 
 ## 具体更新步骤
 
@@ -1192,6 +1220,8 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 
 ---
+
+<h2 id="60e65bfe1069d9e782077a65bdd16a2a"></h2>
 
 # Q Learning  VS. Policy Gradient
 

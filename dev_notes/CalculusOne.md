@@ -36,6 +36,14 @@
 		 - [What is the Chain Rule](#ac719cc56a1f9d666b2ce221292d434d)
 		 - [How do I find the tangent line to a curve ?](#6a7b8b5beb5c33160b2c36e47bf112d4)
 		 - [How do I find the derivative of an inverse function ?](#dc089fc1ed5dcef804ace2ddbfe24ad8)
+			 - [What is the derivative of log ?](#5f69ff9556a2b55dc9deea310f7a2b92)
+			 - [What is logarithmic differentiation ?](#a137981fdca4787996280122b275b240)
+		 - [How can I multiply numbers quickly ?](#1979351d84291a1f76471b33e82e5008)
+		 - [How do I justify the derivative rules ?](#a6ad02e7652dc79317faed3380472275)
+			 - [justify the power fule](#5d408cb9530da400a9ec060fe6e1f797)
+			 - [logarithms help to prove the product rule](#895df12d6a8dc1d4687bc0497d6850f6)
+			 - [How do we prove the quotient rule](#2ea8bc6939fe6ab30be67d6c95f8e567)
+	 - [Derivatives of Transcendental (Trigonometric) Functions](#9cc60abb55698d40b2aa1a013a4eec54)
 
 ...menuend
 
@@ -449,6 +457,8 @@ dy/dx = (- 3x² + 9y) / ( 3y² - 9x )
 => (f⁻¹)'(x) = 1/f'( f⁻¹(x) ) = 1/f'(√x) = 1/(2√x) 
 ```
 
+<h2 id="5f69ff9556a2b55dc9deea310f7a2b92"></h2>
+
 #### What is the derivative of log ?
 
 ```
@@ -485,6 +495,8 @@ f'(x) = d/dx( eˡºᵍ² )ˣ
       = 2ˣ·log2
 ```
 
+<h2 id="a137981fdca4787996280122b275b240"></h2>
+
 #### What is logarithmic differentiation ?
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_derivative_of_complex_function.png)
@@ -505,6 +517,8 @@ logy = 5log(1+x²) + 8log(1+x³) - 7log(1+x⁴)
 
 
 ---
+
+<h2 id="1979351d84291a1f76471b33e82e5008"></h2>
 
 ### How can I multiply numbers quickly ?
 
@@ -535,7 +549,11 @@ n | n²/4
 
 ---
 
+<h2 id="a6ad02e7652dc79317faed3380472275"></h2>
+
 ### How do I justify the derivative rules ?
+
+<h2 id="5d408cb9530da400a9ec060fe6e1f797"></h2>
 
 #### justify the power fule 
 
@@ -543,6 +561,8 @@ n | n²/4
     - d/dx (1/x) = -1/x²
     - d/dx (x⁻ⁿ) = -n·x<sup>-(n+1)</sup>  
     - works as well
+
+<h2 id="895df12d6a8dc1d4687bc0497d6850f6"></h2>
 
 #### logarithms help to prove the product rule 
 
@@ -557,6 +577,8 @@ differentiate
 d/dx( f(x)g(x) ) = g(x)·f'(x) + f(x)·g'(x)
 ```
 
+<h2 id="2ea8bc6939fe6ab30be67d6c95f8e567"></h2>
+
 #### How do we prove the quotient rule 
 
  - use chain rule
@@ -565,6 +587,8 @@ d/dx( f(x)g(x) ) = g(x)·f'(x) + f(x)·g'(x)
 ---
 
 ---
+
+<h2 id="9cc60abb55698d40b2aa1a013a4eec54"></h2>
 
 ## Derivatives of Transcendental (Trigonometric) Functions
 

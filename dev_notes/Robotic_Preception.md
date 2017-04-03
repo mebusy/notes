@@ -1,4 +1,31 @@
+...menustart
 
+ - [1.4 Vanishing Points](#416e617e8164f09d5f2cb88d97aaa29d)
+	 - [Vanishing lines](#aab45f4c2a6599bed4bf590cc4504d2b)
+ - [1.5 Projective projection](#e3bcbb1142a1f84990f0757c530827ac)
+	 - [The projective plane](#3fd090afb1fba45f2981b3bf6c6bc4e1)
+	 - [Point](#2a3cd5946cfd317eb99c3d32e35e2d4c)
+	 - [齐次坐标](#c24cc7a6f92f81c3fb65ed02c79e7952)
+	 - [Projective lines](#6e434d9a61c1a39c10721d8f2a37050c)
+	 - [Line Representation](#b42a0384896207b92556bfbc2e2b774c)
+	 - [Example of Line](#b2c2388e6dd9d4b529bf55ddd2561a5f)
+ - [1.6 Projective projection2](#d640fdd2a21b3264b78056e46cdc00d9)
+	 - [Projective lines from two points](#8f1680bff46ddc0057c0316e0d4aac52)
+	 - [Line passing through two points](#347bec6c0a5fdfe9e8359f08a72678bb)
+	 - [Example of Line](#b2c2388e6dd9d4b529bf55ddd2561a5f)
+	 - [Quiz](#ab458f4b361834dd802e4f40d31b5ebc)
+	 - [Points from two lines](#9880beb72dfffaf502ca96adb21fa1e3)
+ - [1.7 Point and line duality](#f40a24c3d9296c58fbdc7c14fca3c20b)
+	 - [Points from two lines](#9880beb72dfffaf502ca96adb21fa1e3)
+	 - [Point at infinity, Ideal points](#9300f2d4660e6103bfcfc34c9c11d163)
+	 - [Points at infinity](#8ab86ba3e1c0e429c210a28fa2550900)
+	 - [Line at infinity](#b3d6d793f09b2d9db36b3ab1d43d4f3c)
+	 - [Ideal points and lines](#167afd45203324fc5b1fb35aee95f2c0)
+
+...menuend
+
+
+<h2 id="416e617e8164f09d5f2cb88d97aaa29d"></h2>
 
 # 1.4 Vanishing Points
 
@@ -9,6 +36,8 @@
     - The ray from C through v point is parallel to the lines
     - An image may have more than one vanishing point
 
+
+<h2 id="aab45f4c2a6599bed4bf590cc4504d2b"></h2>
 
 ## Vanishing lines
 
@@ -27,7 +56,11 @@
 
 ---
 
+<h2 id="e3bcbb1142a1f84990f0757c530827ac"></h2>
+
 # 1.5 Projective projection
+
+<h2 id="3fd090afb1fba45f2981b3bf6c6bc4e1"></h2>
 
 ## The projective plane
 
@@ -37,6 +70,8 @@
     - Each point (x,y) on the plane is represented by a ray (sx,sy,s)
     - all points on the ray are equivalent:  (x, y, 1) ≅ (sx, sy, s)
         - 一个点的齐次坐标乘上一个非零标量，则所得之坐标会表示同一个点。
+
+<h2 id="2a3cd5946cfd317eb99c3d32e35e2d4c"></h2>
 
 ## Point
 
@@ -48,6 +83,8 @@
 image plane上的line  ，是投影空间中，rays 组成的一个平面
 
 ---
+
+<h2 id="c24cc7a6f92f81c3fb65ed02c79e7952"></h2>
 
 ## 齐次坐标 
 
@@ -105,6 +142,8 @@ image plane上的line  ，是投影空间中，rays 组成的一个平面
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_homogeneous_coordinates.png)
 
+<h2 id="6e434d9a61c1a39c10721d8f2a37050c"></h2>
+
 ## Projective lines
 
  - What does a line in the image correspond to in projective space?
@@ -115,6 +154,8 @@ image plane上的line  ，是投影空间中，rays 组成的一个平面
     - A line is also represented as a homogeneous 3-vector l
         - l is just the surface normal ob the set of planes
 
+
+<h2 id="b42a0384896207b92556bfbc2e2b774c"></h2>
 
 ## Line Representation
 
@@ -131,21 +172,31 @@ image plane上的line  ，是投影空间中，rays 组成的一个平面
     - ρ = -c/√(a²+b²)
     - => -c/√(a²+b²) = a/√(a²+b²)·x + b/√(a²+b²)·y => -c = ax + by  => ax + by + c = 0  
 
+<h2 id="b2c2388e6dd9d4b529bf55ddd2561a5f"></h2>
+
 ## Example of Line
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_example_of_line.png)
 
 ---
 
+<h2 id="d640fdd2a21b3264b78056e46cdc00d9"></h2>
+
 # 1.6 Projective projection2
+
+<h2 id="8f1680bff46ddc0057c0316e0d4aac52"></h2>
 
 ##  Projective lines from two points 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_projective_lines_from_2_points.png)
 
+<h2 id="347bec6c0a5fdfe9e8359f08a72678bb"></h2>
+
 ## Line passing through two points
 
 l = *x* x *x'*
+
+<h2 id="b2c2388e6dd9d4b529bf55ddd2561a5f"></h2>
 
 ## Example of Line
 
@@ -169,11 +220,15 @@ norm( [129 176] ) = 218.21
 l/218.21 = [0.59116     0.80655  -139.35912] ≈ [a b c ]
 ```
 
+<h2 id="ab458f4b361834dd802e4f40d31b5ebc"></h2>
+
 ## Quiz
 
  - When does the line has the form (a, b, 0)? 
     
  - When does the line has the form (0, 0, 1)?
+
+<h2 id="9880beb72dfffaf502ca96adb21fa1e3"></h2>
 
 ## Points from two lines
 
@@ -183,12 +238,16 @@ x = l x l'
 
 ---
 
+<h2 id="f40a24c3d9296c58fbdc7c14fca3c20b"></h2>
+
 # 1.7 Point and line duality
 
 点和线的对偶性： 齐次坐标下，点表现为一个三维坐标，平面（线）也是，因为可以相同的看待 点和面
 
  - Points and lines are dual in projective space
  - given any formula, can switch the meanings of points and lines to get another formula
+
+<h2 id="9880beb72dfffaf502ca96adb21fa1e3"></h2>
 
 ## Points from two lines
 
@@ -210,11 +269,15 @@ octave:2> cross( [-1 0 1] , [-1 0 2] )
 ans =   0   1   0
 ``` 
 
+<h2 id="9300f2d4660e6103bfcfc34c9c11d163"></h2>
+
 ## Point at infinity, Ideal points
 
  - l = (a,b,c)  , l' = (a,b,c')
  - l x l' = (c'-c)(b,-a,0)ᵀ
  - Any point (x₁,x₂,0) is intersection of lines at infinity
+
+<h2 id="8ab86ba3e1c0e429c210a28fa2550900"></h2>
 
 ## Points at infinity
 
@@ -223,6 +286,8 @@ ans =   0   1   0
     - line l = (a,b,c)ᵀ , intersects at (b,-a, 0)ᵀ
 
 ---
+
+<h2 id="b3d6d793f09b2d9db36b3ab1d43d4f3c"></h2>
 
 ## Line at infinity
 
@@ -236,6 +301,8 @@ ans =   0   1   0
         ⎣0 ⎦
 ```
 
+
+<h2 id="167afd45203324fc5b1fb35aee95f2c0"></h2>
 
 ## Ideal points and lines
 
