@@ -608,6 +608,52 @@ cotθ = 1/tanθ
 ### How can I differentiate trig functions ?
 
 
+#### What is the derivative of sin and cos?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_derivative_sin_cos.png)
+
+ - θ increased by h 
+ - point ( cosθ, sinθ ) moved to ( cos(θ+h) , sin(θ+h) )
+    - sin(θ+h) = sin(θ) + h·cosθ
+        - sinθ increased by h·cosθ 
+    - cos(θ+h) = cos(θ) - h·sinθ
+        - cosθ decreased by h·sinθ
+ - conclusion
+    - d/dθ sinθ = cosθ
+    - d/dθ cosθ = -sinθ
+
+ - if you differentiate sine  4 times, you get back to itself.  
+
+
+#### What is the derivative of tan x ?
+
+ - use quotient rule
+
+```
+d/dθ tanθ = ( cosθcosθ - sinθ (-sinθ) )/cos²θ = 1/cos²θ = sec²θ
+```
+
+#### What is the derivative of sin(x²) ?
+
+ - chain rule
+    - d/dθ = cos(x²)·2x 
+ - |sin(x²) ≤ 1
+ - cos(x²)·2x can be as large as you like !
+
+#### What is the derivative of other trig functions ?
+
+trig func | derivative
+--- | ---
+sinx | cosx
+cosx | -sinx
+tanx | sec²x
+cotx | -csc²x
+secx | secx·tanx
+cscx | -cscx·cotx
+
+
+
+
 
 
 ------
