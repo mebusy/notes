@@ -163,6 +163,14 @@ So from a single observation of an umbrella you don't know very much , but if da
     - So It seems like it shouldn't be. The evidence variables are absolutely not independent. They're only conditionally independent. 
 
 
+---
+
+### HMM example
+
+The prior probability P(X₀), dynamics model P(X<sub>t+1</sub>|X<sub>t</sub> ), and sensor model P(E<sub>t</sub>|X<sub>t</sub> are as follows:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_edx_example.png)
+
 
 
 
