@@ -684,6 +684,10 @@ arctan | [-π/2, π/2]
 
  - what is the arcxxx ?
     - θ = arccos(1/2) , is just to say that θ is the length of the arc whose cosine is 1/2. 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_arccos.png)
+
+
+
 
 
 ------
