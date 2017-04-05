@@ -481,6 +481,8 @@ You go to the dentist. You might have a toothache or not, you might have a cavit
 
 ---
 
+if X ⫫ Z | Y :
+
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_probability_conditional_independent.png)
 
 
