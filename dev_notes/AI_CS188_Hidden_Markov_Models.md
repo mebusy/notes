@@ -573,5 +573,20 @@ When evidence comes in , you weight the particles based on a factor from the evi
 Then you decide you don't actually want these weighted particles. So you resample and new() particles and each one clones an old particle , that means some old particles now kind of have multiplicity and some of them are gone. 
 
 
+## Example 
+
+Implementation
+
+ 1. Initialize particles by sampling from initial state distribution
+ 2. Repeat
+    1. Perform time update
+    2. Weight according to evidence
+    3. Resample according to weights
+
+
+
+
+
+
 
 
