@@ -171,7 +171,18 @@ The prior probability P(X₀), dynamics model P(X<sub>t+1</sub>|X<sub>t</sub> ),
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_edx_example.png)
 
+We perform a first dynamics update ,and fill in the resulting belief distribution B'(X₁) 
 
+ X₁ | B'(X₁) 
+--- | --- 
+ 0 | 0.415
+ 1 | 0.585
+
+ - 0.415 = 0.7\*0.4+0.3\*0.45
+
+We incorporate the evidenc E₁=b. We fill in the evidence-weighted distribution P(E₁=b|X₁)·B'(X₁), and and the (normalized) belief distribution B(X₁).
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_edx_e.png)
 
 
 ---
