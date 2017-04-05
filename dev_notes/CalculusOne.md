@@ -686,7 +686,73 @@ arctan | [-π/2, π/2]
     - θ = arccos(1/2) , is just to say that θ is the length of the arc whose cosine is 1/2. 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_arccos.png)
 
+ - draw picture to help you under stand  inverse trig function 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_trig_draw_helper_func.png)
 
+#### What are the derivatives of inverse trig functions ?
+
+ - d/dx arcsin x = ?
+ - let f(x) = arcsin x 
+ - so f(sinx) = x , assuming arcsin is differentiable :
+
+```
+f'(sinx) = 1
+f'(sinx)·cosx = 1 
+f'(sinx) = 1/cosx = 1/√(1-sin²x)
+f'(x) = 1/√(1-x²)
+```
+
+```python
+>>> from sympy import diff,symbols,asin
+>>> x, y, z = symbols('x y z')
+>>> diff ( asin(x) ,x )
+1/sqrt(-x**2 + 1)
+```
+
+--- 
+
+ trig function | derivateive 
+ --- | ---
+ arcsin | 1/√(1-x²)
+ arccos | -1/√(1-x²) 
+ arctan | 1/(1+x²)
+
+---
+
+### What can we learn from the derivatives of trig functions ?
+
+#### Why do sin / cos  oscillate ?
+
+ - kind of accelerate = - position 
+    - f''(t) = -f(t)
+ - the reason why thess function (cos / sin ) are bouncing up and down like this, is because in every case , the function's 2nd derivative is negative its value. 
+    - when the function is positive, the 2nd derivative is negative , pulling it down
+    - when the function is negative , the 2nd derivative is positive , pushing it back
+
+#### How can I approximate sin1 ?
+
+ - tips 1:
+    -  sin(x) ≈ x , if x is small ( eg.x < 0.4 )
+
+```
+f(x) = sinx , f(0) = 0 
+f'(x) = cosx , f'(0) = 1
+f(0+h) = f(0) + h·f'(0) ≈ 0 + h = h
+sin(h) ≈ h
+```
+
+ - tips 2:
+    - sin(2x) = 2·sin(x)·cos(x)
+    - sin(2x) = 2·sin(x)·√(1-sin²(x))
+
+
+```
+sin 1/32 ≈ 1/32 = 0.03125
+sin 1/16 ≈ 0.0624...
+sin 1/8 ≈ 0.12349...
+...
+sin 1 ≈  0.84147...
+```
 
 
 
