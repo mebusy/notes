@@ -44,6 +44,12 @@
 			 - [logarithms help to prove the product rule](#895df12d6a8dc1d4687bc0497d6850f6)
 			 - [How do we prove the quotient rule](#2ea8bc6939fe6ab30be67d6c95f8e567)
 	 - [Derivatives of Transcendental (Trigonometric) Functions](#9cc60abb55698d40b2aa1a013a4eec54)
+		 - [What is Trigonometric ?](#ce955fea5abcd20f2dda80db56b60ae6)
+		 - [How can I differentiate trig functions ?](#573dc971f8331989a1a87d6974f24dfb)
+			 - [What is the derivative of sin and cos?](#b37e55706290135b7a2ee3d866b5858c)
+			 - [What is the derivative of tan x ?](#15e9049322f847921aec14fca99d40e3)
+			 - [What is the derivative of sin(x²) ?](#5b3f3e4bd81e2f7e6e71c5ea9fc8a024)
+			 - [What is the derivative of other trig functions ?](#31210310e2f1c1dbdf248f691b4948c9)
 
 ...menuend
 
@@ -592,6 +598,8 @@ d/dx( f(x)g(x) ) = g(x)·f'(x) + f(x)·g'(x)
 
 ## Derivatives of Transcendental (Trigonometric) Functions
 
+<h2 id="ce955fea5abcd20f2dda80db56b60ae6"></h2>
+
 ### What is Trigonometric ?
 
 cscθ = 1/sinθ 
@@ -605,8 +613,12 @@ cotθ = 1/tanθ
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calclusone_Trigonometric_functions.png)
 
 
+<h2 id="573dc971f8331989a1a87d6974f24dfb"></h2>
+
 ### How can I differentiate trig functions ?
 
+
+<h2 id="b37e55706290135b7a2ee3d866b5858c"></h2>
 
 #### What is the derivative of sin and cos?
 
@@ -625,6 +637,8 @@ cotθ = 1/tanθ
  - if you differentiate sine  4 times, you get back to itself.  
 
 
+<h2 id="15e9049322f847921aec14fca99d40e3"></h2>
+
 #### What is the derivative of tan x ?
 
  - use quotient rule
@@ -633,12 +647,16 @@ cotθ = 1/tanθ
 d/dθ tanθ = ( cosθcosθ - sinθ (-sinθ) )/cos²θ = 1/cos²θ = sec²θ
 ```
 
+<h2 id="5b3f3e4bd81e2f7e6e71c5ea9fc8a024"></h2>
+
 #### What is the derivative of sin(x²) ?
 
  - chain rule
     - d/dθ = cos(x²)·2x 
  - |sin(x²) ≤ 1
  - cos(x²)·2x can be as large as you like !
+
+<h2 id="31210310e2f1c1dbdf248f691b4948c9"></h2>
 
 #### What is the derivative of other trig functions ?
 

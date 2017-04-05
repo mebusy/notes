@@ -1,0 +1,139 @@
+...menustart
+
+ - [2D Tree](#24e1aa2b5be033c7c0dcaacc43b2b645)
+	 - [Question](#a97ea56b0e00b2379736ae60869ff66a)
+	 - [Grid implementation](#70d1a3fb79b2abed2736ccad8427984f)
+	 - [Space-partitioning trees](#8e09009743774efb9c0a7dceb8721b2c)
+		 - [Space-partitioning trees: applications](#922b62791cfd0af7fb819dd01bf4efb6)
+	 - [2d tree construction](#d11bea9d4fe095af9f1ba36b85f24c9d)
+	 - [2d tree implementation](#740b6be09ccd4dc6bd568fd9dd316aa9)
+	 - [Range search in a 2d tree](#e2f4979395b274707c6c5a37cd7ed619)
+		 - [Range search in a 2d tree analysis](#db369429b7d2c848b75e9d11b977c8d1)
+	 - [Nearest neighbor search in a 2d tree](#d8734e1f289bf1794afcd19da08a8a6d)
+		 - [Nearest neighbor search in a 2d tree analysis](#b5df2dde1669c08bc9b0f0b1a24fb85b)
+
+...menuend
+
+
+<h2 id="24e1aa2b5be033c7c0dcaacc43b2b645"></h2>
+
+# 2D Tree
+
+<h2 id="a97ea56b0e00b2379736ae60869ff66a"></h2>
+
+## Question
+
+ - 给定一组2维坐标点，找出所有 位于某个矩形范围的所有点
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2dtree_question.png)
+
+<h2 id="70d1a3fb79b2abed2736ccad8427984f"></h2>
+
+## Grid implementation
+
+ - Divide space into M-by-M grid of squares.
+ - Create list of points contained in each square.
+ - Use 2d array to directly index relevant square.
+ - Insert: add (x, y) to list for corresponding square.
+ - Range search: examine only squares that intersect 2d range query.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2dtree_grid_implementation.png)
+
+---
+
+ - Fast, simple solution for evenly-distributed points.
+ - Problem
+    - "Clustering" 
+        - Lists are too long, even though average length is short.
+        - Need data structure that adapts gracefully to data.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2dtree_grid_implementation_clustering.png)
+
+<h2 id="8e09009743774efb9c0a7dceb8721b2c"></h2>
+
+## Space-partitioning trees
+
+Use a tree to represent a recursive subdivision of 2d space.
+
+ - Grid. Divide space uniformly into squares.
+ - 2d tree. Recursively divide space into two halfplanes. 
+ - Quadtree. Recursively divide space into four quadrants. 
+ - BSP tree. Recursively divide space into two regions.
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2dtree_space_partitioning_trees.png)
+
+<h2 id="922b62791cfd0af7fb819dd01bf4efb6"></h2>
+
+### Space-partitioning trees: applications
+
+- Ray tracing.
+- ***2d range search***.
+- Flight simulators.
+- N-body simulation.
+- Collision detection.
+- Astronomical databases.
+- ***Nearest neighbor search***.
+- Adaptive mesh generation.
+- Accelerate rendering in Doom.
+- Hidden surface removal and shadow casting.
+
+<h2 id="d11bea9d4fe095af9f1ba36b85f24c9d"></h2>
+
+## 2d tree construction
+
+ - Recursively partition plane into two halfplanes
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2dtree_construction.png)
+
+<h2 id="740b6be09ccd4dc6bd568fd9dd316aa9"></h2>
+
+## 2d tree implementation
+
+ - Data structure
+    - BST, but alternate using x- and y-coordinates as key.
+ - Search gives rectangle containing point.
+ - Insert further subdivides the plane.
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2dtree_even_levels.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2dtree_odd_levels.png)
+
+<h2 id="e2f4979395b274707c6c5a37cd7ed619"></h2>
+
+## Range search in a 2d tree
+
+ - To find all points contained in a given query rectangle
+ - start at the root and recursively search for points in ***both*** subtrees using the following ***pruning rule***: 
+    - if the query rectangle does not intersect the rectangle corresponding to a node, there is no need to explore that node (or its subtrees). 
+    - A subtree is searched only if it might contain a point contained in the query rectangle.
+
+<h2 id="db369429b7d2c848b75e9d11b977c8d1"></h2>
+
+### Range search in a 2d tree analysis
+
+ - Typical case. R + log N.
+ - Worst case (assuming tree is balanced).  R + √N.
+
+
+<h2 id="d8734e1f289bf1794afcd19da08a8a6d"></h2>
+
+## Nearest neighbor search in a 2d tree
+
+ - To find a closest point to a given query point
+ - start at the root and recursively search in ***both*** subtrees using the following ***pruning rule***: 
+    - if the closest point discovered so far is closer than the distance between the query point and the rectangle corresponding to a node, there is no need to explore that node (or its subtrees). 
+    - That is, a node is searched only if it might contain a point that is closer than the best one found so far. 
+    - The effectiveness of the pruning rule depends on quickly finding a nearby point. 
+    - To do this, organize your recursive method so that when there are two possible subtrees to go down, you always choose ***the subtree that is on the same side of the splitting line as the query point*** as the first subtree to explore -- the closest point found while exploring the first subtree may enable pruning of the second subtree.
+
+<h2 id="b5df2dde1669c08bc9b0f0b1a24fb85b"></h2>
+
+### Nearest neighbor search in a 2d tree analysis
+
+ - Typical case. log N.
+ - Worst case (even if tree is balanced). N.
+
+
+
