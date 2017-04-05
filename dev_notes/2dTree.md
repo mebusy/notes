@@ -136,4 +136,13 @@ Use a tree to represent a recursive subdivision of 2d space.
  - Worst case (even if tree is balanced). N.
 
 
+---
+
+## 实现时，需要注意的地方
+
+ - 2d tree 需要避免多次插入重复的点， 你需要在insert 的时候，过滤掉这些点，这涉及到 搜索某个特定点的问题
+ - search for a particular point
+    - 只有当 key ( x or y) 相等时，再判断 当前节点是否是 查找的点， 避免不需要的 equal() 判断
+
+
 
