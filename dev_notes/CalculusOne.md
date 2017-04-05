@@ -670,8 +670,20 @@ secx | secx·tanx
 cscx | -cscx·cotx
 
 
+---
 
+### How can I differentiate inverse trig function ?
 
+**The trig function are not invertible**! So we're only going to talk about the inverse of trig functions after we restrict their domain. 
+
+trig function | domain
+--- | ---
+arcsin | [-π/2, π/2]
+arccos | [0, π]
+arctan | [-π/2, π/2] 
+
+ - what is the arcxxx ?
+    - θ = arccos(1/2) , is just to say that θ is the length of the arc whose cosine is 1/2. 
 
 
 ------
