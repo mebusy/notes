@@ -583,6 +583,89 @@ Implementation
     2. Weight according to evidence
     3. Resample according to weights
 
+---
+
+Question:
+
+ - use a particle filter to track the state of a robot that is lost in the small map below
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_example_quiz_robotmap.png)
+ - robot state: 1 ≤ X<sub>t</sub> ≤ 10
+ - particles: approximate our belief over this state with N = 8 particles
+ - transition: At each timestep, the robot either stays in place, or moves to any one of its neighboring locations, all with equal probability
+    - eg. if the robot starts in state X<sub>t</sub> = 2 , the next state X<sub>t+1</sub> can be any element of { 1 , 2 , 3 , 10 } , and each occurs with probability 1/4 .  
+ - evidence: a sensor on the robot gives a reading E<sub>t</sub> ∈ {H,T,C,D}, corresponding to the type of state the robot is in. The possible types are:
+    - **Hallway (H)** for states bordered by two parallel walls (4,9).
+    - **Corner (C)** for states bordered by two orthogonal walls (3,5,8,10).
+    - **Tee (T)** for states bordered by one wall (2,6).
+    - **Dead End (D)** for states bordered by three walls (1,7).
+ - The sensor is not very reliable: it reports the correct type with probability 1/2 , but gives erroneous readings the rest of the time, with probability 1/6 for each of the three other possible readings.
+ 
+---
+
+So the Sensor Model is : (only list P(Sensor | H ))
+
+Sensor Reading | State Type | P(Sensor | State Type)
+--- | --- | ---
+H | H | 0.5
+T | H | 1/6
+C | H | 1/6
+D | H | 1/6
+H | T | 1/6
+T | T | 0.5
+... | ... | ...
+
+---
+
+step1: Initialize particles by sampling from initial state distribution, for t=0.
+
+ - sample the starting positions for our particles , by generating a random number rᵢ sampled uniformly from [ 0 , 1).
+
+Particle | p₁ | p₂ | p₃ | p₄ | p₅ | p₆ | p₇ | p₈
+--- | --- | --- | --- | --- | --- | --- | --- | ---
+rᵢ | 0.914 | 0.473 |  0.679 |  0.879 |  0.212 |  0.024 | 0.458 | 0.154
+Location | 10 | 5 | 7 | 9 | 3 | 1 | 5 | 2 
+
+
+step2: Time update from t=0 → t=1.
+
+ - 移动每个粒子
+    - eg. p₈ 在 location 2，可能的移动为 { 1 , 2 , 3 , 10 }， 产生另一个 random number ，来执行移动
+
+
+Particle | p₁ | p₂ | p₃ | p₄ | p₅ | p₆ | p₇ | p₈
+--- | --- | --- | --- | --- | --- | --- | --- | ---
+rᵢ | 0.674 | 0.119 |  0.748 |  0.802 |  0.357 |  0.736 |  0.425 |  0.058
+Location | 10 | 4 | 7 | 10 | 3 | 2 | 5 | 1 
+
+step3: Incorporating Evidence at t = 1 : E₁ = D 
+
+ - Weight according to evidence 
+ - 当证据出现时，step2 做的预测 ，可能性会出现变化
+
+
+Particle | p₁ | p₂ | p₃ | p₄ | p₅ | p₆ | p₇ | p₈
+--- | --- | --- | --- | --- | --- | --- | --- | ---
+Weight | 1/6 | 1/6 | 0.5 | 1/6 | 1/6 | 1/6 | 1/6 | 0.5
+
+step4: Resample according to weights 
+
+ - normalize weights 
+ - 计算 cumulative weights 
+ - 生成 uniform random ,  sample new particle
+
+
+Particle | p₁ | p₂ | p₃ | p₄ | p₅ | p₆ | p₇ | p₈
+--- | --- | --- | --- | --- | --- | --- | --- | ---
+Location | 10 | 4 | 7 | 10 | 3 | 2 | 5 | 1 
+Weight | 1/6 | 1/6 | 0.5 | 1/6 | 1/6 | 1/6 | 1/6 | 0.5
+normalized weight | 1/12 | 1/12 | 0.25 | 1/12 | 1/12 | 1/12 | 1/12 | 0.25
+Cumulative weight | 1/12=0.083 | 2/12=0.167 | 5/12=0.417 | 0.5 | 7/12=0.583 | 8/12=0.667 | 9/12=0.75 | 1
+rᵢ  | 0.403 |  0.218 |  0.217 |  0.826 |  0.717 |  0.460 |  0.794 |  0.016
+new particle (clone) | 3 | 3 | 3 | 8 | 7 | 4 | 8 | 1 
+new location | 7 | 7 | 7 | 1 | 5 | 10 | 1 | 10 
+ 
+--- 
+
 
 
 
