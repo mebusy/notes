@@ -639,7 +639,7 @@ Location | 10 | 4 | 7 | 10 | 3 | 2 | 5 | 1
 
 step3: Incorporating Evidence at t = 1 : E₁ = D 
 
- - Weight according to evidence 
+ - Weight according to evidence , weight = P( e | X )
  - 当证据出现时，step2 做的预测 ，可能性会出现变化
 
 
