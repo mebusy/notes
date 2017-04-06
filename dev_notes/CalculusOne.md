@@ -754,6 +754,22 @@ sin 1/8 ≈ 0.12349...
 sin 1 ≈  0.84147...
 ```
 
+---
+
+### Multiplying Trigonometric Functions with Slide Rules
+
+#### How can we multiply numbers with trigonometry?
+
+ - ***cosα cosβ = (cos( α + β ) + cos( α - β )) /2***
+ - 0.17 · 0.37 = ?  查表法 again....
+
+---
+
+
+
+
+
+
 
 
 ------
