@@ -7,6 +7,7 @@
 		 - [Example : Weather HMM](#c7624bc33d3af36dde93578541120635)
 		 - [Example: GhostBusters HMM](#29e2fd6f91ff2c795e0611725208492a)
 		 - [HMM Conditional Independence](#70edd3baf536c5134e73a1c0aa1b5e9d)
+		 - [HMM example](#1bebd9da99c29add41fd9b5f55b647e0)
 		 - [Real HMM Examples](#a28d273e7e37d7b9dac9b8648afa65c2)
 	 - [Filtering / Monitoring](#7d5a5544b159698a3c0d234ed796ab6c)
 		 - [Example:  Robot Localization](#8eb802f81a304b8d30bbde98a9341934)
@@ -24,6 +25,7 @@
 		 - [Particle Filtering: Observe](#48c6c2f783c106c655abca3552e166b3)
 		 - [Particle Filtering: Resample](#988c88ad650c59ea6c4f609059420535)
 	 - [Recap: Particle Filtering](#5d32a4d32d2126113fcc6cc88fde5a32)
+	 - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
 
 ...menuend
 
@@ -164,6 +166,8 @@ So from a single observation of an umbrella you don't know very much , but if da
 
 
 ---
+
+<h2 id="1bebd9da99c29add41fd9b5f55b647e0"></h2>
 
 ### HMM example
 
@@ -572,6 +576,8 @@ When evidence comes in , you weight the particles based on a factor from the evi
 
 Then you decide you don't actually want these weighted particles. So you resample and new() particles and each one clones an old particle , that means some old particles now kind of have multiplicity and some of them are gone. 
 
+
+<h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
 ## Example 
 

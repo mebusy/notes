@@ -54,6 +54,7 @@
  7. [13 Markov Models](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_Markov_Models.md)
  8. [14 HMM](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_Hidden_Markov_Models.md)
  9. [15 Application of HMM](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_ApplicationOfHMM.md)
+ 10. [16 BNs Representation](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_NayesNets.md)
 
 **Others**
 

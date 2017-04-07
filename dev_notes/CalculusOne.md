@@ -50,6 +50,13 @@
 			 - [What is the derivative of tan x ?](#15e9049322f847921aec14fca99d40e3)
 			 - [What is the derivative of sin(x²) ?](#5b3f3e4bd81e2f7e6e71c5ea9fc8a024)
 			 - [What is the derivative of other trig functions ?](#31210310e2f1c1dbdf248f691b4948c9)
+		 - [How can I differentiate inverse trig function ?](#a68df1494f4e099023d94f99349d0301)
+			 - [What are the derivatives of inverse trig functions ?](#4d4582f7a62b4c18562eab93a499b2ab)
+		 - [What can we learn from the derivatives of trig functions ?](#f9420b5502811eeea138001bb4496a24)
+			 - [Why do sin / cos  oscillate ?](#f9181928210c3638f92544080ceb3b1b)
+			 - [How can I approximate sin1 ?](#fd0de0c8b5c3c847859b65d934f01290)
+		 - [Multiplying Trigonometric Functions with Slide Rules](#9814200793e2e62431db91f043a50988)
+			 - [How can we multiply numbers with trigonometry?](#1681d181d0942ae213a729e0afe58639)
 
 ...menuend
 
@@ -672,6 +679,8 @@ cscx | -cscx·cotx
 
 ---
 
+<h2 id="a68df1494f4e099023d94f99349d0301"></h2>
+
 ### How can I differentiate inverse trig function ?
 
 **The trig function are not invertible**! So we're only going to talk about the inverse of trig functions after we restrict their domain. 
@@ -688,6 +697,8 @@ arctan | [-π/2, π/2]
 
  - draw picture to help you under stand  inverse trig function 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_trig_draw_helper_func.png)
+
+<h2 id="4d4582f7a62b4c18562eab93a499b2ab"></h2>
 
 #### What are the derivatives of inverse trig functions ?
 
@@ -719,7 +730,11 @@ f'(x) = 1/√(1-x²)
 
 ---
 
+<h2 id="f9420b5502811eeea138001bb4496a24"></h2>
+
 ### What can we learn from the derivatives of trig functions ?
+
+<h2 id="f9181928210c3638f92544080ceb3b1b"></h2>
 
 #### Why do sin / cos  oscillate ?
 
@@ -728,6 +743,8 @@ f'(x) = 1/√(1-x²)
  - the reason why thess function (cos / sin ) are bouncing up and down like this, is because in every case , the function's 2nd derivative is negative its value. 
     - when the function is positive, the 2nd derivative is negative , pulling it down
     - when the function is negative , the 2nd derivative is positive , pushing it back
+
+<h2 id="fd0de0c8b5c3c847859b65d934f01290"></h2>
 
 #### How can I approximate sin1 ?
 
@@ -756,7 +773,11 @@ sin 1 ≈  0.84147...
 
 ---
 
+<h2 id="9814200793e2e62431db91f043a50988"></h2>
+
 ### Multiplying Trigonometric Functions with Slide Rules
+
+<h2 id="1681d181d0942ae213a729e0afe58639"></h2>
 
 #### How can we multiply numbers with trigonometry?
 

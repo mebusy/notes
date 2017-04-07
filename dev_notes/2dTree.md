@@ -11,6 +11,7 @@
 		 - [Range search in a 2d tree analysis](#db369429b7d2c848b75e9d11b977c8d1)
 	 - [Nearest neighbor search in a 2d tree](#d8734e1f289bf1794afcd19da08a8a6d)
 		 - [Nearest neighbor search in a 2d tree analysis](#b5df2dde1669c08bc9b0f0b1a24fb85b)
+	 - [实现时，需要注意的地方](#37fe8d31c8ddcdaf1d3002f5c46d9aa1)
 
 ...menuend
 
@@ -137,6 +138,8 @@ Use a tree to represent a recursive subdivision of 2d space.
 
 
 ---
+
+<h2 id="37fe8d31c8ddcdaf1d3002f5c46d9aa1"></h2>
 
 ## 实现时，需要注意的地方
 

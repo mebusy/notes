@@ -1,6 +1,25 @@
+...menustart
+
+ - [Application Of HMM](#707c429b9c8c69d66ffa62008078d67c)
+	 - [Robot Localization](#cb8f3326ecf05b343100368b1fce61b4)
+	 - [Robot Mapping](#456efe59f69acce2f3949ed5ec0af420)
+	 - [Dynamic Bayes Nets (DBNs)](#e2237c4bb83f0a39f439746f01a1814f)
+	 - [DBN Particle Filters](#8b6016f7e9c11348859d14b1b2968de6)
+	 - [Most Likely Explanation](#acde5ccfd9d402faf86e320b802cdf2e)
+		 - [HMMs: MLE Queries](#a6f1a19a2e48162ea4decdd5eebe0d71)
+		 - [State Trellis](#9505b7524724df56002d7434a8ab6d4d)
+		 - [Forward / Viterbi Algorithms](#d1b64f8404dac1019eb7a414a8e5f21c)
+	 - [Speech Recognition](#9a29398560f1a8666e7f69250d88245e)
+
+...menuend
+
+
+<h2 id="707c429b9c8c69d66ffa62008078d67c"></h2>
 
 # Application Of HMM
 
+
+<h2 id="cb8f3326ecf05b343100368b1fce61b4"></h2>
 
 ## Robot Localization 
 
@@ -17,6 +36,8 @@
  - 随着evidence 收集，当大量 particle 聚集到一处时， 在 resample 的时候，可以减少 particle 的数量
 
 
+<h2 id="456efe59f69acce2f3949ed5ec0af420"></h2>
+
 ## Robot Mapping 
 
 You can not just localize the robot , you can also build a map at the same time. 
@@ -29,6 +50,8 @@ You can not just localize the robot , you can also build a map at the same time.
     - Main techniques: Kalman filtering (Gaussian HMMs) and particle methods
 
 ---
+
+<h2 id="e2237c4bb83f0a39f439746f01a1814f"></h2>
 
 ## Dynamic Bayes Nets (DBNs)
 
@@ -50,6 +73,8 @@ Then as time passes somehow the way to transition to next time where they might 
 
 You can think G<sub>t</sub>ª , G<sub>t</sub>ᵇ combined as a big state, and think E<sub>t</sub>ª , E<sub>t</sub>ᵇ combined as a big evidence , then it would be a HMM again. But you would be ignoring the structure that's underneath.  And exploiting structure underneath allows you to become additonally more efficient.
 
+<h2 id="8b6016f7e9c11348859d14b1b2968de6"></h2>
+
 ## DBN Particle Filters
 
 You can again rul particle filtering in these. 
@@ -68,6 +93,8 @@ Why is it important that your particles contain both ghost at once? You can imag
 
 ---
 
+<h2 id="acde5ccfd9d402faf86e320b802cdf2e"></h2>
+
 ## Most Likely Explanation
 
 quite important 
@@ -80,6 +107,8 @@ So far what we've looked at is something that computes the distribution over pos
 
 Sometimes what you want to do is you see all the evidence and based on all the evidence you've seen you want to reconstruct the most likely sequence of events that explains that whole sequence of evidence.  What is the most likely sequence of states given the evidence I have observed ?  
 
+<h2 id="a6f1a19a2e48162ea4decdd5eebe0d71"></h2>
+
 ### HMMs: MLE Queries
 
 We're given an HMM still , and the query is what's the most likely explanation of the evidence we have observed. 
@@ -89,6 +118,8 @@ We're given an HMM still , and the query is what's the most likely explanation o
     - we're trying to find what the most likely sequence of X variables. 
  - New method: the Viterbi algorithm
 
+
+<h2 id="9505b7524724df56002d7434a8ab6d4d"></h2>
 
 ### State Trellis
 
@@ -106,6 +137,8 @@ We're given an HMM still , and the query is what's the most likely explanation o
     - the path with highest probability , is the most likely explanation of the sequence of evidence we observe
  - Forward algorithm computes sums of paths, Viterbi computes best paths
 
+<h2 id="d1b64f8404dac1019eb7a414a8e5f21c"></h2>
+
 ### Forward / Viterbi Algorithms
 
 ![][1]
@@ -120,6 +153,8 @@ We're given an HMM still , and the query is what's the most likely explanation o
     - changed ∑ to max
 
 ---
+
+<h2 id="9a29398560f1a8666e7f69250d88245e"></h2>
 
 ## Speech Recognition
 
