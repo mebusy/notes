@@ -823,6 +823,22 @@ lim<sub>x→∞</sub> ( √(x²+x) -x  ) = lim<sub>x→∞</sub> ( x·( √(x + 
 
  = lim<sub>x→∞</sub> ( ( √(x + 1/x) -1  )/x ) = lim<sub>x→∞</sub> 1/(2·√(1 + 1/x)) = 1/2
 
+--- 
+
+summarization
+
+form | solution
+--- | --- 
+0/0 , ∞/∞ | L'Hopital
+0·∞ | ∞/(1/0) , 0/(1/∞)
+1<sup>∞</sup> | e<sup>∞·log1</sup>
+∞⁰ | e<sup>0·log∞</sup>
+0⁰ | e<sup>0·log0</sup>
+∞ - ∞ | ( 1/∞ - 1/∞ ) / 1/∞∞  
+
+
+
+
  
 
 
