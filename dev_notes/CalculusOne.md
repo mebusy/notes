@@ -787,6 +787,31 @@ sin 1 ≈  0.84147...
 ---
 
 
+## Derivatives in the Real World
+
+### How can derivatives help with limites ?
+
+#### L'Hopital's rule 
+
+lim<sub>x→a</sub> f(x) = 0 
+
+lim<sub>x→a</sub> g(x) = 0 
+
+lim<sub>x→a</sub> f(x)/g(x) =  lim<sub>x→a</sub> ( f(a) + f'(a)·(x-a) ) / ( g(a) + g'(a)·(x-a)  ) = f'(a) / g'(a)
+
+#### How can L'Hopital Rule help with limits not of the form 0/0 ?
+
+ - L'Hopital Rule also works for ∞ / ∞
+ 
+lim<sub>x→∞</sub> (2x²+1)/(3x²-x) =  lim<sub>x→∞</sub> 4x / (6x-1) = lim<sub>x→∞</sub> 4/6 = 2/3
+
+ - in other case,  try to transform other forms to "0/0" or "∞/∞"
+
+lim<sub>x→∞</sub> (sin(1/x)·x ) = lim<sub>x→∞</sub> sin(1/x) / (1/x) = cos(1/x)·(-1/x²) / (-1/x²) = cos(1/x) = 1
+
+ 
+
+
 
 
 
