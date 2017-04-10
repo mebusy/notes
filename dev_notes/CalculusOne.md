@@ -815,6 +815,16 @@ lim<sub>x→∞</sub> (sin(1/x)·x ) = lim<sub>x→∞</sub> sin(1/x) / (1/x) = 
 
  - ∞⁰
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_limit_x_1_x.png)
+
+ - ∞ - ∞
+
+lim<sub>x→∞</sub> ( √(x²+x) -x  ) = lim<sub>x→∞</sub> ( x·( √(x + 1/x) -1  ) ) 
+
+ = lim<sub>x→∞</sub> ( ( √(x + 1/x) -1  )/x ) = lim<sub>x→∞</sub> 1/(2·√(1 + 1/x)) = 1/2
+
+ 
+
 
 
  
