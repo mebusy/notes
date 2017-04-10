@@ -805,9 +805,17 @@ lim<sub>x→a</sub> f(x)/g(x) =  lim<sub>x→a</sub> ( f(a) + f'(a)·(x-a) ) / (
  
 lim<sub>x→∞</sub> (2x²+1)/(3x²-x) =  lim<sub>x→∞</sub> 4x / (6x-1) = lim<sub>x→∞</sub> 4/6 = 2/3
 
- - in other case,  try to transform other forms to "0/0" or "∞/∞"
+ - for 0·∞ ,  try to transform other forms to "0/0" or "∞/∞"
 
 lim<sub>x→∞</sub> (sin(1/x)·x ) = lim<sub>x→∞</sub> sin(1/x) / (1/x) = cos(1/x)·(-1/x²) / (-1/x²) = cos(1/x) = 1
+
+ - 1<sup>∞</sup>
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_limit_e.png)
+
+ - ∞⁰
+
+
 
  
 
