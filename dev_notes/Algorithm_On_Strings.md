@@ -1,5 +1,24 @@
+...menustart
+
+ - [Week1 Suffix Trees](#ede56b0e2be5bbfcf53933d43ef1f740)
+	 - [From Genome Sequencing to Pattern Matching](#a8d5f7810493a28ca313b038a21c0173)
+	 - [Brute Force Approach to Pattern Matching](#0bbf0b0ddc6dc0d500db46cbd60489c2)
+	 - [Herding Patterns into Trie](#cd82dafbae81bae40211a2c7f374942f)
+	 - [Herding Text into Suffix Trie](#38728a7876efba9de4422511579b2ddd)
+		 - [Where Are the Matches???](#e7849ccbb64da45c5b8246d6f100af54)
+		 - [Memory Footprint of Suffix Trie](#9f208e275122ae4c1c110416a76cfffe)
+	 - [From Suffix Tries to Suffix Trees](#6df9f85e12d53da5a7faab3233bbbcf3)
+	 - [Constructing Suffix Tree:](#eeb864ae13cd09f3fc8b2e37ef0dac43)
+	 - [Quiz](#ab458f4b361834dd802e4f40d31b5ebc)
+
+...menuend
+
+
+<h2 id="ede56b0e2be5bbfcf53933d43ef1f740"></h2>
 
 # Week1 Suffix Trees 
+
+<h2 id="a8d5f7810493a28ca313b038a21c0173"></h2>
 
 ## From Genome Sequencing to Pattern Matching
 
@@ -18,6 +37,8 @@
     - Input: A ***set of strings*** Patterns and a string Text.
     - Output: All positions in Text where a string from Patterns appears as a substring.
 
+<h2 id="0bbf0b0ddc6dc0d500db46cbd60489c2"></h2>
+
 ## Brute Force Approach to Pattern Matching
 
  - Pattern drives along Text
@@ -30,6 +51,8 @@
     - For human genome:
         - |Text|≈ 3*10⁹
         - |Patterns|≈ 10¹²
+
+<h2 id="cd82dafbae81bae40211a2c7f374942f"></h2>
 
 ## Herding Patterns into Trie
 
@@ -62,6 +85,8 @@ TrieMatching(Text, Patterns):
     - # edges = O(|Patterns|) !!!
     - For human genome: |Patterns|≈ 10¹²  
 
+<h2 id="38728a7876efba9de4422511579b2ddd"></h2>
+
 ## Herding Text into Suffix Trie
 
 New Idea: Packing Text onto a Bus
@@ -76,6 +101,8 @@ New Idea: Packing Text onto a Bus
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_string_trie_text.png)
 
  - this tree also told us that *a* appear in the text 6 times.
+
+<h2 id="e7849ccbb64da45c5b8246d6f100af54"></h2>
 
 ### Where Are the Matches???
 
@@ -94,6 +121,8 @@ But where is the match ? What is the position of "banana" in the Text ?
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_string_suffix_trie_ana.png)
 
+<h2 id="9f208e275122ae4c1c110416a76cfffe"></h2>
+
 ### Memory Footprint of Suffix Trie
  
  - The suffix trie is formed from |Text| suffixes with total length: 
@@ -102,6 +131,8 @@ But where is the match ? What is the position of "banana" in the Text ?
     - |Text|≈ 3\*10⁹
  
 ---
+
+<h2 id="6df9f85e12d53da5a7faab3233bbbcf3"></h2>
 
 ## From Suffix Tries to Suffix Trees
 
@@ -123,6 +154,8 @@ But where is the match ? What is the position of "banana" in the Text ?
     - compare it, you will get the answer.
 
 
+<h2 id="eeb864ae13cd09f3fc8b2e37ef0dac43"></h2>
+
 ## Constructing Suffix Tree:
 
  - Naive Approach
@@ -140,6 +173,8 @@ But where is the match ? What is the position of "banana" in the Text ?
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_string_code_trie_matching.png)
 
 ---
+
+<h2 id="ab458f4b361834dd802e4f40d31b5ebc"></h2>
 
 ## Quiz
 

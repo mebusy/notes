@@ -610,7 +610,7 @@ Question:
 
 So the Sensor Model is : (only list P(Sensor | H ))
 
-Sensor Reading | State Type | P(Sensor | State Type)
+Sensor Reading | State Type | P(Sensor \| State Type)
 --- | --- | ---
 H | H | 0.5
 T | H | 1/6

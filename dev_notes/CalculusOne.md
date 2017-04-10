@@ -57,6 +57,13 @@
 			 - [How can I approximate sin1 ?](#fd0de0c8b5c3c847859b65d934f01290)
 		 - [Multiplying Trigonometric Functions with Slide Rules](#9814200793e2e62431db91f043a50988)
 			 - [How can we multiply numbers with trigonometry?](#1681d181d0942ae213a729e0afe58639)
+	 - [Derivatives in the Real World](#6017672191fb466ac0814c86917c7b1e)
+		 - [How can derivatives help with limites ?](#5cbd76d7f8288df3e2c8192097f8ec9f)
+			 - [L'Hopital's rule](#b16a480bfeec6fa7754f653505d9f8ac)
+			 - [How can L'Hopital Rule help with limits not of the form 0/0 ?](#36700a734b03a7b3619e8f3cabb4e78d)
+			 - [Why shouldn't I fall in love with L'Hopital](#cf470f9f20ec6df6b6df8d3122b1c479)
+		 - [How can derivatives help me to understande rates of change in the real world ?](#e6c54ed15c1ecbc7f940c079d0c5ad69)
+			 - [How long until the gray goo destroys Earth ?](#b1c52412625c6bd4e56994958e55ef8b)
 
 ...menuend
 
@@ -787,9 +794,15 @@ sin 1 ≈  0.84147...
 ---
 
 
+<h2 id="6017672191fb466ac0814c86917c7b1e"></h2>
+
 ## Derivatives in the Real World
 
+<h2 id="5cbd76d7f8288df3e2c8192097f8ec9f"></h2>
+
 ### How can derivatives help with limites ?
+
+<h2 id="b16a480bfeec6fa7754f653505d9f8ac"></h2>
 
 #### L'Hopital's rule 
 
@@ -798,6 +811,8 @@ lim<sub>x→a</sub> f(x) = 0
 lim<sub>x→a</sub> g(x) = 0 
 
 lim<sub>x→a</sub> f(x)/g(x) =  lim<sub>x→a</sub> ( f(a) + f'(a)·(x-a) ) / ( g(a) + g'(a)·(x-a)  ) = f'(a) / g'(a)
+
+<h2 id="36700a734b03a7b3619e8f3cabb4e78d"></h2>
 
 #### How can L'Hopital Rule help with limits not of the form 0/0 ?
 
@@ -836,6 +851,8 @@ form | solution
 0⁰ | e<sup>0·log0</sup>
 ∞ - ∞ | ( 1/∞ - 1/∞ ) / (1/∞∞)  
 
+<h2 id="cf470f9f20ec6df6b6df8d3122b1c479"></h2>
+
 #### Why shouldn't I fall in love with L'Hopital
 
  - lim<sub>x→∞</sub> (x+sinx)/x 
@@ -850,7 +867,11 @@ lim<sub>x→∞</sub> (x+sinx)/x  = lim<sub>x→∞</sub> (x/x + sinx/x) = 1 + l
 
 ---
 
+<h2 id="e6c54ed15c1ecbc7f940c079d0c5ad69"></h2>
+
 ### How can derivatives help me to understande rates of change in the real world ?
+
+<h2 id="b1c52412625c6bd4e56994958e55ef8b"></h2>
 
 #### How long until the gray goo destroys Earth ?
 

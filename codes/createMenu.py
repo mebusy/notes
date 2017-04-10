@@ -14,8 +14,9 @@ RE_PATTERN_TABLE = re.compile( r"^\s*---(\s*\|\s*---)+" )
 
 
 def createMenu4MD( path ):
-    print 'parsing' , path
+    # print 'parsing' , path
 
+    bShowPath4debug = False 
     _path, _name = os.path.split( path )
     global all_md_filenames
     all_md_filenames[ _name ] = path 
@@ -85,7 +86,7 @@ def createMenu4MD( path ):
             table_1stline_sep_count = lines[i-1].replace( r"\|" , "" ).count ( r"|" ) 
             if table_sep_count != table_1stline_sep_count:
                 print "table error:" , i-1,  lines[i-1] , 
-
+                bShowPath4debug = True 
     menu += '\n...menuend\n\n\n'  
     
     if bCodeStart :
@@ -97,6 +98,8 @@ def createMenu4MD( path ):
     fp.write( menu + body[:-1]   )  # remoev last \n
     fp.close()
 
+    if bShowPath4debug:
+        print '\n\t' , "in" , path 
 
     return
 
@@ -135,7 +138,7 @@ if '__main__' == __name__ :
             for url in urls:
 
                 unescape_url = urllib.unquote(  url ) 
-                if all_md_filenames.has_key( unescape_url):
+                if unescape_url in all_md_filenames :
                     linkFiles.append( unescape_url )
                 else:
                     print 'no such key: ' , unescape_url

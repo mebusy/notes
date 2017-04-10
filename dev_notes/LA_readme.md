@@ -1,6 +1,7 @@
 ...menustart
 
  - [Linear ALgebra](#bd8cfe5912b0bee7fd7d191afedf8995)
+ - [Discrete Mathematics](#d2bcb78d5ac194c66f434e9fbcb3565e)
 
 ...menuend
 
@@ -25,6 +26,8 @@
  - [线性代数摘要](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra.md) 
 
 
+
+<h2 id="d2bcb78d5ac194c66f434e9fbcb3565e"></h2>
 
 # Discrete Mathematics
 
