@@ -215,7 +215,7 @@ size(x) = number of tree nodes in subtrees rooted at x.
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BST_size.png)
 
 
-Note: if x has children y and z , then ***size(y) + size(z) + 1 equals size(x)***.
+Note: if x has children y and z , then **size(y) + size(z) + 1 equals size(x)**.
 
 How to select iᵗʰ ordered statistic from augmented searth tree (with subtree sizes)
 
@@ -273,7 +273,7 @@ Example : red-black trees
 
 **Claim*: every red-black tree with n nodes has height <= 2log(n+1).
 
-***Proof***: 
+**Proof**: 
 
  - size n> 2ᵏ-1 , where k = minimum #nodes of root-null path (in a binary tree).
     - => k<=log₂(n+1) 
@@ -339,11 +339,11 @@ search tree property invariant, can implement in O(1) time.
 
 ## Insertion in a Red-Black Tree
 
-***IDEA for insertion/deletion***:
+**IDEA for insertion/deletion**:
 
 proceed as in a normal binary search tree, then recolor and perform rotations until invariants are restored.
 
-***Insert x***:
+**Insert x**:
 
  1. insert x ans usual (make x a leaf) **y->x**
  2. try coloring x red

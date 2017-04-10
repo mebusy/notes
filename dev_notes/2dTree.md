@@ -69,12 +69,12 @@ Use a tree to represent a recursive subdivision of 2d space.
 ### Space-partitioning trees: applications
 
 - Ray tracing.
-- ***2d range search***.
+- **2d range search**
 - Flight simulators.
 - N-body simulation.
 - Collision detection.
 - Astronomical databases.
-- ***Nearest neighbor search***.
+- **Nearest neighbor search**
 - Adaptive mesh generation.
 - Accelerate rendering in Doom.
 - Hidden surface removal and shadow casting.

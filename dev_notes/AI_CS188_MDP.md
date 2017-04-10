@@ -213,7 +213,7 @@ It's very like an expectimax tree but we'll see very shortly why we might not wa
  - Each MDP state projects an expectimax-like search tree
     - That is kind of expectimax tree except ...
         1. the probabilities are given to you by the transition function and 
-        2. the rewards instead of *being at the bottom* are smeared throughout the tree, they ***come to you step-by-step***.
+        2. the rewards instead of *being at the bottom* are smeared throughout the tree, they **come to you step-by-step**.
  - Queue State: 
     - when I'm in a state and I take an action I end up in a queue state (green circle) , which you can think of as kind of the pair of the state and the action where I've committed to the action but I haven't done it yet. 
  
@@ -273,7 +273,7 @@ stick the same reward in front of both
 
 if I liked A better than B now I should like it better shifted into the future as well and vice versa. 
 
- - Theorem: if we assume ***stationary preferences***:
+ - Theorem: if we assume **stationary preferences**:
     - [a₁,a₂,...] ≻  [b₁,b₂,...]  <=> [r, a₁,a₂,...] ≻  [r, b₁,b₂,...] 
  - Then: there are only two ways to define utilities
     - Additive utility:    U( [r₀,r₁,r₂,...] ) = r₀ + r₁ + r₂ + ...
@@ -700,8 +700,8 @@ So what I'll do is to consider every action *a* from state *s* and figure out wh
     - *argmax* means consider all the values , rather than taking the maximum , give me the action  *a* which achieved the maximum. 
     - Luckily the discounted future I've assumed I actually have already (V<sup>\*</sup>(s)). So this is all the expectimax I need to do. 
         - 对每个action， 计算 K+1 的q-value
- - This is called ***policy extraction*** , since it gets the policy implied by the values
-    - Action selection from values is kind of a pain. This process by which I take values which maybe optimal or may not and I computer a one-step lookahead policy according to them is called ***policy extraction***. Because what is does is it digs out the policy that those values imply. It requires a one-step expectimax from every state to reconstruct. 
+ - This is called **policy extraction** , since it gets the policy implied by the values
+    - Action selection from values is kind of a pain. This process by which I take values which maybe optimal or may not and I computer a one-step lookahead policy according to them is called **policy extraction**. Because what is does is it digs out the policy that those values imply. It requires a one-step expectimax from every state to reconstruct. 
 
 
 
@@ -757,7 +757,7 @@ The maximum -- the best action you got -- usually doesn't change. So you wasted 
 
 Policy tends to finish long before the values converge. 
 
-So what can we do?  The idea herer is an algorithm called ***policy iteration***. 
+So what can we do?  The idea herer is an algorithm called **policy iteration**. 
 
 <h2 id="adafb823f7939e061bf30caad4dddbae"></h2>
 
@@ -767,11 +767,11 @@ So what can we do?  The idea herer is an algorithm called ***policy iteration***
 Policy iteration is an alternative approach and the basic sketch is we're going to have 2 steps that we alternate. 
 
  - Alternative approach for optimal values:
-    - ***Step 1: Policy evaluation***: calculate utilities for some fixed policy (not optimal utilities!) until convergence
+    - **Step 1: Policy evaluation**: calculate utilities for some fixed policy (not optimal utilities!) until convergence
         - It's generally not going to be an optimal policy , but we're going to figure out it's values using policy evaluation. 
-    - ***Step 2: Policy improvement***: update policy using one-step look-ahead with resulting converged (but not optimal!) utilities as future values
+    - **Step 2: Policy improvement**: update policy using one-step look-ahead with resulting converged (but not optimal!) utilities as future values
         - Then we take those values and we extract a better policy from them. That called policy improvement. 
-    - ***3: Repeat steps until policy converges*** 
+    - **3: Repeat steps until policy converges** 
 
  - This is policy iteration
     - It’s still optimal!

@@ -350,7 +350,7 @@ The matrices E for step 1, F for step 2, and G for step 3. They are called ***el
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LowerTriangular.png)
 
-Then another most important question is exactly the opposite***How can we undo the steps of Gaussian elimination?***
+Then another most important question is exactly the opposite ***How can we undo the steps of Gaussian elimination?***
 
  - **From U back to A:**
     - E⁻¹F⁻¹G⁻¹U=A , is LU=A 

@@ -651,13 +651,13 @@ because  (Qx)ᵀ(Qx) = xᵀQᵀQx = xᵀx.  (3)
 
 We come now to the calculation that uses the special property Qᵀ is Q⁻¹. If we have a basis, then any vector is a combination of the basis vectors. This is exceptionally simple for an orthonormal basis, which will be a key idea behind Fourier series. The problem is to *find the coefficients of the basis vectors*:
 
-&nbsp;&nbsp;***Write b as a combination b = x₁q₁ + x₂q₂ + ... + x<sub>n</sub>q<sub>n</sub>***
+&nbsp;&nbsp; ***Write b as a combination b = x₁q₁ + x₂q₂ + ... + x<sub>n</sub>q<sub>n</sub>***
 
 To compute x₁ there is a neat trick. *Multiply both sides of the equation by q₁ᵀ*.  We are left with q₁ᵀb = x₁q₁ᵀq₁. Since q₁ᵀq₁ = 1, we have found x₁ = q₁b. 
 
 Each piece of b has a simple formula, and recombining the pieces gives back b:
 
-&nbsp;&nbsp;&nbsp;&nbsp;***Every vector b is equal to (q₁ᵀb)q₁ + (q₂ᵀb)q₂ + ... + (q<sub>n</sub>ᵀb)q<sub>n</sub> .  &nbsp;&nbsp;&nbsp;&nbsp;(4)***
+&nbsp;&nbsp;&nbsp;&nbsp; ***Every vector b is equal to (q₁ᵀb)q₁ + (q₂ᵀb)q₂ + ... + (q<sub>n</sub>ᵀb)q<sub>n</sub> .  &nbsp;&nbsp;&nbsp;&nbsp;(4)***
 
 I can't resist putting this orthonormal basis into a square matrix Q. The vector equation x₁q₁ + ... + x<sub>n</sub>q<sub>n</sub>= b is identical to Qx = b.  Its solution is x = Q⁻¹b. But since Q⁻¹ = Qᵀ -- this is where orthonormality enters -- the solution is also x = Qᵀb:
 

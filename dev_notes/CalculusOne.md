@@ -130,7 +130,7 @@ if lim<sub>x→a</sub>f(x) = L ,
 
 lim<sub>x→1</sub> (x²-1)/(x-1) = lim<sub>x→1</sub> (x+1)(x-1)/(x-1) = lim<sub>x→1</sub> (x+1) 
 
-PS. `(x+1)(x-1)/(x-1)`  and `(x+1)` not the same function, 一个在 x=1 处 没定义， 一个在 x=1处有定义。 ***But the limit doesn't care***. 极限只取决于 1 附近的函数值。 而在 1附近，这两个函数实际上是一样的。 
+PS. `(x+1)(x-1)/(x-1)`  and `(x+1)` not the same function, 一个在 x=1 处 没定义， 一个在 x=1处有定义。 **But the limit doesn't care**. 极限只取决于 1 附近的函数值。 而在 1附近，这两个函数实际上是一样的。 
 
 
 <h2 id="f73d2c55dc3628b7071e45104874c485"></h2>

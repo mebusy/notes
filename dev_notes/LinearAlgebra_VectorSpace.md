@@ -609,7 +609,7 @@ A = |1 2|  , has m = n = 2, and rank r = 1.
 From the rank of a matrix, it is easy to decide which matrices actually have these inverses. Roughly speaking, ***an inverse exists only when the rank is as large as possible***.
 
  - The rank always satisfies r ≤ m and also r ≤ n. 
- - We want to prove that when r = m there is a right-inverse, and Ax = b always has a solution. When r = n there is a left-inverse, and the solution (***if it exists***) is unique.
+ - We want to prove that when r = m there is a right-inverse, and Ax = b always has a solution. When r = n there is a left-inverse, and the solution (**if it exists**) is unique.
  - Only a square matrix can have both r = m and r = n, and therefore only a square matrix can achieve both existence and uniqueness.
     - Only a square matrix has a two-sided inverse.
 

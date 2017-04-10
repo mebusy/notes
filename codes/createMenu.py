@@ -2,16 +2,20 @@
 #coding:utf8
 
 import re
+
+
 import md5
 import os
 
 import urllib
 
+
+
 RE_PATTERN_MENU_BODY = re.compile( r"\.\.\.menustart[\s\S]*\.\.\.menuend\n\n\n" )
 RE_PATTERN_MENU_SYNTAX = re.compile( r"^(\#+)(.*?)$" )
 RE_PATTERN_MENU_JUMP_ID = re.compile( r"^<h\d*\s+id=" )
 RE_PATTERN_TABLE = re.compile( r"^\s*---(\s*\|\s*---)+" )
-
+RE_PATTERN_ITALIC_BOLD_HEAD_NON_SPACE = re.compile( r"(.?)(\*\*\*[^*]+\*\*\*)(.?)" )
 
 def createMenu4MD( path ):
     # print 'parsing' , path
@@ -85,8 +89,17 @@ def createMenu4MD( path ):
             table_sep_count = line.count( r"|" )
             table_1stline_sep_count = lines[i-1].replace( r"\|" , "" ).count ( r"|" ) 
             if table_sep_count != table_1stline_sep_count:
-                print "table error:" , i-1,  lines[i-1] , 
+                print "table error:" , i-1,  lines[i-1]  
                 bShowPath4debug = True 
+
+        # italic bold headed non space 
+        result = re.search( RE_PATTERN_ITALIC_BOLD_HEAD_NON_SPACE , line )
+        if result: 
+            if (result.group(1) != " " and result.group(1) != ""): # or (result.group(3) != " " and result.group(3) != "")  :            
+                print "italic bold headed non space:" , result.group(1) , result.group(2)  
+                bShowPath4debug = True 
+
+
     menu += '\n...menuend\n\n\n'  
     
     if bCodeStart :

@@ -31,7 +31,7 @@
                 - (2)在Parallel Node下挂一棵子树，并挂上多个Condition Node，
             - Parallel Node增加性能和方便性的同时，也增加实现和维护复杂度。
     - Decorator Node
-        - 将它的Child Node执行后返回的结果值 做 ***额外处理***后，再返回给它的Parent Node。
+        - 将它的Child Node执行后返回的结果值 做 **额外处理**后，再返回给它的Parent Node。
         - 比如Decorator Not/Decorator FailUtil/Decorator Counter/Decorator Time...
         - 更geek的有Decorator Log/Decorator Ani/Decorator Nothing...
     - \* Condition Node

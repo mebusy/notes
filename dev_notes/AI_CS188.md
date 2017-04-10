@@ -482,7 +482,7 @@ end function
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_cost_sensitive_search.png)
 
- - BFS finds the shortest path in terms of ***number of actions***.
+ - BFS finds the shortest path in terms of **number of actions**
  - It does not find the least-cost path.  
  - We will now cover a similar algorithm which does find the least-cost path.  
 

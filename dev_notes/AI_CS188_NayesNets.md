@@ -207,7 +207,7 @@ We've always talked about discrete random variables , and then a distribution ca
     - CPT: conditional probability table
     - Description of a noisy “causal” process
         - this is not part of the definition
- - ***A Bayes net = Topology (graph) + Local Conditional Probabilities***.  
+ - **A Bayes net = Topology (graph) + Local Conditional Probabilities**.  
 
 ---
 

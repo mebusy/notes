@@ -255,7 +255,7 @@ What we are really doing is splitting the determinant into the following sum:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_cofactor_filter.png)
 
-For a determinant of order n, this splitting gives n smaller determinants (***minors***) of order n - 1;  The submatrix M₁ⱼ is formed by throwing away row 1 and column j.
+For a determinant of order n, this splitting gives n smaller determinants ( ***minors***) of order n - 1;  The submatrix M₁ⱼ is formed by throwing away row 1 and column j.
 
 There is a similar expansion on any other row, say row i :
 

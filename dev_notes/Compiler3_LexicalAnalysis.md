@@ -138,12 +138,12 @@ Example 3.1:
 
 In many programming languages, the following classes cover most or all of the tokens:
 
- - One token for ***each keyword***. 
+ - One token for **each keyword**. 
  	- The pattern for a keyword is the same as the keyword itself. 
- - Tokens for the ***operators***, either individually or in classes such as the token comparison mentioned in Fig. 3.2.
- - One token representing all ***identifiers***.
- - One or more tokens representing ***constants***, such as numbers and literal strings .
- - Tokens for each ***punctuation symbol***, such as left and right parentheses, comma, and semicolon.
+ - Tokens for the **operators**, either individually or in classes such as the token comparison mentioned in Fig. 3.2.
+ - One token representing all **identifiers**.
+ - One or more tokens representing **constants**, such as numbers and literal strings .
+ - Tokens for each **punctuation symbol**, such as left and right parentheses, comma, and semicolon.
 
 ---
 
@@ -923,9 +923,9 @@ We conclude that the letters IF constitute the lexeme, and they are an instance 
 
 We shall now discover how **Lex** turns its input program into a lexical analyzer. 
 
-At the heart of the transition is the formalism known as ***finite automata***. These are essentially graphs, like transition diagrams, with a few differences:
+At the heart of the transition is the formalism known as **finite automata**. These are essentially graphs, like transition diagrams, with a few differences:
 
- 1. Finite automata are ***recognizers***; they simply say "yes" or "no" about each possible input string.
+ 1. Finite automata are **recognizers**; they simply say "yes" or "no" about each possible input string.
  2. Finite automata come in two flavors:
 
 	- (a) *Nondeterministic finite automata* (NFA) have no restrictions on the labels of their edges. 
@@ -965,7 +965,7 @@ A ***nondeterministic finite automaton*** (NFA) consists of:
  5. A set of states F, a subset of S, that is distinguished as the *accepting states* (or *final states*).
 
 
-We can represent either an NFA or DFA by a ***transition graph***, where the nodes are states and the labeled edges represent the transition function. 
+We can represent either an NFA or DFA by a **transition graph**, where the nodes are states and the labeled edges represent the transition function. 
 
 There is an edge labeled *α* from state *s* to state *t* if and only if *t* is one of the next states for state *s* and input *α* . This graph is very much like a transition diagram, except:
 
@@ -982,7 +982,7 @@ Example 3.14 : The transition graph for an NFA recognizing the language of regul
 
 ### 3.6.2 Transition Tables
 
-We can also represent an NFA by a ***transition table***, whose rows correspond to states, and whose columns correspond to the input symbols and ε. 
+We can also represent an NFA by a **transition table**, whose rows correspond to states, and whose columns correspond to the input symbols and ε. 
 
 The entry for a given state and input is the value of the transition function applied to those arguments. If the transition function has no information about that state-input pair, we put ∅ in the table for the pair.
 
@@ -996,7 +996,7 @@ The transition table has the advantage that we can easily find the transitions o
 
 ### 3.6.3 Acceptance of Input Strings by Automata
 
-An NFA *accepts* input string x if and only if there is some path in the transition graph from the *start state* to one of the ***accepting states***, such that the symbols along the path spell out x. Note that ε labels along the path are effectively ignored, since the empty string does not contribute to the string constructed along the path.
+An NFA *accepts* input string x if and only if there is some path in the transition graph from the *start state* to one of the **accepting states**, such that the symbols along the path spell out x. Note that ε labels along the path are effectively ignored, since the empty string does not contribute to the string constructed along the path.
 
 The language *defined* (or *accepted*) by an NFA is the set of strings labeling some path from the start to an accepting state. 
 
@@ -1570,7 +1570,7 @@ The numbered states in the NFA and the positions in the syntax tree correspond i
 
 ### 3.9.2 Functions Computed From the Syntax Tree
 
-To construct a DFA directly from a regular expression, we construct its syntax tree and then compute four functions: ***nullable***, ***firstpos***, ***lastpos***, and ***followpos***, defined as follows.
+To construct a DFA directly from a regular expression, we construct its syntax tree and then compute four functions: **nullable**, **firstpos**, **lastpos**, and **followpos**, defined as follows.
 
 Each definition refers to the syntax tree for a particular augmented regular expression (r)#.
 

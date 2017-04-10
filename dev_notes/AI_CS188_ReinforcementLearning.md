@@ -242,9 +242,9 @@ The idea is things are happening in the real world , some agent is taking action
 
 You can think about this here is this agent it's watching real things happen. It can't rewind and try something else. The things are not in the agent's control and it is just monitoring. 
 
-So the task we're going to think about in the passive case is this simplified task -- we're not going to try to figure out how to act optimally , we're going to try to figure out essentially exactly ***what policy evaluation did***. 
+So the task we're going to think about in the passive case is this simplified task -- we're not going to try to figure out how to act optimally , we're going to try to figure out essentially exactly **what policy evaluation did**. 
 
-The input is a fixed policy. In previous example the agent is just watching some other execute this policy. but in any case it's a fixed policy. The agent does no know the transitions and the rewards. ***Our goal is to learn the state values***. Of course because we're watching this policy π execute we're going to learn the values under the policy π. If π is really bad we're probably going to learn values that are also really bad. 
+The input is a fixed policy. In previous example the agent is just watching some other execute this policy. but in any case it's a fixed policy. The agent does no know the transitions and the rewards. **Our goal is to learn the state values**. Of course because we're watching this policy π execute we're going to learn the values under the policy π. If π is really bad we're probably going to learn values that are also really bad. 
 
 This is policy evaluation. We're watching or executing a fixed policy and we're trying to figure out how good each state is under that policy execution. In this case the learner is along for the ride. It doesn't get to actually control things even if it's already learned they're bad.  We have no choice about the actions , we're just executing the policy. It's still not offline planning. 
 
@@ -264,7 +264,7 @@ This is policy evaluation. We're watching or executing a fixed policy and we're 
 
 ## Direct Evaluation
 
-The simplest way you could imagine doing model-free is what's called ***direct evaluation***.
+The simplest way you could imagine doing model-free is what's called **direct evaluation**.
 
 The idea of direct evaluation is super simple. All we're gonna do is watch action unfold. We're going to act according to π and every time we visit a state we're going to write down what the sum of discounted rewards the utility turned out to be in the end. In acting we will have been in many states , and for each one we might have been there many times , we're just going to record what happend, not in one step but all the way to the end. When we average those samples together , that will be an average achieved score for that state --that is the value. If we do it long enough we'll get the right answer. It's called direct evaluation. 
 
@@ -429,7 +429,7 @@ Play again, the values would be  (0+0.25)/2 = 0.13 ,  ( 0.25 + 0.75 ) /2 = 0.5 ,
 
 Every time we enter a non-zero square from a 0-value square, notice that we learn about the square we leave because when I leave this square I'm going to learn that my estimate of 0 isn't the best I can do. I can do better.  
 
-So you learn about ***the state you leave , not the state you land in***. 
+So you learn about **the state you leave , not the state you land in**. 
 
 I'm learning the values of these squares and the values under the policy that I'm executing. What would happen if I went the other way around ? ( move right from 0.13)
 
@@ -659,7 +659,7 @@ One issue is you do eventually explore the space you eventually learn the right 
 
 Another problem with ε-greedy is that kind of the exploration is unstructured. you try random things whether you need or not even if you know what the all actions do. If you know what all the actions do you shouldn't necessarily be exploring anymore. 
 
-So one solution here is we just lower ε over time , and let the randomness decrease. But there are better ways. One simple one is called ***exploration functions***.  
+So one solution here is we just lower ε over time , and let the randomness decrease. But there are better ways. One simple one is called **exploration functions**.  
 
 <h2 id="2ba1d8903e326a683ab1fb8eee1ff2cf"></h2>
 
@@ -736,7 +736,7 @@ There's this idea that there's a total volume of mistakes you made compared to h
 
 We've already seen the q-learning subject to some mild conditions will eventually learn the optimal policy. You're going to be optimal in the end. So really in practice the game is minimizing your regret -- get to that optimal policy while making as few suboptimal in retrospect actions as possible. 
 
-Minimizing regret is more than learning to be optimal. It's more like ***optimally learning to be optimal***. 
+Minimizing regret is more than learning to be optimal. It's more like **optimally learning to be optimal**. 
 
  
 ---

@@ -40,7 +40,7 @@ In addition to finding optimal solutions to some problem, dynamic programming ca
 Sometimes, *applying memoization to the naive recursive algorithm*   already results in a dynamic programming algorithm with asymptotically optimal time complexity, but for optimization problems in general the optimal algorithm might require more sophisticated algorithms.
 
 
-在数学与计算机科学领域，动态规划用于解决那些可分解为***重复子问题***（overlapping subproblems，eg. **递归求阶乘**）并具有**最优子结构**（optimal substructure，eg.**最短路径算法**）的问题，动态规划比通常算法花费更少时间。
+在数学与计算机科学领域，动态规划用于解决那些可分解为**重复子问题**（overlapping subproblems，eg. **递归求阶乘**）并具有**最优子结构**（optimal substructure，eg.**最短路径算法**）的问题，动态规划比通常算法花费更少时间。
 
 动态规划的核心方程被命名为贝尔曼方程，该方程以**递归**形式重申了一个优化问题。
 

@@ -559,7 +559,7 @@ So here are steps for solving CPS with enforcing arc consistency:
 ### Strong K-Consistency
 
  - Strong k-consistency: also k-1, k-2, … 1 consistent
- - Claim: ***strong n-consistency means we can solve without backtracking***!
+ - Claim: **strong n-consistency means we can solve without backtracking**!
  - Why?
  	- Choose any assignment to any variable
  	- Choose a new variable

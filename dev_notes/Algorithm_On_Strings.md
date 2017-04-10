@@ -32,7 +32,7 @@
     - Output: All positions in Text where Pattern appears as a substring.
  - Approximate Pattern Matching Problem:
     - Input: A string Pattern, a string Text, and an integer d
-    - Output: All positions in Text where Pattern appears as a substring ***with at most d mismatches***.
+    - Output: All positions in Text where Pattern appears as a substring **with at most d mismatches**.
  - ***Multiple*** Pattern Matching Problem:
     - Input: A ***set of strings*** Patterns and a string Text.
     - Output: All positions in Text where a string from Patterns appears as a substring.

@@ -186,7 +186,7 @@ After we’ve checked all of the necessary neighbors, we’ve finished computing
 
 ### The Subtle Population Table
 
-The desire for an isotropic distribution of points in space requires careful design. It can be done by choosing the number of points in each cube randomly but using a ***Poisson 泊松 distribution***. 
+The desire for an isotropic distribution of points in space requires careful design. It can be done by choosing the number of points in each cube randomly but using a **Poisson 泊松 distribution**. 
 
 This distribution gives the probability of finding a specific number of points in a region when given a mean density. 
 

@@ -48,7 +48,7 @@
         - `pidfile /data/app/redis/redis.pid`
     - redis服务绑定的主机IP
         - `bind 192.168.1.249`
-        - 使用***本机内网ip*** 替换 127.0.0.1, 以便局域网内的其他机器可以访问redis
+        - 使用**本机内网ip** 替换 127.0.0.1, 以便局域网内的其他机器可以访问redis
     - 客户端连接超时时间，默认为300秒
         - `timeout 600`
     - 日志级别，分为debug,verbose(default),notice,waring

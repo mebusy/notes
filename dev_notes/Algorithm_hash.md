@@ -239,10 +239,10 @@ hash函数选择，针对字符串，整数，排列，具体相应的hash方法
 
 ## Hash Tables: Implementation Details, Part II
 
- -  ***Note***: in hash table with chaining, Insert is θ(1)
+ -  **Note**: in hash table with chaining, Insert is θ(1)
     - insert new object x at front of list in A[h(x)]
     - O( list length ) for Insert / Delete
- - ***Point***: performance depends on the choice of hash function
+ - **Point**: performance depends on the choice of hash function
  - Properties of a *Good* Has Function:
     1. should lead to good performance 
         - ie, should "spread data out" 

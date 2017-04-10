@@ -103,7 +103,7 @@ That's not going to work here because we don't control our opponent. So we can't
         - defines the final numeric value for a game that ends in terminal state ***s*** for a player ***p***
         - This tell us for an end-state how much it is worth to each of the players.
         - In chess, the outcome is a win, loss, or draw, with values +1, 0, or -1
- - Solution for a player is a ***policy***: S → A
+ - Solution for a player is a **policy**: S → A
     - the solution to a game like this is a policy which map states to actions.
 
 
@@ -502,7 +502,7 @@ def min-value(state , α, β):
     - Full search of, e.g. chess, is still hopeless…
 
 
-***You must apply pruning after doing some actions***.
+**You must apply pruning after doing some actions**.
 
 
 
@@ -861,8 +861,8 @@ idea: utilities go in , behavior comes out.
 ## Preferences
 
  - An agent must have preferences among:
-    - ***Prizes***: A, B, etc.
-    - ***Lotteries***: situations with uncertain prize
+    - **Prizes**: A, B, etc.
+    - **Lotteries**: situations with uncertain prize
     
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_preference_prize_lottery.png)s
 
@@ -1085,7 +1085,7 @@ Function Graph of risk behavior
 
 ## Example: Human Rationality ?
 
-Decision theory is a ***normative theory***: it describes how a rational agent should act.
+Decision theory is a **normative theory**: it describes how a rational agent should act.
 
 A descriptive theory, on the other hand, describes how actual agents -- for example, humans really do act. 
 
