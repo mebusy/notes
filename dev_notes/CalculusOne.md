@@ -830,11 +830,63 @@ summarization
 form | solution
 --- | --- 
 0/0 , ∞/∞ | L'Hopital
-0·∞ | ∞/(1/0) , 0/(1/∞)
+0·∞ | ∞ / (1/0) , 0 / (1/∞)
 1<sup>∞</sup> | e<sup>∞·log1</sup>
 ∞⁰ | e<sup>0·log∞</sup>
 0⁰ | e<sup>0·log0</sup>
-∞ - ∞ | ( 1/∞ - 1/∞ ) / 1/∞∞  
+∞ - ∞ | ( 1/∞ - 1/∞ ) / (1/∞∞)  
+
+#### Why shouldn't I fall in love with L'Hopital
+
+ - lim<sub>x→∞</sub> (x+sinx)/x 
+ - if you L'Hopital rule to solve it, you will get lim<sub>x→∞</sub> (1+cosx) / 1  , that limit does not exist.
+ - But it indeed has limit :
+
+lim<sub>x→∞</sub> (x+sinx)/x  = lim<sub>x→∞</sub> (x/x + sinx/x) = 1 + lim<sub>x→∞</sub>sinx/x  = 1 
+
+
+
+ - When you're doing those limit problems , don't forget that you can just algebraically manipulate things. There might be an easier way than bring out L'Hopital . 
+
+---
+
+### How can derivatives help me to understande rates of change in the real world ?
+
+#### How long until the gray goo destroys Earth ?
+
+ - gray goo can converts anything it touches into more of itself
+ - the rate of growth of this gray goo is proportional to its current size
+ - f(t) = amount of gray goo
+ - f'(t) = rate of change of gray goo
+ - f'(t) = f(t)
+ - What are the units of the derivative ?
+    - f(t) in grams
+    - f'(t) in grams per second
+ - assume f(0) = 1g
+ - so what is f(t) ?
+    - we already known such a function:  f(t) = eᵗ
+ - how much gray goo is there after 10 seconds ?
+    - f(10) = e¹⁰ ≈ 22 kg
+ - how long will it take until the entire Earth is converted into gray goo ? 
+    - the mass of the Earth is about 6·10²⁷g
+    - f(t) = eᵗ  = 6·10²⁷g 
+    - t = log(6·10²⁷) = log6 + 27·log10 = 1.8 + 27·2.3 ≈ 63.9 second
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
