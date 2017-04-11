@@ -189,6 +189,117 @@ But where is the match ? What is the position of "banana" in the Text ?
     3. The overall running time is O(|Text|+|Patterns| ) 
     4. We only need O(|Text|) additional memory to store the suffix tree and all the positions where at least one of the *Patterns* occurs in the *Text*. 
 
+ - However, big-O notation hides constants!
+    - suffix tree algorithms has large memory footprint ~ 20 · |Text| for long texts like human genome
+ - Even more importantly , We want to find mutations! 
+    - it is unclear how to develop fast **Approximate** Multiple Pattern Matching using suffix trees 
+
+
+
 ---
+
+# Week2 Burrows-Wheeler Transform and Suffix Arrays 
+
+## Burrows-Wheeler Transform
+
+So our goal now is to start from the genome, apply Burrows–Wheeler transform to the genome. And we can now, hopefully, comprise Burrows–Wheeler transform of the genome. And after you apply this compression, we will greatly reduce memory for storing our genome. But it totally makes sense if we can invert this transformation. 
+
+### Inverting Burrows-Wheeler Transform
+
+We know the last column of the Burrows-Wheeler matrix. 
+
+We also know the first column , because the first column is simply sorting all elements of the Burrows-Wheeler transform.  排序一下可得
+
+trick: 把这两列组合起来，排序，就能得到 矩阵的前两列
+
+
+naive algorithm need O(n³lgn)
+
+it's hiding right after panam, shown in green.
+
+So it looks like that i-th position of a in the first column is hiding at the same position along the column as i-th position of a in the last column. 
+
+Is It True in General ?
+
+ let's number all occurrences of a in the 1st column 
+
+ and then let's chop off the first a , the sorted six strings remain sorted !
+ 
+ now add this chop symbol to the end of each of the strings, of course the strings remain sorted.  But these are exactly six strings that end in *a* in our Burrows-Wheeler matrix.  Which means that they follow in our matrix in the same order than the order we started from. 
+ 
+And the result is the so-called first-last property of Burrows-Wheeler transform.  The k-th occ... 
+
+---
+
+Inverting BWT again 
+
+let's start with the *$* that is located in the first column first row.  It corresponds to s1 in the last column first row. 
+
+we know where s1 is located in the first column. let's move there.  (red line)
+
+And s1 in the first column correspond to a6 in the last column. And we know where a6 is located in the first column , so let's move to the postion a6. 
+
+repeat such steps 
+
+quiz:  What is the inverse of the Burrows-Wheeler Transform AGGGAA$ ?
+A: GAGAGA$
+
+首先列出 1st column and last colum
+
+```
+$₁ ... A₁
+A₁ ... G₁
+A₂ ... G₂
+A₃ ... G₃
+G₁ ... A₂
+G₂ ... A₃
+G₃ ... $₁
+
+$1
+A₁$1
+G₁A₁$1
+A₂G₁A₁$1
+G₂A₂G₁A₁$1
+A₃G₂A₂G₁A₁$1
+G₃A₃G₂A₂G₁A₁$1
+```
+
+The only question left, where is pattern matching in the Burrows-Wheeler transform ?
+
+### Using BWT for Pattern Matching
+
+
+### Searching for ana using top and buttom pointers
+
+In the next iteration, the range of position we are interested in is narrowed to all position where *a* appears in the 1st column (a₁-a₆) .
+
+We are looking for the next symbol , which is *n* in *ana* , and we are looking for the 1st occurrences of this symbol in the last column , among positions from top to buttom, among rows from top to buttom.
+
+As soon as we found the 1st and last occurrence of this symbol in this case , and the first-last property will tell us where this *n* and all n's in between are hiding in the first column.  As a result , the pointers top and buttom equal to 1 and 6 , are changing into 9 and 11, they narrow the search. 
+
+And then we continue further, and that's how we find the positions of *ana* in the text. 
+
+Now we have a very fast pattern matching algorithm based on Burrows-Wheeler Transform, and it has good memory footprint. The only problem , though , is that BW Mathing is very slow. It analyzes every symbol from top to bottom in the last column in each step. What should we do? 
+
+The trick here is to introduce the count array. 
+
+The count array describes the number of apearances of a given symbol , in the first i postion of the last quote. 
+
+new algorithm
+
+And as you can see, we don't need any more to explore every symbol between top and bottom indices in the last column. 
+
+---
+
+There is still one question. Where are the matches that they found ? Where do they appear in the text  ?
+
+---
+
+## Suffix Arrays
+
+
+
+
+
 
 
