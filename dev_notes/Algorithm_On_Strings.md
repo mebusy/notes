@@ -159,7 +159,7 @@ But where is the match ? What is the position of "banana" in the Text ?
 ## Constructing Suffix Tree:
 
  - Naive Approach
-    - Quadratic runtime: O(|Text|2)
+    - Quadratic runtime: O(|Text|²)
     - O(|Genome| + |Patterns|) to find pattern matches
  - Linear-Time Algorithm
     - Linear runtime (for a constant-size alphabet): O(|Text|)
@@ -242,6 +242,7 @@ And s1 in the first column correspond to a6 in the last column. And we know wher
 repeat such steps 
 
 quiz:  What is the inverse of the Burrows-Wheeler Transform AGGGAA$ ?
+    - 注： BWT string $并不是总在最后一位
 A: GAGAGA$
 
 首先列出 1st column and last colum
@@ -255,13 +256,13 @@ G₁ ... A₂
 G₂ ... A₃
 G₃ ... $₁
 
-$1
-A₁$1
-G₁A₁$1
-A₂G₁A₁$1
-G₂A₂G₁A₁$1
-A₃G₂A₂G₁A₁$1
-G₃A₃G₂A₂G₁A₁$1
+
+A₁
+G₁A₁
+A₂G₁A₁
+G₂A₂G₁A₁
+A₃G₂A₂G₁A₁
+G₃A₃G₂A₂G₁A₁
 ```
 
 The only question left, where is pattern matching in the Burrows-Wheeler transform ?
@@ -296,6 +297,52 @@ There is still one question. Where are the matches that they found ? Where do th
 ---
 
 ## Suffix Arrays
+
+
+Q: what is the suffix array of the string S = GAGAGAGA$ ?  ( raw text )
+A: [8 1 3 5 7 0 2 4 6]
+
+```
+8 $
+7 A$
+5 AGA$
+3 AGAGA$
+1 AGAGAGA$
+6 GA$
+4 GAGA$
+2 GAGAGA$
+0 GAGAGAGA$
+```
+
+So , when suffix array is constructed, we can very quickly answer the question where the occurrence of the part is. In this case of *ana* , our pattern appear at position 1,7,and 9. 
+
+The challenge is how to construct the suffix array quickly. Because the naive algorithm is O(n²). 
+
+There is a way to construct a suffix array if you're already construction a suffix tree. A suffix array is simply a depth-first reversal of the suffix tree. 
+
+Indeed, you start from lead 5, continue to lead 3, , and then 1, ....  But the memory requirement of suffix tree ... `-_-b`
+
+---
+
+## Approximate Pattern Matching
+
+BWT pattern matching with 1 mismatch
+
+eg. *ana* with 1 mismatch
+
+We will start again with finding all rows in the BW matrix that start with *a*.
+
+And among them , we want to find rows that containts *na*.  Among six rows that start with *a* , only three of them actually end with *n*, they form exact matching of the last 2 symbols of *ana* to our text.   They form exact matching of the last 2 symbols of *ana* to our text.
+
+In the past , it was the only thing we interested, but now, we're actually interested in all six rows starting from *a*,  because we are interested in approximate matches as well. 
+
+And to find approximate matches , we need to retain all the 6 rows, and specify the number of mismatches for each of these rows. 
+
+ 
+
+
+
+
 
 
 
