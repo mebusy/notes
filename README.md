@@ -41,7 +41,7 @@
  a | b | c | d
 --- | --- | --- | ---
 [随机数](https://github.com/mebusy/notes/blob/master/dev_notes/Dev_Random.md) | [微积分总览](https://github.com/mebusy/notes/blob/master/dev_notes/微积分总览.md) | [Tricks](https://github.com/mebusy/notes/blob/master/dev_notes/Tricks.md) |  [台大概率笔记](https://github.com/mebusy/notes/blob/master/dev_notes/TaiwanU_probability.md)
-[Calculus One](https://github.com/mebusy/notes/blob/master/dev_notes/CalculusOne.md) |
+[台大概率笔记2](https://github.com/mebusy/notes/blob/master/dev_notes/TaiwanU_probability2.md) |  [Calculus One](https://github.com/mebusy/notes/blob/master/dev_notes/CalculusOne.md) |
 
 
 ---

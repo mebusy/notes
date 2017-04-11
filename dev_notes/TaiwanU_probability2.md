@@ -1,5 +1,24 @@
+...menustart
+
+ - [5-1: 机率密度函数 PDF (PROBABILITY DENSITY FUNCTION)](#fc548c0411701f3a57c7799ad18245e3)
+	 - [PDF](#bcd1b68617759b1dfcff0403a6b5a8d1)
+	 - [PDF 跟机率的关系](#0b821c7256491cd7494160a47d4a1023)
+	 - [PDF 有哪些性质呢?](#5bc2e5b291e2fbe5196f9a425ad6a0c9)
+ - [5-2: 连续机率分布 I (CONTINUOUS PROBABILITY DISTRIBUTION)](#423296d40fd5d59d1f076d73508c42e6)
+	 - [Uniform 机率分布](#f7bf1cb803a0ab0539a6dc3ed526dd4f)
+	 - [Exponential 机率分布](#894ad572b4888ac89196f741cd003480)
+	 - [Erlang 机率分布](#7d09f590df9dfcbd10d1b8cbffce9514)
+		 - [Erlang 和 Exponential  关系](#a37b5c85c6d082e170925dbe09051a82)
+ - [Week6](#63995e860d87301917bfed4525e36993)
+
+...menuend
+
+
+<h2 id="fc548c0411701f3a57c7799ad18245e3"></h2>
 
 # 5-1: 机率密度函数 PDF (PROBABILITY DENSITY FUNCTION)
+
+<h2 id="bcd1b68617759b1dfcff0403a6b5a8d1"></h2>
 
 ## PDF 
 
@@ -27,6 +46,8 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_pdf.png)
 
+<h2 id="0b821c7256491cd7494160a47d4a1023"></h2>
+
 ## PDF 跟机率的关系
 
  - 因为我们习惯处理机率，看到 PDF 如何把它跟机率连结呢?
@@ -38,19 +59,27 @@
  - 当 Δx 很小时：P(x≤ X ≤x+Δx) = fₓ(x)·Δx
  - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_pdf_calculus.png)
 
+<h2 id="5bc2e5b291e2fbe5196f9a425ad6a0c9"></h2>
+
 ## PDF 有哪些性质呢?
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_pdf_property.png)
 
 ---
 
+<h2 id="423296d40fd5d59d1f076d73508c42e6"></h2>
+
 # 5-2: 连续机率分布 I (CONTINUOUS PROBABILITY DISTRIBUTION)
+
+<h2 id="f7bf1cb803a0ab0539a6dc3ed526dd4f"></h2>
 
 ## Uniform 机率分布
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability2_uniform_dist.png)
 
  - Ex: 已知1路公交车每十分钟一班。 小美随意出发到公车站，小美须等候公交 车之时间为 X
+
+<h2 id="894ad572b4888ac89196f741cd003480"></h2>
 
 ## Exponential 机率分布
 
@@ -74,6 +103,8 @@
 
 G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
 
+<h2 id="7d09f590df9dfcbd10d1b8cbffce9514"></h2>
+
 ## Erlang 机率分布
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability2_Erlang_dist.png)
@@ -84,6 +115,8 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
 
 --- 
 
+<h2 id="a37b5c85c6d082e170925dbe09051a82"></h2>
+
 ### Erlang 和 Exponential  关系
 
  - Erlang(n,λ) 常被用来model 一件有多个关卡事情的总时间，而每个关卡所 需时间都是随机的 
@@ -93,6 +126,8 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
     - Ex: 写完五科作业所需时间
 
 ---
+
+<h2 id="63995e860d87301917bfed4525e36993"></h2>
 
 # Week6 
 

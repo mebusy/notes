@@ -10,6 +10,13 @@
 	 - [From Suffix Tries to Suffix Trees](#6df9f85e12d53da5a7faab3233bbbcf3)
 	 - [Constructing Suffix Tree:](#eeb864ae13cd09f3fc8b2e37ef0dac43)
 	 - [Quiz](#ab458f4b361834dd802e4f40d31b5ebc)
+ - [Week2 Burrows-Wheeler Transform and Suffix Arrays](#7b4bb7010bb5cc258a877c223ce396fa)
+	 - [Burrows-Wheeler Transform](#c77af5b3abfc315781377fb29256c39f)
+		 - [Inverting Burrows-Wheeler Transform](#2958b02379af181c5d50fdb9eb76f1f8)
+		 - [Using BWT for Pattern Matching](#353b08ef75d5176db7f70fe5d2e3d617)
+		 - [Searching for ana using top and buttom pointers](#577c04ac242ce1b20da613dd6aaf2a9f)
+	 - [Suffix Arrays](#4297164b1e2c9e6f4924b39ebdad0b14)
+	 - [Approximate Pattern Matching](#699b0062252bc43a8e1c97a871b1b3fd)
 
 ...menuend
 
@@ -198,11 +205,17 @@ But where is the match ? What is the position of "banana" in the Text ?
 
 ---
 
+<h2 id="7b4bb7010bb5cc258a877c223ce396fa"></h2>
+
 # Week2 Burrows-Wheeler Transform and Suffix Arrays 
+
+<h2 id="c77af5b3abfc315781377fb29256c39f"></h2>
 
 ## Burrows-Wheeler Transform
 
 So our goal now is to start from the genome, apply Burrows–Wheeler transform to the genome. And we can now, hopefully, comprise Burrows–Wheeler transform of the genome. And after you apply this compression, we will greatly reduce memory for storing our genome. But it totally makes sense if we can invert this transformation. 
+
+<h2 id="2958b02379af181c5d50fdb9eb76f1f8"></h2>
 
 ### Inverting Burrows-Wheeler Transform
 
@@ -267,8 +280,12 @@ G₃A₃G₂A₂G₁A₁
 
 The only question left, where is pattern matching in the Burrows-Wheeler transform ?
 
+<h2 id="353b08ef75d5176db7f70fe5d2e3d617"></h2>
+
 ### Using BWT for Pattern Matching
 
+
+<h2 id="577c04ac242ce1b20da613dd6aaf2a9f"></h2>
 
 ### Searching for ana using top and buttom pointers
 
@@ -295,6 +312,8 @@ And as you can see, we don't need any more to explore every symbol between top a
 There is still one question. Where are the matches that they found ? Where do they appear in the text  ?
 
 ---
+
+<h2 id="4297164b1e2c9e6f4924b39ebdad0b14"></h2>
 
 ## Suffix Arrays
 
@@ -323,6 +342,8 @@ There is a way to construct a suffix array if you're already construction a suff
 Indeed, you start from lead 5, continue to lead 3, , and then 1, ....  But the memory requirement of suffix tree ... `-_-b`
 
 ---
+
+<h2 id="699b0062252bc43a8e1c97a871b1b3fd"></h2>
 
 ## Approximate Pattern Matching
 
