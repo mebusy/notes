@@ -31,5 +31,5 @@
 
 # Discrete Mathematics
 
- 1. [数理逻辑:基本概念] (https://github.com/mebusy/notes/blob/master/dev_notes/DiscreteMathematics.md)
+ 1. [数理逻辑:基本概念](https://github.com/mebusy/notes/blob/master/dev_notes/DiscreteMathematics.md)
  2. [数理逻辑:命题逻辑及形式系统](https://github.com/mebusy/notes/blob/master/dev_notes/DiscreteMathematics_week2.md)
