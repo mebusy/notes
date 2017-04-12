@@ -1737,14 +1737,17 @@ module.exprots = Class;
 
 ```
 npm config list
-npm config set https-proxy "https://xxxxx" --global
+npm config set https-proxy "http://xxxxx" --global
 npm config set proxy "http://xxxx" --global
-npm config set registry "http://registry.npmjs.org/" --global
 
 npm install colors 
 npm uninstall 
 使用 -g 安装的全局 module，需要指定 NODE_PATH ?
 ```
+
+ - note:
+ 	- `https-proxy` , it is dash, not underscore
+	- `https-proxy` also use "http://xxx" , not https !!!
 
 
 <h2 id="58649fadacd370d9b6ba4950e91f0833"></h2>
