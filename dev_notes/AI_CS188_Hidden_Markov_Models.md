@@ -426,6 +426,33 @@ The forward algorithm is a dynamic program for computing at each time slice , th
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_online_belief_update_evidence.png)
  - The forward algorithm does both at once (and doesn’t normalize)
 
+## Example : Ghost Buster 
+
+ - model
+    - state X:  cell in tiled map , eg.(2,3)
+    - transition model: P(X' | X )
+        - Pr( ghost is at position p at time t + 1 | ghost is at position oldPos at time t )
+        - probability of ghost move from state X to state X'
+    - sensor reading: noisyDistance 
+        - estimated Manhattan distance to the ghost
+        - that is , how close ghost is
+    - emission model: P( noisyDistance | TrueDistance )
+ - Observation : got a sensor reading
+    - for each position *p* (it a state )  in all legal positions 
+        - calculate pacman's  manhattan distance  to *p* state -- *trueDistance*
+        - newBelief[p] = self.beliefs[p] * emissionModel[trueDistance] 
+    - eventually , re-normalize , and update self.beliefs 
+        - newBelief.normalize()  
+        - self.beliefs = newBelief   
+ - Time Elapse: the ghost may move
+    - note: you don’t know exactly where is the ghost , you need compute the distribution , for all possible positions
+    - for each position *oldPos* (it a state )  in all legal positions 
+        - you may get the distribution : newPostDist  -- P( newPos | oldPos )
+        - then for every newPostion, you update the part of its new belief 
+             - newBelief[ newPos ] += prob * self.beliefs[ oldPos  ]
+             - Note !!!  here is not update 1 belief ! it update part of serveral beliefs !!!!  
+    - self.beliefs = newBelief     
+
 
 
 ---
