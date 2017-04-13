@@ -614,7 +614,20 @@ Implementation
  2. Repeat
     1. Perform time update
     2. Weight according to evidence
+        - corner case: When all your particles receive zero weight based on the evidence, you should resample all particles to initial distribution
     3. Resample according to weights
+
+---
+ 
+ - Note: for partical filtering , you no need to store beliefs,  current belief is stored in  particles
+ - **difference** :
+    - sample
+        - Forward Algorithm : you consider all possible positions
+        - particle filtering :  you consider just particles.
+    - time elapse
+        - Forward Algorithm : you consider how likely it is to get to X<sub>t+1</sub> from each locations (X'). 
+        - particle filtering : you just roll a dice, and move particle to next most likely position.
+        
 
 ---
 
