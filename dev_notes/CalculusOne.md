@@ -869,8 +869,34 @@ lim<sub>x→∞</sub> (x+sinx)/x  = lim<sub>x→∞</sub> (x/x + sinx/x) = 1 + l
 
 <h2 id="e6c54ed15c1ecbc7f940c079d0c5ad69"></h2>
 
+
 ### How can derivatives help me to understande rates of change in the real world ?
 
+#### 影子长度的变化速率
+
+ - the lamp is 3 meters high
+ - man is 2 meters high
+ - man is walking on speed 2meters/second
+ - what is the changing rate of length of  shadow ?
+
+--- 
+
+ - 4 steps to solve this problem
+    1. draw picture
+    2. list euqation
+    3. differentiate
+    4. solve 
+
+```
+(X+S)/3 = S/2 
+differentiate
+1/3·(X' + S') = 1/2·S'
+1/3·X' = 1/6·S'
+2·X' = S'
+
+amazing? 影子长度变化的速率 是人行走速度的两倍, 与当前灯和人的位置无关
+``` 
+ 
 <h2 id="b1c52412625c6bd4e56994958e55ef8b"></h2>
 
 #### How long until the gray goo destroys Earth ?
