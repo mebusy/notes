@@ -171,6 +171,7 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
 
 #### Active / Inactive Paths
 
+
  - Question: Are X and Y conditionally independent given evidence variables {Z}?
     - Yes, if X and Y “d-separated” by Z
     - Consider all (undirected) paths from X to Y
@@ -178,6 +179,36 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
  - A path is active if each triple is active:
     - Causal chain A → B → C where B is unobserved (either direction)
     - Common cause A ← B → C where B is unobserved
+    - Common effect (aka v-structure)
+        - A → B ← C where B or **one of its descendents** is observed
+        - for last one of active triples, if the children are just deterministic copies of their parents , then observing the variable at the bottom is the same as observing the the variable up there. 
+        - so we're in the same scenario we've shown that influence can propagate.
+ - All it takes to block a path is a single inactive segment
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_active_inactive_triples.png)
+
+ - for a long path
+    - we look at every triple along the path 
+    - if every triple along the path is active , we have an active path
+    - if one of the triples along the path is not active , we have an inactiv path. 
+    - eg. (A) → (B) → (C) → (D) → (E) → (F)
+        - you should check all possible triples 
+        - ABC, BCD, CDE , DEF
+    - every node on that path, has to be a middle node in one of your triples.
+
+---
+
+## D-separation
+
+ - Query: Xᵢ ⫫ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } ?
+ - Check all (undirected!) paths between Xᵢ and Xⱼ 
+    - If one or more active, then independence not guaranteed
+        - Xᵢ not ⫫ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
+    - Otherwise (i.e. if all paths are inactive), then independence is guaranteed
+        - Xᵢ ⫫ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
+
+          
 
 
 
