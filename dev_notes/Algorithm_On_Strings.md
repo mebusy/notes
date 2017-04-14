@@ -358,16 +358,38 @@ The only question left, where is pattern matching in the Burrows-Wheeler transfo
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWMatching_top_bottom_pointer.png)
 
- - 1st iteration 
-    - top / bottom 分别 赋值 1/6 
 
 ```
-topIndex ← first postion of symbol among position from top to bottom in LastColumn 
-bottomIndex ← lastpostion of symbol among position from top to bottom in LastColumn 
+if positions from top to bottom in LastColumn contain symbol 
+    topIndex ← first postion of symbol among position from top to bottom in LastColumn 
+    bottomIndex ← lastpostion of symbol among position from top to bottom in LastColumn 
+    top ← LastToFirst( topIndex )
+    bottom ← LastToFirst( bottomIndex )
 ```
 
 
-In the next iteration, the range of position we are interested in is narrowed to all position where *a* appears in the 1st column (a₁-a₆) .
+ - 1st iteration - a
+    - in lastColumn[0,13]  contain *a* 
+    - topIndex ← 7 in last column
+    - lastIndex ← 13 in last column
+    - top ← 1  in first column
+    - bottom ← 6 in 1st column
+ - 2nd iteration - n 
+    - in lastColumn[1,6] contain *n*
+    - topIndex ← 2 in last column
+    - lastIndex ← 6 in last column
+    - top ← 9  in first column
+    - bottom ← 11 in 1st column
+ - 3th iteration - a
+    - in lastColumn[9,11] contain *a*
+    - topIndex ← 9 in last column
+    - lastIndex ← 11 in last column
+    - top ← 3  in first column
+    - bottom ← 5 in 1st column
+ - We found  5-3+1 = 3 !!! 
+ 
+
+In the 1st iteration, the range of position we are interested in is narrowed to all position where *a* appears in the 1st column (a₁-a₆) .
 
 We are looking for the next symbol , which is *n* in *ana* , and we are looking for the 1st occurrences of this symbol in the last column , among positions from top to buttom, among rows from top to buttom.
 
@@ -375,7 +397,9 @@ As soon as we found the 1st and last occurrence of this symbol in this case , an
 
 And then we continue further, and that's how we find the positions of *ana* in the text. 
 
-Now we have a very fast pattern matching algorithm based on Burrows-Wheeler Transform, and it has good memory footprint. The only problem , though , is that BW Mathing is very slow. It analyzes every symbol from top to bottom in the last column in each step. What should we do? 
+Now we have a  pattern matching algorithm based on Burrows-Wheeler Transform, and it has good memory footprint. 
+
+The only problem , though , is that BW Mathing is very slow. It analyzes every symbol from top to bottom in the last column in each step. What should we do? 
 
  - BWMatching is slow
     - it analyzes every symbol from top to bottom in each step!
@@ -383,9 +407,48 @@ Now we have a very fast pattern matching algorithm based on Burrows-Wheeler Tran
 ---     
 
  - The trick here is to introduce the count array. 
-    - The count array describes the number of apearances of a given symbol , in the first i postion of the last quote. 
+    - The count array describes the number of apearances of a given symbol , in the first i postion of the last collumn. 
 
- - new algorithm
+ - Introducing Count Array 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWM_count_array.png)
+    - so you have the array of #occurrences for every symbol , trough this array, you can calculate the index where every symbol first appear in first column (FIRSTOCCURRENCE).
+ - bettern Algorithm !!!
+    - Count<symbol>( i, LastColumn )
+        - it's 2D array
+        - return #occurrences of *symbol* in the first i positions of LastColumn.
+
+```
+BetterBWMatching( FIRSTOCCURRENCE , LastColumn , Pattern , Count  )
+    top ← 0
+    bottom ← |LastColumn| -1
+    
+    while top <= bottom
+        if Pattern is nonempty
+            symbol ← last letter in Pattern
+            remove last lettern from Pattern
+            top ← FIRSTOCCURRENCE(symbol) + Count( top, LastColumn )
+            bottom ← FIRSTOCCURRENCE(symbol) + Count( bottom +1 , LastColumn ) -1 
+        else 
+            return bottom - top +1 
+    return 
+end function 
+```
+
+ - top ← 0 , bottom ← 13 
+ - 1st iteration 
+    - symbol ← a 
+    - top ← 1 + 0 = 1
+    - bottom ← 1 + 6 -1 = 6
+ - 2nd iteration 
+    - symbol ← n 
+    - top ← 9 + 0 = 9 
+    - bottom ← 9 + 3 -1 = 11
+ - 3th iteration
+    - symbol ← a 
+    - top ← 1 + 2 = 3
+    - bottom ← 1 + 5 -1 = 5
+ - we found 5-3+1 = 3 matching !!!! 
+
 
 And as you can see, we don't need any more to explore every symbol between top and bottom indices in the last column. 
 
@@ -393,7 +456,8 @@ And as you can see, we don't need any more to explore every symbol between top a
 
 There is still one question. Where are the matches that they found ? Where do they appear in the text  ?
 
-
+ - Where Are the Matches?
+    - We know that ***ana*** occurs 3 times, but where does ***ana*** appear in Text???
 
 ---
 
