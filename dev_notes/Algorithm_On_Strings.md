@@ -213,7 +213,41 @@ But where is the match ? What is the position of "banana" in the Text ?
 
 ## Burrows-Wheeler Transform
 
-So our goal now is to start from the genome, apply Burrows–Wheeler transform to the genome. And we can now, hopefully, comprise Burrows–Wheeler transform of the genome. And after you apply this compression, we will greatly reduce memory for storing our genome. But it totally makes sense if we can invert this transformation. 
+So our goal now is to start from the genome, apply Burrows–Wheeler transform to the genome. And we can now, hopefully, compress Burrows–Wheeler transform of the genome. And after you apply this compression, we will greatly reduce memory for storing our genome. But it totally makes sense if we can invert this transformation. 
+
+### Text Compression by Run-Length Encoding
+
+ - Run-length encoding compresses a run of n identical symbols:
+    - GGGGGGGGGGCCCCCCCCCCCAAAAAAATTTTTTTTTTTTTTTCCCCCG
+    - -> 10G11C7A15T5C1G
+ - genomes don’t have lots of runs... but they do have lots of repeats:
+    - ***ACTGA***CCGAA***ACTGA***GTATCCG***ACTGA***A***ACTGA***TCAGT***ACTGA***CATTGC
+
+ - Idea: Converting Repeats to Runs
+ - Forming All Cyclic Rotations of Text
+    - panamabananas$
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_cyclic_rotation_of_text.png)
+
+--- 
+
+ - Cyclic Rotations
+    - panamabananas$ 
+    - $panamabananas 
+    - s$panamabanana 
+    - as$panamabanan 
+    - nas$panamabana 
+    - anas$panamaban 
+    - nanas$panamaba 
+    - ananas$panamab 
+    - bananas$panama 
+    - abananas$panam 
+    - mabananas$pana 
+    - amabananas$pan 
+    - namabananas$pa 
+    - anamabananas$p
+
+
+
 
 <h2 id="2958b02379af181c5d50fdb9eb76f1f8"></h2>
 
