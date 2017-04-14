@@ -272,7 +272,13 @@ So our goal now is to start from the genome, apply Burrows–Wheeler transform t
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_invert_banana_first3column.png)
     - repeate the steps, until we reconstruct the entire matrix !
         - Symbols in the first row (after $) spell ***banana***.
-
+ - More Memory Issues
+    - Reconstructing Text from BWT(Text) required us to store |Text| cyclic rotations of |Text|.
+    - Can we invert BWT(Text) with less space and without |Text| rounds of sorting?
+ - A Strange Observation
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_invert_hiding_in_same_position.png)
+    - 1st **a** in FirstColumn and 1st **a** in LastColumn are hiding at the same position along the cycle!
+    - They Are Hiding at the Same Position!
 
 
 naive algorithm need O(n³lgn)
