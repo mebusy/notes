@@ -279,7 +279,12 @@ So our goal now is to start from the genome, apply Burrows–Wheeler transform t
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_invert_hiding_in_same_position.png)
     - 1st **a** in FirstColumn and 1st **a** in LastColumn are hiding at the same position along the cycle!
     - They Are Hiding at the Same Position!
-
+ - Is It True in General?
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_still_sorted.png)
+ - First-Last Property
+    - the k-th occurrence of *symbol* in ***FirstColumn***
+    - and the k-th occurrence of *symbol* in ***LastColumn***
+    - correspond to appearance of *symbol* at the same position in ***Text***.
 
 naive algorithm need O(n³lgn)
 
