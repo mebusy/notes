@@ -470,8 +470,9 @@ There is still one question. Where are the matches that they found ? Where do th
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_suffix_array.png)
  
 
-Q: what is the suffix array of the string S = GAGAGAGA$ ?  ( raw text )
-A: [8 1 3 5 7 0 2 4 6]
+ - Q: what is the suffix array of the string S = GAGAGAGA$ ?  ( raw text )
+ - A: [8 1 3 5 7 0 2 4 6]
+ - problem will occure if we don't have the raw text, but BWT text
 
 ```
 8 $
@@ -485,13 +486,33 @@ A: [8 1 3 5 7 0 2 4 6]
 0 GAGAGAGA$
 ```
 
+ - Using the Suffix Array to Find Matches
+    - Thus, ana occurs at positions 1, 7, 9 
+        - a3 -> 1
+        - a4 -> 7
+        - a5 -> 9
+
 So , when suffix array is constructed, we can very quickly answer the question where the occurrence of the part is. In this case of *ana* , our pattern appear at position 1,7,and 9. 
 
 The challenge is how to construct the suffix array quickly. Because the naive algorithm is O(n²). 
 
 There is a way to construct a suffix array if you're already construction a suffix tree. A suffix array is simply a depth-first reversal of the suffix tree. 
 
-Indeed, you start from lead 5, continue to lead 3, , and then 1, ....  But the memory requirement of suffix tree ... `-_-b`
+ - From Suffix Tree to Suffix Array: Depth-First Traversal
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_fromSuffixTreeToSuffixArray.png)
+    - Indeed, you start from lead 5, continue to lead 3, , and then 1, ....  
+
+ - Constructing Suffix Array
+    - Depth-first traversal of suffix tree
+        - O(|Text|) time and ~20·|Text| space
+    - Manber-Myers algorithm (1990):
+        - O(|Text|) time and ~4·|Text| space
+    - But memory footprint is still large for human genome!
+    - We will learn how to quickly construct suffix array without relying on suffix tree later in this course
+
+ - Reducing Memory Footprint for Suffix Array
+    - 
+
 
 ---
 
