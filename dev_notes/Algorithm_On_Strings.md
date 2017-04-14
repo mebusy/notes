@@ -511,7 +511,18 @@ There is a way to construct a suffix array if you're already construction a suff
     - We will learn how to quickly construct suffix array without relying on suffix tree later in this course
 
  - Reducing Memory Footprint for Suffix Array
-    - 
+    - Can we store only a fraction of the suffix array but still do fast pattern matching?
+        - 只 suffix array的一部分
+    - Partial suffix array SuffixArrayK(Text) only contains values that are multiples of some integer K
+        - eg. k=5 -- 0,5,10
+
+ - Using the Partial Suffix Array to Find Matches
+    - Where are these ana prefixes located in Text???
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWM_match_use_partial_suffix_array.png)
+    - Focus on **a₄na**
+        - Partial suffix array reveals position of a₁bana
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWM_match_use_partial_suffix_array_a4na.png)
+
 
 
 ---
@@ -519,6 +530,17 @@ There is a way to construct a suffix array if you're already construction a suff
 <h2 id="699b0062252bc43a8e1c97a871b1b3fd"></h2>
 
 ## Approximate Pattern Matching
+
+ - Returning to Search for Mutations
+    - Approximate Pattern Matching Problem:
+        - Input: A string Pattern, a string Text, and an integer d.
+        - Output: All positions in Text where the string Pattern  appears as a substring with at most d mismatches.
+ - Revealing Mutations by Analyzing ***Billions*** of Reads
+    - ***Multiple*** Approximate Pattern Matching Problem
+        - Input: A ***set*** of strings Patterns, a string Text, and an integer d.
+        - Output: All positions in Text where a string from Patterns appears as a substring with at most d mismatches.
+
+
 
 BWT pattern matching with 1 mismatch
 
