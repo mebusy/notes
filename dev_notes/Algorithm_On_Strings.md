@@ -298,11 +298,14 @@ So our goal now is to start from the genome, apply Burrows–Wheeler transform t
     - repeat such steps , We are done 
         - This Was Fast!
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_invert_BWT_again_done.png)
+        - Memory: 2|Text|
+        - Time: O(|Text|)
 
+--- 
 
-quiz:  What is the inverse of the Burrows-Wheeler Transform AGGGAA$ ?
+ - quiz:  What is the inverse of the Burrows-Wheeler Transform AGGGAA$ ?
     - 注： BWT string $并不是总在最后一位
-A: GAGAGA$
+ - A: GAGAGA$
 
 首先列出 1st column and last colum
 
@@ -330,10 +333,28 @@ The only question left, where is pattern matching in the Burrows-Wheeler transfo
 
 ### Using BWT for Pattern Matching
 
+ - Can we use BWT(Text) to design a more memory efficient linear-time algorithm for Multiple Pattern Matching?
+
+### Finding Pattern Matches Using BWT
+
+ - Searching for **ana** in p**ana**mab**anana**s
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_pattern_match_ana_found.png)
+ - Lets Start by Matching the Last Symbol (a) 
+    - Searching for ani**a** in panamabananas
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_pattern_match_a.png)
+ - Matching the Last Two Symbols (na)
+    - Searching for a**na** in panamabananas
+    - Three Matches of na Found!
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_pattern_match_na.png)
+ - Matching **ana**
+    - Searching for **ana** in panamabananas
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_pattern_match_ana.png)
+
 
 <h2 id="577c04ac242ce1b20da613dd6aaf2a9f"></h2>
 
-### Searching for ana using top and buttom pointers
+### Searching for ana using top and buttom pointers (TODO)
+
 
 In the next iteration, the range of position we are interested in is narrowed to all position where *a* appears in the 1st column (a₁-a₆) .
 
@@ -345,17 +366,23 @@ And then we continue further, and that's how we find the positions of *ana* in t
 
 Now we have a very fast pattern matching algorithm based on Burrows-Wheeler Transform, and it has good memory footprint. The only problem , though , is that BW Mathing is very slow. It analyzes every symbol from top to bottom in the last column in each step. What should we do? 
 
-The trick here is to introduce the count array. 
+ - BWMatching is slow
+    - it analyzes every symbol from top to bottom in each step!
 
-The count array describes the number of apearances of a given symbol , in the first i postion of the last quote. 
+---     
 
-new algorithm
+ - The trick here is to introduce the count array. 
+    - The count array describes the number of apearances of a given symbol , in the first i postion of the last quote. 
+
+ - new algorithm
 
 And as you can see, we don't need any more to explore every symbol between top and bottom indices in the last column. 
 
 ---
 
 There is still one question. Where are the matches that they found ? Where do they appear in the text  ?
+
+
 
 ---
 
