@@ -287,30 +287,13 @@ So our goal now is to start from the genome, apply Burrows–Wheeler transform t
     - correspond to appearance of *symbol* at the same position in ***Text***.
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_first_last_property.png)
 
-
-naive algorithm need O(n³lgn)
-
-it's hiding right after panam, shown in green.
-
-So it looks like that i-th position of a in the first column is hiding at the same position along the column as i-th position of a in the last column. 
-
-Is It True in General ?
-
- let's number all occurrences of a in the 1st column 
-
- and then let's chop off the first a , the sorted six strings remain sorted !
- 
- now add this chop symbol to the end of each of the strings, of course the strings remain sorted.  But these are exactly six strings that end in *a* in our Burrows-Wheeler matrix.  Which means that they follow in our matrix in the same order than the order we started from. 
- 
-And the result is the so-called first-last property of Burrows-Wheeler transform.  The k-th occ... 
-
 ---
 
-Inverting BWT again 
-
-let's start with the *$* that is located in the first column first row.  It corresponds to s1 in the last column first row. 
-
-we know where s1 is located in the first column. let's move there.  (red line)
+ - Inverting BWT again 
+    - let's start with the *$* that is located in the first column first row.  It corresponds to s1 in the last column first row. 
+    - we know where s1 is located in the first column. let's move there.  (red line)
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_invert_BWT_again_1.png)
+    - 
 
 And s1 in the first column correspond to a6 in the last column. And we know where a6 is located in the first column , so let's move to the postion a6. 
 
