@@ -285,6 +285,8 @@ So our goal now is to start from the genome, apply Burrows–Wheeler transform t
     - the k-th occurrence of *symbol* in ***FirstColumn***
     - and the k-th occurrence of *symbol* in ***LastColumn***
     - correspond to appearance of *symbol* at the same position in ***Text***.
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_first_last_property.png)
+
 
 naive algorithm need O(n³lgn)
 
