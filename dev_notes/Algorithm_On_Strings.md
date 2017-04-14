@@ -295,9 +295,10 @@ So our goal now is to start from the genome, apply Burrows–Wheeler transform t
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_invert_BWT_again_1.png)
     - And s1 in the first column correspond to a6 in the last column. And we know where a6 is located in the first column , so let's move to the postion a6. 
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_invert_BWT_again_2.png)
-    - 
+    - repeat such steps , We are done 
+        - This Was Fast!
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_invert_BWT_again_done.png)
 
-repeat such steps 
 
 quiz:  What is the inverse of the Burrows-Wheeler Transform AGGGAA$ ?
     - 注： BWT string $并不是总在最后一位
