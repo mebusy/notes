@@ -150,6 +150,38 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
     - Observing an effect **activates** influence between possible causes.
 
 
+### The General Case
+
+ - General question: in a given BN, are two variables independent (given evidence)?
+ - Solution: analyze the graph
+ - Any complex example can be broken into repetitions of the three canonical cases
+
+#### Reachability
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_reachability.png)
+
+ - Recipe: shade evidence nodes, look for paths in the resulting graph
+ - Attempt 1: if two nodes are connected by an undirected path not blocked by a shaded node, they are conditionally independent
+    - to check whether there is a path between 2 variables
+    - then we check whether that path is blocked by something being observed along the path 
+ - Almost works, but not quite
+    - Where does it break?
+    - Answer: the v-structure at *T* (RBT) doesn’t count as a link in a path unless “active”
+
+
+#### Active / Inactive Paths
+
+ - Question: Are X and Y conditionally independent given evidence variables {Z}?
+    - Yes, if X and Y “d-separated” by Z
+    - Consider all (undirected) paths from X to Y
+    - No active paths = independence!
+ - A path is active if each triple is active:
+    - Causal chain A → B → C where B is unobserved (either direction)
+    - Common cause A ← B → C where B is unobserved
+
+
+
+
 
 
 
