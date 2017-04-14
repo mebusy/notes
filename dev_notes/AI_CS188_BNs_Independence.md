@@ -88,8 +88,28 @@ Math proof is annoying !  So what we're going to look at now is a way to read it
 
 ## D-separation: Outline
 
+ - Study independence properties for triples
+ - Analyze complex cases in terms of member triples
+ - D-separation: a condition / algorithm for answering such queries
+
+### Causal Chains 
+
+ - This configuration is a “causal chain”
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_causal_chains_example.png)
+    - P(x,y,z) = P(x)P(y|x)P(z|y)
+ - Guaranteed X independent of Z ?   **No!**
+ - Guaranteed X independent of Z given Y?  **Yes!**
+    - **Evidence along the chain “blocks” the influence** !
+
+```
+P(z|x,y) = P(x,y,z) / p(x,y)
+         = P(x)P(y|z)P(z|y) / ( P(x)P(y|z) )
+         = P(z|y)
+```
 
 
+
+   
 
 
 
