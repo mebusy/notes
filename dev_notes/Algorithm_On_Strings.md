@@ -353,7 +353,18 @@ The only question left, where is pattern matching in the Burrows-Wheeler transfo
 
 <h2 id="577c04ac242ce1b20da613dd6aaf2a9f"></h2>
 
-### Searching for ana using top and buttom pointers (TODO)
+### Searching for ana using top and buttom pointers 
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWMatching_top_bottom_pointer.png)
+
+ - 1st iteration 
+    - top / bottom 分别 赋值 1/6 
+
+```
+topIndex ← first postion of symbol among position from top to bottom in LastColumn 
+bottomIndex ← lastpostion of symbol among position from top to bottom in LastColumn 
+```
 
 
 In the next iteration, the range of position we are interested in is narrowed to all position where *a* appears in the 1st column (a₁-a₆) .
