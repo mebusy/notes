@@ -245,6 +245,14 @@ So our goal now is to start from the genome, apply Burrows–Wheeler transform t
     - amabananas$pan 
     - namabananas$pa 
     - anamabananas$p
+ - Sorting Cyclic Rotations
+    - Sort the strings lexicographically ($ comes first)
+    - BWT(panamabananas$)=smnpbnn***aaaaa***$a
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_text.png)
+    - now it has many runs
+ - Going Back From BWT(Genome) to Genome ? 
+
+
 
 
 
