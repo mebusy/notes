@@ -107,9 +107,24 @@ P(z|x,y) = P(x,y,z) / p(x,y)
          = P(z|y)
 ```
 
+### Common Cause
+
+ - This configuration is a “common cause”
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_common_causal_example.png)
+    - P(x,y,z) = P(y)P(x|y)P(z|y) 
+ - Guaranteed X independent of Z ?   **No!**
+ - Guaranteed X and Z independent given Y?  **Yes!**
+    - **Observing the cause blocks influence between effects**.
+
+```
+P(z|x,y) = P(x,y,z) / p(x,y)  
+         = P(y)P(x|y)P(z|y) / ( P(x)P(y|z) )
+         = P(z|y)  
+```
 
 
-   
+
+
 
 
 
