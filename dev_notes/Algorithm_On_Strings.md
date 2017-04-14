@@ -411,7 +411,7 @@ The only problem , though , is that BW Mathing is very slow. It analyzes every s
 
  - Introducing Count Array 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWM_count_array.png)
-    - so you have the array of #occurrences for every symbol , trough this array, you can calculate the index where every symbol first appear in first column (FIRSTOCCURRENCE).
+    - so you have the array of #occurrences for every symbol , trough this array, you can calculate the index where every symbol first appear in first column(sorted) (FIRSTOCCURRENCE).
  - bettern Algorithm !!!
     - Count<symbol>( i, LastColumn )
         - it's 2D array
@@ -465,6 +465,10 @@ There is still one question. Where are the matches that they found ? Where do th
 
 ## Suffix Arrays
 
+ - Suffix array  holds starting position of each suffix beginning a row.
+ - panamabananas$
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_suffix_array.png)
+ 
 
 Q: what is the suffix array of the string S = GAGAGAGA$ ?  ( raw text )
 A: [8 1 3 5 7 0 2 4 6]
