@@ -293,9 +293,9 @@ So our goal now is to start from the genome, apply Burrows–Wheeler transform t
     - let's start with the *$* that is located in the first column first row.  It corresponds to s1 in the last column first row. 
     - we know where s1 is located in the first column. let's move there.  (red line)
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_invert_BWT_again_1.png)
+    - And s1 in the first column correspond to a6 in the last column. And we know where a6 is located in the first column , so let's move to the postion a6. 
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_invert_BWT_again_2.png)
     - 
-
-And s1 in the first column correspond to a6 in the last column. And we know where a6 is located in the first column , so let's move to the postion a6. 
 
 repeat such steps 
 
