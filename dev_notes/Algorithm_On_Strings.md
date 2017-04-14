@@ -265,7 +265,9 @@ So our goal now is to start from the genome, apply Burrows–Wheeler transform t
         - Sorting all elements of “annb$aa” gives first column of BWT matrix.
     - We now know 2-mer composition of the circular string banana$ 
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_invert_banana_2mer.png)
-
+    - Sorting gives us the first 2 columns of the matrix
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_invert_banana_first2column.png)
+    - 
 
 naive algorithm need O(n³lgn)
 
