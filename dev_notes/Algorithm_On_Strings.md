@@ -539,22 +539,30 @@ There is a way to construct a suffix array if you're already construction a suff
     - ***Multiple*** Approximate Pattern Matching Problem
         - Input: A ***set*** of strings Patterns, a string Text, and an integer d.
         - Output: All positions in Text where a string from Patterns appears as a substring with at most d mismatches.
+ - BWT Saves the Day Again !
+    - eg. *ana* with 1 mismatch
+    - searching for an***a*** in panamabananas
+        - We will start again with finding all rows in the BW matrix that start with *a*.
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_10.png)
+    - searching for ai***na*** in panamabananas
+        - Approximate matching with at most 1 mismatch
+        - And among them , we want to find rows that containts *na*.  Among six rows that start with *a* , only three of them actually end with *n*, they form exact matching of the last 2 symbols of *ana* to our text.   They form exact matching of the last 2 symbols of *ana* to our text.
+        - In the past , it was the only thing we interested, but now, we're actually interested in all six rows starting from *a*,  because we are interested in approximate matches as well. 
+        - And to find approximate matches , we need to retain all the 6 rows, and specify the number of mismatches for each of these rows. 
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_20.png) ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_21.png) ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_22.png)
+    - searching for ***ana*** in panamabananas
+        - This row results in a 2nd mismatch (the $), so we discard it.
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_30.png)
+    - Five Approximate Matches Found!
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_40.png)
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_41.png)
+ 
 
 
-
-BWT pattern matching with 1 mismatch
-
-eg. *ana* with 1 mismatch
-
-We will start again with finding all rows in the BW matrix that start with *a*.
-
-And among them , we want to find rows that containts *na*.  Among six rows that start with *a* , only three of them actually end with *n*, they form exact matching of the last 2 symbols of *ana* to our text.   They form exact matching of the last 2 symbols of *ana* to our text.
-
-In the past , it was the only thing we interested, but now, we're actually interested in all six rows starting from *a*,  because we are interested in approximate matches as well. 
-
-And to find approximate matches , we need to retain all the 6 rows, and specify the number of mismatches for each of these rows. 
+---
 
  
+ - In reality, approximate pattern matching with BWT is more complex (we omitted various details)
 
 
 
