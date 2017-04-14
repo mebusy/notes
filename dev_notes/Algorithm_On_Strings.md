@@ -252,20 +252,19 @@ So our goal now is to start from the genome, apply Burrows–Wheeler transform t
     - now it has many runs
  - Going Back From BWT(Genome) to Genome ? 
 
-
-
-
+--- 
 
 
 <h2 id="2958b02379af181c5d50fdb9eb76f1f8"></h2>
 
 ### Inverting Burrows-Wheeler Transform
 
-We know the last column of the Burrows-Wheeler matrix. 
-
-We also know the first column , because the first column is simply sorting all elements of the Burrows-Wheeler transform.  排序一下可得
-
-trick: 把这两列组合起来，排序，就能得到 矩阵的前两列
+ - Reconstructing banana from annb$aa
+    - We know the last column of the Burrows-Wheeler matrix. 
+    - We also know the first column , because the first column is simply sorting all elements of the Burrows-Wheeler transform.  排序一下可得
+        - Sorting all elements of “annb$aa” gives first column of BWT matrix.
+    - We now know 2-mer composition of the circular string banana$ 
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_invert_banana_2mer.png)
 
 
 naive algorithm need O(n³lgn)
