@@ -19,6 +19,7 @@
 		 - [Example: Weather HMM](#75fc03589b48053de414b7e5d43b25a6)
 	 - [The Forward Algorithm](#6dbc07cd7c694bd7ba7917098b848d8b)
 	 - [Online Belief Updates](#dec94cde56942725d8a224ed9c065de2)
+	 - [Example : Ghost Buster](#dc8ab069265738c8965ed6fe1ffb2ea5)
 	 - [Particle Filtering](#410d3f5a2938bf0efb5fb0b5ef6ca702)
 		 - [Prepresentation: Particles](#66e6211dd1d94379d2e996793264b1b9)
 		 - [Particle Filtering : Elapse Time](#853995ed6d9bf9986864449b043774f2)
@@ -425,6 +426,8 @@ The forward algorithm is a dynamic program for computing at each time slice , th
  - We update for evidence:
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_online_belief_update_evidence.png)
  - The forward algorithm does both at once (and doesn’t normalize)
+
+<h2 id="dc8ab069265738c8965ed6fe1ffb2ea5"></h2>
 
 ## Example : Ghost Buster 
 

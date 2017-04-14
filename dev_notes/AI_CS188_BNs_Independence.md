@@ -1,5 +1,33 @@
+...menustart
+
+ - [Bayes' Nets II : Independence](#ce3bc4fb33b241d8ecb14566e3cb7ce0)
+	 - [Recap: Bayes’ Nets](#e2dd24943ffa85789b54e75a83bbe8bd)
+	 - [Bayes’ Net Semantics](#4dbc391a5b44f9e161311a3fba175cc0)
+	 - [Size of a Bayes’ Net](#964508d9edbdf6c01844d69c96708106)
+	 - [Bayes Nets: Assumptions](#ef1a928c977906877d6b80e2a41e9438)
+		 - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
+	 - [Independence in a BN](#f10bd0a1b1e91ed5409df88f9b43513f)
+	 - [D-separation: Outline](#b744fe0bc9612fbfbc259a06f0dbd29b)
+		 - [Causal Chains](#ccca6bb2b201caf52ba8662d28af0169)
+		 - [Common Cause](#c4b2f358e8026aa99cbd43e765359c00)
+		 - [Common Effect](#b014052dfbaa594c59ecbab983631e40)
+		 - [The General Case](#e4467b9c25f4f5fa7e82de809d585fae)
+			 - [Reachability](#c79782e896e55b3bb238bb9a5e5b3403)
+			 - [Active / Inactive Paths](#12e81e928621fbaa77f76f16a1b95f98)
+	 - [D-separation](#f4700a89b684ee2885763c02ec03ddb8)
+		 - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
+	 - [Structure Implications](#31d6deec4e1ea27b89ee3c34bbe706d8)
+	 - [Topology Limits Distributions](#3a8cd9d38bf713649aa6025704704c78)
+	 - [Bayes Nets Representation Summary](#f3beb40b43acd62d29efb20ba1bf53d1)
+
+...menuend
+
+
+<h2 id="ce3bc4fb33b241d8ecb14566e3cb7ce0"></h2>
 
 # Bayes' Nets II : Independence
+
+<h2 id="e2dd24943ffa85789b54e75a83bbe8bd"></h2>
 
 ## Recap: Bayes’ Nets
 
@@ -8,6 +36,8 @@
     - Inference: given a fixed BN, what is P(X | e)?
     - Representation: given a BN graph, what kinds of distributions can it encode?
     - Modeling: what BN is most appropriate for a given domain?
+
+<h2 id="4dbc391a5b44f9e161311a3fba175cc0"></h2>
 
 ## Bayes’ Net Semantics
 
@@ -20,6 +50,8 @@
     - To see what probability a BN gives to a full assignment, multiply all the relevant conditionals together:
         - P(x₁,x₂,...,x<sub>n</sub>) = ∏ⁿ<sub>i=1</sub> P(xᵢ|parent(Xᵢ) )
 
+<h2 id="964508d9edbdf6c01844d69c96708106"></h2>
+
 ## Size of a Bayes’ Net
 
  - How big is a joint distribution over N Boolean variables?
@@ -30,6 +62,8 @@
  - BNs: Huge space savings!  Also easier to elicit local CPTs
     - Also faster to answer queries (coming)    
 
+<h2 id="ef1a928c977906877d6b80e2a41e9438"></h2>
+
 ## Bayes Nets: Assumptions
 
  - Assumptions we are required to make to define the Bayes net when given the graph:
@@ -38,6 +72,8 @@
     - Often additional conditional independences
     - They can be read off the graph
  - Important for modeling: understand assumptions made when choosing a Bayes net graph
+
+<h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
 ### Example
 
@@ -72,6 +108,8 @@ Math proof is annoying !  So what we're going to look at now is a way to read it
 
 ---
 
+<h2 id="f10bd0a1b1e91ed5409df88f9b43513f"></h2>
+
 ## Independence in a BN
 
  - Important question about a BN:
@@ -86,11 +124,15 @@ Math proof is annoying !  So what we're going to look at now is a way to read it
         - independence is possible , just by a special choice. eg. always be a uniform distribution.
         - but the question is : Is independence guaranteed ?
 
+<h2 id="b744fe0bc9612fbfbc259a06f0dbd29b"></h2>
+
 ## D-separation: Outline
 
  - Study independence properties for triples
  - Analyze complex cases in terms of member triples
  - D-separation: a condition / algorithm for answering such queries
+
+<h2 id="ccca6bb2b201caf52ba8662d28af0169"></h2>
 
 ### Causal Chains 
 
@@ -107,6 +149,8 @@ P(z|x,y) = P(x,y,z) / p(x,y)
          = P(z|y)
 ```
 
+<h2 id="c4b2f358e8026aa99cbd43e765359c00"></h2>
+
 ### Common Cause
 
  - This configuration is a “common cause”
@@ -121,6 +165,8 @@ P(z|x,y) = P(x,y,z) / p(x,y)
          = P(y)P(x|y)P(z|y) / ( P(x)P(y|z) )
          = P(z|y)  
 ```
+
+<h2 id="b014052dfbaa594c59ecbab983631e40"></h2>
 
 ### Common Effect
 
@@ -150,11 +196,15 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
     - Observing an effect **activates** influence between possible causes.
 
 
+<h2 id="e4467b9c25f4f5fa7e82de809d585fae"></h2>
+
 ### The General Case
 
  - General question: in a given BN, are two variables independent (given evidence)?
  - Solution: analyze the graph
  - Any complex example can be broken into repetitions of the three canonical cases
+
+<h2 id="c79782e896e55b3bb238bb9a5e5b3403"></h2>
 
 #### Reachability
 
@@ -168,6 +218,8 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
     - Where does it break?
     - Answer: the v-structure at *T* (RBT) doesn’t count as a link in a path unless “active”
 
+
+<h2 id="12e81e928621fbaa77f76f16a1b95f98"></h2>
 
 #### Active / Inactive Paths
 
@@ -199,6 +251,8 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
 
 ---
 
+<h2 id="f4700a89b684ee2885763c02ec03ddb8"></h2>
+
 ## D-separation
 
  - Query: Xᵢ ⫫ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } ?
@@ -207,6 +261,8 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
         - Xᵢ not ⫫ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
     - Otherwise (i.e. if all paths are inactive), then independence is guaranteed
         - Xᵢ ⫫ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
+
+<h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
 ### Example 
 
@@ -230,11 +286,52 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
     - L(R)(T)   inactive
     - no need to check the 2nd triple 
  
+<h2 id="31d6deec4e1ea27b89ee3c34bbe706d8"></h2>
+
 ## Structure Implications
 
  - Given a Bayes net structure, can run d-separation algorithm to build a complete list of conditional independences that are necessarily true of the form
     - Xᵢ ⫫ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
  - This list determines the set of probability distributions that can be represented 
+
+
+<h2 id="3a8cd9d38bf713649aa6025704704c78"></h2>
+
+## Topology Limits Distributions 
+
+
+
+ - When anybody gives you a distribution of "Common Cause" ,  you can turn that into a distribution specify through a BNs of "causal chain" format. 
+    - because any distribution that you can represent with the first BNs , you can also represent with the 2nd BNs. 
+ - they are effectively equivalent structures. 
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_topology_limit_dist.png)
+
+ - the blue set represent all distributions over 3 variables ,  no conditional dependencies at all 
+    - explicitly blue and not also red or green
+ - the green set , is a subset of all distribtuions are the ones that satisfy complete independence. 
+ - the reset is yet something else we have one conditional dependence assumption. 
+
+---
+
+ - Given some graph topology G, only certain joint distributions can be encoded
+ - The graph structure guarantees certain (conditional) independences
+ - (There might be more independence)
+ - Adding arcs increases the set of distributions, but has several costs
+ - Full conditioning can encode any distribution
+
+--
+
+<h2 id="f3beb40b43acd62d29efb20ba1bf53d1"></h2>
+
+## Bayes Nets Representation Summary
+
+ - Bayes nets compactly encode joint distributions
+ - Guaranteed independencies of distributions can be deduced from BN graph structure
+ - D-separation gives precise conditional independence guarantees from graph alone
+ - A Bayes’ net’s joint distribution may have further (conditional) independence that is not detectable until you inspect its specific distribution
+    - the trivial example to keep in mind there is every distribution uniform , where effectively you shouldn't have any parents , everything is independent. 
 
 
 

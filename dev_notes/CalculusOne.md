@@ -63,6 +63,7 @@
 			 - [How can L'Hopital Rule help with limits not of the form 0/0 ?](#36700a734b03a7b3619e8f3cabb4e78d)
 			 - [Why shouldn't I fall in love with L'Hopital](#cf470f9f20ec6df6b6df8d3122b1c479)
 		 - [How can derivatives help me to understande rates of change in the real world ?](#e6c54ed15c1ecbc7f940c079d0c5ad69)
+			 - [影子长度的变化速率](#7e8f27e204a2079f56d6e37ba52543a6)
 			 - [How long until the gray goo destroys Earth ?](#b1c52412625c6bd4e56994958e55ef8b)
 
 ...menuend
@@ -869,8 +870,9 @@ lim<sub>x→∞</sub> (x+sinx)/x  = lim<sub>x→∞</sub> (x/x + sinx/x) = 1 + l
 
 <h2 id="e6c54ed15c1ecbc7f940c079d0c5ad69"></h2>
 
-
 ### How can derivatives help me to understande rates of change in the real world ?
+
+<h2 id="7e8f27e204a2079f56d6e37ba52543a6"></h2>
 
 #### 影子长度的变化速率
 
