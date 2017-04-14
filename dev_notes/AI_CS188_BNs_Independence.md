@@ -208,8 +208,33 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
     - Otherwise (i.e. if all paths are inactive), then independence is guaranteed
         - Xᵢ ⫫ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
 
-          
+### Example 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_independence_example.pg.png)
+
+ - L ⫫ T' | T   **Yes** 
+    - LR(T)  this triple doesn't matter.
+    - LR(T)T'  
+ - L ⫫ B    **Yes**
+    - LRT 
+    - RTB is inactive , make that whole path inactive 
+ - L ⫫ B | T 
+    - LR(T) , this is a triple where the 3rd node is observed. that actually doesn't matter. we look at triples all that matters the middle node observed or not.  
+        - the triple LR(T) , we talked about the influence propagating through R or not. We're not worring abouth these side nodes.
+        - so here the influence will propagate to R , the causal chain is active. 
+    - R(T)B is active
+ - L ⫫ B | T' 
+    - LRT  active
+    - RTB ~ (T')  active 
+ - L ⫫ B | T,R   **Yes**
+    - L(R)(T)   inactive
+    - no need to check the 2nd triple 
+ 
+## Structure Implications
+
+ - Given a Bayes net structure, can run d-separation algorithm to build a complete list of conditional independences that are necessarily true of the form
+    - Xᵢ ⫫ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
+ - This list determines the set of probability distributions that can be represented 
 
 
 
