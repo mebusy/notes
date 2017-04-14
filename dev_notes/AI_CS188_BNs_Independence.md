@@ -122,6 +122,32 @@ P(z|x,y) = P(x,y,z) / p(x,y)
          = P(z|y)  
 ```
 
+### Common Effect
+
+ - Last configuration: two causes of one effect (v-structures)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_common_effect_example.png)
+
+ - Are X and Y independent?
+    - **Yes**: the ballgame and the rain cause traffic, but they are not correlated
+    - that is the basic assumptions of BNs : Xᵢ is independent of its preceding variables X₁ ... X<sub>i-1</sub> , except its parents Pa(X₁) , given its parents | Pa(X₁)
+    - for X,Y,Z , Y is independent of it's preceding variables, which is X , minus its parents , wich is ∅ , so Y is independent of X and then given the parents , which is empty set ∅ 
+        - Y⫫X | ∅
+
+P(x,y,z) = P(y)P(y)P(z|x,y)  
+
+∑<sub>z</sub> P(x,y,z) = ∑<sub>z</sub> P(y)P(y)P(z|x,y) 
+
+∑<sub>z</sub> P(x,y,z) = P(x)P(y) · ∑<sub>z</sub> P(z|x,y) 
+
+∑<sub>z</sub> P(x,y,z) = P(x)P(y) · 1
+
+--- 
+
+ - Are X and Y independent given Z?
+    - **No**: seeing traffic puts the rain and the ballgame in competition as explanation.
+    - 如果有 traffic , 如果 没下雨，那很高概率有球赛, 如果下雨了，有球赛的概率就会下降
+ - **This is backwards from the other cases**
+    - Observing an effect **activates** influence between possible causes.
 
 
 
