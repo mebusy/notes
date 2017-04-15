@@ -131,6 +131,41 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
 
 # Week6 
 
+## 6-1: 连续微积分分布 II ( CONTINUOUS PROBABILITY DISTRIBUTIONS )
+
+### Normal 机率分布(常态分布)
+
+ - 常态分布在自然界很常出现
+    - Ex: 人口身高分布、体重分布
+ - 亦常被用作「很多随机量的总合」的机率模型
+    - Ex: 100 人吃饭时间的总合
+    - 原因:来自最后会讲到的「中央极限定理」
+ - 常态分布，亦常被称作Gaussian (高斯) 机率分布 
+ - X ~ Gaussian ( μ,σ )
+    - 也常有人用 X ~ N( μ,σ² ) 表示
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_norm_pdf.png)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_norm_pdf_graph.png)
+ - CDF是多少?
+    - 很难算，积分根本算不出来!
+    - 用数值积分法去建表?
+        - 很难啊，因为不同的 μ,σ 就会造就 出不同的 常态分布 PDF，每个都要建一个表会要命啊!
+    -  怎么办?
+        - 有没有办法找到一组特别 μ,σ  ，先针对这组的 CDF 建表， 然后想办法把别的常态分布的 CDF 跟这组 CDF 牵上关系?
+        - 若能牵扯上，再利用这表去算出别的常态分布的 CDF 值?
+
+#### Standard Normal Distribution 标准常态分布
+
+ - Z ~ N( 0,1 )
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_std_norm_pdf.png)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_std_norm_pdf_graph.png)
+
+
+
+
+
+
+
+
 
 
 
