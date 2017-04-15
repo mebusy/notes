@@ -747,7 +747,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
  - PMF: 若实验成功机率为 p, 作 n 次实验， X 表成功次数
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_binomial2.png)
 
-```
+```python
 import numpy as np
 import matplotlib.pyplot as plt
 x1 = np.random.binomial( 10, 0.6 , 100000  )  
@@ -792,6 +792,20 @@ plt.show()
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_geometric.png)
  - 有失忆性！ 离散分布中唯一的失忆性分布
 
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+x1 = np.random.geometric( 0.3 , 100000  )  
+plt.hist(x1, normed=1, facecolor='green', alpha=0.5)
+plt.title('p = 0.3')
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_geometric_03_graph.png)
+
+ - 近似 指数分布！
+
+
 
 <h2 id="f7b44a579af87c25b4b1cf0b98602a56"></h2>
 
@@ -810,6 +824,15 @@ plt.show()
     - C(x-1, k-1) x (1-p)<sup>x-k</sup> x pᵏ
  - 若实验成功机率为 p , 到第 k 次成功为止共作了 X 次
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_pascal.png)
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+x1 = np.random.negative_binomial( 5, 0.1 , 100000  )  
+plt.hist(x1, normed=1, bins=40, facecolor='green', alpha=0.5)
+plt.title('k=5, p=0.1')
+plt.show()
+```
 
 
 <h2 id="66e278878307932e688a55d600961fdf"></h2>
