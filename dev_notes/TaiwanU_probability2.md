@@ -160,9 +160,40 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_std_norm_pdf_graph.png)
  - CDF 表示为:
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_std_norm_cdf.png)
- - 
+    - 积不出来，只能以数值方法近似出来后建表 给人家查
+    - 网络上或是工程计算器上常能找到
+ - Φ(z) 的性质：
+    - Φ(-z)= 1 - Φ(z) 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_std_norm_property.png) 
+
+--- 
+
+ - 任意 μ,σ 下的 CDF ？
+    - 任意 μ,σ 下的 CDF , 我们要把它跟 N(0,1) 牵上关系
+    - 「关系!」: 对任何  X ~ N( μ,σ² ) 而言， (X-μ)/σ ~ N(0,1) 
+        - 证明：略
+    - 对任何 X ~ N( μ,σ² )  而言 , F<sub>X</sub>(x) = Φ( (x-μ)/σ ) .
+        - 证明：
+
+```
+Fₓ(x) = P( X≤x )
+      = P( X-μ ≤ x-μ )
+      = P( (X-μ)/σ ≤ (x-μ)/σ )
+      = Φ( (x-μ)/σ )
+```
+
+ - Ex. 已知 10 名水源阿伯每日拖车总重量总和 X ~ N(500, 100²) (kg) , 问本日总重量少于700 之机率为 ？
+    - F<sub>X</sub>(700) = P( X≤700 ) = P( (X-μ)/σ ≤ (700-500)/100 ) = Φ(2) = 0.977
+
+---
 
 
+## 6-2: 期望值 I (EXPECTATION)
+
+ - 大数法则
+    - 想知道某事件发生的机率?
+    - 作很多次实验，记录实验中出现那个事件多少次。当实验次数接近无穷 多次时，这个比例就会越来越接近实际的机率!
+    
 
 
 
