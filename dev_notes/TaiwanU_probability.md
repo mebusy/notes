@@ -834,6 +834,8 @@ plt.title('k=5, p=0.1')
 plt.show()
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_Pascal_k5_p01_graph.png)
+
 
 <h2 id="66e278878307932e688a55d600961fdf"></h2>
 
@@ -850,6 +852,10 @@ plt.show()
     - λ = 5 嘘/分，若定义随机变量 X 为 20 分钟内的嘘数
     - => X ~ POI(λT) = POI(100) = e⁻¹⁰⁰·100¹⁰⁰ / 100! 
     - 若条件是 每小时 300人嘘之，答案一样
+ - 理解泊松分布的特性:
+    - 它常用来描述大量随机试验中稀有事件出现的次数
+    - 比如 抽卡抽到 詹姆斯卡次数 ?
+
 
 
 -----
