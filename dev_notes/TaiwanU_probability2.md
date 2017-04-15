@@ -158,8 +158,9 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
  - Z ~ N( 0,1 )
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_std_norm_pdf.png)
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_std_norm_pdf_graph.png)
-
-
+ - CDF 表示为:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_std_norm_cdf.png)
+ - 
 
 
 
