@@ -729,6 +729,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_bernoulli.png)
 
+---
 
 <h2 id="e0dc24e9ac7e53085bd7bc2a2775917e"></h2>
 
@@ -745,6 +746,18 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
     - left is PMF, right is CDF
  - PMF: 若实验成功机率为 p, 作 n 次实验， X 表成功次数
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_binomial2.png)
+
+```
+import numpy as np
+import matplotlib.pyplot as plt
+x1 = np.random.binomial( 10, 0.6 , 100000  )  
+plt.hist(x1, normed=1,  facecolor='green', alpha=0.5)
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_Binomial_10_06_graph.png)
+
+ - 为什么这么像 正态分布？
 
 
 <h2 id="f7bf1cb803a0ab0539a6dc3ed526dd4f"></h2>
@@ -777,7 +790,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
     - 机率 = (1-p)<sup>x-1</sup> · p
  - 若实验成功机率为 p，尝 试到成功为止，作了 X 次尝试
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_geometric.png)
- - 有失忆性！
+ - 有失忆性！ 离散分布中唯一的失忆性分布
 
 
 <h2 id="f7b44a579af87c25b4b1cf0b98602a56"></h2>
