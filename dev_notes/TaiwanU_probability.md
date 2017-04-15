@@ -857,6 +857,17 @@ plt.show()
     - 比如 抽卡抽到 詹姆斯卡次数 ?
 
 
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+x1 = np.random.poisson( 5 , 100000  )  
+plt.hist(x1, normed=1, bins=40, facecolor='green', alpha=0.5 )
+plt.title('lambda = 5 ')
+plt.show()
+```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_poisson_dist_graph.png)
+
 
 -----
 
