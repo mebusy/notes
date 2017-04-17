@@ -581,14 +581,34 @@ There is a way to construct a suffix array if you're already construction a suff
     - Running time Θ(|T||P|)
  - Is it possible to skip some of positions while sliding the Pattern along the Text using only the information about the Pattern and the result of the comparsion of last alignment of the Pattern and the Text ?
     - Yes. 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP_skipping_positions_0.png)
+        - now we have find a matching. if we somehow pre-precessed the pattern , and know that 
+        - the prefix without last character !=  the suffix without the first character ( 'bra' != 'abr' )
+            - we can skip this position
+        - the prefix without 2 last characters !=  the suffix without the 2 characters ( 'ra' != 'ab' )
+            - we can skip this position
+        - the prefix without 3 last characters ==  the suffix without the 3 characters  ( 'a'=='a' )
+            - we can not skip this postion
+        - so for next iteration, we can just move Pattern by |Pattern| - |'a'| = 3  position !
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP_skipping_positions.png)
-    - 先预处理 Pattern, prefix *a* 在 Pattern 中的第二次出现是 4
-    - 进行1一次匹配，from index 0 ， 得到 最长公共子序列 长度为 6
-    - 下一次迭代 匹配的时候，可以直接 jump to postion 4. 
+        - another example is when we don't even find the whole pattern in the text, we still can skip some of the positions 
+        - in this example, the longest prefix which is common for the text and pattern consisits 6 characters , and the pattern is longer (not entirely matching)
+        - So we can not compare prefixes of the pattern with suffixes of the same pattern 
+        - But instead, we can do the same thing with the string marked in green -- the longest common prefix 
+        - 'ab' == 'ab'
+        - so for next iteration, we can just move Pattern by 6-|'ab'| =   4 position!  
+    
+---
 
+ - Definition
+    - **Border** of string S is a prefix of S which is equal to a suffix of S, but not equal to the whole S.
+ - Example
+    - *a* is a border of *arba*
+    - *ab* is a border of *abcdab*
+    - *abab* is a border of *ababab*
+    - *ab* is **not** a border of *ab*
 
-
-
+ 
 
 
 
