@@ -608,8 +608,13 @@ There is a way to construct a suffix array if you're already construction a suff
     - *abab* is a border of *ababab*
     - *ab* is **not** a border of *ab*
 
- 
+--- 
 
+ - Shifting Pattern
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP_shiftingPattern_uw.png)
+    - Find longest common prefix *u* 
+    - Find *w* the longest border of *u*
+    
 
 
 
