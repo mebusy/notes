@@ -213,7 +213,6 @@ P(L|T)
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_op1_example_multiple_joins_2.png)
  
  - we call "Join on R" means that you grab all tables that have `R` in them. 
- - need 1 joint table, 1 conditinal table to "join" ?
 
 ### Operation 2: Eliminate
 
@@ -328,7 +327,24 @@ P(L|T)
 
 ### Another Variable Elimination Example
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_VE_another_example.png)
 
+ - Query: P(X₃|Y₁=y₁,Y₂=y₂,Y₃=y₃)
+ - Start by inserting evidence , which gives the following initial factors:
+    - p(Z),p(X₁|Z),p(X₂|Z),p(X₃|Z),p(y₁|X₁),p(y₂|X₂),p(y₃|X₃)
+ - Eliminate X₁, this introduce the factor f₁(Z,y₁) = ∑ₓ₁ p(x₁|Z)p(y₁|x₁) , and we are left with 
+    - p(Z),f₁(Z,y₁),p(X₂|Z),p(X₃|Z),p(y₂|X₂),p(y₃|X₃)
+ - Eliminate X₂, this introduce the factor f₂(Z,y₂) = ∑ₓ₂ p(x₂|Z)p(y₂|x₂) , and we are left with 
+    - p(Z),f₁(Z,y₁),f₂(Z,y₂),p(X₃|Z),p(y₃|X₃)       
+ - Eliminate Z, this introduces the factor f₃(y₁,y₂,X₃) = ∑<sub>z</sub> p(z)f₁(Z,y₁)f₂(Z,y₂)p(X₃|z) , and we are left:
+    - p(y₃|X₃),f₃(y₁,y₂,X₃)
+ - No hidden variables left. Join the remaining factors to get 
+    - f₄(y₁,y₂,y₃, X₃) = p(y₃|X₃)·f₃(y₁,y₂,X₃)
+ - Normalizing over X₃ gives P(X₃|y₁,y₂,y₃)
+
+---
+
+## Variable Elimination Ordering
 
 
 
