@@ -614,7 +614,13 @@ There is a way to construct a suffix array if you're already construction a suff
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP_shiftingPattern_uw.png)
     - Find longest common prefix *u* 
     - Find *w* the longest border of *u*
-    
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP_shiftingPattern_shift.png)
+    - Move P such that prefix w in P aligns with suffix w of u in T.
+ - Now you know we can skip some of the comparisons
+ - But we shouldn't miss any of the pattern occurrences in the text
+ - Is it *safe* to shift the pattern this way ? 
+
+
 
 
 
