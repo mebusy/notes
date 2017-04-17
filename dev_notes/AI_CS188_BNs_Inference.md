@@ -315,6 +315,19 @@ P(L|T)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_VE_same_example_in_equations.png)
 
+ - equations from top to bottom 
+    1. marginal can be obtained from joint by summing out
+    2. use Bayes' net joint distribution expression
+    3. use `x*(y+z) = xy + xz`
+    4. joining on *a* , and then summing out give f₁
+    5. use `x*(y+z) = xy + xz` 
+    6. joining on *e* , and then summing out give f₂
+ - **All we are doing is exploiting uwy + uwz + uxy + uxz + vwy + vwz + vxy +vxz = (u+v)(w+x)(y+z) to improve computational efficiency** !
+ - how do you decide which variables to pick first ?  
+    - suggestion here was **a variable with very few connections** .  Connections means that it is participating in a factor. 
+
+### Another Variable Elimination Example
+
 
 
 
