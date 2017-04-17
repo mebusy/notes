@@ -924,6 +924,16 @@ amazing? 影子长度变化的速率 是人行走速度的两倍, 与当前灯�
 ---
 
 
+## Optimization
+
+ - What is the extreme value theorem ? 
+    - If a function f is continuous on the closed interval [a,b] , then
+    - f attains a manimum value 
+    - f attains a minimum value
+
+### How do I do ?
+
+#### How do I find the maximum and minimum values of f on a given domain?
 
 
 
