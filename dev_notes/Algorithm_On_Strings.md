@@ -564,7 +564,27 @@ There is a way to construct a suffix array if you're already construction a suff
  
  - In reality, approximate pattern matching with BWT is more complex (we omitted various details)
 
+---
 
+
+# Week3: Algorithmic Challenges: Knuth-Morris-Pratt Algorithm 
+
+## Exact Pattern Matching
+
+ - Strings T (Text) and P (Pattern).
+ - All such positions in T (Text) where P (Pattern) appears as a substring.
+
+---
+ 
+ - Brute Force Algorithm
+    - Slide the Pattern down Text
+    - Running time Θ(|T||P|)
+ - Is it possible to skip some of positions while sliding the Pattern along the Text using only the information about the Pattern and the result of the comparsion of last alignment of the Pattern and the Text ?
+    - Yes. 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP_skipping_positions.png)
+    - 先预处理 Pattern, prefix *a* 在 Pattern 中的第二次出现是 4
+    - 进行1一次匹配，from index 0 ， 得到 最长公共子序列 长度为 6
+    - 下一次迭代 匹配的时候，可以直接 jump to postion 4. 
 
 
 
