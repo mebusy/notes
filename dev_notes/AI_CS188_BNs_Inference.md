@@ -370,9 +370,45 @@ P(L|T)
     - E.g., previous slide’s example 2ⁿ vs. 2
  - Does there always exist an ordering that only results in small factors?
     - **No!**
+    - There are BNs and we'll see one in next slides where no matter which ordering you pick it's going to generate large factors along the way. 
 
 ---
 
+
+### Worst Case Complexity?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_worst_case_complexity_graph.png)
+
+ - CPS
+    - a 3-Sat problem, a special kind of CSP 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_worst_case_complexity_csp.png)
+    - there are 7 variables , X₁ ... X₇, I want to find an assignment to these 7 variables , such that this clause is true
+        - the clause is saying : x₁ or x₂ or not x₃ has to be true ,  and not x₁ or x₃ or not x₄ has to be true , and ... so forth   
+    - P(Xᵢ=0) = P(Xᵢ=1) = 0.5
+    - Y₁ = X₁ v X₂ v ¬V₃  , ... , Y₈ = ¬X₅ v X₆ v V₇
+    - Y₁‚₂ = Y₁ ∧ Y₂ , ... , Y₇‚₈ = Y₇ ∧ Y₈
+    - Y₁‚₂‚₃‚₄ = Y₁‚₂ ∧ Y₃‚₄ ,  Y₅‚₆‚₇‚₈ = Y₅‚₆ ∧ Y₇‚₈
+    - Z = Y₁‚₂‚₃‚₄ ∧ Y₅‚₆‚₇‚₈ 
+ - why we use so many Y variables here ?
+    - BNs where variable has many parents is a large BNs , it's not very compact 
+    - those Y variables gives us a BNs where every variables has at most 3 parents. So it's a very small BNs. 
+ - If we can answer P(z) equal to zero or not, we answered whether the 3-SAT problem has a solution.
+ - Hence inference in Bayes’ nets is NP-hard.  No known efficient probabilistic inference in general.
+
+---
+
+## Polytrees
+
+There are  atrist special graph structures of BNs , where inference can be done efficiently.  One example is Ploytree.
+
+ - A polytree is a directed graph with no undirected cycles 
+    - so directed acyclic graph can have undirected cycles.
+    - but if you don't allow those undirected cycles,  you have a poly tree. 
+ - For poly-trees you can always find an ordering that is efficient 
+    - Try it!!
+ - Cut-set conditioning for Bayes’ net inference
+    - Choose set of variables such that if removed only a polytree remains
+    - Exercise: Think about how the specifics would work out!
 
 
 
