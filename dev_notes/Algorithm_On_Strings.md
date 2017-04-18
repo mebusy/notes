@@ -632,8 +632,28 @@ There is a way to construct a suffix array if you're already construction a suff
  - But we shouldn't miss any of the pattern occurrences in the text
  - Is it *safe* to shift the pattern this way ? 
 
+## Prefix Function
 
+ - Definition
+    - Prefix function of a string P is a function s(i) that for each i returns the length of the longest border of the prefix **P[0..i]**.  
+ - Example 
+    - P abababcaab
+    - S 0012340112
+    - s(2) means the length of longest border of **aba**  -- *a*
+    - s(5) means the length of longest border of **ababab**  -- *abab*
+ - Lemma
+    - P[0..i] has a border of length s(i + 1) − 1
+        - does has to be longest border
+    - Corollary
+        - s(i+1) ≤ s(i)+1
+        - 字符串增加一个字符，s 一般会变小，就算不变小，s 最多也就 增加1
 
+--- 
+ 
+### Enumerating borders
+
+ - Lemma 
+    - 
 
 
 
