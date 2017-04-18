@@ -338,6 +338,8 @@ P(L|T)
     - p(Z),f₁(Z,y₁),f₂(Z,y₂),p(X₃|Z),p(y₃|X₃)       
  - Eliminate Z, this introduces the factor f₃(y₁,y₂,X₃) = ∑<sub>z</sub> p(z)f₁(Z,y₁)f₂(Z,y₂)p(X₃|z) , and we are left:
     - p(y₃|X₃),f₃(y₁,y₂,X₃)
+    - quiz: why there is a factor p(X₃|z) ? why not the other ones , like p(X₃,z) or P(Z,y) ?
+        - X₃ is the query variable, the query variable doesn't go through the elimination process, the same way as a hidden variable 
  - No hidden variables left. Join the remaining factors to get 
     - f₄(y₁,y₂,y₃, X₃) = p(y₃|X₃)·f₃(y₁,y₂,X₃)
  - Normalizing over X₃ gives P(X₃|y₁,y₂,y₃)
@@ -345,6 +347,51 @@ P(L|T)
 ---
 
 ## Variable Elimination Ordering
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_VE_ordering_q.png)
+
+ - For the query P(X<sub>n</sub>|y₁,…,y<sub>n</sub>) work through the following two different orderings as done in previous slide: Z, X₁, …, X<sub>n-1</sub> and X₁, …, X<sub>n-1</sub>, Z.  What is the size of the maximum factor generated for each of the orderings?
+ - Answer: 2ⁿ⁺¹ versus 2² (assuming binary)
+ - In general: the ordering can greatly affect efficiency.  
+
+--- 
+
+ - start from X₁ , we get f₁(Z,y₁) , then X₂, we get f₂(Z,y₂) , then ... f<sub>n-1</sub>(Z,y<sub>n-1</sub>)
+    - not X<sub>n</sub>  , X<sub>n</sub>  is query variable 
+ - now we eliminate Z , we get f( y₁ , ... , y<sub>n-1</sub> , ... X<sub>n</sub> ) , also only 2 variables
+
+
+---
+
+## VE: Computational and Space Complexity
+
+ - The computational and space complexity of variable elimination is determined by the largest factor
+ - The elimination ordering can greatly affect the size of the largest factor.  
+    - E.g., previous slide’s example 2ⁿ vs. 2
+ - Does there always exist an ordering that only results in small factors?
+    - **No!**
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
