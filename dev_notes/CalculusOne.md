@@ -65,6 +65,9 @@
 		 - [How can derivatives help me to understande rates of change in the real world ?](#e6c54ed15c1ecbc7f940c079d0c5ad69)
 			 - [影子长度的变化速率](#7e8f27e204a2079f56d6e37ba52543a6)
 			 - [How long until the gray goo destroys Earth ?](#b1c52412625c6bd4e56994958e55ef8b)
+	 - [Optimization](#15970c4fdbca1fc48c5b412d94e798c0)
+		 - [How do I do ?](#a0a6ce8eb5a43349fe7085d6a9c921c6)
+			 - [How do I find the maximum and minimum values of f on a given domain?](#cb3644423a8baea81ea998b724f49791)
 
 ...menuend
 
@@ -924,6 +927,8 @@ amazing? 影子长度变化的速率 是人行走速度的两倍, 与当前灯�
 ---
 
 
+<h2 id="15970c4fdbca1fc48c5b412d94e798c0"></h2>
+
 ## Optimization
 
  - What is the extreme value theorem ? 
@@ -931,7 +936,11 @@ amazing? 影子长度变化的速率 是人行走速度的两倍, 与当前灯�
     - f attains a manimum value 
     - f attains a minimum value
 
+<h2 id="a0a6ce8eb5a43349fe7085d6a9c921c6"></h2>
+
 ### How do I do ?
+
+<h2 id="cb3644423a8baea81ea998b724f49791"></h2>
 
 #### How do I find the maximum and minimum values of f on a given domain?
 

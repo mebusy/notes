@@ -7,9 +7,17 @@
  - [5-2: 连续机率分布 I (CONTINUOUS PROBABILITY DISTRIBUTION)](#423296d40fd5d59d1f076d73508c42e6)
 	 - [Uniform 机率分布](#f7bf1cb803a0ab0539a6dc3ed526dd4f)
 	 - [Exponential 机率分布](#894ad572b4888ac89196f741cd003480)
+		 - [指数分布和 柏松分布之间的关系](#a781eb710c59f5f1dffeb4d79e0bf04d)
+		 - [指数分布和 几何分布之间的关系](#ee8d241828945ff9c5d39465a5c65f25)
+		 - [指数分布和 uniform 分布的关系](#dc45153d24cf787ea2b2917ec03ca044)
+		 - [指数分布和 正态分布的关系](#6d91070e066c0b53115e187e5f194191)
 	 - [Erlang 机率分布](#7d09f590df9dfcbd10d1b8cbffce9514)
 		 - [Erlang 和 Exponential  关系](#a37b5c85c6d082e170925dbe09051a82)
  - [Week6](#63995e860d87301917bfed4525e36993)
+	 - [6-1: 连续微积分分布 II ( CONTINUOUS PROBABILITY DISTRIBUTIONS )](#292420e2932b158fe9de18af72e0f2ff)
+		 - [Normal 机率分布(常态分布)](#a638878f993f94c84c6c050963d0f635)
+			 - [Standard Normal Distribution 标准常态分布](#b672e9679aa32ead876e8b9c6c43d78c)
+	 - [6-2: 期望值 I (EXPECTATION)](#699f5bed3f92e270bce0a95ed5bf89d3)
 
 ...menuend
 
@@ -113,6 +121,8 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
 
 ---
 
+<h2 id="a781eb710c59f5f1dffeb4d79e0bf04d"></h2>
+
 ### 指数分布和 柏松分布之间的关系
 
  - 定理一：设随机变量 X 服从参数为 λT的柏松分布，则 两次发生之间的“等待时间”Y 服从参数为 λ的指数分布。
@@ -131,6 +141,8 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
     - 指数分布是两件事情发生的平均间隔时间，“时间”是连续变量，所以指数分布是一种连续随机变量的分布。
     - 指数分布λ 的含义就是泊松分布中的λ
 
+<h2 id="ee8d241828945ff9c5d39465a5c65f25"></h2>
+
 ### 指数分布和 几何分布之间的关系
 
  - 都是失忆性分布
@@ -139,9 +151,13 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
  - 几何分布 是一种 “知道 。。。为止” 型概率分布，也是一种 “寿命”。
  - 相互独立的设计，知道击中为止，射击次数服从几何分布。被枪手离散地射击，知道几种，它的寿命 就 "为止"了
 
+<h2 id="dc45153d24cf787ea2b2917ec03ca044"></h2>
+
 ### 指数分布和 uniform 分布的关系
 
  - 定理2: 随机变量Y 服从参数为 λ 的指数分布的充要条件是 随机变量 Y = 1-e<sup>-λx</sup> 服从(0,1) 上的均匀分布。
+
+<h2 id="6d91070e066c0b53115e187e5f194191"></h2>
 
 ### 指数分布和 正态分布的关系
 
@@ -179,7 +195,11 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
 
 # Week6 
 
+<h2 id="292420e2932b158fe9de18af72e0f2ff"></h2>
+
 ## 6-1: 连续微积分分布 II ( CONTINUOUS PROBABILITY DISTRIBUTIONS )
+
+<h2 id="a638878f993f94c84c6c050963d0f635"></h2>
 
 ### Normal 机率分布(常态分布)
 
@@ -200,6 +220,8 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
     -  怎么办?
         - 有没有办法找到一组特别 μ,σ  ，先针对这组的 CDF 建表， 然后想办法把别的常态分布的 CDF 跟这组 CDF 牵上关系?
         - 若能牵扯上，再利用这表去算出别的常态分布的 CDF 值?
+
+<h2 id="b672e9679aa32ead876e8b9c6c43d78c"></h2>
 
 #### Standard Normal Distribution 标准常态分布
 
@@ -235,6 +257,8 @@ Fₓ(x) = P( X≤x )
 
 ---
 
+
+<h2 id="699f5bed3f92e270bce0a95ed5bf89d3"></h2>
 
 ## 6-2: 期望值 I (EXPECTATION)
 

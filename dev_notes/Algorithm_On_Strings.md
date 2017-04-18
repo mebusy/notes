@@ -12,11 +12,15 @@
 	 - [Quiz](#ab458f4b361834dd802e4f40d31b5ebc)
  - [Week2 Burrows-Wheeler Transform and Suffix Arrays](#7b4bb7010bb5cc258a877c223ce396fa)
 	 - [Burrows-Wheeler Transform](#c77af5b3abfc315781377fb29256c39f)
+		 - [Text Compression by Run-Length Encoding](#ae31601ab819806b46842f7459b1a9f1)
 		 - [Inverting Burrows-Wheeler Transform](#2958b02379af181c5d50fdb9eb76f1f8)
 		 - [Using BWT for Pattern Matching](#353b08ef75d5176db7f70fe5d2e3d617)
+		 - [Finding Pattern Matches Using BWT](#ad4f3a6c1f6f60c79912e399831fe50e)
 		 - [Searching for ana using top and buttom pointers](#577c04ac242ce1b20da613dd6aaf2a9f)
 	 - [Suffix Arrays](#4297164b1e2c9e6f4924b39ebdad0b14)
 	 - [Approximate Pattern Matching](#699b0062252bc43a8e1c97a871b1b3fd)
+ - [Week3: Algorithmic Challenges: Knuth-Morris-Pratt Algorithm](#a13edce40a6797ca350bb37ecae33e7d)
+	 - [Exact Pattern Matching](#9f189b44c5da7aabf3ba7ce283ed775c)
 
 ...menuend
 
@@ -215,6 +219,8 @@ But where is the match ? What is the position of "banana" in the Text ?
 
 So our goal now is to start from the genome, apply Burrows–Wheeler transform to the genome. And we can now, hopefully, compress Burrows–Wheeler transform of the genome. And after you apply this compression, we will greatly reduce memory for storing our genome. But it totally makes sense if we can invert this transformation. 
 
+<h2 id="ae31601ab819806b46842f7459b1a9f1"></h2>
+
 ### Text Compression by Run-Length Encoding
 
  - Run-length encoding compresses a run of n identical symbols:
@@ -247,7 +253,7 @@ So our goal now is to start from the genome, apply Burrows–Wheeler transform t
     - anamabananas$p
  - Sorting Cyclic Rotations
     - Sort the strings lexicographically ($ comes first)
-    - BWT(panamabananas$)=smnpbnn***aaaaa***$a
+    - BWT(panamabananas$)=smnpbnn**aaaaa**$a
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_text.png)
     - now it has many runs
  - Going Back From BWT(Genome) to Genome ? 
@@ -334,6 +340,8 @@ The only question left, where is pattern matching in the Burrows-Wheeler transfo
 ### Using BWT for Pattern Matching
 
  - Can we use BWT(Text) to design a more memory efficient linear-time algorithm for Multiple Pattern Matching?
+
+<h2 id="ad4f3a6c1f6f60c79912e399831fe50e"></h2>
 
 ### Finding Pattern Matches Using BWT
 
@@ -541,16 +549,16 @@ There is a way to construct a suffix array if you're already construction a suff
         - Output: All positions in Text where a string from Patterns appears as a substring with at most d mismatches.
  - BWT Saves the Day Again !
     - eg. *ana* with 1 mismatch
-    - searching for an***a*** in panamabananas
+    - searching for an**a** in panamabananas
         - We will start again with finding all rows in the BW matrix that start with *a*.
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_10.png)
-    - searching for ai***na*** in panamabananas
+    - searching for ai**na** in panamabananas
         - Approximate matching with at most 1 mismatch
         - And among them , we want to find rows that containts *na*.  Among six rows that start with *a* , only three of them actually end with *n*, they form exact matching of the last 2 symbols of *ana* to our text.   They form exact matching of the last 2 symbols of *ana* to our text.
         - In the past , it was the only thing we interested, but now, we're actually interested in all six rows starting from *a*,  because we are interested in approximate matches as well. 
         - And to find approximate matches , we need to retain all the 6 rows, and specify the number of mismatches for each of these rows. 
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_20.png) ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_21.png) ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_22.png)
-    - searching for ***ana*** in panamabananas
+    - searching for **ana** in panamabananas
         - This row results in a 2nd mismatch (the $), so we discard it.
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_30.png)
     - Five Approximate Matches Found!
@@ -567,7 +575,11 @@ There is a way to construct a suffix array if you're already construction a suff
 ---
 
 
+<h2 id="a13edce40a6797ca350bb37ecae33e7d"></h2>
+
 # Week3: Algorithmic Challenges: Knuth-Morris-Pratt Algorithm 
+
+<h2 id="9f189b44c5da7aabf3ba7ce283ed775c"></h2>
 
 ## Exact Pattern Matching
 
