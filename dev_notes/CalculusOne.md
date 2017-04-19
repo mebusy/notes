@@ -66,8 +66,12 @@
 			 - [影子长度的变化速率](#7e8f27e204a2079f56d6e37ba52543a6)
 			 - [How long until the gray goo destroys Earth ?](#b1c52412625c6bd4e56994958e55ef8b)
 	 - [Optimization](#15970c4fdbca1fc48c5b412d94e798c0)
-		 - [How do I do ?](#a0a6ce8eb5a43349fe7085d6a9c921c6)
+		 - [If optimization is possible,  How do I do ?](#3211cc3a86e257a4a79efb0878b13a14)
 			 - [How do I find the maximum and minimum values of f on a given domain?](#cb3644423a8baea81ea998b724f49791)
+			 - [Why bother considering points where the function is not differentiable?](#aae0a52c73297e66e1548cae172bae0a)
+		 - [Why would I want to opimize a function ?](#0bd34b62bad9def7815743afad14b4d9)
+			 - [How large can xy be if x + y = 24?](#50b74b87ca2a56d287a7b8b904d46c19)
+		 - [Optimization in Action](#9f4cacf06f1b57dda6be7f4448d1c76b)
 
 ...menuend
 
@@ -936,7 +940,7 @@ amazing? 影子长度变化的速率 是人行走速度的两倍, 与当前灯�
     - f attains a manimum value 
     - f attains a minimum value
 
-<h2 id="a0a6ce8eb5a43349fe7085d6a9c921c6"></h2>
+<h2 id="3211cc3a86e257a4a79efb0878b13a14"></h2>
 
 ### If optimization is possible,  How do I do ?
 
@@ -951,6 +955,8 @@ amazing? 影子长度变化的速率 是人行走速度的两倍, 与当前灯�
     - end point : 
         - domain of x, 区间的边界点
  3. check limiting behavior 
+
+<h2 id="aae0a52c73297e66e1548cae172bae0a"></h2>
 
 #### Why bother considering points where the function is not differentiable?
 
@@ -984,7 +990,11 @@ f'(x) =⎧ 1 - (2x-2) , if x² - 2x > 0 , // no '=' here, because x=2 not differ
 
 ---
 
+<h2 id="0bd34b62bad9def7815743afad14b4d9"></h2>
+
 ### Why would I want to opimize a function ?
+
+<h2 id="50b74b87ca2a56d287a7b8b904d46c19"></h2>
 
 #### How large can xy be if x + y = 24?
 
@@ -999,6 +1009,8 @@ f'(x) =⎧ 1 - (2x-2) , if x² - 2x > 0 , // no '=' here, because x=2 not differ
     - with equality iff a==b
 
 ---
+
+<h2 id="9f4cacf06f1b57dda6be7f4448d1c76b"></h2>
 
 ### Optimization in Action
 

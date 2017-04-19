@@ -21,6 +21,11 @@
 	 - [Approximate Pattern Matching](#699b0062252bc43a8e1c97a871b1b3fd)
  - [Week3: Algorithmic Challenges: Knuth-Morris-Pratt Algorithm](#a13edce40a6797ca350bb37ecae33e7d)
 	 - [Exact Pattern Matching](#9f189b44c5da7aabf3ba7ce283ed775c)
+	 - [Prefix Function](#56d24cce97717b776b1c66489991f675)
+		 - [Enumerating borders](#d1d75d9e4070f158aeaa17e37bc34991)
+		 - [Computing s(i + 1)](#7458f83cf5feb375ce613102ad4cf673)
+		 - [ComputePrefixFunction(P)](#52b3a75d31d9676c1ccf5234adc3347b)
+	 - [Knuth-Morris-Pratt Algorithm](#a27872b96c92390fbd9d96e8553f69ca)
 
 ...menuend
 
@@ -632,6 +637,8 @@ There is a way to construct a suffix array if you're already construction a suff
  - But we shouldn't miss any of the pattern occurrences in the text
  - Is it *safe* to shift the pattern this way ? 
 
+<h2 id="56d24cce97717b776b1c66489991f675"></h2>
+
 ## Prefix Function
 
  - Definition
@@ -652,6 +659,8 @@ There is a way to construct a suffix array if you're already construction a suff
 
 --- 
  
+<h2 id="d1d75d9e4070f158aeaa17e37bc34991"></h2>
+
 ### Enumerating borders
 
  - Lemma 
@@ -666,6 +675,8 @@ There is a way to construct a suffix array if you're already construction a suff
     - All borders of P[0..i] can be enumerated by taking the longest border **b1** of P[0..i], then the longest border **b2** of **b1**, then the longest border **b3** of **b2**, . . . , and so on.
 
 ---
+
+<h2 id="7458f83cf5feb375ce613102ad4cf673"></h2>
 
 ### Computing s(i + 1)
 
@@ -712,6 +723,8 @@ Now lets think how to compute the prefix function.
 
 --- 
 
+<h2 id="52b3a75d31d9676c1ccf5234adc3347b"></h2>
+
 ### ComputePrefixFunction(P)
 
 (![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_compute_prefix_function_algorithm.png)
@@ -721,6 +734,8 @@ Now lets think how to compute the prefix function.
  - But how to nd pattern in text??
 
 ---
+
+<h2 id="a27872b96c92390fbd9d96e8553f69ca"></h2>
 
 ## Knuth-Morris-Pratt Algorithm
 
