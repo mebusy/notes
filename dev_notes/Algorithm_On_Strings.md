@@ -667,7 +667,7 @@ There is a way to construct a suffix array if you're already construction a suff
 
 ---
 
-## Computing s(i + 1)
+### Computing s(i + 1)
 
 Now lets think how to compute the prefix function.
 
@@ -711,6 +711,22 @@ Now lets think how to compute the prefix function.
     - s(10) = 0 , case 2 , failed 
 
 --- 
+
+### ComputePrefixFunction(P)
+
+(![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_compute_prefix_function_algorithm.png)
+
+ - The running time of ComputePrefixFunction is O(|P|)
+ - Now you know how to compute prefix function in linear time
+ - But how to nd pattern in text??
+
+---
+
+## Knuth-Morris-Pratt Algorithm
+
+ - to find all the occurrences of a pttern in the text in the time linear in terms of the length of the **pattern** and length of **text**
+ - 
+
 
 
 
