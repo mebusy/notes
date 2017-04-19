@@ -653,7 +653,22 @@ There is a way to construct a suffix array if you're already construction a suff
 ### Enumerating borders
 
  - Lemma 
-    - 
+    - If s(i) > 0, then all borders of P[0..i] but for the longest one are also borders of P[0..s(i) − 1].
+        - 对于一段字符串，非 最长 border, 本身也是 最长border的 border
+        - let *u* be a border shorter than the longest border , so that |u| < s(i)
+        - border *u* is both a prefix , and suffix  of the longest border : P[0..s(i)-1]
+            - remark: P[0..s(i)-1] is longest border !!! 
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_Enumerating_borders_lemma.png)
+        - and *u* was also shorter than the longest border, that is *u* ≠ P[0..s(i)-1] ,  so *u* is indeed a border of P[0..s(i)-1]
+ - Corollary
+    - All borders of P[0..i] can be enumerated by taking the longest border **b1** of P[0..i], then the longest border **b2** of **b1**, then the longest border **b3** of **b2**, . . . , and so on.
+
+---
+
+## Computing s(i + 1)
+
+Now lets think how to compute the prefix function.
+
 
 
 
