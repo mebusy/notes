@@ -938,7 +938,7 @@ amazing? 影子长度变化的速率 是人行走速度的两倍, 与当前灯�
 
 <h2 id="a0a6ce8eb5a43349fe7085d6a9c921c6"></h2>
 
-### How do I do ?
+### If optimization is possible,  How do I do ?
 
 <h2 id="cb3644423a8baea81ea998b724f49791"></h2>
 
@@ -946,13 +946,63 @@ amazing? 影子长度变化的速率 是人行走速度的两倍, 与当前灯�
 
  1. differentiate: f'(x)
  2. list crit points : 
-    - sometimes f'(x) = 0
-    - sometimes x where f not differentiable
+    - f'(x) = 0
+    - x where f not differentiable
+    - end point : 
+        - domain of x, 区间的边界点
  3. check limiting behavior 
 
 #### Why bother considering points where the function is not differentiable?
 
+ - find max and min value of f(x) = x - |x² - 2x|  , on the interval [0,3]
 
+
+```
+f(x) = ⎧ x - (x² - 2x) , if x² - 2x ≥ 0
+       ⎩ x + (x² - 2x) , if x² - 2x < 0
+
+f'(x) =⎧ 1 - (2x-2) , if x² - 2x > 0 , // no '=' here, because x=2 not differentiable
+       ⎩ 1 + (2x-2) , if x² - 2x < 0 
+      =⎧ 3 - 2x ,  if x<0 or x>2  
+       ⎩ -1+ 2x ,  if 0 <x <2
+```
+
+ - crit points
+    - f'(x) = 0  : x=1/2
+    - f not differentiable : x=2
+    - end point : x=0 , x=2
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusOne_x-abs_xx-2x.png)
+
+ x | f(x)
+--- | --- 
+0 | 0 
+1/2 | - 1/4
+2 | 2
+3 | 0 
+
+
+---
+
+### Why would I want to opimize a function ?
+
+#### How large can xy be if x + y = 24?
+
+ - f(x) = x·(24-x) = 24x -x²
+ - f'(x) = 24 - 2x = 0 
+ - x = 12 
+ 
+--- 
+
+ - Arithmetic Mean - Geometric Mean (AM-GM) Inequality
+    - (a+b)/2 ≥ √(ab) 
+    - with equality iff a==b
+
+---
+
+### Optimization in Action
+
+   
 
 
 
