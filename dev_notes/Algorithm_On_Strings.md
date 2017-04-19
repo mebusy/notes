@@ -694,6 +694,6 @@ Now lets think how to compute the prefix function.
 
 ---
 
- [1]:![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_prefix_func_lemma_0.png)
+ [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_prefix_func_lemma_0.png
 
 
