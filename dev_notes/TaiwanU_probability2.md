@@ -278,7 +278,7 @@ Fₓ(x) = P( X≤x )
  - Mean 值又称作期望值
     - μ<sub>Y</sub> = E[Y]
     - 对离散随机变数 𝑿 而言，我们定义其期望值 
-        - E[X] = μ<sub>X</sub> = ∑<sub>x=-</sub><sup>∞</sup><sub>∞</sub> x·P<sub>X</sub>(x) 
+        - E[X] = μ<sub>X</sub> = ∑<sub>x=</sub><sup>∞</sup><sub>-∞</sub> x·P<sub>X</sub>(x) 
     - **期望值不等于随机会发生的值**!
         - eg. P<sub>X</sub>(1) = P<sub>X</sub>(-1) = 1/2 => μ<sub>X</sub> = 0 !!! 
 
