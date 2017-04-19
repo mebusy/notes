@@ -643,9 +643,10 @@ There is a way to construct a suffix array if you're already construction a suff
     - s(5) means the length of longest border of **ababab**  -- *abab*
  - Lemma
     - P[0..i] has a border of length s(i + 1) − 1
-        - does has to be longest border
+        - does not has to be longest border
     - Corollary
         - s(i+1) ≤ s(i)+1
+        - that is , the prefix function can not grow by more than 1  , from some position to next position 
         - 字符串增加一个字符，s 一般会变小，就算不变小，s 最多也就 增加1
 
 --- 
@@ -669,6 +670,13 @@ There is a way to construct a suffix array if you're already construction a suff
 
 Now lets think how to compute the prefix function.
 
-
-
+ - s(0) is 0
+ - now to compute s(i+1) if we already know the values of the s(i)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_compute_prefix_function_0.png)
+    - those green part is the border as prefix and suffix of string
+    - if the characters right after those 2 borders are same , then 
+        - s(i+1) = s(i) + 1 
+        - because s(i+1) > s(i) -- we just increase the length of border , the we have learned that the prefix function can not grow by more than 1. 
+    - but if the characters are different , everything is a bit more complex 
+        - 
 
