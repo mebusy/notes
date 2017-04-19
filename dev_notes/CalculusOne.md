@@ -944,6 +944,13 @@ amazing? 影子长度变化的速率 是人行走速度的两倍, 与当前灯�
 
 #### How do I find the maximum and minimum values of f on a given domain?
 
+ 1. differentiate: f'(x)
+ 2. list crit points : 
+    - sometimes f'(x) = 0
+    - sometimes x where f not differentiable
+ 3. check limiting behavior 
+
+#### Why bother considering points where the function is not differentiable?
 
 
 
