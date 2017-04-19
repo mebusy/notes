@@ -283,6 +283,49 @@ Fₓ(x) = P( X≤x )
         - eg. P<sub>X</sub>(1) = P<sub>X</sub>(-1) = 1/2 => μ<sub>X</sub> = 0 !!! 
 
  
+### 随机变量的函数之期望值
+
+ - 对于任一离散随机变量 X 而言，其 任意函数 g(X) 亦是一随机变量，亦有期望值
+ - g(X) 期望值定义为
+    - E[ g(X) ] = ∑<sub>x=</sub><sup>∞</sup><sub>-∞</sub> g(x)·P<sub>X</sub>(x) 
+    - 根随即变量的期望值公式相比，只是 x 变成了 g(x)
+
+### 期望值运算性质
+
+ - E[ 3X² ] = ∑<sub>x=</sub><sup>∞</sup><sub>-∞</sub> 3x²·P<sub>X</sub>(x) 
+    - = 3·∑<sub>x=</sub><sup>∞</sup><sub>-∞</sub> x²·P<sub>X</sub>(x)  = 3·E( X² )
+    - 常数项可以提出来
+ - E[α·g(X)] = α·E[g(X)] 
+ - E[α·g(X) + β·h(X) ] = α·E[g(X)] + β·E[h(X)]
+ - E[α] = α
+ 
+### 常见的随机变量函数期望值
+ 
+ - X 的 n<sup>th</sup> moment:
+    - E[Xⁿ] = ∑<sub>x=</sub><sup>∞</sup><sub>-∞</sub> xⁿ·P<sub>X</sub>(x)  
+    - Ex: E[X²] 是 X的 2<sup>nd</sup> moment
+ - X 的变异数 (variance):
+    - E[ (X-μ<sub>X</sub>)² ] 
+    - 减去 期望值的 平方
+
+### 变异数 (variance)
+
+ - Variance通常符号表示为 σ<sub>X</sub>² = E[ (X-μ<sub>X</sub>)² ] 
+ - 变异数隐含关于随机变数 X 多「乱」的信息
+ - 变异数的开根号便是标准差 (standard deviation)
+    - σ<sub>X</sub> = √Variance
+
+### Variance 便利算法
+
+ - σ<sub>X</sub>² = E[ (X-μ<sub>X</sub>)² ]
+    - = E[ X²-2μ<sub>X</sub>·X+μ<sub>X</sub>² ]
+    - = E[X²] + E[-2μ<sub>X</sub>·X] + E[ μ<sub>X</sub>² ]
+    - = E[X²] - 2μ<sub>X</sub>·E[X] + μ<sub>X</sub>²
+    - = E[X²] - μ<sub>X</sub>² 
+
+ - => E[X²] = σ<sub>X</sub>² + μ<sub>X</sub>²  
+
+
 
 
 
