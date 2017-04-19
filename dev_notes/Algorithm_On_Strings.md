@@ -677,11 +677,43 @@ Now lets think how to compute the prefix function.
     - those green part is the border as prefix and suffix of string
     - if the characters right after those 2 borders are same , then 
         - s(i+1) = s(i) + 1 
+        - **case 1**
         - because s(i+1) > s(i) -- we just increase the length of border , the we have learned that the prefix function can not grow by more than 1. 
     - but if the characters are different , everything is a bit more complex 
         - we know that P[0..i] has a border of length s(i + 1) − 1. 
             - ![][1]
-        - So if we find that border then the next green 
+        - So if we find that border then the next green character after it will be the same as the character in position i+1 -- 'x'
+            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_compute_prefix_function_1.png)
+        - so what we need to is going through all the borders of the prefix ending in position i, by **decreasing** length. 
+            - and as soon as we find some border that the next character after it is the same as the character at position i+1, then
+            - s(i + 1) = |some border of P[0..s(i) − 1]| + 1 
+            - **case 2**
+    - at some point , we may come to the station that the longest border is empty , and then we'll need to compare the character in position i+1 with the character in postion 0 
+        - either they are the same , and then the prefix function is 1 
+            -- **case 3**
+        - or they are different , and then the prefix function has the value of 0.
+            -- **case 4**
+
+--- 
+
+ - Example :
+    - P : ababcababac
+    - s(0) = 0
+    - s(1) = 0 , case 4
+    - s(2) = 1 , case 3
+    - s(3) = 2 , case 1
+    - s(4) = 0 , case 2 , failed
+    - s(5) = 1 , case 3
+    - s(6) = 2 , case 1
+    - s(7) = 3 , case 1
+    - s(8) = 4 , case 1
+    - s(9) = 3 , case 2 , success
+    - s(10) = 0 , case 2 , failed 
+
+--- 
+
+
+
 
 
 
