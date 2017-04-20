@@ -741,10 +741,28 @@ Now lets think how to compute the prefix function.
 
  - to find all the occurrences of a pttern in the text in the time linear in terms of the length of the **pattern** and length of **text**
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP.png)
 
+ - Create new string S = P + '$' + T
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP.png)
+    - where '$' is just **any** special character absent from both P and T
+ - Compute prefix function s for string S
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP_prefix_func.png)
+    - For all positions i such that i > |P| and s(i) = |P|, add i − 2|P| to the output
+        - so we'll look at all positions i , such that i is more than length of the pattern 
+            - `i > |P|` --  after the pattern and '$'
+        - if the prefix function for that position i , is equal to the length of the pattern , then we know there is a occurrence of the pattern in text ending in that postion 
+            - `s(i) = |P|` -- 2 positions in this case 
+        - we need find all the postions where the pattern starts, so from the position where it ends , we need to compute the position where it starts in the raw TEXT 
+            - `i − 2|P|` 
+ - '$' can prevent the error in the cases such like:
+    - Pattern = "AAA"
+    - Text = "A" 
+ 
+### Explanation
 
-
+ - For all i, s(i) ≤ |P| because of the special character '$'
+ - If i > |P| and s(i) = |P|, then P = S[0..|P| − 1] = S[i − |P| + 1..i] = T[i − 2|P|..i − |P| − 1]
+ - If s(i) < |P|, no full occurrence of |P| ends in position i 
 
 
 
