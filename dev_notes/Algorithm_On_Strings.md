@@ -740,7 +740,8 @@ Now lets think how to compute the prefix function.
 ## Knuth-Morris-Pratt Algorithm
 
  - to find all the occurrences of a pttern in the text in the time linear in terms of the length of the **pattern** and length of **text**
- - 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP.png)
 
 
 
