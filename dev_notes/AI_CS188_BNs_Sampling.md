@@ -254,11 +254,25 @@ Are we still doing the right thing ?  Are we sampling from the right distributio
     - More of our samples will reflect the state of the world suggested by the evidence
  - Likelihood weighting doesn’t solve all our problems
     - Evidence influences the choice of downstream variables, but not upstream ones (C isn’t more likely to get a value matching the evidence)
+        - if you look at how the evidence comes into play , it only comes into play once it's been encountered in the BNs
+        - so you walk through your BNs top-down, once you encounter the evidence variable , you fix it and everything that comes after it will know that it took on that value and will be conditioning on that value.
+        - but things than came before an evidence variable are not influenced by the evidence variable. 
+        - so things have come before the evidence variable are still samples from a prior that doesn't involve the evidence 
+        - so it's possible that you are sampling things at the top of your BNs that end up being very inconsistent with what happens at the bottom in terms of evidence. 
+        - let's say you get to observe some evidence that's extremely unlikely a priori , you measure very unlikely sensor measurement. Then as you sampling from top-down  you're not aware of that unlikely measurement that will be incorporated in the future only. And you just sampling from the prior, and going on, and then you encounter your evidence variable. It'll be really unlikely . You'll set it to that really unlikely value and your weight will be really low for your sample. 
+        - The quality of your samples is influenced by their weight. So you can effectively think of the weight as quantifying how valuable your sample is.
+            - In prior sampling , they're all equally valuable, they are all valid samples from your distribution. 
+        - so if you always encounter this evidence variable at the very end and it's very unlikely , then you will get samples that are not informative yet. You'll have to wait a really long time till you finally sample this really unlikely cause of  this really unlikely observation. When you finally sample that really unlikely cause ,finally we'll have a sample with a high weight and that'll give you a good esimate of the distribution. 
  - We would like to consider evidence when we sample every variable
     - -> Gibbs sampling
 
 ---
 
+## Gibbs Sampling
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_GS.png)
+
+ - *Procedure*: keep track of a full instantiation x₁, x₂, …, x<sub>n</sub>.   Start with an arbitrary instantiation consistent with the evidence.  Sample one variable at a time, conditioned on all the rest, but keep evidence fixed.  Keep repeating this for a long time.
 
 
 
