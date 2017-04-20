@@ -265,7 +265,66 @@ Fₓ(x) = P( X≤x )
  - 大数法则
     - 想知道某事件发生的机率?
     - 作很多次实验，记录实验中出现那个事件多少次。当实验次数接近无穷 多次时，这个比例就会越来越接近实际的机率!
-    
+    - P(A) = lim<sub>N→∞</sub> (N<sub>A</sub>/N)
+ - 期望值 (Expectation)
+    - 做随机实验时，我们很希望能有某种估算
+    - 平均值是我们平常最常普遍的估算值
+    - 作两次实验的平均值是? (X₁+X₂)/2 = ?
+    - 不管我们做多少次实验，平均值都是一个随机变数，那不就 不能拿来估算?
+    - 所幸!当做的实验次数趋近于无穷多时，这么多次的实验的平均值 会收敛到一个常数!我们就用它来当作这机率分布的估算值吧!
+ - 若考虑某机率分布，作实验很多次若随机实验之样本空间为 {1,2, ... ,n}, 作实验N次，记录各结果出现 次数，分别为N₁,N₂,...N<sub>n</sub>
+    - 平均值 (Mean): ∑<sub>x=</sub>ⁿ₁ (x·Nₓ)/N
+    - 根据大数法则 : ∑<sub>x=</sub>ⁿ₁ x·P<sub>X</sub>(x)
+ - Mean 值又称作期望值
+    - μ<sub>Y</sub> = E[Y]
+    - 对离散随机变数 𝑿 而言，我们定义其期望值 
+        - E[X] = μ<sub>X</sub> = ∑<sub>x=</sub><sup>∞</sup><sub>-∞</sub> x·P<sub>X</sub>(x) 
+    - **期望值不等于随机会发生的值**!
+        - eg. P<sub>X</sub>(1) = P<sub>X</sub>(-1) = 1/2 => μ<sub>X</sub> = 0 !!! 
+
+ 
+### 随机变量的函数之期望值
+
+ - 对于任一离散随机变量 X 而言，其 任意函数 g(X) 亦是一随机变量，亦有期望值
+ - g(X) 期望值定义为
+    - E[ g(X) ] = ∑<sub>x=</sub><sup>∞</sup><sub>-∞</sub> g(x)·P<sub>X</sub>(x) 
+    - 根随即变量的期望值公式相比，只是 x 变成了 g(x)
+
+### 期望值运算性质
+
+ - E[ 3X² ] = ∑<sub>x=</sub><sup>∞</sup><sub>-∞</sub> 3x²·P<sub>X</sub>(x) 
+    - = 3·∑<sub>x=</sub><sup>∞</sup><sub>-∞</sub> x²·P<sub>X</sub>(x)  = 3·E( X² )
+    - 常数项可以提出来
+ - E[α·g(X)] = α·E[g(X)] 
+ - E[α·g(X) + β·h(X) ] = α·E[g(X)] + β·E[h(X)]
+ - E[α] = α
+ 
+### 常见的随机变量函数期望值
+ 
+ - X 的 n<sup>th</sup> moment:
+    - E[Xⁿ] = ∑<sub>x=</sub><sup>∞</sup><sub>-∞</sub> xⁿ·P<sub>X</sub>(x)  
+    - Ex: E[X²] 是 X的 2<sup>nd</sup> moment
+ - X 的变异数 (variance):
+    - E[ (X-μ<sub>X</sub>)² ] 
+    - 减去 期望值的 平方
+
+### 变异数 (variance)
+
+ - Variance通常符号表示为 σ<sub>X</sub>² = E[ (X-μ<sub>X</sub>)² ] 
+ - 变异数隐含关于随机变数 X 多「乱」的信息
+ - 变异数的开根号便是标准差 (standard deviation)
+    - σ<sub>X</sub> = √Variance
+
+### Variance 便利算法
+
+ - σ<sub>X</sub>² = E[ (X-μ<sub>X</sub>)² ]
+    - = E[ X²-2μ<sub>X</sub>·X+μ<sub>X</sub>² ]
+    - = E[X²] + E[-2μ<sub>X</sub>·X] + E[ μ<sub>X</sub>² ]
+    - = E[X²] - 2μ<sub>X</sub>·E[X] + μ<sub>X</sub>²
+    - = E[X²] - μ<sub>X</sub>² 
+
+ - => E[X²] = σ<sub>X</sub>² + μ<sub>X</sub>²  
+
 
 
 
