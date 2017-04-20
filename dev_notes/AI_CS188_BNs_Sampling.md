@@ -95,6 +95,7 @@ We have a BNs, and we want to generate samples of the full joint distribution ,b
  - algorithm to generate 1 sample : 
 
 ```
+// single sample
 For i=1,2,...,n
     Sample xᵢ from P(Xᵢ| Parents(Xᵢ))
 return (x₁,x₂,...,xn)
@@ -147,8 +148,28 @@ Now we're going to look at a way to speed this up a little bit if we know ahead 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_sampling_reject_sampling.png)
 
+ - Let’s say we want P(C)
+    - No point keeping all samples around
+    - Just tally counts of C as we go
+        - we know we sampled top down through BNs, so we know once we sampled C and if later all interesting is counting how often we have +c/-c 
+        - there's no need to still sample S,R and W. 
+        - we just stop sampling after we got C. 
+ - Let’s say we want P(C| +s)
+    - Same thing: tally C outcomes, but ignore (reject) samples which don’t have S=+s
+        - when you sampled -s , there is no point in continuing.
+        - that sample is going to be going unused when you answer your query 
+    - This is called rejection sampling
+    - It is also consistent for conditional probabilities (i.e., correct in the limit)
 
-
+```
+// single sample 
+IN: evidence instantiation
+For i=1, 2, …, n
+    Sample xᵢ from P(Xᵢ| Parents(Xᵢ))
+    If xᵢ not consistent with evidence
+        Reject: Return, and no sample is generated in this cycle
+Return (x1, x2, …, xn)
+```
 
 
 
