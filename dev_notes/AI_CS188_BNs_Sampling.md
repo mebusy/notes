@@ -171,5 +171,41 @@ For i=1, 2, …, n
 Return (x1, x2, …, xn)
 ```
 
+---
+
+### Sampling Example 
+
+ - There are 2 cups
+    - The frist contains 1 penny and 1 quarter
+    - Then second contains 2 quaters
+ - Say I pick a cup uniformly at random, then pick a coin randomly from that cup. It's a quarter ( yes!). 
+    - What is the probability that the other coin in that cup is also a quarter ? 
+
+ - One way to answer this question is to use essentially BNs inference to find the answer
+ - another way to do it is to just run sampling : 2/3
+
+---
+
+## Likelihood Weighting
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_LW.png)
+
+Again, we know the query ahead of time, and see if we can further improve the procedure beyond what we did for a rejection sampling. 
+ 
+ - Problem with rejection sampling:
+    - If evidence is unlikely, rejects lots of samples
+        - 证据发生的概率很低
+    - Evidence not exploited as you sample
+        - if the evidence variable are very deep in your BNs, you might have done all that work 
+        - reach all the way to the bottom of you BNs, you sample your evidence variable , you sample it the wrong way , now you reject -- that sample can not use . 
+    - Consider P(Shape|blue)
+        - Shape → Color
+            - ~~pyramid, green~~
+            - ~~pyramid, red~~
+            - sphere , blue
+            - ~~cube, red~~
+            - ~~sphere, green~~ 
+
+
 
 
