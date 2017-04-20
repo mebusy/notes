@@ -206,6 +206,10 @@ Again, we know the query ahead of time, and see if we can further improve the pr
             - ~~cube, red~~
             - ~~sphere, green~~ 
 
-
+ - Idea: fix evidence variables and sample the rest
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_LW_fix_evidence.png)
+    - Problem: sample distribution not consistent!
+    - Solution: weight by probability of evidence given parents
+    
 
 
