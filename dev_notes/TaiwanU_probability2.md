@@ -18,6 +18,11 @@
 		 - [Normal 机率分布(常态分布)](#a638878f993f94c84c6c050963d0f635)
 			 - [Standard Normal Distribution 标准常态分布](#b672e9679aa32ead876e8b9c6c43d78c)
 	 - [6-2: 期望值 I (EXPECTATION)](#699f5bed3f92e270bce0a95ed5bf89d3)
+		 - [随机变量的函数之期望值](#7a410c29ec1783458c2d5c679f790eee)
+		 - [期望值运算性质](#09a5fcc38b3f4c96f745b665bfb42cea)
+		 - [常见的随机变量函数期望值](#487e3e26c9963764a55fe4f8b597d389)
+		 - [变异数 (variance)](#d43aa7d625393a9c328a86c60568b12e)
+		 - [Variance 便利算法](#d57572a47dea71843856503c0ef5c154)
 
 ...menuend
 
@@ -283,12 +288,16 @@ Fₓ(x) = P( X≤x )
         - eg. P<sub>X</sub>(1) = P<sub>X</sub>(-1) = 1/2 => μ<sub>X</sub> = 0 !!! 
 
  
+<h2 id="7a410c29ec1783458c2d5c679f790eee"></h2>
+
 ### 随机变量的函数之期望值
 
  - 对于任一离散随机变量 X 而言，其 任意函数 g(X) 亦是一随机变量，亦有期望值
  - g(X) 期望值定义为
     - E[ g(X) ] = ∑<sub>x=</sub><sup>∞</sup><sub>-∞</sub> g(x)·P<sub>X</sub>(x) 
     - 根随即变量的期望值公式相比，只是 x 变成了 g(x)
+
+<h2 id="09a5fcc38b3f4c96f745b665bfb42cea"></h2>
 
 ### 期望值运算性质
 
@@ -299,6 +308,8 @@ Fₓ(x) = P( X≤x )
  - E[α·g(X) + β·h(X) ] = α·E[g(X)] + β·E[h(X)]
  - E[α] = α
  
+<h2 id="487e3e26c9963764a55fe4f8b597d389"></h2>
+
 ### 常见的随机变量函数期望值
  
  - X 的 n<sup>th</sup> moment:
@@ -308,12 +319,16 @@ Fₓ(x) = P( X≤x )
     - E[ (X-μ<sub>X</sub>)² ] 
     - 减去 期望值的 平方
 
+<h2 id="d43aa7d625393a9c328a86c60568b12e"></h2>
+
 ### 变异数 (variance)
 
  - Variance通常符号表示为 σ<sub>X</sub>² = E[ (X-μ<sub>X</sub>)² ] 
  - 变异数隐含关于随机变数 X 多「乱」的信息
  - 变异数的开根号便是标准差 (standard deviation)
     - σ<sub>X</sub> = √Variance
+
+<h2 id="d57572a47dea71843856503c0ef5c154"></h2>
 
 ### Variance 便利算法
 

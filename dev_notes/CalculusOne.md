@@ -72,6 +72,8 @@
 		 - [Why would I want to opimize a function ?](#0bd34b62bad9def7815743afad14b4d9)
 			 - [How large can xy be if x + y = 24?](#50b74b87ca2a56d287a7b8b904d46c19)
 		 - [Optimization in Action](#9f4cacf06f1b57dda6be7f4448d1c76b)
+			 - [How large of an object can you carry around a corner?](#820df180c483345562cc37739bd847f9)
+			 - [How short of a ladder will clear a fence?](#df8000ef4c8d5212dcc2b135f05a69d9)
 
 ...menuend
 
@@ -1014,6 +1016,8 @@ f'(x) =⎧ 1 - (2x-2) , if x² - 2x > 0 , // no '=' here, because x=2 not differ
 
 ### Optimization in Action
 
+<h2 id="820df180c483345562cc37739bd847f9"></h2>
+
 #### How large of an object can you carry around a corner?
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_optmization_in_action.png)
@@ -1043,6 +1047,8 @@ l'(θ) = 0 ?
 ```
 
 l(θ) = (a<sup>2/3</sup> + b<sup>2/3</sup> )<sup>3/2</sup> 
+
+<h2 id="df8000ef4c8d5212dcc2b135f05a69d9"></h2>
 
 #### How short of a ladder will clear a fence?
 

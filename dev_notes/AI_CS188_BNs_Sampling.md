@@ -6,6 +6,14 @@
 	 - [Prior Sampling](#d9850ac369194d66ab390de368f1cf63)
 		 - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
 	 - [Rejection Sampling](#da3112458f911630996b5661ccd81e9d)
+		 - [Sampling Example](#c6947b6b4431fade42a12cf65b3c9a80)
+	 - [Likelihood Weighting](#6e0d79ed12bd0076ebad0fc27629611e)
+		 - [Example Likelihood Weighting](#3eb57101576ca6e2a3251b14ff38ce8f)
+	 - [Likelihood Weighting Cont.](#6d927b96f874f88bd5461de8ac4b040a)
+	 - [Gibbs Sampling](#16169430c0295688db141ebd3163baf5)
+		 - [Gibbs Sampling Example: P( S | +r)](#a4d4a785b477b26309b7ec181f443a28)
+		 - [Efficient Resampling of One Variable](#5fb1b8f1b2e4f8b4d7772cae296c4642)
+		 - [Further Reading on Gibbs Sampling](#e71302c1ea74db4751ea7bc9282430c5)
 
 ...menuend
 
@@ -173,6 +181,8 @@ Return (x1, x2, …, xn)
 
 ---
 
+<h2 id="c6947b6b4431fade42a12cf65b3c9a80"></h2>
+
 ### Sampling Example 
 
  - There are 2 cups
@@ -185,6 +195,8 @@ Return (x1, x2, …, xn)
  - another way to do it is to just run sampling : 2/3
 
 ---
+
+<h2 id="6e0d79ed12bd0076ebad0fc27629611e"></h2>
 
 ## Likelihood Weighting
 
@@ -213,6 +225,8 @@ Again, we know the query ahead of time, and see if we can further improve the pr
         - you instantiated some shape to be blue, and the probability for blue was 0.2 for that shape 
         - you now weight that particular sample by a factor 0.2. 
 
+<h2 id="3eb57101576ca6e2a3251b14ff38ce8f"></h2>
+
 ### Example Likelihood Weighting
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_LW_example.png)
@@ -226,6 +240,8 @@ Again, we know the query ahead of time, and see if we can further improve the pr
     - weight is still 1.0\*0.1  
  - last is WetGrass , it is instantiated to be +w , we weight it P(+w|+s,+r) = 0.99
     - now the weight is 1.0\*0.1\*0.99 = 0.099
+
+<h2 id="6d927b96f874f88bd5461de8ac4b040a"></h2>
 
 ## Likelihood Weighting Cont.
 
@@ -268,6 +284,8 @@ Are we still doing the right thing ?  Are we sampling from the right distributio
 
 ---
 
+<h2 id="16169430c0295688db141ebd3163baf5"></h2>
+
 ## Gibbs Sampling
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_GS.png)
@@ -289,6 +307,8 @@ Are we still doing the right thing ?  Are we sampling from the right distributio
  - *Rationale*: both upstream and downstream variables condition on evidence.
  - In contrast: likelihood weighting only conditions on upstream evidence, and hence weights obtained in likelihood weighting can sometimes be very small.  Sum of weights over all samples is indicative of how many “effective” samples were obtained, so want high weight.
 
+
+<h2 id="a4d4a785b477b26309b7ec181f443a28"></h2>
 
 ### Gibbs Sampling Example: P( S | +r)
 
@@ -322,6 +342,8 @@ We're going to generate one sample from our BNs. Our evidence is +r.
 
 This is just giving you the very basic idea of how Gibbs Sampling works. And you can make it work this way , but if you used it in practice , you'd want to use a lot of methods to make it more efficient. 
 
+<h2 id="5fb1b8f1b2e4f8b4d7772cae296c4642"></h2>
+
 ### Efficient Resampling of One Variable
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_GS_sample_efficient_resample.png)
@@ -331,6 +353,8 @@ This is just giving you the very basic idea of how Gibbs Sampling works. And you
  - Many things cancel out – only CPTs with S remain!
  - More generally: only CPTs that have resampled variable need to be considered, and joined together
 
+
+<h2 id="e71302c1ea74db4751ea7bc9282430c5"></h2>
 
 ### Further Reading on Gibbs Sampling
 

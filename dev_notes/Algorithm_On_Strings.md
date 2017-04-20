@@ -26,6 +26,10 @@
 		 - [Computing s(i + 1)](#7458f83cf5feb375ce613102ad4cf673)
 		 - [ComputePrefixFunction(P)](#52b3a75d31d9676c1ccf5234adc3347b)
 	 - [Knuth-Morris-Pratt Algorithm](#a27872b96c92390fbd9d96e8553f69ca)
+		 - [Explanation](#b72ac10807b29c77f5b7e4b80ea40414)
+		 - [pseudo code](#d5c1daf026b98296ae4747476c5a2b2d)
+		 - [Conclusion](#6f8b794f3246b0c1e1780bb4d4d5dc53)
+ - [Week 4](#024f2ea1afa39552cc7823dfeaeeba8c)
 
 ...menuend
 
@@ -758,11 +762,15 @@ Now lets think how to compute the prefix function.
     - Pattern = "AAA"
     - Text = "A" 
  
+<h2 id="b72ac10807b29c77f5b7e4b80ea40414"></h2>
+
 ### Explanation
 
  - For all i, s(i) ≤ |P| because of the special character '$'
  - If i > |P| and s(i) = |P|, then P = S[0..|P| − 1] = S[i − |P| + 1..i] = T[i − 2|P|..i − |P| − 1]
  - If s(i) < |P|, no full occurrence of |P| ends in position i 
+
+<h2 id="d5c1daf026b98296ae4747476c5a2b2d"></h2>
 
 ### pseudo code
 
@@ -775,6 +783,8 @@ Now lets think how to compute the prefix function.
     - Computing prefix function is O(|S|) = O(|P| + |T|)
     - The for loop runs O(|S|) = O(|P| + |T|) iterations
 
+
+<h2 id="6f8b794f3246b0c1e1780bb4d4d5dc53"></h2>
 
 ### Conclusion
 
@@ -790,6 +800,8 @@ In the next lessons, we will learn how to build suffix array and suffix tree in 
 
 
 ---
+
+<h2 id="024f2ea1afa39552cc7823dfeaeeba8c"></h2>
 
 # Week 4
 
