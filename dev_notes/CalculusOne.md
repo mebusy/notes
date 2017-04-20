@@ -1014,7 +1014,35 @@ f'(x) =⎧ 1 - (2x-2) , if x² - 2x > 0 , // no '=' here, because x=2 not differ
 
 ### Optimization in Action
 
-   
+#### How large of an object can you carry around a corner?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_optmization_in_action.png)
+
+ - break up the stick into 2 pieces , each from a wall to this corner 
+    - the bottom piece has the length:  a·cscθ
+    - the other one has the length:  b·secθ
+ - the length of the whole stick is : 
+    - l(θ) =  a·cscθ + b·secθ 
+ - what's the constraint in this problem ?
+    - 0 < θ < π/2
+
+```
+l(θ) = a·cscθ + b·secθ
+
+l'(θ) = -a·cscθ·cotθ + b·secθ·tanθ
+l'(θ) = 0 ?
+
+  b·secθ·tanθ = a·cscθ·cotθ 
+  (secθ·tanθ )/(cscθ·cotθ ) = a/b
+  tan³θ = a/b 
+  tanθ = ∛(a/b)
+  θ = arctan( ∛(a/b) )
+
+  use θ = calculate l(θ) 
+  
+```
+
+l(θ) = (a<sup>2/3</sup> + b<sup>2/3</sup> )<sup>3/2</sup> 
 
 
 
