@@ -341,13 +341,63 @@ Fₓ(x) = P( X≤x )
  - => E[X²] = σ<sub>X</sub>² + μ<sub>X</sub>²  
 
 
+### 常见离散分布之期望值/变异数
+
+ - X~Bernouli(p) :
+    - μ<sub>X</sub> = 1·p + 0·(1-p) = p
+    - σ<sub>X</sub>² = E[X²] - μ<sub>X</sub>² = ∑<sub>x=</sub>¹₀ x²·p<sub>X</sub>(x) - μ<sub>X</sub>²
+        - = 1²·p + 0²·(1-p) - p² = p(1-p)
+ - X~BIN(n,p) :
+    - μ<sub>X</sub> = np
+    - σ<sub>X</sub>² = np(1-p)
+ - X~GEO(p) :
+    - μ<sub>X</sub> = ∑<sub>x=</sub><sup>∞</sup><sub>0</sub> x· (1-p)<sup>x-1</sup>·p = 1/p 
+    - σ<sub>X</sub>² = E[X²] - μ<sub>X</sub>² = (1-p)/p²
+ - X~PASKAL(k,p) :
+    - μ<sub>X</sub> = k/p
+    - σ<sub>X</sub>² = k(1-p)/p²  
+ - X~POI(α) :
+    - μ<sub>X</sub> = α
+    - σ<sub>X</sub>² = α 
+ - X~UNIF(a,b) :
+    - μ<sub>X</sub> = (a+b)/2
+    - σ<sub>X</sub>² = 1/12·(b-a)(b-a+2)
+
+### 几率推导奥义： 「凑」字诀
+
+ - 以 X~POI(a) 为例
+ - X~POI(a) 概率公式是什么？
+    - P<sub>X</sub>(x) = (aˣ/x!)·e⁻ª , x=0,1,2,... 
+ - 我们手上能利用的公式有哪些？
+    - ∑<sub>x=</sub><sup>∞</sup><sub>0</sub> (aˣ/x!)·e⁻ª = 1
+ - 开始推导:  
+
+---
+
+E[X] = ∑<sub>x=</sub><sup>∞</sup><sub>0</sub> x·(aˣ/x!)·e⁻ª 
+
+x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， 因为 阶乘对负数没有定义
+
+ E[X] = ∑<sub>x=</sub><sup>∞</sup><sub>1</sub> (aˣ/(x-1)!)·e⁻ª 
+
+使 a 的指数形式 和 阶乘 保持一致
+
+ E[X] = a·∑<sub>x=</sub><sup>∞</sup><sub>1</sub> (aˣ⁻¹/(x-1)!)·e⁻ª 
+
+令 x' = x-1 
+
+ E[X] = a· ∑<sub>x'=</sub><sup>∞</sup><sub>0</sub>  (aˣ<sup>'</sup>/x'!)·e⁻ª = a·1 = a 
+ 
+--- 
 
 
+σ<sub>X</sub>² = E[X²] - μ<sub>X</sub>² = E[X²] - a² 
 
+和 E[X] 类似， 可以推导处 E[X²] =  a² + a , 所以
 
+σ<sub>X</sub>² =  a 
 
-
-
+---
 
 
 
