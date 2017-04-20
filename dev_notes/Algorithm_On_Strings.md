@@ -764,6 +764,31 @@ Now lets think how to compute the prefix function.
  - If i > |P| and s(i) = |P|, then P = S[0..|P| − 1] = S[i − |P| + 1..i] = T[i − 2|P|..i − |P| − 1]
  - If s(i) < |P|, no full occurrence of |P| ends in position i 
 
+### pseudo code
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP_pseudo_code.png)
+
+ - Lemma
+    - The running time of Knuth-Morris-Pratt algorithm is O(|P| + |T|).
+ - Proof
+    - Building string S is O(|P| + |T|)
+    - Computing prefix function is O(|S|) = O(|P| + |T|)
+    - The for loop runs O(|S|) = O(|P| + |T|) iterations
+
+
+### Conclusion
+
+ - Can search pattern in text in linear time
+ - Can compute prefix function of a string in linear time
+ - Can enumerate all borders of a string
+
+
+
+
+---
+
+# Week 4
+
 
 
 
