@@ -309,6 +309,7 @@ We're going to generate one sample from our BNs. Our evidence is +r.
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_GS_sample_step3.png)
         - we picked S , we uninstantiated it
             - now we compute the conditional distribution for S : P(S|+c,+r,-w) 
+                - this distribution can answer some query very efficiently 
             - sample from that distribution ,  and we happen to sample +s 
         - again, we randomly pick C 
             - we compute the conditinal distribution for C : P(C|+s,+r,-w) 
@@ -321,9 +322,25 @@ We're going to generate one sample from our BNs. Our evidence is +r.
 
 This is just giving you the very basic idea of how Gibbs Sampling works. And you can make it work this way , but if you used it in practice , you'd want to use a lot of methods to make it more efficient. 
 
+### Efficient Resampling of One Variable
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_GS_sample_efficient_resample.png)
+
+ - Sample from P(S | +c, +r, -w)    
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_GS_sample_efficient_resample2.png)
+ - Many things cancel out – only CPTs with S remain!
+ - More generally: only CPTs that have resampled variable need to be considered, and joined together
 
 
+### Further Reading on Gibbs Sampling
 
+ - Gibbs sampling produces sample from the query distribution P( Q | e ) in limit of re-sampling infinitely often
+ - Gibbs sampling is a special case of more general methods called Markov chain Monte Carlo (MCMC) methods 
+    - Metropolis-Hastings is one of the more famous MCMC methods (in fact, Gibbs sampling is a special case of Metropolis-Hastings) 
+ - You may read about Monte Carlo methods – they’re just sampling
+
+   
+     
 
 
 
