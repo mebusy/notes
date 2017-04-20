@@ -272,7 +272,56 @@ Are we still doing the right thing ?  Are we sampling from the right distributio
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_GS.png)
 
- - *Procedure*: keep track of a full instantiation x₁, x₂, …, x<sub>n</sub>.   Start with an arbitrary instantiation consistent with the evidence.  Sample one variable at a time, conditioned on all the rest, but keep evidence fixed.  Keep repeating this for a long time.
+ - *Procedure*: 
+    - keep track of a full instantiation x₁, x₂, …, x<sub>n</sub>.   
+        - it might remind you of something like hill climbing what we had for solving CSPs. we has a full association and then work from there to get something better. This is going to be very similar.  
+    - Start with an arbitrary instantiation consistent with the evidence.  
+        - we already account for the evidence, the other variables are arbitrarily instantiated.
+    - Sample one variable at a time, conditioned on all the rest, but keep evidence fixed.  
+        - do not pick evidence variable, evidence variables stay fixed
+        - the other variables we cycle through in some way in a random cycling procedure. And when we look at that variable we uninstantiated and sample it condition on them all the other variables in our instantiation. 
+        - we have a distriution, a conditional distribution , compute that distribution and then sample from that conditional distribution.  
+        - we haven't yet looked at what it takes to compute that conditional distribution but in principle you could compute a conditional distribution for one variable given all other variables being instantiated , and then sample from that. 
+    - Keep repeating this for a long time.
+ - *Property*: in the limit of repeating this infinitely many times the resulting sample is coming from the correct distribution
+    - P( unobserved variables | evidence variables )
+    - so we're not going to have to weight samples anymore. We're going to directly get samples from the conditional distribution.  
+ - *Rationale*: both upstream and downstream variables condition on evidence.
+ - In contrast: likelihood weighting only conditions on upstream evidence, and hence weights obtained in likelihood weighting can sometimes be very small.  Sum of weights over all samples is indicative of how many “effective” samples were obtained, so want high weight.
+
+
+### Gibbs Sampling Example: P( S | +r)
+
+We're going to generate one sample from our BNs. Our evidence is +r. 
+
+ - Step 1: Fix evidence
+    - R = +r
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_GS_sample_step1.png)
+ - Step 2: Initialize other variables 
+    - Randomly
+        - say we pick +c, -s, -w
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_GS_sample_step2.png)
+ - Steps 3: Repeat
+    - Choose a non-evidence variable X
+        - this choice here is also supposed to be random 
+        - so you randomly pick one of your non-evidence variables as your current variable , that you're going to update  
+    - Resample X from P( X | all other variables)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_GS_sample_step3.png)
+        - we picked S , we uninstantiated it
+            - now we compute the conditional distribution for S : P(S|+c,+r,-w) 
+            - sample from that distribution ,  and we happen to sample +s 
+        - again, we randomly pick C 
+            - we compute the conditinal distribution for C : P(C|+s,+r,-w) 
+            - sample from that distribution ,  this case we got +c 
+        - now we uninstantiate W 
+            - we compute the conditinal distribution for W : P(W|+s,+c,+r) 
+            - sample from that distribution ,  this case we got -w 
+        - keep going 
+            - we can look at properties of your BNs, you can infer how long -- how many steps --  you might need to sample  
+
+This is just giving you the very basic idea of how Gibbs Sampling works. And you can make it work this way , but if you used it in practice , you'd want to use a lot of methods to make it more efficient. 
+
+
 
 
 
