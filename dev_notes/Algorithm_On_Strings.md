@@ -782,7 +782,11 @@ Now lets think how to compute the prefix function.
  - Can compute prefix function of a string in linear time
  - Can enumerate all borders of a string
 
+---
 
+In the next lessons, we will learn how to build suffix array and suffix tree in time O(N·lgN) , which will allow you to find many different patterns in the same text even faster than if you use algorithms like KMP.
+
+ 
 
 
 ---
