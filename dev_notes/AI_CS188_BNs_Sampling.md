@@ -210,6 +210,62 @@ Again, we know the query ahead of time, and see if we can further improve the pr
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_LW_fix_evidence.png)
     - Problem: sample distribution not consistent!
     - Solution: weight by probability of evidence given parents
-    
+        - you instantiated some shape to be blue, and the probability for blue was 0.2 for that shape 
+        - you now weight that particular sample by a factor 0.2. 
+
+### Example Likelihood Weighting
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_LW_example.png)
+
+ - evidence is +s , +w
+ - we start with Cloudy , we got +c 
+    - weight is 1.0
+ - next we go to Sprinkler,  it is instantiated to be +s, we have weight P(+s|+c) = 0.1 
+    - now weight is 1.0\*0.1 
+ - next we look at rain, we sample , we got +r 
+    - weight is still 1.0\*0.1  
+ - last is WetGrass , it is instantiated to be +w , we weight it P(+w|+s,+r) = 0.99
+    - now the weight is 1.0\*0.1\*0.99 = 0.099
+
+## Likelihood Weighting Cont.
+
+```
+// single sample
+IN: evidence instantiation
+w = 1.0
+for i=1, 2, …, n
+    if Xᵢ is an evidence variable
+        Xᵢ = observation xᵢ for X
+        Set w = w * P(xᵢ | Parents(Xᵢ))
+    else
+        Sample xᵢ from P(Xᵢ | Parents(Xi))
+Return (x1, x2, …, xn) , w
+```
+
+Are we still doing the right thing ?  Are we sampling from the right distribution ?
+
+ - Proof:  ignore
+
+---
+
+ - Likelihood weighting is good
+    - We have taken evidence into account as we generate the sample
+        - E.g. here, W’s value will get picked based on the evidence values of S, R
+    - More of our samples will reflect the state of the world suggested by the evidence
+ - Likelihood weighting doesn’t solve all our problems
+    - Evidence influences the choice of downstream variables, but not upstream ones (C isn’t more likely to get a value matching the evidence)
+ - We would like to consider evidence when we sample every variable
+    - -> Gibbs sampling
+
+---
+
+
+
+
+
+
+
+
+
 
 
