@@ -1044,6 +1044,13 @@ l'(θ) = 0 ?
 
 l(θ) = (a<sup>2/3</sup> + b<sup>2/3</sup> )<sup>3/2</sup> 
 
+#### How short of a ladder will clear a fence?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_optimizatiio_action_ladder_clear_a_fence.png)
+
+ - 需要多长的梯子 ， 才能够到 谷仓？
+ - 本质上，和上面的 stick 通过 corner 是一样的
+
 
 
 
