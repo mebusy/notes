@@ -30,6 +30,9 @@
 		 - [pseudo code](#d5c1daf026b98296ae4747476c5a2b2d)
 		 - [Conclusion](#6f8b794f3246b0c1e1780bb4d4d5dc53)
  - [Week 4](#024f2ea1afa39552cc7823dfeaeeba8c)
+	 - [Suffix Array](#070de002eb9fe6a242a3eea58a6b0a47)
+		 - [Construct Suffix Array](#b3d93ca2f2b1bae05ed120cebaaaf0c3)
+		 - [Storing Suffix Array](#0315a918e4426dc96ef07eca2ff9c282)
 
 ...menuend
 
@@ -805,7 +808,11 @@ In the next lessons, we will learn how to build suffix array and suffix tree in 
 
 # Week 4
 
+<h2 id="070de002eb9fe6a242a3eea58a6b0a47"></h2>
+
 ## Suffix Array
+
+<h2 id="b3d93ca2f2b1bae05ed120cebaaaf0c3"></h2>
 
 ###  Construct Suffix Array
  
@@ -852,6 +859,8 @@ In the next lessons, we will learn how to build suffix array and suffix tree in 
         - baa$
         - babaa$
     
+
+<h2 id="0315a918e4426dc96ef07eca2ff9c282"></h2>
 
 ### Storing Suffix Array
 

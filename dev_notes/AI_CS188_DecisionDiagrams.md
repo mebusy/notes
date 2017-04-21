@@ -1,5 +1,19 @@
+...menustart
+
+ - [Decision Diagrams / Value of Perfect Information](#bcce11f51a8ba9f718e13496df69ff75)
+	 - [Decision Networks](#4110b017c078c49b44248d46eddf6146)
+		 - [Simple Example](#ecaa6de7751a679c6478caccd8dd7a12)
+		 - [Ghostbusters Decision Network](#a457e316cc82b392c5e0160e69e95ab0)
+	 - [Decision Networks Cont.](#a3ae179f8c3c60bae32aa8e7dc7f619a)
+
+...menuend
+
+
+<h2 id="bcce11f51a8ba9f718e13496df69ff75"></h2>
 
 # Decision Diagrams / Value of Perfect Information
+
+<h2 id="4110b017c078c49b44248d46eddf6146"></h2>
 
 ## Decision Networks
 
@@ -53,6 +67,8 @@ So how do you select an action ?
 
 
 
+<h2 id="ecaa6de7751a679c6478caccd8dd7a12"></h2>
+
 ### Simple Example 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_dn_example_simple.png)
@@ -95,6 +111,8 @@ We listened to the forecast and the forecast is bad.
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DN_example_expectimax_tree2.png)
 
 
+<h2 id="a457e316cc82b392c5e0160e69e95ab0"></h2>
+
 ### Ghostbusters Decision Network
 
 
@@ -102,6 +120,8 @@ We listened to the forecast and the forecast is bad.
 
 
 
+
+<h2 id="a3ae179f8c3c60bae32aa8e7dc7f619a"></h2>
 
 ## Decision Networks Cont.
 

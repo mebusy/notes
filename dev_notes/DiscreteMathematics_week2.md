@@ -33,6 +33,8 @@
 		 - [命题公式A(p1, p2, …pn)的等值分类](#04394df12572419ad65a8946bc098a7f)
 		 - [主合取范式：具有和主析取范式对称的性质](#ae1d46e8334ce6c90deca67ec55c7a31)
 	 - [20-联结词集完备性](#d58084f9d55f53fe8ecf655f5390e015)
+	 - [21-形式系统和证明、演绎](#a722e16a5ab466add63d9e95baff6f6c)
+	 - [22-命题演算形式系统PC ( Proposition Calculus )](#30fb41d7af930c05d8fd6bbd4c6b41d0)
 
 ...menuend
 
@@ -478,7 +480,11 @@
         - p↓q╞╡¬(p∨q)
     - {↓}是功能完备集
 
+<h2 id="a722e16a5ab466add63d9e95baff6f6c"></h2>
+
 ## 21-形式系统和证明、演绎
+
+<h2 id="30fb41d7af930c05d8fd6bbd4c6b41d0"></h2>
 
 ## 22-命题演算形式系统PC ( Proposition Calculus )
 
