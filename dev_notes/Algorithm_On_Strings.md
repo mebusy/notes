@@ -805,12 +805,86 @@ In the next lessons, we will learn how to build suffix array and suffix tree in 
 
 # Week 4
 
+## Suffix Array
 
+###  Construct Suffix Array
+ 
+ - Input: String S
+ - Output: All suffixes of S in lexicographic order
+ 
+---
+ 
+ - Alphabet
+    - We assume the alphabet is ordered, that is, for any two different characters in the alphabet one of them is considered smaller than another. For example, in English 
+        - ’a’ < ’b’ < ’c’ < · · · < ’z’ 
+ - Definition
+    - String S is lexicographically smaller than string T if S ̸= T and there exist such i that:
+        - 0 ≤ i ≤ |S| 
+        - S[0..i − 1] = T[0..i − 1]
+            - (assume S[0.. − 1] is an empty string)
+        - Either i = |S| (then S is a prefix of T) , or S[i] < T[i]
+ - Example
+    - “*a*b” < “*b*c” (i = 0)
+    - “ab*c*” < “ab*d*” (i = 2)
+    - “abc” < “abc*d*” (i = 3)
+ - Suffix Array Example
+    - S = ababaa
+    - Suffixes in lexicographic order:
+        - a
+        - aa
+        - abaa
+        - ababaa
+        - baa
+        - babaa
+ - Avoiding Prefix Rule
+    - we want to avoid this case when S is a prefix of T
+    - Inconvenient rule: if S is a prefix of T, then S < T
+    - Append special character ‘$’ smaller than all other characters to the end of all strings
+    - If S is a prefix of T, then S$ differs from T$ in position i = |S|, and $ < T[|S|], so S$ < T$
+ - Example
+    - S = “ababaa” -> S' = “ababaa$”
+    - Suffixes in lexicographic order:
+        - $
+        - a$
+        - aa$
+        - abaa$
+        - ababaa$
+        - baa$
+        - babaa$
+    
 
+### Storing Suffix Array
 
+ - Total length of all suffixes is
+    - 1 + 2 + · · · + |S| = Θ(|S|²)
+ - Storing them all is too much memory
+ - Store only the order of suffixes O(|S|) 
+    - the order is just a permutation of numbers 
+    - and the number of those numbers is the |S| 
+    - that is what we mean by **suffix array**
+ - **Suffix array** is this order 
 
-
-
+ - Example
+    - S = ababaa$
+    - Suffixes are numbered by their starting positions: ababaa$ is 0, abaa$ is 2
+    - Suffix array: order = [6, 5, 4, 2, 0, 3, 1]
+        - we start with an empty array
+            - order = []
+        - So the smallest suffix is just $. 
+            - order = [6] 
+        - And the next one is a$  , which is numbered 5 ; and then aa$ which is numbered 4
+            - order = [6,5,4]
+        - eventually , we got
+            - order = [6,5,4,2,0,3,1]
+ - So this is the kind of array which we call suffix array
+    - which is the order of all the suffixes of the initial string.
+    - and we don't store the suffixes themselves
+ - However if we need to look at, for example the 3rd character of the 2nd suffix in order 
+    - we can fist go into the array **order** , find out which suffix is 2
+    - and that will be the 1st position of that suffix in the stream , and if we then add 2 to that, we'll that get character.
+    - So in theory we can look at any character of any suffix really efficiently although we don't store sufixes directly.
+ - OK, you know how to store suffix array
+ - But how to construct it? 
 
 
 
