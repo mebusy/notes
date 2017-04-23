@@ -131,8 +131,8 @@ class PriorityQueue:
         self.heap = []                                                          
         self.count = 0                                                          
                                                                                 
-    def push(self, item, priority):       
-		# self.count is added for stable ?                                      
+    def push(self, item, priority):
+        # self.count is added for stable ?                                      
         entry = (priority, self.count, item)                                    
         heapq.heappush(self.heap, entry)                                        
         self.count += 1                                                         
