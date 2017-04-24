@@ -273,19 +273,60 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 ## POMDPs
 
+
+
+
  - MDPs have:
     - States S
     - Actions A
     - Transition function P(s’|s,a) (or T(s,a,s’))
     - Rewards R(s,a,s’)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_POMDP_MDP.png)
  - POMDPs add:
     - Observations O
     - Observation function P(o|s) (or O(s,o))
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_POMDP_PO.png)
+    - POMDP is a partially observalbe MDP. Partially observable means that you don't observe all the variables that are in play , only some are observed. 
+    - When chance trasitions happens what changes is you get to observe a new variable which then in turn changes your distribution. 
+        - your believe *b*  is something initially  
+        - you take an action
+        - then chance kicks in ( b,a ) 
+        - and then you have a new distribution *b'* after that
+
  - POMDPs are MDPs over belief
     - states b (distributions over S)
  - We’ll be able to say more in a few lectures
 
 
+### Example: Ghostbusters
+
+ - In (static) Ghostbusters:
+    - Belief state determined by evidence to date {e}
+    - Tree really over evidence sets
+    - Probabilistic reasoning needed to predict new evidence given past evidence
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_POMDP_example_ghostbuster.png)
+        - there 2 are equivalent , the right one explicitly keeps track of the evidence bariabels. The left one keeps track of the probabilities of the beliefs that actually matter in these computations.
+ - Solving POMDPs
+    - One way: use truncated expectimax to compute approximate value of actions
+    - What if you only considered busting or one sense followed by a bust?
+    - You get a VPI-based agent!
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_POMDP_example_ghostbuster_solver.png)
+        - so you have some evidence initially {e}  (red)
+        - you can take a buster action a<sub>bust</sub>  (black)
+            - for each of the possible locations you could bust that, there is some utility, you can compute the expected utility .   U( a<sub>bust</sub> ,{e} )  (green)
+        - then there is a possibility to sense, after you senser you would get more evidence {e,e'}  (red). 
+        - after that you might take the bust action. 
+        - so you now get a tree where you get to decide between a sense action and bust action at the first step. 
+        - if you run expectimax in this tree what you get out is a way to make decisions about information gathering VS. taking physical actions. 
+ 
+## More Generally
+
+ - General solutions map belief functions to actions
+    - Can divide regions of belief space (set of belief functions) into policy regions (gets complex quickly)
+    - Can build approximate policies using discretization methods
+    - Can factor belief functions in various ways
+ - Overall, POMDPs are very (actually PSACE-) hard
+ - Most real problems are POMDPs, but we can rarely solve then in general!
 
 
 
