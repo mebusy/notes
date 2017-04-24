@@ -115,7 +115,11 @@ We listened to the forecast and the forecast is bad.
 
 ### Ghostbusters Decision Network
 
+ - you receive -1 at every time step
+ - you receive 250 if you buster the ghost
+ - you receive 0 and game over if you buster and miss
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_GhostbustersDecisionNetwork.png)
 
 
 
