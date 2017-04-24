@@ -182,6 +182,12 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 ## Value of Information Cont.
 
+ - Assume we have evidence E=e.  Value if we act now:
+ - Assume we see that E’ = e’.  Value if we act then:
+ - BUT **E’ is a random variable whose value is unknown**, so we don’t know what e’ will be
+
+ - Expected value if E’ is revealed and then we act:
+ - Value of information: how much MEU goes up by revealing E’ first then acting, over acting now:
 
 
 
