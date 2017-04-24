@@ -125,9 +125,15 @@ We listened to the forecast and the forecast is bad.
 
 
 
-<h2 id="a3ae179f8c3c60bae32aa8e7dc7f619a"></h2>
 
-## Decision Networks Cont.
+## Value of Information
+
+What we're interested in now is what is the value of information.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_valueOfInformation.png)
+
+You have these sensors, how much would you be willing to pay to get an access to a sensor and measure its value. 
+
 
 
 
