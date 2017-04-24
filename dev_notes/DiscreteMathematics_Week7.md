@@ -253,16 +253,45 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_adjacency_matrix.png)
 
+ - 对角线元素为1，表示环的存在（自反关系）
+ - 矩阵对称，表示双向边（对称关系）
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_adjacency_matrix2.png)
 
 
+### 邻接矩阵的运算
+
+ - 顶点的度
+    - 出度：对应行的和
+    - 入度：对应列的和
+ - 关于拟路径
+    - 邻接矩阵自乘L次：Aᴸ
+    - 则乘积结果矩阵中每个分量aᵢⱼ⁽ᴸ⁾的含义为G 中顶点vᵢ到vⱼ的长度为L的拟路径条数
 
 
+### 关联矩阵（简单无向图）
 
-求秩就是求最大线性无关组，线性无关组的个数就表明了 顶点之间联通的性质。
+ - 表示顶点和边的关联关系，n\*m矩阵
+ - 通过矩阵的**秩**来判定图的连通分支个数
+    - 求秩就是求最大线性无关组，线性无关组的个数就表明了 顶点之间联通的性质。
 
-乘法换成 &逻辑运算 ， 加法换成 | 逻辑运算 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_associative_matrix.png)
 
-AvA  , v means | ?
+
+### 路径矩阵walk matrix 
+
+ - 图G=<V,E>的邻接矩阵A
+    - A⁽ᵐ⁾=A ∧ A ∧ … ∧ A
+    - 注意这里的 ∧ 是特殊的操作符号, 把原来的数值运算 乘法换成 &逻辑运算 ， 加法换成 | 逻辑运算 ?
+ - **路径矩阵**B=A ∨ A⁽²⁾ ∨ A⁽³⁾ ∨ ... ∨  A<sup>(|V|)</sup> 
+    - ∨ 对应 加法换成 | 逻辑运算
+    - B的每个分量bᵢⱼ表示vᵢ到vⱼ是否有路径 
+ - **可达性矩阵**
+    - P=I ∨ B，I是n\*n的单位矩阵 
+        - 就是为B的对角线 带来1, 这个就表示可达性
+        - `I ∨` 就是确保 顶点的自身可达性
+
+
 
 
 
