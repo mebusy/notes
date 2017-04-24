@@ -183,12 +183,54 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 ## Value of Information Cont.
 
  - Assume we have evidence E=e.  Value if we act now:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_voi_form1.png)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_voi_graph1.png)
+        - you have initial evidence +e 
+        - so choose an action 
+        - that point the chance node kick in ,which will instantiate the parent variables of the utility node and then 
+        - you have your utility nodes.
  - Assume we see that E’ = e’.  Value if we act then:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_voi_form2.png)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_voi_graph2.png)
+        - after you observe both {+e,+e' } 
+        - you take an action 
+        - and then the chance nodes kick in 
+        - and then the utility nodes.
  - BUT **E’ is a random variable whose value is unknown**, so we don’t know what e’ will be
-
  - Expected value if E’ is revealed and then we act:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_voi_form3.png)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_voi_graph3.png)
+        - you were to get to observe evidence but you don't know yet what the evidence is going to be
+        - you start with chance node. 
+        - first thing that happens is the evidence e' will be observed. you don't know yet what it's going to be, could be +e' or -e'
+        - after that get instantiated you get to choose your action 
+        - after that more chance nodes will kick in for the parent variables of the utility node after which utility nodes kick in. 
  - Value of information: how much MEU goes up by revealing E’ first then acting, over acting now:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_voi_form4.png)
 
+
+## VPI Properties
+
+ - Nonnegative
+    - ∀E',e : VPI(E'|e) ≥ 0
+    - more information will always help you . **on the average** , when you don't know yet what the information is going to be, it is good to get information. But again some informaction could be negative for you -- things get worse you just unlucky scenario. 
+ - Nonadditive  (think of observing Eⱼ twice)
+    - VPI(Eⱼ,E<sub>k</sub> |e) ≠ VPI(Eⱼ |e) + VPI(E<sub>k</sub> |e)
+    - that VPI(Eⱼ,E<sub>k</sub> |e)  is not the same as the sum of the individual VPI.
+ - Order-independent
+    - VPI(Eⱼ,E<sub>k</sub> |e) = VPI(Eⱼ |e) + VPI(E<sub>k</sub> |e , Eⱼ )
+    -   = VPI(E<sub>k</sub> |e) + VPI( Eⱼ |e , E<sub>k</sub>  )
+    - a lot like the chain rule 
+
+
+## Quick VPI Questions
+
+ - The soup of the day is either clam chowder or split pea, but you wouldn’t order either one.  What’s the value of knowing which it is?
+    - 0
+ - There are two kinds of plastic forks at a picnic.  One kind is slightly sturdier.  What’s the value of knowing which?
+    - somewhat positive.  can not really put a number on it this.
+ - You’re playing the lottery.  The prize will be $0 or $100.  You can play any number between 1 and 100 (chance of winning is 1%).  What is the value of knowing the winning number?
+    - 99$
 
 
 
