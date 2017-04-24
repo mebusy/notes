@@ -242,6 +242,36 @@
 
 # Week8: 图论：特殊图
 
+## 65-图的矩阵表示
+
+### 邻接矩阵(adjacency matrix)
+
+ - 无重边的有向图G=<V,E>，其**邻接矩阵** A[G]定义为：
+    - aᵢⱼ=1, 当<vᵢ,vⱼ>∈E
+    - aᵢⱼ=0, 当<vᵢ,vⱼ>∉E
+ - 是一个|V|×|V|矩阵，表示顶点邻接关系
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_adjacency_matrix.png)
+
+
+
+
+
+
+求秩就是求最大线性无关组，线性无关组的个数就表明了 顶点之间联通的性质。
+
+乘法换成 &逻辑运算 ， 加法换成 | 逻辑运算 
+
+AvA  , v means | ?
+
+
+
+
+
+
+
+
+
 
 
 
