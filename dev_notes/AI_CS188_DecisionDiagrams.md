@@ -268,7 +268,7 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
  - Generally: 
     - If Parents(U) ⫫ Z | CurrentEvidence
     - Then VPI( Z | CurrentEvidence) = 0 
-
+    - that is , VPI is guaranteed to be exactly zero for any node that is conditionally independent (given the evidence so far) of all parents of the utility node.
 
 
 ## POMDPs
