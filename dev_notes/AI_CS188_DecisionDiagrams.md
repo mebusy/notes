@@ -232,6 +232,58 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
  - You’re playing the lottery.  The prize will be $0 or $100.  You can play any number between 1 and 100 (chance of winning is 1%).  What is the value of knowing the winning number?
     - 99$
 
+## Value of Imperfect Information?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_value_of_inperfect_info.png)
+
+ - No such thing
+ - Information corresponds to the observation of a node in the decision network
+    - observing means you know what the value is
+ - If data is “noisy” that just means we don’t observe the original variable, but another variable which is a noisy version of the original one
+
+
+## VPI Question
+
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_VPI_question.png)
+
+ - we addd an extra variable : Scouting Report
+    - so now it's possible that a scout reports on where the oil location might be. 
+    - it's going to be a noisy version of the actual oil location 
+    - but they might have some kind of measurement tools in which they can get some report back and then the scout could be one of many scouts. some of them might be good, some of them might be bad.  So which one you get might influence the quality of the report .
+
+--- 
+
+ - VPI(OilLoc) ?
+    - saw that before, that is still k/2
+ - VPI(ScoutingReport) ?
+    - > 0 
+    - can not put the number on this. 
+ - VPI(Scout) ?
+    - for knowning what scout is doing the scouting report
+    - = 0
+    - if we observe evidence that does not change the distribution for the parent variables , it will not change our decision, it will not change our expected utility. 
+    - Scout is independent of OilLoc with no other evidence. So knowing the Scout is not affecting the distribution  of parent variables , hence not affecting our MEU. 
+ - VPI(Scout | ScoutingReport) ?
+    - > 0 
+ - Generally: 
+    - If Parents(U) ⫫ Z | CurrentEvidence
+    - Then VPI( Z | CurrentEvidence) = 0 
+
+
+
+## POMDPs
+
+ - MDPs have:
+    - States S
+    - Actions A
+    - Transition function P(s’|s,a) (or T(s,a,s’))
+    - Rewards R(s,a,s’)
+ - POMDPs add:
+    - Observations O
+    - Observation function P(o|s) (or O(s,o))
+ - POMDPs are MDPs over belief
+    - states b (distributions over S)
+ - We’ll be able to say more in a few lectures
 
 
 
