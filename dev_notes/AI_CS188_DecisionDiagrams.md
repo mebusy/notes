@@ -106,7 +106,7 @@ We listened to the forecast and the forecast is bad.
     - Umbrella = take 
         - EU(take|bad) = ∑<sub>w</sub> P(w|bad)U(take, w) = 0.34*20 + 0.66*70 = 53
  - Optimal decision = take
-    - MEU(F=bad) = maxₐ EU(a|bad) = 70  
+    - MEU(F=bad) = maxₐ EU(a|bad) = 53
           
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DN_example_expectimax_tree2.png)
 
@@ -144,10 +144,43 @@ You have these sensors, how much would you be willing to pay to get an access to
     - Prior probabilities 0.5 each, & mutually exclusive
     - Drilling in either A or B has EU = k/2, MEU = k/2
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_valueOfInformation_example_drill_oil.png)
+ - Question: what’s the **value of information** of O?
+    - Value of knowing which of A or B has oil.
+        - if you know the oil location (somebody tells you) , then your MEU is k. 
+        - before, your MEU is k/2
+        - the difference is k/2, so rationally you're willing to pay k/2 to get ot know where the oil is.
+    - Value is expected gain in MEU from new info
+    - Survey may say “oil in a” or “oil in b,” prob 0.5 each
+    - If we know OilLoc, MEU is k (either way)
+    - Gain in MEU from knowing OilLoc?
+    - VPI(OilLoc) = k/2
+        - value of **perfect** information
+    - Fair price of information: k/2
 
 
+### VPI Example: Weather
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_vpi_example_weather.png)
 
+We can observe only Forecast. Question is how valuable is it to observe the forecast. 
+
+ - MEU with no evidence
+    - MEU(∅) = 70
+ - MEU if forecast is bad
+    - MEU(F=bad) = 53
+ - MEU if forecast is good
+    - MEU(F=good) = 95
+ - Forecast distribution
+    - P(F=good) = 0.59, P(F=bad) = 0.41
+    - we can compute by running inference in BNs
+    - 0.59·95 + 0.41·53 - 70 = 7.8 
+    - in this case 7.8 means that you would be willing to pay 7.8 to get to listen to the forecast.
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_vpi_formular.png)
+    - we have the VPI of a particular variable or set of variables E' given that you already observed another set of variables *e* which could be the empty set.
+    - in our example *e* was the empty set , E' was equal to forecast. 
+      
+
+## Value of Information Cont.
 
 
 

@@ -1059,6 +1059,75 @@ l(θ) = (a<sup>2/3</sup> + b<sup>2/3</sup> )<sup>3/2</sup>
 
 
 
+## Linear Approximation
+
+### What is linear approximation?
+
+ - I want to understand some graph of a function that's very curved. 
+ - And that's hard to do. 
+ - But, if I zoom in close enough on the functions graph right, if the function's differentiable, then when I zoom in
+ - that graph looks like a **straight line**. 
+ - That's the idea of linear approximation , also the key idea of Calculus.
+
+### What happens if I repeat linear approximation?
+
+ - Problem: f'(x) = f(x) , f(0) = 1
+ - Goal:  f(1) 
+ 
+We can easily get that f(1)=e . But the point here isn't to the say that answer is e. The point is going to be to try to approximate this quantity without actually knowing the value of e. 
+
+```
+f(1) ≈ f(0) + 1·f'(0) 
+     = 1 + 1·1 = 2
+```
+
+2 is a terrible approximation but we can do better. If we can do any approximation once, we can do it a bunch of time. 
+
+```
+f(0.5) ≈ f(0) + 0.5·f'(0)
+       = 1.5
+f(1) ≈ f(0.5) + 0.5·f'(0.5)
+     = 1.5 + 0.5·f(0.5) = 1.5 + 0.5·1.5 = 2.25 
+```
+
+10 steps are more better !   f(1)
+
+---
+
+ - Euler Method
+    - the repated linear approximation called **Euler Method**
+    - f(h) ≈ f(0) + h·f'(0)
+    - f(2h) ≈ f(h) + h·f'(h)
+    - f(3h) ≈ f(2h) + h·f'(2h)
+    - ...
+    - the cool thing here is that I'm using linear approximation in each stage ,and then I'm using the information from previous stage not only to approximate the function's value , but also to approximate the function's derivative. 
+    - In the real world peaple don't really use the Euler method so often. 
+    - It's sometimes better not to pick a point which is all the way on the left hand side of the interval .
+        - sometimes you'll see using the middle point: `f(h) ≈ f(0) + h·f'(h/2)`
+
+
+ - Quiz:
+ - You are interested in the function f which satisfies the differential equation 
+ - f'(x) = -0.5x² - 0.5f(x) , and which satisfies f(-3) =0 .
+ - Use repeated linear approximation (otherwise known as Euler's Method) to approximate the value of this function at x=−1 , using a step size of 1/2
+
+```
+>>> reduce( lambda x,y: x + 0.5*( -0.5*y*y - 0.5*x  ) , [ 0,-3,-2.5,-2,-1.5 ] )
+-3.140625
+```
+
+
+### What does dx mean by itself?
+
+ - **dx** means differential 
+ - **dy** is change in the linearizatioin of y
+    - or the linear approximation, or the tangent line aporiximation.
+ - your **dy**'s had better include a **dx**.
+ 
+
+
+
+
 
 
 
