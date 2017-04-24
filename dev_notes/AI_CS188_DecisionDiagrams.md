@@ -134,6 +134,18 @@ What we're interested in now is what is the value of information.
 
 You have these sensors, how much would you be willing to pay to get an access to a sensor and measure its value. 
 
+---
+
+ - Idea: compute value of acquiring evidence
+    - Can be done directly from decision network
+ - Example: buying oil drilling rights
+    - Two blocks A and B, exactly one has oil, worth k
+    - You can drill in one location
+    - Prior probabilities 0.5 each, & mutually exclusive
+    - Drilling in either A or B has EU = k/2, MEU = k/2
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_valueOfInformation_example_drill_oil.png)
+
+
 
 
 
