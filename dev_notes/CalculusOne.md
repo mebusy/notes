@@ -1125,6 +1125,20 @@ f(1) ≈ f(0.5) + 0.5·f'(0.5)
  - your **dy**'s had better include a **dx**.
  
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_mean_of_dx.png)
+
+
+
+---
+
+ - y =f(x)
+ - dy = f'(x)dx 
+ - d(u+v) = du + dv
+ - d(uv) = (du)v + u(dv)
+
+
+ 
+
 
 
 
