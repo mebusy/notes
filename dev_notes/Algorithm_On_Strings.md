@@ -896,6 +896,14 @@ In the next lessons, we will learn how to build suffix array and suffix tree in 
  - But how to construct it? 
 
 
+## General Construction Strategy
+
+### Sorting Cyclic Shifts
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_sorting_cyclic_shift.png)
+
+
+
 
 
 ---
