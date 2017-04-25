@@ -1243,9 +1243,27 @@ assuming f'(x₀) != 0
     - then that formula is saying that your average velocity is achieved , at some point, instantaneously
         - ( f(b)-f(a) ) / (b-a) 是平均速度，f'(c) 是瞬时速度
         - 在某个时刻，你的瞬时速度等于 (a,b)的平均速度 
-    
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_mean_value_theorem.png)
+    - mean value theorem means the slope of those 2 lines are same.
+ - The mean-value theorem is often told as a story about somebody driving a car
+    - At noon, you're in some city A, and at 1 p.m. You're driving your car and you've arrived in a city B, which is 100 miles away from city A.
+    - the Mean Value Theorem tells you that at some point during your journey, your speedometer said 100 miles per hour.
+
+---
+
+### Why does f'(x) > 0 imply that f is increasing?
+
+ - Theorem:
+    - Suppose f'(x) =0 on open interval , then *f* is constant on the interval.
+    - Suppose f'(x) >0 on open interval , then *f* is increasing.
+    - Suppose f'(x) <0 on open interval , then *f* is decreasing.
+ - using MVT to proof
 
 
+### Should I bother to find the point c in the mean value theorem?
+
+ - The power of the mean value theorem lies not in the fact that you can actually go out and compute the value c
+ - The power lies in the fact, the mean value theorem tells you that it's possible , that you know there's a value of c out there, without you having actually go and find it. 
 
 
 
