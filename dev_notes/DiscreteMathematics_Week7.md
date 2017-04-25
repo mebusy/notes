@@ -291,6 +291,34 @@
         - 就是为B的对角线 带来1, 这个就表示可达性
         - `I ∨` 就是确保 顶点的自身可达性
 
+---
+
+# Week8 图论：特殊图
+
+## 66-二分图
+
+### 二分图(bipartite graph)
+ 
+ - 满足如下条件的**无向图**G=<V,E>
+    - 有非空集合X,Y： X∪Y=V, X∩Y= ∅ ，且
+        - that is , X,Y是对V的一个划分
+    - 每个{vᵢ,vⱼ}∈E，都有：
+        - vᵢ∈X ∧ vⱼ∈Y，或者，vᵢ∈Y ∧ vⱼ∈X
+        - that is , 每条边的端点都落在 不同的划分单元中
+ - 可以用G=**<X,E,Y>**表示二分图
+ - 如果X,Y中任意两个顶点之间都有边，则称 为**完全二分图**complete bipartite graph
+ - 完全二分图可以记作K<sub>m,n</sub>
+    - m=|X|, n=|Y|
+ 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_bipartite_graph.png)
+
+### 二分图的等价条件
+
+ - G至少要有两个顶点，而且G中所有回路的长度都是偶数
+    - 直觉上，从X到Y，再回到X，一来一去 长度必然是偶数
+ - 必要性易得
+ - 充分性可以通过构造X，Y两个集合证明 
+    - 略
 
 
 
