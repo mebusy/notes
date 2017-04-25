@@ -1186,10 +1186,10 @@ assuming f'(x₀) != 0
     2. new guess x₁ = x₀ - f(x₀)/f'(x₀) 
     3. x₂ = x₁ - f(x₁)/f'(x₁)
     4. x₃ = x₂ - f(x₂)/f'(x₂) 
-    5. ...
+    5. ... **x<sub>n+1</sub> = x<sub>n</sub> - f(x<sub>n</sub> )/f'(x<sub>n</sub> )**
  - The problem is that I can't promise you that Newton's method will actually work. 
 
-### What is a root of the polynomial x^5 + x^2 - 1?
+#### What is a root of the polynomial x^5 + x^2 - 1?
 
  - here's the function where I want to find a root
     - f(x) = x⁵ + x² -1 
@@ -1205,7 +1205,45 @@ assuming f'(x₀) != 0
         - f(x₂) ≈ 0.014
     - x₃ ≈ 0.809
         - f(x₃) ≈ 0.000085
+ - So
+    - the intermediate value theorem promises me that there is a root
+    - Newton's method, or this bi-section algorithm permits me to get better and better approximations to that root
 
+#### How can Newton's method help me to divide quickly?
+
+ - What if I wanted to calculate 1/b ?
+ - Newton's method is really a trick for finding zeroes of a function
+    - so to approximate 1/b, what I really want to find is a function *f* , so that f(1/b) = 0.
+    - There's a ton of different choices that are possible for such a function
+        - f(x) = 1/x -b 
+ - f'(x) = -1/x²
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_newton_method_1overb.png)
+
+ - Then, we'll make this even more concrete. Let's set b = 7 
+    - x₀ = 1/10
+    - x₁ = 1/10·(2-7·1/10) = 13/100
+    - x₂ = 13/100·(2-7·13/100) = 1417/10000
+    - x₃ = 14284777 / 100000000
+ - so 1/7 ≈ 0.14285...
+ - This method has name: **Newton-Raphson Division**
+
+
+### What is the mean value theorem?
+
+ - Suppose *f* is continuous on [a,b] , and differentiable on (a,b) ; then
+ - there exists *c* in (a,b) , so that 
+ - **f'(c) = ( f(b)-f(a) ) / (b-a)**
+
+---
+
+ - here is one interpretation:
+    - if that function is giving you position , and the input to that function is time
+    - so the derivative of that function is velocity
+    - then that formula is saying that your average velocity is achieved , at some point, instantaneously
+        - ( f(b)-f(a) ) / (b-a) 是平均速度，f'(c) 是瞬时速度
+        - 在某个时刻，你的瞬时速度等于 (a,b)的平均速度 
+    
 
 
 
