@@ -1137,10 +1137,74 @@ f(1) ≈ f(0.5) + 0.5·f'(0.5)
  - d(uv) = (du)v + u(dv)
 
 
+### What is Newton's method?
+
+ - The problem:  A "nice" function f  , nice means differentiable
+    - Find x so that f(x) = 0 
+        - Now in practice, this is way too much to ask for
+    - Find x so that f(x) close to 0. 
+ - We have already done this , using the Intermediate Value Theorem
+    -  The downside to this bisection method is just speed, it takes a really long time
+ - So a different method, called Newton's method, is much faster than this bisection trick
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_newton_method.png)
+
+ 1. just start by making a potentially bad guess : x₀
+    - in this case , that's not a very good guess
+ 2. draw the tangent line to the curve through that point f(x₀)
+ 3. then my next guess will be wherever that tangent line crosses the x axis 
+    - So here would be my next guess x₁
+ 4. repeat the process.
+
+---
+
+We're going to start by thinking about this red line.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_newton_method2.png)
+
+ - the point slope form Of the red line:
+    - `y-f(x₀) = f'(x₀)·(x-x₀)`
+ - Newton's method tells me that I should use that linear approximation to the graph, figure out where the linear approximation crosses the x axis 
+    - So to do that , I'm going to set y = 0
+    - 0-f(x₀) = f'(x₀)·(x-x₀)
+    - that'll tell me where the red line crosses the x axis, if I solve this equation for x
  
+```
+0-f(x₀) = f'(x₀)·(x-x₀)
+        = f'(x₀)·x - f'(x₀)·x₀
 
+f'(x₀)·x₀ -f(x₀) = f'(x₀)·x 
 
+assuming f'(x₀) != 0
+  x₀ - f(x₀)/f'(x₀) = x        
+```
 
+ - so x₁ is this:
+    - x₁ = x₀ - f(x₀)/f'(x₀)
+ - I can now write down the step by step process for Newtons method just using a formula
+    1. Initial guess x₀
+    2. new guess x₁ = x₀ - f(x₀)/f'(x₀) 
+    3. x₂ = x₁ - f(x₁)/f'(x₁)
+    4. x₃ = x₂ - f(x₂)/f'(x₂) 
+    5. ...
+ - The problem is that I can't promise you that Newton's method will actually work. 
+
+### What is a root of the polynomial x^5 + x^2 - 1?
+
+ - here's the function where I want to find a root
+    - f(x) = x⁵ + x² -1 
+ - I want to find some input that makes this function equal to 0
+    - 没有公式可以求 这个函数的根
+    - f(0) = -1, f(1) = 1 
+    - So there has to be some input between 0 and 1 where this function's output is equal to 0
+ - f'(x) = 5x⁴ + 2x 
+    - x₀ = 1
+    - x₁ = x₀ - f(x₀)/f'(x₀)  = 1 - 1/7 = 6/7 
+        - f(x₁) = (6/7)⁵ + (6/7)² -1 ≈ 0.197
+    - x₂ = x₁ - f(x₁)/f'(x₁)  ≈ 0.812
+        - f(x₂) ≈ 0.014
+    - x₃ ≈ 0.809
+        - f(x₃) ≈ 0.000085
 
 
 
