@@ -936,6 +936,33 @@ In the next lessons, we will learn how to build suffix array and suffix tree in 
  - If L ≥ |S|, cyclic shifts of length L sort the same way as cyclic shifts of length |S|
 
 
+## Initialization
+
+ - initialization phase of suffix array construction
+    - sorting of the single character of the initial string 
+    - computing equivalence classes of those characters
+
+### Sorting single characters
+
+ - Alphabet Σ has |Σ| different characters
+ - Use counting sort to compute **order** of characters
+    - we will use couting sort twice in the construction of the suffix array
+        - in initialization phase , and in the transfer phase 
+
+ - integer counting sort recap
+    - input array: integer array A 
+    - using an extra array C
+        - C initialized as the array  which element C[i] means the number of the element class which equals *i* in A.
+        - then the element of C turns into the next position to element class *i* in output array B 
+            - from 1 to n-1, C[i] = C[i-1] + C[i]
+            - C[5] = 9  means last *5* is in position 9-1 = 8
+        - sorting 
+            - a = a[i] ; dest_pos= C[a]-1 ; C[a]-=1 ; B[dest_pos] = a ; 
+
+ - Pseudo code for sorting characters. 
+    - take string as input
+    - return the order of the characters of that string as the output
+
 
 
 
