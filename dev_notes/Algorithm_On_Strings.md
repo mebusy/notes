@@ -902,6 +902,39 @@ In the next lessons, we will learn how to build suffix array and suffix tree in 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_sorting_cyclic_shift.png)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_sorting_cyclic_shift2.png)
+
+ - step1: sort 
+ - step2: remove characters after '$' , the suffixes of S left. 
+
+---
+
+ - Lemma
+    - After adding to the end of string S character $, which is smaller than all other characters,
+    - sorting cyclic shifts of S and suffixes of S is equivalen
+
+### Partial Cyclic Shifts
+
+ - Definition
+    - Substrings of cyclic string S are called partial cyclic shifts of S
+
+ - Partial Cyclic Shifts Example
+    - Cyclic shifts of length 4:
+        - abab
+        - baba
+        - abaa
+        - baa$
+        - aa$a
+        - a$ab
+        - $aba
+
+### General strategy
+
+ - Start with sorting single characters of S
+ - Cyclic shifts of length L = 1 sorted
+ - While L < |S|, sort shifts of length 2L
+ - If L ≥ |S|, cyclic shifts of length L sort the same way as cyclic shifts of length |S|
+
 
 
 
