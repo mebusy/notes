@@ -957,12 +957,20 @@ In the next lessons, we will learn how to build suffix array and suffix tree in 
             - from 1 to n-1, C[i] = C[i-1] + C[i]
             - C[5] = 9  means last *5* is in position 9-1 = 8
         - sorting 
-            - a = a[i] ; dest_pos= C[a]-1 ; C[a]-=1 ; B[dest_pos] = a ; 
+            - from right to left of A
+            - a = A[i]; C[a]-=1; dest_pos= C[a]; B[dest_pos] = a; 
 
  - Pseudo code for sorting characters. 
     - take string as input
     - return the order of the characters of that string as the output
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_pseudocode_sortcharacters.png)
 
+ - Lemma
+    - Running time of SortCharacters is O(|S| + |Σ|).
+ 
+### Equivalence classes
+
+ - we will also need additional information to make the following step 
 
 
 
