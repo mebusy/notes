@@ -499,6 +499,14 @@ eˣ⁺ʸ= eˣeʸ
 log(ab)  = loga + logb // this is a big reason why we care so much about logs
 ```
 
+more properties of log function
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_more_properties_log_func.png)
+
+
+
+
+
 ```
 f(x) = eˣ 
 (f⁻¹)'(x) = 1/f'( f⁻¹(x) )  
