@@ -33,6 +33,20 @@
 	 - [Suffix Array](#070de002eb9fe6a242a3eea58a6b0a47)
 		 - [Construct Suffix Array](#b3d93ca2f2b1bae05ed120cebaaaf0c3)
 		 - [Storing Suffix Array](#0315a918e4426dc96ef07eca2ff9c282)
+	 - [General Construction Strategy](#de6482d736735d19a98b6d7a3dbfcc6d)
+		 - [Sorting Cyclic Shifts](#888bc7579c1220dbe1b54eb1ae879f1a)
+		 - [Partial Cyclic Shifts](#451551949780f6ab99bc7aef6b615713)
+		 - [General strategy](#15ec4eae4da6642dc613154ae7f2dfe7)
+	 - [Initialization](#61bcd96a2c1f8026527cbf2019d6e9a4)
+		 - [Sorting single characters](#220fede2d20dea1a24a2451daa5924fb)
+		 - [Equivalence classes](#db5dda92fb337ee173853f6dc222c5a5)
+	 - [Sort Doubled Cyclic Shifts](#81480019c9809a4ee289e1a7961e2976)
+		 - [Idea](#158d7558ee87d9a8caa77b59abcdd9ef)
+		 - [Sorting pairs](#45056b7535c004ef33d46e84ebe688d6)
+		 - [Sorting doubled cyclic shifts](#e0aa9002d2d7eaa00f7c68a2815caf65)
+	 - [Updating Classes](#efb4b863c9f924263ba6b0b74cf2ad5c)
+	 - [Full Algorithm](#fa2a8b4fe46e36086e1dd6bbdb67af76)
+		 - [Conclusion](#6f8b794f3246b0c1e1780bb4d4d5dc53)
 
 ...menuend
 
@@ -919,7 +933,11 @@ def get_suffix_array(str):
  - But how to construct it? 
 
 
+<h2 id="de6482d736735d19a98b6d7a3dbfcc6d"></h2>
+
 ## General Construction Strategy
+
+<h2 id="888bc7579c1220dbe1b54eb1ae879f1a"></h2>
 
 ### Sorting Cyclic Shifts
 
@@ -936,6 +954,8 @@ def get_suffix_array(str):
     - After adding to the end of string S character $, which is smaller than all other characters,
     - sorting cyclic shifts of S and suffixes of S is equivalent
 
+<h2 id="451551949780f6ab99bc7aef6b615713"></h2>
+
 ### Partial Cyclic Shifts
 
  - Definition
@@ -950,6 +970,8 @@ def get_suffix_array(str):
         - aa$a
         - a$ab
         - $aba
+
+<h2 id="15ec4eae4da6642dc613154ae7f2dfe7"></h2>
 
 ### General strategy
 
@@ -966,11 +988,15 @@ L=4 sorting :
 
 
 
+<h2 id="61bcd96a2c1f8026527cbf2019d6e9a4"></h2>
+
 ## Initialization
 
  - initialization phase of suffix array construction
     - sorting of the single character of the initial string 
     - computing equivalence classes of those characters
+
+<h2 id="220fede2d20dea1a24a2451daa5924fb"></h2>
 
 ### Sorting single characters
 
@@ -998,6 +1024,8 @@ L=4 sorting :
  - Lemma
     - Running time of SortCharacters is O(|S| + |Σ|).
  
+<h2 id="db5dda92fb337ee173853f6dc222c5a5"></h2>
+
 ### Equivalence classes
 
 we will also need additional information to make the following step 
@@ -1041,11 +1069,15 @@ This is all for the initialization phase of the suffix array construction. In ne
 
 ---
 
+<h2 id="81480019c9809a4ee289e1a7961e2976"></h2>
+
 ## Sort Doubled Cyclic Shifts 
 
  - you have already sorted cyclic shifts of some length L 
  - and you know not only their order , but also their equivalence classes 
  - and you need to sort based on the cyclic shift of length 2L. 
+
+<h2 id="158d7558ee87d9a8caa77b59abcdd9ef"></h2>
 
 ### Idea
 
@@ -1055,6 +1087,8 @@ This is all for the initialization phase of the suffix array construction. In ne
  - To compare Cᵢ̍ with Cⱼ̍ , it’s sufficient to compare Cᵢ with Cⱼ and C<sub>i+L</sub> with C<sub>j+L</sub>
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_doubledCyclicShift_example1.png)
+
+<h2 id="45056b7535c004ef33d46e84ebe688d6"></h2>
 
 ### Sorting pairs
 
@@ -1080,6 +1114,8 @@ Example:
  - after such sorting , we actually get the sorted list of cyclic shifts of length 4. 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_doubledCyclicShift_example5.png)
 
+<h2 id="e0aa9002d2d7eaa00f7c68a2815caf65"></h2>
+
 ### Sorting doubled cyclic shifts
 
  - Cᵢ̍ --  doubled cyclic shift starting in i
@@ -1098,12 +1134,39 @@ Pseudo Code:
 
  - Lemma: The running time of SortDoubled is O(|S|).
 
+<h2 id="efb4b863c9f924263ba6b0b74cf2ad5c"></h2>
+
 ## Updating Classes
 
  - Pairs are sorted — go through them in order, if a pair is different from previous, put it into a new class, otherwise put it into previous class
  - (P1, P2) == (Q1,Q2) <=> (P1 == Q1) and (P2 == Q2)
  - We know equivalence classes of elements of pairs
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_string_suffix_array_update_class1.png)
+
+ - we've already sorted the doubled cyclic shifts of length 2 -- newOrder[]
+ - our initial cyclic shifts were of length 1. We have the equivalence classes of L1 -- class[]
+ - along with each doubled cyclic shift, we'll also write down the pair of the equivalence classes of its havles
+    - for *$a* , the equivalance class for $ is 0, for a is 1, so the equivalance class pair is (0,1) 
+ - now we need to compute the equivalence classes of the doubled cyclic shifts.
+    - we go through the double cyclic shifts in the sorted order , by using array **newOrder**
+    - we start from the 1st 1 -- *$a* 
+        - newClass[6] = 0 
+    - *a$* , newClass[5] = 1
+    - *aa* , newClass[4] = 2
+    - *ab* , newClass[0] = 3
+    - *ab* , newClass[2] = 3
+    - *ba* , newClass[1] = 4 
+    - *ba* , newClass[3] = 4 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_string_suffix_array_update_class2.png)
+
+Pseudo code
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_string_suffix_array_update_class_pseudocode.png)
+
+ - Lemma : The running time of UpdateClasses is O(|S|).
+ 
+<h2 id="fa2a8b4fe46e36086e1dd6bbdb67af76"></h2>
 
 ## Full Algorithm
 
@@ -1119,6 +1182,8 @@ Pseudo Code:
     - O(log |S|) iterations while L < |S|
 
 --- 
+
+<h2 id="6f8b794f3246b0c1e1780bb4d4d5dc53"></h2>
 
 ### Conclusion
 

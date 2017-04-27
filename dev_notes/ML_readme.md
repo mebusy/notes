@@ -58,6 +58,10 @@
  11. [17 BNs Independence](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_BNs_Independence.md)
  12. [18 BNs Inference](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_BNs_Inference.md)
  13. [19 BNs Sampleing](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_BNs_Sampling.md)
+ 14. [20 Decision Diagram](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_DecisionDiagrams.md)
+
+
+
 
 **Others**
 

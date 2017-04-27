@@ -74,6 +74,16 @@
 		 - [Optimization in Action](#9f4cacf06f1b57dda6be7f4448d1c76b)
 			 - [How large of an object can you carry around a corner?](#820df180c483345562cc37739bd847f9)
 			 - [How short of a ladder will clear a fence?](#df8000ef4c8d5212dcc2b135f05a69d9)
+	 - [Linear Approximation](#d6472838033d2216fae9717c5838a102)
+		 - [What is linear approximation?](#028c5cc5c4e744cfe8d55ab3c491d143)
+		 - [What happens if I repeat linear approximation?](#7c6a8204a5f714d468fe8081285355a5)
+		 - [What does dx mean by itself?](#5c28262562d0ec37b09318dd836d49cc)
+		 - [What is Newton's method?](#29eb2cfc0d83cf930b4725a033faa957)
+			 - [What is a root of the polynomial x^5 + x^2 - 1?](#879ea81194965f98ad54f853de07cfcc)
+			 - [How can Newton's method help me to divide quickly?](#845c1341a5fd23cff388a26b42d30ec5)
+		 - [What is the mean value theorem?](#026a3eab15b6e17796de6766b2dd65a7)
+		 - [Why does f'(x) > 0 imply that f is increasing?](#09c813a02b34fc758422afcc21b1fd8f)
+		 - [Should I bother to find the point c in the mean value theorem?](#f6711d50b4e944e25e93746abfaaa570)
 
 ...menuend
 
@@ -1067,7 +1077,11 @@ l(θ) = (a<sup>2/3</sup> + b<sup>2/3</sup> )<sup>3/2</sup>
 
 
 
+<h2 id="d6472838033d2216fae9717c5838a102"></h2>
+
 ## Linear Approximation
+
+<h2 id="028c5cc5c4e744cfe8d55ab3c491d143"></h2>
 
 ### What is linear approximation?
 
@@ -1076,6 +1090,8 @@ l(θ) = (a<sup>2/3</sup> + b<sup>2/3</sup> )<sup>3/2</sup>
  - But, if I zoom in close enough on the functions graph right, if the function's differentiable, then when I zoom in
  - that graph looks like a **straight line**. 
  - That's the idea of linear approximation , also the key idea of Calculus.
+
+<h2 id="7c6a8204a5f714d468fe8081285355a5"></h2>
 
 ### What happens if I repeat linear approximation?
 
@@ -1125,6 +1141,8 @@ f(1) ≈ f(0.5) + 0.5·f'(0.5)
 ```
 
 
+<h2 id="5c28262562d0ec37b09318dd836d49cc"></h2>
+
 ### What does dx mean by itself?
 
  - **dx** means differential 
@@ -1144,6 +1162,8 @@ f(1) ≈ f(0.5) + 0.5·f'(0.5)
  - d(u+v) = du + dv
  - d(uv) = (du)v + u(dv)
 
+
+<h2 id="29eb2cfc0d83cf930b4725a033faa957"></h2>
 
 ### What is Newton's method?
 
@@ -1197,6 +1217,8 @@ assuming f'(x₀) != 0
     5. ... **x<sub>n+1</sub> = x<sub>n</sub> - f(x<sub>n</sub> )/f'(x<sub>n</sub> )**
  - The problem is that I can't promise you that Newton's method will actually work. 
 
+<h2 id="879ea81194965f98ad54f853de07cfcc"></h2>
+
 #### What is a root of the polynomial x^5 + x^2 - 1?
 
  - here's the function where I want to find a root
@@ -1217,6 +1239,8 @@ assuming f'(x₀) != 0
     - the intermediate value theorem promises me that there is a root
     - Newton's method, or this bi-section algorithm permits me to get better and better approximations to that root
 
+<h2 id="845c1341a5fd23cff388a26b42d30ec5"></h2>
+
 #### How can Newton's method help me to divide quickly?
 
  - What if I wanted to calculate 1/b ?
@@ -1236,6 +1260,8 @@ assuming f'(x₀) != 0
  - so 1/7 ≈ 0.14285...
  - This method has name: **Newton-Raphson Division**
 
+
+<h2 id="026a3eab15b6e17796de6766b2dd65a7"></h2>
 
 ### What is the mean value theorem?
 
@@ -1259,6 +1285,8 @@ assuming f'(x₀) != 0
 
 ---
 
+<h2 id="09c813a02b34fc758422afcc21b1fd8f"></h2>
+
 ### Why does f'(x) > 0 imply that f is increasing?
 
  - Theorem:
@@ -1267,6 +1295,8 @@ assuming f'(x₀) != 0
     - Suppose f'(x) <0 on open interval , then *f* is decreasing.
  - using MVT to proof
 
+
+<h2 id="f6711d50b4e944e25e93746abfaaa570"></h2>
 
 ### Should I bother to find the point c in the mean value theorem?
 

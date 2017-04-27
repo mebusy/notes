@@ -20,6 +20,17 @@
 		 - [哈密顿图及哈密顿通路](#4d0065ecd4038a137fd5b9eb0c974726)
 		 - [判定定理（充分非必要）](#5d8ce86995120655606a7837df8aa56b)
  - [Week8: 图论：特殊图](#229beda3d10ce35081515ebaa08f6afd)
+	 - [65-图的矩阵表示](#370a9862985ee2068d59a1d5740988c2)
+		 - [邻接矩阵(adjacency matrix)](#012e78f2b30d2061f27fa639f860fcde)
+		 - [邻接矩阵的运算](#1d4c82b5ff427a47fddc9fc29ffc39a9)
+		 - [关联矩阵（简单无向图）](#a11ce93d3408f0ed33f8039effc98804)
+		 - [路径矩阵walk matrix](#7f69372395c70835a2bb15bd53f62b4f)
+ - [Week8 图论：特殊图](#da21f4ea015916133efdb2ad33a431de)
+	 - [66-二分图](#4d4b861fce14312904ebaa47fbeceec6)
+		 - [二分图(bipartite graph)](#56172536ec59ad3c73e85eb56f740e8d)
+		 - [二分图的等价条件](#50a65cad177dd67cfdb994a8d67860a6)
+		 - [二分图应用：分组交谈](#309aeb245694ad4d51d97945add2cfff)
+	 - [67-二分图的匹配](#c115af208729d459ac7e18c14fa6d340)
 
 ...menuend
 
@@ -242,7 +253,11 @@
 
 # Week8: 图论：特殊图
 
+<h2 id="370a9862985ee2068d59a1d5740988c2"></h2>
+
 ## 65-图的矩阵表示
+
+<h2 id="012e78f2b30d2061f27fa639f860fcde"></h2>
 
 ### 邻接矩阵(adjacency matrix)
 
@@ -259,6 +274,8 @@
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_adjacency_matrix2.png)
 
 
+<h2 id="1d4c82b5ff427a47fddc9fc29ffc39a9"></h2>
+
 ### 邻接矩阵的运算
 
  - 顶点的度
@@ -269,6 +286,8 @@
     - 则乘积结果矩阵中每个分量aᵢⱼ⁽ᴸ⁾的含义为G 中顶点vᵢ到vⱼ的长度为L的拟路径条数
 
 
+<h2 id="a11ce93d3408f0ed33f8039effc98804"></h2>
+
 ### 关联矩阵（简单无向图）
 
  - 表示顶点和边的关联关系，n\*m矩阵
@@ -277,6 +296,8 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_associative_matrix.png)
 
+
+<h2 id="7f69372395c70835a2bb15bd53f62b4f"></h2>
 
 ### 路径矩阵walk matrix 
 
@@ -293,9 +314,15 @@
 
 ---
 
+<h2 id="da21f4ea015916133efdb2ad33a431de"></h2>
+
 # Week8 图论：特殊图
 
+<h2 id="4d4b861fce14312904ebaa47fbeceec6"></h2>
+
 ## 66-二分图
+
+<h2 id="56172536ec59ad3c73e85eb56f740e8d"></h2>
 
 ### 二分图(bipartite graph)
  
@@ -312,6 +339,8 @@
  
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_bipartite_graph.png)
 
+<h2 id="50a65cad177dd67cfdb994a8d67860a6"></h2>
+
 ### 二分图的等价条件
 
  - G至少要有两个顶点，而且G中所有回路的长度都是偶数
@@ -319,6 +348,8 @@
  - 必要性易得
  - 充分性可以通过构造X，Y两个集合证明 
     - 略
+
+<h2 id="309aeb245694ad4d51d97945add2cfff"></h2>
 
 ### 二分图应用：分组交谈
 
@@ -336,6 +367,8 @@
     - 可以看到 所有的回路长度都是偶数，所以 这是个二分图，可以按要求分成两组
 
 ---
+
+<h2 id="c115af208729d459ac7e18c14fa6d340"></h2>
 
 ## 67-二分图的匹配
 

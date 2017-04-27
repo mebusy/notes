@@ -4,7 +4,16 @@
 	 - [Decision Networks](#4110b017c078c49b44248d46eddf6146)
 		 - [Simple Example](#ecaa6de7751a679c6478caccd8dd7a12)
 		 - [Ghostbusters Decision Network](#a457e316cc82b392c5e0160e69e95ab0)
-	 - [Decision Networks Cont.](#a3ae179f8c3c60bae32aa8e7dc7f619a)
+	 - [Value of Information](#b2d66baefeea18631d1b722cc43aaba2)
+		 - [VPI Example: Weather](#6b03d15ebadf245e2baef29c08855d20)
+	 - [Value of Information Cont.](#260873a6e0aea26253ac70a3ed980cd0)
+	 - [VPI Properties](#8d5bce627e9558ab88dbe1e4a4657365)
+	 - [Quick VPI Questions](#910d92a2d65cc89a6ef483dd86990ade)
+	 - [Value of Imperfect Information?](#d4bc3ccdbc840b465ba352eb224292e4)
+	 - [VPI Question](#dd719415208cb58777d2b82621b8ad0b)
+	 - [POMDPs](#c5d83905dcd5413dcd5f7fbc5f944126)
+		 - [Example: Ghostbusters](#dfd2620b95a7eff322bbdc48f2efa51a)
+	 - [More Generally](#2bc124c39197760014dd5558b073785b)
 
 ...menuend
 
@@ -126,6 +135,8 @@ We listened to the forecast and the forecast is bad.
 
 
 
+<h2 id="b2d66baefeea18631d1b722cc43aaba2"></h2>
+
 ## Value of Information
 
 What we're interested in now is what is the value of information.
@@ -158,6 +169,8 @@ You have these sensors, how much would you be willing to pay to get an access to
     - Fair price of information: k/2
 
 
+<h2 id="6b03d15ebadf245e2baef29c08855d20"></h2>
+
 ### VPI Example: Weather
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_vpi_example_weather.png)
@@ -179,6 +192,8 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
     - we have the VPI of a particular variable or set of variables E' given that you already observed another set of variables *e* which could be the empty set.
     - in our example *e* was the empty set , E' was equal to forecast. 
       
+
+<h2 id="260873a6e0aea26253ac70a3ed980cd0"></h2>
 
 ## Value of Information Cont.
 
@@ -209,6 +224,8 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_voi_form4.png)
 
 
+<h2 id="8d5bce627e9558ab88dbe1e4a4657365"></h2>
+
 ## VPI Properties
 
  - Nonnegative
@@ -223,6 +240,8 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
     - a lot like the chain rule 
 
 
+<h2 id="910d92a2d65cc89a6ef483dd86990ade"></h2>
+
 ## Quick VPI Questions
 
  - The soup of the day is either clam chowder or split pea, but you wouldn’t order either one.  What’s the value of knowing which it is?
@@ -231,6 +250,8 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
     - somewhat positive.  can not really put a number on it this.
  - You’re playing the lottery.  The prize will be $0 or $100.  You can play any number between 1 and 100 (chance of winning is 1%).  What is the value of knowing the winning number?
     - 99$
+
+<h2 id="d4bc3ccdbc840b465ba352eb224292e4"></h2>
 
 ## Value of Imperfect Information?
 
@@ -241,6 +262,8 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
     - observing means you know what the value is
  - If data is “noisy” that just means we don’t observe the original variable, but another variable which is a noisy version of the original one
 
+
+<h2 id="dd719415208cb58777d2b82621b8ad0b"></h2>
 
 ## VPI Question
 
@@ -271,6 +294,8 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
     - that is , VPI is guaranteed to be exactly zero for any node that is conditionally independent (given the evidence so far) of all parents of the utility node.
 
 
+<h2 id="c5d83905dcd5413dcd5f7fbc5f944126"></h2>
+
 ## POMDPs
 
 
@@ -298,6 +323,8 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
  - We’ll be able to say more in a few lectures
 
 
+<h2 id="dfd2620b95a7eff322bbdc48f2efa51a"></h2>
+
 ### Example: Ghostbusters
 
  - In (static) Ghostbusters:
@@ -319,6 +346,8 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
         - so you now get a tree where you get to decide between a sense action and bust action at the first step. 
         - if you run expectimax in this tree what you get out is a way to make decisions about information gathering VS. taking physical actions. 
  
+<h2 id="2bc124c39197760014dd5558b073785b"></h2>
+
 ## More Generally
 
  - General solutions map belief functions to actions
