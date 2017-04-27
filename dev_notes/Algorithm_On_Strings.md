@@ -841,7 +841,7 @@ In the next lessons, we will learn how to build suffix array and suffix tree in 
     - We assume the alphabet is ordered, that is, for any two different characters in the alphabet one of them is considered smaller than another. For example, in English 
         - ’a’ < ’b’ < ’c’ < · · · < ’z’ 
  - Definition
-    - String S is lexicographically smaller than string T if S ̸= T and there exist such i that:
+    - String S is lexicographically smaller than string T if S ≠ T and there exist such i that:
         - 0 ≤ i ≤ |S| 
         - S[0..i − 1] = T[0..i − 1]
             - (assume S[0.. − 1] is an empty string)
@@ -934,7 +934,7 @@ def get_suffix_array(str):
 
  - Lemma
     - After adding to the end of string S character $, which is smaller than all other characters,
-    - sorting cyclic shifts of S and suffixes of S is equivalen
+    - sorting cyclic shifts of S and suffixes of S is equivalent
 
 ### Partial Cyclic Shifts
 
@@ -957,6 +957,8 @@ def get_suffix_array(str):
  - Cyclic shifts of length L = 1 sorted
  - While L < |S|, sort shifts of length 2L
  - If L ≥ |S|, cyclic shifts of length L sort the same way as cyclic shifts of length |S|
+ - 这样可以提高字符串排序的效率？
+
 
 
 ## Initialization
