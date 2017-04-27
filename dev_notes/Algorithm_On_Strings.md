@@ -1013,6 +1013,8 @@ And before computing this array class, we assume that we have already sorted all
 
 So how to actually compute the classes of the cyclic shifts when we already know their order ?
 
+
+
  - we want to assign class 0 to the smallest of the cyclic shifts of the current length.
     - which is $, which is in the position 6. 
     - so we write class[6] = 0
