@@ -1031,8 +1031,33 @@ So how to actually compute the classes of the cyclic shifts when we already know
     - class[3] = 2
  - now we know the classes of all the single character cyclic shifts.
 
+PseudoCode :
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_Equivalence_classes_pseudocode.png)
+
+ - Lemma: The running time of ComputeCharClasses is O(|S|).
+
+This is all for the initialization phase of the suffix array construction. In next video , we'll learn the transition phase from the current length to twice the length of the cyclic shifts.
+
+---
+
+## Sort Doubled Cyclic Shifts 
+
+ - you have already sorted cyclic shifts of some length L 
+ - and you know not only their order , but also their equivalence classes 
+ - and you need to sort based on the cyclic shift of length 2L. 
+
+### Idea
+
+ - Cᵢ --  cyclic shift of length L starting in i
+ - Cᵢ̍ --  doubled cyclic shift starting in i
+ - Cᵢ̍ == CᵢC<sub>i+L</sub> -- concatenation of strings
+ - To compare Cᵢ̍ with Cⱼ̍ , it’s sufficient to compare Cᵢ with Cⱼ and C<sub>i+L</sub> with C<sub>j+L</sub>
 
 
+
+
+---
 
 
 
