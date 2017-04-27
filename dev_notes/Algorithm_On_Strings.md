@@ -505,7 +505,7 @@ def get_suffix_array(str):
 ---
 
  - Q: what is the suffix array of the string S = GAGAGAGA$ ?  ( raw text )
- - A: [8 1 3 5 7 0 2 4 6]
+ - A: [8, 7, 5, 3, 1, 6, 4, 2, 0]
  - problem will occure if we don't have the raw text, but BWT text
 
 ```
@@ -521,6 +521,7 @@ def get_suffix_array(str):
 ```
 
  - Using the Suffix Array to Find Matches
+    - suffix array of panamabananas$ : [13, 5, 3, 1, 7, 9, 11, 6, 4, 2, 8, 10, 0, 12]
     - Thus, ana occurs at positions 1, 7, 9 
         - a3 -> 1
         - a4 -> 7
