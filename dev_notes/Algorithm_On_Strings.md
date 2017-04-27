@@ -1098,6 +1098,35 @@ Pseudo Code:
 
  - Lemma: The running time of SortDoubled is O(|S|).
 
+## Updating Classes
+
+ - Pairs are sorted — go through them in order, if a pair is different from previous, put it into a new class, otherwise put it into previous class
+ - (P1, P2) == (Q1,Q2) <=> (P1 == Q1) and (P2 == Q2)
+ - We know equivalence classes of elements of pairs
+
+
+## Full Algorithm
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_string_build_suffxi_array_pseudocode.png)
+
+ - input : string S
+ - output : the order of the suffix of string
+ - we assume that S already has $ in the end , and $ is smaller than all the characters in the string 
+ - Lemma: The running time of BuildSuffixArray is O(|S| log |S| + |Σ|).
+ - Prrof
+    - Initialization: SortCharacters in O(|S| + |Σ|) and ComputeCharClasses in O(|S|)
+    - While loop iteration: SortDoubled and UpdateClasses run in O(|S|)
+    - O(log |S|) iterations while L < |S|
+
+--- 
+
+### Conclusion
+
+ - Can build suffix array of a string S in O(|S| log |S|) using O(|S|) memory
+ - Can also sort all cyclic shifts of a string S in O(|S| log |S|)
+ - Suffix array enables many fast operations with the string
+ - Next lesson you will learn to construct suffix tree from suffix array in O(|S|) time, so you will be able to build suffix tree in total O(|S| log |S|) time!
+
 
 
 
