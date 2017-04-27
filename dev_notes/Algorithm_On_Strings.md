@@ -1054,6 +1054,17 @@ This is all for the initialization phase of the suffix array construction. In ne
  - Cᵢ̍ == CᵢC<sub>i+L</sub> -- concatenation of strings
  - To compare Cᵢ̍ with Cⱼ̍ , it’s sufficient to compare Cᵢ with Cⱼ and C<sub>i+L</sub> with C<sub>j+L</sub>
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_doubledCyclicShift_example1.png)
+
+### Sorting pairs
+
+Now we have to think about the following problem.  We need to sort pairs of numbers basically. Because each cyclic shift of length L corresponds to its number of position in the order of all cyclic shifts of length L. 
+
+And we first need to sort by second element of pair, and then we stable sort by the first element of pair. 
+
+ - First sort by second element of pair
+ - Then stable sort by first element of pair
+
 
 
 
