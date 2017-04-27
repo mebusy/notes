@@ -427,15 +427,19 @@ The only problem , though , is that BW Mathing is very slow. It analyzes every s
 ---     
 
  - The trick here is to introduce the count array. 
-    - The count array describes the number of apearances of a given symbol , in the first i postion of the last collumn. 
 
  - Introducing Count Array 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWM_count_array.png)
-    - so you have the array of #occurrences for every symbol , trough this array, you can calculate the index where every symbol first appear in first column(sorted) (FIRSTOCCURRENCE).
+    - The count array describes the number of apearances of a given symbol 
+        - the count array imply the order of sorted symbol
+        - in this case , we records all count arrays **for every substring of LastColumn --  in python:  Text_Last_Column[:i] 
+    - so you have the array of #occurrences for every symbol 
+        - through the count array of entire LastColumn , you can calculate the index where every symbol first appear in first column(sorted) 
+        - this is **FIRSTOCCURRENCE**.
  - bettern Algorithm !!!
-    - Count<symbol>( i, LastColumn )
-        - it's 2D array
-        - return #occurrences of *symbol* in the first i positions of LastColumn.
+    - Count\<symbol\>( i, LastColumn )
+        - can be implemented by  2D array ?  what about the memory usage ?
+        - return #occurrences of *symbol* in LastColumn[:i] -- first i position in LastColumn .
 
 ```
 BetterBWMatching( FIRSTOCCURRENCE , LastColumn , Pattern , Count  )
@@ -474,7 +478,9 @@ And as you can see, we don't need any more to explore every symbol between top a
 
 ---
 
-There is still one question. Where are the matches that they found ? Where do they appear in the text  ?
+
+ - 前面主要证明了，通过 BWT form 可以做到快速matching
+ - There is still one question. Where are the matches that they found ? Where do they appear in the text  ?
 
  - Where Are the Matches?
     - We know that ***ana*** occurs 3 times, but where does ***ana*** appear in Text???
@@ -489,6 +495,14 @@ There is still one question. Where are the matches that they found ? Where do th
  - panamabananas$
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_suffix_array.png)
  
+
+```python
+# naive solution
+def get_suffix_array(str):
+    return sorted(xrange(len(str)), key=lambda i: str[i:])
+```
+
+---
 
  - Q: what is the suffix array of the string S = GAGAGAGA$ ?  ( raw text )
  - A: [8 1 3 5 7 0 2 4 6]
@@ -859,6 +873,13 @@ In the next lessons, we will learn how to build suffix array and suffix tree in 
         - baa$
         - babaa$
     
+
+```python
+# naive solution
+def get_suffix_array(str):
+    return sorted(xrange(len(str)), key=lambda i: str[i:])
+```
+
 
 <h2 id="0315a918e4426dc96ef07eca2ff9c282"></h2>
 
