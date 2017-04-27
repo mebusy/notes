@@ -1013,6 +1013,7 @@ And before computing this array class, we assume that we have already sorted all
 
 So how to actually compute the classes of the cyclic shifts when we already know their order ?
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_Equivalence_classes_example.png)
 
 
  - we want to assign class 0 to the smallest of the cyclic shifts of the current length.
@@ -1028,6 +1029,8 @@ So how to actually compute the classes of the cyclic shifts when we already know
     - class[1] = 2 
  - the last one is again *b*
     - class[3] = 2
+ - now we know the classes of all the single character cyclic shifts.
+
 
 
 
