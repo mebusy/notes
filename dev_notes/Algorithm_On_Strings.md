@@ -1065,7 +1065,10 @@ And we first need to sort by second element of pair, and then we stable sort by 
  - First sort by second element of pair
  - Then stable sort by first element of pair
 
+Example:
 
+ - suppose our current length is 2 , and we already sorted all the cyclic shifts of length 2
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_doubledCyclicShift_example2.png)
 
 
 ---
