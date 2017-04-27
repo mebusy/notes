@@ -531,7 +531,7 @@ So , when suffix array is constructed, we can very quickly answer the question w
 
 The challenge is how to construct the suffix array quickly. Because the naive algorithm is O(n²). 
 
-There is a way to construct a suffix array if you're already construction a suffix tree. A suffix array is simply a depth-first reversal of the suffix tree. 
+There is a way to construct a suffix array if you're already construction a suffix tree. A suffix array is simply a depth-first traversal of the suffix tree. 
 
  - From Suffix Tree to Suffix Array: Depth-First Traversal
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_fromSuffixTreeToSuffixArray.png)
@@ -753,7 +753,8 @@ Now lets think how to compute the prefix function.
 
  - The running time of ComputePrefixFunction is O(|P|)
  - Now you know how to compute prefix function in linear time
- - But how to nd pattern in text??
+ - But how to find pattern in text??
+
 
 ---
 
