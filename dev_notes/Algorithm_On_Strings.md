@@ -960,6 +960,11 @@ def get_suffix_array(str):
  - 这样可以提高字符串排序的效率？
 
 
+L=4 sorting : 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_PartialCyclicShifts.png)
+
+
 
 ## Initialization
 
@@ -995,7 +1000,34 @@ def get_suffix_array(str):
  
 ### Equivalence classes
 
- - we will also need additional information to make the following step 
+we will also need additional information to make the following step 
+
+ - Cᵢ -- partial cyclic shift of length L starting in i
+ - Cᵢ can be equal to Cⱼ -- then they are in one equivalence class
+ - Compute class[i] -- number of different cyclic shifts of length L that are strictly smaller than Ci
+ - Cᵢ == Cⱼ ⇔ class[i] == class[j]
+
+We'll need to compute this array class to increase the speed of the next phase.
+
+And before computing this array class, we assume that we have already sorted all the cyclic shifts of the current length L. 
+
+So how to actually compute the classes of the cyclic shifts when we already know their order ?
+
+ - we want to assign class 0 to the smallest of the cyclic shifts of the current length.
+    - which is $, which is in the position 6. 
+    - so we write class[6] = 0
+ - the next smallest cyclic shift is letter *a* , and it is different from the previous smallest one *$*
+    - so we need a new equivalence class for *a* 
+    - class[0] = 1
+ - next one is also *a* , it is equal to the previous one
+    - class[2] = 1
+ - same , class[4] = 1, class[5] = 1
+ - the next one is *b* , which is different from the previous one and so we assign new class which is bigger by 1.
+    - class[1] = 2 
+ - the last one is again *b*
+    - class[3] = 2
+
+
 
 
 
