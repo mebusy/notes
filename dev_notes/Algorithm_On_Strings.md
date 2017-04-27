@@ -1069,7 +1069,9 @@ Example:
 
  - suppose our current length is 2 , and we already sorted all the cyclic shifts of length 2
  - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_doubledCyclicShift_example2.png)
-
+ - now for each of the cyclic shifts of length 2, let's look at the cyclic shift of length 4 ,which ends in the cyclic shift of length 2.
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_doubledCyclicShift_example3.png)
+    - so we take the 2 previous characters and add them to the left. 
 
 ---
 
