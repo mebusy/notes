@@ -1091,6 +1091,12 @@ Example:
  - Counting sort is stable!
  - We know equivalence classes of single shifts for counting sort
 
+Pseudo Code:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_suffix_array_sort_doubled.png)
+
+
+ - Lemma: The running time of SortDoubled is O(|S|).
 
 
 
