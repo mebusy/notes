@@ -1072,6 +1072,28 @@ Example:
  - now for each of the cyclic shifts of length 2, let's look at the cyclic shift of length 4 ,which ends in the cyclic shift of length 2.
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_doubledCyclicShift_example3.png)
     - so we take the 2 previous characters and add them to the left. 
+ - we get a set of cyclic shifts of length 4
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_doubledCyclicShift_example4.png)
+ - we have highlighted in yellow the 1st elements of the pairs , which are also cyclic shifts of length 2
+    - the yellow part are not sorted. but we know their starting positions.  and we know what are the correct starting positions in the sorted order. 
+    - so we can reorder this list of cyclic shifts of length 4 by the order of the 1st halves of the elements in this list using the know order.  
+ - after such sorting , we actually get the sorted list of cyclic shifts of length 4. 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_doubledCyclicShift_example5.png)
+
+### Sorting doubled cyclic shifts
+
+ - Cᵢ̍ --  doubled cyclic shift starting in i
+ - Cᵢ̍ is a pair ( Cᵢ, C<sub>i+L</sub> )
+ - C<sub>order[0]</sub>, C<sub>order[1]</sub>, ... , C<sub>order[|S|-1]</sub> are already sorted
+ - Take doubled cyclic shifts starting exactly L counter-clockwise (“to the left”)
+ - C'<sub>order[0]-L</sub>, C'<sub>order[1]-L</sub>, ... , C'<sub>order[|S|-1]-L</sub> are sorted by second element of pair
+ - Need a stable sort by first elements of pairs
+ - Counting sort is stable!
+ - We know equivalence classes of single shifts for counting sort
+
+
+
+
 
 ---
 
