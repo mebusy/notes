@@ -1,7 +1,28 @@
+...menustart
+
+ - [Algorithm On Graphs](#311ad33f7584ac17012490ce8852f7e8)
+	 - [Week1](#3c88e16de2066fa3ce3055a55a3e473b)
+		 - [Representing Graphs](#030495a245248ce0deed9c13f9576cd0)
+		 - [Exploring Graphs](#6d620d4a966ddb637a736ea4670b6782)
+			 - [Explore , starting from a Node](#78f63ae6b311ad607db08a56dd79649a)
+			 - [DFS](#c1bb62b63c65be3760b715faad0bdf8d)
+		 - [Connectivity](#9bd9d0ebc081bd74f5bef4e136bb1aed)
+			 - [Connected Components](#8a4d6dec35ad6f01d54531c509cf7d37)
+		 - [Previsit and Postvisit Orderings](#cb7d104acd7ef78260476fb96e632beb)
+			 - [Previsit and Postvisit Functions](#c190b4dd3a865a419b7d42ecdded4b14)
+
+...menuend
+
+
+<h2 id="311ad33f7584ac17012490ce8852f7e8"></h2>
 
 # Algorithm On Graphs
 
+<h2 id="3c88e16de2066fa3ce3055a55a3e473b"></h2>
+
 ## Week1
+
+<h2 id="030495a245248ce0deed9c13f9576cd0"></h2>
 
 ### Representing Graphs
 
@@ -28,6 +49,8 @@ Edge List | Θ(&#124;E&#124;) | Θ(&#124;E&#124;) |  Θ(&#124;E&#124;)
 Adj. List | Θ(deg) | Θ(&#124;E&#124;) | Θ(deg)
 
 
+<h2 id="6d620d4a966ddb637a736ea4670b6782"></h2>
+
 ### Exploring Graphs
 
  - Visit Markers
@@ -37,6 +60,8 @@ Adj. List | Θ(deg) | Θ(&#124;E&#124;) | Θ(deg)
     - This will end up getting hidden in the program stack
  - Depth First Ordering
     - We will explore new edges in Depth First order. 
+
+<h2 id="78f63ae6b311ad607db08a56dd79649a"></h2>
 
 #### Explore , starting from a Node
 
@@ -50,6 +75,8 @@ def Explore(v):
             Explore(w)
 ```
 
+<h2 id="c1bb62b63c65be3760b715faad0bdf8d"></h2>
+
 #### DFS
 
 ```python
@@ -62,7 +89,11 @@ def DFS(G):
 
 ---
 
+<h2 id="9bd9d0ebc081bd74f5bef4e136bb1aed"></h2>
+
 ### Connectivity
+
+<h2 id="8a4d6dec35ad6f01d54531c509cf7d37"></h2>
 
 #### Connected Components
 
@@ -90,12 +121,16 @@ def DFS(G):
 
 ---
 
+<h2 id="cb7d104acd7ef78260476fb96e632beb"></h2>
+
 ### Previsit and Postvisit Orderings
 
  - Need to Record Data
     - Plain DFS just marks all vertices as visited.
     - Need to keep track of other data to be useful.
     - Augment functions to store additional information
+
+<h2 id="c190b4dd3a865a419b7d42ecdded4b14"></h2>
 
 #### Previsit and Postvisit Functions
 
