@@ -81,7 +81,7 @@
  - Conditional independence assumptions directly from simplifications in chain rule:
     - P(X,Y,Z,W) = ***P(X)·P(Y|X)·P(Z|Y)·P(W|Z)*** = P(X)·P(Y|X)·P(Z|X,Y)·P(W|X,Y,Z) 
     - from the fomular , we get:
-        - Z⫫X |Y
+        - Z⫫ ⫫ X |Y
         - W⫫(X,Y) |Z
  - Additional implied conditional independence assumptions?
     - W⫫X |Y
