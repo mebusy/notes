@@ -81,10 +81,10 @@
  - Conditional independence assumptions directly from simplifications in chain rule:
     - P(X,Y,Z,W) = ***P(X)·P(Y|X)·P(Z|Y)·P(W|Z)*** = P(X)·P(Y|X)·P(Z|X,Y)·P(W|X,Y,Z) 
     - from the fomular , we get:
-        - Z⟂X |Y
-        - W⟂(X,Y) |Z
+        - Z⊥X |Y
+        - W⊥(X,Y) |Z
  - Additional implied conditional independence assumptions?
-    - W⟂X |Y
+    - W⊥X |Y
 
 P(W|X,Y) =?= P(W|Y) ?
 
@@ -177,7 +177,7 @@ P(z|x,y) = P(x,y,z) / p(x,y)
     - **Yes**: the ballgame and the rain cause traffic, but they are not correlated
     - that is the basic assumptions of BNs : Xᵢ is independent of its preceding variables X₁ ... X<sub>i-1</sub> , except its parents Pa(X₁) , given its parents | Pa(X₁)
     - for X,Y,Z , Y is independent of it's preceding variables, which is X , minus its parents , wich is ∅ , so Y is independent of X and then given the parents , which is empty set ∅ 
-        - Y⟂X | ∅
+        - Y⊥X | ∅
 
 P(x,y,z) = P(y)P(y)P(z|x,y)  
 
@@ -255,12 +255,12 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
 
 ## D-separation
 
- - Query: Xᵢ ⟂ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } ?
+ - Query: Xᵢ ⊥ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } ?
  - Check all (undirected!) paths between Xᵢ and Xⱼ 
     - If one or more active, then independence not guaranteed
-        - Xᵢ not ⟂ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
+        - Xᵢ not ⊥ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
     - Otherwise (i.e. if all paths are inactive), then independence is guaranteed
-        - Xᵢ ⟂ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
+        - Xᵢ ⊥ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
@@ -268,21 +268,21 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_independence_example.pg.png)
 
- - L ⟂ T' | T   **Yes** 
+ - L ⊥ T' | T   **Yes** 
     - LR(T)  this triple doesn't matter.
     - LR(T)T'  
- - L ⟂ B    **Yes**
+ - L ⊥ B    **Yes**
     - LRT 
     - RTB is inactive , make that whole path inactive 
- - L ⟂ B | T 
+ - L ⊥ B | T 
     - LR(T) , this is a triple where the 3rd node is observed. that actually doesn't matter. we look at triples all that matters the middle node observed or not.  
         - the triple LR(T) , we talked about the influence propagating through R or not. We're not worring abouth these side nodes.
         - so here the influence will propagate to R , the causal chain is active. 
     - R(T)B is active
- - L ⟂ B | T' 
+ - L ⊥ B | T' 
     - LRT  active
     - RTB ~ (T')  active 
- - L ⟂ B | T,R   **Yes**
+ - L ⊥ B | T,R   **Yes**
     - L(R)(T)   inactive
     - no need to check the 2nd triple 
  
@@ -291,7 +291,7 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
 ## Structure Implications
 
  - Given a Bayes net structure, can run d-separation algorithm to build a complete list of conditional independences that are necessarily true of the form
-    - Xᵢ ⟂ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
+    - Xᵢ ⊥ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
  - This list determines the set of probability distributions that can be represented 
 
 

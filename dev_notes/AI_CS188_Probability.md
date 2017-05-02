@@ -438,7 +438,7 @@ P( rain | dry  ) = 1-P(sun|dry)
 
 ## Independcence
 
- - Two variables are independent `X⟂Y`  in a joint distribution if:
+ - Two variables are independent `X⊥Y`  in a joint distribution if:
     - P(X,Y) = P(X)P(Y)
     - ∀<sub>x,y</sub> P(x,y) = P(x)P(y)
     - Says the joint distribution factors into a product of two simple ones
@@ -472,7 +472,7 @@ You go to the dentist. You might have a toothache or not, you might have a cavit
 
  - Unconditional (absolute) independence very rare (why?)
  - Conditional independence is our most basic and robust form of knowledge about uncertain environments.
- - X is conditionally independent of Y given Z -- X ⟂ Y | Z 
+ - X is conditionally independent of Y given Z -- X ⊥ Y | Z 
     - if and only if:
         - ∀<sub>x,y,z</sub> : P(x,y | z) = P(x|z)P(y|z)
     - or, equivalently, if and only if:
@@ -481,7 +481,7 @@ You go to the dentist. You might have a toothache or not, you might have a cavit
 
 ---
 
-if X ⟂ Z | Y :
+if X ⊥ Z | Y :
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_probability_conditional_independent.png)
 
@@ -494,7 +494,7 @@ What is a reasonable condition assumption in this scenario?
 
 There could be rain or not . The rain could result in more or less traffic. And rain could result in whether or not somebody carries an umbrella. Now if we know wheter it's raning or not , then it telling us that robot carrying  an umbrella is independent whether there will be traffic or not.
 
-T ⟂ U | R 
+T ⊥ U | R 
 
 ---
 
@@ -503,9 +503,9 @@ Fire / Smoke / Alarm
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_conditional_independent.png)
 
-A ⟂ S|F  is not true
+A ⊥ S|F  is not true
 
-A ⟂ F|S  is true
+A ⊥ F|S  is true
 
 
  
