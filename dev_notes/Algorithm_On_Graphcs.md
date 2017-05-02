@@ -209,7 +209,6 @@ def postvisit(v):
 
 ### Topological Sort
 
-#### Idea
 
  - Last Vertex
     - Consider the last vertex in the ordering. It cannot have any edges pointing out of it
@@ -219,6 +218,28 @@ def postvisit(v):
     - A **sink** is a vertex with no outgoing edges
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_graph_sinks_in_dag.png)
 
+#### Finding Sink
+
+ - Question: How do we know that there is a sink?
+ - Follow path as far as possible v1 → v2 → . . . → vn. Eventually either:
+    - Cannot extend (found sink).
+    - Repeat a vertex (have a cycle).
+
+#### TopologicalSort Algorithm
+
+```python
+TopologicalSort(G)
+    DFS(G)
+    sort vertices by reverse post-order
+```
+
+
+### Strongly Connected Components
+
+ - Two vertices v, w in a directed graph are **connected** if you can reach v from w and can reach w from v.
+ - Theorem
+    - A directed graph can be partitioned into **strongly connected components** where two vertices are connected if and only if they are in the same component.
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_graph_SCC.png)
 
 
 
