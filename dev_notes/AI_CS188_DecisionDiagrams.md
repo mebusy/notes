@@ -87,9 +87,9 @@ There are part of the problem specificaton of course.   If you are designing a r
  - we need to loop over all possible actions , the Umbrella 
     - Umbrella = leave
         - what is the expected utility ?  Sum over all possible outcomes for Weather 
-        - EU(leave) = ∑<sub>w</sub> P(w)U(leave, w) = 0.7* 100 + 0.3* 0 = 70
+        - EU(leave) = ∑<sub>w</sub> P(w)U(leave, w) = 0.7 * 100 + 0.3 * 0 = 70
     - Umbrella = take 
-        - EU(take) = ∑<sub>w</sub> P(w)U(take, w) = 0.7* 20 + 0.3* 70 = 35
+        - EU(take) = ∑<sub>w</sub> P(w)U(take, w) = 0.7 * 20 + 0.3 * 70 = 35
  - Optimal decision = leave
     - MEU(∅) = maxₐ EU(a) = 70
         - ∅ means no evidence.   
@@ -111,9 +111,9 @@ We listened to the forecast and the forecast is bad.
     - P(W|F=bad)
  - loop
     - Umbrella = leave  
-        - EU(leave|bad) = ∑<sub>w</sub> P(w|bad)U(leave, w) = 0.34* 100 + 0.66* 0 = 34
+        - EU(leave|bad) = ∑<sub>w</sub> P(w|bad)U(leave, w) = 0.34 * 100 + 0.66 * 0 = 34
     - Umbrella = take 
-        - EU(take|bad) = ∑<sub>w</sub> P(w|bad)U(take, w) = 0.34* 20 + 0.66* 70 = 53
+        - EU(take|bad) = ∑<sub>w</sub> P(w|bad)U(take, w) = 0.34 * 20 + 0.66 * 70 = 53
  - Optimal decision = take
     - MEU(F=bad) = maxₐ EU(a|bad) = 53
           

@@ -136,7 +136,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 np.random.seed(0)
-NN = int(50000 *0.05)
+NN = int(50000 * 0.05)
 mu, sigma = 20, 20/3.0
 interval = [int(np.random.normal(mu, sigma)) for i in xrange(NN)]
 
