@@ -107,7 +107,7 @@ The important orthogonal subspaces don't come by accident, and they come two at 
 Ax = |               | |  |   | |
      |               | |  |   | |
      | ... row m ... | |  |   |0|
-                     |xn|
+                       |xn|
 ```
 
  - The main point is already in the first equation: row 1 is orthogonal to x. 
