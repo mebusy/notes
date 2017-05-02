@@ -174,4 +174,42 @@ def postvisit(v):
 
 ---
 
+## Week2 
+
+### Directed Acyclic Graphs
+
+ - Directed graphs might be used to represent:
+    - Streets with one-way roads.
+    - Links between webpages.
+    - Followers on social network.
+    - Dependencies between tasks.
+
+
+#### Directed DFS
+
+ - Can still run DFS in directed graphs.
+    - Only follow **directed** edges
+    - explore(v) finds all vertices **reachable** from v.
+    - Can still compute pre- and postorderings.
+
+#### Cycles
+
+ - A **cycle** in a graph G is a sequence of vertices v1, v2, . . . , vn so that
+ - (v1, v2),(v2, v3), . . . ,(vn−1, vn),(vn, v1) are all edges.
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_graph_cycles.png)
+ - Theorem
+    - If G contains a cycle, it cannot be linearly ordered.
+
+#### DAGs
+
+ - A directed graph G is a **Directed Acyclic Graph** (or DAG) if it has no cycles.
+ - Theorem
+    - Any DAG can be linearly ordered
+
+
+
+
+
+
+
 
