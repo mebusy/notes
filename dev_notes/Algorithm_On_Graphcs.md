@@ -207,6 +207,17 @@ def postvisit(v):
     - Any DAG can be linearly ordered
 
 
+### Topological Sort
+
+#### Idea
+
+ - Last Vertex
+    - Consider the last vertex in the ordering. It cannot have any edges pointing out of it
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_graph_last_vertex.png)
+ - Sources and Sinks
+    - A **source** is a vertex with no incoming edges.
+    - A **sink** is a vertex with no outgoing edges
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_graph_sinks_in_dag.png)
 
 
 
