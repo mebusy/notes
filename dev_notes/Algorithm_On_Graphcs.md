@@ -241,7 +241,17 @@ TopologicalSort(G)
     - A directed graph can be partitioned into **strongly connected components** where two vertices are connected if and only if they are in the same component.
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_graph_SCC.png)
 
+#### Metagraph
 
+ - We can also draw a **metagraph** showing how the strongly connected components connect to one another 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_graph_metagraph.png)
+ - Theorem
+    - The metagraph of a graph G is always a DAG.
+ 
+How to compute the strongly connected components of a graph. ?
+
+
+### Computing Strongly Connected Components
 
 
 
