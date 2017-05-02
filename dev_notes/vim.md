@@ -13,6 +13,7 @@
 		 - [反向肯定搜索 lookahead](#32b92ada221fd37f58c6db5897bd605c)
 		 - [前向肯定搜索 lookahead](#852639e354e873ce19ce571888957160)
 		 - [文件夹搜索](#4d36d00db257fed5fe7d2a2036ad930f)
+		 - [文件夹 替换](#476949b7922fe3e5ea39c034861527d8)
 
 ...menuend
 
@@ -190,6 +191,8 @@ vimgrep /pattern/gj path
 
 
 搜索完毕 copen 或 cw 查看搜索列表
+
+<h2 id="476949b7922fe3e5ea39c034861527d8"></h2>
 
 ### 文件夹 替换
 
