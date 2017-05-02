@@ -269,9 +269,7 @@ Running Time : O(m+n) , you will not visit a node twice.
 
 ### Computing Strong Components: The Algorithm
 
-如果有向图是强连通的，则任两个节点都是相互可达。故必可做一回路经过图中所有各点。
-
-在有向图G中，如果两个顶点间至少存在一条路径，称两个顶点强连通(strongly connected)。如果有向图G的每两个顶点都强连通，称G是一个强连通图。
+如果有向图G的每两个顶点都强连通，称G是一个强连通图。
 
 非强连通图有向图的 极大强连通子图，称为强连通分量(strongly connected components)。
 
@@ -282,7 +280,7 @@ Running Time : O(m+n) , you will not visit a node twice.
 
 G are the equivalence classes of the relation:
 
-u~v <==> ∃ path u ~~> v and  v ~~> u in G 
+u~v <==> ∃ path u ~-> v and  v ~-> u in G 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SCC.PNG)
 
