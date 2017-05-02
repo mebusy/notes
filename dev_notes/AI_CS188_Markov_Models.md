@@ -57,9 +57,9 @@ This case let's look at just 4 variables.
  - From the chain rule, every joint distribution over X₁, X₂, X₃, X₄ , can can be written as:
     - P(X₁, X₂, X₃, X₄) = P(X₁)·P(X₂|X₁)·P(X₃|X₁,X₂)·P(X₄|X₁,X₂,X₃)  
  - Assuming that
-    - X₃ ⫫ X₁|X₂  
+    - X₃ ⟂ X₁|X₂  
         - What dose that mean ?  That means that once somebody tells you the value of X₂,  you write the distribution of X₃ ; somebody then tells you what X₁ is and the distribution of X₃ doesn't change -- stays the same. 
-    - X₄ ⫫ X₁,X₂ | X₃ 
+    - X₄ ⟂ X₁,X₂ | X₃ 
  - results in the expression posited on the previous slide: 
     - P(X₁, X₂, X₃, X₄) = P(X₁)·P(X₂|X₁)·P(X₃|X₂)·P(X₄|X₃)
 
@@ -73,8 +73,8 @@ This case let's look at just 4 variables.
 
 ### Implied Conditional Independencies 
 
- - We assumed : `X₃ ⫫ X₁|X₂`  , and `X₄ ⫫ X₁,X₂ | X₃` 
- - We also have :  `X₁ ⫫ X₃,X₄ |X₂`
+ - We assumed : `X₃ ⟂ X₁|X₂`  , and `X₄ ⟂ X₁,X₂ | X₃` 
+ - We also have :  `X₁ ⟂ X₃,X₄ |X₂`
  - proof:
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_implied_conditional_probability.png)
  - Additional explicit assumption
