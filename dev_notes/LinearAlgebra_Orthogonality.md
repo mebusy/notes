@@ -102,12 +102,12 @@ The important orthogonal subspaces don't come by accident, and they come two at 
 ***First proof***  Suppose x is a vector in the nullspace. Then Ax = 0 , and this system of *m* equations can be written out as rows of A multiplying x:
 
 ```
-	 | ... row 1 ... | |x₁|   |0|
-	 | ... row 2 ... |·|x₂| = |0|
-Ax = | 				 | |  |	  | |
-	 | 				 | |  |	  | |
-	 | ... row m ... | |  |	  |0|
-	 				   |xn|
+     | ... row 1 ... | |x₁|   |0|
+     | ... row 2 ... |·|x₂| = |0|
+Ax = |               | |  |   | |
+     |               | |  |   | |
+     | ... row m ... | |  |   |0|
+                     |xn|
 ```
 
  - The main point is already in the first equation: row 1 is orthogonal to x. 
@@ -120,14 +120,14 @@ Ax = | 				 | |  |	  | |
 The other pair of orthogonal subspaces comes from Aᵀy = 0, or yᵀA = 0:
 
 ```
-	  |c 	   c|
-	  |o 	   o|
-	  |l 	   l|
+      |c       c|
+      |o       o|
+      |l       l|
 yᵀA = |u  ...  u| = [0 ... 0]
-	  |m 	   m|
-	  |n 	   n|
-	  |		    |
-	  |1 	   n|
+      |m       m|
+      |n       n|
+      |         |
+      |1       n|
 ```
 
  - The equation says , from the zeros on the right-hand side , the vector y is orthogonal to every column.
@@ -525,8 +525,8 @@ This is an *overdetermined* system, with m equations and only two unknowns. If e
 ```
 |1 t₁|        |b₁|
 |1 t₂| |C|  = |b₂|   , or Ax = b.   (7)
-| .  | |D|	  |. |
-|1 tm|		  |bm|
+| .  | |D|    |. |
+|1 tm|        |bm|
 ```
 
 The best solution (Ĉ, D̂) is the x̂ that minimizes the squared error E².
@@ -536,16 +536,16 @@ The best solution (Ĉ, D̂) is the x̂ that minimizes the squared error E².
 The vector p = Ax̂ is as close as possible to b. (Figure 3.9). On the graph, the errors are the ***vertical distances*** `b - C - Dt` to the straight line (not perpendicular distances!). It is the vertical distances that are squared, summed, and minimized.
 
 ```
-	|1 -1| |C|	|1|
-	|1  1|·|D| =|1|.
-	|1  2|		|3|
+    |1 -1| |C|  |1|
+    |1  1|·|D| =|1|.
+    |1  2|      |3|
 ```
 
 If those equations Ax = b could be solved, there would be no errors. They can't be solved because the points are not on a line. Therefore they are solved by least squares:
 
 ```bash
 AᵀAx̂ = Aᵀb  is :  |3 2|·|Ĉ|= |5|
-				  |2 6| |D̂|  |6|	
+                  |2 6| |D̂|  |6|
 ```
 
 The best solution is Ĉ = 9/7, D̂ = 4/7 and the best line is `9/7 + 4/7·t`.
@@ -566,9 +566,9 @@ Normal equation 也可以用来拟合2次曲线. eg. 过原点的2次曲线 Ct +
 eg.  (1,1) , (2,5) , (-1,-2)
 
 ```
-	⎡ 1  1⎤			⎡ 1⎤
+    ⎡ 1  1⎤         ⎡ 1⎤
 A = ⎢ 2  4⎥ ,   b = ⎢ 5⎥
-	⎣-1  1⎦  		⎣-2⎦
+    ⎣-1  1⎦         ⎣-2⎦
 ```
 
 A 第1列是 t, 第2列是 t².
@@ -597,11 +597,11 @@ qᵢᵀqⱼ = ⎰ 0 whenever i ≠ j, giving the orthogonality;
 The most important example is the *standard basis*. For the x-y plane, the bestknown axes e₁ = (1, 0) and e₂ = (0, 1) are not only perpendicular but horizontal and vertical. Q is the 2 x 2 identity matrix. In n dimensions the standard basis e₁, ... , en again consists of *the columns of Q = I*:
 
 ```
-			   |1|		 |0|		  	 |0|
-Standard	   |0|		 |1|		  	 |0|
- basis	  e₁ = |0|, e₂ = |0|, ... , en = |0|
-			   |.|		 |.|		  	 |.|
-			   |0|		 |0|		  	 |1|
+               |1|       |0|             |0|
+Standard       |0|       |1|             |0|
+ basis    e₁ = |0|, e₂ = |0|, ... , en = |0|
+               |.|       |.|             |.|
+               |0|       |0|             |1|
 ```
 
 That is not the only orthonormal basis! We can rotate the axes without changing the right angles at which they meet. These rotation matrices will be examples of Q.
@@ -618,10 +618,10 @@ To summarize, the three topics basic to this section are:
 
 ```
 Orthonormal columns:
-	⎡-- q₁ᵀ --⎤ ⎡|  |  | ⎤   ⎡1 0 · 0⎤  
-	⎢-- q₂ᵀ --⎥·⎢q₁ q₂ qn⎥ = ⎢0 1 · 0⎥ = I.		(1)
-	⎢         ⎥ ⎢|  |  | ⎥   ⎢· · · ·⎥
-	⎣-- qnᵀ --⎦ ⎣|  |  | ⎦   ⎣0 0 · 1⎦
+    ⎡-- q₁ᵀ --⎤ ⎡|  |  | ⎤   ⎡1 0 · 0⎤  
+    ⎢-- q₂ᵀ --⎥·⎢q₁ q₂ qn⎥ = ⎢0 1 · 0⎥ = I.    (1)
+    ⎢         ⎥ ⎢|  |  | ⎥   ⎢· · · ·⎥
+    ⎣-- qnᵀ --⎦ ⎣|  |  | ⎦   ⎣0 0 · 1⎦
 ```
 
  - ***An orthogonal matrix is a square matrix with orthonormal columns.***  Then **Qᵀ is Q⁻¹** , ***the transpose is the inverse***.
@@ -645,7 +645,7 @@ It also preserves innerproducts and angles, since (Qx)ᵀ(Qy) = `xᵀQᵀQy = x�
 The preservation of lengths comes directly from QᵀQ = I:
 
 ```
-		 ‖Qx‖² = ‖x‖²  
+         ‖Qx‖² = ‖x‖²  
 because  (Qx)ᵀ(Qx) = xᵀQᵀQx = xᵀx.  (3)
 ```
 
@@ -662,9 +662,9 @@ Each piece of b has a simple formula, and recombining the pieces gives back b:
 I can't resist putting this orthonormal basis into a square matrix Q. The vector equation x₁q₁ + ... + x<sub>n</sub>q<sub>n</sub>= b is identical to Qx = b.  Its solution is x = Q⁻¹b. But since Q⁻¹ = Qᵀ -- this is where orthonormality enters -- the solution is also x = Qᵀb:
 
 ```
-		  ⎡-- q₁ᵀ --⎤⎡ ⎤   ⎡q₁ᵀb⎤
+          ⎡-- q₁ᵀ --⎤⎡ ⎤   ⎡q₁ᵀb⎤
 x = Qᵀb = ⎢         ⎥⎢b⎥ = ⎢    ⎥    (5)
-		  ⎣-- qnᵀ --⎦⎣ ⎦   ⎣qnᵀb⎦
+          ⎣-- qnᵀ --⎦⎣ ⎦   ⎣qnᵀb⎦
 ```
 
 ***The components of x are the inner products*** **qᵢᵀb** , as in equation (4) . 
@@ -676,9 +676,9 @@ x = Qᵀb = ⎢         ⎥⎢b⎥ = ⎢    ⎥    (5)
 **Remark 2**: ***The rows of a square matrix are orthonormal whenever the columns are***.
 
 ```
-		⎡1/√3   1/√2   1/√6⎤
-	Q = ⎢1/√3    0	  -2/√6⎥
-		⎣1/√3  -1/√2   1/√6⎦  
+        ⎡1/√3   1/√2   1/√6⎤
+    Q = ⎢1/√3    0    -2/√6⎥
+        ⎣1/√3  -1/√2   1/√6⎦  
 ```
 
 
@@ -730,7 +730,7 @@ ans =
 
 ```
 The projection matrix: 
-	P = Q(QᵀQ)⁻¹Qᵀ ,  or P = QQᵀ     (7)
+    P = Q(QᵀQ)⁻¹Qᵀ ,  or P = QQᵀ     (7)
 ```
 
 QQᵀ is the zero matrix on the othogonal complement ( the nullspace of Qᵀ ).  -- 不理解
@@ -738,21 +738,21 @@ QQᵀ is the zero matrix on the othogonal complement ( the nullspace of Qᵀ ). 
 **Example 3** The following case is simple but typical. Suppose we project a point b = (x,y,z) onto the x-y plane. It's projection is p = (x,y,0), and this is the sum of the separate projections on the x- and y-axes:
 
 ```
-		 ⎡1⎤				  ⎡x⎤	
-	q₁ = ⎢0⎥  and  (q₁ᵀb)q₁ = ⎢0⎥; 	
-		 ⎣0⎦  				  ⎣0⎦  
+         ⎡1⎤                  ⎡x⎤
+    q₁ = ⎢0⎥  and  (q₁ᵀb)q₁ = ⎢0⎥;
+         ⎣0⎦                  ⎣0⎦  
 
-		 ⎡0⎤				  ⎡0⎤	
-	q₂ = ⎢1⎥  and  (q₂ᵀb)q₂ = ⎢y⎥.
-		 ⎣0⎦  				  ⎣0⎦  
+         ⎡0⎤                  ⎡0⎤
+    q₂ = ⎢1⎥  and  (q₂ᵀb)q₂ = ⎢y⎥.
+         ⎣0⎦                  ⎣0⎦  
 ```
 
 The overall projection matrix is :
 
 ```
-					⎡1 0 0⎤			⎡x⎤	  ⎡x⎤	
+                    ⎡1 0 0⎤         ⎡x⎤   ⎡x⎤
 P = q₁q₁ᵀ + q₂q₂ᵀ = ⎢0 1 0⎥,  and  P⎢y⎥ = ⎢y⎥ 
-					⎣0 0 0⎦  		⎣z⎦	  ⎣0⎦  
+                    ⎣0 0 0⎦         ⎣z⎦   ⎣0⎦  
 ```
 
 ***Projection onto a plane = sum of projections onto orthonormal q₁ and q₂***.
@@ -790,29 +790,29 @@ q₂,q₃.
 **Example 5 Gram-Schmidt** Suppose the independent vectors are a, b, c:
 
 ```
-	⎡1⎤      ⎡1⎤      ⎡2⎤         
+    ⎡1⎤      ⎡1⎤      ⎡2⎤         
 a = ⎢0⎥, b = ⎢0⎥, c = ⎢1⎥.
-	⎣1⎦      ⎣0⎦      ⎣0⎦         
+    ⎣1⎦      ⎣0⎦      ⎣0⎦         
 
-	 ⎡1/√2⎤
+     ⎡1/√2⎤
 q₁ = ⎢ 0  ⎥.
-	 ⎣1/√2⎦
+     ⎣1/√2⎦
 ```
 
 ```
-	⎡1⎤       ⎡1/√2⎤       ⎡ 1⎤
+    ⎡1⎤       ⎡1/√2⎤       ⎡ 1⎤
 B = ⎢0⎥ - 1/√2⎢ 0  ⎥  = 1/2⎢ 0⎥.
-	⎣0⎦       ⎣1/√2⎦       ⎣-1⎦
+    ⎣0⎦       ⎣1/√2⎦       ⎣-1⎦
 
-	 ⎡ 1/√2⎤
+     ⎡ 1/√2⎤
 q₂ = ⎢  0  ⎥.
-	 ⎣-1/√2⎦	
+     ⎣-1/√2⎦
 ```
 
 ```
-	⎡2⎤     ⎡1/√2⎤     ⎡ 1/√2⎤    ⎡0⎤
+    ⎡2⎤     ⎡1/√2⎤     ⎡ 1/√2⎤    ⎡0⎤
 C = ⎢1⎥ - √2⎢ 0  ⎥ - √2⎢  0  ⎥  = ⎢1⎥.
-	⎣0⎦     ⎣1/√2⎦     ⎣-1/√2⎦    ⎣0⎦   
+    ⎣0⎦     ⎣1/√2⎦     ⎣-1/√2⎦    ⎣0⎦   
 ```
 
 
@@ -827,13 +827,13 @@ Aⱼ = aⱼ -(q₁ᵀaⱼ)q₁ - ... -(qⱼ₋₁ᵀaⱼ)qⱼ₋₁.  (11)
 *Notice the 1/2 from aᵀb/aᵀa instead of 1/√2 from qᵀb*.
 
 ```
-	⎡1⎤      ⎡1⎤    ⎡ 1/2⎤
+    ⎡1⎤      ⎡1⎤    ⎡ 1/2⎤
 B = ⎢0⎥ - 1/2⎢0⎥  = ⎢  0 ⎥,
-	⎣0⎦      ⎣1⎦    ⎣-1/2⎦
+    ⎣0⎦      ⎣1⎦    ⎣-1/2⎦
 
-	⎡2⎤   ⎡1⎤    ⎡ 1/2⎤    ⎡0⎤
+    ⎡2⎤   ⎡1⎤    ⎡ 1/2⎤    ⎡0⎤
 C = ⎢1⎥ - ⎢0⎥ - 2⎢  0 ⎥  = ⎢1⎥.
-	⎣0⎦   ⎣1⎦    ⎣-1/2⎦    ⎣0⎦   
+    ⎣0⎦   ⎣1⎦    ⎣-1/2⎦    ⎣0⎦   
 ```
 
 
@@ -847,7 +847,7 @@ We started with a matrix A, whose columns were a, b, c. We ended with a matrix Q
 The idea is to write the a's as combinations of the q's. The vector b in Figure 3.10 is a combination of the orthonormal q₁ and q₂, and we know what combination it is:
 
 ```
-	b = (q₁ᵀb)q₁ + (q₂ᵀb)q₂.
+    b = (q₁ᵀb)q₁ + (q₂ᵀb)q₂.
 ```
 
 Every vector in the plane is the sum of its q₁ and q₂ components. Similarly c is the sum of its q₁,q₂,q₃ components: 
@@ -859,9 +859,9 @@ If we express that in matrix form we have ***the new factorization A = QR***:
 ```
 QR factors :
 
-	⎡     ⎤   ⎡        ⎤⎡q₁ᵀa q₁ᵀb q₁ᵀc⎤
+    ⎡     ⎤   ⎡        ⎤⎡q₁ᵀa q₁ᵀb q₁ᵀc⎤
 A = ⎢a b c⎥ = ⎢q₁ q₂ q₃⎥⎢     q₂ᵀb q₂ᵀc⎥ = QR.	(12)
-	⎣     ⎦   ⎣        ⎦⎣          q₃ᵀc⎦
+    ⎣     ⎦   ⎣        ⎦⎣          q₃ᵀc⎦
 ```
 
 R is upper triangular because of the way Gram-Schmidt was done. The first vectors a and q₁ fell on the same line. Then q₁, q₂ were in the same plane as a, b. The third vectors c and q₃ were not involved until step 3.
@@ -869,9 +869,9 @@ R is upper triangular because of the way Gram-Schmidt was done. The first vector
 The QR factorization is like A = LU, except that the first factor Q has orthonormal columns. The second factor is called R, because the nonzeros are to the *right* of the diagonal (and the letter U is already taken). 
 
 ```
-	⎡1 1 2⎤   ⎡1/√2  1/√2  0 ⎤⎡√2  1/√2  √2⎤
+    ⎡1 1 2⎤   ⎡1/√2  1/√2  0 ⎤⎡√2  1/√2  √2⎤
 A = ⎢0 0 1⎥ = ⎢  0    0    1 ⎥⎢    1/√2  √2⎥ = QR.
-	⎣1 0 0⎦   ⎣1/√2 -1/√2  0 ⎦⎣          1 ⎦
+    ⎣1 0 0⎦   ⎣1/√2 -1/√2  0 ⎦⎣          1 ⎦
 ```
 
 *You see the lengths of a, B, C on the diagonal of R*. The orthonormal vectors q₁,q₂,q₃, which are the whole object of orthogonalization, are in the first factor Q. 
