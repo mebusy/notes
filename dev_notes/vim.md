@@ -191,4 +191,19 @@ vimgrep /pattern/gj path
 
 搜索完毕 copen 或 cw 查看搜索列表
 
+### 文件夹 替换
+
+查找
+
+```
+:args *.cpp
+:argdo /word
+```
+
+替换
+
+```
+:args *.cpp
+:argdo %s/word/NEW/eg | update
+```
 
