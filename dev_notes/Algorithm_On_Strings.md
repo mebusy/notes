@@ -86,7 +86,7 @@
  - Brute Force Approach is Slow for Billions of Patterns
     - running time:  O(|Text|·|Patterns|)
     - For human genome:
-        - |Text|≈ 3*10⁹
+        - |Text|≈ 3* 10⁹
         - |Patterns|≈ 10¹²
 
 <h2 id="cd82dafbae81bae40211a2c7f374942f"></h2>

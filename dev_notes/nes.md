@@ -203,7 +203,7 @@ METHODS		|		// draw code 	| ; modify sprites
 
 # Background
 
- - 32x30 tiles (256*240)
+ - 32x30 tiles (256 * 240)
  - Tiles are 8x8 pixels
  - Four unique colors for every 2x2 tiles
  - Background is static , but can be scrolled
