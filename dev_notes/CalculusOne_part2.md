@@ -138,7 +138,7 @@ F(x)= ⎨
 ### What is the antiderivative of f(mx+b)?
 
  - if we have ∫f(x)dx = F(x) + C 
- - ∫f(mx+b)dx = F(mx+b)/c 
+ - ∫f(mx+b)dx = F(mx+b)/m + C 
  - eg.
     - ∫sin(2x+1)dx = -cos(2x+1)/2 + C  
     - ∫sec²xdx = sin(x)/cos(x)+C , ∫sec²(-5x+7)dx = sin(-5x+7)/cos(-5x+7)/-5 + C = sin(5x-7)/cos(5x-7)/5 +C
