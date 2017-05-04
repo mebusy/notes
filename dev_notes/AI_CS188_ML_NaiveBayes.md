@@ -105,6 +105,47 @@
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_naive_Bs_example_CP.png)
 
 
+## Naïve Bayes for Text
+
+ - Bag-of-words Naïve Bayes:
+    - Features: Wᵢ is the word at positon i
+    - As before: predict label conditioned on feature variables (spam vs. ham)
+    - As before: assume features are conditionally independent given label
+    - New: each Wᵢ is identically distributed
+ - Generative model:
+    - P(Y,W₁...W<sub>n</sub>) = P(Y)∏ᵢ P(Wᵢ|Y)
+ - “Tied” distributions and bag-of-words
+    - Usually, each variable gets its own conditional probability distribution P(F|Y)
+    - In a bag-of-words model
+        - Each position is identically distributed
+        - All positions share the same conditional probs P(W|Y)
+        - Why make this assumption?
+    - Called “bag-of-words” because model is insensitive to word order or reordering
+
+### Example: Spam Filtering
+
+ - What are the parameters?
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_naive_Bs_example_spam.png)
+ - Where do these tables come from?
+
+ - example below
+    - Tot field calculate the log value of total probability
+    - (prior) is P(Y)
+    - the first word is `Gray`
+
+
+Word | P(w\|spam) | P(w\|ham) | Tot Spam | Tot Ham 
+--- | --- | --- | --- | --- 
+(prior) | 0.33333 | 0.66666 | -1.1 | -0.4
+Gary | 0.00002 | 0.00021 | -11.8 | -8.9 
+world | 0.00069 | 0.00084 | -19.1 | -16.0
+... | ... | ... | ... | ... 
+sleep | 0.00006 | 0.00001 | -76.0 | -80.5
+
+
+
+
+
 
     
 
