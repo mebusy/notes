@@ -576,10 +576,41 @@ C | P(C|e=1)
 1 | 0.55782596
 
 
+## Quiz BN2-3
 
+ - BNs
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/hw7_bayesnets2_3.png)
+ - Query : P(A|+f)
+ - we run variable elimination with the following ordering: E,D,C,B. 
+ - After introducing evidence, we have the following factors:
+    - P(A) , P(B|A), P(C|A,B), P(D|C), P(E|C), P(+f|E,D) 
 
-
-
+ - Step 1: 
+    - After joining on E and summing out over E, we have generated a new factor f₁ over the following variables and/or evidence 
+        - **C,D,+f**
+            - factors contain variable E are P(E|C), P(+f|E,D) 
+            - which  contain variables: C,D,E,+f, 
+            - and note E is not included after summing out over 
+    - After this step, the remaining factors are:
+        - **P(A) , P(B|A), P(C|A,B), P(D|C), f₁**
+            - P(E|C), P(+f|E,D) which contain variable E does not availabel any more
+            - and new factor f₁ comes in
+ - Step 2: 
+    - After joining on D and summing out over D, we have generated a new factor f₂ over the following variables and/or evidence     
+        - **C,+f**
+    - After this step, the remaining factors are:
+        - **P(A) , P(B|A), P(C|A,B),  f₂**  
+            - P(D|C) not available now
+            - f₁ was comsumed
+            - f₂ comes in
+ - Step 3: 
+    - After joining on C and summing out over C, we have generated a new factor f₃ over the following variables and/or evidence 
+        - **A,B,+f**
+    - After this step, the remaining factors are:  
+        - **P(A) , P(B|A),  f₃**  
+ - Step 4: After joining on B and summing out over 
+    - **A,+f**
+    - **P(A) , f₄**  
 
 
 
