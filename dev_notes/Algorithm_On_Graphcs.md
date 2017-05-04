@@ -253,5 +253,26 @@ How to compute the strongly connected components of a graph. ?
 
 ### Computing Strongly Connected Components
 
+ - Problem
+    - Input: A directed graph G
+    - Output: The strongly connected components of G. 
+
+#### Sink Components
+
+ - Idea: 
+    - If v is in a sink SCC, explore(v) finds vertices reachable from v. This is exactly the SCC **of v**.
+    - that means, you will get different SCC, if you start from different node.
+ - Need a way to find a sink SCC.
+
+
+#### Finding Sink Components
+
+ - Theorem
+    - If C and C' are two strongly connected components with an edge from some vertex of C to some vertex of C' , 
+    - then largest post in C bigger than largest post in C'.
+
+
+
+ 
 
 
