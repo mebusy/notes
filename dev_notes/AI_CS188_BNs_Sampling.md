@@ -179,6 +179,14 @@ For i=1, 2, …, n
 Return (x1, x2, …, xn)
 ```
 
+ - Quiz: BNs has 5 randomes, you sampled 5 times, 
+    - 4 rejected , 1 accepted . 
+    - And that accepted samples satisfy my query , say, eg. P(C=1|B=1,E=1)..
+ - so what is answer of that query ?
+    - 1.0 
+    - 在符合 B=1,E=1 的 样本中，计算 C=1的概率
+
+
 ---
 
 <h2 id="c6947b6b4431fade42a12cf65b3c9a80"></h2>
@@ -240,6 +248,24 @@ Again, we know the query ahead of time, and see if we can further improve the pr
     - weight is still 1.0\*0.1  
  - last is WetGrass , it is instantiated to be +w , we weight it P(+w|+s,+r) = 0.99
     - now the weight is 1.0\*0.1\*0.99 = 0.099
+ - so this sample +c,+s,+r,+w has weigth 0.099
+
+---
+
+ - Quiz2:
+    - 5 Likelihood Weighting samples
+        - weight 0.32 , satisfy the query P(C=1|B=1,E=1)
+        - weight 0.24 , not satisfy the query
+        - weight 0.16 , satisfy the query
+        - weight 0.32 , satisfy the query
+        - weight 0.32 , satisfy the query
+    - P(C=1|B=1,E=1) = ?
+        - [ 0.24, 0.32 + 0.16 + 0.32 + 0.32 ]
+        - normalize: [ 0.17647059, 0.82352941]
+        - P(C=1|B=1,E=1) = 0.82352941
+
+         
+
 
 <h2 id="6d927b96f874f88bd5461de8ac4b040a"></h2>
 

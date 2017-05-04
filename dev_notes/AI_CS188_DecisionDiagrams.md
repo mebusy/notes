@@ -239,6 +239,11 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
     -   = VPI(E<sub>k</sub> |e) + VPI( Eⱼ |e , E<sub>k</sub>  )
     - a lot like the chain rule 
 
+ - The following statements are true:
+    - VPI is guaranteed to be nonnegative (≥0).
+    - The MEU after observing a node could potentially be less than the MEU before observing that node.
+    - VPI is guaranteed to be exactly zero for any node that is conditionally independent (given the evidence so far) of all parents of the utility node.
+
 
 <h2 id="910d92a2d65cc89a6ef483dd86990ade"></h2>
 
