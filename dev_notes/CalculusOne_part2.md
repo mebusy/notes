@@ -216,5 +216,33 @@ There's a visual way to gain some insight into these anti-differentiation proble
     - graph for y = xsinx + cosx 
     - +C can move graph up and down.
 
+# Week12 Integration
+
+## What is summation notation ?
+
+### What is the sum 1 + 2 + ... + k? 
+
+∑<sub>n=</sub>ᵏ₁ n = ?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_2_integration_sum_meaning1.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_2_integration_sum_meaning2.png)
+
+
+∑<sub>n=</sub>ᵏ₁ n = (k+1)·k/2
+
+### What is the sum of the first k odd numbers?
+
+```
+  ∑<sub>n=</sub>ᵏ₁ (2n-1) 
+= ∑<sub>n=</sub>ᵏ₁ 2n - ∑<sub>n=</sub>ᵏ₁ 1 
+= 2·∑<sub>n=</sub>ᵏ₁ n - ∑<sub>n=</sub>ᵏ₁ 1 
+= (k+1)·k - k 
+= k² 
+```
+
+
+
+
 
 
