@@ -243,6 +243,28 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_2_integration_sum_odd.png)
 
+### What is the sum of the first k perfect squares?
+
+```
+  ∑<sub>n=</sub>ᵏ₁ n² = 1² + 2² + ... + k² 
+= k·(k+1)·(2k+1) /6
+```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_2_integration_sum_square.png)
+
+大图正好是 4个小图的 3倍。 4个小图平铺，等于大图中间部分。
+
+ - the length of buttom of big picture is `2k+1`
+ - the height of big picture is ∑<sub>n=</sub>ᵏ₁ n = `(k+1)·k/2`
+ - so the sum of small pictures is `(2k+1)·(k+1)·k/6`
+
+### What is the sum of the first k perfect cubes?
+
+```
+∑<sub>n=</sub>ᵏ₁ n³ = ( ∑<sub>n=</sub>ᵏ₁ n )² 
+```
+
+
 
 
 
