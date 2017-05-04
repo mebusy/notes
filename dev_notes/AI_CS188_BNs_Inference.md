@@ -500,7 +500,12 @@ There are  atrist special graph structures of BNs , where inference can be done 
     - Exercise: Think about how the specifics would work out!
 
 
+---
 
+## Quiz
+
+ - BNs
+    - 
 
 
 
