@@ -215,7 +215,7 @@ So there are only two topological orderings of the directed graph above.
 
 #### Straightforward Solution
 
-Every directed acyclic graph has at least a sink vertex(汇顶点) . That is a vertex without any outgoing arcs. 上面的例子中, t 就是 sink vertex. 
+Every directed acyclic graph has at least a sink vertex . That is a vertex without any outgoing arcs. 上面的例子中, t 就是 sink vertex. 
 
 Follow n arcs , we can see n+1 vertices . If those "n+1" vertices has only n distinct vertices, we're gonna see some vertex twice, and we have exhibited a directed cycle.
 

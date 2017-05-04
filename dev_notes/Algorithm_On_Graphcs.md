@@ -261,8 +261,11 @@ How to compute the strongly connected components of a graph. ?
 
  - Idea: 
     - If v is in a sink SCC, explore(v) finds vertices reachable from v. This is exactly the SCC **of v**.
-    - that means, you will get different SCC, if you start from different node.
+        - 因为SCC的性质，无论你从SCC中的任何一个点node开始，你都是 explore 真个SCC
+    - that also means, you will get different SCC, if you start from different node.
  - Need a way to find a sink SCC.
+    - why ? 
+    - if you start from a source SCC, you many visit the whole graph, it won't help you.
 
 
 #### Finding Sink Components
@@ -270,9 +273,34 @@ How to compute the strongly connected components of a graph. ?
  - Theorem
     - If C and C' are two strongly connected components with an edge from some vertex of C to some vertex of C' , 
     - then largest post in C bigger than largest post in C'.
+ - Conclusion
+    - The vertex with the largest postorder number is in a source component!
+    - Problem: We wanted a sink component
 
+##### Reverse Graph Components
 
+ - Let Gᴿ be the graph obtained from G by reversing all of the edges.  
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_graph_reverse_graph.png)
+ - Gᴿ and G have same SCCs.
+ - Source components of Gᴿ are sink components of G.  
+ - Find sink components of G by running DFS on Gᴿ .
+    - The vertex with largest postorder in Gᴿ is in a sink SCC of G.
 
- 
+#### Algorithm
+
+```python
+def SCCs(G):
+    run DFS(Gᴿ)
+    for v ∈ V in reverse postorder:
+        if not visited(v):
+            Explore(v)
+            # mark the learder node as that SCC
+            mark visited vertices as new SCC
+```
+
+ - Runtime
+    - Essentially DFS on Gᴿ and then on G.  
+    - Runtime O(|V| + |E|).
+
 
 
