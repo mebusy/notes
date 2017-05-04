@@ -262,7 +262,13 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 ### What is the sum of the first k perfect cubes?
 
-∑<sub>n=</sub>ᵏ₁ n³ = ( ∑<sub>n=</sub>ᵏ₁ n )² 
+  ∑<sub>n=</sub>ᵏ₁ n³ 
+
+= ( ∑<sub>n=</sub>ᵏ₁ n )² 
+
+= (k·(k+1)/2)²
+
+= k²·(k+1)² /4
 
 
 
