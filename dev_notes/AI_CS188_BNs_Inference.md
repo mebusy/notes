@@ -505,7 +505,7 @@ There are  atrist special graph structures of BNs , where inference can be done 
 ## Quiz
 
  - BNs
-    - 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/hw7_bayesnets2_2.png)
 
 
 
