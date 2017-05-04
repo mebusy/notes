@@ -270,6 +270,14 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 = k²·(k+1)² /4
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_2_integration_sum_cube.png)
+
+
+## So how do we calculate area precisely ?
+
+
+
+
 
 
 
