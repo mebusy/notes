@@ -372,7 +372,8 @@ P(L|T)
 ![][1]
 
  - P(B|j,m) ∝ P(B,j,m)
- - P(B) , P(E) , P(A|B,E) , P(j|A) , P(m|A) 
+ - after  introducing evidence , we have following factors:
+    - P(B) , P(E) , P(A|B,E) , P(j|A) , P(m|A) 
 
 ---
 
@@ -502,10 +503,78 @@ There are  atrist special graph structures of BNs , where inference can be done 
 
 ---
 
-## Quiz
+## Quiz BN2-2
 
  - BNs
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/hw7_bayesnets2_2.png)
+ - Query: P(C |e=1)
+ - we have the following probability tables
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/hw7_bayesnets2_2_prob_tables.png)
+
+ - Step 1: eliminate A
+    - so we get the factor A→B : f₁(B) = ∑ₐ P(a)P(B|a)
+
+B    |   A  | P(A,B)
+--- | --- | ---
+0 |  0 |  0.35
+1 |  0 |  0.35
+0 |  1 |  0.27
+1 |  1 |  0.03
+
+sum out A, we get 
+
+B | f₁(B)
+--- | ---
+0 | 0.62
+1 | 0.38
+
+ - Step 2: eliminate B.
+    - so we get the factor C←B→D :  f₂(C,D) = ∑<sub>b</sub> P(C|b)P(D|b)f₁(b)  
+
+f₁(B)  | C |    D  | P(f₁(B) ,C,D)
+--- | --- | --- | --- 
+0 |0 |0  |0.155     
+0 |1 |0  |0.155
+0 |0 |1  |0.155 
+0 |1 |1  |0.155     
+1 |0 |0  |0.0076
+1 |1 |0  |0.0684    
+1 |0 |1  |0.0304
+1 |1 |1  |0.2736
+
+sum out B, we get 
+
+C | D | f₂(C,D)
+--- | --- | --- 
+0 | 0 |  0.1626
+1 | 0 |  0.2234
+0 | 1 |  0.1854
+1 | 1 |  0.4286
+
+ - Step 3: eliminate D.
+    - so we get factor C→E←D: f₃(C,e=1) = ∑<sub>d</sub> P(e=1|C,d)f₂(C,d)
+
+C   |    D |  e=1 | P( f₂(C,D) , e=1 )
+--- | --- | --- | ---
+0   |0   |1    |0.900\*0.1626
+1   |0   |1    |0.600\*0.2234
+0   |1   |1    |0.700\*0.1854
+1   |1   |1    |0.500\*0.4286
+
+sum out D , we get 
+
+C | f₃(C,e=1)
+--- | --- 
+0 | 0.27612 
+1 | 0.34834
+
+ - After getting the final factor f₃(C,e=1), a final renormalization step needs be carried out to obtain the conditional probability P(C|e=1).
+
+C | P(C|e=1)
+--- | ---
+0 | 0.44217404
+1 | 0.55782596
+
 
 
 
