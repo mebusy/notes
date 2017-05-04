@@ -241,6 +241,8 @@ There's a visual way to gain some insight into these anti-differentiation proble
 = k² 
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_2_integration_sum_odd.png)
+
 
 
 
