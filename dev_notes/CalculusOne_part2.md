@@ -233,17 +233,18 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 ### What is the sum of the first k odd numbers?
 
-  ∑<sub>n=</sub>ᵏ₁ (2n-1) 
-= ∑<sub>n=</sub>ᵏ₁ 2n - ∑<sub>n=</sub>ᵏ₁ 1 
-= 2·∑<sub>n=</sub>ᵏ₁ n - ∑<sub>n=</sub>ᵏ₁ 1 
-= (k+1)·k - k 
-= k² 
+      ∑<sub>n=</sub>ᵏ₁ (2n-1) 
+    = ∑<sub>n=</sub>ᵏ₁ 2n - ∑<sub>n=</sub>ᵏ₁ 1 
+    = 2·∑<sub>n=</sub>ᵏ₁ n - ∑<sub>n=</sub>ᵏ₁ 1 
+    = (k+1)·k - k 
+    = k² 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_2_integration_sum_odd.png)
 
 ### What is the sum of the first k perfect squares?
 
   ∑<sub>n=</sub>ᵏ₁ n² = 1² + 2² + ... + k² 
+
 = k·(k+1)·(2k+1) /6
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_2_integration_sum_square.png)
