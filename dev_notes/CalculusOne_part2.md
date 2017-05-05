@@ -275,12 +275,36 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 ## So how do we calculate area precisely ?
 
+### What is the definition of the integral of f(x) from x = a to b?
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_integration_ab.png)
 
+ - Thm: If *f* is continuous, then *f* is integrable 
+    - means ∫<sub>a,b</sub>f(x)dx  exist.
+ 
+## Can we compute any other integrals ?
 
+### What is the integral of x^2 from x = 0 to 1?
 
+ - What is the ∫<sub>0,1</sub>x²dx ?
+ - We divide [0,1] into n pieces,  so each interval is 1/n
 
+  ∫<sub>0,1</sub>x²dx 
 
+= lim<sub>n→∞</sub> ∑<sub>i=</sub>ⁿ₁ (i/n)²·(1/n)
 
+= lim<sub>n→∞</sub> ∑<sub>i=</sub>ⁿ₁ 1/n³·i²
+
+= lim<sub>n→∞</sub> 1/n³·∑<sub>i=</sub>ⁿ₁ i²
+
+= lim<sub>n→∞</sub> ( 1/n³· (n)(n+1)(2n+1)/6  )
+
+= lim<sub>n→∞</sub> (1/n³·(2n³+3n²+n)/6)
+
+求这个极限很简单
+
+= 1/3
+
+### What is the integral of x^3 from x = 1 to 2?
 
 
