@@ -140,6 +140,8 @@ https://www.digitalocean.com/community/tutorials/how-to-set-up-uwsgi-and-nginx-t
 
 http://developer.51cto.com/art/201010/229615_all.htm
 
+http://www.bjhee.com/nginx-uwsgi.html
+
 TODO
 
 
