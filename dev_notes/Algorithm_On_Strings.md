@@ -1206,13 +1206,34 @@ Pseudo code
     - 解法：在字符串S后追加$ 构造包含所有后缀的完整后缀树，在其中找到T子串 的最后一个节点，以该节点为根的子树，拥有的叶子节点个数 就是重复次数
     - 复杂度为O(M)，M为T的长度。
  3. 字符串S中的 最长重复子串
-    - 解法：遍历整个后缀树，找到深度最大的非叶子节点，找出最长的一个子串
+    - 解法：longest path label , from the root to any internal node (non-leaf)
     - 复杂度为O(N)，N为字符串的长度。
  4. 两个字符串S1，S2的最长公共子串
     - 解法：分别 为S1、S2追加#、$作为末尾，把他们压入同一个后缀树，然后找到最深的非叶子节点，该节点的叶子节点中，既有#又有$。
     - 复杂度为构造两颗后缀树的复杂度之和，取最大即可max(O(N),O(M))，其中N、M为S1、S2的长度，假设我们以线性时间构造了后缀树
-    - eg S1="xabxa#" , S2="babxba$"
+    - eg S1="xabxa#" , S2="babxba$" , This is generalized suffix tree for xabxa#babxba$ :
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_string_LS1.png)
+            - 注意: S1 和 S2的 suffix string 是独立的, 即 "#" 肯定出现在 最后一个字符
+                - xabxa# , abxa# , bxa#  , xa# , a# , #
+                - babxba$ , abxba$ , ... 
+                - 但是 index 是整个字符串的 
+        - leaves with suffix indices in [0,4] are suffixes of string xabxa
+        - leaves with suffix indices in [6,11] are suffixes of string babxba
+        - With this, we can see that in the generalized suffix tree figure above, there are some internal nodes having leaves below it from
+            - both strings X and Y (i.e. there is at least one leaf with suffix index in [0,4] and one leaf with suffix index in [6, 11]
+            - string X only (i.e. all leaf nodes have suffix indices in [0,4])
+            - string Y only (i.e. all leaf nodes have suffix indices in [6,11]))
+        - Following figure shows the internal nodes marked as “XY”, “X” or “Y” depending on which string the leaves belong to, that they have below themselves.
+            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_string_LS2.png) 
+            - What these “XY”, “X” or “Y” marking mean ?  Path label from root to an internal node gives a substring of X or Y or both.
+                - For node marked as XY, substring from root to that node belongs to both strings X and Y.
+                - For node marked as X, substring from root to that node belongs to string X only.
+                - For node marked as Y, substring from root to that node belongs to string Y only.
+        - how to get common substring of X and Y ?
+            - traverse the path from root to nodes marked as XY, we will get common substring of X and Y.
+        - Now we need to find the longest one among all those common substrings. how to get LCS now ? 
+            - The path label from root to the deepest node marked as XY will give the LCS of X and Y.
+            - path label “abx” is the answer.
  5. 找出给定字符串里的最长回文
     - 
 
