@@ -1211,6 +1211,8 @@ Pseudo code
  4. 两个字符串S1，S2的最长公共子串
     - 解法：分别 为S1、S2追加#、$作为末尾，把他们压入同一个后缀树，然后找到最深的非叶子节点，该节点的叶子节点中，既有#又有$。
     - 复杂度为构造两颗后缀树的复杂度之和，取最大即可max(O(N),O(M))，其中N、M为S1、S2的长度，假设我们以线性时间构造了后缀树
+    - eg S1="xabxa#" , S2="babxba$"
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_string_LS1.png)
  5. 找出给定字符串里的最长回文
     - 
 
