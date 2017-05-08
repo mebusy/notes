@@ -52,7 +52,22 @@ here program 1 has its address space. In the code segment here those addresses w
 
 The set of addresses that are translated to in the physical space don't overlap. 
 
- 
+There is a simple problem here:  that mapping need s to somehow be out of the realm of changable by the process.  
 
 
+## The other half of protection: Dual Mode Operation
+
+ - **Hardware** provides at least two modes:
+    - “Kernel” mode (or “supervisor” or “protected”)
+    - “User” mode: Normal programs executed 
+ - Some instructions/ops prohibited in user mode:
+    - Example: cannot modify page tables in user mod
+        - Attempt to modify => Exception generated
+ - Transitions from user mode to kernel mode:
+    - System Calls, Interrupts, Other exceptions
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_histroy_dual_mode_operation.png)
+
+
+     
 
