@@ -72,6 +72,87 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_unix_system_structure.png)
 
+## a quick tour of OS Structures
+
+### Operating Systems Components (What are the pieces of the OS)
+
+ - Process Management
+ - Main-Memory Management
+ - I/O System management
+ - File Management
+ - Networking
+ - User Interfaces
+
+
+### Operating System Services (What things does the OS do?)
+
+ - Services that (more-or-less) map onto components
+    - Program execution
+        - How do you execute concurrent sequences of instructions?
+    - I/O operations
+        - Standardized interfaces to extremely diverse devices
+    - File system manipulation
+        - How do you read/write/preserve files?
+        - Looming concern: How do you even find files???
+    - Communications
+        - Networking protocols/Interface with CyberSpace?
+ - Cross-cutting capabilities
+    - Error detection & recovery
+    - Resource allocation
+    - Accounting
+    - Protection
+
+### System Calls (What is the API)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_system_calls.png)
+
+### Operating Systems Structure (What is the organizational Principle?)
+
+ - Simple
+    - Only one or two levels of code
+ - Layered
+    - Lower levels independent of upper levels
+ - Microkernel
+    - OS built from many user-level processes
+ - Modular
+    - Core kernel with Dynamically loadable modules
+
+
+---
+
+# Lecture3 : Concurrency: Processes and Threads
+
+## Concurrency
+
+ - “Thread” of execution
+    - Independent Fetch/Decode/Execute loop
+    - Operating in some Address space
+ - Uniprogramming: one thread at a time
+    - **MS/DOS, early Macintosh, Batch processing**
+    - Easier for operating system builder
+    - Get rid concurrency by defining it away
+    - Does this make sense for personal computers?
+ - Multiprogramming: more than one thread at a time
+    - **Multics, UNIX/Linux, OS/2, Windows NT/2000/XP, Mac OS X** 
+    - Often called “multitasking”, but multitasking has other meanings (talk about this later)
+
+## The Basic Problem of Concurrency
+
+ - The basic problem of concurrency involves resources:
+    - Hardware: single CPU, single DRAM, single I/O devices
+    - Multiprogramming API: users think they have exclusive access to shared resources
+ - OS Has to coordinate all activity
+    - Multiple users, I/O interrupts, …
+    - How can it keep all these things straight?
+ - Basic Idea: Use Virtual Machine abstraction
+    - Decompose hard problem into simpler ones
+    - Abstract the notion of an executing program
+    - Then, worry about multiplexing these abstract machines
+ - Dijkstra did this for the “THE system”
+    - Few thousand lines vs 1 million lines in OS 360 (1K bugs)
+
+
+
 
 
 
