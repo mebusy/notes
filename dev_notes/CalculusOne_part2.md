@@ -307,4 +307,34 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 ### What is the integral of x^3 from x = 1 to 2?
 
+  ∫<sub>0,2</sub>x³dx 
+  
+= lim<sub>n→∞</sub> ∑<sub>i=</sub>ⁿ₁ (2/n·i)³·2/n
+
+= lim<sub>n→∞</sub> ∑<sub>i=</sub>ⁿ₁ 16/n⁴·i³
+
+= lim<sub>n→∞</sub> 16/n⁴· ∑<sub>i=</sub>ⁿ i³
+
+= lim<sub>n→∞</sub> 16/n⁴· (∑<sub>i=</sub>ⁿ i)²
+
+= lim<sub>n→∞</sub> 16/n⁴·((n)(n+1)/2)²
+
+= lim<sub>n→∞</sub> 4·n²·(n+1)²/n⁴
+
+= 4
+
+repeat this same kind of calculation to deduce that: 
+
+∫<sub>0,1</sub>x³dx  = 1/4
+
+now we get the final answer:
+
+∫<sub>1,2</sub>x³dx  = ∫<sub>0,2</sub>x³dx - ∫<sub>0,1</sub>x³dx = 15/4
+
+
+## Can we understand anything conceptually about integrals ?
+
+
+
+
 
