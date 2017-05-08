@@ -334,6 +334,30 @@ now we get the final answer:
 
 ## Can we understand anything conceptually about integrals ?
 
+### What sorts of properties does the integral satisfy?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_integral_satisfied_property1.png)
+
+∑<sub>n=</sub>ᵐ₁ f(n) + ∑<sub>n=</sub>ᵏ<sub>m+1</sub> f(n) = ∑<sub>n=</sub>ᵏ₁ f(n)
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_integral_satisfied_property2.png)
+
+∑<sub>n=</sub>ᵇₐ k·f(n)  = k·∑<sub>n=</sub>ᵇₐf(n)
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_integral_satisfied_property3.png)
+
+∑<sub>n=</sub>ᵇₐ (f(n)+g(n)) = ∑<sub>n=</sub>ᵇₐ f(n) + ∑<sub>n=</sub>ᵇₐ g(n)
+
+**The derivatives have the same rules about sum !**
+
+### When is the accumulation function increasing? Decreasing?
+
+When is A(x) = ∫ˣₐf(t)dt increasing ? Decreasing ?
+
+
+
 
 
 
