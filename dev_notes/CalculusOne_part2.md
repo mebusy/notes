@@ -358,9 +358,25 @@ When is A(x) = ∫ˣₐf(t)dt increasing ? Decreasing ?
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_integral_acc_function.png)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_integral_acc_function_decreasing.png)
+
+The integrals are not exactly measuring area, they're measuring **singed area**. 
+
+ - f positive
+    - A(x) increasing
+    - A'(x) > 0
+ - f negative 
+    - A(x) decreasing
+    - A'(x) < 0
+
+---
+
+ - 利用函数的对称性，我们可以简化 积分计算
+ - ∫¹₋₁ sinxdx = 0
+ - ∫<sup>2π</sup>₀ cosxdx = 0 
 
 
-
+# Week 13 Fundamental Theorem of Calculus
 
 
 
