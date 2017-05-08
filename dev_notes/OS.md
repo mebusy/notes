@@ -220,6 +220,12 @@ Need three important things:
     - Must not be possible to disable timer from usercode
 
 
+## Recall: Program’s Address Space
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_program_address_space.png)
+
+
+
 
 
 
