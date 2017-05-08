@@ -68,6 +68,12 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_histroy_dual_mode_operation.png)
 
+## UNIX System Structure
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_unix_system_structure.png)
+
+
+
 
      
 
