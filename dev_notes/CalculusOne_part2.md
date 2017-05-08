@@ -356,6 +356,8 @@ now we get the final answer:
 
 When is A(x) = ∫ˣₐf(t)dt increasing ? Decreasing ?
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_integral_acc_function.png)
+
 
 
 
