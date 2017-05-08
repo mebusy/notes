@@ -33,3 +33,15 @@ https://people.eecs.berkeley.edu/~kubitron/cs162/
     - Programs are not allowed to read/write memory of other Programs or of Operating System 
 
 
+## Address Translation
+
+ - Address Space
+    - A group of memory addresses usable by something 
+    - Each program (process) and kernel has potentially different address spaces.
+ - Address Translation:
+    - Translate from Virtual Addresses (emitted by CPU) into Physical Addresses (of memory)
+    - Mapping often performed in Hardware by Memory Management Unit (MMU)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_address_translation.png)
+
+
+
