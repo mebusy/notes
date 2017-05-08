@@ -44,4 +44,15 @@ https://people.eecs.berkeley.edu/~kubitron/cs162/
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_address_translation.png)
 
 
+### Example of Address Translation
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_example_address_translation.png)
+
+here program 1 has its address space. In the code segment here those addresses which might be from 0 to some point 3F433F whatever, get translated to this part of the DRAM. 
+
+The set of addresses that are translated to in the physical space don't overlap. 
+
+ 
+
+
 
