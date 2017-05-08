@@ -151,6 +151,36 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
  - Dijkstra did this for the “THE system”
     - Few thousand lines vs 1 million lines in OS 360 (1K bugs)
 
+## How can we give the illusion of multiple processors?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_illusion_of_multiple_processors.png)
+
+ - Assume a single processor. How do we provide the illusion of multiple processors?
+    - Multiplex in time!
+ - Each virtual “CPU” needs a structure to hold:
+    - Program Counter (PC), Stack Pointer (SP)
+    - Registers (Integer, Floating point, others…?)
+ - How switch from one CPU to the next?
+    - Save PC, SP, and registers in current state block
+    - Load PC, SP, and registers from new state block
+ - What triggers switch?
+    - Timer, voluntary yield, I/O, other things
+
+## Properties of this simple multiprogramming technique
+ 
+ - All virtual CPUs share same non-CPU resources
+    - I/O devices the same
+    - Memory the same
+ - Consequence of sharing:
+    - Each thread can access the data of every other thread (good for sharing, bad for protection)
+    - Threads can share instructions (good for sharing, bad for protection)
+    - Can threads overwrite OS functions? 
+ - This (unprotected) model common in:
+    - Embedded applications
+    - Windows 3.1/Machintosh (switch only with yield)
+    - Windows 95—ME? (switch with both yield and timer)
+
+
 
 
 
