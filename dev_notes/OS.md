@@ -180,6 +180,45 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
     - Windows 3.1/Machintosh (switch only with yield)
     - Windows 95—ME? (switch with both yield and timer)
 
+## Modern Technique: SMT/Hyperthreading
+
+
+ - Hardware technique 
+    - Exploit natural properties of superscalar processors to provide illusion of multiple processors
+    - Higher utilization of processor resources 
+ - Can schedule each thread as if were separate CPU
+    - However, not linear speedup!
+    - If have multiprocessor, should schedule each processor first
+ - Original technique called “Simultaneous Multithreading”
+    - Alpha, SPARC, Pentium 4 (“Hyperthreading”), Power 5
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_hyperthreading.png)
+
+ - modern processors all execute more than one thing at a time
+    - more than 1 instruction on a cycle
+ - what the picture is showing you here is 
+    - time is going down
+    - each slot(row?) represents a cycle ,each column represents a functional unit 
+        - so there are 3 functional units 
+    - the 1st cycle 
+        - a) functional unit 1 and 3  are busy (colored), function unit 2 is not busy
+        - b) you might put tow of these together , and each of them has idle slots.
+        - c) you put two threads togethter into the same pipline and they share the slots as a result you end up filling up more the empty slots.  
+            - this means that the hardware itself has got 2 sets of registers , 2 Program Counters, 2 branch predictores , and 2 of a few other things ...
+
+## How to protect threads from one another?
+
+Need three important things:
+
+ 1. Protection of memory
+    - Every task does not have access to all memory
+ 2. Protection of I/O devices
+    - Every task does not have access to every device
+ 3. Protection of Access to Processor: Preemptive switching from task to task 
+    - Use of timer
+    - Must not be possible to disable timer from usercode
+
 
 
 
