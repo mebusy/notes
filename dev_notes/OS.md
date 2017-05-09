@@ -387,6 +387,53 @@ A modern process has more than one thread. The idea is the process still has one
     - Separate from the “address space” (Protection)
     - Heavyweight Process  ==  Process with one thread 
 
+### Single and Multithreaded Processes
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_single_multithreaded_process.png)
+
+ - each thread has its own registers and stack. 
+ - Threads encapsulate concurrency: “Active” component
+ - Address spaces encapsulate protection: “Passive” part
+    - Keeps buggy program from trashing the system
+ - Why have multiple threads per address space?
+    
+### Examples of multithreaded programs
+
+ - Embedded systems 
+    - Elevators, Planes, Medical systems, Wristwatches
+    - Single Program, concurrent operations
+ - Most modern OS kernels
+    - Internally concurrent because have to deal with concurrent requests by multiple users
+    - But no protection needed within kernel
+ - Database Servers
+    - Access to shared data by many concurrent users
+    - Also background utility processing must be done
+ - Network Servers
+    - Concurrent requests from network
+    - Again, single program, multiple concurrent operations
+    - File server, Web server, and airline reservation systems
+ - Parallel Programming (More than one physical CPU)
+    - Split program into multiple threads for parallelism
+    - This is called Multiprocessing
+ - Some multiprocessors are actually uniprogrammed:
+    - Multiple threads in one address space but one program at a time
+
+
+## Thread State
+
+ - State shared by all threads in process/addr space
+    - Contents of memory (global variables, heap)
+    - I/O state (file system, network connections, etc)
+ - State “private” to each thread
+    - Kept in TCB -- Thread Control Block
+    - CPU registers (including, program counter)
+    - Execution stack – what is this?
+ - Execution Stack
+    - Parameters, Temporary variables
+    - return PCs are kept while called procedures are executing
+
+
+
 
 
 
