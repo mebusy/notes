@@ -320,6 +320,16 @@ Need three important things:
  - Copy I/O state (file handles, etc)
     - Medium expense
 
+## Process =? Program 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_process_vs_program.png)
+
+ - More to a process than just a program:
+    - Program is just part of the process state
+    - I run emacs on lectures.txt, you run it on homework.java – Same program, different processes
+ - Less to a process than a program:
+    - A program can invoke more than one process
+    - cc starts up cpp, cc1, cc2, as, and ld
 
 
 
