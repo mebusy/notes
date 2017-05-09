@@ -198,6 +198,10 @@ sleep | 0.00006 | 0.00001 | -76.0 | -80.5
     - P<sub>LAP,0</sub>(X) = (2/3, 1/3)
     - P<sub>LAP,1</sub>(X) = (3/5, 2/5)
     - P<sub>LAP,100</sub>(X) = (102/203, 101/203)
+ - Laplace for conditionals:
+    - Smooth each condition independently:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ml_naive_laplace_smooth_k_conditional.png)
+
 
 
 
