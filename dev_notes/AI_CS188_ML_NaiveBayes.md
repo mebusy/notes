@@ -181,7 +181,7 @@ sleep | 0.00006 | 0.00001 | -76.0 | -80.5
 ### Laplace Smoothing
 
  - Laplace’s estimate:
-    - Pretend you saw every outcome once more than you actually did
+    - Pretend you saw **every** outcome once more than you actually did
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ml_naive_laplace_smooth.png)
  - Can derive this estimate with Dirichlet priors (see cs281a)
  - for some purpose like zeor is not allowed.
@@ -190,7 +190,14 @@ sleep | 0.00006 | 0.00001 | -76.0 | -80.5
     - P<sub>ML</sub>(X) = ( 2/3, 1/3 )
     - P<sub>LAP</sub>(X) = ( 3/5, 2/5 )  
         - adding 1 red, 1 blue
-
+ - Laplace’s estimate (extended):
+    - Pretend you saw **every** outcome **k extra** time
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ml_naive_laplace_smooth_k.png)
+    - What’s Laplace with k = 0?
+    - k is the **strength** of the prior
+    - P<sub>LAP,0</sub>(X) = (2/3, 1/3)
+    - P<sub>LAP,1</sub>(X) = (3/5, 2/5)
+    - P<sub>LAP,100</sub>(X) = (102/203, 101/203)
 
 
 
