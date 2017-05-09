@@ -130,6 +130,7 @@
 
  - example below
     - Tot field calculate the log value of total probability
+        - log( P(Y,W₁, ... W<sub>n</sub>) ) = logP(Y) + ∑log( P(Wᵢ|Y) ) 
     - (prior) is P(Y)
     - the first word is `Gray`
 
@@ -143,6 +144,47 @@ world | 0.00069 | 0.00084 | -19.1 | -16.0
 sleep | 0.00006 | 0.00001 | -76.0 | -80.5
 
 
+ - P(spam | w) = 98.9 
+    - e<sup>-76.0</sup> / ( e<sup>-76.0</sup> + e<sup>-80.5</sup> ) = 98.9
+
+## Training and Testing
+
+### Important Concepts
+
+ - Data: labeled instances, e.g. emails marked spam/ham
+    - Training set
+    - Held out set
+    - Test set
+ - Features: attribute-value pairs which characterize each x
+ - Experimentation cycle
+    - Learn parameters (e.g. model probabilities) on training set
+    - (Tune hyperparameters on held-out set)
+    - Compute accuracy of test set
+    - Very important: never “peek” at the test set!
+ - Evaluation
+    - Accuracy: fraction of instances predicted correctly
+ - Overfitting and generalization
+    - Want a classifier which does well on test data
+    - Overfitting: fitting the training data very closely, but not generalizing well
+    - We’ll investigate overfitting and generalization formally in a few lectures
+
+
+## Parameter Estimation
+
+ - Estimating the distribution of a random variable
+ - Elicitation: ask a human (why is this hard?)
+ - Empirically: use training data (learning!)
+
+
+## Smoothing
+
+### Laplace Smoothing
+
+ - Laplace’s estimate:
+    - Pretend you saw every outcome once more than you actually did
+    - 
+ - Can derive this estimate with Dirichlet priors (see cs281a)
+ - for some purpose like zeor is not allowed.
 
 
 
