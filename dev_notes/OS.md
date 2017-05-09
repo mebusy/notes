@@ -299,6 +299,29 @@ Need three important things:
     - The process has finished execution
 
 
+## Process Scheduling
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_process_scheduling.png)
+
+ - PCBs move from queue to queue as they change state
+    - Decisions about which order to remove from queues are **Scheduling** decisions
+    - Many algorithms possible (few weeks from now)
+
+## What does it take to create a process?
+
+ - Must construct new PCB 
+    - Inexpensive
+ - Must set up new page tables for address space
+    - More expensive
+ - Copy data from parent process? (Unix fork() )
+    - Semantics of Unix fork() are that the child process gets a complete copy of the parent memory and I/O state
+    - Originally **very expensive**
+    - Much less expensive with “copy on write”
+ - Copy I/O state (file handles, etc)
+    - Medium expense
+
+
+
 
 
 
