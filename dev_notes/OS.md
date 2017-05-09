@@ -546,6 +546,18 @@ main() {
  - OS Keeps track of TCBs in protected memory
     - In Array, or Linked List, or …
 
+## Lifecycle of a Thread (or Process)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_lifecycle_of_thread.png)
+
+ - As a thread executes, it changes state:
+    - new: The thread is being created
+    - ready: The thread is waiting to run
+    - running: Instructions are being executed
+    - waiting: Thread waiting for some event to occur
+    - terminated: The thread has finished execution
+ - “Active” threads are represented by their TCBs
+    - TCBs organized into queues based on their state
 
 
 
