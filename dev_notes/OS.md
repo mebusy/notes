@@ -432,6 +432,14 @@ A modern process has more than one thread. The idea is the process still has one
     - Parameters, Temporary variables
     - return PCs are kept while called procedures are executing
 
+### Execution Stack Example
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_execution_stack_example.png)
+
+ - Stack holds temporary results
+ - Permits recursive execution
+ - Crucial to modern languages
+
 
 
 
