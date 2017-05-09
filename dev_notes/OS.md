@@ -638,5 +638,35 @@ run_new_thread() {
     - Save anything next thread may trash: PC, regs, stack
     - Maintain isolation for each thread
 
-   
+## What do the stacks look like?
+
+
+ - Consider the following code blocks:
+
+```
+proc A() {
+    B();
+}
+
+proc B() {
+    while(TRUE) {
+        yield();
+    }
+}  
+```
+
+ - Suppose we have 2 threads:
+    - Threads S and T
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_stack_looks_like.png)
+
+ - we have 2 threads, both of the threads are running this code
+
+
+
+
+
+
+ 
 
