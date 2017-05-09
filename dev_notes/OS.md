@@ -462,11 +462,63 @@ A modern process has more than one thread. The idea is the process still has one
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_MIPS_software_conventions_for_register.png)
 
+ - 0 register is always 0
+    - if you write to it nothing happen , if you read to it you always get 0
+ - 4-7  used for argument passing
+ - 8-15  caller saves
+ - 16-23 callee saves 
+ - 24,25 another couple of temporaries which are actually caller saves
+ - 26,27 reserved for kernel
+ - 28-30
+
+---
 
 
+ - Before calling procedure:
+    - Save caller-saves regs
+    - Save v0, v1
+    - Save ra
+ - After return, assume
+    - Callee-saves reg OK
+    - gp,sp,fp OK (restored!)
+    - Other things trashed
+ 
+
+## Single-Threaded Example
+
+ - Imagine the following C program:
+
+```c
+main() {
+    ComputePI(“pi.txt”);
+    PrintClassList(“clist.text”);
+}
+```
+ 
+ - What is the behavior here?
+    - Program would never print out class list  
+    - because ComputePI would never finish
+
+## Use of Threads
+
+ - Version of program with Threads:
+
+```c
+main() {
+    CreateThread(ComputePI(“pi.txt”));
+    CreateThread(PrintClassList(“clist.text”));
+}
+```
+
+ - What does “CreateThread” do?
+    - Start independent thread running given procedure
+ - What is the behavior here?
+    - Now, you would actually see the class list
+    - This *should* behave as if there are two separate CPUs
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_use_of_thread.png)
 
 
-
+## 
 
 
 
