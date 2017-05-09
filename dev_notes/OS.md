@@ -440,6 +440,26 @@ A modern process has more than one thread. The idea is the process still has one
  - Permits recursive execution
  - Crucial to modern languages
 
+## Summary
+
+ - Processes have two parts
+    - Threads (Concurrency)
+    - Address Spaces (Protection)
+ - Concurrency accomplished by multiplexing CPU Time:
+    - Unloading current thread (PC, registers)
+    - Loading new thread (PC, registers)
+    - Such context switching may be voluntary (yield(), I/O operations) or involuntary (timer, other interrupts)
+ - Protection accomplished restricting access:
+    - Memory mapping isolates processes from each other
+    - Dual-mode for isolating I/O, other resources
+ - Book talks about processes 
+    - When this concerns concurrency, really talking about thread portion of a process
+    - When this concerns protection, talking about address space portion of a process
+
+# Lecture 4: Thread Dispatching 
+
+
+
 
 
 
