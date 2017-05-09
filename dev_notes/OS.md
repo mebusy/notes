@@ -259,7 +259,21 @@ Need three important things:
 
 ## How do we multiplex processes?
 
- - 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_process_control_block.png)
+
+ - The current state of process held in a process control block (PCB):
+    - This is a “snapshot” of the execution and protection environment
+    - Only one PCB active at a time
+    - not quite multi-core world yet, we only have one process can be running at a time in this mode because we only have 1 cpu.
+ - Give out CPU time to different processes (**Scheduling**):
+    - Only one process “running” at a time
+    - Give more time to important processes
+ - Give pieces of resources to different processes (**Protection**):
+    - Controlled access to non-CPU resources
+    - Sample mechanisms: 
+        - Memory Mapping: Give each process their own address space
+        - Kernel/User duality: Arbitrary multiplexing of I/O through system calls
+
 
 
 
