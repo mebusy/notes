@@ -203,6 +203,50 @@ sleep | 0.00006 | 0.00001 | -76.0 | -80.5
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ml_naive_laplace_smooth_k_conditional.png)
 
 
+## Estimation: Linear Interpolation* 
+
+ - In practice, Laplace often performs poorly for P(X|Y):
+    - When |X| is very large
+    - When |Y| is very large
+ - Another option: linear interpolation
+    - Also get the empirical P(X) from the data
+    - Make sure the estimate of P(X|Y) isn’t too different from the empirical P(X)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ml_naive_estimation_linear_interpolation.png)
+ - For even better ways to estimate parameters, as well as details of the math, see cs281a, cs288
+
+## Tuning
+
+### Tuning on Held-Out Data
+
+ - Now we’ve got two kinds of unknowns
+    - Parameters: the probabilities P(X|Y), P(Y)
+    - Hyperparameters: e.g. the amount / type of smoothing to do, k, α
+ - What should we learn where?
+    - Learn parameters from training data
+    - Tune hyperparameters on different data
+    - For each value of the hyperparameters, train and test on the held-out data
+    - Choose the best value and do a final test on the test data
+
+## Features
+
+### Errors, and What to Do
+
+ - Need more features– words aren’t enough!
+    - Have you emailed the sender before?
+    - Have 1K other people just gotten the same email?
+    - Is the sending information consistent? 
+    - Is the email in ALL CAPS?
+    - Do inline URLs point where they say they point?
+    - Does the email address you by (your) name?
+ - Can add these information sources as new variables in the NB model
+ - Next class we’ll talk about classifiers which let you easily add arbitrary features more easily
+
+
+
+
+
+
+
 
 
 
