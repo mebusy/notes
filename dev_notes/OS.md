@@ -331,6 +331,25 @@ Need three important things:
     - A program can invoke more than one process
     - cc starts up cpp, cc1, cc2, as, and ld
 
+## Multiple Processes Collaborate on a Task
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_processes_collaborate_on_a_task.png)
+
+ - this is kind of the beginnings of parallelism 
+    - there are 3 processes they want to collaborate together , they got to talk to each other.
+ - High Creation/memory Overhead
+ - (Relatively) High Context-Switch Overhead
+ - Need Communication mechanism:
+    - Separate Address Spaces Isolates Processes
+        - it's not like you can write in the memory of one process and read it in the memory of the other 
+    - Shared-Memory Mapping ( one way to talk to each other )
+        - Accomplished by mapping addresses to common DRAM
+        - Read and Write through memory
+    - Message Passing ( another one )
+        - send() and receive() messages
+        - Works across network
+
+
 
 
 
