@@ -620,7 +620,23 @@ computePI() {
  - the suggestion here is that you're never doing a lot of work if you're mostly yielding all the time.
 
 
+## Stack for Yielding Thread
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_stack_for_yielding_thread.png)
 
-     
+ - How do we run a new thread?
+
+```
+run_new_thread() {
+    newThread = PickNewThread();
+    switch(curThread, newThread);
+    ThreadHouseKeeping(); /* next Lecture */
+}
+```
+
+ - How does dispatcher switch to a new thread?
+    - Save anything next thread may trash: PC, regs, stack
+    - Maintain isolation for each thread
+
+   
 
