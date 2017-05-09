@@ -224,7 +224,42 @@ Need three important things:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_program_address_space.png)
 
+ - here's a zero up to whatever the max address 
+    - we have the text area which is where the instructions are
+    - we have data which is static data that's allocated at the beginning of the program
+    - heap : dynamically allocated memory 
+    - stack: local variables 
+ - Address space => the set of accessible addresses + state associated with them: 
+    - For a 32-bit processor there are 2³² = 4 billion addresses
+ - What happens when you read or write to an address?  
+    - Perhaps Nothing
+        - you write data in the middle of an empty space , usually it will cause an segmentation fault because it is not real memory. 
+    - Perhaps acts like regular memory
+    - Perhaps ignores writes
+        - you write data in the section called read-only , eg. the text segment , or they cause another segmentation fault.
+    - Perhaps causes I/O operation
+        - (Memory-mapped I/O)
+    - Perhaps causes exception (fault)
 
+
+## Traditional UNIX Process
+
+ - **Process: Operating system abstraction to represent what is needed to run a single program**
+    - Often called a “HeavyWeight Process”
+    - Formally: a single, sequential stream of execution in its own address space
+ - Two parts:
+    - Sequential Program Execution Stream
+        - Code executed as a single, sequential stream of execution
+        - Includes State of CPU registers
+    - Protected Resources:
+        - Main Memory State (contents of Address Space)
+        - I/O state (i.e. file descriptors)
+ - **Important: There is no concurrency in a heavyweight process**
+    - which means there's only one thread
+
+## How do we multiplex processes?
+
+ - 
 
 
 
