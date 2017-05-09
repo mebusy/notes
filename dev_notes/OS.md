@@ -518,7 +518,35 @@ main() {
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_use_of_thread.png)
 
 
-## 
+## Memory Footprint of Two-Thread Example
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_2thread_mem_footprint.png)
+
+ - If we stopped this program and examined it with a debugger, we would see
+    - Two sets of CPU registers
+    - Two sets of Stacks
+    - threads basically can trash each other pretty much anyway they want. but because of the way the abstraction works it's very hard for them to really screw each other's registers up that are stored in memory. but they can pretty much screw each other up by messing with their heaps anyway. 
+ - Questions: 
+    - How do we position stacks relative to each other?
+    - What maximum size should we choose for the stacks?
+    - What happens if threads violate this?
+    - How might you catch violations?
+
+
+## Per Thread State
+
+ - Each Thread has a **Thread Control Block** (TCB)
+    - Execution State: CPU registers, program counter, pointer to stack
+    - Scheduling info: State (more later), priority, CPU time
+    - Accounting Info
+    - Various Pointers (for implementing scheduling queues)
+    - Pointer to enclosing process? (PCB)?
+    - – Etc (add stuff as you find a need)
+ - In Nachos: “Thread” is a class that includes the TCB
+ - OS Keeps track of TCBs in protected memory
+    - In Array, or Linked List, or …
+
+
 
 
 
