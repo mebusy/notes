@@ -559,7 +559,65 @@ main() {
  - “Active” threads are represented by their TCBs
     - TCBs organized into queues based on their state
 
+## Ready Queue And Various I/O Device Queues
 
+ - Thread not running => TCB is in some scheduler queue
+    - Separate queue for each device/signal/condition 
+    - Each queue can have a different scheduler policy
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_ready_queue.png)
+
+
+## Dispatch Loop
+
+ - Conceptually, the dispatching loop of the operating system looks as follows:
+
+```
+Loop {
+    RunThread();
+    ChooseNextThread();
+    SaveStateOfCPU(curTCB);
+    LoadStateOfCPU(newTCB);
+}
+```
+
+ - This is an *infinite* loop
+    - One could argue that this is all that the OS does
+ - Should we ever exit this loop???
+    - When would that be?  Shutting down, blue screen , ...
+
+## Running a thread
+
+Consider first portion: RunThread()
+
+ - How do I run a thread?
+    - Load its state (registers, PC, stack pointer) into CPU
+    - Load environment (virtual memory space, etc)
+    - Jump to the PC
+ - How does the dispatcher get control back?
+    - Internal events: thread returns control voluntarily
+    - External events: thread gets *preempted*
+
+
+### Internal Events
+
+ - Blocking on I/O
+    - The act of requesting I/O implicitly yields the CPU
+ - Waiting on a “signal” from other thread
+    - Thread asks to wait and thus yields the CPU
+ - Thread executes a yield()
+    - Thread volunteers to give up CPU
+
+```
+computePI() {
+    while(TRUE) {
+        ComputeNextDigit();
+        yield();
+    }
+}
+```
+
+ - the suggestion here is that you're never doing a lot of work if you're mostly yielding all the time.
 
 
 
