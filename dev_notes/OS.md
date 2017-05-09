@@ -349,6 +349,45 @@ Need three important things:
         - send() and receive() messages
         - Works across network
 
+### Shared Memory Communication
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_shared_memory_communication.png)
+
+ - Communication occurs by “simply” reading/writing to shared address page
+    - Really low overhead communication
+    - Introduces complex synchronization problems 
+
+### Inter-process Communication (IPC)
+
+ - Mechanism for processes to communicate and to synchronize their actions
+ - Message system – processes communicate with each other without resorting to shared variables
+ - IPC facility provides two operations:
+    - send(message) – message size fixed or variable 
+    - receive(message)
+ - If P and Q wish to communicate, they need to:
+    - establish a communication link between them
+    - exchange messages via send/receive
+ - Implementation of communication link
+    - physical (e.g., shared memory, hardware bus, systcall/trap)
+    - logical (e.g., logical properties)
+
+
+## Modern “Lightweight” Process with Threads
+
+A modern process has more than one thread. The idea is the process still has one address space , but it has multiple threads in it. 
+ 
+ - Thread: a sequential execution stream within process (Sometimes called a “Lightweight process”)
+    - Process still contains a single Address Space
+    - No protection between threads
+    - threads in the same process all share the same memory
+ - Multithreading: a single program made up of a number of different concurrent activities 
+    - Sometimes called multitasking, as in Ada…
+ - Why separate the concept of a thread from that of a process?
+    - Discuss the “thread” part of a process (concurrency)
+    - Separate from the “address space” (Protection)
+    - Heavyweight Process  ==  Process with one thread 
+
+
 
 
 
