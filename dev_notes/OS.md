@@ -458,6 +458,10 @@ A modern process has more than one thread. The idea is the process still has one
 
 # Lecture 4: Thread Dispatching 
 
+## MIPS: Software conventions for Registers
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_MIPS_software_conventions_for_register.png)
+
 
 
 
