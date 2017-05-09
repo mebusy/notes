@@ -275,6 +275,17 @@ Need three important things:
         - Kernel/User duality: Arbitrary multiplexing of I/O through system calls
 
 
+## CPU Switch From Process to Process
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_context_switch.png)
+
+ - This is also called a “context switch”
+ - executing instractuions of p₀,p₁  do not overlap because only 1 cpu
+ - Code executed in kernel above is overhead
+    - no process is making useful progress while OS is saving / reloading PCB, etc...
+    - Overhead sets minimum practical switching time
+    - Less overhead with SMT/hyperthreading, but… contention for resources instead
+        - you could actually have 2 processes loaded at the same time ,and that overhead switching in the hardware , and there is no overhead they're pretty much because the hardware is doing it for you. 
 
 
 
