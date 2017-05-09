@@ -287,6 +287,17 @@ Need three important things:
     - Less overhead with SMT/hyperthreading, but… contention for resources instead
         - you could actually have 2 processes loaded at the same time ,and that overhead switching in the hardware , and there is no overhead they're pretty much because the hardware is doing it for you. 
 
+## Diagram of Process State
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_diagram_of_process_state.png)
+
+ - As a process executes, it changes state
+    - new: The process is being created
+    - The process is waiting to run
+    - Instructions are being executed 
+    - Process waiting for some event to occur
+    - The process has finished execution
+
 
 
 
