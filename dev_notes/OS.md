@@ -748,10 +748,60 @@ Network interrupt is an external interrupt.
  - An interrupt is a hardware-invoked context switch
     - No separate step to choose what to run next
     - Always run the interrupt handler immediately
+ - network intertupts run every time a packets received
 
 
+## Use of Timer Interrupt to Return Contro
+
+ - Solution to our dispatcher problem
+    - Use the timer interrupt to force scheduling decisions
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_timer_interrupt.png)
+ - Timer Interrupt routine:
+
+```
+TimerInterrupt() {
+    DoPeriodicHouseKeeping();
+    run_new_thread();
+}
+```
+
+ - I/O interrupt: same as timer interrupt except that DoHousekeeping() replaced by ServiceIO().
+
+## Choosing a Thread to Run
+
+ - How does Dispatcher decide what to run?
+    - Zero ready threads – dispatcher loops
+        - Alternative is to create an “idle thread”
+        - Can put machine into low-power mode
+    - Exactly one ready thread – easy
+    - More than one ready thread: use scheduling priorities
+ - Possible priorities:
+    - LIFO (last in, first out): 
+        - put ready threads on front of list, remove from front
+    - Pick one at random
+    - FIFO (first in, first out):
+        - Put ready threads on back of list, pull them from front
+        - This is fair and is what Nachos does
+    - Priority queue:
+        - keep ready list sorted by TCB priority field
 
 
+## Summary
 
- 
+ - The state of a thread is contained in the TCB
+    - Registers, PC, stack pointer
+    - States: New, Ready, Running, Waiting, or Terminated
+ - Multithreading provides simple illusion of multiple CPUs
+    - Switch registers and stack to dispatch new thread
+    - Provide mechanism to ensure dispatcher regains control
+ - Switch routine
+    - Can be very expensive if many registers
+    - Must be very carefully constructed!
+ - Many scheduling options
+    - Decision of which thread to run complex enough for complete lecture
+
+
+# Lecture 5 : Cooperating Threads
+
+
 
