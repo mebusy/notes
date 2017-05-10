@@ -739,6 +739,15 @@ Switch(tCur,tNew) {
  - If we make sure that external events occur frequently enough, can ensure dispatcher runs
 
 
+### Example: Network Interrupt
+
+Network interrupt is an external interrupt.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_network_interrupt.png)
+
+ - An interrupt is a hardware-invoked context switch
+    - No separate step to choose what to run next
+    - Always run the interrupt handler immediately
 
 
 
