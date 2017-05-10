@@ -664,6 +664,59 @@ proc B() {
  - we have 2 threads, both of the threads are running this code
 
 
+## Saving/Restoring state (often called “Context Switch)
+
+```
+Switch(tCur,tNew) {
+    /* Unload old thread */
+    TCB[tCur].regs.r7 = CPU.r7;
+    …
+    TCB[tCur].regs.r0 = CPU.r0;
+    TCB[tCur].regs.sp = CPU.sp;
+    TCB[tCur].regs.retpc = CPU.retpc; /*return addr*/
+    /* Load and execute new thread */
+    CPU.r7 = TCB[tNew].regs.r7;
+    …
+    CPU.r0 = TCB[tNew].regs.r0;
+    CPU.sp = TCB[tNew].regs.sp;
+    CPU.retpc = TCB[tNew].regs.retpc;
+    return; /* Return to CPU.retpc */
+}
+```
+
+## Switch Details
+
+ - How many registers need to be saved/restored?
+    - – MIPS 4k: 32 Int(32b), 32 Float(32b)
+    - Pentium: 14 Int(32b), 8 Float(80b), 8 SSE(128b),…
+    - Sparc(v7): 8 Regs(32b), 16 Int regs (32b) * 8 windows = 136 (32b)+32 Float (32b)
+    - Itanium: 128 Int (64b), 128 Float (82b), 19 Other(64b)
+ - retpc is where the return should jump to.
+    - In reality, this is implemented as a jump
+ - There is a real implementation of switch in Nachos
+    - See switch.s
+        - Normally, switch is implemented as assembly
+    - Of course, it’s magical!
+    - But you should be able to follow it!
+
+ - What if you make a mistake in implementing switch?
+    - Suppose you forget to save/restore register 4
+    - Get intermittent failures depending on when context switch occurred and whether new thread uses register 4
+    - System will give wrong result without warning
+ - Can you devise an exhaustive test to test switch code?
+    - No! Too many combinations and inter-leavings
+ - Cautionary tail:
+    - For speed, Topaz kernel saved one instruction in switch()
+    - Carefully documented!
+        - Only works As long as kernel size < 1MB
+    - What happened? 
+        - Time passed, People forgot
+        - Later, they added features to kernel (no one removes features!)
+        - Very weird behavior started happening
+    - Moral of story: Design for simplicity
+
+## What happens when thread blocks on I/O?
+
 
 
 
