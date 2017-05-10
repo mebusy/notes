@@ -401,8 +401,6 @@ def Naive(G, S):
 
  - Lemma
     - After the call to Naive algorithm all the distances are set correctly.
- - Proof
-    - 
 
 
 
