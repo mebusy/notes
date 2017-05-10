@@ -717,6 +717,29 @@ Switch(tCur,tNew) {
 
 ## What happens when thread blocks on I/O?
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_thread_block_io.png)
+
+ - What happens when a thread requests a block of data from the file system?
+    - User code invokes a system call
+    - Read operation is initiated
+    - Run new thread/switch
+ - Thread communication similar
+    - Wait for Signal/Join
+    - Networking
+
+## External Events
+
+ - What happens if thread never does any I/O, never waits, and never yields control?
+    - Could the ComputePI program grab all resources and never release the processor? 
+        - What if it didn’t print to console?
+    - Must find way that dispatcher can regain control!
+ - Answer: Utilize External Events
+    - Interrupts: signals from hardware or software that stop the running code and jump to kernel
+    - Timer: like an alarm clock that goes off every some many milliseconds
+ - If we make sure that external events occur frequently enough, can ensure dispatcher runs
+
+
+
 
 
 
