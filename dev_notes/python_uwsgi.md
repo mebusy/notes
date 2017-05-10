@@ -1,12 +1,28 @@
+...menustart
 
+ - [Python uWSGI](#df04faf069ec9d270bc7f684296cece1)
+ - [Install](#349838fb1d851d3e2014b9fe39203275)
+ - [Simple WSGI Application](#fcfbc2a1f37903dd1079312f57d9499a)
+ - [Configure a uWSGI Config File](#af3744577975b6a7224ac9ceb801c4cd)
+ - [Create an Upstart File to Manage the App](#c24641ef3326f500a5b3673e6a56faf1)
+ - [Configure Nginx to Proxy to uWSGI](#252d894f88623ea7e722425c27d678ca)
+
+...menuend
+
+
+<h2 id="df04faf069ec9d270bc7f684296cece1"></h2>
 
 # Python uWSGI
+
+<h2 id="349838fb1d851d3e2014b9fe39203275"></h2>
 
 # Install 
 
 ```
 pip install uwsgi
 ```
+
+<h2 id="fcfbc2a1f37903dd1079312f57d9499a"></h2>
 
 # Simple WSGI Application
 
@@ -46,6 +62,8 @@ visit  `localhost:8080`
 
 ok, now you can stop your uwsgi server .
 
+
+<h2 id="af3744577975b6a7224ac9ceb801c4cd"></h2>
 
 # Configure a uWSGI Config File
 
@@ -91,6 +109,8 @@ die-on-term = true
     - 4 die-on-term so that uWSGI will kill the process instead of reloading it
 
 
+<h2 id="c24641ef3326f500a5b3673e6a56faf1"></h2>
+
 # Create an Upstart File to Manage the App
 
 We can launch a uWSGI instance at boot so that our application is always available. 
@@ -133,6 +153,8 @@ With that, our Upstart script is complete. Now, we can start the service by typi
 ```
 sudo start myapp
 ```
+
+<h2 id="252d894f88623ea7e722425c27d678ca"></h2>
 
 # Configure Nginx to Proxy to uWSGI
 

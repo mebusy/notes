@@ -47,6 +47,7 @@
 	 - [Updating Classes](#efb4b863c9f924263ba6b0b74cf2ad5c)
 	 - [Full Algorithm](#fa2a8b4fe46e36086e1dd6bbdb67af76)
 		 - [Conclusion](#6f8b794f3246b0c1e1780bb4d4d5dc53)
+ - [Suffix Tree Application](#f8d40ebc6cf8e6129d70c91e882080ac)
 
 ...menuend
 
@@ -1196,6 +1197,8 @@ Pseudo code
 
 
 ---
+
+<h2 id="f8d40ebc6cf8e6129d70c91e882080ac"></h2>
 
 # Suffix Tree Application
 

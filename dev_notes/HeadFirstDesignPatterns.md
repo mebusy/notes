@@ -1,8 +1,21 @@
+...menustart
+
+ - [Head First Design Patterns](#ceb4d27597053532d28b90d23519ea82)
+ - [Head First 学习原则](#5e8c168218e62b9925b996275d1c4e29)
+ - [1 设计模式入门](#5616caa0254d9d34b75045c12685203e)
+	 - [从鸭子模型开始说起](#071e61a8efbd292d3bd6da8d0982102e)
+
+...menuend
+
+
+<h2 id="ceb4d27597053532d28b90d23519ea82"></h2>
 
 # Head First Design Patterns 
 
  - all codes
     - https://github.com/bethrobson/Head-First-Design-Patterns
+
+<h2 id="5e8c168218e62b9925b996275d1c4e29"></h2>
 
 # Head First 学习原则
 
@@ -43,12 +56,16 @@
     - 将学来的东西应用到新项目中，甚至重构旧项目
 
 
+<h2 id="5616caa0254d9d34b75045c12685203e"></h2>
+
 # 1 设计模式入门
 
  - 使用模式最好的方式是： 
     - 把模式装进脑子里， 然后在你的设计和已有的应用中，寻找何处可以使用它们。
     - 以往是代码复用，现在是 经验复用
  
+<h2 id="071e61a8efbd292d3bd6da8d0982102e"></h2>
+
 ## 从鸭子模型开始说起
 
  - 鸭子游戏

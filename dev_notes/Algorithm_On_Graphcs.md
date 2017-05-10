@@ -10,6 +10,21 @@
 			 - [Connected Components](#8a4d6dec35ad6f01d54531c509cf7d37)
 		 - [Previsit and Postvisit Orderings](#cb7d104acd7ef78260476fb96e632beb)
 			 - [Previsit and Postvisit Functions](#c190b4dd3a865a419b7d42ecdded4b14)
+	 - [Week2](#687c054c8abba26ef7b123d19d29bee7)
+		 - [Directed Acyclic Graphs](#7a53b8f5717213d05b5a349b30218b27)
+			 - [Directed DFS](#82842893b1046ac7ea43887a7d4c6c97)
+			 - [Cycles](#d3240659659cbfa93d781d1510717a66)
+			 - [DAGs](#1f979bae5ccfb6a193fde8d275355540)
+		 - [Topological Sort](#3f9c4755d1b2c530f17ce3f80a0fb896)
+			 - [Finding Sink](#2f1d4122555c30fa41c0390bd028ef60)
+			 - [TopologicalSort Algorithm](#7325cfd5224854fdee2a8cd7f046a1f6)
+		 - [Strongly Connected Components](#670190ac033bf942d8013492dc8f8b0f)
+			 - [Metagraph](#cd4755489eca8e682b00937d8e695b98)
+		 - [Computing Strongly Connected Components](#b3a7569c9a7d363bd55ee91cf45641f9)
+			 - [Sink Components](#80d29df79dc221a3cd1b8e554a6a3828)
+			 - [Finding Sink Components](#57c30fe3a2297ed1dfa107e753e2752e)
+				 - [Reverse Graph Components](#509d136ac9a437456bbe67dd6b003890)
+			 - [Algorithm](#4afa80e77a07f7488ce4d1bdd8c4977a)
 
 ...menuend
 
@@ -174,7 +189,11 @@ def postvisit(v):
 
 ---
 
+<h2 id="687c054c8abba26ef7b123d19d29bee7"></h2>
+
 ## Week2 
+
+<h2 id="7a53b8f5717213d05b5a349b30218b27"></h2>
 
 ### Directed Acyclic Graphs
 
@@ -185,12 +204,16 @@ def postvisit(v):
     - Dependencies between tasks.
 
 
+<h2 id="82842893b1046ac7ea43887a7d4c6c97"></h2>
+
 #### Directed DFS
 
  - Can still run DFS in directed graphs.
     - Only follow **directed** edges
     - explore(v) finds all vertices **reachable** from v.
     - Can still compute pre- and postorderings.
+
+<h2 id="d3240659659cbfa93d781d1510717a66"></h2>
 
 #### Cycles
 
@@ -200,12 +223,16 @@ def postvisit(v):
  - Theorem
     - If G contains a cycle, it cannot be linearly ordered.
 
+<h2 id="1f979bae5ccfb6a193fde8d275355540"></h2>
+
 #### DAGs
 
  - A directed graph G is a **Directed Acyclic Graph** (or DAG) if it has no cycles.
  - Theorem
     - Any DAG can be linearly ordered
 
+
+<h2 id="3f9c4755d1b2c530f17ce3f80a0fb896"></h2>
 
 ### Topological Sort
 
@@ -218,12 +245,16 @@ def postvisit(v):
     - A **sink** is a vertex with no outgoing edges
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_graph_sinks_in_dag.png)
 
+<h2 id="2f1d4122555c30fa41c0390bd028ef60"></h2>
+
 #### Finding Sink
 
  - Question: How do we know that there is a sink?
  - Follow path as far as possible v1 → v2 → . . . → vn. Eventually either:
     - Cannot extend (found sink).
     - Repeat a vertex (have a cycle).
+
+<h2 id="7325cfd5224854fdee2a8cd7f046a1f6"></h2>
 
 #### TopologicalSort Algorithm
 
@@ -234,12 +265,16 @@ TopologicalSort(G)
 ```
 
 
+<h2 id="670190ac033bf942d8013492dc8f8b0f"></h2>
+
 ### Strongly Connected Components
 
  - Two vertices v, w in a directed graph are **connected** if you can reach v from w and can reach w from v.
  - Theorem
     - A directed graph can be partitioned into **strongly connected components** where two vertices are connected if and only if they are in the same component.
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_graph_SCC.png)
+
+<h2 id="cd4755489eca8e682b00937d8e695b98"></h2>
 
 #### Metagraph
 
@@ -251,11 +286,15 @@ TopologicalSort(G)
 How to compute the strongly connected components of a graph. ?
 
 
+<h2 id="b3a7569c9a7d363bd55ee91cf45641f9"></h2>
+
 ### Computing Strongly Connected Components
 
  - Problem
     - Input: A directed graph G
     - Output: The strongly connected components of G. 
+
+<h2 id="80d29df79dc221a3cd1b8e554a6a3828"></h2>
 
 #### Sink Components
 
@@ -268,6 +307,8 @@ How to compute the strongly connected components of a graph. ?
     - if you start from a source SCC, you many visit the whole graph, it won't help you.
 
 
+<h2 id="57c30fe3a2297ed1dfa107e753e2752e"></h2>
+
 #### Finding Sink Components
 
  - Theorem
@@ -277,6 +318,8 @@ How to compute the strongly connected components of a graph. ?
     - The vertex with the largest postorder number is in a source component!
     - Problem: We wanted a sink component
 
+<h2 id="509d136ac9a437456bbe67dd6b003890"></h2>
+
 ##### Reverse Graph Components
 
  - Let Gᴿ be the graph obtained from G by reversing all of the edges.  
@@ -285,6 +328,8 @@ How to compute the strongly connected components of a graph. ?
  - Source components of Gᴿ are sink components of G.  
  - Find sink components of G by running DFS on Gᴿ .
     - The vertex with largest postorder in Gᴿ is in a sink SCC of G.
+
+<h2 id="4afa80e77a07f7488ce4d1bdd8c4977a"></h2>
 
 #### Algorithm
 

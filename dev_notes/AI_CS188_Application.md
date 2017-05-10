@@ -1,8 +1,27 @@
+...menustart
+
+ - [Application](#e498749f3c42246d50b15c81c101d988)
+	 - [Starcraft](#8a6f8fa384efc23dcdcc19e7384bdc45)
+		 - [Why is Starcraft Hard?](#1fb75cfb7fe7923ca2bab57e2ebead57)
+		 - [The Berkeley Overmind](#8ae5d98a904e4bd489a504ec2b2154da)
+		 - [Search for Pathing](#b5c737bc93e07f225f5df7fc55d33245)
+		 - [Minimax for Targeting](#6f47e9d670285b5ac6e4db3ff10372d1)
+		 - [Machine Learning for Micro Control](#561c4a6fa7b27afca6a8b0eb8bf58887)
+		 - [Inference / VPI / Scouting](#85068d975072cc7193a0e53faa6e51ec)
+
+...menuend
+
+
+<h2 id="e498749f3c42246d50b15c81c101d988"></h2>
 
 # Application 
 
 
+<h2 id="8a6f8fa384efc23dcdcc19e7384bdc45"></h2>
+
 ## Starcraft
+
+<h2 id="1fb75cfb7fe7923ca2bab57e2ebead57"></h2>
 
 ### Why is Starcraft Hard?
 
@@ -21,6 +40,8 @@
  - No single algorithm (e.g. minimax) will solve it off-the-shelf!
     
 
+<h2 id="8ae5d98a904e4bd489a504ec2b2154da"></h2>
+
 ### The Berkeley Overmind
 
  - Search: path planning
@@ -37,6 +58,8 @@
     - at a high level you plan maybe what you're going to build next and so forth
     - at a low level you then instantiate how you build it , what resources you need and so forth 
 
+<h2 id="b5c737bc93e07f225f5df7fc55d33245"></h2>
+
 ### Search for Pathing
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_application_starcraft_search_for_pathing.png)
@@ -48,6 +71,8 @@
  - this is al search , this is planning ahead , that doesn't just have a cost for length of the path, but also a cost for how dangerous 
 
  
+<h2 id="6f47e9d670285b5ac6e4db3ff10372d1"></h2>
+
 ### Minimax for Targeting
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_application_starcraft_minimax_for_targeting.jpg)
@@ -55,6 +80,8 @@
 In this game there are many things you might want to target.  There are production units can produce new unit , there are battle units that can damage you, ...  
 
 The question is how I decide what to do ?   This is a minimax problem.  
+
+<h2 id="561c4a6fa7b27afca6a8b0eb8bf58887"></h2>
 
 ### Machine Learning for Micro Control
 
@@ -70,6 +97,8 @@ Now it's difficult to design those force fields to behave well because you need 
 
 That's a lot like learning a set of ways for a feature vector.  So your policy is encoded as a force field there's a weighting between the different contributions to the force filed and then you can run reinforcement learning to learn the weighting that gives you the best performance.  So you multiple runs you have certain weighting and see what happends then you change the weighting a little bit. If the result are better  you keep the new weighting, if the result are worse you go back to the old weighting and keep repeating this. 
 
+
+<h2 id="85068d975072cc7193a0e53faa6e51ec"></h2>
 
 ### Inference / VPI / Scouting
 

@@ -59,7 +59,8 @@
  12. [18 BNs Inference](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_BNs_Inference.md)
  13. [19 BNs Sampleing](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_BNs_Sampling.md)
  14. [20 Decision Diagram](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_DecisionDiagrams.md)
-
+ 15. [21 MK: Naive Bayes](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_ML_NaiveBayes.md)
+ 16. [24 Application](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_Application.md)
 
 
 

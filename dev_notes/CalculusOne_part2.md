@@ -17,6 +17,21 @@
 		 - [Knowing my acceleration, what is my position?](#2d170c5dab6fbe2b16e00620d9777204)
 		 - [What is the antiderivative of sine squared?](#1278e0b4deef4be8e19deb27ec0db474)
 		 - [What is a slope field?](#4f9b1095d71cf63bce0bd635d59babae)
+ - [Week12 Integration](#514e1caaba7832bf708c3cbba5572912)
+	 - [What is summation notation ?](#5b0c78a8b489b5951d6133d512173fd2)
+		 - [What is the sum 1 + 2 + ... + k?](#fd783af9af00d3861d1ff94414ccb5fd)
+		 - [What is the sum of the first k odd numbers?](#64b7c829a64912cded7e4fb1748bf931)
+		 - [What is the sum of the first k perfect squares?](#bb1b3996821d028092f6f37259c6dc7d)
+		 - [What is the sum of the first k perfect cubes?](#9a72aabb581b21f673d346308b47b1ec)
+	 - [So how do we calculate area precisely ?](#4803201396fe93254689a378f4acea16)
+		 - [What is the definition of the integral of f(x) from x = a to b?](#a2a6a595d166557f2b5ba00e7e8f36cc)
+	 - [Can we compute any other integrals ?](#0b347bc298049db4ffd8970d79c31ef6)
+		 - [What is the integral of x^2 from x = 0 to 1?](#407504fcb5d2b2a2db97282f9349f4c6)
+		 - [What is the integral of x^3 from x = 1 to 2?](#6693d9715518594ce91728437de46c79)
+	 - [Can we understand anything conceptually about integrals ?](#267eece5a0855676c858702fe0ba61ca)
+		 - [What sorts of properties does the integral satisfy?](#5104183620b8440565164d50f7160ce0)
+		 - [When is the accumulation function increasing? Decreasing?](#adf7c6d36d552a2cdce06fa0a8c2b306)
+ - [Week 13 Fundamental Theorem of Calculus](#76e5d32d317a3d89cedfea3744cc9d75)
 
 ...menuend
 
@@ -216,9 +231,15 @@ There's a visual way to gain some insight into these anti-differentiation proble
     - graph for y = xsinx + cosx 
     - +C can move graph up and down.
 
+<h2 id="514e1caaba7832bf708c3cbba5572912"></h2>
+
 # Week12 Integration
 
+<h2 id="5b0c78a8b489b5951d6133d512173fd2"></h2>
+
 ## What is summation notation ?
+
+<h2 id="fd783af9af00d3861d1ff94414ccb5fd"></h2>
 
 ### What is the sum 1 + 2 + ... + k? 
 
@@ -230,6 +251,8 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 
 ∑<sub>n=</sub>ᵏ₁ n = (k+1)·k/2
+
+<h2 id="64b7c829a64912cded7e4fb1748bf931"></h2>
 
 ### What is the sum of the first k odd numbers?
 
@@ -246,6 +269,8 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_2_integration_sum_odd.png)
 
+<h2 id="bb1b3996821d028092f6f37259c6dc7d"></h2>
+
 ### What is the sum of the first k perfect squares?
 
   ∑<sub>n=</sub>ᵏ₁ n² = 1² + 2² + ... + k² 
@@ -260,6 +285,8 @@ There's a visual way to gain some insight into these anti-differentiation proble
  - the height of big picture is ∑<sub>n=</sub>ᵏ₁ n = `(k+1)·k/2`
  - so the sum of small pictures is `(2k+1)·(k+1)·k/6`
 
+<h2 id="9a72aabb581b21f673d346308b47b1ec"></h2>
+
 ### What is the sum of the first k perfect cubes?
 
   ∑<sub>n=</sub>ᵏ₁ n³ 
@@ -273,7 +300,11 @@ There's a visual way to gain some insight into these anti-differentiation proble
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_2_integration_sum_cube.png)
 
 
+<h2 id="4803201396fe93254689a378f4acea16"></h2>
+
 ## So how do we calculate area precisely ?
+
+<h2 id="a2a6a595d166557f2b5ba00e7e8f36cc"></h2>
 
 ### What is the definition of the integral of f(x) from x = a to b?
 
@@ -282,7 +313,11 @@ There's a visual way to gain some insight into these anti-differentiation proble
  - Thm: If *f* is continuous, then *f* is integrable 
     - means ∫<sub>a,b</sub>f(x)dx  exist.
  
+<h2 id="0b347bc298049db4ffd8970d79c31ef6"></h2>
+
 ## Can we compute any other integrals ?
+
+<h2 id="407504fcb5d2b2a2db97282f9349f4c6"></h2>
 
 ### What is the integral of x^2 from x = 0 to 1?
 
@@ -304,6 +339,8 @@ There's a visual way to gain some insight into these anti-differentiation proble
 求这个极限很简单
 
 = 1/3
+
+<h2 id="6693d9715518594ce91728437de46c79"></h2>
 
 ### What is the integral of x^3 from x = 1 to 2?
 
@@ -332,7 +369,11 @@ now we get the final answer:
 ∫<sub>1,2</sub>x³dx  = ∫<sub>0,2</sub>x³dx - ∫<sub>0,1</sub>x³dx = 15/4
 
 
+<h2 id="267eece5a0855676c858702fe0ba61ca"></h2>
+
 ## Can we understand anything conceptually about integrals ?
+
+<h2 id="5104183620b8440565164d50f7160ce0"></h2>
 
 ### What sorts of properties does the integral satisfy?
 
@@ -351,6 +392,8 @@ now we get the final answer:
 ∑<sub>n=</sub>ᵇₐ (f(n)+g(n)) = ∑<sub>n=</sub>ᵇₐ f(n) + ∑<sub>n=</sub>ᵇₐ g(n)
 
 **The derivatives have the same rules about sum !**
+
+<h2 id="adf7c6d36d552a2cdce06fa0a8c2b306"></h2>
 
 ### When is the accumulation function increasing? Decreasing?
 
@@ -375,6 +418,8 @@ The integrals are not exactly measuring area, they're measuring **singed area**.
  - ∫¹₋₁ sinxdx = 0
  - ∫<sup>2π</sup>₀ cosxdx = 0 
 
+
+<h2 id="76e5d32d317a3d89cedfea3744cc9d75"></h2>
 
 # Week 13 Fundamental Theorem of Calculus
 

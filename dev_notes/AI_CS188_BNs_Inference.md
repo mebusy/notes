@@ -28,6 +28,8 @@
 	 - [VE: Computational and Space Complexity](#e7a5369a94522ddbfba1d7c3f326d981)
 		 - [Worst Case Complexity?](#c2d228ff5891fce6cd51dc9df9953ed6)
 	 - [Polytrees](#3210fceb43cd33c7a8871b75e98de3ee)
+	 - [Quiz BN2-2](#25d7ce91a9821147da689c3a48401fb1)
+	 - [Quiz BN2-3](#74e6f31ec1cddabd42e093bb90394707)
 
 ...menuend
 
@@ -503,6 +505,8 @@ There are  atrist special graph structures of BNs , where inference can be done 
 
 ---
 
+<h2 id="25d7ce91a9821147da689c3a48401fb1"></h2>
+
 ## Quiz BN2-2
 
  - BNs
@@ -570,11 +574,13 @@ C | f₃(C,e=1)
 
  - After getting the final factor f₃(C,e=1), a final renormalization step needs be carried out to obtain the conditional probability P(C|e=1).
 
-C | P(C|e=1)
+C | P(C\|e=1)
 --- | ---
 0 | 0.44217404
 1 | 0.55782596
 
+
+<h2 id="74e6f31ec1cddabd42e093bb90394707"></h2>
 
 ## Quiz BN2-3
 

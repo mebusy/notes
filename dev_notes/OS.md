@@ -1,3 +1,69 @@
+...menustart
+
+ - [Operating Systems](#aab338915e32b60e92c8de3a23aa5c5d)
+ - [Lecture 2: Histroy](#0256cfb29115315df7b78ed8ea4bb934)
+	 - [Virtual Machine Abstraction](#58716e48659df59b681167f89ef9c4b0)
+	 - [Protecting Processes from Each Other](#331dfccf115bc05798fa93bcdce2dc74)
+	 - [Address Translation](#380ed2e00b4cd7595c6b22a289c2fb9c)
+		 - [Example of Address Translation](#fd16525056da1f4095c4cf0be4110c65)
+	 - [The other half of protection: Dual Mode Operation](#36df3bc20eac02b4897f57dcdab35103)
+	 - [UNIX System Structure](#9d76355b6f43127dc97ca42e9d29c893)
+	 - [a quick tour of OS Structures](#7738ca5b3efbf6c0e6bcebe55d9a4428)
+		 - [Operating Systems Components (What are the pieces of the OS)](#9c5677a822e4354ba4a478ac864ad78b)
+		 - [Operating System Services (What things does the OS do?)](#2b5860ab171d58029c23f7d7edd38436)
+		 - [System Calls (What is the API)](#0c927d7416fb5c027d2bbf7105cc5b12)
+		 - [Operating Systems Structure (What is the organizational Principle?)](#931d8ddb9c90055a717f507edf694b57)
+ - [Lecture3 : Concurrency: Processes and Threads](#fb8c0d273917625f92c875243e4a2497)
+	 - [Concurrency](#3e48afddb0c5521684b8d2687b0869d6)
+	 - [The Basic Problem of Concurrency](#1e79f26f9654bb8d72398bb5c30144a2)
+	 - [How can we give the illusion of multiple processors?](#033fa663302a4ef18ab84e5b9af656ee)
+	 - [Properties of this simple multiprogramming technique](#cff2ef352548c0e25914f4d9c36604f5)
+	 - [Modern Technique: SMT/Hyperthreading](#1e0a2e02c40633be2aea2e6359e15fc9)
+	 - [How to protect threads from one another?](#ed5b8b8ad56ce8ffbec1c9cdc69e63e8)
+	 - [Recall: Program’s Address Space](#68b88a3e849b7984dabc7d5067c41ac6)
+	 - [Traditional UNIX Process](#33c3a77337646a23a39a78d05dbba257)
+	 - [How do we multiplex processes?](#3b275413bdec5abbb590a02846455aa2)
+	 - [CPU Switch From Process to Process](#533647e51f52c2f453104c716ea7f16c)
+	 - [Diagram of Process State](#766af2d268f2980b8f9da323e38d8d99)
+	 - [Process Scheduling](#26aa9adeb372bec1483847a510bc0c1f)
+	 - [What does it take to create a process?](#06d2773d0e98a13f626e61c8f02fed7b)
+	 - [Process =? Program](#d23c2c45437a7a02dd6ac512a50aed61)
+	 - [Multiple Processes Collaborate on a Task](#a89baf66badbd0d10a0386e0e2c268ef)
+		 - [Shared Memory Communication](#eafc28015dfc7e15274ce676910f83bb)
+		 - [Inter-process Communication (IPC)](#26708f8bafc80deea5109312beef3a55)
+	 - [Modern “Lightweight” Process with Threads](#c8acda2a62eb8f84ee2ac849ca190688)
+		 - [Single and Multithreaded Processes](#d2a7607c8438e7c909aa626bf36b88b5)
+		 - [Examples of multithreaded programs](#1d3a9c8598f8f7e04a2ab97b813a16fc)
+	 - [Thread State](#a1147205dad273a01357ee03a0ba625a)
+		 - [Execution Stack Example](#bb392bbd04a404cae3ddf84271fea20e)
+	 - [Summary](#290612199861c31d1036b185b4e69b75)
+ - [Lecture 4: Thread Dispatching](#457166539d2868e71cf47f89e1866a96)
+	 - [MIPS: Software conventions for Registers](#f05c1465a1018a7ad2c550d165769c67)
+	 - [Single-Threaded Example](#8a12b0f492c9809b6b63f829eb80ca3a)
+	 - [Use of Threads](#9f6481747b526e48cbc3c3235f2a1721)
+	 - [Memory Footprint of Two-Thread Example](#96e1c1ddfad24070e74100314ca1fee6)
+	 - [Per Thread State](#8168b86f8351d4b3c96d05d294392e85)
+	 - [Lifecycle of a Thread (or Process)](#36327051d52814b03a2ef7b83183f3f9)
+	 - [Ready Queue And Various I/O Device Queues](#29bab3cf6a6d53393f8f549b2335f121)
+	 - [Dispatch Loop](#c289df5648beb35beaf1f17ca87ee93a)
+	 - [Running a thread](#72e542fbe4c7df30c850a9d83b37186c)
+		 - [Internal Events](#67c2ae43ca95bbb942c50877d4699be0)
+	 - [Stack for Yielding Thread](#9301ba00a710f2f0c3d0e987b55894d4)
+	 - [What do the stacks look like?](#0ccbdade8f62d5a109297de93bcfdf91)
+	 - [Saving/Restoring state (often called “Context Switch)](#5c74b6578d4a2a69bfe3efd742f8abfd)
+	 - [Switch Details](#a65d9d0db4d0e56258f8a9790865b242)
+	 - [What happens when thread blocks on I/O?](#10ce6000fcb49adf0650c21f0781928b)
+	 - [External Events](#2cfda7f7062e0275e0247c3d069998d1)
+		 - [Example: Network Interrupt](#ac3e78e7384b0cd735da6f27aed285ed)
+	 - [Use of Timer Interrupt to Return Contro](#be4ab2a82d548a1bef203fec2bba43dc)
+	 - [Choosing a Thread to Run](#76509dab7986ec644502722976e77b9b)
+	 - [Summary](#290612199861c31d1036b185b4e69b75)
+ - [Lecture 5 : Cooperating Threads](#ddab5200bd0e32c18f6873e50ef64a6c)
+
+...menuend
+
+
+<h2 id="aab338915e32b60e92c8de3a23aa5c5d"></h2>
 
 # Operating Systems
 
@@ -5,7 +71,11 @@ https://cs162.eecs.berkeley.edu/
 
 https://people.eecs.berkeley.edu/~kubitron/cs162/
 
+<h2 id="0256cfb29115315df7b78ed8ea4bb934"></h2>
+
 # Lecture 2: Histroy 
+
+<h2 id="58716e48659df59b681167f89ef9c4b0"></h2>
 
 ## Virtual Machine Abstraction
 
@@ -18,6 +88,8 @@ https://people.eecs.berkeley.edu/~kubitron/cs162/
  - For Any OS area (e.g. file systems, virtual memory, networking, scheduling):
     - What’s the hardware interface? (physical reality)
     - What’s the application interface? (nicer abstraction)
+
+<h2 id="331dfccf115bc05798fa93bcdce2dc74"></h2>
 
 ## Protecting Processes from Each Other
 
@@ -33,6 +105,8 @@ https://people.eecs.berkeley.edu/~kubitron/cs162/
     - Programs are not allowed to read/write memory of other Programs or of Operating System 
 
 
+<h2 id="380ed2e00b4cd7595c6b22a289c2fb9c"></h2>
+
 ## Address Translation
 
  - Address Space
@@ -44,6 +118,8 @@ https://people.eecs.berkeley.edu/~kubitron/cs162/
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_address_translation.png)
 
 
+<h2 id="fd16525056da1f4095c4cf0be4110c65"></h2>
+
 ### Example of Address Translation
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_example_address_translation.png)
@@ -54,6 +130,8 @@ The set of addresses that are translated to in the physical space don't overlap.
 
 There is a simple problem here:  that mapping need s to somehow be out of the realm of changable by the process.  
 
+
+<h2 id="36df3bc20eac02b4897f57dcdab35103"></h2>
 
 ## The other half of protection: Dual Mode Operation
 
@@ -68,11 +146,17 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_histroy_dual_mode_operation.png)
 
+<h2 id="9d76355b6f43127dc97ca42e9d29c893"></h2>
+
 ## UNIX System Structure
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_unix_system_structure.png)
 
+<h2 id="7738ca5b3efbf6c0e6bcebe55d9a4428"></h2>
+
 ## a quick tour of OS Structures
+
+<h2 id="9c5677a822e4354ba4a478ac864ad78b"></h2>
 
 ### Operating Systems Components (What are the pieces of the OS)
 
@@ -83,6 +167,8 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
  - Networking
  - User Interfaces
 
+
+<h2 id="2b5860ab171d58029c23f7d7edd38436"></h2>
 
 ### Operating System Services (What things does the OS do?)
 
@@ -102,9 +188,13 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
     - Accounting
     - Protection
 
+<h2 id="0c927d7416fb5c027d2bbf7105cc5b12"></h2>
+
 ### System Calls (What is the API)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_system_calls.png)
+
+<h2 id="931d8ddb9c90055a717f507edf694b57"></h2>
 
 ### Operating Systems Structure (What is the organizational Principle?)
 
@@ -120,7 +210,11 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
 
 ---
 
+<h2 id="fb8c0d273917625f92c875243e4a2497"></h2>
+
 # Lecture3 : Concurrency: Processes and Threads
+
+<h2 id="3e48afddb0c5521684b8d2687b0869d6"></h2>
 
 ## Concurrency
 
@@ -135,6 +229,8 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
  - Multiprogramming: more than one thread at a time
     - **Multics, UNIX/Linux, OS/2, Windows NT/2000/XP, Mac OS X** 
     - Often called “multitasking”, but multitasking has other meanings (talk about this later)
+
+<h2 id="1e79f26f9654bb8d72398bb5c30144a2"></h2>
 
 ## The Basic Problem of Concurrency
 
@@ -151,6 +247,8 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
  - Dijkstra did this for the “THE system”
     - Few thousand lines vs 1 million lines in OS 360 (1K bugs)
 
+<h2 id="033fa663302a4ef18ab84e5b9af656ee"></h2>
+
 ## How can we give the illusion of multiple processors?
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_illusion_of_multiple_processors.png)
@@ -166,6 +264,8 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
  - What triggers switch?
     - Timer, voluntary yield, I/O, other things
 
+<h2 id="cff2ef352548c0e25914f4d9c36604f5"></h2>
+
 ## Properties of this simple multiprogramming technique
  
  - All virtual CPUs share same non-CPU resources
@@ -179,6 +279,8 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
     - Embedded applications
     - Windows 3.1/Machintosh (switch only with yield)
     - Windows 95—ME? (switch with both yield and timer)
+
+<h2 id="1e0a2e02c40633be2aea2e6359e15fc9"></h2>
 
 ## Modern Technique: SMT/Hyperthreading
 
@@ -207,6 +309,8 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
         - c) you put two threads togethter into the same pipline and they share the slots as a result you end up filling up more the empty slots.  
             - this means that the hardware itself has got 2 sets of registers , 2 Program Counters, 2 branch predictores , and 2 of a few other things ...
 
+<h2 id="ed5b8b8ad56ce8ffbec1c9cdc69e63e8"></h2>
+
 ## How to protect threads from one another?
 
 Need three important things:
@@ -219,6 +323,8 @@ Need three important things:
     - Use of timer
     - Must not be possible to disable timer from usercode
 
+
+<h2 id="68b88a3e849b7984dabc7d5067c41ac6"></h2>
 
 ## Recall: Program’s Address Space
 
@@ -242,6 +348,8 @@ Need three important things:
     - Perhaps causes exception (fault)
 
 
+<h2 id="33c3a77337646a23a39a78d05dbba257"></h2>
+
 ## Traditional UNIX Process
 
  - **Process: Operating system abstraction to represent what is needed to run a single program**
@@ -256,6 +364,8 @@ Need three important things:
         - I/O state (i.e. file descriptors)
  - **Important: There is no concurrency in a heavyweight process**
     - which means there's only one thread
+
+<h2 id="3b275413bdec5abbb590a02846455aa2"></h2>
 
 ## How do we multiplex processes?
 
@@ -275,6 +385,8 @@ Need three important things:
         - Kernel/User duality: Arbitrary multiplexing of I/O through system calls
 
 
+<h2 id="533647e51f52c2f453104c716ea7f16c"></h2>
+
 ## CPU Switch From Process to Process
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_context_switch.png)
@@ -286,6 +398,8 @@ Need three important things:
     - Overhead sets minimum practical switching time
     - Less overhead with SMT/hyperthreading, but… contention for resources instead
         - you could actually have 2 processes loaded at the same time ,and that overhead switching in the hardware , and there is no overhead they're pretty much because the hardware is doing it for you. 
+
+<h2 id="766af2d268f2980b8f9da323e38d8d99"></h2>
 
 ## Diagram of Process State
 
@@ -299,6 +413,8 @@ Need three important things:
     - The process has finished execution
 
 
+<h2 id="26aa9adeb372bec1483847a510bc0c1f"></h2>
+
 ## Process Scheduling
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_process_scheduling.png)
@@ -306,6 +422,8 @@ Need three important things:
  - PCBs move from queue to queue as they change state
     - Decisions about which order to remove from queues are **Scheduling** decisions
     - Many algorithms possible (few weeks from now)
+
+<h2 id="06d2773d0e98a13f626e61c8f02fed7b"></h2>
 
 ## What does it take to create a process?
 
@@ -320,6 +438,8 @@ Need three important things:
  - Copy I/O state (file handles, etc)
     - Medium expense
 
+<h2 id="d23c2c45437a7a02dd6ac512a50aed61"></h2>
+
 ## Process =? Program 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_process_vs_program.png)
@@ -330,6 +450,8 @@ Need three important things:
  - Less to a process than a program:
     - A program can invoke more than one process
     - cc starts up cpp, cc1, cc2, as, and ld
+
+<h2 id="a89baf66badbd0d10a0386e0e2c268ef"></h2>
 
 ## Multiple Processes Collaborate on a Task
 
@@ -349,6 +471,8 @@ Need three important things:
         - send() and receive() messages
         - Works across network
 
+<h2 id="eafc28015dfc7e15274ce676910f83bb"></h2>
+
 ### Shared Memory Communication
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_shared_memory_communication.png)
@@ -356,6 +480,8 @@ Need three important things:
  - Communication occurs by “simply” reading/writing to shared address page
     - Really low overhead communication
     - Introduces complex synchronization problems 
+
+<h2 id="26708f8bafc80deea5109312beef3a55"></h2>
 
 ### Inter-process Communication (IPC)
 
@@ -372,6 +498,8 @@ Need three important things:
     - logical (e.g., logical properties)
 
 
+<h2 id="c8acda2a62eb8f84ee2ac849ca190688"></h2>
+
 ## Modern “Lightweight” Process with Threads
 
 A modern process has more than one thread. The idea is the process still has one address space , but it has multiple threads in it. 
@@ -387,6 +515,8 @@ A modern process has more than one thread. The idea is the process still has one
     - Separate from the “address space” (Protection)
     - Heavyweight Process  ==  Process with one thread 
 
+<h2 id="d2a7607c8438e7c909aa626bf36b88b5"></h2>
+
 ### Single and Multithreaded Processes
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_single_multithreaded_process.png)
@@ -397,6 +527,8 @@ A modern process has more than one thread. The idea is the process still has one
     - Keeps buggy program from trashing the system
  - Why have multiple threads per address space?
     
+<h2 id="1d3a9c8598f8f7e04a2ab97b813a16fc"></h2>
+
 ### Examples of multithreaded programs
 
  - Embedded systems 
@@ -419,6 +551,8 @@ A modern process has more than one thread. The idea is the process still has one
     - Multiple threads in one address space but one program at a time
 
 
+<h2 id="a1147205dad273a01357ee03a0ba625a"></h2>
+
 ## Thread State
 
  - State shared by all threads in process/addr space
@@ -432,6 +566,8 @@ A modern process has more than one thread. The idea is the process still has one
     - Parameters, Temporary variables
     - return PCs are kept while called procedures are executing
 
+<h2 id="bb392bbd04a404cae3ddf84271fea20e"></h2>
+
 ### Execution Stack Example
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_execution_stack_example.png)
@@ -439,6 +575,8 @@ A modern process has more than one thread. The idea is the process still has one
  - Stack holds temporary results
  - Permits recursive execution
  - Crucial to modern languages
+
+<h2 id="290612199861c31d1036b185b4e69b75"></h2>
 
 ## Summary
 
@@ -456,7 +594,11 @@ A modern process has more than one thread. The idea is the process still has one
     - When this concerns concurrency, really talking about thread portion of a process
     - When this concerns protection, talking about address space portion of a process
 
+<h2 id="457166539d2868e71cf47f89e1866a96"></h2>
+
 # Lecture 4: Thread Dispatching 
+
+<h2 id="f05c1465a1018a7ad2c550d165769c67"></h2>
 
 ## MIPS: Software conventions for Registers
 
@@ -484,6 +626,8 @@ A modern process has more than one thread. The idea is the process still has one
     - Other things trashed
  
 
+<h2 id="8a12b0f492c9809b6b63f829eb80ca3a"></h2>
+
 ## Single-Threaded Example
 
  - Imagine the following C program:
@@ -498,6 +642,8 @@ main() {
  - What is the behavior here?
     - Program would never print out class list  
     - because ComputePI would never finish
+
+<h2 id="9f6481747b526e48cbc3c3235f2a1721"></h2>
 
 ## Use of Threads
 
@@ -518,6 +664,8 @@ main() {
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_use_of_thread.png)
 
 
+<h2 id="96e1c1ddfad24070e74100314ca1fee6"></h2>
+
 ## Memory Footprint of Two-Thread Example
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_2thread_mem_footprint.png)
@@ -533,6 +681,8 @@ main() {
     - How might you catch violations?
 
 
+<h2 id="8168b86f8351d4b3c96d05d294392e85"></h2>
+
 ## Per Thread State
 
  - Each Thread has a **Thread Control Block** (TCB)
@@ -545,6 +695,8 @@ main() {
  - In Nachos: “Thread” is a class that includes the TCB
  - OS Keeps track of TCBs in protected memory
     - In Array, or Linked List, or …
+
+<h2 id="36327051d52814b03a2ef7b83183f3f9"></h2>
 
 ## Lifecycle of a Thread (or Process)
 
@@ -559,6 +711,8 @@ main() {
  - “Active” threads are represented by their TCBs
     - TCBs organized into queues based on their state
 
+<h2 id="29bab3cf6a6d53393f8f549b2335f121"></h2>
+
 ## Ready Queue And Various I/O Device Queues
 
  - Thread not running => TCB is in some scheduler queue
@@ -567,6 +721,8 @@ main() {
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_ready_queue.png)
 
+
+<h2 id="c289df5648beb35beaf1f17ca87ee93a"></h2>
 
 ## Dispatch Loop
 
@@ -586,6 +742,8 @@ Loop {
  - Should we ever exit this loop???
     - When would that be?  Shutting down, blue screen , ...
 
+<h2 id="72e542fbe4c7df30c850a9d83b37186c"></h2>
+
 ## Running a thread
 
 Consider first portion: RunThread()
@@ -598,6 +756,8 @@ Consider first portion: RunThread()
     - Internal events: thread returns control voluntarily
     - External events: thread gets *preempted*
 
+
+<h2 id="67c2ae43ca95bbb942c50877d4699be0"></h2>
 
 ### Internal Events
 
@@ -620,6 +780,8 @@ computePI() {
  - the suggestion here is that you're never doing a lot of work if you're mostly yielding all the time.
 
 
+<h2 id="9301ba00a710f2f0c3d0e987b55894d4"></h2>
+
 ## Stack for Yielding Thread
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_stack_for_yielding_thread.png)
@@ -637,6 +799,8 @@ run_new_thread() {
  - How does dispatcher switch to a new thread?
     - Save anything next thread may trash: PC, regs, stack
     - Maintain isolation for each thread
+
+<h2 id="0ccbdade8f62d5a109297de93bcfdf91"></h2>
 
 ## What do the stacks look like?
 
@@ -664,6 +828,8 @@ proc B() {
  - we have 2 threads, both of the threads are running this code
 
 
+<h2 id="5c74b6578d4a2a69bfe3efd742f8abfd"></h2>
+
 ## Saving/Restoring state (often called “Context Switch)
 
 ```
@@ -683,6 +849,8 @@ Switch(tCur,tNew) {
     return; /* Return to CPU.retpc */
 }
 ```
+
+<h2 id="a65d9d0db4d0e56258f8a9790865b242"></h2>
 
 ## Switch Details
 
@@ -715,6 +883,8 @@ Switch(tCur,tNew) {
         - Very weird behavior started happening
     - Moral of story: Design for simplicity
 
+<h2 id="10ce6000fcb49adf0650c21f0781928b"></h2>
+
 ## What happens when thread blocks on I/O?
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_thread_block_io.png)
@@ -726,6 +896,8 @@ Switch(tCur,tNew) {
  - Thread communication similar
     - Wait for Signal/Join
     - Networking
+
+<h2 id="2cfda7f7062e0275e0247c3d069998d1"></h2>
 
 ## External Events
 
@@ -739,6 +911,8 @@ Switch(tCur,tNew) {
  - If we make sure that external events occur frequently enough, can ensure dispatcher runs
 
 
+<h2 id="ac3e78e7384b0cd735da6f27aed285ed"></h2>
+
 ### Example: Network Interrupt
 
 Network interrupt is an external interrupt.
@@ -750,6 +924,8 @@ Network interrupt is an external interrupt.
     - Always run the interrupt handler immediately
  - network intertupts run every time a packets received
 
+
+<h2 id="be4ab2a82d548a1bef203fec2bba43dc"></h2>
 
 ## Use of Timer Interrupt to Return Contro
 
@@ -766,6 +942,8 @@ TimerInterrupt() {
 ```
 
  - I/O interrupt: same as timer interrupt except that DoHousekeeping() replaced by ServiceIO().
+
+<h2 id="76509dab7986ec644502722976e77b9b"></h2>
 
 ## Choosing a Thread to Run
 
@@ -786,6 +964,8 @@ TimerInterrupt() {
         - keep ready list sorted by TCB priority field
 
 
+<h2 id="290612199861c31d1036b185b4e69b75"></h2>
+
 ## Summary
 
  - The state of a thread is contained in the TCB
@@ -800,6 +980,8 @@ TimerInterrupt() {
  - Many scheduling options
     - Decision of which thread to run complex enough for complete lecture
 
+
+<h2 id="ddab5200bd0e32c18f6873e50ef64a6c"></h2>
 
 # Lecture 5 : Cooperating Threads
 
