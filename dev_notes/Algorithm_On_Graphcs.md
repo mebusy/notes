@@ -348,4 +348,63 @@ def SCCs(G):
     - Runtime O(|V| + |E|).
 
 
+## Week4 Fastest Route 
+
+### Naive Algorithm
+
+####  Optimal substructure
+
+ - Observation
+    - Any subpath of an optimal path is also optimal.
+ - Proof
+    - Consider an optimal path from S to t and two vertices u and v on this path. If there were a shorter path from u to v we would get a shorter path from S to t.
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_graph_substructure_proof.png)
+ - Corollary
+    - If S → . . . → u → t is a shortest path from S to t, then d(S,t) = d(S, u) + w(u,t) 
+        - u is the previous node on that path
+        - w means weight
+
+
+
+#### Edge relaxation
+
+ - dist[v] will be an upper bound on the actual distance from S to v.
+    - it store our **estimation** distance from the origin to this particular node v.
+ - The edge relaxation procedure for an edge (u, v) just checks whether going from S to v through u improves the current value of dist[v].
+
+```python
+def Relax((u, v) ∈ E):
+    if dist[v] > dist[u] + w(u, v):
+        dist[v] ← dist[u] + w(u, v)
+        prev[v] ← u
+```
+
+ - if both dist[v]=∞ and dist[u]=∞ , and w(u,v)=5, should the edge(u,v) be relaxed ?
+    - NO! 
+
+
+
+#### Naive approach
+
+```python
+def Naive(G, S):
+    for all u ∈ V :
+        dist[u] ← ∞
+        prev[u] ← nil
+    dist[S] ← 0
+    do:
+        relax all the edges
+    while at least one dist changes
+```
+
+#### Correct distances
+
+ - Lemma
+    - After the call to Naive algorithm all the distances are set correctly.
+ - Proof
+    - 
+
+
+
+
 
