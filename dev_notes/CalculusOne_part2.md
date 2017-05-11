@@ -429,8 +429,12 @@ The integrals are not exactly measuring area, they're measuring **singed area**.
     - F(x) = ∫ᵇₐ f(t)dt.
  - Then F is continuous on [a,b] , differntiable on (a,b) , and F'(x) = f(x) 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_integrate_fundamental_theorem.png)
 
- - ∫ˣₐ f(t)dt is an **antiderivative !**
+--- 
+
+
+ - So ∫ˣₐ f(t)dt is an **antiderivative !**
 
 Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>₀ f(x)dx 
 
