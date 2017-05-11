@@ -1058,15 +1058,46 @@ TimerInterrupt() {
 
  - Initialize Register fields of TCB
     - Stack pointer made to point at stack
-    - PC return address => OS (asm) routine ThreadRoot()
-    - Two arg registers (a0 and a1) initialized to fcnPtr and fcnArgPtr, respectively
+    - PC return address => OS (asm) routine called ThreadRoot()
+    - Two arg registers (a0 and a1) initialized to fcnPtr and fcnArgPtr, respectively (assume MIPS)
  - Initialize stack data?
     - No. Important part of stack frame is in registers (ra)
     - Think of stack frame as just before body of ThreadRoot() really gets started
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_init_TCB_stack.png)
 
 
+## How does Thread get started?
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_how_thread_start.png)
+
+ - Here is a thread that's been running for a while. 
+    - A which was the first procedure called by the thread is actually has been called by this thread root procedure
+    - thread root is really the root of the thread
+ - Eventually, run_new_thread() will select this TCB and return into beginning of ThreadRoot()
+    - This really starts the new thread
+
+
+### What does ThreadRoot() look like?
+
+ - ThreadRoot() is the root for the thread routine:
+
+```
+ThreadRoot() {
+    DoStartupHousekeeping();
+    UserModeSwitch(); /* enter user mode */
+    Call fcnPtr(fcnArgPtr);
+    ThreadFinish();
+}
+```
+
+ - Startup Housekeeping 
+    - Includes things like recording start time of thread
+    - Other Statistics
+ - Stack will grow and shrink with execution of thread
+ - Final return from thread returns into ThreadRoot() which calls ThreadFinish()
+    - ThreadFinish() will start at user-level
+
+ 
 
 
 
