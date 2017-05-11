@@ -25,6 +25,12 @@
 			 - [Finding Sink Components](#57c30fe3a2297ed1dfa107e753e2752e)
 				 - [Reverse Graph Components](#509d136ac9a437456bbe67dd6b003890)
 			 - [Algorithm](#4afa80e77a07f7488ce4d1bdd8c4977a)
+	 - [Week4 Fastest Route](#81f77ede3fa5efdc0417b37ade6871a6)
+		 - [Naive Algorithm](#b7d8dac92149c1cdc7a8e81befdfb08b)
+			 - [Optimal substructure](#57942cdc67d1172d4aff18d81651ba69)
+			 - [Edge relaxation](#f1800f07c216d493e8e9ff2761ccfc33)
+			 - [Naive approach](#cc6cc606f58f43f4ddfafcf6043ba8ce)
+			 - [Correct distances](#b34e2384a9cd203b59f2660349fdb5fe)
 
 ...menuend
 
@@ -348,9 +354,15 @@ def SCCs(G):
     - Runtime O(|V| + |E|).
 
 
+<h2 id="81f77ede3fa5efdc0417b37ade6871a6"></h2>
+
 ## Week4 Fastest Route 
 
+<h2 id="b7d8dac92149c1cdc7a8e81befdfb08b"></h2>
+
 ### Naive Algorithm
+
+<h2 id="57942cdc67d1172d4aff18d81651ba69"></h2>
 
 ####  Optimal substructure
 
@@ -365,6 +377,8 @@ def SCCs(G):
         - w means weight
 
 
+
+<h2 id="f1800f07c216d493e8e9ff2761ccfc33"></h2>
 
 #### Edge relaxation
 
@@ -384,6 +398,8 @@ def Relax((u, v) ∈ E):
 
 
 
+<h2 id="cc6cc606f58f43f4ddfafcf6043ba8ce"></h2>
+
 #### Naive approach
 
 ```python
@@ -396,6 +412,8 @@ def Naive(G, S):
         relax all the edges
     while at least one dist changes
 ```
+
+<h2 id="b34e2384a9cd203b59f2660349fdb5fe"></h2>
 
 #### Correct distances
 

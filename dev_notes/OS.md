@@ -55,10 +55,29 @@
 	 - [What happens when thread blocks on I/O?](#10ce6000fcb49adf0650c21f0781928b)
 	 - [External Events](#2cfda7f7062e0275e0247c3d069998d1)
 		 - [Example: Network Interrupt](#ac3e78e7384b0cd735da6f27aed285ed)
-	 - [Use of Timer Interrupt to Return Contro](#be4ab2a82d548a1bef203fec2bba43dc)
+	 - [Use of Timer Interrupt to Return Control](#b5a9674b6b2a701a6281fc2cfa5e01c0)
 	 - [Choosing a Thread to Run](#76509dab7986ec644502722976e77b9b)
 	 - [Summary](#290612199861c31d1036b185b4e69b75)
  - [Lecture 5 : Cooperating Threads](#ddab5200bd0e32c18f6873e50ef64a6c)
+	 - [Interrupt Controller](#9169db7925a4b838c995af1390fb85e0)
+		 - [Example: Network Interrupt](#ac3e78e7384b0cd735da6f27aed285ed)
+	 - [Review:  Timer Interrupt](#758d109b4d744f94947421576f9f6d07)
+	 - [ThreadFork(): Create a New Thread](#483ab3314892a7155e32e35ddd1b451d)
+		 - [How do we initialize TCB and Stack?](#1fa694bd693c3f651cbd9b3bcda0caf2)
+	 - [How does Thread get started?](#05c2c327c3eedac316533b39c66226be)
+		 - [What does ThreadRoot() look like?](#55e254b64fdd3360649fd5a61753aa42)
+	 - [What does ThreadFinish() do?](#7a52c0dd4d422a92b6b716b62425d940)
+	 - [Additional Detail](#c6439ecf3dfbc55f09ca225af8da3310)
+	 - [Parent-Child relationship](#c79ae88038e30470ef90ea5320eb4b7a)
+	 - [ThreadJoin() system call](#b5a1e99d1ec2bc3322bf39aa42393596)
+	 - [Use of Join for Traditional Procedure Call](#cc1a47fb651850a86462158fab0d7c1d)
+	 - [Kernel versus User-Mode threads](#29661fa8b809ab28a5b51934e38b1001)
+	 - [Threading models mentioned by book](#dc111ca82bd76ac49f508cd56898996b)
+	 - [Multiprocessing vs Multiprogramming](#d85995eb95fa627c554daf95622b6c00)
+	 - [Correctness for systems with concurrent threads](#75d83e281c09829d3d975c15d6dff110)
+	 - [Interactions Complicate Debugging](#d40b5e12a4bd27bfb433bab8e179726f)
+	 - [Summary](#290612199861c31d1036b185b4e69b75)
+ - [lecture 6 : Synchronization](#0a777e4e25d6bed512e90f4276ed3f3e)
 
 ...menuend
 
@@ -931,7 +950,7 @@ Network interrupt is an external interrupt.
  - network intertupts run every time a packets received
 
 
-<h2 id="be4ab2a82d548a1bef203fec2bba43dc"></h2>
+<h2 id="b5a9674b6b2a701a6281fc2cfa5e01c0"></h2>
 
 ## Use of Timer Interrupt to Return Control
 
@@ -991,6 +1010,8 @@ TimerInterrupt() {
 
 # Lecture 5 : Cooperating Threads
 
+<h2 id="9169db7925a4b838c995af1390fb85e0"></h2>
+
 ## Interrupt Controller
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_interrupt_controller.png)
@@ -1014,6 +1035,8 @@ TimerInterrupt() {
  - Non-maskable interrupt line (NMI) can’t be disabled
 
 
+<h2 id="ac3e78e7384b0cd735da6f27aed285ed"></h2>
+
 ### Example: Network Interrupt
 
 ![][1]
@@ -1030,10 +1053,14 @@ TimerInterrupt() {
     - software interrupts don't have to be done in hardware because at the point where we change the priority by changing the mask back we could see whether a software interrupts supposed to occur 
 
 
+<h2 id="758d109b4d744f94947421576f9f6d07"></h2>
+
 ## Review:  Timer Interrupt
 
  - This is often called **preemptive multithreading** , since threads are preempted for better scheduling
     - Solves problem of user who doesn’t insert yield();
+
+<h2 id="483ab3314892a7155e32e35ddd1b451d"></h2>
 
 ## ThreadFork(): Create a New Thread
 
@@ -1054,6 +1081,8 @@ TimerInterrupt() {
     - Allocate new Stack and TCB
     - Initialize TCB and place on ready list (Runnable).
 
+<h2 id="1fa694bd693c3f651cbd9b3bcda0caf2"></h2>
+
 ### How do we initialize TCB and Stack?
 
  - Initialize Register fields of TCB
@@ -1066,6 +1095,8 @@ TimerInterrupt() {
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_init_TCB_stack.png)
 
 
+<h2 id="05c2c327c3eedac316533b39c66226be"></h2>
+
 ## How does Thread get started?
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_how_thread_start.png)
@@ -1076,6 +1107,8 @@ TimerInterrupt() {
  - Eventually, run_new_thread() will select this TCB and return into beginning of ThreadRoot()
     - This really starts the new thread
 
+
+<h2 id="55e254b64fdd3360649fd5a61753aa42"></h2>
 
 ### What does ThreadRoot() look like?
 
@@ -1101,6 +1134,8 @@ ThreadRoot() {
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_running_stack.png)
 
 
+<h2 id="7a52c0dd4d422a92b6b716b62425d940"></h2>
+
 ## What does ThreadFinish() do?
 
  - Needs to re-enter kernel mode (system call)
@@ -1114,6 +1149,8 @@ ThreadRoot() {
 
 
 
+<h2 id="c6439ecf3dfbc55f09ca225af8da3310"></h2>
+
 ## Additional Detail
 
  - Thread Fork is not the same thing as UNIX fork
@@ -1126,11 +1163,15 @@ ThreadRoot() {
     - ThreadFinish() and exit() are essentially the same procedure entered at user level
 
 
+<h2 id="c79ae88038e30470ef90ea5320eb4b7a"></h2>
+
 ## Parent-Child relationship
 
  - Every thread (and/or Process) has a parentage
     - A “parent” is a thread that creates another thread
     - A child of a parent was created by that parent
+
+<h2 id="b5a1e99d1ec2bc3322bf39aa42393596"></h2>
 
 ## ThreadJoin() system call
 
@@ -1142,6 +1183,8 @@ ThreadRoot() {
  - Similar to wait() system call in UNIX
     - Lets parents wait for child processes
     - ThreadJoin is not kind of synchronization
+
+<h2 id="cc1a47fb651850a86462158fab0d7c1d"></h2>
 
 ## Use of Join for Traditional Procedure Call
 
@@ -1164,6 +1207,8 @@ A’() {
     - Context Switch Overhead
     - Memory Overhead for Stacks
 
+<h2 id="29661fa8b809ab28a5b51934e38b1001"></h2>
+
 ## Kernel versus User-Mode threads
 
  - We have been talking about Kernel threads
@@ -1185,10 +1230,14 @@ A’() {
         - the idea is when you're doing user-level scheduling if one of them goes to block and the first thing the kernel does is gives back the THREAD via another up call so that you can continue to do the lightweight stuff. so the kernel has to participate. 
 
 
+<h2 id="dc111ca82bd76ac49f508cd56898996b"></h2>
+
 ## Threading models mentioned by book
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_thread_block.png)
 
+
+<h2 id="d85995eb95fa627c554daf95622b6c00"></h2>
 
 ## Multiprocessing vs Multiprogramming
 
@@ -1202,6 +1251,8 @@ A’() {
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_multiprogramming.png)
 
+
+<h2 id="75d83e281c09829d3d975c15d6dff110"></h2>
 
 ## Correctness for systems with concurrent threads
 
@@ -1220,6 +1271,8 @@ A’() {
  - Non-deterministic and Non-reproducible means that bugs can be intermittent
     - Sometimes called “Heisenbugs”
 
+<h2 id="d40b5e12a4bd27bfb433bab8e179726f"></h2>
+
 ## Interactions Complicate Debugging
 
  - Is any program truly independent?
@@ -1235,6 +1288,8 @@ A’() {
         - Original UNIX had a bunch of non-deterministic errors
     - Example: Something which does interesting I/O
         - User typing of letters used to help generate secure keys
+
+<h2 id="290612199861c31d1036b185b4e69b75"></h2>
 
 ## Summary
 
@@ -1252,6 +1307,8 @@ A’() {
     - Need to have Atomic operations
 
 ---
+
+<h2 id="0a777e4e25d6bed512e90f4276ed3f3e"></h2>
 
 # lecture 6 : Synchronization
 

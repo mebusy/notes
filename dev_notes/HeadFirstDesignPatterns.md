@@ -3,7 +3,11 @@
  - [Head First Design Patterns](#ceb4d27597053532d28b90d23519ea82)
  - [Head First 学习原则](#5e8c168218e62b9925b996275d1c4e29)
  - [1 设计模式入门](#5616caa0254d9d34b75045c12685203e)
-	 - [从鸭子模型开始说起](#071e61a8efbd292d3bd6da8d0982102e)
+ - [策略模式](#7f10b11f53861282996d481d333af15f)
+ - [观察者模式](#ed69b1ebfd1c60c731c99be83683c89a)
+ - [装饰者模式](#815e385363f17f4a5efd3aadecc64271)
+ - [工厂模式](#b98e9d7c0cb2b3d179c16457b10e53b4)
+ - [单件模式](#c8ef5b6fbf8c995ba753dbf56c4f4981)
 
 ...menuend
 
@@ -67,6 +71,8 @@
 
 
 
+<h2 id="7f10b11f53861282996d481d333af15f"></h2>
+
 # 策略模式
 
  - 鸭子模型
@@ -90,6 +96,8 @@
     - 策略模式 定义算法族（可以理解 为多组具体的实现？），分别封装起来，让它们之间可以互相替换，此模式让算法的变化 独立于使用算法的客户。
 
 
+<h2 id="ed69b1ebfd1c60c731c99be83683c89a"></h2>
+
 # 观察者模式
 
  - 气象站公告板
@@ -112,6 +120,8 @@
     - 在对象之间定义1对多的一来，这样一来，当一个对象改变状态，依赖他的对象都会收到通知，并自动更新
 
 
+<h2 id="815e385363f17f4a5efd3aadecc64271"></h2>
+
 # 装饰者模式
     
  - starbuzz 
@@ -129,6 +139,8 @@
     - BufferInputStream and LineNumberInputStream are both extends from FilterInputStream 
     - FilterInputStream is an abstract decorator class
     - 缺点：装饰者模式，常常造成设计中有 大量的小类，数量实在太多。
+
+<h2 id="b98e9d7c0cb2b3d179c16457b10e53b4"></h2>
 
 # 工厂模式
 
@@ -157,6 +169,8 @@
     - 提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体类
     - 抽象工厂的每个方法 实际上都像是工厂方法。 抽象工厂的方法 经常以 工厂方法的方式实现
 
+
+<h2 id="c8ef5b6fbf8c995ba753dbf56c4f4981"></h2>
 
 # 单件模式
 
