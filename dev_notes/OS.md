@@ -923,7 +923,7 @@ Switch(tCur,tNew) {
 
 Network interrupt is an external interrupt.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_network_interrupt.png)
+ - ![][1]
 
  - An interrupt is a hardware-invoked context switch
     - No separate step to choose what to run next
@@ -991,5 +991,75 @@ TimerInterrupt() {
 
 # Lecture 5 : Cooperating Threads
 
+## Interrupt Controller
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_interrupt_controller.png)
+
+ - the yellow thing represents something that's inside the chip, a chip talking to CPU
+ - there is a hardware software interrupt , if I set some bits in my interrupt controller they essentially assert and interrupt just like anybody else, but these bits get turned on by software.
 
 
+
+
+---
+
+ - Interrupts invoked with interrupt lines from devices
+ - Interrupt controller chooses interrupt request to honor
+    - Mask enables/disables interrupts
+    - Priority encoder picks highest enabled interrupt 
+        - and turns that into an ID ,eg 02 maybe the printer
+    - Software Interrupt Set/Cleared by Software
+    - Interrupt identity specified with ID line
+ - CPU can disable all interrupts with internal flag
+ - Non-maskable interrupt line (NMI) can’t be disabled
+
+
+### Example: Network Interrupt
+
+![][1]
+
+
+ - Disable/Enable All Ints => Internal CPU disable bit
+    - RTI （interrupt return instruction) reenables interrupts, returns to user mode
+    - the only way to prevent a recursive infinite interrupting of an interrupt is to turn them all off to correct something.
+ - Raise/lower priority: change interrupt mask 
+    - in software what we do is we raise the priority
+    - which means we change the mask to reflect we've running at some priority and all devices of that priority or lower will no longer interrutp. and only the highers ones will interrupt. 
+    - so it's a purely a software concept. 
+ - Software interrupts can be provided entirely in software at priority switching boundaries
+    - software interrupts don't have to be done in hardware because at the point where we change the priority by changing the mask back we could see whether a software interrupts supposed to occur 
+
+
+## Review:  Timer Interrupt
+
+ - This is often called **preemptive multithreading** , since threads are preempted for better scheduling
+    - Solves problem of user who doesn’t insert yield();
+
+## ThreadFork(): Create a New Thread
+
+ - ThreadFork() **s a user-level procedure that creates a new thread and places it on ready queue**.
+    - We called this CreateThread() earlier
+ - Arguments to ThreadFork()
+    - Pointer to application routine (fcnPtr)
+    - Pointer to array of arguments (fcnArgPtr)
+    - Size of stack to allocate
+ - Implementation
+    - Sanity Check arguments
+    - Enter Kernel-mode and Sanity Check arguments again
+    - Allocate new Stack and TCB
+    - Initialize TCB and place on ready list (Runnable).
+
+
+
+
+
+
+
+
+--- 
+
+
+
+
+
+ [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_network_interrupt.png
