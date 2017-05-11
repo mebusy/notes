@@ -1098,6 +1098,49 @@ ThreadRoot() {
     - ThreadFinish() will start at user-level
 
  
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_running_stack.png)
+
+
+## What does ThreadFinish() do?
+
+ - Needs to re-enter kernel mode (system call)
+ - “Wake up” (place on ready queue) threads waiting for this thread
+    - Threads (like the parent) may be on a wait queue waiting for this thread to finish
+ - Can’t deallocate thread yet
+    - We are still running on its stack!
+    - Instead, record thread as “waitingToBeDestroyed”
+ - Call `run_new_thread()` to run another thread:
+    - ThreadHouseKeeping() notices waitingToBeDestroyed and deallocates the finished thread’s TCB and stack
+
+
+
+## Additional Detail
+
+ - Thread Fork is not the same thing as UNIX fork
+    - UNIX fork creates a new process so it has to create a new address space
+    - For now, don’t worry about how to create and switch between address spaces
+ - Thread fork is very much like an asynchronous procedure call
+    - Runs procedure in separate thread
+    - Calling thread doesn’t wait for finish
+ - What if thread wants to exit early?
+    - ThreadFinish() and exit() are essentially the same procedure entered at user level
+
+
+## Parent-Child relationship
+
+ - Every thread (and/or Process) has a parentage
+    - A “parent” is a thread that creates another thread
+    - A child of a parent was created by that parent
+
+## ThreadJoin() system call
+
+ - One thread can wait for another to finish with the ThreadJoin(tid) call
+    - Calling thread will be taken off run queue and placed on waiting queue for thread tid
+ - Where is a logical place to store this wait queue?
+    - On queue inside the TCB
+ - Similar to wait() system call in UNIX
+    - Lets parents wait for child processes
+
 
 
 
