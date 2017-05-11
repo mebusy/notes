@@ -1138,9 +1138,14 @@ ThreadRoot() {
     - Calling thread will be taken off run queue and placed on waiting queue for thread tid
  - Where is a logical place to store this wait queue?
     - On queue inside the TCB
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/
  - Similar to wait() system call in UNIX
     - Lets parents wait for child processes
 
+## Use of Join for Traditional Procedure Call
+
+ - A traditional procedure call is logically equivalent to doing a ThreadFork followed by ThreadJoin
+ - 
 
 
 
