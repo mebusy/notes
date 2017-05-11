@@ -1182,6 +1182,15 @@ A’() {
     - Kernel cannot adjust scheduling among all threads
     - Option: *Scheduler Activations*
         - Have kernel inform user level when thread blocks…
+        - the idea is when you're doing user-level scheduling if one of them goes to block and the first thing the kernel does is gives back the THREAD via another up call so that you can continue to do the lightweight stuff. so the kernel has to participate. 
+
+
+## Threading models mentioned by book
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_thread_block.png)
+
+
+
 
 
 
