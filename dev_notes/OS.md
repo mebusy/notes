@@ -1039,16 +1039,31 @@ TimerInterrupt() {
 
  - ThreadFork() **s a user-level procedure that creates a new thread and places it on ready queue**.
     - We called this CreateThread() earlier
+    - can be entirely user-level because the notion of "placing on the ready queue" is a kernel level concept. because ready queue is inside kernel.
  - Arguments to ThreadFork()
     - Pointer to application routine (fcnPtr)
+        - tell it what routine to run
     - Pointer to array of arguments (fcnArgPtr)
+        - quite possible that the thing you're going to run needs arguments 
     - Size of stack to allocate
  - Implementation
     - Sanity Check arguments
+        - optional , helpful with debugging
     - Enter Kernel-mode and Sanity Check arguments again
+        - why need check again ?  making sure by the kernel that the user thread creating this thread really has permissions for all the arguments. 
     - Allocate new Stack and TCB
     - Initialize TCB and place on ready list (Runnable).
 
+### How do we initialize TCB and Stack?
+
+ - Initialize Register fields of TCB
+    - Stack pointer made to point at stack
+    - PC return address => OS (asm) routine ThreadRoot()
+    - Two arg registers (a0 and a1) initialized to fcnPtr and fcnArgPtr, respectively
+ - Initialize stack data?
+    - No. Important part of stack frame is in registers (ra)
+    - Think of stack frame as just before body of ThreadRoot() really gets started
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_init_TCB_stack.png)
 
 
 
