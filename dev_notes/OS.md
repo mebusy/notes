@@ -305,7 +305,7 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
         - so there are 3 functional units 
     - the 1st cycle 
         - a) functional unit 1 and 3  are busy (colored), function unit 2 is not busy
-        - b) you might put tow of these together , and each of them has idle slots.
+        - b) you might put two of these together , and each of them has idle slots.
         - c) you put two threads togethter into the same pipline and they share the slots as a result you end up filling up more the empty slots.  
             - this means that the hardware itself has got 2 sets of registers , 2 Program Counters, 2 branch predictores , and 2 of a few other things ...
 
@@ -933,7 +933,7 @@ Network interrupt is an external interrupt.
 
 <h2 id="be4ab2a82d548a1bef203fec2bba43dc"></h2>
 
-## Use of Timer Interrupt to Return Contro
+## Use of Timer Interrupt to Return Control
 
  - Solution to our dispatcher problem
     - Use the timer interrupt to force scheduling decisions
