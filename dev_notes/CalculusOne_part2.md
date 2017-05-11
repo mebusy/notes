@@ -423,5 +423,23 @@ The integrals are not exactly measuring area, they're measuring **singed area**.
 
 # Week 13 Fundamental Theorem of Calculus
 
+## What is the fundamental theorem of calculus?
+
+ - Suppose f:[a,b] → ℝ is continuous. let F be the accumulation function , given by 
+    - F(x) = ∫ᵇₐ f(t)dt.
+ - Then F is continuous on [a,b] , differntiable on (a,b) , and F'(x) = f(x) 
+
+
+ - ∫ˣₐ f(t)dt is an **antiderivative !**
+
+Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>₀ f(x)dx 
+
+  ∫<sup>3.3</sup>₀ f(x)dx 
+
+= ∫<sup>3</sup>₀ f(x)dx + ∫<sup>3.3</sup>₃ f(x)dx 
+
+= 9 + 10\*0.3 = 12 
+
+ 
 
 
