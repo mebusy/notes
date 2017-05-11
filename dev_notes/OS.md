@@ -1138,14 +1138,54 @@ ThreadRoot() {
     - Calling thread will be taken off run queue and placed on waiting queue for thread tid
  - Where is a logical place to store this wait queue?
     - On queue inside the TCB
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_wait_queue.png)
  - Similar to wait() system call in UNIX
     - Lets parents wait for child processes
+    - ThreadJoin is not kind of synchronization
 
 ## Use of Join for Traditional Procedure Call
 
  - A traditional procedure call is logically equivalent to doing a ThreadFork followed by ThreadJoin
- - 
+
+```c
+A() { B(); }
+B() { Do interesting, complex stuff }
+```
+
+```c
+A’() {
+    tid = ThreadFork(B,null);
+    ThreadJoin(tid);
+}
+```
+
+ - The procedure A() is equivalent to A’()
+ - Why not do this for every procedure?
+    - Context Switch Overhead
+    - Memory Overhead for Stacks
+
+## Kernel versus User-Mode threads
+
+ - We have been talking about Kernel threads
+    - Native threads supported directly by the kernel
+    - Every thread can run or block independently
+    - One process may have several threads waiting on different things
+ - Downside of kernel threads: a bit expensive
+    - Need to make a crossing into kernel mode to schedule
+ - Even lighter weight option: User Threads
+    - User program provides scheduler and thread package
+    - May have several user threads per kernel thread
+    - User threads may be scheduled non-premptively relative to each other (only switch on yield())
+    - Cheap
+ - Downside of user threads:
+    - When one thread blocks on I/O, all threads block
+    - Kernel cannot adjust scheduling among all threads
+    - Option: *Scheduler Activations*
+        - Have kernel inform user level when thread blocks…
+
+
+
+
 
 
 
