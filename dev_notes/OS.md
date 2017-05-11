@@ -1190,10 +1190,70 @@ A’() {
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_thread_block.png)
 
 
+## Multiprocessing vs Multiprogramming
+
+ - Remember Definitions:
+    - Multiprocessing == Multiple CPUs
+    - Multiprogramming == Multiple Jobs or Processes
+    - Multithreading == Multiple threads per Process
+ - What does it mean to run two threads “concurrently”?
+    - Scheduler is free to run threads in any order and interleaving: FIFO, Random, …
+    - Dispatcher can choose to run each thread to completion or time-slice in big chunks or small chunks
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_multiprogramming.png)
 
 
+## Correctness for systems with concurrent threads
 
+ - If dispatcher can schedule threads in any way, programs must work under all circumstances
+    - Can you test for this?
+    - How can you know if your program works?
+ - **Independent Threads:**
+    - No state shared with other threads
+    - Deterministic => Input state determines results
+    - Reproducible => Can recreate Starting Conditions, I/O
+    - Scheduling order doesn’t matter (if switch() works!!!)
+ - **Cooperating Threads:**
+    - Shared State between multiple threads
+    - Non-deterministic
+    - Non-reproducible
+ - Non-deterministic and Non-reproducible means that bugs can be intermittent
+    - Sometimes called “Heisenbugs”
 
+## Interactions Complicate Debugging
+
+ - Is any program truly independent?
+    - Every process shares the file system, OS resources, network, etc
+    - Extreme example: buggy device driver causes thread A to crash “independent thread” B
+ - You probably don’t realize how much you depend on reproducibility:
+    - Example: Evil C compiler
+        - Modifies files behind your back by inserting errors into C program unless you insert debugging code
+    - Example: Debugging statements can overrun stack
+ - Non-deterministic errors are really difficult to find
+    - Example: Memory layout of kernel+user programs
+        - depends on scheduling, which depends on timer/other things
+        - Original UNIX had a bunch of non-deterministic errors
+    - Example: Something which does interesting I/O
+        - User typing of letters used to help generate secure keys
+
+## Summary
+
+ - Interrupts: hardware mechanism for returning control to operating system
+    - Used for important/high-priority events
+    - Can force dispatcher to schedule a different thread (premptive multithreading)
+ - New Threads Created with ThreadFork()
+    - Create initial TCB and stack to point at ThreadRoot()
+    - ThreadRoot() calls thread code, then ThreadFinish()
+    - ThreadFinish() wakes up waiting threads then prepares TCB/stack for distruction
+ - Threads can wait for other threads using  ThreadJoin()
+ - Threads may be at user-level or kernel level
+ - Cooperating threads have many potential advantages
+    - But: introduces non-reproducibility and non-determinism
+    - Need to have Atomic operations
+
+---
+
+# lecture 6 : Synchronization
 
 
 
