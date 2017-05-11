@@ -786,6 +786,12 @@ computePI() {
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_stack_for_yielding_thread.png)
 
+ - why must trap to OS ?
+    - It's the kernel that is actually multiplexing the threads. The TCBs are stored in kernel space. 
+    - But you can do threading entirely at user level if you want.
+        - kernel mode vs user mode 
+    - So nothing that's involved here in the switching of threads has to be kernel mode because it just involves register. 
+    - Once we start switching processes then that is got to be in the kernel because we're changing address protection. 
  - How do we run a new thread?
 
 ```
