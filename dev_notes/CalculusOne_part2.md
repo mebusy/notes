@@ -473,6 +473,54 @@ Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>
 
 ### What is the area between the graphs of y = √x and y = x² ?
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calc_integrate_area_between_2_graph.png)
+
+ - ∫¹₀ (√x -x²)dx = [ x<sup>3/2</sup>/(3/2) - x³/3  ]¹₀ = 1/3
+
+
+## Bug why is the fundamental theorem true ?
+
+### Why does the Euler method resemble a Riemann sum?
+
+ - F(h) = F(0) + h·F'(0) = F(0) + h·f(0)
+ - F(2h) = F(h) + h·F'(h) = F(h) + h·f(h) = h·f(0) + h·f(h)
+ - F(3h) = F(2h) + h·F'(2h) = F(2h) + h·f(2h) = h·f(0) + h·f(h) + h·f(2h) 
+ - ...
+ - F(10) = h·f(0) + h·f(h) + h·f(2h) + ... +  h·f(9h)
+ - It's Riemann sum!
+
+
+### In what way is summation like integration?
+
+Integrating | differentiating 
+--- | --- 
+summing | *differencing* 
+
+ - 1,2,3,4,5,... -- sum -->  0,1,3,6,10,15,... 
+ - 0,1,3,6,10,15,...  -- calc difference --> 1,2,3,4,5,...
+ - So **differences** between *sum of first k numbers* and *sum of first k-1 numbers*, gives back the original list !
+ - d/dx ∫ˣₐ f(t)dt = f(x)
+
+
+### Physically, why is the fundamental theorem of calculus true?
+
+ - v(t) = my velocity at time t
+ - ∫ᵇ₀ v(t)dt = distance I traveled t=0 to t=b
+
+---
+
+ - Summarizing , the accumulation function of velocity , is displacement
+ - The derivative of displacement is velocity. 
+
+### What is d/da integral f(x) dx from x = a to x = b?
+
+ - we know 
+
+
+
+
+
+
 
 
 
