@@ -426,7 +426,7 @@ The integrals are not exactly measuring area, they're measuring **singed area**.
 ## What is the fundamental theorem of calculus?
 
  - Suppose f:[a,b] → ℝ is continuous. let F be the accumulation function , given by 
-    - F(x) = ∫ᵇₐ f(t)dt.
+    - F(x) = ∫ˣₐ f(t)dt.
  - Then F is continuous on [a,b] , differntiable on (a,b) , and F'(x) = f(x) 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_integrate_fundamental_theorem.png)
@@ -445,5 +445,36 @@ Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>
 = 9 + 10\*0.3 = 12 
 
  
+## How am I supposed to use this theorem ?
+
+### to evaluate integrals
+
+ - we don't case ∫ˣₐ , we really want to calculate ∫ᵇₐ
+ - F(b) = ∫ᵇₐ f(t)dt
+    - F(a) = ∫ªₐ f(t)dt = 0 
+
+---
+
+ - Suppose f:[a,b] → ℝ is continuous , and F is an antiderivative of f.
+ - Then ∫ᵇₐ f(x)dx = F(b) - F(a)
+
+ 
+### What is the integral of sin x dx from x = 0 to x = pi?
+
+ - ∫<sup>π</sup>₀ sinxdx = ?
+ - -cos(π) - (-cos(0))  = 1 - (-1) = 2
+
+### What is the integral of x⁴ dx from x = 0 to x = 1?
+
+ - ∫¹₀ x⁴dx = (1)⁵/5 - (0)⁵/5 = 0.2
+
+ 
+## What else can we compute this way ?
+
+### What is the area between the graphs of y = √x and y = x² ?
+
+
+
+
 
 
