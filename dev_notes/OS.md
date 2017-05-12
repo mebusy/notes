@@ -1471,6 +1471,37 @@ x = 1;     x = 2;
     - Fixes too much: roommate angry if only wants OJ
     - Of Course – We don’t know how to make a lock yet
 
+## Where are we going with synchronization?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_what_going_to_synchronize.png)
+
+ - We are going to implement various higher-level synchronization primitives using atomic operations
+    - Everything is pretty painful if only atomic primitives are load and store
+    - Need to provide primitives useful at user-level
+
+## Summary 
+
+ - Concurrent threads are a very useful abstraction
+    - Allow transparent overlapping of computation and I/O
+    - Allow use of parallel processing when available
+ - Concurrent threads introduce problems when accessing shared data
+    - Programs must be insensitive to arbitrary interleavings
+    - Without careful design, shared variables can become completely inconsistent
+ - Important concept: Atomic Operations
+    - An operation that runs to completion or not at all
+    - These are the primitives on which to construct various synchronization primitives
+ - Showed how to protect a critical section with only atomic load and store => pretty complex!
+
+
+---
+
+# Lecture 7 : Implementing Mutual Exclusion, Semaphores, Monitors, and Condition Variables
+
+
+
+
+
+
 
 
 
