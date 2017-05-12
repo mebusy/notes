@@ -1129,6 +1129,8 @@ ThreadRoot() {
  - Stack will grow and shrink with execution of thread
  - Final return from thread returns into ThreadRoot() which calls ThreadFinish()
     - ThreadFinish() will start at user-level
+ - it's very important that we get int user-mode before we start running
+    - once we are calling that `fcnPtr(fcnArgPtr)` we are running arbitrary code that was given to us when the thread was created and we really don't want to do that in kernel mode.
 
  
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_running_stack.png)
@@ -1311,6 +1313,175 @@ A’() {
 <h2 id="0a777e4e25d6bed512e90f4276ed3f3e"></h2>
 
 # lecture 6 : Synchronization
+
+## Threaded Web Server
+
+ - Advantages of threaded version:
+    - Can share file caches kept in memory, results of CGI scripts, other things
+    - Threads are much cheaper to create than processes, so this has a lower per-request overhead
+ - What if too many requests come in at once?
+    - you got more overhead than real computation. You got a million threads going simultaneously the only thing you're doing is swithing all the time. 
+
+## Thread Pools
+
+ - Problem with previous version: Unbounded Threads
+    - When web-site becomes too popular – throughput sinks
+ - Instead, allocate a bounded “pool” of threads, representing the maximum level of multiprogramming
+
+
+```
+master() {
+    allocThreads(slave,queue);
+    while(TRUE) {
+        con=AcceptCon();
+        Enqueue(queue,con);
+        wakeUp(queue);
+    }
+}
+
+
+slave(queue) {
+    while(TRUE) {
+        con=Dequeue(queue);
+        if (con==null)
+            sleepOn(queue);
+        else
+            ServiceWebPage(con);
+    }
+}
+```
+
+ - every request that comes in get put in the queue 
+ - and there is a finite number of threads here running 
+    - they go and grab a request off the queue , do something , finish it, grab the next request 
+
+
+## ATM Bank Server
+
+### ATM bank server example
+
+ - Suppose we wanted to implement a server process to handle requests from an ATM network:
+ - How could we speed this up?
+    - More than one request being processed at once
+    - Event driven (overlap computation and I/O)
+    - Multiple threads (multi-proc, or overlap comp and I/O)
+
+### Event Driven Version of ATM server
+
+ - Suppose we only had one CPU
+    - Still like to overlap I/O with computation
+    - Without threads, we would have to rewrite in event-driven style
+ - Example
+
+```
+BankServer() {
+    while(TRUE) {
+        event = WaitForNextEvent();
+        if (event == ATMRequest)
+            StartOnRequest();
+        else if (event == AcctAvail)
+            ContinueRequest();
+        else if (event == AcctStored)
+            FinishRequest(); 
+    } 
+}
+```
+
+ - What if we missed a blocking I/O step?
+ - What if we have to split code into hundreds of pieces which could be blocking?
+ - This technique is used for graphical programming
+
+
+### Can Threads Make This Easier?
+
+ - Threads yield overlapped I/O and computation without “deconstructing” code into non-blocking fragments
+    - One thread per request
+ - Requests proceeds to completion, blocking as required I/O
+ - Unfortunately, shared state can get corrupted:
+
+```
+Thread 1                    Thread 2
+load r1, acct->balance
+                            load r1, acct->balance
+                            add r1, amount2
+                            store r1, acct->balance
+add r1, amount1
+store r1, acct->balance
+```
+
+## Problem is at the lowest level
+
+ - Most of the time, threads are working on separate data, so scheduling doesn’t matter
+ - However, What about (Initially, y = 12):
+    - What are the possible values of x?  13, 3 , or 5
+
+```
+Thread A    Thread B
+x = 1;      y = 2;
+x = y+1;    y = y*2;
+```
+ 
+ - Or, what are the possible values of x below?
+
+```
+Thread A   Thread B
+x = 1;     x = 2;
+```
+
+ - X could be 1 or 2 (non-deterministic!)
+ - Could even be 3 for serial processors:
+    - Thread A writes 0001, B writes 0010. 
+    - if we have a non-atomic load/store ( eg. bigger than a single word )
+
+## Atomic Operations
+
+ - To understand a concurrent program, we need to know what the underlying indivisible operations are!
+ - **Atomic Operation**:  an operation that always runs to completion or not at all
+    - It is indivisible: it cannot be stopped in the middle and state cannot be modified by someone else in the middle
+    - Fundamental building block – if no atomic operations, then have no way for threads to work together
+ - On most machines, memory references and assignments (i.e. loads and stores) of words are atomic
+    - Consequently – weird example that produces “3” on previous slide can’t happen
+ - Many instructions are not atomic
+    - Double-precision floating point store often not atomic
+    - VAX and IBM 360 had an instruction to copy a whole array
+
+## Correctness Requirements
+
+ - Threaded programs must work for all interleavings of thread instruction sequences
+    - Cooperating threads inherently non-deterministic and non-reproducible
+    - Really hard to debug unless carefully designed!
+
+## Definitions
+
+ - **Synchronization:**  using atomic operations to ensure cooperation between threads
+    - For now, only loads and stores are atomic
+    - We are going to show that its hard to build anything useful with only reads and writes
+ - **Mutual Exclusion**: ensuring that only one thread does a particular thing at a time
+    - One thread *excludes* the other while doing its task
+ - **Critical Section**: piece of code that only one thread can execute at once. Only one thread at a time will get into this section of code
+    - Critical section is the result of mutual exclusion
+    - Critical section and mutual exclusion are two ways of describing the same thing.
+ - **Lock**: prevents someone from doing something
+    - Lock before entering critical section and before accessing shared data
+    - Unlock when leaving, after accessing shared data
+    - Wait if locked
+        - Important idea: all synchronization involves waiting
+ - For example: fix the milk problem by putting a key on the refrigerator
+    - Lock it and take key if you are going to go buy milk
+    - Fixes too much: roommate angry if only wants OJ
+    - Of Course – We don’t know how to make a lock yet
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

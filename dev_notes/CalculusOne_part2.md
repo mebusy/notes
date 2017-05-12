@@ -514,7 +514,25 @@ summing | *differencing*
 
 ### What is d/da integral f(x) dx from x = a to x = b?
 
- - we know 
+ - we know d/db ∫ᵇₐ f(t)dt = f(b)
+ - what happens d/da ∫ᵇₐ f(t)dt  ?
+    - -f(a)
+
+---
+
+ - The conventon:
+    - ∫ᵇₐ f(x)dx  = - ∫ª<sub>b</sub> f(x)dx
+ 
+
+### Quiz:
+
+ - ∫<sup>6.02</sup>₆ f(x)dx = 0.1 , Approximate f(6) as well as you can given this information 
+    - ∫<sup>6.02</sup>₆ f(x)dx = f(6) \* 0.02 = 0.1 
+    - f(6) = 5
+
+## 
+
+
 
 
 
