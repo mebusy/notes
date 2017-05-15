@@ -1803,12 +1803,125 @@ Release() {
     - Semaphores are really named after the notion of kind of the stop lights that are on train tracks
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_semaphores.png)
  - Definition: a Semaphore has a non-negative integer value and supports the following two operations:
-    
+    - **P():** an atomic operation that waits for semaphore to become positive, then decrements it by 1  
+        - Think of this as the wait() operation
+    - **V():** an atomic operation that increments the semaphore by 1, waking up a waiting P, if any 
+        - This of this as the signal() operation
+    - Note that P() stands for “proberen” (to test) and V() stands for “verhogen” (to increment) in Dutch
+
+### Semaphores Like Integers Except
+
+ - Semaphores are like integers, except
+    - No negative values
+    - Only operations allowed are P and V – can’t read or write value, except to set it initially
+    - Operations must be atomic
+        - Two P’s together can’t decrement value below zero
+        - Similarly, thread going to sleep in P won’t miss wakeup from V – even if they both happen at same time
+ - Semaphore from railway analogy
+    - Here is a semaphore initialized to 2 for resource control:
 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_semaphores_value_2.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_semaphores_value_1.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_semaphores_value_0.png)
+
+### Two Uses of Semaphores
+
+ - Mutual Exclusion (initial value = 1)
+    - Also called “Binary Semaphore”.
+    - Can be used for mutual exclusion:
+        - semaphore.P();
+        - // Critical section goes here
+        - semaphore.V();
+    - Mutex
+ - Scheduling Constraints (initial value = 0)
+    - Locks are fine for mutual exclusion, but what if you want a thread to wait for something?
+    - Example: suppose you had to implement ThreadJoin which must wait for thread to terminiate:
+
+```
+Initial value of semaphore = 0
+ThreadJoin {
+    semaphore.P();
+}
+ThreadFinish {
+    semaphore.V();
+}
+```
 
 
+## Producer-consumer with a bounded buffer
 
+ - Problem Definition
+    - Producer puts things into a shared buffer
+    - Consumer takes them out
+    - Need synchronization to coordinate producer/consumer
+ - Don’t want producer and consumer to have to work in lockstep, so put a fixed-size buffer between them
+    - Need to synchronize access to this buffer
+    - Producer needs to wait if buffer is full
+    - Consumer needs to wait if buffer is empty
+ - Example 1: GCC compiler
+    - cpp | cc1 | cc2 | as | ld
+ - Example 2: Coke machine
+    - Producer can put limited number of cokes in machine
+    - Consumer can’t take cokes out if machine is empty
+
+
+### Correctness constraints for solution
+
+ - Correctness Constraints:
+    - Consumer must wait for producer to fill buffers, if none full (scheduling constraint)
+    - Producer must wait for consumer to empty buffers, if all full (scheduling constraint)
+    - Only one thread can manipulate buffer queue at a time (mutual exclusion)
+ - Remember why we need mutual exclusion
+    - Because computers are stupid
+    - Imagine if in real life: the delivery person is filling the machine and somebody comes up and tries to stick their money into the machine
+ - General rule of thumb: **Use a separate semaphore for each constraint**
+    - Semaphore fullBuffers; // consumer’s constraint
+    - Semaphore emptyBuffers;// producer’s constraint
+    - Semaphore mutex; // mutual exclusion
+
+
+### Full Solution to Bounded Buffer     
+
+```
+Semaphore fullBuffer = 0; // Initially, no coke
+Semaphore emptyBuffers = numBuffers;
+// Initially, num empty slots
+Semaphore mutex = 1; // No one using machine
+
+Producer(item) {
+    emptyBuffers.P(); // Wait until space
+    mutex.P(); // Wait until buffer free
+    Enqueue(item);
+    mutex.V();
+    fullBuffers.V(); // Tell consumers there is more coke
+}
+Consumer() {
+    fullBuffers.P(); // Check if there’s a coke
+    mutex.P(); // Wait until machine free
+    item = Dequeue();
+    mutex.V();
+    emptyBuffers.V(); // tell producer need more
+    return item;
+}
+```
+
+### Discussion about Solution
+
+ - Why asymmetry?
+    - Producer does: emptyBuffer.P(), fullBuffer.V()
+    - Consumer does: fullBuffer.P(), emptyBuffer.V()
+ - Is order of P’s important? Yes! can cause deadlock
+    - might sleep with lock
+ - Is order of V’s important? No.
+    - it might affect scheduling efficiency. 
+ - What if we have 2 producers or 2 consumers?
+    - Do we need to change anything? No.It works.
+
+
+## Motivation for Monitors and Condition Variables
 
 
 
