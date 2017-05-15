@@ -1418,7 +1418,7 @@ store r1, acct->balance
 ```
 Thread A    Thread B
 x = 1;      y = 2;
-x = y+1;    y = y*2;
+x = y+1;    y = y * 2;
 ```
  
  - Or, what are the possible values of x below?
@@ -1497,7 +1497,130 @@ x = 1;     x = 2;
 
 # Lecture 7 : Implementing Mutual Exclusion, Semaphores, Monitors, and Condition Variables
 
+## High-Level Picture
 
+ - The abstraction of threads is good:
+    - Maintains sequential execution model 
+    - Allows simple parallelism to overlap I/O and computation
+ - Unfortunately, still too complicated to access state shared between threads 
+    - Consider “too much milk” example
+    - Implementing a concurrent program with only loads and stores would be tricky and error-prone
+ - Today, we’ll implement higher-level operations on top of atomic operations provided by hardware
+    - Develop a “synchronization toolbox”
+    - Explore some common programming paradigms
+
+## Too Much Milk: Solution #4
+
+ - Suppose we have some sort of implementation of a lock (more in a moment).
+    - **Lock.Acquire()** - wait until lock is free, then grab
+    - **Lock.Release()** - Unlock, waking up anyone waitin
+    - These must be atomic operations – if two threads are waiting for the lock and both see it’s free, only one succeeds to grab the lock
+ - Then, our milk problem is easy:
+ 
+```c
+milklock.Acquire();
+if (nomilk)
+ buy milk;
+milklock.Release();
+```
+ 
+ - Once again, section of code between Acquire() and Release() called a **“Critical Section”**
+ - Of course, you can make this even simpler: suppose you are out of ice cream instead of milk
+    - Skip the test since you always need more ice cream.
+
+## How to implement Locks?
+
+ - **Lock**: prevents someone from doing something
+    - Lock before entering critical section and before accessing shared data
+    - Unlock when leaving, after accessing shared data
+    - Wait if locked
+        - **Important idea: all synchronization involves waiting**
+        - **Should** ***sleep*** **if waiting for a long time**
+ - Atomic Load/Store: get solution like Milk #3
+    - Looked at this last lecture
+    - Pretty complex and error prone
+ - Hardware Lock instruction
+    - Is this a good idea? No.
+    - What about putting a task to sleep?
+        - How do you handle the interface between the hardware and scheduler?
+    - Complexity?
+        - Done in the Intel 432
+        - Each feature makes hardware more complex and slow
+
+## Naïve use of Interrupt Enable/Disable
+
+ - How can we build multi-instruction atomic operations?
+    - Recall: dispatcher gets control in two ways. 
+        - Internal: Thread does something to relinquish the CPU
+        - External: Interrupts cause dispatcher to take CPU
+    - On a uniprocessor, can avoid context-switching by:
+        - Avoiding internal events (although virtual memory tricky)
+        - Preventing external events by disabling interrupts
+    - What about a multiprocessor ?
+        - It does not. because  we only disabled interrupts on one core.
+ - Consequently, naïve Implementation of locks:
+    - `LockAcquire { disable Ints; }`
+    - `LockRelease { enable Ints; }`
+ - Problems with this approach:
+    - **Can’t let user do this**!  Consider following:
+        - `LockAcquire(); While(TRUE) {;}`
+        - interrupts will never go off again , the OS will never grab the CPU back
+    - Real-Time system—no guarantees on timing! 
+        - Critical Sections might be arbitrarily long
+    - What happens with I/O or other important events?
+        - “Reactor about to meltdown. Help?”
+
+
+## Better Implementation of Locks by Disabling Interrupts
+
+ - Key idea: maintain a lock variable in memory and impose mutual exclusion only during operations on that variable
+
+```
+int value = FREE;
+
+Acquire() {
+    disable interrupts;
+    if (value == BUSY) {
+        put thread on wait queue;
+        Go to sleep();
+        // Enable interrupts?
+    } else {
+        value = BUSY;
+    }
+    enable interrupts;
+}
+
+Release() {
+    disable interrupts;
+    if (anyone on wait queue) {
+        take thread off wait queue
+        Place on ready queue;
+    } else {
+        value = FREE;
+    }
+    enable interrupts;
+}
+```
+
+ - after going to sleep, who re-enable interrupts?
+ - It doesn't really work.
+
+## New Lock Implementation: Discussion
+
+ - Why do we need to disable interrupts at all?
+    - Avoid interruption between checking and setting lock value
+    - Otherwise two threads could think that they both have lock
+ 
+## Interrupt re-enable in going to sleep
+
+ - What about re-enabling ints when going to sleep?
+ - Before putting thread on the wait queue ?
+    - meanwhile at that point somebody else wakes up, releases the lock , comes back , and we put ourselves on the wait queue even though the lock is free now.  
+    - Release can check the queue and not wake up thread
+ - After putting thread on the wait queue ?
+    - they wake me up from the wait queue by putting me on the ready queue and then I come back here and immediately go to sleep. 
+    - Relase puts the thread on the ready queue, but the thread still thinks it needs to go to sleep
+    - Misses wakeup and still holds lock ( deadlock ! )
 
 
 
