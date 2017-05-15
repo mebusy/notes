@@ -1786,6 +1786,7 @@ Release() {
  
  - Goal of last couple of lectures:
     - What is the right abstraction for synchronizing threads that share memory?
+        - locks are kind of the lowest level primitive that we could ask for. and they don't really do a lot of things cleanly. 
     - Want as high a level primitive as possible
  - Good primitives and practices important!
     - Since execution is not entirely sequential, really hard to find bugs, since they happen rarely
@@ -1794,7 +1795,15 @@ Release() {
     - This lecture and the next presents a couple of ways of structuring the sharing
 
 
+## Semaphores
 
+ - Semaphores are a kind of generalized lock
+    - First defined by Dijkstra in late 60s
+    - Main synchronization primitive used in original UNIX
+    - Semaphores are really named after the notion of kind of the stop lights that are on train tracks
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_semaphores.png)
+ - Definition: a Semaphore has a non-negative integer value and supports the following two operations:
+    
 
 
 
