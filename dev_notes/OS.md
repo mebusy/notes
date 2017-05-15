@@ -1621,13 +1621,177 @@ Release() {
     - they wake me up from the wait queue by putting me on the ready queue and then I come back here and immediately go to sleep. 
     - Relase puts the thread on the ready queue, but the thread still thinks it needs to go to sleep
     - Misses wakeup and still holds lock ( deadlock ! )
+ - Want to put it after sleep(). But how ?
+    - we need to bring the kernel in here to help us a little bit. What means that are going to sleep process has to also re-enable interrupts somehow. 
 
 
+## How to Re-enable After Sleep()?
+
+ - In Nachos, since ints are disabled when you call sleep:
+    - Responsibility of the next thread to re-enable ints
+    - When the sleeping thread wakes up, returns to acquire and re-enables interrupts
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_reenable_ints_after_sleep.png)
 
 
+## Interrupt disable and enable across context switches
+
+ - An important point about structuring code:
+    - In Nachos code you will see lots of comments about assumptions made concerning when interrupts disabled
+    - This is an example of where modifications to and assumptions about program state can’t be localized within a small body of code
+    - In these cases it is possible for your program to eventually “acquire” bugs as people modify code
+ - Other cases where this will be a concern?
+    - What about exceptions that occur after lock is acquired? Who releases the lock?
+
+```c
+mylock.acquire();
+a = b / 0;
+mylock.release()
+```
+
+ - many languages have ways of handling non-local exits. Basically situations where you get an exception kind of in the mille of the code and you can arrange so that no matter what way you exit this code , you always execute release code. 
 
 
+## Atomic Read-Modify-Write instructions
 
+ - Problems with previous solution:
+    - Can’t give lock implementation to users
+        - you can't give interrupt disable to the user.
+        - they will lock up the machine. 
+    - Doesn’t work well on multiprocessor
+        - Disabling interrupts on all processors requires messages and would be very time consuming
+ - Alternative: atomic instruction sequences
+    - These instructions read a value from memory and write a new value atomically
+    - Hardware is responsible for implementing this correctly
+        - on both uniprocessors (not too hard) 
+        - and multiprocessors (requires help from cache coherence protocol)
+    - that is enough to build locks.
+ - Unlike disabling interrupts, can be used on both uniprocessors and multiprocessors
+
+### Examples of Read-Modify-Write 
+ 
+
+```
+test&set (&address) { /* most architectures */
+    result = M[address];
+    M[address] = 1;
+    return result; 
+}
+
+swap (&address, register) { /* x86 */
+    temp = M[address];
+    M[address] = register;
+    register = temp; 
+}
+
+compare&swap (&address, reg1, reg2) { /* 68000 */
+    if (reg1 == M[address]) {
+        M[address] = reg2;
+        return success;
+    } else {
+        return failure; 
+    } 
+}
+
+load-linked&store conditional(&address) {
+    /* R4000, alpha */
+    loop:
+        ll r1, M[address];
+        movi r2, 1; /* Can do arbitrary comp */
+        sc r2, M[address];
+        beqz r2, loop; 
+}
+```
+
+
+ - those combinations are enough sufficiently that we can build locks out of them 
+
+## Implementing Locks with test&set
+
+ - Another flawed, but simple solution:
+
+```
+int value = 0; // Free
+Acquire() {
+    while (test&set(value)); // while busy
+}
+Release() {
+    value = 0;
+}
+```
+ 
+
+ - Simple explanation:
+    - If lock is free, test&set reads 0 and sets value=1, so lock is now busy. It returns 0 so while exits.
+    - If lock is busy, test&set reads 1 and sets value=1 (no change). It returns 1, so while loop continues 
+    - When we set value = 0, someone else can get lock
+ - **Busy-Waiting:**  thread consumes cycles while waiting
+
+
+## Problem: Busy-Waiting for Lock
+
+ - Positives for this solution
+    - Machine can receive interrupts
+    - User code can use this lock
+    - Works on a multiprocessor
+ - Negatives
+    - This is very inefficient because the busy-waiting thread will consume cycles waiting
+    - Waiting thread may take cycles away from thread holding lock (no one wins!)
+    - **Priority Inversion:**  If busy-waiting thread has higher priority than thread holding lock => no progress!
+ - Priority Inversion problem with original Martian rover 
+ - For semaphores and monitors, waiting thread may wait for an arbitrary length of time!
+    - Thus even if busy-waiting was OK for locks, definitely not ok for other primitives
+    - Homework/exam solutions should not have busy-waiting!
+
+
+## Better Locks using test&set
+
+ - Can we build test&set locks without busy-waiting?
+    - Can’t entirely, but can minimize
+    - Idea: only busy-wait to atomically check lock value
+
+```
+int guard = 0;
+int value = FREE;
+Acquire() {
+    // Short busy-wait time
+    while (test&set(guard));
+    if (value == BUSY) {
+        put thread on wait queue;
+        go to sleep() & guard = 0;
+    } else {
+        value = BUSY;
+        guard = 0;
+    }
+}
+
+Release() {
+    // Short busy-wait time
+    while (test&set(guard));
+    if anyone on wait queue {
+        take thread off wait queue
+        Place on ready queue;
+    } else {
+        value = FREE;
+    }
+    guard = 0;
+}
+```
+
+ - Note: sleep has to be sure to reset the guard variable
+    - Why can’t we do it just before or just after the sleep?
+
+ 
+## Higher-level Primitives than Locks
+ 
+ - Goal of last couple of lectures:
+    - What is the right abstraction for synchronizing threads that share memory?
+    - Want as high a level primitive as possible
+ - Good primitives and practices important!
+    - Since execution is not entirely sequential, really hard to find bugs, since they happen rarely
+ - UNIX is pretty stable now, but up until about mid-80s (10 years after started), systems running UNIX would crash every week or so – concurrency bugs
+ - Synchronization is a way of coordinating multiple concurrent activities that are using shared state
+    - This lecture and the next presents a couple of ways of structuring the sharing
 
 
 
