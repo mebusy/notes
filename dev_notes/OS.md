@@ -1923,6 +1923,79 @@ Consumer() {
 
 ## Motivation for Monitors and Condition Variables
 
+ - Semaphores are a huge step up; just think of trying to do the bounded buffer with only loads and stores
+    - Problem is that semaphores are dual purpose:
+        - They are used for both mutex and scheduling constraints
+        - Example: the fact that flipping of P’s in bounded buffer gives deadlock is not immediately obvious. How do you prove correctness to someone?
+ - Cleaner idea: Use locks for mutual exclusion and condition variables for scheduling constraints
+ - Definition: **Monitor**: a lock and zero or more condition variables for managing concurrent access to shared data
+    - Some languages like Java provide this natively
+    - Most others use actual locks and condition variables
+    - Monitor is a paradigm for building synchronization. It's a pattern. 
+
+## Monitor with Condition Variables
+
+Basically a monitor with condition variable looks kind of this. Our conditon variables each represent queues to have things sleep on it , and the lock is kind of like the entry queue. 
+
+The lock provides mutual exclusion to get in and deal with the condition variables . and the conditional variables are queues of threads waiting inside critical section. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_monitor.png)
+
+ - **Lock:**  the lock provides mutual exclusion to shared data
+    - Always acquire before accessing shared data structure
+    - Always release after finishing with shared data
+    - Lock initially free
+ - **Condition Variable:**  a queue of threads waiting for something inside a critical section
+    - Key idea: make it possible to go to sleep inside critical section by atomically releasing lock at time we go to sleep
+    - Contrast to semaphores: Can’t wait inside critical section
+
+### Simple Monitor Example
+
+ - Here is an (infinite) synchronized queue
+
+```
+Lock lock;
+Condition dataready;
+Queue queue;
+
+AddToQueue(item) {
+    lock.Acquire(); // Get Lock
+    queue.enqueue(item); // Add item
+    dataready.signal(); // Signal any waiters
+    lock.Release(); // Release Lock
+}
+RemoveFromQueue() {
+    lock.Acquire(); // Get Lock
+    while (queue.isEmpty()) {
+        dataready.wait(&lock); // If nothing, sleep
+    }
+    item = queue.dequeue(); // Get next item
+    lock.Release(); // Release Lock
+    return(item);
+}
+```
+
+ - this is a very good single condition variable pattern for you guys to think about. 
+ - notic how we go to sleep with the lock acquired we wake up and we think about this is when we wake up we have the lock still.
+
+## Summary
+
+ - Important concept: Atomic Operations
+    - An operation that runs to completion or not at all
+    - These are the primitives on which to construct various synchronization primitives
+ - Talked about hardware atomicity primitives:
+    - Disabling of Interrupts, test&set, swap, comp&swap, load-linked/store conditional
+ - Showed several constructions of Locks
+    - Must be very careful not to waste/tie up machine resources
+        - Shouldn’t disable interrupts for long
+        - Shouldn’t spin wait for long
+    - Key idea: Separate lock variable, use hardware mechanisms to protect modifications of that variable
+ - Talked about Semaphores, Monitors, and Condition Variables
+    - Higher level constructs that are harder to “screw up”
+
+# Lecture 8: Readers/Writers; Language Support for Synchronization
+
+
 
 
 
