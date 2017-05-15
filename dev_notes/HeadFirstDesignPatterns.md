@@ -174,7 +174,30 @@
 
 # 单件模式
 
+ - 多线程下需要注意
 
+```java
+public class Singleton {
+    private volatile static Singleton uniqueInstance ;
+    private Singleton() {};
+    public static Singleton getInstance() {
+        if (uniqueInstance == null) {
+            synchronized (Singleton.class) {
+                if (uniqueInstance == null)
+                    uniqueInstance = new Singleton() ;
+            }
+        }   
+    }    
+    return uniqueInstance ;   
+}
+```
+
+ - volatile 解决内存可见性，确保读写到内存最新值，而不是缓存
+ - synchronized (Singleton.class) 保护类对象
+ - 可不可继承Singleton？
+    - 继承会遇到一个问题： 构造器是私有的。 如果把构造器改为 public，就不是真正的单件了。
+
+# 命令模式
 
 
 
