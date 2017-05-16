@@ -1749,6 +1749,7 @@ Release() {
  - Can we build test&set locks without busy-waiting?
     - Can’t entirely, but can minimize
     - Idea: only busy-wait to atomically check lock value
+        - 有对象获取锁后，guard 会置为0，其他对象再次尝试获取锁时，如果锁没还有被释放，会sleep()
 
 ```
 int guard = 0;
@@ -1807,7 +1808,9 @@ Release() {
         - Think of this as the wait() operation
     - **V():** an atomic operation that increments the semaphore by 1, waking up a waiting P, if any 
         - This of this as the signal() operation
+    - Only time can set integer directly is at initialization time 
     - Note that P() stands for “proberen” (to test) and V() stands for “verhogen” (to increment) in Dutch
+    
 
 ### Semaphores Like Integers Except
 
@@ -1931,7 +1934,7 @@ Consumer() {
  - Definition: **Monitor**: a lock and zero or more condition variables for managing concurrent access to shared data
     - Some languages like Java provide this natively
     - Most others use actual locks and condition variables
-    - Monitor is a paradigm for building synchronization. It's a pattern. 
+    - Monitor is a programming style or paradigm for building synchronization. It's a pattern. 
 
 ## Monitor with Condition Variables
 
@@ -1995,15 +1998,122 @@ RemoveFromQueue() {
 
 # Lecture 8: Readers/Writers; Language Support for Synchronization
 
+## Simple Monitor Example (version 1)
+
+```
+Lock lock;
+Queue queue;
+
+AddToQueue(item) {
+    lock.Acquire(); // Lock shared data
+    queue.enqueue(item); // Add item
+    lock.Release(); // Release Lock 
+}
+
+RemoveFromQueue() {
+    lock.Acquire(); // Lock shared data
+    item = queue.dequeue();// Get next item or null
+    lock.Release(); // Release Lock
+    return(item); // Might return null 
+}
+```
+ 
+ - Not very interesting use of “Monitor”
+    - It only uses a lock with no condition variables
+    - Cannot put consumer to sleep if no work!
+
+## Condition Variables
+
+ - How do we change the RemoveFromQueue() routine to wait until something is on the queue?
+    - Could do this by keeping a count of the number of things on the queue (with semaphores), but error prone
+ - **Condition Variable**:  a queue of threads waiting for something inside a critical section
+    - Key idea: allow sleeping inside critical section by atomically releasing lock at time we go to sleep
+    - Contrast to semaphores: Can’t wait inside critical section
+        - semaphore will deadlock
+ - Operations:
+    - **Wait(&lock)**:  Atomically release lock and go to sleep. Re-acquire lock later, before returning
+    - **Signal()**: Wake up one waiter, if any
+    - **Broadcast()**:  Wake up all waiters
+ - Rule: Must hold lock when doing condition variable ops!
+    - In Birrell paper, he says can perform signal() outside of lock – IGNORE HIM (this is only an optimization)
 
 
+## Complete Monitor Example (with condition variable)
 
 
+```
+Lock lock;
+Condition dataready;
+Queue queue;
+
+AddToQueue(item) {
+    lock.Acquire(); // Get Lock
+    queue.enqueue(item); // Add item
+    dataready.signal(); // Signal any waiters
+    lock.Release(); // Release Lock
+}
+RemoveFromQueue() {
+    lock.Acquire(); // Get Lock
+    while (queue.isEmpty()) {
+        dataready.wait(&lock); // If nothing, sleep
+    }
+    item = queue.dequeue(); // Get next item
+    lock.Release(); // Release Lock
+    return(item);
+}
+```
+
+ - wait() puts you to sleep and releases the lock
+ - and before you ever exit wait(), it re-aquire the lock 
+ - that magic is inside of implementation of the condition variable 
+
+
+## Mesa vs. Hoare monitors
+
+ - Need to be careful about precise definition of signal and wait. Consider a piece of our dequeue code:
+    - why didn't we replace `while` with `if` ?
+
+```
+while (queue.isEmpty()) {
+    dataready.wait(&lock); // If nothing, sleep
+}
+item = queue.dequeue(); // Get next item
+```
+ - Answer: depends on the type of scheduling
+    - Hoare-style (most textbooks):
+        - Signaler gives lock, CPU to waiter; waiter runs immediately
+        - Waiter gives up lock, processor back to signaler when it exits critical section or if it waits again
+    - Mesa-style (Nachos, most real operating systems):
+        - better idea: what the Singaler does is rather than giving the lock to somebody immediately it just basically takes some of them walking up , puts them on the ready queue.
+        - Signaler keeps lock and processor
+        - Waiter placed on ready queue with no special priority
+        - **Practically, need to check condition again after wait**
+
+## Using of Compare&Swap for queues
+
+```
+compare&swap (&address, reg1, reg2) { /* 68000 */
+    if (reg1 == M[address]) {
+        M[address] = reg2;
+        return success;
+    } else {
+        return failure;
+    }
+}
+```
+ 
+ - Here is an atomic add to linked-list function:
+
+```
+addToQueue(&object) {
+    do { // repeat until no conflict
+        ld r1, M[root] // Get ptr to current head
+        st r1, M[object] // Save link in new object
+    } until (compare&swap(&root,r1,object));
+}
+```
+         
 
 --- 
-
-
-
-
 
  [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_network_interrupt.png
