@@ -2113,6 +2113,17 @@ addToQueue(&object) {
 }
 ```
          
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_atomic_add_to_linkedlist.png)
+
+ - 虚线的链接，是不停尝试的部分
+ - 确保没有其他人修改 root的情况下，插入 新节点
+
+## Readers/Writers Problem
+
+
+
+
+
 
 --- 
 
