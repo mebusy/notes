@@ -2120,6 +2120,16 @@ addToQueue(&object) {
 
 ## Readers/Writers Problem
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_reader_writers_problem.png)
+
+ - Motivation: Consider a shared database
+    - Two classes of users:
+        - Readers – never modify database
+        - Writers – read and modify database
+    - Is using a single lock on the whole database sufficient?
+        - Like to have many readers at the same time
+        - Only one writer at a time
+
 
 
 
