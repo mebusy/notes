@@ -1385,8 +1385,53 @@ x.V();      y.V();
         - Protocol: Always go east-west first, then north-south
     - Called “dimension ordering” (X then Y)
 
+## Dining Lawyers Problem
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_dining_lawyers_problem.png)
 
+ - Five chopsticks/Five lawyers (really cheap restaurant)
+    - Free-for all: Lawyer will grab any one they can
+    - Need two chopsticks to eat
+ - What if all grab at same time?
+    - Deadlock!
+ - How to fix deadlock?
+    - Make one of them give up a chopstick (Hah!)
+    - Eventually everyone will get chance to eat
+ - How to prevent deadlock?
+    - Never let lawyer take last chopstick if no hungry lawyer has two chopsticks afterwards
+
+## Four requirements for Deadlock
+
+ - Mutual exclusion
+    - Only one thread at a time can use a resource
+ - Hold and wait
+    - Thread holding at least one resource is waiting to acquire additional resources held by other threads 
+ - No preemption
+    - Resources are released only voluntarily by the thread holding the resource, after thread is finished with it 
+ - Circular wait
+    - There exists a set {T₁, …, T<sub>n</sub>} of waiting threads
+        - T₁ is waiting for a resource that is held by T₂
+        - T₂ is waiting for a resource that is held by T₃
+        - ...
+        - T<sub>n</sub> is waiting for a resource that is held by T₁
+
+## Resource-Allocation Graph
+
+ - System Model
+    - A set of Threads T₁, T₂, . . ., T<sub>n</sub>
+    - Resource types R₁, R₂, . . ., R<sub>m</sub>
+        - CPU cycles, memory space, I/O devices
+    - Each resource type Rᵢ has Wᵢ instances
+    - Each thread utilizes a resource as follows:
+        - Request() / Use() / Release()
+ - Resource-Allocation Graph:
+    - V is partitioned into two types:
+        - T = { T₁, T₂, . . ., T<sub>n</sub> } , the set threads in the system
+        - R = { R₁, R₂, . . ., R<sub>m</sub> } , the set of resource types in system
+    - request edge – directed edge Tᵢ → Rⱼ
+    - assignment edge – directed edge  Rⱼ → Tᵢ 
+
+ 
 
 
 --- 
