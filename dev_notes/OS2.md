@@ -1372,6 +1372,19 @@ x.V();      y.V();
  - Starvation is possible
     - East-going traffic really fast => no one goes west
 
+### Train Example (Wormhole-Routed Network)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_deadlock_example_train.png)
+
+ - Circular dependency (Deadlock!)
+    - Each train wants to turn right
+    - Blocked by other trains
+    - Similar problem to multiprocessor networks
+ - Fix? Imagine grid extends in all four directions
+    - **Force ordering of channels** (tracks)
+        - Protocol: Always go east-west first, then north-south
+    - Called “dimension ordering” (X then Y)
+
 
 
 
