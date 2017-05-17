@@ -1431,7 +1431,9 @@ x.V();      y.V();
     - request edge – directed edge Tᵢ → Rⱼ
     - assignment edge – directed edge  Rⱼ → Tᵢ 
 
- 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_resource_allocation_graph.png)
+
+
 
 
 --- 
