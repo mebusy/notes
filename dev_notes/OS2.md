@@ -1357,6 +1357,23 @@ x.V();      y.V();
     - Each thread needs 2 disk drives to function
     - Each thread gets one disk and waits for another one
 
+### Bridge Crossing Example
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_deadlock_example_cars.png)
+
+ - Each segment of road can be viewed as a resource
+    - Car must own the segment under them
+    - Must acquire segment that they are moving into
+ - For bridge: must acquire both halves 
+    - Traffic only in one direction at a time 
+    - Problem occurs when two cars in opposite directions on bridge: each acquires one segment and needs next
+ - If a deadlock occurs, it can be resolved if one car backs up (preempt resources and rollback)
+    - Several cars may have to be backed up 
+ - Starvation is possible
+    - East-going traffic really fast => no one goes west
+
+
+
 
 
 --- 
