@@ -1305,7 +1305,24 @@ while (!ATMRequest()) {
 
 <h2 id="c90312671db14675686d7c0ad17056d9"></h2>
 
-# Lecture 9 : Tips for working in a Project Team/ Cooperating Processes and Deadlock 
+# Lecture 9 : Resource Contention and Deadlock 
+
+## Resources
+
+ - Resources – passive entities needed by threads to do their work
+    - CPU time, disk space, memory
+ - Two types of resources:
+    - Preemptable – can take it away
+        - CPU, Embedded security chip
+    - Non-preemptable – must leave it with the thread
+        - Disk space, plotter, chunk of virtual address space
+        - Mutual exclusion – the right to enter a critical section
+ - Resources may require exclusive access or may be sharable
+    - Read-only files are typically sharable
+    - Printers are not sharable during time of printing
+ - One of the major tasks of an operating system is to manage resources
+
+## Starvation vs Deadlock
 
 
 
