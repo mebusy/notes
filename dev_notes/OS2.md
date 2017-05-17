@@ -1433,6 +1433,88 @@ x.V();      y.V();
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_resource_allocation_graph.png)
 
+ - resources are represented by rectangles
+    - dots inside rectagles are the number of equivalent resources in the system.
+        - R₁ is one of them
+        - R₂ is 3 of them.  When I say I need R₂ I don't really care which 1 I get. 
+
+### Resource Allocation Graph Examples
+
+ - Recall:
+    - request edge – directed edge Tᵢ → Rⱼ
+    - assignment edge – directed edge  Rⱼ → Tᵢ 
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_resource_allocation_graph_example.png)
+
+
+## Methods for Handling Deadlocks
+
+ - Allow system to enter deadlock and then recover
+    - Requires deadlock detection algorithm
+    - Some technique for forcibly preempting resources and/or terminating tasks
+ - Ensure that system will **never** enter a deadlock
+    - Need to monitor all lock acquisitions
+    - Selectively deny those that **might** lead to deadlock
+ - Ignore the problem and pretend that deadlocks never occur in the system
+    - Used by most operating systems, including UNIX
+
+## Deadlock Detection Algorithm
+
+ - Only one of each type of resource => look for loops
+ - More General Deadlock Detection Algorithm
+    - Let [X] represent an m-ary vector of non-negative  integers (quantities of resources of each type):
+
+```
+[FreeResources]: Current free resources each type
+[RequestX]: Current requests from thread X
+[AllocX]: Current resources held by thread X
+```
+
+ - See if tasks can eventually terminate on their own
+
+```
+[Avail] = [FreeResources]
+Add all nodes to UNFINISHED
+do {
+    done = true
+    Foreach node in UNFINISHED {
+        if ([Requestnode] <= [Avail]) {
+            remove node from UNFINISHED
+            [Avail] = [Avail] + [Allocnode]
+            done = false
+        }
+    }
+} until(done)
+```
+
+ - Nodes left in UNFINISHED  deadlocked
+
+## Summary 
+
+ - Starvation vs. Deadlock
+    - Starvation: thread waits indefinitely
+    - Deadlock: circular waiting for resources
+ - Four conditions for deadlocks
+    - Mutual exclusion
+    - Hold and wait
+    - No preemption
+    - Circular wait
+ - Techniques for addressing Deadlock
+    - Allow system to enter deadlock and then recover
+    - Ensure that system will never enter a deadlock
+    - Ignore the problem and pretend that deadlocks never occur in the system
+ - Deadlock detection
+    - Attempts to assess whether waiting graph can ever
+ - make progress
+    - Next Time: Deadlock prevention
+    - Assess, for each allocation, whether it has the potential to lead to deadlock
+    - Banker’s algorithm gives one way to assess this
+
+
+# Lecture 10 : Deadlock (cont’d) / Thread Scheduling
+
+
 
 
 
