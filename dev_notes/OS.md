@@ -77,7 +77,6 @@
 	 - [Correctness for systems with concurrent threads](#75d83e281c09829d3d975c15d6dff110)
 	 - [Interactions Complicate Debugging](#d40b5e12a4bd27bfb433bab8e179726f)
 	 - [Summary](#290612199861c31d1036b185b4e69b75)
- - [lecture 6 : Synchronization](#0a777e4e25d6bed512e90f4276ed3f3e)
 
 ...menuend
 

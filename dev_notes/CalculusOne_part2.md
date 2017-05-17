@@ -32,6 +32,20 @@
 		 - [What sorts of properties does the integral satisfy?](#5104183620b8440565164d50f7160ce0)
 		 - [When is the accumulation function increasing? Decreasing?](#adf7c6d36d552a2cdce06fa0a8c2b306)
  - [Week 13 Fundamental Theorem of Calculus](#76e5d32d317a3d89cedfea3744cc9d75)
+	 - [What is the fundamental theorem of calculus?](#235a74dfbd48742f9c1a75862fd0c35a)
+	 - [How am I supposed to use this theorem ?](#15e487fe2795a4de1be5a306bf55ada9)
+		 - [to evaluate integrals](#53e29059931fae1bb39ae6498494625c)
+		 - [What is the integral of sin x dx from x = 0 to x = pi?](#44c1bf08687574267775be1feeb42efc)
+		 - [What is the integral of x⁴ dx from x = 0 to x = 1?](#2b221d77b3789b96e070d508881cc2fb)
+	 - [What else can we compute this way ?](#2354b07f92446373f273db4940266dd4)
+		 - [What is the area between the graphs of y = √x and y = x² ?](#c09b0bfa71c020ac859c14e57108a8b1)
+	 - [Bug why is the fundamental theorem true ?](#c51347a969d83291908d473077d934ca)
+		 - [Why does the Euler method resemble a Riemann sum?](#a4ab0b1660248f0d9e62b35341c1b1e6)
+		 - [In what way is summation like integration?](#2ac4f9dd2d934474613787c8f2541b2a)
+		 - [Physically, why is the fundamental theorem of calculus true?](#3d25e750b4fc1ef196b9f5374dfb1e5e)
+		 - [What is d/da integral f(x) dx from x = a to x = b?](#dd8a004feac789f359b9f1d0c411bf67)
+		 - [Quiz:](#db021f4670ba22ce77ef0acb0aba7ba0)
+	 - [](#d41d8cd98f00b204e9800998ecf8427e)
 
 ...menuend
 
@@ -423,6 +437,8 @@ The integrals are not exactly measuring area, they're measuring **singed area**.
 
 # Week 13 Fundamental Theorem of Calculus
 
+<h2 id="235a74dfbd48742f9c1a75862fd0c35a"></h2>
+
 ## What is the fundamental theorem of calculus?
 
  - Suppose f:[a,b] → ℝ is continuous. let F be the accumulation function , given by 
@@ -445,7 +461,11 @@ Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>
 = 9 + 10\*0.3 = 12 
 
  
+<h2 id="15e487fe2795a4de1be5a306bf55ada9"></h2>
+
 ## How am I supposed to use this theorem ?
+
+<h2 id="53e29059931fae1bb39ae6498494625c"></h2>
 
 ### to evaluate integrals
 
@@ -459,17 +479,25 @@ Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>
  - Then ∫ᵇₐ f(x)dx = F(b) - F(a)
 
  
+<h2 id="44c1bf08687574267775be1feeb42efc"></h2>
+
 ### What is the integral of sin x dx from x = 0 to x = pi?
 
  - ∫<sup>π</sup>₀ sinxdx = ?
  - -cos(π) - (-cos(0))  = 1 - (-1) = 2
+
+<h2 id="2b221d77b3789b96e070d508881cc2fb"></h2>
 
 ### What is the integral of x⁴ dx from x = 0 to x = 1?
 
  - ∫¹₀ x⁴dx = (1)⁵/5 - (0)⁵/5 = 0.2
 
  
+<h2 id="2354b07f92446373f273db4940266dd4"></h2>
+
 ## What else can we compute this way ?
+
+<h2 id="c09b0bfa71c020ac859c14e57108a8b1"></h2>
 
 ### What is the area between the graphs of y = √x and y = x² ?
 
@@ -478,7 +506,11 @@ Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>
  - ∫¹₀ (√x -x²)dx = [ x<sup>3/2</sup>/(3/2) - x³/3  ]¹₀ = 1/3
 
 
+<h2 id="c51347a969d83291908d473077d934ca"></h2>
+
 ## Bug why is the fundamental theorem true ?
+
+<h2 id="a4ab0b1660248f0d9e62b35341c1b1e6"></h2>
 
 ### Why does the Euler method resemble a Riemann sum?
 
@@ -489,6 +521,8 @@ Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>
  - F(10) = h·f(0) + h·f(h) + h·f(2h) + ... +  h·f(9h)
  - It's Riemann sum!
 
+
+<h2 id="2ac4f9dd2d934474613787c8f2541b2a"></h2>
 
 ### In what way is summation like integration?
 
@@ -502,6 +536,8 @@ summing | *differencing*
  - d/dx ∫ˣₐ f(t)dt = f(x)
 
 
+<h2 id="3d25e750b4fc1ef196b9f5374dfb1e5e"></h2>
+
 ### Physically, why is the fundamental theorem of calculus true?
 
  - v(t) = my velocity at time t
@@ -511,6 +547,8 @@ summing | *differencing*
 
  - Summarizing , the accumulation function of velocity , is displacement
  - The derivative of displacement is velocity. 
+
+<h2 id="dd8a004feac789f359b9f1d0c411bf67"></h2>
 
 ### What is d/da integral f(x) dx from x = a to x = b?
 
@@ -524,11 +562,15 @@ summing | *differencing*
     - ∫ᵇₐ f(x)dx  = - ∫ª<sub>b</sub> f(x)dx
  
 
+<h2 id="db021f4670ba22ce77ef0acb0aba7ba0"></h2>
+
 ### Quiz:
 
  - ∫<sup>6.02</sup>₆ f(x)dx = 0.1 , Approximate f(6) as well as you can given this information 
     - ∫<sup>6.02</sup>₆ f(x)dx = f(6) \* 0.02 = 0.1 
     - f(6) = 5
+
+<h2 id="d41d8cd98f00b204e9800998ecf8427e"></h2>
 
 ## 
 

@@ -37,6 +37,7 @@
 	 - [Force canvas sorting order](#c5efce759624fef37e581461dc508df7)
 	 - [change Image's Source Image](#3f5ccb63301562c1f2962e4fc33e13c8)
 	 - [c/c++ plugin Log](#b172f09ca5430b87593e0828ad617151)
+	 - [detect whether an object has been destroyed ?](#3a888050a1995af5dc4e05e533970e5c)
 
 ...menuend
 
@@ -629,6 +630,8 @@ _DebugFunc( log_buf ); \
 } while (0)
 
 ```
+
+<h2 id="3a888050a1995af5dc4e05e533970e5c"></h2>
 
 ## detect whether an object has been destroyed ?
 

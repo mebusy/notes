@@ -8,6 +8,7 @@
  - [装饰者模式](#815e385363f17f4a5efd3aadecc64271)
  - [工厂模式](#b98e9d7c0cb2b3d179c16457b10e53b4)
  - [单件模式](#c8ef5b6fbf8c995ba753dbf56c4f4981)
+ - [命令模式](#a5c7aeffdabd7096cc1366f19600fa62)
 
 ...menuend
 
@@ -196,6 +197,8 @@ public class Singleton {
  - synchronized (Singleton.class) 保护类对象
  - 可不可继承Singleton？
     - 继承会遇到一个问题： 构造器是私有的。 如果把构造器改为 public，就不是真正的单件了。
+
+<h2 id="a5c7aeffdabd7096cc1366f19600fa62"></h2>
 
 # 命令模式
 
