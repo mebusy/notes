@@ -646,6 +646,28 @@ We did it. But I could've finished this problem off in a slightly diferent but e
  - Method 2 : endpoints with *u*
     - ∫<sub>x=</sub>ᵇₐ f'(g(x))g'(x)dx  = ∫<sub>u=</sub><sup>g(b)</sup><sub>g(a)</sub> f'(u)du =  f(u)  ］<sub>u=</sub><sup>g(b)</sup><sub>g(a)</sub> 
 
+### Might I want to do u-substitution more than once?
+
+ - Sometimes you might want to do u substitution more than once. 
+
+  ∫-2cosx sinx cos(cos²x+1)dx
+ 
+  u= cosx ,  du = -sinx
+
+= ∫2u cos(u²+1) du 
+
+  v = u²+1  , dv = 2u 
+
+= ∫cosvdv  = sinv + C 
+
+= sin( u²+1  ) + C 
+
+= sin( cos²x +1  ) + C 
+
+
+---
+
+## What are some tricks for doing substitutions ?
 
 
 
