@@ -625,10 +625,26 @@ u-substitution is  a way to find  anti-derivatives. But anti-differentiation is 
 
   u = x²+1  , du = 2xdx 
 
-= ∫<sub>x=</sub>²₀ u³du = u⁴/4 ]］<sub>x=</sub>²₀
+= ∫<sub>x=</sub>²₀ u³du = u⁴/4 ］<sub>x=</sub>²₀
 
+= (x²+1)⁴/4 ］<sub>x=</sub>²₀
 
+= (2²+1)⁴/4 - (0²+1)⁴/4 = 624/4 = 156
 
+We did it. But I could've finished this problem off in a slightly diferent but equvalent way. 
+
+  ∫<sub>x=</sub>²₀ u³du
+
+= ∫<sub>u=</sub>⁵₁ u³du 
+
+= u⁴/4  ］<sub>u=</sub>⁵₁
+
+= 156.
+
+ - Method 1 : answer with *x*
+    - ∫<sub>x=</sub>ᵇₐ f'(g(x))g'(x)dx = f(g(x)) ］<sub>x=</sub>ᵇₐ
+ - Method 2 : endpoints with *u*
+    - ∫<sub>x=</sub>ᵇₐ f'(g(x))g'(x)dx  = ∫<sub>u=</sub><sup>g(b)</sup><sub>g(a)</sub> f'(u)du =  f(u)  ］<sub>u=</sub><sup>g(b)</sup><sub>g(a)</sub> 
 
 
 
