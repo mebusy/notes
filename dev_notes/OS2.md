@@ -1324,10 +1324,38 @@ while (!ATMRequest()) {
 
 ## Starvation vs Deadlock
 
+ - Starvation vs. Deadlock
+    - Starvation: thread waits indefinitely
+        - Example, low-priority thread waiting for resources  constantly in use by high-priority threads
+    - Deadlock: circular waiting for resources
+        - a very specific type of starvation in which you have a circular waiting for resources
+        - Thread A owns Res 1 and is waiting for Res 2
+        - Thread B owns Res 2 and is waiting for Res 1
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_deadlock.png)
+    - Deadlock => Starvation but not vice versa
+        - Starvation can end (but doesn’t have to)
+        - Deadlock can’t end without external intervention
 
+## Conditions for Deadlock
 
+ - Deadlock not always deterministic – Example 2 mutexes:
 
+```
+Thread A    Thread B
+x.P();      y.P();
+y.P();      x.P();
+y.V();      x.V();
+x.V();      y.V();
+```
 
+ - Deadlock won’t always happen with this code
+    - Have to have exactly the right timing (“wrong” timing?)
+ - Deadlocks occur with multiple resources
+    - Means you can’t decompose the problem
+    - Can’t solve deadlock for each resource independently
+ - Example: System with 2 disk drives and two threads
+    - Each thread needs 2 disk drives to function
+    - Each thread gets one disk and waits for another one
 
 
 
