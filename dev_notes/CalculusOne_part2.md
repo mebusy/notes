@@ -572,7 +572,62 @@ summing | *differencing*
 
 <h2 id="d41d8cd98f00b204e9800998ecf8427e"></h2>
 
-## 
+---
+
+# Week 14 : Substitution Rule
+
+When we first learned about definite integrals, we learned about them as limits of Riemann sum. And in a few cases that definition was good enough. But usually that was much too hard. 
+
+So we learned about the fundamental theorem of calculus that reduced evaluating definite integrals down to find anti derivatives. 
+
+Now it turns out that finding anti-derivatives is also really hard to do. So we need some better techniques or just heuristics for how to find those anti-derivatives. And a big one is called U-substitution , or maybe the substitution rule.  It just running the Chain Rule in reverse. 
+
+
+
+## What is the chain rule backwards ?
+
+### How does the chain rule help with antidifferentiation?
+
+∫xsin(x²)dx 
+
+u = x² , du = 2xdx
+
+I know you might feel kind of bad, because I don't really see a *2xdx*, I only see *xdx*. But his sort of methods going to guide use to do the right thing.
+
+  ∫xsin(x²)dx  = 1/2·∫2xsin(x²)dx  = 1/2·∫sin(u)du 
+
+= -1/2·cos(u) + C = -1/2·cos(x²) + C 
+
+ - **Every differentiation rule has a corresponding anti-differentiation rule**.
+  
+  ∫f'(g(x))·g'(x)dx , let u=g(x) du=g'(x)dx
+
+= ∫f'(u)du  = f(u)+C  = f(g(x))+C 
+
+
+### When I do u-substitution, what should u be?
+
+ - How to pick *u* ?
+    - look for things you can grab as *du*
+    - that is , try to find pieces of the integrand that look like the derivative of something.
+
+ - ∫x/(√(4-9x²))dx 
+    - u = 4-9x²
+ - ∫1/(√(4-9x²))dx 
+    - u = 3/2·x
+
+
+### How should I handle the endpoints when doing u-substitution?
+
+u-substitution is  a way to find  anti-derivatives. But anti-differentiation is just a means  to an end. The real goal, at this point in the  course, is evaluating definite integrals.
+
+  ∫<sub>x=</sub>²₀ 2x(x²+1)dx
+
+  u = x²+1  , du = 2xdx 
+
+= ∫<sub>x=</sub>²₀ u³du = u⁴/4 ]］<sub>x=</sub>²₀
+
+
 
 
 
