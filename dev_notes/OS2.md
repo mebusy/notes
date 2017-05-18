@@ -1812,9 +1812,63 @@ P4          24
     - Also: Cache state must be shared between all jobs with RR but can be devoted to each job with FIFO
         - Total time for RR longer even for zero-cost switch!
 
+### Earlier Example with Different Time Quantum
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_scheduling_FCFS_vs_RR2.png)
 
+ - The short jobs really benefit from round-robin , the long jobs don't. 
 
+## What if we Knew the Future?
+
+ - Could we always mirror best FCFS?
+ - Shortest Job First (SJF):
+    - Run whatever job has the least amount of computation to do
+    - Sometimes called “Shortest Time to Completion First” (STCF)
+ - Shortest Remaining Time First (SRTF):
+    - Preemptive version of SJF: if job arrives and has a shorter time to completion than the remaining time on the current job, immediately preempt CPU
+    - Sometimes called “Shortest Remaining Time to Completion First” (SRTCF)
+ - These can be applied either to a whole program or the current CPU burst of each program
+    - Idea is to get short jobs out of the system
+    - Big effect on short jobs, only small effect on long ones
+    - Result is better average response time
+
+## Summary (Deadlock)
+
+ - Four conditions required for deadlocks
+    - **Mutual exclusion**
+        - Only one thread at a time can use a resource
+    - **Hold and wait**
+        - Thread holding at least one resource is waiting to acquire additional resources held by other threads
+    - **No preemption**
+        - Resources are released only voluntarily by the threads
+    - **Circular wait**
+        - ∃ set { T1, …, Tn} of threads with a cyclic waiting pattern
+ - Deadlock detection
+    - Attempts to assess whether waiting graph can ever make progress
+ - Deadlock prevention
+    - Assess, for each allocation, whether it has the potential to lead to deadlock
+    - Banker’s algorithm gives one way to assess this
+
+## Summary (Scheduling)
+
+ - **Scheduling:** selecting a waiting process from the ready queue and allocating the CPU to it
+ - **FCFS Scheduling:**
+    - Run threads to completion in order of submission
+    - Pros: Simple
+    - Cons: Short jobs get stuck behind long ones
+ - **Round-Robin Scheduling:**
+    - Give each thread a small amount of CPU time when it executes; cycle between all ready threads
+    - Pros: Better for short jobs
+    - Cons: Poor when jobs are same length 
+ - **Shortest Job First (SJF)/Shortest Remaining Time First (SRTF):**
+    - Run whatever job has the least amount of computation to do/least remaining amount of computation to do
+    - Pros: Optimal (average response time) 
+    - Cons: Hard to predict future, Unfair
+
+# Lecture 11 : Scheduling (con't)  / Protection: Kernel and Address Spaces
+
+ 
+    
 
 --- 
 

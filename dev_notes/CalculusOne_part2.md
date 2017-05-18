@@ -654,11 +654,11 @@ We did it. But I could've finished this problem off in a slightly diferent but e
  
   u= cosx ,  du = -sinx
 
-= ∫2u cos(u²+1) du 
+= ∫2u cos(u²+1) du   // dx removed
 
   v = u²+1  , dv = 2u 
 
-= ∫cosvdv  = sinv + C 
+= ∫cosvdv  = sinv + C   // du removed
 
 = sin( u²+1  ) + C 
 
