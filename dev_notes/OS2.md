@@ -1701,11 +1701,61 @@ This peak is waying there's a lot of short bursts and some long bursts.
     - Fairness is not minimizing average response time:
         - Better average response time by making system less fair
 
+## First-Come, First-Served (FCFS) Scheduling
 
+ - First-Come, First-Served (FCFS)
+    - Also “First In, First Out” (FIFO) or “Run until done”
+        - In early systems, FCFS meant one program scheduled until done (including I/O)
+        - Now, means keep CPU until thread blocks
+ - Example:
 
+```
+Process     Burst Time
+P1          24
+P2          3
+P3          3
+```  
 
+ - Example cont.
+    - Suppose processes arrive in the order: P1 , P2 , P3 The Gantt Chart for the schedule is:
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_scheduling_gantt_chart.png)
+    - Waiting time for P1 = 0; P2 = 24; P3 = 27
+    - Average waiting time: (0 + 24 + 27)/3 = 17
+    - Average Completion time: (24 + 27 + 30)/3 = 27
+ - Convoy effect: short process behind long process
 
+---
 
+ - Example continued:
+    - Suppose that processes arrive in order: P2 , P3 , P1 Now, the Gantt chart for the schedule is:
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_scheduling_gantt_chart2.png)
+    - Waiting time for P1 = 6; P2 = 0; P3 = 3 
+    - Average waiting time: (6 + 0 + 3)/3 = 3
+    - Average Completion time: (3 + 6 + 30)/3 = 13
+ - In second case:
+    - average waiting time is much better (before it was 17)
+    - Average completion time is better (before it was 27) 
+ - FIFO Pros and Cons:
+    - Simple (+)
+    - Short jobs get stuck behind long ones (-)
+        - Safeway: Getting milk, always stuck behind cart full of small items. Upside: get to read about space aliens
+
+## Round Robin (RR)
+
+ - FCFS Scheme: Potentially bad for short jobs!
+    - Depends on submit order
+    - If you are first in line at supermarket with milk, you don’t care who is behind you, on the other hand…
+ - Round Robin Scheme
+    - Each process gets a small unit of CPU time (time quantum), usually 10-100 milliseconds
+    - After quantum expires, the process is preempted and added to the end of the ready queue.
+    - n processes in ready queue and time quantum is q => 
+        - Each process gets 1/ n of the CPU time 
+        - In chunks of at most q time units
+        - No process waits more than ( n-1)q time units
+ - Performance
+    - q large => FCFS
+    - q small => Interleaved (really small => hyperthreading?)
+    - q must be large with respect to context switch, otherwise overhead is too high (all overhead)
 
 
 
