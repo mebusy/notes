@@ -1660,17 +1660,50 @@ do {
     - For instance: is “fair” about fairness among users or programs? 
         - If I run one compilation job and you run five, you get five times as much CPU on many operating systems
  - The high-level goal: Dole out CPU time to optimize some desired parameters of system
+    - so the first thing is to define the policy
     - user1 -> user2 -> user3 -> user1 -> user2 ...
     - Time ------> 
 
 ## Assumption: CPU Bursts
+
+One thing we can do is we can say well what's the behavior of typical programs running. If you were to take all the programs running on a system and then you were to sort of say how long do thy go for CPU before they hit an I/O operation.
+
+And you'd put a histogram , you'd acutally see something like this where there's a peak and then a long tail. 
+
+Why if I'm graphing the amount of time that the thread actually uses the CPU I get this kind of peaked behavior ? 
+
+This peak is waying there's a lot of short bursts and some long bursts. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cpu_burst.png)
 
  - Execution model: programs alternate between bursts of CPU and I/O
     - Program typically uses the CPU for some period of time, then does I/O, then uses CPU again
     - Each scheduling decision is about which job to give to the CPU for use by its next CPU burst
     - With timeslicing, thread may be forced to give up CPU before finishing current CPU burst
 
- 
+## Scheduling Policy Goals/Criteria
+
+ - Minimize Response Time
+    - Minimize elapsed time to do an operation (or job)
+    - Response time is what the user sees:
+        - Time to echo a keystroke in editor
+        - Time to compile a program
+        - Real-time Tasks: Must meet deadlines imposed by World
+ - Maximize Throughput
+    - Maximize operations (or jobs) per second
+    - Throughput related to response time, but not identical:
+        - Minimizing response time will lead to more context switching than if you only maximized throughput
+    - Two parts to maximizing throughput
+        - Minimize overhead (for example, context-switching)
+        - Efficient use of resources (CPU, disk, memory, etc)
+ - Fairness
+    - Share CPU among users in some equitable way
+    - Fairness is not minimizing average response time:
+        - Better average response time by making system less fair
+
+
+
+
 
 
 
