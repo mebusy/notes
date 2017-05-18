@@ -1799,6 +1799,19 @@ P4          24
         - Typical context-switching overhead is 0.1ms – 1ms
         - Roughly 1% overhead due to context-switching
 
+## Comparisons between FCFS and Round Robin
+
+ - Assuming zero-cost context-switching time, is RR always better than FCFS?
+ - Simple example:
+    - 10 jobs, each take 100s of CPU time RR scheduler quantum of 1s All jobs start at the same time
+ - Completion Times:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_scheduling_FCFS_vs_RR.png)
+    - Both RR and FCFS finish at the same time
+    - Average response time is much worse under RR!
+        - Bad when all jobs same length
+    - Also: Cache state must be shared between all jobs with RR but can be devoted to each job with FIFO
+        - Total time for RR longer even for zero-cost switch!
+
 
 
 
