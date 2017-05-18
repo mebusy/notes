@@ -652,13 +652,13 @@ We did it. But I could've finished this problem off in a slightly diferent but e
 
   ∫-2cosx sinx cos(cos²x+1)dx
  
-  u= cosx ,  du = -sinx
+  u= cosx ,  du = -sinxdx
 
-= ∫2u cos(u²+1) du   // dx removed
+= ∫2u cos(u²+1) du   
 
-  v = u²+1  , dv = 2u 
+  v = u²+1  , dv = 2udu
 
-= ∫cosvdv  = sinv + C   // du removed
+= ∫cosvdv  = sinv + C 
 
 = sin( u²+1  ) + C 
 
@@ -702,7 +702,7 @@ So :
 
   ∫<sub>x=</sub>¹₀ (x+10)(x-1)¹⁰dx
 
-  let u =x-1, du = 1 , x = u+1
+  let u =x-1, du = dx , x = u+1
 
 = ∫<sub>x=</sub>¹₀ (u+11)u¹⁰du
 
@@ -715,6 +715,53 @@ So :
 ### What is the integral of x / (x+1)^(1/3) dx?
 
   ∫x/∛(x+1)dx 
+
+  let u=x+1, du=dx , x=u-1
+
+= ∫(u-1)/∛u du
+
+There is a more easy way to do this.
+
+  let u = ∛(x+1) , u³=x+1,   x=u³-1 , dx = 3u²du
+
+= ∫(u³-1)/u·3u²du
+
+= ∫(3u⁴-3u)du   // it is polynomial 
+
+= 3/5·u⁵ - 3/2·u² + C
+
+ - This is called **rationalizing substitution**.
+
+
+### What is the integral of dx / (1 + cos x) ?
+
+Sometimes the best substitution to make isn't even visible until after we've  messed around with the integrand some how.
+
+  ∫ 1/(1+cosx) dx
+
+= ∫ 1/(1+cosx)·(1-cosx)/(1-cosx) dx
+
+= ∫ (1-cosx)/sin²x dx
+
+= ∫ 1/sin²xdx - ∫ cosx/sin²xdx
+
+= -cotx - ∫ cosx/sin²xdx 
+
+  let u = sinx, du=cosxdx
+
+= -cotx - ∫ 1/u²du
+
+= -cotx - 1/u +C 
+
+= -cotx - 1/sinx +C 
+
+
+
+
+
+
+
+
 
 
 
