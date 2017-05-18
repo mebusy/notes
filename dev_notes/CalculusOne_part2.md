@@ -670,10 +670,51 @@ We did it. But I could've finished this problem off in a slightly diferent but e
 ## What are some tricks for doing substitutions ?
 
 
+### What is the integral of dx / (x² + 4x + 7)?
 
+We know ∫1/(1+x²)dx = atan(x) + C
 
+The trick is completing the square. 
 
+  x² + 4x + 7 
 
+= (x+2)² + 3 
+
+So :
+
+  ∫1/(x² + 4x + 7)dx
+
+= ∫1/((x+2)² + 3 )dx
+
+= 1/3·∫1/(1/3·(x+2)² + 1)dx
+
+  let u= 1/√3·(x+2) , du = 1/√3dx
+
+= 1/√3·∫1/(1/3·(x+2)² + 1)·(1/√3)dx
+
+= 1/√3·∫ 1/(u²+1)du
+
+= 1/√3·atan(u) + C 
+
+= ...
+
+### What is the integral of (x+10)(x-1)¹⁰ dx from x = 0 to x = 1?
+
+  ∫<sub>x=</sub>¹₀ (x+10)(x-1)¹⁰dx
+
+  let u =x-1, du = 1 , x = u+1
+
+= ∫<sub>x=</sub>¹₀ (u+11)u¹⁰du
+
+= ∫<sub>x=</sub>¹₀ u¹¹+11u¹⁰du
+
+= u¹²/12 + u¹¹ ］<sub>u=</sub>⁰₋₁
+
+= 11/12
+
+### What is the integral of x / (x+1)^(1/3) dx?
+
+  ∫x/∛(x+1)dx 
 
 
 
