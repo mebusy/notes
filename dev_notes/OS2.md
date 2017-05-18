@@ -1757,6 +1757,49 @@ P3          3
     - q small => Interleaved (really small => hyperthreading?)
     - q must be large with respect to context switch, otherwise overhead is too high (all overhead)
 
+### Example of RR with Time Quantum = 20
+
+```
+Process     Burst Time
+P1          53
+P2          8
+P3          68
+P4          24
+```
+
+ - Example:
+    - The Gantt chart is:
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_scheduling_gantt_chart_rr.png)
+
+    - Waiting time for P1=(68-20)+(112-88)=72
+        - P2=(20-0)=20
+        - P3=(28-0)+(88-48)+(125-108)=85
+        - P4=(48-0)+(108-68)=88
+    - Average waiting time = (72+20+85+88)/4=66¼
+    - Average completion time = (125+28+153+112)/4 = 104½
+ - Thus, Round-Robin Pros and Cons:
+    - Better for short jobs, Fair (+)
+    - Context-switching time adds up for long jobs (-)
+
+### Round-Robin Discussion
+
+ - How do you choose time slice?
+    - What if too big?
+        - Response time suffers
+    - What if infinite (∞ ) ?
+        - Get back FIFO
+    - What if time slice too small?
+        - Throughput suffers! 
+ - Actual choices of timeslice:
+    - Initially, UNIX timeslice one second:
+        - Worked ok when UNIX was used by one or two people.
+        - What if three compilations going on? 3 seconds to echo each keystroke!
+    - In practice, need to balance short-job performance and long-job throughput:
+        - Typical time slice today is between 10ms – 100ms
+        - Typical context-switching overhead is 0.1ms – 1ms
+        - Roughly 1% overhead due to context-switching
+
+
 
 
 
