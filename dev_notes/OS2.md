@@ -67,6 +67,13 @@
 
 # lecture 6 : Synchronization
 
+## Goals for Today
+
+ - Concurrency examples
+ - Need for synchronization
+ - Examples of valid synchronization
+
+
 <h2 id="d8a1f8a1fb826b53b7b79e3cb43a59da"></h2>
 
 ## Threaded Web Server
@@ -275,6 +282,14 @@ x = 1;     x = 2;
 <h2 id="8570ce6b06af17a6a209f5d3517aa1e1"></h2>
 
 # Lecture 7 : Implementing Mutual Exclusion, Semaphores, Monitors, and Condition Variables
+
+## Goals for Today
+
+ - Hardware Support for Synchronization
+ - Higher-level Synchronization Abstractions
+    - Semaphores, monitors, and condition variables
+ - Programming paradigms for concurrent programs
+
 
 <h2 id="0df086f9bba7795a9b18b6e22bbe83e8"></h2>
 
@@ -832,6 +847,15 @@ RemoveFromQueue() {
 
 # Lecture 8: Readers/Writers; Language Support for Synchronization
 
+## Goals for Today
+
+ - Continue with Synchronization Abstractions
+    - Monitors and condition variables
+ - Readers-Writers problem and solutoin
+ - Language Support for Synchronization
+
+
+
 <h2 id="12ec8d63b9c0f5207e953008a49fc0a1"></h2>
 
 ## Simple Monitor Example (version 1)
@@ -1307,6 +1331,15 @@ while (!ATMRequest()) {
 
 # Lecture 9 : Resource Contention and Deadlock 
 
+## Goals for Today
+
+ - Language Support for Synchronization
+ - Discussion of Deadlocks
+    - Conditions for its occurrence
+    - Solutions for breaking and avoiding deadlock
+
+
+
 ## Resources
 
  - Resources – passive entities needed by threads to do their work
@@ -1467,8 +1500,8 @@ x.V();      y.V();
 
 ```
 [FreeResources]: Current free resources each type
-[RequestX]: Current requests from thread X
-[AllocX]: Current resources held by thread X
+[Request_x]: Current requests from thread X
+[Alloc_x]: Current resources held by thread X
 ```
 
  - See if tasks can eventually terminate on their own
@@ -1479,16 +1512,16 @@ Add all nodes to UNFINISHED
 do {
     done = true
     Foreach node in UNFINISHED {
-        if ([Requestnode] <= [Avail]) {
+        if ([Request_node] <= [Avail]) {
             remove node from UNFINISHED
-            [Avail] = [Avail] + [Allocnode]
+            [Avail] = [Avail] + [Alloc_node]
             done = false
         }
     }
 } until(done)
 ```
 
- - Nodes left in UNFINISHED  deadlocked
+ - Nodes left in UNFINISHED => deadlocked
 
 ## Summary 
 
@@ -1513,6 +1546,132 @@ do {
 
 
 # Lecture 10 : Deadlock (cont’d) / Thread Scheduling
+
+## Goals for Today
+
+ - Preventing Deadlock
+ - Scheduling Policy goals
+ - Policy Options
+ - Implementation Considerations
+
+## What to do when detect deadlock?
+
+ - Terminate thread, force it to give up resources
+    - In Bridge example, Godzilla picks up a car, hurls it into the river. Deadlock solved!
+    - Shoot a dining lawyer
+    - But, not always possible – killing a thread holding a mutex leaves world inconsistent
+ - Preempt resources without killing off thread 
+    - Take away resources from thread temporarily
+    - Doesn’t always fit with semantics of computation
+        - for instance, a resource might be a lock in a critical section if we preempt that lock, suddenly there might be two threads in the critical section and then we've got bad computation. Because the whole point of the resource there in the case of lock was to make correct computation. 
+ - Roll back actions of deadlocked threads
+    - Hit the rewind button on TiVo, pretend last few minutes never happened
+    - For bridge example, make one car roll backwards (may require others behind him)
+    - Common technique in databases (transactions)
+    - Of course, if you restart in exactly the same way, may reenter deadlock once again
+ - Many operating systems use other options
+
+## Techniques for Preventing Deadlock
+
+ - Infinite resources
+    - Include enough resources so that no one ever runs out of resources. Doesn’t have to be infinite, just large
+    - Give illusion of infinite resources (e.g. virtual memory)
+    - Examples:
+        - Bay bridge with 12,000 lanes. Never wait!
+        - Infinite disk space (not realistic yet?)
+ - No Sharing of resources (totally independent threads)
+    - Not very realistic
+ - Don’t allow waiting
+    - How the phone company avoids deadlock
+        - Call to your Mom in Toledo, works its way through the phone lines, but if blocked get busy signal. 
+    - Technique used in Ethernet/some multiprocessor nets
+        - Everyone speaks at once. On collision, back off and retry
+    - Inefficient, since have to keep retrying
+        - Consider: driving to San Francisco; when hit traffic jam, suddenly you’re transported back home and told to retry!
+
+---
+
+ - Make all threads request everything they’ll need at the beginning.
+    - Problem: Predicting future is hard, tend to overestimate resources
+    - Example:
+        - If need 2 chopsticks, request both at same time
+        - Don’t leave home until we know no one is using any intersection between here and where you want to go; only one car on the Bay Bridge at a time
+ - Force all threads to request resources in a particular order preventing any cyclic use of resources
+    - Thus, preventing deadlock
+    - Example
+        - Make tasks request disk, then memory, then…
+        - Keep from deadlock on freeways around SF by requiring everyone to go clockwise
+
+
+## Banker’s Algorithm for Preventing Deadlock
+
+ - Toward right idea: 
+    - State maximum resource needs in advance
+        - 事先计算最多需要多少资源
+    - Allow particular thread to proceed if:
+        - (available resources - #requested) >= max remaining that might be needed by any thread
+        - 总保证剩下的资源 大于等于 最大需求
+        - why there is no deadlock if I follows this rules.
+            - for instance, there were 3 resources left, I took 2 of them , and there is only 1 left
+            - it doesn't necessarily have to be that nobody needs more than one 
+            - all we need to make sure is that somebody can still finish and put enough back that everybody can finish. 
+        - it is over conservative
+ - Banker’s algorithm (less conservative):
+    - Allocate resources dynamically
+        - Evaluate each request and grant if some ordering of threads is still deadlock free afterward
+            - recalculate graph , take this graph , run it through the deadlock detection algorithm . Does it have a deadlock ? No. okey , you can have it. 
+        - **Technique: pretend each request is granted, then run deadlock detection algorithm, substituting ([Max_node]-[Alloc_node] ≤ [Avail]) for ([Request_node] ≤ [Avail]) Grant request if result is deadlock free (conservative!)**
+        - Keeps system in a “SAFE” state, i.e. there exists a sequence {T₁, T₂, … T<sub>n</sub>} with T₁ requesting all remaining resources, finishing, then T₂ requesting all remaining resources, etc..
+    - Algorithm allows the sum of maximum resource needs of all current threads to be greater than total resources
+
+
+### Banker’s Algorithm Example
+
+ - Banker’s algorithm with dining lawyers
+    - “Safe” (won’t cause deadlock) if when try to grab chopstick either:
+        - Not last chopstick
+        - Is last chopstick but someone will have two afterwards
+    - What if k-handed lawyers? Don’t allow if:
+        - It’s the last one, no one would have k
+        - It’s 2nd to last, and no one would have k-1
+        - It’s 3rd to last, and no one would have k-2
+        - ...
+
+## CPU Scheduling
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_process_scheduling.png)
+
+
+ - Earlier, we talked about the life-cycle of a thread
+    - Active threads work their way from Ready queue to Running to various waiting queues.
+ - Question: How is the OS to decide which of several tasks to take off a queue?
+    - Obvious queue to worry about is ready queue
+    - Others can be scheduled as well, however
+ - **Scheduling:**  deciding which threads are given access to resources from moment to moment 
+
+## Scheduling Assumptions
+
+ - CPU scheduling big area of research in early 70’s
+ - Many implicit assumptions for CPU scheduling:
+    - One program per user
+    - One thread per program
+    - Programs are independent
+ - Clearly, these are unrealistic but they simplify the problem so it can be solved
+    - For instance: is “fair” about fairness among users or programs? 
+        - If I run one compilation job and you run five, you get five times as much CPU on many operating systems
+ - The high-level goal: Dole out CPU time to optimize some desired parameters of system
+    - user1 -> user2 -> user3 -> user1 -> user2 ...
+    - Time ------> 
+
+## Assumption: CPU Bursts
+
+ - Execution model: programs alternate between bursts of CPU and I/O
+    - Program typically uses the CPU for some period of time, then does I/O, then uses CPU again
+    - Each scheduling decision is about which job to give to the CPU for use by its next CPU burst
+    - With timeslicing, thread may be forced to give up CPU before finishing current CPU burst
+
+ 
+
 
 
 
