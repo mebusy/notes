@@ -1897,6 +1897,33 @@ P4          24
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_benefits_of_SRTF2.png)
 
+ - RR , 100ms 
+    - low disk utilization.  If you are copying a file, it will take a long time
+ - RR,  1ms
+    - 90% disk utilization , but too much wakeups
+ - SRTF 
+    - 90% disk utilization , but B need to wait a week to start , is it a bad thing ?
+    - It could be a good thing , it could be a bad thing. It depends on what your goals are.  
+        - It's a good thing because the average response time between A and B is better than if we swapped all the time.
+
+So clearly we're going to approximate SRTF. The real question is how to approximate it. 
+
+## Predicting the Length of the Next CPU Burst
+
+ - **Adaptive:** Changing policy based on past behavior
+    - CPU scheduling, in virtual memory, in file systems, etc
+    - Works because programs have predictable behavior
+        - If program was I/O bound in past, likely in future
+        - If computer behavior were random, wouldn’t help
+ - Example: SRTF with estimated burst length
+    - Use an estimator function on previous bursts: 
+        - Let t<sub>n-1</sub> , t<sub>n-2</sub> , t<sub>n-3</sub> , etc. be previous CPU burst lengths.
+        - Estimate next burst τ<sub>n</sub> = f(t<sub>n-1</sub>, t<sub>n-2</sub>, t<sub>n-3</sub>, … )
+    - Function f could be one of many different time series estimation schemes (Kalman filters, etc)
+    - For instance
+        - exponential averaging τ<sub>n</sub> = αt<sub>n-1</sub> + (1-α)τ<sub>n-1</sub> 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_SRTF_predicting.png)
 
 
 
