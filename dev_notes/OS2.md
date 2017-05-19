@@ -1818,19 +1818,6 @@ P4          24
 
  - The short jobs really benefit from round-robin , the long jobs don't. 
 
-## What if we Knew the Future?
-
- - Could we always mirror best FCFS?
- - Shortest Job First (SJF):
-    - Run whatever job has the least amount of computation to do
-    - Sometimes called “Shortest Time to Completion First” (STCF)
- - Shortest Remaining Time First (SRTF):
-    - Preemptive version of SJF: if job arrives and has a shorter time to completion than the remaining time on the current job, immediately preempt CPU
-    - Sometimes called “Shortest Remaining Time to Completion First” (SRTCF)
- - These can be applied either to a whole program or the current CPU burst of each program
-    - Idea is to get short jobs out of the system
-    - Big effect on short jobs, only small effect on long ones
-    - Result is better average response time
 
 ## Summary (Deadlock)
 
@@ -1868,7 +1855,36 @@ P4          24
 # Lecture 11 : Scheduling (con't)  / Protection: Kernel and Address Spaces
 
  
+## What if we Knew the Future?
+
+ - Could we always mirror best FCFS?
+ - Shortest Job First (SJF):
+    - Run whatever job has the least amount of computation to do
+    - Sometimes called “Shortest Time to Completion First” (STCF)
+ - Shortest Remaining Time First (SRTF):
+    - Preemptive version of SJF: if job arrives and has a shorter time to completion than the remaining time on the current job, immediately preempt CPU
+    - Sometimes called “Shortest Remaining Time to Completion First” (SRTCF)
+ - These can be applied either to a whole program or the current CPU burst of each program
+    - Idea is to get short jobs out of the system
+    - Big effect on short jobs, only small effect on long ones
+    - Result is better average response time
     
+## Discussion
+
+ - SJF/SRTF are the best you can do at minimizing average response time
+    - Provably optimal (SJF among non-preemptive, SRTF among preemptive) 
+    - Since SRTF is always at least as good as SJF, focus on SRTF
+ - Comparison of SRTF with FCFS and RR
+    - What if all jobs the same length?
+        - SRTF becomes the same as FCFS (i.e. FCFS is best can do if all jobs the same length)
+    - What if jobs have varying length?
+        - SRTF (and RR): short jobs not stuck behind long ones
+
+
+
+
+
+
 
 --- 
 
