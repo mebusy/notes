@@ -55,7 +55,11 @@
 [BeautifulSoup](https://github.com/mebusy/notes/blob/master/dev_notes/PY_BeautifulSoup.md)  | [python多线程](https://github.com/mebusy/notes/blob/master/dev_notes/PY_multiprocessing.md) | [PIL_Tips](https://github.com/mebusy/notes/blob/master/dev_notes/PIL_tips.md) | [numpy tips](https://github.com/mebusy/notes/blob/master/dev_notes/numpy_tips.md) 
 
 
+#### Operation System 
 
+a | b | c | d
+--- | --- | --- | --- 
+[process/thread](https://github.com/mebusy/notes/blob/master/dev_notes/OS.md) | [synchronize](https://github.com/mebusy/notes/blob/master/dev_notes/OS2.md) | [Scheduling](https://github.com/mebusy/notes/blob/master/dev_notes/OS_3_scheduling.md) | 
 
 
 <h2 id="0d61f8370cad1d412f80b84d143e1257"></h2>
