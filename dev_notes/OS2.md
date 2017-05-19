@@ -1884,7 +1884,18 @@ P4          24
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_benefits_of_SRTF.png)
 
+ - 单核 ，存在cpu密集型计算的场景
+ - Three jobs:
+    - A,B: both CPU bound, run for week
+    - C: I/O bound, loop 1ms CPU, 9ms disk I/O
+    - If only one at a time, C uses 90% of the disk, A or B could use 100% of the CPU
+ - With FIFO:
+    - Once A or B get in, keep CPU for two weeks
+ - What about RR or SRTF?
+    - Easier to see with a timeline
+ 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_benefits_of_SRTF2.png)
 
 
 
