@@ -62,7 +62,7 @@
 
 a | b | c | d
 --- | --- | --- | --- 
-[process/thread](https://github.com/mebusy/notes/blob/master/dev_notes/OS.md) | [synchronize](https://github.com/mebusy/notes/blob/master/dev_notes/OS2.md) | [Scheduling](https://github.com/mebusy/notes/blob/master/dev_notes/OS_3_scheduling.md) | 
+[process/thread](https://github.com/mebusy/notes/blob/master/dev_notes/OS.md) | [synchronize](https://github.com/mebusy/notes/blob/master/dev_notes/OS2.md) | [Scheduling](https://github.com/mebusy/notes/blob/master/dev_notes/OS3_scheduling.md) | 
 
 
 <h2 id="0d61f8370cad1d412f80b84d143e1257"></h2>
