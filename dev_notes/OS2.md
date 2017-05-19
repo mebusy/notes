@@ -1880,6 +1880,11 @@ P4          24
     - What if jobs have varying length?
         - SRTF (and RR): short jobs not stuck behind long ones
 
+### Example to illustrate benefits of SRTF
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_benefits_of_SRTF.png)
+
+
 
 
 
