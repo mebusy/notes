@@ -191,9 +191,62 @@
 
 # 4. ONLINE PLANNING WITH MAXQ
 
+## 4.1. Overview of MAXQ-OP
 
-  
+we introduce depth array d and maximal search depth array D
 
+ - d[i] is current search depth in terms of macroactions for subtask Mᵢ
+ - D[i] gives the maximal allowed search depth for subtask Mᵢ
+
+A heuristic function H is also introduced to estimate the value function when exceeding the maximal search depth. 
+
+That means we will terminate and return H(i,s)  if d[i] >= D[i]
+
+## 4.2 Main Procedure of MAXQ-OP
+
+ - ALGORITHM 1: OnlinePlanning()
+     - Input: an MDP model with its MAXQ hierarchical structure
+     - Output: the accumulated reward r after reaching a goal
+
+```
+r ← 0;
+s ← GetInitState();
+root_task ← 0;
+depth_array ← [0, 0,..., 0];
+
+// loops over until a goal state in G₀ is reached
+while s ∉ G₀ do
+    // EvaluateStateInSubtask -- key procedure
+    // evaluates each subtask by depth-first search
+    // returns the seemingly best action for the current state
+    // called with a depth array containing all zeros for all subtasks.
+    (v,a_p) ← EvaluateStateInSubtask(root_task, s, depth_array);
+    r ← r + ExecuteAction(a_p, s);
+    // next state after execute action
+    s ← GetNextState(); 
+```  
+
+## 4.3. Task Evaluation over Hierarchy
+
+ - ALGORITHM 2: EvaluateStateInSubtask(i, s, d)
+    - Input: subtask Mᵢ, state s and depth array d
+    - Output: (V<sup>\*</sup>(i, s), a primitive action a<sub>p</sub><sup>\*</sup> ) 
+
+```
+if Mᵢ is primitive then return ( R(s, Mᵢ), Mᵢ ) ;
+else if s ∉ Sᵢ and s ∉ Gᵢ then return (-∞, nil) ;
+else if s ∈ Gᵢ then return (0, nil);
+else if d[i] ≥ D[i] then return ( HeuristicValue(i, s), nil ) ;
+else
+    (v* , a_p*) ← (0, nil) 
+    for M_k ∈ Subtasks(Mᵢ) do
+        if M_k is primitive or s ∉ G_k then
+            (v , a_p) ← EvaluateStateInSubtask(k, s, d);
+            v ← v + EvaluateCompletionInSubtask(i, s, k, d);
+            if v > v∗ then
+                (v* , a_p*) ← (v , a_p) 
+    return (v* , a_p*)
+```
 
 
 
