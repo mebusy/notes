@@ -400,6 +400,18 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
         - This is ad hoc -- what rate should you increase priorities?
         - And, as system gets overloaded, no job gets CPU time, so everyone increases in priority =>  Interactive jobs suffer
 
+## Lottery Scheduling
+
+ - Yet another alternative: Lottery Scheduling
+    - Give each job some number of lottery tickets
+    - On each time slice, randomly pick a winning ticket
+    - On average, CPU time is proportional to number of tickets given to each job
+ - How to assign tickets?
+    - To approximate SRTF, short running jobs get more, long running jobs get fewer
+    - To avoid starvation, every job gets at least one ticket (everyone makes progress)
+ - Advantage over strict priority scheduling: behaves gracefully as load changes
+    - Adding or deleting a job affects all jobs proportionally, independent of how many tickets each job possesses 
+
 
 
 
