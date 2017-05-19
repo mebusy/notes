@@ -45,7 +45,17 @@
 		 - [Physically, why is the fundamental theorem of calculus true?](#3d25e750b4fc1ef196b9f5374dfb1e5e)
 		 - [What is d/da integral f(x) dx from x = a to x = b?](#dd8a004feac789f359b9f1d0c411bf67)
 		 - [Quiz:](#db021f4670ba22ce77ef0acb0aba7ba0)
-	 - [](#d41d8cd98f00b204e9800998ecf8427e)
+ - [Week 14 : Substitution Rule](#d2c2e3f1cc8835457610b328bdcd7a82)
+	 - [What is the chain rule backwards ?](#fd339d56f0e61ade587ffb1a32f60377)
+		 - [How does the chain rule help with antidifferentiation?](#61791445b8db9f9af652e5b5faef1722)
+		 - [When I do u-substitution, what should u be?](#586760ec16df4dfafb1ade061114f837)
+		 - [How should I handle the endpoints when doing u-substitution?](#06c352fcad5ce7eb9b2691e623454640)
+		 - [Might I want to do u-substitution more than once?](#9bd1a0f264093d981b3c1a8170148e94)
+	 - [What are some tricks for doing substitutions ?](#ee830a5a4339c0b9c8e33044eb004562)
+		 - [What is the integral of dx / (x² + 4x + 7)?](#f817608cb35f2dc36ff3722a609c8d49)
+		 - [What is the integral of (x+10)(x-1)¹⁰ dx from x = 0 to x = 1?](#96c0d2032815787089715ac1c89bf6e6)
+		 - [What is the integral of x / (x+1)^(1/3) dx?](#ab56342063f7a7e3b701824705d1bacd)
+		 - [What is the integral of dx / (1 + cos x) ?](#8f940df21711cbfbefdc907d9a92ceba)
 
 ...menuend
 
@@ -570,9 +580,9 @@ summing | *differencing*
     - ∫<sup>6.02</sup>₆ f(x)dx = f(6) \* 0.02 = 0.1 
     - f(6) = 5
 
-<h2 id="d41d8cd98f00b204e9800998ecf8427e"></h2>
-
 ---
+
+<h2 id="d2c2e3f1cc8835457610b328bdcd7a82"></h2>
 
 # Week 14 : Substitution Rule
 
@@ -584,7 +594,11 @@ Now it turns out that finding anti-derivatives is also really hard to do. So we 
 
 
 
+<h2 id="fd339d56f0e61ade587ffb1a32f60377"></h2>
+
 ## What is the chain rule backwards ?
+
+<h2 id="61791445b8db9f9af652e5b5faef1722"></h2>
 
 ### How does the chain rule help with antidifferentiation?
 
@@ -605,6 +619,8 @@ I know you might feel kind of bad, because I don't really see a *2xdx*, I only s
 = ∫f'(u)du  = f(u)+C  = f(g(x))+C 
 
 
+<h2 id="586760ec16df4dfafb1ade061114f837"></h2>
+
 ### When I do u-substitution, what should u be?
 
  - How to pick *u* ?
@@ -616,6 +632,8 @@ I know you might feel kind of bad, because I don't really see a *2xdx*, I only s
  - ∫1/(√(4-9x²))dx 
     - u = 3/2·x
 
+
+<h2 id="06c352fcad5ce7eb9b2691e623454640"></h2>
 
 ### How should I handle the endpoints when doing u-substitution?
 
@@ -646,6 +664,8 @@ We did it. But I could've finished this problem off in a slightly diferent but e
  - Method 2 : endpoints with *u*
     - ∫<sub>x=</sub>ᵇₐ f'(g(x))g'(x)dx  = ∫<sub>u=</sub><sup>g(b)</sup><sub>g(a)</sub> f'(u)du =  f(u)  ］<sub>u=</sub><sup>g(b)</sup><sub>g(a)</sub> 
 
+<h2 id="9bd1a0f264093d981b3c1a8170148e94"></h2>
+
 ### Might I want to do u-substitution more than once?
 
  - Sometimes you might want to do u substitution more than once. 
@@ -667,8 +687,12 @@ We did it. But I could've finished this problem off in a slightly diferent but e
 
 ---
 
+<h2 id="ee830a5a4339c0b9c8e33044eb004562"></h2>
+
 ## What are some tricks for doing substitutions ?
 
+
+<h2 id="f817608cb35f2dc36ff3722a609c8d49"></h2>
 
 ### What is the integral of dx / (x² + 4x + 7)?
 
@@ -698,6 +722,8 @@ So :
 
 = ...
 
+<h2 id="96c0d2032815787089715ac1c89bf6e6"></h2>
+
 ### What is the integral of (x+10)(x-1)¹⁰ dx from x = 0 to x = 1?
 
   ∫<sub>x=</sub>¹₀ (x+10)(x-1)¹⁰dx
@@ -711,6 +737,8 @@ So :
 = u¹²/12 + u¹¹ ］<sub>u=</sub>⁰₋₁
 
 = 11/12
+
+<h2 id="ab56342063f7a7e3b701824705d1bacd"></h2>
 
 ### What is the integral of x / (x+1)^(1/3) dx?
 
@@ -732,6 +760,8 @@ There is a more easy way to do this.
 
  - This is called **rationalizing substitution**.
 
+
+<h2 id="8f940df21711cbfbefdc907d9a92ceba"></h2>
 
 ### What is the integral of dx / (1 + cos x) ?
 

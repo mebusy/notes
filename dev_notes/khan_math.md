@@ -1,6 +1,16 @@
+...menustart
 
+ - [Early Math](#163c0f7f158aede24f3b5015415a0ec7)
+	 - [Counting](#bf87751378a125423d6e60e4ffff6daa)
+
+...menuend
+
+
+<h2 id="163c0f7f158aede24f3b5015415a0ec7"></h2>
 
 # Early Math
+
+<h2 id="bf87751378a125423d6e60e4ffff6daa"></h2>
 
 ## Counting
 

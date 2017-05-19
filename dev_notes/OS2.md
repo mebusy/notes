@@ -1,6 +1,7 @@
 ...menustart
 
  - [lecture 6 : Synchronization](#0a777e4e25d6bed512e90f4276ed3f3e)
+	 - [Goals for Today](#134f950c115f6aa46f3605b42a307174)
 	 - [Threaded Web Server](#d8a1f8a1fb826b53b7b79e3cb43a59da)
 	 - [Thread Pools](#8c0fe8bd8957434b18beee61bb24d5a1)
 	 - [ATM Bank Server](#85fcb2cee656dde02fc06b37654e22d7)
@@ -14,6 +15,7 @@
 	 - [Where are we going with synchronization?](#5e7b47e9a6f0988cdfebc1f7e24d146d)
 	 - [Summary](#290612199861c31d1036b185b4e69b75)
  - [Lecture 7 : Implementing Mutual Exclusion, Semaphores, Monitors, and Condition Variables](#8570ce6b06af17a6a209f5d3517aa1e1)
+	 - [Goals for Today](#134f950c115f6aa46f3605b42a307174)
 	 - [High-Level Picture](#0df086f9bba7795a9b18b6e22bbe83e8)
 	 - [Too Much Milk: Solution #4](#4b6eee8efda451754a70cf1588f7f9f0)
 	 - [How to implement Locks?](#3d86e0ff4fcefc805340e9ef1efa0675)
@@ -41,6 +43,7 @@
 		 - [Simple Monitor Example](#8b1e0edd9d2a287d52be6dd022c68c7e)
 	 - [Summary](#290612199861c31d1036b185b4e69b75)
  - [Lecture 8: Readers/Writers; Language Support for Synchronization](#d82c7cd8bfc967bc3466ba0df7a07b30)
+	 - [Goals for Today](#134f950c115f6aa46f3605b42a307174)
 	 - [Simple Monitor Example (version 1)](#12ec8d63b9c0f5207e953008a49fc0a1)
 	 - [Condition Variables](#bc040239e2bdcdb0fdb5b22a8d93dd78)
 	 - [Complete Monitor Example (with condition variable)](#0ecd767a2fc3cd8b5537db79cdedbe05)
@@ -58,7 +61,27 @@
 		 - [C++](#f6f87c9fdcf8b3c3f07f93f1ee8712c9)
 		 - [Java](#d52387880e1ea22817a72d3759213819)
 	 - [Summary](#290612199861c31d1036b185b4e69b75)
- - [Lecture 9 : Tips for working in a Project Team/ Cooperating Processes and Deadlock](#c90312671db14675686d7c0ad17056d9)
+ - [Lecture 9 : Resource Contention and Deadlock](#7c64ac5cca2f1b61bb6050f0c780662e)
+	 - [Goals for Today](#134f950c115f6aa46f3605b42a307174)
+	 - [Resources](#ddcf50c29294d4414f3f7c1bbc892cb5)
+	 - [Starvation vs Deadlock](#e66cc87dc77acc53b59839e4d32c59f6)
+	 - [Conditions for Deadlock](#854d217dd7484494ec7fef6f86239ee3)
+		 - [Bridge Crossing Example](#4e1e87646856a00a3317d4cf7e38301c)
+		 - [Train Example (Wormhole-Routed Network)](#4fa3ecace35c7a5d85cd17f794cd753c)
+	 - [Dining Lawyers Problem](#443e85f9c2e02a73bcba0e0b90fea5db)
+	 - [Four requirements for Deadlock](#b0764a5818c0783470ac25ef6f15fa06)
+	 - [Resource-Allocation Graph](#cd4c9a20ae25f28bf89fdceeeb8ff759)
+		 - [Resource Allocation Graph Examples](#4053557fd46fc4a1438c8fa6b1158e66)
+	 - [Methods for Handling Deadlocks](#51cbff7f5c9ab16fb72f7f72ee951f5c)
+	 - [Deadlock Detection Algorithm](#2c61a97575bf39f95051de0065bf4b52)
+	 - [Summary](#290612199861c31d1036b185b4e69b75)
+ - [Lecture 10 : Deadlock (cont’d) / Thread Scheduling](#bf84fee9d2e0d27ab6eb0a89ccbf2a59)
+	 - [Goals for Today](#134f950c115f6aa46f3605b42a307174)
+	 - [What to do when detect deadlock?](#3be29107b16cdcaa715b0e62eec09933)
+	 - [Techniques for Preventing Deadlock](#f3a2b84a9e5ac845742510943ccca3ec)
+	 - [Banker’s Algorithm for Preventing Deadlock](#91245fc5f505d4166a98cabd74f987fe)
+		 - [Banker’s Algorithm Example](#75405c8059b00a8201d5f81ed5772413)
+	 - [Summary (Deadlock)](#0db2e0a17394f45dbcc96774160dc99b)
 
 ...menuend
 
@@ -66,6 +89,8 @@
 <h2 id="0a777e4e25d6bed512e90f4276ed3f3e"></h2>
 
 # lecture 6 : Synchronization
+
+<h2 id="134f950c115f6aa46f3605b42a307174"></h2>
 
 ## Goals for Today
 
@@ -282,6 +307,8 @@ x = 1;     x = 2;
 <h2 id="8570ce6b06af17a6a209f5d3517aa1e1"></h2>
 
 # Lecture 7 : Implementing Mutual Exclusion, Semaphores, Monitors, and Condition Variables
+
+<h2 id="134f950c115f6aa46f3605b42a307174"></h2>
 
 ## Goals for Today
 
@@ -847,6 +874,8 @@ RemoveFromQueue() {
 
 # Lecture 8: Readers/Writers; Language Support for Synchronization
 
+<h2 id="134f950c115f6aa46f3605b42a307174"></h2>
+
 ## Goals for Today
 
  - Continue with Synchronization Abstractions
@@ -1327,9 +1356,11 @@ while (!ATMRequest()) {
 
 ---
 
-<h2 id="c90312671db14675686d7c0ad17056d9"></h2>
+<h2 id="7c64ac5cca2f1b61bb6050f0c780662e"></h2>
 
 # Lecture 9 : Resource Contention and Deadlock 
+
+<h2 id="134f950c115f6aa46f3605b42a307174"></h2>
 
 ## Goals for Today
 
@@ -1339,6 +1370,8 @@ while (!ATMRequest()) {
     - Solutions for breaking and avoiding deadlock
 
 
+
+<h2 id="ddcf50c29294d4414f3f7c1bbc892cb5"></h2>
 
 ## Resources
 
@@ -1355,6 +1388,8 @@ while (!ATMRequest()) {
     - Printers are not sharable during time of printing
  - One of the major tasks of an operating system is to manage resources
 
+<h2 id="e66cc87dc77acc53b59839e4d32c59f6"></h2>
+
 ## Starvation vs Deadlock
 
  - Starvation vs. Deadlock
@@ -1368,6 +1403,8 @@ while (!ATMRequest()) {
     - Deadlock => Starvation but not vice versa
         - Starvation can end (but doesn’t have to)
         - Deadlock can’t end without external intervention
+
+<h2 id="854d217dd7484494ec7fef6f86239ee3"></h2>
 
 ## Conditions for Deadlock
 
@@ -1390,6 +1427,8 @@ x.V();      y.V();
     - Each thread needs 2 disk drives to function
     - Each thread gets one disk and waits for another one
 
+<h2 id="4e1e87646856a00a3317d4cf7e38301c"></h2>
+
 ### Bridge Crossing Example
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_deadlock_example_cars.png)
@@ -1405,6 +1444,8 @@ x.V();      y.V();
  - Starvation is possible
     - East-going traffic really fast => no one goes west
 
+<h2 id="4fa3ecace35c7a5d85cd17f794cd753c"></h2>
+
 ### Train Example (Wormhole-Routed Network)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_deadlock_example_train.png)
@@ -1417,6 +1458,8 @@ x.V();      y.V();
     - **Force ordering of channels** (tracks)
         - Protocol: Always go east-west first, then north-south
     - Called “dimension ordering” (X then Y)
+
+<h2 id="443e85f9c2e02a73bcba0e0b90fea5db"></h2>
 
 ## Dining Lawyers Problem
 
@@ -1433,6 +1476,8 @@ x.V();      y.V();
  - How to prevent deadlock?
     - Never let lawyer take last chopstick if no hungry lawyer has two chopsticks afterwards
 
+<h2 id="b0764a5818c0783470ac25ef6f15fa06"></h2>
+
 ## Four requirements for Deadlock
 
  - Mutual exclusion
@@ -1447,6 +1492,8 @@ x.V();      y.V();
         - T₂ is waiting for a resource that is held by T₃
         - ...
         - T<sub>n</sub> is waiting for a resource that is held by T₁
+
+<h2 id="cd4c9a20ae25f28bf89fdceeeb8ff759"></h2>
 
 ## Resource-Allocation Graph
 
@@ -1471,6 +1518,8 @@ x.V();      y.V();
         - R₁ is one of them
         - R₂ is 3 of them.  When I say I need R₂ I don't really care which 1 I get. 
 
+<h2 id="4053557fd46fc4a1438c8fa6b1158e66"></h2>
+
 ### Resource Allocation Graph Examples
 
  - Recall:
@@ -1480,6 +1529,8 @@ x.V();      y.V();
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_resource_allocation_graph_example.png)
 
+
+<h2 id="51cbff7f5c9ab16fb72f7f72ee951f5c"></h2>
 
 ## Methods for Handling Deadlocks
 
@@ -1491,6 +1542,8 @@ x.V();      y.V();
     - Selectively deny those that **might** lead to deadlock
  - Ignore the problem and pretend that deadlocks never occur in the system
     - Used by most operating systems, including UNIX
+
+<h2 id="2c61a97575bf39f95051de0065bf4b52"></h2>
 
 ## Deadlock Detection Algorithm
 
@@ -1523,6 +1576,8 @@ do {
 
  - Nodes left in UNFINISHED => deadlocked
 
+<h2 id="290612199861c31d1036b185b4e69b75"></h2>
+
 ## Summary 
 
  - Starvation vs. Deadlock
@@ -1545,7 +1600,11 @@ do {
     - Banker’s algorithm gives one way to assess this
 
 
+<h2 id="bf84fee9d2e0d27ab6eb0a89ccbf2a59"></h2>
+
 # Lecture 10 : Deadlock (cont’d) / Thread Scheduling
+
+<h2 id="134f950c115f6aa46f3605b42a307174"></h2>
 
 ## Goals for Today
 
@@ -1553,6 +1612,8 @@ do {
  - Scheduling Policy goals
  - Policy Options
  - Implementation Considerations
+
+<h2 id="3be29107b16cdcaa715b0e62eec09933"></h2>
 
 ## What to do when detect deadlock?
 
@@ -1570,6 +1631,8 @@ do {
     - Common technique in databases (transactions)
     - Of course, if you restart in exactly the same way, may reenter deadlock once again
  - Many operating systems use other options
+
+<h2 id="f3a2b84a9e5ac845742510943ccca3ec"></h2>
 
 ## Techniques for Preventing Deadlock
 
@@ -1603,6 +1666,8 @@ do {
         - Keep from deadlock on freeways around SF by requiring everyone to go clockwise
 
 
+<h2 id="91245fc5f505d4166a98cabd74f987fe"></h2>
+
 ## Banker’s Algorithm for Preventing Deadlock
 
  - Toward right idea: 
@@ -1625,6 +1690,8 @@ do {
     - Algorithm allows the sum of maximum resource needs of all current threads to be greater than total resources
 
 
+<h2 id="75405c8059b00a8201d5f81ed5772413"></h2>
+
 ### Banker’s Algorithm Example
 
  - Banker’s algorithm with dining lawyers
@@ -1637,187 +1704,8 @@ do {
         - It’s 3rd to last, and no one would have k-2
         - ...
 
-## CPU Scheduling
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_process_scheduling.png)
-
-
- - Earlier, we talked about the life-cycle of a thread
-    - Active threads work their way from Ready queue to Running to various waiting queues.
- - Question: How is the OS to decide which of several tasks to take off a queue?
-    - Obvious queue to worry about is ready queue
-    - Others can be scheduled as well, however
- - **Scheduling:**  deciding which threads are given access to resources from moment to moment 
-
-## Scheduling Assumptions
-
- - CPU scheduling big area of research in early 70’s
- - Many implicit assumptions for CPU scheduling:
-    - One program per user
-    - One thread per program
-    - Programs are independent
- - Clearly, these are unrealistic but they simplify the problem so it can be solved
-    - For instance: is “fair” about fairness among users or programs? 
-        - If I run one compilation job and you run five, you get five times as much CPU on many operating systems
- - The high-level goal: Dole out CPU time to optimize some desired parameters of system
-    - so the first thing is to define the policy
-    - user1 -> user2 -> user3 -> user1 -> user2 ...
-    - Time ------> 
-
-## Assumption: CPU Bursts
-
-One thing we can do is we can say well what's the behavior of typical programs running. If you were to take all the programs running on a system and then you were to sort of say how long do thy go for CPU before they hit an I/O operation.
-
-And you'd put a histogram , you'd acutally see something like this where there's a peak and then a long tail. 
-
-Why if I'm graphing the amount of time that the thread actually uses the CPU I get this kind of peaked behavior ? 
-
-This peak is waying there's a lot of short bursts and some long bursts. 
-
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cpu_burst.png)
-
- - Execution model: programs alternate between bursts of CPU and I/O
-    - Program typically uses the CPU for some period of time, then does I/O, then uses CPU again
-    - Each scheduling decision is about which job to give to the CPU for use by its next CPU burst
-    - With timeslicing, thread may be forced to give up CPU before finishing current CPU burst
-
-## Scheduling Policy Goals/Criteria
-
- - Minimize Response Time
-    - Minimize elapsed time to do an operation (or job)
-    - Response time is what the user sees:
-        - Time to echo a keystroke in editor
-        - Time to compile a program
-        - Real-time Tasks: Must meet deadlines imposed by World
- - Maximize Throughput
-    - Maximize operations (or jobs) per second
-    - Throughput related to response time, but not identical:
-        - Minimizing response time will lead to more context switching than if you only maximized throughput
-    - Two parts to maximizing throughput
-        - Minimize overhead (for example, context-switching)
-        - Efficient use of resources (CPU, disk, memory, etc)
- - Fairness
-    - Share CPU among users in some equitable way
-    - Fairness is not minimizing average response time:
-        - Better average response time by making system less fair
-
-## First-Come, First-Served (FCFS) Scheduling
-
- - First-Come, First-Served (FCFS)
-    - Also “First In, First Out” (FIFO) or “Run until done”
-        - In early systems, FCFS meant one program scheduled until done (including I/O)
-        - Now, means keep CPU until thread blocks
- - Example:
-
-```
-Process     Burst Time
-P1          24
-P2          3
-P3          3
-```  
-
- - Example cont.
-    - Suppose processes arrive in the order: P1 , P2 , P3 The Gantt Chart for the schedule is:
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_scheduling_gantt_chart.png)
-    - Waiting time for P1 = 0; P2 = 24; P3 = 27
-    - Average waiting time: (0 + 24 + 27)/3 = 17
-    - Average Completion time: (24 + 27 + 30)/3 = 27
- - Convoy effect: short process behind long process
-
----
-
- - Example continued:
-    - Suppose that processes arrive in order: P2 , P3 , P1 Now, the Gantt chart for the schedule is:
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_scheduling_gantt_chart2.png)
-    - Waiting time for P1 = 6; P2 = 0; P3 = 3 
-    - Average waiting time: (6 + 0 + 3)/3 = 3
-    - Average Completion time: (3 + 6 + 30)/3 = 13
- - In second case:
-    - average waiting time is much better (before it was 17)
-    - Average completion time is better (before it was 27) 
- - FIFO Pros and Cons:
-    - Simple (+)
-    - Short jobs get stuck behind long ones (-)
-        - Safeway: Getting milk, always stuck behind cart full of small items. Upside: get to read about space aliens
-
-## Round Robin (RR)
-
- - FCFS Scheme: Potentially bad for short jobs!
-    - Depends on submit order
-    - If you are first in line at supermarket with milk, you don’t care who is behind you, on the other hand…
- - Round Robin Scheme
-    - Each process gets a small unit of CPU time (time quantum), usually 10-100 milliseconds
-    - After quantum expires, the process is preempted and added to the end of the ready queue.
-    - n processes in ready queue and time quantum is q => 
-        - Each process gets 1/ n of the CPU time 
-        - In chunks of at most q time units
-        - No process waits more than ( n-1)q time units
- - Performance
-    - q large => FCFS
-    - q small => Interleaved (really small => hyperthreading?)
-    - q must be large with respect to context switch, otherwise overhead is too high (all overhead)
-
-### Example of RR with Time Quantum = 20
-
-```
-Process     Burst Time
-P1          53
-P2          8
-P3          68
-P4          24
-```
-
- - Example:
-    - The Gantt chart is:
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_scheduling_gantt_chart_rr.png)
-
-    - Waiting time for P1=(68-20)+(112-88)=72
-        - P2=(20-0)=20
-        - P3=(28-0)+(88-48)+(125-108)=85
-        - P4=(48-0)+(108-68)=88
-    - Average waiting time = (72+20+85+88)/4=66¼
-    - Average completion time = (125+28+153+112)/4 = 104½
- - Thus, Round-Robin Pros and Cons:
-    - Better for short jobs, Fair (+)
-    - Context-switching time adds up for long jobs (-)
-
-### Round-Robin Discussion
-
- - How do you choose time slice?
-    - What if too big?
-        - Response time suffers
-    - What if infinite (∞ ) ?
-        - Get back FIFO
-    - What if time slice too small?
-        - Throughput suffers! 
- - Actual choices of timeslice:
-    - Initially, UNIX timeslice one second:
-        - Worked ok when UNIX was used by one or two people.
-        - What if three compilations going on? 3 seconds to echo each keystroke!
-    - In practice, need to balance short-job performance and long-job throughput:
-        - Typical time slice today is between 10ms – 100ms
-        - Typical context-switching overhead is 0.1ms – 1ms
-        - Roughly 1% overhead due to context-switching
-
-## Comparisons between FCFS and Round Robin
-
- - Assuming zero-cost context-switching time, is RR always better than FCFS?
- - Simple example:
-    - 10 jobs, each take 100s of CPU time RR scheduler quantum of 1s All jobs start at the same time
- - Completion Times:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_scheduling_FCFS_vs_RR.png)
-    - Both RR and FCFS finish at the same time
-    - Average response time is much worse under RR!
-        - Bad when all jobs same length
-    - Also: Cache state must be shared between all jobs with RR but can be devoted to each job with FIFO
-        - Total time for RR longer even for zero-cost switch!
-
-### Earlier Example with Different Time Quantum
-
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_scheduling_FCFS_vs_RR2.png)
-
- - The short jobs really benefit from round-robin , the long jobs don't. 
-
+<h2 id="0db2e0a17394f45dbcc96774160dc99b"></h2>
 
 ## Summary (Deadlock)
 
@@ -1835,99 +1723,4 @@ P4          24
  - Deadlock prevention
     - Assess, for each allocation, whether it has the potential to lead to deadlock
     - Banker’s algorithm gives one way to assess this
-
-## Summary (Scheduling)
-
- - **Scheduling:** selecting a waiting process from the ready queue and allocating the CPU to it
- - **FCFS Scheduling:**
-    - Run threads to completion in order of submission
-    - Pros: Simple
-    - Cons: Short jobs get stuck behind long ones
- - **Round-Robin Scheduling:**
-    - Give each thread a small amount of CPU time when it executes; cycle between all ready threads
-    - Pros: Better for short jobs
-    - Cons: Poor when jobs are same length 
- - **Shortest Job First (SJF)/Shortest Remaining Time First (SRTF):**
-    - Run whatever job has the least amount of computation to do/least remaining amount of computation to do
-    - Pros: Optimal (average response time) 
-    - Cons: Hard to predict future, Unfair
-
-# Lecture 11 : Scheduling (con't)  / Protection: Kernel and Address Spaces
-
- 
-## What if we Knew the Future?
-
- - Could we always mirror best FCFS?
- - Shortest Job First (SJF):
-    - Run whatever job has the least amount of computation to do
-    - Sometimes called “Shortest Time to Completion First” (STCF)
- - Shortest Remaining Time First (SRTF):
-    - Preemptive version of SJF: if job arrives and has a shorter time to completion than the remaining time on the current job, immediately preempt CPU
-    - Sometimes called “Shortest Remaining Time to Completion First” (SRTCF)
- - These can be applied either to a whole program or the current CPU burst of each program
-    - Idea is to get short jobs out of the system
-    - Big effect on short jobs, only small effect on long ones
-    - Result is better average response time
-    
-## Discussion
-
- - SJF/SRTF are the best you can do at minimizing average response time
-    - Provably optimal (SJF among non-preemptive, SRTF among preemptive) 
-    - Since SRTF is always at least as good as SJF, focus on SRTF
- - Comparison of SRTF with FCFS and RR
-    - What if all jobs the same length?
-        - SRTF becomes the same as FCFS (i.e. FCFS is best can do if all jobs the same length)
-    - What if jobs have varying length?
-        - SRTF (and RR): short jobs not stuck behind long ones
-
-### Example to illustrate benefits of SRTF
-
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_benefits_of_SRTF.png)
-
- - 单核 ，存在cpu密集型计算的场景
- - Three jobs:
-    - A,B: both CPU bound, run for week
-    - C: I/O bound, loop 1ms CPU, 9ms disk I/O
-    - If only one at a time, C uses 90% of the disk, A or B could use 100% of the CPU
- - With FIFO:
-    - Once A or B get in, keep CPU for two weeks
- - What about RR or SRTF?
-    - Easier to see with a timeline
- 
-
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_benefits_of_SRTF2.png)
-
- - RR , 100ms 
-    - low disk utilization.  If you are copying a file, it will take a long time
- - RR,  1ms
-    - 90% disk utilization , but too much wakeups
- - SRTF 
-    - 90% disk utilization , but B need to wait a week to start , is it a bad thing ?
-    - It could be a good thing , it could be a bad thing. It depends on what your goals are.  
-        - It's a good thing because the average response time between A and B is better than if we swapped all the time.
-
-So clearly we're going to approximate SRTF. The real question is how to approximate it. 
-
-## Predicting the Length of the Next CPU Burst
-
- - **Adaptive:** Changing policy based on past behavior
-    - CPU scheduling, in virtual memory, in file systems, etc
-    - Works because programs have predictable behavior
-        - If program was I/O bound in past, likely in future
-        - If computer behavior were random, wouldn’t help
- - Example: SRTF with estimated burst length
-    - Use an estimator function on previous bursts: 
-        - Let t<sub>n-1</sub> , t<sub>n-2</sub> , t<sub>n-3</sub> , etc. be previous CPU burst lengths.
-        - Estimate next burst τ<sub>n</sub> = f(t<sub>n-1</sub>, t<sub>n-2</sub>, t<sub>n-3</sub>, … )
-    - Function f could be one of many different time series estimation schemes (Kalman filters, etc)
-    - For instance
-        - exponential averaging τ<sub>n</sub> = αt<sub>n-1</sub> + (1-α)τ<sub>n-1</sub> 
-
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_SRTF_predicting.png)
-
-
-
-
-
---- 
 
