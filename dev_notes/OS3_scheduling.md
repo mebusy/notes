@@ -433,6 +433,24 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_evaluate.png)
 
 
+## A Final Word On Scheduling
+
+ - When do the details of the scheduling policy and fairness really matter?
+    - When there aren’t enough resources to go around
+ - When should you simply buy a faster computer?
+    - (Or network link, or expanded highway, or …)
+    - One approach: Buy it when it will pay for itself in improved response time
+        - Assuming you’re paying for worse response time in reduced productivity, customer angst, etc…
+        - Might think that you should buy a faster X when X is utilized 100%, but usually, response time goes to infinity as utilization => 100%
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_response_vs_utilization.png)
+ - An interesting implication of this curve:
+    - Most scheduling algorithms work fine in the “linear” portion of the load curve, fail otherwise
+    - Argues for buying a faster X when hit “knee” of curve
+
+## Virtualizing Resources
+
+So we've talking about virtualizing the CPU with our scheduling algorithms. So lets to virtualize other things.
+
 
 
 
