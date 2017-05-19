@@ -421,6 +421,16 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
         - In UNIX, if load average is 100, hard to make progress
         - One approach: log some user out
 
+## How to Evaluate a Scheduling algorithm?
+
+ - Deterministic modeling
+    - takes a predetermined workload and compute the performance of each algorithm for that workload
+ - Queueing models
+    - Mathematical approach for handling stochastic workloads
+ - Implementation/Simulation:
+    - Build system which allows actual algorithms to be run against actual data. Most flexible/general.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_evaluate.png)
 
 
 
