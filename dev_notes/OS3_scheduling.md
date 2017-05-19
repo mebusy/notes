@@ -20,6 +20,11 @@
 	 - [Multi-Level Feedback Scheduling](#b368ccd38ca1f20e9180849717ae985e)
 	 - [Scheduling Details](#0f566175567203ebe404bbd822b25ce3)
 	 - [Scheduling Fairness](#97f1f705024fb4bac7d649b68cb2ac90)
+	 - [Lottery Scheduling](#45cf7e2476f1de886b762a6e617f5811)
+		 - [Lottery Scheduling Example](#cf0f12552ddb45c69e45ed54dc2f5ff1)
+	 - [How to Evaluate a Scheduling algorithm?](#33afb76a6ff1f10de47fadb924c09d27)
+	 - [A Final Word On Scheduling](#31f0723d929b04251bfc845445af1867)
+	 - [Virtualizing Resources](#5221e88f6aad30fda4e4c5f05fbfec0c)
 
 ...menuend
 
@@ -400,6 +405,8 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
         - This is ad hoc -- what rate should you increase priorities?
         - And, as system gets overloaded, no job gets CPU time, so everyone increases in priority =>  Interactive jobs suffer
 
+<h2 id="45cf7e2476f1de886b762a6e617f5811"></h2>
+
 ## Lottery Scheduling
 
  - Yet another alternative: Lottery Scheduling
@@ -412,6 +419,8 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
  - Advantage over strict priority scheduling: behaves gracefully as load changes
     - Adding or deleting a job affects all jobs proportionally, independent of how many tickets each job possesses 
 
+<h2 id="cf0f12552ddb45c69e45ed54dc2f5ff1"></h2>
+
 ### Lottery Scheduling Example
 
  - Lottery Scheduling Example
@@ -420,6 +429,8 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
     - What if too many short jobs to give reasonable response time? 
         - In UNIX, if load average is 100, hard to make progress
         - One approach: log some user out
+
+<h2 id="33afb76a6ff1f10de47fadb924c09d27"></h2>
 
 ## How to Evaluate a Scheduling algorithm?
 
@@ -432,6 +443,8 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_evaluate.png)
 
+
+<h2 id="31f0723d929b04251bfc845445af1867"></h2>
 
 ## A Final Word On Scheduling
 
@@ -446,6 +459,8 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
  - An interesting implication of this curve:
     - Most scheduling algorithms work fine in the “linear” portion of the load curve, fail otherwise
     - Argues for buying a faster X when hit “knee” of curve
+
+<h2 id="5221e88f6aad30fda4e4c5f05fbfec0c"></h2>
 
 ## Virtualizing Resources
 
