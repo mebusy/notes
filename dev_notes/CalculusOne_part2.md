@@ -786,8 +786,47 @@ Sometimes the best substitution to make isn't even visible until after we've  me
 = -cotx - 1/sinx +C 
 
 
+---
+
+## What if I differentiate an accumulation function ?
+
+### What is d/dx integral sin t dt from t = 0 to t = x² ?
+
+What is d/dx ∫<sup>x²</sup>₀ sintdt ?  How to deal with `x²` ? 
+
+We know d/dx ∫<sup>x</sup>₀ sintdt = sinx. What I'm asking is what if this endpoint weren't `x` anymore , but some funtion g(x) ?  ∫<sup>g(x)</sup>₀ sintdt = ?
+
+  f(x) = ∫<sup>x</sup>₀ sintdt 
+
+=> f(g(x)) = ∫<sup>g(x)</sup>₀ sintdt 
+
+=> d/dx f(g(x)) = d/dx ∫<sup>g(x)</sup>₀ sintdt 
+
+  d/dx f(g(x)) 
+
+= f'(g(x))·g'(x)
+
+  f(x) = ∫<sup>x</sup>₀ sintdt 
+
+=> f'(x) = sinx
+
+=> d/dx f(g(x)) = sin(g(x))·g'(x)
+
+  g(x) = x² , g'(x) = 2x
+
+=> d/dx f(g(x)) = sin(x²)·2x
+
+### Formally, why is the fundamental theorem of calculus true?
 
 
+F(x) = ∫ˣₐf(t)dt 
+
+F'(x) = f(x)
+
+
+ - a, x, t
+
+---
 
 
 
