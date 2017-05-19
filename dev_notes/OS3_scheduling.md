@@ -412,6 +412,16 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
  - Advantage over strict priority scheduling: behaves gracefully as load changes
     - Adding or deleting a job affects all jobs proportionally, independent of how many tickets each job possesses 
 
+### Lottery Scheduling Example
+
+ - Lottery Scheduling Example
+    - Assume short jobs get 10 tickets, long jobs get 1 ticket
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_lottery_example.png)
+    - What if too many short jobs to give reasonable response time? 
+        - In UNIX, if load average is 100, hard to make progress
+        - One approach: log some user out
+
+
 
 
 
