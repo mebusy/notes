@@ -207,8 +207,11 @@
     - Originally wasn’t cost-effective
     - Now, easy to make high-speed switches and routers that can forward packets from a sender to a receiver.
  - **Point-to-point network:** a network in which every physical wire is connected to only two computers
- - **Switch:** a bridge that transforms a shared-bus (broadcast) configuration into a point-to-point network.
  - **Hub:** a multiport device that acts like a repeater broadcasting from each input to every output
+    - 价格便宜, 小型的网络（2 － 5 台电脑）最有效地连接方式. Shared Communication Medium 机制
+ - **Switch:** a bridge that transforms a shared-bus (broadcast) configuration into a point-to-point network.
+    - 交换机内部保存着一张路由表(Routing Table) 
+    - 如电脑B，电脑C同时向电脑A传送数据，就会产生数据冲突.
  - **Router:** a device that acts as a junction between two networks to transfer data packets among them.
 
 ## Point-to-Point Networks Discussion
