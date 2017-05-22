@@ -593,6 +593,23 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_example_address_translation.png)
 
 
+## Two Views of Memory
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_memory_address_2views_of_memory.png)
+
+ - Recall: Address Space:
+    - All the addresses and state a process can touch
+    - Each process and kernel has different address space
+ - Consequently: two views of memory:
+    - View from the CPU (what program sees, virtual memory)
+    - View fom memory (physical memory)
+    - Translation box converts between the two views
+ - Translation helps to implement protection
+    - If task A cannot even gain access to task B’s data, no way for A to adversely affect B
+ - With translation, every program can be linked/loaded into same region of user address space
+    - – Overlap avoided through translation, not relocation
+
+
 
 
 --- 
