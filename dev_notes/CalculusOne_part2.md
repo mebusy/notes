@@ -887,6 +887,14 @@ Now, we can use the same trick to attack  similar integration problems. For exam
 
   ∫logxdx 
 
+let u=logx, dv = dx ,  so du=1/xdx , v = x 
+
+so 
+
+∫logxdx = xlogx - ∫x·1/xdx = xlogx - x + C 
+
+### What is an ∫eˣcosxdx ?
+
 
 
 
