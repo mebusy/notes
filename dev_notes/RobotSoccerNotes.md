@@ -224,20 +224,27 @@ while s ∉ G₀ do
     r ← r + ExecuteAction(a_p, s);
     // next state after execute action
     s ← GetNextState(); 
+return r
 ```  
 
 ## 4.3. Task Evaluation over Hierarchy
 
  - ALGORITHM 2: EvaluateStateInSubtask(i, s, d)
-    - Input: subtask Mᵢ, state s and depth array d
+    - Input: subtask Mᵢ, state s , depth array d
     - Output: (V<sup>\*</sup>(i, s), a primitive action a<sub>p</sub><sup>\*</sup> ) 
 
 ```
+// (1) the subtask is a primitive action
 if Mᵢ is primitive then return ( R(s, Mᵢ), Mᵢ ) ;
+// (2) the state is a goal state or a state 
+//     beyond the scope of this subtask’s active states;
 else if s ∉ Sᵢ and s ∉ Gᵢ then return (-∞, nil) ;
 else if s ∈ Gᵢ then return (0, nil);
+// (3) the maximal search depth is reached—that is, d[i] ≥ D[i].
 else if d[i] ≥ D[i] then return ( HeuristicValue(i, s), nil ) ;
 else
+    // recursively evaluates all lower-level subtasks
+    // and finds the seemingly best (macro)action
     (v* , a_p*) ← (0, nil) 
     for M_k ∈ Subtasks(Mᵢ) do
         if M_k is primitive or s ∉ G_k then
@@ -248,6 +255,13 @@ else
     return (v* , a_p*)
 ```
 
+ - Note that each subtask can have different maximal depths
+    - e.g., subtasks in the higher level may have smaller maximal depth in terms of evaluated macroactions
+
+## 4.4 Completion Function Approximation
+
+ - ALGORITHM 3: EvaluateCompletionInSubtask(i, s, a, d)
+    - Input: subtask Mᵢ, state s, action M and depth array d
 
 
 
