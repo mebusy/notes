@@ -877,6 +877,21 @@ let u=x, dv=eˣdx
 
 ∫xeˣdx = xeˣ - ∫eˣdx = xeˣ - eˣ + C
 
+---
+
+Now, we can use the same trick to attack  similar integration problems. For example, let's say you want to  anti-differentiate some polynomial in x times eˣ.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus1_integration_by_parts_polynomial.png)
+
+### How does parts help when antidifferentiating logx ? 
+
+  ∫logxdx 
+
+
+
+
+
+
 
 
 
