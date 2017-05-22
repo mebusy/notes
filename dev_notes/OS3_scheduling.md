@@ -557,6 +557,40 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
             - x86 Example: mov [es:bx],ax. 
         - Operating system moves around segment base pointers as necessary
 
+## Issues with simple segmentation method
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_virtualize_resource_memory_address_segmentation_issue.png)
+
+ - Fragmentation problem
+    - Not every process is the same size
+    - Over time, memory space becomes fragmented
+ - Hard to do inter-process sharing
+    - Want to share code segments when possible
+    - Want to share memory between processes
+    - Helped by by providing multiple segments per process
+ - Need enough physical memory for every process
+
+## Multiprogramming (Translation and Protection version 2) 
+
+ - Problem: Run multiple applications in such a way that they are protected from one another
+ - Goals: 
+    - Isolate processes and kernel from one another
+    - Allow flexible translation that:
+        - Doesn’t lead to fragmentation
+        - Allows easy sharing between processes
+        - Allows only part of process to be resident in physical memory
+ - (Some of the required) Hardware Mechanisms:
+    - General Address Translation
+        - Flexible: Can fit physical chunks of memory into arbitrary places in users address space
+        - Not limited to small number of segments
+        - Think of this as providing a large number (thousands) of fixed-sized segments (called “pages”)
+    - Dual Mode Operation
+        - Protection base involving kernel/user distinction
+
+
+## Example of General Address Translation
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_example_address_translation.png)
 
 
 
