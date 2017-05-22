@@ -895,7 +895,27 @@ so
 
 ### What is an ∫eˣcosxdx ?
 
+let u=eˣ , dv = cosxdx 
 
+so ∫eˣcosxdx  = eˣsinx - ∫sinxeˣdx 
+
+what is ∫sinxeˣdx  ?
+
+let u=eˣ , dv = sinxdx
+
+we get ∫sinxeˣdx  = -eˣcosx + ∫cosxeˣdx 
+
+=> 
+
+  ∫eˣcosxdx  = eˣsinx - (  -eˣcosx + ∫cosxeˣdx   )
+
+=> 2·∫eˣcosxdx = eˣsinx + eˣcosx 
+
+=> ∫eˣcosxdx = (eˣsinx + eˣcosx )/2 
+
+---
+
+## 
 
 
 
