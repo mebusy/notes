@@ -466,6 +466,44 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
 
 So we've talking about virtualizing the CPU with our scheduling algorithms. So lets to virtualize other things.
 
+ - Physical Reality: Different Processes/Threads share the same hardware
+    - Need to multiplex CPU (Just finished: scheduling)
+    - Need to multiplex use of Memory (Today)
+    - Need to multiplex disk and devices (later in term)
+ - Why worry about memory sharing?
+    - The complete working state of a process and/or kernel is defined by its data in memory (and registers)
+    - Consequently, cannot just let different threads of control use the same memory
+        - Physics: two different pieces of data cannot occupy the same locations in memory
+    - Probably don’t want different threads to even have access to each other’s memory (protection)
+
+## Important Aspects of Memory Multiplexing
+
+ - **Controlled overlap:**
+    - Separate state of threads should not collide in physical memory. Obviously, unexpected overlap causes chaos!
+    - Conversely, would like the ability to overlap when desired (for communication)
+ - **Translation:**
+    - Ability to translate accesses from one address space (virtual) to a different one (physical)
+    - When translation exists, processor uses virtual addresses, physical memory uses physical addresses
+    - Side effects:
+        - Can be used to avoid overlap
+        - Can be used to give uniform view of memory to programs
+ - **Protection:**
+    - Prevent access to private memory of other processes
+        - Different pages of memory can be given special behavior (Read Only, Invisible to user programs, etc).
+        - Kernel data protected from User programs
+        - Programs protected from themselves
+
+## Binding of Instructions and Data to Memory
+
+ - Binding of instructions and data to addresses:
+    - Choose addresses for instructions and data from the standpoint of the processor
+
+
+
+
+
+
+
 
 
 
