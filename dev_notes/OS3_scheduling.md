@@ -498,10 +498,16 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
  - Binding of instructions and data to addresses:
     - Choose addresses for instructions and data from the standpoint of the processor
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_virtualize_resource_binding_inst_data_to_mem.png)
+        - notice there are no actual addresses. All there are symbols. 
     - Could we place data1, start, and/or checkit at different addresses?
         - Yes
         - When? Compile time/Load time/Execution time
     - Related: which physical memory locations hold particular instructions or data?
+
+
+## Multi-step Processing of a Program for Execution
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_virtualize_resource_multi_step_processing.png)
 
 
 
