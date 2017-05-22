@@ -816,6 +816,15 @@ We know d/dx ∫<sup>x</sup>₀ sintdt = sinx. What I'm asking is what if this e
 
 => d/dx f(g(x)) = sin(x²)·2x
 
+
+#### Quiz :
+
+Define a functin f: ℝ → ℝ , by the rule f(t) = ∫<sup>sint</sup>₀ cosxdx. what is f'(t) ?
+
+ - (cost)(cossint)
+ 
+
+
 ### Formally, why is the fundamental theorem of calculus true?
 
 
@@ -827,6 +836,49 @@ F'(x) = f(x)
  - a, x, t
 
 ---
+
+# Week 15: Techniques of Integration
+
+## How do I do integration by parts
+
+### What antidifferentiation rule corresponds to the product rule in reverse?
+
+∫d/dx(f(x)g(x))dx = ∫(f'(x)g(x) + f(x)g'(x))dx = f(x)g(x) + C 
+
+∫f'(x)g(x)dx + ∫f(x)g'(x)dx = f(x)g(x) + C
+
+**∫f(x)g'(x)dx = f(x)g(x) - ∫f'(x)g(x)dx**
+
+ - what this is saying ?
+    - It's saying that I can do `∫f(x)g'(x)dx`  if I can do `∫f'(x)g(x)dx`
+
+let u=f(x), dv = g'(x)dx  
+
+    du = f'(x), v=g(x)
+
+so we get : 
+
+**∫udv = uv - ∫vdu**.  
+
+This is maybe why it makes sense to call this integration by parts.
+
+It's trading game. I'm trading ∫udv with ∫vdu. But now on part is differentiated and another part of the inner grand is antidifferentiated. 
+
+
+### What is ∫xeˣdx ?
+
+The basic idea of integration by parts is that it lets you differentiate part of  the integrand, but only if you're willing to pay a price.  And that price is anti-differentiating the other part of the integrand.
+
+  ∫xeˣdx
+
+let u=x, dv=eˣdx
+
+ so du = dx , v = eˣ , now we get
+
+∫xeˣdx = xeˣ - ∫eˣdx = xeˣ - eˣ + C
+
+
+
 
 
 
