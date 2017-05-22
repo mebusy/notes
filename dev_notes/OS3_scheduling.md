@@ -509,8 +509,29 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_virtualize_resource_multi_step_processing.png)
 
+ - Preparation of a program for execution involves components at:
+    - Compile time (i.e. “gcc”)
+    - Link/Load time (unix “ld” does link)
+    - Execution time (e.g. dynamic libs)
+ - Addresses can be bound to final values anywhere in this path
+    - Depends on hardware support 
+    - Also depends on operating system
+ - Dynamic Libraries
+    - Linking postponed until execution
+    - Small piece of code, stub, used to locate the appropriate memory- resident library routine
+    - Stub replaces itself with the address of the routine, and executes routine
 
 
+## Multiprogramming (First Version)
+
+ - Multiprogramming without Translation or Protection
+    - Must somehow prevent address overlap between threads
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_virtualize_resource_memory_address_ver1.png)
+    - Trick: Use Loader/Linker: Adjust addresses while program loaded into memory (loads, stores, jumps)
+        - Everything adjusted to memory location of program
+        - Translation done by a linker-loader
+        - Was pretty common in early days
+ - With this solution, no protection: bugs in any program can cause other programs to crash or even the OS
 
 
 
