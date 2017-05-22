@@ -607,7 +607,62 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
  - Translation helps to implement protection
     - If task A cannot even gain access to task B’s data, no way for A to adversely affect B
  - With translation, every program can be linked/loaded into same region of user address space
-    - – Overlap avoided through translation, not relocation
+    - so you always started address 0
+    - Overlap avoided through translation, not relocation
+
+## Example of Translation Table Format
+
+ - Two-level Page Tables 32-bit address:
+
+10 | 10 | 12
+--- | --- | ---
+p1 index | p2 index | page offset
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_memory_address_translation_example.png)
+
+ - Page: a unit of memory translatable by memory management unit (MMU)
+    - Typically 1K – 8K
+ - Page table structure in memory
+    - **Each user has different page table**
+ - Address Space switch: change pointer to base of table (hardware register)
+    - Hardware traverses page table (for many architectures)
+    - MIPS uses software to traverse table
+ - these blue bubbles actually are page tables like this in memory one for every processes. 
+
+
+## Summary
+
+ - Shortest Job First (SJF)/Shortest Remaining Time First (SRTF):
+    - Run whatever job has the least amount of computation to do/least remaining amount of computation to do
+    - Pros: Optimal (average response time)
+    - Cons: Hard to predict future, Unfair
+ - Multi-Level Feedback Scheduling:
+    - Multiple queues of different priorities
+    - Automatic promotion/demotion of process priority in order to approximate SJF/SRTF
+ - Lottery Scheduling:
+    - Give each thread a priority-dependent number of tokens (short tasks => more tokens)
+    - Reserve a minimum number of tokens for every thread to ensure forward progress/fairness
+ - Evaluation of mechanisms:
+    - Analytical, Queuing Theory, Simulation
+
+## Summary (2)
+
+ - Memory is a resource that must be shared
+    - Controlled Overlap: only shared when appropriate
+    - Translation: Change Virtual Addresses into Physical Addresses
+    - Protection: Prevent unauthorized Sharing of resources
+ - Simple Protection through Segmentation
+    - Base+limit registers restrict memory accessible to user
+    - Can be used to translate as well
+ - Full translation of addresses through Memory Management Unit (MMU)
+    - Every Access translated through page table
+    - Changing of page tables only available to user
+ - Dual-Mode
+    - TODO
+
+
+
+
 
 
 
