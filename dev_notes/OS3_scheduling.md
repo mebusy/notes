@@ -533,8 +533,29 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
         - Was pretty common in early days
  - With this solution, no protection: bugs in any program can cause other programs to crash or even the OS
 
+## Multiprogramming (Version with Protection)
+
+ - Can we protect programs from each other without translation?
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_virtualize_resource_memory_address_ver2.png)
+    - Yes: use two special registers Base and Limit to prevent user from straying outside designated area
+        - If user tries to access an illegal address, cause an error
+    - During switch, kernel loads new base/limit from TCB
+        - User not allowed to change base/limit registers
+
+## Segmentation with Base and Limit registers
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_virtualize_resource_memory_address_segmentation.png)
 
 
+
+ - Could use base/limit for **dynamic address translation** (often called “segmentation”):
+    - Alter address of every load/store by adding “base”
+    - User allowed to read/write within segment
+        - Accesses are relative to segment so don’t have to be relocated when program moved to different segment
+    - User may have multiple segments available (e.g x86)
+        - Loads and stores include segment ID in opcode:
+            - x86 Example: mov [es:bx],ax. 
+        - Operating system moves around segment base pointers as necessary
 
 
 
