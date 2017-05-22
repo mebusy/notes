@@ -208,6 +208,7 @@
     - Now, easy to make high-speed switches and routers that can forward packets from a sender to a receiver.
  - **Point-to-point network:** a network in which every physical wire is connected to only two computers
  - **Switch:** a bridge that transforms a shared-bus (broadcast) configuration into a point-to-point network.
+ - **Hub:** a multiport device that acts like a repeater broadcasting from each input to every output
  - **Router:** a device that acts as a junction between two networks to transfer data packets among them.
 
 ## Point-to-Point Networks Discussion
