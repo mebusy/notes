@@ -915,7 +915,33 @@ we get ∫sinxeˣdx  = -eˣcosx + ∫cosxeˣdx
 
 ---
 
-## 
+## How do I know when to use parts ?
+
+### What is an antiderivative of e^√x d?
+
+Sometimes it isn't clear that you can do integration by parts until after you  perform some substitution
+
+  ∫e<sup>√x</sup>dx 
+
+let u=√x , du = 1/(2√x)dx , dx = 2√xdu
+
+  ∫e<sup>√x</sup>dx  = ∫eᵘ·2udu 
+
+let v=2u , dw = eᵘdu ; dv = 2du , w =  eᵘ 
+
+= 2u·eᵘ - ∫eᵘ2du
+
+= 2u·eᵘ - 2eᵘ
+
+= 2√x·e<sup>√x</sup> - 2e<sup>√x</sup>
+
+= 2e<sup>√x</sup> (√x-1)
+
+
+## How do I integrate powers of sin and cos ?
+
+### What is ∫sin<sup>2n+1</sup>xcos²ⁿxdx ?
+
 
 
 
