@@ -490,6 +490,21 @@ NAME -> ADDRESS
     - Local area: minimize overhead/improve bandwidth
     - Wide area: keep pipeline full!
 
+## Network Protocols
+
+ - **Protocol:** Agreement between two parties as to how information is to be transmitted
+    - Example: system calls are the protocol between the operating system and application
+    - Networking examples: many levels
+        - Physical level: mechanical and electrical network (e.g. how are 0 and 1 represented)
+        - Link level: packet formats/error control (for instance, the CSMA/CD protocol) 
+        - Network level: network routing, addressing
+        - Transport Level: reliable message delivery
+ - Protocols on today’s Internet:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_protocal_on_todays_internet.png)
+
+## Network Layering
+
+ - 
 
 
 
