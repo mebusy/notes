@@ -504,7 +504,15 @@ NAME -> ADDRESS
 
 ## Network Layering
 
- - 
+ - **Layering:**  building complex services from simpler ones
+    - Each layer provides services needed by higher layers by utilizing services provided by lower layers
+ - The physical/link layer is pretty limited
+    - Packets are of limited size (called the “Maximum Transfer Unit or MTU: often 200-1500 bytes in size)
+    - Routing is limited to within a physical link (wire) or perhaps through a switch
+ - Our goal in the following is to show how to construct a secure, ordered, message service routed to anywhere
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_layering0.png)
+
+
 
 
 
