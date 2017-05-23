@@ -512,6 +512,23 @@ NAME -> ADDRESS
  - Our goal in the following is to show how to construct a secure, ordered, message service routed to anywhere
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_layering0.png)
 
+## Building a messaging service
+
+ - Handling Arbitrary Sized Messages:
+    - Must deal with limited physical packet size 
+    - Split big message into smaller ones (called fragments)
+        - Must be reassembled at destination
+    - Checksum computed on each fragment or whole message
+ - Internet Protocol (IP): Must find way to send packets to arbitrary destination in network
+    - Deliver messages unreliably (“best effort”) from one machine in Internet to another
+    - Since intermediate links may have limited size, must be able to fragment/reassemble packets on demand
+    - Includes 256 different “sub-protocols” build on top of IP
+        - Examples: ICMP(1), TCP(6), UDP (17), IPSEC(50,51)
+
+
+## IP Packet Format
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_IP_Packet_Format.png)
 
 
 
