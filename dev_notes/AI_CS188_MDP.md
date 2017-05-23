@@ -25,7 +25,7 @@
 		 - [Example: Value Iteration](#d5cac644e6c3bb194c235c0b55977d1d)
 	 - [Convergence](#8645457c64703c956325a6f44824acdb)
 		 - [Value Iteration Convergence](#9223390b107c103d49be9c7fbe9cc601)
-	 - [Recap: MPDS](#6360b3155b74ca6b340e7332e5354ede)
+	 - [Recap: MDPs](#61640a53698e261681c172ef08db4f13)
 	 - [Policy Methods](#0d2fefe88e5d008dbb325c962c5b6f0e)
 	 - [Policy Evaluation](#abdad08f23e1ad71d82cbdd56cfcdd30)
 		 - [Fixed Policies](#30112022d9cb040ec9e1b2b577503981)
@@ -559,9 +559,9 @@ But there are cases where we can show that it will converge.
 
 ---
 
-<h2 id="6360b3155b74ca6b340e7332e5354ede"></h2>
+<h2 id="61640a53698e261681c172ef08db4f13"></h2>
 
-## Recap: MPDS 
+## Recap: MDPs
 
 
 Values:  the value of a state is what you expect your future utility to be under optimal action. So remember that when we talk about the value of state it's not the next reward you're gonna receive. It's not a certain number --  I know I'm going to get 10 points -- because you don't know what your actions will do. This is an average outcome under optimal action. 

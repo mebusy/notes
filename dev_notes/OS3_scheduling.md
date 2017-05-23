@@ -25,6 +25,19 @@
 	 - [How to Evaluate a Scheduling algorithm?](#33afb76a6ff1f10de47fadb924c09d27)
 	 - [A Final Word On Scheduling](#31f0723d929b04251bfc845445af1867)
 	 - [Virtualizing Resources](#5221e88f6aad30fda4e4c5f05fbfec0c)
+	 - [Important Aspects of Memory Multiplexing](#cea69a0c5085e78dbfde9cc73a34bd85)
+	 - [Binding of Instructions and Data to Memory](#8b47f1e39f922927e58c299f8a0a9977)
+	 - [Multi-step Processing of a Program for Execution](#8e342d50a842d8b770ec01d2e1a6f834)
+	 - [Multiprogramming (First Version)](#88606f8ea46da947c105e71fa640cf11)
+	 - [Multiprogramming (Version with Protection)](#3743788a25e4eae2c8ffbd8b73cb741d)
+	 - [Segmentation with Base and Limit registers](#eabe64c3ad5f33e2c57aa521b8e17db8)
+	 - [Issues with simple segmentation method](#1481bffc1d7d34c5d0dab0491bcdd551)
+	 - [Multiprogramming (Translation and Protection version 2)](#e8f5488c454d6ab1f3f774b77bb9e83a)
+	 - [Example of General Address Translation](#8cb0ddad9e2227d129016417865b8804)
+	 - [Two Views of Memory](#82f0f63373d278fc12a45e84e20b2e8f)
+	 - [Example of Translation Table Format](#3fcf38fc343c687c120a30b93e5afaa2)
+	 - [Summary](#290612199861c31d1036b185b4e69b75)
+	 - [Summary (2)](#17f8807634b643b8281b1e4a680d5ced)
 
 ...menuend
 
@@ -476,6 +489,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
         - Physics: two different pieces of data cannot occupy the same locations in memory
     - Probably don’t want different threads to even have access to each other’s memory (protection)
 
+<h2 id="cea69a0c5085e78dbfde9cc73a34bd85"></h2>
+
 ## Important Aspects of Memory Multiplexing
 
  - **Controlled overlap:**
@@ -493,6 +508,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
         - Kernel data protected from User programs
         - Programs protected from themselves
 
+<h2 id="8b47f1e39f922927e58c299f8a0a9977"></h2>
+
 ## Binding of Instructions and Data to Memory
 
  - Binding of instructions and data to addresses:
@@ -504,6 +521,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
         - When? Compile time/Load time/Execution time
     - Related: which physical memory locations hold particular instructions or data?
 
+
+<h2 id="8e342d50a842d8b770ec01d2e1a6f834"></h2>
 
 ## Multi-step Processing of a Program for Execution
 
@@ -522,6 +541,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
     - Stub replaces itself with the address of the routine, and executes routine
 
 
+<h2 id="88606f8ea46da947c105e71fa640cf11"></h2>
+
 ## Multiprogramming (First Version)
 
  - Multiprogramming without Translation or Protection
@@ -533,6 +554,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
         - Was pretty common in early days
  - With this solution, no protection: bugs in any program can cause other programs to crash or even the OS
 
+<h2 id="3743788a25e4eae2c8ffbd8b73cb741d"></h2>
+
 ## Multiprogramming (Version with Protection)
 
  - Can we protect programs from each other without translation?
@@ -541,6 +564,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
         - If user tries to access an illegal address, cause an error
     - During switch, kernel loads new base/limit from TCB
         - User not allowed to change base/limit registers
+
+<h2 id="eabe64c3ad5f33e2c57aa521b8e17db8"></h2>
 
 ## Segmentation with Base and Limit registers
 
@@ -557,6 +582,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
             - x86 Example: mov [es:bx],ax. 
         - Operating system moves around segment base pointers as necessary
 
+<h2 id="1481bffc1d7d34c5d0dab0491bcdd551"></h2>
+
 ## Issues with simple segmentation method
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_virtualize_resource_memory_address_segmentation_issue.png)
@@ -569,6 +596,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
     - Want to share memory between processes
     - Helped by by providing multiple segments per process
  - Need enough physical memory for every process
+
+<h2 id="e8f5488c454d6ab1f3f774b77bb9e83a"></h2>
 
 ## Multiprogramming (Translation and Protection version 2) 
 
@@ -588,10 +617,14 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
         - Protection base involving kernel/user distinction
 
 
+<h2 id="8cb0ddad9e2227d129016417865b8804"></h2>
+
 ## Example of General Address Translation
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_example_address_translation.png)
 
+
+<h2 id="82f0f63373d278fc12a45e84e20b2e8f"></h2>
 
 ## Two Views of Memory
 
@@ -609,6 +642,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
  - With translation, every program can be linked/loaded into same region of user address space
     - so you always started address 0
     - Overlap avoided through translation, not relocation
+
+<h2 id="3fcf38fc343c687c120a30b93e5afaa2"></h2>
 
 ## Example of Translation Table Format
 
@@ -630,6 +665,8 @@ p1 index | p2 index | page offset
  - these blue bubbles actually are page tables like this in memory one for every processes. 
 
 
+<h2 id="290612199861c31d1036b185b4e69b75"></h2>
+
 ## Summary
 
  - Shortest Job First (SJF)/Shortest Remaining Time First (SRTF):
@@ -644,6 +681,8 @@ p1 index | p2 index | page offset
     - Reserve a minimum number of tokens for every thread to ensure forward progress/fairness
  - Evaluation of mechanisms:
     - Analytical, Queuing Theory, Simulation
+
+<h2 id="17f8807634b643b8281b1e4a680d5ced"></h2>
 
 ## Summary (2)
 

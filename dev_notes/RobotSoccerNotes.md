@@ -7,6 +7,10 @@
 	 - [3.1 MDP](#ec611cd465394d15a6bffb6e3ffa4b05)
 	 - [3.2. MAXQ Hierarchical Decomposition](#dc0487d5842259239fe7dbbf7ddc0f37)
  - [4. ONLINE PLANNING WITH MAXQ](#c7d5283deeab21f16b4eb0d5b8392c90)
+	 - [4.1. Overview of MAXQ-OP](#bf9672601cb76c795ddaf36039b12fe0)
+	 - [4.2 Main Procedure of MAXQ-OP](#a110ab4f4f7f2cd29dd5cbb2e085ca47)
+	 - [4.3. Task Evaluation over Hierarchy](#278c269d6d960d56a49f3f328f01e4f0)
+	 - [4.4 Completion Function Approximation](#153221ccd42995e1c46fd86f82601fe8)
 
 ...menuend
 
@@ -191,6 +195,8 @@
 
 # 4. ONLINE PLANNING WITH MAXQ
 
+<h2 id="bf9672601cb76c795ddaf36039b12fe0"></h2>
+
 ## 4.1. Overview of MAXQ-OP
 
 we introduce depth array d and maximal search depth array D
@@ -201,6 +207,8 @@ we introduce depth array d and maximal search depth array D
 A heuristic function H is also introduced to estimate the value function when exceeding the maximal search depth. 
 
 That means we will terminate and return H(i,s)  if d[i] >= D[i]
+
+<h2 id="a110ab4f4f7f2cd29dd5cbb2e085ca47"></h2>
 
 ## 4.2 Main Procedure of MAXQ-OP
 
@@ -226,6 +234,8 @@ while s ∉ G₀ do
     s ← GetNextState(); 
 return r
 ```  
+
+<h2 id="278c269d6d960d56a49f3f328f01e4f0"></h2>
 
 ## 4.3. Task Evaluation over Hierarchy
 
@@ -257,6 +267,8 @@ else
 
  - Note that each subtask can have different maximal depths
     - e.g., subtasks in the higher level may have smaller maximal depth in terms of evaluated macroactions
+
+<h2 id="153221ccd42995e1c46fd86f82601fe8"></h2>
 
 ## 4.4 Completion Function Approximation
 

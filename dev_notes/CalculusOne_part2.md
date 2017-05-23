@@ -56,6 +56,23 @@
 		 - [What is the integral of (x+10)(x-1)¹⁰ dx from x = 0 to x = 1?](#96c0d2032815787089715ac1c89bf6e6)
 		 - [What is the integral of x / (x+1)^(1/3) dx?](#ab56342063f7a7e3b701824705d1bacd)
 		 - [What is the integral of dx / (1 + cos x) ?](#8f940df21711cbfbefdc907d9a92ceba)
+	 - [What if I differentiate an accumulation function ?](#3bf470483ea31266a09b5a4fde4ed3da)
+		 - [What is d/dx integral sin t dt from t = 0 to t = x² ?](#e4a77f0ab697bc7b531b4444d20b1a4e)
+			 - [Quiz :](#285814dfce98e5f31b17fed78e7102f4)
+		 - [Formally, why is the fundamental theorem of calculus true?](#94f3bff1a51d9ea1dea6a80ef6c97d18)
+ - [Week 15: Techniques of Integration](#ec623201de625f3e9220cee3ed36bece)
+	 - [How do I do integration by parts](#a3efff727e311f003222e5da51002f75)
+		 - [What antidifferentiation rule corresponds to the product rule in reverse?](#caaef88063b48f24b4658808509d16c9)
+		 - [What is ∫xeˣdx ?](#02bbfedeb8eb2ccc58d29cbd11721a0b)
+		 - [How does parts help when antidifferentiating logx ?](#f9c1c400e6d3da0434fc23aca4c66e8b)
+		 - [What is an ∫eˣcosxdx ?](#914aefa422b729c23d6fafdcff73122a)
+	 - [How do I know when to use parts ?](#5dd205d5d25e6f560cea2d96e4bae8c2)
+		 - [What is an antiderivative of e^√x d?](#75332a48e4c41082ba764690eec3df2c)
+	 - [How do I integrate powers of sin and cos ?](#6f10e0ee98aa01caf88f44a8ddd1f9e9)
+		 - [What is ∫sin<sup>2n+1</sup>x·cos²ⁿxdx ?](#1594c9119beb52d6951d2a239ad13553)
+		 - [What is ∫<sup>π</sup>₀ sin²ⁿxdx ?](#daeff048471d45e5b694c61ba1538360)
+		 - [What is ∫sinⁿxdx in terms of ∫sinⁿ⁻²xdx ?](#e6c1871b792c82c40999a7da6c07c873)
+	 - [How does long division help ?](#a365962601b4a94c5609621f970e160b)
 
 ...menuend
 
@@ -788,7 +805,11 @@ Sometimes the best substitution to make isn't even visible until after we've  me
 
 ---
 
+<h2 id="3bf470483ea31266a09b5a4fde4ed3da"></h2>
+
 ## What if I differentiate an accumulation function ?
+
+<h2 id="e4a77f0ab697bc7b531b4444d20b1a4e"></h2>
 
 ### What is d/dx integral sin t dt from t = 0 to t = x² ?
 
@@ -817,6 +838,8 @@ We know d/dx ∫<sup>x</sup>₀ sintdt = sinx. What I'm asking is what if this e
 => d/dx f(g(x)) = sin(x²)·2x
 
 
+<h2 id="285814dfce98e5f31b17fed78e7102f4"></h2>
+
 #### Quiz :
 
 Define a functin f: ℝ → ℝ , by the rule f(t) = ∫<sup>sint</sup>₀ cosxdx. what is f'(t) ?
@@ -824,6 +847,8 @@ Define a functin f: ℝ → ℝ , by the rule f(t) = ∫<sup>sint</sup>₀ cosxd
  - (cost)(cossint)
  
 
+
+<h2 id="94f3bff1a51d9ea1dea6a80ef6c97d18"></h2>
 
 ### Formally, why is the fundamental theorem of calculus true?
 
@@ -837,9 +862,15 @@ F'(x) = f(x)
 
 ---
 
+<h2 id="ec623201de625f3e9220cee3ed36bece"></h2>
+
 # Week 15: Techniques of Integration
 
+<h2 id="a3efff727e311f003222e5da51002f75"></h2>
+
 ## How do I do integration by parts
+
+<h2 id="caaef88063b48f24b4658808509d16c9"></h2>
 
 ### What antidifferentiation rule corresponds to the product rule in reverse?
 
@@ -865,6 +896,8 @@ This is maybe why it makes sense to call this integration by parts.
 It's trading game. I'm trading ∫udv with ∫vdu. But now on part is differentiated and another part of the inner grand is antidifferentiated. 
 
 
+<h2 id="02bbfedeb8eb2ccc58d29cbd11721a0b"></h2>
+
 ### What is ∫xeˣdx ?
 
 The basic idea of integration by parts is that it lets you differentiate part of  the integrand, but only if you're willing to pay a price.  And that price is anti-differentiating the other part of the integrand.
@@ -883,6 +916,8 @@ Now, we can use the same trick to attack  similar integration problems. For exam
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus1_integration_by_parts_polynomial.png)
 
+<h2 id="f9c1c400e6d3da0434fc23aca4c66e8b"></h2>
+
 ### How does parts help when antidifferentiating logx ? 
 
   ∫logxdx 
@@ -892,6 +927,8 @@ let u=logx, dv = dx ,  so du=1/xdx , v = x
 so 
 
 ∫logxdx = xlogx - ∫x·1/xdx = xlogx - x + C 
+
+<h2 id="914aefa422b729c23d6fafdcff73122a"></h2>
 
 ### What is an ∫eˣcosxdx ?
 
@@ -915,7 +952,11 @@ we get ∫sinxeˣdx  = -eˣcosx + ∫cosxeˣdx
 
 ---
 
+<h2 id="5dd205d5d25e6f560cea2d96e4bae8c2"></h2>
+
 ## How do I know when to use parts ?
+
+<h2 id="75332a48e4c41082ba764690eec3df2c"></h2>
 
 ### What is an antiderivative of e^√x d?
 
@@ -938,7 +979,11 @@ let v=2u , dw = eᵘdu ; dv = 2du , w =  eᵘ
 = 2e<sup>√x</sup> (√x-1)
 
 
+<h2 id="6f10e0ee98aa01caf88f44a8ddd1f9e9"></h2>
+
 ## How do I integrate powers of sin and cos ?
+
+<h2 id="1594c9119beb52d6951d2a239ad13553"></h2>
 
 ### What is ∫sin<sup>2n+1</sup>x·cos²ⁿxdx ?
 
@@ -965,6 +1010,8 @@ let u=cosx, du=-sinxdx
     - the key is that you can convert that odd power to  `even power` x (sin/cos) 
     - and the `even power` can apply the rule `sin²x + cos²x = 1`
 
+
+<h2 id="daeff048471d45e5b694c61ba1538360"></h2>
 
 ### What is ∫<sup>π</sup>₀ sin²ⁿxdx ?
 
@@ -1009,6 +1056,8 @@ I should say that in some cases you can  get away with doing a bit less work.
 = ∫<sup>π</sup>₀ 3/8 dx  = 3/8 π 
 
 
+<h2 id="e6c1871b792c82c40999a7da6c07c873"></h2>
+
 ### What is ∫sinⁿxdx in terms of ∫sinⁿ⁻²xdx ?
 
   ∫<sup>π/2</sup>₀ sin³²xdx = 300540195·π / 4294967296
@@ -1020,6 +1069,8 @@ Why does it factor so nicely ?
 TODO
 
 ---
+
+<h2 id="a365962601b4a94c5609621f970e160b"></h2>
 
 ## How does long division help ?
 

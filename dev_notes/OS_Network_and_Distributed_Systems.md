@@ -1,6 +1,59 @@
+...menustart
+
+ - [Lecture 21: Networking](#09032c37d093937622b81cc8296200e6)
+	 - [Review: File System Caching](#1d1be5d2a7d7a1ea955754c7c1daf6c3)
+	 - [Goals for Today](#134f950c115f6aa46f3605b42a307174)
+	 - [Authorization: Who Can Do What?](#1a82c99da54d455606fbf432082c1505)
+	 - [Authorization: Two Implementation Choices](#f6c5e8d2591d2f0e6108da2a03bd252b)
+	 - [Authorization: Combination Approach](#6c11ebc3ed96e89c913d7f928a42bde8)
+	 - [Authorization: How to Revoke?](#01e28eaff534c3eda1e4fa91ed2ff24b)
+	 - [Revoking Capabilities](#7a87dc1d4ca28896e80c861b75d42812)
+	 - [Centralized vs Distributed Systems](#98445c49a71bbdeba3cbed4f22fa44e9)
+	 - [Distributed Systems: Motivation/Issues](#5cee22de108837e478e134d126fceeba)
+	 - [Distributed Systems: Goals/Requirements](#483d6e9ecc380b0f29253ac000c64ad1)
+	 - [Networking Definitions](#ef4023ed9b9bfc426ddbb79e5e2a1242)
+	 - [Broadcast Network](#d03b87cd9c53d43ade8109f5b220515b)
+	 - [Broadcast Networks Details](#542790f4cc0e06b00a695038d1861a08)
+	 - [Broadcast Network Arbitration](#6c264d7492ca57e74be76844f6177664)
+	 - [Carrier Sense, Multiple Access/Collision Detection](#85ff18972c945522692f7e5d601d663c)
+	 - [Point-to-point networks](#25f3815c65379b8289fa74ec8cb1c580)
+	 - [Point-to-Point Networks Discussion](#1944dda119b5df5095693250b1d75494)
+	 - [Point-to-Point Network design](#bebffdbbf02502a7a3eecbacbe1579e1)
+	 - [Flow control options](#b9aeacb3eaf8b4c14b67730a8594b2e7)
+	 - [The Internet Protocol: “IP”](#8215d2dfcac9083491da658993ee05e6)
+	 - [Address Subnets](#d77893f82e59e70b1fdfdd1549fbaa03)
+	 - [Conclusion](#6f8b794f3246b0c1e1780bb4d4d5dc53)
+ - [Lecture 22: Network II](#7d8b4355959556da0ee12fe49dd9cf34)
+	 - [Address Ranges in IP](#25bdb0b85c45cecdeb2f3e83e1ada6f5)
+	 - [Hierarchical Networking: The Internet](#9b995261f7f935cccfec6e225bb22444)
+	 - [Simple Network Terminology](#d9f360b8789b18dd3b0b723059e1ad7c)
+	 - [Routing](#786c4135070aa1910d2f4ac8b2253235)
+	 - [Setting up Routing Tables](#bb55ba056d36bf2e0c922c2f6ef667ca)
+	 - [Naming in the Internet](#2a4b85613b98b7ff0539bf80ab1cd2ae)
+	 - [Domain Name System](#76ada12e2cf128a9bd1e5db3c106f915)
+	 - [How Important is Correct Resolution?](#150186ba8cbc5a54acd7cb5cf61e8025)
+	 - [Performance Considerations](#d5e238de3ec209bec453d8aef09d080e)
+	 - [Sample Computations](#5d6fca3fac25bbea2a7ca6be38053ac6)
+	 - [Network Protocols](#fe9bf79396cb093675bcd87ba6ffe56d)
+	 - [Network Layering](#2de5d7f052bdd84866ff79135c2bcc58)
+	 - [Building a messaging service](#35a60297563ab91f4b231d31ba2ada3b)
+	 - [IP Packet Format](#b6cc1459c243ac253323b35089dab87b)
+	 - [Building a messaging service](#35a60297563ab91f4b231d31ba2ada3b)
+	 - [Sequence Numbers](#9199dae771f316f9a3e90a0046bb0758)
+	 - [Reliable Message Delivery: the Problem](#83cf3f8245c0357abe77e7154b88ea69)
+	 - [Using Acknowledgements](#9d3c809afd1b2930170860d0dbebb353)
+	 - [Conclusion](#6f8b794f3246b0c1e1780bb4d4d5dc53)
+ - [Lecture 23 : Network Communication Abstractions / Distributed Programming](#097f836a49e3a196c1bdfca778384e04)
+
+...menuend
+
+
+<h2 id="09032c37d093937622b81cc8296200e6"></h2>
 
 # Lecture 21: Networking
 
+
+<h2 id="1d1be5d2a7d7a1ea955754c7c1daf6c3"></h2>
 
 ## Review: File System Caching
 
@@ -17,6 +70,8 @@
         - What if system crashes before file has been written out?
         - Worse yet, what if system crashes before a directory file has been written out? (lose pointer to inode!)
 
+<h2 id="134f950c115f6aa46f3605b42a307174"></h2>
+
 ## Goals for Today
 
  - Authorization
@@ -25,6 +80,8 @@
     - Point-to-Point Networking
     - Routing
     - Internet Protocol (IP)
+
+<h2 id="1a82c99da54d455606fbf432082c1505"></h2>
 
 ## Authorization: Who Can Do What?
 
@@ -39,6 +96,8 @@
         - the table maybe a good way to introduce it. But it isn't practical. There is no table like this in any system you're likely to use. 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_file_system_authorization.png)
+
+<h2 id="f6c5e8d2591d2f0e6108da2a03bd252b"></h2>
 
 ## Authorization: Two Implementation Choices
 
@@ -56,6 +115,8 @@
     - Implementation: Capability like a “Key” for access
         - Example: cryptographically secure (non-forgeable) chunk of data that can be exchanged for access
 
+<h2 id="6c11ebc3ed96e89c913d7f928a42bde8"></h2>
+
 ## Authorization: Combination Approach
 
  - Users have capabilities, called “groups” or “roles”
@@ -67,6 +128,8 @@
     - Change broad user permissions via changes in group membership
     - Possessors of proper credentials get access
 
+<h2 id="01e28eaff534c3eda1e4fa91ed2ff24b"></h2>
+
 ## Authorization: How to Revoke?
 
  - How does one revoke someone’s access rights to a particular object?
@@ -76,6 +139,8 @@
     - Not so bad in a single machine: could keep all capability lists in a well-known place (e.g., the OS capability table).
     - Very hard in distributed system, where remote hosts may have crashed or may not cooperate (more in a future lecture) 
 
+<h2 id="7a87dc1d4ca28896e80c861b75d42812"></h2>
+
 ## Revoking Capabilities
 
  - Various approaches to revoking capabilities:
@@ -84,6 +149,8 @@
     - Maintain back pointers to all capabilities that have been handed out (Tough if capabilities can be copied)
     - Maintain a revocation list that gets checked on every access attempt
 
+
+<h2 id="98445c49a71bbdeba3cbed4f22fa44e9"></h2>
 
 ## Centralized vs Distributed Systems
 
@@ -98,6 +165,8 @@
         - Often called a “cluster”
     - Later models: peer-to-peer/wide-spread collaboration
 
+
+<h2 id="5cee22de108837e478e134d126fceeba"></h2>
 
 ## Distributed Systems: Motivation/Issues
 
@@ -119,6 +188,8 @@
     - Must coordinate multiple copies of shared state information (using only a network)
     - What would be easy in a centralized system becomes a lot more difficult
 
+<h2 id="483d6e9ecc380b0f29253ac000c64ad1"></h2>
+
 ## Distributed Systems: Goals/Requirements
 
  - **Transparency:** the ability of the system to mask its complexity behind a simple interface
@@ -133,6 +204,8 @@
  
 ---
 
+<h2 id="ef4023ed9b9bfc426ddbb79e5e2a1242"></h2>
+
 ## Networking Definitions
 
  - **Network:** physical connection that allows two computers to communicate
@@ -141,6 +214,8 @@
     - Destination gets interrupt when packet arrives 
  - **Protocol:** agreement between two parties as to how information is to be transmitted
 
+
+<h2 id="d03b87cd9c53d43ade8109f5b220515b"></h2>
 
 ## Broadcast Network
 
@@ -155,6 +230,8 @@
         - All computers on local subnet connected to one another
     - More examples (wireless: medium is air): cellular phones,GSM GPRS, EDGE, CDMA 1xRTT, and 1EvDO
 
+<h2 id="542790f4cc0e06b00a695038d1861a08"></h2>
+
 ## Broadcast Networks Details
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_broadcast_networks_detail.png)
@@ -165,6 +242,8 @@
     - In Ethernet, this check is done in hardware
         - No OS interrupt if not for particular destination
     - This is layering: we’re going to build complex network protocols by layering on top of the packet
+
+<h2 id="6c264d7492ca57e74be76844f6177664"></h2>
 
 ## Broadcast Network Arbitration
 
@@ -179,6 +258,8 @@
     - Problem: Stability: what if load increases ?
         - More collisions => less gets through => more resent => more load… => More collisions…
         - Unfortunately: some sender may have started in clear, get scrambled without finishing
+
+<h2 id="85ff18972c945522692f7e5d601d663c"></h2>
 
 ## Carrier Sense, Multiple Access/Collision Detection
 
@@ -199,6 +280,8 @@
     - Randomness is important to decouple colliding senders
     - Scheme figures out how many people are trying to send!
 
+<h2 id="25f3815c65379b8289fa74ec8cb1c580"></h2>
+
 ## Point-to-point networks
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_p2p_network.png)
@@ -213,6 +296,8 @@
     - 交换机内部保存着一张路由表(Routing Table) 
     - 如电脑B，电脑C同时向电脑A传送数据，就会产生数据冲突.
  - **Router:** a device that acts as a junction between two networks to transfer data packets among them.
+
+<h2 id="1944dda119b5df5095693250b1d75494"></h2>
 
 ## Point-to-Point Networks Discussion
 
@@ -236,6 +321,8 @@
     - Switched Ethernet
         - Same packet format and signaling as broadcast Ethernet, but only two machines on each ethernet.
 
+<h2 id="bebffdbbf02502a7a3eecbacbe1579e1"></h2>
+
 ## Point-to-Point Network design
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_switch.png)
@@ -246,6 +333,8 @@
  - Can build big crossbar by combining smaller switches
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_switch2.png)
  - **Can perform broadcast if necessary** 
+
+<h2 id="b9aeacb3eaf8b4c14b67730a8594b2e7"></h2>
 
 ## Flow control options
 
@@ -277,6 +366,8 @@
  - Option 3: Per-flow flow control
     - Allocate a separate set of buffers to each end-to- end stream and use separate “don’t send me more” control on each end-to-end stream
 
+<h2 id="8215d2dfcac9083491da658993ee05e6"></h2>
+
 ## The Internet Protocol: “IP”
 
  - The Internet is a large network of computers spread across the globe
@@ -293,6 +384,8 @@
         - Groups of machines may share a single IP address
         - In this case, machines have private addresses behind a “Network Address Translation” (NAT) gateway
 
+<h2 id="d77893f82e59e70b1fdfdd1549fbaa03"></h2>
+
 ## Address Subnets
 
  - **Subnet:** A network connecting a set of hosts with related destination addresses 
@@ -307,6 +400,8 @@
     - Once, subnet meant single physical broadcast wire; now, less clear exactly what it means (virtualized by switches)
 
 
+
+<h2 id="6f8b794f3246b0c1e1780bb4d4d5dc53"></h2>
 
 ## Conclusion
 
@@ -329,8 +424,12 @@
 
 ---
 
+<h2 id="7d8b4355959556da0ee12fe49dd9cf34"></h2>
+
 # Lecture 22: Network II
 
+
+<h2 id="25bdb0b85c45cecdeb2f3e83e1ada6f5"></h2>
 
 ## Address Ranges in IP
 
@@ -351,6 +450,8 @@
  - Address ranges are often owned by organizations
     - Can be further divided into subnets
 
+<h2 id="9b995261f7f935cccfec6e225bb22444"></h2>
+
 ## Hierarchical Networking: The Internet
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_hierarchical_networking.png)
@@ -359,6 +460,8 @@
     - Hierarchy! Not every host connected to every other one
     - Use a network of Routers to connect subnets together
         - Routing is often by prefix: e.g. first router matches first 8 bits of address, next router matches more, etc
+
+<h2 id="d9f360b8789b18dd3b0b723059e1ad7c"></h2>
 
 ## Simple Network Terminology
 
@@ -371,6 +474,8 @@
     - Point-to-point connections over long-haul lines (often leased from a phone company)
     - Speed ≈ 1.544 – 45 Megabits/second
     - Broadcast usually requires multiple messages
+
+<h2 id="786c4135070aa1910d2f4ac8b2253235"></h2>
 
 ## Routing
 
@@ -388,6 +493,8 @@
  - Routing table contains:
     - Destination address range -> output link closer to destination
     - Default entry (for subnets without explicit entries)
+
+<h2 id="bb55ba056d36bf2e0c922c2f6ef667ca"></h2>
 
 ## Setting up Routing Tables
 
@@ -408,6 +515,8 @@
     - Internet has networks of many different scales
     - Different algorithms run at different scales
 
+<h2 id="2a4b85613b98b7ff0539bf80ab1cd2ae"></h2>
+
 ## Naming in the Internet
 
 NAME -> ADDRESS
@@ -422,6 +531,8 @@ NAME -> ADDRESS
         - Or – google.com handled by different servers
  - Mechanism: Domain Naming System (DNS)
  
+<h2 id="76ada12e2cf128a9bd1e5db3c106f915"></h2>
+
 ## Domain Name System
  
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_DNS.png)
@@ -433,6 +544,8 @@ NAME -> ADDRESS
     - Subsequent levels owned by organizations
  - Resolution: series of queries to successive servers
  - Caching: queries take time, so results cached for period of time
+
+<h2 id="150186ba8cbc5a54acd7cb5cf61e8025"></h2>
 
 ## How Important is Correct Resolution?
 
@@ -452,6 +565,8 @@ NAME -> ADDRESS
         - Big press release, lots of mystery
         - Security researchers told no speculation until patches applied
 
+<h2 id="d5e238de3ec209bec453d8aef09d080e"></h2>
+
 ## Performance Considerations
 
  - Before we continue, need some performance metrics
@@ -467,6 +582,8 @@ NAME -> ADDRESS
     - Router latency: depends on internals of router
         - Could be < 1 ms (for a good router)
         - Question: can router handle full wire throughput?
+
+<h2 id="5d6fca3fac25bbea2a7ca6be38053ac6"></h2>
 
 ## Sample Computations
 
@@ -490,6 +607,8 @@ NAME -> ADDRESS
     - Local area: minimize overhead/improve bandwidth
     - Wide area: keep pipeline full!
 
+<h2 id="fe9bf79396cb093675bcd87ba6ffe56d"></h2>
+
 ## Network Protocols
 
  - **Protocol:** Agreement between two parties as to how information is to be transmitted
@@ -502,6 +621,8 @@ NAME -> ADDRESS
  - Protocols on today’s Internet:
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_protocal_on_todays_internet.png)
 
+<h2 id="2de5d7f052bdd84866ff79135c2bcc58"></h2>
+
 ## Network Layering
 
  - **Layering:**  building complex services from simpler ones
@@ -511,6 +632,8 @@ NAME -> ADDRESS
     - Routing is limited to within a physical link (wire) or perhaps through a switch
  - Our goal in the following is to show how to construct a secure, ordered, message service routed to anywhere
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_layering0.png)
+
+<h2 id="35a60297563ab91f4b231d31ba2ada3b"></h2>
 
 ## Building a messaging service
 
@@ -526,9 +649,13 @@ NAME -> ADDRESS
         - Examples: ICMP(1), TCP(6), UDP (17), IPSEC(50,51)
 
 
+<h2 id="b6cc1459c243ac253323b35089dab87b"></h2>
+
 ## IP Packet Format
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_IP_Packet_Format.png)
+
+<h2 id="35a60297563ab91f4b231d31ba2ada3b"></h2>
 
 ## Building a messaging service
 
@@ -546,6 +673,8 @@ NAME -> ADDRESS
         - Often used for high-bandwidth video streams
         - Many uses of UDP considered “anti-social” – none of the “well-behaved” aspects of (say) TCP/IP
 
+
+<h2 id="9199dae771f316f9a3e90a0046bb0758"></h2>
 
 ## Sequence Numbers
 
@@ -569,6 +698,8 @@ NAME -> ADDRESS
     - If restart connection, need to make sure use different range of sequence numbers than previously…c
 
 
+<h2 id="83cf3f8245c0357abe77e7154b88ea69"></h2>
+
 ## Reliable Message Delivery: the Problem
 
  - All physical networks can garble and/or drop packets
@@ -585,6 +716,8 @@ NAME -> ADDRESS
         - Every packet received at least once
         - Every packet received at most once
     - Can combine with ordering: every packet received by process at destination exactly once and in order
+
+<h2 id="9d3c809afd1b2930170860d0dbebb353"></h2>
 
 ## Using Acknowledgements
 
@@ -603,6 +736,8 @@ NAME -> ADDRESS
         - Sender doesn’t get ack, retransmits. Receiver gets message twice, acks each.
 
  
+<h2 id="6f8b794f3246b0c1e1780bb4d4d5dc53"></h2>
+
 ## Conclusion
 
  - **DNS:** System for mapping from names => IP addresses
@@ -622,6 +757,8 @@ NAME -> ADDRESS
     - Congestion-avoidance dynamically adapts sender window to account for congestion in network
 
 ---
+
+<h2 id="097f836a49e3a196c1bdfca778384e04"></h2>
 
 # Lecture 23 : Network Communication Abstractions / Distributed Programming
 
