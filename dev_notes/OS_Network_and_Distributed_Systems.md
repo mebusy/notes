@@ -452,6 +452,45 @@ NAME -> ADDRESS
         - Big press release, lots of mystery
         - Security researchers told no speculation until patches applied
 
+## Performance Considerations
+
+ - Before we continue, need some performance metrics
+    - **Overhead:** CPU time to put packet on wire
+    - **Throughput:** Maximum number of bytes per second
+        - Depends on “wire speed”, but also limited by slowest router (routing delay) or by congestion at routers
+    - **Latency:** time until first bit of packet arrives at receiver
+        - Raw transfer time + overhead at each routing hop
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_performance.png)
+ - Contributions to Latency
+    - Wire latency: depends on speed of light on wire
+        - about 1–1.5 ns/foot
+    - Router latency: depends on internals of router
+        - Could be < 1 ms (for a good router)
+        - Question: can router handle full wire throughput?
+
+## Sample Computations
+
+ - E.g.: Ethernet within Soda
+    - Latency: speed of light in wire is 1.5ns/foot, which implies latency in building < 1 μs (if no routers in path)
+    - Throughput: 10-1000Mb/s
+    - Throughput delay: packet doesn’t arrive until all bits 
+        - So: 4KB/100Mb/s = 0.3 milliseconds (same order as disk!)
+ - E.g.: ATM within Soda 
+    - Latency (same as above, assuming no routing)
+    - Throughput: 155Mb/s
+    - Throughput delay: 4KB/155Mb/s = 200 μ
+ - E.g.: ATM cross-country
+    - Latency (assuming no routing):
+        - 3000miles * 5000ft/mile => 15 milliseconds
+    - How many bits could be in transit at same time?
+        - 15ms * 155Mb/s = 290KB
+    - In fact, Berkeley -> MIT Latency ~ 45ms
+        - 872KB in flight if routers have wire-speed throughput
+ - **Requirements for good performance:**
+    - Local area: minimize overhead/improve bandwidth
+    - Wide area: keep pipeline full!
+
+
 
 
 
