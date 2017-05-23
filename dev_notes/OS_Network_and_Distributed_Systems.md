@@ -530,6 +530,63 @@ NAME -> ADDRESS
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_IP_Packet_Format.png)
 
+## Building a messaging service
+
+ - Process to process communication
+    - Basic routing gets packets from machine -> machine
+    - What we really want is routing from process -> process
+        - Add “ports”, which are 16-bit identifiers
+        - A communication channel (connection) defined by 5 items: 
+            - [source addr, source port, dest addr, dest port, protocol]
+ - UDP: The Unreliable Datagram Protocol
+    - Layered on top of basic IP (IP Protocol 17)
+        - **Datagram:** an unreliable, unordered, packet sent from source user -> dest user (Call it UDP/IP) 
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_UDP.png)
+    - Important aspect: low overhead!
+        - Often used for high-bandwidth video streams
+        - Many uses of UDP considered “anti-social” – none of the “well-behaved” aspects of (say) TCP/IP
+
+
+## Sequence Numbers
+
+ - Ordered Messages
+    - Several network services are best constructed by ordered messaging
+        - Ask remote machine to first do x, then do y, etc.
+    - Unfortunately, underlying network is packet based:
+        - Packets are routed one at a time through the network
+        - Can take different paths or be delayed individually
+    - IP can reorder packets! P0,P1 might arrive as P1,P0
+ - Solution requires queuing at destination 
+    - Need to hold onto packets to undo misordering
+    - Total degree of reordering impacts queue size
+ - Ordered messages on top of unordered ones:
+    - Assign sequence numbers to packets
+        - 0,1,2,3,4…..
+        - If packets arrive out of order, reorder before delivering to user application
+        - or instance, hold onto #3 until #2 arrives, etc.
+    - Sequence numbers are specific to particular connection
+        - Reordering among connections normally doesn’t matter
+    - If restart connection, need to make sure use different range of sequence numbers than previously…c
+
+
+## Reliable Message Delivery: the Problem
+
+ - All physical networks can garble and/or drop packets
+    - Physical media: packet not transmitted/received   
+        - If transmit close to maximum rate, get more throughput – even if some packets get lost
+        - If transmit at lowest voltage such that error correction just starts correcting errors, get best power/bit
+    - Congestion: no place to put incoming packet
+        - Point-to-point network: insufficient queue at switch/router
+        - Broadcast link: two host try to use same link
+        - In any network: insufficient buffer space at destination
+        - Rate mismatch: what if sender send faster than receiver can process?
+ - Reliable Message Delivery on top of Unreliable Packets
+    - Need some way to make sure that packets actually make it to receiver
+        - Every packet received at least once
+        - Every packet received at most once
+    - Can combine with ordering: every packet received by process at destination exactly once and in order
+
+ 
 
 
 
