@@ -362,7 +362,9 @@ So we want to be able to compute these values. We'd like to be able to take an M
     - This is just what expectimax computed!
  - Recursive definition of value:
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_values_of_states.png)
-
+    - Q 可以分解为两部分
+        1. reward的期望值 R(s,a), 加上
+        2. γ·V(s') 的期望值
 
 
 
