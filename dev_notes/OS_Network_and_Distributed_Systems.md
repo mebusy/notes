@@ -586,7 +586,45 @@ NAME -> ADDRESS
         - Every packet received at most once
     - Can combine with ordering: every packet received by process at destination exactly once and in order
 
+## Using Acknowledgements
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_ack.png)
+
+
+ - How to ensure transmission of packets?
+    - Detect garbling at receiver via checksum, discard if bad
+    - Receiver acknowledges (by sending “ack”) when packet received properly at destination
+    - Timeout at sender: if no ack, retransmit
+ - Some questions:
+    - If the sender doesn’t get an ack, does that mean the receiver didn’t get the original message?
+        - No
+    - What if ack gets dropped? Or if message gets delayed?
+        - TODO
+        - Sender doesn’t get ack, retransmits. Receiver gets message twice, acks each.
+
  
+## Conclusion
+
+ - **DNS:** System for mapping from names => IP addresses
+    - Hierarchical mapping from authoritative domains
+    - Recent flaws discovered
+ - **Datagram:** a self-contained message whose arrival, arrival time, and content are not guaranteed
+ - Performance metrics
+    - **Overhead:** CPU time to put packet on wire
+    - **Throughput:** Maximum number of bytes per second
+    - **Latency:** time until first bit of packet arrives at receiver 
+ - Ordered messages:
+    - Use sequence numbers and reorder at destination
+ - Reliable messages:
+    - Use Acknowledgements
+ - **TCP:** Reliable byte stream between two processes on different machines over Internet (read, write, flush)
+    - Uses window-based acknowledgement protocol
+    - Congestion-avoidance dynamically adapts sender window to account for congestion in network
+
+---
+
+# Lecture 23 : Network Communication Abstractions / Distributed Programming
+
 
 
 
