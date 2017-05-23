@@ -940,7 +940,90 @@ let v=2u , dw = eᵘdu ; dv = 2du , w =  eᵘ
 
 ## How do I integrate powers of sin and cos ?
 
-### What is ∫sin<sup>2n+1</sup>xcos²ⁿxdx ?
+### What is ∫sin<sup>2n+1</sup>x·cos²ⁿxdx ?
+
+ - trick:  You can trade sines for cosines or vice  versa.
+    - sin²x + cos²x = 1
+
+  ∫sin³x·cos²xdx
+
+= ∫sinx·sin²x·cos²xdx
+
+= ∫sinx·(1-cos²x)·cos²xdx 
+
+let u=cosx, du=-sinxdx
+
+= -∫(1-u²)·u²du
+
+= -( u³/3 - u⁵/5 ) + C 
+
+= -cos³x/3 + cos⁵x/5 + C 
+
+---
+
+ - The trick works as long as we've got an odd power on the sine, or an odd power on  the cosine.
+    - the key is that you can convert that odd power to  `even power` x (sin/cos) 
+    - and the `even power` can apply the rule `sin²x + cos²x = 1`
+
+
+### What is ∫<sup>π</sup>₀ sin²ⁿxdx ?
+
+Now we know how the handle odd power of sin/cos. But how to handle even power ?  We need the **Half·Angle Formual**.
+
+ - **Half·Angle Formual**
+    - sin²x = (1-cos(2x))/2
+    - cos²x = (1+cos(2x))/2 
+    
+---
+
+  ∫sin⁴xdx
+
+= ∫(sin²x)²dx
+
+= ∫( (1-cos(2x))/2 )²dx  
+
+= ∫( 1/4 + cos²(2x)/4 - cos(2x)/2  )dx
+
+= ∫cos²(2x)/4dx - ∫cos(2x)/2dx + ∫1/4dx
+
+= ∫cos²(2x)/4dx - sin(2x)/4 + 1/4x 
+
+ apply Half·Angle Formual again
+
+= ∫(1+cos(4x))/8dx - sin(2x)/4 + 1/4x  
+
+= 1/8x + sin(4x)/32 - sin(2x)/4 + 1/4x +C
+
+= 3/8x  + sin(4x)/32 - sin(2x)/4 + C
+
+I should say that in some cases you can  get away with doing a bit less work. 
+
+  ∫<sup>π</sup>₀ sin²ⁿxdx
+
+// cos(2x) would integrate to 0.
+
+= ∫<sup>π</sup>₀ ( 1/4 + cos²(2x)/4 - ~~cos(2x)~~/2  )dx 
+
+= ∫<sup>π</sup>₀ ( 1/4 + (1+ ~~cos(4x)~~ )/8   ) dx 
+
+= ∫<sup>π</sup>₀ 3/8 dx  = 3/8 π 
+
+
+### What is ∫sinⁿxdx in terms of ∫sinⁿ⁻²xdx ?
+
+  ∫<sup>π/2</sup>₀ sin³²xdx = 300540195·π / 4294967296
+
+= 3\*3\*5\*17\*19\*23\*29\*31\* π / 2³²
+
+Why does it factor so nicely ?
+
+TODO
+
+---
+
+## How does long division help ?
+
+
 
 
 
