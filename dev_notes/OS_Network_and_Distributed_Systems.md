@@ -306,6 +306,32 @@
     - Subnet is always a subset of address range
     - Once, subnet meant single physical broadcast wire; now, less clear exactly what it means (virtualized by switches)
 
+
+
+## Conclusion
+
+ - Network: physical connection that allows two computers to communicate
+    - Packet: sequence of bits carried over the network 
+ - **Broadcast Network:** Shared Communication Medium
+    - Transmitted packets sent to all receivers
+    - Arbitration: act of negotiating use of shared medium
+        - Ethernet: Carrier Sense, Multiple Access, Collision Detect
+ - **Point-to-point network:** a network in which every physical wire is connected to only two computers
+    - Switch: a bridge that transforms a shared-bus (broadcast) configuration into a point-to-point network
+ - **Protocol:** Agreement between two parties as to how information is to be transmitted
+ - Internet Protocol (IP)
+    - Used to route messages through routes across globe
+    - 32-bit addresses, 16-bit ports
+ - **DNS:** System for mapping from names => IP addresses 
+    - Hierarchical mapping from authoritative domains
+    - Recent flaws discovered
+
+
+---
+
+# Lecture 22: Network II
+
+
 ## Address Ranges in IP
 
  - IP address space divided into prefix-delimited ranges:
@@ -426,22 +452,6 @@ NAME -> ADDRESS
         - Big press release, lots of mystery
         - Security researchers told no speculation until patches applied
 
-## Conclusion
 
- - Network: physical connection that allows two computers to communicate
-    - Packet: sequence of bits carried over the network 
- - **Broadcast Network:** Shared Communication Medium
-    - Transmitted packets sent to all receivers
-    - Arbitration: act of negotiating use of shared medium
-        - Ethernet: Carrier Sense, Multiple Access, Collision Detect
- - **Point-to-point network:** a network in which every physical wire is connected to only two computers
-    - Switch: a bridge that transforms a shared-bus (broadcast) configuration into a point-to-point network
- - **Protocol:** Agreement between two parties as to how information is to be transmitted
- - Internet Protocol (IP)
-    - Used to route messages through routes across globe
-    - 32-bit addresses, 16-bit ports
- - **DNS:** System for mapping from names => IP addresses 
-    - Hierarchical mapping from authoritative domains
-    - Recent flaws discovered
 
- 
+
