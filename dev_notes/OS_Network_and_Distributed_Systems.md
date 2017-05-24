@@ -877,5 +877,95 @@ NAME -> ADDRESS
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_window_based_ack_tcp.png)
 
+## Selective Acknowledgement Option (SACK)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_tcp_selective_ack.png)
+
+ - Vanilla TCP Acknowledgement
+    - Every message encodes Sequence number and Ack
+        - that means anytime you send a packet you can also be acknowledging receiving packets.
+        - in fact you don't even have to send an ack for every incoming packet.
+    - Can include data for forward stream and/or ack for reverse stream
+ - Selective Acknowledgement
+    - Acknowledgement information includes not just one number, but rather ranges of received packets
+        - basically say something about exactly where the holes are , and what's received. 
+    - Must be specially negotiated at beginning of TCP setup
+        - Not widely in use (although in Windows since Windows 98)
+
+## Congestion Avoidance
+
+ - Congestion
+    - How long should timeout be for re-sending messages?
+        - Too long -> wastes time if message lost
+        - Too short -> retransmit even though ack will arrive shortly 
+    - Stability problem: more congestion => ack is delayed => unnecessary timeout => more traffic => more congestion
+        - Closely related to window size at sender: too big means putting too much data into network
+ - How does the sender’s window size get chosen?
+    - Must be less than receiver’s advertised buffer size
+    - Try to match the rate of sending packets with the rate that the slowest link can accommodate
+    - Sender uses an adaptive algorithm to decide size of N
+        - Goal: fill network between sender and receiver
+        - Basic technique: slowly increase size of window until acknowledgements start being delayed/lost
+ - TCP solution: “slow start” (start sending slowly)
+    - If no timeout, slowly increase window size (throughput) by 1 for each ack received 
+    - Timeout =>  congestion, so cut window size in half 
+    - “Additive Increase, Multiplicative Decrease”
+
+## Sequence-Number Initialization
+
+ - How do you choose an initial sequence number?
+    - When machine boots, ok to start with sequence #0?
+        - No: could send two messages with same sequence #!
+            - you don't know whether you have just closed the previous connection , and there might still be packets in flight
+        - Receiver might end up discarding valid packets, or duplicate ack from original transmission might hide lost packet
+    - Also, if it is possible to predict sequence numbers, might be possible for attacker to hijack TCP connection
+ - Some ways of choosing an initial sequence number:
+    - Time to live: each packet has a deadline
+        - If not delivered in X seconds, then is dropped
+        - Thus, can re-use sequence numbers if wait for all packets in flight to be delivered or to expire
+    - Epoch #: uniquely identifies which set of sequence numbers are currently being used
+        - Epoch # stored on disk, Put in every message
+        - Epoch # incremented on crash and/or when run out of sequence #
+    - Pseudo-random increment to previous sequence number
+        - Used by several protocol implementations
+
+## Use of TCP: Sockets
+
+ - **Socket:** an abstraction of a network I/O queue
+    - Embodies one side of a communication channel
+        - Same interface regardless of location of other end
+        - Could be local machine (called “UNIX socket”) or remote machine (called “network socket”)
+     - First introduced in 4.2 BSD UNIX: big innovation at time
+        - Now most operating systems provide some notion of socket
+ - Using Sockets for Client-Server (C/C++ interface):
+    - On server: set up “server-socket”
+        - Create socket, Bind to protocol (TCP), local address, port
+        - Call listen(): tells server socket to accept incoming requests
+        - Perform multiple accept() calls on socket to accept incoming connection request
+        - Each successful accept() returns **a new socket** for a new connection; can pass this off to handler thread
+    - On client: 
+        - Create socket, Bind to protocol (TCP), remote address, port
+        - Perform connect() on socket to make connection
+        - If connect() successful, have socket connected to server
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
