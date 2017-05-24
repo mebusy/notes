@@ -867,6 +867,15 @@ NAME -> ADDRESS
  - at some point we get a timeout. at that point we know exactly what to rerasmit.  The acknowledgments are telling us what data is got. It got data at seq number 190. So the sender knows that it was this packet that was lost. 
  - So we re-sent. Now notice what the acknowledgment did at this point. 
     - it says oh good I've received evertything up to 340 and only 60 bytes left. 
+ - finally we transmit the last couple of pieces and notice at this point we're acknowledging up to 400, and 0 left in the queue. What happens now ? 
+    - now buffer is full at the receiver , the windows has complelely shut down and we will not send any more
+    - how do we start opening the windows? 
+        - At that point the receiver -- the process that's receiving -- has to start sucking things out and at that point we'll actually get an acknowledgement back that looks more like 400/20 
+
+
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_window_based_ack_tcp.png)
 
 
 
