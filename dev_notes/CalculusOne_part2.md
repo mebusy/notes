@@ -970,6 +970,8 @@ let u=√x , du = 1/(2√x)dx , dx = 2√xdu
 
 let v=2u , dw = eᵘdu ; dv = 2du , w =  eᵘ 
 
+**注意这里的选择很重要 eᵘdu 可以极大简化运算**
+
 = 2u·eᵘ - ∫eᵘ2du
 
 = 2u·eᵘ - 2eᵘ
@@ -1047,7 +1049,7 @@ I should say that in some cases you can  get away with doing a bit less work.
 
   ∫<sup>π</sup>₀ sin²ⁿxdx
 
-// cos(2x) would integrate to 0.
+// cos(2x) would integrate to 0.  but cos²(2x) doesn't !
 
 = ∫<sup>π</sup>₀ ( 1/4 + cos²(2x)/4 - ~~cos(2x)~~/2  )dx 
 
@@ -1069,10 +1071,6 @@ Why does it factor so nicely ?
 TODO
 
 ---
-
-<h2 id="a365962601b4a94c5609621f970e160b"></h2>
-
-## How does long division help ?
 
 
 
