@@ -776,6 +776,15 @@ NAME -> ADDRESS
     - Send one message at a time; don’t send next message until ack received
     - Sender keeps last message; receiver tracks sequence # of last message received
      
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_duplicated_packet_alternating_bit_protocol.png)
+
+ - Pros: simple, small overhead
+ - Con: Poor performance
+    - Wire can hold multiple messages; want to fill up at (wire latency x throughput)
+ - Con: doesn't work if network can delay or duplicate messages arbitrarily
+
+
+
 
 
 
