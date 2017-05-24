@@ -1072,7 +1072,11 @@ TODO
 
 ---
 
+# Week 16: Applications of Integration
 
+## What can we do with integrals besides calculating area?  Volumns ! 
+
+## How else can I calculate area ?
 
 
 
