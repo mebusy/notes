@@ -1009,11 +1009,94 @@ NAME -> ADDRESS
         - Client = requester, Server = responder
         - Server provides “service” (file storage) to the client
 
+## General’s Paradox
+
+ - General’s paradox: 
+    - Constraints of problem: 
+        - Two generals, on separate mountains
+        - Can only communicate via messengers
+        - Messengers can be captured
+    - Problem: need to coordinate attack
+        - If they attack at different times, they all die
+        - If they attack at same time, they win
+    - Named after Custer, who died at Little Big Horn because he arrived a couple of days too early
+ - Can messages over an unreliable network be used to guarantee two entities do something simultaneously?
+    - Remarkably, “no”, even if all messages get through
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_general_paradox.png)
+    - No way to be sure last message gets through!
 
 
+## Two-Phase Commit
 
+ - Since we can’t solve the General’s Paradox (i.e. simultaneous action), let’s solve a related problem
+    - Distributed transaction: Two machines agree to do something, or not do it, atomically
+ - Two-Phase Commit protocol does this
+    - Use a persistent, stable log on each machine to keep track of whether commit has happened
+        - If a machine crashes, when it wakes up it first checks its log to recover state of world at time of crash
+    - 1. Prepare Phase:
+        - The global coordinator requests that all participants will promise to commit or rollback the transaction
+        - Participants record promise in log, then acknowledge
+        - If anyone votes to abort, coordinator writes “Abort” in its log and tells everyone to abort; each records “Abort” in log
+    - 2. Commit Phase:
+        - After all participants respond that they are prepared, then the coordinator writes “Commit” to its log
+        - Then asks all nodes to commit; they respond with ack
+        - After receive acks, coordinator writes “Got Commit” to log
+    - Log can be used to complete this process such that all machines either commit or don’t commit
 
+### Two phase commit example
 
+ - Simple Example: A=WellsFargo Bank, B=Bank of America
+    - Phase 1: **Prepare** Phase
+        - A writes “Begin transaction” to log
+            - A->B:  OK to transfer funds to me?
+        - Not enough funds:
+            - B->A:  transaction aborted; A writes “Abort” to log
+        - Enough funds:
+            - B: Write new account balance & promise to commit to log
+            - B->A: OK, I can commit
+    - Phase 2: A can decide for both whether they will **commit**
+        - A: write new account balance to log
+        - Write “Commit” to log
+        - Send message to B that commit occurred; wait for ack
+        - Write “Got Commit” to log
+ - What if B crashes at beginning?
+    - Wakes up, does nothing; A will timeout, abort and retry
+ - What if A crashes at beginning of phase 2?
+    - Wakes up, sees that there is a transaction in progress; sends “Abort” to B
+ - What if B crashes at beginning of phase 2?
+    - B comes back up, looks at log; sees that it had already promised to commit , when it gets A's commit , it will say, “oh, ok, commit”
+
+## Distributed Decision Making Discussion
+
+ - Why is distributed decision making desirable?
+    - Fault Tolerance!
+    - A group of machines can come to a decision even if one or more of them fail during the process
+        - Simple failure mode called “failstop” (different modes later)
+    - After decision made, result recorded in multiple places
+ - Undesirable feature of Two-Phase Commit: Blocking
+    - One machine can be stalled until another site recovers:
+        - Site B writes “prepared to commit” record to its log, sends a “yes” vote to the coordinator (site A) and crashes
+        - Site A crashes
+        - Site B wakes up, check its log, and realizes that it has voted “yes” on the update. It sends a message to site A asking what happened. At this point, B cannot decide to abort, because update may have committed
+        - B is blocked until A comes back
+    - A blocked site holds resources (locks on updated items, pages pinned in memory, etc) until learns fate of update
+ - Alternative: There are alternatives such as “Three Phase Commit” which don’t have this blocking problem
+ - What happens if one or more of the nodes is malicious?
+    - **Malicious**: attempting to compromise the decision making
+    
+
+## Conclusion
+
+ - **TCP:** Reliable byte stream between two processes on different machines over Internet (read, write, flush)
+    - Uses window-based acknowledgement protocol
+    - Congestion-avoidance dynamically adapts sender window to account for congestion in network
+ - **Two-phase commit:** distributed decision making
+    - First, make sure everyone guarantees that they will commit if asked (prepare)
+    - Next, ask everyone to commit
+
+---
+
+# Lecture 24: Distributed File Systems
 
 
 
