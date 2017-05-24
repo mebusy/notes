@@ -961,6 +961,55 @@ NAME -> ADDRESS
         - 80 (web), 443 (secure web), 25 (sendmail), etc
         - Well-known ports from 0--1023 
  - Note that the uniqueness of the tuple is really about two Addr/Port pairs and a protocol
+ 
+---
+
+ - sockets can be bound to TCP if you want to have as a stream in and stream out 
+ - or they can be bound to UDP in which case what you write a chunk of stuff to the socket on one side , and it comes as a packet to the other side and comes out as a chunk. 
+
+## Distributed Applications
+
+ - How do you actually program a distributed application?
+    - Need to synchronize multiple threads, running on different machines 
+        - No shared memory, so cannot use test&set
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_distributed_app.png)
+    - One Abstraction: send/receive messages
+        - Already atomic: no receiver gets portion of a message and two receivers cannot get same message
+ - Interface:
+    - Mailbox (mbox): temporary holding area for messages
+        - Includes both destination location and queue
+    - Send(message,mbox)
+        - Send message to remote mailbox (queue)  identified by mbox
+    - Receive(buffer,mbox)
+        - Wait until mbox has message, copy into buffer, and return
+        - If threads sleeping on this mbox, wake up one of them
+
+## Using Messages: Send/Receive behavior
+
+ - When should send(message,mbox) return?
+    - When receiver gets message? (i.e. ack received)
+    - When message is safely buffered on destination?
+    - Right away, if message is buffered on source node?
+ - Actually two questions here:
+    - When can the sender be sure that receiver actually received the message?
+    - When can sender reuse the memory containing message?
+ - Mailbox provides 1-way communication from T1 -> T2
+    - T1 -> buffer -> T2
+    - Very similar to producer/consumer 
+        - Send = V, Receive = P
+        - However, can’t tell if sender/receiver is local or not!
+
+## Messaging for Request/Response communication
+
+ - What about two-way communication?
+    - Request/Response
+        - Read a file stored on a remote machine
+        - Request a web page from a remote web server
+    - Also called: **client-server**
+        - Client = requester, Server = responder
+        - Server provides “service” (file storage) to the client
+
+
 
 
 
