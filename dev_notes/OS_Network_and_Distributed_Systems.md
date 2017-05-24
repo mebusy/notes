@@ -810,7 +810,24 @@ NAME -> ADDRESS
  - What if ack gets garbled/dropped? 
     - Timeout and resend just the un-acknowledged packets
 
+## Transmission Control Protocol (TCP)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_tcp.png)
+
+ - Transmission Control Protocol (TCP)
+    - TCP (IP Protocol 6) layered on top of IP
+    - Reliable byte stream between two processes on different machines over Internet (read, write, flush)
+ - TCP Details
+    - Fragments byte stream into packets, hands packets to IP
+        - IP may also fragment by itself
+    - Uses window-based acknowledgement protocol (to minimize state at sender and receiver)
+        - “Window” reflects storage at receiver – sender shouldn’t overrun receiver’s buffer space
+        - Also, window should reflect speed/capacity of network – sender shouldn’t overload network
+    - Automatically retransmits lost packets
+    - Adjusts rate of transmission to avoid congestion
+        - A “good citizen”
+
+ 
 
 
 
