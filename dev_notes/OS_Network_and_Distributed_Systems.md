@@ -732,7 +732,6 @@ NAME -> ADDRESS
     - If the sender doesn’t get an ack, does that mean the receiver didn’t get the original message?
         - No
     - What if ack gets dropped? Or if message gets delayed?
-        - TODO
         - Sender doesn’t get ack, retransmits. Receiver gets message twice, acks each.
 
  
@@ -762,6 +761,21 @@ NAME -> ADDRESS
 
 # Lecture 23 : Network Communication Abstractions / Distributed Programming
 
+## How to deal with message duplication
+
+ - Solution: put sequence number in message to identify re-transmitted packets
+    - Receiver checks for duplicate #’s; Discard if detected
+        - if you get a packet with the same sequence number, presumably you've gotten a duplicate.
+ - Requirements:
+    - Sender keeps copy of unack’ed messages
+        - Easy: only need to buffer messages
+    - Receiver tracks possible duplicate messages
+        - Hard: when ok to forget about received message?
+ - **Alternating-bit protocol:**
+    - let's start with a  simple protocol 
+    - Send one message at a time; don’t send next message until ack received
+    - Sender keeps last message; receiver tracks sequence # of last message received
+     
 
 
 
