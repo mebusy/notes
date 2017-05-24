@@ -782,7 +782,33 @@ NAME -> ADDRESS
  - Con: Poor performance
     - Wire can hold multiple messages; want to fill up at (wire latency x throughput)
  - Con: doesn't work if network can delay or duplicate messages arbitrarily
+    - if packet 0 gets delayed for long enough, and then you eventually get back to sending packet 0 again. It's possible that an old package 0 and a new packet 0 could look alike.
 
+
+## Better messaging: Window-based acknowledgements
+
+ - **Windowing protocol (not quite TCP):** 
+    - Send up to N packets without ack
+        - Allows pipelining of packets
+        - Window size (N) < queue at destination
+    - Each packet has sequence number
+        - Receiver acknowledges each packet
+        - Ack says “received all packets up to sequence number X”/send more
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_dup_packet_window_based_ack.png)
+
+ - Acks serve dual purpose: 
+    - Reliability: Confirming packet received
+    - Ordering: Packets can be reordered at destination
+ - What if packet gets garbled/dropped?
+    - Sender will timeout waiting for ack packet
+        - Resend missing packets => Receiver gets packets out of order!
+    - Should receiver discard packets that arrive out of order?
+        - Simple, but poor performance
+    - Alternative: Keep copy until sender fills in missing pieces? 
+        - Reduces # of retransmits, but more complex
+ - What if ack gets garbled/dropped? 
+    - Timeout and resend just the un-acknowledged packets
 
 
 
