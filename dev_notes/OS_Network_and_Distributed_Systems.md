@@ -826,9 +826,47 @@ NAME -> ADDRESS
     - Automatically retransmits lost packets
     - Adjusts rate of transmission to avoid congestion
         - A “good citizen”
+            - it tries to make sure that nobody is dropping packets being overloaded. 
 
- 
+## TCP Windows and Sequence Numbers
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_tcp_windows_and_sequence_numbers.png)
+
+ - Sender has three regions: 
+    - Sequence regions
+        - sent and ack’ed
+        - Sent and not ack’ed
+        - not yet sent
+    - Window (colored region) adjusted by sender
+ - Receiver has three regions: 
+    - Sequence regions
+        - received and ack’ed (given to application)
+        - received and buffered
+        - not yet received (or discarded because out of order)
+
+## Window-Based Acknowledgements (TCP)
+
+ - Image where its sequence number is 100 , and we're about to send a packet
+ - so first thing is from previous transmissions we will have an acknowledgement that says we are at sequence number 100, this is back to the sender. 
+ - and there are 300 bytes of storage at the queue at the receiver side
+ - now suppose we try to send a packet
+    - what I means is the user puts some bytes into the input socket, TCP divides it up into a packet , and for instance in this case it divided into a packet that if of size 40 and whose sequence number starts at 100.
+    - that packet goes to the destination , now our sequence number at the destination is at 140, because we receive 40 bytes.
+    - notice the ack that came back is simply says I'm acknowledging sequence number 140 , and there are only 260 bytes left in my queue. 
+ - so now if I send another packet , here's one where there's 50 bytes to send. 
+    - the seq number is 140. 
+    - what comes back for an ack ? I received up to 190, and there's 210 left. 
+ - we can select how big size of a packet to send and usually TCP sort of receives some data into the socket until a certain time is expired and then it choose to send the packet out. 
+    - so the size is dynamically did not cause the receiver to wait too long. 
+ - **now** we send its seq number 230, size 30. 
+    - we get back this ack of 190/210.  What happened here ? 
+    - presumably I sent the chunk (190,40) but it never actually arrived at the destination.  here is a lost packet of size 40. 
+    - seq number 190 didn't show up.  now the sequence number 230 showed up. 
+    - notice the acknowledgment , a little different here. it's 190/210. All it's saying is I've only received all of my data up to sequence number 190, and after that sequence number there's 210 left.  Notice it did not acknowledge this packet. 
+ - ...
+ - at some point we get a timeout. at that point we know exactly what to rerasmit.  The acknowledgments are telling us what data is got. It got data at seq number 190. So the sender knows that it was this packet that was lost. 
+ - So we re-sent. Now notice what the acknowledgment did at this point. 
+    - it says oh good I've received evertything up to 340 and only 60 bytes left. 
 
 
 
