@@ -948,6 +948,21 @@ NAME -> ADDRESS
         - Perform connect() on socket to make connection
         - If connect() successful, have socket connected to server
 
+## Socket Setup (Con’t)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_socket_setup.png)
+
+ - Things to remember:
+    - Connection involves 5 values:
+        - [ Client Addr, Client Port, Server Addr, Server Port, Protocol ]
+    - Often, Client Port “randomly” assigned
+        - Done by OS during client socket setup
+    - Server Port often “well known”
+        - 80 (web), 443 (secure web), 25 (sendmail), etc
+        - Well-known ports from 0--1023 
+ - Note that the uniqueness of the tuple is really about two Addr/Port pairs and a protocol
+
+
 
 
 
