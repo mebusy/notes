@@ -1100,14 +1100,18 @@ NAME -> ADDRESS
 
 ## Byzantine General’s Problem
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_byzantine_general_problem.png)
+
  - Byazantine General’s Problem (n players):
     - One General
     - n-1 Lieutenants
     - Some number of these (f) can be insane or malicious
- - The commanding general must send an order to his n-1 lieutenants such that:
+    - so the general says attack 
+        - the problem is that none of the lieutenants can follow the order right away because they have to assume the general could be the insane one 
+        - so what the lieutenants are going to have to do is talk amongest themselves and make a decision about what they should do. 
+ - The commanding general must send an order to his n-1 lieutenants such that: ( 2 major constraints  )
     - IC1: All loyal lieutenants obey the same order
     - IC2: If the commanding general is loyal, then all loyal lieutenants obey the order he sends
-
 
 
 
