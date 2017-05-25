@@ -1261,6 +1261,10 @@ PRC is a crucial part of how micro kernels work.
     - A single, global name space: every file in the world has unique name
         - Location Transparency: servers can change and files can move without involving user
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_distributed_file_system_mount.png)
+
+## Virtual File System (VFS)
+
 
 
 
