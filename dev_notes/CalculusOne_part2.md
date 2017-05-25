@@ -1086,6 +1086,20 @@ TODO
  - width of rectangle: 2√y 
  - area = ∫₀¹ 2√ydy   (Ps. not [-1,1], [-1,1] is for ∫xxxdx  )
 
+### When should I use horizontal as opposed to vertical pieces?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_integrate_horizontal_strips0.png)
+
+the bad news about vertical strips is that there's 2 different kinds of vertical strips.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_integrate_horizontal_strips1.png)
+
+The vertical strips on the left bottom-left side touch the orange and the purple edge, and the vertical strips on the right-top touch orange and blue edge.
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_integrate_horizontal_strips2.png)
+
+if I cut this up into horizontal strips, all of my horizontal strips have an orange side and a blue side. I have only **one type** of horizontal strip. 
 
 
 
