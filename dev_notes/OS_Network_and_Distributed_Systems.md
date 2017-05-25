@@ -1160,6 +1160,21 @@ NAME -> ADDRESS
 
 ## RPC Details
 
+ - Equivalence with regular procedure call
+    - Parameters <=> Request Message 
+    - Result <=> Reply message
+    - Name of Procedure: Passed in request message
+    - Return Address: mbox2 (client return mail box) 
+ - Stub generator: Compiler that generates stubs
+    - Input: interface definitions in an “interface definition language (IDL)”
+        - Contains, among other things, types of arguments/return
+    - Output: stub code in the appropriate source language
+        - Code for client to pack message, send it off, wait for result, unpack result and return to caller
+        - Code for server to unpack message, call procedure, pack results, send them off
+ - Cross-platform issues:
+    - What if client/server machines are different architectures or in different languages?
+        - Convert everything to/from some canonical form
+        - Tag every item with an indication of  how it is encoded (avoids unnecessary conversions).
 
 
 

@@ -1078,6 +1078,20 @@ TODO
 
 ## How else can I calculate area ?
 
+### What happens when I use thin horizontal rectangles to compute area?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_compute_area_with_horizontal_rectangle.png)
+
+ - height of rectangle : dy
+ - width of rectangle: 2√y 
+ - area = ∫₀¹ 2√ydy   (Ps. not [-1,1], [-1,1] is for ∫xxxdx  )
+
+
+
+
+
+
+
 
 
 
