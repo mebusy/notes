@@ -1120,6 +1120,39 @@ NAME -> ADDRESS
  - Impossibility Results:
     - Cannot solve Byzantine General’s Problem with n=3 because one malicious player can mess up things
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_byzantine_general_problem_n3.png)
+    - With f faults, need n > 3f to solve problem
+ - Various algorithms exist to solve problem
+    - Original algorithm has #messages exponential in n
+    - Newer algorithms have message complexity O(n²)
+        - One from MIT, for instance (Castro and Liskov, 1999)
+ - Use of BFT (Byzantine Fault Tolerance) algorithm
+    - Allow multiple machines to make a coordinated decision even if some subset of them (< n/3 ) are malicious
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_byzantine_general_problem_bft.png)
+ - how did we use this ? for instance in  a distributed file system
+    - the request might be something like i'd like to commit this data and the decision would be a yes or or on the commit. 
+    - if enough players properly decided to commit then it would be committed in a way that was guaranteed to be reconstructed and a good decision. 
+    - so you can actually ask these players the lieutenants to do something like check access control and so on and make a distributed decision , and decide to vote basically to do that , and do the commit. 
+
+
+## Remote Procedure Call
+
+ - Raw messaging is a bit too low-level for programming
+    - Must wrap up information into message at source
+    - Must decide what to do with message at destination
+    - May need to sit and wait for multiple messages to arrive
+ - Better option: Remote Procedure Call (RPC)
+    - Calls a procedure on a remote machine
+    - Client calls:
+        - remoteFileSystem->read(“rutabaga”);
+    - Translated automatically into call on server:
+        - fileSys->Read(“rutabaga”);
+ - Implementation:
+    - Request-response message passing (under covers!)
+    - “Stub” provides glue on client/server
+        - Client stub is responsible for “marshalling” arguments and “unmarshalling” the return values
+        - Server-side stub is responsible for “unmarshalling” arguments and “marshalling” the return values.
+ - **Marshalling** involves (depending on system)
+    - Converting values to a canonical form, serializing objects, copying arguments passed by reference, etc. 
 
 
 
