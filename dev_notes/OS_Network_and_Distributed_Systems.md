@@ -1112,7 +1112,14 @@ NAME -> ADDRESS
  - The commanding general must send an order to his n-1 lieutenants such that: ( 2 major constraints  )
     - IC1: All loyal lieutenants obey the same order
     - IC2: If the commanding general is loyal, then all loyal lieutenants obey the order he sends
+ - the question is: how many insane folks can you deal with and there's some impossibility results 
+    - 3 is not enough. If you have a general and 2 lieutenants basically there's no way for the good lieutenant to do anything useful if one of the lieutenants is malicious. 
 
+---
+
+ - Impossibility Results:
+    - Cannot solve Byzantine General’s Problem with n=3 because one malicious player can mess up things
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_byzantine_general_problem_n3.png)
 
 
 
