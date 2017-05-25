@@ -1154,6 +1154,12 @@ NAME -> ADDRESS
  - **Marshalling** involves (depending on system)
     - Converting values to a canonical form, serializing objects, copying arguments passed by reference, etc. 
 
+## RPC Information Flow
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_rpc_flow.png)
+
+## RPC Details
+
 
 
 
