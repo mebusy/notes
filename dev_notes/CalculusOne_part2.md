@@ -1084,7 +1084,7 @@ TODO
 
  - height of rectangle : dy
  - width of rectangle: 2√y 
- - area = ∫₀¹ 2√ydy   (Ps. not [-1,1], [-1,1] is for ∫xxxdx  )
+ - area = ∫¹₀ 2√ydy   (Ps. not [-1,1], [-1,1] is for ∫xxxdx  )
 
 ### When should I use horizontal as opposed to vertical pieces?
 
@@ -1101,7 +1101,13 @@ The vertical strips on the left bottom-left side touch the orange and the purple
 
 if I cut this up into horizontal strips, all of my horizontal strips have an orange side and a blue side. I have only **one type** of horizontal strip. 
 
+---
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_integrate_horizontal_strips_example.png)
+
+ - height: dy
+ - width :  (y²+1)/2 - y²
+ - area = ∫¹₀ ((y²+1)/2 - y²) dy
 
 
 

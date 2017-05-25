@@ -1176,6 +1176,61 @@ NAME -> ADDRESS
         - Convert everything to/from some canonical form
         - Tag every item with an indication of  how it is encoded (avoids unnecessary conversions).
 
+ - How does client know which mbox to send to?
+    - Need to translate name of remote service into network endpoint (Remote machine, port, possibly other info)
+    - **Binding:** the process of converting a user-visible name into a network endpoint
+        - This is another word for “naming” at network level
+        - Static: fixed at compile time
+        - Dynamic: performed at runtime
+    - Dynamic Binding
+        - Most RPC systems use dynamic binding via name service
+            - Name service provides dynamic translation of service -> mbox
+        - Why dynamic binding?
+            - Access control: check who is permitted to access service
+            - Fail-over: If server fails, use a different one
+ - What if there are multiple servers?
+    - Could give flexibility at binding time
+        - Choose unloaded server for each new client
+    - Could provide same mbox (router level redirect)
+        - Choose unloaded server for each new request
+        - Only works if no state carried from one call to next
+ - What if multiple clients?
+    - Pass pointer to client-specific return mbox in request
+
+## Problems with RPC
+
+ - Non-Atomic failures
+    - Different failure modes in distributed system than on a single machine
+    - Consider many different types of failures
+        - User-level bug causes address space to crash
+        - Machine failure, kernel bug causes all processes on same machine to fail
+        - Some machine is compromised by malicious party
+    - Before RPC: whole system would crash/die
+    - After RPC: One machine crashes/compromised while others keep working
+    - Can easily result in inconsistent view of the world
+        - Did my cached data get written back or not?
+        - Did server do what I requested or not?
+    - Answer? Distributed transactions/Byzantine Commit
+ - Performance
+    - Cost of Procedure call << same-machine RPC <<  network RPC
+    - Means programmers must be aware that RPC is not free
+        - Caching can help, but may make failure handling complex
+
+## Cross-Domain Communication/Location Transparency
+
+ - How do address spaces communicate with one another?
+    - Shared Memory with Semaphores, monitors, etc…
+    - File System
+    - Pipes (1-way communication)
+    - “Remote” procedure call (2-way communication)
+ - RPC’s can be used to communicate between address spaces on different machines or the same machine
+    - Services can be run wherever it’s most appropriate
+    - Access to local and remote services looks the same
+ - Examples of modern RPC systems:
+    - CORBA (Common Object Request Broker Architecture)
+    - DCOM (Distributed COM)
+    - RMI (Java Remote Method Invocation)
+ 
 
 
 
