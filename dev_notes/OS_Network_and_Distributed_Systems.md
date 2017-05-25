@@ -1098,6 +1098,15 @@ NAME -> ADDRESS
 
 # Lecture 24: Distributed File Systems
 
+## Byzantine General’s Problem
+
+ - Byazantine General’s Problem (n players):
+    - One General
+    - n-1 Lieutenants
+    - Some number of these (f) can be insane or malicious
+ - The commanding general must send an order to his n-1 lieutenants such that:
+    - IC1: All loyal lieutenants obey the same order
+    - IC2: If the commanding general is loyal, then all loyal lieutenants obey the order he sends
 
 
 
