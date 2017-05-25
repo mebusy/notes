@@ -1237,12 +1237,29 @@ PRC is a crucial part of how micro kernels work.
 
  - Example: split kernel into application-level servers.
     - File system looks remote, even though on same machine
+        - so you're an application, you want to open a file, you're actually going to do RPC to the file system. 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/OS_microkernel_OS.png)
  - Why split the OS into separate domains?
     - Fault isolation: bugs are more isolated (build a firewall)
     - Enforces modularity: allows incremental upgrades of pieces of software (client or server)
     - Location transparent: service can be local or remote
         - For example in the X windowing system: Each X client can be on a separate machine from X server; Neither has to run on the machine with the frame buffer.
+
+## Distributed File Systems
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_distributed_file_system.png)
+
+ - Distributed File System: 
+    - Transparent access to files stored on a remote disk
+ - Naming choices (always an issue):
+    - Hostname:localname: Name files explicitly
+        - No location or migration transparency
+    - Mounting of remote file systems
+        - System manager mounts remote file system by giving name and local mount point
+        - Transparent to user: all reads and writes look like local reads and writes to user
+            - e.g. **/users/sue/foo -> /sue/foo on server**
+    - A single, global name space: every file in the world has unique name
+        - Location Transparency: servers can change and files can move without involving user
 
 
 
