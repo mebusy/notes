@@ -1231,7 +1231,18 @@ NAME -> ADDRESS
     - DCOM (Distributed COM)
     - RMI (Java Remote Method Invocation)
  
+PRC is a crucial part of how micro kernels work. 
 
+## Microkernel operating systems
+
+ - Example: split kernel into application-level servers.
+    - File system looks remote, even though on same machine
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/OS_microkernel_OS.png)
+ - Why split the OS into separate domains?
+    - Fault isolation: bugs are more isolated (build a firewall)
+    - Enforces modularity: allows incremental upgrades of pieces of software (client or server)
+    - Location transparent: service can be local or remote
+        - For example in the X windowing system: Each X client can be on a separate machine from X server; Neither has to run on the machine with the frame buffer.
 
 
 
