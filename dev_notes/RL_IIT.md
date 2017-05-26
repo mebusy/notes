@@ -142,9 +142,21 @@ So Option o=< Iₒ,πₒ,βₒ >
  - Semi Markov option
     - πₒ depends on histroy since the option started
 
+# Lec 54 : Learning with Options
 
 
-
+ - SMDP Q-Learning 
+    - MDP + options gives me SMDP.
+ - Inter-option Q-Learning 
+    - Q(s,o) 
+    - let assume that when I start πₒ , so I do actions a₁,a₂,...a<sub>n</sub> under states s₁,s₂,...s<sub>n</sub> under states . These are the actions I see. 
+    - so what can I do ?
+    - I can actually update Q(s₁,a₁) 
+        - Q(s₁,a₁) =  Q(s₁,a₁) + α·[ r₁ + γ·maxQ(s',a') - Q(s₁,a₁)  ]
+        - Q(s₂,a₂) = ... 
+    - what about Q(s₂,o) ?
+        - Q(s₁,o) = Q(s₁,o) + α·[ r₁ +  γ·Q( s₂,o ) - Q(s₁,o) ] , if not ending at s₂
+        - Q(s₁,o) = Q(s₁,o) + α·[ r₁ +  γ·maxQ( s₂,a ) - Q(s₁,o) ] , if terminated at s₂
 
 
 
