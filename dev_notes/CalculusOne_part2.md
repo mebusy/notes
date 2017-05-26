@@ -1134,6 +1134,16 @@ And what is the volumn of one of those slice ?
 
  = πr²dx
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_volumn_cylinder.png)
+
+volumn = ∫ₓ₌²₀ π(x/2)²dx
+
+= π/4·∫ₓ₌²₀ x²dx  = π/4·x³/3 ]²₀
+
+= 2π/3
+
+### What is the volume of a sphere?
+
 
 
 
