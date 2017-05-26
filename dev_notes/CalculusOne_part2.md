@@ -1128,6 +1128,12 @@ cut this thing up into slices and add up the volumes of the little slices
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calclus_volumn_example1.png)
 
+And what is the volumn of one of those slice ?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_volumn_vol_of_slice.png)
+
+ = πr²dx
+
 
 
 
