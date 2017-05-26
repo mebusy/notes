@@ -1109,6 +1109,17 @@ if I cut this up into horizontal strips, all of my horizontal strips have an ora
  - width :  (y²+1)/2 - y²
  - area = ∫¹₀ ((y²+1)/2 - y²) dy
 
+### Quiz
+
+Write an integral representing the area of the region bounded by the lines x=8, x=12, the function f(x)=6x+7, and the function g(x) = √(10+arctan(x)).
+
+
+∫¹²₈ |√(10+arctan(x) - (6x+7))|dx    (注意绝对值号, 这里是求面积，而不是积分的有向面积)
+
+---
+
+## How I can calculate volumn ?
+
 
 
 
