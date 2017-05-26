@@ -1120,6 +1120,14 @@ Write an integral representing the area of the region bounded by the lines x=8, 
 
 ## How I can calculate volumn ?
 
+### What does "volume" even mean?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calclus_volumn_example0.png)
+
+cut this thing up into slices and add up the volumes of the little slices
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calclus_volumn_example1.png)
+
 
 
 
