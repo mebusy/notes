@@ -103,12 +103,44 @@ But we are more interested in is to actually think of
 
  - r̄<sub>t+τ</sub> = r<sub>t+1</sub> + γ·r<sub>t+2</sub> + ... + γ<sup>τ-1</sup> ·r<sub>t+τ</sub> 
 
-
+So notice that SMDP Q-Learning does not actually look into the structure Q(s<sub>t</sub>,a<sub>t</sub>) of a<sub>t</sub>  . It just assumes that this reward comes then I take action a<sub>t</sub>.  So it assumes that a<sub>t</sub> has been learnt already. So what is a<sub>t</sub> here in our room example ?  Goto room2 !  It is not a single simple action, this is what you mean by the `temporal abstraction`.
 
 
 --- 
 
+# Lec 53 :  Options
 
+In some sense it is the simplest of the hierarchical frameworks.  The basic idea behind options is something very very simple. So I am going to take the solutions to these sub problems that we are defining , I will encapsulate them as a single action.  
+
+## macro action
+
+So the idea comes from the planning literature actually where people talk about something called **macro actions**. So in the planning community macro actions are essentially sequence of actions put together and then we talk about as a single action. In the RL space macro action is not a sequence of actions but **encapsulated policies**. 
+
+How to specify a useful macro action (option) ?
+
+ 1. Initiation , Iₒ ⊆ S' 
+    - a subset of the state space
+    - I need something that tells me where the **iniitation** can happen 
+ 2. Policy , πₒ
+    - I need a *policy* to use while the macro action is executing 
+ 3. Termination , βₒ: S'→ [0,1]
+    - and then I need a termination. 
+    - typically specified by β: S'→ [0,1]
+        - β of s will be the probability that option will stop in state s.  
+        - so fo many states the probability could be 1. That means on all those states the option will not continue. 
+    - the probabilistic definition of options was actually introduced to for more of a mathematical convenience. In practice when you define this options you typically make the probability of termination 0 or 1. So 0 means it does not terminate, 1 means it terminates. 
+
+So Option o=< Iₒ,πₒ,βₒ >
+
+
+## Two kinds of options 
+
+ - Markov option
+    - πₒ depends only on current state
+    - the nice thing about Markov options is I do not have to worry about where I started the option . So if I am in a particular state and I am executing that option then I will take the same action. 
+ 
+ - Semi Markov option
+    - πₒ depends on histroy since the option started
 
 
 
