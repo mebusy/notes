@@ -95,13 +95,13 @@ SMDP is defined as the tuple <S,A,P,R>
 
 ## SMDP Q-Learning
 
- - Q(s<sub>t</sub>,a<sub>t</sub>) = Q(s<sub>t</sub>,a<sub>t</sub>) + α·[ r<sub>t+τ</sub> + γ<sup>τ</sup>·max<sub>a'</sub>Q(s'<sub>t</sub>,a'<sub>t</sub>) - Q(s<sub>t</sub>,a<sub>t</sub>) ]
+ - Q(s<sub>t</sub>,a<sub>t</sub>) = Q(s<sub>t</sub>,a<sub>t</sub>) + α·[ r̄<sub>t+τ</sub> + γ<sup>τ</sup>·max<sub>a'</sub>Q(s'<sub>t</sub>,a') - Q(s<sub>t</sub>,a<sub>t</sub>) ]
 
-The tricky thing here is I have hidden some stuff into this **r<sub>t+τ</sub>** , What is r<sub>t+τ</sub>  ?  It's the expected reward that I am going to get over the τ time steps. It is not the one instancely happened.  It could be variety of things. Normally that in the classical SMDP framework wo do not tell you how this r<sub>t+τ</sub> comes up. So you have some mechanism by which you can generate it. 
+The tricky thing here is I have hidden some stuff into this **r̄<sub>t+τ</sub>** , What is r̄<sub>t+τ</sub>  ?  It's the expected reward that I am going to get over the τ time steps. It is not the one instancely happened.  It could be variety of things. Normally that in the classical SMDP framework wo do not tell you how this r̄<sub>t+τ</sub> comes up. So you have some mechanism by which you can generate it. 
 
 But we are more interested in is to actually think of 
 
- - r<sub>t+τ</sub> = r<sub>t+1</sub> + γ·r<sub>t+2</sub> + ... + γ<sup>τ-1</sup> ·r<sub>t+τ</sub> 
+ - r̄<sub>t+τ</sub> = r<sub>t+1</sub> + γ·r<sub>t+2</sub> + ... + γ<sup>τ-1</sup> ·r<sub>t+τ</sub> 
 
 
 
