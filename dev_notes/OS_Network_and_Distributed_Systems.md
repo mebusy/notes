@@ -1265,6 +1265,9 @@ PRC is a crucial part of how micro kernels work.
 
 ## Virtual File System (VFS)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_vfs.png)
+
+
  - **VFS:** Virtual abstraction similar to local file system
     - Instead of “inodes” has “vnodes”
     - Compatible with a variety of local and remote file systems
