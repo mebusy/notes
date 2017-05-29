@@ -1288,6 +1288,22 @@ PRC is a crucial part of how micro kernels work.
     - Lots of network traffic/not well pipelined
     - Server can be a bottleneck
 
+## Use of caching to reduce network load
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_simple_distributed_fs_use_cache.png)
+
+ - Idea: Use caching to reduce network load
+    - In practice: use buffer cache at source and destination
+ - Advantage: if open/read/write/close can be done locally, don’t need to do any network traffic…fast!
+ - Problems: 
+    - Failure:
+        - Client caches have data not committed at server
+    - Cache consistency!
+        - Client caches not consistent with server/each other
+
+## TODO 
+
+TODO
 
 
 
