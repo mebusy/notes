@@ -159,7 +159,9 @@ So Option o=< Iₒ,πₒ,βₒ >
         - Q(s₁,o) = Q(s₁,o) + α·[ r₁ +  γ·maxQ( s₂,a ) - Q(s₁,o) ] , if terminated at s₂
 
 
+# Lec 55: Hierarchy of Abstract Machine (HAM)
 
+# Lec 56: MAXQ
 
 
 
