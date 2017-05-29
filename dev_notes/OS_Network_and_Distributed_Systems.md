@@ -1275,6 +1275,18 @@ PRC is a crucial part of how micro kernels work.
  - VFS allows the same system call interface (the API) to be used for different types of file systems
     - The API is to the VFS interface, rather than any specific type of file system
 
+## Simple Distributed File System
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_simple_distributed_fs.png)
+
+ - Remote Disk: Reads and writes forwarded to server
+    - Use RPC to translate file system calls
+    - No local caching/can be caching at server-side
+ - Advantage: Server provides completely consistent view of file system to multiple clients
+ - Problems? Performance!
+    - Going over network is slower than going to local memory
+    - Lots of network traffic/not well pipelined
+    - Server can be a bottleneck
 
 
 
