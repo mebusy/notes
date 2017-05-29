@@ -1159,6 +1159,14 @@ volumn = ∫ʳ₋ᵣ π(√(r²-x²))²dy
 
 ### How do washers help to compute the volume of a solid of revolution?
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_volumn_of_a_solid_of_revolution.png)
+
+计算绿色方块所在图像，饶 x 轴旋转一周后，所形成的物体的体积。
+
+We pick one of the green rectangle, and rotate 360' by *x*. We call this object "washer".
+
+What's the volumn of a washer ?
+
 
 
 
