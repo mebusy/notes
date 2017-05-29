@@ -1144,7 +1144,20 @@ volumn = ∫ₓ₌²₀ π(x/2)²dx
 
 ### What is the volume of a sphere?
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_calculus_volumn_of_sphere.png)
 
+
+volumn = ∫ʳ₋ᵣ π(√(r²-x²))²dy
+
+= π∫ʳ₋ᵣ (r²-x²)dy
+
+= 2π ( r²y - y³/3 ］ʳ₀  )
+
+= 2π ( r²r - r³/3 )
+
+= 4/3πr³
+
+### How do washers help to compute the volume of a solid of revolution?
 
 
 
