@@ -1265,6 +1265,13 @@ PRC is a crucial part of how micro kernels work.
 
 ## Virtual File System (VFS)
 
+ - **VFS:** Virtual abstraction similar to local file system
+    - Instead of “inodes” has “vnodes”
+    - Compatible with a variety of local and remote file systems
+        - provides object-oriented way of implementing file systems
+ - VFS allows the same system call interface (the API) to be used for different types of file systems
+    - The API is to the VFS interface, rather than any specific type of file system
+
 
 
 
