@@ -1165,7 +1165,29 @@ volumn = ∫ʳ₋ᵣ π(√(r²-x²))²dy
 
 We pick one of the green rectangle, and rotate 360' by *x*. We call this object "washer".
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_volumn_washer.png)
+
 What's the volumn of a washer ?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_volumn_washer2.png)
+
+`v_washer` = π(R²-r²)dx
+
+and we know:
+
+R = √x , r = x²
+
+so 
+
+V = ∫¹₀ π(√x²-(x²)²)dx
+
+ = π∫¹₀ (x-x⁴)dx 
+ 
+ = π( x²/2 - x⁵/5 )¹₀
+ 
+ = 0.3π
+
+  
 
 
 
