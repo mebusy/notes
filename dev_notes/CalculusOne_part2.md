@@ -1192,6 +1192,16 @@ V = ∫¹₀ π(√x²-(x²)²)dx
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_disk_shell_washer.png)
 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_volumn_1_minus_xx.png)
+
+for each shell :
+
+ - h = 1-x²
+ - 横截面面积 s = πR²-πr² = π(R+r)(R-r) = π·2x·dx 
+
+V = ∫¹₀ π·2x·(1-x²) dx
+
+ = π/2
 
 
 
