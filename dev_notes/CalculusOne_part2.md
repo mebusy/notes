@@ -1187,6 +1187,8 @@ V = ∫¹₀ π(√x²-(x²)²)dx
  
  = 0.3π
 
+### What is the volume of a thin shell?
+
   
 
 
