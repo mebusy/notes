@@ -1189,7 +1189,9 @@ V = ∫¹₀ π(√x²-(x²)²)dx
 
 ### What is the volume of a thin shell?
 
-  
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_disk_shell_washer.png)
+
+
 
 
 
