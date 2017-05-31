@@ -1203,6 +1203,25 @@ V = ∫¹₀ π·2x·(1-x²) dx
 
  = π/2
 
+### What is the volume of a sphere with a hole drilled in it?
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_volumn_sphere_with_hold.png)
+
+we can solve it by cutting it in shells or washers.
+
+we use shells here.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_volumn_sphere_with_hole_shells.png)
+
+V = ∫²₁ 2πx·2√(4-x²)dx 
+
+ = 4π·√3
+
+---
+
+## How can I calculate length ?
+
+
 
 
 
