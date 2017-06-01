@@ -1223,6 +1223,39 @@ V = ∫²₁ 2πx·2√(4-x²)dx
 
 ### What does "length" even mean?
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_application_length.png)
+
+The total length of stairs is 2 . What if I make those stairs even smaller ?  still 2.
+
+What if I make those stairs infinitely smaller ?
+
+Let us ask another question: how to know the length of a curve y = f(x) ?
+
+for every piece of that curve , the length is √(dx²+dy²) , after I integrate , the length of the curve is :
+
+∫ (√(dx²+dy²))
+
+now we pulling the dx outside 
+
+= ∫ √(1+(dy/dx)²)dx 
+
+So here's the formula that we're going to use ?
+
+ - the **arc length** from (a,f(a)) to (b,f(b)) along the graph of y=f(x) is :
+ - ∫ᵇₐ √(1+f'(x)²) dx
+
+---
+
+### On the graph of y² = x³, what is the length of a certain arc?
+
+
+
+
+
+
+
+
+
 
 
 
