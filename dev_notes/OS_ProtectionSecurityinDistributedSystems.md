@@ -167,6 +167,20 @@
         - Now, B knows that K<sub>ab</sub> is sanctioned by S
 
 
+## Public Key Encryption Details
+
+ - Idea: K<sub>public</sub> can be made public, keep k<sub>private</sub> private
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/OS_security_public_key_encryption_details.png)
+ - Gives message privacy (restricted receiver):
+    - Public keys (secure destination points) can be acquired by anyone/used by anyone
+    - Only person with private key can decrypt message
+ - What about authentication?
+    - Use combination of private and public key
+    - Alice -> Bob: [(I’m Alice)<sup>Aprivate</sup> Rest of message]<sup>Bpublic</sup>
+    - Provides restricted sender and receiver
+ - **But: how does Alice know that it was Bob who sent her B<sub>public</sub> ? and vice versa ?
+
+## TODO
 
 
 
