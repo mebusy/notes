@@ -1248,6 +1248,15 @@ So here's the formula that we're going to use ?
 
 ### On the graph of y² = x³, what is the length of a certain arc?
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/caluculus_application_length_y_x_3_over_2.png)
+
+dy/dx = 3/2·x<sup>1/2</sup>
+
+so length = ∫¹₀ √(1+(3/2·x<sup>1/2</sup>)²) dx
+
+= ∫¹₀ √(1+9/4·x) dx
+
+= (13·√13)/27 - 8/27
 
 
 
