@@ -78,7 +78,7 @@ y = b + ∑ᵢ xᵢwᵢ
     - Typically they use the logistic function 
     - They have nice derivatives which make learning easy (see lecture 3). 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_sigmoid_neurons.png)
+![][1]
 
 <h2 id="9fa3726b2244619bd1b4f0a6f3c0ad10"></h2>
 
@@ -322,6 +322,7 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
     - E = 1/2·∑<sub>n∈training</sub> (tⁿ-yⁿ)²
  - Now differentiate to get error derivatives for weights 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_derive_delta_rule1.png)
+    - minus sign here  is because of (t-y) , if we use the notation in andrewNG's course it is exactly (***y***-h(x))
  - The **batch** delta rule changes the weights in proportion to their error derivatives **summed
  over all training cases** 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_derive_delta_rule2.png)
@@ -374,8 +375,32 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
     - The red gradient vector has a large component along the short axis of the ellipse and a small component along the long axis of the ellipse
     - This is just the opposite of what we want. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_elongated_error_surface.png)
+
+---
+
+## Learning the weights of a logistic output neuron 
+
+### Logistic neurons 
+
+![][1]
+
+They have nice derivatives which make learning easy
 
 
+### The derivatives of a logistic neuron 
+
+ - The derivatives of the logit, z, with respect to the inputs and the weights are very simple: 
+    - ∂z/∂wᵢ = xᵢ
+    - ∂z/∂xᵢ = wᵢ
+ - The derivative of the output with respect to the logit is simple if you express it in terms of the output: 
+    - dy/dz = y(1-y)
+
+
+
+---
+
+ [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_sigmoid_neurons.png
 
 
 
