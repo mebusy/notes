@@ -1,15 +1,53 @@
+...menustart
+
+ - [Neural Networks](#6b347be0e79381eeb5689396d9e59438)
+ - [Lecture 1](#b685b2632f64514a84fc8cbb0b4b7d2c)
+	 - [Some simple models of neurons](#b02cb3fa93ab8f0e6485b0d13bc303cc)
+		 - [Linear neurons](#1ed293fed5b9ae1cf9d961b5ce17cff8)
+		 - [Binary threshold neurons](#60d743bd92d01784da86912ef3e9d3fa)
+		 - [Rectified Linear Neurons](#bea9f293a1d10dc9a09ab31410552fc2)
+		 - [Sigmoid neurons](#5dfb3a910337bd052071a460b50f17d7)
+		 - [Stochastic binary neurons](#9fa3726b2244619bd1b4f0a6f3c0ad10)
+ - [Lecture 2](#2cd2c77c9f81b7be54284357f2c55290)
+	 - [Types of neural network architectures](#b553e95fb37e615918e131140aec36b1)
+		 - [Feed-forward neural networks](#27403055d079f8f5057e91999fe9ff29)
+		 - [Recurrent Networks](#3aa835dbc7f8ec8429d7671acae6aab5)
+			 - [Recurrent neural networks for modeling sequences](#ab481de40578ba1e54e09346c919fe23)
+			 - [An example of what recurrent neural nets can now do (to whet your interest!)](#ac843506e5b9c5acc3c517304fae2ab6)
+		 - [Symmetrically connected networks](#bd53760cfb4568281010b21ad9f4c944)
+	 - [A geometrical view of perceptrons](#b2f07d14cff56667ff8ce65beaa92ace)
+		 - [Weight-space](#18fbaaed2b269781105b0c38d7d03d1f)
+		 - [The cone of feasible solutions](#d70801a1a8a06ad3250060f4a42e0b7d)
+	 - [What perceptrons can’t do](#f6493b60fa9aa860686d995485132458)
+		 - [The limitations of Perceptrons](#8bac84924ecd4f05b2ef5fb5415cda08)
+		 - [What binary threshold neurons cannot do](#14461318bc8dca1452e9768872689b06)
+		 - [Learning with hidden units](#b984ea836f81bad4a3764c2908f793ec)
+ - [Lecture 3](#28b761e5205ba2e17062ee27b6958d08)
+
+...menuend
+
+
+<h2 id="6b347be0e79381eeb5689396d9e59438"></h2>
 
 # Neural Networks
 
+<h2 id="b685b2632f64514a84fc8cbb0b4b7d2c"></h2>
+
 # Lecture 1 
 
+<h2 id="b02cb3fa93ab8f0e6485b0d13bc303cc"></h2>
+
 ## Some simple models of neurons 
+
+<h2 id="1ed293fed5b9ae1cf9d961b5ce17cff8"></h2>
 
 ### Linear neurons
 
 y = b + ∑ᵢ xᵢwᵢ
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_linear_neurons.png)
+
+<h2 id="60d743bd92d01784da86912ef3e9d3fa"></h2>
 
 ### Binary threshold neurons 
 
@@ -22,6 +60,8 @@ y = b + ∑ᵢ xᵢwᵢ
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_bin_threshold_neurons2.png)
 
+<h2 id="bea9f293a1d10dc9a09ab31410552fc2"></h2>
+
 ### Rectified Linear Neurons
 
  - sometimes called linear threshold neurons
@@ -30,6 +70,8 @@ y = b + ∑ᵢ xᵢwᵢ
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_rectified_neurons.png)
 
+<h2 id="5dfb3a910337bd052071a460b50f17d7"></h2>
+
 ### Sigmoid neurons 
 
  - give a real-valued output that is a smooth and bounded function of their total input. 
@@ -37,6 +79,8 @@ y = b + ∑ᵢ xᵢwᵢ
     - They have nice derivatives which make learning easy (see lecture 3). 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_sigmoid_neurons.png)
+
+<h2 id="9fa3726b2244619bd1b4f0a6f3c0ad10"></h2>
 
 ### Stochastic binary neurons 
 
@@ -49,9 +93,15 @@ y = b + ∑ᵢ xᵢwᵢ
 
 ---
 
+<h2 id="2cd2c77c9f81b7be54284357f2c55290"></h2>
+
 # Lecture 2
 
+<h2 id="b553e95fb37e615918e131140aec36b1"></h2>
+
 ## Types of neural network architectures
+
+<h2 id="27403055d079f8f5057e91999fe9ff29"></h2>
 
 ### Feed-forward neural networks
 
@@ -67,6 +117,8 @@ y = b + ∑ᵢ xᵢwᵢ
     - So in speech recognition, for example, we'd like the same thing said by different speaker to become more similar , and different things said by the same speaker to be less similar as we go up through the layers of the network
     - In order to achieve this, The activities of the neurons in each layer are a **non-linear** function of the activities in the layer below
 
+<h2 id="3aa835dbc7f8ec8429d7671acae6aab5"></h2>
+
 ### Recurrent Networks 
 
  - These have directed cycles in their connection graph.
@@ -79,6 +131,8 @@ y = b + ∑ᵢ xᵢwᵢ
 
 
  - Recurrent nets with multiple hidden layers are just a special case that has some of the hidden -> hidden connections missing. 
+
+<h2 id="ab481de40578ba1e54e09346c919fe23"></h2>
 
 #### Recurrent neural networks for modeling sequences
 
@@ -93,11 +147,15 @@ y = b + ∑ᵢ xᵢwᵢ
  - They have the ability to remember information in their hidden state for a long time. 
     - But its very hard to train them to use this potential.
 
+<h2 id="ac843506e5b9c5acc3c517304fae2ab6"></h2>
+
 #### An example of what recurrent neural nets can now do (to whet your interest!) 
 
  - Ilya Sutskever (2011) trained a special type of recurrent neural net to predict the next character in a sequence. 
  - After training for a long time on a string of half a billion characters from English Wikipedia, he got it to generate new text. 
     - It generates by predicting the probability distribution for the next character and then sampling a character from this distribution. 
+
+<h2 id="bd53760cfb4568281010b21ad9f4c944"></h2>
 
 ### Symmetrically connected networks
 
@@ -109,9 +167,13 @@ y = b + ∑ᵢ xᵢwᵢ
 
 ---
 
+<h2 id="b2f07d14cff56667ff8ce65beaa92ace"></h2>
+
 ## A geometrical view of perceptrons
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_perceptron_architecture.png)
+
+<h2 id="18fbaaed2b269781105b0c38d7d03d1f"></h2>
 
 ### Weight-space
 
@@ -138,6 +200,8 @@ y = b + ∑ᵢ xᵢwᵢ
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_weight_space2.png)
 
 
+<h2 id="d70801a1a8a06ad3250060f4a42e0b7d"></h2>
+
 ### The cone of feasible solutions
 
  - To get all training cases right we need to find a point on the right side of all the planes. 
@@ -151,7 +215,11 @@ y = b + ∑ᵢ xᵢwᵢ
  - consider two inputs that both have a label of 1. we use a yellow arrow to represent a weight vectors which correctly classify the 2 inputs.
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_weight_space_con2.png)
 
+<h2 id="f6493b60fa9aa860686d995485132458"></h2>
+
 ## What perceptrons can’t do 
+
+<h2 id="8bac84924ecd4f05b2ef5fb5415cda08"></h2>
 
 ### The limitations of Perceptrons
 
@@ -159,6 +227,8 @@ y = b + ∑ᵢ xᵢwᵢ
     - For binary input vectors, we can have a separate feature unit for each of the exponentially many binary vectors and so we can make any possible discrimination on binary input vectors. (feature mapping ?)
         - This type of table look-up won’t generalize. 
  - But once the hand-coded features have been determined, there are very strong limitations on what a perceptron can learn.  
+
+<h2 id="14461318bc8dca1452e9768872689b06"></h2>
 
 ### What binary threshold neurons cannot do 
 
@@ -168,6 +238,8 @@ y = b + ∑ᵢ xᵢwᵢ
  - The four input-output pairs give four inequalities that are impossible to satisfy: 
     - w₁+w₂ >= θ , 0 >= θ
     - w₁<θ , w₂<θ 
+
+<h2 id="b984ea836f81bad4a3764c2908f793ec"></h2>
 
 ### Learning with hidden units 
 
@@ -180,6 +252,8 @@ y = b + ∑ᵢ xᵢwᵢ
     - This is difficult because nobody is telling us directly what the hidden units should do. 
 
 ---
+
+<h2 id="28b761e5205ba2e17062ee27b6958d08"></h2>
 
 # Lecture 3 
 

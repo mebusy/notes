@@ -44,6 +44,37 @@
 	 - [Using Acknowledgements](#9d3c809afd1b2930170860d0dbebb353)
 	 - [Conclusion](#6f8b794f3246b0c1e1780bb4d4d5dc53)
  - [Lecture 23 : Network Communication Abstractions / Distributed Programming](#097f836a49e3a196c1bdfca778384e04)
+	 - [How to deal with message duplication](#734c62df7a31ed5cd87d6f1e6a9db145)
+	 - [Better messaging: Window-based acknowledgements](#048d5b9f156debfd6e9e0df35ef73d94)
+	 - [Transmission Control Protocol (TCP)](#712c97a373236b579081db769f2e26f0)
+	 - [TCP Windows and Sequence Numbers](#9ee07f82193171f545c07569c849fc4c)
+	 - [Window-Based Acknowledgements (TCP)](#752bf5ab4629c71fba6167a3b3252d10)
+	 - [Selective Acknowledgement Option (SACK)](#19422d661bbc4ae1b85c110603cece66)
+	 - [Congestion Avoidance](#051092838b6a9dd05b10e688a31060ee)
+	 - [Sequence-Number Initialization](#5cfa878082764510a7747ec1e56c5d58)
+	 - [Use of TCP: Sockets](#87cd758891288ebba3176b567e28e316)
+	 - [Socket Setup (Con’t)](#fc3dbe3e3a94b62da50694eed60c5514)
+	 - [Distributed Applications](#f08a0c5ed12bbe6830815cd6005da5ce)
+	 - [Using Messages: Send/Receive behavior](#18c72d71b52916649113b05f56176cec)
+	 - [Messaging for Request/Response communication](#e327f500a2224a9491f7242769760478)
+	 - [General’s Paradox](#388f60d4b525c1360c27584291a7106c)
+	 - [Two-Phase Commit](#76bb77f6a61692c6cdd1b078f2efe26f)
+		 - [Two phase commit example](#33e90a963f562f1fc7f8323b825b9c74)
+	 - [Distributed Decision Making Discussion](#66913dbd4594ec5201af10bd1925f0aa)
+	 - [Conclusion](#6f8b794f3246b0c1e1780bb4d4d5dc53)
+ - [Lecture 24: Distributed File Systems](#fcdc007ff783dbd9743a00efcbffc113)
+	 - [Byzantine General’s Problem](#1535a061d2792d321e26bc9bfae487ab)
+	 - [Remote Procedure Call](#7823b02b00549b08b9e7479a27712bcd)
+	 - [RPC Information Flow](#619ad21e81fa60f6f6b7ff4224879877)
+	 - [RPC Details](#9c6093f1125a29b60e00a00805a68826)
+	 - [Problems with RPC](#587682328c851d08e822e45af127ff21)
+	 - [Cross-Domain Communication/Location Transparency](#27deff3c4c33317556eb1e3dd687c4a0)
+	 - [Microkernel operating systems](#a92be5b27fb0bbf79ae97a4fdd6f3295)
+	 - [Distributed File Systems](#ad416a4ba30fb9f91e5f56d6736c6ebb)
+	 - [Virtual File System (VFS)](#319d7097a96659bafd943e791369a2ba)
+	 - [Simple Distributed File System](#42dcaa5f1e270cbc074827204d6cad5b)
+	 - [Use of caching to reduce network load](#0e4cb9f12d45adbc366ce89051b43dda)
+	 - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
 
 ...menuend
 
@@ -761,6 +792,8 @@ NAME -> ADDRESS
 
 # Lecture 23 : Network Communication Abstractions / Distributed Programming
 
+<h2 id="734c62df7a31ed5cd87d6f1e6a9db145"></h2>
+
 ## How to deal with message duplication
 
  - Solution: put sequence number in message to identify re-transmitted packets
@@ -784,6 +817,8 @@ NAME -> ADDRESS
  - Con: doesn't work if network can delay or duplicate messages arbitrarily
     - if packet 0 gets delayed for long enough, and then you eventually get back to sending packet 0 again. It's possible that an old package 0 and a new packet 0 could look alike.
 
+
+<h2 id="048d5b9f156debfd6e9e0df35ef73d94"></h2>
 
 ## Better messaging: Window-based acknowledgements
 
@@ -810,6 +845,8 @@ NAME -> ADDRESS
  - What if ack gets garbled/dropped? 
     - Timeout and resend just the un-acknowledged packets
 
+<h2 id="712c97a373236b579081db769f2e26f0"></h2>
+
 ## Transmission Control Protocol (TCP)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_tcp.png)
@@ -828,6 +865,8 @@ NAME -> ADDRESS
         - A “good citizen”
             - it tries to make sure that nobody is dropping packets being overloaded. 
 
+<h2 id="9ee07f82193171f545c07569c849fc4c"></h2>
+
 ## TCP Windows and Sequence Numbers
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_tcp_windows_and_sequence_numbers.png)
@@ -843,6 +882,8 @@ NAME -> ADDRESS
         - received and ack’ed (given to application)
         - received and buffered
         - not yet received (or discarded because out of order)
+
+<h2 id="752bf5ab4629c71fba6167a3b3252d10"></h2>
 
 ## Window-Based Acknowledgements (TCP)
 
@@ -877,6 +918,8 @@ NAME -> ADDRESS
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_window_based_ack_tcp.png)
 
+<h2 id="19422d661bbc4ae1b85c110603cece66"></h2>
+
 ## Selective Acknowledgement Option (SACK)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_tcp_selective_ack.png)
@@ -891,6 +934,8 @@ NAME -> ADDRESS
         - basically say something about exactly where the holes are , and what's received. 
     - Must be specially negotiated at beginning of TCP setup
         - Not widely in use (although in Windows since Windows 98)
+
+<h2 id="051092838b6a9dd05b10e688a31060ee"></h2>
 
 ## Congestion Avoidance
 
@@ -911,6 +956,8 @@ NAME -> ADDRESS
     - Timeout =>  congestion, so cut window size in half 
     - “Additive Increase, Multiplicative Decrease”
 
+<h2 id="5cfa878082764510a7747ec1e56c5d58"></h2>
+
 ## Sequence-Number Initialization
 
  - How do you choose an initial sequence number?
@@ -928,6 +975,8 @@ NAME -> ADDRESS
         - Epoch # incremented on crash and/or when run out of sequence #
     - Pseudo-random increment to previous sequence number
         - Used by several protocol implementations
+
+<h2 id="87cd758891288ebba3176b567e28e316"></h2>
 
 ## Use of TCP: Sockets
 
@@ -948,6 +997,8 @@ NAME -> ADDRESS
         - Perform connect() on socket to make connection
         - If connect() successful, have socket connected to server
 
+<h2 id="fc3dbe3e3a94b62da50694eed60c5514"></h2>
+
 ## Socket Setup (Con’t)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_socket_setup.png)
@@ -967,6 +1018,8 @@ NAME -> ADDRESS
  - sockets can be bound to TCP if you want to have as a stream in and stream out 
  - or they can be bound to UDP in which case what you write a chunk of stuff to the socket on one side , and it comes as a packet to the other side and comes out as a chunk. 
 
+<h2 id="f08a0c5ed12bbe6830815cd6005da5ce"></h2>
+
 ## Distributed Applications
 
  - How do you actually program a distributed application?
@@ -984,6 +1037,8 @@ NAME -> ADDRESS
         - Wait until mbox has message, copy into buffer, and return
         - If threads sleeping on this mbox, wake up one of them
 
+<h2 id="18c72d71b52916649113b05f56176cec"></h2>
+
 ## Using Messages: Send/Receive behavior
 
  - When should send(message,mbox) return?
@@ -999,6 +1054,8 @@ NAME -> ADDRESS
         - Send = V, Receive = P
         - However, can’t tell if sender/receiver is local or not!
 
+<h2 id="e327f500a2224a9491f7242769760478"></h2>
+
 ## Messaging for Request/Response communication
 
  - What about two-way communication?
@@ -1008,6 +1065,8 @@ NAME -> ADDRESS
     - Also called: **client-server**
         - Client = requester, Server = responder
         - Server provides “service” (file storage) to the client
+
+<h2 id="388f60d4b525c1360c27584291a7106c"></h2>
 
 ## General’s Paradox
 
@@ -1026,6 +1085,8 @@ NAME -> ADDRESS
     - No way to be sure last message gets through!
 
 
+<h2 id="76bb77f6a61692c6cdd1b078f2efe26f"></h2>
+
 ## Two-Phase Commit
 
  - Since we can’t solve the General’s Paradox (i.e. simultaneous action), let’s solve a related problem
@@ -1042,6 +1103,8 @@ NAME -> ADDRESS
         - Then asks all nodes to commit; they respond with ack
         - After receive acks, coordinator writes “Got Commit” to log
     - Log can be used to complete this process such that all machines either commit or don’t commit
+
+<h2 id="33e90a963f562f1fc7f8323b825b9c74"></h2>
 
 ### Two phase commit example
 
@@ -1066,6 +1129,8 @@ NAME -> ADDRESS
  - What if B crashes at beginning of phase 2?
     - B comes back up, looks at log; sees that it had already promised to commit , when it gets A's commit , it will say, “oh, ok, commit”
 
+<h2 id="66913dbd4594ec5201af10bd1925f0aa"></h2>
+
 ## Distributed Decision Making Discussion
 
  - Why is distributed decision making desirable?
@@ -1085,6 +1150,8 @@ NAME -> ADDRESS
     - **Malicious**: attempting to compromise the decision making
     
 
+<h2 id="6f8b794f3246b0c1e1780bb4d4d5dc53"></h2>
+
 ## Conclusion
 
  - **TCP:** Reliable byte stream between two processes on different machines over Internet (read, write, flush)
@@ -1096,7 +1163,11 @@ NAME -> ADDRESS
 
 ---
 
+<h2 id="fcdc007ff783dbd9743a00efcbffc113"></h2>
+
 # Lecture 24: Distributed File Systems
+
+<h2 id="1535a061d2792d321e26bc9bfae487ab"></h2>
 
 ## Byzantine General’s Problem
 
@@ -1134,6 +1205,8 @@ NAME -> ADDRESS
     - so you can actually ask these players the lieutenants to do something like check access control and so on and make a distributed decision , and decide to vote basically to do that , and do the commit. 
 
 
+<h2 id="7823b02b00549b08b9e7479a27712bcd"></h2>
+
 ## Remote Procedure Call
 
  - Raw messaging is a bit too low-level for programming
@@ -1154,9 +1227,13 @@ NAME -> ADDRESS
  - **Marshalling** involves (depending on system)
     - Converting values to a canonical form, serializing objects, copying arguments passed by reference, etc. 
 
+<h2 id="619ad21e81fa60f6f6b7ff4224879877"></h2>
+
 ## RPC Information Flow
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_rpc_flow.png)
+
+<h2 id="9c6093f1125a29b60e00a00805a68826"></h2>
 
 ## RPC Details
 
@@ -1197,6 +1274,8 @@ NAME -> ADDRESS
  - What if multiple clients?
     - Pass pointer to client-specific return mbox in request
 
+<h2 id="587682328c851d08e822e45af127ff21"></h2>
+
 ## Problems with RPC
 
  - Non-Atomic failures
@@ -1216,6 +1295,8 @@ NAME -> ADDRESS
     - Means programmers must be aware that RPC is not free
         - Caching can help, but may make failure handling complex
 
+<h2 id="27deff3c4c33317556eb1e3dd687c4a0"></h2>
+
 ## Cross-Domain Communication/Location Transparency
 
  - How do address spaces communicate with one another?
@@ -1233,6 +1314,8 @@ NAME -> ADDRESS
  
 PRC is a crucial part of how micro kernels work. 
 
+<h2 id="a92be5b27fb0bbf79ae97a4fdd6f3295"></h2>
+
 ## Microkernel operating systems
 
  - Example: split kernel into application-level servers.
@@ -1244,6 +1327,8 @@ PRC is a crucial part of how micro kernels work.
     - Enforces modularity: allows incremental upgrades of pieces of software (client or server)
     - Location transparent: service can be local or remote
         - For example in the X windowing system: Each X client can be on a separate machine from X server; Neither has to run on the machine with the frame buffer.
+
+<h2 id="ad416a4ba30fb9f91e5f56d6736c6ebb"></h2>
 
 ## Distributed File Systems
 
@@ -1263,6 +1348,8 @@ PRC is a crucial part of how micro kernels work.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_distributed_file_system_mount.png)
 
+<h2 id="319d7097a96659bafd943e791369a2ba"></h2>
+
 ## Virtual File System (VFS)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_vfs.png)
@@ -1274,6 +1361,8 @@ PRC is a crucial part of how micro kernels work.
         - provides object-oriented way of implementing file systems
  - VFS allows the same system call interface (the API) to be used for different types of file systems
     - The API is to the VFS interface, rather than any specific type of file system
+
+<h2 id="42dcaa5f1e270cbc074827204d6cad5b"></h2>
 
 ## Simple Distributed File System
 
@@ -1288,6 +1377,8 @@ PRC is a crucial part of how micro kernels work.
     - Lots of network traffic/not well pipelined
     - Server can be a bottleneck
 
+<h2 id="0e4cb9f12d45adbc366ce89051b43dda"></h2>
+
 ## Use of caching to reduce network load
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_simple_distributed_fs_use_cache.png)
@@ -1300,6 +1391,8 @@ PRC is a crucial part of how micro kernels work.
         - Client caches have data not committed at server
     - Cache consistency!
         - Client caches not consistent with server/each other
+
+<h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
 ## TODO 
 

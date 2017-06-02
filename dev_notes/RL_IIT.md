@@ -1,5 +1,27 @@
+...menustart
+
+ - [RL IIT](#bfe5f76aa0ffff1c61f8e731c44d413c)
+ - [Lec 50 - Hierarchical RL](#b8fa68aac56b07e6b380ea91637e054f)
+ - [Lec 51 - Types of Optimality](#ffa411e0c712e269348ec97e67938f11)
+ - [Lec 52: Semi Markov Decision Process](#dea643812f3c38d43b22e936ae4e2e96)
+	 - [SMDP](#accd95b8e78c80b20ffe9e4eed7096ec)
+	 - [SMDP Definition](#abafe4a0b9b20f75c81527b5d6126cdf)
+	 - [SMDP Q-Learning](#ac7cd9d04bff3f5467432de98f587b6f)
+ - [Lec 53 :  Options](#9dd8cdd14e9fb7409d79f732d6fad4bd)
+	 - [macro action](#db51e8e30decc185ef0a832692206c9e)
+	 - [Two kinds of options](#2aa72195d24daa01c8bc25749b6454a9)
+ - [Lec 54 : Learning with Options](#4b519a7a64bf60c84e3429985f71bf7c)
+ - [Lec 55: Hierarchy of Abstract Machine (HAM)](#b290df95e9d6534f3fd0f7fadc97fe1f)
+ - [Lec 56: MAXQ](#67ab3535e778c2e13f79d3d60e849021)
+
+...menuend
+
+
+<h2 id="bfe5f76aa0ffff1c61f8e731c44d413c"></h2>
 
 # RL IIT
+
+<h2 id="b8fa68aac56b07e6b380ea91637e054f"></h2>
 
 # Lec 50 - Hierarchical RL
 
@@ -11,6 +33,8 @@ Advantages:
  - state abstraction 
     - when I start breaking things down into these kinds of subproblems I can start focusing on things that are only needed for solving the subproblems.
     - solving one subproblem does not depend on other subproblems. 
+
+<h2 id="ffa411e0c712e269348ec97e67938f11"></h2>
 
 # Lec 51 - Types of Optimality
 
@@ -58,7 +82,11 @@ If I come up with a solution where the individual components solved optimally , 
     
 ---
 
+<h2 id="dea643812f3c38d43b22e936ae4e2e96"></h2>
+
 # Lec 52: Semi Markov Decision Process
+
+<h2 id="accd95b8e78c80b20ffe9e4eed7096ec"></h2>
 
 ## SMDP 
 
@@ -83,6 +111,8 @@ Ps. here , holding τ seconds then apply action ,  and taking action immediately
 
 --- 
 
+<h2 id="abafe4a0b9b20f75c81527b5d6126cdf"></h2>
+
 ## SMDP Definition
 
 SMDP is defined as the tuple <S,A,P,R>
@@ -92,6 +122,8 @@ SMDP is defined as the tuple <S,A,P,R>
     - reward could depend on the transition time , or the holding time.
 
 ---
+
+<h2 id="ac7cd9d04bff3f5467432de98f587b6f"></h2>
 
 ## SMDP Q-Learning
 
@@ -108,9 +140,13 @@ So notice that SMDP Q-Learning does not actually look into the structure Q(s<sub
 
 --- 
 
+<h2 id="9dd8cdd14e9fb7409d79f732d6fad4bd"></h2>
+
 # Lec 53 :  Options
 
 In some sense it is the simplest of the hierarchical frameworks.  The basic idea behind options is something very very simple. So I am going to take the solutions to these sub problems that we are defining , I will encapsulate them as a single action.  
+
+<h2 id="db51e8e30decc185ef0a832692206c9e"></h2>
 
 ## macro action
 
@@ -133,6 +169,8 @@ How to specify a useful macro action (option) ?
 So Option o=< Iₒ,πₒ,βₒ >
 
 
+<h2 id="2aa72195d24daa01c8bc25749b6454a9"></h2>
+
 ## Two kinds of options 
 
  - Markov option
@@ -141,6 +179,8 @@ So Option o=< Iₒ,πₒ,βₒ >
  
  - Semi Markov option
     - πₒ depends on histroy since the option started
+
+<h2 id="4b519a7a64bf60c84e3429985f71bf7c"></h2>
 
 # Lec 54 : Learning with Options
 
@@ -159,7 +199,11 @@ So Option o=< Iₒ,πₒ,βₒ >
         - Q(s₁,o) = Q(s₁,o) + α·[ r₁ +  γ·maxQ( s₂,a ) - Q(s₁,o) ] , if terminated at s₂
 
 
+<h2 id="b290df95e9d6534f3fd0f7fadc97fe1f"></h2>
+
 # Lec 55: Hierarchy of Abstract Machine (HAM)
+
+<h2 id="67ab3535e778c2e13f79d3d60e849021"></h2>
 
 # Lec 56: MAXQ
 

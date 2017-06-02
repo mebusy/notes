@@ -72,7 +72,21 @@
 		 - [What is ∫sin<sup>2n+1</sup>x·cos²ⁿxdx ?](#1594c9119beb52d6951d2a239ad13553)
 		 - [What is ∫<sup>π</sup>₀ sin²ⁿxdx ?](#daeff048471d45e5b694c61ba1538360)
 		 - [What is ∫sinⁿxdx in terms of ∫sinⁿ⁻²xdx ?](#e6c1871b792c82c40999a7da6c07c873)
-	 - [How does long division help ?](#a365962601b4a94c5609621f970e160b)
+ - [Week 16: Applications of Integration](#879c0c1f206e5d620e7ce0bfd2a2e0b2)
+	 - [What can we do with integrals besides calculating area?  Volumns !](#155fe6d0ba46bf21608d4267f5431cbf)
+	 - [How else can I calculate area ?](#790fe246d1dd6f4d2162fc4fe4f28e61)
+		 - [What happens when I use thin horizontal rectangles to compute area?](#ebb665e75800b60c1affdaa77fc9e5c3)
+		 - [When should I use horizontal as opposed to vertical pieces?](#1eff9e402e1402bf1d1c8984c1387c61)
+		 - [Quiz](#ab458f4b361834dd802e4f40d31b5ebc)
+	 - [How I can calculate volumn ?](#6d7ddc94e89335ca03c91ea5976a39a9)
+		 - [What does "volume" even mean?](#50d38fafec7026a597e2116789e124d4)
+		 - [What is the volume of a sphere?](#2c5d1b5cc187a6c7ab03086f49434c4c)
+		 - [How do washers help to compute the volume of a solid of revolution?](#32c7f2421ed02a30ee7e2e4c7b45d331)
+		 - [What is the volume of a thin shell?](#7660cc24ddc825e2c685482bdfda7354)
+		 - [What is the volume of a sphere with a hole drilled in it?](#ff243addc34fe33a3b0d1d8fd1387cd8)
+	 - [How can I calculate length ?](#9ee7a107678b439893e2559c05a14dcc)
+		 - [What does "length" even mean?](#de5e7676d649c7468e2bb575b9ab93af)
+		 - [On the graph of y² = x³, what is the length of a certain arc?](#37a18465856958ba97dc6aeaaa06389e)
 
 ...menuend
 
@@ -1072,11 +1086,19 @@ TODO
 
 ---
 
+<h2 id="879c0c1f206e5d620e7ce0bfd2a2e0b2"></h2>
+
 # Week 16: Applications of Integration
+
+<h2 id="155fe6d0ba46bf21608d4267f5431cbf"></h2>
 
 ## What can we do with integrals besides calculating area?  Volumns ! 
 
+<h2 id="790fe246d1dd6f4d2162fc4fe4f28e61"></h2>
+
 ## How else can I calculate area ?
+
+<h2 id="ebb665e75800b60c1affdaa77fc9e5c3"></h2>
 
 ### What happens when I use thin horizontal rectangles to compute area?
 
@@ -1085,6 +1107,8 @@ TODO
  - height of rectangle : dy
  - width of rectangle: 2√y 
  - area = ∫¹₀ 2√ydy   (Ps. not [-1,1], [-1,1] is for ∫xxxdx  )
+
+<h2 id="1eff9e402e1402bf1d1c8984c1387c61"></h2>
 
 ### When should I use horizontal as opposed to vertical pieces?
 
@@ -1109,6 +1133,8 @@ if I cut this up into horizontal strips, all of my horizontal strips have an ora
  - width :  (y²+1)/2 - y²
  - area = ∫¹₀ ((y²+1)/2 - y²) dy
 
+<h2 id="ab458f4b361834dd802e4f40d31b5ebc"></h2>
+
 ### Quiz
 
 Write an integral representing the area of the region bounded by the lines x=8, x=12, the function f(x)=6x+7, and the function g(x) = √(10+arctan(x)).
@@ -1118,7 +1144,11 @@ Write an integral representing the area of the region bounded by the lines x=8, 
 
 ---
 
+<h2 id="6d7ddc94e89335ca03c91ea5976a39a9"></h2>
+
 ## How I can calculate volumn ?
+
+<h2 id="50d38fafec7026a597e2116789e124d4"></h2>
 
 ### What does "volume" even mean?
 
@@ -1142,6 +1172,8 @@ volumn = ∫ₓ₌²₀ π(x/2)²dx
 
 = 2π/3
 
+<h2 id="2c5d1b5cc187a6c7ab03086f49434c4c"></h2>
+
 ### What is the volume of a sphere?
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_calculus_volumn_of_sphere.png)
@@ -1156,6 +1188,8 @@ volumn = ∫ʳ₋ᵣ π(√(r²-x²))²dy
 = 2π ( r²r - r³/3 )
 
 = 4/3πr³
+
+<h2 id="32c7f2421ed02a30ee7e2e4c7b45d331"></h2>
 
 ### How do washers help to compute the volume of a solid of revolution?
 
@@ -1187,6 +1221,8 @@ V = ∫¹₀ π(√x²-(x²)²)dx
  
  = 0.3π
 
+<h2 id="7660cc24ddc825e2c685482bdfda7354"></h2>
+
 ### What is the volume of a thin shell?
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_disk_shell_washer.png)
@@ -1202,6 +1238,8 @@ for each shell :
 V = ∫¹₀ π·2x·(1-x²) dx
 
  = π/2
+
+<h2 id="ff243addc34fe33a3b0d1d8fd1387cd8"></h2>
 
 ### What is the volume of a sphere with a hole drilled in it?
 
@@ -1219,7 +1257,11 @@ V = ∫²₁ 2πx·2√(4-x²)dx
 
 ---
 
+<h2 id="9ee7a107678b439893e2559c05a14dcc"></h2>
+
 ## How can I calculate length ?
+
+<h2 id="de5e7676d649c7468e2bb575b9ab93af"></h2>
 
 ### What does "length" even mean?
 
@@ -1245,6 +1287,8 @@ So here's the formula that we're going to use ?
  - ∫ᵇₐ √(1+f'(x)²) dx
 
 ---
+
+<h2 id="37a18465856958ba97dc6aeaaa06389e"></h2>
 
 ### On the graph of y² = x³, what is the length of a certain arc?
 

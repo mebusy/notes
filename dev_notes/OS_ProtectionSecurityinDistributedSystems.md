@@ -1,5 +1,27 @@
+...menustart
+
+ - [Lecture 25: Protection and Security in Distributed Systems](#dd4f5d8cb4b41025e901f4ae927502e8)
+	 - [Protection vs Security](#aa07a73c112f134be3edd0f8e387f81e)
+	 - [Preventing Misuse](#54fbb3a1b74b50873051b15b8b9da112)
+	 - [Authentication: Identifying Users](#63e0e1d364470ca21bbc6d4c990f97ae)
+	 - [Passwords: Secrecy](#e3dc16e3792097354714fe74aa9384f5)
+	 - [Passwords: How easy to guess?](#0786a4f51927e5e2b11b53fc2768a706)
+	 - [Passwords: Making harder to crack](#02dc1108d133e67efac42b2d32170ca8)
+	 - [Passwords: Making harder to crack (con’t)](#d342af78f5bfec7714f01a8dc43c306d)
+	 - [Authentication in Distributed Systems](#f22527f1baffc1e0fc9181cac23fcaa5)
+	 - [Private Key Cryptography](#ae44d44e6a5e4084ce76b2ab48301ad7)
+	 - [Key Distribution](#94d63bc1b630cda150380f68db7a6396)
+	 - [Public Key Encryption Details](#81e3c1a0648ebc62dff7efb7651ea741)
+	 - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
+
+...menuend
+
+
+<h2 id="dd4f5d8cb4b41025e901f4ae927502e8"></h2>
 
 # Lecture 25: Protection and Security in Distributed Systems
+
+<h2 id="aa07a73c112f134be3edd0f8e387f81e"></h2>
 
 ## Protection vs Security
 
@@ -15,6 +37,8 @@
  - What we hope to gain today and next time
     - Conceptual understanding of how to make systems secure
     - Some examples, to illustrate why providing security is really hard in practice
+
+<h2 id="54fbb3a1b74b50873051b15b8b9da112"></h2>
 
 ## Preventing Misuse
 
@@ -34,6 +58,8 @@
     - Log in as self and can do anything with your resources; for instance: run program that erases all of your files
     - Can you trust software to correctly enforce Authentication and Authorization?????
 
+<h2 id="63e0e1d364470ca21bbc6d4c990f97ae"></h2>
+
 ## Authentication: Identifying Users
 
  - How to identify users to the system?
@@ -50,6 +76,8 @@
         - Examples: fingerprint reader, palm reader, retinal scan
         - Becoming quite a bit more common
 
+<h2 id="e3dc16e3792097354714fe74aa9384f5"></h2>
+
 ## Passwords: Secrecy
 
  - System must keep copy of secret to check against passwords
@@ -65,6 +93,8 @@
         - Governments want back door so they can snoop
     - Also, security through obscurity doesn’t work
         - GSM encryption algorithm was secret; accidentally released; Berkeley grad students cracked in a few hours
+
+<h2 id="0786a4f51927e5e2b11b53fc2768a706"></h2>
 
 ## Passwords: How easy to guess?
 
@@ -86,6 +116,8 @@
         - Even faster today (use multiple processors)
     - Takes less time to check for all words in the dictionary!
 
+<h2 id="02dc1108d133e67efac42b2d32170ca8"></h2>
+
 ## Passwords: Making harder to crack
 
  - How can we make passwords harder to crack?
@@ -100,6 +132,8 @@
     - Unfortunately, people still pick common patterns
         - e.g. Capitalize first letter of common word, add one digit
     
+<h2 id="d342af78f5bfec7714f01a8dc43c306d"></h2>
+
 ## Passwords: Making harder to crack (con’t)
 
  - Technique 3: Delay checking of passwords
@@ -120,6 +154,8 @@
         - Server never asks same “question” twice
     - Often performed by smartcard plugged into system
 
+<h2 id="f22527f1baffc1e0fc9181cac23fcaa5"></h2>
+
 ## Authentication in Distributed Systems
 
  - What if identity must be established across network?
@@ -132,6 +168,8 @@
     - **Authentication: Remote Authenticity, restrict senders**
 
 
+<h2 id="ae44d44e6a5e4084ce76b2ab48301ad7"></h2>
+
 ##  Private Key Cryptography
 
  - Private Key (Symmetric) Encryption:
@@ -143,6 +181,8 @@
     - Can’t derive key from plain text and ciphertext
     - As long as password stays secret, get both secrecy and authentication
  - Symmetric Key Algorithms: DES, Triple-DES, AES 
+
+<h2 id="94d63bc1b630cda150380f68db7a6396"></h2>
 
 ## Key Distribution
 
@@ -167,6 +207,8 @@
         - Now, B knows that K<sub>ab</sub> is sanctioned by S
 
 
+<h2 id="81e3c1a0648ebc62dff7efb7651ea741"></h2>
+
 ## Public Key Encryption Details
 
  - Idea: K<sub>public</sub> can be made public, keep k<sub>private</sub> private
@@ -179,6 +221,8 @@
     - Alice -> Bob: [(I’m Alice)<sup>Aprivate</sup> Rest of message]<sup>Bpublic</sup>
     - Provides restricted sender and receiver
  - **But: how does Alice know that it was Bob who sent her B<sub>public</sub> ? and vice versa ?
+
+<h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
 ## TODO
 
