@@ -80,8 +80,8 @@ information state , a.k.a Markov state
 ## Model
  
  - A model predicts what the environment will do next
- - Transitions:  𝑃 predicts the next state
- - Rewards: 𝓡 predicts the next (immediate) reward, e.g.
+ - Transitions:  P predicts the next state
+ - Rewards: R predicts the next (immediate) reward, e.g.
  - Model is not necessary.
 
 ## Categorizing RL agents 1
@@ -147,16 +147,15 @@ Two fundamental problems in sequential decision making
 ## Markov Process
 
  - A Markov process is a memoryless random process,
- - A Markov Process (or Markov Chain) is a tuple ( S,𝑃 )
+ - A Markov Process (or Markov Chain) is a tuple ( S,P )
     - S is a (finite) set of states
-    - 𝑃 is a state transition probability matrix
+    - P is a state transition probability matrix
 
 ## Markov Reward Process
 
- - A Markov Reward Process is a tuple ( S ,𝑃 , 𝓡 , γ )
-    - 𝓡 is a reward function , 𝓡<sub>s</sub> = 𝔼( R<sub>t+1</sub> | S<sub>t</sub>=s )
+ - A Markov Reward Process is a tuple ( S ,P , R , γ )
+    - R is a reward function , R<sub>s</sub> = 𝔼( R<sub>t+1</sub> | S<sub>t</sub>=s )
     - γ is a discount factor, γ ∈ [0, 1]
-
 
 
 
