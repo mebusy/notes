@@ -304,6 +304,18 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
  - We will start with guesses for the weights w=( w<sub>fish<sub>, w<sub>chips<sub>, w<sub>ketchup<sub> )
     - and then adjust the guesses slightly
     - to give a better fit to the prices given by the cashier. 
+ - The true weights used by the cashier
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_price_guess0.png)
+ - A model of the cashier with arbitrary initial weights 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_price_guess1.png)
+    - Residual error = 350  
+    - The “delta-rule” for learning is: 
+        - Δwᵢ = εxᵢ(t-y) 
+    - With a learning rate ε of 1/35 , the weight changes are 
+        - +20, +50, +30 
+    - This gives new weights of 70, 100, 80. 
+        - Notice that the weight for chips got worse! 
+
 
 
 
