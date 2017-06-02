@@ -344,6 +344,36 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
  - In the online version of the delta-rule we increment or decrement the weight vector by the input vector scaled by the residual error and the learning rate. 
     - So we have to choose a learning rate. This is annoying. 
 
+---
+
+## The error surface for a linear neuron
+
+### The error surface for a linear neuron 
+
+ - The error surface lies in a space with
+    - a horizontal axis for each weight
+    - and one vertical axis for the error
+ - For a linear neuron with a squared error, it is a quadratic bowl. 
+    - Vertical cross-sections are parabolas 抛物线
+    - Horizontal cross-sections are ellipses
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_error_surface.png)
+ - For multi-layer, non-linear nets the error surface is much more complicated. 
+
+### Online versus batch learning 
+
+ - The simplest kind of batch learning does steepest descent on the error surface. 
+    - This travels perpendicular to the contour lines. 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_batch_error_surface.png)
+ - The simplest kind of online learning zig-zags around the direction of steepest descent: 
+    - This travels perpendicular to the training case line.
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_online_error_surface.png)
+
+### Why learning can be slow 
+
+ - If the ellipse is very elongated, the direction of steepest descent is almost perpendicular to the direction towards the minimum! 
+    - The red gradient vector has a large component along the short axis of the ellipse and a small component along the long axis of the ellipse
+    - This is just the opposite of what we want. 
+
 
 
 
