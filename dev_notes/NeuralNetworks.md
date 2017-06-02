@@ -316,12 +316,36 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
     - This gives new weights of 70, 100, 80. 
         - Notice that the weight for chips got worse! 
 
+### Deriving the delta rule 
+
+ - Define the error as the squared residuals summed over all training cases: 
+    - E = 1/2·∑<sub>n∈training</sub> (tⁿ-yⁿ)²
+ - Now differentiate to get error derivatives for weights 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_derive_delta_rule1.png)
+ - The **batch** delta rule changes the weights in proportion to their error derivatives **summed
+ over all training cases** 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_derive_delta_rule2.png)
+    - minus sign in front of ε cuz we want the error to go down.
+
+### Behaviour of the iterative learning procedure 
+
+ - Does the learning procedure eventually get the right answer? 
+    - There may be no perfect answer. 
+    - By making the learning rate small enough we can get as close as we desire to the best answer. 
+ - How quickly do the weights converge to their correct values? 
+    - It can be very slow if two input dimensions are highly correlated.
+        - If you almost always have the **same number of** portions of ketchup and chips, it is hard to decide how to divide the price between ketchup and chips. 
+
+     
+### The relationship between the online delta-rule and the learning rule for perceptrons
+
+ - In perceptron learning, we increment or decrement the weight vector by the input vector.
+    - But we only change the weights when we make an error. 
+ - In the online version of the delta-rule we increment or decrement the weight vector by the input vector scaled by the residual error and the learning rate. 
+    - So we have to choose a learning rate. This is annoying. 
 
 
 
 
-minus sign in front of ε cuz we want the error to go down.
-
- 
 
 
