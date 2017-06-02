@@ -157,6 +157,21 @@ Two fundamental problems in sequential decision making
     - R is a reward function , R<sub>s</sub> = 𝔼( R<sub>t+1</sub> | S<sub>t</sub>=s )
     - γ is a discount factor, γ ∈ [0, 1]
 
+### Return
+
+ - the return G<sub>t</sub> t is the total discounted reward from time-step t
+    - why here is no expectation ?
+        - because here G is just one sample from our MRP , later we will talk about expectation.
+    - The value of receiving reward R afte k + 1 time-steps is γᵏR.
+    - This values immediate reward above delayed reward.
+        - γ close to 0 leads to ”myopic” evaluation
+        - γ close to 1 leads to ”far-sighted” evaluation
+
+ - Most Markov reward and decision processes are discounted
+ - It is sometimes possible to use undiscounted Markov reward processes
+    - if all sequences terminate
+
+
 
 
 
