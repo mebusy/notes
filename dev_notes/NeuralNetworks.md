@@ -257,7 +257,58 @@ y = b + ∑ᵢ xᵢwᵢ
 
 # Lecture 3 
 
+## Learning the weights of a linear neuron 
 
+### Why the perceptron learning procedure cannot be generalised to hidden layers 
+    
+ - The perceptron convergence procedure works by ensuring that every time the weights change, they get closer to every “generously feasible” set of weights
+    - This type of guarantee cannot be extended to more complex networks in which the average of two good solutions may be a bad solution
+ - So “multi-layer” neural networks do not use the perceptron learning procedure
+    - They should never have been called multi-layer perceptrons. 
+
+### A different way to show that a learning procedure makes progress 
+
+ - Instead of showing the weights get closer to a good set of weights, show that the actual output values get closer the target values. 
+    - This can be true even for non-convex problems in which there are many quite different sets of weights that work well and averaging two good sets of weights may give a bad set of weights. 
+    - It is not true for perceptron learning. 
+ - The simplest example is a linear neuron with a squared error measure. 
+
+### Linear neurons (also called linear filters) 
+
+y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx 
+
+
+ - The neuron has a realvalued output which is a weighted sum of its inputs 
+ - The aim of learning is to minimize the error summed over all training cases. 
+    - The error is the squared difference between the desired output and the actual output. 
+
+### Why don’t we solve it analytically? 
+
+ - 为什么不用矩阵直接求近似解？
+ - Scientific answer: We want a method that real neurons could use. 
+ - Engineering answer: We want a method that can be generalized to multi-layer, non-linear neural networks
+    - The analytic solution relies on it being linear and having a squared error measure. 
+    - Iterative methods are usually less efficient but they are much easier to generalize. 
+
+### A toy example to illustrate the iterative method 
+
+每天你在自助餐厅吃午饭。你的饮食包括鱼fish，薯条chips 和番茄酱ketchup 。每样你都会视心情拿几个。收银员只会告诉你膳食的总价格.几天后，您应该可以弄清每种食物的价格。
+
+ - The iterative approach: 
+    - Start with random guesses for the prices and
+    - then adjust them to get a better fit to the observed prices of whole meals. 
+
+### Solving the equations iteratively
+
+ - price = x<sub>fish<sub>w<sub>fish<sub> + x<sub>chips<sub>w<sub>chips<sub> + x<sub>ketchup<sub>w<sub>ketchup<sub>
+ - We will start with guesses for the weights w=( w<sub>fish<sub>, w<sub>chips<sub>, w<sub>ketchup<sub> )
+    - and then adjust the guesses slightly
+    - to give a better fit to the prices given by the cashier. 
+
+
+
+
+minus sign in front of ε cuz we want the error to go down.
 
  
 
