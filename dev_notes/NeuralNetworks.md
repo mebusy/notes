@@ -171,6 +171,9 @@ y = b + ∑ᵢ xᵢwᵢ
 
 ## A geometrical view of perceptrons
 
+perceptron is 二分类的线性分类模型。 输入为实例的特征向量，输出为实例的类别（取+1和-1）。
+
+
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_perceptron_architecture.png)
 
 <h2 id="18fbaaed2b269781105b0c38d7d03d1f"></h2>
@@ -395,6 +398,52 @@ They have nice derivatives which make learning easy
     - ∂z/∂xᵢ = wᵢ
  - The derivative of the output with respect to the logit is simple if you express it in terms of the output: 
     - dy/dz = y(1-y)
+
+### Using the chain rule to get the derivatives needed for learning the weights of a logistic unit
+
+ - To learn the weights we need the derivative of the output with respect to each weight: 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_sigmoid_error_derivative.png)
+
+---
+
+## The backpropagation algorithm 
+
+### Learning with hidden units (again) 
+
+ - Networks without hidden units are very limited 
+ - Adding a layer of hand-coded features (as in a perceptron) makes them much more powerful but the hard bit is designing the features.
+    - We would like to find good features without requiring insights into the task or repeated trial and error where we guess some features and see how well they work.  
+ - We need to automate the loop of designing features for a particular task and seeing how well they work.
+
+### Learning by perturbing weights
+
+this idea occurs to everyone who knows about evolution
+
+ - Randomly perturb one weight and see if it improves performance. If so, save the change. 
+    - This is a form of reinforcement learning. 
+    - **Very inefficient**. We need to do multiple forward passes on a representative set of training cases just to change one weight. Backpropagation is much better. 
+    - Towards the end of learning, large weight perturbations will nearly always make things **worst** , because the weights need to have the right relative values
+
+### Learning by using perturbations 
+
+ - We could randomly perturb all the weights in parallel and correlate the performance gain with the weight changes. 
+    - Not any better because we need lots of trials on each training case to “ see ” the effect of changing one weight through the noise created by all the changes to other weights.
+ - A better idea: Randomly perturb the activities of the
+ hidden units. 
+    - Once we know how we want a hidden activity to change on a given training case, we can **compute** how to change the weights 
+    - There are fewer activities than weights, but backpropagation still wins by a factor of the number of neurons. 
+
+### The idea behind backpropagation
+
+ - We don’t know what the hidden units ought to do, but we can compute how fast the error changes as we change a hidden activity.
+    -  Instead of using desired activities to train the hidden units, use **error derivatives w.r.t. hidden activities**.
+        - w.r.t :  with respect to
+    - Each hidden activity can affect many output units and can therefore have many separate effects on the error. These effects must be combined. 
+ - We can compute error derivatives for all the hidden units efficiently at the same time. 
+    - Once we have the error derivatives for the hidden activities, its easy to get the error derivatives for the weights going into a hidden unit.  
+
+
 
 
 
