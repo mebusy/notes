@@ -325,7 +325,6 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
     - E = 1/2·∑<sub>n∈training</sub> (tⁿ-yⁿ)²
  - Now differentiate to get error derivatives for weights 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_derive_delta_rule1.png)
-    - minus sign here  is because of (t-y) , if we use the notation in andrewNG's course it is exactly (***y***-h(x))
  - The **batch** delta rule changes the weights in proportion to their error derivatives **summed
  over all training cases** 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_derive_delta_rule2.png)
@@ -444,7 +443,6 @@ this idea occurs to everyone who knows about evolution
     - Once we have the error derivatives for the hidden activities, its easy to get the error derivatives for the weights going into a hidden unit.  
 
 
- - Backpropagation works with derivatives. It can be used for logistic neurons.  In a binary threshold neuron the derivatives of the output function are 0 , so the error singal will not be able to propagate through it. 
 
 
 ### Sketch of the backpropagation algorithm on a single case 
@@ -457,12 +455,115 @@ this idea occurs to everyone who knows about evolution
 
 ### Backpropagating dE/dy
 
+ - Backpropagation works with derivatives. It can be used for logistic neurons.  In a binary threshold neuron the derivatives of the output function are 0 , so the error singal will not be able to propagate through it. 
+
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_Backpropagating_dEdy.png)
+
 This is how you backpropagate the error derivative  with respect to the output of a unit. 
 
 So we'll consider an output unit *j* and a hidden unit *i*. 
 
 The output of the hidden unit i will be yᵢ , the output of the output unit j will be yⱼ. And the total input received by the output unit j will be zⱼ.
 
+The first thing we need to do , is convert the error derivative with respect to yⱼ , into an error derivative with respect to zⱼ. 
+
+To do that we use the chain rule.  As we've seen before, when we were looking at logistic units , it is showing as following: 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_Backpropagating_dEdy1.png)
+
+So now we've got the error derivative with respect to the total input received by unit j. 
+
+Now we can compute the error derivative with respect to the output of unit i -- yᵢ. It's gonna be the sum over all of the 3 outgoing connection of unit i. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_Backpropagating_dEdy2.png)
+
+So the first term there ( dzⱼ/dyᵢ )is how the total input to unit j (zⱼ) changes as we change the output of unit i (yᵢ). And then we have to multiply that by how the error root of changes as we change the totao input to unit j , which we can compute on the line above. 
+
+And as we saw before , when studying the logistic unit, dzⱼ/dyᵢ is just the weight on the connection wᵢⱼ. 
+
+So what we get is the error derivative with respect to the output of unit i (yᵢ) is sum of over all the outgoing connection to the layer above , of the weight wᵢⱼ on that connection times a quantity we would have already computed which is ∂E/∂zⱼ for the layer above. 
+
+And so you can see the computation looks very like what we do on the forward pass, but we're going in the other direction. 
+
+What we do for each unit in that hidden layer that contains i , is we compute the sum of a quantity in the layer above times  the weights on the connections. 
+
+Once we've got ∂E/∂zⱼ , which we computed on the first line there, is very easy to get the error derivatives for all the weights coming into unity j. 
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_Backpropagating_dEdy3.png)
+
+∂zⱼ/∂wᵢⱼ is simply the activity of the unit in the layer below -- yᵢ. 
+
+So the rule for changing the weight is just you multiply, this quantity you've computed at a unit ( ∂E/∂zⱼ) , by the activity coming in from the layer below. And that gives you the error of derivative with respect to weight. 
+
+
+So on this slide we have seen how we can stop with  ∂E/∂zⱼ , and back propagate to get ∂E/∂zᵢ, we'll come backwards through one layer and computed the same quantity -- the derivative of the error with respect to the output in the previous layer. So we can clearly do that for as many layers as we like. And after we've done that for all these layers, we can compute how the error changes as you change the weights on the connections.  That's the backpropagation algorithm. It's an algorithm for taking 1 training case  and computing  efficiently , for every weight in the network , how the error will change , on that particular traning case ,  as you change the weight. 
+
+
+---
+
+∂E/∂wᵢⱼ = yᵢ·∂E/∂zⱼ =  yᵢ· yⱼ(1-yⱼ)·∂E/∂yⱼ = yᵢ· yⱼ(1-yⱼ)· -(tⱼ-yⱼ) 
+ 
+let xᵢ = yᵢ
+
+Δw = -ε(y-t) y(1-y)xᵢ
+
+
+---
+
+
+## Using the derivatives computed by backpropagation 
+
+There are a number of other issues that have to be addressed before we actually get a learning procedure that's fully specified. For example , we need to decide how often to update the weights , and we need to decide how to prevent the network from over fitting very badly if we use a large network. 
+
+### Converting error derivatives into a learning procedure 
+
+ - The backpropagation algorithm is an efficient way of computing the error derivative ∂E/∂w for every weight on a single training case. 
+ - To get a fully specified learning procedure, we still need to make a lot of other decisions about how to use these error derivatives: 
+    - **Optimization issues:** How do we use the error derivatives on individual cases to discover a good set of weights?
+    - **Generalization issues:** How do we ensure that the learned weights work well for cases we did not see during training? 
+ - We now have a very brief overview of these two sets of issues.
+
+### Optimization issues in using the weight derivatives 
+
+ - How often to update the weights
+    - **Online:** after each training case.
+    - **Full batch:** after a full sweep through the training data.
+    - **Mini-batch:** after a small sample of training cases. 
+ - How much to update 
+    - Use a fixed learning rate? 
+    - Adapt the global learning rate? 
+    - Adapt the learning rate on each connection separately? 
+    - Don’t use steepest descent? 
+
+### Overfitting: The downside of using powerful models
+
+ - The training data contains information about the regularities in the mapping from input to output. But it also contains two types of noise. 
+    - The target values may be unreliable (usually only a minor worry). 
+    - There is **sampling error**. There will be accidental regularities just because of the particular training cases that were chosen. 
+ - When we fit the model, it cannot tell which regularities are real and which are caused by sampling error. 
+    - So it fits both kinds of regularity
+    - – If the model is very flexible it can model the sampling error really well. **This is a disaster**.
+
+### Ways to reduce overfitting
+
+ - A large number of different methods have been developed. 
+    - Weight-decay: try and keep the weights small , eg. try and keep many of the weights at 0 to make model simpler.
+    - Weight-sharing: insist many of the weights have exactly the same value as each other
+    - Early stopping: 
+        - you make youself a  fake test set
+        - as you're traning the net, you peak at what's happening on this fake test set. 
+        - once the performance on the fake test set starting getting worse, you stop training 
+    - Model averaging
+        - you train lots of different nerual nets. 
+        - and you average them together in the hopes that that will reduce the errors you're making
+    - Bayesian fitting of neural nets
+        - a fancy form of model averaging
+    - Dropout
+        - when you try and make your model more robust by randomly emitting hidden units when you're training it. 
+    - Generative pre-training 
 
 
 
