@@ -444,6 +444,25 @@ this idea occurs to everyone who knows about evolution
     - Once we have the error derivatives for the hidden activities, its easy to get the error derivatives for the weights going into a hidden unit.  
 
 
+ - Backpropagation works with derivatives. It can be used for logistic neurons.  In a binary threshold neuron the derivatives of the output function are 0 , so the error singal will not be able to propagate through it. 
+
+
+### Sketch of the backpropagation algorithm on a single case 
+
+ - First convert the discrepancy between each output and its target value into an error derivative. 
+ - Then compute error derivatives in each hidden layer from error derivatives in the layer above. 
+ - Then use error derivatives w.r.t.  activities to get error derivatives w.r.t. the incoming weights. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_sketch_of_backpropagation.png)
+
+### Backpropagating dE/dy
+
+This is how you backpropagate the error derivative  with respect to the output of a unit. 
+
+So we'll consider an output unit *j* and a hidden unit *i*. 
+
+The output of the hidden unit i will be yᵢ , the output of the output unit j will be yⱼ. And the total input received by the output unit j will be zⱼ.
+
 
 
 
