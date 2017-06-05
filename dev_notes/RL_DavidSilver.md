@@ -160,6 +160,7 @@ Two fundamental problems in sequential decision making
 ### Return
 
  - the return G<sub>t</sub> t is the total discounted reward from time-step t
+    - G<sub>t</sub> = R<sub>t+1</sub> + γR<sub>t+2</sub> + ... 
     - why here is no expectation ?
         - because here G is just one sample from our MRP , later we will talk about expectation.
     - The value of receiving reward R afte k + 1 time-steps is γᵏR.
@@ -172,7 +173,70 @@ Two fundamental problems in sequential decision making
     - if all sequences terminate
 
 
+## MRP Value Function
 
+ - state-value function  v(s)
+ - action-value function  q(s,a)
+
+value is expectation because the environment is stochastic.
+
+
+## Bellman Equation for MRPs
+
+The value function can be decomposed into two parts:
+
+ - immediate reward R<sub>t+1</sub>
+ - discounted value of successor state γ·v(S<sub>t+1</sub>)
+
+## Bellman Equation in Matrix Form
+
+Bellman Equation for MRPs has no concept of maximum. So t can be expressed concisely using matrices. And here the bellman exuation is a linear equation , as a result it can be solved directly. It is not true when we meet MDP.
+
+ - Direct solution only possible for small MRPs
+ - There are many iterative methods for large MRPs, e.g.
+    - Dynamic programming
+    - Monte-Carlo evaluation
+    - Temporal-Difference learning
+
+## Markov Decision Process
+
+ - A Markov decision process (MDP) is a Markov reward process with decisions. 
+ - It is an environment in which all states are Markov
+ - ( S , **A**,  P , R , γ )
+
+ - Given an MDP M= ( S , A,  P , R , γ ) , and a policy π 
+    - The state sequence S1, S2, ... is a Markov process (S,P<sup>π</sup>)
+    - The state and reward sequence S1,R2,S2, ... is is a Markov reward process ( S,P<sup>π</sup>, R<sup>π</sup>, γ  )
+
+### MDP Value Function
+
+you can get different rewards. It is not one expectation any more , there are different expectations depending how we act
+
+### MDP Bellman Expectation Equation
+
+ - The state-value function can again be decomposed into immediate reward plus discounted value of successor state,
+ - The action-value function can similarly be decomposed
+
+With a fixed policy π,  MDP Bellman Expectation Equation can also be expressed concisely using matrices.
+
+## Optimal Value Function
+
+v<sup>\*</sup> is the maximum value function over all policies.
+
+
+v<sup>\*</sup> is the maximum, q<sup>\*</sup> is the average (expectation).
+
+## Solving the Bellman Optimality Equation
+
+ - Value Iteration
+ - Policy Iteration
+ - Q-learning
+ - Sarsa
+
+---
+
+
+# Lecture 3:  Planning by Dynamic Programming
 
 
 
