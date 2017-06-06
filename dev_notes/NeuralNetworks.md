@@ -697,6 +697,31 @@ So far I talked about using a square area measure for training a neural net and 
  - Is there a different cost function that works better? 
     - Yes: Force the outputs to represent a probability distribution across discrete alternatives. 
 
+### Softmax
+
+It's a kind of soft continuous version of the maximum function. 
+
+ - The output units in a softmax group use a non-local non-linearity: 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_softmax1.png)
+
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_softmax2.png)
+
+The soft max equation has a nice simple derivative. If you ask about how the Yᵢ changes as you change the Zᵢ, that obviously depends on, all the other Zs. But then the Yᵢ itself depends on all the other Zs. And it turns out, that you get a nice simple form, just like you do for the logistic unit, where the derivative of the output with respect to the input, for an individual neuron in a softmax group, is just yᵢ\*(1-yᵢ). 
+
+It's not totally trivial to derive that. If you tried differentiating the equation above, you must remember that things turn up in that normalization term on the bottom row. It's very easy to forget those terms and get the wrong answer. 
+
+Now the question is, if we're using a soft max group for the outputs, what's the right cost function? 
+
+### Cross-entropy: the right cost function to use with softmax
+
+ - The right cost function is the negative log probability of the right answer
+    - 
+ - C has a very big gradient when the target value is 1 and the output is almost zero.
+    - 
+    - A value of 0.000001 is much better than 0.000000001 
+    - The steepness of dC/dy exactly balances the flatness of dy/dz
 
 
 
