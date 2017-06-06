@@ -68,6 +68,9 @@
 
  1. [台大 机器学习技法](https://github.com/mebusy/notes/blob/master/dev_notes/TaiwanU_ML.md)
  2. [OpenAI GYM](https://github.com/mebusy/notes/blob/master/dev_notes/openAI_gym.md)
+ 3. [RL David Silver 随笔](https://github.com/mebusy/notes/blob/master/dev_notes/RL_DavidSilver.md)
+ 4. [Neural Network Coursera](https://github.com/mebusy/notes/blob/master/dev_notes/NeuralNetworks.md)
+
 
 
 

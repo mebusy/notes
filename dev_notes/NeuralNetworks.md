@@ -23,6 +23,49 @@
 		 - [What binary threshold neurons cannot do](#14461318bc8dca1452e9768872689b06)
 		 - [Learning with hidden units](#b984ea836f81bad4a3764c2908f793ec)
  - [Lecture 3](#28b761e5205ba2e17062ee27b6958d08)
+	 - [Learning the weights of a linear neuron](#3798fa7c5a40bf15ef1f83520a95cd9e)
+		 - [Why the perceptron learning procedure cannot be generalised to hidden layers](#62fab41508857c0c13294ed083f177f8)
+		 - [A different way to show that a learning procedure makes progress](#c61743d3bbfb887b9168af23380eed87)
+		 - [Linear neurons (also called linear filters)](#5cd0f54138d8b7ce0d43128a5075d301)
+		 - [Why don’t we solve it analytically?](#bab151580faa1cad100a0d453e419d58)
+		 - [A toy example to illustrate the iterative method](#0c4bfcbad67bcd54a6ff298e0eeee743)
+		 - [Solving the equations iteratively](#0edc8f69095e8449ed09865e4e602616)
+		 - [Deriving the delta rule](#d001ac53343716fde35bea9864a2e62c)
+		 - [Behaviour of the iterative learning procedure](#fe011b17313c1468885c1b63d9ff3905)
+		 - [The relationship between the online delta-rule and the learning rule for perceptrons](#6d26dffff5e7929dfcfd10f7899e5c41)
+	 - [The error surface for a linear neuron](#d637ae0e4758d08ab9cb653d964f5cc0)
+		 - [The error surface for a linear neuron](#d637ae0e4758d08ab9cb653d964f5cc0)
+		 - [Online versus batch learning](#44793cbad37c888289dde4ef85d63abb)
+		 - [Why learning can be slow](#e160ef53e0150859367015007f2e9ffb)
+	 - [Learning the weights of a logistic output neuron](#7faab456a191c1609e8fa535ba7f246b)
+		 - [Logistic neurons](#cb0962568720082c771cb150b419153e)
+		 - [The derivatives of a logistic neuron](#d938f3f9f233cee2aec2d95a787370d5)
+		 - [Using the chain rule to get the derivatives needed for learning the weights of a logistic unit](#9e566a8d635816845a8514b2be63e940)
+	 - [The backpropagation algorithm](#f134b6b0a34834048be96a9595500168)
+		 - [Learning with hidden units (again)](#8ad8d860bc6bd1812c93eb4689ff4e27)
+		 - [Learning by perturbing weights](#efb8c8024ad6e26591687c673bd2f8ae)
+		 - [Learning by using perturbations](#f8a34148efcf90c3cf63a397ada225eb)
+		 - [The idea behind backpropagation](#46dc1eb40926aa8892f0022cb7904d30)
+		 - [Sketch of the backpropagation algorithm on a single case](#a03dcf514317e4b26494bfde1e3bb437)
+		 - [Backpropagating dE/dy](#cb74d28f01731bcc6f43f0becb84e542)
+	 - [Using the derivatives computed by backpropagation](#3ffd8cc841a75b557853a7c099ef10f7)
+		 - [Converting error derivatives into a learning procedure](#676fab2157c0b82f2d6b0e54e74e44ce)
+		 - [Optimization issues in using the weight derivatives](#aec56cef3564b265a0fcfea53a309058)
+		 - [Overfitting: The downside of using powerful models](#7fc625e0f39ddc78085bf099ef122f6b)
+		 - [Ways to reduce overfitting](#c4219facad442ef66e3f091000bd7032)
+ - [Lecture 4](#a2d2c3adca93050c524a375b914c0427)
+	 - [Learning to predict the next word](#62a6949a4d62437a75df11f1298048e3)
+		 - [A simple example of relational information](#53b2af15a65032a516dec7a64698459b)
+		 - [Another way to express the same information](#41886b821c76c67b343a72ba9900095e)
+		 - [A relational learning task](#7a08ad833702af5958ac40bb413ee53d)
+		 - [The structure of the neural net](#26614a4a51d034c6d965e5f02c536e68)
+		 - [What the network learns](#d848f8c0a727bb1129f14297eb7336a9)
+		 - [Another way to see that it works](#cbc4e5c1cf42ea1488fb05278ed33ec9)
+		 - [A large-scale example](#4cc045397134d9dbdcde92f93c9354ae)
+	 - [Another diversion: The softmax output function](#b7aee90e84000ac779a3e4a95e2937a2)
+		 - [Problems with squared error](#95e795035feb93bf19141b3722ed22f9)
+		 - [Softmax](#31d953b9d49a6b4378f45097047976d0)
+		 - [Cross-entropy: the right cost function to use with softmax](#21c7e1b0bcad7862fc5842c0b521f165)
 
 ...menuend
 
@@ -260,7 +303,11 @@ perceptron is 二分类的线性分类模型。 输入为实例的特征向量�
 
 # Lecture 3 
 
+<h2 id="3798fa7c5a40bf15ef1f83520a95cd9e"></h2>
+
 ## Learning the weights of a linear neuron 
+
+<h2 id="62fab41508857c0c13294ed083f177f8"></h2>
 
 ### Why the perceptron learning procedure cannot be generalised to hidden layers 
     
@@ -269,12 +316,16 @@ perceptron is 二分类的线性分类模型。 输入为实例的特征向量�
  - So “multi-layer” neural networks do not use the perceptron learning procedure
     - They should never have been called multi-layer perceptrons. 
 
+<h2 id="c61743d3bbfb887b9168af23380eed87"></h2>
+
 ### A different way to show that a learning procedure makes progress 
 
  - Instead of showing the weights get closer to a good set of weights, show that the actual output values get closer the target values. 
     - This can be true even for non-convex problems in which there are many quite different sets of weights that work well and averaging two good sets of weights may give a bad set of weights. 
     - It is not true for perceptron learning. 
  - The simplest example is a linear neuron with a squared error measure. 
+
+<h2 id="5cd0f54138d8b7ce0d43128a5075d301"></h2>
 
 ### Linear neurons (also called linear filters) 
 
@@ -285,6 +336,8 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
  - The aim of learning is to minimize the error summed over all training cases. 
     - The error is the squared difference between the desired output and the actual output. 
 
+<h2 id="bab151580faa1cad100a0d453e419d58"></h2>
+
 ### Why don’t we solve it analytically? 
 
  - 为什么不用矩阵直接求近似解？
@@ -293,6 +346,8 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
     - The analytic solution relies on it being linear and having a squared error measure. 
     - Iterative methods are usually less efficient but they are much easier to generalize. 
 
+<h2 id="0c4bfcbad67bcd54a6ff298e0eeee743"></h2>
+
 ### A toy example to illustrate the iterative method 
 
 每天你在自助餐厅吃午饭。你的饮食包括鱼fish，薯条chips 和番茄酱ketchup 。每样你都会视心情拿几个。收银员只会告诉你膳食的总价格.几天后，您应该可以弄清每种食物的价格。
@@ -300,6 +355,8 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
  - The iterative approach: 
     - Start with random guesses for the prices and
     - then adjust them to get a better fit to the observed prices of whole meals. 
+
+<h2 id="0edc8f69095e8449ed09865e4e602616"></h2>
 
 ### Solving the equations iteratively
 
@@ -319,6 +376,8 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
     - This gives new weights of 70, 100, 80. 
         - Notice that the weight for chips got worse! 
 
+<h2 id="d001ac53343716fde35bea9864a2e62c"></h2>
+
 ### Deriving the delta rule 
 
  - Define the error as the squared residuals summed over all training cases: 
@@ -330,6 +389,8 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_derive_delta_rule2.png)
     - minus sign in front of ε cuz we want the error to go down.
 
+<h2 id="fe011b17313c1468885c1b63d9ff3905"></h2>
+
 ### Behaviour of the iterative learning procedure 
 
  - Does the learning procedure eventually get the right answer? 
@@ -340,6 +401,8 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
         - If you almost always have the **same number of** portions of ketchup and chips, it is hard to decide how to divide the price between ketchup and chips. 
 
      
+<h2 id="6d26dffff5e7929dfcfd10f7899e5c41"></h2>
+
 ### The relationship between the online delta-rule and the learning rule for perceptrons
 
  - In perceptron learning, we increment or decrement the weight vector by the input vector.
@@ -349,7 +412,11 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
 
 ---
 
+<h2 id="d637ae0e4758d08ab9cb653d964f5cc0"></h2>
+
 ## The error surface for a linear neuron
+
+<h2 id="d637ae0e4758d08ab9cb653d964f5cc0"></h2>
 
 ### The error surface for a linear neuron 
 
@@ -362,6 +429,8 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_error_surface.png)
  - For multi-layer, non-linear nets the error surface is much more complicated. 
 
+<h2 id="44793cbad37c888289dde4ef85d63abb"></h2>
+
 ### Online versus batch learning 
 
  - The simplest kind of batch learning does steepest descent on the error surface. 
@@ -370,6 +439,8 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
  - The simplest kind of online learning zig-zags around the direction of steepest descent: 
     - This travels perpendicular to the training case line.
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_online_error_surface.png)
+
+<h2 id="e160ef53e0150859367015007f2e9ffb"></h2>
 
 ### Why learning can be slow 
 
@@ -381,7 +452,11 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
 
 ---
 
+<h2 id="7faab456a191c1609e8fa535ba7f246b"></h2>
+
 ## Learning the weights of a logistic output neuron 
+
+<h2 id="cb0962568720082c771cb150b419153e"></h2>
 
 ### Logistic neurons 
 
@@ -389,6 +464,8 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
 
 They have nice derivatives which make learning easy
 
+
+<h2 id="d938f3f9f233cee2aec2d95a787370d5"></h2>
 
 ### The derivatives of a logistic neuron 
 
@@ -398,6 +475,8 @@ They have nice derivatives which make learning easy
  - The derivative of the output with respect to the logit is simple if you express it in terms of the output: 
     - dy/dz = y(1-y)
 
+<h2 id="9e566a8d635816845a8514b2be63e940"></h2>
+
 ### Using the chain rule to get the derivatives needed for learning the weights of a logistic unit
 
  - To learn the weights we need the derivative of the output with respect to each weight: 
@@ -406,7 +485,11 @@ They have nice derivatives which make learning easy
 
 ---
 
+<h2 id="f134b6b0a34834048be96a9595500168"></h2>
+
 ## The backpropagation algorithm 
+
+<h2 id="8ad8d860bc6bd1812c93eb4689ff4e27"></h2>
 
 ### Learning with hidden units (again) 
 
@@ -414,6 +497,8 @@ They have nice derivatives which make learning easy
  - Adding a layer of hand-coded features (as in a perceptron) makes them much more powerful but the hard bit is designing the features.
     - We would like to find good features without requiring insights into the task or repeated trial and error where we guess some features and see how well they work.  
  - We need to automate the loop of designing features for a particular task and seeing how well they work.
+
+<h2 id="efb8c8024ad6e26591687c673bd2f8ae"></h2>
 
 ### Learning by perturbing weights
 
@@ -424,6 +509,8 @@ this idea occurs to everyone who knows about evolution
     - **Very inefficient**. We need to do multiple forward passes on a representative set of training cases just to change one weight. Backpropagation is much better. 
     - Towards the end of learning, large weight perturbations will nearly always make things **worst** , because the weights need to have the right relative values
 
+<h2 id="f8a34148efcf90c3cf63a397ada225eb"></h2>
+
 ### Learning by using perturbations 
 
  - We could randomly perturb all the weights in parallel and correlate the performance gain with the weight changes. 
@@ -432,6 +519,8 @@ this idea occurs to everyone who knows about evolution
  hidden units. 
     - Once we know how we want a hidden activity to change on a given training case, we can **compute** how to change the weights 
     - There are fewer activities than weights, but backpropagation still wins by a factor of the number of neurons. 
+
+<h2 id="46dc1eb40926aa8892f0022cb7904d30"></h2>
 
 ### The idea behind backpropagation
 
@@ -445,6 +534,8 @@ this idea occurs to everyone who knows about evolution
 
 
 
+<h2 id="a03dcf514317e4b26494bfde1e3bb437"></h2>
+
 ### Sketch of the backpropagation algorithm on a single case 
 
  - First convert the discrepancy between each output and its target value into an error derivative. 
@@ -452,6 +543,8 @@ this idea occurs to everyone who knows about evolution
  - Then use error derivatives w.r.t.  activities to get error derivatives w.r.t. the incoming weights. 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_sketch_of_backpropagation.png)
+
+<h2 id="cb74d28f01731bcc6f43f0becb84e542"></h2>
 
 ### Backpropagating dE/dy
 
@@ -514,9 +607,13 @@ let xᵢ = yᵢ
 ---
 
 
+<h2 id="3ffd8cc841a75b557853a7c099ef10f7"></h2>
+
 ## Using the derivatives computed by backpropagation 
 
 There are a number of other issues that have to be addressed before we actually get a learning procedure that's fully specified. For example , we need to decide how often to update the weights , and we need to decide how to prevent the network from over fitting very badly if we use a large network. 
+
+<h2 id="676fab2157c0b82f2d6b0e54e74e44ce"></h2>
 
 ### Converting error derivatives into a learning procedure 
 
@@ -525,6 +622,8 @@ There are a number of other issues that have to be addressed before we actually 
     - **Optimization issues:** How do we use the error derivatives on individual cases to discover a good set of weights?
     - **Generalization issues:** How do we ensure that the learned weights work well for cases we did not see during training? 
  - We now have a very brief overview of these two sets of issues.
+
+<h2 id="aec56cef3564b265a0fcfea53a309058"></h2>
 
 ### Optimization issues in using the weight derivatives 
 
@@ -538,6 +637,8 @@ There are a number of other issues that have to be addressed before we actually 
     - Adapt the learning rate on each connection separately? 
     - Don’t use steepest descent? 
 
+<h2 id="7fc625e0f39ddc78085bf099ef122f6b"></h2>
+
 ### Overfitting: The downside of using powerful models
 
  - The training data contains information about the regularities in the mapping from input to output. But it also contains two types of noise. 
@@ -546,6 +647,8 @@ There are a number of other issues that have to be addressed before we actually 
  - When we fit the model, it cannot tell which regularities are real and which are caused by sampling error. 
     - So it fits both kinds of regularity
     - – If the model is very flexible it can model the sampling error really well. **This is a disaster**.
+
+<h2 id="c4219facad442ef66e3f091000bd7032"></h2>
 
 ### Ways to reduce overfitting
 
@@ -567,13 +670,19 @@ There are a number of other issues that have to be addressed before we actually 
 
 ---
 
+<h2 id="a2d2c3adca93050c524a375b914c0427"></h2>
+
 # Lecture 4
+
+<h2 id="62a6949a4d62437a75df11f1298048e3"></h2>
 
 ## Learning to predict the next word
 
 We’re gonna use the back propagation algorithm to learn a feature representation of the meaning of the word. 
 
 I'm gonna start with a very simple case , but it illustrates the idea about how you can take some relational information, and use the back propagation algorithm to turn relational information into feature vectors that capture the meanings of words.
+
+<h2 id="53b2af15a65032a516dec7a64698459b"></h2>
 
 ### A simple example of relational information 
 
@@ -582,6 +691,8 @@ I'm gonna start with a very simple case , but it illustrates the idea about how 
 This diagram shows a simple family tree, in which, for example, Christopher and Penelope marry, and have children Arthur and Victoria. What we'd like is to train a neural network to understand the information in this family tree. We've also given it another family tree of Italian people which has pretty much the same structure as the English tree.
 
 And perhaps when it tries to learn both sets of facts, the neural net is going to be able to take advantage of that analogy. 
+
+<h2 id="41886b821c76c67b343a72ba9900095e"></h2>
 
 ### Another way to express the same information 
 
@@ -600,6 +711,8 @@ And using those relationships we can write down a set of triples such as,
  - (victoria has-brother arthur) 
  - (charlotte has-uncle arthur) *this follows from the above*
 
+<h2 id="7a08ad833702af5958ac40bb413ee53d"></h2>
+
 ### A relational learning task 
 
  - Given a large set of triples that come from some family trees, figure out the regularities. 
@@ -607,6 +720,8 @@ And using those relationships we can write down a set of triples such as,
     - (x has-mother y) & (y has-husband z) => (x has-father z)
  - Finding the symbolic rules involves a difficult search through a very large discrete space of possibilities 
  - Can a neural network capture the same knowledge by searching through a continuous space of weights? 
+
+<h2 id="26614a4a51d034c6d965e5f02c536e68"></h2>
 
 ### The structure of the neural net
 
@@ -650,6 +765,8 @@ Finally, if you look at the bottom gray rectangle on the left hand side, you'll 
 
 It has a negative weight to Andrew, James, Charles, Christine and Jennifer and now if you look at the English family tree you'll see Andrew, James, Charles, Christine, and Jennifer are all in the right hand branch of the family tree. So that unit has learned to represent which branch of the family tree someone is in. 
 
+<h2 id="d848f8c0a727bb1129f14297eb7336a9"></h2>
+
 ### What the network learns 
 
  - The six hidden units in the bottleneck connected to the input representation of person 1 learn to represent features of people that are useful for predicting the answer.  
@@ -662,6 +779,8 @@ It has a negative weight to Andrew, James, Charles, Christine and Jennifer and n
 
 But notice to capture that rule, you have to extract appropriate features at the first hidden layer, and the last hidden layer of the network. And you have to make the units in the middle, relate those features correctly. 
 
+<h2 id="cbc4e5c1cf42ea1488fb05278ed33ec9"></h2>
+
 ### Another way to see that it works 
 
  - Train the network on all but 4 of the triples that can be made using the 12 relationships
@@ -673,6 +792,8 @@ But notice to capture that rule, you have to extract appropriate features at the
     - On much bigger datasets we can train on a much smaller fraction of the data. 
 
 
+<h2 id="4cc045397134d9dbdcde92f93c9354ae"></h2>
+
 ### A large-scale example 
 
  - Suppose we have a database of millions of relational facts of the form (A R B). 
@@ -683,11 +804,15 @@ But notice to capture that rule, you have to extract appropriate features at the
     - To train such a net we need a good source of false facts
 
 
+<h2 id="b7aee90e84000ac779a3e4a95e2937a2"></h2>
+
 ## Another diversion: The softmax output function
 
 Softmax is a way of forcing the outputs of a neural network to sum to one so they can represent a probability distribution across discreet mutually exclusive alternatives.
 
 So far I talked about using a square area measure for training a neural net and for linear neurons it's a sensible thing to do. But the squared error measure has some drawbacks. 
+
+<h2 id="95e795035feb93bf19141b3722ed22f9"></h2>
 
 ### Problems with squared error 
 
@@ -696,6 +821,8 @@ So far I talked about using a square area measure for training a neural net and 
     - If we are trying to assign probabilities to mutually exclusive class labels, we know that the outputs should sum to 1, but we are depriving the network of this knowledge. 
  - Is there a different cost function that works better? 
     - Yes: Force the outputs to represent a probability distribution across discrete alternatives. 
+
+<h2 id="31d953b9d49a6b4378f45097047976d0"></h2>
 
 ### Softmax
 
@@ -714,15 +841,16 @@ It's not totally trivial to derive that. If you tried differentiating the equati
 
 Now the question is, if we're using a soft max group for the outputs, what's the right cost function? 
 
+<h2 id="21c7e1b0bcad7862fc5842c0b521f165"></h2>
+
 ### Cross-entropy: the right cost function to use with softmax
 
  - The right cost function is the negative log probability of the right answer
-    - 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_CrossEntropy1.png)
  - C has a very big gradient when the target value is 1 and the output is almost zero.
-    - 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_CrossEntropy2.png)
     - A value of 0.000001 is much better than 0.000000001 
     - The steepness of dC/dy exactly balances the flatness of dy/dz
-
 
 
 
