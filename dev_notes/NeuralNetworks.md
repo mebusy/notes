@@ -612,6 +612,92 @@ And using those relationships we can write down a set of triples such as,
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_structure.png)
 
+At the bottom of this diagram , we're going to put in a person and a relationship and the information is going to flow forwards through this  NNet. 
+
+And what we are going to try to get out of the NNet after it's learned is the person who's related to the first persion. 
+
+So what we do is we encode the information in a neutral way, because there are 24 possible ppl. 
+
+So the block at the bottom of the diagram that says "local encoding of person 1" has 24 neurons , and exactly one of those wil be turned on for each training case. 
+
+Similarly there are twelve relationships. And exactly one of the relationship units will be turned on. 
+
+And then for a relationship that has a unique answer, we would like one of the 24 people at the top, one of the 24 output people to turn on to represent the answer. 
+
+By using a representation in which exactly one of the neurons is on, we don't accidentally give the network any similarities between people. All pairs of people are equally dissimilar. So, we're not cheating by giving the network information about who's like who. 
+
+But now in the next layer of the network, we've taken the local encoding of person one, and we've connected it to a small set of neurons, actually 6 neurons for this. And because there are 24 people, it can't possibly dedicate one neuron to each person. It has to re-represent the people as patterns of activity over those 6 neurons.  And what we're hoping is that when it learns these propositions, the way in which thing encodes a person, in that distributive panel activities, ill reveal structuring the task, or structuring the domain. 
+
+So what we're going to do is we're going to train it up on 112 of these propositions. And we go through the 112 propositions many times. Slowly changing the weights as we go, using back propagation. 
+
+And after training we're gonna look at the 6 units in that layer that says "distributed encoding of person 1" to see what they are doing. 
+
+So here are those 6 units as the big gray blocks. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_6_neural_units.png)
+
+And I laid out the 24 people, with the twelve English people in a row along the top, and the twelve Italian people in a row underneath.
+
+And the blobs tell you the incoming weights for one of the hidden units in that layer. 
+
+If you look at the big gray rectangle on the top right, you'll see an interesting structure to the weights. The weights along the top that come from English people are all positive. And the weights along the bottom are all negative.  That means this unit tells you whether the input person is English or Italian.
+
+If you look at the gray blob immediately below that, the second one down on the right, you'll see that it has four big positive weights at the beginning. Those correspond to Christopher and Andrew with our Italian equivalents. Then it has some smaller weights. Then it has two big negative weights, that correspond to Collin, or his Italian equivalent.  Then there's four more big positive weights, corresponding to Penelope or Christina, or their Italian equivalents. And right at the end, there's two big negative weights, corresponding to Charlotte, or her Italian equivalent. 
+
+By now you've probably realized that, that neuron represents what generation somebody is. It has big positive weights to the oldest generation, big negative weight to the youngest generation, and intermediate weights which are roughly zero to the intermediate generation.So that's really a three-value feature, and it's telling you the generation of the person. 
+
+Finally, if you look at the bottom gray rectangle on the left hand side, you'll see that has a different structure, and if we look at the top row and we look at the negative weights in the top row of that unit. 
+
+It has a negative weight to Andrew, James, Charles, Christine and Jennifer and now if you look at the English family tree you'll see Andrew, James, Charles, Christine, and Jennifer are all in the right hand branch of the family tree. So that unit has learned to represent which branch of the family tree someone is in. 
+
+### What the network learns 
+
+ - The six hidden units in the bottleneck connected to the input representation of person 1 learn to represent features of people that are useful for predicting the answer.  
+    - Nationality, generation, branch of the family tree. 
+ - These features are only useful if the other bottlenecks use similar representations and the central layer learns how features predict other features. For example: 
+    - Input person is of generation 3 **and** 
+    - relationship requires answer to be one generation up 
+    - **implies**
+    - Output person is of generation 2 
+
+But notice to capture that rule, you have to extract appropriate features at the first hidden layer, and the last hidden layer of the network. And you have to make the units in the middle, relate those features correctly. 
+
+### Another way to see that it works 
+
+ - Train the network on all but 4 of the triples that can be made using the 12 relationships
+    - So there's 112 triples, and I trained it on 108 of them and tested it on the remaining 4
+    - It needs to sweep through the training set many times adjusting the weights slightly each time. 
+ - Then test it on the 4 held-out cases. 
+    - It gets about 3/4 correct. 
+    - This is good for a 24-way choice. 
+    - On much bigger datasets we can train on a much smaller fraction of the data. 
+
+
+### A large-scale example 
+
+ - Suppose we have a database of millions of relational facts of the form (A R B). 
+    - We could train a net to discover feature vector representations of the terms that allow the third term to be predicted from the first two.  
+        - predict B
+    - Then we could use the trained net to find very unlikely triples.  These are good candidates for errors in the database. 
+ - Instead of predicting the third term, we could use all three terms as input and predict the probability that the fact is correct. 
+    - To train such a net we need a good source of false facts
+
+
+## Another diversion: The softmax output function
+
+Softmax is a way of forcing the outputs of a neural network to sum to one so they can represent a probability distribution across discreet mutually exclusive alternatives.
+
+So far I talked about using a square area measure for training a neural net and for linear neurons it's a sensible thing to do. But the squared error measure has some drawbacks. 
+
+### Problems with squared error 
+
+ - The squared error measure has some drawbacks: 
+    - If the desired output is 1 and the actual output is 0.00000001 there is almost no gradient for a logistic unit to fix up the error. 
+    - If we are trying to assign probabilities to mutually exclusive class labels, we know that the outputs should sum to 1, but we are depriving the network of this knowledge. 
+ - Is there a different cost function that works better? 
+    - Yes: Force the outputs to represent a probability distribution across discrete alternatives. 
+
+
 
 
 
