@@ -565,6 +565,11 @@ There are a number of other issues that have to be addressed before we actually 
         - when you try and make your model more robust by randomly emitting hidden units when you're training it. 
     - Generative pre-training 
 
+---
+
+# Lecture 4: Learning to predict the next word
+
+
 
 
 ---

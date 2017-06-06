@@ -126,8 +126,10 @@ Two fundamental problems in sequential decision making
 
  - Prediction: evaluate the future
     - Given a policy
+    - calculate v<sup>π</sub>
  - Control: optimise the future
     - Find the best policy
+    - calculate v<sup>\*</sup>
 
 ---
 
@@ -237,6 +239,45 @@ v<sup>\*</sup> is the maximum, q<sup>\*</sup> is the average (expectation).
 
 
 # Lecture 3:  Planning by Dynamic Programming
+
+## Policy Iteration
+
+given an MDP -> Policy evaluation -> Policy Improvement: improve the policy by acting greedily with respect to v<sup>π</sup>
+
+Qestion: how to apply greedy algorithm on v<sup>π</sup> 
+
+A:  1-step expertimax for each state.
+
+π'(s) = argmax<sub>a∈A</sub> q<sub>π</sub>(s,a)
+
+ - Policy evaluation 一般迭代数次，就可以得到 optimal v<sup>π</sup>，更多的迭代并不能带来任何提升
+
+## Modified Policy Iteration
+
+ - Does policy evaluation need to converge to v<sup>π</sup> ?
+ - Or should we introduce a stopping condition
+    - eg. ε-convergence of value function
+    - 观察 bellman 方程 更新value函数的大小，假如value 函数更新的很小的话，这就表明你可以停下来了。即使这样，你还是很容易做无用功。
+ - Or simply stop after k iterations of iterative policy evaluation?
+ - For example, in the small gridworld k = 3 was sufficient to achieve optimal policy
+ - Why not update policy every iteration? i.e. stop after k = 1
+    - This is equivalent to value iteration (next section)
+
+## TODO
+
+Policy Iteration: follow fixed policy 
+
+Value Iteration:  choose optimal action every step.
+
+## In-Place Dynamic Programming
+
+The ordering is very important. 这就产生了 priorities sweeping.
+
+
+
+
+
+
 
 
 
