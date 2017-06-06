@@ -608,6 +608,10 @@ And using those relationships we can write down a set of triples such as,
  - Finding the symbolic rules involves a difficult search through a very large discrete space of possibilities 
  - Can a neural network capture the same knowledge by searching through a continuous space of weights? 
 
+### The structure of the neural net
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_structure.png)
+
 
 
 
