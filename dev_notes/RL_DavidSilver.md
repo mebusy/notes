@@ -380,11 +380,78 @@ Value Iteration:  choose optimal action every step.
 
 The ordering is very important. 这就产生了 priorities sweeping.
 
+# Lecture 4: Model-Free Prediction
 
+ - This lecture:
+    - Model-free prediction
+    - Estimate the value function of an unknown MDP
 
+## Monte-Carlo Reinforcement Learning
 
+它可能不是最有效率的方法，但是它是最有效果，也是最广泛使用在实践中的方法。
 
+ - MC methods learn directly from episodes of experience
+ - MC is model-free: no knowledge of MDP transitions / rewards
+ - MC learns from complete episodes: no bootstrapping
+ - MC uses the simplest possible idea: value = mean return
+ - Caveat: can only apply MC to episodic MDPs
+    - All episodes must terminate
 
+## Monte-Carlo Policy Evaluation
 
+ - Monte-Carlo policy evaluation uses empirical mean return instead of expected return
+
+我们还有收集尽量多的样本，从某个特定个点开始发生的状态中收集。 问题是我们要怎样做到这一步，在我们不能反复将状态重设回那个点的情况下 ？
+
+We have 2 different ways to do this.
+
+### First-Visit Monte-Carlo Policy Evaluation
+
+ - To evaluate state s
+ - The **first** time-step t that state s is visited in an episode,
+ - Increment counter N(s) ← N(s) + 1
+ - Increment total return S(s) ← S(s) + Gt
+    - not whole episode , only from state s to termination
+ - Value is estimated by mean return V(s) = S(s)/N(s)
+ - By law of large numbers, V(s) → v<sub>π</sub>(s) as N(s) → ∞
+
+### Every-Visit Monte-Carlo Policy Evaluation
+
+ - To evaluate state s
+ - **Every** time-step t that state s is visited in an episode,
+ - Increment counter N(s) ← N(s) + 1
+ - Increment total return S(s) ← S(s) + Gt
+ - Value is estimated by mean return V(s) = S(s)/N(s)
+    - Again, V(s) → vπ(s) as N(s) → ∞
+
+### Incremental Mean
+
+ - 求平均值也可以 递增计算, 但是需要记录 counter
+    - V(S<sub>t</sub>) ← V(S<sub>t</sub>) + 1/N(S<sub>t</sub>)·(G<sub>t</sub> - V(S<sub>t</sub>))
+ - In non-stationary problems, it can be useful to track a running mean, i.e. forget old episodes.
+    - V(S<sub>t</sub>) ← V(S<sub>t</sub>) + α( G<sub>t</sub> - V(S<sub>t</sub>) ) 
+
+## Temporal-Difference Learning
+
+ - TD methods learn directly from episodes of experience
+ - TD is model-free: no knowledge of MDP transitions / rewards
+ - TD learns from incomplete episodes, by bootstrapping
+ - TD updates a guess towards a guess
+
+## MC and TD
+
+你正在开车，对面突然开过来一辆卡车，你感觉马上要撞车了，庆幸的是最后两车错开了。
+
+ - MC
+    - 并不会记录到这次濒死的体验
+ - TD
+    - 你能预感到危险，你会降速，立刻更新你的 value值，而不用等到你死了。
+
+## Driving Home Example
+
+ - MC
+    - 你最终到家了，看到实际花了43分钟，然后才能更新你的每一个估计值
+ - TD
+    - you update immediately every step
 
 
