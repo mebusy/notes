@@ -567,7 +567,50 @@ There are a number of other issues that have to be addressed before we actually 
 
 ---
 
-# Lecture 4: Learning to predict the next word
+# Lecture 4
+
+## Learning to predict the next word
+
+We’re gonna use the back propagation algorithm to learn a feature representation of the meaning of the word. 
+
+I'm gonna start with a very simple case , but it illustrates the idea about how you can take some relational information, and use the back propagation algorithm to turn relational information into feature vectors that capture the meanings of words.
+
+### A simple example of relational information 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_family_tree.png)
+
+This diagram shows a simple family tree, in which, for example, Christopher and Penelope marry, and have children Arthur and Victoria. What we'd like is to train a neural network to understand the information in this family tree. We've also given it another family tree of Italian people which has pretty much the same structure as the English tree.
+
+And perhaps when it tries to learn both sets of facts, the neural net is going to be able to take advantage of that analogy. 
+
+### Another way to express the same information 
+
+The information in these family trees can be expressed as a set of propositions.
+
+ - Make a set of propositions using the 12 relationships: 
+    - son, daughter, nephew, niece, father, mother, uncle, aunt 
+    - brother, sister, husband, wife 
+
+And using those relationships we can write down a set of triples such as, 
+
+ - (colin has-father james) 
+ - (colin has-mother victoria) 
+ - (james has-wife victoria) *this follows from the two above*
+ - (charlotte has-brother colin) 
+ - (victoria has-brother arthur) 
+ - (charlotte has-uncle arthur) *this follows from the above*
+
+### A relational learning task 
+
+ - Given a large set of triples that come from some family trees, figure out the regularities. 
+    - The obvious way to express the regularities is as symbolic rules
+    - (x has-mother y) & (y has-husband z) => (x has-father z)
+ - Finding the symbolic rules involves a difficult search through a very large discrete space of possibilities 
+ - Can a neural network capture the same knowledge by searching through a continuous space of weights? 
+
+
+
+
 
 
 
