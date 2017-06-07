@@ -70,6 +70,7 @@
  2. [OpenAI GYM](https://github.com/mebusy/notes/blob/master/dev_notes/openAI_gym.md)
  3. [RL David Silver 随笔](https://github.com/mebusy/notes/blob/master/dev_notes/RL_DavidSilver.md)
  4. [Neural Network Coursera](https://github.com/mebusy/notes/blob/master/dev_notes/NeuralNetworks.md)
+ 5. [DeepLearning MIT 6S191](https://github.com/mebusy/notes/blob/master/dev_notes/MIT_6S191_DL.md)
 
 
 

@@ -66,6 +66,14 @@
 		 - [Problems with squared error](#95e795035feb93bf19141b3722ed22f9)
 		 - [Softmax](#31d953b9d49a6b4378f45097047976d0)
 		 - [Cross-entropy: the right cost function to use with softmax](#21c7e1b0bcad7862fc5842c0b521f165)
+	 - [Neuro-probabilistic language models](#59e724021bfe3a5ca52ee3487d72b4ce)
+		 - [A basic problem in speech recognition](#9171415699026cffb7ff3cab04228939)
+		 - [The standard “trigram” method](#83beda8ed15519912a2b29bd570d59c0)
+		 - [Information that the trigram model fails to use](#fa2663ecc2a6e9d62b864d527ac1486a)
+		 - [Bengio’s neural net for predicting the next word](#bff96611be9933e8a194bdd5f3a8ee93)
+		 - [A problem with having 100,000 output words](#e84e1c2eab6228e880e086f8ea982e9c)
+	 - [Ways to deal with the large number of possible outputs](#c93c855033bdc0b648b96f7ec6b4fafb)
+		 - [A serial architecture](#8e457024f2de01030ed63d42a274f257)
 
 ...menuend
 
@@ -854,9 +862,13 @@ Now the question is, if we're using a soft max group for the outputs, what's the
 
 ---
 
+<h2 id="59e724021bfe3a5ca52ee3487d72b4ce"></h2>
+
 ## Neuro-probabilistic language models
 
 We're going to look at a practical use for feature vectors that represent words
+
+<h2 id="9171415699026cffb7ff3cab04228939"></h2>
 
 ### A basic problem in speech recognition 
 
@@ -868,6 +880,8 @@ We're going to look at a practical use for feature vectors that represent words
  - This means speech recognizers have to know which words are likely to come next and which are not. 
     - Fortunately, words can be predicted quite well without full understanding. 
 
+<h2 id="83beda8ed15519912a2b29bd570d59c0"></h2>
+
 ### The standard “trigram” method 
     
  - Take a huge amount of text and count the frequencies of all triples of words. 
@@ -877,6 +891,8 @@ We're going to look at a practical use for feature vectors that represent words
     - We cannot use a much bigger context because there are too many possibilities to store and the counts would mostly be zero. 
     - We have to “back-off” to digrams when the count for a trigram is too small. 
         - The probability is not zero just because the count is zero! 
+
+<h2 id="fa2663ecc2a6e9d62b864d527ac1486a"></h2>
 
 ### Information that the trigram model fails to use 
 
@@ -892,6 +908,8 @@ We're going to look at a practical use for feature vectors that represent words
 
 
 
+
+<h2 id="bff96611be9933e8a194bdd5f3a8ee93"></h2>
 
 ### Bengio’s neural net for predicting the next word 
 
@@ -909,6 +927,8 @@ After getting distributed representations of a few previous words, I've only sho
 
 When extra refinement that makes it work better is to use skip-layer connections that go straight from the input words to the output words. Because the individual input words are, are individually quite informative about what the output word might be.
 
+<h2 id="e84e1c2eab6228e880e086f8ea982e9c"></h2>
+
 ### A problem with having 100,000 output words
 
 One problem with having a big softmax output layer, is that you might have to deal with 100,000 different output works. Because typically in these language models, the plural of a word is a different word from the singular.  And the various different tenses of a verb are different words from other tenses. So each unit in the last hidden layer of the net, might have to have a hundred-thousand outgoing weights.
@@ -922,11 +942,15 @@ One problem with having a big softmax output layer, is that you might have to de
 
 ---
 
+<h2 id="c93c855033bdc0b648b96f7ec6b4fafb"></h2>
+
 ## Ways to deal with the large number of possible outputs
 
 we're going to look at various ways to avoid having to use 100,000 different output units in the softmax if we want to get probability from 100,000 different words.
 
 So one way to avoid, having a 100,000 different output units is to use a serial architecture. 
+
+<h2 id="8e457024f2de01030ed63d42a274f257"></h2>
 
 ### A serial architecture 
 

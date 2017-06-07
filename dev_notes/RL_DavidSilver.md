@@ -34,6 +34,19 @@
 	 - [Modified Policy Iteration](#50e497bcd60bb8a8db19c9ebf9491087)
 	 - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
 	 - [In-Place Dynamic Programming](#b42b555fa80b1183db917a141f970757)
+ - [Lecture 4: Model-Free Prediction](#f2a4c04b9562782f979f6f6365a693ea)
+	 - [Monte-Carlo Reinforcement Learning](#cca9ebf243a52673a1532a42bbd2e3f5)
+	 - [Monte-Carlo Policy Evaluation](#e35ea465ea31939812aef342727fbfe5)
+		 - [First-Visit Monte-Carlo Policy Evaluation](#ca72e9315ea8f81a61e682131eb8c332)
+		 - [Every-Visit Monte-Carlo Policy Evaluation](#ffbd1472cb4d7535eda096f7d4995b6a)
+		 - [Incremental Mean](#33efd086713c355c13f11c79e8304480)
+	 - [Temporal-Difference Learning](#e4ce07df12b2ef7a0b0f745ea0185fd9)
+	 - [MC and TD](#db2dcb707660729f9ba68926965d2e58)
+	 - [Driving Home Example](#906bb81a2a5f3c85ecb0f8fd2d2463e3)
+	 - [Advantages and Disadvantages of MC vs. TD (3)](#68154201a64057ceb4291f9695de4590)
+	 - [Dynamic Programming Backup](#4261968fe68698635cb479b713e3873f)
+	 - [Bootstrapping and Sampling](#b5bad1ef88d485efddae73555382fcb5)
+ - [Lecture 5: Model-Free Control](#3d2617dd982260ee654a16d8dec7d2a1)
 
 ...menuend
 
@@ -380,11 +393,15 @@ Value Iteration:  choose optimal action every step.
 
 The ordering is very important. 这就产生了 priorities sweeping.
 
+<h2 id="f2a4c04b9562782f979f6f6365a693ea"></h2>
+
 # Lecture 4: Model-Free Prediction
 
  - This lecture:
     - Model-free prediction
     - Estimate the value function of an unknown MDP
+
+<h2 id="cca9ebf243a52673a1532a42bbd2e3f5"></h2>
 
 ## Monte-Carlo Reinforcement Learning
 
@@ -397,6 +414,8 @@ The ordering is very important. 这就产生了 priorities sweeping.
  - Caveat: can only apply MC to episodic MDPs
     - All episodes must terminate
 
+<h2 id="e35ea465ea31939812aef342727fbfe5"></h2>
+
 ## Monte-Carlo Policy Evaluation
 
  - Monte-Carlo policy evaluation uses empirical mean return instead of expected return
@@ -404,6 +423,8 @@ The ordering is very important. 这就产生了 priorities sweeping.
 我们还有收集尽量多的样本，从某个特定个点开始发生的状态中收集。 问题是我们要怎样做到这一步，在我们不能反复将状态重设回那个点的情况下 ？
 
 We have 2 different ways to do this.
+
+<h2 id="ca72e9315ea8f81a61e682131eb8c332"></h2>
 
 ### First-Visit Monte-Carlo Policy Evaluation
 
@@ -415,6 +436,8 @@ We have 2 different ways to do this.
  - Value is estimated by mean return V(s) = S(s)/N(s)
  - By law of large numbers, V(s) → v<sub>π</sub>(s) as N(s) → ∞
 
+<h2 id="ffbd1472cb4d7535eda096f7d4995b6a"></h2>
+
 ### Every-Visit Monte-Carlo Policy Evaluation
 
  - To evaluate state s
@@ -424,6 +447,8 @@ We have 2 different ways to do this.
  - Value is estimated by mean return V(s) = S(s)/N(s)
     - Again, V(s) → vπ(s) as N(s) → ∞
 
+<h2 id="33efd086713c355c13f11c79e8304480"></h2>
+
 ### Incremental Mean
 
  - 求平均值也可以 递增计算, 但是需要记录 counter
@@ -431,12 +456,16 @@ We have 2 different ways to do this.
  - In non-stationary problems, it can be useful to track a running mean, i.e. forget old episodes.
     - V(S<sub>t</sub>) ← V(S<sub>t</sub>) + α( G<sub>t</sub> - V(S<sub>t</sub>) ) 
 
+<h2 id="e4ce07df12b2ef7a0b0f745ea0185fd9"></h2>
+
 ## Temporal-Difference Learning
 
  - TD methods learn directly from episodes of experience
  - TD is model-free: no knowledge of MDP transitions / rewards
  - TD learns from incomplete episodes, by bootstrapping
  - TD updates a guess towards a guess
+
+<h2 id="db2dcb707660729f9ba68926965d2e58"></h2>
 
 ## MC and TD
 
@@ -447,12 +476,16 @@ We have 2 different ways to do this.
  - TD
     - 你能预感到危险，你会降速，立刻更新你的 value值，而不用等到你死了。
 
+<h2 id="906bb81a2a5f3c85ecb0f8fd2d2463e3"></h2>
+
 ## Driving Home Example
 
  - MC
     - 你最终到家了，看到实际花了43分钟，然后才能更新你的每一个估计值
  - TD
     - you update immediately every step
+
+<h2 id="68154201a64057ceb4291f9695de4590"></h2>
 
 ## Advantages and Disadvantages of MC vs. TD (3)
 
@@ -462,9 +495,13 @@ We have 2 different ways to do this.
     - Usually more effective in non-Markov environments
     - eg. In a POMDP, TD(0) won't work very well. MC will still do the right thing. 
 
+<h2 id="4261968fe68698635cb479b713e3873f"></h2>
+
 ## Dynamic Programming Backup
 
 we also did one step lookahead, but we didn't sample. We have to know the dynamics. 
+
+<h2 id="b5bad1ef88d485efddae73555382fcb5"></h2>
 
 ## Bootstrapping and Sampling
 
@@ -478,6 +515,8 @@ we also did one step lookahead, but we didn't sample. We have to know the dynami
     - TD samples
 
 ---
+
+<h2 id="3d2617dd982260ee654a16d8dec7d2a1"></h2>
 
 # Lecture 5: Model-Free Control
 
