@@ -852,6 +852,91 @@ Now the question is, if we're using a soft max group for the outputs, what's the
     - A value of 0.000001 is much better than 0.000000001 
     - The steepness of dC/dy exactly balances the flatness of dy/dz
 
+---
+
+## Neuro-probabilistic language models
+
+We're going to look at a practical use for feature vectors that represent words
+
+### A basic problem in speech recognition 
+
+ - We cannot identify phonemes perfectly in noisy speech 
+    - The acoustic input is often ambiguous: there are several different words that fit the acoustic signal equally well. 
+ - People use their understanding of the meaning of the utterance to hear the right words. 
+    - We do this unconsciously when we wreck a nice beach. 
+    - We are very good at it. 
+ - This means speech recognizers have to know which words are likely to come next and which are not. 
+    - Fortunately, words can be predicted quite well without full understanding. 
+
+### The standard “trigram” method 
+    
+ - Take a huge amount of text and count the frequencies of all triples of words. 
+ - Use these frequencies to make bets on the relative probabilities of words given the previous two words:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_trigram1.png)
+ - Until very recently this was the state-of-the-art. 
+    - We cannot use a much bigger context because there are too many possibilities to store and the counts would mostly be zero. 
+    - We have to “back-off” to digrams when the count for a trigram is too small. 
+        - The probability is not zero just because the count is zero! 
+
+### Information that the trigram model fails to use 
+
+ - Suppose we have seen the sentence 
+    - “the cat got squashed in the garden on friday”
+ - This should help us predict words in the sentence
+    - “the dog got flattened in the yard on monday”
+ - A trigram model does not understand the similarities between 
+    - cat/dog squashed/flattened garden/yard friday/monday
+ - To overcome this limitation, we need to use the semantic and syntactic features of previous words to predict the features of the next word. 
+    - Using a feature representation also allows a context that contains many more previous words (e.g. 10). 
+
+
+
+
+
+### Bengio’s neural net for predicting the next word 
+
+It is actually very similar to the family trees network. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_bengio_nnet.png)
+
+So at the bottom you can think of us as putting in the index of a word, and you could think of that as a set of neurons of which just one is on. 
+
+And then the weight from that on neuron will determine the pattern of activity in the next hidden layer. And so the weights from the active neuron in the bottom layer will give you the pattern of activity in the layer that has the distributed representation of the word. 
+
+That is it's feature vector. But this is just equivalent to saying you do table look-up.You have a stored feature vector reach word, and with learning, you modify that feature vector. Which is exactly equivalent to modifying the weights coming from a single active-input unit. 
+
+After getting distributed representations of a few previous words, I've only shown two here but you would typically use, say, five. You can then, use those distributed representations, via hidden layer, to predict, via huge softmax, what the probabilities are for all the various words that might come next. 
+
+When extra refinement that makes it work better is to use skip-layer connections that go straight from the input words to the output words. Because the individual input words are, are individually quite informative about what the output word might be.
+
+### A problem with having 100,000 output words
+
+One problem with having a big softmax output layer, is that you might have to deal with 100,000 different output works. Because typically in these language models, the plural of a word is a different word from the singular.  And the various different tenses of a verb are different words from other tenses. So each unit in the last hidden layer of the net, might have to have a hundred-thousand outgoing weights.
+
+ - Each unit in the last hidden layer has 100,000 outgoing weights. 
+    - So we cannot afford to have many hidden units. 
+        - Unless we have a huge number of training cases
+    - We could make the last hidden layer small, but then its hard to get the 100,000 probabilities right.
+        - The small probabilities are often relevant. 
+ - Is there a better way to deal with such a large number of outputs? 
+
+---
+
+## Ways to deal with the large number of possible outputs
+
+we're going to look at various ways to avoid having to use 100,000 different output units in the softmax if we want to get probability from 100,000 different words.
+
+So one way to avoid, having a 100,000 different output units is to use a serial architecture. 
+
+### A serial architecture 
+
+
+
+
+
+
+
+
 
 
 
