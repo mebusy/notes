@@ -454,4 +454,35 @@ We have 2 different ways to do this.
  - TD
     - you update immediately every step
 
+## Advantages and Disadvantages of MC vs. TD (3)
+
+ - TD exploits Markov property
+    - Usually more efficient in Markov environments
+ - MC does not exploit Markov property
+    - Usually more effective in non-Markov environments
+    - eg. In a POMDP, TD(0) won't work very well. MC will still do the right thing. 
+
+## Dynamic Programming Backup
+
+we also did one step lookahead, but we didn't sample. We have to know the dynamics. 
+
+## Bootstrapping and Sampling
+
+ - **Bootstrapping**: update involves an estimate
+    - MC does not bootstrap
+    - DP bootstraps
+    - TD bootstraps
+ - **Sampling**: update samples an expectation
+    - MC samples
+    - DP does not sample
+    - TD samples
+
+---
+
+# Lecture 5: Model-Free Control
+
+
+
+
+
 
