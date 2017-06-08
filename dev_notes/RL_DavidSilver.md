@@ -521,6 +521,86 @@ we also did one step lookahead, but we didn't sample. We have to know the dynami
 # Lecture 5: Model-Free Control
 
 
+## Example of Greedy Action Selection
+
+You open the right door forever if you improve policy greedily.   The problem is you actually really don't know what is value of left door if you only tried once. 
+
+
+## Monte-Carlo Control
+
+现在我们想让整个过程更加有效。
+
+首先，我们在动态规划过程中已经看到过，it is not necessary to go all the way to the top of the line "Q=q<sub>π</sub>". It is not necessary to fully evaluate your policy. Sometimes you could just take a few steps to evaluate your policy. And you've got enough information to guide you to a better policy without wasting many many interations to collect more information. 
+
+那么在 蒙特卡洛环境之中又是怎么样的呢？我们可以设想一个极端的情况：say why not do this every single episode?  
+
+So we are gonna run 1 episode -- make the robot do 1 episode , collect all the steps along that episode, update the q value just for those steps ,so  basically 1 new return.  so for every state-action we take along that return , we're gonna update that mean value just of those visted states tried actions along that episode. 
+
+So 1 episode , 1 seqence of updates for that return. And then we improved our policy straightway. 
+
+So the idea is always to act greedily with repest to the freshest , most recent estimative value function. If I run 1 episode, you can really  update you value function something slightly better. And why you continue using the old value ?
+
+How to balance exploration and exploitation ? 
+
+## GLIE Monte-Carlo Control
+
+这是我们第一个完整的解决方案.
+
+## Convergence of Sarsa
+
+In practice , we don't worry about the step-size α<sub>t</sub>.  Sometimes we even don't worry about GLIE. And Sarsa typically works anyway. 
+
+## Sarsa on the Windy Gridworld
+
+The graph basically shows the learning curve of running Sarsa. 
+
+We run 170 episodes in total. This graph shows the  accumulative total finishing time-steps for each episodes. ( time-step 全局累加 )
+
+So the first episode takes about 2000 steps to complete. 因为它一开始的时候，对于该怎么走一无所知，所以一开始就是随机地走来走去。
+
+当他一次实验成功后，在运行下一组实验的时候，就变得快了不少。 The slope of curve  is increaing. 
+
+
+## Backward View Sarsa(λ)
+
+ - **eligibility traces** 
+    - eligibility traces is for all state-action pair.
+    - So we got a new table. each cell corresponds to a state-action pair. 
+    - eligibility traces 可以告诉你，你采取的每一个 state-action 能够得到多少奖赏 后 被 罚多少分。
+    - 当你跑完整组实验之后，你得到了一跟萝卜。那么究竟哪个state-action pair 才能让我得到胡萝卜呢？你的eligibility traces 会给你作出最优评估，告诉你怎样才能得到胡萝卜。 可能是离胡萝卜最近的 state-action， 也可能是 出现最频繁的 state-action。
+    - 某个time-step , 所有 没有被执行到 E(s,a)会衰减
+
+## Sarsa(λ) Gridworld Example
+
+ - 每走一步 对所有 state-action 进行一次更新
+ - 但只有跑完一个完整实验之后，才会出现最终的奖励。这就意味着你只有最终达到了目标 才能收集到信息。
+ - 因此这些箭头可以告诉你，当整个实验跑完的时候，你所得到的有效更新是什么样的。
+
+---
+
+## Off-Policy Learning
+
+Everything so far 所有的讨论都是建立在已知策略的基础之上的。同时 我所用的策略就是我在学习的策略。
+
+但是依然有很多情况，我们想考虑是 怎么评估一些其他的策略。
+
+
+## Importance Sampling
+
+## Importance Sampling for Off-Policy Monte-Carlo
+
+So MC is really a bad idea for off-policy.
+
+## Importance Sampling for Off-Policy TD
+
+TD is still not so good for off-policy even if it is much much better than MC.
+
+## Q-Learning
+
+This is specific to TD(0). 
+
+
+
 
 
 
