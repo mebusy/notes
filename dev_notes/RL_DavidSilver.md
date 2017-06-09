@@ -66,6 +66,32 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 # Lecture Introduction 
 
+## 2 About Reinforcement Learning
+
+### Characteristics of Reinforcement Learning
+
+ - There is no supervisor, only a reward signal
+ - Feedback is delayed, not instantaneous
+ - Time really matters (sequential, non i.i.d data) 
+    - iid : independent and identically distributed
+ - Agent’s actions affect the subsequent data it receives
+
+
+## 3 The Reinforcement Learning Problem
+
+### Rewards
+
+ - A **reward** R<sub>t</sub> is a scalar feedback signal
+ - Indicates how well agent is doing at step t
+ - The agent’s job is to maximise cumulative reward
+
+---
+
+ - Reinforcement learning is based on the reward **hypothesis**
+ - Definition (Reward Hypothesis)
+    - *All* goals can be described by the maximisation of expected cumulative reward
+
+
 <h2 id="4ac238303a852194c91c7f6049b8bf96"></h2>
 
 ## Agent and Environment
