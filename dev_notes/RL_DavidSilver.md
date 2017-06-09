@@ -2,20 +2,30 @@
 
  - [RL David Silver](#9524b1c1f1bedffb663a033d3c61945b)
  - [Lecture Introduction](#9d93bb2c4dac212799da231d0de41baa)
-	 - [Agent and Environment](#4ac238303a852194c91c7f6049b8bf96)
-	 - [History and State](#97d4e953a41e7b6286e4b64996685f5f)
+	 - [2 About Reinforcement Learning](#b653b982b2e157521c85448fa1691ee7)
+		 - [Characteristics of Reinforcement Learning](#020ca729d2be3285264a5a18406cf5dd)
+	 - [3 The Reinforcement Learning Problem](#68fe7bb3961118eaaa887017e9783062)
+		 - [Rewards](#0d1c608c1498367815da8105e26b0a9e)
+		 - [Sequential Decision Making](#aa3defd392f2e41771f6eb18dd4fa83b)
+		 - [Agent and Environment](#4ac238303a852194c91c7f6049b8bf96)
+		 - [History and State](#97d4e953a41e7b6286e4b64996685f5f)
 		 - [Environment State](#e3cfaeeacd3da2524172e159513a16a6)
 		 - [Agent State](#3b46cd6952a6d7d4f5242eed8d2f16dd)
 		 - [Information State](#1b3aea5674ac4ad59a561a6d55cfaf4d)
-	 - [Fully Observable Environments](#dd001f6c9dbf7a80bee787f2a211bc62)
-	 - [Partially Observable Environments](#e335cf476058a7c19c94c20f9bb4a45a)
-	 - [Policy](#51359e8b51c63b87d50cb1bab73380e2)
-	 - [Value Function](#52790a9930eefe2ce7b9c9e29dec6dd5)
-	 - [Model](#a559b87068921eec05086ce5485e9784)
-	 - [Categorizing RL agents 1](#2f14f08fef3dc09988aac5fd9e735876)
-	 - [Categorizing RL agents 2](#c155b44e0ed60f75e1bcdb19547a1b19)
-	 - [Learning and Planning](#87bd5df92a07c7da0886cec0ba36524a)
-	 - [Prediction and Control](#f887d9035769a495f7c1003560288bf7)
+		 - [Fully Observable Environments](#dd001f6c9dbf7a80bee787f2a211bc62)
+		 - [Partially Observable Environments](#e335cf476058a7c19c94c20f9bb4a45a)
+	 - [4 Inside An RL Agent](#b1a766cbf71cf8079d7378af1763be7b)
+		 - [Major Components of an RL Agent](#8920cbd38d5a445d3758b6a04e5ac9df)
+		 - [Policy](#51359e8b51c63b87d50cb1bab73380e2)
+		 - [Value Function](#52790a9930eefe2ce7b9c9e29dec6dd5)
+		 - [Model](#a559b87068921eec05086ce5485e9784)
+		 - [Maze Example](#887dd5c11df64a83f383a29393db9f0c)
+		 - [Categorizing RL agents 1](#2f14f08fef3dc09988aac5fd9e735876)
+		 - [Categorizing RL agents 2](#c155b44e0ed60f75e1bcdb19547a1b19)
+	 - [5 Problems within Reinforcement Learning](#fc1b5d6a77ce0ec6ffbaf2fdd8749fe6)
+		 - [Learning and Planning](#87bd5df92a07c7da0886cec0ba36524a)
+		 - [Exploration and Exploitation](#9cb8554f07a9abcb138ed2f10a9218c8)
+		 - [Prediction and Control](#f887d9035769a495f7c1003560288bf7)
  - [Lecture 2 : MDP](#37b66eeb744820b6efbb09622f9cb190)
 	 - [Introduction to MDPs](#37e7b8a197c50d52ae8423cb9109686b)
 	 - [Markov Process](#30f2bbe8613d52e4d06e36c49d333555)
@@ -47,6 +57,18 @@
 	 - [Dynamic Programming Backup](#4261968fe68698635cb479b713e3873f)
 	 - [Bootstrapping and Sampling](#b5bad1ef88d485efddae73555382fcb5)
  - [Lecture 5: Model-Free Control](#3d2617dd982260ee654a16d8dec7d2a1)
+	 - [Example of Greedy Action Selection](#4c8ab096508f52654a28c785f6748251)
+	 - [Monte-Carlo Control](#07a161e40945e4b056c712775b4703ea)
+	 - [GLIE Monte-Carlo Control](#85d04a96bae9047010fec0f9592110da)
+	 - [Convergence of Sarsa](#08a9532ec1aa3228c440d83d04997958)
+	 - [Sarsa on the Windy Gridworld](#aaa26500d020666213140c69406d0d64)
+	 - [Backward View Sarsa(λ)](#a77c65574fc09544e64c5ab604f73346)
+	 - [Sarsa(λ) Gridworld Example](#49ba094543faf8342001ad06e950e315)
+	 - [Off-Policy Learning](#93860339a61c014360f61ae14296ae1c)
+	 - [Importance Sampling](#08c2fa83f31563f4fa7749548cf87ff4)
+	 - [Importance Sampling for Off-Policy Monte-Carlo](#c44f5bf2a0106935c78e4b5f365a0940)
+	 - [Importance Sampling for Off-Policy TD](#2aab383140e413901e497a99f9b40704)
+	 - [Q-Learning](#e4d17333d58040b1db710abe36cd5aec)
 
 ...menuend
 
@@ -66,7 +88,11 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 # Lecture Introduction 
 
+<h2 id="b653b982b2e157521c85448fa1691ee7"></h2>
+
 ## 2 About Reinforcement Learning
+
+<h2 id="020ca729d2be3285264a5a18406cf5dd"></h2>
 
 ### Characteristics of Reinforcement Learning
 
@@ -77,7 +103,11 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
  - Agent’s actions affect the subsequent data it receives
 
 
+<h2 id="68fe7bb3961118eaaa887017e9783062"></h2>
+
 ## 3 The Reinforcement Learning Problem
+
+<h2 id="0d1c608c1498367815da8105e26b0a9e"></h2>
 
 ### Rewards
 
@@ -91,6 +121,8 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
  - Definition (Reward Hypothesis)
     - *All* goals can be described by the maximisation of expected cumulative reward
 
+
+<h2 id="aa3defd392f2e41771f6eb18dd4fa83b"></h2>
 
 ### Sequential Decision Making
 
@@ -192,7 +224,11 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
     - **Beliefs** of environment state: 
     - Recurrent neural network
 
+<h2 id="b1a766cbf71cf8079d7378af1763be7b"></h2>
+
 ## 4 Inside An RL Agent
+
+<h2 id="8920cbd38d5a445d3758b6a04e5ac9df"></h2>
 
 ### Major Components of an RL Agent
 
@@ -223,9 +259,30 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 ### Model
  
  - A **model** predicts what the environment will do next
- - Transitions:  P predicts the next state
+ - Transitions:  T predicts the next state
  - Rewards: R predicts the next (immediate) reward, e.g.
+    - T = P[ S<sub>t+1</sub>=s' | S<sub>t</sub>=s, A<sub>t</sub>=a ] 
  - Model is not necessary.
+
+<h2 id="887dd5c11df64a83f383a29393db9f0c"></h2>
+
+### Maze Example
+
+ - Policy
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_maze_example_policy.png)
+    - Arrows represent policy π(s) for each state s
+ - Value Function
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_maze_example_vf.png)
+    - Numbers represent value v<sub>π</sub>(s) of each state s
+ - Model
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_maze_example_model.png)
+    - Agent may have an internal model of the environment
+    - Dynamics: how actions change the state
+    - Rewards: how much reward from each state
+    - The model may be imperfect
+    - Grid layout represents transition model 
+    - Numbers represent immediate reward R from each state s (same for all a)
+
 
 <h2 id="2f14f08fef3dc09988aac5fd9e735876"></h2>
 
@@ -244,7 +301,7 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="c155b44e0ed60f75e1bcdb19547a1b19"></h2>
 
-## Categorizing RL agents 2
+### Categorizing RL agents 2
 
  - Model Free
     - Policy and/or Value Function
@@ -255,9 +312,13 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 ---
 
+<h2 id="fc1b5d6a77ce0ec6ffbaf2fdd8749fe6"></h2>
+
+## 5 Problems within Reinforcement Learning
+
 <h2 id="87bd5df92a07c7da0886cec0ba36524a"></h2>
 
-## Learning and Planning
+### Learning and Planning
 
 Two fundamental problems in sequential decision making
 
@@ -271,9 +332,24 @@ Two fundamental problems in sequential decision making
     - The agent improves its policy
     - a.k.a. deliberation, reasoning, introspection, pondering, thought, search
 
+<h2 id="9cb8554f07a9abcb138ed2f10a9218c8"></h2>
+
+### Exploration and Exploitation
+
+ - Reinforcement learning is like trial-and-error learning 
+ - The agent should discover a good policy
+ - From its experiences of the environment
+ - Without losing too much reward along the way
+
+---
+
+ - **Exploration** finds more information about the environment 
+ - **Exploitation** exploits known information to maximise reward 
+ - It is usually important to explore as well as exploit
+
 <h2 id="f887d9035769a495f7c1003560288bf7"></h2>
 
-## Prediction and Control
+### Prediction and Control
 
  - Prediction: evaluate the future
     - Given a policy
@@ -588,10 +664,14 @@ we also did one step lookahead, but we didn't sample. We have to know the dynami
 # Lecture 5: Model-Free Control
 
 
+<h2 id="4c8ab096508f52654a28c785f6748251"></h2>
+
 ## Example of Greedy Action Selection
 
 You open the right door forever if you improve policy greedily.   The problem is you actually really don't know what is value of left door if you only tried once. 
 
+
+<h2 id="07a161e40945e4b056c712775b4703ea"></h2>
 
 ## Monte-Carlo Control
 
@@ -609,13 +689,19 @@ So the idea is always to act greedily with repest to the freshest , most recent 
 
 How to balance exploration and exploitation ? 
 
+<h2 id="85d04a96bae9047010fec0f9592110da"></h2>
+
 ## GLIE Monte-Carlo Control
 
 这是我们第一个完整的解决方案.
 
+<h2 id="08a9532ec1aa3228c440d83d04997958"></h2>
+
 ## Convergence of Sarsa
 
 In practice , we don't worry about the step-size α<sub>t</sub>.  Sometimes we even don't worry about GLIE. And Sarsa typically works anyway. 
+
+<h2 id="aaa26500d020666213140c69406d0d64"></h2>
 
 ## Sarsa on the Windy Gridworld
 
@@ -628,6 +714,8 @@ So the first episode takes about 2000 steps to complete. 因为它一开始的�
 当他一次实验成功后，在运行下一组实验的时候，就变得快了不少。 The slope of curve  is increaing. 
 
 
+<h2 id="a77c65574fc09544e64c5ab604f73346"></h2>
+
 ## Backward View Sarsa(λ)
 
  - **eligibility traces** 
@@ -637,6 +725,8 @@ So the first episode takes about 2000 steps to complete. 因为它一开始的�
     - 当你跑完整组实验之后，你得到了一跟萝卜。那么究竟哪个state-action pair 才能让我得到胡萝卜呢？你的eligibility traces 会给你作出最优评估，告诉你怎样才能得到胡萝卜。 可能是离胡萝卜最近的 state-action， 也可能是 出现最频繁的 state-action。
     - 某个time-step , 所有 没有被执行到 E(s,a)会衰减
 
+<h2 id="49ba094543faf8342001ad06e950e315"></h2>
+
 ## Sarsa(λ) Gridworld Example
 
  - 每走一步 对所有 state-action 进行一次更新
@@ -645,6 +735,8 @@ So the first episode takes about 2000 steps to complete. 因为它一开始的�
 
 ---
 
+<h2 id="93860339a61c014360f61ae14296ae1c"></h2>
+
 ## Off-Policy Learning
 
 Everything so far 所有的讨论都是建立在已知策略的基础之上的。同时 我所用的策略就是我在学习的策略。
@@ -652,15 +744,23 @@ Everything so far 所有的讨论都是建立在已知策略的基础之上的�
 但是依然有很多情况，我们想考虑是 怎么评估一些其他的策略。
 
 
+<h2 id="08c2fa83f31563f4fa7749548cf87ff4"></h2>
+
 ## Importance Sampling
+
+<h2 id="c44f5bf2a0106935c78e4b5f365a0940"></h2>
 
 ## Importance Sampling for Off-Policy Monte-Carlo
 
 So MC is really a bad idea for off-policy.
 
+<h2 id="2aab383140e413901e497a99f9b40704"></h2>
+
 ## Importance Sampling for Off-Policy TD
 
 TD is still not so good for off-policy even if it is much much better than MC.
+
+<h2 id="e4d17333d58040b1db710abe36cd5aec"></h2>
 
 ## Q-Learning
 
