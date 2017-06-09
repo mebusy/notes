@@ -92,68 +92,96 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
     - *All* goals can be described by the maximisation of expected cumulative reward
 
 
+### Sequential Decision Making
+
+ - Goal: *select actions to maximise total future reward* 
+ - Actions may have long term consequences
+ - Reward may be delayed
+ - It may be better to sacrifice immediate reward to gain more long-term reward
+
+
 <h2 id="4ac238303a852194c91c7f6049b8bf96"></h2>
 
-## Agent and Environment
+### Agent and Environment
 
-所有 agent 都有两个输入： observation and reward. 这些输入共同决定 下一步措施。
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_agent_and_env.png)
+    - Agent 有两个输入： observation and reward. 这些输入共同决定 下一步措施。
+ - At each step t the agent: 
+    - Receives observation O<sub>t</sub> 
+    - Receives scalar reward R<sub>t</sub>
+    - Executes action A<sub>t</sub>
+ - The environment: 
+    - Receives action A<sub>t</sub>
+    - Emits observation O<sub>t+1</sub> 
+    - Emits scalar reward R<sub>t+1</sub>
+
 
 
 <h2 id="97d4e953a41e7b6286e4b64996685f5f"></h2>
 
-## History and State
+### History and State
 
-Histroy is huge. It is normally not useful. 
-
-State is the information used to determine what happens next
-
-Formally, **state is a function of the history**:  s<sub>t</sub> = f(H<sub>t</sub>)
+ - The **history** is the sequence of observations, actions, rewards 
+    - H<sub>t</sub>  = O₁,R₁,A₁,...,A<sub>t-1</sub>,O<sub>t</sub>,R<sub>t</sub>
+    - Histroy is huge. It is normally not useful. 
+ - What happens next depends on the history:
+    - The agent selects actions
+    - The environment selects observations/rewards
+ - **State** is the information used to determine what happens next
+    - Formally, **state is a function of the history**:  s<sub>t</sub> = f(H<sub>t</sub>)
 
 <h2 id="e3cfaeeacd3da2524172e159513a16a6"></h2>
 
 ### Environment State
 
-Sᵉ<sub>t</sub>
-
+ - The **environment state** Sᵉ<sub>t</sub> is the environment’s private representation
  - The environment state is not usually visible to the agent
- - Even if it is visible, it may contain irrelevant information
+ - Even if Sᵉ<sub>t</sub> is visible, it may contain irrelevant information
 
+--- 
 
-something about multi-agents
-
- - for each agent, it can consider all other agents and their interacting with environment to be a part of environment. 
+ - something about multi-agents
+    - for each agent, it can consider all other agents and their interacting with environment to be a part of environment. 
 
 
 <h2 id="3b46cd6952a6d7d4f5242eed8d2f16dd"></h2>
 
 ### Agent State 
 
-sª<sub>t</sub> = f(H<sub>t</sub>) 
+ - The **agent state** sª<sub>t</sub> is the agent’s internal representation
+ - It can be any function of history:
+    - sª<sub>t</sub> = f(H<sub>t</sub>) 
+
 
 
 <h2 id="1b3aea5674ac4ad59a561a6d55cfaf4d"></h2>
 
 ### Information State
 
-information state , a.k.a Markov state
-
- - The environment state is Markov
- - The history H<sub>t</sub> is Markov
+ - an **information state** , a.k.a **Markov state** , contains all useful information from the history.
+ - Definition A state S<sub>t</sub> is **Markov** if and only if
+    - P[S<sub>t+1</sub> |S<sub>t</sub> ] = P[S<sub>t+1</sub> |S₁,...,S<sub>t</sub> ]
+    - "The future is independent of the past given the present"
+        - H<sub>1:t</sub> -> S<sub>t</sub> -> H<sub>t+1:∞</sub>
+    - Once the state is known, the history may be thrown away
+        - i.e. The state is a sufficient statistic of the future
+    - The environment state Sᵉ<sub>t</sub> is Markov
+    - The history H<sub>t</sub> is Markov
 
 <h2 id="dd001f6c9dbf7a80bee787f2a211bc62"></h2>
 
-## Fully Observable Environments
+### Fully Observable Environments
 
- - Full observability: agent **directly** observes environment state
+ - **Full observability**: agent **directly** observes environment state
     - O<sub>t</sub> = Sª<sub>t</sub> = Sᵉ<sub>t</sub>
  - Agent state = environment state = information state
- - Formally, this is a Markov decision process (MDP)
+ - Formally, this is a **Markov decision process** (MDP)
 
 <h2 id="e335cf476058a7c19c94c20f9bb4a45a"></h2>
 
-## Partially Observable Environments
+### Partially Observable Environments
 
- - Partial observability: agent **indirectly** observes environment:
+ - **Partial observability**: agent **indirectly** observes environment:
     - A robot with camera vision isn’t told its absolute location
     - A trading agent only observes current prices
     - A poker playing agent only observes public cards
@@ -164,31 +192,44 @@ information state , a.k.a Markov state
     - **Beliefs** of environment state: 
     - Recurrent neural network
 
+## 4 Inside An RL Agent
+
+### Major Components of an RL Agent
+
+ - Policy: agent’s behaviour function
+ - Value function: how good is each state and/or action
+ - Model: agent’s representation of the environment
+
 <h2 id="51359e8b51c63b87d50cb1bab73380e2"></h2>
 
-## Policy
+### Policy
 
- - Deterministic policy: a = π(s)
- - Stochastic policy: π(a|s) = P(A<sub>t</sub>=a | s<sub>t</sub>=s)
+ - A **policy** is the agent’s behaviour
+ - It is a map from state to action, e.g.
+    - Deterministic policy: a = π(s)
+    - Stochastic policy: π(a|s) = P(A<sub>t</sub>=a | s<sub>t</sub>=s)
 
 <h2 id="52790a9930eefe2ce7b9c9e29dec6dd5"></h2>
 
-## Value Function
+### Value Function
 
  - Value function is a prediction of future reward
+ - Used to evaluate the goodness/badness of states 
+ - And therefore to select between actions, e.g.
+ - v<sub>π</sub>(s) = E<sub>π</sub> [R<sub>t+1</sub> + γR<sub>t+2</sub> + γ²R<sub>t+3</sub> + ... |S<sub>t</sub>=s ]
 
 <h2 id="a559b87068921eec05086ce5485e9784"></h2>
 
-## Model
+### Model
  
- - A model predicts what the environment will do next
+ - A **model** predicts what the environment will do next
  - Transitions:  P predicts the next state
  - Rewards: R predicts the next (immediate) reward, e.g.
  - Model is not necessary.
 
 <h2 id="2f14f08fef3dc09988aac5fd9e735876"></h2>
 
-## Categorizing RL agents 1
+### Categorizing RL agents 1
 
  - Value Based
     - ~~No Policy (Implicit)~~  (can get the optimal action by do 1-step expectimax search)
