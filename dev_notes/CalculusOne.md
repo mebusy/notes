@@ -695,7 +695,7 @@ d/dθ tanθ = ( cosθcosθ - sinθ (-sinθ) )/cos²θ = 1/cos²θ = sec²θ
 
  - chain rule
     - d/dθ = cos(x²)·2x 
- - |sin(x²) ≤ 1
+ - |sin(x²)| ≤ 1
  - cos(x²)·2x can be as large as you like !
 
 <h2 id="31210310e2f1c1dbdf248f691b4948c9"></h2>
@@ -862,9 +862,17 @@ lim<sub>x→∞</sub> (sin(1/x)·x ) = lim<sub>x→∞</sub> sin(1/x) / (1/x) = 
 
  - ∞ - ∞
 
-lim<sub>x→∞</sub> ( √(x²+x) -x  ) = lim<sub>x→∞</sub> ( x·( √(x + 1/x) -1  ) ) 
+lim<sub>x→∞</sub> ( √(x²+x) -x  ) = lim<sub>x→∞</sub> ( x·( √(1 + 1/x) -1  ) ) 
 
- = lim<sub>x→∞</sub> ( ( √(x + 1/x) -1  )/x ) = lim<sub>x→∞</sub> 1/(2·√(1 + 1/x)) = 1/2
+ now we get ∞·0 form
+
+ = lim<sub>x→∞</sub> ( ( √(1 + 1/x) -1  )/ (1/x ) 
+
+ now it is 0/0 form , we apply L'Hopital's rule 
+
+ = lim<sub>x→∞</sub> 1/(2·√(1 + 1/x)) ·d/dx(1/x) / d/dx(1/x)
+
+ = lim<sub>x→∞</sub> 1/(2·√(1 + 1/x)) = 1/2
 
 --- 
 
