@@ -364,22 +364,47 @@ Two fundamental problems in sequential decision making
 
 # Lecture 2 : MDP
 
+## 1 Markov Processes
+
+
 <h2 id="37e7b8a197c50d52ae8423cb9109686b"></h2>
 
-## Introduction to MDPs
+### Introduction to MDPs
 
  - MDP formally describe an environment for reinforcement learning 
-    - Where the environment is fully observable
-    - i.e. The current state completely characterises the process
+    - Where the environment is *fully* observable
+    - i.e. The current *state* completely characterises the process
         - state 特征化了 我们所需要知道的一切
  - Almost all RL problems can be formalised as MDPs, e.g
     - Optimal control primarily deals with continuous MDPs
     - Partially observable problems can be converted into MDPs
     - Bandits are MDPs with one state
 
+
+### Markov Property
+
+ - "The future is independent of the past given the present"
+    - H<sub>1:t</sub> -> S<sub>t</sub> -> H<sub>t+1:∞</sub>
+ - Definition A state S<sub>t</sub> is **Markov** if and only if
+    - P[S<sub>t+1</sub> |S<sub>t</sub> ] = P[S<sub>t+1</sub> |S₁,...,S<sub>t</sub> ]
+    - The state captures all relevant information from the history
+    - Once the state is known, the history may be thrown away
+        - i.e. The state is a sufficient statistic of the future
+
+### State Transition Matrix
+
+ - For a Markov state s and successor state s′, the state transition probability is defined by
+    - *P*<sub>ss'</sub> = P[S<sub>t+1</sub>=s'|S<sub>t</sub>=s]
+ - State transition matrix *P* defines transition probabilities from all states s to all successor states s′,
+    - 
+    - where each row of the matrix sums to 1.
+
+
+
+
 <h2 id="30f2bbe8613d52e4d06e36c49d333555"></h2>
 
-## Markov Process
+### Markov Process
 
  - A Markov process is a memoryless random process,
  - A Markov Process (or Markov Chain) is a tuple ( S,P )
