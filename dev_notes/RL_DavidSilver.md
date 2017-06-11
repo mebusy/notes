@@ -396,24 +396,29 @@ Two fundamental problems in sequential decision making
  - For a Markov state s and successor state s′, the state transition probability is defined by
     - *P*<sub>ss'</sub> = P[S<sub>t+1</sub>=s'|S<sub>t</sub>=s]
  - State transition matrix *P* defines transition probabilities from all states s to all successor states s′,
-    - 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_StateTransitionMatrix.png)
     - where each row of the matrix sums to 1.
-
 
 
 
 <h2 id="30f2bbe8613d52e4d06e36c49d333555"></h2>
 
-### Markov Process
+### Markov Process ( Markov Chain )
 
  - A Markov process is a memoryless random process,
- - A Markov Process (or Markov Chain) is a tuple ( S,P )
+ - Definition: A Markov Process (or Markov Chain) is a tuple ( S,*P* )
     - S is a (finite) set of states
-    - P is a state transition probability matrix
+    - *P* is a state transition probability matrix
+        - *P*<sub>ss'</sub> = P[S<sub>t+1</sub>=s'|S<sub>t</sub>=s]
+
+
+---
+
+## 2 Markov Reward Processes
 
 <h2 id="ae22669a0c18be8c9c4e1de1329591f3"></h2>
 
-## Markov Reward Process
+### Markov Reward Process
 
  - A Markov Reward Process is a tuple ( S ,P , R , γ )
     - R is a reward function , R<sub>s</sub> = 𝔼( R<sub>t+1</sub> | S<sub>t</sub>=s )
