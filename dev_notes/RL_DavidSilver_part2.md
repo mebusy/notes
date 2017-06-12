@@ -46,6 +46,11 @@
  - When you useing Function Approximation , the size of eligibility traces is on the size of you parameters ?
     - it record all the features you have seen so far.
 
+### Linear Action-Value Function Approximation
+
+we might have 1 feature ,x₁, say how far am I far from the wall if I moving forwards. And I have another feature , x₂ , says how far am I far from this wall if I'm moving backwards. 
+
+
 
 
 

@@ -420,7 +420,7 @@ Two fundamental problems in sequential decision making
 
 ### Markov Reward Process
 
- - A Markov Reward Process is a tuple ( S ,P , R , γ )
+ - A Markov Reward Process is a tuple ( S ,P , **R , γ** )
     - R is a reward function , R<sub>s</sub> = 𝔼( R<sub>t+1</sub> | S<sub>t</sub>=s )
     - γ is a discount factor, γ ∈ [0, 1]
 
@@ -430,6 +430,7 @@ Two fundamental problems in sequential decision making
 
  - the return G<sub>t</sub> t is the total discounted reward from time-step t
     - G<sub>t</sub> = R<sub>t+1</sub> + γR<sub>t+2</sub> + ... 
+        - = ∑<sub>k=</sub><sup>∞</sup>₀ γᵏR<sub>t+k+1</sub>
     - why here is no expectation ?
         - because here G is just one sample from our MRP , later we will talk about expectation.
     - The value of receiving reward R afte k + 1 time-steps is γᵏR.
@@ -440,6 +441,37 @@ Two fundamental problems in sequential decision making
  - Most Markov reward and decision processes are discounted
  - It is sometimes possible to use undiscounted Markov reward processes
     - if all sequences terminate
+
+#### Why discount?
+
+Most Markov reward and decision processes are discounted. Why?
+
+ - Mathematically convenient to discount rewards
+ - Avoids infinite returns in cyclic Markov processes
+ - Uncertainty about the future may not be fully represented
+ - If the reward is financial, immediate rewards may earn more interest than delayed rewards
+ - Animal/human behaviour shows preference for immediate reward
+ - It is sometimes possible to use undiscounted Markov reward processes (i.e. γ = 1), 
+    - e.g. if all sequences terminate.
+  
+
+### Value Function
+
+ - The value function v(s) gives the long-term value of state s
+ - Definition: The state value function v(s) of an MRP is the expected return starting from state s
+    - v(s)=𝔼[G<sub>t</sub> |S<sub>t</sub> =s]
+
+### Bellman Equation for MRPs
+
+The value function can be decomposed into two parts:
+
+ - immediate reward R<sub>t+1</sub>
+ - discounted value of successor state γ·v(S<sub>t+1</sub>)
+ - v(s)=𝔼[ R<sub>t+1</sub> + γ·v(S<sub>t+1</sub>)  |S<sub>t</sub> =s]
+ - v(s) = *R*<sub>s</sub> + γ·∑<sub>s'∈S</sub> *P*<sub>ss'</sub>·v(s')
+
+
+
 
 
 <h2 id="bccc96e13f6db6cbc1bf97ba5a9f3bcf"></h2>
