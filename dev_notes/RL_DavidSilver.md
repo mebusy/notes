@@ -94,18 +94,36 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
         - iterative application of Bellman expectation backup
     - Policy Iteration
         - **Evaluate** the policy π
-        - **Improve**  the policy   by acting ε-greedily
+        - **Improve**  the policy   by acting greedily
     - Value Iteration
         - iterative application of Bellman optimality backup
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_DP_algorithm.png)
- - TC
-    - idea: value = mean return
-    - methods
-        - First-Visit Monte-Carlo Policy Evaluation
-        - Every-Visit Monte-Carlo Policy Evaluation
-    - Incremental Monte-Carlo Updates
-        - tricks: Incremental Mean
-
+ - MC
+    - Prediction
+        - idea: value = mean return
+        - methods
+            - First-Visit Monte-Carlo Policy Evaluation
+            - Every-Visit Monte-Carlo Policy Evaluation
+        - Incremental Monte-Carlo Updates
+            - tricks: Incremental Mean
+    - Control
+        - Policy evaluation
+        - Policy improvement 
+            - ε-Greedy Policy Improvement
+        - GLIE: Greedy in the Limit with Infinite Exploration (GLIE)
+            - eg: ε = 1/k
+ - TD
+    - Prediction
+        - TODO
+    - Control  
+        - Natural idea: use TD instead of MC in our control loop
+        - Policy evaluation: **Sarsa**
+        - Policy improvement 
+            - ε-greedy policy improvement
+ - Off-Policy Learning : Q-Learning
+ - Relationship Between DP and TD
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_relationship_DP_TD.png)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_relationship_DP_TD2.png)
     
 
 
