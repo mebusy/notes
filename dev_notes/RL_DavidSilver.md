@@ -455,11 +455,25 @@ Most Markov reward and decision processes are discounted. Why?
     - e.g. if all sequences terminate.
   
 
-### Value Function
+
+
+
+
+
+
+
+
+<h2 id="bccc96e13f6db6cbc1bf97ba5a9f3bcf"></h2>
+
+## MRP Value Function
+
 
  - The value function v(s) gives the long-term value of state s
  - Definition: The state value function v(s) of an MRP is the expected return starting from state s
     - v(s)=𝔼[G<sub>t</sub> |S<sub>t</sub> =s]
+
+value is expectation because the environment is stochastic.
+
 
 ### Bellman Equation for MRPs
 
@@ -470,44 +484,37 @@ The value function can be decomposed into two parts:
  - v(s)=𝔼[ R<sub>t+1</sub> + γ·v(S<sub>t+1</sub>)  |S<sub>t</sub> =s]
  - v(s) = *R*<sub>s</sub> + γ·∑<sub>s'∈S</sub> *P*<sub>ss'</sub>·v(s')
 
-
-
-
-
-<h2 id="bccc96e13f6db6cbc1bf97ba5a9f3bcf"></h2>
-
-## MRP Value Function
-
- - state-value function  v(s)
- - action-value function  q(s,a)
-
-value is expectation because the environment is stochastic.
-
-
-<h2 id="60c71554b7b04c962c22896abeeb3f06"></h2>
-
-## Bellman Equation for MRPs
-
-The value function can be decomposed into two parts:
-
- - immediate reward R<sub>t+1</sub>
- - discounted value of successor state γ·v(S<sub>t+1</sub>)
-
 <h2 id="22623095aa6a91da57af0415ea951ad3"></h2>
 
 ## Bellman Equation in Matrix Form
 
+
+ - The Bellman equation can be expressed concisely using matrices,
+    - v = *R* + γ*P*v
+ - where v is a column vector with one entry per state
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_bellman_matrix_form.png)
+
+### Solving the Bellman Equation
+
+
 Bellman Equation for MRPs has no concept of maximum. So t can be expressed concisely using matrices. And here the bellman exuation is a linear equation , as a result it can be solved directly. It is not true when we meet MDP.
 
+ - The Bellman equation is a linear equation
+ - Computational complexity is O(n³) for n states
  - Direct solution only possible for small MRPs
  - There are many iterative methods for large MRPs, e.g.
     - Dynamic programming
     - Monte-Carlo evaluation
     - Temporal-Difference learning
 
+---
+
+## 3 Markov Decision Processes
+
+
 <h2 id="95ca0b19e36749a112193d611503cf95"></h2>
 
-## Markov Decision Process
+### Markov Decision Process
 
  - A Markov decision process (MDP) is a Markov reward process with decisions. 
  - It is an environment in which all states are Markov
@@ -516,6 +523,19 @@ Bellman Equation for MRPs has no concept of maximum. So t can be expressed conci
  - Given an MDP M= ( S , A,  P , R , γ ) , and a policy π 
     - The state sequence S1, S2, ... is a Markov process (S,P<sup>π</sup>)
     - The state and reward sequence S1,R2,S2, ... is is a Markov reward process ( S,P<sup>π</sup>, R<sup>π</sup>, γ  )
+
+### Policies
+
+ - Definition: A policy π is a distribution over actions given states,
+    - π(a|s) = ℙ[A<sub>t</sub> =a | S<sub>t</sub> =s ]
+ - A policy fully defines the behaviour of an agent
+ - MDP policies depend on the current state (not the history)
+
+---
+
+ - Given an MDP M = <S,A,P,R,γ> and a policy π
+ - The state sequence S1, S2, ... is a Markov process < S, P<sup>π</sup> >
+ - The state and reward sequence S1, R2, S2, ... is a Markov reward process < S, P<sup>π</sup>, R<sup>π</sup>, γ >
 
 <h2 id="44b625919ec17030b52b99aa088fdd61"></h2>
 
