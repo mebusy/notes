@@ -50,9 +50,35 @@
 
 we might have 1 feature ,x₁, say how far am I far from the wall if I moving forwards. And I have another feature , x₂ , says how far am I far from this wall if I'm moving backwards. 
 
+### Stochastic Gradient Descent with Experience Replay
+
+我们保存所有的经验，而不是用过一次后就扔掉。
+
+就像又回到了监督学习法。
+
+打乱顺序，做一次随机梯度下降；再次打乱顺序，又一次地做随机地图下降。
+
+
+### Experience Replay in Deep Q-Networks (DQN)
+
+之前说过，Sarsa，TD 这些方法 can not work in your network. However this method is stable in your networks. 
+
+我们实际是在用两套神经网络运行。一般会freeze 老的神经网路。
+
+# Lecture 7: Policy Gradient
+
+## 1 Introduction
+
+直接将 policy，而不是 value function, 参数化。
 
 
 
+## 2 Finite Difference Policy Gradient
+
+## 3 Monte-Carlo Policy Gradient
+
+
+## 4 Actor-Critic Policy Gradient
 
 
 
