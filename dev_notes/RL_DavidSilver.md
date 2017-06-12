@@ -83,6 +83,31 @@ https://search.bilibili.com/all?keyword=David%20Silver%E6%B7%B1%E5%BA%A6%E5%BC%B
 http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 
+ - Solving the Bellman Equation
+    1. computation directly by inverse martix
+    2. iterative calculation
+        - Dynamic programming
+        - Monte-Carlo evaluation
+        - Temporal-Difference learning
+  - DP
+    - Policy Evaluation
+        - iterative application of Bellman expectation backup
+    - Policy Iteration
+        - **Evaluate** the policy π
+        - **Improve**  the policy   by acting ε-greedily
+    - Value Iteration
+        - iterative application of Bellman optimality backup
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_DP_algorithm.png)
+ - TC
+    - idea: value = mean return
+    - methods
+        - First-Visit Monte-Carlo Policy Evaluation
+        - Every-Visit Monte-Carlo Policy Evaluation
+    - Incremental Monte-Carlo Updates
+        - tricks: Incremental Mean
+
+    
+
 
 <h2 id="9d93bb2c4dac212799da231d0de41baa"></h2>
 
