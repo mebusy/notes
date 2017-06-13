@@ -126,6 +126,20 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_relationship_DP_TD2.png)
     
 
+ - v<sub>π</sub>(s) 
+    - = expectation of all q<sub>π</sub>(s,a) 
+ - q<sub>π</sub>(s,a) 
+    - = immediate reward r(s,a) + γ·expectation of all v<sub>π</sub>(s') 
+ - v<sub>π</sub>(s) / q<sub>π</sub>(s,a) can represent recursively.
+ - v<sub>\*</sub>(s) 
+    1. = max v<sub>π</sub>(s) over all policy
+    2. = max q<sub>\*</sub>(s,a) over all action 
+    3. = max of  immediate reward r(s,a) over all action 
+        - + γ·expectation of all v<sub>\*</sub>(s')
+ - q<sub>\*</sub>(s,a) 
+    1. = max q<sub>π</sub>(s,a) over all policy
+    2. = immediate reward r(s,a) +   γ·expectation of all v<sub>\*</sub>(s')
+
 
 <h2 id="9d93bb2c4dac212799da231d0de41baa"></h2>
 
