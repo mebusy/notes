@@ -399,7 +399,8 @@ It is because of this annoying problem called the vanishing gradient.
  - filter
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_filter.png)
     - 多个滤波器叠加便成了卷积层
-
+ - 不同的滤波器filter会得到不同的输出数据
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_filter_example.png)
   
  
   
