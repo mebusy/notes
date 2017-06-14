@@ -459,5 +459,18 @@ What CNNs are is a composition of these filters.
 
 # Lecture 6 : 
 
+## ENTER THE DEEP
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_DL_enter_deep.png)
+
+
+
+ - the output is the Q value : Q(s,a)
+
+## Q-Learning
+
+
+
+
 
 
