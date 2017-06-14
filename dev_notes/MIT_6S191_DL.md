@@ -414,4 +414,18 @@ It is because of this annoying problem called the vanishing gradient.
     - 分别以两个滤波器filter为轴滑动数组进行卷积计算，得到两组不同的结果
   
 
+## Convolution
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_convolution.png)
+
+## Convolution: Representation Learning
+
+What CNNs are is a composition of these filters. 
+
+ - layer1 are very primitive filter -- edges 
+ - layer2
+    - then you start composing those features together for higher and higher order representation of features to form corners -- in this case  parts of face 
+ - layers : entire faces.
+
+
 
