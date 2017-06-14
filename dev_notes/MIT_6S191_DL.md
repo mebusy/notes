@@ -469,8 +469,13 @@ What CNNs are is a composition of these filters.
 
 ## Q-Learning
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_DL_QLearning1.png)
 
 
+##  The problems with Q-learning
 
+ - Restrictive Assumptions
+ - Handles long horizons poorly
+ - Requires a simulator
 
 
