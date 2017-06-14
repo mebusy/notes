@@ -429,5 +429,21 @@ What CNNs are is a composition of these filters.
     - then you start composing those features together for higher and higher order representation of features to form corners -- in this case  parts of face 
  - layers : entire faces.
 
+## ConvNets: Pooling
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_max_pooling1.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_max_pooling2.png)
+
+ - Pooling is an operation that reduces the size of the input and the output. and there is most importantly no learnable weights on this operation.
+ - pool 就是 取区域平均或最大(max pool)
+
+## Why ReLU ?
+
+ - sigmoid 在实际梯度下降中 容易饱和、造成终止梯度传递。且没有0中心化。
+ - ReLU的优点是收敛快，求梯度简单。
+ - 所以sigmoid 一般只用于 全链接层
+
+
 
 
