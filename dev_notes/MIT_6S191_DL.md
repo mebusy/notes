@@ -355,6 +355,22 @@ It is because of this annoying problem called the vanishing gradient.
 
 <h2 id="b32506b142c1d11cefbddb4217e5e6e0"></h2>
 
-# Lecture 3: 
+# Lecture 3:    Deep Computer Vision
+
+## Famous Computer Vision Datasets
+
+ - MNIST: handwritten digits
+ - ImageNet: WordNet hierarchy
+ - CIFAR-10(0): tiny images 
+ - Places: natural scenes
+
+## Convolutional Neural Networks
+
+ - CNN have a volumn , a 3d volumn.
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_volumn.png)
+    - Each layer takes a 3d volume, produces 3d volume with some smooth function that may or may not have parameters.
+ - 
+ 
+
 
 
