@@ -390,8 +390,17 @@ It is because of this annoying problem called the vanishing gradient.
  - 最右边是
     - FC：全连接层
 
+## 什么是卷积？
 
- 
+ - 对 **图像**（不同的数据窗口数据） 和 **滤波矩阵** 做内积的操作就是所谓的『卷积』操作
+    - 滤波矩阵是 一组固定的权重：因为每个神经元的多个权重固定，所以又可以看做一个恒定的滤波器filter
+    - The parameters on a each filter are spatially “shared”
+        - (if a feature is useful in one place, it’s useful elsewhere)
+ - filter
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_filter.png)
+    - 多个滤波器叠加便成了卷积层
+
+  
  
   
 
