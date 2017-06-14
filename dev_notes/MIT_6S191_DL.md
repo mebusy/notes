@@ -369,8 +369,30 @@ It is because of this annoying problem called the vanishing gradient.
  - CNN have a volumn , a 3d volumn.
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_volumn.png)
     - Each layer takes a 3d volume, produces 3d volume with some smooth function that may or may not have parameters.
- - 
  
+## Convolutional Neural Networks: Layers 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_Layers.png)
+
+> 卷积神经网络各个层级结构
+
+ - 最左边是数据输入层
+    - 对数据做一些处理，比如去均值（把输入数据各个维度都中心化为0，避免数据过多偏差，影响训练效果）,  归一化（把所有的数据都归一到同样的范围）,PCA/白化等等。
+    - CNN只对训练集做“去均值”这一步
+    - INPUT [32x32x3] will hold the raw pixel values of the image, in this case an image of width 32, height 32, and with three color channels R,G,B
+ - 中间是
+    - CONV：卷积计算层，线性乘积 求和
+        - CONV layer will compute the output of neurons that are connected to local regions in the input, each computing a dot product between their weights and a small region they are connected to in the input volume. This may result in volume such as [32x32x12] if we decided to use 12 filters.  
+    - RELU：激励层
+        - RELU layer will apply an elementwise activation function, such as the max(0,x) thresholding at zero. This leaves the size of the volume unchanged ([32x32x12]).
+    - POOL：池化层，简言之，即取区域平均或最大
+        - POOL layer will perform a downsampling operation along the spatial dimensions (width, height), resulting in volume such as [16x16x12].
+ - 最右边是
+    - FC：全连接层
+
+
+ 
+ 
+  
 
 
