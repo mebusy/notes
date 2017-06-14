@@ -444,6 +444,12 @@ What CNNs are is a composition of these filters.
  - ReLU的优点是收敛快，求梯度简单。
  - 所以sigmoid 一般只用于 全链接层
 
+## Object Recognition
+
+### Case Study: ImageNet
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_case_study_1.png)
+
 
 
 
