@@ -394,15 +394,24 @@ It is because of this annoying problem called the vanishing gradient.
 
  - 对 **图像**（不同的数据窗口数据） 和 **滤波矩阵** 做内积的操作就是所谓的『卷积』操作
     - 滤波矩阵是 一组固定的权重：因为每个神经元的多个权重固定，所以又可以看做一个恒定的滤波器filter
-    - The parameters on a each filter are spatially “shared”
+    - The parameters on **a each filter** are spatially “shared”
         - (if a feature is useful in one place, it’s useful elsewhere)
  - filter
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_filter.png)
     - 多个滤波器叠加便成了卷积层
  - 不同的滤波器filter会得到不同的输出数据
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_filter_example.png)
-  
- 
+ - 卷积参数
+    - a. 深度depth：神经元个数，决定输出的depth厚度。同时代表滤波器个数。
+    - b. 步长stride：决定滑动多少步可以到边缘。
+    - c. 填充值zero-padding：在外围边缘补充若干圈0，方便从初始位置以步长为单位可以刚好滑倒末尾位置，通俗地讲就是为了总长能被步长整除。 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_properties.png)
+ - 卷积过程
+    - ![](http://img.blog.csdn.net/20160707204048899) 
+        - 两个神经元，即depth=2，意味着有两个滤波器。
+        - 数据窗口每次移动两个步长取3\*3的局部数据，即stride=2。
+        - zero-padding=1。
+    - 分别以两个滤波器filter为轴滑动数组进行卷积计算，得到两组不同的结果
   
 
 
