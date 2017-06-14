@@ -226,5 +226,46 @@ One last idea this is a recent idea , and a useful idea to know about -- Natural
 
 # Lecture 8: Integrating Learning and Planning
 
+## 1 Introduction
+
+## 2 Model-Based Reinforcement Learning
+
+### Back to the AB Example
+
+我们从真实经验出发，建模，我们生成了一个模型，现在我们可以用这个模型 取样 sampled experience。
+
+这种方法的优势是 即使我们只是看到这些 Real Experience，我们都可以在规定的计算量预算下，尽可能多的抽取轨迹样本。
+
+有了模型就等于有了无穷的数据。
+
+所以，我们真实经验出发，建模，sample experience，now let's start final step which is to learn from sampled experience. Apply , say MC learning , to these trajectory.
+
+
+
+
+
+
+
+
+## 3 Integrated Architectures
+
+## 4 Simulation-Based Search
+
+---
+
+# Lecture 9 : 
+
+ - Information state space
+    - I'm in the state where I've tried left 3 times and right 1 time.  and we can ask about how good is it to move in this state where the agent has cumulate information. 
+    - so I might in a state I've never seen. 
+
+---
+
+# Lecture 10: Classic Games
+
+
+
+
+
 
 
