@@ -420,6 +420,8 @@ It is because of this annoying problem called the vanishing gradient.
 
 ## Convolution: Representation Learning
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_representation_learning.png)
+
 What CNNs are is a composition of these filters. 
 
  - layer1 are very primitive filter -- edges 
