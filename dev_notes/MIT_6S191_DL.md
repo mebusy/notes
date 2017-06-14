@@ -450,6 +450,14 @@ What CNNs are is a composition of these filters.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_case_study_1.png)
 
+### Same Architecture, Many Applications
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_objectRecog_architecture.png)
+
+---
+
+
+# Lecture 6 : 
 
 
 

@@ -128,6 +128,8 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
  - v<sub>π</sub>(s) 
     - = expectation of all q<sub>π</sub>(s,a) 
+    - π(s) maybe a stochastic policy
+    - in state s , there maybe 4 available actions: E,W,N,S, and the policy maybe 30% E, 70% S , so π(a=W|s) = π(a=N|s) = 0 ???
  - q<sub>π</sub>(s,a) 
     - = immediate reward r(s,a) + γ·expectation of all v<sub>π</sub>(s') 
  - v<sub>π</sub>(s) / q<sub>π</sub>(s,a) can represent recursively.
