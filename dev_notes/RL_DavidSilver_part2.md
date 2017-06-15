@@ -69,6 +69,36 @@ we might have 1 feature ,x₁, say how far am I far from the wall if I moving fo
 
 idea : maximum policy objective function J(θ)
 
+---
+
+ - policy object function J(θ) : function of π<sub>θ</sub>(s,a)
+    1. start value
+    2. average value
+    3. average reward per time step 
+ - policy gradient
+    - ∇<sub>θ</sub> J(θ) 
+    - Δθ = α·∇<sub>θ</sub> J(θ)
+ - compute policy gradient
+    - score function :   d/dxf(x) / f(x)
+        - ∇<sub>θ</sub>  π<sub>θ</sub>(s,a) = π<sub>θ</sub>(s,a) **∇<sub>θ</sub> log π<sub>θ</sub>(s,a)**
+        - bold part is called : score function
+        - what is exactly score function is ?
+    - Softmax policy score function : 
+        - ∇<sub>θ</sub> log π<sub>θ</sub>(s,a) =  ɸ(s,a) - 𝔼<sub>πθ</sub>[ ɸ(s,·) ]
+        - the feature for the action we actually took , minus the average feature for all action might taken.
+ - use score function to compute ∇<sub>θ</sub> J(θ) 
+    - ∇<sub>θ</sub> J(θ)  = 𝔼<sub>πθ</sub> [ score_function· Q<sup>πθ</sup> (s, a) ]
+    - to update θ : 
+        - θ ← θ + α·score_function * Q<sup>πθ</sup> (s, a) 
+        - using a Critic :  θ ← θ + α·score_function * Q<sub>w</sub> (s, a) 
+            - w ← w + β·difference·φ(s, a)
+        - use Advantage Function
+            - ∇<sub>θ</sub> J(θ)  = 𝔼<sub>πθ</sub> [ score_function· (Q<sub>w</sub>(s, a) - V<sub>v</sub>(s) ) ]
+            - In practice we can use an approximate TD error
+                - ∇<sub>θ</sub> J(θ)  = 𝔼<sub>πθ</sub> [ score_function· difference_V<sub>v</sub>(s)  ) ]
+
+
+
 
 ## 1 Introduction
 
