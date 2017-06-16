@@ -177,6 +177,7 @@ J(θ)= -1/m ∑[ ylog( h(x) ) + (1-y)log( 1-h(x) ) ]    (∑ i=1,m)
 
 ![](http://latex.codecogs.com/gif.latex?%5Ctheta%3A%3D%5Ctheta-%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%5B%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x%5E%7B%28i%29%7D%20%5D)
 
+let z = θᵀx , then ∂J/∂z is in fact extremely simple and intuitive: `∂J/∂z = y-sigmoid(z)`
 
 <h2 id="b4b363c797bb3a216ac2e0e157b6c85e"></h2>
 
