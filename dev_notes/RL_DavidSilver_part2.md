@@ -111,7 +111,7 @@ Wheneven a state aliasing occurs , a staochastic policy can do better than a det
  - start value
     - In episodic environments we can use the start value
     - This basically says, if I always start in some state s1, or have some distribution of start state  s1, what the total reward will I get from that start state almost. 
-    - 比如说在atari游戏中，我一直打通关知道最后，然后获得得分。
+    - 比如说在atari游戏中，我一直打通关直到最后，然后获得得分。
  - average value
     - In continuing environments we can use the average value
     - Let consider the probability of any state , times the value from that state onwards. So we average over the value of all states. 
@@ -124,6 +124,9 @@ Wheneven a state aliasing occurs , a staochastic policy can do better than a det
 
 
 ### Softmax Policy
+
+we use for discrete actions
+
 
 The score fuction is just the feature for the action we actually took , minus the average feature for all action might taken. 
 
@@ -141,9 +144,16 @@ When we start doing this kind of policy gradient algorithm , what are we actuall
 
 = ɸ(s,a) - ∑ɸ(s,a') = ɸ(s,a) - 𝔼<sub>πθ</sub>[ ɸ(s,·)]
 
+= ɸ(s,a) - ∑<sub>b</sub> π(b|s,θ)·ɸ(s,b)
+
+
+
+
 
 
 ### Gaussian Policy
+
+used in continuous actions space like AIBO.
 
 score function 
 
