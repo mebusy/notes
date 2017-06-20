@@ -44,4 +44,78 @@
 
 ### What is an Geometric Progression?
 
+ - A geometric progression, is a sequence with a common ratio between the terms.
+    - 3,6,12,24,...
+ - in a geometric progression, each term is the geometric mean of it's neighbors
+ - what is geometric mean ? 
+    - the geometric mean of two numbers, of a and b, is defined to be the square root = √(a·b)
+
+
+## What Other Properties Might a sequence Have ?
+
+###  How Do Sequences Help with the √2 ?
+
+ - x₁ =1
+ - x<sub>n+1</sub> =  1/x<sub>n</sub> + x<sub>n</sub>/2
+    - x₂ = 3/2
+    - x₃ = 17/12 
+    - x₅ ≈ 1.41421
+
+### When is a Sequence Bounded?
+
+ - a<sub>n</sub> is "bounded above" means there is a real number M , so that 
+    - for all n≥0, a<sub>n</sub> ≤ M 
+ - a<sub>n</sub> is "bounded below" means there is a real number M , so that 
+    - for all n≥0, a<sub>n</sub> ≥ M 
+
+### When is a Sequence Increasing?
+
+ - A sequence (a<sub>n</sub>) is **increaseing** if whenever m > n , then a<sub>m</sub> > a<sub>n</sub>
+ - A sequence (a<sub>n</sub>) is **decreaseing** if whenever m > n , then a<sub>m</sub> < a<sub>n</sub>
+ - A sequence (a<sub>n</sub>) is **non-increaseing** if whenever m > n , then a<sub>m</sub> ≤ a<sub>n</sub>
+ - A sequence (a<sub>n</sub>) is **non-decreaseing** if whenever m > n , then a<sub>m</sub> ≥ a<sub>n</sub>
+ - those 4 kind of sequence are  **monotone**
+
+### What is the Monotone Convergence Theorem?
+
+Here's a theorem that guarantees a sequence converges.
+
+ - If the sequence (a<sub>n</sub>) is bounded and monotone, then lim<sub>n→∞</sub> a<sub>n</sub> exists.
+
+
+
+### How Can the Monotone Convergence Theorem Help?
+
+## How Big Can Sequence Be ?
+
+### Is There a Sequence That Includes Every Integer?
+
+Yes !
+
+ - 0,-1,1,-2,2,-3,3, ...
+ - c<sub>n</sub>= 
+    - -(n+1)/2 , if n is odd
+    - n/2 , if n is even
+    - starting with index 0 
+
+### Is There a Sequence That Includes Every Real Number between 0 and 1 ?
+
+No!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
