@@ -217,7 +217,23 @@ The full problem requires an algorithm to learn how to choose actions from an in
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_v_optimal.png)
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_q_pi.png)
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_q_optimal.png)
- - For problems that are guaranteed to terminate, the discount factor γ can be set to 1.
+ - For problems that are guaranteed to terminate, the discount factor γ can be set to 1. ( abstract action ?)
+    - In this case the number of steps N can be marginalised out in the above equations and the sum taken with respect to s alone.
+    - The equations are then similar to the ones for MDPs with the expected primitive reward replaced with the expected sum of rewards to termination of the abstract action.
+    - All the methods developed for solving MDP for reinforcement learning using primitive actions work equally well for problems using abstract actions. 
+        - As primitive actions are just a special case of abstract actions
+
+### 9.2.3 Structure
+
+**Task Hierarchies** 
+
+ - The root-node is a top-level SMPD, that can invoke its child-node SMDP policies as abstract actions
+ - Child-node policies can recursively invoke other child subtasks
+ - right down to sub-tasks that only invoke primitive actions
+
+
+
+
 
 
 
