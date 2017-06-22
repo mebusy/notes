@@ -302,7 +302,18 @@ The full problem requires an algorithm to learn how to choose actions from an in
     - represents the value of a state as a decomposed sum of sub-task completion values plus the expected reward for the immediate primitive action. 
         - completion value: the expected (discounted) cumulative reward to complete the sub-task after taking the next abstract action.
 
+---
 
+ - recall Q<sup>π</sup> for SMDP:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_q_pi.png)
+ - for a particular sub-task *m*: 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_q_pi_subtask.png)
+ - Abstract action *a* for subtask *m*  ( are they same ? ) invokes a child subtask *mₐ*.
+    - expected value of completing subtask *mₐ* ：V<sup>π</sup>(mₐ,s) ,The *hierarchical policy*, π , is a **set of policies**, one for each subtask. 
+    - *completion function* C<sup>π</sup>(m,s,a) : expected discounted cumulative reward  
+        - after completing abstract action *a* , in state *s* in subtask *m* , to the end of subtask *m*.
+        - 
+    - 理解成一个small MDP ?
 
 
 
