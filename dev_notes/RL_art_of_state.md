@@ -231,6 +231,78 @@ The full problem requires an algorithm to learn how to choose actions from an in
  - Child-node policies can recursively invoke other child subtasks
  - right down to sub-tasks that only invoke primitive actions
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_4room_TH.png)
+
+> Fig 9.2
+
+### 9.2.4 State Abstraction
+
+ - There are broadly two kinds of conditions under which state-abstractions can be introduced
+     - we can eliminate irrelevant variables, and
+     - where abstract actions “funnel” the agent to a small subset of states.
+
+  
+**Eliminating Irrelevant Variables**
+
+ - algorithms will learn the same value-function or policy for all the redundant states.
+    - eg. navigating through a red coloured room may be the same as for a blue coloured room
+    - but a value function and policy treats each (position-in-room,colour) as a different state.
+    - it would simplify the problem by eliminating the colour variable from consideration.
+
+
+**Funnelling**
+
+ - Funnelling allows the four-room task to be state-abstracted at the root node to just 4 states because
+ - the abstract actions have the property of moving the agent to another room state,  irrespective of the starting position in each room
+
+### 9.2.5 Value-Function Decomposition
+
+ - The task-hierarchy for the four-room task  has 2 successful higher- level policies that will solve that whole problem.
+     1. North-West-North
+     2. West-North-North
+ - The 2nd one is the shorter path,  but the simple hierarchical RL in section 9.1 can not make this distinction.
+    - -1 for abstract action in section 9.1
+ - What is needed is a way to decompose the value function for the whole problem over the task-hierarchy.
+ - For four-room task , We need both the room- state and the position-in-room state to decide on the best action.
+ - The question now arises as to how to decompose the original value function given the task-hierarchy so that the optimal action can be determined in each state.
+    - MAXQ approach use a two part decomposition of the value function
+        1. the value to termination of the abstract action
+        2. the value to termination of the subtask
+
+### 9.2.6 Optimality
+
+ - Hierarchically Optimal
+    - maximise the overall value function consistent with the constraints imposed by the task-hierarchy
+    - eg. In 4-room task , assume that the agent moves with a 70% probabil- ity in the intended direction, but slips with a 10% probability each of the other three directions. 
+    - Executing the hierarchical optimal policy for the task-hierarchy shown in Figure 9.2 may not be optimal. 
+        - The top level policy will choose the West room- leaving action to leave the room by the nearest doorway.
+        - If the agent should find itself near the North doorway due to stochastic drift, it will nevertheless stubbornly persist to leave by the West doorway , as dictated by the policy of the West room-leaving abstract action. 
+    - The task-hierarchy could once again be made to yield the optimal solution if we included an abstract action that was tasked to leave the room by either the West or North doorway.
+
+ - Recursively Optimal
+    - sub-task policies to reach goal terminal states are *context free* ignoring the needs of their parent tasks.
+    - This formulation has the advantage that sub-tasks can be re-used in various contexts, but they may not therefore be optimal **in each situation**.
+    - globally Optimal > Hierarchically Optimal  > Recursively Optimal
+
+
+## 9.3 Approaches to Hierarchical Reinforcement Learning (HRL)
+
+ 
+### 9.3.3 MAXQ
+
+ - MAXQ is an approach to HRL where the value function is decomposed over the task hierarchy
+ - It can lead to a compact representation of the value function and makes sub-tasks *context-free* or portable.
+
+---
+
+ - abstract actions
+    - are crafted by classifying subtask terminal states as either goal states or non-goal states.
+    - Using disincentives for non-goal states, policies are learnt to encourage termination in goal states.
+ - state value
+    - represents the value of a state as a decomposed sum of sub-task completion values plus the expected reward for the immediate primitive action. 
+        - completion value: the expected (discounted) cumulative reward to complete the sub-task after taking the next abstract action.
+
+
 
 
 
