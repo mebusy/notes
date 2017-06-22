@@ -310,10 +310,14 @@ The full problem requires an algorithm to learn how to choose actions from an in
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_q_pi_subtask.png)
  - Abstract action *a* for subtask *m*  ( are they same ? ) invokes a child subtask *mₐ*.
     - expected value of completing subtask *mₐ* ：V<sup>π</sup>(mₐ,s) ,The *hierarchical policy*, π , is a **set of policies**, one for each subtask. 
+        - 理解成一个 small MDP的 immediate reward
     - *completion function* C<sup>π</sup>(m,s,a) : expected discounted cumulative reward  
         - after completing abstract action *a* , in state *s* in subtask *m* , to the end of subtask *m*.
-        - 
-    - 理解成一个small MDP ?
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_cv_subtask.png)
+        - 理解成一个small MDP 的discounted 部分
+ - now the Q function for *m* can be expressed recursively as **the value for completing mₐ** , plus the **completion value to the end of subtask m**.
+    - Q<sup>π</sup>(m,s,a) = V<sup>π</sup>(mₐ,s) + C<sup>π</sup>(m,s,a)
+
 
 
 
