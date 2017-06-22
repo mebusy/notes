@@ -330,8 +330,17 @@ Task Hierarchies 只是一个限制调用关系的结构。 和 subtask并没有
  - optimal greedy policy
     - V<sup>\*</sup>(mₐ,s) = max<sub>a'</sub> Q<sup>\*</sup>(mₐ,s,a')
 
+---
 
+Algorithm 18 performs  a depth-first search and returns both the value and best action for subtask m in state s.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_Algorithm18.png)
+
+> Algorithm 18. Evaluate(m,s)
+
+ - As the depth of the task-hierarchy increases, this exhaustive search can become prohibitive.
+ - Limiting the depth of the search is one way to control its complexity
+ - For example, to plan an international trip,the flight and airport- transfer methods need to be considered, but ignore which side of the bed to get out of on the way to the bathroom on the day of departure, for higher level planning.
 
 
 
