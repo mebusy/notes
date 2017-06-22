@@ -231,6 +231,8 @@ The full problem requires an algorithm to learn how to choose actions from an in
  - Child-node policies can recursively invoke other child subtasks
  - right down to sub-tasks that only invoke primitive actions
 
+Task Hierarchies 只是一个限制调用关系的结构。 和 subtask并没有直接对应关系。
+
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_4room_TH.png)
 
 > Fig 9.2
@@ -301,6 +303,7 @@ The full problem requires an algorithm to learn how to choose actions from an in
  - state value
     - represents the value of a state as a decomposed sum of sub-task completion values plus the expected reward for the immediate primitive action. 
         - completion value: the expected (discounted) cumulative reward to complete the sub-task after taking the next abstract action.
+ 
 
 ---
 
@@ -308,16 +311,20 @@ The full problem requires an algorithm to learn how to choose actions from an in
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_q_pi.png)
  - for a particular sub-task *m*: 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_q_pi_subtask.png)
- - Abstract action *a* for subtask *m*  ( are they same ? ) invokes a child subtask *mₐ*.
+ - Abstract action *a* for subtask *m*  ( subtask is a path, eg. root 4-room problem has an abstract action which policy is EAST-NORTH-NORTH,so it contain 3 subtask ) invokes a child subtask *mₐ*.
     - expected value of completing subtask *mₐ* ：V<sup>π</sup>(mₐ,s) ,The *hierarchical policy*, π , is a **set of policies**, one for each subtask. 
-        - 理解成一个 small MDP的 immediate reward
+        - 完成第一个subtask的value, 理解成一个 small MDP的 immediate reward
     - *completion function* C<sup>π</sup>(m,s,a) : expected discounted cumulative reward  
         - after completing abstract action *a* , in state *s* in subtask *m* , to the end of subtask *m*.
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_cv_subtask.png)
-        - 理解成一个small MDP 的discounted 部分
+        - 完成剩余subtask的 value , 理解成一个small MDP 的discounted 部分
  - now the Q function for *m* can be expressed recursively as **the value for completing mₐ** , plus the **completion value to the end of subtask m**.
     - Q<sup>π</sup>(m,s,a) = V<sup>π</sup>(mₐ,s) + C<sup>π</sup>(m,s,a)
-
+ - V<sup>π</sup>(mₐ,s) depends on wheter it is primitive or not 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_vpi_ma.png)
+ - If the path of activated subtasks from root subtask m₀ to primitive action m<sub>k</sub> is m₀,m₁,...,m<sub>k</sub>  , and the hierarchical policy specifies that in subtask mᵢ, π(s) =aᵢ, then 
+    - Q<sup>π</sup>(m₀,s,π(s)) = V<sup>π</sup>(m₁,s) + C<sup>π</sup>(m₀,s,a)
+    - 
 
 
 
