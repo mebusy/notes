@@ -323,8 +323,15 @@ Task Hierarchies 只是一个限制调用关系的结构。 和 subtask并没有
  - V<sup>π</sup>(mₐ,s) depends on wheter it is primitive or not 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_vpi_ma.png)
  - If the path of activated subtasks from root subtask m₀ to primitive action m<sub>k</sub> is m₀,m₁,...,m<sub>k</sub>  , and the hierarchical policy specifies that in subtask mᵢ, π(s) =aᵢ, then 
-    - Q<sup>π</sup>(m₀,s,π(s)) = V<sup>π</sup>(m₁,s) + C<sup>π</sup>(m₀,s,a)
-    - 
+    - Q<sup>π</sup>(m₀,s,π(s)) = V<sup>π</sup>(m₁,s) + C<sup>π</sup>(m₀,s,a₀)
+    - = V<sup>π</sup>(m₂,s) + C<sup>π</sup>(m₁,s,a₁) + C<sup>π</sup>(m₀,s,a₀)
+    - = ...
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_q_pi_02k.png)
+ - optimal greedy policy
+    - V<sup>\*</sup>(mₐ,s) = max<sub>a'</sub> Q<sup>\*</sup>(mₐ,s,a')
+
+
+
 
 
 
