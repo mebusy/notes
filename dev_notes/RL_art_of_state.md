@@ -358,6 +358,113 @@ Algorithm 18 performs  a depth-first search and returns both the value and best 
 
 **HRL Applied to the Four-Room Task**
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_f9.5.png)
+
+> Fig. 9.5 
+
+ - A task task-hierarchy for the four-room task. 
+ - The subtasks are room-leaving actions and can be used in any of the rooms.
+ - The parent-level root subtask has just four states repre- senting the four rooms.
+ - "X" indicates non-goal terminal states.
+
+---
+
+ - the state is described by the tuple (room, position).
+ - The agent can leave each room by one of four potential doorways to the North, East, South, or West, and we need to learn a separate navigation strategy for each.
+ - Those room-leaving abstract actions always terminate in one state.A room leaving abstract action is seen to “funnel” the agent through the doorway.
+ - It is for this reason that the position-in-room states can be abstracted away and the room state retained at the root level and only room leaving abstract actions are deployed at the root subtask.
+    - This means that instead of requiring 100 states for the root subtask we only require four, one for each room.
+    - Also, we only need to learn 16 (4 states × 4 actions) completion functions, instead of 400.
+ - With the values converged, α set to zero, and exploration turned off, MAXQ will execute a recursively optimal policy by searching for the shortest path to exit the four rooms.
+  
+
+---
+
+# Chapter 14 Game Theory and Multi-agent Reinforcement Learning
+
+When multiple agents apply reinforcement learning in a shared environment, this might be beyond the MDP model.
+
+In such systems, the optimal policy of an agent depends not only on the environment, but on the policies of the other agents as well.
+
+ - These situations arise naturally in a variety of domains, such as: 
+    - robotics, 
+    - telecommunications, 
+    - economics, 
+    - distributed control, 
+    - auctions, 
+    - traffic light control, etc.
+
+In these domains multi-agent learning is used, either because of the complexity of the domain or because control is inherently decentralized. 
+
+## 14.1 Introduction
+
+In the multi-agent setting, the assumptions that are needed to guarantee convergence are often violated. 
+
+When agent objectives are aligned and all agents try to maximize the same reward signal, coordination is still required to reach the global optimum.
+
+When agents have opposing goals, a clear optimal solution may no longer exist.
+
+The problem will become  more complex if we assume a dynamic environment which requires multiple sequential decisions. Now agents do not only have to coordinate, they also have to take into account the current state of their environment. 
+
+---
+
+
+# 17
+
+## 17.3 Challenges of Applying Reinforcement Learning to Games
+
+### 17.3.3 Source of Training Data
+
+ - For games with two or more players, the environment of the learning agent de- pends on the other players.
+ - The goal of the learning agent can be to find a Nash- equilibrium, a best response play against a fixed opponent, or just performing well against a set of strong opponents.
+ - However learning can be very inefficient or completely blocked if the opponent is much stronger than the actual level of the agent:
+    - all the strategies that a beginner agent tries will end up in a loss with very high probability
+    - so the reinforcement signal will be uniformly negative -- not providing any directions for improvement. 
+ - For these reasons, the choice of training opponents is a nontrivial question.
+
+#### 17.3.3.1 Self-play
+
+ - Self-play is by far the most popular training method. 
+    - According to experience, training is quickest if the learner’s opponent is roughly equally strong , and that definitely holds for self-play. 
+    - As a second reason for popularity, there is no need to implement or access a different agent with roughly equal playing strength. 
+ - However, self-play has several drawbacks, too.
+    - Theoretically, it is not even guaranteed to converge , though no sources mention that this would have caused a problem in practice. 
+    - The major problem with self-play is that the single opponent does not provide sufficient exploration. 
+
+#### 17.3.3.2 Tutoring
+
+ - As an alternative to self-play, the agent may be tutored by a set of different opponents with increasing strength. 
+ - However, such a pool of players is not available for every game, and even if it is, games are typically much slower, reducing the number of games that can be played. 
+ - On the positive side, agents trained by tutoring are typically sig- nificantly stronger than the ones trained by self-play
+
+#### 17.3.3.3 Other Training Strategies
+
+ - "lesson and practice" setup
+    - when periods of (resource- expensive) tutoring games are followed by periods of self-play
+    - Thrun (1995) trained NeuroChess by self-play, but to enforce exploration, each game was initialized by several steps from a random game of a game database. 
+    - This way, the agent started self-play from a more-or-less random position.
+    - Learning from the observation of game databases is a cheap way of learning,  but usually not leading to good results:
+        - he agent only gets to experience good moves (which were taken in the database games), so it never learns about the value of the worse actions and about situations where the same actions are bad.
+
+#### 17.3.4 Dealing with Missing Information
+
+ - for example, hidden cards in Poker, partial visibility in first-person shooters or “fog of war” in real-time strategies. 
+ - Here we only consider information that is “truly missing”, that is, which could not be obtained by using a better feature representation.  
+ - One of the often-used approaches is to ignore the problem, and learn reactive policies based on current observation.
+    - While TD-like methods can diverge under partial observability, TD(λ ) with large λ (including Monte-Carlo estimation) is reported to be relatively stable.
+    - The applicability of direct policy search methods , including dynamic scripting , cross-entropy policy search , and evolutionary policy search is unaffected by partial observability. 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
