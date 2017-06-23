@@ -342,7 +342,21 @@ Algorithm 18 performs  a depth-first search and returns both the value and best 
  - Limiting the depth of the search is one way to control its complexity
  - For example, to plan an international trip,the flight and airport- transfer methods need to be considered, but ignore which side of the bed to get out of on the way to the bathroom on the day of departure, for higher level planning.
 
+---
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_maxq_4_room.png)
+
+ - For the four-room task-hierarchy , the optimal value function for this state is  the cost of the shortest path out of the house.
+ - It is composed by adding
+    - the expected reward for taking the next primitive action to the North
+    - completing the lower-level sub-task of leaving the room to the West
+    - and completing the higher-level task of leaving the house.
+
+---
+
+**MAXQ Learning and Execution**
+
+**HRL Applied to the Four-Room Task**
 
 
 
