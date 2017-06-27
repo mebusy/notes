@@ -407,7 +407,7 @@ It is because of this annoying problem called the vanishing gradient.
     - c. 填充值zero-padding：在外围边缘补充若干圈0，方便从初始位置以步长为单位可以刚好滑倒末尾位置，通俗地讲就是为了总长能被步长整除。 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_properties.png)
  - 卷积过程
-    - ![](http://img.blog.csdn.net/20160707204048899) 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/conv2d.gif)
         - 两个神经元，即depth=2，意味着有两个滤波器。
         - 数据窗口每次移动两个步长取3\*3的局部数据，即stride=2。
         - zero-padding=1。
