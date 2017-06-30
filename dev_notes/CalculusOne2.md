@@ -130,7 +130,25 @@ Otherwise, say ∑<sub>k=</sub>ⁿ₁ a<sub>k</sub> diverges.
  - so lim<sub>n→∞</sub> s<sub>n</sub> = lim<sub>n→∞</sub> (1-r<sup>n+1</sup> ) / (1-r) 
  - if r>1 or r<-1 ,  lim<sub>n→∞</sub> r<sup>n+1</sup> is infinite
     - if -1`<`r`<`1 ,  lim<sub>n→∞</sub> r<sup>n+1</sup> = 0
- = 
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus2_series_geometric.png)
+
+### What is the value of ∑<sub>k=</sub><sup>∞</sup><sub>m</sub> rᵏ ?
+
+ - C·∑<sub>k=</sub><sup>∞</sup>₀ rᵏ  = ∑<sub>k=</sub><sup>∞</sup>₀ C·rᵏ  
+ - rᵐ·∑<sub>k=</sub><sup>∞</sup>₀ rᵏ = rᵐ/(1-r)    (|r|<1)
+    - = ∑<sub>k=</sub><sup>∞</sup>₀ r<sup>m+k</sup>
+
+
+
+
+
+  
+
+
+
+
+
+
 
 
  
