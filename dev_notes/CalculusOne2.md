@@ -102,6 +102,40 @@ Yes !
 
 No!
 
+---
+
+# Week2 : Series 
+
+What is a series ?  A series is basically what you get when you add up the numbers in a sequence in order. 
+
+## What is a Series ?  What is a Geometric Series ?
+
+### What does ∑a<sub>k</sub> = L Mean ?
+
+If lim<sub>n→∞</sub> s<sub>n</sub> = lim<sub>n→∞</sub> ∑<sub>k=</sub>ⁿ₁ a<sub>k</sub> exists and equals L , then say 
+
+∑<sub>k=</sub>ⁿ₁ a<sub>k</sub> converges.
+
+Otherwise, say ∑<sub>k=</sub>ⁿ₁ a<sub>k</sub> diverges.
+
+### Why does  ∑<sub>k=</sub><sup>∞</sup>₀ (1/2)ᵏ = 2 ?
+
+### What is a Geometric Series?
+
+ - Geometric Series :  ∑<sub>k=</sub><sup>∞</sup>₀ rᵏ
+ - let s<sub>n</sub> = ∑<sub>k=</sub><sup>n</sup>₀ rᵏ 
+ - (1-r)s<sub>n</sub> = 1·(r⁰+r¹+...+rⁿ) - r·(r¹+r²+...+rⁿ+r<sup>n+1</sup>) = 1-r<sup>n+1</sup> 
+ - so if r≠ 1
+    - s<sub>n</sub> = (1-r)s<sub>n</sub> / (1-r) = (1-r<sup>n+1</sup> ) / (1-r)
+ - so lim<sub>n→∞</sub> s<sub>n</sub> = lim<sub>n→∞</sub> (1-r<sup>n+1</sup> ) / (1-r) 
+ - if r>1 or r<-1 ,  lim<sub>n→∞</sub> r<sup>n+1</sup> is infinite
+    - if -1`<`r`<`1 ,  lim<sub>n→∞</sub> r<sup>n+1</sup> = 0
+ = 
+
+
+ 
+
+
 
 
 
