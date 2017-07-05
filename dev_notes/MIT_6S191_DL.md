@@ -12,7 +12,22 @@
 	 - [how do we model sequences?](#b5e9f30832182b11c10313379438da5b)
 	 - [how do we train an RNN?](#a71db179cb1a8655fb494133f79c535a)
 	 - [why are RNNs hard to train?](#ab33d2e55a6ebd5e4c71fe57baaa6087)
- - [Lecture 3:](#b32506b142c1d11cefbddb4217e5e6e0)
+ - [Lecture 3:    Deep Computer Vision](#025402f9c315331049c668ea7be76a62)
+	 - [Famous Computer Vision Datasets](#24aa0335724bdc6a5a27223d3549b946)
+	 - [Convolutional Neural Networks](#6ce916fc429bf02b2897f166fd592ac5)
+	 - [Convolutional Neural Networks: Layers](#d0a817f7b8f356e5100a34f135766419)
+	 - [什么是卷积？](#005649cd0b2e95b1a940c55e7698a998)
+	 - [Convolution](#fa0f0ae43fdca46d1d68255409ec0b89)
+	 - [Convolution: Representation Learning](#d7d278172ca7a83e10e19938b70aabaf)
+	 - [ConvNets: Pooling](#2bf7644c7479fcd2c8907f2b13e3b07e)
+	 - [Why ReLU ?](#fe2d632388e0d217878437554a365016)
+	 - [Object Recognition](#0bc3fe8a34ad082c47547245bee64457)
+		 - [Case Study: ImageNet](#917dabfd4adecc2a3396519bfa5d6b5b)
+		 - [Same Architecture, Many Applications](#0cfa6b933928d71f5576ec0898641745)
+ - [Lecture 6 :](#25a8f28fe0cf18103a3886ba04919923)
+	 - [ENTER THE DEEP](#097467a8f22176b837dd18af3a2a7abd)
+	 - [Q-Learning](#e4d17333d58040b1db710abe36cd5aec)
+	 - [The problems with Q-learning](#1993886ff857bdbc2ac91977e678a3c5)
 
 ...menuend
 
@@ -353,9 +368,11 @@ It is because of this annoying problem called the vanishing gradient.
 
 ---
 
-<h2 id="b32506b142c1d11cefbddb4217e5e6e0"></h2>
+<h2 id="025402f9c315331049c668ea7be76a62"></h2>
 
 # Lecture 3:    Deep Computer Vision
+
+<h2 id="24aa0335724bdc6a5a27223d3549b946"></h2>
 
 ## Famous Computer Vision Datasets
 
@@ -364,12 +381,16 @@ It is because of this annoying problem called the vanishing gradient.
  - CIFAR-10(0): tiny images 
  - Places: natural scenes
 
+<h2 id="6ce916fc429bf02b2897f166fd592ac5"></h2>
+
 ## Convolutional Neural Networks
 
  - CNN have a volumn , a 3d volumn.
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_volumn.png)
     - Each layer takes a 3d volume, produces 3d volume with some smooth function that may or may not have parameters.
  
+<h2 id="d0a817f7b8f356e5100a34f135766419"></h2>
+
 ## Convolutional Neural Networks: Layers 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_Layers.png)
@@ -389,6 +410,8 @@ It is because of this annoying problem called the vanishing gradient.
         - POOL layer will perform a downsampling operation along the spatial dimensions (width, height), resulting in volume such as [16x16x12].
  - 最右边是
     - FC：全连接层
+
+<h2 id="005649cd0b2e95b1a940c55e7698a998"></h2>
 
 ## 什么是卷积？
 
@@ -414,9 +437,13 @@ It is because of this annoying problem called the vanishing gradient.
     - 分别以两个滤波器filter为轴滑动数组进行卷积计算，得到两组不同的结果
   
 
+<h2 id="fa0f0ae43fdca46d1d68255409ec0b89"></h2>
+
 ## Convolution
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_convolution.png)
+
+<h2 id="d7d278172ca7a83e10e19938b70aabaf"></h2>
 
 ## Convolution: Representation Learning
 
@@ -429,6 +456,8 @@ What CNNs are is a composition of these filters.
     - then you start composing those features together for higher and higher order representation of features to form corners -- in this case  parts of face 
  - layers : entire faces.
 
+<h2 id="2bf7644c7479fcd2c8907f2b13e3b07e"></h2>
+
 ## ConvNets: Pooling
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_max_pooling1.png)
@@ -438,17 +467,25 @@ What CNNs are is a composition of these filters.
  - Pooling is an operation that reduces the size of the input and the output. and there is most importantly no learnable weights on this operation.
  - pool 就是 取区域平均或最大(max pool)
 
+<h2 id="fe2d632388e0d217878437554a365016"></h2>
+
 ## Why ReLU ?
 
  - sigmoid 在实际梯度下降中 容易饱和、造成终止梯度传递。且没有0中心化。
  - ReLU的优点是收敛快，求梯度简单。
  - 所以sigmoid 一般只用于 全链接层
 
+<h2 id="0bc3fe8a34ad082c47547245bee64457"></h2>
+
 ## Object Recognition
+
+<h2 id="917dabfd4adecc2a3396519bfa5d6b5b"></h2>
 
 ### Case Study: ImageNet
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_case_study_1.png)
+
+<h2 id="0cfa6b933928d71f5576ec0898641745"></h2>
 
 ### Same Architecture, Many Applications
 
@@ -457,7 +494,11 @@ What CNNs are is a composition of these filters.
 ---
 
 
+<h2 id="25a8f28fe0cf18103a3886ba04919923"></h2>
+
 # Lecture 6 : 
+
+<h2 id="097467a8f22176b837dd18af3a2a7abd"></h2>
 
 ## ENTER THE DEEP
 
@@ -467,10 +508,14 @@ What CNNs are is a composition of these filters.
 
  - the output is the Q value : Q(s,a)
 
+<h2 id="e4d17333d58040b1db710abe36cd5aec"></h2>
+
 ## Q-Learning
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_DL_QLearning1.png)
 
+
+<h2 id="1993886ff857bdbc2ac91977e678a3c5"></h2>
 
 ##  The problems with Q-learning
 

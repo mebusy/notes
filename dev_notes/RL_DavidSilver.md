@@ -27,14 +27,22 @@
 		 - [Exploration and Exploitation](#9cb8554f07a9abcb138ed2f10a9218c8)
 		 - [Prediction and Control](#f887d9035769a495f7c1003560288bf7)
  - [Lecture 2 : MDP](#37b66eeb744820b6efbb09622f9cb190)
-	 - [Introduction to MDPs](#37e7b8a197c50d52ae8423cb9109686b)
-	 - [Markov Process](#30f2bbe8613d52e4d06e36c49d333555)
-	 - [Markov Reward Process](#ae22669a0c18be8c9c4e1de1329591f3)
+	 - [1 Markov Processes](#c440584a5fa828371c523cfccd255b9e)
+		 - [Introduction to MDPs](#37e7b8a197c50d52ae8423cb9109686b)
+		 - [Markov Property](#4ea596ca10da5f1b5af07b3347b23993)
+		 - [State Transition Matrix](#8e647e1e832a07ce0d2090fc315726c5)
+		 - [Markov Process ( Markov Chain )](#e2902ed9b6c060e5f1f0e3167f1e1944)
+	 - [2 Markov Reward Processes](#f91687486a039993c58cfec983acacd3)
+		 - [Markov Reward Process](#ae22669a0c18be8c9c4e1de1329591f3)
 		 - [Return](#988fd738de9c6d177440c5dcf69e73ce)
+			 - [Why discount?](#41458dcd9501edf77aaf22898b653157)
 	 - [MRP Value Function](#bccc96e13f6db6cbc1bf97ba5a9f3bcf)
-	 - [Bellman Equation for MRPs](#60c71554b7b04c962c22896abeeb3f06)
+		 - [Bellman Equation for MRPs](#60c71554b7b04c962c22896abeeb3f06)
 	 - [Bellman Equation in Matrix Form](#22623095aa6a91da57af0415ea951ad3)
-	 - [Markov Decision Process](#95ca0b19e36749a112193d611503cf95)
+		 - [Solving the Bellman Equation](#ca6ff64556e865d3cc3c89adc776f12a)
+	 - [3 Markov Decision Processes](#ac193cf39fe5c7158da7e14f1994b9c9)
+		 - [Markov Decision Process](#95ca0b19e36749a112193d611503cf95)
+		 - [Policies](#9e476387322a5c250893cf9c5c4ce78c)
 		 - [MDP Value Function](#44b625919ec17030b52b99aa088fdd61)
 		 - [MDP Bellman Expectation Equation](#167a4b79c8f956139d3b35587ddaa9b1)
 	 - [Optimal Value Function](#1841bc99dd9e3ee97c4db9280bedd143)
@@ -423,6 +431,8 @@ Two fundamental problems in sequential decision making
 
 # Lecture 2 : MDP
 
+<h2 id="c440584a5fa828371c523cfccd255b9e"></h2>
+
 ## 1 Markov Processes
 
 
@@ -440,6 +450,8 @@ Two fundamental problems in sequential decision making
     - Bandits are MDPs with one state
 
 
+<h2 id="4ea596ca10da5f1b5af07b3347b23993"></h2>
+
 ### Markov Property
 
  - "The future is independent of the past given the present"
@@ -449,6 +461,8 @@ Two fundamental problems in sequential decision making
     - The state captures all relevant information from the history
     - Once the state is known, the history may be thrown away
         - i.e. The state is a sufficient statistic of the future
+
+<h2 id="8e647e1e832a07ce0d2090fc315726c5"></h2>
 
 ### State Transition Matrix
 
@@ -460,7 +474,7 @@ Two fundamental problems in sequential decision making
 
 
 
-<h2 id="30f2bbe8613d52e4d06e36c49d333555"></h2>
+<h2 id="e2902ed9b6c060e5f1f0e3167f1e1944"></h2>
 
 ### Markov Process ( Markov Chain )
 
@@ -472,6 +486,8 @@ Two fundamental problems in sequential decision making
 
 
 ---
+
+<h2 id="f91687486a039993c58cfec983acacd3"></h2>
 
 ## 2 Markov Reward Processes
 
@@ -500,6 +516,8 @@ Two fundamental problems in sequential decision making
  - Most Markov reward and decision processes are discounted
  - It is sometimes possible to use undiscounted Markov reward processes
     - if all sequences terminate
+
+<h2 id="41458dcd9501edf77aaf22898b653157"></h2>
 
 #### Why discount?
 
@@ -534,6 +552,8 @@ Most Markov reward and decision processes are discounted. Why?
 value is expectation because the environment is stochastic.
 
 
+<h2 id="60c71554b7b04c962c22896abeeb3f06"></h2>
+
 ### Bellman Equation for MRPs
 
 The value function can be decomposed into two parts:
@@ -553,6 +573,8 @@ The value function can be decomposed into two parts:
  - where v is a column vector with one entry per state
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_bellman_matrix_form.png)
 
+<h2 id="ca6ff64556e865d3cc3c89adc776f12a"></h2>
+
 ### Solving the Bellman Equation
 
 
@@ -568,6 +590,8 @@ Bellman Equation for MRPs has no concept of maximum. So t can be expressed conci
 
 ---
 
+<h2 id="ac193cf39fe5c7158da7e14f1994b9c9"></h2>
+
 ## 3 Markov Decision Processes
 
 
@@ -582,6 +606,8 @@ Bellman Equation for MRPs has no concept of maximum. So t can be expressed conci
  - Given an MDP M= ( S , A,  P , R , γ ) , and a policy π 
     - The state sequence S1, S2, ... is a Markov process (S,P<sup>π</sup>)
     - The state and reward sequence S1,R2,S2, ... is is a Markov reward process ( S,P<sup>π</sup>, R<sup>π</sup>, γ  )
+
+<h2 id="9e476387322a5c250893cf9c5c4ce78c"></h2>
 
 ### Policies
 

@@ -1,8 +1,64 @@
+...menustart
+
+ - [1. RL and MDP](#af2d164baa01dda742bb0b4c677c09e9)
+	 - [1.2 Learning Sequential Decision Making](#acde297a6e27ea7e53029241c5a6305f)
+		 - [Approaching Sequential Decision Making](#035137860e7e4247d74a85eb0e10061a)
+		 - [Online versus Off-line Learning](#150ab469734e6f0ae691285c4974a33d)
+		 - [Credit Assignment](#5b396ab89ba35c4f1ff46e3d8becb7a2)
+	 - [1.5 Solving MDP](#27ec3d29b7bcd3593ac29264ab236bdf)
+	 - [1.7 Reinforcement Learning: Model-Free Solution Techniques](#46d9ab4d1fcb0a9d9f3a6a11cae542ed)
+		 - [1.7.1 Temporal Difference Learning](#363f570a4b4a99bf32366e3aad0c8f60)
+			 - [TD(0)](#bbf66ab09ee416e47152f13db922551d)
+			 - [Q-learning](#939510ea3b0ac054a3e5b63f0faca36f)
+			 - [SARSA](#e31b2edb8e4e3560a5424ba0e582d7b6)
+			 - [Actor-Critic Learning](#9259dde194f9f6a2651f98dd5e959dc6)
+			 - [Average Reward Temporal Difference Learning](#38e0a0b5ffe19b5022b9d1cd78a7cf83)
+		 - [1.7.2 Monte Carlo Methods](#05607551050dfbfcb72ed41f4b12dbf0)
+ - [2. Batch Reinforcement Learning](#037c0990be192a7a4e6385413deff87e)
+ - [7. Reinforcement Learning in Continuous State and Action Spaces](#3168b44be3ae0f4c41acbb2fbacc0290)
+	 - [7.1 Introduction](#2fba89f932af64927f15097b7908a622)
+		 - [7.1.1 Markov Decision Processes in Continuous Spaces](#06f2eb2da398a25fb9bbc9afc1dd8626)
+		 - [7.1.2 Methodologies to Solve a Continuous MDP](#9ba5dcdc6e9625471b8ed54d7bfde991)
+	 - [7.2 Function Approximation](#7c91bc91f487f36b070c97574c0642a9)
+		 - [7.2.1 Linear Function Approximation](#8bc449671e6e584e3e9a0b00137060a7)
+			 - [7.2.1.1 Discretizing the State Space: Tile Coding](#d8d28f5475c9fb51d9f6eae1eb516d95)
+			 - [7.2.1.2 Issues with Discretization](#12c749612dfc3ec9a6e2b6e3ca7b190b)
+	 - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
+ - [9 Hierarchical Approaches](#726734763c46379e0d6c951a173b07da)
+	 - [9.1 Introduction](#986e38b94b315a13ccb8d292cd4fc774)
+		 - [Four-Room Task](#2c4a889f21aa7b3b1377a80bdff49537)
+	 - [9.2 Background](#e0eb39251dc1255d15e6f6717f876367)
+		 - [9.2.1 Abstract Actions](#7a196e8a35cbe33015f93789e7322a9b)
+		 - [9.2.2 Semi-Markov Decision Problems](#c0fd61bff8d135abe31168b5ce0eecbd)
+		 - [9.2.3 Structure](#4ab5f1b218bc0998df755271151fe6c1)
+		 - [9.2.4 State Abstraction](#1d8d72002e4937d1fd2707e0efc714be)
+		 - [9.2.5 Value-Function Decomposition](#4ddf06de46280d60a2f1acc0e058964d)
+		 - [9.2.6 Optimality](#4cceecb142bcb86ff97dfa1b59e1d70c)
+	 - [9.3 Approaches to Hierarchical Reinforcement Learning (HRL)](#5870c8051d8f90dbc5ca54cd29b6624a)
+		 - [9.3.3 MAXQ](#333e9924bda20bd6aae508c4a3beac0d)
+ - [Chapter 14 Game Theory and Multi-agent Reinforcement Learning](#b03dd5c4b689315a1e49434bb1e2f2d0)
+	 - [14.1 Introduction](#f699cce799d22a7e667845ac4cc4cec8)
+ - [17](#70efdf2ec9b086079795c442636b55fb)
+	 - [17.3 Challenges of Applying Reinforcement Learning to Games](#821f385c528ba8559a8d2656bde7bbda)
+		 - [17.3.3 Source of Training Data](#159f060421a409495041a0d55aecaef2)
+			 - [17.3.3.1 Self-play](#ea57817c9c272ae21f6d94ec0945dd20)
+			 - [17.3.3.2 Tutoring](#4fe9a79baec7bf729b53902439061b00)
+			 - [17.3.3.3 Other Training Strategies](#4508786cfe5273ad5725fdcef2d255c4)
+			 - [17.3.4 Dealing with Missing Information](#77ca6aeb81fb6daee0629389be2d82b3)
+
+...menuend
+
+
+<h2 id="af2d164baa01dda742bb0b4c677c09e9"></h2>
 
 # 1. RL and MDP
 
+<h2 id="acde297a6e27ea7e53029241c5a6305f"></h2>
+
 ## 1.2 Learning Sequential Decision Making
 
+
+<h2 id="035137860e7e4247d74a85eb0e10061a"></h2>
 
 ### Approaching Sequential Decision Making
 
@@ -11,10 +67,14 @@
     2. search and planning , eg. Deep Blue
     3. **learning**
 
+<h2 id="150ab469734e6f0ae691285c4974a33d"></h2>
+
 ### Online versus Off-line Learning
 
  - Online learning performs learning directly on the problem instance
  - Off-line learning uses a **simulator** of the environment as a cheap way to get many training examples for **safe** and **fast** learning.
+
+<h2 id="5b396ab89ba35c4f1ff46e3d8becb7a2"></h2>
 
 ### Credit Assignment
 
@@ -27,6 +87,8 @@ Is an action  ”good” or ”bad” ? The real problem is that the effect of a
     - to distribute feedback over the *structure* representing the agent’s policy.
     - For example, the policy can be represented by a structure containing parameters (e.g. a neural network). Deciding which parameters have to be updated forms the structural credit assignment problem.
 
+
+<h2 id="27ec3d29b7bcd3593ac29264ab236bdf"></h2>
 
 ## 1.5 Solving MDP
 
@@ -41,15 +103,23 @@ Is an action  ”good” or ”bad” ? The real problem is that the effect of a
             - Instead , **temporal difference learning** 
 
 
+<h2 id="46d9ab4d1fcb0a9d9f3a6a11cae542ed"></h2>
+
 ## 1.7 Reinforcement Learning: Model-Free Solution Techniques
+
+<h2 id="363f570a4b4a99bf32366e3aad0c8f60"></h2>
 
 ### 1.7.1 Temporal Difference Learning
 
 TD methods learn their value estimates based on estimates of other values, which is called *bootstrapping*.
 
+<h2 id="bbf66ab09ee416e47152f13db922551d"></h2>
+
 #### TD(0)
 
 estimates V<sup>π</sup> for some policy π.
+
+<h2 id="939510ea3b0ac054a3e5b63f0faca36f"></h2>
 
 #### Q-learning
 
@@ -58,6 +128,8 @@ estimate Q-value functions.
 Q-learning is an *off-policy* learning algorithm, which means that while following some exploration policy π, it aims at estimating the optimal policy π<sup>∗</sup>.
 
 Q-learning is exploration-insensitive.  It means that it will converge to the optimal policy regardless of the exploration policy being followed, under the assumption that each state-action pair is visited an infinite number of times, and the learning parameter α is decreased appropriately.
+
+<h2 id="e31b2edb8e4e3560a5424ba0e582d7b6"></h2>
 
 #### SARSA
 
@@ -69,6 +141,8 @@ estimate Q-value functions.  But a *on-policy* algorithm.
  - SARSA is especially useful in non-stationary environments. 
     - In these situations one will never reach an optimal policy. It is also useful if function approximation is used, because off-policy methods can diverge when this is used.
 
+<h2 id="9259dde194f9f6a2651f98dd5e959dc6"></h2>
+
 #### Actor-Critic Learning
 
  - learn on-policy
@@ -78,9 +152,13 @@ estimate Q-value functions.  But a *on-policy* algorithm.
     - An advantage of having a separate policy representation is that if there are many actions, or when the action space is continuous, there is no need to consider all actions’ Q-values in order to select one of them. 
     - A second advantage is that they can learn *stochastic* policies naturally. Furthermore, a priori knowledge about policy constraints can be used.
 
+<h2 id="38e0a0b5ffe19b5022b9d1cd78a7cf83"></h2>
+
 #### Average Reward Temporal Difference Learning
 
 Q-learning can also be adapted to the average-reward framework.  for example in the R-learning algorithm Schwartz.
+
+<h2 id="05607551050dfbfcb72ed41f4b12dbf0"></h2>
 
 ### 1.7.2 Monte Carlo Methods
 
@@ -91,9 +169,13 @@ Q-learning can also be adapted to the average-reward framework.  for example in 
 
 ---
 
+<h2 id="037c0990be192a7a4e6385413deff87e"></h2>
+
 # 2. Batch Reinforcement Learning
 
 Whereas basic algorithms like Q-learning usually need many interactions until convergence to good policies, thus often rendering a direct application to real applications impos- sible, methods including ideas from batch reinforcement learning usually converge in a fraction of the time
+
+<h2 id="3168b44be3ae0f4c41acbb2fbacc0290"></h2>
 
 # 7. Reinforcement Learning in Continuous State and Action Spaces
 
@@ -101,7 +183,11 @@ Analytically computing a good policy from a continuous model can be infeasible.
  
 The full problem requires an algorithm to learn how to choose actions from an infinitely large action space to optimize a noisy delayed cumulative reward signal in an infinitely large state space, where even the outcome of a single action can be stochastic. 
 
+<h2 id="2fba89f932af64927f15097b7908a622"></h2>
+
 ## 7.1 Introduction
+
+<h2 id="06f2eb2da398a25fb9bbc9afc1dd8626"></h2>
 
 ### 7.1.1 Markov Decision Processes in Continuous Spaces
 
@@ -126,13 +212,23 @@ The full problem requires an algorithm to learn how to choose actions from an in
         - π(s,a) = P(a<sub>t</sub>=a | s<sub>t</sub>=s) and ∑<sub>a∈A</sub> π(s,a) =1 
     - when the action space is also continuous , π(s) represents a PDF on the action space.
 
+<h2 id="9ba5dcdc6e9625471b8ed54d7bfde991"></h2>
+
 ### 7.1.2 Methodologies to Solve a Continuous MDP
+
+<h2 id="7c91bc91f487f36b070c97574c0642a9"></h2>
 
 ## 7.2 Function Approximation
 
+<h2 id="8bc449671e6e584e3e9a0b00137060a7"></h2>
+
 ### 7.2.1 Linear Function Approximation
 
+<h2 id="d8d28f5475c9fb51d9f6eae1eb516d95"></h2>
+
 #### 7.2.1.1 Discretizing the State Space: Tile Coding
+
+<h2 id="12c749612dfc3ec9a6e2b6e3ca7b190b"></h2>
 
 #### 7.2.1.2 Issues with Discretization
 
@@ -157,13 +253,21 @@ The full problem requires an algorithm to learn how to choose actions from an in
 
 ---
 
+<h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
+
 ## TODO
 
 ---
 
+<h2 id="726734763c46379e0d6c951a173b07da"></h2>
+
 # 9 Hierarchical Approaches
 
+<h2 id="986e38b94b315a13ccb8d292cd4fc774"></h2>
+
 ## 9.1 Introduction
+
+<h2 id="2c4a889f21aa7b3b1377a80bdff49537"></h2>
 
 ### Four-Room Task
 
@@ -186,7 +290,11 @@ The full problem requires an algorithm to learn how to choose actions from an in
     - optimality of the solution
     - specifying or even learning of the hierarchical structure itself
 
+<h2 id="e0eb39251dc1255d15e6f6717f876367"></h2>
+
 ## 9.2 Background
+
+<h2 id="7a196e8a35cbe33015f93789e7322a9b"></h2>
 
 ### 9.2.1 Abstract Actions
 
@@ -195,6 +303,8 @@ The full problem requires an algorithm to learn how to choose actions from an in
  - The sequence of rewards may also vary , even if the reward function itself is deterministic. 
  - Finally, the time taken to complete an abstract action may vary.
  - Special case abstract actions that terminate in one time-step are just ordinary actions and we refer to them as **primitive** actions.
+
+<h2 id="c0fd61bff8d135abe31168b5ce0eecbd"></h2>
 
 ### 9.2.2 Semi-Markov Decision Problems
 
@@ -223,6 +333,8 @@ The full problem requires an algorithm to learn how to choose actions from an in
     - All the methods developed for solving MDP for reinforcement learning using primitive actions work equally well for problems using abstract actions. 
         - As primitive actions are just a special case of abstract actions
 
+<h2 id="4ab5f1b218bc0998df755271151fe6c1"></h2>
+
 ### 9.2.3 Structure
 
 **Task Hierarchies** 
@@ -236,6 +348,8 @@ Task Hierarchies 只是一个限制调用关系的结构。 和 subtask并没有
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_4room_TH.png)
 
 > Fig 9.2
+
+<h2 id="1d8d72002e4937d1fd2707e0efc714be"></h2>
 
 ### 9.2.4 State Abstraction
 
@@ -257,6 +371,8 @@ Task Hierarchies 只是一个限制调用关系的结构。 和 subtask并没有
  - Funnelling allows the four-room task to be state-abstracted at the root node to just 4 states because
  - the abstract actions have the property of moving the agent to another room state,  irrespective of the starting position in each room
 
+<h2 id="4ddf06de46280d60a2f1acc0e058964d"></h2>
+
 ### 9.2.5 Value-Function Decomposition
 
  - The task-hierarchy for the four-room task  has 2 successful higher- level policies that will solve that whole problem.
@@ -270,6 +386,8 @@ Task Hierarchies 只是一个限制调用关系的结构。 和 subtask并没有
     - MAXQ approach use a two part decomposition of the value function
         1. the value to termination of the abstract action
         2. the value to termination of the subtask
+
+<h2 id="4cceecb142bcb86ff97dfa1b59e1d70c"></h2>
 
 ### 9.2.6 Optimality
 
@@ -287,9 +405,13 @@ Task Hierarchies 只是一个限制调用关系的结构。 和 subtask并没有
     - globally Optimal > Hierarchically Optimal  > Recursively Optimal
 
 
+<h2 id="5870c8051d8f90dbc5ca54cd29b6624a"></h2>
+
 ## 9.3 Approaches to Hierarchical Reinforcement Learning (HRL)
 
  
+<h2 id="333e9924bda20bd6aae508c4a3beac0d"></h2>
+
 ### 9.3.3 MAXQ
 
  - MAXQ is an approach to HRL where the value function is decomposed over the task hierarchy
@@ -380,6 +502,8 @@ Algorithm 18 performs  a depth-first search and returns both the value and best 
 
 ---
 
+<h2 id="b03dd5c4b689315a1e49434bb1e2f2d0"></h2>
+
 # Chapter 14 Game Theory and Multi-agent Reinforcement Learning
 
 When multiple agents apply reinforcement learning in a shared environment, this might be beyond the MDP model.
@@ -396,6 +520,8 @@ In such systems, the optimal policy of an agent depends not only on the environm
 
 In these domains multi-agent learning is used, either because of the complexity of the domain or because control is inherently decentralized. 
 
+<h2 id="f699cce799d22a7e667845ac4cc4cec8"></h2>
+
 ## 14.1 Introduction
 
 In the multi-agent setting, the assumptions that are needed to guarantee convergence are often violated. 
@@ -409,9 +535,15 @@ The problem will become  more complex if we assume a dynamic environment which r
 ---
 
 
+<h2 id="70efdf2ec9b086079795c442636b55fb"></h2>
+
 # 17
 
+<h2 id="821f385c528ba8559a8d2656bde7bbda"></h2>
+
 ## 17.3 Challenges of Applying Reinforcement Learning to Games
+
+<h2 id="159f060421a409495041a0d55aecaef2"></h2>
 
 ### 17.3.3 Source of Training Data
 
@@ -422,6 +554,8 @@ The problem will become  more complex if we assume a dynamic environment which r
     - so the reinforcement signal will be uniformly negative -- not providing any directions for improvement. 
  - For these reasons, the choice of training opponents is a nontrivial question.
 
+<h2 id="ea57817c9c272ae21f6d94ec0945dd20"></h2>
+
 #### 17.3.3.1 Self-play
 
  - Self-play is by far the most popular training method. 
@@ -431,11 +565,15 @@ The problem will become  more complex if we assume a dynamic environment which r
     - Theoretically, it is not even guaranteed to converge , though no sources mention that this would have caused a problem in practice. 
     - The major problem with self-play is that the single opponent does not provide sufficient exploration. 
 
+<h2 id="4fe9a79baec7bf729b53902439061b00"></h2>
+
 #### 17.3.3.2 Tutoring
 
  - As an alternative to self-play, the agent may be tutored by a set of different opponents with increasing strength. 
  - However, such a pool of players is not available for every game, and even if it is, games are typically much slower, reducing the number of games that can be played. 
  - On the positive side, agents trained by tutoring are typically sig- nificantly stronger than the ones trained by self-play
+
+<h2 id="4508786cfe5273ad5725fdcef2d255c4"></h2>
 
 #### 17.3.3.3 Other Training Strategies
 
@@ -445,6 +583,8 @@ The problem will become  more complex if we assume a dynamic environment which r
     - This way, the agent started self-play from a more-or-less random position.
     - Learning from the observation of game databases is a cheap way of learning,  but usually not leading to good results:
         - he agent only gets to experience good moves (which were taken in the database games), so it never learns about the value of the worse actions and about situations where the same actions are bad.
+
+<h2 id="77ca6aeb81fb6daee0629389be2d82b3"></h2>
 
 #### 17.3.4 Dealing with Missing Information
 

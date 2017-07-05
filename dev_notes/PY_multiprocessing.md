@@ -1,5 +1,6 @@
 ...menustart
 
+ - [misc](#bc957e26ff41470c556ee5d09e96880b)
  - [multiprocessing](#7d16d5f74fcafb1de1680fe3e95caee9)
 	 - [1. Process 创建进程](#dc1a9383b903911b01b71c8e0179c6d9)
 		 - [例1.1：创建函数并将其作为单个进程](#b0ffb6388e2c0e1cb47cc6b296bd5447)
@@ -18,24 +19,18 @@
 ...menuend
 
 
-目录:
+<h2 id="bc957e26ff41470c556ee5d09e96880b"></h2>
 
-1. Process 创建进程 
+# misc 
 
-  例1.1：创建函数并将其作为单个进程  
-  例1.2：创建函数并将其作为多个进程  
-  例1.3：将进程定义为类  
-  例1.4：daemon程序对比结果  
-  
-2. Lock 锁
-3. Semaphore 信号 
-4. Event 进程间同步 
-5. Queue 队列,进程间数据传递 
-6. Pipe
-7. Pool 
-  
-  例7.1：使用进程池  
-  例7.3：使用进程池，并关注结果  
+ - 主线程对 CTRL-C signal的响应
+    1. 无论主线程是否等待其他线程结束执行，如果主线程执行完了所有代码，将不会响应 CTRL-C
+    2. 主线程 block 住的情况下，也不会响应 CTRL-C
+    3. solution : `while True` in main thread.
+ - sys.exit() called in thread is as same as calling "thread.exit()" , it will not kill process.
+    - solution: maintain a Queue.Queue in mainthread, and thread put `sys.quit()` method to that queue ,and main thread will call if from the queue.
+ - CTRL-C will not terminate the thread , unless it runs as daemon.
+
 
 
 <h2 id="7d16d5f74fcafb1de1680fe3e95caee9"></h2>
