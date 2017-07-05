@@ -28,7 +28,7 @@
     2. 主线程 block 住的情况下，也不会响应 CTRL-C
     3. solution : `while True` in main thread.
  - sys.exit() called in thread is as same as calling "thread.exit()" , it will not kill process.
-    - solution: maintain a Queue.Queue in mainthread, and thread put `sys.quit()` method to that queue ,and main thread will call if from the queue.
+    - solution: maintain a Queue.Queue in mainthread, and threads put `sys.quit()` callback to that queue ,and main thread will call it from the queue.
  - CTRL-C will not terminate the thread , unless it runs as daemon.
 
 
