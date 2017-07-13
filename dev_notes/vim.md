@@ -140,6 +140,8 @@ vim +BundleInstall +qall
  - use older YouCompleteMe in case of lower version of vim 
     - enter YouCompleteMe plugin foler 
     - git reset --hard 68d78719a45ee8e9e86a2effb99c80842ccadada
+    - or to install vim 7.4.2356
+        - vim 7.4.2358 git hash: d47d83745ff450232328ca7a4b8b00b31bad22fc
     
 <h2 id="2182a74bab7188d959e795d9301e87ff"></h2>
 
