@@ -137,6 +137,9 @@ vim +BundleInstall +qall
     - use : `TagbarToggle`
  - python 语法检查
     - `pip install flake8`
+ - use older YouCompleteMe in case of lower version of vim 
+    - enter YouCompleteMe plugin foler 
+    - git reset --hard 68d78719a45ee8e9e86a2effb99c80842ccadada
     
 <h2 id="2182a74bab7188d959e795d9301e87ff"></h2>
 
