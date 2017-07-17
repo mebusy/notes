@@ -184,6 +184,17 @@ Otherwise, say ∑<sub>k=</sub>ⁿ₁ a<sub>k</sub> diverges.
     - = ∑<sub>k=</sub><sup>∞</sup>₀ r<sup>m+k</sup>
 
 
+## What is a Telescoping Series ?  How can I Prove That Some Series Diverge ?
+
+### What is the Sum of a Telescoping Series?
+
+ - ∑<sub>k=</sub><sup>∞</sup>₁ 1/((k+1)·k)
+
+= lim<sub>n→∞</sub> ∑<sub>k=</sub>ⁿ₁ (1/k-1/(k+1)) 
+
+= lim<sub>n→∞</sub> ( 1-1/(n+1) ) = 1
+
+
 
 
 
