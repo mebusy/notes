@@ -43,7 +43,7 @@ firewall-cmd --reload
 ## Mysql
 
 ```
-yum install mariadb-server mariadb 
+yum install mariadb-server mariadb  mariadb-devel
 
 systemctl start mariadb  #启动MariaDB
 systemctl stop mariadb  #停止MariaDB
