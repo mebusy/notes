@@ -1236,6 +1236,8 @@ Vector *varray(int nitems);
     - Support files (Makefiles, Python scripts, etc...)
  - Using the library is easy--just use the %include directive.
     -  Code from the library files is simply inserted into your interface
+ - eg. library for python , installed via brew
+    - `/usr/local/Cellar/swig/3.0.12/share/swig/3.0.12/python/`
 
 ```c
 %module example
@@ -1376,6 +1378,305 @@ void get_viewport(Image *im, int *width, int *height);
  - Hmmm. This is much different than the standard pointer model we saw before
  - Typemaps allow extensive customization!
  - The typemaps.i file contains a number of generally useful typemaps. You should check here before writing a new typemap from scratch.
+
+---
+
+ - 假设我们有这样一个函数： `int func1(int *piNum1, int *piNum2, int *piNum3);`
+    - piNum1:  传入后会修改，调用完func1还会继续使用
+    - piNum2: 只是传入使用, 不会修改
+    - piNum3: 传入后，负责保存结果返回
+ - python 中并没有 `int *` 对应的类型
+ - 解决方法：使用 typemaps
+    - piNum1: 属于INOUT类型
+    - piNum2: 属于INPUT类型
+    - piNum3: 属于OUTPUT类型
+
+### Typemap Methods
+
+ - Typemaps can be defined for a variety of purposes
+    - Function input values (“in”)
+    - Function output (“out”)
+    - Default arguments
+    - Ignored arguments
+    - Returned arguments.
+    - Exceptions.
+    - Constraints.
+    - Setting/getting of structure members
+    - Parameter initialization. 
+ - The SWIG Users Manual has all the gory details.
+
+### Typemap Applications
+
+ - Consider our OpenGL example 
+    - Needed to manufacture and destroy 4-element arrays using helper functions.
+
+```python
+>>> torus_diffuse = newfv4(0.7,0.7,0.0,1.0);
+>>> glMaterialfv(GL_FRONT, GL_DIFFUSE,torus_diffuse);
+...
+>>> delfv4(torus_diffuse)
+```
+
+ - Now a possible typemap implementation
+    - We define a typemap for converting 4 element tuples to 4 element arrays.
+    - Rebuild the OpenGL interface with this typemap
+    - Yes, that’s much nicer now...
+
+```python
+>>> torus_diffuse = (0.7,0.7,0.0,1.0)
+>>> glMaterialfv(GL_FRONT, GL_DIFFUSE,torus_diffuse)
+or simply ...
+>>> glMaterialfv(GL_FRONT, GL_DIFFUSE,(0.7,0.7,0.0,1.0))
+```
+
+### Typemaps : The Bottom Line
+
+ - Typemaps can be used to customize SWIG
+    - Changing the handling of specific datatypes.
+    - Building better interfaces.
+    - Doing cool things (consider Mark Hammond’s Python-COM for instance).
+ - Typemaps can interface with other Python types
+    - Python lists could be mapped to C arrays.
+    - You could provide a different representation of C pointers.
+    - It is possible to use the types of other Python extensions (NumPy, extension classes, etc...).
+ - Some caution is in order
+    - Typemaps involve writing C/C++ (always risky).
+    - Understanding the Python C API goes a long way
+    - Typemaps may break other parts of SWIG (shadow classes in particular).
+
+---
+
+# Practical Matters
+
+## Practical Issues
+
+ - You’ve had the grand tour, now what?
+    - Migrating existing applications to Python.
+    - Problems and pitfalls in interface generation.
+    - Working with shared libraries.
+    - Run-time problems.
+    - Performance considerations.
+    - Debugging a Python extension.
+ - Python extension building is only one piece of the puzzle
+
+## Migrating Applications to Python
+
+ - C/C++ code is usually static and rigid
+    - Perhaps it’s a big monolithic package.
+    - Control is usually precisely defined.
+    - Example : parse command line options and do something
+ - Python/SWIG provides a much more flexible environment
+    - Can execute any C function in any order
+    - Internals are often exposed.
+    - This is exactly what we want!
+ - Problem
+    - Applications may break in mysterious ways
+
+
+### Namespace Conflicts
+
+ - C/C++ Namespace collisions
+    - A C/C++ application may have a namespace conflict with Python’s implementation
+    - Fortunately this is rare since most Python functions start with ‘Py’
+    - C/C++ function names may conflict with Python commands.
+    - C/C++ libraries may have namespace collisions with themselves
+ - Resolving conflicts with Python built-in commands
+    - Use the SWIG %name() to rename functions.
+ - Resolving conflicts with the Python C implementation
+    - Change the name of whatever is conflicting (may be able to hide with a macro).
+ - Resolving conflicts between different C libraries
+    - Tough to fix.
+    - Dynamic linking may fix the problem
+    - Good luck!
+
+### Linking Problems
+
+ - Extensions usually have to be compiled and linked with the same compiler as Python
+    - Mismatches may result in dynamic loading errors
+    - May just result in a program crash.
+ - Third-party libraries may have problems
+    - Position independent code often needed for dynamic loading
+    - If compiled and linked with a weird compiler, you may be out of luck
+ - Other components
+    - SWIG does not provide Python access to generic shared libraries or DLLs.
+    - Nor do COM components work (look at the Python-COM extension).
+
+## More on Shared Libraries
+
+ - Shared libraries and C++
+    - A little more tricky to build than C libraries
+    - Require addition runtime support code (default constructors, exceptions, etc...)
+    - Need to initialize static constructors when loaded.
+    - Not documented very well.
+ - Rules of thumb when building a dynamic C++ extension
+    - Try linking the library with the C++ compiler
+    - If that doesn’t work, link against the C++ libraries (if you can find them)
+        - `-L/xxxxx`
+        - `-lC`
+        - `-lg++` `-lstdc++` `-lgcc`
+    - If that still doesn’t work, try recompiling Python’s main program and relinking the Python executable with the C++ compiler
+
+### Mixing Shared and Static Libraries
+
+ - Linking dynamic Python extensions against static libraries is generally a bad idea :
+    - When both Python modules are created, they are linked against libspam.a.
+
+```c
+/* libspam.a */
+static int spam = 7;
+int get_spam() {
+    return spam;
+}
+void set_spam(int val) {
+    spam = val;
+}
+```
+
+=>
+
+```c
+%module foo
+...
+extern int get_spam();
+...
+```
+
+```c
+%module bar
+...
+extern void set_spam(int);
+...
+```
+
+ - What happens :
+    - (hmmm... this probably isn’t what we expected)
+
+```python
+>>> import foo
+>>> import bar
+>>> bar.set_spam(42)
+>>> print foo.get_spam()
+7
+```
+
+### The Static Library Problem
+
+ - Linking against static libraries results in multiple or incomplete copies of a library
+    - Neither module contains the complete library (the linker only resolves used symbols).
+    - Both modules contain a private copy of a variable.
+
+```c
+//foo
+int spam;
+int get_spam();
+```
+
+```c
+//bar
+int spam;
+void set_spam(int);
+```
+
+ - Consider linking against a big library (like OpenGL, etc...)
+    - Significant internal state is managed by each library.
+    - Libraries may be resource intensive and have significant interaction with the OS.
+    - A recipe for disaster.
+ - Solution : use shared libraries
+
+
+### Using Shared Libraries
+
+ - If using dynamic loading, use shared libraries
+    - The process of building a shared library is the same as building a Python extension
+ - Building and linking Python extensions
+    - Compile and link normally, but be sure to link against the shared library.
+ - Now it works
+
+
+```c
+/* libspam.so */
+static int spam = 7;
+int get_spam() {
+    return spam;
+}
+void set_spam(int val) {
+    spam = val;
+}
+```
+
+### More Shared Libraries
+
+ - Resolving missing libraries
+    - You may get an error like this :
+        - `ImportError: Fatal Error : cannot not find ‘libspam.so’`
+    - The run-time loader is set to look for shared libraries in predefined locations. If your library is located elsewhere, it won’t be found.
+ - Solutions
+    - Set `LD_LIBRARY_PATH` to include the locations of your libraries
+        - `% setenv LD_LIBRARY_PATH /home/beazley/app/libs`
+    - Link the Python module using an ‘rpath’ specifier (better)
+
+```bash
+% ld -shared -rpath /home/beazley/app/libs foo_wrap.o \
+        -lspam -o foomodule.so
+% ld -G -R /home/beazley/app/libs foo_wrap.o \
+        -lspam -o foomodule.so
+% gcc -shared -Xlinker -rpath /home/beazley/app/libs \
+        foo_wrap.o -lspam -o foomodule.so
+```
+
+## Performance Considerations
+
+ - Python introduces a performance penalty
+    - Decoding
+    - Dispatch
+    - Execution of wrapper code
+    - Returning results
+ - These tasks may require thousands of CPU cycles
+ - Rules of thumb
+    - The performance penalty is small if your C/C++ functions do a lot of work.
+    - If a function is rarely executed, who cares?
+    - Don’t write inner loops or perform lots of fine-grained operations in Python
+    - Performance critical kernels in C, everything else can be in Python.
+ - From personal experience
+    - Python inroduces < 1% performance penalty (on number crunching codes).
+    - Your mileage may vary.
+
+## Debugging Dynamic Modules
+
+ - Suppose one of my Python modules crashes. How do I debug it?
+    - There is no executable!
+    - What do you run the debugger on?
+    - Unfortunately, this is a bigger problem than one might imagine.
+ - My strategy
+    - Run the debugger on the Python executable itself.
+    - Run the Python program until it crashes
+    - Now use the debugger to find out what’s wrong (use as normal).
+ - Caveats
+    - Your debugger needs to support shared libraries (fortunately most do these days)
+    - Some debuggers may have trouble loading symbol tables and located source code for shared modules.
+    - Takes a little practice.
+
+---
+
+# Where to go from here
+
+## Topics Not Covered
+
+ - Modifying SWIG
+    - SWIG can be extended with new language modules and capabilities.
+    - Python-COM for example
+ - Really wild stuff
+    - Implementing C callback functions in Python.
+    - Typemaps galore.
+ - SWIG documentation system
+    - It’s being rethought at this time.
+ - Use of other Python extensions
+    - Modulator
+    - ILU
+    - NumPY
+    - MESS
+    - Extension classes
+    - etc....
 
 
 
