@@ -622,3 +622,14 @@ os.chmod(_path,  stat.S_IREAD)
 ```
 os.chmod(_path, stat.S_IWRITE | stat.S_IREAD)
 ```
+
+
+### uninstall files via `python setup.py install`
+
+```
+python ./setup.py install --record install.txt
+
+cat install.txt | xargs [sudo] rm -rf
+```
+
+
