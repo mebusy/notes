@@ -43,3 +43,9 @@
     - `https://cdn.rawgit.com/mebusy/html5_examples/a12340a5d32b0c760ef138301b067fb1153ef94b/00_marchingSquare.html`
     - or `https://cdn.rawgit.com/mebusy/html5_examples/HEAD/00_marchingSquare.html`
 
+
+## git diff ignore file mode
+
+```bash
+git config core.filemode false
+```
