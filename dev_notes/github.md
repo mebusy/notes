@@ -44,8 +44,18 @@
     - or `https://cdn.rawgit.com/mebusy/html5_examples/HEAD/00_marchingSquare.html`
 
 
-## git diff ignore file mode
+## git status -s ignore file mode
 
 ```bash
 git config core.filemode false
 ```
+
+## git diff ignore `^M`
+
+```bash
+git config --global core.autocrlf true
+```
+
+ - `--golbal` will create `~/.gitconfig` file
+
+
