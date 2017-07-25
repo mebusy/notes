@@ -2,6 +2,8 @@
 # Maxq 
 
 
+ ![][1] 
+
  
 # 3. The MAXQ Value Function Decomposition
  
@@ -200,9 +202,25 @@ To make it easier for programmers to design and debug MAXQ decompositions, we ha
 
 ----
 
-As an example , suppose that the passenger is at R and wishes to go to B. Let the hierarchical policy we are evaluating be an optimal policy denoted by π ( we will omit the superscript \* to reduce the clutter of the notation) . 
+ ![][1] 
 
-[][1] 
+As an example , consider the situation shown in Figure 1, which we will denote by s₁.
+
+Suppose that the passenger is at R and wishes to go to B. Let the hierarchical policy we are evaluating be an ***optimal*** policy denoted by π ( we will omit the superscript \* to reduce the clutter of the notation) . 
+
+ - The value of this state under π is 10
+ - π need 10 units action  (a reward of -10)
+    - 1 unit to move the taxi to R
+    - 1 unit to pickup the passenge
+    - 7 units to move the taxi to B
+    - 1 unit to putdown the passenger
+ - When the passenger is delivered, the agent gets a reward of +20
+ - so the net value is +10
+
+
+
+
+
 
 
 
@@ -213,4 +231,4 @@ As an example , suppose that the passenger is at R and wishes to go to B. Let th
 
 ---
 
- [1]: https://raw.githubusercontent.com/mebusy/notes/master/img/maxq_taxi_fig1.png
+ [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_taxi_fig1.png
