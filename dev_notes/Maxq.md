@@ -202,6 +202,7 @@ To make it easier for programmers to design and debug MAXQ decompositions, we ha
 
 As an example , suppose that the passenger is at R and wishes to go to B. Let the hierarchical policy we are evaluating be an optimal policy denoted by π ( we will omit the superscript \* to reduce the clutter of the notation) . 
 
+[][1] 
 
 
 
@@ -210,6 +211,6 @@ As an example , suppose that the passenger is at R and wishes to go to B. Let th
 
 
 
+---
 
-
-
+ [1]: https://raw.githubusercontent.com/mebusy/notes/master/img/maxq_taxi_fig1.png
