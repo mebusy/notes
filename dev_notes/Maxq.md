@@ -117,6 +117,20 @@ The decomposition is based on the following theorem:
  - If a is a primitive action, V<sup>π</sup>(a,s) is defined as the expectedimmediate reward of executing a in s:
     - V<sup>π</sup>(a,s) = ∑<sub>s'</sub> P(s'|s,a)·R(s'|s,a).
 
+**Proof**: 
+
+Let's write out the value of V<sup>π</sup>(i,s): 
+
+  V<sup>π</sup>(i,s) = E{ r<sub>t</sub> + γr<sub>t+1</sub> + γ²r<sub>t+2</sub> + ... | s<sub>t</sub> = s, π }   (5)
+
+The sum continues until the subroutine for task Mᵢ enters a state in Tᵢ.
+
+Now let us suppose that the first action chosen by πᵢ is a subroutine *a* . This subroutine is invoked, and it executes for a number of steps N and terminates in state s' according to P<sup>π</sup>ᵢ(s',N | s,a) . We can rewriet Equation (5) as : 
+
+  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_6.png)
+
+
+
 
 
 
