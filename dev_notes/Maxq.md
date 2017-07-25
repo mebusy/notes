@@ -140,6 +140,15 @@ We can write this in the form of a Bellman equation :
  - This has the same form as Equation (3)
  - the first term is the expected reward R̅(s,π(s)). Q.E.D.
 
+---
+
+
+To obtain a hierarchical decomposition of the projected value function, let us switch to the action-value (or Q) representation. 
+
+Let Q<sup>π</sup>(i,s,a) be the expected cumulative reward for subtask Mᵢ of performing action *a* in state *s* , end then following hierarchical policy π until Mᵢ terminates.  We can re-state Equation (7) as follows:
+
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_8.png)
+
 
 
 
