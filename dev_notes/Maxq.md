@@ -178,6 +178,29 @@ the individual subtasks, M₁,...,M<sub>n</sub>  and the individual completion f
 
 Now just the C values for all non-primitive subtasks and the V values for all primitive actions must be stored to represent the value function decomposition.
 
+---
+
+To make it easier for programmers to design and debug MAXQ decompositions, we have developed a graphical representation that we call the MAX Q graph.
+
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_taxi_maxq_graph.png)
+
+ - The graph contains two kinds of nodes : Max nodes and Q nodes
+ - The Max nodes correspond to the subtasks in the task decomposition
+    - There is one Max node for each primitive action and one Max node for each subtask (including the Root) task.
+    - Each primitive Max node i stores the value of V<sup>π</sup>(i,s) 
+ - The Q nodes correspond to the actions that are available for each subtask
+    - Each Q node for **parent** task i, state *s*,  and subtask *a* stores the value of C<sup>π</sup>(i,s,a).
+    - eg. QGet shores C<sup>π</sup>(0,s,Get) ??? 
+ - The children of any node are unordered ( nothing about the order in which they will be executed )
+    - Indeed, a child action may be executed multiple times before its parent subtask is completed.
+ - the Max nodes and Q nodes can be viewed as performing parts of the computation 
+    - Specifically, each Max node i can be viewed as computing the projected value function V<sup>π</sup>(i,s)  for its subtask. 
+    - For primitive Max nodes, this information is stored in the node.
+ - Each Q node with parent task i and child task a can be viewed as computing the value of Q<sup>π</sup>(i,s,a) 
+
+----
+
+As an example , suppose that the passenger is at R and wishes to go to B. Let the hierarchical policy we are evaluating be an optimal policy denoted by π ( we will omit the superscript \* to reduce the clutter of the notation) . 
 
 
 
