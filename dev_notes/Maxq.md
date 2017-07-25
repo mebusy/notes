@@ -251,7 +251,21 @@ In general, the MAXQ value function decomposition has the form
 
  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_12.png)
 
+ - where a₀,a₁,...,a<sub>m</sub> is the "path" of Max nodes chosen by the hierarchical policy , going from the Root down to a primitive leaf node.
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_fig5.png)
 
+We can summarize the presentation of this section by the following theorem:
+
+**Theorem 2** Let π = { πᵢ; i=0,...,n } be a hierarchical policy defined for a given MAXQ graph with subtasks M₀,M₁,...,M<sub>n</sub> , and let i=0 be the root node of the graph.  Then there exist values for C<sup>π</sup>(i,s,a) ( for internal Max nodes ) and V<sup>π</sup>(i,s) (for primitive , leaf Max node ) such that V<sup>π</sup>(0,s) is the expected discounted cumulative reward of following policy π starting in state s.
+
+
+It is important to note that this representation theorem does not mention the pseudo- reward function, because the pseudo-reward is used only during learning.
+
+This theorem captures the representational power of the MAXQ decomposition, but it does not address the question of whether there is a learning algorithm that can find a given policy. 
+
+---
+
+# A Learning Algorithm for the MAXQ Decomposition
 
 
 
