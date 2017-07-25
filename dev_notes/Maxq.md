@@ -160,6 +160,23 @@ Let Q<sup>π</sup>(i,s,a) be the expected cumulative reward for subtask Mᵢ of 
 
  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_9.png)
 
+With this definition, we can express the Q function recursively as
+
+ Q<sup>π</sup>(i,s,a)  = V<sup>π</sup>(a,s) + C<sup>π</sup>(i,s,a)     (10)
+
+ - 实际上，C<sup>π</sup> is related to *s'*
+
+
+Finally, we can re-expressthe definition for  V<sup>π</sup>(i,s) as 
+
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_11.png)
+
+We will refer to equations (9), (10), and (11) as the *decomposition equation*  for the MAXQ hierarchy under a fixed hierarchical policy π. 
+
+These equations recursively decompose the projected value function for the root,  V<sup>π</sup>(0,s) into the projected value functions for
+the individual subtasks, M₁,...,M<sub>n</sub>  and the individual completion functions  C<sup>π</sup>(j,s,a) for j=1,...,n. 
+
+Now just the C values for all non-primitive subtasks and the V values for all primitive actions must be stored to represent the value function decomposition.
 
 
 
