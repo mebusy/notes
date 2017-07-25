@@ -129,6 +129,21 @@ Now let us suppose that the first action chosen by πᵢ is a subroutine *a* . T
 
   ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_6.png)
 
+ - the first part of equation 6  is the discounted sum of rewards for executing subroutine *a* in state *s* until it terminates
+    - in other words, it is V<sup>π</sup>(a,s), the projected value function for the child task Mₐ.
+ - the 2nd term of the equation is the value of s' for the current task i , V<sup>π</sup>(i,s') , discounted by γᴺ , where s' is the current state when subroutine *a* terminates.
+
+We can write this in the form of a Bellman equation :
+
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_7.png)
+
+ - This has the same form as Equation (3)
+ - the first term is the expected reward R̅(s,π(s)). Q.E.D.
+
+
+
+
+
 
 
 
