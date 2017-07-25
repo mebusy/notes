@@ -200,6 +200,8 @@ To make it easier for programmers to design and debug MAXQ decompositions, we ha
     - For primitive Max nodes, this information is stored in the node.
  - Each Q node with parent task i and child task a can be viewed as computing the value of Q<sup>π</sup>(i,s,a) 
 
+ - Q node 保存 C, 用于计算 Q value ; Max node 用来计算 V value (primtive Max node 保存V )
+
 ----
 
  ![][1] 
@@ -217,6 +219,32 @@ Suppose that the passenger is at R and wishes to go to B. Let the hierarchical p
  - When the passenger is delivered, the agent gets a reward of +20
  - so the net value is +10
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_taxi_fig4.png)
+
+ - To compute the value V<sup>π</sup>(Root,s₁)  
+    - MaxRoot consults its policy and finds that π<sub>root</sub>(s₁) is Get.
+    - Hence, it "ask" the Q node , QGet to compute Q<sup>π</sup>(Root,s₁,Get) 
+    - The completion cost for the Root task after performing a Get , C<sup>π</sup>(Root,s₁,Get)  , is 12
+        - it will cost 8 units to deliver the customer after completing the Get subtask
+    - then it must ask MaxGet to estimate the expected reward of performing the Get itself.
+ - The policy for MaxGet dictates that in s₁, the Navigate subroutine should be invoked with *t* bound to R 
+    - so MaxGet consults the Q node, QNavigateForGet to compute the expected reward.
+    - QNavigateForGet knows that after completing the Navigate(R) task, one more action (the Pickup) will be required to complete the Get
+        - so C<sup>π</sup>(MaxGet,s₁,Navigate(R)) = -1
+    - it then ask MaxNavigate(R) to compute the expected reward of performing a Navigate to location R
+ - The policy for MaxNavigate chooses the North action, so MaxNavigate asks QNorth to compute the value.
+    - QNorth looks up its completion cost, and finds that C<sup>π</sup>( Navigate, s₁ , North) is 0
+        - i.e., the Navigate task will be completed after performing the North action)
+    - It consults MaxNorth to determine the expected cost of performing the North action itself.
+        - Because MaxNorth is a primitive action, it looks up its expected reward, which is -1
+ - Now this series of recursive computations can conclude as follows:  
+    - Q<sup>π</sup>( Navigate(R), s₁ , North) = -1 + 0
+    - V<sup>π</sup>( Navigate(R), s₁ ) = -1
+    - Q<sup>π</sup>( Get, s₁ , Navigate(R) ) = -1 + -1
+    - V<sup>π</sup>( Get, s₁ ) = -2
+    - Q<sup>π</sup>( Root, s₁ ,Get) = -2 + 12
+ - The end result of all of this is that the value of V<sup>π</sup>( Root,s₁ ) is decomposed into a sum of C terms plus the expected reward of the chosen primitive action:
+    - V<sup>π</sup>( Root,s₁ ) = V<sup>π</sup>( North,s₁ ) + C<sup>π</sup>( Navigate(R), s₁ , North) + C<sup>π</sup>( Get, s₁ , Navigate(R) ) + C<sup>π</sup>( Root, s₁ ,Get) = -10
 
 
 
