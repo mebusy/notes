@@ -247,6 +247,11 @@ Suppose that the passenger is at R and wishes to go to B. Let the hierarchical p
     - V<sup>π</sup>( Root,s₁ ) = V<sup>π</sup>( North,s₁ ) + C<sup>π</sup>( Navigate(R), s₁ , North) + C<sup>π</sup>( Get, s₁ , Navigate(R) ) + C<sup>π</sup>( Root, s₁ ,Get) = -10
 
 
+In general, the MAXQ value function decomposition has the form
+
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_12.png)
+
+
 
 
 
