@@ -20,6 +20,8 @@
 		 - [Why does  ∑<sub>k=</sub><sup>∞</sup>₀ (1/2)ᵏ = 2 ?](#67a81c2ddc4df11e4075c03018804f19)
 		 - [What is a Geometric Series?](#469e6493b0c5e2b8e190f40e8d29ec0b)
 		 - [What is the value of ∑<sub>k=</sub><sup>∞</sup><sub>m</sub> rᵏ ?](#0d5f7167ac9f8276415b82b6caf3c128)
+	 - [What is a Telescoping Series ?  How can I Prove That Some Series Diverge ?](#2d821f5018d90c40ac813ff4acf7212c)
+		 - [What is the Sum of a Telescoping Series?](#c7705221584241a23eeb71d168f89ed8)
 
 ...menuend
 
@@ -184,7 +186,11 @@ Otherwise, say ∑<sub>k=</sub>ⁿ₁ a<sub>k</sub> diverges.
     - = ∑<sub>k=</sub><sup>∞</sup>₀ r<sup>m+k</sup>
 
 
+<h2 id="2d821f5018d90c40ac813ff4acf7212c"></h2>
+
 ## What is a Telescoping Series ?  How can I Prove That Some Series Diverge ?
+
+<h2 id="c7705221584241a23eeb71d168f89ed8"></h2>
 
 ### What is the Sum of a Telescoping Series?
 

@@ -51,6 +51,7 @@
 		 - [读取文件特定行](#210dd2176d44f2bd7f0c112101e62490)
 		 - [文件修改／创建时间](#4b373365b500e18ab7c0b8f5a83dc802)
 		 - [python 写 只读文件](#3fbb096fc383c2a61ad0a6685b17c0de)
+		 - [uninstall files via `python setup.py install`](#5a3fb21375ecbb14ce59ad950a4b5f49)
 
 ...menuend
 
@@ -623,6 +624,8 @@ os.chmod(_path,  stat.S_IREAD)
 os.chmod(_path, stat.S_IWRITE | stat.S_IREAD)
 ```
 
+
+<h2 id="5a3fb21375ecbb14ce59ad950a4b5f49"></h2>
 
 ### uninstall files via `python setup.py install`
 

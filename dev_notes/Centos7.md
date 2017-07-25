@@ -1,6 +1,20 @@
+...menustart
+
+ - [Centos7](#8db8d64778c367a62ad2b609fd6c2095)
+	 - [YouCompleteMe](#067a2f97475db1552b986c54fc094f60)
+	 - [mono](#654db8a14a5f633b9ba85ec92dc51f7c)
+	 - [firewall](#36e5371ad91c9d2d09e9d7c0e76055db)
+	 - [Mysql](#9edb3c572b56b91542af659480518681)
+
+...menuend
+
+
+<h2 id="8db8d64778c367a62ad2b609fd6c2095"></h2>
 
 # Centos7
 
+
+<h2 id="067a2f97475db1552b986c54fc094f60"></h2>
 
 ## YouCompleteMe
 
@@ -9,6 +23,8 @@
 ```
 CC=`which clang` CXX=`which clang++`  ./install.py ......
 ```
+
+<h2 id="654db8a14a5f633b9ba85ec92dc51f7c"></h2>
 
 ## mono
 
@@ -23,6 +39,8 @@ yum-config-manager --add-repo http://download.mono-project.com/repo/centos7/
 ```bash
 xbuild /p:Configuration=Release xxx.sln
 ```
+
+<h2 id="36e5371ad91c9d2d09e9d7c0e76055db"></h2>
 
 ## firewall 
 
@@ -39,6 +57,8 @@ Then, you can reload rules to be sure that everything is ok
 ```bash
 firewall-cmd --reload
 ```
+
+<h2 id="9edb3c572b56b91542af659480518681"></h2>
 
 ## Mysql
 

@@ -1,3 +1,16 @@
+...menustart
+
+ - [Maxq](#ef0aea7fada38d87f635b347acae4117)
+ - [3. The MAXQ Value Function Decomposition](#1ca2a53e3aee2426fbe0471c0788f16d)
+	 - [3.1 Taxi example](#11b7c68186495355b7770a6777ab2f40)
+	 - [3.2 Definitions](#28fc65dfb6f48abdf33b71b4b0440cf7)
+	 - [3.3 Decomposition of the Projected Value Function](#753a9eaa2be4ced1fa5875c05dfdff70)
+ - [A Learning Algorithm for the MAXQ Decomposition](#d6441f91c197a8e36b0008ba2307889a)
+
+...menuend
+
+
+<h2 id="ef0aea7fada38d87f635b347acae4117"></h2>
 
 # Maxq 
 
@@ -5,8 +18,12 @@
  ![][1] 
 
  
+<h2 id="1ca2a53e3aee2426fbe0471c0788f16d"></h2>
+
 # 3. The MAXQ Value Function Decomposition
  
+<h2 id="11b7c68186495355b7770a6777ab2f40"></h2>
+
 ## 3.1 Taxi example
 
 **subtasks** : Each of following subtasks is defined by a subgoal, and each subtask terminates when the subgoal is achieved.
@@ -35,6 +52,8 @@ All of this information can be summarized by a directed acyclic graph called the
  - each edge corresponds to a potential way in which one subtask can "call" one of its child tasks
  - this collection of policies is called *hierarchical policy* 
     - In a hierarchical policy, each subroutine executes until it enters a terminal state for its subtask.
+
+<h2 id="28fc65dfb6f48abdf33b71b4b0440cf7"></h2>
 
 ## 3.2 Definitions
 
@@ -109,6 +128,8 @@ Because a hierarchical policy maps from states *s* and stack contents K to actio
 ---
 
 The purpose of the MAXQ value function decomposition is to decompose V(0,s) (the projected value function of the root task) in terms of the projected value function V(i,s) of all of the subtasks in the MAXQ decomposition.
+
+<h2 id="753a9eaa2be4ced1fa5875c05dfdff70"></h2>
 
 ## 3.3 Decomposition of the Projected Value Function
 
@@ -264,6 +285,8 @@ It is important to note that this representation theorem does not mention the ps
 This theorem captures the representational power of the MAXQ decomposition, but it does not address the question of whether there is a learning algorithm that can find a given policy. 
 
 ---
+
+<h2 id="d6441f91c197a8e36b0008ba2307889a"></h2>
 
 # A Learning Algorithm for the MAXQ Decomposition
 
