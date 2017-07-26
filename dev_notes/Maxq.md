@@ -335,6 +335,66 @@ The reason to seek recursive optimality rather than hierarchical optimality is t
  - recursive optimality makes it possible to solve each subtask without reference to the context in which it is executed.
  - This context-free property makes it easier to share and re-use subtasks.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_fig6_1.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_fig6_2.png)
+
+ - The policy shown in the left diagram is recursively optimal but not hierarchically optimal.
+ - The shaded cells indicate points where the locally-optimal policy is not globally optimal.
+
+If we consider for a moment, we can see a way to fix this problem. 
+    
+ - The value of the upper starred state under the optimal hierarchical policy is -2 and the value of the lower starred state is -6
+ - Hence, if we changed pseudo reward R̃ to have these values(intead of being zero) , then the recursively-optimal policy would be hierarchically optimal (and globally optimal).
+ - In other words, if the programmer can guess the right values for the terminal states of a subtask, then the recursively optimal policy will be hierarchically optimal.
+
+in principle, it is possible to learn good values for the pseudo-reward function, in practice, we must rely on the programmer to specify a single pseudo-reward function, R̃  , for each subtask. 
+
+
+In our experiments, we have employed the following simplified approach to defining R̃.  
+
+ - For each subtask Mᵢ, we define two predicates: the termination predicate, Tᵢ, and a goal predicate, Gᵢ. 
+    - The goal predicate defines a subset of the terminal states that are “goal states”, and these have a pseudo-reward of 0.
+    - All other terminal states have a fixed constant pseudo-reward (e.g., -100)  , that is set so that it is always better to terminate in a goal state than in a non-goal state.  
+
+
+
+In our experiments with MAXQ, we have found that it is easy to make mistakes in defining Tᵢ and Gᵢ.  If the goal is not defined carefully, it is easy to create a set of subtasks that lead to infinite looping. 
+
+For example, consider again the problem in Figure 6. Suppose we permit a fourth action, West, and let us define the termination and goal predicates for the right hand room , to be satisfied iif either the robot reaches the goal or it exits the room. 
+
+However, the resulting locally-optimal policy for this room will attempt to move to the nearest of these three locations: the goal, the upper door, or the lower door. 
+
+We can easily see that for all but a few states near the goal, the only policies that can be constructed by MaxRoot will loop forever, first trying to leave the left room by entering the right room, and then trying to leave the right room by entering the left room.
+
+This problem is easily fixed by defining the goal predicate Gᵢ for the right room to be true if and only if the robot reaches the goal G. But avoiding such “undesired termination” bugs can be hard in more complex domains.
+
+
+In the worst case, it is possible for the programmer to specify pseudo-rewards such that the recursively optimal policy can be made arbitrarily worse than the hierarchically optimal policy. For example,  suppose that we change the original MDP in Figure 6 so that the state immediately to the left of the upper doorway gives a large negative reward -L whenever the robot visits that square. So the hierarchically- optimal policy exits the room by the lower door.  But suppose the programmer has chosen instead to force the robot to exit by the upper door (e.g., by assigning a pseudo-reward of -10L or leaving via the lower door).  In this case, the recursively-optimal policy will leave by the upper door and suffer the large -L penalty . By making L arbitrarily large, we can make the difference between the hierarchically-optimal policy and the recursively-optimal policy arbitrarily large.
+
+## 4.2 The MAXQ-O Learning Algorithm
+
+MAXQ-0 is a recursive function that executes the current exploration policy starting at Max node i in state *s*. It performs actions until it reaches a terminal state, at which point it returns a count of the total number of primitive actions that have been executed. 
+
+To execute an action, MAXQ-0 calls itself recursively. 
+
+When the recursive call returns, it updates the value of the completion function for node i.
+
+It uses the count of the number of primitive actions to appropriately discount the value of the resulting state s'. 
+
+At leaf nodes, MAXQ-0 updates the estimated one-step expected reward, V(i,s). 
+
+The value a<sub>t</sub>(i) is a “learning rate” parameter that should be gradually decreased to zero in the limit.
+
+```
+Table 2: The MAXQ-O learning algorithm.
+```
+
+
+
+
+
+
 
 
 
