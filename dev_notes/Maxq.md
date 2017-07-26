@@ -324,8 +324,16 @@ Incidentally, they also show that if the primitive actions are also made availab
 
 Because the MAXQ decomposition can represent the value function of any hierarchical policy, we could easily construct a modified version of the HAMQ algorithm and apply it to learn hierarchically optimal policies.  However, we decided to pursue an even weaker form of optimality. This form of optimality is called **recursive optimality**.
 
+ - hierarchically optimal is to say that I have to respect the hierarchy but I need not necessarily solve each component optimally , overall the problem should be optimally solved. 
+ - recursively optimal is to say that not only should I respect the hierarchy but for each individual components in the sub hierarchy I should have an optimal solution. 
 
+Recursive optimality is a kind of local optimality in which the policy at each node is optimal  , given the policies of its children.
 
+ 
+The reason to seek recursive optimality rather than hierarchical optimality is that 
+
+ - recursive optimality makes it possible to solve each subtask without reference to the context in which it is executed.
+ - This context-free property makes it easier to share and re-use subtasks.
 
 
 
