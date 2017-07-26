@@ -290,6 +290,38 @@ This theorem captures the representational power of the MAXQ decomposition, but 
 
 # A Learning Algorithm for the MAXQ Decomposition
 
+ - MAXQ-0 learning algorithm
+    - which can learn value functions (and policies) for MAXQ hierarchies in which there are no pseudo-rewards , i.e., the pseudo-rewards are 0.
+    - converges to a recursively optimal policy for the given MAXQ hierarchy.
+ - MAXQ-Q learning algorithm
+    - which handles non-zero pseudo-reward functions.
+    - a of accelerating MAXQ-O learning.
+
+## 4.1 Two Kinds of Optimality
+
+
+In the MAXQ method, the constraints take two forms.
+
+ 1. First, within a subtask, only some of the possible primitive actions may be permitted. 
+    - for example, in the taxi task, during a Navigate(t), only the North, South, East, and West actions are available
+    - the Pickup and Putdown actions are not allowed.
+ 2. Second, consider a Max node Mⱼ with child nodes {Mⱼ₁,..., Mⱼ<sub>k</sub>}. The policy learned for Mⱼ must involve executing the learned policies of these child nodes. 
+    - When the policy for child node Mⱼᵢ, is executed, it will run until it enters a state in Tⱼᵢ. 
+    - Hence , any policy learned for  for Mⱼ must pass through some subset of these terminal state sets { Tⱼ₁,..., Tⱼ<sub>k</sub> }
+
+
+**Definition 7** A hierarchically optimal policy for MDP M is a policy that achieves the highest cumulative reward among all policies consistent with the given hierarchy.
+
+Parr (1998b) proves that his HAMQ learning algorithm converges with probability 1 to a hierarchically optimal policy.
+
+Similarly, given a ■xed set of options, Sutton, Precup, and Singh (1998) prove that their SMDP learning algorithm converges to a hierarchically optimal value function. 
+
+Incidentally, they also show that if the primitive actions are also made available as “trivial” options, then their SMDP method converges to the optimal policy. 
+
+
+Because the MAXQ decomposition can represent the value function of any hierarchical policy, we could easily construct a modified version of the HAMQ algorithm and apply it to learn hierarchically optimal policies.  However, we decided to pursue an even weaker form of optimality. This form of optimality is called **recursive optimality**.
+
+
 
 
 
