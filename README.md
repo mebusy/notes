@@ -54,7 +54,7 @@
 --- | --- | --- | ---
 [Advanced Data Structure](https://github.com/mebusy/notes/blob/master/dev_notes/python_highlevel_datastructure.md) |  [lib for Functional](https://github.com/mebusy/notes/blob/master/dev_notes/python_functional_programming.md) | [OOP](https://github.com/mebusy/notes/blob/master/dev_notes/python_oop.md)  |  [tips](https://github.com/mebusy/notes/blob/master/dev_notes/python_tips_1.md) | 
 [BeautifulSoup](https://github.com/mebusy/notes/blob/master/dev_notes/PY_BeautifulSoup.md)  | [python多线程](https://github.com/mebusy/notes/blob/master/dev_notes/PY_multiprocessing.md) | [PIL_Tips](https://github.com/mebusy/notes/blob/master/dev_notes/PIL_tips.md) | [numpy tips](https://github.com/mebusy/notes/blob/master/dev_notes/numpy_tips.md) 
-[uwsgi](https://github.com/mebusy/notes/blob/master/dev_notes/python_uwsgi.md) | [high performance python](https://github.com/mebusy/notes/blob/master/dev_notes/highPerformancePython.md) | 
+[uwsgi](https://github.com/mebusy/notes/blob/master/dev_notes/python_uwsgi.md) | [high performance python](https://github.com/mebusy/notes/blob/master/dev_notes/highPerformancePython.md) | [xpath](https://github.com/mebusy/notes/blob/master/dev_notes/xpath.md)
 
 <h2 id="aac4d78ee7d18636803896f8b8c16aa6"></h2>
 

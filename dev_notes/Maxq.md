@@ -6,6 +6,7 @@
 	 - [3.2 Definitions](#28fc65dfb6f48abdf33b71b4b0440cf7)
 	 - [3.3 Decomposition of the Projected Value Function](#753a9eaa2be4ced1fa5875c05dfdff70)
  - [A Learning Algorithm for the MAXQ Decomposition](#d6441f91c197a8e36b0008ba2307889a)
+	 - [4.1 Two Kinds of Optimality](#891e7168eccd8d630e8c572615d85781)
 
 ...menuend
 
@@ -296,6 +297,8 @@ This theorem captures the representational power of the MAXQ decomposition, but 
  - MAXQ-Q learning algorithm
     - which handles non-zero pseudo-reward functions.
     - a of accelerating MAXQ-O learning.
+
+<h2 id="891e7168eccd8d630e8c572615d85781"></h2>
 
 ## 4.1 Two Kinds of Optimality
 
