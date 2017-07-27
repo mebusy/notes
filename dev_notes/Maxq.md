@@ -106,11 +106,9 @@ In a parameterized task,
 parameter ↑    |→ parameter of a
 ```
 
-```python
-def EXECUTEHIERARCHICALPOLICY(pi):
-    ...
-```
+> Table 1: Pseudo-Code for Execution of a Hierarchical Policy
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_tbl_1.png)
 
 It is sometimes useful to think of the contents of the stack as being an additional part of the state space for the problem. Hence, a hierarchical policy implicitly defines a mapping from the current state s<sub>t</sub> and current stack contents K<sub>t</sub> to a primitive action a.
 
@@ -317,7 +315,7 @@ In the MAXQ method, the constraints take two forms.
 
 Parr (1998b) proves that his HAMQ learning algorithm converges with probability 1 to a hierarchically optimal policy.
 
-Similarly, given a ■xed set of options, Sutton, Precup, and Singh (1998) prove that their SMDP learning algorithm converges to a hierarchically optimal value function. 
+Similarly, given a fixed set of options, Sutton, Precup, and Singh (1998) prove that their SMDP learning algorithm converges to a hierarchically optimal value function. 
 
 Incidentally, they also show that if the primitive actions are also made available as “trivial” options, then their SMDP method converges to the optimal policy. 
 
@@ -386,12 +384,125 @@ At leaf nodes, MAXQ-0 updates the estimated one-step expected reward, V(i,s).
 
 The value a<sub>t</sub>(i) is a “learning rate” parameter that should be gradually decreased to zero in the limit.
 
+> Table 2: The MAXQ-O learning algorithm. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_tbl_2.png)
+
+
+There are three things that must be specifiedin order to make this algorithm description complete
+
+ 1.  First, to keep the pseudo-code readable, Table 2 does not show how “ancestor termination” is handled.
+    - after each action, the termination predicates of all of the subroutines on the calling stack are checked.
+    - If the termination predicate of any one of these is satisfied, no C values are updated in any of the subroutines that were interrupted except as follows:
+        - If subroutine i had invoked subroutine j, and j’s termination condition is satisfied, then subroutine i can update the value of C(i, s,j).
+ 2. Second, we must specify how to compute V<sub>t</sub> in line 11 , since it is not stored in the Max node.
+    - It is computed by the following modified versions of the decomposition equations:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_13_14.png)
+        - compared with Equations (10) and (11), they optimal value, not the value under fixed policy
+    - To compute V<sub>t</sub>(i,s) using these equations, we must perform a complete search of all paths through the MAXQ graph starting at node i and ending at the leaf nodes. 
+        - Table 3 gives pseudo-code for a recursive function, EVALUATEMAXNODE, that implements a depth-first search.
+
+> Table 3: Pseudo-code for Greedy Execution of the MAXQ Graph.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_tbl_3.png)
+
+This search can be computationally expensive, and a problem for future research is to develop more efficient methods for computing the best path through the graph. 
+
+One approach is to perform a best-first search and use bounds on the values within subtrees to prune uselesspaths through the MAXQ graph. 
+
+A better approach would be to make the computation incremental, so that when the state of the environment changes, only those nodes whose values have changed as a result of the state change are re-considered.
+
+It should be possible to develop an efficient bottom-up method similar to the RETE algorithm .
+
+ 3. The third thing that must be specified to complete our definition of MAXQ-0 is the exploration policy, We require that be ordered GLIE policy.
+
+
+**Definition 9** An ordered GLIE policy is a GLIE policy ( Greedy in the Limit with Infinite Exploration) that converges in the limit to an ordered greedy policy, which is a greedy policy that imposes an arbitrary fixed order ω on the available actions and breaks ties in favor of the action a that appears earliest in that order.
+
+We need this property in order to ensure that MAXQ-0 converges to a uniquely-defined recursively optimal policy.  
+
+A fundamental problem with recursive optimality is that in general, each Max node i will have a choice of many different locally optimal policies given the policies adopted by its descendent nodes. These different locally optimal policies will all achieve the same locally optimal value function, but they can give rise to different probability transition functions P(s',N | s,i). The result will be that the SMDP defined at the next level above node i in the MAXQ graph will differ depending on which of these various locally optimal policies is chosen by node i. These differences may lead to better or worse policies at higher levels of the MAXQ graph, even though they make no difference inside subtask i.
+
+In practice, the designer of the MAXQ graph will need to design the pseudo-reward function for subtask i to ensure that all locally optimal policies are equally valuable for the parent subroutine. But to carry out our formal analysis, we will just rely on an arbitrary tie-breaking mechanism.
+
+If we establish a fixed ordering over the Max nodes in the MAXQ graph (e.g., a left-to-right depth-first numbering), and break ties in favor of the lowest-numbered action, then this defines a unique policy at each Max node. And consequently, by induction, it defines a unique policy for the entire MAXQ graph. Let us call this policy  π<sup>\*</sup>ᵣ. We will use the r subscript to denote recursively optimal quantities under an ordered greedy policy. Hence, the corresponding value function is V<sup>\*</sup>ᵣ , and G<sup>\*</sup>ᵣ , and Q<sup>\*</sup>ᵣ . We now prove that the MAXQ-O algorithm converges to π<sup>\*</sup>ᵣ.
+
+
+**Theorem 3** 
+
+
+
+The most important aspect of this theorem is that it proves that Q learning can take place at all levels of the MAXQ hierarchy simultaneouslyithe higher levels do not need to wait until the lower levels have converged before they begin learning. All that is necessary is that the lower levels eventually converge to their (locally) optimal policies.
+
+## 4.3 Techniques for Speeding Up MAXQ-0
+
+
+Algorithm MAXQ-0 can be extended to accelerate learning in the higher nodes of the graph by a technique that we call “all-states updating”. 
+
+When an action a is chosen for Max node 2'in state 5, the execution of a will move the environment through a sequence of states s = s₁, ... ,S<sub>N</sub> , S<sub>N+1</sub> = s'. 
+
+Because all of our subroutines are Markovian, the same resulting state  s' would have been reached if we had started executing action a in state s₂, or s₃, or any state up to and including  S<sub>N</sub>. Hence, we can execute a version of line 11 in MAXQ-0 for each of these intermediate states as shown in this replacement pseudo-code:
+
+```python
+    # for non-primitive a
+    for i in xrange( 1,N+1 ):
+        C_t+1 (i,s_j,a) = (1-a(i))*C(i,s_j,a) + a(i)*(gamma **(N+1-j))* max_a( i,s',a' )
 ```
-Table 2: The MAXQ-O learning algorithm.
+
+In our implementation, as each composite action is executed by MAXQ-0, it constructs a linked list of the sequence of primitive states that were visited. This list is returned when the composite action terminates. 
+
+The parent Max node concatenates the state lists that it receives from its children and passes them to its parent when it terminates. 
+
+All experiments in this paper employ all-states updating.
+
+---
+
+Kaelbling (1993) introduced a related, but more powerful, method for accelerating hi- erarchical reinforcement learning that she calls “all-goals updating.” 
+
+In all-goals updating, whenever a primitive action is executed, the equivalent of line 11 of MAXQ-0 is applied in every composite task that could have invoked that primitive action. Sutton, Precup, and Singh (1998) prove that each of the composite tasks will converge to the optimal Q values under all-goals updating. 
+
+a simple form of all-goals updating  :  Whenever one of the primitive actions a is executed in state s, we can update the C(i, s, a) value for all parent tasks i that can invoke a. 
+
+
+However, additional care is required to implement all-goals updating for non-primitive actions. the exploration policy must be an ordered GLIE policy that will converge to the recursively optimal policy for subtask j and its descendents. We cannot follow an arbitrary exploration policy, because this would not produce accurate samples of result states drawn according to P<sup>\*</sup>(s',N|s,j). Hence, unlike the simple case described by Sutton, Precup, and Singh, the exploration policy cannot be different from the policies of the subtasks being learned.
+
+
+Although this considerably reduces the usefulness of all-goals updating, it does not completely eliminate it. A simple way of implementing non-primitive all-goals updating would be to perform MAXQ-Q learning as usual, but whenever a subtask j was invoked in state s and returned, we could update the value of C(c, s, j) for all potential calling subtasks i.
+
+## 4.4 The MAXQ-Q Learning Algorithm 
+
+We could just add the pseudo- reward into MAXQ-0 , but this would have the effect of changing the MDP M to have a different reward function.The pseudo-rewards “contaminate” the values of all of the completion functions computed in the hierarchy. The resulting learned policy will not be recursively optimal for the original MDP.
+
+This problem can be solved by learning one completion function for use “inside” each Max node ,
+
+and a separate completion function for use “outside” the Max node.
+
+The quantities used “inside” a node will be written with a tilde: R̃, C̃, and Q̃. 
+
+The “outside” completion function, C(i,s,a) is the completion function that we have been discussing so far in this paper. This completion function will be used by parent tasks to compute V(i,s).
+
+The second completion function  C̃(i,s,a)  will use only “inside” node i in order to discover the locally optimal policy for task Mᵢ. This function
+will incorporate rewards both from the “real” reward function,  R(s'|s,a) , and from the pseudo-rewardfunction, R̃ᵢ(s'). It will also be used by EVALUATEMAXNODEin line 6 to choose the best action j<sup>hg</sup> to execute. Note, however, that EVALUATEMAXNODE will still return the “external” value V( j<sup>hg</sup> , s ) of this chosen action.
+
+We will employ two different update rules to learn these two completion functions. 
+
+The  C̃ function will be learned using an update rule similar to the Q learning rule in line 11 of MAXQ-0.  But the C function will be learned using an update rule similar to SARSA(0) -- its purpose is to learn the value function for the policy that is discovered by optimizing C̃ .
+
+```
+# Table 4
+
+
 ```
 
+> Table 4: The MAXQ-Q learning algorithm.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_tbl_4.png)
 
 
+
+
+
+    
 
 
 
