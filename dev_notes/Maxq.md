@@ -561,15 +561,31 @@ The first condition arises when a set of state variables is irrelevant to a Max 
 
 Note that the two conditions must hold for all stationary abstract policies π rexecuted by all of the descendents of the subtask i. 
 
-**Lemma 2** Let M be an MDP with full—state MAXQ graph H, and suppose that state variables Yᵢ are irrelevant for Max node i.  Let *x*ᵢ(s) be  the associated abstraction function that projects 3 onto the remaining relevant variables Xᵢ. Let π  be any abstract hierarchical policy. Then the action-valuefunction Q<sup>π</sup> at node i can be represented compactly , with only one value of the completion function C<sup>π</sup>(i,s,j) for each equivalence class of states s that share the same values on the relevant variables.
+**Lemma 2** Let M be an MDP with full-state MAXQ graph H, and suppose that state variables Yᵢ are irrelevant for Max node i.  Let *x*ᵢ(s) be  the associated abstraction function that projects s onto the remaining relevant variables Xᵢ. Let π  be any abstract hierarchical policy. Then the action-valuefunction Q<sup>π</sup> at node i can be represented compactly , with only one value of the completion function C<sup>π</sup>(i,s,j) for each equivalence class of states s that share the same values on the relevant variables.
 
 Specifically Q<sup>π</sup>(i,s,j) can be computed as follows:
 
- - Q<sup>π</sup>(i,s,j) = V<sup>π</sup>(j, *x*ᵢ(s)) + C<sup>π</sup>(i, *x*ᵢ(s) ,j )
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_5_lemma2_1.png)
+
+where
 
     
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_5_lemma2_2.png)
 
+where
 
+ 
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_5_lemma2_3.png) for some arbitrary value y₀ for the irrelevant state variables Yᵢ.
+
+---
+
+As stated, the Max node irrelevance condition appears quite difficult to satisfy. However, in practice, this condition is often satisfied.
+
+For example, let us consider the Navigate(t) subtask.  The source and destination of the passenger are irrelevant to the achievement of this subtask. Any policy that successfully completes this subtask will have the same value function regardless of the source and destination locations of the passenger. 
+
+By abstracting away the passenger source and destination, we obtain a huge savings in space. Instead of requiring 8000 values to represent the C functions for this task, we require only 400 values (4 actions, 25 locations, 4 possible values for t). 
+
+Figure 7 shows that the irrelevant variables Y do not affect the rewards either directly or indirectly.
 
 
 
