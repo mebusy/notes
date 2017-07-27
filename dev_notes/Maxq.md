@@ -587,6 +587,8 @@ By abstracting away the passenger source and destination, we obtain a huge savin
 
 Figure 7 shows that the irrelevant variables Y do not affect the rewards either directly or indirectly.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_f7.png)
+
 
 
 
