@@ -446,7 +446,7 @@ Because all of our subroutines are Markovian, the same resulting state  s' would
 ```python
     # for non-primitive a
     for i in xrange( 1,N+1 ):
-        C_t+1 (i,s_j,a) = (1-a(i))*C(i,s_j,a) + a(i)*(gamma **(N+1-j))* max_a( i,s',a' )
+        C_t+1 (i,s_j,a) = (1-a(i))*C(i,s_j,a) + a(i)*(gamma **(N+1-j))* max_ap( Q( i,s',a' ) )
 ```
 
 In our implementation, as each composite action is executed by MAXQ-0, it constructs a linked list of the sequence of primitive states that were visited. This list is returned when the composite action terminates. 
@@ -496,11 +496,76 @@ The  C̃ function will be learned using an update rule similar to the Q learning
 
 > Table 4: The MAXQ-Q learning algorithm.
 
+
+
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_tbl_4.png)
 
+# 5. State Abstraction
+
+let us compute the number of values that must be stored for the taxi problem ***without*** any state abstraction.
+
+The MAXQ representation must have tables for each of the C functions at the internal nodes and the V functions at the leaves.
+
+First, at the six leaf nodes, to store V(i,s), we must store 500 values at each node, because there are 500 states; 25 locations, 4 possible destinations for the passenger, and 5 possible current localtions for the passenger. 
+
+Second, at the root node, there are two children, which requires 2 X 500 = 1000 values. 
+
+Third, at the MaxGet and MaxPut nodes, we have 2 actions each, so each one requires 1000 values, for a total of 2000.
+
+Finally, at MaxNavigate(t), we have four actions, but now we must also consider the target parameter t, which can take 4 possible values. Hence, there are effectively 2000 combinations of states and t values for each action, or 8000 total values that must be represented.
+
+In total, therefore, the MAXQ representation requires 14,000 separate quantities to represent the value function.
+
+A flat Q learning representation need store a separate value for each of the six primitive actions in each of the 500 possible states, for a total of 3,000 values. Hence, we can see that without state abstraction, the MAXQ representation requires more than 4 times the memory of a flat Q table!
+
+## 5.1 Five Conditions that Permit State Abstraction
+
+**Definition 10**  Let M be a MDP and H be a MAXQ graph defined over M.  Suppose that each state s can be written as a vector of values of a set of state variables. At each Marc node i, suppose the state variables are partitioned into two sets Xᵢ and Yᵢ, and let *xᵢ* be a function that project a state s onto only the values of the variables in  Xᵢ . Then H combined with *xᵢ* is called a state-abstracted MAXQ graph.
+
+We will often write s = (x,y) to mean such state partitioned. Similary, we will sometime write P(x',y',N|x,y,a) , V(a,x,y) , R̃(x',y') in place of P(s',N|s,a) , V(a,s) , R̃(s) respectively.
+
+**Definition 11 (Abstract Policy)** An abstract hierarchical policy for MDP M with state-abstracted MAXQ graph H and associated abstraction functions *xᵢ* , is a hierarchical policy in which each policy πᵢ satisfies the condition that 
+
+for any two states s₁ and s₂ such that *xᵢ*(s₁) = *xᵢ*(s₂) , πᵢ(s₁) = πᵢ(s₂) . ( when πᵢ is a stochastic policy,this is interpreted to mean that the probability distributions for choosing actions are the same in both states.) 
 
 
+---
 
+In order for MAXQ-Q to converge in the presence of state abstractions, we will require that at all times t its (instantaneous) exploration policy is an abstract hierarchical policy.
+
+Now let us describe and analyze the 5 abstraction conditions. We have identified 3 different kinds of conditions under which abstractions can be introduced. 
+
+ 1. The first kind involves eliminating irrelevant variables within a subtask of the MAXQ graph.
+    - nodes toward the leaves of the MAXQ graph tend to have very few relevant variables, and nodes higher in the graph have more relevant variables.
+    - Hence, this kind of abstraction is most useful at the lower levels of the MAXQ graph.
+ 2. The second kind of abstraction arises from “funnel” actions.
+    - These are macro actions that move the environment from some large number of initial states to a small number of resulting states.
+        - s₂,s₃,... all leads to s' ?
+    - The completion cost of such subtasks can be represented using a number of values proportional to the number of resulting states.
+    - Funnel actions tend to appear higher in the MAXQ graph, so this form of abstraction is most useful near the root of the graph.
+ 3. The third kind of abstraction arises from the structure of the MAXQ graph itself. It exploits the fact that large parts of the state space for a subtask may not be reachable because of the termination conditions of its ancestors in the MAXQ graph.
+
+---
+
+### 5.1.1 CONDITION 1: MAX NODE IRRELEVANCE
+
+The first condition arises when a set of state variables is irrelevant to a Max node.
+
+**Definition 12 (Max Node Irrelevance)**  Let Mᵢ be a Max node in a MAXQ graph H for MDP M. A set of state variable Y is irrelevant for node i if the state variables of M can be partitioned into 2 sets X and Y such that for any stationary abstract hierarchical policy π executed by the descendents of i , the following 2 properties hold:
+
+ - the state transition probability distribution P<sup>π</sup>(s',N|s,a) at node i can be factored into the product of 2 distructions 
+    - P<sup>π</sup>(x',y',N|x,y,a) = P<sup>π</sup>(y'|x,y,a)·P<sup>π</sup>(x',N|x,a)     (17)
+    - where y and y' give values for the variables in Y , and x and x' give values for the variable X. 
+ - for any pair of state s₁ = (x,y₁) and s₂=(x,y₂) such that *x*(s₁) = *x*(s₂) = x , and any child action a, V<sup>π</sup>(a,s₁) = V<sup>π</sup>(a,s₂), and R̃(s₁) = R̃(s₂).
+
+
+Note that the two conditions must hold for all stationary abstract policies π rexecuted by all of the descendents of the subtask i. 
+
+**Lemma 2** Let M be an MDP with full—state MAXQ graph H, and suppose that state variables Yᵢ are irrelevant for Max node i.  Let *x*ᵢ(s) be  the associated abstraction function that projects 3 onto the remaining relevant variables Xᵢ. Let π  be any abstract hierarchical policy. Then the action-valuefunction Q<sup>π</sup> at node i can be represented compactly , with only one value of the completion function C<sup>π</sup>(i,s,j) for each equivalence class of states s that share the same values on the relevant variables.
+
+Specifically Q<sup>π</sup>(i,s,j) can be computed as follows:
+
+ - Q<sup>π</sup>(i,s,j) = V<sup>π</sup>(j, *x*ᵢ(s)) + C<sup>π</sup>(i, *x*ᵢ(s) ,j )
 
     
 
