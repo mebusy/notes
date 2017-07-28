@@ -817,6 +817,35 @@ This approach to non-hierarchical execution ignores the internal structure of th
 
 The second approach to non-hierarchical execution borrows an idea from Q learning. One of the great beauties of the Q representation for value functions is that we can compute one step of policy improvement without knowing P(s'|s,a) , simply by taking the new policy to be π<sup>g</sup>(s) = argmaxₐ Q(s,a). This gives us the same one-step greedy policy as we computed above using one-step lookahead. With the MAXQ decomposition, we can perform these policy improvement steps at all levels of the hierarchy.
 
+We have already defined the function that we need. In Table 3 we presented the function EVALUATEMAXNODE, which, given the current state  s , conducts a search along all paths from a given Max node i to the leaves of the MAXQ graph and finds the path with the best value. This is equivalent to computing the best action greedily at each level of the MAXQ graph. In addition, EVALUATEMAXNODE returns the primitive action a at the end of this best path.This action a would be the first primitive action to be executed if the learned hierarchical policy were executed starting in the current state s. 
+
+Our second method for non-hierarchical execution of the MAXQ graph is to call EVALUATEMAXNODE in each state, and execute the primitive action a that is returned. The pseudo-code is shown in Table 5.
+
+> Table 5: The procedure for executing the one-step greedy policy.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_tbl_5.png)
+
+We will call the policy computed by EXECUTEHGPOLICY the *hierarchical greedy policy*, and denote it  π<sup>hg\*</sup> , where the superscript \* indicates that we are computing the greedy action at each time step.  The following theorem shows that this can give a better policy than the original, hierarchical policy.
+
+**Theorem 5** Let G be a MAXQ graph , representing the value function of hierarchical policy π (i.e., in terms of C<sup>π</sup>(i,s,j) , computed for all i,s,and j  ).  Let V<sup>hg</sup>(0,s) be the value computed by EXECUTEHGPOLICY line 2, and let π<sup>hg\*</sup> be the resulting policy. Define V<sup>hg\*</sup> to be the value function of π<sup>hg\*</sup> . Then for all states s, it is the case that 
+
+ V<sup>π</sup>(s) ≤ V<sup>hg</sup>(0,s)  ≤ V<sup>hg\*</sup>(s).
+
+To establish the right inequality, note that by construction V<sup>hg</sup>(0,s) is the value function of a policy, call it  π<sup>hg</sup>, that chooses one action greedily at each level of the MAXQ graph (recursively), and then follows π thereafter. This is a consequence of the fact that line 6 of EVALUATEMAXNODE has C<sup>π</sup> on its right-hand side, and C<sup>π</sup> represents the cost of “completing” each subroutine by following π , not by following some other, greedier, policy. ( In Table 3, C<sup>π</sup> is written as C<sub>t</sub> )  However, when we execute EXECUTEHGPOLICY(and hence, execute π<sup>hg\*</sup> ) , we have an opportunity to improve upon π and π<sup>hg</sup>  at each time step. Hence, V<sup>hg</sup>(0,s) is an underestimateof the actual valueof V<sup>hg\*</sup>(s). Q.E.D.
+
+Note that this theorem only works in one direction. It says that if we can find a state where V<sup>hg</sup>(0,s) > V<sup>π</sup>(s) , then the greedy policy ,π<sup>hg\*</sup> , will be strictly better than π.  However, it could be that π is not an optimal policy and yet the structure of the MAXQ graph prevents us from considering an action (either primitive or composite) that would improve π. Hence, unlike the policy improvement theorem of Howard (where all primitive actions are always eligible to be chosen), we do not have a guarantee that if π is suboptimal, then the hierarchically greedy policy is a strict improvement.
+ 
+In contrast, if we perform one-step policy improvement as discussed at the start of this section, Corollary 3 guarantees that we will improve the policy. So we can see that in general, neither of these two methods for non-hierarchical execution is always better than the other.  Nonetheless, the first method only operates at the level of individual primitive actions, so it is not able to produce very large improvements in the policy. In contrast, the hierarchical greedy method can obtain very large improvements in the policy by changing which actions (i.e., subroutines) are chosen near the root of the hierarchy.Hence, in general, hierarchical greedy execution is probably the better method. 
+
+Some care must be taken in applying Theorem 5 to a MAXQ hierarchy whose C values have been learned via MAXQ-Q. 
+
+Being an online algorithm, MAXQ-Q will not have correctly learned the values of all states at all nodes of the MAXQ graph. 
+
+For example, in the taxi problem, the value of C(Put, s , QPutdown) will not have been learned very well except at the four special locations R, G, B, and Y. This is because the Put subtask cannot be executed until the passenger is in the taxi, and this usually means that a Get has just been completed, so the taxi is at the passenger’s source location. During exploration, both children of Put will be tried in such states. The PutDown will usually fail (and receive a negative reward), whereas the Navigate will eventually succeed (perhaps after lengthy exploration) and take the taxi to the destination location.  Now because of all-states updating, the values for C(Put,s,Navigate(t)) will have been learned at all of the states along the path to the passenger’s destination, but the C values for the Putdown action will only be learned for the passenger’s source and destination locations.  Hence, if we train the MAXQ representation using hierarchical execution (as in MAXQ-Q), and then switch to hierarchically-greedy execution, the results will be quite bad. 
+
+In particular, we need to introduce hierarchically- greedy execution early enough so that the exploration policy is still actively exploring. (In theory, a GLIE exploration policy never ceasesto explore, but in practice, we want to find a good policy quickly, not just asymptotically).
+
+
 
 
 
