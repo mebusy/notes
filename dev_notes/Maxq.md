@@ -589,8 +589,60 @@ Figure 7 shows that the irrelevant variables Y do not affect the rewards either 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_f7.png)
 
+**怎么来发现是否可以应用 MAX NODE IRRELEVANCE 呢?**
+
+One rule for noticing cases where this abstraction condition holds , is , to examine the subgraph rooted at the given Max node i. 
+
+If a set of state variables is irrelevant to the leaf state transition probabilities and reward functions and also to all pseudo-reward functions and termination conditions in the subgraph, then those variables satisfy the Max Node Irrelevance condition:
+
+**Lemma 3** A set of state variables Yᵢ, is irrelevant to node i if 
+
+ - For each primitive leaf node a that is a descendent of i,
+    - P(x',y'|x,y,a) = P(y'|x,y,a)·P(x'|x,a) and 
+    - R(x',y'|x,y,a) = R(x'|x,a)
+ - For each internal node j that is equal to node i or is a descendent of i 
+    - R̃ⱼ(x',y') = R̃ⱼ(x')  
+    - and the termination predicate Tⱼ(x',y') is true iff Tⱼ(x').
+
+In the Taxi task, the primitive navigation actions, North, South, East, and West only depend on the location of the taxi and not on the location of the passenger. The pseudo- reward function and termination condition for the MaXNavigate(t) node only depend on the location of the taxi (and the parameter t). Hence, this lemma applies, and the passenger source and destination are irrelevant for the MaxNavigate node.
 
 
+
+
+### 5.1.2 CONDITION 2: LEAF IRRELEVANCE
+
+**Definition 13 (Leaf Irrelevance)** A set of state variablesY is irrelevant for a primitive action a of a MAXQ graph if for all states s the expectedvalue of the reward function, 
+
+ V(a,s) = ∑<sub>s'</sub> P(s'|s,a)·R(s'|s,a)
+
+does not depend on any of the values of the state variables in Y.  
+
+
+Then we can represent V(a, s) for any state s by an abstracted value function: V(a,*x*(s)) = V(a,s).
+
+**怎么来发现是否可以应用 LEAF IRRELEVANCE 呢?**
+
+Here are two rules for finding caseswhere Leaf Irrelevance applies.
+
+The first rule shows that if the probability distribution factors, then we have Leaf Irrelevance.
+
+
+
+
+
+### 5.1.3 CONDITION 3: RESULT DISTRIBUTION IRRELEVANCE
+
+Now we consider a condition that results from “funnel” actions.
+
+**Definition 14 (Result Distribution Irrelevance)** A set of state variables Yⱼ is irrelevant for the result distribution of action j if , for all abstract policies π executed by node j and its descendents in the MAXQ hierarchy, the following holds:
+
+ for all pairs of states s₁ and s₂ that differ only in their values for the state variables in Yⱼ , P<sup>π</sup>(s',N|s₁,j) = P<sup>π</sup>(s',N|s₂,j) for all s' and N.
+
+If this condition is satisfied for subtask j, then the C value of its parent task i can be represented compactly:
+
+ C<sup>π</sup>(i,s,j) = C<sup>π</sup>(i,*x*ᵢⱼ(s),j).
+
+Consider, for example, the Get subroutine for the taxi task. No matter what location the taxi has in state s , the taxi will be at the passenger’s starting location when the Get finishes executing . Hence, the starting location is irrelevant to the resulting location of the taxi, and P(s'|s₁,Get) = P(s'|s₂,Get) for all state s₁ and s₂ that differ only in the taxi's location.
 
 
 
