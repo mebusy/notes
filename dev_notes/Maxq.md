@@ -809,8 +809,13 @@ We start with a hierarchical policy π and represent its value function using th
 
 Then, we can perform one step of policy improvement by applying Equation (23) using V<sup>π</sup>(0,s')(computed by MAXQ hierarchy) to compute V<sup>π</sup>(s') .
 
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_1step_policy_improvement.png)
+
 Unfortunately, we can’t iterate this policy improvement process, because the new policy,is very unlikely to be a hierarchical policy . Nonetheless, one step of policy improvement can give very significant improvements.
 
+This approach to non-hierarchical execution ignores the internal structure of the MAXQ graph. In effect, the MAXQ hierarchy is just viewed as a way to represent V<sup>π</sup> -- any other representation would give the same one-step improved policy π<sup>g</sup>.
+
+The second approach to non-hierarchical execution borrows an idea from Q learning. One of the great beauties of the Q representation for value functions is that we can compute one step of policy improvement without knowing P(s'|s,a) , simply by taking the new policy to be π<sup>g</sup>(s) = argmaxₐ Q(s,a). This gives us the same one-step greedy policy as we computed above using one-step lookahead. With the MAXQ decomposition, we can perform these policy improvement steps at all levels of the hierarchy.
 
 
 
