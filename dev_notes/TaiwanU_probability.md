@@ -336,6 +336,16 @@ p为在确认猫 3 死2活的情况下，打开下个猫箱看到活猫的机率
 
 0.17
 
+### 多变量 条件概率
+
+ - P(Y|X) = P(Y,X)/P(X)
+ - P(Y|X₁,X₂) = P(Y,X₁,X₂) / P(X₁,X₂) = P(Y,X₁|X₂)·P(X₂) / P(X₁|X₂)·P(X₂) 
+    - = P(Y,X₁|X₂) / P(X₁|X₂)
+ - P(Y|X₁,X₂,...,X<sub>n</sub>) 
+    - = ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_multivars_condition.png)
+
+
+
 ---
 
 <h2 id="49557f0872191469bd45991c842215b7"></h2>

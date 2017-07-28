@@ -626,6 +626,20 @@ Here are two rules for finding caseswhere Leaf Irrelevance applies.
 
 The first rule shows that if the probability distribution factors, then we have Leaf Irrelevance.
 
+**Lemma 5** Suppose the probability transition function for primitive action a , P(s'|s,a) , factors as P(x',y'|x,y,a) = P(y'|x,y,a)·P(x'|x,a) , and the reward function satisfies R(s'|s,a) = R(x'|x,a). Then the variablesin Y are irrelevant to the leaf node a.
+
+Hence, the expected reward for the action a depends only on the variables in X and not on the variables in Y. 
+
+---
+
+The second rule shows that if the reward function for a primitive action is constant, then we can apply state abstractions evenif P(s’|s, a) does not factor.
+
+**Lemma 6** SupposeR(s’|s, a) is always equal to a constant rₐ. Then the entire state s is irrelevant to the primitive action a.
+
+This lemma is satisfied by the four leaf nodes North, South, East, and West in the taxi task, because their one-step reward is a constant (-1). Hence, instead of requiring 2000 values to store the V functions, we only need 4 valuesione for each action. 
+
+Similarly, the expected rewards of the Pickup and Putdown actions each require only 2 values, depending on whether the corresponding actions are legal or illegal. Hence, together, they require 4 values, instead of 1000 values.
+
 
 
 
@@ -642,7 +656,159 @@ If this condition is satisfied for subtask j, then the C value of its parent tas
 
  C<sup>π</sup>(i,s,j) = C<sup>π</sup>(i,*x*ᵢⱼ(s),j).
 
+Consider any two states s₁,s₂, such that *x*ᵢⱼ(s₁) = *x*ᵢⱼ(s₂) = x. Under Result Dis- tribution Irrelevance, their transition probability distributions are the same. Hence,  C<sup>π</sup>(i,s₁,j) = C<sup>π</sup>(i,s₂,j). Therefore, we can define an abstract completion function,   C<sup>π</sup>(i,x,j) to represent this quantity.
+
+In undiscounted cumulative reward problems, the definition of result distribution irrelevance can be weakened to eliminate N, the number of steps. All that is needed is that for all pairs of states  s₁ and s₂ that differ only in the irrelevant state variables, P<sup>π</sup>(s'|s₁,j) = P<sup>π</sup>(s'|s₂,j) (for all s'). In the undiscountedcase,Lemma 7 still holds under this revised definition.  **Great!**.
+
+---
+
 Consider, for example, the Get subroutine for the taxi task. No matter what location the taxi has in state s , the taxi will be at the passenger’s starting location when the Get finishes executing . Hence, the starting location is irrelevant to the resulting location of the taxi, and P(s'|s₁,Get) = P(s'|s₂,Get) for all state s₁ and s₂ that differ only in the taxi's location.
+
+Note, however, that if we were maximizing discounted reward, the taxi’s location would not be irrelevant, because the probability that Get will terminate in exactly N steps would depend on the location of the taxi, which could differ in states s₁ and s₂.
+
+But in the undiscounted case, by applying Lemma 7, we can represent C(Root, s, Get) using 16 distinct values, because there are 16 equivalence classes of states (4 source locations times 4 destination locations). 
+
+Note that although state variables Y may be irrelevant to the result distribution of a subtask j, they may be important within subtask j. 
+
+In the Taxi task, the location of the taxi is critical for representing the value of V(Get, s),  but it is irrelevant to the result state distribution for Get, and therefore it is irrelevant for representing C(Root, 3, Get).  Hence, the MAXQ decomposition is essential for obtaining the benefits of result distribution irrelevance.
+
+The Result Distribution Irrelevance condition is applicable in all such situations as long as we are in the undiscounted setting.
+
+### 5.1.4 CONDITION 4: TERMINATION
+
+The fourth condition is closely related to the “funnel” property. 
+
+It applies when a subtask is guaranteed to cause its parent task to terminate in a goal state.In a sense, the subtask is funneling the environment into the set of states described by the goal predicate of the parent task.
+
+**Lemma 8(Termination)** Let Mᵢ be a task in a MAXQ graph such that for all states s where the goal predicate Gᵢ(s) is true, the pseudo-reward function  R̃ᵢ(s) = 0. Suppose there is a child task a and state s such that for all hierarchical policies π , 
+
+ ∀s' P<sup>π</sup>ᵢ (s',N |s,a) >0 ⇒ Gᵢ(s').
+
+(i.e., every possible state s’ that results from applying *a* in s will make the goal predicate, Gᵢ, true.)
+
+Then for any policy executed at node i, the completion cost  C(i,s,a) is 0 and does not need to be explicitly represented.
+
+ - 子任务a 执行总是 满足  Gᵢi(s')=true
+
+For example, in the Taxi task, in all states where the taxi is holding the passenger, the Put subroutine will succeed and result in a goal terminal state for Root.This is because the termination predicate for Put (i.e., that the passenger is at his or her destination location) implies the goal condition for Root (which is the same).This means that C(Root, s, Put) is uniformly zero, for all states s where Put is not terminated.
+
+It is easy to detect caseswhere the Termination condition is satisfied. We only need to compare the termination predicate  Tₐ of a subtask with the goal predicate Gᵢ of the parent task. If the first implies the second, then the termination lemma is satisfied.
+
+### 5.1.5 CONDITION 5: SHIELDING
+
+The shielding condition arises from the structure of the MAXQ graph.
+
+**Lemma 9 (Shielding)** Let s be a state such that in all paths from the root of the graph down to node Mᵢ there is a subtask j (possibly equal to i) whose termination predicate Tⱼ(s) is true , then the Q nodes of Mᵢ do not need to represent C values for state s.
+
+In the Taxi domain, a simple example of this arises in the Put task,  which is terminated in all states where the passenger is not in the taxi. This means that we do not need to represent C(Root,s, Put) in these states. The result is that, when combined with the Termination condition above, we do not need to explicitly represent the completion function for Put at all!
+
+### 5.1.6 DICUSSION
+
+By applying these 5 abstraction conditions, we obtain the following “safe” state abstractions for the Taxi task:
+
+ - North, South, East, and West. These terminal nodes require one quantity each, for a total of four values. (Leaf Irrelevance).
+    - for any s , V = -1
+ - Pickup and Putdown each require 2 values (legal and illegal states), for a total of four. (Leaf Irrelevance.)
+ - QNorth(t), QSouth(t), QEast(t), and QWest(t) each require 100 values (four values for t and 25 locations). (Max Node Irrelevance.)
+    - QNorth(t) : C( Navigate , s , North )
+ - QNavigateForGet requires 4 values (for the four possible source locations). 
+    - (The passenger destination is Max Node Irrelevant for MaxGet, and the taxi starting location is Result Distribution Irrelevant for the Navigate action.)
+ - QPickup requires 100 possible values, 4 possible source locations and 25 possible taxi locations. (Passenger destination is Max Node Irrelevant to MaxGet.)
+ - QGet requires 16 possible values(4 source locations, 4 destination locations). (Result Distribution Irrelevance.)
+ - QNavigateForPut requires only 4 values (for the four possible destination locations). 
+    - (The passenger source and destination are Max Node Irrelevant to MaxPut; the taxi location is Result Distribution Irrelevant for the Navigate action.)
+ - QPutdown requires 100 possible values (25 taxi locations, 4 possible destination locations). (Passengersourceis Max Node Irrelevant for MaxPut.)
+ - QPut requires 0 values. (Termination and Shielding.) 
+
+
+This gives a total of 632 distinct values, which is much less than the 3000 values required by flat Q learning.  
+
+A key thing to note is that with these state abstractions, the value function is decomposed into a sum of terms such that no single term depends on the entire state of the MDP, even though the value function as a whole does depend on the entire state of the MDP. 
+
+
+For example, show as figure 1,
+
+ ![][1] , 
+
+the value of a state s₁ with the passenger at R, the destination at B , and the taxi at (0,3) can be decomposed as 
+
+ V(Root,s₁) = V(North,s₁) + C(Navigate(R) , s₁, North ) + C(Get, s₁, Navigate(R) ) + C(Root, s₁,Get) 
+
+
+With state abstractions, we can see that each term on the right-hand side only depends on a subset of the features:
+
+ - V(North,s₁) is a constant
+ - C(Navigate(R) , s₁, North )  depends only on the taxi location and the passenger’s source location.
+ - C(Get, s₁, Navigate(R) ) depends only on the source location.
+ - C(Root, s₁,Get) depends only on the passenger’s source and destination. 
+
+---
+
+What prior knowledge is required on the part of a programmer in order to identify these state abstractions? 
+
+It suffices to know some qualitative constraints on the one-step reward functions, the one-step transition probabilities, and termination predicates, goal predicates, and pseudo-reward functions within the MAXQ graph. Speciffcally, the Max Node Irrelevance and Leaf Irrelevance conditions require simple analysis of the one-step transition function and the reward and pseudo-reward functions. 
+
+Opportunities to apply the Result Distribution Irrelevance condition can be found by identifying “funnel” effects that result from the definitions of the termination conditions for operators. 
+
+Similarly, the Shielding and Termination conditions only require analysis of the termination predicates of the various subtasks. 
+
+Hence, applying these 5 conditions to introduce state abstractions is a straightforward process, and once a model of the one-step transition and reward functions has been learned, the abstraction conditions can be checked to see if they are satisfied.
+
+
+##  5.2 Convergence of MAXQ-Q with State Abstraction
+
+The goal of this section is to prove these two results: 
+
+ - (a) that the ordered recursively-optimal policy is an abstract policy (and, hence, can be represented using state abstractions) 
+ - (b) that MAXQ-Q will converge to this policy when applied to a MAXQ graph with safe state abstractions.
+
+## 5.3 The Hierarchical Credit Assignment Problem
+
+There are still some situations where we would like to introduce state abstractions but the 5 properties described above do not permit them.
+
+Consider the following modification of the taxi problem. Suppose that the taxi has a fuel tank and that each time the taxi moves one square, it costs one unit of fuel. If the taxi runs out of fuel before delivering the passenger to his or her destination, it receives a reward of -20, and the trial ends. Fortunately, there is a filling station where the taxi can execute a Fillup action to fill the fuel tank.
+
+
+To solve this modified problem using the MAXQ hierarchy, we can introduce another subtask, Refuel, which has the goal of moving the taxi to the filling station and filling the tank. MaxRefuelis a child of MaxRoot, and it invokes Navigate(t) (with t bound to the location of the filling station) to move the taxi to the filling station.
+
+Now we must include the current amount of fuel as a feature in representing every C value (for internal nodes) and V value (for leaf nodes) throughout the MAXQ graph. This is unfortunate. Navigate(t) subtask should not need to worry about the amount of fuel, because even if there is not enough fuel, there is no action that Navigate(t) can take to get more fuel. Instead, it is the top-level subtasks that should be monitoring the amount of fuel and deciding whether to go refuel, to go pick up the passenger, or to go deliver the passenger.
+
+Given this intuition, it is natural to try abstracting away the “amount of remaining fuel” within the Navigate(t) subtask. However, this doesn’t work, because when the taxi runs out of fuel and a -20reward is given, the QNorth, QSouth, QEast, and QWest nodes cannot “explain” why this reward was received -- that is, they have no consistent way of setting their C tables to predict when this negative reward will occur, because their C values ignore the amount of fuel in the tank. Stated more formally, The diffiiculty is that the Max Node Irrelevance condition is not satisfied because the one-step reward function R(s' |s,a) for these actions depends on the amount of fuel.
+
+We call this the *hierarchical credit assignment problem*. 
+
+The fundamental issue here is that in the MAXQ decomposition all information about rewards is stored in the leaf nodes of the hierarchy. 
+
+We would like to separate out the basic rewards received for navigation (i.e., -1for eachaction) from the rewardreceivedfor exhaustingfuel (-20). If we make the reward at the leaves only depend on the location of the taxi, then the Max Node Irrelevance condition will be satisfied.
+
+One way to do this is to have the programmer manually decompose the reward function and indicate which nodes in the hierarchy will “receive” each reward.
+
+Let R(s'|s,a) = ∑ᵢ R(i,s'|s,a) be a decomposition of the reward function,  such that R(i,s'|s,a) specifies that part of the reward that must be handled by Max node i. 
+
+In the modified taxi problem, for example, we can decompose the reward so that the leaf nodes receive all of the original penalties, but the out-of-fuelrewards must be handled by MaxRoot. 
+
+Lines 15 and 16 of the MAXQ-Q algorithm are easily modifiedto include R(i, s’|s, a).
+
+# 6. Non-Hierarchical Execution of the MAXQ Hierarchy
+
+Up to this point in the paper, we have focused exclusively on representing and learning hierarchical policies.  However, often the optimal policy for a MDP is not strictly hierarchical. 
+
+Kaelbling (1993) first introduced the idea of deriving a non-hierarchical policy from the value function of a hierarchical policy. In this section, we exploit the MAXQ decomposition to generalize her ideas and apply them recursively at all levels of the hierarchy.
+
+We will describe two methods for non-hierarchical execution.
+
+The first method is based on the dynamic programming algorithm known as policy iteration. The policy iteration algorithm starts with an initial policy π⁰. It then repeats the following two steps until the policy converges.  In the policy evaluation step, it computes the value function V<sup>πk</sup> of the current policy π<sub>k</sub>. Then, in the policy improvement step, it computes a new policy, π<sub>k+1</sub> .
+
+
+
+
+
+
+
+
+
+
+
 
 
 
