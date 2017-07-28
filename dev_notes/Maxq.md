@@ -797,7 +797,23 @@ Kaelbling (1993) first introduced the idea of deriving a non-hierarchical policy
 
 We will describe two methods for non-hierarchical execution.
 
-The first method is based on the dynamic programming algorithm known as policy iteration. The policy iteration algorithm starts with an initial policy π⁰. It then repeats the following two steps until the policy converges.  In the policy evaluation step, it computes the value function V<sup>πk</sup> of the current policy π<sub>k</sub>. Then, in the policy improvement step, it computes a new policy, π<sub>k+1</sub> .
+The first method is based on the dynamic programming algorithm known as policy iteration. The policy iteration algorithm starts with an initial policy π⁰. It then repeats the following two steps until the policy converges.  In the policy evaluation step, it computes the value function V<sup>πk</sup> of the current policy π<sub>k</sub>. Then, in the policy improvement step, it computes a new policy, π<sub>k+1</sub> ccording to the rule
+
+ ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_23.png)
+
+Note that in order to apply this method, we need to know P and R.
+
+If we know P and R , we can use the MAXQ representation of the value function to perform one step of policy iteration. 
+
+We start with a hierarchical policy π and represent its value function using the MAXQ hierarchy (e.g., π could have been learned via MAXQ-Q). 
+
+Then, we can perform one step of policy improvement by applying Equation (23) using V<sup>π</sup>(0,s')(computed by MAXQ hierarchy) to compute V<sup>π</sup>(s') .
+
+Unfortunately, we can’t iterate this policy improvement process, because the new policy,is very unlikely to be a hierarchical policy . Nonetheless, one step of policy improvement can give very significant improvements.
+
+
+
+
 
 
 
