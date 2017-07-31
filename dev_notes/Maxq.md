@@ -895,8 +895,14 @@ In particular, we need to introduce hierarchically- greedy execution early enoug
 
  - a) flat Q learning,
  - b) MAXQ-Q learning without any form of state abstraction
+    - initial values of 0.123, a learn- ing rate of 0.50, 
+    - and Boltzmann exploration with an initial temperature of 50 and cooling rates of 0.9996 at MaxRoot and MaxPut, 0.9939 at MaxGet, and 0.9879 at MaxNavigate.
  - c) MAXQ-Q learning with state abstraction
+    - initial values of 0.123, a learning rate of 0.25, 
+    - and Boltzmann exploration with an initial temperature of 50 and cooling rates of 0.9074 at MaxRoot, 0.9526 at MaxPut, 0.9526 at MaxGet, and 0.9879 at MaxNavigate.
  - d) MAXQ-Q learning with state abstraction and greedy execution.
+    - same setting with (c)
+
 
 These configurations are controlled by many parameters. 
 
@@ -906,6 +912,15 @@ These configurations are controlled by many parameters.
  - d) for non-hierarchical execution,the schedule for decreasing L, the number of steps of consecutive hierarchical execution.
 
 For Boltzmann exploration, we established an initial temperature and then a cooling rate. A separate temperature is maintained for each Max node in the MAXQ graph, and its temperature is reduced by multiplying by the cooling rate each time that subtask terminates in a goal state.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_performance_eval.png)
+
+ - all forms of MAXQ learning have better initial performance than flat Q learning. 
+ - without state abstractions, MAXQ-Q learning actually takes longer to converge, so that the Flat Q curve crosses the MAXQ/ no abstraction curve
+ - with state abstractions, MAXQ-Q quickly to a hierarchically optimal policy.
+ - with greedy execution, the MAXQ policy is also able to attain optimal performance. 
+    - But as the execution becomes “more greedy”, there is a temporary drop in performance,because MAXQ-Q must learn C values in new regions of the state space that were not visited by the recursively optimal policy.
+
 
 
 
