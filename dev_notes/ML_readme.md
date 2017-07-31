@@ -72,6 +72,9 @@
  4. [RL David Silver 随笔](https://github.com/mebusy/notes/blob/master/dev_notes/RL_DavidSilver_part2.md)
  5. [Neural Network Coursera](https://github.com/mebusy/notes/blob/master/dev_notes/NeuralNetworks.md)
  6. [DeepLearning MIT 6S191](https://github.com/mebusy/notes/blob/master/dev_notes/MIT_6S191_DL.md)
+ 7. [MAXQ-Q](https://github.com/mebusy/notes/blob/master/dev_notes/Maxq.md)
+
+
 
 
 

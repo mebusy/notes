@@ -7,6 +7,20 @@
 	 - [3.3 Decomposition of the Projected Value Function](#753a9eaa2be4ced1fa5875c05dfdff70)
  - [A Learning Algorithm for the MAXQ Decomposition](#d6441f91c197a8e36b0008ba2307889a)
 	 - [4.1 Two Kinds of Optimality](#891e7168eccd8d630e8c572615d85781)
+	 - [4.2 The MAXQ-O Learning Algorithm](#3b97da78e886b3f8d17c9f4c54540171)
+	 - [4.3 Techniques for Speeding Up MAXQ-0](#23feda6ab3a0c28739ff075e59ed559e)
+	 - [4.4 The MAXQ-Q Learning Algorithm](#9847a1803bd225e326da8c36497968a6)
+ - [5. State Abstraction](#be6b86743fc14285b97d7d0037337a64)
+	 - [5.1 Five Conditions that Permit State Abstraction](#287fa4871442358e00cdd22bdccfe7fc)
+		 - [5.1.1 CONDITION 1: MAX NODE IRRELEVANCE](#0fd7085da1b16936628a34768637ff1c)
+		 - [5.1.2 CONDITION 2: LEAF IRRELEVANCE](#87349168dccb260456b23839e9702af4)
+		 - [5.1.3 CONDITION 3: RESULT DISTRIBUTION IRRELEVANCE](#a9f97f89dbb6e80750e445877a4cc214)
+		 - [5.1.4 CONDITION 4: TERMINATION](#fa47406de877edbd1d58fe0b8f4489b6)
+		 - [5.1.5 CONDITION 5: SHIELDING](#3bd22ac574778f26097a5d3c815bcee5)
+		 - [5.1.6 DICUSSION](#fb8187ec15df35190dbc58aa6d7d4815)
+	 - [5.2 Convergence of MAXQ-Q with State Abstraction](#a905db7d811ede823e2afa218e22b5d8)
+	 - [5.3 The Hierarchical Credit Assignment Problem](#3a77b82cf90e359bca449dc6baea1a13)
+ - [6. Non-Hierarchical Execution of the MAXQ Hierarchy](#be3d80bb862c5123b4a97b94416dd9cd)
 
 ...menuend
 
@@ -15,6 +29,7 @@
 
 # Maxq 
 
+Q-learning will converge to the optimal  , while SARSA(0) will need a GLIE policy.
 
  ![][1] 
 
@@ -370,6 +385,8 @@ This problem is easily fixed by defining the goal predicate Gᵢ for the right r
 
 In the worst case, it is possible for the programmer to specify pseudo-rewards such that the recursively optimal policy can be made arbitrarily worse than the hierarchically optimal policy. For example,  suppose that we change the original MDP in Figure 6 so that the state immediately to the left of the upper doorway gives a large negative reward -L whenever the robot visits that square. So the hierarchically- optimal policy exits the room by the lower door.  But suppose the programmer has chosen instead to force the robot to exit by the upper door (e.g., by assigning a pseudo-reward of -10L or leaving via the lower door).  In this case, the recursively-optimal policy will leave by the upper door and suffer the large -L penalty . By making L arbitrarily large, we can make the difference between the hierarchically-optimal policy and the recursively-optimal policy arbitrarily large.
 
+<h2 id="3b97da78e886b3f8d17c9f4c54540171"></h2>
+
 ## 4.2 The MAXQ-O Learning Algorithm
 
 MAXQ-0 is a recursive function that executes the current exploration policy starting at Max node i in state *s*. It performs actions until it reaches a terminal state, at which point it returns a count of the total number of primitive actions that have been executed. 
@@ -434,6 +451,8 @@ If we establish a fixed ordering over the Max nodes in the MAXQ graph (e.g., a l
 
 The most important aspect of this theorem is that it proves that Q learning can take place at all levels of the MAXQ hierarchy simultaneouslyithe higher levels do not need to wait until the lower levels have converged before they begin learning. All that is necessary is that the lower levels eventually converge to their (locally) optimal policies.
 
+<h2 id="23feda6ab3a0c28739ff075e59ed559e"></h2>
+
 ## 4.3 Techniques for Speeding Up MAXQ-0
 
 
@@ -469,6 +488,8 @@ However, additional care is required to implement all-goals updating for non-pri
 
 Although this considerably reduces the usefulness of all-goals updating, it does not completely eliminate it. A simple way of implementing non-primitive all-goals updating would be to perform MAXQ-Q learning as usual, but whenever a subtask j was invoked in state s and returned, we could update the value of C(c, s, j) for all potential calling subtasks i.
 
+<h2 id="9847a1803bd225e326da8c36497968a6"></h2>
+
 ## 4.4 The MAXQ-Q Learning Algorithm 
 
 We could just add the pseudo- reward into MAXQ-0 , but this would have the effect of changing the MDP M to have a different reward function.The pseudo-rewards “contaminate” the values of all of the completion functions computed in the hierarchy. The resulting learned policy will not be recursively optimal for the original MDP.
@@ -500,6 +521,8 @@ The  C̃ function will be learned using an update rule similar to the Q learning
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_tbl_4.png)
 
+<h2 id="be6b86743fc14285b97d7d0037337a64"></h2>
+
 # 5. State Abstraction
 
 let us compute the number of values that must be stored for the taxi problem ***without*** any state abstraction.
@@ -517,6 +540,8 @@ Finally, at MaxNavigate(t), we have four actions, but now we must also consider 
 In total, therefore, the MAXQ representation requires 14,000 separate quantities to represent the value function.
 
 A flat Q learning representation need store a separate value for each of the six primitive actions in each of the 500 possible states, for a total of 3,000 values. Hence, we can see that without state abstraction, the MAXQ representation requires more than 4 times the memory of a flat Q table!
+
+<h2 id="287fa4871442358e00cdd22bdccfe7fc"></h2>
 
 ## 5.1 Five Conditions that Permit State Abstraction
 
@@ -546,6 +571,8 @@ Now let us describe and analyze the 5 abstraction conditions. We have identified
  3. The third kind of abstraction arises from the structure of the MAXQ graph itself. It exploits the fact that large parts of the state space for a subtask may not be reachable because of the termination conditions of its ancestors in the MAXQ graph.
 
 ---
+
+<h2 id="0fd7085da1b16936628a34768637ff1c"></h2>
 
 ### 5.1.1 CONDITION 1: MAX NODE IRRELEVANCE
 
@@ -609,6 +636,8 @@ In the Taxi task, the primitive navigation actions, North, South, East, and West
 
 
 
+<h2 id="87349168dccb260456b23839e9702af4"></h2>
+
 ### 5.1.2 CONDITION 2: LEAF IRRELEVANCE
 
 **Definition 13 (Leaf Irrelevance)** A set of state variablesY is irrelevant for a primitive action a of a MAXQ graph if for all states s the expectedvalue of the reward function, 
@@ -644,6 +673,8 @@ Similarly, the expected rewards of the Pickup and Putdown actions each require o
 
 
 
+<h2 id="a9f97f89dbb6e80750e445877a4cc214"></h2>
+
 ### 5.1.3 CONDITION 3: RESULT DISTRIBUTION IRRELEVANCE
 
 Now we consider a condition that results from “funnel” actions.
@@ -674,6 +705,8 @@ In the Taxi task, the location of the taxi is critical for representing the valu
 
 The Result Distribution Irrelevance condition is applicable in all such situations as long as we are in the undiscounted setting.
 
+<h2 id="fa47406de877edbd1d58fe0b8f4489b6"></h2>
+
 ### 5.1.4 CONDITION 4: TERMINATION
 
 The fourth condition is closely related to the “funnel” property. 
@@ -694,6 +727,8 @@ For example, in the Taxi task, in all states where the taxi is holding the passe
 
 It is easy to detect caseswhere the Termination condition is satisfied. We only need to compare the termination predicate  Tₐ of a subtask with the goal predicate Gᵢ of the parent task. If the first implies the second, then the termination lemma is satisfied.
 
+<h2 id="3bd22ac574778f26097a5d3c815bcee5"></h2>
+
 ### 5.1.5 CONDITION 5: SHIELDING
 
 The shielding condition arises from the structure of the MAXQ graph.
@@ -701,6 +736,8 @@ The shielding condition arises from the structure of the MAXQ graph.
 **Lemma 9 (Shielding)** Let s be a state such that in all paths from the root of the graph down to node Mᵢ there is a subtask j (possibly equal to i) whose termination predicate Tⱼ(s) is true , then the Q nodes of Mᵢ do not need to represent C values for state s.
 
 In the Taxi domain, a simple example of this arises in the Put task,  which is terminated in all states where the passenger is not in the taxi. This means that we do not need to represent C(Root,s, Put) in these states. The result is that, when combined with the Termination condition above, we do not need to explicitly represent the completion function for Put at all!
+
+<h2 id="fb8187ec15df35190dbc58aa6d7d4815"></h2>
 
 ### 5.1.6 DICUSSION
 
@@ -755,12 +792,16 @@ Similarly, the Shielding and Termination conditions only require analysis of the
 Hence, applying these 5 conditions to introduce state abstractions is a straightforward process, and once a model of the one-step transition and reward functions has been learned, the abstraction conditions can be checked to see if they are satisfied.
 
 
+<h2 id="a905db7d811ede823e2afa218e22b5d8"></h2>
+
 ##  5.2 Convergence of MAXQ-Q with State Abstraction
 
 The goal of this section is to prove these two results: 
 
  - (a) that the ordered recursively-optimal policy is an abstract policy (and, hence, can be represented using state abstractions) 
  - (b) that MAXQ-Q will converge to this policy when applied to a MAXQ graph with safe state abstractions.
+
+<h2 id="3a77b82cf90e359bca449dc6baea1a13"></h2>
 
 ## 5.3 The Hierarchical Credit Assignment Problem
 
@@ -788,6 +829,8 @@ Let R(s'|s,a) = ∑ᵢ R(i,s'|s,a) be a decomposition of the reward function,  s
 In the modified taxi problem, for example, we can decompose the reward so that the leaf nodes receive all of the original penalties, but the out-of-fuelrewards must be handled by MaxRoot. 
 
 Lines 15 and 16 of the MAXQ-Q algorithm are easily modifiedto include R(i, s’|s, a).
+
+<h2 id="be3d80bb862c5123b4a97b94416dd9cd"></h2>
 
 # 6. Non-Hierarchical Execution of the MAXQ Hierarchy
 
