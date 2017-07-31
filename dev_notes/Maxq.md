@@ -118,7 +118,7 @@ In a parameterized task,
 
 ```
         s → πᵢ |→ chosen action a
-parameter ↑    |→ parameter of a
+parameter ↑    |→ (if any) parameter of a
 ```
 
 > Table 1: Pseudo-Code for Execution of a Hierarchical Policy
@@ -415,7 +415,7 @@ There are three things that must be specifiedin order to make this algorithm des
  2. Second, we must specify how to compute V<sub>t</sub> in line 11 , since it is not stored in the Max node.
     - It is computed by the following modified versions of the decomposition equations:
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_13_14.png)
-        - compared with Equations (10) and (11), they optimal value, not the value under fixed policy
+        - compared with Equations (10) and (11), it is optimal value, not the value under fixed policy
     - To compute V<sub>t</sub>(i,s) using these equations, we must perform a complete search of all paths through the MAXQ graph starting at node i and ending at the leaf nodes. 
         - Table 3 gives pseudo-code for a recursive function, EVALUATEMAXNODE, that implements a depth-first search.
 
@@ -888,6 +888,28 @@ For example, in the taxi problem, the value of C(Put, s , QPutdown) will not hav
 
 In particular, we need to introduce hierarchically- greedy execution early enough so that the exploration policy is still actively exploring. (In theory, a GLIE exploration policy never ceasesto explore, but in practice, we want to find a good policy quickly, not just asymptotically).
 
+
+# 7. Experimental Evaluation of the MAXQ Method
+
+4 different configurations of the learning algorithm:
+
+ - a) flat Q learning,
+ - b) MAXQ-Q learning without any form of state abstraction
+ - c) MAXQ-Q learning with state abstraction
+ - d) MAXQ-Q learning with state abstraction and greedy execution.
+
+These configurations are controlled by many parameters. 
+
+ - a) the initial values of the Q and C functions,
+ - b) the learning rate (we employed a fixed learning rate)
+ - c) the cooling schedule for Boltzmann exploration (the GLIE policy that we employed)
+ - d) for non-hierarchical execution,the schedule for decreasing L, the number of steps of consecutive hierarchical execution.
+
+For Boltzmann exploration, we established an initial temperature and then a cooling rate. A separate temperature is maintained for each Max node in the MAXQ graph, and its temperature is reduced by multiplying by the cooling rate each time that subtask terminates in a goal state.
+
+
+
+ 
 
 
 
