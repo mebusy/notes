@@ -1926,5 +1926,13 @@ void set_spam(int val) {
     - Extension classes
     - etc....
 
+----
+
+# Notice 
+
+ - for singleton purpose class , you should always use is as such way : `CLS.instance().xxx` 
+    - assign `CLS.instance()` to a local variable may cause problem.
+
+
 
 
