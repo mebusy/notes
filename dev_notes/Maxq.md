@@ -21,6 +21,7 @@
 	 - [5.2 Convergence of MAXQ-Q with State Abstraction](#a905db7d811ede823e2afa218e22b5d8)
 	 - [5.3 The Hierarchical Credit Assignment Problem](#3a77b82cf90e359bca449dc6baea1a13)
  - [6. Non-Hierarchical Execution of the MAXQ Hierarchy](#be3d80bb862c5123b4a97b94416dd9cd)
+ - [7. Experimental Evaluation of the MAXQ Method](#624966685e552964b681142cfb943122)
 
 ...menuend
 
@@ -888,6 +889,8 @@ For example, in the taxi problem, the value of C(Put, s , QPutdown) will not hav
 
 In particular, we need to introduce hierarchically- greedy execution early enough so that the exploration policy is still actively exploring. (In theory, a GLIE exploration policy never ceasesto explore, but in practice, we want to find a good policy quickly, not just asymptotically).
 
+
+<h2 id="624966685e552964b681142cfb943122"></h2>
 
 # 7. Experimental Evaluation of the MAXQ Method
 
