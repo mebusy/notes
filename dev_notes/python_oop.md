@@ -3,6 +3,9 @@
  - [oop for python](#cad1f4790e85f2b08e65e3c6fd4ce14b)
 	 - [Singleton](#6ff5f73c8b5ebd311406568c8ef50bfd)
 	 - [disable dynamically define new fields to a class](#0b45bfca581dfd81b42b816b63798e78)
+	 - [disable dynamically del a field from a class](#d697d7eeb396fa20ed1c5109befb2a67)
+	 - [access like a dict](#45a042564f32c7d808e10eb2c157142b)
+	 - [assignment lick c struct](#b6a463819ebef130b1d9e14cc626eba5)
 	 - [class property](#0766b2e74f5159a8c7d793f1f1cee8a6)
 
 ...menuend
@@ -54,6 +57,8 @@ It's possible to restrict the instance attributes that can be added through the 
  - 注意： B的派生类也必须 显式 定义 `__slots__` , 即便 是空的
     - `__slots__ = {}` 
 
+<h2 id="d697d7eeb396fa20ed1c5109befb2a67"></h2>
+
 ## disable dynamically del a field from a class 
 
 ```python
@@ -61,6 +66,8 @@ class A(object):
     def __delattr__(self, key) :         
         raise Exception( "can not delete "+key )
 ```
+
+<h2 id="45a042564f32c7d808e10eb2c157142b"></h2>
 
 ## access like a dict 
 
@@ -70,6 +77,8 @@ def __setitem__(self,key, value) :
 def __getitem__(self,key) :
     ...
 ```
+
+<h2 id="b6a463819ebef130b1d9e14cc626eba5"></h2>
 
 ## assignment lick c struct 
 
