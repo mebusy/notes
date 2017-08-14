@@ -51,13 +51,37 @@ It's possible to restrict the instance attributes that can be added through the 
 ...         self.another_attribute = 'two'
 ```
 
+ - 注意： B的派生类也必须 显式 定义 `__slots__` , 即便 是空的
+    - `__slots__ = {}` 
+
+## disable dynamically del a field from a class 
+
+```python
+class A(object):
+    def __delattr__(self, key) :         
+        raise Exception( "can not delete "+key )
+```
+
+## access like a dict 
+
+```python
+def __setitem__(self,key, value) :
+    ...
+def __getitem__(self,key) :
+    ...
+```
+
+## assignment lick c struct 
+
+ - using a  setter method  to copy content value 
+
 
 <h2 id="0766b2e74f5159a8c7d793f1f1cee8a6"></h2>
 
 ## class property 
 
  - readonly 
-	- `@ClassProperty` , `@classmethod` 顺序很关键！ 
+    - `@ClassProperty` , `@classmethod` 顺序很关键！ 
 
 ```python
 class ClassProperty(property):
