@@ -32,6 +32,9 @@ CC=`which clang` CXX=`which clang++`  ./install.py ......
 yum install yum-utils
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
 yum-config-manager --add-repo http://download.mono-project.com/repo/centos7/
+
+yum -y install mono-complete  
+# mono-core mono-devel ? I forgot the exact command ...
 ```
 
  - build c# project 
@@ -70,5 +73,31 @@ systemctl stop mariadb  #停止MariaDB
 systemctl restart mariadb  #重启MariaDB
 systemctl enable mariadb  #设置开机启动
 ```
+
+To make Mysql case sensitive,  find and modify `lower_case_table_names` to 1:
+
+```
+vi /etc/my.cnf
+
+[mysqld]
+lower_case_table_names=2
+```
+
+Delete anonymous user:
+
+```
+mysql> use mysql 
+mysql> delete from user where user=''; 
+mysql> FLUSH PRIVILEGES;
+```
+
+Create a database account, username and password is “kbe”:
+
+```
+mysql> grant all privileges on *.* to kbe@'%' identified by 'kbe';
+mysql> grant select,insert,update,delete,create,drop on *.* to kbe@'%' identified by 'kbe';
+mysql> FLUSH PRIVILEGES;
+```
+
 
 
