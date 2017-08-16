@@ -79,7 +79,93 @@ bpy.ops.transform.translate(value=(1, 0, 0))
 ```
 
 
-    
+Listing 2-4. Accessing the Active Object
 
+```python
+
+bject
+bpy.data.objects['Cube']
+
+>>> bpy.context.active_object
+bpy.data.objects['Cube']
+```    
+
+
+Listing 2-5. Programmatically Activating an Object
+
+```python
+import bpy
+def myActivator(objName):
+    # Pass bpy.data.objects datablock to scene class
+    bpy.context.scene.objects.active = bpy.data.objects[objName]
+
+# Activate the object named 'Sphere' 
+myActivator('Sphere')
+
+# Verify the 'Sphere' was activated 
+print("Active object:", bpy.context.object.name)
+
+# Selected objects were unaffected
+print("Selected objects:", bpy.context.selected_objects)
+```
+
+---
+
+**Specifying an Object (Accessing by Name)**
+
+Listing 2-6. Accessing an Object by Specification
+
+```python
+# bpy.data.objects datablock for an object named 'Cube'
+bpy.data.objects['Cube']
+```
+
+Listing 2-7. Programmatically Accessing an Object by Specification
+
+```python
+def mySpecifier(objName):
+    # Return the datablock
+    return bpy.data.objects[objName]
+```
+
+---
+
+### Pseudo-Circular Referencing and Abstraction
+
+ - bpy.data.objects datablocks were built to nest infinitely
+
+```python
+# Each line will return the same object type and memory address
+bpy.data
+bpy.data.objects.data
+bpy.data.objects.data.objects.data
+bpy.data.objects.data.objects.data.objects.data
+
+# References to the same object can be made across datablock types
+bpy.data.meshes.data
+bpy.data.meshes.data.objects.data
+bpy.data.meshes.data.objects.data.scenes.data.worlds.data.materials.data
+
+# Different types of datablocks also nest
+# Each of these lines returns the bpy.data.meshes datablock for 'Cube'
+bpy.data.meshes['Cube']
+bpy.data.objects['Cube'].data 
+bpy.data.objects['Cube'].data.vertices.data 
+bpy.data.objects['Cube'].data.vertices.data.edges.data.materials.data
+```
+
+ - showcases a powerful feature of the Blender Python API.
+ - **When we append .data to an object, it returns a reference to the parent datablock**
+
+### Transformations with bpy
+
+ - bpy.ops.transorm
+
+Listing 2-9. Minimal Toolkit for Creation and Transformation (ut.py)
+
+```python
+```
+
+### Visualizing Multivariate Data with the Minimal Toolkit
 
 
