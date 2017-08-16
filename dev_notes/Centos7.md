@@ -59,6 +59,8 @@ Then, you can reload rules to be sure that everything is ok
 
 ```bash
 firewall-cmd --reload
+
+firewall-cmd --zone=public --list-ports
 ```
 
 <h2 id="9edb3c572b56b91542af659480518681"></h2>
