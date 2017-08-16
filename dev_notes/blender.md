@@ -163,7 +163,7 @@ bpy.data.objects['Cube'].data.vertices.data.edges.data.materials.data
 
 Listing 2-9. Minimal Toolkit for Creation and Transformation (ut.py)
 
-[ut.py](https://raw.githubusercontent.com/mebusy/notes/master/codes/blender_ut.py)
+[ut.py](https://raw.githubusercontent.com/mebusy/notes/master/codes/blender/ut.py)
 
 ### Visualizing Multivariate Data with the Minimal Toolkit
 
