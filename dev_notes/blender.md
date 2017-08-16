@@ -1,8 +1,20 @@
+...menustart
+
+ - [API](#db974238714ca8de634a7ce1d083a14f)
+	 - [2 The bpy Module](#b8836758104839a89ea645e997c6f8cb)
+		 - [Selection, Activation, and Specification](#f1189fbbb6cb319df8b3a5ad5b3faaef)
+
+...menuend
+
+
+<h2 id="db974238714ca8de634a7ce1d083a14f"></h2>
 
 # API
 
  - `http://www.blender.org/api`
  - `http://www.blender.org/api/blender_python_api_2_78c_release`
+
+<h2 id="b8836758104839a89ea645e997c6f8cb"></h2>
 
 ## 2 The bpy Module
 
@@ -29,6 +41,8 @@ www.blender.org/api/blender_python_ api_2_78c_release/bpy.ops.mesh.html
  - bpy.types, bpy.utils, and bpy.props
  - bpy.path: essentially the same as the os.path submodule that ships natively with Python
     
+<h2 id="f1189fbbb6cb319df8b3a5ad5b3faaef"></h2>
+
 ### Selection, Activation, and Specification
 
  - Selection: One, many, or zero objects can be selected at once.

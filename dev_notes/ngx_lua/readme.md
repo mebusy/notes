@@ -9,4 +9,5 @@
  3. [nginx 简介](https://github.com/mebusy/notes/blob/master/dev_notes/ngx_lua/nginx%E7%AE%80%E4%BB%8B.md)
  4. [OpenResty](https://github.com/mebusy/notes/blob/master/dev_notes/ngx_lua/openReg.md)
  5. [LuaNginxModule](https://github.com/mebusy/notes/blob/master/dev_notes/ngx_lua/LuaNginxModule.md)
+ 6. [nginx 实战](https://github.com/mebusy/notes/blob/master/dev_notes/ngx_lua/nginx实战.md)
  
