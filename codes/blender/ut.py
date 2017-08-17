@@ -68,15 +68,16 @@ class create:
         bpy.ops.mesh.primitive_cone_add(radius1=0.5, location=(0, 0, 0)) 
         act.rename(objName)
 
-    # Delete an object by name
-    def delete(objName): 
-        select(objName)
+# Delete an object by name
+def delete(objName): 
+    select(objName)
+    bpy.ops.object.delete(use_global=False)
+
+# Delete all objects
+def delete_all():
+    if(len(bpy.data.objects) != 0): 
+        bpy.ops.object.select_all(action='SELECT') 
         bpy.ops.object.delete(use_global=False)
-    # Delete all objects
-    def delete_all():
-        if(len(bpy.data.objects) != 0): 
-            bpy.ops.object.select_all(action='SELECT') 
-            bpy.ops.object.delete(use_global=False)
 
 
 if __name__ == "__main__": 
