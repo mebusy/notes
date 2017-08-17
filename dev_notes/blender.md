@@ -167,4 +167,88 @@ Listing 2-9. Minimal Toolkit for Creation and Transformation (ut.py)
 
 ### Visualizing Multivariate Data with the Minimal Toolkit
 
+Visualizing 3/4 Dimensions of Data 
+
+[ut.py](https://raw.githubusercontent.com/mebusy/notes/master/codes/blender/visualize3d.py)
+
+ - for 4th Dimension , we use scale to represent it
+ - for 5th Dimension, we can use different shapes
+
+---
+
+## 3 The bmesh Module
+
+### Edit Mode
+
+Listing 3-1. Switching Between Object and Edit Mode
+
+```python
+# Set mode to Edit Mode
+bpy.ops.object.mode_set(mode="EDIT")
+
+# Set mode to Object Mode
+bpy.ops.object.mode_set(mode="OBJECT")
+
+```
+
+### Selecting Vertices, Edges, and Planes
+
+**Switching Between Edit and Object Modes Consistently**
+
+Listing 3-2. Wrapper Function for Switching Between Object and Edit Mode
+
+```python
+# Function for entering Edit Mode with no vertices selected,
+# or entering Object Mode with no additional processes
+
+def mode(mode_name): 
+    bpy.ops.object.mode_set(mode=mode_name) 
+    if mode_name == "EDIT":
+        bpy.ops.mesh.select_all(action="DESELECT")
+```
+
+
+**reload python module**
+
+```python
+# python 3
+import ut
+import importlib
+importlib.reload(ut)
+```
+
+**Instantiating a bmesh Object**
+
+ - In general, instantiating a bmesh object requires us to pass a bpy.data.meshes datablock to bmesh.from_edit_mesh() while in Edit Mode.
+
+
+Listing 3-4. Instantiating a bmesh Object 
+
+```python
+import bpy
+import bmesh
+
+# Must start in object mode
+# Script will fail if scene is empty 
+bpy.ops.object.mode_set(mode='OBJECT') 
+bpy.ops.object.select_all(action='SELECT') 
+bpy.ops.object.delete()
+
+# Create a cube and enter Edit Mode
+bpy.ops.mesh.primitive_cube_add(radius=1, location=(0, 0, 0))
+bpy.ops.object.mode_set(mode='EDIT')
+
+# Store a reference to the mesh datablock
+mesh_datablock = bpy.context.object.data
+
+# Create the bmesh object (named bm) to operate on
+bm = bmesh.from_edit_mesh(mesh_datablock)
+
+# Print the bmesh object
+print(bm)
+
+<BMesh(0x10b2f5a08), totvert=8, totedge=12, totface=6, totloop=24>
+```
+
+
 

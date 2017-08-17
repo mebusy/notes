@@ -34,9 +34,14 @@ ut.delete_all()
 # Place data
 for i in range(0, len(iris_data)): 
     ut.create.sphere('row-' + str(i))
-
-v = iris_data[i]
-ut.act.scale((0.25, 0.25, 0.25))
-ut.act.location((v[0], v[1], v[2]))
-
+    v = iris_data[i]
+    
+    # 3D
+    #ut.act.scale((0.25, 0.25, 0.25))
+    #ut.act.location((v[0], v[1], v[2]))
+    
+    # 4D
+    scale_factor = 0.2
+    ut.act.scale((v[3] * scale_factor,) * 3) 
+    ut.act.location((v[0], v[1], v[2]))
 
