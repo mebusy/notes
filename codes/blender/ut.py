@@ -1,4 +1,6 @@
 import bpy
+import bmesh
+
 # Selecting objects by name
 def select(objName): 
     bpy.ops.object.select_all(action='DESELECT') 
@@ -14,6 +16,24 @@ def mode(mode_name):
     bpy.ops.object.mode_set(mode=mode_name) 
     if mode_name == "EDIT":
         bpy.ops.mesh.select_all(action="DESELECT")
+
+def coords(objName, space='GLOBAL'):
+    # Store reference to the bpy.data.objects datablock
+    obj = bpy.data.objects[objName]
+
+    # Store reference to bpy.data.objects[].meshes datablock
+    if obj.mode == 'EDIT':
+        v = bmesh.from_edit_mesh(obj.data).verts
+    elif obj.mode == 'OBJECT': 
+        v = obj.data.vertices
+        
+    if space == 'GLOBAL':
+        # Return T * L as list of tuples
+        return [(obj.matrix_world * v.co).to_tuple() for v in v]
+    elif space == 'LOCAL':
+        # Return L as list of tuples
+        return [v.co.to_tuple() for v in v]
+    
 
 class sel:
     """Function Class for operating on SELECTED objects"""
@@ -34,6 +54,9 @@ class sel:
     # Differential
     def rotate_z(v):
         bpy.ops.transform.rotate(value=v, axis=(0, 0, 1))
+    # Add this to the ut.sel class, for use in object mode
+    def transform_apply(): 
+        bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
 
 class act:
     """Function Class for operating on ACTIVE objects"""

@@ -250,5 +250,177 @@ print(bm)
 <BMesh(0x10b2f5a08), totvert=8, totedge=12, totface=6, totloop=24>
 ```
 
+**Selecting Parts of a 3D Object**
 
+ - BMesh.verts 
+ - BMesh.edges 
+ - BMesh.faces
 
+ - Notice the numerous calls to  ensure_lookup_table()
+    - these functions to remind Blender to keep certain parts of the BMesh object from being garbage-collected between operations
+
+Listing 3-5. Selecting Parts of 3D Objects
+
+```python
+# Set to "Face Mode" for easier visualization
+bpy.ops.mesh.select_mode(type = "FACE")
+
+# Register bmesh object and select various parts
+bm = bmesh.from_edit_mesh(bpy.context.object.data)
+
+# Deselect all verts, edges, faces
+bpy.ops.mesh.select_all(action="DESELECT")
+
+# Select a face
+bm.faces.ensure_lookup_table()
+bm.faces[0].select = True
+
+# Select an edge
+bm.edges.ensure_lookup_table()
+bm.edges[7].select = True
+
+# Select a vertex
+bm.verts.ensure_lookup_table()
+bm.verts[5].select = True
+```
+
+### Edit Mode Transformations
+
+**Basic Transformations**
+
+ - Conveniently enough, we can use the same functions we used for Object Mode transformations to operate on individual parts of a 3D object
+
+```python
+# Must start in object mode
+bpy.ops.object.mode_set(mode='OBJECT')
+bpy.ops.object.select_all(action='SELECT')
+bpy.ops.object.delete()
+
+# Create a cube and rotate a face around the y-axis
+bpy.ops.mesh.primitive_cube_add(radius=0.5, location=(-3, 0, 0))
+bpy.ops.object.mode_set(mode='EDIT')
+bpy.ops.mesh.select_all(action="DESELECT")
+
+# above is all same as Object mode
+
+# Set to face mode for transformations
+bpy.ops.mesh.select_mode(type = "FACE")
+
+bm = bmesh.from_edit_mesh(bpy.context.object.data)
+bm.faces.ensure_lookup_table()
+bm.faces[1].select = True
+bpy.ops.transform.rotate(value = 0.3, axis = (0, 1, 0))
+
+bpy.ops.object.mode_set(mode='OBJECT')
+
+# Create a cube and pull an edge along the y-axis
+bpy.ops.mesh.primitive_cube_add(radius=0.5, location=(0, 0, 0))
+bpy.ops.object.mode_set(mode='EDIT')
+bpy.ops.mesh.select_all(action="DESELECT")
+
+bm = bmesh.from_edit_mesh(bpy.context.object.data)
+bm.edges.ensure_lookup_table()
+bm.edges[4].select = True
+bpy.ops.transform.translate(value = (0, 0.5, 0))
+
+bpy.ops.object.mode_set(mode='OBJECT')
+
+# Create a cube and pull a vertex 1 unit
+# along the y and z axes
+# Create a cube and pull an edge along the y-axis 
+bpy.ops.mesh.primitive_cube_add(radius=0.5, location=(3, 0, 0)) 
+bpy.ops.object.mode_set(mode='EDIT') 
+bpy.ops.mesh.select_all(action="DESELECT")
+
+bm = bmesh.from_edit_mesh(bpy.context.object.data)
+bm.verts.ensure_lookup_table()
+bm.verts[3].select = True
+bpy.ops.transform.translate(value = (0, 1, 1))
+bpy.ops.object.mode_set(mode='OBJECT')
+```
+
+**Advanced Transformations** 
+
+Listing 3-7. Extrude, Subdivide, and Randomize Operators
+
+```python
+...
+# Set to face mode for transformations
+bpy.ops.mesh.select_mode(type = "FACE")
+
+bm = bmesh.from_edit_mesh(bpy.context.object.data)
+bm.faces.ensure_lookup_table()
+bm.faces[5].select = True
+bpy.ops.mesh.extrude_region_move(TRANSFORM_OT_translate =
+{"value": (0.3, 0.3, 0.3), "constraint_axis": (True, True, True), "constraint_orientation" :'NORMAL'})
+
+bpy.ops.object.mode_set(mode='OBJECT')
+
+# Create a cube and subdivide the top face
+bpy.ops.mesh.primitive_cube_add(radius=0.5, location=(0, 0, 0))
+bpy.ops.object.mode_set(mode='EDIT')
+bpy.ops.mesh.select_all(action="DESELECT")
+
+bm = bmesh.from_edit_mesh(bpy.context.object.data)
+bm.faces.ensure_lookup_table()
+bm.faces[5].select = True
+bpy.ops.mesh.subdivide(number_cuts = 1)
+
+bpy.ops.mesh.select_all(action="DESELECT")
+bm.faces.ensure_lookup_table()
+bm.faces[5].select = True
+bm.faces[7].select = True
+bpy.ops.transform.translate(value = (0, 0, 0.5))
+
+bpy.ops.object.mode_set(mode='OBJECT')
+
+# Create a cube and add a random offset to each vertex
+bpy.ops.mesh.primitive_cube_add(radius=0.5, location=(3, 0, 0))
+bpy.ops.object.mode_set(mode='EDIT')
+bpy.ops.mesh.select_all(action="SELECT")
+bpy.ops.transform.vertex_random(offset = 0.5)
+
+bpy.ops.object.mode_set(mode='OBJECT')
+```
+
+### Note on Indexing and Cross-Compatibility
+
+ - 使用硬编码数字下标 访问 vertex, edge , face 会导致 预期外的结果
+ - 不同版本的blender 的相同的操作，索引会有差异
+
+### Global and Local Coordinates
+
+ - Within the 3D Viewport, we view global coordinates G = T * L always.
+ - We can control when Blender applies transformations with bpy.ops.object.transform_apply()
+ - This will not change the appearance of the objects, rather it will set L equal to G and set T equal to the identity
+ - If we delay execution of bpy. ops.object.transform_apply() by not running it and not exiting Edit Mode, we can maintain two data sets G and L
+    - In practice, G is very useful for positioning objects relative to others
+    - and L is very easy to loop through to fetch indices.
+ - We will build mode-independent functions for accessing these coordinates
+
+Listing 3-8. Fetching Global and Local Coordinates
+
+```python
+def coords(objName, space='GLOBAL'):
+    # Store reference to the bpy.data.objects datablock
+    obj = bpy.data.objects[objName]
+
+    # Store reference to bpy.data.objects[].meshes datablock
+    if obj.mode == 'EDIT':
+        v = bmesh.from_edit_mesh(obj.data).verts
+    elif obj.mode == 'OBJECT': 
+        v = obj.data.vertices
+        
+    if space == 'GLOBAL':
+        # Return T * L as list of tuples
+        return [(obj.matrix_world * v.co).to_tuple() for v in v]
+    elif space == 'LOCAL':
+        # Return L as list of tuples
+        return [v.co.to_tuple() for v in v]
+    
+class sel:
+    # Add this to the ut.sel class, for use in object mode
+    def transform_apply(): 
+        bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+
+```
