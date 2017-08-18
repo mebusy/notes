@@ -205,7 +205,117 @@ class Avatar(KBEngine.Entity):
         KBEngine.Entity.__init__(self)
 ```
 
+--- 
 
+ - define AVATAR list  data structure
+    - `scripts/entity_defs/alias.xml`
+
+```
+<root>                                       
+    <DBID> UINT64 </DBID>
+ 
+    <AVATAR_INFO> FIXED_DICT
+        <Properties>
+            <dbid>
+                <Type> DBID </Type>
+            </dbid>
+            <name>
+                <Type> UNICODE </Type>
+            </name>
+            <roleType>
+                <Type> UINT8 </Type>
+            </roleType>
+            <level>
+                <Type> UINT16 </Type>
+            </level>
+        </Properties>
+    </AVATAR_INFO>
+    <AVATAR_INFO_LIST> FIXED_DICT
+        <Properties>
+            <value>
+                <Type> ARRAY
+                    <of> AVATAR_INFO  </of>
+                </Type>
+            </value>
+        </Properties>
+    </AVATAR_INFO_LIST>
+</root>
+```
+
+ - now add above struct to Account.def
+    - `scripts/entity_defs/Account.def`
+
+```
+<Properties>                             
+    <characters>
+        <Type> AVATAR_INFO_LIST </Type>
+        <Flags> BASE </Flags>
+        <Persistent> true </Persistent>  
+    </characters>             
+</Properties>  
+```
+
+ - now we define a method to create Avatar 
+
+`scripts/entity_defs/Account.def`   
+
+```
+<onCreateAvatarResult>
+    <Arg> UINT8 </Arg>
+    <Arg> AVATAR_INFO </Arg>
+</onCreateAvatarResult>
+
+<reqCreateAvatar>    
+    <Exposed/>       
+    <Arg> UINT8 </Arg>
+    <Arg> UNICODE </Arg>
+</reqCreateAvatar>   
+```
+
+`scripts/base/Account.py `
+
+```python
+def reqCreateAvatar(self, roleType, name ):               
+    # initialize Avatar entity properties
+    props = {
+        "name":name,
+        "roleType":roleType,
+        "level": 1     
+    }    
+         
+    avatar = KBEngine.createBaseLocally( "Avatar" , props )
+    if avatar is not None:
+        avatar.writeToDB( self._onCharacterSaved )
+         
+def _onCharacterSaved( self, success , avatar ):
+    if success:
+        info = {
+            "dbid": avatar.databaseID ,
+            "name": avatar.cellData[ "name" ] ,
+            "roleType": avatar.roleType,
+            "level" :1 
+        }
+        # characters is defined in AVATAR_INFO_LIST
+        self.characters["value"].append( info )
+        self.writeToDB(  )
+         
+        avatar.destroy()
+         
+        # send to client
+        self.client.onCreateAvatarResult( 0, info )
+
+```
+
+## client 
+
+```cs
+public void reqCreateAvatar( int roleType, string name ) {
+    baseCall ("reqCreateAvatar", new object[]{ roleType, name  });
+}
+public void onCreateAvatarResult( byte retcode , object avatarInfo ) {
+    KBEngine.Event.fireOut ("onCreateAvatarResult", new object[]{ retcode, avatarInfo  });
+}
+```
 
 
 
