@@ -424,3 +424,30 @@ class sel:
         bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
 
 ```
+
+Listing 3-9. Behavior of Global and Local Coordinates and Transform Apply
+
+ - After translating the cube, readers will see the cube move, but the local coordinates will remain the same.
+ - After running transform_apply(), the cube will not move, but the local coordinates will update to match the global coordinates.
+
+
+```python
+############################ Output ###########################
+# Before transform:
+# Global: [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5)]
+# Local: [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5)]
+#
+# After transform, unapplied:
+# Global: [(2.5, 2.5, 2.5), (2.5, 2.5, 3.5)]
+# Local: [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5)]
+#
+# After transform, applied:
+# Global: [(2.5, 2.5, 2.5), (2.5, 2.5, 3.5)]
+# Local: [(2.5, 2.5, 2.5), (2.5, 2.5, 3.5)]
+###############################################################
+```
+
+### Selecting Vertices, Edges, and Faces by Location
+
+
+
