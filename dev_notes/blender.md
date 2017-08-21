@@ -548,4 +548,85 @@ Listing 3-12 for a random shape growth algorithm.
 A brief algorithm randomly (and sloppily) selects a chunk of space in which the object resides, then extrudes the selected portion along the vertical normal of the selected surface.
 
 
+[random shape](https://raw.githubusercontent.com/mebusy/notes/master/codes/blender/Listing3_12_RandomShapeGrowth.py)
+
+---
+
+## 4 Topics in Modeling and Rendering
+
+### Specifying a 3D Model
+
+ - 3D models are complex digital assets that can be made up of many different components
+ - we typically think of the *mesh* as the most important structure that constitutes the shape of the asset
+    - meshes are made of *faces*, which consist of *vertices* arranged by *indices*
+    - mesh can contain *normal vectors* or *normals*, which can be specified with the vertices or faces, depending on the file format. 
+
+
+**Specifying Meshes**
+
+For the purpose of this chapter, we consider that a basic mesh is defined by its faces and normal vectors
+
+ - *Vertices* are real-valued triplets specifying a location in 3D space, typically represented as (x, y, z).
+    - In Blender, the z-axis is the vertical axis
+ - *Indices* are positive integer-valued triplets that specify faces using a series of vertices, typically represented as (i, j, k). 
+    - Given a list of N vertices indexed as 1, ..., N, a face in 3D space can be specified by a triplet of any three unique integers in 1, ..., N.  
+    - the order of the integers is important in determining the direction in which the face is visible. 
+    - The concept of indexing reused tuple values is often extended to other tuples such as normals and UVs in practice.
+ - **Faces** are determined by integer triplets of indices referencing some three vertices.
+    - a three-vertex face in 3D space requires a total of nine real-valued data points
+    - It is important to note that faces in 3D space are only visible in a single direction. 
+    - Note that Blender does not exhibit this single-direction behavior by default, but Blender will not automatically control or correct for it when exporting to other file formats.
+ - *Normal Vectors* are real-valued triplets that define how the mesh interacts with lights and cameras in a scene
+    - At the moment, we are concerned only with normals as they are directly assigned to points rather than normal maps that 3D artists may already by familiar with. 
+    - As the name implies, the camera and lighting in a scene interacts with the mesh under the assumption that the normal vectors *lie normal* to the faces it is illuminating.
+
+**Specifying Textures**
+
+ - The purpose of textures in 3D models is to map a 2D image onto a 3D surface, typically using an existing
+ 2D art asset
+    - The coordinate convention we use for this is the (u, v) coordinate system.
+    
+### Common File Formats
+
+**Wavefront (.obj and .mtl)**
+
+ - The Wavefront geometric (.obj) and materials (.mtl) specification formats work in conjunction to specify meshes and textures. 
+ - the .obj file can stand on its own to specify solely geometry.
+ - The .obj file is very minimal and easy to understand, making it ideal for use as a standard notation for discussing the shapes of 3D objects.
+
+**STL (STereoLithography)**
+
+ - The STL file format is commonly used by engineers and CAD software
+ - It is verbose when compared to the .obj format, but comes with a binary specification to compensate for its inefficiency
+ - STL supports normal vectors and faces, but does not use indices or support texture coordinates
+ - In addition, STL does not support specification of more than three coplanar points
+ - Curiously, where most 3D file formats allow normal vectors to be assigned to points, STL only allows normal vectors to be assigned on the face level.
+
+
+**PLY (Polygon File Format)**
+
+ - This file format was built by Stanford to work with 3D scanning software.
+ - The PLY format is essentially a stripped-down version of .obj with additional metadata that only supports vertices and faces, not normal vectors or textures.
+ 
+**Blender (.blend) Files and Interchange Formats**
+
+ - Blender’s native file format and in-memory data structures are very complex
+ - Blender supports operations on vertices, edges, and faces with noncoplanar vertices
+ - All the while, Blender manages complex data related to textures, sounds, animations, rigs, lights, and more. 
+ 
+
+### Minimal Specification of Basic Objects
+
+**Definition of a Cube**
+
+ - A cube is a three-dimensional object with six faces consisting of squares of equal lengths. A cube contains
+ 6 faces, 12 edges, and 8 vertices. 
+ - The square faces of a cube can be treated as compositions of two right triangles with leg lengths equal to the square length
+ - Note that any object in 3D space can be defined by float and integer values
+    - where floats specify locations and directions in 3D space and integers specify related indices
+ - 3D objects also require normal vectors, which can be assigned to vertices or faces
+
+**Naive Specification**
+
+
 
