@@ -169,7 +169,7 @@ Listing 2-9. Minimal Toolkit for Creation and Transformation (ut.py)
 
 Visualizing 3/4 Dimensions of Data 
 
-[ut.py](https://raw.githubusercontent.com/mebusy/notes/master/codes/blender/visualize3d.py)
+[visualize3d.py](https://raw.githubusercontent.com/mebusy/notes/master/codes/blender/visualize3d.py)
 
  - for 4th Dimension , we use scale to represent it
  - for 5th Dimension, we can use different shapes
@@ -541,7 +541,11 @@ bpy.ops.object.mode_set(mode='OBJECT')
 
 ### Checkpoint and Examples 
 
-source code so far: 
+source code so far: [ut_ch03.py](https://raw.githubusercontent.com/mebusy/notes/master/codes/blender/ut_ch03.py)
+
+Listing 3-12 for a random shape growth algorithm.
+
+A brief algorithm randomly (and sloppily) selects a chunk of space in which the object resides, then extrudes the selected portion along the vertical normal of the selected surface.
 
 
 
