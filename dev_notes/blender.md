@@ -3,6 +3,21 @@
  - [API](#db974238714ca8de634a7ce1d083a14f)
 	 - [2 The bpy Module](#b8836758104839a89ea645e997c6f8cb)
 		 - [Selection, Activation, and Specification](#f1189fbbb6cb319df8b3a5ad5b3faaef)
+		 - [Pseudo-Circular Referencing and Abstraction](#aae5d1dbc8e73ac2f63b54ea0689e13a)
+		 - [Transformations with bpy](#8b118df4b9feadc9623a9631a0a28cd9)
+		 - [Visualizing Multivariate Data with the Minimal Toolkit](#a19e15baa68da51e5410e5ccbfeab6c8)
+	 - [3 The bmesh Module](#2ff9402531c1c81679616dd97d7ffebd)
+		 - [Edit Mode](#23ff99157dafd3dae7a102d9962633d0)
+		 - [Selecting Vertices, Edges, and Planes](#937ef209bdb65d8a0c0e8115d91d6163)
+		 - [Edit Mode Transformations](#21663d15cd5189b65dfe739436734241)
+		 - [Note on Indexing and Cross-Compatibility](#6f2549eaa05b0785e4a601dc699c6713)
+		 - [Global and Local Coordinates](#7b2e81f38f3bd2a976241c54eba419f6)
+		 - [Selecting Vertices, Edges, and Faces by Location](#b0e5d5ae447a82512beebd3541059216)
+		 - [Checkpoint and Examples](#999a8926e65d99669139ce8008f96928)
+	 - [4 Topics in Modeling and Rendering](#1344c95436d6a0d0776ad7223043de0f)
+		 - [Specifying a 3D Model](#c5aef292e11961f2493f084ee2dc220e)
+		 - [Common File Formats](#e6a63b58cf42997d218a6fb856cb4a1f)
+		 - [Minimal Specification of Basic Objects](#fa11cb7e3dbec33afd8b0c8194461c6a)
 
 ...menuend
 
@@ -130,6 +145,8 @@ def mySpecifier(objName):
 
 ---
 
+<h2 id="aae5d1dbc8e73ac2f63b54ea0689e13a"></h2>
+
 ### Pseudo-Circular Referencing and Abstraction
 
  - bpy.data.objects datablocks were built to nest infinitely
@@ -157,6 +174,8 @@ bpy.data.objects['Cube'].data.vertices.data.edges.data.materials.data
  - showcases a powerful feature of the Blender Python API.
  - **When we append .data to an object, it returns a reference to the parent datablock**
 
+<h2 id="8b118df4b9feadc9623a9631a0a28cd9"></h2>
+
 ### Transformations with bpy
 
  - bpy.ops.transorm
@@ -164,6 +183,8 @@ bpy.data.objects['Cube'].data.vertices.data.edges.data.materials.data
 Listing 2-9. Minimal Toolkit for Creation and Transformation (ut.py)
 
 [ut.py](https://raw.githubusercontent.com/mebusy/notes/master/codes/blender/ut.py)
+
+<h2 id="a19e15baa68da51e5410e5ccbfeab6c8"></h2>
 
 ### Visualizing Multivariate Data with the Minimal Toolkit
 
@@ -176,7 +197,11 @@ Visualizing 3/4 Dimensions of Data
 
 ---
 
+<h2 id="2ff9402531c1c81679616dd97d7ffebd"></h2>
+
 ## 3 The bmesh Module
+
+<h2 id="23ff99157dafd3dae7a102d9962633d0"></h2>
 
 ### Edit Mode
 
@@ -190,6 +215,8 @@ bpy.ops.object.mode_set(mode="EDIT")
 bpy.ops.object.mode_set(mode="OBJECT")
 
 ```
+
+<h2 id="937ef209bdb65d8a0c0e8115d91d6163"></h2>
 
 ### Selecting Vertices, Edges, and Planes
 
@@ -283,6 +310,8 @@ bm.edges[7].select = True
 bm.verts.ensure_lookup_table()
 bm.verts[5].select = True
 ```
+
+<h2 id="21663d15cd5189b65dfe739436734241"></h2>
 
 ### Edit Mode Transformations
 
@@ -383,10 +412,14 @@ bpy.ops.transform.vertex_random(offset = 0.5)
 bpy.ops.object.mode_set(mode='OBJECT')
 ```
 
+<h2 id="6f2549eaa05b0785e4a601dc699c6713"></h2>
+
 ### Note on Indexing and Cross-Compatibility
 
  - 使用硬编码数字下标 访问 vertex, edge , face 会导致 预期外的结果
  - 不同版本的blender 的相同的操作，索引会有差异
+
+<h2 id="7b2e81f38f3bd2a976241c54eba419f6"></h2>
 
 ### Global and Local Coordinates
 
@@ -446,6 +479,8 @@ Listing 3-9. Behavior of Global and Local Coordinates and Transform Apply
 # Local: [(2.5, 2.5, 2.5), (2.5, 2.5, 3.5)]
 ###############################################################
 ```
+
+<h2 id="b0e5d5ae447a82512beebd3541059216"></h2>
 
 ### Selecting Vertices, Edges, and Faces by Location
 
@@ -539,6 +574,8 @@ bpy.ops.transform.resize(value = (0.1, 0.1, 0.1))
 bpy.ops.object.mode_set(mode='OBJECT')
 ```
 
+<h2 id="999a8926e65d99669139ce8008f96928"></h2>
+
 ### Checkpoint and Examples 
 
 source code so far: [ut_ch03.py](https://raw.githubusercontent.com/mebusy/notes/master/codes/blender/ut_ch03.py)
@@ -552,7 +589,11 @@ A brief algorithm randomly (and sloppily) selects a chunk of space in which the 
 
 ---
 
+<h2 id="1344c95436d6a0d0776ad7223043de0f"></h2>
+
 ## 4 Topics in Modeling and Rendering
+
+<h2 id="c5aef292e11961f2493f084ee2dc220e"></h2>
 
 ### Specifying a 3D Model
 
@@ -586,6 +627,8 @@ For the purpose of this chapter, we consider that a basic mesh is defined by its
  2D art asset
     - The coordinate convention we use for this is the (u, v) coordinate system.
     
+<h2 id="e6a63b58cf42997d218a6fb856cb4a1f"></h2>
+
 ### Common File Formats
 
 **Wavefront (.obj and .mtl)**
@@ -614,6 +657,8 @@ For the purpose of this chapter, we consider that a basic mesh is defined by its
  - Blender supports operations on vertices, edges, and faces with noncoplanar vertices
  - All the while, Blender manages complex data related to textures, sounds, animations, rigs, lights, and more. 
  
+
+<h2 id="fa11cb7e3dbec33afd8b0c8194461c6a"></h2>
 
 ### Minimal Specification of Basic Objects
 

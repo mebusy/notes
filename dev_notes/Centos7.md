@@ -5,6 +5,7 @@
 	 - [mono](#654db8a14a5f633b9ba85ec92dc51f7c)
 	 - [firewall](#36e5371ad91c9d2d09e9d7c0e76055db)
 	 - [Mysql](#9edb3c572b56b91542af659480518681)
+	 - [find special text in files](#83b48bb8fb0bbb93b1d5115033b5a28d)
 
 ...menuend
 
@@ -100,6 +101,8 @@ mysql> grant all privileges on *.* to kbe@'%' identified by 'kbe';
 mysql> grant select,insert,update,delete,create,drop on *.* to kbe@'%' identified by 'kbe';
 mysql> FLUSH PRIVILEGES;
 ```
+
+<h2 id="83b48bb8fb0bbb93b1d5115033b5a28d"></h2>
 
 ## find special text in files
 
