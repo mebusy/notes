@@ -690,6 +690,24 @@ For the purpose of this chapter, we consider that a basic mesh is defined by its
 
 **Using Indices to Share Vertices and Normals**
 
+```
+...
+f 1//1 3//1 4//1
+f 8//2 6//2 5//2
+f 5//3 2//3 1//3
+f 6//4 3//4 2//4
+...
+```
+
+**Using Coplanar Vertices to Reduce Face Count**
+
+```
+...
+f 1//1 2//1 4//1 3//1
+f 3//2 4//2 8//2 7//2
+...
+```
+
 
 
 
