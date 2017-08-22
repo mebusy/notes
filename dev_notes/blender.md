@@ -690,6 +690,8 @@ For the purpose of this chapter, we consider that a basic mesh is defined by its
 
 **Using Indices to Share Vertices and Normals**
 
+reduced to 8 vertices and 6 normals (1 per face )
+
 ```
 ...
 f 1//1 3//1 4//1
@@ -699,7 +701,11 @@ f 6//4 3//4 2//4
 ...
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_f4.3.png)
+
 **Using Coplanar Vertices to Reduce Face Count**
+
+reduce to 6 faces 
 
 ```
 ...
@@ -708,6 +714,36 @@ f 3//2 4//2 8//2 7//2
 ...
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_f4.4.png)
+
+**Using Face Vertices to Simplify Indices**
+
+The last repetitive characteristic is specification of the normal vector index at each point of each face. 
+
+ - this is “theoretical”
+ - because .obj files do not actually support face normals, although other common file formats do.
+ - We will continue to use the .obj format in this example for sake of consistency, but note that this file with not import
+
+```
+# Face and normals defined as:
+# f (v_1, v_2, v_3, v_4)//n_1
+f (1 2 4 3)//1
+f (3 4 8 7)//2
+f (7 8 6 5)//3
+f (5 6 2 1)//4
+f (3 7 5 1)//5
+f (8 4 2 6)//6
+```
+
+---
+
+### Common Errors in Procedural Generation
+
+**Concentric Normals**
+
+ - When generating models and exporting to various interchange and rendering formats, it is very easy for normal vectors to be ignored or misassigned
+ - One very common bug we encounter is unexplainable wonky lighting
+    - The issue typically comes down to normal management and can be solved with a few function calls or button clicks in Blender itself
 
 
 
