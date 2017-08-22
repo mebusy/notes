@@ -628,5 +628,23 @@ For the purpose of this chapter, we consider that a basic mesh is defined by its
 
 **Naive Specification**
 
+ - To naively specify a 3D cube, we will specify each of the 6 * 2 = 12 required triangular faces independently of one another 
+    - as well as assign an independent normal vector to each point.
+    - This should result in 12 * 3 = 36 vertices and 12 * 3 = 36 normal vectors.
+ - The naivety of this model is defined by:
+    - Needless repetition of vertex coordinates
+    - Needless repetition of normal vector directions
+    - Needless use of vertex normals in place of face normals
+ - In other words, naive 3D specifications do not reuse vertices or normals through indexing by treating every face as a wholly independent triangle.
+ - In addition, using vertex normals rather than face normals in simple cases such as a cube can increase waste. 
+ - This model would benefit greatly from:
+    - Removing repeated vertices
+    - Specifying triangular faces as square faces
+    - Removing repeated normals and/or using face normals
+    - Properly utilizing indices to organize vertices and normals
+
+**Using Indices to Share Vertices and Normals**
+
+
 
 
