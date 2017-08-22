@@ -9,17 +9,6 @@
 ...menuend
 
 
-...menustart
-
- - [github](#bf215181b5140522137b3d4f6b73544a)
-	 - [github update fork](#f6b73a9a864f02b2d14ad454c6b09e68)
-	 - [run html on github](#606e5c37337c2f05305ab4a4a0dc2691)
-	 - [git status -s ignore file mode](#ecf2b9ae77e1b9272d6716ab8337c37e)
-	 - [git diff ignore `^M`](#1bdd774af72656103ebfc08907645202)
-
-...menuend
-
-
 <h2 id="bf215181b5140522137b3d4f6b73544a"></h2>
 
 # github 

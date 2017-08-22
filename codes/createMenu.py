@@ -29,6 +29,8 @@ def createMenu4MD( path ):
     content = fp.read()
     fp.close()
 
+    content = content.replace( "\r" , "" )
+
     content = re.sub(RE_PATTERN_MENU_BODY,'',content)
 
     menu = "...menustart\n\n"
