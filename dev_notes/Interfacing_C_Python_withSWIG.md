@@ -1937,5 +1937,99 @@ void set_spam(int val) {
     - assign `CLS.instance()` to a local variable may cause problem.
 
 
+---
+
+# SWIG PYTHON
+
+## 36.3 A tour of basic C/C++ wrapping
+
+### 36.3.3 Global variables
+
+ - there is no direct way to map variable assignment in C (a==b) to variable assignment in Python
+    - because for python, variables are just names that refer to some object
+ - To provide access to C global variables, SWIG creates a special object called `cvar' that is added to each SWIG generated module.`
+ - If a variable is declared as *const*, it is wrapped as a read-only variable. 
+    - To make ordinary variables read-only, you can use the *%immutable* directive. For example:
+
+```
+%{
+    extern char *path;
+%}
+%immutable;
+    extern char *path;
+%mutable;
+```
+
+ - If you just want to make a specific variable immutable, supply a declaration name. For example:
+
+```
+%{
+    extern char *path;
+%}
+%immutable path;
+...
+extern char *path;      // Read-only (due to %immutable)
+```
+
+### 36.3.4 Constants and enums
+
+ - C/C++ constants are installed as Python objects containing the appropriate value.
+ - To create a constant, use #define, enum , or the %constant directive. For example:
+
+```
+#define PI 3.14159
+#define VERSION "1.0"
+
+enum Beverage { ALE, LAGER, STOUT, PILSNER };
+
+%constant int FOO = 42;
+%constant const char *path = "/usr/local";
+```
+
+ - Note: declarations declared as const are wrapped as read-only variables and will be accessed using the cvar object described in the previous section
+ - Constants are not guaranteed to remain constant in Python---the name of the constant could be accidentally reassigned to refer to some other object. 
+    - Unfortunately, there is no easy way for SWIG to generate code that prevents this. You will just have to be careful.
+
+### 36.3.5 Pointers
+
+ - the '0' or NULL pointer is always represented by None, no matter what type swig is addressing. In the previous example, you can call:
+    - `example.fclose(None)`
+ 
+### 36.3.6 Structures
+
+ - If you wrap a C structure, it is wrapped by a Python class. 
+
+
+### 36.3.7 C++ classes
+
+Static class members present a special problem for Python
+
+```c++
+class Spam {
+    public:
+        static void foo();
+        static int bar;
+};
+```
+
+In Python, the static member can be access in three different ways: 
+
+```python
+>>> example.Spam_foo()    # Spam::foo()
+>>> s = example.Spam()
+>>> s.foo()               # Spam::foo() via an instance
+>>> example.Spam.foo()    # Spam::foo(). Python-2.2 and later only
+```
+
+Static member variables are currently accessed as global variables. This means, they are accessed through cvar like this:
+
+```python
+>>> print example.cvar.Spam_bar
+7
+```
+
+
+
+
 
 
