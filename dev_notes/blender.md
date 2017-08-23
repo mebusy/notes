@@ -754,7 +754,20 @@ The left side is a cube’s .obj file , which has been improperly given concentr
 
 while the right side is correctly exported with planar normals. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_cocentric_normal_render.png)
 
+> Figure 4-6. Concentric normals (smooth shading) in WebGL
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_coplanar_render.png)
+
+> Figure 4-7. Planar normals (flat shading) in WebGL
+
+The concentric cube is lit and shaded as though it were a sphere, whereas the planar cube is lit and shaded logically, treating the top side as a sort of tabletop. 
+
+Looking the left side , we see that each vertex in the cube is matched to a normal vector that is equal to the vertex scaled by 1/√3 ≈ 0.5773.  
+
+This is a dangerous behavior in some exporters where, if explicit normal information is not found, it will default to creating unit vectors out of scaled vertices. 
+
+This prevents the exporter from failing, but results in a poorly lit and often unrecognizable object.
 
 
