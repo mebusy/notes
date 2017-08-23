@@ -1,7 +1,40 @@
+...menustart
+
+ - [SWIG PYTHON](#2f5f97b74dad99089e4d7ba36620e26e)
+	 - [36.3 A tour of basic C/C++ wrapping](#28253a47df2d59cca6fb97610aa2399c)
+		 - [36.3.3 Global variables](#864317df539bc6cd7a48701b91191c24)
+		 - [36.3.4 Constants and enums](#3ed1580636bb56cb368078416522781c)
+		 - [36.3.5 Pointers](#6c5d46b4c027b854d6f3b7b4a039ee27)
+		 - [36.3.6 Structures](#9e239ae42956495be216233b838ca77d)
+		 - [36.3.7 C++ classes](#289abb576803b40537aaf88cd30ea1b7)
+		 - [36.3.10 C++ overloaded functions](#20b5f7f6dfaff2c338c4b49bd2b53f52)
+		 - [36.3.11 C++ operators](#7fbad72828bffaf316f22c67e8b5b849)
+		 - [36.3.12 C++ namespaces](#2329b407fe1d5482f5e412a6502ecebe)
+		 - [36.3.13 C++ templates](#3ae5ee54a6d57c34cf29f39e935f13d2)
+		 - [36.3.14 C++ Smart Pointers](#375e31e2cbdc8887003fa50adfa38d67)
+			 - [36.3.14.1 The shared_ptr Smart Pointer](#0fd3d38db929aa36de6a011c60d87de1)
+			 - [36.3.14.2 Generic Smart Pointers](#584698ebaec253169b5dbc351c353e00)
+	 - [36.5 Cross language polymorphism](#8edc31645b1d72709e2a78ce42b80295)
+		 - [36.5.1 Enabling directors](#299f5530bbe369a25a8a9399abd64a44)
+	 - [36.6 Common customization features](#37b33f14f7ff3d5724be48045de26423)
+		 - [36.6.1 C/C++ helper functions](#8ed34b4d93e1ce67e4c5cdf57ac714f3)
+		 - [36.6.2 Adding additional Python code](#73f0c0b516a9a6466ff6f66d16f7aea1)
+		 - [36.6.3 Class extension with %extend](#d4f88a6538a37f876d6944cfddd37993)
+		 - [36.6.4 Exception handling with %exception](#6a994f76d514c7ea64b0080007f925bc)
+	 - [36.7 Tips and techniques](#15f329eb7bd57310ae05525a7560cb18)
+
+...menuend
+
+
+<h2 id="2f5f97b74dad99089e4d7ba36620e26e"></h2>
 
 # SWIG PYTHON
 
+<h2 id="28253a47df2d59cca6fb97610aa2399c"></h2>
+
 ## 36.3 A tour of basic C/C++ wrapping
+
+<h2 id="864317df539bc6cd7a48701b91191c24"></h2>
 
 ### 36.3.3 Global variables
 
@@ -31,6 +64,8 @@
 extern char *path;      // Read-only (due to %immutable)
 ```
 
+<h2 id="3ed1580636bb56cb368078416522781c"></h2>
+
 ### 36.3.4 Constants and enums
 
  - C/C++ constants are installed as Python objects containing the appropriate value.
@@ -50,11 +85,15 @@ enum Beverage { ALE, LAGER, STOUT, PILSNER };
  - Constants are not guaranteed to remain constant in Python---the name of the constant could be accidentally reassigned to refer to some other object. 
     - Unfortunately, there is no easy way for SWIG to generate code that prevents this. You will just have to be careful.
 
+<h2 id="6c5d46b4c027b854d6f3b7b4a039ee27"></h2>
+
 ### 36.3.5 Pointers
 
  - the '0' or NULL pointer is always represented by None, no matter what type swig is addressing. In the previous example, you can call:
     - `example.fclose(None)`
  
+<h2 id="9e239ae42956495be216233b838ca77d"></h2>
+
 ### 36.3.6 Structures
 
  - If you wrap a C structure, it is wrapped by a Python class. 
@@ -98,6 +137,8 @@ struct Bar {
 
 
 
+<h2 id="289abb576803b40537aaf88cd30ea1b7"></h2>
+
 ### 36.3.7 C++ classes
 
 Static class members present a special problem for Python
@@ -125,6 +166,8 @@ Static member variables are currently accessed as global variables. This means, 
 >>> print example.cvar.Spam_bar
 7
 ```
+
+<h2 id="20b5f7f6dfaff2c338c4b49bd2b53f52"></h2>
 
 ### 36.3.10 C++ overloaded functions
 
@@ -164,6 +207,8 @@ void spam(int);
 void spam(short);   // Ignored
 ```
 
+<h2 id="7fbad72828bffaf316f22c67e8b5b849"></h2>
+
 ### 36.3.11 C++ operators
 
  - Certain C++ overloaded operators can be handled automatically by SWIG
@@ -197,6 +242,8 @@ class Complex {
  - There are ways to make this operator appear as part of the class using the %extend directive. Keep reading.
  - Also, be aware that certain operators don't map cleanly to Python. 
     - For instance, overloaded assignment operators don't map to Python semantics and will be ignored.
+
+<h2 id="2329b407fe1d5482f5e412a6502ecebe"></h2>
 
 ### 36.3.12 C++ namespaces
 
@@ -237,6 +284,8 @@ namespace Bar {
  - If you have more than one namespace and your want to keep their symbols separate, consider wrapping them as separate SWIG modules.
 
 
+<h2 id="3ae5ee54a6d57c34cf29f39e935f13d2"></h2>
+
 ### 36.3.13 C++ templates
 
  - C++ templates don't present a huge problem for SWIG.
@@ -269,9 +318,15 @@ struct pair {
 ```
 
 
+<h2 id="375e31e2cbdc8887003fa50adfa38d67"></h2>
+
 ### 36.3.14 C++ Smart Pointers
 
+<h2 id="0fd3d38db929aa36de6a011c60d87de1"></h2>
+
 #### 36.3.14.1 The shared_ptr Smart Pointer
+
+<h2 id="584698ebaec253169b5dbc351c353e00"></h2>
 
 #### 36.3.14.2 Generic Smart Pointers
 
@@ -326,7 +381,11 @@ Now, in Python, everything should just "work":
 ```
 
 
+<h2 id="8edc31645b1d72709e2a78ce42b80295"></h2>
+
 ## 36.5 Cross language polymorphism
+
+<h2 id="299f5530bbe369a25a8a9399abd64a44"></h2>
 
 ### 36.5.1 Enabling directors
 
@@ -380,9 +439,13 @@ class Bar: public Foo {
 
 ---
 
+<h2 id="37b33f14f7ff3d5724be48045de26423"></h2>
+
 ## 36.6 Common customization features
 
 This section describes some common SWIG features that are used to improve your the interface to an extension module.
+
+<h2 id="8ed34b4d93e1ce67e4c5cdf57ac714f3"></h2>
 
 ### 36.6.1 C/C++ helper functions
 
@@ -442,6 +505,8 @@ From Python, you could then write code like this:
 Admittedly, this is not the most elegant looking approach. However, it works and it wasn't too hard to implement.
 
 It is possible to clean this up using Python code, typemaps, and other customization features as covered in later sections.
+
+<h2 id="73f0c0b516a9a6466ff6f66d16f7aea1"></h2>
 
 ### 36.6.2 Adding additional Python code
 
@@ -589,6 +654,8 @@ public:
 };
 ```
 
+<h2 id="d4f88a6538a37f876d6944cfddd37993"></h2>
+
 ### 36.6.3 Class extension with %extend
 
 One of the more interesting features of SWIG is that it can extend structures and classes with new methods--at least in the Python interface. 
@@ -650,6 +717,8 @@ For example, if you wanted to overload a Python operator, you might do this:
 >>> print v+w
 Vector(12, 14, 16)
 ```
+
+<h2 id="6a994f76d514c7ea64b0080007f925bc"></h2>
 
 ### 36.6.4 Exception handling with %exception
 
@@ -748,6 +817,8 @@ PyExc_ZeroDivisionError
 ```
 
 The language-independent exception.i library file can also be used to raise exceptions. See the SWIG Library chapter.
+
+<h2 id="15f329eb7bd57310ae05525a7560cb18"></h2>
 
 ## 36.7 Tips and techniques
 
