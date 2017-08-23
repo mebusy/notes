@@ -748,5 +748,13 @@ f (8 4 2 6)//6
  - One very common bug we encounter is unexplainable wonky lighting
     - The issue typically comes down to normal management and can be solved with a few function calls or button clicks in Blender itself
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_cocentric_normal.png)
+
+The left side is a cube’s .obj file , which has been improperly given concentric normals.
+
+while the right side is correctly exported with planar normals. 
+
+
+
 
 
