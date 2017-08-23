@@ -770,4 +770,38 @@ This is a dangerous behavior in some exporters where, if explicit normal informa
 
 This prevents the exporter from failing, but results in a poorly lit and often unrecognizable object.
 
+This problem can be solved in a few ways depending on the specific exporter. 
+
+In many cases, the target file format does not support face-level normals or face normals, so we must force Blender to work with vertex-level normals or vertex normals. 
+
+In this case, we have Blender create multiple instances of each vertex, so that it can assign a separate normal to each. In our cube example, each vertex of a cube is connected to three separate faces, so needs three separate vertex normals.
+
+We can use the Edge Split modifier to accomplish this. This can be found in Properties ➤ Modifiers ➤ Add Modifier ➤ Edge Split.  Adjust the split threshold to your liking and choose Apply. 
+
+See Listing 4-10 for a Blender Python method of accessing this modifier. This can easily be wrapped in a function and would fit well in the ut.sel function class established in previous chapters.
+
+```python
+# Add modifier to selected objects
+bpy.ops.object.modifier_add(type='EDGE_SPLIT')
+
+# Set split threshold in radians
+bpy.context.object.modifiers["EdgeSplit"].split_angle = (3.1415 / 180) * 5
+
+# Apply modifier
+bpy.ops.object.modifier_apply(apply_as='DATA', modifier='EdgeSplit')
+```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_before_edge_split.png)
+
+> Figure 4-8. Normal vectors before edge split (smooth shaded)
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_after_edge_split.png)
+
+> Figure 4-9. Normal vectors after edge split (flat shaded)
+
+
+**Flipped Normals**
+
+
 
