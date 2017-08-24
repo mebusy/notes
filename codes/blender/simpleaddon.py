@@ -5,7 +5,8 @@ bl_info = {
     "author": "Chris Conlan",
     "location": "View3D > Tools > Simple Addon", "version": (1, 0, 0),
     "blender": (2, 7, 8),
-    "description": "Starting point for new add-ons.", "wiki_url": "http://example.com",
+    "description": "Starting point for new add-ons.", 
+    "wiki_url": "http://example.com",
     "category": "Development"
 }
 

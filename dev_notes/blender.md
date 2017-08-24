@@ -879,6 +879,38 @@ Running this script will create a new tab in the Tools panel called “Simple Ad
 
 The button will print a message to the console verifying that the plugin works, then parrot back the string in the text input field. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_simpleaddon.png)
+
+The template presented here is fairly minimal, but we also included a handful of optional quality controls. 
+
+We discuss each component before proceeding to more advanced add-ons.
+
+### Components of Blender Add-Ons
+
+Blender add-ons rely on many different and specifically named variables and class functions to operate properly. We detail them by category here.
+
+**The bl_info Dictionary**
+
+The first thing to appear in a Blender add-on should be the bl_info dictionary. 
+
+This dictionary is parsed from the first 1024 bytes of the source file so it is imperative that bl_info appear at the top of the file.
+
+Blender’s internal engine uses data in this dictionary to populate various metadata related to the add-on itself. 
+
+If we navigate to Header Menu ➤ File ➤ User Preferences ➤ Add-ons, we can see various official and community add-ons already in Blender.
+
+The detailed of bl_info description here:
+
+ - name
+ - author
+ - location -- The primary location of the add-on’s GUI
+    - Common syntax is Window ➤ Panel ➤ Tab ➤ Section for add-ons in the Tools, Properties, and Toolshelf panels
+    - When in doubt, follow conventions established by other add-ons.
+ - version -- The version number of the add-on as a tuple.
+ - blender -- minimum Blender version numberrequiredtoruntheadd-on
+ - description
+
+
 
 
 
