@@ -909,6 +909,23 @@ The detailed of bl_info description here:
  - version -- The version number of the add-on as a tuple.
  - blender -- minimum Blender version numberrequiredtoruntheadd-on
  - description
+ - wiki_url -- An URL pointing to the handbook or guide for the add-on specified as a single string.
+ - category -- A string specifying one the categories listed in Table 5-1.
+
+Table 5-1. The bl-info Category Options
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_tab5.1.png)
+
+There are a few remaining bl_info options that are less often seen.
+
+ - support -- OFFICIAL, COMMUNITY, or TESTING. 
+ - tracker_url -- URL pointing to a bug tracker (e.g., GitHub issues or similar).
+ - warning -- String specifying some warning that will appear in the user preferences window.
+
+---
+
+**Operators and Class Inheritance (bpy.types.Operator)**
+
 
 
 
