@@ -828,6 +828,290 @@ Examples include dealing with output parameters, strings, binary data, and array
 
 This chapter discusses the common techniques for solving these problems.
 
+### 25.8.1 Input and output parameters using primitive pointers and references
+
+A common problem in some C programs is handling parameters passed as simple pointers or references. For example:
+
+```c
+void add(int x, int y, int *result) {
+    *result = x + y;
+}
+```
+
+or perhaps
+
+```c
+int sub(int *x, int *y) {
+    return *x-*y;
+}
+```
+
+The typemaps.i library file will help in these situations. For example:
+
+```
+%module example
+%include "typemaps.i"
+
+void add(int, int, int *OUTPUT);
+int  sub(int *INPUT, int *INPUT);
+```
+
+In Python, this allows you to pass simple values. For example:
+
+```python
+>>> a = add(3, 4)
+>>> print a
+7
+>>> b = sub(7, 4)
+>>> print b
+3
+>>>
+```
+
+Notice how the INPUT parameters allow integer values to be passed instead of pointers and how the OUTPUT parameter creates a return result.
+
+If you don't want to use the names INPUT or OUTPUT , use the %apply directive. For example:
+
+
+```
+%module example
+%include "typemaps.i"
+
+%apply int *OUTPUT { int *result };
+%apply int *INPUT  { int *x, int *y};
+
+void add(int x, int y, int *result);
+int  sub(int *x, int *y);
+```
+
+---
+
+If a function mutates one of its parameters like this,
+
+```c
+void negate(int *x) {
+    *x = -(*x);
+}
+```
+
+you can use INOUT like this:
+
+```c
+%include "typemaps.i"
+...
+void negate(int *INOUT);
+```
+
+```python
+>>> a = negate(3)
+>>> print a
+-3
+```
+
+---
+
+The most common use of these special typemap rules is to handle functions that return more than one value.
+
+For example, sometimes a function returns a result as well as a special error code:
+
+```c
+/* send message, return number of bytes sent, along with success code */
+int send_message(char *text, int len, int *success);
+```
+
+To wrap such a function, simply use the OUTPUT rule above. For example:
+
+```
+%module example
+%include "typemaps.i"
+%apply int *OUTPUT { int *success };
+...
+int send_message(char *text, int *success);  // ? where does 'len' go ?
+```
+
+Be aware that the primary purpose of the typemaps.i file is to support primitive datatypes. Writing a function like this
+
+```
+void foo(Bar *OUTPUT);
+```
+
+MAY NOT  have the intended effect since typemaps.i does not define an OUTPUT rule for Bar.
+
+### 36.7.2 Simple pointers
+
+If you must work with simple pointers such as int * or double * and you don't want to use typemaps.i, consider using the cpointer.i library file. For example:
+
+```
+%module example
+%include "cpointer.i"
+
+%inline %{
+    extern void add(int x, int y, int *result);
+%}
+
+%pointer_functions(int, intp);
+```
+
+The %pointer_functions(type, name) macro generates five helper functions that can be used to create, destroy, copy, assign, and dereference a pointer. In this case, the functions are as follows:
+
+```c
+int  *new_intp();
+int  *copy_intp(int *x);
+void  delete_intp(int *x);
+void  intp_assign(int *x, int value);
+int   intp_value(int *x);
+```
+
+In Python, you would use the functions like this:
+
+```python
+>>> result = new_intp()
+>>> print result
+_108fea8_p_int
+>>> add(3, 4, result)
+>>> print intp_value(result)
+7
+```
+
+If you replace %pointer_functions() by %pointer_class(type, name), the interface is more class-like.
+
+```python
+>>> result = intp()
+>>> add(3, 4, result)
+>>> print result.value()
+7
+```
+
+### 36.7.3 Unbounded C Arrays
+
+Sometimes a C function expects an array to be passed as a pointer. For example,
+
+```c
+int sumitems(int *first, int nitems) {
+    int i, sum = 0;
+    for (i = 0; i < nitems; i++) {
+        sum += first[i];
+    }
+    return sum;
+}
+```
+
+To wrap this into Python, you need to pass an array pointer as the first argument. A simple way to do this is to use the carrays.i library file. For example:
+
+```
+%include "carrays.i"
+%array_class(int, intArray);
+```
+The %array_class(type, name) macro creates wrappers for an unbounded array object that can be passed around as a simple pointer like int * or double \*. 
+For instance, you will be able to do this in Python:
+
+```python
+>>> a = intArray(10000000)         # Array of 10-million integers
+>>> for i in xrange(10000):        # Set some values
+...     a[i] = i
+>>> sumitems(a, 10000)
+49995000
+```
+
+ - The array "object" created by %array_class() does not encapsulate pointers inside a special array object. In fact, there is no bounds checking or safety of any kind (just like in C). 
+ - Because of this, the arrays created by this library are extremely low-level indeed.
+ - You can't iterate over them nor can you even query their length. 
+ - In fact, any valid memory address can be accessed if you want (negative indices, indices beyond the end of the array, etc.). 
+ - Needless to say, this approach is not going to suit all applications . On the other hand, this low-level approach is extremely efficient and well suited for applications in which you need to create buffers, package binary data, etc.
+
+### 36.7.4 String handling
+
+If a C function has an argument of `char *`, then a Python string can be passed as input. For example:
+
+```
+// C
+void foo(char *s);
+-------
+# Python
+>>> foo("Hello")
+```
+
+Since Python strings are immutable, it is illegal for your program to change the value. In fact, doing so will probably crash the Python interpreter.
+
+If your program modifies the input parameter or uses it to return data, consider using the cstring.i library file 
+
+When functions return a `char *`, it is assumed to be a NULL-terminated string. Data is copied into a new Python string and returned.
+
+If your program needs to work with binary data, you can use a typemap to expand a Python string into a pointer/length argument pair. As luck would have it, just such a typemap is already defined. Just do this:
+
+```
+%apply (char *STRING, int LENGTH) { (char *data, int size) };
+...
+int parity(char *data, int size, int initial);
+```
+
+### 36.7.5 Default arguments
+
+ - C++ default argument code generation is documented in the main Default arguments section
+ - There is also an optional Python specific feature that can be used called the python:cdefaultargs feature flag
+ - By default, SWIG attempts to convert C++ default argument values into Python values and generates code into the Python layer containing these values.
+
+For example:
+
+```c++
+struct CDA {
+    int fff(int a = 1, bool b = false);
+};
+```
+
+From Python this can be called as follows:
+
+```
+>>> CDA().fff()        # C++ layer receives a=1 and b=false
+>>> CDA().fff(2)       # C++ layer receives a=2 and b=false
+>>> CDA().fff(3, True) # C++ layer receives a=3 and b=true
+```
+
+The default code generation in the Python layer is:
+
+```python
+class CDA(object):
+    ...
+    def fff(self, a=1, b=False):
+        return _default_args.CDA_fff(self, a, b)
+```
+
+Adding the feature:
+
+```
+%feature("python:cdefaultargs") CDA::fff;
+struct CDA {
+    int fff(int a = 1, bool b = false);}
+```
+
+results in identical behaviour when called from Python, however, it results in different code generation:
+
+```python
+class CDA(object):
+    ...
+    def fff(self, *args):
+        return _default_args.CDA_fff(self, *args)
+```
+
+The default arguments are obtained in the C++ wrapper layer instead of the Python layer. 
+
+Note that not all default arguments can be converted into a Python equivalent. When SWIG does not convert them, it will generate code to obtain them from the C++ layer as if python:cdefaultargs was specified. This will happen if just one argument cannot be converted into a Python equivalent. This occurs typically when the argument is not fully numeric, such as int(1):
+
+```c
+struct CDA {
+    int fff(int a = int(1), bool b = false);
+};
+```
+
+**Compatibility Note**: SWIG-3.0.6 introduced the python:cdefaultargs feature. Versions of SWIG prior to this varied in their ability to convert C++ default values into equivalent Python default argument values.
+
+---
+
+## 36.8 Typemaps
+
+
+
+
 
 
 
