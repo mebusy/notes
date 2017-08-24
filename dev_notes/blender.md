@@ -803,5 +803,31 @@ bpy.ops.object.modifier_apply(apply_as='DATA', modifier='EdgeSplit')
 
 **Flipped Normals**
 
+Another common problem is unintentionally flipped normals.
+
+This issue can sneak up on Blender Python programmers because of certain behaviors of Blender’s 3D Viewport. 
+
+As previously mentioned, flipped normals can make planes appear transparent. This is often hard to diagnose in Blender because Blender treats all planes as two-sided in the 3D Viewport. 
+
+This is unintuitive because common renderers treat planes as one-sided for sake of performance and consistency
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_flipped_normal.png)
+
+Mathematically, this can be remedied by scaling each flipped normal vector by −1. 
+
+Within Blender, this can be performed fairly easily by entering Edit Mode and navigating to Tool Shelf ➤ Shading / UVs ➤ Shading ➤ Normals ➤ Flip Direction. 
+
+This button will flip the normals of all selected, vertices, edges, or faces depending on the selected parts.
+
+In Blender’s Python API, we can perform the same function by calling bpy.ops.mesh.flip_normals() while in Edit Mode with some parts of the object selected.
+
+The Tool Shelf ➤ Shading / UVs ➤ Shading ➤ Normals ➤ Recalculate command, which calls bpy.ops.mesh.normals_make_consistent(), will tell Blender to recalculate normals of well-defined objects to the best of its ability. 
+
+This does not behave well for every object but can be useful nonetheless.
+
+**Z-Fighting**
+
+
+
 
 
