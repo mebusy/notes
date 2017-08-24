@@ -827,6 +827,61 @@ This does not behave well for every object but can be useful nonetheless.
 
 **Z-Fighting**
 
+Z-fighting is a common rendering issue that produces glitchy objects without throwing errors or crashing the renderer. 
+
+See Figure 4-12 for an example of Z-fighting among four cubes in Blender in Rendered view.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_z_fighting.png)
+
+> Figure 4-12. Z-fighting of cubes with coplanar faces
+
+To understand why Z-fighting occurs, we must understand how depth buffers function in renderers.
+
+In almost every case, the computations involved in rendering an object occur on graphics processing units (GPUs) with very standardized graphics APIs (e.g., OpenGL and DirectX). 
+
+The standard protocol in these rendering APIs is to use the camera’s position relative to the meshes to determine which objects are visible and invisible to the user. 
+
+This information is stored in the depth buffer. 
+
+Before presenting a 2D image on the screen, the depth buffer tells the renderer which mesh pixel is closest to the camera and therefore visible to the user.
+
+Given this information, why does the depth buffer not favor one mesh over another to prevent the glitchy Z-fighting effect?
+
+The depth buffer stores high-precision floating-point values, and renderers do not make adjustments to assess the equality of floating-point numbers. 
+
+Low-level languages that drive graphics APIs maintain efficiency by making naive floating-point number comparisons. For the same reason that
+0.1 * 0.1 > 0.01 returns True in Python, floating-point number comparisons behave inconsistently in renderers.
+
+The problems associated with floating-point arithmetic are well-studied in computer science, and floating-point equality is one of its most significant challenges.
+
+How does one solve this problem given the tools in Blender and its Python API? There are a number of solutions, depending on the particular situation.
+
+ - Translate each object by a small and unnoticeable amount (around 0.000001 Blender units) such that the surfaces are no longer coplanar. If the translation has no effect, try translating it by a slightly larger distance.
+ - Delete interior faces in Edit Mode.
+ - Retool your algorithm to generate non-overlapping surfaces.
+ - Use the dissolve and limit dissolve tools in Edit Mode.
+
+Ultimately, there are many methods for dealing with Z-fighting that all amount to making sure coplanar surfaces no longer exist in your model. We refrain from detailing all of the potential methods.
+
+---
+
+## 5 Introduction to Add-On Development
+
+### A Simple Add-On Template
+
+For this section, enter the scripting view in Blender and go to Text Editor ➤ New to create a new script.
+
+Give it a name, for example, simpleaddon.py. 
+
+See [simpleaddon.py](https://raw.githubusercontent.com/mebusy/notes/master/codes/blender/simpleaddon.py) for a simple template from where we can start building our add-on.
+
+Running this script will create a new tab in the Tools panel called “Simple Addon” that has a simple text input field and a button. 
+
+The button will print a message to the console verifying that the plugin works, then parrot back the string in the text input field. 
+
+
+
+
 
 
 
