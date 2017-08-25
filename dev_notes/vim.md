@@ -124,9 +124,11 @@ vim +BundleInstall +qall
  	- 进入YouCompleteMe目录，执行 `./install.py --all`
  	- 这时提示你一些第三方依赖缺失，执行下面的命令
  		- `git submodule update --init --recursive`
-  - `sudo ./install.py  --clang-completer --omnisharp-completer --gocode-completer --tern-completer`
+  - `./install.py  --clang-completer --omnisharp-completer --gocode-completer --tern-completer`
   - reinstall : 
     - `vim +PluginInstall`
+  - update :
+    - `vim +PluginUpdate`
  - `msbuild or xbuild is required to build Omnisharp`
     - You used `--all`, so you need to install mono for C sharp completion. If you don't want C sharp completion, use different flags.
     - install MonoFrameWork
