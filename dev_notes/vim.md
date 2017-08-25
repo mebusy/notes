@@ -126,6 +126,7 @@ vim +BundleInstall +qall
  		- `git submodule update --init --recursive`
   - add suport for C family
       - `./install.py --clang-completer --system-libclang`
+      - using `--system-libclang` here because on MacOSX, it report error "NOT using libclang, no semantic completion for C/C++/ObjC will be available"
   - addd c# support
       - `./install.py --omnisharp-completer`
   - add go support
