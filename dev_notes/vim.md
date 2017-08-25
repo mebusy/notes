@@ -144,6 +144,8 @@ vim +BundleInstall +qall
         - vim 7.4.2358 git hash: d47d83745ff450232328ca7a4b8b00b31bad22fc
  - vim 诊断
     - `:YcmDebugInfo`
+ - vim check logs
+    - `YcmToggleLogs`
  - uninstall mono framework on OSX 
     - https://gist.githubusercontent.com/powerumc/e80bb475117582d7e842/raw/ed8a29bed15655492109c91df118f22b147f025c/remove-mono.sh
 
