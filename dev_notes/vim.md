@@ -124,9 +124,17 @@ vim +BundleInstall +qall
  	- 进入YouCompleteMe目录，执行 `./install.py --all`
  	- 这时提示你一些第三方依赖缺失，执行下面的命令
  		- `git submodule update --init --recursive`
-  - `sudo ./install.py  --clang-completer --omnisharp-completer --gocode-completer --tern-completer`
+  - add suport for C family
+      - `./install.py --clang-completer --system-libclang`
+      - using `--system-libclang` here because on MacOSX, it report error "NOT using libclang, no semantic completion for C/C++/ObjC will be available"
+  - addd c# support
+      - `./install.py --omnisharp-completer`
+  - add go support
+      - `./install.py --gocode-completer`
   - reinstall : 
     - `vim +PluginInstall`
+  - update :
+    - `vim +PluginUpdate`
  - `msbuild or xbuild is required to build Omnisharp`
     - You used `--all`, so you need to install mono for C sharp completion. If you don't want C sharp completion, use different flags.
     - install MonoFrameWork
@@ -142,8 +150,13 @@ vim +BundleInstall +qall
     - git reset --hard 68d78719a45ee8e9e86a2effb99c80842ccadada
     - or to install vim 7.4.2356
         - vim 7.4.2358 git hash: d47d83745ff450232328ca7a4b8b00b31bad22fc
+ 
  - vim 诊断
-    - `:YcmDebugInfo`
+    - `:YcmDebugInfo`
+ 
+ - vim check logs
+    - `YcmToggleLogs`
+ 
  - uninstall mono framework on OSX 
     - https://gist.githubusercontent.com/powerumc/e80bb475117582d7e842/raw/ed8a29bed15655492109c91df118f22b147f025c/remove-mono.sh
 
@@ -219,4 +232,20 @@ vimgrep /pattern/gj path
 :args *.cpp
 :argdo %s/word/NEW/eg | update
 ```
+
+---
+
+# install MacVim
+
+1. check vim comfig 
+    - `brew edit macvim`
+    
+2. install with lua support
+    - `brew reinstall macvim --with-lua`
+
+3. open in terminal 
+    - `mvim -v`
+   
+
+
 
