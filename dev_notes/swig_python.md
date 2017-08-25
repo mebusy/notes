@@ -22,6 +22,13 @@
 		 - [36.6.3 Class extension with %extend](#d4f88a6538a37f876d6944cfddd37993)
 		 - [36.6.4 Exception handling with %exception](#6a994f76d514c7ea64b0080007f925bc)
 	 - [36.7 Tips and techniques](#15f329eb7bd57310ae05525a7560cb18)
+		 - [25.8.1 Input and output parameters using primitive pointers and references](#53e526b93ef9246ff51cd84f5debb919)
+		 - [36.7.2 Simple pointers](#515f4e8a06c359c5238034b0a0855efc)
+		 - [36.7.3 Unbounded C Arrays](#ea9fec0c4e11762f471b1cffa262b7a4)
+		 - [36.7.4 String handling](#c5928dddfc2c9487ddc042e45caa4576)
+		 - [36.7.5 Default arguments](#63b4f48acae0ba35e6576fce9fa8fdad)
+	 - [36.8 Typemaps](#2b130f8e243eb10cbc270985854ccbc7)
+ - [常见问题](#50d52dd929a75bb9b0f4afb0b7d879e1)
 
 ...menuend
 
@@ -828,6 +835,8 @@ Examples include dealing with output parameters, strings, binary data, and array
 
 This chapter discusses the common techniques for solving these problems.
 
+<h2 id="53e526b93ef9246ff51cd84f5debb919"></h2>
+
 ### 25.8.1 Input and output parameters using primitive pointers and references
 
 A common problem in some C programs is handling parameters passed as simple pointers or references. For example:
@@ -937,6 +946,8 @@ void foo(Bar *OUTPUT);
 
 MAY NOT  have the intended effect since typemaps.i does not define an OUTPUT rule for Bar.
 
+<h2 id="515f4e8a06c359c5238034b0a0855efc"></h2>
+
 ### 36.7.2 Simple pointers
 
 If you must work with simple pointers such as int * or double * and you don't want to use typemaps.i, consider using the cpointer.i library file. For example:
@@ -982,6 +993,8 @@ If you replace %pointer_functions() by %pointer_class(type, name), the interface
 7
 ```
 
+<h2 id="ea9fec0c4e11762f471b1cffa262b7a4"></h2>
+
 ### 36.7.3 Unbounded C Arrays
 
 Sometimes a C function expects an array to be passed as a pointer. For example,
@@ -1019,6 +1032,8 @@ For instance, you will be able to do this in Python:
  - In fact, any valid memory address can be accessed if you want (negative indices, indices beyond the end of the array, etc.). 
  - Needless to say, this approach is not going to suit all applications . On the other hand, this low-level approach is extremely efficient and well suited for applications in which you need to create buffers, package binary data, etc.
 
+<h2 id="c5928dddfc2c9487ddc042e45caa4576"></h2>
+
 ### 36.7.4 String handling
 
 If a C function has an argument of `char *`, then a Python string can be passed as input. For example:
@@ -1044,6 +1059,8 @@ If your program needs to work with binary data, you can use a typemap to expand 
 ...
 int parity(char *data, int size, int initial);
 ```
+
+<h2 id="63b4f48acae0ba35e6576fce9fa8fdad"></h2>
 
 ### 36.7.5 Default arguments
 
@@ -1107,9 +1124,30 @@ struct CDA {
 
 ---
 
+<h2 id="2b130f8e243eb10cbc270985854ccbc7"></h2>
+
 ## 36.8 Typemaps
 
 
+
+
+----
+
+<h2 id="50d52dd929a75bb9b0f4afb0b7d879e1"></h2>
+
+# 常见问题
+
+ 1. base class unknown, ignore
+    - provide the header file which define that needed class as well the module name 
+    - i.e., `%import(module="paramengine") "ParamEngine.h"`
+ 2. virtual method
+    - use the feature "director"
+ 3. class field declare as  `CLASS &name`
+    - and initialized by constructor , but the swig will wrap xxxx_set method , and will leader to compile error
+    - use %immutable to tell swig not to wrapxxxx_set method
+ 4. template class
+    - define template for further using
+    - %template(BehaviorPlannerBase_A) BehaviorPlannerBase< BehaviorAttackData >;
 
 
 

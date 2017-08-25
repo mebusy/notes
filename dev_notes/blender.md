@@ -19,6 +19,9 @@
 		 - [Common File Formats](#e6a63b58cf42997d218a6fb856cb4a1f)
 		 - [Minimal Specification of Basic Objects](#fa11cb7e3dbec33afd8b0c8194461c6a)
 		 - [Common Errors in Procedural Generation](#a1d35d6a2aa25a58ffb4a9380be01bd7)
+	 - [5 Introduction to Add-On Development](#a21021ed4077220d8ee7a7b1af522450)
+		 - [A Simple Add-On Template](#0c04eb9875bdfd13027dc08199c22c17)
+		 - [Components of Blender Add-Ons](#0f5b9e16e0b4087f80a42c079e0a9b0a)
 
 ...menuend
 
@@ -865,7 +868,11 @@ Ultimately, there are many methods for dealing with Z-fighting that all amount t
 
 ---
 
+<h2 id="a21021ed4077220d8ee7a7b1af522450"></h2>
+
 ## 5 Introduction to Add-On Development
+
+<h2 id="0c04eb9875bdfd13027dc08199c22c17"></h2>
 
 ### A Simple Add-On Template
 
@@ -884,6 +891,8 @@ The button will print a message to the console verifying that the plugin works, 
 The template presented here is fairly minimal, but we also included a handful of optional quality controls. 
 
 We discuss each component before proceeding to more advanced add-ons.
+
+<h2 id="0f5b9e16e0b4087f80a42c079e0a9b0a"></h2>
 
 ### Components of Blender Add-Ons
 

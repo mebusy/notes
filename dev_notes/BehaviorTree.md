@@ -1,6 +1,11 @@
 ...menustart
 
  - [Behavior Tree](#65960f0506f5463f2851a8de00e13354)
+ - [Source code of BTSK](#ffdbc3c1ec6e7d5a3ebd35c186cd29bc)
+	 - [Spearate Out Behaviors](#8e7d1bb4b23679d03820f8aade337c40)
+	 - [Part 2.a  DATA-ORIENTED BT](#c78c9cd9849639c586dee4874cbd56ce)
+	 - [Event-Driven BT](#34ee2906f2c05f35040b98dcaf55ab4f)
+	 - [What's Next](#ad5480f838ed67e92fecf7af3cef120d)
 
 ...menuend
 
@@ -59,4 +64,186 @@
     - Stimulus这类动态安插的Node 会破坏本来易于理解的静态性 
     - 原则就是保持全部Node静态，只是根据事件和环境来检查是否启用Node。
 
+<h2 id="ffdbc3c1ec6e7d5a3ebd35c186cd29bc"></h2>
 
+# Source code of BTSK
+
+ - `class Behavior`  , base class for actions, conditions, and composites
+    - update() 
+        - which is called every frame 
+    - onInitialize() 
+        - which is called only the first time before the update function called
+    - onTerminate(status) 
+        - called once the update is finished , and we'll pass status to
+    - so this is pretty standard interface as most of you the state machine might be familiar with but the big difference between them is the `Status`
+        - the state machine doesn't have a return `Status`, it doesn't know whether it succeeded of failed 
+        - but in the behavior tree you know about that.
+ - `enum Status` 
+    - BH_INVALILD
+    - BH_SUCCESS
+    - BH_FAILURE
+    - BH_RUNNINg
+ - `Behavior::tick` : 
+    - a helper wraper function that helps make sure that we call all our functions correctly things like `onInitialize` , `update` ...
+        - if mStatus == BH_INVALID , call onInitialize 
+        - mStatus = update()
+        - if mStatus != BH_RUNNING , call onTerminate( mStatus )
+        - return mStatus 
+ - `struct MockBehavior : public Behavior`
+    - it is in fact a test file so everything is unit tested and that is another tip that I will give you is that you should be really only testing all of your behavior tree. 
+    - it have measuring the number of times each function is called and capturing what the behavior returns and forcing a certain weight of status 
+
+---
+
+ - 2 main 'Composite' nodes
+    - Sequences     , i.e. fixed list of statements
+    - Selectors     , i.e. conditional branching
+ - It's a powerful concept...
+    - you can build most trees with these nodes 
+    - Thye are the most commonly used nodes
+
+---
+
+ - `class Composite : public Behavior`
+ - `class Sequence : public Composite`
+    - onInitialized 
+        - mCurrentChild = mChildren.begin()
+    - update 
+
+```
+    - while true
+        - Status s = mCurrentChild.tick()
+        - if s != BH_SUCCESS  , return s ;
+        - if ++mCurrentChild == mChildren.end() ,  return BH_SUCCESS 
+    - return BH_INVALID    , this is unexpected loop exit
+```
+
+ - `class Selector : public Composite`
+    - update
+
+```
+    - whle true
+        - Status s = mCurrentChild.tick()
+        - if s != BH_FAILURE  , return s ;
+        - if ++mCurrentChild == mChildren.end() ,  return BH_FAILURE
+    - return BH_INVALID     
+```
+
+ - Memory Problems ?
+    - With the 1st implementation, you need a completely new tree for each NPC !
+
+---
+
+<h2 id="8e7d1bb4b23679d03820f8aade337c40"></h2>
+
+## Spearate Out Behaviors
+
+ - Nodes
+    - Common data shared by all instances
+    - The Basic structure of the tree
+    - All parameters and other configuration
+ - Tasks
+    - Runtime instance-specifc data.
+    - Current pointers, counters ,etc
+
+---
+
+ - `class Node` 
+    - `Task* create()`
+    - `void destory(Task*)`
+ - `class Task` 
+    - very similar to a behavior , has update/onInitialize/onTerminate
+    - constructor: `Task(Node& node)`
+    - `Node* m_pNode;`
+ - `class Behavior`
+    - `Task* m_pTask`
+    - `Node* m_pNode`
+    - `Status m_eStatus`
+    - tick()
+        - almost same as 1st version,  the difference is call update/onInitialize/onTerminate on Task instead
+    - get()
+        - return Task ( it is a template class Task )
+        - you don't necessarily need , this is just for the tests
+
+```c++
+// test
+MockNode n;                              
+Behavior b(n);
+
+MockTask* t = b.get<MockTask>();
+CHECK_EQUAL(0, t->m_iInitializeCalled);
+
+b.tick();
+CHECK_EQUAL(1, t->m_iInitializeCalled);
+```
+
+ - `class Composite : public Node`
+    - `Nodes m_Children`
+ - `class Sequence : public Task`
+    
+---
+
+ - Disadvantages
+    - It's entirely based on poolling
+    - There's a whole chain of virtual calls
+    - A lot of memory gets touched each traversal 
+    - The maximum stack size depends on data
+
+---
+
+**Principles** : Write a specialized "interpreter" that can process behavior trees better than C++.
+
+<h2 id="c78c9cd9849639c586dee4874cbd56ce"></h2>
+
+## Part 2.a  DATA-ORIENTED BT
+
+ - Memory Allocation
+    - The Policy
+        - Use a stack allocator for the whole BT
+        - Allocate each node contiguously
+        - Using depth-first order as default
+        - Child nodes come after their parent
+    - Motivation
+        - Keeps cache misses low, etc.
+ - bt3
+ - `class BehaviorTree`
+    - all the nodes inside there will be allocated one by one in memory
+ - Node Indexing
+    - The Policy
+        - Don't rely on pointers anymore
+        - Use indexes or relative offsets
+        - for composites, easily find children after
+    - Motivation
+        - Reduce memory consumption
+
+<h2 id="34ee2906f2c05f35040b98dcaf55ab4f"></h2>
+
+## Event-Driven BT
+
+ - First Traversal
+    - All nodes are expaned depth-first
+    - Everything happens as before
+ - Subsequent Traversals
+    - There are no traversals from the root anymore!
+    - Child behavior broadcast their status changes
+    - Parents respond and adapt locally only
+    - Only in the worst case expand again from root.
+
+ - new Status code: BH_SUSPENDED
+    - which will say that this behavior is active but it doesn't need to be called because it's waiting for something to happen. 
+    - so this basically gives us or a performace even though we might not use a data oriented approach and then driven trees can preform data orient once because we have this status code 
+    - the magic will happen by a hehavior observer so each behavior will have its own observer , or if you're spliting up your nodes and your tasks then each task will have the task observer , which will notify a parent that it's done and the parent will be able to deal with that as it sees fit 
+
+
+<h2 id="ad5480f838ed67e92fecf7af3cef120d"></h2>
+
+## What's Next
+
+ - Disclaimer
+    - Nodes not covered:
+        - Decorators / Filters
+        - Parallels
+    - Other API Issus:
+        - How to abort() behaviors and whole trees
+        - How to support non-interruptible behaviors
+     
