@@ -225,3 +225,20 @@ vimgrep /pattern/gj path
 :argdo %s/word/NEW/eg | update
 ```
 
+---
+
+# install MacVim
+
+1. do some config change before install
+    - `brew edit macvim`
+    - `--enable-luainterp`
+
+2. build from source 
+    - `brew reinstall --build-from-sourcemacvim`
+
+3. open in terminal 
+    - `mvim -v`
+   
+
+
+
