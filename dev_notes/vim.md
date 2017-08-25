@@ -229,12 +229,11 @@ vimgrep /pattern/gj path
 
 # install MacVim
 
-1. do some config change before install
+1. check vim comfig 
     - `brew edit macvim`
-    - `--enable-luainterp`
-
-2. build from source 
-    - `brew reinstall --build-from-sourcemacvim`
+    
+2. install with lua support
+    - `brew reinstall macvim --with-lua`
 
 3. open in terminal 
     - `mvim -v`
