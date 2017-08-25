@@ -51,6 +51,78 @@ delegatechain += d3 ;
         - `if (temp!=null) temp(this, objdata ) `
     - 外部观察者  通过该 event 进行注册
 
+## 3 泛型
+
+```c#
+public static class ListPool<T> { 
+    ...
+}
+
+...
+
+public static void Swap<T> (ref T a, ref T b) {
+    ...
+}
+```
+
+ - 泛型类型 和 泛型参数
+    - 泛型类型 有两种 表现方式： 泛型类型 和 泛型方法
+    - 泛型参数 必须放在 `< >` 里面，用都好分隔
+        - 如果 没有为 类型参数 提供 类型实参， 此时我们就声明了一个 未绑定的 泛型类型
+        - 如果指定了 类型实参， 则称为 已构造类型
+ - 类型推断
+    - 泛型方法 支持类型推断
+    - `// GenericMethodTest<int>(ref n1, ref n2);`
+    - `GenericMethodTest (ref n1, ref n2);`
+ - 类型约束
+    - `where T : IComparable`
+
+## 4 可空类型
+
+ - 值类型， 是包括 null的值类型
+ - `Nullable<T>`
+
+
+## 5 匿名方法
+
+ - C#为委托提供一种机制，可以为委托定义匿名方法
+ - 匿名方法建立在 委托基础上
+    - 委托是方法的包装， 匿名方法也是方法， 所以委托也可以包装匿名方法
+
+```c#
+MyDelagate my = delegate(string param)  
+{  
+    string str2 = " 匿名方法内部 ";  
+    return param + str1 + str2;  
+};  
+```
+
+ - C#3.0之后匿名方法可以使用λ表达式来进行定义
+
+```c#
+MyDelagate my = param => param + str1 + str2;
+```
+
+## 6 迭代器
+ 
+ - 实现一个迭代器， 必须实现 IEnumeralbe 接口
+
+```c#
+public class Friends: IEnumeralbe {
+    ...
+    //索引器
+    public Friend this[int index] {
+        get { return friendarray[index]; }    
+    }
+    // c# 2.0 简化迭代器的实现
+    public IEnumerator GetEnumerator() {
+        for (int index=0; index < friendarray.Length; index++>) {
+            yield return friendarray[index] ;   
+        }    
+    }
+}
+```
+
 
 
 
