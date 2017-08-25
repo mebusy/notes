@@ -142,7 +142,12 @@ vim +BundleInstall +qall
     - git reset --hard 68d78719a45ee8e9e86a2effb99c80842ccadada
     - or to install vim 7.4.2356
         - vim 7.4.2358 git hash: d47d83745ff450232328ca7a4b8b00b31bad22fc
-    
+ - vim 诊断
+    - `:YcmDebugInfo`
+ - uninstall mono framework on OSX 
+    - https://gist.githubusercontent.com/powerumc/e80bb475117582d7e842/raw/ed8a29bed15655492109c91df118f22b147f025c/remove-mono.sh
+
+ 
 <h2 id="2182a74bab7188d959e795d9301e87ff"></h2>
 
 ## Markdown 
