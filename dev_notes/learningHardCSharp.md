@@ -123,6 +123,132 @@ public class Friends: IEnumeralbe {
 }
 ```
 
+### 迭代器的执行过程
+
+ - `foreach (Friend f in friendcollection ) `
+    1. foreach 开始
+    2. friendcollection  调用 GetEnumerator() 获取迭代器
+    3. in 调用 IEnumerator.MoveNext()
+    4. Friend f 访问 IEnumerator.Current
+
+### 迭代器的延迟计算
+
+从迭代器的执行过程中，可以知道 迭代器是延迟计算的。
+
+```c#
+public static IEnumerable<int> WithIterator() {
+    for (int i=0;i<5;i++) {
+        Console.WriteLine( ""+i ) ;
+        if (i>1) 
+            yield return i;   
+    }    
+}
+```
+
+调用 `WithIterator()`  不会产生任何输出，对编译器而言，就是实例化了一个 <WithIterator>d_0 对象。
+
+<WithIterator>d_0 对 是编译器看到 方法中包含 yield return 语句 生成的一个迭代器类。
+
+
+## 7 C# 3.0 特性
+
+### 一. 自动实现的属性
+
+当类中定义的属性不需要一些额外的验证时，此时我们可以使用自动实现的属性，使代码更简洁。
+
+C# 3 之前一般这样定义属性
+
+```c#
+private string _name ;
+public string Name {
+    get { return _name; }
+    set { _name = value; }
+}
+```
+
+C# 3之后又自动实现的属性之后，对于不需要额外验证的属性，可以使用 自动属性，不再需要额外定义一个私有字段了。 编译器编译时 会 自动创建一个私有的匿名字段。
+
+```c#
+public string Name { get ; set ; }
+```
+
+### 隐式类型
+
+ - `var intarray = new[]{ 1,3,4 }`
+ - 必须是局部变量，不能是字段
+ - 变量声明时 必须被初始化
+ - 不能初始化为 一个方法组， 也不能为一个 匿名函数
+ - 不能初始化为 null
+
+### 三. 对象集合初始化
+
+**3.1 对象初始化**
+
+ - 不需要再考虑定义参数不同的构造函数来应付不同情况的初始化了
+
+3.0前
+
+```c#
+Person person1 = new Person();
+person1.Name = "bob" ;
+person1.Age = 1 ; 
+```
+
+3.0后
+
+```c#
+# 构造函数 + 初始化
+Person person4 = new Person() { Name="Bob", Age=1 };
+```
+
+**3.2 集合初始化**
+
+3.0 前
+
+```c#
+List<string> names = new List<string>();
+names.Add( "Bob1" ) ;
+names.Add( "Bob2" ) ;
+names.Add( "Bob3" ) ;
+```
+
+3.0 后
+
+```c#
+var names = new List<string> {
+    "Bob1" , "Bob2" , "Bob3"     
+};
+```
+
+### 四.匿名类型
+
+```c#
+var person1 = new { Name="Bob", Age=1 };
+```
+
+## 8 Lambda 表达式
+
+```c#
+// c# 2 匿名方法 创建委托
+// 不需要额外定义回调方法
+Func<string,int> delegate=delegate(string text) {return text.Length};
+
+// c# 3 lambda 表达式
+Func<string,int> delegate= (string text) => text.Length ; 
+
+// 可以省略参数类型， 再简化为
+Func<string,int> delegate= (text) => text.Length ; 
+
+// 如果lambda表达式只需要一个参数，并且那个参数可以隐式制定类型时
+// 此时可以把 ()也省略
+Func<string,int> delegate= text => text.Length ; 
+```
+
+---
+
+C# 编译器还可以把 lambda表达式 转换成 表达式树。
+
+## 9 扩展方法
 
 
 
@@ -130,4 +256,6 @@ public class Friends: IEnumeralbe {
 
 
 
- 
+
+
+
