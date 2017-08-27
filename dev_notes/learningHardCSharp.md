@@ -250,9 +250,60 @@ C# 编译器还可以把 lambda表达式 转换成 表达式树。
 
 ## 9 扩展方法
 
+ - 为现有的类 扩展添加方法
+    - 没有扩展方法之前，只能通过继承，这样会带来若干问题：1.需要重现实现所有抽象方法，2.密封类无法被继承
+
+```c#
+public static class StreamExten {
+    // 定义扩展方法
+    public static void CopyToNewStream( this Stream inputsteam , Stream outputstream) {
+        byte[] buffer = new byte[8192];
+        int read;
+        while ((read = inputstream.Read(buffer, 0, buffer.Length)) > 0) {
+            outputstream.Write(buffer, 0, read);
+        }
+    }
+}   
+
+// 调用扩展方法
+// responsestream.CopyToNewStream(output);
+```
+
+上面程序中为Stream类型扩展了一个CopyToNewStream()的方法.并不是所有方法都可以作为扩展方法来使用的。扩展方法必须具备下面的规则：
+
+ - 它必须在一个非嵌套、非泛型的静态类中
+ - 它至少要有一个参数
+ - 第一个参数必须加上this关键字作为前缀（第一个参数类型也称为扩展类型，即指方法对这个类型进行扩展）
+ - 第一个参数不能用其他任何修饰符（如不能使用ref out等修饰符）
+ - 第一个参数的类型不能是指针类型
 
 
+### 在空引用上调用方法
 
+ - 在C#中，在空引用上调用实例方法是会引发NullReferenceException异常
+ - 但是可以在空引用上调用扩展方法
+
+```c#
+public static class NullExten {
+    public static bool isNull(this string str) {
+        return str == null;
+    }
+}
+```
+ 
+ - 因为并不是真在空引用中调用了方法，而是调用了静态类NullExten的静态方法IsNull,此时只是把空引用s传递给该方法作为传入参数
+ - 由此可见 扩展方法只是一个语法糖
+
+## 10 Linq
+
+ - C# 3.0 最重要的特性
+ - Linq: Language Integrated Query  语言集成查询
+ - Linq 主要包含4个组件
+    - Linq to Objects: 可以查询 IEnumberable 或 IEnumberable<T> 集合
+    - Linq to XML: 可以查询和操作 XML文件，比Xpath操作XML 更加方便
+    - Linq to Dataset: 可以查询Dataset对象中的数据， 对数据增删改查
+    - Linq to SQL: 可以查询关系数据库的数据
+ - Linq 使操作这些数据源更简单
 
 
 
