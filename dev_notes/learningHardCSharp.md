@@ -351,5 +351,30 @@ Console.WriteLine( m1.GetType().IsValueType ) ;      // True
     - 反射实现方式， 对于互相引用的对象 会出现 StackOverFlow的错误
     - 建议使用 反序列化 方式
 
+## c# 高级数据结构
+
+ - System.Collections.Generic
+    - `Dictionary<TKey, TValue>`
+    - `HashSet<T>`
+    - `LinkedList<T>`  双重链列
+    - `List<T>`
+    - `Queue<T>`
+    - `Stack<T>`
+    - `SortedDictionary<TKey, TValue>`  根据键进行排序的键/值对的集合
+    - `SortedList<TKey, TValue>`
+    - `SortedSet<T>`
+    - `SynchronizedCollection<T>`
+    - `SynchronizedKeyedCollection<K, T>`
+    - `SynchronizedReadOnlyCollection<T>`
+ - 集合和同步（线程安全）
+    - 默认情况下，System.Collections 和相关命名空间中的类不是线程安全的。
+    - 多个阅读器可以放心地读取集合；但是，对集合的任何修改都会对访问该集合的所有线程（包括阅读器线程）产生不确定的结果。
+    - 使用以下任意方法可令 System.Collections 类成为线程安全的：
+        - 使用 Synchronized 方法创建线程安全包装，并通过该包装以独占方式访问集合。
+        - 如果该类不具有 Synchronized 方法，则从该类派生并使用 SyncRoot 属性实现 Synchronized 方法。
+        - 在访问该集合时对 SyncRoot 属性使用锁定机制，例如 C# 中的 lock 语句  
+    - 在实现 Synchronized 方法时，派生类必须重写 IsReadOnly 属性才能返回正确的值。
+    - Array 类不含 Synchronized 方法，并且，尽管它有一个 SyncRoot 属性，但该类不能从其派生。因此，只有通过锁定机制才可令数组是线程安全的
+    - 泛型集合类不包含同步成员；不过，有些泛型类（如 Collection、Dictionary 和 List）显式实现从非泛型 ICollection 接口继承的同步成员。
 
 
