@@ -150,4 +150,15 @@ How it works ?
 
 ## Creating a ramp texture to control diffuse shading
 
+ - Another great tool in your Shader writing toolbox is the use of a ramp texture to drive the color of the diffuse lighting.
+ - This allows you to accentuate the surface's colors to fake the effects of more bounce light or a more advanced lighting setup. 
+ - You see this technique used a lot more for cartoony games
+    - where you need a more artist-driven look to your Shaders and not so much of a physically-accurate lighting model.
+ 
+ ![](http://www.68idc.cn/help/uploads/allimg/150307/1504334Q2_0.jpg)
+
+ - To get this started you will need to create a ramp texture
+    - any image editing application should be able to make a gradient
+    - 
+
 
