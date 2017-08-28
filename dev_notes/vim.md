@@ -14,6 +14,7 @@
 		 - [前向肯定搜索 lookahead](#852639e354e873ce19ce571888957160)
 		 - [文件夹搜索](#4d36d00db257fed5fe7d2a2036ad930f)
 		 - [文件夹 替换](#476949b7922fe3e5ea39c034861527d8)
+ - [install MacVim](#b081af9a95521e478ee6f8af8675cded)
 
 ...menuend
 
@@ -234,6 +235,8 @@ vimgrep /pattern/gj path
 ```
 
 ---
+
+<h2 id="b081af9a95521e478ee6f8af8675cded"></h2>
 
 # install MacVim
 

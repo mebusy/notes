@@ -16,11 +16,12 @@
  3. [Coroutine](https://github.com/mebusy/notes/blob/master/dev_notes/Unity_coroutine.md) 
  4. [Plugin](https://github.com/mebusy/notes/blob/master/dev_notes/Unity_Plugin.md)
  5. [CSharp](https://github.com/mebusy/notes/blob/master/dev_notes/Unity3D_CSharp.md) 
- 6. [prefab 研究](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_prefab_tips.md) 
- 7. [timeScale](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_timescale.md)  
- 8. [Android](https://github.com/mebusy/notes/blob/master/dev_notes/Unity_Android.md) 
- 9. [Code Encrypt](https://github.com/mebusy/notes/blob/master/dev_notes/Unity_code_encrypt.md) 
- 10. [Unity工作笔记](https://github.com/mebusy/notes/blob/master/dev_notes/UnityWorkingNotes.md)
+ 6. [learning hard c#](https://github.com/mebusy/notes/blob/master/dev_notes/learningHardCSharp.md)
+ 7. [prefab 研究](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_prefab_tips.md) 
+ 8. [timeScale](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_timescale.md)  
+ 9. [Android](https://github.com/mebusy/notes/blob/master/dev_notes/Unity_Android.md) 
+ 10. [Code Encrypt](https://github.com/mebusy/notes/blob/master/dev_notes/Unity_code_encrypt.md) 
+ 11. [Unity工作笔记](https://github.com/mebusy/notes/blob/master/dev_notes/UnityWorkingNotes.md)
  
 
 
