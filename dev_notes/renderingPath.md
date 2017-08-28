@@ -20,5 +20,7 @@
 
 ### 2.1 Forward Rendering
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_fwdrd.png)
+
  - Forward Rendering是绝大数引擎都含有的一种渲染方式
  - 要使用Forward Rendering，一般在Vertex Shader或Fragment Shader阶段对每个顶点或每个像素进行光照计算，并且是对每个光源进行计算产生最终结果 
