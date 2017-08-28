@@ -49,6 +49,22 @@ Vector |  four-float property
  - See also
     - https://docs.unity3d.com/Manual/SL-Properties.html
 
+---
+
+Property attributes
+
+attributes | /
+ --- | ---
+[HideInInspector] | does not show the property value in the material inspector.
+[NoScaleOffset] | material inspector will not show texture tiling/offset fields for texture properties with this attribute.
+[Normal] | indicates that a texture property expects a normal-map.
+[HDR] | indicates that a texture property expects a high-dynamic range (HDR) texture.
+[Gamma] | indicates that a float/vector property is specified as sRGB value in the UI (just like colors are), and possibly needs conversion according to color space used. See Properties in Shader Programs.
+[PerRendererData] | indicates that a texture property will be coming from per-renderer data in the form of a MaterialPropertyBlock. Material inspector changes the texture slot UI for these properties.
+
+
+
+
 ## Using properties in a Surface Shader
 
  1. add a property
@@ -104,5 +120,34 @@ How it works ?
 
 ## Creating a Half Lambert lighting model
 
+ - Half Lambert was a technique created by Valve as a way of getting the lighting to show the surface of an object in low-light areas
+ - It basically brightens up the diffuse lighting of the Material and wraps the diffuse light around an object's surface
+ - It is designed to prevent the rear of an object losing its shape and looking too flat. 
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_half_lambert_01.png)
+
+> Alyx model showing Lambertian lighting (left) and Half Lambert lighting (right)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_half_lambert_02.png)
+
+> The Lambertian dot product lobe (red) vs. the Half Lambertian dot product lobe (blue)
+
+ - Using the basic Shader that we created in the last recipe, let's update the diffuse calculation:
+
+```
+    float difLight = max(0, dot (s.Normal, lightDir));  // saturate()
+    float HLAMBERT = difLight*0.5 + 0.5 ;
+
+    float4 col;
+    col.rgb = s.Albedo * _LightColor0.rgb * ( HLAMBERT * atten * 2);
+    col.a = s.Alpha;
+    return col;
+```
+
+ - 原来的 0-1 的值，现在变成了 0.5-1, 整体增强了。
+
+
+## Creating a ramp texture to control diffuse shading
 
 

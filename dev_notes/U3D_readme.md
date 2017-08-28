@@ -23,6 +23,7 @@
  10. [Code Encrypt](https://github.com/mebusy/notes/blob/master/dev_notes/Unity_code_encrypt.md) 
  11. [Unity工作笔记](https://github.com/mebusy/notes/blob/master/dev_notes/UnityWorkingNotes.md)
  12. [rending path 介绍](https://github.com/mebusy/notes/blob/master/dev_notes/renderingPath.md) 
+ 13. [Shader Effect CookBook](https://github.com/mebusy/notes/blob/master/dev_notes/unityShaderEffectCookbook.md) 
   
 
 
