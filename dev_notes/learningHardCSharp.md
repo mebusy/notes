@@ -304,9 +304,52 @@ public static class NullExten {
     - Linq to Dataset: 可以查询Dataset对象中的数据， 对数据增删改查
     - Linq to SQL: 可以查询关系数据库的数据
  - Linq 使操作这些数据源更简单
+ - 因为效率和GC 问题， 移动端慎用
+
+## 11 动态类型
+
+ - introduced in c# 4.0
+ - 略
+
+## 12 Async / Await
+
+ - C# 5.0 
+
+## 13 解析C# 中参数传递
+
+ - C# 中的参数传递，根据 参数类型 可以分为4类
+    - 值类型参数 的按值传递
+    - 引用类型参数的 按值传递
+    - 值类型参数的 按引用传递
+    - 引用类型参数的 按引用传递 
+ - 通过使用 ref/out 关键字 来实现参数的 按引用传递； 需要注意以下亮点
+    - 方法的定义和调用 都必须同时 显示的使用 ref / out
+    - CLR 允许通过 ref / out 参数实现方法重载
+        - `private static void Add( string str ) `
+        - `private static void Add( ref string str ) `
+ - 按 引用传递 可以解决 由于值 传递时 引用副本而不引向引用本身的问题
+    - 此时传递的是 引用的引用 ， 而不是 引用的拷贝
+
+## 14 typeof  和 GetType 区别
+
+ - typeof 是 运算符， GetType 是方法
+ - typeof 获得类型的 System.Type 对象， GetType() 获得当前实例的 Type
+ - GetType() 是基类 System.Object 的方法， 是有 建立了一个实例之后 才能够调用
+ - typeof 的参数 只能是 int, string, class, 自定义类型， 不能为具体实例
 
 
+```c#
+object m1 = 1 ;
+Console.WriteLine( typeof(ValueType).IsValueType ) ; // False
+Console.WriteLine( m1.GetType().IsValueType ) ;      // True
+```
 
+## 14 浅拷贝 和 深拷贝
+
+ - 浅拷贝实现很简单， System.Object 的 MemberwiseClone 方法 就可以实现 浅拷贝
+ - 深拷贝的实现方式有: 反射, 反序列化，和 表达式树
+    - 反射实现方式， 对于互相引用的对象 会出现 StackOverFlow的错误
+    - 建议使用 反序列化 方式
 
 
 
