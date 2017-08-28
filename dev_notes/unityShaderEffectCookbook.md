@@ -98,6 +98,10 @@ How it works ?
     - and then multiply the result of that with (difLight * atten) 
  - finally, return that value as the color. See the following code:
 
+
+[rending path 介绍](https://github.com/mebusy/notes/blob/master/dev_notes/renderingPath.md)
+
+
 ## Creating a Half Lambert lighting model
 
 
