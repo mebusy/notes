@@ -46,15 +46,45 @@ For each ligth:
  - Forward Rendering优缺点
     - 光源数量对计算复杂度影响巨大，所以比较适合户外这种光源较少的场景（一般只有太阳光）
     - 对于多光源，我们使用Forward Rendering的效率会极其低下。
+        - Forward Rendering渲染的复杂度可以用O(num_geometry_fragments * num_lights)  
  - 必要的优化
-    1.多在vertex shader中进行光照处理
-    2.如果要在fragment shader中处理光照，我们大可不必对每个光源进行计算时，把所有像素都对该光源进行处理一次。因为每个光源都有其自己的作用区域。
+    1. 多在vertex shader中进行光照处理
+    2. 如果要在fragment shader中处理光照，我们大可不必对每个光源进行计算时，把所有像素都对该光源进行处理一次。因为每个光源都有其自己的作用区域。
         - 比如点光源的作用区域是一个球体，而平行光的作用区域就是整个空间了
         - 对于不在此光照作用区域的像素就不进行处理。
         - 但是这样做的话，CPU端的负担将加重，因为要计算作用区域
-    3.对于某个几何体，光源对其作用的程度是不同，所以有些作用程度特别小的光源可以不进行考虑。
+    3. 对于某个几何体，光源对其作用的程度是不同，所以有些作用程度特别小的光源可以不进行考虑。
         - 典型的例子就是Unity中只考虑重要程度最大的4个光源。
+    4. 或者使用light map(只能是静态)
 
 ## 2.2 Deferred Rendering
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_defrd.png)
+
+ - Deferred Rendering（延迟渲染）顾名思义，就是将光照处理这一步骤延迟一段时间再处理
+ - 要做到这一步，需要一个重要的辅助工具 -- G-Buffer: Geometry Buffer，亦即“物体缓冲”
+    - G-Buffer主要是用来存储每个像素对应的Position，Normal，Diffuse Color和其他Material parameters
+    - 根据这些信息，我们就可以在像空间中对每个像素进行光照处理
+    - 常见的做法是将颜色，深度和法线分别渲染到不同的buffer里面，在最后计算光照的时候的通过这三个buffer和光源的信息计算出最终pixel的颜色。
+ - Deferred Rendering的核心伪代码。
+
+```
+For each object:
+    Render to multiple targets
+For each light:
+    Apply light as a 2D postprocess
+```
+ 
+ - Deferred Rendering的最大的优势就是将光源的数目和场景中物体的数目在复杂度层面上完全分开
+    - 场景中不管是一个三角形还是一百万个三角形，最后的复杂度不会随光源数目变化而产生巨大变化
+ - Deferred Rendering局限性也是显而易见
+    - 非常消耗显存和带宽
+
+ - **几种降低Deferred Rendering存取带宽的方式**
+    - Light Pre-Pass
+    - Tile-Based Deferred Rendering
+    - Forward+
+        - Forward + Light Culling
+
 
 
