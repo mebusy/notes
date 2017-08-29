@@ -526,4 +526,51 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
     - `float3 normalMap = UnpackNormal(  tex2D( _NormalTex , IN.uv_NormalTex * 8  )  ) ;`
     - 可以产生单张 normal map 重复的效果
 
+---
+
+ - There's more...
+    - You can also add some controls to your normal map Shader that lets a user adjust the intensity of the normal map. 
+    - This is easily done by modifying the x and y components of the normal map variable, and then adding it all back together.
+ - 1. Add another property
+    - `_NormalIntensity ("Normal Map Intensity", Range(0,2)) = 1`
+ - 2. declare
+    - `float _NormalIntensity;`
+ - 3. use `_NormalIntensity` in surf function
+
+```
+    float3 normalMap = UnpackNormal(tex2D(_NormalTex, IN.uv_NormalTex));
+    normalMap = float3(normalMap.x * _NormalIntensity , normalMap.y * _NormalIntensity, normalMap.z);
+```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_normal_intensity.png)
+
+### About Normal Map
+
+#### Surface Shader中的法线
+
+在Surface Shader中，无论是使用模型自带的法线或者使用法线纹理都是一件比较方便的事
+
+ - 使用模型自带的法线
+    - 法线实际上就是在光照模型中使用的，也就是Surface Shader的`Lighting<Your Chosen Name>` 函数 
+    - 想要访问法线的话就是使用SurfaceOutput中的的o.Normal即可
+ - 使用法线纹理
+    - 如果使用法线纹理的话，就需要我们在进入光照函数之前修改SurfaceOutput中的的o.Normal
+    - `float3 normal = UnpackNormal(tex2D(_NormalTex, IN.uv_NormalTex)); `
+    - `o.Normal = normal; // Apply the new normals to the lighting model `
+
+看起来 两种方法好像一样，只是更改了 o.Normal。 但其实，Unity在背后做了很多。
+
+虽然我们使用了同样的Lighting<Name>函数，但其中normal、lightDir、viewDir所在的坐标系已经被Unity转换过了。
+
+ - 第一种方法， 使用的 World Space
+ - 第二种方法， 使用的是 **Tangent Space**.
+
+
+
+--- 
+
+## Creating procedural textures in the Unity editor
+
+
+
 
