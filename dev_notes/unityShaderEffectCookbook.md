@@ -703,4 +703,81 @@ float upDirection = Vector2.Angle(pixelDirection , Vector3.up)/360;
 pixelColor = new Color( rightDirection , leftDirection , upDirection ) ;
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_procedualTexture_effects.png)
+
+---
+
+## Photoshop levels effect
+
+ - Getting Ready
+    - create a new Shader and Material , and assign it to an object in a new Unity scene. 
+    - prepare a source texture with which to test our level's code 
+ - how to do it ...
+ - 1. Add the following properties
+
+```
+Properties {
+    _MainTex ("Albedo (RGB)", 2D) = "white" {}
+
+    _inBlack ( "Input Black"  , Range(0,255)) = 0
+    _inGamma ( "Input Gamma"  , Range(0,2  )) = 1.61
+    _inWhite ( "Input White"  , Range(0,255)) = 255
+
+    _outWhite( "Output White" , Range(0,255) ) = 255
+    _outBlack( "Output Black" , Range(0,255) ) = 0
+}
+...
+float _inBlack ;
+float _inGamma ;
+float _inWhite ;
+float _outWhite ;
+float _outBlack ;
+```
+
+ - 2. function to create leveled pixel
+
+```
+float getPixelLevel(float pixelColor) {
+    // create a variable to store a pixel channel from our MainTex texture
+    float outPixel ;
+    // remap 0-1 range to 0-255
+    outPixel = (pixelColor * 255.0 ) ;
+    // subtract the black value given to us
+    // by the inBlack property
+    outPixel = max( 0, outPixel - _inBlack ) ;
+    // increase white value of each pixel with white
+    outPixel = saturate( pow(  outPixel / ( _inWhite - _inBlack ) ,  _inGamma ) ) ;
+    // change the final black point and white point and
+    // remap from 0-255 to 0-1
+    outPixel = ( outPixel *( _outWhite - _outBlack ) + _outBlack ) / 255.0 ;
+    return outPixel ;
+}
+```
+
+ - 3. calculate pixel levels
+
+```
+void surf (Input IN, inout SurfaceOutputStandard o) {
+    // Albedo comes from a texture tinted by color
+    fixed4 c = tex2D (_MainTex, IN.uv_MainTex)  ;
+
+    float outRPixel = getPixelLevel(c.r);
+    float outGPixel = getPixelLevel(c.g);
+    float outBPixel = getPixelLevel(c.b);
+
+    o.Albedo = float3(outRPixel,outGPixel,outBPixel);
+    o.Alpha = c.a;
+}
+```
+
+
+
+ - see also 
+    - [nvidia GPU Gems ch22](https://developer.nvidia.com/gpugems/GPUGems/gpugems_ch22.html)
+
+
+---
+
+# 3. Making Your Gam3e Shine with Specular
+
 
