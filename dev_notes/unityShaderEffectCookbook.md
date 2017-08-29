@@ -565,12 +565,142 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
  - 第一种方法， 使用的 World Space
  - 第二种方法， 使用的是 **Tangent Space**.
 
+--- 
 
+ - Q1: 为什么法线纹理通常都是偏蓝色的？
+    - 我们通常见到的这种偏蓝色的法线纹理中，存储的是在Tangent Space中的顶点法线方向。
+ - Q2: 什么是Tangent Space ? （有时也叫object local coordinate system）
+    - 在Tangent Space中，坐标原点就是顶点的位置
+    - 其中z轴是该顶点本身的法线方向（N）
+    - 这样，另外两个坐标轴就是和该点相切的两条切线
+        - 这样的切线本来有无数条，但模型一般会给定该顶点的一个tangent，这个tangent方向一般是使用和纹理坐标方向相同的那条tangent（T）
+        - 而另一个坐标轴的方向（B）就可以通过normal和tangent的叉乘得到。
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_tangent_space.png)
+    - 也就是说，通常我们所见的法线纹理还是基于原法线信息构建的坐标系来构建出来的。
+        - 那种偏蓝色的法线纹理其实就是存储了在每个顶点各自的Tangent Space中，法线的扰动方向。
+        - 如果一个顶点的法线方向不变，那么在它的Tangent Space中，新的normal值就是z轴方向，也就是说值为(0, 0, 1)。
+        - 但这并不是法线纹理中存储的最终值，因为一个向量每个维度的取值范围在(-1, 1)，而纹理每个通道的值范围在(0, 1)，因此我们需要做一个映射，即`pixel = (normal + 1) / 2`。
+        - 这样，之前的法线值(0, 0, 1)实际上对应了法线纹理中RGB的值为(0.5, 0.5, 1)，而这个颜色也就是法线纹理中那大片的蓝色。
+    - **总结一下就是，法线纹理的RGB通道存储了在每个顶点各自的Tangent Space中的法线方向的映射值**
+ - Q3: 对法线纹理的采样要使用UnpackNormal函数 ?
+    - 猜想一方面是为了方便Unity对不同平台做优化和调整，一方面是为了解析不同格式的法线纹理
+ - Q4: 把“Texture Type”设置成“Normal Map”后，有一个复选框是“Create from grayscale”，这个是做什么用的
+    - 这要从法线纹理的种类说起
+    - 我们上述提到的法线纹理，也称“Tangent-Space Normal Map”
+    - 还有一种法线纹理是从“Grayscale Height Map”中生成的
+    - 后面这种纹理本身记录的是相对高度，是一张灰度图，白色表示相对更高，黑色表示相对更低。而法线纹理可以通过对这张图进行图像滤波来实现
 
 --- 
 
 ## Creating procedural textures in the Unity editor
 
+ - Instead of having to manually create some new texture inside an image editing application, you can create a set of pixels in a two-dimensional nature and apply that to a new texture.
+ - This technique can be very useful for painting onto an already-existing texture map
+    - using a dynamically created texture map, to create some interaction between the gamer and the game environment.
+ - The process of creating dynamic textures does rely on creating a separate script that processes the texture for you
+ - Getting Ready
+    - 1. Create a new C# script in your Unity project, and name it ProceduralTexture
+    - 2. Create an plane in your scene, zero-out its **Position** values, and assign the ProceduralTexture.cs script to it.
+    - 3. option: create a new Shader, a new Material,  apply it to plane object  
+        - or just use the default material 
 
+ - How to do it  ...
+
+---
+
+ - 1. Create a variable to control the height and width of our texture, and a Texture2D variable to store our generated texture
+    - We will also need some private variables to store some data while the script is working.
+
+```c#
+public int widthHeight = 512;
+public Texture2D generatedTexture; 
+
+private Material currentMaterial;
+private Vector2 centerPosition;
+```
+
+ - 2. In the Start() function of the script, we need to  rst check to see if the object , to which this script is attached , does in fact have a Material assigned to it. 
+    - If it does, we will call our custom function GenerateParabola() and pass its return value back to our Texture2D variable:
+
+```c#
+void Start () {
+    if (!currentMaterial) {
+        currentMaterial = transform.GetComponent<Renderer>().sharedMaterial;
+        if(!currentMaterial)
+            Debug.LogWarning( "can not find a material on: " + transform.name  ) ; 
+    }
+    if (currentMaterial) {
+        centerPosition = new Vector2( 0.5f, 0.5f ) ;
+        generatedTexture = GenerateParabola()  ; 
+
+        // assign it to this tranform material 
+        currentMaterial.SetTexture( "_MainTex" , generatedTexture  ) ;
+    }
+}
+```
+
+ - 3. `GenerateParabola()` 
+
+```c#
+private Texture2D GenerateParabola() {
+    // Createa new Texture2D
+    Texture2D proceduralTexture = new Texture2D(widthHeight, widthHeight);
+    // get the center of the texture
+    Vector2 centerPixelPositon = centerPosition  * widthHeight ;
+
+    for(int x=0; x< widthHeight ; x++) {
+        for (int y=0; y<widthHeight ; y++) {
+            Vector2 currentPosition = new Vector2(x,y) ;
+            float pixelDistance = Vector2.Distance(currentPosition , centerPixelPositon ) / ( widthHeight * 0.5f ) ;
+            
+            // invert the values and make sure we dont get any negative values
+            // or values above 1
+            pixelDistance = Mathf.Abs( 1-Mathf.Clamp( pixelDistance, 0f, 1f ) ) ;
+
+            Color pixelColor = new Color( pixelDistance , pixelDistance , pixelDistance , 1.0f ) ;
+            proceduralTexture.SetPixel( x,y, pixelColor ) ;
+        }
+    }
+    proceduralTexture.Apply() ;
+    return proceduralTexture ; 
+} // end GenerateParabola
+```
+
+--- 
+
+ - There is more ...
+
+ - 1. Here is the math to create rings around the center of the texture:
+
+```c#
+...
+pixelDistance = Mathf.Abs( 1-Mathf.Clamp( pixelDistance, 0f, 1f ) ) ;
+// effect 1 , new 
+pixelDistance = Mathf.Sin( pixelDistance * 30f ) * pixelDistance  ; // new 
+```
+
+ - 2. The following is the math for creating the dot product of the pixel direction as compared with the right and up world vectors:
+
+```c#
+// effect 2 
+Vector2 pixelDirection = centerPixelPositon - currentPosition ; 
+pixelDirection.Normalize() ;
+float rightDirection = Vector2.Dot(pixelDirection , Vector3.right);
+float leftDirection = Vector2.Dot(pixelDirection , Vector3.left );
+float upDirection = Vector2.Dot(pixelDirection , Vector3.up);
+pixelColor = new Color( rightDirection , leftDirection , upDirection ) ;
+```
+
+ - 3. The following is the math for creating the angle of the pixel direction as compared to world directions:
+
+```c#
+// effect 3 
+Vector2 pixelDirection = centerPixelPositon - currentPosition ; 
+pixelDirection.Normalize();
+float rightDirection = Vector2.Angle(pixelDirection , Vector3.right)/360;
+float leftDirection = Vector2.Angle(pixelDirection , Vector3.left )/360;
+float upDirection = Vector2.Angle(pixelDirection , Vector3.up)/360;
+pixelColor = new Color( rightDirection , leftDirection , upDirection ) ;
+```
 
 
