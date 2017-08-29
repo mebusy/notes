@@ -710,7 +710,7 @@ pixelColor = new Color( rightDirection , leftDirection , upDirection ) ;
 ## Photoshop levels effect
 
  - Getting Ready
-    - create a new Shader and Material , and assign it to an object in a new Unity scene. 
+    - create a new Shader and Material , and assign it to an plan in a new Unity scene. 
     - prepare a source texture with which to test our level's code 
  - how to do it ...
  - 1. Add the following properties
@@ -779,5 +779,70 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
 ---
 
 # 3. Making Your Gam3e Shine with Specular
+
+## Introduction
+
+ - The specularity of an object surface simply describes how shiny it is.
+ - to achieve a realistic Specular effect in your Shaders, you need to include the direction the camera or user is facing the object's surface , and the light direction
+ 
+## Utilizing Unity3D's built-in Specular type
+
+ - Unity has already provided us with a Specular function we can use for our Shaders.
+ - It is called the **BlinnPhong** Specular lighting model.
+ - Getting ready
+    - Create a new Shader and a new material 
+    - Then create a sphere object and place it roughly at world center.
+ - how to do it ...
+ - 1. adding Properties
+
+```
+Properties {
+    _MainTex ("Albedo (RGB)", 2D) = "white" {}
+    _MainTint ("Color", Color) = (1,1,1,1)
+    _SpecColor ( "Specular Color" , Color )  = (1,1,1,1)
+    _SpecPower ( "Specular Power" , Range(0,1) ) = 0.5 
+}
+```
+
+ - 2. declear variable 
+    - Notice that we don't need to declare the `_SpecColor` property as a variable
+    - This is because Unity has already created this variable for us in the built-in Specular model
+
+```
+sampler2D _MainTex;
+float _SpecPower ;
+float4 _MainTint;
+```
+ 
+ - 3. Our Shader now needs to be told which lighting model we want to use to light our model with
+    - let's add BlinnPhong to our #pragma statement like so:
+    - `#pragma surface surf BlinnPhong` 
+    - ps. BlinnPhong is not in `surface surf Standard `
+
+ - 4. We then need to modify our surf() function to look like the following:
+
+```
+void surf (Input IN, inout SurfaceOutput  o)
+{
+    fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _MainTint;
+
+    o.Specular = _SpecPower ;
+    o.Gloss = 1.0 ;
+    o.Albedo = c.rgb;
+    o.Alpha = c.a;
+}
+```
+ 
+ - 5. Now apply a dark color to main tint , and white color to specular color, you will see the effect.
+
+ - How it works ... 
+    - Unity has provided us with a lighting model that has already taken the task of creating your Specular lighting for you
+    - If you look into the Lighting.cginc file , you will notice that you have Lambert and BlinnPhong lighting models available for you to use.  
+    - The moment you compile your Shader with the `#pragma surface surf BlinnPhong`, you are telling the Shader to utilize the BlinnPhong lighting function
+    - so that we don't have to write that code over and over again
+
+---
+
+## Creating a Phong Specular type 
 
 
