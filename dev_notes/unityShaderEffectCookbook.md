@@ -384,23 +384,146 @@ void FixedUpdate() {
     - grass, dirt, rocky dirt, and a rock texture
  - Finally, we will also need a blending texture that is packed with grayscale images. 
     - This will give us the four blending textures that we can use to direct how the color textures will be placed on the object surface.
-    - 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_pack_blendTex.png)
  - 1. We will need five sampler2D objects, or textures, and two color properties
 
 ```
+Properties {
+    _ColorA ("Terrain Color A", Color) = (1,1,1,1)
+    _ColorB ("Terrain Color B", Color) = (1,1,1,1)
+    _RTexture ( "Red Channel Texture" , 2D ) = "" {}
+    _GTexture ( "Green Channel Texture" , 2D ) = "" {}
+    _BTexture ( "Blue Channel Texture" , 2D ) = "" {}
+    _ATexture ( "Alpha Channel Texture" , 2D ) = "" {}
+    _BlendTex ( "Blend Texture" , 2D ) = "" {}
+}
+...
+    float4 _ColorA ;
+    float4 _ColorB ;
+    sampler2D _RTexture ;
+    sampler2D _GTexture ;
+    sampler2D _BTexture ;
+    sampler2D _ATexture ;
+    sampler2D _BlendTex ;
 
 ```
 
  - 2. In order to allow the user to change the tiling rates on a per-texture basis, we will need to modify our Input struct. This will allow us to use the tiling and offset parameters on each texture:
 
 ```
-
+    struct Input {
+        float2 uv_RTexture;
+        float2 uv_GTexture;
+        float2 uv_BTexture;
+        float2 uv_ATexture;
+        float2 uv_BlendTex;
+    };
 ```
  
  - 3. In the surf function, get the texture information and store them into their own variables so we can work with the data in a clean, easy-to-understand way:
 
 ```
+    // get the pixel data from the blend texture
+    // we need a float4 here becaues the texture
+    // will return R,G,B and A or X,Y,Z, and W
+    float4 blendData = tex2D( _BlendTex, IN.uv_BlendTex ) ;
+
+    // get the data from the texture we want to blend
+    float4 rTexData = tex2D( _RTexture, IN.uv_RTexture ) ;
+    float4 gTexData = tex2D( _GTexture, IN.uv_GTexture ) ;
+    float4 bTexData = tex2D( _BTexture, IN.uv_BTexture ) ;
+    float4 aTexData = tex2D( _ATexture, IN.uv_ATexture ) ;
+```
+
+ - 4. Let's blend each of our textures together using the lerp() function.
+    - It takes in three arguments, lerp(value : a, value : b, blend: c). The lerp function takes in two textures and blends them with the  oat value given in the last argument:
 
 ```
+    // now we need to construct a new RGBA value and add all
+    // the different blended texture back together 
+    float4 finalColor ;
+    finalColor = lerp( rTexData , gTexData , blendData.g ) ;
+    finalColor = lerp( finalColor , bTexData , blendData.b ) ;
+    finalColor = lerp( finalColor , aTexData , blendData.a ) ;
+    finalColor.a = 1.0 ;
+```
+ 
+ - 5. Finally, we multiply our blended textures with the color tint values and use the red channel to determine where the two different terrain tint colors go:
+
+```
+    // add on our terrain tinting colors
+    float4 terrainLayers = lerp( _ColorA, _ColorB , blendData.r ) ;
+    finalColor *= terrainLayers ;
+    finalColor = saturate( finalColor ) ;
+
+    o.Albedo = finalColor.rgb;
+    o.Alpha = finalColor.a;
+```
+
+ - lerp( a , b, f )
+    - Involves linear interpolation:(1 – f )i\* a + b \* f
+    - a and b are matching vector or scalar types. 
+    - f can be either a scalar or a vector of the same type as a and b.
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/shader_blending_texture.jpg)
+
+---
+
+## Normal mapping , or "Dot3 bump mapping"
+
+ - One of the most common texture techniques used in today's game development pipelines is the use of **normal maps**. 
+ - These give us the ability to fake the effect of high-resolution geometry on a low-resolution model.
+    - A common use of this technique is to greatly enhance the appearance and details of a low polygon model by generating a normal map from a high polygon model or height map.
+ - This is because instead of performing lighting calculations on a per-vertex level, we are using each pixel in the normal map as a normal on the model, giving us much more resolution on how the lighting should be, while still maintaining the low polygon count of our object.
+ - Unity makes the process of adding normals to your Shaders quite an easy process within the Surface Shader realm, using the *UnpackNormals()* function. Let's see how this is done.
+
+---
+
+ - Create a new Material and Shader 
+ - create a normal map 
+    - unity 中，将它的Texture Type改为Normal Map
+
+---
+
+ - 1. get our Properties block set up to have a color tint and a texture
+
+```
+Properties {
+    _MainTint ("Diffuse Tint", Color) = (1,1,1,1)
+    _NormalTex ( "Normal Map" , 2D ) = "bump" {} 
+}
+...
+float4 _MainTint ;
+sampler2D _NormalTex;
+```
+
+ - 2. make sure that we update the Input struct with the proper variable name, so that we can use the model's UVs for the normal map texture.
+
+```
+struct Input {
+    float2 uv_NormalTex;
+};
+```
+
+ - 3. Finally, we extract the normal information from the normal map texture by using the built-in UnpackNormal() function
+    - Then you only have to apply those new normals to the output of the Surface Shader:
+
+```
+void surf (Input IN, inout SurfaceOutputStandard o) {
+    // Get the normal Data out of the normal map texture
+    // using the UnpackNormal() function
+    float3 normalMap = UnpackNormal(  tex2D( _NormalTex , IN.uv_NormalTex    )  ) ;
+
+    // apply the new normal to the light model 
+    o.Normal = normalMap.rgb ;
+    o.Albedo = _MainTint.rgb;
+    o.Alpha = _MainTint.a;
+}
+```
+
+--- 
+
+ - 将 normal texture 的 wrap mode 改为 `repeat` , 然后修改 
+    - `float3 normalMap = UnpackNormal(  tex2D( _NormalTex , IN.uv_NormalTex * 8  )  ) ;`
+    - 可以产生单张 normal map 重复的效果
 
 
