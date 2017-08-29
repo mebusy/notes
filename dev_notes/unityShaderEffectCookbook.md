@@ -363,6 +363,44 @@ void FixedUpdate() {
 }
 ```
 
+## Packing and blending textures
 
+ - Textures are also useful for storing loads of data
+    - not just pixel colors as we generally tend to think of them, but for storing multiple sets of pixels in both the x and y directions and in the RGBA channels.
+    - We can actually pack multiple images into one single RGBA texture and use each of the R, G, B, and A components as individual textures themselves, by extracting each of those components in the Shader code.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_rgba_pack.png)
+
+ - Why is this helpful?
+    - Well, in terms of the amount of actual memory your application takes up, textures are a large portion of your application's size.
+    - So, to begin reducing the size of your application, we can look at all of the images that we are using in our Shader , and see if we can merge those textures into a single texture.
+ - One example of using these packed textures is when you want to blend a set of textures together onto a single surface. 
+    - You see this most often in terrain type Shaders, where you need to blend nicely into another texture using some sort of control texture, or the packed texture in this case. 
+
+---
+
+ - create a new shader and a new material
+ - gather up 4 textures for a nice terrain Shader,
+    - grass, dirt, rocky dirt, and a rock texture
+ - Finally, we will also need a blending texture that is packed with grayscale images. 
+    - This will give us the four blending textures that we can use to direct how the color textures will be placed on the object surface.
+    - 
+ - 1. We will need five sampler2D objects, or textures, and two color properties
+
+```
+
+```
+
+ - 2. In order to allow the user to change the tiling rates on a per-texture basis, we will need to modify our Input struct. This will allow us to use the tiling and offset parameters on each texture:
+
+```
+
+```
+ 
+ - 3. In the surf function, get the texture information and store them into their own variables so we can work with the data in a clean, easy-to-understand way:
+
+```
+
+```
 
 
