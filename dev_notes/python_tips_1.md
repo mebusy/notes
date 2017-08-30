@@ -274,6 +274,13 @@ or
 {1: 'a', 2: 'b', 3: 'c'}
 ```
 
+### convert a list to dict 
+
+```
+dict(zip(*[iter( ls )]*2))  
+```
+
+
 <h2 id="ab8027b580ee885ee2c146add9957e1c"></h2>
 
 ### 类型判断
