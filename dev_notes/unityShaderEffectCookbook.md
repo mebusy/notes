@@ -845,4 +845,114 @@ void surf (Input IN, inout SurfaceOutput  o)
 
 ## Creating a Phong Specular type 
 
+ - The most basic and performance-friendly Specular type is the **Phong** Specular effect.
+ - While it isn't the most realistic in terms of accurately modeling the reflected Specular, it gives a great approximation that performs well in most situations
+ - Plus, if your object is further away from the camera and the need for a very accurate Specular isn't needed, this is a great way to provide a Specular effect on your Shaders.
+ - In this recipe, we will be covering how to implement the per vertex version of the effect , and also see how to implement the per pixel version using some new parameters in the surface Shader's Input struct. 
+ - Getting ready
+    - Create a new Shader, Material, and a sphere
+ - How to do it ...
+
+---
+
+ 1. properties
+
+```
+Properties {
+    _MainTint ("Diffuse Tint", Color) = (1,1,1,1)
+    _MainTex ("Base (RGB)", 2D) = "white" {}
+    _SpecularColor ("Specular Color", Color) = (1,1,1,1)
+    _SpecPower ("Specular Power", Range(0.1,30)) = 1
+}
+...
+sampler2D _MainTex;
+float4 _MainTint;
+float4 _SpecularColor;
+float _SpecPower;
+```
+
+
+ 2. tell the CGPROGRAM block that it needs to use our custom lighting function instead of one of the built-in ones
+    - `#pragma surface surf   Phong`
+
+ 3. Now we have to add our custom lighting model so that we can compute our own Phong Specular
+
+```
+    inline fixed4 LightingPhong (SurfaceOutput s, fixed3 lightDir, half3 viewDir, fixed atten)
+    {
+        //Calculate diffuse and the reflection vector
+        float diff = dot(s.Normal, lightDir);
+        float3 reflectionVector = normalize((2.0 * s.Normal * diff) - lightDir);
+        
+        //Calculate the Phong specular
+        float spec = pow(max(0,dot(reflectionVector, viewDir)), _SpecPower);
+        float3 finalSpec = _SpecularColor.rgb * spec;
+        
+        //Create final color
+        fixed4 c;
+        c.rgb = (s.Albedo * _LightColor0.rgb * diff) + (_LightColor0.rgb * finalSpec);
+        c.a = 1.0;
+        return c;
+    }
+```
+
+ 4. now adjust main tint color to dark color , see the effect 
+
+---
+
+## Creating a BlinnPhong Specular type
+
+ - **Blinn** is another more efficient way of calculating and estimating specularity.
+ - It is done by getting the half vector from the view direction and the light direction. 
+ - If you actually look at the built-in BlinnPhong lighting model included in the UnityCG.cginc file, you will notice that it is using the half vector as well
+ - It is just a simpler version of the full Phong calculation.
+
+ - Getting start 
+    - create a new shader and material -- CustomBlinnPhong  , and a sphere
+
+ - How to do it ...
+
+---
+
+ 1. Properties
+
+```
+_MainTint ("Diffuse Tint", Color) = (1,1,1,1)
+_MainTex ("Base (RGB)", 2D) = "white" {}
+_SpecularColor ("Specular Tint", Color) = (1,1,1,1)
+_SpecPower ("Specular Power", Range(0.1, 120)) = 3
+
+#pragma surface surf CustomBlinnPhong
+
+sampler2D _MainTex;
+float4 _MainTint;
+float4 _SpecularColor;
+float _SpecPower;
+```
+
+ 2. create our custom lighting model that will process our Diffuse and Specular calculations.
+
+```
+inline fixed4 LightingCustomBlinnPhong (SurfaceOutput s, fixed3 lightDir, half3 viewDir, fixed atten)
+{
+    float3 halfVector = normalize (lightDir + viewDir);
+
+    float diff = max (0, dot (s.Normal, lightDir));
+
+    float NdotH = max (0, dot (s.Normal, halfVector));
+    float spec = pow (NdotH, _SpecPower) ;
+
+    float4 c;
+    c.rgb = (s.Albedo * _LightColor0.rgb * diff) + (_LightColor0.rgb * _SpecularColor.rgb * spec) * (atten * 2);
+    c.a = s.Alpha;
+    return c;
+}
+```
+
+---
+
+## Masking Specular with textures
+
+
+
 
