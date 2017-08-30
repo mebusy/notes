@@ -280,6 +280,12 @@ or
 dict(zip(*[iter( ls )]*2))  
 ```
 
+or more simple
+
+```
+i = iter(ls)
+dict(zip(i, i))   # you must use a single iterator 
+```
 
 <h2 id="ab8027b580ee885ee2c146add9957e1c"></h2>
 
