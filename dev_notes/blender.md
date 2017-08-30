@@ -1016,8 +1016,158 @@ def tell_time(dummy):
 bpy.app.handlers.scene_update_pre.append(tell_time)
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_clock_example.png)
 
+ - To instantiate a handler, we declare a function 
+    - `def tell_time(dummy):`
+ - then add it to one of the possible lists of handlers in Blender
+    - `bpy.app.handlers.scene_update_pre`
+ - In actuality, it is a text mesh that is updating many times per second
+
+**Managing Handlers**
+
+ - `bpy.app.handlers.scene_update_pre`  is a list 
+ - so we can use methods such as `append(), pop(), remove(), and clear() ` to manage our handler functions
+
+```python
+# Will only work if 'tell_time' is in scope
+bpy.app.handlers.scene_update_pre.remove(tell_time)
+
+# Useful in development for a clean slate
+bpy.app.handlers.scene_update_pre.clear()
+
+# Remove handler at the end of the list and return it
+bpy.app.handlers.scene_update_pre.pop()
+``` 
  
+**Types of Handlers**
+
+Table 6-1. Types of Handlers
+
+Handler | Called On
+--- | ---
+frame_change_post | After frame change during rendering or playback 
+frame_change_pre | Before frame change during rendering or playback 
+render_cancel | Canceling a render job
+render_complete | Completing a render job
+render_init | Initializing a render job
+render_post | After render
+render_pre | Before render
+render_stats | Printing render statistics
+render_write | Directly after frame is written in rendering 
+load_post | After loading a .blend file
+load_pre | Before loading a .blend file
+save_post | After saving a .blend file
+save_pre | Before saving a .blend file
+scene_update_post | After updating scene data (e.g., 3D Viewport) 
+scene_update_pre  | Before updating scene data (e.g. ,3D Viewport) 
+game_pre  | Starting the game engine
+game_post  | Ending the game engine
+
+**Persistent Handlers**
+
+ - If we want handlers to persist after loading a .blend file, we can add the @persistent decorator
+ - Normally, handlers are freed when loading a .blend file
+ - so certain handlers like bpy.app.handlers.load_post necessitate this decorator
+ 
+
+Listing 6-3. Printing File Diagnostics on Load
+
+```python
+import bpy
+from bpy.app.handlers import persistent
+
+@persistent
+def load_diag(dummy):
+    obs = bpy.context.scene.objects
+    print('\n\n### File Diagnostics ###') 
+    print('Objects in Scene:', len(obs)) 
+    for ob in obs:
+        print(ob.name, 'of type', ob.type)
+
+bpy.app.handlers.load_post.append(load_diag)
+
+# After reloading startup file:
+#
+# ### File Diagnostics ###
+# Objects in Scene: 3
+# Cube of type MESH
+# Lamp of type LAMP
+# Camera of type CAMERA
+```
+
+**Handlers in blf and bgl**
+
+ - Now that we have a basic understanding of handlers, we will detail how to draw with OpenGL tools directly on the 3D Viewport. 
+ - The handlers used for drawing on the 3D Viewport are not part of `bpy.app.handlers`
+    - rather they are undocumented member functions of `bpy.types.SpaceView3D`.
+
+Listing 6-4. Drawing the Name of an Object
+
+```python
+import bpy
+from bpy_extras import view3d_utils
+import bgl
+import blf
+
+# Color and font size of text
+rgb_label = (1, 0.8, 0.1, 1.0)
+font_size = 16
+font_id = 0
+
+# Wrapper for mapping 3D Viewport to OpenGL 2D region
+
+def gl_pts(context, v):
+    return view3d_utils.location_3d_to_region_2d( context.region, context.space_data.region_3d,v)
+
+# Get the active object, find its 2D points, draw the name
+
+def draw_name(context):
+    ob = context.object
+    v = gl_pts(context, ob.location)
+    bgl.glColor4f(*rgb_label)
+    blf.size(font_id, font_size, 72)
+    blf.position(font_id, v[0], v[1], 0)
+    blf.draw(font_id, ob.name)
+
+# Add the handler
+# arguments:
+# function = draw_name,
+# tuple of parameters = (bpy.context,), # constant1 = 'WINDOW',
+# constant2 = 'POST_PIXEL'
+bpy.types.SpaceView3D.draw_handler_add( draw_name, (bpy.context,), 'WINDOW', 'POST_PIXEL')
+```
+
+ - Handlers created with bpy.types.SpaceView3D are not as easily accessible, handlers and are persistent by default. 
+ - Unless we create better controls for flicking these handlers on and off, we will have to restart Blender to detach this handler.
+ - In the next section, we place this handler in an add-on that allows us to flick it on and off with a button. Also, we store the handler in a bpy.types.Operator so we will not lose our reference to the function after adding it to the handler
+
+TODO
+
+---
+
+## 7 Advanced Add-On Development
+
+TODO
+
+## 8 Textures and Rendering
+
+### Vocabulary of Textures
+
+**Types of Influence in Blender**
+
+ - Properties ➤ Materials ➤ Influence.
+ - Diffuse textures are for coloring the object
+    - Diffuse textures can describe the color, intensity, alpha levels, and translucency of objects in Blender
+ - Shading textures describe how the object interacts with others in the scene
+    - If we want the object to mirror another, to emit color onto another, or spill ambient light into the scene, we specify the requisite shading properties in Blender.
+ - Specular textures describe how the object reacts to light
+ - Geometry textures allows the object to affect the geometric appearance of the object.
+    - For example, if we supplied black and white stripes to a geometric map and specified a normal map, we would see 3D ridges in our model. 
+    - It is important to note that these effects are realized only in rendering, not in the mesh data itself.
+
+
+**Types of Textures in Blender**
 
 
 
