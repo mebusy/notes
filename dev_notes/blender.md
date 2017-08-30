@@ -971,7 +971,53 @@ Here are the requirements to register a panel. Reference the SimplePanel class i
  1. Declare a class that inherits bpy.types.Panel. This will appear as 
     - `class MyNewPanel(bpy.types.Panel):`
  2. Declare `bl_space_type, bl_region_type, bl_category, and bl_label`. 
+    - page 86
 
+TODO
+
+---
+
+## 6 The bgl and blf Modules
+
+ - The bgl module is a wrapper for OpenGL functions commonly used by Blender in the 3D Viewport and Blender Game Engine. 
+ - The blf module is a small set of functions for displaying text and drawing fonts. 
+ 
+### Instantaneous Drawing
+
+ - The bgl and blf modules cannot be taught in the same way that other Blender Python modules can.
+ - When a line or character is drawn on the 3D Viewport by either of these modules, it is only visible for a single frame.
+ - To effectively use the bgl and blf modules, we must use them within a handler function that is set to update at every frame change. 
+    - Thus, we start with a handler example using non-OpenGL concepts.
+
+### Handlers Overview
+
+**Clock Example**
+
+Listing 6-1. Blender Clock Handler Example
+
+```python
+import bpy
+import datetime
+
+# Clear the scene
+bpy.ops.object.select_all(action='SELECT')
+bpy.ops.object.delete()
+
+# Create an object for our clock
+bpy.ops.object.text_add(location=(0, 0, 0))
+bpy.context.object.name = 'MyTextObj'
+
+# Create a handler function
+def tell_time(dummy):
+    current_time = datetime.datetime.now().strftime('%H:%M:%S.%f')[:-3] 
+    bpy.data.objects['MyTextObj'].data.body = current_time
+
+# Add to the list of handler functions "scene_update_pre"
+bpy.app.handlers.scene_update_pre.append(tell_time)
+```
+
+
+ 
 
 
 
