@@ -42,7 +42,8 @@ http://zvon.org/comp/r/tut-XPath_1.html
     - `//BBB[not(@*)]`
         - BBB without an attribute
     - to compare with mulitple attributes ,use `and`
-      - `//BBB[@id and @id2]`
+        - `//BBB[@id and @id2]`  , or 
+        - `//BBB[@id][@id2]`
  - Attribute values
     - `//BBB[@id='b1']`
         - BBB elements which have attribute id with value b1 :  `/AAA/<BBB id = "b1"/> `
