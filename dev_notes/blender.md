@@ -1183,9 +1183,72 @@ TODO
 Listing 8-1. Loading Textures and Generating UV Maps
 
 
+[uv_texture.py](https://raw.githubusercontent.com/mebusy/notes/master/codes/blender/ut.py)
 
 Note: after running this script, view the results by selecting rendered view in the 3d Viewport header
 
+**Textures Versus Materials in Blender**
 
+ - Texture is a broad term in 3D modeling. It can refer to diffuse textures, color textures, gradient textures, bump maps, and more. 
+    - It is important to note that we can map all of these forms of textures to an object simultaneously.
+    - For example, a set of shingles on the roof of a house may require an image texture, a diffuse map, and a bump map in order to appear realistic when rendered.
+ - A material in Blender is a collection of texture-related data. 
+    - It may include any of the images and maps mentioned previously, and it may include others like normal and alpha maps. 
+    - So, we must first build the material from its constituent textures, then assign the material to the object. 
+    - Regardless of whether we have one or many textures comprising a material, texture data must be assigned to the material.
+    - Then, materials must be assigned to the object.
+ 
+**UV Coordinates and Loops**
+
+ - The uv coordinate data layer we aim to access is contained within a loops object
+ - Loops can be thought of as 3D polygons that trace a set of vertices of a 3D object.
+ - Loops can span multiple faces, but must start and end on the same point.
+ - When loops span multiple faces, they are intended to capture a localized set of adjacent faces.
+ - Fortunately, loops data objects in Blender have a 1-to-1 correspondence with bmesh.faces[].verts[] objects, which we are used to working with.
+  - In other words, the (u, v) coordinates accessed by bm.faces[f]. loops[v][uv_layer].uv correspond to the (x, y, z) coordinates accessed by bm.faces[f].verts[v].co for any two integers, f and v.
+  - It is important to note that two integers f and v may not specify a unique point in 3D space. In a default Blender 2.78c cube, as it appears in the startup file, f:v pairs 0:2, 3:3, and 4:0 all correspond to the point (-1.0, -1.0, -1.0) in 3D space. When the cube is textured, these uv coordinates will typically be unique, because they will all correspond to different parts of the texture map.
+
+### Removing Unused Textures and Materials
+
+ - As we continually test scripts, our materials and textures data can quickly become cluttered without our realizing.
+ - Blender will rename textures to my_texture.001, my_texture.002, etc. when we neglect to delete them.
+ - Textures and materials must have no users in order to be eligible for deletion. In this case, users refers to the number of objects that currently have it assigned. 
+ - To delete textures and materials, we loop through our bpy.data.materials and bpy.data.textures datablocks and call .remove() on those that are not in use.
+
+```python
+import bpy
+
+mats = bpy.data.materials 
+for dblock in mats:
+    if not dblock.users: 
+        mats.remove(dblock)
+
+texs = bpy.data.textures 
+for dblock in mats:
+    if not dblock.users: 
+        texs.remove(dblock)
+```
+
+### Rendering Using Blender Render
+
+We introduce and explain how to position lights and cameras in a scene, then call the rendering function to create an image.
+
+**Adding Lights**
+
+ - In the 3D Viewport Header, we can navigate to Add ➤ Lamp to select any of Blender’s built-in lights.
+ - Using Python tooltips, we can see that they all rely on the function bpy.ops.object.lamp_add(), with the type= parameter determining the type of light. 
+ - We have the options SUN, POINT, SPOT, HEMI, and AREA. Each of these types has its own sets of parameters to configure.
+
+Table 8-1. Types of Lights
+
+Type | Description
+--- | ---
+Point | Emits lights equally in all directions; rotation has no effect
+Spot | Emits a cone of light in a particular direction
+Area | Emits light from a rectangular area; follows a Lambert distribution 
+Hemispheric | Similar to area, but has spherical curvature
+Sun | Emits orthogonal light in a particular direction; position has no effect
+
+**Adding Cameras**
 
 
