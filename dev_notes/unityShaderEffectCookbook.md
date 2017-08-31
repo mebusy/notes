@@ -953,6 +953,145 @@ inline fixed4 LightingCustomBlinnPhong (SurfaceOutput s, fixed3 lightDir, half3 
 
 ## Masking Specular with textures
 
+In this next recipe, we will look at how we can use textures to drive our Specular and Specular power attributes.
+
+The technique of using Specular textures is seen in most modern game development pipelines because it allows the 3D artists to control the  nal visual effect on a per-pixel basis.
+
+This recipe will introduce you to some new concepts, such as
+ 
+ - creating your own Input struct
+ - and learning how the data is being passed around from the output struct
+ - to the lighting function, to the Input struct, and to the surf() function
+
+---
+
+ - Getting ready
+    - create a new Shader, Material, and a sphere
+    - We will also need a Specular texture to use. Any texture will do as long as it has some nice variation in colors and patterns.
+ - How to do it ...
+ - 1. Properties
+
+```
+Properties {
+    //Set properties here so we can feed our shader information
+    //from the inspector in the editor
+    _MainTint ("Diffuse Tint", Color) = (1,1,1,1)
+    _MainTex ("Base (RGB)", 2D) = "white" {}
+    _SpecularColor ("Specular Tint", Color) = (1,1,1,1)
+    _SpecularMask ("Specular Texture", 2D) = "white" {}
+    _SpecPower ("Specular Power", Range(0.1, 120)) = 3
+}
+
+...
+
+    sampler2D _MainTex;
+    sampler2D _SpecularMask;
+    float4 _MainTint;
+    float4 _SpecularColor;
+    float _SpecPower;
+```
+
+ - 2. Now we have to add our own custom **Output** struct
+    - This will allow us to store more data for use between our surf function and our lighting model.
+
+```
+    //Create a custom Output Struct
+    struct SurfaceCustomOutput
+    {
+        fixed3 Albedo;
+        fixed3 Normal;
+        fixed3 Emission;
+        fixed3 SpecularColor;
+        half Specular;
+        fixed Gloss;
+        fixed Alpha;
+    };
+```
+
+ - 3. Just after the Output struct we just entered, we need to add our custom lighting model
+
+```
+    #pragma surface surf CustomPhong
+    
+    ...
+
+    inline fixed4 LightingCustomPhong (SurfaceCustomOutput s, fixed3 lightDir, half3 viewDir, fixed atten)
+    {
+        //Calculate diffuse and the reflection vector
+        float diff = dot(s.Normal, lightDir);
+        float3 reflectionVector = normalize(2.0 * s.Normal * diff - lightDir);
+
+        //Calculate the Phong specular
+        float spec = pow(max(0.0f,dot(reflectionVector, viewDir)), _SpecPower) * s.Specular;
+        float3 finalSpec = s.SpecularColor * spec * _SpecularColor.rgb;
+
+        //Create final color
+        fixed4 c;
+        c.rgb = (s.Albedo * _LightColor0.rgb * diff) + (_LightColor0.rgb * finalSpec);
+        c.a = s.Alpha;
+        return c;
+    }
+```
+
+ - 4. Since we are going to be using a texture to modify the values of our base Specular calculation, we need to store another set of UVs for that texture specifically.
+    - This is done inside the Input struct by placing the word uv in front of the variable's name that is holding the texture. 
+
+```
+    struct Input {
+        //Get uv information from the Input Struct
+        float2 uv_MainTex;
+        float2 uv_SpecularMask;
+    };
+```
+
+ - 5. To finish off the Shader, we just need to modify our surf() function with the following code.
+    - This will let us pass the texture information to our lighting model function
+    - so that we can use the pixel values of the texture to modify our Specular values in the lighting model function
+
+```
+    void surf (Input IN, inout SurfaceCustomOutput  o) {
+        // Albedo comes from a texture tinted by color
+        fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _MainTint;
+        float4 specMask = tex2D(_SpecularMask, IN.uv_SpecularMask) * _SpecularColor;
+
+        o.Albedo = c.rgb;
+
+        o.Specular = specMask.r;
+
+        // Metallic and smoothness come from slider variables
+        o.SpecularColor = specMask.rgb;
+        o.Alpha = c.a;
+    }
+```
+
+ - How it works...
+    - we are now going to modify our Specular with a per-pixel texture, giving our Specular much more visual interest and depth.
+    - To do this, we need to be able to pass information from our surface function to our lighting functions. 
+        - The reason is that we can't get the UVs of a surface within the lighting function.
+    - You can procedurally generate UVs in the lighting function but if you want to unpack a texture and get its pixel information, you have to use the Input struct,
+        - the only way to access the data from the Input struct is to use the surf() function.
+    - So to set up this data relationship, we have to create our own SurfaceCustomOutput struct.
+        - This struct is the container for all the  nal data in a Surface Shader and luckily for us
+        - the lighting function and the surf() function can both access the data from it
+
+```
+// data flow ?
+struct Input -> surf() -> struct Output 
+struct Output -> Lighting<Name> 
+```
+
+---
+
+## Metallic versus soft Specular 金属与软镜面
+
+ - In this section, we are going to explore a way to create a Shader that gives us the versatility to have a soft Specular as well as a hard Specular. 
+ - You will  nd in most productions that you will need to create a nice set of Shaders to perform many tasks.
+ - it is common for Shader programmers to create a set of Shaders that can both be used for cloth and for metal in one Shader  le.
+
+---
+
+ - Getting ready ...
+
 
 
 
