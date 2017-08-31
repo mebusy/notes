@@ -1251,4 +1251,58 @@ Sun | Emits orthogonal light in a particular direction; position has no effect
 
 **Adding Cameras**
 
+Rendering a scene requires a camera. To procedurally add a camera, we must position it, adjust its direction, and modify its parameters. We will use the functions in Listing 8-3 to position and direct the cameras as well as lights.
+
+
+The biggest problem we must solve when procedurally generating cameras is determining the distance and field of view such that the entire scene will be captured without appearing too small in the rendering.
+
+ - The field of view (FoV) is a pair of two angles (θx , θy) projecting outward from a camera that defines an infinitely extending rectangular pyramid. 
+ - To give some perspective, an iPhone 6 camera has a FoV of about (63°, 47°) degrees when in landscape mode. 
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_fov.png)
+
+> Figure 8-5. Field of view along the y-axis
+
+Listing 8-3. Utilities for Lights and Cameras
+
+```python
+# Point a light or camera at a location specified by "target"
+def point_at(ob, target): 
+    ob_loc = ob.location
+    dir_vec = target - ob.location
+    ob.rotation_euler = dir_vec.to_track_quat('-Z', 'Y').to_euler()
+
+# Return the aggregate bounding box of all meshes in a scene
+def scene_bounding_box():
+    # Get names of all meshes
+    mesh_names = [v.name for v in bpy.context.scene.objects if v.type == 'MESH']
+    
+    # Save an initial value
+    # Save as list for single-entry modification 
+    co = coords(mesh_names[0])[0]
+    bb_max = [co[0], co[1], co[2]]
+    bb_min = [co[0], co[1], co[2]]
+
+    # Test and store maxima and minima
+    for i in range(0, len(mesh_names)): 
+        co = coords(mesh_names[i])
+        for j in range(0, len(co)):
+            for k in range(0, 3):
+                if co[j][k] > bb_max[k]:
+                    bb_max[k] = co[j][k] 
+                if co[j][k] < bb_min[k]: 
+                    bb_min[k] = co[j][k]
+
+    # Convert to tuples
+    bb_max = (bb_max[0], bb_max[1], bb_max[2])
+    bb_min = (bb_min[0], bb_min[1], bb_min[2])
+    
+    return [bb_min, bb_max]
+```
+
+**Rendering an Image**
+
+
+
 
