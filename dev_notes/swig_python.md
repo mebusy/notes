@@ -1128,6 +1128,227 @@ struct CDA {
 
 ## 36.8 Typemaps
 
+This section describes how you can modify SWIG's default wrapping behavior for various C/C++ datatypes using the %typemap directive. 
+
+Before proceeding, it should be stressed that typemaps are not a required part of using SWIG---the default wrapping behavior is enough in most cases.
+
+Typemaps are only used if you want to change some aspect of the primitive C-Python interface or if you want to elevate your guru status.
+
+### 36.8.1 What is a typemap?
+
+A typemap is nothing more than a code generation rule that is attached to a specific C datatype.
+
+For example, to convert integers from Python to C, you might define a typemap like this:
+
+```c
+%module example
+
+%typemap(in) int {
+  $1 = (int) PyLong_AsLong($input);
+  printf("Received an integer : %d\n", $1);
+}
+%inline %{
+extern int fact(int n);
+%}
+```
+
+ - In this case, the "in" method refers to the conversion of input arguments to C/C++
+ - The datatype int is the datatype to which the typemap will be applied.  
+ - In this code a number of special variable prefaced by a $ are used
+    - The $1 variable is placeholder for a local variable of type int
+    - The $input variable is the input object of type PyObject *
+
+When this example is compiled into a Python module, it operates as follows:
+
+```python
+>>> from example import *
+>>> fact(6)
+Received an integer : 6
+720
+```
+
+In this example, the typemap is applied to all occurrences of the int datatype. You can refine this by supplying an optional parameter name. For example:
+
+```
+%module example
+
+%typemap(in) int nonnegative {
+  $1 = (int) PyLong_AsLong($input);
+  if ($1 < 0) {
+    PyErr_SetString(PyExc_ValueError, "Expected a nonnegative value.");
+    SWIG_fail;
+  }
+}
+%inline %{
+extern int fact(int nonnegative);
+%}
+```
+ 
+ - In this case, the typemap code is only attached to arguments that exactly match int nonnegative.
+
+When you define a typemap for int, that typemap applies to int and qualified variations such as const int. In addition, the typemap system follows typedef declarations. For example:
+
+```
+%typemap(in) int n {
+  $1 = (int) PyLong_AsLong($input);
+  printf("n = %d\n", $1);
+}
+%inline %{
+typedef int Integer;
+extern int fact(Integer n);    // Above typemap is applied
+%}
+```
+
+Typemaps can also be defined for groups of consecutive arguments. For example:
+
+```
+%typemap(in) (char *str, int len) {  // 注意这里有个括号
+  $1 = PyString_AsString($input);
+  $2 = PyString_Size($input);
+};
+
+int count(char c, char *str, int len);
+```
+
+ - When a multi-argument typemap is defined, the arguments are always handled as a single Python object. This allows the function to be used like this
+    - notice how the length parameter is omitted
+
+```
+>>> example.count('e', 'Hello World')
+1
+>>>
+```
+
+### 36.8.2 Python typemaps
+
+The previous section illustrated an "in" typemap for converting Python objects to C.
+
+A variety of different typemap methods are defined by the Python module. 
+
+For example, to convert a C integer back into a Python object, you might define an "out" typemap like this:
+
+```
+%typemap(out) int {
+    $result = PyInt_FromLong((long) $1);
+}
+```
+
+> A detailed list of available methods can be found in the " Typemaps" chapter.
+
+However, the best source of typemap information (and examples) is probably the Python module itself.
+
+In fact, all of SWIG's default type handling is defined by typemaps. You can view these typemaps by looking at the files in the SWIG library.
+
+
+### 36.8.3 Typemap variables
+
+Within typemap code, a number of special variables prefaced with a $ may appear.
+
+A full list of variables can be found in the " Typemaps" chapter. This is a list of the most common variables:
+
+variable  |  describe
+--- | --- 
+$1 | A C local variable corresponding to the actual type specified in the %typemap directive. For input values, this is a C local variable that's supposed to hold an argument value. For output values, this is the raw result that's supposed to be returned to Python.
+$input | A PyObject * holding a raw Python object with an argument or variable value.
+$result | A PyObject * that holds the result to be returned to Python.
+$1_name | The parameter name that was matched.
+$1_type | The actual C datatype matched by the typemap.
+$1_ltype | An assignable version of the datatype matched by the typemap (a type that can appear on the left-hand-side of a C assignment operation).  This type is stripped of qualifiers and may be an altered version of $1_type. All arguments and local variables in wrapper functions are declared using this type so that their values can be properly assigned.
+$symname | The Python name of the wrapper function being created. 
+
+
+### 36.8.4 Useful Python Functions
+
+When you write a typemap, you usually have to work directly with Python objects. The following functions may prove to be useful.
+
+Python Integer Functions
+
+```
+PyObject *PyInt_FromLong(long l);
+long      PyInt_AsLong(PyObject *);
+int       PyInt_Check(PyObject *);
+```
+
+Python Floating Point Functions
+
+```
+PyObject *PyFloat_FromDouble(double);
+double    PyFloat_AsDouble(PyObject *);
+int       PyFloat_Check(PyObject *);
+```
+
+Python String Functions
+
+```
+PyObject *PyString_FromString(char *);
+PyObject *PyString_FromStringAndSize(char *, lint len);
+int       PyString_Size(PyObject *);
+char     *PyString_AsString(PyObject *);
+int       PyString_Check(PyObject *);
+```
+
+Python List Functions
+
+```
+PyObject *PyList_New(int size);
+int       PyList_Size(PyObject *list);
+PyObject *PyList_GetItem(PyObject *list, int i);
+int       PyList_SetItem(PyObject *list, int i, PyObject *item);
+int       PyList_Insert(PyObject *list, int i, PyObject *item);
+int       PyList_Append(PyObject *list, PyObject *item);
+PyObject *PyList_GetSlice(PyObject *list, int i, int j);
+int       PyList_SetSlice(PyObject *list, int i, int , PyObject *list2);
+int       PyList_Sort(PyObject *list);
+int       PyList_Reverse(PyObject *list);
+PyObject *PyList_AsTuple(PyObject *list);
+int       PyList_Check(PyObject *);
+```
+
+Python Tuple Functions
+
+```
+PyObject *PyTuple_New(int size);
+int       PyTuple_Size(PyObject *);
+PyObject *PyTuple_GetItem(PyObject *, int i);
+int       PyTuple_SetItem(PyObject *, int i, PyObject *item);
+PyObject *PyTuple_GetSlice(PyObject *t, int i, int j);
+int       PyTuple_Check(PyObject *);
+```
+
+Python Dictionary Functions
+
+```
+PyObject *PyDict_New();
+int       PyDict_Check(PyObject *);
+int       PyDict_SetItem(PyObject *p, PyObject *key, PyObject *val);
+int       PyDict_SetItemString(PyObject *p, const char *key, PyObject *val);
+int       PyDict_DelItem(PyObject *p, PyObject *key);
+int       PyDict_DelItemString(PyObject *p, char *key);
+PyObject* PyDict_Keys(PyObject *p);
+PyObject* PyDict_Values(PyObject *p);
+PyObject* PyDict_GetItem(PyObject *p, PyObject *key);
+PyObject* PyDict_GetItemString(PyObject *p, const char *key);
+int       PyDict_Next(PyObject *p, Py_ssize_t *ppos, PyObject **pkey, PyObject **pvalue);
+Py_ssize_t PyDict_Size(PyObject *p);
+int       PyDict_Update(PyObject *a, PyObject *b);
+int       PyDict_Merge(PyObject *a, PyObject *b, int override);
+PyObject* PyDict_Items(PyObject *p);
+```
+
+Python File Conversion Functions
+
+```
+PyObject *PyFile_FromFile(FILE *f);
+FILE     *PyFile_AsFile(PyObject *);
+int       PyFile_Check(PyObject *);
+```
+
+---
+
+## 36.9 Typemap Examples
+
+
+
 
 
 
