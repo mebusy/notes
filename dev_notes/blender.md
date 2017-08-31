@@ -1169,7 +1169,22 @@ TODO
 
 **Types of Textures in Blender**
 
+ - Properties ➤ Materials ➤ Type
+ - The Image and Video and Environment Map options can import image and video files.
+ - The remaining textures can be parameterized in Blender to achieve the desired result.
 
+### Adding and Configuring Textures
+
+ - To map a square image as a texture to a square face of a mesh, wespecifyuvcoordinates[(0, 0), (1, 0), (0, 1), (1, 1)]tothebottom-left,bottom-right,top-left,and top-right points of the mesh, respectively.
+ - As shapes of faces become more complicated, so do the processes required to achieve the desired texture mappings.
+
+**Loading Textures and Generating UV Mappings**
+
+Listing 8-1. Loading Textures and Generating UV Maps
+
+
+
+Note: after running this script, view the results by selecting rendered view in the 3d Viewport header
 
 
 
