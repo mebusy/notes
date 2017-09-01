@@ -1315,6 +1315,7 @@ def scene_bounding_box():
  - We can also render a snapshot of the 3D Viewport using OpenGL render. This will capture basic features of the scene similar to how we see the 3D Viewport in Object Mode with Solid view. 
     - Note that we can see both the lights and camera, but not the materials, in this view. 
     - When we call bpy.ops.render.opengl(), setting `view_context = True` will cause Blender to use the 3D Viewport camera (the user’s view) rather than the scene camera.
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/opengl_render.png)
 
 Listing 8-4. Rendering Using Blender Render and OpenGL Render
 
