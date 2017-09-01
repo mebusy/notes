@@ -926,7 +926,7 @@ _SpecPower ("Specular Power", Range(0.1, 120)) = 3
 
 sampler2D _MainTex;
 float4 _MainTint;
-float4 _SpecularColor;
+float4 _SpecularColor;u3d_shader_meta_soft_effect.png
 float _SpecPower;
 ```
 
@@ -1111,11 +1111,11 @@ Properties
     _Fresnel ("Fresnel Value", Range(0,1.0)) = 0.05
 }
 
-    sampler2D _MainTex;
+    sampler2D _MainTex;u3d_shader_meta_soft_effect.png
     sampler2D _RoughnessTex;
     float _Roughness;
     float _Fresnel;
-    float _SpecPower;
+    float _SpecPower;u3d_shader_meta_soft_effect.png
     float4 _MainTint;
     float4 _SpecularColor;
 ```
@@ -1148,7 +1148,7 @@ float VdotH = saturate(dot(halfVector, normalize(viewDir)));
 ```c#
 //Micro facets distribution
 float geoEnum = 2.0*NdotH;
-float3 G1 = (geoEnum * NdotV)/NdotH;
+float3 G1 = (geoEnum * NdotV)/NdotH;u3d_shader_meta_soft_effect.pngu3d_shader_meta_soft_effect.png
 float3 G2 = (geoEnum * NdotL)/NdotH;
 float3 G =  min(1.0f, min(G1, G2));
 
@@ -1181,6 +1181,24 @@ c.rgb = (s.Albedo * _LightColor0.rgb * NdotL)+  (spec * _SpecularColor.rgb) * (a
 c.a = s.Alpha;
 return c;
 ```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_meta_soft_effect.png)
+
+## Creating an Anisotropic Specular type
+
+**Anisotropic** is a type of Specular or re ection that simulates the directionality of grooves in a surface, and modi es/stretches the Specular in the perpendicular direction. 
+
+It is very useful when you want to simulate brushed metals, not a metal with a clear, smooth, polished surface.
+
+Imagine the Specular you see when you look at the data side of a CD or DVD, or the way Specular is shaped at the bottom of a pot or pan.
+
+This recipe will introduce you to the concept of augmenting your Specular highlights to achieve different types of brushed surfaces.
+
+In future recipes, we will look at ways in which we can use the concepts of this recipe to achieve other effects, such as stretched re ections and hair,
+but here we are going to learn the fundamentals of the technique first.
+
+
+
 
 
 
