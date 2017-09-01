@@ -1205,9 +1205,89 @@ The following screenshot shows examples of different types of Specular effects o
     - Create a new scene with some capsules
     - create a new Shader and Material, and hook them up to our objects
     - Lastly, we will need some sort of normal map that will indicate the directionality of our Anisotropic Specular highlight.
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_anisotropoy_normal_map.png)
+ - How to do it ...
+ - 1. properties
+
+```
+Properties {
+    _MainTint ("Diffuse Tint", Color) = (1,1,1,1)
+    _MainTex ("Base (RGB)", 2D) = "white" {}
+    _SpecularColor ("specular Color", Color) = (1,1,1,1)
+    _Specular ("Specular Amount", Range(0,1)) = 0.5
+    _SpecPower ("Specular Power", Range(0,1)) = 0.5
+    _AnisoDir ("Anisotropic Direction", 2D) = "" {}
+    _AnisoOffset ("Anisotropic Offset", Range(-1,1)) = -0.2
+}
+
+sampler2D _MainTex;
+sampler2D _AnisoDir;
+float4 _MainTint;
+float4 _SpecularColor;
+float _AnisoOffset;
+float _Specular;
+float _SpecPower;
+``` 
+
+ - 2. create our lighting function that will produce the correct Anisotropic effect on our surface:
+
+```
+#pragma surface surf Anisotropic
+
+struct SurfaceAnisoOutput
+{
+    fixed3 Albedo;
+    fixed3 Normal;
+    fixed3 Emission;
+    fixed3 AnisoDirection;
+    half Specular;
+    fixed Gloss;
+    fixed Alpha;
+};
 
 
+inline fixed4 LightingAnisotropic (SurfaceAnisoOutput s, fixed3 lightDir, half3 viewDir, fixed atten)
+{
+    fixed3 halfVector = normalize(normalize(lightDir) + normalize(viewDir));
+    float NdotL = saturate(dot(s.Normal, lightDir));
+    
+    fixed HdotA = dot(normalize(s.Normal + s.AnisoDirection), halfVector);
+    float aniso = max(0, sin(radians((HdotA + _AnisoOffset) * 180.f)));
+    
+    float spec = saturate(pow(aniso, s.Gloss * 128) * s.Specular);
+    
+    fixed4 c;
+    c.rgb = ((s.Albedo * _LightColor0.rgb * NdotL) + (_LightColor0.rgb * _SpecularColor.rgb * spec)) * (atten * 2);
+    c.a = 1.0;
+    return c;
+}
+```
 
+ - 3. We have also given the Anisotropic normal map its own UVs by declaring the following code in the Input struct.
+    - This isn't entirely necessary as we could just use the UVs from the main texture, but this gives us independent control over the tiling of our brushed metal effect, so that we can scale it to any size we want.
+
+```
+struct Input  {
+    float2 uv_MainTex;
+    float2 uv_AnisoDir;
+};
+```
+
+ - 4. Finally, we need to use the surf() function to pass the correct data to our lighting function. So we get the per-pixel information from our Anisotropic normal map and set our Specular parameters.
+
+```
+void surf (Input IN, inout SurfaceAnisoOutput  o) {
+    // Albedo comes from a texture tinted by color
+    fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _MainTint;
+    float3 anisoTex = UnpackNormal(tex2D(_AnisoDir, IN.uv_AnisoDir));
+
+    o.AnisoDirection = anisoTex;
+    o.Specular = _Specular;
+    o.Gloss = _SpecPower;
+    o.Albedo = c.rgb;
+    o.Alpha = c.a;
+}
+```
 
 
 
