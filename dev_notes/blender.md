@@ -1303,6 +1303,8 @@ def scene_bounding_box():
 
 **Rendering an Image**
 
+ - Rendering is the process of computing high-resolution imagery and video given 3D data
+ - The 3D Viewport is an instantaneous rendering of the 3D data, but it does not represent the same level of quality or definition as a traditional rendering.
 
 
 
