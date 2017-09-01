@@ -1197,6 +1197,14 @@ This recipe will introduce you to the concept of augmenting your Specular highli
 In future recipes, we will look at ways in which we can use the concepts of this recipe to achieve other effects, such as stretched re ections and hair,
 but here we are going to learn the fundamentals of the technique first.
 
+The following screenshot shows examples of different types of Specular effects one can achieve by using Anisotropic Shaders in Unity:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_anisotropoy_example.png)
+
+ - Getting ready 
+    - Create a new scene with some capsules
+    - create a new Shader and Material, and hook them up to our objects
+    - Lastly, we will need some sort of normal map that will indicate the directionality of our Anisotropic Specular highlight.
 
 
 
