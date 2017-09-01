@@ -1086,11 +1086,101 @@ struct Output -> Lighting<Name>
 
  - In this section, we are going to explore a way to create a Shader that gives us the versatility to have a soft Specular as well as a hard Specular. 
  - You will  nd in most productions that you will need to create a nice set of Shaders to perform many tasks.
- - it is common for Shader programmers to create a set of Shaders that can both be used for cloth and for metal in one Shader  le.
+ - it is common for Shader programmers to create a set of Shaders that can both be used for cloth and for metal in one Shader file.
 
 ---
 
  - Getting ready ...
+    - a simple capsule , plane, and directional light in the new scene.
+    - Create a new Shader and Material
+    - attach the Shader to the Material and attach the Material to the capsule object
+    - We are also going to need to get some textures together that will allow an artist to re ne the roughness of the Specular by de ning how blurry and how sharp the Specular should be. 
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_meta_soft.png)
+ - How to do it...
+ - 1. Properties
+
+```c#
+Properties
+{
+    _MainTint ("Diffuse Tint", Color) = (1,1,1,1)
+    _MainTex ("Base (RGB)", 2D) = "white" {}
+    _RoughnessTex ("Roughness texture", 2D) = "" {}
+    _Roughness ("Roughness", Range(0,1)) = 0.5
+    _SpecularColor ("Specular Color", Color) = (1,1,1,1)
+    _SpecPower ("Specular Power", Range(0,30)) = 2
+    _Fresnel ("Fresnel Value", Range(0,1.0)) = 0.05
+}
+
+    sampler2D _MainTex;
+    sampler2D _RoughnessTex;
+    float _Roughness;
+    float _Fresnel;
+    float _SpecPower;
+    float4 _MainTint;
+    float4 _SpecularColor;
+```
+
+ - 2. We now need to declare our new lighting model and tell the #pragma statement to look for it:
+
+```c#
+#pragma surface surf MetallicSoft
+
+inline fixed4 LightingMetallicSoft (SurfaceOutput s, fixed3 lightDir, half3 viewDir, fixed atten) {
+
+}
+```
+
+ - 3. At this point we are ready to  fill in our custom lighting model function with our lighting calculations. 
+    - We are  rst going to want to generate all of our diffuse and view dependent vectors, as this lighting model is going to make use of them all.
+
+```c#
+//Compute simple diffuse and view direction values
+float3 halfVector = normalize(lightDir + viewDir);
+float NdotL = saturate(dot(s.Normal, normalize(lightDir)));
+float NdotH_raw = dot(s.Normal, halfVector);
+float NdotH = saturate(dot(s.Normal, halfVector));
+float NdotV = saturate(dot(s.Normal, normalize(viewDir)));
+float VdotH = saturate(dot(halfVector, normalize(viewDir)));
+```
+
+ - 4. The next section of code in the Shader takes care of producing the roughness values for our Specular, by using a texture to de ne the Specular shape and to procedurally simulate micro bumps in the surface of the object.
+
+```c#
+//Micro facets distribution
+float geoEnum = 2.0*NdotH;
+float3 G1 = (geoEnum * NdotV)/NdotH;
+float3 G2 = (geoEnum * NdotL)/NdotH;
+float3 G =  min(1.0f, min(G1, G2));
+
+//Sample our Spceular look up BRDF
+float roughness = tex2D(_RoughnessTex, float2(NdotH_raw * 0.5 + 0.5, _Roughness)).r;
+```
+
+ - 5. The last element we need for our Specular calculation is a **Fresel** term.
+    - This will help us mask off the Specular when your view becomes very glancing to the object's surface.
+
+```c#
+//Create our custom fresnel value
+float fresnel = pow(1.0-VdotH, 5.0);
+fresnel *= (1.0 - _Fresnel);
+fresnel += _Fresnel;
+```
+
+ - 6. Now that we have all the components ready for our Specular, we just need to combine them together to generate our  nal Specular value.
+
+```c#
+//Create the final spec
+float3 spec = float3(fresnel * G * roughness * roughness) * _SpecPower;
+```
+
+ - 7. To complete the lighting model, we simply need to add our Diffuse terms and our Specular terms together:
+
+```c#
+float4 c;
+c.rgb = (s.Albedo * _LightColor0.rgb * NdotL)+  (spec * _SpecularColor.rgb) * (atten * 2.0f);
+c.a = s.Alpha;
+return c;
+```
 
 
 
