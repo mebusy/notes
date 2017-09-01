@@ -1305,6 +1305,21 @@ def scene_bounding_box():
 
  - Rendering is the process of computing high-resolution imagery and video given 3D data
  - The 3D Viewport is an instantaneous rendering of the 3D data, but it does not represent the same level of quality or definition as a traditional rendering.
+ - In Listing 8-4, we render the output of Listing 8-1 using both Blender Render and OpenGL render. 
+    - This example assumes positions the camera to point upward along the x-axis at the median of the scene, from the yz-median of the scene, such that it will capture the whole scene
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_render_img.png)
+
+ - We can also render a snapshot of the 3D Viewport using OpenGL render. This will capture basic features of the scene similar to how we see the 3D Viewport in Object Mode with Solid view. 
+    - Note that we can see both the lights and camera, but not the materials, in this view. 
+    - When we call bpy.ops.render.opengl(), setting `view_context = True` will cause Blender to use the 3D Viewport camera (the user’s view) rather than the scene camera.
+
+Listing 8-4. Rendering Using Blender Render and OpenGL Render
+
+> ### Assumes output of Listing 8-1 is in scene at runtime ###
+
+
+
+> Figure 8-6. Blender Render
 
 
