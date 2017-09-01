@@ -950,7 +950,7 @@ MAY NOT  have the intended effect since typemaps.i does not define an OUTPUT rul
 
 ### 36.7.2 Simple pointers
 
-If you must work with simple pointers such as int * or double * and you don't want to use typemaps.i, consider using the cpointer.i library file. For example:
+If you must work with simple pointers such as int \* or double \* and you don't want to use typemaps.i, consider using the cpointer.i library file. For example:
 
 ```
 %module example
@@ -1015,7 +1015,7 @@ To wrap this into Python, you need to pass an array pointer as the first argumen
 %include "carrays.i"
 %array_class(int, intArray);
 ```
-The %array_class(type, name) macro creates wrappers for an unbounded array object that can be passed around as a simple pointer like int * or double \*. 
+The %array_class(type, name) macro creates wrappers for an unbounded array object that can be passed around as a simple pointer like int \* or double \*. 
 For instance, you will be able to do this in Python:
 
 ```python
@@ -1249,8 +1249,8 @@ A full list of variables can be found in the " Typemaps" chapter. This is a list
 variable  |  describe
 --- | --- 
 $1 | A C local variable corresponding to the actual type specified in the %typemap directive. For input values, this is a C local variable that's supposed to hold an argument value. For output values, this is the raw result that's supposed to be returned to Python.
-$input | A PyObject * holding a raw Python object with an argument or variable value.
-$result | A PyObject * that holds the result to be returned to Python.
+$input | A PyObject \* holding a raw Python object with an argument or variable value.
+$result | A PyObject \* that holds the result to be returned to Python.
 $1_name | The parameter name that was matched.
 $1_type | The actual C datatype matched by the typemap.
 $1_ltype | An assignable version of the datatype matched by the typemap (a type that can appear on the left-hand-side of a C assignment operation).  This type is stripped of qualifiers and may be an altered version of $1_type. All arguments and local variables in wrapper functions are declared using this type so that their values can be properly assigned.
@@ -1347,9 +1347,132 @@ int       PyFile_Check(PyObject *);
 
 ## 36.9 Typemap Examples
 
+This section includes a few examples of typemaps.
+
+For more examples, you might look at the files "python.swg" and "typemaps.i " in the SWIG library.
+
+### 36.9.1 Converting Python list to a char \*\*
+
+A common problem in many C programs is the processing of command line arguments, which are usually passed in an array of NULL terminated strings.
+
+The following SWIG interface file allows a Python list object to be used as a char \*\* object.
+
+TODO
+
+### 36.9.2 Expanding a Python object into multiple arguments
+
+Suppose that you had a collection of C functions with arguments such as the following:
+
+```c
+int foo(int argc, char **argv);
+```
+
+In the previous example, a typemap was written to pass a Python list as the char \*\*argv. This allows the function to be used from Python as follows.
 
 
+```python
+>>> foo(4, ["foo", "bar", "spam", "1"])
+```
 
+尽管这是可行的, 但是指定参数计数(4) 有点笨拙。
+
+To fix this, a multi-argument typemap can be defined. This is not very difficult--you only have to make slight modifications to the previous example:
+
+TODO
+
+With the above typemap in place, you will find it no longer necessary to supply the argument count. This is automatically set by the typemap code. For example:
+
+```python
+>>> foo(["foo", "bar", "spam", "1"])
+```
+
+If your function is overloaded in C++, for example:
+
+```c
+int foo(int argc, char **argv);
+int foo();
+```
+
+don't forget to also provide a suitable [typecheck typemap for overloading](http://www.swig.org/Doc3.0/SWIGDocumentation.html#Typemaps_overloading) such as:
+
+```
+%typecheck(SWIG_TYPECHECK_STRING_ARRAY) (int argc, char **argv) {
+  $1 = PyList_Check($input) ? 1 : 0;
+}
+```
+
+### 36.9.3 Using typemaps to return arguments
+
+A common problem in some C programs is that values may be returned in arguments rather than in the return value of a function. For example:
+
+```c
+/* Returns a status value and two values in out1 and out2 */
+int spam(double a, double b, double *out1, double *out2) {
+  ... Do a bunch of stuff ...
+  *out1 = result1;
+  *out2 = result2;
+  return status;
+}
+```
+
+TODO
+
+### 36.9.4 Mapping Python tuples into small arrays
+
+
+In some applications, it is sometimes desirable to pass small arrays of numbers as arguments. For example :
+
+```c
+extern void set_direction(double a[4]);       // Set direction vector
+```
+
+This too, can be handled used typemaps as follows :
+
+```
+// Grab a 4 element array as a Python 4-tuple
+%typemap(in) double[4](double temp[4]) {   // temp[4] becomes a local variable
+  int i;
+  if (PyTuple_Check($input)) {
+    if (!PyArg_ParseTuple($input, "dddd", temp, temp+1, temp+2, temp+3)) {
+      PyErr_SetString(PyExc_TypeError, "tuple must have 4 elements");
+      SWIG_fail;
+    }
+    $1 = &temp[0];
+  } else {
+    PyErr_SetString(PyExc_TypeError, "expected a tuple.");
+    SWIG_fail;
+  }
+}
+```
+
+This allows our set_direction function to be called from Python as follows :
+
+```python
+>>> set_direction((0.5, 0.0, 1.0, -0.25))
+```
+
+Since our mapping copies the contents of a Python tuple into a C array, such an approach **would not be recommended for huge arrays**, but for small structures, this approach works fine.
+
+
+### 36.9.5 Mapping sequences to C arrays
+
+Suppose that you wanted to generalize the previous example to handle C arrays of different sizes. To do this, you might write a typemap as follows:
+
+TODO
+
+### 36.9.6 Pointer handling
+
+Occasionally, it might be necessary to convert pointer values that have been stored using the SWIG typed-pointer representation.
+
+Since there are several ways in which pointers can be represented, the following two functions are used to safely perform this conversion:
+
+```c
+int SWIG_ConvertPtr(PyObject *obj, void **ptr, swig_type_info *ty, int flags)
+```
+
+Converts a Python object obj to a C pointer.
+
+TODO
 
 
 ----
