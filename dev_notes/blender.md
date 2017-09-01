@@ -1183,7 +1183,7 @@ TODO
 Listing 8-1. Loading Textures and Generating UV Maps
 
 
-[uv_texture.py](https://raw.githubusercontent.com/mebusy/notes/master/codes/blender/ut.py)
+[uv_texture.py](https://raw.githubusercontent.com/mebusy/notes/master/codes/blender/ut_texture.py)
 
 Note: after running this script, view the results by selecting rendered view in the 3d Viewport header
 
@@ -1310,6 +1310,8 @@ def scene_bounding_box():
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_render_img.png)
 
+> Figure 8-6. Blender Render
+
  - We can also render a snapshot of the 3D Viewport using OpenGL render. This will capture basic features of the scene similar to how we see the 3D Viewport in Object Mode with Solid view. 
     - Note that we can see both the lights and camera, but not the materials, in this view. 
     - When we call bpy.ops.render.opengl(), setting `view_context = True` will cause Blender to use the 3D Viewport camera (the user’s view) rather than the scene camera.
@@ -1319,7 +1321,7 @@ Listing 8-4. Rendering Using Blender Render and OpenGL Render
 > ### Assumes output of Listing 8-1 is in scene at runtime ###
 
 
+[uv_texture_render.py](https://raw.githubusercontent.com/mebusy/notes/master/codes/blender/uv_texture_render.py)
 
-> Figure 8-6. Blender Render
 
 
