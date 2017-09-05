@@ -169,12 +169,6 @@ l.sort(cmp=lambda x,y:cmp( x.lower(), y.lower()  ))
 
 ### url unescape
 
-```
->>> import urllib
->>> url_unquote=urllib.unquote(a)
-```
-
-或
 
 ```
 import HTMLParser
