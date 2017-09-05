@@ -639,6 +639,17 @@ _DebugFunc( log_buf ); \
 bool bInvalidObj  = gameObject == null || gameObject.Equals(null)  || ReferenceEquals (gameObject, null);
 ```
 
+## ScrollView 实践
 
+ - scroll content 
+    - ScrollRect 组建中必须 设置 Content field, UGUI 创建的 scroll view 已自动设好
+    - cell item 需要添加到 content 上 , as child
+ - content 上一般需要添加
+    - Vertical/Horizontal Layout Group 
+        - 设置 Child Force Expand
+    - Content Size Fitter ( 自动调整 content size )
+        - 设置成 Preferred Size 
+ - cell item 
+    - 添加 Layout Element
 
 
