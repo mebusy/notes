@@ -18,6 +18,7 @@
 		 - [dict setdefault](#f911a4fc9f3eb152b05e1a9f4b9269a2)
 		 - [dict insection](#2292cf7bac8199cfa91cb22160b26f76)
 		 - [dict key/value 反转](#734d33eb4b09a4486fff62a4f1498c3c)
+		 - [convert a list to dict](#51e210523bb6691db8601ee6c34f89d9)
 		 - [类型判断](#ab8027b580ee885ee2c146add9957e1c)
 		 - [方法内全部局部变量](#76a7e51a79a55462350aaed109577894)
 		 - [python 下划线变量](#379e1d911a58f6e847ad68e52703c7eb)
@@ -273,6 +274,8 @@ or
 >>> {v:k for k,v in m.iteritems() }
 {1: 'a', 2: 'b', 3: 'c'}
 ```
+
+<h2 id="51e210523bb6691db8601ee6c34f89d9"></h2>
 
 ### convert a list to dict 
 

@@ -1,6 +1,7 @@
 ...menustart
 
  - [U3D](#f1ab9c403a278470b521f050cf149ff5)
+ - [Best Practices](#cd47dd01745339787e4c7300389401f2)
  - [Intro to Game Development](#6962dfbcfcc7af6f915019edf77e6cc8)
 
 ...menuend
@@ -26,6 +27,8 @@
  13. [Shader Effect CookBook](https://github.com/mebusy/notes/blob/master/dev_notes/unityShaderEffectCookbook.md) 
  14. [Shader Effect CookBook ch4 ~](https://github.com/mebusy/notes/blob/master/dev_notes/unityShaderEffectCookbook4.md) 
 
+
+<h2 id="cd47dd01745339787e4c7300389401f2"></h2>
 
 ## Best Practices
 

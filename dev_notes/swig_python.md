@@ -28,6 +28,17 @@
 		 - [36.7.4 String handling](#c5928dddfc2c9487ddc042e45caa4576)
 		 - [36.7.5 Default arguments](#63b4f48acae0ba35e6576fce9fa8fdad)
 	 - [36.8 Typemaps](#2b130f8e243eb10cbc270985854ccbc7)
+		 - [36.8.1 What is a typemap?](#90a5be3942738a92f3991cb7d19710be)
+		 - [36.8.2 Python typemaps](#e4f724210edaab8c16c023cca34e2473)
+		 - [36.8.3 Typemap variables](#e729302bd9b4ccdceabc3c5587c9c140)
+		 - [36.8.4 Useful Python Functions](#427eb1b71112c2157f5763050c06240b)
+	 - [36.9 Typemap Examples](#c6ea35fbba443421bec5662d98c4a56d)
+		 - [36.9.1 Converting Python list to a char \*\*](#a0b62f2001104e30cea14cc3d978eb00)
+		 - [36.9.2 Expanding a Python object into multiple arguments](#e1aba4dac0c081ca9e1c9689b39f0b9d)
+		 - [36.9.3 Using typemaps to return arguments](#b0b0ba8683c797f778cbd3d40d7ecd4b)
+		 - [36.9.4 Mapping Python tuples into small arrays](#9e2e54e3b2717314d68b1cf84e329a8e)
+		 - [36.9.5 Mapping sequences to C arrays](#7933ae9020049f067c537253e1610be8)
+		 - [36.9.6 Pointer handling](#6568ccb24614cc5e9c0d0730be8a3837)
  - [常见问题](#50d52dd929a75bb9b0f4afb0b7d879e1)
 
 ...menuend
@@ -1134,6 +1145,8 @@ Before proceeding, it should be stressed that typemaps are not a required part o
 
 Typemaps are only used if you want to change some aspect of the primitive C-Python interface or if you want to elevate your guru status.
 
+<h2 id="90a5be3942738a92f3991cb7d19710be"></h2>
+
 ### 36.8.1 What is a typemap?
 
 A typemap is nothing more than a code generation rule that is attached to a specific C datatype.
@@ -1219,6 +1232,8 @@ int count(char c, char *str, int len);
 >>>
 ```
 
+<h2 id="e4f724210edaab8c16c023cca34e2473"></h2>
+
 ### 36.8.2 Python typemaps
 
 The previous section illustrated an "in" typemap for converting Python objects to C.
@@ -1240,6 +1255,8 @@ However, the best source of typemap information (and examples) is probably the P
 In fact, all of SWIG's default type handling is defined by typemaps. You can view these typemaps by looking at the files in the SWIG library.
 
 
+<h2 id="e729302bd9b4ccdceabc3c5587c9c140"></h2>
+
 ### 36.8.3 Typemap variables
 
 Within typemap code, a number of special variables prefaced with a $ may appear.
@@ -1256,6 +1273,8 @@ $1_type | The actual C datatype matched by the typemap.
 $1_ltype | An assignable version of the datatype matched by the typemap (a type that can appear on the left-hand-side of a C assignment operation).  This type is stripped of qualifiers and may be an altered version of $1_type. All arguments and local variables in wrapper functions are declared using this type so that their values can be properly assigned.
 $symname | The Python name of the wrapper function being created. 
 
+
+<h2 id="427eb1b71112c2157f5763050c06240b"></h2>
 
 ### 36.8.4 Useful Python Functions
 
@@ -1345,11 +1364,15 @@ int       PyFile_Check(PyObject *);
 
 ---
 
+<h2 id="c6ea35fbba443421bec5662d98c4a56d"></h2>
+
 ## 36.9 Typemap Examples
 
 This section includes a few examples of typemaps.
 
 For more examples, you might look at the files "python.swg" and "typemaps.i " in the SWIG library.
+
+<h2 id="a0b62f2001104e30cea14cc3d978eb00"></h2>
 
 ### 36.9.1 Converting Python list to a char \*\*
 
@@ -1358,6 +1381,8 @@ A common problem in many C programs is the processing of command line arguments,
 The following SWIG interface file allows a Python list object to be used as a char \*\* object.
 
 TODO
+
+<h2 id="e1aba4dac0c081ca9e1c9689b39f0b9d"></h2>
 
 ### 36.9.2 Expanding a Python object into multiple arguments
 
@@ -1401,6 +1426,8 @@ don't forget to also provide a suitable [typecheck typemap for overloading](http
 }
 ```
 
+<h2 id="b0b0ba8683c797f778cbd3d40d7ecd4b"></h2>
+
 ### 36.9.3 Using typemaps to return arguments
 
 A common problem in some C programs is that values may be returned in arguments rather than in the return value of a function. For example:
@@ -1416,6 +1443,8 @@ int spam(double a, double b, double *out1, double *out2) {
 ```
 
 TODO
+
+<h2 id="9e2e54e3b2717314d68b1cf84e329a8e"></h2>
 
 ### 36.9.4 Mapping Python tuples into small arrays
 
@@ -1454,11 +1483,15 @@ This allows our set_direction function to be called from Python as follows :
 Since our mapping copies the contents of a Python tuple into a C array, such an approach **would not be recommended for huge arrays**, but for small structures, this approach works fine.
 
 
+<h2 id="7933ae9020049f067c537253e1610be8"></h2>
+
 ### 36.9.5 Mapping sequences to C arrays
 
 Suppose that you wanted to generalize the previous example to handle C arrays of different sizes. To do this, you might write a typemap as follows:
 
 TODO
+
+<h2 id="6568ccb24614cc5e9c0d0730be8a3837"></h2>
 
 ### 36.9.6 Pointer handling
 

@@ -1,9 +1,20 @@
+...menustart
+
+ - [path finding](#940dbcc8bedbede96c767701b4b9e4d1)
+ - [The World Generator](#306914f8c24cdc1289fef8a48fef588a)
+
+...menuend
+
+
+<h2 id="940dbcc8bedbede96c767701b4b9e4d1"></h2>
 
 # path finding
 
  - Q: Sometimes in commercial projects the developers do a bit of cheating, and predefine travel paths.
  - A: Yeah, that's the hard part.
     - We can't really predefine areas beyond very basic notions because fluids can zip by and block them off, or they can mine a floor out.
+
+<h2 id="306914f8c24cdc1289fef8a48fef588a"></h2>
 
 # The World Generator
 

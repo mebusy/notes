@@ -1,7 +1,44 @@
+...menustart
+
+ - [Unity Shaders and Effects Cookbook](#b55d434f0710caccb257decbf8ab4917)
+ - [1 Diffuse Shading](#b1b582666323bda4533afa9bd399bcce)
+	 - [Creating a basic Surface Shader](#fc1539829f71334a0e6b8a61218d9391)
+	 - [Adding properties to a Surface Shader](#f8934a71d01b63f169c2de79cae2c7b5)
+	 - [Using properties in a Surface Shader](#a686199d052903549496a4f65129b7ba)
+	 - [Creating a custom diffuse lighting model](#f923eb7b3266c1a853d5ef6d6bf6bd50)
+	 - [Creating a Half Lambert lighting model](#17d9822b08d510c47c7a909f396c4f47)
+	 - [Creating a ramp texture to control diffuse shading](#c0ef1ef00afe0d980dc81f7540362639)
+	 - [Creating a faked BRDF using a 2D ramp texture](#394d219380b43a7353afcc1371d66f0d)
+ - [2 Using Textures for Effects](#e9494390acdea9a1c7a4dd9a202b9130)
+	 - [Scrolling textures by modifying UV values](#4555fd02bf1cc2d23dc15f9b5e929dcf)
+	 - [Animating sprite sheets](#13a48b8e3741e7e838ddbd4143b7aedc)
+	 - [Packing and blending textures](#5888245d28da31c835315d348472c20a)
+	 - [Normal mapping , or "Dot3 bump mapping"](#b6214df9600b8e03354cb0d5b3101ffa)
+		 - [About Normal Map](#e145bae90f5b6f3764bd5b501805f142)
+			 - [Surface Shader中的法线](#9ac76d93d8538ec48f607a32fe167c84)
+	 - [Creating procedural textures in the Unity editor](#f96595b64016abe1a9a81f3f6a7ed451)
+	 - [Photoshop levels effect](#32c3e97abe8c8a779a48e475d1a2caa3)
+ - [3. Making Your Gam3e Shine with Specular](#98a5397d6526f46c0eb17b0eb4252841)
+	 - [Introduction](#0b79795d3efc95b9976c7c5b933afce2)
+	 - [Utilizing Unity3D's built-in Specular type](#f0e044f1515ebbe5f9e5fea7174072ed)
+	 - [Creating a Phong Specular type](#70b5768f9cefe658f3575eaf349c5657)
+	 - [Creating a BlinnPhong Specular type](#4ce86fe867f75f0ff36fb09959e3e187)
+	 - [Masking Specular with textures](#c4507c2f3a79c6abbb9ac97916b5ec8f)
+	 - [Metallic versus soft Specular 金属与软镜面](#33961681be0e2193fa2b0e7e7973042f)
+	 - [Creating an Anisotropic Specular type](#6b0ce9cf1556ed6d397c6df778513b5d)
+
+...menuend
+
+
+<h2 id="b55d434f0710caccb257decbf8ab4917"></h2>
 
 # Unity Shaders and Effects Cookbook
 
+<h2 id="b1b582666323bda4533afa9bd399bcce"></h2>
+
 # 1 Diffuse Shading
+
+<h2 id="fc1539829f71334a0e6b8a61218d9391"></h2>
 
 ## Creating a basic Surface Shader
 
@@ -19,6 +56,8 @@
         - `CGIncludes\UnityCG.cginc`
         - `CGIncludes\Lighting.cginc`
         - `CGIncludes\UnityShaderVariables.cginc`
+
+<h2 id="f8934a71d01b63f169c2de79cae2c7b5"></h2>
 
 ## Adding properties to a Surface Shader
 
@@ -65,6 +104,8 @@ attributes | /
 
 
 
+<h2 id="a686199d052903549496a4f65129b7ba"></h2>
+
 ## Using properties in a Surface Shader
 
  1. add a property
@@ -74,6 +115,8 @@ attributes | /
     - `float4 _AmbientColor;`
  3. using it the `surf()` function
     - `float4 c =  pow((_EmissiveColor + _AmbientColor), _MySliderValue);`
+
+<h2 id="f923eb7b3266c1a853d5ef6d6bf6bd50"></h2>
 
 ## Creating a custom diffuse lighting model
 
@@ -118,6 +161,8 @@ How it works ?
 [rending path 介绍](https://github.com/mebusy/notes/blob/master/dev_notes/renderingPath.md)
 
 
+<h2 id="17d9822b08d510c47c7a909f396c4f47"></h2>
+
 ## Creating a Half Lambert lighting model
 
  - Half Lambert was a technique created by Valve as a way of getting the lighting to show the surface of an object in low-light areas
@@ -148,6 +193,8 @@ How it works ?
  - NO more `max` calcuation for difLight 
  - 原来的 0-1 的值，现在变成了 0.5-1, 整体增强了。
 
+
+<h2 id="c0ef1ef00afe0d980dc81f7540362639"></h2>
 
 ## Creating a ramp texture to control diffuse shading
 
@@ -187,6 +234,8 @@ sampler2D _RampTex;
  - Now it is possible for the artist to have some custom control over how the light looks on the surface of an object.
     - This is why this technique is more commonly seen on a project where you need more of an illustrative look.
  - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ramEffect.jpg)
+
+<h2 id="394d219380b43a7353afcc1371d66f0d"></h2>
 
 ## Creating a faked BRDF using a 2D ramp texture
 
@@ -239,6 +288,8 @@ inline float4 LightingBasicDiffuse (SurfaceOutput s, half3 lightDir, half3 viewD
 
 -------
 
+<h2 id="e9494390acdea9a1c7a4dd9a202b9130"></h2>
+
 # 2 Using Textures for Effects
 
 We can also use texture to animate, to blend and really, to drive any other property we want. 
@@ -249,6 +300,8 @@ We can also use texture to animate, to blend and really, to drive any other prop
  - Normal mapping
  - Creating procedural textures in the Unity editor
  - Photoshop levels effect
+
+<h2 id="4555fd02bf1cc2d23dc15f9b5e929dcf"></h2>
 
 ## Scrolling textures by modifying UV values
 
@@ -301,6 +354,8 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
 ```
  
  - for more shadow lab builtin values : [SL-BuiltinValues](https://docs.unity3d.com/455/Documentation/Manual/SL-BuiltinValues.html)
+
+<h2 id="13a48b8e3741e7e838ddbd4143b7aedc"></h2>
 
 ## Animating sprite sheets
 
@@ -362,6 +417,8 @@ void FixedUpdate() {
     tranform.renderer.material.SetFloat("_TimeValue",timeValue);
 }
 ```
+
+<h2 id="5888245d28da31c835315d348472c20a"></h2>
 
 ## Packing and blending textures
 
@@ -468,6 +525,8 @@ Properties {
 
 ---
 
+<h2 id="b6214df9600b8e03354cb0d5b3101ffa"></h2>
+
 ## Normal mapping , or "Dot3 bump mapping"
 
  - One of the most common texture techniques used in today's game development pipelines is the use of **normal maps**. 
@@ -544,7 +603,11 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_normal_intensity.png)
 
+<h2 id="e145bae90f5b6f3764bd5b501805f142"></h2>
+
 ### About Normal Map
+
+<h2 id="9ac76d93d8538ec48f607a32fe167c84"></h2>
 
 #### Surface Shader中的法线
 
@@ -591,6 +654,8 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
     - 后面这种纹理本身记录的是相对高度，是一张灰度图，白色表示相对更高，黑色表示相对更低。而法线纹理可以通过对这张图进行图像滤波来实现
 
 --- 
+
+<h2 id="f96595b64016abe1a9a81f3f6a7ed451"></h2>
 
 ## Creating procedural textures in the Unity editor
 
@@ -707,6 +772,8 @@ pixelColor = new Color( rightDirection , leftDirection , upDirection ) ;
 
 ---
 
+<h2 id="32c3e97abe8c8a779a48e475d1a2caa3"></h2>
+
 ## Photoshop levels effect
 
  - Getting Ready
@@ -778,13 +845,19 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
 
 ---
 
+<h2 id="98a5397d6526f46c0eb17b0eb4252841"></h2>
+
 # 3. Making Your Gam3e Shine with Specular
+
+<h2 id="0b79795d3efc95b9976c7c5b933afce2"></h2>
 
 ## Introduction
 
  - The specularity of an object surface simply describes how shiny it is.
  - to achieve a realistic Specular effect in your Shaders, you need to include the direction the camera or user is facing the object's surface , and the light direction
  
+<h2 id="f0e044f1515ebbe5f9e5fea7174072ed"></h2>
+
 ## Utilizing Unity3D's built-in Specular type
 
  - Unity has already provided us with a Specular function we can use for our Shaders.
@@ -843,6 +916,8 @@ void surf (Input IN, inout SurfaceOutput  o)
 
 ---
 
+<h2 id="70b5768f9cefe658f3575eaf349c5657"></h2>
+
 ## Creating a Phong Specular type 
 
  - The most basic and performance-friendly Specular type is the **Phong** Specular effect.
@@ -900,6 +975,8 @@ float _SpecPower;
 
 ---
 
+<h2 id="4ce86fe867f75f0ff36fb09959e3e187"></h2>
+
 ## Creating a BlinnPhong Specular type
 
  - **Blinn** is another more efficient way of calculating and estimating specularity.
@@ -950,6 +1027,8 @@ inline fixed4 LightingCustomBlinnPhong (SurfaceOutput s, fixed3 lightDir, half3 
 ```
 
 ---
+
+<h2 id="c4507c2f3a79c6abbb9ac97916b5ec8f"></h2>
 
 ## Masking Specular with textures
 
@@ -1082,6 +1161,8 @@ struct Output -> Lighting<Name>
 
 ---
 
+<h2 id="33961681be0e2193fa2b0e7e7973042f"></h2>
+
 ## Metallic versus soft Specular 金属与软镜面
 
  - In this section, we are going to explore a way to create a Shader that gives us the versatility to have a soft Specular as well as a hard Specular. 
@@ -1183,6 +1264,8 @@ return c;
 ```
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_meta_soft_effect.png)
+
+<h2 id="6b0ce9cf1556ed6d397c6df778513b5d"></h2>
 
 ## Creating an Anisotropic Specular type
 

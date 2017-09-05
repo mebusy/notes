@@ -22,6 +22,15 @@
 	 - [5 Introduction to Add-On Development](#a21021ed4077220d8ee7a7b1af522450)
 		 - [A Simple Add-On Template](#0c04eb9875bdfd13027dc08199c22c17)
 		 - [Components of Blender Add-Ons](#0f5b9e16e0b4087f80a42c079e0a9b0a)
+	 - [6 The bgl and blf Modules](#f28b2e33b807755dbe782179fdfc963d)
+		 - [Instantaneous Drawing](#e6878da0a2f708ad2a8ce73b2a4acb33)
+		 - [Handlers Overview](#629dc07d3baa953d521a2ad76c0b27a7)
+	 - [7 Advanced Add-On Development](#a810cbc3a6b48acd8619759085c02700)
+	 - [8 Textures and Rendering](#c536c9f406f7dcd6d1ea8c650091066f)
+		 - [Vocabulary of Textures](#1e8b0c856db239dd8faf78f4d33f616a)
+		 - [Adding and Configuring Textures](#afd66c77848678b6a7739a9cd7b1d0a8)
+		 - [Removing Unused Textures and Materials](#a502b860b196506a8403c1a490c8ecbe)
+		 - [Rendering Using Blender Render](#a8b825472bcda46b7a889fa2e79ea33e)
 
 ...menuend
 
@@ -977,17 +986,23 @@ TODO
 
 ---
 
+<h2 id="f28b2e33b807755dbe782179fdfc963d"></h2>
+
 ## 6 The bgl and blf Modules
 
  - The bgl module is a wrapper for OpenGL functions commonly used by Blender in the 3D Viewport and Blender Game Engine. 
  - The blf module is a small set of functions for displaying text and drawing fonts. 
  
+<h2 id="e6878da0a2f708ad2a8ce73b2a4acb33"></h2>
+
 ### Instantaneous Drawing
 
  - The bgl and blf modules cannot be taught in the same way that other Blender Python modules can.
  - When a line or character is drawn on the 3D Viewport by either of these modules, it is only visible for a single frame.
  - To effectively use the bgl and blf modules, we must use them within a handler function that is set to update at every frame change. 
     - Thus, we start with a handler example using non-OpenGL concepts.
+
+<h2 id="629dc07d3baa953d521a2ad76c0b27a7"></h2>
 
 ### Handlers Overview
 
@@ -1146,11 +1161,17 @@ TODO
 
 ---
 
+<h2 id="a810cbc3a6b48acd8619759085c02700"></h2>
+
 ## 7 Advanced Add-On Development
 
 TODO
 
+<h2 id="c536c9f406f7dcd6d1ea8c650091066f"></h2>
+
 ## 8 Textures and Rendering
+
+<h2 id="1e8b0c856db239dd8faf78f4d33f616a"></h2>
 
 ### Vocabulary of Textures
 
@@ -1172,6 +1193,8 @@ TODO
  - Properties ➤ Materials ➤ Type
  - The Image and Video and Environment Map options can import image and video files.
  - The remaining textures can be parameterized in Blender to achieve the desired result.
+
+<h2 id="afd66c77848678b6a7739a9cd7b1d0a8"></h2>
 
 ### Adding and Configuring Textures
 
@@ -1208,6 +1231,8 @@ Note: after running this script, view the results by selecting rendered view in 
   - In other words, the (u, v) coordinates accessed by bm.faces[f]. loops[v][uv_layer].uv correspond to the (x, y, z) coordinates accessed by bm.faces[f].verts[v].co for any two integers, f and v.
   - It is important to note that two integers f and v may not specify a unique point in 3D space. In a default Blender 2.78c cube, as it appears in the startup file, f:v pairs 0:2, 3:3, and 4:0 all correspond to the point (-1.0, -1.0, -1.0) in 3D space. When the cube is textured, these uv coordinates will typically be unique, because they will all correspond to different parts of the texture map.
 
+<h2 id="a502b860b196506a8403c1a490c8ecbe"></h2>
+
 ### Removing Unused Textures and Materials
 
  - As we continually test scripts, our materials and textures data can quickly become cluttered without our realizing.
@@ -1228,6 +1253,8 @@ for dblock in mats:
     if not dblock.users: 
         texs.remove(dblock)
 ```
+
+<h2 id="a8b825472bcda46b7a889fa2e79ea33e"></h2>
 
 ### Rendering Using Blender Render
 
