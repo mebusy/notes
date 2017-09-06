@@ -655,4 +655,8 @@ bool bInvalidObj  = gameObject == null || gameObject.Equals(null)  || ReferenceE
  - cell item 
     - 添加 Layout Element
 
+## reset scroll rect content to original postion 
 
+```c#
+scrollrect.content.anchoredPosition = Vector2.zero;
+```
