@@ -660,3 +660,13 @@ bool bInvalidObj  = gameObject == null || gameObject.Equals(null)  || ReferenceE
 ```c#
 scrollrect.content.anchoredPosition = Vector2.zero;
 ```
+
+## Dictionary iteration 
+
+```c#
+foreach(KeyValuePair<EventSignal,EventManager.EventFunc> entry in myRegisterEvents )
+{
+	// to use entry.Key , entry.Value 
+}
+		
+```
