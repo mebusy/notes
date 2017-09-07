@@ -670,3 +670,54 @@ foreach(KeyValuePair<EventSignal,EventManager.EventFunc> entry in myRegisterEven
 }
 		
 ```
+
+## AES , encrypt by python, decrypt by c# 
+
+ - Microsoft's implementation of PKCS7 is a bit different than Python's
+ - [python rkcs7](https://raw.githubusercontent.com/janglin/crypto-pkcs7-example/master/pkcs7.py)
+
+```python
+# encrypt
+from Crypto.Cipher import AES
+from Crypto import Random
+from pkcs7 import PKCS7Encoder
+
+iv = Random.new().read(AES.block_size)
+aes = AES.new(aes_key, AES.MODE_CBC, iv )
+base_encrypt = aes.encrypt(PKCS7Encoder().encode( d.encode( "utf8" ) ))
+encrypt_d = base64.b64encode( iv + base_encrypt   )
+```
+
+```c#
+using System;
+using System.IO;
+using System.Security.Cryptography;
+
+// c# decrypt
+public String Decrypt_CBC_AES( string base64str, byte[] Key )
+{
+    byte[] _entireText = System.Convert.FromBase64String (base64str);
+
+    byte[] IV = new byte[16];
+    Array.Copy ( _entireText , IV, 16 );
+
+    byte[] cipherText = new byte[ _entireText.Length - 16 ] ;
+    Array.Copy (_entireText, 16, cipherText, 0 , cipherText.Length );
+    _entireText = null;
+
+
+    // defaults to CBC and PKCS7
+    var aes = new AesManaged();
+    aes.Key = Key;
+    aes.IV = IV;
+
+    var decryptor = aes.CreateDecryptor();
+    var text_bytes = decryptor.TransformFinalBlock(cipherText, 0, cipherText.Length);
+
+    //var text = textEncoder.GetString(text_bytes);
+    return System.Text.UTF8Encoding.UTF8.GetString( text_bytes );
+
+}
+```
+
+
