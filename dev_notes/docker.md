@@ -808,6 +808,303 @@ ENTRYPOINT 的目的和 CMD 一样，都是在指定容器启动程序及参数�
 
 **场景一：让镜像变成像命令一样使用**
 
+当存在 ENTRYPOINT 后，CMD 的内容将会作为参数传给 ENTRYPOINT
+
+**场景二：应用运行前的准备工作**
+
+启动容器就是启动主进程，但有些时候，启动主进程前，需要一些准备工作。
+
+比如 mysql 类的数据库，可能需要一些数据库配置、初始化的工作，这些工作要在最终的 mysql 服务器运行之前解决。
+
+
+此外，可能希望避免使用 root 用户去启动服务，从而提高安全性，而在启动服务前还需要以 root 身份执行一些必要的准备工作，最后切换到服务用户身份启动服务。或者除了服务外，其它命令依旧可以使用 root 身份执行，方便调试等。
+
+这种情况下，可以写一个脚本，然后放入 ENTRYPOINT 中去执行，而这个脚本会将接到的参数（也就是 <CMD>）作为命令，在脚本最后执行。
+
+比如官方镜像 redis 中就是这么做的：
+
+```
+FROM alpine:3.4
+...
+RUN addgroup -S redis && adduser -S -G redis redis
+...
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+EXPOSE 6379
+CMD [ "redis-server" ]
+```
+
+可以看到其中为了 redis 服务创建了 redis 用户，并在最后指定了 ENTRYPOINT 为 docker-entrypoint.sh 脚本。
+
+### ENV 设置环境变量
+
+格式有两种：
+
+ - ENV <key> <value>
+ - ENV <key1>=<value1> <key2>=<value2>...
+
+这个指令很简单，就是设置环境变量而已，无论是后面的其它指令，如 RUN，还是运行时的应用，都可以直接使用这里定义的环境变量。
+
+```
+ENV VERSION=1.0 DEBUG=on \
+    NAME="Happy Feet"
+```
+
+这个例子中演示了如何换行，以及对含有空格的值用双引号括起来的办法，这和 Shell 下的行为是一致的。
+
+定义了环境变量，那么在后续的指令中，就可以使用这个环境变量。比如在官方 node 镜像 Dockerfile 中，就有类似这样的代码：
+
+```
+ENV NODE_VERSION 7.2.0
+
+RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" \
+  && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
+  && gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc \
+  && grep " node-v$NODE_VERSION-linux-x64.tar.xz\$" SHASUMS256.txt | sha256sum -c - \
+  && tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 \
+  && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
+  && ln -s /usr/local/bin/node /usr/local/bin/nodejs
+```
+
+下列指令可以支持环境变量展开： 
+
+ - ADD、COPY、ENV、EXPOSE、LABEL、USER、WORKDIR、VOLUME、STOPSIGNAL、ONBUILD。
+
+### ARG 构建参数
+
+格式：ARG <参数名>[=<默认值>]
+
+构建参数和 ENV 的效果一样，都是设置环境变量。
+
+所不同的是，ARG 所设置的构建环境的环境变量，在将来容器运行时是不会存在这些环境变量的。
+
+但是不要因此就使用 ARG 保存密码之类的信息，因为 docker history 还是可以看到所有值的。
+
+Dockerfile 中的 ARG 指令是定义参数名称，以及定义其默认值。该默认值可以在构建命令 docker build 中用 --build-arg <参数名>=<值> 来覆盖。
+
+### VOLUME 定义匿名卷
+
+格式为：
+ 
+ - VOLUME ["<路径1>", "<路径2>"...]
+ - VOLUME <路径>
+
+之前我们说过，容器运行时应该尽量保持容器存储层不发生写操作，对于数据库类需要保存动态数据的应用，其数据库文件应该保存于卷(volume)中, 后面的章节我们会进一步介绍 Docker 卷的概念.
+
+为了防止运行时用户忘记将动态文件所保存目录挂载为卷，在 Dockerfile 中，我们可以事先指定某些目录挂载为匿名卷，这样在运行时如果用户不指定挂载，其应用也可以正常运行，不会向容器存储层写入大量数据。
+
+```
+VOLUME /data
+```
+
+这里的 /data 目录就会在运行时自动挂载为匿名卷，任何向 /data 中写入的信息都不会记录进容器存储层，从而保证了容器存储层的无状态化。当然，运行时可以覆盖这个挂载设置。比如：
+
+```
+docker run -d -v mydata:/data xxxx
+```
+
+在这行命令中，就使用了 mydata 这个命名卷挂载到了 /data 这个位置，替代了 Dockerfile 中定义的匿名卷的挂载配置。
+
+### EXPOSE 声明端口
+
+格式为 EXPOSE <端口1> [<端口2>...]
+
+EXPOSE 指令是声明运行时容器提供服务端口，这只是一个声明，在运行时并不会因为这个声明应用就会开启这个端口的服务。
+
+在 Dockerfile 中写入这样的声明有两个好处，
+
+ - 一个是帮助镜像使用者理解这个镜像服务的守护端口，以方便配置映射；
+ - 另一个用处则是在运行时使用随机端口映射时，也就是 docker run -P 时，会自动随机映射 EXPOSE 的端口。
+
+要将 EXPOSE 和在运行时使用 -p <宿主端口>:<容器端口> 区分开来。
+
+ - -p，是映射宿主端口和容器端口，换句话说，就是将容器的对应端口服务公开给外界访问，
+ - 而 EXPOSE 仅仅是声明容器打算使用什么端口而已，并不会自动在宿主进行端口映射。
+
+
+### WORKDIR 指定工作目录
+
+
+
+
+
+
+
+
+---
+
+# 操作容器
+
+简单的说，容器是独立运行的一个或一组应用，以及它们的运行态环境.
+
+## 启动容器
+
+### 新建并启动
+
+下面的命令输出一个 “Hello World”，之后终止容器。
+
+```
+docker run ubuntu:14.04 /bin/echo 'Hello world'
+```
+
+下面的命令则启动一个 bash 终端，允许用户进行交互。
+
+```
+$ docker run -t -i ubuntu:14.04 /bin/bash
+root@af8bae53bdd3:/#
+```
+
+其中，-t 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， -i 则让容器的标准输入保持打开。
+
+
+### 启动已终止容器
+
+可以利用 docker start 命令，直接将一个已经终止的容器启动运行。
+
+
+## 后台(background)运行
+
+
+更多的时候，需要让 Docker在后台运行而不是直接把执行命令的结果输出在当前宿主机下。此时，可以通过添加 -d 参数来实现。
+
+此时容器会在后台运行并不会把输出的结果(STDOUT)打印到宿主机上面(输出结果可以用docker logs 查看)。
+
+```
+docker logs [container ID or NAMES]
+```
+
+**注： 容器是否会长久运行，是和docker run指定的命令有关，和 -d 参数无关**
+
+使用 -d 参数启动后会返回一个唯一的 id，也可以通过 docker ps 命令来查看容器信息。
+
+
+### 终止容器
+
+ - 可以使用 docker stop 来终止一个运行中的容器
+ - 此外，当Docker容器中指定的应用终结时，容器也自动终止。
+ - 处于终止状态的容器，可以通过 docker start 命令来重新启动。
+    - 此外，docker restart 命令会将一个运行态的容器终止，然后再重新启动它。
+
+## 进入容器
+
+在使用 -d 参数时，容器启动后会进入后台。 某些时候需要进入容器进行操作，有很多种方法，包括使用 docker attach 命令或 nsenter 工具等。
+
+### attach 命令
+
+```
+docker attach [container ID or NAMES]
+```
+
+## 导出和导入容器
+
+如果要导出本地某个容器，可以使用 docker export 命令。
+
+```
+$ docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                    PORTS               NAMES
+7691a814370e        ubuntu:14.04        "/bin/bash"         36 hours ago        Exited (0) 21 hours ago                       test
+$ docker export 7691a814370e > ubuntu.tar
+```
+
+这样将导出容器快照到本地文件。
+
+### 导入容器快照
+
+可以使用 docker import 从容器快照文件中再导入为镜像，例如
+
+```
+$ cat ubuntu.tar | docker import - test/ubuntu:v1.0
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
+test/ubuntu         v1.0                9d37a6082e97        About a minute ago   171.3 MB
+```
+
+此外，也可以通过指定 URL 或者某个目录来导入，例如
+
+```
+docker import http://example.com/exampleimage.tgz example/imagerepo
+```
+
+**注**
+
+ - 用户既可以使用 docker load 来导入镜像存储文件到本地镜像库，也可以使用 docker import 来导入一个容器快照到本地镜像库。
+ - 这两者的区别在于容器快照文件将丢弃所有的历史记录和元数据信息（即仅保存容器当时的快照状态）
+    - 而镜像存储文件将保存完整记录，体积也要大。
+ - 此外，从容器快照文件导入时可以重新指定标签等元数据信息。
+
+
+## 删除
+
+```
+$ docker rm  trusting_newton
+```
+
+如果要删除一个运行中的容器，可以添加 -f 参数。Docker 会发送 SIGKILL 信号给容器。
+
+### 清理所有处于终止状态的容器
+
+```
+docker rm $(docker ps -a -q)
+```
+
+**注意：这个命令其实会试图删除所有的包括还在运行中的容器，不过就像上面提过的 docker rm 默认并不会删除运行中的容器.**
+
+
+# 访问仓库   Repository
+
+## Docker Hub
+
+**登录**
+
+可以通过执行 docker login 命令来输入用户名、密码和邮箱来完成注册和登录。 注册成功后，本地用户目录的 .dockercfg 中将保存用户的认证信息。
+
+**基本操作**
+
+用户无需登录即可通过 docker search 命令来查找官方仓库中的镜像，并利用 docker pull 命令来将它下载到本地。
+
+例如以 centos 为关键词进行搜索：
+
+```
+docker search centos
+```
+
+根据是否是官方提供，可将镜像资源分为两类。 一种是类似 centos 这样的基础镜像，被称为基础或根镜像。这些基础镜像是由 Docker 公司创建、验证、支持、提供。这样的镜像往往使用单个单词作为名字。 还有一种类型，比如 tianon/centos 镜像，它是由 Docker 的用户创建并维护的，往往带有用户名称前缀。可以通过前缀 user_name/ 来指定使用某个用户提供的镜像，比如 tianon 用户。
+
+另外，在查找的时候通过 -s N 参数可以指定仅显示评价为 N 星以上的镜像（新版本Docker推荐使用--filter=stars=N参数）。
+
+**下载**
+
+```
+docker pull centos
+```
+
+用户也可以在登录后通过 docker push 命令来将镜像推送到 Docker Hub。
+
+**自动创建**
+
+自动创建（Automated Builds）功能对于需要经常升级镜像内程序来说，十分方便。
+
+有时候，用户创建了镜像，安装了某个软件，如果软件发布新版本则需要手动更新镜像。。
+
+而自动创建允许用户通过 Docker Hub 指定跟踪一个目标网站（目前支持 GitHub 或 BitBucket）上的项目，一旦项目发生新的提交，则自动执行创建。
+
+要配置自动创建，包括如下的步骤：
+
+ - 创建并登录 Docker Hub，以及目标网站；
+ - 在目标网站中连接帐户到 Docker Hub；
+ - 在 Docker Hub 中 [配置一个自动创建](https://registry.hub.docker.com/builds/add/)
+ - 选取一个目标网站中的项目（需要含 Dockerfile）和分支；
+ - 指定 Dockerfile 的位置，并提交创建。
+
+之后，可以 在Docker Hub 的 [自动创建页面](https://registry.hub.docker.com/builds/) 中跟踪每次创建的状态。
+
+
+## 私有仓库 TODO
+
+## 配置文件 TODO
+
+
+
 
 
 ---
@@ -974,6 +1271,232 @@ docker run --volumes-from dbdata2 -v $(pwd):/backup busybox tar xvf /backup/back
 ```
 docker run --volumes-from dbdata2 busybox /bin/ls /dbdata
 ```
+
+
+# 使用网络
+
+## 外部访问容器
+
+容器中可以运行一些网络应用，要让外部也可以访问这些应用，可以通过 -P 或 -p 参数来指定端口映射。
+
+ - 当使用 -P 标记时，Docker 会随机映射一个 49000~49900 的端口到内部容器开放的网络端口。
+
+使用 docker ps 可以看到，本地主机的 49155 被映射到了容器的 5000 端口。此时访问本机的 49155 端口即可访问容器内 web 应用提供的界面。
+
+```
+$ sudo docker run -d -P training/webapp python app.py
+$ sudo docker ps -l
+CONTAINER ID  IMAGE                   COMMAND       CREATED        STATUS        PORTS                    NAMES
+bc533791f3f5  training/webapp:latest  python app.py 5 seconds ago  Up 2 seconds  0.0.0.0:49155->5000/tcp  nostalgic_morse
+```
+
+同样的，可以通过 docker logs 命令来查看应用的信息。
+
+```
+$ docker logs -f nostalgic_morse
+* Running on http://0.0.0.0:5000/
+10.0.2.2 - - [23/May/2014 20:16:31] "GET / HTTP/1.1" 200 -
+10.0.2.2 - - [23/May/2014 20:16:31] "GET /favicon.ico HTTP/1.1" 404 -
+```
+
+-p（小写的）则可以指定要映射的端口，并且，在一个指定端口上只可以绑定一个容器。支持的格式有 
+
+ - ip:hostPort:containerPort 
+ - ip::containerPort 
+ - hostPort:containerPort。
+
+### 映射所有接口地址
+
+使用 hostPort:containerPort 格式本地的 5000 端口映射到容器的 5000 端口，可以执行
+
+```
+docker run -d -p 5000:5000 training/webapp python app.py
+```
+
+此时默认会绑定本地所有接口上的所有地址。
+
+
+### 映射到指定地址的指定端口
+
+可以使用 ip:hostPort:containerPort 格式指定映射使用一个特定地址，比如 localhost 地址 127.0.0.1
+
+```
+docker run -d -p 127.0.0.1:5000:5000 training/webapp python app.py
+```
+
+### 映射到指定地址的任意端口
+
+使用 ip::containerPort 绑定 localhost 的任意端口到容器的 5000 端口，本地主机会自动分配一个端口。
+
+```
+docker run -d -p 127.0.0.1::5000 training/webapp python app.py
+```
+
+还可以使用 udp 标记来指定 udp 端口
+
+```
+docker run -d -p 127.0.0.1:5000:5000/udp training/webapp python app.py
+```
+
+### 查看映射端口配置
+
+使用 docker port 来查看当前映射的端口配置，也可以查看到绑定的地址
+
+```
+$ docker port nostalgic_morse 5000
+127.0.0.1:49155.
+```
+
+注意：
+
+ - 容器有自己的内部网络和 ip 地址（使用 docker inspect 可以获取所有的变量，Docker 还可以有一个可变的网络配置。）
+ - -p 标记可以多次使用来绑定多个端口
+
+```
+docker run -d -p 5000:5000  -p 3000:80 training/webapp python app.py
+```
+
+## 容器互联
+
+容器的连接（linking）系统是除了端口映射外，另一种跟容器中应用交互的方式。
+
+该系统会在源和接收容器之间创建一个隧道，接收容器可以看到源容器指定的信息。
+
+### 自定义容器命名
+
+连接系统依据容器的名称来执行。因此，首先需要自定义一个好记的容器命名。
+
+虽然当创建容器的时候，系统默认会分配一个名字。自定义命名容器有2个好处：
+
+ 1. 自定义的命名，比较好记，比如一个web应用容器我们可以给它起名叫web
+ 2. 当要连接其他容器时候，可以作为一个有用的参考点，比如连接web容器到db容器
+
+使用 --name 标记可以为容器自定义命名。
+
+```
+docker run -d -P --name web training/webapp python app.py
+```
+
+使用 docker ps 来验证设定的命名。
+
+```
+$ sudo docker ps -l
+CONTAINER ID  IMAGE                  COMMAND        CREATED       STATUS       PORTS                    NAMES
+aed84ee21bde  training/webapp:latest python app.py  12 hours ago  Up 2 seconds 0.0.0.0:49154->5000/tcp  web
+```
+
+也可以使用 docker inspect 来查看容器的名字
+
+```
+$ sudo docker inspect -f "{{ .Name }}" aed84ee21bde
+/web
+```
+
+### 容器互联
+
+使用 --link 参数可以让容器之间安全的进行交互。
+
+下面先创建一个新的数据库容器。
+
+```
+docker run -d --name db training/postgres
+```
+
+删除之前创建的 web 容器
+
+```
+docker rm -f web
+```
+
+然后创建一个新的 web 容器，并将它连接到 db 容器
+
+```
+docker run -d -P --name web --link db:db training/webapp python app.py
+```
+
+此时，db 容器和 web 容器建立互联关系。
+
+ - --link 参数的格式为 --link name:alias
+    - 其中 name 是要链接的容器的名称，alias 是这个连接的别名。
+
+使用 docker ps 来查看容器的连接
+
+```
+$ docker ps
+CONTAINER ID  IMAGE                     COMMAND               CREATED             STATUS             PORTS                    NAMES
+349169744e49  training/postgres:latest  su postgres -c '/usr  About a minute ago  Up About a minute  5432/tcp                 db, web/db
+aed84ee21bde  training/webapp:latest    python app.py         16 hours ago        Up 2 minutes       0.0.0.0:49154->5000/tcp  web
+```
+
+ - 可以看到自定义命名的容器，db 和 web，
+ - db 容器的 names 列有 db 也有 web/db。
+    - 这表示 web 容器链接到 db 容器，web 容器将被允许访问 db 容器的信息。
+
+Docker 在两个互联的容器之间创建了一个安全隧道，而且不用映射它们的端口到宿主主机上。在启动 db 容器的时候并没有使用 -p 和 -P 标记，从而避免了暴露数据库端口到外部网络上。
+
+
+Docker 通过 2 种方式为容器公开连接信息：
+
+ 1. 环境变量
+ 2. 更新 /etc/hosts 文件
+
+使用 env 命令来查看 web 容器的环境变量
+
+```
+$ docker run --rm --name web2 --link db:db training/webapp env
+. . .
+DB_NAME=/web2/db
+DB_PORT=tcp://172.17.0.5:5432
+DB_PORT_5000_TCP=tcp://172.17.0.5:5432
+DB_PORT_5000_TCP_PROTO=tcp
+DB_PORT_5000_TCP_PORT=5432
+DB_PORT_5000_TCP_ADDR=172.17.0.5
+...
+```
+
+ - 其中 `DB_` 开头的环境变量是供 web 容器连接 db 容器使用，前缀采用大写的连接别名。
+
+除了环境变量，Docker 还添加 host 信息到父容器的 /etc/hosts 的文件。下面是父容器 web 的 hosts 文件
+
+```
+$ sudo docker run -t -i --rm --link db:db training/webapp /bin/bash
+root@aed84ee21bde:/opt/webapp# cat /etc/hosts
+172.17.0.7  aed84ee21bde
+. . .
+172.17.0.5  db
+```
+
+ - 这里有 2 个 hosts，第一个是 web 容器，web 容器用 id 作为他的主机名
+ - 第二个是 db 容器的 ip 和主机名。
+
+可以在 web 容器中安装 ping 命令来测试跟db容器的连通。
+
+```
+root@aed84ee21bde:/opt/webapp# apt-get install -yqq inetutils-ping
+root@aed84ee21bde:/opt/webapp# ping db
+PING db (172.17.0.5): 48 data bytes
+56 bytes from 172.17.0.5: icmp_seq=0 ttl=64 time=0.267 ms
+56 bytes from 172.17.0.5: icmp_seq=1 ttl=64 time=0.250 ms
+56 bytes from 172.17.0.5: icmp_seq=2 ttl=64 time=0.256 ms
+```
+
+用户可以链接多个父容器到子容器，比如可以链接多个 web 到 db 容器上。
+
+
+# 高级网络配置
+
+ - 当 Docker 启动时，会自动在主机上创建一个 docker0 虚拟网桥，
+    - 实际上是 Linux 的一个 bridge，可以理解为一个软件交换机。它会在挂载到它的网口之间进行转发。
+ - 同时，Docker 随机分配一个本地未占用的私有网段（在 RFC1918 中定义）中的一个地址给 docker0 接口。
+    - 比如典型的 172.17.42.1，掩码为 255.255.0.0。
+    - 此后启动的容器内的网口也会自动分配一个同一网段（172.17.0.0/16）的地址。
+ - 当创建一个 Docker 容器的时候，同时会创建了一对 veth pair 接口（当数据包发送到一个接口时，另外一个接口也可以收到相同的数据包）
+    - 这对接口一端在容器内，即 eth0；另一端在本地并被挂载到 docker0 网桥，名称以 veth 开头（例如 vethAQI2QT）。
+ - 通过这种方式，主机可以跟容器通信，容器之间也可以相互通信。Docker 就创建了在主机和所有容器之间一个虚拟共享网络。
+
+![](https://yeasy.gitbooks.io/docker_practice/content/advanced_network/_images/network.png)
+
+TODO
 
 
 
