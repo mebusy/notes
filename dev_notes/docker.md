@@ -519,7 +519,7 @@ Sending build context to Docker daemon 2.048 kB
 
 ---
 
-# 常用操作
+# Misc
 
 ## stop / rm all container 
 
@@ -543,5 +543,11 @@ Explanation:
  - docker ps List containers
     -q list only container IDs
     -l list only last created container
+
+
+## pass proxy to docker container 
+
+ - set https_proxy and http_proxy in you host machine
+ - `docker run -e https_proxy -e http_proxy ... ` 
 
 
