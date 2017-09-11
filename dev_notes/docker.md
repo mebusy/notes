@@ -512,6 +512,322 @@ Sending build context to Docker daemon 2.048 kB
 
 ### 其它 docker build 的用法
 
+#### 直接用 Git repo 进行构建
+
+docker build 还支持从 URL 构建，比如可以直接从 Git repo 中构建：
+
+```
+$ docker build https://github.com/twang2218/gitlab-ce-zh.git#:8.14
+docker build https://github.com/twang2218/gitlab-ce-zh.git\#:8.14
+Sending build context to Docker daemon 2.048 kB
+Step 1 : FROM gitlab/gitlab-ce:8.14.0-ce.0
+8.14.0-ce.0: Pulling from gitlab/gitlab-ce
+aed15891ba52: Already exists
+773ae8583d14: Already exists
+...
+```
+
+这行命令指定了构建所需的 Git repo，并且指定默认的 master 分支，构建目录为 /8.14/，然后 Docker 就会自己去 git clone 这个项目、切换到指定分支、并进入到指定目录后开始构建。
+
+#### 用给定的 tar 压缩包构建
+
+```
+$ docker build http://server/context.tar.gz
+```
+
+如果所给出的 URL 不是个 Git repo，而是个 tar 压缩包，那么 Docker 引擎会下载这个包，并自动解压缩，以其作为上下文，开始构建。
+
+
+#### 从标准输入中读取 Dockerfile 进行构建
+
+```
+docker build - < Dockerfile
+```
+
+或
+
+```
+cat Dockerfile | docker build -
+```
+
+如果标准输入传入的是文本文件，则将其视为 Dockerfile，并开始构建。这种形式由于直接从标准输入中读取 Dockerfile 的内容，它没有上下文，因此不可以像其他方法那样可以将本地文件 COPY 进镜像之类的事情。
+
+
+#### 从标准输入中读取上下文压缩包进行构建
+
+```
+$ docker build - < context.tar.gz
+```
+
+如果发现标准输入的文件格式是 gzip、bzip2 以及 xz 的话，将会使其为上下文压缩包，直接将其展开，将里面视为上下文，并开始构建。
+
+## Dockerfile 指令详解
+
+### COPY 复制文件
+
+```
+COPY <源路径>... <目标路径>
+COPY ["<源路径1>",... "<目标路径>"]
+```
+
+和 RUN 指令一样，也有两种格式，一种类似于命令行，一种类似于函数调用。
+
+COPY 指令将从构建上下文目录中 <源路径> 的文件/目录复制到新的一层的镜像内的 <目标路径> 位置。比如：
+
+```
+COPY package.json /usr/src/app/
+```
+
+<源路径> 可以是多个，甚至可以是通配符，其通配符规则要满足 Go 的 filepath.Match 规则，如：
+
+```
+COPY hom* /mydir/
+COPY hom?.txt /mydir/
+```
+
+<目标路径> 可以是容器内的绝对路径，也可以是相对于工作目录的相对路径（工作目录可以用 WORKDIR 指令来指定）。
+
+目标路径不需要事先创建，如果目录不存在会在复制文件前先行创建缺失目录。
+
+此外，还需要注意一点，使用 COPY 指令，源文件的各种元数据都会保留。比如读、写、执行权限、文件变更时间等。这个特性对于镜像定制很有用。特别是构建相关文件都在使用 Git 进行管理的时候。
+
+
+### ADD 更高级的复制文件
+
+ADD 指令和 COPY 的格式和性质基本一致。但是在 COPY 基础上增加了一些功能。
+
+ - 这个功能其实并不实用，而且不推荐使用
+ - 如果 <源路径> 为一个 tar 压缩文件的话，压缩格式为 gzip, bzip2 以及 xz 的情况下，ADD 指令将会自动解压缩这个压缩文件到 <目标路径> 去。
+ - 在某些情况下，这个自动解压缩的功能非常有用，比如官方镜像 ubuntu 中：
+
+```
+FROM scratch
+ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
+...
+```
+
+ - 但在某些情况下，如果我们真的是希望复制个压缩文件进去，而不解压缩，这时就不可以使用 ADD 命令了。
+ - 在 Docker 官方的最佳实践文档中要求，尽可能的使用 COPY，因为 COPY 的语义很明确，就是复制文件而已，而 ADD 则包含了更复杂的功能，其行为也不一定很清晰。
+ - 最适合使用 ADD 的场合，就是所提及的需要自动解压缩的场合。
+
+### CMD 容器启动命令
+
+CMD 指令的格式和 RUN 相似，也是两种格式：
+
+```
+shell 格式：CMD <命令>
+exec 格式：CMD ["可执行文件", "参数1", "参数2"...]
+```
+
+Docker 不是虚拟机，容器就是进程。既然是进程，那么在启动容器的时候，需要指定所运行的程序及参数。CMD 指令就是用于指定默认的容器主进程的启动命令的。
+
+在运行时可以指定新的命令来替代镜像设置中的这个默认命令。
+
+比如，ubuntu 镜像默认的 CMD 是 /bin/bash，如果我们直接 docker run -it ubuntu 的话，会直接进入 bash。我们也可以在运行时指定运行别的命令，如 `docker run -it ubuntu cat /etc/os-release`。这就是用 cat /etc/os-release 命令替换了默认的 /bin/bash 命令了，输出了系统版本信息。
+
+在指令格式上，一般推荐使用 exec 格式，这类格式在解析时会被解析为 JSON 数组，因此一定要使用双引号 "，而不要使用单引号。
+
+如果使用 shell 格式的话，实际的命令会被包装为 sh -c 的参数的形式进行执行。比如：
+
+```
+CMD echo $HOME
+```
+
+在实际执行中，会将其变更为：
+
+```
+CMD [ "sh", "-c", "echo $HOME" ]
+```
+
+这就是为什么我们可以使用环境变量的原因，因为这些环境变量会被 shell 进行解析处理。
+
+---
+
+提到 CMD 就不得不提容器中应用在前台执行和后台执行的问题。这是初学者常出现的一个混淆。
+
+Docker 不是虚拟机，容器中的应用都应该以前台执行，而不是像虚拟机、物理机里面那样，用 upstart/systemd 去启动后台服务，
+
+**容器内没有后台服务的概念**。
+
+一些初学者将 CMD 写为：
+
+```
+CMD service nginx start
+```
+
+然后发现容器执行后就立即退出了。甚至在容器内去使用 systemctl 命令结果却发现根本执行不了。这就是因为没有搞明白前台、后台的概念，没有区分容器和虚拟机的差异，依旧在以传统虚拟机的角度去理解容器。
+
+对于容器而言，其启动程序就是容器应用进程，容器就是为了主进程而存在的，主进程退出，容器就失去了存在的意义，从而退出，其它辅助进程不是它需要关心的东西。
+
+而使用 service nginx start 命令，则是希望 upstart 来以后台守护进程形式启动 nginx 服务。而刚才说了 CMD service nginx start 会被理解为 CMD [ "sh", "-c", "service nginx start"]，因此主进程实际上是 sh。那么当 service nginx start 命令结束后，sh 也就结束了，sh 作为主进程退出了，自然就会令容器退出。
+
+正确的做法是直接执行 nginx 可执行文件，并且要求以前台形式运行。比如：
+
+```
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+### ENTRYPOINT 入口点
+
+ENTRYPOINT 的格式和 RUN 指令格式一样，分为 exec 格式和 shell 格式。
+
+ENTRYPOINT 的目的和 CMD 一样，都是在指定容器启动程序及参数。ENTRYPOINT 在运行时也可以替代，不过比 CMD 要略显繁琐，需要通过 docker run 的参数 --entrypoint 来指定。
+
+当指定了 ENTRYPOINT 后，CMD 的含义就发生了改变，不再是直接的运行其命令，而是将 CMD 的内容作为参数传给 ENTRYPOINT 指令，换句话说实际执行时，将变为：
+
+```
+<ENTRYPOINT> "<CMD>"
+```
+
+那么有了 CMD 后，为什么还要有 ENTRYPOINT 呢？这种 <ENTRYPOINT> "<CMD>" 有什么好处么？让我们来看几个场景。
+
+**场景一：让镜像变成像命令一样使用**
+
+
+
+---
+
+# Docker 数据管理
+
+
+在容器中管理数据主要有两种方式：
+
+ - 数据卷（Data volumes）
+ - 数据卷容器（Data volume containers）
+
+
+## 数据卷
+
+数据卷是一个可供一个或多个容器使用的特殊目录，它绕过 UFS，可以提供很多有用的特性：
+
+ - 数据卷可以在容器之间共享和重用
+ - 对数据卷的修改会立马生效
+ - 对数据卷的更新，不会影响镜像
+ - 数据卷默认会一直存在，即使容器被删除
+
+*注意：数据卷的使用，类似于 Linux 下对目录或文件进行 mount，镜像中的被指定为挂载点的目录中的文件会隐藏掉，能显示看的是挂载的数据卷*
+
+### 创建一个数据卷
+
+ - 在用 docker run 命令的时候，使用 -v 标记来创建一个数据卷并挂载到容器里。
+ - 在一次 run 中多次使用可以挂载多个数据卷。
+
+下面创建一个名为 web 的容器，并加载一个数据卷到容器的 /webapp 目录。
+
+```
+docker run -d -P --name web -v /webapp training/webapp python app.py
+```
+
+*注意：也可以在 Dockerfile 中使用 VOLUME 来添加一个或者多个新的卷到由该镜像创建的任意容器。*
+
+### 删除数据卷
+
+ - 数据卷是被设计用来持久化数据的，它的生命周期独立于容器，Docker不会在容器被删除后自动删除数据卷，并且也不存在垃圾回收这样的机制来处理没有任何容器引用的数据卷。
+ - 如果需要在删除容器的同时移除数据卷。可以在删除容器的时候使用 docker rm -v 这个命令。
+
+### 挂载一个主机目录作为数据卷
+
+使用 -v 标记也可以指定挂载一个本地主机的目录到容器中去。
+
+```
+docker run -d -P --name web -v /src/webapp:/opt/webapp training/webapp python app.py
+```
+
+上面的命令加载主机的 /src/webapp 目录到容器的 /opt/webapp 目录。
+
+这个功能在进行测试的时候十分方便，比如用户可以放置一些程序到本地目录中，来查看容器是否正常工作。本地目录的路径必须是绝对路径，如果目录不存在 Docker 会自动为你创建它。
+
+*注意：Dockerfile 中不支持这种用法，这是因为 Dockerfile 是为了移植和分享用的。然而，不同操作系统的路径格式不一样，所以目前还不能支持*
+
+Docker 挂载数据卷的默认权限是读写，用户也可以通过 :ro 指定为只读。
+
+```
+$ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp:ro training/webapp python app.py
+```
+
+### 查看数据卷的具体信息
+
+在主机里使用以下命令可以查看指定容器的信息
+
+```
+$ docker inspect web
+```
+
+### 挂载一个本地主机文件作为数据卷
+
+-v 标记也可以从主机挂载单个文件到容器中
+
+```
+docker run --rm -it -v ~/.bash_history:/.bash_history ubuntu /bin/bash
+```
+
+这样就可以记录在容器输入过的命令了。
+
+
+**注意：如果直接挂载一个文件，很多文件编辑工具，包括 vi 或者 sed --in-place，可能会造成文件 inode 的改变，从 Docker 1.1 .0起，这会导致报错误信息。所以最简单的办法就直接挂载文件的父目录**
+
+
+## 数据卷容器
+
+ - 如果你有一些持续更新的数据需要在容器之间共享，最好创建数据卷容器。
+ - 数据卷容器，其实就是一个正常的容器，专门用来提供数据卷供其它容器挂载的。
+ - 首先，创建一个名为 dbdata 的数据卷容器：
+
+```
+docker run -d -v /dbdata --name dbdata training/postgres echo Data-only container for postgres
+```
+
+然后，在其他容器中使用 --volumes-from 来挂载 dbdata 容器中的数据卷。
+
+```
+docker run -d --volumes-from dbdata --name db1 training/postgres
+docker run -d --volumes-from dbdata --name db2 training/postgres
+```
+
+可以使用超过一个的 --volumes-from 参数来指定从多个容器挂载不同的数据卷。 也可以从其他已经挂载了数据卷的容器来级联挂载数据卷。
+
+```
+docker run -d --name db3 --volumes-from db1 training/postgres
+```
+
+**注意：使用 --volumes-from 参数所挂载数据卷的容器自己并不需要保持在运行状态**
+
+如果删除了挂载的容器（包括 dbdata、db1 和 db2），数据卷并不会被自动删除。如果要删除一个数据卷，必须在删除最后一个还挂载着它的容器时使用 docker rm -v 命令来指定同时删除关联的容器。 这可以让用户在容器之间升级和移动数据卷。具体的操作将在下一节中进行讲解。
+
+## 利用数据卷容器来备份、恢复、迁移数据卷
+
+可以利用数据卷对其中的数据进行进行备份、恢复和迁移。
+
+### 备份
+
+首先使用 --volumes-from 标记来创建一个加载 dbdata 容器卷的容器，并从主机挂载当前目录到容器的 /backup 目录。命令如下：
+
+```
+docker run --volumes-from dbdata -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /dbdata
+```
+
+容器启动后，使用了 tar 命令来将 dbdata 卷备份为容器中 /backup/backup.tar 文件，也就是主机当前目录下的名为 backup.tar 的文件。
+
+### 恢复
+
+如果要恢复数据到一个容器，首先创建一个带有空数据卷的容器 dbdata2。
+
+```
+docker run -v /dbdata --name dbdata2 ubuntu /bin/bash
+```
+
+然后创建另一个容器，挂载 dbdata2 容器卷中的数据卷，并使用 untar 解压备份文件到挂载的容器卷中。
+
+```
+docker run --volumes-from dbdata2 -v $(pwd):/backup busybox tar xvf /backup/backup.tar
+```
+
+为了查看/验证恢复的数据，可以再启动一个容器挂载同样的容器卷来查看
+
+```
+docker run --volumes-from dbdata2 busybox /bin/ls /dbdata
+```
+
 
 
 
