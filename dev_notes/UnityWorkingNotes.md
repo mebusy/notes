@@ -39,6 +39,9 @@
 	 - [c/c++ plugin Log](#b172f09ca5430b87593e0828ad617151)
 	 - [detect whether an object has been destroyed ?](#3a888050a1995af5dc4e05e533970e5c)
 	 - [ScrollView 实践](#93b2ba0c1f3e74fd40ccfbdb46ee7061)
+	 - [reset scroll rect content to original postion](#ff5c99f331bda1f9bf2e5016b22ad46e)
+	 - [Dictionary iteration](#ef0a7a0190d13816c3e68a733eb06cfc)
+	 - [AES , encrypt by python, decrypt by c#](#f02e785cdfc7d8abbaef854a66a36db5)
 
 ...menuend
 
@@ -655,11 +658,15 @@ bool bInvalidObj  = gameObject == null || gameObject.Equals(null)  || ReferenceE
  - cell item 
     - 添加 Layout Element
 
+<h2 id="ff5c99f331bda1f9bf2e5016b22ad46e"></h2>
+
 ## reset scroll rect content to original postion 
 
 ```c#
 scrollrect.content.anchoredPosition = Vector2.zero;
 ```
+
+<h2 id="ef0a7a0190d13816c3e68a733eb06cfc"></h2>
 
 ## Dictionary iteration 
 
@@ -670,6 +677,8 @@ foreach(KeyValuePair<EventSignal,EventManager.EventFunc> entry in myRegisterEven
 }
 		
 ```
+
+<h2 id="f02e785cdfc7d8abbaef854a66a36db5"></h2>
 
 ## AES , encrypt by python, decrypt by c# 
 

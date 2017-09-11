@@ -1,3 +1,60 @@
+...menustart
+
+ - [docker](#05b6053c41a2130afd6fc3b158bda4e6)
+ - [基本概念](#e2d6d0e301f7dcc1afe228f7cbcf285a)
+	 - [镜像（Image）](#19f6588aaa5d5f651bf694f2b7a7a6a3)
+		 - [分层存储](#f96eee41708b8eed50d6e54fcee9ff58)
+	 - [容器（Container）](#ce9d5c685661911c7fe0bcb1c08c3705)
+	 - [仓库（Repository）](#e9ce47c1438cc8cd01d7147f7d93a169)
+		 - [Docker Registry](#a6713cd9dc3c442c7735a2b08a2a768d)
+		 - [Docker Registry 公开服务](#c77b89c512b53b948badba879bcb7411)
+		 - [私有 Docker Registry](#3b51596a30d07a4cccce378ebc71a546)
+ - [安装](#e655a410ff21cd07e7a0150491e04371)
+ - [使用 Docker 镜像](#4da5582c2bd22e8a31b18a4362a2e4db)
+	 - [获取镜像](#dde7c093537b2671dc3e20601fe1ad50)
+	 - [运行](#4c763bb67e6013dd35dd97d1efd9c8f2)
+	 - [列出镜像](#edfeb4bbaa399a7dd5981ee43139839e)
+		 - [虚悬镜像](#27a7f5880024c773ace50993e2478d92)
+		 - [中间层镜像](#472571f817083bd6c1adc28636865cbc)
+		 - [列出部分镜像](#44e1a2382c5d3428c9e6991adff4b6cd)
+		 - [以特定格式显示](#572b05bc4b772aa9955181aa862e489e)
+	 - [利用 commit 理解镜像构成](#4b409ece8383ea0f14f598b08fa3f7fc)
+		 - [慎用 docker commit](#a93f325da3a605ac9c7976c259cc3c99)
+	 - [使用 Dockerfile 定制镜像](#ca15f31abd0e0c5beb65f69cd39f697e)
+		 - [FROM 指定基础镜像](#ad64b82a688e4563306595a8bcbd75df)
+		 - [RUN 执行命令](#c40a005104159611a8abcc3e7f4e8e8f)
+		 - [构建镜像](#0cd7fc52e88767f46089b6fc4bc14cdc)
+		 - [镜像构建上下文（Context）](#697df4e515f25078aa8b3ba4573d6964)
+		 - [其它 docker build 的用法](#e2ccb8bb6d2b9d1f6ef53430262eb335)
+			 - [直接用 Git repo 进行构建](#e3b76237c22c121138eb68b7e15928ed)
+			 - [用给定的 tar 压缩包构建](#ffc9590011c00baebbf79d7d2db28ba3)
+			 - [从标准输入中读取 Dockerfile 进行构建](#20183161339129a8f9da73bc60cc95ba)
+			 - [从标准输入中读取上下文压缩包进行构建](#c3257bd208d0a3934d193cf26aa2df71)
+	 - [Dockerfile 指令详解](#ab7b66399bb75089097e87d4fe04cf86)
+		 - [COPY 复制文件](#36960c37c1514474b4d1eb8f2e9af565)
+		 - [ADD 更高级的复制文件](#bc734ce94f563958ed54ed85e7c24626)
+		 - [CMD 容器启动命令](#d3bc2b31db3b0c82ec91ac3e2f9dd85b)
+		 - [ENTRYPOINT 入口点](#1cd6041bdc91a8e6a4c862d3636ce5ed)
+ - [Docker 数据管理](#092d280d669c713c8778047dbe6b2259)
+	 - [数据卷](#99b935d7193a1934689a928ae0139d33)
+		 - [创建一个数据卷](#f1a6ea6cc69a550bafe35f56eb079327)
+		 - [删除数据卷](#9e416de2b887c7c78160255665c297bd)
+		 - [挂载一个主机目录作为数据卷](#e5be13163123d804d337301b9c09eeb4)
+		 - [查看数据卷的具体信息](#f7d1e7013f50a458471e5d4c805fbb4f)
+		 - [挂载一个本地主机文件作为数据卷](#bb673754af06a1493de8c9a1255c3947)
+	 - [数据卷容器](#2df5c8a6ca62324d4237ab45a6fc7391)
+	 - [利用数据卷容器来备份、恢复、迁移数据卷](#35de814218f4269e2c883f78d4f1e504)
+		 - [备份](#664b37da2222287adcb1ecc4e48edb73)
+		 - [恢复](#c7db6d4f1a42987a0df962e927926f14)
+ - [Misc](#74248c725e00bf9fe04df4e35b249a19)
+	 - [stop / rm all container](#106810e843fbd66af6ee48cb3ee7e07f)
+	 - [继续一个刚刚结束的container](#5e7908d41ed1f3e6e1906d575e2dfea0)
+	 - [pass proxy to docker container](#e64a823c0142aaac197cc68839f54da9)
+
+...menuend
+
+
+<h2 id="05b6053c41a2130afd6fc3b158bda4e6"></h2>
 
 # docker 
 
@@ -5,9 +62,13 @@
 
 [docker 实践](https://yeasy.gitbooks.io/docker_practice/content/basic_concept/)
 
+<h2 id="e2d6d0e301f7dcc1afe228f7cbcf285a"></h2>
+
 # 基本概念
 
 理解了 镜像（Image）/ 容器（Container） / 仓库（Repository） 这三个概念 ，就理解了 Docker 的整个生命周期。
+
+<h2 id="19f6588aaa5d5f651bf694f2b7a7a6a3"></h2>
 
 ## 镜像（Image）
 
@@ -15,6 +76,8 @@
  - 对于 Linux 而言，内核启动后，会挂载 root 文件系统为其提供用户空间支持
  - Docker 镜像（Image），就相当于是一个 root 文件系统
     - 比如官方镜像 ubuntu:14.04 就包含了完整的一套 Ubuntu 14.04 最小系统的 root 文件系统
+
+<h2 id="f96eee41708b8eed50d6e54fcee9ff58"></h2>
 
 ### 分层存储
 
@@ -30,6 +93,8 @@
  - 因此，在构建镜像的时候，需要额外小心，每一层尽量只包含该层需要添加的东西，任何额外的东西应该在该层构建结束前清理掉。
  - 分层存储的特征还使得镜像的复用、定制变的更为容易。甚至可以用之前构建好的镜像作为基础层，然后进一步添加新的层，以定制自己所需的内容，构建新的镜像。
 
+
+<h2 id="ce9d5c685661911c7fe0bcb1c08c3705"></h2>
 
 ## 容器（Container）
 
@@ -50,7 +115,11 @@
 
 
 
+<h2 id="e9ce47c1438cc8cd01d7147f7d93a169"></h2>
+
 ## 仓库（Repository）
+
+<h2 id="a6713cd9dc3c442c7735a2b08a2a768d"></h2>
 
 ### Docker Registry
 
@@ -76,6 +145,8 @@
     - 前者往往意味着 Docker Registry 多用户环境下的用户名，后者则往往是对应的软件名
     - 但这并非绝对，取决于所使用的具体 Docker Registry 的软件或服务。
 
+<h2 id="c77b89c512b53b948badba879bcb7411"></h2>
+
 ### Docker Registry 公开服务
 
  - Docker Registry 公开服务是开放给用户使用、允许用户管理镜像的 Registry 服务。
@@ -84,6 +155,8 @@
     - Google 的 [Google Container Registry](https://cloud.google.com/container-registry/) ，[Kubernetes](http://kubernetes.io/) 的镜像使用的就是这个服务。
  - 由于某些原因，在国内访问这些服务可能会比较慢。国内的一些云服务商提供了针对 Docker Hub 的镜像服务（Registry Mirror），这些镜像服务被称为**加速器**。
     - 常见的有 [阿里云加速器](https://cr.console.aliyun.com/#/accelerator) 、[DaoCloud 加速器](https://www.daocloud.io/mirror#accelerator-doc) 、[灵雀云加速器](http://docs.alauda.cn/feature/accelerator.html) 等
+
+<h2 id="3b51596a30d07a4cccce378ebc71a546"></h2>
 
 ### 私有 Docker Registry
 
@@ -95,6 +168,8 @@
  
 ---
 
+<h2 id="e655a410ff21cd07e7a0150491e04371"></h2>
+
 # 安装
  
  [安装](https://yeasy.gitbooks.io/docker_practice/content/install/centos.html)
@@ -105,9 +180,13 @@
 
 ---
 
+<h2 id="4da5582c2bd22e8a31b18a4362a2e4db"></h2>
+
 # 使用 Docker 镜像
 
 Docker 运行容器前需要本地存在对应的镜像，如果镜像不存在本地，Docker 会从镜像仓库下载 ( 默认是 Docker Hub 公共注册服务器中的仓库 )
+
+<h2 id="dde7c093537b2671dc3e20601fe1ad50"></h2>
 
 ## 获取镜像
 
@@ -118,6 +197,8 @@ docker pull [选项] [Docker Registry地址]<仓库名>:<标签>
  - Docker Registry地址：地址的格式一般是 `<域名/IP>[:端口号]`。默认地址是 Docker Hub。
  - 仓库名：如之前所说，这里的仓库名是两段式名称，既 `<用户名>/<软件名>`
     - 对于 Docker Hub，如果不给出用户名，则默认为 library，也就是官方镜像。
+
+<h2 id="4c763bb67e6013dd35dd97d1efd9c8f2"></h2>
 
 ## 运行
 
@@ -149,6 +230,8 @@ exit
 $
 ```
 
+<h2 id="edfeb4bbaa399a7dd5981ee43139839e"></h2>
+
 ## 列出镜像
 
 ```
@@ -165,6 +248,8 @@ ubuntu               14.04               1e0c3dd64ccd        4 weeks ago        
  - 一个镜像可以对应多个标签 TAG
     - ubuntu:16.04 和 ubuntu:latest 拥有相同的 ID，因为它们对应的是同一个镜像
 
+<h2 id="27a7f5880024c773ace50993e2478d92"></h2>
+
 ### 虚悬镜像
 
  - 上面的镜像列表中，还可以看到一个特殊的镜像，这个镜像既没有仓库名，也没有标签，均为 <none>
@@ -176,6 +261,8 @@ ubuntu               14.04               1e0c3dd64ccd        4 weeks ago        
  - 一般来说，虚悬镜像已经失去了存在的价值，是可以随意删除的，可以用下面的命令删除。
     - `$ docker rmi $(docker images -q -f dangling=true)`
 
+<h2 id="472571f817083bd6c1adc28636865cbc"></h2>
+
 ### 中间层镜像
 
  - 为了加速镜像构建、重复利用资源，Docker 会利用 **中间层镜像**
@@ -183,6 +270,8 @@ ubuntu               14.04               1e0c3dd64ccd        4 weeks ago        
  - 默认的 docker images 列表中只会显示顶层镜像，如果希望显示包括中间层镜像在内的所有镜像的话，需要加 -a 参数。
     - `$ docker images -a`
  - 这样会看到很多无标签的镜像，与之前的虚悬镜像不同，这些无标签的镜像很多都是中间层镜像，是其它镜像所依赖的镜像。这些无标签镜像不应该删除，否则会导致上层镜像因为依赖丢失而出错. 实际上，这些镜像也没必要删除.
+
+<h2 id="44e1a2382c5d3428c9e6991adff4b6cd"></h2>
 
 ### 列出部分镜像
 
@@ -212,6 +301,8 @@ $ docker images -f since=mongo:3.2
 $ docker images -f label=com.example.version=0.1
 ```
 
+<h2 id="572b05bc4b772aa9955181aa862e489e"></h2>
+
 ### 以特定格式显示
 
  - 默认情况下，docker images 会输出一个完整的表格，但是我们并非所有时候都会需要这些内容
@@ -235,6 +326,8 @@ $ docker images --format "{{.ID}}: {{.Repository}}"
 fe9198c04d62: mongo
 00285df0df87: <none>
 ```
+
+<h2 id="4b409ece8383ea0f14f598b08fa3f7fc"></h2>
 
 ## 利用 commit 理解镜像构成
 
@@ -324,6 +417,8 @@ docker run --name web2 -d -p 81:80 nginx:v2
 
 这里我们命名为新的服务为 web2，并且映射到 81 端口。如果是 Docker for Mac/Windows 或 Linux 桌面的话，我们就可以直接访问 http://localhost:81 看到结果，
 
+<h2 id="a93f325da3a605ac9c7976c259cc3c99"></h2>
+
 ### 慎用 docker commit
 
 使用 docker commit 命令虽然可以比较直观的帮助理解镜像分层存储的概念，但是实际环境中并不会这样使用。
@@ -338,6 +433,8 @@ docker run --name web2 -d -p 81:80 nginx:v2
 docker commit 命令除了学习之外，还有一些特殊的应用场合，比如被入侵后保存现场等。但是，不要使用 docker commit 定制镜像，定制行为应该使用 Dockerfile 来完成。
 
 ---
+
+<h2 id="ca15f31abd0e0c5beb65f69cd39f697e"></h2>
 
 ## 使用 Dockerfile 定制镜像
 
@@ -364,6 +461,8 @@ RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
 
 这个 Dockerfile 很简单，一共就两行。涉及到了两条指令，FROM 和 RUN。
 
+<h2 id="ad64b82a688e4563306595a8bcbd75df"></h2>
+
 ### FROM 指定基础镜像
 
  - FROM 是必备的指令，并且必须是第一条指令。
@@ -385,6 +484,8 @@ FROM scratch
  - 不以任何系统为基础，直接将可执行文件复制进镜像的做法并不罕见，比如 swarm、coreos/etcd
  - 对于 Linux 下静态编译的程序来说，并不需要有操作系统提供运行时支持，所需的一切库都已经在可执行文件里了，因此直接 FROM scratch 会让镜像体积更加小巧。
  - 使用 Go 语言 开发的应用很多会使用这种方式来制作镜像，这也是为什么有人认为 Go 是特别适合容器微服务架构的语言的原因之一。
+
+<h2 id="c40a005104159611a8abcc3e7f4e8e8f"></h2>
 
 ### RUN 执行命令
 
@@ -441,6 +542,8 @@ Dockerfile 支持 Shell 类的行尾添加 \ 的命令换行方式，以及行�
 
 很多人初学 Docker 制作出了很臃肿的镜像的原因之一，就是忘记了每一层构建的最后一定要清理掉无关文件。
 
+<h2 id="0cd7fc52e88767f46089b6fc4bc14cdc"></h2>
+
 ### 构建镜像
 
 好了，让我们再回到之前定制的 nginx 镜像的 Dockerfile 来。让我们来构建这个镜像吧。
@@ -471,6 +574,8 @@ docker build [选项] <上下文路径/URL/->
 ```
 
 在这里我们指定了最终镜像的名称 -t nginx:v3，构建成功后，我们可以像之前运行 nginx:v2 那样来运行这个镜像，其结果会和 nginx:v2 一样。
+
+<h2 id="697df4e515f25078aa8b3ba4573d6964"></h2>
 
 ### 镜像构建上下文（Context）
 
@@ -510,7 +615,11 @@ Sending build context to Docker daemon 2.048 kB
 
 一般来说，应该会将 Dockerfile 置于一个空目录下，或者**项目**根目录下。如果该目录下没有所需文件，那么应该把所需文件复制一份过来。如果目录下有些东西确实不希望构建时传给 Docker 引擎，那么可以用 .gitignore 一样的语法写一个 .dockerignore，该文件是用于剔除不需要作为上下文传递给 Docker 引擎的。
 
+<h2 id="e2ccb8bb6d2b9d1f6ef53430262eb335"></h2>
+
 ### 其它 docker build 的用法
+
+<h2 id="e3b76237c22c121138eb68b7e15928ed"></h2>
 
 #### 直接用 Git repo 进行构建
 
@@ -529,6 +638,8 @@ aed15891ba52: Already exists
 
 这行命令指定了构建所需的 Git repo，并且指定默认的 master 分支，构建目录为 /8.14/，然后 Docker 就会自己去 git clone 这个项目、切换到指定分支、并进入到指定目录后开始构建。
 
+<h2 id="ffc9590011c00baebbf79d7d2db28ba3"></h2>
+
 #### 用给定的 tar 压缩包构建
 
 ```
@@ -537,6 +648,8 @@ $ docker build http://server/context.tar.gz
 
 如果所给出的 URL 不是个 Git repo，而是个 tar 压缩包，那么 Docker 引擎会下载这个包，并自动解压缩，以其作为上下文，开始构建。
 
+
+<h2 id="20183161339129a8f9da73bc60cc95ba"></h2>
 
 #### 从标准输入中读取 Dockerfile 进行构建
 
@@ -553,6 +666,8 @@ cat Dockerfile | docker build -
 如果标准输入传入的是文本文件，则将其视为 Dockerfile，并开始构建。这种形式由于直接从标准输入中读取 Dockerfile 的内容，它没有上下文，因此不可以像其他方法那样可以将本地文件 COPY 进镜像之类的事情。
 
 
+<h2 id="c3257bd208d0a3934d193cf26aa2df71"></h2>
+
 #### 从标准输入中读取上下文压缩包进行构建
 
 ```
@@ -561,7 +676,11 @@ $ docker build - < context.tar.gz
 
 如果发现标准输入的文件格式是 gzip、bzip2 以及 xz 的话，将会使其为上下文压缩包，直接将其展开，将里面视为上下文，并开始构建。
 
+<h2 id="ab7b66399bb75089097e87d4fe04cf86"></h2>
+
 ## Dockerfile 指令详解
+
+<h2 id="36960c37c1514474b4d1eb8f2e9af565"></h2>
 
 ### COPY 复制文件
 
@@ -592,6 +711,8 @@ COPY hom?.txt /mydir/
 此外，还需要注意一点，使用 COPY 指令，源文件的各种元数据都会保留。比如读、写、执行权限、文件变更时间等。这个特性对于镜像定制很有用。特别是构建相关文件都在使用 Git 进行管理的时候。
 
 
+<h2 id="bc734ce94f563958ed54ed85e7c24626"></h2>
+
 ### ADD 更高级的复制文件
 
 ADD 指令和 COPY 的格式和性质基本一致。但是在 COPY 基础上增加了一些功能。
@@ -609,6 +730,8 @@ ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
  - 但在某些情况下，如果我们真的是希望复制个压缩文件进去，而不解压缩，这时就不可以使用 ADD 命令了。
  - 在 Docker 官方的最佳实践文档中要求，尽可能的使用 COPY，因为 COPY 的语义很明确，就是复制文件而已，而 ADD 则包含了更复杂的功能，其行为也不一定很清晰。
  - 最适合使用 ADD 的场合，就是所提及的需要自动解压缩的场合。
+
+<h2 id="d3bc2b31db3b0c82ec91ac3e2f9dd85b"></h2>
 
 ### CMD 容器启动命令
 
@@ -667,6 +790,8 @@ CMD service nginx start
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
+<h2 id="1cd6041bdc91a8e6a4c862d3636ce5ed"></h2>
+
 ### ENTRYPOINT 入口点
 
 ENTRYPOINT 的格式和 RUN 指令格式一样，分为 exec 格式和 shell 格式。
@@ -687,6 +812,8 @@ ENTRYPOINT 的目的和 CMD 一样，都是在指定容器启动程序及参数�
 
 ---
 
+<h2 id="092d280d669c713c8778047dbe6b2259"></h2>
+
 # Docker 数据管理
 
 
@@ -695,6 +822,8 @@ ENTRYPOINT 的目的和 CMD 一样，都是在指定容器启动程序及参数�
  - 数据卷（Data volumes）
  - 数据卷容器（Data volume containers）
 
+
+<h2 id="99b935d7193a1934689a928ae0139d33"></h2>
 
 ## 数据卷
 
@@ -706,6 +835,8 @@ ENTRYPOINT 的目的和 CMD 一样，都是在指定容器启动程序及参数�
  - 数据卷默认会一直存在，即使容器被删除
 
 *注意：数据卷的使用，类似于 Linux 下对目录或文件进行 mount，镜像中的被指定为挂载点的目录中的文件会隐藏掉，能显示看的是挂载的数据卷*
+
+<h2 id="f1a6ea6cc69a550bafe35f56eb079327"></h2>
 
 ### 创建一个数据卷
 
@@ -720,10 +851,14 @@ docker run -d -P --name web -v /webapp training/webapp python app.py
 
 *注意：也可以在 Dockerfile 中使用 VOLUME 来添加一个或者多个新的卷到由该镜像创建的任意容器。*
 
+<h2 id="9e416de2b887c7c78160255665c297bd"></h2>
+
 ### 删除数据卷
 
  - 数据卷是被设计用来持久化数据的，它的生命周期独立于容器，Docker不会在容器被删除后自动删除数据卷，并且也不存在垃圾回收这样的机制来处理没有任何容器引用的数据卷。
  - 如果需要在删除容器的同时移除数据卷。可以在删除容器的时候使用 docker rm -v 这个命令。
+
+<h2 id="e5be13163123d804d337301b9c09eeb4"></h2>
 
 ### 挂载一个主机目录作为数据卷
 
@@ -745,6 +880,8 @@ Docker 挂载数据卷的默认权限是读写，用户也可以通过 :ro 指�
 $ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp:ro training/webapp python app.py
 ```
 
+<h2 id="f7d1e7013f50a458471e5d4c805fbb4f"></h2>
+
 ### 查看数据卷的具体信息
 
 在主机里使用以下命令可以查看指定容器的信息
@@ -752,6 +889,8 @@ $ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp:ro training/webapp
 ```
 $ docker inspect web
 ```
+
+<h2 id="bb673754af06a1493de8c9a1255c3947"></h2>
 
 ### 挂载一个本地主机文件作为数据卷
 
@@ -766,6 +905,8 @@ docker run --rm -it -v ~/.bash_history:/.bash_history ubuntu /bin/bash
 
 **注意：如果直接挂载一个文件，很多文件编辑工具，包括 vi 或者 sed --in-place，可能会造成文件 inode 的改变，从 Docker 1.1 .0起，这会导致报错误信息。所以最简单的办法就直接挂载文件的父目录**
 
+
+<h2 id="2df5c8a6ca62324d4237ab45a6fc7391"></h2>
 
 ## 数据卷容器
 
@@ -794,9 +935,13 @@ docker run -d --name db3 --volumes-from db1 training/postgres
 
 如果删除了挂载的容器（包括 dbdata、db1 和 db2），数据卷并不会被自动删除。如果要删除一个数据卷，必须在删除最后一个还挂载着它的容器时使用 docker rm -v 命令来指定同时删除关联的容器。 这可以让用户在容器之间升级和移动数据卷。具体的操作将在下一节中进行讲解。
 
+<h2 id="35de814218f4269e2c883f78d4f1e504"></h2>
+
 ## 利用数据卷容器来备份、恢复、迁移数据卷
 
 可以利用数据卷对其中的数据进行进行备份、恢复和迁移。
+
+<h2 id="664b37da2222287adcb1ecc4e48edb73"></h2>
 
 ### 备份
 
@@ -807,6 +952,8 @@ docker run --volumes-from dbdata -v $(pwd):/backup ubuntu tar cvf /backup/backup
 ```
 
 容器启动后，使用了 tar 命令来将 dbdata 卷备份为容器中 /backup/backup.tar 文件，也就是主机当前目录下的名为 backup.tar 的文件。
+
+<h2 id="c7db6d4f1a42987a0df962e927926f14"></h2>
 
 ### 恢复
 
@@ -835,7 +982,11 @@ docker run --volumes-from dbdata2 busybox /bin/ls /dbdata
 
 ---
 
+<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
+
 # Misc
+
+<h2 id="106810e843fbd66af6ee48cb3ee7e07f"></h2>
 
 ## stop / rm all container 
 
@@ -844,6 +995,8 @@ docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 ```
 
+
+<h2 id="5e7908d41ed1f3e6e1906d575e2dfea0"></h2>
 
 ## 继续一个刚刚结束的container 
 
@@ -860,6 +1013,8 @@ Explanation:
     -q list only container IDs
     -l list only last created container
 
+
+<h2 id="e64a823c0142aaac197cc68839f54da9"></h2>
 
 ## pass proxy to docker container 
 
