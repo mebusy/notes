@@ -29,5 +29,5 @@ AᵀA is symmetric positive definite. | AᵀA is only semidefinite.
 A has n (positive) singular values. | A has r < n singular values.
 
 
-    Each line of the singular column can be made quantitative using r.
+    Each line of the singular column can be made quantitative using row.
 
