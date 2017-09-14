@@ -729,4 +729,13 @@ public String Decrypt_CBC_AES( string base64str, byte[] Key )
 }
 ```
 
+## http request under proxy 
+
+ 1. do not use WWW , use WebClint instead
+ 2. set https / http proxy in you environment 
+    - `HTTPS_proxy` , `HTTP_proxy`
+    - be aware of the upper/lower case
+ 3. start unity from `Unity.app/Contents/MacOS/Unity` , not by clicking Unity.app
+
+
 
