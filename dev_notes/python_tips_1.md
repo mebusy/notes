@@ -645,4 +645,11 @@ python ./setup.py install --record install.txt
 cat install.txt | xargs [sudo] rm -rf
 ```
 
+### enter interact mode after executing a python file
 
+```python
+import code 
+
+...
+code.interact(local=locals())
+```
