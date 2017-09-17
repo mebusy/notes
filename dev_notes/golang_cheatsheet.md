@@ -124,5 +124,99 @@ func SearchStrings(a []string, x string) int
 
 ## 3.3 container -- heap . list , ring 
 
+### 3.3.1 heap 
+
+```go
+type Interface interface {
+    sort.Interface
+    Push(x interface{}) // add x as element Len()
+    Pop() interface{}   // remove and return element Len() - 1.
+}
+```
+
+package doc中的example:
+
+```go
+type IntHeap []int
+
+func (h IntHeap) Len() int           { return len(h) }
+func (h IntHeap) Less(i, j int) bool { return h[i] < h[j] }
+func (h IntHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
+
+func (h *IntHeap) Push(x interface{}) {
+    *h = append(*h, x.(int))
+}
+
+func (h *IntHeap) Pop() interface{} {
+    old := *h
+    n := len(old)
+    x := old[n-1]
+    *h = old[0 : n-1]
+    return x
+}
+
+//============
+h := &IntHeap{2, 1, 5}
+heap.Init(h)
+heap.Push(h, 3)
+heap.Pop(h)
+```
+
+### 3.3.2 list 链表
+
+ - 链表就是一个有prev和next指针的数组了。
+ - 它维护两个type，(注意，这里不是interface)
+
+```go
+type Element struct {
+    next, prev *Element  // 上一个元素和下一个元素
+    list *List  // 元素所在链表
+    Value interface{}  // 元素
+}
+
+type List struct {
+    root Element  // 链表的根元素
+    len  int      // 链表的长度
+}
+```
+
+基本使用是先创建list，然后往list中插入值，list就内部创建一个Element，并内部设置好Element的next,prev等
+
+
+```go
+    list := list.New()
+    list.PushBack(1)
+    list.PushBack(2)
+```
+
+### 3.3.3 ring
+
+ - ring 不需要像list一样保持list和element两个结构，只需要保持一个结构就行
+
+```go
+type Ring struct {
+    next, prev *Ring
+    Value      interface{}
+}
+```
+
+ - 初始化环的时候，需要定义好环的大小，然后对环的每个元素进行赋值
+ - 环还提供一个Do方法，能便利一遍环，对每个元素执行一个function
+
+```go
+    ring := ring.New(3)
+
+    for i := 1; i <= 3; i++ {
+        ring.Value = i
+        ring = ring.Next()
+    }
+
+    // 计算1+2+3
+    s := 0
+    ring.Do(func(p interface{}){
+        s += p.(int)
+    })
+    fmt.Println("sum is", s)
+```
 
 
