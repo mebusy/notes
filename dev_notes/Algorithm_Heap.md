@@ -35,16 +35,8 @@
 
 ### Supported Operations
 
-A heap is a container for objects , and each of these object should have a key , like a number , so that for any given objects you can compare their keys and say one key is bigger than other key. Duplicate key is allowed ?
-
-Heap example:
-
- - employer records , key is socail security numbers
- - edges of network , key is something like the length or weight of an edge
- - events , key is the time at which that event is meant to occur.
-
-
-So the no.1 thing you should remember about a given data structure is what operations it supports, and what is the running time you can expect from those operations. 
+ - Tthe no.1 thing you should remember about a given data structure is what operations it supports
+ -  and what is the running time you can expect from those operations. 
 
 Basically , a heap supports 2 operations
 
@@ -65,27 +57,15 @@ Additional Operations:
 
 ### Application: Sorting
 
-What should trigger you to think that maybe you want to use a heap data structure in some task?  
-
-So the most common reason to use a heap is you notice that your programm is doing repeated minimum computations. Especially via exhaustive search.
-
- - example for repeated minimum computations: SelectionSort , O(n²)
- - example for sort use heap: HeapSort , O(nlogn)
-
+ - So the most common reason to use a heap is you notice that your programm is doing repeated minimum computations. 
+ - Especially via exhaustive search.
+    - example for sort use heap: HeapSort , O(nlogn)
 
 <h2 id="d47eaadb4edbed6e7e32232a56fe6ab7"></h2>
 
 ### Application: Event Manager
 
-In this application it will be natural to call a heap by a synonymous name , a priority queue. 
-
-For example , that you're write a video game which is for basketball. Now why would a heap come up in a simulation context ? The objects in this application are going to be events records. An event might be for example that the ball will reach the hoop at a particular time and that would be because a player shot it a couple of seconds ago. If for example the ball hits the rim , that will trigger another event to be schedule for the near future which is that a couple players are going to vie for the rebound. That event in turn could trigger the scheduling of another event, which is one of these players commit over back foul on the other one and knocks them to ground , and ...
-
-So when you have event records like this , there's a very natural key , which is just the timestamp, the time at which this event is scheduled to occur.
-
- - objects = event records 
-    - active / update to occur at given time in the future
- - key = time  event scheduled occur
+ - also called **priority queue** (see python `heapq`)
  - Extract min => yields the next scheduled event.
 
 <h2 id="a3edde8e4fb37f8fffb3bb1638ed8c2f"></h2>
@@ -104,6 +84,9 @@ The way this is gonna work is that you and I gonna play a little game. So on my 
 
 ### Application: Speeding Up Dijkstra
 
+
+---
+
 <h2 id="c2b2b81b0d6751c1aa98cc1822ba50b1"></h2>
 
 ## Implementation Details
@@ -115,7 +98,7 @@ The way this is gonna work is that you and I gonna play a little game. So on my 
 
 <h2 id="07a0bc991ad48c42bffcdc727ac7e1f7"></h2>
 
-###Tree Implementation
+### Tree Implementation
 
  - **Conceptually**: rooted, binary , as complete as possible
     - if it is not a completed tree, push the extra node as far to the left as possible.
@@ -215,3 +198,5 @@ Now when you're trying to push notes down to the rightful position in the tree, 
 ##### step3: Bubble-Down until heap property has be restored
 
 RunningTime: O(logn)
+
+
