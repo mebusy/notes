@@ -737,5 +737,14 @@ public String Decrypt_CBC_AES( string base64str, byte[] Key )
     - be aware of the upper/lower case
  3. start unity from `Unity.app/Contents/MacOS/Unity` , not by clicking Unity.app
 
+## convert Input.mouseposition to object local space 
+
+```c#
+Vector2 localpoint;
+RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, Input.mousePosition, GetComponentInParent<Canvas>().worldCamera, out localpoint);
+Vector2 normalizedPoint = Rect.PointToNormalized(rectTransform.rect, localpoint);
+
+Debug.Log(normalizedPoint);
+```
 
 
