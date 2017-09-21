@@ -33,6 +33,25 @@ if let test = someOptionalString {
 }
 ```
 
+### Tips for optional test
+
+ - sometimes more Optional test is painful , try `guart let` , it makes code pretty
+
+```swift
+func userLogIn() {
+    guard let username = myUsername, let password = myPassword else { 
+        return 
+    } 
+    print("Welcome, \(username)!") 
+}
+```
+
+### Tips for A or B 
+
+```swift
+var colorToUse = userChosenColor ?? defaultColor
+```
+
 ## force unwrap 
 
  - use `!` to implicitly unwrapped optional
@@ -127,6 +146,15 @@ var i = 1
 while i < 1000 {
     i *= 2
 }
+```
+
+### Tips for while count 
+
+ - 为了控制 while 的循环次数，这里不得不定义一个变量 i
+
+```swift
+// Better Code
+for _ in 1...5 { print("Count") }
 ```
 
 ## repeat-while loop
@@ -250,7 +278,8 @@ numbers.map({
 
 //  When the type is known ... 
 numbers.map({ number in 3 * number })   // kind of lambda ?
-
+// 语法糖， 这种情况下，可以不要 ()
+numbers.map{ number in 3 * number }
 ```
 
 ## Trailing closure
@@ -258,6 +287,15 @@ numbers.map({ number in 3 * number })   // kind of lambda ?
 ```swift
 numbers = numbers.sorted { $0 > $1 }
 ```
+
+## Tips : Use Closure to drop function parameter name 
+
+```swift
+// Normal Function
+func sum(x: Int, y: Int) -> Int { return x + y }
+
+var sumUsingClosure: (Int, Int) -> (Int) = { $0 + $1 }
+``` 
 
 # Structures
  
@@ -284,4 +322,13 @@ let name = namesTable[1]  // Them
 # Error Handling
 
 
+----
+
+tips TODO 
+
+Extension
+Generics
+计算属性 vs 方法
+Enum 类型安全
+函数式编程
 
