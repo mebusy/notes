@@ -297,6 +297,25 @@ func sum(x: Int, y: Int) -> Int { return x + y }
 var sumUsingClosure: (Int, Int) -> (Int) = { $0 + $1 }
 ``` 
 
+## Tips : 函数式编程
+
+ - 例：获取偶数：
+
+```swift
+// bad
+var newEvens = [Int]()
+
+for i in 1...10 {
+ if i % 2 == 0 { newEvens.append(i) }
+}
+
+//========================
+// Declarative 
+var evens = Array(1...10).filter { $0 % 2 == 0 }
+print(evens) // [2, 4, 6, 8, 10]
+```
+
+
 # Structures
  
  - Structures and classes have very similar capabilities
@@ -361,15 +380,307 @@ func testTryStuff() {
 
 # Classes
 
+ - Classes, structures and its members have three levels of access control
+    - internal (default), public, private
 
+```swift
+public class Shape {
+    public func getArea() -> Int {
+        return 0
+    }
+}
+```
+
+ - All methods and properties of a class are public
+ - If you just need to store data in a structured object, you should use a `struct`
+
+```swift
+internal class Rect: Shape {
+    var sideLength: Int = 1
+
+    // Custom getter and setter property
+    private var perimeter: Int {
+        get {
+            return 4 * sideLength
+        }
+        set {
+            // `newValue` is an implicit variable available to setters
+            sideLength = newValue / 4
+        }
+    }
+
+    // Computed properties must be declared as `var`
+    // cause' they can change
+    var smallestSideLength: Int {
+        return self.sideLength - 1
+    }
+
+    // Lazily load a property
+    // subShape remains nil (uninitialized) until getter called
+    lazy var subShape = Rect(sideLength: 4)
+
+    // If you don't need a custom getter and setter,
+    // but still want to run code before and after getting or setting a property,
+    // you can use `willSet` and `didSet`
+    var identifier: String = "defaultID" {
+        // the `willSet` arg will be the variable name for the new value
+        willSet(someIdentifier) {
+            print(someIdentifier)
+        }
+    }
+
+    init(sideLength: Int) {
+        self.sideLength = sideLength
+        // always super.init last when init custom properties
+        super.init()
+    }
+
+    // override
+    override func getArea() -> Int {
+        return sideLength * sideLength
+    }
+}
+
+// A simple class `Square` extends `Rect`
+class Square: Rect {
+    convenience init() {
+        self.init(sideLength: 5)
+    }
+}
+
+var mySquare = Square()
+// cast instance
+let aShape = mySquare as Shape
+
+```
+
+## Tips : 计算属性 vs 方法 
+
+ - 上例的 sideLength ／ perimeter 是相互关联的两组数据
+ - 与其创建两个相互转换的方法 , 不如使用 计算属性getter/setter 把他们关联起来
+
+
+## init 方法: 构造函数
+
+ - init方法是用来创建对象的，有着比较严格的调用方式和实现方式。
+ - 初始化方法的顺序. 为了保证所有的属性都被初始化，对init方法里语句的顺序有严格的要求
+    1. 子类要先初始化子类自有的属性
+    2. 调用父类的初始化方法
+    3. 对父类中需要改变的属性再赋值
+ - init的类别
+    1. Designated
+        - 不加修饰的init都为designated. 
+        - designated初始化方法中要保证所有非Optional的属性都被初始化，子类的init方法也必须都调用父类的Designated init
+    2. Convenience
+        - Convenience初始化方法必须调用同类中的Designated init完成初始化，且不能被子类重载也不能在子类中用super的方式调用.
+        - 只要子类重写了父类convenience初始化方法需要的Designated方法，子类就可以直接调用父类的convenience init完成子类的初始化
+    3. Required
+        - 对于希望子类实现的初始化方法，我们可以通过required限制，强制子类重写，这样写的作用保证了依赖某个Designated初始化方法的convenience一直可以使用。
+        - 另外可以用required修饰convenience方法，用来保证子类不直接使用父类的convenience。
+
+![](https://cdn.pupboss.com/images/blog/2016/02/designated.png)
+
+## Optional init
+
+ - `init` now can return nil
+
+```swift
+// Optional init
+class Circle: Shape {
+    var radius: Int
+    override func getArea() -> Int {
+        return 3 * radius * radius
+    }
+
+    // Place a question mark postfix after `init` is an optional init
+    // which can return nil
+    init?(radius: Int) {
+        self.radius = radius
+        super.init()
+
+        if radius <= 0 {
+            return nil
+        }
+    }
+}
+var myCircle = Circle(radius: 1)
+print(myCircle?.getArea())    // Optional(3)
+print(myCircle!.getArea())    // 3
+
+```
+
+# Enums 
+
+ - Enums can optionally be of a specific type or on their own
+ - They can contain methods like classes
+
+```swift
+enum Suit {
+    case Spades, Hearts, Diamonds, Clubs
+    func getIcon() -> String {
+        switch self {
+        case .Spades: return "♤"
+        case .Hearts: return "♡"
+        case .Diamonds: return "♢"
+        case .Clubs: return "♧"
+        }
+    }
+}
+```
+
+ - Enum values allow short hand syntax, no need to type the enum type
+    - when the variable is explicitly declared
+
+```swift
+var suitValue: Suit = .Hearts
+```
+
+ - String enums can have direct raw value assignments
+    - or their raw values will be derived from the Enum field
+
+```swift
+enum BookName: String {
+    case John
+    case Luke = "Luke"
+}
+print("Name: \(BookName.John.rawValue)")  // John
+print("Name: \(BookName.John)")           // John
+print("Name: \(BookName.Luke.rawValue)")  // rawLuke
+print("Name: \(BookName.Luke)")           // Luke
+```
+
+ - Enum with associated Values
+
+```swift
+enum Furniture {
+    // Associate with Int
+    case Desk(height: Int)
+    // Associate with String and Int
+    case Chair(String, Int)
+
+    func description() -> String {
+        switch self {
+        case .Desk(let height):
+            return "Desk with \(height) cm"
+        case .Chair(let brand, let height):
+            return "Chair of \(brand) with \(height) cm"
+        }
+    }
+}
+var desk: Furniture = .Desk(height: 80)
+print(desk.description())     // "Desk with 80 cm"
+var chair = Furniture.Chair("Foo", 40)
+print(chair.description())    // "Chair of Foo with 40 cm"
+```
+
+## Tips : Enum 类型安全
+
+ - eg. switch中 对字符串做匹配，是一种很危险的做法
+ - 因为我们不能保证 switch case 中的字符串有没编写正确
+ - 使用 enum  可以在编译期间发现你的错误
+
+# Protocols
+
+```swift
+protocol ShapeGenerator {
+    var enabled: Bool { get set }
+    func buildShape() -> Shape
+}
+```
+
+ - 使用 @objc 声明的协议允许 optional functions , which allow you to check for conformance
+ - 这些函数也必须用 @objc 标记。
+
+```swift
+@objc protocol TransformShape {
+    @objc optional func reshape()
+    @objc optional func canReshape() -> Bool
+}
+
+class MyShape: Rect {
+    var delegate: TransformShape?
+
+    func grow() {
+        sideLength += 2
+
+        // Place a question mark after an optional property, method, or
+        // subscript to gracefully ignore a nil value and return nil
+        // instead of throwing a runtime error ("optional chaining").
+        if let reshape = self.delegate?.canReshape?(), reshape {
+            // test for delegate then for method
+            self.delegate?.reshape?()
+        }
+    }
+}
+```
+
+# Extension
+
+ - Add extra functionality to an already existing type
+
+```swift
+// Tips:  Better Version than define a square function 
+extension Int { 
+    var squared: Int { return self * self }
+}
+5.squared // 25
+5.squared.squared // 625
+```
+
+# Generics
+
+ - Similar to Java and C#
+ - Use the `where` keyword to specify the requirements of the generics.
+
+```swift
+func findIndex<T: Equatable>(array: [T], valueToFind: T) -> Int? {
+    for (index, value) in array.enumerated() {
+        if value == valueToFind {
+            return index
+        }
+    }
+    return nil
+}
+let foundAtIndex = findIndex(array: [1, 2, 3, 4], valueToFind: 3)
+print(foundAtIndex == 2) // true
+```
+
+# Operators
+
+ - Custom operators can start with the characters:
+    - `  / = - + * % < > ! & | ^ . ~ `
+ - or 
+    - `  Unicode math, symbol, arrow, dingbat, and line/box drawing characters  `
+
+```swift
+prefix operator !!!
+
+// A prefix operator that triples the side length when used
+prefix func !!! (shape: inout Square) -> Square {
+    shape.sideLength *= 3
+    return shape
+}
+// current value
+print(mySquare.sideLength) // 4
+!!!mySquare
+print(mySquare.sideLength) // 12
+
+// Operators can also be generics
+infix operator <->
+func <-><T: Equatable> (a: inout T, b: inout T) {
+    let c = a
+    a = b
+    b = c
+}
+var foo: Float = 10
+var bar: Float = 20
+
+foo <-> bar
+print("foo is \(foo), bar is \(bar)") // "foo is 20.0, bar is 10.0"
+
+```
 
 ----
 
-tips TODO 
 
-Extension
-Generics
-计算属性 vs 方法
-Enum 类型安全
-函数式编程
 
