@@ -321,6 +321,47 @@ let name = namesTable[1]  // Them
 
 # Error Handling
 
+ - The `Error` protocol is used when throwing errors to catch
+
+```swift
+enum MyError: Error {
+    case BadValue(msg: String)
+    case ReallyBadValue(msg: String)
+```
+
+ - functions marked with `throws` must be called using `try`
+
+```swift
+func fakeFetch(value: Int) throws -> String {
+    guard 7 == value else {
+        throw MyError.ReallyBadValue(msg: "Some really bad value")
+    }
+    return "test"
+}
+
+func testTryStuff() {
+    // assumes there will be no error thrown,
+    // otherwise a runtime exception is raised
+    let _ = try! fakeFetch(value: 7)
+
+    // if an error is thrown, then it proceeds,
+    // but if the value is nil, it also wraps every return value in an optional, even if its already optional
+    let _ = try? fakeFetch(value: 7)
+
+    // normal try operation that provides error handling via `catch` block
+    do {
+        try fakeFetch(value: 1)
+    } catch MyError.BadValue(let msg) {
+        print("Error message: \(msg)")
+    } catch {
+        // must be exhaustive
+    }
+}
+```
+
+# Classes
+
+
 
 ----
 
