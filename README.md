@@ -61,6 +61,8 @@
 
 #### swift
 
+ a | b | c | d
+--- | --- | --- | ---
 [swift in Y minutes](https://github.com/mebusy/notes/blob/master/dev_notes/learnSwiftInYMinutes.md) | [swift from python](https://github.com/mebusy/notes/blob/master/dev_notes/swift_from_python.md) |
 
 
