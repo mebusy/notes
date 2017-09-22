@@ -35,6 +35,30 @@
 		 - [ADD 更高级的复制文件](#bc734ce94f563958ed54ed85e7c24626)
 		 - [CMD 容器启动命令](#d3bc2b31db3b0c82ec91ac3e2f9dd85b)
 		 - [ENTRYPOINT 入口点](#1cd6041bdc91a8e6a4c862d3636ce5ed)
+		 - [ENV 设置环境变量](#15a80d9facd5298221ecbed6e7ee75c7)
+		 - [ARG 构建参数](#14e2e3b76460818c68b72dfaa4534d96)
+		 - [VOLUME 定义匿名卷](#49b45cf4204f235e160ea09e07a16829)
+		 - [EXPOSE 声明端口](#a7a926de3ef2a0c352f59030d0bbc6dd)
+		 - [WORKDIR 指定工作目录](#5a844af8a8f0576eb7a818856d201a20)
+		 - [USER 指定当前用户](#40211142c56583b06d2fe618fa0b3405)
+		 - [HEALTHCHECK 健康检查](#28feabf1a02ad73fb34a3d5aa47c26e9)
+		 - [ONBUILD 为他人做嫁衣裳](#8487eec94911eb65c7d2f4bc18cbbe2b)
+ - [操作容器](#84c8ea5f92b2186182f00a2443cbab12)
+	 - [启动容器](#b093c1c365b165c1d14e32dba65e94f6)
+		 - [新建并启动](#54aae6275e57c681fe430764be974c77)
+		 - [启动已终止容器](#63e39864e294349dc722ce9ba8b51ee7)
+	 - [后台(background)运行](#28b855ee0bcfa0640199f634fb5c23a0)
+		 - [终止容器](#cd1786012578ed41f6a2435c1dcc5966)
+	 - [进入容器](#51fddac8e0d43b8c4cedf5c7536a2b12)
+		 - [attach 命令](#ed8bd9329f54fdae47e248ee852d1a1d)
+	 - [导出和导入容器](#bfc5650eb46f0bddb423c490b0c28be3)
+		 - [导入容器快照](#21eccb9f6a6709dc17c387515e123d28)
+	 - [删除](#2f4aaddde33c9b93c36fd2503f3d122b)
+		 - [清理所有处于终止状态的容器](#cd287c2794249580cfc4de4006ac9362)
+ - [访问仓库   Repository](#5e6078663fa925398d77b106c67215db)
+	 - [Docker Hub](#ec104a6054aee6dccf8a9fc8f6842317)
+	 - [私有仓库 TODO](#bc36ecbfa87b61d606061a743e6fa334)
+	 - [配置文件 TODO](#919d9a1b6552e2443bcba07ac2fcf531)
  - [Docker 数据管理](#092d280d669c713c8778047dbe6b2259)
 	 - [数据卷](#99b935d7193a1934689a928ae0139d33)
 		 - [创建一个数据卷](#f1a6ea6cc69a550bafe35f56eb079327)
@@ -46,6 +70,16 @@
 	 - [利用数据卷容器来备份、恢复、迁移数据卷](#35de814218f4269e2c883f78d4f1e504)
 		 - [备份](#664b37da2222287adcb1ecc4e48edb73)
 		 - [恢复](#c7db6d4f1a42987a0df962e927926f14)
+ - [使用网络](#55e0f8921afc8ae4c8c0536410b973af)
+	 - [外部访问容器](#fe6bb93e4d01fd9317947eef46670807)
+		 - [映射所有接口地址](#cc4add018dea50c5c26e286522ecaa9f)
+		 - [映射到指定地址的指定端口](#7a9d7a6fd9999d4c50012bf194a0d5f8)
+		 - [映射到指定地址的任意端口](#5bfc1ca85e80abb7f382b15b0d1e05ae)
+		 - [查看映射端口配置](#2689da8e24fd82172b01f89e377c0081)
+	 - [容器互联](#06dc7504152a3981b873a938686fbb62)
+		 - [自定义容器命名](#2a4bb5c86ebcad25a1debf231dc8e752)
+		 - [容器互联](#06dc7504152a3981b873a938686fbb62)
+ - [高级网络配置](#89a0c0e3c241795282a7a015dcf8f159)
  - [Misc](#74248c725e00bf9fe04df4e35b249a19)
 	 - [stop / rm all container](#106810e843fbd66af6ee48cb3ee7e07f)
 	 - [继续一个刚刚结束的container](#5e7908d41ed1f3e6e1906d575e2dfea0)
@@ -836,6 +870,8 @@ CMD [ "redis-server" ]
 
 可以看到其中为了 redis 服务创建了 redis 用户，并在最后指定了 ENTRYPOINT 为 docker-entrypoint.sh 脚本。
 
+<h2 id="15a80d9facd5298221ecbed6e7ee75c7"></h2>
+
 ### ENV 设置环境变量
 
 格式有两种：
@@ -870,6 +906,8 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
 
  - ADD、COPY、ENV、EXPOSE、LABEL、USER、WORKDIR、VOLUME、STOPSIGNAL、ONBUILD。
 
+<h2 id="14e2e3b76460818c68b72dfaa4534d96"></h2>
+
 ### ARG 构建参数
 
 格式：ARG <参数名>[=<默认值>]
@@ -881,6 +919,8 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
 但是不要因此就使用 ARG 保存密码之类的信息，因为 docker history 还是可以看到所有值的。
 
 Dockerfile 中的 ARG 指令是定义参数名称，以及定义其默认值。该默认值可以在构建命令 docker build 中用 --build-arg <参数名>=<值> 来覆盖。
+
+<h2 id="49b45cf4204f235e160ea09e07a16829"></h2>
 
 ### VOLUME 定义匿名卷
 
@@ -905,6 +945,8 @@ docker run -d -v mydata:/data xxxx
 
 在这行命令中，就使用了 mydata 这个命名卷挂载到了 /data 这个位置，替代了 Dockerfile 中定义的匿名卷的挂载配置。
 
+<h2 id="a7a926de3ef2a0c352f59030d0bbc6dd"></h2>
+
 ### EXPOSE 声明端口
 
 格式为 EXPOSE <端口1> [<端口2>...]
@@ -921,6 +963,8 @@ EXPOSE 指令是声明运行时容器提供服务端口，这只是一个声明�
  - -p，是映射宿主端口和容器端口，换句话说，就是将容器的对应端口服务公开给外界访问，
  - 而 EXPOSE 仅仅是声明容器打算使用什么端口而已，并不会自动在宿主进行端口映射。
 
+
+<h2 id="5a844af8a8f0576eb7a818856d201a20"></h2>
 
 ### WORKDIR 指定工作目录
 
@@ -941,6 +985,8 @@ RUN echo "hello" > world.txt
 
 因此如果需要改变以后各层的工作目录的位置，那么应该使用 WORKDIR 指令。
 
+
+<h2 id="40211142c56583b06d2fe618fa0b3405"></h2>
 
 ### USER 指定当前用户
 
@@ -969,6 +1015,8 @@ RUN wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/downloa
 CMD [ "exec", "gosu", "redis", "redis-server" ]
 ```
 
+
+<h2 id="28feabf1a02ad73fb34a3d5aa47c26e9"></h2>
 
 ### HEALTHCHECK 健康检查
 
@@ -1040,6 +1088,8 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 $ docker inspect --format '{{json .State.Health}}' web | python -m json.tool
 ```
 
+<h2 id="8487eec94911eb65c7d2f4bc18cbbe2b"></h2>
+
 ### ONBUILD 为他人做嫁衣裳
 
 格式：ONBUILD <其它指令>。
@@ -1057,11 +1107,17 @@ TODO
 
 ---
 
+<h2 id="84c8ea5f92b2186182f00a2443cbab12"></h2>
+
 # 操作容器
 
 简单的说，容器是独立运行的一个或一组应用，以及它们的运行态环境.
 
+<h2 id="b093c1c365b165c1d14e32dba65e94f6"></h2>
+
 ## 启动容器
+
+<h2 id="54aae6275e57c681fe430764be974c77"></h2>
 
 ### 新建并启动
 
@@ -1081,10 +1137,14 @@ root@af8bae53bdd3:/#
 其中，-t 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， -i 则让容器的标准输入保持打开。
 
 
+<h2 id="63e39864e294349dc722ce9ba8b51ee7"></h2>
+
 ### 启动已终止容器
 
 可以利用 docker start 命令，直接将一个已经终止的容器启动运行。
 
+
+<h2 id="28b855ee0bcfa0640199f634fb5c23a0"></h2>
 
 ## 后台(background)运行
 
@@ -1102,6 +1162,8 @@ docker logs [container ID or NAMES]
 使用 -d 参数启动后会返回一个唯一的 id，也可以通过 docker ps 命令来查看容器信息。
 
 
+<h2 id="cd1786012578ed41f6a2435c1dcc5966"></h2>
+
 ### 终止容器
 
  - 可以使用 docker stop 来终止一个运行中的容器
@@ -1109,15 +1171,21 @@ docker logs [container ID or NAMES]
  - 处于终止状态的容器，可以通过 docker start 命令来重新启动。
     - 此外，docker restart 命令会将一个运行态的容器终止，然后再重新启动它。
 
+<h2 id="51fddac8e0d43b8c4cedf5c7536a2b12"></h2>
+
 ## 进入容器
 
 在使用 -d 参数时，容器启动后会进入后台。 某些时候需要进入容器进行操作，有很多种方法，包括使用 docker attach 命令或 nsenter 工具等。
+
+<h2 id="ed8bd9329f54fdae47e248ee852d1a1d"></h2>
 
 ### attach 命令
 
 ```
 docker attach [container ID or NAMES]
 ```
+
+<h2 id="bfc5650eb46f0bddb423c490b0c28be3"></h2>
 
 ## 导出和导入容器
 
@@ -1131,6 +1199,8 @@ $ docker export 7691a814370e > ubuntu.tar
 ```
 
 这样将导出容器快照到本地文件。
+
+<h2 id="21eccb9f6a6709dc17c387515e123d28"></h2>
 
 ### 导入容器快照
 
@@ -1157,6 +1227,8 @@ docker import http://example.com/exampleimage.tgz example/imagerepo
  - 此外，从容器快照文件导入时可以重新指定标签等元数据信息。
 
 
+<h2 id="2f4aaddde33c9b93c36fd2503f3d122b"></h2>
+
 ## 删除
 
 ```
@@ -1164,6 +1236,8 @@ $ docker rm  trusting_newton
 ```
 
 如果要删除一个运行中的容器，可以添加 -f 参数。Docker 会发送 SIGKILL 信号给容器。
+
+<h2 id="cd287c2794249580cfc4de4006ac9362"></h2>
 
 ### 清理所有处于终止状态的容器
 
@@ -1174,7 +1248,11 @@ docker rm $(docker ps -a -q)
 **注意：这个命令其实会试图删除所有的包括还在运行中的容器，不过就像上面提过的 docker rm 默认并不会删除运行中的容器.**
 
 
+<h2 id="5e6078663fa925398d77b106c67215db"></h2>
+
 # 访问仓库   Repository
+
+<h2 id="ec104a6054aee6dccf8a9fc8f6842317"></h2>
 
 ## Docker Hub
 
@@ -1223,7 +1301,11 @@ docker pull centos
 之后，可以 在Docker Hub 的 [自动创建页面](https://registry.hub.docker.com/builds/) 中跟踪每次创建的状态。
 
 
+<h2 id="bc36ecbfa87b61d606061a743e6fa334"></h2>
+
 ## 私有仓库 TODO
+
+<h2 id="919d9a1b6552e2443bcba07ac2fcf531"></h2>
 
 ## 配置文件 TODO
 
@@ -1397,7 +1479,11 @@ docker run --volumes-from dbdata2 busybox /bin/ls /dbdata
 ```
 
 
+<h2 id="55e0f8921afc8ae4c8c0536410b973af"></h2>
+
 # 使用网络
+
+<h2 id="fe6bb93e4d01fd9317947eef46670807"></h2>
 
 ## 外部访问容器
 
@@ -1429,6 +1515,8 @@ $ docker logs -f nostalgic_morse
  - ip::containerPort 
  - hostPort:containerPort。
 
+<h2 id="cc4add018dea50c5c26e286522ecaa9f"></h2>
+
 ### 映射所有接口地址
 
 使用 hostPort:containerPort 格式本地的 5000 端口映射到容器的 5000 端口，可以执行
@@ -1440,6 +1528,8 @@ docker run -d -p 5000:5000 training/webapp python app.py
 此时默认会绑定本地所有接口上的所有地址。
 
 
+<h2 id="7a9d7a6fd9999d4c50012bf194a0d5f8"></h2>
+
 ### 映射到指定地址的指定端口
 
 可以使用 ip:hostPort:containerPort 格式指定映射使用一个特定地址，比如 localhost 地址 127.0.0.1
@@ -1447,6 +1537,8 @@ docker run -d -p 5000:5000 training/webapp python app.py
 ```
 docker run -d -p 127.0.0.1:5000:5000 training/webapp python app.py
 ```
+
+<h2 id="5bfc1ca85e80abb7f382b15b0d1e05ae"></h2>
 
 ### 映射到指定地址的任意端口
 
@@ -1461,6 +1553,8 @@ docker run -d -p 127.0.0.1::5000 training/webapp python app.py
 ```
 docker run -d -p 127.0.0.1:5000:5000/udp training/webapp python app.py
 ```
+
+<h2 id="2689da8e24fd82172b01f89e377c0081"></h2>
 
 ### 查看映射端口配置
 
@@ -1480,11 +1574,15 @@ $ docker port nostalgic_morse 5000
 docker run -d -p 5000:5000  -p 3000:80 training/webapp python app.py
 ```
 
+<h2 id="06dc7504152a3981b873a938686fbb62"></h2>
+
 ## 容器互联
 
 容器的连接（linking）系统是除了端口映射外，另一种跟容器中应用交互的方式。
 
 该系统会在源和接收容器之间创建一个隧道，接收容器可以看到源容器指定的信息。
+
+<h2 id="2a4bb5c86ebcad25a1debf231dc8e752"></h2>
 
 ### 自定义容器命名
 
@@ -1515,6 +1613,8 @@ aed84ee21bde  training/webapp:latest python app.py  12 hours ago  Up 2 seconds 0
 $ sudo docker inspect -f "{{ .Name }}" aed84ee21bde
 /web
 ```
+
+<h2 id="06dc7504152a3981b873a938686fbb62"></h2>
 
 ### 容器互联
 
@@ -1606,6 +1706,8 @@ PING db (172.17.0.5): 48 data bytes
 
 用户可以链接多个父容器到子容器，比如可以链接多个 web 到 db 容器上。
 
+
+<h2 id="89a0c0e3c241795282a7a015dcf8f159"></h2>
 
 # 高级网络配置
 

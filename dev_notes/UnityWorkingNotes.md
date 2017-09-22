@@ -42,6 +42,8 @@
 	 - [reset scroll rect content to original postion](#ff5c99f331bda1f9bf2e5016b22ad46e)
 	 - [Dictionary iteration](#ef0a7a0190d13816c3e68a733eb06cfc)
 	 - [AES , encrypt by python, decrypt by c#](#f02e785cdfc7d8abbaef854a66a36db5)
+	 - [http request under proxy](#7fcc9c98fbea86b9d5a1ed3186960a6f)
+	 - [convert Input.mouseposition to object local space](#7edf8bc89ea87e0d4a69a09a5739ce2e)
 
 ...menuend
 
@@ -729,6 +731,8 @@ public String Decrypt_CBC_AES( string base64str, byte[] Key )
 }
 ```
 
+<h2 id="7fcc9c98fbea86b9d5a1ed3186960a6f"></h2>
+
 ## http request under proxy 
 
  1. do not use WWW , use WebClint instead
@@ -736,6 +740,8 @@ public String Decrypt_CBC_AES( string base64str, byte[] Key )
     - `HTTPS_proxy` , `HTTP_proxy`
     - be aware of the upper/lower case
  3. start unity from `Unity.app/Contents/MacOS/Unity` , not by clicking Unity.app
+
+<h2 id="7edf8bc89ea87e0d4a69a09a5739ce2e"></h2>
 
 ## convert Input.mouseposition to object local space 
 

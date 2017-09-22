@@ -1,3 +1,50 @@
+...menustart
+
+ - [var / let](#9fa684bc441f61891a932d056d3c8246)
+ - [Optional](#ebb061953c0454b2c8ee7b0ac615ebcd)
+	 - [test Optional](#27c595f053043a5aae110c96f30cd8de)
+		 - [Tips for optional test](#afb83c0e97053d46b323ad9e665ff64e)
+		 - [Tips for A or B](#0253a6b48c383156005b1bcbf7511d49)
+	 - [force unwrap](#154c68433b1feb0dae026c6d1c088732)
+ - [Any / AnyObject](#2557bf0a34a37fc3bd3e0ad5528169b3)
+ - [Collections](#a9fc91939a389c7c73e7a3f3cbf411cd)
+	 - [Array](#4410ec34d9e6c1a68100ca0ce033fb17)
+	 - [Dictionary](#3beb75d1563ebc22253341be4ce57f44)
+ - [Control Flow](#6a5ef0f472b554214a936c0224815bb3)
+	 - [condition](#3f9178c25b78ed8bed19091bcb62e266)
+	 - [for loop (array)](#e12ad53a19d5e1aa87072007bad513a3)
+	 - [for loop (dictionary)](#1980b393a3a8f90611e243e0c61dc737)
+	 - [for loop (range)](#70a0808d46a6536d1aadff4818c13532)
+	 - [while loop](#599788940f123832ffad54e986d4ba65)
+		 - [Tips for while count](#feae46ea897378fa83e0b450eab370b4)
+	 - [repeat-while loop](#ec0bf23eb62ddf3ea82dc51880a43246)
+	 - [Switch](#bbc155fb2b111bf61c4f5ff892915e6b)
+ - [Functions](#e93acb146e114b5dfa6ce2d12dcb96e4)
+	 - [guard statements](#e605db264eafbaa07401939571a467d9)
+	 - [Variadic Args](#d9cac8e5e11015c9cc7d13fa9d7677e2)
+	 - [returning functions](#bdad91ee74b78a8decd66266df5132b3)
+	 - [pass by ref](#464c902a8ab52292e8ff744656e60032)
+ - [Closures](#f2d630c9f5476e26be78c865bb09939a)
+	 - [Trailing closure](#13b8b710edc3280a9931abfb03438b5a)
+	 - [Tips : Use Closure to drop function parameter name](#b37e907d573b8391a600a8f6c7172e70)
+	 - [Tips : 函数式编程](#d8f0c71e98ec37923af15ec33a5bd3c4)
+ - [Structures](#2dec5ee9db863ffb68915b70bce4efe4)
+ - [Error Handling](#ef43236673ca0bb606b14091061ac271)
+ - [Classes](#e9878b4854d29907146149f695cb1cfb)
+	 - [Tips : 计算属性 vs 方法](#4c2830a68ad28e3eed67d66d79723d33)
+	 - [init 方法: 构造函数](#c6612e94b6339d9a1cc12175bdfef6f5)
+	 - [Optional init](#85f00a6be586ae47e453334f7168588a)
+ - [Enums](#1b22e7dc709b52f1767fe1eb5dc56625)
+	 - [Tips : Enum 类型安全](#8da882f7c6705dad7abd441bf232c671)
+ - [Protocols](#9985b4390c40137573e6da05caf85874)
+ - [Extension](#63e4e92bb7d207ca577b11c07f827279)
+ - [Generics](#0d7bdbf7f4e4f0dc8ed310a01dee3502)
+ - [Operators](#b3c5827f54218753bb2c3338236446c2)
+
+...menuend
+
+
+<h2 id="9fa684bc441f61891a932d056d3c8246"></h2>
 
 # var / let
 
@@ -10,6 +57,8 @@ let π = 3.1415926
 let piText = "Pi = \(π), Pi 2 = \(π * 2)" // String interpolation 
 ```
 
+<h2 id="ebb061953c0454b2c8ee7b0ac615ebcd"></h2>
+
 # Optional
 
  - Optionals either contains a value, or contains nil (no value) to indicate that a value is missing.
@@ -20,6 +69,8 @@ let piText = "Pi = \(π), Pi 2 = \(π * 2)" // String interpolation
 var someOptionalString: String? = "a"
 someOptionalString = nil
 ```
+
+<h2 id="27c595f053043a5aae110c96f30cd8de"></h2>
 
 ## test Optional 
 
@@ -32,6 +83,8 @@ if let test = someOptionalString {
     print ( test ) ;
 }
 ```
+
+<h2 id="afb83c0e97053d46b323ad9e665ff64e"></h2>
 
 ### Tips for optional test
 
@@ -46,11 +99,15 @@ func userLogIn() {
 }
 ```
 
+<h2 id="0253a6b48c383156005b1bcbf7511d49"></h2>
+
 ### Tips for A or B 
 
 ```swift
 var colorToUse = userChosenColor ?? defaultColor
 ```
+
+<h2 id="154c68433b1feb0dae026c6d1c088732"></h2>
 
 ## force unwrap 
 
@@ -59,6 +116,8 @@ var colorToUse = userChosenColor ?? defaultColor
 ```swift
 var unwrappedString: String! = someOptionalString
 ```
+
+<h2 id="2557bf0a34a37fc3bd3e0ad5528169b3"></h2>
 
 # Any / AnyObject 
 
@@ -72,10 +131,14 @@ anyVar = "Changed value to a string, not good practice, but possible."
 let anyObjectVar: AnyObject = Int(1) as NSNumber
 ```
 
+<h2 id="a9fc91939a389c7c73e7a3f3cbf411cd"></h2>
+
 # Collections 
      
  - Array and Dictionary types are structs
  - So `let` and `var` also indicate that they are mutable (var) or immutable (let) when declaring these types
+
+<h2 id="4410ec34d9e6c1a68100ca0ce033fb17"></h2>
 
 ## Array
 
@@ -84,6 +147,8 @@ var shoppingList = ["catfish", "water", "lemons"]
 var emptyMutableArray = [String]() // empty String array
 var explicitEmptyMutableStringArray: [String] = [] // same as above
 ```
+
+<h2 id="3beb75d1563ebc22253341be4ce57f44"></h2>
 
 ## Dictionary
 
@@ -96,7 +161,11 @@ var emptyMutableDictionary = [String: Float]()
 var explicitEmptyMutableDictionary: [String: Float] = [:] // same as above
 ```
 
+<h2 id="6a5ef0f472b554214a936c0224815bb3"></h2>
+
 # Control Flow
+
+<h2 id="3f9178c25b78ed8bed19091bcb62e266"></h2>
 
 ## condition
 
@@ -109,6 +178,8 @@ if let num = someNumber, num > 3 {
 }
 ```
 
+<h2 id="e12ad53a19d5e1aa87072007bad513a3"></h2>
+
 ## for loop (array)
 
 ```swift
@@ -118,6 +189,8 @@ for value in myArray {
 }
 ```
 
+<h2 id="1980b393a3a8f90611e243e0c61dc737"></h2>
+
 ## for loop (dictionary)
 
 ```swift
@@ -126,6 +199,8 @@ for (key, value) in dict {
     print("\(key): \(value)")
 }
 ```
+
+<h2 id="70a0808d46a6536d1aadff4818c13532"></h2>
 
 ##  for loop (range)
 
@@ -139,6 +214,8 @@ for i in -1...shoppingList.count {
 shoppingList[1...2] = ["1", "2"]
 ```
 
+<h2 id="599788940f123832ffad54e986d4ba65"></h2>
+
 ## while loop 
 
 ```swift
@@ -147,6 +224,8 @@ while i < 1000 {
     i *= 2
 }
 ```
+
+<h2 id="feae46ea897378fa83e0b450eab370b4"></h2>
 
 ### Tips for while count 
 
@@ -157,6 +236,8 @@ while i < 1000 {
 for _ in 1...5 { print("Count") }
 ```
 
+<h2 id="ec0bf23eb62ddf3ea82dc51880a43246"></h2>
+
 ## repeat-while loop
 
 ```swift
@@ -164,6 +245,8 @@ repeat {
     print("hello")
 } while 1 == 2
 ```
+
+<h2 id="bbc155fb2b111bf61c4f5ff892915e6b"></h2>
 
 ## Switch
 
@@ -181,6 +264,8 @@ default: // required (in order to cover all possible input)
     let vegetableComment = "Everything tastes good in soup."
 }
 ```
+
+<h2 id="e93acb146e114b5dfa6ce2d12dcb96e4"></h2>
 
 # Functions
 
@@ -213,6 +298,8 @@ let pricesTuple2 = getGasPrices2()
 let price2 = pricesTuple2.lowestPrice
 ```
 
+<h2 id="e605db264eafbaa07401939571a467d9"></h2>
+
 ## guard statements
 
  - guards provide early exits or breaks
@@ -228,6 +315,8 @@ func testGuard() {
 }
 ```
 
+<h2 id="d9cac8e5e11015c9cc7d13fa9d7677e2"></h2>
+
 ## Variadic Args
 
 ```swift
@@ -237,6 +326,8 @@ func setup(numbers: Int...) {
     let _ = numbers.count
 }
 ```
+
+<h2 id="bdad91ee74b78a8decd66266df5132b3"></h2>
 
 ## returning functions
 
@@ -248,6 +339,8 @@ func makeIncrementer() -> ((Int) -> Int) {
     return addOne
 }
 ```
+
+<h2 id="464c902a8ab52292e8ff744656e60032"></h2>
 
 ## pass by ref
 
@@ -261,6 +354,8 @@ var someIntA = 7
 var someIntB = 3
 swapTwoInts(a: &someIntA, b: &someIntB)
 ```
+
+<h2 id="f2d630c9f5476e26be78c865bb09939a"></h2>
 
 # Closures
 
@@ -282,11 +377,15 @@ numbers.map({ number in 3 * number })   // kind of lambda ?
 numbers.map{ number in 3 * number }
 ```
 
+<h2 id="13b8b710edc3280a9931abfb03438b5a"></h2>
+
 ## Trailing closure
 
 ```swift
 numbers = numbers.sorted { $0 > $1 }
 ```
+
+<h2 id="b37e907d573b8391a600a8f6c7172e70"></h2>
 
 ## Tips : Use Closure to drop function parameter name 
 
@@ -296,6 +395,8 @@ func sum(x: Int, y: Int) -> Int { return x + y }
 
 var sumUsingClosure: (Int, Int) -> (Int) = { $0 + $1 }
 ``` 
+
+<h2 id="d8f0c71e98ec37923af15ec33a5bd3c4"></h2>
 
 ## Tips : 函数式编程
 
@@ -315,6 +416,8 @@ var evens = Array(1...10).filter { $0 % 2 == 0 }
 print(evens) // [2, 4, 6, 8, 10]
 ```
 
+
+<h2 id="2dec5ee9db863ffb68915b70bce4efe4"></h2>
 
 # Structures
  
@@ -337,6 +440,8 @@ struct NamesTable {
 let namesTable = NamesTable(names: ["Me", "Them"])
 let name = namesTable[1]  // Them
 ```
+
+<h2 id="ef43236673ca0bb606b14091061ac271"></h2>
 
 # Error Handling
 
@@ -377,6 +482,8 @@ func testTryStuff() {
     }
 }
 ```
+
+<h2 id="e9878b4854d29907146149f695cb1cfb"></h2>
 
 # Classes
 
@@ -454,11 +561,15 @@ let aShape = mySquare as Shape
 
 ```
 
+<h2 id="4c2830a68ad28e3eed67d66d79723d33"></h2>
+
 ## Tips : 计算属性 vs 方法 
 
  - 上例的 sideLength ／ perimeter 是相互关联的两组数据
  - 与其创建两个相互转换的方法 , 不如使用 计算属性getter/setter 把他们关联起来
 
+
+<h2 id="c6612e94b6339d9a1cc12175bdfef6f5"></h2>
 
 ## init 方法: 构造函数
 
@@ -479,6 +590,8 @@ let aShape = mySquare as Shape
         - 另外可以用required修饰convenience方法，用来保证子类不直接使用父类的convenience。
 
 ![](https://cdn.pupboss.com/images/blog/2016/02/designated.png)
+
+<h2 id="85f00a6be586ae47e453334f7168588a"></h2>
 
 ## Optional init
 
@@ -508,6 +621,8 @@ print(myCircle?.getArea())    // Optional(3)
 print(myCircle!.getArea())    // 3
 
 ```
+
+<h2 id="1b22e7dc709b52f1767fe1eb5dc56625"></h2>
 
 # Enums 
 
@@ -573,11 +688,15 @@ var chair = Furniture.Chair("Foo", 40)
 print(chair.description())    // "Chair of Foo with 40 cm"
 ```
 
+<h2 id="8da882f7c6705dad7abd441bf232c671"></h2>
+
 ## Tips : Enum 类型安全
 
  - eg. switch中 对字符串做匹配，是一种很危险的做法
  - 因为我们不能保证 switch case 中的字符串有没编写正确
  - 使用 enum  可以在编译期间发现你的错误
+
+<h2 id="9985b4390c40137573e6da05caf85874"></h2>
 
 # Protocols
 
@@ -614,6 +733,8 @@ class MyShape: Rect {
 }
 ```
 
+<h2 id="63e4e92bb7d207ca577b11c07f827279"></h2>
+
 # Extension
 
  - Add extra functionality to an already existing type
@@ -626,6 +747,8 @@ extension Int {
 5.squared // 25
 5.squared.squared // 625
 ```
+
+<h2 id="0d7bdbf7f4e4f0dc8ed310a01dee3502"></h2>
 
 # Generics
 
@@ -644,6 +767,8 @@ func findIndex<T: Equatable>(array: [T], valueToFind: T) -> Int? {
 let foundAtIndex = findIndex(array: [1, 2, 3, 4], valueToFind: 3)
 print(foundAtIndex == 2) // true
 ```
+
+<h2 id="b3c5827f54218753bb2c3338236446c2"></h2>
 
 # Operators
 

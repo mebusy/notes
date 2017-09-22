@@ -59,6 +59,9 @@
 [swig](https://github.com/mebusy/notes/blob/master/dev_notes/Interfacing_C_Python_withSWIG.md) | [swig_python](https://github.com/mebusy/notes/blob/master/dev_notes/swig_python.md) | 
 
 
+#### swift
+
+[swift in Y minutes](https://github.com/mebusy/notes/blob/master/dev_notes/learnSwiftInYMinutes.md) | [swift from python](https://github.com/mebusy/notes/blob/master/dev_notes/swift_from_python.md) |
 
 
 <h2 id="aac4d78ee7d18636803896f8b8c16aa6"></h2>

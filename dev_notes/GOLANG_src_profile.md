@@ -1,5 +1,54 @@
+...menustart
+
+ - [Golang 源码剖析 笔记](#bd8d63148bd763bf382e622b7f6ba4c5)
+ - [3 初始化](#96d69e4c5664ac7ab9e1b6cc57f45713)
+ - [4 内存分配](#3cb43e4796e6a8656e179f3c60617099)
+	 - [1. 概述](#423bc1ba50d3ddb690541b8f7c49e8f9)
+		 - [内存块](#f003c5f9f55cdd50278a726b69658195)
+		 - [管理组件](#68813faa72d7f7699aba1c808012dd73)
+	 - [3. 分配](#6d09b6372dc01d0af84688cb42556585)
+	 - [4. 回收](#16170c8f80c0fdb3360e1beb33fd3a83)
+	 - [5. 释放](#26be3afe2c6bb79dc07f00dce919e7e6)
+	 - [6. 其他](#d278fae3e36ea2f387c7343239c0d02a)
+ - [5 垃圾回收](#1e32365e0937a0c0bc87a60fcad9acc6)
+ - [6 并发调度](#0d020f99af32eebe8d32de7cf7af1567)
+	 - [1. 概述](#423bc1ba50d3ddb690541b8f7c49e8f9)
+	 - [2. 初始化](#df2012ae5f31ded9662bae1a626c1fa6)
+	 - [3. 任务](#0c191fd62a6e8c0f7e69094d7f0a9f03)
+	 - [4. 线程](#ea78082204416e4f34e71cadbabb0acd)
+	 - [5. 执行  TODO](#a2134d222761a6e2bd2ef6a4cc2aa9f6)
+	 - [6. 连续栈  TODO](#bb03c9eb129655133f2249ea8bf53a36)
+	 - [7. 系统调用](#b5e8a1c460ec883e7639e85e7366da49)
+	 - [8. 监控](#e9978f4a6239196891873e4ea1feba96)
+		 - [抢占调度](#866b63527a694c6c1e749061b2012a89)
+	 - [9. 其他](#f25b50ca66ffe99bed4b29e510545e53)
+		 - [Gosched](#7f06675de43e6d5aefecae106f52d8ca)
+		 - [gopark](#aa896b57e7f90ea829e73d2e4d668ffc)
+		 - [notesleep](#d3c78919a69267edda18fb9ad9cc1463)
+		 - [Goexit](#639a3023c09d383a7faac7cb8296ce15)
+		 - [stopTheWorld](#daeb73ede1d3edfa35aa9953a6021fd5)
+ - [7. 通道](#7655f7b3cad86e3ce6c125bc6963df80)
+	 - [1. 创建](#fdf28238a16b11944d8c2221aad97cfa)
+	 - [2. 收发](#1161015033b4f7c6cd8c2ffc012ebeaf)
+		 - [同步](#6a620e3c07048291fdb26b6edcee7aba)
+		 - [异步](#8b5a247dc2c747c7daa722dd9357c4d6)
+		 - [关闭](#b15d91274e9fc68608c609999e0413fa)
+	 - [3. 选择](#7a78b12c63142fd545ce428c023e07dc)
+ - [8. Defer](#a1554d04258a4866ffe3bc369e55da7b)
+	 - [1. 定义](#37f4607af585bcc2d00391247adf7f80)
+	 - [2. 性能](#dd11daa20fb3f671cdddf8e2855537e6)
+	 - [3. 错误](#f0a5b882f03b8ff96932e7cbf1b9fc66)
+ - [9. Finalizer](#f30311ee9907d46d180f637ebe6ad581)
+ - [10. 缓存池](#d75ed6fa3c3ea3fe144b84b2156f1bdf)
+
+...menuend
+
+
+<h2 id="bd8d63148bd763bf382e622b7f6ba4c5"></h2>
 
 # Golang 源码剖析 笔记
+
+<h2 id="96d69e4c5664ac7ab9e1b6cc57f45713"></h2>
 
 # 3 初始化
 
@@ -10,11 +59,15 @@
     - 所有 init 函数都在同⼀个 goroutine 内执⾏。 
     - 所有 init 函数结束后才会执⾏ main.main 函数。 
 
+<h2 id="3cb43e4796e6a8656e179f3c60617099"></h2>
+
 # 4 内存分配
 
  - 内置运⾏时的编程语⾔通常会抛弃传统的内存分配⽅式，改由⾃主管理。
  - 这样可以完成类 似预分配、内存池等操作，以避开系统调⽤带来的性能问题。
  - 当然，还有⼀个重要原因是 为了更好地配合垃圾回收。
+
+<h2 id="423bc1ba50d3ddb690541b8f7c49e8f9"></h2>
 
 ## 1. 概述 
 
@@ -32,6 +85,8 @@
 内存分配器只管理内存块，并不关⼼对象状态。
 且不会主动回收内存，由垃圾回收器在完成清理 操作后，触发内存分配器回收操作。
 ```
+
+<h2 id="f003c5f9f55cdd50278a726b69658195"></h2>
 
 ### 内存块 
 
@@ -60,11 +115,15 @@
  - 若对象⼤⼩超出特定阈值限制，会被当做⼤对象（large object）特别对待。 
     - `_MaxSmallSize = 32 << 10 // 32KB`
 
+<h2 id="68813faa72d7f7699aba1c808012dd73"></h2>
+
 ### 管理组件 
 
 优秀的内存分配器必须要在性能和内存利⽤率之间做到平衡。
 
 好在，Golang 的起点很⾼， 直接采⽤了 tcmalloc 的成熟架构。
+
+<h2 id="6d09b6372dc01d0af84688cb42556585"></h2>
 
 ## 3. 分配 
 
@@ -80,6 +139,8 @@ newobject 具体是如何为对象分配内存的:
  - ⼩对象从 cache.alloc[sizeclass].freelist 获取 object。 
  - 微⼩对象组合使⽤ cache.tiny object。
 
+<h2 id="16170c8f80c0fdb3360e1beb33fd3a83"></h2>
+
 ## 4. 回收 
 
  - 内存回收的源头是垃圾清理操作
@@ -88,10 +149,14 @@ newobject 具体是如何为对象分配内存的:
  - 基于效率考虑，回收操作⾃然不会直接盯着单个对象，⽽是以 span 为基本单位。
     - 通过⽐ 对 bitmap ⾥的扫描标记，逐步将 object 收归原 span，最终上交 central 或 heap 复⽤。
 
+<h2 id="26be3afe2c6bb79dc07f00dce919e7e6"></h2>
+
 ## 5. 释放 
 
  - 在运⾏时⼊⼜函数 main.main ⾥，会专门启动⼀个监控任务 sysmon，它每隔⼀段时间就会 检查 heap ⾥的闲置内存块。
  - 遍历 free、freelarge ⾥的所有 span，如闲置时间超过阈值，则释放其关联的物理内存。 
+
+<h2 id="d278fae3e36ea2f387c7343239c0d02a"></h2>
 
 ## 6. 其他 
 
@@ -99,13 +164,19 @@ newobject 具体是如何为对象分配内存的:
     - 其⼀，⾃然是从 arena 区域分配的⽤户 对象
     - 另⼀种，则是运⾏时⾃⾝运⾏和管理所需，⽐如管理 arena 内存⽚段的 mspan，提 供⽆锁分配的 mcache 等等。 
 
+<h2 id="1e32365e0937a0c0bc87a60fcad9acc6"></h2>
+
 # 5 垃圾回收
 
 Golang GC 的基本特征是 “⾮分代、⾮紧缩、写屏障、并发标记清理”。
 
+<h2 id="0d020f99af32eebe8d32de7cf7af1567"></h2>
+
 # 6 并发调度 
 
 因为 Goroutine，才让 Golang 与众不同。
+
+<h2 id="423bc1ba50d3ddb690541b8f7c49e8f9"></h2>
 
 ## 1. 概述 
 
@@ -134,9 +205,13 @@ Golang GC 的基本特征是 “⾮分代、⾮紧缩、写屏障、并发标记
  - 因为 G 初始栈仅有 2KB，且创建操作只是在⽤户空间简单的对象分配，远⽐进⼊内核态 分配线程要简单得多。调
     - 调度器让多个 M 进⼊调度循环，不停获取并执⾏任务，所以我们 才能创建成千上万个并发任务。 
 
+<h2 id="df2012ae5f31ded9662bae1a626c1fa6"></h2>
+
 ## 2. 初始化
 
  - 虽然可在运⾏期⽤ runtime.GOMAXPROCS 函数修改 P 数量，但需付出极⼤代价
+
+<h2 id="0c191fd62a6e8c0f7e69094d7f0a9f03"></h2>
 
 ## 3. 任务 
 
@@ -240,6 +315,8 @@ type struct {
    新建   初始化前        初始化后      调度执行     执行完毕   
 ```
 
+<h2 id="ea78082204416e4f34e71cadbabb0acd"></h2>
+
 ## 4. 线程 
 
  - 当 newproc1 成功创建 G 任务后，会尝试⽤ wakep 唤醒 M 执⾏任务。 
@@ -271,9 +348,15 @@ SCHED 5038ms: gomaxprocs=2 idleprocs=2 threads=858 spinningthreads=0 idlethreads
 SCHED 6048ms: gomaxprocs=2 idleprocs=2 threads=858 spinningthreads=0 idlethreads=855 runqueue=0 [0 0]
 ```
 
+<h2 id="a2134d222761a6e2bd2ef6a4cc2aa9f6"></h2>
+
 ## 5. 执行  TODO
 
+<h2 id="bb03c9eb129655133f2249ea8bf53a36"></h2>
+
 ## 6. 连续栈  TODO
+
+<h2 id="b5e8a1c460ec883e7639e85e7366da49"></h2>
 
 ## 7. 系统调用
 
@@ -284,6 +367,8 @@ SCHED 6048ms: gomaxprocs=2 idleprocs=2 threads=858 spinningthreads=0 idlethreads
  - 某些系统调⽤本⾝就可以确定长时间阻塞（⽐如锁），那么它会选择执⾏ entersyscallblock 主动交出所关联的 P。
  - 从系统调⽤返回时，必须检查 P 是否依然可⽤，因为可能已被 sysmon 抢⾛。 
 
+<h2 id="e9978f4a6239196891873e4ea1feba96"></h2>
+
 ## 8. 监控
 
  - 释放闲置超过 5 分钟的 span 物理内存。
@@ -292,15 +377,21 @@ SCHED 6048ms: gomaxprocs=2 idleprocs=2 threads=858 spinningthreads=0 idlethreads
  - 向长时间运⾏的 G 任务发出抢占调度。
  - 收回因 syscall 长时间阻塞的 P
 
+<h2 id="866b63527a694c6c1e749061b2012a89"></h2>
+
 ### 抢占调度 
 
  - 所谓抢占调度要⽐你想象的简单许多，远不是你以为的 “抢占式多任务操作系统” 那种样⼦
  - 因为 Golang 调度器并没有真正意义上的时间⽚概念，只是在⽬标 G 上设置⼀个抢占标志
  - 当该任务调⽤某个函数时，被编译器安插的指令就会检查这个标志，从⽽决定是否暂停当 前任务。 
 
+<h2 id="f25b50ca66ffe99bed4b29e510545e53"></h2>
+
 ## 9. 其他 
 
 与任务执⾏有关的⼏种暂停操作。
+
+<h2 id="7f06675de43e6d5aefecae106f52d8ca"></h2>
 
 ### Gosched
 
@@ -313,10 +404,14 @@ func Gosched() {
 }
 ```
 
+<h2 id="aa896b57e7f90ea829e73d2e4d668ffc"></h2>
+
 ### gopark
 
  - 与 Gosched 最⼤的区别在于，gopark 并没将 G 放回待运⾏队列。
  - 也就是说，必须主动恢 复，否则该任务会遗失。
+
+<h2 id="d3c78919a69267edda18fb9ad9cc1463"></h2>
 
 ### notesleep
 
@@ -330,10 +425,14 @@ Futex 通常称作 “快速⽤户区互斥”，是⼀种在⽤户空间实现�
 因为 Futex 只在操作结果不⼀致时才进⼊内核仲裁，所以有⾮常⾼的执⾏效率。
 ```
 
+<h2 id="639a3023c09d383a7faac7cb8296ce15"></h2>
+
 ### Goexit
 
  - ⽤户可调⽤ runtime.Goexit ⽴即终⽌ G 任务，不管当前处于调⽤堆栈的哪个层次。
  - 在终⽌ 前，它确保所有 G.defer 被执⾏。
+
+<h2 id="daeb73ede1d3edfa35aa9953a6021fd5"></h2>
 
 ### stopTheWorld
 
@@ -344,6 +443,8 @@ Futex 通常称作 “快速⽤户区互斥”，是⼀种在⽤户空间实现�
 
 ---
 
+<h2 id="7655f7b3cad86e3ce6c125bc6963df80"></h2>
+
 # 7. 通道
 
  - 通道（channel）是 Golang 实现 CSP 并发模型的关键，⿎励⽤通讯来实现数据共享。
@@ -352,6 +453,8 @@ Futex 通常称作 “快速⽤户区互斥”，是⼀种在⽤户空间实现�
 Don't communicate by sharing memory, share memory by communicating.
 CSP: Communicating Sequential Process.
 ```
+
+<h2 id="fdf28238a16b11944d8c2221aad97cfa"></h2>
 
 ## 1. 创建 
 
@@ -368,7 +471,11 @@ type hchan struct {
 
  - makechan 数据项大小不能超过 64KB, 这时候用指针更合适一些
 
+<h2 id="1161015033b4f7c6cd8c2ffc012ebeaf"></h2>
+
 ## 2. 收发 
+
+<h2 id="6a620e3c07048291fdb26b6edcee7aba"></h2>
 
 ### 同步
 
@@ -378,11 +485,15 @@ type hchan struct {
  - 在同步模式下，channel 的作⽤仅是维护发送和接收者队列，数据复制与 channel ⽆关。
  - 另外在唤醒后，需要验证唤醒者⾝份，以此决定是否有实际的数据传递。
 
+<h2 id="8b5a247dc2c747c7daa722dd9357c4d6"></h2>
+
 ### 异步
 
  - 异步模式围绕缓冲槽进⾏。
  - 当有空位时，发送者向槽中复制数据；有数据后，接收者从槽 中获取数据。
  - 双⽅都有唤醒 排队另⼀⽅继续⼯作的责任。 
+
+<h2 id="b15d91274e9fc68608c609999e0413fa"></h2>
 
 ### 关闭 
 
@@ -390,6 +501,8 @@ type hchan struct {
     - 向 closed channel 发送数据，触发 panic。
     - 从 closed channel 读取数据，返回零值。
     - ⽆论收发，nil channel 都会阻塞
+
+<h2 id="7a78b12c63142fd545ce428c023e07dc"></h2>
 
 ## 3. 选择 
 
@@ -406,20 +519,28 @@ type hchan struct {
 官⽅确定要改进 select lock，只是 release 时间未定。
 ```
 
+<h2 id="a1554d04258a4866ffe3bc369e55da7b"></h2>
+
 # 8. Defer
 
  - 延迟调⽤（defer） 最⼤优势是，即便函数执⾏出错，依然能保证回收资源等操作得以执 ⾏。
  - 但如果对性能有要求，且错误能被控制，那么还是直接执⾏⽐较好。 
+
+<h2 id="37f4607af585bcc2d00391247adf7f80"></h2>
 
 ## 1. 定义 
 
  - 编译器将 defer 处理成两个函数调⽤，deferproc 定义⼀个延迟调⽤对象
  - 然后在函数结束 前通过 deferreturn 完成最终调⽤。 
 
+<h2 id="dd11daa20fb3f671cdddf8e2855537e6"></h2>
+
 ## 2. 性能 
 
  - 延迟调⽤远不是⼀个 CALL 指令那么简单，会涉及很多内容。诸如对象分配、 缓存，以及多次函数调⽤.
  - 在某些性能要求⽐较⾼的场合，应该避免使⽤ defer。
+
+<h2 id="f0a5b882f03b8ff96932e7cbf1b9fc66"></h2>
 
 ## 3. 错误
 
@@ -428,6 +549,8 @@ type hchan struct {
 这让我想起 Python __del__ 的话题，颇为类似。
 
 其实，对于不可恢复性的错误⽤ panic 并 ⽆不妥，见仁见智吧。
+
+<h2 id="f30311ee9907d46d180f637ebe6ad581"></h2>
 
 # 9. Finalizer
 
@@ -448,6 +571,8 @@ func main() {
  - ⼀路⾛来，已记不清 runtime 创建了多少类似 fing 这样在以死循环⽅式⼯作的 goroutine 了
  - 不管是 panic，还是 finalizer，都有特定的使⽤场景，因为它们有相应的设计制约。这种制约不 应被看做缺陷，毕竟我们本就不该让它们去做⽆法保证的事情。
 
+
+<h2 id="d75ed6fa3c3ea3fe144b84b2156f1bdf"></h2>
 
 # 10. 缓存池
 

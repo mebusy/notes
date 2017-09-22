@@ -53,6 +53,7 @@
 		 - [文件修改／创建时间](#4b373365b500e18ab7c0b8f5a83dc802)
 		 - [python 写 只读文件](#3fbb096fc383c2a61ad0a6685b17c0de)
 		 - [uninstall files via `python setup.py install`](#5a3fb21375ecbb14ce59ad950a4b5f49)
+		 - [enter interact mode after executing a python file](#e3c3e4edeeaec5c36e52fe88b8fd33fe)
 
 ...menuend
 
@@ -644,6 +645,8 @@ python ./setup.py install --record install.txt
 
 cat install.txt | xargs [sudo] rm -rf
 ```
+
+<h2 id="e3c3e4edeeaec5c36e52fe88b8fd33fe"></h2>
 
 ### enter interact mode after executing a python file
 
