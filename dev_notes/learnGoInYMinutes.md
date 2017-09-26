@@ -300,6 +300,9 @@ type Stringer interface {
     String() string
 }
 ```
+ 
+ - **A type implements an interface by defining the required methods**
+ - **No "implements" declarations**
 
 ```go
     // Define a method on type pair. 
