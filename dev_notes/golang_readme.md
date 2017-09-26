@@ -17,5 +17,6 @@
  12. [go格式化输出 ](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG-fmt%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA.md)
  13. [go源码剖析笔记](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG_src_profile.md)
  14. [learn Go in Y minutes](https://github.com/mebusy/notes/blob/master/dev_notes/learnGoInYMinutes.md)
- 15. [cheat sheet](https://github.com/mebusy/notes/blob/master/dev_notes/golang_cheatsheet.md)
+ 15. [A Tour of GO](https://github.com/mebusy/notes/blob/master/dev_notes/ATourOfGo.md)
+ 16. [cheat sheet](https://github.com/mebusy/notes/blob/master/dev_notes/golang_cheatsheet.md)
 
