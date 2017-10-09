@@ -274,6 +274,8 @@ func worker(id int, lock chan bool) {
 }
 ```
 
-# 4 Well-rounded applications
+# 4 Handling errors and panics
+
+
 
 
