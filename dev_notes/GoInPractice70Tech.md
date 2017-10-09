@@ -189,6 +189,91 @@ Popular solutions include the following:
 
 # 3 Concurrency in Go
 
+**Using multiple channels**
 
+ - You want to use channels to send data from one goroutine to another, and
+    - be able to interrupt that process to exit.  
+ - Use `select` and multiple channels. 
+    - It’s a common practice in Go to use channels to signal when something is done or ready to close(eg. a timeout).
+
+**Closing channels**
+
+ - What happens if you have a sender and receiver goroutine, and the sender finishes sending data?
+    - Are the receiver and channel automatically cleaned up? 
+ - Nope. The memory manager will only clean up values that it can ensure won’t be used again.
+    - open channel and a goroutine can’t be safely cleaned
+ - The straightforward answer to the question “How do I avoid leaking channels and goroutines?” is “Close your channels and return from your goroutines."
+    - Although that answer is correct, it’s also incomplete. 
+    - Closing channels the wrong way will cause your program to panic or leak goroutines
+ - The predominant method for avoiding unsafe channel closing is to use additional channels to notify goroutines when it’s safe to close a channel.  
+ - In Go, the close function should be closed only by a sender, and in general it should be done with some protective guards around it
+    - write(send) to a closed channel will cause panic
+    - read from a closed channel always return `nil` value ( eg. `false` value on a `bool` channel ).
+
+```go
+func main() {
+    msg := make(chan string)
+    // Adds an additional Boolean channel that 
+    // indicates when you’re finished
+    done := make(chan bool)
+    until := time.After(5 * time.Second)
+
+    // passes 2 channels into send
+    go send(msg, done)
+    for {
+        select {
+        case m := <-msg:
+            fmt.Println(m)
+        case <- until :
+            // When you time-out, 
+            // lets send know the process is done
+            dont <- true
+            time.Sleep( 500* time.Millisecond )  
+            return  
+        }    
+    }
+}
+
+func send(ch chan<- string, done <-chan bool) {
+    for {
+        select {
+        case <- done:    
+            println("done")
+            close(ch)
+            return
+        default:
+            ch <- "hello"
+            time.Sleep( 500* time.Millisecond )
+        }    
+    }   
+}
+```
+
+**Locking with buffered channels**
+
+ - Use a channel with a buffer size of 1, and share the channel among the goroutines you want to synchronize.
+ - 替代 lock
+
+```go
+func main() {
+    // create a buffered channel with one space
+    lock := make(chan bool, 1)
+    for i := 1; i < 7; i++ {
+        go worker(i, lock)
+    }
+    time.Sleep(10 * time.Second)
+}
+
+func worker(id int, lock chan bool) {
+    fmt.Printf("%d wants the lock\n", id)
+    lock <- true
+    fmt.Printf("%d has the lock\n", id)
+    time.Sleep(500 * time.Millisecond)
+    fmt.Printf("%d is releasing the lock\n", id)
+    <-lock
+}
+```
+
+# 4 Well-rounded applications
 
 
