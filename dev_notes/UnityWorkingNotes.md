@@ -435,7 +435,7 @@ Debug.logger.logEnabled=false;  ???
 
 ##  IOS - Could not produce class with ID
 
-这是因为你勾选了strip code,有些脚本类是被Resource下的资源引用的,打包后将Resource下的资源移除出去了，一些代码由于检测不到引用就被strip掉了，但是从AssetBundle里加载出来又需要根据ID打到对应代码。
+这是因为你勾选了strip code,一些代码由于检测不到引用就被strip掉了，但是从AssetBundle里加载出来又需要根据ID找到对应代码。
 
  - http://docs.unity3d.com/Manual/ClassIDReference.html 找到ID对应的class
  - 在Assets目录下新建文件link.xml,把不该strip掉的类加进去
@@ -443,14 +443,25 @@ Debug.logger.logEnabled=false;  ???
 
 
 ```
-<?xml version="1.0" encoding="utf-8"?>
 <linker>
-    <assembly fullname="System">
-        <type fullname="System.Net.HttpRequestCreator" preserve="all"/>        
-    </assembly>
-
     <assembly fullname="UnityEngine">
-        <type fullname="UnityEngine.CircleCollider2D" preserve="all"/>
+        <type fullname="UnityEngine.Animation" preserve="all"/>
+        <namespace fullname="UnityEngine.Audio" preserve="all"/>
+    </assembly>
+    <assembly fullname="System">
+        <type fullname="System.Net.HttpWebRequest" preserve="all"/>
+        <type fullname="System.Net.WebResponse" preserve="all"/>
+    </assembly>
+    <assembly fullname="System">
+        <namespace fullname="System.Net" preserve="all"/>
+        <namespace fullname="System.Net.Configuration" preserve="all"/>
+    </assembly>
+    <assembly fullname="mscorlib">
+         <namespace fullname="System.Security.Cryptography" preserve="all"/>
+    </assembly>
+    <assembly fullname="Mono.Security">
+        <namespace fullname="Mono.Security.Protocol.Tls" preserve="all"/>
+        <namespace fullname="Mono.Security.X509" preserve="all"/>
     </assembly>
 </linker>
 ```
