@@ -276,6 +276,191 @@ func worker(id int, lock chan bool) {
 
 # 4 Handling errors and panics
 
+## 4.1 Error handling
 
+ - `errors.New`  function from the errors package is great for creating simple new errors. 
+ - `fmt.Errorf` function in the fmt package gives you the option of using a formatting string on the error message. 
+
+**Custom error types**
+
+ - Go’s error type is an interface that looks like the following listing.
+
+```go
+type error interface {
+    Error() string
+}
+```
+
+ - Anything that has an Error function returning a string satisfies this interface’s contract.
+ - In some cases, you may want your errors to contain more information than a simple string. In such cases, you may choose to create a custom error type.
+    - **Create a type that implements the error interface but provides additional functionality**
+
+Imagine you’re writing a file parser. When the parser encounters a syntax error, it generates an error. Along with having an error message, it’s generally useful to have information about where in the file the error occurred. You could build such an error as shown in the following listing.
+
+```go
+type ParseError struct {
+    Message string // error msg without location info
+    Line, Char int  // the location info
+}
+
+// Implements the Error interface
+func (p *ParseError) Error() string {
+    format := "%s o1n Line %d, Char %d"
+    return fmt.Sprintf(format, p.Message, p.Line, p.Char)
+}
+```
+
+ - This technique is great when you need to return additional information
+ - But what if you need one function to return different kinds of errors?
+
+**Error variables**
+
+ - One complex function may encounter more than one kind of error. 
+ - One convention that’s considered good practice in Go (although not in certain other languages) is to create package-scoped error variables that can be returned whenever a certain error occurs. 
+ - The best example of this in the Go standard library comes in the io package, which contains errors such as io.EOF and io.ErrNoProgress.
+    - **create errors as package-scoped variables and reference those variables**
+
+```go
+// error instance
+var ErrTimeout = errors.New("The request timed out")
+var ErrRejected = errors.New("The request was rejected")
+
+var random = rand.New(rand.NewSource(35))
+
+func SendRequest(req string) (string, error) {
+    // randomly generates behavior
+    switch random.Int() % 3 {
+    case 0:
+        return "Success", nil
+    case 1:
+        return "", ErrRejected
+    default:
+        return "", ErrTimeout
+    }
+}
+
+func main() {
+    response, err := SendRequest("Hello")
+    for err == ErrTimeout {
+        fmt.Println("Timeout. Retrying.")
+        response, err = SendRequest("Hello")
+    }
+    if err != nil {
+        fmt.Println(err)
+    } else {
+        fmt.Println(response)
+    }
+}
+```
+
+## 4.2 The panic system
+
+### 4.2.2 Working with panics
+
+ - `panic(interface{})`
+    - `panic(nil)`
+    - `panic("Oops, I did it again.")`
+ - The best thing to pass to a panic is an error. 
+    - Use the error type to make it easy for the recovery function (if there is one).
+    - `panic(errors.New("Something bad happened."))`
+        - With this method, it’s still easy to print the panic message with print formatters:
+        - `fmt.Printf("Error: %s", thePanic)`
+        - And it’s just as easy to send the panic back through the error system. 
+        - That’s why it’s idiomatic to pass an error to a panic
+
+### 4.2.3 Recovering from panics
+
+**Recovering from panics**
+
+```go
+func main() {
+    // Provides a deferred closure to handle panic recovery
+    defer func() {
+        if err := recover(); err != nil {
+            fmt.Printf("Trapped panic: %s (%T)\n", err, err)
+        }
+    }()
+    yikes() // Calls a function that panics
+}
+func yikes() {
+    // Emits a panic with an error for a body
+    panic(errors.New("Something bad happened."))
+}
+```
+
+ - The recover function in Go returns a value (interface{}) if a panic has been raised, but in all other cases it returns nil. 
+
+### 4.2.4 Panics and goroutines
+
+ - If a panic on a goroutine goes unhandled on that goroutine’s call stack, it crashes the entire program
+
+a trivial little library (now part of github.com/Masterminds/cookoo) to protect us from accidentally unhandled panics on goroutines.
+
+```go
+// GoDoer is a simple parameterless function.
+type GoDoer func()
+
+// safely.Go runs a function as a goroutine 
+// and handles any panics.
+func Go(todo GoDoer) {
+    go func() {
+        defer func() {
+            if err := recover(); err != nil {
+                log.Printf("Panic in safely.Go: %s", err)
+            }
+        }()
+        todo()
+    }()
+}
+```
+
+ - to use 
+    - `"github.com/Masterminds/cookoo/safely"`
+    - `safely.Go( xxxx )`
+
+# 5 Debugging and testing
+
+## 5.2 Logging
+
+### 5.2.1 Using Go’s logge
+
+ - two built-in packages for logging
+    - log
+        - provides basic support (mainly in the form of formatting) for writing log messages
+    - log/syslog
+
+**log**
+
+ - the error messages are all sent to Standard Error
+    - regardless of whether the message is an actual error or an informational message. 
+ - When you call log.Fatalln or any of the other “fatal” calls, the library prints the error message and then calls os.Exit(1)
+ - Additionally, log.Panic calls log an error message and then issue a panic
+
+**Logging to an arbitrary writer**
+
+ - You want to send logging messages to a file or to a network service without having to write your own logging system
+ - Initialize a new log.Logger and send log messages to that.
+ - log.Logger provides features for sending log data to any io.Writer, which includes things like file handles and network connections (net.Conn).
+
+```go
+//  Logging to a file
+
+func main() {
+    // Creates a log file
+    logfile, _ := os.Create("./log.txt")
+    // Makes sure it gets closed
+    defer logfile.Close()
+
+    // Creates a logger
+    logger := log.New(logfile, "example ", log.LstdFlags|log.Lshortfile)
+    // Sends it some messages
+    logger.Println("This is a regular message.")
+    logger.Fatalln("This is a fatal error.")
+    // As before, this will never get called.
+    logger.Println("This is the end of the function.")
+}
+```
+
+> Components of a log file
 
 
