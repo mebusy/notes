@@ -463,4 +463,6 @@ func main() {
 
 > Components of a log file
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/GoInPracticeLogComponent.png)
+
 
