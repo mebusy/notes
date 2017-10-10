@@ -656,3 +656,11 @@ import code
 ...
 code.interact(local=locals())
 ```
+
+### add python module search path
+
+```python
+src_path = os.path.dirname( os.path.abspath(  __file__ ) )
+# add parent folder as search path
+sys.path.append( os.path.normpath( os.path.join( src_path , ".." )) )
+```
