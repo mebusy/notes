@@ -461,8 +461,71 @@ func main() {
 }
 ```
 
+```
+$ cat log.txt
+example 2015/05/12 08:42:51 outfile.go:16: This is a regular message.
+example 2015/05/12 08:42:51 outfile.go:17: This is a fatal error.
+```
+
 > Components of a log file
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/GoInPracticeLogComponent.png)
+
+ - You can control the prefix field with the second argument to log.New. 
+
+**Logging to a network resource**
+ 
+ - Streaming logs to a network service is error-prone, but you don’t want to lose log messages if you can avoid it.
+ - By using Go’s channels and some buffering, you can vastly improve reliability
+
+Before you can get going on the code, you need something that can simulate a log server. Netcat (nc) is such a simple tool.
+
+ - to start a simple TCP server that accepts simple text messages and writes them to the console
+    - `nc -lk 1902`
+    - Now you have a listener (-l) listening continuously (-k) on port 1902.
+        -  (Some versions of Netcat may also need the –p flag.) 
+
+```go
+// Network log client
+func main() {
+    // Connects to the log server
+    conn, err := net.Dial("tcp", "localhost:1902")
+    if err != nil {
+        panic("Failed to connect to localhost:1902")
+    }
+    defer conn.Close()
+
+    // Sends log messages to the network connection
+    f := log.Ldate | log.Lshortfile
+    logger := log.New(conn, "example ", f)
+    logger.Println("This is a regular message.")
+    logger.Panicln("This is a panic.")
+}
+```
+
+ - It’s always recommended to close a network connection in a defer block.
+ - If nothing else, when a panic occurs (as it will in this demo code), the network buffer will be flushed on close, and you’re less likely to lose critical log messages telling you why the code panicked.
+ - Did you notice that we also changed log.Fatalln to a log.Panicln in this example?
+    - the log.Fatal\* functions have an unfortunate side effect: the deferred function isn’t called. 
+    - Because log.Fatal\* calls os.Exit, which immediately terminates the program without unwinding the function stack.
+
+**Handling back pressure in network logging**
+
+ - Network log services are prone to connection failures and back pressure. This leads to lost log messages and sometimes even service failures.
+ - Build a more resilient logger that buffers data.
+ - You’re likely to run into two major networking issues:
+    - The logger’s network connection drops (either because the network is down or because the remote logger is down).
+    - The connection over which the logs are sent slows down
+ - One solution to the back-pressure problem is to switch from TCP to UDP
+
+```go
+    // Adds an explicit timeout
+    timeout := 30 * time.Second
+    // Dials a UDP connection instead of a TCP one
+    conn, err := net.DialTimeout("udp", "localhost:1902", timeout)
+```
+
+ - to run the UDP logger , you also need to restart your nc server as a UDP server:
+    - `nc -luk 1902`
 
 
