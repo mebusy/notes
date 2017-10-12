@@ -118,7 +118,7 @@ static bool AmIBeingDebugged(void)
 
 1. write to device tile all.log
 
-```oc
+```objective-c
     if ( !AmIBeingDebugged() ) {
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
