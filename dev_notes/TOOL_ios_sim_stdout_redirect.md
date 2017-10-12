@@ -114,4 +114,22 @@ static bool AmIBeingDebugged(void)
 
 ```
 
+**重定向到设备文件，并通过itunes浏览log**
 
+1. write to device tile all.log
+
+```oc
+    if ( !AmIBeingDebugged() ) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        
+        NSString *logFilePath = [NSString stringWithFormat:@"%@/%@" , documentsDirectory , @"app.log" ] ;
+        freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding],"a+",stderr);
+        freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding],"a+",stdout);
+    }
+```
+
+2. enable file sharing with itunes
+
+ - add `UIFileSharingEnabled` to info.plist, and set "YES"
+ - the full name of `UIFileSharingEnabled` is `Application supports iTunes file sharing`
