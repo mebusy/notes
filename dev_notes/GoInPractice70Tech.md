@@ -528,4 +528,141 @@ func main() {
  - to run the UDP logger , you also need to restart your nc server as a UDP server:
     - `nc -luk 1902`
 
+ - advantages:
+    - The app is resistant to back pressure and log server outages. 
+        - If the log server hiccups, it may lose some UDP packets, but the client won’t be impacted.
+    - Sending logs is faster even without back pressure.
+    - The code is simple.
+ - disadvantages.
+    - Log messages can get lost easily
+        - UDP doesn’t equip you to know whether a message was received correctly
+    - Log messages can be received out of order. 
+        - Large log messages may be packetized and then get jumbled in transition.
+        - Adding a timestamp to the message (as you’ve done) can help with this, but not totally resolve it.
+    - Sending the remote server lots of UDP messages may turn out to be more likely to overwhelm the remote server,because it can’t manage its connections and slow down the data intake. 
+        - Although your app may be immune to back pressure, your log server may be worse off.
+
+TCP logging is prone to back pressure, but UDP logging won’t guarantee data accuracy.
+
+
+### 5.2.2 Working with system loggers
+
+Syslogs provide some major advantages to creating your own. First, they’re mature and stable products that are optimized for dealing with latency, redundant messages, and archiving.
+
+Most contemporary system loggers handle periodic log rotation,compression, and deduplication. These things make your life easier.
+
+Additionally, system administrators are adept at using these log files for analysis, and many tools and utilities are available for working with the log files. These are compelling reasons to log to the standard facility rather than creating your own.
+
+
+**Logging to the syslog**
+
+ - You want to send application log messages into the system logger.
+ - Configure Go’s syslog package and use it
+    - a dedicated package is available for this: log/syslog
+
+```go
+// A logger directed to syslog
+func main() {
+    // Tells the logger how to appear to syslog
+    priority := syslog.LOG_LOCAL3 | syslog.LOG_NOTICE
+    // Sets the flags, as you’ve done before
+    flags := log.Ldate | log.Lshortfile
+    // Creates a new syslog logger
+    logger, err := syslog.NewLogger(priority, flags)
+    if err != nil {
+        fmt.Printf("Can't attach to syslog: %s", err)
+        return
+    }
+    // Sends a simple message
+    logger.Println("This is a test log message.")
+}
+```
+
+```
+Jun 30 08:34:03 technosophos syslog_logger[76564]: 2015/06/30 syslog_logger.go:18: This is a test log message.
+```
+
+Using Go’s logger is convenient, but setting the severity correctly and using more of syslog’s capabilities would be more useful. You can do that by using the log/syslog logging functions directly.
+
+```go
+func main() {
+    // Creates a new syslog client
+    // prefix you want every message to begin with (narwhal)
+    logger, err := syslog.New(syslog.LOG_LOCAL3, "narwhal")
+    if err != nil {
+        panic("Cannot attach to syslog")
+    }
+    defer logger.Close()
+
+    // Sends the logger a variety of messages
+    logger.Debug("Debug message.")
+    logger.Notice("Notice message.")
+    logger.Warning("Warning message.")
+    logger.Alert("Alert message.")
+}
+```
+
+```
+Jun 30 08:52:06 technosophos narwhal[76635]: Notice message.
+Jun 30 08:52:06 technosophos narwhal[76635]: Warning message.
+Jun 30 08:52:06 technosophos narwhal[76635]: Alert message.
+```
+
+ - You logged four messages, but only three are displayed.  The call to syslog.Debug isn’t present. 
+ - The reason is that the system log used to run the example is configured to not send debug messages to the log file. 
+ - If you wanted to see debug messages, you’d need to alter the configuration of your system’s syslog facility. 
+
+---
+
+## 5.3 Accessing stack traces
+
+**Capturing stack traces**
+
+ - You want to fetch a stack trace at a critical point in the application.
+ - Use the runtime package, which has several tools.
+
+If all you need is a trace for debugging, you can easily send one to Standard Output by using the runtime/debug function PrintStack.
+
+```go
+import (
+    "runtime/debug"
+)
+
+func bar() {
+    debug.PrintStack()
+}
+```
+
+But if you want to capture the trace to send it somewhere else, you need to do something slightly more sophisticated. 
+
+You can use the runtime package’s Stack function.
+
+
+```go
+import (
+    "runtime"
+)
+func bar() {
+    // Makes a buffer
+    buf := make([]byte, 1024)
+    // Writes the stack into the buffer
+    runtime.Stack(buf, false)
+    // Prints the results
+    fmt.Printf(“Trace:\n %s\n", buf)
+}
+```
+
+ - runtime.Stack 
+    - 2nd argument ,  Setting it to true will cause Stack to also print out stacks for all running goroutines. 
+    - This can be tremendously useful when debugging concurrency problems, but it substantially increases the amount of output. 
+
+If all of this isn’t sufficient, you can use the runtime package’s Caller and Callers functions to get programmatic access to the details of the call stack. 
+
+Both the `runtime` and the `runtime/debug` packages contain numerous other functions for analyzing memory usage, goroutines, threading, and other aspects of your program’s resource usage.  
+
+---
+
+## 5.4 Testing
+
+
 
