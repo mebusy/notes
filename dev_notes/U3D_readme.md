@@ -26,6 +26,7 @@
  13. [Shader Effect CookBook](https://github.com/mebusy/notes/blob/master/dev_notes/unityShaderEffectCookbook.md) 
  14. [Shader Effect CookBook ch4 ~](https://github.com/mebusy/notes/blob/master/dev_notes/unityShaderEffectCookbook4.md) 
  15. [Unite 2015, res archi, ab ](https://github.com/mebusy/notes/blob/master/dev_notes/unityResArchitecture.md) 
+ 16. [unityShaderCamp1](https://github.com/mebusy/notes/blob/master/dev_notes/unityShaderCamp1.md) 
 
 
 <h2 id="cd47dd01745339787e4c7300389401f2"></h2>
