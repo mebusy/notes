@@ -1,9 +1,43 @@
+...menustart
+
+ - [Go In Practice , 70 Teches](#71c585005b73e8b143984da7dee9b0d3)
+ - [2 A solid foundation](#0d64118c7f6ff8aeadfb2c9db268f32b)
+	 - [2.1 Working wiht CLI applications, the Go way](#f4fc9ba35db46faa075c17a7587260c1)
+		 - [2.1.1 Command-line flags](#56dfd6c36821c5a64983eff289699453)
+	 - [2.2 Handling configuration](#3863b9486b6e97a49ff1790df08b38dc)
+	 - [2.3 Working with real-world web servers](#1e5b504a7ecb0799f2b760c225242b19)
+		 - [2.3.1 Starting up and shutting down a server](#d1dfba069bae305472df676269e71aa9)
+		 - [2.3.2 Routing web requests](#daef946a510d0ed9c04cffe18d824726)
+ - [3 Concurrency in Go](#16f99609cccf72d44e6fb4b00b7aa9b5)
+ - [4 Handling errors and panics](#5c14286df98cd800d088a14ee136b866)
+	 - [4.1 Error handling](#1a2bb328b5fa8ef5dcc6324dfc56d06d)
+	 - [4.2 The panic system](#e72b11fe4a7d7755c9bb9da078ed7c7a)
+		 - [4.2.2 Working with panics](#948d52c1d352272f319d60422e92f251)
+		 - [4.2.3 Recovering from panics](#58be2510484c3a3b9626aaa5bcbc69c9)
+		 - [4.2.4 Panics and goroutines](#23ae8dbb31cc7891d0c3de597f0bc523)
+ - [5 Debugging and testing](#b8ad4f9f531cf42a4bbe3bc9ecf746ab)
+	 - [5.2 Logging](#2c0ce02cb81521bcb1e13a7d2537d1dd)
+		 - [5.2.1 Using Go’s logge](#0a06ab7d7bc94825761e4f71180d1739)
+		 - [5.2.2 Working with system loggers](#b11462d84b0c705a445bf62b0d7af407)
+	 - [5.3 Accessing stack traces](#9c010432392bbfc8119a5ee9de0994a3)
+	 - [5.4 Testing](#8cdb7f7ceb9bff6df74283972fe543d7)
+
+...menuend
+
+
+<h2 id="71c585005b73e8b143984da7dee9b0d3"></h2>
 
 # Go In Practice , 70 Teches
 
+<h2 id="0d64118c7f6ff8aeadfb2c9db268f32b"></h2>
+
 # 2 A solid foundation
 
+<h2 id="f4fc9ba35db46faa075c17a7587260c1"></h2>
+
 ## 2.1 Working wiht CLI applications, the Go way
+
+<h2 id="56dfd6c36821c5a64983eff289699453"></h2>
 
 ### 2.1.1 Command-line flags
 
@@ -50,6 +84,8 @@ Hola Buttercup!
 
  - The `PrintDefaults` function generates help text for flags. 
 
+<h2 id="3863b9486b6e97a49ff1790df08b38dc"></h2>
+
 ## 2.2 Handling configuration
 
  - json file
@@ -62,7 +98,11 @@ Hola Buttercup!
     - `os.Getenv("PORT")`
 
 
+<h2 id="1e5b504a7ecb0799f2b760c225242b19"></h2>
+
 ## 2.3 Working with real-world web servers
+
+<h2 id="d1dfba069bae305472df676269e71aa9"></h2>
 
 ### 2.3.1 Starting up and shutting down a server
 
@@ -154,6 +194,8 @@ A couple of disadvantages also exist under some conditions:
     - If your application isn’t a web server, the manners package won’t work.
  - In some cases, one version of an application will want to hand off exiting socket connections currently in use to another instance of the same application or another application. For example, if you have long-running socket connections between a server and client applications, the manners package will attempt to wait or interrupt the connections rather than hand them off.  
 
+<h2 id="daef946a510d0ed9c04cffe18d824726"></h2>
+
 ### 2.3.2 Routing web requests
 
  - To correctly route requests, a web server needs to be able to quickly and efficiently parse the path portion of a URL.
@@ -186,6 +228,8 @@ Popular solutions include the following:
  - `github.com/gorilla/mux`
  - `github.com/bmizerany/pat`
 
+
+<h2 id="16f99609cccf72d44e6fb4b00b7aa9b5"></h2>
 
 # 3 Concurrency in Go
 
@@ -274,7 +318,11 @@ func worker(id int, lock chan bool) {
 }
 ```
 
+<h2 id="5c14286df98cd800d088a14ee136b866"></h2>
+
 # 4 Handling errors and panics
+
+<h2 id="1a2bb328b5fa8ef5dcc6324dfc56d06d"></h2>
 
 ## 4.1 Error handling
 
@@ -353,7 +401,11 @@ func main() {
 }
 ```
 
+<h2 id="e72b11fe4a7d7755c9bb9da078ed7c7a"></h2>
+
 ## 4.2 The panic system
+
+<h2 id="948d52c1d352272f319d60422e92f251"></h2>
 
 ### 4.2.2 Working with panics
 
@@ -367,6 +419,8 @@ func main() {
         - `fmt.Printf("Error: %s", thePanic)`
         - And it’s just as easy to send the panic back through the error system. 
         - That’s why it’s idiomatic to pass an error to a panic
+
+<h2 id="58be2510484c3a3b9626aaa5bcbc69c9"></h2>
 
 ### 4.2.3 Recovering from panics
 
@@ -389,6 +443,8 @@ func yikes() {
 ```
 
  - The recover function in Go returns a value (interface{}) if a panic has been raised, but in all other cases it returns nil. 
+
+<h2 id="23ae8dbb31cc7891d0c3de597f0bc523"></h2>
 
 ### 4.2.4 Panics and goroutines
 
@@ -418,9 +474,15 @@ func Go(todo GoDoer) {
     - `"github.com/Masterminds/cookoo/safely"`
     - `safely.Go( xxxx )`
 
+<h2 id="b8ad4f9f531cf42a4bbe3bc9ecf746ab"></h2>
+
 # 5 Debugging and testing
 
+<h2 id="2c0ce02cb81521bcb1e13a7d2537d1dd"></h2>
+
 ## 5.2 Logging
+
+<h2 id="0a06ab7d7bc94825761e4f71180d1739"></h2>
 
 ### 5.2.1 Using Go’s logge
 
@@ -545,6 +607,8 @@ func main() {
 TCP logging is prone to back pressure, but UDP logging won’t guarantee data accuracy.
 
 
+<h2 id="b11462d84b0c705a445bf62b0d7af407"></h2>
+
 ### 5.2.2 Working with system loggers
 
 Syslogs provide some major advantages to creating your own. First, they’re mature and stable products that are optimized for dealing with latency, redundant messages, and archiving.
@@ -614,6 +678,8 @@ Jun 30 08:52:06 technosophos narwhal[76635]: Alert message.
 
 ---
 
+<h2 id="9c010432392bbfc8119a5ee9de0994a3"></h2>
+
 ## 5.3 Accessing stack traces
 
 **Capturing stack traces**
@@ -661,6 +727,8 @@ If all of this isn’t sufficient, you can use the runtime package’s Caller an
 Both the `runtime` and the `runtime/debug` packages contain numerous other functions for analyzing memory usage, goroutines, threading, and other aspects of your program’s resource usage.  
 
 ---
+
+<h2 id="8cdb7f7ceb9bff6df74283972fe543d7"></h2>
 
 ## 5.4 Testing
 

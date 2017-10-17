@@ -2,7 +2,6 @@
 
  - [U3D](#f1ab9c403a278470b521f050cf149ff5)
  - [Best Practices](#cd47dd01745339787e4c7300389401f2)
- - [Intro to Game Development](#6962dfbcfcc7af6f915019edf77e6cc8)
 
 ...menuend
 

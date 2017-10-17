@@ -54,6 +54,7 @@
 		 - [python 写 只读文件](#3fbb096fc383c2a61ad0a6685b17c0de)
 		 - [uninstall files via `python setup.py install`](#5a3fb21375ecbb14ce59ad950a4b5f49)
 		 - [enter interact mode after executing a python file](#e3c3e4edeeaec5c36e52fe88b8fd33fe)
+		 - [add python module search path](#c005e12b106174340f49500f7c1ab309)
 
 ...menuend
 
@@ -656,6 +657,8 @@ import code
 ...
 code.interact(local=locals())
 ```
+
+<h2 id="c005e12b106174340f49500f7c1ab309"></h2>
 
 ### add python module search path
 
