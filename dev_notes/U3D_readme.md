@@ -25,7 +25,7 @@
  12. [rending path 介绍](https://github.com/mebusy/notes/blob/master/dev_notes/renderingPath.md) 
  13. [Shader Effect CookBook](https://github.com/mebusy/notes/blob/master/dev_notes/unityShaderEffectCookbook.md) 
  14. [Shader Effect CookBook ch4 ~](https://github.com/mebusy/notes/blob/master/dev_notes/unityShaderEffectCookbook4.md) 
- 15. [资源架构笔记](https://github.com/mebusy/notes/blob/master/dev_notes/unityResArchitecture.md) 
+ 15. [Unite 2015, res archi, ab ](https://github.com/mebusy/notes/blob/master/dev_notes/unityResArchitecture.md) 
 
 
 <h2 id="cd47dd01745339787e4c7300389401f2"></h2>
