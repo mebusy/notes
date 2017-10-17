@@ -36,11 +36,3 @@
   
 
 
-
-<h2 id="6962dfbcfcc7af6f915019edf77e6cc8"></h2>
-
-## Intro to Game Development
-
-
- 1. [Intro 2 U3D](https://github.com/mebusy/notes/blob/master/dev_notes/Intro2GameDevelopment_Intro.md) 
- 2. [Projects](https://github.com/mebusy/notes/blob/master/dev_notes/U3D_INTRO_2_GAME_Development.md)
