@@ -732,5 +732,38 @@ Both the `runtime` and the `runtime/debug` packages contain numerous other funct
 
 ## 5.4 Testing
 
+```go
+// A Simple Hello
+package hello
+func Hello() string {
+    return "hello"
+}
+```
+
+```go
+// A hello test
+// same package as the code it’s testing
+package hello
+// this package contains built-in testing tools
+import "testing"
+func TestHello(t *testing.T) {
+    if v := Hello(); v != "hello" {
+        t.Errorf("Expected 'hello', but got '%s'", v)
+    }
+}
+```
+
+ - The most frequently used functions on `testing.T` are as follows:
+    - `T.Error(args …interface{}) or T.Errorf(msg string, args interface{})`
+        - These log a message and then mark the test as failed.
+        - The second version allows formatting strings
+    - `T.Fatal(args …interface{}) or T.Fatalf(msg string, args interface{})`
+        - These log a message, mark the test as failed, and then stop the testing. 
+        - You should do this whenever one failed test indicates that no others will pass
+
+**Using interfaces for mocking or stubbing**
+
+ - You’re writing code that depends on types defined in external libraries, and you want to write test code that can verify that those libraries are correctly used
+ - Create interfaces to describe the types you need to test. Use those interfaces in your code, and then write stub or mock implementations for your tests.
 
 
