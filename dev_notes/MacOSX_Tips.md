@@ -129,6 +129,12 @@ alias blender='/Volumes/WORK/Tools/Blender/blender.app/Contents/MacOS/blender'
  - `-j` 参数, day 显示为 当年的第几天
 
 
+### find files to rm 
+
+```
+find . -name '.DS_Store' -path '*/.*' | xargs  rm
+```
+
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
 ## TODO
