@@ -19,4 +19,9 @@
  14. [learn Go in Y minutes](https://github.com/mebusy/notes/blob/master/dev_notes/learnGoInYMinutes.md)
  15. [A Tour of GO](https://github.com/mebusy/notes/blob/master/dev_notes/ATourOfGo.md)
  16. [cheat sheet](https://github.com/mebusy/notes/blob/master/dev_notes/golang_cheatsheet.md)
+ 17. [GoInPractice70Tech](https://github.com/mebusy/notes/blob/master/dev_notes/GoInPractice70Tech.md)
+ 18. [goTips](https://github.com/mebusy/notes/blob/master/dev_notes/goTips.md)
+
+
+ 
 
