@@ -111,4 +111,19 @@ get name of front window of application "Finder"
 
 # AppleScript Fundamentals
 
+## AppleScript and Objects
+
+ - AppleScript is an object-oriented language
+ - When you write, compile, and execute scripts, everything you work with is an object. An *object* is an instantiation of a class definition, which can include properties and actions.
+ - AppleScript defines classes for the objects you most commonly work with, starting with the top-level **script** object
+ - Within in a script **object**, you work with other objects, including:
+    - AppleScript objects
+        - boolean values, scripts, text, numbers, and other kinds of objects for working in scripts , etc
+    - macOS objects:
+        - such as Finder, System Events, and Database Events (located in /System/Library/CoreServices), define many useful classes.
+    - Application objects:
+        - Third-party scriptable applications define classes that support a wide variety of features.
+
+## What Is in a Script Object
+
 
