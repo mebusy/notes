@@ -135,6 +135,16 @@ alias blender='/Volumes/WORK/Tools/Blender/blender.app/Contents/MacOS/blender'
 find . -name '.DS_Store' -path '*/.*' | xargs  rm
 ```
 
+### in terminal, show git branch in path
+
+```
+# Git branch in prompt.
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
+```
+
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
 ## TODO
