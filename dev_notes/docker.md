@@ -1770,4 +1770,11 @@ Explanation:
  - set https_proxy and http_proxy in you host machine
  - `docker run -e https_proxy -e http_proxy ... ` 
 
+## docker proxy for Centos7
 
+ - you need set proxy info in 
+ 	- `/etc/systemd/system/docker.service.d/http-proxy.conf`
+
+```
+[Service]                                                                                                                                Environment="HTTP_PROXY=http://host:port/"
+```
