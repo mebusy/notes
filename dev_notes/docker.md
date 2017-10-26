@@ -1774,7 +1774,13 @@ Explanation:
 
  - you need set proxy info in 
  	- `/etc/systemd/system/docker.service.d/http-proxy.conf`
+	- `/etc/systemd/system/docker.service.d/https-proxy.conf`
 
 ```
 [Service]                                                                                                                                Environment="HTTP_PROXY=http://host:port/"
+```
+
+```
+[Service]                                        
+Environment="HTTPS_PROXY=https://host:port/"  
 ```
