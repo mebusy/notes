@@ -177,6 +177,11 @@ SKPaymentQueue.default().finishTransaction(transaction)
 SKPaymentQueue.default().restoreCompletedTransaction()
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_restore_completed_transactions.png)
+
+---
+
+
 
 
 
