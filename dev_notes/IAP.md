@@ -453,6 +453,19 @@ request.start()
 
  - Finish all transactions once content is unlocked
     - If downloading hosted content, wait until after the download completes
+ - Includes all auto-renewable subscription transactions
+ - Otherwise, the payment will stay in the queue
+ - Subscription billing retry depends on up-to-date information about transaction
+    - 关于订阅结算重试，我们有一个特定的逻辑： 如果你使用自动续约订阅，很重要的一点，你必须finish these transactions.
+    - 这样，如果出现任何类型的结算错误，我们的订阅结算重试逻辑可以继续尝试，并且向用户的信用卡收费。
+
+
+### Server-Side Receipt Validation
+
+
+
+ - Allows your servers to validate the receipt
+  
 
 ## Maintaining subscription state
 
