@@ -498,8 +498,15 @@ request.start()
 
  - particularly on the server
 
+
 ## Developing with the Sandbox
 
+### The Sandbox
+
+ - Environment for testing purchases during development
+ - Based on certificate used to sign your application
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_sandbox_certificate.png)
 
 
 
