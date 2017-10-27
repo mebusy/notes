@@ -434,7 +434,11 @@ request.start()
  - If you're dealing with consumable product  purchases, they're just going to appear both in the updated transactions and on the receipt at the time of purchase.
  - So you kind of have that one chance to actually verify the consumable product and it won't be restored for either of these calls.
 
+#### Switching to subscriptions
 
+ - Now one other tip for dealing with receipts is if you're looking to switch to subscriptions, maybe you've got a paid application and you want to switch it to being a subscription model, you can use this type 19 value in the application receipt.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_type19.png)
 
 
 
