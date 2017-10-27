@@ -11,6 +11,8 @@
 		 - [alias](#724874d1be77f450a09b305fc1534afb)
 		 - [man ascii  字符表](#726e07a4bf9abb9ebcdce89b16eb7807)
 		 - [cal 日历](#e1bde9f80b42328020cb6b0a4c7d26ab)
+		 - [find files to rm](#a21d96fb754b9ce8455858e14ed36571)
+		 - [in terminal, show git branch in path](#394dd2658e932bd638e3017ac1a98c39)
 	 - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
 
 ...menuend
@@ -129,11 +131,15 @@ alias blender='/Volumes/WORK/Tools/Blender/blender.app/Contents/MacOS/blender'
  - `-j` 参数, day 显示为 当年的第几天
 
 
+<h2 id="a21d96fb754b9ce8455858e14ed36571"></h2>
+
 ### find files to rm 
 
 ```
 find . -name '.DS_Store' -path '*/.*' | xargs  rm
 ```
+
+<h2 id="394dd2658e932bd638e3017ac1a98c39"></h2>
 
 ### in terminal, show git branch in path
 
