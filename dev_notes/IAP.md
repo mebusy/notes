@@ -424,6 +424,17 @@ request.start()
  - Exit app with code 173 to refresh receipt
     - `exit(173)`
 
+### Receipt Tips
+
+#### Restoring transactions vs. refreshing receipt
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_restore_vs_refresh.png)
+
+ - you'll notice that consumable products are absent from both of these types of requests.
+ - If you're dealing with consumable product  purchases, they're just going to appear both in the updated transactions and on the receipt at the time of purchase.
+ - So you kind of have that one chance to actually verify the consumable product and it won't be restored for either of these calls.
+
+
 
 
 
