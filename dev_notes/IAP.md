@@ -440,7 +440,19 @@ request.start()
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_type19.png)
 
+ - This contains the original application version.
+    - you can use this application version that a user originally downloaded as kind of a gate to know as to whether you need to provide a content based on a paid app or based on a subscription.
+    - You know it's not a great experience if you've paid for an application and then suddenly you lose access to that functionality you paid for if it's now a subscription model.
+    - So use type 19 as a bit of a gate to be able to supply that.
+ - Know whether the app was purchased as paid version, or is a subscription version
 
+
+### Finish the transaction
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_finish_transaction.png)
+
+ - Finish all transactions once content is unlocked
+    - If downloading hosted content, wait until after the download completes
 
 ## Maintaining subscription state
 
