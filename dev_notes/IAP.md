@@ -188,6 +188,43 @@ SKPaymentQueue.default().restoreCompletedTransaction()
 
 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_validate_receipt_2ways.png)
+
+```swift
+func application(application: UIApplication, didFinishLaunchingWithOptions
+    launchOptions: [NSObject: AnyObject]?) -> Bool {
+    SKPaymentQueue.default().add(self)
+    return true
+}
+```
+
+```swift
+func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions:
+    [SKPaymentTransaction]) {
+    for transaction in transactions {
+        switch transaction.transactionState {
+        case .purchased:
+            // Validate the purchase
+        }
+    }
+}
+```
+
+ - On-device validation
+    - Unlock features and content within the app
+ - Server-to-server validation
+    - Online validation through a request to the App Store
+    - Unlock features/subscription state on your server
+
+**Do not use online validation directly from the device**
+
+### Server-to-server validation
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_receipt_0.png)
+
+
+
+
 
 ## Maintaining subscription state
 
