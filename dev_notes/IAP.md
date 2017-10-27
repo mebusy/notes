@@ -305,6 +305,12 @@ let receipt = Data(contentsOf: url)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_process_transactions.png)
 
+### On-Device In-App Purchase State
+
+#### In-app purchase attributes
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_iap_attributes.png)
+
 
 
 
