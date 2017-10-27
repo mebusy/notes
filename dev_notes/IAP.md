@@ -290,8 +290,24 @@ let receipt = Data(contentsOf: url)
 
 #### Verify device
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_receipt_payload2.png)
+
  - Attribute 5 is a SHA-1 hash of three key values
-    - 
+    - Bundle identifier
+    - Device identifier
+    - Opaque value (Attribute 4)
+ - Unique to your app on this device
+ - Create hash using hardcoded values, compare
+
+### In-App Purchase Process
+
+#### Processing transactions
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_process_transactions.png)
+
+
+
+
 
 
 ## Maintaining subscription state
