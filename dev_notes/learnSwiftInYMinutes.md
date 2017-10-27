@@ -123,7 +123,7 @@ var unwrappedString: String! = someOptionalString
 
  - to store a value of any type
  - `AnyObject` == `id` from Objective-C
- - `Any`  also words with any scalar values ( Class, Int, struct, etc. )
+ - `Any`  also works  with any scalar values ( Class, Int, struct, etc. )
 
 ```swift
 var anyVar: Any = 7
