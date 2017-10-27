@@ -182,6 +182,17 @@ SKPaymentQueue.default().restoreCompletedTransaction()
 ---
 
 
+# Advanced StoreKit
+
+## Receipt validation
+
+
+
+
+## Maintaining subscription state
+
+## Developing with the Sandbox
+
 
 
 
