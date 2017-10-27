@@ -186,9 +186,10 @@ SKPaymentQueue.default().restoreCompletedTransaction()
 
 ## Receipt validation
 
-
-
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_validate_receipt_2ways.png)
+
+ - 订阅 需要用到服务器， 以维护在不同设备上的订阅状态
+
 
 ```swift
 func application(application: UIApplication, didFinishLaunchingWithOptions
@@ -227,17 +228,21 @@ func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions:
         - API to get the path
     - Single file
         - Purchase data
+            - 包含有程序的所有购买数据，和已经发生的IAP购买
         - Signature to check authenticity
- - Standards
+ - Standards 工业标准
     - Signing
         - PKCS#7 Cryptographic Container
     - Data Encoding
         - ASN.1
     - Options for verifying and reading
         - OpenSSL, asn1c, and more
+            - OpenSSL is a framework that not only provides the functionality for secure web traffic tunneling, it also includes functions to be able to read in the data encoding from an ASN.1 payload and also check the signing on a cryptographic container like this. 
         - Create your own
 
 #### Locate the receipt using Bundle API
+
+ - 读取 receipt对象的 加密二进制数据
 
 ```swift
 // Locate the file
@@ -246,19 +251,26 @@ guard let url = Bundle.main.appStoreReceiptURL else { // Handle failure
 }
 // Read the contents
 let receipt = Data(contentsOf: url)
+
 ```
+
+
 
 #### Tips for using OpenSSL
 
+ - OpenSSL doesn't actually ship with iOS. You have to build it and include it in your app yourself.
  - Build your own static library (.a file)
     - Not a dynamic library
  - Include Apple Root CA Certificate
     - Available online
+        - When it comes to the actual certificate check, you can download the Apple Root certificate authority's certificate from the Apple site.
+        - And you can use that certificate to actually perform that check using OpenSSL to see that it is a verified document from Apple. 
     - If bundled in app, watch out for expiry
  - Documentation online
 
 #### Downloading pre-built solutions
 
+ - maybe download a pre-build solution from github 
  - Convenience comes at a price
     - Reusing code brings with it bugs and vulnerabilities
     - Single exploit affects many
@@ -268,10 +280,18 @@ let receipt = Data(contentsOf: url)
 
 #### Certificate verification
 
+ - When you're verifying the receipt -- the actual certificate used to sign the receipt, a couple of tips here.
  - **Do not check the expiry date of the certificate relative to current date**
- - Compare expiry date to purchase date of the transaction
+    - Compare expiry date to purchase date of the transaction
+    - 在生成收条时，证书是否有效
+
+
+
 
 #### Receipt payload
+
+
+
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_receipt_payload.png)
 
@@ -283,27 +303,45 @@ let receipt = Data(contentsOf: url)
 
 #### Verify application
 
+ - 现在你已经检查实际文件是否已经使用正确的Apple证书进行签名, 你需要确定进行签名的程序就是用户运行的程序。
+    - 使用 type2 / type3
  - Check the bundle identifier
  - Check the bundle version
- - Use hardcoded values
-    - Not Info.plist values
+ - Use **hardcoded values**
+    - Not Info.plist values, plist 很容易被伪造修改
 
 #### Verify device
+
+ - 接下来的步骤时 检查用户适用的设备 是否与文件匹配
+    - use type4 / type5 
+    - only type5 need to check
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_receipt_payload2.png)
 
  - Attribute 5 is a SHA-1 hash of three key values
     - Bundle identifier
     - Device identifier
+        - 提供API 读取?
     - Opaque value (Attribute 4)
+        - it's a little bit of cryptographic entropy.
+        - A bit of secret salt that allows that SHA-1 hash to change over time, even the bundle ID and the device ID aren't changing. 
  - Unique to your app on this device
- - Create hash using hardcoded values, compare
+    - this SHA-1 hash is unique to this app on the device. ?
+ - Create hash using **hardcoded** values, compare it to the one in type number 5.
+
+So now you've done those three checks. That's the process of validating the receipt on the device.
+
+
 
 ### In-App Purchase Process
+
 
 #### Processing transactions
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_process_transactions.png)
+
+ - 现在你知道这是一个可信文件，可以从它读取更多信息。
+ - So let's take a look at the next step which is to actually update state and inspect the contents of these in-app purchases inside the receipt.
 
 ### On-Device In-App Purchase State
 
@@ -311,7 +349,80 @@ let receipt = Data(contentsOf: url)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_iap_attributes.png)
 
+ - The receipt contains a specific type, type 17 for every transaction that occurs for this user on this device.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_attributes_17.png)
+
+ - Now in each type 17, the actual payload is another ASN.1 encoded container.
+ - So we have things like a quantity, a product identifier, a transaction ID. 
+    - these are values that you can use to verify that a transaction exists in the real world. 
+ - One more to call out while I'm here is type 1708. 
+    - This is particularly important if you're dealing with auto renewable subscriptions.
+    - This contains the expiry date for a particular transaction for a particular billing period. 
+ - For more types:  see *Receipt Validation Programming Guide*
+
+
+
+#### Unlocking content on-device
+
+ - 现在你可以读出这些交易信息，你可以适用这些信息来核实它们是否与 StoreKit 告诉你的用户购买内容一致
+
+ - Transaction will appear in updatedTransactions callback
+    - Transaction observer must be registered early in lifecycle
+ - Receipt payload contains in-app purchase transactions
+    - Verify transaction in updatedTransactions callback is present in a receipt transaction
+    - So you can use things like the transaction ID, the purchase date, the product identifier that it's saying the user bought, and if you can verify that there's a transaction that matches then great. You can trust the transaction that StoreKit's telling you.
+
+
+
+#### Subscription: Does the user have an active subscription?
+
+ - Valid receipt ≠ subscribed
+ - Filter transactions by originalTransactionId
+    - 进行分组
+    - Matches the first in-app purchase for that subscription
+ - Check matching transactions for latest expiry date
+    - Type 1708
+ - If there’s no valid transaction, can refresh receipt
+    - Repeat above steps
+
+
+#### Subscription:  Caveat
+
+ - For determining if subscription is valid, inspect
+    - Purchase date
+    - Expiry date
+    - System date
+ - if you're doing this purely on the device, the only data you actually have to compare these to is the user system data.
+ - Caveat for on-device subscription state
+    - Device clock could be wound back!
+        - So what's stopping the user from just winding their clock back and putting themselves into an active subscription period? 
+        - Not a lot, unfortunately.
+    - So if this is a problem for you, it's probably likely that you're going to need to look at some kind of server side solution.
+
+---
+
+#### Receipt Refresh on iOS
+
+ - If the receipt doesn’t exist or is invalid, refresh the receipt using StoreKit
+ - Receipt refresh will require network
+ - Store sign-in will be required
+ - Avoid continuous loop of validate-and-refresh
+    - 因为这会反复提示用户登录， 只应该发送一次请求
+
+```swift
+let request = SKReceiptRefreshRequest() 
+request.delegate = self 
+request.start()
+```
+
+#### Receipt Refresh on macOS
+
+ - If the receipt is invalid
+ - Receipt refresh will require network
+ - Store sign-in will be required
+ - Exit app with code 173 to refresh receipt
+    - `exit(173)`
 
 
 
