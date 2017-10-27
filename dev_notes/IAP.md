@@ -218,12 +218,80 @@ func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions:
 
 **Do not use online validation directly from the device**
 
-### Server-to-server validation
+### On-device validation 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_receipt_0.png)
 
+ - The basics
+    - Stored in the app bundle
+        - API to get the path
+    - Single file
+        - Purchase data
+        - Signature to check authenticity
+ - Standards
+    - Signing
+        - PKCS#7 Cryptographic Container
+    - Data Encoding
+        - ASN.1
+    - Options for verifying and reading
+        - OpenSSL, asn1c, and more
+        - Create your own
+
+#### Locate the receipt using Bundle API
+
+```swift
+// Locate the file
+guard let url = Bundle.main.appStoreReceiptURL else { // Handle failure
+    return
+}
+// Read the contents
+let receipt = Data(contentsOf: url)
+```
+
+#### Tips for using OpenSSL
+
+ - Build your own static library (.a file)
+    - Not a dynamic library
+ - Include Apple Root CA Certificate
+    - Available online
+    - If bundled in app, watch out for expiry
+ - Documentation online
+
+#### Downloading pre-built solutions
+
+ - Convenience comes at a price
+    - Reusing code brings with it bugs and vulnerabilities
+    - Single exploit affects many
+ - It’s **your** revenue stream
+    - Make decisions that suit your product
+    - Know and own the risks
+
+#### Certificate verification
+
+ - **Do not check the expiry date of the certificate relative to current date**
+ - Compare expiry date to purchase date of the transaction
+
+#### Receipt payload
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_receipt_payload.png)
+
+ - Series of attributes
+    - Type
+    - Value
+    - (Version)
 
 
+#### Verify application
+
+ - Check the bundle identifier
+ - Check the bundle version
+ - Use hardcoded values
+    - Not Info.plist values
+
+#### Verify device
+
+ - Attribute 5 is a SHA-1 hash of three key values
+    - 
 
 
 ## Maintaining subscription state
