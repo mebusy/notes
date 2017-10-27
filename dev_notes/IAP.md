@@ -462,12 +462,41 @@ request.start()
 
 ### Server-Side Receipt Validation
 
+#### Verifying a purchase on your server
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_server_validate.png)
 
  - Allows your servers to validate the receipt
-  
+    - Your server sends the receipt to the App Store
+    - Endpoint is `verifyReceipt`
+ - Response is in JSON
+    - Returns status on whether receipt is valid or not
+ - AGAIN: **Never send the receipt directly from your app to the App Store server**
+    - 只有在你的服务器 与 App Store 之间的通道上 进行这些处理才是安全的
+ - these are whole steps to validate receipt by server, it is very simple.
+    - 下一步就是，你如何 解锁内容，并检查交易
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_server_validate2.png)
+
+#### Unlocking content on your server
+
+ - In addition to receipt validity, `verifyReceipt` returns  
+    - Latest decoded application receipt
+ - Contains array of in-app purchase transactions
+    - Verify product in the `updatedTransactions` callback on device is present in a transaction
+ - Tell the device to finishTransaction()
+
+#### Does the user have an active subscription?
+
+ - Filter transactions by `originalTransactionId`
+    - Matches the first IAP for taht subscription
+ - Check matching transactions for latest expiry date
+    - 从app服务器返回的是最新的receipt副本，你不能再进行刷新操作
+
 
 ## Maintaining subscription state
+
+ - particularly on the server
 
 ## Developing with the Sandbox
 
