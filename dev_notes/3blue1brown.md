@@ -149,7 +149,33 @@ ans =
     - 这些 变换后落在原点的向量的集合，is called the **Null Space** , or **Kernel** of the matrix 
     - In terms of the linear system of equation Ax=b , if b happens to be the zero vector, the null space gives you all of the possible solutions to the equation. 
 
-## 7. 
+## footnote. Nonsquare matrices as transformations between dimensions
+
+```
+⎡ 2 0⎤
+⎢-1 1⎥
+⎣-2 1⎦
+```
+
+ - 3x2 matrix
+ - column space is, 一个过原点的 二维平面, 但 矩阵依然是 满秩矩阵
+ - 这个矩阵的几何意义就是 将二维空间 映射到 三位空间上
+    - 因为矩阵 有两列，表明 输入空间有 两个基向量
+    - 有三行，表明 每一个基向量在 变换后 都用三个独立的坐标来描述
+
+```
+⎡ 3 1 4⎤
+⎣ 1 5 9⎦
+```
+
+ - 2x3 matrix
+ - 输入空间 有3个基向量
+ - 2 rows 表明 基向量在变换后 仅用两个坐标描述， 所以它们一定落在二维空间内
+ - 因此 这是一个从 三维空间 到 二维空间的变换
+
+## 7. Dot products and duality 
+
+
 
 
 
