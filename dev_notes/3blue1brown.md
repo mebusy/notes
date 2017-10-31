@@ -175,7 +175,18 @@ ans =
 
 ## 7. Dot products and duality 
 
-
+ - v·w
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_dot_p.png)
+    - 如果w的投影 与 v的方向相反，`= -(Length of projected w)(Length of v)`
+    - v·w > 0 方向大致相同
+    - v·w = 0 垂直
+    - v·w < 0 方向大致相反
+ - 为什么 对应坐标相乘 并相加，和投影有所练习?
+    - The most satisfactory answer comes from **duality**.
+    - 数值计算角度, 点积 等同于 一个1x2 matrix 乘以向量
+        - 1x2 matrices <--> 2d vectors 
+        - 放倒变成矩阵, 立起变成向量
+    - 从几何角度可以看到一些美妙的事情: 将向量转化为数的线性变换(matrix) 和 这个向量本身 有什么某种关系
 
 
 
