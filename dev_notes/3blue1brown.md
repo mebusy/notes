@@ -226,10 +226,25 @@ ans =
     - c 的方向 与平行四边形 所在面 垂直, 右手法则
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_cross_p_3d.png)
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_cross_right_hand_rule.png)
+    - computation:
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_3d_cross_computation.png)
 
 ### Cross products in the light of linear transformations
 
+ - Plan
+    1. Define a 3d-to-1d linear transformation (3d to the number line ) in terms of v and w
+    2. Associate that transformation with its "dual vector" in 3D space
+    3. Show that this "dual vector" is `vxw`
+ - 之所以这么做，是因为理解这个变换，能够解释清楚叉积的计算过程和几何含义之间的关系。
+ - 回忆一下2d空间中 的计算 det([u v])。
+    - 如果你不知道三维向量的叉积，并且尝试去外推，你可能会得到这样的结果 det( [u v w] ) , 当然这不是三维向量的叉积。
+    - 真正的三维向量叉积 接收两个向量，并输出一个向量, 它并不是接收三个向量，并输出一个数。
+    - 不过这个想法已经非常接近真实的叉积了。
+    - 将第一个向量u看作可变向量，比如(x,y,z) , 而 v,w保持不变，那么我们就有一个 从三维空间到数轴的函数了:
+        - 你输入一个 向量(x,y,z) ， 然后通过矩阵的行列式得到一个数。
  
+     
+  
 
 
 
