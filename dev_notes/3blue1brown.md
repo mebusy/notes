@@ -222,7 +222,10 @@ ans =
     - 如何记忆方向？ `î x ĵ = +1`  
  - computation:  vxw = det( [v w] ) 
  - 严格的讲，上面描述的东西 is not cross product.
- - 真正的叉积是 通过两个 三维向量a,b，生成一个新的三维向量, 这个向量的长度，就是a,b围成的平行四边形的面积
+ - 真正的叉积是 通过两个 三维向量a,b，生成一个新的三维向量c, 这个向量c的长度，就是a,b围成的平行四边形的面积
+    - c 的方向 与平行四边形 所在面 垂直, 右手法则
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_cross_p_3d.png)
+
 
 
 
