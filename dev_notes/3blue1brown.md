@@ -242,6 +242,7 @@ ans =
     - 不过这个想法已经非常接近真实的叉积了。
     - 将第一个向量u看作可变向量，比如(x,y,z) , 而 v,w保持不变，那么我们就有一个 从三维空间到数轴的函数了:
         - 你输入一个 向量(x,y,z) ， 然后通过矩阵的行列式得到一个数。
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_cross_3d_to_1d_geo.png)
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_cross_3d_to_1d_transformation.png)
         - 这个函数的几何意义是, 对于任一输入的向量(x,y,z), 你都考虑由它和v,w 确定的平行六面体 得到它的体积，然后根据定向确定符号。
  
