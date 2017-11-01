@@ -1,5 +1,23 @@
+...menustart
+
+ - [Essence of linear algebra](#ab7dcbdd05408bb8c50281f539119f94)
+	 - [3 Linear transformations and matrices](#ebf4ed4e5dbdf709f6e2a501e1c5cbce)
+	 - [4. Matrix multiplication as composition](#9e3659318b7054360844875560006980)
+	 - [5. The determinant](#0a05f70d4501925ef20156f580f0b07d)
+	 - [6. Inverse matrices, column space and null space](#59e335b6a8c34e003dd810410fbf4e21)
+	 - [footnote. Nonsquare matrices as transformations between dimensions](#8e0c7f26d1f694558baee5ef34fe55ef)
+	 - [7. Dot products and duality](#04629028685253ba3138ddced808a1ce)
+	 - [8. Cross products](#c21e7bf7d55df7edb7e2f6a780fbccd6)
+		 - [Cross products in the light of linear transformations](#d6f39fcd3624e0b509757af47be8f6c5)
+
+...menuend
+
+
+<h2 id="ab7dcbdd05408bb8c50281f539119f94"></h2>
 
 # Essence of linear algebra
+
+<h2 id="ebf4ed4e5dbdf709f6e2a501e1c5cbce"></h2>
 
 ## 3 Linear transformations and matrices
 
@@ -83,6 +101,8 @@ ans =
  - **记住，矩阵是空间的变换**
  
 
+<h2 id="9e3659318b7054360844875560006980"></h2>
+
 ## 4. Matrix multiplication as composition
 
  - Often-times you find yourself wanting to describe the effect of applying one transformation and then another. 
@@ -109,6 +129,8 @@ ans =
  - 证明 矩阵乘法结合律 (AB)C = A(BC) ?
     - 事实上，括号如何添加，并不会影响 A,B,C 三个变化的执行顺序, 所以最终会得到相同的结果
 
+<h2 id="0a05f70d4501925ef20156f580f0b07d"></h2>
+
 ## 5. The determinant
 
  - 有件事对理解各种linear transformation 很有用，那就是测量 变换 究竟对 空间有**多少** 拉伸或挤压，更具体一点，就是测量一个给定区域面积 增大或减小的比例
@@ -130,6 +152,8 @@ ans =
     - if you still can do it after transformation, orientation has not changed. 
  - det(M₁M₂) = det(M₁)det(M₂)
 
+<h2 id="59e335b6a8c34e003dd810410fbf4e21"></h2>
+
 ## 6. Inverse matrices, column space and null space
 
  - Usefulness of matrices
@@ -148,6 +172,8 @@ ans =
         - eg. 如果一个三维线性变换 将空间压缩到一条直线上，那么就有一整个平面上的向量在变换后落在原点。
     - 这些 变换后落在原点的向量的集合，is called the **Null Space** , or **Kernel** of the matrix 
     - In terms of the linear system of equation Ax=b , if b happens to be the zero vector, the null space gives you all of the possible solutions to the equation. 
+
+<h2 id="8e0c7f26d1f694558baee5ef34fe55ef"></h2>
 
 ## footnote. Nonsquare matrices as transformations between dimensions
 
@@ -172,6 +198,8 @@ ans =
  - 输入空间 有3个基向量
  - 2 rows 表明 基向量在变换后 仅用两个坐标描述， 所以它们一定落在二维空间内
  - 因此 这是一个从 三维空间 到 二维空间的变换
+
+<h2 id="04629028685253ba3138ddced808a1ce"></h2>
 
 ## 7. Dot products and duality 
 
@@ -212,6 +240,8 @@ ans =
     - 一旦你真正了解向量的“个性”，有时你会意识到，不把它看作空间中的箭头，而把它看作线性变换的物质载体，会更容易理解向量。
     - 向量就仿佛是一个特定变换的概念性记号。
 
+<h2 id="c21e7bf7d55df7edb7e2f6a780fbccd6"></h2>
+
 ## 8. Cross products
 
  - 2D vxw = signed Area of parallelogram
@@ -228,6 +258,8 @@ ans =
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_cross_right_hand_rule.png)
     - computation:
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_3d_cross_computation.png)
+
+<h2 id="d6f39fcd3624e0b509757af47be8f6c5"></h2>
 
 ### Cross products in the light of linear transformations
 
