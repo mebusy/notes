@@ -251,10 +251,14 @@ ans =
             - 我们要找的，就是这个特殊的三维向量 p, 使得p与其它任一向量(x,y,z) 的点积，等于一个3x3矩阵的行列式.
             - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_dot_induction.png)
         - 现在我们来关注这个计算本身
-            - 
+            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_dot_induction_c1.png)
             - 因为 v,w 的坐标的特定组合，就是我们寻找的向量p的坐标
-            - 
+            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_dot_induction_c2.png)
             - 等号的右侧，对于那些进行过叉积计算的人来说是很熟悉的。
+ - 这一切都在说明，前面奇怪的运算过程可以看作是以下问题的答案：
+    - 当你将向量p和某个向量(x,y,z)点乘时，所得结果等于一个3x3矩阵的行列式，这个矩阵的第一列为 (x,y,z),其余两列为 v和w的坐标。什么样的向量p才能满足这一特殊性质?
+    - 我们从几何角度再来看一下这个问题
+
  
      
   
