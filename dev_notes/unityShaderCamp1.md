@@ -1,5 +1,23 @@
+...menustart
+
+ - [Unity 着色器训练营-第一期](#c312d2f70b33e7b9fc109a7f18b7064c)
+ - [Vertex/Fragment Shader 流程图](#5f35020575fd0f69782095488cd2d31a)
+	 - [网格数据](#7f9c5e8dc5b4304f3dd93429b593e7cf)
+	 - [顶点函数  Vertex](#10bfff2b9f6e3f8264f386b9db32e2c3)
+	 - [顶点到片元结构体 v2f](#952f518b997e7016e2d36d7378723cbf)
+	 - [片元函数](#dfe265012d0b7450d8f3ea4fa60dc9ac)
+	 - [对象渲染到屏幕](#8b96d0b90c9fc07c078397b6e8e3525f)
+ - [Shader 简介](#5b10f0101701b5aeeac2e1839b046f9a)
+ - [内置函数](#78162069390d96b9230a2f222f902b54)
+
+...menuend
+
+
+<h2 id="c312d2f70b33e7b9fc109a7f18b7064c"></h2>
 
 # Unity 着色器训练营-第一期
+
+<h2 id="5f35020575fd0f69782095488cd2d31a"></h2>
 
 # Vertex/Fragment Shader 流程图
 
@@ -9,6 +27,8 @@
  4. 片元函数
  5. 对象渲染到屏幕
 
+
+<h2 id="7f9c5e8dc5b4304f3dd93429b593e7cf"></h2>
 
 ## 网格数据
 
@@ -35,6 +55,8 @@ struct appdata
  - 冒号后边的是语义，帮助结构体更好的传递，以及更容易被理解
 
 
+<h2 id="10bfff2b9f6e3f8264f386b9db32e2c3"></h2>
+
 ## 顶点函数  Vertex 
 
  - 用来构建对象
@@ -52,6 +74,8 @@ v2f vert(appdata v)
 ```
 
  - UnityObjectToClipPos 封装了 computing M\*VP matrix product
+
+<h2 id="952f518b997e7016e2d36d7378723cbf"></h2>
 
 ## 顶点到片元结构体 v2f
 
@@ -87,6 +111,8 @@ struct v2f
     - fixed 低精度 ， 一般 11 bit
         - 值域 0-2, 可以用于 COLOR 表示
 
+<h2 id="dfe265012d0b7450d8f3ea4fa60dc9ac"></h2>
+
 ## 片元函数    
 
  - 用于 画 你的对象
@@ -103,7 +129,11 @@ fixed4 frag (v2f i) : SV_Target
 
  - SV_Target : 输出到 屏幕上的一个像素点
 
+<h2 id="8b96d0b90c9fc07c078397b6e8e3525f"></h2>
+
 ## 对象渲染到屏幕   
+
+<h2 id="5b10f0101701b5aeeac2e1839b046f9a"></h2>
 
 # Shader 简介
 
@@ -125,6 +155,8 @@ fixed4 frag (v2f i) : SV_Target
         - 在 CG 中实例化 shader Properties
  - FallBack 
     - 后备方案
+
+<h2 id="78162069390d96b9230a2f222f902b54"></h2>
 
 # 内置函数
 

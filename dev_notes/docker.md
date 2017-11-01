@@ -84,6 +84,7 @@
 	 - [stop / rm all container](#106810e843fbd66af6ee48cb3ee7e07f)
 	 - [继续一个刚刚结束的container](#5e7908d41ed1f3e6e1906d575e2dfea0)
 	 - [pass proxy to docker container](#e64a823c0142aaac197cc68839f54da9)
+	 - [docker proxy for Centos7](#7a5c94971896bfbf1a19053004e56cc1)
 
 ...menuend
 
@@ -1769,6 +1770,8 @@ Explanation:
 
  - set https_proxy and http_proxy in you host machine
  - `docker run -e https_proxy -e http_proxy ... ` 
+
+<h2 id="7a5c94971896bfbf1a19053004e56cc1"></h2>
 
 ## docker proxy for Centos7
 
