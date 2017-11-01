@@ -258,6 +258,7 @@ ans =
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_cross_right_hand_rule.png)
     - computation:
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_3d_cross_computation.png)
+ - question: 为什么 叉积的计算 和行列式这么相像？ 之间有什么必然联系？
 
 <h2 id="d6f39fcd3624e0b509757af47be8f6c5"></h2>
 
