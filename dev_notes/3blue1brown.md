@@ -326,6 +326,9 @@ ans =
         - 我们先不用她的语言来描述这个过程，而是用基变换矩阵 转化为用我们的语言描述
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_change_basis_matrix.png)
         - 然后，将所得结果 左乘 线性变换矩阵 P 
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_change_basis_left_m_P.png)
+        - 上面变换后的向量， 仍然是用我们的语言来描述的，所以像之前一样，所得结果左乘 变换矩阵的逆，从而得到的最终向量，就是用詹妮弗的语言来描述的。
+        - 
         
 
 
