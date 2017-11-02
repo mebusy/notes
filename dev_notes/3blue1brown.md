@@ -327,8 +327,11 @@ ans =
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_change_basis_matrix.png)
         - 然后，将所得结果 左乘 线性变换矩阵 P 
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_change_basis_left_m_P.png)
-        - 上面变换后的向量， 仍然是用我们的语言来描述的，所以像之前一样，所得结果左乘 变换矩阵的逆，从而得到的最终向量，就是用詹妮弗的语言来描述的。
-        - 
+        - 上面变换后的向量， 仍然是用我们的语言来描述的，所以像之前一样，所得结果左乘 基变换矩阵的逆，从而得到的最终向量，就是用詹妮弗的语言来描述的。
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_change_basis_vector_in_hers.png)
+        - 我们可以对 用詹妮弗语言描述的 任一向量，做同样事， 首先 基变换，然后线性变换，然后基变换的逆， 这三个矩阵的复合给出的，就是用詹妮弗怨言描述的线性变换矩阵。它接收 詹妮弗语言描述的向量，输出用詹妮弗语言描述的 变换后的向量。
+ - 总的来说，每当你看到这样一个表达式: A⁻¹MA , 这就暗示着一种数学上的转移作用。中间的矩阵代表一种你所见的变换，而外侧的两个矩阵代表着转移作用，也就是视角上的转化。矩阵乘积 仍然代表这同一个变换， 只不过是从其它人的角度来看的。
+
         
 
 
