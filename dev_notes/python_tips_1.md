@@ -667,3 +667,16 @@ src_path = os.path.dirname( os.path.abspath(  __file__ ) )
 # add parent folder as search path
 sys.path.append( os.path.normpath( os.path.join( src_path , ".." )) )
 ```
+
+
+### open file with both reading and writing 
+
+```python
+with open(filename, "r+") as f:
+    data = f.read()
+    f.seek(0)
+    f.write(output)
+    f.truncate()
+```
+
+
