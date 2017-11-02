@@ -324,7 +324,9 @@ ans =
     - 这个过程的通常想想法是这样的:  
         - 从詹妮弗的语言描述的任一向量出发，say [-1;2] . 
         - 我们先不用她的语言来描述这个过程，而是用基变换矩阵 转化为用我们的语言描述
-         
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_change_basis_matrix.png)
+        - 然后，将所得结果 左乘 线性变换矩阵 P 
+        
 
 
      
