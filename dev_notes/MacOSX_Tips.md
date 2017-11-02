@@ -151,6 +151,20 @@ parse_git_branch() {
 export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 ```
 
+### find all json file , and remove all `\r` 
+
+```
+ls *.json | xargs -I {}  sh -c  "cat {} | tr -d '\r' > {}2 && mv {}2 {} "
+or
+ls *.json | xargs -I {}  sh -c  " tr -d '\r' < {}  > {}2 && mv {}2 {} "
+```
+ 
+  - `{}` :  handle every file
+  - `sh -c`  : directly use `{}` in redirection `>` not works, put them in a shell command
+  - you can not do that by sed  , remember  sed delimits on `\n` newlines - they are always removed on input and reinserted on output.   you may need `-z` mode 
+ 
+
+
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
 ## TODO
