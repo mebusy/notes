@@ -732,6 +732,8 @@ Both the `runtime` and the `runtime/debug` packages contain numerous other funct
 
 ## 5.4 Testing
 
+### 5.4.1 Unit testing
+
 ```go
 // A Simple Hello
 package hello
@@ -765,5 +767,59 @@ func TestHello(t *testing.T) {
 
  - You’re writing code that depends on types defined in external libraries, and you want to write test code that can verify that those libraries are correctly used
  - Create interfaces to describe the types you need to test. Use those interfaces in your code, and then write stub or mock implementations for your tests.
+ - Say you’re writing software that uses a third-party library that looks like the following listing.
+
+```go
+// Listing 5.12 The message struct
+type Message struct {
+    // ...
+}
+func (m *Message) Send(email, subject string, body []byte) error {
+    // ...
+    return nil
+}
+```
+
+ - This describes some kind of message-sending system. In your code, you use that library to send a message from your application. 
+    - In the course of writing your tests, you want to ensure that the code that sends the message is being called, but you don’t want to send the message.
+    - One way to gracefully deal with this is to write your own interface that describes the methods shown in listing 5.12, and have your code use that interface in its declarations instead of directly using the Message type, as the following listing shows.
+
+```go
+// Listing 5.13 Use an interface
+
+// Defines an interface that describes the methods you use on Message
+type Messager interface {
+    Send(email, subject string, body []byte) error
+}
+// Passes that interface instead of the lib Message type
+func Alert(m Messager, problem []byte) error {
+    return m.Send("noc@example.com", "Critical Error", problem)
+}
+```
+
+
+**TECHNIQUE 28: Verifying interfaces with canary tests**  TODO , page 132
+
+---
+
+
+
+# 11 Reflection and code generation
+
+ - *Reflection* ,  in software development, refers to a program’s ability to examine its own structure. 
+ - As useful as Go’s reflection system is, though, sometimes it’s cleaner to avoid complex and expensive runtime reflection, and instead write code that writes code. 
+    -  Code generation can accomplish some of the things that are typically done in other languages with generics. 
+
+## 11.1 Three features of reflection
+
+ - Software developers use reflection to examine objects during runtime. 
+ - In a strongly typed language like Go, you may want to find out whether a particular object satisfies an interface. 
+    - Or discover what its underlying kind is. 
+    - Or walk over its fields and modify the data.
+ - Go’s reflection tools are located inside the `reflect` package. 
+ - You need to understand three critical features when working with Go’s reflection mechanism: values, types, and kinds.
+    - value
+        - 
+
 
 
