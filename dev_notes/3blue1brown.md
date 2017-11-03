@@ -374,7 +374,33 @@ ans =
 
 ## 11. Abstract vector spaces
 
+ - Determinant and eigenvectors don't care about the coordinate system
+ - There are other vectorish things... Functions
+    - 从某种意义说，函数实际上是另一种向量
+        - (f+g)(x) = f(x) + g(x)
+        - (2f)(x) = 2f(x)
+    - 所以，最初以空间中的箭头为背景考虑的线性代数的合理概念和解决问题的手段，应该能原封不动的被我取出来
+        - For example, there's a perfectly reasonable notion of a linear transformation for fuctions, something that takes in on function , and turns it into another 
+        - One familiar example comes from calculus: the derivative
+            - d/dx( 1/9x³-x ) = 1/3x²-1
+ - What does it mean for a transformation of functions to be linear ? 
+    - Formal definition of linearity
+        - Additivity: L( v + w ) = L(v) + L(w)
+        - Scaling: L(cv) = cL(v)
+    - Linear transformations **perserve** addition and scalar multiplication.
+    - 网格线保持平行且等距分布的概念，只是这两条性质在而为空间这一特殊情况下的体现。
+    - 这两条性质的一个最终的推论是，一个线性变换可以通过它对基向量的作用来完全描述，这使得矩阵 向量乘法成为可能。这一点对函数来说同样正确。
+    - 比如说，求导具有可加性和成比例性。 Derivative is linear 
+        - d/dx(x³+x²) = d/dx(x³) + d/dx(x²)
+        - d/dx(4x³) = 4·d/dx(x³) 
+ - Let's descibe the derivative with a matrix 
+    - 我们现在把目光限制在多项式空间上，比如说x²+3x+5 , 或者 4x⁷-5x² 等等
+    - 虽然这个空间中的每一个多项式都只有有限项，但是整个空间应该包含任意高次的多项式
 
+
+        
+
+          
 
 
     
