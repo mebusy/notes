@@ -798,7 +798,7 @@ func Alert(m Messager, problem []byte) error {
 ```
 
 
-**TECHNIQUE 28: Verifying interfaces with canary tests**  TODO , page 132
+#### TECHNIQUE 28: Verifying interfaces with canary tests  TODO , page 132
 
 ---
 
@@ -819,7 +819,168 @@ func Alert(m Messager, problem []byte) error {
  - Go’s reflection tools are located inside the `reflect` package. 
  - You need to understand three critical features when working with Go’s reflection mechanism: values, types, and kinds.
     - value
-        - 
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Go70_refect_value.png)
+    - type
+        - Each value in Go has a particular type associated with it. 
+        - For example, with var b bytes.Buffer, the type is bytes.Buffer. 
+        - For any reflect.Value in Go, you can discover its type. Type information is accessible through the reflect .Type interface
+    - kinds
+        - Go defines numerous primitive kinds, such as struct, ptr (pointer), int, float64, string, slice, func (function), and so on. 
+        - The reflect package enumerates all of the possible kinds with the type reflect.Kind.
+            - Note that in preceding picture, the value of type string also has the kind string.)
+
+#### TECHNIQUE 66 Switching based on type and kind
+
+One of the most frequent uses of Go’s reflection system is identifying either the type or kind of a value. 
+
+ - You want to write a function that takes generic values (interface{}s), and then does something useful with them based on underlying types. 
+ - Go provides various methods for learning this information, ranging from the type switch to the reflect.Type and reflect.Kind types. 
+
+---
+
+ - Say you want to write a function with the signature `sum(…interface{}) float64`. 
+    - You want  to take any number of arguments of various types. And you want it to convert the values to float64 and then sum them.  
+ - The most convenient tool that Go provides for doing this is the type switch. 
+    - With this special case of the switch control structure, you can perform operations based on the type of a value, instead of the data contained in a value. 
+
+
+```go
+func sum(v ...interface{}) float64 {
+    var res float64 = 0
+    for _, val := range v {
+        switch val.(type) {
+        case int:
+            res += float64(val.(int))
+        case int64:
+            res += float64(val.(int64))
+        case uint8:
+            res += float64(val.(uint8))
+        case string:
+            a, err := strconv.ParseFloat(val.(string), 64)
+            if err != nil {
+                panic(err)
+            } 
+            res += a
+        default:
+            fmt.Printf("Unsupported type %T. Ignoring.\n", val)
+        }
+    }
+    return res
+}
+```
+
+ - **it’s important to remember that type switches operate on types (not kinds).**
+    - that is , if you defined a type `type MyInt int64` , and pass a `MyInt` to sum function, `case int64` will **NOT** match for a MyInt.
+    - The solution to this problem is to use the reflect package, and work based on kind instead of type.
+
+```go
+func sum(v ...interface{}) float64 {
+    var res float64 = 0
+    for _, val := range v {
+        // Gets the reflect.Value of the item
+        ref := reflect.ValueOf(val)
+        // From the value, you can switch on the Kind().
+        switch ref.Kind() {
+        case reflect.Int, reflect.Int64:
+            // The reflect.Value type provides convenience functions 
+            // for converting related subkinds to their biggest version
+            // (e.g., int, int8, int16…to int64).
+            res += float64(ref.Int())
+        case reflect.Uint8:
+            res += float64(ref.Uint())
+        case reflect.String:
+            a, err := strconv.ParseFloat(ref.String(), 64)
+            if err != nil {
+            panic(err)
+            }
+            res += a
+        default:
+            fmt.Printf("Unsupported type %T. Ignoring.\n", val)
+        }
+    }
+    return res
+}
+```
+
+ - One of the pieces of information you can learn from a reflect.Value is its underlying kind.
+ - Another thing that the reflect.Value type gives you is a group of functions capable of converting related types to their largest representation. 
+    -  A reflect.Value with a uint8 or uint16 can be easily converted to the biggest unsigned integer type by using the reflect.Value’s Uint() method.
+
+#### TECHNIQUE 67: Discovering whether a value implements an interface
+
+ - Given a particular type, you want to find out whether that type implements a defined interface
+ - There are two ways to accomplish this.  Use the one that best meets your needs.
+    - One is with a type assertion, 
+    - and the other uses the reflect package. 
+
+---
+
+```go
+// Listing 11.4 Checking and converting a type
+func isStringer(v interface{}) bool {
+    // Takes an interface{} value and 
+    // runs a type assertion to the desired interface
+    _, ok := v.(fmt.Stringer)
+    return ok
+}
+```
+
+ - Type assertions are one way of testing whether a given **value** implements an interface.
+ - But what if you want to test whether a type implements an interface, but determine which interface at runtime? 
+    - Go’s reflection package has no reflect.Interface type. 
+    - Instead, reflect.Type (which is itself an interface) provides tools for querying whether a given type implements a given interface type.  
+
+```go
+// Listing 11.5 Determine whether a type implements an interface
+func implements(concrete interface{}, target interface{}) bool {
+    // Gets a reflect.Type that describes
+    // the target of the pointer
+    iface := reflect.TypeOf(target).Elem()
+    
+    // Gets the reflect.Type of the concrete type passed in
+    v := reflect.ValueOf(concrete)
+    t := v.Type()
+    
+    if t.Implements(iface) {
+        fmt.Printf("%T is a %s\n", concrete, iface.Name())
+        return true
+    }
+    fmt.Printf("%T is not a %s\n", concrete, iface.Name())
+    return false
+}
+
+func main() {
+    n := &Name{First: "Inigo", Last: "Montoya"}
+    stringer := (*fmt.Stringer)(nil)
+    implements(n, stringer)
+
+    writer := (*io.Writer)(nil)
+    implements(n, writer)
+}
+```
+
+ - The implements() function takes two values. 
+    - It tests whether the first value (concrete) implements the interface of the second (target). 
+    - The implements() function does assume that the target is a pointer to a value whose dynamic type is an interface. 
+ - To test whether concrete implements the target interface, you need to get the reflect.Type of both the concrete and the target. 
+ - There are two ways of doing this.    
+    - The first uses reflect.TypeOf() to get a reflect.Type, and a call to Type.Elem() to get the type that the target pointer points to:
+        - `iface := reflect.TypeOf(target).Elem()`
+    - The second gets the value of concrete, and then gets the reflect.Type of that value.
+        - `v := reflect.ValueOf(concrete) ;  t := v.Type() `
+ - The trickier part of this test, though, is getting a reference to an interface. 
+    - There’s no way to directly reflect on an interface type.  Interfaces don’t work that way; you can’t just instantiate one or reference it directly
+    - Instead, you need to find a way to create a placeholder that implements an interface.
+        - The simplest way is to do something we usually recommend studiously avoiding: intentionally create a nil pointer. 
+        - You need the Elem() call in order to get the type of the nil.
+
+#### TECHNIQUE 68 Accessing fields on a struct
+
+ - You want to learn about a struct at runtime, discovering its fields.
+ - Reflect the struct and use a combination of reflect.Value and reflect.Type to find out information about the struct.
+ - 
+
+
 
 
 
