@@ -396,6 +396,7 @@ ans =
  - Let's descibe the derivative with a matrix 
     - 我们现在把目光限制在多项式空间上，比如说x²+3x+5 , 或者 4x⁷-5x² 等等
     - 虽然这个空间中的每一个多项式都只有有限项，但是整个空间应该包含任意高次的多项式
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_all_polynomials_space.png)
 
 
         
