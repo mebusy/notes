@@ -411,6 +411,11 @@ ans =
         - 在这个坐标系中，求导是用一个无限阶矩阵描述的
             - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_functions_derivative.png)
         - 其中绝大部分是零，不过次对角线上按序排列着正整数
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_function_derivative_ex.png)
+    - 求导满足线性性质使这一过程成为可能
+        - 求导矩阵的构建，实际就是 求每一个 基函数的导数，然后把结果放在对应列
+ - 数学中有很多类似向量的事物，只要你处理的对象具有合理的数乘和相加的概念，线性代数中所有关于向量，线性变换，和其他的概念都应该使用与它。
+
 
 
 
