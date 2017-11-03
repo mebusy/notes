@@ -409,7 +409,9 @@ ans =
         - 因为多项式的次数可以任意高，所以这个基函数集也是无穷大
             - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_basis_functions.png)
         - 在这个坐标系中，求导是用一个无限阶矩阵描述的
-            - 
+            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_functions_derivative.png)
+        - 其中绝大部分是零，不过次对角线上按序排列着正整数
+
 
 
         
