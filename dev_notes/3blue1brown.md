@@ -397,6 +397,19 @@ ans =
     - 我们现在把目光限制在多项式空间上，比如说x²+3x+5 , 或者 4x⁷-5x² 等等
     - 虽然这个空间中的每一个多项式都只有有限项，但是整个空间应该包含任意高次的多项式
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_all_polynomials_space.png)
+    - 首先我们要做的是给这个空间赋予坐标的含义，这需要选取一个基
+        - 因为多项式已经是 数乘xⁿ 再做加和 的形式，所以我们很自然地就取x的不同次幂作为基函数
+        - Basis functions
+            - b₀(x) = 1
+            - b₁(x) = x
+            - b₂(x) = x²
+            - b₃(x) = x³
+            - ...
+        - 基函数在这里起的作用，和 î,ĵ,k̂ 在向量世界中起到的作用类似。
+        - 因为多项式的次数可以任意高，所以这个基函数集也是无穷大
+            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_basis_functions.png)
+        - 在这个坐标系中，求导是用一个无限阶矩阵描述的
+            - 
 
 
         
