@@ -144,7 +144,7 @@ ans =
         - In their starting positions, ĵ is to the left of î. 
         - If , after a transformation, ĵ is now on the right of î, the orientation of space has been inverted.
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_invert_orientation.png)
- - Wheneven the orientation is inverted, the determinant will be negative.
+ - Whenever the orientation is inverted, the determinant will be negative.
     - the absolute value of the determinant though still tells you the factor by which areas have been scaled. 
  - What `det(M)<0` means in 3D ?
     - One way to describe orientation in 3D is with the right hand rule
@@ -168,7 +168,7 @@ ans =
     - 不管是一条直线，一个平面，还是三维空间，所有可能的变换结果的集合，is called the **Column Space** of a matrix *A*
  - Null Space
     - 对一个full rank矩阵来说，唯一能变换后 落在原点上的，就是zero vector itself.
-    - 但对于一个 非满秩矩阵来说，它将空间压缩到更多的维度, 也就是说会有 一系列 向量在变换后 成为零向量。
+    - 但对于一个 非满秩矩阵来说，它将空间压缩到更低的维度, 也就是说会有 一系列 向量在变换后 成为零向量。
         - eg. 如果一个三维线性变换 将空间压缩到一条直线上，那么就有一整个平面上的向量在变换后落在原点。
     - 这些 变换后落在原点的向量的集合，is called the **Null Space** , or **Kernel** of the matrix 
     - In terms of the linear system of equation Ax=b , if b happens to be the zero vector, the null space gives you all of the possible solutions to the equation. 
