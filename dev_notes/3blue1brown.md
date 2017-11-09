@@ -144,7 +144,7 @@ ans =
         - In their starting positions, ĵ is to the left of î. 
         - If , after a transformation, ĵ is now on the right of î, the orientation of space has been inverted.
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_invert_orientation.png)
- - Wheneven the orientation is inverted, the determinant will be negative.
+ - Whenever the orientation is inverted, the determinant will be negative.
     - the absolute value of the determinant though still tells you the factor by which areas have been scaled. 
  - What `det(M)<0` means in 3D ?
     - One way to describe orientation in 3D is with the right hand rule
@@ -168,7 +168,7 @@ ans =
     - 不管是一条直线，一个平面，还是三维空间，所有可能的变换结果的集合，is called the **Column Space** of a matrix *A*
  - Null Space
     - 对一个full rank矩阵来说，唯一能变换后 落在原点上的，就是zero vector itself.
-    - 但对于一个 非满秩矩阵来说，它将空间压缩到更多的维度, 也就是说会有 一系列 向量在变换后 成为零向量。
+    - 但对于一个 非满秩矩阵来说，它将空间压缩到更低的维度, 也就是说会有 一系列 向量在变换后 成为零向量。
         - eg. 如果一个三维线性变换 将空间压缩到一条直线上，那么就有一整个平面上的向量在变换后落在原点。
     - 这些 变换后落在原点的向量的集合，is called the **Null Space** , or **Kernel** of the matrix 
     - In terms of the linear system of equation Ax=b , if b happens to be the zero vector, the null space gives you all of the possible solutions to the equation. 
@@ -374,7 +374,54 @@ ans =
 
 ## 11. Abstract vector spaces
 
+ - Determinant and eigenvectors don't care about the coordinate system
+ - There are other vectorish things... Functions
+    - 从某种意义说，函数实际上是另一种向量
+        - (f+g)(x) = f(x) + g(x)
+        - (2f)(x) = 2f(x)
+    - 所以，最初以空间中的箭头为背景考虑的线性代数的合理概念和解决问题的手段，应该能原封不动的被我取出来
+        - For example, there's a perfectly reasonable notion of a linear transformation for fuctions, something that takes in on function , and turns it into another 
+        - One familiar example comes from calculus: the derivative
+            - d/dx( 1/9x³-x ) = 1/3x²-1
+ - What does it mean for a transformation of functions to be linear ? 
+    - Formal definition of linearity
+        - Additivity: L( v + w ) = L(v) + L(w)
+        - Scaling: L(cv) = cL(v)
+    - Linear transformations **perserve** addition and scalar multiplication.
+    - 网格线保持平行且等距分布的概念，只是这两条性质在而为空间这一特殊情况下的体现。
+    - 这两条性质的一个最终的推论是，一个线性变换可以通过它对基向量的作用来完全描述，这使得矩阵 向量乘法成为可能。这一点对函数来说同样正确。
+    - 比如说，求导具有可加性和成比例性。 Derivative is linear 
+        - d/dx(x³+x²) = d/dx(x³) + d/dx(x²)
+        - d/dx(4x³) = 4·d/dx(x³) 
+ - Let's descibe the derivative with a matrix 
+    - 我们现在把目光限制在多项式空间上，比如说x²+3x+5 , 或者 4x⁷-5x² 等等
+    - 虽然这个空间中的每一个多项式都只有有限项，但是整个空间应该包含任意高次的多项式
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_all_polynomials_space.png)
+    - 首先我们要做的是给这个空间赋予坐标的含义，这需要选取一个基
+        - 因为多项式已经是 数乘xⁿ 再做加和 的形式，所以我们很自然地就取x的不同次幂作为基函数
+        - Basis functions
+            - b₀(x) = 1
+            - b₁(x) = x
+            - b₂(x) = x²
+            - b₃(x) = x³
+            - ...
+        - 基函数在这里起的作用，和 î,ĵ,k̂ 在向量世界中起到的作用类似。
+        - 因为多项式的次数可以任意高，所以这个基函数集也是无穷大
+            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_basis_functions.png)
+        - 在这个坐标系中，求导是用一个无限阶矩阵描述的
+            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_functions_derivative.png)
+        - 其中绝大部分是零，不过次对角线上按序排列着正整数
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_function_derivative_ex.png)
+    - 求导满足线性性质使这一过程成为可能
+        - 求导矩阵的构建，实际就是 求每一个 基函数的导数，然后把结果放在对应列
+ - 数学中有很多类似向量的事物，只要你处理的对象具有合理的数乘和相加的概念，线性代数中所有关于向量，线性变换，和其他的概念都应该使用与它。
 
+
+
+
+        
+
+          
 
 
     
