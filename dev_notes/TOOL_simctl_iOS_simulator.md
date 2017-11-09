@@ -122,4 +122,8 @@ xcrun simctl launch $BOOTED_DEVICE $APP_BID  | grep -oE '\d+$'  > $PID_FILE
 cat $PID_FILE
 ```
 
+#### 安装模拟器版本 app
 
+```bash
+xcrun simctl install booted /path/to/your.app
+```
