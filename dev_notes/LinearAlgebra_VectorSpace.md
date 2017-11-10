@@ -96,7 +96,7 @@ With m > n we have more equations than unknowns - and usually there will be no s
 
 We can describe all combinations of the two columns geometrically: *Ax = b* can be solved if and only if b lies in the **plane** that is spanned by the two column vectors. This is the *thin* set of attainable b. If b lies off the plane, then it is not a combination of the two columns. In that case Ax = b has no solution.
 
-What is important is that this plane is not just a subset of R³; it is a **subspace**. It is the column space of A, consisting of all combinations of the columns. It is denoted by ***C(A)***.
+What is important is that this plane is not just a subset of R³; it is a **subspace**. It is the column space of A, consisting of all combinations of the columns. It is denoted by ***C(A)*** .
 
 Then C(A) can be somewhere between the zero space and the whole space **Rᵐ**. Together with its perpendicular space, it gives one of our two approaches to understanding Ax = b.
 
