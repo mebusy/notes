@@ -20,7 +20,8 @@
 # 目录
 
  - [在线数学公式生成](http://codecogs.com/latex/eqneditor.php)
- - 
+ - show html on github
+    - `http://htmlpreview.github.io/?https://github.com/mebusy/notes/blob/master/xxx/xxxxx.html`
  - [Linear ALgebra](https://github.com/mebusy/notes/blob/master/dev_notes/LA_readme.md) 
  - [algorithm](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_readme.md)
  - [Machine Learning](https://github.com/mebusy/notes/blob/master/dev_notes/ML_readme.md)
