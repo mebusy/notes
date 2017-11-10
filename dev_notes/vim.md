@@ -249,6 +249,13 @@ vimgrep /pattern/gj path
 :argdo %s/word/NEW/eg | update
 ```
 
+### 多行 行首插入字符
+
+ 1. 光标置与第一行行首, ctrl-v 进入  VISUAL BLOCK
+ 2. 向下移动光标 选中所有行
+ 3. shift i 进入多行插入模式， 编辑
+ 4. 等 1秒钟， 修改完成
+
 ---
 
 <h2 id="b081af9a95521e478ee6f8af8675cded"></h2>
