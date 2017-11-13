@@ -1049,7 +1049,7 @@ function GRAPH-SEARCH(problem,fringe) return a solution, or failure
         end
 
         # 除了 (x,y) 位置，state 还可以包含其他信息
-        # 这些额外信息 可以让我们的solution 多次通过某一段path
+        # 这些额外信息 可以让我们的solution 多次通过某个node
         if STATE[node] is not in closed then
             add STATE[node] to closed
              
