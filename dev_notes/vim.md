@@ -256,6 +256,13 @@ vimgrep /pattern/gj path
  3. shift i 进入多行插入模式， 编辑
  4. 等 1秒钟， 修改完成
 
+
+### replace all tab with 4 space
+
+```
+:%!expand -t4
+```
+
 ---
 
 <h2 id="b081af9a95521e478ee6f8af8675cded"></h2>

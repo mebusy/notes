@@ -2,69 +2,69 @@
 
  - [AI , CS 188](#aea7deb258843dff16f9b84b46ec1461)
  - [Introduction](#0b79795d3efc95b9976c7c5b933afce2)
-	 - [What is AI](#9fa835a40078a81e452b0cbb4362a6f5)
-	 - [Rational Decisions](#113b7e5d42d49b2f76a69a3517ebcde9)
-	 - [Designing Rational Agents](#04052b6bc5dad6a9f6a00dfb9cd988da)
-	 - [Course Topics](#e3a18b70b77602c474ec9b3140b582e3)
+     - [What is AI](#9fa835a40078a81e452b0cbb4362a6f5)
+     - [Rational Decisions](#113b7e5d42d49b2f76a69a3517ebcde9)
+     - [Designing Rational Agents](#04052b6bc5dad6a9f6a00dfb9cd988da)
+     - [Course Topics](#e3a18b70b77602c474ec9b3140b582e3)
  - [Uninformed Search](#faccc055dce5dfee94eba9a23ec379bc)
-	 - [Reflex Agents](#9ef57e59fc5834eb1f86775a80163590)
-	 - [Planning Agents](#b35ab1adff6f2f91e25f048a1f1ecfcc)
-	 - [Search Problems](#fc72ba154e470ee2e177ed8e75ee4de2)
-	 - [Search Problems Are Models](#0a9e0b58d3ed416bdb73713846200baa)
-		 - [Example: Traveling in Romania](#30f0fbd7fae0ee74806b20a52d15e3ee)
-	 - [What’s in a State Space ?](#e753d55f3a61b93cba852a33216321e0)
-	 - [State Space Sizes ?](#05eb0fb2a7cf700d9734545149fc43fb)
-	 - [Quiz: Safe Passage](#10f2374e81dfff89cef5eecf517b70ef)
-	 - [State Space Graphs and Search Trees](#12227407175834cc50274fb425cf4e2d)
-		 - [State Space Graphs](#91fa96e85b0a665a30ab89661d0137c4)
-		 - [Search Trees](#fa3d63f947f57a28158a9af70e100ef3)
-		 - [State Space Graphs vs. Search Trees](#3371ddd82f34162d684dfd1d1f40d8b3)
-		 - [Quiz: State Space Graphs vs. Search Trees](#76acaf4079e010db2a41f612ceae95f4)
-	 - [Tree Search](#6281565533d78912ee355e95d1263fef)
-		 - [Searching with a Search Tree](#643025d557c3b9f6d43cdd62b77f5530)
-		 - [General Tree Search](#a23c40de844ed1e2415dc477845012af)
-		 - [Depth-First Search](#d292eaede65eb34e66db0db9ebb6b9bc)
-			 - [Search Algorithm Properties](#6dda6174af1ce92b505f3c29643504c3)
-			 - [Depth-First Search (DFS) Properties](#62a9189e6707b0db89f80a7a5bb6c15e)
-		 - [Breadth-First Search](#ae5c4b868b5b24149decba70c74165c2)
-			 - [Breadth-First Search (BFS) Properties](#0d9bfd747ee897d1720abf029faddae4)
-			 - [Iterative Deepening](#fcbd892c255445e0e3c99ceeb0dbc2e9)
-		 - [Cost-Sensitive Search](#ea10a2ff2bc1cbc4cb292e4f88cad9e9)
-			 - [Uniform Cost Search](#1bd1e9029adb17c5893239e7288210a9)
-			 - [Uniform Cost Search (UCS) Properties](#8fcce2120d7405462b72fce3bf1fcaaa)
-		 - [DFS vs BFS vs UCS](#46ea5fe25e20e5c9f2466692baeb1848)
-	 - [Graph Search VS Tree Search](#f2ef45f33145362c2a215128cc677ccc)
-	 - [Uniform cost search vs. Dijkstra's Algorithm](#e609c39a6581f06c0e176c5be71abfa3)
-	 - [Search and Models](#7f1afff8243e3009eb892111dcc4413f)
-	 - [Some Hints for P1](#b04314d7dafd45796af0bf245e3ae8e8)
+     - [Reflex Agents](#9ef57e59fc5834eb1f86775a80163590)
+     - [Planning Agents](#b35ab1adff6f2f91e25f048a1f1ecfcc)
+     - [Search Problems](#fc72ba154e470ee2e177ed8e75ee4de2)
+     - [Search Problems Are Models](#0a9e0b58d3ed416bdb73713846200baa)
+         - [Example: Traveling in Romania](#30f0fbd7fae0ee74806b20a52d15e3ee)
+     - [What’s in a State Space ?](#e753d55f3a61b93cba852a33216321e0)
+     - [State Space Sizes ?](#05eb0fb2a7cf700d9734545149fc43fb)
+     - [Quiz: Safe Passage](#10f2374e81dfff89cef5eecf517b70ef)
+     - [State Space Graphs and Search Trees](#12227407175834cc50274fb425cf4e2d)
+         - [State Space Graphs](#91fa96e85b0a665a30ab89661d0137c4)
+         - [Search Trees](#fa3d63f947f57a28158a9af70e100ef3)
+         - [State Space Graphs vs. Search Trees](#3371ddd82f34162d684dfd1d1f40d8b3)
+         - [Quiz: State Space Graphs vs. Search Trees](#76acaf4079e010db2a41f612ceae95f4)
+     - [Tree Search](#6281565533d78912ee355e95d1263fef)
+         - [Searching with a Search Tree](#643025d557c3b9f6d43cdd62b77f5530)
+         - [General Tree Search](#a23c40de844ed1e2415dc477845012af)
+         - [Depth-First Search](#d292eaede65eb34e66db0db9ebb6b9bc)
+             - [Search Algorithm Properties](#6dda6174af1ce92b505f3c29643504c3)
+             - [Depth-First Search (DFS) Properties](#62a9189e6707b0db89f80a7a5bb6c15e)
+         - [Breadth-First Search](#ae5c4b868b5b24149decba70c74165c2)
+             - [Breadth-First Search (BFS) Properties](#0d9bfd747ee897d1720abf029faddae4)
+             - [Iterative Deepening](#fcbd892c255445e0e3c99ceeb0dbc2e9)
+         - [Cost-Sensitive Search](#ea10a2ff2bc1cbc4cb292e4f88cad9e9)
+             - [Uniform Cost Search](#1bd1e9029adb17c5893239e7288210a9)
+             - [Uniform Cost Search (UCS) Properties](#8fcce2120d7405462b72fce3bf1fcaaa)
+         - [DFS vs BFS vs UCS](#46ea5fe25e20e5c9f2466692baeb1848)
+     - [Graph Search VS Tree Search](#f2ef45f33145362c2a215128cc677ccc)
+     - [Uniform cost search vs. Dijkstra's Algorithm](#e609c39a6581f06c0e176c5be71abfa3)
+     - [Search and Models](#7f1afff8243e3009eb892111dcc4413f)
+     - [Some Hints for P1](#b04314d7dafd45796af0bf245e3ae8e8)
  - [Informed Search](#29990be19ae238ca1071a838229e85f3)
-	 - [The One Queue](#6fa04493ae42918af4621de6aae2ccc2)
-	 - [Uniform Cost Issues](#eec9120ae950a6604e2b58e9a3ca0035)
-	 - [Search Heuristics](#fdb1b92add98d8aa548a1d33445c6a67)
-		 - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
-	 - [Greedy Search](#6f166f2a80c5f26b9e59a2ed903c09c7)
-	 - [A* search](#4eb045a9450d6e7de8a9b8cb2e420c89)
-		 - [Combining UCS and Greedy](#07e5a0c69feece254a168e7da5932151)
-		 - [When should A* terminate?](#9fa7d37bafbf919eec2833224d5de03c)
-		 - [Admissible Heuristics](#bf8f38651446764fc008980354ad6746)
-		 - [Optimality of A* Tree Search](#3073e988edee383f5983f6a7fc2212a2)
-		 - [Properties of A*](#26e3cfa1ee4375a33dca3b380348e972)
-	 - [Comparison](#f6c0e3a1c3cfabd32ae8d3ae741fcf0a)
-	 - [Creating Heuristics](#042138393e72af1a16d8c31facd84ab1)
-		 - [Example: 8 Puzzle](#f8097ec9827afc9065c89741a344d53f)
-	 - [Semi-Lattice of Heuristics  半启发式](#7e9aa2fe208a956ac44d1ee31a5035d9)
-		 - [Trivial Heuristics, Dominance](#30887de01fbff37aef091345781445d5)
-	 - [Graph Search](#00ba899c02fa6651c15e5e948a7a4aac)
-		 - [A* Graph Search Gone Wrong?](#9afaf22785328c0bf6267acf13add5da)
-		 - [Consistency of Heuristics](#cb964f845fc822953ddb83ca6d124e6b)
-		 - [Optimality of A* Graph Search](#ea9a7016fa68c3fd6434c9c0fb4afa3d)
-		 - [Optimality](#c1e81f3c2f720c3a2e3a765ba6a11d59)
-	 - [A*: Summary](#e418daaa73025a84fd16637fbf3b2d0d)
-		 - [Tree Search Pseudo-Code](#b9ab5ba1566688494ce5474bb592f8c4)
-		 - [Graph Search Pseudo-Code](#1388b32869f8288febeb18f8ec802b42)
-		 - [Optimality of A\* Graph Search](#53d3b2a00e84590355f57034c84cc1a0)
-	 - [demo code in python](#c9f86c35957917fe5e25e926f8923c75)
-		 - [ python graph search](#41ac4b4e9e2441a0a74f1372fbca3c52)
+     - [The One Queue](#6fa04493ae42918af4621de6aae2ccc2)
+     - [Uniform Cost Issues](#eec9120ae950a6604e2b58e9a3ca0035)
+     - [Search Heuristics](#fdb1b92add98d8aa548a1d33445c6a67)
+         - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
+     - [Greedy Search](#6f166f2a80c5f26b9e59a2ed903c09c7)
+     - [A* search](#4eb045a9450d6e7de8a9b8cb2e420c89)
+         - [Combining UCS and Greedy](#07e5a0c69feece254a168e7da5932151)
+         - [When should A* terminate?](#9fa7d37bafbf919eec2833224d5de03c)
+         - [Admissible Heuristics](#bf8f38651446764fc008980354ad6746)
+         - [Optimality of A* Tree Search](#3073e988edee383f5983f6a7fc2212a2)
+         - [Properties of A*](#26e3cfa1ee4375a33dca3b380348e972)
+     - [Comparison](#f6c0e3a1c3cfabd32ae8d3ae741fcf0a)
+     - [Creating Heuristics](#042138393e72af1a16d8c31facd84ab1)
+         - [Example: 8 Puzzle](#f8097ec9827afc9065c89741a344d53f)
+     - [Semi-Lattice of Heuristics  半启发式](#7e9aa2fe208a956ac44d1ee31a5035d9)
+         - [Trivial Heuristics, Dominance](#30887de01fbff37aef091345781445d5)
+     - [Graph Search](#00ba899c02fa6651c15e5e948a7a4aac)
+         - [A* Graph Search Gone Wrong?](#9afaf22785328c0bf6267acf13add5da)
+         - [Consistency of Heuristics](#cb964f845fc822953ddb83ca6d124e6b)
+         - [Optimality of A* Graph Search](#ea9a7016fa68c3fd6434c9c0fb4afa3d)
+         - [Optimality](#c1e81f3c2f720c3a2e3a765ba6a11d59)
+     - [A*: Summary](#e418daaa73025a84fd16637fbf3b2d0d)
+         - [Tree Search Pseudo-Code](#b9ab5ba1566688494ce5474bb592f8c4)
+         - [Graph Search Pseudo-Code](#1388b32869f8288febeb18f8ec802b42)
+         - [Optimality of A\* Graph Search](#53d3b2a00e84590355f57034c84cc1a0)
+     - [demo code in python](#c9f86c35957917fe5e25e926f8923c75)
+         - [ python graph search](#41ac4b4e9e2441a0a74f1372fbca3c52)
 
 ...menuend
 
@@ -101,8 +101,8 @@ The science of making machines that:
 ## Rational Decisions
 
  - We’ll use the term **rational** in a very specific, technical way:
- 	- Rational: maximally achieving pre-defined goals
- 	- Rationality only concerns what decisions are made  (not the thought process behind them)
+    - Rational: maximally achieving pre-defined goals
+    - Rationality only concerns what decisions are made  (not the thought process behind them)
  - Goals are expressed in terms of the **utility** of outcomes
  - Being rational means **maximizing your expected utility**
 
@@ -119,8 +119,8 @@ A better title for this course would be:
  - A **rational agent** selects actions that maximize its (expected) utility.  
  - Characteristics of the **percepts**, **environment**, and **action space** dictate techniques for selecting rational actions
  - **This course** is about:
- 	- General AI techniques for a variety of problem types
- 	- Learning to recognize when and how a new problem can be solved with an existing technique
+    - General AI techniques for a variety of problem types
+    - Learning to recognize when and how a new problem can be solved with an existing technique
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_agent.png)
 
@@ -130,15 +130,15 @@ A better title for this course would be:
 ## Course Topics
 
  - Part I: Making Decisions
- 	- Fast search / planning
- 	- Constraint satisfaction
- 	- Adversarial and uncertain search
+    - Fast search / planning
+    - Constraint satisfaction
+    - Adversarial and uncertain search
  - Part II: Reasoning under Uncertainty
- 	- Bayes’ nets
- 	- Decision theory
- 	- Machine learning
+    - Bayes’ nets
+    - Decision theory
+    - Machine learning
  - Throughout: Applications
- 	- Natural language, vision, robotics, games, …
+    - Natural language, vision, robotics, games, …
 
 
 
@@ -149,9 +149,9 @@ A better title for this course would be:
  - Agents that Plan Ahead
  - Search Problems
  - Uninformed Search Methods
- 	- Depth-First Search
- 	- Breadth-First Search
- 	- Uniform-Cost Search
+    - Depth-First Search
+    - Breadth-First Search
+    - Uniform-Cost Search
 
 Uninformed means that when we are exploring search tree we have no idea if we're getting closer to the goal or not.  
 
@@ -161,26 +161,26 @@ Uninformed means that when we are exploring search tree we have no idea if we're
 ## Reflex Agents
 
  - Reflex agents
- 	- Choose action based on current percept (and maybe memory)
- 	- May have memory or a model of the world’s current state
- 	- Do not consider the future consequences of their actions
- 	- **Consider how the world IS**
+    - Choose action based on current percept (and maybe memory)
+    - May have memory or a model of the world’s current state
+    - Do not consider the future consequences of their actions
+    - **Consider how the world IS**
  - Can a reflex agent be rational?
- 	- No
+    - No
  - Example
- 	- blinking your eye (not using your entire thinking capabilities)
- 	- vacuum cleaner moving towards nearest dirt
+    - blinking your eye (not using your entire thinking capabilities)
+    - vacuum cleaner moving towards nearest dirt
 
 <h2 id="b35ab1adff6f2f91e25f048a1f1ecfcc"></h2>
 
 ## Planning Agents
  
  - Planning agents
- 	- Ask “what if”
- 	- Decisions based on (hypothesized) consequences of actions
- 	- Must have a model of how the world evolves in response to actions
- 	- Must formulate a goal (test)
- 	- **Consider how the world WOULD BE**
+    - Ask “what if”
+    - Decisions based on (hypothesized) consequences of actions
+    - Must have a model of how the world evolves in response to actions
+    - Must formulate a goal (test)
+    - **Consider how the world WOULD BE**
  - **Optimal vs. complete planning**
  - **Planning vs. replanning**
 
@@ -190,11 +190,11 @@ Uninformed means that when we are exploring search tree we have no idea if we're
 ## Search Problems
 
  - A **search problem** consists of:
- 	- A state space
- 		- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_state_space.png)
- 	- A successor function (with actions, costs)
- 		- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_successor_func.png)
- 	- A start state and a goal test
+    - A state space
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_state_space.png)
+    - A successor function (with actions, costs)
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_successor_func.png)
+    - A start state and a goal test
  - A **solution** is a sequence of actions (a plan) which transforms the start state to a goal state
 
 
@@ -209,13 +209,13 @@ Uninformed means that when we are exploring search tree we have no idea if we're
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_travel_i_romania.png)
 
  - State space
- 	- Cities
+    - Cities
  - Successor Fuction:
- 	- Roads: Go to adjacent city with cost = distance
+    - Roads: Go to adjacent city with cost = distance
  - Start State:
- 	- Arad
+    - Arad
  - Goal Test
- 	- Is state == Bucharest ?
+    - Is state == Bucharest ?
  - Solution ?
 
 
@@ -224,7 +224,7 @@ Uninformed means that when we are exploring search tree we have no idea if we're
 ## What’s in a State Space ?
 
  - The **world state** includes every last detail of the environment
-	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_world_space.png) 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_world_space.png) 
  - A **search state** keeps only the details needed for planning (abstraction)
 
 
@@ -243,20 +243,20 @@ Goal test | is (x,y) == END | dots all flase
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_state_space_size.png)
 
  - World state
- 	- Agent Positions: 120  
- 		- 10x12
- 	- Food Count : 30
- 	- Ghost positions: 12 
- 		- 1x6
- 	- Agent facing: NSEW
+    - Agent Positions: 120  
+        - 10x12
+    - Food Count : 30
+    - Ghost positions: 12 
+        - 1x6
+    - Agent facing: NSEW
 
  - How many
- 	- World states ?
- 		- 120 x 2³⁰ x 12² x 4
- 	- State for pathing ?
- 		- 120
- 	- State for eat-all-dots ?
- 		- 120 x 2³⁰
+    - World states ?
+        - 120 x 2³⁰ x 12² x 4
+    - State for pathing ?
+        - 120
+    - State for eat-all-dots ?
+        - 120 x 2³⁰
 
 
 <h2 id="10f2374e81dfff89cef5eecf517b70ef"></h2>
@@ -265,7 +265,7 @@ Goal test | is (x,y) == END | dots all flase
 
  - Problem: eat all dots while keeping the ghosts permanent-scared
  - What does the state space have to specify?
- 	- (agent position, dot booleans, power pellet booleans, remaining scared time)
+    - (agent position, dot booleans, power pellet booleans, remaining scared time)
 
 
 <h2 id="12227407175834cc50274fb425cf4e2d"></h2>
@@ -277,9 +277,9 @@ Goal test | is (x,y) == END | dots all flase
 ### State Space Graphs
 
  - State space graph: A mathematical representation of a search problem
- 	- Nodes are (abstracted) world configurations
- 	- Arcs represent successors (action results)
- 	- The goal test is a set of goal nodes (maybe only one)
+    - Nodes are (abstracted) world configurations
+    - Arcs represent successors (action results)
+    - The goal test is a set of goal nodes (maybe only one)
  - In a state space graph, each state occurs only once!
  - We can rarely build this full graph in memory (it’s too big), but it’s a useful idea
 
@@ -294,11 +294,11 @@ Goal test | is (x,y) == END | dots all flase
 ### Search Trees
 
  - A search tree:
- 	- A “what if” tree of plans and their outcomes
- 	- The start state is the root node
- 	- Children correspond to successors
- 	- Nodes show states, but correspond to PLANS that achieve those states
- 	- **For most problems, we can never actually build the whole tree**
+    - A “what if” tree of plans and their outcomes
+    - The start state is the root node
+    - Children correspond to successors
+    - Nodes show states, but correspond to PLANS that achieve those states
+    - **For most problems, we can never actually build the whole tree**
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_tree.png)
 
@@ -308,7 +308,7 @@ Goal test | is (x,y) == END | dots all flase
 ### State Space Graphs vs. Search Trees
 
  - Each NODE in in the search tree is an entire PATH in the state space graph.
- 	- 节点x in search tree , 表示了 以x 为 start node 的整个子图	
+    - 节点x in search tree , 表示了 以x 为 start node 的整个子图    
  - We construct both on demand – and we construct as little as possible.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_state_space_graph2.png)  .VS.  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_tree2.png)
@@ -342,9 +342,9 @@ How big is its search tree (from S)?
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_with_a_search_tree.png)
 
  - Search
- 	- Expand out potential plans (tree nodes)
- 	- Maintain a ***fringe*** of partial plans under consideration ( here, fringe is the nodes with white background and black font ) 
- 	- Try to expand as few tree nodes as possible
+    - Expand out potential plans (tree nodes)
+    - Maintain a ***fringe*** of partial plans under consideration ( here, fringe is the nodes with white background and black font ) 
+    - Try to expand as few tree nodes as possible
 
 
 <h2 id="a23c40de844ed1e2415dc477845012af"></h2>
@@ -353,29 +353,29 @@ How big is its search tree (from S)?
 
 ```
 function TREE-SEARCH(problem,strategy) returns a solution, or failure
-	initialize the search tree using the initial state of problem
-	loop do
-		if there are no candidates for expansion then 
-			return failure
-		end
+    initialize the search tree using the initial state of problem
+    loop do
+        if there are no candidates for expansion then 
+            return failure
+        end
 
-		choose a leaf node for expansion according to strategy
+        choose a leaf node for expansion according to strategy
 
-		if the node contain a goal state then
-			return the corresponding solution
-		else
-			expand the node and add the resulting node to the search tree
-		end
-	end
+        if the node contain a goal state then
+            return the corresponding solution
+        else
+            expand the node and add the resulting node to the search tree
+        end
+    end
 end function
 ```
 
  - Important ideas:
- 	- Fringe
- 		- 添加到 待处理列表中的 nodes
- 	- Expansion
- 		- 从待处理列表中 选择一个 nodes 展开
- 	- Exploration strategy
+    - Fringe
+        - 添加到 待处理列表中的 nodes
+    - Expansion
+        - 从待处理列表中 选择一个 nodes 展开
+    - Exploration strategy
  - Main question: which fringe nodes to explore?
 
 
@@ -384,9 +384,9 @@ end function
 ### Depth-First Search
 
  - Strategy: 
- 	- expand a deepest node first
+    - expand a deepest node first
  - Implementation: 
- 	- Fringe is a LIFO stack
+    - Fringe is a LIFO stack
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_deep_first_search.png)
 
@@ -397,12 +397,12 @@ end function
 #### Search Algorithm Properties
 
 - **Cartoon of search tree**:
-	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_cartoon_of_search_tree.png)
-	- b is the branching factor
-	- m is the maximum depth
-	- solutions at various depths
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_cartoon_of_search_tree.png)
+    - b is the branching factor
+    - m is the maximum depth
+    - solutions at various depths
 - **Number of nodes** in entire tree?
-	- 1 + b + b² + ... + bᵐ = O(bᵐ)
+    - 1 + b + b² + ... + bᵐ = O(bᵐ)
 - **Complete**: Guaranteed to find a solution if one exists?
 - **Optimal**: Guaranteed to find the least cost path?
 - Time complexity?
@@ -416,17 +416,17 @@ end function
 #### Depth-First Search (DFS) Properties
 
  - What nodes DFS expand?
- 	- Some left prefix of the tree.
- 	- **Could process the whole tree!**
- 	- If m is finite, takes time **O(bᵐ)** 最坏的情况，遍历所有的节点
+    - Some left prefix of the tree.
+    - **Could process the whole tree!**
+    - If m is finite, takes time **O(bᵐ)** 最坏的情况，遍历所有的节点
  - How much space does the fringe take?
- 	- Only has siblings on path to root, so **O(b·m)**  
- 	- 每一层展开一个节点, 每个节点有 b successors, 最大m 层
+    - Only has siblings on path to root, so **O(b·m)**  
+    - 每一层展开一个节点, 每个节点有 b successors, 最大m 层
  - Is it complete?
-  	- Yes. but under some assumptions that have a cycle check to avoid recursion
-  	- m could be infinite, so only if we prevent cycles 
+    - Yes. but under some assumptions that have a cycle check to avoid recursion
+    - m could be infinite, so only if we prevent cycles 
  - Is it optimal?
- 	- No, it finds the “leftmost” solution, regardless of depth or cost
+    - No, it finds the “leftmost” solution, regardless of depth or cost
 
 
 <h2 id="ae5c4b868b5b24149decba70c74165c2"></h2>
@@ -434,9 +434,9 @@ end function
 ### Breadth-First Search
 
  - Strategy: 
- 	- expand a shallowest node first
+    - expand a shallowest node first
  - Implementation: 
- 	- Fringe is a FIFO queue
+    - Fringe is a FIFO queue
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BFS.png)
 
@@ -448,15 +448,15 @@ end function
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_bfs_property.png)
 
  - What nodes does BFS expand?
-	- Processes all nodes above shallowest solution
-	- Let depth of shallowest solution be *s*
-	- Search takes time **O(bˢ)** , 最坏情况，遍历所有s 层节点
+    - Processes all nodes above shallowest solution
+    - Let depth of shallowest solution be *s*
+    - Search takes time **O(bˢ)** , 最坏情况，遍历所有s 层节点
  - How much space does the fringe take?
-	- Has roughly the last tier, so **O(bˢ)**
+    - Has roughly the last tier, so **O(bˢ)**
  - Is it complete?
-	- Yes. *s* must be finite if a solution exists.
+    - Yes. *s* must be finite if a solution exists.
  - Is it optimal?
-	- Only if costs are all 1 (more on costs later)
+    - Only if costs are all 1 (more on costs later)
 
 
 
@@ -467,13 +467,13 @@ end function
 #### Iterative Deepening
 
  - Idea: get DFS’s space advantage with BFS’s time / shallow-solution advantages
- 	- Run a DFS with depth limit 1.  If no solution…
- 	- Run a DFS with depth limit 2.  If no solution…
- 	- Run a DFS with depth limit 3.  …
+    - Run a DFS with depth limit 1.  If no solution…
+    - Run a DFS with depth limit 2.  If no solution…
+    - Run a DFS with depth limit 3.  …
  - Isn’t that wastefully redundant?
- 	- 会有重复计算
- 	- Generally most work happens in the lowest level searched, so not so bad!
- 		- 计算量按指数级别展开，所以重复计算的计算量比例并不大
+    - 会有重复计算
+    - Generally most work happens in the lowest level searched, so not so bad!
+        - 计算量按指数级别展开，所以重复计算的计算量比例并不大
 
 
 <h2 id="ea10a2ff2bc1cbc4cb292e4f88cad9e9"></h2>
@@ -494,7 +494,7 @@ end function
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_uniform_cost_search.png)
 
  - Strategy: 
- 	- expand a cheapest node first:
+    - expand a cheapest node first:
  - Fringe is a priority queue (priority: cumulative cost so far)
  - 注意, 这个例子中，当搜索至 ...e->r->f 时，下一步展开不是 f->G , 而是 S->e 
 
@@ -505,15 +505,15 @@ end function
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ucs_property.png)
 
  - What nodes does UCS expand?
-	- Processes all nodes with cost less than cheapest solution!
-	- If that solution costs C* and arcs cost at least ε , then the “effective depth” is roughly C\*/ε
-	- Takes time **O(b<sup>C\*/ε</sup>)** (exponential in effective depth)
+    - Processes all nodes with cost less than cheapest solution!
+    - If that solution costs C* and arcs cost at least ε , then the “effective depth” is roughly C\*/ε
+    - Takes time **O(b<sup>C\*/ε</sup>)** (exponential in effective depth)
  - How much space does the fringe take?
-	- Has roughly the last tier, so **O(b<sup>C\*/ε</sup>)**
+    - Has roughly the last tier, so **O(b<sup>C\*/ε</sup>)**
  - Is it complete?
-	- Yes. Assuming best solution has a finite cost and minimum arc cost is positive.
+    - Yes. Assuming best solution has a finite cost and minimum arc cost is positive.
  - Is it optimal?
-	- Yes!  (Proof next lecture via A\* )
+    - Yes!  (Proof next lecture via A\* )
 
 
 
@@ -550,7 +550,7 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
 
  - In **Graph Search** you hold a list of explored nodes, while in **Tree Search** you don't!
  - when you have **undirected cycled** graph,these two searches produce different outputs because in Graph Search you know which node has been explored(visited) and then you don't expand it, but in Tree Search you don't know and you expand it again.
- 	- but this doesn't mean Tree Search is dumb because it doesn't hold such list. sometimes for example in games you have repeated states and you have to explore them again.
+    - but this doesn't mean Tree Search is dumb because it doesn't hold such list. sometimes for example in games you have repeated states and you have to explore them again.
 
 ---
 
@@ -578,9 +578,9 @@ It's essentially the same algorithm. One difference might be that uniform-cost s
 ## Search and Models
 
  - Search operates over models of the world
- 	- The agent doesn’t actually try all the plans out in the real world!
- 	- Planning is all “in simulation”
- 	- Your search is only as good as your models
+    - The agent doesn’t actually try all the plans out in the real world!
+    - Planning is all “in simulation”
+    - Your search is only as good as your models
 
 <h2 id="b04314d7dafd45796af0bf245e3ae8e8"></h2>
 
@@ -597,9 +597,9 @@ It's essentially the same algorithm. One difference might be that uniform-cost s
 # Informed Search 
 
  - Informed Search
-	- Heuristics
-	- Greedy Search
-	- A* Search
+    - Heuristics
+    - Greedy Search
+    - A* Search
  - Graph Search
 
 Those 3 informed search do a lot of duplicate work and graph search will be our solution to that to avoid that duplicate work.
@@ -610,10 +610,10 @@ Those 3 informed search do a lot of duplicate work and graph search will be our 
 ## The One Queue
 
  - All these search algorithms are the same except for fringe strategies
- 	- Conceptually, all fringes are priority queues 
- 		- (i.e. collections of nodes with attached priorities)
- 	- Practically, for DFS and BFS, you can avoid the log(n) overhead from an actual priority queue, by using stacks and queues
- 	- Can even code one implementation that takes a variable queuing object
+    - Conceptually, all fringes are priority queues 
+        - (i.e. collections of nodes with attached priorities)
+    - Practically, for DFS and BFS, you can avoid the log(n) overhead from an actual priority queue, by using stacks and queues
+    - Can even code one implementation that takes a variable queuing object
 
 
 <h2 id="eec9120ae950a6604e2b58e9a3ca0035"></h2>
@@ -623,9 +623,9 @@ Those 3 informed search do a lot of duplicate work and graph search will be our 
  - Remember: UCS explores increasing cost contours
  - The good: UCS is complete and optimal!
  - The bad:
- 	- Explores options in every “direction”
- 		- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ucs_explore_in_all_directions.png)
- 	- No information about goal location
+    - Explores options in every “direction”
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ucs_explore_in_all_directions.png)
+    - No information about goal location
  - We’ll fix that soon!
 
 
@@ -634,9 +634,9 @@ Those 3 informed search do a lot of duplicate work and graph search will be our 
 ## Search Heuristics
 
  - A heuristic is:
-	- A function that estimates how close a state is to a goal
-	- Designed for a particular search problem
-	- Examples: Manhattan distance, Euclidean distance for pathing
+    - A function that estimates how close a state is to a goal
+    - Designed for a particular search problem
+    - Examples: Manhattan distance, Euclidean distance for pathing
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_heruistics_euclidean_distance.png)
 
@@ -663,12 +663,12 @@ h(x) = the number of the largest pancake that is still out of place
 启发式搜索的一种:
 
  - Strategy: expand a node that you think is closest to a goal state
- 	- Heuristic: estimate of distance to nearest goal for each state
- 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_greedy_search.png)
+    - Heuristic: estimate of distance to nearest goal for each state
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_greedy_search.png)
  - A common case:
- 	- Best-first takes you straight to the (**wrong**) goal
+    - Best-first takes you straight to the (**wrong**) goal
  - Worst-case: 
- 	- like a badly-guided DFS
+    - like a badly-guided DFS
 
 
 ---
@@ -682,23 +682,23 @@ h(x) = the number of the largest pancake that is still out of place
 ### Combining UCS and Greedy
 
  - Uniform-cost orders by path cost, or backward cost  g(n) 
- 	- g is cumulate actual cost so far
+    - g is cumulate actual cost so far
  - Greedy orders by goal proximity, or forward cost  h(n)
- 	- h is heuristic distance value to goal
+    - h is heuristic distance value to goal
  - A\* Search orders by the sum: f(n) = g(n) + h(n)
- 	- for node X  : f = g(X) + h(X) 
+    - for node X  : f = g(X) + h(X) 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_graph.png)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_tree.png)
 
  - UCS
- 	- S -> a -> {b,d,e}
- 	- S -> a -> b -> c -> {d,e}
- 	- S -> a -> b -> c -> d -> G , {e}
+    - S -> a -> {b,d,e}
+    - S -> a -> b -> c -> {d,e}
+    - S -> a -> b -> c -> d -> G , {e}
  - Greedy
- 	- S -> a -> {b,d,e}
- 	- S -> a -> e -> d -> G , {b,d}
+    - S -> a -> {b,d,e}
+    - S -> a -> e -> d -> G , {b,d}
 
 
 <h2 id="9fa7d37bafbf919eec2833224d5de03c"></h2>
@@ -739,8 +739,8 @@ Now we pulled this one from the fringe , we pull something from the fringe that 
 We pull `S-G` from fringe , but it is not optimal !
 
  - What went wrong?
- 	- h value 6 here is too high. 
- 	- 6 is much higher than 3. In fact anytime it's higher than the real cost you can have this problem.
+    - h value 6 here is too high. 
+    - 6 is much higher than 3. In fact anytime it's higher than the real cost you can have this problem.
  - Actual bad goal cost < estimated good goal cost (h)
  - We need estimates to be less than actual costs!
 
@@ -753,8 +753,8 @@ We pull `S-G` from fringe , but it is not optimal !
  - Admissible (optimistic) heuristics slow down bad plans but never outweigh true costs
 
  - A heuristic *h* is **admissible** (optimistic) if:
- 	- 0 <= h(n) <= h\*(n)
- 	- where h\*(n) is the true cost to a nearest goal
+    - 0 <= h(n) <= h\*(n)
+    - where h\*(n) is the true cost to a nearest goal
  - Coming up with admissible heuristics is most of what’s involved in using A\* in practice
 
 
@@ -765,11 +765,11 @@ We pull `S-G` from fringe , but it is not optimal !
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_optimality_of_Astar.png)
 
  - Assume:
-	- A is an optimal goal node
-	- B is a suboptimal goal node
-	- h is admissible
+    - A is an optimal goal node
+    - B is a suboptimal goal node
+    - h is admissible
  - Claim:
-	- A will exit the fringe before B
+    - A will exit the fringe before B
 
 
 **Proof:**
@@ -779,12 +779,12 @@ We pull `S-G` from fringe , but it is not optimal !
  - Imagine B is on the fringe
  - Some ancestor n of A is on the fringe, too (maybe A!)
  - Claim: n will be expanded before B
-	1. f(n) <= f(A)
-	2. f(A) <= f(B)
-		- g(A) < g(B) , B is suboptimal
-		- f(A) < f(B) , h = 0 at a goal.
-	3. n expands before B
-		- f(n) <= f(A) <= f(B)
+    1. f(n) <= f(A)
+    2. f(A) <= f(B)
+        - g(A) < g(B) , B is suboptimal
+        - f(A) < f(B) , h = 0 at a goal.
+    3. n expands before B
+        - f(n) <= f(A) <= f(B)
  - All ancestors of A expand before B
  - A expands before B
  - A\* search is optimal
@@ -833,7 +833,7 @@ Creating Admissible Heuristics
  - Most of the work in solving hard search problems optimally is in coming up with admissible heuristics
  - Often, admissible heuristics are solutions to *relaxed problems*, where new actions are available
  - Inadmissible heuristics are often useful too
- 	- In the case you lose you optimality guarantee , but your A star starts to look a little more like greedy , mean that you might not find out the path to goal but you might find a path to goal more quickly. 
+    - In the case you lose you optimality guarantee , but your A star starts to look a little more like greedy , mean that you might not find out the path to goal but you might find a path to goal more quickly. 
 
 
 <h2 id="f8097ec9827afc9065c89741a344d53f"></h2>
@@ -845,27 +845,27 @@ Creating Admissible Heuristics
  - What are the states?
  - How many states?
  - What are the actions? 
- 	- up to 4 directions moves to empty space 
+    - up to 4 directions moves to empty space 
  - How many successors from the start state?
- 	- 4
+    - 4
  - What should the costs be?
- 	- cost 1 per action take
+    - cost 1 per action take
 
 
 8 Puzzle I:
 
  - Heuristic: Number of tiles misplaced
  - Why is it admissible?
- 	- every misplaced tile must move at least once , so that you can never do more moves than the number of tiles that currently misplaced. 
+    - every misplaced tile must move at least once , so that you can never do more moves than the number of tiles that currently misplaced. 
  - h(start) = 8
  - This is a relaxed-problem heuristic
 
 8 Puzzle II:
 
  - What if we had an easier 8-puzzle where any tile could slide any direction at any time, ignoring other tiles?
- 	- give a more accurate estimate of how many moves you still need to make before you can reach the goal.
+    - give a more accurate estimate of how many moves you still need to make before you can reach the goal.
  - Total Manhattan distance
- 	- 所有tile 独立自由移动到 目标位置所需的部数
+    - 所有tile 独立自由移动到 目标位置所需的部数
  - Why is it admissible?
  - h(start) = 3 + 1 + 2 + … = 18
 
@@ -882,16 +882,16 @@ Average nodes expanded when the optimal path has…
 8 Puzzle III:
 
  - How about using the actual cost as a heuristic?
-	- Whould it be admissible ?
-		- Yes
-	- Would we save on nodes expanded ?
-		- Yes
-	- What's wroing with it ?
-		- it can be quit expensive
+    - Whould it be admissible ?
+        - Yes
+    - Would we save on nodes expanded ?
+        - Yes
+    - What's wroing with it ?
+        - it can be quit expensive
 
 
  - With A\* :  a trade-off between quality of estimate and work per node
-	- As heuristics get closer to the true cost, you will expand fewer nodes but usually do more work per node to compute the heuristic itself
+    - As heuristics get closer to the true cost, you will expand fewer nodes but usually do more work per node to compute the heuristic itself
 
 
 <h2 id="7e9aa2fe208a956ac44d1ee31a5035d9"></h2>
@@ -905,11 +905,11 @@ Average nodes expanded when the optimal path has…
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_semi_heuristic.png)
 
  - Dominance: ha ≥ hc if
- 	- ∀n : ha(n) >= hc(n)
+    - ∀n : ha(n) >= hc(n)
  - Heuristics form a semi-lattice:
- 	- Max of admissible heuristics is admissible
- 	- h(n) = max( ha(n) , hb(n) )
- 	- ha, hb 有大有小，很难比较, 可以通过取最大值 合成一个 Heuristics
+    - Max of admissible heuristics is admissible
+    - h(n) = max( ha(n) , hb(n) )
+    - ha, hb 有大有小，很难比较, 可以通过取最大值 合成一个 Heuristics
 
 
 <h2 id="00ba899c02fa6651c15e5e948a7a4aac"></h2>
@@ -925,10 +925,10 @@ Admissible heuristic with tree search is optimal but graph search no guarantees.
 
  - Idea: never **expand** a state twice
  - How to implement: 
- 	- Tree search + set of expanded states (“closed set”)
- 	- Expand the search tree node-by-node, but…
- 	- Before expanding a node, check to make sure its state has never been expanded before
- 	- If not new, skip it, if new add to closed set
+    - Tree search + set of expanded states (“closed set”)
+    - Expand the search tree node-by-node, but…
+    - Before expanding a node, check to make sure its state has never been expanded before
+    - If not new, skip it, if new add to closed set
  - Important: **store the closed set as a set**, not a list
  - Can graph search wreck completeness?  Why/why not?
  - How about optimality?
@@ -949,16 +949,16 @@ SAC can not expand because C is in closed set.
 ### Consistency of Heuristics
 
  - Main idea: 
- 	- estimated heuristic costs ≤ actual costs
- 	- Admissibility: heuristic cost ≤ actual cost to goal
-		- h(A) ≤ actual cost from A to G
-	- Consistency: heuristic “arc” cost ≤ actual cost for each arc
-		- h(A) – h(C) ≤ cost(A to C)
+    - estimated heuristic costs ≤ actual costs
+    - Admissibility: heuristic cost ≤ actual cost to goal
+        - h(A) ≤ actual cost from A to G
+    - Consistency: heuristic “arc” cost ≤ actual cost for each arc
+        - h(A) – h(C) ≤ cost(A to C)
  - Consequences of consistency:
-	- The f value along a path never decreases
-		- h(A) ≤ cost(A to C) + h(C)
+    - The f value along a path never decreases
+        - h(A) ≤ cost(A to C) + h(C)
         - 由公式可知，h(C) 陡然变大也是允许的，只要不破坏 admissibility ; h(C) 变小也是可以的, 只要不破坏 consistency
-	- A\* graph search is optimal
+    - A\* graph search is optimal
 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ConsistencyofHeuristics.png)
@@ -972,9 +972,9 @@ PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitiv
 ### Optimality of A* Graph Search
 
  - Sketch: consider what A* does with a consistent heuristic:
-	- Fact 1: In tree search, A* expands nodes in increasing total f value (f-contours)
-	- Fact 2: For every state s, nodes that reach ***s*** optimally are expanded before nodes that reach ***s*** suboptimally
-	- Result: A* graph search is optimal
+    - Fact 1: In tree search, A* expands nodes in increasing total f value (f-contours)
+    - Fact 2: For every state s, nodes that reach ***s*** optimally are expanded before nodes that reach ***s*** suboptimally
+    - Result: A* graph search is optimal
 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Optimality_Astar_GraphSearch.png)
@@ -986,11 +986,11 @@ PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitiv
 ### Optimality
 
  - Tree search:
-	- A* is optimal if heuristic is admissible
-	- UCS is a special case (h = 0)
+    - A* is optimal if heuristic is admissible
+    - UCS is a special case (h = 0)
  - Graph search:
-	- A* optimal if heuristic is consistent
-	- UCS optimal (h = 0 is consistent)
+    - A* optimal if heuristic is consistent
+    - UCS optimal (h = 0 is consistent)
  - Consistency implies admissibility
  - In general, most natural admissible heuristics tend to be consistent, especially if from relaxed problems
 
@@ -1010,19 +1010,19 @@ PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitiv
 
 ```
 function TREE-SEARCH(problem,fringe) return a solution,or failure
-	fringe <- INSERT(MAKE-NODE(INITIAL-STATE[problem]),fringe)
-	loop do
-		if fringe is empty then 
-			return failure
-		end
-		node <- REMOVE-FRONT(fringe)
-		if GOAL-TEST(problem,STATE[node]) then
-			return node
-		end
-		for child-node in EXPAND(STATE[node],problem) do
-			fringe <- INSERT(child-node,fringe)
-		end
-	end
+    fringe <- INSERT(MAKE-NODE(INITIAL-STATE[problem]),fringe)
+    loop do
+        if fringe is empty then 
+            return failure
+        end
+        node <- REMOVE-FRONT(fringe)
+        if GOAL-TEST(problem,STATE[node]) then
+            return node
+        end
+        for child-node in EXPAND(STATE[node],problem) do
+            fringe <- INSERT(child-node,fringe)
+        end
+    end
 end // func
 ```
 
@@ -1034,34 +1034,34 @@ end // func
 
 ```
 function GRAPH-SEARCH(problem,fringe) return a solution, or failure
-	closed <- an empty set
-	// pop into fringe 
-	loop do
-		if fringe is empty then
-			return failure
-		end
+    closed <- an empty set
+    // pop into fringe 
+    loop do
+        if fringe is empty then
+            return failure
+        end
 
-		// pull from fringe
-		// 只有在 这个时候 检查 closed,
-		node <- REMOVE-FRONT(fringe)
-		if GOAL-TEST(problem,STATE[node]) then 
-			return node
-		end
+        // pull from fringe
+        // 只有在 这个时候 检查 closed,
+        node <- REMOVE-FRONT(fringe)
+        if GOAL-TEST(problem,STATE[node]) then 
+            return node
+        end
 
         # 除了 (x,y) 位置，state 还可以包含其他信息
         # 这些额外信息 可以让我们的solution 多次通过某一段path
-		if STATE[node] is not in closed then
-			add STATE[node] to closed
-			 
-	        // 可以 添加重复node
-	        // 实际上，这些重复的node g 值很可能是不同的
-	        fringe <- INSERT(MAKE-NODE(INITIAL-STATE[problem]),fringe)
+        if STATE[node] is not in closed then
+            add STATE[node] to closed
+             
+            // 可以 添加重复node
+            // 实际上，这些重复的node g 值很可能是不同的
+            fringe <- INSERT(MAKE-NODE(INITIAL-STATE[problem]),fringe)
             
             for child-node in EXPAND(STATE[node],problem) do
-				fringe <- INSERT(child-node,fringe)
-			end
-		end
-	end
+                fringe <- INSERT(child-node,fringe)
+            end
+        end
+    end
 end // func
 ```
 
@@ -1084,16 +1084,16 @@ end // func
 
 ```
 function SPECIAL-INSERT(node, fringe, closed) return fringe
-	// by pass node already in closed
-	if STATE[node] not in closed set then
-		if STATE[node] is not in STATE[fringe] then
-			// same 
-			fringe <- INSERT(node,fringe)
-		else if STATE[node] cost < STATE[node] cost in fringe then
-			// Memory Efficient 
-			fringe <- REPLACE(node,fringe)
-		end
-	end
+    // by pass node already in closed
+    if STATE[node] not in closed set then
+        if STATE[node] is not in STATE[fringe] then
+            // same 
+            fringe <- INSERT(node,fringe)
+        else if STATE[node] cost < STATE[node] cost in fringe then
+            // Memory Efficient 
+            fringe <- REPLACE(node,fringe)
+        end
+    end
 end // func
 ```
 
@@ -1105,25 +1105,25 @@ By doing this the fringe needs less memory, however insertion becomes more compu
 
 ```
 function GRAPH-SEARCH(problem,fringe) return a solution, or failure
-	closed <- an empty dictionary  // 1
-	fringe <- INSERT(MAKE-NODE(INITIAL-STATE[problem]),fringe)
-	loop do
-		if fringe is empty then
-			return failure
-		end
-		node <- REMOVE-FRONT(fringe)
-		if GOAL-TEST(problem,STATE[node]) then 
-			return node
-		end
-		if STATE[node] is not in closed  
-			or COST[node] < closed[STATE[node]]   // 2
-		then
-			closed[STATE[node]] <- COST[node]  // 3
-			for child-node in EXPAND(STATE[node],problem) do
-				fringe <- INSERT(child-node,fringe)
-			end
-		end
-	end
+    closed <- an empty dictionary  // 1
+    fringe <- INSERT(MAKE-NODE(INITIAL-STATE[problem]),fringe)
+    loop do
+        if fringe is empty then
+            return failure
+        end
+        node <- REMOVE-FRONT(fringe)
+        if GOAL-TEST(problem,STATE[node]) then 
+            return node
+        end
+        if STATE[node] is not in closed  
+            or COST[node] < closed[STATE[node]]   // 2
+        then
+            closed[STATE[node]] <- COST[node]  // 3
+            for child-node in EXPAND(STATE[node],problem) do
+                fringe <- INSERT(child-node,fringe)
+            end
+        end
+    end
 end // func
 ```
 
@@ -1133,17 +1133,17 @@ end // func
 ### Optimality of A\* Graph Search
 
  - Consider what A\* does:
- 	- Expands nodes in increasing total f value (f-contours)
- 	- Reminder: f(n) = g(n) + h(n) = cost to n + heuristic
-	- Proof idea: the optimal goal(s) have the lowest f value, so it must get expanded first
+    - Expands nodes in increasing total f value (f-contours)
+    - Reminder: f(n) = g(n) + h(n) = cost to n + heuristic
+    - Proof idea: the optimal goal(s) have the lowest f value, so it must get expanded first
  - Proof:
-	- New possible problem: some n on path to G\* isn’t in queue when we need it, because some worse n’ for the same state dequeued and expanded first (disaster!)
-	- Take the highest such n in tree
-	- Let p be the ancestor of n that was on the queue when n’ was popped
-	- f(p) < f(n) because of consistency
-	- f(n) < f(n’) because n’ is suboptimal
-	- p would have been expanded before n’
-	- Contradiction!
+    - New possible problem: some n on path to G\* isn’t in queue when we need it, because some worse n’ for the same state dequeued and expanded first (disaster!)
+    - Take the highest such n in tree
+    - Let p be the ancestor of n that was on the queue when n’ was popped
+    - f(p) < f(n) because of consistency
+    - f(n) < f(n’) because n’ is suboptimal
+    - p would have been expanded before n’
+    - Contradiction!
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_optimality_AStar.png)
 
