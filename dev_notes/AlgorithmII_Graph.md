@@ -1,0 +1,335 @@
+
+# Graph
+
+**Representation**
+
+ - In practice. Use adjacency-lists representation.
+    - Algorithms based on iterating over vertices pointing from v.
+    - Real-world digraphs tend to be sparse.
+
+
+# 4.1 Undirected Graphs
+
+ - Maze graph
+    - Trémaux maze exploration
+        - Unroll a ball of string
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/graph_tremaux_maze.png)
+
+## Depth-first search
+
+ - Typical applications
+    - Find all vertices connected to a given source vertex
+    - Find a path between two vertices
+ - Goal. Find all vertices connected to s (and a corresponding path).
+
+```
+pseudo cod
+To visit a vertex v :
+    - Mark vertex v as visited.
+    - Recursively visit all unmarked vertices adjacent to v.
+```
+
+ - Data structures
+    - `boolean[] marked` to mark visited vertices
+    - `int[] edgeTo`  to keep tree of paths
+        - (edgeTo[w] == v) means that edge v-w taken to visit w for first time
+ 
+```java
+private void dfs(Graph G, int v)
+{
+    marked[v] = true;
+    for (int w : G.adj(v))
+        if (!marked[w])
+        {
+            dfs(G, w);
+            edgeTo[w] = v;
+        }
+} 
+```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/graphSearch_dfs.png)
+
+ - Proposition
+    - DFS marks all vertices connected to *s* in time proportional to the sum of their degrees.
+    - After DFS, can find vertices connected to *s* in constant time and can find a path to *s* (if one exists) in time proportional to its length.
+
+```java
+pubilc boolean hasPathTo(int v)
+{  
+    return marked[v];  
+}
+public Iterable<Integer> pathTo(int v)
+{
+    if (!hasPathTo(v)) return null;
+    Stack<Integer> path = new Stack<Integer>();
+    // find path node excludes source node
+    for (int x = v; x != s; x = edgeTo[x])
+        path.push(x);
+    // add the source node to complete the path
+    path.push(s);
+    return path;
+}
+```
+
+## Breadth-first search
+
+```
+// pseudo code
+BFS (from source vertex s)
+    
+Put s onto a FIFO queue, and mark s as visited.
+Repeat until the queue is empty:
+    remove the least recently added vertex v
+    add each of v's unvisited neighbors to the queue
+    and mark them as visited
+```
+
+ - replace `queue` with stack ,and this algorithm can work as DFS.
+
+ - Proposition
+    - FS computes shortest paths (fewest number of edges) from *s* to all other vertices in a graph in time proportional to E + V.
+
+---
+
+```java
+private void bfs(Graph G, int s)
+{
+    Queue<Integer> q = new Queue<Integer>();
+    q.enqueue(s);
+    marked[s] = true;
+    while (!q.isEmpty())
+    {
+        int v = q.dequeue();
+        for (int w : G.adj(v))
+        {
+            if (!marked[w])
+            {
+                q.enqueue(w);
+                marked[w] = true;
+                edgeTo[w] = v;
+            }
+        } // end for
+    } // end while
+} // end bfs
+```
+
+**BFS,DFS的应用，一般只会访问一个节点一次; Astar这类graph search算法往往需要多次访问同一个节点**
+
+## connected components
+
+ - GOAL: Preprocess graph to answer queries of the form is v connected to w?  in constant time.
+    - Union-Find? Not quite.
+    - Depth-first search. Yes. 
+ - Goal: Partition vertices into connected components.
+
+```
+// pseudo code
+Connected components
+
+initialize all vertices v as unmarked.
+For each unmarked vertex v, run DFS to identify all
+vertices discovered as part of the same component.
+```
+
+```java
+private boolean[] marked;
+// id[v] = (index or ID of component)
+private int[] id; 
+// record component index
+private int count; 
+
+public CC(Graph G) {
+    marked = new boolean[G.V()];
+    id = new int[G.V()];
+    for (int v = 0; v < G.V(); v++) {
+        if (!marked[v])
+        {
+            // run DFS from one vertex
+            // in each component
+            dfs(G, v);
+            count++; 
+        } // end if
+    } // end for
+} // end CC
+
+private void dfs(Graph G, int v)
+{
+    marked[v] = true;
+    // all vertices discovered in same 
+    // call of dfs have same id
+    id[v] = count ;
+    for (int w : G.adj(v))
+        if (!marked[w])
+            dfs(G, w);
+}
+```
+
+## challenges
+
+### Graph-processing challenge 1
+
+ - Problem: Is a graph bipartite?
+    - what **bipartite** means is you can divide the vertices into 2 subsets with the property that every edge connect a vertex in one subset  to a vertex in another.
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algoII_graph_bipartite.png)
+    - in this caes , we can colorize 0,3,4 in red , so that each edge will connect a red vertex and a white vertex.
+ - simple DFS-based solution
+
+### Graph-processing challenge 2
+
+ - Problem. Find a cycle. 
+    - does the graph exist a cycle ?
+ - simple DFS-based solution
+
+### Graph-processing challenge 3
+
+ - Problem. Find a (general) cycle that uses every edge exactly once.
+ - Bridges of Königsberg (柯尼斯堡七桥问题)
+    - **Euler tour**: Is there a (general) cycle that uses each edge exactly once?
+    - **Euler's theorem**
+        - 欧拉路径(Euler path): 路径包括每个边恰好一次
+            - the number of odd degree vertices , equals  0 or 2.
+        - 欧拉回路(Euler circuit): 回路是欧拉路径 
+            - A connected graph is Eulerian iff all vertices have even degree.
+        - 如果连通无向图 G 有 2k 个奇顶点，那么它可以用 k 笔画成，并且至少要用 k 笔画成
+
+### Graph-processing challenge 4
+
+ - Problem. Find a cycle that visits every vertex exactly once.
+    - traveling salesperson has to get to every city and wants to just go there once.
+ - Intractable
+    - Hamiltonian cycle (classical NP-complete problem)
+
+### Graph-processing challenge 5
+
+ - Problem. Are two graphs identical except for vertex names?
+    - Graph Isomorphism
+ - Nobody knows even how to classify this problem .
+    - graph isomorphism is longstanding open problem
+
+### Graph-processing challenge 6
+
+ - Problem. Lay out a graph in the plane without crossing edges? 
+ - Hire an expert.
+    - linear-time DFS-based planarity algorithm discovered by Tarjan in 1970s
+    - too complicated for most practitioners
+
+## Questions 
+
+### Diameter and center of a tree
+
+ - Given a connected graph with no cycles
+ - Diameter: design a linear-time algorithm to find the longest simple path in the graph.
+    - to compute the diameter, pick a vertex s; run BFS from s; then run BFS again from the vertex that is furthest from s.
+ - Center: design a linear-time algorithm to find a vertex such that its maximum distance from any other vertex is minimized.
+    - consider vertices on the longest path.
+
+
+### Euler cycle.
+
+ - Design a linear-time algorithm to determine whether a graph has an Euler cycle, and if so, find one.
+ - use depth-first search and piece together the cycles you discover.
+
+---
+
+# 4.2 Directed Graphs
+
+ - Some digraph problems
+    - **Path**. Is there a directed path from s to t ?
+    - **Shortest path**. What is the shortest directed path from s to t ?
+    - **Topological sort**. Can you draw a digraph so that all edges point upwards?
+    - **Strong connectivity**. Is there a directed path between all pairs of vertices?
+    - **Transitive closure**. For which vertices v and w is there a path from v to w ?
+    - **PageRank**. What is the importance of a web page?
+
+## digraph search
+
+ - Reachability
+    - Problem. Find all vertices reachable from s along a directed path
+
+### Depth-first search in digraphs
+
+ - Depth-first search in digraphs
+    - Same method as for undirected graphs.
+        - Every undirected graph is a digraph (with edges in both directions).
+        - DFS is a **digraph** algorithm. 
+ - Reachability application: program control-flow analysis
+    - Every program is a digraph.
+        - Vertex = basic block of instructions (straight-line program).
+        - Edge = jump.
+    - Dead-code elimination.
+        - Find (and remove) unreachable code.
+        - Infinite-loop detection.
+ - Reachability application: mark-sweep garbage collector
+    - Every data structure is a digraph.
+        - Vertex = object.
+        - Edge = reference.
+    - Roots. Objects known to be directly accessible by program (e.g., stack).
+    - Reachable objects. Objects indirectly accessible by program (starting at a root and following a chain of pointers).
+        -![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_graph_digraph_app_gc.png)
+
+### Depth-first search in digraphs summary
+
+ - DFS enables direct solution of simple digraph problems.
+    - Reachability
+    - Path finding
+    - Topological sort
+    - Directed cycle detection
+ - Basis for solving difficult digraph problems
+    - 2-satisfiability
+    - Directed Euler path
+    - Strongly-connected components
+
+### Breadth-first search in digraphs
+
+ - Same method as for undirected graphs.
+    - Every undirected graph is a digraph (with edges in both directions).
+    - BFS is a **digraph** algorithm.
+ - Proposition
+    - BFS computes shortest paths (fewest number of edges) from s to all other vertices in a digraph in time proportional to E + V.
+ - Multiple-source shortest paths
+    - Given a digraph and a **set** of source vertices, find shortest path from any vertex in the set to other vertex.
+    - Q. How to implement multi-source shortest paths algorithm?
+        - A. Use BFS, but initialize by enqueuing all source vertices.
+ - Breadth-first search in digraphs application: web crawler
+    - Goal. Crawl web, starting from some root web page, say www.princeton.edu.
+    - Solution. [BFS with implicit digraph]
+        - Choose root web page as source *s*.
+        - Maintain a *Queue* of websites to explore
+        - Maintain a *SET* of discovered websites
+        - Dequeue the next website and enqueue websites to which it links (provided you haven't done so before).
+    - Q. Why not use DFS?
+        - A. One reason is you're gonna go far away in your search for the web.
+
+## Topological Sort
+
+### Precedence scheduling
+
+ - Goal. Given a set of tasks to be completed with precedence constraints, in which order should we schedule the tasks?
+ - Digraph model
+    - vertex = task
+    - edge = precedence constraint
+ - example
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_graph_precedence_scheduling.png)
+
+
+### Topological sort
+
+ - **DAG**. Directed acyclic graph.
+ - **Topological sort**. Redraw DAG so all edges point upwards.
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_graph_topo_sort.png)
+ - Solution. DFS. 
+    - What else ?  might be hard to find a different way
+    - just run DFS
+    - but there's a particular point at which we want to take the vertices out to get the roder , and
+        - what we do is when we do the DFS, when we're done with the vertex ( `done` means that vertex has no out-degree ), we put it on a stack or put it out.
+            - `put it on a stack or put it out` means we delete the edge that currently lead to visit to this vertex.
+                - say vertex 1 to vertex 4, and vertex 4 has no out-degree, so edge 1->4 will be removed 
+            - then trace back to vertex 1 
+
+    - that's called reverse DFS postorder.
+
+
+
+    
+
+
