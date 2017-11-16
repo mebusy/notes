@@ -70,6 +70,11 @@ remote a port
 firewall-cmd --zone=public --remove-port=8091/tcp --permanent
 ```
 
+option:  when you app launched , you can check whether the ports are correctly listening 
+
+```bash
+netstat -nltp
+```
 
 <h2 id="9edb3c572b56b91542af659480518681"></h2>
 
