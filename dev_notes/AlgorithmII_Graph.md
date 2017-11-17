@@ -435,4 +435,21 @@ single-source reachability in a digraph | DFS
 topological sort in a DAG | DFS
 strong components in a digraph | Kosaraju-Sharir DFS (twice)
 
+### Digraph question
+
+ - Shortest directed cycle
+    - Given a digraph G, design an efficient algorithm to find a directed cycle with the minimum number of edges.
+        - The running time of your algorithm should be at most proportional to V(E+V) and use space proportional to E+V,
+    - A: run BFS from each vertex.
+ - Hamiltonian path in a DAG
+    - Given a directed acyclic graph, design a linear-time algorithm to determine whether it has a Hamiltonian path (a simple path that visits every vertex), and if so, find one.
+    - A: topological sort  ( DAG 经过一个vertex 就回不去了 )
+ - Reachable vertex
+    - DAG: Design a linear-time algorithm to determine whether a DAG has a vertex that is reachable from every other vertex, and if so, find one.
+        - A: compute the outdegree of each vertex.
+    - Digraph: Design a linear-time algorithm to determine whether a digraph has a vertex that is reachable from every other vertex, and if so, find one.
+        - A: compute the strong components and look at the kernel DAG 
+
+
+
 
