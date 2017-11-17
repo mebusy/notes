@@ -362,7 +362,7 @@ public class DepthFirstOrder {
 
  - **Proposition**. A digraph has a topological order iff no directed cycle.
  - Pf.
-    - If directed cycle, there is no sink vertex , topological order impossible.
+    - If directed cycle,  topological order impossible.
     - If no directed cycle, DFS-based algorithm finds a topological order.
  - Goal. Given a digraph, find a directed cycle.
  - Solution. DFS. What else? See textbook.
@@ -393,8 +393,8 @@ public class DepthFirstOrder {
     
 i[](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SCC.PNG)
 
- - 如上图，如果我们从 最右侧的SCC 中的任意一个 node开始查找, DFS可以找到这3个nodes 组成的SCC; 但是 如果最下面的 node开始查找, DFS会找到下方和有方两个SCC的集合; 如果我们直接从最左边的 node 开始查找，则DFS会找到整个graph.
- - 可以看到，从不同的node开始DFS, 会得到不同的结果. 所以，在应用DFS之前，我们需要一步预处理。
+ - 如上图，如果我们从 最右侧的SCC 中的任意一个 node开始查找, DFS可以找到这3个nodes 组成的SCC; 但是 如果最下面的 node开始查找, DFS会找到下方和右方两个SCC的集合; 如果我们直接从最左边的 node 开始查找，则DFS会找到整个graph.
+ - 可以看到，从不同的node开始DFS, 会得到不同的结果. 所以，在应用DFS之前，我们需要一步预处理: 我们需要一个正确的 node 访问顺序。
 
 ### Kosaraju-Sharir algorithm: intuition
 
@@ -405,11 +405,32 @@ i[](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SCC.PNG)
     - Compute topological order (reverse postorder) in kernel DAG.  (how to ?)
     - Run DFS, considering vertices in reverse topological order.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_graph_scc_kernel_DAG.png)
 
+> kernel DAG of G (in reverse topological order)
 
+### Kosaraju-Sharir algorithm
 
+ - Phase 1. run DFS on Gᴿ to compute reverse postorder .
+    - 确定 phase 2 DFS 的vertex 访问顺序
+ - Phase 2. run DFS on G, considering vertices in order given by first DFS
+    - 注意，这里我们恢复到 原图G了，我们在 原图G上执行DFS
+    - it is really same as to compute CC.
 
+---
 
-    
+ - Simple (but mysterious) algorithm for computing strong components.
+ - Proposition. Kosaraju-Sharir algorithm computes the strong components of a digraph in time proportional to E + V.
+ - Pf.
+    - Running time: bottleneck is running DFS twice (and computing Gᴿ).
+    - Implementation: easy!
+
+### Digraph-processing summary: algorithms of the day
+
+problem | algorithm
+---|---
+single-source reachability in a digraph | DFS
+topological sort in a DAG | DFS
+strong components in a digraph | Kosaraju-Sharir DFS (twice)
 
 
