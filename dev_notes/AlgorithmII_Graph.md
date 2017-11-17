@@ -383,6 +383,30 @@ public class DepthFirstOrder {
     - If v is strongly connected to w, then w is strongly connected to v.
     - If v is strongly connected to w and w to x, then v is strongly connected to x.
  - Def. A **strong component** is a maximal subset of strongly-connected vertices.
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_graph_strong_component.png)
+ - Strong component application: software modules
+    - Vertex = software module.
+    - Edge: from module to dependency.
+    - Strong component. Subset of mutually interacting modules.
+    - Approach 1. Package strong components together.
+    - Approach 2. Use to improve design!
+    
+i[](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SCC.PNG)
+
+ - 如上图，如果我们从 最右侧的SCC 中的任意一个 node开始查找, DFS可以找到这3个nodes 组成的SCC; 但是 如果最下面的 node开始查找, DFS会找到下方和有方两个SCC的集合; 如果我们直接从最左边的 node 开始查找，则DFS会找到整个graph.
+ - 可以看到，从不同的node开始DFS, 会得到不同的结果. 所以，在应用DFS之前，我们需要一步预处理。
+
+### Kosaraju-Sharir algorithm: intuition
+
+ - Reverse graph. Strong components in G are same as in GR.
+    - 转置图（同图中的每边的方向相反）具有和原图完全一样的强连通分量
+ - Kernel DAG. Shrink each strong component into a single vertex. 
+ - Idea.
+    - Compute topological order (reverse postorder) in kernel DAG.  (how to ?)
+    - Run DFS, considering vertices in reverse topological order.
+
+
+
 
 
 
