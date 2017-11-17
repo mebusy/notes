@@ -398,7 +398,7 @@ public class DepthFirstOrder {
 
 ### Kosaraju-Sharir algorithm: intuition
 
- - Reverse graph. Strong components in G are same as in GR.
+ - Reverse graph. Strong components in G are same as in Gᴿ.
     - 转置图（同图中的每边的方向相反）具有和原图完全一样的强连通分量
  - Kernel DAG. Shrink each strong component into a single vertex. 
  - Idea.
@@ -416,6 +416,8 @@ public class DepthFirstOrder {
  - Phase 2. run DFS on G, considering vertices in order given by first DFS
     - 注意，这里我们恢复到 原图G了，我们在 原图G上执行DFS
     - it is really same as to compute CC.
+
+PS. The DFS in the 1st phase (  to compute reverse postorder ) is crucial;  in the 2nd phase , any algorithm that marks the set of vertices reachable from a given vertex will do.  Since Strong components in G are same as in Gᴿ , you also can run DFS on Gᴿ then run DFS on G which will get the same result.
 
 ---
 
