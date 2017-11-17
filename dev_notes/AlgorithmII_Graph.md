@@ -391,7 +391,7 @@ public class DepthFirstOrder {
     - Approach 1. Package strong components together.
     - Approach 2. Use to improve design!
     
-i[](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SCC.PNG)
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SCC.PNG)
 
  - 如上图，如果我们从 最右侧的SCC 中的任意一个 node开始查找, DFS可以找到这3个nodes 组成的SCC; 但是 如果最下面的 node开始查找, DFS会找到下方和右方两个SCC的集合; 如果我们直接从最左边的 node 开始查找，则DFS会找到整个graph.
  - 可以看到，从不同的node开始DFS, 会得到不同的结果. 所以，在应用DFS之前，我们需要一步预处理: 我们需要一个正确的 node 访问顺序。
