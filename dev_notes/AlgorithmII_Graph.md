@@ -449,7 +449,9 @@ strong components in a digraph | Kosaraju-Sharir DFS (twice)
     - DAG: Design a linear-time algorithm to determine whether a DAG has a vertex that is reachable from every other vertex, and if so, find one.
         - A: compute the outdegree of each vertex.
     - Digraph: Design a linear-time algorithm to determine whether a digraph has a vertex that is reachable from every other vertex, and if so, find one.
-        - A: compute the strong components and look at the kernel DAG 
+        - A: compute the strong components and look at the kernel DAG . Then it leads to the previous DAG problem.
+
+
 
 
 
