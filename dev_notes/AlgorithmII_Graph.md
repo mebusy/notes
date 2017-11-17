@@ -384,6 +384,7 @@ public class DepthFirstOrder {
     - If v is strongly connected to w and w to x, then v is strongly connected to x.
  - Def. A **strong component** is a maximal subset of strongly-connected vertices.
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_graph_strong_component.png)
+ - 强连通图必然有环
  - Strong component application: software modules
     - Vertex = software module.
     - Edge: from module to dependency.
