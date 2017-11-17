@@ -318,15 +318,71 @@ private void dfs(Graph G, int v)
  - **Topological sort**. Redraw DAG so all edges point upwards.
  - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_graph_topo_sort.png)
  - Solution. DFS. 
-    - What else ?  might be hard to find a different way
+    - What else solutions ?  might be hard to find a different way
     - just run DFS
     - but there's a particular point at which we want to take the vertices out to get the roder , and
         - what we do is when we do the DFS, when we're done with the vertex ( `done` means that vertex has no out-degree ), we put it on a stack or put it out.
-            - `put it on a stack or put it out` means we delete the edge that currently lead to visit to this vertex.
-                - say vertex 1 to vertex 4, and vertex 4 has no out-degree, so edge 1->4 will be removed 
+            - 有 out-degree ，但是连接的 vertex 已经访问过，也算 `done`
             - then trace back to vertex 1 
 
     - that's called reverse DFS postorder.
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_graph_topo_sort_illu.png)
+
+```java
+public class DepthFirstOrder {
+    private boolean[] marked;
+    private Stack<Integer> reversePost; // 1
+
+    public DepthFirstOrder(Digraph G) {
+        reversePost = new Stack<Integer>(); //2
+        marked = new boolean[G.V()];
+        for (int v = 0; v < G.V(); v++)
+            if (!marked[v]) dfs(G, v);
+    }
+
+    private void dfs(Digraph G, int v) {
+        marked[v] = true;
+        for (int w : G.adj(v))
+            if (!marked[w]) dfs(G, w);
+        reversePost.push(v);  // 3
+    }
+
+    // 4      
+    public Iterable<Integer> reversePost() {  
+        return reversePost;  
+    }
+}
+```
+
+ - **Proposition**. Reverse DFS postorder of a DAG is a topological order.
+ - Running Time : O(m+n)
+
+
+### Directed cycle detection
+
+ - **Proposition**. A digraph has a topological order iff no directed cycle.
+ - Pf.
+    - If directed cycle, there is no sink vertex , topological order impossible.
+    - If no directed cycle, DFS-based algorithm finds a topological order.
+ - Goal. Given a digraph, find a directed cycle.
+ - Solution. DFS. What else? See textbook.
+ - Directed cycle detection application: precedence scheduling
+    - Scheduling. Given a set of tasks to be completed with precedence constraints, in what order should we schedule the tasks?
+    - Remark. A directed cycle implies scheduling problem is infeasible.
+ - Directed cycle detection application: cyclic inheritance
+    - The Java compiler does cycle detection.
+
+
+## strong components
+
+### Strongly-connected components
+ 
+ - Def. Vertices v and w are **strongly connected** if there is both a directed path from v to w and a directed path from w to v.
+ - Key property. Strong connectivity is an **equivalence relation**:
+    - v is strongly connected to v
+    - If v is strongly connected to w, then w is strongly connected to v.
+    - If v is strongly connected to w and w to x, then v is strongly connected to x.
+ - Def. A **strong component** is a maximal subset of strongly-connected vertices.
 
 
 
