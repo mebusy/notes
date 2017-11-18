@@ -1,14 +1,17 @@
 ...menustart
 
  - [Essence of linear algebra](#ab7dcbdd05408bb8c50281f539119f94)
-	 - [3 Linear transformations and matrices](#ebf4ed4e5dbdf709f6e2a501e1c5cbce)
-	 - [4. Matrix multiplication as composition](#9e3659318b7054360844875560006980)
-	 - [5. The determinant](#0a05f70d4501925ef20156f580f0b07d)
-	 - [6. Inverse matrices, column space and null space](#59e335b6a8c34e003dd810410fbf4e21)
-	 - [footnote. Nonsquare matrices as transformations between dimensions](#8e0c7f26d1f694558baee5ef34fe55ef)
-	 - [7. Dot products and duality](#04629028685253ba3138ddced808a1ce)
-	 - [8. Cross products](#c21e7bf7d55df7edb7e2f6a780fbccd6)
-		 - [Cross products in the light of linear transformations](#d6f39fcd3624e0b509757af47be8f6c5)
+     - [3 Linear transformations and matrices](#ebf4ed4e5dbdf709f6e2a501e1c5cbce)
+     - [4. Matrix multiplication as composition](#9e3659318b7054360844875560006980)
+     - [5. The determinant](#0a05f70d4501925ef20156f580f0b07d)
+     - [6. Inverse matrices, column space and null space](#59e335b6a8c34e003dd810410fbf4e21)
+     - [footnote. Nonsquare matrices as transformations between dimensions](#8e0c7f26d1f694558baee5ef34fe55ef)
+     - [7. Dot products and duality](#04629028685253ba3138ddced808a1ce)
+     - [8. Cross products](#c21e7bf7d55df7edb7e2f6a780fbccd6)
+         - [Cross products in the light of linear transformations](#d6f39fcd3624e0b509757af47be8f6c5)
+     - [9. Change of basis](#a08ecda2d10894d7eda0f957ef9a7ce4)
+     - [10. Eigenvectors and eigenvalues](#d7095a9bb84406d5fb5ed382385c7d16)
+     - [11. Abstract vector spaces](#d0019094c72f442cca76cf5e53f49e73)
 
 ...menuend
 
@@ -299,6 +302,8 @@ ans =
  - 这意味着，叉积的结果是这么一个向量p: 垂直与v,w, 且与某个向量(x,y,z)点乘时，所得结果等于 (x,y,z),v,w 构成的3x3矩阵的行列式
 
 
+<h2 id="a08ecda2d10894d7eda0f957ef9a7ce4"></h2>
+
 ## 9. Change of basis
      
  - 你有一个朋友詹妮弗, 她使用着一组不同的基向量 -- b1,b2. 
@@ -333,6 +338,8 @@ ans =
  - 总的来说，每当你看到这样一个表达式: A⁻¹MA , 这就暗示着一种数学上的转移作用。中间的矩阵代表一种你所见的变换，而外侧的两个矩阵代表着转移作用，也就是视角上的转化。矩阵乘积 仍然代表这同一个变换， 只不过是从其它人的角度来看的。
 
         
+<h2 id="d7095a9bb84406d5fb5ed382385c7d16"></h2>
+
 ## 10. Eigenvectors and eigenvalues
 
  - 考虑二维空间中的某个线性变换，关注它对一个特定向量的作用。 
@@ -371,6 +378,8 @@ ans =
         - 用你的特征向量，构成 基变换矩阵 A , 那么
         - [3 1 ; 0 2] =  A⁻¹·[3 1 ; 0 2]·A   
 
+
+<h2 id="d0019094c72f442cca76cf5e53f49e73"></h2>
 
 ## 11. Abstract vector spaces
 

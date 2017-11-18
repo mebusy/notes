@@ -1,13 +1,13 @@
 ...menustart
 
  - [傻子机器学习入门](#3a1b341628a37d459adc8d41c75b642e)
-	 - [分类](#d0771a42bbc49a6941f59913fcda35e3)
-	 - [分类方法](#9998e9726bd638d12c34f63bdf534092)
-		 - [1. 相同的观测数据](#235ff5ca528208b1f235484654e1128c)
-		 - [2. 1-nearest neighbors](#24a8418ac1d673fd72c1f273b04ea8e9)
-		 - [3. k-nearest neighbors](#a503d796c2293806f5ea687794a0ba41)
-	 - [Random Forest 随机森林](#675de25a0968fa5c53e3bfdfc7d1b1a8)
-	 - [Scikit-Learn 随机森林例子](#ba4b2c9a639835e917adf9ddab2656a5)
+     - [分类](#d0771a42bbc49a6941f59913fcda35e3)
+     - [分类方法](#9998e9726bd638d12c34f63bdf534092)
+         - [1. 相同的观测数据](#235ff5ca528208b1f235484654e1128c)
+         - [2. 1-nearest neighbors](#24a8418ac1d673fd72c1f273b04ea8e9)
+         - [3. k-nearest neighbors](#a503d796c2293806f5ea687794a0ba41)
+     - [Random Forest 随机森林](#675de25a0968fa5c53e3bfdfc7d1b1a8)
+     - [Scikit-Learn 随机森林例子](#ba4b2c9a639835e917adf9ddab2656a5)
 
 ...menuend
 

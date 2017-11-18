@@ -1,17 +1,17 @@
 ...menustart
 
  - [Redis](#e111446745a1825b862f8727ae63bce4)
-	 - [安装](#e655a410ff21cd07e7a0150491e04371)
-	 - [配置](#224e2ccda861c2514faa683b3683c361)
-	 - [启动](#8e54ddfe243a6ecd4e231c9cfa770bd4)
-	 - [关闭](#b15d91274e9fc68608c609999e0413fa)
-	 - [简介](#e05dce83e5129785b9f316978a14b896)
-		 - [Redis支持的键值数据类型](#04be0f8060daa1d85d889605ca8fb2bb)
-		 - [其他](#0d98c74797e49d00bcc4c17c9d557a2b)
-		 - [多数据库](#fdde913b5f9231dbf0135b5d394cb199)
-		 - [redis 命令，中文版](#7bcaab82241af99be9615017fca3cb89)
-	 - [mac phpRedisAdmin](#6ef8082fd2f3d06391821ecff428e702)
-	 - [Mac Resis](#5eb6909a1e0d0356a26e2c49bf854243)
+     - [安装](#e655a410ff21cd07e7a0150491e04371)
+     - [配置](#224e2ccda861c2514faa683b3683c361)
+     - [启动](#8e54ddfe243a6ecd4e231c9cfa770bd4)
+     - [关闭](#b15d91274e9fc68608c609999e0413fa)
+     - [简介](#e05dce83e5129785b9f316978a14b896)
+         - [Redis支持的键值数据类型](#04be0f8060daa1d85d889605ca8fb2bb)
+         - [其他](#0d98c74797e49d00bcc4c17c9d557a2b)
+         - [多数据库](#fdde913b5f9231dbf0135b5d394cb199)
+         - [redis 命令，中文版](#7bcaab82241af99be9615017fca3cb89)
+     - [mac phpRedisAdmin](#6ef8082fd2f3d06391821ecff428e702)
+     - [Mac Resis](#5eb6909a1e0d0356a26e2c49bf854243)
 
 ...menuend
 

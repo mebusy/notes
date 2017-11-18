@@ -1,19 +1,20 @@
 ...menustart
 
  - [MacOSX](#5dad7f6f2d7af4cc1196128ec251af8a)
-	 - [vim 设置](#c585405730fcd92667781471df41f4fb)
-	 - [设置 目录访问权限(禁止别的用户浏览)](#d1b5bbfe80897599d07253429886f700)
-	 - [sidebar 丢失](#2921868f08055ef268441139489a6130)
-	 - [openofficer error](#1c305ad1fad7ba14dd448d08a73f3ab8)
-	 - [Useful Commands](#ec69fb46be4996fda376dcb4054c528b)
-		 - [xxd](#25c04b9b782789c092a38c06cc87632a)
-		 - [mdfind](#0968ea4dc36ecbcdc0810a8ca0f674c8)
-		 - [alias](#724874d1be77f450a09b305fc1534afb)
-		 - [man ascii  字符表](#726e07a4bf9abb9ebcdce89b16eb7807)
-		 - [cal 日历](#e1bde9f80b42328020cb6b0a4c7d26ab)
-		 - [find files to rm](#a21d96fb754b9ce8455858e14ed36571)
-		 - [in terminal, show git branch in path](#394dd2658e932bd638e3017ac1a98c39)
-	 - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
+     - [vim 设置](#c585405730fcd92667781471df41f4fb)
+     - [设置 目录访问权限(禁止别的用户浏览)](#d1b5bbfe80897599d07253429886f700)
+     - [sidebar 丢失](#2921868f08055ef268441139489a6130)
+     - [openofficer error](#1c305ad1fad7ba14dd448d08a73f3ab8)
+     - [Useful Commands](#ec69fb46be4996fda376dcb4054c528b)
+         - [xxd](#25c04b9b782789c092a38c06cc87632a)
+         - [mdfind](#0968ea4dc36ecbcdc0810a8ca0f674c8)
+         - [alias](#724874d1be77f450a09b305fc1534afb)
+         - [man ascii  字符表](#726e07a4bf9abb9ebcdce89b16eb7807)
+         - [cal 日历](#e1bde9f80b42328020cb6b0a4c7d26ab)
+         - [find files to rm](#a21d96fb754b9ce8455858e14ed36571)
+         - [in terminal, show git branch in path](#394dd2658e932bd638e3017ac1a98c39)
+         - [find all json file , and remove all `\r`](#75aeaa38d609e022daed8f30150edfa7)
+     - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
 
 ...menuend
 
@@ -150,6 +151,8 @@ parse_git_branch() {
 }
 export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 ```
+
+<h2 id="75aeaa38d609e022daed8f30150edfa7"></h2>
 
 ### find all json file , and remove all `\r` 
 

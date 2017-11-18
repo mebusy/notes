@@ -6,12 +6,12 @@
  - [Practice, Part II](#1864a6324588032cee5adb1f75e62195)
  - [Calculator](#cc84fa821011b93c1f935268e5560c2e)
  - [More Lex](#786b674166922221e6eab655991c9fe3)
-	 - [Strings](#89be9433646f5939040a78971a5d103a)
-	 - [Reserved Words](#f6904aa41f71b6298d0a92fa1d4079e2)
-	 - [Debugging Lex](#acb2b044e25d475996404b6350ab88f5)
+     - [Strings](#89be9433646f5939040a78971a5d103a)
+     - [Reserved Words](#f6904aa41f71b6298d0a92fa1d4079e2)
+     - [Debugging Lex](#acb2b044e25d475996404b6350ab88f5)
  - [More Yacc](#8e775af853936e583371f2687a64ecd9)
-	 - [Recursion](#12fa464a36f8e5a187f5acfde99b7029)
-	 - [If-Else Ambiguity](#68c908bd98cb22a4b0150d6b09c01063)
+     - [Recursion](#12fa464a36f8e5a187f5acfde99b7029)
+     - [If-Else Ambiguity](#68c908bd98cb22a4b0150d6b09c01063)
 
 ...menuend
 

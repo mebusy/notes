@@ -2,9 +2,9 @@
 
  - [English Training Notes](#39ca9f60877d5329f8821fd7af3e5a8c)
  - [Class 1](#e43c4a6cb52ad623673f8e77a5b10104)
-	 - [vocabulary](#09f06963f502addfeab2a7c87f38802e)
-	 - [tense](#51da34ead8ca9d50a1216c0dfe4351b0)
-	 - [pronunciation](#3160ecdb9aec1c3aab204f9739eab7cc)
+     - [vocabulary](#09f06963f502addfeab2a7c87f38802e)
+     - [tense](#51da34ead8ca9d50a1216c0dfe4351b0)
+     - [pronunciation](#3160ecdb9aec1c3aab204f9739eab7cc)
 
 ...menuend
 

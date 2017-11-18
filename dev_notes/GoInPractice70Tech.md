@@ -2,25 +2,32 @@
 
  - [Go In Practice , 70 Teches](#71c585005b73e8b143984da7dee9b0d3)
  - [2 A solid foundation](#0d64118c7f6ff8aeadfb2c9db268f32b)
-	 - [2.1 Working wiht CLI applications, the Go way](#f4fc9ba35db46faa075c17a7587260c1)
-		 - [2.1.1 Command-line flags](#56dfd6c36821c5a64983eff289699453)
-	 - [2.2 Handling configuration](#3863b9486b6e97a49ff1790df08b38dc)
-	 - [2.3 Working with real-world web servers](#1e5b504a7ecb0799f2b760c225242b19)
-		 - [2.3.1 Starting up and shutting down a server](#d1dfba069bae305472df676269e71aa9)
-		 - [2.3.2 Routing web requests](#daef946a510d0ed9c04cffe18d824726)
+     - [2.1 Working wiht CLI applications, the Go way](#f4fc9ba35db46faa075c17a7587260c1)
+         - [2.1.1 Command-line flags](#56dfd6c36821c5a64983eff289699453)
+     - [2.2 Handling configuration](#3863b9486b6e97a49ff1790df08b38dc)
+     - [2.3 Working with real-world web servers](#1e5b504a7ecb0799f2b760c225242b19)
+         - [2.3.1 Starting up and shutting down a server](#d1dfba069bae305472df676269e71aa9)
+         - [2.3.2 Routing web requests](#daef946a510d0ed9c04cffe18d824726)
  - [3 Concurrency in Go](#16f99609cccf72d44e6fb4b00b7aa9b5)
  - [4 Handling errors and panics](#5c14286df98cd800d088a14ee136b866)
-	 - [4.1 Error handling](#1a2bb328b5fa8ef5dcc6324dfc56d06d)
-	 - [4.2 The panic system](#e72b11fe4a7d7755c9bb9da078ed7c7a)
-		 - [4.2.2 Working with panics](#948d52c1d352272f319d60422e92f251)
-		 - [4.2.3 Recovering from panics](#58be2510484c3a3b9626aaa5bcbc69c9)
-		 - [4.2.4 Panics and goroutines](#23ae8dbb31cc7891d0c3de597f0bc523)
+     - [4.1 Error handling](#1a2bb328b5fa8ef5dcc6324dfc56d06d)
+     - [4.2 The panic system](#e72b11fe4a7d7755c9bb9da078ed7c7a)
+         - [4.2.2 Working with panics](#948d52c1d352272f319d60422e92f251)
+         - [4.2.3 Recovering from panics](#58be2510484c3a3b9626aaa5bcbc69c9)
+         - [4.2.4 Panics and goroutines](#23ae8dbb31cc7891d0c3de597f0bc523)
  - [5 Debugging and testing](#b8ad4f9f531cf42a4bbe3bc9ecf746ab)
-	 - [5.2 Logging](#2c0ce02cb81521bcb1e13a7d2537d1dd)
-		 - [5.2.1 Using Go’s logge](#0a06ab7d7bc94825761e4f71180d1739)
-		 - [5.2.2 Working with system loggers](#b11462d84b0c705a445bf62b0d7af407)
-	 - [5.3 Accessing stack traces](#9c010432392bbfc8119a5ee9de0994a3)
-	 - [5.4 Testing](#8cdb7f7ceb9bff6df74283972fe543d7)
+     - [5.2 Logging](#2c0ce02cb81521bcb1e13a7d2537d1dd)
+         - [5.2.1 Using Go’s logge](#0a06ab7d7bc94825761e4f71180d1739)
+         - [5.2.2 Working with system loggers](#b11462d84b0c705a445bf62b0d7af407)
+     - [5.3 Accessing stack traces](#9c010432392bbfc8119a5ee9de0994a3)
+     - [5.4 Testing](#8cdb7f7ceb9bff6df74283972fe543d7)
+         - [5.4.1 Unit testing](#d6c479cf7ba6e15bc5b1d5044c047f6c)
+             - [TECHNIQUE 28: Verifying interfaces with canary tests  TODO , page 132](#628a115ba69d21b430e18b21a0aa97a5)
+ - [11 Reflection and code generation](#f226d92098f959d56447d8f0dceb5f79)
+     - [11.1 Three features of reflection](#207d97ac8eab80209297f51985f3082d)
+         - [TECHNIQUE 66 Switching based on type and kind](#cc58f61e729a92813f5391cab7b2425c)
+         - [TECHNIQUE 67: Discovering whether a value implements an interface](#a9ca11ee99ed6c97a08a7c7c459b6507)
+         - [TECHNIQUE 68 Accessing fields on a struct](#78a78128f589cf18b987ed6a4b0cf18c)
 
 ...menuend
 
@@ -732,6 +739,8 @@ Both the `runtime` and the `runtime/debug` packages contain numerous other funct
 
 ## 5.4 Testing
 
+<h2 id="d6c479cf7ba6e15bc5b1d5044c047f6c"></h2>
+
 ### 5.4.1 Unit testing
 
 ```go
@@ -798,17 +807,23 @@ func Alert(m Messager, problem []byte) error {
 ```
 
 
+<h2 id="628a115ba69d21b430e18b21a0aa97a5"></h2>
+
 #### TECHNIQUE 28: Verifying interfaces with canary tests  TODO , page 132
 
 ---
 
 
 
+<h2 id="f226d92098f959d56447d8f0dceb5f79"></h2>
+
 # 11 Reflection and code generation
 
  - *Reflection* ,  in software development, refers to a program’s ability to examine its own structure. 
  - As useful as Go’s reflection system is, though, sometimes it’s cleaner to avoid complex and expensive runtime reflection, and instead write code that writes code. 
     -  Code generation can accomplish some of the things that are typically done in other languages with generics. 
+
+<h2 id="207d97ac8eab80209297f51985f3082d"></h2>
 
 ## 11.1 Three features of reflection
 
@@ -828,6 +843,8 @@ func Alert(m Messager, problem []byte) error {
         - Go defines numerous primitive kinds, such as struct, ptr (pointer), int, float64, string, slice, func (function), and so on. 
         - The reflect package enumerates all of the possible kinds with the type reflect.Kind.
             - Note that in preceding picture, the value of type string also has the kind string.)
+
+<h2 id="cc58f61e729a92813f5391cab7b2425c"></h2>
 
 #### TECHNIQUE 66 Switching based on type and kind
 
@@ -906,6 +923,8 @@ func sum(v ...interface{}) float64 {
  - Another thing that the reflect.Value type gives you is a group of functions capable of converting related types to their largest representation. 
     -  A reflect.Value with a uint8 or uint16 can be easily converted to the biggest unsigned integer type by using the reflect.Value’s Uint() method.
 
+<h2 id="a9ca11ee99ed6c97a08a7c7c459b6507"></h2>
+
 #### TECHNIQUE 67: Discovering whether a value implements an interface
 
  - Given a particular type, you want to find out whether that type implements a defined interface
@@ -973,6 +992,8 @@ func main() {
     - Instead, you need to find a way to create a placeholder that implements an interface.
         - The simplest way is to do something we usually recommend studiously avoiding: intentionally create a nil pointer. 
         - You need the Elem() call in order to get the type of the nil.
+
+<h2 id="78a78128f589cf18b987ed6a4b0cf18c"></h2>
 
 #### TECHNIQUE 68 Accessing fields on a struct
 

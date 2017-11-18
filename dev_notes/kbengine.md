@@ -5,11 +5,11 @@
  - [Misc](#74248c725e00bf9fe04df4e35b249a19)
  - [Login System](#b65900167c5add9414d6f7a28eb639af)
  - [Say hello to server](#9a9a71efcb676c76eb1e51d60ae2cb31)
-	 - [server side](#d3ecf7a46680a0dd28cc7a616800e186)
-	 - [client side](#2f66c7f591948a0efcf4d4f44052b519)
+     - [server side](#d3ecf7a46680a0dd28cc7a616800e186)
+     - [client side](#2f66c7f591948a0efcf4d4f44052b519)
  - [Avatar List](#26c985492cc3eb77b7d7e3333d30d1a1)
-	 - [Register Entity](#4451dbc15dd7b598f0579474e56e74a8)
-	 - [client](#62608e08adc29a8d6dbc9754e659f125)
+     - [Register Entity](#4451dbc15dd7b598f0579474e56e74a8)
+     - [client](#62608e08adc29a8d6dbc9754e659f125)
 
 ...menuend
 

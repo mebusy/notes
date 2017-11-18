@@ -1,9 +1,9 @@
 ...menustart
 
  - [Tips](#a0d4cc0f54602c3f247c72f15a7d2dbf)
-	 - [符号化crash 日志](#f3339d94a6bf27a7a019412ed2bd3ba9)
-	 - [IAP create , app -> ipa](#baf92b6a6a0ac6be9b16cf0d77c0a8c4)
-	 - [mobile provision file 解码](#4b90af20d825ac9eb566c44390737682)
+     - [符号化crash 日志](#f3339d94a6bf27a7a019412ed2bd3ba9)
+     - [IAP create , app -> ipa](#baf92b6a6a0ac6be9b16cf0d77c0a8c4)
+     - [mobile provision file 解码](#4b90af20d825ac9eb566c44390737682)
 
 ...menuend
 
