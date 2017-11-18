@@ -42,7 +42,7 @@ It is easy to write the system in matrix form. Let the unknown vector be u(t), w
 Vector unknown :
 
 u(t) = ⎡v(t)⎤, u(0) = ⎡8⎤,  A = ⎡4 -5⎤
-   ⎣w(t)⎦  ⎣5⎦⎣2 -3⎦
+       ⎣w(t)⎦         ⎣5⎦       ⎣2 -3⎦
 ```
 
 The two coupled equations become the vector equation we want:
@@ -146,7 +146,7 @@ In our example, we shift A by λI to make it singular:
 Subtract λI :
 
 A - λI = ⎡4-λ   -5 ⎤.
- ⎣ 2   -3-λ⎦
+         ⎣ 2   -3-λ⎦
 ```
 
 Note that λ is subtracted only from the main diagonal (because it multiplies I).
@@ -168,7 +168,7 @@ The values λ = -1 and λ = 2 lead to a solution of Ax = λx or (A - λI )x = 0.
 
 ```
 λ₁ = -1: (A - λ₁I)x = ⎡5  -5⎤⎡y⎤ = ⎡0⎤.
-  ⎣2  -2⎦⎣z⎦   ⎣0⎦
+                      ⎣2  -2⎦⎣z⎦   ⎣0⎦
 ```
 
 The solution (the first eigenvector) is any nonzero multiple of x₁:
@@ -177,14 +177,14 @@ The solution (the first eigenvector) is any nonzero multiple of x₁:
 Eigenvector for λ₁ :
 
 x₁ = ⎡1⎤.
- ⎣1⎦
+     ⎣1⎦
 ```
 
 The computation for λ₂ is done separately:
 
 ```
 λ₂ = 2: (A - λ₂I)x = ⎡2  -5⎤⎡y⎤ = ⎡0⎤.
- ⎣2  -5⎦⎣z⎦   ⎣0⎦
+                     ⎣2  -5⎦⎣z⎦   ⎣0⎦
 ```
 
 The second eigenvector is any nonzero multiple of x₂:
@@ -193,7 +193,7 @@ The second eigenvector is any nonzero multiple of x₂:
 Eigenvector for λ₂ :
 
 x₂ = ⎡5⎤.
- ⎣2⎦
+     ⎣2⎦
 ```
 
 You might notice that the columns of A - λ₁I give x₂, and the columns of A - λ₂I are multiples of x₁. *This is special (and useful) for 2 by 2 matrices*.
@@ -249,14 +249,14 @@ Example 1: Everything is clear when A is a ***diagonal matrix***:
 
 ```
 A = ⎡3 0⎤ has λ₁ = 3 with x₁ = ⎡1⎤,  λ₂ = 2 with x₂ = ⎡0⎤.
-⎣0 2⎦     ⎣0⎦  ⎣1⎦
+    ⎣0 2⎦                      ⎣0⎦                    ⎣1⎦
 ```
 
 On each eigenvector A acts like a multiple of the identity: Ax₁ = 3x₁ and Ax₂ = 2x₂. Other vectors like x = (1, 5) are mixtures x₁ + 5x₂ of the two eigenvectors, and when A multiplies x₁ and x₂ it produces the eigenvalues  λ₁ = 3 and x₂ = 2:
 
 ```
 A  times  x₁+5x₂  is 3x₁+10x₂ = ⎡ 3⎤.  
-⎣10⎦
+                                ⎣10⎦
 ```
 
 This is Ax for a typical vector x -- not an eigenvector. But the action of A is determined by its eigenvectors and eigenvalues.
@@ -267,7 +267,7 @@ Example 2: The eigenvalues of a ***projection matrix*** are 1 or 0!
 
 ```
 P = ⎡1/2 1/2⎤ has λ₁ = 1 with x₁ = ⎡1⎤,  λ₂ = 0 with x₂ = ⎡ 1⎤.
-⎣1/2 1/2⎦     ⎣1⎦  ⎣-1⎦
+    ⎣1/2 1/2⎦                      ⎣1⎦                    ⎣-1⎦
 ```
 
 We have λ = 1 when x projects to itself, and λ = 0 when x projects to the zero vector. The column space of P is filled with eigenvectors, and so is the nullspace. If those spaces have dimension r and n - r, then k = 1 is repeated r times and A = 0 is repeated n - r times (always n λ's):
@@ -275,10 +275,10 @@ We have λ = 1 when x projects to itself, and λ = 0 when x projects to the zero
 ```
 Four eigenvalues allowing repeats:
 
-⎡1 0 0 0⎤
+    ⎡1 0 0 0⎤
 P = ⎢0 0 0 0⎥ has λ = 1,1,0,0
- ⎢0 0 0 0⎥   
-⎣0 0 0 1⎦ 
+    ⎢0 0 0 0⎥   
+    ⎣0 0 0 1⎦ 
 ```
 
 ***There is nothing exceptional about λ = 0***. Like every other number, zero might be an eigenvalue and it might not. If it is, then its eigenvectors satisfy Ax = Ox. Thus x is in the nullspace of A. A zero eigenvalue signals that A is singular (not invertible); its determinant is zero. Invertible matrices have all λ ≠ 0.
@@ -319,7 +319,7 @@ There should be no confusion between the diagonal entries and the eigenvalues. F
 
 ```
 det(A-λI) = det |a-λ   b | = λ² - (trace)λ + determinat 
-| c   d-λ|
+                | c   d-λ|
 ```
 
  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigenvalue_formular_for_2x2.png)
@@ -350,7 +350,7 @@ You can mentally follow x and Ax for these six matrices. How many eigenvectors a
 
 ```
 A = ⎡2 0⎤ ⎡2  0⎤ ⎡0 1⎤ ⎡ 0 1⎤ ⎡1 1⎤ ⎡1 1⎤ 
-⎣0 1⎦ ⎣0 -1⎦ ⎣1 0⎦ ⎣-1 0⎦ ⎣1 1⎦ ⎣0 1⎦ 
+    ⎣0 1⎦ ⎣0 -1⎦ ⎣1 0⎦ ⎣-1 0⎦ ⎣1 1⎦ ⎣0 1⎦ 
 ```
 
 
@@ -419,21 +419,21 @@ Repeated eigenvalues leave even more freedom in S. For the trivial example A = I
 
 ```
 A = ⎡0 1⎤. 
-⎣0 0⎦ 
+    ⎣0 0⎦ 
 ```
 
 Its eigenvalues are λ₁ = λ₂ = 0, since it is triangular with zeros on the diagonal:
 
 ```
 det( A-λI ) = det⎡-λ  1⎤ = λ² . 
- ⎣ 0 -λ⎦ 
+                 ⎣ 0 -λ⎦ 
 ```
 
 All eigenvectors of this A are multiples of the vector (1, 0):
 
 ```
   ⎡0 1⎤x = ⎡0⎤,  or x = ⎡c⎤. 
-  ⎣0 0⎦    ⎣0⎦ ⎣0⎦ 
+  ⎣0 0⎦    ⎣0⎦          ⎣0⎦ 
 ```
 
 λ = 0 is a double eigenvalue -- its *algebraic multiplicity* (代数重数) is 2. But the *geometric multiplicity* is 1 -- there is only one independent eigenvector. We can't construct S.
@@ -446,7 +446,7 @@ That failure of diagonalization was ***not*** a result of λ = 0. It came from �
 Repeated eigenvalues:
 
 A = ⎡3 1⎤  and A = ⎡2 -1⎤. 
-    ⎣0 3⎦       ⎣1  0⎦ 
+    ⎣0 3⎦          ⎣1  0⎦ 
 ```
 
 Their eigenvalues are 3, 3 and 1, 1. They are not singular! The problem is the shortage of eigenvectors -- which are needed for S. That needs to be emphasized:
@@ -482,7 +482,7 @@ Example 1: The projection A = [0.5 0.5 ; 0.5 0.5] has eigenvalue matrix [1 0 ; 0
 
 ```
 S = ⎡1  1⎤  and AS = SΛ = ⎡1 0⎤. 
-    ⎣1 -1⎦         ⎣1 0⎦ 
+    ⎣1 -1⎦                ⎣1 0⎦ 
 ```
 
 The last equation can be verified at a glance. Therefore S⁻¹AS = Λ.
@@ -500,17 +500,17 @@ The eigenvalues of K are *imaginary numbers*, A₁ = i and A₂ = -i. The eigenv
 
 ```
 (K-λ₁I)x₁ = ⎡-i -1⎤⎡y⎤ = ⎡0⎤  and  x₁ = ⎡ 1⎤
-    ⎣ 1 -i⎦⎣z⎦   ⎣0⎦ ⎣-i⎦ 
+            ⎣ 1 -i⎦⎣z⎦   ⎣0⎦            ⎣-i⎦ 
 
 (K-λ₂I)x₂ = ⎡ i -1⎤⎡y⎤ = ⎡0⎤  and  x₂ = ⎡ 1⎤. 
-    ⎣ 1  i⎦⎣z⎦   ⎣0⎦ ⎣-i⎦ 
+            ⎣ 1  i⎦⎣z⎦   ⎣0⎦            ⎣-i⎦ 
 ```
 
 The eigenvalues are distinct, even if imaginary, and the eigenvectors are independent. They go into the columns of S:
 
 ```
 S = ⎡ 1 1⎤  and   S⁻¹KS = ⎡i  0⎤. 
-    ⎣-i i⎦         ⎣0 -i⎦ 
+    ⎣-i i⎦                ⎣0 -i⎦ 
 ```
 
 We are faced with an inescapable fact, that ***complex numbers are needed even for real matrices***. If there are too few real eigenvalues, there are always n complex eigenvalues. (Complex includes real, when the imaginary part is zero.) If there are too few eigenvectors in the real world R³, or in Rⁿ, we look in C³ or Cⁿ. The space Cⁿ contains all column vectors with complex components, and it has new definitions of length and inner product and orthogonality. But it is not more difficult than Rⁿ , and in Section 5.5 we make an easy conversion to the complex case.
@@ -551,7 +551,7 @@ Example 3: If K is rotation through 90°, then K² is rotation through 180° (wh
 
 ```
 K = ⎡0 -1⎤,  K² = ⎡-1  0⎤,  and  K⁻¹ = ⎡ 0  1⎤.
-    ⎣1  0⎦   ⎣0  -1⎦    ⎣-1  0⎦ 
+    ⎣1  0⎦        ⎣0  -1⎦              ⎣-1  0⎦ 
 ```
 
 The eigenvalues of K are i and -i; their squares are -1 and -1; their reciprocals 倒数 are 1/i = -i and 1/(-i) = i. Then K⁴ is a complete rotation through 360°:
@@ -697,10 +697,10 @@ In any specific example like Fibonacci's, the first step is to find the eigenval
 
 ```
 A - λI = ⎡1-λ   1 ⎤  has det(A - λI) = λ² - λ - 1
- ⎣ 1   -λ ⎦
+         ⎣ 1   -λ ⎦
 
-Two eigenvalues: λ₁ = ( 1 + √5 ) / 2 m
- λ₂ = ( 1 + √5 ) / 2 .
+Two eigenvalues: λ₁ = ( 1 + √5 ) / 2 ,
+                 λ₂ = ( 1 + √5 ) / 2 .
 ```
 
 The second row of A - λI is (1, -λ). To get (A - λI )x = O, the eigen vector is x = (λ, 1). The first Fibonacci numbers F₀ = 0 and F₁ = 1 go into u₀, and S⁻¹u₀ = c:

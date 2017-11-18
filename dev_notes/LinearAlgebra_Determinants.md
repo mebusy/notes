@@ -60,7 +60,7 @@ This will be a pretty long list. Fortunately each rule is easy to understand, an
 
 ```
 det ⎡a b⎤ = |a b| = bc - ad 
-⎣c d⎦  |c d|
+    ⎣c d⎦   |c d|
 ```
 
 Notice the two accepted notations for the determinant, det A and |A|.
@@ -76,15 +76,15 @@ We emphasize that the rules apply to *square matrices* of any size.
  1. Add vectors in row
 
  ```
- |a+a' b+b'| =|a b| + |a' b'|
-      |c    d   |  |c d|   |c  d |
+    |a+a' b+b'| =|a b| + |a' b'|
+    |c    d   |  |c d|   |c  d |
  ```
  2. Multiply by *t* in row
 
  ```
-|ka kb| = k |a b|
+    |ka kb| = k |a b|
     | c  d|     |c d|
-    ```
+ ```
  - det2A = 2ⁿ detA
  4. *If two rows of A are equal, then det A = 0.*
  - deduce from rule 2 ,  r = -r => r = 0 
@@ -98,7 +98,7 @@ We emphasize that the rules apply to *square matrices* of any size.
  ```
     5|0 0| =|0 0| ,  5x =x -> x=0 
      |c d|  |c d|
-    ```
+ ```
 
  7. *If A is triangular, then det A is the product of the diagonal entries*. 
  - If the triangular A has 1s along the diagonal, then det A = 1.
@@ -106,7 +106,7 @@ We emphasize that the rules apply to *square matrices* of any size.
  ```
      |a b|= ad, |a 0|= ad 
      |0 d|      |c d|
-    ```
+ ```
     - ***Proof:*** Suppose the diagonal entries are nonzero. Then elimination can remove all the off-diagonal entries (and keep the same pivot, 那些off-diagonal entries都是打酱油的), without changing the determinant (by rule 5)
     - *If a diagonal entry is 0 then elimination will produce a 0 row.* This is a key property: **All singular matrices have a zero determinant**.
 
@@ -354,7 +354,7 @@ This completes the link between volumes and determinants, but it is worth coming
 
 ```
 det ⎡1 0⎤ = 1 ,  det ⎡1 0⎤ = 1
-⎣0 1⎦    ⎣c 1⎦
+    ⎣0 1⎦            ⎣c 1⎦
 ```
 
 These determinants give the volumes-or areas, since we are in two dimensions-drawn in Figure 4.3. The parallelogram has unit base and unit height; its area is also 1.
