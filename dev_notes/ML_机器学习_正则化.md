@@ -131,30 +131,30 @@ if λ > 0 ,
 
 ```
 function out = mapFeature(X1, X2)
-	% MAPFEATURE Feature mapping function to polynomial features
-	%
-	%   MAPFEATURE(X1, X2) maps the two input features
-	%   to quadratic features used in the regularization exercise.
-	%
-	%   Returns a new feature array with more features, comprising of 
-	%   X1, X2, X1.^2, X2.^2, X1*X2, X1*X2.^2, etc..
-	%
-	%   Inputs X1, X2 must be the same size
-	%
+% MAPFEATURE Feature mapping function to polynomial features
+%
+%   MAPFEATURE(X1, X2) maps the two input features
+%   to quadratic features used in the regularization exercise.
+%
+%   Returns a new feature array with more features, comprising of 
+%   X1, X2, X1.^2, X2.^2, X1*X2, X1*X2.^2, etc..
+%
+%   Inputs X1, X2 must be the same size
+%
 
-	% 当 x1 幂为0时, x2 幂可以为 0-6 ，7 种组合， 其中 (0,0) 组合就是 x0
-	% 当 x1 幂为1时, x2 幂可以为 0-5 ，6 种组合
-	% 当 x1 幂为6时, x2 幂可以为 0   ，1 种组合
+% 当 x1 幂为0时, x2 幂可以为 0-6 ，7 种组合， 其中 (0,0) 组合就是 x0
+% 当 x1 幂为1时, x2 幂可以为 0-5 ，6 种组合
+% 当 x1 幂为6时, x2 幂可以为 0   ，1 种组合
 
-	% 所以，最终有 1＋2+3+4+5+6+7 ＝ 28 个 feature 
+% 所以，最终有 1＋2+3+4+5+6+7 ＝ 28 个 feature 
 
-	degree = 6;  % 最高 6 次方项
-	out = ones(size(X1(:,1)));  % 没必要吧，ones(size(X1)) 也一样
-	for i = 1:degree
-	    for j = 0:i
-	        out(:, end+1) = (X1.^(i-j)).*(X2.^j);   % 这里，end是什么用法？
-	    end
-	end
+degree = 6;  % 最高 6 次方项
+out = ones(size(X1(:,1)));  % 没必要吧，ones(size(X1)) 也一样
+for i = 1:degree
+    for j = 0:i
+        out(:, end+1) = (X1.^(i-j)).*(X2.^j);   % 这里，end是什么用法？
+    end
+end
 
 end
 ```
@@ -165,28 +165,28 @@ end
 
 ```
 function [J, grad] = costFunctionReg(theta, X, y, lambda)
-	% Initialize some useful values
-	m = length(y); % number of training examples
+% Initialize some useful values
+m = length(y); % number of training examples
 
-	% You need to return the following variables correctly 
-	J = 0;
-	grad = zeros(size(theta));
+% You need to return the following variables correctly 
+J = 0;
+grad = zeros(size(theta));
 
 
-	hx = sigmoid( X * theta );
-	% 添加了 正则化部分
-	J= 1/m * sum(  -y .* log( hx )  - ( 1-y ) .* log( 1- hx ) )  + lambda/(2*m )* ( theta' * theta ) ;	  
-	% 处理 feature 0 case
-	J -= lambda/(2*m )* ( theta(1)^2 ) ;
+hx = sigmoid( X * theta );
+% 添加了 正则化部分
+J= 1/m * sum(  -y .* log( hx )  - ( 1-y ) .* log( 1- hx ) )  + lambda/(2*m )* ( theta' * theta ) ;  
+% 处理 feature 0 case
+J -= lambda/(2*m )* ( theta(1)^2 ) ;
 
-	% 另一种处理 feature 0 case 的做法
-	% 必须先计算出 grad0 并保存， 因为需要同步更新
-	grad0   = 1/m *sum( ( hx - y ) .* X(:,1)  )'  ; % grad0 不正则化
+% 另一种处理 feature 0 case 的做法
+% 必须先计算出 grad0 并保存， 因为需要同步更新
+grad0   = 1/m *sum( ( hx - y ) .* X(:,1)  )'  ; % grad0 不正则化
 
-	grad    = 1/m *sum( ( hx - y ) .* X  )' +  lambda/(m )*  theta ; 	% 添加了 正则化部分
-	grad(1) = grad0 ;
+grad    = 1/m *sum( ( hx - y ) .* X  )' +  lambda/(m )*  theta ; % 添加了 正则化部分
+grad(1) = grad0 ;
 
-	% =============================================================
+% =============================================================
 end
 ```
 
@@ -226,7 +226,7 @@ options = optimset('GradObj', 'on', 'MaxIter', 400);
 
 % Optimize
 [theta, J, exit_flag] = ...
-	fminunc(@(t)(costFunctionReg(t, X, y, lambda)), initial_theta, options);
+fminunc(@(t)(costFunctionReg(t, X, y, lambda)), initial_theta, options);
 
 
 % 预测

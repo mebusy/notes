@@ -69,13 +69,13 @@ This chapter is an introduction to the compiling techniques in Chapters 3 throug
 
 ```java
 {
-	int i; int j; float[100] a; float v; float x;
-	while ( true ) {
-		do i = i+1;  while ( a[i] < v );
-		do j = j-1;  while ( a[j] > v ); 
-		if ( i >= j ) break;
-		x = a[i]; a[i] = a[j]; a[j] = x ;
-	} 
+int i; int j; float[100] a; float v; float x;
+while ( true ) {
+do i = i+1;  while ( a[i] < v );
+do j = j-1;  while ( a[j] > v ); 
+if ( i >= j ) break;
+x = a[i]; a[i] = a[j]; a[j] = x ;
+} 
 }
 ```
 
@@ -111,11 +111,11 @@ Figure 2.2: Simplified intermediate code
 For review:
 
  - The analysis phase of a compiler breaks up a source program into constituent pieces and produces an internal representation for it
- 	- that representation called *intermediate code*. 
- 	- Analysis is organized around the "syntax"
- 	- The ***syntax*** of a programming language describes the proper form of its pro­grams
- 		- context-free grammar can be used to help guide the translation of programs
- 	- while the ***semantics*** of the language defines what its programs mean
+ - that representation called *intermediate code*. 
+ - Analysis is organized around the "syntax"
+ - The ***syntax*** of a programming language describes the proper form of its pro­grams
+ - context-free grammar can be used to help guide the translation of programs
+ - while the ***semantics*** of the language defines what its programs mean
  - The synthesis phase translates the intermediate code into the target program.
 
 
@@ -131,18 +131,18 @@ Figure 2.3: A model of a compiler front end
 
  - A lexical analyzer allows a translator to handle multicharacter constructs like identifiers , but are treated as units called tokens during syntax analysis
  - Next, we consider intermediate-code generation
- 	- two forms of intermedi­ate code :
- 		- 1- *abstract syntax trees* or simply *syntax trees*
- 			- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_AST_example.png)
- 			- represents the hierarchical syntactic structure of the source program
- 			- syntax trees is further translated into three-address code
- 		- 2-  "three-address" instructions
- 			- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_3addr_inst_example.png)
- 			- instructions form:  x = y **op** z
- 				- **op** is a binary operator
- 				- y and z the are addresses for the operands
- 				- x is the address for the result of the operation
- 			- a three­ address instruction carries out at most one operation, typically a computation, a comparison, or a branch.	
+ - two forms of intermedi­ate code :
+ - 1- *abstract syntax trees* or simply *syntax trees*
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_AST_example.png)
+ - represents the hierarchical syntactic structure of the source program
+ - syntax trees is further translated into three-address code
+ - 2-  "three-address" instructions
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_3addr_inst_example.png)
+ - instructions form:  x = y **op** z
+ - **op** is a binary operator
+ - y and z the are addresses for the operands
+ - x is the address for the result of the operation
+ - a three­ address instruction carries out at most one operation, typically a computation, a comparison, or a branch.
 
 
 <h2 id="49e3a75fe90809fc7abafbcfbc51fd7b"></h2>
@@ -150,16 +150,16 @@ Figure 2.3: A model of a compiler front end
 ## 2.2 Syntax Definition
 
  - We introduce a notation - the "context-free grammar," or "grammar" for short 
-	- used to specify the syntax of a language. 
-	- A grammar naturally describes the hierarchical structure of most program­ming language constructs. 
-	- For example, an if-else statement in Java can have the form
-		- `if ( expression ) statement else statement`
-	- using the variable expr to denote an expres­sion and the variable stmt to denote a statement, this structuring rule can be expressed as
-		- `stmt → if ( expr ) stmt else stmt`
-		- Such a rule is called a ***production***
-			- in which the arrow may be read as "can have the form."
-			- lexical elements like the keyword if and the paren­theses are called ***terminals***
-			- Variables like expr and stmt represent *sequences of terminals* and are called ***nonterminals***.
+- used to specify the syntax of a language. 
+- A grammar naturally describes the hierarchical structure of most program­ming language constructs. 
+- For example, an if-else statement in Java can have the form
+- `if ( expression ) statement else statement`
+- using the variable expr to denote an expres­sion and the variable stmt to denote a statement, this structuring rule can be expressed as
+- `stmt → if ( expr ) stmt else stmt`
+- Such a rule is called a ***production***
+- in which the arrow may be read as "can have the form."
+- lexical elements like the keyword if and the paren­theses are called ***terminals***
+- Variables like expr and stmt represent *sequences of terminals* and are called ***nonterminals***.
 
 <h2 id="034fe90866337af0fbb672df1de0b66d"></h2>
 
@@ -169,25 +169,25 @@ Tokens is often terminal.
 
  - In a compiler, the lexical analyzer reads the characters of the source pro­gram, groups them into lexically meaningful units called *lexemes*, and pro­duces as output tokens representing these lexemes. 
  - A token consists of two components, a token name and an attribute value. 
- 	- The token names are abstract symbols that are used by the parser for syntax analysis. 
- 		- Often, we shall call these token names ***terminals***, since they appear as terminal symbols in the grammar for a programming language. 
- 	- The attribute value, if present, is a pointer to the symbol table that contains additional infor­mation about the token. 
- 		- This additional information is not part of the grammar, so in our discussion of syntax analysis, often we refer to tokens and terminals synonymously.
+ - The token names are abstract symbols that are used by the parser for syntax analysis. 
+ - Often, we shall call these token names ***terminals***, since they appear as terminal symbols in the grammar for a programming language. 
+ - The attribute value, if present, is a pointer to the symbol table that contains additional infor­mation about the token. 
+ - This additional information is not part of the grammar, so in our discussion of syntax analysis, often we refer to tokens and terminals synonymously.
 
 
 A context-free grammar has four components:
 
  1. A set of ***terminal*** symbols, sometimes referred to as "tokens." 
- 	- The terminal are the elementary symbols of the language defined by the grammar.
+ - The terminal are the elementary symbols of the language defined by the grammar.
  2. A set of ***nonterminals***, sometimes called "syntactic variables." 
- 	- Each non­terminal represents a set of strings of terminals
+ - Each non­terminal represents a set of strings of terminals
  3. A set of ***productions*** , each *production* consists of :
- 	- a nonterminal, called the *head* or *lefe side* of the production, 
- 	- an arrow, 
- 	- and a sequence of terminals and/or nonterminals, called the *body* or *right side* of the produc­tion. 
- 	- The intuitive intent of a production is to specify one of the written forms of a construct; 
- 		- if the head nonterminal represents a construct, 
- 		- then the body represents a written form of the construct.
+ - a nonterminal, called the *head* or *lefe side* of the production, 
+ - an arrow, 
+ - and a sequence of terminals and/or nonterminals, called the *body* or *right side* of the produc­tion. 
+ - The intuitive intent of a production is to specify one of the written forms of a construct; 
+ - if the head nonterminal represents a construct, 
+ - then the body represents a written form of the construct.
  4. A designation of one of the nonterminals as the *start* symbol.
 
 
@@ -197,15 +197,15 @@ We specify grammars by listing their productions
  - We assume that digits, signs such as < and <=, and boldface strings such as **while** are terminals
  - and any nonitalicized name or symbol may be assumed to be a terminal.
  - For notational convenience, productions with the ***same nonterminal*** as the head can have their bodies grouped
- 	- with the alternative bodies separated by the symbol "|" , which we read as "or."
+ - with the alternative bodies separated by the symbol "|" , which we read as "or."
 
 Example 2.1 : lists of digits separated by plus or minus signs
 
 ```java
-list → list + digit 		(2.1)
-list → list - digit 		(2.2)
-list → digit  				(2.3)
-digit → 0|1|2|3|4|5|6|7|8|9		(2.4)	
+list → list + digit (2.1)
+list → list - digit (2.2)
+list → digit  (2.3)
+digit → 0|1|2|3|4|5|6|7|8|9(2.4)
 ```
 
 The first 3 productions with nonterminal *list* as head , equivalently can be grouped:
@@ -239,7 +239,7 @@ For example 2.2 , we can use grammars 2.1 to deduce that 9-5+2 is a list as foll
 Example 2.3  function call , may have 0,1,2 parameters
 
 ```java
-	call → id ( optparams ) 
+call → id ( optparams ) 
 optparams → params | ε
    params → params , param | param
 ```
@@ -249,7 +249,7 @@ We have not shown the productions for *param*, since parameters are really arbit
  - *Parsing* is the problem of taking a string of terminals and figuring out how to derive it from the start symbol of the grammar, 
  - and if it cannot be derived from the start symbol of the grammar, then reporting syntax errors within the string. 
  - Parsing is one of the most fundamental problems in all of compiling; 
- 	- In this chapter, for simplicity, we begin with source programs like 9-5+2 in which each character is a terminal; 
+ - In this chapter, for simplicity, we begin with source programs like 9-5+2 in which each character is a terminal; 
  - in general, a source program has multicharacter lexemes that are grouped by the lexical analyzer into tokens, whose first components are the terminals processed by the parser.
 
 <h2 id="e270ca1319a8a19beaad53b4e3df5f0e"></h2>
@@ -258,25 +258,25 @@ We have not shown the productions for *param*, since parameters are really arbit
 
  - A parse tree pictorially shows how the start symbol of a grammar derives a string in the language. 
  - If nonterminal A has a production A → XYZ, then a parse tree may have an interior node labeled A with three children labeled X, Y, and Z, from left to right:
- 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compilers_parse_tree_AXYZ.png)
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compilers_parse_tree_AXYZ.png)
  - Formally, given a context-free grammar, a parse tree according to the gram­mar is a tree with the following properties:
- 	- The root is labeled by the start symbol
- 	- Each leaf is labeled by a terminal or by ε.
- 	- Each interior node is labeled by a nonterminal.
- 	- If A is the nonterminal labeling some interior node and X₁ , X₂ , ... , Xn are the labels of the children of that node from left to right, then there must be a production A → X₁X₂...Xn. Here, X₁,X2,... ,Xn each stand for a symbol that is either a terminal or a nonterminal. 
+ - The root is labeled by the start symbol
+ - Each leaf is labeled by a terminal or by ε.
+ - Each interior node is labeled by a nonterminal.
+ - If A is the nonterminal labeling some interior node and X₁ , X₂ , ... , Xn are the labels of the children of that node from left to right, then there must be a production A → X₁X₂...Xn. Here, X₁,X2,... ,Xn each stand for a symbol that is either a terminal or a nonterminal. 
 
 
 Example 2.4 : The derivation of 9-5+2 in Example 2.2 is illustrated by the tree in Fig. 2.5.
 
  - Parse tree for 9-5+2 according to the grammar in Example 2.1
  - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_parse_tree_2.2.png)
- 	- Each node in the tree is labeled by a *grammar symbol*
- 	- An interior node and its children correspond to a *production*
- 		- the interior node corresponds to the head of the production
- 		- the children to the body
+ - Each node in the tree is labeled by a *grammar symbol*
+ - An interior node and its children correspond to a *production*
+ - the interior node corresponds to the head of the production
+ - the children to the body
  - from left to right, the leaves form the *yield* of the tree
- 	- which is the string *generated* or *derived* from the nonterminal at the root of the parse tree
- 	- in this example , the yield is 9-5+2
+ - which is the string *generated* or *derived* from the nonterminal at the root of the parse tree
+ - in this example , the yield is 9-5+2
  - Any tree imparts a natural *left-to-right* order to its leaves
 
 Another definition of the language (generated by a grammar) is as the ***set of strings*** that can be generated by some parse tree. 
@@ -310,11 +310,11 @@ Merging the notion of *digit* and *list* into the nonterminal *string* makes sup
  - 9+5+2 is equivalent to (9+5)+2 and 9-5-2 is equivalent to (9-5)-2.
  - When an operand like 5 has operators to its left and right, con­ventions are needed for deciding which operator applies to that operand
  - We say that the operator + *associates* to the left
- 	- because an operand with plus signs on both sides of it, belongs to the operator to its left
+ - because an operand with plus signs on both sides of it, belongs to the operator to its left
  - In most programming languages the four arithmetic operators, addition, subtraction, multiplication, and division are *left-associative*.
  - Some common operators such as exponentiation are *right-associative*.
  - As another example, the assignment operator = in C and its descendants is right­ associative
- 	- that is, the expression a=b=c is treated in the same way as the expression a=(b=c)
+ - that is, the expression a=b=c is treated in the same way as the expression a=(b=c)
 
 Strings like a=b=c with a right-associative operator are generated by the following grammar:
 
@@ -349,11 +349,11 @@ left-associative: * /
 ```
 
  - We create two nonterminals *expr* and *term* for the two levels of precedence
- 	- expr for + , -
- 	- term for * , / 
+ - expr for + , -
+ - term for * , / 
  - and an extra nonterminal *factor* for generating basic units in expressions. 
- 	- The basic units in expressions are presently *digits* and *parenthesized* expressions. (目前只考虑 数字和括号)
- 	
+ - The basic units in expressions are presently *digits* and *parenthesized* expressions. (目前只考虑 数字和括号)
+ 
 
 ```java
 factor → digit | ( expr )
@@ -363,16 +363,16 @@ factor → digit | ( expr )
 
 ```java
 term → term * factor 
-	 | term / factor
-	 | factor
+ | term / factor
+ | factor
 ```
 
  - Similarly, *expr* generates lists of terms separated by the additive operators.
 
 ```java
 expr → expr + term 
-	 | expr - term
-	 | term
+ | expr - term
+ | term
 ```
 
  - The resulting grammar is therefore
@@ -389,12 +389,12 @@ Generalizing the Expression Grammar:
  - A *term* is an expression that can be torn apart by operators of the highest precedence: * and / , **but not by the lower-precedence operators**.
  - An *expression* can be torn apart by any operator.
  - We can generalize this idea to any number **n** of precedence levels. We need **n+1** nonterminals. 
- 	- The first,like *factor* in Example 2.6, can never be torn apart. 
- 		- Typically, the production bodies for this nonterminal (*factor*) are only single operands and parenthesized expressions. 
- 	- Then, for each precedence level, there is one nonterminal representing expressions that can be torn apart only by operators ***at that level or higher***. 
- 		- Typically, the productions for this nonterminal have bodies representing: 
- 			- uses of the ***operators at that level***, 
- 			- \+  one body that is just ***the nonterminal for the next higher level*** .
+ - The first,like *factor* in Example 2.6, can never be torn apart. 
+ - Typically, the production bodies for this nonterminal (*factor*) are only single operands and parenthesized expressions. 
+ - Then, for each precedence level, there is one nonterminal representing expressions that can be torn apart only by operators ***at that level or higher***. 
+ - Typically, the productions for this nonterminal have bodies representing: 
+ - uses of the ***operators at that level***, 
+ - \+  one body that is just ***the nonterminal for the next higher level*** .
 
 
 With this grammar ,
@@ -408,13 +408,13 @@ Example 2.7: Keywords allow us to recognize statements(语句), since most state
 
 ```java
 stmt → id = expression ;
-	 | if ( expression ) stmt
-	 | if ( expression ) stmt else stmt 
-	 | while ( expression ) stmt
-	 | do stmt while ( expression ) ;
-	 | { stmts }
+ | if ( expression ) stmt
+ | if ( expression ) stmt else stmt 
+ | while ( expression ) stmt
+ | do stmt while ( expression ) ;
+ | { stmts }
 stmts → stmts stmt
-	 | ε
+ | ε
 ```
 
 Figure 2.8: A grammar for a subset of Java statements
@@ -457,13 +457,13 @@ For convenience, the example in this section is the *translation of infix expres
 This section introduces two concepts related to syntax-directed translation:
 
  - ***Attributes***
- 	- An *attribute* is any quantity associated with a programming construct. 
- 	- Examples of attributes are data types of expressions, the num­ber of instructions in the generated code, or the location of the first in­struction in the generated code for a construct, among many other pos­sibilities. 
- 	- Since we use grammar symbols (nonterminals and terminals) to represent programming constructs, we extend the notion of attributes from constructs to the symbols that represent them.
+ - An *attribute* is any quantity associated with a programming construct. 
+ - Examples of attributes are data types of expressions, the num­ber of instructions in the generated code, or the location of the first in­struction in the generated code for a construct, among many other pos­sibilities. 
+ - Since we use grammar symbols (nonterminals and terminals) to represent programming constructs, we extend the notion of attributes from constructs to the symbols that represent them.
  - ***(Syntax-directed) translation schemes***. 
- 	- A *translation scheme* is a notation for attaching program fragments to the productions of a grammar. 
- 	- The program fragments are executed when the production is used during syn­tax analysis. 
- 	- The combined result of all these fragment executions, in the order induced by the syntax analysis, produces the translation of the program to which this analysis/synthesis process is applied.
+ - A *translation scheme* is a notation for attaching program fragments to the productions of a grammar. 
+ - The program fragments are executed when the production is used during syn­tax analysis. 
+ - The combined result of all these fragment executions, in the order induced by the syntax analysis, produces the translation of the program to which this analysis/synthesis process is applied.
 
 Syntax-directed translations will be used throughout this chapter to trans­late infix expressions into postfix notation, to evaluate expressions, and to build syntax trees for programming constructs. A more detailed discussion of syntax­ directed formalisms appears in Chapter 5.
 
@@ -477,7 +477,7 @@ The examples in this section deal with translation into *postfix notation*. The 
  1. If E is a variable or constant, then the postfix notation for E is E itself.
  2. If E is an expression of the form E₁ ***op*** E₂, where ***op*** is any binary operator, then the postfix notation for E is ***E₁' E₂' op***, where E₁' and E₂' are the postfix notations for E₁ and E₂ , respectively.
  3. If E is a parenthesized expression of the form (E₁), then the postfix notation for E is the same as the postfix notation for E₁ .
- 	- that is, 先把 括号中的 表达式转为 postfix , 然后 去掉括号即可
+ - that is, 先把 括号中的 表达式转为 postfix , 然后 去掉括号即可
 
 
 Example 2.8 : The postfix notation for (9-5) +2 is 95-2+. 
@@ -504,7 +504,7 @@ The idea of associating quantities with programming constructs -for example, val
 
  - We associate attributes with ***nonterminals and terminals***. 
  - Then, we attach rules to the ***productions*** of the grammar; 
- 	- these rules describe how the attributes are computed at those nodes of the parse tree where the production in question is used to relate a node to its children.
+ - these rules describe how the attributes are computed at those nodes of the parse tree where the production in question is used to relate a node to its children.
 
 A *syntax-directed definition* associates
 
@@ -526,15 +526,15 @@ Suppose a node N in a parse tree is labeled by the grammar symbol X .
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_attr_vallue_in_parse_tree.png)
 
  - An attribute is said to be *synthesized* if its value at a parse-tree node N is de­termined from attribute values at the children of N and at N itself. 
- 	- Synthesized attributes have the desirable property that they can be evaluated during a sin­gle bottom-up traversal of a parse tree. 
+ - Synthesized attributes have the desirable property that they can be evaluated during a sin­gle bottom-up traversal of a parse tree. 
  - In Section 5.1.1 we shall discuss another important kind of attribute: the "inherited" attribute. 
- 	- Informally, inherited at­ tributes have their value at a parse-tree node determined from attribute values at the node itself, its parent, and its siblings in the parse tree.
+ - Informally, inherited at­ tributes have their value at a parse-tree node determined from attribute values at the node itself, its parent, and its siblings in the parse tree.
 
 
 Example 2.10 : The annotated parse tree in Fig. 2.9 is based on the syntax­ directed definition in Fig 2.10  for translating expressions into postfix notation. 
 
  - Each nonterminal has a string-valued attribute *t* 
- 	- *t* represents the postfix notation in this example. 
+ - *t* represents the postfix notation in this example. 
  - The symbol `‖` in the semantic rule is the operator for string concatenation.
 
 
@@ -542,22 +542,22 @@ PRODUCTION | SEMANTIC RULES
 --- | ---
 expr → expr₁ + term | expr.t = expr₁.t ‖ term.t ‖ '+' 
 expr → expr₁ - term | expr.t = expr₁.t ‖ term.t ‖ '-'
-expr → term 		| expr.t = term.t
-term → 0 			| term.t = '0'
-term → 1 			| term.t = '1'
-...					| ...
-term → 9			| term.t = '9'
+expr → term | expr.t = term.t
+term → 0 | term.t = '0'
+term → 1 | term.t = '1'
+...| ...
+term → 9| term.t = '9'
 
 Figure 2.10: Syntax-directed definition for infix to postfix translation
 
  - The postfix form of a digit is the digit itself; 
- 	- e.g., the semantic rule associ­ated with the production `term → 9` defines *term.t* to be 9 itself whenever this production is used at a node in a parse tree. 
- 	- The other digits are translated similarly. 
+ - e.g., the semantic rule associ­ated with the production `term → 9` defines *term.t* to be 9 itself whenever this production is used at a node in a parse tree. 
+ - The other digits are translated similarly. 
  - As another example, when the production *expr* → *term* is applied, the value of *term.t* becomes the value of *expr.t* .
  - The production *expr* → *expr₁* + *term* derives an expression containing a plus operator. 
- 	- The left operand of the plus operator is given by *expr₁* and the right operand by *term*. 
- 	- The semantic rule `expr.t = expr₁.t ‖ term.t ‖ '+'` associated with this production constructs the value of attribute *expr.t* by con­catenating the postfix forms *expr₁.t* and *term.t* of the left and right operands, respectively, and then appending the plus sign. 
- 	- This rule is a formalization of the definition of "postfix expression." 
+ - The left operand of the plus operator is given by *expr₁* and the right operand by *term*. 
+ - The semantic rule `expr.t = expr₁.t ‖ term.t ‖ '+'` associated with this production constructs the value of attribute *expr.t* by con­catenating the postfix forms *expr₁.t* and *term.t* of the left and right operands, respectively, and then appending the plus sign. 
+ - This rule is a formalization of the definition of "postfix expression." 
 
 
 >Convention Distinguishing Uses of a Nonterminal
@@ -572,7 +572,7 @@ Figure 2.10: Syntax-directed definition for infix to postfix translation
 The syntax-directed definition in Example 2.10 has the following important property: 
 
  - the string is the *concatenation of the translations of the nonterminals in the production body* , in the same order as in the production
- 	- that string represents the translation of the nonterminal at the head of each production
+ - that string represents the translation of the nonterminal at the head of each production
  - with some optional additional strings interleaved. 
 
 A syntax-directed definition with this property is termed *simple* .
@@ -585,7 +585,7 @@ expr → expr₁ + term | expr.t = expr₁.t ‖ term.t ‖ '+'  (2.5)
 
  - Here the translation *expr.t* is the concatenation of the translations of *expr₁* and *term*, followed by the symbol +
  - Notice that *expr₁* and *term* appear in the same order in both the production body and the semantic rule. 
- 	- no additional symbols before or between their translations. 
+ - no additional symbols before or between their translations. 
  - In this example, the only extra symbol occurs at the end '+'.
 
 When translation schemes are discussed, we shall see that a simple syntax­ directed definition can be implemented by printing only the additional strings, in the order they appear in the definition.
@@ -601,16 +601,16 @@ A *depth-first* traversal starts at the root and recursively visits the children
 
  - a depth first traversal that visits the children of a node in left-to-right order
  - In this traversal, we have included the action of evaluating translations at each node, just before we finish with the node 
- 	- that is, after translations at the children have surely been computed. 
+ - that is, after translations at the children have surely been computed. 
  - In general, the actions associated with a traversal can be whatever we choose, or nothing at all.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_deep_first_trav.png)
 
  - A syntax-directed definition does not impose any specific order for the eval­uation of attributes on a parse tree; 
- 	- 求值操作没有强制顺序的要求
+ - 求值操作没有强制顺序的要求
  - Any evaluation order that computes an attribute *a* after all the other attributes that *a* depends on is acceptable. 
  - Syn­thesized attributes can be evaluated during any *bottom-up* traversal
- 	- that is, a traversal that evaluates attributes at a node after having evaluated attributes at its children. 
+ - that is, a traversal that evaluates attributes at a node after having evaluated attributes at its children. 
  - In general, with both synthesized and inherited attributes, the matter of evaluation order is quite complex; see Section 5.2.
 
 
@@ -633,17 +633,17 @@ rest → + term {print('+')} rest₁
 ```
 
  - We shall see such rules when we consider an alternative form of grammar for expressions:
- 	- where the nonterminal *rest* represents "everything but the first term of an expression." 
- 	- This form of grammar is discussed in Section 2.4.5. 
+ - where the nonterminal *rest* represents "everything but the first term of an expression." 
+ - This form of grammar is discussed in Section 2.4.5. 
  - Again, the subscript in *rest₁* distinguishes this instance of nonterminal *rest* in the production body from the instance of *rest* at the head of the production.
 
 When drawing a parse tree for a translation scheme, 
 
  - We indicate an action by constructing an extra child for it, 
- 	- that child connected by a dashed line to the node that corresponds to the head of the production. 
+ - that child connected by a dashed line to the node that corresponds to the head of the production. 
  - For example, the portion of the parse tree for the above production and action is shown in Fig 2.13. 
- 	- The node for a semantic action has no children, so the action is performed when that node is first seen.
- 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.13.png)
+ - The node for a semantic action has no children, so the action is performed when that node is first seen.
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.13.png)
 
 
 Example 2.12 : The parse tree in Fig 2.14 has print statements at extra leaves, which are attached by dashed lines to interior nodes of the parse tree. 
@@ -731,18 +731,18 @@ The current terminal being scanned in the input is frequently referred to as the
 
  - Initially, the terminal **for** is the lookahead symbol, and the known part of the parse tree consists of the root, labeled with the starting nonterminal stmt in Fig. 2.18(a)
  - The objective is to construct the remainder of the parse tree 
- 	- in such a way that the string generated by the parse tree matches the input string.
+ - in such a way that the string generated by the parse tree matches the input string.
  - For a match to occur, the nonterminal *stmt* in Fig. 2.18(a) must derive a string that starts with the lookahead symbol **for**. 
- 	- In the grammar of Fig. 2.16, there is just one production for *stmt* that can derive such a string, so we select it, and construct the children of the root labeled with the symbols in the production body. This expansion of the parse tree is shown in Fig. 2.18(b).
- 	- 注:  select a production by matching first terminal
+ - In the grammar of Fig. 2.16, there is just one production for *stmt* that can derive such a string, so we select it, and construct the children of the root labeled with the symbols in the production body. This expansion of the parse tree is shown in Fig. 2.18(b).
+ - 注:  select a production by matching first terminal
  - Each of the three snapshots in Fig. 2.18 has arrows marking the *lookahead symbol* in the input and the node in the parse tree that is being considered. 
  - Once children are constructed at a node, we next consider the leftmost child. In Fig. 2.18(b), children have just been constructed at the root, and the leftmost child labeled with **for** is being considered.
  - When the node being considered in the parse tree is for a terminal, and the terminal matches the lookahead symbol, then we advance in both the parse tree and the input. 
- 	- The next terminal in the input becomes the new lookahead symbol, and the next child in the parse tree is considered. In Fig. 2.18(c), the arrow in the parse tree has advanced to the next child of the root, and the arrow in the input has advanced to the next terminal, which is (. 
- 	- A further advance will take the arrow in the parse tree to the child labeled with nonterminal *optexpr* and take the arrow in the input to the terminal "**;**" .
+ - The next terminal in the input becomes the new lookahead symbol, and the next child in the parse tree is considered. In Fig. 2.18(c), the arrow in the parse tree has advanced to the next child of the root, and the arrow in the input has advanced to the next terminal, which is (. 
+ - A further advance will take the arrow in the parse tree to the child labeled with nonterminal *optexpr* and take the arrow in the input to the terminal "**;**" .
  - At the nonterminal node labeled *optexpr*, *we repeat the process of selecting a production for a nonterminal*. 
- 	- Productions with **ε** as the body ( "ε-productions" ) require special treatment. For the moment, we use them as a default when no other production can be used; we return to them in Section 2.4.3. 
- 	- With nonterminal *optexpr* and lookahead **;** , the ε-production is used, since **;** does not match the only other production for *optexpr*, which has terminal *expr* as its body.
+ - Productions with **ε** as the body ( "ε-productions" ) require special treatment. For the moment, we use them as a default when no other production can be used; we return to them in Section 2.4.3. 
+ - With nonterminal *optexpr* and lookahead **;** , the ε-production is used, since **;** does not match the only other production for *optexpr*, which has terminal *expr* as its body.
  - In general, the selection of a production for a nonterminal may involve trial-­and-error; that is, we may have to try a production and backtrack to try another production if the first is found to be unsuitable. A production is unsuitable if, after using the production, we cannot complete the tree to match the input.
 
 <h2 id="99a9f275f59362168c3615e281bca19a"></h2>
@@ -758,26 +758,26 @@ The predictive parser in Fig. 2.19 consists of procedures for the nontermi­nals
 Procedure *match(t)* com­pares its argument t with the lookahead symbol and advances to the next input terminal if they match. Thus *match* changes the value of variable *lookahead*, a global variable that holds the currently scanned input terminal.
 
  - Parsing begins with a call of the procedure for the starting nonterminal *stmt*.  *Lookahead* is initially the first terminal **for**. Procedure stmt executes code corresponding to the production:
- 	- *stmt* → **for** ( *optexpr* ; *optexpr* ; *optexpr* ) *stmt*
+ - *stmt* → **for** ( *optexpr* ; *optexpr* ; *optexpr* ) *stmt*
  - In the code for the production body - that is, the **for** case of procedure *stmt*  
- 	- each **terminal is matched** with the lookahead symbol, 
- 	- and each **nonterminal** leads to **a call of its procedure**, 
- 	- in the following sequence of calls:
- 		- match(for); match('(');
- 		- optexpr(); match(';'); optexpr(); match(';'); optexpr(); 
- 		- match(')'); stmt();
+ - each **terminal is matched** with the lookahead symbol, 
+ - and each **nonterminal** leads to **a call of its procedure**, 
+ - in the following sequence of calls:
+ - match(for); match('(');
+ - optexpr(); match(';'); optexpr(); match(';'); optexpr(); 
+ - match(')'); stmt();
 
  - Predictive parsing relies on information about the *first symbols* that can be generated by a production body. Let α be a string of grammar symbols (terminals and/or nonterminals). We define FIRST(α) to be the set of terminals that appear as the first symbols of one or more strings of terminals generated from α. 
- 	- If α is ε or can generate ε, then ε is also in FIRST(α). 
+ - If α is ε or can generate ε, then ε is also in FIRST(α). 
  - The details of how one computes FIRST(α) are in Section 4.4.2. Here, we shall just use ad hoc reasoning to deduce the symbols in FIRST(a) ; typically, 
- 	- α will either begin with a terminal, 
- 		- which is therefore the only symbol in FIRST(a) (因为后面的 symbol 不再被关心 ), 
- 	- or α will begin with a nonterminal whose production bodies begin with termi­nals
- 		- in which case these terminals are the only members of FIRST(a) .
+ - α will either begin with a terminal, 
+ - which is therefore the only symbol in FIRST(a) (因为后面的 symbol 不再被关心 ), 
+ - or α will begin with a nonterminal whose production bodies begin with termi­nals
+ - in which case these terminals are the only members of FIRST(a) .
 
  - For example, with respect to the grammar of Fig. 2.16, the following are correct calculations of FIRST.
- 	- FIRST( stmt ) = { expr, if, for, other } 		// *nonterminal*
-	- FIRST( expr ; ) = { expr }    // ; 是什么鬼?		// terminals
+ - FIRST( stmt ) = { expr, if, for, other } // *nonterminal*
+- FIRST( expr ; ) = { expr }    // ; 是什么鬼?// terminals
  - The FIRST sets must be considered if there are two productions A → α and A → β . Ignoring ε-productions for the moment, predictive parsing requires FIRST(α) and FIRST(β) to be disjoint (如果有交集，就无法选择了). The lookahead symbol can then be used to decide which production to use; if the lookahead symbol is in FIRST(α) , then α is used. Otherwise, if the lookahead symbol is in FIRST(β), then β is used.
 
 <h2 id="c601306090856b08c316efc502d5c4a5"></h2>
@@ -799,14 +799,14 @@ We can generalize predictive parser , to apply to any grammar that has disjoint 
 Recall that a *predictive parser* is a program consisting of a procedure for every nonterminal. The procedure for nonterminal A does two things.
 
  1. It decides which A-production to use by examining the lookahead symbol. 
- 	- The production with body α (where α is not ε, the empty string) is used if the lookahead symbol is in FIRST( α ). 
- 	- If there is a conflict between two nonempty bodies for any lookahead symbol, then we cannot use this parsing method on this grammar. 
- 	- In addition, the ε-production for A, if it exists, is used if the lookahead symbol is not in the FIRST set for any other production body for A.
+ - The production with body α (where α is not ε, the empty string) is used if the lookahead symbol is in FIRST( α ). 
+ - If there is a conflict between two nonempty bodies for any lookahead symbol, then we cannot use this parsing method on this grammar. 
+ - In addition, the ε-production for A, if it exists, is used if the lookahead symbol is not in the FIRST set for any other production body for A.
  2. The procedure then mimics 模仿 the body of the chosen production. 
- 	- That is, the symbols of the body are "executed" in turn, from the left. 
- 		- A nonterminal is "executed" by a call to the procedure for that nonterminal, 
- 		- and a terminal matching the lookahead symboi is "executed" by reading the next input symbol.
- 	- If at some point the terminal in the body does not match the lookahead symbol, a syntax error is reported.
+ - That is, the symbols of the body are "executed" in turn, from the left. 
+ - A nonterminal is "executed" by a call to the procedure for that nonterminal, 
+ - and a terminal matching the lookahead symboi is "executed" by reading the next input symbol.
+ - If at some point the terminal in the body does not match the lookahead symbol, a syntax error is reported.
 
 Just as a translation scheme is formed by extending a grammar, a syntax­ directed translator can be formed by extending a predictive parser. 
 
@@ -814,9 +814,9 @@ An algo­rithm for this purpose is given in Section 5.4. The following limited c
 
  - Construct a predictive parser, ignoring the actions in productions.
  - Copy the actions from the translation scheme into the parser. 
- 	- If an action appears after grammar symbol X in production p, then it is copied after the implementation of X in the code for p. 
- 	- Otherwise, if it appears at the beginning of the production, then it is copied just before the code for the production body.
- 	- 不理解
+ - If an action appears after grammar symbol X in production p, then it is copied after the implementation of X in the code for p. 
+ - Otherwise, if it appears at the beginning of the production, then it is copied just before the code for the production body.
+ - 不理解
 
 
 
@@ -827,7 +827,7 @@ An algo­rithm for this purpose is given in Section 5.4. The following limited c
 It is possible for a *recursive-descent* parser to loop forever. A problem arises with "left-recursive" productions like:
 
 ```
-	expr → expr + term 
+expr → expr + term 
 ```
 
 where the *leftmost symbol of the body* is the same as the head. 
@@ -849,7 +849,7 @@ A left-recursive production can be eliminated by rewriting the offending product
 For an example , consider a nonterminal A with two productions (ps. Immediate left recursion 句型):
 
 ```
-	A → Aα | β
+A → Aα | β
 ```
 
 where α and β are sequences of terminals and nonterminals that do not start with A. 
@@ -863,8 +863,8 @@ The nonterminal A and its production are said to be *left recursive*. Repeated a
 The same effect can be achieved, as in Fig. 2.20(b),  ***introduce a new nonterminal R*** and rewrite the rule as :
 
 ```
-	A → βR
-	R → αR | ε 
+A → βR
+R → αR | ε 
 ```
 
  - α ≠ ε is assumed.
@@ -921,8 +921,8 @@ In the abstract syntax tree for 9-5+2 in Fig. 2.22,
 
  - the root represents the operator +. 
  - The subtrees of the root represent the subexpressions 9-5 and 2. 
- 	- The grouping of 9-5 as an operand reflects the left-to-right evaluation of operators at the same precedence level. 
- 	- Since - and + have the same precedence, 9-5+2 is equivalent to (9-5) +2.
+ - The grouping of 9-5 as an operand reflects the left-to-right evaluation of operators at the same precedence level. 
+ - Since - and + have the same precedence, 9-5+2 is equivalent to (9-5) +2.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.22_ast_952.png)
 
@@ -951,8 +951,8 @@ The left-recursion-elimination technique sketched in Fig. 2.20 can also be ap­p
  In our example, A is *expr*, and there are two left­ recursive productions for *expr* and one is not. The technique transforms the productions A → Aα | Aβ | γ into
 
 ```
-	A → γR
-	γ → αR | βR | ε
+A → γR
+γ → αR | βR | ε
 ```
 
  - Second, we need to transform productions that have embedded actions, not just terminals and nonterminals. 
@@ -963,10 +963,10 @@ The left-recursion-elimination technique sketched in Fig. 2.20 can also be ap­p
 Example 2.13 : Consider the translation scheme of Fig. 2.15. Let :
 
 ```
-	A = expr
-	α = + term { print('+') }
-	β = - term { print('-') }
-	γ = term
+A = expr
+α = + term { print('+') }
+β = - term { print('-') }
+γ = term
 ```
 
 Then the left-recursion-eliminating transformation produces the translation scheme in Fig. 2.23. 
@@ -974,7 +974,7 @@ Then the left-recursion-eliminating transformation produces the translation sche
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.23.png)
 
  - The *expr* productions have been transformed into the productions for *expr*, and a new nonterminal *rest* 
- 	- *rest* plays the role of R. 
+ - *rest* plays the role of R. 
  - The productions for *term* do not be changed. 
 
 Figure 2.24 shows how 9-5+2 is translated.
@@ -995,20 +995,20 @@ Functions *expr*, *rest*, and *term* in Fig. 2.25 implement the syntax-directed 
 
 ```java
 void expr() { 
-	term(); rest();
+term(); rest();
 }
 void rest() { 
-	if ( lookahead == '+') {
-  		match('+'); term(); print('+'); rest();
-	}else if ( lookahead == '-' ) {
-		match('-'); term(); print('-'); rest();
-	}
-	else { } /* ε : do nothing with the input */ 
+if ( lookahead == '+') {
+  match('+'); term(); print('+'); rest();
+}else if ( lookahead == '-' ) {
+match('-'); term(); print('-'); rest();
+}
+else { } /* ε : do nothing with the input */ 
 }
 void term() {
-	if ( lookahead is a digit ) {
-		t = lookahead; match(lookahead); print(t); 
-	} else report("syntax error");
+if ( lookahead is a digit ) {
+t = lookahead; match(lookahead); print(t); 
+} else report("syntax error");
 }
 ```
 
@@ -1032,22 +1032,22 @@ The simplications will fold procedure *rest* into procedure *expr*. When express
 
 
  - First, certain recursive calls can be replaced by iterations. 
- 	- When the last statement executed in a procedure body is a recursive call to the same proce­dure, the call is said to be *tail recursive*. 
- 		- eg., in function rest, the calls of rest() with lookahead + and - .
- 	- For a procedure without parameters, a tail-recursive call can be replaced by a jump to the beginning of the procedure. 
- 		- The code for *rest* can be rewritten as the pseudocode of Fig. 2.26. 
+ - When the last statement executed in a procedure body is a recursive call to the same proce­dure, the call is said to be *tail recursive*. 
+ - eg., in function rest, the calls of rest() with lookahead + and - .
+ - For a procedure without parameters, a tail-recursive call can be replaced by a jump to the beginning of the procedure. 
+ - The code for *rest* can be rewritten as the pseudocode of Fig. 2.26. 
 
 
 ```java
 void rest() {
-	while( true ) {
-		if( lookahead == '+' ) {
-			match('+'); term(); print('+'); continue;
-		} else if ( lookahead == '-' ) {
-			match('-'); term(); print('-'); continue;
-		} 
-		break ;  // do nothing for ε
-	}
+while( true ) {
+if( lookahead == '+' ) {
+match('+'); term(); print('+'); continue;
+} else if ( lookahead == '-' ) {
+match('-'); term(); print('-'); continue;
+} 
+break ;  // do nothing for ε
+}
 }
 ```
 
@@ -1055,8 +1055,8 @@ Figure 2.26: Eliminating tail recursion in the procedure rest of Fig. 2.25.
 
 
  - Second, once the tail-recursive calls are replaced by iterations, the only remaining call to *rest* is from within procedure *expr*. 
- 	- The two procedures can therefore be integrated into one.
- 	- 去掉 rest() 方法, 原来的 rest()调用， 改用 while 循环 替代
+ - The two procedures can therefore be integrated into one.
+ - 去掉 rest() 方法, 原来的 rest()调用， 改用 while 循环 替代
 
 > As a minor optimization, we could print before calling match to avoid the need to save the digit , in this example. 
 > In general, changing the order of actions and grammar symbols is risky, since it could change what the translation does.
@@ -1070,43 +1070,43 @@ Figure 2.26: Eliminating tail recursion in the procedure rest of Fig. 2.25.
 import java.io.*; 
 
 class Parser {
-	static int lookahead;
+static int lookahead;
 
-	public Parser() throws IOException { 
-		lookahead = System.in.read(); //read 1 char
-	}
-	void expr() throws IOException { 
-		term() ;
-		// rest()
-		while (true) {  
-			if( lookahead == '+' ) {
-				match('+'); term(); System.out.write('+');
-			}
-			else if( lookahead == '-' ) {
-				match('-'); term(); System.out.write('-');
-			}
-			else return;
-		}
-	}
-	void term() throws IOException {
-		if( Character.isDigit( (char)lookahead) ) {
-			System.out.write((char)lookahead) ; 
-			match(lookahead) ;
-		}
-		else throw new Error("syntax error") ;
-	}
-	void match(int t) throws IOException {
-		//read 1 char
-		if( lookahead == t ) lookahead = System.in.read(); 
-		else throw new Error("syntax error") ;
-	} 
+public Parser() throws IOException { 
+lookahead = System.in.read(); //read 1 char
+}
+void expr() throws IOException { 
+term() ;
+// rest()
+while (true) {  
+if( lookahead == '+' ) {
+match('+'); term(); System.out.write('+');
+}
+else if( lookahead == '-' ) {
+match('-'); term(); System.out.write('-');
+}
+else return;
+}
+}
+void term() throws IOException {
+if( Character.isDigit( (char)lookahead) ) {
+System.out.write((char)lookahead) ; 
+match(lookahead) ;
+}
+else throw new Error("syntax error") ;
+}
+void match(int t) throws IOException {
+//read 1 char
+if( lookahead == t ) lookahead = System.in.read(); 
+else throw new Error("syntax error") ;
+} 
 }
 
 public class Postfix {
-	public static void main(String[] args) throws IOException {
-		Parser parse = new Parser() ;
-		parse.expr() ; System.out.write('\n') ;
-	}
+public static void main(String[] args) throws IOException {
+Parser parse = new Parser() ;
+parse.expr() ; System.out.write('\n') ;
+}
 }
 ```
 
@@ -1133,9 +1133,9 @@ Since the expression grammar of Fig. 2.21 must be extended to allow numbers and 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.28.png)   
 
  - The terminal **num** is assumed to have an attribute **num**.value, 
- 	which gives the integer value corresponding to this occurrence of **num** . 
+ which gives the integer value corresponding to this occurrence of **num** . 
  - Terminal **id** has a string-valued attribute written as **id**.lexeme; 
- 	- we assume this string is the actual lexeme comprising this instance of the token id.
+ - we assume this string is the actual lexeme comprising this instance of the token id.
 
 Section 3.5 de­scribes a tool called *Lex* that generates a lexical analyzer from a specification. Symbol tables or data structures for holding information about identifiers are considered in Section 2.7.
 
@@ -1152,12 +1152,12 @@ Most languages allow arbitrary amounts of white space to appear between tokens. 
 
 ```java
 for ( ; ; peek = next input character ) {
-	if ( peek is a blank or a tab ) do nothing; 
-	else if ( peek is a newline ) line = line+1; 
-	else break;
+if ( peek is a blank or a tab ) do nothing; 
+else if ( peek is a newline ) line = line+1; 
+else break;
 }
 ```
-	
+
 Figure 2.29: Skipping white spac
 
  - Variable peek holds the next input character. 
@@ -1204,19 +1204,19 @@ When a sequence of digits appears in the input stream, the lexical analyzer pass
 If we write tokens as tuples enclosed between ( ), the input 31 + 28 + 59 is transformed into the sequence:
 
 ```
-	<num,31> <+> <num,28> <+> <num,59>
+<num,31> <+> <num,28> <+> <num,59>
 ```
 
 Hete, the terminal symbol + has no attributes, so its tuple is simply (+). The pseudocode in Fig. 2.30 reads the digits in an integer and accumulates the value of the integer using variable *v*.
 
 ```java
 if ( peek holds a digit ) { 
-	v= 0;
-	do {
-		v = v * 10 + integer value of digit peek; 
-		peek = next input character;
-	} while ( peek holds a digit ); 
-	return token <num, v>;
+v= 0;
+do {
+v = v * 10 + integer value of digit peek; 
+peek = next input character;
+} while ( peek holds a digit ); 
+return token <num, v>;
 }
 ```
 
@@ -1251,11 +1251,11 @@ The problem is easier to resolve if keywords are *reserved*; i.e., if they canno
 The lexical analyzer in this section solves two problems by using a table to hold character strings:
 
  - Single Representation.
- 	- A string table can insulate the rest of the compiler from the representation of strings, since the phases of the compiler can work with references or pointers to the string in the table. 
- 	- References can also be manipulated more efficiently than the strings themselves.
+ - A string table can insulate the rest of the compiler from the representation of strings, since the phases of the compiler can work with references or pointers to the string in the table. 
+ - References can also be manipulated more efficiently than the strings themselves.
  - Reserved Words
- 	- Reserved words can be implemented by initializing the string table with the reserved strings and their tokens. 
- 	- When the lexical analyzer reads a string or lexeme that could form an identifier, it first checks whether the lexeme is in the string table. If so, it returns the token from the table (**keyword** or **id**); otherwise, it returns a token with terminal **id**.
+ - Reserved words can be implemented by initializing the string table with the reserved strings and their tokens. 
+ - When the lexical analyzer reads a string or lexeme that could form an identifier, it first checks whether the lexeme is in the string table. If so, it returns the token from the table (**keyword** or **id**); otherwise, it returns a token with terminal **id**.
 
 In Java, a string table can be implemented as a hash table using a class called Hashtable. The declaratIon:
 
@@ -1269,14 +1269,14 @@ We shall use it to map lexemes to tokens. The pseudocode in Fig. 2.31 uses the o
 
 ```java
 if ( peek holds a letter ) {
-	collect letters or digits into a buffer b;
-	s = string formed from the characters in b; 
-	w = token returned by words.get(s);
-	if( w is not null ) return w;
-	else { 
-		Enter the key-value pair (s, <id, s)>) into words 
-		return token  <id, s>;
-	} 
+collect letters or digits into a buffer b;
+s = string formed from the characters in b; 
+w = token returned by words.get(s);
+if( w is not null ) return w;
+else { 
+Enter the key-value pair (s, <id, s)>) into words 
+return token  <id, s>;
+} 
 }
 ```
 
@@ -1293,13 +1293,13 @@ The pseudocode fragments so far in this section fit together to form a function 
 
 ```java
 Token scan() {
-	skip white space, as in Section 2.6.1;
-	handle numbers, as in Section 2.6.3;
-	handle reserved words and identifiers, as in Section 2.6.4;
-	/* if we get here, treat read-ahead character peek as a token */
-	Token t = new Token(peek);
-	peek = blank /* initialization, as discussed in Section 2.6.2 */ ; 
-	return t;
+skip white space, as in Section 2.6.1;
+handle numbers, as in Section 2.6.3;
+handle reserved words and identifiers, as in Section 2.6.4;
+/* if we get here, treat read-ahead character peek as a token */
+Token t = new Token(peek);
+peek = blank /* initialization, as discussed in Section 2.6.2 */ ; 
+return t;
 }
 ```
 
@@ -1316,17 +1316,17 @@ The classes for tokens and their fields are illustrated in Fig. 2.32; their meth
 ```java
 package lexer ; // File Token.java 
 public class Token {
-	public final int tag;
-	// constructor: new Token('+');
-	public Token(int t) { tag = t; }   
+public final int tag;
+// constructor: new Token('+');
+public Token(int t) { tag = t; }   
 }
 ```
 
 ```
 package lexer; // File Tag.java
 public class Tag {
-	public final static int
-		NUM = 256, ID = 257, TRUE = 258, FALSE = 259;  
+public final static int
+NUM = 256, ID = 257, TRUE = 258, FALSE = 259;  
 }
 ```
 
@@ -1340,8 +1340,8 @@ The Java code refers toTag.NUM and Tag.ID in places where the pseudocode referre
 package lexer; // File Num.java
 
 public class Num extends Token { 
-	public final int value;
-	public Num(int v) { super(Tag.NUM) ; value = v; }
+public final int value;
+public Num(int v) { super(Tag.NUM) ; value = v; }
 }
 ```
 
@@ -1349,10 +1349,10 @@ public class Num extends Token {
 package lexer ; // File Word.java 
 
 public class Word extends Token {
-	public final String lexeme; 
-	public Word(int t, String s) {
-		super(t) ; lexeme = new String(s) ;
-	}
+public final String lexeme; 
+public Word(int t, String s) {
+super(t) ; lexeme = new String(s) ;
+}
 }
 ```
 
@@ -1361,7 +1361,7 @@ Figure 2.33: Subclasses Num and Word of Token
 An object for the reserved word **true** can be created by executing
 
 ```java
-	new Word(Tag.TRUE, "true")
+new Word(Tag.TRUE, "true")
 ```
 
 Class **Lexer** for lexical analysis appears in Figs. 2.34 and 2.35. 
@@ -1423,13 +1423,13 @@ public class Lexer {
         return t;
     } 
     
-	public static void main(String[] args) throws IOException {
-		Lexer lex = new Lexer() ;
-		while(true) {
-			Token token = lex.scan() ;
-			System.out.println( "token:" +  token.toString() + " tag: " + token.tag );
-		}
-	}
+public static void main(String[] args) throws IOException {
+Lexer lex = new Lexer() ;
+while(true) {
+Token token = lex.scan() ;
+System.out.println( "token:" +  token.toString() + " tag: " + token.tag );
+}
+}
 }
 ```
 
@@ -1490,12 +1490,12 @@ The most-closely nested rule for blocks can be implemented by *chaining symbol t
 Example 2.15 :
 
 ```
-1)	{ 	int x₁; int y₁ ; 
-2)		{   int w₂, bool y₂; int z₂;
-3)			...w₂... ; ...x₁... ; ...
-4)		}
-5)		...w₀...;  ... x₁...; ...y₁...;
-6)	}
+1){ int x₁; int y₁ ; 
+2){   int w₂, bool y₂; int z₂;
+3)...w₂... ; ...x₁... ; ...
+4)}
+5)...w₀...;  ... x₁...; ...y₁...;
+6)}
 ```
 
 The subscript is not part of an identifier; it is in fact the line number of the declaration that applies to the identifier. 
@@ -1509,7 +1509,7 @@ Example 2.16  symbol tables for the pseudocode in Exam­ple 2.15:
  - B₂ is for the block starting at line 2. 
  - At the top of the figure is an additional symbol table B₀ for any global or default declarations provided by the language. 
  - During the time that we are analyzing lines 2 through 4, the environment is represented by a reference to the lowest symbol table - the one for B₂
- 	- When we move to line 5, the symbol table for B₂ becomes inaccessible, and the environment refers instead to the symbol table for B₁ , from which we can reach the global symbol table, but not the table for B₂ •
+ - When we move to line 5, the symbol table for B₂ becomes inaccessible, and the environment refers instead to the symbol table for B₁ , from which we can reach the global symbol table, but not the table for B₂ •
 
 Fig. 2.37 is a java implementation of chained symbol tables , class Symbol is not implemented yet .
 
@@ -1519,29 +1519,29 @@ package symbols;
 import java.util.*;
 
 public class Env {
-	private Hashtable table; 
-	protected Env prev;
-	
-	// Create a new symbol table.
-	public Env (Env p) {
-		table = new Hashtable() ; prev = p;
-	}
+private Hashtable table; 
+protected Env prev;
 
-	// Put a new entry in current symbol table.
-	public void put ( String s , Symbol sym) {
-		table.put(s, sym);
-	}
+// Create a new symbol table.
+public Env (Env p) {
+table = new Hashtable() ; prev = p;
+}
 
-	// Get an entry for an identifier 
-	// by searching the chain of tables
-	// start with the table for the current block
-	public Symbol get(String s) { 
-		for( Env e=this; e !=null; e=e.prev) {
-			Symbol found = (Symbol)(e.table.get(s));
-			if( found != null ) return found;
-		}
-		return null;
-	}
+// Put a new entry in current symbol table.
+public void put ( String s , Symbol sym) {
+table.put(s, sym);
+}
+
+// Get an entry for an identifier 
+// by searching the chain of tables
+// start with the table for the current block
+public Symbol get(String s) { 
+for( Env e=this; e !=null; e=e.prev) {
+Symbol found = (Symbol)(e.table.get(s));
+if( found != null ) return found;
+}
+return null;
+}
 }
 ```
 
@@ -1619,7 +1619,7 @@ This syntax tree represents an expression formed by applying the operator **op**
 For example, the semantically meaningful components of a C while-statement
 
 ```c
-	while ( expr ) stmt
+while ( expr ) stmt
 ```
 
 > The right parenthesis serves only to separate the expression from the statement. The left parenthesis actually has no meaning; it is there only to please the eye, since without it, C would allow unbalanced parentheses.
@@ -1637,7 +1637,7 @@ Class *Node* has two immediate subclasses: *Expr* for all kinds of expressions, 
 Each type of statement has a corresponding subclass of *Stmt*;  for example , for while statement, operator **while** corresponds to subclass *while*. A syntax-tree node for operator **while** with children x and y is created by the pseudocode 
 
 ```
-	new While(x,y)
+new While(x,y)
 ```
 
 When we study the detailed code in Appendix A, we shall see how methods are placed where they belong in this hierarchy of classes. In this section, we shall discuss only a few of the methods, informally.
@@ -1652,7 +1652,7 @@ First, the productions defining different types of statements are explained, fol
 
 #### Syntax Trees for Statements
 
-For each statement construct, we define an operator in the abstract syntax.	
+For each statement construct, we define an operator in the abstract syntax.
 
 > 每个语句定义一个 operator
 
@@ -1710,7 +1710,7 @@ as in
 
 ```
   stmts → stmts₁ stmt { stmts.n = new Seq(stmts₁.n, stmt.n); }
-  		|  ε  		  { stmts.n = null; }
+  |  ε    { stmts.n = null; }
 ```
 
 Example 2.18 : In FIg. 2.40 we see part of a syntax tree representing a block or statement list. 
@@ -1738,16 +1738,16 @@ In general, the grouping of operators in the abstract syntax is based on the nee
 
 CONCRETE SYNTAX | ABSTRACT SYNTAX
 :---:| ---
- = 		| assign
- \|\| 	| cond
- && 	| cond
- == !=	| rel ( relational comparison )
- < <= >= > 	| rel
- + - 	| op
- * / %	| op
- !		| not
- -<sub>unary</sub> 	| minus (一元)
- []		| access
+ = | assign
+ \|\| | cond
+ && | cond
+ == !=| rel ( relational comparison )
+ < <= >= > | rel
+ + - | op
+ * / %| op
+ !| not
+ -<sub>unary</sub> | minus (一元)
+ []| access
 
 Figure 2.41: Concrete and abstract syntax for several Java operators
 
@@ -1770,12 +1770,12 @@ Static checks are consistency checks that are done during compilation.
 Not only do they assure that a program can be compiled successfully, but they also have the potential for catching programming errors early, before a program is run. Static checking includes:
 
  - *Syntactic Checking*
- 	- There is more to syntax than grammars. For ex­ample, There are often many constraints are syntactic, although they are not encoded in, or enforced by, a grammar used for parsing.
- 		- eg. an identifier being declared at most once in a scope, 
- 		- eg. a break statement must have an enclosing loop or switch statement,
+ - There is more to syntax than grammars. For ex­ample, There are often many constraints are syntactic, although they are not encoded in, or enforced by, a grammar used for parsing.
+ - eg. an identifier being declared at most once in a scope, 
+ - eg. a break statement must have an enclosing loop or switch statement,
  - *Type Checking* 
- 	- The type rules of a language assure that an operator or function is applied to the right number and type of operands. 
- 	- If conversion between types is necessary, e.g., when an integer is added to a float, then the type-checker can insert an operator into the syntax tree to represent that conversion. We discuss type conversion, using the common term "*coercion*". 
+ - The type rules of a language assure that an operator or function is applied to the right number and type of operands. 
+ - If conversion between types is necessary, e.g., when an integer is added to a float, then the type-checker can insert an operator into the syntax tree to represent that conversion. We discuss type conversion, using the common term "*coercion*". 
 
 
 <h2 id="a226617c26f0efa2fab04802a7ecb968"></h2>
@@ -1789,8 +1789,8 @@ In general, complex static checks may need to be done by first constructing an i
 There is a distinction between the meaning of identifiers on the left and right sides of an assignment. In each of the assignments
 
 ```
-	i = 5;
-	i = i + 1;
+i = 5;
+i = i + 1;
 ```
 
  - the right side specifies an integer value, 
@@ -1812,7 +1812,7 @@ Type checking assures that the type of a construct matches that expected by its 
 For example, in the if-statement
 
 ```
-	if ( expr ) stmt
+if ( expr ) stmt
 ```
 
 the expression *expr* is expected to have type **boolean**.
@@ -1829,13 +1829,13 @@ else error;
 The idea of matching actual with expected types continues to apply, even in the following situations:
 
  - *Coercions*
- 	- A *coercion* occurs if the type of an operand is automatically converted to the type expected by the operator. 
- 	- The language definition specifies the allowable coercions. For example, the actual rule for **rel** discussed above might be that E₁.type and E₂.type are convertible to the same type. In that case, it would be legal to compare, say, an integer with a float.
+ - A *coercion* occurs if the type of an operand is automatically converted to the type expected by the operator. 
+ - The language definition specifies the allowable coercions. For example, the actual rule for **rel** discussed above might be that E₁.type and E₂.type are convertible to the same type. In that case, it would be legal to compare, say, an integer with a float.
  - *Overloading*
- 	- The operator + in Java represents *addition* when applied to integers; it means *concatenation* when applied to strings. 
- 	- A symbol is said to be overloaded if it has different meanings depending on its context. Thus, + is overloaded in Java. 
- 	- The meaning of an overloaded operator is determined by considering the known types of its operands and results. 
- 		- For example, we know that the + in z = x + Y is concatenation if we know that any of x, y, or z is of type string.
+ - The operator + in Java represents *addition* when applied to integers; it means *concatenation* when applied to strings. 
+ - A symbol is said to be overloaded if it has different meanings depending on its context. Thus, + is overloaded in Java. 
+ - The meaning of an overloaded operator is determined by considering the known types of its operands and results. 
+ - For example, we know that the + in z = x + Y is concatenation if we know that any of x, y, or z is of type string.
 
 ---
 
@@ -1854,7 +1854,7 @@ We illustrate the possibilities by walking syntax trees to generate three-addres
 Three-address code is a sequence of instructions of the form
 
 ```
-	x = y op z
+x = y op z
 ```
 
 where x, y, and z are names, constants, or compiler-generated temporaries; and **op** stands for an operator.
@@ -1862,8 +1862,8 @@ where x, y, and z are names, constants, or compiler-generated temporaries; and *
 Arrays will be handled by using the following two variants of instructions:
 
 ```
-	x[y] = z 
-	x = y[z]
+x[y] = z 
+x = y[z]
 ```
 
 Three-address instructions are executed in numerical sequence unless forced to do otherwise by a conditional or unconditional jump. We choose the following instructions for control flow:
@@ -1880,7 +1880,7 @@ A label L can be attached to any instruction by prepending a prefix *L:* . An in
 Finally, we need instructions that copy a value. The following three-address instruction copies the value of y into x:
 
 ```
-	x = y
+x = y
 ```
 
 <h2 id="325e35ed8e9e36ec01949e91f99bec8c"></h2>
@@ -1892,7 +1892,7 @@ Statements are translated into three-address code by using jump instructions to 
 The layout in Fig. 2.42 illustrates the translation of **if** *expr* **then** stmt₁ . The jump instruction in the layout
 
 ```
-	ifFalse x goto after
+ifFalse x goto after
 ```
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.42.png)
@@ -1901,20 +1901,20 @@ For concreteness, we show the pseudocode for class *If* in Fig. 2.43.
 
 ``` java
 class If extends Stmt { 
-	Expr E; Stmt S;
-	public If(Expr x, Stmt y) { 
-		E = x; S = y; after = newlabel(); 
-	} 
-	public void gen() {
-		Expr n = E.rvalue();
-		emit("ifFalse " + n.toString() 
-				+ " goto " + after); 
+Expr E; Stmt S;
+public If(Expr x, Stmt y) { 
+E = x; S = y; after = newlabel(); 
+} 
+public void gen() {
+Expr n = E.rvalue();
+emit("ifFalse " + n.toString() 
++ " goto " + after); 
 
-		//to generate three-address code
-		//for this kind of statement
-		S.gen();
-		emit(after+ ":");
-	} 
+//to generate three-address code
+//for this kind of statement
+S.gen();
+emit(after+ ":");
+} 
 }
 ```
 
@@ -1938,8 +1938,8 @@ We shall take the simple approach of generating one three-address instruc­tion 
 No code is generated for identifiers and constants, since they can appear as addresses in instructions. If a node *x* of class *Expr* has operator **op**, then an instruction is emitted to compute the value at node *x* into a compiler generated "temporary" name, say *t*. Thus, i-j+k translates into two instructions
 
 ```
-	t1 = i - j 
-	t2 = t1 + k
+t1 = i - j 
+t2 = t1 + k
 ```
 
 With array accesses and assignments comes the need to distinguish between l-values and r-values. 
@@ -1947,8 +1947,8 @@ With array accesses and assignments comes the need to distinguish between l-valu
 For example, 2*a[i] can be translated by computing the r-value of a[i] into a temporary, as in
 
 ```
-	t1 = a[i] 
-	t2 = 2 * t1
+t1 = a[i] 
+t2 = 2 * t1
 ```
 
 But if a [i] appears on the left side of an assignment, we cannot simply use a temporary in place of a[i] . 
@@ -1960,13 +1960,13 @@ The simple approach uses the two functions lvalue and rvalue.
 
 ```java
 Expr lvalue( x : Expr) {
-	// if node is for an identifier
-	if ( x is an Id node ) return x ;
-	else if ( x is an Access (y, z) node 
-			and y is an Id node ) {
-		return new Access(y, rvalue(z)); 
-	}
-	else error;
+// if node is for an identifier
+if ( x is an Id node ) return x ;
+else if ( x is an Access (y, z) node 
+and y is an Id node ) {
+return new Access(y, rvalue(z)); 
+}
+else error;
 }
 ```
 
@@ -1974,8 +1974,8 @@ Figure 2.44: Pseudocode for function lvalue
 
  - When applied to a node x, function lvalue simply returns x if it is the node for an identifier.
  - In this case, x will have the form Access(y,z), where class *Access* is a subclass of *Expr*, 
- 	- y represents the name of the accessed array, 
- 	- and z represents the offset (index) of the chosen element in that array.  
+ - y represents the name of the accessed array, 
+ - and z represents the offset (index) of the chosen element in that array.  
  - function lvalue calls rvalue(z) to generate instructions, if needed, to compute the r-value of z
  - function lvalue then constructs and returns a new Access node with children for the array name y and the r-value of z.
 
@@ -1983,8 +1983,8 @@ Example 2.19 : When node x represents the array access a[2\*k] , the call lvalue
 
 In detail, the code fragment `return new Access (y, rvalue(z)); ` is reached with 
 
-	- y being the node for a 
-	- and z being the node for expression 2\*k. 
+- y being the node for a 
+- and z being the node for expression 2\*k. 
 
 The call rvalue(z) generates code for the expression 2\*k and returns the new node z' representing the temporary name t. 
 
@@ -1992,23 +1992,23 @@ Function *rvalue* in Fig. 2.45 generates instructions and returns a possibly new
 
 ```java
 Expr rvalue(x : Expr) {
-	if ( x is an Id or a Constant node ) return X; 
-	else if (x is an Op(op,y,z) or a Rel(op,y,z) node) {
-		t = new temporary;
-		emit string for t = rvalue(y) op rvalue(z) ; 
-		return a new node for t;
-	}
-	else if ( x is an Access (y, z) node ) { 
-		t = new temporary;
-		call lvalue(x) , which returns Access (y, z') ; 
-		emit string for t = Access(y,z');
-		return a new node for t;
-	}
-	else if ( x is an Assign (y, z) node ) { 
-		z' = rvalue(z) ;
-		emit string for lvalue(y) = z'; 
-		return z' ;
-	} 
+if ( x is an Id or a Constant node ) return X; 
+else if (x is an Op(op,y,z) or a Rel(op,y,z) node) {
+t = new temporary;
+emit string for t = rvalue(y) op rvalue(z) ; 
+return a new node for t;
+}
+else if ( x is an Access (y, z) node ) { 
+t = new temporary;
+call lvalue(x) , which returns Access (y, z') ; 
+emit string for t = Access(y,z');
+return a new node for t;
+}
+else if ( x is an Assign (y, z) node ) { 
+z' = rvalue(z) ;
+emit string for lvalue(y) = z'; 
+return z' ;
+} 
 }
 ```
 
@@ -2026,26 +2026,26 @@ The cases are as follows:
 Example 2.20 : When applied to the syntax tree for
 
 ```java
-	a[i] = 2*a[j-k]
+a[i] = 2*a[j-k]
 ```
 
 function *rvalue* generates
 
 ```
-	t3 = j - k
-	t2 = a[t3] 
-	t1 = 2 * t2 
-	a[i] = t1
+t3 = j - k
+t2 = a[t3] 
+t1 = 2 * t2 
+a[i] = t1
 ```
 
  - the root is an *Assign* node with a[i] and 2*a[j -k] .
  - Thus, the third case applies, function *rvalue* recursively evaluates 2*a[j-kJ.
- 	- subtree is the *Op* node for *
- 		- which causes a new temporary t1 to be created
- 		- constant 2 generates no three-address code, and its r-value is returned as a Constant node with value 2.
- 		- a[j-k] is an Access node, which causes a new temporary t2 to be created, before function lvalue is called on this node
+ - subtree is the *Op* node for *
+ - which causes a new temporary t1 to be created
+ - constant 2 generates no three-address code, and its r-value is returned as a Constant node with value 2.
+ - a[j-k] is an Access node, which causes a new temporary t2 to be created, before function lvalue is called on this node
  - Recursively, rvalue is called on the expression j - k
- 	- As a side-effect of this call, the three­ address statement t3 = j - k is generated
+ - As a side-effect of this call, the three­ address statement t3 = j - k is generated
  - Then, returning to the call of lvalue on a[j -k] , the temporary t2 is assigned the r-value of the entire access-expression, that is, t2 = a [ t3 ] .
  - Now, we return to the call of *rvalue* on the *Op* node 2*a [j -k] , which earlier created temporary t1 . A three-address statement t1 = 2 * t2 is generated as a side-effect.
  - Last, the call to rvalue on the whole expression completes by calling *lvalue* on the left side a[iJ and then generating a three-address instruction a[i] = t1.
@@ -2057,14 +2057,14 @@ function *rvalue* generates
 We can improve on function *rvalue* in Fig. 2.45 and generate fewer three-address instructions, in several ways:
 
  - Reduce the number of copy instructions in a subsequent optimization phase. 
- 	- For example, the pair of instructions `t = i+1` and `i = t` can be combined into `i = i+ 1` , if there are no subsequent uses of t .
+ - For example, the pair of instructions `t = i+1` and `i = t` can be combined into `i = i+ 1` , if there are no subsequent uses of t .
  - Generate fewer instructions in the first place by taking context into ac­count. 
- 	- For example, if the left side of a three-address assignment is an array access a[t] , then the right side must be a name, a constant, or a temporary, all of which use just one address. But if the left side is a name x, then the right side can be an operation y **op** z that uses two addresses.
+ - For example, if the left side of a three-address assignment is an array access a[t] , then the right side must be a name, a constant, or a temporary, all of which use just one address. But if the left side is a name x, then the right side can be an operation y **op** z that uses two addresses.
 
 We can avoid some copy instructions by modifying the translation functions to generate a partial instruction that computes, say j+k, but does not commit to where the result is to be placed, signified by a null address for the result:
 
 ```java
-	null = j + k 	(2.8)
+null = j + k (2.8)
 ```
 
 The null result address is later replaced by either an identifier or a temporary, as appropriate. 
@@ -2072,14 +2072,14 @@ The null result address is later replaced by either an identifier or a temporary
 If j+k is on the right side of an assigriment, as in `i=j+k ;` , *null* is replaced by an identifier. 
 
 ```java
-	i = j + k
+i = j + k
 ```
 
 But, if j+k is a subexpression, as in `j+k+1`, then the null result address in is replaced by a new temporary t, and a new partial instruction is generated
 
 ```java
-	t = j + k
-	null = t + 1
+t = j + k
+null = t + 1
 ```
 
 ---

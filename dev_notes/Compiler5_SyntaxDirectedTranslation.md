@@ -29,7 +29,7 @@ This production has two nonterminals, E and T; the subscript in E₁ distin­gui
 From Section 2.3.5, a syntax-directed translation scheme embeds program fragments called semantic actions within production bodies, as in
 
 ```
-E → E₁ + T 	{ print '+'} 	(5.2)
+E → E₁ + T { print '+'} (5.2)
 ```
 
 By convention, semantic actions are enclosed within curly braces. (If curly braces occur as grammar symbols, we enclose them within single quotes, as in '{' and '}'.)  The position of a semantic action in a production body determines the order in which the action is executed. In production (5.2), the action occurs at the end, after all the grammar symbbls; in general, semantic actions may occur at any position in a production body.

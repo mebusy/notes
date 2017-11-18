@@ -127,15 +127,15 @@ P(X₂=sun) = P(X₂=sun,X₁=sun) + P(X₂=sun,X₁=rain)
 ### Stationary Distributions
 
  - For most chains:
-	- Influence of the initial distribution gets less and less over time.
+- Influence of the initial distribution gets less and less over time.
     - The distribution we end up in is independent of the initial distribution
  - Stationary distribution:
-	- The distribution we end up with is called the stationary distribution           of the chain
-	- It satisfies  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_stationary_distributions.png)
+- The distribution we end up with is called the stationary distribution           of the chain
+- It satisfies  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_stationary_distributions.png)
 
  - As the property of markov matrix , it will converge to 0.94868/0.31623 = 3:1, that means:
-	- P<sub>∞</sub>(sun) = 3/4
-	- P<sub>∞</sub>(rain) = 1/4 
+- P<sub>∞</sub>(sun) = 3/4
+- P<sub>∞</sub>(rain) = 1/4 
 
 ```
 octave:6> a = [ 0.9 0.3 ; 0.1 0.7 ]

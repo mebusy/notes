@@ -90,17 +90,17 @@ char *datac;
 // start decrypt
 if(name != NULL)
 {
-	if(strstr(name,"Assembly-CSharp.dll")){
-		// TODO decrypt
-	}
+if(strstr(name,"Assembly-CSharp.dll")){
+// TODO decrypt
+}
 }
 // end decrypt
 
 
 if (!data || !data_len) {
-	if (status)
-		*status = MONO_IMAGE_IMAGE_INVALID;
-	return NULL;
+if (status)
+*status = MONO_IMAGE_IMAGE_INVALID;
+return NULL;
 }
 ```
    

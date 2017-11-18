@@ -300,27 +300,27 @@ Caution: __syncthreads() can significantly reduce active threads in a block. Thi
 ```
 __global__ void MatrixMulKernel(int m, int n, int k, float* A,float* B, float* C)
 {
-	__shared__ float ds_A[TILE_WIDTH][TILE_WIDTH];
-	__shared__ float ds_B[TILE_WIDTH][TILE_WIDTH];
-	int bx = blockIdx.x; int by = blockIdx.y;
-	int tx = threadIdx.x; int ty = threadIdx.y;
-	int Row = by * blockDim.y + ty;
-	int Col = bx * blockDim.x + tx;
-	float Cvalue = 0;
+__shared__ float ds_A[TILE_WIDTH][TILE_WIDTH];
+__shared__ float ds_B[TILE_WIDTH][TILE_WIDTH];
+int bx = blockIdx.x; int by = blockIdx.y;
+int tx = threadIdx.x; int ty = threadIdx.y;
+int Row = by * blockDim.y + ty;
+int Col = bx * blockDim.x + tx;
+float Cvalue = 0;
     // Loop over the A and B tiles required 
     // to compute the C element
-	for (int t = 0; t < n/TILE_WIDTH; ++t) {
+for (int t = 0; t < n/TILE_WIDTH; ++t) {
         // Collaborative loading of A and B tiles 
         // into shared memory
-    	ds_A[ty][tx] = A[Row*n + t*TILE_WIDTH+tx];
-    	ds_B[ty][tx] = B[(t*TILE_WIDTH+ty)*k + Col];
-    	__syncthreads();
-    	// calc vector dot
-    	for (int i = 0; i < TILE_WIDTH; ++i)
-        	Cvalue += ds_A[ty][i] * ds_B[i][tx];
+    ds_A[ty][tx] = A[Row*n + t*TILE_WIDTH+tx];
+    ds_B[ty][tx] = B[(t*TILE_WIDTH+ty)*k + Col];
+    __syncthreads();
+    // calc vector dot
+    for (int i = 0; i < TILE_WIDTH; ++i)
+        Cvalue += ds_A[ty][i] * ds_B[i][tx];
         __syncthreads();
     }
-	C[Row*k+Col] = Cvalue;
+C[Row*k+Col] = Cvalue;
 }
 ```
      
@@ -454,25 +454,25 @@ Else , load 0
     ...
 
     for (int t = 0; t < (n-1)/TILE_WIDTH + 1; ++t) {
-    	if(Row < m && t*TILE_WIDTH+tx < n) {
-    	    ds_A[ty][tx] =A[Row*n + t*TILE_WIDTH+ tx];
-    	} else {
-    	    ds_A[ty][tx] = 0.0;
-    	}
-    	if (t*TILE_WIDTH+ty < n && Col < k) {
-    	    ds_B[ty][tx] =B[(t*TILE_WIDTH + ty)*k +Col];
-    	} else {
-    	    ds_B[ty][tx] = 0.0;
-    	}
-    	__syncthreads();
-    	
-    	for (int i = 0; i < TILE_WIDTH; ++i) {
-    	    Cvalue += ds_A[ty][i] * ds_B[i][tx];
+    if(Row < m && t*TILE_WIDTH+tx < n) {
+        ds_A[ty][tx] =A[Row*n + t*TILE_WIDTH+ tx];
+    } else {
+        ds_A[ty][tx] = 0.0;
+    }
+    if (t*TILE_WIDTH+ty < n && Col < k) {
+        ds_B[ty][tx] =B[(t*TILE_WIDTH + ty)*k +Col];
+    } else {
+        ds_B[ty][tx] = 0.0;
+    }
+    __syncthreads();
+    
+    for (int i = 0; i < TILE_WIDTH; ++i) {
+        Cvalue += ds_A[ty][i] * ds_B[i][tx];
         }
-    	__syncthreads();
+    __syncthreads();
     } /* end of outer for loop */
-    	
-	if (Row < m && Col < k)
-	    C[Row*k + Col] = Cvalue;
+    
+if (Row < m && Col < k)
+    C[Row*k + Col] = Cvalue;
 } /* end of kernel */
 ```

@@ -31,7 +31,7 @@ The first step is to understand how eigenvalues can be useful. One of their appl
 
 ```
 dv/dt = 4v - 5w,  v = 8 at t=0,
-dw/dt = 2v - 3w,  w = 5 at t=0.		(1)
+dw/dt = 2v - 3w,  w = 5 at t=0.(1)
 ```
 
 This is an ***initial-value problem***. The unknown is specified at time t = 0 by the given initial values 8 and 5. The problem is to find v(t) and w(t) for later times t > 0. 
@@ -42,7 +42,7 @@ It is easy to write the system in matrix form. Let the unknown vector be u(t), w
 Vector unknown :
 
 u(t) = ⎡v(t)⎤, u(0) = ⎡8⎤,  A = ⎡4 -5⎤
-	   ⎣w(t)⎦		  ⎣5⎦		⎣2 -3⎦
+   ⎣w(t)⎦  ⎣5⎦⎣2 -3⎦
 ```
 
 The two coupled equations become the vector equation we want:
@@ -61,13 +61,13 @@ would be easy to answer. We would have a scalar instead of a vector equation:
 ```
 Single equation :
 
-du/dt = au   with  u = u(0) at t=0	(3)
+du/dt = au   with  u = u(0) at t=0(3)
 ```
 
 The solution to this equation is the one thing you need to know:
 
 ```
-Pure exponential 	u(t) = eᵅᵗu(0)	(4)
+Pure exponential u(t) = eᵅᵗu(0)(4)
 ```
 
 At the initial time t = 0, u equals u(0) because e⁰ = 1. The derivative of eᵅᵗ has the required factor *a*, so that du/dt = au. Thus the initial condition and the equation are both satisfied.
@@ -92,7 +92,7 @@ he factor e<sup>λ</sup>ᵗ is common to every term, and can be removed. This ca
 Eigenvalue problem :
 
 4y - 5z = λy
-2y - 3z = λz.	  (7)
+2y - 3z = λz.  (7)
 ```
 
 That is the eigenvalue equation. 
@@ -102,7 +102,7 @@ In matrix form it is Ax = λx. You can see it again if we use u = e<sup>λ</sup>
 ```
 Eigenvalue equation :
 
-Ax = λx.	(8)
+Ax = λx.(8)
 ```
 
 Now we have the fundamental equation of this chapter. It involves two unknowns λ and x. It is an algebra problem, and differential equations can be forgotten! The number λ (lambda) is an ***eigenvalue*** of the matrix A, and the vector x is the associated ***eigenvector***.
@@ -115,7 +115,7 @@ Our goal is to find the eigenvalues and eigenvectors, λ's and x's, and to use t
 Notice that Ax = λx is a nonlinear equation; λ multiplies x. If we could discover λ., then the equation for x would be linear. In fact we could write λIx in place of λx, and bring this term over to the left side:
 
 ```
-(A - λI)x = 0.		(9)
+(A - λI)x = 0.(9)
 ```
 
 The identity matrix keeps matrices and vectors straight; the equation (A - λ)x = 0 is
@@ -131,13 +131,13 @@ For this, the determinant gives a conclusive test.
 **5A**: The number λ is an eigenvalue of A if and only if A - λI is singular:
 
 ```
-det( A - λI ) = 0.		(10)
+det( A - λI ) = 0.(10)
 ```
 
 This is the characteristic equation. Each λ is associated with eigenvectors x:
 
 ```
-(A - λI)x = 0	or 	 Ax = λx.	(11)
+(A - λI)x = 0or  Ax = λx.(11)
 ```
 
 In our example, we shift A by λI to make it singular:
@@ -146,7 +146,7 @@ In our example, we shift A by λI to make it singular:
 Subtract λI :
 
 A - λI = ⎡4-λ   -5 ⎤.
-		 ⎣ 2   -3-λ⎦
+ ⎣ 2   -3-λ⎦
 ```
 
 Note that λ is subtracted only from the main diagonal (because it multiplies I).
@@ -168,7 +168,7 @@ The values λ = -1 and λ = 2 lead to a solution of Ax = λx or (A - λI )x = 0.
 
 ```
 λ₁ = -1: (A - λ₁I)x = ⎡5  -5⎤⎡y⎤ = ⎡0⎤.
-					  ⎣2  -2⎦⎣z⎦   ⎣0⎦
+  ⎣2  -2⎦⎣z⎦   ⎣0⎦
 ```
 
 The solution (the first eigenvector) is any nonzero multiple of x₁:
@@ -177,14 +177,14 @@ The solution (the first eigenvector) is any nonzero multiple of x₁:
 Eigenvector for λ₁ :
 
 x₁ = ⎡1⎤.
-	 ⎣1⎦
+ ⎣1⎦
 ```
 
 The computation for λ₂ is done separately:
 
 ```
 λ₂ = 2: (A - λ₂I)x = ⎡2  -5⎤⎡y⎤ = ⎡0⎤.
-					 ⎣2  -5⎦⎣z⎦   ⎣0⎦
+ ⎣2  -5⎦⎣z⎦   ⎣0⎦
 ```
 
 The second eigenvector is any nonzero multiple of x₂:
@@ -193,7 +193,7 @@ The second eigenvector is any nonzero multiple of x₂:
 Eigenvector for λ₂ :
 
 x₂ = ⎡5⎤.
-	 ⎣2⎦
+ ⎣2⎦
 ```
 
 You might notice that the columns of A - λ₁I give x₂, and the columns of A - λ₂I are multiples of x₁. *This is special (and useful) for 2 by 2 matrices*.
@@ -203,11 +203,11 @@ In the 3 by 3 case, I often set a component of x equal to 1 and solve (A - λI)x
 Before going back to the application (the differential equation), we emphasize the steps in solving Ax = λx:
 
  1. ***Compute the determinant of A - λI***. 
- 	- With λ, subtracted along the diagonal, this determinant is a polynomial of degree n. It starts with (-λ)ⁿ.
+ - With λ, subtracted along the diagonal, this determinant is a polynomial of degree n. It starts with (-λ)ⁿ.
  2. ***Find the roots of this polynomial***. 
- 	- The n roots are the eigenvalues of A.
+ - The n roots are the eigenvalues of A.
  3. ***For each eigenvalue solve the equation (A - λI)x = 0***. 
- 	- Since the determinant is zero, there are solutions other than x = 0. Those are the eigenvectors.
+ - Since the determinant is zero, there are solutions other than x = 0. Those are the eigenvectors.
 
 
 In the differential equation, this produces the special solutions u = e<sup>λ</sup>ᵗx . They are the *pure exponential solutions* to du/dt = Au. Notice e⁻ᵗ and e²ᵗ:
@@ -249,14 +249,14 @@ Example 1: Everything is clear when A is a ***diagonal matrix***:
 
 ```
 A = ⎡3 0⎤ has λ₁ = 3 with x₁ = ⎡1⎤,  λ₂ = 2 with x₂ = ⎡0⎤.
-	⎣0 2⎦  					   ⎣0⎦					  ⎣1⎦
+⎣0 2⎦     ⎣0⎦  ⎣1⎦
 ```
 
 On each eigenvector A acts like a multiple of the identity: Ax₁ = 3x₁ and Ax₂ = 2x₂. Other vectors like x = (1, 5) are mixtures x₁ + 5x₂ of the two eigenvectors, and when A multiplies x₁ and x₂ it produces the eigenvalues  λ₁ = 3 and x₂ = 2:
 
 ```
 A  times  x₁+5x₂  is 3x₁+10x₂ = ⎡ 3⎤.  
-								⎣10⎦
+⎣10⎦
 ```
 
 This is Ax for a typical vector x -- not an eigenvector. But the action of A is determined by its eigenvectors and eigenvalues.
@@ -267,7 +267,7 @@ Example 2: The eigenvalues of a ***projection matrix*** are 1 or 0!
 
 ```
 P = ⎡1/2 1/2⎤ has λ₁ = 1 with x₁ = ⎡1⎤,  λ₂ = 0 with x₂ = ⎡ 1⎤.
-	⎣1/2 1/2⎦  					   ⎣1⎦					  ⎣-1⎦
+⎣1/2 1/2⎦     ⎣1⎦  ⎣-1⎦
 ```
 
 We have λ = 1 when x projects to itself, and λ = 0 when x projects to the zero vector. The column space of P is filled with eigenvectors, and so is the nullspace. If those spaces have dimension r and n - r, then k = 1 is repeated r times and A = 0 is repeated n - r times (always n λ's):
@@ -275,10 +275,10 @@ We have λ = 1 when x projects to itself, and λ = 0 when x projects to the zero
 ```
 Four eigenvalues allowing repeats:
 
-	⎡1 0 0 0⎤
-P = ⎢0 0 0 0⎥ 	has λ = 1,1,0,0
- 	⎢0 0 0 0⎥   
-	⎣0 0 0 1⎦ 
+⎡1 0 0 0⎤
+P = ⎢0 0 0 0⎥ has λ = 1,1,0,0
+ ⎢0 0 0 0⎥   
+⎣0 0 0 1⎦ 
 ```
 
 ***There is nothing exceptional about λ = 0***. Like every other number, zero might be an eigenvalue and it might not. If it is, then its eigenvectors satisfy Ax = Ox. Thus x is in the nullspace of A. A zero eigenvalue signals that A is singular (not invertible); its determinant is zero. Invertible matrices have all λ ≠ 0.
@@ -319,7 +319,7 @@ There should be no confusion between the diagonal entries and the eigenvalues. F
 
 ```
 det(A-λI) = det |a-λ   b | = λ² - (trace)λ + determinat 
-				| c   d-λ|
+| c   d-λ|
 ```
 
  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigenvalue_formular_for_2x2.png)
@@ -336,11 +336,11 @@ It starts with the unit vector x = (1, 0). *The mouse makes this vector move aro
 The eigenvalue λ is the length of Ax, when the ***unit*** eigenvector x is parallel. The built-in choices for A illustrate three possibilities: 0, 1, or 2 real eigenvectors.
 
  1. There are *no real eigenvectors*. Ax *stays behind or ahead of* x. 
- 	This means the eigenvalues and eigenvectors are complex, as they are for the rotation Q.
+ This means the eigenvalues and eigenvectors are complex, as they are for the rotation Q.
  2. There is only one line of eigenvectors (unusual).  The moving directions Ax and x meet but don't cross. 
- 	- This happens for the last 2 by 2 matrix below.
+ - This happens for the last 2 by 2 matrix below.
  3. There are eigenvectors in two independent directions. This is typical! 
- 	- Ax crosses x at the first eigenvector x₁, and it crosses back at the second eigenvector x₂.
+ - Ax crosses x at the first eigenvector x₁, and it crosses back at the second eigenvector x₂.
 
 Suppose A is singular (rank 1). Its column space is a line. The vector Ax has to stay on that line while x circles around. 
 
@@ -350,7 +350,7 @@ You can mentally follow x and Ax for these six matrices. How many eigenvectors a
 
 ```
 A = ⎡2 0⎤ ⎡2  0⎤ ⎡0 1⎤ ⎡ 0 1⎤ ⎡1 1⎤ ⎡1 1⎤ 
-	⎣0 1⎦ ⎣0 -1⎦ ⎣1 0⎦ ⎣-1 0⎦ ⎣1 1⎦ ⎣0 1⎦ 
+⎣0 1⎦ ⎣0 -1⎦ ⎣1 0⎦ ⎣-1 0⎦ ⎣1 1⎦ ⎣0 1⎦ 
 ```
 
 
@@ -368,7 +368,7 @@ We start right off with the one essential computation. It is perfectly simple an
 Diagonalization:
 
               ⎡λ₁       ⎤
-  S⁻¹AS = Λ = ⎢  λ₂     ⎥.	(1)
+  S⁻¹AS = Λ = ⎢  λ₂     ⎥.(1)
               ⎢    ...  ⎥
               ⎣       λn⎦
 ```
@@ -396,7 +396,7 @@ AS = ⎢λ₁x₁ λ₂x₂ ... λnxn⎥ = ⎢ x₁ x₂ ... xn ⎥ ⎢  λ₂  
 ```
 
 ```
-AS = SΛ , or S⁻¹AS = Λ , or A = SΛS⁻¹	(2)
+AS = SΛ , or S⁻¹AS = Λ , or A = SΛS⁻¹(2)
 ```
 
 S is invertible, because its columns (the eigenvectors) were assumed to be independent. 
@@ -419,21 +419,21 @@ Repeated eigenvalues leave even more freedom in S. For the trivial example A = I
 
 ```
 A = ⎡0 1⎤. 
-	⎣0 0⎦ 
+⎣0 0⎦ 
 ```
 
 Its eigenvalues are λ₁ = λ₂ = 0, since it is triangular with zeros on the diagonal:
 
 ```
 det( A-λI ) = det⎡-λ  1⎤ = λ² . 
-				 ⎣ 0 -λ⎦ 
+ ⎣ 0 -λ⎦ 
 ```
 
 All eigenvectors of this A are multiples of the vector (1, 0):
 
 ```
   ⎡0 1⎤x = ⎡0⎤,  or x = ⎡c⎤. 
-  ⎣0 0⎦    ⎣0⎦ 			⎣0⎦ 
+  ⎣0 0⎦    ⎣0⎦ ⎣0⎦ 
 ```
 
 λ = 0 is a double eigenvalue -- its *algebraic multiplicity* (代数重数) is 2. But the *geometric multiplicity* is 1 -- there is only one independent eigenvector. We can't construct S.
@@ -446,7 +446,7 @@ That failure of diagonalization was ***not*** a result of λ = 0. It came from �
 Repeated eigenvalues:
 
 A = ⎡3 1⎤  and A = ⎡2 -1⎤. 
-    ⎣0 3⎦    	   ⎣1  0⎦ 
+    ⎣0 3⎦       ⎣1  0⎦ 
 ```
 
 Their eigenvalues are 3, 3 and 1, 1. They are not singular! The problem is the shortage of eigenvectors -- which are needed for S. That needs to be emphasized:
@@ -482,7 +482,7 @@ Example 1: The projection A = [0.5 0.5 ; 0.5 0.5] has eigenvalue matrix [1 0 ; 0
 
 ```
 S = ⎡1  1⎤  and AS = SΛ = ⎡1 0⎤. 
-    ⎣1 -1⎦    	   		  ⎣1 0⎦ 
+    ⎣1 -1⎦         ⎣1 0⎦ 
 ```
 
 The last equation can be verified at a glance. Therefore S⁻¹AS = Λ.
@@ -500,17 +500,17 @@ The eigenvalues of K are *imaginary numbers*, A₁ = i and A₂ = -i. The eigenv
 
 ```
 (K-λ₁I)x₁ = ⎡-i -1⎤⎡y⎤ = ⎡0⎤  and  x₁ = ⎡ 1⎤
-    		⎣ 1 -i⎦⎣z⎦   ⎣0⎦ 			⎣-i⎦ 
+    ⎣ 1 -i⎦⎣z⎦   ⎣0⎦ ⎣-i⎦ 
 
 (K-λ₂I)x₂ = ⎡ i -1⎤⎡y⎤ = ⎡0⎤  and  x₂ = ⎡ 1⎤. 
-    		⎣ 1  i⎦⎣z⎦   ⎣0⎦ 			⎣-i⎦ 
+    ⎣ 1  i⎦⎣z⎦   ⎣0⎦ ⎣-i⎦ 
 ```
 
 The eigenvalues are distinct, even if imaginary, and the eigenvectors are independent. They go into the columns of S:
 
 ```
 S = ⎡ 1 1⎤  and   S⁻¹KS = ⎡i  0⎤. 
-    ⎣-i i⎦    	   		  ⎣0 -i⎦ 
+    ⎣-i i⎦         ⎣0 -i⎦ 
 ```
 
 We are faced with an inescapable fact, that ***complex numbers are needed even for real matrices***. If there are too few real eigenvalues, there are always n complex eigenvalues. (Complex includes real, when the imaginary part is zero.) If there are too few eigenvectors in the real world R³, or in Rⁿ, we look in C³ or Cⁿ. The space Cⁿ contains all column vectors with complex components, and it has new definitions of length and inner product and orthogonality. But it is not more difficult than Rⁿ , and in Section 5.5 we make an easy conversion to the complex case.
@@ -520,7 +520,7 @@ We are faced with an inescapable fact, that ***complex numbers are needed even f
 There is one more situation in which the calculations are easy. ***The eigenvalues of A² are exactly λ₁², ... , λn² , and every eigenvector of A is also an eigenvector of A²***. We start from Ax = λx, and multiply again by A:
 
 ```
-A²x = Aλx = λAx = λ²x.		(3)
+A²x = Aλx = λAx = λ²x.(3)
 ```
 
 Thus λ² is an eigenvalue of A², with the same eigenvector x.  If the first multiplication by A leaves the direction of x unchanged, then so does the second.
@@ -538,7 +538,7 @@ The matrix A² is diagonalized by the same S, *so the eigenvectors are unchanged
 **5E** The eigenvalues of Aᵏ are λ₁ᵏ, ... , λnᵏ, and each eigenvector of A is still an eigenvector of Aᵏ. When S diagonalizes A. it also diagonalizes Aᵏ:
 
 ```
-Λᵏ = (S⁻¹AS)(S⁻¹AS)...(S⁻¹AS) = S⁻¹AᵏS.		(4)
+Λᵏ = (S⁻¹AS)(S⁻¹AS)...(S⁻¹AS) = S⁻¹AᵏS.(4)
 ```
 
 If A is invertible this rule also applies to its inverse (the power k = -1). ***The eigenvalues of A⁻¹ are 1/λᵢ***. That can be seen even without diagonalizing:
@@ -551,7 +551,7 @@ Example 3: If K is rotation through 90°, then K² is rotation through 180° (wh
 
 ```
 K = ⎡0 -1⎤,  K² = ⎡-1  0⎤,  and  K⁻¹ = ⎡ 0  1⎤.
-    ⎣1  0⎦ 		  ⎣0  -1⎦ 			   ⎣-1  0⎦ 
+    ⎣1  0⎦   ⎣0  -1⎦    ⎣-1  0⎦ 
 ```
 
 The eigenvalues of K are i and -i; their squares are -1 and -1; their reciprocals 倒数 are 1/i = -i and 1/(-i) = i. Then K⁴ is a complete rotation through 360°:
@@ -681,7 +681,7 @@ The real problem is to find some quick way to compute the powers Aᵏ, and there
 
 **5G** If A can be diagonalized, A = SΛS⁻¹, then Aᵏ comes from Λᵏ:
 
-&nbsp;&nbsp;&nbsp;&nbsp; u<sub>k</sub> = Aᵏu₀ = (SΛS⁻¹)(SΛS⁻¹)...(SΛS⁻¹)u₀ = SΛᵏS⁻¹u₀.		&nbsp;&nbsp;&nbsp;&nbsp;(4)
+&nbsp;&nbsp;&nbsp;&nbsp; u<sub>k</sub> = Aᵏu₀ = (SΛS⁻¹)(SΛS⁻¹)...(SΛS⁻¹)u₀ = SΛᵏS⁻¹u₀.&nbsp;&nbsp;&nbsp;&nbsp;(4)
 
 
 The columns of S are the eigenvectors of A. Writing S⁻¹u₀ = c, the solution becomes:
@@ -697,10 +697,10 @@ In any specific example like Fibonacci's, the first step is to find the eigenval
 
 ```
 A - λI = ⎡1-λ   1 ⎤  has det(A - λI) = λ² - λ - 1
-		 ⎣ 1   -λ ⎦
+ ⎣ 1   -λ ⎦
 
 Two eigenvalues: λ₁ = ( 1 + √5 ) / 2 m
-				 λ₂ = ( 1 + √5 ) / 2 .
+ λ₂ = ( 1 + √5 ) / 2 .
 ```
 
 The second row of A - λI is (1, -λ). To get (A - λI )x = O, the eigen vector is x = (λ, 1). The first Fibonacci numbers F₀ = 0 and F₁ = 1 go into u₀, and S⁻¹u₀ = c:

@@ -52,10 +52,10 @@ The syntax of programming language constructs can be specified by context-free g
 
  - A grammar gives a precise, yet easy-to-understand, syntactic specification of a programming language.
  - From certain classes of grammars, we can construct automatically an efficient parser that determines the syntactic structure of a source program. 
- 	- As a side benefit, the parser-construction process can reveal syntactic ambiguities and trouble spots that might have slipped through the initial design phase of a language.
+ - As a side benefit, the parser-construction process can reveal syntactic ambiguities and trouble spots that might have slipped through the initial design phase of a language.
  - The structure imparted to a language by a properly designed grammar is useful for translating source programs into correct object code and for detecting errors.
  - A grammar allows a language to be evolved or developed iteratively, by adding new constructs to perform new tasks. 
- 	- These new constructs can be integrated more easily into an implementation that follows the gram­matical structure of the language.
+ - These new constructs can be integrated more easily into an implementation that follows the gram­matical structure of the language.
 
 
 ---
@@ -83,16 +83,16 @@ Conceptually, for well-formed programs, the parser constructs a parse tree and p
 There are three general types of parsers for grammars: 
 
  - universal, 
-	- such as the Cocke-Younger-Kasami algorithm and Earley's algorithm
-	- too inefficient to use in production compilers.
+- such as the Cocke-Younger-Kasami algorithm and Earley's algorithm
+- too inefficient to use in production compilers.
  - top-down, 
-	- commonly used
-	- build parse trees from the top (root) to the bottom (leaves)
-	- the input to the parser is scanned from left to right, one symbol at a time.
+- commonly used
+- build parse trees from the top (root) to the bottom (leaves)
+- the input to the parser is scanned from left to right, one symbol at a time.
  - and bottom-up. 
-	- commonly used
-	- build parse trees start from the leaves and work their way up to the root
-	- the input to the parser is scanned from left to right, one symbol at a time.
+- commonly used
+- build parse trees start from the leaves and work their way up to the root
+- the input to the parser is scanned from left to right, one symbol at a time.
 
 The most efficient top-down and bottom-up methods work only for sub­classes of grammars, but several of these classes, particularly, LL and LR gram­mars, are expressive enough to describe most of the syntactic constructs in modern programming languages. 
 
@@ -100,7 +100,7 @@ The most efficient top-down and bottom-up methods work only for sub­classes of 
 > LR : Left to Right, Rightmost derivation
 
  - Parsers implemented by hand often use LL grammars; 
- 	- for example, the predictive-parsing approach of Section 2.4.2 works for LL grammars.  
+ - for example, the predictive-parsing approach of Section 2.4.2 works for LL grammars.  
  - Parsers for the larger class of LR grammars are usually constructed using automated tools.
 
 In this chapter, we assume that the output of the parser is some represent­ action of the parse tree for the stream of tokens that comes from the lexical analyzer. In practice, there are a number of tasks that might be conducted during parsing, such as 
@@ -125,7 +125,7 @@ Associativity and precedence are captured in the following grammar, which is sim
 
 ```
 E → E + T | T
-T → T * F | F 	(4.1) 
+T → T * F | F (4.1) 
 F → ( E ) | id
 ```
 
@@ -138,7 +138,7 @@ The following non-left-recursive variant of the expression grammar (4.1) will be
 ```
 E  → T E'
 E' → + T E' | ε
-T  → F T'			(4.2)
+T  → F T'(4.2)
 T' → * F T' | ε
 F  → ( E ) | id  
 ```
@@ -146,7 +146,7 @@ F  → ( E ) | id
 The following grammar treats + and * alike, so it is useful for illustrating techniques for handling ambiguities during parsing:
 
 ```
-E → E + E | E * E | ( E ) | id 		(4.3)
+E → E + E | E * E | ( E ) | id (4.3)
 ```
 
 Here, E represents expressions of all types. Grammar (4.3) permits more than one parse tree for expressions like a + b \* c.
@@ -165,15 +165,15 @@ A compiler is expected to assist the programmer in locating and tracking down er
 Common programming errors can occur at many different levels.
 
  - *Lexical* errors include misspellings of identifiers, keywords, or operators 
- 	- e.g., the use of an identifier *elipseSize* instead of *ellipseSize*
- 	- and missing quotes around text intended as a string.
+ - e.g., the use of an identifier *elipseSize* instead of *ellipseSize*
+ - and missing quotes around text intended as a string.
  - *Syntactic* errors include misplaced semicolons or extra or missing braces; 
- 	- that is, "{" or "}." 
- 	- As another example, in C or Java, the appearance of a case statement without an enclosing switch is a syntactic error .
+ - that is, "{" or "}." 
+ - As another example, in C or Java, the appearance of a case statement without an enclosing switch is a syntactic error .
  - *Semantic* errors include type mismatches between operators and operands. 
- 	- An example is a return statement in a Java method with result type void.
+ - An example is a return statement in a Java method with result type void.
  - *Logical* errors can be anything from incorrect reasoning on the part of the programmer 
- 	- to the use in a C program of the assignment operator = instead of the comparison operator ==. 
+ - to the use in a C program of the assignment operator = instead of the comparison operator ==. 
 
 The precision of parsing methods allows syntactic errors to be detected very efficiently. Several parsing methods, such as the LL and LR methods, detect an error as soon as possible; that is, when the stream of tokens from the lexical analyzer cannot be parsed further according to the grammar for the language. 
 
@@ -251,26 +251,26 @@ Do note that a closest correct program may not be what the programmer had in min
 A context-free grammar (grammar for short) consists of terminals, nonterminals, a start symbol, and productions.
 
  1. *Terminals* are the basic symbols from which strings are formed. 
- 	- The term "token name" is a synonym for "terminal" and frequently we will use the word "token" for terminal when it is clear that we are talking about just the token name. 
- 	- We assume that the terminals are the first components of the tokens output by the lexical analyzer. 
- 	- In (4.4) , the terminals are the keywords **if** and **else** and the symbols "(" and ")".
+ - The term "token name" is a synonym for "terminal" and frequently we will use the word "token" for terminal when it is clear that we are talking about just the token name. 
+ - We assume that the terminals are the first components of the tokens output by the lexical analyzer. 
+ - In (4.4) , the terminals are the keywords **if** and **else** and the symbols "(" and ")".
  2. *Nonterminals* are syntactic variables that denote sets of strings. 
- 	- In (4.4), *stmt* and *expr* are nonterminals. 
- 	- The sets of strings denoted by nontermi­nals help define the language generated by the grammar. 
- 	- Nonterminals impose a hierarchical structure on the language that is key to syntax analysis and translation.
+ - In (4.4), *stmt* and *expr* are nonterminals. 
+ - The sets of strings denoted by nontermi­nals help define the language generated by the grammar. 
+ - Nonterminals impose a hierarchical structure on the language that is key to syntax analysis and translation.
  3. In a grammar, one nonterminal is distinguished as the *start symbol*, 
- 	- and the set of strings it denotes is the language generated by the grammar. 
- 	- Conventionally, the productions for the start symbol are listed first.
+ - and the set of strings it denotes is the language generated by the grammar. 
+ - Conventionally, the productions for the start symbol are listed first.
  4. The *productions* of a grammar specify the manner in which the termi­nals and nonterminals can be combined to form strings. Each production consists of:
- 	- (a) A nonterminal called the *head* or *left side* of the production; this production defines some of the strings denoted by the head.
- 	- (b) The symbol →. Sometimes ::= has been used in place of the arrow.
- 	- (c) A *body or right side* consisting of zero or more terminals and non­terminals. The components of the body describe one way in which strings of the nonterminal at the head can be constructed.
+ - (a) A nonterminal called the *head* or *left side* of the production; this production defines some of the strings denoted by the head.
+ - (b) The symbol →. Sometimes ::= has been used in place of the arrow.
+ - (c) A *body or right side* consisting of zero or more terminals and non­terminals. The components of the body describe one way in which strings of the nonterminal at the head can be constructed.
 
 
 Example 4.5 : The grammar in Fig. 4.2 defines simple arithmetic expressions. In this grammar, the terminal symbols are
 
 ```
-	id + - * / ( )
+id + - * / ( )
 ```
 
 The nonterminal symbols are *expression*, *term* and *factor*, and *expression* is the start symbol
@@ -297,21 +297,21 @@ expression → term
 To avoid always having to state that "these are the terminals," "these are the nonterminals," and so on, the following notational conventions for grammars will be used throughout the remainder of this book.
 
  1. These symbols are terminals:
- 	- Lowercase letters early in the alphabet, such as *a*, *b*, *c*.
- 	- Operator symbols such as +, *, and so on.
- 	- Punctuation symbols such as parentheses, comma, and so on.
- 	- The digits 0,1, ... ,9.
- 	- Boldface strings such as **id** or **if**, each of which represents a single terminal symbol.
+ - Lowercase letters early in the alphabet, such as *a*, *b*, *c*.
+ - Operator symbols such as +, *, and so on.
+ - Punctuation symbols such as parentheses, comma, and so on.
+ - The digits 0,1, ... ,9.
+ - Boldface strings such as **id** or **if**, each of which represents a single terminal symbol.
  2. These symbols are nonterminals:
- 	- Uppercase letters early in the alphabet, such as **A**, **B**, **C**.
- 	- The letter **S**, which, when it appears, is usually the start symbol.
- 	- Lowercase, italic names such as *expr* or *stmt*.
- 	- When discussing programming constructs, uppercase letters may be used to represent nonterminals for the constructs. For example, non­ terminals for expressions, terms, and factors are often represented by E, T, and F, respectively.
+ - Uppercase letters early in the alphabet, such as **A**, **B**, **C**.
+ - The letter **S**, which, when it appears, is usually the start symbol.
+ - Lowercase, italic names such as *expr* or *stmt*.
+ - When discussing programming constructs, uppercase letters may be used to represent nonterminals for the constructs. For example, non­ terminals for expressions, terms, and factors are often represented by E, T, and F, respectively.
  3. Uppercase letters late in the alphabet, such as X, Y, Z, represent *grammar symbols*; that is, either nonterminals or terminals.
- 	- 注意，X,Y,Z 的特别之处
+ - 注意，X,Y,Z 的特别之处
  4. Lowercase letters late in the alphabet, chie y u, v, . . . , z, represent (pos­ sibly empty) ***strings*** of terminals.
  5. Lowercase Greek letters, α,β,γ for example, represent (possibly empty) ***strings*** of grammar symbols. 
- 	- Thus, a generic production can be written as A → α  , where A is the head and α the body.
+ - Thus, a generic production can be written as A → α  , where A is the head and α the body.
  6. A set of productions A → α₁ , A → α₂ , ... ,A → α<sub>k</sub>  with a common head A (call them **A-productions**), may be written A → α₁|α₂|...|α<sub>k</sub>. Call α₁, α₂, ... , α<sub>k</sub> the *alternatives* for A.
  7. Unless stated otherwise, the head of the first production is the *start* sym­ bol.
 
@@ -388,10 +388,10 @@ Each nonterminal is replaced by the same body in the two derivations, but the or
 To understand how parsers work, we shall consider derivations in which the nonterminal to be replaced at each step is chosen as follows:
 
  1. In *leftmost* derivations, the leftmost nonterminal in each sentential is al­ways chosen. 
- 	- If α ⇒ β is a step in which the leftmost nonterminal in α is replaced, we write 
- 	- α ⇒<sub>lm</sub>β
+ - If α ⇒ β is a step in which the leftmost nonterminal in α is replaced, we write 
+ - α ⇒<sub>lm</sub>β
  2. In *rightmost* derivations, the rightmost nonterminal is always chosen; 
- 	- we write α ⇒<sub>rm</sub>β in this case.
+ - we write α ⇒<sub>rm</sub>β in this case.
 
 Derivation (4.8) is leftmost, so it can be rewritten as
 
@@ -414,7 +414,7 @@ A parse tree (CST)is a graphical representation of a derivation that filters out
  - Each interior node of a parse tree represents the application of a production. 
  - The interior node is labeled with the nonterminal A in the head of the production; 
  - the children of the node are labeled, from left to right, by the symbols in the body of the production 
- 	- by which this A was replaced during the derivation.
+ - by which this A was replaced during the derivation.
 
 For example, the parse tree for -(id + id) in Fig. 4.3, results from the derivation (4.8) as well as derivation (4.9).
 
@@ -588,9 +588,9 @@ These nested structures cannot be described by regular expressions.
 Sometimes an ambiguous grammar can be rewritten to eliminate the ambiguity. As an example, we shall eliminate the ambiguity from the following "dangling­ else" grammar:
 
 ```
-stmt → if expr then stmt 		(4.14)
-	 | if expr then stmt else stmt 
-	 | other
+stmt → if expr then stmt (4.14)
+ | if expr then stmt else stmt 
+ | other
 ```
 
 Here **"other"** stands for any other statement. According to this grammar, the compound conditional statement
@@ -625,12 +625,12 @@ The idea is that a statement appearing between a **then** and an **else** must b
 Thus, we may use the grammar in Fig. 4.10. This grammar generates the same strings as the dangling-else grammar (4.14), but it allows only one parsing for string (4.15); namely, the one that associates each **else** with the closest previous unmatched **then**.
 
 ```
-			stmt → matched_stmt
-     			 | open_stmt
-	matched_stmt → if expr then matched_stmt else matched_stmt
-				 | other
-	   open_stmt → if expr then stmt
-	   			 | if expr then matched_stmt else open_stmt
+stmt → matched_stmt
+      | open_stmt
+matched_stmt → if expr then matched_stmt else matched_stmt
+ | other
+   open_stmt → if expr then stmt
+    | if expr then matched_stmt else open_stmt
 ```
 
 > Figure 4.10: Unambiguous grammar for if-then-else statements
@@ -660,7 +660,7 @@ Example 4.17 : The non-left-recursive expression grammar (4.2), repeated here,
 ```
 E  → T E'
 E' → + T E'  | ε
-T  → F T'			(4.2)
+T  → F T'(4.2)
 T' → * F T'  | ε
 F  → ( E ) | id  
 ```
@@ -678,14 +678,14 @@ A → Aα₁ | Aα₂ | ... ｜ Aαm |  β₁ | β₂ | ... ｜βn
 where no βᵢ begins with an A. Then, replace the A-productions by
 
 ```
-A  → β₁A' | β₂A' | ... | βnA'		// 列出所有 非递归 production body
-A' → α₁A' | α₂A' | ... | αmA' | ε		// right-recursive
+A  → β₁A' | β₂A' | ... | βnA'// 列出所有 非递归 production body
+A' → α₁A' | α₂A' | ... | αmA' | ε// right-recursive
 ```
 
 The nonterminal A generates the same strings as before but is no longer left recursive. This procedure eliminates all left recursion from the A and A' pro­ductions (provided no aᵢ is ε), but it does not eliminate left recursion involving derivations of two or more steps. For example, consider the grammar
 
 ```
-S → Aa | b  			(4.18)
+S → Aa | b  (4.18)
 A → Ac | Sd | ε
 ```
 
@@ -696,17 +696,17 @@ Algorithm 4.19 : Eliminating left recursion.
  - INPUT: Grammar G with no cycles or ε-productions.
  - OUTPUT: An equivalent grammar with no left recursion.
  - METHOD: Apply the algorithm in Fig. 4.11 to G. 
- 	- Note that the resulting non-left-recursive grammar **may have ε-productions**.
+ - Note that the resulting non-left-recursive grammar **may have ε-productions**.
 
 ```
 arrange the nonterminals in some order A₁,A₂, ... ,An.
 for ( each i from 1 to n) {
-	for ( each j from 1 to i-1 ) {
-		replace each production of the form Aᵢ → Aⱼγ  by the
-		productions Aᵢ → δ₁γ | δ₂γ | ... | δ_kγ , where
-		Aⱼ → δ₁ | δ₂ | ... | δ_k are all current Aⱼ-productions
-	} 
-	eliminate the immediate left recursion among the Aᵢ-productions
+for ( each j from 1 to i-1 ) {
+replace each production of the form Aᵢ → Aⱼγ  by the
+productions Aᵢ → δ₁γ | δ₂γ | ... | δ_kγ , where
+Aⱼ → δ₁ | δ₂ | ... | δ_k are all current Aⱼ-productions
+} 
+eliminate the immediate left recursion among the Aᵢ-productions
 }
 ```
 
@@ -743,7 +743,7 @@ For example, if we have the two productions
 
 ```
 stmt → if expr then stmt else stmt
-	 | if expr then stmt
+ | if expr then stmt
 ```
 
 on seeing the input **if**, we cannot immediately tell which production to choose to expand stmt. In general, if A → αβ₁ | αβ₂ are two A-productions, and the input begins with a nonempty string derived from α, we do not know whether to expand A to αβ₁ or αβ₂. However, we may defer the decision by expanding A to αA'. Then, after seeing the input derived from a, we expand A' to β₁ or to β₂. That is, left-factored, the original productions become
@@ -769,14 +769,14 @@ Here A' is a new nonterminal. Repeatedly apply this transformation until no two 
 Example 4.22 : The following grammar abstracts the "dangling-else" prob­lem:
 
 ```
-S → i E t S | i E t S e S | α 	(4.23)
+S → i E t S | i E t S e S | α (4.23)
 E → b
 ```
 
 Here, i, t, and e stand for **if**, **then**, and **else**; E and S stand for "conditional expression" and "statement." Left-factored, this grammar becomes:
 
 ```
-S  → i E t S S' | α   	(4.24)
+S  → i E t S S' | α   (4.24)
 S' → e S | ε
 E → b
 ```
@@ -804,9 +804,9 @@ The abstract language is L₂ = { aⁿbᵐcⁿdᵐ | n ≥ 1 and m ≥ 1 }. That
 Again, the typical syntax of function declarations and uses does not concern itself with counting the number of parameters. For example, a function call in C-like language might be specified by
 
 ```
-	 stmt → id ( expr_list ) 
+ stmt → id ( expr_list ) 
 expr_list → expr_list , expr
-		  | expr
+  | expr
 ```
 
 with suitable productions for **expr**. Checking that the number of parameters in a call is correct is usually done during the semantic-analysis phase.
@@ -825,7 +825,7 @@ Example4.27: The sequence of parse trees in Fig.4.12 for the input **id+id\*id**
 ```
 E  → T E'
 E' → + T E' | ε
-T  → F T'			(4.28)
+T  → F T'(4.28)
 T' → * F T' | ε
 F  → ( E ) | id  
 ```
@@ -853,14 +853,14 @@ In Section 4.4.4 we give a nonrecursive parsing algorithm that maintains a stack
 
 ```
 void A() {
-	Choose an A-production, A → X₁X₂...Xk ;  (1)
-	for ( i = 1 to k ) {
-		if ( Xi is a nonterminal )
-			call procedure Xi();
-		else if ( Xi equals the current input symbol α )
-			advance the input to the next symbol;
-		else /* an error has occurred */ ;  (7)
-	}
+Choose an A-production, A → X₁X₂...Xk ;  (1)
+for ( i = 1 to k ) {
+if ( Xi is a nonterminal )
+call procedure Xi();
+else if ( Xi equals the current input symbol α )
+advance the input to the next symbol;
+else /* an error has occurred */ ;  (7)
+}
 }
 ```
 
@@ -914,17 +914,17 @@ To compute FIRST(X) for all grammar symbols X, apply the following rules until n
 
  1. If X is a terminal, then FIRST(X) = {X}.
  2. If X is a nonterminal and X → Y₁Y₂...Yk is a production for some k ≥ 1, then place *a* in FIRST(X) if for some i, *a* is in FIRST(Yᵢ), and ε is in all of FIRST(Y₁), ... , FIRST( Yᵢ₋₁); that is, Y₁...Yᵢ₋₁ ⇒<sup>\*</sup> ε . If ε is in FIRST(Yⱼ) for all j = 1, 2, ... , k, then add ε to FIRST(X). 
- 	- For example, everything in FIRST(Y₁) is surely in FIRST(X). If Y₁ does not derive ε , then we add nothing more to FIRST(X), but if Y₁ ⇒<sup>\*</sup> ε , then we add FIRST(Y₂), and so on.
+ - For example, everything in FIRST(Y₁) is surely in FIRST(X). If Y₁ does not derive ε , then we add nothing more to FIRST(X), but if Y₁ ⇒<sup>\*</sup> ε , then we add FIRST(Y₂), and so on.
  3. If X → ε is a production, then add ε to FIRST(X).
 
 To compute FOLLOW(A) for all nonterminals A, apply the following rules until nothing can be added to any FOLLOW set.
 
  1. Place $ in FOLLOW(S), where S is the start symbol, and $ is the input right endmarker.
  2. If there is a production A → αBβ , then everything in FIRST( β ) except ε is in FOLLOW(B).
- 	- B have right brother β 
+ - B have right brother β 
  3. If there is a production A → αB, or a production A → αBβ , where FIRST( β ) contains ε, then everything in FOLLOW(A) is in FOLLOW(B).
- 	- B have no right brother , or right bother β is rightmost , and β ⇒<sup>\*</sup> ε  , then check the right brother of B's parent -- A.
- 	- start symbol S 既没有 right brother , 也 没有  parent, 所以添加 $ 到 FOLLOW(S)
+ - B have no right brother , or right bother β is rightmost , and β ⇒<sup>\*</sup> ε  , then check the right brother of B's parent -- A.
+ - start symbol S 既没有 right brother , 也 没有  parent, 所以添加 $ 到 FOLLOW(S)
 
 
 Example 4.30 : Consider again the non-left-recursive grammar (4.28) . Then:
@@ -932,26 +932,26 @@ Example 4.30 : Consider again the non-left-recursive grammar (4.28) . Then:
 ```
 E  → T E'
 E' → + T E' | ε
-T  → F T'			(4.28)
+T  → F T'(4.28)
 T' → * F T' | ε
 F  → ( E ) | id  
 ```
 
  1. FIRST(F) = FIRST(T) = FIRST(E) = { `(`, `id` }. 
- 	- T has only one production, and its body starts with F. Since F does not derive ε, FIRST(T) must be the same as FIRST(F). 
- 	- The same argument covers FIRST(E).
+ - T has only one production, and its body starts with F. Since F does not derive ε, FIRST(T) must be the same as FIRST(F). 
+ - The same argument covers FIRST(E).
  2. FIRST(E') = { `+`, `ε` }. 
  3. FIRST(T') = { `*`, `ε` }. 
  4. FOLLOW(E) = FOLLOW(E') = { `)`, `$` }. 
- 	- Since E is the start symbol, FOLLOW(E) must contain $. 
- 	- The production body `( E )` explains why the right parenthesis is in FOLLOW(E). 
- 	- For E', note that this nonterminal appears only at the ends of bodies of E-productions. Thus, FOLLOW(E') must be the same as FOLLOW(E).
+ - Since E is the start symbol, FOLLOW(E) must contain $. 
+ - The production body `( E )` explains why the right parenthesis is in FOLLOW(E). 
+ - For E', note that this nonterminal appears only at the ends of bodies of E-productions. Thus, FOLLOW(E') must be the same as FOLLOW(E).
  5. FOLLOW(T)= FOLLOW(T')= { `+`, `)` ,`$` }. 
- 	- Notice that T appears in bodies only followed by E'. Thus, everything except ε in FIRST(E') must be in FOLLOW(T); that explains the symbol `+`. 
- 	- However, since FIRST(E') contains `ε`, and E' is the entire string following T in the bodies of the E-productions, everything in FOLLOW(E) must also be in FOLLOW(T). That explains the symbols `$` and the right parenthesis `)`. 
- 	- As for T', since it appears only at the ends ofthe T-productions, it must be that FOLLOW(T') = FOLLOW(T).
+ - Notice that T appears in bodies only followed by E'. Thus, everything except ε in FIRST(E') must be in FOLLOW(T); that explains the symbol `+`. 
+ - However, since FIRST(E') contains `ε`, and E' is the entire string following T in the bodies of the E-productions, everything in FOLLOW(E) must also be in FOLLOW(T). That explains the symbols `$` and the right parenthesis `)`. 
+ - As for T', since it appears only at the ends ofthe T-productions, it must be that FOLLOW(T') = FOLLOW(T).
  6. FOLLOW(F) = { `+`, `*`, `)`, `$` }. 
- 	- The reasoning is analogous to that for T in point (5),
+ - The reasoning is analogous to that for T in point (5),
 
 ---
 
@@ -977,8 +977,8 @@ Predictive parsers can be constructed for LL(1) grammars since the proper produc
 
 ```
 stmt → if ( expr ) stmt else stmt 
-	 | while ( expr ) stmt
-	 | { stmLlist }
+ | while ( expr ) stmt
+ | { stmLlist }
 ```
 
 then the keywords **if**, **while**, and the symbol **{** tell us which alternative is the only one that could possibly succeed if we are to find a statement.
@@ -1179,14 +1179,14 @@ $E  |   $ | accept
 While the primary operations are shift and reduce, there are actually four possible actions a shift-reduce parser can make: (1) shift, (2) reduce, (3) accept, and (4) error.
 
  1. Shift 
- 	- Shift the next input symbol onto the top of the stack.
+ - Shift the next input symbol onto the top of the stack.
  2. Reduce
- 	- The right end of the string to be reduced must be at the top of the stack. 
- 	- Locate the left end of the string within the stack and decide with what nonterminal to replace the string.
+ - The right end of the string to be reduced must be at the top of the stack. 
+ - Locate the left end of the string within the stack and decide with what nonterminal to replace the string.
  3. Accept
- 	- Announce successful completion of parsing.
+ - Announce successful completion of parsing.
  4. Error
- 	- Discover a syntax error and call an error recovery routine.
+ - Discover a syntax error and call an error recovery routine.
 
 The use of a stack in shift-reduce parsing is justified by an important fact: the handle will always eventually appear on top of the stack, never inside. 
 
@@ -1251,9 +1251,9 @@ We now give some examples of syntactic constructs that give rise to such grammar
 Example 4.38 : An ambiguous grammar can never be LR. For example, con­sider the dangling-else grammar (4.14) of Section 4.3:
 
 ```
-stmt → if expr then stmt 		(4.14)
-	 | if expr then stmt else stmt 
-	 | other
+stmt → if expr then stmt (4.14)
+ | if expr then stmt else stmt 
+ | other
 ```
 
 If we have a shift-reduce parser in configuration
@@ -1354,8 +1354,8 @@ For example, the item `A → ·XYZ` indicates that we hope to see a string deriv
 
  - A parser generator that produces a bottom-up parser may need to rep­resent items and sets of items conveniently. 
  - Note that an item can be represented by a pair of integers, 
- 	- the first of which is the number of one of the productions of the underlying grammar, 
- 	- and the second of which is the position of the dot. 
+ - the first of which is the number of one of the productions of the underlying grammar, 
+ - and the second of which is the position of the dot. 
  - Sets of items can be represented by a list of these pairs. 
  - However, as we shall see, the necessary sets of items often include "closure" items, where the dot is at the beginning of the body. These can always be reconstructed from the other items in the set, and we do not have to include them in the list.
 
@@ -1375,7 +1375,7 @@ If *I* is a set of items for a grammar G, then CLOSURE(*I*) is the set of items 
 
  1. Initially, add every item in I to CLOSURE(I) .
  2. If A → α·Bβ is in CLOSURE(I) and B → γ is a production, then add the item B → ·γ to CLOSURE(I) , if it is not already there. 
- 	- Apply this rule until no more new items can be added to CLOSURE(I).
+ - Apply this rule until no more new items can be added to CLOSURE(I).
 
 Intuitively, A → α·Bβ  in CLOSURE(/) indicates that, at some point in the parsing process, we think we might next see a substring derivable from Bβ input. The substring derivable from Bβ will have a prefix derivable from B by applying one of the B-productions. We therefore add items for all the B-productions; that is, if B → γ is a production, we also include B → ·γ in CLOSURE(I) .
 
@@ -1384,7 +1384,7 @@ Example 4.40 : Consider the augmented expression grammar:
 ```
 E'→ E
 E → E + T | T
-T → T * F | F 	(4.1 augmented) 
+T → T * F | F (4.1 augmented) 
 F → ( E ) | id
 ```
 
@@ -1454,9 +1454,9 @@ Productions 1 through 4 are `E → E+E`,`E → E*E`, `→ (E)`,and `E → id`, r
 ### 4.8.2 The "Dangling-Else" Ambiguity
 
 ```
-stmt → if expr then stmt 		(4.14)
-	 | if expr then stmt else stmt 
-	 | other
+stmt → if expr then stmt (4.14)
+ | if expr then stmt else stmt 
+ | other
 ```
 
 This grammar is ambiguous because it does not resolve the dangling-else ambiguity.
@@ -1466,7 +1466,7 @@ To simplify the discussion, let us consider an abstraction of this grammar, wher
 We can then write the grammar, with augmenting production S' → S , as
 
 ```
-S' → S 						(4.67)
+S' → S (4.67)
 S  → i S e S | i S | a
 ```
 
@@ -1479,7 +1479,7 @@ The ambi­guity in (4.67) gives rise to a shift/reduce conflict in I₄. There, 
 Translating back to the if-then-else terminology, given
 
 ```
-	if expr then stmt
+if expr then stmt
 ```
 
 on the stack and **else** as the first input symbol, should we shift **else** onto the stack (i.e., shift *e*) or reduce `if expr then stmt` (i.e, reduce by S → iS)? The answer is that we should shift **else**, because it is "associated" with the previous **then**. In the terminology of grammar (4.67) , the *e* on the input, standing for **else**, can only form part of the body beginning with the `iS` now on the top of the stack. If what follows *e* on the input cannot be parsed as an `S`, completing body `iSeS`, then it can be shown that there is no other parse possible.

@@ -112,7 +112,7 @@ traing loss : l = 1/N * Σ D( S(Wxᵢ + b) , Lᵢ )
 Ways:
 
  1. Gradient Descent
- 	- Take the dirivative of your loss, with respect to your parameters , and follow that derivative by taking a step backwards and repeat , until you get to the buttom.
+ - Take the dirivative of your loss, with respect to your parameters , and follow that derivative by taking a step backwards and repeat , until you get to the buttom.
 
 
 
@@ -138,8 +138,8 @@ We're going to want the values involved in the calculation of this big loss func
 On good guiding principle is that we always want our variables to have zero mean and equal variance whenever possible.
 
 ```
-MEAN :   	Xᵢ = 0 
-VARIANCE:  	σ(Xᵢ) = σ(Xⱼ)
+MEAN :   Xᵢ = 0 
+VARIANCE:  σ(Xᵢ) = σ(Xⱼ)
 ```
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_numerical_stability.png)
@@ -179,9 +179,9 @@ It's usually better to begin with an uncertain distribution and let the optimiza
 Now we actually have everythings we need to actually train this classifier.
 
  - We've got our training data `X` 
- 	- which is normalized to have zerom mean (pixels - 128)/128 , and unit variance.
+ - which is normalized to have zerom mean (pixels - 128)/128 , and unit variance.
  - We multiply `X` by a large matrix `W` 
- 	- `W` is intialized with random weights
+ - `W` is intialized with random weights
  - We apply the softmax and then the cross entropy loss 
  - and we calculate the average of this loss over the entire traning data.
 
@@ -286,7 +286,7 @@ machine learning 竞赛网站
 ## Linear Model Limited
 
  - Linear operations are really nice 
- 	- Big matrix multiplies are exactly what GPUs were design for
+ - Big matrix multiplies are exactly what GPUs were design for
  - The derivative of a linear function is nice too , it's a constant !
 
 
@@ -368,7 +368,7 @@ You can make it bigger , more complex , by increasing the size of that hidden la
 Instead , you can also add more layers and make your model deeper.  There are lots of good reasons to do that.
 
  - one is parameter efficiency
- 	- You can typically get much more performance with fewer parameters by going deeper rather than wider.
+ - You can typically get much more performance with fewer parameters by going deeper rather than wider.
  - another 1 is that a lot of natual phenomena that you might be interested in , tend to have a hierarchical structure which deep model naturally capture.
 
 
@@ -538,13 +538,13 @@ The most common is max pooling.  At every point in the feature map, look at a sm
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_max_pooling.png)
 
  - ADVANTAGE
- 	- **PARAMETER-FREE** , it doesn't add to your number of parameters. So you don't risk an increasing over fitting.
- 	- **OFTEN MORE ACCURATE**
+ - **PARAMETER-FREE** , it doesn't add to your number of parameters. So you don't risk an increasing over fitting.
+ - **OFTEN MORE ACCURATE**
  - DISADVANTAGE
- 	- MORE EXPENSIVE
- 	- MORE HYPER PARAMETERS
- 		- POOLING SIZE
- 		- POOLING STRIDE
+ - MORE EXPENSIVE
+ - MORE HYPER PARAMETERS
+ - POOLING SIZE
+ - POOLING STRIDE
 
 A very typical architecture for a convnet is a few layers alternating convolutions and max pooling , followed by a few fully connnected layers at the top.
 

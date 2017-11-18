@@ -154,18 +154,18 @@ function [J, grad] = lrCostFunction(theta, X, y, lambda)
     J = 0;
     grad = zeros(size(theta));
 
-	hx = sigmoid( X * theta );
-	% 添加了 正则化部分
-	J= 1/m * sum(  -y .* log( hx )  - ( 1-y ) .* log( 1- hx ) )  + lambda/(2*m )* ( theta' * theta ) ;	  
-	% 处理 feature 0 case
-	J -= lambda/(2*m )* ( theta(1)^2 ) ;
+hx = sigmoid( X * theta );
+% 添加了 正则化部分
+J= 1/m * sum(  -y .* log( hx )  - ( 1-y ) .* log( 1- hx ) )  + lambda/(2*m )* ( theta' * theta ) ;  
+% 处理 feature 0 case
+J -= lambda/(2*m )* ( theta(1)^2 ) ;
 
-	% 另一种处理 feature 0 case 的做法
-	% 必须先计算出 grad0 并保存， 因为需要同步更新
-	grad0   = 1/m *sum( ( hx - y ) .* X(:,1)  )'  ; % grad0 不正则化
+% 另一种处理 feature 0 case 的做法
+% 必须先计算出 grad0 并保存， 因为需要同步更新
+grad0   = 1/m *sum( ( hx - y ) .* X(:,1)  )'  ; % grad0 不正则化
 
-	grad    = 1/m *sum( ( hx - y ) .* X  )' +  lambda/(m )*  theta ; 	% 添加了 正则化部分
-	grad(1) = grad0 ;
+grad    = 1/m *sum( ( hx - y ) .* X  )' +  lambda/(m )*  theta ; % 添加了 正则化部分
+grad(1) = grad0 ;
 
 end
 ```
@@ -205,17 +205,17 @@ end
 % 预测
 function p = predictOneVsAll(all_theta, X)
 
-	m = size(X, 1);
-	num_labels = size(all_theta, 1);
+m = size(X, 1);
+num_labels = size(all_theta, 1);
 
-	% You need to return the following variables correctly 
-	p = zeros(size(X, 1), 1);
+% You need to return the following variables correctly 
+p = zeros(size(X, 1), 1);
 
-	% Add ones to the X data matrix
-	X = [ones(m, 1) X];
+% Add ones to the X data matrix
+X = [ones(m, 1) X];
 
-	% 按行求最大值
-	[val , p] = max( sigmoid( X * all_theta' ) ,[],2)  ;
+% 按行求最大值
+[val , p] = max( sigmoid( X * all_theta' ) ,[],2)  ;
 end
 ```
 

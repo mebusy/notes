@@ -9,10 +9,10 @@
 
  - breaking it down into a collection of simpler subproblems, in a recursive manner
  - solving each of those subproblems just once, and storing their solutions 
- 	- ideally, using a memory-based data structure. 
+ - ideally, using a memory-based data structure. 
  - The next time the same subproblem occurs, instead of recomputing its solution, one simply looks up the previously computed solution, 
- 	- thereby saving computation time at the expense of a (hopefully) modest expenditure in storage space. 
- 	- The technique of storing solutions to subproblems instead of recomputing them is called **"memoization"**.
+ - thereby saving computation time at the expense of a (hopefully) modest expenditure in storage space. 
+ - The technique of storing solutions to subproblems instead of recomputing them is called **"memoization"**.
 
 Dynamic programming algorithms are often used for **optimization**. A dynamic programming algorithm will examine the previously solved subproblems and will combine their solutions to give the best solution for the given problem. 
 
@@ -20,8 +20,8 @@ Compare to **greedy algorithm** :
 
  - a **greedy algorithm** treats the solution as some sequence of steps and picks the locally optimal choice at each step. 
  - Using a greedy algorithm does not guarantee an optimal solution, 
- 	- because picking locally optimal choices may result in a bad global solution, 
- 	- but it is often faster to calculate. 
+ - because picking locally optimal choices may result in a bad global solution, 
+ - but it is often faster to calculate. 
  - Fortunately, some greedy algorithms (such as Kruskal's or Prim's for minimum spanning trees) are proven to lead to the optimal solution.
 
 
@@ -89,7 +89,7 @@ Fibonacci序列的子问题示意图：使用**有向无环图**（DAG, directed
 
  - **自顶向下**：将问题划分为若干子问题，求解这些子问题并保存结果以免重复计算。该方法将递归和缓存结合在一起。
  - **自下而上**：先行求解所有可能用到的子问题，然后用其构造更大问题的解。
- 	- 该方法在节省堆栈空间和减少函数调用数量上略有优势，但有时想找出给定问题的所有子问题并不那么直观。
+ - 该方法在节省堆栈空间和减少函数调用数量上略有优势，但有时想找出给定问题的所有子问题并不那么直观。
 
 例子:
 
@@ -190,7 +190,7 @@ q(A) = min(q(B),q(C),q(D)) + c(A)
 ```
             |-  inf.                                                  j<1 or j>n , 棋盘外
 q(i,j) =   -+-  c(i,j)                                                i=1 , 棋盘底行
-            |-  min(q(i-1,j-1),q(i-1,j),q(i-1,j+1))+c(i,j)   		  otherwise.
+            |-  min(q(i-1,j-1),q(i-1,j),q(i-1,j+1))+c(i,j)     otherwise.
 ```
 
  - 方程的第一行是为了保证递归可以退出（处理边界时只需调用一次递归函数）。
@@ -212,7 +212,7 @@ function minCost(i, j)
 
  - 需要指出的是，minCost只计算路径成本，并不是最终的实际路径，二者相去不远。
  - 与Fibonacci数相似，由于花费大量时间重复计算相同的最短路径，这一方式慢的恐怖。
- 	- 不过，如果采用自下而上法，使用二维数组q[i,j]代替函数minCost，将使计算过程快得多。
+ - 不过，如果采用自下而上法，使用二维数组q[i,j]代替函数minCost，将使计算过程快得多。
 
 我们还需要知道实际路径。路径问题，我们可以通过另一个前任数组p[i,j]解决。这个数组用于描述路径，代码如下：
 

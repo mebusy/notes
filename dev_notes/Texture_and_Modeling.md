@@ -58,8 +58,8 @@ Hello world shader:
 
 ```
 surface helloWorld() {
-	Oi = Os ; 
-	Ci = Oi * Cs ;
+Oi = Os ; 
+Ci = Oi * Cs ;
 }
 ```
 
@@ -89,14 +89,14 @@ enhance
 
 ```
 surface helloWorld( 
-		uniform float Kd = 1;
-	) {
+uniform float Kd = 1;
+) {
 
-	// Local Variables
-	normal Nn = normalize(N) ;
+// Local Variables
+normal Nn = normalize(N) ;
 
-	Oi = Os ; 
-	Ci = Oi * Cs * ( Kd * diffuse(Nn) );
+Oi = Os ; 
+Ci = Oi * Cs * ( Kd * diffuse(Nn) );
 }
 ```
 
@@ -111,28 +111,28 @@ Use a Makefile:
 all: render
 
 compile:
-	shaderdl -d bin src/helloWorld.sl
+shaderdl -d bin src/helloWorld.sl
 
 render: compile
-	renderdl rib/sphere.rib
+renderdl rib/sphere.rib
 ```
 
 enhance  again
 
 ```
 surface helloWorld( 
-		uniform float Kd = 1;
-		uniform float Ks = 1;
-		uniform float roughness = 0.15 ;
-		color specularColor = color(1) ;
-	) {
+uniform float Kd = 1;
+uniform float Ks = 1;
+uniform float roughness = 0.15 ;
+color specularColor = color(1) ;
+) {
 
-	// Local Variables
-	normal Nn = normalize(N) ;
-	vector V = -normalize(I) ;
+// Local Variables
+normal Nn = normalize(N) ;
+vector V = -normalize(I) ;
 
-	Oi = Os ; 
-	Ci = Oi * Cs * (( Kd * diffuse(Nn) ) + (Ks * specular( Nn, V, roughness ) * specularColor ) )  ;
+Oi = Os ; 
+Ci = Oi * Cs * (( Kd * diffuse(Nn) ) + (Ks * specular( Nn, V, roughness ) * specularColor ) )  ;
 }
 ```
 
@@ -180,43 +180,43 @@ plastic(float Ka = 1, Kd = 0.5, Ks = 0.5;
 float roughness = 0.1;
 color specularcolor = color (1,1,1))
 {
-	point Nf = faceforward(normalize(N), I); 
-	point V = normalize(-I);
-	Oi = Os;
-	Ci = Os * (Cs * (Ka * ambient()
-		+ Kd * diffuse(Nf)) 
-		+ specularcolor * Ks
-			* specular(Nf, V, roughness));
+point Nf = faceforward(normalize(N), I); 
+point V = normalize(-I);
+Oi = Os;
+Ci = Os * (Cs * (Ka * ambient()
++ Kd * diffuse(Nf)) 
++ specularcolor * Ks
+* specular(Nf, V, roughness));
 }
 ```
 
  - Colors are represented by RGB triples ， 0 ~ 1
  - Any RenderMan surface shader can reference a large collection of built-in quan- tities , such as
- 	- P , the 3D coordinates of the point on the surface being shaded
- 	- N , the surface normal at P
- 		- Because surfaces can be two-sided, it is possible to see the inside of a surface; 
- 		- in that case we want the normal vector to point toward the camera, not away from it.
- 	- I , the vector from the camera position to the point P	
- 	- built-in function *faceforward* ,  simply compares I with N 
- 		- Flip N so that it faces in the direction opposite to I,
- 		- If the two vectors I and N point in the same direction (i.e., if their dot product is positive), faceforward returns -N instead of N.
+ - P , the 3D coordinates of the point on the surface being shaded
+ - N , the surface normal at P
+ - Because surfaces can be two-sided, it is possible to see the inside of a surface; 
+ - in that case we want the normal vector to point toward the camera, not away from it.
+ - I , the vector from the camera position to the point P
+ - built-in function *faceforward* ,  simply compares I with N 
+ - Flip N so that it faces in the direction opposite to I,
+ - If the two vectors I and N point in the same direction (i.e., if their dot product is positive), faceforward returns -N instead of N.
  - The first statement declares and initializes a surface normal vector Nf
- 	- which is normalized and faces toward the camera
+ - which is normalized and faces toward the camera
  - The second statement declares and initializes a vector V that is normalized and gives the direction to the camera.
  - The third statement sets the output opacity `Oi` to be equal to the input surface opacity `Os`
  - Actually, `Os` is color type,  For an opaque surface, `Os` is color(1,1,1).
  - The final statement in the shader does the interesting work
- 	- The output color `Ci` is set to the product of the opacity and a color. 
- 	- The color is the sum of an ambient term and a diffuse term multiplied by the input surface color `Cs` , added to a specular term whose color is determined by the parameter *specularcolor*
+ - The output color `Ci` is set to the product of the opacity and a color. 
+ - The color is the sum of an ambient term and a diffuse term multiplied by the input surface color `Cs` , added to a specular term whose color is determined by the parameter *specularcolor*
  - The built-in functions *ambient*, *diffuse*, and *specular* gather up all of the light from multiple light sources according to a particular reflection model. 
- 	- diffuse computes the sum of the intensity of each light source multiplied by the dot product of the direction to the light source and the surface normal Nf (which is passed as a parameter to diffuse).
+ - diffuse computes the sum of the intensity of each light source multiplied by the dot product of the direction to the light source and the surface normal Nf (which is passed as a parameter to diffuse).
 
 
 The plastic shading model is flexible enough to include the other two most com- mon RenderMan shading models, the "matte" model and the "metal" model, as special cases. 
 
  - The matte model is a perfectly diffuse reflector, which is equivalent to plastic with a Kd of 1 and a Ks of 0. ( 没有高光反射 )
  - The metal model is a perfectly specular reflector ， which is equivalent to plastic with a Kd of 0, a Ks of 1, and a specularcolor the same as Cs.
- 	- specularcolor parameter is important ， For example, gold has a gold-colored highlight.
+ - specularcolor parameter is important ， For example, gold has a gold-colored highlight.
 
 The plastic shader is a good starting point for many procedural texture shaders. We will simply replace the Cs in the last statement of the shader with a new color variable Ct, the texture color that is computed by the pattern generation part of the shader.
 
@@ -248,18 +248,18 @@ The RenderMan shading language provides many different built-in coordinate syste
 A coordinate system is defined by the concatenated stack of transformation matrices that is in effect at a given point in the hierarchical structure of the RenderMan geometric model.
 
  - current space
- 	- the one in which shading calculations are normally done.
- 	- In most renderers, current space will turn out to be either *camera* space or *world* space, but you shouldn’t depend on this.
+ - the one in which shading calculations are normally done.
+ - In most renderers, current space will turn out to be either *camera* space or *world* space, but you shouldn’t depend on this.
  - world space 
- 	- the coordinate system in which the overall layout of your scene is defined. 
- 	- It is the starting point for all other spaces.
+ - the coordinate system in which the overall layout of your scene is defined. 
+ - It is the starting point for all other spaces.
  - object space 
- 	- the one in which the surface being shaded was defined
- 	- For instance, if the shader is shading a sphere, the object space of the sphere is the coordinate system that was in effect when the *RiSphere* call was made to create the sphere. 
- 	- Note that an object made up of several surfaces all using the same shader might have different object spaces for each of the surfaces if there are geometric transformations between the surfaces.
+ - the one in which the surface being shaded was defined
+ - For instance, if the shader is shading a sphere, the object space of the sphere is the coordinate system that was in effect when the *RiSphere* call was made to create the sphere. 
+ - Note that an object made up of several surfaces all using the same shader might have different object spaces for each of the surfaces if there are geometric transformations between the surfaces.
  - shader space
- 	- the coordinate system that existed when the shader was invoked (e.g., by an *RiSurface* call). 
- 	- This is a very useful space because it can be attached to a user-defined collection of surfaces at an appropriate point in the hierarchy of the geometric model so that all of the related surfaces share the same shader space.
+ - the coordinate system that existed when the shader was invoked (e.g., by an *RiSurface* call). 
+ - This is a very useful space because it can be attached to a user-defined collection of surfaces at an appropriate point in the hierarchy of the geometric model so that all of the related surfaces share the same shader space.
 
 In addition, user-defined coordinate systems can be created and given names using the *RiCoordinateSystem* call. These coordinate systems can be referenced by name in the shading language.
 
@@ -292,7 +292,7 @@ C = mix(C0, C1, f);
 ```
 color
 mix(color C0, color Cl, float f) {
-	return (1-f) * C0 + f * Cl;
+return (1-f) * C0 + f * Cl;
 }
 ```
 
@@ -322,7 +322,7 @@ function *step(a,x)* returns the value 0 when x is less than a and returns 1 oth
 ```c
 float
 step(float a, float x) {
-	return (float) (x >= a);
+return (float) (x >= a);
 }
 ```
 
@@ -332,9 +332,9 @@ The main use of the step function is to replace an if statement or to produce a 
 
 ```
 if (u < 0.5)
-	Ci = color (1, 1, .5);
+Ci = color (1, 1, .5);
 else
-	Ci = color ( .5 , .3, 1);
+Ci = color ( .5 , .3, 1);
 ```
 
 can be rewritten to use the step function as follows:
@@ -360,7 +360,7 @@ function *clamp(x,a,b)* returns the value a when x is less than a, the value of 
 ```
 float
 clamp(float x, float a, float b) {
-	return (x < a ? a: (x > b ? b : x));
+return (x < a ? a: (x > b ? b : x));
 }
 ```
 
@@ -386,10 +386,10 @@ In addition to the "pure" or "sharp" conditionals step, clamp, min, max, and abs
 ```
 float
 smoothstep(float a, float b, float x) {
-	if (x < a) return 0;
-	if (x >= b) return 1;
-	x = (x - a)/(b - a); 
-	return (x*x * (3 - 2*x));
+if (x < a) return 0;
+if (x >= b) return 1;
+x = (x - a)/(b - a); 
+return (x*x * (3 - 2*x));
 }
 ```
 
@@ -408,11 +408,11 @@ Another important periodic function is the *mod* function. *mod(a,b)* gives the 
 
 float
 mod(float a, float b) {
-	int n = (int)(a/b); 
-	a -= n*b;
-	if (a < 0)
-		a += b; 
-	return a;
+int n = (int)(a/b); 
+a -= n*b;
+if (a < 0)
+a += b; 
+return a;
 }
 ```
 
@@ -457,7 +457,7 @@ Built-in *spline* function is a one-dimensional Catmull-Rom interpolating spline
 
 ```
 result = spline(parameter,
-		knotl, knot2, . . . , knotN-1, knotN);
+knotl, knot2, . . . , knotN-1, knotN);
 ```
 
 In the shading language, the knots can be numbers, colors, or points (but all knots must be of the same type). The result has the same data type as the knots.   If parameter is 0, the result is knot2. If parameter is 1, the result is knotN-1.  For values of parameter between 0 and 1, the value of result interpolates smoothly between the values of the knots from **knot2** to **knotN-1**.  The knotl and knotN values determine the derivatives of the spline at its end points.  Because the spline is a cubic polynomial, there must be at least four knots.
@@ -486,28 +486,28 @@ Here is a C language implementation of spline in which the knots must be floatin
 float
 spline(float x, int nknots, float *knot) 
 {
-	int span;
-	int nspans = nknots - 3;
-	float cO, cl, c2, c3; /* coefficients of the cubic.*/ 
-	if (nspans < 1){/* illegal */
-		fprintf(stderr, "Spline has too few knots.\n"); 
-		return 0;
-	}
-	/* Find the appropriate 4-point span of the spline. */ 
-	x = clamp(x, 0, 1) * nspans;
-	span = (int) x;
-	if (span >= nknots - 3)
-		span = nknots - 3; 
-	x -= span;
-	knot += span;
-	
-	/* Evaluate the span cubic at x using Horner’s rule. */
-	c3 = CROO*knot[0] + CR01*knot[l] + CR02*knot[2] + CR03*knot[3]; 
-	c2 = CR10*knot[0] + CRll*knot[l] + CR12*knot[2] + CR13*knot[3]; 
-	cl = CR20*knot[0] + CR21*knot[l] + CR22*knot[2] + CR23*knot[3]; 
-	cO = CR30*knot[0] + CR31*knot[l] + CR32*knot[2] + CR33*knot[3];
+int span;
+int nspans = nknots - 3;
+float cO, cl, c2, c3; /* coefficients of the cubic.*/ 
+if (nspans < 1){/* illegal */
+fprintf(stderr, "Spline has too few knots.\n"); 
+return 0;
+}
+/* Find the appropriate 4-point span of the spline. */ 
+x = clamp(x, 0, 1) * nspans;
+span = (int) x;
+if (span >= nknots - 3)
+span = nknots - 3; 
+x -= span;
+knot += span;
 
-	return ((c3*x + c2)*x + cl)*x + cO;
+/* Evaluate the span cubic at x using Horner’s rule. */
+c3 = CROO*knot[0] + CR01*knot[l] + CR02*knot[2] + CR03*knot[3]; 
+c2 = CR10*knot[0] + CRll*knot[l] + CR12*knot[2] + CR13*knot[3]; 
+cl = CR20*knot[0] + CR21*knot[l] + CR22*knot[2] + CR23*knot[3]; 
+cO = CR30*knot[0] + CR31*knot[l] + CR32*knot[2] + CR33*knot[3];
+
+return ((c3*x + c2)*x + cl)*x + cO;
 }
 ```
 
@@ -546,22 +546,22 @@ An example of this technique is a shader that simulates a shiny metallic surface
 
 surface 
 metallic( ) {
-	point Nf = normalize(faceforward(N, I)); 
-	point V = normalize(-I);
-	point R; /* reflection direction */
-	point Rworld; /* R in world space */
-	color Ct;
-	float altitude;
+point Nf = normalize(faceforward(N, I)); 
+point V = normalize(-I);
+point R; /* reflection direction */
+point Rworld; /* R in world space */
+color Ct;
+float altitude;
 
-	R = 2 * Nf * (Nf . V ) - V ; 
-	Rworld = normalize(vtransform("world", R)); 
-	altitude = 0.5 * zcomp(Rworld) + 0.5;
-	Ct = spline(altitude,
-			BROWN, BROWN, BROWN, BROWN, BROWN, 
-			BROWN, BLUEO, BLUE1, BLUE2, BLUE3, 
-			BLUE4, BLUE5, BLACK);
-	Oi = Os;
-	Ci = Os * Cs * Ct;
+R = 2 * Nf * (Nf . V ) - V ; 
+Rworld = normalize(vtransform("world", R)); 
+altitude = 0.5 * zcomp(Rworld) + 0.5;
+Ct = spline(altitude,
+BROWN, BROWN, BROWN, BROWN, BROWN, 
+BROWN, BLUEO, BLUE1, BLUE2, BLUE3, 
+BLUE4, BLUE5, BLACK);
+Oi = Os;
+Ci = Os * Cs * Ct;
 }
 ```
 
@@ -574,7 +574,7 @@ Since *mix* functions and so many other selection functions are controlled by va
 ```c
 float
 gammacorrect(float gamma, float x) {
-	return pow(x, 1/gamma);
+return pow(x, 1/gamma);
 }
 ```
 
@@ -589,7 +589,7 @@ Perlin and Hoffert (1989) use a version of the gamma correction function that th
 ```
 float
 bias(float b, float x) {
-	return pow(x, log(b)/log(0.5)); 
+return pow(x, log(b)/log(0.5)); 
 }
 ```
 
@@ -603,10 +603,10 @@ Perlin and Hoffert (1989) present another function to remap the unit interval. T
 ```c
 float
 gain(float g, float x) {
-	if (x < 0.5)
-		return bias(1-g, 2*x)/2;
-	else
-		return 1 - bias(1-g, 2 - 2*x)/2;
+if (x < 0.5)
+return bias(1-g, 2*x)/2;
+else
+return 1 - bias(1-g, 2 - 2*x)/2;
 }
 ```
 
@@ -644,37 +644,37 @@ The following is a listing of the shading language code for the brick shader, wi
 #define MHF (MORTARTHICKNESS *0.5 /BMHEIGHT)
 
 surface brick(
-	uniform float Ka = 1;
-	uniform float Kd = 1;
-	uniform color Cbrick = color (0.5, 0.15, 0.14); 
-	uniform color Cmortar = color (0.5, 0.5, 0.5); )
+uniform float Ka = 1;
+uniform float Kd = 1;
+uniform color Cbrick = color (0.5, 0.15, 0.14); 
+uniform color Cmortar = color (0.5, 0.5, 0.5); )
 {
-	color Ct;
-	point Nf;
-	float ss, tt, sbrick, tbrick, w, h; 
-	float scoord = s;
-	float tcoord = t;
+color Ct;
+point Nf;
+float ss, tt, sbrick, tbrick, w, h; 
+float scoord = s;
+float tcoord = t;
 
-	Nf = normalize(faceforward(N, I));
-	
-	ss = scoord / BMWIDTH; 
-	tt = tcoord / BMHEIGHT;
-	if (mod(tt*0.5,1) > 0.5)
-		ss += 0.5; /* shift alternate rows */
+Nf = normalize(faceforward(N, I));
 
-	sbrick = floor(ss); /* which brick? */ 
-	tbrick = floor(tt); /* which brick? */ 
-	ss -= sbrick;
-	tt -= tbrick;
+ss = scoord / BMWIDTH; 
+tt = tcoord / BMHEIGHT;
+if (mod(tt*0.5,1) > 0.5)
+ss += 0.5; /* shift alternate rows */
 
-	w = step(MWF,ss) - step(1-MWF,ss);  // PULSE  MWF , 1-MWF
-	h = step(MHF,tt) - step(1-MHF,tt);
+sbrick = floor(ss); /* which brick? */ 
+tbrick = floor(tt); /* which brick? */ 
+ss -= sbrick;
+tt -= tbrick;
 
-	Ct = mix(Cmortar, Cbrick, w*h);
+w = step(MWF,ss) - step(1-MWF,ss);  // PULSE  MWF , 1-MWF
+h = step(MHF,tt) - step(1-MHF,tt);
 
-	/* diffuse reflection model */
-	Oi = Os;
-	Ci = Os * Ct * (Ka * ambient() + Kd * diffuse(Nf));
+Ct = mix(Cmortar, Cbrick, w*h);
+
+/* diffuse reflection model */
+Oi = Os;
+Ci = Os * Ct * (Ka * ambient() + Kd * diffuse(Nf));
 }
 ```
 
@@ -733,7 +733,7 @@ In this code fragment, a new position PP is computed by moving along the directi
 ```
 point 
 calculatenormal(point PP) {
-	return Du(PP) ^ Dv(PP);
+return Du(PP) ^ Dv(PP);
 }
 ```
 
@@ -841,53 +841,53 @@ The end points of the edge are a point at radius rmin from the center of the sta
 ```c
 surface
 star(
-	uniform float Ka = 1;
-	uniform float Kd = 1;
-	uniform color starcolor = color (1.0000,0.5161,0.0000); 
-	uniform float npoints = 5;
-	uniform float sctr = 0.5;
-	uniform float tctr = 0.5;
+uniform float Ka = 1;
+uniform float Kd = 1;
+uniform color starcolor = color (1.0000,0.5161,0.0000); 
+uniform float npoints = 5;
+uniform float sctr = 0.5;
+uniform float tctr = 0.5;
 ) {
-	point Nf = normalize(faceforward(N, I)); 
-	color Ct;
-	float ss, tt, angle, r, a, in_out;
-	uniform float rmin = 0.07, rmax = 0.2; 
-	uniform float starangle = 2*PI/npoints;  // 1.257 , 72 degree
+point Nf = normalize(faceforward(N, I)); 
+color Ct;
+float ss, tt, angle, r, a, in_out;
+uniform float rmin = 0.07, rmax = 0.2; 
+uniform float starangle = 2*PI/npoints;  // 1.257 , 72 degree
 
-	// (r,0) @ ( 0.2, 0, 0 )  
-	uniform point p0 = rmax*(cos(0),sin(0), 0);  
-	// ( rmin ,  starangle/2 ) @ (0.057, 0.041, 0) , clockwise , cuz (s,t) , t is downward
-	uniform point pi = rmin*(cos(starangle/2),sin(starangle/2),0);  
-	uniform point d0 = pi - p0; # thick line (left in picture)
-	point d1;
-	ss = s - sctr; tt = t - tctr;
-	angle = atan(ss, tt) + PI;  // mark: 1
-	r = sqrt(ss*ss + tt*tt);   // mark: 2
+// (r,0) @ ( 0.2, 0, 0 )  
+uniform point p0 = rmax*(cos(0),sin(0), 0);  
+// ( rmin ,  starangle/2 ) @ (0.057, 0.041, 0) , clockwise , cuz (s,t) , t is downward
+uniform point pi = rmin*(cos(starangle/2),sin(starangle/2),0);  
+uniform point d0 = pi - p0; # thick line (left in picture)
+point d1;
+ss = s - sctr; tt = t - tctr;
+angle = atan(ss, tt) + PI;  // mark: 1
+r = sqrt(ss*ss + tt*tt);   // mark: 2
 
-	a = mod(angle, starangle)/starangle; 
-	if (a >= 0.5)
-		a = 1 - a;    // mark: 3
+a = mod(angle, starangle)/starangle; 
+if (a >= 0.5)
+a = 1 - a;    // mark: 3
 
-	d1 = r*(cos(a), sin(a),0) - p0;  // mark:4
-	in_out = step(0, zcomp(d0^d1) ); // outward z is negtive
-	Ct = mix(Cs, starcolor, in_out);
-	/* diffuse (“matte”) shading model */ 
-	Oi = Os;
-	Ci = Os * Ct * (Ka * ambient() + Kd * diffuse(Nf));		
+d1 = r*(cos(a), sin(a),0) - p0;  // mark:4
+in_out = step(0, zcomp(d0^d1) ); // outward z is negtive
+Ct = mix(Cs, starcolor, in_out);
+/* diffuse (“matte”) shading model */ 
+Oi = Os;
+Ci = Os * Ct * (Ka * ambient() + Kd * diffuse(Nf));
 }
 ```
 
  1. 这里使用了一个小技巧: 极坐标 0弧度 是 水平向右
- 	- 通过 交换 atan的两个参数, 使 图像顺时针旋转90度
- 	- 最后加上 + PI , 使 star 正方向向上
+ - 通过 交换 atan的两个参数, 使 图像顺时针旋转90度
+ - 最后加上 + PI , 使 star 正方向向上
  2. 计算以 star 中心为 原点的 极坐标
  3. Now the shader has computed the coordinates of the sample point (r,a) in a new feature space: the space of one point of the star. 
- 	- a is first set to range from 0 to 1 over each star point. 
- 	- To avoid checking both of the edges that define the “V” shape of the star point, sample points in the upper half of the star point are reflected through the center line of the star point. 
- 	- The new sample point (r,a) is inside the star if and only if the original sample point was inside the star, due to the symmetry of the star point around its center line.
+ - a is first set to range from 0 to 1 over each star point. 
+ - To avoid checking both of the edges that define the “V” shape of the star point, sample points in the upper half of the star point are reflected through the center line of the star point. 
+ - The new sample point (r,a) is inside the star if and only if the original sample point was inside the star, due to the symmetry of the star point around its center line.
  4. To test whether (r,a) is inside the star, 我们使用叉积来判断， 注意 z轴正向是朝里的
- 	- `zcomp(d0^d1)` 判断只 适用于 36度区域, 为了使 另外的36度也 使用 d0来判断，我们对 `a` 做镜像处理
- 	- 代码中的 [0,1] normalization 并不是必须的, `a = mod(angle, starangle);  if (a >= starangle／2) a = starangle - a;` 同样可以
+ - `zcomp(d0^d1)` 判断只 适用于 36度区域, 为了使 另外的36度也 使用 d0来判断，我们对 `a` 做镜像处理
+ - 代码中的 [0,1] normalization 并不是必须的, `a = mod(angle, starangle);  if (a >= starangle／2) a = starangle - a;` 同样可以
 
 
 <h2 id="5783f81ef8917c860636ac9d7d695102"></h2>
@@ -899,9 +899,9 @@ Procedural methods could generate remarkably complex and natural-looking texture
 The theory of Fourier analysis tells us that functions can be represented as a sum of sinusoidal terms.  The Fourier transform takes a function from the temporal or spatial domain, where it is usually defined, into the *frequency domain*, where it is represented by the amplitude and phase of a series of sinusoidal waves.  When the series of sinusoidal waves is summed together, it reproduces the original function; this is called the *inverse Fourier transform*.
 
  - Spectral synthesis is a rather inefficient implementation of the inverse discrete Fourier transform, 
- 	- which takes a function from the frequency domain back to the spatial domain.  Given the amplitude and phase for each sinusoidal component, we can sum up the waves to get the desired function. 
+ - which takes a function from the frequency domain back to the spatial domain.  Given the amplitude and phase for each sinusoidal component, we can sum up the waves to get the desired function. 
  - The efficient way to do this is the inverse fast Fourier transform (FFT) algorithm, but that method generates the inverse Fourier transform for a large set of points all at once.
-  	- In an implicit procedural texture we have to generate the inverse Fourier transform for a single sample point, and the best way to do that seems to be a direct summation of the sine wave components.
+  - In an implicit procedural texture we have to generate the inverse Fourier transform for a single sample point, and the best way to do that seems to be a direct summation of the sine wave components.
 
 In procedural texture generation, we usually don’t have all of the frequency domain information needed to reconstruct some function exactly. Instead, we want a function with some known characteristics, usually its power spectrum, and we don’t care too much about the details of its behavior. 
 
@@ -1091,7 +1091,7 @@ Let’s begin with the following simple spectral synthesis loop, with a texture 
 ```c
 value = 0;
 for (f = MINFREQ; f < MAXFREQ; f *= 2)
-	value += sin(2*PI*f*s)/f;
+value += sin(2*PI*f*s)/f;
 ```
 
  - The loop begins at a frequency of MINFREQ and ends at a frequency less than MAXFREQ
@@ -1105,11 +1105,11 @@ value = 0;
 cutoff = clamp(0.5/swidth, 0, MAXFREQ); 
 
 for (f = MINFREQ; f < cutoff; f *= 2)
-	value += sin(2*PI*f*s)/f;
+value += sin(2*PI*f*s)/f;
 ```
 
  - In this version the loop stops at a frequency less than *cutoff* , which is the Nyquist frequency for the sampling rate *1/swidth* 
- 	- 要确保 <= Nyquist frequency/2 , 所以这里是  0.5/swidth
+ - 要确保 <= Nyquist frequency/2 , 所以这里是  0.5/swidth
 
 In order to avoid “pops,” sudden changes in the texture as the sampling rate changes (e.g., as we zoom in toward the textured surface), it is important to fade out each component gradually as the Nyquist frequency approaches the component frequency. The following texture function incorporates this gradual fade-out strategy:
 
@@ -1118,7 +1118,7 @@ value = 0;
 cutoff = clamp(0.5/swidth, 0, MAXFREQ); 
 
 for (f = MINFREQ; f < 0.5*cutoff; f *= 2)
-	value += sin(2*PI*f*s)/f;
+value += sin(2*PI*f*s)/f;
 
 fade = clamp(2*(cutoff-f)/cutoff, 0, 1); 
 value += fade * sin(2*PI*f*s)/f;
@@ -1193,8 +1193,8 @@ A summed-area table is an image made from the texture image.
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.33.png)
 
 > FIGURE 2.33 The summed-area table: 
->	(a) table entry (s, t) stores area of shaded region; 
->	(b) four entries A, B, C, D are used to compute shaded area.
+>(a) table entry (s, t) stores area of shaded region; 
+>(b) four entries A, B, C, D are used to compute shaded area.
 
 As illustrated in Figure 2.33(a), the pixel value at coordinates (s, t) in the summed-area table is the sum of all of the pixels in the rectangular area (0:s, 0:t) in the texture image.
 
@@ -1303,7 +1303,7 @@ The properties of an ideal ***noise*** function are as follows:
  - noise has a known range, namely, from −1 to 1.
  - noise is band-limited, with a maximum frequency of about 1.
  - noise doesn’t exhibit obvious periodicities or regular patterns. Such pseudorandom functions are always periodic, but the period can be made very long and therefore the periodicity is not conspicuous.
- 	- 不明显的表现出周期性
+ - 不明显的表现出周期性
  - noise is *stationary* 静止的 -— that is, its statistical character 统计特性 should be translationally invariant 平移不变 .
  - noise is *isotropic* 各向同性 -— that is, its statistical character should be rotationally invariant 旋转不变.
 
@@ -1319,9 +1319,9 @@ The generation of a lattice noise begins with one or more uniformly distributed 
 All lattice noises need some way to generate one or more pseudorandom numbers at every lattice point. The *noise* functions in this chapter use a table of PRNs that is generated the first time *noise* is called.  To find the PRNs in the table that are to be used for a particular integer lattice point (ix,iy,iz), we’ll use the following code:
 
 ```c
-#define TABSIZE		256
-#define TABMASK		(TABSIZE-1)
-#define PERM(x)		perm[(x)&TABMASK]
+#define TABSIZE256
+#define TABMASK(TABSIZE-1)
+#define PERM(x)perm[(x)&TABMASK]
 #define INDEX(ix,iy,iz) PERM((ix)+PERM((iy)+PERM(iz)))
 ```
 
@@ -1364,46 +1364,46 @@ float valueTab[TABSIZE];
 
 void
 valueTabInit(int seed) {
-	float *table = valueTab;
-	int i;
-	srandom(seed);
-	for(i = 0; i < TABSIZE; i++) 
-		*table++ = 1. - 2.* RANDNBR;
+float *table = valueTab;
+int i;
+srandom(seed);
+for(i = 0; i < TABSIZE; i++) 
+*table++ = 1. - 2.* RANDNBR;
 }
 
 float
-vlattice(int ix, int iy, int iz) {		// mark 1
-	return valueTab[INDEX(ix,iy,iz)]; 
+vlattice(int ix, int iy, int iz) {// mark 1
+return valueTab[INDEX(ix,iy,iz)]; 
 }
 
 float
 vnoise(float x, float y, float z) {  // mark2
-	int ix, iy, iz;
-	int i, j, k;
-	float fx, fy, fz;
-	float xknots[4], yknots[4], zknots[4]; 
-	static int initialized = 0;
+int ix, iy, iz;
+int i, j, k;
+float fx, fy, fz;
+float xknots[4], yknots[4], zknots[4]; 
+static int initialized = 0;
 
-	if (!initialized) { 
-		valueTabInit(665); 
-		initialized = 1;
-	}
-	ix = FLOOR(x); 
-	fx = x - ix;
-	iy = FLOOR(y); 
-	fy = y - iy;
-	iz = FLOOR(z); 
-	fz = z - iz;
+if (!initialized) { 
+valueTabInit(665); 
+initialized = 1;
+}
+ix = FLOOR(x); 
+fx = x - ix;
+iy = FLOOR(y); 
+fy = y - iy;
+iz = FLOOR(z); 
+fz = z - iz;
 
-	for (k = -1; k <= 2; k++) { 
-		for (j = -1; j <= 2; j++) { 
-			for (i = -1; i <= 2; i++)
-				xknots[i+1] = vlattice(ix+i,iy+j,iz+k); 
-			yknots[j+1] = spline(fx, 4, xknots);
-		}
-		zknots[k+1] = spline(fy, 4, yknots); 
-	}
-	return spline(fz, 4, zknots);
+for (k = -1; k <= 2; k++) { 
+for (j = -1; j <= 2; j++) { 
+for (i = -1; i <= 2; i++)
+xknots[i+1] = vlattice(ix+i,iy+j,iz+k); 
+yknots[j+1] = spline(fx, 4, xknots);
+}
+zknots[k+1] = spline(fy, 4, yknots); 
+}
+return spline(fz, 4, zknots);
 ```
 
 
@@ -1496,7 +1496,7 @@ The discussion on page 48 , Several calls to noise can be combined to build up a
 ```
 value = 0;
 for (f = MINFREQ; f < MAXFREQ; f *= 2)
-	value += amplitude * snoise(Q * f);
+value += amplitude * snoise(Q * f);
 ```
 
 with amplitude varying as a function of frequency f will build up a value with a desired spectrum. Q is the sample point in some texture space.
@@ -1505,10 +1505,10 @@ Perlin’s well-known *turbulence* function is essentially a stochastic function
 
 ```
 float fractalsum(point Q) {
-	float value = 0;
-	for (f = MINFREQ; f < MAXFREQ; f *= 2)
-		value += snoise(Q * f)/f; 
-	return value;
+float value = 0;
+for (f = MINFREQ; f < MAXFREQ; f *= 2)
+value += snoise(Q * f)/f; 
+return value;
 }
 ```
 
@@ -1517,10 +1517,10 @@ This isn’t quite the same as turbulence, however. Derivative discontinuities a
 
 ```
 float turbulence(point Q) {
-	float value = 0;
-	for (f = MINFREQ; f < MAXFREQ; f *= 2)
-		value += abs(snoise(Q * f))/f; 
-	return value;
+float value = 0;
+for (f = MINFREQ; f < MAXFREQ; f *= 2)
+value += abs(snoise(Q * f))/f; 
+return value;
 }
 ```
 
@@ -1537,25 +1537,25 @@ Spectral synthesis loops should use clamping to prevent aliasing. Here is a vers
 
 ```
 float turbulence(point Q) {
-	float value = 0;
-	float cutoff = clamp(0.5/Qwidth, 0, MAXFREQ); 
-	float fade;
-	for (f = MINFREQ; f < 0.5*cutoff; f *= 2) 
-		value += abs(snoise(Q * f))/f;
-	fade = clamp(2*(cutoff-f)/cutoff, 0, 1); 
-	value += fade * abs(snoise(Q * f))/f; 
-	return value;
+float value = 0;
+float cutoff = clamp(0.5/Qwidth, 0, MAXFREQ); 
+float fade;
+for (f = MINFREQ; f < 0.5*cutoff; f *= 2) 
+value += abs(snoise(Q * f))/f;
+fade = clamp(2*(cutoff-f)/cutoff, 0, 1); 
+value += fade * abs(snoise(Q * f))/f; 
+return value;
 }
 ```
 
 Marble is a material that is typically simulated using an irregular texture based on spectral synthesis. The following marble shader uses a four-octave spectral synthesis based on *noise* to build up a stochastic value called *marble* that is similar to *fractalsum*.
 
 ```
-#define PALE_BLUE 		color (0.25, 0.25, 0.35) 
-#define MEDIUM_BLUE 	color (0.10, 0.10, 0.30) 
-#define DARK_BLUE 		color (0.05, 0.05, 0.26)
-#define DARKER_BLUE 	color (0.03, 0.03, 0.20) 
-#define NNOISE			4
+#define PALE_BLUE color (0.25, 0.25, 0.35) 
+#define MEDIUM_BLUE color (0.10, 0.10, 0.30) 
+#define DARK_BLUE color (0.05, 0.05, 0.26)
+#define DARKER_BLUE color (0.03, 0.03, 0.20) 
+#define NNOISE4
 
 #define snoise(x) (2 * noise(x) - 1)
 
@@ -1639,10 +1639,10 @@ tt -= tbrick;
 ```
 
  - The call to *snoise* uses *tbrick* rather than *tt* so that the noise value is constant over the entire brick. 
- 	- Otherwise, the stochastic offset would vary over the height of the brick and make the vertical edges of the brick wavy. 
+ - Otherwise, the stochastic offset would vary over the height of the brick and make the vertical edges of the brick wavy. 
  - Of course, we had to reorder the calculation of *sbrick* and *tbrick* so that *sbrick* can depend on *tbrick*.
  - Since *snoise* is a gradient noise that is zero at all integer points, the perturbation always would be zero if the shader used `snoise(tbrick)`. 
- 	- Instead, it uses `snoise(tbrick + 0.5)` to sample the value of the noise halfway between the integer points, where it should have an interesting value. 
+ - Instead, it uses `snoise(tbrick + 0.5)` to sample the value of the noise halfway between the integer points, where it should have an interesting value. 
  - The 0.1 multiplier on the *snoise* simply controls the size of the irregularity added to the texture. It can be adjusted as desired.
 
 
@@ -1693,7 +1693,7 @@ In the following example shader, the bomb is the star pattern created by the pro
 
 #define NCELLS 10
 #define CELLSIZE (1/NCELLS)
-#define snoise(s,t)	(2*noise((s),(t))-1)
+#define snoise(s,t)(2*noise((s),(t))-1)
 
 surface
 wallpaper(
@@ -1723,9 +1723,9 @@ wallpaper(
 
     for (i = -1; i <= 1; i += 1) {
         for (j = -1; j <= 1; j += 1) {
-	    scell = scellctr + i;
-	    tcell = tcellctr + j;
-	    if ( noise(3*scell-9.5,7*tcell+7.5) < 0.55) {
+    scell = scellctr + i;
+    tcell = tcellctr + j;
+    if ( noise(3*scell-9.5,7*tcell+7.5) < 0.55) {
                 sctr = CELLSIZE * (scell + 0.5
                      + 0.6 * snoise(scell+0.5, tcell+0.5));
                 tctr = CELLSIZE * (tcell + 0.5
@@ -1754,12 +1754,12 @@ wallpaper(
 ```
 
  - A separate noise value for each cell could be tested to see whether the cell should contain a star.
- 	- If a star is so far from the center of a cell that it protrudes outside the cell, this shader will clip off the part of the star that is outside the cell.
+ - If a star is so far from the center of a cell that it protrudes outside the cell, this shader will clip off the part of the star that is outside the cell.
  - The tests can be done by a pair of nested for loops that iterate over −1, 0, and 1. The nested loops generate nine different values for the cell coordinate pair (scell, tcell). 
- 	- The star in each cell is tested against the sample point.
+ - The star in each cell is tested against the sample point.
  - The first *noise* call is used to decide whether or not to put a star in the cell. 
- 	- Note that the value of *in_out* can now be as high as 9.
- 	- The additional *step* call in the last line converts it back to a 0 to 1 range so that the mix will work properly. 
+ - Note that the value of *in_out* can now be as high as 9.
+ - The additional *step* call in the last line converts it back to a 0 to 1 range so that the mix will work properly. 
 
 
 
