@@ -56,6 +56,7 @@
          - [enter interact mode after executing a python file](#e3c3e4edeeaec5c36e52fe88b8fd33fe)
          - [add python module search path](#c005e12b106174340f49500f7c1ab309)
          - [open file with both reading and writing](#b8976c77d38eafc77157b35d8969c262)
+         - [basis of Datetime and Time](#fdbe9d1605732955d440487ba60d2368)
 
 ...menuend
 
@@ -681,6 +682,8 @@ with open(filename, "r+") as f:
     f.write(output)
     f.truncate()
 ```
+
+<h2 id="fdbe9d1605732955d440487ba60d2368"></h2>
 
 ### basis of Datetime and Time
 

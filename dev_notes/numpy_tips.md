@@ -1,6 +1,10 @@
 ...menustart
 
  - [numpy tips](#c2bfb8f194cb52abbd9cc9397dafc5d4)
+     - [Combining Arrays](#84df0f6a0e96bb96e66fdba51a103ad5)
+     - [Math Functions](#1f1ef887de84fa2b7f644b5878b4e6ce)
+     - [Indexing / Slicing](#6b17874075ca37cc84a6c0d09e623e1c)
+     - [Iterating Over Arrays](#f32b904edd83a21e8b374913f5631504)
      - [数据 slice](#1ae1043e3a38472916094e5c042464ed)
      - [数据过滤](#86260398567c0091b1c262ef98512bd6)
      - [数据 拼接](#6ab51568114b14d4784a1fa07f6717b5)
@@ -62,6 +66,8 @@ array([[ 1.,  0.,  0.],
     - `array([1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3])`
  
 
+<h2 id="84df0f6a0e96bb96e66fdba51a103ad5"></h2>
+
 ## Combining Arrays
 
 ```python
@@ -98,6 +104,8 @@ array([[ 1.,  0.,  0.],
  - Use .astype to cast to a specific type.
     - `z = z.astype('f')`
 
+<h2 id="1f1ef887de84fa2b7f644b5878b4e6ce"></h2>
+
 ## Math Functions
 
 ```python
@@ -116,6 +124,8 @@ a.argmin()
 # PS. also works on multidimensional array 
 # but will flatten the array , then do operations
 ```
+
+<h2 id="6b17874075ca37cc84a6c0d09e623e1c"></h2>
 
 ## Indexing / Slicing
 
@@ -179,6 +189,8 @@ array([[ 0,  1,  2,  3,  4,  5],
  - **Be careful with copying and modifying arrays in NumPy!**
  - use `r.copy` to create a copy that will not affect the original array
     - `r_copy = r.copy()`
+
+<h2 id="f32b904edd83a21e8b374913f5631504"></h2>
 
 ## Iterating Over Arrays
 

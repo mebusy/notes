@@ -29,7 +29,7 @@
          - [Kosaraju-Sharir algorithm: intuition](#78bc7c6434676c150d3fcd374edb673d)
          - [Kosaraju-Sharir algorithm](#9844834019d43e5059b822f482b610df)
          - [Digraph-processing summary: algorithms of the day](#9b34efa15d2453e1e219c449b0fbf698)
-         - [Digraph question](#ea0a68eef2b9a51cdfc378ef383ff7da)
+     - [Digraph question](#ea0a68eef2b9a51cdfc378ef383ff7da)
 
 ...menuend
 
@@ -531,7 +531,7 @@ strong components in a digraph | Kosaraju-Sharir DFS (twice)
 
 <h2 id="ea0a68eef2b9a51cdfc378ef383ff7da"></h2>
 
-### Digraph question
+## Digraph question
 
  - Shortest directed cycle
     - Given a digraph G, design an efficient algorithm to find a directed cycle with the minimum number of edges.
