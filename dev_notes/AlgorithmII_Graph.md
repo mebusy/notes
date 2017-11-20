@@ -509,7 +509,47 @@ public class DepthFirstOrder {
     - 注意，这里我们恢复到 原图G了，我们在 原图G上执行DFS
     - it is really same as to compute CC.
 
-PS. The DFS in the 1st phase (  to compute reverse postorder ) is crucial;  in the 2nd phase , any algorithm that marks the set of vertices reachable from a given vertex will do.  Since Strong components in G are same as in Gᴿ , you also can run DFS on Gᴿ then run DFS on G which will get the same result.
+```java
+private boolean[] marked;
+// id[v] = (index or ID of component)
+private int[] id; 
+// record component index
+private int count; 
+
+public SCC(DiGraph G) {
+    marked = new boolean[G.V()];
+    id = new int[G.V()];
+    // +
+    DepthFirstOrder dfs = new DepthFirstOrder(G.reverse());
+    // m 
+    for (int v : dfs.reversePost())
+    //for (int v = 0; v < G.V(); v++) 
+    {
+        if (!marked[v])
+        {
+            // run DFS from one vertex
+            // in each component
+            dfs(G, v);
+            count++; 
+        } // end if
+    } // end for
+} // end CC
+
+private void dfs(DiGraph G, int v)
+{
+    marked[v] = true;
+    // all vertices discovered in same 
+    // call of dfs have same id
+    id[v] = count ;
+    for (int w : G.adj(v))
+        if (!marked[w])
+            dfs(G, w);
+}
+```
+
+
+ - Compare to compute CC , there is only 2 lines different.
+ - PS. The DFS in the 1st phase (  to compute reverse postorder ) is crucial;  in the 2nd phase , any algorithm that marks the set of vertices reachable from a given vertex will do.  Since Strong components in G are same as in Gᴿ , you also can run DFS on Gᴿ then run DFS on G which will get the same result.
 
 ---
 
