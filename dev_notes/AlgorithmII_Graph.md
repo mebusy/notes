@@ -430,7 +430,11 @@ public class DepthFirstOrder {
 
     // 4      
     public Iterable<Integer> reversePost() {  
-        return reversePost;  
+        ArrayList<Integer> l = new ArrayList<Integer>() ;
+        while ( reversePost.size()>0 ) {
+            l.add(  reversePost.pop()  ) ;   
+        }
+        return l ;
     }
 }
 ```
@@ -448,7 +452,7 @@ public class DepthFirstOrder {
     - If directed cycle,  topological order impossible.
     - If no directed cycle, DFS-based algorithm finds a topological order.
  - Goal. Given a digraph, find a directed cycle.
- - Solution. DFS. What else? See textbook.
+ - Solution. **DFS**. What else? See textbook.
  - Directed cycle detection application: precedence scheduling
     - Scheduling. Given a set of tasks to be completed with precedence constraints, in what order should we schedule the tasks?
     - Remark. A directed cycle implies scheduling problem is infeasible.
