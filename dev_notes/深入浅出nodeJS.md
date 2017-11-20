@@ -84,13 +84,13 @@
 大计算量问题的解决方案：
 
  - google 的 Gears
- - 启用一个完全独立的进程，将需要计算的程序发送到这个进程
- - 在结果得出后，通过事件将结果传递回来
- - 这个模型将计算量分发到其他进程上，以此来降低运算造成阻塞的几率
+ 	- 启用一个完全独立的进程，将需要计算的程序发送到这个进程
+ 	- 在结果得出后，通过事件将结果传递回来
+ 	- 这个模型将计算量分发到其他进程上，以此来降低运算造成阻塞的几率
  - HTML5 定制的 Web Workers 标准
- - google 放弃了 Gears, 全力支持Web Workers
- - Web Workers 创建工作线程来进行计算，以解决 JavaScript 大计算阻塞UI渲染的问题
- - 工作线程为了不阻塞主线程，通过消息传递的方式来传递运行结果, 这也使得工作线程不能访问到主线程中的UI。
+ 	- google 放弃了 Gears, 全力支持Web Workers
+ 	- Web Workers 创建工作线程来进行计算，以解决 JavaScript 大计算阻塞UI渲染的问题
+ 	- 工作线程为了不阻塞主线程，通过消息传递的方式来传递运行结果, 这也使得工作线程不能访问到主线程中的UI。
 
 Node 采用和 Web Workers 相同的思路来解决单线程中大计算量的问题: ***child_process***
 
@@ -117,7 +117,7 @@ I/O密集的优势主要在于Node利用事件循环的处理能力，而不是�
 
  - Node 可以通过编写 C/C++ 扩展的方式更高效的利用CPU, 将一些V8不能做到性能极致的地方通过C++实现。
  - 如果单线程的Node 不能满足需求，甚至用了C/C++ 扩展后还觉得不够，那么通过子进程的方式，将一部分Node进程当作常驻服务用于计算。
- - 然后利用进程间的消息来传递结果，将计算与I/O 分离。
+ 	- 然后利用进程间的消息来传递结果，将计算与I/O 分离。
  - CPU 密集不可怕，如果合理调度是诀窍。
 
 
@@ -159,7 +159,7 @@ setTimeout() 和 setInterval() (setInterval 重复调用)与浏览器中的API�
 ```JavaScript
 // bad
 setTimeout( function() {
-// TODO
+	// TODO
 }, 0 );
 ```
 
@@ -167,19 +167,19 @@ setTimeout( function() {
 
 ```JavaScript
 process.nextTick = function(callback) { 
-// on the way out, don't bother.
-// it won't get fired anyway
-if (process._exiting) return;
+	// on the way out, don't bother.
+	// it won't get fired anyway
+	if (process._exiting) return;
 
-if (tickDepth >= process.maxTickDepth) 
-maxTickWarn();
+	if (tickDepth >= process.maxTickDepth) 
+		maxTickWarn();
 
-var tock = { callback: callback };
-if (process.domain) tock.domain = process.domain; 
-nextTickQueue.push(tock);
-if (nextTickQueue.length) {
-process._needTickCallback(); 
-}
+	var tock = { callback: callback };
+	if (process.domain) tock.domain = process.domain; 
+	nextTickQueue.push(tock);
+	if (nextTickQueue.length) {
+		process._needTickCallback(); 
+	}
 };
 ```
 
@@ -194,25 +194,25 @@ setImmediate()方法 与 process.nextTick() 方法十分类似，都是将回调
 
 ```JavaScript
 process.nextTick(function () { 
-console.log('延迟执行');
+	console.log('延迟执行');
 }); 
 console.log('正常执行');
 ```
 
 ```JavaScript
 setImmediate(function () { 
-console.log('延迟执行');
+	console.log('延迟执行');
 }); 
 console.log('正常执行');
 ```
 
  - process.nextTick() 中回调函数执行的优先级要高于 setImmediate()。
- - process.nextTick()属于idle观察者, setImmediate() 属于check观察者。
- - 在每一轮循环中，优先级 idle观察者 > I/O观察者 > check观察者。
+ 	- process.nextTick()属于idle观察者, setImmediate() 属于check观察者。
+ 	- 在每一轮循环中，优先级 idle观察者 > I/O观察者 > check观察者。
  - process.nextTick() 的回调函数保存在一个数组中
- - 每轮循环中 会将数组中的回调函数全部执行完
+ 	- 每轮循环中 会将数组中的回调函数全部执行完
  - setImmediate() 的结构保存在链表中
- - 每轮循环 执行链表中的一个回调
+ 	- 每轮循环 执行链表中的一个回调
 
 
 我们基本勾勒出了事件驱动的实质，即 **通过主循环加事件触发的方式来运行程序**。
@@ -239,10 +239,10 @@ console.log('正常执行');
 ```JavaScript
 var toString = Object.prototype.toString;
 var isString = function (obj) {
-return toString.call(obj) == '[object String]';
+	return toString.call(obj) == '[object String]';
 };
 var isFunction = function (obj) {
-return toString.call(obj) == '[object Function]'; 
+	return toString.call(obj) == '[object Function]'; 
 };
 ```
 
@@ -250,9 +250,9 @@ return toString.call(obj) == '[object Function]';
 
 ```JavaScript
 var isType = function (type) { 
-return function (obj) {
-return toString.call(obj) == '[object ' + type + ']'; 
-};
+	return function (obj) {
+		return toString.call(obj) == '[object ' + type + ']'; 
+	};
 };
 var isString = isType('String');
 var isFunction = isType('Function');
@@ -280,7 +280,7 @@ var isFunction = isType('Function');
 
 ```JavaScript
 var async = function (callback) { 
-process.nextTick(callback);
+	process.nextTick(callback);
 };
 ```
 
@@ -288,9 +288,9 @@ try/catch 对 callback 执行时抛出的异常将无能为力:
 
 ```JavaScript
 try {
-async(callback); 
+	async(callback); 
 } catch (e) { 
-// TODO
+	// TODO
 }
 ```
 
@@ -298,7 +298,7 @@ async(callback);
 
 ```JavaScript
 async(function (err, results) { 
-// TODO
+	// TODO
 });
 ```
 
@@ -310,13 +310,13 @@ async(function (err, results) {
 
 ```JavaScript
 var async = function (callback) { 
-process.nextTick(function() {
-var results = something; 
-if (error) {
-return callback(error); 
-}
-callback(null, results); 
-});
+	process.nextTick(function() {
+		var results = something; 
+		if (error) {
+			return callback(error); 
+		}
+		callback(null, results); 
+	});
 };
 ```
 
@@ -324,12 +324,12 @@ callback(null, results);
 
 ```JavaScript
 try {
-req.body = JSON.parse(buf, options.reviver); 
-callback();
+	req.body = JSON.parse(buf, options.reviver); 
+	callback();
 } catch (err){ 
-err.body = buf; 
-err.status = 400; 
-callback(err);
+	err.body = buf; 
+	err.status = 400; 
+	callback(err);
 }
 ```
 
@@ -337,11 +337,11 @@ callback(err);
 
 ```JavaScript
 try {
-req.body = JSON.parse(buf, options.reviver);
+	req.body = JSON.parse(buf, options.reviver);
 } catch (err){ 
-err.body = buf;
-err.status = 400;
-return callback(err); 
+	err.body = buf;
+	err.status = 400;
+	return callback(err); 
 }
 callback();
 ```
@@ -355,11 +355,11 @@ callback();
 
 ```JavaScript
 fs.readFile(template_path, 'utf8', function (err, template) { 
-db.query(sql, function (err, data) {
-l10n.get(function (err, resources) { 
-// TODO
-}); 
-});
+	db.query(sql, function (err, data) {
+		l10n.get(function (err, resources) { 
+			// TODO
+		}); 
+	});
 });
 ```
 
@@ -401,7 +401,7 @@ Node自身提供的 events 模块 是发布/订阅模式的一个简单实现，
 ```JavaScript
 // 订阅
 emitter.on("event1", function (message) {
-console.log(message); 
+	console.log(message); 
 });
 // 发布
 emitter.emit('event1', "I am message!");
@@ -428,7 +428,7 @@ Node对事件发布／订阅的机制做了一些额外处理:
 ```JavaScript
 var events = require('events');
 function Stream() { 
-events.EventEmitter.call(this);
+	events.EventEmitter.call(this);
 }
 util.inherits(Stream, events.EventEmitter);
 ```
@@ -445,9 +445,9 @@ Node在 util模块中封装了继承的方法。可以通过这样的方式轻�
 
 ```JavaScript
 var select = function (callback) { 
-db.select("SQL", function (results) {
-callback(results); 
-});
+	db.select("SQL", function (results) {
+		callback(results); 
+	});
 };
 ```
 
@@ -458,13 +458,13 @@ callback(results);
 ```JavaScript
 var status = "ready";
 var select = function (callback) {
-if (status === "ready") {
-status = "pending";
-db.select("SQL", function (results) {
-status = "ready";
-callback(results); 
-});
-}
+	if (status === "ready") {
+		status = "pending";
+		db.select("SQL", function (results) {
+			status = "ready";
+			callback(results); 
+		});
+	}
 };
 ```
 
@@ -474,21 +474,21 @@ callback(results);
 var proxy = new events.EventEmitter(); 
 var status = "ready";
 var select = function (callback) {
-// 数据请求的回调 都压入事件队列
-// 利用执行一次就会将监视器移除的特点，保证每一个回调只会执行一次
-// 对于相同的SQL语句，保证在同一个查询开始到结束的过程中永远只有一次
-proxy.once("selected", callback);
+	// 数据请求的回调 都压入事件队列
+	// 利用执行一次就会将监视器移除的特点，保证每一个回调只会执行一次
+	// 对于相同的SQL语句，保证在同一个查询开始到结束的过程中永远只有一次
+	proxy.once("selected", callback);
 
-// SQL在进行查询时，新到来的相同调用只需在队列中等待数据就绪即可，
-// 一旦查询结束, 得到的结果可以被这些调用共同使用。
-if (status === "ready") { 
-status = "pending";
-db.select("SQL", function (results) {
-// 触发事件，把结果传递通知所有监听者
-proxy.emit("selected", results);
-status = "ready";
-}); 
-} 
+	// SQL在进行查询时，新到来的相同调用只需在队列中等待数据就绪即可，
+	// 一旦查询结束, 得到的结果可以被这些调用共同使用。
+	if (status === "ready") { 
+		status = "pending";
+		db.select("SQL", function (results) {
+			// 触发事件，把结果传递通知所有监听者
+			proxy.emit("selected", results);
+			status = "ready";
+		}); 
+	} 
 };
 ```
 
@@ -507,21 +507,21 @@ status = "ready";
 var count = 0;
 var results = {};
 var done = function (key, value) {
-results[key] = value; 
-count++;
-if (count === 3) {
-// 渲染 面
-render(results); 
-}
+	results[key] = value; 
+	count++;
+	if (count === 3) {
+		// 渲染 面
+		render(results); 
+	}
 };
 fs.readFile(template_path, "utf8", function (err, template) {
-done("template", template);
+	done("template", template);
 });
 db.query(sql, function (err, data) {
-done("data", data); 
+	done("data", data); 
 });
 l10n.get(function (err, resources) { 
-done("resources", resources);
+	done("resources", resources);
 });
 ```
 
@@ -529,15 +529,15 @@ done("resources", resources);
 
 ```JavaScript
 var after = function (times, callback) { 
-var count = 0, 
-results = {};
-return function (key, value) {
-results[key] = value; 
-count++;
-if (count === times) {
-callback(results); 
-}
-}; 
+	var count = 0, 
+	results = {};
+	return function (key, value) {
+		results[key] = value; 
+		count++;
+		if (count === times) {
+			callback(results); 
+		}
+	}; 
 };
 var done = after(times, render);
 ```
@@ -552,13 +552,13 @@ emitter.on("done", done);
 emitter.on("done", other);
 
 fs.readFile(template_path, "utf8", function (err, template) { 
-emitter.emit("done", "template", template);
+	emitter.emit("done", "template", template);
 });
 db.query(sql, function (err, data) {
-emitter.emit("done", "data", data); 
+	emitter.emit("done", "data", data); 
 });
 l10n.get(function (err, resources) { 
-emitter.emit("done", "resources", resources);
+	emitter.emit("done", "resources", resources);
 });
 ```
 
@@ -571,17 +571,17 @@ var proxy = new EventProxy();
 // 提供了一个 all 方法来订阅多个事件
 // 当所有事件都被触发之后，监听器才会执行
 proxy.all("template", "data", "resources", function (template, data, resources) { 
-// TODO
+	// TODO
 });
 
 fs.readFile(template_path, "utf8", function (err, template) { 
-proxy.emit("template", template);
+	proxy.emit("template", template);
 }); 
 db.query(sql, function (err, data) {
-proxy.emit("data", data); 
+	proxy.emit("data", data); 
 });
 l10n.get(function (err, resources) { 
-proxy.emit("resources", resources);
+	proxy.emit("resources", resources);
 });
 ```
 
@@ -598,7 +598,7 @@ var proxy = new EventProxy();
 // 执行10次data事件后，执行监听器事件
 // 这个监听器得到的数据，是10次按事件触发次序排列的数组
 proxy.after("data", 10, function (datas) { 
-// TODO
+	// TODO
 });
 ```
 
@@ -612,26 +612,26 @@ proxy.after("data", 10, function (datas) {
 
 ```JavaScript
 exports.getContent = function (callback) { 
-var ep = new EventProxy();
-ep.all('tpl', 'data', function (tpl, data) { 
-// 成功回调
-callback(null, {
-template: tpl,
-data: data 
-});
-}); 
-// 绑定错误处理函数 
-ep.fail(callback);
+	var ep = new EventProxy();
+	ep.all('tpl', 'data', function (tpl, data) { 
+		// 成功回调
+		callback(null, {
+			template: tpl,
+			data: data 
+		});
+	}); 
+	// 绑定错误处理函数 
+	ep.fail(callback);
 
-fs.readFile('template.tpl', 'utf-8', ep.done('tpl'));
-db.get('some sql', ep.done('data')); };
+	fs.readFile('template.tpl', 'utf-8', ep.done('tpl'));
+	db.get('some sql', ep.done('data')); };
 ```
 
 `ep.fail(callback);` 等价于:
 
 ```JavaScript
 ep.fail(function (err) { 
-callback(err);
+	callback(err);
 });
 ```
 
@@ -639,10 +639,10 @@ callback(err);
 
 ```JavaScript
 ep.bind('error', function (err) { 
-// 卸载掉 所有处理函数 
-ep.unbind();
-// 异常回调
-callback(err); 
+	// 卸载掉 所有处理函数 
+	ep.unbind();
+	// 异常回调
+	callback(err); 
 });
 ```
 
@@ -650,11 +650,11 @@ callback(err);
 
 ```JavaScript
 function (err, content) { 
-if (err) {
-// 一旦发生异常, 一律交给error事件 处理函数处理
-return ep.emit('error', err); 
-}
-ep.emit('tpl', content); 
+	if (err) {
+		// 一旦发生异常, 一律交给error事件 处理函数处理
+		return ep.emit('error', err); 
+	}
+	ep.emit('tpl', content); 
 }
 ```
 
@@ -671,9 +671,9 @@ done()方法也接收一个函数作为参数。
 
 ```JavaScript
 $.get('/api', { 
-success: onSuccess, 
-error: onError, 
-complete: onComplete
+	success: onSuccess, 
+	error: onError, 
+	complete: onComplete
 }); 
 ```
 
@@ -681,9 +681,9 @@ complete: onComplete
 
 ```JavaScript
 $.get('/api') 
-.success(onSuccess) 
-.error(onError) 
-.complete(onComplete);
+	.success(onSuccess) 
+	.error(onError) 
+	.complete(onComplete);
 ```
 
 这使得即使不调用 success(),error() 等方法，Ajax也会执行。
@@ -692,8 +692,8 @@ $.get('/api')
 
 ```JavaScript
 $.get('/api') 
-.success(onSuccess1) 
-.success(onSuccess2);
+	.success(onSuccess1) 
+	.success(onSuccess2);
 ```
 
 异步编程一旦出现深度的嵌套，就会让编程的体验变得不愉快，而 Promise/Deferred模式在一定程度上缓解了这个问题。 这里我们着重介绍 Promise/A 来以点带面介绍 Promise/Deferred 模式。
@@ -708,7 +708,7 @@ Promise/A 提议对单个异步操作做出这样的抽象定义，具体如下�
 
  - Promise操作只会处在3种状态中的一种: 未完成态，完成态，和失败态。
  - Promise的状态只会出现 从未完成态 向完成态 或 失败态转化，不能逆反。
- - 完成态 和 失败态 不能互相转化
+ 	- 完成态 和 失败态 不能互相转化
  - Promise 的状态一旦转化，将不能被更改
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_promise_transfer.png)
@@ -730,23 +730,23 @@ then(fulfilledHandler, errorHandler, progressHandler)
 
 ```JavaScript
 var Promise = function () { 
-EventEmitter.call(this);
+	EventEmitter.call(this);
 };
 util.inherits(Promise, EventEmitter);
 
 Promise.prototype.then = function (fulfilledHandler, errorHandler, progressHandler) { 
-if (typeof fulfilledHandler === 'function') {
-//  用once()方法  证成功回调 执行  
-this.once('success', fulfilledHandler); 
-}
-if (typeof errorHandler === 'function') { 
-//  用once()方法  证异常回调 执行   
-this.once('error', errorHandler);
-}
-if (typeof progressHandler === 'function') {
-this.on('progress', progressHandler); 
-}
-return this; 
+	if (typeof fulfilledHandler === 'function') {
+		//  用once()方法  证成功回调 执行  
+		this.once('success', fulfilledHandler); 
+	}
+	if (typeof errorHandler === 'function') { 
+		//  用once()方法  证异常回调 执行   
+		this.once('error', errorHandler);
+	}
+	if (typeof progressHandler === 'function') {
+		this.on('progress', progressHandler); 
+	}
+	return this; 
 };
 ```
 
@@ -754,20 +754,20 @@ return this;
 
 ```JavaScript
 var Deferred = function () { 
-this.state = 'unfulfilled'; 
-this.promise = new Promise();
+	this.state = 'unfulfilled'; 
+	this.promise = new Promise();
 };
 
 Deferred.prototype.resolve = function (obj) { 
-this.state = 'fulfilled'; 
-this.promise.emit('success', obj);
+	this.state = 'fulfilled'; 
+	this.promise.emit('success', obj);
 };
 Deferred.prototype.reject = function (err) { 
-this.state = 'failed'; 
-this.promise.emit('error', err);
+	this.state = 'failed'; 
+	this.promise.emit('error', err);
 };
 Deferred.prototype.progress = function (data) { 
-this.promise.emit('progress', data);
+	this.promise.emit('progress', data);
 };
 ```
 
@@ -778,13 +778,13 @@ this.promise.emit('progress', data);
 ```JavaScript
 res.setEncoding('utf8'); 
 res.on('data', function (chunk) {
-console.log('BODY: ' + chunk); 
+	console.log('BODY: ' + chunk); 
 });
 res.on('end', function () { 
-// Done
+	// Done
 });
 res.on('error', function (err) {
-// Error 
+	// Error 
 });
 ```
 
@@ -792,11 +792,11 @@ res.on('error', function (err) {
 
 ```JavaScript
 res.then(function () { 
-// Done
+	// Done
 }, function (err) { 
-// Error
+	// Error
 }, function (chunk) { 
-console.log('BODY: ' + chunk);
+	console.log('BODY: ' + chunk);
 });
 ```
 
@@ -804,19 +804,19 @@ console.log('BODY: ' + chunk);
 
 ```JavaScript
 var promisify = function (res) { 
-var deferred = new Deferred(); 
-var result = '';
-res.on('data', function (chunk) {
-    result += chunk;
-deferred.progress(chunk); 
-});
-res.on('end', function () { 
-deferred.resolve(result);
-});
-res.on('error', function (err) {
-deferred.reject(err); 
-});
-return deferred.promise;
+	var deferred = new Deferred(); 
+	var result = '';
+	res.on('data', function (chunk) {
+    	result += chunk;
+		deferred.progress(chunk); 
+	});
+	res.on('end', function () { 
+		deferred.resolve(result);
+	});
+	res.on('error', function (err) {
+		deferred.reject(err); 
+	});
+	return deferred.promise;
 };
 ```
 
@@ -826,12 +826,12 @@ return deferred.promise;
 
 ```JavaScript
 promisify(res).then(function () { 
-// Done
+	// Done
 }, function (err) { 
-// Error
+	// Error
 }, function (chunk) {
-// progress
-console.log('BODY: ' + chunk);
+	// progress
+	console.log('BODY: ' + chunk);
 });
 ```
 
@@ -857,8 +857,8 @@ TODO
 
  - 就是说A调用B，B 先返回一个“承诺”给A，
  - 然后A就可以在写计划的时候这么写：
- - 当B返回结果给我的时候，A执行方案S1，
- - 反之如果B因为什么原因没有给到A想要的结果，那么A执行应急方案S2，
+ 	- 当B返回结果给我的时候，A执行方案S1，
+ 	- 反之如果B因为什么原因没有给到A想要的结果，那么A执行应急方案S2，
  - 这样一来，所有的潜在风险都在A的可控范围之内了。
 
 上面这段话，翻译成代码类似
@@ -942,8 +942,8 @@ worker.js , 监听1000-2000之间的一个随机端口
 
 ```JavaScript
 var http = require('http'); http.createServer(function (req, res) {
-res.writeHead(200, {'Content-Type': 'text/plain'});
-res.end('Hello World\n');
+	res.writeHead(200, {'Content-Type': 'text/plain'});
+	res.end('Hello World\n');
 }).listen(Math.round((1 + Math.random()) * 1000), '127.0.0.1');
 ```
 
@@ -953,7 +953,7 @@ master.js , 根据当前机器的CPU数量复制对应Node进程数
 var fork = require('child_process').fork; 
 var cpus = require('os').cpus();
 for (var i = 0; i < cpus.length; i++) {
-fork('./worker.js'); 
+	fork('./worker.js'); 
 }
 ```
 
@@ -998,10 +998,10 @@ var cp = require('child_process');
 
 cp.spawn('node', ['worker.js']);
 cp.exec('node worker.js', function (err, stdout, stderr) {
-// some code 
+	// some code 
 });
 cp.execFile('worker.js', function (err, stdout, stderr) { 
-// some code
+	// some code
 }); 
 cp.fork('./worker.js');
 ```
@@ -1034,7 +1034,7 @@ fork | x | Node | JavaScript 文件 | x
 ```JavaScript
 var worker = new Worker('worker.js'); 
 worker.onmessage = function (event) {
-document.getElementById('result').textContent = event.data; 
+	document.getElementById('result').textContent = event.data; 
 };
 ```
 
@@ -1043,12 +1043,12 @@ worker.js:
 ```JavaScript
 var n = 1;
 search: while (true) {
-n += 1;
-for (var i = 2; i <= Math.sqrt(n); i += 1)
-if (n%i == 0) 
-continue search;
+	n += 1;
+	for (var i = 2; i <= Math.sqrt(n); i += 1)
+		if (n%i == 0) 
+			continue search;
      // found a prime
-postMessage(n); 
+	postMessage(n); 
 }
 ```
 
@@ -1062,7 +1062,7 @@ Node 主/子进程之间的通信 API 一定程度上相似, 进程间 通过 se
 var cp = require('child_process');
 var n = cp.fork(__dirname + '/sub.js');
 n.on('message', function (m) { 
-console.log('PARENT got message:', m);
+	console.log('PARENT got message:', m);
 });
 n.send({hello: 'world'});
 ```
@@ -1070,7 +1070,7 @@ n.send({hello: 'world'});
 ```JavaScript
 // sub.js
 process.on('message', function (m) { 
-console.log('CHILD got message:', m);
+	console.log('CHILD got message:', m);
 });
 process.send({foo: 'bar'});
 ```
@@ -1127,23 +1127,23 @@ var child2 = cp.fork('child.js');
 // Open up the server object and send the handle 
 var server = require('net').createServer(); 
 server.on('connection', function (socket) {
-socket.end('handled by parent\n'); 
+	socket.end('handled by parent\n'); 
 });
 server.listen(1337, function () {
-// 发送句柄给 子进程
-child1.send('server', server); 
-child2.send('server', server);
+	// 发送句柄给 子进程
+	child1.send('server', server); 
+	child2.send('server', server);
 });
 ```
 
 ```JavaScript
 // child.js
 process.on('message', function (m, server) { 
-if (m === 'server') {
-server.on('connection', function (socket) {
-socket.end('handled by child, pid is ' + process.pid + '\n');
-}); 
-}
+	if (m === 'server') {
+		server.on('connection', function (socket) {
+			socket.end('handled by child, pid is ' + process.pid + '\n');
+		}); 
+	}
 });
 ```
 
@@ -1167,11 +1167,11 @@ var child2 = cp.fork('child.js');
 // Open up the server object and send the handle 
 var server = require('net').createServer(); 
 server.listen(1337, function () {
-// 发送句柄给 子进程
-child1.send('server', server); 
-child2.send('server', server);
-// 关 
-server.close();
+	// 发送句柄给 子进程
+	child1.send('server', server); 
+	child2.send('server', server);
+	// 关 
+	server.close();
 });
 ```
 
@@ -1179,14 +1179,14 @@ server.close();
 // child.js
 var http = require('http');
 var server = http.createServer(function (req, res) {
-res.writeHead(200, {'Content-Type': 'text/plain'});
-res.end('handled by child, pid is ' + process.pid + '\n'); 
+	res.writeHead(200, {'Content-Type': 'text/plain'});
+	res.end('handled by child, pid is ' + process.pid + '\n'); 
 });
 process.on('message', function (m, tcp) { 
-if (m === 'server') {
-tcp.on('connection', function (socket) {
-server.emit('connection', socket);
-});
+	if (m === 'server') {
+		tcp.on('connection', function (socket) {
+			server.emit('connection', socket);
+		});
     }
 });
 ```
@@ -1209,7 +1209,7 @@ $ curl "http://127.0.0.1:1337/" handled by child, pid is 24851
 
 上文介绍的虽然是句柄发送，但是仔细看看，句柄发送 跟 我们直接将服务器对象发送给 子进程 有没有差别？  它是否真的将服务器对象发送给了 子进程？ 为什么它可以发送到多个子进程？ 发送给子进程 为什么父进程中还存在这个对象？ 
 
-目前 send() 方法可以发送的句柄类型包括如下几种：
+目前 send() 	方法可以发送的句柄类型包括如下几种：
 
  - net.Socket   TCP 套接字
  - net.Server   TCP服务器， 任意建立在TCP服务上的应用层服务都可以享受到它带来的好处。
@@ -1221,9 +1221,9 @@ send() 方法在将消息发送到 IPC 管道前，将消息组装成两个对�
 
 ```json
 {
-cmd: 'NODE_HANDLE', 
-type: 'net.Server', 
-msg: message
+	cmd: 'NODE_HANDLE', 
+	type: 'net.Server', 
+	msg: message
 }
 ```
 
@@ -1237,13 +1237,13 @@ msg: message
 
 ```JavaScript
 function(message, handle, emit) {
-var self = this;
-// 子进程根据 message.type 创建对应 TCP服务器对象
-var server = new net.Server(); 
-// 然后监听到 文件描述符上
-server.listen(handle, function() {
-emit(server);  
-});
+	var self = this;
+	// 子进程根据 message.type 创建对应 TCP服务器对象
+	var server = new net.Server(); 
+	// 然后监听到 文件描述符上
+	server.listen(handle, function() {
+		emit(server);  
+	});
 }
 ```
 
@@ -1257,7 +1257,7 @@ emit(server);
 
  - 独立启动的多个进程中， TCP服务器端 socket套接字的文件描述符 并不相同，导致监听到相同的端口时会抛出异常
  - Node 底层对每个端口监听都设置了 SO_REUSEADDR 选项，这个选项的含义是 不同的进程 可以就相同的网卡和端口进行监听，这个套接字可以被不同的进程复用
- - 对于 send() 发送的句柄还原出服务而言, 他们的文件描述符是相同的，所以监听相同端口不会引起一场。
+ 	- 对于 send() 发送的句柄还原出服务而言, 他们的文件描述符是相同的，所以监听相同端口不会引起一场。
 
 ```C
 setsockopt(tcp->io_watcher.fd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on))
@@ -1293,7 +1293,7 @@ setsockopt(tcp->io_watcher.fd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on))
  - exit:  子进程退出时 触发该事件。 如果是正常退出，第一个参数是 退出码，否则为 null. 如果进程是通过 kill() 方法杀死的, 会得到第二个参数，他表示杀死进程时的信号.
  - close:  在子进程的标准输入输出流 终止时， 触发该事件
  - disconnect:  在父进程 或 子进程中 调用 disconnect() 方法时触发该事件
- - 在调用调用 disconnect() 方法时 将关闭监听 IPC 通道
+ 	- 在调用调用 disconnect() 方法时 将关闭监听 IPC 通道
 
 除了 send() 外， 还能通过 kill() 方法给子进程发送消息。 kill() 方法并不能真正地将 通过IPC相连的子进程杀死，它只是给子进程发送了一个系统信号。 默认情况下，kill() 方法会发送一个 SIGTERM 信号。它与进程默认的kill() 方法类似:
 
@@ -1308,22 +1308,22 @@ POSIX 标准中，， 有一套完备的信号系统， `kill -l` 可以看到�
 
 ```bash
 $ kill -l
- 1) SIGHUP 2) SIGINT 3) SIGQUIT 4) SIGILL
- 5) SIGTRAP 6) SIGABRT 7) SIGEMT 8) SIGFPE
- 9) SIGKILL10) SIGBUS11) SIGSEGV12) SIGSYS
-13) SIGPIPE14) SIGALRM15) SIGTERM16) SIGURG
-17) SIGSTOP18) SIGTSTP19) SIGCONT20) SIGCHLD
-21) SIGTTIN22) SIGTTOU23) SIGIO24) SIGXCPU
-25) SIGXFSZ26) SIGVTALRM27) SIGPROF28) SIGWINCH
-29) SIGINFO30) SIGUSR131) SIGUSR2
+ 1) SIGHUP	 2) SIGINT	 3) SIGQUIT	 4) SIGILL
+ 5) SIGTRAP	 6) SIGABRT	 7) SIGEMT	 8) SIGFPE
+ 9) SIGKILL	10) SIGBUS	11) SIGSEGV	12) SIGSYS
+13) SIGPIPE	14) SIGALRM	15) SIGTERM	16) SIGURG
+17) SIGSTOP	18) SIGTSTP	19) SIGCONT	20) SIGCHLD
+21) SIGTTIN	22) SIGTTOU	23) SIGIO	24) SIGXCPU
+25) SIGXFSZ	26) SIGVTALRM	27) SIGPROF	28) SIGWINCH
+29) SIGINFO	30) SIGUSR1	31) SIGUSR2
 ```
 
 Node 提供了这些信号对应的信号事件， 每个进程都可以监听这些信号事件。 如 SIGTERM 是软件终止信号，进程收到该信号时应当退出。
 
 ```JavaScript
 process.on('SIGTERM', function() { 
-console.log('Got a SIGTERM, exiting...'); 
-process.exit(1);
+	console.log('Got a SIGTERM, exiting...'); 
+	process.exit(1);
 });
 
 console.log( 'server running with PID:' , process.pid );
@@ -1349,28 +1349,28 @@ server.listen(1337);
 
 var workers = {};
 var createWorker = function () {
-var worker = fork(__dirname + '/worker.js'); 
-// 􏶥退出时重􏶦启动􏶦的进程
-worker.on('exit', function () {
-console.log('Worker ' + worker.pid + ' exited.'); 
-delete workers[worker.pid];
-createWorker();
-});
-// 句柄转发
-worker.send('server', server); 
-workers[worker.pid] = worker;
-console.log('Create worker. pid: ' + worker.pid);
+	var worker = fork(__dirname + '/worker.js'); 
+	// 􏶥退出时重􏶦启动􏶦的进程
+	worker.on('exit', function () {
+		console.log('Worker ' + worker.pid + ' exited.'); 
+		delete workers[worker.pid];
+		createWorker();
+	});
+	// 句柄转发
+	worker.send('server', server); 
+	workers[worker.pid] = worker;
+	console.log('Create worker. pid: ' + worker.pid);
 };
 
 for (var i = 0; i < cpus.length; i++) { 
-createWorker();
+	createWorker();
 }
 // 进程自己退出时, 所有工作进程􏶥退出
 process.on('exit', function () {
-for (var pid in workers) { 
-workers[pid].kill();
-} 
-});
+	for (var pid in workers) { 
+		workers[pid].kill();
+	} 
+});	
 ```
 
 在实际业务中，可能有隐藏的bug导致工作进程退出，那么我们需要仔细地处理这种异常，如下所示:
@@ -1379,25 +1379,25 @@ workers[pid].kill();
 // worker.js
 var http = require('http');
 var server = http.createServer(function (req, res) {
-res.writeHead(200, {'Content-Type': 'text/plain'});
-res.end('handled by child, pid is ' + process.pid + '\n'); 
+	res.writeHead(200, {'Content-Type': 'text/plain'});
+	res.end('handled by child, pid is ' + process.pid + '\n'); 
 });
 var worker;
 process.on('message', function (m, tcp) {
-if (m === 'server') {
-worker = tcp;
-worker.on('connection', function (socket) {
-server.emit('connection', socket); 
-});
-} 
+	if (m === 'server') {
+		worker = tcp;
+		worker.on('connection', function (socket) {
+			server.emit('connection', socket); 
+		});
+	} 
 });
 
 process.on('uncaughtException', function () {
-// 􏶮􏶯停止接收新的链接
-worker.close(function () {
-// 所有已有链接断开后，退出进程
-process.exit(1); 
-});
+	// 􏶮􏶯停止接收新的链接
+	worker.close(function () {
+		// 所有已有链接断开后，退出进程
+		process.exit(1); 
+	});
 });
 ```
 
@@ -1414,34 +1414,34 @@ process.exit(1);
 ```JavaScript
 // worker.js
 process.on('uncaughtException', function (err) {
-process.send({act: 'suicide'}); 
-// 􏶮􏶯停止接收新的连接 
-worker.close(function () {
-// 所有已有链接断开后，退出进程
-process.exit(1); 
-});
-});
+	process.send({act: 'suicide'}); 
+	// 􏶮􏶯停止接收新的连接 
+	worker.close(function () {
+		// 所有已有链接断开后，退出进程
+		process.exit(1); 
+	});
+});	
 ```
 
 主进程将重启工作进程的任务，从 exit 事件的处理函数中转移到 message 事件的处理函数中：
 
 ```JavaScript
 var createWorker = function () {
-var worker = fork(__dirname + '/worker.js'); 
-// 自杀时 启动􏶦新的进程
-worker.on('message', function (message) {
-if (message.act === 'suicide') { 
-createWorker();
-} 
-});
-worker.on('exit', function () {
-console.log('Worker ' + worker.pid + ' exited.');
-delete workers[worker.pid]; 
-});
-worker.send('server', server); 
-workers[worker.pid] = worker;
-console.log('Create worker. pid: ' + worker.pid);
-};
+	var worker = fork(__dirname + '/worker.js'); 
+	// 自杀时 启动􏶦新的进程
+	worker.on('message', function (message) {
+		if (message.act === 'suicide') { 
+			createWorker();
+		} 
+	});
+	worker.on('exit', function () {
+		console.log('Worker ' + worker.pid + ' exited.');
+		delete workers[worker.pid]; 
+	});
+	worker.send('server', server); 
+	workers[worker.pid] = worker;
+	console.log('Create worker. pid: ' + worker.pid);
+};	
 ```
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_restart_suicide.png)
@@ -1451,20 +1451,20 @@ console.log('Create worker. pid: ' + worker.pid);
 
 ```JavaScript
 process.on('uncaughtException', function (err) {
-// 􏷀出现未捕获异常，说明代码的健壮性上是不合格的
-// 必须通过日志记录下问题的所在, 以帮助定位和追踪代码异常出现的位置
-logger.error(err);
-// 发送自杀信号
-process.send({act: 'suicide'}); 
-// 停止接收新的连接
-worker.close(function () {
-// 􏶩所有已有链接断开后，退出进程
-process.exit(1);
-});
-// 5秒后退出进程
-setTimeout(function () {
-process.exit(1); 
-}, 5000);
+	// 􏷀出现未捕获异常，说明代码的健壮性上是不合格的
+	// 必须通过日志记录下问题的所在, 以帮助定位和追踪代码异常出现的位置
+	logger.error(err);
+	// 发送自杀信号
+	process.send({act: 'suicide'}); 
+	// 停止接收新的连接
+	worker.close(function () {
+		// 􏶩所有已有链接断开后，退出进程
+		process.exit(1);
+	});
+	// 5秒后退出进程
+	setTimeout(function () {
+		process.exit(1); 
+	}, 5000);
 });
 ```
 
@@ -1484,29 +1484,29 @@ var during = 60000;
 var restart = [];
 
 var isTooFrequently = function () {
-// 记录重启时间
-var time = Date.now();
-var length = restart.push(time); 
-if (length > limit) {
-// 取出最后10个纪录
-restart = restart.slice(limit * -1); 
-}
-// 最后一次重启到前10次重启之间的时间间隔
-return restart.length >= limit && restart[restart.length - 1] - restart[0] < during; 
+	// 记录重启时间
+	var time = Date.now();
+	var length = restart.push(time); 
+	if (length > limit) {
+		// 取出最后10个纪录
+		restart = restart.slice(limit * -1); 
+	}
+	// 最后一次重启到前10次重启之间的时间间隔
+	return restart.length >= limit && restart[restart.length - 1] - restart[0] < during; 
 };
 
 
 var workers = {};
 var createWorker = function () {
-// 检查是否太过频繁
-if (isTooFrequently()) {
-// 触发giveup事件后, 不再重启
-process.emit('giveup', length, during); 
-return;
-}
+	// 检查是否太过频繁
+	if (isTooFrequently()) {
+		// 触发giveup事件后, 不再重启
+		process.emit('giveup', length, during); 
+		return;
+	}
 
-var worker = fork(__dirname + '/worker.js');
-...
+	var worker = fork(__dirname + '/worker.js');
+	...
 ```
 
 giveup 事件是比 uncaughtException 更严重的异常事件。
@@ -1556,10 +1556,10 @@ Node 进程中不宜存放太多数据,
 实现状态同步的机制有两种:
 
 1. 各个子进程 向第三方进行定时轮询
-- 轮询带来的问题是，轮询时间不能过密，也不能过长
+	- 轮询带来的问题是，轮询时间不能过密，也不能过长
 2. 主动通知
-- 当数据发生更新时，主动通知子进程
-- 仍需要一种机制来及时获取数据的改变，这个过程仍然不能脱离轮询，但可以减少轮询的进程数量。
+	- 当数据发生更新时，主动通知子进程
+	- 仍需要一种机制来及时获取数据的改变，这个过程仍然不能脱离轮询，但可以减少轮询的进程数量。
 
 我们将 这种 用来发送通知 和查询状态是否更改 的进程叫 通知进程。为了不混合业务逻辑，可以将这个进程设计为只进行轮询和通知，不处理任何业务逻辑。
 
@@ -1578,12 +1578,12 @@ Node 进程中不宜存放太多数据,
 // 创建进程集群
 var cluster = require('cluster');
 cluster.setupMaster({ 
-exec: "worker.js"
+	exec: "worker.js"
 });
 
 var cpus = require('os').cpus();
 for (var i = 0; i < cpus.length; i++) {
-cluster.fork(); 
+	cluster.fork(); 
 }
 ```
 
@@ -1595,19 +1595,19 @@ var http = require('http');
 var numCPUs = require('os').cpus().length;
 
 if (cluster.isMaster) {
-// Fork workers
-for (var i = 0; i < numCPUs; i++) {
-cluster.fork(); 
-}
-
-cluster.on('exit', function(worker, code, signal) {
-console.log('worker ' + worker.process.pid + ' died');
-});
+	// Fork workers
+	for (var i = 0; i < numCPUs; i++) {
+		cluster.fork(); 
+	}
+	
+	cluster.on('exit', function(worker, code, signal) {
+		console.log('worker ' + worker.process.pid + ' died');
+	});
 } else {
-// Workers can share any TCP connection
-// In this case its a HTTP server 
-http.createServer(function(req, res) {
-res.writeHead(200);
+	// Workers can share any TCP connection
+	// In this case its a HTTP server 
+	http.createServer(function(req, res) {
+		res.writeHead(200);
         res.end("hello world\n");
     }).listen(8000);
 }
@@ -1632,9 +1632,9 @@ cluster.isMaster = (cluster.isWorker === false);
 
  - cluster 启动时，会在内部启动TCP服务器
  - cluster.fork() 子进程时， 将这个 TCP 服务器端socket的文件描述符发送给工作进程。
- - 如果进程时通过 cluster.fork() 复制出来的，那么它的环境变量里就存在 NODE_UNIQUE_ID, 
- - 如果工作进程中存在 listern()监听端口的调用，它将拿到该文件描述符，通过SO_REUSEADDR 端口重用, 从而实现多个子进程共享端口。
- - 对于普通方式启动的进程，则不存在文件描述符传点共享等事情
+ 	- 如果进程时通过 cluster.fork() 复制出来的，那么它的环境变量里就存在 NODE_UNIQUE_ID, 
+ 	- 如果工作进程中存在 listern()监听端口的调用，它将拿到该文件描述符，通过SO_REUSEADDR 端口重用, 从而实现多个子进程共享端口。
+ 	- 对于普通方式启动的进程，则不存在文件描述符传点共享等事情
 
 在cluster 内部隐式创建TCP服务器的方式对使用者来说十分透明，但也正是这种方式使得它无法入直接使用child_process 那样灵活。在 cluster 模块应用中, 一个主进程只能管理一组工作进程； 而通过 child_process 可以更灵活地控制工作进程，甚至控制多组工作进程。其原因在于 child_process 可以隐式地创建多个TCP服务器，使得子进程可以共享多个的服务端socket.
 
@@ -1693,9 +1693,9 @@ cluster.isMaster = (cluster.isWorker === false);
 var foo = []; 
 foo[100] = 100;
 for (var i in foo) {
-console.log(i); } // 100
+	console.log(i); } // 100
 for (var i = 0; i < foo.length; i++) { 
-console.log(i); // 0--100
+	console.log(i); // 0--100
 }
 ```
 
@@ -1711,9 +1711,9 @@ console.log(i); // 0--100
 
 ```JavaScript
 function Socket(options) { 
-// ...
-stream.Stream.call(this);
-// ... 
+	// ...
+	stream.Stream.call(this);
+	// ... 
 }
 util.inherits(Socket, stream.Stream);
 ```
@@ -1746,8 +1746,8 @@ npm uninstall
 ```
 
  - note:
- - `https-proxy` , it is dash, not underscore
-- `https-proxy` also use "http://xxx" , not https !!!
+ 	- `https-proxy` , it is dash, not underscore
+	- `https-proxy` also use "http://xxx" , not https !!!
 
 
 <h2 id="58649fadacd370d9b6ba4950e91f0833"></h2>

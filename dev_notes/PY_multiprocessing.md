@@ -121,8 +121,8 @@ if __name__ == "__main__":
     worker_1
     worker_2
     The number of CPU is:4
-    child   p.name:Process-14p.id77846
-    child   p.name:Process-13p.id77845
+    child   p.name:Process-14	p.id77846
+    child   p.name:Process-13	p.id77845
     END!!!!!!!!!!!!!!!!!
     end worker_1
     end worker_2

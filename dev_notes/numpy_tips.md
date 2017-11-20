@@ -265,7 +265,7 @@ Train_X[ pos , 0  ]
 ## 数据 拼接
 
 - 在2维数组 第一列 ， 插入 1列 1
-- 注意，要确保 Train_X 是2维数据，如果不是，使用 reshape 转成2维数组
+	- 注意，要确保 Train_X 是2维数据，如果不是，使用 reshape 转成2维数组
 
 ```python
 np.insert( Train_X , 0, 1 , axis =1 )

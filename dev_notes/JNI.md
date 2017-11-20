@@ -111,7 +111,7 @@ JNI_OnLoad will be invoked when library was loaded
 
 ```c
 JNIEnv* getJNIEnv( bool *isAttached ) {
-JavaVM* g_vm = pJavaVm ;
+	JavaVM* g_vm = pJavaVm ;
     JNIEnv * g_env;
 
     *isAttached = false ;
@@ -122,7 +122,7 @@ JavaVM* g_vm = pJavaVm ;
         if (g_vm->AttachCurrentThread((JNIEnv **)( &g_env ),NULL)!= 0){
             Debug(  "Failed to attach" ) ;
         } else {
-        *isAttached = true; 
+        	*isAttached = true; 
         }
     } else if (getEnvStat == JNI_OK) {
         //
@@ -138,7 +138,7 @@ Detach:
 
 ```c
 void endJNICall(JNIEnv* g_env) {
-JavaVM* g_vm = pJavaVm ;
+	JavaVM* g_vm = pJavaVm ;
 
     g_vm->DetachCurrentThread();
     Debug( " vm detached in endJNICall" ) ;
@@ -164,20 +164,20 @@ static jclass  gClassJNI_Method ;
 
 extern "C" {
 
-jint JNI_OnLoad(JavaVM* vm, void* reserved) {
-/*
-  JNIEnv* jni_env = 0;
-  vm->AttachCurrentThread(&jni_env, 0);
+	jint JNI_OnLoad(JavaVM* vm, void* reserved) {
+		/*
+	  JNIEnv* jni_env = 0;
+	  vm->AttachCurrentThread(&jni_env, 0);
 
-  jniEnv = jni_env ;
-  /*/
-  pJavaVm = vm ;
+	  jniEnv = jni_env ;
+	  /*/
+	  pJavaVm = vm ;
 
-  bool isAttached = false ;
-  JNIEnv* env = getJNIEnv( & isAttached );
-  //replace with one of your classes in the line below
+	  bool isAttached = false ;
+	  JNIEnv* env = getJNIEnv( & isAttached );
+	  //replace with one of your classes in the line below
 
-  const char* name = "com/ubi/androidmediadecode/JNI_Method" ;
+	  const char* name = "com/ubi/androidmediadecode/JNI_Method" ;
       jclass randomClass = env->FindClass( name );
       jclass classClass = env->GetObjectClass(randomClass);
       jclass classLoaderClass = env->FindClass("java/lang/ClassLoader");
@@ -191,21 +191,21 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved) {
       gFindClassMethod = env->GetMethodID(classLoaderClass, "findClass","(Ljava/lang/String;)Ljava/lang/Class;");     
 
 
-  jstring jstr =(*env).NewStringUTF( name );
-  jclass cls = (jclass)((*env).CallObjectMethod( gClassLoader, gFindClassMethod, jstr )); 
-  (*env).DeleteLocalRef(  jstr );
+	  jstring jstr =(*env).NewStringUTF( name );
+	  jclass cls = (jclass)((*env).CallObjectMethod( gClassLoader, gFindClassMethod, jstr )); 
+	  (*env).DeleteLocalRef(  jstr );
 
-  gClassJNI_Method = (jclass)env->NewGlobalRef( cls ) ;
-  
-  (*env).DeleteLocalRef(  cls );
-  (*env).DeleteLocalRef(  randomClass );
-  (*env).DeleteLocalRef(  classClass );
-  (*env).DeleteLocalRef(  classLoaderClass );
+	  gClassJNI_Method = (jclass)env->NewGlobalRef( cls ) ;
+	  
+	  (*env).DeleteLocalRef(  cls );
+	  (*env).DeleteLocalRef(  randomClass );
+	  (*env).DeleteLocalRef(  classClass );
+	  (*env).DeleteLocalRef(  classLoaderClass );
 
-  //*/
-  __android_log_print(ANDROID_LOG_INFO, "JNIMsg", "JNI_OnLoad" );
-  return JNI_VERSION_1_6;
-}
+	  //*/
+	  __android_log_print(ANDROID_LOG_INFO, "JNIMsg", "JNI_OnLoad" );
+	  return JNI_VERSION_1_6;
+	}
 
 }
 ```
@@ -232,41 +232,41 @@ CallStaticVoidMethod
 
 ```c
 bool JNI_startupBink(char* filename) {
-bool isAttached = false ;
-JNIEnv* jniEnv  = getJNIEnv( &isAttached );
+	bool isAttached = false ;
+	JNIEnv* jniEnv  = getJNIEnv( &isAttached );
 
-jclass cls = JNI_findJavaClass(jniEnv) ;
-jmethodID method = (*jniEnv).GetStaticMethodID(  cls, "startupBink","(Ljava/lang/String;)Z"  ); 
+	jclass cls = JNI_findJavaClass(jniEnv) ;
+	jmethodID method = (*jniEnv).GetStaticMethodID(  cls, "startupBink","(Ljava/lang/String;)Z"  ); 
 
-jstring jstr =(*jniEnv).NewStringUTF( filename );
-jboolean result=(*jniEnv).CallStaticBooleanMethod(cls,method,jstr);
-bool bRes = (bool)(result) ;
-(*jniEnv).DeleteLocalRef(  jstr );
-if (isAttached) endJNICall(jniEnv);
+	jstring jstr =(*jniEnv).NewStringUTF( filename );
+	jboolean result=(*jniEnv).CallStaticBooleanMethod(cls,method,jstr);
+	bool bRes = (bool)(result) ;
+	(*jniEnv).DeleteLocalRef(  jstr );
+	if (isAttached) endJNICall(jniEnv);
 
-return bRes;
+	return bRes;
 }
 ```
 
 Call a java function which returned an array , don't forget to invoke  `ReleaseByteArrayElements` method:
 
 ```c
-bool isAttached = false ;
-JNIEnv* jniEnv  = getJNIEnv( &isAttached );
+	bool isAttached = false ;
+	JNIEnv* jniEnv  = getJNIEnv( &isAttached );
 
-jclass cls = JNI_findJavaClass(jniEnv) ;
-jmethodID method = (*jniEnv).GetStaticMethodID(  cls,  "getDecodeData", "()[B" ); 
-jbyteArray retval = (jbyteArray)(*jniEnv).CallStaticObjectMethod(cls, method);
+	jclass cls = JNI_findJavaClass(jniEnv) ;
+	jmethodID method = (*jniEnv).GetStaticMethodID(  cls,  "getDecodeData", "()[B" ); 
+	jbyteArray retval = (jbyteArray)(*jniEnv).CallStaticObjectMethod(cls, method);
+	
+	jbyte * jbytes=  (*jniEnv).GetByteArrayElements(retval, 0);  
 
-jbyte * jbytes=  (*jniEnv).GetByteArrayElements(retval, 0);  
-
-int size = (*jniEnv).GetArrayLength(retval);  
-char* outData = (char*)jbytes ;
-
-...
-
-(*jniEnv).ReleaseByteArrayElements( retval, jbytes ,0 );
-if (isAttached) endJNICall(jniEnv);
+	int size = (*jniEnv).GetArrayLength(retval);  
+	char* outData = (char*)jbytes ;
+	
+	...
+	
+	(*jniEnv).ReleaseByteArrayElements( retval, jbytes ,0 );
+	if (isAttached) endJNICall(jniEnv);	
 ```
 
 

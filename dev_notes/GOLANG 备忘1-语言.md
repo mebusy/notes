@@ -242,11 +242,11 @@ s1 := s[:5]
 #### 单引号字符常量 'aaa' 表示 rune 类型 ( Unicode Code Point )
 
 ```python
-a:='我'
-b:="我"
-c:='a'
-fmt.Printf( "%T,%T,%T,%v,%v,%v", a,b,c ,a,b,c )
-// int32,string,int32,25105,我,97
+	a:='我'
+	b:="我"
+	c:='a'
+	fmt.Printf( "%T,%T,%T,%v,%v,%v", a,b,c ,a,b,c )
+	// int32,string,int32,25105,我,97
 ```
 
 <h2 id="ccb521ca513981599927b6810b21e861"></h2>

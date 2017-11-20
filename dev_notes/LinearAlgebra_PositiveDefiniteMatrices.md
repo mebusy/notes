@@ -166,7 +166,7 @@ A = ⎡a b⎤  is positive definite when a > 0 and ac - b² > 0.
 From those conditions, ***both eigenvalues are positive***.  
 
  - Their product λ₁λ₂ is the determinant ac - b² > 0, so the eigenvalues are either both positive or both negative. 
- - c must be positive
+ 	- c must be positive
  - They must be positive because their sum is the trace a + c > 0.
 
 Looking at a and ac - b², it is even possible to spot the appearance of the ***pivots***. They turned up when we decomposed xᵀAx into a sum of squares:
@@ -214,7 +214,7 @@ Because of the orthogonality xᵢᵀxⱼ = 0, and the normalization xᵢᵀxᵢ 
 
 ```
 xᵀAx = (c₁x₁ᵀ + ... + cnxnᵀ )(c₁λx₁ + ... + cnλxn)
- = c₁²λx₁ + ... + cn²λ
+	 = c₁²λx₁ + ... + cn²λ
 ```
 
 If every λᵢ > 0, then equation (2) shows that xᵀAx > 0.  Thus condition 2 implies condition 1 .
@@ -340,7 +340,7 @@ A = ⎢-1  2 -1⎥  is positive semidefinite, by all five tests:
  3. det A = 0 and smaller determinants are positive.
  4. ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_positive_semidefinite_example_2_test_4.png)
  5. A = RᵀR with dependent columns in R:
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_positive_semidefinite_example_2_test_5.png)
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_positive_semidefinite_example_2_test_5.png)
 
 
 ***Remark***: The conditions for semidefiniteness could also be deduced from the original conditions 1~5 for definiteness by the following trick: Add a small multiple of the identity, giving a positive definite matrix A + εI. Then let ε approach zero. Since the determinants and eigenvalues depend continuously on ε, they will be positive until the very last moment. At ε = 0 they must still be nonnegative.
@@ -423,7 +423,7 @@ becomes so manageable:
 **6E**: Suppose A = QΛQᵀ with λᵢ > 0. Rotating y = Qᵀx simplifies xᵀAx = 1 :
 
 ```
-xᵀQΛQᵀx = 1 , yᵀΛy = 1 , and λ₁y₁² + ... + λnyn² = 1.
+	xᵀQΛQᵀx = 1 , yᵀΛy = 1 , and λ₁y₁² + ... + λnyn² = 1.
 ```
 
 This is the equation of an ellipsoid. Its axes have lengths 1 / √λ₁,   ... , 1 / √λn  from the center. In the original x-space they point along the eigenvectors of A.
@@ -464,7 +464,7 @@ Proof: skip...
 **Example 5**: If A = [ 1 0 ; 0 -1 ] , then CᵀAC has a negative determinant :
 
 ```
-det( CᵀAC ) = (detCᵀ) (detA) (detC) = -(det C)² < 0 .
+	det( CᵀAC ) = (detCᵀ) (detA) (detC) = -(det C)² < 0 .
 ```
 
 Then CᵀAC must have one positive and one negative eigenvalue, like A.

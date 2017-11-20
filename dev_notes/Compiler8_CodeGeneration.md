@@ -238,35 +238,35 @@ Our target computer models a three-address machine with load and store oper­ati
 The underlying computer is a byte-addressable machine with n general-purpose reg­isters, R0 , R1 , . . . , Rn - 1 . A full-fledged assembly language would have scores of instructions. To avoid hiding the concepts in a myriad of details, we shall use a very limited set of instructions and assume that all operands are integers. Most instructions consists of an operator, followed by a target, followed by a list of source operands. A label may precede an instruction. We assume the following kinds of instructions are available:
 
  - *Load* operations: The instruction LD *dst*, *addr* loads the value in location *addr* into location *dst*. 
- - This instruction denotes the assignment `dst = addr`. The most common form of this instruction is `LD r, x` which loads the value in location x into register r. An instruction of the form LD r1 , r2 is a *register-to-register copy* in which the contents of register r2 are copied into register r1.
- - load 也可以 memory-to-memory 吗?
+ 	- This instruction denotes the assignment `dst = addr`. The most common form of this instruction is `LD r, x` which loads the value in location x into register r. An instruction of the form LD r1 , r2 is a *register-to-register copy* in which the contents of register r2 are copied into register r1.
+ 	- load 也可以 memory-to-memory 吗?
  - *Store* operations: The instruction ST *x*, *r* stores the value in register r into the location x. 
- - This instruction denotes the assignment x = r.
+ 	- This instruction denotes the assignment x = r.
  - *Computation* operations of the form *OP dst, src1 , src2* , where *OP* is a op­erator like ADD or SUB, and *dst*, *src1* , and *src2* are locations, not necessarily distinct. 
- - The effect of this machine instruction is to apply the operation represented by OP to the values in locations src1 and src2, and place the result of this operation in location *dst*. 
- - For example, SUB r1 , r2 , r3 com­putes r1 = r2 - r3. Any value formerly stored in r1 is lost, but if r1 is r2 or r3, the old value is read first. 
- - Unary operators that take only one operand do not have a *src2* .
+ 	- The effect of this machine instruction is to apply the operation represented by OP to the values in locations src1 and src2, and place the result of this operation in location *dst*. 
+ 	- For example, SUB r1 , r2 , r3 com­putes r1 = r2 - r3. Any value formerly stored in r1 is lost, but if r1 is r2 or r3, the old value is read first. 
+ 	- Unary operators that take only one operand do not have a *src2* .
  - *Unconditional jumps:* The instruction BR L cause control to branch to the manchine instruction with label *L* . (BR stands for *branch*)
  - *Conditional jumps* of the form *Bcond r, L* , where *r* is a register, *L* is a label, and *cond* stands for any of the common tests on values in the register *r*. 
- - For example, `BLTZ r, L` causes a jump to label *L* if the value in register *r* is less than zero, and allows control to pass to the next machine instruction if not.
+ 	- For example, `BLTZ r, L` causes a jump to label *L* if the value in register *r* is less than zero, and allows control to pass to the next machine instruction if not.
 
 
 We assume our target machine has a variety of addressing modes:
 
  - In instructions, a location can be a variable name *x* referring to the mem­ory location that is reserved for *x* (that is, the l-value of x).
  - A location can also be an indexed address of the form a(r), where *a* is a variable and *r* is a register. 
- - The memory location denoted by a(r) is computed by taking the I=l-value of *a* and adding to it the value in register *r*. 
- - For example, the instruction LD R1, a(R2) has the effect of setting R1 = contents(a + contents(R2)), where contents(x) denotes the contents of the register or memory location represented by *x*. 
- - This addressing mode is useful for accessing arrays, where *a* is the base address of the array (that is, the address of the first element), and *r* holds the number of bytes past that address we wish to go to reach one of the elements of array *a*.
+ 	- The memory location denoted by a(r) is computed by taking the I=l-value of *a* and adding to it the value in register *r*. 
+ 	- For example, the instruction LD R1, a(R2) has the effect of setting R1 = contents(a + contents(R2)), where contents(x) denotes the contents of the register or memory location represented by *x*. 
+ 	- This addressing mode is useful for accessing arrays, where *a* is the base address of the array (that is, the address of the first element), and *r* holds the number of bytes past that address we wish to go to reach one of the elements of array *a*.
  - A memory location can be an integer indexed by a register. 
- - For ex­ample, LD R1, 100(R2) has the effect of setting R1 = contents(100 + contents(R2)), that is, of loading into R1 the value in the memory loca­tion obtained by adding 100 to the contents of register R2. 
- - This feature is useful for following pointers, as we shall see in the example below.
+ 	- For ex­ample, LD R1, 100(R2) has the effect of setting R1 = contents(100 + contents(R2)), that is, of loading into R1 the value in the memory loca­tion obtained by adding 100 to the contents of register R2. 
+ 	- This feature is useful for following pointers, as we shall see in the example below.
  - We also allow two indirect addressing modes: 
- - *\*r* means the memory lo­cation found in the location represented by the contents of register *r* , 
- - and *100(r) means the memory location found in the location obtained by adding 100 to the contents of *r*. 
- - For example, LD R1, *100(R2) has the effect of setting R1 = contents(contents(100 + contents(R2))), that is, of loading into R1 the value in the memory location stored in the memory location obtained by adding 100 to the contents of register R2.
+ 	- *\*r* means the memory lo­cation found in the location represented by the contents of register *r* , 
+ 	- and *100(r) means the memory location found in the location obtained by adding 100 to the contents of *r*. 
+ 		- For example, LD R1, *100(R2) has the effect of setting R1 = contents(contents(100 + contents(R2))), that is, of loading into R1 the value in the memory location stored in the memory location obtained by adding 100 to the contents of register R2.
  - Finally, we allow an immediate constant addressing mode. The constant is prefixed by `#`. 
- - The instruction LD R1 , #100 loads the integer 100 into register R1, and ADD R1 , R1 , #100 adds the integer 100 into register R1.
+ 	- The instruction LD R1 , #100 loads the integer 100 into register R1, and ADD R1 , R1 , #100 adds the integer 100 into register R1.
 
 Comments at the end of instructions are preceded by // .
 
@@ -274,10 +274,10 @@ Example 8.2 : The three-address statement x = y - z can be implemented by the ma
 
 
 ```
-LD R1, y // R1 = y
-LD R2, z // R2 = z
-SUB R1, R1, R2 // R1 = R1 - R2
-ST x,R1 // x = R1
+LD R1, y 			// R1 = y
+LD R2, z 			// R2 = z
+SUB R1, R1, R2 		// R1 = R1 - R2
+ST x,R1 			// x = R1
 ```
 
 We can do better, perhaps. One of the goals of a good code-generation algorithm is to avoid using all four of these instructions, whenever possible. For example, y and/or z may have been computed in a register, and if so we can avoid the LD step(s). Likewise, we might be able to avoid ever storing x if its value is used within the register set and is not subsequently needed.
@@ -285,10 +285,10 @@ We can do better, perhaps. One of the goals of a good code-generation algorithm 
 Suppose *a* is an array whose elements are 8-byte values, perhaps real num­bers. Also assume elements of *a* are indexed starting at 0. We may execute the three-address instruction `b = a[i]` by the machine instructions:
 
 ```
-LD  R1,i // R1 = i
-MUL R1, R1, 8 // R1 = R1 * 8
-LD R2, a(R1) // R2 = contents( a + contents(R1) )
-ST b,R2 // b = R2
+LD  R1,i 		// R1 = i
+MUL R1, R1, 8 	// R1 = R1 * 8
+LD R2, a(R1) 	// R2 = contents( a + contents(R1) )
+ST b,R2 		// b = R2
 ```
 
 That is, the second step computes 8i, and the third step places in register R2 the value in the ith element of *a* - the one found in the location that is 8i bytes past the base address of the array *a*.
@@ -296,26 +296,26 @@ That is, the second step computes 8i, and the third step places in register R2 t
 Similarly, the assignment into the array *a* represented by three-address in­ struction a[j] = c is implemented by:
 
 ```
-LD R1, c // R1 = c
-LD R2, j // R2 = j
-MUL R2, R2, 8 // R2 = R2 * 8
-ST a(R2) , R1 // contents( a + contents(R2) ) = R1
+LD R1, c 		// R1 = c
+LD R2, j 		// R2 = j
+MUL R2, R2, 8 	// R2 = R2 * 8
+ST a(R2) , R1 	// contents( a + contents(R2) ) = R1
 ```
 
 To implement a simple pointer indirection, such as the three-address state­ ment `x = *p`, we can use machine instructions like:
 
 ```
-LD R1, p // R1 = p
-LD R2, O(R1) // R2 = contents( 0 + contents(R1) )
-ST x,R2 // x = R2
+LD R1, p 			// R1 = p
+LD R2, O(R1) 		// R2 = contents( 0 + contents(R1) )
+ST x,R2 			// x = R2
 ```
 
 The assignment through a pointer `*p = y` is similarly implemented in machine code by:
 
 ```
-LD R1, p // R1 = p
-LD R2, y // R2 = y
-ST O(R1), R2   // contents( 0 + contents(R1) ) = R2
+LD R1, p 		// R1 = p
+LD R2, y 		// R2 = y
+ST O(R1), R2   	// contents( 0 + contents(R1) ) = R2
 ```
 
 Finally, consider a conditional-jump three-address instruction like `if x < y goto L` , the machine-code equivalent would be something like:
@@ -324,7 +324,7 @@ Finally, consider a conditional-jump three-address instruction like `if x < y go
 LD R1, x
 LD R2, y
 SUB R1, R1, R2  // R1 = R1 - R2 
-BLTZ R1, M // if R1 < 0  jump to M
+BLTZ R1, M 		// if R1 < 0  jump to M
 ```
 
 Here, M is the label that represents the first machine instruction generated from thethree-address instruction that has label L . As for any three-address instruc­tion, we hope that we can save some of these machine instructions because the needed operands are already in registers or because the result need never be stored.
@@ -342,11 +342,11 @@ Determining the actual cost of compiling and running a program is a com­plex pr
 For the remainder of this chapter, we shall assume each target-language instruction has an associated cost. For simplicity, we take the cost of an in­ struction to be one plus the costs associated with the addressing modes of the operands. This cost corresponds to the length in words of the instruction. Addressing modes involving registers have zero additional cost, while those in­ volving a memory location or constant in them have an additional cost of one, because such operands have to be stored in the words following the instruction. Some examples:
 
  - The instruction LD R0 , R1 copies the contents of register R1 into register R0. 
- - This instruction has a cost of one because no additional memory words are required.
+ 	- This instruction has a cost of one because no additional memory words are required.
  - The instruction LD R0 , M loads the contents of memory location M into register RO. 
- - The cost is two since the address of memory location M is in the word following the instruction.
+ 	- The cost is two since the address of memory location M is in the word following the instruction.
  - The instruction LD R1 , *100 (R2) loads into register R1 the value given by contents(contents(100 + contents(R2))). 
- - The cost is three because the constant 100 is stored in the word following the instruction.
+ 	- The cost is three because the constant 100 is stored in the word following the instruction.
 
 
 In this chapter we assume the cost of a target-language program on a given input is the sum of costs of the individual instructions executed when the pro­gram is run on that input. Good code-generation algorithms seek to minimize the sum of the costs of the instructions executed by the generated target pro­gram on typical inputs. We shall see that in some situations we can actually generate optimal code for expressions on certain classes of register machines.
@@ -360,13 +360,13 @@ In this chapter we assume the cost of a target-language program on a given input
 In this section, we show how names in the IR can be converted into addresses in the target code by looking at code generation for simple procedure calls and returns using static and stack allocation. In Section 7.1, we described how each executing program runs in its own logical address space that was partitioned into four code and data areas:
 
  1. A statically determined area *Code* that holds the executable target code. 
- - The size of the target code can be determined at compile time.
+ 	- The size of the target code can be determined at compile time.
  2. A statically determined data area *Static* for holding global constants and other data generated by the compiler. 
- - The size of the global constants and compiler data can also be determined at compile time.
+ 	- The size of the global constants and compiler data can also be determined at compile time.
  3. A dynamically managed area *Heap* for holding data objects that are allocated and freed during program execution. 
- - The size of the Heap cannot be determined at compile time.
+ 	- The size of the Heap cannot be determined at compile time.
  4. A dynamically managed area *Stack* for holding activation records as they are created and destroyed during procedure calls and returns. 
- - Like the Heap, the size of the Stack cannot be determined at compile time.
+ 	- Like the Heap, the size of the Stack cannot be determined at compile time.
 
 
 ---
@@ -389,7 +389,7 @@ Let us first consider the code needed to implement the simplest case, static all
 ```
 ST callee.staticArea , #here + 20
 BR callee.codeArea
-// <-  #here + 20  assumed ?
+						// <-  #here + 20  assumed ?
 ```
 
  - The ST instruction saves the return address at the beginning of the activation record for *callee*, 
@@ -410,12 +410,12 @@ which transfers control to the address saved at the beginning of the activation 
 Example 8.3 : Suppose we have the following three-address code:
 
 ```
-// code for c
+			// code for c
 action1
 call p
 action2
 halt
-// code for p
+			// code for p
 action3
 return 
 ```
@@ -449,15 +449,15 @@ The code for the first procedure initializes the stack by setting SP to the star
 ```
 LD SP , #stackStart // initialize the stack
 code for the first procedure
-HALT // terminate exection
+HALT 				// terminate exection
 ```
 
 A procedure call sequence increments SP, saves the return address, and transfers control to the called procedure:
 
 ```
-ADD SP , SP , #caller.recordSize // increment stack pointer
-ST *SP , #here + 16// save return address
-BR callee.codeArea // return to caller
+ADD SP , SP , #caller.recordSize 	// increment stack pointer
+ST *SP , #here + 16					// save return address
+BR callee.codeArea 					// return to caller
 ```
 
 The operand #caller.recordSize represents the size of an activation record, so the ADD instruction makes SP point to the next activation record. The operand #here + 16 in the ST instruction is the address of the instruction following BR; it is saved in the address pointed to by SP.
@@ -521,8 +521,8 @@ This section introduces a graph representation of intermediate code that is help
 The representation is constructed as follows:
 
  1. Partition the intermediate code into basic blocks, which are maximal se­quences of consecutive three-address instructions with the properties that
- - (a) The flow of control can only enter the basic block through the first instruction in the block. That is, there are no jumps into the middle of the block.
- - Control will leave the block without halting or branching, except possibly at the last instruction in the block.
+ 	- (a) The flow of control can only enter the basic block through the first instruction in the block. That is, there are no jumps into the middle of the block.
+ 	- Control will leave the block without halting or branching, except possibly at the last instruction in the block.
  2. The basic blocks become the nodes of a flow graph, whose edges indicate which blocks can follow which other blocks.
 
 Starting in Chapter 9, we discuss transformations on flow graphs that turn the original intermediate code into "optimized" intermediate code from which better target code can be generated. The "optimized" intermediate code is turned into machine code using the code-generation techniques in this chapter.
@@ -540,11 +540,11 @@ Algorithm 8.5 : Partitioning three-address instructions into basic blocks.
  - INPUT: A sequence of three-address instructions.
  - OUTPUT: A list of the basic blocks for that sequence in which each instruction is assigned to exactly one basic block.
  - METHOD : 
- - First, we determine those instructions in the intermediate code that are leaders, that is, the first instructions in some basic block. The instruction just past the end of the intermediate program is not included as a leader. The rules for finding leaders are:
- - 1. The first three-address instruction in the intermediate code is a leader.
- - 2. Any instruction that is the target of a conditional or unconditional jump is a leader.
- - 3. Any instruction that immediately follows a conditional or unconditional jump is a leader.
-- Then, for each leader, its basic block consists of itself and all instructions up to but not including the next leader or the end of the intermediate program. 
+ 	- First, we determine those instructions in the intermediate code that are leaders, that is, the first instructions in some basic block. The instruction just past the end of the intermediate program is not included as a leader. The rules for finding leaders are:
+	 	- 1. The first three-address instruction in the intermediate code is a leader.
+	 	- 2. Any instruction that is the target of a conditional or unconditional jump is a leader.
+	 	- 3. Any instruction that immediately follows a conditional or unconditional jump is a leader.
+	- Then, for each leader, its basic block consists of itself and all instructions up to but not including the next leader or the end of the intermediate program. 
 
 
 Example 8.6 : The intermediate code in Fig. 8.7 turns a 10 x 10 matrix a into an identity matrix. 
@@ -558,11 +558,11 @@ Although it is not important where this code comes from, it might be the transla
 
 ```java
 for i from 1 to 10 do
-for j from 1 to 10 do
-a[i,j]= 0.0; 
+	for j from 1 to 10 do
+		a[i,j]= 0.0; 
 
 for i from 1 to 10 do
-a[i,i]= 1.0;
+	a[i,i]= 1.0;
 ```
 
 > Figure 8.8: Source code for Fig. 8.7
@@ -600,9 +600,9 @@ Algorithm8.7: Determining the liveness and next-use information for each stateme
  - INPUT: A basic block B of three-address statements. We assume that the symbol table initially shows all nontemporary variables in B as being live on exit.
  - OUTPUT: At each statement i: x = y + z in B, we attach to i the liveness and next-use information of x, y, and z .
  - METHOD: We start at the last statement in B and scan backwards to the beginning of B. At each statement i: x = y + z in B, we do the following:
- - 1. Attach to statement i the information currently found in the symbol table regarding the next use and liveness of *x* , *y*, and *y* .
- - 2. In the symbol table, set *x* to "not live" and "no next use."
- - 3. In the symbol table, set *y* and *z* to "live" and the next uses of *y* and *z* to *i*.
+ 	- 1. Attach to statement i the information currently found in the symbol table regarding the next use and liveness of *x* , *y*, and *y* .
+ 	- 2. In the symbol table, set *x* to "not live" and "no next use."
+ 	- 3. In the symbol table, set *y* and *z* to "live" and the next uses of *y* and *z* to *i*.
 
 Here we have used + as a symbol representing any operator. If the three-address statement i is of the form  x = +Y or x = y, the steps are the same as above, ignoring z. Note that the order of steps (2) and (3) may not be interchanged because x may be y or z.
 
@@ -622,10 +622,10 @@ We say that B is a predecessor of C, and C is a successor of B.
 Often we add two nodes, called the *entry* and *exit*, that do not correspond to executable intermediate instructions. 
 
  - There is an edge from the *entry* to the first executable node of the flow graph, that is, to the basic block that comes from the first instruction of the intermediate code. 
- - entry -> 最先开始的代码块
+ 	- entry -> 最先开始的代码块
  - There is an edge to the *exit* from any basic block that contains an instruction that could be the last executed instruction of the program. 
- - 可能最后执行的代码块 -> exit 
- - If the final instruction of the program is not an unconditional jump, then the block containing the final instruction of the program is one predecessor of the *exit*, but so is any basic block that has a jump to code that is not part of the program.
+ 	- 可能最后执行的代码块 -> exit 
+ 	- If the final instruction of the program is not an unconditional jump, then the block containing the final instruction of the program is one predecessor of the *exit*, but so is any basic block that has a jump to code that is not part of the program.
 
 Example 8.8 : The set of basic blocks constructed in Example 8.6 yields the flow graph of Fig. 8.9. 
 

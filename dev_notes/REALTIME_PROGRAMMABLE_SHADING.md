@@ -27,10 +27,10 @@ There are some significant differences between real-time programmable shading an
 ## What Makes Real-Time Shading Different?
 
  - *Most applications are interactive.*
- - As a result, the shader writer usually does not know which viewpoints will be used to view an object and may not even know which lights will be near an object.
+ 	- As a result, the shader writer usually does not know which viewpoints will be used to view an object and may not even know which lights will be near an object.
  - *Performance is critical.*
  - *Shaders execute on graphics hardware.*
- - Graphics hardware provides high performance at low cost, but imposes certain restrictions on shading programs in order to obtain this high performance.
+ 	- Graphics hardware provides high performance at low cost, but imposes certain restrictions on shading programs in order to obtain this high performance.
 
 
 <h2 id="bceaf8901c4bf8e690d273b9ca06e873"></h2>
@@ -73,11 +73,11 @@ In contrast, a screen space shader is forbidden to change the three- dimensional
 For rapidly varying shading computations such as specular lighting, it is important that the shading computation be performed approximately once per pixel to produce high-quality images. Screen space shading is automatically performed at this rate, but object space shading is not.  The REYES algorithm solves this problem by automatically generating micropolygons of the necessary size from curved surfaces specified by the user. There are a number of reasons why this approach has not yet been used in real-time hardware:
 
  - Historically, the performance of graphics hardware has not been high enough to allow the use of pixel-sized polygons. Transformation and lighting were performed relatively infrequently at the vertices of large polygons, and these results were interpolated in screen space. 
- - This interpolation is much more efficient than reevaluating the shading equation at each pixel. 
- - The performance of graphics hardware has now increased to the point where this optimization is less important than it once was, but because performance is so crucial in real- time graphics, it is still useful to be able to perform some computations less of- ten than others.
+ 	- This interpolation is much more efficient than reevaluating the shading equation at each pixel. 
+ 	- The performance of graphics hardware has now increased to the point where this optimization is less important than it once was, but because performance is so crucial in real- time graphics, it is still useful to be able to perform some computations less of- ten than others.
  - If all shading computations are performed at object space vertices, it is crucial that polygons be approximately the size of a pixel. Adopting this approach for real-time use would require automatic tessellation of curved surfaces and/or large polygons to form micropolygons. 
- - To avoid performance loss from the CPU-to-GPU bandwidth bottleneck, this tessellation must be performed by the graphics hardware.
- - As of this writing, some hardware does support hardware tessellation of curved surfaces, but this hardware lacks the automatic adjust- ment of tessellation rate needed to guarantee pixel-sized micropolygons and has not been widely used by developers.
+ 	- To avoid performance loss from the CPU-to-GPU bandwidth bottleneck, this tessellation must be performed by the graphics hardware.
+ 	- As of this writing, some hardware does support hardware tessellation of curved surfaces, but this hardware lacks the automatic adjust- ment of tessellation rate needed to guarantee pixel-sized micropolygons and has not been widely used by developers.
  - Because graphics hardware has historically performed high-frequency shading computations at fragments rather than vertices, 2002-generation graphics hardware does not support the use of texture maps at vertices.
 
 There are several other differences between the pure object space shading model used by the REYES algorithm and the hybrid model used by graphics hardware:
@@ -152,9 +152,9 @@ Unfortunately, the availability of these programmable units makes performance tu
 Detailed approaches to performance tuning are hardware dependent, but we will describe two performance-tuning techniques that are broadly applicable.
 
  - First, it is often possible to trade compute performance for memory bandwidth and vice versa. 
- - The simplest example of such a trade-off is the use of a table lookup (i.e., texture read) in place of a complex computation. 
+ 	- The simplest example of such a trade-off is the use of a table lookup (i.e., texture read) in place of a complex computation. 
  - Second, for programs that are limited by memory bandwidth, it may be possible to improve performance by more effectively utilizing the hardware’s texture cache.
- - In general, reducing the size of a texture will improve performance, as will restructuring programs that use table lookups so that they are more likely to repeatedly access the same table entries.
+ 	- In general, reducing the size of a texture will improve performance, as will restructuring programs that use table lookups so that they are more likely to repeatedly access the same table entries.
 
 <h2 id="67141f3d173330f740c944f069952a6f"></h2>
 
@@ -187,10 +187,10 @@ Typically, this capability is used for operations such as inverting and transpos
 //
 surface shader float4
 applytexture (vertex float4 uv, primitive group texref star) {
-vertex float4 uv_vert = {uv[0]*2, uv[1], 0, 1}; // Scale texcoord 
-fragment float4 uv_frag = uv_vert; // Interpolate 
-fragment float4 surf = texture(star, uv_frag); // Texture lookup 
-return surf;
+	vertex float4 uv_vert = {uv[0]*2, uv[1], 0, 1}; // Scale texcoord 
+	fragment float4 uv_frag = uv_vert; // Interpolate 
+	fragment float4 surf = texture(star, uv_frag); // Texture lookup 
+	return surf;
 }
 ```
 

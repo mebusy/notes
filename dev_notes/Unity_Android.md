@@ -79,7 +79,7 @@ You can ensure that the operating system sees your device by running `adb device
 ```bash
 $ adb devices
 List of devices attached
-08e9f72cdevice
+08e9f72c	device
 ```
 
 <h2 id="dcabe0dca89861f1a51eb815d92b7f80"></h2>
@@ -415,11 +415,11 @@ adb shell cat /sys/class/net/wlan0/address
 
 ```
 using(AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer")) {
-AndroidJavaObject activityContext = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
+	AndroidJavaObject activityContext = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
 
-AndroidJavaClass cls = new AndroidJavaClass( "com.usft.jdc_androidtools.androidtools" );
-cls.CallStatic("setContext", activityContext );
-cls.Dispose ();
+	AndroidJavaClass cls = new AndroidJavaClass( "com.usft.jdc_androidtools.androidtools" );
+	cls.CallStatic("setContext", activityContext );
+	cls.Dispose ();
 }
 ```
 

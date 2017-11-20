@@ -148,19 +148,19 @@ An example of function exposed in plugin:
 static IUnityGraphics* s_Graphics = NULL;
 
 
-extern "C" voidUNITY_INTERFACE_EXPORT UNITY_INTERFACE_API
+extern "C" void	UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API
 UnityPluginLoad(IUnityInterfaces* unityInterfaces)
 {
     ...
     s_Graphics = s_UnityInterfaces->Get<IUnityGraphics>();
     s_Graphics->RegisterDeviceEventCallback(OnGraphicsDeviceEvent);
-...
+	...
 }
 
 extern "C" void UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API
 UnityPluginUnload()
 {
-s_Graphics->UnregisterDeviceEventCallback(OnGraphicsDeviceEvent);
+	s_Graphics->UnregisterDeviceEventCallback(OnGraphicsDeviceEvent);
 }
 
 
@@ -187,37 +187,37 @@ This means we have to DllImport at least one function in some active script.
 
 ```C#
 #if UNITY_IPHONE && !UNITY_EDITOR
-[DllImport ("__Internal")]
+	[DllImport ("__Internal")]
 #else
-[DllImport ("RenderingPlugin")]
+	[DllImport ("RenderingPlugin")]
 #endif
-private static extern void SetTimeFromUnity(float t);
-
+	private static extern void SetTimeFromUnity(float t);
+	
 #if UNITY_IPHONE && !UNITY_EDITOR
-[DllImport ("__Internal")]
+	[DllImport ("__Internal")]
 #else
-[DllImport("RenderingPlugin")]
+	[DllImport("RenderingPlugin")]
 #endif
-private static extern IntPtr GetRenderEventFunc();
+	private static extern IntPtr GetRenderEventFunc();
+	
+	...
+	
+	private IEnumerator CallPluginAtEndOfFrames()
+	{
+		while (true) {
+			// Wait until all frame rendering is done
+			yield return new WaitForEndOfFrame();
 
-...
+			// Set time for the plugin
+			SetTimeFromUnity (Time.timeSinceLevelLoad);
 
-private IEnumerator CallPluginAtEndOfFrames()
-{
-while (true) {
-// Wait until all frame rendering is done
-yield return new WaitForEndOfFrame();
-
-// Set time for the plugin
-SetTimeFromUnity (Time.timeSinceLevelLoad);
-
-// Issue a plugin event with arbitrary integer identifier.
-// The plugin can distinguish between different
-// things it needs to do based on this ID.
-// For our simple plugin, it does not matter which ID we pass here.
-GL.IssuePluginEvent(GetRenderEventFunc(), 1);
-}
-}
+			// Issue a plugin event with arbitrary integer identifier.
+			// The plugin can distinguish between different
+			// things it needs to do based on this ID.
+			// For our simple plugin, it does not matter which ID we pass here.
+			GL.IssuePluginEvent(GetRenderEventFunc(), 1);
+		}
+	}	
 ```
 
  - [DllImport ("**__Internal**")]

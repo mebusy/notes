@@ -105,9 +105,9 @@ P( y=1|x;θ ) + P( y=0|x;θ ) = 1
 
  - 数据: X , y , 训练完成的 θ
  - 决策边界是直线:  1 bias x₀ + 2 features x₁,x₂
- - Only need 2 points to define a line
-- 从 x₁ 中选择 最大／最小两个值，最为 直线两个端点的 x 坐标
-- 确定 两个端点的 y 坐标:
+ 	- Only need 2 points to define a line
+	- 从 x₁ 中选择 最大／最小两个值，最为 直线两个端点的 x 坐标
+	- 确定 两个端点的 y 坐标:
     ```
     Thetaᵀ*x = [t0,t1,t2] dot [x0,x1,x2] = t0 + t1*x1 + t2*x2  = 0
     => t0 + t1*plot_x + t2*plot_y = 0
@@ -116,7 +116,7 @@ P( y=1|x;θ ) + P( y=0|x;θ ) = 1
     ```
   - 画直线
  - 决策边界是曲线:
- - 构造网格 
+ 	- 构造网格 
     ```
     u = np.linspace(-1, 1.5, 50);
     v = np.linspace(-1, 1.5, 50);

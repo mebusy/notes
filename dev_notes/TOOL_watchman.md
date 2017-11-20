@@ -107,41 +107,41 @@ import os,sys , shutil
 
 
 if len( sys.argv )>3:
-#print "py notifie:" , sys.argv[1:]
-WATCH_ROOT = sys.argv[1]
-DIST_FOLDER = sys.argv[2]
+	#print "py notifie:" , sys.argv[1:]
+	WATCH_ROOT = sys.argv[1]
+	DIST_FOLDER = sys.argv[2]
 
-print "all args:" , sys.argv[1:]
+	print "all args:" , sys.argv[1:]
 
-if not os.path.exists( DIST_FOLDER ):
-os.makedirs( DIST_FOLDER )
+	if not os.path.exists( DIST_FOLDER ):
+		os.makedirs( DIST_FOLDER )
 
 
-for v in sys.argv[3:]:
-print "py notifie:" , v
+	for v in sys.argv[3:]:
+		print "py notifie:" , v
 
-full_path_src = os.path.join(  WATCH_ROOT , v  )
+		full_path_src = os.path.join(  WATCH_ROOT , v  )
 
-#flatten dist path , all lua file will in same flat folder
-_,v  = os.path.split( v )
+		#flatten dist path , all lua file will in same flat folder
+		_,v  = os.path.split( v )
+		
+		# full path of dist file
+		full_path_dist = os.path.join( DIST_FOLDER, v ) 
+		path , f = os.path.split( full_path_dist )
+		path2createOrDelete =  path
 
-# full path of dist file
-full_path_dist = os.path.join( DIST_FOLDER, v ) 
-path , f = os.path.split( full_path_dist )
-path2createOrDelete =  path
+		#try to make dir
+		if not os.path.exists( path2createOrDelete ):
+			os.makedirs( path2createOrDelete )
+		pass
 
-#try to make dir
-if not os.path.exists( path2createOrDelete ):
-os.makedirs( path2createOrDelete )
-pass
+		if os.path.exists( full_path_src  ):
+			shutil.copy( full_path_src , full_path_dist )
 
-if os.path.exists( full_path_src  ):
-shutil.copy( full_path_src , full_path_dist )
-
-# src not exists, but dist exists
-elif os.path.exists( full_path_dist  ) :
-os.remove(full_path_dist)
-
+		# src not exists, but dist exists
+		elif os.path.exists( full_path_dist  ) :
+			os.remove(full_path_dist)
+			
 ```
 
 

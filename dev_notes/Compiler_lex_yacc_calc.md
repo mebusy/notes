@@ -33,25 +33,25 @@ void yyerror(char *s) ;
 
 %%
 
-statment: NAME '=' expression
-|expression{ printf("= %d\n" , $1); }
-;
+statment: 	NAME '=' expression
+		|	expression	{ printf("= %d\n" , $1); }
+		;
 
-expression:expression '+' NUMBER{ $$ = $1 + $3; }
-|expression '-' NUMBER{ $$ = $1 - $3; }
-|NUMBER{ $$ = $1; }
-;
+expression:	expression '+' NUMBER	{ $$ = $1 + $3; }
+		|	expression '-' NUMBER	{ $$ = $1 - $3; }
+		|	NUMBER					{ $$ = $1; }
+		;
 
 %%
 
-/* needed for MacOSX */
+	/* needed for MacOSX */
 void yyerror(char *s) {
     fprintf(stdout, "%s\n", s);
 }
 
 int main(void) {
     yyparse();
-return 0; 
+	return 0; 
 }
 ```
 
@@ -70,16 +70,16 @@ extern int yylval ;
 
 %%
 
-[0-9]+{ yylval = atoi(yytext); return NUMBER; }
-[ \t];    /* ignore whitespace */
-\nreturn 0 ; /* logical EOF  */
-. return yytext[0] ;  /*very common catch-all */
+[0-9]+	{ yylval = atoi(yytext); return NUMBER; }
+[ \t]	;    /* ignore whitespace */
+\n		return 0 ; /* logical EOF  */
+. 		return yytext[0] ;  /*very common catch-all */
 
 %%
 
-/* needed for MacOSX */
+	/* needed for MacOSX */
 int yywrap(void) {
-return 1 ;
+	return 1 ;
 }
 ```
 
@@ -109,33 +109,33 @@ void yyerror(char *s) ;
 
 %%
 
-statment: NAME '=' expression
-|expression{ printf("= %d\n" , $1); }
-;
+statment: 	NAME '=' expression
+		|	expression	{ printf("= %d\n" , $1); }
+		;
 
-expression:expression '+' expression{ $$ = $1 + $3; }
-|expression '-' expression{ $$ = $1 - $3; }
-|expression '*' expression{ $$ = $1 * $3; }
-|expression '/' expression{ if ($3==0)
-yyerror("divide by 0");
-  else
-  $$ = $1 / $3; 
-}
-|'-' expression%prec UMINUS{ $$ = -$2; }
-|'(' expression')'{ $$ = $2; }
-|NUMBER{ $$ = $1; }
-;
+expression:	expression '+' expression	{ $$ = $1 + $3; }
+		|	expression '-' expression	{ $$ = $1 - $3; }
+		|	expression '*' expression	{ $$ = $1 * $3; }
+		|	expression '/' expression	{ if ($3==0)
+										yyerror("divide by 0");
+									  else
+									  	$$ = $1 / $3; 
+									}
+		|	'-' expression	%prec UMINUS		{ $$ = -$2; }
+		|	'(' expression	')'		{ $$ = $2; }
+		|	NUMBER					{ $$ = $1; }
+		;
 
 %%
 
-/* needed for MacOSX */
+	/* needed for MacOSX */
 void yyerror(char *s) {
     fprintf(stdout, "%s\n", s);
 }
 
 int main(void) {
     yyparse();
-return 0; 
+	return 0; 
 }
 ```
 
@@ -166,53 +166,53 @@ double vbltable [26] ;   /* 1 */
 %}
 
 
-%union {/* 2 */
-double dval;
-int vblno;
+%union {				/* 2 */
+	double dval;
+	int vblno;
 }
 
-%token <vblno> NAME/* 3 */
-%token <dval>NUMBER
+%token <vblno> 	NAME			/* 3 */
+%token <dval>	NUMBER
 %left '-' '+'
 %left '*' '/'
 %nonassoc UMINUS
 
-%type <dval> expression/* 4 */
+%type <dval> expression		/* 4 */
 
 %%
 
+	
+statement_list:	statement '\n'		/* 5 */
+		| 		statement_list statement '\n'
+		;
 
-statement_list:statement '\n'/* 5 */
-| statement_list statement '\n'
-;
+statement: 	NAME '=' expression		{ vbltable[$1] = $3;  }   /* 6 */
+		|	expression	{ printf("= %g\n" , $1); }
+		;
 
-statement: NAME '=' expression{ vbltable[$1] = $3;  }   /* 6 */
-|expression{ printf("= %g\n" , $1); }
-;
-
-expression:expression '+' expression{ $$ = $1 + $3; }
-|expression '-' expression{ $$ = $1 - $3; }
-|expression '*' expression{ $$ = $1 * $3; }
-|expression '/' expression{ if ($3==0.0)/* 7 */
-yyerror("divide by 0");
-  else
-  $$ = $1 / $3; 
-}
-|'-' expression%prec UMINUS{ $$ = -$2; }
-|'(' expression')'{ $$ = $2; }
-|NUMBER{ $$ = $1; }
-|NAME{ $$ = vbltable[$1]; }/* 8 */
-;
+expression:	expression '+' expression	{ $$ = $1 + $3; }
+		|	expression '-' expression	{ $$ = $1 - $3; }
+		|	expression '*' expression	{ $$ = $1 * $3; }
+		|	expression '/' expression	{ if ($3==0.0)		/* 7 */
+										yyerror("divide by 0");
+									  else
+									  	$$ = $1 / $3; 
+									}
+		|	'-' expression	%prec UMINUS		{ $$ = -$2; }
+		|	'(' expression	')'		{ $$ = $2; }
+		|	NUMBER					{ $$ = $1; }
+		|	NAME					{ $$ = vbltable[$1]; }		/* 8 */
+		;
 %%
 
-/* needed for MacOSX */
+	/* needed for MacOSX */
 void yyerror(char *s) {
     fprintf(stdout, "%s\n", s);
 }
 
 int main(void) {
     yyparse();
-return 0; 
+	return 0; 
 }
 ```
 
@@ -224,28 +224,28 @@ return 0;
 %{
 #include "y.tab.h"
 #include "math.h"
-/*extern int yylval ;*/
+	/*extern int yylval ;*/
 extern double vbltable[26];
 %}
 
 %%
 
-([0-9]+|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?)  { yylval.dval = atof(yytext); return NUMBER; }
+([0-9]+|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?)  	{ yylval.dval = atof(yytext); return NUMBER; }
 
-[ \t];    /* ignore whitespace */
+[ \t]	;    /* ignore whitespace */
 
-[a-z]{yylval.vblno = yytext[0] - 'a' ; return NAME; }
+[a-z]	{yylval.vblno = yytext[0] - 'a' ; return NAME; }
 
-"$" {return 0;  /* logical EOF  end of input */}
+"$" 	{return 0;  /* logical EOF  end of input */}
 
-\n|
-. return yytext[0] ;  /*very common catch-all */
+\n		|
+. 		return yytext[0] ;  /*very common catch-all */
 
 %%
 
-/* needed for MacOSX */
+	/* needed for MacOSX */
 int yywrap(void) {
-return 1 ;
+	return 1 ;
 }
 ```
 
@@ -255,8 +255,8 @@ To define the possible symbol types , we add a **%union** declaration:
 
 ```
 %union { 
-double dval;
-int vblno;
+	double dval;
+	int vblno;
 }
 ```
 
@@ -269,8 +269,8 @@ It will be copied to *y.tab.h* as the type **YYSTYPE** , to define ***yylval***.
 
 typedef union  
 {
-double dval;
-int vblno;
+	double dval;
+	int vblno;
 } YYSTYPE;
 
 extern YYSTYPE yylval;
@@ -279,15 +279,15 @@ extern YYSTYPE yylval;
 We have to tell the parser which symbols use which type of value.
 
 ```
-%token <vblno> NAME
-%token <dval>NUMBER
+%token <vblno> 	NAME			
+%token <dval>	NUMBER
 ```
 
 
 The new declaration **%type** sets the type for non-terminals which otherwise need no declaration.
 
 ```
-%type <dval> expression
+%type <dval> expression	
 ```
 
 
@@ -307,10 +307,10 @@ This symbol table is an array of structures each containing the name of the vari
 > ch3hdr.h :
 
 ```c
-#define NSYMS20 /* maximum number of symbols */
+#define NSYMS	20 /* maximum number of symbols */
 struct symtab {
-char *name;
-double value; 
+	char *name;
+	double value; 
 } symtab[NSYMS];
 
 struct symtab *symlook( ) ;
@@ -321,7 +321,7 @@ The parser changes only slightly to use the symbol table . The value for a **NAM
 
  - We change the **%union** and call the pointer field **symp**.
  - **We use** ***strdup()*** **to make a permanent copy of the name string**.
- - Since each subsequent token overwrites **yytext**, we need to make a copy ourselves here.
+ 	- Since each subsequent token overwrites **yytext**, we need to make a copy ourselves here.
  - Sequential search is too slow for symbol tables of appreciable size, so use hashing or some other faster search function.
 
 
@@ -333,62 +333,62 @@ The parser changes only slightly to use the symbol table . The value for a **NAM
 
 %{
 #include "ch3hdr.h"  /* 1 */
-#include <stdio.h>
+#include <stdio.h>		
 void yyerror(char *s) ;
 
 double vbltable [26] ;   
 %}
 
 
-%union { 
-double dval;
-/*int vblno;*/
-struct symtab *symp;/* 2 */
+%union {				 
+	double dval;
+	/*int vblno;*/
+	struct symtab *symp;	/* 2 */
 }
 
-%token <symp> NAME /* 3 */
-%token <dval>NUMBER
+%token <symp> NAME			 /* 3 */
+%token <dval>	NUMBER
 %left '-' '+'
 %left '*' '/'
 %nonassoc UMINUS
 
-%type <dval> expression 
+%type <dval> expression		 
 
 %%
 
+	
+statement_list:	statement '\n'		 
+		| 		statement_list statement '\n'
+		;
 
-statement_list:statement '\n' 
-| statement_list statement '\n'
-;
+statement: 	NAME '=' expression		{ $1->value = $3; }   /* 4 */
+		|	expression	{ printf("= %g\n" , $1); }
+		;
 
-statement: NAME '=' expression{ $1->value = $3; }   /* 4 */
-|expression{ printf("= %g\n" , $1); }
-;
-
-expression:expression '+' expression{ $$ = $1 + $3; }
-|expression '-' expression{ $$ = $1 - $3; }
-|expression '*' expression{ $$ = $1 * $3; }
-|expression '/' expression{ if ($3==0.0)  
-yyerror("divide by 0");
-  else
-  $$ = $1 / $3; 
-}
-|'-' expression%prec UMINUS{ $$ = -$2; }
-|'(' expression')'{ $$ = $2; }
-|NUMBER{ $$ = $1; }
-|NAME{ $$ = $1->value; } /* 5 */ 
-;
+expression:	expression '+' expression	{ $$ = $1 + $3; }
+		|	expression '-' expression	{ $$ = $1 - $3; }
+		|	expression '*' expression	{ $$ = $1 * $3; }
+		|	expression '/' expression	{ if ($3==0.0)		  
+										yyerror("divide by 0");
+									  else
+									  	$$ = $1 / $3; 
+									}
+		|	'-' expression	%prec UMINUS		{ $$ = -$2; }
+		|	'(' expression	')'		{ $$ = $2; }
+		|	NUMBER					{ $$ = $1; }
+		|	NAME					{ $$ = $1->value; }	 /* 5 */	 
+		;
 
 %%
 
-/* needed for MacOSX */
+	/* needed for MacOSX */
 void yyerror(char *s) {
     fprintf(stdout, "%s\n", s);
 }
 
 int main(void) {
     yyparse();
-return 0; 
+	return 0; 
 }
 
 
@@ -397,24 +397,24 @@ return 0;
 struct symtab * symlook(s)
 char *s;
 {
-char *p; 
-struct symtab *sp;
+	char *p; 
+	struct symtab *sp;
 
-for(sp = symtab; sp < &symtab[NSYMS]; sp++) { 
-/* is it already here? */
-if(sp->name && ! strcmp(sp->name, s))
-return sp;
+	for(sp = symtab; sp < &symtab[NSYMS]; sp++) { 
+		/* is it already here? */
+		if(sp->name && ! strcmp(sp->name, s))
+			return sp;
 
-/* is it free */ 
-if(!sp->name) {
-sp->name = strdup(s); 
-return sp;
-}
-/* otherwise continue to next */
-}
-yyerror("Too many symbols");
-exit(1);   /* cannot continue */ 
-
+		/* is it free */ 
+		if(!sp->name) {
+			sp->name = strdup(s); 
+			return sp;
+		}
+		/* otherwise continue to next */
+	}
+	yyerror("Too many symbols");
+	exit(1);   /* cannot continue */ 
+	
 } /* symlook */
 
 
@@ -427,29 +427,29 @@ exit(1);   /* cannot continue */
 #include "ch3hdr.h"  /* 1 */
 #include "y.tab.h"
 #include "math.h"
-/*extern int yylval ;*/
-/*extern double vbltable[26];*//* 2 */
+	/*extern int yylval ;*/
+	/*extern double vbltable[26];*/		/* 2 */
 %}
 
 %%
 
-([0-9]+|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?)  { yylval.dval = atof(yytext); return NUMBER; }
+([0-9]+|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?)  	{ yylval.dval = atof(yytext); return NUMBER; }
 
-[ \t];    /* ignore whitespace */
+[ \t]	;    /* ignore whitespace */
 
-[A-Za-z][A-Za-z0-9]*{yylval.symp = symlook(yytext) ;  /* 3 */
- return NAME; }
+[A-Za-z][A-Za-z0-9]*	{yylval.symp = symlook(yytext) ;  /* 3 */
+						 return NAME; }	
 
-"$" {return 0;  /* logical EOF  end of input */}
+"$" 	{return 0;  /* logical EOF  end of input */}
 
-\n|
-. return yytext[0] ;  /*very common catch-all */
+\n		|
+. 		return yytext[0] ;  /*very common catch-all */
 
 %%
 
-/* needed for MacOSX */
+	/* needed for MacOSX */
 int yywrap(void) {
-return 1 ;
+	return 1 ;
 }
 ```
 
@@ -465,19 +465,19 @@ The brute force approach makes the function names separate tokens, and adds sepa
 %token SQRT LOG EXP
 ...
 expression: ...
-| SQRT '(' expression ')' { $$ = sqrt($3); }
-| LOG '(' expression ')' { $$ = log($3); }
-| EXP '(' expression ')' { $$ = exp($3); }
+	| 	SQRT '(' expression ')' { $$ = sqrt($3); }
+	| 	LOG '(' expression ')' { $$ = log($3); }
+	| 	EXP '(' expression ')' { $$ = exp($3); }
 ```
 
 In the scanner, we have to return a **SQRT** token for “sqrt” input and so forth:
 
 ```
-sqrt return SQRT ;
-log return LOG ;
-exp return EXP ;
+sqrt 	return SQRT ;
+log 	return LOG ;
+exp 	return EXP ;
 
-[A-Za-z][A-Za-z0-9]* ...
+[A-Za-z][A-Za-z0-9]* 	...
 ```
 
 The specific patterns come first so they match before than the general symbol pattern.
@@ -486,7 +486,7 @@ This works, but it has problems.
 
  - One is that you must hard-code every function into the parserand the lexer, which is tedious and makes it hard to add more functions.
  - Another is that function names are reserved words,
-- i.e., you cannot use **sqrt** as a variable name. This may or may not be a problem, depending on your intentions.
+	- i.e., you cannot use **sqrt** as a variable name. This may or may not be a problem, depending on your intentions.
 
 
 <h2 id="3ffc9c6bc2ffcb3c6cd4ac1be2b51ae4"></h2>
@@ -500,11 +500,11 @@ This works, but it has problems.
 > ch3hdr.h
 
 ```
-#define NSYMS20 /* maximum number of symbols */
+#define NSYMS	20 /* maximum number of symbols */
 struct symtab {
-char *name;
-double (*funcptr) (); /* 1 */
-double value; 
+	char *name;
+	double (*funcptr) (); 	/* 1 */
+	double value; 
 } symtab[NSYMS];
 
 struct symtab *symlook( ) ;
@@ -523,102 +523,102 @@ not changed
 
 %{
 #include "ch3hdr.h"   
-#include <stdio.h>
+#include <stdio.h>		
 void yyerror(char *s) ;
 
 double vbltable [26] ;   
 %}
 
 
-%union { 
-double dval;
-/*int vblno;*/
-struct symtab *symp; 
+%union {				 
+	double dval;
+	/*int vblno;*/
+	struct symtab *symp;	 
 }
 
 %token <symp> NAME  
-%token <dval>NUMBER
+%token <dval>	NUMBER
 %left '-' '+'
 %left '*' '/'
 %nonassoc UMINUS
 
-%type <dval> expression 
+%type <dval> expression		 
 
 %%
 
+	
+statement_list:	statement '\n'		 
+		| 		statement_list statement '\n'
+		;
 
-statement_list:statement '\n' 
-| statement_list statement '\n'
-;
+statement: 	NAME '=' expression		{ $1->value = $3; }    
+		|	expression	{ printf("= %g\n" , $1); }
+		;
 
-statement: NAME '=' expression{ $1->value = $3; }    
-|expression{ printf("= %g\n" , $1); }
-;
-
-expression:expression '+' expression{ $$ = $1 + $3; }
-|expression '-' expression{ $$ = $1 - $3; }
-|expression '*' expression{ $$ = $1 * $3; }
-|expression '/' expression{ if ($3==0.0)  
-yyerror("divide by 0");
-  else
-  $$ = $1 / $3; 
-}
-|'-' expression%prec UMINUS{ $$ = -$2; }
-|'(' expression')'{ $$ = $2; }
-|NUMBER{ $$ = $1; }
-|NAME{ $$ = $1->value; }   
-|   NAME '(' expression')'{ $$ = ($1->funcptr)($3); }  /* 3 */
-;
+expression:	expression '+' expression	{ $$ = $1 + $3; }
+		|	expression '-' expression	{ $$ = $1 - $3; }
+		|	expression '*' expression	{ $$ = $1 * $3; }
+		|	expression '/' expression	{ if ($3==0.0)		  
+										yyerror("divide by 0");
+									  else
+									  	$$ = $1 / $3; 
+									}
+		|	'-' expression	%prec UMINUS		{ $$ = -$2; }
+		|	'(' expression	')'		{ $$ = $2; }
+		|	NUMBER					{ $$ = $1; }
+		|	NAME					{ $$ = $1->value; }	   
+		|   NAME '(' expression	')'	{ $$ = ($1->funcptr)($3); }  /* 3 */
+		;
 
 %%
 
-/* needed for MacOSX */
+	/* needed for MacOSX */
 void yyerror(char *s) {
     fprintf(stdout, "%s\n", s);
 }
 
 int main(void) {
-extern double sqrt() , exp(), log();  /* 1 */
-addfunc("sqrt" , sqrt) ;
-addfunc("exp" , exp) ;
-addfunc("log" , log) ;
+	extern double sqrt() , exp(), log();  /* 1 */
+	addfunc("sqrt" , sqrt) ;
+	addfunc("exp" , exp) ;
+	addfunc("log" , log) ;
 
     yyparse();
-return 0; 
+	return 0; 
 }
 
 
-/* 2 */
+	/* 2 */
 addfunc( name , func )
 char* name ;
 double (*func)() ; 
 {
-struct symtab * sp = symlook(name);
-sp->funcptr = func ;
+	struct symtab * sp = symlook(name);
+	sp->funcptr = func ;
 }
 
 /* look up a symbol table entry, add if not present */ 
 struct symtab * symlook(s)
 char *s;
 {
-char *p; 
-struct symtab *sp;
+	char *p; 
+	struct symtab *sp;
 
-for(sp = symtab; sp < &symtab[NSYMS]; sp++) { 
-/* is it already here? */
-if(sp->name && ! strcmp(sp->name, s))
-return sp;
+	for(sp = symtab; sp < &symtab[NSYMS]; sp++) { 
+		/* is it already here? */
+		if(sp->name && ! strcmp(sp->name, s))
+			return sp;
 
-/* is it free */ 
-if(!sp->name) {
-sp->name = strdup(s); 
-return sp;
-}
-/* otherwise continue to next */
-}
-yyerror("Too many symbols");
-exit(1);   /* cannot continue */ 
-
+		/* is it free */ 
+		if(!sp->name) {
+			sp->name = strdup(s); 
+			return sp;
+		}
+		/* otherwise continue to next */
+	}
+	yyerror("Too many symbols");
+	exit(1);   /* cannot continue */ 
+	
 } /* symlook */
 ```
 
@@ -642,12 +642,12 @@ The menu description consists of the following:
  1. A name for the menu screen
  2. A title or titles
  3. A list of menu items, each consisting of:
- - item
- - [ command ]
- - action
- - [ attribute ]
- -  where *item* is the text string that appears on the menu, *command* is the mnemonic used to provide command-line accessto the functions of the menu system, 
- - *action* is the procedure that should be performed when a menu item is chosen, and *attribute* indicates how this item should be handled. The bracketed items are optional.
+ 	- item
+ 	- [ command ]
+ 	- action
+ 	- [ attribute ]
+ 	-  where *item* is the text string that appears on the menu, *command* is the mnemonic used to provide command-line accessto the functions of the menu system, 
+ 	- *action* is the procedure that should be performed when a menu item is chosen, and *attribute* indicates how this item should be handled. The bracketed items are optional.
  4. A terminator
 
 A sample menu description file is:
@@ -687,8 +687,8 @@ end <name>
 When the resulting program is executed, it creates the following menu:
 
 ```
-My First Menu 
-by Tony Mason
+	My First Menu 
+	by Tony Mason
 
 
 1) List Things to Do 
@@ -700,13 +700,13 @@ we start with the keyword *command*, which indicates a menu choice or command th
 
 
 ```
-ws [ \t]+
-nl \n
+ws 		[ \t]+
+nl 		\n
 %%
-{ws};
-command { return COMMAND; }
-{nl} {lineno++ ;}
-.{return yytext[0]; }
+{ws}	;
+command 	{ return COMMAND; }
+{nl} 	{lineno++ ;}
+.		{return yytext[0]; }
 ```
 
 and its corresponding yacc grammar:
@@ -718,8 +718,8 @@ and its corresponding yacc grammar:
 
 %token COMMAND
 %%
-start:COMMAND
-;
+start:	COMMAND
+		;
 ```
 
 
@@ -770,31 +770,31 @@ TODO
 - The addition of title lines does imply that we must add a new, higher-level rule to consist of either items or titles. 
 - We defined a new rule ***screen***,to contains a complete menu with both titles and items.
 - When we wish to reference a particular menu screen, say, “first,” we can use a line such as:
-- `item "first" command first action menu first`
+	- `item "first" command first action menu first`
 - Thus, a sample screen specification might be something like this:
 ```
 screen main
 title "Main screen"
 item "fruits" command fruits action menu fruits
 item "grains" command grains action menu grains
-item "quit"  command quit   action quit
+item "quit"	  command quit   action quit
 end main
 
 screen fruits
 title "Fruits"
 item "grape" command grape action execute "/fruit/grape"
 item "melon" command melon action execute "/fruit/melon"
-item "main" command main  action menu main
+item "main"	 command main  action menu main
 end fruits
 
 screen grains
 title "Grains"
 item "wheat"  command wheat  action execute "/grain/wheat"
 item "barley" command barley action execute "/grain/barley"
-item "main" command main  action menu main
+item "main"	 command main  action menu main
 ```
 - For each item, we wish to indicate if it is visibleor invisible.
-- we precede the choice of visible or invisible with the new keyword **attribute**
+	- we precede the choice of visible or invisible with the new keyword **attribute**
 - TODO
 
 <h2 id="696fd52bce92183aa43d6186ed737d33"></h2>

@@ -1,115 +1,115 @@
-sha1:5619cacfd102d15d6467110c637f5c04cd7ed2fd
-link:http://www.sciweavers.org/tex2img.php?eq=h_%5Ctheta%28x%5E%7B%28i%29%7D%29%3D%5Ctheta_0%2B%5Ctheta_1x%5E%7B%28i%29%7D&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=h_\theta(x^{(i)})=\theta_0+\theta_1x^{(i)}&fs=12&ff=arev&edit=0
+sha1:	5619cacfd102d15d6467110c637f5c04cd7ed2fd
+link:	http://www.sciweavers.org/tex2img.php?eq=h_%5Ctheta%28x%5E%7B%28i%29%7D%29%3D%5Ctheta_0%2B%5Ctheta_1x%5E%7B%28i%29%7D&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=h_\theta(x^{(i)})=\theta_0+\theta_1x^{(i)}&fs=12&ff=arev&edit=0
 
 
-sha1:3e55608f1354cc03f0cc8c01688b6f680b736319
-link:http://www.sciweavers.org/tex2img.php?eq=J%28%5Ctheta_0%2C%5Ctheta_1%29%3D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5E2&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=J(\theta_0,\theta_1)=\frac{1}{2m}\sum_{i=1}^{m}(h(x^{(i)})-y^{(i)})^2&fs=12&ff=arev&edit=0
+sha1:	3e55608f1354cc03f0cc8c01688b6f680b736319
+link:	http://www.sciweavers.org/tex2img.php?eq=J%28%5Ctheta_0%2C%5Ctheta_1%29%3D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5E2&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=J(\theta_0,\theta_1)=\frac{1}{2m}\sum_{i=1}^{m}(h(x^{(i)})-y^{(i)})^2&fs=12&ff=arev&edit=0
 
 
-sha1:03d2529c7168916961bc80f15371971e3eaab7d5
-link:http://www.sciweavers.org/tex2img.php?eq=%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x_%7Bj%7D%5E%7B%28i%29%7D&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=\theta_j := \theta_j - \alpha\frac{1}{m}\sum_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})\cdot x_{j}^{(i)}&fs=12&ff=arev&edit=0
+sha1:	03d2529c7168916961bc80f15371971e3eaab7d5
+link:	http://www.sciweavers.org/tex2img.php?eq=%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x_%7Bj%7D%5E%7B%28i%29%7D&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=\theta_j := \theta_j - \alpha\frac{1}{m}\sum_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})\cdot x_{j}^{(i)}&fs=12&ff=arev&edit=0
 
 
-sha1:b5a1bfd8b9859398aa1498efcc45f21073a182e4
-link:http://www.sciweavers.org/tex2img.php?eq=%5Ctheta%3A%3D%5Ctheta-%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%5B%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x%5E%7B%28i%29%7D%20%5D&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=\theta:=\theta-\alpha\frac{1}{m}\sum_{i=1}^{m}[(h_\theta(x^{(i)})-y^{(i)})\cdot x^{(i)} ]&fs=12&ff=arev&edit=0
+sha1:	b5a1bfd8b9859398aa1498efcc45f21073a182e4
+link:	http://www.sciweavers.org/tex2img.php?eq=%5Ctheta%3A%3D%5Ctheta-%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%5B%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x%5E%7B%28i%29%7D%20%5D&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=\theta:=\theta-\alpha\frac{1}{m}\sum_{i=1}^{m}[(h_\theta(x^{(i)})-y^{(i)})\cdot x^{(i)} ]&fs=12&ff=arev&edit=0
 
 
-sha1:6b8feb01f461310ddec961a84cc0cef922b511e5
-link:http://www.sciweavers.org/tex2img.php?eq=x%3D%5Cbegin%7Bbmatrix%7Dx_%7B0%7D%20%5C%5C%20x_%7B1%7D%20%5C%5C%20x_%7B2%7D%20%5C%5C%20...%20%5C%5C%20x_%7Bn%7D%20%5Cend%7Bbmatrix%7D%20%2C%20X%3D%5Cbegin%7Bbmatrix%7D-x%5E%7B1T%7D-%20%5C%5C%20-x%5E%7B2T%7D-%20%5C%5C%20...%20%5C%5C%20-x%5E%7BmT%7D-%20%5Cend%7Bbmatrix%7D%20%2C%20y%3D%5Cbegin%7Bbmatrix%7Dy%5E%7B1%7D%20%5C%5C%20y%5E%7B2%7D%20%5C%5C%20...%20%5C%5C%20y%5E%7Bm%7D%20%5Cend%7Bbmatrix%7D&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=x=\begin{bmatrix}x_{0} \\ x_{1} \\ x_{2} \\ ... \\ x_{n} \end{bmatrix} , X=\begin{bmatrix}-x^{1T}- \\ -x^{2T}- \\ ... \\ -x^{mT}- \end{bmatrix} , y=\begin{bmatrix}y^{1} \\ y^{2} \\ ... \\ y^{m} \end{bmatrix}&fs=12&ff=arev&edit=0
+sha1:	6b8feb01f461310ddec961a84cc0cef922b511e5
+link:	http://www.sciweavers.org/tex2img.php?eq=x%3D%5Cbegin%7Bbmatrix%7Dx_%7B0%7D%20%5C%5C%20x_%7B1%7D%20%5C%5C%20x_%7B2%7D%20%5C%5C%20...%20%5C%5C%20x_%7Bn%7D%20%5Cend%7Bbmatrix%7D%20%2C%20X%3D%5Cbegin%7Bbmatrix%7D-x%5E%7B1T%7D-%20%5C%5C%20-x%5E%7B2T%7D-%20%5C%5C%20...%20%5C%5C%20-x%5E%7BmT%7D-%20%5Cend%7Bbmatrix%7D%20%2C%20y%3D%5Cbegin%7Bbmatrix%7Dy%5E%7B1%7D%20%5C%5C%20y%5E%7B2%7D%20%5C%5C%20...%20%5C%5C%20y%5E%7Bm%7D%20%5Cend%7Bbmatrix%7D&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=x=\begin{bmatrix}x_{0} \\ x_{1} \\ x_{2} \\ ... \\ x_{n} \end{bmatrix} , X=\begin{bmatrix}-x^{1T}- \\ -x^{2T}- \\ ... \\ -x^{mT}- \end{bmatrix} , y=\begin{bmatrix}y^{1} \\ y^{2} \\ ... \\ y^{m} \end{bmatrix}&fs=12&ff=arev&edit=0
 
 
-sha1:5853e920463b03c3c8d2f181e5fc825bb64776f3
-link:http://www.sciweavers.org/tex2img.php?eq=h_%5Ctheta%28x%29%3D%5Ctheta_0x_0%2B%5Ctheta_1x_1%2B...%2B%5Ctheta_nx_n&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=h_\theta(x)=\theta_0x_0+\theta_1x_1+...+\theta_nx_n&fs=12&ff=arev&edit=0
+sha1:	5853e920463b03c3c8d2f181e5fc825bb64776f3
+link:	http://www.sciweavers.org/tex2img.php?eq=h_%5Ctheta%28x%29%3D%5Ctheta_0x_0%2B%5Ctheta_1x_1%2B...%2B%5Ctheta_nx_n&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=h_\theta(x)=\theta_0x_0+\theta_1x_1+...+\theta_nx_n&fs=12&ff=arev&edit=0
 
 
-sha1:71150958ed08014167825ca3226aab29a4a467e5
-link:http://www.sciweavers.org/tex2img.php?eq=X%3D%5Cbegin%7Bbmatrix%7Dx_%7B0%7D%20%5C%5C%20x_%7B1%7D%20%5C%5C%20...%20%5C%5C%20x_%7Bn%7D%20%5Cend%7Bbmatrix%7D%20%5Ctheta%20%3D%20%5Cbegin%7Bbmatrix%7D%5Ctheta_%7B0%7D%20%5C%5C%20%5Ctheta_%7B1%7D%20%5C%5C%20...%20%5C%5C%20%5Ctheta_%7Bn%7D%20%5Cend%7Bbmatrix%7D&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=X=\begin{bmatrix}x_{0} \\ x_{1} \\ ... \\ x_{n} \end{bmatrix} \theta = \begin{bmatrix}\theta_{0} \\ \theta_{1} \\ ... \\ \theta_{n} \end{bmatrix}&fs=12&ff=arev&edit=0
+sha1:	71150958ed08014167825ca3226aab29a4a467e5
+link:	http://www.sciweavers.org/tex2img.php?eq=X%3D%5Cbegin%7Bbmatrix%7Dx_%7B0%7D%20%5C%5C%20x_%7B1%7D%20%5C%5C%20...%20%5C%5C%20x_%7Bn%7D%20%5Cend%7Bbmatrix%7D%20%5Ctheta%20%3D%20%5Cbegin%7Bbmatrix%7D%5Ctheta_%7B0%7D%20%5C%5C%20%5Ctheta_%7B1%7D%20%5C%5C%20...%20%5C%5C%20%5Ctheta_%7Bn%7D%20%5Cend%7Bbmatrix%7D&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=X=\begin{bmatrix}x_{0} \\ x_{1} \\ ... \\ x_{n} \end{bmatrix} \theta = \begin{bmatrix}\theta_{0} \\ \theta_{1} \\ ... \\ \theta_{n} \end{bmatrix}&fs=12&ff=arev&edit=0
 
 
-sha1:911c48a643ee3bbec02bdb847bb8f0429f28869b
-link:http://www.sciweavers.org/tex2img.php?eq=%5Ctheta%3D%5Cleft%20%28%20X%5ETX%2B%5Clambda%5Cbegin%7Bbmatrix%7D%200%20%26%20%26%20%26%20%5C%5C%20%26%201%20%26%20%26%20%5C%5C%20%26%20%26%20...%20%26%20%5C%5C%20%26%20%26%20%26%201%20%5Cend%7Bbmatrix%7D%20%5Cright%20%29%5E%7B-1%7DX%5ETy&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=\theta=\left ( X^TX+\lambda\begin{bmatrix} 0 & & & \\ & 1 & & \\ & & ... & \\ & & & 1 \end{bmatrix} \right )^{-1}X^Ty&fs=12&ff=arev&edit=0
+sha1:	911c48a643ee3bbec02bdb847bb8f0429f28869b
+link:	http://www.sciweavers.org/tex2img.php?eq=%5Ctheta%3D%5Cleft%20%28%20X%5ETX%2B%5Clambda%5Cbegin%7Bbmatrix%7D%200%20%26%20%26%20%26%20%5C%5C%20%26%201%20%26%20%26%20%5C%5C%20%26%20%26%20...%20%26%20%5C%5C%20%26%20%26%20%26%201%20%5Cend%7Bbmatrix%7D%20%5Cright%20%29%5E%7B-1%7DX%5ETy&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=\theta=\left ( X^TX+\lambda\begin{bmatrix} 0 & & & \\ & 1 & & \\ & & ... & \\ & & & 1 \end{bmatrix} \right )^{-1}X^Ty&fs=12&ff=arev&edit=0
 
 
-sha1:8a5fad68971e57155a9f566e21e5a957eff746b1
-link:http://www.sciweavers.org/tex2img.php?eq=%2B%20%5Cfrac%7B%5Clambda%7D%7B2m%7D%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%5Ctheta_j%5E2&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=+ \frac{\lambda}{2m}\sum_{j=1}^{n}\theta_j^2&fs=12&ff=arev&edit=0
+sha1:	8a5fad68971e57155a9f566e21e5a957eff746b1
+link:	http://www.sciweavers.org/tex2img.php?eq=%2B%20%5Cfrac%7B%5Clambda%7D%7B2m%7D%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%5Ctheta_j%5E2&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=+ \frac{\lambda}{2m}\sum_{j=1}^{n}\theta_j^2&fs=12&ff=arev&edit=0
 
 
-sha1:fc16c06d760c236f524a6ad7be385fd5f081a67e
-link:http://www.sciweavers.org/tex2img.php?eq=J%28%5Ctheta%29%3D%5Cfrac%7B1%7D%7B2m%7D%5Cleft%20%5B%20%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5E2%2B%5Clambda%20%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%5Ctheta_%7Bj%7D%5E%7B2%7D%20%5Cright%20%5D&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=J(\theta)=\frac{1}{2m}\left [ \sum_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})^2+\lambda \sum_{j=1}^{n}\theta_{j}^{2} \right ]&fs=12&ff=arev&edit=0
+sha1:	fc16c06d760c236f524a6ad7be385fd5f081a67e
+link:	http://www.sciweavers.org/tex2img.php?eq=J%28%5Ctheta%29%3D%5Cfrac%7B1%7D%7B2m%7D%5Cleft%20%5B%20%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5E2%2B%5Clambda%20%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%5Ctheta_%7Bj%7D%5E%7B2%7D%20%5Cright%20%5D&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=J(\theta)=\frac{1}{2m}\left [ \sum_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})^2+\lambda \sum_{j=1}^{n}\theta_{j}^{2} \right ]&fs=12&ff=arev&edit=0
 
 
-sha1:f3046a9ebf462d0466c004b20520a017966c68ba
-link:http://www.sciweavers.org/tex2img.php?eq=%5Ctheta_j%20%3A%3D%20%5Ctheta_j%281-%5Calpha%5Cfrac%7B%5Clambda%7D%7Bm%7D%29%20-%20%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29x%5E%7B%28i%29%7D_j&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=\theta_j := \theta_j(1-\alpha\frac{\lambda}{m}) - \alpha\frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j&fs=12&ff=arev&edit=0
+sha1:	f3046a9ebf462d0466c004b20520a017966c68ba
+link:	http://www.sciweavers.org/tex2img.php?eq=%5Ctheta_j%20%3A%3D%20%5Ctheta_j%281-%5Calpha%5Cfrac%7B%5Clambda%7D%7Bm%7D%29%20-%20%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29x%5E%7B%28i%29%7D_j&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=\theta_j := \theta_j(1-\alpha\frac{\lambda}{m}) - \alpha\frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j&fs=12&ff=arev&edit=0
 
 
-sha1:2218c6b810f5e64d868bc098cfbecaf6a506d6ea
-link:http://www.sciweavers.org/tex2img.php?eq=%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%5Cleft%20%5B%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29x%5E%7B%28i%29%7D_j%20%2B%5Cfrac%7B%5Clambda%20%7D%7Bm%7D%5Ctheta_j%20%5Cright%20%5D&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=\theta_j := \theta_j - \alpha\left [\frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j +\frac{\lambda }{m}\theta_j \right ]&fs=12&ff=arev&edit=0
+sha1:	2218c6b810f5e64d868bc098cfbecaf6a506d6ea
+link:	http://www.sciweavers.org/tex2img.php?eq=%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%5Cleft%20%5B%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29x%5E%7B%28i%29%7D_j%20%2B%5Cfrac%7B%5Clambda%20%7D%7Bm%7D%5Ctheta_j%20%5Cright%20%5D&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=\theta_j := \theta_j - \alpha\left [\frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j +\frac{\lambda }{m}\theta_j \right ]&fs=12&ff=arev&edit=0
 
 
-sha1:f4deb16b98f4f671d72df4ae106d4d5029b746f0
-link:http://www.sciweavers.org/tex2img.php?eq=a_1%5E%7B%282%29%7D%20%3D%20g%28z_1%5E%7B%282%29%7D%20%29&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=a_1^{(2)} = g(z_1^{(2)} )&fs=12&ff=arev&edit=0
+sha1:	f4deb16b98f4f671d72df4ae106d4d5029b746f0
+link:	http://www.sciweavers.org/tex2img.php?eq=a_1%5E%7B%282%29%7D%20%3D%20g%28z_1%5E%7B%282%29%7D%20%29&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=a_1^{(2)} = g(z_1^{(2)} )&fs=12&ff=arev&edit=0
 
 
-sha1:e2faba54b9428fc07437c50b1df31f3a34776c6c
-link:http://www.sciweavers.org/tex2img.php?eq=z_1%5E%7B%282%29%7D%3D%20%5CTheta_%7B10%7D%5E%7B%281%29%7Dx_0%2B%5CTheta_%7B11%7D%5E%7B%281%29%7Dx_1%2B%5CTheta_%7B12%7D%5E%7B%281%29%7Dx_2%2B%5CTheta_%7B13%7D%5E%7B%281%29%7Dx_3&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=z_1^{(2)}= \Theta_{10}^{(1)}x_0+\Theta_{11}^{(1)}x_1+\Theta_{12}^{(1)}x_2+\Theta_{13}^{(1)}x_3&fs=12&ff=arev&edit=0
+sha1:	e2faba54b9428fc07437c50b1df31f3a34776c6c
+link:	http://www.sciweavers.org/tex2img.php?eq=z_1%5E%7B%282%29%7D%3D%20%5CTheta_%7B10%7D%5E%7B%281%29%7Dx_0%2B%5CTheta_%7B11%7D%5E%7B%281%29%7Dx_1%2B%5CTheta_%7B12%7D%5E%7B%281%29%7Dx_2%2B%5CTheta_%7B13%7D%5E%7B%281%29%7Dx_3&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=z_1^{(2)}= \Theta_{10}^{(1)}x_0+\Theta_{11}^{(1)}x_1+\Theta_{12}^{(1)}x_2+\Theta_{13}^{(1)}x_3&fs=12&ff=arev&edit=0
 
 
-sha1:58b9a992b6eb7a6ff242ab95b7f751a1104f4055
-link:http://www.sciweavers.org/tex2img.php?eq=z%5E%7B%283%29%7D%3D%5CTheta%5E%7B%282%29%7Da%5E%7B%282%29%7D%20%5C%5C%20h_%5Ctheta%28x%29%3Da%5E%7B%283%29%7D%3Dg%28z%5E%7B%283%29%7D%29&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=z^{(3)}=\Theta^{(2)}a^{(2)} \\ h_\theta(x)=a^{(3)}=g(z^{(3)})&fs=12&ff=arev&edit=0
+sha1:	58b9a992b6eb7a6ff242ab95b7f751a1104f4055
+link:	http://www.sciweavers.org/tex2img.php?eq=z%5E%7B%283%29%7D%3D%5CTheta%5E%7B%282%29%7Da%5E%7B%282%29%7D%20%5C%5C%20h_%5Ctheta%28x%29%3Da%5E%7B%283%29%7D%3Dg%28z%5E%7B%283%29%7D%29&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=z^{(3)}=\Theta^{(2)}a^{(2)} \\ h_\theta(x)=a^{(3)}=g(z^{(3)})&fs=12&ff=arev&edit=0
 
 
-sha1:9710b147c0a369ed8ee0fe284a8ed5373505dac6
-link:http://www.sciweavers.org/tex2img.php?eq=%5C%5CJ%28%5CTheta%29%5C%5C%5C%5C%20%5Cfrac%7B%5Cpartial%20%7D%7B%5Cpartial%20%5CTheta_%7Bij%7D%5E%7B%28l%29%7D%7DJ%28%5CTheta%29&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=\\J(\Theta)\\\\ \frac{\partial }{\partial \Theta_{ij}^{(l)}}J(\Theta)&fs=12&ff=arev&edit=0
+sha1:	9710b147c0a369ed8ee0fe284a8ed5373505dac6
+link:	http://www.sciweavers.org/tex2img.php?eq=%5C%5CJ%28%5CTheta%29%5C%5C%5C%5C%20%5Cfrac%7B%5Cpartial%20%7D%7B%5Cpartial%20%5CTheta_%7Bij%7D%5E%7B%28l%29%7D%7DJ%28%5CTheta%29&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=\\J(\Theta)\\\\ \frac{\partial }{\partial \Theta_{ij}^{(l)}}J(\Theta)&fs=12&ff=arev&edit=0
 
 
-sha1:71b7943041878e87ec9ad13ff72c8ef7cf7a54bd
-link:http://www.sciweavers.org/tex2img.php?eq=%5CTheta_%7Bij%7D%5E%7B%28l%29%7D%20%5C%2C%20%5Cepsilon%5C%2C%20%5Cmathbb%7BR%7D&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=\Theta_{ij}^{(l)} \, \epsilon\, \mathbb{R}&fs=12&ff=arev&edit=0
+sha1:	71b7943041878e87ec9ad13ff72c8ef7cf7a54bd
+link:	http://www.sciweavers.org/tex2img.php?eq=%5CTheta_%7Bij%7D%5E%7B%28l%29%7D%20%5C%2C%20%5Cepsilon%5C%2C%20%5Cmathbb%7BR%7D&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=\Theta_{ij}^{(l)} \, \epsilon\, \mathbb{R}&fs=12&ff=arev&edit=0
 
 
-sha1:e68c7d96ab3b61441965047205ea19223cf86436
-link:http://www.sciweavers.org/tex2img.php?eq=g%28z%29=%5Cfrac%7B1%7D%7B1%2B%20e%5E%7B-z%7D%7D&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=g(z)=\frac{1}{1+ e^{-z}}&fs=12&ff=arev&edit=0
+sha1:	e68c7d96ab3b61441965047205ea19223cf86436
+link:	http://www.sciweavers.org/tex2img.php?eq=g%28z%29=%5Cfrac%7B1%7D%7B1%2B%20e%5E%7B-z%7D%7D&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=g(z)=\frac{1}{1+ e^{-z}}&fs=12&ff=arev&edit=0
 
 
-sha1:5df14c6fe8073cb7b3bffd81f58d5d962991987e
-link:http://www.sciweavers.org/tex2img.php?eq=cost%28%20h_%5Ctheta%28x%29%2Cy%29%3D%5Cbegin%7Bcases%7D%20-log%28h_%5Ctheta%28x%29%29%20%26%20%5Ctext%7B%20if%20%7D%20y%3D%201%5C%5C%20-log%281-h_%5Ctheta%28x%29%29%20%26%20%5Ctext%7B%20if%20%7D%20y%3D0%20%5Cend%7Bcases%7D&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=cost( h_\theta(x),y)=\begin{cases} -log(h_\theta(x)) & \text{ if } y= 1\\ -log(1-h_\theta(x)) & \text{ if } y=0 \end{cases}&fs=12&ff=arev&edit=0
+sha1:	5df14c6fe8073cb7b3bffd81f58d5d962991987e
+link:	http://www.sciweavers.org/tex2img.php?eq=cost%28%20h_%5Ctheta%28x%29%2Cy%29%3D%5Cbegin%7Bcases%7D%20-log%28h_%5Ctheta%28x%29%29%20%26%20%5Ctext%7B%20if%20%7D%20y%3D%201%5C%5C%20-log%281-h_%5Ctheta%28x%29%29%20%26%20%5Ctext%7B%20if%20%7D%20y%3D0%20%5Cend%7Bcases%7D&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=cost( h_\theta(x),y)=\begin{cases} -log(h_\theta(x)) & \text{ if } y= 1\\ -log(1-h_\theta(x)) & \text{ if } y=0 \end{cases}&fs=12&ff=arev&edit=0
 
 
-sha1:03d2529c7168916961bc80f15371971e3eaab7d5
-link:http://www.sciweavers.org/tex2img.php?eq=%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x_%7Bj%7D%5E%7B%28i%29%7D&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=\theta_j := \theta_j - \alpha\frac{1}{m}\sum_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})\cdot x_{j}^{(i)}&fs=12&ff=arev&edit=0
+sha1:	03d2529c7168916961bc80f15371971e3eaab7d5
+link:	http://www.sciweavers.org/tex2img.php?eq=%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x_%7Bj%7D%5E%7B%28i%29%7D&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=\theta_j := \theta_j - \alpha\frac{1}{m}\sum_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})\cdot x_{j}^{(i)}&fs=12&ff=arev&edit=0
 
 
-sha1:b5a1bfd8b9859398aa1498efcc45f21073a182e4
-link:http://www.sciweavers.org/tex2img.php?eq=%5Ctheta%3A%3D%5Ctheta-%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%5B%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x%5E%7B%28i%29%7D%20%5D&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=\theta:=\theta-\alpha\frac{1}{m}\sum_{i=1}^{m}[(h_\theta(x^{(i)})-y^{(i)})\cdot x^{(i)} ]&fs=12&ff=arev&edit=0
+sha1:	b5a1bfd8b9859398aa1498efcc45f21073a182e4
+link:	http://www.sciweavers.org/tex2img.php?eq=%5Ctheta%3A%3D%5Ctheta-%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%5B%28h_%5Ctheta%28x%5E%7B%28i%29%7D%29-y%5E%7B%28i%29%7D%29%5Ccdot%20x%5E%7B%28i%29%7D%20%5D&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=\theta:=\theta-\alpha\frac{1}{m}\sum_{i=1}^{m}[(h_\theta(x^{(i)})-y^{(i)})\cdot x^{(i)} ]&fs=12&ff=arev&edit=0
 
 
-sha1:8782e9c6569dab7ab99798f8aa960646e3439a07
-link:http://www.sciweavers.org/tex2img.php?eq=%5Cunderset%7Bi%7D%7Bmax%7D%5C%2C%20h_%5Ctheta%5E%7B%28i%29%7D%28x%29&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=\underset{i}{max}\, h_\theta^{(i)}(x)&fs=12&ff=arev&edit=0
+sha1:	8782e9c6569dab7ab99798f8aa960646e3439a07
+link:	http://www.sciweavers.org/tex2img.php?eq=%5Cunderset%7Bi%7D%7Bmax%7D%5C%2C%20h_%5Ctheta%5E%7B%28i%29%7D%28x%29&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=\underset{i}{max}\, h_\theta^{(i)}(x)&fs=12&ff=arev&edit=0
 
 
-sha1:ab64ec50b6b5d694e1ff4b8c1301789c0830de61
-link:http://www.sciweavers.org/tex2img.php?eq=h_%5Ctheta%28x%29%3D%5Cfrac%7B1%7D%7B1%2B%20e%5E%7B-%5Ctheta%5E%7BT%7Dx%7D%7D&fs=12&ff=arev&edit=0
-unquote:http://www.sciweavers.org/tex2img.php?eq=h_\theta(x)=\frac{1}{1+ e^{-\theta^{T}x}}&fs=12&ff=arev&edit=0
+sha1:	ab64ec50b6b5d694e1ff4b8c1301789c0830de61
+link:	http://www.sciweavers.org/tex2img.php?eq=h_%5Ctheta%28x%29%3D%5Cfrac%7B1%7D%7B1%2B%20e%5E%7B-%5Ctheta%5E%7BT%7Dx%7D%7D&fs=12&ff=arev&edit=0
+unquote:	http://www.sciweavers.org/tex2img.php?eq=h_\theta(x)=\frac{1}{1+ e^{-\theta^{T}x}}&fs=12&ff=arev&edit=0
 
 

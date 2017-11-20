@@ -71,12 +71,12 @@
 **"lxml" (推荐) , "xml"**
 
 ```bash
-    sudo pip install lxml
+    sudo pip install lxml	
 ```
 
 **"html5lib"**
 ```bash
-sudo pip install html5lib
+	sudo pip install html5lib
 ```
 
 

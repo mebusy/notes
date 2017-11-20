@@ -60,9 +60,9 @@
 
  - We begin the study of lexical-analyzer generators by introducing regular expressions. 
  - We show how this notation can be transformed, 
- - first into nondeterministic automata and then into deterministic automata. 
+ 	- first into nondeterministic automata and then into deterministic automata. 
  - The latter two notations can be used as input to a "driver", 
- - that is, code which simulates these automata and uses them as a guide to determining the next token.
+ 	- that is, code which simulates these automata and uses them as a guide to determining the next token.
  - This driver and the specification of the automaton form the nucleus of the lexical analyzer.
 
 ---
@@ -83,7 +83,7 @@ In some compilers, the lexical analyzer makes a copy of the source program with 
 Sometimes, lexical analyzers are divided into a cascade of two processes:
 
  - a) *Scanning* consists of the simple processes that do not require tokenization of the input, 
- - such as deletion of comments and compaction of consecutive whitespace characters into one.
+ 	- such as deletion of comments and compaction of consecutive whitespace characters into one.
  - b) *Lexical analysis* proper is the more complex portion, where the scanner produces the sequence of tokens as output.
 
 ---
@@ -95,11 +95,11 @@ Sometimes, lexical analyzers are divided into a cascade of two processes:
 There are a number of reasons why the analysis portion of a compiler is normally separated into lexical analysis and parsing (syntax analysis) phases.
 
  1. Simplicity of design is the most important consideration. 
- - The separation of lexical and syntactic analysis often allows us to simplify at least one of these tasks. 
+ 	- The separation of lexical and syntactic analysis often allows us to simplify at least one of these tasks. 
  2. Compiler efficiency is improved. 
- - A separate lexical analyzer allows us to apply specialized techniques that serve only the lexical task, not the job of parsing. In addition, specialized buffering techniques for reading input characters can speed up the compiler significantly.
+ 	- A separate lexical analyzer allows us to apply specialized techniques that serve only the lexical task, not the job of parsing. In addition, specialized buffering techniques for reading input characters can speed up the compiler significantly.
  3. Compiler portability is enhanced. 
- - Input-device-specific peculiarities can be restricted to the lexical analyzer.
+ 	- Input-device-specific peculiarities can be restricted to the lexical analyzer.
 
 ---
 
@@ -110,19 +110,19 @@ There are a number of reasons why the analysis portion of a compiler is normally
 When discussing lexical analysis, we use three related but distinct terms:
 
  - A *token* is a pair consisting of a token name and an optional attribute value. 
- - The token name is an abstract symbol representing a kind of lexical unit, e.g., a keyword, or an identifier. 
+ 	- The token name is an abstract symbol representing a kind of lexical unit, e.g., a keyword, or an identifier. 
  - A *pattern* is a description of the form that the lexemes of a token may take. 
- - In the case of a keyword as a token, the pattern is just the sequence of characters that form the keyword. For identifiers and some other tokens, the pattern is a more complex structure that is matched by many strings.
+ 	- In the case of a keyword as a token, the pattern is just the sequence of characters that form the keyword. For identifiers and some other tokens, the pattern is a more complex structure that is matched by many strings.
  - A *lexeme* is a sequence of characters in the source program that matches the pattern for a token and is identified by the lexical analyzer as an instance of that token.
 
 
 TOKEN | INFORMAL DESCRIPTION | SAMPLE LEXEMES
 --- | --- | ---
-**if** | characters i,f | if
-**else** | characters e,l,s,e | else
-**comparison** | < or > or <= or >= or == or != |<=, !=
+**if** | characters i,f 	| if
+**else** | characters e,l,s,e 	| else
+**comparison** | < or > or <= or >= or == or != |	<=, !=
 **id** | letter followed by letters and digits |  pi, score, D2
-**number** | any numeric constant |3.14159 , 6.02e23
+**number** | any numeric constant |	3.14159 , 6.02e23
 **literal** | anything but ", surrounded by "'s  | "core dumped"
 
 Figure 3.2: Examples of tokens
@@ -130,7 +130,7 @@ Figure 3.2: Examples of tokens
 Example 3.1: 
 
 ```c
-printf("Total = %d\ ", score);
+	printf("Total = %d\ ", score);
 ```
 
  - printf and score are lexemes matching the pattern for token **id**
@@ -139,7 +139,7 @@ printf("Total = %d\ ", score);
 In many programming languages, the following classes cover most or all of the tokens:
 
  - One token for **each keyword**. 
- - The pattern for a keyword is the same as the keyword itself. 
+ 	- The pattern for a keyword is the same as the keyword itself. 
  - Tokens for the **operators**, either individually or in classes such as the token comparison mentioned in Fig. 3.2.
  - One token representing all **identifiers**.
  - One or more tokens representing **constants**, such as numbers and literal strings .
@@ -168,7 +168,7 @@ Normally, information about an identi­fier -- e.g., its lexeme, its type, and t
 Example 3.2 : The token names and associated attribute values for the For­ tran statement
 
 ```
-E = M * C ** 2
+	E = M * C ** 2
 ```
 
 are written below as a sequence of pairs.
@@ -185,7 +185,7 @@ are written below as a sequence of pairs.
 
  - in certain pairs, especially operators, punctuation, and keywords, there is no need for an attribute value. 
  - In this example, the token **number** has been given an integer-valued attribute. 
- - In practice, a typical compiler would instead store a character string representing the constant and use as an attribute value for **number** a pointer to that string. 
+ 	- In practice, a typical compiler would instead store a character string representing the constant and use as an attribute value for **number** a pointer to that string. 
 
 ---
 
@@ -198,7 +198,7 @@ It is hard for a lexical analyzer to tell, without the aid of other components, 
 For instance, if the string **fi** is encountered for the first time in a C program in the context:
 
 ```c
-fi ( a == f(x)) ...
+	fi ( a == f(x)) ...
 ```
 
 a lexical analyzer cannot tell whether **fi** is a misspelling of the keyword **if** or an undeclared function identifier. Since fi is a valid lexeme for the token **id**, the lexical analyzer must return the token id to the parser and let some other phase of the compiler handle an error.
@@ -249,9 +249,9 @@ If fewer than N characters remain in the input file, then a special character, r
 Two pointers to the input are maintained:
 
  1. Pointer **lexemeBegin**
- - marks the beginning of the current lexeme, whose extent we are attempting to determine.
+ 	- marks the beginning of the current lexeme, whose extent we are attempting to determine.
  2. Pointer **forward** 
- - scans ahead until a pattern match is found.
+ 	- scans ahead until a pattern match is found.
 
 Once the next lexeme is determined, **forward** is set to the character at its right end. Then, after the lexeme is recorded as an attribute value of a token returned to the parser, lexemeBegin is set to the character immediately after the lexeme just found. 
 
@@ -280,15 +280,15 @@ Note that **eof** retains its use as a marker for the end of the entire input. A
 ```java
 switch ( *forward++ ) { 
 case eof:
-if (forward is at end of first buffer ) { 
-reload second buffer;
-forward = beginning of second buffer;
-}else if (forward is at end of second buffer ) { 
-reload first buffer;
-forward = beginning of first buffer;
-}else /* eof within a buffer marks the end of input */ 
-terminate lexical analysis;
-break;
+	if (forward is at end of first buffer ) { 
+		reload second buffer;
+		forward = beginning of second buffer;
+	}else if (forward is at end of second buffer ) { 
+		reload first buffer;
+		forward = beginning of first buffer;
+	}else /* eof within a buffer marks the end of input */ 
+		terminate lexical analysis;
+	break;
 Cases for the other characters
 }
 ```
@@ -380,7 +380,7 @@ Suppose **r** and **s** are regular expressions denoting languages L(*r*) and L(
  2. (*r*)(*s*) is a regular expression  , denoting the language L(*r*)L(*s*).
  3. (*r*)<sup>\*</sup> is a regular expression denoting (L(*r*))<sup>\*</sup>.
  4. (*r*) is a regular expression denoting L(*r*). 
- - This last rule says that we can add additional pairs of parentheses around expressions without changing the language they denote.
+ 	- This last rule says that we can add additional pairs of parentheses around expressions without changing the language they denote.
 
 As defined, regular expressions often contain unnecessary pairs of paren­theses. We may drop certain pairs of parentheses if we adopt the conventions that :
 
@@ -419,10 +419,10 @@ For notational convenience, we may wish to give names to certain regular ex­pre
 If Σ is an alphabet of basic symbols, then a *regular definition* is a sequence of definitions of the form:
 
 ```
-d₁ → r₁
-d₂ → r₂ 
-  ...
-dn → rn
+	d₁ → r₁
+	d₂ → r₂ 
+	  ...
+	dn → rn
 ```
 
 where:
@@ -437,19 +437,19 @@ We do so by first replacing uses of d₁ in r₂ (which cannot use any of the d'
 Example3.5: Here is a regular definition for the language of C identifiers.
 
 ```
-letter_ → A | B | ... | Z | a | b | ... | z | _
-  digit → 0 | 1 | ... | 9
-   id → letter_( letter_ | digit )*   
+	letter_ → A | B | ... | Z | a | b | ... | z | _
+	  digit → 0 | 1 | ... | 9
+	  	 id → letter_( letter_ | digit )*   
 ```
 
 Example 3.6 : Unsigned numbers (integer or floating point) are strings such as 5280, 0.01234, 6.336E4, or 1.89E-4
 
 ```
-         digit → 0 | 1 | ... | 9
-        digits → digit digit*
+	         digit → 0 | 1 | ... | 9
+        	digits → digit digit*
   optionalFraction → . digits | ε
   optionalExponent → ( E ( +|-|ε ) digits ) | ε
-  number → digits optionalFraction optionalExponent
+  			number → digits optionalFraction optionalExponent
 ```
 
  - this specification does not match `1.` 
@@ -461,29 +461,29 @@ Example 3.6 : Unsigned numbers (integer or floating point) are strings such as 5
 ### 3.3.5 Extensions of Regular Expressions
 
  1. *One or more instances*. `+`
- - The operator + has the same precedence and associativity as the operator \*
- - Two useful algebraic laws, r\* = r+ | ε,   and r+ = rr\* = r\*r
+ 	- The operator + has the same precedence and associativity as the operator \*
+ 	- Two useful algebraic laws, r\* = r+ | ε,   and r+ = rr\* = r\*r
  2. *Zero or one instance*.   `?`
- - r? is equivalent to r | ε
- - L(r?) = L(r) U {c}
- - The ? operator has the same precedence and associativity as \* and +.
+ 	- r? is equivalent to r | ε
+ 	- L(r?) = L(r) U {c}
+ 	- The ? operator has the same precedence and associativity as \* and +.
  3. *Character classes*.
- - A regular expression a₁|a₂|...|an , can be replaced by the shorthand [ a₁a₂...an ]
- - More importantly, when a₁,a₂,...,an form a *logical se­quence*, we can replace them by a₁-an, that is, just the first and last separated by a hyphen '-'. 
- - Thus, [abc] is shorthand for a|b|c, and [a-z] is shorthand for a|b|...|z.
+ 	- A regular expression a₁|a₂|...|an , can be replaced by the shorthand [ a₁a₂...an ]
+ 	- More importantly, when a₁,a₂,...,an form a *logical se­quence*, we can replace them by a₁-an, that is, just the first and last separated by a hyphen '-'. 
+ 	- Thus, [abc] is shorthand for a|b|c, and [a-z] is shorthand for a|b|...|z.
 
 Example 3.7 : Using these shorthands, we can rewrite the regular definition of Example 3.5 as:
 
 ```
-letter_ → [A-Za-z_]
-  digit → [0-9]
-     id → letter_( letter | digit)*  
+	letter_ → [A-Za-z_]
+	  digit → [0-9]
+	     id → letter_( letter | digit)*  
 ```
 
 ```
- digit → [0-9]
-digits → digit+
-number → digits (. digits)? ( E[+-]? digits)?
+	 digit → [0-9]
+	digits → digit+
+	number → digits (. digits)? ( E[+-]? digits)?
 ```
 
 yacc 中 , `.` 代表的是除换行外 任意字符。
@@ -503,12 +503,12 @@ Our discussion will make use of the following running example.
 
 ```
 stmt → if expr then stmt
- | if expr then stmt else stmt 
- | ε
+	 | if expr then stmt else stmt 
+	 | ε
 expr → term relop term
- | term
+	 | term
 term → id
- | number
+	 | number
 ```
 
 Figure 3.10: A grammar for branching statements
@@ -522,15 +522,15 @@ The terminals of the grammar, which are **if**, **then**, **else**, **relop**, *
 The patterns for these tokens are described using regular definitions, as in Fig. 3.11 . The patterns for ***id*** and ***number*** are similar to what we saw in Example 3.7.
 
 ```
-digit → [0-9]
+	digit → [0-9]
    digits → digit+
    number → digits (. digits)? (E [+-]? digits)?
    letter → [A-Za-z]
-      id → letter( letter | digits)*
-      if → if
-    then → then
-    else → else
-   relop → < | > | <= | >= | = | <>
+   	   id → letter( letter | digits)*
+   	   if → if
+   	 then → then
+   	 else → else
+   	relop → < | > | <= | >= | = | <>
 ```
 
 Figure 3.11: Patterns for tokens of Example 3.8
@@ -540,7 +540,7 @@ To simplify matters, we make the common assumption that keywords are also *reser
 In addition, we assign the lexical analyzer the job of stripping out white­ space, by recognizing the "token" *ws* defined by:
 
 ```
-ws → ( black | tab | newline)+
+	ws → ( black | tab | newline)+
 ```
 
 Token *ws* is different from the other tokens in that,  we do not return it to the parser.
@@ -583,24 +583,24 @@ If we find such an edge, we advance the *forward* pointer and enter the state of
 Starting in Section 3.5, we shall relax the condition of determinism, making life much easier for the designer of a lexical analyzer, although trickier for the implementer. Some important conventions about transition diagrams are:
 
  1. Certain states are said to be *accepting*, of *final*. 
- - These states indicate that a lexeme has been found, although the actual lexeme may not consist of all positions between the *lexemeBegin* and *forward* pointers. We always indicate an accepting state by a double circle, and if there is an action to be taken -- typically returning a token and an attribute value to the parser -- we shall attach that action to the accepting state.
+ 	- These states indicate that a lexeme has been found, although the actual lexeme may not consist of all positions between the *lexemeBegin* and *forward* pointers. We always indicate an accepting state by a double circle, and if there is an action to be taken -- typically returning a token and an attribute value to the parser -- we shall attach that action to the accepting state.
  2. In addition, if it is necessary to retract the *forward* pointer one position (i.e., the lexeme does not include the symbol that got us to the accepting state) , then we shall additionally place a \* near that accepting state. 
- - In our example, it is never necessary to retract forward by more than one position, but if it were, we could attach any number of \* 's to the accepting state.
+ 	- In our example, it is never necessary to retract forward by more than one position, but if it were, we could attach any number of \* 's to the accepting state.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.13.png)
 
 Example 3.9 : Figure 3.13 is a transition diagram that recognizes the lexemes matching the token **relop**. 
 
  - We begin in state 0, the start state.   
- - we see < as the first input symbol, then among the lexemes that match the pattern for **relop** we can only be looking at <, <>, or <=. 
+ 	- we see < as the first input symbol, then among the lexemes that match the pattern for **relop** we can only be looking at <, <>, or <=. 
  - We therefore go to state 1, and look at the next character. 
- - If it is =, then we recognize lexeme <=, enter state 2, and return the token **relop** with attribute LE, the symbolic constant representing this particular comparison operator. 
- - If in state 1 the next character is > , then instead we have lexeme <>, and enter state 3 to return an indication that the not-equals operator has been found. 
- - On any other character, the lexeme is <, and we enter state 4 to return that information. 
- - Note, however, *that state 4 has a * to indicate that we must retract the input one position*. 
+ 	- If it is =, then we recognize lexeme <=, enter state 2, and return the token **relop** with attribute LE, the symbolic constant representing this particular comparison operator. 
+ 	- If in state 1 the next character is > , then instead we have lexeme <>, and enter state 3 to return an indication that the not-equals operator has been found. 
+ 	- On any other character, the lexeme is <, and we enter state 4 to return that information. 
+ 		- Note, however, *that state 4 has a * to indicate that we must retract the input one position*. 
  - On the other hand, if in state 0 the first character we see is =, then this one character must be the lexeme. We immediately return that fact from state 5.
  - The remaining possibility is that the first character is >. Then, we must enter state 6 and decide whether the lexeme is >= , or just > . 
- - Note that if, in state 0, we see any character besides <, =, or >, we can not possibly be seeing a **relop** lexeme, so this transition diagram will not be used. 
+ 	- Note that if, in state 0, we see any character besides <, =, or >, we can not possibly be seeing a **relop** lexeme, so this transition diagram will not be used. 
 
 
 ---
@@ -616,12 +616,12 @@ Recognizing keywords and identifiers presents a problem. Usually, keywords like 
 There are two ways that we can handle reserved words that look like iden­tifiers :
 
  1. Install the reserved words in the symbol table initially. 
- - A field of the symbol-table entry indicates that these strings are never ordinary identi­fiers, and tells which token they represent. 
- - We have supposed that this method is in use in Fig. 3.14. When we find an identifier, a call to *installID* places it in the symbol table if it is not already there and returns a pointer to the symbol-table entry for the lexeme found. 
+ 	- A field of the symbol-table entry indicates that these strings are never ordinary identi­fiers, and tells which token they represent. 
+ 	- We have supposed that this method is in use in Fig. 3.14. When we find an identifier, a call to *installID* places it in the symbol table if it is not already there and returns a pointer to the symbol-table entry for the lexeme found. 
  2. Create separate transition diagrams for each keyword; 
- - an example for the keyword **then** is shown in Fig. 3.15. 
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.15.png)
- - Note that such a transition diagram consists of states representing the situation after each successive letter of the keyword is seen, followed by a test for a "nonletter-or-digit". 
+ 	- an example for the keyword **then** is shown in Fig. 3.15. 
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.15.png)
+ 	- Note that such a transition diagram consists of states representing the situation after each successive letter of the keyword is seen, followed by a test for a "nonletter-or-digit". 
 
 
 ---
@@ -640,8 +640,8 @@ The transition diagram for token **number** is shown in Fig. 3.16, and is so far
 
  - Beginning in state 12, if we see a digit, we go to state 13. In that state, we can read any number of additional digits. 
  - However, if we see anything but a digit or a dot, we have seen a number in the form of an integer; 
- - 123 is an example. 
- - That case is handled by entering state 20, where we return token **number** and a pointer to a table of constants where the found lexeme is entered. These mechanics are not shown on the diagram but are analogous to the way we handled identifiers.
+ 	- 123 is an example. 
+ 	- That case is handled by entering state 20, where we return token **number** and a pointer to a table of constants where the found lexeme is entered. These mechanics are not shown on the diagram but are analogous to the way we handled identifiers.
 
 The final transition diagram, shown in Fig. 3.17, is for whitespace. 
 
@@ -663,27 +663,27 @@ Each state is represented by a piece of code. We may imagine a variable *state* 
 
 ```
 TOKEN getRelop() {
-TOKEN retToken = new(RELOP) ;
-while(1) {  /* repeat character processing until 
-a return or failure occurs */ 
-switch(state) {
-case 0: 
-c = nextChar();
-if(c =='<')state=1;
-elseif(c =='=')state=5;
-else if ( c == '>' ) state = 6;
-/* lexeme is not a relop */
-else fail() ; 
-break;
-case 1: ...
-...
-case 8: 
-retract();
-retToken.attribute = GT;
-return(retToken);
+	TOKEN retToken = new(RELOP) ;
+	while(1) {  /* repeat character processing until 
+				a return or failure occurs */ 
+	switch(state) {
+		case 0: 
+			c = nextChar();
+			if(c =='<')state=1;
+			elseif(c =='=')state=5;
+			else if ( c == '>' ) state = 6;
+			/* lexeme is not a relop */
+			else fail() ; 
+			break;
+		case 1: ...
+		...
+		case 8: 
+			retract();
+			retToken.attribute = GT;
+			return(retToken);
 
-} // end switch
-} // end while
+	} // end switch
+	} // end while
 }
 ```
 
@@ -694,31 +694,31 @@ Example 3.10 : In Fig. 3.18 we see a sketch of getRelop() , a C++ function whose
 
  - getRelop() first creates a new object retToken and initializes its first component to RELOP, the symbolic code for token **relop**.
  - We see the typical behavior of a state in case 0, the case where the current state is O. 
- - A function nextChar() obtains the next character from the input . 
- - If the next input character is not one that can begin a comparison operator, then a function **fail**() is called.
- - What fail() does depends on the global error­ recovery strategy of the lexical analyzer.
- - It should reset the *forward* pointer to *lexemeBegin*, in order to allow another transition diagram to be applied to the true beginning of the unprocessed input.
- - It might then change the value of state to be the start state for another transition diagram, which will search for another token. 
- - Alternatively, if there is no other transition diagram that remains unused, fail() could initiate an error-correction phase that will try to repair the input and find a lexeme, as discussed in Section 3.1.4.
+ 	- A function nextChar() obtains the next character from the input . 
+ 	- If the next input character is not one that can begin a comparison operator, then a function **fail**() is called.
+ 	- What fail() does depends on the global error­ recovery strategy of the lexical analyzer.
+ 		- It should reset the *forward* pointer to *lexemeBegin*, in order to allow another transition diagram to be applied to the true beginning of the unprocessed input.
+ 		- It might then change the value of state to be the start state for another transition diagram, which will search for another token. 
+ 		- Alternatively, if there is no other transition diagram that remains unused, fail() could initiate an error-correction phase that will try to repair the input and find a lexeme, as discussed in Section 3.1.4.
  - We also show the action for state 8 in Fig. 3.18. Because state 8 bears a \* 
- - we must retract the input pointer one position (i.e., put c back on the input stream) . 
- - That task is accomplished by the function retract() . 
- - Since state 8 represents the recognition of lexeme >=, we set the second component of the returned object, which we suppose is named attribute, to GT, the code for this operator. 
+ 	- we must retract the input pointer one position (i.e., put c back on the input stream) . 
+ 	- That task is accomplished by the function retract() . 
+ 	- Since state 8 represents the recognition of lexeme >=, we set the second component of the returned object, which we suppose is named attribute, to GT, the code for this operator. 
 
 To place the simulation of one transition diagram in perspective, let us consider the ways code like Fig. 3.18 could fit into the entire lexical analyzer.
 
  1. We could arrange for the transition diagrams for each token to be tried sequentially.  按顺序一个个尝试
- - Then, the function fail() resets the pointer *forward* and starts the next transition diagram, each time it is called. 
- - This method allows us to use transition diagrams for the individual key­words, like the one suggested in Fig. 3.15.
- - We have only to use these before we use the diagram for **id**, in order for the keywords to be reserved words.
+ 	- Then, the function fail() resets the pointer *forward* and starts the next transition diagram, each time it is called. 
+ 		- This method allows us to use transition diagrams for the individual key­words, like the one suggested in Fig. 3.15.
+ 		- We have only to use these before we use the diagram for **id**, in order for the keywords to be reserved words.
  2. We could run the various transition diagrams "in parallel," feeding the next input character to all of them and allowing each one to make what­ ever transitions it required. 
- - If we use this strategy, we must be careful to resolve the case where one diagram finds a lexeme that matches its pattern, while one or more other diagrams are still able to process input.
-- The normal strategy is to ***take the longest prefix of the input*** that matches any pattern. 
-- That rule allows us to prefer identifier *thenext* to keyword *then*, or the operator -> to - , for example.
+ 	- If we use this strategy, we must be careful to resolve the case where one diagram finds a lexeme that matches its pattern, while one or more other diagrams are still able to process input.
+	- The normal strategy is to ***take the longest prefix of the input*** that matches any pattern. 
+		- That rule allows us to prefer identifier *thenext* to keyword *then*, or the operator -> to - , for example.
  3. The preferred approach, and the one we shall take up in the following sections, is to combine all the transition diagrams into one. 
- - We allow the transition diagram to read input until there is no possible next state, and then take the longest lexeme that matched any pattern. 
- - In our running example, this combination is easy, because no two tokens can start with the same character;
- - However, in general, the problem of combining transition diagrams for several tokens is more complex, as we shall see shortly.
+ 	- We allow the transition diagram to read input until there is no possible next state, and then take the longest lexeme that matched any pattern. 
+ 	- In our running example, this combination is easy, because no two tokens can start with the same character;
+ 	- However, in general, the problem of combining transition diagrams for several tokens is more complex, as we shall see shortly.
 
 
 ---
@@ -756,32 +756,32 @@ Figure 3.22 suggests how Lex is used.
 A Lex program has the following form:
 
 ```
-declarations
-%%
-translation rules
-%%
-auxiliary functions
+	declarations
+	%%
+	translation rules
+	%%
+	auxiliary functions
 ```
 
  - The *declarations* section includes declarations of 
- - variables, 
- - *manifest constants* 
- - (identifiers declared to stand for a constant, e.g., the name of a token), 
- - and regular definitions 
+ 	- variables, 
+ 	- *manifest constants* 
+ 		- (identifiers declared to stand for a constant, e.g., the name of a token), 
+ 	- and regular definitions 
  - The *translation rules* each have the form
- - `Pattern { Action }`
- - Each pattern is a regular expression 
- - which may use the regular definitions of the declaration section. 
- - The actions are fragments of code, typically written in C, although many variants of Lex using other languages have been created.
+ 	- `Pattern { Action }`
+ 	- Each pattern is a regular expression 
+ 		- which may use the regular definitions of the declaration section. 
+ 	- The actions are fragments of code, typically written in C, although many variants of Lex using other languages have been created.
  - The *auxiliary functions* holds whatever additional functions are used in the actions. 
- - Alternatively, these functions can be compiled separately and loaded with the lexical analyzer.
+ 	- Alternatively, these functions can be compiled separately and loaded with the lexical analyzer.
 
 The lexical analyzer created by **Lex** behaves in concert with the parser as follows. 
 
  - When called by the parser, the lexical analyzer begins reading its remaining input, one character at a time, until it finds the longest prefix of the input that matches one of the patterns Pᵢ
  - It then executes the associated action Aᵢ. 
- - Typically, Aᵢ will return to the parser, 
- - but if it does not (e.g., because Pᵢ describes whitespace or comments), then the lexical analyzer proceeds to find additional lexemes, until one of the corresponding actions causes a return to the parser. 
+ 	- Typically, Aᵢ will return to the parser, 
+ 	- but if it does not (e.g., because Pᵢ describes whitespace or comments), then the lexical analyzer proceeds to find additional lexemes, until one of the corresponding actions causes a return to the parser. 
  - The lexical analyzer returns a single value, the token name, to the parser, but uses the shared, integer variable **yylval** to pass additional information about the lexeme found, if needed.
 
 
@@ -789,45 +789,45 @@ Example 3.11 : Figure 3.23 is a Lex program that recognizes the tokens of Fig. 3
 
 ```
 %{
-/* definitions of manifest constants 
-LT, LE, EQ, NE, GT, GE,
-IF, THEN, ELSE, ID, NUMBER, RELOP */
+	/* definitions of manifest constants 
+	LT, LE, EQ, NE, GT, GE,
+	IF, THEN, ELSE, ID, NUMBER, RELOP */
 %}
 /* regular definitions */
-delim [ \t\n]
-ws {delim}+
-letter [A-Za-z]
-digit [0-9]
-id {letter} ({letter}|{digit})*
-number {digit}+ (\. {digit}+)? (E [+-]?{digit}+)?
+delim 	[ \t\n]
+ws 		{delim}+
+letter 	[A-Za-z]
+digit 	[0-9]
+id 		{letter} ({letter}|{digit})*
+number 	{digit}+ (\. {digit}+)? (E [+-]?{digit}+)?
 
 %%
 
-{ws} {/* no action and no return */} 
-if {return(IF);}
-then {return(THEN);}
-else {return(ELSE);}
-{id} {yylval =(int) installID() ; return(ID);}
+{ws} 	{/* no action and no return */} 
+if 		{return(IF);}
+then 	{return(THEN);}
+else 	{return(ELSE);}
+{id} 	{yylval =(int) installID() ; return(ID);}
 {number} {yylval =(int) installNum() ;return(NUMBER) ; }
-"<"{yylval = LT; return(RELOP);} 
-"<="{yylval = LE; return(RELOP);} 
-"="{yylval = EQ; return(RELOP) j} 
-"<>"{yylval = NE; return(RELOP);} 
-">"{yylval = GT; return(RELOP);} 
-">="{yylval = GE; return(RELOP);}
+"<"		{yylval = LT; return(RELOP);} 
+"<="	{yylval = LE; return(RELOP);} 
+"="		{yylval = EQ; return(RELOP) j} 
+"<>"	{yylval = NE; return(RELOP);} 
+">"		{yylval = GT; return(RELOP);} 
+">="	{yylval = GE; return(RELOP);}
 
 %%
 
 int installID() {
-/* function to install the lexeme, 
-whose first character is pointed to by yytext,
-a d whose length is yyleng, 
-into the symbol table and 
-return a pointer thereto */
+	/* function to install the lexeme, 
+	whose first character is pointed to by yytext,
+	a d whose length is yyleng, 
+	into the symbol table and 
+	return a pointer thereto */
 }
 int installNum() {
-/* similar to installID, but puts numer­ical 
-constants into a separate table */
+	/* similar to installID, but puts numer­ical 
+	constants into a separate table */
 }
 ```
 
@@ -836,30 +836,30 @@ Figure 3.23: Lex program for the tokens of Fig. 3.12
 A few observations about this code will introduce us to many of the important features of **Lex**.
 
  - a pair of special brackets, %{ and %}. 
- - Anything within these brackets is copied directly to the file lex.yy.c , and is not treated as a regular definition. 
- - It is common to place there the definitions of the manifest constants, using **C #define** statements to associate unique integer codes with each of the manifest constants. 
- - In our example, we have listed in a comment the names of the manifest constants, LT, IF, and so on, but have not shown them defined to be particular integers
- - If Lex is used along with Yacc, then it would be normal to define the manifest constants in the Yacc program and use them without definition in the Lex program. 
+ 	- Anything within these brackets is copied directly to the file lex.yy.c , and is not treated as a regular definition. 
+ 	- It is common to place there the definitions of the manifest constants, using **C #define** statements to associate unique integer codes with each of the manifest constants. 
+ 	- In our example, we have listed in a comment the names of the manifest constants, LT, IF, and so on, but have not shown them defined to be particular integers
+ 		- If Lex is used along with Yacc, then it would be normal to define the manifest constants in the Yacc program and use them without definition in the Lex program. 
  - Also in the declarations section is a sequence of regular definitions. 
- - These use the extended notation for regular expressions. 
- - Regular definitions that are used in later definitions or in the patterns of the translation rules are surrounded by curly braces '{ }'. 
- - In the definition of ***id*** and ***number***, parentheses are used as grouping meta symbols.
+ 	- These use the extended notation for regular expressions. 
+ 	- Regular definitions that are used in later definitions or in the patterns of the translation rules are surrounded by curly braces '{ }'. 
+ 	- In the definition of ***id*** and ***number***, parentheses are used as grouping meta symbols.
  - In the auxiliary-function section, we see two such functions, installID() and installNum(). 
- - Like the portion of the declaration section that appears between %{ ... %} , everything in the auxiliary section is copied directly to file lex.yy.c, but may be used in the actions.
+ 	- Like the portion of the declaration section that appears between %{ ... %} , everything in the auxiliary section is copied directly to file lex.yy.c, but may be used in the actions.
  - patterns and rules
- - *ws*, , has an associated empty action. If we find whitespace, we do not return to the parser, but look for another lexeme. 
- - **if**. Should we see the two letters *if* on the input, and they are not followed by another letter or digit (which would cause the lexical analyzer to find a longer prefix of the input matching the pattern for **id**) , then the lexical analyzer consumes these two letters from the input and returns the token name IF, that is, the integer for which the manifest constant IF stands. 
- - Keywords **then** and **else** are treated similarly.
+ 	- *ws*, , has an associated empty action. If we find whitespace, we do not return to the parser, but look for another lexeme. 
+ 	- **if**. Should we see the two letters *if* on the input, and they are not followed by another letter or digit (which would cause the lexical analyzer to find a longer prefix of the input matching the pattern for **id**) , then the lexical analyzer consumes these two letters from the input and returns the token name IF, that is, the integer for which the manifest constant IF stands. 
+ 	- Keywords **then** and **else** are treated similarly.
  - The 5th token has the pattern defined by **id**. 
- - although keywords like **if** match this pattern as well as an earlier pattern, Lex chooses whichever pattern is listed first in situations where the longest matching prefix matches two or more patterns. 
+ 	- although keywords like **if** match this pattern as well as an earlier pattern, Lex chooses whichever pattern is listed first in situations where the longest matching prefix matches two or more patterns. 
 
 The action taken when **id** is matched is threefold:
 
  1. Function installID() is called to place the lexeme found in the symbol table.
  2. This function returns a pointer to the symbol table, which is placed in global variable yylval, where it can be used by the parser or a later component of the compiler. 
- - Note that installID() has available to it two variables that are set automatically by the lexical analyzer that Lex generates :
- - (a) yytext is a pointer to the beginning of the lexeme
- - (b) yyleng is the length of the lexeme found.
+ 	- Note that installID() has available to it two variables that are set automatically by the lexical analyzer that Lex generates :
+ 	- (a) yytext is a pointer to the beginning of the lexeme
+ 	- (b) yyleng is the length of the lexeme found.
  3. The token name ID is returned to the parser.
 
 
@@ -873,7 +873,7 @@ We have alluded to the two rules that Lex uses to decide on the proper lexeme to
 
  1. Always prefer a longer prefix to a shorter prefix.
  2. If the longest possible prefix matches two or more patterns, prefer the pattern listed first in the Lex program.
- - this rule makes keywords reserved
+ 	- this rule makes keywords reserved
 
 ---
 
@@ -890,12 +890,12 @@ If so, we may use the slash in a pattern to indicate the end of the part of the 
 Example 3.13 : In Fortran and some other languages, keywords are not re­served. That situation creates problems, such as a statement
 
 ```Fortran
-IF(I,J) = 3
+	IF(I,J) = 3
 ```
 where IF is the name of an array, not a keyword. This statement contrasts with statements of the form
 
 ```Fortran
-IF( condition ) THEN ...
+	IF( condition ) THEN ...
 ```
 
 where IF is a keyword. 
@@ -903,14 +903,14 @@ where IF is a keyword.
 Fortunately, we can be sure that the keyword IF is always followed by a left parenthesis, some text - the condition - that may contain parentheses, a right parenthesis and a letter. Thus, we could write a Lex rule for the keyword IF like:
 
 ```
-IF / \( .* \) {letter}
+	IF / \( .* \) {letter}
 ```
 
 Note that in order for this pattern to be foolproof, we must preprocess the input to delete whitespace. We have in the pattern neither provision for whitespace, nor can we deal with the possibility that the condition extends over lines, since the dot will not match a newline character.
 For instance, suppose this pattern is asked to match a prefix of input:
 
 ```Fortran
-IF(A<(B+C)*D)THEN...
+	IF(A<(B+C)*D)THEN...
 ```
 
 We conclude that the letters IF constitute the lexeme, and they are an instance of token **if**.
@@ -928,9 +928,9 @@ At the heart of the transition is the formalism known as **finite automata**. Th
  1. Finite automata are **recognizers**; they simply say "yes" or "no" about each possible input string.
  2. Finite automata come in two flavors:
 
-- (a) *Nondeterministic finite automata* (NFA) have no restrictions on the labels of their edges. 
-- A symbol can label several edges out of the same state, and ε, the empty string, is a possible label.
-- (b) *Deterministic finite automata* (DFA) have, for each state, and for each symbol of its input alphabet, exactly one edge with that symbol leaving that state.
+	- (a) *Nondeterministic finite automata* (NFA) have no restrictions on the labels of their edges. 
+		- A symbol can label several edges out of the same state, and ε, the empty string, is a possible label.
+	- (b) *Deterministic finite automata* (DFA) have, for each state, and for each symbol of its input alphabet, exactly one edge with that symbol leaving that state.
 
 Both deterministic and nondeterministic finite automata are capable of rec­ognizing the same languages -- the regular languages.
 
@@ -939,14 +939,14 @@ Both deterministic and nondeterministic finite automata are capable of rec­ogni
 
  - 首先对于美一个正则表达式都有一个对应的DFA可以来表示 ，还有NFA 。
  - NFA对于一个字符的输入有可能存在多个以上的状态转移，而DFA对于每一个输入只存在一个选择。
- - 所以每一个NFA都可以转化为一个DFA，但是一个DFA可以转化为多个NFA。 
+ 	- 所以每一个NFA都可以转化为一个DFA，但是一个DFA可以转化为多个NFA。 
  - 一般实践过程中DFA的状态转移要多，所以DFA相对来说要难构造一些，同时DFA比NFA需要的内存空间更大。
  - 因为在NFA中一个状态可能向多个状态转移，在极端的情况下其效率比不过DFA。 
  - 对于NFA不同的实现, 效率会不一样
- - 一些老的Unix工具是用的 Thompson NFA算法实现 算法，比如Awk，Tcl，GNU grep等，
- - 而一些更通用的编程语言用的是基于回溯的一种NFA实现，比如Perl/Python。
- - 通过数据比较，在最坏的情况下用Thompson NFA实现的awk表现比匹配回溯的NFA要好很多倍。
- - 最坏情况下的复杂度 ，回溯NFA是O(2^N)，而Thompson的复杂度是O(N^2)。
+ 	- 一些老的Unix工具是用的 Thompson NFA算法实现 算法，比如Awk，Tcl，GNU grep等，
+ 	- 而一些更通用的编程语言用的是基于回溯的一种NFA实现，比如Perl/Python。
+ 	- 通过数据比较，在最坏的情况下用Thompson NFA实现的awk表现比匹配回溯的NFA要好很多倍。
+ 		- 最坏情况下的复杂度 ，回溯NFA是O(2^N)，而Thompson的复杂度是O(N^2)。
 
 
 ---
@@ -959,7 +959,7 @@ A ***nondeterministic finite automaton*** (NFA) consists of:
 
  1. A finite set of states S
  2. A set of input symbols Σ, the *input alphabet*. 
- - We assume that ε is never a member of Σ .
+ 	- We assume that ε is never a member of Σ .
  3. A *transition function* that gives, for each state, and for each symbol in Σ U {ε}, a set of *next states*.
  4. A state s₀ from S that is distinguished as the *start state* (or *initial state*) .
  5. A set of states F, a subset of S, that is distinguished as the *accepting states* (or *final states*).
@@ -1047,9 +1047,9 @@ Often it is important to convert an NFA to a DFA that accepts the same language.
 
  - We first show how to convert NFA's to DFA's. 
  - Then, we use this technique, known as "the subset construction," to give a useful algorithm for simulating NFA's directly, 
-- in situations (other than lexical analysis) where the NFA-to-DFA conversion takes more time than the direct simulation. 
+	- in situations (other than lexical analysis) where the NFA-to-DFA conversion takes more time than the direct simulation. 
  - Next, we show how to convert regular expressions to NFA's, 
-- from which a DFA can be constructed if desired. 
+	- from which a DFA can be constructed if desired. 
 
 We conclude with a discussion of the time-space tradeoffs inherent in the various methods for implementing regular expressions, and see how to choose the appropriate method for your application.
 
@@ -1068,10 +1068,10 @@ Algorithm 3.20 : The *subset construction* of a DFA from an NFA.
  - INPUT: An NFA *N*.
  - OUTPUT: A DFA *D* accepting the same language as N
  - METHOD: Our algorithm constructs a transition table *Dtran* for D. 
- - Each state of D is a set of NFA states, 
- - and we construct Dtran so D will simulate "in parallel" all possible moves N can make on a given input string. 
- - Our first problem is to deal with ε-transitions of N properly. 
- - In Fig. 3.31 we see the definitions of several functions that describe basic computations on the states of N that are needed in the algorithm. 
+ 	- Each state of D is a set of NFA states, 
+ 		- and we construct Dtran so D will simulate "in parallel" all possible moves N can make on a given input string. 
+ 	- Our first problem is to deal with ε-transitions of N properly. 
+ 		- In Fig. 3.31 we see the definitions of several functions that describe basic computations on the states of N that are needed in the algorithm. 
 
 Note that s is a single state of N, while T is a set of states of N.
 
@@ -1089,13 +1089,13 @@ For the induction, suppose that N can be in set of states T after reading input 
 
 ```java
 while ( there is an unmarked state T in Dstates ) {
-mark T;
-for ( each input symbol a ) {
-U = ε-closure(move(T,a)); 
-if ( U is not in Dstates )
-add U as an unmarked state to Dstates; 
-Dtran[T, a] = U;
-}
+	mark T;
+	for ( each input symbol a ) {
+		U = ε-closure(move(T,a)); 
+		if ( U is not in Dstates )
+			add U as an unmarked state to Dstates; 
+		Dtran[T, a] = U;
+	}
 }
 ```  
 
@@ -1110,12 +1110,12 @@ This process, shown in Fig. 3.33, is a straightforward search in a graph from a 
 push all states of T onto stack;
 initialize ε-closure(T) to T; 
 while ( stack is not empty ) {
-pop t, the top element, off stack;
-for(each state u with an edge from t to u labeled ε)
-if ( u is not in ε-closure(T) ) { 
-add u to ε-closure(T);
-push u onto stack; 
-}
+	pop t, the top element, off stack;
+	for(each state u with an edge from t to u labeled ε)
+		if ( u is not in ε-closure(T) ) { 
+			add u to ε-closure(T);
+			push u onto stack; 
+		}
 }
 ```
 
@@ -1185,8 +1185,8 @@ A strategy that has been used in a number of text-editing programs is to con­st
 Algorithm 3.22 : Simulating an NFA.
 
  - INPUT: 
- - An input string *x* terminated by an end-of-flle character **eof**. 
- - An NFA *N* with start state s₀, accepting states *F*, and transition function *move*.
+ 	- An input string *x* terminated by an end-of-flle character **eof**. 
+ 	- An NFA *N* with start state s₀, accepting states *F*, and transition function *move*.
  - OUTPUT: Answer "yes" if *M* accepts *x* ; "no" otherwise.
  - METHOD: The algorithm keeps a set of current states S, those that are reached from s₀ following a path labeled by the inputs read so far. If c is the next input character, read by the function *nextChar*(), then we first compute *move*(S, c) and then close that set using ε-closure(). The algorithm is sketched in Fig.3.37.
 
@@ -1194,8 +1194,8 @@ Algorithm 3.22 : Simulating an NFA.
 S = ε-closure(s₀);  // 1)
 c = nextChar();
 while( c!=eof ) {
-S = ε-closure(move(S, c)) ;  // 4)
-c = nextChar();
+	S = ε-closure(move(S, c)) ;  // 4)
+	c = nextChar();
 }
 if( S ∩ F != ∅ )return "yes";
 else return "no" ;
@@ -1214,26 +1214,26 @@ If carefully implemented, Algorithm 3.22 can be quite effcient.
 As the ideas involved are useful in a number of similar algorithms involving search of graphs, we shall look at this implementation in additional detail. The data structures we need are:
 
  1. Two stacks, each of which holds a set of NFA states. 
- - One of these stacks, *oldStates*, holds the "current" set of states, 
- - i.e., S in *move*(S, c) of line (4)  
- - The second, *newStates*, holds the "next" set of states 
- - S on the left side of line (4) . Unseen is a step where, as we go around the loop of lines (3) through (6), newStates is transferred to oldStates.
+ 	- One of these stacks, *oldStates*, holds the "current" set of states, 
+ 		- i.e., S in *move*(S, c) of line (4)  
+ 	- The second, *newStates*, holds the "next" set of states 
+ 		- S on the left side of line (4) . Unseen is a step where, as we go around the loop of lines (3) through (6), newStates is transferred to oldStates.
  2. A boolean array *alreadyOn* 
- - indexed by the NFA states, to indicate which states are in *newStates*. 
- - While the array and stack hold the same infor­mation, it is much faster to interrogate *alreadyOn*[s] than to search for state s on the stack *newStates*. 
+ 	- indexed by the NFA states, to indicate which states are in *newStates*. 
+ 	- While the array and stack hold the same infor­mation, it is much faster to interrogate *alreadyOn*[s] than to search for state s on the stack *newStates*. 
  3. A two-dimensional array *mover*[s,a]
- - holding the transition table of the NFA. 
- - The entries in this table, which are sets of states, are represented by linked lists.
+ 	- holding the transition table of the NFA. 
+ 	- The entries in this table, which are sets of states, are represented by linked lists.
 
 To implement line (1) of Fig. 3.37, we need to set each entry in array *al­readyOn* to FALSE, then for each state s in ε-closure(s₀), push s onto *oldStates* and set alreadyOn[s] to TRUE.  This operation on state s, (line (4) as well) , are facilitated by a function we shall call *addState*(s).
 
 ```java
 addState(s) {
-push s onto newStates;
-alreadyOn[sJ = TRUE; 
-for ( t on move[s,ε] )
-if ( ! alreadyOn(t) ) 
-addState(t) ;
+	push s onto newStates;
+	alreadyOn[sJ = TRUE; 
+	for ( t on move[s,ε] )
+		if ( ! alreadyOn(t) ) 
+			addState(t) ;
 }
 ```
 
@@ -1247,15 +1247,15 @@ We first find the set of states move[s, c],  and for each of those states that i
 
 ```java
 for ( s on oldStates ) {   // 16
-for ( t on move[s, c] )
-if ( ! alreadyOn[t] ) 
-addState(t) ;
-pop s from oldStates;  // 20
+	for ( t on move[s, c] )
+		if ( ! alreadyOn[t] ) 
+			addState(t) ;
+		pop s from oldStates;  // 20
 }
 for ( s on newStates ) {  // 22
-pop s from newStates; 
-push s onto oldStates; 
-alreadyOn[s] = FALSE;
+	pop s from newStates; 
+	push s onto oldStates; 
+	alreadyOn[s] = FALSE;
 }
 ```
 
@@ -1276,8 +1276,8 @@ Algorithm 3.23 : The McNaughton-Yamada-Thompson algorithm to convert a regular e
  - INPUT: A regular expressioll *r* over alphabet Σ.  
  - OUTPUT: An NFA *N* accepting *L(r)*.
  - METHOD: Begin by parsing *r* into its constituent subexpressions. 
- - The rules for constructing an NFA &nbsp; consist of basis rules for handling subexpressios with no operators, 
- - and inductive rules for constructing larger NFA's from the NFA's for the immediate subexpressions of a given expression.
+ 	- The rules for constructing an NFA &nbsp; consist of basis rules for handling subexpressios with no operators, 
+ 	- and inductive rules for constructing larger NFA's from the NFA's for the immediate subexpressions of a given expression.
 
 **BASIS**: For expression ε construct the NFA ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_NFA_for_eps.png)
 
@@ -1290,23 +1290,23 @@ where again *i* and *f* are new states, the start and accepting states, respecti
 **INDUCTION**: Suppose *N(s)* and *N(t)* are NFA's for regular expressions *s* and *t*, respectively.
 
  - a) Suppose r = s|t. Then N(r) is constructed as in Fig. 3.40.
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.40.png)
- - Here, *i* and *j* are new states, the start and accepting states of *N(r)* , respectively.
- - There are ε-transitions from *i* to the start states of *N(s)* and *N(t)*, and each of their accepting states have ε-transitions to the accepting state *j*.
- - Note that the accepting states of *N(s)* and *N(t)* are not accepting in *N(r)*.
- - Since any path from i to j must pass through either N(s) or N(t) exclusively, 
- - and since the label of that path is not changed by the ε's leaving i or entering j.
- - we conclude that *N(r)* accepts *L(s) ∪ L(t)*, which is the same as *L(r)*. That is, Fig. 3.40 is a correct construction for the union operator.
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.40.png)
+ 	- Here, *i* and *j* are new states, the start and accepting states of *N(r)* , respectively.
+ 	- There are ε-transitions from *i* to the start states of *N(s)* and *N(t)*, and each of their accepting states have ε-transitions to the accepting state *j*.
+ 	- Note that the accepting states of *N(s)* and *N(t)* are not accepting in *N(r)*.
+ 		- Since any path from i to j must pass through either N(s) or N(t) exclusively, 
+ 		- and since the label of that path is not changed by the ε's leaving i or entering j.
+ 	- we conclude that *N(r)* accepts *L(s) ∪ L(t)*, which is the same as *L(r)*. That is, Fig. 3.40 is a correct construction for the union operator.
  - b) Suppose *r* = *st*. Then construct *N(r)* as in Fig. 3.41.
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.41.png)
- - The start state of *N(s)* becomes the start state of *N(r)*, and the accepting state of *N(t)* is the only accepting state of *N(r)*.
- - The accepting state of *N(s)* and the start state of *N(t)* are merged into a single state.
- - A path from i to j in Fig. 3.41 must go first through N(s), and therefore its label will begin with some string in L(s). The path then continues through N(t), so the path's label  finishes with a string in L(t). 
- - As we shall soon argue, accepting states never have edges out and start states never have edges in, so it is not possible for a path to re-enter N(s) after leaving it. Thus, *N(r)* accepts exactly *L(s)L(t)*, and is a correct NFA for *r=st*.
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.41.png)
+ 	- The start state of *N(s)* becomes the start state of *N(r)*, and the accepting state of *N(t)* is the only accepting state of *N(r)*.
+ 	- The accepting state of *N(s)* and the start state of *N(t)* are merged into a single state.
+ 	- A path from i to j in Fig. 3.41 must go first through N(s), and therefore its label will begin with some string in L(s). The path then continues through N(t), so the path's label  finishes with a string in L(t). 
+ 	- As we shall soon argue, accepting states never have edges out and start states never have edges in, so it is not possible for a path to re-enter N(s) after leaving it. Thus, *N(r)* accepts exactly *L(s)L(t)*, and is a correct NFA for *r=st*.
  - c) Suppose *r* = *s\** . Then for *r* we construct the NFA *N(r)* shown in Fig. 3.42. 
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.42.png)
- - Here, *i* and *f* are new states, the start state and lone accepting state of *N(r)*.
- - So the entire set of strings accepted by *N(r)* is *L(s\*)*.
+ 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.42.png)
+ 	- Here, *i* and *f* are new states, the start state and lone accepting state of *N(r)*.
+ 	- So the entire set of strings accepted by *N(r)* is *L(s\*)*.
  - d) Finally, suppose *r* = *(s)*. Then *L(r)* = *L(s)*, and we can use the NFA *N(s)* as *N(r)*.
 
 The method description in Algorithm 3.23 contains hints as to why the inductive construction works as it should.
@@ -1314,9 +1314,9 @@ The method description in Algorithm 3.23 contains hints as to why the inductive 
 We shall list several properties of the constructed NFA's 
 
  1. *N(r)* has at most twice as many states as there are operators and operands in *r*. 
- - This bound follows from the fact that each step of the algorithm creates at most two new states.
+ 	- This bound follows from the fact that each step of the algorithm creates at most two new states.
  2. *N(r)* has one start state and one accepting state. 
- - The accepting state has no outgoing transitions, and the start state has no incoming transitions.
+ 	- The accepting state has no outgoing transitions, and the start state has no incoming transitions.
  3. Each state of *N(r)* other than the accepting state has either one outgoing transition on a symbol in Σ or two outgoing transitions, both on ε. ???
 
 Example 3.24 : Let us use Algorithm 3.23 to construct an NFA for r = **(a|b)\*abb**.
@@ -1404,7 +1404,7 @@ We need a single automaton that will recognize lexemes matching any of the patte
 Example 3.26 : We shall illustrate the ideas of this section with the following simple, abstract example:
 
 ```java
-a { action A₁ for pattern p₁ } 
+a 	{ action A₁ for pattern p₁ } 
 abb { action A₂ for pattern p₂ } 
 a*b+ { action A₃ for pattern p₃ }
 ```
@@ -1412,7 +1412,7 @@ a*b+ { action A₃ for pattern p₃ }
 Note that these three patterns present some conflict of the type discussed in Section 3.5.3. 
 
  - string **abb** matches both the second and third patterns, but we shall consider it a lexeme for pattern P₂ 
- - since that pattern is listed first in the above Lex program
+ 	- since that pattern is listed first in the above Lex program
  - Then, input strings such as *aabbb*... have many prefixes that match the third pattern. The Lex rule is to take the longest
 
 Fig. 3.52 shows these three NFA's combined into a single NFA by the addition of start state 0 and three ε-transitions. 
@@ -1520,9 +1520,9 @@ In fact, the problem is harder than it appears, since an NFA-to-DFA construction
 In this section we present three algorithms that have been used to implement and optimize pattern matchers constructed from regular expressions.
 
  1. The first algorithm is useful in a **Lex** compiler, because it constructs a DFA directly from a regular expression, without constructing an interme­diate NFA. 
- - The resulting DFA also may have fewer states than the DFA constructed via an NFA.
+ 	- The resulting DFA also may have fewer states than the DFA constructed via an NFA.
  2. The second algorithm minimizes the number of states of any DFA, by combining states that have the same future behavior. 
-- The algorithm itself is quite efficient, running in time O(nlogn), where n is the number of states of the DFA.
+	- The algorithm itself is quite efficient, running in time O(nlogn), where n is the number of states of the DFA.
  3. The third algorithm produces more compact representations of transition tables than the standard, two-dimensional table.
 
 ---
@@ -1575,13 +1575,13 @@ To construct a DFA directly from a regular expression, we construct its syntax t
 Each definition refers to the syntax tree for a particular augmented regular expression (r)#.
 
  1. *nullable(n)* is true for a syntax-tree node n if and only if the subexpression represented by n has ε in its language. 
- - That is, the subexpression can be "made null" or the empty string, even though there may be other strings it can represent as well.
+ 	- That is, the subexpression can be "made null" or the empty string, even though there may be other strings it can represent as well.
  2. *firstpos(n)* is the set of positions in the subtree rooted at n 
- - Those positions corre­spond to the first symbol of at least one string in the language of the subexpression rooted at n.
+ 	- Those positions corre­spond to the first symbol of at least one string in the language of the subexpression rooted at n.
  3. *lastpos(n)* is the set of positions in the subtree rooted at n 
- - Those positionst corre­spond to the last symbol of at least one string in the language of the subexpression rooted at n.
+ 	- Those positionst corre­spond to the last symbol of at least one string in the language of the subexpression rooted at n.
  4. *followpos(p)*, for a position *p*, is the set of positions *q* in the *entire syntax tree* 
- - such that there is some string x = a₁a₂...a<sub>n</sub> in L((r)#) such that for some *i*, there is a way to explain the membership of x in L((r)#) by matching aᵢ to position *p* of the syntax tree and aᵢ₊₁ to position *q*.
+ 	- such that there is some string x = a₁a₂...a<sub>n</sub> in L((r)#) such that for some *i*, there is a way to explain the membership of x in L((r)#) by matching aᵢ to position *p* of the syntax tree and aᵢ₊₁ to position *q*.
 
 Example 3.33 : Consider the cat-node n in Fig. 3.56 that corresponds to the expression **(a|b)\*a**. 
 
@@ -1634,8 +1634,8 @@ The computation of *firstpos* and *lastpos* for each of the nodes is shown in Fi
  - For the or-node, we take the union of firstpos at the children and do the same for lastpos. 
  - The rule for the star-node says that we take the value of firstpos or lastpos at the one child of that node.
  - Now, consider the lowest cat-node, which we shall call n. 
- - To compute firstpos(n), we first consider whether the left operand is nullable, which it is in this case. Therefore, firstpos for n is the union of firstpos for each of its children, that is {1, 2} ∪ {3} = {1, 2, 3}. 
- - The rule for lastpos does not ap­pear explicitly in Fig. 3.58, but as we mentioned, the rules are the same as for firstpos, with the children interchanged. That is, to compute lastpos(n) we must ask whether its right child (the leaf with position 3) is nullable, which it is not. Therefore, lastpos(n) is the same as lastpos of the right child, or {3}.
+ 	- To compute firstpos(n), we first consider whether the left operand is nullable, which it is in this case. Therefore, firstpos for n is the union of firstpos for each of its children, that is {1, 2} ∪ {3} = {1, 2, 3}. 
+ 	- The rule for lastpos does not ap­pear explicitly in Fig. 3.58, but as we mentioned, the rules are the same as for firstpos, with the children interchanged. That is, to compute lastpos(n) we must ask whether its right child (the leaf with position 3) is nullable, which it is not. Therefore, lastpos(n) is the same as lastpos of the right child, or {3}.
 
 ---
 
@@ -1656,12 +1656,12 @@ We must also apply rule 2 to the star-node. That rule tells us positions 1 and 2
 
 NODE n | followpos(n)
 --- | ---
-1 | {1,2,3}
-2 | {1,2,3}
-3 | {4}
-4| {5}
-5| {6}
-6 | ∅
+1 	| {1,2,3}
+2 	| {1,2,3}
+3 	| {4}
+4	| {5}
+5	| {6}
+6 	| ∅
 
 > Figure 3.60: The function followpos
 
@@ -1686,28 +1686,28 @@ It should come as no surprise that the graph for *followpos* is almost an NFA wi
  - INPUT: A regular expression r.
  - OUTPUT: A DFA D that recognizes L(r).
  - METHOD:
- 1. Construct a syntax tree T from the augmented regular expression (r)#.
- 2. Compute *nullable*, *firstpos*, *lastpos* , and *followpos* for T, using the methods of Sections 3.9.3 and 3.9.4.
- 3. Construct *Dstates*, the set of states of DFA D, and *Dtran*, the transition function for *D*, by the procedure of Fig. 3.62. 
- - The states of *D* are sets of positions in T. 
- - Initially, each state is "unmarked," and a state becomes "marked" just before we consider its out-transitions. 
- - The ***start state*** of *D* is *firstpos(n₀)*, where node n₀ is the ***root*** of T. 
- - 根节点的 firstpos -> start state
- - The accepting states are those containing the position for the endmarker symbol #.
+ 	1. Construct a syntax tree T from the augmented regular expression (r)#.
+ 	2. Compute *nullable*, *firstpos*, *lastpos* , and *followpos* for T, using the methods of Sections 3.9.3 and 3.9.4.
+ 	3. Construct *Dstates*, the set of states of DFA D, and *Dtran*, the transition function for *D*, by the procedure of Fig. 3.62. 
+ 		- The states of *D* are sets of positions in T. 
+ 		- Initially, each state is "unmarked," and a state becomes "marked" just before we consider its out-transitions. 
+ 		- The ***start state*** of *D* is *firstpos(n₀)*, where node n₀ is the ***root*** of T. 
+ 			- 根节点的 firstpos -> start state
+ 		- The accepting states are those containing the position for the endmarker symbol #.
 
 ```
 initialize Dstates to contain only the unmarked state fistpos(n₀), 
-where n₀ is the root of syntax tree T for (r)#;
+	where n₀ is the root of syntax tree T for (r)#;
 
 while ( there is an unmarked state S in Dstates ) { 
-mark S;
-for ( each input symbol a ) {
-let U be the union of followpos(p) for all p
-in S that correspond to a; 
-if( U is not in Dstates )
-add U as an unmarked state to Dstates; 
-Dtran[S, a] = U;
-} 
+	mark S;
+	for ( each input symbol a ) {
+		let U be the union of followpos(p) for all p
+			in S that correspond to a; 
+		if( U is not in Dstates )
+			add U as an unmarked state to Dstates; 
+		Dtran[S, a] = U;
+	} 
 }
 ```
 
@@ -1722,11 +1722,11 @@ Example 3.37: We can now put together the steps of our running example to constr
 We observed that for this tree, *nullable* is true only for the star-node, and we exhibited firstpos and lastpos in Fig. 3.59. The values of followpos appear in Fig. 3.60.
 
  - The value of firstpos for the root of the tree is {1, 2, 3}, so this set is the start state of D. 
- - Call this set of states A. 
+ 	- Call this set of states A. 
  - We must compute Dtran[A,a] and Dtran[A, b] . 
- - Among the positions of A, 1 and 3 correspond to a, while 2 corresponds to b. 
- - Thus, Dtran[A, a] = followpos(1) U followpos(3) = {1, 2, 3, 4},
- - and Dtran[A, b] = followpos(2) = {1, 2, 3}. 
+ 	- Among the positions of A, 1 and 3 correspond to a, while 2 corresponds to b. 
+ 	- Thus, Dtran[A, a] = followpos(1) U followpos(3) = {1, 2, 3, 4},
+ 	- and Dtran[A, b] = followpos(2) = {1, 2, 3}. 
  - The latter is state A, and so does not have to be added to *Dstates*, but the former, B= {1,2,3,4},is new,so we add it to *Dstates* and proceed to compute its transitions. 
  - The complete DFA is shown in Fig. 3.63. 
 
@@ -1772,25 +1772,25 @@ Algorithm 3.39 : Minimizing the number of states of a DFA.
  - INPUT: A DFA D with set of states S, input alphabet Σ , state state s₀ , and set of accepting states F.
  - OUTPUT: A DFA D' accepting the same language as D and having as few states as possible.
  - METHOD:
- 1. Start with an initial partition ∏ with two groups, F and S - F, the accepting and nonaccepting states of D.
- 2. Apply the procedure of Fig. 3.64 to construct a new partition a new partition ∏<sub>new</sub>·
- - Figure 3.64: Construction of  ∏<sub>new</sub> 
- ```
- initially, let ∏_new = ∏  ;
- for ( each group G of ∏ ) {
- partition G into subgroups such that two states s and t
- are in the same subgroup if and only if for all
- input symbols a, states s and t have transitions on a 
- to states in the same group of ∏ ;
- /* at worst, a state will be in a subgroup by itself */
- replace G in ∏_new by the set of all subgroups formed; }
- ```
- 3. If ∏<sub>new</sub> = ∏ , let ∏<sub>final</sub> = ∏  and continue with step (4). Otherwise, repeat step (2) with ∏<sub>new</sub> in place of ∏.
- 4. Choose one state in each group of ∏<sub>final</sub> as the representative for that group. The representatives will be the states of the minimum-state DFA D'. The other components of D' are constructed as follows:
- - a) The start state of D' is the representative of the group containing the start state of D.
- - b) The accepting states of D' are the representatives of those groups that contain an accepting state of D. 
- - Note that each group contains either only accepting states, or only nonaccepting states, because we started by separating those two classes of states, and the procedure of Fig. 3.64 always forms new groups that are subgroups ofpreviously constructed groups.
- - c) Let *s* be the representative of some group G of ∏<sub>final</sub> , and let the transition of D from *s* on input *a* be to state *t*. Let *r* be the rep­resentative of t's group H. Then in D', there is a transition from *s* to *r* on input *a*. Note that in D, every state in group G must go to some state of group H on input *a*, or else, group G would have been split according to Fig. 3.64.
+ 	1. Start with an initial partition ∏ with two groups, F and S - F, the accepting and nonaccepting states of D.
+ 	2. Apply the procedure of Fig. 3.64 to construct a new partition a new partition ∏<sub>new</sub>·
+ 		- Figure 3.64: Construction of  ∏<sub>new</sub> 
+ 		```
+ 		initially, let ∏_new = ∏  ;
+ 		for ( each group G of ∏ ) {
+ 			partition G into subgroups such that two states s and t
+ 				are in the same subgroup if and only if for all
+ 				input symbols a, states s and t have transitions on a 
+ 				to states in the same group of ∏ ;
+ 			/* at worst, a state will be in a subgroup by itself */
+ 			replace G in ∏_new by the set of all subgroups formed; }
+ 		```
+ 	3. If ∏<sub>new</sub> = ∏ , let ∏<sub>final</sub> = ∏  and continue with step (4). Otherwise, repeat step (2) with ∏<sub>new</sub> in place of ∏.
+ 	4. Choose one state in each group of ∏<sub>final</sub> as the representative for that group. The representatives will be the states of the minimum-state DFA D'. The other components of D' are constructed as follows:
+ 		- a) The start state of D' is the representative of the group containing the start state of D.
+ 		- b) The accepting states of D' are the representatives of those groups that contain an accepting state of D. 
+ 			- Note that each group contains either only accepting states, or only nonaccepting states, because we started by separating those two classes of states, and the procedure of Fig. 3.64 always forms new groups that are subgroups ofpreviously constructed groups.
+ 		- c) Let *s* be the representative of some group G of ∏<sub>final</sub> , and let the transition of D from *s* on input *a* be to state *t*. Let *r* be the rep­resentative of t's group H. Then in D', there is a transition from *s* to *r* on input *a*. Note that in D, every state in group G must go to some state of group H on input *a*, or else, group G would have been split according to Fig. 3.64.
 
 
 Example 340 : Let us reconsider the DFA of Fig. 3.36. The initial partition consists of the two groups {A, B, C, D} {E}, which are respectively the nonac­cepting states and the accepting states. 
@@ -1841,7 +1841,7 @@ Example 3.41 : For the DFA of Fig. 3.54, the initial partition is
  - That is, states 0137 and 7 belong together because neither announces any token. 
  - States 8 and 58 belong together because they both announce token a*b+. 
  - Note that we have added a dead state ∅, which we suppose has transitions to itself on inputs a and b. 
- - The dead state is also the target of missing transitions on *a* from states 8, 58, and 68.
+ 	- The dead state is also the target of missing transitions on *a* from states 8, 58, and 68.
 
 We must split 0137 from 7, because they go to different groups on input *a*. We also split 8 from 58, because they go to different groups on *b*. Thus, all states are in groups by themselves, and Fig. 3.54 is the minimum-state DFA recognizing its thress tokens.
 

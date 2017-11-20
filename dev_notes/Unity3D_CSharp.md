@@ -88,17 +88,17 @@ using System;
 
 namespace Tutorial2
 {
-public class Point
-{
-public float x;
-public float y;
+	public class Point
+	{
+		public float x;
+		public float y;
 
-public void Translate(float dx, float dy)
-{
-x += dx;
-y += dy;
-}       
-}
+		public void Translate(float dx, float dy)
+		{
+			x += dx;
+			y += dy;
+		}       
+	}
 
 }
 ```
@@ -113,17 +113,17 @@ namespace Tutorial1
 {
 
 
-class MainClass
-{
-public static void Main(string[] args)
-{
-Point home = new Point();
-home.x = 3;
-home.y = 1;
-home.Translate(5, -2);
-Console.WriteLine(home.ToString());
-}
-}
+	class MainClass
+	{
+		public static void Main(string[] args)
+		{
+			Point home = new Point();
+			home.x = 3;
+			home.y = 1;
+			home.Translate(5, -2);
+			Console.WriteLine(home.ToString());
+		}
+	}
 }
 ```
 
@@ -167,11 +167,11 @@ A structure is a lightweight object.
 
 ```
     public struct PlayerName
-{
-public string First; 
-public string Last;
-}
-public PlayerName playername
+	{
+		public string First; 
+		public string Last;
+	}
+	public PlayerName playername
 ```
 
 <h2 id="ba02bcf94a86de2bff29fbe88fcdbbcc"></h2>

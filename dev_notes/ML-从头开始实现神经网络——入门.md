@@ -27,17 +27,17 @@ scikit-learn提供了一些很有用的数据集产生器，所以我们不需�
 
     sklearn.datasets.make_moons(n_samples=100, shuffle=True, noise=None, random_state=None) 
 
-    Parameters:
-        n_samples : int, optional (default=100)
+    Parameters:	
+        n_samples : int, optional (default=100)		
                     The total number of points generated.
-        shuffle : bool, optional (default=True)
+        shuffle : bool, optional (default=True)		
                     Whether to shuffle the samples.
-        noise : double or None (default=None)
+        noise : double or None (default=None)		
                 Standard deviation of Gaussian noise added to the data.
-    Returns:
-        X : array of shape [n_samples, 2]
+    Returns:	
+        X : array of shape [n_samples, 2]		
             The generated samples.
-        y : array of shape [n_samples]
+        y : array of shape [n_samples]			
             The integer labels (0 or 1) for class membership of each sample.
 
 代码:

@@ -22,16 +22,16 @@
  2. 打开钥匙串 -选择登录--证书--找到 Apple Development iOS Push Server证书右键导出--生成apns_dev_cert.p12文件 不要设置密码
  3. 然后 选择 密钥 -- 找到 User下面的--Apple Development iOS Push Server密钥---右键---生成 apns_dev_key.p12文件 不要设置密码
  3. 打开终端，把上面的p12文件生成 .pem文件
-- openssl pkcs12 -clcerts -nokeys -out apns-dev-cert.pem -in apns_dev_cert.p12  
-- 生成apns-dev-cert.pem
-- openssl pkcs12 -nocerts -out apns-dev-key.pem -in apns_dev_key.p12   
-- 生成apns-dev-key.pem 
-- 这个要输入密码，记住输入的密码；
-- openssl rsa -in apns-dev-key.pem -out apns-dev-key-noenc.pem  
-- 生成 apns-dev-key-noenc.pem 
-- 因为上面的 apns-dev-key.pem有密码，这一步生成的就是把密码取消的文件；
-- cat apns-dev-cert.pem apns-dev-key-noenc.pem > apns-dev.pem 
-- 合并 apns-dev-cert.pem apns-dev-key-nonec.pem 为单个文件 apns-dev-cert.pem ;
+	- openssl pkcs12 -clcerts -nokeys -out apns-dev-cert.pem -in apns_dev_cert.p12  
+		- 生成apns-dev-cert.pem
+	- openssl pkcs12 -nocerts -out apns-dev-key.pem -in apns_dev_key.p12   
+		- 生成apns-dev-key.pem 
+		- 这个要输入密码，记住输入的密码；
+	- openssl rsa -in apns-dev-key.pem -out apns-dev-key-noenc.pem  
+		- 生成 apns-dev-key-noenc.pem 
+		- 因为上面的 apns-dev-key.pem有密码，这一步生成的就是把密码取消的文件；
+	- cat apns-dev-cert.pem apns-dev-key-noenc.pem > apns-dev.pem 
+		- 合并 apns-dev-cert.pem apns-dev-key-nonec.pem 为单个文件 apns-dev-cert.pem ;
 
 最后在服务器端使用apns-dev-cert.pem就可以了；
 
@@ -91,10 +91,10 @@ openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert apns-dev-cer
     // TODO 
     // send your device token to server 
 
-//    
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"register" message:str delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
-//    [alert show];
-//    [alert release];
+	//    
+	//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"register" message:str delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+	//    [alert show];
+	//    [alert release];
 
 }   
 
