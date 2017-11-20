@@ -446,7 +446,7 @@ Those matrices carry the information that originally came in A - and they carry 
   - 实际上，如果一个秩为k的矩阵的前k个顺序主子式不为零，那么它就可以进行LU分解(消元不break down)，但反之则不然
 
  - PS. 如果不要求 U 的主元都 非0, 则 PA = LU 对任何矩阵都存在
- 	- U 就是 echelon 形式
+     - U 就是 echelon 形式
 
 <h2 id="4d72fafca6d677bb749ef5048ba77fa6"></h2>
 

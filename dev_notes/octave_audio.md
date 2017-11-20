@@ -190,7 +190,7 @@ audiowrite(sig1, cos(w1), fs);      %writing the function cos(w) on the files cr
 audiowrite(sig2, cos(w2), fs);[y1,fs]=audioread(sig1);[y2,fs]=audioread(sig2);
 audiowrite(product, y1.*y2, fs);    %performing the product
 [yprod,fs]=audioread(product);
-plot(yprod);       					%plotting the product
+plot(yprod);                           %plotting the product
 ```
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/octave_audio_multiply.png)

@@ -114,29 +114,29 @@ transform.GetSiblingIndex
 ## AB: build AssetBundles
 
 ```
-	[MenuItem ("Assets/Build AssetBundles")]
-	public static void BuildAllAssetBundles ()
-	{
-		// clean all exist asset bundle name
-		ClearAssetBundlesName.clean ();
-		// re-set asset bundle
-		SetAssetBundleName.setNames();
+    [MenuItem ("Assets/Build AssetBundles")]
+    public static void BuildAllAssetBundles ()
+    {
+        // clean all exist asset bundle name
+        ClearAssetBundlesName.clean ();
+        // re-set asset bundle
+        SetAssetBundleName.setNames();
 
-		// create out folder
-		string outputPath = "./OutAssetBundles" ;
-		//Path.Combine (AssetBundlesOutputPath,Platform.GetPlatformFolder(EditorUserBuildSettings.activeBuildTarget));
-		if (!Directory.Exists (outputPath))
-		{
-			Directory.CreateDirectory(outputPath);
-		}
+        // create out folder
+        string outputPath = "./OutAssetBundles" ;
+        //Path.Combine (AssetBundlesOutputPath,Platform.GetPlatformFolder(EditorUserBuildSettings.activeBuildTarget));
+        if (!Directory.Exists (outputPath))
+        {
+            Directory.CreateDirectory(outputPath);
+        }
 
-		// build pipline
-		BuildPipeline.BuildAssetBundles ( outputPath  );
+        // build pipline
+        BuildPipeline.BuildAssetBundles ( outputPath  );
 
-		ClearAssetBundlesName.clean ();
+        ClearAssetBundlesName.clean ();
 
-		AssetDatabase.Refresh ();
-	}
+        AssetDatabase.Refresh ();
+    }
 ```
 
 BuildAssetBundleOptions:
@@ -155,12 +155,12 @@ ChunkBasedCompression 适合实时动态加载
 ```
 public class GetAssetBundleNames
 {
-	public static void GetNames ()
-	{
-		var names = AssetDatabase.GetAllAssetBundleNames();
-		foreach (var name in names)
-			Debug.Log ("AssetBundle: " + name);
-	}
+    public static void GetNames ()
+    {
+        var names = AssetDatabase.GetAllAssetBundleNames();
+        foreach (var name in names)
+            Debug.Log ("AssetBundle: " + name);
+    }
 }
 ```
 
@@ -172,10 +172,10 @@ public class GetAssetBundleNames
 // info when asset changed
 public class MyPostprocessor : AssetPostprocessor {
 
-	void OnPostprocessAssetbundleNameChanged ( string path,
-		string previous, string next) {
-		Debug.Log("AB: " + path + " old: " + previous + " new: " + next);
-	}
+    void OnPostprocessAssetbundleNameChanged ( string path,
+        string previous, string next) {
+        Debug.Log("AB: " + path + " old: " + previous + " new: " + next);
+    }
 }
 ```
 
@@ -186,23 +186,23 @@ public class MyPostprocessor : AssetPostprocessor {
 ```
 public class ClearAssetBundlesName {
 
-	public static void clean()
-	{
-		int length = AssetDatabase.GetAllAssetBundleNames ().Length;
-		Debug.Log ( "---- existing ab name num:" + length);
-		string[] oldAssetBundleNames = new string[length];
-		for (int i = 0; i < length; i++) 
-		{
-			oldAssetBundleNames[i] = AssetDatabase.GetAllAssetBundleNames()[i];
-		}
+    public static void clean()
+    {
+        int length = AssetDatabase.GetAllAssetBundleNames ().Length;
+        Debug.Log ( "---- existing ab name num:" + length);
+        string[] oldAssetBundleNames = new string[length];
+        for (int i = 0; i < length; i++) 
+        {
+            oldAssetBundleNames[i] = AssetDatabase.GetAllAssetBundleNames()[i];
+        }
 
-		for (int j = 0; j < oldAssetBundleNames.Length; j++) 
-		{
-			AssetDatabase.RemoveAssetBundleName(oldAssetBundleNames[j],true);
-		}
-		length = AssetDatabase.GetAllAssetBundleNames ().Length;
-		Debug.Log ( "----- new ab name num:" + length);
-	}
+        for (int j = 0; j < oldAssetBundleNames.Length; j++) 
+        {
+            AssetDatabase.RemoveAssetBundleName(oldAssetBundleNames[j],true);
+        }
+        length = AssetDatabase.GetAllAssetBundleNames ().Length;
+        Debug.Log ( "----- new ab name num:" + length);
+    }
 }
 ```
 
@@ -212,60 +212,60 @@ public class ClearAssetBundlesName {
 
 ```
 public class SetAssetBundleName {
-	//*
-	public static void setNames( ) {
-		
-		walk( "./Assets" );
-	}
-	//*/
-	static void walk(string source )
-	{
-		DirectoryInfo folder = new DirectoryInfo (source);
-		FileSystemInfo[] files = folder.GetFileSystemInfos ();
-		int length = files.Length;
-		for (int i = 0; i < length; i++) {
-			if(files[i] is DirectoryInfo)
-			{
-				walk(files[i].FullName);
-			}
-			else
-			{
-				if(!files[i].Name.EndsWith(".meta") && !files[i].Name.EndsWith(".cs") )
-				{
-					setAssetBundleName (files[i].FullName);
-					//Debug.Log( files[i].Name ) ;
-				}
-			}
-		}
-	}
-	static void setAssetBundleName(string source)
-	{
-		string _source = Replace (source);
-		string _assetPath = "Assets" + _source.Substring (Application.dataPath.Length);
-		string _assetPath2 = _source.Substring (Application.dataPath.Length + 1);
-		//Debug.Log (_assetPath);
+    //*
+    public static void setNames( ) {
+        
+        walk( "./Assets" );
+    }
+    //*/
+    static void walk(string source )
+    {
+        DirectoryInfo folder = new DirectoryInfo (source);
+        FileSystemInfo[] files = folder.GetFileSystemInfos ();
+        int length = files.Length;
+        for (int i = 0; i < length; i++) {
+            if(files[i] is DirectoryInfo)
+            {
+                walk(files[i].FullName);
+            }
+            else
+            {
+                if(!files[i].Name.EndsWith(".meta") && !files[i].Name.EndsWith(".cs") )
+                {
+                    setAssetBundleName (files[i].FullName);
+                    //Debug.Log( files[i].Name ) ;
+                }
+            }
+        }
+    }
+    static void setAssetBundleName(string source)
+    {
+        string _source = Replace (source);
+        string _assetPath = "Assets" + _source.Substring (Application.dataPath.Length);
+        string _assetPath2 = _source.Substring (Application.dataPath.Length + 1);
+        //Debug.Log (_assetPath);
 
-		//在代码中给资源设置AssetBundleName
-		AssetImporter assetImporter = AssetImporter.GetAtPath (_assetPath);
+        //在代码中给资源设置AssetBundleName
+        AssetImporter assetImporter = AssetImporter.GetAtPath (_assetPath);
 
-		string assetName = "nofolder"; 
-		int indexLastSlash = _assetPath2.LastIndexOf ("/");
-		if (indexLastSlash > 0)
-			assetName = _assetPath2.Substring (0, _assetPath2.LastIndexOf ("/"));
-		else
-			assetName = _assetPath2 ;
+        string assetName = "nofolder"; 
+        int indexLastSlash = _assetPath2.LastIndexOf ("/");
+        if (indexLastSlash > 0)
+            assetName = _assetPath2.Substring (0, _assetPath2.LastIndexOf ("/"));
+        else
+            assetName = _assetPath2 ;
 
-		// add suffix to avoid the case: bot res file and folder in a parent folder
-		assetName += ".unity"; 
-		
-		//Debug.Log (assetName);
-		assetImporter.assetBundleName = assetName;
-	}
+        // add suffix to avoid the case: bot res file and folder in a parent folder
+        assetName += ".unity"; 
+        
+        //Debug.Log (assetName);
+        assetImporter.assetBundleName = assetName;
+    }
 
-	static string Replace(string s)
-	{
-		return s.Replace("\\","/");
-	}
+    static string Replace(string s)
+    {
+        return s.Replace("\\","/");
+    }
 }
 ```
 
@@ -279,7 +279,7 @@ Dropdown scriptCameraList = cameraList.GetComponent<Dropdown> (  );
 
 scriptCameraList.onValueChanged.AddListener((int id ) =>
 {
-		cameraChoosed( id );
+        cameraChoosed( id );
 });
 ```
 
@@ -314,25 +314,25 @@ http://forum.unity3d.com/threads/second-preview-build-for-ios-9-on-demand-resour
 ```
 private static void GetDirs(string dirPath, ref List<string> dirs)  
 {   
-	if ( !Directory.Exists (dirPath))
-		return;
+    if ( !Directory.Exists (dirPath))
+        return;
 
-	foreach (string path in Directory.GetFiles(dirPath))  
-	{  
-		//获取所有文件夹中包含后缀为 .prefab 的路径  
-		//if (System.IO.Path.GetExtension(path) == ".prefab")  
-		dirs.Add( path );   // path.Substring(path.IndexOf("Assets"))
-		//Debug.Log(path.Substring(path.IndexOf("Assets")));  
-		
-	}  
+    foreach (string path in Directory.GetFiles(dirPath))  
+    {  
+        //获取所有文件夹中包含后缀为 .prefab 的路径  
+        //if (System.IO.Path.GetExtension(path) == ".prefab")  
+        dirs.Add( path );   // path.Substring(path.IndexOf("Assets"))
+        //Debug.Log(path.Substring(path.IndexOf("Assets")));  
+        
+    }  
 
-	if (Directory.GetDirectories(dirPath).Length > 0)  //遍历所有文件夹  
-	{  
-		foreach (string path in Directory.GetDirectories(dirPath))  
-		{  
-			GetDirs(path, ref dirs);  
-		}  
-	}  
+    if (Directory.GetDirectories(dirPath).Length > 0)  //遍历所有文件夹  
+    {  
+        foreach (string path in Directory.GetDirectories(dirPath))  
+        {  
+            GetDirs(path, ref dirs);  
+        }  
+    }  
 }
 ```
 
@@ -546,10 +546,10 @@ AlarmText.gameObject.SetAlpha((float)0.5);
 
 ```
 public static void ClearChildren(this GameObject mbe) {
-	int childrenCount = mbe.gameObject.transform.childCount;
-	for (int i = childrenCount - 1; i >= 0; i--) {
-		UnityEngine.Object.Destroy(mbe.gameObject.transform.GetChild(i).gameObject);
-	}
+    int childrenCount = mbe.gameObject.transform.childCount;
+    for (int i = childrenCount - 1; i >= 0; i--) {
+        UnityEngine.Object.Destroy(mbe.gameObject.transform.GetChild(i).gameObject);
+    }
 }
 ```
 
@@ -559,9 +559,9 @@ public static void ClearChildren(this GameObject mbe) {
 
 ```
 if (obj) {
-	Canvas canvas = obj.AddComponent<Canvas> ();
-	canvas.overrideSorting = true;
-	canvas.sortingOrder = SORTING_ORDER_BYOND_POPUP_PAGES;
+    Canvas canvas = obj.AddComponent<Canvas> ();
+    canvas.overrideSorting = true;
+    canvas.sortingOrder = SORTING_ORDER_BYOND_POPUP_PAGES;
 }
 ```
 
@@ -587,31 +587,31 @@ using System.Runtime.InteropServices;
 
 public class PluginTools : MonoBehaviour {
 
-	#if UNITY_IPHONE || UNITY_XBOX360
-	[DllImport ("__Internal")]
-	#else
-	[DllImport ("BR_Plugin")]
-	#endif
+    #if UNITY_IPHONE || UNITY_XBOX360
+    [DllImport ("__Internal")]
+    #else
+    [DllImport ("BR_Plugin")]
+    #endif
 
-	private static extern void SetDebugFunction( IntPtr fp );
+    private static extern void SetDebugFunction( IntPtr fp );
 
 
 
-	//[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public delegate void MyDelegate(string str);
+    //[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void MyDelegate(string str);
 
-	[MonoPInvokeCallback(typeof(MyDelegate))]
-	static void CallBackFunction(string str)
-	{
-		Debug.Log(":: " + str);
-	}
-		
-	public static void Init () {
-		MyDelegate callback_delegate = new MyDelegate( CallBackFunction );
-		IntPtr intptr_delegate =
-			Marshal.GetFunctionPointerForDelegate(callback_delegate);
-		SetDebugFunction( intptr_delegate );
-	}
+    [MonoPInvokeCallback(typeof(MyDelegate))]
+    static void CallBackFunction(string str)
+    {
+        Debug.Log(":: " + str);
+    }
+        
+    public static void Init () {
+        MyDelegate callback_delegate = new MyDelegate( CallBackFunction );
+        IntPtr intptr_delegate =
+            Marshal.GetFunctionPointerForDelegate(callback_delegate);
+        SetDebugFunction( intptr_delegate );
+    }
 
 }
 ```
@@ -686,9 +686,9 @@ scrollrect.content.anchoredPosition = Vector2.zero;
 ```c#
 foreach(KeyValuePair<EventSignal,EventManager.EventFunc> entry in myRegisterEvents )
 {
-	// to use entry.Key , entry.Value 
+    // to use entry.Key , entry.Value 
 }
-		
+        
 ```
 
 <h2 id="f02e785cdfc7d8abbaef854a66a36db5"></h2>

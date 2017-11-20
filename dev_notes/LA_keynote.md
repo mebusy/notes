@@ -29,13 +29,13 @@
 
  - n vectors in m - dimensional space
  - 2 fundamental problems  
- 	- Ax=b 
- 	- Ax=λx 
+     - Ax=b 
+     - Ax=λx 
  - **Elimination** is the  way to understand a matrix by producing a lot of zero entries
  - a key goal, to see whole spaces of vectors: the **row space** and the **column space** and the **nullspace**
  - When A multiplies x
- 	- it produces the new vector Ax
- 	- The whole space of vectors moves--it is "transformed" by A (eg. 2D vector -> 3D)
+     - it produces the new vector Ax
+     - The whole space of vectors moves--it is "transformed" by A (eg. 2D vector -> 3D)
 
 
 <h2 id="37ce2a99728857da54756961009fe633"></h2>
@@ -52,20 +52,20 @@
 ### Row Picture , Column Picture
 
  - 矩阵的行 => 线性方程 => 几何平面
- 	- 1个 n 元的方程, 产生一个 n-1 维的平面
- 		- 2个(独立的) n元方程, 产生一个 n-2 维的平面
- 		- n个(独立的) n元方程, 产生 0 维平面 - 点 
- 	- eg. 2个二元一次方程 组成方程组
- 		- 直线相交, 唯一解
- 		- 直线平行, 无解
- 		- 直线重合, 无数解
+     - 1个 n 元的方程, 产生一个 n-1 维的平面
+         - 2个(独立的) n元方程, 产生一个 n-2 维的平面
+         - n个(独立的) n元方程, 产生 0 维平面 - 点 
+     - eg. 2个二元一次方程 组成方程组
+         - 直线相交, 唯一解
+         - 直线平行, 无解
+         - 直线重合, 无数解
  - 矩阵的列 => 列空间
- 	- combination of the column vectors 
+     - combination of the column vectors 
  - The Breakdown of Elimination
- 	- 只有 non-singular 的情况, 才能得到a full set of pivots (全部非0主元)，
- 	- 但是即便non-singular，消元也可能breakdown, 
- 		- 这种情况可以通过 row exchanges 来解决。
- 		- 这也是为什么 matlab进行LU分解，返回值包含一个 转置矩阵。
+     - 只有 non-singular 的情况, 才能得到a full set of pivots (全部非0主元)，
+     - 但是即便non-singular，消元也可能breakdown, 
+         - 这种情况可以通过 row exchanges 来解决。
+         - 这也是为什么 matlab进行LU分解，返回值包含一个 转置矩阵。
  - rank = r means *r pivot rows* and *r pivot columns*
 
 
@@ -89,22 +89,22 @@ E₃₁ = | 0  1  0|   has E₃₁·b = |  b₂  |
 ### 矩阵乘法
 
  - 矩阵乘法
- 	- **Every column of AB is a combination of the columns of A**
- 	- associative
- 		- **(AB)C = A(BC)**
- 	- distributive
- 		- **A(B+C) =AB+AC and (B+C)D=BD+CD**
+     - **Every column of AB is a combination of the columns of A**
+     - associative
+         - **(AB)C = A(BC)**
+     - distributive
+         - **A(B+C) =AB+AC and (B+C)D=BD+CD**
 
 <h2 id="9ef9abc9eda686571cb1d8e4e47c3d10"></h2>
 
 ### LU 分解
 
  - **Triangular factorization A = LU with no exchanges of rows**
- 	- L is lower triangular, with 1 on the diagonal
- 	- U is the upper triangular matrix which appears after forward elimination.
- 	- The diagonal entries of U are the pivots.
- 	- The triangular factorization can be written A = LDU
- 		- where L and U have 1 on the diagonal and D is the diagonal matrix of pivots.
+     - L is lower triangular, with 1 on the diagonal
+     - U is the upper triangular matrix which appears after forward elimination.
+     - The diagonal entries of U are the pivots.
+     - The triangular factorization can be written A = LDU
+         - where L and U have 1 on the diagonal and D is the diagonal matrix of pivots.
  - For any m by n matrix A there is a permutation P, a lower triangular L with unit diagonal, and an m by n echelon matrix U, such that PA = LU     
 
  - LU分解不借助 行交换的关键是是 中间不能出现 0 pivot
@@ -145,13 +145,13 @@ A*P = // column exchange
 ### INVERSES AND TRANSPOSE
 
  - INVERSES 
- 	- **A⁻¹A = I , AA⁻¹ = I**
- 	- **(AB)⁻¹ = B⁻¹A⁻¹**
- 	- **(ABC)⁻¹ = C⁻¹B⁻¹A⁻¹**
+     - **A⁻¹A = I , AA⁻¹ = I**
+     - **(AB)⁻¹ = B⁻¹A⁻¹**
+     - **(ABC)⁻¹ = C⁻¹B⁻¹A⁻¹**
  - TRANSPOSE
- 	- **(A+B)ᵀ = Aᵀ+Bᵀ**
-	- **(AB)ᵀ = BᵀAᵀ**
-	- **(A⁻¹)ᵀ = (Aᵀ)⁻¹** #转置的逆,等于 逆的转置
+     - **(A+B)ᵀ = Aᵀ+Bᵀ**
+    - **(AB)ᵀ = BᵀAᵀ**
+    - **(A⁻¹)ᵀ = (Aᵀ)⁻¹** #转置的逆,等于 逆的转置
 
 <h2 id="b899f85c23e42aea33f7684a076389ca"></h2>
 
@@ -159,19 +159,19 @@ A*P = // column exchange
 
  - **Aᵀ = A**
  - **R x Rᵀ gives a symmetric matrix**
- 	- `(RᵀR)ᵀ = Rᵀ(Rᵀ)ᵀ = RᵀR`
- 	- Symmetric Products RᵀR, RRᵀ, and LDLᵀ
- 		- LU misses the symmetry, but LDLᵀ captures it perfectly.
- 		- 不是所有的对称矩阵都有LDLᵀ 分解
+     - `(RᵀR)ᵀ = Rᵀ(Rᵀ)ᵀ = RᵀR`
+     - Symmetric Products RᵀR, RRᵀ, and LDLᵀ
+         - LU misses the symmetry, but LDLᵀ captures it perfectly.
+         - 不是所有的对称矩阵都有LDLᵀ 分解
 
 <h2 id="4c6c909215a7371958d82af08be17233"></h2>
 
 ### partial pivoting
 
  - Roundoff Error
- 	- Even a well-conditioned matrix like B can be ruined by a poor algorithm.
+     - Even a well-conditioned matrix like B can be ruined by a poor algorithm.
  - Exchanging rows to obtain the largest possible pivot is called **partial pivoting**.
- 	- fundamental algorithm of numerical linear algebra: elimination with **partial pivoting**.
+     - fundamental algorithm of numerical linear algebra: elimination with **partial pivoting**.
 
 
 

@@ -64,35 +64,35 @@ CPS
 ## What is Search For?
 
  - Assumptions about the world:  
- 	- a single agent
- 	- deterministic actions
- 	- fully observed state
- 		- you KNOW the configuration that you start in
- 		- and then you plan about exactly how the world will evolve
- 	- discrete state space
+     - a single agent
+     - deterministic actions
+     - fully observed state
+         - you KNOW the configuration that you start in
+         - and then you plan about exactly how the world will evolve
+     - discrete state space
 
  - Planning: sequences of actions
- 	- The path to the goal is the important thing
- 	- Paths have various costs, depths
- 	- Heuristics give problem-specific guidance
+     - The path to the goal is the important thing
+     - Paths have various costs, depths
+     - Heuristics give problem-specific guidance
 
  - Identification: assignments to variables
- 	- The goal itself is important, not the path
- 	- All paths at the same depth (for some formulations)
- 	- CSPs are specialized for identification problems
+     - The goal itself is important, not the path
+     - All paths at the same depth (for some formulations)
+     - CSPs are specialized for identification problems
 
 <h2 id="ff7da4833835bc7f3506b068905f376c"></h2>
 
 ## Constraint Satisfaction Problems
 
  - Standard search problems:
- 	- State is a “black box”: arbitrary data structure
- 	- Goal test can be any function over states
- 	- Successor function can also be anything
+     - State is a “black box”: arbitrary data structure
+     - Goal test can be any function over states
+     - Successor function can also be anything
  - Constraint satisfaction problems (CSPs):
- 	- A special subset of search problems
- 	- State is defined by ***variables Xᵢ***  with values from a ***domain D*** (sometimes D depends on i)
- 	- Goal test is a ***set of constraints*** specifying allowable combinations of values for subsets of variables
+     - A special subset of search problems
+     - State is defined by ***variables Xᵢ***  with values from a ***domain D*** (sometimes D depends on i)
+     - Goal test is a ***set of constraints*** specifying allowable combinations of values for subsets of variables
  - Allows useful general-purpose algorithms with more power than standard search algorithms
 
 <h2 id="7c497b01fb991be051180f4dd6bc4dfd"></h2>
@@ -104,10 +104,10 @@ CPS
  - Variables: WA, NT, Q, NSW, V, SA, T
  - Domains: D = {red, green, blue}
  - Constraints: adjacent regions must have different colors
- 	- Implicit: WA ≠ NT 
- 	- Explicit: (WA, NT) ∈ { (red,green),(red,blue), ... }
+     - Implicit: WA ≠ NT 
+     - Explicit: (WA, NT) ∈ { (red,green),(red,blue), ... }
  - Solutions are assignments satisfying all constraints, e.g.
- 	- {WA=red, NT=green, Q=red, NSW=green, V=red, SA=blue, T=green}
+     - {WA=red, NT=green, Q=red, NSW=green, V=red, SA=blue, T=green}
 
 <h2 id="aee23a02cf0a428f8a3380804926c5ba"></h2>
 
@@ -120,21 +120,21 @@ Formulation 1:
  - Variables: Xᵢⱼ
  - Domains: {0,1}
  - Constraints
- 	- ∀i,j,k (Xᵢⱼ, X<sub>ik</sub>) ∈ { (0,0), (0,1), (1,0) }
- 	- ∀i,j,k (Xᵢⱼ, X<sub>kj</sub>) ∈ { (0,0), (0,1), (1,0) }
- 	- ∀i,j,k (Xᵢⱼ, X<sub>i+k, j+k</sub>) ∈ { (0,0), (0,1), (1,0) }
- 	- ∀i,j,k (Xᵢⱼ, X<sub>i+k, j-k</sub>) ∈ { (0,0), (0,1), (1,0) }
- 	- Σ Xᵢⱼ = N
+     - ∀i,j,k (Xᵢⱼ, X<sub>ik</sub>) ∈ { (0,0), (0,1), (1,0) }
+     - ∀i,j,k (Xᵢⱼ, X<sub>kj</sub>) ∈ { (0,0), (0,1), (1,0) }
+     - ∀i,j,k (Xᵢⱼ, X<sub>i+k, j+k</sub>) ∈ { (0,0), (0,1), (1,0) }
+     - ∀i,j,k (Xᵢⱼ, X<sub>i+k, j-k</sub>) ∈ { (0,0), (0,1), (1,0) }
+     - Σ Xᵢⱼ = N
 
 
 Formulation 2:
 
  - Variables: Q<sub>k</sub>
- 	- in each row , the value is going to be where the Queen for that row is.
+     - in each row , the value is going to be where the Queen for that row is.
  - Domains: {1,2,3, ... , N } 
  - Constraints:
- 	- Implicit: ∀i,j non-threatening(Qᵢ,Qⱼ) 
- 	- Explicit: (Q₁,Q₂) ∈ { (1,3),(1,4), ... } , ...
+     - Implicit: ∀i,j non-threatening(Qᵢ,Qⱼ) 
+     - Explicit: (Q₁,Q₂) ∈ { (1,3),(1,4), ... } , ...
 
 
 <h2 id="5e3fadab67cd58dfc836b52e0eec6403"></h2>
@@ -146,11 +146,11 @@ Formulation 2:
 
 
  - Binary CSP: 
- 	- each constraint relates (at most) two variables
+     - each constraint relates (at most) two variables
  - Binary constraint graph: 
- 	- nodes are variables, arcs show constraints
+     - nodes are variables, arcs show constraints
  - General-purpose CSP algorithms use the graph structure to speed up search. 
- 	- E.g., Tasmania is an independent subproblem!
+     - E.g., Tasmania is an independent subproblem!
 
 
 <h2 id="e4f09537d31b275d624175f497d7a7a0"></h2>
@@ -160,13 +160,13 @@ Formulation 2:
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Cryptarithmetic.png)
 
  - Variables:
- 	- F T U W R O X₁ X₂ X₃
+     - F T U W R O X₁ X₂ X₃
  - Domains:
- 	- { 0,1,2,3,4,5,6,7,8,9 }
+     - { 0,1,2,3,4,5,6,7,8,9 }
  - Constraints:
- 	- all diff ( F T U W R O  )
- 	- O + O = R + 10·X₁   进位
- 	- ...
+     - all diff ( F T U W R O  )
+     - O + O = R + 10·X₁   进位
+     - ...
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Cryptarithmetic_graph.png)
 
@@ -179,14 +179,14 @@ there are boxes which are constraints and the boxes are connected to all of the 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_example_sudoku.png)
 
  - Variablels:
- 	- Each (open) square
+     - Each (open) square
  - Domains:
- 	- { 1,2, ... , 9 }
+     - { 1,2, ... , 9 }
  - Constraints:
- 	- 9-way alldiff for each columen
- 	- 9-way alldiff for each row
- 	- 9-way alldiff for each region
- 	- (or can have a bunch of pairwise inequality constraints)
+     - 9-way alldiff for each columen
+     - 9-way alldiff for each row
+     - 9-way alldiff for each region
+     - (or can have a bunch of pairwise inequality constraints)
 
 
 <h2 id="de9c82c8eb4d71f6d701b657ce8528b9"></h2>
@@ -213,34 +213,34 @@ Approach:
 ### Varieties of CSPs
 
  - Discrete Variables
-	- Finite domains
-		- Size d means O(dn) complete assignments
-		- E.g., Boolean CSPs, including Boolean satisfiability (NP-complete)
-	- Infinite domains (integers, strings, etc.)
-		- E.g., job scheduling, variables are start/end times for each job
-		- Linear constraints solvable, nonlinear undecidable
+    - Finite domains
+        - Size d means O(dn) complete assignments
+        - E.g., Boolean CSPs, including Boolean satisfiability (NP-complete)
+    - Infinite domains (integers, strings, etc.)
+        - E.g., job scheduling, variables are start/end times for each job
+        - Linear constraints solvable, nonlinear undecidable
 
  - Continuous variables
-	- E.g., start/end times for Hubble Telescope observations
-	- Linear constraints solvable in polynomial time by LP methods (see cs170 for a bit of this theory)
+    - E.g., start/end times for Hubble Telescope observations
+    - Linear constraints solvable in polynomial time by LP methods (see cs170 for a bit of this theory)
 
 <h2 id="03a54c9ac014bf6015d74f7b0468f36c"></h2>
 
 ### Varieties of Constraints
 
  - Varieties of Constraints
-	- Unary constraints involve a single variable (equivalent to reducing domains), e.g.:
-		- SA ≠ green
-	- Binary constraints involve pairs of variables, e.g.:
-		- SA ≠ WA
-	- Higher-order constraints involve 3 or more variables: 
-		- e.g., cryptarithmetic column constraints
+    - Unary constraints involve a single variable (equivalent to reducing domains), e.g.:
+        - SA ≠ green
+    - Binary constraints involve pairs of variables, e.g.:
+        - SA ≠ WA
+    - Higher-order constraints involve 3 or more variables: 
+        - e.g., cryptarithmetic column constraints
 
 - Preferences (soft constraints):
-	- E.g., red is better than green
-	- Often representable by a cost for each variable assignment
-	- Gives constrained optimization problems
-	- (We’ll ignore these until we get to Bayes’ nets)
+    - E.g., red is better than green
+    - Often representable by a cost for each variable assignment
+    - Gives constrained optimization problems
+    - (We’ll ignore these until we get to Bayes’ nets)
 
 <h2 id="c7847ab059ee8aebf6d6b477f0c5c5a3"></h2>
 
@@ -252,12 +252,12 @@ Approach:
 
  - Standard search formulation of CSPs
  - States defined by the values assigned so far (partial assignments)
-	- Initial state: 
-		- the empty assignment, {}
-	- Successor function: 
-		- assign a value to an ***unassigned*** variable
-	- Goal test: 
-		- the current assignment is complete and satisfies all constraints
+    - Initial state: 
+        - the empty assignment, {}
+    - Successor function: 
+        - assign a value to an ***unassigned*** variable
+    - Goal test: 
+        - the current assignment is complete and satisfies all constraints
 
 We’ll start with the straightforward, naïve approach, then improve it
 
@@ -268,17 +268,17 @@ We’ll start with the straightforward, naïve approach, then improve it
 
  - Backtracking search is the basic ***uninformed*** algorithm for solving CSPs
  - Idea 1: One variable at a time
-	- Variable assignments are commutative, so fix ordering
-	- I.e., [WA = red then NT = green] same as [NT = green then WA = red]
-	- Only need to consider assignments to a single variable at each step
+    - Variable assignments are commutative, so fix ordering
+    - I.e., [WA = red then NT = green] same as [NT = green then WA = red]
+    - Only need to consider assignments to a single variable at each step
 
  - Idea 2: Check constraints as you go
-	- I.e. consider only values which do not conflict previous assignments
-	- Might have to do some computation to check the constraints
-	- “Incremental goal test”
+    - I.e. consider only values which do not conflict previous assignments
+    - Might have to do some computation to check the constraints
+    - “Incremental goal test”
 
  - Depth-first search with these two improvements
-	is called backtracking search (not the best name)
+    is called backtracking search (not the best name)
 
  - Can solve n-queens for n <= 25
 
@@ -286,23 +286,23 @@ We’ll start with the straightforward, naïve approach, then improve it
 
 ```
 function BACKTRACKING-SEARCH( csp ) return solution/failure
-	return RECURSIVE-BACKTRACKING( {} , csp )
+    return RECURSIVE-BACKTRACKING( {} , csp )
 
 function RECURSIVE-BACKTRACKING( assignment, csp ) return soln/failure
-	if assignment is complete then return assignment
-	var <- SELECT-UNASSIGNED-VARIABLE( VARIABLES[csp], assigment, csp )
+    if assignment is complete then return assignment
+    var <- SELECT-UNASSIGNED-VARIABLE( VARIABLES[csp], assigment, csp )
 
-	// for each value in that values , you loop through them in some order
-	for each value in ORDER-DOMAIN-VALUES( var, assignment , csp ) do
-		// for each of those values you check if
-		// this variable takes this new value did I break a constraint.
-		if value is consistent with assigment given CONSTRAINTS[csp] then
-			add {var = value} to assignment
-			result <- RECURSIVE-BACKTRACKING( assignment , csp )
-			if result ≠ failure then return result
-			// result is failure
-			remove {var = value} from assignment
-	return failure
+    // for each value in that values , you loop through them in some order
+    for each value in ORDER-DOMAIN-VALUES( var, assignment , csp ) do
+        // for each of those values you check if
+        // this variable takes this new value did I break a constraint.
+        if value is consistent with assigment given CONSTRAINTS[csp] then
+            add {var = value} to assignment
+            result <- RECURSIVE-BACKTRACKING( assignment , csp )
+            if result ≠ failure then return result
+            // result is failure
+            remove {var = value} from assignment
+    return failure
 ```
 
  - Backtracking = DFS + variable-ordering + fail-on-violation
@@ -315,13 +315,13 @@ function RECURSIVE-BACKTRACKING( assignment, csp ) return soln/failure
 
  - General-purpose ideas give huge gains in speed
  - Ordering:
-	- Which variable should be assigned next?  变量顺序
-	- In what order should its values be tried?  值选择顺序
+    - Which variable should be assigned next?  变量顺序
+    - In what order should its values be tried?  值选择顺序
  - Filtering: 
- 	- Can we detect inevitable failure early?
+     - Can we detect inevitable failure early?
  - Structure: 
- 	- Can we exploit the problem structure?
- 	- Do things like notice tasmanis separate and solve it separately
+     - Can we exploit the problem structure?
+     - Do things like notice tasmanis separate and solve it separately
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_CSP_order_filter.png)
 
@@ -399,8 +399,8 @@ A simple form of propagation makes sure all arcs are consistent:
  - Important: If X loses a value, neighbors of X need to be rechecked!
  - Arc consistency detects failure earlier than forward checking
  - Can be run as a preprocessor or after each assignment 
- 	- must return after each assignment !
- 	- you run it after every assignment at every step in the backtracking search
+     - must return after each assignment !
+     - you run it after every assignment at every step in the backtracking search
 
 <h2 id="a579dbdec94528eb11f12d92e857c911"></h2>
 
@@ -408,21 +408,21 @@ A simple form of propagation makes sure all arcs are consistent:
 
 ```
 function AC-3(csp) return the CSP, possibly with reduced domains
-	inputs: csp // a binary CSP with variables {X₁, X₂, ... ,Xn}
-	local variables: queue // a queue of arcs, initially all the arcs in csp
-	while queue is not empty do
-		(Xᵢ, Xⱼ) <- REMOVE-FIRST(queue)
-		if REMOVE-INCONSISTENT-VALUES(Xᵢ, Xⱼ) then
-			for each X_k in NEIGHBORS[Xᵢ] do
-				add (X_k, Xᵢ) to queue
+    inputs: csp // a binary CSP with variables {X₁, X₂, ... ,Xn}
+    local variables: queue // a queue of arcs, initially all the arcs in csp
+    while queue is not empty do
+        (Xᵢ, Xⱼ) <- REMOVE-FIRST(queue)
+        if REMOVE-INCONSISTENT-VALUES(Xᵢ, Xⱼ) then
+            for each X_k in NEIGHBORS[Xᵢ] do
+                add (X_k, Xᵢ) to queue
 end func
 
 function REMOVE-INCONSISTENT-VALUES(Xᵢ, Xⱼ) returns true iff succeeds
-	removed <- false
-	for each x in DOMAIN[Xᵢ] do
-		if no value y in DOMAIN[Xⱼ] allows (x,y) to satisfy the constraint Xᵢ <-> Xⱼ
-			then delete x from DOMAIN[Xᵢ]; removed <- true
-	return removed
+    removed <- false
+    for each x in DOMAIN[Xᵢ] do
+        if no value y in DOMAIN[Xⱼ] allows (x,y) to satisfy the constraint Xᵢ <-> Xⱼ
+            then delete x from DOMAIN[Xᵢ]; removed <- true
+    return removed
 end func
 ```
 
@@ -446,9 +446,9 @@ If arc consistency had resulted in all domains having a single value left, we wo
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_arc_consistency_wrong.png)
 
  - After enforcing arc consistency:
- 	- Can have one solution left
- 	- Can have multiple solutions left
- 	- Can have no solutions left 
+     - Can have one solution left
+     - Can have multiple solutions left
+     - Can have no solutions left 
 
  - Arc consistency still runs inside a backtracking search!
 
@@ -464,10 +464,10 @@ If arc consistency had resulted in all domains having a single value left, we wo
 #### Ordering: Minimum Remaining Values
 
  - Variable Ordering:  Minimum remaining values (MRV):
- 	- Choose the variable with the fewest legal left values in its domain
+     - Choose the variable with the fewest legal left values in its domain
  - Why min rather than max?
- 	- Also called “most constrained variable”
-	- “Fail-fast” ordering
+     - Also called “most constrained variable”
+    - “Fail-fast” ordering
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ordering_MRV.png)
 
@@ -478,14 +478,14 @@ If arc consistency had resulted in all domains having a single value left, we wo
 #### Ordering: Least Constraining Value
 
  - Value Ordering: Least Constraining Value
- 	- Given a choice of variable, choose the least constraining value
- 		- 选择这个值，产生的约束最少
- 	- I.e., the one that rules out the fewest values in the remaining variables
-	- Note that it may take some computation to determine this!  (E.g., rerunning filtering)
+     - Given a choice of variable, choose the least constraining value
+         - 选择这个值，产生的约束最少
+     - I.e., the one that rules out the fewest values in the remaining variables
+    - Note that it may take some computation to determine this!  (E.g., rerunning filtering)
  - To choose which value is the least-constraining value, enforce arc consistency for each value (on a scratch piece of paper). 
     - For each value, count the total number of values remaining over all variables.   
  - Why least rather than most?
-	- Combining these ordering ideas makes 1000 queens feasible
+    - Combining these ordering ideas makes 1000 queens feasible
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ordering_LCV1.png)
 
@@ -520,15 +520,15 @@ So here are steps for solving CPS with enforcing arc consistency:
 ## Reminder: CSPs
 
  - CSPS:
- 	- Variables
- 	- Domains
- 	- Constraints
- 		- Implicit ( provide code to compute )
- 		- Explicit ( provide a list of the legal tuples )
- 		- Unary / Binary / N-ary
+     - Variables
+     - Domains
+     - Constraints
+         - Implicit ( provide code to compute )
+         - Explicit ( provide a list of the legal tuples )
+         - Unary / Binary / N-ary
  - Goals:
- 	- Here : find any solution
- 	- Also:  find all , find best , etc.
+     - Here : find any solution
+     - Also:  find all , find best , etc.
 
 
 <h2 id="838c78b5c5b72f9770550d74bf0213df"></h2>
@@ -537,8 +537,8 @@ So here are steps for solving CPS with enforcing arc consistency:
 
  - A simple form of propagation makes sure ***all*** arcs are simultaneously consistent:
  - Limitations of Arc Consistency:
- 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_arc_consistency_wrong.png)
- 	- The reason why our consistency in this bottom case  wasn't sufficient to discorve the inevitable failures because it only looks at parents. So you might think maybe we need a stronger notion in our consistency , maybe we need to look beyond Paris 
+     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_arc_consistency_wrong.png)
+     - The reason why our consistency in this bottom case  wasn't sufficient to discorve the inevitable failures because it only looks at parents. So you might think maybe we need a stronger notion in our consistency , maybe we need to look beyond Paris 
 
 
 <h2 id="8bba60b06aea42c1d4246dd17c987e0b"></h2>
@@ -546,9 +546,9 @@ So here are steps for solving CPS with enforcing arc consistency:
 ## K-Consistency
 
  - Increasing degrees of consistency
- 	- 1-Consistency (Node Consistency): Each single node’s domain has a value which meets that node’s unary constraints
- 	- 2-Consistency (Arc Consistency): For each pair of nodes, any consistent assignment to one can be extended to the other
- 	- K-Consistency: For each k nodes, any consistent assignment to k-1 can be extended to the kth node.
+     - 1-Consistency (Node Consistency): Each single node’s domain has a value which meets that node’s unary constraints
+     - 2-Consistency (Arc Consistency): For each pair of nodes, any consistent assignment to one can be extended to the other
+     - K-Consistency: For each k nodes, any consistent assignment to k-1 can be extended to the kth node.
  - Higher k more expensive to compute
  - (You need to know the k=2 case: arc consistency)
 
@@ -561,12 +561,12 @@ So here are steps for solving CPS with enforcing arc consistency:
  - Strong k-consistency: also k-1, k-2, … 1 consistent
  - Claim: **strong n-consistency means we can solve without backtracking**!
  - Why?
- 	- Choose any assignment to any variable
- 	- Choose a new variable
- 	- By 2-consistency, there is a choice consistent with the first
- 	- Choose a new variable
- 	- By 3-consistency, there is a choice consistent with the first 2
-	…
+     - Choose any assignment to any variable
+     - Choose a new variable
+     - By 2-consistency, there is a choice consistent with the first
+     - Choose a new variable
+     - By 3-consistency, there is a choice consistent with the first 2
+    …
  - Lots of middle ground between arc consistency and n-consistency!  (e.g. k=3, called path consistency)
 
 
@@ -597,13 +597,13 @@ How do we tell we have independence to solve problems ? You can do a connected c
 This is RARE to actually see separate subproblems. So let's see if we can come up with some methods that are more broadly applicable.
 
  - Extreme case: independent subproblems
-	- Example: Tasmania and mainland do not interact
+    - Example: Tasmania and mainland do not interact
  - Independent subproblems are identifiable as connected components of constraint graph
  - Suppose a graph of n variables can be broken into subproblems of only c variables:
-	- Worst-case solution cost is O((n/c)(d<sup>c</sup>)), linear in n
-	- E.g., n = 80, d = 2, c =20
-	- 2⁸⁰ = 4 billion years at 10 million nodes/sec
-	- (4)(2²⁰) = 0.4 seconds at 10 million nodes/sec
+    - Worst-case solution cost is O((n/c)(d<sup>c</sup>)), linear in n
+    - E.g., n = 80, d = 2, c =20
+    - 2⁸⁰ = 4 billion years at 10 million nodes/sec
+    - (4)(2²⁰) = 0.4 seconds at 10 million nodes/sec
 
 
 <h2 id="28db87697415187402d34b1a3b3d0de3"></h2>
@@ -619,19 +619,19 @@ Here is a case of a constraint graph has tree structure which means no loops, no
 It is a theorem that if the constraint graph has no loops then the CSP can be solved in time that is linear in the size of graph and quadratic in the size of domains.  That's so much better thatn general CSPs worst exponential.
 
  - Theorem: if the constraint graph has no loops, the CSP can be solved in O(n·d²) time
-	- Compare to general CSPs, where worst-case time is O(dⁿ)
+    - Compare to general CSPs, where worst-case time is O(dⁿ)
  - This property also applies to probabilistic reasoning (later): 
- 	- an example of the relation between syntactic restrictions and the complexity of reasoning
+     - an example of the relation between syntactic restrictions and the complexity of reasoning
 
 ---
 
  - Algorithm for solving a tree-structured CSPs:
- 	- 1. Order: Choose a root variable, order variables so that parents precede children
- 		- the first step is to take this tree structure and order it.
- 		- It means you pick a root variable , any variable works , so you grab the CSP by some root variable you gotta pick up by its anchor and that everything else hanging down. (拎住A 提起来)
- 		- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_tree_structure_order.png)
- 	- 2. Remove backward: For i = n : 2, apply RemoveInconsistent(Parent(Xᵢ),Xᵢ)
- 	- 3. Assign forward: For i = 1 : n, assign Xᵢ consistently with Parent(Xᵢ)
+     - 1. Order: Choose a root variable, order variables so that parents precede children
+         - the first step is to take this tree structure and order it.
+         - It means you pick a root variable , any variable works , so you grab the CSP by some root variable you gotta pick up by its anchor and that everything else hanging down. (拎住A 提起来)
+         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_tree_structure_order.png)
+     - 2. Remove backward: For i = n : 2, apply RemoveInconsistent(Parent(Xᵢ),Xᵢ)
+     - 3. Assign forward: For i = 1 : n, assign Xᵢ consistently with Parent(Xᵢ)
  - Runtime: O(n·d²) 
 
 **因为 step3 赋值是有顺序的，所以 consistency check 简单了**.
@@ -658,7 +658,7 @@ Am I sure it is enough just kind of enforce consistency of the arcs once ?
 
  - Claim 1: After backward pass, all root-to-leaf arcs are consistent
  - Proof: Each X→Y was made consistent at one point and Y’s domain could not have been reduced thereafter (because Y’s children were processed before Y)
- 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_tree_structured_cps_consistency_proof.png)
+     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_tree_structured_cps_consistency_proof.png)
  - Claim 2: If root-to-leaf arcs are consistent, forward assignment will not backtrack
  - Proof: Induction on position
  - This algorithm will not work with cycles in the constraint graph
@@ -688,9 +688,9 @@ So we get a simple graph once we instantiate SA and then remove it.
 So the algorithm we have for making something that is nearly tree-structured into a tree structure is called  ***cut-set*** conditioning.
 
  - Conditioning: 
- 	- instantiate a variable, prune (修剪) its neighbors' domains
+     - instantiate a variable, prune (修剪) its neighbors' domains
  - Cutset conditioning: 
- 	- instantiate (in all ways) a set of variables such that the remaining constraint graph is a tree
+     - instantiate (in all ways) a set of variables such that the remaining constraint graph is a tree
  - Cutset size c gives runtime O( (d<sup>c</sup>) (n-c) d² ), very fast for small c
 
 
@@ -728,16 +728,16 @@ Tree Decomposition is another approach :
 
  - Local search methods typically work with “complete” states, i.e., all variables assigned
  - To apply to CSPs:
- 	- Algorithm starts by assigning some value to each of the variables
+     - Algorithm starts by assigning some value to each of the variables
         - ignoring the constraints when doing so
- 	- No fringe!  Live on the edge.
- 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_algorithm.png)
+     - No fringe!  Live on the edge.
+     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_algorithm.png)
  - while at least one constraint is violated,  repeat: 
-	- Variable selection: 
+    - Variable selection: 
         - randomly select any conflicted variable
-	- Value selection: min-conflicts heuristic:
-		- Choose a value that violates the fewest constraints( among all possible selections of values in its domain )
-		- I.e., hill climb with h(n) = total number of violated constraints
+    - Value selection: min-conflicts heuristic:
+        - Choose a value that violates the fewest constraints( among all possible selections of values in its domain )
+        - I.e., hill climb with h(n) = total number of violated constraints
 
 <h2 id="d0813c5b61b7d928b7b0bd53bc40b3e2"></h2>
 
@@ -746,7 +746,7 @@ Tree Decomposition is another approach :
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_algorithm_4-queens.png)
 
  - States: 
- 	- 4 queens in 4 columns (4⁴ = 256 states)
+     - 4 queens in 4 columns (4⁴ = 256 states)
  - Operators: move queen in column
  - Goal test: no attacks
  - Evaluation: c(n) = number of attacks
@@ -782,13 +782,13 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
 ## Summary: CSPs
 
  - CSPs are a special kind of search problem:
-	- States are partial assignments
-	- Goal test defined by constraints
+    - States are partial assignments
+    - Goal test defined by constraints
  - Basic solution:  backtracking search
  - Speed-ups:
- 	- Ordering
- 	- Filtering 
- 	- Structure
+     - Ordering
+     - Filtering 
+     - Structure
  - ***Iterative min-conflicts is often effective in practice***
 
 
@@ -799,12 +799,12 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_local_search.png)
 
  - Tree search keeps unexplored alternatives on the fringe (ensures completeness)
- 	- So far the search algorithms we've talked about is not local. They have a fringe where you trying some particular branch of the tree and effective workout you went back to the fringe and you tried your other backup strategies.  The fringe is a safety net.
+     - So far the search algorithms we've talked about is not local. They have a fringe where you trying some particular branch of the tree and effective workout you went back to the fringe and you tried your other backup strategies.  The fringe is a safety net.
  - Local search: improve a single option until you can’t make it better (no fringe!)
- 	- In local search you don't have the safety net.  You got one position that you are currently at and you're trying to hill climb in some way. 
+     - In local search you don't have the safety net.  You got one position that you are currently at and you're trying to hill climb in some way. 
  - New successor function: local changes
- 	- You have a new idea of a successor function. The successor function now does not take a plan and extend the plan , instead it takes a complete assignment of some kind and modifies it.  Your successor function is more about modification than about extension.
- 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_local_search_local_change.png)
+     - You have a new idea of a successor function. The successor function now does not take a plan and extend the plan , instead it takes a complete assignment of some kind and modifies it.  Your successor function is more about modification than about extension.
+     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_local_search_local_change.png)
  - Generally much faster and more memory efficient (but incomplete and suboptimal)
 
 <h2 id="3b09835fc58a6f4c68cdf9d702bb59c6"></h2>
@@ -812,15 +812,15 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
 ### Hill Climbing
 
  - Simple, general idea:
-	- Start wherever
-	- Repeat: move to the best neighboring state
-	- If no neighbors better than current, quit
+    - Start wherever
+    - Repeat: move to the best neighboring state
+    - If no neighbors better than current, quit
  - What’s bad about this approach?
- 	- Complete ? No. 
-	- Optimal ? No.
-	- may reach local maximum.
+     - Complete ? No. 
+    - Optimal ? No.
+    - may reach local maximum.
  - What’s good about it?
- 	- you can start anywhere you can do the best you can and there are a wide range of problems in the real world where kind of any solution will work , and you'd like to make it as good as possible and you know you can't get to the optimal solution.
+     - you can start anywhere you can do the best you can and there are a wide range of problems in the real world where kind of any solution will work , and you'd like to make it as good as possible and you know you can't get to the optimal solution.
 
 <h2 id="6d905a5baf3b8995646bc1c96ff9bae4"></h2>
 
@@ -841,16 +841,16 @@ You will spend more times at higher places on the mountain. So essentially *e* h
 
 
  - Idea:  Escape local maxima by allowing downhill moves
-	- But make them rarer as time goes on
+    - But make them rarer as time goes on
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_simulated_annealing_function.png)
 
  - Theoretical guarantee:
- 	- Stationary distribution:  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_simulated_annealing_stationary_distribution.png)
- 	- If T decreased slowly enough, will converge to optimal state!
+     - Stationary distribution:  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_simulated_annealing_stationary_distribution.png)
+     - If T decreased slowly enough, will converge to optimal state!
  - Sounds like magic, but reality is reality:
-	- The more downhill steps you need to escape a local optimum, the less likely you are to ever make them all in a row
-	- People think hard about ridge operators which let you jump around the space in better ways
+    - The more downhill steps you need to escape a local optimum, the less likely you are to ever make them all in a row
+    - People think hard about ridge operators which let you jump around the space in better ways
 
 
 
@@ -865,8 +865,8 @@ You keep the best hypotheses at each step . In adition to just keeping the best 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_genetic_algorithm.png)
 
  - Genetic algorithms use a natural selection metaphor
-	- Keep best N hypotheses at each step (selection) based on a fitness function
-	- Also have pairwise crossover operators, with optional mutation to give variety
+    - Keep best N hypotheses at each step (selection) based on a fitness function
+    - Also have pairwise crossover operators, with optional mutation to give variety
  - Possibly the most misunderstood, misapplied (and even maligned) technique around
 
 

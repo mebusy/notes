@@ -105,17 +105,17 @@ When you visit cnn.com, your web browser sends a message to a DNS server and say
 
 ```
 nslookup baidu.com
-Server:		192.168.1.1
-Address:	192.168.1.1#53
+Server:        192.168.1.1
+Address:    192.168.1.1#53
 
 Non-authoritative answer:
-Name:	baidu.com
+Name:    baidu.com
 Address: 180.149.132.47
-Name:	baidu.com
+Name:    baidu.com
 Address: 220.181.57.217
-Name:	baidu.com
+Name:    baidu.com
 Address: 111.13.101.208
-Name:	baidu.com
+Name:    baidu.com
 Address: 123.125.114.144
 ```
 

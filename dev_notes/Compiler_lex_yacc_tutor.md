@@ -21,8 +21,8 @@
 # Building 
 
 ```
-yacc –d bas.y 	# create y.tab.h, y.tab.c
-lex bas.l 		# create lex.yy.c
+yacc –d bas.y     # create y.tab.h, y.tab.c
+lex bas.l         # create lex.yy.c
 cc lex.yy.c y.tab.c –obas.exe  # compile/link
 ```
 
@@ -40,8 +40,8 @@ cc lex.yy.c y.tab.c –obas.exe  # compile/link
 ```
 
  - The first %% is always required, as there must always be a rules section.
- 	- if we don’t specify any rules then the default action is to match everything and copy it to output
- 	- Defaults for input and output are stdin and stdout
+     - if we don’t specify any rules then the default action is to match everything and copy it to output
+     - Defaults for input and output are stdin and stdout
 
 
 Here is the same example with defaults explicitly coded:
@@ -57,36 +57,36 @@ Here is the same example with defaults explicitly coded:
 %%
 
 int yywrap(void) {
-	return 1;
+    return 1;
 }
 
 int main(void) {
     yylex();
-	return 0;
+    return 0;
 }
 ```
 
 
  - Two patterns have been specified in the rules section.  “.” and “\n”
-	- Each pattern must begin in column one
-		- Anything not starting in column one is copied verbatim to the generated C file
-		- 比如 上边的注释都会 copy 到 源文件中
- 	- followed by whitespace (space, tab or newline) and an optional action associated with the pattern. (eg, **ECHO** )
- 	- The action may be a single C statement, or multiple C statements, enclosed in braces.
+    - Each pattern must begin in column one
+        - Anything not starting in column one is copied verbatim to the generated C file
+        - 比如 上边的注释都会 copy 到 源文件中
+     - followed by whitespace (space, tab or newline) and an optional action associated with the pattern. (eg, **ECHO** )
+     - The action may be a single C statement, or multiple C statements, enclosed in braces.
  - Several macros and variables are predefined by lex. 
- 	- **ECHO** is a macro that writes code matched by the pattern. 
- 	- This is the default action for any unmatched strings. 
- 	- Typically, ECHO is defined as:
- 		```
- 		#define ECHO fwrite(yytext, yyleng, 1, yyout)
- 		```
- 	- Variable **yytext** is a pointer to the matched string (NULL-terminated) 
- 	- **yyleng** is the length of the matched string. 
- 	- Variable **yyout** is the output file and defaults to stdout.
- 	- Function **yywrap** is called by lex when input is exhausted.
- 		- Return 1 if you are done or 0 if more processing is required.
- 	- In this case we simply call **yylex** that is the main entry point for lex. 
- 		- Some implementations of lex include copies of main and yywrap in a library thus eliminating the need to code them explicitly. 
+     - **ECHO** is a macro that writes code matched by the pattern. 
+     - This is the default action for any unmatched strings. 
+     - Typically, ECHO is defined as:
+         ```
+         #define ECHO fwrite(yytext, yyleng, 1, yyout)
+         ```
+     - Variable **yytext** is a pointer to the matched string (NULL-terminated) 
+     - **yyleng** is the length of the matched string. 
+     - Variable **yyout** is the output file and defaults to stdout.
+     - Function **yywrap** is called by lex when input is exhausted.
+         - Return 1 if you are done or 0 if more processing is required.
+     - In this case we simply call **yylex** that is the main entry point for lex. 
+         - Some implementations of lex include copies of main and yywrap in a library thus eliminating the need to code them explicitly. 
 
  
 Here is a program that does nothing at all. All input is matched but no action is associated with any
@@ -101,23 +101,23 @@ The following example prepends line numbers to each line in a file. The input fi
 
 ```
 %{
-	int yylineno;
+    int yylineno;
 %}
 
 %%
 
-^(.*)\n 	{ printf("%4d\t%s", yylineno, yytext); ++yylineno; }
+^(.*)\n     { printf("%4d\t%s", yylineno, yytext); ++yylineno; }
 
 %%
 
 int yywrap(void) {
-	return 1;
+    return 1;
 }
 
 int main(int argc, char *argv[]) {
-	yyin = fopen(argv[1], "r");
-	yylex();
-	fclose(yyin);
+    yyin = fopen(argv[1], "r");
+    yylex();
+    fclose(yyin);
 }
 
 ```
@@ -125,15 +125,15 @@ int main(int argc, char *argv[]) {
 > Some implementations of lex predefine and calculate **yylineno**. 
 
  - The definitions section is composed of substitutions, code, and start states.
- 	- Code in the definitions section is simply copied as-is to the top of the generated C file and must be bracketed with **“%{“** and **“%}”** markers
- 	- Substitutions simplify pattern-matching rules , For example, we may define digits and letters:
- 		```
- 		digit    [0-9]
-		letter   [A-Za-z]
-		%%
-		{letter}({letter}|{digit})*
- 		```
- 		- surrounded by braces **{letter}** to distinguish them from literals
+     - Code in the definitions section is simply copied as-is to the top of the generated C file and must be bracketed with **“%{“** and **“%}”** markers
+     - Substitutions simplify pattern-matching rules , For example, we may define digits and letters:
+         ```
+         digit    [0-9]
+        letter   [A-Za-z]
+        %%
+        {letter}({letter}|{digit})*
+         ```
+         - surrounded by braces **{letter}** to distinguish them from literals
 
 
 <h2 id="f4892ae9e5ea764a416fcc3b54a5bad9"></h2>
@@ -168,22 +168,22 @@ Here is the definitions section for the yacc input file:
 
 - This definition declares an **INTEGER** token
 - Yacc generates a parser in file **y.tab.c** and an include file, **y.tab.h**:
-	- Lex includes this file and utilizes the definitions for token values
+    - Lex includes this file and utilizes the definitions for token values
 - To obtain tokens yacc calls **yylex**
-	- Function **yylex** has a return type of int that returns a token
-	- Values associated with the token are returned by lex in variable **yylval**. For example , in xx.l file
-		```
-		[0-9]+ {
-					yylval = atoi(yytext); 
-					return INTEGER;
-			   }
-		```
-		- would store the value of the integer in **yylval**
-		- return token **INTEGER** to yacc
+    - Function **yylex** has a return type of int that returns a token
+    - Values associated with the token are returned by lex in variable **yylval**. For example , in xx.l file
+        ```
+        [0-9]+ {
+                    yylval = atoi(yytext); 
+                    return INTEGER;
+               }
+        ```
+        - would store the value of the integer in **yylval**
+        - return token **INTEGER** to yacc
 - Token values 0-255 are reserved for character values
-	- For example, if you had a rule such as
-	- `[-+]         return *yytext;        /* return operator */`
-	- the character value for minus or plus is returned
+    - For example, if you had a rule such as
+    - `[-+]         return *yytext;        /* return operator */`
+    - the character value for minus or plus is returned
 
 Here is the complete lex input specification for our calculator:
 
@@ -196,13 +196,13 @@ void yyerror(char *);
 
 %% 
 
-[0-9]+	{
-			yylval = atoi(yytext);
-    		return INTEGER;
-		}		
-[-+\n]	return *yytext;
-[ \t]	; /* skip whitespace */
-.		yyerror("invalid character");
+[0-9]+    {
+            yylval = atoi(yytext);
+            return INTEGER;
+        }        
+[-+\n]    return *yytext;
+[ \t]    ; /* skip whitespace */
+.        yyerror("invalid character");
 
 %%
 
@@ -231,21 +231,21 @@ For example when lex returns an INTEGER token yacc shifts this token to the pars
 %%
 
 program:
-        program expr '\n'	{ printf("%d\n", $2); }
+        program expr '\n'    { printf("%d\n", $2); }
         |
         ;
-expr:	
-		INTEGER				{ $$ = $1; }
-		| expr '+' expr		{ $$ = $1 + $3; }
-		| expr '-' expr		{ $$ = $1 - $3; }
-		;
+expr:    
+        INTEGER                { $$ = $1; }
+        | expr '+' expr        { $$ = $1 + $3; }
+        | expr '-' expr        { $$ = $1 - $3; }
+        ;
 %%
 void yyerror(char *s) {
     fprintf(stderr, "%s\n", s);
 }
 int main(void) {
     yyparse();
-	return 0; 
+    return 0; 
 }
 
 
@@ -332,7 +332,7 @@ The input specification for yacc follows.
 
  - We may specify %left, for left-associative or %right for right associative. 
  - The last definition listed has the highest precedence. 
- 	- Using this simple technique we are able to disambiguate our grammar.
+     - Using this simple technique we are able to disambiguate our grammar.
 
 ```
 
@@ -340,36 +340,36 @@ The input specification for yacc follows.
 %left '+' '-'
 %left '*' '/'
 %{
-	#include <stdio.h>
+    #include <stdio.h>
     void yyerror(char *);
     int yylex(void);
     int sym[26];
 %}
 %%
 program:
-		program statement '\n'
-				|
-				;
+        program statement '\n'
+                |
+                ;
 statement:
-        expr					{ printf("%d\n", $1); }
-        | VARIABLE '=' expr		{ sym[$1] = $3; }
+        expr                    { printf("%d\n", $1); }
+        | VARIABLE '=' expr        { sym[$1] = $3; }
         ;
 expr:
         INTEGER
-		| VARIABLE		{ $$ = sym[$1]; }
-		| expr '+' expr	{$$=$1+$3;}
-		| expr '-' expr	{$$=$1-$3;}
-		| expr '*' expr	{$$=$1*$3;}
-		| expr '/' expr {$$=$1/$3;}		
-		| '(' expr ')'	{$$=$2;} 
-		;
+        | VARIABLE        { $$ = sym[$1]; }
+        | expr '+' expr    {$$=$1+$3;}
+        | expr '-' expr    {$$=$1-$3;}
+        | expr '*' expr    {$$=$1*$3;}
+        | expr '/' expr {$$=$1/$3;}        
+        | '(' expr ')'    {$$=$2;} 
+        ;
 %%
 void yyerror(char *s) {
     fprintf(stderr, "%s\n", s);
 }
 int main(void) {
     yyparse();
-	return 0; 
+    return 0; 
 }
 ```
 
@@ -393,8 +393,8 @@ To make things more concrete, here is a sample program,
 ```
 x = 0;
 while (x < 3) {
-	print x;
-	x = x + 1; 
+    print x;
+    x = x + 1; 
 }
 ```
 
@@ -422,7 +422,7 @@ This causes the following to be generated in y.tab.h:
 ```
 typedef union {
     int iValue;
-	char sIndex;
+    char sIndex;
     nodeType *nPtr;
 } YYSTYPE;
 extern YYSTYPE yylval;
@@ -476,7 +476,7 @@ The unary minus operator is given higher priority than binary operators as follo
 The **%nonassoc** indicates no associativity is implied. It is frequently used in conjunction with %prec to specify precedence of a rule. Thus, we have
 
 ```
-expr: '-' expr %prec UMINUS 	{ $$ = node(UMINUS, 1, $2); }
+expr: '-' expr %prec UMINUS     { $$ = node(UMINUS, 1, $2); }
 ```
 
 indicating that the precedence of the rule is the same as the precedence of token **UMINUS**. And **UMINUS** (as defined above) has higher precedence than the other operators. A similar technique is used to remove ambiguity associated with the if-else statement (see If-Else Ambiguity).
@@ -583,13 +583,13 @@ int ex(nodeType *p);
 int yylex(void);
 
 void yyerror(char *s);
-int sym[26];			/* symbol table */
+int sym[26];            /* symbol table */
 %}
 
 %union {
-    int iValue;			/* integer value */
-    char sIndex;		/* symbol table index */
-    nodeType *nPtr;		/* node pointer */
+    int iValue;            /* integer value */
+    char sIndex;        /* symbol table index */
+    nodeType *nPtr;        /* node pointer */
 };
 
 %token <iValue> INTEGER
@@ -608,44 +608,44 @@ int sym[26];			/* symbol table */
 %%
 
 program:
-  	function	{ exit(0); }
-	;
+      function    { exit(0); }
+    ;
 function:
-    function stmt		{ ex($2); freeNode($2); }
-	|                  /* NULL */ 
+    function stmt        { ex($2); freeNode($2); }
+    |                  /* NULL */ 
     ;
 stmt: 
-	';'			{$$= opr(';', 2, NULL, NULL); } 
-	| expr ';'		{$$= $1; }
-	| PRINT expr ';'		{$$= opr(PRINT, 1, $2); }
-	| VARIABLE '=' expr ';'		{$$= opr('=', 2, id($1), $3); }
-	| WHILE '(' expr ')' stmt { $$ = opr(WHILE, 2, $3, $5); }
-	| IF '(' expr ')' stmt %prec IFX 	{ $$ = opr(IF, 2, $3, $5); } 
-	| IF '(' expr ')' stmt ELSE stmt	{ $$ = opr(IF, 3, $3, $5, $7); } 
-	| '{' stmt_list '}'					{ $$= $2; }
+    ';'            {$$= opr(';', 2, NULL, NULL); } 
+    | expr ';'        {$$= $1; }
+    | PRINT expr ';'        {$$= opr(PRINT, 1, $2); }
+    | VARIABLE '=' expr ';'        {$$= opr('=', 2, id($1), $3); }
+    | WHILE '(' expr ')' stmt { $$ = opr(WHILE, 2, $3, $5); }
+    | IF '(' expr ')' stmt %prec IFX     { $$ = opr(IF, 2, $3, $5); } 
+    | IF '(' expr ')' stmt ELSE stmt    { $$ = opr(IF, 3, $3, $5, $7); } 
+    | '{' stmt_list '}'                    { $$= $2; }
     ;
 
 stmt_list:
-    stmt				{ $$=$1;}
-  | stmt_list stmt		{ $$ = opr(';', 2, $1, $2); }
+    stmt                { $$=$1;}
+  | stmt_list stmt        { $$ = opr(';', 2, $1, $2); }
   ;
 
 expr:
-    INTEGER			{ $$ = con($1); }
-	| VARIABLE		{ $$ = id($1); }
-	| '-' expr %prec UMINUS { $$ = opr(UMINUS, 1, $2); }
-	| expr '+' expr			{ $$ = opr('+', 2, $1, $3); }
-	| expr '-' expr			{ $$ = opr('-', 2, $1, $3); }
-	| expr '*' expr			{ $$ = opr('*', 2, $1, $3); }
-	| expr '/' expr			{ $$ = opr('/', 2, $1, $3); }
-	| expr '<' expr			{ $$ = opr('<', 2, $1, $3); }
-	| expr '>' expr			{ $$ = opr('>', 2, $1, $3); }
-	| expr GE expr			{ $$ = opr(GE, 2, $1, $3); }
-	| expr LE expr			{ $$ = opr(LE, 2, $1, $3); }
-	| expr NE expr			{ $$ = opr(NE, 2, $1, $3); }
-	| expr EQ expr			{ $$ = opr(EQ, 2, $1, $3); }
-	| '(' expr ')'			{ $$=$2;}
-	;
+    INTEGER            { $$ = con($1); }
+    | VARIABLE        { $$ = id($1); }
+    | '-' expr %prec UMINUS { $$ = opr(UMINUS, 1, $2); }
+    | expr '+' expr            { $$ = opr('+', 2, $1, $3); }
+    | expr '-' expr            { $$ = opr('-', 2, $1, $3); }
+    | expr '*' expr            { $$ = opr('*', 2, $1, $3); }
+    | expr '/' expr            { $$ = opr('/', 2, $1, $3); }
+    | expr '<' expr            { $$ = opr('<', 2, $1, $3); }
+    | expr '>' expr            { $$ = opr('>', 2, $1, $3); }
+    | expr GE expr            { $$ = opr(GE, 2, $1, $3); }
+    | expr LE expr            { $$ = opr(LE, 2, $1, $3); }
+    | expr NE expr            { $$ = opr(NE, 2, $1, $3); }
+    | expr EQ expr            { $$ = opr(EQ, 2, $1, $3); }
+    | '(' expr ')'            { $$=$2;}
+    ;
 
 %%
 
@@ -654,15 +654,15 @@ expr:
 nodeType *con(int value) {
     nodeType *p;
     
-	/* allocate node */
+    /* allocate node */
     if ((p = malloc(sizeof(nodeType))) == NULL)
         yyerror("out of memory");
     
-	/* copy information */
+    /* copy information */
     p->type = typeCon;
     p->con.value = value;
 
-	return p; 
+    return p; 
 }
 
 nodeType *id(int i) {
@@ -675,7 +675,7 @@ nodeType *id(int i) {
     /* copy information */
     p->type = typeId;
     p->id.i = i;
-	return p; 
+    return p; 
 }
 
           
@@ -684,12 +684,12 @@ nodeType *opr(int oper, int nops, ...) {
     nodeType *p;
     int i;
     
-	/* allocate node, extending op array */
+    /* allocate node, extending op array */
     if ((p = malloc(sizeof(nodeType) +
             (nops-1) * sizeof(nodeType *))) == NULL)
         yyerror("out of memory");
     
-	/* copy information */
+    /* copy information */
     p->type = typeOpr;
     p->opr.oper = oper;
     p->opr.nops = nops;
@@ -697,7 +697,7 @@ nodeType *opr(int oper, int nops, ...) {
     for (i = 0; i < nops; i++)
         p->opr.op[i] = va_arg(ap, nodeType*);
     va_end(ap);
-	return p; 
+    return p; 
 }
 
 void freeNode(nodeType *p) {
@@ -706,8 +706,8 @@ void freeNode(nodeType *p) {
     if (p->type == typeOpr) {
         for (i = 0; i < p->opr.nops; i++)
             freeNode(p->opr.op[i]);
-	}
-	free (p); 
+    }
+    free (p); 
 }
 
 void yyerror(char *s) {
@@ -716,7 +716,7 @@ void yyerror(char *s) {
 
 int main(void) {
     yyparse();
-	return 0; 
+    return 0; 
 }
 ```
 
@@ -873,37 +873,37 @@ void exNode (nodeType *p, int c, int l, int *ce, int *cm);
 /***********************************************************/
 /* main entry point of the manipulation of the syntax tree */ 
 int ex (nodeType *p) {
-	int rte, rtm;
+    int rte, rtm;
     graphInit ();
     exNode (p, 0, 0, &rte, &rtm);
     graphFinish();
     return 0;
 }
-/*c----cm---ce---->			drawing of leaf-nodes
+/*c----cm---ce---->            drawing of leaf-nodes
  l leaf-info
  */
 
 /*c---------------cm--------------ce----> drawing of non-leaf-nodes 
-l		    	 node-info
-*					|
-* 		------------- ...----
-*		|		|			| 
-*		v		v			v
-* 	child1	 child2 ...	 child-n
-*	 che	 che		   che 
-*	cs	 	cs 		cs 		cs 
+l                 node-info
+*                    |
+*         ------------- ...----
+*        |        |            | 
+*        v        v            v
+*     child1     child2 ...     child-n
+*     che     che           che 
+*    cs         cs         cs         cs 
 *
 */
 
 void exNode(  
-		 nodeType *p,
-        int c, int l,		/* start column and line of node */
+         nodeType *p,
+        int c, int l,        /* start column and line of node */
         int *ce, int *cm          /* resulting end column and mid of node */
 ) 
 {
-	int w, h;      /* node width and height */
-	char *s; 		/* node text */
-	int cbar;    /* "real" start column of node (centred above subnodes)*/
+    int w, h;      /* node width and height */
+    char *s;         /* node text */
+    int cbar;    /* "real" start column of node (centred above subnodes)*/
     int k;     /* child number */
     int che, chm;     /* end column and mid of children */
     int cs;     /* start column of children */
@@ -911,67 +911,67 @@ void exNode(
     if (!p) return;
 
  
-	strcpy (word, "???"); /* should never appear */
-	s = word;
-	switch(p->type) {
-		case typeCon: sprintf (word, "c(%d)", p->con.value); break; 
-		case typeId: sprintf (word, "id(%c)", p->id.i + 'A'); break; 
-		case typeOpr:
+    strcpy (word, "???"); /* should never appear */
+    s = word;
+    switch(p->type) {
+        case typeCon: sprintf (word, "c(%d)", p->con.value); break; 
+        case typeId: sprintf (word, "id(%c)", p->id.i + 'A'); break; 
+        case typeOpr:
         switch(p->opr.oper){
-            case WHILE:		s = "while"; break;
-            case IF:		s = "if";    break;
-            case PRINT:		s = "print"; break;
-            case ';':		s = "[;]";  break;
-            case '=':		s = "[=]";  break;
-            case UMINUS:	s = "[_]";  break;
-            case '+':		s = "[+]";  break;
-            case '-':		s = "[-]";  break;
-            case '*':		s = "[*]";  break;
-            case '/':		s = "[/]";  break;
-            case '<':		s = "[<]";	break;
-            case '>':		s = "[>]";  break;	
-            case GE:		s = "[>=]"; break;
-            case LE:		s = "[<=]"; break;
-            case NE:		s = "[!=]"; break;
-            case EQ:		s = "[==]"; break;
-		}
-		break;
-	}
-	/* construct node text box */
-	graphBox (s, &w, &h);
-	cbar = c;
-	*ce = c + w;
-	*cm = c + w / 2;
+            case WHILE:        s = "while"; break;
+            case IF:        s = "if";    break;
+            case PRINT:        s = "print"; break;
+            case ';':        s = "[;]";  break;
+            case '=':        s = "[=]";  break;
+            case UMINUS:    s = "[_]";  break;
+            case '+':        s = "[+]";  break;
+            case '-':        s = "[-]";  break;
+            case '*':        s = "[*]";  break;
+            case '/':        s = "[/]";  break;
+            case '<':        s = "[<]";    break;
+            case '>':        s = "[>]";  break;    
+            case GE:        s = "[>=]"; break;
+            case LE:        s = "[<=]"; break;
+            case NE:        s = "[!=]"; break;
+            case EQ:        s = "[==]"; break;
+        }
+        break;
+    }
+    /* construct node text box */
+    graphBox (s, &w, &h);
+    cbar = c;
+    *ce = c + w;
+    *cm = c + w / 2;
 
-	/* node is leaf */
-	if (p->type == typeCon || p->type == typeId || p->opr.nops == 0) {
-    	graphDrawBox (s, cbar, l);
-		return; 
-	}
+    /* node is leaf */
+    if (p->type == typeCon || p->type == typeId || p->opr.nops == 0) {
+        graphDrawBox (s, cbar, l);
+        return; 
+    }
 
-	/* node has children */
+    /* node has children */
     cs = c;
     for (k = 0; k < p->opr.nops; k++) {
-		exNode (p->opr.op[k], cs, l+h+eps, &che, &chm);
-		cs = che; 
-	}
+        exNode (p->opr.op[k], cs, l+h+eps, &che, &chm);
+        cs = che; 
+    }
     /* total node width */
     if (w < che - c) {
         cbar += (che - c - w) / 2;
         *ce = che;
         *cm = (c + che) / 2;
-	}	
+    }    
     
-	/* draw node */
+    /* draw node */
     graphDrawBox (s, cbar, l);
 
-	/* draw arrows (not optimal: children are drawn a second time) */ 
-	cs = c;
-	for (k = 0; k < p->opr.nops; k++) {
-		exNode (p->opr.op[k], cs, l+h+eps, &che, &chm); 
-		graphDrawArrow (*cm, l+h, chm, l+h+eps-1);
-		cs = che;
-	} 
+    /* draw arrows (not optimal: children are drawn a second time) */ 
+    cs = c;
+    for (k = 0; k < p->opr.nops; k++) {
+        exNode (p->opr.op[k], cs, l+h+eps, &che, &chm); 
+        graphDrawArrow (*cm, l+h, chm, l+h+eps-1);
+        cs = che;
+    } 
 }
 
 /* interface for drawing */
@@ -984,15 +984,15 @@ int graphNumber = 0;
 
 void graphTest (int l, int c)
 {   
-	int ok;
-	ok = 1;
-	if (l < 0) ok = 0;
-	if (l >= lmax) ok = 0;
-	if (c < 0) ok = 0;
-	if (c >= cmax) ok = 0;
-	if (ok) return;
-	printf ("\n+++error: l=%d, c=%d not in drawing rectangle 0, 0 ... %d, %d" ,l, c, lmax, cmax); 
-	exit (1); 
+    int ok;
+    ok = 1;
+    if (l < 0) ok = 0;
+    if (l >= lmax) ok = 0;
+    if (c < 0) ok = 0;
+    if (c >= cmax) ok = 0;
+    if (ok) return;
+    printf ("\n+++error: l=%d, c=%d not in drawing rectangle 0, 0 ... %d, %d" ,l, c, lmax, cmax); 
+    exit (1); 
 }
 
 void graphInit (void) {
@@ -1001,7 +1001,7 @@ void graphInit (void) {
         for (j = 0; j < cmax; j++) {
             graph[i][j] = ' ';
         }
-	} 
+    } 
 }
 
 void graphFinish() {
@@ -1011,11 +1011,11 @@ void graphFinish() {
         graph[i][cmax-1] = 0;
         if (j < cmax-1) graph[i][j+1] = 0;
         if (graph[i][j] == ' ') graph[i][j] = 0;
-	}
-	for (i = lmax-1; i > 0 && graph[i][0] == 0; i--); 
-	printf ("\n\nGraph %d:\n", graphNumber++);
-	for (j = 0; j <= i; j++) printf ("\n%s", graph[j]); 
-	printf("\n");
+    }
+    for (i = lmax-1; i > 0 && graph[i][0] == 0; i--); 
+    printf ("\n\nGraph %d:\n", graphNumber++);
+    for (j = 0; j <= i; j++) printf ("\n%s", graph[j]); 
+    printf("\n");
 }
 
 void graphBox (char *s, int *w, int *h) {
@@ -1043,10 +1043,10 @@ void graphDrawArrow (int c1, int l1, int c2, int l2) {
     }
     while (c1 != c2) {
         graph[l1][c1] = '-'; if (c1 < c2) c1++; else c1--;
-	}
-	while (l1 != l2) {
-		graph[l1][c1] =	'|'; if (l1 < l2) l1++; else l1--;
-	}
+    }
+    while (l1 != l2) {
+        graph[l1][c1] =    '|'; if (l1 < l2) l1++; else l1--;
+    }
     graph[l1][c1] = '|';
 }
 ```
@@ -1077,11 +1077,11 @@ Here is one way to match a string in lex:
            else
                yylval[yyleng-2] = 0;
            printf("found '%s'\n", yylval);
-		}
+        }
 ```
 
 If we wish to add escape sequences, such as \n or \", start states simplify matters:
-	
+    
 ```
 %{
 char buf[100];
@@ -1091,17 +1091,17 @@ char *s;
 
 %%
 
-\"				{ BEGIN STRING; s = buf; }
-<STRING>\\n 	{ *s++ = '\n'; }
-<STRING>\\t 	{ *s++ = '\t'; }
-<STRING>\\\" 	{ *s++ = '\"'; }
-<STRING>\" 		{
-					*s = 0;
-					BEGIN 0;
-					printf("found '%s'\n", buf);
-				}
-<STRING>\n 		{ printf("invalid string"); exit(1); }
-<STRING>. 		{ *s++ = *yytext; }
+\"                { BEGIN STRING; s = buf; }
+<STRING>\\n     { *s++ = '\n'; }
+<STRING>\\t     { *s++ = '\t'; }
+<STRING>\\\"     { *s++ = '\"'; }
+<STRING>\"         {
+                    *s = 0;
+                    BEGIN 0;
+                    printf("found '%s'\n", buf);
+                }
+<STRING>\n         { printf("invalid string"); exit(1); }
+<STRING>.         { *s++ = *yytext; }
 ```
 
 Exclusive start state **STRING** is defined in the definition section. When the scanner detects a quote the **BEGIN** macro shifts lex into the **STRING** state. Lex stays in the **STRING** state and recognizes only patterns that begin with **\<STRING\>** until another **BEGIN** is executed. Thus we have a mini-environment for scanning strings. When the trailing quote is recognized we switch back to initial state 0.
@@ -1119,9 +1119,9 @@ For example, instead of coding
 "then"          return THEN;
 "else"          return ELSE;
 {letter}({letter}|{digit})*  {
-						        yylval.id = symLookup(yytext);
-						        return IDENTIFIER;
-						    }
+                                yylval.id = symLookup(yytext);
+                                return IDENTIFIER;
+                            }
 ```
 
 where **symLookup** returns an index into the symbol table, it is better to detect reserved words and identifiers simultaneously, as follows:
@@ -1147,8 +1147,8 @@ The code generated by lex in file **lex.yy.c** includes debugging statements tha
 ```
 extern int yy_flex_debug;
 int main(void) {
-	yy_flex_debug = 1;
-	yyparse(); 
+    yy_flex_debug = 1;
+    yyparse(); 
 }
 ```
 
@@ -1164,19 +1164,19 @@ When **DEBUG** is defined the debug functions take effect and a trace of tokens 
 
 %{
 #ifdef DEBUG
-	int dbgToken(int tok, char *s) {
-    	printf("token %s\n", s);
-		return tok; 
-	}
-	int dbgTokenIvalue(int tok, char *s) {
-		printf("token %s (%d)\n", s, yylval.ivalue);
-		return tok; 
-	}
-	#define RETURN(x) return dbgToken(x, #x)
-	#define RETURN_ivalue(x) return dbgTokenIvalue(x, #x) 
+    int dbgToken(int tok, char *s) {
+        printf("token %s\n", s);
+        return tok; 
+    }
+    int dbgTokenIvalue(int tok, char *s) {
+        printf("token %s (%d)\n", s, yylval.ivalue);
+        return tok; 
+    }
+    #define RETURN(x) return dbgToken(x, #x)
+    #define RETURN_ivalue(x) return dbgTokenIvalue(x, #x) 
 #else
-	#define RETURN(x) return(x)
-	#define RETURN_ivalue(x) return(x)
+    #define RETURN(x) return(x)
+    #define RETURN_ivalue(x) return(x)
 #endif
 %}
 
@@ -1203,7 +1203,7 @@ A list may be specified with left recursion
 
 ```
 list:
-		item
+        item
          | list ',' item
          ;
 ```
@@ -1212,7 +1212,7 @@ or right recursion.
 
 ```
 list:
-		item
+        item
          | item ',' list
 
 ```

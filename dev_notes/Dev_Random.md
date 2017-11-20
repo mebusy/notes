@@ -180,16 +180,16 @@ wtp = [1.*x/sum(wt) for x in wt]
 result = []
 p = [np.random.normal( 1./x, 1./x/3.) for x in wtp]
 for i in xrange(N):
-	minp = 1.e9
-	minj = -1
-	for j, pp in enumerate(p):
-		if pp < minp:
-			minp = pp
-			minj = j
-	result.append(minj)
-	for j, pp in enumerate(p):
-		p[j] -= minp
-	p[minj] = np.random.normal(1./wtp[minj], 1./wtp[minj]/3.)
+    minp = 1.e9
+    minj = -1
+    for j, pp in enumerate(p):
+        if pp < minp:
+            minp = pp
+            minj = j
+    result.append(minj)
+    for j, pp in enumerate(p):
+        p[j] -= minp
+    p[minj] = np.random.normal(1./wtp[minj], 1./wtp[minj]/3.)
 ```
 
 理解这段代码的关键，是想清楚怎么利用我们之前生成的正态分布的间隔数据， 
@@ -204,14 +204,14 @@ import matplotlib.pyplot as plt
 
 intervals = []
 for j in xrange( len( set( result ) ) ):
-	interval = []
-	intervals.append( interval )
-	cnt = 0
-	for i in result:
-		cnt +=1
-		if i==j :
-			interval.append( cnt ) 
-			cnt = 0
+    interval = []
+    intervals.append( interval )
+    cnt = 0
+    for i in result:
+        cnt +=1
+        if i==j :
+            interval.append( cnt ) 
+            cnt = 0
 
 
 plt.title('Histogram')

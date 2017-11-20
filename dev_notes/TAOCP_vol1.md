@@ -70,25 +70,25 @@ Let P(n) be some statement about the integer n; for example, P(n) might be "n ti
 Example:
 
 ```
-		  1 = 1²,
-	    1+ 3 = 2², 
-	  1+ 3+ 5 = 3², 
-	1+ 3+ 5+ 7 = 4²,
-  1+ 3+ 5+ 7+ 9 = 5²,	(1)
+          1 = 1²,
+        1+ 3 = 2², 
+      1+ 3+ 5 = 3², 
+    1+ 3+ 5+ 7 = 4²,
+  1+ 3+ 5+ 7+ 9 = 5²,    (1)
 ```
 
 We can formulate the general property as follows:
 
 ```
-1 + 3 + ... + (2n—1) = n².	(2)
+1 + 3 + ... + (2n—1) = n².    (2)
 ```
 
 Let us, for the moment, call this equation P(n);we wish to prove that P(n) is true for all positive n. We have:
 
  - a) “P(1) is true, since 1 = 1².”
  - b) “If all of P(1), . . . , P(n) are true, then, in particular, P(n) is true, so Eq. (2) holds; adding 2n+ 1 to both sides we obtain
- 	- 1 + 3 + ... + (2n—1) + (2n+1) = n² + 2n + 1 = (n+1)² ,
- 	- which proves that P(n + 1) is also true.”
+     - 1 + 3 + ... + (2n—1) + (2n+1) = n² + 2n + 1 = (n+1)² ,
+     - which proves that P(n + 1) is also true.”
 
 We can regard this method as an *algorithmic proof procedure*. In fact, the following algorithm produces a proof of P(n) for any positive integer n, assuming that steps (a) and (b) above have been worked out:
 
@@ -110,7 +110,7 @@ Since this algorithm clearly presents a proof of P(n), for any given n, the proo
 We define the *Fibonacci sequence* F₀, F₁, F₂, ...,  by the rule that F₀ = 0, F₁ = 1, and every further term is the sum of the preceding two. Thus the sequence begins 0, 1, 1, 2, 3, 5, 8, 13, ..., we will investigate it in detail in Section 1.2.8. We will now prove that if ∅ is the number (1+ √5)/2 we have
 
 ```
-	F𝑛 ≤ ∅ⁿ⁻¹	(3)
+    F𝑛 ≤ ∅ⁿ⁻¹    (3)
 ```
 
 for all positive integers n. Call this formula P(n).
@@ -124,7 +124,7 @@ F𝑛₊₁ = F𝑛₋₁ + F𝑛 ≤ ∅ⁿ⁻² + ∅ⁿ⁻¹ = ∅ⁿ⁻²(1+
 The important property of the number ∅,indeed the reason we chose this number for this problem in the first place, is that
 
 ```
-1 + ∅ = ∅ⁿ 	(5)
+1 + ∅ = ∅ⁿ     (5)
 ```
 
 So we get `F𝑛₊₁ ≤ ∅ⁿ` , which is P(n+1). So step (b) has been done, and (3) has been proved by mathematical induction.
@@ -193,28 +193,28 @@ Equations (11), (12), and (14) are the fundamental rules for manipulating logari
 ### 1.2.3. Sums and Products
 
  - a) *The distributive law*, for products of sums:
- 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_4.png)
- 	- To understand this law, consider for example the speical case:
- 		- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_4.1.png)
+     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_4.png)
+     - To understand this law, consider for example the speical case:
+         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_4.1.png)
  - b) *Change of variable:*
- 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_5.png)
- 	- This equation represents two kinds of transformations. 
- 		- In the first case we are simply changing the name of the index variable from i to j. 
- 		- The second case is more interesting: Here p(j) is a function of j that represents a *permutation* of the range; 
- 			-  more precisely, for each integer i satisfying the relation r(i), there must be exactly one integer j satisfying the relation p(j) = i. 
- 			- This condition is always satisfied in the important cases p(j) = c + j and p[j] = c —j, where c is an integer not depending on j, and these are the cases used most frequently in applications. For example:
- 				- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_6.png)
- 	- The replacement of j by p(j) cannot be done for all infinite sums. The operation is always valid if p(j) = c ± j, 
- 	- p(j) = `c + j = i`  → `j = i - c` 
+     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_5.png)
+     - This equation represents two kinds of transformations. 
+         - In the first case we are simply changing the name of the index variable from i to j. 
+         - The second case is more interesting: Here p(j) is a function of j that represents a *permutation* of the range; 
+             -  more precisely, for each integer i satisfying the relation r(i), there must be exactly one integer j satisfying the relation p(j) = i. 
+             - This condition is always satisfied in the important cases p(j) = c + j and p[j] = c —j, where c is an integer not depending on j, and these are the cases used most frequently in applications. For example:
+                 - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_6.png)
+     - The replacement of j by p(j) cannot be done for all infinite sums. The operation is always valid if p(j) = c ± j, 
+     - p(j) = `c + j = i`  → `j = i - c` 
  - c) *Interchanging order of summation:*
- 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_7.png)
- 	- Let us consider a very simple special case of this equation:
- 		- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_7.1.png)
- 	- By Eq. (7), these two are equal; this says no more than
- 		- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_8.png)
- 		- where we let bᵢ = aᵢ₁ and cᵢ = aᵢ₂.
- 	- The operation of interchanging the order of summation is extremely useful, since it often happens that know simple form for Σ<sub>R</sub>₍ᵢ₎ aᵢⱼ , but not for Σ<sub>S</sub>₍ⱼ₎ aᵢⱼ.
- 	- TODO
+     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_7.png)
+     - Let us consider a very simple special case of this equation:
+         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_7.1.png)
+     - By Eq. (7), these two are equal; this says no more than
+         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TAOCP_sum_8.png)
+         - where we let bᵢ = aᵢ₁ and cᵢ = aᵢ₂.
+     - The operation of interchanging the order of summation is extremely useful, since it often happens that know simple form for Σ<sub>R</sub>₍ᵢ₎ aᵢⱼ , but not for Σ<sub>S</sub>₍ⱼ₎ aᵢⱼ.
+     - TODO
 
 ---
 

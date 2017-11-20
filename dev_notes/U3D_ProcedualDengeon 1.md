@@ -38,9 +38,9 @@ local width =  60
 local height = 40
 
 local function RandomFillMap()  
-	map = {}
+    map = {}
     for x = 1 ,  width do
-    	map[x] = {}
+        map[x] = {}
         for  y = 1 ,  height do 
             if (x == 1 or x == width  or y == 1 or y == height ) then
                 map[x][y] = 1
@@ -72,7 +72,7 @@ Repeat 4-5 times.
 
 ```lua
 local function SmoothMap()  
-	for x = 1 ,  width do
+    for x = 1 ,  width do
         for  y = 1 ,  height do 
             local neighbourWallTiles = GetSurroundingWallCount(x,y)
             if (neighbourWallTiles > 4) then
@@ -156,7 +156,7 @@ function SquareGrid:create(  map,   squareSize )
 
     local controlNodes = {}
     for x = 1,  nodeCountX do
-    	controlNodes[x] = {}
+        controlNodes[x] = {}
         for y = 1, nodeCountY do
             local pos = Vector3( -mapWidth/2 + x * squareSize + squareSize/2, 0, -mapHeight/2 + y * squareSize + squareSize/2) 
             controlNodes[x][y] = Node:create( pos, map[x][y] == 1 )
@@ -165,7 +165,7 @@ function SquareGrid:create(  map,   squareSize )
     
     node.squares ={}
     for x = 1,  nodeCountX-1 do
-    	node.squares[x] = {}
+        node.squares[x] = {}
         for y = 1 ,  nodeCountY-1 do 
             node.squares[x][y] = Square:create( controlNodes[x][y+1], controlNodes[x+1][y+1], controlNodes[x+1][y], controlNodes[x][y])
         end

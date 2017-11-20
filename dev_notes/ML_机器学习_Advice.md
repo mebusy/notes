@@ -93,10 +93,10 @@ BiasVsVariance.png
 
 #### regularization in high-order polynomial
 
-λ	|		θ	|	fitting result
+λ    |        θ    |    fitting result
 ---|---|---
-small (eg.0)	| no penalty  	|	  High variance (overfit)
-intermediate 	|			|	just right
+small (eg.0)    | no penalty      |      High variance (overfit)
+intermediate     |            |    just right
 large (eg.100) | heavily penalized → 0 | High Bias(underfit)
 
 
@@ -158,8 +158,8 @@ What should you try next ?
 - Try smaller sets of features  -> fix high varinance
 - Try getting additional features -> fix high bias
 - Try adding polynomial features  -> fix high bias
-- Try decreasing λ	-> fix high bias
-- Try increasing λ	-> fix high variance
+- Try decreasing λ    -> fix high bias
+- Try increasing λ    -> fix high variance
 
 ---
 

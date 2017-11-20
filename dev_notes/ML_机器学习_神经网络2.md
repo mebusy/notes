@@ -72,7 +72,7 @@ logistic regression cost function:
    % step 2
     J=0;
     for k = 1:num_labels
-    	J +=  1/m * sum(  - (y==k) .* log( hx(:,k) )  - ( 1-(y==k) ) .* log( 1- hx(:,k) ) ) ;
+        J +=  1/m * sum(  - (y==k) .* log( hx(:,k) )  - ( 1-(y==k) ) .* log( 1- hx(:,k) ) ) ;
     end
    ```
 
@@ -287,7 +287,7 @@ Theta1 = rand(10,11)*(2*INIT_EPSILON)-INIT_EPSILON;
 delta_3 = zeros(size(a_3));
 % for k output units
 for k = 1:num_labels
-	delta_3(:,k) = a_3(:,k) - (y==k) ;
+    delta_3(:,k) = a_3(:,k) - (y==k) ;
 end
 
 delta_2 =  delta_3 * Theta2 .* sigmoidGradient( [ ones( size(z_2,1),1 )  z_2 ] ) ;

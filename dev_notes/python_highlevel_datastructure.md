@@ -112,7 +112,7 @@ defaultdict(<type 'list'>, {'not exist': []})
  - 两个非常重要的模块函数，可以直接对 list 使用
     - `heapq.nlargest()`
     - `heapq.nsmallest`
-	- 还可以带 lambda 函数，完成更复杂的功能
+    - 还可以带 lambda 函数，完成更复杂的功能
 
 ```python
 >>> import heapq
@@ -160,7 +160,7 @@ class PriorityQueue:
 ```
 
  - `bisect.bisect`  寻找插入点
-	- 注意：不是寻找元素位置
+    - 注意：不是寻找元素位置
 
 ```python
 >>> bisect.bisect(a , (150, 220) )

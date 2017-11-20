@@ -84,7 +84,7 @@ python -m cProfile -s cumulative julia1_nopil.py
 ```
 
  - -s cumulative flag tells cProfile to sort by cumulative time spent inside each function;
-	- this gives us a view into the slowest parts of a section of code
+    - this gives us a view into the slowest parts of a section of code
 
 
 <h2 id="d7dd7fb89c8a9ffea55f74bc3a6018be"></h2>
@@ -107,8 +107,8 @@ It works by profiling individual func‐ tions on a line-by-line basis, so you s
 ## Memory profile 
 
  - install 
-	- 'pip install memory_profiler'
-	- already shipped in mac ?
+    - 'pip install memory_profiler'
+    - already shipped in mac ?
  
 
 <h2 id="3a5f793d765efeae35bf8449952f7d01"></h2>
@@ -197,9 +197,9 @@ numpy stores data in contiguous chunks of memory and supports vectorized operati
 
 ```python
 def evolve(grid, dt, out, D=1): 
-	laplacian(grid, out) 
-	out*=D*dt
-	out += grid
+    laplacian(grid, out) 
+    out*=D*dt
+    out += grid
 ```
 
 <h2 id="851bb2aeae97198e18a9d391be7bbb1e"></h2>

@@ -158,7 +158,7 @@ from itertools import count
 ```
 
  - chain.from_iterable(iterable)和chain类似
-	- 但是只是接收单个iterable，然后将这个iterable中的元素组合成一个iterator。
+    - 但是只是接收单个iterable，然后将这个iterable中的元素组合成一个iterator。
 
 ```python
 >>> from itertools import chain
@@ -171,8 +171,8 @@ from itertools import count
 ## 2.3 compress
 
  - compress(data, selectors)
-	- 接收两个iterable作为参数,只返回selectors中对应的元素为True的data
-	- 当data/selectors之一用尽时停止
+    - 接收两个iterable作为参数,只返回selectors中对应的元素为True的data
+    - 当data/selectors之一用尽时停止
 
 ```python
 >>> from itertools import compress
@@ -187,7 +187,7 @@ from itertools import count
 
  - islice(iterable, stop) 
  - islice(iterable, start, stop[, step]) 
-	- 与python切片类似， 只是不能对start、start和step使用负值。
+    - 与python切片类似， 只是不能对start、start和step使用负值。
 
 ```python
 >>> from itertools import islice
@@ -205,7 +205,7 @@ from itertools import count
 ## 2.5 tee
 
  - tee(iterable, n=2) 
-	- 返回n个独立的iterator
+    - 返回n个独立的iterator
 
 ```
 >>> from itertools import islice, tee
@@ -233,8 +233,8 @@ from itertools import count
 ## 2.7 takewhile
 
  - takewhile(predicate, iterable) 
-	- 只要predicate返回True，不停地返回iterable中的元素
-	- 知道 predicate返回False
+    - 只要predicate返回True，不停地返回iterable中的元素
+    - 知道 predicate返回False
 
 ```python
 def less_than_10(x):
@@ -250,8 +250,8 @@ itertools.takewhile(is_even, itertools.count())
 ## 2.8 dropwhile
 
  - dropwhile(predicate, iterable) 
-	- 和 takewhile 相反
-	- 在predicate返回True时舍弃元素，然后返回其余迭代结果
+    - 和 takewhile 相反
+    - 在predicate返回True时舍弃元素，然后返回其余迭代结果
 
 ```python
 itertools.dropwhile(less_than_10, itertools.count())
@@ -265,7 +265,7 @@ itertools.dropwhile(is_even, itertools.count())
 ## 2.9 groupby
 
  - groupby(iterable, key=None)
- 	- 把iterator中 ***相邻***的***重复***元素挑出来放在一起 
+     - 把iterator中 ***相邻***的***重复***元素挑出来放在一起 
 
 ```python
 >>> from itertools import groupby
@@ -291,9 +291,9 @@ B ['B', 'B', 'B']
 ### product
 
  - product( \* iterables, repeat=1)
-	- product(A, B) returns the same as ((x,y) for x in A for y in B)
-	- product(A, repeat=4) means the same as product(A, A, A, A)
-	- 数数中的 可重复选取 的排列
+    - product(A, B) returns the same as ((x,y) for x in A for y in B)
+    - product(A, repeat=4) means the same as product(A, A, A, A)
+    - 数数中的 可重复选取 的排列
 
 ```python
 >>> from itertools import product
@@ -307,7 +307,7 @@ B ['B', 'B', 'B']
 ### permutations
 
  - permutations(iterable, r=None)
-	- 返回长度为r的所有可能的排列 P(n,r)
+    - 返回长度为r的所有可能的排列 P(n,r)
 
 ```python
 >>> from itertools import permutations
@@ -324,7 +324,7 @@ B ['B', 'B', 'B']
 ### combinations
 
  - combinations(iterable, r) 
-	- 返回长度为r的所有可能的组合 C(n,r)
+    - 返回长度为r的所有可能的组合 C(n,r)
 
 ```python
 >>> from itertools import combinations

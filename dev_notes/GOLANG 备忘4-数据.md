@@ -354,8 +354,8 @@ type File struct {
     name string
     size int
     attr struct {
-	perm int
-	owner int 
+    perm int
+    owner int 
     }
 }
 

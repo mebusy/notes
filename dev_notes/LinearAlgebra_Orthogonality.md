@@ -20,9 +20,9 @@
  - In choosing a basis, we tend to choose an orthogonal basis , to make those calculations simple. 
  - A further specialization makes the basis just about optimal: The vectors should have length 1. 
  - For an orthonormal basis (orthogonal unit vectors), we will find:
- 	- 1. the length ‖x‖ of a vector
- 	- 2. the test xᵀy = 0 for perpendicular vectors;
- 	- 3. how to create perpendicular vectors from linearly independent vectors.
+     - 1. the length ‖x‖ of a vector
+     - 2. the test xᵀy = 0 for perpendicular vectors;
+     - 3. how to create perpendicular vectors from linearly independent vectors.
 
 More than just vectors, subspaces can also be perpendicular. The 4 fundamental subspaces are perpendicular in pairs, 2 in Rᵐ and 2 in Rⁿ. That will complete the fundamental theorem of linear algebra.
 
@@ -39,7 +39,7 @@ Orthogonal vectors    xᵀy = 0
 
 proof:
 
-	‖x‖² + ‖y‖² = ‖x+y‖²   # 勾股定理
+    ‖x‖² + ‖y‖² = ‖x+y‖²   # 勾股定理
 =>  xᵀx + yᵀy = (x+y)ᵀ(x+y)
 =>  xᵀx + yᵀy = xᵀx + xᵀy + yᵀx + yᵀy
 # vector inner product leads to scalar , so xᵀy == yᵀx
@@ -58,10 +58,10 @@ Useful fact: **If nonzero vectors v₁, ... , vk are mutually orthogonal** (ever
  - They form the simplest basis for Rⁿ, and
  - they are *unit vectors* - each has length ‖eᵢ‖ = 1. 
  - They point along the coordinate axes. 
- 	- If these axes are rotated, the result is a new **orthonormal basis**: 
- 	- a new system of *mutually orthogonal unit vectors*. 
+     - If these axes are rotated, the result is a new **orthonormal basis**: 
+     - a new system of *mutually orthogonal unit vectors*. 
  - In R² we have cos²θ + sin²θ = 1:
- 	- **Orthonormal vectors in R2** v₁ = ( cosθ, sinθ ) and v₂ = ( -sinθ, cosθ ).
+     - **Orthonormal vectors in R2** v₁ = ( cosθ, sinθ ) and v₂ = ( -sinθ, cosθ ).
 
 
 
@@ -71,20 +71,20 @@ Useful fact: **If nonzero vectors v₁, ... , vk are mutually orthogonal** (ever
 
  - Subspaces of ***R³*** can have dimension 0, 1, 2, or 3. 
  - The subspaces are represented by lines or planes through the origin
- 	- and in the extreme cases, by the origin alone or the whole space. 
+     - and in the extreme cases, by the origin alone or the whole space. 
  - The subspace {0} is orthogonal to all subspaces. 
  - A line can be orthogonal to another line, or it can be orthogonal to a plane
  - **but a plane cannot be orthogonal to a plane in R³**.
- 	- because 2 orthogonal plane has dimension 4 in total , they must intersect in a line in R³ 
- 	- 2 vectors in a same line are not orthogonal
- 	- **2 orthogonal subspace never intersect in any none zero vector**
- 	- I have to admit that the front wall and side wall of a room look like perpendicular planes in R³. But by our definition, that is not so!
- 	- 2 planes can be orthogonal in R⁴
+     - because 2 orthogonal plane has dimension 4 in total , they must intersect in a line in R³ 
+     - 2 vectors in a same line are not orthogonal
+     - **2 orthogonal subspace never intersect in any none zero vector**
+     - I have to admit that the front wall and side wall of a room look like perpendicular planes in R³. But by our definition, that is not so!
+     - 2 planes can be orthogonal in R⁴
 
 **3B**: 
 
  - Two subspaces V and W of the same space Rⁿ are *orthogonal* if every vector v in V is orthogonal to every vector w in W: 
- 	- vᵀw = 0 for all v and w.
+     - vᵀw = 0 for all v and w.
 
 **Example 2**: Suppose V is the plane spanned by v₁ = (1, 0, 0, 0) and v₂ = (1, 1, 0, 0). If W is the line spanned by w = (0, 0, 4, 5), then w is orthogonal to both v's. The line W will be orthogonal to the whole plane V.
 
@@ -111,9 +111,9 @@ Ax = |               | |  |   | |
 ```
 
  - The main point is already in the first equation: row 1 is orthogonal to x. 
- 	- Their inner product is zero; 
+     - Their inner product is zero; 
  - Every right-hand side is zero, so x is orthogonal to every row. 
- 	- Therefore x is orthogonal to every combination of the rows. 
+     - Therefore x is orthogonal to every combination of the rows. 
  - Each x in the nullspace is orthogonal to each vector in the row space, so ***N(A) ⊥ C(Aᵀ)*** .
 
 
@@ -131,9 +131,9 @@ yᵀA = |u  ...  u| = [0 ... 0]
 ```
 
  - The equation says , from the zeros on the right-hand side , the vector y is orthogonal to every column.
- 	- Therefore y is orthogonal to every combination of the columns.
+     - Therefore y is orthogonal to every combination of the columns.
  - y is orthogonal to the column space, and it is a typical vector in the left nullspace:
- 	- ***N(Aᵀ) ⊥ C(A)***
+     - ***N(Aᵀ) ⊥ C(A)***
 
 
 
@@ -141,16 +141,16 @@ yᵀA = |u  ...  u| = [0 ... 0]
 
 ```
 Nullspace ⊥ Row space :   
-	vᵀx = (Aᵀz)ᵀx = zᵀAx = zᵀ0 = 0.    (8)
+    vᵀx = (Aᵀz)ᵀx = zᵀAx = zᵀ0 = 0.    (8)
 ```
 
 
 **DEFINITION** Given a subspace V of Rⁿ, the space of all vectors orthogonal to V is called the **orthogonal complement** of V. It is denoted by **V<sup>⊥</sup> = "V perp."**  
 
  - the nullspace is the orthogonal complement of the row space
- 	- A vector z can't be orthogonal to the nullspace but outside the row space
+     - A vector z can't be orthogonal to the nullspace but outside the row space
  - **Dimension formula**:  dim(row space) + dim(nullspace) = number of columns.
- 	- r + ( n -r ) = n 
+     - r + ( n -r ) = n 
  
 **3D Fundamental Theorem of Linear Algebra, Part II**
 
@@ -179,13 +179,13 @@ Figure 3.4 summarizes the fundamental theorem of linear algebra.
  - Every Ax is in the column space. 
  - Nothing is carried to the left nullspace. 
  - The real action is between the row space and column space, and you see it by looking at a typical vector ***x*** :
- 	- It has a "row space component" and a "nullspace component," with `x = xᵣ+ xn`,  When multiplied by A, this is `Ax = Axᵣ + Axn`:
- 	- The nullspace component goes to zero: Axn = 0.
- 	- The row space component goes to the column space: `Axᵣ = Ax`.
+     - It has a "row space component" and a "nullspace component," with `x = xᵣ+ xn`,  When multiplied by A, this is `Ax = Axᵣ + Axn`:
+     - The nullspace component goes to zero: Axn = 0.
+     - The row space component goes to the column space: `Axᵣ = Ax`.
 
  - 事实上, 任意 vector a 都可以拆分 两部分, 一部分是在某个子空间S 上的投影， 另一部分是在 S的正交补 S<sup>⊥</sup> 上的投影
- 	- *Ia = Pa + P<sup>⊥</sup>a*  =>  **I = P + P<sup>⊥</sup>**
- 	- S<sup>⊥</sup> 其实就是 法线空间,  **I = P + P<sub>N</sub>**
+     - *Ia = Pa + P<sup>⊥</sup>a*  =>  **I = P + P<sup>⊥</sup>**
+     - S<sup>⊥</sup> 其实就是 法线空间,  **I = P + P<sub>N</sub>**
   
 Of course everything goes to the column space - the matrix cannot do anything else. I tried to make the row and column spaces the same size, with equal dimension r.
 
@@ -234,16 +234,16 @@ Relationship of inner products and angles.
 Figure 3.6 The cosine of the angle θ = β - α using inner products.
 
  - The length ‖a‖ is the hypotenuse 斜边 in the triangle OαQ. 
- 	- So the sine and cosine of a are : `sinα = a₂/‖a‖ , cosα = a₁/‖a‖` 
- 	- For the angle β , `sinα = b₂/‖b‖ , cosα = b₁/‖b‖` 
- 	- **cosθ = cos(β - α) = cosβcosα + sinβsinα = ( a₁b₁ + a₂b₂ ) / ‖a‖·‖b‖**  ,  (1)
+     - So the sine and cosine of a are : `sinα = a₂/‖a‖ , cosα = a₁/‖a‖` 
+     - For the angle β , `sinα = b₂/‖b‖ , cosα = b₁/‖b‖` 
+     - **cosθ = cos(β - α) = cosβcosα + sinβsinα = ( a₁b₁ + a₂b₂ ) / ‖a‖·‖b‖**  ,  (1)
 
 The numerator in formula (1) is exactly the inner product of a and b. It gives the relationship between aᵀb and cos θ:
 
 **3G** The cosine of the angle between any *nonzero vectors* a and b is :  
 
 ```
-	cosθ = aᵀb / ‖a‖·‖b‖  (2)
+    cosθ = aᵀb / ‖a‖·‖b‖  (2)
 ```
 
 
@@ -254,12 +254,12 @@ The numerator in formula (1) is exactly the inner product of a and b. It gives t
 
  - Now we want to find the projection point p. 
  - This point must be some multiple p = x̂a of the given vector a 
- 	- every point on the line is a multiple of a. 
+     - every point on the line is a multiple of a. 
  - The problem is to compute the coefficient `x̂`. 
  - All we need is the geometrical fact that ***the line from b to the closest point p = x̂a is perpendicular to the vector a***:
 
 ```
-	  (b - x̂a) ⊥ a ,  
+      (b - x̂a) ⊥ a ,  
   or  aᵀ(b - x̂a) = 0 ,  
   or  x̂ = (aᵀb / aᵀa)   (4)
 ```
@@ -288,7 +288,7 @@ The projection of *b* onto the line through *a* lies at p = a(aᵀb/aᵀa). That
 P is the matrix that multiplies b and produces p:
 
 ```
-	p = Pb ,  P = aaᵀ/aᵀa    (7)
+    p = Pb ,  P = aaᵀ/aᵀa    (7)
 ```
 
 That is a column times a row -a square matrix- divided by the number aᵀa .  (aaᵀ 是一个秩1矩阵)
@@ -335,14 +335,14 @@ There is a deeper significance to Aᵀ. Its close connection to inner products g
  - The inner product of Ax with y equals the inner product Of x with Aᵀy. Formally, this simply means:
 
 ```
-	(Ax)ᵀy = xᵀAᵀy = xᵀ(Aᵀy)     (8)
+    (Ax)ᵀy = xᵀAᵀy = xᵀ(Aᵀy)     (8)
 ```
 
 This definition gives us another (better) way to verify the formula (AB)ᵀ = BᵀAᵀ. Use equation (8) twice:
 
 ```
 Move A then move B: 
-	(ABx)ᵀy = (Bx)ᵀ(Aᵀy) = xᵀ(BᵀAᵀy)
+    (ABx)ᵀy = (Bx)ᵀ(Aᵀy) = xᵀ(BᵀAᵀy)
 ```
 
 The transposes turn up in reverse order on the right side, just as the inverses do in the formula (AB)⁻¹ = B⁻¹ A⁻¹. We mention again that these two formulas meet to give the remarkable combination (A⁻¹)ᵀ = (Aᵀ)⁻¹ .
@@ -355,9 +355,9 @@ The transposes turn up in reverse order on the right side, just as the inverses 
 Up to this point, Ax = b either has a solution or not. If b is not in the column space C(A), the system is inconsistent and Gaussian elimination fails. This failure is almost certain when there are several equations and only one unknown:
 
 ```
-	More equations 	2x = b₁
-	than unknowns-	3x = b₂
-	no solution?	4x = b₃
+    More equations     2x = b₁
+    than unknowns-    3x = b₂
+    no solution?    4x = b₃
 ```
 
 This is solvable when b1, b2, b3 are in the ratio 2:3:4. The solution x will exist only if b is on the same line as the column a = (2, 3, 4).
@@ -368,7 +368,7 @@ The most convenient "average" comes from the *sum of squares*:
 
 ```
 Squared error  
-	E² = (2x-b₁)² + (3x-b₂)² + (4x-b₃)² .
+    E² = (2x-b₁)² + (3x-b₂)² + (4x-b₃)² .
 ```
 
  - If there is an exact solution, the minimum error is E = 0. 
@@ -395,11 +395,11 @@ We may use geometry or calculus to determine x̂ . In n dimensions, we prefer th
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F3.8.png)
 
  1. All vectors perpendicular to the column space lie in the left nullspace. Thus the error vector e = b - Ax̂ must be in the nullspace of Aᵀ:
- 	- `Aᵀ(b-Ax̂) = 0  , or AᵀAx̂ = Aᵀb`
- 	- 在坏方程左右乘上 Aᵀ ,就是好方程。 AᵀA 是本章的核心
+     - `Aᵀ(b-Ax̂) = 0  , or AᵀAx̂ = Aᵀb`
+     - 在坏方程左右乘上 Aᵀ ,就是好方程。 AᵀA 是本章的核心
  2. The error vector must be perpendicular to each column a₁ , ... , an of A:
- 	- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_errorVector_perpend_t_column.png)
- 	- This is agin `Aᵀ(b-Ax̂) = 0  , or AᵀAx̂ = Aᵀb`.
+     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_errorVector_perpend_t_column.png)
+     - This is agin `Aᵀ(b-Ax̂) = 0  , or AᵀAx̂ = Aᵀb`.
 
 The fastest way is just to multiply the unsolvable equation Ax = b by Aᵀ. All these equivalent methods produce a square coefficient matrix AᵀA. It is symmetric (its transpose is not AAᵀ!) and it is the fundamental matrix of this chapter.
 
@@ -409,23 +409,23 @@ The equations AᵀAx̂ = Aᵀb are known in statistics as the **normal equations
 **3L**:  
 
  - When Ax b is inconsistent, its least-squares solution minimizes ‖Ax - b‖²  
- 	- **normal equations** :  `AᵀAx̂ = Aᵀb`     (1)
+     - **normal equations** :  `AᵀAx̂ = Aᵀb`     (1)
  - AᵀA is invertible exactly when the columns of A are linearly independent! Then,
- 	- **Best estimate x̂**:  `x̂ = (AᵀA)⁻¹Aᵀb`		(2)
+     - **Best estimate x̂**:  `x̂ = (AᵀA)⁻¹Aᵀb`        (2)
  - The projection of b onto the column space is the nearest point Ax̂:
- 	- **Projection**:  `p = Ax̂ = A·(AᵀA)⁻¹Aᵀb` 	(3)
- 	- `also:  p = Pb = A(AᵀA)⁻¹Aᵀ·b`
+     - **Projection**:  `p = Ax̂ = A·(AᵀA)⁻¹Aᵀb`     (3)
+     - `also:  p = Pb = A(AᵀA)⁻¹Aᵀ·b`
 
 
 Remark:
 
  1. Suppose b is actually in the column space of A. Then the projection of b is still b:
- 	- **b in column space**:  *p = A(AᵀA)⁻¹Aᵀ·Ax = Ax = b* .
- 	- The closest point p is just b itself.
+     - **b in column space**:  *p = A(AᵀA)⁻¹Aᵀ·Ax = Ax = b* .
+     - The closest point p is just b itself.
  2. At the other extreme, suppose b is perpendicular to every column, so Aᵀb = 0. In this case b projects to the zero vector
- 	- **b in left nullspace**:  *p = A(AᵀA)⁻¹Aᵀ·b = A(AᵀA)⁻¹ 0 = 0*.
+     - **b in left nullspace**:  *p = A(AᵀA)⁻¹Aᵀ·b = A(AᵀA)⁻¹ 0 = 0*.
  3. When A is square and invertible, the column space is the whole space. Every vector projects to itself, p equals b, and x = x̂:
- 	- **If A is invertible**:  *p = A(AᵀA)⁻¹Aᵀ·b = AA⁻¹(Aᵀ)⁻¹Aᵀ b = b*.
+     - **If A is invertible**:  *p = A(AᵀA)⁻¹Aᵀ·b = AA⁻¹(Aᵀ)⁻¹Aᵀ b = b*.
  4. Suppose A has only one column, containing a. Then the matrix AᵀA is the number aᵀa and x̂ is aᵀb/aᵀa. We return to the earlier formula.
 
 
@@ -460,11 +460,11 @@ We have shown that the closest point to b is p = A(AᵀA)⁻¹Aᵀb. This formul
 ```
 
  - This matrix projects any vector b onto the column space of A.  
-	- In other words, p = Pb is the component of b in the column space, 
-	- and the error e = b - Pb is the component in the orthogonal complement. 
+    - In other words, p = Pb is the component of b in the column space, 
+    - and the error e = b - Pb is the component in the orthogonal complement. 
  - I - P is also a projection matrix! 
- 	- It projects b onto the orthogonal complement, 
- 	- and the projection is b - Pb (e).
+     - It projects b onto the orthogonal complement, 
+     - and the projection is b - Pb (e).
 
 In short, we have a matrix formula for splitting any b into two perpendicular components. Pb is in the column space C(A), and the other component (I - P)b is in the left nullspace N(AT) - which is orthogonal to the column space.
 
@@ -482,16 +482,16 @@ Conversely, any symmetric matrix with P² = P represents projection.
 To prove that *P* is also symmetric, take its transpose. Multiply the transposes in reverse order, and use symmetry of (AᵀA)⁻¹, to come back to P:
 
 ```
-	Pᵀ = (Aᵀ)ᵀ((AᵀA)⁻¹)ᵀAᵀ 
-	   = A((AᵀA)ᵀ)⁻¹Aᵀ 
-	   = A(AᵀA)⁻¹Aᵀ = P.
+    Pᵀ = (Aᵀ)ᵀ((AᵀA)⁻¹)ᵀAᵀ 
+       = A((AᵀA)ᵀ)⁻¹Aᵀ 
+       = A(AᵀA)⁻¹Aᵀ = P.
 ```
 
 For the converse, we have to deduce from P² = P and Pᵀ = P that Pb ***is the projection of b onto the column space of P***. The error vector b - Pb is orthogonal to the space. For any vector Pc in the space, the inner product is zero:
 
 ```
-	// PS: (I-P)ᵀ = (I-P)
-	(b-Pb)ᵀPc = bᵀ(I-P)ᵀPc=bᵀ(P-P²)c = 0.  
+    // PS: (I-P)ᵀ = (I-P)
+    (b-Pb)ᵀPc = bᵀ(I-P)ᵀPc=bᵀ(P-P²)c = 0.  
 
 ```
 
@@ -514,10 +514,10 @@ To repeat: We cannot invert the separate parts Aᵀ and A when those matrices ar
 Suppose we do a series of experiments, and expect the output b to be a linear function of the input t. We look for a ***straight line*** b = C + Dt. 
 
 ```
-	C + Dt₁ = b₁
-	C + Dt₂ = b₂
-		...
-	C + Dtm = bm
+    C + Dt₁ = b₁
+    C + Dt₂ = b₂
+        ...
+    C + Dtm = bm
 ```
 
 This is an *overdetermined* system, with m equations and only two unknowns. If errors are present, it will have no solution. A has two columns, and x = (C, D) : 
@@ -589,7 +589,7 @@ In an orthogonal basis, every vector is perpendicular to every other vector. The
 
 ```
 qᵢᵀqⱼ = ⎰ 0 whenever i ≠ j, giving the orthogonality; 
-		⎱ 1 whenever i = j, giving the normalization.
+        ⎱ 1 whenever i = j, giving the normalization.
 ```
 
 ***A matrix with orthonormal columns will be called Q***. ( square or rectangular )
@@ -625,17 +625,17 @@ Orthonormal columns:
 ```
 
  - ***An orthogonal matrix is a square matrix with orthonormal columns.***  Then **Qᵀ is Q⁻¹** , ***the transpose is the inverse***.
- 	-  *Orthonormal matrix* would have been a better name, but it is too late to change. 
- 	- Also, there is no accepted word for a rectangular matrix with orthonormal columns. We still write Q, but we won't call it an "orthogonal matrix" unless it is square.
- 	- 只有Q是方阵的情况下，我们才称之为: 正交矩阵
- 	- orthonormal 是 QᵀQ = I, Qᵀ = Q⁻¹ 的前提之一 !
+     -  *Orthonormal matrix* would have been a better name, but it is too late to change. 
+     - Also, there is no accepted word for a rectangular matrix with orthonormal columns. We still write Q, but we won't call it an "orthogonal matrix" unless it is square.
+     - 只有Q是方阵的情况下，我们才称之为: 正交矩阵
+     - orthonormal 是 QᵀQ = I, Qᵀ = Q⁻¹ 的前提之一 !
  - Note that QᵀQ = I even if Q is rectangular. But then Qᵀ is only a left-inverse.
 
 **3R** Multiplication by any Q preserves lengths:
 
 ```
 Lengths unchanged: 
-	‖Qx‖ = ‖x‖  for ever vector x.  (2)
+    ‖Qx‖ = ‖x‖  for ever vector x.  (2)
 ```
 
  - eg. rotations and reflection matrix.
@@ -768,8 +768,8 @@ Now we propose to find a way to ***make*** them orthogonal.
 The method is simple. We are given a,b,c and we want q₁,q₂,q₃. There is no problem with q₁: it can go in the direction of a. We divide by the length , so that q₁ = a/‖a‖ is a unit vector. The real problem begins with q₂ -- which has to be orthogonal to q₁. If the second vector b has any component in the direction of q₁ (or a) , ***that component has to be subtracted***:
 
 ```
-Second Vector  	
-	B = b - (q₁ᵀb)q₁ , and q₂ = B/‖B‖.     (9)
+Second Vector      
+    B = b - (q₁ᵀb)q₁ , and q₂ = B/‖B‖.     (9)
 ```
 
 B is orthogonal to q₁. It is the part of b that goes in a new direction , and not in the direction of a.
@@ -779,7 +779,7 @@ B is orthogonal to q₁. It is the part of b that goes in a new direction , and 
 At this point q₁ and q₂ are set. The third orthogonal direction starts with c. It will not be in the plance of q₁ and q₂, which is the plane of a and b. However, it may have a component in that plane, and that has to be substracted. What is left is the component C we want, the part that is in a new direction perpendicular to the plane:
 
 ```
-Third Vector 	
+Third Vector     
 C = c -(q₁ᵀc)q₁ -(q₂ᵀc)q₂ , and q₃ = C/‖C‖.  (10)
 ```
 
@@ -816,7 +816,7 @@ C = ⎢1⎥ - √2⎢ 0  ⎥ - √2⎢  0  ⎥  = ⎢1⎥.
 ```
 
 
-**3T** The Gram-Schmidt process starts with independent vectors a₁, ... , a<sub>n</sub>	and end with orthogonal vectors q₁, ... , q<sub>n</sub>. At step j it substracts from aⱼ its components in the directions q₁, ... , qⱼ₋₁ that are already settled:
+**3T** The Gram-Schmidt process starts with independent vectors a₁, ... , a<sub>n</sub>    and end with orthogonal vectors q₁, ... , q<sub>n</sub>. At step j it substracts from aⱼ its components in the directions q₁, ... , qⱼ₋₁ that are already settled:
 
 ```
 Aⱼ = aⱼ -(q₁ᵀaⱼ)q₁ - ... -(qⱼ₋₁ᵀaⱼ)qⱼ₋₁.  (11)
@@ -860,7 +860,7 @@ If we express that in matrix form we have ***the new factorization A = QR***:
 QR factors :
 
     ⎡     ⎤   ⎡        ⎤⎡q₁ᵀa q₁ᵀb q₁ᵀc⎤
-A = ⎢a b c⎥ = ⎢q₁ q₂ q₃⎥⎢     q₂ᵀb q₂ᵀc⎥ = QR.	(12)
+A = ⎢a b c⎥ = ⎢q₁ q₂ q₃⎥⎢     q₂ᵀb q₂ᵀc⎥ = QR.    (12)
     ⎣     ⎦   ⎣        ⎦⎣          q₃ᵀc⎦
 ```
 
@@ -885,13 +885,13 @@ PS. if j>i , aⱼ is always perpendent to the previous settled qᵢ. 这点确�
 I must not forget the main point of orthogonalization. It simplifies the least-squares problem Ax = b. The normal equations are still correct, but AᵀA becomes easier:
 
 ```
-AᵀA = RᵀQᵀQR = RᵀR. 	(14)
+AᵀA = RᵀQᵀQR = RᵀR.     (14)
 ```
 
 The fundamental equation AᵀAx̂ = Aᵀb simplifies to a triangular system:
 
 ```
-RᵀRx̂ = RᵀQᵀb ,   or  Rx̂ = Qᵀb.	 (15)
+RᵀRx̂ = RᵀQᵀb ,   or  Rx̂ = Qᵀb.     (15)
 ```
 Instead of solving QRx = b, which can't be done, we solve Rx̂ = Qᵀb, which is just back-substitution because R is triangular. The real cost is the mn² operations of Gram-Schmidt, which are needed to find Q and R in the first place.
 
@@ -912,14 +912,14 @@ This is a brief and optional section, but it has a number of good intentions:
 We will try to follow this outline, which opens up a range of new-applications for linear algebra, in a systematic way.
 
  1. Hilbert space
- 	- After studying Rⁿ, it is natural to think of the space R<sup>∞</sup>. The infinite series must converge to a finite sum. This leaves (1, 1/2, 1/3, ...) but not (1, 1, 1, ...).  
- 	- Hilbert space is the natural way to let the number of dimensions become infinite, and at the same time to keep the geometry of ordinary Euclidean space. Ellipses "..." become infinite-dimensional ellipsoids, and perpendicular lines are recognized exactly as before. The vectors v and w are orthogonal when their inner product is zero: 
- 	- `vᵀw = v₁w₁ + v₂w₂ + v₃w₃ + ... = 0`.
- 	- This snm is guaranteed to converge, and for any two vectors it still obeys the Schwarz inequality `‖vᵀw‖ < ‖v‖‖w‖` . The cosine, even in Hilbert space, is never larger than 1.
- 	- There is another remarkable thing about this space: It is found under a great many different disguises. Its "vectors" can turn into functions, which is the second point.
+     - After studying Rⁿ, it is natural to think of the space R<sup>∞</sup>. The infinite series must converge to a finite sum. This leaves (1, 1/2, 1/3, ...) but not (1, 1, 1, ...).  
+     - Hilbert space is the natural way to let the number of dimensions become infinite, and at the same time to keep the geometry of ordinary Euclidean space. Ellipses "..." become infinite-dimensional ellipsoids, and perpendicular lines are recognized exactly as before. The vectors v and w are orthogonal when their inner product is zero: 
+     - `vᵀw = v₁w₁ + v₂w₂ + v₃w₃ + ... = 0`.
+     - This snm is guaranteed to converge, and for any two vectors it still obeys the Schwarz inequality `‖vᵀw‖ < ‖v‖‖w‖` . The cosine, even in Hilbert space, is never larger than 1.
+     - There is another remarkable thing about this space: It is found under a great many different disguises. Its "vectors" can turn into functions, which is the second point.
 
  2. Lengths and Inner Products.
- 	- Suppose f(x) = sin x on the interval 0 < x < 2π.
+     - Suppose f(x) = sin x on the interval 0 < x < 2π.
 
 
 

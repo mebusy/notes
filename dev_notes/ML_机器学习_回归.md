@@ -397,22 +397,22 @@ h(x)= θ₀x₀ + θ₁x₁ + θ₂√x₂  // 不会出现下降
 ```
 %======================================
 function plotData(x, y)
-	plot(x, y, 'rx', 'MarkerSize', 10); % Plot the data 
-	ylabel('Profit in $10,000s'); % Set the y−axis label 
-	xlabel('Population of City in 10,000s'); % Set the x−axis label
+    plot(x, y, 'rx', 'MarkerSize', 10); % Plot the data 
+    ylabel('Profit in $10,000s'); % Set the y−axis label 
+    xlabel('Population of City in 10,000s'); % Set the x−axis label
 end
 
 
 function J = computeCost(X, y, theta)
-	m = length(y); % number of training examples
+    m = length(y); % number of training examples
 
-	predictions = X*theta ;  % all h(x) 矩阵（向量）
-	%sqrErrors = (predictions-y).^2 ;   
-	%J= 1/(2*m) * sum( sqrErrors ) ; 
-	
-	%等价
-	cost = (predictions-y)' * (predictions-y) ;   
-	J= 1/(2*m) * cost ; 
+    predictions = X*theta ;  % all h(x) 矩阵（向量）
+    %sqrErrors = (predictions-y).^2 ;   
+    %J= 1/(2*m) * sum( sqrErrors ) ; 
+    
+    %等价
+    cost = (predictions-y)' * (predictions-y) ;   
+    J= 1/(2*m) * cost ; 
 end
 ```
 
@@ -420,24 +420,24 @@ end
 梯度下降笨算法:
 ```
 function [theta, J_history] = gradientDescent(X, y, theta, alpha, num_iters)
-	m = length(y); % number of training examples
-	J_history = zeros(num_iters, 1);
+    m = length(y); % number of training examples
+    J_history = zeros(num_iters, 1);
 
 
-	for iter = 1:num_iters
+    for iter = 1:num_iters
 
-	    t1 = 0;
-	    t2 = 0;
-	    for i= 1:m
-	        t1 = t1 + (X(i,:) * theta -y(i))*X(i,1);
-	        t2 = t2 + (X(i,:) * theta -y(i))*X(i,2);
-	    end
-	    theta(1) = theta(1) - alpha* 1/m *t1;
-	    theta(2) = theta(2) - alpha* 1/m *t2;
-	
-	    % Save the cost J in every iteration    
-	    J_history(iter) = computeCost(X, y, theta);
-	end
+        t1 = 0;
+        t2 = 0;
+        for i= 1:m
+            t1 = t1 + (X(i,:) * theta -y(i))*X(i,1);
+            t2 = t2 + (X(i,:) * theta -y(i))*X(i,2);
+        end
+        theta(1) = theta(1) - alpha* 1/m *t1;
+        theta(2) = theta(2) - alpha* 1/m *t2;
+    
+        % Save the cost J in every iteration    
+        J_history(iter) = computeCost(X, y, theta);
+    end
 
 end
 ```
@@ -446,17 +446,17 @@ end
 
 ```
 function [theta, J_history] = gradientDescent1(X, y, theta, alpha, num_iters)
-	m = length(y); % number of training examples
-	J_history = zeros(num_iters, 1);
+    m = length(y); % number of training examples
+    J_history = zeros(num_iters, 1);
 
 
-	for iter = 1:num_iters
-	    % 注意：因为 A'*B 等价于 sum(A.*B), 所以这里不再需要 sum
-	    theta = theta - alpha *1/m *( (X * theta - y )' * X  )';
-	
-	    % Save the cost J in every iteration    
-	    J_history(iter) = computeCost(X, y, theta);
-	end
+    for iter = 1:num_iters
+        % 注意：因为 A'*B 等价于 sum(A.*B), 所以这里不再需要 sum
+        theta = theta - alpha *1/m *( (X * theta - y )' * X  )';
+    
+        % Save the cost J in every iteration    
+        J_history(iter) = computeCost(X, y, theta);
+    end
 
 end
 ```
@@ -465,16 +465,16 @@ end
 
 ```
 function [theta, J_history] = gradientDescent2(X, y, theta, alpha, num_iters)
-	m = length(y); % number of training examples
-	J_history = zeros(num_iters, 1);
+    m = length(y); % number of training examples
+    J_history = zeros(num_iters, 1);
 
 
-	for iter = 1:num_iters
-	    theta = theta - alpha *1/m *sum( (X * theta - y ) .* X  )';
-	
-	    % Save the cost J in every iteration    
-	    J_history(iter) = computeCost(X, y, theta);
-	end
+    for iter = 1:num_iters
+        theta = theta - alpha *1/m *sum( (X * theta - y ) .* X  )';
+    
+        % Save the cost J in every iteration    
+        J_history(iter) = computeCost(X, y, theta);
+    end
 
 end
 ```
@@ -498,7 +498,7 @@ X = [ones(m, 1), data(:,1)]; % X 增加一列 1到左边，对应 x0
 theta = zeros(2, 1); % initialize fitting parameters
 
 % Some gradient descent settings
-iterations = 1500;	% 梯度下降迭代步数
+iterations = 1500;    % 梯度下降迭代步数
 alpha = 0.01;  % alpha 初始值
 
 computeCost(X, y, theta)  % 计算初始 J 值
@@ -532,8 +532,8 @@ J_vals = zeros(length(theta0_vals), length(theta1_vals));
 % Fill out J_vals
 for i = 1:length(theta0_vals)
     for j = 1:length(theta1_vals)
-	  t = [theta0_vals(i); theta1_vals(j)];    
-	  J_vals(i,j) = computeCost(X, y, t);
+      t = [theta0_vals(i); theta1_vals(j)];    
+      J_vals(i,j) = computeCost(X, y, t);
     end
 end
 
@@ -565,9 +565,9 @@ plot(theta(1), theta(2), 'rx', 'MarkerSize', 10, 'LineWidth', 2);
 ```
 function [X_norm, mu, sigma] = featureNormalize(X)
 
-	mu = mean( X )
-	sigma = std( X )
-	X_norm = (X_norm-mu)./sigma   % 注意，不是矩阵除法，是点除
+    mu = mean( X )
+    sigma = std( X )
+    X_norm = (X_norm-mu)./sigma   % 注意，不是矩阵除法，是点除
 
 end
 ```
