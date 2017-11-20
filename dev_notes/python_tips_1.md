@@ -682,4 +682,36 @@ with open(filename, "r+") as f:
     f.truncate()
 ```
 
+### basis of Datetime and Time
+
+```python
+import datetime as dt
+import time as tm
+
+# time returns the current time in seconds since the Epoch. (January 1st, 1970)
+tm.time()
+# 1511154150.7125366
+
+# Convert the timestamp to datetime.
+dtnow = dt.datetime.fromtimestamp(tm.time())
+dtnow
+# datetime.datetime(2017, 11, 20, 5, 3, 1, 695393)
+
+# Handy datetime attributes:
+dtnow.year, dtnow.month, dtnow.day, dtnow.hour, dtnow.minute, dtnow.second
+# (2017, 11, 20, 5, 3, 1)
+
+# timedelta is a duration expressing the difference between two dates.
+delta = dt.timedelta(days = 100) # create a timedelta of 100 days
+delta
+# datetime.timedelta(100)
+
+# date.today returns the current local date.
+today = dt.date.today()
+today - delta # the date 100 days ago
+# datetime.date(2017, 8, 12)
+today > today-delta # compare dates
+# True
+```
+
 
