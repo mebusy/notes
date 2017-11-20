@@ -516,7 +516,7 @@ private int[] id;
 // record component index
 private int count; 
 
-public SCC(DiGraph G) {
+public SCC(Digraph G) {
     marked = new boolean[G.V()];
     id = new int[G.V()];
     // +
@@ -535,7 +535,7 @@ public SCC(DiGraph G) {
     } // end for
 } // end CC
 
-private void dfs(DiGraph G, int v)
+private void dfs(Digraph G, int v)
 {
     marked[v] = true;
     // all vertices discovered in same 
