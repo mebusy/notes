@@ -2,9 +2,25 @@
 
  - [Orthogonality](#878bcbccb5d63db01d2193f2e15cae28)
      - [3.1 ORTHOGONAL VECTORS AND SUBSPACES](#70835fd4404a5ddec835801ba42ecfb0)
+         - [Orthogonal Vectors](#5ef1a2d8f6384823a45b583b55b4eb4f)
+         - [Orthogonal Subspaces](#1e3ebdd6bb6b76f4c2c83481ece42bac)
+         - [3D Fundamental Theorem of Linear Algebra, Part II](#a59d22eb966cffaaaa70554ec8025d2a)
+         - [The Matrix and the Subspaces](#5e674f75381627d3b48028a69ae47b43)
      - [3.2 COSINES PROJECTIONS ONTO LINES](#870df6062f5bb62d6f82187a8efebbe1)
+         - [Inner Products and Cosines](#71c346793ba386be5a1d98cd2c34c105)
+         - [Projection onto a Line](#20ccf5b7b420465ebecf5702c5d33297)
+         - [Projection Matrix of Rank 1](#77cc1691c5dd2037118a1d11e100cad7)
+         - [Transposes from Inner Products](#8cccc981ad8d934119049052d2aad585)
      - [3.3 PROJECTIONS LEAST SQUARES](#4a2df06c2d276ad56402eecaa894e5d5)
+         - [Least-Squares Problems with Several Variables](#b764f194bfbd3ef0f3c068388cebeea7)
+         - [The Cross-Product Matrix of AᵀA](#5757e6b48c83a9147f7bea89ff984a9c)
+         - [Projection Matrices](#3922a817bfd16012568e8709192d410c)
+         - [Least-Squares Fitting of Data](#52a7cbb3e182ed785dad8c7bc7a8e718)
      - [3.4 ORTHOGONAL BASES AND GRAM-SCHMIDT](#09bbcb83a58fddde91f52c847cd92d46)
+         - [Rectangular Matrices with Orthonormal Columns](#30de4e2d90eb5352ce69b4782264cd6b)
+         - [The Gram-Schmidt Process](#e8bd1a0d73391e5faccdebb17e16f305)
+         - [The Factorization A = QR](#9abeff81b513ce7e5c2268c074e45858)
+         - [Function Spaces and Fourier Series](#f7b94cc4db71bd4599e6e5dd3d560808)
 
 ...menuend
 
@@ -31,6 +47,8 @@ The first step is to find the ***length of a vector***.
 
  - ***The length ‖x‖ in Rⁿ is the positive square root of xᵀx***
 
+
+<h2 id="5ef1a2d8f6384823a45b583b55b4eb4f"></h2>
 
 #### Orthogonal Vectors
 
@@ -64,6 +82,8 @@ Useful fact: **If nonzero vectors v₁, ... , vk are mutually orthogonal** (ever
      - **Orthonormal vectors in R2** v₁ = ( cosθ, sinθ ) and v₂ = ( -sinθ, cosθ ).
 
 
+
+<h2 id="1e3ebdd6bb6b76f4c2c83481ece42bac"></h2>
 
 #### Orthogonal Subspaces
 
@@ -152,6 +172,8 @@ Nullspace ⊥ Row space :
  - **Dimension formula**:  dim(row space) + dim(nullspace) = number of columns.
      - r + ( n -r ) = n 
  
+<h2 id="a59d22eb966cffaaaa70554ec8025d2a"></h2>
+
 #### 3D Fundamental Theorem of Linear Algebra, Part II
 
  - The nullspace is the *orthogonal complement* of the row space in Rⁿ.
@@ -164,6 +186,8 @@ Nullspace ⊥ Row space :
 
 
 ---
+
+<h2 id="5e674f75381627d3b48028a69ae47b43"></h2>
 
 #### The Matrix and the Subspaces
 
@@ -225,6 +249,8 @@ The least-squares method selects p as the best choice to replace b.
 A formula for p is easy when the subspace is a line.   Projection onto a higher dimensional subspace is by far the most important case; it corresponds to a least-squares problem with several parameters. The formulas are even simpler when we produce an orthogonal basis for S.
 
 
+<h2 id="71c346793ba386be5a1d98cd2c34c105"></h2>
+
 #### Inner Products and Cosines
 
 Relationship of inner products and angles.
@@ -247,6 +273,8 @@ The numerator in formula (1) is exactly the inner product of a and b. It gives t
 ```
 
 
+
+<h2 id="20ccf5b7b420465ebecf5702c5d33297"></h2>
 
 #### Projection onto a Line
 
@@ -280,6 +308,8 @@ All vectors a and b satisfy the ***Schwarz inequality***, which is |cosθ| ≤ 1
 
 One final observation about `|aᵀb| ≤ ‖a‖·‖b‖` . Equality holds *if and only if* b is a multiple of a. The angle is θ = 0° or θ = 180° and the cosine is 1 or -1. In this case b is identical with its projection p, and the distance between b and the line is zero.
 
+
+<h2 id="77cc1691c5dd2037118a1d11e100cad7"></h2>
 
 #### Projection Matrix of Rank 1
 
@@ -321,6 +351,8 @@ Here c is cosθ, s is sinθ, and c2 + s2 = 1 in the denominator. This matrix P w
 ***To project b onto a, multiply by the projection matrix P:  p = Pb***
 
 ---
+
+<h2 id="8cccc981ad8d934119049052d2aad585"></h2>
 
 #### Transposes from Inner Products
 
@@ -384,6 +416,8 @@ Solving for x, the least-squares solution of this model system ax = b is denoted
 
 **3K**:  The least-squares solution to a problem ax = b  in one unknon is x̂ = aaᵀ/aᵀa .
 
+<h2 id="b764f194bfbd3ef0f3c068388cebeea7"></h2>
+
 #### Least-Squares Problems with Several Variables
 
 Now we are ready for the serious step, to ***project b onto a subspace*** . This problem arises from Ax = b when A is an m by n matrix.   The number m of observations is still larger than the number n of unknowns, so it must be expected that Ax = b will be inconsistent. *Probably, there will not exist a choice of x that perfectly fits the data b*. In other words, the vector b probably will not be a combination of the columns of A; it will be outside the column space.
@@ -429,6 +463,8 @@ Remark:
  4. Suppose A has only one column, containing a. Then the matrix AᵀA is the number aᵀa and x̂ is aᵀb/aᵀa. We return to the earlier formula.
 
 
+<h2 id="5757e6b48c83a9147f7bea89ff984a9c"></h2>
+
 #### The Cross-Product Matrix of AᵀA
 
 The matrix AᵀA is certainly symmetric. Its transpose is (AᵀA)ᵀ = AᵀAᵀᵀ, which is AᵀA again. Its i, j entry (and j, i entry) is the inner product of column i of A with column j of A. The key question is the invertibility of AᵀA, and fortunately：
@@ -450,6 +486,8 @@ The two nullspaces are identical. In particular, if A has independent columns (a
 We show later that AᵀA is also positive definite (all pivots and eigenvalues are positive). This case is by far the most common and most important. Independence is not so hard in m-dimensional space if m > n. We assume it in what follows.
 
 ---
+
+<h2 id="3922a817bfd16012568e8709192d410c"></h2>
 
 #### Projection Matrices
 
@@ -508,6 +546,8 @@ The identity matrix is symmetric, I² = I, and the error b - Ib is zero.
 To repeat: We cannot invert the separate parts Aᵀ and A when those matrices are rectangular. It is the square matrix AᵀA that is invertible , not Aᵀ and A.
 
 ---
+
+<h2 id="52a7cbb3e182ed785dad8c7bc7a8e718"></h2>
 
 #### Least-Squares Fitting of Data
 
@@ -684,6 +724,8 @@ x = Qᵀb = ⎢         ⎥⎢b⎥ = ⎢    ⎥    (5)
 
 ---
 
+<h2 id="30de4e2d90eb5352ce69b4782264cd6b"></h2>
+
 #### Rectangular Matrices with Orthonormal Columns
 
 This chapter is about Ax = b, when A is not necessarily square.
@@ -760,6 +802,8 @@ P = q₁q₁ᵀ + q₂q₂ᵀ = ⎢0 1 0⎥,  and  P⎢y⎥ = ⎢y⎥
 Orthogonal columns are so much better that it is worth changing to that case. And it leads to a factorization A = QR that is nearly as famous as A = LU.
 
 ---
+
+<h2 id="e8bd1a0d73391e5faccdebb17e16f305"></h2>
 
 #### The Gram-Schmidt Process
 
@@ -840,6 +884,8 @@ C = ⎢1⎥ - ⎢0⎥ - 2⎢  0 ⎥  = ⎢1⎥.
 
 ---
 
+<h2 id="9abeff81b513ce7e5c2268c074e45858"></h2>
+
 #### The Factorization A = QR
 
 We started with a matrix A, whose columns were a, b, c. We ended with a matrix Q, whose columns are q₁,q₂,q₃. What is the relation between those matrices? The matrices A and Q are m x n when the n vectors are in m-dimensional space, and there has to be a third matrix that connects them.
@@ -898,6 +944,8 @@ Instead of solving QRx = b, which can't be done, we solve Rx̂ = Qᵀb, which is
 The same idea of orthogonality applies to functions. The sines and cosines are orthogonal; the powers 1, x, x² are not. When f(x) is written as a combination of sines and cosines, that is a ***Fourier series***. Each term is a projection onto a line -- the line in function space containing multiples of cosnx or sinnx. It is completely parallel to the vector case, and very important. And finally we have a job for Schmidt: To orthogonalize the powers of x and produce the Legendre polynomials.
 
 ---
+
+<h2 id="f7b94cc4db71bd4599e6e5dd3d560808"></h2>
 
 #### Function Spaces and Fourier Series
 

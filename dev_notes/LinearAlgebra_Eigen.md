@@ -2,7 +2,12 @@
 
  - [Elgenvalues and Elgenvectors](#8358d3063f9f8db669067bc62cf5ea5e)
      - [5.1 INTRODUCTION](#103445c268b50fae9bd814331a04faa4)
+         - [The Solutions of Ax = λx](#0f40f2bb723a56c249c537e19bcb50be)
+         - [Summary and Examples](#4a02cbc2e5675aec36acf46112aff90f)
+         - [Eigshow](#61bdaeeae3a64dec6a9964c59d00d884)
      - [5.2 DIAGONALIZATION OF A MATRIX](#a208ce5ccf9b8c57cd42ced0c19eca2e)
+         - [Examples of Diagoinalization](#d0162a0c38d3c80dbec8780a18ba2398)
+         - [Powers and Products: Aᵏ and AB](#eab177e5ee96fafdc79e679017e018a2)
      - [5.3 DIFFERENCE EQUATIONS AND POWERS Aᵏ](#b7b97b347a818a45c3aa318285ba99b7)
          - [Fibonacci Numbers](#fdd5b4c8c15384ed3cceda4fe4cc38d6)
          - [Markov Matrices](#bdfe38b6c05d238d6cb0df431aea8cb7)
@@ -109,6 +114,8 @@ Now we have the fundamental equation of this chapter. It involves two unknowns �
 Our goal is to find the eigenvalues and eigenvectors, λ's and x's, and to use them.
 
 ---
+
+<h2 id="0f40f2bb723a56c249c537e19bcb50be"></h2>
 
 #### The Solutions of Ax = λx
 
@@ -237,6 +244,8 @@ The key was in the eigenvalues λ and eigenvectors x. Eigenvalues are important 
 Probably the homeliest example is that of soldiers going over a bridge.  Traditionally, they stop marching and just walk across. If they happen to march at a frequency equal to one of the eigenvalues of the bridge, it would begin to oscillate. (Just as a child's swing does; you soon notice the natural frequency of a swing, and by matching it you make the swing go higher.) An engineer tries to keep the natural frequencies of his bridge or rocket away from those of the wind or the sloshing of fuel. And at the other extreme, a stockbroker spends his life trying to get in line with the natural frequencies of the market. The eigenvalues are the most important feature of practically any dynamical system.
 
 
+<h2 id="4a02cbc2e5675aec36acf46112aff90f"></h2>
+
 #### Summary and Examples
 
 To summarize, this introduction has shown how λ and x appear naturally and automatically when solving du/dt = Au. Such an equation has pure exponential solutions u = e<sup>λ</sup>ᵗx ; the eigenvalue gives the rate of growth or decay, and the eigenvector x develops at this rate. The other solutions will be mixtures of these pure solutions, and the mixture is adjusted to fit the initial conditions.
@@ -324,6 +333,8 @@ det(A-λI) = det |a-λ   b | = λ² - (trace)λ + determinat
 
  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigenvalue_formular_for_2x2.png)
 
+
+<h2 id="61bdaeeae3a64dec6a9964c59d00d884"></h2>
 
 #### Eigshow
 
@@ -474,6 +485,8 @@ This same argument extends to any number of eigenvectors. Therefore eigenvectors
 
 A matrix with n distinct eigenvalues can be diagonalized. This is the typical case.
 
+<h2 id="d0162a0c38d3c80dbec8780a18ba2398"></h2>
+
 #### Examples of Diagoinalization
 
 The main point of this section is S⁻¹AS = Λ. The egenvector matrix S converts A into its eigenvalue matrix Λ (diagonal). We see this for projections and rotations.
@@ -514,6 +527,8 @@ S = ⎡ 1 1⎤  and   S⁻¹KS = ⎡i  0⎤.
 ```
 
 We are faced with an inescapable fact, that ***complex numbers are needed even for real matrices***. If there are too few real eigenvalues, there are always n complex eigenvalues. (Complex includes real, when the imaginary part is zero.) If there are too few eigenvectors in the real world R³, or in Rⁿ, we look in C³ or Cⁿ. The space Cⁿ contains all column vectors with complex components, and it has new definitions of length and inner product and orthogonality. But it is not more difficult than Rⁿ , and in Section 5.5 we make an easy conversion to the complex case.
+
+<h2 id="eab177e5ee96fafdc79e679017e018a2"></h2>
 
 #### Powers and Products: Aᵏ and AB
 
