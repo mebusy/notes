@@ -1,7 +1,23 @@
+...menustart
+
+ - [Pandas](#251d2bbfe9a3b95e5691ceb30dc6784a)
+ - [Basic Data Processing with Pandas](#2beb23af04774d7f04142fdc60c1e388)
+     - [The Series Data Structure](#b2d7146a323c3e1734532ceb0f3b8b85)
+     - [Querying a Series](#8397ade4c8ed93da5a52c39691b7879e)
+     - [The DataFrame Data Structure](#831bfe24989afb7977d21427c1cfa747)
+
+...menuend
+
+
+<h2 id="251d2bbfe9a3b95e5691ceb30dc6784a"></h2>
 
 # Pandas 
 
+<h2 id="2beb23af04774d7f04142fdc60c1e388"></h2>
+
 # Basic Data Processing with Pandas
+
+<h2 id="b2d7146a323c3e1734532ceb0f3b8b85"></h2>
 
 ## The Series Data Structure
 
@@ -111,6 +127,8 @@ Sumo         Japan
 Hockey         NaN   # missing value
 dtype: object
 ```
+
+<h2 id="8397ade4c8ed93da5a52c39691b7879e"></h2>
 
 ## Querying a Series
 
@@ -275,6 +293,8 @@ dtype: object
     - So watch out for it, not just with append but with other Pandas functions as well.  
 
 ---
+
+<h2 id="831bfe24989afb7977d21427c1cfa747"></h2>
 
 ## The DataFrame Data Structure
 

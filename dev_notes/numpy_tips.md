@@ -15,7 +15,7 @@
 
 <h2 id="c2bfb8f194cb52abbd9cc9397dafc5d4"></h2>
 
-#numpy tips
+# numpy tips
 
  - Use the shape method to find the dimensions of the array. (rows, columns)
     - `m.shape   # (2, 3) `
