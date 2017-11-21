@@ -55,11 +55,16 @@
  a | b | c | d
 --- | --- | --- | ---
 [Advanced Data Structure](https://github.com/mebusy/notes/blob/master/dev_notes/python_highlevel_datastructure.md) |  [lib for Functional](https://github.com/mebusy/notes/blob/master/dev_notes/python_functional_programming.md) | [OOP](https://github.com/mebusy/notes/blob/master/dev_notes/python_oop.md)  |  [tips](https://github.com/mebusy/notes/blob/master/dev_notes/python_tips_1.md) | 
-[BeautifulSoup](https://github.com/mebusy/notes/blob/master/dev_notes/PY_BeautifulSoup.md)  | [python多线程](https://github.com/mebusy/notes/blob/master/dev_notes/PY_multiprocessing.md) | [PIL_Tips](https://github.com/mebusy/notes/blob/master/dev_notes/PIL_tips.md) | [numpy tips](https://github.com/mebusy/notes/blob/master/dev_notes/numpy_tips.md) 
+[BeautifulSoup](https://github.com/mebusy/notes/blob/master/dev_notes/PY_BeautifulSoup.md)  | [python多线程](https://github.com/mebusy/notes/blob/master/dev_notes/PY_multiprocessing.md) | [PIL_Tips](https://github.com/mebusy/notes/blob/master/dev_notes/PIL_tips.md) | 
 [uwsgi](https://github.com/mebusy/notes/blob/master/dev_notes/python_uwsgi.md) | [high performance python](https://github.com/mebusy/notes/blob/master/dev_notes/highPerformancePython.md) | [python3 features](https://github.com/mebusy/notes/blob/master/dev_notes/python3.md) |  
 [scrapy-splash](https://github.com/mebusy/notes/blob/master/dev_notes/scrapy.md) |  [xpath](https://github.com/mebusy/notes/blob/master/dev_notes/xpath.md) |
 [swig](https://github.com/mebusy/notes/blob/master/dev_notes/Interfacing_C_Python_withSWIG.md) | [swig_python](https://github.com/mebusy/notes/blob/master/dev_notes/swig_python.md) | 
 
+
+#### Data Science
+ a | b | c | d
+--- | --- | --- | ---
+[Numpy](https://github.com/mebusy/notes/blob/master/dev_notes/numpy_tips.md) | [Pandas](https://github.com/mebusy/notes/blob/master/dev_notes/Pandas.md) 
 
 <h2 id="818056dbd7e201243206b9c7cd88481c"></h2>
 
