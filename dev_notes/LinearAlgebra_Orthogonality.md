@@ -32,7 +32,7 @@ The first step is to find the ***length of a vector***.
  - ***The length ‖x‖ in Rⁿ is the positive square root of xᵀx***
 
 
-**Orthogonal Vectors**
+#### Orthogonal Vectors
 
 ```bash
 Orthogonal vectors    xᵀy = 0 
@@ -65,7 +65,7 @@ Useful fact: **If nonzero vectors v₁, ... , vk are mutually orthogonal** (ever
 
 
 
-**Orthogonal Subspaces**
+#### Orthogonal Subspaces
 
 **Every vector** *in one subspace must be orthogonal to* **every vector** *in the other subspace*.
 
@@ -152,7 +152,7 @@ Nullspace ⊥ Row space :
  - **Dimension formula**:  dim(row space) + dim(nullspace) = number of columns.
      - r + ( n -r ) = n 
  
-**3D Fundamental Theorem of Linear Algebra, Part II**
+#### 3D Fundamental Theorem of Linear Algebra, Part II
 
  - The nullspace is the *orthogonal complement* of the row space in Rⁿ.
  - The left nullspace is the *orthogonal complement* of the column space in Rᵐ.
@@ -165,7 +165,7 @@ Nullspace ⊥ Row space :
 
 ---
 
-**The Matrix and the Subspaces**
+#### The Matrix and the Subspaces
 
  - Splitting Rⁿ into orthogonal parts V and W , will split every vector into x = v + w. 
  - The vector v is the projection onto the subspace V. 
@@ -225,7 +225,7 @@ The least-squares method selects p as the best choice to replace b.
 A formula for p is easy when the subspace is a line.   Projection onto a higher dimensional subspace is by far the most important case; it corresponds to a least-squares problem with several parameters. The formulas are even simpler when we produce an orthogonal basis for S.
 
 
-**Inner Products and Cosines**
+#### Inner Products and Cosines
 
 Relationship of inner products and angles.
 
@@ -248,7 +248,7 @@ The numerator in formula (1) is exactly the inner product of a and b. It gives t
 
 
 
-**Projection onto a Line**
+#### Projection onto a Line
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_projection_onto_line2.png)
 
@@ -281,7 +281,7 @@ All vectors a and b satisfy the ***Schwarz inequality***, which is |cosθ| ≤ 1
 One final observation about `|aᵀb| ≤ ‖a‖·‖b‖` . Equality holds *if and only if* b is a multiple of a. The angle is θ = 0° or θ = 180° and the cosine is 1 or -1. In this case b is identical with its projection p, and the distance between b and the line is zero.
 
 
-**Projection Matrix of Rank 1**
+#### Projection Matrix of Rank 1
 
 The projection of *b* onto the line through *a* lies at p = a(aᵀb/aᵀa). That is our formula p = x̂a, but the vector *a* is put before the number x̂ = aᵀb/aᵀa. Projection onto a line is carried out by a ***projection matrix P***, and written in this new order we can see what it is. 
 
@@ -322,7 +322,7 @@ Here c is cosθ, s is sinθ, and c2 + s2 = 1 in the denominator. This matrix P w
 
 ---
 
-**Transposes from Inner Products**
+#### Transposes from Inner Products
 
 Finally we connect inner products to Aᵀ. Up to now, Aᵀ is simply the reflection of A across its main diagonal; the rows of A become the columns of Aᵀ, and vice versa. The entry in row i, column j of Aᵀ is the (j, i) entry of A:
 
@@ -384,7 +384,7 @@ Solving for x, the least-squares solution of this model system ax = b is denoted
 
 **3K**:  The least-squares solution to a problem ax = b  in one unknon is x̂ = aaᵀ/aᵀa .
 
-**Least-Squares Problems with Several Variables**
+#### Least-Squares Problems with Several Variables
 
 Now we are ready for the serious step, to ***project b onto a subspace*** . This problem arises from Ax = b when A is an m by n matrix.   The number m of observations is still larger than the number n of unknowns, so it must be expected that Ax = b will be inconsistent. *Probably, there will not exist a choice of x that perfectly fits the data b*. In other words, the vector b probably will not be a combination of the columns of A; it will be outside the column space.
 
@@ -429,7 +429,7 @@ Remark:
  4. Suppose A has only one column, containing a. Then the matrix AᵀA is the number aᵀa and x̂ is aᵀb/aᵀa. We return to the earlier formula.
 
 
-**The Cross-Product Matrix of AᵀA**
+#### The Cross-Product Matrix of AᵀA
 
 The matrix AᵀA is certainly symmetric. Its transpose is (AᵀA)ᵀ = AᵀAᵀᵀ, which is AᵀA again. Its i, j entry (and j, i entry) is the inner product of column i of A with column j of A. The key question is the invertibility of AᵀA, and fortunately：
 
@@ -451,7 +451,7 @@ We show later that AᵀA is also positive definite (all pivots and eigenvalues a
 
 ---
 
-**Projection Matrices**
+#### Projection Matrices
 
 We have shown that the closest point to b is p = A(AᵀA)⁻¹Aᵀb. This formula expresses in matrix terms the construction of a perpendicular line from b to the column space of A. The matrix that gives p is a projection matrix, denoted by P:
 
@@ -509,7 +509,7 @@ To repeat: We cannot invert the separate parts Aᵀ and A when those matrices ar
 
 ---
 
-**Least-Squares Fitting of Data**
+#### Least-Squares Fitting of Data
 
 Suppose we do a series of experiments, and expect the output b to be a linear function of the input t. We look for a ***straight line*** b = C + Dt. 
 
@@ -684,7 +684,7 @@ x = Qᵀb = ⎢         ⎥⎢b⎥ = ⎢    ⎥    (5)
 
 ---
 
-**Rectangular Matrices with Orthonormal Columns**
+#### Rectangular Matrices with Orthonormal Columns
 
 This chapter is about Ax = b, when A is not necessarily square.
 
@@ -761,7 +761,7 @@ Orthogonal columns are so much better that it is worth changing to that case. An
 
 ---
 
-**The Gram-Schmidt Process**
+#### The Gram-Schmidt Process
 
 Now we propose to find a way to ***make*** them orthogonal.
 
@@ -840,7 +840,7 @@ C = ⎢1⎥ - ⎢0⎥ - 2⎢  0 ⎥  = ⎢1⎥.
 
 ---
 
-**The Factorization A = QR**
+#### The Factorization A = QR
 
 We started with a matrix A, whose columns were a, b, c. We ended with a matrix Q, whose columns are q₁,q₂,q₃. What is the relation between those matrices? The matrices A and Q are m x n when the n vectors are in m-dimensional space, and there has to be a third matrix that connects them.
 
@@ -899,7 +899,7 @@ The same idea of orthogonality applies to functions. The sines and cosines are o
 
 ---
 
-**Function Spaces and Fourier Series**
+#### Function Spaces and Fourier Series
 
 This is a brief and optional section, but it has a number of good intentions:
 

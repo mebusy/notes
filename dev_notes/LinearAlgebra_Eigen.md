@@ -110,7 +110,7 @@ Our goal is to find the eigenvalues and eigenvectors, λ's and x's, and to use t
 
 ---
 
-**The Solutions of Ax = λx**
+#### The Solutions of Ax = λx
 
 Notice that Ax = λx is a nonlinear equation; λ multiplies x. If we could discover λ., then the equation for x would be linear. In fact we could write λIx in place of λx, and bring this term over to the left side:
 
@@ -237,7 +237,7 @@ The key was in the eigenvalues λ and eigenvectors x. Eigenvalues are important 
 Probably the homeliest example is that of soldiers going over a bridge.  Traditionally, they stop marching and just walk across. If they happen to march at a frequency equal to one of the eigenvalues of the bridge, it would begin to oscillate. (Just as a child's swing does; you soon notice the natural frequency of a swing, and by matching it you make the swing go higher.) An engineer tries to keep the natural frequencies of his bridge or rocket away from those of the wind or the sloshing of fuel. And at the other extreme, a stockbroker spends his life trying to get in line with the natural frequencies of the market. The eigenvalues are the most important feature of practically any dynamical system.
 
 
-**Summary and Examples**
+#### Summary and Examples
 
 To summarize, this introduction has shown how λ and x appear naturally and automatically when solving du/dt = Au. Such an equation has pure exponential solutions u = e<sup>λ</sup>ᵗx ; the eigenvalue gives the rate of growth or decay, and the eigenvector x develops at this rate. The other solutions will be mixtures of these pure solutions, and the mixture is adjusted to fit the initial conditions.
 
@@ -325,7 +325,7 @@ det(A-λI) = det |a-λ   b | = λ² - (trace)λ + determinat
  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigenvalue_formular_for_2x2.png)
 
 
-**Eigshow**
+#### Eigshow
 
 There is a MATLAB demo (just type eigshow), displaying the eigenvalue problem for a 2 by 2 matrix. 
 
@@ -474,7 +474,7 @@ This same argument extends to any number of eigenvectors. Therefore eigenvectors
 
 A matrix with n distinct eigenvalues can be diagonalized. This is the typical case.
 
-**Examples of Diagoinalization**
+#### Examples of Diagoinalization
 
 The main point of this section is S⁻¹AS = Λ. The egenvector matrix S converts A into its eigenvalue matrix Λ (diagonal). We see this for projections and rotations.
 
@@ -515,7 +515,7 @@ S = ⎡ 1 1⎤  and   S⁻¹KS = ⎡i  0⎤.
 
 We are faced with an inescapable fact, that ***complex numbers are needed even for real matrices***. If there are too few real eigenvalues, there are always n complex eigenvalues. (Complex includes real, when the imaginary part is zero.) If there are too few eigenvectors in the real world R³, or in Rⁿ, we look in C³ or Cⁿ. The space Cⁿ contains all column vectors with complex components, and it has new definitions of length and inner product and orthogonality. But it is not more difficult than Rⁿ , and in Section 5.5 we make an easy conversion to the complex case.
 
-**Powers and Products: Aᵏ and AB**
+#### Powers and Products: Aᵏ and AB
 
 There is one more situation in which the calculations are easy. ***The eigenvalues of A² are exactly λ₁², ... , λn² , and every eigenvector of A is also an eigenvector of A²***. We start from Ax = λx, and multiply again by A:
 
