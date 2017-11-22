@@ -693,7 +693,7 @@ We come now to the calculation that uses the special property Qᵀ is Q⁻¹. If
 
 &nbsp;&nbsp; ***Write b as a combination b = x₁q₁ + x₂q₂ + ... + x<sub>n</sub>q<sub>n</sub>***
 
-To compute x₁ there is a neat trick. *Multiply both sides of the equation by q₁ᵀ*.  We are left with q₁ᵀb = x₁q₁ᵀq₁. Since q₁ᵀq₁ = 1, we have found x₁ = q₁b. 
+To compute x₁ there is a neat trick. *Multiply both sides of the equation by q₁ᵀ*.  We are left with q₁ᵀb = x₁q₁ᵀq₁. Since q₁ᵀq₁ = 1, we have found x₁ = q₁ᵀb. 
 
 Each piece of b has a simple formula, and recombining the pieces gives back b:
 
