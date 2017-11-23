@@ -104,6 +104,12 @@ Easiest algorithm, we can come up with.
     - In general, in algorithm design this is proven to be affective in all kinds of domains. 
     - Trying to come up with a general algorithm that you can prove works efficiently and then using that to help design 
 
+---
+
+## Kruskal's algorithm
+
+ - Consider edges in ascending order of weight.
+    - Add next edge to tree *T* unless doing so would create a cycle
 
 
 
