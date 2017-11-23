@@ -240,9 +240,12 @@ connected | E | log\*V
  - Lazy solution. Maintain a PQ of **edges** with (at least) one endpoint in *T*.
     - Key = edge; priority = weight of edge.
     - Delete-min to determine next edge `e = v–w` to add to *T*.
+    - Disregard if both endpoints *v* and *w* are marked (both in *T*).
     - Otherwise, let *w* be the unmarked vertex (not in *T* ):
         - add to PQ any edge incident to *w* (assuming other endpoint not in *T*)
         - add *e* to *T* and mark *w*
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim_lazy_impplementpng.png)
 
 
 
