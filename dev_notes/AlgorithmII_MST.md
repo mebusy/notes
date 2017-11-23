@@ -108,8 +108,29 @@ Easiest algorithm, we can come up with.
 
 ## Kruskal's algorithm
 
+### Kruskal's algorithm
+
+
  - Consider edges in ascending order of weight.
     - Add next edge to tree *T* unless doing so would create a cycle
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_Kruskal.png)
+
+### Kruskal's algorithm: correctness proof
+
+ - Proposition. *[Kruskal 1956]* Kruskal's algorithm computes the MST.
+ - Proof
+    - Kruskal's algorithm is a special case of the greedy MST algorithm
+    - Suppose Kruskal's algorithm colors the edge `e = v–w` black.
+    - Cut = set of vertices connected to *v* in tree *T*.
+        - we'll define a cut. That is the set of vertices that are connected to v. 
+        - So it might be just a v, but if theres any black edges connecting v to other vertices we put all of those in the cut. 
+    - No crossing edge is black.
+        - So for that cut there's no black crossing edge. Cuz it's a component. 
+    - No crossing edge has lower weight. Why?
+        - And the other thing is that there's no crossing edge with lower weight than `v-w`.
+            - because we are considering the edges in increasing order of their weight. 
+
 
 
 

@@ -476,6 +476,7 @@ public class DepthFirstOrder {
  - Def. A **strong component** is a maximal subset of strongly-connected vertices.
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_graph_strong_component.png)
  - 强连通图必然有环
+    - so if a graph has no directed cycle, the number of SCC must equal to the number of vertices
  - Strong component application: software modules
     - Vertex = software module.
     - Edge: from module to dependency.
