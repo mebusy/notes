@@ -247,6 +247,9 @@ connected | E | log\*V
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim_lazy_impplementpng.png)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim_lazy_1.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim_lazy_2.png)
 
 
 
