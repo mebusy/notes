@@ -131,6 +131,24 @@ Easiest algorithm, we can come up with.
         - And the other thing is that there's no crossing edge with lower weight than `v-w`.
             - because we are considering the edges in increasing order of their weight. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_Kruskal_proof.png)
+
+
+### Kruskal's algorithm: implementation challenge
+
+ - Challenge. Would adding edge `v–w` to tree *T* create a cycle? If not, add it.
+ - How difficult?
+    - E + V
+    - V 
+        - run DFS from v, check if w is reachable 
+        - if v,w is reachable, adding edge `v-w` definitely will create a cycle.
+    - logV
+    - log\*V 
+        - use the union-find data structure !
+    - 1
+
+
+
 
 
 
