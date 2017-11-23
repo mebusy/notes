@@ -148,8 +148,64 @@ Easiest algorithm, we can come up with.
     - 1
 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_Kruskal_challenge.png)
 
 
+ - Efficient solution. Use the *union-find* data structure.
+ 
+```java
+public class KruskalMST {
+    private Queue<Edge> mst = new Queue<Edge>();
+    public KruskalMST(EdgeWeightedGraph G) {
+        // build priority queue
+        MinPQ<Edge> pq = new MinPQ<Edge>();
+        for (Edge e : G.edges())
+            pq.insert(e);
+
+        UF uf = new UF(G.V());
+        while (!pq.isEmpty() && mst.size() < G.V()-1) {
+            // greedily add edges to MST
+            Edge e = pq.delMin();
+            int v = e.either(), w = e.other(v);
+            // edge v–w does not create cycle
+            if (!uf.connected(v, w)) {
+                // merge sets
+                uf.union(v, w);
+                // add edge to MST
+                mst.enqueue(e);
+            }
+        } 
+    }
+    public Iterable<Edge> edges() {  
+        return mst;  
+    }
+}
+```
+
+### Kruskal's algorithm: running time
+
+ - Proposition. Kruskal's algorithm computes MST in time proportional to *ElogE* (in the worst case).
+ - Proof
+
+operation | frequency | time per op
+--- | --- | ---
+build pq | 1 | ElogE
+delete-min | E | logE
+union | V | log\*V 
+connected | E | log\*V 
+
+ - Remark. If edges are already sorted, order of growth is Elog\*V.
+    - recall: log\*V ≤ 5 in this universe
+
+---
+
+## Prim's algorithm
+
+### Prim's algorithm
+
+ - Start with vertex 0 and greedily grow tree *T*.
+ - Add to *T* the min weight edge with exactly one endpoint in *T*
+ - Repeat until V-1 edges
 
 
 
