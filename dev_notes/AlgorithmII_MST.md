@@ -226,6 +226,23 @@ connected | E | log\*V
     - No crossing edge is black.
     - No crossing edge has lower weight.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim_proof.png)
+
+### Prim's algorithm: implementation challenge
+
+ - Challenge. Find the min weight edge with exactly one endpoint in *T*.
+ - How difficult?
+    - E  :  try all edges
+    - V 
+    - logE : use a priority queue!
+    - log\*E
+    - 1
+ - Lazy solution. Maintain a PQ of **edges** with (at least) one endpoint in *T*.
+    - Key = edge; priority = weight of edge.
+    - Delete-min to determine next edge `e = v–w` to add to *T*.
+    - Otherwise, let *w* be the unmarked vertex (not in *T* ):
+        - add to PQ any edge incident to *w* (assuming other endpoint not in *T*)
+        - add *e* to *T* and mark *w*
 
 
 
