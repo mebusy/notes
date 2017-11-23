@@ -205,7 +205,29 @@ connected | E | log\*V
 
  - Start with vertex 0 and greedily grow tree *T*.
  - Add to *T* the min weight edge with exactly one endpoint in *T*
+    - grow the tree one edge at a time, and always keeping it connected. 
  - Repeat until V-1 edges
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim.png)
+
+ - start from vertex 0, the minimum weight edge connect to 0 is 0-7 , so we add it, now we have a MST , it have only 2 vertices 0,7
+ - now we have 7 edges connect to our MST, we add the minimum one : 1-7
+ - repeat ...
+ - finally MST edges: 
+    - 0-7  1-7  0-2  2-3  5-7  4-5  6-2
+
+### Prim's algorithm: proof of correctness
+
+ - Proposition. [Jarník 1930, Dijkstra 1957, Prim 1959] Prim's algorithm computes the MST.
+ - Proof
+    - Prim's algorithm is a special case of the greedy MST algorithm.
+    - Suppose edge *e* = min weight edge connecting a vertex on the tree to a vertex not on the tree.
+    - Cut = set of vertices connected on tree
+    - No crossing edge is black.
+    - No crossing edge has lower weight.
+
+
+
 
 
 
