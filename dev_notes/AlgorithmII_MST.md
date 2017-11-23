@@ -251,7 +251,66 @@ connected | E | log\*V
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim_lazy_2.png)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim_lazy_3.png)
 
+ - edge becomes obsolete ( 2-7, 1-2 ) , lazy implementation leaves on PQ.
+
+```java
+public class LazyPrimMST {
+    private boolean[] marked; // MST vertices
+    private Queue<Edge> mst;  // MST edges
+    private MinPQ<Edge> pq;  // PQ of edges
+    
+    public LazyPrimMST(WeightedGraph G) {
+        pq = new MinPQ<Edge>();
+        mst = new Queue<Edge>();
+        marked = new boolean[G.V()];
+        // assume G is connected
+        visit(G, 0);
+        while (!pq.isEmpty() && mst.size() < G.V() - 1)
+        {
+            // repeatedly delete the min weight edge e = v–w from PQ
+            Edge e = pq.delMin();
+            int v = e.either(), w = e.other(v);
+            // ignore if both endpoints in T
+            if (marked[v] && marked[w]) continue;
+            // add edge e to tree
+            mst.enqueue(e);
+            // add v or w to tree
+            if (!marked[v]) visit(G, v);
+            if (!marked[w]) visit(G, w);
+        }
+    }
+
+    private void visit(WeightedGraph G, int v) {
+        marked[v] = true;  // add v to T
+        for (Edge e : G.adj(v))
+            if (!marked[e.other(v)]) {
+                // for each edge e = v–w, 
+                // add to PQ if w not already in T
+                pq.insert(e);
+            }
+    }
+
+    public Iterable<Edge> mst() {  
+        return mst;  
+    }
+}
+```
+
+### Lazy Prim's algorithm: running time
+
+ - Proposition. Lazy Prim's algorithm computes the MST in time proportional to `ElogE` and extra space proportional to *E* (in the worst case).
+ - Proof
+
+operation | frequency | binary heap
+--- | --- | --- 
+delete min | E | logE
+insert | E | logE
+
+---
+
+### Prim's algorithm: eager implementation
 
 
 
