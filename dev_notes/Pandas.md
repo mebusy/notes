@@ -443,18 +443,203 @@ Store 2     5.0     Bird Seed       Vinod   None
 
 ---
 
+## Dataframe Indexing and Loading
+
+ - The common work flow is to read your data into a DataFrame then reduce this DataFrame to the particular columns or rows that you're interested in working with.
+ - Panda's toolkit tries to give you views on a DataFrame.
+ - so you have to be aware that any changes to the DataFrame you're working on may have an impact on the base data frame you used originally. 
+    - If you want to explicitly use a copy, then you should consider calling the copy method on the DataFrame for it first. 
+
+---
+
+ - like vim, Jupyter notebook can use `!` to run OS shell command.
+ - pandas support file format lick csv, excel, html , ... and so on
+
+```python
+// read csv
+df = pd.read_csv('olympics.csv')
+df.head()
+
+    1   2   3   4   5   6   7   8   9   10  11  12  13  14  15
+0   NaN № Summer    01 !    02 !    03 !    Total   № Winter    01 !    02 !    03 !    Total   № Games 01 !    02 !    03 !    Combined total
+1   Afghanistan (AFG)   13  0   0   2   2   0   0   0   0   0   13  0   0   2   2
+2   Algeria (ALG)   12  5   2   8   15  3   0   0   0   0   15  5   2   8   15
+3   Argentina (ARG) 23  18  24  28  70  18  0   0   0   0   41  18  24  28  70
+4   Armenia (ARM)   5   1   2   9   12  6   0   0   0   0   11  1   2   9   12
+```
+
+ - Read csv has a number of parameters that we can use to indicate to Pandas how rows and columns should be labeled. 
+    - let column 0 be index 
+    - and skip the first one row
+ - but change column index may lead to duplicated column name 
+    - Panda will add  .1 and .2 to make things more unique. 
+
+```python
+df = pd.read_csv('olympics.csv', index_col = 0, skiprows=1)
+df.head()
+
+    № Summer    01 !    02 !    03 !    Total   № Winter    01 !.1  02 !.1  03 !.1  Total.1 № Games 01 !.2  02 !.2  03 !.2  Combined total
+Afghanistan (AFG)   13  0   0   2   2   0   0   0   0   0   13  0   0   2   2
+Algeria (ALG)   12  5   2   8   15  3   0   0   0   0   15  5   2   8   15
+Argentina (ARG) 23  18  24  28  70  18  0   0   0   0   41  18  24  28  70
+Armenia (ARM)   5   1   2   9   12  6   0   0   0   0   11  1   2   9   12
+Australasia (ANZ) [ANZ] 2   3   4   5   12  0   0   0   0   0   2   3   4   5   12
+```
+
+ - But this labeling isn't really as clear as it could be, so we should clean up the data file.
+    - Panda stores a list of all of the columns in the .columns attribute.
+    - columns attribute. We can change the values of the column names by iterating over this list and calling the rename method of the data frame. 
+
+
+```python
+df.columns
+Index(['№ Summer', '01 !', '02 !', '03 !', 'Total', '№ Winter', '01 !.1',
+       '02 !.1', '03 !.1', 'Total.1', '№ Games', '01 !.2', '02 !.2', '03 !.2',
+       'Combined total'],
+      dtype='object')
+
+for col in df.columns:
+    if col[:2]=='01':
+        df.rename(columns={col:'Gold' + col[4:]}, inplace=True)
+    if col[:2]=='02':
+        df.rename(columns={col:'Silver' + col[4:]}, inplace=True)
+    if col[:2]=='03':
+        df.rename(columns={col:'Bronze' + col[4:]}, inplace=True)
+    if col[:1]=='№':
+        df.rename(columns={col:'#' + col[1:]}, inplace=True)
+
+df.head()
+
+
+# Summer    Gold    Silver  Bronze  Total   # Winter    Gold.1  Silver.1    Bronze.1    Total.1 # Games Gold.2  Silver.2    Bronze.2    Combined total
+Afghanistan (AFG)   13  0   0   2   2   0   0   0   0   0   13  0   0   2   2
+Algeria (ALG)   12  5   2   8   15  3   0   0   0   0   15  5   2   8   15
+Argentina (ARG) 23  18  24  28  70  18  0   0   0   0   41  18  24  28  70
+Armenia (ARM)   5   1   2   9   12  6   0   0   0   0   11  1   2   9   12
+Australasia (ANZ) [ANZ] 2   3   4   5   12  0   0   0   0   0   2   3   4   5   12
+```
+
+## Querying a DataFrame
+
+### Boolean masking
+
+ - Boolean masking is the heart of fast and efficient querying in NumPy. 
+ - A Boolean mask is an array which can be of one dimension like a series, or two dimensions like a data frame, where each of the values in the array are either true or false. 
+ - This array is essentially overlaid on top of the data structure that we're querying. 
+    - And any cell aligned with the true value will be admitted into our final result, 
+    - and any sign aligned with a false value will not. 
+
+```python
+// first step, create a boolean mask
+df['Gold'] > 0
+Afghanistan (AFG)                               False
+Algeria (ALG)                                    True
+Argentina (ARG)                                  True
+Armenia (ARM)                                    True
+Australasia (ANZ) [ANZ]                          True
+Australia (AUS) [AUS] [Z]                        True
+Austria (AUT)                                    True
+Azerbaijan (AZE)                                 True
+...
+
+// then , use `where` function to apply boolean mask to dataframe
+only_gold = df.where(df['Gold'] > 0)
+only_gold.head()
+
+# Summer    Gold    Silver  Bronze  Total   # Winter    Gold.1  Silver.1    Bronze.1    Total.1 # Games Gold.2  Silver.2    Bronze.2    Combined total
+Afghanistan (AFG)   NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN
+Algeria (ALG)   12.0    5.0 2.0 8.0 15.0    3.0 0.0 0.0 0.0 0.0 15.0    5.0 2.0 8.0 15.0
+Argentina (ARG) 23.0    18.0    24.0    28.0    70.0    18.0    0.0 0.0 0.0 0.0 41.0    18.0    24.0    28.0    70.0
+Armenia (ARM)   5.0 1.0 2.0 9.0 12.0    6.0 0.0 0.0 0.0 0.0 11.0    1.0 2.0 9.0 12.0
+Australasia (ANZ) [ANZ] 2.0 3.0 4.0 5.0 12.0    0.0 0.0 0.0 0.0 0.0 2.0 3.0 4.0 5.0 12.0
+
+only_gold['Gold'].count()
+100
+df['Gold'].count()
+147
+
+// Often we want to drop those rows which have no data. 
+only_gold = only_gold.dropna()
+only_gold.head()
+    # Summer    Gold    Silver  Bronze  Total   # Winter    Gold.1  Silver.1    Bronze.1    Total.1 # Games Gold.2  Silver.2    Bronze.2    Combined total
+Algeria (ALG)   12.0    5.0 2.0 8.0 15.0    3.0 0.0 0.0 0.0 0.0 15.0    5.0 2.0 8.0 15.0
+Argentina (ARG) 23.0    18.0    24.0    28.0    70.0    18.0    0.0 0.0 0.0 0.0 41.0    18.0    24.0    28.0    70.0
+```
+
+ - we don't actually have to use the *where* function explicitly
+ - pandas  allow the indexing operator to take a Boolean mask as a value instead of just a list of column names. 
+ - and you can chain together a bunch of and/or statements in order to create more complex queries, and the result is a single Boolean mask. 
 
 
 
+```python
+only_gold = df[df['Gold'] > 0]
+only_gold.head()
+    # Summer    Gold    Silver  Bronze  Total   # Winter    Gold.1  Silver.1    Bronze.1    Total.1 # Games Gold.2  Silver.2    Bronze.2    Combined total
+Algeria (ALG)   12  5   2   8   15  3   0   0   0   0   15  5   2   8   15
+Argentina (ARG) 23  18  24  28  70  18  0   0   0   0   41  18  24  28  70
 
+len(df[(df['Gold'] > 0) | (df['Gold.1'] > 0)])
+101
+df[(df['Gold.1'] > 0) & (df['Gold'] == 0)]
+    # Summer    Gold    Silver  Bronze  Total   # Winter    Gold.1  Silver.1    Bronze.1    Total.1 # Games Gold.2  Silver.2    Bronze.2    Combined total
+Liechtenstein (LIE) 16  0   0   0   0   18  2   2   5   9   34  2   2   5   9
 
+df["Combined total"][(df['Gold.1'] > 0) & (df['Gold'] == 0)]
+Liechtenstein (LIE)    9
+Name: Combined total, dtype: int64
 
+df[(df['Gold.1'] > 0) & (df['Gold'] == 0)]["Combined total"]
+Liechtenstein (LIE)    9
+Name: Combined total, dtype: int64
+```
 
+## Indexing Dataframes
 
+ - The index is essentially a row level label,in which case we get numeric values, or they can be set explicitly
+ - Set index is a destructive process, it doesn't keep the current index. 
+    - If you want to keep the current index, you need to manually create a new column and copy into it values from the index attribute. 
 
+```python
+# change index will lost our country info 
+# because it is used as index 
+# so we copy it , and add to dataframe as an extra column 
+df['country'] = df.index  
+# now change our index to "Gold"
+df = df.set_index('Gold')
+df.head()
 
+# Summer    Silver  Bronze  Total   # Winter    Gold.1  Silver.1    Bronze.1    Total.1 # Games Gold.2  Silver.2    Bronze.2    Combined total  country
+Gold
+0   13  0   2   2   0   0   0   0   0   13  0   0   2   2   Afghanistan (AFG)
+5   12  2   8   15  3   0   0   0   0   15  5   2   8   15  Algeria (ALG)
+18  23  24  28  70  18  0   0   0   0   41  18  24  28  70  Argentina (ARG)
+1   5   2   9   12  6   0   0   0   0   11  1   2   9   12  Armenia (ARM)
+3   2   4   5   12  0   0   0   0   0   2   3   4   5   12  Australasia (ANZ) [ANZ]
 
+```
 
+ - You'll see that when we create a new index from an existing column it appears that a new first row has been added with empty values. 
+ - This isn't quite what's happening because an empty value is actually rendered either as a none or an NaN if the data type of the column is numeric. 
+ - What's actually happened is that the index has a name. 
+    - Whatever the column name was in the Jupiter notebook has just provided this in the output. 
+    - 所以这是没问题的？只是显示问题？
+ 
+ - We can get rid of the index completely by calling the function `reset_index`
+    - This promotes the index into a column and creates a default numbered index. 
+
+```python
+df = df.reset_index()
+df.head()
+Gold    # Summer    Silver  Bronze  Total   # Winter    Gold.1  Silver.1    Bronze.1    Total.1 # Games Gold.2  Silver.2    Bronze.2    Combined total  country
+0   0   13  0   2   2   0   0   0   0   0   13  0   0   2   2   Afghanistan (AFG)
+1   5   12  2   8   15  3   0   0   0   0   15  5   2   8   15  Algeria (ALG)
+2   18  23  24  28  70  18  0   0   0   0   41  18  24  28  70  Argentina (ARG)
+```
+
+- One nice feature of pandas is that it has the option to do **multi-level indexing**
+    - This is similar to composite keys in relational database systems. 
+ - To create a multi-level index, we simply call set index and give it a list of columns that we're interested in promoting to an index. 
 
 
 
