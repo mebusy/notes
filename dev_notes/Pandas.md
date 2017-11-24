@@ -641,5 +641,130 @@ Gold    # Summer    Silver  Bronze  Total   # Winter    Gold.1  Silver.1    Bron
     - This is similar to composite keys in relational database systems. 
  - To create a multi-level index, we simply call set index and give it a list of columns that we're interested in promoting to an index. 
 
+```python
+df = pd.read_csv('census.csv')
+df.head()
+   SUMLEV  REGION  DIVISION    STATE   COUNTY  STNAME  CTYNAME CENSUS2010POP   ESTIMATESBASE2010   POPESTIMATE2010 ... RDOMESTICMIG2011    RDOMESTICMIG2012    RDOMESTICMIG2013    RDOMESTICMIG2014    RDOMESTICMIG2015    RNETMIG2011 RNETMIG2012 RNETMIG2013 RNETMIG2014 RNETMIG2015
+0   40  3   6   1   0   Alabama Alabama 4779736 4780127 4785161 ... 0.002295    -0.193196   0.381066    0.582002    -0.467369   1.030015    0.826644    1.383282    1.724718    0.712594
+1   50  3   6   1   1   Alabama Autauga County  54571   54571   54660   ... 7.242091    -2.915927   -3.012349   2.265971    -2.530799   7.606016    -2.626146   -2.722002   2.592270    -2.187333
+2   50  3   6   1   3   Alabama Baldwin County  182265  182265  183193  ... 14.832960   17.647293   21.845705   19.243287   17.197872   15.844176   18.559627   22.727626   20.317142   18.293499
+
+df['SUMLEV'].unique()
+array([40, 50])
+
+columns_to_keep = ['STNAME',
+                   'CTYNAME',
+                   'BIRTHS2010',
+                   'BIRTHS2011',
+                   'BIRTHS2012',
+                   'BIRTHS2013',
+                   'BIRTHS2014',
+                   'BIRTHS2015',
+                   'POPESTIMATE2010',
+                   'POPESTIMATE2011',
+                   'POPESTIMATE2012',
+                   'POPESTIMATE2013',
+                   'POPESTIMATE2014',
+                   'POPESTIMATE2015']
+df = df[columns_to_keep]
+df.head()
+    STNAME  CTYNAME BIRTHS2010  BIRTHS2011  BIRTHS2012  BIRTHS2013  BIRTHS2014  BIRTHS2015  POPESTIMATE2010 POPESTIMATE2011 POPESTIMATE2012 POPESTIMATE2013 POPESTIMATE2014 POPESTIMATE2015
+1   Alabama Autauga County  151 636 615 574 623 600 54660   55253   55175   55038   55290   55347
+2   Alabama Baldwin County  517 2187    2092    2160    2186    2240    183193  186659  190396  195126  199713  203709
+
+df = df.set_index(['STNAME', 'CTYNAME'])
+df.head()
+```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/pandas_multi_index.png)
+
+ - now how to query this dataframe ?
+
+```python
+df.loc['Michigan', 'Washtenaw County']
+BIRTHS2010            977
+BIRTHS2011           3826
+BIRTHS2012           3780
+BIRTHS2013           3662
+BIRTHS2014           3683
+
+df.loc[ [('Michigan', 'Washtenaw County'),
+         ('Michigan', 'Wayne County')] ]
+                              BIRTHS2010  BIRTHS2011  BIRTHS2012  BIRTHS2013  BIRTHS2014  BIRTHS2015  POPESTIMATE2010 POPESTIMATE2011 POPESTIMATE2012 POPESTIMATE2013 POPESTIMATE2014 POPESTIMATE2015
+STNAME       CTYNAME                                             
+Michigan    Washtenaw County    977 3826    3780    3662    3683    3709    345563  349048  351213  354289  357029  358880
+            Wayne County        5918    23819   23270   23377   23607   23586   1815199 1801273 1792514
+```
+
+### Insert record to Dataframe
+
+```python
+df = df.append(pd.Series(data={'Cost': 3.00, 'Item Purchased': 'Kitty Food'}, name=('Store 2', 'Kevyn')))
+```
+
+ - name : indicate the combine index
+ - data : record data
+
+---
+
+## Missing Values
+
+ - One of the handy functions that Pandas has for working with missing values is the filling function
+    - This function takes a number or parameters, for instance, you could pass in a single value which is called a scalar value to change all of the missing data to one value. 
+    - another important parameters is `method`. The two common fill values are ffill and bfill.
+        - ffill is for forward filling and it updates an na value for a particular cell with the value from the previous row. 
+
+```python
+df = pd.read_csv('log.csv')
+df
+time    user    video   playback position   paused  volume
+0   1469974424  cheryl  intro.html  5   False   10.0
+1   1469974454  cheryl  intro.html  6   NaN NaN
+2   1469974544  cheryl  intro.html  9   NaN NaN
+3   1469974574  cheryl  intro.html  10  NaN NaN
+4   1469977514  bob intro.html  1   NaN NaN
+... 
+
+df.fillna?
+Signature: df.fillna(value=None, method=None, axis=None, inplace=False, limit=None, downcast=None, **kwargs)
+Docstring:
+Fill NA/NaN values using the specified method
+
+Parameters
+----------
+value : scalar, dict, Series, or DataFrame
+
+df = df.set_index('time')
+df = df.sort_index()
+df
+    user    video   playback position   paused  volume
+time
+1469974424  cheryl  intro.html  5   False   10.0
+1469974424  sue advanced.html   23  False   10.0
+1469974454  cheryl  intro.html  6   NaN NaN
+1469974454  sue advanced.html   24  NaN NaN
+
+df = df.reset_index()
+df = df.set_index(['time', 'user'])
+df
+    video   playback position   paused  volume
+time    user
+1469974424  cheryl  intro.html  5   False   10.0
+sue advanced.html   23  False   10.0
+1469974454  cheryl  intro.html  6   NaN NaN
+sue advanced.html   24  NaN NaN
+1469974484  cheryl  intro.html  7   NaN NaN
+1469974514  cheryl  intro.html  8   NaN NaN
+
+df = df.fillna(method='ffill')
+df.head()
+video   playback position   paused  volume
+time    user                
+1469974424  cheryl  intro.html  5   False   10.0
+sue advanced.html   23  False   10.0
+1469974454  cheryl  intro.html  6   False   10.0
+sue advanced.html   24  False   10.0
+1469974484  cheryl  intro.html  7   False   10.0
+```
 
 
