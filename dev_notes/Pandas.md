@@ -5,6 +5,12 @@
      - [The Series Data Structure](#b2d7146a323c3e1734532ceb0f3b8b85)
      - [Querying a Series](#8397ade4c8ed93da5a52c39691b7879e)
      - [The DataFrame Data Structure](#831bfe24989afb7977d21427c1cfa747)
+     - [Dataframe Indexing and Loading](#17bcec63e2ffc6f28d1d43dc3bd736d3)
+     - [Querying a DataFrame](#3c5b4efeb3926eb0d2e01d57122c4af8)
+         - [Boolean masking](#c381bd7fc934be857f568d5a2990c95d)
+     - [Indexing Dataframes](#c26698ba4e53d8440e2c2572357e9c84)
+         - [Insert record to Dataframe](#2b134ac285731f9d66fccfb31a8be4e1)
+     - [Missing Values](#4f62be1b7c56d639aec435b0d7e53b81)
 
 ...menuend
 
@@ -443,6 +449,8 @@ Store 2     5.0     Bird Seed       Vinod   None
 
 ---
 
+<h2 id="17bcec63e2ffc6f28d1d43dc3bd736d3"></h2>
+
 ## Dataframe Indexing and Loading
 
  - The common work flow is to read your data into a DataFrame then reduce this DataFrame to the particular columns or rows that you're interested in working with.
@@ -519,7 +527,11 @@ Armenia (ARM)   5   1   2   9   12  6   0   0   0   0   11  1   2   9   12
 Australasia (ANZ) [ANZ] 2   3   4   5   12  0   0   0   0   0   2   3   4   5   12
 ```
 
+<h2 id="3c5b4efeb3926eb0d2e01d57122c4af8"></h2>
+
 ## Querying a DataFrame
+
+<h2 id="c381bd7fc934be857f568d5a2990c95d"></h2>
 
 ### Boolean masking
 
@@ -593,6 +605,8 @@ df[(df['Gold.1'] > 0) & (df['Gold'] == 0)]["Combined total"]
 Liechtenstein (LIE)    9
 Name: Combined total, dtype: int64
 ```
+
+<h2 id="c26698ba4e53d8440e2c2572357e9c84"></h2>
 
 ## Indexing Dataframes
 
@@ -696,6 +710,8 @@ Michigan    Washtenaw County    977 3826    3780    3662    3683    3709    3455
             Wayne County        5918    23819   23270   23377   23607   23586   1815199 1801273 1792514
 ```
 
+<h2 id="2b134ac285731f9d66fccfb31a8be4e1"></h2>
+
 ### Insert record to Dataframe
 
 ```python
@@ -705,7 +721,55 @@ df = df.append(pd.Series(data={'Cost': 3.00, 'Item Purchased': 'Kitty Food'}, na
  - name : indicate the combine index
  - data : record data
 
+### 行选择和列选择小结
+
+#### 行选择
+
+ - Pandas进行行选择一般有三种方法：
+    - 连续多行的选择用类似于python的列表切片
+    - 按照指定的索引选择一行或多行，使用loc[]
+    - 按照指定的位置选择一行多多行，使用iloc[]
+
+```python
+# fandango 是Dataframe, 拥有数字索引 0,1,2...
+
+n = fandango[1:3]  # include row index 1,2
+
+p = fandango.loc[1:3]  # row 1,2,3 , caution!
+u = df.loc[[1,3]]    # row 1,3 , 不连续
+
+# remove row 1,2 
+fandango_drop = fandango.drop([1,2], axis=0)
+    0   1   2   3   4  
+0   xxxx
+3   xxxx
+4   xxxx
+...
+
+# loc[2] will fail
+s = fandango_drop.loc[2]
+
+# iloc[2] still work
+t = fandango_drop.iloc[2]  # return Series , cuz only 1 record
+```
+
+### 列选择
+
+ - 列选择比较简单，只要直接把列名传递过去即可
+ - 如果有多列的数据，要单独指出列名或列的索引号
+
+```python
+q = fandango['FILM']   # choose single column
+r = fandango[['FILM','Metacritic']] # multi
+v = fandango[[0,1,2]]  # by column index ... 
+# 列索引并不支持切片
+x = fandango[[0:5]]  # error
+w = fandango[list(range(5))]  # works
+```
+
 ---
+
+<h2 id="4f62be1b7c56d639aec435b0d7e53b81"></h2>
 
 ## Missing Values
 

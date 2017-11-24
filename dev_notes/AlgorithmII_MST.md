@@ -1,5 +1,33 @@
+...menustart
+
+ - [4.3 MINIMUM SPANNING TREES](#cded71731adc3237f9d3c51dd89049c0)
+     - [introduction](#8800e1c9b3e22c44ba59a34db3fe4841)
+         - [Example Problem](#fa051064ee16bea712664bb248654763)
+     - [greedy algorithm](#a9728ca20b5c52a76d67320f3fe3ec4e)
+         - [Cut property](#f027e6426815659632b54ae818592211)
+         - [Greedy MST algorithm](#5d1da5f08e2888d73349900d4db5c622)
+         - [Greedy MST algorithm: correctness proof](#bdd4ba94c65abf3884971d7a8b7cb542)
+         - [Removing two simplifying assumptions](#3d825bc82fff7cd0178bee0eb6d5c38e)
+     - [Kruskal's algorithm](#5efdc253657f5526080aea52d632d9a9)
+         - [Kruskal's algorithm](#5efdc253657f5526080aea52d632d9a9)
+         - [Kruskal's algorithm: correctness proof](#ea2e8ed0f2060e40803d07b642e735dd)
+         - [Kruskal's algorithm: implementation challenge](#6769f30cada6dad70abd9ec0e78fab39)
+         - [Kruskal's algorithm: running time](#6c146d59dece811375bd56462f359767)
+     - [Prim's algorithm](#9f18a401049668114eca679e98d5f2e1)
+         - [Prim's algorithm](#9f18a401049668114eca679e98d5f2e1)
+         - [Prim's algorithm: proof of correctness](#38cd4863a58c575a66fc80ab33a4b1b0)
+         - [Prim's algorithm: implementation challenge](#ca5d698ccb98d8b805ad4456d828f20c)
+         - [Lazy Prim's algorithm: running time](#6da63afd831a4613957674b1c0c78ca5)
+         - [Prim's algorithm: eager implementation](#ab84d0fc34342968251318250a1bf5d3)
+
+...menuend
+
+
+<h2 id="cded71731adc3237f9d3c51dd89049c0"></h2>
 
 # 4.3 MINIMUM SPANNING TREES
+
+<h2 id="8800e1c9b3e22c44ba59a34db3fe4841"></h2>
 
 ## introduction
 
@@ -15,12 +43,16 @@
 
  - Brute force. Try all spanning trees?
 
+<h2 id="fa051064ee16bea712664bb248654763"></h2>
+
 ### Example Problem
 
  - 有一块木板，板上钉上了一些钉子，这些钉子可以由一些细绳连接起来。假设每个钉子可以通过一根或者多根细绳连接起来，那么一定存在这样的情况，即用最少的细绳把所有钉子连接起来
  - 在某地分布着N个村庄，现在需要在N个村庄之间修路，每个村庄之前的距离不同，问怎么修最短的路，将各个村庄连接起来。
  - 以上这些问题都可以归纳为最小生成树问题
 
+
+<h2 id="a9728ca20b5c52a76d67320f3fe3ec4e"></h2>
 
 ## greedy algorithm
 
@@ -29,6 +61,8 @@
     - Graph is connected.
  - Consequence
     - MST exists and is unique.
+
+<h2 id="f027e6426815659632b54ae818592211"></h2>
 
 ### Cut property
 
@@ -53,6 +87,8 @@
     - Contradiction.
  - now given that property, we can develop what's called a greedy algorithm
 
+<h2 id="5d1da5f08e2888d73349900d4db5c622"></h2>
+
 ### Greedy MST algorithm
 
 Easiest algorithm, we can come up with. 
@@ -65,6 +101,8 @@ Easiest algorithm, we can come up with.
     - As we get more and more black edges it's going to be harder to find a cut with no black crossing edges. 
  - Repeat until V - 1 edges are colored black.
     - And the claim is that that's going to compute an MST. 
+
+<h2 id="bdd4ba94c65abf3884971d7a8b7cb542"></h2>
 
 ### Greedy MST algorithm: correctness proof
 
@@ -87,6 +125,8 @@ Easiest algorithm, we can come up with.
     3. Borüvka's algorithm.
  - Before getting to those, what about removing the two simplifying assumptions? 
 
+<h2 id="3d825bc82fff7cd0178bee0eb6d5c38e"></h2>
+
 ### Removing two simplifying assumptions
 
  - Q. What if edge weights are not all distinct?
@@ -106,7 +146,11 @@ Easiest algorithm, we can come up with.
 
 ---
 
+<h2 id="5efdc253657f5526080aea52d632d9a9"></h2>
+
 ## Kruskal's algorithm
+
+<h2 id="5efdc253657f5526080aea52d632d9a9"></h2>
 
 ### Kruskal's algorithm
 
@@ -115,6 +159,8 @@ Easiest algorithm, we can come up with.
     - Add next edge to tree *T* unless doing so would create a cycle
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_Kruskal.png)
+
+<h2 id="ea2e8ed0f2060e40803d07b642e735dd"></h2>
 
 ### Kruskal's algorithm: correctness proof
 
@@ -133,6 +179,8 @@ Easiest algorithm, we can come up with.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_Kruskal_proof.png)
 
+
+<h2 id="6769f30cada6dad70abd9ec0e78fab39"></h2>
 
 ### Kruskal's algorithm: implementation challenge
 
@@ -182,6 +230,8 @@ public class KruskalMST {
 }
 ```
 
+<h2 id="6c146d59dece811375bd56462f359767"></h2>
+
 ### Kruskal's algorithm: running time
 
  - Proposition. Kruskal's algorithm computes MST in time proportional to *ElogE* (in the worst case).
@@ -199,7 +249,11 @@ connected | E | log\*V
 
 ---
 
+<h2 id="9f18a401049668114eca679e98d5f2e1"></h2>
+
 ## Prim's algorithm
+
+<h2 id="9f18a401049668114eca679e98d5f2e1"></h2>
 
 ### Prim's algorithm
 
@@ -216,6 +270,8 @@ connected | E | log\*V
  - finally MST edges: 
     - 0-7  1-7  0-2  2-3  5-7  4-5  6-2
 
+<h2 id="38cd4863a58c575a66fc80ab33a4b1b0"></h2>
+
 ### Prim's algorithm: proof of correctness
 
  - Proposition. [Jarník 1930, Dijkstra 1957, Prim 1959] Prim's algorithm computes the MST.
@@ -227,6 +283,8 @@ connected | E | log\*V
     - No crossing edge has lower weight.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim_proof.png)
+
+<h2 id="ca5d698ccb98d8b805ad4456d828f20c"></h2>
 
 ### Prim's algorithm: implementation challenge
 
@@ -298,6 +356,8 @@ public class LazyPrimMST {
 }
 ```
 
+<h2 id="6da63afd831a4613957674b1c0c78ca5"></h2>
+
 ### Lazy Prim's algorithm: running time
 
  - Proposition. Lazy Prim's algorithm computes the MST in time proportional to `ElogE` and extra space proportional to *E* (in the worst case).
@@ -309,6 +369,8 @@ delete min | E | logE
 insert | E | logE
 
 ---
+
+<h2 id="ab84d0fc34342968251318250a1bf5d3"></h2>
 
 ### Prim's algorithm: eager implementation
 

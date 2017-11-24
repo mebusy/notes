@@ -9,6 +9,13 @@
          - [安装](#e655a410ff21cd07e7a0150491e04371)
          - [安装排错](#154a11cd7a6e424863c28aa29ad576d1)
      - [Markdown](#2182a74bab7188d959e795d9301e87ff)
+     - [install MacVim](#b081af9a95521e478ee6f8af8675cded)
+ - [VIM 正则表达式](#072db16a2fab851f315188d28a992133)
+     - [关于magic](#9e8ec078a153381638b723f644bc0f67)
+     - [非贪婪匹配](#2ca3f178cb83ff68009d5da28d754da3)
+     - [捕获组](#1ca7c638c2ce8ef41b651ccf8e827bf3)
+     - [Misc](#74248c725e00bf9fe04df4e35b249a19)
+ - [VIM 常用操作](#508b03ab799d17da8b37eb7801c05c8b)
      - [搜索](#e5f71fc31e7246dd6ccc5539570471b0)
          - [反向肯定搜索 lookahead](#32b92ada221fd37f58c6db5897bd605c)
          - [前向肯定搜索 lookahead](#852639e354e873ce19ce571888957160)
@@ -16,7 +23,6 @@
          - [文件夹 替换](#476949b7922fe3e5ea39c034861527d8)
          - [多行 行首插入字符](#4b0c82f3072a7a2d205d934ca7413367)
          - [replace all tab with 4 space](#72ec54ea94cad51a12851d38a51ea25f)
- - [install MacVim](#b081af9a95521e478ee6f8af8675cded)
 
 ...menuend
 
@@ -186,6 +192,8 @@ snor <silent> <C-\> <esc>i<right><c-r>=TriggerSnippet()<cr>
  - chrome 安装插件 :  [Markdown Preview Plus](https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl)
  - 打开 `chrome://extensions/` ， 在设置页中勾选 “Allow access to file URLs”
 
+<h2 id="b081af9a95521e478ee6f8af8675cded"></h2>
+
 ## install MacVim
 
 1. check vim comfig 
@@ -199,7 +207,11 @@ snor <silent> <C-\> <esc>i<right><c-r>=TriggerSnippet()<cr>
    
 ---
 
+<h2 id="072db16a2fab851f315188d28a992133"></h2>
+
 # VIM 正则表达式
+
+<h2 id="9e8ec078a153381638b723f644bc0f67"></h2>
 
 ## 关于magic
 
@@ -217,6 +229,8 @@ snor <silent> <C-\> <esc>i<right><c-r>=TriggerSnippet()<cr>
     - \v （即 very magic 之意）: 任何元字符都不用加反斜杠 
     - \V （即 very nomagic 之意）: 任何元字符都必须加反斜杠
 
+<h2 id="2ca3f178cb83ff68009d5da28d754da3"></h2>
+
 ## 非贪婪匹配
 
 一下说明都使用 very magic \v 模式
@@ -230,6 +244,8 @@ Perl | vim
 +?  |  {-1,} 
 ??  |  {-,1}  
 
+
+<h2 id="1ca7c638c2ce8ef41b651ccf8e827bf3"></h2>
 
 ## 捕获组
 
@@ -249,12 +265,16 @@ Perl | vim
     - Perl的写法 `(?<=foo)bar`
     - vim的写法 `(foo)@<=bar` 
 
+<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
+
 ## Misc
 
  - vim 没有 \b, 匹配单词词首词尾使用 `<` , `>`
 
 
 ---
+
+<h2 id="508b03ab799d17da8b37eb7801c05c8b"></h2>
 
 # VIM 常用操作
 
