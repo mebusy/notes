@@ -186,7 +186,77 @@ snor <silent> <C-\> <esc>i<right><c-r>=TriggerSnippet()<cr>
  - chrome 安装插件 :  [Markdown Preview Plus](https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl)
  - 打开 `chrome://extensions/` ， 在设置页中勾选 “Allow access to file URLs”
 
+## install MacVim
+
+1. check vim comfig 
+    - `brew edit macvim`
+    
+2. install with lua support
+    - `brew reinstall macvim --with-lua`
+
+3. open in terminal 
+    - `mvim -v`
+   
 ---
+
+# VIM 正则表达式
+
+## 关于magic
+
+ - 常见的编辑器，一般都可以指定是 普通搜索还是使用正则表达式搜索
+ - 但vim模式的是混合搜索，既 magic (\m)模式
+    - 比如 `/foo(1)` 命令， 大多数人都是用它来查找foo(1)这个字符串.
+    - 于是，vim就规定，正则表达式的元字符必须用反斜杠进行转义才行， 如上面的例子，如果确实要用正则表达式，就应当写成 `/foo\(1\)`
+    - 但是，像 `.` `*` 这种极其常用的元字符，都加上反斜杠就太麻烦了。 而且，众口难调，有些人喜欢用正则表达式，有些人不喜欢用……
+ - 为了解决这个问题，vim设置了 magic 这个东西。简单地说， magic就是设置哪些元字符要加反斜杠哪些不用加的。 简单来说：
+    - magic (\m): 除了 `$ . * ^` 之外其他元字符都要加反斜杠
+    - nomagic (\M): 除了 `$ ^` 之外其他元字符都要加反斜杠。
+    - `/\m.*` # 查找任意字符串
+    -  `/\M.*` # 查找字符串 `.*` 
+ - 另外还有更强大的 \v 和 \V。
+    - \v （即 very magic 之意）: 任何元字符都不用加反斜杠 
+    - \V （即 very nomagic 之意）: 任何元字符都必须加反斜杠
+
+## 非贪婪匹配
+
+一下说明都使用 very magic \v 模式
+
+ - vim的非贪婪匹配不使用 `*? +? ??` ，而是同一使用 ` \{-...}` 
+
+Perl | vim 
+--- | --- 
+{n,m}? | {-n,m}
+\*?  |   {-}
++?  |  {-1,} 
+??  |  {-,1}  
+
+
+## 捕获组
+
+ - 捕获组符号和perl 略有不同，使用 `@` 而不是 `(?`
+
+Perl | vim
+--- | ---
+(?= | @=
+(?! | @!
+(?<= | @<=
+`(?<!` | `@<!`
+(?> | @> 
+(?: |  `%(atom\)`
+
+ - vim中的捕获组的模式的位置与perl不同
+    - 例如，查找紧跟在 foo 之后的 bar，perl将模式(这里是foo)写在环视(`?<=`)的括号内, 而vim将模式写在环视的元字符之前。
+    - Perl的写法 `(?<=foo)bar`
+    - vim的写法 `(foo)@<=bar` 
+
+## Misc
+
+ - vim 没有 \b, 匹配单词词首词尾使用 `<` , `>`
+
+
+---
+
+# VIM 常用操作
 
 <h2 id="e5f71fc31e7246dd6ccc5539570471b0"></h2>
 
@@ -271,19 +341,6 @@ vimgrep /pattern/gj path
 
 ---
 
-<h2 id="b081af9a95521e478ee6f8af8675cded"></h2>
-
-# install MacVim
-
-1. check vim comfig 
-    - `brew edit macvim`
-    
-2. install with lua support
-    - `brew reinstall macvim --with-lua`
-
-3. open in terminal 
-    - `mvim -v`
-   
 
 
 
