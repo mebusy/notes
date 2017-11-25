@@ -374,5 +374,23 @@ insert | E | logE
 
 ### Prim's algorithm: eager implementation
 
+ - The Priority Queue is going to have vertices.
+ - those are vertices that are not on the tree, but are connected by an edge
+ - We're going to want the vertices that are connected to the tree by on vertex. And we're going to know the shortest edge connecting that vertex to the tree.
 
+
+Indexed priority queue
+
+ - THe problem is , we have keys that the PQ algorithm doesn't really needs to know when we change values of keys.
+    - so we have to do that throught the API.
+    - and what we're going to do is allow the client to change the key by specifying the index and the new key.
+    - and then the implementation will take care of changing the value and updating its data structure to reflect the changed values. 
+
+ - since we are working with vertex indexed array and graphs, the priority queue implementation might do the same. 
+    - we'll just associate an index, kind of pass the idea onto the PQ, to make it allow it to implement these operations.
+
+
+ - It's important to realize that it's possible to implement this decreased key operation in logarithmic time without ever having to search through everything,  using the idea of indexing.
+
+ - `E + VlogV` can make a difference for a huge graph. 
 
