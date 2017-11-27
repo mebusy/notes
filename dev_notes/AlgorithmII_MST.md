@@ -706,5 +706,15 @@ public class AcyclicSP {
 
 ### Longest paths in edge-weighted DAGs
 
+since negative weights are allowd ,we can find longest paths in the edge-weighted DAGs, just by negating all the weights. This is because topologic sort algorithm desn't care whether the weights are positve or negative . 
+
+ - Formulate as a shortest paths problem in edge-weighted DAGs.
+    - Negate all weights
+    - Find shortest paths.
+    - Negate weights in result
+ - Key point. Topological sort algorithm works even with negative weights.
+
+#### Longest paths in edge-weighted DAGs: application
+
 
 
