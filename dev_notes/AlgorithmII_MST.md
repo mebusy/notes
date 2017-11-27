@@ -442,6 +442,13 @@ int delMin()
  - It's important to realize that it's possible to implement this decreased key operation in logarithmic time without ever having to search through everything,  using the idea of indexing.
  - `E + VlogV` can make a difference for a huge graph. 
 
+## QA
+
+ - Q: Minimum-weight feedback edge set
+    - A feedback edge set of a graph is a subset of edges that contains at least one edge from every cycle in the graph. If the edges of a feedback edge set are removed, the resulting graph is acyclic. Given an edge-weighted graph, design an efficient algorithm to find a feedback edge set of minimum weight. Assume the edge weights are positive.
+ - A: If the weight function is non-negative, then the set of edges not contained in a maximum weight spanning tree is indeed a MWFES. 
+
+
 
 
 ---
@@ -490,5 +497,73 @@ public Iterable<DirectedEdge> pathTo(int v) {
    return path;
 }
 ```
+
+### Edge relaxation
+
+ - Relax edge *e = v→w* .
+    - distTo[v] is length of shortest **known** path from s to v.
+    - distTo[w] is length of shortest **known** path from s to w
+    - edgeTo[w] is last edge on shortest **known** path from s to w
+    - If *e = v→w* gives shorter path to w through v,  update both distTo[w] and edgeTo[w].
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_relax_edge.png)
+
+```java
+private void relax(DirectedEdge e) {
+    int v = e.from(), w = e.to();
+    if (distTo[w] > distTo[v] + e.weight()) {
+        distTo[w] = distTo[v] + e.weight();
+        edgeTo[w] = e;
+    }
+}
+```
+
+### Shortest-paths optimality conditions
+
+ - Proposition. 
+    - Let G be an edge-weighted digraph. Then distTo[] are the shortest path distances from *s* iff:
+        - distTo[s] = 0.
+        - For each vertex *v*, distTo[v] is the length of some path from *s* to *v*.
+        - For each edge *e = v→w*, distTo[w] ≤ distTo[v] + e.weight().
+ - Pf. ⇐ [ necessary ]
+    - Suppose that distTo[w] > distTo[v] + e.weight() for some edge *e = v→w*.
+    - Then, e gives a path from s to w (through v) of length less than distTo[w].
+ - Pf. ⇒ [ sufficient ]
+    - Suppose that s = v0 → v1 → v2 → ... → vk = w is a shortest path from s to w.
+    - Then, ( eᵢ = iᵗʰ edge on shortest path from s to w )
+        - distTo[v1] ≤ distTo[v0] + e1.weight()
+        - distTo[v2] ≤ distTo[v1] + e2.weight()
+        - ...
+        - distTo[vk] ≤ distTo[vk-1] + ek.weight()
+    - Add inequalities; simplify; and substitute distTo[v0] = distTo[s] = 0:
+        - distTo[w] = distTo[vk] ≤ e1.weight() + e2.weight() + ... + ek.weight()
+    - Thus, distTo[w] is the weight of shortest path to w. 
+
+
+### Generic shortest-paths algorithm
+
+```
+Generic algorithm (to compute SPT from s)
+---------------------------
+Initialize distTo[s] = 0 and distTo[v] = ∞ for all other vertices
+Repeat until optimality conditions are satisfied:
+    - Relax any edge.
+```
+
+ - Proposition. Generic algorithm computes SPT (if it exists) from s.
+ - Pf sketch.
+    - Throughout algorithm, distTo[v] is the length of a simple path from s to v (and edgeTo[v] is last edge on path).
+    - Each successful relaxation decreases distTo[v] for some v.
+    - The entry distTo[v] can decrease at most a finite number of times.
+
+---
+
+ - Efficient implementations. How to choose which edge to relax?
+    - Ex 1. Dijkstra's algorithm (nonnegative weights).
+    - Ex 2. Topological sort algorithm (no directed cycles).
+    - Ex 3. Bellman-Ford algorithm (no negative cycles).
+
+
+## Dijkstra's algorithm
 
 
