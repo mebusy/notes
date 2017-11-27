@@ -694,6 +694,8 @@ public class AcyclicSP {
     - Weight of pixel = energy function of 8 neighboring pixels.
     - Seam = shortest path (sum of vertex weights) from top to bottom.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_seam.png)
+
 
 
 
