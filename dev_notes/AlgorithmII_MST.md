@@ -408,9 +408,73 @@ insert | E | logE
     - Client can change the key by specifying the index.
 
 
+```java
+public class IndexMinPQ<Key extends Comparable<Key>>
 
+----------------
+// create indexed priority queue with indices 0, 1, ..., N-1
+IndexMinPQ(int N) 
+
+// associate key with index i
+void insert(int i, Key key)
+
+// decrease the key associated with index i
+void decreaseKey(int i, Key key)
+
+// is i an index on the priority queue?
+boolean contains(int i)
+
+// remove a minimal key and return its associated index
+int delMin()
+```
+
+#### Implementation
+
+ - Start with same code as MinPQ.
+ - Maintain parallel arrays keys[], pq[], and qp[] so that:
+    - keys[i] is the priority of i
+    - pq[i] is the index of the key in heap position i
+    - qp[i] is the heap position of the key with index i
+ - Use swim(qp[i]) implement decreaseKey(i, key).
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim_eger_implementation.png)
 
  - It's important to realize that it's possible to implement this decreased key operation in logarithmic time without ever having to search through everything,  using the idea of indexing.
-
  - `E + VlogV` can make a difference for a huge graph. 
+
+
+
+---
+
+# 4.4 SHORTEST PATHS
+
+ - Shortest paths in an edge-weighted digraph
+    - Given an edge-weighted digraph, find the shortest path from *s* to *t*.
+ - Shortest path variants
+    - Which vertices?
+        - Single source: from one vertex *s* to every other vertex
+        - Source-sink: from one vertex *s* to another *t*.
+        - All pairs: between all pairs of vertices.
+    - Restrictions on edge weights?
+        - Nonnegative weights.
+        - Euclidean weights.
+        - Arbitrary weights.
+    - Cycles?
+        - No directed cycles.
+        - No "negative cycles."
+ - Simplifying assumption. Shortest paths from *s* to each vertex *v* exist.
+
+## shortest-paths properties
+
+### Data structures for single-source shortest paths
+ 
+ - Goal. Find the shortest path from *s* to every other vertex.
+ - Observation. A **shortest-paths tree** (SPT) solution exists. Why?
+    - if no 2 paths have the same length, then certainly it's going to be such a solution
+    - if you've got 2 paths to the same vertex , you can delete the last edge on one of them and keep going 
+    - what we want to do is compute a tree.
+ - Consequence. Can represent the SPT with two vertex-indexed arrays:
+    - distTo[v] is length of shortest path from s to v.
+    - edgeTo[v] is last edge on shortest path from s to v.
+
 
