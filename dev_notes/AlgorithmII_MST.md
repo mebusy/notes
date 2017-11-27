@@ -680,7 +680,7 @@ public class AcyclicSP {
 }
 ```
 
-### Content-aware resizing
+#### Application: Content-aware resizing
 
  - Seam carving: [Avidan and Shamir] Resize an image without distortion for display on cell phones and web browsers.
 
@@ -692,12 +692,19 @@ public class AcyclicSP {
     - Grid DAG: vertex = pixel; edge = from pixel to 3 downward neighbors.
         - what we do is to build a huge directed acyclic graph.  Every pixel corresponds to a vertex in this graph. And the edges are gonna be just directed edges from every pixel to its 3 downward neighbors.
     - Weight of pixel = energy function of 8 neighboring pixels.
+        - energe function is a image processing concept, it is perfect for assigning weights in this instance. 
     - Seam = shortest path (sum of vertex weights) from top to bottom.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_seam.png)
 
 
+ - To remove vertical seam:
+    - Delete pixels on seam (one in each row).
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_seam2.png)
+
+
+### Longest paths in edge-weighted DAGs
 
 
 
