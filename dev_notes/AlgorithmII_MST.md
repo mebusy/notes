@@ -684,6 +684,17 @@ public class AcyclicSP {
 
  - Seam carving: [Avidan and Shamir] Resize an image without distortion for display on cell phones and web browsers.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_seamcarving1.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_seamcarving2.png)
+
+ - To find vertical seam:
+    - Grid DAG: vertex = pixel; edge = from pixel to 3 downward neighbors.
+        - what we do is to build a huge directed acyclic graph.  Every pixel corresponds to a vertex in this graph. And the edges are gonna be just directed edges from every pixel to its 3 downward neighbors.
+    - Weight of pixel = energy function of 8 neighboring pixels.
+    - Seam = shortest path (sum of vertex weights) from top to bottom.
+
+
 
 
 
