@@ -374,12 +374,23 @@ insert | E | logE
 
 ### Prim's algorithm: eager implementation
 
- - The Priority Queue is going to have vertices.
- - those are vertices that are not on the tree, but are connected by an edge
- - We're going to want the vertices that are connected to the tree by on vertex. And we're going to know the shortest edge connecting that vertex to the tree.
+ - **Eager solution**
+    - Maintain a PQ of vertices connected by an edge to *T*, were priority of vertex *v =* weight of shortest edge connecting *v* to *T*.
+        - the Priority Queue is going to have vertices, those are vertices that are not on the tree, but are connected by an edge
+        - so the PQ has at most one entry per vertex
+    - Delete min vertex *v* and add its associated edge *e = v–w* to *T*.
+        - show as the pic, the next step will delete vertex 2 from PQ , and add edge `0-2` to MST
+    - Update PQ by considering all edges *e = v–x* incident to *v*
+        - ignore if *x* is already in *T*
+        - add *x* to PQ if not already on it
+            - so vertex 3,6 will be added to PQ
+        - **decrease priority** of *x* if *v–x* becomes shortest edge connecting x to T
+            - after adding edge `0-2` to MST , the priority of vertex 3 should be decreased to 0.17 ( edge 2-3 ) , the priority of vertex 6 will be decreased to 0.40 ( edge 6-2 )
+
+ - For this eager implementation, We're going to want the vertices that are connected to the tree by one vertex. And we're going to know the shortest edge connecting that vertex to the tree.
 
 
-Indexed priority queue
+#### Indexed priority queue
 
  - THe problem is , we have keys that the PQ algorithm doesn't really needs to know when we change values of keys.
     - so we have to do that throught the API.
