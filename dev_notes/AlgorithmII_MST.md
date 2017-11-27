@@ -477,4 +477,18 @@ int delMin()
     - distTo[v] is length of shortest path from s to v.
     - edgeTo[v] is last edge on shortest path from s to v.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_sptree.png)
+
+```java
+public double distTo(int v) {  
+    return distTo[v];  
+}
+public Iterable<DirectedEdge> pathTo(int v) {
+   Stack<DirectedEdge> path = new Stack<DirectedEdge>();
+   for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()])
+      path.push(e);
+   return path;
+}
+```
+
 
