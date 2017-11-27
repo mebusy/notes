@@ -566,4 +566,125 @@ Repeat until optimality conditions are satisfied:
 
 ## Dijkstra's algorithm
 
+ - Consider vertices in increasing order of distance from s ( vertex that not on the SP-tree and  with the lowest distTo[] value).
+    - so , our source is 0 in the case showed as pic below, what vertices are closest to the source ?  0-1, 5.0
+ - Add vertex to tree and relax all edges pointing from that vertex.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_dijkstra_0.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_dijkstra_1.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_dijkstra_2.png)
+
+
+### Dijkstra's algorithm: correctness proof (TODO)
+
+### Dijkstra's algorithm: Java implementation
+
+```java
+public class DijkstraSP {
+   private DirectedEdge[] edgeTo;
+   private double[] distTo;
+   private IndexMinPQ<Double> pq;
+
+   public DijkstraSP(EdgeWeightedDigraph G, int s) {
+       edgeTo = new DirectedEdge[G.V()];
+       distTo = new double[G.V()];
+       pq = new IndexMinPQ<Double>(G.V());
+       for (int v = 0; v < G.V(); v++)
+           distTo[v] = Double.POSITIVE_INFINITY;
+       distTo[s] = 0.0;
+
+       pq.insert(s, 0.0);
+       // relax vertices in order of distance from s
+       while (!pq.isEmpty())
+       {
+           int v = pq.delMin();
+           for (DirectedEdge e : G.adj(v))
+               relax(e);
+       }
+   }
+   private void relax(DirectedEdge e) {
+       int v = e.from(), w = e.to();
+       if (distTo[w] > distTo[v] + e.weight()) {
+           distTo[w] = distTo[v] + e.weight();
+           edgeTo[w] = e;
+           // update PQ
+           if (pq.contains(w)) pq.decreaseKey(w, distTo[w]);
+           else                pq.insert     (w, distTo[w]);
+       }    
+   }
+}
+```
+
+
+### Computing spanning trees in graphs
+
+ - Dijkstra’s algorithm seem familiar?
+    - Prim’s algorithm is essentially the same algorithm.
+    - Both are in a family of algorithms that compute a graph’s spanning tree
+ - Main distinction: Rule used to choose next vertex for the tree.
+    - Prim’s: Closest vertex to the **tree** (via an undirected edge).
+    - Dijkstra’s: Closest vertex to the **source** (via a directed path).
+ - Note: DFS and BFS are also in this family of algorithms.
+
+## edge-weighted DAGs
+
+### Acyclic edge-weighted digraphs
+
+ - Q. Suppose that an edge-weighted digraph has no directed cycles. Is it easier to find shortest paths than in a general digraph?
+ - A. Yes!
+
+---
+
+ - Algorithm
+    - Consider vertices in topological order.
+    - Relax all edges pointing from that vertex.
+
+### Shortest paths in edge-weighted DAGs
+
+ - Proposition. Topological sort algorithm computes SPT in any edge- weighted DAG in time proportional to *E + V* .
+ - Proof
+    - TODO
+
+
+```java
+public class AcyclicSP {
+   private DirectedEdge[] edgeTo;
+   private double[] distTo;
+
+   public DijkstraSP(EdgeWeightedDigraph G, int s) {
+       edgeTo = new DirectedEdge[G.V()];
+       distTo = new double[G.V()];
+
+       for (int v = 0; v < G.V(); v++)
+           distTo[v] = Double.POSITIVE_INFINITY;
+       distTo[s] = 0.0;
+
+       // new : topological order
+       Topological topological = new Topological(G);
+       for (int v : topological.order())
+           for (DirectedEdge e : G.adj(v))
+               relax(e);
+   }
+   private void relax(DirectedEdge e) {
+       int v = e.from(), w = e.to();
+       if (distTo[w] > distTo[v] + e.weight()) {
+           distTo[w] = distTo[v] + e.weight();
+           edgeTo[w] = e;
+           // update PQ
+           if (pq.contains(w)) pq.decreaseKey(w, distTo[w]);
+           else                pq.insert     (w, distTo[w]);
+       }    
+   }
+}
+```
+
+### Content-aware resizing
+
+ - Seam carving: [Avidan and Shamir] Resize an image without distortion for display on cell phones and web browsers.
+
+
+
+
 

@@ -567,7 +567,10 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
 
 ## Uniform cost search vs. Dijkstra's Algorithm 
 
-It's essentially the same algorithm. One difference might be that uniform-cost search is usually formulated on trees rather than general graphs,which simplifies the implementation a little bit, since you don't have to worry about the case where a newly discovered edge reveals a cheaper path to a vertex that is already in the priority queue waiting to be visited. In other words you only need to worry about remove-min and insert operations in your priority queue and not about decrease-priority operations.
+ - Dijkstra's algorithm, which is perhaps better-known, can be regarded as a variant of uniform-cost search,
+     - where there is no goal state and processing continues until all nodes have been removed from the priority queue,
+     - i.e. until shortest paths to all nodes (not just a goal node) have been determined.
+ - Also, uniform cost has less space requirements, whereas the priority queue is filled "lazily" opposed to Dijkstra's, which adds all nodes to the queue on start with an infinite cost ?
 
 
 
