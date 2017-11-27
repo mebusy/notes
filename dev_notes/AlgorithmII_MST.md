@@ -389,6 +389,9 @@ insert | E | logE
 
  - For this eager implementation, We're going to want the vertices that are connected to the tree by one vertex. And we're going to know the shortest edge connecting that vertex to the tree.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim_eager.png)
+
+
 
 #### Indexed priority queue
 
@@ -399,6 +402,12 @@ insert | E | logE
 
  - since we are working with vertex indexed array and graphs, the priority queue implementation might do the same. 
     - we'll just associate an index, kind of pass the idea onto the PQ, to make it allow it to implement these operations.
+
+ - Associate an index between 0 and N - 1 with each key in a priority queue.
+    - Client can insert and delete-the-minimum.
+    - Client can change the key by specifying the index.
+
+
 
 
  - It's important to realize that it's possible to implement this decreased key operation in logarithmic time without ever having to search through everything,  using the idea of indexing.
