@@ -67,7 +67,7 @@
 #### Data Science
  a | b | c | d
 --- | --- | --- | ---
-[Numpy](https://github.com/mebusy/notes/blob/master/dev_notes/numpy_tips.md) | [Pandas](https://github.com/mebusy/notes/blob/master/dev_notes/Pandas.md) 
+[Numpy](https://github.com/mebusy/notes/blob/master/dev_notes/numpy_tips.md) | [Pandas](https://github.com/mebusy/notes/blob/master/dev_notes/Pandas.md) | [Advanced Pandas](https://github.com/mebusy/notes/blob/master/dev_notes/Pandas_advanced.md) | 
 
 <h2 id="818056dbd7e201243206b9c7cd88481c"></h2>
 
