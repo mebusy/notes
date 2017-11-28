@@ -754,8 +754,42 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
 
 ### Shortest paths with negative weights: failed attempts
 
- - Dijkstra. Doesn’t work with negative edge weights.
+ - **Dijkstra**. Doesn’t work with negative edge weights.
     - Dijkstra selects vertex 3 immediately after 0. But shortest path from 0 to 3 is 0→1→2→3.
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_neg_dijkstra.png)
+ - **Re-weighting**. Add a constant to every edge weight doesn’t work.
+    - Adding 9 to each edge weight changes the shortest path from 0→1→2→3 to 0→3.
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_neg_reweight.png)
+ - **Conclusion**. Need a different algorithm.
+
+### Negative cycles
+
+ - Def. A **negative cycle** is a directed cycle whose sum of edge weights is negative.
+ - Proposition. A SPT exists iff no negative cycles.
+    - assuming all vertices reachable from s
+
+### Bellman-Ford algorithm
+
+```
+Bellman-Ford algorithm
+------------------------------
+Initialize distTo[s] = 0 and distTo[v] = ∞ for all other vertices.
+Repeat V times:
+    - Relax each edge.
+```
+
+```java
+// repeate v times
+for (int i = 0; i < G.V(); i++) {
+    // go through all the edges in the graph
+    // and relax each edge
+    for (int v = 0; v < G.V(); v++)
+        for (DirectedEdge e : G.adj(v))
+            relax(e);
+}
+```
+
+
 
 
 
