@@ -824,8 +824,21 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
  - Remark 3. Negative cycles makes the problem intractable.
 
 
+### Finding a negative cycle
 
+ - Observation. If there is a negative cycle, Bellman-Ford gets stuck in loop, updating distTo[] and edgeTo[] entries of vertices in the cycle.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_bellmanFold_stuck.png)
+
+ - Proposition. If any vertex *v* is updated in phase V ( means the last phase of Bellman-Ford ), there exists a negative cycle (and can trace back edgeTo[v] entries to find it).
+    - and not only that, edgeTo[v] is the last edge on that cycle. 
+ - In practice. Check for negative cycles more frequently.
+    - In practice actually, you don't have to wait till the last phase. 
+    - You can check `distTo` entries for negative cycles, more frequently. 
+
+### Negative cycle application: arbitrage detection
+
+ - Negative cycle application: arbitrage detection
 
 
 
