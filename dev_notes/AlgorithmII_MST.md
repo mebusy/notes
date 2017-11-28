@@ -680,6 +680,9 @@ public class AcyclicSP {
 }
 ```
 
+ - E+V
+    - It process the V vertices in topological order; it relaxes each fo the E edges exactly once.
+
 #### Application: Content-aware resizing
 
  - Seam carving: [Avidan and Shamir] Resize an image without distortion for display on cell phones and web browsers.
@@ -742,6 +745,18 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
  - we took our scheduling problem and now we have a graph. 
     - And what relates this to what we've been talking about is the longest path from the source to each job. 
  - CPM. Use **longest path** from the source to schedule each job.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_CPM2.png)
+
+---
+
+## negative weights
+
+### Shortest paths with negative weights: failed attempts
+
+ - Dijkstra. Doesn’t work with negative edge weights.
+    - Dijkstra selects vertex 3 immediately after 0. But shortest path from 0 to 3 is 0→1→2→3.
+
 
 
 
