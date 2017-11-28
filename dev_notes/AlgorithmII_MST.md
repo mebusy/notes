@@ -840,6 +840,13 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
 
  - Negative cycle application: arbitrage detection
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_arbitrage_detection.png)
+
+ - Ex. $1,000 ⇒ 741 Euros ⇒ 1,012.206 Canadian dollars ⇒ $1,007.14497.
+ - Currency exchange graph.
+    - Vertex = currency.
+    - Edge = transaction, with weight equal to exchange rate.
+    - Find a directed cycle whose product of edge weights is > 1
 
 
 
