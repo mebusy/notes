@@ -1094,13 +1094,11 @@ function GRAPH-SEARCH(problem,fringe) return a solution, or failure
             return node
         end
 
-        # 除了 (x,y) 位置，state 还可以包含其他信息
-        # 这些额外信息 可以让我们的solution 多次通过某个node
+        # pacman例子中, 除了 (x,y) 位置，state 还可以包含其他信息
+        # 这些额外信息 可以让我们的solution 多次通过某个map cell
         if STATE[node] is not in closed then
             add STATE[node] to closed
              
-            // 可以 添加重复node
-            // 实际上，这些重复的node g 值很可能是不同的
             fringe <- INSERT(MAKE-NODE(INITIAL-STATE[problem]),fringe)
             
             for child-node in EXPAND(STATE[node],problem) do
