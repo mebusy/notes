@@ -789,6 +789,43 @@ for (int i = 0; i < G.V(); i++) {
 }
 ```
 
+ - you will get a SPT after running Bellman-Ford algorithm  
+
+### Bellman-Ford algorithm: analysis
+
+ - Proposition. Dynamic programming algorithm computes SPT in any edge-weighted digraph with no negative cycles in time proportional to *E × V*.
+ - Proof idea. 
+    - After pass i, found shortest path containing at most i edges.
+
+### Bellman-Ford algorithm: practical improvement
+
+ - Observation. If *distTo[v]* does not change during pass *i*, no need to relax any edge pointing from *v* in pass *i+1*.
+    - if you didn't change the distance to a vertex during one pass, Then you don't have to worry about its edges in the next pass.
+ - FIFO implementation. Maintain **queue** of vertices whose distTo[] changed.
+    - be careful to keep at most one copy of each vertex on queue (why?)  
+    - Otherwise, you could wind up with situations where the size of the queue, blows up. 
+ - Overall effect.
+    - The running time is still proportional to *E × V* in worst case.
+    - But much faster than that in practice
+
+### Single source shortest-paths implementation: cost summary
+
+algorithm | restriction | typical case | worst case | extra space
+--- | --- | --- | --- | --- 
+topological sort | no directed cycles | E +V | E +V | V
+Dijkstra (binary heap) | no negative weights | E log V | E log V | V
+Bellman-Ford | no negative cycles | EV | EV | V
+Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
+
+---
+
+ - Remark 1. Directed cycles make the problem harder.
+ - Remark 2. Negative weights make the problem harder.
+ - Remark 3. Negative cycles makes the problem intractable.
+
+
+
+
 
 
 
