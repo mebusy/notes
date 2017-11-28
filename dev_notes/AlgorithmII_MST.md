@@ -732,5 +732,17 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
         - the source is begin everything and the sync is end everything. 
     - Two vertices (begin and end) for each job.
     - Three edges for each job.
+        - begin to end (weighted by duration)
+        - source to begin (0 weight)
+        - end to sink (0 weight)
+    - One edge for each precedence constraint (0 weight)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_CPM1.png)
+
+ - we took our scheduling problem and now we have a graph. 
+    - And what relates this to what we've been talking about is the longest path from the source to each job. 
+ - CPM. Use **longest path** from the source to schedule each job.
+
+
 
 
