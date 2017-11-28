@@ -848,6 +848,15 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
     - Edge = transaction, with weight equal to exchange rate.
     - Find a directed cycle whose product of edge weights is > 1
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_arbitrage_detection2.png)
+
+ - Challenge. Express as a negative cycle detection problem.
+ - **Model as a negative cycle detection problem by taking logs**
+    - Let weight of edge v→w be -ln (exchange rate from currency v to w).
+    - Multiplication turns to addition; > 1 turns to < 0.
+    - Find a directed cycle whose sum of edge weights is < 0 (negative cycle). 
+
+
 
 
 
