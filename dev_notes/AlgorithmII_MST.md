@@ -853,8 +853,31 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
  - Challenge. Express as a negative cycle detection problem.
  - **Model as a negative cycle detection problem by taking logs**
     - Let weight of edge v→w be -ln (exchange rate from currency v to w).
+        - 似乎任何底的 log函数都可以...
     - Multiplication turns to addition; > 1 turns to < 0.
     - Find a directed cycle whose sum of edge weights is < 0 (negative cycle). 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_arbitrage_detection3.png)
+
+ - Remark. Fastest algorithm is extraordinarily valuable!
+
+
+## Shortest paths summary
+
+ - Dijkstra’s algorithm.
+    - Nearly linear-time when weights are nonnegative.
+    - Generalization encompasses DFS, BFS, and Prim.
+ - Acyclic edge-weighted digraphs.
+    - Arise in applications.
+    - Faster than Dijkstra’s algorithm.
+    - Negative weights are no problem.
+ - Negative weights and negative cycles.
+    - Arise in applications.
+    - If no negative cycles, can find shortest paths via Bellman-Ford.
+    - If negative cycles, can find one via Bellman-Ford.
+ - Shortest-paths is a broadly useful problem-solving model.
+
+
 
 
 
