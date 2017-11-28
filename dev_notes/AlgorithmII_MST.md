@@ -719,7 +719,18 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
  - Parallel job scheduling
     - Given a set of jobs with durations and precedence constraints, schedule the jobs (by finding a start time for each) so as to achieve the minimum completion time, while respecting the constraints.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_parallel_job_scheduling0.png)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_parallel_job_scheduling1.png)
 
+ - And so what we want to do is, find a start time for each job. That minimizes the completion time. 
+ 
+#### Critical path method
+
+ - CPM. To solve a parallel job-scheduling problem, create edge-weighted DAG:
+    - Source and sink vertices.
+        - the source is begin everything and the sync is end everything. 
+    - Two vertices (begin and end) for each job.
+    - Three edges for each job.
 
 
