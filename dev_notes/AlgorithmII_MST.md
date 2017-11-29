@@ -19,6 +19,37 @@
          - [Prim's algorithm: implementation challenge](#ca5d698ccb98d8b805ad4456d828f20c)
          - [Lazy Prim's algorithm: running time](#6da63afd831a4613957674b1c0c78ca5)
          - [Prim's algorithm: eager implementation](#ab84d0fc34342968251318250a1bf5d3)
+             - [Indexed priority queue](#64071a409f7f87287eed62ffd412bc0e)
+             - [Implementation](#b672f52ade975e864ae6b58722c03689)
+     - [QA](#0ab687c6a13802a6674d5327e3d4177e)
+ - [4.4 SHORTEST PATHS](#66c555dd7127e24c5dad2b9bbc2b1818)
+     - [shortest-paths properties](#582ea71a838abce9407ad2a894dbea08)
+         - [Data structures for single-source shortest paths](#68261b4718c4139e54fff81468a562c5)
+         - [Edge relaxation](#f1800f07c216d493e8e9ff2761ccfc33)
+         - [Shortest-paths optimality conditions](#a0dbfd20d8d788e69eee52223da9cc90)
+         - [Generic shortest-paths algorithm](#17660e379f4dc4040c1d93faf73d5f9c)
+     - [Dijkstra's algorithm](#2c3fda14bde328549c74fb448ef62d34)
+         - [Dijkstra's algorithm: correctness proof (TODO)](#2880931f98f3fff633812cf6fcf35e45)
+         - [Dijkstra's algorithm: Java implementation](#f1d4978722895ce40af6d3ebe0c8c6c0)
+         - [Computing spanning trees in graphs](#5d21b219a367d8ca1eb434230c3f4be1)
+     - [edge-weighted DAGs](#d7c7b1975f92a833609b519faa4ed829)
+         - [Acyclic edge-weighted digraphs](#a2c4d444ac852b90752f7a63ec59e581)
+         - [Shortest paths in edge-weighted DAGs](#fcbd840d9edcaf804b1bd65b6e72badc)
+             - [Application: Content-aware resizing](#5ee07047d6bca78383a141e5e8ec77ce)
+         - [Longest paths in edge-weighted DAGs](#3c55cda3adffaa472aa7490b10892ab8)
+             - [Longest paths in edge-weighted DAGs: application](#2160c4ec3d4551c21c4e80c16718ad43)
+             - [Critical path method](#2f8af766796a78ffe5aa21acf6f9f6b9)
+     - [negative weights](#00bb6ece1156f92c2370e55696fbc73c)
+         - [Shortest paths with negative weights: failed attempts](#e60a7af8652792b3d2649ee453b4c196)
+         - [Negative cycles](#d05e7fb4b74623a5da219bc192056e4a)
+         - [Bellman-Ford algorithm](#bc4dcba35afdbb28dfbf17b06b64e8d1)
+         - [Bellman-Ford algorithm: analysis](#875643e3ddfa7b4322582d5fdb5a16d1)
+         - [Bellman-Ford algorithm: practical improvement](#252d97af220bba63a2b709f462d4d19f)
+         - [Single source shortest-paths implementation: cost summary](#297a63d92dca03fcf471996d66e9b44b)
+         - [Finding a negative cycle](#9b60ad9b0b7957c904f64920f0bbfa7d)
+         - [Negative cycle application: arbitrage detection](#5cf18acbf86bf2c1e691a77579f9c0a4)
+     - [Questions](#6ce3bdc39e544725038e0e87b771db1e)
+     - [Shortest paths summary](#4ccfbaa8088f52afb0f66af1fd3c0489)
 
 ...menuend
 
@@ -393,6 +424,8 @@ insert | E | logE
 
 
 
+<h2 id="64071a409f7f87287eed62ffd412bc0e"></h2>
+
 #### Indexed priority queue
 
  - THe problem is , we have keys that the PQ algorithm doesn't really needs to know when we change values of keys.
@@ -428,6 +461,8 @@ boolean contains(int i)
 int delMin()
 ```
 
+<h2 id="b672f52ade975e864ae6b58722c03689"></h2>
+
 #### Implementation
 
  - Start with same code as MinPQ.
@@ -442,6 +477,8 @@ int delMin()
  - It's important to realize that it's possible to implement this decreased key operation in logarithmic time without ever having to search through everything,  using the idea of indexing.
  - `E + VlogV` can make a difference for a huge graph. 
 
+<h2 id="0ab687c6a13802a6674d5327e3d4177e"></h2>
+
 ## QA
 
  - Q: Minimum-weight feedback edge set
@@ -452,6 +489,8 @@ int delMin()
 
 
 ---
+
+<h2 id="66c555dd7127e24c5dad2b9bbc2b1818"></h2>
 
 # 4.4 SHORTEST PATHS
 
@@ -471,7 +510,11 @@ int delMin()
         - No "negative cycles."
  - Simplifying assumption. Shortest paths from *s* to each vertex *v* exist.
 
+<h2 id="582ea71a838abce9407ad2a894dbea08"></h2>
+
 ## shortest-paths properties
+
+<h2 id="68261b4718c4139e54fff81468a562c5"></h2>
 
 ### Data structures for single-source shortest paths
  
@@ -498,6 +541,8 @@ public Iterable<DirectedEdge> pathTo(int v) {
 }
 ```
 
+<h2 id="f1800f07c216d493e8e9ff2761ccfc33"></h2>
+
 ### Edge relaxation
 
  - Relax edge *e = v→w* .
@@ -517,6 +562,8 @@ private void relax(DirectedEdge e) {
     }
 }
 ```
+
+<h2 id="a0dbfd20d8d788e69eee52223da9cc90"></h2>
 
 ### Shortest-paths optimality conditions
 
@@ -539,6 +586,8 @@ private void relax(DirectedEdge e) {
         - distTo[w] = distTo[vk] ≤ e1.weight() + e2.weight() + ... + ek.weight()
     - Thus, distTo[w] is the weight of shortest path to w. 
 
+
+<h2 id="17660e379f4dc4040c1d93faf73d5f9c"></h2>
 
 ### Generic shortest-paths algorithm
 
@@ -564,6 +613,8 @@ Repeat until optimality conditions are satisfied:
     - Ex 3. Bellman-Ford algorithm (no negative cycles).
 
 
+<h2 id="2c3fda14bde328549c74fb448ef62d34"></h2>
+
 ## Dijkstra's algorithm
 
  - Consider vertices in increasing order of distance from s ( vertex that not on the SP-tree and  with the lowest distTo[] value).
@@ -577,7 +628,11 @@ Repeat until optimality conditions are satisfied:
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_dijkstra_2.png)
 
 
+<h2 id="2880931f98f3fff633812cf6fcf35e45"></h2>
+
 ### Dijkstra's algorithm: correctness proof (TODO)
+
+<h2 id="f1d4978722895ce40af6d3ebe0c8c6c0"></h2>
 
 ### Dijkstra's algorithm: Java implementation
 
@@ -618,6 +673,8 @@ public class DijkstraSP {
 ```
 
 
+<h2 id="5d21b219a367d8ca1eb434230c3f4be1"></h2>
+
 ### Computing spanning trees in graphs
 
  - Dijkstra’s algorithm seem familiar?
@@ -628,7 +685,11 @@ public class DijkstraSP {
     - Dijkstra’s: Closest vertex to the **source** (via a directed path).
  - Note: DFS and BFS are also in this family of algorithms.
 
+<h2 id="d7c7b1975f92a833609b519faa4ed829"></h2>
+
 ## edge-weighted DAGs
+
+<h2 id="a2c4d444ac852b90752f7a63ec59e581"></h2>
 
 ### Acyclic edge-weighted digraphs
 
@@ -640,6 +701,8 @@ public class DijkstraSP {
  - Algorithm
     - Consider vertices in topological order.
     - Relax all edges pointing from that vertex.
+
+<h2 id="fcbd840d9edcaf804b1bd65b6e72badc"></h2>
 
 ### Shortest paths in edge-weighted DAGs
 
@@ -683,6 +746,8 @@ public class AcyclicSP {
  - E+V
     - It process the V vertices in topological order; it relaxes each fo the E edges exactly once.
 
+<h2 id="5ee07047d6bca78383a141e5e8ec77ce"></h2>
+
 #### Application: Content-aware resizing
 
  - Seam carving: [Avidan and Shamir] Resize an image without distortion for display on cell phones and web browsers.
@@ -707,6 +772,8 @@ public class AcyclicSP {
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_seam2.png)
 
 
+<h2 id="3c55cda3adffaa472aa7490b10892ab8"></h2>
+
 ### Longest paths in edge-weighted DAGs
 
 since negative weights are allowd ,we can find longest paths in the edge-weighted DAGs, just by negating all the weights. This is because topologic sort algorithm desn't care whether the weights are positve or negative . 
@@ -716,6 +783,8 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
     - Find shortest paths.
     - Negate weights in result
  - Key point. Topological sort algorithm works even with negative weights.
+
+<h2 id="2160c4ec3d4551c21c4e80c16718ad43"></h2>
 
 #### Longest paths in edge-weighted DAGs: application
 
@@ -728,6 +797,8 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
 
  - And so what we want to do is, find a start time for each job. That minimizes the completion time. 
  
+<h2 id="2f8af766796a78ffe5aa21acf6f9f6b9"></h2>
+
 #### Critical path method
 
  - CPM. To solve a parallel job-scheduling problem, create edge-weighted DAG:
@@ -750,7 +821,11 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
 
 ---
 
+<h2 id="00bb6ece1156f92c2370e55696fbc73c"></h2>
+
 ## negative weights
+
+<h2 id="e60a7af8652792b3d2649ee453b4c196"></h2>
 
 ### Shortest paths with negative weights: failed attempts
 
@@ -762,11 +837,15 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_neg_reweight.png)
  - **Conclusion**. Need a different algorithm.
 
+<h2 id="d05e7fb4b74623a5da219bc192056e4a"></h2>
+
 ### Negative cycles
 
  - Def. A **negative cycle** is a directed cycle whose sum of edge weights is negative.
  - Proposition. A SPT exists iff no negative cycles.
     - assuming all vertices reachable from s
+
+<h2 id="bc4dcba35afdbb28dfbf17b06b64e8d1"></h2>
 
 ### Bellman-Ford algorithm
 
@@ -791,11 +870,15 @@ for (int i = 0; i < G.V(); i++) {
 
  - you will get a SPT after running Bellman-Ford algorithm  
 
+<h2 id="875643e3ddfa7b4322582d5fdb5a16d1"></h2>
+
 ### Bellman-Ford algorithm: analysis
 
  - Proposition. Dynamic programming algorithm computes SPT in any edge-weighted digraph with no negative cycles in time proportional to *E × V*.
  - Proof idea. 
     - After pass i, found shortest path containing at most i edges.
+
+<h2 id="252d97af220bba63a2b709f462d4d19f"></h2>
 
 ### Bellman-Ford algorithm: practical improvement
 
@@ -807,6 +890,8 @@ for (int i = 0; i < G.V(); i++) {
  - Overall effect.
     - The running time is still proportional to *E × V* in worst case.
     - But much faster than that in practice
+
+<h2 id="297a63d92dca03fcf471996d66e9b44b"></h2>
 
 ### Single source shortest-paths implementation: cost summary
 
@@ -824,6 +909,8 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
  - Remark 3. Negative cycles makes the problem intractable.
 
 
+<h2 id="9b60ad9b0b7957c904f64920f0bbfa7d"></h2>
+
 ### Finding a negative cycle
 
  - Observation. If there is a negative cycle, Bellman-Ford gets stuck in loop, updating distTo[] and edgeTo[] entries of vertices in the cycle.
@@ -835,6 +922,8 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
  - In practice. Check for negative cycles more frequently.
     - In practice actually, you don't have to wait till the last phase. 
     - You can check `distTo` entries for negative cycles, more frequently. 
+
+<h2 id="5cf18acbf86bf2c1e691a77579f9c0a4"></h2>
 
 ### Negative cycle application: arbitrage detection
 
@@ -861,6 +950,8 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
 
  - Remark. Fastest algorithm is extraordinarily valuable!
 
+<h2 id="6ce3bdc39e544725038e0e87b771db1e"></h2>
+
 ## Questions 
 
  - Q: Monotonic shortest path
@@ -883,6 +974,8 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
     - Assume the edge weights are nonnegative.
  - A: compute the shortest path from s to every vertex; compute the shortest path from every vertex to t; combine.
 
+
+<h2 id="4ccfbaa8088f52afb0f66af1fd3c0489"></h2>
 
 ## Shortest paths summary
 

@@ -10,6 +10,9 @@
          - [Boolean masking](#c381bd7fc934be857f568d5a2990c95d)
      - [Indexing Dataframes](#c26698ba4e53d8440e2c2572357e9c84)
          - [Insert record to Dataframe](#2b134ac285731f9d66fccfb31a8be4e1)
+         - [行选择和列选择小结](#ebae125e702774e5fc2e20a8dd47e231)
+             - [行选择](#dca178c13c61d3a5ff6723592c7570eb)
+         - [列选择](#c6e891c9937fb079fbb759e96c0eb44c)
      - [Missing Values](#4f62be1b7c56d639aec435b0d7e53b81)
 
 ...menuend
@@ -721,7 +724,11 @@ df = df.append(pd.Series(data={'Cost': 3.00, 'Item Purchased': 'Kitty Food'}, na
  - name : indicate the combine index
  - data : record data
 
+<h2 id="ebae125e702774e5fc2e20a8dd47e231"></h2>
+
 ### 行选择和列选择小结
+
+<h2 id="dca178c13c61d3a5ff6723592c7570eb"></h2>
 
 #### 行选择
 
@@ -752,6 +759,8 @@ s = fandango_drop.loc[2]
 # iloc[2] still work
 t = fandango_drop.iloc[2]  # return Series , cuz only 1 record
 ```
+
+<h2 id="c6e891c9937fb079fbb759e96c0eb44c"></h2>
 
 ### 列选择
 

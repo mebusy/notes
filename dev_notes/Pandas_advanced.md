@@ -1,5 +1,29 @@
+...menustart
+
+ - [Advanced Pandas](#adf4334b9c5df6b20ed4f5f5e20bb7a0)
+     - [Merging Dataframes](#ee2aad0e21ce73c25e8bcddcd01d1426)
+     - [Pandas Idioms](#4c7fe48a07b6ad92d0c079eccc80142d)
+         - [apply function](#6255c3e0f88024e53b86048db1711cc1)
+     - [Group by](#be87d8c3de2675bbc53f9442af9d8feb)
+     - [Scales](#34da875e03f8175113bd901cb46c2945)
+     - [Pivot Tables](#2df968ba4419f25ab2e5bbeaee9eacc3)
+     - [Date Functionality](#124cf81690d7ad3c6cb1a8e2572c30b7)
+         - [Timestamp](#a3d5de3eac8bb00ae86fd1a1005f1500)
+         - [Period](#1901606ea069a83dc7beea17881ef95a)
+         - [DatetimeIndex](#31c3ed93084fde1e4cfb189455db3ae0)
+         - [PeriodIndex](#3e4d11c471477ea15990deaf351ecbe2)
+         - [Converting to Datetime](#e5e5d211bc65027dfbc69a0ab7b42824)
+         - [Timedeltas](#345b4ea198c499ed502b17952e076b36)
+         - [Working with Dates in a Dataframe](#ee353674a132153d42025f4ba3237d30)
+
+...menuend
+
+
+<h2 id="adf4334b9c5df6b20ed4f5f5e20bb7a0"></h2>
 
 # Advanced Pandas
+
+<h2 id="ee2aad0e21ce73c25e8bcddcd01d1426"></h2>
 
 ## Merging Dataframes
 
@@ -117,6 +141,8 @@ pd.merge(staff_df, student_df, how='inner', left_on=['First Name','Last Name'], 
 
 --- 
 
+<h2 id="4c7fe48a07b6ad92d0c079eccc80142d"></h2>
+
 ## Pandas Idioms
 
  - Chain Inexing :
@@ -141,6 +167,8 @@ df = df[df['SUMLEV']==50]
 df.set_index(['STNAME','CTYNAME'], inplace=True)
 df.rename(columns={'ESTIMATESBASE2010': 'Estimates Base 2010'})
 ```
+
+<h2 id="6255c3e0f88024e53b86048db1711cc1"></h2>
 
 ### apply function
 
@@ -167,6 +195,8 @@ rows = ['POPESTIMATE2010',
 df.apply(lambda x: np.max(x[rows]), axis=1)
 
 ```
+
+<h2 id="be87d8c3de2675bbc53f9442af9d8feb"></h2>
 
 ## Group by
 
@@ -266,6 +296,8 @@ Arizona 427213.866667   431248.800000   6408208 6468732
 
 ```
 
+<h2 id="34da875e03f8175113bd901cb46c2945"></h2>
+
 ## Scales
 
  - Q: try casting this series to categorical with the oridering Low < Medium < High
@@ -327,6 +359,8 @@ dtype: category
 Categories (3, object): [Small < Medium < Large]
 ```
 
+<h2 id="2df968ba4419f25ab2e5bbeaee9eacc3"></h2>
+
 ## Pivot Tables
 
  - A pivot table is a way of summarizing data in a data frame for a particular purpose. 
@@ -369,10 +403,14 @@ YEAR
 All 125.0   104.0   107.0   81.0    49.0    80.0    35.0    345.478261  190.622642  125.0   104.0   107.0   81.0    49.0    80.0    35.0    225.0   35.0
 ```
 
+<h2 id="124cf81690d7ad3c6cb1a8e2572c30b7"></h2>
+
 ## Date Functionality
 
  - Pandas has four main time related classes. 
     - Timestamp, DatetimeIndex, Period, and PeriodIndex.
+
+<h2 id="a3d5de3eac8bb00ae86fd1a1005f1500"></h2>
 
 ### Timestamp
 
@@ -383,6 +421,8 @@ All 125.0   104.0   107.0   81.0    49.0    80.0    35.0    345.478261  190.6226
 pd.Timestamp('9/1/2016 10:05AM')
 Timestamp('2016-09-01 10:05:00')
 ```
+
+<h2 id="1901606ea069a83dc7beea17881ef95a"></h2>
 
 ### Period
 
@@ -396,6 +436,8 @@ Period('2016-01', 'M')
 pd.Period('3/5/2016')
 Period('2016-03-05', 'D')
 ```
+
+<h2 id="31c3ed93084fde1e4cfb189455db3ae0"></h2>
 
 ### DatetimeIndex
 
@@ -412,6 +454,8 @@ type(t1.index)
 pandas.tseries.index.DatetimeIndex
 ```
 
+<h2 id="3e4d11c471477ea15990deaf351ecbe2"></h2>
+
 ### PeriodIndex
 
 ```python
@@ -424,6 +468,8 @@ Freq: M, dtype: object
 type(t2.index)
 pandas.tseries.period.PeriodIndex
 ```
+
+<h2 id="e5e5d211bc65027dfbc69a0ab7b42824"></h2>
 
 ### Converting to Datetime
 
@@ -458,6 +504,8 @@ pd.to_datetime('4.7.12', dayfirst=True)
 Timestamp('2012-07-04 00:00:00')
 ```
 
+<h2 id="345b4ea198c499ed502b17952e076b36"></h2>
+
 ### Timedeltas
 
  - Timedeltas are differences in times
@@ -469,6 +517,8 @@ Timedelta('2 days 00:00:00')
 pd.Timestamp('9/2/2016 8:10AM') + pd.Timedelta('12D 3H')
 Timestamp('2016-09-14 11:10:00')
 ```
+
+<h2 id="ee353674a132153d42025f4ba3237d30"></h2>
 
 ### Working with Dates in a Dataframe
 
