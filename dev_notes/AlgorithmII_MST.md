@@ -735,9 +735,6 @@ public class AcyclicSP {
        if (distTo[w] > distTo[v] + e.weight()) {
            distTo[w] = distTo[v] + e.weight();
            edgeTo[w] = e;
-           // update PQ
-           if (pq.contains(w)) pq.decreaseKey(w, distTo[w]);
-           else                pq.insert     (w, distTo[w]);
        }    
    }
 }
