@@ -64,6 +64,8 @@ Mike    NaN             Law
 Sally   Course liasion  Engineering
 
 # Intersection
+pd.merge(staff_df, student_df, how='inner', left_index=True, right_index=True)
+
         Role            School
 Name
 James   Grader          Business

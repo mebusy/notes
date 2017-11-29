@@ -530,6 +530,24 @@ Armenia (ARM)   5   1   2   9   12  6   0   0   0   0   11  1   2   9   12
 Australasia (ANZ) [ANZ] 2   3   4   5   12  0   0   0   0   0   2   3   4   5   12
 ```
 
+ - pandas provide powerful support on excel 
+    - skiprows :  
+    - skip_footer : 
+    - usecols : specify columns to use
+    - na_values : specify  which value will be reflected as np.NaN
+    - converters : replace some content 
+
+```python
+def f(x):
+    return x.rstrip( "1234567890" )
+
+df = pd.read_excel("Energy Indicators.xls" , header=None, skiprows=18, skip_footer=283-245 , usecols=[2,3,4,5] ,na_values="..." ,
+                  converters = { 2 : f } )
+cnames= ['Country', 'Energy Supply', 'Energy Supply per Capita', '% Renewable']
+for i,col in enumerate(df.columns): 
+    df.rename( columns={col:cnames[i]}, inplace=True )
+```
+
 <h2 id="3c5b4efeb3926eb0d2e01d57122c4af8"></h2>
 
 ## Querying a DataFrame
