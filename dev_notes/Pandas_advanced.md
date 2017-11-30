@@ -203,6 +203,7 @@ df.apply(lambda x: np.max(x[rows]), axis=1)
 ## Group by
 
  - takes some column name or names and splits the dataframe up into chunks based on those names, it returns a dataframe group by object. 
+    - 非常适合需要对部分数据进行统计的情形
 
 ```python
 for group, frame in df.groupby('STNAME'):
@@ -226,6 +227,7 @@ Colorado
 ...
 ```
 
+
  - Now, 99% of the time, you'll use group by on one or more columns. 
     - But you can actually provide a function to group by as well and use that to segment your data. 
     - eg. you may want to handle 1/3 data each time
@@ -243,6 +245,9 @@ def fun(item):
 for group, frame in df.groupby(fun):
     print('There are ' + str(len(frame)) + ' records in group ' + str(group) + ' for processing.')
 ```
+
+
+### aggregate
 
  - A common work flow with group by that you split your data, you apply some function, then you combine the results. 
     - This is called split apply combine pattern. 
