@@ -245,7 +245,7 @@ perceptron is 二分类的线性分类模型。 输入为实例的特征向量�
     - The plane goes through the origin and is perpendicular to the **input vector**. 
         - input vector 就是 sample，training case 超平面 由它定义
         - input also represents constraints 
-            - so we can think of the inputs as partitioning the space into 2 halves
+            - so we can think of the inputs as partitioning the space into 2 halves ( by the hyper-plane which particular to it )
             - weights lying in one half will get the answer corrent
             - the inputs will constrain the set of weights that give the correct classification result.
     - On one side of the plane the output is **wrong** because the scalar product of the weight vector with the input vector has the wrong sign. 
