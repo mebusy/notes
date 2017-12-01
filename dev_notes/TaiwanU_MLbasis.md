@@ -31,6 +31,7 @@ h(x) = sigh ( WᵀX )
     - h(x) = 0 is a **lines** ( ir hyperplanes in ℝᵈ )
 
  - perceptrons <=> **linear (binary) clasifiers**
+    - PS. (2D空间下) 二元分类也并不仅限与 直线划分的情况，h(x)=0 也可以是一条曲线。只是这个perceptron 是直线情况
 
 
 
@@ -104,6 +105,21 @@ i[](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_PLA_pseudo.
  - modify PLA (black lines) by keeping best weights in pocket
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_PLA_modify_pseudo.png)
+
+
+# Week 3 Types of Learning
+
+## Learning with Different Output Space
+
+### Multiclass Classification: Coin Recognition Problem 
+
+ - classify US coins (1c,5c,10c,25c)
+    - y = {1,2,...,K}
+ - written digits => 0,1,...,9
+ - picture => apple, orange , strawberry
+
+
+
 
 
 
