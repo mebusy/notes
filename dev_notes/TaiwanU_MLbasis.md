@@ -118,6 +118,42 @@ i[](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_PLA_pseudo.
  - written digits => 0,1,...,9
  - picture => apple, orange , strawberry
 
+### Structured Learning : Sequence Tagging Problem
+
+ - multiclass classification : word => word class
+ - structured learning :
+    - sentence => structure (class of each word)
+ - y = { PVN,PVP,NVN,PV,... } , not including VVVVV
+ - huge multiclass classification problem 
+    - (structure ≡ hyperclass) without 'explicit' class definition
+
+## Learning with Different Data Label
+
+ - Supervised : all y<sub>n</sub>
+ - Unsupervised : no y<sub>n</sub>
+    - clustering :  {X<sub>n</sub>} => cluser(X)
+    - density estimation : {X<sub>n</sub>} => density(X)
+        - ≈ 'unsupervised bounded regression' 
+        - i.e. traffic reports with location => dangerous areas
+    - outlier detection {X<sub>n</sub>} => unusual(X) 
+        - ≈ 'unsupervised binary regression' 
+        - i.e. Internet logs => intrusion alert
+    - ... and a lot more !
+ - Semi-supervised : some y<sub>n</sub>
+    - leverage unlabeled data to avoid 'expensive' labeling
+    - eg.
+        - face images with a few labeled => face identifier (Facebook)
+        - medicine data with a few labeled => medicine effect predictor
+ - Reinforcement Learning : implicit y<sub>n</sub>
+
+
+## Learning with Different Protocol
+
+
+
+
+
+        
 
 
 
