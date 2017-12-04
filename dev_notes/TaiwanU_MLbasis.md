@@ -201,7 +201,37 @@ i[](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_PLA_pseudo.
  - μ = *orange* probability in bin
  - ν = *orange* fraction in sample
  - in big sample (N large) , ν is probably close to μ ( within ε ) 
-    - 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLbasis_hoeffding_ineq.png)
+    - 当N很大是，μ和ν 相差很大的几率 很小
+ - called **Hoeffding Inequality** , for marbles, coin, polling
+ - The statement 'μ-ν' is **probably approximately correct** (PAC)
+
+---
+
+ - valid for all N and ε
+    - 不管你选择的N 和 ε 是多少，这个式子都是对的
+ - does not depend on μ , **no need to 'know' μ**
+    - 等式右边不需要μ
+ - large sample size N for looser gap ε => higher probability for `μ≈ν`
+ - if large N , can probably infer unknown μ  by known ν.
+
+---
+
+ - Q: Let μ = 0.4. Use Hoeffding's Inequality to bound the probability that a sample of 10 marbles will have ν ≤ 0.1. What bound do you get?
+    - (1) 0.67 , (2) 0.40 , (3) 0.33 , (4) 0.05
+ - A: set N=10, and ε = 0.3, you will get the anwser (3)
+    - `2* (math.e **(  -2*e*e*N  ) ) = 0.3305977764431732`
+    - BTW, (4) is the actual probability and Hoeffding gives only an upper bound to that.
+
+## Connection to Learning
+
+
+
+
+
+
+
+
 
 
 
