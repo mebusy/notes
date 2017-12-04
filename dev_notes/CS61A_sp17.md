@@ -214,34 +214,12 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
  - In Scheme, **tail-recursive functions must work like iterations**
  - 一般可以通过增加一个 helper function 来实现 tail-recursive
 
----
+## A Simple Example
 
-# Lecture #23: Programming Languages and Programs
-
-## Metalinguistic Abstraction
-
- - We’ve created abstractions of actions
-    - functions, and of things , classes
- - **Metalinguistic abstraction** refers to the creation of languages
-    - abstracting **description**. 
-    - Programming languages are one example
-
-## A Sample Language: Calculator
-
- - Prefix notation expression language for basic arithmetic Python-like syntax, with more flexible built-in functions.
-
-```python
-calc> add( 1, 2, 3, 4)
-10
-calc> mul() 1
-calc> sub(100, mul( 7, add( 8, div(-12, - 3))))
-16.0
-calc> -(100, *( 7, +( 8, /(-12, - 3))))
-16.0
+```scheme
+(define (sum init L)
+       (if (null? L) init
+           (sum (+ init (car L)) (cdr L))))
 ```
-
-
-
-
 
 
