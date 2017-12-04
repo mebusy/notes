@@ -149,6 +149,65 @@ i[](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_PLA_pseudo.
 
 ## Learning with Different Protocol
 
+ - Batch Learning
+ - Online: hypothesis improves through receiving data instances sequeentially
+    - PLA can be easily adapted to online protocol 
+    - reinforment learning is often done online
+ - Active Learning:  Learning by 'Asking'   
+    - active: improve hypothesiis with fewer lables (hopefully) by asking questions **strategically**
+    - 跟上面两个被动学习不同, label成本很高的情况 适合尝试
+
+## Learning with Different Input Space
+
+ - concrete features
+    - 比如硬币分类，选择 大小，重量等等 作为feature
+    - 通常带有人类的智慧对这个问题的描述
+ - Raw Features: digit recognition problem
+    - often need human or machines to convert to concrete ones
+ - Abstract Features : Rating Prediction problem
+    - given previous (userid, itemid, rating) tuples , predict the rating that some userid would give to itemid ?
+    - 'no physical meaning' ; thus even more difficult for ML
+
+# Week 4 Feasibility of Learning
+
+## Probability to the Rescue
+
+ - consider a bin of many many *orange* and *green* marbles
+ - we don't know the *orange* portion (probability) 
+ - can you **infer** the *orange* probability ?
+
+ - Solution 1:  random sampling  ?
+
+---
+
+ - bin: assume
+    - orange probability = μ
+    - green probability = 1-μ
+    - with μ **unknonw** 
+ - sample 
+    - N marbles sampled independently , with 
+        - *orange* fraction = ν 
+        - *green* fraction = 1-ν
+    - now ν **known**
+ - does **in-sample ν**  say anything about out-of-sample μ ?
+    - **NO!**   possibly not: sample can be mostly *green* while bin is mostly *orange*
+    - **YES!**  probably yes: in-sample ν likely close to unknown μ.
+    - 没有办法有个确定的答案。
+        - 没有办法说，我抽10颗起来，这10颗的比例就一定是罐子里面的比例。不过呢，大致上有很大的几率是这个样子。
+
+### Hoeffding's Inequality
+
+ - sample of size N 
+ - μ = *orange* probability in bin
+ - ν = *orange* fraction in sample
+ - in big sample (N large) , ν is probably close to μ ( within ε ) 
+    - 
+
+
+
+
+
+
 
 
 
