@@ -1,5 +1,7 @@
 # CS61A sp17
 
+https://inst.eecs.berkeley.edu/~cs61a/sp17/
+
 # Lecture #22: The Scheme Language
 
 ## Data Types
