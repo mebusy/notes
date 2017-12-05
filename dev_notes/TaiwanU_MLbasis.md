@@ -238,6 +238,55 @@ size-N sample from bin | check h on ⅅ = { (X<sub>n</sub>, y<sub>n</sub>) } , i
     - **unknown E<sub>out</sub>(h)** = ε<sub>X~P</sub> [ h(x) ≠ f(x) ]  , (μ)
     - by **known E<sub>in</sub>(h)** = 1/N·∑ᴺ<sub>n=1</sub> [ h(x<sub>n</sub>) ≠ y<sub>n</sub>  ] , (ν)
 
+### The Formal Guarantee
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_fg.png)
+
+same as the 'bin' analogy...
+
+ - valid for all N and ε
+ - does not depend on E<sub>out</sub>(h) , **no need to know E<sub>out</sub>(h)**
+    - f and P can stay unknown
+ - 'E<sub>in</sub>(h) = E<sub>out</sub>(h)' is **probably approximately correct (PAC)**.
+ - if **E<sub>in</sub>(h) ≈ E<sub>out</sub>(h)** and **E<sub>in</sub>(h) small** 
+    - => E<sub>out</sub>(h) small.
+    - => h ≈ f with respect to P 
+
+### Verification of One h
+
+ - for any fixed *h*, when data large enough,  E<sub>in</sub>(h)  ≈ E<sub>out</sub>(h) 
+    - can we claim 'good learning' ( g ≈ f  ) ?
+ - Yes: if E<sub>in</sub>(h)  small for the fixed h , and **A pick the h as g** => 'g = f' PAC
+ - No: if **A forced to pick THE h as g** which has not small E<sub>in</sub>(h)
+
+## Connection to Real Learning
+
+### Coin Game
+
+ - if everyone in size-150 , flip a  coin 5 times , one will get 5 heads with large probability
+    - 1 - (31/32)¹⁵⁰ > 99%
+ - BAD sample:  E<sub>in</sub> and E<sub>out</sub> **far away**
+
+### BAD Sample and BAD Data
+
+ - BAD Sample
+    - e.g. E<sub>out</sub> = 1/2, but getting all heads ( E<sub>in</sub> = 0 )
+ - BAD Data for One h
+    - E<sub>in</sub> and E<sub>out</sub> **far away** 
+    - e.g. E<sub>out</sub> big (far from f) , but E<sub>in</sub>  small ( correct on most examples )
+ - Hoeffding 保证的是，BAD Data for h 的总体概率比较小
+
+### BAD Data for Many h
+
+ - BAD data for many h
+    - <=> **no 'freedom of choice'** by A
+    - <=> there exists some h such that E<sub>in</sub> and E<sub>out</sub> **far away** 
+
+
+  
+
+
+
 
 
 
