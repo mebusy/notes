@@ -282,6 +282,10 @@ same as the 'bin' analogy...
     - <=> **no 'freedom of choice'** by A
     - <=> there exists some h such that E<sub>in</sub> and E<sub>out</sub> **far away** 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_bad_data.png)
+
+ - for M hypotheses , bound of ℙ<sub>D</sub>[BAD D] ?
+
 
   
 
