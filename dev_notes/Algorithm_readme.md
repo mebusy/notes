@@ -20,6 +20,10 @@
  8. [Dynamic Programming](https://github.com/mebusy/notes/blob/master/dev_notes/DynamicProgramming.md)
 
 ---
+ 
+ 1. [TAOCP](https://github.com/mebusy/notes/blob/master/dev_notes/TAOCP_exercise.md)
+
+---
 
  1. [Algorithm on String](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_On_Strings.md)
 
