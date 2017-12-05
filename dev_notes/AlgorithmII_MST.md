@@ -716,7 +716,7 @@ public class AcyclicSP {
    private DirectedEdge[] edgeTo;
    private double[] distTo;
 
-   public DijkstraSP(EdgeWeightedDigraph G, int s) {
+   public AcyclicSP(EdgeWeightedDigraph G, int s) {
        edgeTo = new DirectedEdge[G.V()];
        distTo = new double[G.V()];
 
