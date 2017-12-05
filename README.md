@@ -4,6 +4,7 @@
      - [其它数学](#8443a5022727ccc209d315492559f16f)
      - [Python](#a7f5f35426b927411fc9231b56382173)
      - [Data Science](#c78e2ad97b328dbafbd49edf182136f3)
+     - [CS61A](#6967a2c7c19fa61c072a4b0a1072e9c7)
      - [swift](#818056dbd7e201243206b9c7cd88481c)
      - [Operation System](#aac4d78ee7d18636803896f8b8c16aa6)
      - [C](#0d61f8370cad1d412f80b84d143e1257)
@@ -66,9 +67,19 @@
 <h2 id="c78e2ad97b328dbafbd49edf182136f3"></h2>
 
 #### Data Science
+
  a | b | c | d
 --- | --- | --- | ---
 [Numpy](https://github.com/mebusy/notes/blob/master/dev_notes/numpy_tips.md) | [Pandas](https://github.com/mebusy/notes/blob/master/dev_notes/Pandas.md) | [Advanced Pandas](https://github.com/mebusy/notes/blob/master/dev_notes/Pandas_advanced.md) | [Statistic in Python](https://github.com/mebusy/notes/blob/master/dev_notes/Pands_StatisticalAnalysisInPython.md)
+
+<h2 id="6967a2c7c19fa61c072a4b0a1072e9c7"></h2>
+
+#### CS61A 
+
+ a | b | c | d
+--- | --- | --- | ---
+[scheme](https://github.com/mebusy/notes/blob/master/dev_notes/CS61A_sp17.md) | 
+
 
 <h2 id="818056dbd7e201243206b9c7cd88481c"></h2>
 

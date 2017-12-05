@@ -10,6 +10,7 @@
          - [安装排错](#154a11cd7a6e424863c28aa29ad576d1)
      - [Markdown](#2182a74bab7188d959e795d9301e87ff)
      - [install MacVim](#b081af9a95521e478ee6f8af8675cded)
+     - [check vim compile features](#95cec38eef2cf37c01f98f869cb8e4bc)
  - [VIM 正则表达式](#072db16a2fab851f315188d28a992133)
      - [关于magic](#9e8ec078a153381638b723f644bc0f67)
      - [非贪婪匹配](#2ca3f178cb83ff68009d5da28d754da3)
@@ -204,6 +205,8 @@ snor <silent> <C-\> <esc>i<right><c-r>=TriggerSnippet()<cr>
 
 3. open in terminal 
     - `mvim -v`
+
+<h2 id="95cec38eef2cf37c01f98f869cb8e4bc"></h2>
 
 ## check vim compile features
 

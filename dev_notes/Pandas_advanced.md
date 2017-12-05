@@ -5,6 +5,7 @@
      - [Pandas Idioms](#4c7fe48a07b6ad92d0c079eccc80142d)
          - [apply function](#6255c3e0f88024e53b86048db1711cc1)
      - [Group by](#be87d8c3de2675bbc53f9442af9d8feb)
+         - [aggregate](#39adbeb6bc21a3133e5fdcf1ec05d1a0)
      - [Scales](#34da875e03f8175113bd901cb46c2945)
      - [Pivot Tables](#2df968ba4419f25ab2e5bbeaee9eacc3)
      - [Date Functionality](#124cf81690d7ad3c6cb1a8e2572c30b7)
@@ -246,6 +247,8 @@ for group, frame in df.groupby(fun):
     print('There are ' + str(len(frame)) + ' records in group ' + str(group) + ' for processing.')
 ```
 
+
+<h2 id="39adbeb6bc21a3133e5fdcf1ec05d1a0"></h2>
 
 ### aggregate
 
