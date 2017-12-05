@@ -212,9 +212,6 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
 ## Loops and Tail Recursion
 
  - In Scheme, **tail-recursive functions must work like iterations**
- - 一般可以通过增加一个 helper function 来实现 tail-recursive
-
-## A Simple Example
 
 ```scheme
 (define (sum init L)
@@ -222,4 +219,33 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
            (sum (+ init (car L)) (cdr L))))
 ```
 
+---
 
+# Lecture #27: More Scheme Programming
+
+## Recursion and Iteration
+
+ - **tail recursions** . From the reference manual:
+    - Implementations of Scheme must be **properly tail-recursive**.
+    - Procedure calls that occur in certain syntactic contexts called **tail contexts** are tail calls.
+    - Scheme implementation is properly tail-recursive if it supports an **unbounded number of [simultaneously] active tail calls**
+ - First, let’s define what that means
+
+## Tail Contexts
+
+ - Basically, an expression is in a **tail context** , if 
+    - it is evaluated last in a function body  (函数中最后一个求值
+    - and provides the value of a call to that function. (并为该函数提供了一个返回值))
+ - A function is **tail-recursive** if
+    - all function calls , in its body , that can result in a recursive call on that same function , **are in tail contexts**.
+ - In effect, Scheme turns recursive calls of such functions into iterations   instead of simply returning
+    - by **replacing** those calls with one of the function’s tail-context expressions
+ - This decreases the memory , devoted to keeping track of which functions are running and who called them , to a constant. 
+
+## Tail Contexts in Scheme
+
+ - The “bases” are
+    - (lambda (ARGUMENTS) EXPR1 EXPR2 ... **EXPRn**)
+    - (define (NAME ARGMENTS) EXPR1 EXPR2 ... **EXPRn**)
+ - If an expression is in a tail context, then certain parts of it become tail contexts all by themselves
+    - 
