@@ -225,10 +225,18 @@ i[](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_PLA_pseudo.
 
 ## Connection to Learning
 
+bin | learning
+--- | ---
+unknown *orange* prob. μ | fixed hypothesis h(x) ?  target f(x)
+marble ∈ bin | X ∈ 𝕏
+orange marble | h is wrong <=> h(x) ≠ f(x)
+green marble | h is right <=> h(x) = f(x)
+size-N sample from bin | check h on ⅅ = { (X<sub>n</sub>, y<sub>n</sub>) } , if no noise , y<sub>n</sub>=f(X<sub>n</sub>)
 
-
-
-
+ - if **large N** & **i.i.d X<sub>n</sub>** infer unknown [ h(x) ≠ f(x) ]  probability by known [ h(x<sub>n</sub>) ≠ y<sub>n</sub>  ]
+ - for any fixed *h* ,  can probably infer
+    - **unknown E<sub>out</sub>(h)** = ε<sub>X~P</sub> [ h(x) ≠ f(x) ]  , (μ)
+    - by **known E<sub>in</sub>(h)** = 1/N·∑ᴺ<sub>n=1</sub> [ h(x<sub>n</sub>) ≠ y<sub>n</sub>  ] , (ν)
 
 
 

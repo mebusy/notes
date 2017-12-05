@@ -204,6 +204,12 @@ snor <silent> <C-\> <esc>i<right><c-r>=TriggerSnippet()<cr>
 
 3. open in terminal 
     - `mvim -v`
+
+## check vim compile features
+
+```bash
+vim --version
+```
    
 ---
 

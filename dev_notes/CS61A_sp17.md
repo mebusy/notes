@@ -248,4 +248,102 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
     - (lambda (ARGUMENTS) EXPR1 EXPR2 ... **EXPRn**)
     - (define (NAME ARGMENTS) EXPR1 EXPR2 ... **EXPRn**)
  - If an expression is in a tail context, then certain parts of it become tail contexts all by themselves
-    - 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs61a_scheme_tail_content_in_tail_exp.png)
+
+## Prime Numbers
+
+```scheme
+(define (prime? x)
+    "True iff X is prime."
+)
+```
+
+```scheme
+(define (prime? x)
+    "True iff X is prime."
+    (cond ((< x 2) #f)
+        ((= x 2) #t)
+        (#t ?))  ; ? is undefined
+)
+```
+
+```scheme
+(define (prime? x)
+    "True iff X is prime."
+
+    (define (no-factor? k lim)
+        "LIM has no divisors >= K and < LIM."
+        )
+
+    (cond ((< x 2) #f)
+        ((= x 2) #t)
+        (#t (no-factor? 2
+            (floor (+ (sqrt x) 2)))))
+)
+```
+
+```scheme
+(define (prime? x)
+    "True iff X is prime."
+
+    (define (no-factor? k lim)
+        "LIM has no divisors >= K and < LIM."
+        (cond ((>= k lim) #t)
+            ((= (remainder x k) 0) #f)
+            (#t ?)))
+
+    (cond ((< x 2) #f)
+        ((= x 2) #t)
+        (#t (no-factor? 2
+            (floor (+ (sqrt x) 2)))))
+)
+```
+
+```scheme
+(define (prime? x)
+    "True iff X is prime."
+
+    (define (no-factor? k lim)
+        "LIM has no divisors >= K and < LIM."
+        (cond ((>= k lim) #t)
+            ((= (remainder x k) 0) #f)
+            (#t (no-factor? (+ k 1) lim))))
+
+    (cond ((< x 2) #f)
+        ((= x 2) #t)
+        (#t (no-factor? 2
+            (floor (+ (sqrt x) 2)))))
+)
+```
+
+## Tail-Recursive Length?
+
+ - On several occasions, we’ve computed the length of a linked list like this:
+
+```scheme
+;; The length of list L
+(define (length L)
+    (if (eqv? L '()) ; Alternative: (null? L)
+        0
+        (+ 1 (length (cdr L)))))
+```
+
+ - but this is not tail recursive. How do we make it so?
+
+ - **Try a helper method:** 
+
+```scheme
+;; The length of list L
+(define (length L)
+     (define (length+ n R)
+          "The length of R plus N."
+          (if (null? R) n
+               (length+ (+ n 1) (cdr R))))
+     (length+ 0 L))
+```
+
+
+
+
+
+
