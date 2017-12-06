@@ -672,6 +672,7 @@ public class DijkstraSP {
 }
 ```
 
+ - support milti-source ?
 
 <h2 id="5d21b219a367d8ca1eb434230c3f4be1"></h2>
 
@@ -767,6 +768,9 @@ public class AcyclicSP {
     - Delete pixels on seam (one in each row).
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_seam2.png)
+
+ - 实现上，并不需要显式地创建 DirectedEdge 和 EdgeWeightedDigraph 
+    - 一个energy 矩阵就足够了
 
 
 <h2 id="3c55cda3adffaa472aa7490b10892ab8"></h2>
