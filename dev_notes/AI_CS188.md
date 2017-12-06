@@ -1200,33 +1200,47 @@ end // func
 
 ###  python graph search
 
- - note:
+ - note1:
     - for uniform search,  fringe is a priority queue , the cumulate cost is the key (  `lambda item: item[2]` )
     - for astar search , fringe is a priority queue which use  cumulate cost + heuristic(state) 
+ - note2:
+    - we store the info of parent node (parentState,action) , and use it to rebuild the whole shortest path.
 
 ```python
-# author: qibinyi                                                          
-def graphSearch( problem, fringe):                                         
-                                                                           
-    closed = {}                                                            
-    # node is a tuple: ( state , path , cumulate cost )                    
-    fringe.push( (problem.getStartState(),[], 0 ) )                        
-    while True:                                                            
-        # test                                                           
-        if fringe.isEmpty():                                               
-            return []                                                      
-        state , path , costs  = fringe.pop()                               
-        if problem.isGoalState(state):                                     
-            return path                                                    
+# author: qibinyi
+def graphSearch( problem, fringe):
+    
+    closed = {}
+
+    def buildPath( last_path_info ) :
+        ret = []
+        while last_path_info[0] is not None:
+            ret.append( last_path_info[1] ) 
+            last_path_info = closed[ last_path_info[0] ]
+        ret.reverse()
+        return ret
+
+
+
+    # node is a tuple: ( state , (parentState,action)  , cumulate cost )
+    fringe.push( (problem.getStartState(),(None,None), 0 ) )
+    while True:
+        # test 
+        if fringe.isEmpty():
+            return []
+        state , path_info  , costs  = fringe.pop()
+        if problem.isGoalState(state):
+            return buildPath( path_info ) 
         
-        # expand
-        if state not in closed:                                            
-            closed[state] = 1                                              
+        # print state , " -> "    
+        # expand 
+        if state not in closed :
+            closed[state] = path_info
             for sucState , action, cost  in problem.getSuccessors( state ):
-                fringe.push( ( sucState , path+[action] , costs + cost )  )
-        pass                                                               
-                                                                           
-    return []                                                              
+                fringe.push( ( sucState , (state,action) , costs + cost )  )  
+                # print "\t <- " , sucState  
+
+    return []
 ```
 
  - case1: find a path to dst position in a maze
