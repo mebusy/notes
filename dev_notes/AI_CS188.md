@@ -1200,6 +1200,10 @@ end // func
 
 ###  python graph search
 
+ - note:
+    - for uniform search,  fringe is a priority queue , the cumulate cost is the key (  `lambda item: item[2]` )
+    - for astar search , fringe is a priority queue which use  cumulate cost + heuristic(state) 
+
 ```python
 # author: qibinyi                                                          
 def graphSearch( problem, fringe):                                         
