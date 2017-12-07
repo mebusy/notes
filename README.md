@@ -78,7 +78,7 @@
 
  a | b | c | d
 --- | --- | --- | ---
-[scheme](https://github.com/mebusy/notes/blob/master/dev_notes/CS61A_sp17.md) | 
+[scheme](https://github.com/mebusy/notes/blob/master/dev_notes/CS61A_sp17.md) | [Racket](https://github.com/mebusy/notes/blob/master/Racket.md)
 
 
 <h2 id="818056dbd7e201243206b9c7cd88481c"></h2>
