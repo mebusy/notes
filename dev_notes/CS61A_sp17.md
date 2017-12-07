@@ -250,6 +250,36 @@ scm> (list (+ 1 2) 'a 4)
 (3 a 4)
 ```
 
+ - we can use the quote form to construct a malformed list
+
+```scheme
+scm> '(1 2 3)
+(1 2 3)
+scm> '(1 . (2 . (3)))
+(1 2 3)
+scm> '(1 . (2 . 3))
+(1 2 . 3)  ; malformed !
+```
+
+### Built-In Procedures for Lists
+
+```scheme
+scm> (null? nil)
+True
+
+scm> (append '(1 2 3) '(4 5 6))
+(1 2 3 4 5 6)
+
+scm> (cons '(1 2 3) '(4 5 6))
+((1 2 3) 4 5 6)
+
+scm> (list '(1 2 3) '(4 5 6))
+((1 2 3) (4 5 6))
+
+scm> (length '(1 2 3 4 5))
+5
+```
+
 <h2 id="03936ded5131bf9088bd627617a68642"></h2>
 
 ## Binding Constructs: Let
