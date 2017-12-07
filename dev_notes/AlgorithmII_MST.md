@@ -672,7 +672,9 @@ public class DijkstraSP {
 }
 ```
 
- - support milti-source ?
+ - support multi-source ? YES!
+ - IndexMinPQ can decrease the computation , but is only works for simple state ( for above algorim, the state is the vertex index ) 
+    - it may cause memory consumption for complex state
 
 <h2 id="5d21b219a367d8ca1eb434230c3f4be1"></h2>
 
@@ -767,11 +769,14 @@ public class AcyclicSP {
  - To remove vertical seam:
     - Delete pixels on seam (one in each row).
 
+
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_seam2.png)
 
  - 实现上，并不需要显式地创建 DirectedEdge 和 EdgeWeightedDigraph 
     - 一个energy 矩阵就足够了
-
+    - AcyclicSP 在seamCarving上 效率最高
+        - 不同与 Dijkstra算法，AcyclicSP 不能中途claim we have hit the goal , AcyclicSP must finish the loop.
+        - [sample implementation code](https://raw.githubusercontent.com/mebusy/codeLib/master/AlgorithmII_homework/seamCarving/SeamCarver.java)
 
 <h2 id="3c55cda3adffaa472aa7490b10892ab8"></h2>
 
