@@ -223,7 +223,7 @@ Unfortunate detail:
              (mcdr p))))
 ```
 
- - Using promises
+ - Using **promises**
 
 ```scheme
 (define (f p)
@@ -285,6 +285,69 @@ Unfortunate detail:
 (define ones-bad (lambda () cons 1 (ones-bad)))  ; cdr returned is not a thunk!
 (define (ones-bad)(cons 1 (ones-bad)))  ; same as above, (define (x) ...) means x is a function takes no parameters
 ```
+
+## Memoization
+
+ - If a function has no side effects and does not read mutable memory, no point in computing it twice for the same arguments
+    - Can keep a cache of previous results
+ - Similar to promises, but if the function takes arguments, then there are multiple “previous results”
+ - For recursive functions, this memoization can lead to exponentially faster programs
+    - Related to algorithmic technique of dynamic programming
+ - (An association list (list of pairs) is a simple but sub-optimal data structure for a cache; okay for our example)
+
+## Macros: The Key Points
+
+ - A **macro definition** describes how to transform some new syntax into different syntax in the source language
+ - A macro is one way to implement syntactic sugar
+    - “Replace any syntax of the form `e1 andalso e2` with `if e1 then e2 else false`”
+ - A **macro system** is a language (or part of a larger language) for defining macros 
+ - **Macro expansion** is the process of rewriting the syntax for each **macro use**
+    - Before a program is run (or even compiled)
+
+### Tokenization
+
+ - First question for a macro system: How does it tokenize?
+ - Macro systems generally work at the level of tokens not sequences of characters
+    - So must know how programming language tokenizes text
+ - Example: “macro expand head to car ”
+    - Would not rewrite (+ headt foo) to (+ cart foo)
+    - Would not rewrite head-door to car-door
+        - But would in C where head-door is subtraction
+
+### Parenthesization
+
+ - Second question for a macro system: How does associativity work?
+ - C/C++ basic example:
+    - `#define ADD(x,y) x+y`
+ - Probably not what you wanted:
+    - `ADD(1,2/3)*4 ` means `1 + 2 / 3 * 4` , not `(1 + 2 / 3) * 4`
+ - So C macro writers use lots of parentheses, which is fine:
+    - `#define ADD(x,y) ((x)+(y))`
+ - Racket won’t have this problem:
+    - Macro use: (macro-name …)
+    - After expansion: ( something else in same parens )
+
+### Scope 
+
+
+ - Third question for a macro system: Can variables shadow macros?
+ - Suppose macros also apply to variable bindings. Then:
+
+```scheme
+(let ([head 0][car 1]) head) ; 0
+(let* ([head 0][car 1]) head) ; 0
+```
+
+Would become
+
+```scheme
+(let ([car 0][car 1]) car) ; error , not allowed declare twice
+(let* ([car 0][car 1]) car) ; 1 , first car will be shadowed
+```
+
+ - This is why C/C++ convention is all-caps macros and non-all-caps for everything else
+ - Racket does not work this way – it gets scope “right”!
+    - **the local variable would simply shadow the macro !**
 
 
 
