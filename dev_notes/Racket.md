@@ -238,5 +238,54 @@ Unfortunate detail:
 
 ## Using Streams
 
+ - A stream is an infinite sequence of values
+    - So cannot make a stream by making all the values
+    - Key idea: Use a thunk to delay creating most of the sequence
+    - Just a programming idiom
+ - A powerful concept for division of labor
+    - Stream producer knows how create any number of values
+    - Stream consumer decides how many values to ask for
+ - We will represent streams using pairs and thunks
+ - Let a stream be a thunk that when called returns a pair:
+    - `'(next-answer . next-thunk)`
+    - 注意和 iterator的区别
+ - So given a stream s, the client can get any number of elements
+
+```scheme
+– First: (car (s))
+– Second: (car ((cdr (s))))  ; double (( on cdr 
+– Third: (car ((cdr ((cdr (s))))))
+```
+
+ - How can one thunk create the right next thunk? Recursion!
+    - Make a thunk that produces a pair where cdr is next thunk
+    - A recursive function can return a thunk where recursive call does not happen until thunk is called
+ 
+```scheme
+(define ones (lambda () (cons 1 ones))) ; 1,1,1 ...
+
+(define nats                        ; 1,2,3,...
+ (letrec ([f (lambda (x) (cons x (lambda () (f (+ x 1)))))])
+     (lambda () (f 1))
+ )
+)
+
+(define powers-of-two   ; 2,4,8,...
+ (letrec ([f (lambda (x) (cons x (lambda () (f (* x 2)))))])
+     (lambda () (f 2))
+ )
+)
+```
+
+### Getting it wrong
+
+ - This goes into an infinite loop making an infinite-length list
+
+```scheme
+(define ones-bad (lambda () cons 1 (ones-bad)))  ; cdr returned is not a thunk!
+(define (ones-bad)(cons 1 (ones-bad)))  ; same as above, (define (x) ...) means x is a function takes no parameters
+```
+
+
 
 
