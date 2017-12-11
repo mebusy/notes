@@ -349,6 +349,7 @@ Would become
  - Racket does not work this way – it gets scope “right”!
     - **the local variable would simply shadow the macro !**
 
+## Racket Macros with define-syntax
 
 
 
