@@ -81,6 +81,13 @@
 [scheme](https://github.com/mebusy/notes/blob/master/dev_notes/CS61A_sp17.md) | [Racket](https://github.com/mebusy/notes/blob/master/Racket.md)
 
 
+#### Lua
+
+ a | b | c | d
+--- | --- | --- | ---
+[implementation](https://github.com/mebusy/notes/blob/master/dev_notes/LuaSC.md)
+
+
 <h2 id="818056dbd7e201243206b9c7cd88481c"></h2>
 
 #### swift
