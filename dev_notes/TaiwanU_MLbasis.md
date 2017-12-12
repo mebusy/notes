@@ -98,7 +98,7 @@ h(x) = sigh ( WᵀX )
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_PLA_correct.png)
  - 算法伪代码如下:
 
-i[](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_PLA_pseudo.png)
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_PLA_pseudo.png)
 
  - A fault confessed is half redressed.
  - Weight Space
@@ -114,6 +114,7 @@ i[](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_PLA_pseudo.
 ### Practical Implementation of PLA 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_CyclicPLA_pseudo.png)
+
 
 <h2 id="2c4c57a7143770c331971f4ce207c2e2"></h2>
 
