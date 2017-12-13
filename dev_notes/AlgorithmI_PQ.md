@@ -145,6 +145,22 @@ Fibonacci | 1 | log N⁺ | 1
     - Remove an arbitrary item
     - Change the priority of an item
     - can implement with sink() and swim() [stay tuned]
+    
+
+ - resize array
+    - grow : If array is full, create a new array of twice the size, and copy items
+        - `if (N == s.length) resize(2 * s.length);`
+    - sink: halve size of array s[] when array is one-quarter full.
+        - `if (N > 0 && N == s.length/4) resize(s.length/2);`
+
+```java
+private void resize(int capacity) {
+   String[] copy = new String[capacity];
+   for (int i = 0; i < N; i++)
+      copy[i] = s[i];
+   s = copy;
+}
+```
 
 
 
