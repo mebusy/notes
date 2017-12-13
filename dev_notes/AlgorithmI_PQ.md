@@ -77,3 +77,6 @@ public void insert(Key x) {
         - why not the smaller one ? Power struggle. Better subordinate promoted
     - Repeat until heap order restored.
  
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_pq_sink.png)
+
+
