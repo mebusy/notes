@@ -115,6 +115,9 @@ h(x) = sigh ( WᵀX )
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_CyclicPLA_pseudo.png)
 
+ - 按某个顺序便利 样本，如果发现错误就纠错， 知道某个完整的循环没有错误。
+ - 注意 PLA 样本输入 X 需要插入 bias
+
 
 <h2 id="2c4c57a7143770c331971f4ce207c2e2"></h2>
 
@@ -175,6 +178,11 @@ h(x) = sigh ( WᵀX )
  - modify PLA (black lines) by keeping best weights in pocket
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_PLA_modify_pseudo.png)
+
+ - 遍历样本，如有有错，就纠错 -- update w
+ - 把更新后的w  放到整个样本中测试错误率， 记录错误率最小的那个 wg
+ - 一般设置 w 更新满 n次后，结束整个算法
+
 
 
 <h2 id="802179691269a6cfc6518c10b66d4776"></h2>
@@ -417,11 +425,70 @@ same as the 'bin' analogy...
  - M = ∞ ? (like perceptrons) 
     - see next lecture
 
+# Week5 Traning versus Testing
+
+## Trade-off on M
+
+ 1. can we make sure that E<sub>out</sub>(g) is close enoughto E<sub>in</sub>(g)?
+ 2. can we make E<sub>in</sub>(g) small enough 
+
+ - M is the size of hyperthesis set
+
+Question | small M | large M
+--- | --- | ---
+Q1  | Yes!  ℙ[BAD] = 2·M·exp(...) | No!, ℙ[BAD] = 2·M·exp(...)   
+Q2  | No! too few choices  | Yes!, many choices
+
+
+ - using the right M (or H) is important
+ - M = ∞ doomed ?
+
+---
+
+ - One way to use the inequality , is to pick a tolerable difference ε as well as a tolerable BAD probability δ , and the gather data with size(N) large enough to achieve those tolerance criteria.
+    - Let δ = 0.1 , δ = 0.05 , and M=100. What is the data size need ?
+    - `N =   math.log( delta / ( 2*M) ) / (  -2*eps**2  ) = 414.7024820051013  `   
+
+## Effective Number of Lines
+
+ - Where did uniform Bound Fail ?
+    - union bound :  ℙ[B1 or B2 or ... or B<sub>M</sub>] ≤ ℙ[B1]+ℙ[B2]+ ... + P[B<sub>M</sub>]
+    - consider for M = ∞ , the sum of right side  may > 1 , 那这个bound 就没有意义了
+ - 这个bound 到底出了什么问题？
+    - 为什么我们可以用union bound ？ 因为坏事情不太会重叠
+    - 事实上， 两个相近的h1,h2， 发生坏事情的Data set 通常非常接近
+    - 重叠部分就造成了上限的 over-estimating , 从而导致无法处理M无限大的情况
+ - 所以需要想办法找出这些坏事情重叠的部分。 
+    - 第一步，也许是我们能不能把我们的无限多个hypothesis , 分成有限多类
+
+### How many Kinds of Lines for 1~4 Inputs in 2D  ?
+
+ - 1 input
+    - 2 kinds line
+ - 2 inputs
+    - 4 kinds line
+ - 3 inputs 
+    - 8 kinds line
+    - 如果 三点共线，只有 6种线
+ - 4 inputs
+    - 14 kinds line ( 注意不是16 )
+    - 共线的情况，更少
+
+### Effective Number Of Lines
+
+ - maximum kinds of lines with respect to N inputs X₁,X₂,...X<sub>N</sub>
+ - must be ≤ 2ᴺ
+ - wish
+    - ℙ[ |E<sub>in</sub>-E<sub>out</sub>| > ε ] ≤ 2·effective(N)·exp( -2ε²N )
+ - if 
+    - 1. effective(N) can replace M , and 
+    - 2. effective(N) ⋘ 2ᴺ 
+    - 那么当你的N足够大的时候， 右边的这项会趋近于0
+ - 所以就算有無限多條線 如果我們能夠把這個無限多條線，換成這個effective這個有限的數字 而且這個effective這個數字，實際上比2的N次方 來的小很多的話，我們就可以保證，可能可以學得到東西。 好，暫時來說這是我們的猜想.
 
 
 
-
-
+  
 
 
 
