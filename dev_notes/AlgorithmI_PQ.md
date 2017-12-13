@@ -38,6 +38,22 @@
     - Exchange key in child with key in parent.
     - Repeat until heap order restored.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_pq_swim.png)
 
+```java
+private void swim(int k) {
+    // 1 is root, do not care
+    // parent is smaller 
+    while (k > 1 && less(k/2, k)) {
+        exch(k, k/2); // swap key
+        k = k/2;     // check the new violation of the upper level
+    }    
+}
+```
+
+### Insertion in a heap
+
+ - Insert. Add node at end, then swim it up.
+ - Cost. At most 1 + lg N compares.
 
 
