@@ -13,6 +13,7 @@
      - [Function Evaluation](#8b17c9cbbb4c6770d9ecfb2a4942ce0b)
      - [Numbers](#cbebfa21dbe8e87e788d94a76f073807)
      - [Lists and Pair](#f0a6b9c0ea1eb163c4419272979abd5a)
+         - [Built-In Procedures for Lists](#0073e9b3cffbe3e83566be73aa67e223)
      - [Binding Constructs: Let](#03936ded5131bf9088bd627617a68642)
      - [Loops and Tail Recursion](#e1a227edacf151ee8c1e87954ba4500f)
  - [Lecture #27: More Scheme Programming](#d55c63328ef9a1e4b2e468b3fb6eabf7)
@@ -260,6 +261,8 @@ scm> '(1 . (2 . (3)))
 scm> '(1 . (2 . 3))
 (1 2 . 3)  ; malformed !
 ```
+
+<h2 id="0073e9b3cffbe3e83566be73aa67e223"></h2>
 
 ### Built-In Procedures for Lists
 

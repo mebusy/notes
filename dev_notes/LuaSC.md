@@ -1,5 +1,21 @@
+...menustart
+
+ - [The Implementation of Lua 5.0](#4f290eb80083e0bb6b40f6d87c09981a)
+     - [2 An Overview of Lua’s Design and Implementation](#250c904a9716f8ab74be081555c63afa)
+     - [3 The Representation of Values](#ee226301a572d11c468ef9d94be631c3)
+     - [4 Tables](#44eab1c91179898399b5ef2c31ddb47e)
+     - [5 Functions and Closures](#572568b8164104249d51df24e8df1e39)
+     - [6 Threads and Coroutines](#76d231147e33d5baa99ed608ad62ec0c)
+     - [7 The Virtual Machine](#7c89324fd0ad9c0688759cd8b0df39f7)
+
+...menuend
+
+
+<h2 id="4f290eb80083e0bb6b40f6d87c09981a"></h2>
 
 # The Implementation of Lua 5.0
+
+<h2 id="250c904a9716f8ab74be081555c63afa"></h2>
 
 ## 2 An Overview of Lua’s Design and Implementation
 
@@ -13,6 +29,8 @@
     - direct threaded code
         - Instead, lua uses a standard **while–switch** dispatch loop. 
 
+
+<h2 id="ee226301a572d11c468ef9d94be631c3"></h2>
 
 ## 3 The Representation of Values
 
@@ -75,6 +93,8 @@ typedef union {
         - because they are common in Lua. 
         - For instance, it is usual to process files in Lua by reading them completely into memory into a single long string.
 
+<h2 id="44eab1c91179898399b5ef2c31ddb47e"></h2>
+
 ## 4 Tables
 
  - Tables in Lua are associative arrays, that is, they can be indexed by any value (except nil) and can hold values of any type.
@@ -98,6 +118,8 @@ typedef union {
     - A main invariant of these tables is that if an element is not in its main position (i.e., the original position given by its hash value), then the colliding element is in its own main position.
         - There are no secondary collisions.
 
+
+<h2 id="572568b8164104249d51df24e8df1e39"></h2>
 
 ## 5 Functions and Closures
 
@@ -152,6 +174,8 @@ print(add2(5))
     - Thus, when a function is instantiated, all variables that go into its closure are either in the enclosing function’s stack or in the enclosing function’s closure.
 
 
+<h2 id="76d231147e33d5baa99ed608ad62ec0c"></h2>
+
 ## 6 Threads and Coroutines
 
  - Since version 5.0, Lua implements *asymmetric coroutines*
@@ -175,6 +199,8 @@ print(add2(5))
     - the interpreter cannot use its internal C stack to implement calls in the interpreted code.
     - The Python community calls an interpreter that follows that restriction a stackless interpreter
  - Lua uses the C stack to keep track of the stack of active coroutines at any given time. 
+
+<h2 id="7c89324fd0ad9c0688759cd8b0df39f7"></h2>
 
 ## 7 The Virtual Machine
 

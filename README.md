@@ -5,6 +5,7 @@
      - [Python](#a7f5f35426b927411fc9231b56382173)
      - [Data Science](#c78e2ad97b328dbafbd49edf182136f3)
      - [CS61A](#6967a2c7c19fa61c072a4b0a1072e9c7)
+     - [Lua](#0ae9478a1db9d1e2c48efa49eac1c7c6)
      - [swift](#818056dbd7e201243206b9c7cd88481c)
      - [Operation System](#aac4d78ee7d18636803896f8b8c16aa6)
      - [C](#0d61f8370cad1d412f80b84d143e1257)
@@ -80,6 +81,8 @@
 --- | --- | --- | ---
 [scheme](https://github.com/mebusy/notes/blob/master/dev_notes/CS61A_sp17.md) | [Racket](https://github.com/mebusy/notes/blob/master/Racket.md)
 
+
+<h2 id="0ae9478a1db9d1e2c48efa49eac1c7c6"></h2>
 
 #### Lua
 

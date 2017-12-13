@@ -23,6 +23,7 @@
          - [文件夹搜索](#4d36d00db257fed5fe7d2a2036ad930f)
          - [文件夹 替换](#476949b7922fe3e5ea39c034861527d8)
          - [多行 行首插入字符](#4b0c82f3072a7a2d205d934ca7413367)
+         - [多行 行尾插入字符](#facc78c7266b3fe0364882da91e214b8)
          - [replace all tab with 4 space](#72ec54ea94cad51a12851d38a51ea25f)
 
 ...menuend
@@ -358,6 +359,8 @@ vimgrep /pattern/gj path
  2. 向下移动光标 选中所有行
  3. shift i 进入多行插入模式， 编辑 , esc 
  4. 等 1秒钟， 修改完成
+
+<h2 id="facc78c7266b3fe0364882da91e214b8"></h2>
 
 ### 多行 行尾插入字符
 

@@ -1,9 +1,38 @@
+...menustart
+
+ - [Antlr](#c120884bab20a4738205e724e2b9d501)
+ - [install](#19ad89bc3e3c9d7ef68b89523eff1987)
+ - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
+ - [表达式求值](#4564981cafbb7b9957cbeba1a42df75f)
+ - [The Definitive ANTLR 4 Reference : Part I](#bb02524b3a160a2990a57229f860e16f)
+ - [CHAPTER 1. Meet ANTLR](#bc400908d979a205604e4010630b4f6b)
+     - [1.1 Install](#93164cfae6b8aa76e5b75cf93496064b)
+     - [1.2 Executing ANTLR and Testing Recognizers](#0dec518672c3eef4cf20bf32e552c95b)
+ - [Chapter 4. A Quick Tour](#2f3e2a80e82065ea6587c0af3e180bb1)
+     - [Importing Grammars](#db53b037af7f9dc70111a66512e3f27c)
+     - [Building a Calculator Using a Visitor](#5da8502a515f881c0dab186a4e69ba5d)
+     - [Building a Translator with a Listener](#29ca8f4c682b4e3bc0abe5c4aba7ce42)
+     - [Making Things Happen During the Parse](#8409c9e2ffda1c59af131d49166f5af9)
+         - [Embedding Arbitrary Actions in a Grammar](#993287912c88deb1c536a0cdfa6b986c)
+     - [Cool Lexical Features](#dd0c712b3dd888f10c8d002c78fd86f1)
+         - [Island Grammars: Dealing with Different Formats in the Same File](#e2dda0a9000b06f1fe391c2e56980f3b)
+         - [Rewriting the Input Stream](#668eb3905506ca0d643daf390a1306f4)
+         - [Sending Tokens on Different Channels](#4475860fa6324867936f24300f027790)
+
+...menuend
+
+
+<h2 id="c120884bab20a4738205e724e2b9d501"></h2>
 
 # Antlr
+
+<h2 id="19ad89bc3e3c9d7ef68b89523eff1987"></h2>
 
 # install
 
 
+
+<h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
 # Example
 
@@ -24,6 +53,8 @@ grun Expr prog -gui
 # or output parser tree in LISP format
 grun Expr prog -tree
 ```
+
+<h2 id="4564981cafbb7b9957cbeba1a42df75f"></h2>
 
 # 表达式求值
 
@@ -85,6 +116,8 @@ public static void main(String[] args) {
 }
 ```
 
+<h2 id="bb02524b3a160a2990a57229f860e16f"></h2>
+
 # The Definitive ANTLR 4 Reference : Part I 
 
  - `ALL(*)`  
@@ -98,7 +131,11 @@ expr : expr '*' expr // match subexpressions joined with '*' operator
 
  - ANTLR v4 automatically generates parse-tree walkers in the form of *listener* and *visitor* pattern implementations. 
 
+<h2 id="bc400908d979a205604e4010630b4f6b"></h2>
+
 # CHAPTER 1. Meet ANTLR
+
+<h2 id="93164cfae6b8aa76e5b75cf93496064b"></h2>
 
 ## 1.1 Install
 
@@ -112,6 +149,8 @@ $ export CLASSPATH=".:/usr/local/lib/antlr-4.7-complete.jar:$CLASSPATH"
 $ alias antlr4='java -jar /usr/local/lib/antlr-4.7-complete.jar'
 $ alias grun='java org.antlr.v4.gui.TestRig'
 ```
+
+<h2 id="0dec518672c3eef4cf20bf32e552c95b"></h2>
 
 ## 1.2 Executing ANTLR and Testing Recognizers
 
@@ -133,7 +172,11 @@ options | desc
 -SLL | uses a faster but slightly weaker parsing strategy.
 
 
+<h2 id="2f3e2a80e82065ea6587c0af3e180bb1"></h2>
+
 # Chapter 4. A Quick Tour
+
+<h2 id="db53b037af7f9dc70111a66512e3f27c"></h2>
 
 ## Importing Grammars
 
@@ -153,6 +196,8 @@ import CommonLexerRules; // includes all rules from CommonLexerRules.g4 /** The 
 prog: stat+ ;
 ...
 ```
+
+<h2 id="5da8502a515f881c0dab186a4e69ba5d"></h2>
 
 ## Building a Calculator Using a Visitor
 
@@ -201,19 +246,29 @@ public Integer visitAssign(LabeledExprParser.AssignContext ctx) {
 }
 ```
 
+<h2 id="29ca8f4c682b4e3bc0abe5c4aba7ce42"></h2>
+
 ## Building a Translator with a Listener 
 
  - Imagine your boss assigns you to build a tool that generates a Java interface file from the methods in a Java class definition.
  - Preserve whitespace and comments within the bounds of the method signature.
 
+<h2 id="8409c9e2ffda1c59af131d49166f5af9"></h2>
+
 ## Making Things Happen During the Parse
+
+<h2 id="993287912c88deb1c536a0cdfa6b986c"></h2>
 
 ### Embedding Arbitrary Actions in a Grammar
 
  - We can compute values or print things out on-the-fly during parsing if we don’t want the overhead of building a parse tree. 
  - p63
 
+<h2 id="dd0c712b3dd888f10c8d002c78fd86f1"></h2>
+
 ## Cool Lexical Features
+
+<h2 id="e2dda0a9000b06f1fe391c2e56980f3b"></h2>
 
 ### Island Grammars: Dealing with Different Formats in the Same File
 
@@ -242,12 +297,16 @@ STRING : '"' .*? '"' ;
 ...
 ```
 
+<h2 id="668eb3905506ca0d643daf390a1306f4"></h2>
+
 ### Rewriting the Input Stream
 
  - Let’s build a tool that processes Java source code to insert serialization identifiers, serialVersionUID, for use with java.io.Serializable
     -  (like Eclipse does automatically). 
  - We want to avoid implementing every listener method in a JavaListener interface, generated from a Java grammar by ANTLR, just to capture the text and print it back out.
  - p68
+
+<h2 id="4475860fa6324867936f24300f027790"></h2>
 
 ### Sending Tokens on Different Channels
 

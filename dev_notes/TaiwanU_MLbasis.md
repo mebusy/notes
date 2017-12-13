@@ -34,6 +34,11 @@
          - [BAD Data for Many h](#16553486c255ce8a5d8e557b67c3c9a6)
          - [Bound of BAD Data](#c82862b9ceccd7efd1ca9d2bab635903)
          - [The 'Statistical Learning Flow'](#d8634320f9db8392b907e680f3fbdeef)
+ - [Week5 Traning versus Testing](#e25bb439455099bb6fd2a7b680e73f15)
+     - [Trade-off on M](#8d5764cc1a7dce832f420e7096b07f1b)
+     - [Effective Number of Lines](#83bee210aad456619c22ae2c5e2dc963)
+         - [How many Kinds of Lines for 1~4 Inputs in 2D  ?](#624848f04dceb9194a26b7aa039879f2)
+         - [Effective Number Of Lines](#8c31579792d76e74531e953be4313740)
 
 ...menuend
 
@@ -425,7 +430,11 @@ same as the 'bin' analogy...
  - M = ∞ ? (like perceptrons) 
     - see next lecture
 
+<h2 id="e25bb439455099bb6fd2a7b680e73f15"></h2>
+
 # Week5 Traning versus Testing
+
+<h2 id="8d5764cc1a7dce832f420e7096b07f1b"></h2>
 
 ## Trade-off on M
 
@@ -449,6 +458,8 @@ Q2  | No! too few choices  | Yes!, many choices
     - Let δ = 0.1 , δ = 0.05 , and M=100. What is the data size need ?
     - `N =   math.log( delta / ( 2*M) ) / (  -2*eps**2  ) = 414.7024820051013  `   
 
+<h2 id="83bee210aad456619c22ae2c5e2dc963"></h2>
+
 ## Effective Number of Lines
 
  - Where did uniform Bound Fail ?
@@ -460,6 +471,8 @@ Q2  | No! too few choices  | Yes!, many choices
     - 重叠部分就造成了上限的 over-estimating , 从而导致无法处理M无限大的情况
  - 所以需要想办法找出这些坏事情重叠的部分。 
     - 第一步，也许是我们能不能把我们的无限多个hypothesis , 分成有限多类
+
+<h2 id="624848f04dceb9194a26b7aa039879f2"></h2>
 
 ### How many Kinds of Lines for 1~4 Inputs in 2D  ?
 
@@ -473,6 +486,8 @@ Q2  | No! too few choices  | Yes!, many choices
  - 4 inputs
     - 14 kinds line ( 注意不是16 )
     - 共线的情况，更少
+
+<h2 id="8c31579792d76e74531e953be4313740"></h2>
 
 ### Effective Number Of Lines
 

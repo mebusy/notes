@@ -1,13 +1,37 @@
+...menustart
 
+ - [2.4 PRIORITY QUEUES](#31a8f3f664a49f0116e7d7ceacaff56c)
+     - [binary heaps](#01f70acef6efe0e1e07b6c8847ae493a)
+         - [Complete binary tree](#45c2a6499668ae8a669f5f812b56379a)
+         - [Binary heap representations](#05a360d5d6f9939aabfd6bd00823d80e)
+         - [Binary heap properties](#2e582e415db1ab1e6e72b8278b9385e1)
+         - [Promotion in a heap](#8bff03ac1b55987683317d94044219d1)
+         - [Insertion in a heap](#cb0565d93960f3556f5f0ca7c24c3134)
+         - [Demotion in a heap](#32a8207179f9f552bbec38561312becf)
+         - [Delete the maximum in a heap](#34f42d75083165489f2d1288aa203637)
+         - [Priority queues implementation cost summary](#dee2139d14dc9b4129086c422806e8a4)
+         - [Binary heap considerations](#08fdfb23883b137987adc5a563f835b0)
+     - [event-driven simulation](#2b3a9baf85c09205eff605615163f824)
+
+...menuend
+
+
+<h2 id="31a8f3f664a49f0116e7d7ceacaff56c"></h2>
 
 # 2.4 PRIORITY QUEUES
 
+<h2 id="01f70acef6efe0e1e07b6c8847ae493a"></h2>
+
 ## binary heaps
+
+<h2 id="45c2a6499668ae8a669f5f812b56379a"></h2>
 
 ### Complete binary tree
 
  - Binary tree. Empty or node with links to left and right binary trees.
  - Complete tree. Perfectly balanced, except for bottom level.
+
+<h2 id="05a360d5d6f9939aabfd6bd00823d80e"></h2>
 
 ### Binary heap representations
 
@@ -22,6 +46,8 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algor1_pq_heap_repre.png)
 
+<h2 id="2e582e415db1ab1e6e72b8278b9385e1"></h2>
+
 ### Binary heap properties
 
  - Proposition. Largest key is a[1], which is root of binary tree.
@@ -30,6 +56,8 @@
     - Children of node at k are at 2k and 2k+1.
     - a[0] 不使用
 
+
+<h2 id="8bff03ac1b55987683317d94044219d1"></h2>
 
 ### Promotion in a heap
 
@@ -56,6 +84,8 @@ private void swim(int k) {
     - swim 用于 insertion
     - sink 用于 delete max
 
+<h2 id="cb0565d93960f3556f5f0ca7c24c3134"></h2>
+
 ### Insertion in a heap
 
  - Insert. Add node at end, then swim it up.
@@ -72,6 +102,8 @@ public void insert(Key x) {
     swim(N); 
 }
 ```
+
+<h2 id="32a8207179f9f552bbec38561312becf"></h2>
 
 ### Demotion in a heap
 
@@ -98,6 +130,8 @@ private void sink(int k) {
 ```
 
 
+<h2 id="34f42d75083165489f2d1288aa203637"></h2>
+
 ### Delete the maximum in a heap
 
  - Delete max.
@@ -120,17 +154,21 @@ public Key delMax() {
 }
 ```
 
+<h2 id="dee2139d14dc9b4129086c422806e8a4"></h2>
+
 ### Priority queues implementation cost summary
 
  - order-of-growth of running time for priority queue with N items
 
 implementation | insert | del max | max 
---- | --- | --- 
+--- | --- | --- | --- 
 unordered array | 1 | N | N
 ordered array | N | 1 | 1
 **binary heap** | log N | log N | 1
 d-ary heap | logd N | d logd N | 1 
 Fibonacci | 1 | log N⁺ | 1 
+
+<h2 id="08fdfb23883b137987adc5a563f835b0"></h2>
 
 ### Binary heap considerations
 
@@ -163,6 +201,8 @@ private void resize(int capacity) {
 ```
 
 
+
+<h2 id="2b3a9baf85c09205eff605615163f824"></h2>
 
 ## event-driven simulation
 
