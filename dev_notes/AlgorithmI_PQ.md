@@ -31,5 +31,13 @@
     - a[0] 不使用
 
 
+### Promotion in a heap
+
+ - Scenario. Child's key becomes **larger** key than its parent's key.
+ - To eliminate the violation:
+    - Exchange key in child with key in parent.
+    - Repeat until heap order restored.
+
+
 
 
