@@ -51,9 +51,29 @@ private void swim(int k) {
 }
 ```
 
+ - Peter principle. Node promoted to level of incompetence.
+
 ### Insertion in a heap
 
  - Insert. Add node at end, then swim it up.
  - Cost. At most 1 + lg N compares.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_pq_insertion.png)
 
+```java
+public void insert(Key x) {
+    // ++ first , because we don't use index 0
+    pq[++N] = x;
+    // swim up
+    swim(N); 
+}
+```
+
+### Demotion in a heap
+
+ - Scenario. Parent's key becomes **smaller** than one (or both) of its children's.
+ - To eliminate the violation:
+    - Exchange key in parent with key in larger child. 
+        - why not the smaller one ? Power struggle. Better subordinate promoted
+    - Repeat until heap order restored.
+ 
