@@ -105,5 +105,49 @@ private void sink(int k) {
     - 交换根节点 到最后一个节点， 然后新的根节点 sink 到正确位置
  - Cost. At most 2 lg N compares.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_pq_deletemax.png)
+
+```java
+public Key delMax() {
+    Key max = pq[1];
+    // 交换，N = N-1
+    exch(1, N--);
+    // new root sink
+    sink(1);
+    // prevent loitering
+    pq[N+1] = null ;
+    return max;    
+}
+```
+
+### Priority queues implementation cost summary
+
+ - order-of-growth of running time for priority queue with N items
+
+implementation | insert | del max | max 
+--- | --- | --- 
+unordered array | 1 | N | N
+ordered array | N | 1 | 1
+**binary heap** | log N | log N | 1
+d-ary heap | logd N | d logd N | 1 
+Fibonacci | 1 | log N⁺ | 1 
+
+### Binary heap considerations
+
+ - Immutability of keys
+ - Underflow and overflow
+    - Underflow: throw exception if deleting from empty PQ
+    - Overflow: add no-arg constructor and use resizing array
+ - Minimum-oriented priority queue
+    - Replace less() with greater()
+    - Implement greater().
+ - Other operations.
+    - Remove an arbitrary item
+    - Change the priority of an item
+    - can implement with sink() and swim() [stay tuned]
+
+
+
+## event-driven simulation
 
 

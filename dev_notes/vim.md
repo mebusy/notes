@@ -356,8 +356,15 @@ vimgrep /pattern/gj path
 
  1. 光标置与第一行行首, ctrl-v 进入  VISUAL BLOCK
  2. 向下移动光标 选中所有行
- 3. shift i 进入多行插入模式， 编辑
+ 3. shift i 进入多行插入模式， 编辑 , esc 
  4. 等 1秒钟， 修改完成
+
+### 多行 行尾插入字符
+
+ - 对多行行首插入的 第三步进行修改
+    1. Press $ to extend the visual block to the end of each line.
+    2. Press A ，进入行尾编辑
+    3. 编辑 , esc
 
 
 <h2 id="72ec54ea94cad51a12851d38a51ea25f"></h2>
