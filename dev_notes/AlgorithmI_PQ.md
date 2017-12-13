@@ -52,10 +52,14 @@ private void swim(int k) {
 ```
 
  - Peter principle. Node promoted to level of incompetence.
+ - swim/sink 都需要递归检查
+    - swim 用于 insertion
+    - sink 用于 delete max
 
 ### Insertion in a heap
 
  - Insert. Add node at end, then swim it up.
+    - 添加新node到PQ最后，然后 swim到正确位置
  - Cost. At most 1 + lg N compares.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_pq_insertion.png)
@@ -78,5 +82,28 @@ public void insert(Key x) {
     - Repeat until heap order restored.
  
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_pq_sink.png)
+
+```java
+private void sink(int k) {
+    while (2*k <= N) {
+        int j = 2*k;
+        // child node at k are 2k,2k+1 
+        // choose the largest child as j
+        if (j < N && less(j, j+1)) j++;
+        if (!less(k, j)) break;
+        exch(k, j);
+        k = j;    
+    }    
+}
+```
+
+
+### Delete the maximum in a heap
+
+ - Delete max.
+    - Exchange root with node at end, then sink it down.
+    - 交换根节点 到最后一个节点， 然后新的根节点 sink 到正确位置
+ - Cost. At most 2 lg N compares.
+
 
 
