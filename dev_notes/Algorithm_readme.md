@@ -17,7 +17,8 @@
  5. [Heap](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_Heap.md) , [**Priority Queue**](https://github.com/mebusy/notes/blob/master/dev_notes/AlgorithmI_PQ.md)
  6. [Binary Search Tree](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_BinarySearchTree.md) 
  7. [hash](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_hash.md)
- 8. [Dynamic Programming](https://github.com/mebusy/notes/blob/master/dev_notes/DynamicProgramming.md)
+ 8. [**Symbol Table 实现**](https://github.com/mebusy/notes/blob/master/dev_notes/AlgorithmI_SmybolTables.md)
+ 9. [Dynamic Programming](https://github.com/mebusy/notes/blob/master/dev_notes/DynamicProgramming.md)
 
 ---
  
