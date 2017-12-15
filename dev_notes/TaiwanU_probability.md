@@ -772,6 +772,20 @@ plt.show()
 
  - 为什么这么像 正态分布？
 
+ - another method, use scipy
+
+```
+import scipy, scipy.stats
+x = scipy.linspace(0,10,11)
+pmf = scipy.stats.binom.pmf(x,10,0.6)
+import pylab
+pylab.plot(x,pmf)
+pylab.show()
+```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TaiU_probability_binom2.png)
+
+
 
 <h2 id="f7bf1cb803a0ab0539a6dc3ed526dd4f"></h2>
 
