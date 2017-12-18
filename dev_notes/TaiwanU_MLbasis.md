@@ -526,18 +526,19 @@ size | possibly infinite | upper bounded by 2ᴺ
  - 小麻烦：
     - |  H( x₁,x₂, ... , X<sub>N</sub>  ) |: depend on inputs ( x₁,x₂, ... , X<sub>N</sub>   )
     - dichotomy set 取决于我们选好的 x₁,x₂, ... , X<sub>N</sub>  ， 我们希望移除这个依赖
- - growth function:  remove dependence by **taking max of  all possible ( x₁,x₂, ... , X<sub>N</sub>  ) 
-    - 
+ - growth function:  remove dependence by **taking max of  all possible ( x₁,x₂, ... , X<sub>N</sub>  )**
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TaiU_MLb_growth_fun.png)
+ - finite , upper-bounded by 2ᴺ
+
+
+ 
 
 
 
-  
 
 
 
 
-
-  
 
 
 
