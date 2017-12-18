@@ -501,6 +501,34 @@ Q2  | No! too few choices  | Yes!, many choices
     - 那么当你的N足够大的时候， 右边的这项会趋近于0
  - 所以就算有無限多條線 如果我們能夠把這個無限多條線，換成這個effective這個有限的數字 而且這個effective這個數字，實際上比2的N次方 來的小很多的話，我們就可以保證，可能可以學得到東西。 好，暫時來說這是我們的猜想.
 
+## Effective Number of Hypotheses
+
+ - what about 线以外的 hypothesis set ?  e.g. 高维度的hyperplane.
+
+### Dichotomies: Mini-hypothesis
+
+ - H = { hypothesis  h: X → { x, o} } 
+ - call h(x₁,x₂, ... , X<sub>N</sub> ) = ( h(x₁),h(x₂), ... , h(X<sub>N</sub>)  ) ∈ {x,o}ᴺ 
+    - a **dichotomy**: hypothesis 'limited' to the eyes of x₁,x₂, ... , X<sub>N</sub> 
+    - dichotomy : 二分的
+ - H( x₁,x₂, ... , X<sub>N</sub>  ) :
+    - **all dichotomies 'implemented' by H on x₁,x₂, ... , X<sub>N</sub>**
+
+ · | hypothesis H | dichotomies H( x₁,x₂, ... , X<sub>N</sub>  ) 
+--- | --- | ---
+e.g. | all lines in ℝ² | {oooo, ooox , ooxx, ...}
+size | possibly infinite | upper bounded by 2ᴺ
+
+
+### Growth Function 
+
+ - 我们能不能用这个dichotomy set 的大小，来取代原来 Hoeffding 里面那个让我们觉得很困扰的，可能是无限大的M呢？
+ - 小麻烦：
+    - |  H( x₁,x₂, ... , X<sub>N</sub>  ) |: depend on inputs ( x₁,x₂, ... , X<sub>N</sub>   )
+    - dichotomy set 取决于我们选好的 x₁,x₂, ... , X<sub>N</sub>  ， 我们希望移除这个依赖
+ - growth function:  remove dependence by **taking max of  all possible ( x₁,x₂, ... , X<sub>N</sub>  ) 
+    - 
+
 
 
   
