@@ -530,6 +530,64 @@ size | possibly infinite | upper bounded by 2ᴺ
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TaiU_MLb_growth_fun.png)
  - finite , upper-bounded by 2ᴺ
 
+### TODO
+
+## Break Point 
+
+### The 4 Growth Functions 
+
+case | growth Function
+--- | --- 
+positive rays | N+1
+positive intervals | 1/2·N²+1/2·N+1
+convex sets |  2ᴺ
+2D perceptrons | < 2ᴺ in some cases
+
+ - What if m<sub>H</sub>(N) replaces M ?
+    - polynomial: good 
+    - exponential : bad 
+        - convex set 的情况，就算N够大，也不见得 能够确保 E<sub>in</sub> 和 E<sub>out</sub> 非常接近 
+ - 那么，2D perceptron 到底是好的还是不好的呢？
+
+
+### Break Point of H 
+
+ - what do we know about 2D perceptrons now ?
+    - three inputs: exists shatter 
+    - four inputs: 'for all' no shatter
+ - if no *k* inputs can be shattered by H , call *k* a **break point** of H 
+    - m<sub>H</sub>(k) < 2ᵏ
+    - k+1, K+2, k+3, ... also break points !!
+    - will study minimum break point *k*
+
+
+
+case | break point
+--- | --- 
+positive rays | 2
+positive intervals | 3
+convex sets |  no break point 
+2D perceptrons | 4 
+  
+
+ - conjecture 推测 
+    - no break point: m<sub>H</sub>(H) = 2ᴺ (sure!)
+    - break point k: m<sub>H</sub>(H) = O( N<sup>k-1</sup>  )
+        - growth function的增长速度 搞不好会和 和break point 有关
+
+
+case | break point | growth Function | O
+--- | --- | --- | --- 
+positive rays | 2 | N+1 | O(N)
+positive intervals | 2 | 1/2·N²+1/2·N+1 | O(N²)
+convex sets | no bp | 2ᴺ | O(2ᴺ)
+2D perceptrons | 4 | < 2ᴺ in some cases |  O(N³) ?
+
+---
+
+# Week 6 heory of Generalization
+
+
 
  
 
