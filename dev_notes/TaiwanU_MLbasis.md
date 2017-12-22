@@ -628,7 +628,7 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
  - N(N,k) = 2ᴺ-1 for N = k
 
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_tab_bounding_func_0.png)
 
  - quiz: for the 2D perceptrons , which of the following claim is true ?
     - minimum break point k = 2.   ( False, k = 4  )
@@ -639,6 +639,8 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 
 
 ## Bounding Function: Inductive Cases
+
+ - B(N,k) ≤ B(N-1,k) + B(N-1, k-1)
 
 
 
