@@ -642,6 +642,10 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 
  - B(N,k) ≤ B(N-1,k) + B(N-1, k-1)
 
+### Bounding Function : The Theorem
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_bounding_func_theorem.png)
+
 
 
 
