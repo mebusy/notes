@@ -642,9 +642,16 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 
  - B(N,k) ≤ B(N-1,k) + B(N-1, k-1)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_tab_bounding_func_1.png)
+
+ - **acutally , '≤' can be '='**. 
+
 ### Bounding Function : The Theorem
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_bounding_func_theorem.png)
+
+ - for fixed *k*, B(N,k) upper bounded by poly(N) 
+    - ⇒ m<sub>H</sub>(N) is poly(N) **if break point exists**
 
 
 
