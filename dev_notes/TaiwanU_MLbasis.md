@@ -559,6 +559,7 @@ convex sets |  2ᴺ
     - m<sub>H</sub>(k) < 2ᵏ
     - k+1, K+2, k+3, ... also break points !!
     - will study minimum break point *k*
+    - 也就是说，任意取 k个输入，都无法被 H shattered
 
 
 
@@ -571,25 +572,75 @@ convex sets |  no break point
   
 
  - conjecture 推测 
-    - no break point: m<sub>H</sub>(H) = 2ᴺ (sure!)
-    - break point k: m<sub>H</sub>(H) = O( N<sup>k-1</sup>  )
+    - no break point: m<sub>H</sub>(N) = 2ᴺ (sure!)
+    - break point k: m<sub>H</sub>(N) = O( N<sup>k-1</sup>  )
         - growth function的增长速度 搞不好会和 和break point 有关
 
 
 case | break point | growth Function | O
 --- | --- | --- | --- 
 positive rays | 2 | N+1 | O(N)
-positive intervals | 2 | 1/2·N²+1/2·N+1 | O(N²)
+positive intervals | 3 | 1/2·N²+1/2·N+1 | O(N²)
 convex sets | no bp | 2ᴺ | O(2ᴺ)
 2D perceptrons | 4 | < 2ᴺ in some cases |  O(N³) ?
 
 ---
 
-# Week 6 heory of Generalization
+# Week 6 Theory of Generalization
+
+## Restriction of Break Point
+
+ - what 'must be true' when **minimum break point k==2** ?
+    - N=1, every m<sub>H</sub>(N) == 2 by definition
+    - N=2, every m<sub>H</sub>(N) < 4 by definition
+        - maximum possible = 3
+    - N=3, every m<sub>H</sub>(N) == 4 < 2³ 
+        - eg. 最多产生4中，再尝试加入任意一种 dichotomy都会破坏 break point k=2
+        - o o o 
+        - o o x
+        - o x o
+        - x o o
+ - break point *k*  restricts maximum possible m<sub>H</sub>(N) a lot for N > k
+ - IDEA:   m<sub>H</sub>(N) 
+    - ≤ maximum possible m<sub>H</sub>(N) given *k*
+    - ≤ poly(N)
+
+## Bounding Function: Basic Cases
+
+ - bounding function B(N,k):
+    - maximum **possible** m<sub>H</sub>(N) when break point = k
+ - combinatorial quantity:
+    - maximum number of length-N vectors with (o,x) while 'no shatter' any length-k subvectors
+    - 可以很抽象地想象 我有一堆的向量，這些向量其實就是我的dichotomy， 我的dichotomy這些向量是圈圈叉叉組成的，這些圈圈叉叉的長度是n， 然後呢，但是我做一個限制，我說這些長度是n的向量 如果我把它的某些維度遮起來，我只看它的其中 k個維度的話， 我都不希望看到圈圈叉叉所有的 情形，也就是說我不希望看到2ᵏ 种組合。用我們的術語來說，就是 不能出現shatter，不能把這個k個點，通通都ko掉。 
+ - irrelevant of the details of H , e.g. B(N,3) bounds both 
+    - positive intervals (k=3)
+    - 1D perceptrons (k=3)
+
+ - new goal:  B(N,k) ≤ poly(N) ?
 
 
 
- 
+### Table of Bounding Function 
+
+ - B(N,1) = 1
+ - B(N,k) = 2ᴺ for N < k
+    - including all dichotomies not violating 'breaking condition'
+ - N(N,k) = 2ᴺ-1 for N = k
+
+
+
+
+ - quiz: for the 2D perceptrons , which of the following claim is true ?
+    - minimum break point k = 2.   ( False, k = 4  )
+    - m<sub>H</sub>(4) = 15.  (False,   m<sub>H</sub>(4) = 14 )
+    - m<sub>H</sub>(N) < B(N,k) when N=k=minimum break point  ( True )
+    - m<sub>H</sub>(N) > B(N,k) when N=k=minimum break point  ( False, B(4,4)=15 )
+ - so bounding function B(N,k) can be 'loose' in bounding m<sub>H</sub>(N) 
+
+
+## Bounding Function: Inductive Cases
+
+
 
 
 
