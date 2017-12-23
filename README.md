@@ -115,7 +115,8 @@ a | b | c | d
 
  a | b | c | d
 --- | --- | --- | ---
-[C89 C99区别](https://github.com/mebusy/notes/blob/master/dev_notes/C_C89_vs_C99.md) | [c99](https://github.com/mebusy/notes/blob/master/dev_notes/C99.md) | 
+[C89 C99区别](https://github.com/mebusy/notes/blob/master/dev_notes/C_C89_vs_C99.md) | [c99](https://github.com/mebusy/notes/blob/master/dev_notes/C99.md) | [理清gcc、libc、libstdc++的关系](https://github.com/mebusy/notes/blob/master/dev_notes/CLib.md) | [C VS C++](https://github.com/mebusy/notes/blob/master/dev_notes/c_vs_c++.md)
+
 
 ---
 <h2 id="e84e30b9390cdb64db6db2c9ab87846d"></h2>
