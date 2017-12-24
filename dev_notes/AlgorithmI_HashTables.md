@@ -1,7 +1,29 @@
+...menustart
+
+ - [3.4 HASH TABLES](#b1d2be64b8e22579873ae5a2374af5e7)
+     - [hash functions](#9a8132e3af6bfede36d4c47b3debc144)
+         - [Uniform hashing assumption](#b75a0b08f1f8b9d1b5674473a56b947d)
+         - [Collisions](#0289e2bf1c12517b3df378089036ca81)
+     - [separate chaining](#57ce7d434d28b0136eaf7946e7c41d39)
+         - [Analysis](#739e6d2a73723ec7b1919fa5a51f9b07)
+     - [linear probing](#52e5c1097204596b99fe5b017f034610)
+         - [Collision resolution: open addressing](#5c4e28381d69187fa0c07eebc8db352a)
+         - [Clustering](#de3a31857992c01e9d9a1139971b66bc)
+         - [Knuth's parking problem](#2d6ab71801bd058747c3b85fc4ab03c5)
+         - [Analysis of linear probing](#b609a1736a398fa3f648d959048caab5)
+
+...menuend
+
+
+<h2 id="b1d2be64b8e22579873ae5a2374af5e7"></h2>
 
 # 3.4 HASH TABLES
 
+<h2 id="9a8132e3af6bfede36d4c47b3debc144"></h2>
+
 ## hash functions
+
+<h2 id="b75a0b08f1f8b9d1b5674473a56b947d"></h2>
 
 ### Uniform hashing assumption
 
@@ -10,6 +32,8 @@
     - Throw balls uniformly at random into M bins.
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_hash_uniform_binball.png)
 
+<h2 id="0289e2bf1c12517b3df378089036ca81"></h2>
+
 ### Collisions
 
  - Collision. Two distinct keys hashing to same index.
@@ -17,6 +41,8 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_hash_collision.png)
 
+
+<h2 id="57ce7d434d28b0136eaf7946e7c41d39"></h2>
 
 ## separate chaining
 
@@ -28,6 +54,8 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_hash_sep_chaining.png)
 
+
+<h2 id="739e6d2a73723ec7b1919fa5a51f9b07"></h2>
 
 ### Analysis
 
@@ -59,7 +87,11 @@ pylab.show()
     - M too small ⇒ chains too long.
     - **Typical choice: M ~ N / 5 ⇒ constant-time ops**.
 
+<h2 id="52e5c1097204596b99fe5b017f034610"></h2>
+
 ## linear probing
+
+<h2 id="5c4e28381d69187fa0c07eebc8db352a"></h2>
 
 ### Collision resolution: open addressing
 
@@ -70,12 +102,16 @@ pylab.show()
     - **Search**. Search table index i; if occupied but no match, try i+1, i+2, etc.
  - Note. Array size M **must be** greater than number of key-value pairs N.
  
+<h2 id="de3a31857992c01e9d9a1139971b66bc"></h2>
+
 ### Clustering
 
  - Cluster. A contiguous block of items.
  - Observation. New keys likely to hash into middle of big clusters.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_hash_openaddr_cluster.png)
+
+<h2 id="2d6ab71801bd058747c3b85fc4ab03c5"></h2>
 
 ### Knuth's parking problem
 
@@ -90,6 +126,8 @@ pylab.show()
     - With M / 2 cars, mean displacement is ~ 3 / 2.
  - Full. 
     - With M cars, mean displacement is ~ √(πM/8)
+
+<h2 id="b609a1736a398fa3f648d959048caab5"></h2>
 
 ### Analysis of linear probing
 

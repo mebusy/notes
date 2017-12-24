@@ -39,6 +39,19 @@
      - [Effective Number of Lines](#83bee210aad456619c22ae2c5e2dc963)
          - [How many Kinds of Lines for 1~4 Inputs in 2D  ?](#624848f04dceb9194a26b7aa039879f2)
          - [Effective Number Of Lines](#8c31579792d76e74531e953be4313740)
+     - [Effective Number of Hypotheses](#8fc2f515778b49e4ad6450b9cf3d6c49)
+         - [Dichotomies: Mini-hypothesis](#8d22448394722fd85b23c2eb8246dcb2)
+         - [Growth Function](#dfa7e0a4bb23bbcf4e814b850274fd66)
+         - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
+     - [Break Point](#5a0ecfb80c0bc36fc6c7b593079594cb)
+         - [The 4 Growth Functions](#b5ce0fb28ce372d75a041bef143918ef)
+         - [Break Point of H](#d5be8e86759a610959b92abd0aa75199)
+ - [Week 6 Theory of Generalization](#7c94d363ecea5ac490e952be9a09f394)
+     - [Restriction of Break Point](#7cd79213ae5758377b9aed8accc60591)
+     - [Bounding Function: Basic Cases](#3bf7d47fb91c77c8c30afce81e8a67e1)
+         - [Table of Bounding Function](#e51ebc67414533b0af139f8439d3408e)
+     - [Bounding Function: Inductive Cases](#2c65d0169d44316f221fe6051944e78e)
+         - [Bounding Function : The Theorem](#20885a853d6349f8a2c1b4a13f9fd078)
 
 ...menuend
 
@@ -501,9 +514,13 @@ Q2  | No! too few choices  | Yes!, many choices
     - 那么当你的N足够大的时候， 右边的这项会趋近于0
  - 所以就算有無限多條線 如果我們能夠把這個無限多條線，換成這個effective這個有限的數字 而且這個effective這個數字，實際上比2的N次方 來的小很多的話，我們就可以保證，可能可以學得到東西。 好，暫時來說這是我們的猜想.
 
+<h2 id="8fc2f515778b49e4ad6450b9cf3d6c49"></h2>
+
 ## Effective Number of Hypotheses
 
  - what about 线以外的 hypothesis set ?  e.g. 高维度的hyperplane.
+
+<h2 id="8d22448394722fd85b23c2eb8246dcb2"></h2>
 
 ### Dichotomies: Mini-hypothesis
 
@@ -520,6 +537,8 @@ e.g. | all lines in ℝ² | {oooo, ooox , ooxx, ...}
 size | possibly infinite | upper bounded by 2ᴺ
 
 
+<h2 id="dfa7e0a4bb23bbcf4e814b850274fd66"></h2>
+
 ### Growth Function 
 
  - 我们能不能用这个dichotomy set 的大小，来取代原来 Hoeffding 里面那个让我们觉得很困扰的，可能是无限大的M呢？
@@ -530,9 +549,15 @@ size | possibly infinite | upper bounded by 2ᴺ
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TaiU_MLb_growth_fun.png)
  - finite , upper-bounded by 2ᴺ
 
+<h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
+
 ### TODO
 
+<h2 id="5a0ecfb80c0bc36fc6c7b593079594cb"></h2>
+
 ## Break Point 
+
+<h2 id="b5ce0fb28ce372d75a041bef143918ef"></h2>
 
 ### The 4 Growth Functions 
 
@@ -549,6 +574,8 @@ convex sets |  2ᴺ
         - convex set 的情况，就算N够大，也不见得 能够确保 E<sub>in</sub> 和 E<sub>out</sub> 非常接近 
  - 那么，2D perceptron 到底是好的还是不好的呢？
 
+
+<h2 id="d5be8e86759a610959b92abd0aa75199"></h2>
 
 ### Break Point of H 
 
@@ -586,7 +613,11 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 
 ---
 
+<h2 id="7c94d363ecea5ac490e952be9a09f394"></h2>
+
 # Week 6 Theory of Generalization
+
+<h2 id="7cd79213ae5758377b9aed8accc60591"></h2>
 
 ## Restriction of Break Point
 
@@ -605,6 +636,8 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
     - ≤ maximum possible m<sub>H</sub>(N) given *k*
     - ≤ poly(N)
 
+<h2 id="3bf7d47fb91c77c8c30afce81e8a67e1"></h2>
+
 ## Bounding Function: Basic Cases
 
  - bounding function B(N,k):
@@ -619,6 +652,8 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
  - new goal:  B(N,k) ≤ poly(N) ?
 
 
+
+<h2 id="e51ebc67414533b0af139f8439d3408e"></h2>
 
 ### Table of Bounding Function 
 
@@ -638,6 +673,8 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
  - so bounding function B(N,k) can be 'loose' in bounding m<sub>H</sub>(N) 
 
 
+<h2 id="2c65d0169d44316f221fe6051944e78e"></h2>
+
 ## Bounding Function: Inductive Cases
 
  - B(N,k) ≤ B(N-1,k) + B(N-1, k-1)
@@ -645,6 +682,8 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_tab_bounding_func_1.png)
 
  - **acutally , '≤' can be '='**. 
+
+<h2 id="20885a853d6349f8a2c1b4a13f9fd078"></h2>
 
 ### Bounding Function : The Theorem
 
