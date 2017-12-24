@@ -126,6 +126,15 @@ myString.append(" Dog");
  - They also have the same syntax as the variable itself:
     - No \* is needed for dereferencing and
     - & (address of) is not used for assignment.
+ - Q: 为什么c++ 有了指针还要引入 引用
+    - C++ inherited pointers from C , so I couldn't remove them without causing serious campatibility.
+    - References are useful for serval things, but **the direct reason I introduced them in C++ was to support operator overloading**.
+    - 其他好处
+        - 不担心 NULL 的问题，写代码方便（不需要 * 来 dereference ）
+
+ - Q: 为什么不能用指针实现 operator overloading？
+    - 因为 \*pointer 这个表达式很有可能并不是直接取值的意思，因为\* 也可能会被重载
+ - 
 
 ```cpp
 using namespace std;
@@ -139,8 +148,9 @@ fooRef += ". Hi!"; // Modifies foo through the reference
 cout << &fooRef << endl; //Prints the address of foo
 fooRef = bar; // his is the same as "foo = bar", and foo == "I am bar"
 cout << &fooRef << endl; //Still prints the address of foo
+// Just work like string
+// The address of fooRef remains the same, i.e. it is still referring to foo.
 
-//The address of fooRef remains the same, i.e. it is still referring to foo.
 
 const string& barRef = bar; // Create a const reference to bar.
 // Like C, const values (and pointers and references) cannot be modified.
