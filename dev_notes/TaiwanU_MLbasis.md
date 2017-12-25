@@ -692,6 +692,18 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
  - for fixed *k*, B(N,k) upper bounded by poly(N) 
     - ⇒ m<sub>H</sub>(N) is poly(N) **if break point exists**
 
+## A Pictorial Proof
+
+ - 現在有了這個成長函數、 上限函數的這些觀念 我們回過頭來做什麼？
+ - 我們的成長函數可能是跟多項式一樣要長大，那我們能不能 就把這個成長函數丟進去原來的這個finite-bin的Hoeffding裡面, 然後- 事情就解決了?
+ - 當然事情實際上沒有那麼簡單 我們最後最後能夠做到的事情並不是長這樣，並不是說，把 原來那個大M用小mH of N，然後取代掉就算了 我們能夠做到事情是什麼？我們能夠做到的事情是 一個長得差不多的版本，這差不多的版本裡面有幾件事情：
+    - 第一件事情是，我要N夠大 
+    - 然后又多出了一些常数
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_pictorial_proof_0.png)
+
+ - 这个公式的证明需要一些数学上的推导等等.
+
 
 
 
