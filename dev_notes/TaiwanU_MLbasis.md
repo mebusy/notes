@@ -704,6 +704,25 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 
  - 这个公式的证明需要一些数学上的推导等等.
 
+---
+
+### That's All !
+
+ - Vapnik-Chervonenkis (VC) bound:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vc_bound.png)
+
+
+ - Q: For positive rays , m<sub>H</sub>(N) = N+1. Plug it into the VC bound for ε=0.1, and N=10000. What is VC bound of BAD events?
+ - A: 0.298...
+ - 這並不是 一個很小的數字
+    - 我們在算這個bound的過程中，花了很多的近似在裡面 那所以造成了這個bound其實不見得真的是那麼準 
+    - 這個bound既然不那麼準 我們為什麼要花這麼大的力氣去推導、 去講它? 
+
+
+---
+
+# Week7 The VC Dimension
 
 
 
