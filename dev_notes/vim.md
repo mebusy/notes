@@ -135,16 +135,27 @@ vim +BundleInstall +qall
      - 进入YouCompleteMe目录，执行 `./install.py --all`
      - 这时提示你一些第三方依赖缺失，执行下面的命令
          - `git submodule update --init --recursive`
-  - add suport for C family
-      - `./install.py --clang-completer --system-libclang`
-      - using `--system-libclang` here because on MacOSX, it report error "NOT using libclang, no semantic completion for C/C++/ObjC will be available"
-  - addd c# support
-      - `./install.py --omnisharp-completer`
-  - add go support
-      - `./install.py --gocode-completer`
-  - reinstall : 
+ - add suport for C family
+     - `./install.py --clang-completer --system-libclang`
+     - using `--system-libclang` here because on MacOSX, it report error "NOT using libclang, no semantic completion for C/C++/ObjC will be available"
+ - addd c# support
+    - `./install.py --omnisharp-completer`
+ - add go support
+    - `./install.py --gocode-completer`
+ - add rust support
+    - `./install.py --rust-completer` 
+
+```
+# carge under proxy 
+vi ~/.cargo/config
+
+[http]
+proxy = "http://user:password@host:port"
+```
+
+ - reinstall : 
     - `vim +PluginInstall`
-  - update :
+ - update :
     - `vim +PluginUpdate`
  - `msbuild or xbuild is required to build Omnisharp`
     - You used `--all`, so you need to install mono for C sharp completion. If you don't want C sharp completion, use different flags.
