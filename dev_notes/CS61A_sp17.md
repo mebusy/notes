@@ -45,6 +45,21 @@ https://inst.eecs.berkeley.edu/~cs61a/sp17/
 
 # Lecture #22: The Scheme Language
 
+ - LISP
+    - Every­thing is an expression
+        - 不再有语句和表达式的区别
+    - Every expression is either a single value or a list
+        - Single values are things like numbers and strings and hash tables。
+        - The list part, however, is a big deal.
+            - In a language like Python, the list is one data type within the language
+            - But in Lisps, the list is more like an organizing principle for everything that happens.
+                - yes, you can use the list as a data type. 
+                - But a function call is also a list.
+    - Functional programming.
+        - functions avoid two habits common in other languages:  data mutation and relying on state.
+
+
+
 <h2 id="637881603c973c4967d77ec4ba147e0c"></h2>
 
 ## Data Types
