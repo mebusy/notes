@@ -144,6 +144,10 @@ vim +BundleInstall +qall
     - `./install.py --gocode-completer`
  - add rust support
     - `./install.py --rust-completer` 
+    - get rust source code from https://www.rust-lang.org/en-US/other-installers.html#source
+    - vi ~/.vimrc
+        - `let g:ycm_rust_src_path = '/usr/local/rust/rustc-1.20.0/src'`
+        - note: you should give the src folder which has .lock / .toml file in the root.
 
 ```
 # carge under proxy 
