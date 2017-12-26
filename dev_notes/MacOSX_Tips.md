@@ -167,6 +167,12 @@ ls *.json | xargs -I {}  sh -c  " tr -d '\r' < {}  > {}2 && mv {}2 {} "
   - you can not do that by sed  , remember  sed delimits on `\n` newlines - they are always removed on input and reinserted on output.   you may need `-z` mode 
  
 
+### tcpdump 抓取 HTTP GET 包
+
+```bash
+sudo tcpdump  -XvvennSs 0 -i en0  '(port 8080) and ((tcp[20:2]=0x4745) or (tcp[20:2]=0x4854))'
+```
+
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
