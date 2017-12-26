@@ -615,7 +615,7 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 
 <h2 id="7c94d363ecea5ac490e952be9a09f394"></h2>
 
-# Week 6 Theory of Generalization
+# Week 6 Theory of Generalization  举一反三
 
 <h2 id="7cd79213ae5758377b9aed8accc60591"></h2>
 
@@ -723,6 +723,66 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 ---
 
 # Week7 The VC Dimension
+
+ - 上周讲到了舉一反三
+ - 舉什么，舉例子? 像我們訓練的時候在舉例子 
+ - 然後反三也就是說我們測試的時候會跟我們訓練的時候的表現是類似 
+ - 我們上個禮拜跨出了很重要的一步，我們說我們可以 確保我們的Ein，也就是我們訓練時候的表現，跟我們的Eout 我們測試時候的表現是類似的。
+ - 什麼時候可以這樣確保呢？
+    - 我們只要 我們的成長函數在某個地方露出了一線曙光，并且 如果我們的資料量夠多的時候，我們就可以確保Ein跟Eout是接近的 
+ - 那從這裡出發呢，我們就要開始看看這個一線曙光的意義 是什麼？實際上這就會引到我們待會兒對這個VC dimension.
+
+## Definition of VC Dimension
+
+ - the formal name of **maximum non-**break point
+ - Definition:
+    - VC dimemsion of H , denoted d<sub>VC</sub>(H) is 
+        - **largest** N for which m<sub>H</sub>(N) = 2ᴺ
+    - the **most** inputs H that can shatter
+    - d<sub>VC</sub> = 'minimum k' -1
+    - 注意要考虑到所有可能的输入
+ - N ≤ d<sub>VC</sub>  ⇒  H can shatter some N inputs 
+ - N > d<sub>VC</sub>  ⇒  N is a break point for H
+    - k > d<sub>VC</sub>  ⇒  k is a break point for H
+    
+### The 4 VC Dimensions
+
+ · | VC Dimension
+--- | --- 
+positive rays |  1
+positive intervals | 2 
+convex sets | ∞ 
+2D perceptrons | 3 
+
+ - VC dimension 是 finite 的 hypothesis set 就是好的 hypothesis set
+
+### VC Dimemsion and Learning
+
+ - finite d<sub>VC</sub> ⇒ g 'will' generialize ( E<sub>out</sub>(g) ≈ E<sub>in</sub>(g)   )
+    - regardless of learning algorithm A
+        - 即便是很糟糕的算法， E<sub>in</sub> 和 E<sub>out</sub> 也是很接近的，只是这样的情况对我们没什么好处
+    - regardless of input distribution P 
+    - regardless of target function f 
+
+ - Q: If there is a set of N inputs that cannot be shattered by H. Based only on this information , what can we conclude about d<sub>VC</sub>(H) ?
+    1. d<sub>VC</sub>(H) > N
+    2. d<sub>VC</sub>(H) = N
+    3. d<sub>VC</sub>(H) < N 
+    4. no conclusion can be made.
+ - A:4  
+    - It is possible that there is another set of N inputs that can be shatterred, which means d<sub>VC</sub>(H) ≥ N.
+    - It is also possible that no set of N input can be shattered , which means d<sub>VC</sub>(H) < N.
+    - Neither cases can be ruled out by one non-shattering set.
+
+## VC Dimension of Perceptrons
+
+
+
+
+
+
+
+
 
 
 
