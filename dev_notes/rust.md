@@ -328,13 +328,84 @@ println!("x = {}, y = {}", x, y);
 
  - Rust has a special annotation called the *Copy* trait that we can place on types like integers that are stored on the stack 
     - If a type has the *Copy* trait, an older variable is still usable after assignment. 
-    - 
+ - Rust won’t let us annotate a type with the *Copy* trait if the type, or any of its parts, has implemented the *Drop* trait.
+ - So what types are *Copy*? 
+    - You can check the documentation for the given type to be sure
+    - general rule, any group of simple scalar values can be *Copy*
+    - and nothing that requires allocation or is some form of resource is *Copy*
+ - Here are some of the types that are *Copy*:
+    - All the integer types, like u32.
+    - The boolean type, bool, with values true and false.
+    - All the floating point types, like f64.
+    - Tuples, but only if they contain types that are also Copy. 
+        - (i32, i32) is Copy
+        - but (i32, String) is not.
+    - what about list ?
 
+### Ownership and Functions 
 
+ - The semantics for passing a value to a function are similar to assigning a value to a variable
+ - Passing a variable to a function will move or copy , just like assignment. 
 
+### Return Values and Scope
 
+ - Returning values can also transfer ownership
 
+```rust
+fn gives_ownership() -> String { 
+    // gives_ownership will move its
+    // return value into the function
+    // that calls it.
+    let some_string = String::from("hello");
+    // some_string is returned and
+    // moves out to the calling function
+    some_string 
+}
 
+// takes_and_gives_back will take a String and return one.
+fn takes_and_gives_back(a_string: String) -> String  {
+    // a_string is returned and moves out to the calling function.
+    a_string
+}
+
+fn main() {
+    // // gives_ownership moves its return value into s1
+    let s1 = gives_ownership();   
+    let s2 = String::from("hello");
+    // s2 is moved into takes_and_gives_back, which also
+    // moves its return value into s3.
+    let s3 = takes_and_gives_back(s2);  
+}
+// Here, s3 goes out of scope and is dropped.
+// s2 goes out of scope but was moved
+// s1 goes out of scope and is dropped.
+```
+
+ - Taking ownership and then returning ownership with every function is a bit tedious
+ - What if we want to let a function use a value but not take ownership?
+ - It’s quite annoying that anything we pass in also needs to be passed back if we want to use it again, in addition to any data resulting from the body of the function that we might want to return as well.
+ - It’s possible to return multiple values using a tuple, like this:
+
+```rust
+fn main() {
+    let s1 = String::from("hello");
+
+    let (s2, len) = calculate_length(s1);
+
+    println!("The length of '{}' is {}.", s2, len);
+}
+
+fn calculate_length(s: String) -> (String, usize) {
+    let length = s.len(); // len() returns the length of a String.
+
+    (s, length)
+}
+```
+
+ - But this is too much ceremony and a lot of work for a concept that should be common.
+ - ust has a feature for this concept, and it’s called references.
+
+## References and Borrowing 
 
 
 

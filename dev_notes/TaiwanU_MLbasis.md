@@ -813,7 +813,17 @@ convex sets | ∞
 
  - how ?
     - We can not shatter **any** set of d+2 inputs
- - 
+ - A 2D Special Case
+    - 我们在2D上加入一个点 (1,1)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_special_2d_case.png)
+    - x4 = x2 + x3 - x1 , linear dependency , 会限制我们产生dichotomy 的组合
+ - d-D General Case 
+    - 对 D+1 方阵加入任意一笔 资料 x<sub>d+2</sub> , 产生的 D+1 x  D+2 矩阵， 行比列多，行 必然 linear dependency. 
+
+---
+
+## Physical Intuition of VC Dimension
+
 
 
  
