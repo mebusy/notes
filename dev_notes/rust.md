@@ -251,7 +251,47 @@ for number in (1..4).rev() {
 
  - Note: In C++, this pattern of deallocating resources at the end of an item’s lifetime is sometimes called Resource Acquisition Is Initialization (RAII). 
  - The `drop` function in Rust will be familiar to you if you’ve used RAII patterns.
+    - when a variable goes out of scope, Rust automatically calls the drop function and cleans up the heap memory for that variable
  - The example above is simple. But the behavior of code can be unexpected in more complicated situations when we want to have multiple variables use the data we’ve allocated on the heap. 
+
+### Ways Variables and Data Interact: Move
+
+```rust
+let x = 5;
+let y = x;
+```
+
+ - based on our experience with other languages:
+    - “Bind the value 5 to x; then make a copy of the value in x and bind it to y.”
+ - This is indeed what is happening because integers are simple values with a known, fixed size, and these two 5 values are pushed onto the stack.
+
+```rust
+let s1 = String::from("hello");
+let s2 = s1;
+```
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rust_string_copy.png)
+
+ - only the *String* data copied , meaning we copy the pointer, the length, and the capacity that are on the stack. 
+ - We do not copy the data on the heap that the pointer refers to.
+ - if Rust instead copied the heap data as well , the operation s2 = s1 could potentially be very expensive in terms of runtime performance if the data on the heap was large.
+ - Earlier, we said that when a variable goes out of scope, Rust automatically calls the drop function and cleans up the heap memory for that variable.
+    - This is a problem: when s2 and s1 go out of scope, they will both try to free the same memory. This is known as a double free error and is one of the memory safety bugs we mentioned previously. 
+ - In Rust. Instead of trying to copy the allocated memory, Rust considers s1 to no longer be valid and therefore, Rust doesn’t need to free anything when s1 goes out of scope. 
+
+```rust
+let s1 = String::from("hello");
+let s2 = s1;
+
+// You’ll get an error like this because 
+// Rust prevents you from using the invalidated reference:
+println!("{}, world!", s1); 
+```
+
+ - So , String copy is like a "shallow copy" , not a “deep copy” .  
+ - But because Rust also invalidates the first variable, instead of calling this a shallow copy, it’s known as a **move**.
+ - Here we would read this by saying that s1 was moved into s2. So what actually happens is :
+
 
 
 
