@@ -65,6 +65,13 @@
 [swig](https://github.com/mebusy/notes/blob/master/dev_notes/Interfacing_C_Python_withSWIG.md) | [swig_python](https://github.com/mebusy/notes/blob/master/dev_notes/swig_python.md) | 
 
 
+#### python 实现
+
+ a | b | c | d
+--- | --- | --- | ---
+[1. 基本环境](https://github.com/mebusy/notes/blob/master/dev_notes/pythonImpl.md)
+
+
 <h2 id="c78e2ad97b328dbafbd49edf182136f3"></h2>
 
 #### Data Science
