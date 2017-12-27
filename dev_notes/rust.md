@@ -407,20 +407,181 @@ fn calculate_length(s: String) -> (String, usize) {
 
 ## References and Borrowing 
 
+ - 前面返回 tuple的例子的问题是， we have to return the String to the calling function so we can still use the String after the call to calculate_length， because the String was moved into calculate_length.
+ - Here is how you would define and use a calculate_length function that has a *reference* to an object as a parameter instead of taking ownership of the value:
+
+```rust
+fn main() {
+    let s1 = String::from("hello");
+    let len = calculate_length(&s1);
+    println!("The length of '{}' is {}.", s1, len);
+}
+
+fn calculate_length(s: &String) -> usize {
+    s.len()
+}
+```
+
+ - `&` are *references*, and they allow you to refer to some value without taking ownership of it.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rust_references.png)
+
+ - We call having references as function parameters *borrowing*.
+    - As in real life, if a person owns something, you can borrow it from them. When you’re done, you have to give it back.
+ - So what happens if we try to modify something we’re borrowing?
+
+```rust
+fn main() {
+    let s = String::from("hello");
+    change(&s);
+}
+
+fn change(some_string: &String) {
+    // compile error !!!
+    some_string.push_str(", world");
+}
+```
+
+ - Just as variables are immutable by default, so are references. We’re not allowed to modify something we have a reference to.
+
+### Mutable References
+
+```rust
+fn main() {
+    let mut s = String::from("hello");
+
+    change(&mut s);
+}
+
+fn change(some_string: &mut String) {
+    some_string.push_str(", world");
+}
+```
+
+ - Now it works
+ - But mutable references have one big restriction: 
+    - you can only have one mutable reference to a particular piece of data in a particular scope. 
+    - This code will fail:
+
+```rust
+let mut s = String::from("hello");
+
+let r1 = &mut s;
+let r2 = &mut s;
+// cannot borrow `s` as mutable more than once at a time
+```
+
+ - This restriction allows for mutation but in a very controlled fashion.
+ - The benefit of having this restriction is that Rust can prevent data races at compile time.
+ - A *data race* is a particular type of race condition in which these three behaviors occur:
+    1. Two or more pointers access the same data at the same time.
+    2. At least one of the pointers is being used to write to the data.
+    3. There’s no mechanism being used to synchronize access to the data
+ - As always, we can use curly brackets to create a new scope, allowing for multiple mutable references, just not simultaneous ones:
+
+```rust
+let mut s = String::from("hello");
+{
+    let r1 = &mut s;
+} // r1 goes out of scope here, so we can make a new reference with no problems.
+
+let r2 = &mut s;
+```
+
+ - A similar rule exists for combining mutable and immutable references. 
+
+```rust
+let mut s = String::from("hello");
+
+let r1 = &s; // no problem
+let r2 = &s; // no problem
+let r3 = &mut s; // BIG PROBLEM
+// cannot borrow `s` as mutable because it is also borrowed as immutable
+```
+
+### Dangling References
+
+ - In languages with pointers, it’s easy to erroneously create a *dangling pointer*
+    - a pointer that references a location in memory that may have been given to someone else
+    - by freeing some memory while preserving a pointer to that memory. 内存释放了，指针仍然保留着
+ - In Rust, by contrast, the compiler guarantees that references will never be dangling references:
+    - if we have a reference to some data, the compiler will ensure that the data will not go out of scope before the reference to the data does.
+ - Let’s try to create a dangling reference:
+
+```rust
+fn main() {
+    let reference_to_nothing = dangle();
+}
+
+// error[E0106]: missing lifetime specifier
+fn dangle() -> &String {
+    let s = String::from("hello");
+    &s
+    //Here, s goes out of scope, and is dropped. Its memory goes away.
+    // Danger
+}
+```
+
+ - This error message refers to a feature we haven’t covered yet: *lifetimes*.
+    - 'this function's return type contains a borrowed value, but there is no value for it to be borrowed from.'
+
+ - The solution here is to return the String directly:
+    - The following code works without any problems. Ownership is moved out, and nothing is deallocated.
+
+```rust
+fn no_dangle() -> String {
+    let s = String::from("hello");
+    s
+}
+```
+
+### The Rules of References
+
+ 1. At any given time, you can have either but not both of:
+    - One mutable reference.
+    - Any number of immutable references.
+ 2. References must always be valid.
 
 
+## 4.3 Slices
 
+ - a different kind of reference 
+ - will not have ownership as well
+ - Slices let you reference a contiguous sequence of elements in a collection rather than the whole collection.
+ - Here’s a small programming problem: 
+    - write a function that takes a string and returns the first word it finds in that string. 
+    - `fn first_word(s: &String) -> ?`
+ - what should we return ?  
+    - we can return the length of the first word
 
+```rust
+fn first_word(s: &String) -> usize {
+    let bytes = s.as_bytes();
 
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return i;
+        }
+    }
+    s.len()
+}
+```
 
+ - 这个方法只能 返回 usize, 并不完美
 
+### String Slices
 
+ - A string slice is a reference to part of a String, and looks like this:
 
+```rust
+let s = String::from("hello world");
 
+let hello = &s[0..5];
+let world = &s[6..11];
+```
 
-
-
-
+ - This is similar to taking a reference to the whole String but with the extra `[0..5)` bit.
+ - Rather than a reference to the entire String, it’s a reference to a portion of the String.
 
 
 
