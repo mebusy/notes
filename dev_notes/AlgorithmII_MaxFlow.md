@@ -50,6 +50,11 @@
         - Capacity constraint: 0 ≤ edge's flow ≤ edge's capacity.
         - Local equilibrium: inflow = outflow at every vertex (except s and t).
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AlgorII_max_flow.png)
+
+ - Def. The **value** of a flow is the inflow at t.
+    - we assume no edge points to s or from t 
+    - show as the previous picture, the value = 5 + 10 + 10 = 25.
 
 
 
