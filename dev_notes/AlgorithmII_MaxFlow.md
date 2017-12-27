@@ -42,7 +42,10 @@
  - **"Free world" goal** 
     - Cut supplies (if cold war turns into real war).
 
- 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mincut_application.png)
+
+> rail network connecting Soviet Union with Eastern European countries
+
 
 <h2 id="e5e9af9ecfee06cab309dca7d7623ddf"></h2>
 
@@ -71,7 +74,29 @@
  - **Soviet Union goal**
     - Maximize flow of supplies to Eastern Europe.
  
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algroII_maxflow_application.png)
 
+
+## Summary
+
+ - Input. A weighted digraph, source vertex s, and target vertex t. 
+ - Mincut problem. Find a cut of minimum capacity.
+ - Maxflow problem. Find a flow of maximum value.
+ - Remarkable fact. These two problems are dual!
+
+---
+
+# Ford-Fulkerson algorithm
+
+## Ford-Fulkerson algorithm
+
+ - Initialization. Start with 0 flow. 
+    - all edges has 0 flow.
+    - the value is 0.
+ - Idea: increase flow along augmenting paths
+    - **Augmenting path**: Find an undirected path from s to t such that:
+        - Can increase flow on forward edges (not full).
+        - Can decrease flow on backward edge (not empty). ?
 
 
 
