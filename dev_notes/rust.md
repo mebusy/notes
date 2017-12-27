@@ -583,9 +583,63 @@ let world = &s[6..11];
  - This is similar to taking a reference to the whole String but with the extra `[0..5)` bit.
  - Rather than a reference to the entire String, it’s a reference to a portion of the String.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rust_string_slice.png)
 
+```rust
+let slice = &s[0..2];
+let slice = &s[..2];  // same
 
+let slice = &s[3..len];
+let slice = &s[3..];  // same 
 
+let slice = &s[0..len];
+let slice = &s[..];   // same
+```
 
+ - the new method
 
+```rust
+fn first_word(s: &String) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[..i];
+        }
+    }
+    &s[..]
+}
+```
+
+ - following code will throw a compile error if we use the slice version `first_word` 
+    - but it is valid if we use the  usize version 
+    - That usize version  was logically incorrect but didn’t show any immediate errors  
+    - Slices make this bug impossible and let us know we have a problem with our code much sooner. 
+
+```rust
+fn main() {
+    let mut s = String::from("hello world");
+
+    let word = first_word(&s);
+
+    s.clear(); // Error!
+}
+```
+
+ - *clear* needs to truncate the String, it tries to take a mutable reference
+    - but we already have a immutable borrow . 
+
+### String Literals Are Slices 
+
+```rust
+let s = "Hello, world!";
+```
+
+ - The type of s here is `&str`
+    - it’s a slice pointing to that specific point of the binary.
+    - `&str` is an immutable reference
+
+### String Slices as Parameters
+
+ - 
 
