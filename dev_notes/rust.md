@@ -638,8 +638,26 @@ let s = "Hello, world!";
  - The type of s here is `&str`
     - it’s a slice pointing to that specific point of the binary.
     - `&str` is an immutable reference
+    - 注意： 不是之前的 `&String`
 
 ### String Slices as Parameters
 
- - 
+```rust
+// 更好的写法
+fn first_word(s: &str) -> &str {
+```
+
+
+### Other Slices
+
+```rust
+let a = [1, 2, 3, 4, 5];
+// type &[i32]
+let slice = &a[1..3];
+```
+
+### Summary
+
+ - The concepts of ownership, borrowing, and slices are what ensure memory safety in Rust programs at compile time. 
+
 
