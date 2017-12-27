@@ -228,6 +228,31 @@ for number in (1..4).rev() {
     - memory is managed through a system of ownership , with a set of rules that the compiler checks at compile time. 
     - No run-time costs are incurred for any of the ownership features.
 
+### Memory and Allocation
+
+ - In the case of a string literal ( "hello") , we know the contents at compile time so the text is hardcoded directly into the final executable
+    - making string literals fast and efficient
+ - With the *String* type ( String::from("hello") ), in order to support a mutable, growable piece of text, we need to allocate an amount of memory on the heap to hold the contents. 
+    - unknown at compile time
+    - The memory must be requested from the operating system at runtime.
+        - done by `String::from`
+    - We need a way of returning this memory to the operating system when we’re done with our *String*.
+        - Rust takes a different path: the memory is automatically returned once the variable that owns it goes out of scope.
+
+```rust
+{
+    let s = String::from("hello"); 
+    // s is valid from this point forward
+
+    // do stuff with s
+} // this scope is now over, and s is no
+  // longer valid
+```
+
+ - Note: In C++, this pattern of deallocating resources at the end of an item’s lifetime is sometimes called Resource Acquisition Is Initialization (RAII). 
+ - The `drop` function in Rust will be familiar to you if you’ve used RAII patterns.
+ - The example above is simple. But the behavior of code can be unexpected in more complicated situations when we want to have multiple variables use the data we’ve allocated on the heap. 
+
 
 
 
