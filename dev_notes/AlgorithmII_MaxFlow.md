@@ -37,6 +37,12 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mcut_2.png)
 
+### Mincut application
+
+ - **"Free world" goal** 
+    - Cut supplies (if cold war turns into real war).
+
+ 
 
 <h2 id="e5e9af9ecfee06cab309dca7d7623ddf"></h2>
 
@@ -55,6 +61,16 @@
  - Def. The **value** of a flow is the inflow at t.
     - we assume no edge points to s or from t 
     - show as the previous picture, the value = 5 + 10 + 10 = 25.
+ - **Maximum st-flow (maxflow) problem**
+    - Find a flow of maximum value. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AlgorII_max_flow_problem.png)
+
+## Maxflow application
+
+ - **Soviet Union goal**
+    - Maximize flow of supplies to Eastern Europe.
+ 
 
 
 
