@@ -22,6 +22,7 @@
 
  - Input
     - An edge-weighted digraph, source vertex s, and target vertex t
+    - each edge has a positive capacity
  - Def.
     - A **st-cut (cut)** is a partition of the vertices into two disjoint sets, with s in one set A and t in the other set B. 
  - Def.
@@ -43,7 +44,13 @@
 
  - Input. 
     - An edge-weighted digraph, source vertex s, and target vertex t.
- - 
+    - each edge has a positive capacity
+ - Def.
+    - An **st-flow (flow)** is an assignment of values to the edges such that:
+        - Capacity constraint: 0 ≤ edge's flow ≤ edge's capacity.
+        - Local equilibrium: inflow = outflow at every vertex (except s and t).
+
+
 
 
 
