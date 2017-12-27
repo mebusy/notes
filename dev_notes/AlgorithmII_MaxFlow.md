@@ -3,7 +3,12 @@
  - [6.4 MAXIMUM FLOW](#60804ce1e5e1b895af839b4ef2122a99)
  - [introduction](#8800e1c9b3e22c44ba59a34db3fe4841)
      - [Mincut problem](#450389af6383415c1047574d48dd0785)
+         - [Mincut application](#94a80819ddc13f6dce6240f35c75622d)
      - [Maxflow problem](#e5e9af9ecfee06cab309dca7d7623ddf)
+     - [Maxflow application](#cbb1e31675bbfff18dfed42b332e08d6)
+     - [Summary](#290612199861c31d1036b185b4e69b75)
+ - [Ford-Fulkerson algorithm](#3c8155f8b956bc76bd3865785d9cc8c1)
+     - [Ford-Fulkerson algorithm](#3c8155f8b956bc76bd3865785d9cc8c1)
 
 ...menuend
 
@@ -37,6 +42,8 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mcut_2.png)
 
+<h2 id="94a80819ddc13f6dce6240f35c75622d"></h2>
+
 ### Mincut application
 
  - **"Free world" goal** 
@@ -69,6 +76,8 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AlgorII_max_flow_problem.png)
 
+<h2 id="cbb1e31675bbfff18dfed42b332e08d6"></h2>
+
 ## Maxflow application
 
  - **Soviet Union goal**
@@ -76,6 +85,8 @@
  
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algroII_maxflow_application.png)
 
+
+<h2 id="290612199861c31d1036b185b4e69b75"></h2>
 
 ## Summary
 
@@ -86,7 +97,11 @@
 
 ---
 
+<h2 id="3c8155f8b956bc76bd3865785d9cc8c1"></h2>
+
 # Ford-Fulkerson algorithm
+
+<h2 id="3c8155f8b956bc76bd3865785d9cc8c1"></h2>
 
 ## Ford-Fulkerson algorithm
 

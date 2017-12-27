@@ -46,12 +46,22 @@
      - [Break Point](#5a0ecfb80c0bc36fc6c7b593079594cb)
          - [The 4 Growth Functions](#b5ce0fb28ce372d75a041bef143918ef)
          - [Break Point of H](#d5be8e86759a610959b92abd0aa75199)
- - [Week 6 Theory of Generalization](#7c94d363ecea5ac490e952be9a09f394)
+ - [Week 6 Theory of Generalization  举一反三](#a191a7c2b6e0987654f6d92503bf1078)
      - [Restriction of Break Point](#7cd79213ae5758377b9aed8accc60591)
      - [Bounding Function: Basic Cases](#3bf7d47fb91c77c8c30afce81e8a67e1)
          - [Table of Bounding Function](#e51ebc67414533b0af139f8439d3408e)
      - [Bounding Function: Inductive Cases](#2c65d0169d44316f221fe6051944e78e)
          - [Bounding Function : The Theorem](#20885a853d6349f8a2c1b4a13f9fd078)
+     - [A Pictorial Proof](#ac41223f5ec900a59b7a7c730d2db790)
+         - [That's All !](#942c21d4344c1e2c04cd9cb2b0635e7f)
+ - [Week7 The VC Dimension](#15173fa6f984d4d655f1b15b08355016)
+     - [Definition of VC Dimension](#03b215c6ba1906c71c6856766d5a91dc)
+         - [The 4 VC Dimensions](#ef6ecf6a562931f940c6f8fa8f315ec9)
+         - [VC Dimemsion and Learning](#2ab6a2e714fe88daa38d0ebadbd820b7)
+     - [VC Dimension of Perceptrons](#010c451c23e144261c78eed3918be60c)
+         - [d<sub>VC</sub> ≥ d+1](#0bcebb5418877c668b7f8078fd53e2a6)
+         - [d<sub>VC</sub>  ≤ d+1](#b23a9ffbf5d00fecd76ee661c5bae97c)
+     - [Physical Intuition of VC Dimension](#a7ab380b76ef972f810d737e226f4fe6)
 
 ...menuend
 
@@ -617,7 +627,7 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 
 ---
 
-<h2 id="7c94d363ecea5ac490e952be9a09f394"></h2>
+<h2 id="a191a7c2b6e0987654f6d92503bf1078"></h2>
 
 # Week 6 Theory of Generalization  举一反三
 
@@ -696,6 +706,8 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
  - for fixed *k*, B(N,k) upper bounded by poly(N) 
     - ⇒ m<sub>H</sub>(N) is poly(N) **if break point exists**
 
+<h2 id="ac41223f5ec900a59b7a7c730d2db790"></h2>
+
 ## A Pictorial Proof
 
  - 現在有了這個成長函數、 上限函數的這些觀念 我們回過頭來做什麼？
@@ -709,6 +721,8 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
  - 这个公式的证明需要一些数学上的推导等等.
 
 ---
+
+<h2 id="942c21d4344c1e2c04cd9cb2b0635e7f"></h2>
 
 ### That's All !
 
@@ -726,6 +740,8 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 
 ---
 
+<h2 id="15173fa6f984d4d655f1b15b08355016"></h2>
+
 # Week7 The VC Dimension
 
  - 上周讲到了舉一反三
@@ -735,6 +751,8 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
  - 什麼時候可以這樣確保呢？
     - 我們只要 我們的成長函數在某個地方露出了一線曙光，并且 如果我們的資料量夠多的時候，我們就可以確保Ein跟Eout是接近的 
  - 那從這裡出發呢，我們就要開始看看這個一線曙光的意義 是什麼？實際上這就會引到我們待會兒對這個VC dimension.
+
+<h2 id="03b215c6ba1906c71c6856766d5a91dc"></h2>
 
 ## Definition of VC Dimension
 
@@ -749,6 +767,8 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
  - N > d<sub>VC</sub>  ⇒  N is a break point for H
     - k > d<sub>VC</sub>  ⇒  k is a break point for H
     
+<h2 id="ef6ecf6a562931f940c6f8fa8f315ec9"></h2>
+
 ### The 4 VC Dimensions
 
  · | VC Dimension
@@ -759,6 +779,8 @@ convex sets | ∞
 2D perceptrons | 3 
 
  - VC dimension 是 finite 的 hypothesis set 就是好的 hypothesis set
+
+<h2 id="2ab6a2e714fe88daa38d0ebadbd820b7"></h2>
 
 ### VC Dimemsion and Learning
 
@@ -778,6 +800,8 @@ convex sets | ∞
     - It is also possible that no set of N input can be shattered , which means d<sub>VC</sub>(H) < N.
     - Neither cases can be ruled out by one non-shattering set.
 
+<h2 id="010c451c23e144261c78eed3918be60c"></h2>
+
 ## VC Dimension of Perceptrons
 
  - 1D perceptron (pos/neg rays): d<sub>VC</sub> = 2
@@ -788,6 +812,8 @@ convex sets | ∞
  - how to proof ? 2 steps 
     1. prove  d<sub>VC</sub>  ≥ d+1
     2. prove  d<sub>VC</sub>  ≤ d+1
+
+<h2 id="0bcebb5418877c668b7f8078fd53e2a6"></h2>
 
 ### d<sub>VC</sub> ≥ d+1
 
@@ -809,6 +835,8 @@ convex sets | ∞
  - proven !!
 
  
+<h2 id="b23a9ffbf5d00fecd76ee661c5bae97c"></h2>
+
 ### d<sub>VC</sub>  ≤ d+1
 
  - how ?
@@ -821,6 +849,8 @@ convex sets | ∞
     - 对 D+1 方阵加入任意一笔 资料 x<sub>d+2</sub> , 产生的 D+1 x  D+2 矩阵， 行比列多，行 必然 linear dependency. 
 
 ---
+
+<h2 id="a7ab380b76ef972f810d737e226f4fe6"></h2>
 
 ## Physical Intuition of VC Dimension
 

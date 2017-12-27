@@ -1,7 +1,30 @@
+...menustart
+
+ - [python 实现笔记](#f5a8090cfbf3141fa074bf597c5a1d15)
+ - [1 基本环境](#957ca81de7391c55455d5889ff744bc3)
+     - [1.2 类型和对象](#a42ee72fe365212ee9342285a0f26ee2)
+     - [1.3 名字空间](#9f1d912adac327c6a0f76de998ea956c)
+         - [Names have no type, but objects do.](#115664aa6997c25b797d3e9545c9b0b4)
+     - [1.4 内存管理](#4a98d7faf3b0d89767d6214bb8368c14)
+         - [内存池](#b8294ac34a7b17ac2803dd1bf67aa16b)
+         - [引用传递](#8d1c66d29f78e3ca80303b73cc5d57e6)
+         - [引用计数](#0a8cbff6e3a3532ede2e30b88dbed5c1)
+         - [GC](#7359c3eb5c57547295a76ac1bf775b29)
+     - [1.5 编译](#404010db360ecac14364cfeb798bb6be)
+     - [1.6 执行](#032a3feced1954f3d6d6dee838163c3c)
+
+...menuend
+
+
+<h2 id="f5a8090cfbf3141fa074bf597c5a1d15"></h2>
 
 # python 实现笔记
 
+<h2 id="957ca81de7391c55455d5889ff744bc3"></h2>
+
 # 1 基本环境
+
+<h2 id="a42ee72fe365212ee9342285a0f26ee2"></h2>
 
 ## 1.2 类型和对象
 
@@ -69,6 +92,8 @@ typedef struct {
 } PyVarObject;
 ```
 
+<h2 id="9f1d912adac327c6a0f76de998ea956c"></h2>
+
 ## 1.3 名字空间
 
 ```python
@@ -101,12 +126,18 @@ NameError: name 'x' is not defined
 'Hello, World!'
 ```
 
+<h2 id="115664aa6997c25b797d3e9545c9b0b4"></h2>
+
 ### Names have no type, but objects do.
 
  - 正是因为 名字的弱类型特征， 我们可以在运行期随时将其关联到任何类型对象
  - 使用名字空间管理上下文对象，带来无与伦比的灵活性, 但也牺牲了执行性能。 
 
+<h2 id="4a98d7faf3b0d89767d6214bb8368c14"></h2>
+
 ## 1.4 内存管理
+
+<h2 id="b8294ac34a7b17ac2803dd1bf67aa16b"></h2>
 
 ### 内存池
 
@@ -123,6 +154,8 @@ NameError: name 'x' is not defined
  - 当所有 arena 的总容量超出限制 (64MB) 时，就不再请求新的 arena 内存
     - 而是如同 "大对象" 一样，直接在堆上为对象分配内存。
  - 完全空闲的 arena 会被释放，其内存交还给操作系统。
+
+<h2 id="8d1c66d29f78e3ca80303b73cc5d57e6"></h2>
 
 ### 引用传递
 
@@ -150,6 +183,8 @@ True
         - 使用标准库的 copy 模块进行深度复制。
         - 序列化对象，如 pickle、cPickle、marshal
 
+<h2 id="0a8cbff6e3a3532ede2e30b88dbed5c1"></h2>
+
 ### 引用计数
 
  - python采用"引用计数"和"垃圾回收"两种机制来管理内存。
@@ -174,6 +209,8 @@ True
  - 但是 循环引用会造成计数故障 
     - 简单明显的循环引用 ，可以用弱引用打破循环关系
  - 但在实际开发中，循环引用的形成往往很复杂 , 这是只有靠 GC 去回收了。
+
+<h2 id="7359c3eb5c57547295a76ac1bf775b29"></h2>
 
 ### GC 
 
@@ -230,6 +267,8 @@ static struct gc_generation generations[NUM_GENERATIONS] = {
  - 包含 __del__  法的**循环**引用对象，永远不会被 GC 回收，直至进程终了 。
  - 关于用不用  __del__ 的争论很多
 
+<h2 id="404010db360ecac14364cfeb798bb6be"></h2>
+
 ## 1.5 编译
 
  - Python 实现了栈式虚拟机 (Stack-Based VM) 架构
@@ -240,6 +279,8 @@ static struct gc_generation generations[NUM_GENERATIONS] = {
  - 对 pyc 文件格式有兴趣,  不想看 C 代码, 可以到 /usr/lib/python2.7/compiler 目录里寻宝
  - 对反汇编、代码混淆、代码注入等话题更有兴趣，不妨看看标准库 的 dis。
 
+
+<h2 id="032a3feced1954f3d6d6dee838163c3c"></h2>
 
 ## 1.6 执行
 
