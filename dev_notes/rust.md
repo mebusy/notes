@@ -292,6 +292,45 @@ println!("{}, world!", s1);
  - But because Rust also invalidates the first variable, instead of calling this a shallow copy, it’s known as a **move**.
  - Here we would read this by saying that s1 was moved into s2. So what actually happens is :
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rust_string_move.png)
+
+ - That solves our problem! With only s2 valid, when it goes out of scope, it alone will free the memory, and we’re done.
+ - In addition, there’s a design choice that’s implied by this: 
+    - Rust will never automatically create “deep” copies of your data. 
+    - Therefore, any *automatic* copying can be assumed to be inexpensive in terms of runtime performance.
+
+
+### Ways Variables and Data Interact: Clone 
+
+ - If we do want to deeply copy the heap data of the *String*, not just the stack data, we can use a common method called *clone*.
+
+```rust
+let s1 = String::from("hello");
+let s2 = s1.clone();
+println!("s1 = {}, s2 = {}", s1, s2);
+```
+
+### Stack-Only Data: Copy
+
+```rust
+let x = 5;
+let y = x;
+
+println!("x = {}, y = {}", x, y);
+```
+
+ - this code seems to contradict what we just learned
+ - we don’t have a call to clone, but x is still valid and wasn’t moved into y.
+ - The reason is that types like integers that have a known size at compile time are stored entirely on the stack.
+    - so copies of the actual values are quick to make. 
+    - That means there’s no reason we would want to prevent x from being valid after we create the variable y. 
+    - In other words, there’s no difference between deep and shallow copying here, so calling *clone* wouldn’t do anything differently from the usual shallow copying and we can leave it out.
+
+ - Rust has a special annotation called the *Copy* trait that we can place on types like integers that are stored on the stack 
+    - If a type has the *Copy* trait, an older variable is still usable after assignment. 
+    - 
+
+
 
 
 

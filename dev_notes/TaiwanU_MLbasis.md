@@ -776,6 +776,23 @@ convex sets | ∞
 
 ## VC Dimension of Perceptrons
 
+ - 1D perceptron (pos/neg rays): d<sub>VC</sub> = 2
+ - 2D perceptrons : d<sub>VC</sub> = 3
+ - d-D preceptrons : d<sub>VC</sub> = ? 
+    - guess d + 1 ?  
+
+ - how to proof ? 2 steps 
+    1. prove  d<sub>VC</sub>  ≥ d+1
+    2. prove  d<sub>VC</sub>  ≤ d+1
+
+### d<sub>VC</sub> ≥ d+1
+
+ - how ?
+    - There are **some** of d+1 **inputs** we can shatter.
+ - some 'trivial' inputs
+
+
+ 
 
 
 
