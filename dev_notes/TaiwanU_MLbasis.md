@@ -536,6 +536,10 @@ Q2  | No! too few choices  | Yes!, many choices
 e.g. | all lines in ℝ² | {oooo, ooox , ooxx, ...}
 size | possibly infinite | upper bounded by 2ᴺ
 
+ - 如果一个hypothesis set， 每一種dichotomy都可以做 出來，每一種dichotomy都可以做出來代表 它的這個成長函數是2ᴺ 。
+    - OK我給你N個點，你可以吧2ᴺ 那麼多種dichotomy 統統做出來，那我們說這N個點我們把它取一個特別的名字叫
+    - shattered
+
 
 <h2 id="dfa7e0a4bb23bbcf4e814b850274fd66"></h2>
 
@@ -790,6 +794,26 @@ convex sets | ∞
  - how ?
     - There are **some** of d+1 **inputs** we can shatter.
  - some 'trivial' inputs
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vd_dim_trivial_input.png)
+    - 最左灰色的1 是插入的 bias
+ - 在二维上，只有3个点 (0,0) , (1,0) , (0,1) ,   这三个点是可以被shatter的
+ - 我们需要证明的是， 在d 维度的时候，这些d+1个点也是可以被shatter的
+ - note: X is **invertible!**
+    - 逆矩阵存在对我们有什么意义呢？
+ - 回想一下什么是 shatter？ 给定xo排列组合中任意一例( xxooxoxo ... ) -- 称为y = ( y₁,...y<sub>d+1</sub> ) , 我都要能够做到 X 乘上某个w，取符号后，要等于Y 
+    - sign(Xw) = y 
+ - 怎么做到这点？  如果 我的 X·w 的结果直接等于y， 那么取符号后，还是等于y
+    - sign(Xw) = y ⇐  Xw = y
+ - 这样w一定能找到吗？ 能！  w = X⁻¹y
+    - sign(Xw) = y ⇐  Xw = y    ⇔  w = X⁻¹y 
+ - proven !!
+
+ 
+### d<sub>VC</sub>  ≤ d+1
+
+ - how ?
+    - We can not shatter **any** set of d+2 inputs
+ - 
 
 
  
