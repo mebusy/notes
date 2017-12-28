@@ -72,7 +72,7 @@
 
  a | b | c | d
 --- | --- | --- | ---
-[1. 基本环境](https://github.com/mebusy/notes/blob/master/dev_notes/pythonImpl.md) | [2. 内置类型](https://github.com/mebusy/notes/blob/master/dev_notes/pythonImpl2.md) | 
+[1. 基本环境](https://github.com/mebusy/notes/blob/master/dev_notes/pythonImpl.md) | [2. 内置类型](https://github.com/mebusy/notes/blob/master/dev_notes/pythonImpl2.md) | [3. 表达式](https://github.com/mebusy/notes/blob/master/dev_notes/pythonImpl3.md) | [4. 函数](https://github.com/mebusy/notes/blob/master/dev_notes/pythonImpl4.md) 
 
 
 <h2 id="c78e2ad97b328dbafbd49edf182136f3"></h2>

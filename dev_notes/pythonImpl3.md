@@ -5,6 +5,7 @@
 
 ```python
 >>> # 自定义 end 伪关键字
+>>> __builtins__ 名字空间，可以在任何模块中访问
 >>> __builtins__.end = None
 >>> def test(x):
 >>>     pass
