@@ -62,9 +62,11 @@ def createMenu4MD( path ):
 
             curTitleActualLevel = len(sharps) 
 
-            if len(all_title_level) > 0 :
-                if sorted(all_title_level)[0] == curTitleActualLevel:
-                    all_title_level.clear()
+            sort_l = sorted(all_title_level) 
+            if curTitleActualLevel in sort_l:
+                idx = sort_l.index( curTitleActualLevel )
+                if idx >= 0:
+                    all_title_level = set( sort_l[:idx]  )
 
             all_title_level.add( curTitleActualLevel )
 
