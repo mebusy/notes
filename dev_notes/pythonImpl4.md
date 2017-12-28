@@ -1,3 +1,16 @@
+...menustart
+
+ - [4. 函数](#8cd7054fb7a85f44fc74a35376860214)
+     - [4.1 创建](#1623b5e1ae4a521c5b23729d002020bd)
+         - [lambda](#945f3fc449518a73b9f5f32868db466c)
+     - [4.2 参数](#8b2b5184e327df133bfd017ad04a3f60)
+     - [4.3 作用域](#416013af2072858d19949ec722058389)
+     - [4.4 闭包](#e4f33957d3d056b09ebec5b81b966605)
+
+...menuend
+
+
+<h2 id="8cd7054fb7a85f44fc74a35376860214"></h2>
 
 # 4. 函数
 
@@ -40,11 +53,15 @@ typedef struct {
     - 同时为函数调用提供⼀系列的上下文属性，诸如所在模块、全局名字空间、参数默认值等等
     - PyFunctionObject 让函数面向逻辑，而不仅仅是虚拟机。
 
+<h2 id="1623b5e1ae4a521c5b23729d002020bd"></h2>
+
 ## 4.1 创建
 
  - python 函数 可以重载吗？
     - 不能。 因为 在名字空间内， 名字是唯一的主键。 在重载这一点上,函数参数并不能派上什么忙.
  - python  不进行 尾递归优化。最大递归深度 sys.getrecursionlimit()
+
+<h2 id="945f3fc449518a73b9f5f32868db466c"></h2>
 
 ### lambda
 
@@ -64,6 +81,8 @@ from __future__ import print_function
 2
 3
 ```
+
+<h2 id="8b2b5184e327df133bfd017ad04a3f60"></h2>
 
 ## 4.2 参数
 
@@ -116,6 +135,8 @@ from __future__ import print_function
 (3, 4)
 {'y': 'World', 'x': 'Hello'}
 ```
+
+<h2 id="416013af2072858d19949ec722058389"></h2>
 
 ## 4.3 作用域
 
@@ -196,6 +217,8 @@ True
 >>> test()
 UnboundLocalError: local variable 'x' referenced before assignment
 ```
+
+<h2 id="e4f33957d3d056b09ebec5b81b966605"></h2>
 
 ## 4.4 闭包
 
