@@ -143,19 +143,26 @@ NameError: name 'x' is not defined
 
  - 减少操作系统内存分配和回收操作
  - 那些 ≤ 256 字节对象，将直接从内存池中获取存储空间
- - **arena**: 根据需要，虚拟机每次从操作系统申请1块 256KB，取名为 arena 的大块内存。 
-    - 并按系统页大小  ，划分成多个 pool。
-    - 每个 pool 继续分割成 n 个 大小相同的 block .
+ - **arena**: arena 是内存申请单位  
+    - 根据需要，虚拟机每次从操作系统申请1块 256KB，取名为 arena 的大块内存。 
+ - **pool** : 
+    - arena 按系统页大小  ，划分成多个 pool , 所以每个 pool长度是 系统页大小(通常是 4KB))。
+    - pool 在其起始位置存储了 pool_header 状态信息。当需要存储小对象时，就是通过检索该区来查看是否符合存储要求。
+ - **block** 
+    - 每个 pool 剩余的内存会按照需要，再次分割成多个更小的区域 block 
+        - 每个 pool 只包含⼀种大小规格 的 block。
         - block 是内存池 最小存储单位
- - block 大小是 8 的倍数
-    - 存储 13 字节的对象，需要找 block  大小为 16 的 pool 获取空闲block
+     - b基于性能原因， block 大小总是按 8 字节对齐，也就是说总是 8 的倍数。
+        - 存储 13 字节的对象，需要找 block  大小为 16 的 pool 获取空闲block
  -  > 256 字节的对象，直接用 malloc 在堆上分配内存
     - 程序运行中的绝大多数对象都 < 这个阈值，因此内存池策略可有效提升性能。
  - 当所有 arena 的总容量超出限制 (64MB) 时，就不再请求新的 arena 内存
     - 而是如同 "大对象" 一样，直接在堆上为对象分配内存。
  - 完全空闲的 arena 会被释放，其内存交还给操作系统。
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/python_arena.png)
 
+ - 多个 arena 通过 arena_object 内的链表连接起来，共同构成 Python 内存池。 
 
 <h2 id="8d1c66d29f78e3ca80303b73cc5d57e6"></h2>
 
