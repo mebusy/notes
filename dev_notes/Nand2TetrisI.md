@@ -68,6 +68,17 @@ x | y | NAND
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_circuit_impl2.png)
 
 
+### 1.4 Hardware Description Language
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_xor.png)
+
+- General idea:
+    - out =1 , when :
+        - a AND NOT(b)
+        - OR
+        - b AND NOT(a)
+
+
 
 
 
