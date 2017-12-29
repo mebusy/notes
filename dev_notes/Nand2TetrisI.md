@@ -63,6 +63,8 @@ x | y | NAND
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_gate_implementation.png)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_circuit_impl.png)
+
 
 
 
