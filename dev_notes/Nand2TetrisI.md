@@ -57,6 +57,9 @@ x | y | NAND
         - 现在你已经有NOT了！
     2. (x AND y) = NOT( x NAND y )
 
+### 1.3 Logic Gates
+
+
 
 
 

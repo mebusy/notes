@@ -854,7 +854,17 @@ convex sets | ∞
 
 ## Physical Intuition of VC Dimension
 
+### Degrees of Freedom
 
+ - hypothesis parameters w = ( w₀,w₁,...,w<sub>d</sub> ) :
+    - **creates degrees of freedom**
+    - 就像旋钮上的 指示线
+ - hypothesis quantity M = |H| :
+    - 'analog' degrees of freedom
+    - 旋钮可以指向任意可能的方向
+ - hypothesis 'power' d<sub>vc</sub> = d+1:
+    - **effective 'binary' degrees of freedom**
+    
 
  
 
