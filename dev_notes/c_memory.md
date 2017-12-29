@@ -1,4 +1,4 @@
-
+http://marek.vavrusa.com/c/memory/2015/02/20/memory/
 
 # Understanding virtual memory
 
@@ -132,12 +132,129 @@ anonymous mapping.
 
 # When to bother with a custom allocator
 
- - 
+ - 大多数时候，我们分配的内存不是连续的
+ - 在这种情况下，不仅碎片是问题，而且数据的位置也会是问题
+ - cache-efficient 数据结构 需要放置在一起，最好在同一 page
+ - 使用默认的分配器，不能保证随后分配的块的位置。 更糟糕的是分配小单位的内存浪费。
 
+## Slab allocator
 
+ - Utility belt:
+    - posix_memalign() - [allocate aligned memory](http://linux.die.net/man/3/posix_memalign)
+ - 你向分配器请求一块内存，比如 整个页面，然后把它切成许多固定大小的块。
+    - 假定每个片段至少可以容纳一个指针或一个整数
+    - 你可以将它们链接到一个列表中，列表头指向第一个空闲的元素。
 
+```c
+/* Super-simple slab. */
+struct slab {
+    void **head;
+};
 
+/* Create page-aligned slab */
+struct slab *slab = NULL;
+posix_memalign(&slab, page_size, page_size);
+/* Q: why jump off a size of struct ? */
+slab->head = (void **)((char*)slab + sizeof(struct slab));
 
+/* Create a NULL-terminated slab freelist */
+/* me: not understand the item iteration */
+char* item = (char*)slab->head;
+for(unsigned i = 0; i < item_count; ++i) {
+    *((void**)item) = item + item_size;
+    item += item_size;
+}
+*((void**)item) = NULL;
+```
+
+```c
+/* Free an element */
+struct slab *slab = (void *)((size_t)ptr & PAGESIZE_BITS);
+*((void**)ptr) = (void*)slab->head;
+slab->head = (void**)ptr;
+
+/* Allocate an element */
+if((item = slab->head)) {
+    slab->head = (void**)*item;
+} else {
+    /* No elements left. */
+}
+```
+
+ - 分配就像 popup list head , 释放 就是 push a new list head
+ - 太好了，如何装箱，可变大小的存储，缓存别名和咖啡因，怎么办？
+
+## Memory pools
+
+ - Utility belt:
+    - obstack_alloc() - [allocate memory from object stack](http://www.gnu.org/software/libc/manual/html_node/Obstacks.html)
+ - 你把slab切片，直到它用完，然后请求一个新的。 
+ - 该模式令人惊讶地适用于 从  short-lived repetitive（ i.e. “网络请求处理”）到 long-lived immutable data （i.e. “frozen set”）等许多任务。
+ - 而你在这里很幸运，因为GNU libc提供了`*whoa*`，这是一个真正的API。 
+    - 它被称为obstacks，就像“堆栈对象”一样。 
+    - 它可以让你进行池分配，也可以完全或部分地展开。
+
+```c
+/* Define block allocator. */
+#define obstack_chunk_alloc malloc
+#define obstack_chunk_free free
+
+/* Initialize obstack and allocate a bunch of animals. */
+struct obstack animal_stack;
+obstack_init (&animal_stack);
+char *bob = obstack_alloc(&animal_stack, sizeof(animal));
+char *fred = obstack_alloc(&animal_stack, sizeof(animal));
+char *roger = obstack_alloc(&animal_stack, sizeof(animal));
+
+/* Free everything after fred (i.e. fred and roger). */
+obstack_free(&animal_stack, fred);
+
+/* Free everything. */
+obstack_free(&animal_stack, NULL);
+```
+
+## Demand paging explained
+
+ - Utility belt:
+    - mlock() - [lock/unlock memory](http://linux.die.net/man/2/mlock)
+    - madvise() - [give advice about use of memory](http://linux.die.net/man/2/madvise)
+ - 把内存还给系统是有代价的. 系统需要做两件事
+    1. establish the mapping of a virtual page to real page
+    2. give you a blanked real page
+        - The real page is called frame
+ - 每个框架都必须进行清理，因为您不希望操作系统将您的秘密泄漏到另一个进程中，对吗？
+ - 但是 The virtual memory allocator 并没有给你一个真的 page，而是 a special page 0
+    - 每次尝试访问特殊页面时，都会发生页面错误
+    - 这意味着：内核暂停进程执行并获取一个实际页面，然后更新页面表，然后继续执行任何事情。
+    - This is also called “demand paging” or “lazy loading”.
+ - 您可以将连续内存块 [锁定](https://linux.die.net/man/2/mlock) 在物理内存中，避免进一步的页面错误：
+
+```c
+char *block = malloc(1024 * sizeof(char));
+mlock(block, 1024 * sizeof(char));
+```
+
+# Fun with 'flags' memory mapping
+
+ - Utility belt:
+    - sysconf() - get configuration information at run time
+    - mmap() - map virtual memory
+    - mincore() - determine whether pages are resident in memory
+    - shmat() - shared memory operations
+ - There are several things that the memory allocator just can’t do, memory maps to to rescue! 
+ - 比如，你不能选择分配的内存的地址范围
+ - 我们将从现在开始处理整个页面。 
+    - 一个页面通常是一个4K块，但是你不应该依赖它, 使用sysconf（）来发现它。
+
+```c
+long page_size = sysconf(_SC_PAGESIZE); /* Slice and dice. */
+```
+
+ - 但是 当物理内存被分割时，巨大的连续块变得稀少。 
+    - 页面错误的成本也随着页面大小的增加而增加，
+ - 但是有一个特定于Linux的mmap选项MAP_HUGETLB允许你明确地使用它
+
+## Fixed memory mappings TODO...
 
 
 
