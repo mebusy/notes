@@ -1,6 +1,7 @@
 
 # Week1 
 
+
 ## Introduction
 
 ### 0.0 Introduction
@@ -78,9 +79,24 @@ x | y | NAND
         - OR
         - b AND NOT(a)
 
+ - From gate diagram to HDL
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_gate_diag_2_hdl.png)
+
+ 1. HDL is a functional / declarative language
+ 2. THe order of HDL statements is insignificant
+ 3. Before using a chip part , you must know its interface. For example
+    - Not(int=, out=)
+    - And(a=,b=, out=)
+    - Or(a=,b= , out=)
 
 
+### 1.5 Hardware Simulation
+
+.hdl --> HS  -->
+      |     |
+.tst -| ....|... -> .out
 
 
-
-
+ - 配合 tst 文件，可以进行自动化测试 
+ - tst 里可以 把结果输出， 还可以把 输出结果 和 事先准备的 .cmp 文件做比较
