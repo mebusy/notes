@@ -59,6 +59,9 @@ x | y | NAND
 
 ### 1.3 Logic Gates
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_gate_interface.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_gate_implementation.png)
 
 
 
