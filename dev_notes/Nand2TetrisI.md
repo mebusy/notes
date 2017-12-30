@@ -230,7 +230,12 @@ else
  - Example: using mux logic to build a programmable gate
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_programmable_gate_use_mux.png)
  - Demultiplexor
-    - looks like the inverse of a multiplexor
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_demultiplexor.png)
+    - acts like the inverse of a multiplexor
+    - Distributes the single input value into one of 2 possible destinations
+        - based on the selection bit, it either channels the input to an a output , or to a b output
+       
+
 
 
 
