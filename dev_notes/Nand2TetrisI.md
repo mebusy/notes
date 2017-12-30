@@ -191,6 +191,27 @@ Add16( ... , out[0..3]=t1, out[4..15]=t2 ) ;
 
 ### 1.7 Project 1 Overview 
 
+ - Given: Nand
+ - Goal: Build the following gates:
+    - Not
+    - And
+    - Or
+    - Xor 
+    - Mux
+    - Dmux # 4 elememtary logic gates
+    - Not16
+    - And16
+    - Or16
+    - Mux16  # 4 16-bit variants
+    - Or8Way
+    - Mux4Way16
+    - Mux8Way16
+    - DMux4Way
+    - DMux8Way # 5 Multi-way variants
+ - Why these 15 particular gates ?
+ - Because ...
+    - The are commonly used gates
+    - They comprise all the elememtary logic gates needed to build our computer
 
 
 
