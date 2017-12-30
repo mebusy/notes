@@ -34,6 +34,8 @@
         - 5th :
             - `( x AND NOT(y) AND NOT(z)  )`
     4. 剩下的，就是把 这三个 范式， 用 OR 连接起来
+ - Tips: 
+    - 因为设计 logic gate最基本的单元是 Nand, 所以有时后把 truth table反一下考虑 会有更好的效果
  - 很长的范式，我们怎么能得到一个 最小范式呢？ 
     - In fact, this is an NP-hard problem.  
 
