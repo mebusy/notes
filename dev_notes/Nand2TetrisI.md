@@ -214,6 +214,7 @@ Add16( ... , out[0..3]=t1, out[4..15]=t2 ) ;
     - They comprise all the elememtary logic gates needed to build our computer
  - Multiplexor (Mux)
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_multiplexor.png)
+    - 3 input, 1 output
 
 ```c
 if (sel==0)
@@ -221,6 +222,16 @@ if (sel==0)
 else
     out=b
 ```
+
+ - A 2-way multiplexor enables *selecting* , and outputing, one out of 2 possible inputs
+ - Widely used in : 
+    - Digital design
+    - Communications networks
+ - Example: using mux logic to build a programmable gate
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_programmable_gate_use_mux.png)
+ - Demultiplexor
+    - looks like the inverse of a multiplexor
+
 
 
 
