@@ -212,6 +212,15 @@ Add16( ... , out[0..3]=t1, out[4..15]=t2 ) ;
  - Because ...
     - The are commonly used gates
     - They comprise all the elememtary logic gates needed to build our computer
+ - Multiplexor (Mux)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_multiplexor.png)
+
+```c
+if (sel==0)
+    out=a
+else
+    out=b
+```
 
 
 
