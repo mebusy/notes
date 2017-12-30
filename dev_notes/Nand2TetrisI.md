@@ -234,6 +234,22 @@ else
     - acts like the inverse of a multiplexor
     - Distributes the single input value into one of 2 possible destinations
         - based on the selection bit, it either channels the input to an a output , or to a b output
+ - Example: Multiplexing / demultiplexing in communications networks
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_mux_dmux_example.png)
+    - we may have several channels coming in. Let's say channels of music or movies
+        - that we want to send over a single communications line
+    - and through this single line, I want to send multiple messages. How can I possiblely do it ?
+    - I can put a Mux in the sending end , and I can feed the Mux an ongoing train of 0101010...
+        - This can be done using what is known as an oscillator 振荡器
+        - Each `sel` bit is connected to an oscillator that produces a repetitive train of alternating 0 and 1 signals.
+    - In every cycle the Mux will output one bit from one of the 2 inputs
+    - At the receiving end , I put a different oscillator and therefore the dmux is going to distribute the incoming inputs according to the dmux logic. 
+    - So this logic here , the Dmux and the Mux logic taken together enable me to interleave several messages over a single communications line. 
+        - which may be very expensive
+
+
+
+
        
 
 
