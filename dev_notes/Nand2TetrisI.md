@@ -246,6 +246,8 @@ else
     - At the receiving end , I put a different oscillator and therefore the dmux is going to distribute the incoming inputs according to the dmux logic. 
     - So this logic here , the Dmux and the Mux logic taken together enable me to interleave several messages over a single communications line. 
         - which may be very expensive
+ - 16-bit, 4-way multiplexor
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_16bit4waymultiplexor.png)
 
 
 
