@@ -282,6 +282,42 @@ a | b | sum | carry
 
 #### Full Adder
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_fullAdder.png)
+
+#### Multi-bit Adder 
+
+ 1. half adder
+ 2. full adder , repeart
+
+### 2.3 Negative Numbers 
+
+ - Q: 为什么计算机不直接 把 最高为 解释成符号位，其他不变？
+    - 以8bit为例，这样会造成 10000000 = -0 的情况，非常蠢。
+ - 2ⁿ-x => -x
+    - 10000000 => -128
+ - Positive Numbers : 0 ... 2ⁿ⁻¹-1
+ - Negative Numbers : -1 ... =-2ⁿ⁻¹
+ - Input x , Output -x, how?
+    - -x = ~x +1
+ - Tips for `+1`
+    - 从低位开始， 逢1变0，直到把第一个碰到的0变成1，退出
+
+### 2.4 Arithmetic Logic Unit
+
+ - Arithmetic operations:
+    - integer addition, multiplication, division, ...
+ - Logical operations:
+    - And, Or, Xor, ...
+
+#### The Hack ALU 
+
+ - ALU used in this course ...
+ - Operates on two 16-bit, two's complement values.
+
+
+
+
+
 
 
        
