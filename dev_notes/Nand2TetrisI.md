@@ -321,6 +321,11 @@ a | b | sum | carry
     - Based on these 6 control bits, the ALU computes one out of the following ***18*** functions.
         - the ALU can compute many more functions, but we will focus these 18 only
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_alu_18funcs.png)
+
+ - Also outputs two 1-bit valuse
+    - zr, ng
+
 
 
 
