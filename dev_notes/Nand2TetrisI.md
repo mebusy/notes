@@ -276,7 +276,11 @@ a | b | sum | carry
 1 | 0 | 1 | 0
 1 | 1 | 0 | 1
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_half_adder.png)
 
+ - Xor -> sum , And -> carry ?
+
+#### Full Adder
 
 
 
