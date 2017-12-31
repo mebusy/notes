@@ -284,6 +284,10 @@ a | b | sum | carry
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_fullAdder.png)
 
+ - use 2 half adder ,  plus ... 
+
+
+
 #### Multi-bit Adder 
 
  1. half adder
@@ -298,7 +302,7 @@ a | b | sum | carry
  - Positive Numbers : 0 ... 2ⁿ⁻¹-1
  - Negative Numbers : -1 ... =-2ⁿ⁻¹
  - Input x , Output -x, how?
-    - -x = ~x +1
+    - -x = !x +1
  - Tips for `+1`
     - 从低位开始， 逢1变0，直到把第一个碰到的0变成1，退出
 
@@ -326,6 +330,48 @@ a | b | sum | carry
  - Also outputs two 1-bit valuse
     - zr, ng
 
+
+#### The 6 Control bits
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_alu_18funcs_truth_table.png)
+
+ - if zx , and nx , then x = -1 (1111)
+ - Example: Compute !x , x: 1100, y: 1011
+    - zx=nx=0 => x = x
+    - zy=ny=1 => y = 1111
+    - f=0 => x&y = 1100
+    - no=1 => !(1100) = 0011 , it is !x
+ - 理论上6个控制位可以产生 2⁶ 个 结果，但实际上有些组合的output是相同的
+    - 比如 zx=1,nx=0 , zy=1,ny=1, f=1,no=1 , 同样也输出 0
+
+#### The 2 output control bits
+
+ - if out == 0 , then zr = 1 , else zr = 0.
+ - if out < 0 . then ng =1 , else ng =0.
+ - These two control bits will come into play when we build the complete computer's architecture.
+
+---
+
+ - ALU 所有所需要的运算，我们之前做的 chips 都能实现
+ - The Hack ALU is both simple but quite sophisticated.
+
+### 2.5 Project2 
+
+ - Goal: 
+    - HalfAdder
+    - FullAdder
+    - Add16
+        - full adder * 16 实现方式可以优化， it called *carry look ahead*
+    - Inc16
+    - ALU  , less than 20 lines of HDL code
+ 
+
+
+
+
+
+
+    
 
 
 
