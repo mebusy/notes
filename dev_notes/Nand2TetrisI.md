@@ -312,7 +312,14 @@ a | b | sum | carry
 #### The Hack ALU 
 
  - ALU used in this course ...
- - Operates on two 16-bit, two's complement values.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_alu.png)
+
+ - take two 16-bit input, generate one 16-bit output
+ - Which function to compute is set by 6 1-bit inputs
+    - zx , nx , zy, ny , f , no
+    - Based on these 6 control bits, the ALU computes one out of the following ***18*** functions.
+        - the ALU can compute many more functions, but we will focus these 18 only
 
 
 
