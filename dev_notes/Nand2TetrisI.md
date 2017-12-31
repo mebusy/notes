@@ -365,6 +365,12 @@ a | b | sum | carry
     - Inc16
     - ALU  , less than 20 lines of HDL code
  
+---
+
+# Week3 Memory
+
+ - **Key concepts**: combinational vs sequential logic, clocks and cycles, flip-flops, registers, RAM units, counters.
+
 
 
 
