@@ -251,6 +251,32 @@ else
  - 16-bit, 4-way multiplexor
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_16bit4waymultiplexor.png)
 
+---
+
+# Week2 
+
+## ALU (Arithmetic Logic Unit)
+
+ - Addtion / Subtraction are easy
+ - Multiplication and division are complicated, but nicely enough, we can actually postpone them to software.
+
+### 2.2 Binary Addition
+
+ - Building an Adder
+    1. Half Adder -- adds two bits
+    2. Full Adder -- adds 3 bits
+    3. Adder -- Adds two numbers
+
+#### Half Adder
+
+a | b | sum | carry
+--- | --- | --- | ---
+0 | 0 | 0 | 0
+0 | 1 | 1 | 0
+1 | 0 | 1 | 0
+1 | 1 | 0 | 1
+
+
 
 
 
