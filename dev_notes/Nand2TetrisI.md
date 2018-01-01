@@ -468,6 +468,10 @@ a | b | sum | carry
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_1bit_register.png)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_1bit_register2.png)
+
+### Working "Bit" Implementation 
+
 
 
 
