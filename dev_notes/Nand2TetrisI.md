@@ -397,6 +397,7 @@ a | b | sum | carry
 ### The Clock
 
  - convert physical time to discreet time.
+    - to ensure the system state is stabilized.
  - Nothing changes within a time unit
     - for example , NOT gate
     - at every time unit  , it can have a different input
@@ -413,6 +414,15 @@ a | b | sum | carry
  - The whole point of this logical we were treat -- we break time into digital into integer units --  is the fat that they won't want to think about these delays. 
  - As long as our clock cycle is not too fast , as long as we give ourselves enough time between consecutive time units, we can ignore everything that happened at the beginning of the cycle( all the gray area ).
  - In fact, the way we choose the cycle of the clock is to make sure that all the hardware there really stabilizes. And the implementations give you the logical operations by the end of the gray unit. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_clock_gray_unit.png)
+
+### Combinatorial Logic vs. Sequential Logic
+
+ - Combinatorial: out[t] = function( in[t] ) 
+ - Sequential :   out[t] = function( in[t-1] )
+
+## 3.2 Flip Flops
 
 
 
