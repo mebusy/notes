@@ -433,6 +433,7 @@ a | b | sum | carry
     - Gates that can flip between two states are called *Flip-Flops*
         - the point is that this flipping and flopping is something they remember.
         - It's not just a function of the current input, but something internal to them they remember  between time units.
+ - 其实就是保存这个周期的输入，用于下一个周期， 只能保存一个周期
 
 
 ### The "Clocked Data Flip Flop"
@@ -458,6 +459,8 @@ a | b | sum | carry
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_sequential_logic_impl.png)
 
+ - DFF 的应用模版?
+
  - In particular the usual way we do things is we have an array of D flip flops which basically compromise all of our memory in the system. 
  - Their output is going to be fed into some combinatorial logic together with the new input that you get in this time unit. 
  - And all of this is going to change the state that we have in the D flip flop for the next time unit.
@@ -465,12 +468,34 @@ a | b | sum | carry
 ### Remembering For Ever: 1-bit register
 
  - Goal: remember an input it "forever": until requested to load a new value
+ - DFF 应用之一： 可以持久记忆 , 1bit memory !
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_1bit_register.png)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_1bit_register2.png)
 
-### Working "Bit" Implementation 
+#### Working "Bit" Implementation 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_working_bit_impl.png)
+
+---
+
+## 3.3 Memory Units
+
+ - Memory
+    - Main memory: RAM, ...
+    - Secondary memory: disks, ...
+    - Volatile/non-volatile: 断电后数据是否可以保存
+ - RAM:
+    - Data
+    - Instructions
+ - Perspective:
+    - Physical
+    - Logical 
+
+### The most basic memory element: Register
+
+
 
 
 
