@@ -458,6 +458,15 @@ a | b | sum | carry
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_sequential_logic_impl.png)
 
+ - In particular the usual way we do things is we have an array of D flip flops which basically compromise all of our memory in the system. 
+ - Their output is going to be fed into some combinatorial logic together with the new input that you get in this time unit. 
+ - And all of this is going to change the state that we have in the D flip flop for the next time unit.
+
+### Remembering For Ever: 1-bit register
+
+ - Goal: remember an input it "forever": until requested to load a new value
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_1bit_register.png)
 
 
 
