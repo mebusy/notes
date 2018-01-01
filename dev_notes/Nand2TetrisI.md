@@ -454,6 +454,10 @@ a | b | sum | carry
  - Our Hardware Simulator forbids "combinatorial loops"
     - A cycle in the hardware connections is allowed only if it passes through a sequentia gate.
 
+### Sequential Logic Imlementation
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_sequential_logic_impl.png)
+
 
 
 
