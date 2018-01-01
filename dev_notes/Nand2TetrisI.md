@@ -514,7 +514,62 @@ a | b | sum | carry
 
 ### RAM unit
 
- 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_ram_unit.png)
+
+ - RAM abstraction:
+    - A sequences of n **addressable** registers , with addresses 0 to n-1
+ - **At any given point of time** , only ***one*** register in the RAM is selected.
+ - k( width of address input): 寻址地址线所需宽度？ 
+    - k = log₂N
+    - for example, if we have 8 register , we need 3 bits.
+ - w( word width): 
+    - No impact on the RAM logic
+ - RAM is a sequential chip, with a clocked behavior
+
+```hdl
+// let M stand for the state of 
+// the selected register
+if load then {
+    M = in
+    // from the next cycle onward:
+    out = M    
+} 
+else out = M 
+```
+
+ - To read Register i :
+    - set address = i
+    - Result
+        - out emits the state of Register i
+ - To set Register i to v:
+    - set address = i
+    - set in = v
+    - set load =1
+    - Result
+        - The state of Register i become v
+        - From the next cycle onward, out emits v
+ - Why "Random Access Memory" ?
+    - Because irrespective of the RAM size , every register can be accessed in exactly the same time -- instantaneously.
+
+## 3.4 Counters 
+
+ - The computer must keep track of whch instruction should be *fetched and executed* next
+ - This control mechanism can be realized by a Program Counter
+ - The PC contains the address of the instruction that will be *fetched and executed* next
+ - Threee possible control settings:
+    - Reset: fetch the first instruction. 
+        - `PC = 0`
+    - Next : fetch the next instruction. 
+        - `PC++` 
+    - Goto: fetch instruction n
+        - `PC = n`
+ - Counter: 
+    - A chip that realizes those 3 above abstraction.
+
+### Counter abstraction
+
+
+
 
 
 
