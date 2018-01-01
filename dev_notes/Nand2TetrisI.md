@@ -424,6 +424,20 @@ a | b | sum | carry
 
 ## 3.2 Flip Flops
 
+ - Remembering State
+    - Missing ingredient: remember one bit of infomation from time t-1 so it can be used at time t.
+    - At the "end of time" t-1, such an ingredient can be at either of 2 states:
+        - "remembering 0" or "remembering 1"
+        - That means it has to be in two different physical states in its implementation
+    - This ingredient remembers by "flipping" between these 2 possible states
+    - Gates that can flip between two states are called *Flip-Flops*
+        - the point is that this flipping and flopping is something they remember.
+        - It's not just a function of the current input, but something internal to them they remember  between time units.
+
+
+### The "Clocked Data Flip Flop"
+
+ - This flip-flop has a single input and a single output , and it basically remembers the input from last time unit and outputs it in the next time unit. 
 
 
 
