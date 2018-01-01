@@ -495,7 +495,26 @@ a | b | sum | carry
 
 ### The most basic memory element: Register
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_register.png)
 
+ - w (word width): 16-bit, 32-bit, 64-bit, ...
+ - Register's state: the value which is currently stored inside the register
+
+--- 
+
+ - Register / read logic
+    - probe out
+    - out emits the Register's state
+ - Register / write logic
+    - To set Register = v 
+        - set in = v
+        - set load = 1
+    - The Register's state becomes v
+    - From the next cycle onward, out emits v
+
+### RAM unit
+
+ 
 
 
 
