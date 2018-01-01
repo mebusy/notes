@@ -371,6 +371,41 @@ a | b | sum | carry
 
  - **Key concepts**: combinational vs sequential logic, clocks and cycles, flip-flops, registers, RAM units, counters.
 
+## 3.1 Sequential Logic
+
+ - How compute do one thing after another
+ - So far we ignored the issue of time
+ - The inputs were just "there" -- fixed and unchanging
+ - THe output was computed "instantaneously"
+ - This is sometimes called "Combinatorial Logic"
+ - But computers do work during time.
+ 
+---
+
+ - So what kind of thing do we need from time ?
+    1. Use the same hardware over time
+        - Inputs change and outputs should follow
+        - e.g.  `For i=1...100:  a[i]=b[i]+c[i]`
+    2. Remember "State"
+        - Memory
+        - Counters
+        - e.g.  `For i=1...100:  sum=sum+1`
+    3. Deal with speed
+        - computers work at some finite speed
+        - we can not ask computer to perform computations faster than it can
+
+### The Clock
+
+ - convert physical time to discreet time.
+ - Nothing changes within a time unit
+    - for example , NOT gate
+    - at every time unit  , it can have a different input
+    - and at that time unit, it will compute the output from that input in an instantaneous manner.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_clock.png)
+
+
+
 
 
 
