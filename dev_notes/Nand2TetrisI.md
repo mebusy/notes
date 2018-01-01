@@ -565,9 +565,14 @@ else out = M
         - `PC = n`
  - Counter: 
     - A chip that realizes those 3 above abstraction.
+    - essentially a register with some control bits
+
 
 ### Counter abstraction
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_counter_abstraction.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_counter_abstraction2.png)
 
 
 
