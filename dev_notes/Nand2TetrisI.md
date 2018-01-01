@@ -437,7 +437,22 @@ a | b | sum | carry
 
 ### The "Clocked Data Flip Flop"
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_flip_flop.png)
+
  - This flip-flop has a single input and a single output , and it basically remembers the input from last time unit and outputs it in the next time unit. 
+
+ - The little triangle that we see at the bottom of the D flip-flop diagram , means that we have a sequential chip, a chip that depends on time. 
+
+### Implementation of the D Flip Flop 
+
+ - In this course: it is a primitive
+ - In many physical implementations, it may be built from actual Nand gates:
+    - step1: create a "loop" achieving an "un-clocked" flip-flip
+    - step2: Isolation across time steps using a "master-slave" setup.
+ - Very cute
+    - But conceptually confusing
+ - Our Hardware Simulator forbids "combinatorial loops"
+    - A cycle in the hardware connections is allowed only if it passes through a sequentia gate.
 
 
 
