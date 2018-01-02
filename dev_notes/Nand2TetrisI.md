@@ -618,10 +618,10 @@ else out = M
 
 ## 4.1 Overview
 
- - 3 elements 
-    1. Operation : how are we going to specify the instructions ? 
-    2. Program Counter: how do we know which instruction to perform at any given stage and time ?
-    3. Addressing : have to tell the hardware what to operate on.
+ - elements 
+    - Operation : how are we going to specify the instructions ? 
+    - Program Counter: how do we know which instruction to perform at any given stage and time ?
+    - Addressing : have to tell the hardware what to operate on.
 
 
 ### Mnemonics
@@ -644,7 +644,7 @@ else out = M
     - Silicon Area
     - Time to Complete Instruction
 
-### Machine Operations 
+### Machine Language : Operations 
 
  - Each machine language defines a set of operations
  - Those operations usually correspond to what's implemented in Hardware
@@ -655,7 +655,7 @@ else out = M
     - Richness of the set of operations ( divisions? bulk copy? ... )
     - Data types ( width, floating point, ...  )
 
-### Addressing 
+### Machine Language : Addressing 
 
  - Accessing a memory location is exprensive
     - Need to supply a long address
@@ -663,10 +663,64 @@ else out = M
         - 从内存取值到CPU ，和CPU本身做算数运算相比，要花费非常多的时间
  - Solution: Memory Hierachy
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_memory_hierarchy.png)
 
+ - Faster access means smaller memory size
+
+#### Registers
+
+ - CPUs usually contain a few , easily accessed "registers"
+ - Their number and functions are are a central part of the machine language
+ - Data Register
+    - Add R1, R2
+        - R1:10 , R2:20, result 30
+ - Address Registers
+    - Store R1, @A 
+        - A:137 , means store R1's value (say 77)  to Mem[137]
+        - Mem[137] = 77
+
+#### Addressing Modes
+
+ - Register 
+    - Add R1, R2     // R2 <- R2 + R1
+ - Direct 
+    - Add R1, M[200]  // Mem[200] <- M[200] + R1
+ - Indirect
+    - Add R1, @A      // Mem[A] <- Mem[A] + R1
+ - Immediate 
+    - Add 73 , R1     // R1 <- R1 + 73
+
+#### Input / Output
+
+ - Many types of Input and Output Devices
+    - keyboard, mouse, camera , sensors, printers, screen, speaker, ...
+ - CPU needs some kind of protocal to talk to each of them
+    - Software "Drivers" know these protocols
+ - One general method of interaction use "memory mapping"
+    - Memory Location 12345 holds the direction of the last movement of the mouse
+    - Memory Location 45678 is not a real memory location but a way to tell the printer which paper to use.
    
+### Machine Language : Flow Control 
+
+ - Usually the CPU executes machine instructions in sequence
+ - Sometimes we need to "jump" unconditionally to another location, e.g. loop
+ - Sometimes we need to jump only if some condition is met
+
+## 4.3 The Hack Computer and Machine Language 
+
+### Hack computer : hardware 
 
 
+
+ - A 16-bit machine means  the atomic unit of operation is 16-bit. 
+ - A 16-bit machine consising of :
+    - Data memory (RAM): a sequence of 16-bit registers:
+        - RAM[0], RAM[1], RAM[2] , ... 
+    - Instruction memory(ROM): a sequence of 16-bit register:
+        - ROM[0], ROM[1], ROM[2] , ...
+    - Central Processing Unit (CPU): preforms 16-bit instrcutions
+        - using mostly the ALU which resides inside the CPU.
+    - Instruction bus / data bus / address bus
 
 
     
