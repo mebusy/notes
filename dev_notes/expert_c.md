@@ -1,10 +1,15 @@
 
 # 1
 
+## register keyword 是个错误
+
  - The `register` keyword.
     - 这被证明是一个错误，这只是把原本编译器应该做的事情，强加给程序员
     - 由编译器而不是程序员 来决定为哪个变量使用寄存器，将会得到更好的代码
  - C强调硬件直接支持的低级操作带来了速度和可移植性，反过来又有利于UNIX的良性循环
+
+
+## `char **argv` 和 `const char **p` 并不匹配
 
 ```c
 foo(const char **p) { }
@@ -50,7 +55,7 @@ cp = ccp; /* results in a compilation warning */
     - C 引入const关键字的目的是优化代码，这是程序员和编译器间的约定： 
         - 他不会改变对象的值，所以可以直接使用对象的初始值而不用费工夫去读对象。
 
-## How Quiet is a "Quiet Change"?
+## 隐式类型转换的坑
 
  - Operands with different types get converted when you do arithmetic. 
     - Everything is converted to the type of the floatiest, longest operand, signed if possible without losing bits.
