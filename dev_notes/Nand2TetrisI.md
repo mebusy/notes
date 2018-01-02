@@ -626,6 +626,45 @@ else out = M
 
 ### Mnemonics
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_mlang_mnemonics.png)
+
+ - Interpretation 1: The "symbolic form" doesn't really exist but is just a convenient mnemonic to present machine language instructions to humans. 
+ - Interpretation 2: We will allow humans to write machine language instructions using this "*assembly language*" and will have an "Assembler" program convert it to the bit-form.
+
+
+## 4.2 Machine Languages : Elements
+
+ - Specification of the Hardware/Software Interface
+    - What are the supported operations ?
+    - What do they operate on ?
+    - How is the program controlled ?
+ - Usually is close correspondence to actual Hardware Architecture
+    - Not necessarily so
+ - Cost-Performance Tradeoff
+    - Silicon Area
+    - Time to Complete Instruction
+
+### Machine Operations 
+
+ - Each machine language defines a set of operations
+ - Those operations usually correspond to what's implemented in Hardware
+    - Arithmetic Operations: add, subtract, ...
+    - Logical Operations: and , or , ...
+    - Flow Control : "goto instruction X", "if C ten goto instruction Y" 
+ - Differences between machine languages 
+    - Richness of the set of operations ( divisions? bulk copy? ... )
+    - Data types ( width, floating point, ...  )
+
+### Addressing 
+
+ - Accessing a memory location is exprensive
+    - Need to supply a long address
+    - Getting the memory contents into the CPU take time 
+        - 从内存取值到CPU ，和CPU本身做算数运算相比，要花费非常多的时间
+ - Solution: Memory Hierachy
+
+
+   
 
 
 
