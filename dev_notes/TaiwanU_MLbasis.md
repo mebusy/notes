@@ -873,7 +873,11 @@ convex sets | ∞
 ### Two Old Friends
 
  - Positive Rays ( d<sub>vc</sub>=1 ) 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_pos_ray_free.png)
+    - 只有一个可调节的 按钮
  - Positive Intervals ( d<sub>vc</sub>=2 )
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_pos_intval_free.png)
+    - 有 2个可调节 按钮
 
 
 
