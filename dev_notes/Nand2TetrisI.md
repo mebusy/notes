@@ -710,7 +710,7 @@ else out = M
 
 ### Hack computer : hardware 
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_compute_archi.png)
 
  - A 16-bit machine means  the atomic unit of operation is 16-bit. 
  - A 16-bit machine consising of :
@@ -722,6 +722,11 @@ else out = M
         - using mostly the ALU which resides inside the CPU.
     - Instruction bus / data bus / address bus
 
+ - How do we control the computer ?
+    - Software !
+ - Hack machine language :
+    - 16-bit A-instructions
+    - 16-bit C-instructions
 
     
 
