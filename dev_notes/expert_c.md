@@ -77,9 +77,83 @@ int main(int argc, char **argv) {
 }
 ```
 
-## The Implementation-Defined Effects of Pragmas . . .
+# 2 It's Not a Bug, It's a Language Feature
+
+## 空格连接字符串 
+
+```c
+    printf(  "a" 
+             "b" 
+             "c"  ) ;  // $ abc
+
+    char * str = "d" "e" ;
+    printf( "%s" , str ) ; //de
+```
+
+ - 这个特性 在以下情况下有可怕的后果：
+ 
+```c
+char *available_resources[] = {
+  "color monitor",
+  "big disk",
+  "Cray" /*           whoa! no comma! */
+  "on-line drawing routines",
+  "mouse",
+  "keyboard",
+  "power cables",     /* and what's this extra comma? */
+};
+```
+ 
+## Too Much Default Global Visibility
+
+ - C函数，默认是全局可见。
+    - The function is visible to anything that links with that object file
+ - 如果你想限制对函数的访问，你必须指定static关键字。
+
+```c
+       function apple (){ /* visible everywhere */ }
+extern function pear () { /* visible everywhere */ }
+static function turnip(){ /* not visible outside this file */ }
+```
+
+ - 太多的全局可见性会导致 方法名很容易和 库函数同名。
 
 
+## sizeof is operator
 
+ - when sizeof's operand is a type it has to be enclosed in parentheses 
+ - when operand is variable , parentheses is not required .
+
+```c
+p = N * sizeof * q; // there is noly 1 multiplication
+r = malloc( p ); 
+```
+
+## Some of the Operators Have the Wrong Precedence
+
+```c
+int i ;
+i=1,2;
+```
+
+ - what value does i end up with?
+    - 逗号表达式，所以i==2 ?
+    - 错， assignment has higher precedence ， you actually get:
+        - `(i=1),2;`   (1==1)
+
+
+## Order of Evaluation is always undefined
+
+```c
+x = f() + g() * h();
+```
+
+ - The values returned by g() and h() will be grouped together for multiplication, but g and h might be called in any order. 
+ - Similarly, f might be called before or after the multiplication, or even between g and h. 
+ - All we can know for sure is that the multiplication will occur before the addition
+ - Most programming languages don't specify the order of operand evaluation.
+    - It is left undefined so that compiler-writers can take advantage of any quirks in the architecture, or special knowledge of values that are already in registers.
+
+# 3. Unscrambling Declarations in C
 
 
