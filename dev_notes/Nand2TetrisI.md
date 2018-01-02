@@ -217,6 +217,7 @@ Add16( ... , out[0..3]=t1, out[4..15]=t2 ) ;
  - Multiplexor (Mux)
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_multiplexor.png)
     - 3 input, 1 output
+    - kind of `if` condition expression
 
 ```c
 if (sel==0)
@@ -231,11 +232,16 @@ else
     - Communications networks
  - Example: using mux logic to build a programmable gate
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_programmable_gate_use_mux.png)
+
+---
+
+
  - Demultiplexor
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_demultiplexor.png)
     - acts like the inverse of a multiplexor
     - Distributes the single input value into one of 2 possible destinations
         - based on the selection bit, it either channels the input to an a output , or to a b output
+    - DMux后数据，只有1个是in，其他都是 0
  - Example: Multiplexing / demultiplexing in communications networks
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_mux_dmux_example.png)
     - we may have several channels coming in. Let's say channels of music or movies
@@ -608,7 +614,21 @@ else out = M
 
 ---
 
-# Week 4 
+# Week 4  Machine Language
+
+## 4.1 Overview
+
+ - 3 elements 
+    1. Operation : how are we going to specify the instructions ? 
+    2. Program Counter: how do we know which instruction to perform at any given stage and time ?
+    3. Addressing : have to tell the hardware what to operate on.
+
+
+### Mnemonics
+
+
+
+
 
     
 
