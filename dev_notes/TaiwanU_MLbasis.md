@@ -861,7 +861,6 @@ convex sets | ∞
 
  - hypothesis parameters w = ( w₀,w₁,...,w<sub>d</sub> ) :
     - **creates degrees of freedom**
-    - 就像旋钮上的 指示线
  - hypothesis quantity M = |H| :
     - 'analog' degrees of freedom
     - 旋钮可以指向任意可能的方向
@@ -869,6 +868,7 @@ convex sets | ∞
     - **effective 'binary' degrees of freedom**
  - VC Dimension的物理意義，大致上就是我的hypothesis set ,在我要做二元分類的狀況下，到底有多少的自由度？
     - 衡量 這個自由度，也就告訴我們這個hypothesis set到底能夠做到多少事情？做到什麼事情？ 產生多少的的dichotomy. 這個hypothesis set 强不强,有多强?
+    - w 的长度，就是我们拥有的旋钮个数
 
 ### Two Old Friends
 
@@ -878,6 +878,19 @@ convex sets | ∞
  - Positive Intervals ( d<sub>vc</sub>=2 )
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_pos_intval_free.png)
     - 有 2个可调节 按钮
+
+### M and d<sub>vc</sub>
+
+ - copied from Lecture 5
+    1. can we make sure that E<sub>out</sub>(g) is close enoughto E<sub>in</sub>(g)?
+    2. can we make E<sub>in</sub>(g) small enough 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_M_vs_VC.png)
+
+ - using the right d<sub>vc</sub> ( or H ) is important
+
+
+## Interpreting VC Dimension 
 
 
 
