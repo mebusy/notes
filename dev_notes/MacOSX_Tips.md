@@ -168,6 +168,12 @@ ls *.json | xargs -I {}  sh -c  " tr -d '\r' < {}  > {}2 && mv {}2 {} "
   - you can not do that by sed  , remember  sed delimits on `\n` newlines - they are always removed on input and reinserted on output.   you may need `-z` mode 
  
 
+### find a specific pattern  in files 
+
+```bash
+grep -rnw '/path/to/somewhere/' -e 'pattern'
+```
+
 <h2 id="aa252f9440484d1ebb28ca3e4015d2d4"></h2>
 
 ### tcpdump 抓取 HTTP GET 包
