@@ -575,11 +575,40 @@ else out = M
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_counter_abstraction2.png)
 
 
+## 3.5 Project 3 Overview
 
+ - Given :
+    - All the chips built in Projects 1 and 2
+    - Data Flip-Flop (DFF gate)
+ - Goal :  Build a family of sequential chips, from a 1-bit register to a 16K memory unit
+    - Bit
+    - Register
+    - RAM8
+        - Feed the *in* value to all the registers , simultaneously
+        - Use Mux/DMux chips to select the right register
+    - RAM64
+        - A RAM device can be built by grouping smaller RAM-parts together
+        - Think about the RAM's *address* input as consisting of 2 fields:
+            - One field can be used to select a RAM-part
+            - The other field can be used to select a register within that RAM-part
+            - Use Mux/DMux logic to effect this addressing scheme
+    - RAM512
+    - RAM4K
+    - RAM16K
+    - PC
 
+## 3.6 Perspectives
 
+ 1. DFF 也可以用 Nand 来实现
+ 2. Nand gate is not the only basic technology for building memory systems today.
+ 3. Cache memory: When one actually builds a computer, the memory is going to be a pretty costly part of the whole system
+    - and the faster the memory , the more expensive it is , 
+    - the larger the memory , the more expensive it is .
+    - A usual trade-off is to have a large cheap memory, maybe slow also; and a very small, expensive , fast memory.
 
+---
 
+# Week 4 
 
     
 
