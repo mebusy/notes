@@ -735,9 +735,17 @@ else out = M
     - The *reset* button is pushed
     - The program starts running
 
+### Hack computer: registers 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_computer_register.png)
+
+ - The Hack machine language recognizes 3 registers :
+    - D holds a 16-bit value : data
+    - A holds a 16-bit value : data or address
+    - M represents the 16-bit RAM register addressed by A
 
 
-
+### 
 
 
 
