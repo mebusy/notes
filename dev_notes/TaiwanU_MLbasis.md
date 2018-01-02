@@ -855,6 +855,9 @@ convex sets | ∞
 ## Physical Intuition of VC Dimension
 
 ### Degrees of Freedom
+ 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vcd_phy_intuition.png)
+
 
  - hypothesis parameters w = ( w₀,w₁,...,w<sub>d</sub> ) :
     - **creates degrees of freedom**
@@ -864,9 +867,13 @@ convex sets | ∞
     - 旋钮可以指向任意可能的方向
  - hypothesis 'power' d<sub>vc</sub> = d+1:
     - **effective 'binary' degrees of freedom**
-    
+ - VC Dimension的物理意義，大致上就是我的hypothesis set ,在我要做二元分類的狀況下，到底有多少的自由度？
+    - 衡量 這個自由度，也就告訴我們這個hypothesis set到底能夠做到多少事情？做到什麼事情？ 產生多少的的dichotomy. 這個hypothesis set 强不强,有多强?
 
- 
+### Two Old Friends
+
+ - Positive Rays ( d<sub>vc</sub>=1 ) 
+ - Positive Intervals ( d<sub>vc</sub>=2 )
 
 
 
