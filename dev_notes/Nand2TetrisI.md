@@ -728,7 +728,14 @@ else out = M
     - 16-bit A-instructions
     - 16-bit C-instructions
 
-    
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_computer_archi2.png)
+
+ - Control:
+    - The ROM is loaded with a Hack program
+    - The *reset* button is pushed
+    - The program starts running
+
+
 
 
 
