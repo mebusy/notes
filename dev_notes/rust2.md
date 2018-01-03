@@ -15,6 +15,8 @@
          - [Multiple impl Blocks](#48eeb3737079e5ad6ee4b5cad613071c)
  - [6. Enums and Pattern Matching](#a38637e7381ef21dfe3360b05080ce0a)
      - [6.1 Defining an Enum](#fdad361153c038e64a843eb25389b74d)
+         - [Enum Values](#c5346465419d51659c616961d763d8c3)
+         - [The Option Enum and Its Advantages Over Null Values](#64218f717df4167ce75371e5c2d61866)
 
 ...menuend
 
@@ -349,6 +351,8 @@ enum IpAddrKind {
 
  - IpAddrKind is now a custom data type that we can use elsewhere in our code.
 
+<h2 id="c5346465419d51659c616961d763d8c3"></h2>
+
 ### Enum Values
 
 ```rust
@@ -425,6 +429,8 @@ impl Message {
 let m = Message::Write(String::from("hello"));
 m.call();
 ```
+
+<h2 id="64218f717df4167ce75371e5c2d61866"></h2>
 
 ### The Option Enum and Its Advantages Over Null Values
 

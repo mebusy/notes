@@ -107,6 +107,7 @@ def createMenu4MD( path ):
     menu += '\n...menuend\n\n\n'  
     
     if bCodeStart :
+        print _name
         raise Exception( "code pair error" )
 
     #print menu

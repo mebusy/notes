@@ -1,5 +1,25 @@
+...menustart
+
+ - [1](#c4ca4238a0b923820dcc509a6f75849b)
+     - [register keyword 是个错误](#e540c9df86ffde8f8d8443c5347dab50)
+     - [`char **argv` 和 `const char **p` 并不匹配](#f478e0a5be9950a75d566a3de6949efa)
+     - [隐式类型转换的坑](#7441ae385364f96b273420fec579d734)
+ - [2 It's Not a Bug, It's a Language Feature](#7e14dfcaec2adef0aa128a546178eb6b)
+     - [空格连接字符串](#9b2b1da3319fe706936ecc07f63165b3)
+     - [Too Much Default Global Visibility](#57627d14558e5f49e76b214f3cedf6bb)
+     - [sizeof is operator](#8c120ee8f50200d57dc2c236a4aea6c2)
+     - [Some of the Operators Have the Wrong Precedence](#892ab9a4c1d171fd57439aa763e50a23)
+     - [Order of Evaluation is always undefined](#646b355af48a02490fb7d836806d222e)
+ - [3. Unscrambling Declarations in C](#72b031c516a7abf0388911bba461224a)
+
+...menuend
+
+
+<h2 id="c4ca4238a0b923820dcc509a6f75849b"></h2>
 
 # 1
+
+<h2 id="e540c9df86ffde8f8d8443c5347dab50"></h2>
 
 ## register keyword 是个错误
 
@@ -8,6 +28,8 @@
     - 由编译器而不是程序员 来决定为哪个变量使用寄存器，将会得到更好的代码
  - C强调硬件直接支持的低级操作带来了速度和可移植性，反过来又有利于UNIX的良性循环
 
+
+<h2 id="f478e0a5be9950a75d566a3de6949efa"></h2>
 
 ## `char **argv` 和 `const char **p` 并不匹配
 
@@ -55,6 +77,8 @@ cp = ccp; /* results in a compilation warning */
     - C 引入const关键字的目的是优化代码，这是程序员和编译器间的约定： 
         - 他不会改变对象的值，所以可以直接使用对象的初始值而不用费工夫去读对象。
 
+<h2 id="7441ae385364f96b273420fec579d734"></h2>
+
 ## 隐式类型转换的坑
 
  - Operands with different types get converted when you do arithmetic. 
@@ -77,7 +101,11 @@ int main(int argc, char **argv) {
 }
 ```
 
+<h2 id="7e14dfcaec2adef0aa128a546178eb6b"></h2>
+
 # 2 It's Not a Bug, It's a Language Feature
+
+<h2 id="9b2b1da3319fe706936ecc07f63165b3"></h2>
 
 ## 空格连接字符串 
 
@@ -104,6 +132,8 @@ char *available_resources[] = {
 };
 ```
  
+<h2 id="57627d14558e5f49e76b214f3cedf6bb"></h2>
+
 ## Too Much Default Global Visibility
 
  - C函数，默认是全局可见。
@@ -119,6 +149,8 @@ static function turnip(){ /* not visible outside this file */ }
  - 太多的全局可见性会导致 方法名很容易和 库函数同名。
 
 
+<h2 id="8c120ee8f50200d57dc2c236a4aea6c2"></h2>
+
 ## sizeof is operator
 
  - when sizeof's operand is a type it has to be enclosed in parentheses 
@@ -128,6 +160,8 @@ static function turnip(){ /* not visible outside this file */ }
 p = N * sizeof * q; // there is noly 1 multiplication
 r = malloc( p ); 
 ```
+
+<h2 id="892ab9a4c1d171fd57439aa763e50a23"></h2>
 
 ## Some of the Operators Have the Wrong Precedence
 
@@ -142,6 +176,8 @@ i=1,2;
         - `(i=1),2;`   (1==1)
 
 
+<h2 id="646b355af48a02490fb7d836806d222e"></h2>
+
 ## Order of Evaluation is always undefined
 
 ```c
@@ -153,6 +189,8 @@ x = f() + g() * h();
  - All we can know for sure is that the multiplication will occur before the addition
  - Most programming languages don't specify the order of operand evaluation.
     - It is left undefined so that compiler-writers can take advantage of any quirks in the architecture, or special knowledge of values that are already in registers.
+
+<h2 id="72b031c516a7abf0388911bba461224a"></h2>
 
 # 3. Unscrambling Declarations in C
 

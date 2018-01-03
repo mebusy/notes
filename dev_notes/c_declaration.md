@@ -1,5 +1,18 @@
+...menustart
+
+ - [C Declaration](#4d4d41296119a89b97e6c8d1d2b12d61)
+     - [How a Declaration Is Formed](#0e8496ac4e183c0a93f348bea3eb755a)
+     - [how to combine variables in structs and unions](#b6883b80c1162c486c5fc1f7cd01ef57)
+         - [A Word About structs](#f630d4bf06506c3ab082d636b29f7243)
+
+...menuend
+
+
+<h2 id="4d4d41296119a89b97e6c8d1d2b12d61"></h2>
 
 # C Declaration 
+
+<h2 id="0e8496ac4e183c0a93f348bea3eb755a"></h2>
 
 ## How a Declaration Is Formed
 
@@ -58,9 +71,13 @@ semi-colon | `;` | 1
     - an array holding pointers to functions is allowed: `int (*foo[])()`
     - an array can hold other arrays, so you'll frequently see `int foo[][]`
 
+<h2 id="b6883b80c1162c486c5fc1f7cd01ef57"></h2>
+
 ## how to combine variables in structs and unions
 
 and also look at enums.
+
+<h2 id="f630d4bf06506c3ab082d636b29f7243"></h2>
 
 ### A Word About structs
 

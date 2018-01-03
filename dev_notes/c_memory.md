@@ -1,4 +1,22 @@
+...menustart
+
+ - [Understanding virtual memory](#75f48a9c273a33756e8ae606aa2891d2)
+ - [Detour - a process memory layout](#e9abc565ddad947fe9678102d8ed79a1)
+ - [Understanding stack allocation](#c251fa342236f44cff491f1ffd0fe6a1)
+ - [Understanding heap allocation](#f0169258f54b63cd198619a926b2314c)
+ - [When to bother with a custom allocator](#4b711b08c39982986516ec24ff983c4e)
+     - [Slab allocator](#6754f3e939b64d06193d4e34bbecaadf)
+     - [Memory pools](#e384d5d460238cd7ea1f7bb14a0b095c)
+     - [Demand paging explained](#e5527fb5c0f5b2d80a8ec07bbc6102a9)
+ - [Fun with 'flags' memory mapping](#c741aee852115b810755f9adb3b8dbe4)
+     - [Fixed memory mappings TODO...](#ce2d413f96c9e9adbb49e8441f8a4e60)
+
+...menuend
+
+
 http://marek.vavrusa.com/c/memory/2015/02/20/memory/
+
+<h2 id="75f48a9c273a33756e8ae606aa2891d2"></h2>
 
 # Understanding virtual memory
 
@@ -34,6 +52,8 @@ if (block == NULL) {
     - with the overcommit，操作系统可能会给你的内存分配器一个有效的指针内存，但如果你要访问它 -- Dang!
     - Dang 在这种情况下结果，是 platform-specific 的，但通常是一个OOM 杀死你的进程
 
+<h2 id="e9abc565ddad947fe9678102d8ed79a1"></h2>
+
 # Detour - a process memory layout
 
  - 关于进程的内存布局，这片文章有很好的介绍 [Anatomy of a Program in Memory](http://duartes.org/gustavo/blog/post/anatomy-of-a-program-in-memory)
@@ -52,6 +72,8 @@ if (block == NULL) {
     1. the process data segment (static storage or heap allocation)
     2. the memory mapping segment
     3. the stack
+
+<h2 id="c251fa342236f44cff491f1ffd0fe6a1"></h2>
 
 # Understanding stack allocation
 
@@ -83,6 +105,8 @@ void laugh(void) {
         - 从理论上讲，这也提高了内存消耗，并降低了创建线程的成本 
             - 因为堆栈可以 从很小开始，并按需增长。
         - 现实中，有兼容性问题 和 性能问题
+
+<h2 id="f0169258f54b63cd198619a926b2314c"></h2>
 
 # Understanding heap allocation
 
@@ -130,12 +154,16 @@ anonymous mapping.
     - GNU有个扩展 malloc_trim() ,用于从堆顶部释放内存，但是可能会非常缓慢。
 
 
+<h2 id="4b711b08c39982986516ec24ff983c4e"></h2>
+
 # When to bother with a custom allocator
 
  - 大多数时候，我们分配的内存不是连续的
  - 在这种情况下，不仅碎片是问题，而且数据的位置也会是问题
  - cache-efficient 数据结构 需要放置在一起，最好在同一 page
  - 使用默认的分配器，不能保证随后分配的块的位置。 更糟糕的是分配小单位的内存浪费。
+
+<h2 id="6754f3e939b64d06193d4e34bbecaadf"></h2>
 
 ## Slab allocator
 
@@ -184,6 +212,8 @@ if((item = slab->head)) {
  - 分配就像 popup list head , 释放 就是 push a new list head
  - 太好了，如何装箱，可变大小的存储，缓存别名和咖啡因，怎么办？
 
+<h2 id="e384d5d460238cd7ea1f7bb14a0b095c"></h2>
+
 ## Memory pools
 
  - Utility belt:
@@ -213,6 +243,8 @@ obstack_free(&animal_stack, fred);
 obstack_free(&animal_stack, NULL);
 ```
 
+<h2 id="e5527fb5c0f5b2d80a8ec07bbc6102a9"></h2>
+
 ## Demand paging explained
 
  - Utility belt:
@@ -234,6 +266,8 @@ char *block = malloc(1024 * sizeof(char));
 mlock(block, 1024 * sizeof(char));
 ```
 
+<h2 id="c741aee852115b810755f9adb3b8dbe4"></h2>
+
 # Fun with 'flags' memory mapping
 
  - Utility belt:
@@ -253,6 +287,8 @@ long page_size = sysconf(_SC_PAGESIZE); /* Slice and dice. */
  - 但是 当物理内存被分割时，巨大的连续块变得稀少。 
     - 页面错误的成本也随着页面大小的增加而增加，
  - 但是有一个特定于Linux的mmap选项MAP_HUGETLB允许你明确地使用它
+
+<h2 id="ce2d413f96c9e9adbb49e8441f8a4e60"></h2>
 
 ## Fixed memory mappings TODO...
 

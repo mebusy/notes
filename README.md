@@ -30,6 +30,7 @@
  - [algorithm](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_readme.md)
  - [Machine Learning](https://github.com/mebusy/notes/blob/master/dev_notes/ML_readme.md)
  - [Compiler](https://github.com/mebusy/notes/blob/master/dev_notes/Compiler_readme.md)
+ - [Nand2Teris](https://github.com/mebusy/notes/blob/master/dev_notes/N2T_readme.md)
  - [Parallel Programming](https://github.com/mebusy/notes/blob/master/dev_notes/ParallelProgramming_readme.md)
  - [ngx_lua](https://github.com/mebusy/notes/blob/master/dev_notes/ngx_lua/readme.md)
  - [Golang](https://github.com/mebusy/notes/blob/master/dev_notes/golang_readme.md)
@@ -127,7 +128,8 @@ a | b | c | d
  a | b | c | d
 --- | --- | --- | ---
 [C89 C99区别](https://github.com/mebusy/notes/blob/master/dev_notes/C_C89_vs_C99.md) | [c99](https://github.com/mebusy/notes/blob/master/dev_notes/C99.md) | [理清gcc、libc、libstdc++的关系](https://github.com/mebusy/notes/blob/master/dev_notes/CLib.md) | [C VS C++](https://github.com/mebusy/notes/blob/master/dev_notes/c_vs_c++.md)
-[C内存知识 未完](https://github.com/mebusy/notes/blob/master/dev_notes/c_memory.md)
+[C内存知识 未完](https://github.com/mebusy/notes/blob/master/dev_notes/c_memory.md) | 
+[c declaration](https://github.com/mebusy/notes/blob/master/dev_notes/c_declaration.md) | [expert c](https://github.com/mebusy/notes/blob/master/dev_notes/expert_c.md) | 
 
 ---
 <h2 id="e84e30b9390cdb64db6db2c9ab87846d"></h2>

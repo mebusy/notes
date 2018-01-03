@@ -62,6 +62,10 @@
          - [d<sub>VC</sub> ≥ d+1](#0bcebb5418877c668b7f8078fd53e2a6)
          - [d<sub>VC</sub>  ≤ d+1](#b23a9ffbf5d00fecd76ee661c5bae97c)
      - [Physical Intuition of VC Dimension](#a7ab380b76ef972f810d737e226f4fe6)
+         - [Degrees of Freedom](#364130468e37b396a03b78270e87774b)
+         - [Two Old Friends](#c30d7a9f1110a7115386a1a1449444ff)
+         - [M and d<sub>vc</sub>](#668bae56a418c6c053a975bbc41bef59)
+     - [Interpreting VC Dimension](#4fa217a4f25efe58ca38efc2921a9ece)
 
 ...menuend
 
@@ -854,6 +858,8 @@ convex sets | ∞
 
 ## Physical Intuition of VC Dimension
 
+<h2 id="364130468e37b396a03b78270e87774b"></h2>
+
 ### Degrees of Freedom
  
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vcd_phy_intuition.png)
@@ -870,6 +876,8 @@ convex sets | ∞
     - 衡量 這個自由度，也就告訴我們這個hypothesis set到底能夠做到多少事情？做到什麼事情？ 產生多少的的dichotomy. 這個hypothesis set 强不强,有多强?
     - w 的长度，就是我们拥有的旋钮个数
 
+<h2 id="c30d7a9f1110a7115386a1a1449444ff"></h2>
+
 ### Two Old Friends
 
  - Positive Rays ( d<sub>vc</sub>=1 ) 
@@ -878,6 +886,8 @@ convex sets | ∞
  - Positive Intervals ( d<sub>vc</sub>=2 )
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_pos_intval_free.png)
     - 有 2个可调节 按钮
+
+<h2 id="668bae56a418c6c053a975bbc41bef59"></h2>
 
 ### M and d<sub>vc</sub>
 
@@ -889,6 +899,8 @@ convex sets | ∞
 
  - using the right d<sub>vc</sub> ( or H ) is important
 
+
+<h2 id="4fa217a4f25efe58ca38efc2921a9ece"></h2>
 
 ## Interpreting VC Dimension 
 

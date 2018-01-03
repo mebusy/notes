@@ -6,6 +6,10 @@
      - [4.2 参数](#8b2b5184e327df133bfd017ad04a3f60)
      - [4.3 作用域](#416013af2072858d19949ec722058389)
      - [4.4 闭包](#e4f33957d3d056b09ebec5b81b966605)
+         - [延迟获取](#ec73f536153946064715628cc1da2b34)
+     - [4.5 堆栈帧](#2feedbb718e5dfcf31198bd610ef6765)
+         - [权限管理](#23bbdd59d0b1d94621fc98e7f533ad9f)
+         - [上下文](#50f198f07fc820a4911d1c97a0ceb8c2)
 
 ...menuend
 
@@ -297,6 +301,8 @@ True
 ('x',)
 ```
 
+<h2 id="ec73f536153946064715628cc1da2b34"></h2>
+
 ### 延迟获取
 
  - 使用闭包，还需注意 "延迟获取" 现象
@@ -316,6 +322,8 @@ True
 2
 2
 ```
+
+<h2 id="2feedbb718e5dfcf31198bd610ef6765"></h2>
 
 ## 4.5 堆栈帧
 
@@ -344,6 +352,8 @@ typedef struct _frame {
  - 可使  `sys._getframe(0)` 或 `inspect.currentframe()` 获取当前堆栈帧。
  - 除用于调试外，还可利用堆栈帧做些有意思的事情。
 
+<h2 id="23bbdd59d0b1d94621fc98e7f533ad9f"></h2>
+
 ### 权限管理
 
  - 检查函数 Caller，以实现权限管理
@@ -366,13 +376,15 @@ Exception: Error!
 ok
 ```
 
+<h2 id="50f198f07fc820a4911d1c97a0ceb8c2"></h2>
+
 ### 上下文
 
  - 通过call stack , 我们可以隐式向整个执行流程传递上下文对象
  - `inspect.stack` 比  `frame.f_back` 更方便一些。
 
- ```python
- >>> import inspect
+```python
+>>> import inspect
 >>> def get_context():
 ...     for f in inspect.stack(): 
 ...         context = f[0].f_locals.get("context")

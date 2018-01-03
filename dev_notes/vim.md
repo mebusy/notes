@@ -13,7 +13,6 @@
      - [check vim compile features](#95cec38eef2cf37c01f98f869cb8e4bc)
  - [VIM 正则表达式](#072db16a2fab851f315188d28a992133)
      - [关于magic](#9e8ec078a153381638b723f644bc0f67)
-     - [非贪婪匹配](#2ca3f178cb83ff68009d5da28d754da3)
      - [捕获组](#1ca7c638c2ce8ef41b651ccf8e827bf3)
      - [Misc](#74248c725e00bf9fe04df4e35b249a19)
  - [VIM 常用操作](#508b03ab799d17da8b37eb7801c05c8b)

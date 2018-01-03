@@ -1,6 +1,33 @@
+...menustart
 
+ - [Week 4  Machine Language](#2176a3b0fd81007e70e0dab6fdf6b1e2)
+     - [4.1 Overview](#d14ae9a46f5db30f2e3671e3260bad56)
+         - [Mnemonics](#e7e3a5617750708cf2c2d2bd66835df3)
+     - [4.2 Machine Languages : Elements](#7572d5e2c2cbff0b74dffe9eb8f946af)
+         - [Machine Language : Operations](#90c98ad75c6e684802b11191a6ee1e48)
+         - [Machine Language : Addressing](#b00adf6a12808f6581dab31c33b53648)
+             - [Registers](#a9682ea50df45368189078864618a7cd)
+             - [Addressing Modes](#011ddc58d58d2714f6ab1823a833a279)
+             - [Input / Output](#6a8b3c75d2b148310a110bf194c67f26)
+         - [Machine Language : Flow Control](#785a7f6de7d8cc20365a065384792be0)
+     - [4.3 The Hack Computer and Machine Language](#bb308f6cd7b0bcbd8347e07247272ed7)
+         - [Hack computer : hardware](#59440b54dcccb2580f829b511a3ab454)
+         - [Hack computer: registers](#6bccf7c3f8c59b04ccbc9be6a8917a0f)
+         - [The A-instruction](#7a47f762af8bb05b5c4b7663c365bbdc)
+         - [The C-instruction](#2656df8b06102adadd0f4e8d28ca7d3b)
+     - [4.4 Hack Language Specification](#07f3d75ea1037290fb379184f55486ac)
+         - [The A-instruction: symbolic and binary syntax](#a74da8b3478acd4a7ca3b8c93f7a0d15)
+         - [The C-instruction: symbolic and binary syntax](#fb409005082bcbc783a0b8c36745ee7a)
+     - [4.5 Input/Output](#3ee61240a785681403c329e4721faa17)
+
+...menuend
+
+
+<h2 id="2176a3b0fd81007e70e0dab6fdf6b1e2"></h2>
 
 # Week 4  Machine Language
+
+<h2 id="d14ae9a46f5db30f2e3671e3260bad56"></h2>
 
 ## 4.1 Overview
 
@@ -10,6 +37,8 @@
     - Addressing : have to tell the hardware what to operate on.
 
 
+<h2 id="e7e3a5617750708cf2c2d2bd66835df3"></h2>
+
 ### Mnemonics
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_mlang_mnemonics.png)
@@ -17,6 +46,8 @@
  - Interpretation 1: The "symbolic form" doesn't really exist but is just a convenient mnemonic to present machine language instructions to humans. 
  - Interpretation 2: We will allow humans to write machine language instructions using this "*assembly language*" and will have an "Assembler" program convert it to the bit-form.
 
+
+<h2 id="7572d5e2c2cbff0b74dffe9eb8f946af"></h2>
 
 ## 4.2 Machine Languages : Elements
 
@@ -30,6 +61,8 @@
     - Silicon Area
     - Time to Complete Instruction
 
+<h2 id="90c98ad75c6e684802b11191a6ee1e48"></h2>
+
 ### Machine Language : Operations 
 
  - Each machine language defines a set of operations
@@ -40,6 +73,8 @@
  - Differences between machine languages 
     - Richness of the set of operations ( divisions? bulk copy? ... )
     - Data types ( width, floating point, ...  )
+
+<h2 id="b00adf6a12808f6581dab31c33b53648"></h2>
 
 ### Machine Language : Addressing 
 
@@ -53,6 +88,8 @@
 
  - Faster access means smaller memory size
 
+<h2 id="a9682ea50df45368189078864618a7cd"></h2>
+
 #### Registers
 
  - CPUs usually contain a few , easily accessed "registers"
@@ -65,6 +102,8 @@
         - A:137 , means store R1's value (say 77)  to Mem[137]
         - Mem[137] = 77
 
+<h2 id="011ddc58d58d2714f6ab1823a833a279"></h2>
+
 #### Addressing Modes
 
  - Register 
@@ -76,6 +115,8 @@
  - Immediate 
     - Add 73 , R1     // R1 <- R1 + 73
 
+<h2 id="6a8b3c75d2b148310a110bf194c67f26"></h2>
+
 #### Input / Output
 
  - Many types of Input and Output Devices
@@ -86,13 +127,19 @@
     - Memory Location 12345 holds the direction of the last movement of the mouse
     - Memory Location 45678 is not a real memory location but a way to tell the printer which paper to use.
    
+<h2 id="785a7f6de7d8cc20365a065384792be0"></h2>
+
 ### Machine Language : Flow Control 
 
  - Usually the CPU executes machine instructions in sequence
  - Sometimes we need to "jump" unconditionally to another location, e.g. loop
  - Sometimes we need to jump only if some condition is met
 
+<h2 id="bb308f6cd7b0bcbd8347e07247272ed7"></h2>
+
 ## 4.3 The Hack Computer and Machine Language 
+
+<h2 id="59440b54dcccb2580f829b511a3ab454"></h2>
 
 ### Hack computer : hardware 
 
@@ -121,6 +168,8 @@
     - The *reset* button is pushed
     - The program starts running
 
+<h2 id="6bccf7c3f8c59b04ccbc9be6a8917a0f"></h2>
+
 ### Hack computer: registers 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_computer_register.png)
@@ -130,6 +179,8 @@
     - A holds a 16-bit value : data or address
     - M represents the 16-bit RAM register addressed by A
 
+
+<h2 id="7a47f762af8bb05b5c4b7663c365bbdc"></h2>
 
 ### The A-instruction
 
@@ -156,6 +207,8 @@ M=-1   // RAM[100] = -1
 ```
 
  - so we always have to address the memory by using an A instruction. 
+
+<h2 id="2656df8b06102adadd0f4e8d28ca7d3b"></h2>
 
 ### The C-instruction
 
@@ -204,7 +257,11 @@ M=D-1
 D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
 ```
 
+<h2 id="07f3d75ea1037290fb379184f55486ac"></h2>
+
 ## 4.4 Hack Language Specification 
+
+<h2 id="a74da8b3478acd4a7ca3b8c93f7a0d15"></h2>
 
 ### The A-instruction: symbolic and binary syntax
 
@@ -215,6 +272,8 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
     - `0value`
     - where the *value* is a 15-bit binary number
     - i.e.  ***0***00000000010101
+
+<h2 id="fb409005082bcbc783a0b8c36745ee7a"></h2>
 
 ### The C-instruction: symbolic and binary syntax
 
@@ -240,6 +299,8 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_c_binary_jump.png)
 
 ---
+
+<h2 id="3ee61240a785681403c329e4721faa17"></h2>
 
 ## 4.5 Input/Output 
 
