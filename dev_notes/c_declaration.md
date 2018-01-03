@@ -300,4 +300,111 @@ char* const *(*next)();
     - next 是一个 指向函数的指针， 这个函数的返回值是 a pointer to a const pointer-to-char.
 
 
+ - if you prefer something a little more intuitive, use
+    - https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_magic_ring_for_c_declare.png
+
+```c
+char *(*c[10])(int **p);  //  how 2 read ?
+```
+
+ - c is an array[0..9] of pointer to a function returning a pointer-to-char
+
+
+## typedef Can Be Your Friend
+
+ - Typedefs are a funny kind of declaration: 
+    - they introduce a new name for a type rather than reserving space for a variable.
+    - it doesn't introduce a new type, just a new name for a type , an alias 
+ - If you refer back to the section on how a declaration is formed, you'll see that the `typedef` keyword can be part of a regular declaration, occurring somewhere **near the beginning**.
+ - In fact, a typedef has exactly the same format as a variable declaration, only with this extra keyword to tip you off.
+ - the `typedef` keyword doesn't create a variable, but causes the declaration to say "this name is a synonym for the stated type."
+ - 通常，typedef 用于涉及 指针的棘手 的情况。
+ - Example:
+    - The ANSI Standard shows that signal is declared as:
+
+```c
+void (*signal(int sig, void (*func)(int)) ) (int);
+```
+
+ - so signal is a function (with some funky arguments) returning a pointer to a function 
+    - which function taking an int argument and returning void
+ - One of the funky arguments is itself:
+    - `void (*func)(int) ;` 
+    - is a pointer to a function , which taking an int argument and returning void. 
+ - Here's how it can be simplified by a typedef :
+
+```c
+typedef void (*ptr_to_func) (int);
+/* this says that ptr_to_func is a pointer to a function
+ * that takes an int argument, and returns void
+ */
+ptr_to_func signal(int, ptr_to_func); 
+/* this says that signal is a function that takes
+ * two arguments, an int and a ptr_to_func, and
+ * returns a ptr_to_func
+ */
+```
+
+ - Typedef provides essentially nothing for structs, except the unhelpful ability to omit the struct keyword.
+
+### Difference Between typedef int x[10] and #define x int[10]
+
+ - 你不能再次修饰 typedef 'd typename
+    - You can extend a macro typename with other type specifiers ,
+    - but not a typedef 'd typename
+
+```c
+#define peach int
+unsigned peach i; /* works fine */
+typedef int banana;
+unsigned banana i; /* Bzzzt! illegal */
+```
+
+### What typedef struct foo { ... foo; } foo; Means
+
+```c
+typedef struct my_tag {int i;} my_type;
+        struct my_tag variable_1;
+my_type variable_2;
+```
+
+ - typedef introduces the name `my_type` as a shorthand for "`struct my_tag {int i}`"
+ - it also introduces the structure tag `my_tag` that can equally be used with the keyword `struct`
+ - If you use the same identifier for the type and the tag in a typedef, it has the effect of making the keyword "struct" optional
+    - which provides completely the wrong mental model for what is going on.
+ - So although these two declarations have a similar form, ery different things are happening
+
+```c
+typedef struct fruit {int weight, price_per_lb } fruit; /* statement 1 */
+        struct veg   {int weight, price_per_lb } veg;   /* statement 2 */
+```
+
+ - Statement 1 declares a structure tag "fruit" and a structure typedef "fruit" which can be used like this:
+
+```c
+struct fruit mandarin; /* uses structure tag "fruit" */ 
+       fruit tangerine; /* uses structure type "fruit" */
+```
+
+ - Statement 2 declares a structure tag "veg" and a variable veg. Only the structure tag can be used in further declarations, like this:
+
+```c
+struct veg potato;
+```
+
+ - Tips for Working with Typedefs
+    - Don't bother with `typedefs` for `structs`.
+ - Use typedefs for:
+    - types that combine arrays, structs, pointers, or functions.
+    - portable types.
+        - When you need a type that's at least (say) 20-bits, make it a typedef
+        - Then when you port the code to different platforms, select the right type, short, int, long, making the change in just the typedef, rather than in every declaration.
+    - casts.
+        - A typedef can provide a simple name for a complicated type cast. E.g.
+
+```c
+typedef int (*ptr_to_int_fun)(void);
+char * p =  (ptr_to_int_fun) p;
+```
+
 

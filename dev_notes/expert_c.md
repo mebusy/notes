@@ -223,4 +223,91 @@ j = (char (*)[20]) malloc( 20 );
 char* const *(*next)();
 ```
 
+ - see [c declaration,struct/union/enums/typedef](https://github.com/mebusy/notes/blob/master/dev_notes/c_declaration.md) 
+
+
+# 4 C Arrays and Pointers Are NOT the Same!
+
+## Arrays Are NOT Pointers!
+
+```c
+extern int *x;
+extern int y[];
+```
+
+ - The first declares x to be a pointer to int;
+ - the second declares y to be an array of int of unspecified size (an incomplete type),
+    - the storage for which is defined elsewhere.
+
+## What's a Declaration? What's a Definition?
+
+· | · | ·
+--- | --- | --- 
+definiton | occurs in only on place |  specifies the type of an object; reserves storage for it; is used to create new objects
+· | · | example: `int my_array[100];`
+declaration | can occur multiple times | describes the type of an object; is used to refer to objects defined elsewhere (e.g., in another file)
+· | · | example: `extern int my_array[];`
+
+
+## How Arrays and Pointers Are Accessed
+
+ - address y and contents of address y
+
+```c
+x = y ;
+```
+
+x | y
+--- | ---
+x, in this context, means the **address** that x represents | y, in this context, means the **contents of the address** that y represents
+This is termed **l-value**  | This is termed **r-value**
+An **l-value** is known at compiletime | an **r-value** is not known until runtime. 
+An **l-value** says where to store the result | "The value of y" means the **r-value**  unless otherwise stated
+
+ - A "modifiable l-value" is a term introduced by C. 
+ - It means an l-value that is permitted to appear on the left-hand side of an assignment statement. 
+ - This weirdness was introduced to cope with arraynames which are l-values that locate objects, but in C may not be assigned to.
+ - Hence , an arrayname is an l-value but not a modifialbe l-value.  
+ - The standard stipulates that an assignment operator must have a modifiable l-value as its left operand. 
+ - **You can only assign into things that you can change.**.
+
+---
+
+ - The compiler allocates an address (or l-value) to each variable (x , y).
+ - This address is known at compiletime, and is where the variable will be kept at runtime. 
+ - In contrast, the value stored in a variable at runtime (its r-value) is not known until runtime.
+    - If the value stored in a variable is required, the compiler emits code to read the value from the given address and put it in a register.
+ - The key point here is that the address of each symbol is known at compiletime. 
+    - 所以，如果编译器需要用地址做一些事情（可能是增加一个偏移量），它可以直接做到这一点，不需要植入代码来首先取到地址。
+    - In contrast, the current value of a pointer must be retrieved at runtime before it can be dereferenced
+ - A Subscripted Array Reference:
+
+```c
+char a[9] = "abcdefg" ; 
+...
+c = a[i] ;
+``` 
+
+ - compiler symbol table has *a* as address 9980
+    - runtime step1:  get value i , add add it to 9980
+    - runtime step2:  get the contents from address (9980+i)
+ - That's why you can equally write `extern char a[];` as well as `extern char a[100];`
+
+    
+## What Happens When You "Define as Pointer/Reference as Array"
+
+ - Consider the case of an external declaration
+    - `extern char *p;`
+ - but a definition of 
+    - `char p[10];`
+ - When we retrieve the contents of `p[i]` using the extern, we get characters, but we treat it as a pointer.
+ - Interpreting ASCII characters as an address is garbage . and 
+    - if you're lucky the program will coredump at that point. 
+    - If you're not lucky it will corrupt something in your address space, causing a mysterious failure at some later point in the program.
+
+
+ - **Match Your Declarations to the Definition**
+
+
+
 
