@@ -832,8 +832,15 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
 
 ### The C-instruction: symbolic and binary syntax
 
+
  - Symbolic syntax :
     - `dest = comp ; jump ` 
+
+--- 
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_c_instruction_binary_syntax.png)
+
  - Binary syntax :
     - 
     - op code: 1 means a C-instruction, while 0 means an A-instruction
