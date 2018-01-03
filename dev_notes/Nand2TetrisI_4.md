@@ -207,6 +207,7 @@ M=-1   // RAM[100] = -1
 ```
 
  - so we always have to address the memory by using an A instruction. 
+ - 另外，C instruction 中，并没有直接 对任意立即数的comp, A instruction 是唯一的任意立即数 指令
 
 <h2 id="2656df8b06102adadd0f4e8d28ca7d3b"></h2>
 
@@ -329,6 +330,52 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
  - The physical keyboard is associated with a *keyboard memory map.*
     - like the scrren memory map, it is a part of RAM
  - The keyboard memory map is a single 16-bit register, which is called *keyboard*
+ - When a key is pressed on the keyboard , the key's *scan code* appears in the *keyboard memory map*.
+
+ - The Hack character set :
+    - it is a subset of the keys that you have on you regular keyboard.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_character_set.png)
+
+ - To check which key is currently pressed: 
+    - Probe the contents of the `keyboard` chip
+    - In the Hack computer: probe the contents of RAM[24576].
+
+
+## 4.6 Hack Programming, Part1
+
+### Working with register and memory
+
+ - Typical operations:
+
+```
+// D=10
+@10
+D = A
+
+// D++
+D = D+1
+
+// D=RAM[17]
+@17
+D = M 
+
+// RAM[17] = 10
+@10
+D=A
+@17
+M=D
+
+// RAM[5] = RAM[3]
+@3
+D=M
+@5
+M=D
+```
+
+### Hack program example: add two numbers
+
+
 
 
 
