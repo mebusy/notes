@@ -156,4 +156,33 @@ x = f() + g() * h();
 
 # 3. Unscrambling Declarations in C
 
+ - C's declaration syntax is trivial for a compiler (or compiler-writer) to process, but hard for the average programmer.
+ - The BCPL language (the grandfather of C) was type-poor, having the binary word as its only data type, so C drew on a base that was deficient. 
+ - And then, there is the C philosophy that the declaration of an object should look like its use.
+    - An array of pointers-to-integers is declared by `int * p[3];`
+    - and an integer is referenced or used in an expression by writing `*p[i]`
+    - so the declaration resembles the use.
+ - The advantage of this is that the precedence of the various operators in a "declaration" is the same as in a "use".
+ - The disadvantage is that operator precedence
+    - Programmers have to remember special rules to figure out whether int `*p[3]` is an array of pointers-to-int, or a pointer to an array of ints.
+ - A better idea would have been to declare a pointer as 
+    - `int &p;`
+    - which at least suggests that p is the address of an integer. 
+    - This syntax has now been claimed by C++ to indicate a call by reference parameter.
+ - But the biggest problem is that you can no longer read a declaration from left to right, as people find most natural. 
+    - The situation got worse with the introduction of the `volatile` and `const` keywords with ANSI C; 
+    - since these keywords appear only in a declaration (not in a use), there are now fewer cases in which the use of a variable mimics its declaration. 
+ - If you want to cast something to the type of pointer-to-array, you have to express the cast as:
+
+```c
+char (*j)[20]; /* j is a pointer to an array of 20 char */
+j = (char (*)[20]) malloc( 20 );
+```
+
+ - What exactly, for example, does the following declaration (adapted from the telnet program) declare?
+
+```c
+char* const *(*next)();
+```
+
 

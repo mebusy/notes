@@ -745,10 +745,49 @@ else out = M
     - M represents the 16-bit RAM register addressed by A
 
 
-### 
+### The A-instruction
 
+ - Syntax : `@value`
+ - Where *value* is either:
+    - a non-negative decimal constant , or
+    - a symbol referring to such a constant (later)
+ - Semantics:
+    - Sets the A register to *value*
+    - Side effect: RAM[A] becomes the selected RAM register 
+        - very important side effect , once set, 
+        - it automatically selectes a particular register from the data memory , what we called M.
+ - Example :  `@21`     
+    - Effect:
+        - Sets the A register to 21
+        - RAM[21] becomes the selected RAM register 
 
+ -  Usage example 
 
+```
+// Set RAM[100] to -1
+@100   // A=100
+M=-1   // RAM[100] = -1
+```
+
+ - so we always have to address the memory by using an A instruction. 
+
+### The C-instruction
+
+ - the workhorse of the language 
+ - that's where most of the action takes place and the syntax of this instruction consists of 3 different fields 
+    - desination
+    - computation
+    - jump directive
+
+```
+dest = comp ; jump  // both dest and jump are optional
+```
+
+ - here is how it works:
+    - First of all ,we compute something 
+    - and then we do one of two things. 
+        - we can either store the result of computation in some destination ,
+        - or we can use this computation to decide if we want to jump to some other instruction in the program.
 
        
 
