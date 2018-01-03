@@ -304,5 +304,14 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
 
 ## 4.5 Input/Output 
 
+### Hack Computer platform: Output 
+
+ - Screen Memroy Map
+    - A designated memory area, dedicated to manager a display unit
+    - The physical display is continuously *refreshed* from the memory map, many times per second
+    - Output is effected by writing code that manipulates the screen memory map.
+
+
+
 
 
