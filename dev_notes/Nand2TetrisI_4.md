@@ -306,10 +306,31 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
 
 ### Hack Computer platform: Output 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_screen_mem_map.png)
+
  - Screen Memroy Map
     - A designated memory area, dedicated to manager a display unit
     - The physical display is continuously *refreshed* from the memory map, many times per second
     - Output is effected by writing code that manipulates the screen memory map.
+
+ -  Display Unit
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_display_unit_hack.png)
+    - use a bit that represents the pixel in screen memory map
+    - so we need 8k, 16-bit words : `8*1024*16 = 256*512 = 131072`
+ - we are going to implement the screen memory map using a 8k chip called Screen.
+ - To set pixel (row,col) on/off:
+    1. word = Screen[ 32 \* row + col/16 ]   , or
+        - word = RAM[ 16384 + 32 \* row + col/16 ]  // 假设 Screen base address 为16384
+    2. Set the (col%16)th bit of work to 0 or 1.
+    3. commit *word* to the RAM 
+
+### Hack computer platform: Input
+
+ - The physical keyboard is associated with a *keyboard memory map.*
+    - like the scrren memory map, it is a part of RAM
+ - The keyboard memory map is a single 16-bit register, which is called *keyboard*
+
+
 
 
 
