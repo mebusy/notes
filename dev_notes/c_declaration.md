@@ -276,7 +276,7 @@ enum sizes { small=7, medium, large=10, humungous };
  - The precedence rule for understanding C declarations is the one that the language lawyers like best.
  - It's high on brevity, but very low on intuition.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_precedence_rule_for_declaration.png .png)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_precedence_rule_for_declaration.png%20.png)
 
 
