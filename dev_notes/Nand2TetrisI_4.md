@@ -375,6 +375,10 @@ M=D
 
 ### Hack program example: add two numbers
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_program_add2numbers.png)
+
+### How to terminate a program properly?
+
 
 
 
