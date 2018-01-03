@@ -308,6 +308,61 @@ c = a[i] ;
 
  - **Match Your Declarations to the Definition**
 
+## Other Differences Between Arrays and Pointers
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_diff_array_pointer.png)
+
+---
+
+# Thinking of Linking
+
+ - A Compiler is Often Split into Smaller Programs
+    - C Preprocessor  : Phase p
+    - Front-end   : Phase 0
+    - Back-end (code generator) : Phase c
+    - Optimizer : Phase 2
+    - Assembler : Phase a
+    - Link-loader : Phase l 
+ - You can look at the individual phases of compilation by using the `-v` option.
+ - You can pass options to each phase, by giving the compiler-driver a special `-W` option
+    - that says "pass this option to that phase." 
+    - The "W" will be followed by a *character indicating the phase*, a *comma*, and then the *option*. 
+ - So to pass any option through the compiler driver to the linker, you have to prefix it by "-Wl," to tell the compiler driver that this option is intended for the link editor , not the others.
+ - The command 
+    - `cc -Wl,-m main.c > main.linker.map`
+    - will give ld the "-m" option, telling it to produce a linker map. 
+
+## The Benefits of Dynamic Linking
+
+ - Dynamic linking permits easy versioning of libraries. 
+    - New libraries can be shipped; once installed on the system, old programs automatically get the benefit of the new versions without needing to be relinked.
+ - Dynamic linking is "just-in-time" linking. It does mean that programs need to be able to find their libraries at runtime.
+    - 链接器通过将库文件名或路径名放入可执行文件来完成此操作;
+    - and this in turn, means that libraries cannot be moved completely arbitrarily.
+    - 当你在 与编译的机器 不同的机器上执行时，这也是一个问题。 
+        - 执行机器必须包含所有链接的库，并且必须将它们放在您告诉链接器的目录中。 
+        - 对于标准系统库，这不是问题。
+ - The main reason for using shared libraries is to get the benefit of the ABI
+    - freeing your software from the need to recompile with each new release of a library or OS. 
+    - As a side benefit, there are also overall system performance advantages.
+ - 任何人都可以创建一个静态或动态库。 
+    - 只需编译一些没有 main routine 的代码，然后 使用正确的工具来处理 生成的.o文件
+    - ar for static library
+    - ld for dynamic library
+
+## Five Special Secrets of Linking with Libraries
+ 
+ 1. Dynamic libraries are called lib something.so , and static libraries are called lib something.a
+ 2. You tell the compiler to link with, for example, `libthread.so` by giving the option `-lthread`
+ 3. The compiler expects to find the libraries in certain directories
+    - 编译器会查找一些特殊的地方，例如`/usr/lib/`
+    - 编译器选项-Lpathname用于告诉链接器其他目录的列表，用于搜索已经使用 `-l`选项指定的库
+ 4. Identify your libraries by looking at the header files you have used
+ 5. Symbols from static libraries are extracted in a more restricted way than symbols from dynamic libraries
+
+
+# 6. Poetry in Motion: Runtime Data Structures
+
+## Segments
 
 
