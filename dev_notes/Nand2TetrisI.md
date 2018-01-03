@@ -847,4 +847,6 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
     - comp bit: to specify what computation to achieve. 
         - these are the control bits that will be sent later to the ALU  (ALU 不是6位 control bits 吗 ?)
         
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_c_binary_comp.png)
+
 
