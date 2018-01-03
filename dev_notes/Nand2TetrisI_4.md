@@ -379,6 +379,50 @@ M=D
 
 ### How to terminate a program properly?
 
+ - Best practice:
+    - To terminate a program safely , end it with an infinite loop.
+
+```
+M=D  // RAM[2] =D 
+
+// above is privous code
+@6
+0; JMP
+```
+
+### Built-in symbols
+
+ - The Hack assembly language features *built-in* symbols:
+
+ - Virtual Registers
+    - when the assembler or the translator sees a label like R3 , 
+    - it will replace it with a number 3
+
+symbol | value
+--- | ---
+R0  |  0
+R1  |  1
+R2  |  2
+... | ...
+R15 |  15
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_virtual_register.png)
+
+---
+
+ - other built-in symbols
+
+symbol | value
+--- | ---
+SCREEN | 16384
+KBD  |  24576
+SP | 0
+LCL | 1
+ARG | 2
+THIS | 3
+THAT | 4
+
+ - the last 5 symbols are used in the implementation of Hack virtual machine , discussed in N2T part II.
 
 
 
