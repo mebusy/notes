@@ -789,11 +789,55 @@ dest = comp ; jump  // both dest and jump are optional
         - we can either store the result of computation in some destination ,
         - or we can use this computation to decide if we want to jump to some other instruction in the program.
 
-       
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_c_instruction_comp.png)
+        
+dest = `null, M, D, MD, A, AM, AD, AMD`
 
+ - we can store it simultaneously both in  M , and D
 
+jump = `null, JGT, JEQ, JGE, JLT, JNE, JLE, JMP`
 
+ - those 8 possible conditions , they always compare the result of the computation to **zero**.
+ - Semantics:
+    - Compute the value of *comp*
+    - Store the result in *dest*
+    - if the Boolean expression (comp *jump* 0) is true , 
+        - jumps to execute the instruction stored in ROM[A].
+ - Example:
 
+```
+// set the D regist to -1
+D = -1
 
+// set RAM[300] to the value of D-1
+@300  // A=300
+M=D-1
 
+// if (D-1==0) jump to execute the instrction stored in ROM[56]
+@56
+D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
+```
+
+## 4.4 Hack Language Specification 
+
+### The A-instruction: symbolic and binary syntax
+
+ - Symbolic syntax :
+    - `@value` 
+    - i.e. `@21`
+ - Binary syntax:
+    - `0value`
+    - where the *value* is a 15-bit binary number
+    - i.e.  ***0***00000000010101
+
+### The C-instruction: symbolic and binary syntax
+
+ - Symbolic syntax :
+    - `dest = comp ; jump ` 
+ - Binary syntax :
+    - 
+    - op code: 1 means a C-instruction, while 0 means an A-instruction
+    - comp bit: to specify what computation to achieve. 
+        - these are the control bits that will be sent later to the ALU  (ALU 不是6位 control bits 吗 ?)
+        
 
