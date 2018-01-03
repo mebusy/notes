@@ -279,4 +279,25 @@ enum sizes { small=7, medium, large=10, humungous };
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_precedence_rule_for_declaration.png%20.png)
 
+```c
+// example
+char* const *(*next)();
+```
+
+ - A 
+    - 首先，变量名 `next` , 注意到 它在括号里 `()`
+ - B.1
+    - 所以我们把它与括号中的其他内容 组合起来看，`next` 是一个指针，还不清楚 指向哪里
+ - B
+    - 从括号里出来， 现在我们有两个选择， 前缀 `*` , 和 后缀 `()`
+ - B.2
+    - B.2 告诉我们 后缀 `()` 优先级更高, 所以， "next is a pointer to a function returning... 
+ - B.3 
+    - 前缀 `*`  ，一个指针
+ - C 
+    - 最后 , `"char * const"` ,  a constant pointer to a character 
+ - 整合起来
+    - next 是一个 指向函数的指针， 这个函数的返回值是 a pointer to a const pointer-to-char.
+
+
 
