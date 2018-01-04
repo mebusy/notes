@@ -500,6 +500,8 @@ main() {
         - The exact structure will vary from implementation to implementation. 
         - The order of the fields may be quite different.
         - There may be an area for saving register values before making the call.
+    - ptr to previous frame : 指向上一个frame 在 栈上的地址
+    - return address 告诉下一个指令的地址 ?
     - `/usr/include/sys/frame.h`, shows how a stack frame looks on your UNIX system.
  - The runtime maintains a pointer, often in a register and usually called `fp`,  which indicates the active stack frame. This will be the stack frame nearest to or at the top of the stack.
 
@@ -517,7 +519,106 @@ main() {
 }
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_function_call_frame.png)
 
+ - Compiler-writers will try to speed up programs by  not storing information that will not be used.
+ - Other optimizations include 
+    - keeping information in registers instead of on the stack, 
+    - not pushing a complete stack frame for a leaf function (a function that doesn't make any calls itself),
+    - and making the callee responsible for saving registers, rather than the caller.
+ - The "pointer to previous frame" within each frame simplifies the task of popping the stack back to the previous record when the current function returns.
+ - Remember that compiler-writers will try to place as much of an activation record in registers as possible (because it's faster), so some of this may not be visible on the stack. 
+
+
+## Threads of Control
+
+ - It should now be clear how different threads of control can be supported within a process. 
+ - Simply have a different stack dedicated to each thread of control.
+ - Each thread gets a stack of 1Mb (grown as needed) and a page of red zone betweeen each thread's stack. 
+
+## setjmp and longjmp
+
+ - `setjmp()` and `longjmp()` are implemented by manipulating activation records.
+ - it's a feature unique to C. 
+ - They partially compensate for C's limited branching ability, and they work in pairs like this:
+    - `setjmp(jmp_buf j)` must be called first.
+        - It says *use the variable j to remember where you are now. Return 0 from the call*.
+    - `longjmp(jmp_buf j,int i)` can then be called.
+        - It says *go back to the place that the j is remembering.  Make it look like you're returning from the original setjmp(),  but return the value of i so the code can tell when you actually got back here via longjmp().*
+    - The contents of the j are destroyed when it is used in a `longjmp()`.
+ - Setjmp saves a copy of the  PC , and the current pointer to the top of the stack. 
+    - This saves some initial values, if you like. 
+ - Then longjmp restores these values, effectively transferring control and resetting the state back to where you were when you did the save. 
+    - It's termed "unwinding the stack," because you unroll activation records from the stack until you get to the saved one.  
+ - Although it causes a branch, longjmp differs from a goto in that:
+    - A goto can't jump out of the current function in C 
+        - that's why this is a "longjmp"— you can jump a long way away, even to a function in a different file
+    - You can only longjmp back to somewhere you have already been, where you did a setjmp, and that still has a live activation record.
+        - In this respect, setjmp is more like a "come from" statement .
+        - Longjmp takes an additional integer argument that is passed back, and lets you figure out whether you got here from longjmp or from carrying on from the previous statement.
+ - Example 
+
+```c
+#include <setjmp.h>
+jmp_buf buf;
+#include <setjmp.h>
+banana() {
+    printf("in banana()\n");
+    longjmp(buf, 1);
+    /*NOTREACHED*/
+    printf("you'll never see this, because I longjmp'd");
+}
+main()
+{
+    // when return back from banan
+    // setjmp will return 1
+    if (setjmp(buf))  
+        printf("back in main\n");
+    else {
+        printf("first time through\n");
+        banana(); 
+    }
+}
+```
+
+```bash
+$ ./a.out
+first time through
+in banana()
+back in main
+```
+
+ - Point to watch: the only reliable way to ensure that a local variable retains the value that it had at the time of the longjmp is to declare it volatile. (This is for variables whose value changes between the execution of setjmp and the return of longjmp.)
+
+ - A setjmp/longjmp is most useful for error recovery.
+    - They have mutated into the more general exception routines "catch" and "throw" in C++.
+
+```c
+switch(setjmp(jbuf)) {
+    case 0:
+        apple = *suspicious;
+        break;
+    case 1:
+        printf("suspicious is indeed a bad pointer\n");
+        break;
+    default:
+        die("unexpected value returned by setjmp");
+}
+```
+
+ - Like goto's, setjmp/longjmp can make it hard to understand and debug a program. They are best avoided except in the specific situations described.
+
+---
+
+ - 在 UNIX 上，程序员可以认为 堆栈是无限大的。
+ - 当您尝试访问超出当前分配给堆栈的空间时，它会生成一个称为页面错误的硬件中断。
+ - 页面错误以几种方式之一处理，具体取决于引用是有效的还是无效的。
+    - 无效地址:内核通常会通过向违规进程发送适当的信号（可能是 segment fault）来处理对无效地址的引用。
+    - red zone:
+        - There's a small "red zone" region just below the top of the stack. 
+        - A reference to there doesn't pass on a fault; instead, the operating system increases the stack segment size by a good chunk. 
+ - 在DOS中，堆栈大小必须被指定为构建可执行文件的一部分，并且不能在运行时增长。
+    - 指定堆栈大小的方法因编译器而异。 
 
 
 

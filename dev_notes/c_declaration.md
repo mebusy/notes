@@ -318,6 +318,9 @@ char *(*c[10])(int **p);  //  how 2 read ?
 ```
 
  - c is an array[0..9] of pointer to a function returning a pointer-to-char
+ - Tool:
+    - `brew install cdecl`
+    - `explain char *(*c[10])(int **);`
 
 
 ## typedef Can Be Your Friend
