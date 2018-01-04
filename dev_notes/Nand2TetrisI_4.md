@@ -427,6 +427,19 @@ THAT | 4
 
 ## 4.7: Hack Programming , Part 2
 
+### Branching
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_ml_branching.png)
+
+ - 这个程序可以很好的工作，但是 如果没有这些 左边的这些行号， 这段代码就是个噩梦
+ - Fortunately , we have a very nice feature in assembly languages , which called symbolic references. 
+    - declare a label :  `( LABEL )`
+    - `@LABEL` translates to `@n` , where *n* is the instruction number following the `(LABLE)` declaration.
+ - Label declarations are not translated ( to machine language ). 
+ - Each reference to a label is replaced with a reference to the instruction number following that label's declaration.
+
+
+
 
 
 
