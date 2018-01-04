@@ -410,3 +410,27 @@ text    data     bss     dec     hex filename
     - the text segment is the one most affected by optimization
 
 
+## What the OS Does with Your a.out
+
+
+ - Now we see why the a.out file is organized into segments.
+ - The segments conveniently map into objects that the runtime linker can load directly!
+ - The loader just takes each segment image in the file and puts it directly into memory.
+ - The segments essentially become memory areas of an executing program, each with a dedicated purpose.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_os_do_with_aout.png)
+
+ - The text segment contains the program instructions.
+    - The loader copies that directly from the file into memory (typically with the `mmap()` system call)
+    - and need never worry about it again, as program text typically never changes in value nor size.
+ - The data segment contains the initialized global and static variables, complete with their assigned values. 
+    - The size of the BSS segment is then obtained from the executable, and the loader obtains a block of this size, putting it right after the data segment. 
+    - 分配  BSS size 大小的内存
+ - The of data and BSS is usually just referred to jointly as the *data segment*.
+    - This is because a segment, in OS memory management terms, is simply a range of consecutive virtual addresses, so adjacent segments are coalesced.
+    - The data segment is typically the largest segment in any process.
+ - We still need some memory space for local variables, temporaries, parameter passing in function calls, and the like.
+    - A stack segment is allocated for this.
+ - We also need heap space for dynamically allocated memory.
+    - This will be set up on demand, as soon as the first call to `malloc()` is made.
+
