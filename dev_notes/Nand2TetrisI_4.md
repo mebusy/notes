@@ -207,7 +207,6 @@ M=-1   // RAM[100] = -1
 ```
 
  - so we always have to address the memory by using an A instruction. 
- - 另外，C instruction 中，并没有直接 对任意立即数的comp, A instruction 是唯一的任意立即数 指令
 
 <h2 id="2656df8b06102adadd0f4e8d28ca7d3b"></h2>
 
@@ -257,6 +256,12 @@ M=D-1
 @56
 D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
 ```
+
+### 为什么要划分 A/C 两套 指令？
+
+ - Hack 是16bit 系统
+ - 一条指令要处理 dest comp jump 3部分，没有足够 bit 处理 大的整数，或地址
+ - 所以分出了单独的 A instruction， 可以处理15bit的整数 或 地址
 
 <h2 id="07f3d75ea1037290fb379184f55486ac"></h2>
 
