@@ -433,4 +433,66 @@ text    data     bss     dec     hex filename
     - A stack segment is allocated for this.
  - We also need heap space for dynamically allocated memory.
     - This will be set up on demand, as soon as the first call to `malloc()` is made.
+ - Note that the lowest part of the virtual address space is unmapped
+    - that is, it is within the address space of the process, but has not been assigned to a physical address, so any references to it will be illegal.
+    - This is typically a few Kbytes of memory from address zero up.
+    - It catches references through null pointers, and pointers that have small integer values.
+
+---
+
+ - When you take shared libraries into account :
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_process_address_area_with_shared_lib.png)
+
+## What the C Runtime Does with Your a.out
+
+ - how does C organize the data structures of a running program ?
+ - There are a number of runtime data structures: 
+    - the stack, activation records, data, heap, and so on. 
+
+### The Stack Segment
+
+ - The runtime maintains a pointer, often in a register and usually called `sp` , 
+    - that indicates the current top of the stack.
+ - The stack segment has three major uses, two concerned with functions and one with expression evaluation:
+    - The stack provides the storage area for local variables declared inside functions. 
+        - These are known as "automatic variables" in C terminology.
+    - The stack stores the "housekeeping" information involved when a function call is made. 
+        - This housekeeping information is known as a stack frame or, more generally, a procedure activation record. 
+        - it includes 
+            - the address from which the function was called  (i.e., where to jump back to when the called function is finished) ,
+            - any parameters that won't fit into registers, 
+            - and saved values of registers.
+    - The stack also works as a scratch-pad area
+        - every time the program needs some temporary storage, perhaps to evaluate a lengthy arithmetic expression, it can push partial results onto the stack, popping them when needed.
+        - Storage obtained by the `alloca()` call is also on the stack. 
+ - 如果不是要支持递归的话，其实可以不需要Stack.  
+    - local variables, parameters, and return addresses 需要的空间是固定的，在编译阶段就可以知道，并且可以在BSS 中分配。
+    - 这样的话，并不需要 动态堆栈。
+    - 允许递归，意味着 我们必须找到 允许同时存在多个局部变量的实例的方法，并且只有最近创建的才能被访问。
+
+ - Compile and run this small test program to discover the approximate location of the stack on your system:
+
+```c
+#include <stdio.h>
+main() {
+    int i;
+    printf("The stack top is near %p\n", &i);
+    return 0; 
+}
+```
+
+ - 类似的方法，也可以找到 data and text segment  的地址.
+
+## What Happens When a Function Gets Called: The Procedure Activation Record
+
+ - keeping track of the call chain
+    - which routines have called which others ,
+    - and where control will pass back to, on the next "return" statement. 
+ - The classic mechanism that takes care of this is the procedure activation record on the stack.
+ - There will be a procedure activation record (or its equivalent) for each call statement executed.
+ - The procedure activation record is a data structure that 
+    - supports an invocation of a procedure, 
+    - and also records everything needed to get back to where you came from before the call. 
+
 
