@@ -425,6 +425,8 @@ THAT | 4
  - the last 5 symbols are used in the implementation of Hack virtual machine , discussed in N2T part II.
 
 
+## 4.7: Hack Programming , Part 2
+
 
 
 
