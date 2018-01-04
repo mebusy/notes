@@ -458,7 +458,28 @@ THAT | 4
     - Variable are allocated to the RAM from adderss 16 onward. 
         - in this example , we have only 1 variable, so it ends up being allocated to RAM 16.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_variable_rom.png)
 
+ - let's take a look at our program.
+ - This program has another very nice virtue, which is more subtle. 
+ - This program is what is known as **relocatable code**.
+    - I can take this program , and load it into memory **not necessary to address zero**. 
+    - I can put it anywhere I want in memory as long as I remember what is the base address that they used for this program. 
+ - Once we write this program carefully useing symbolic references, we don't have to worry about where they will be located in memory. 
+    - We can write something called **loader** that takes care of this technical detail. 
+ 
+### Iterative processing 
+
+ - Example 
+    - Compute 1+2+...+n
+ - how to do ?
+    1. write pseudo code 
+    2. debug your pseudo code, ensure it works
+    3. simply translating from pseudo code to machine language 
+
+## 4.8 Hack Programming , Part 3
+
+### Pointers 
 
 
 
