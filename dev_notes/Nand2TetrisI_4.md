@@ -481,9 +481,69 @@ THAT | 4
 
 ### Pointers 
 
+```
+// some pseudo code
+for(i=0; i<n; i++) {
+    arr[i] = -1    
+}
+// suppose that arr=100 , and n=10
+```
+
+ - when assembler translate this piece of pseudo code into machine language, the machine language no longer recognizes the array obstruction. 
+ - As far as the machine language is concerned , the array is just a segment in memory of which we know the base address of this segment and the length of the array.
 
 
+```
+    // arr = 100
+    @100
+    D=A
+    @arr  // 16 ,maybe
+    M=D
 
+    // n=10
+    @10
+    D=A
+    @n      // 17
+    M=D
+
+    // i=0
+    @i       // 18
+    M=0
+
+    // code continue 
+(LOOP)
+    // if (i==n) goto END
+    @i
+    D=M
+    @n
+    D=D-M
+    @END
+    D;JEQ
+
+    // RAM[arr+i] = -1
+    @arr
+    D=M
+    @i
+    A=D+M //RAM[arr+i] -- new M
+    M=-1
+
+    // i++
+    @i
+    M=M+1
+
+    @LOOP
+    0;JMP
+
+(END)
+    @END
+    0;JMP
+```
+
+ - Variables that store memory addresses like *arr* are called pointers. 
+ - Hack pointer logic: 
+    - whenever we have to access memory using a pointer , we need an instruction like `A=M` , something that comes from some memory register.  
+
+### Input / Output 
 
 
 
