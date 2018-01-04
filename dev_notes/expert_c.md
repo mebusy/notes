@@ -620,6 +620,22 @@ switch(setjmp(jbuf)) {
  - 在DOS中，堆栈大小必须被指定为构建可执行文件的一部分，并且不能在运行时增长。
     - 指定堆栈大小的方法因编译器而异。 
 
+## Useful tool
 
+ - cdecl 
+    - explain c declaration , brew install cdecl
+ - strings 
+    - Looks at the strings embedded in a binary. 
+ - file
+    - Tells you what a file contains (e.g., executable, data, ASCII, shell script, archive, etc.).
+ - time
+    - Displays the total real and CPU time used by a program.
+    - `time ./a.out`
+
+---
+
+# 7. Thanks for the Memory
+
+ - A knowledge of memory architecture helps a programmer to understand some of the C conventions and restrictions.
 
 
