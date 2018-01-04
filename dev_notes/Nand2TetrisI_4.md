@@ -447,6 +447,16 @@ THAT | 4
  - we use a single register to represent every one of our variables, if we want to create variables in our program.
  - Example: use temp to exchange the content of  R0 and R1
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_variable.png)
+
+ - here , `temp` don't have a corresponding label called temp.  how it works ?
+ - Basically , we present the following pledge to the computer: 
+    - Please goto the memory unit, find some available memory register , say register  *n* . 
+    - so from now on, each occurance of `@temp` in the program will be translated into `@n`
+ - Rules:
+    - A reference to a symbol that has no corresponding lable declaration is treated as a reference to a variable.
+    - Variable are allocated to the RAM from adderss 16 onward. 
+        - in this example , we have only 1 variable, so it ends up being allocated to RAM 16.
 
 
 
