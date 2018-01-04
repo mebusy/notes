@@ -365,4 +365,24 @@ c = a[i] ;
 
 ## Segments
 
+ - 就 object files 而言, they are simply areas within a binary file , where all the information of a particular type (e.g., symbol table entries) is kept.
+ - The term *section* is also widely used. 
+ - A segment typically contains several sections.
+
+--- 
+
+ - Don't confuse the concept of segment on UNIX with the concept of segment on the Intel x86 architecture.
+    - A segment on UNIX is *a section of related stuff in a binary*.
+    - A segment in the Intel x86 memory model is *the result of a design in which (for compatibility reasons) the address space is not uniform, but is divided into 64-Kbyte ranges known as segments.*
+
+ - When you run size on an executable, it tells you the size of three segments known as text, data, and bss in the file:
+
+```bash
+# size a.out
+text       data     bss     dec     hex filename
+1134        540       4    1678     68e a.out
+```
+
+ - Another way to examine the contents of an executable file is to use the *nm* or *dump* utilities. 
+
 
