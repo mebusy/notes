@@ -438,6 +438,16 @@ THAT | 4
  - Label declarations are not translated ( to machine language ). 
  - Each reference to a label is replaced with a reference to the instruction number following that label's declaration.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_symbolic_reference.png)
+
+### Variables
+
+ - in the lower level of the Hack machine language , we have only 1 variable type.
+ - we have only 16-bit values to worry about. 
+ - we use a single register to represent every one of our variables, if we want to create variables in our program.
+ - Example: use temp to exchange the content of  R0 and R1
+
+
 
 
 
