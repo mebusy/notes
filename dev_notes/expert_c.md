@@ -494,5 +494,31 @@ main() {
  - The procedure activation record is a data structure that 
     - supports an invocation of a procedure, 
     - and also records everything needed to get back to where you came from before the call. 
+ - A Canonical Procedure Activation Record:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_procedure_activation_record.png)
+    - It is just illustrative. 
+        - The exact structure will vary from implementation to implementation. 
+        - The order of the fields may be quite different.
+        - There may be an area for saving register values before making the call.
+    - `/usr/include/sys/frame.h`, shows how a stack frame looks on your UNIX system.
+ - The runtime maintains a pointer, often in a register and usually called `fp`,  which indicates the active stack frame. This will be the stack frame nearest to or at the top of the stack.
+
+```c
+a (int i) {
+    if (i>0)
+        a(--i);
+    else
+        printf("i has reached zero ");
+    return ;
+}
+
+main() {
+    a(1) ;
+}
+```
+
+
+
+
 
 
