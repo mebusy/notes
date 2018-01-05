@@ -196,7 +196,8 @@
     - but the fact that it knocks on these doors does not necessailly means that the doors are going to open. 
     - the programmer has to decide , which door has to be opened.
     - which register *acutally* received the incoming value is determined by the instruction's *destination bits* 
- - 
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_dest_bits.png)
+
 
  
 
