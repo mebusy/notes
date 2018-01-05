@@ -197,9 +197,21 @@
     - the programmer has to decide , which door has to be opened.
     - which register *acutally* received the incoming value is determined by the instruction's *destination bits* 
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_dest_bits.png)
+ - The ALU also output *zr*,*ng* bits.
 
+### PC logic
 
- 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_pc_logic.png)
+
+```
+if (reset==1) PC=0
+else
+    load = f( jump bits, ALU control output ) 
+    if (load==1) PC=A
+    else        PC++ 
+```
+
+## 
 
  
 
