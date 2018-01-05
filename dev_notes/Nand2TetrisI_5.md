@@ -125,8 +125,45 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_cpu_architecture.png)
 
+ - it is where all the calculations of the machine take place 
+ - and it is also the seat on control.
+    - this is where decisions are made about which instruction should be fetched and executed next.
 
 
+### The Hack CPU: Abstraction 
+
+ - A 16-bit processor, designed to
+    - Execute the current instruction 
+    - Figure out which instruction to execute next
+
+### Hack CPU Interface 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_cpu_interface.png)
+
+ - Inputs
+    - Data value , *inM* , from Data Memory
+    - Instruction , *instruction* , from Instruction Memory
+    - Reset bit, *reset* , From the user
+ - at any time , there is always a selected memory both in Data memory and Instruction memory.
+
+---
+
+ - Outputs
+    - Data value , *outM* , to Data Memory 
+    - Write to memory ? (yes/no) , *writeM*, to Data Memory
+    - Memory Address, *addressM*, to Data Memory
+    - Address of next instruction, *pc*, **to Instruction Memory**
+ - first of all, it the ALU wants to write something to the data memory, 
+    - it has to specify 3 different things 
+        1. what is that we want to write
+        2. where we want to write it
+        3. a load bit , that enables the data memory for write operation.
+ - In addition , there's one extremely important output , pc , that holds the address of next instruction
+
+### Hack CPU Implementation 
+
+
+    
 
 
 
