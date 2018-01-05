@@ -768,8 +768,156 @@ sys 0m0.002s
  - Heap 是用于动态分配的存储空间，即通过malloc（内存分配）获得并通过指针访问的存储空间。
  - 堆中的所有东西都是匿名的 -- 你不能直接通过名字访问它，只能通过指针间接访问。
  - The malloc (and friends: calloc, realloc, etc.) library call is the only way to obtain storage from the heap. 
- - 函数calloc就像malloc，但在给你指针之前将内存清零。
- - 函数realloc（）改变指向的内存块的大小，不管是增长还是缩小，往往通过将内容复制到其他地方并给你一个指向新位置的指针。
-    - 在动态增加表的大小时这很有用.
+    - 函数calloc就像malloc，但在给你指针之前将内存清零。
+    - 函数realloc（）改变指向的内存块的大小，不管是增长还是缩小，往往通过将内容复制到其他地方并给你一个指向新位置的指针。
+        - 在动态增加表的大小时这很有用.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_heap.png)
+
+ - 堆必须跟踪不同的区域，以及它们是否正在使用或malloc可用。
+ - 一个方案是有一个可用块（“free store”）的链表. 
+ - Some people use the term **arena** to describe the set of blocks managed by a memory allocator.
+ - Malloced memory is always aligned appropriately for the largest size of atomic access on a machine, 
+    - and a `malloc` request may be rounded up in size to some convenient power of two. 
+ - 释放的内存回到堆中以供重用，但没有（方便的）方式将其从进程中移除并将其交还给操作系统。 代价很高
+ - The end of the heap is marked by a pointer known as the "break".
+    - *Your programs will "break" if they reference past the break...*
+ - When the heap manager needs more memory, it can push the break further away using the system calls `brk` and `sbrk`
+    - You typically don't call `brk` yourself explicitly
+ - The calls that manage memory are:
+    - `malloc` and `free` — get memory from heap and give it back to heap 
+    - `brk` and `sbrk` — adjust the size of the data segment to an absolute value/by an increment
+
+## Bus Error
+
+ - 总线错误几乎总是由读取或写入错位导致的。
+ - It's called a bus error, 因为地址总线是 请求未对齐的地址读写而出错的组件。
+ - 对齐意味着数据项只能存储在其大小倍数的地址处。
+    - 如果没有对齐，整个操作系统会更慢.
+ - 通过强制每个单独的内存访问保留在一个缓存行中或单个页面上，我们大大简化了（并因此加速了）hardware like cache controllers and memory management units.
+    - 我们表达“没有数据项可能跨越一个页面或缓存边界”的规则有点间接，这里我们用地址对齐的方式来说明它，而不是禁止跨越页面边界，但它归结为同样的事情。
+    - 例如，访问一个8字节的double是只允许在8个字节的倍数的地址。 所以一个double可以存储在地址24，地址8008，或 地址32768, 但不能是地址 1006.
+ - Page and cache sizes are carefully designed so that keeping the alignment rule will ensure that no atomic data item spills over a page or cache block boundary.
+ - 一个会导致总线错误的小程序是：
+
+```c
+union { char a[10];
+    int i;
+} u;
+int *p= (int*) &(u.a[1]);
+*p = 17; /* the misaligned addr in p causes a bus error! */
+```
+
+ - 编译器自动分配和填充数据（在内存中）以实现对齐。
+
+## Segmentation Fault
+
+ - 导致分段错误的小程序是：
+
+```c
+int *p=0;
+*p = 17;     /* causes a segmentation fault */
+```
+
+ - 一个总线错误意味着CPU不喜欢那个内存引用，而segv意味着MMU不喜欢它。
+
+---
+
+# 9 More about Arrays
+
+## When an Array Is a Pointer
+
+ - 前面的章节强调了当数组不能写成指针时最常见的情况。
+ - 很多情况下，数组可以与指针互换
+ - Declarations themselves can be further split into three cases:
+    1. declaration of an external array
+    2. definition of an array 
+        - a definition is just a special case of a declaration; it allocates space and may provide an initial value
+    3. declaration of a function parameter
+
+ - 所有作为函数参数的数组名称总是由编译器转换为指针。
+    - `func( char a[] )`
+ - 在所有其他情况下，数组的声明给了你一个数组，一个指针的声明给你一个指针.
+    - `extern char[]`
+    - `char a[10]`
+    - can not be rewritten as a pointer  
+ - 但是一个数组的使用（在一个语句或表达式中的引用）总是可以被重写为 使用一个指针。
+    - `c = a[i]` 
+ - 数组是地址， 指针是 地址的地址
+ 
+ - Rules for when arrays are pointers
+    - rule 1: An array name **in an expression** (in contrast with a declaration) is treated by the compiler as a pointer to the first element of the array.
+        - `p=a; `
+        - `p=a+i;`
+    - rule 2: A subscript is always equivalent to an offset from a pointer
+    - rule 3: An array name **in the declaration of a function parameter** is treated by the compiler as a pointer to the first element of the array 
+
+## Why C Treats Array Parameters as Pointers
+
+ - 数组作为指针传递给函数的原因是效率，所以通常是违反良好软件工程实践的理由。
+ - C中的所有 非数组 数据参数都是“通过值”传递的
+    - a copy of the argument is made and passed to the called function
+ - 复制数组的内存和时间可能非常昂贵
+    - 而大多数情况下，实际上并不需要数组的副本，您只需要在函数中指明您现在感兴趣的特定数组。
+ - 如果 所有数组都作为指针传递给开始，其他所有数据都通过复制来传递， 那么 编译器的工作就可以极大的简化
+ - 函数的返回值也不能是数组或函数，只能是指向数组或函数的指针。
+ - 给出以下定义
+
+```c
+   func( int * turnip){...}
+or
+    func( int turnip[]){...}
+or
+    func( int turnip[200]){...}
+
+int my_int; /* data definitions */
+int * my_int_ptr;
+int my_int_array[10];
+```
+
+ - 以下调用都是合法的
+    - 所以， 在func（）里面，你没有任何简单方法知道 这个函数调用的方式和目的.
+
+```c
+func(&my_int );
+func( my_int_ptr );
+func( my_int_array );
+func(&my_int_array[i] );
+```
+
+## Arrays and Pointers Interchangeability Summary
+
+ 1. 数组访问`a[i]`总是被编译器“重写”或解释为指针访问`*（a + i）;`
+ 2. 函数 形参parameter中的 数组声明 等同于指针; 函数调用中的 数组实参argument 总是由编译器改变为指向数组开始的指针。
+ 3. 因此，你可以定义一个函数的 数组参数  无论用数组或指针。
+ 4. 在所有其他情况下，定义应该与声明相匹配。
+
+---
+
+# 11 You Know C, So C++ is Easy!
+
+ - 面向对象编程的特点是继承和动态绑定。
+    - C ++通过类派生支持继承。
+    - 动态绑定由virtual class functions 提供
+
+## Improvements in C++ Over C
+
+ - 初始化一个char数组,没有足够的空间用于结尾nul  的容易出错的构造, 被认为是一个错误。
+    - `char b[3]="Bob";`  will cause an error in C++, but not in C.
+ - 类型转换可以写成 float(i) 这种看着正常的 格式
+    - 当然也可以是c风格的 (float)i
+ - C ++允许一个constant integer定义一个数组的大小。
+    - `const int size=128;   char a[size];` is allowed in C++, but will generate an error message from C.
+
+## Restrictions in C++ that are not in C
+
+ - 函数原型在C ++中是必需的，但在C中是可选的
+ - Typedef names 不能与C++中的 struct tag 冲突，但C中可以( 它们属于不同的名称空间 )
+ - `void *` 指针 赋值给 其它类型指针， C++ 中需要一个强制类型转换
+ - 字符文字 'x' 在C++中 是char类型，但在C中是int 类型。也就是说，sizeof（'a'）在C++中为1，而在C中为4.
+
+
+
+
 
 
