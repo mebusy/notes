@@ -638,4 +638,26 @@ switch(setjmp(jbuf)) {
 
  - A knowledge of memory architecture helps a programmer to understand some of the C conventions and restrictions.
 
+## Virtual Memory
+
+ - If it's there and you can see it—it's real
+ - If it's not there and you can see it—it's virtual
+ - If it's there and you can't see it—it's transparent
+ - If it's not there and you can't see it—you erased it!
+
+--- 
+
+ - It is very inconvenient for a program to be restricted by the amount of main memory installed on a machine
+ - So early on in computing, the concept of virtual memory was developed to remove this restriction. 
+ - The basic idea is to use cheap but slow disk space to extend your fast but expensive main memory. 
+    - 程序在任何时刻实际使用的内存区域都被带入物理内存。
+    - 当记忆区域未被触动一段时间时，它们可能会被保存到磁盘中，从而腾出空间来引入正在使用的其他存储区域。
+    - 所有现代计算机系统从最大的超级计算机到最小的工作站，除了个人电脑以外，都使用虚拟内存。
+
+---
+
+ - Multilevel store is a familiar concept.  We see it elsewhere on a computer (e.g., in registers vs. main memory). 
+ - In theory, every memory location could be a register. 
+    - In practice, this would be prohibitively expensive, so we trade off access speed for a cheaper implementation. 
+    - 虚拟内存只是进一步扩展了这个阶段，使用磁盘而不是主内存来保存正在运行的进程的映像。
 
