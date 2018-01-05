@@ -680,7 +680,96 @@ $ pagesize
  - 只有用户进程处理页面和交换。 SunOS内核始终是内存驻留。
  - A process can only operate on pages that are in memory. 
     - 当进程引用不在内存中的页面时，MMU会 产生一个 page fault 。
-    - 
+    - The kernel responds to the event and decides whether the reference was valid or invalid. 
+    - 如果无效，则内核向进程发出“segmentation violation”的信号。
+    - If valid, the kernel retrieves the page from the disk.  
+ 
+## Cache Memory
 
+ - 高速缓存是多级存储概念的进一步扩展。
+ - 它是一个小而昂贵的，但速度非常快的内存缓冲区，位于CPU和物理内存之间。
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_cache_memory.png)
+
+ - 所有现代处理器都使用高速缓存
+ - 无论何时从内存中读取数据，整个“行”（通常为16或32字节）被带入缓存。
+ - If the program exhibits good locality of reference (e.g., it's striding down a character string), 则后续数据 可以从cache 而不是main memory 中获取。
+ - 高速缓存的运行速度与系统的周期时间相同，因此对于50 MHz处理器，高速缓存运行时间为20纳秒。
+    - 主内存通常比这慢四倍！
+ - Cache比较昂贵，需要比普通内存更多的空间和功耗.
+ - The cache contains a list of **addresses** and **their contents**. 
+    - 它的地址列表不断变化，因为处理器引用了新的位置。
+ - Both reads and writes go through the cache. 
+    - 当处理器想要从特定地址取数据时，请求首先进入缓存。
+    - 如果数据已经存在于缓存中，则可以立即交付。
+    - 否则，高速缓存 将传递请求，并对主内存进行访问。
+        - 一个新行被取回， 并放入缓存
+ - 如果你的程序写的很任性,每次都错过了缓存，那么最终的性能会比根本没有缓存的性能更差。
+ - Sun currently uses two types of cache:
+    - Write-through cache
+        - 写入缓存的同时启动对主内存的写入。
+    - Write-back cache
+        - 第一次只写入缓存
+        - 当缓存行 将要被重新写入并且还没有发生保存时，数据被写到主存储器。
+        - 当一个上下文切换发生( 切换到另一个进程或内核 ) ， 缓存数据也会被 写回主存储器.
+ - 无论用哪种类型的缓存，只要对缓存访问完成，指令流就会继续，不会等待主内存完成写操作。
+ - Cache Memories Are Made of This
+
+Term | Definition
+--- | ---
+Line | A Line 是访问缓存的单位。 每一行都有两个部分：一个数据部分和一个指定它所代表的地址的标签
+Block | 一个行的数据部分 称为一个block. 通常32字节.
+ 
+
+```c
+#include <string.h>
+
+#define DUMBCOPY for (i = 0; i < 65536; i++) \
+      destination[i] = source[i]
+
+#define SMARTCOPY memcpy(destination, source, 65536)
+
+
+int main()
+{
+    char source[65536], destination[65536];
+    long i, j;
+    for (j = 0; j < 100; j++)
+        SMARTCOPY; 
+        /* DUMBCOPY ;  */
+}
+```
+
+ - 分别使用 memcpy 和 依次赋值的运行差别
+
+```bash
+$ time ./a.out
+
+real    0m0.005s
+user    0m0.002s
+sys 0m0.002s
+
+
+$ time ./a.out
+
+real    0m0.021s
+user    0m0.017s
+sys 0m0.002s
+```
+
+ - 在这种特殊情况下，源和目标都使用相同的高速缓存行，导致每个内存引用都会错过高速缓存，并在等待正常内存交付时停止处理器。
+ - 库memcpy（）特别针对高性能进行了优化。
+    - It unrolls the loop to read for one cache line and then write, which avoids the problem. 
+
+
+## The Data Segment and Heap
+
+ - Heap 是用于动态分配的存储空间，即通过malloc（内存分配）获得并通过指针访问的存储空间。
+ - 堆中的所有东西都是匿名的 -- 你不能直接通过名字访问它，只能通过指针间接访问。
+ - The malloc (and friends: calloc, realloc, etc.) library call is the only way to obtain storage from the heap. 
+ - 函数calloc就像malloc，但在给你指针之前将内存清零。
+ - 函数realloc（）改变指向的内存块的大小，不管是增长还是缩小，往往通过将内容复制到其他地方并给你一个指向新位置的指针。
+    - 在动态增加表的大小时这很有用.
 
 
