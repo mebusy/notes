@@ -103,7 +103,6 @@
 
 <h2 id="d41d8cd98f00b204e9800998ecf8427e"></h2>
 
-## 
  - How to solve it ?
     - basically we are going to do one after the other, that is the usual way. 
     - There is going to be a multiplexer that feeds into the address of the memory. 
@@ -121,6 +120,10 @@
     - Keep Program and Data in 2 separate memory modules
         - each module has its own address.
     - Complication avoided.
+
+## 5.3 CPU 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_cpu_architecture.png)
 
 
 
