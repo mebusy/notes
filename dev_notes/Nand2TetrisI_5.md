@@ -162,9 +162,45 @@
 
 ### Hack CPU Implementation 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_cpu_implementation.png)
 
-    
+ - the label *c* , represents the control bit.
 
+### Instruction handling 
+
+ - left-top part
+ - CPU handling of an A-instruction
+    - Decodes the instruction into op-code + 15-bit value
+    - Stores the value in the A-register    
+    - it also takes the output of the A-register , and emits it outside to the memory address output
+        - i.e., `@100` 执行后， M[100] 就被选中了
+ - CPU handling of an C-instruction
+    - The instrcution bits are decoded into :
+        - op-code , ALU control bits, dest bits, jump bits
+    - op-code is 1, in this case we want to route the input of the A-register in such a way that the input will com frmoe the ALU. 
+
+### ALU operation 
+
+ - the entire top part, exclude *reset* line
+ - so there is a C-instruction comes in
+ - ALU data inputs :
+    - 1.From the D-register
+    - 2. From the A-register / M-register
+ - the control bit of ALU's  multilexer is one of the bits in the instruction  
+ - ALU control inputs:
+    - 6 control bits  is also from the instruction 
+ - ALU data output:
+    - Result of ALU calculation ,fed simultaneously to:
+        - D-register, A-register, M-register
+    - the same ALU output knocking on 3 different doors
+    - but the fact that it knocks on these doors does not necessailly means that the doors are going to open. 
+    - the programmer has to decide , which door has to be opened.
+    - which register *acutally* received the incoming value is determined by the instruction's *destination bits* 
+ - 
+
+ 
+
+ 
 
 
 
