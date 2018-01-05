@@ -661,3 +661,26 @@ switch(setjmp(jbuf)) {
     - In practice, this would be prohibitively expensive, so we trade off access speed for a cheaper implementation. 
     - 虚拟内存只是进一步扩展了这个阶段，使用磁盘而不是主内存来保存正在运行的进程的映像。
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_virtual_memory.png)
+
+ - 虚拟内存被组织成“页面”。
+ - 一个页面是操作系统移动和保护的单位，通常是几K字节的大小。
+ - 您可以通过输入 `/usr/ucb/` pagesize来查看系统中的页面大小。
+
+```bash
+$ pagesize
+4096
+```
+
+ - 内存映像在磁盘和物理内存之间传输时, we say it is being paged in (if going to memory) or paged out (going to disk).
+ - 一个进程的内存，有可能，全部会被操作系统 拿回去。
+    - 如果进程暂时不太可能会运行( 可能是 优先级低，或 正在睡眠状态 ) ， 则分配给它的所有物理内存资源 都可以被带走并备份到磁盘上。
+    - The process is then said to be "swapped out." 
+    - 磁盘上有一个特殊的“swap area”，用于保存已被分页或交换的内存。
+ - 只有用户进程处理页面和交换。 SunOS内核始终是内存驻留。
+ - A process can only operate on pages that are in memory. 
+    - 当进程引用不在内存中的页面时，MMU会 产生一个 page fault 。
+    - 
+
+
+
