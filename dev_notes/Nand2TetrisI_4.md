@@ -15,10 +15,25 @@
          - [Hack computer: registers](#6bccf7c3f8c59b04ccbc9be6a8917a0f)
          - [The A-instruction](#7a47f762af8bb05b5c4b7663c365bbdc)
          - [The C-instruction](#2656df8b06102adadd0f4e8d28ca7d3b)
+         - [为什么要划分 A/C 两套 指令？](#8bfeef857873fbe94ceeca536b8ba8df)
      - [4.4 Hack Language Specification](#07f3d75ea1037290fb379184f55486ac)
          - [The A-instruction: symbolic and binary syntax](#a74da8b3478acd4a7ca3b8c93f7a0d15)
          - [The C-instruction: symbolic and binary syntax](#fb409005082bcbc783a0b8c36745ee7a)
      - [4.5 Input/Output](#3ee61240a785681403c329e4721faa17)
+         - [Hack Computer platform: Output](#88654d0d30b3eafe4fcc2c9fc29c0a7f)
+         - [Hack computer platform: Input](#4bdb00d0e3d6c18d3f264fd18717ff21)
+     - [4.6 Hack Programming, Part1](#a18eff3da7a07aee87a273f3fa131a52)
+         - [Working with register and memory](#43ac21454f5d3b1ba15c3c9070c3574b)
+         - [Hack program example: add two numbers](#e4e5a06fdd10851c3e7b7c0c5a04052c)
+         - [How to terminate a program properly?](#fa7826a41e60188c3d9aa40c67875a2e)
+         - [Built-in symbols](#c6485feeba4ed4c45bed624bd9d153e1)
+     - [4.7: Hack Programming , Part 2](#433672a84dd80f224b715113f64d6b2f)
+         - [Branching](#cec9f877aea82b580a4bd8292d6fd05b)
+         - [Variables](#03df896fc71cd516fdcf44aa699c4933)
+         - [Iterative processing](#f26bb1b6fe9c2cee3fb09973ed60da69)
+     - [4.8 Hack Programming , Part 3](#0fbcaf38632f1b7a6eb86b99e1e1ea63)
+         - [Pointers](#7bba5d01d3778f550d69f87dca50fc3f)
+         - [Input / Output](#6a8b3c75d2b148310a110bf194c67f26)
 
 ...menuend
 
@@ -257,6 +272,8 @@ M=D-1
 D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
 ```
 
+<h2 id="8bfeef857873fbe94ceeca536b8ba8df"></h2>
+
 ### 为什么要划分 A/C 两套 指令？
 
  - Hack 是16bit 系统
@@ -310,6 +327,8 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
 
 ## 4.5 Input/Output 
 
+<h2 id="88654d0d30b3eafe4fcc2c9fc29c0a7f"></h2>
+
 ### Hack Computer platform: Output 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_screen_mem_map.png)
@@ -330,6 +349,8 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
     2. Set the (col%16)th bit of work to 0 or 1.
     3. commit *word* to the RAM 
 
+<h2 id="4bdb00d0e3d6c18d3f264fd18717ff21"></h2>
+
 ### Hack computer platform: Input
 
  - The physical keyboard is associated with a *keyboard memory map.*
@@ -347,7 +368,11 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
     - In the Hack computer: probe the contents of RAM[24576].
 
 
+<h2 id="a18eff3da7a07aee87a273f3fa131a52"></h2>
+
 ## 4.6 Hack Programming, Part1
+
+<h2 id="43ac21454f5d3b1ba15c3c9070c3574b"></h2>
 
 ### Working with register and memory
 
@@ -378,9 +403,13 @@ D=M
 M=D
 ```
 
+<h2 id="e4e5a06fdd10851c3e7b7c0c5a04052c"></h2>
+
 ### Hack program example: add two numbers
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_program_add2numbers.png)
+
+<h2 id="fa7826a41e60188c3d9aa40c67875a2e"></h2>
 
 ### How to terminate a program properly?
 
@@ -394,6 +423,8 @@ M=D  // RAM[2] =D
 @6
 0; JMP
 ```
+
+<h2 id="c6485feeba4ed4c45bed624bd9d153e1"></h2>
 
 ### Built-in symbols
 
@@ -430,7 +461,11 @@ THAT | 4
  - the last 5 symbols are used in the implementation of Hack virtual machine , discussed in N2T part II.
 
 
+<h2 id="433672a84dd80f224b715113f64d6b2f"></h2>
+
 ## 4.7: Hack Programming , Part 2
+
+<h2 id="cec9f877aea82b580a4bd8292d6fd05b"></h2>
 
 ### Branching
 
@@ -444,6 +479,8 @@ THAT | 4
  - Each reference to a label is replaced with a reference to the instruction number following that label's declaration.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_symbolic_reference.png)
+
+<h2 id="03df896fc71cd516fdcf44aa699c4933"></h2>
 
 ### Variables
 
@@ -473,6 +510,8 @@ THAT | 4
  - Once we write this program carefully useing symbolic references, we don't have to worry about where they will be located in memory. 
     - We can write something called **loader** that takes care of this technical detail. 
  
+<h2 id="f26bb1b6fe9c2cee3fb09973ed60da69"></h2>
+
 ### Iterative processing 
 
  - Example 
@@ -482,7 +521,11 @@ THAT | 4
     2. debug your pseudo code, ensure it works
     3. simply translating from pseudo code to machine language 
 
+<h2 id="0fbcaf38632f1b7a6eb86b99e1e1ea63"></h2>
+
 ## 4.8 Hack Programming , Part 3
+
+<h2 id="7bba5d01d3778f550d69f87dca50fc3f"></h2>
 
 ### Pointers 
 
@@ -547,6 +590,8 @@ for(i=0; i<n; i++) {
  - Variables that store memory addresses like *arr* are called pointers. 
  - Hack pointer logic: 
     - whenever we have to access memory using a pointer , we need an instruction like `A=M` , something that comes from some memory register.  
+
+<h2 id="6a8b3c75d2b148310a110bf194c67f26"></h2>
 
 ### Input / Output 
 

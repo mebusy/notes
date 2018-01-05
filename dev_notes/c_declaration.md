@@ -4,6 +4,13 @@
      - [How a Declaration Is Formed](#0e8496ac4e183c0a93f348bea3eb755a)
      - [how to combine variables in structs and unions](#b6883b80c1162c486c5fc1f7cd01ef57)
          - [A Word About structs](#f630d4bf06506c3ab082d636b29f7243)
+         - [struct 内存对齐](#80a514cf94d858b0e7609f0f08d34686)
+         - [A Word About unions](#d4e244f54df03fa025bc569ccfabc85a)
+         - [A Word About enums](#e42747e8ccfb6720aed43d4f3052931e)
+     - [The Precedence Rule](#9ecf79b05d37fa25da955c7e0c4461ee)
+     - [typedef Can Be Your Friend](#180084aeda94c4da5d99c51a5c576d1c)
+         - [Difference Between typedef int x\[10\] and #define x int\[10\]](#b2964049a26ea843935c34c897b5d716)
+         - [What typedef struct foo { ... foo; } foo; Means](#3d484886fd516f41ecd9c20e76065a47)
 
 ...menuend
 
@@ -174,6 +181,8 @@ a.next = &b;       /* example link-up */
 a.next->next=NULL;
 ```
 
+<h2 id="80a514cf94d858b0e7609f0f08d34686"></h2>
+
 ### struct 内存对齐
 
  - 关键字：
@@ -212,6 +221,8 @@ struct E2 {
     - 各成员变量在存放的时候根据在结构中出现的顺序依次申请空间
         - 同时按照上面的对齐方式调整位置 空缺的字节自动填充
     - 同时为了确保结构的大小 为结构的字节边界数(即该结构中占用最大的空间的类型的字节数) 的倍数
+
+<h2 id="d4e244f54df03fa025bc569ccfabc85a"></h2>
 
 ### A Word About unions
 
@@ -257,6 +268,8 @@ union bits32_tag {
  - This union allows a programmer to extract the full 32-bit value, or the individual byte fields `value.byte.c0`, and so on.
  - There are other ways to accomplish this, but the union does it without the need for extra assignments or type casting.
 
+<h2 id="e42747e8ccfb6720aed43d4f3052931e"></h2>
+
 ### A Word About enums
 
  - Enums (enumerated types) are simply a way of associating a series of names with a series of integer values. 
@@ -279,6 +292,8 @@ enum sizes { small=7, medium, large=10, humungous };
     - enum names usually persist through to the debugger, and can be used while debugging your code.
  
 ---
+
+<h2 id="9ecf79b05d37fa25da955c7e0c4461ee"></h2>
 
 ## The Precedence Rule
 
@@ -323,6 +338,8 @@ char *(*c[10])(int **p);  //  how 2 read ?
     - `explain char *(*c[10])(int **);`
 
 
+<h2 id="180084aeda94c4da5d99c51a5c576d1c"></h2>
+
 ## typedef Can Be Your Friend
 
  - Typedefs are a funny kind of declaration: 
@@ -360,6 +377,8 @@ ptr_to_func signal(int, ptr_to_func);
 
  - Typedef provides essentially nothing for structs, except the unhelpful ability to omit the struct keyword.
 
+<h2 id="b2964049a26ea843935c34c897b5d716"></h2>
+
 ### Difference Between typedef int x[10] and #define x int[10]
 
  - 你不能再次修饰 typedef 'd typename
@@ -372,6 +391,8 @@ unsigned peach i; /* works fine */
 typedef int banana;
 unsigned banana i; /* Bzzzt! illegal */
 ```
+
+<h2 id="3d484886fd516f41ecd9c20e76065a47"></h2>
 
 ### What typedef struct foo { ... foo; } foo; Means
 

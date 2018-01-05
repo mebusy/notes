@@ -11,6 +11,37 @@
      - [Some of the Operators Have the Wrong Precedence](#892ab9a4c1d171fd57439aa763e50a23)
      - [Order of Evaluation is always undefined](#646b355af48a02490fb7d836806d222e)
  - [3. Unscrambling Declarations in C](#72b031c516a7abf0388911bba461224a)
+ - [4 C Arrays and Pointers Are NOT the Same!](#b7e9138ae25a9bed094f2fc2baac2ec7)
+     - [Arrays Are NOT Pointers!](#1eaa14e0cd93829351bf9715d9f5b6b9)
+     - [What's a Declaration? What's a Definition?](#a8d312913a6f076559c8def2be972777)
+     - [How Arrays and Pointers Are Accessed](#75a4728af33d339b0fb4e5f6c1c77f62)
+     - [What Happens When You "Define as Pointer/Reference as Array"](#cdf62163f96ec1f81f8371491bb91d37)
+     - [Other Differences Between Arrays and Pointers](#e6020bd3340b06367a4f39ac38b701c1)
+ - [Thinking of Linking](#4517a8b879a5e0c25240ae3929d48981)
+     - [The Benefits of Dynamic Linking](#a51694b67188edc8683e477e426a56ef)
+     - [Five Special Secrets of Linking with Libraries](#450da0dd9224f10691b980ac70d782d3)
+ - [6. Poetry in Motion: Runtime Data Structures](#56db6fe00c1a63b2206da1b3fc9d1dac)
+     - [Segments](#fb9a488a6fe2d37f9a17651d744997f6)
+     - [What the OS Does with Your a.out](#cf9c9db19b149da7bf46731588f14a1c)
+     - [What the C Runtime Does with Your a.out](#9b556298edbaee22cddaf42efe61cba0)
+         - [The Stack Segment](#3cf675eeba8bca26ae8a7b7b3e3f1b35)
+     - [What Happens When a Function Gets Called: The Procedure Activation Record](#b50aba5b915400027367a056c9c39e9b)
+     - [Threads of Control](#ff5dffd1a63cfb6268aa15dc53997150)
+     - [setjmp and longjmp](#33d032016b5ee178e526ce98a619238f)
+     - [Useful tool](#34973b949955301f78e9a38ca4003f83)
+ - [7. Thanks for the Memory](#07467f535850babca09c42bcce7740b3)
+     - [Virtual Memory](#b5e87cd12de6caadb66a8dddbea8135f)
+     - [Cache Memory](#1a1efe6a58f7e5cbe9f0f80b3398ae3c)
+     - [The Data Segment and Heap](#a47e4b5f84fb4d03a91154232aeaab75)
+     - [Bus Error](#9832805d1fa6d0233d047a31da5ec39d)
+     - [Segmentation Fault](#96498b0170eccc6027f7f4cea59bedf9)
+ - [9 More about Arrays](#8d68ff4961d87e1341081e9b11f35ca9)
+     - [When an Array Is a Pointer](#04c05fff18502967f0b95ac10adb75db)
+     - [Why C Treats Array Parameters as Pointers](#e2195f06bcab48f9bc6fbb7f1cc693dc)
+     - [Arrays and Pointers Interchangeability Summary](#24f1b01738a1f67b8bc231debf87a70d)
+ - [11 You Know C, So C++ is Easy!](#927ac867951fec8e4915977d2999fb9f)
+     - [Improvements in C++ Over C](#86ed791708ce65e7edac93b014c46870)
+     - [Restrictions in C++ that are not in C](#a3f3a90203b121a6a75f03bea0e1a2eb)
 
 ...menuend
 
@@ -226,7 +257,11 @@ char* const *(*next)();
  - see [c declaration,struct/union/enums/typedef](https://github.com/mebusy/notes/blob/master/dev_notes/c_declaration.md) 
 
 
+<h2 id="b7e9138ae25a9bed094f2fc2baac2ec7"></h2>
+
 # 4 C Arrays and Pointers Are NOT the Same!
+
+<h2 id="1eaa14e0cd93829351bf9715d9f5b6b9"></h2>
 
 ## Arrays Are NOT Pointers!
 
@@ -239,6 +274,8 @@ extern int y[];
  - the second declares y to be an array of int of unspecified size (an incomplete type),
     - the storage for which is defined elsewhere.
 
+<h2 id="a8d312913a6f076559c8def2be972777"></h2>
+
 ## What's a Declaration? What's a Definition?
 
 · | · | ·
@@ -248,6 +285,8 @@ definiton | occurs in only on place |  specifies the type of an object; reserves
 declaration | can occur multiple times | describes the type of an object; is used to refer to objects defined elsewhere (e.g., in another file)
 · | · | example: `extern int my_array[];`
 
+
+<h2 id="75a4728af33d339b0fb4e5f6c1c77f62"></h2>
 
 ## How Arrays and Pointers Are Accessed
 
@@ -294,6 +333,8 @@ c = a[i] ;
  - That's why you can equally write `extern char a[];` as well as `extern char a[100];`
 
     
+<h2 id="cdf62163f96ec1f81f8371491bb91d37"></h2>
+
 ## What Happens When You "Define as Pointer/Reference as Array"
 
  - Consider the case of an external declaration
@@ -308,11 +349,15 @@ c = a[i] ;
 
  - **Match Your Declarations to the Definition**
 
+<h2 id="e6020bd3340b06367a4f39ac38b701c1"></h2>
+
 ## Other Differences Between Arrays and Pointers
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_diff_array_pointer.png)
 
 ---
+
+<h2 id="4517a8b879a5e0c25240ae3929d48981"></h2>
 
 # Thinking of Linking
 
@@ -332,6 +377,8 @@ c = a[i] ;
     - `cc -Wl,-m main.c > main.linker.map`
     - will give ld the "-m" option, telling it to produce a linker map. 
 
+<h2 id="a51694b67188edc8683e477e426a56ef"></h2>
+
 ## The Benefits of Dynamic Linking
 
  - Dynamic linking permits easy versioning of libraries. 
@@ -350,6 +397,8 @@ c = a[i] ;
     - ar for static library
     - ld for dynamic library
 
+<h2 id="450da0dd9224f10691b980ac70d782d3"></h2>
+
 ## Five Special Secrets of Linking with Libraries
  
  1. Dynamic libraries are called lib something.so , and static libraries are called lib something.a
@@ -361,7 +410,11 @@ c = a[i] ;
  5. Symbols from static libraries are extracted in a more restricted way than symbols from dynamic libraries
 
 
+<h2 id="56db6fe00c1a63b2206da1b3fc9d1dac"></h2>
+
 # 6. Poetry in Motion: Runtime Data Structures
+
+<h2 id="fb9a488a6fe2d37f9a17651d744997f6"></h2>
 
 ## Segments
 
@@ -410,6 +463,8 @@ text    data     bss     dec     hex filename
     - the text segment is the one most affected by optimization
 
 
+<h2 id="cf9c9db19b149da7bf46731588f14a1c"></h2>
+
 ## What the OS Does with Your a.out
 
 
@@ -444,11 +499,15 @@ text    data     bss     dec     hex filename
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_process_address_area_with_shared_lib.png)
 
+<h2 id="9b556298edbaee22cddaf42efe61cba0"></h2>
+
 ## What the C Runtime Does with Your a.out
 
  - how does C organize the data structures of a running program ?
  - There are a number of runtime data structures: 
     - the stack, activation records, data, heap, and so on. 
+
+<h2 id="3cf675eeba8bca26ae8a7b7b3e3f1b35"></h2>
 
 ### The Stack Segment
 
@@ -483,6 +542,8 @@ main() {
 ```
 
  - 类似的方法，也可以找到 data and text segment  的地址.
+
+<h2 id="b50aba5b915400027367a056c9c39e9b"></h2>
 
 ## What Happens When a Function Gets Called: The Procedure Activation Record
 
@@ -530,11 +591,15 @@ main() {
  - Remember that compiler-writers will try to place as much of an activation record in registers as possible (because it's faster), so some of this may not be visible on the stack. 
 
 
+<h2 id="ff5dffd1a63cfb6268aa15dc53997150"></h2>
+
 ## Threads of Control
 
  - It should now be clear how different threads of control can be supported within a process. 
  - Simply have a different stack dedicated to each thread of control.
  - Each thread gets a stack of 1Mb (grown as needed) and a page of red zone betweeen each thread's stack. 
+
+<h2 id="33d032016b5ee178e526ce98a619238f"></h2>
 
 ## setjmp and longjmp
 
@@ -620,6 +685,8 @@ switch(setjmp(jbuf)) {
  - 在DOS中，堆栈大小必须被指定为构建可执行文件的一部分，并且不能在运行时增长。
     - 指定堆栈大小的方法因编译器而异。 
 
+<h2 id="34973b949955301f78e9a38ca4003f83"></h2>
+
 ## Useful tool
 
  - cdecl 
@@ -634,9 +701,13 @@ switch(setjmp(jbuf)) {
 
 ---
 
+<h2 id="07467f535850babca09c42bcce7740b3"></h2>
+
 # 7. Thanks for the Memory
 
  - A knowledge of memory architecture helps a programmer to understand some of the C conventions and restrictions.
+
+<h2 id="b5e87cd12de6caadb66a8dddbea8135f"></h2>
 
 ## Virtual Memory
 
@@ -684,6 +755,8 @@ $ pagesize
     - 如果无效，则内核向进程发出“segmentation violation”的信号。
     - If valid, the kernel retrieves the page from the disk.  
  
+<h2 id="1a1efe6a58f7e5cbe9f0f80b3398ae3c"></h2>
+
 ## Cache Memory
 
  - 高速缓存是多级存储概念的进一步扩展。
@@ -763,6 +836,8 @@ sys 0m0.002s
     - It unrolls the loop to read for one cache line and then write, which avoids the problem. 
 
 
+<h2 id="a47e4b5f84fb4d03a91154232aeaab75"></h2>
+
 ## The Data Segment and Heap
 
  - Heap 是用于动态分配的存储空间，即通过malloc（内存分配）获得并通过指针访问的存储空间。
@@ -788,6 +863,8 @@ sys 0m0.002s
     - `malloc` and `free` — get memory from heap and give it back to heap 
     - `brk` and `sbrk` — adjust the size of the data segment to an absolute value/by an increment
 
+<h2 id="9832805d1fa6d0233d047a31da5ec39d"></h2>
+
 ## Bus Error
 
  - 总线错误几乎总是由读取或写入错位导致的。
@@ -810,6 +887,8 @@ int *p= (int*) &(u.a[1]);
 
  - 编译器自动分配和填充数据（在内存中）以实现对齐。
 
+<h2 id="96498b0170eccc6027f7f4cea59bedf9"></h2>
+
 ## Segmentation Fault
 
  - 导致分段错误的小程序是：
@@ -823,7 +902,11 @@ int *p=0;
 
 ---
 
+<h2 id="8d68ff4961d87e1341081e9b11f35ca9"></h2>
+
 # 9 More about Arrays
+
+<h2 id="04c05fff18502967f0b95ac10adb75db"></h2>
 
 ## When an Array Is a Pointer
 
@@ -851,6 +934,8 @@ int *p=0;
         - `p=a+i;`
     - rule 2: A subscript is always equivalent to an offset from a pointer
     - rule 3: An array name **in the declaration of a function parameter** is treated by the compiler as a pointer to the first element of the array 
+
+<h2 id="e2195f06bcab48f9bc6fbb7f1cc693dc"></h2>
 
 ## Why C Treats Array Parameters as Pointers
 
@@ -885,6 +970,8 @@ func( my_int_array );
 func(&my_int_array[i] );
 ```
 
+<h2 id="24f1b01738a1f67b8bc231debf87a70d"></h2>
+
 ## Arrays and Pointers Interchangeability Summary
 
  1. 数组访问`a[i]`总是被编译器“重写”或解释为指针访问`*（a + i）;`
@@ -894,11 +981,15 @@ func(&my_int_array[i] );
 
 ---
 
+<h2 id="927ac867951fec8e4915977d2999fb9f"></h2>
+
 # 11 You Know C, So C++ is Easy!
 
  - 面向对象编程的特点是继承和动态绑定。
     - C ++通过类派生支持继承。
     - 动态绑定由virtual class functions 提供
+
+<h2 id="86ed791708ce65e7edac93b014c46870"></h2>
 
 ## Improvements in C++ Over C
 
@@ -908,6 +999,8 @@ func(&my_int_array[i] );
     - 当然也可以是c风格的 (float)i
  - C ++允许一个constant integer定义一个数组的大小。
     - `const int size=128;   char a[size];` is allowed in C++, but will generate an error message from C.
+
+<h2 id="a3f3a90203b121a6a75f03bea0e1a2eb"></h2>
 
 ## Restrictions in C++ that are not in C
 

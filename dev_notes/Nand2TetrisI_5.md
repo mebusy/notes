@@ -1,9 +1,30 @@
+...menustart
+
+ - [5. Computer Architecture](#82c3a1ecfb73757b332ca9d07818fea2)
+     - [5.1 Von Neumann Architecture](#33999dda2fa6608276c40dda9517d0c1)
+         - [Elements](#aa56a2e65d8106aef3c61e4f6bf94fdb)
+         - [Information Flows](#4cddecdacbbc625f8b0abf04f6aa1e86)
+         - [Buses](#4c7bdd90410042e10dd67436384e17aa)
+     - [5.2 The Fetch-Execute Cycle](#44e3bf233a0e7a5decff0aaab2d17d15)
+         - [Fetching](#7865d8f54c20047006223a67ab639b70)
+         - [Executing](#63c4cc5944eb60b1969f2333ead70fc9)
+         - [Fetch-Execute Clash](#24e481da85387c537c02bb45d1bbc147)
+     - [](#d41d8cd98f00b204e9800998ecf8427e)
+
+...menuend
+
+
+<h2 id="82c3a1ecfb73757b332ca9d07818fea2"></h2>
 
 # 5. Computer Architecture
+
+<h2 id="33999dda2fa6608276c40dda9517d0c1"></h2>
 
 ## 5.1 Von Neumann Architecture
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_architexture_overall.png)
+
+<h2 id="aa56a2e65d8106aef3c61e4f6bf94fdb"></h2>
 
 ### Elements
 
@@ -14,11 +35,15 @@
     - Program
     - Data
 
+<h2 id="4cddecdacbbc625f8b0abf04f6aa1e86"></h2>
+
 ### Information Flows
 
  - control bus
  - data bus
  - address bus
+
+<h2 id="4c7bdd90410042e10dd67436384e17aa"></h2>
 
 ### Buses
 
@@ -31,6 +56,8 @@
 
 ---
 
+<h2 id="44e3bf233a0e7a5decff0aaab2d17d15"></h2>
+
 ## 5.2 The Fetch-Execute Cycle
 
  - we're going to talk about the very basic thing that a compute does, which is
@@ -38,6 +65,8 @@
  - THe basic CPU loop
     - **Fetch** an instruction from the Program memory
     - **Execute** it
+
+<h2 id="7865d8f54c20047006223a67ab639b70"></h2>
 
 ### Fetching
 
@@ -50,9 +79,13 @@
     - The output of the PC , feeds into the address specification of our program memory,
     - and then the *out* of the program memory , comes the actual code of instructions , that we need to execute.
  
+<h2 id="63c4cc5944eb60b1969f2333ead70fc9"></h2>
+
 ### Executing 
  
  - Executing the operation involves also accessing registers and/or data memory
+
+<h2 id="24e481da85387c537c02bb45d1bbc147"></h2>
 
 ### Fetch-Execute Clash 
 
@@ -67,6 +100,8 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_fetch-execute_clash.png)
 
+
+<h2 id="d41d8cd98f00b204e9800998ecf8427e"></h2>
 
 ## 
  - How to solve it ?
