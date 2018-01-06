@@ -53,4 +53,12 @@ Until end-of-file
 ### Translating C-instructions 
 
  - `dest = comp ; jump`
- - 111 a c1 c2 c3 c4 c5 c6 d1 d2 d3 j1 j2 j3 
+ - `111` a c1 c2 c3 c4 c5 c6 d1 d2 d3 j1 j2 j3 
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_c_instruction_again.png)
+
+
+## 6.4: The Assembly Process - Handling Symbols
+
+
+
+
