@@ -257,7 +257,23 @@ The CPU executes the instruction according to the Hack Language specification
         - because the PC always emits the address of the next instruction
 
 
+### Hack Computer implementatioin
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_compute_impl.png)
+
+ - ROM - CPU
+    - CPU PC 告诉 ROM 地址，ROM 输出 该地址的指令给CPU
+
+ 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_compute_impl2.png)
+
+ - CPU - RAM 
+    - CPU 高速 RAM 地址， RAM 输出该地址内容给 CPU
+    - 如果有写操作，CPU 同时提供 要写入的data
+
+---
+
+## 5.5 Project Overview
 
 
 
