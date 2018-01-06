@@ -234,8 +234,29 @@ The CPU executes the instruction according to the Hack Language specification
 
 ### Data Memory 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_data_memory.png)
 
-     
+### Instruction Memory (ROM)
+
+ - 32k ROM
+ - To run a program on the Hack computer:
+    - Load the program into the ROM
+    - Press "reset"
+    - The program starts running
+ - Loading a program
+    - Hardware implementation: plug-and-play ROM chips
+        - i.e. 游戏卡带
+    - Hardware simulation: 
+        - programs are stored in text file
+        - program loading is emulated by the built-in ROM chip
+ - ROM interface
+    - 15-bit address in ,  16-bit address out
+    - the output of the ROM is always the contents of the register that is selected by the address input.
+        - if I enter 17 into the address input, the contents of register number 17 comes out.
+    - So, it makes a lot of sense to take this ROM and connect it to the program counterr.
+        - because the PC always emits the address of the next instruction
+
+
 
 
 
