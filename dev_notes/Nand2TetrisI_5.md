@@ -211,9 +211,32 @@ else
     else        PC++ 
 ```
 
-## 
+## 5.4 The Hack Computer
 
- 
+### Hack CPU Operation
+
+The CPU executes the instruction according to the Hack Language specification
+
+ - if the instruction includes D and A , the respective value are read from , and / ro write to , the CPU-resident D-register and A-register
+    - D = D-A
+ - if the instruction is `@x` , then x is stored in the A-register; this value is emitted by addressM
+ - if the instrction's RHS includes M, this value is read from *imM*
+    - M = M+1
+ - if the instruction's LHS includes M, then the ALU output is emmited by *outM*, and the *writeM* bit is asserted.
+ - if there is a jump
+    - if (reset==0)
+        - The CPU logic uses the instruction's jump bits, and the ALU output's to decide if there should be a jump
+            - if there is a jump: PC is set to the value of the A-register 
+            - else (no jump): PC++ 
+        - The updated PC value is emitted by *pc*
+    - if(reset==1)
+        - PC is set to 0. *pc* emites 0 (cause a program restart)
+
+### Data Memory 
+
+
+     
+
 
 
 
