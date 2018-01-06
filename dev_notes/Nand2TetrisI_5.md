@@ -275,6 +275,14 @@ The CPU executes the instruction according to the Hack Language specification
 
 ## 5.5 Project Overview
 
+ - Hack 并不是冯诺依曼架构的计算机。
+ - 冯诺依曼架构 不区分 program ROM/data RAM , 你可以随时改变运行的程序。
+ - 冯诺依曼架构 实现，一般是 增加一个 state 的输入， 使用有限状态机 来告诉CPU 这个周期做这件事，下个周期做 另外的事。
+
+
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hardware_project.png)
+
 
 
 
