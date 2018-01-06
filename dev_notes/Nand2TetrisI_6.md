@@ -35,4 +35,22 @@ Until end-of-file
 
 ## 6.2 The Hack Assembly Language 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_assembler_symbols.png)
 
+## 6.3 The Assembly Proces -- Handling Instructions 
+
+### Translating A-instructions 
+
+ - `@value`
+ - binary: 0xxxxxxxxxxxxxxx 
+ - where *value* is either
+    - a non-negative decimal constant , or 
+    - a symbol referring to such a constant
+ - Translation to binary
+    - if *value* is a decimal constant , generate the 15-bit binary constant
+    - if *value* is a symbol, later.
+
+### Translating C-instructions 
+
+ - `dest = comp ; jump`
+ - 111 a c1 c2 c3 c4 c5 c6 d1 d2 d3 j1 j2 j3 
