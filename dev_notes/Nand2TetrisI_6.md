@@ -59,6 +59,26 @@ Until end-of-file
 
 ## 6.4: The Assembly Process - Handling Symbols
 
+ - Symbol
+    - Variables
+    - Labels
+    - pre-defined symbols
+ - Use symbol table 
+    1. init symbol table with pre-dfined symbols
+    2. first pass ,  add Lable symbols to symbol table
+    3. 2nd pass , translate code 
+
+
+## 6.6: Project 6 Overview: Programming Option
+
+ - Proposed software architecture
+    - Parse: unpacks each instruction into its underlying fields
+    - Code: translates each field into its corresponding binary value
+    - SymbolTable: managers the symbol table
+    - Main: initializes the I/O files and drives the process
+
+
+
 
 
 
