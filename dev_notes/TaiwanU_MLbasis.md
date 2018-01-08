@@ -912,6 +912,19 @@ convex sets | ∞
     - 有很高的機會 Ein跟Eout的差別會被限制在 這個根號表达式里面, 也就是說我們現在描述的是好事情發
  - Eout 会被限制在 两个部分中间，在统计上，很像  confidence interval -- 信赖区间
     - 通常，我们会比较在意， 右边这部分
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vcbound_rephrase.png)
+    - √... :  penalty for **model complexity**
+        - 我们 hypothesis set 今天到底有多 powerful , 但是 我在 generalization的时候要付付出的代价就是这么多
+        - 表示: Ω( N, H, δ ) 
+            - N: 有多少个点
+            - H: 你的VC dimension
+            - δ: 你觉得你有多幸运
+
+### THE VC Message
+
+ - with **a high probability** ,
+    -
+
 
 
 
