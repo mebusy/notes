@@ -203,6 +203,13 @@
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_pc_logic.png)
 
+ - Emites the address of the next instruction:
+    - To start / restart the program's execution: PC=0
+    - no jump:  PC++
+    - goto :  PC=A
+    - conditional goto:  if the condition is true  PC=A  else PC++ 
+
+
 ```
 if (reset==1) PC=0
 else

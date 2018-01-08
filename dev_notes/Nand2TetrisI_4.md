@@ -317,9 +317,19 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
         
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_c_binary_comp.png)
 
+ - impossible to compute with A and M !!
+
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_c_binary_dest.png)
 
+ - d1 means writing to A enable
+ - d2 means D 
+ - d3 means M 
+
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_c_binary_jump.png)
+
+ - j1 means less than 0
+ - j2 means equals 0
+ - j3 means great than 0
 
 ---
 
@@ -593,7 +603,6 @@ for(i=0; i<n; i++) {
 
 <h2 id="6a8b3c75d2b148310a110bf194c67f26"></h2>
 
-### Input / Output 
 
 
 

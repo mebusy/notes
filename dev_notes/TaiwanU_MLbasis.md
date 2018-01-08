@@ -904,7 +904,7 @@ convex sets | ∞
 
 ## Interpreting VC Dimension 
 
- - VC Bound Rephrase:  Penalty for Model Complexity
+### VC Bound Rephrase:  Penalty for Model Complexity
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vcbound_rephrase.png)
 
@@ -925,9 +925,41 @@ convex sets | ∞
  - with **a high probability** ,
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vc_message.png)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vc_message_graph.png)
+
  - 把 Ein 做得更低，就需要一个强大的 hypothesis set, 但是这要付出 很大的 model complexity 的代价，不见得是最好的选择。
 
+### VC Bound Rephrase : Sample Complexity
 
+ - 樣本的複雜度或實際上就是資料量的複雜度。 
+    - 像你老板開出了一些規格，我希望你的Ein跟Eout差最多0.1， 然後呢我希望壞事情發生的機會最多最多就10%，也就是說我們 90%的時候相信好事情會發生。 然後再來我給你一個learning model， 假設它VC Dimension是3，例如說2D的perceptron，
+    - 麼你老板就問了，你到底要多少的資料才夠？ 
+ - ε = 0.1 , δ = 0.1 (90% good thing)  , d<sub>vc</sub> = 3 , want 4(2N)<sup>d<sub>vc</sub></sup>· exp( -1/8·ε²·N ) ≤ δ 
+ - Sample complexity:
+    - **need N ≈ 10000 · d<sub>vc</sub> in theory**.
+    - practical rule of thumb:   **N ≈ 10 · d<sub>vc</sub>  often enough !**
+ - 所以 VC bound 其实 非常宽松的. why ?
+    - Hoeffding for unknown E<sub>out</sub> :   **any distribution, any target**
+    - m<sub>H</sub>(N)  instead of |H(X₁,...,X<sub>N</sub>)|   :  **'any' data** 
+        - 成长函数
+    - N<sup>d<sub>vc</sub></sup> instead of m<sub>H</sub>(N)  :   **'any' H of same d<sub>vc</sub>** 
+        - 上限的上限
+    - union bound on worst cases:   **any choice made by A**
+
+### Summary
+
+ - VC Bound 是機器學習裡面最重要的一個理論工具。 
+ - VC Dimension 是最大的 non-break point。  在Perceptrons 上，它恰好就是 d + 1，就是我的 Perceptrons 裡面到底有多少個維度。 
+ - 物理意義上，VC Dimension 告訴我們說，哎我們的 這個 Hypothesis Set 到底有多少的自由度，大概就是啊 有多少的自由的這個旋鈕
+ - VC Dimension 以用來看看我們的 Model， 我們的 Hypothesis Set 到底有多複雜，然後我們能夠用它來決定，我們大概需要多少的 資料才夠。 
+
+---
+
+# Week 8
+
+
+    
+ 
 
 
 
