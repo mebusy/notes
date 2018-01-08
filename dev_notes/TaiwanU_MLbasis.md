@@ -923,7 +923,10 @@ convex sets | ∞
 ### THE VC Message
 
  - with **a high probability** ,
-    -
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vc_message.png)
+
+ - 把 Ein 做得更低，就需要一个强大的 hypothesis set, 但是这要付出 很大的 model complexity 的代价，不见得是最好的选择。
+
 
 
 
