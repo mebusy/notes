@@ -177,7 +177,7 @@
  - CPU handling of an C-instruction
     - The instrcution bits are decoded into :
         - op-code , ALU control bits, dest bits, jump bits
-    - op-code is 1, in this case we want to route the input of the A-register in such a way that the input will com frmoe the ALU. 
+    - op-code is 1, in this case we want to route the input of the A-register in such a way that the input will come from the ALU. 
 
 ### ALU operation 
 
