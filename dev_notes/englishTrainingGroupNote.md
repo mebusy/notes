@@ -66,6 +66,46 @@
 
 --- 
 
+# Grammar in Use
+
+## UNIT 11. How long have you (been) ...?
+
+## UNIT 17. Have and have got
+
+ - A. Have and have got (= **possess**, own etc.)
+    - We often use have got rather than have alone. So you can say:
+        - We've got a new car. or We have a new car.
+        - Ann has got two sisters. or Ann has two sisters.
+    - We use have got or have for illnesses, pains etc.:
+        - I've got a headache. or I have a headache.
+    - In questions and negative sentences there are three possible forms:
+        - Have you got any money? I haven't got any money.
+        - Do you have any money? I don't have any money.
+        - Have you any money? (less usual) I haven't any money. (less usual)
+    - When have means 'possess' etc., you cannot use continuous forms (is having/are having etc.):
+        - I have/I've got a headache. (not 'I'm having')
+    - Past Tense
+        - For the past we use had (usually without 'got'):
+            - Ann had long fair hair when she was a child. (not 'Ann had got')
+        - In past questions and negative sentences we normally use did/didn't:
+            - Did they have a car when they were living in London?
+            - I didn't have a watch, so I didn't know the time.
+ - B. Have breakfast/have a bath/have a good time etc.
+    - Have (but not 'have got') is also used for many **actions and experiences**. For example:
+        - have breakfast/dinner/a cup of coffee/a cigarette etc.
+        - have a bath/a shower/a swim/a rest/a party/a holiday/a nice time etc.
+        - have an accident/an experience/a dream etc.
+        - have a look (at something)/a chat (with somebody)
+        - have a baby (= give birth to a baby)
+        - have difficulty/trouble/fun
+        - example
+        - I usually have a sandwich for my lunch. (have = 'eat' - not 'have got')
+    - In these expressions, have is like other verbs. You can use continuous forms (is having are having etc.) where suitable:
+        - I had a postcard from Fred this morning. He's on holiday. He says he's having a wonderful time. (not 'he has a wonderful time')
+        - The phone rang while we were having dinner. (not 'while we had')
+
+## 
+
 
 
 
