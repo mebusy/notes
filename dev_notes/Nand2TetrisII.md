@@ -193,6 +193,31 @@ pop local 2
         - SP stored in RAM[0]
         - Stack base addr = 256 , that is , it will start begin in address 256
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_stack_implementation.png)
+
+```
+// push constant 17
+// logic in pseudo code
+*sp = 17
+sp++
+
+// Hack assembly
+@17
+D=A
+@SP
+A=M
+M=D
+@SP
+M=M+1
+```
+
+ - Who will do above work :  vm code -> assembly code?
+ - **VM translator** 
+    - A program that translates VM code into machine language
+    - Each VM command generates several assembly commands.
+
+
+## 1.5 VM Implementation: Memory Segments
 
 
 
