@@ -157,4 +157,11 @@ pop local 2
  - indeed, the VM does not recognize symbolic variable names. 
     - all variables are replaced by references to memory segments. 
     - and this is not something which is unique to our VM. 
+ - 如果我们增加一个 virutal segment -- *constant* , it contains just 0,1,2,... 
+ - 这样 Stack的 语法就可以 统一成:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/
+ - we also add a segment that we call *constant*, which is truely a virtual segment, because it contains just the number 0,1.2,... 
+
+
 
