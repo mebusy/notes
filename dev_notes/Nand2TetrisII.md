@@ -160,7 +160,47 @@ pop local 2
  - 如果我们增加一个 virutal segment -- *constant* , it contains just 0,1,2,... 
  - 这样 Stack的 语法就可以 统一成:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_memory_segments2.png)
+
+ - so why we need `push constant 17` , why can't we just say `push 17` ?
+    - we do that, so we get a consistant syntax. 
+    - this is a very small price to pay for this consistency
+    - it also makes compilation easier.
+
+---
+
+ - in order to make life interesting , we actually have not 4, but 8 virtual memory segments
+    - local / argument / this / that / constant / static / pointer / temp
+ - why we need so many segments
+    - to cover all the features of high-level language
+ - all have the same syntax: 
+    - push  segment index:  从指定segment 取第index地址的数据，压栈
+    - pop   segment index:  出栈， 数据存入 指定segment index地址。
+
+
+## 1.4: VM Implementation: the Stack
+
+ - if we want to acutally execute the VM code in some concrete way, we have to realize it on some Von Neumann machine.
+ - so what do we have to do ?
+    - fist of all, you have to take these 4 or 8 memory segments, and we have to somehow map these memory segments on the single RAM that is available for us. 
+    - once we come up with this mapping, we have to do something with the push / pop commands.
+    - we have to translate them into a sequences machine labeling instructions that will operate on this world -- that we just built on the RAM.
+
+### Stack machine
+
+ - Implementation:  
+    - Assumptions:
+        - SP stored in RAM[0]
+        - Stack base addr = 256 , that is , it will start begin in address 256
+
+
+
+
+
+
+
+
+
  - we also add a segment that we call *constant*, which is truely a virtual segment, because it contains just the number 0,1.2,... 
 
 
