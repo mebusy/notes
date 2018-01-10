@@ -305,8 +305,48 @@ M=D
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_ram_implementation.png)
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_impl_temp.png)
 
-    
+### Memory segment: pointer
+
+ - the pointer segment is a little bit obscure. 
+    - you can't understand really why we need it until you begin to write the compiler. 
+ - The big picture
+    - the compiler generates code that keeps track of the base addresses of the *this* and *that* segments using the *pointer* segment. 
+ - Implementing
+    - Pointer is a fixed memory segment. It has only 2 entries -- 0 and 1.
+    - `push pointer 0/1`  , `pop pointer 0/1`
+    - accessing `pointer 0` should result in accessing THIS
+    - accessing `pointer 1` should result in accessing THAT
+ - Implementation: Supplies THIS or THAT. 
+
+```
+// VM code:
+push pointer 0/1 
+
+// Assembly code:
+*SP=THIS/THAT, SP++
+```
+
+### VM Language Summary
+
+ - Arithmetic / Logical commands
+    - add, sub, neg, eq, gt, lt, and, or, not
+ - Memory access commands
+    - pop segment i
+    - push segment i
+ - Branching commands
+    - label *label*
+    - goto *label*
+    - if-goto *label*
+ - Function commands
+    - function *functionName nVars*
+    - call *functionName nArgs*
+    - return 
+
+## 1.6 The VM Emulator
+
+
 
 
 
