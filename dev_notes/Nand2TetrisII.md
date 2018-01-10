@@ -290,6 +290,20 @@ M=D
  - Following assembly , the Hack assembler will map these references onto RAM[16],RAM[17], ..., RAM[255]
  - Therefore , the entries of the *static* segment will end up being mapped onto RAM[16], RAM[17], ..., RAM[255] , 
     - in the order in which they appear in the program. 
+    - `push static i` , i 和 内存地址并没有什么关系
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_static_segment.png)
+
+### Memory segment: temp
+
+ - The big picture:  The compile
+    - sometimes needs to use some variables for temporary storage
+    - our VM provides 8 such temporary variables
+ - Implementation:
+    - Mapped on RAM locations 5 to 12.
+
+
+    
 
 
 
