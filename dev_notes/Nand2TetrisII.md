@@ -344,7 +344,10 @@ push pointer 0/1
     - call *functionName nArgs*
     - return 
 
-## 1.6 The VM Emulator
+
+## 1.7 VM Implementation on the Hack Platform
+
+ - Standard VM mapping on the Hack platform
 
 
 
