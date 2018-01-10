@@ -300,7 +300,10 @@ M=D
     - sometimes needs to use some variables for temporary storage
     - our VM provides 8 such temporary variables
  - Implementation:
+    - a fixed, 8-place memory segment 
     - Mapped on RAM locations 5 to 12.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_ram_implementation.png)
 
 
     
