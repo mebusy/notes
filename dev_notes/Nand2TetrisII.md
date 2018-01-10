@@ -349,6 +349,22 @@ push pointer 0/1
 
  - Standard VM mapping on the Hack platform
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_stardard_vm_mapping.png)
+
+## 1.A Perspective
+
+ - out VM vs Java JVM
+    - only 1 datatype : 16 bit integer , why JVM having integer, float, double ...
+    - JVM also support multiplication , division , bit-wist operations
+ - JVM on Android devices uses another abstract architecture -- register machine.
+ - register machine is perhaps less elegant ,less beautiful than stack machine. but arguably, it generates code which is better optimized for processors of mobile devices.
+
+
+---
+
+# 
+
+
 
 
 
