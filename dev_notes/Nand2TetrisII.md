@@ -234,7 +234,16 @@ addr=LCL+2 , SP--,  *addr=*SP
 You write it !
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_local_seg_operation.png)
 
+
+### Implementing local, argument, this, that 
+
+ - The big picture:  
+ - When translating the high-level code of some method into VM code, the compile :
+    - map the method's *local* and *argument* variables onto the local and argument segments
+    - map the *object* fields and *array* entries that the method is currently processing onto the this and that segments.
+ - the VM codes are same , as for local segment.
 
 
 
