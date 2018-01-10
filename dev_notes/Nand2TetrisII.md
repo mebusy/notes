@@ -219,7 +219,21 @@ M=M+1
 
 ## 1.5 VM Implementation: Memory Segments
 
- - 
+### Implementing local
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_local_seg_implementation.png)
+
+```
+// vm code: 
+pop local 2
+
+// pseudo code:
+addr=LCL+2 , SP--,  *addr=*SP
+
+// hack assembly 
+You write it !
+```
+
 
 
 
