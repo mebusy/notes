@@ -243,7 +243,53 @@ You write it !
  - When translating the high-level code of some method into VM code, the compile :
     - map the method's *local* and *argument* variables onto the local and argument segments
     - map the *object* fields and *array* entries that the method is currently processing onto the this and that segments.
- - the VM codes are same , as for local segment.
+ - local , argument , this and that are implemented precisely the same way.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_impl_local_argu_this_that.png)
+
+
+### Memory segment: constant
+
+ - The big picture:
+ - When translating the high-level code of some method into VM code, the compile :
+    - it translate high-level operations involving *constants* into VM operation involving the constant segment.
+ - Implementation:
+    - Supplies the specified constant
+    - constant segment 并不真的存在
+ - Caution: there is no *pop* for constant, it makes no sense.
+
+```
+// VM code
+push constant i 
+
+// Assembly code:
+*SP=i , SP++
+```
+
+### Memory segment: static 
+
+ - The big picture:
+    - the compile maps the *static* variables that the method sees onto the static segment.
+ - static variables should be seen by all the mothods in a program
+    - Store them in some "global space"
+    - Have the VM translator translate each VM reference *static i* (in file Foo.vm)  into an assembly reference *Foo.i*
+
+```
+// VM code 
+// File Foo.vm
+pop static 5
+... 
+
+// Generated assembly code:
+// D=stack.pop (code omitted)
+@Foo.5
+M=D
+...
+```
+
+ - Following assembly , the Hack assembler will map these references onto RAM[16],RAM[17], ..., RAM[255]
+ - Therefore , the entries of the *static* segment will end up being mapped onto RAM[16], RAM[17], ..., RAM[255] , 
+    - in the order in which they appear in the program. 
 
 
 
