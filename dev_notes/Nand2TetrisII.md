@@ -219,14 +219,13 @@ M=M+1
 
 ## 1.5 VM Implementation: Memory Segments
 
+ - 
 
 
 
 
 
 
-
- - we also add a segment that we call *constant*, which is truely a virtual segment, because it contains just the number 0,1.2,... 
 
 
 
