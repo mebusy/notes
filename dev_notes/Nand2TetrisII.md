@@ -362,7 +362,31 @@ push pointer 0/1
 
 ---
 
-# 
+# Week2:  Virutal Machine : Program Control
+
+## 2.1 Program Contorl
+
+ - Branching
+ - Functions 
+ - Function call-and-return
+ - Dynamic memory management
+ - Stack processing
+ - Pointers
+ - Completing the VM implementation
+
+## 2.2 Branching
+
+ - Branching commands
+    - label *label*
+    - goto *label*
+        - jumps to execute the commands just after *label*.
+    - if-goto *label*
+        - *cond* = pop
+        - if *cond* jump to execute the command just after *label*
+        - 
+
+ 
+
 
 
 
