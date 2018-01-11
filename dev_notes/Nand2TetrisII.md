@@ -455,6 +455,8 @@ push pointer 0/1
     - state of caller
     - state of callee
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_state_of_caller_callee.png)
+
 
 
 
