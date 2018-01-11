@@ -286,6 +286,62 @@ TypeError: Can't instantiate abstract class BasePizza with abstract methods get_
 
 ## 7.6 Mixing static, class, and abstract methods
 
+ - 抽象方法的原型并不是一成不变的。 
+    - 当你真正实现这个方法的时候，没有什么能阻止你扩展参数列表，只要你认为合适：
+
+```python
+import abc
+class BasePizza(object):
+    __metaclass__  = abc.ABCMeta
+    @abc.abstractmethod
+    def get_ingredients(self):
+        """Returns the ingredient list."""
+         
+class Calzone(BasePizza):
+    def get_ingredients(self, with_egg=False):
+        egg = Egg() if with_egg else None
+        return self.ingredients + [egg]
+```
+
+
+ - 我们可以用任何我们喜欢的方式来定义Calzone的方法，只要仍然支持我们在BasePizza类中定义的接口。 
+    - 这包括将它们实现为 class or static  方法：
+
+```python
+class DietPizza(BasePizza):
+    @staticmethod
+    def get_ingredients():
+        return None
+```
+
+ - python3 开始，你可以直接在 `@abstractmethod` 上加上 `@staticmethod` or `@classmethod`.
+ - 但是，没有什么办法 可以强制规定 子类 把某个抽象方法 必须实现为 某个种类
+
+---
+
+ - 不像java ，你可以在python的抽象方法 加入代码。
+    - 抽象方法中还有实现, 怎么办？
+    - call 抽象方法 by using super()
+ 
+```python
+import abc
+class BasePizza(object):
+    __metaclass__  = abc.ABCMeta
+    default_ingredients = ['cheese']
+
+    @classmethod
+    @abc.abstractmethod
+    def get_ingredients(cls):
+        """Returns the default ingredient list."""
+        return cls.default_ingredients
+        
+        
+class DietPizza(BasePizza):
+    def get_ingredients(self):
+        return [Egg()] + super(DietPizza, self).get_ingredients()
+```
+
+## 7.7 The truth about super
 
 
 
