@@ -391,6 +391,16 @@ push pointer 0/1
     - simple: the assembly langauge has similar branching commands.
 
 
+## 2.3 Functions Abstraction
+
+ - Functions in the VM language
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_funcs_in_VM.png)
+ - The VM language features:
+    - primitive operations (fixed) : add, sub, ...
+    - abstract operations (  extensible) : multiply , sqrt, ...
+ - **Applying a primitive operator and calling a function have the same look-and-feel**
+
+
  
 
 
