@@ -400,6 +400,11 @@ push pointer 0/1
     - abstract operations (  extensible) : multiply , sqrt, ...
  - **Applying a primitive operator and calling a function have the same look-and-feel**
 
+### defining 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_definition.png)
+
+
 
  
 
