@@ -412,6 +412,7 @@ push pointer 0/1
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_execute.png)
 
+ - `call func n` , here *n* means the number arguments ?
  - after line 0 of `function mult 2` is executed:
     - First of all I get an empty stack
     - The 2nd thing that I get is an argument segment. 
@@ -457,6 +458,27 @@ push pointer 0/1
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_state_of_caller_callee.png)
 
+ - How to maintain the states of all the functions up the calling chain ? 
+    - The calling pattern is LIFO , it's a Stack
+
+### the big picture 
+
+ - Example: computing mult(17,212)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_example_17p212.png)
+
+ - Net effect:
+    - The function's arguments (17,212) were replaced by the function's value (3604)
+
+### Function call and return: the detail
+
+ - VM implementaion
+    1. Sets arg  
+        - the ARG pointer should refer to the base address of the argument's segments in the memory
+    2. Saves the caller's frame
+        - it consists of the working stack of the caller , and the current segment that it uses.
+        - the working stack is safe. 
+    
 
 
 
