@@ -472,6 +472,9 @@ push pointer 0/1
 
 ### Function call and return: the detail
 
+**call**
+
+
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_details_0.png)
 
 
@@ -485,9 +488,14 @@ push pointer 0/1
         - the working stack is safe. 
             - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_details_2.png)
         - and now I have to save the segments , and the return address . 
+            - taken together, we call these things the function's frame.
+            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_details_3.png)
+    3. Jumps to executed *foo*
     
 
+**function**
 
+10:24
 
 
 
