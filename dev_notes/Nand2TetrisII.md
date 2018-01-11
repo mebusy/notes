@@ -484,6 +484,7 @@ push pointer 0/1
         - it consists of the working stack of the caller , and the current segment that it uses.
         - the working stack is safe. 
             - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_details_2.png)
+        - and now I have to save the segments , and the return address . 
     
 
 
