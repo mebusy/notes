@@ -43,7 +43,7 @@
  - stack pointer
     - points to the location in which the next value is going to be pushed.
  - Stack arithmetic
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ n2t_stack_arithmetic.png)
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_stack_arithmetic.png)
     - add: pop the 2 top most values , add them , then push the result back
     - neg: not simply negate , it will first of all pop the top value , negate it on the side and then push the result back.
  - Applying a function *f* on the stack:
