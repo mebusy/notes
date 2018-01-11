@@ -381,9 +381,15 @@ push pointer 0/1
     - goto *label*
         - jumps to execute the commands just after *label*.
     - if-goto *label*
-        - *cond* = pop
+        - *cond* = pop ,  执行 if-goto 会把栈顶单元弹出栈
         - if *cond* jump to execute the command just after *label*
-        - 
+        - (Requires pushing the condition to the stack just before the if-goto command)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_cond_jump.png)
+
+ - Implementation:
+    - simple: the assembly langauge has similar branching commands.
+
 
  
 
