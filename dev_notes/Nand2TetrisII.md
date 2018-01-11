@@ -472,12 +472,18 @@ push pointer 0/1
 
 ### Function call and return: the detail
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_details_0.png)
+
+
+
  - VM implementaion
     1. Sets arg  
         - the ARG pointer should refer to the base address of the argument's segments in the memory
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_details_1.png)
     2. Saves the caller's frame
         - it consists of the working stack of the caller , and the current segment that it uses.
         - the working stack is safe. 
+            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_details_2.png)
     
 
 
