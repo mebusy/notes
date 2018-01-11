@@ -399,14 +399,63 @@ push pointer 0/1
     - primitive operations (fixed) : add, sub, ...
     - abstract operations (  extensible) : multiply , sqrt, ...
  - **Applying a primitive operator and calling a function have the same look-and-feel**
+ - 这里这是抽象，并不是真正的 VM 语法
 
 ### defining 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_definition.png)
 
+ - `function mult 2` 
+    - 2 means the number of **local** variables which will be used !!!
+
+### executing
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_execute.png)
+
+ - after line 0 of `function mult 2` is executed:
+    - First of all I get an empty stack
+    - The 2nd thing that I get is an argument segment. 
+        - it contains the exact 2 values that were pushed by the caller
+    - then another thing that I get is 2 local variables which initialized to 0. 
+        - why do I get 2 local variables ?
+        - `function mult 2` , so the VM implementation prepared for me a segment called local. 
+ - eventually we push the result to stack , because we want to return this vallue to the caller.
+    - command `return` , the VM implementation knows how to handle return.
+    - it takes the top most value in the stack of the callee , and just puts it on the stack of the caller instead of the arguments that were pushed previously.
 
 
- 
+### Making the abstraction work: implementation
+
+ - For each function **call** during run-time, the implementation has to ...
+    - Pass parameters from the calling function to the called function 
+    - Determine the return address within the caller's code
+    - Save the caller's return address , stack and memory segments
+    - Jump to execute the called function.
+ - For each function **return** during run-time, the implementation has to ...
+    - Return to the caller the value computed by the called function
+        - here there's an implicit assumption: it is required that the callee always pushes a value before it returns.
+    - Recycle the memory resources used by the called functin
+    - Reinstate the caller's stack and memory segments
+    - Jump to the return address in the caller's code
+
+
+## 2.4 Function Call and Return: Implementation Preview
+
+ - Function execution
+    - Calling chain:  foo > bar > sqrt > ...
+    - For each function in the calling chain during run-time , we must maintain the function's *state*
+ - Function's state
+    - During run-time
+        - Each function uses a working stack + memory segments
+    - The working stack and some of the segments should be:
+        - Created when the function starts running
+        - Maintained as long as the function is executing
+        - Recycled when the function returns 
+ - So in general , when a caller calls a callee, we will have now 2 states:
+    - state of caller
+    - state of callee
+
+
 
 
 
