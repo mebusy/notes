@@ -571,7 +571,10 @@ push pointer 0/1
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_runtime2.png)
          
 
+## 2.6: Function Call and Return Implementation
 
+ - A function may call another function which historically belongs to a different class.
+ - But once everything is compiled into VM code , we lose this notion of classes and what we get is just a long list of functions that have a full name. i.e. Bar.mult
 
 
 
