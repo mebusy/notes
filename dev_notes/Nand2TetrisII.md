@@ -591,6 +591,22 @@ push pointer 0/1
         - ( memory segments this, that , pointer and temp are undefined upon entry )
     - My working statck is empty.
     - Before returning , I must push a value onto the stack
+        - even if the function prototype is 'void f()' , you also need return a value. You may push a 0 to the stack.
+        - it's the caller's responsibility to do something with returned value.
+
+ - The VM implementation view
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_class_assembly_code.png)
+ - When `Foo.main` call `Bar.mult`,  the VM translator , as we saw in above picture, is going to 
+    - save the caller's state , the state of the Foo.main function
+    - do a few more things to set up for the function call
+    - and finally , it's going to say "go to the name of the function "
+ - So, presumably , the VM translator at some point will generate a label which is the name of this function
+
+
+### Handling call
+
+
+
 
 
 
