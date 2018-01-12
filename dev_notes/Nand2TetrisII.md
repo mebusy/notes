@@ -576,6 +576,22 @@ push pointer 0/1
  - A function may call another function which historically belongs to a different class.
  - But once everything is compiled into VM code , we lose this notion of classes and what we get is just a long list of functions that have a full name. i.e. Bar.mult
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_class_function.png)
+
+ - caller's view
+    - Before calling another function , I must push as many arguments as the function expects to get
+    - Next, I invoke the function using `call functionName nArgs` 
+    - After the called function returns , the argument values have disappeared from the stack ,and a *return value* (that always exists) appears at the top of the statck
+    - After the called function returns , all my memory segment are exactly the same as they were before the call.
+        - (except that *temp* is undefined and some values of my *static* segment may have changed )
+ - callee's view
+    - Before I start executing , my *argument* segment has been initialized with the argument values passed by the caller
+    - My *local* variables segment has been allocated and initialized to zeroes
+    - My *static* segment has been set to the static segment of the VM file to which I belong.
+        - ( memory segments this, that , pointer and temp are undefined upon entry )
+    - My working statck is empty.
+    - Before returning , I must push a value onto the stack
+
 
 
 
