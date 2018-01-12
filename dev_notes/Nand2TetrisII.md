@@ -513,7 +513,31 @@ push pointer 0/1
         - and in the process, it grows its working stack, and it now has a working stack of its own.
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_2.png)  
     - And then at some point , it is going to return.  It need push a return value onto the stack, and then I say `return`.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_3.png)    
+
+**return**
+
+ - now VM implementation has to service the return command.
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_3.png)    
+ - VM implementation:  
+    - First of all, we have to take the topmost value from the stack, the return value,  and we have to 
+        - **copy the return value onto argument 0**.   See the *net effect* above.
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_4.png)   
+    - THe next thing that we do is 
+        - **restore the segment pointers of the caller**
+        - take the saved CLC, ARG, THIS, THAT ,  and turn them into current ones. 
+    - Then to 
+        - **clear the stack** 
+        - call the stack of the called function, which is no longer relevant. 
+    - Then I have to **set the SP for the caller**. 
+        - the SP for the caller should be located just after the return value, just after argument 0. 
+    - After I do this, I have to finally 
+        - **jumps to the return address within the caller's code**. 
+        - and continue executing the caller's code. 
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_5.png)   
+
+
+
+        
 
          
 
