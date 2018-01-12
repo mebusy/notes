@@ -496,6 +496,7 @@ push pointer 0/1
         - and now I have to save the segments , and the return address . 
             - taken together, we call these things the function's frame.
             - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_details_3.png)
+            - yes , the static, pointer, temp , constant   don't need to be saved  because they don't belongs to functions 
     3. Jumps to executed *foo*
     
 
@@ -534,6 +535,17 @@ push pointer 0/1
         - **jumps to the return address within the caller's code**. 
         - and continue executing the caller's code. 
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_5.png)   
+
+### The global stack 
+
+ - block
+    - I can refer to some segment or some subsets of this global stack here, using the term **block** , which I just made up.
+    - It is the world of the currently running function.
+ - The block contains :
+    - my argument segment
+    - caller frame. 
+    - my local segments 
+    - and my working statck
 
 
 
