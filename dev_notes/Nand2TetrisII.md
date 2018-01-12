@@ -560,8 +560,13 @@ push pointer 0/1
 
 ## 2.5 Function Call and Return: Run-time Simulation
 
+ - Example: factorial         
 
-        
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_example_factorial.png)
+
+### Runtime 
+
+
 
          
 
