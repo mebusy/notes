@@ -412,7 +412,7 @@ push pointer 0/1
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_definition.png)
 
  - `function mult 2` 
-    - 2 means the number of **local** variables which will be used !!!
+    - 2 means the number of **local** variables which will be used !!! 
 
 ### executing
 
@@ -501,8 +501,9 @@ push pointer 0/1
 
 **function**
 
-10:24
-
+ - we now hit the command `function foo nVars`
+ - VM implementation:
+    - Sets up the local segment of the called function
 
 
 
