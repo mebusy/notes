@@ -566,8 +566,9 @@ push pointer 0/1
 
 ### Runtime 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_runtime1.png)
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_runtime2.png)
          
 
 
