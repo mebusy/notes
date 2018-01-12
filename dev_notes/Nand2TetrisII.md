@@ -446,6 +446,14 @@ push pointer 0/1
     - Jump to the return address in the caller's code
 
 
+### Function call and return :  units plan
+
+ - 2.4 Implementation preview
+ - 2.5 Run-time simulation
+ - 2.6 Detailed implementation 
+
+
+
 ## 2.4 Function Call and Return: Implementation Preview
 
  - Function execution
@@ -547,6 +555,10 @@ push pointer 0/1
     - my local segments 
     - and my working statck
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_global_stack.png)
+
+
+## 2.5 Function Call and Return: Run-time Simulation
 
 
         
