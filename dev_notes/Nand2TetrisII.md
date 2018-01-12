@@ -502,9 +502,20 @@ push pointer 0/1
 **function**
 
  - we now hit the command `function foo nVars`
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_0.png)
  - VM implementation:
     - Sets up the local segment of the called function
+        - I need *n* local variables , and I also need to initialized them to 0.
+        - I push *n* 0s onto the stack , and set LCL.  
+        - once I do it, I can refer to these values on the stack as locol 0, local 1, and so on.
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_1.png)
+    - Now the functions is ready to take off and start running. Let's assume that the function is running and doing its things. 
+        - and in the process, it grows its working stack, and it now has a working stack of its own.
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_2.png)  
+    - And then at some point , it is going to return.  It need push a return value onto the stack, and then I say `return`.
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_3.png)    
 
+         
 
 
 
