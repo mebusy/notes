@@ -234,6 +234,12 @@ addr=LCL+2 , SP--,  *addr=*SP
 You write it !
 ```
 
+ - Tip: 
+    - 访问一个 base + offset 地址 (M1)的内容 ，需要使用全部的A/M/D 三个寄存器
+    - 无法把M1的结果很另外一个 base + offset 地址(M2) 做运算
+    - 但是 M1 和 可以直接寻址，或 直接寻址基础上 A+1 的地址 (Md)  做 运算
+    - 所以可以把 M1的内容先寄存到 (M2+1) , 然后就可以 M2,M2+1 做运算
+
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_local_seg_operation.png)
 
 
