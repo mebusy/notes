@@ -655,7 +655,16 @@ push pointer 0/1
     - so the return address must be the content of `M[ endFrame -5 ]` , and I put it in another temporary variable *retAddr*
     - The next thing that I do is I reposition the return value for the caller. 
         - the return value should be copied onto `ARG[0]`
-    - 
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_return_1.png)
+    - moving along , I know where the SP should be. The SP should be just after ARG because this is the view that the caller expectes to get. 
+        - the caller expects to see a return value, and continue to do his work. 
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_return_2.png)
+    - and now, I can begin to recover the various segments that I saved on the stack before. 
+        - so `THAT` should be M[enfFrame-1] , and `THIS` , `ARG`, `LCL` ... 
+    - then I jump to the address that I retrieved before. 
+ - 
+         
+      
 
 
 
