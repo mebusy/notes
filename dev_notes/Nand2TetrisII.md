@@ -707,6 +707,19 @@ Call Sys.init
 
 ### Special symbols in VM programs. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_special_symbol.png)
+
+## 2.9 Project 8
+
+ - writeLable
+ - writeGoto
+ - writeIfGoto
+ - writeFunction
+ - writeCall
+ - writeReturn
+
+
+
 
 
 
