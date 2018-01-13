@@ -653,6 +653,7 @@ push pointer 0/1
  - **Assembly code** :
     - first of all, I'm going to create some temporary variable, which I call `endFrame`, and I'm going to assign the value of LCL to it. 
     - so the return address must be the content of `M[ endFrame -5 ]` , and I put it in another temporary variable *retAddr*
+        - why we need to store it to a temporary variable ? because if the callee has 0 parameter, the next `*ARG=pop()` will overwrite the return address.
     - The next thing that I do is I reposition the return value for the caller. 
         - the return value should be copied onto `ARG[0]`
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_return_1.png)
@@ -662,9 +663,51 @@ push pointer 0/1
     - and now, I can begin to recover the various segments that I saved on the stack before. 
         - so `THAT` should be M[enfFrame-1] , and `THIS` , `ARG`, `LCL` ... 
     - then I jump to the address that I retrieved before. 
- - 
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_return_asm.png)
          
       
+## 2.7 VM Implementation on the Hack Platform
+
+ - The big picture: program compilation and translation 
+    1. n .jack files  ->  compiler -> 
+    2. n .vm files -> VM translator -> 
+    3. single .asm file
+ - serveral things got lost in the translation
+    - Jack -> VM
+        - we lost the notion of constructors, methods and functions , because everything became functions.
+    - VM -> ASM 
+        - we lost the notion of functions . because now we just have a long stream of assembly commands and we have to use assembly in order to capture the semantics of VM code. 
+ - In order to implement it on the Hack platform, I have to comply to certain conventions and the first convention is booting. 
+
+### Booting 
+
+ - What should I do when I turn on the computer ? How will the computer know to execute my program ?
+ - So , here are the assumptions that I request to make. 
+ - VM programming convention 
+    - One file in any VM program is exepected to be named `Main.vm` ;
+    - on VM function in this file is expected to be named `main`
+ - VM implementation convention 
+    - When the VM implementaion starts running , or it reset , it starts executing the argument-less OS function `Sys.init`
+    - `Sys.init` then calls `Main.main` , and enters an infinit loop
+    - `Sys.init` is already programmed at the OS level , which is not our business right now.
+ - Hardware platform convention
+    - Bootstrap code
+
+```
+// Bootstrap code (should be written in assembly)
+SP = 256
+Call Sys.init
+```
+ 
+    - we request that the code will be stored in the target computer's instruction memory beginning in address zero. 
+
+### Standard mapping of the VM on the Hack platform 
+
+
+
+
+
+
 
 
 
