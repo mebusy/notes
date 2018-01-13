@@ -652,6 +652,11 @@ push pointer 0/1
  - **VM command:** return 
  - **Assembly code** :
     - first of all, I'm going to create some temporary variable, which I call `endFrame`, and I'm going to assign the value of LCL to it. 
+    - so the return address must be the content of `M[ endFrame -5 ]` , and I put it in another temporary variable *retAddr*
+    - The next thing that I do is I reposition the return value for the caller. 
+        - the return value should be copied onto `ARG[0]`
+    - 
+
 
 
 
