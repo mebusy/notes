@@ -703,6 +703,10 @@ Call Sys.init
 
 ### Standard mapping of the VM on the Hack platform 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_standard_mapping_2.png)
+
+### Special symbols in VM programs. 
+
 
 
 
