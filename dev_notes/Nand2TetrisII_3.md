@@ -99,6 +99,26 @@
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_obj_represent_3.png)
 
 
+## 3.3 List Processing 
+
+ - List definition
+    - the atom `null` , or
+    - an atom , followed by a list 
+ - Notation: `(atom, list)`
+ - Examples:
+
+```lisp
+null
+(3, (5,null)) 
+(2, (3, (5,null)))
+```
+
+ - so the list is kind of a linked list, but it is indeed  one object 
+ - 
+ - The list (2, (3, (5,null)))  commonly abbreviated as (2,3,5)
+
+
+
 
 
 
