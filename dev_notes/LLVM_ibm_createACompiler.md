@@ -205,5 +205,106 @@ $ ./a.out
 source_filename = "top"
 ```
 
+ - 然后，您需要创建 main 方法
+ - LLVM 提供了 llvm::Function 类来创建一个函数，并提供了 llvm::FunctionType 将该函数与某个返回类型相关联。
+ - 将 main 方法添加至顶部模块
+
+```cpp
+    ...
+    llvm::FunctionType *funcType =
+        llvm::FunctionType::get(builder.getInt32Ty(), false);
+    llvm::Function *mainFunc =
+        llvm::Function::Create(funcType, llvm::Function::ExternalLinkage, "main", module);
+    module->print( llvm::errs() , nullptr ) ; 
+```
+
+```bash
+$ ./a.out
+; ModuleID = 'top'
+source_filename = "top"
+
+declare i32 @main()
+```
+
+ - 您还尚未定义 main 要执行的指令集。 所以main被认为是 declare
+ - 为此，您必须定义一个基础块并将其与 main 方法关联。
+ - 基础块 是 LLVM IR 中的一个指令集合，拥有将标签（类似于 C 标签）定义为其构造函数的一部分的选项
+ - builder.setInsertPoint 会告知 LLVM 引擎接下来将指令插入何处
+ - 向 main 添加一个基础块
+
+```cpp
+    ... 
+    llvm::BasicBlock *entry = llvm::BasicBlock::Create(context, "entrypoint", mainFunc);
+    builder.SetInsertPoint(entry);
+    module->print( llvm::errs() , nullptr ) ;
+```
+
+```bash
+$ ./a.out
+; ModuleID = 'top'
+source_filename = "top"
+
+define i32 @main() {
+entrypoint:
+}
+```
+
+ - 现在已经定义了 main 的基础块，所以 LLVM 将 main 看作为是一个方法定义，而不是一个声明。
+ - 现在，向代码添加全局 hello-world 字符串
+
+```cpp
+llvm::Value *helloWorld = builder.CreateGlobalStringPtr("hello world!\n");
+```
+
+```bash
+$ ./a.out
+; ModuleID = 'top'
+source_filename = "top"
+
+@0 = private unnamed_addr constant [14 x i8] c"hello world!\0A\00"
+
+define i32 @main() {
+entrypoint:
+}
+```
+
+ - 现在您需要做的就是声明 puts 方法，并且调用它。
+ - 要声明 puts 方法，则必须创建合适的 FunctionType\*.
+ - 声明 puts 方法:
+
+```cpp
+std::vector<llvm::Type *> putsArgs;
+putsArgs.push_back(builder.getInt8Ty()->getPointerTo());
+llvm::ArrayRef<llvm::Type*>  argsRef(putsArgs);
+
+llvm::FunctionType *putsType = llvm::FunctionType::get(builder.getInt32Ty(), argsRef, false);
+llvm::Constant *putsFunc = module->getOrInsertFunction("puts", putsType);
+```
+
+```bash
+; ModuleID = 'top'
+source_filename = "top"
+
+@0 = private unnamed_addr constant [14 x i8] c"hello world!\0A\00"
+
+define i32 @main() {
+entrypoint:
+}
+
+declare i32 @puts(i8*)
+```
+
+ - 剩下要做的是调用 main 中的 puts 方法，并从 main 中返回。
+
+```cpp
+    builder.CreateCall(putsFunc, helloWorld);
+    builder.CreateRetVoid();
+```
+
+---
+
+# 使用 LLVM 框架创建有效的编译器，第 2 部分
+
+ - 本文将介绍代码测试，即向生成的最终可执行的代码添加信息。
 
 
