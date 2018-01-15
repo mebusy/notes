@@ -26,11 +26,12 @@
     - 对应的后台工具则分别为 cpp，cc1，as，ld。
  - llvm
     - brew install llvm 后， 检查一下 xcode-select --install
-    - llvm 5.0  release build 去掉 module->dump 的实现，只留下接口. 解决方法:
-        - `brew edit llvm` 
-        - add `-DLLVM_ENABLE_DUMP=ON`
-        - add `brew reinstall --build-from-source llvm` 
-            - force to recompile from source, not install from a pre-compiled binary 
+
+    - ~~llvm 5.0  release build 去掉 module->dump 的实现，只留下接口. 解决方法:~~
+        - ~~`brew edit llvm`~~
+        - ~~add `-DLLVM_ENABLE_DUMP=ON`~~
+        - ~~add `brew reinstall --build-from-source llvm`~~ 
+            - ~~force to recompile from source, not install from a pre-compiled binary~~
 
  - LLVM 本身是一个虚拟机
     - llc 将 LLVM 字节代码转换成特定于平台的汇编代码
