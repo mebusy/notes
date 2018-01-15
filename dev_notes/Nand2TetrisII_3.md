@@ -198,8 +198,84 @@ class List {
 
 ### List representation
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_list_representation.png)
+
+ - who makes the magic work ?
+    - high-level: the constructor
+    - low-level: when compiling the constructor, the compiler plants calls to OS routines that find , and allocate , avaiable memory space for the new object.
+
+## 3.4 Jack Language Specification: Syntax
+
+ - Syntax elements
+    - white space / comments
+    - keywords
+        - class, constructor, method , function  // program components
+        - int , boolean , char, void     // primitive types
+        - var, static , field     // variable declarations
+        - let, do , if , else, while ,return   // statements
+            - var, let, do make writing the compiler easy. 
+        - true, false, null,      // constant values
+        - this 
+    - Symbols   
+        - (),{},[] 
+        - `,` , `;` , `=` 
+        - `.`  (class membership) 
+        - + - \* / & `|` ~ < > Operators.
+    - Constants
+        - integer constant
+            - **must be positive**
+            - negtive integers like `-13` are not constants, but rather expressions
+        - string constant     "xxx"
+        - boolean constant 
+        - null
+    - Identifiers
 
 
+## 3.5 Jack Language Specification: Data Types
+
+ - Primitive types
+    - int
+        - non-negative  , 16-bit, 0~32726
+    - boolean
+        - true / false
+    - char 
+        - Unicode character
+ - Class types
+    - OS types: String, Array
+    - User-defined types: Fraction, List, .. 
+
+
+### Type conversions 
+
+ - characters and integers are converted into each other , as needed:
+    - `var char c;  let c=65;   // 'A' `
+    - `var String s; let s="A"; let c=s.charAt(0); `
+    - Note that the idiom `c='A'` is **NOT** supported by the Jack Language. 
+ - An integer can be assigned to a reference variables, in which case it is treated as a memory address
+    - `var Array arr;   let arr=5000; `
+    - 很危险，但对编写OS可以带来很大帮助
+ - An object can be converted into an Array, and vice versa
+
+```
+var Fraction x; 
+var Array arr ;
+let arr = Array.new(2);
+let arr[0] = 2; let arr[1] = 5 ;
+// set x to the base address of the memory block 
+// representing the array[2,5]
+let x=  arr ; 
+do x.print()   // 2/5
+```
+
+
+## 3.6
+
+
+
+
+
+
+ 
 
 
 
