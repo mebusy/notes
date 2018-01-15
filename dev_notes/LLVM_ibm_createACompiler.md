@@ -177,12 +177,32 @@ llvm::IRBuilder<> builder(context);
 
 ```cpp
 // firstLLVM.cpp
+#include "llvm/IR/LLVMContext.h"
+#include "llvm/IR/Module.h"
+#include "llvm/IR/IRBuilder.h"
+#include "llvm/Support/raw_ostream.h"
 
+int main()
+{
+  llvm::LLVMContext context;
+  llvm::Module* module = new llvm::Module("top", context);
+  llvm::IRBuilder<> builder(context); 
+ 
+  // module->dump( );
+  module->print( llvm::errs() , nullptr ) ;
+  
+  return 0; 
+}
 ```
+
+ - maxosx 上要加上 `--system-libs`
 
 ```bash
-$ clang++ `llvm-config --cxxflags --ldflags --libs` firstLLVM.cpp
-
+$ clang++  `llvm-config --cxxflags --ldflags --libs --system-libs ` firstLLVM.cpp 
+$ ./a.out
+; ModuleID = 'top'
+source_filename = "top"
 ```
+
 
 
