@@ -5,6 +5,10 @@
      - [vocabulary](#09f06963f502addfeab2a7c87f38802e)
      - [tense](#51da34ead8ca9d50a1216c0dfe4351b0)
      - [pronunciation](#3160ecdb9aec1c3aab204f9739eab7cc)
+ - [Grammar in Use](#ba36ad7d3412782aa9aed1108dc44608)
+     - [UNIT 11. How long have you (been) ...?](#fd7a2ee603edcf3d29aa01b277a0a3e7)
+     - [UNIT 17. Have and have got](#55f7e30227e952aa81b56078bb66edf1)
+     - [](#d41d8cd98f00b204e9800998ecf8427e)
 
 ...menuend
 
@@ -66,9 +70,15 @@
 
 --- 
 
+<h2 id="ba36ad7d3412782aa9aed1108dc44608"></h2>
+
 # Grammar in Use
 
+<h2 id="fd7a2ee603edcf3d29aa01b277a0a3e7"></h2>
+
 ## UNIT 11. How long have you (been) ...?
+
+<h2 id="55f7e30227e952aa81b56078bb66edf1"></h2>
 
 ## UNIT 17. Have and have got
 
@@ -103,6 +113,8 @@
     - In these expressions, have is like other verbs. You can use continuous forms (is having are having etc.) where suitable:
         - I had a postcard from Fred this morning. He's on holiday. He says he's having a wonderful time. (not 'he has a wonderful time')
         - The phone rang while we were having dinner. (not 'while we had')
+
+<h2 id="d41d8cd98f00b204e9800998ecf8427e"></h2>
 
 ## 
 

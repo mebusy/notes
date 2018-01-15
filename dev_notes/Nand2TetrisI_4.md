@@ -33,7 +33,6 @@
          - [Iterative processing](#f26bb1b6fe9c2cee3fb09973ed60da69)
      - [4.8 Hack Programming , Part 3](#0fbcaf38632f1b7a6eb86b99e1e1ea63)
          - [Pointers](#7bba5d01d3778f550d69f87dca50fc3f)
-         - [Input / Output](#6a8b3c75d2b148310a110bf194c67f26)
 
 ...menuend
 
@@ -600,9 +599,3 @@ for(i=0; i<n; i++) {
  - Variables that store memory addresses like *arr* are called pointers. 
  - Hack pointer logic: 
     - whenever we have to access memory using a pointer , we need an instruction like `A=M` , something that comes from some memory register.  
-
-<h2 id="6a8b3c75d2b148310a110bf194c67f26"></h2>
-
-
-
-

@@ -66,6 +66,11 @@
          - [Two Old Friends](#c30d7a9f1110a7115386a1a1449444ff)
          - [M and d<sub>vc</sub>](#668bae56a418c6c053a975bbc41bef59)
      - [Interpreting VC Dimension](#4fa217a4f25efe58ca38efc2921a9ece)
+         - [VC Bound Rephrase:  Penalty for Model Complexity](#cf1207c2cd37bca9c19baefe3be5f449)
+         - [THE VC Message](#fd5261ae2542df593b9ab1967d1212b7)
+         - [VC Bound Rephrase : Sample Complexity](#2103d3a1527ad166beedae934932a08e)
+         - [Summary](#290612199861c31d1036b185b4e69b75)
+ - [Week 8](#1223874fb29922e4e7bb1474bbc33147)
 
 ...menuend
 
@@ -904,6 +909,8 @@ convex sets | ∞
 
 ## Interpreting VC Dimension 
 
+<h2 id="cf1207c2cd37bca9c19baefe3be5f449"></h2>
+
 ### VC Bound Rephrase:  Penalty for Model Complexity
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vcbound_rephrase.png)
@@ -920,6 +927,8 @@ convex sets | ∞
             - H: 你的VC dimension
             - δ: 你觉得你有多幸运
 
+<h2 id="fd5261ae2542df593b9ab1967d1212b7"></h2>
+
 ### THE VC Message
 
  - with **a high probability** ,
@@ -928,6 +937,8 @@ convex sets | ∞
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vc_message_graph.png)
 
  - 把 Ein 做得更低，就需要一个强大的 hypothesis set, 但是这要付出 很大的 model complexity 的代价，不见得是最好的选择。
+
+<h2 id="2103d3a1527ad166beedae934932a08e"></h2>
 
 ### VC Bound Rephrase : Sample Complexity
 
@@ -946,6 +957,8 @@ convex sets | ∞
         - 上限的上限
     - union bound on worst cases:   **any choice made by A**
 
+<h2 id="290612199861c31d1036b185b4e69b75"></h2>
+
 ### Summary
 
  - VC Bound 是機器學習裡面最重要的一個理論工具。 
@@ -954,6 +967,8 @@ convex sets | ∞
  - VC Dimension 以用來看看我們的 Model， 我們的 Hypothesis Set 到底有多複雜，然後我們能夠用它來決定，我們大概需要多少的 資料才夠。 
 
 ---
+
+<h2 id="1223874fb29922e4e7bb1474bbc33147"></h2>
 
 # Week 8
 

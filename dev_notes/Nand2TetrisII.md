@@ -1,7 +1,63 @@
+...menustart
+
+ - [N2T II](#bac29c18ee57f5e44301707955d4a100)
+ - [Week 1  Virtual Machine I:  Stack Arithmetic](#893dc2867381fa94bcc302a5a2d0a801)
+     - [1.0 The Road Ahead](#fd054c95652579b1b9fc9935eb80dbf5)
+     - [1.1 Program Compilation Preview](#5439281e252a735d7c2c7f4eeec963af)
+     - [1.2 VM Abstraction: the Stack](#ef580f60327a361e1d548da59cbc2b35)
+         - [Stack](#2187e1021a911b3807cc1bea2eb1a9ca)
+         - [Stack arithmetic , the big picture](#ce74f8cad75b6370e8c76ee00dcb3777)
+         - [The stack machine model](#a422da0dca7445b51baae3e56b481ec6)
+         - [Arithmetic/Logical commands](#34721e42e306875fc467c65ae98cc5c0)
+     - [1.3 VM Abstraction : Memory Segments](#8f3594e14399fa4e216e20e0d2f29607)
+         - [The big picture](#0815d0e5b0d3f2868d04684571389afa)
+     - [1.4: VM Implementation: the Stack](#5bf26647274cf1d0abd6aa14fe11ee04)
+         - [Stack machine](#41e5e1bb12d244f32b5aa66340010cd4)
+     - [1.5 VM Implementation: Memory Segments](#64e8857fd9605e8fa53358d07022f839)
+         - [Implementing local](#32db95696aadced184b3f6bd0b6c8297)
+         - [Implementing local, argument, this, that](#4f42e18745e69276fd474fa9cca7b1ce)
+         - [Memory segment: constant](#b8dcb3b490d221a9976720a7119a0db6)
+         - [Memory segment: static](#3157dff7882be0f2760a9a66f3e8aa3c)
+         - [Memory segment: temp](#1247a68afcaf24b007e0f6983e4d8068)
+         - [Memory segment: pointer](#7d1afed0c366e2841c1a2a0fe1ddf8ed)
+         - [VM Language Summary](#438feb7d5df4383c668d654e6b06c9b8)
+     - [1.7 VM Implementation on the Hack Platform](#08ebaec9ba3c4a06e961ad39c3ed4d90)
+     - [1.A Perspective](#3d462674294fc4eaf8ff5814273c7910)
+ - [Week2:  Virutal Machine : Program Control](#af0e25aeb9eae90e58b3e8b5ff014ab4)
+     - [2.1 Program Contorl](#a8dc973caf37c0f538c3155e06cc57bd)
+     - [2.2 Branching](#4e0051bf323aac8e7d110e99cc29e329)
+     - [2.3 Functions Abstraction](#82a19ea128b46ad2cc65aa93eb4c8bc3)
+         - [defining](#fea8924fc70227eebc49c74b1d1b51ff)
+         - [executing](#9dc3193162bf56a4458c7a36c3b24c83)
+         - [Making the abstraction work: implementation](#ce3e69cd7d023ea4fe609ff2a5c49cfe)
+         - [Function call and return :  units plan](#586f372e18946c033ec0ca031a58046d)
+     - [2.4 Function Call and Return: Implementation Preview](#b180acf8e32352cc37d77ba0c9a5b898)
+         - [the big picture](#2376d3570a0a96432c3fea347f900e5a)
+         - [Function call and return: the detail](#464cea080754ea13ae81fd5914f5ef36)
+         - [The global stack](#f96b213d57e6b391baa08b65a47f7a52)
+     - [2.5 Function Call and Return: Run-time Simulation](#053c88fa1043f8f8e84691ee98d1077a)
+         - [Runtime](#bc366f2d0ba3d681e7a3899917c5d3de)
+     - [2.6: Function Call and Return Implementation](#44dc5651d1d6eeee92e44c1adf0a7fc5)
+         - [Handling call](#ca857297def9d4e2b5ec7224b1098dfc)
+         - [Handling function](#9a6ac99285250a3da217d99cc0c32c6b)
+     - [2.7 VM Implementation on the Hack Platform](#a980b1ca368f6fd5ee3ef70efecf227c)
+         - [Booting](#d31181c15b9b2bfe52e84052376b0c04)
+         - [Standard mapping of the VM on the Hack platform](#a567e084852bf1e713595b62208cb916)
+         - [Special symbols in VM programs.](#94483dac5a4cf1b1daebb28da6ba8051)
+     - [2.9 Project 8](#eb4eb0e9c105fa3e9a4c637379cbfe82)
+
+...menuend
+
+
+<h2 id="bac29c18ee57f5e44301707955d4a100"></h2>
 
 # N2T II
 
+<h2 id="893dc2867381fa94bcc302a5a2d0a801"></h2>
+
 # Week 1  Virtual Machine I:  Stack Arithmetic
+
+<h2 id="fd054c95652579b1b9fc9935eb80dbf5"></h2>
 
 ## 1.0 The Road Ahead
 
@@ -19,6 +75,8 @@
     - m4,m5: developing a compiler
     - m6: developing an OS
 
+<h2 id="5439281e252a735d7c2c7f4eeec963af"></h2>
+
 ## 1.1 Program Compilation Preview
 
  - Jack compilation 
@@ -26,6 +84,8 @@
     2. VM code
         - a) run on **VM emulator** aside on you PC
         - b) use a **VM translator** to translate the VM code into machine language.
+
+<h2 id="ef580f60327a361e1d548da59cbc2b35"></h2>
 
 ## 1.2 VM Abstraction: the Stack
 
@@ -35,6 +95,8 @@
  - Stack machine abstraction
     - Architecture : a Stack
     - Commands : a set of operations that can be applied to this architecture
+
+<h2 id="2187e1021a911b3807cc1bea2eb1a9ca"></h2>
 
 ### Stack
 
@@ -52,6 +114,8 @@
     - Pushes the result onto the stack
  - Boolean operations
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_stack_boolean_operation.png)
+
+<h2 id="ce74f8cad75b6370e8c76ee00dcb3777"></h2>
 
 ### Stack arithmetic , the big picture
 
@@ -72,6 +136,8 @@ pop x
     - The stack machine is an abstraction 
     - It can be implemented by , ... something else 
 
+<h2 id="a422da0dca7445b51baae3e56b481ec6"></h2>
+
 ### The stack machine model 
 
  - Stack machine , manipulated by 4 categories of commands:
@@ -80,6 +146,8 @@ pop x
     - Branching commands 
     - Function commands
 
+
+<h2 id="34721e42e306875fc467c65ae98cc5c0"></h2>
 
 ### Arithmetic/Logical commands
 
@@ -116,7 +184,11 @@ or
 
  - Observation: Any arithmetic of logical expression can be expressed and evaluated by applying some sequence of the above operations on a stack.
 
+<h2 id="8f3594e14399fa4e216e20e0d2f29607"></h2>
+
 ## 1.3 VM Abstraction : Memory Segments
+
+<h2 id="0815d0e5b0d3f2868d04684571389afa"></h2>
 
 ### The big picture 
 
@@ -181,6 +253,8 @@ pop local 2
     - pop   segment index:  出栈， 数据存入 指定segment index地址。
 
 
+<h2 id="5bf26647274cf1d0abd6aa14fe11ee04"></h2>
+
 ## 1.4: VM Implementation: the Stack
 
  - if we want to acutally execute the VM code in some concrete way, we have to realize it on some Von Neumann machine.
@@ -188,6 +262,8 @@ pop local 2
     - fist of all, you have to take these 4 or 8 memory segments, and we have to somehow map these memory segments on the single RAM that is available for us. 
     - once we come up with this mapping, we have to do something with the push / pop commands.
     - we have to translate them into a sequences machine labeling instructions that will operate on this world -- that we just built on the RAM.
+
+<h2 id="41e5e1bb12d244f32b5aa66340010cd4"></h2>
 
 ### Stack machine
 
@@ -220,7 +296,11 @@ M=M+1
     - Each VM command generates several assembly commands.
 
 
+<h2 id="64e8857fd9605e8fa53358d07022f839"></h2>
+
 ## 1.5 VM Implementation: Memory Segments
+
+<h2 id="32db95696aadced184b3f6bd0b6c8297"></h2>
 
 ### Implementing local
 
@@ -246,6 +326,8 @@ You write it !
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_local_seg_operation.png)
 
 
+<h2 id="4f42e18745e69276fd474fa9cca7b1ce"></h2>
+
 ### Implementing local, argument, this, that 
 
  - The big picture:  
@@ -256,6 +338,8 @@ You write it !
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_impl_local_argu_this_that.png)
 
+
+<h2 id="b8dcb3b490d221a9976720a7119a0db6"></h2>
 
 ### Memory segment: constant
 
@@ -274,6 +358,8 @@ push constant i
 // Assembly code:
 *SP=i , SP++
 ```
+
+<h2 id="3157dff7882be0f2760a9a66f3e8aa3c"></h2>
 
 ### Memory segment: static 
 
@@ -303,6 +389,8 @@ M=D
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_static_segment.png)
 
+<h2 id="1247a68afcaf24b007e0f6983e4d8068"></h2>
+
 ### Memory segment: temp
 
  - The big picture:  The compile
@@ -315,6 +403,8 @@ M=D
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_ram_implementation.png)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_impl_temp.png)
+
+<h2 id="7d1afed0c366e2841c1a2a0fe1ddf8ed"></h2>
 
 ### Memory segment: pointer
 
@@ -337,6 +427,8 @@ push pointer 0/1
 *SP=THIS/THAT, SP++
 ```
 
+<h2 id="438feb7d5df4383c668d654e6b06c9b8"></h2>
+
 ### VM Language Summary
 
  - Arithmetic / Logical commands
@@ -354,11 +446,15 @@ push pointer 0/1
     - return 
 
 
+<h2 id="08ebaec9ba3c4a06e961ad39c3ed4d90"></h2>
+
 ## 1.7 VM Implementation on the Hack Platform
 
  - Standard VM mapping on the Hack platform
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_stardard_vm_mapping.png)
+
+<h2 id="3d462674294fc4eaf8ff5814273c7910"></h2>
 
 ## 1.A Perspective
 
@@ -371,7 +467,11 @@ push pointer 0/1
 
 ---
 
+<h2 id="af0e25aeb9eae90e58b3e8b5ff014ab4"></h2>
+
 # Week2:  Virutal Machine : Program Control
+
+<h2 id="a8dc973caf37c0f538c3155e06cc57bd"></h2>
 
 ## 2.1 Program Contorl
 
@@ -382,6 +482,8 @@ push pointer 0/1
  - Stack processing
  - Pointers
  - Completing the VM implementation
+
+<h2 id="4e0051bf323aac8e7d110e99cc29e329"></h2>
 
 ## 2.2 Branching
 
@@ -400,6 +502,8 @@ push pointer 0/1
     - simple: the assembly langauge has similar branching commands.
 
 
+<h2 id="82a19ea128b46ad2cc65aa93eb4c8bc3"></h2>
+
 ## 2.3 Functions Abstraction
 
  - Functions in the VM language
@@ -410,12 +514,16 @@ push pointer 0/1
  - **Applying a primitive operator and calling a function have the same look-and-feel**
  - 这里这是抽象，并不是真正的 VM 语法
 
+<h2 id="fea8924fc70227eebc49c74b1d1b51ff"></h2>
+
 ### defining 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_definition.png)
 
  - `function mult 2` 
     - 2 means the number of **local** variables which will be used !!! 
+
+<h2 id="9dc3193162bf56a4458c7a36c3b24c83"></h2>
 
 ### executing
 
@@ -434,6 +542,8 @@ push pointer 0/1
     - it takes the top most value in the stack of the callee , and just puts it on the stack of the caller instead of the arguments that were pushed previously.
 
 
+<h2 id="ce3e69cd7d023ea4fe609ff2a5c49cfe"></h2>
+
 ### Making the abstraction work: implementation
 
  - For each function **call** during run-time, the implementation has to ...
@@ -449,6 +559,8 @@ push pointer 0/1
     - Jump to the return address in the caller's code
 
 
+<h2 id="586f372e18946c033ec0ca031a58046d"></h2>
+
 ### Function call and return :  units plan
 
  - 2.4 Implementation preview
@@ -456,6 +568,8 @@ push pointer 0/1
  - 2.6 Detailed implementation 
 
 
+
+<h2 id="b180acf8e32352cc37d77ba0c9a5b898"></h2>
 
 ## 2.4 Function Call and Return: Implementation Preview
 
@@ -478,6 +592,8 @@ push pointer 0/1
  - How to maintain the states of all the functions up the calling chain ? 
     - The calling pattern is LIFO , it's a Stack
 
+<h2 id="2376d3570a0a96432c3fea347f900e5a"></h2>
+
 ### the big picture 
 
  - Example: computing mult(17,212)
@@ -486,6 +602,8 @@ push pointer 0/1
 
  - Net effect:
     - The function's arguments (17,212) were replaced by the function's value (3604)
+
+<h2 id="464cea080754ea13ae81fd5914f5ef36"></h2>
 
 ### Function call and return: the detail
 
@@ -547,6 +665,8 @@ push pointer 0/1
         - and continue executing the caller's code. 
         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_5.png)   
 
+<h2 id="f96b213d57e6b391baa08b65a47f7a52"></h2>
+
 ### The global stack 
 
  - block
@@ -561,11 +681,15 @@ push pointer 0/1
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_global_stack.png)
 
 
+<h2 id="053c88fa1043f8f8e84691ee98d1077a"></h2>
+
 ## 2.5 Function Call and Return: Run-time Simulation
 
  - Example: factorial         
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_example_factorial.png)
+
+<h2 id="bc366f2d0ba3d681e7a3899917c5d3de"></h2>
 
 ### Runtime 
 
@@ -573,6 +697,8 @@ push pointer 0/1
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_runtime2.png)
          
+
+<h2 id="44dc5651d1d6eeee92e44c1adf0a7fc5"></h2>
 
 ## 2.6: Function Call and Return Implementation
 
@@ -610,6 +736,8 @@ push pointer 0/1
 
 
 
+<h2 id="ca857297def9d4e2b5ec7224b1098dfc"></h2>
+
 ### Handling call
 
  - the caller is running ,doing some work .   and then all of a sudden , we encounter a call .
@@ -629,6 +757,8 @@ push pointer 0/1
     - And now I do something very tricky, I insert into the generated code stream the label that I **pushed before** . 
 
  - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_handel_call4.png)
+
+<h2 id="9a6ac99285250a3da217d99cc0c32c6b"></h2>
 
 ### Handling function
 
@@ -666,6 +796,8 @@ push pointer 0/1
  - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_return_asm.png)
          
       
+<h2 id="a980b1ca368f6fd5ee3ef70efecf227c"></h2>
+
 ## 2.7 VM Implementation on the Hack Platform
 
  - The big picture: program compilation and translation 
@@ -678,6 +810,8 @@ push pointer 0/1
     - VM -> ASM 
         - we lost the notion of functions . because now we just have a long stream of assembly commands and we have to use assembly in order to capture the semantics of VM code. 
  - In order to implement it on the Hack platform, I have to comply to certain conventions and the first convention is booting. 
+
+<h2 id="d31181c15b9b2bfe52e84052376b0c04"></h2>
 
 ### Booting 
 
@@ -701,13 +835,19 @@ Call Sys.init
  
     - we request that the code will be stored in the target computer's instruction memory beginning in address zero. 
 
+<h2 id="a567e084852bf1e713595b62208cb916"></h2>
+
 ### Standard mapping of the VM on the Hack platform 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_standard_mapping_2.png)
 
+<h2 id="94483dac5a4cf1b1daebb28da6ba8051"></h2>
+
 ### Special symbols in VM programs. 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_special_symbol.png)
+
+<h2 id="eb4eb0e9c105fa3e9a4c637379cbfe82"></h2>
 
 ## 2.9 Project 8
 

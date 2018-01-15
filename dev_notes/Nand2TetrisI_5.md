@@ -9,7 +9,19 @@
          - [Fetching](#7865d8f54c20047006223a67ab639b70)
          - [Executing](#63c4cc5944eb60b1969f2333ead70fc9)
          - [Fetch-Execute Clash](#24e481da85387c537c02bb45d1bbc147)
-     - [](#d41d8cd98f00b204e9800998ecf8427e)
+     - [5.3 CPU](#b43585e7acd4132480f7f36e8e58c499)
+         - [The Hack CPU: Abstraction](#3fee1c0b6153717300bc562cf724cc03)
+         - [Hack CPU Interface](#66265d28f431087151dad2e1471f5db8)
+         - [Hack CPU Implementation](#fb18d6304583643441f45cc4da665c41)
+         - [Instruction handling](#d0879da14db1669fd7cc551b67fe7b6f)
+         - [ALU operation](#5dd0ed8d0cd686c9ca44dd3a0f3484a8)
+         - [PC logic](#18af6f320c794ce703ecd7e4c44fbf96)
+     - [5.4 The Hack Computer](#2d5b2381493e2e74b418ec4570b18f6c)
+         - [Hack CPU Operation](#c366294d33d33ad8f41ff39d909e530f)
+         - [Data Memory](#fdef999b11b2cf3acbf0df16e8882100)
+         - [Instruction Memory (ROM)](#f94f42245da94b6b457000847ee3b0f7)
+         - [Hack Computer implementatioin](#d1ab5781342f30b0410b1955380662e6)
+     - [5.5 Project Overview](#6aa600c7db11b3f439b312fdeaab651c)
 
 ...menuend
 
@@ -101,8 +113,6 @@
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_fetch-execute_clash.png)
 
 
-<h2 id="d41d8cd98f00b204e9800998ecf8427e"></h2>
-
  - How to solve it ?
     - basically we are going to do one after the other, that is the usual way. 
     - There is going to be a multiplexer that feeds into the address of the memory. 
@@ -121,6 +131,8 @@
         - each module has its own address.
     - Complication avoided.
 
+<h2 id="b43585e7acd4132480f7f36e8e58c499"></h2>
+
 ## 5.3 CPU 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_cpu_architecture.png)
@@ -130,11 +142,15 @@
     - this is where decisions are made about which instruction should be fetched and executed next.
 
 
+<h2 id="3fee1c0b6153717300bc562cf724cc03"></h2>
+
 ### The Hack CPU: Abstraction 
 
  - A 16-bit processor, designed to
     - Execute the current instruction 
     - Figure out which instruction to execute next
+
+<h2 id="66265d28f431087151dad2e1471f5db8"></h2>
 
 ### Hack CPU Interface 
 
@@ -160,11 +176,15 @@
         3. a load bit , that enables the data memory for write operation.
  - In addition , there's one extremely important output , pc , that holds the address of next instruction
 
+<h2 id="fb18d6304583643441f45cc4da665c41"></h2>
+
 ### Hack CPU Implementation 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_cpu_implementation.png)
 
  - the label *c* , represents the control bit.
+
+<h2 id="d0879da14db1669fd7cc551b67fe7b6f"></h2>
 
 ### Instruction handling 
 
@@ -178,6 +198,8 @@
     - The instrcution bits are decoded into :
         - op-code , ALU control bits, dest bits, jump bits
     - op-code is 1, in this case we want to route the input of the A-register in such a way that the input will come from the ALU. 
+
+<h2 id="5dd0ed8d0cd686c9ca44dd3a0f3484a8"></h2>
 
 ### ALU operation 
 
@@ -199,6 +221,8 @@
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_dest_bits.png)
  - The ALU also output *zr*,*ng* bits.
 
+<h2 id="18af6f320c794ce703ecd7e4c44fbf96"></h2>
+
 ### PC logic
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_pc_logic.png)
@@ -218,7 +242,11 @@ else
     else        PC++ 
 ```
 
+<h2 id="2d5b2381493e2e74b418ec4570b18f6c"></h2>
+
 ## 5.4 The Hack Computer
+
+<h2 id="c366294d33d33ad8f41ff39d909e530f"></h2>
 
 ### Hack CPU Operation
 
@@ -239,9 +267,13 @@ The CPU executes the instruction according to the Hack Language specification
     - if(reset==1)
         - PC is set to 0. *pc* emites 0 (cause a program restart)
 
+<h2 id="fdef999b11b2cf3acbf0df16e8882100"></h2>
+
 ### Data Memory 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_data_memory.png)
+
+<h2 id="f94f42245da94b6b457000847ee3b0f7"></h2>
 
 ### Instruction Memory (ROM)
 
@@ -264,6 +296,8 @@ The CPU executes the instruction according to the Hack Language specification
         - because the PC always emits the address of the next instruction
 
 
+<h2 id="d1ab5781342f30b0410b1955380662e6"></h2>
+
 ### Hack Computer implementatioin
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_compute_impl.png)
@@ -279,6 +313,8 @@ The CPU executes the instruction according to the Hack Language specification
     - 如果有写操作，CPU 同时提供 要写入的data
 
 ---
+
+<h2 id="6aa600c7db11b3f439b312fdeaab651c"></h2>
 
 ## 5.5 Project Overview
 

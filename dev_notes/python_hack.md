@@ -1,6 +1,28 @@
+...menustart
+
+ - [2 Modules and libraries](#9fed92638cc7fdfc20c463f5a324b2d3)
+     - [2.1 THE IMPORT SYSTEM](#2b1064e477bfd9f4d5b58f7d2f5aa3aa)
+     - [2.5](#8221435bcce913b5c2dc22eaf6cb6590)
+ - [3 Documentation](#f9ee102aebd5221f15b2b5e34d2b2866)
+     - [3.1 Getting started with Sphinx and reST](#0315cce60722138404fe5f4dfe367f90)
+ - [7 Methods and decorators](#810127df69a19f8fcc336218c6f2c3e0)
+     - [7.1](#7cd31cf6820896d838535a73cafb15ca)
+     - [7.2](#74c5d9234051010a38a669f48bfeb435)
+     - [7.3 Static Method](#caf1fbda831136a01cec78b788e99252)
+     - [7.4 Class method](#20bf7616e373803aca38068a96f75620)
+     - [7.5 Abstract methods](#fd29db4d51ec7f45079d68ebc9ce97ef)
+     - [7.6 Mixing static, class, and abstract methods](#2b9c18b0eaab22d1e2348379296852cf)
+     - [7.7 The truth about super](#fc3b61a6c99940dd0b3b47dadaeb05fb)
+
+...menuend
+
+
+<h2 id="9fed92638cc7fdfc20c463f5a324b2d3"></h2>
 
 # 2 Modules and libraries
 
+
+<h2 id="2b1064e477bfd9f4d5b58f7d2f5aa3aa"></h2>
 
 ## 2.1 THE IMPORT SYSTEM
 
@@ -20,11 +42,15 @@ True
 
  - You can also add a custom module finder by appending a factory class to `sys.path_hooks`.
 
+<h2 id="8221435bcce913b5c2dc22eaf6cb6590"></h2>
+
 ## 2.5
 
 
  - 在编写任何代码之前编写库的文档给我一种思考使用它的特性和工作流程的方法，而不必执行细节。
 
+
+<h2 id="f9ee102aebd5221f15b2b5e34d2b2866"></h2>
 
 # 3 Documentation
 
@@ -43,7 +69,11 @@ True
  - You should also include a README.rst file that explains what your project does.
     - This README will be displayed on your GitHub or PyPI project page; both sites know how to handle reST formatting.
 
+<h2 id="0315cce60722138404fe5f4dfe367f90"></h2>
+
 ## 3.1 Getting started with Sphinx and reST
+
+<h2 id="810127df69a19f8fcc336218c6f2c3e0"></h2>
 
 # 7 Methods and decorators
 
@@ -65,6 +95,8 @@ def foo():
 ```python
 foo = identity(foo)
 ```
+
+<h2 id="7cd31cf6820896d838535a73cafb15ca"></h2>
 
 ## 7.1
 
@@ -204,7 +236,11 @@ def get_food(username, type='chocolate'):
 'chocolate nom nom nom!'
 ```
 
+<h2 id="74c5d9234051010a38a669f48bfeb435"></h2>
+
 ## 7.2 
+
+<h2 id="caf1fbda831136a01cec78b788e99252"></h2>
 
 ## 7.3 Static Method
 
@@ -224,6 +260,8 @@ class Pizza(object):
 >>> Pizza().cook is Pizza().cook
 False
 ```
+
+<h2 id="20bf7616e373803aca38068a96f75620"></h2>
 
 ## 7.4 Class method
 
@@ -256,6 +294,8 @@ class Pizza(object):
         return cls(fridge.get_cheese() + fridge.get_vegetables())
 ```
 
+<h2 id="fd29db4d51ec7f45079d68ebc9ce97ef"></h2>
+
 ## 7.5 Abstract methods
 
  - 实现 Abstract methods 最简单的办法是
@@ -283,6 +323,8 @@ class BasePizza(object):
 >>> BasePizza()
 TypeError: Can't instantiate abstract class BasePizza with abstract methods get_radius
 ```
+
+<h2 id="2b9c18b0eaab22d1e2348379296852cf"></h2>
 
 ## 7.6 Mixing static, class, and abstract methods
 
@@ -340,6 +382,8 @@ class DietPizza(BasePizza):
     def get_ingredients(self):
         return [Egg()] + super(DietPizza, self).get_ingredients()
 ```
+
+<h2 id="fc3b61a6c99940dd0b3b47dadaeb05fb"></h2>
 
 ## 7.7 The truth about super
 

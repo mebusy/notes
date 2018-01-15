@@ -1,5 +1,21 @@
+...menustart
+
+ - [IBM 使用 LLVM 框架创建一个工作编译器](#b666897e006a61952325fc4ce09a90e1)
+     - [开始使用 LLVM](#3517e6ec6ef43c16c3fe3f8d02d813e1)
+     - [使用 LLVM 编写 Hello World](#25d77db5980b5942f3d851c8b1cbafdf)
+     - [理解 LLVM IR](#3c5a78647c25d722ab8cf911ac977066)
+     - [创建一个自定义的 LLVM IR 代码生成器](#83cce5d6924f021359b95495b7562605)
+         - [针对 LLVM 代码的链接](#b641743f3841c4148588d0e72f4ae123)
+         - [LLVM 模块和上下文环境等](#bb79068e1b02332c2220d3189bcccc59)
+
+...menuend
+
+
+<h2 id="b666897e006a61952325fc4ce09a90e1"></h2>
 
 # IBM 使用 LLVM 框架创建一个工作编译器
+
+<h2 id="3517e6ec6ef43c16c3fe3f8d02d813e1"></h2>
 
 ## 开始使用 LLVM
 
@@ -16,6 +32,8 @@
     - lli  可以直接执行字节代码。  lli 可以通过解释器或使用高级选项中的即时 (JIT) 编译器执行此工作。
  - llvm-gcc (clang) 可以使用 -S -emit-llvm 选项运行时会生成 LLVM 字节代码 .ll  
     - 然后您可以使用 lli 来执行这个已生成的字节代码（也称为 LLVM 汇编语言）。
+
+<h2 id="25d77db5980b5942f3d851c8b1cbafdf"></h2>
 
 ## 使用 LLVM 编写 Hello World
 
@@ -37,6 +55,8 @@ helloworld.cpp  helloworld.ll
 $ lli helloworld.ll
 Hello World!
 ```
+
+<h2 id="3c5a78647c25d722ab8cf911ac977066"></h2>
 
 ## 理解 LLVM IR
 
@@ -94,6 +114,8 @@ define i32 @main() {
 }
 ```
 
+<h2 id="83cce5d6924f021359b95495b7562605"></h2>
+
 ## 创建一个自定义的 LLVM IR 代码生成器
 
  - 了解 LLVM IR 是件好事，但是您需要一个自动化的代码生成系统，用它来转储 LLVM 汇编语言
@@ -101,6 +123,8 @@ define i32 @main() {
  - 在您的开发计算机上查找 LLVMContext.h 文件；如果该文件缺失，那么可能是您安装 LLVM 的方式出错。
 
  - 现在，让我们创建一个程序，为之前 的 Hello World 程序生成 LLVM IR。 
+
+<h2 id="b641743f3841c4148588d0e72f4ae123"></h2>
 
 ### 针对 LLVM 代码的链接
 
@@ -113,6 +137,8 @@ define i32 @main() {
 $ llvm-config --cxxflags --ldflags --libs
 -I/usr/local/Cellar/llvm/5.0.1/include  -stdlib=libc++ -fPIC -fvisibility-inlines-hidden -Werror=date-time -std=c++11 -Wall -W -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wcovered-switch-default -Wnon-virtual-dtor -Wdelete-non-virtual-dtor ...
 ```
+
+<h2 id="bb79068e1b02332c2220d3189bcccc59"></h2>
 
 ### LLVM 模块和上下文环境等
 
