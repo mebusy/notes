@@ -114,8 +114,90 @@ null
 ```
 
  - so the list is kind of a linked list, but it is indeed  one object 
- - 
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_list_example.png)
  - The list (2, (3, (5,null)))  commonly abbreviated as (2,3,5)
+ - so how to create and manipulate such collection objects.
+
+ - List API (partial)
+
+```
+/** Represents a linked list of integers */ 
+class List {
+    constructor List new(int car, List cdr) 
+    method void print() {
+    method void dispose() {
+}
+```
+
+### List processing: creation
+
+```
+class List {
+    field int data ;
+    field List next ;
+    
+    constructor List new(int car, List cdr) {
+        let data = car ; 
+        let next = cdr ; 
+        return this ; 
+    }    
+}
+```
+
+
+```
+var list v;
+let v = List.new(5,null) ;
+let v = List.new(3,v) ;
+let v = List.new(2,v) ;
+```
+
+### List processing: access
+
+```
+class List {
+    field int data ;
+    field List next ;
+    
+    method void print() {
+        var List current ;
+        let current = this ;
+        whiel ( ~(current == null) ) {
+            do Outout.printInt( current.getData() ) ;
+            do Outout.printChar(32) ;   
+            do current = current.getNext() ;    
+        }    
+        return ;
+    }
+    ...
+}
+```
+
+```
+var list v ; 
+...
+do v.print();
+```
+
+### List processing: recursive access
+
+```
+class List {
+    field int data ;
+    field List next ;
+    
+    method void dispose() {
+        if (~(next==null)) {
+            do next.dispose() ;    
+        }    
+        do Memory.deAlloc(this) ;
+        return ;
+    }
+}
+```
+
+### List representation
+
 
 
 
