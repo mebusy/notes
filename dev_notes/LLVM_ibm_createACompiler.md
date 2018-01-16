@@ -307,4 +307,106 @@ declare i32 @puts(i8*)
 
  - 本文将介绍代码测试，即向生成的最终可执行的代码添加信息。
 
+## LLVM pass
 
+ - LLVM 以其提供的优化特性而著名。
+ - 优化被实现为 pass
+ - LLVM 为您提供了使用最少量的代码创建 utility pass 的功能。
+    - 例如，如果不希望使用 “hello” 作为函数名称的开头，那么可以使用一个 utility pass  来实现这个目的。
+
+## 了解 LLVM opt 工具
+
+ - opt 命令是模块化的 LLVM 优化器和分析器
+ - 一旦您的代码支持定制 pass , 您将使用 opt 把代码编译为一个共享库并对其进行加载 
+ - opt 命令接受 LLVM IR（扩展名为 .ll）和 LLVM 位码格式（扩展名为 .bc），可以生成 LLVM IR 或位码格式的输出。
+ - 下面展示了如何使用 opt 加载您的定制共享库：
+
+```bash
+$ opt –load=mycustom_pass.so –help –S  // untested
+```
+
+ - opt –help 会生成一个 LLVM 将要执行的阶段的细目清单
+
+
+## 创建定制的 LLVM pass
+
+ - 您需要 Pass.h 文件中声明的 LLVM pass
+    - for brew llvm, `/usr/local/opt/llvm/include/llvm/Pass.h`
+ - 各个pass的类型都从 Pass 中派生，也在该文件中进行了声明。pass类型包括：
+    - BasicBlockPass 类。用于实现本地优化，优化通常每次针对一个基本块或指令运行
+    - FunctionPass 类。用于全局优化，每次执行一个功能
+    - ModulePass 类。用于执行任何非结构化的过程间优化
+ - 由于您打算创建一个阶段，该阶段拒绝任何以 “Hello ” 开头的函数名，因此需要通过从 FunctionPass 派生来创建自己的阶段。
+    - Pass.h 中FunctionPass 部分代码...
+
+```cpp
+class FunctionPass : public Pass {
+    ...
+  /// runOnFunction - Virtual method overriden by subclasses to do the
+  /// per-function processing of the pass.
+  ///
+  virtual bool runOnFunction(Function &F) = 0;
+  ...
+};
+```
+
+ - 回到 runOnFunction 方法中的Function 类型。LVM 使用 Function 类封装了一个 C/C++ 函数的功能
+ - 创建一个定制 LLVM pass
+
+```cpp
+// pass.cpp
+#include "llvm/Pass.h"
+#include "llvm/IR/Function.h"
+#include <iostream>
+
+class TestClass : public llvm::FunctionPass {
+public:
+    virtual bool runOnFunction(llvm::Function &F) {
+        llvm::StringRef r = F.getName();
+        if ( r.startswith("hello")) {
+            std::cout  << "Function name starts with hello\n";
+        }
+        return false;
+    }
+};
+
+```
+
+ - 这段代码溜掉了两个细节
+    - FunctionPass 构造函数需要一个 char，用于在 LLVM 内部使用。
+        - LLVM 使用 char 的地址，因此您可以使用任何内容对它进行初始化。
+    - 您需要通过某种方式让 LLVM 系统理解您所创建的类是一个新阶段。
+        - 这正是 RegisterPass LLVM 模板发挥作用的地方
+        - 在 PassSupport.h 头文件中声明了 RegisterPass 模板；该文件包含在 Pass.h 中
+
+ - 完整的代码:
+
+```cpp
+#include "llvm/Pass.h"
+#include "llvm/IR/Function.h"
+#include <iostream>
+
+class TestClass : public llvm::FunctionPass {
+public:
+    virtual bool runOnFunction(llvm::Function &F) {
+        llvm::StringRef r = F.getName();
+        if ( r.startswith("hello")) {
+            std::cout  << "Function name starts with hello\n";
+        }
+        return false;
+    }
+    static char ID; // could be a global too
+};
+
+char TestClass::ID = 'a';
+static llvm::RegisterPass<TestClass> global_("test_llvm", "test llvm", false, false);
+```
+
+ - RegisterPass 模板中的参数 template 是将要在命令行中与 opt 一起使用的阶段的名称
+ - 您现在所需做的就是 在上面这段代码 之外， 创建一个共享库， 然后 运行 opt 来 加载该库。
+    - 之后是使用 RegisterPass 注册的命令的名称 ( "test_llvm" in this case) 
+    - 最后是一个位码文件，您的定制阶段将在该文件中与其他阶段一起运行.
+
+```bash
+
+```
