@@ -327,7 +327,7 @@ declare i32 @puts(i8*)
 $ opt –load=mycustom_pass.so –help –S  // untested
 ```
 
- - opt –help 会生成一个 LLVM 将要执行的阶段的细目清单
+ - opt –help 会生成一个 LLVM 将要执行的pass的细目清单
 
 
 ## 创建定制的 LLVM pass
@@ -338,7 +338,7 @@ $ opt –load=mycustom_pass.so –help –S  // untested
     - BasicBlockPass 类。用于实现本地优化，优化通常每次针对一个基本块或指令运行
     - FunctionPass 类。用于全局优化，每次执行一个功能
     - ModulePass 类。用于执行任何非结构化的过程间优化
- - 由于您打算创建一个阶段，该阶段拒绝任何以 “Hello ” 开头的函数名，因此需要通过从 FunctionPass 派生来创建自己的阶段。
+ - 由于您打算创建一个pass，该pass拒绝任何以 “Hello ” 开头的函数名，因此需要通过从 FunctionPass 派生来创建自己的pass。
     - Pass.h 中FunctionPass 部分代码...
 
 ```cpp
@@ -377,7 +377,7 @@ public:
  - 这段代码溜掉了两个细节
     - FunctionPass 构造函数需要一个 char，用于在 LLVM 内部使用。
         - LLVM 使用 char 的地址，因此您可以使用任何内容对它进行初始化。
-    - 您需要通过某种方式让 LLVM 系统理解您所创建的类是一个新阶段。
+    - 您需要通过某种方式让 LLVM 系统理解您所创建的类是一个新pass。
         - 这正是 RegisterPass LLVM 模板发挥作用的地方
         - 在 PassSupport.h 头文件中声明了 RegisterPass 模板；该文件包含在 Pass.h 中
 
@@ -407,10 +407,10 @@ char TestClass::ID = 'a';
 static llvm::RegisterPass<TestClass> global_("test_llvm", "test llvm", false, false);
 ```
 
- - RegisterPass 模板中的参数 template 是将要在命令行中与 opt 一起使用的阶段的名称
+ - RegisterPass 模板中的参数 template 是将要在命令行中与 opt 一起使用的pass的名称
  - 您现在所需做的就是 在上面这段代码， 创建成 一个共享库， 然后 运行 opt 来 加载该库。
     - 之后是使用 RegisterPass 注册的命令的名称 ( "test_llvm" in this case) 
-    - 最后是一个位码文件，您的定制阶段将在该文件中与其他阶段一起运行.
+    - 最后是一个位码文件，您的定制pass将在该文件中与其他pass一起运行.
 
 ```bash
 $ clang++ -c  `llvm-config --cxxflags` pass.cpp 
