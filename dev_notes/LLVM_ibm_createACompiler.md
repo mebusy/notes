@@ -554,7 +554,41 @@ class FileManager : public llvm::RefCountedBase<FileManager> {
 
 ```cpp
 // prep.cpp
+#include "clang/Frontend/CompilerInstance.h"
+#include <iostream>
+#include "clang/Basic/SourceManager.h"
+#include "clang/Lex/Preprocessor.h"
+#include "clang/Basic/TargetOptions.h"
 
+
+using namespace clang;
+
+int main()
+{
+    CompilerInstance ci;
+    DiagnosticConsumer *client = 0;
+    ci.createDiagnostics( client, true  );
+
+    ci.createFileManager();  // create FileManager
+    ci.createSourceManager(ci.getFileManager()); // create SourceManager
+    ci.createPreprocessor(clang::TU_Complete );  // create Preprocessor
+
+    const FileEntry *pFile = ci.getFileManager().getFile("test.c");
+    ci.getSourceManager().setMainFileID( 
+        ci.getSourceManager().createFileID( pFile,  SourceLocation(), clang::SrcMgr::C_User  )
+    ) ;
+    ci.getPreprocessor().EnterMainSourceFile();
+    ci.getDiagnosticClient().BeginSourceFile(ci.getLangOpts(), &ci.getPreprocessor());
+    Token tok;
+    do {
+        ci.getPreprocessor().Lex(tok);
+        if( ci.getDiagnostics().hasErrorOccurred())
+            break;
+        ci.getPreprocessor().DumpToken(tok);
+        std::cerr << std::endl;
+    } while ( tok.isNot(clang::tok::eof));
+    ci.getDiagnosticClient().EndSourceFile();
+}
 ```
 
  - 使用 CompilerInstance 类依次创建 
@@ -563,6 +597,56 @@ class FileManager : public llvm::RefCountedBase<FileManager> {
  - 使用 FileEntry 完成文件关联后，继续处理源文件中的每个token，直到达到文件的末尾 (EOF)。
  - 预处理器的 DumpToken 方法将把令牌转储到屏幕中。
 
+```bash
+$ CLANGLIBS="-L/usr/local/lib -lclangFrontend -lclangParse -lclangSema -lclangAnalysis -lclangAST -lclangLex -lclangBasic -lclangDriver -lclangSerialization -lLLVMMC -lLLVMSupport -lclangEdit"
+$ clang++  `llvm-config --cxxflags --ldflags --libs --system-libs ` $CLANGLIBS prep.cpp
+$ ./a.out 
+Segmentation fault: 11
+```
 
+ - 这里，您遗漏了 CompilerInstance 设置的最后一部分：
+    - 即编译代码所针对的目标平台
+    - 这里是 TargetInfo 和 TargetOptions 类发挥作用的地方。
+    - 根据 clang 标头 TargetInfo.h，TargetInfo 类存储有关代码生成的目标系统的所需信息，并且必须在编译或预处理之前创建。
+ - TargetInfo 类使用两个参数实现初始化：DiagnosticsEngine 和 TargetOptions。
+    - 在这两个参数中，对于当前平台，后者必须将 Triple 字符串设置为相应的值。
+
+
+```cpp
+#include "clang/Basic/TargetInfo.h"
+...
+ci.createDiagnostics( client, true  );
+
+    // create TargetOptions
+    std::shared_ptr<clang::TargetOptions> pTargetOptions = std::make_shared<clang::TargetOptions>();
+    pTargetOptions->Triple = llvm::sys::getDefaultTargetTriple();
+    // create TargetInfo
+    TargetInfo *pti = TargetInfo::CreateTargetInfo(ci.getDiagnostics(), pTargetOptions);
+    ci.setTarget(pti);
+
+ci.createFileManager();  // create FileManager
+```
+
+```bash
+$ ./a.out
+...
+numeric_constant '1'
+semi ';'
+r_brace '}'
+int 'int'
+identifier 'main'
+l_paren '('
+r_paren ')'
+l_brace '{'
+identifier 'printf'
+l_paren '('
+string_literal '"main"'
+r_paren ')'
+semi ';'
+r_brace '}'
+eof ''
+```
+
+## 创建一个解析树
 
 
