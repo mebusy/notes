@@ -349,6 +349,10 @@ constructor | method | function  type subroutineName ( parameter-list ) {
     - Typed
  - Statements
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_statement.png)
+
+ - Expressions
+
 
 
 
