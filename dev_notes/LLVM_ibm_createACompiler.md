@@ -196,7 +196,9 @@ int main()
 }
 ```
 
- - maxosx 上要加上 `--system-libs`
+ - maxosx 上要加上 `--system-libs` , 或者 \`llvm-config --ldflags\` -undefined dynamic_lookup 
+ - Get proper shared-library behavior (where symbols are not necessarily resolved when the shared library is linked) on OS X. 
+
 
 ```bash
 $ clang++  `llvm-config --cxxflags --ldflags --libs --system-libs ` firstLLVM.cpp 
@@ -396,6 +398,7 @@ public:
         return false;
     }
     static char ID; // could be a global too
+    TestClass(): FunctionPass(ID) {}
 };
 
 char TestClass::ID = 'a';
@@ -403,10 +406,15 @@ static llvm::RegisterPass<TestClass> global_("test_llvm", "test llvm", false, fa
 ```
 
  - RegisterPass 模板中的参数 template 是将要在命令行中与 opt 一起使用的阶段的名称
- - 您现在所需做的就是 在上面这段代码 之外， 创建一个共享库， 然后 运行 opt 来 加载该库。
+ - 您现在所需做的就是 在上面这段代码， 创建成 一个共享库， 然后 运行 opt 来 加载该库。
     - 之后是使用 RegisterPass 注册的命令的名称 ( "test_llvm" in this case) 
     - 最后是一个位码文件，您的定制阶段将在该文件中与其他阶段一起运行.
 
 ```bash
-
+$ clang++ -c  `llvm-config --cxxflags` pass.cpp 
+$ clang++ -shared -o pass.so pass.o `llvm-config --ldflags`  -undefined dynamic_lookup 
+$ opt -load=./pass.so –test_llvm < test.bc  ???
 ```
+
+
+
