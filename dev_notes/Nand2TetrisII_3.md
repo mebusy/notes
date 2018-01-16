@@ -268,7 +268,47 @@ do x.print()   // 2/5
 ```
 
 
-## 3.6
+## 3.6  Jack Language Specification: Classes
+
+ - Each class `Foo` is stored in a separate Foo.jack file
+ - The class name's 1st character must be an uppercase letter
+ - syntactics requirement 
+    - field and static variables , if they exists, must appear before the subroutine declarations. 
+
+```
+class Foo {
+    field variable declarations    
+    static variable declarations    
+    subroutine declarations
+}
+```
+
+ - 2 kinds of classes
+    - 1. Classes that provide functionality
+        - Math class API (example)  
+            - Provides various mathematical operations
+            - `function int abs(int x)`
+        - Contains functions only
+        - no fields, constructors, or methods 
+        - Offers a "library of services"
+    
+    - 2.  Classes that represent entites (objects)
+        - Examples:  Fraction, List, String , ... 
+        - A class that contains at least on method
+        - Typically contains fields and methods.
+        - Can also contain functions, recommended for "helper" purpoes only
+
+### Jack's standard class library / OS
+
+ - OS purpose:
+    - Closes gaps between high-level programs and the host hardware
+    - Provides efficient implementations of commonly-used functions
+    - Provides efficient implementations of commonly-used ADT's.  (abstract data type ?)
+ - OS implementation
+    - A collection of classes
+    - Similar to Java's standard class library , in spirit
+
+
 
 
 
