@@ -335,7 +335,9 @@ constructor | method | function  type subroutineName ( parameter-list ) {
     - Methods:  operate on the current object
     - Functions:  static methods
 
- - Variables
+###  Variables
+
+ - variable types
     - static variables
         - class-level variables, can be manipulated by the class subroutines
     - field variables
@@ -344,14 +346,53 @@ constructor | method | function  type subroutineName ( parameter-list ) {
         - used by subroutines, for local computations
     - parameter variables
         - used to pass values to subroutines , behave like local variables
+
  - variables must be ...
     - Declared before they are used
     - Typed
- - Statements
+    
+### Statements
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_statement.png)
 
- - Expressions
+### Expressions
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_expressions.png)
+
+### Arrays
+
+ - Jack arrays are ...
+    - instance (objects) of the OS class Array
+    - not typed
+    - uni-dimensional
+
+```
+var Array arr;
+let arr = Array.new(4) ;
+arr[0] = 12;
+arr[1] = false ;
+arr[2] = Fraction.new(314,100);
+...
+```
+
+### End note:  peculiar features of Jack
+
+ - `let`
+    - must be used in assigments: `let x=0;`
+ - `do`
+    - must be used for calling a method or a function outside an expression:  `do reduce();`
+ - The body of a statement must be within curly brackets , even if it contains a single statement:
+    - `if (a>0) {return a} else {return -a};`   ?? is the syntax correct ?
+ - All subroutine must end with a `return`
+ - **No operator priority**.
+    - you have to use parentheses
+ - The language is weakly typed
+
+
+## 3.8 
+
+
+
 
 
 
