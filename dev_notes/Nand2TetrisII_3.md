@@ -308,6 +308,53 @@ class Foo {
     - A collection of classes
     - Similar to Java's standard class library , in spirit
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_std_os.png)
+
+
+## 3.7 Jack Language Specification: Methods
+
+### Subroutines
+
+```
+constructor | method | function  type subroutineName ( parameter-list ) {
+    local variable declarations
+    statements
+}
+```
+
+ - Subroutine types and return values
+    - Method and function type can be either `void` , a primitive data type, or a class name
+    - Each subroutine must return a value 
+
+ - Jack subroutines
+    - Constructors: create new objects
+        - 0,1, or more in a class
+        - Common name : `new`
+        - must be same type of class 
+        - must return a reference to an object of this class type
+    - Methods:  operate on the current object
+    - Functions:  static methods
+
+ - Variables
+    - static variables
+        - class-level variables, can be manipulated by the class subroutines
+    - field variables
+        - object properties, can be manipulated by the class constructors and methods
+    - local variabbles
+        - used by subroutines, for local computations
+    - parameter variables
+        - used to pass values to subroutines , behave like local variables
+ - variables must be ...
+    - Declared before they are used
+    - Typed
+ - Statements
+
+
+
+
+
+
+
 
 
 
