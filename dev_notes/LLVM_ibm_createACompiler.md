@@ -386,14 +386,16 @@ public:
 ```cpp
 #include "llvm/Pass.h"
 #include "llvm/IR/Function.h"
-#include <iostream>
+// #include <iostream>
+#include "llvm/Support/raw_ostream.h"
 
 class TestClass : public llvm::FunctionPass {
 public:
     virtual bool runOnFunction(llvm::Function &F) {
         llvm::StringRef r = F.getName();
         if ( r.startswith("hello")) {
-            std::cout  << "Function name starts with hello\n";
+            // std::cout  <<   "name starts with hello\n";
+           llvm::errs() << "I saw a function called " << F.getName() << "!\n"; 
         }
         return false;
     }
@@ -413,8 +415,32 @@ static llvm::RegisterPass<TestClass> global_("test_llvm", "test llvm", false, fa
 ```bash
 $ clang++ -c  `llvm-config --cxxflags` pass.cpp 
 $ clang++ -shared -o pass.so pass.o `llvm-config --ldflags`  -undefined dynamic_lookup 
-$ opt -load=./pass.so –test_llvm < test.bc  ???
+$ opt -load pass.so -test_llvm < test.bc > /dev/null
+I saw a function called helloTest!
 ```
 
+ - 但是，每次都 输入 .bc 文件比较麻烦，可以只用 clang 来完成这个工作
+
+```cpp
+// for Automatically enable the pass
+#include "llvm/IR/LegacyPassManager.h"
+#include "llvm/Transforms/IPO/PassManagerBuilder.h"
+
+....
+
+// static llvm::RegisterPass<TestClass> global_("test_llvm", "test llvm", false, false);
+// Automatically enable the pass.
+// http://adriansampson.net/blog/clangpass.html
+static void registerTestPass(const llvm::PassManagerBuilder &,
+                         llvm::legacy::PassManagerBase &PM) {
+  PM.add(new TestClass());
+}
+static llvm::RegisterStandardPasses
+  RegisterMyPass(llvm::PassManagerBuilder::EP_EarlyAsPossible,
+                 registerTestPass);
+
+```bash
+$ clang -Xclang -load -Xclang pass.so test.c
+```
 
 
