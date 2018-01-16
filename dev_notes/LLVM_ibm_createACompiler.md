@@ -443,4 +443,126 @@ static llvm::RegisterStandardPasses
 $ clang -Xclang -load -Xclang pass.so test.c
 ```
 
+## Clang 简介
+
+ - Clang 是一种功能强大的 C/C++/Objective-C 编译器
+ - clang 拥有一个可修改的代码基，可以轻松实现定制扩展 
+
+### 常见的 clang 类
+
+ - CompilerInstance
+ - Preprocessor
+ - FileManager
+ - SourceManager
+ - DiagnosticsEngine
+ - LangOptions
+ - TargetInfo
+ - ASTConsumer
+ - Sema
+ - ParseAST 也许是最重要的 clang 方法。
+
+--- 
+
+ - 要实现所有实用的用途，考虑使用适当的 CompilerInstance 编译器
+    - 它提供了接口，管理对 AST 的访问，对输入源进行预处理，而且维护目标信息。
+ - 典型的应用程序需要创建 CompilerInstance 对象来完成有用的功能
+
+```cpp
+// CompilerInstance class
+class CompilerInstance : public ModuleLoader {
+  /// The options used in this compiler instance.
+  llvm::IntrusiveRefCntPtr<CompilerInvocation> Invocation;
+  /// The diagnostics engine instance.
+  llvm::IntrusiveRefCntPtr<DiagnosticsEngine> Diagnostics;
+  /// The target being compiled for.
+  llvm::IntrusiveRefCntPtr<TargetInfo> Target;
+  /// The file manager.
+  llvm::IntrusiveRefCntPtr<FileManager> FileMgr;
+  /// The source manager.
+  llvm::IntrusiveRefCntPtr<SourceManager> SourceMgr;
+  /// The preprocessor.
+  llvm::IntrusiveRefCntPtr<Preprocessor> PP;
+  /// The AST context.
+  llvm::IntrusiveRefCntPtr<ASTContext> Context;
+  /// The AST consumer.
+  OwningPtr<ASTConsumer> Consumer;
+ /// \brief The semantic analysis object.
+  OwningPtr<Sema> TheSema;
+ //… the list continues
+};
+``` 
+
+
+## 预处理 C 文件
+
+ - 在 clang 中，至少可以使用两种方法创建一个预处理器对象：
+    - 直接实例化一个 Preprocessor 对象
+    - 使用 CompilerInstance 类创建一个 Preprocessor 对象
+
+### 使用 Helper 和实用工具类实现预处理功能
+
+ - 单独使用 Preprocessor 不会有太大的帮助：您需要 FileManager 和 SourceManager 类来读取文件并跟踪源位置，实现故障诊断。
+ - FileManager 类支持文件系统查找、文件系统缓存和目录搜索。
+ - 查看 FileEntry 类，它为一个源文件定义了 clang 抽象
+
+```cpp
+class FileManager : public llvm::RefCountedBase<FileManager> {
+  FileSystemOptions FileSystemOpts;
+   /// \brief The virtual directories that we have allocated.  For each
+  /// virtual file (e.g. foo/bar/baz.cpp), we add all of its parent
+  /// directories (foo/ and foo/bar/) here.
+  SmallVector<DirectoryEntry*, 4> VirtualDirectoryEntries;
+  /// \brief The virtual files that we have allocated.
+  SmallVector<FileEntry*, 4> VirtualFileEntries;
+ /// NextFileUID - Each FileEntry we create is assigned a unique ID #.
+  unsigned NextFileUID;
+  // Statistics.
+  unsigned NumDirLookups, NumFileLookups;
+  unsigned NumDirCacheMisses, NumFileCacheMisses;
+ // …
+  // Caching.
+  OwningPtr<FileSystemStatCache> StatCache;
+```
+
+ - SourceManager 类通常用来查询 SourceLocation 对象
+
+```cpp
+// 理解 SourceLocation
+/// There are three different types of locations in a file: a spelling
+/// location, an expansion location, and a presumed location.
+///
+/// Given an example of:
+/// #define min(x, y) x < y ? x : y
+///
+/// and then later on a use of min:
+/// #line 17
+/// return min(a, b);
+///
+/// The expansion location is the line in the source code where the macro
+/// was expanded (the return statement), the spelling location is the
+/// location in the source where the macro was originally defined,
+/// and the presumed location is where the line directive states that
+/// the line is 17, or any other line.
+```
+
+ - 很明显，SourceManager 取决于底层的 FileManager；事实上，SourceManager 类构造函数接受一个 FileManager 类作为输入参数。
+ - 最后，您需要跟踪处理源代码时可能出现的错误并进行报告。您可以使用 DiagnosticsEngine 类完成这项工作。
+ - 和 Preprocessor 一样，您有两个选择：
+    - 独立创建所有必需的对象
+    - 使用 CompilerInstance 完成所有工作
+ - 使用 clang API 创建一个预处理器
+
+```cpp
+// prep.cpp
+
+```
+
+ - 使用 CompilerInstance 类依次创建 
+    - DiagnosticsEngine（ci.createDiagnostics 方法调用）
+    - 和 FileManager（ci.createFileManager 和 ci.CreateSourceManager）。
+ - 使用 FileEntry 完成文件关联后，继续处理源文件中的每个token，直到达到文件的末尾 (EOF)。
+ - 预处理器的 DumpToken 方法将把令牌转储到屏幕中。
+
+
+
 
