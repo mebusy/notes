@@ -446,35 +446,19 @@ Class Array {
 
  - Let Jack programs to access the host RAM directly
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_Memory_api.png)
 
+ - alloc / dealloc 
+    - used to create memory blocks and dispose them when they are no longer needed. 
 
+### The Jack OS: Sys
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
+```
+Class Sys {
+    function void halt();
+    function void error( int errorCode )
+    function void wait( int duration )    
+}
+```
 
 

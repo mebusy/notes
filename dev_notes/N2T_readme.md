@@ -14,6 +14,7 @@
  - [Compute Architecture](https://github.com/mebusy/notes/blob/master/dev_notes/Nand2TetrisI_5.md)
  - [Assembler](https://github.com/mebusy/notes/blob/master/dev_notes/Nand2TetrisI_6.md)
  - [Vitural Machine](https://github.com/mebusy/notes/blob/master/dev_notes/Nand2TetrisII.md)
+ - [Jack Language](https://github.com/mebusy/notes/blob/master/dev_notes/Nand2TetrisII_3.md)
  - 
 
 
