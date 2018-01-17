@@ -7,6 +7,15 @@
      - [创建一个自定义的 LLVM IR 代码生成器](#83cce5d6924f021359b95495b7562605)
          - [针对 LLVM 代码的链接](#b641743f3841c4148588d0e72f4ae123)
          - [LLVM 模块和上下文环境等](#bb79068e1b02332c2220d3189bcccc59)
+ - [使用 LLVM 框架创建有效的编译器，第 2 部分](#6cfc5f386e58017e97fb9be705eb0da3)
+     - [LLVM pass](#784abba3fc07b20f4deb3d203bb9affd)
+     - [了解 LLVM opt 工具](#066a588366b625e58eb1a1e9226d1683)
+     - [创建定制的 LLVM pass](#c0a5892e853163ca07b7b9b487f197ed)
+     - [Clang 简介](#6124d205a6b4c4319b89f421348a9c95)
+         - [常见的 clang 类](#03c49ffee999414feaacf90394855190)
+     - [预处理 C 文件](#af74591f45fdefe413d92ff59c7641e8)
+         - [使用 Helper 和实用工具类实现预处理功能](#8917d0aa85c6f420c6f318f4544ac7a2)
+     - [创建一个解析树](#d7355d4c2830894b182ca4fc92ca8aa7)
 
 ...menuend
 
@@ -305,9 +314,13 @@ declare i32 @puts(i8*)
 
 ---
 
+<h2 id="6cfc5f386e58017e97fb9be705eb0da3"></h2>
+
 # 使用 LLVM 框架创建有效的编译器，第 2 部分
 
  - 本文将介绍代码测试，即向生成的最终可执行的代码添加信息。
+
+<h2 id="784abba3fc07b20f4deb3d203bb9affd"></h2>
 
 ## LLVM pass
 
@@ -315,6 +328,8 @@ declare i32 @puts(i8*)
  - 优化被实现为 pass
  - LLVM 为您提供了使用最少量的代码创建 utility pass 的功能。
     - 例如，如果不希望使用 “hello” 作为函数名称的开头，那么可以使用一个 utility pass  来实现这个目的。
+
+<h2 id="066a588366b625e58eb1a1e9226d1683"></h2>
 
 ## 了解 LLVM opt 工具
 
@@ -329,6 +344,8 @@ $ opt –load=mycustom_pass.so –help –S  // untested
 
  - opt –help 会生成一个 LLVM 将要执行的pass的细目清单
 
+
+<h2 id="c0a5892e853163ca07b7b9b487f197ed"></h2>
 
 ## 创建定制的 LLVM pass
 
@@ -438,15 +455,21 @@ static void registerTestPass(const llvm::PassManagerBuilder &,
 static llvm::RegisterStandardPasses
   RegisterMyPass(llvm::PassManagerBuilder::EP_EarlyAsPossible,
                  registerTestPass);
+```
+
 
 ```bash
 $ clang -Xclang -load -Xclang pass.so test.c
 ```
 
+<h2 id="6124d205a6b4c4319b89f421348a9c95"></h2>
+
 ## Clang 简介
 
  - Clang 是一种功能强大的 C/C++/Objective-C 编译器
  - clang 拥有一个可修改的代码基，可以轻松实现定制扩展 
+
+<h2 id="03c49ffee999414feaacf90394855190"></h2>
 
 ### 常见的 clang 类
 
@@ -493,11 +516,15 @@ class CompilerInstance : public ModuleLoader {
 ``` 
 
 
+<h2 id="af74591f45fdefe413d92ff59c7641e8"></h2>
+
 ## 预处理 C 文件
 
  - 在 clang 中，至少可以使用两种方法创建一个预处理器对象：
     - 直接实例化一个 Preprocessor 对象
     - 使用 CompilerInstance 类创建一个 Preprocessor 对象
+
+<h2 id="8917d0aa85c6f420c6f318f4544ac7a2"></h2>
 
 ### 使用 Helper 和实用工具类实现预处理功能
 
@@ -646,6 +673,8 @@ semi ';'
 r_brace '}'
 eof ''
 ```
+
+<h2 id="d7355d4c2830894b182ca4fc92ca8aa7"></h2>
 
 ## 创建一个解析树
 

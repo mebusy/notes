@@ -6,6 +6,33 @@
      - [3.2 Object-Based Programming](#56a104167bb72e560b1f54bc8e9ee773)
          - [OO programming: building a class](#eb8fed3241e22b795da243323dd0d9df)
          - [OO programming : object representation](#f42bc11c828b9e7b453ba5a2ea1dbc2f)
+     - [3.3 List Processing](#71663dfce028d17668607661995a1d37)
+         - [List processing: creation](#cac6d635d890c0cc537c42c1fcbfd171)
+         - [List processing: access](#d7d2ffd56a417c38516f3e4b0be43677)
+         - [List processing: recursive access](#da2dc85f849a5b0c7f17027c5141adc2)
+         - [List representation](#eabdefffaadf27a2e17eac89b418d03c)
+     - [3.4 Jack Language Specification: Syntax](#37e104abddcaa33a048fad005370438e)
+     - [3.5 Jack Language Specification: Data Types](#02ba0342a1f6047d1fc59dbe8c736779)
+         - [Type conversions](#956254eeb4ca69e43d83f9558cbb3e98)
+     - [3.6  Jack Language Specification: Classes](#702a066c5174a17b8981f6d4410b0d0d)
+         - [Jack's standard class library / OS](#4558194d73a936fe28cdbed10400ec1d)
+     - [3.7 Jack Language Specification: Methods](#690d3dc362ad3289be5978d10480faa8)
+         - [Subroutines](#8c6ac4596c1168f05b215b9aead6fcb4)
+         - [Variables](#03df896fc71cd516fdcf44aa699c4933)
+         - [Statements](#5187c223ff0fffa9405f54d092d553ab)
+         - [Expressions](#d3c7279c25a23f98e777a7bebe35d002)
+         - [Arrays](#ff43b8de4f41d5103405ddb62eb8d34e)
+         - [End note:  peculiar features of Jack](#ee7a19bd3cbdb072efdf19891f4e7929)
+     - [3.8 Developing Apps using the Jack language and OS](#ea8f8eda96399f023a058048c72c5017)
+         - [Handling output: text](#c0d18b3fff6b39107ca3bdff5c11323a)
+         - [Handling output: Graphics](#fb89fc7b0d2a50d38e81c914c3c46bb9)
+         - [Handling inputs](#ef13e4867d3df16a26f0da8e087e604d)
+         - [The Jack character set](#3a642fb9488105d110aae04b379f2048)
+         - [The Jack OS: Math](#91fab7d79331b0dcc5185669d547fcce)
+         - [The Jack OS: String](#ff3a5ab1439e7a90255a2c10fddd0fcb)
+         - [The Jack OS: Array](#24541d4f92edd767f23faf23e21be1a3)
+         - [The Jack OS: Memory](#e80860d8f95063a5654babba64c2cbd9)
+         - [The Jack OS: Sys](#57092613dcfb42997a85b6a86e6bbea9)
 
 ...menuend
 
@@ -99,6 +126,8 @@
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_obj_represent_3.png)
 
 
+<h2 id="71663dfce028d17668607661995a1d37"></h2>
+
 ## 3.3 List Processing 
 
  - List definition
@@ -129,6 +158,8 @@ class List {
 }
 ```
 
+<h2 id="cac6d635d890c0cc537c42c1fcbfd171"></h2>
+
 ### List processing: creation
 
 ```
@@ -151,6 +182,8 @@ let v = List.new(5,null) ;
 let v = List.new(3,v) ;
 let v = List.new(2,v) ;
 ```
+
+<h2 id="d7d2ffd56a417c38516f3e4b0be43677"></h2>
 
 ### List processing: access
 
@@ -179,6 +212,8 @@ var list v ;
 do v.print();
 ```
 
+<h2 id="da2dc85f849a5b0c7f17027c5141adc2"></h2>
+
 ### List processing: recursive access
 
 ```
@@ -196,6 +231,8 @@ class List {
 }
 ```
 
+<h2 id="eabdefffaadf27a2e17eac89b418d03c"></h2>
+
 ### List representation
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_list_representation.png)
@@ -203,6 +240,8 @@ class List {
  - who makes the magic work ?
     - high-level: the constructor
     - low-level: when compiling the constructor, the compiler plants calls to OS routines that find , and allocate , avaiable memory space for the new object.
+
+<h2 id="37e104abddcaa33a048fad005370438e"></h2>
 
 ## 3.4 Jack Language Specification: Syntax
 
@@ -231,6 +270,8 @@ class List {
     - Identifiers
 
 
+<h2 id="02ba0342a1f6047d1fc59dbe8c736779"></h2>
+
 ## 3.5 Jack Language Specification: Data Types
 
  - Primitive types
@@ -244,6 +285,8 @@ class List {
     - OS types: String, Array
     - User-defined types: Fraction, List, .. 
 
+
+<h2 id="956254eeb4ca69e43d83f9558cbb3e98"></h2>
 
 ### Type conversions 
 
@@ -267,6 +310,8 @@ let x=  arr ;
 do x.print()   // 2/5
 ```
 
+
+<h2 id="702a066c5174a17b8981f6d4410b0d0d"></h2>
 
 ## 3.6  Jack Language Specification: Classes
 
@@ -298,6 +343,8 @@ class Foo {
         - Typically contains fields and methods.
         - Can also contain functions, recommended for "helper" purpoes only
 
+<h2 id="4558194d73a936fe28cdbed10400ec1d"></h2>
+
 ### Jack's standard class library / OS
 
  - OS purpose:
@@ -311,7 +358,11 @@ class Foo {
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_std_os.png)
 
 
+<h2 id="690d3dc362ad3289be5978d10480faa8"></h2>
+
 ## 3.7 Jack Language Specification: Methods
+
+<h2 id="8c6ac4596c1168f05b215b9aead6fcb4"></h2>
 
 ### Subroutines
 
@@ -335,6 +386,8 @@ constructor | method | function  type subroutineName ( parameter-list ) {
     - Methods:  operate on the current object
     - Functions:  static methods
 
+<h2 id="03df896fc71cd516fdcf44aa699c4933"></h2>
+
 ###  Variables
 
  - variable types
@@ -351,13 +404,19 @@ constructor | method | function  type subroutineName ( parameter-list ) {
     - Declared before they are used
     - Typed
     
+<h2 id="5187c223ff0fffa9405f54d092d553ab"></h2>
+
 ### Statements
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_statement.png)
 
+<h2 id="d3c7279c25a23f98e777a7bebe35d002"></h2>
+
 ### Expressions
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_expressions.png)
+
+<h2 id="ff43b8de4f41d5103405ddb62eb8d34e"></h2>
 
 ### Arrays
 
@@ -375,6 +434,8 @@ arr[2] = Fraction.new(314,100);
 ...
 ```
 
+<h2 id="ee7a19bd3cbdb072efdf19891f4e7929"></h2>
+
 ### End note:  peculiar features of Jack
 
  - `let`
@@ -389,7 +450,11 @@ arr[2] = Fraction.new(314,100);
  - The language is weakly typed
 
 
+<h2 id="ea8f8eda96399f023a058048c72c5017"></h2>
+
 ## 3.8 Developing Apps using the Jack language and OS
+
+<h2 id="c0d18b3fff6b39107ca3bdff5c11323a"></h2>
 
 ### Handling output: text 
 
@@ -399,6 +464,8 @@ arr[2] = Fraction.new(314,100);
     - Output: Jack OS Output class
  - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_output_api.png)
 
+<h2 id="fb89fc7b0d2a50d38e81c914c3c46bb9"></h2>
+
 ### Handling output: Graphics
 
  - Graphical apps:
@@ -406,6 +473,8 @@ arr[2] = Fraction.new(314,100);
     - Output: Jack OS Screen class ( or do your own )
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_screen.png)
+
+<h2 id="ef13e4867d3df16a26f0da8e087e604d"></h2>
 
 ### Handling inputs
 
@@ -415,12 +484,16 @@ arr[2] = Fraction.new(314,100);
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_keyboard_api.png)
 
+<h2 id="3a642fb9488105d110aae04b379f2048"></h2>
+
 ### The Jack character set
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_character_set.png)
 
  - `Keyboard.keypress()`
     - return the code of the currently pressed key, or 0 when no key is pressed
+
+<h2 id="91fab7d79331b0dcc5185669d547fcce"></h2>
 
 ### The Jack OS: Math
 
@@ -429,9 +502,13 @@ arr[2] = Fraction.new(314,100);
  - 写 jack 程序的时候，你不需要 Math.multiply , Math.divide 这个两个方法， 你可以直接使用 \*, / 
     - 这两个方法在写Jack compiler 的时候会有帮助
 
+<h2 id="ff3a5ab1439e7a90255a2c10fddd0fcb"></h2>
+
 ### The Jack OS: String
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_String_api.png)
+
+<h2 id="24541d4f92edd767f23faf23e21be1a3"></h2>
 
 ### The Jack OS: Array
 
@@ -442,6 +519,8 @@ Class Array {
 }
 ```
 
+<h2 id="e80860d8f95063a5654babba64c2cbd9"></h2>
+
 ### The Jack OS: Memory 
 
  - Let Jack programs to access the host RAM directly
@@ -450,6 +529,8 @@ Class Array {
 
  - alloc / dealloc 
     - used to create memory blocks and dispose them when they are no longer needed. 
+
+<h2 id="57092613dcfb42997a85b6a86e6bbea9"></h2>
 
 ### The Jack OS: Sys
 
