@@ -678,4 +678,154 @@ eof ''
 
 ## 创建一个解析树
 
+ - clang/Parse/ParseAST.h  中定义的 ParseAST 方法是 clang 提供的重要方法之一。
+
+```cpp
+void ParseAST(Preprocessor &pp, ASTConsumer *C,                   
+        ASTContext &Ctx, bool PrintStats = false,
+        TranslationUnitKind TUKind = TU_Complete,
+        CodeCompleteConsumer *CompletionConsumer = nullptr,
+        bool SkipFunctionBodies = false);
+```
+
+ - ASTConsumer 为您提供了一个抽象接口，可以从该接口进行派生。
+ - 您的客户端代码将派生自 ASTConsumer。
+ - ASTContext 类存储有关类型声明的信息和其他信息。
+ - 最简单的尝试就是使用 clang ASTConsumer API 在您的代码中输出一个全局变量列表。
+    - 许多技术公司就全局变量在 C++ 代码中的使用有非常严格的要求，这应当作为创建定制 lint 工具的出发点
+
+ - 定制 AST consumer 类
+
+```cpp
+// CustomASTConsumer.cpp
+#include "clang/Parse/Parser.h"
+#include "clang/AST/ASTConsumer.h" 
+#include <iostream>
+
+using namespace clang ;
+
+class CustomASTConsumer : public ASTConsumer {
+public:
+ CustomASTConsumer () :  ASTConsumer() { }
+    virtual ~ CustomASTConsumer () { }
+    virtual bool HandleTopLevelDecl(DeclGroupRef decls)
+    {
+        clang::DeclGroupRef::iterator it;
+        for( it = decls.begin(); it != decls.end(); it++)
+        {
+            clang::VarDecl *vd = llvm::dyn_cast<clang::VarDecl>(*it);
+            if(vd)
+               std::cout << vd->getDeclName().getAsString() << std::endl;;
+        }
+        return true;
+    }
+};
+```
+
+ - 您将使用自己的版本覆盖 HandleTopLevelDecl 方法
+ - Clang 将全局变量列表传递给您；您对该列表进行迭代并输出变量名称。
+ - ASTConsumer.h，显示了客户端 consumer 代码可以覆盖的一些其他方法。
+
+ ```cpp
+ /// \brief This callback is invoked each time an inline (method or friend)       
+ /// function definition in a class is completed.
+ virtual void HandleInlineFunctionDefinition(FunctionDecl *D) {}
+
+ /// HandleInterestingDecl - Handle the specified interesting declaration. This
+ /// is called by the AST reader when deserializing things that might interest
+ /// the consumer. The default implementation forwards to HandleTopLevelDecl.
+ virtual void HandleInterestingDecl(DeclGroupRef D);
+
+ /// HandleTranslationUnit - This method is called when the ASTs for entire
+... 
+```
+
+ - 完整的代码，和 prep.cpp 很多代码相似
+
+```cpp
+// showTopDecl.cpp
+#include "clang/Frontend/CompilerInstance.h"
+#include <iostream>
+#include "clang/Basic/SourceManager.h"
+#include "clang/Lex/Preprocessor.h"
+#include "clang/Basic/TargetOptions.h"
+
+#include "clang/Basic/TargetInfo.h"
+
+
+#include "clang/Parse/Parser.h"
+#include "clang/AST/ASTConsumer.h" 
+#include "clang/Parse/ParseAST.h" 
+
+using namespace clang ;
+
+class CustomASTConsumer : public ASTConsumer {
+public:
+ CustomASTConsumer () :  ASTConsumer() { }
+    virtual ~ CustomASTConsumer () { }
+    virtual bool HandleTopLevelDecl(DeclGroupRef decls)
+    {
+        clang::DeclGroupRef::iterator it;
+        for( it = decls.begin(); it != decls.end(); it++)
+        {
+            clang::VarDecl *vd = llvm::dyn_cast<clang::VarDecl>(*it);
+            if(vd)
+               std::cout << vd->getDeclName().getAsString() << std::endl;;
+        }
+        return true;
+    }
+};
+
+
+int main()
+{
+    CompilerInstance ci;
+    DiagnosticConsumer *client = 0;
+    ci.createDiagnostics( client, true  );
+
+    // create TargetOptions
+    std::shared_ptr<clang::TargetOptions> pTargetOptions = std::make_shared<clang::TargetOptions>();
+    pTargetOptions->Triple = llvm::sys::getDefaultTargetTriple();
+    // create TargetInfo
+    TargetInfo *pti = TargetInfo::CreateTargetInfo(ci.getDiagnostics(), pTargetOptions);
+    ci.setTarget(pti);
+
+    ci.createFileManager();  // create FileManager
+    ci.createSourceManager(ci.getFileManager()); // create SourceManager
+    ci.createPreprocessor(clang::TU_Complete );  // create Preprocessor
+
+    // + AST
+    ci.createASTContext();
+    auto astConsumer  = new CustomASTConsumer();
+    ci.setASTConsumer( (std::unique_ptr<ASTConsumer>)astConsumer ) ;
+    // end +AST 
+
+    const FileEntry *pFile = ci.getFileManager().getFile("test.c");
+    ci.getSourceManager().setMainFileID( 
+        ci.getSourceManager().createFileID( pFile,  SourceLocation(), clang::SrcMgr::C_User  )
+    ) ;
+    // ci.getPreprocessor().EnterMainSourceFile();
+    ci.getDiagnosticClient().BeginSourceFile(ci.getLangOpts(), &ci.getPreprocessor());
+    
+    // + AST
+    clang::ParseAST( ci.getPreprocessor() , astConsumer , ci.getASTContext() );    
+    // end +AST
+
+    // removed ...
+    ci.getDiagnosticClient().EndSourceFile();
+}
+```
+
+
+```bash
+$ clang++  `llvm-config --cxxflags --ldflags --libs --system-libs ` $CLANGLIBS showTopDecl.cpp 
+$ ./a.out
+__stdinp
+__stdoutp
+__stderrp
+sys_nerr
+sys_errlist
+iAmTopLevelVariable
+```
+
 
