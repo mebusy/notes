@@ -404,7 +404,16 @@ arr[2] = Fraction.new(314,100);
  - Graphical apps:
     - Screen: 256 rows of 512 pixels, b&w
     - Output: Jack OS Screen class ( or do your own )
- - 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_screen.png)
+
+### Handling inputs
+
+ - Input devices:
+    - Standard keyboard
+    - Input programming:  use the OS Keyboard class
+
+
 
 
 
