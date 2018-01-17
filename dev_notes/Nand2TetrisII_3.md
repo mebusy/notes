@@ -396,7 +396,14 @@ arr[2] = Fraction.new(314,100);
  - Textual apps:
     - Screen: 23 rows of 64 characters, b&w
     - Font: featured by the Jack OS
-    - Output: Jack OS output class
+    - Output: Jack OS Output class
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_output_api.png)
+
+### Handling output: Graphics
+
+ - Graphical apps:
+    - Screen: 256 rows of 512 pixels, b&w
+    - Output: Jack OS Screen class ( or do your own )
  - 
 
 
