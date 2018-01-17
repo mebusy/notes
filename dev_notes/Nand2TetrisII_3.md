@@ -413,6 +413,10 @@ arr[2] = Fraction.new(314,100);
     - Standard keyboard
     - Input programming:  use the OS Keyboard class
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_keyboard_api.png)
+
+### The Jack character set
+
 
 
 
