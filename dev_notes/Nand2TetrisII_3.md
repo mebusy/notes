@@ -431,6 +431,21 @@ arr[2] = Fraction.new(314,100);
 
 ### The Jack OS: String
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_String_api.png)
+
+### The Jack OS: Array
+
+```
+Class Array {
+    function Array new(int size) 
+    method void dispose()    
+}
+```
+
+### The Jack OS: Memory 
+
+ - Let Jack programs to access the host RAM directly
+
 
 
 
