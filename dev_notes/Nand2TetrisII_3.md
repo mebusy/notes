@@ -389,7 +389,15 @@ arr[2] = Fraction.new(314,100);
  - The language is weakly typed
 
 
-## 3.8 
+## 3.8 Developing Apps using the Jack language and OS
+
+### Handling output: text 
+
+ - Textual apps:
+    - Screen: 23 rows of 64 characters, b&w
+    - Font: featured by the Jack OS
+    - Output: Jack OS output class
+ - 
 
 
 
