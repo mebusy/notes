@@ -424,6 +424,13 @@ arr[2] = Fraction.new(314,100);
 
 ### The Jack OS: Math
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_Math_api.png)
+
+ - 写 jack 程序的时候，你不需要 Math.multiply , Math.divide 这个两个方法， 你可以直接使用 \*, / 
+    - 这两个方法在写Jack compiler 的时候会有帮助
+
+### The Jack OS: String
+
 
 
 
