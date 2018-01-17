@@ -417,6 +417,13 @@ arr[2] = Fraction.new(314,100);
 
 ### The Jack character set
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_character_set.png)
+
+ - `Keyboard.keypress()`
+    - return the code of the currently pressed key, or 0 when no key is pressed
+
+### The Jack OS: Math
+
 
 
 
