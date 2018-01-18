@@ -387,6 +387,132 @@ class DietPizza(BasePizza):
 
 ## 7.7 The truth about super
 
+ - From the earliest days of Python, developers have been able to use both single and multiple inheritance to extend their classes
+ - classes are objects in Python
+    - The construct used to create a class is a special statement that you should be well familiar with:
+    - `class classname(expression of inheritance)`
+ - The part in parentheses is a Python expression that returns the list of class objects to be used as the class’s parents. 
+    - Normally you’d specify them directly, but you could also write something like:
+
+```python
+>>> def parent():
+...     return object
+...
+>>> class A(parent()):
+...     pass
+...
+>>> A.mro()
+[<class '__main__.A'>, <type 'object'>]
+```
+
+ - The class method mro() returns the method resolution order used to resolve attributes.
+ - You already know that the canonical way to call a method in a parent class is by using the `super()` function
+    - but what you probably don’t know is that super() is actually a constructor, 
+    - and you instantiate a super object each time you call it
+
+```python
+>>> print super.__doc__
+super(type, obj) -> bound super object; requires isinstance(obj, type)
+super(type) -> unbound super object
+super(type, type2) -> bound super object; requires issubclass(type2, type)
+Typical use to call a cooperative superclass method:
+class C(B):
+    def meth(self, arg):
+        super(C, self).meth(arg)
+```
+
+
+ - It takes either one or two arguments: 
+    - the first argument is a class, 
+    - and the second argument is either a subclass or an instance of the first argument.
+ - The object returned by the constructor functions as *a proxy for the parent classes of the first argument*
+    - It has its own __getattribute__ method that iterates over the classes in the MRO list and returns the first matching attribute it finds:
+
+```
+>>> class A(object):
+...     bar = 42
+...     def foo(self):
+...         pass
+...
+>>> class B(object):
+...     bar = 0 
+...
+
+>>> class C(A, B):
+...     xyz = 'abc'
+...
+
+>>> C.mro()
+[<class '__main__.C'>, <class '__main__.A'>, <class '__main__.B'>, <type 'object'>]
+>>> super(C, C()).bar
+42
+>>> super(C, C()).foo
+<bound method C.foo of <__main__.C object at 0x7f0299255a90>>
+>>> super(B).__self__
+>>> super(B, B()).__self__
+<__main__.B object at
+```
+
+ - When requesting an attribute of the super object of an instance of C, it walks through the MRO list and return the attribute from the first class having it.
+    - If we call super() with only one argument, it returns an unbound super object instead:
+
+```python
+>>> super(C)
+<super: <class 'C'>, NULL>
+```
+
+ - Since this object is unbound, you can’t use it to access class attributes:
+
+```python
+>>> super(C).foo
+AttributeError: 'super' object has no attribute 'foo'
+>>> super(C).bar
+AttributeError: 'super' object has no attribute 'bar'
+```
+
+ - At first glance, it might seem like this kind of super object ( take 1 argument ) is useless 
+    - but the super class implements the descriptor protocol (i.e. __get__) in a way that makes unbound super objects useful as class attributes:
+
+```python
+>>> class D(C):
+...     sup = super(C)
+...
+>>> D().sup
+<super: <class 'C'>, <D object>>
+>>> D().sup.foo
+<bound method D.foo of <__main__.D object at 0x7f0299255bd0>>
+>>> D().sup.bar
+42
+>>> D().sup.xyz
+AttributeError: 'super' object has no attribute 'xyz'
+```
+
+ - The unbound super object’s __get__ method is called 
+    - using the instance and the attributenameasarguments :
+    - `super(C).__get__(D(), 'foo')` 
+    - allowing it to find and resolve foo.
+
+
+ - In Python  , super() picked up a little bit of magic: 
+    - it can now be called from within a method without any arguments.
+    - When no arguments are passed to super(), it automatically searches the stack frame for them:
+
+```python
+class B(A):
+    def foo(self):
+        super().foo()
+```
+
+ - super is the standard way of accessing parent attributes in subclasses, and you should always use it. 
+    - It allows cooperative calls of parent methods without any surprises, such as 
+        - parent methods not being called or being called twice when using multiple inheritance.
+
+# Functional programming
+
+
+
+
+    
 
 
 
