@@ -512,25 +512,29 @@ push pointer 0/1
     - primitive operations (fixed) : add, sub, ...
     - abstract operations (  extensible) : multiply , sqrt, ...
  - **Applying a primitive operator and calling a function have the same look-and-feel**
- - 这里这是抽象，并不是真正的 VM 语法
+ - 注意，图右侧是 伪代码
 
 <h2 id="fea8924fc70227eebc49c74b1d1b51ff"></h2>
 
-### defining 
+### function defining 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_definition.png)
 
  - `function mult 2` 
     - 2 means the number of **local** variables which will be used !!! 
+ - 高级语言的 function 被 compiler 编译成 vm code 后，总是 以  function 开头， 以 return 结束
+    - 即使 高级语言部分 函数有多个 return, vm code 也仅有一个 return 作为结束
+ - compile 翻译的时候，确定 函数 mult 需要用到几个 local 变量
 
 <h2 id="9dc3193162bf56a4458c7a36c3b24c83"></h2>
 
-### executing
+### function executing
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_execute.png)
 
  - `call func n` , here *n* means the number arguments 
     - 意义， call 之前的参数压栈，是 compiler 生成 vm code时候 要做的的工作之一
+    - compiler 同时可以确定 n 的大小
  - after line 0 of `function mult 2` is executed:
     - First of all I get an empty stack
     - The 2nd thing that I get is an argument segment. 
