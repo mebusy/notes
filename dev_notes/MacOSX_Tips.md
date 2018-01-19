@@ -172,11 +172,39 @@ ls *.json | xargs -I {}  sh -c  " tr -d '\r' < {}  > {}2 && mv {}2 {} "
 
 <h2 id="5f994ac597fa448c5bd31b99d8145142"></h2>
 
-### find a specific pattern  in files 
+### find pattern in specific file types 
 
 ```bash
-grep -rnw '/path/to/somewhere/' -e 'pattern'
+find . -type f -name '*.cpp' -o -name '*.h' -o -name '*.as'  | xargs -I {} grep  -m 1  ReturnToMap "{}" /dev/null
 ```
+
+ - `*.ext1` -o `*.ext2` 
+ - `"{}"` is to prevent path with space 
+ - `/dev/null` is to show the file path
+ - ` -m 1`  stop when 1st matching
+
+use mdfind ...
+
+```
+mdfind -onlyin . "kMDItemDisplayName == *.as || kMDItemDisplayName == *.cpp || kMDItemDisplayName == *.h"  | xargs -I {} grep  -m 1  ReturnToMap "{}" /dev/null
+```
+
+最高效的方式
+
+```
+grep -r --include \*.h --include \*.cpp --include \*.as ReturnToMap  .
+```
+
+ - ` -m 1` will not works as expect in `-r` mode
+
+ - or more clean 
+
+```
+grep -r --include=*.{h,cpp,as}  ReturnToMap  .
+```
+
+ - add `-w ` if you want matching the whole word 
+
 
 <h2 id="aa252f9440484d1ebb28ca3e4015d2d4"></h2>
 
