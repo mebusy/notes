@@ -99,7 +99,7 @@ unsigned int note_txt_len = 61;
 
 ### mdfind
 
-[https](https://raw.githubusercontent.com/mebusy/notes/master/dev_notes/mdfind.md)
+[mdfind](https://raw.githubusercontent.com/mebusy/notes/master/dev_notes/mdfind.md)
 
 
 <h2 id="724874d1be77f450a09b305fc1534afb"></h2>
