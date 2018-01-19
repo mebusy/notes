@@ -529,7 +529,8 @@ push pointer 0/1
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_execute.png)
 
- - `call func n` , here *n* means the number arguments ?
+ - `call func n` , here *n* means the number arguments 
+    - 意义， call 之前的参数压栈，是 compiler 生成 vm code时候 要做的的工作之一
  - after line 0 of `function mult 2` is executed:
     - First of all I get an empty stack
     - The 2nd thing that I get is an argument segment. 
