@@ -970,7 +970,33 @@ convex sets | ∞
 
 <h2 id="1223874fb29922e4e7bb1474bbc33147"></h2>
 
-# Week 8
+# Week 8  Noise and Error
+
+## Noise and Probabilistic Target
+
+ - 如果我們的hypothesis set的VC Dimension是有限的，然後我們有足夠多的資料， 我們的演算法又能夠找到一個hypothesis它的Ein很低的話，那麽我們就大概 學到了東西
+ - 不过，我們原來的VC Bound，在推導的過程中， 我們有一些假設，我們怎麽樣放寬這些假設，讓我們對這個VC Bound的VC Dimension的了解， 可以放寬到更多不同的問題上面。
+ - 如果我们的资料中 加上Noise， 對我們之前整個理論的推導會不會有影響呢？
+
+---
+
+ - Target Distribution P(y|x)
+    - characterizes behavior of "**mini-target**" on one **x** 
+
+ - can be viewed as 'ideal mini-target' + noise , e.g.
+    - P('o'|x)=0.7 , P('×'|x) = 0.3
+    - ideal mini-target f(x) = 'o'
+    - 'flipping noise level' = 0.3
+ - deterministic target *f* : **special case of target distribution**
+    - P(y|x) = 1 ,  if y = f(x)
+    - P(y|x) = 0 ,  if y ≠ f(x)
+ - goal of learning
+    - predict **ideal mini-target (w.r.t P(y|x))** on *often-seen inputes(w.r.t P(x))*.
+    - 在常常sample到的资料里面，要预测的好，这就是 ML要做到的事情。
+
+
+## Error Measure
+
 
 
     
