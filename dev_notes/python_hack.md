@@ -508,10 +508,21 @@ class B(A):
     - It allows cooperative calls of parent methods without any surprises, such as 
         - parent methods not being called or being called twice when using multiple inheritance.
 
-<h2 id="1fed90516cc61e1a2b4a5e0524f98d0e"></h2>
 
-# Functional programming
+# 9 The AST
 
+ - Parsing Python code to AST
+
+```python
+>>> import ast
+>>> ast.parse
+<function parse at 0x104c9bed8>
+>>> ast.parse("x=42")
+<_ast.Module object at 0x104c99f10>
+>>> ast.dump( ast.parse("x=42") )
+"Module(body=[Assign(targets=[Name(id='x', ctx=Store())], value=Num(n=42))])"
+>>> 
+```
 
 
 
