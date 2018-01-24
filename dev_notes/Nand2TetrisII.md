@@ -523,9 +523,10 @@ push pointer 0/1
 
  - `function mult 2` 
     - 2 means the number of **local** variables which will be used !!! 
- - 高级语言的 function 被 compiler 编译成 vm code 后，基本上都以  function 开头， 以 return 结束
-    - 即使 高级语言部分 函数有多个 return, vm code 也仅有一个 return 作为结束
-    - 唯一的例外是，类似 Sys.init, 函数体是个无限循环
+ - 高级语言的 function 被 compiler 编译成 vm code 后
+    - 可以有一个return
+    - 也可能有多个return 
+    - 也可能没有return ，类似 Sys.init, 函数体是个无限循环
  - compile 翻译的时候，确定 函数 mult 需要用到几个 local 变量
 
 <h2 id="9dc3193162bf56a4458c7a36c3b24c83"></h2>
