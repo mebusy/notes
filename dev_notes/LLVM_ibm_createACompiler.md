@@ -726,7 +726,7 @@ public:
  - Clang 将全局变量列表传递给您；您对该列表进行迭代并输出变量名称。
  - ASTConsumer.h，显示了客户端 consumer 代码可以覆盖的一些其他方法。
 
- ```cpp
+```cpp
  /// \brief This callback is invoked each time an inline (method or friend)       
  /// function definition in a class is completed.
  virtual void HandleInlineFunctionDefinition(FunctionDecl *D) {}

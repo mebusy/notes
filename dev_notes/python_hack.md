@@ -13,6 +13,7 @@
      - [7.5 Abstract methods](#fd29db4d51ec7f45079d68ebc9ce97ef)
      - [7.6 Mixing static, class, and abstract methods](#2b9c18b0eaab22d1e2348379296852cf)
      - [7.7 The truth about super](#fc3b61a6c99940dd0b3b47dadaeb05fb)
+ - [Functional programming](#1fed90516cc61e1a2b4a5e0524f98d0e)
 
 ...menuend
 
@@ -506,6 +507,8 @@ class B(A):
  - super is the standard way of accessing parent attributes in subclasses, and you should always use it. 
     - It allows cooperative calls of parent methods without any surprises, such as 
         - parent methods not being called or being called twice when using multiple inheritance.
+
+<h2 id="1fed90516cc61e1a2b4a5e0524f98d0e"></h2>
 
 # Functional programming
 

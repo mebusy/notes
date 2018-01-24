@@ -27,8 +27,8 @@
      - [2.1 Program Contorl](#a8dc973caf37c0f538c3155e06cc57bd)
      - [2.2 Branching](#4e0051bf323aac8e7d110e99cc29e329)
      - [2.3 Functions Abstraction](#82a19ea128b46ad2cc65aa93eb4c8bc3)
-         - [defining](#fea8924fc70227eebc49c74b1d1b51ff)
-         - [executing](#9dc3193162bf56a4458c7a36c3b24c83)
+         - [function defining](#72a1ff5a098950516d22c2afe18d365a)
+         - [function executing](#b1c3207ee679f6c197d493f9d4df7b36)
          - [Making the abstraction work: implementation](#ce3e69cd7d023ea4fe609ff2a5c49cfe)
          - [Function call and return :  units plan](#586f372e18946c033ec0ca031a58046d)
      - [2.4 Function Call and Return: Implementation Preview](#b180acf8e32352cc37d77ba0c9a5b898)
@@ -515,7 +515,7 @@ push pointer 0/1
  - **Applying a primitive operator and calling a function have the same look-and-feel**
  - 注意，图右侧是 伪代码
 
-<h2 id="fea8924fc70227eebc49c74b1d1b51ff"></h2>
+<h2 id="72a1ff5a098950516d22c2afe18d365a"></h2>
 
 ### function defining 
 
@@ -529,7 +529,7 @@ push pointer 0/1
     - 也可能没有return ，类似 Sys.init, 函数体是个无限循环
  - compile 翻译的时候，确定 函数 mult 需要用到几个 local 变量
 
-<h2 id="9dc3193162bf56a4458c7a36c3b24c83"></h2>
+<h2 id="b1c3207ee679f6c197d493f9d4df7b36"></h2>
 
 ### function executing
 

@@ -1,4 +1,15 @@
+...menustart
 
+ - [Basic Search](#c5c1098a067d3e19b900a3fdd6c6ad4d)
+ - [Boolean Operators](#99447b31568f35c690284a7990af044b)
+ - [Narrowing Search Results](#7ec8df286ac371d3900dc523ef9e9daa)
+ - [Filtering mdfind's output](#bbc752d74b076db37c447790cb425249)
+ - [Listing Metadata with mdls](#2f632d202624dbb9c7814dabbd14c77c)
+
+...menuend
+
+
+<h2 id="c5c1098a067d3e19b900a3fdd6c6ad4d"></h2>
 
 # Basic Search
 
@@ -11,6 +22,8 @@ $ mdfind invoice
 ```
 $ mdfind "invoice apress"   
 ```
+
+<h2 id="99447b31568f35c690284a7990af044b"></h2>
 
 # Boolean Operators
 
@@ -66,6 +79,8 @@ $ mdfind O'Reilly
 >
 ```
 
+<h2 id="7ec8df286ac371d3900dc523ef9e9daa"></h2>
+
 # Narrowing Search Results
 
  - `-onlyin` option
@@ -83,6 +98,8 @@ $ mdfind -onlyin ~/writing -onlyin "/Users/alester/to be filed" invoice
  - Note that because of the spaces in /Users/alester/to be filed I must put the pathname in double quotes. 
  - This also means I can't use the tilde shortcut `~` , because the tilde is a shell character that won't be expanded in quotes.
 
+<h2 id="bbc752d74b076db37c447790cb425249"></h2>
+
 # Filtering mdfind's output
 
  - grep
@@ -93,6 +110,8 @@ $ mdfind -onlyin ~/writing -onlyin "/Users/alester/to be filed" invoice
 | grep -i xxx    // case-insensitive
 | grep -v xxx     // not include xxx
 ```
+
+<h2 id="2f632d202624dbb9c7814dabbd14c77c"></h2>
 
 # Listing Metadata with mdls
 

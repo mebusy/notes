@@ -14,7 +14,7 @@
          - [find files to rm](#a21d96fb754b9ce8455858e14ed36571)
          - [in terminal, show git branch in path](#394dd2658e932bd638e3017ac1a98c39)
          - [find all json file , and remove all `\r`](#75aeaa38d609e022daed8f30150edfa7)
-         - [find a specific pattern  in files](#5f994ac597fa448c5bd31b99d8145142)
+         - [find pattern in specific file types](#b5a637298d7d74567762e4ce9127bd5e)
          - [tcpdump 抓取 HTTP GET 包](#aa252f9440484d1ebb28ca3e4015d2d4)
      - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
 
@@ -170,7 +170,7 @@ ls *.json | xargs -I {}  sh -c  " tr -d '\r' < {}  > {}2 && mv {}2 {} "
   - you can not do that by sed  , remember  sed delimits on `\n` newlines - they are always removed on input and reinserted on output.   you may need `-z` mode 
  
 
-<h2 id="5f994ac597fa448c5bd31b99d8145142"></h2>
+<h2 id="b5a637298d7d74567762e4ce9127bd5e"></h2>
 
 ### find pattern in specific file types 
 

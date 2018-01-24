@@ -70,7 +70,9 @@
          - [THE VC Message](#fd5261ae2542df593b9ab1967d1212b7)
          - [VC Bound Rephrase : Sample Complexity](#2103d3a1527ad166beedae934932a08e)
          - [Summary](#290612199861c31d1036b185b4e69b75)
- - [Week 8](#1223874fb29922e4e7bb1474bbc33147)
+ - [Week 8  Noise and Error](#6d87d0270ecffd6ed877bf64cf997573)
+     - [Noise and Probabilistic Target](#a3f810ce646f0936df658a4d30a15b6d)
+     - [Error Measure](#d2d99ba3e6ff66dfef2164352b2c98a1)
 
 ...menuend
 
@@ -968,9 +970,11 @@ convex sets | ∞
 
 ---
 
-<h2 id="1223874fb29922e4e7bb1474bbc33147"></h2>
+<h2 id="6d87d0270ecffd6ed877bf64cf997573"></h2>
 
 # Week 8  Noise and Error
+
+<h2 id="a3f810ce646f0936df658a4d30a15b6d"></h2>
 
 ## Noise and Probabilistic Target
 
@@ -994,6 +998,8 @@ convex sets | ∞
     - predict **ideal mini-target (w.r.t P(y|x))** on *often-seen inputes(w.r.t P(x))*.
     - 在常常sample到的资料里面，要预测的好，这就是 ML要做到的事情。
 
+
+<h2 id="d2d99ba3e6ff66dfef2164352b2c98a1"></h2>
 
 ## Error Measure
 
