@@ -99,9 +99,9 @@ foo = identity(foo)
 
 <h2 id="7cd31cf6820896d838535a73cafb15ca"></h2>
 
-## 7.1
+## 7.1 decorator
 
- - 装饰器本质上是一个函数，它将另一个函数作为参数，并用一个新的，修改的函数替换它。
+ - Again , 装饰器本质上是一个函数，它将另一个函数作为参数，并用一个新的，修改的函数替换它。
 
 ---
 
@@ -237,11 +237,7 @@ def get_food(username, type='chocolate'):
 'chocolate nom nom nom!'
 ```
 
-<h2 id="74c5d9234051010a38a669f48bfeb435"></h2>
 
-## 7.2 
-
-<h2 id="caf1fbda831136a01cec78b788e99252"></h2>
 
 ## 7.3 Static Method
 
@@ -524,9 +520,162 @@ class B(A):
 >>> 
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/python_hack_ast_code_to_ast.png)
+
+- An AST construction always starts with a root element
+    - which is usually an ast. Module object.
+    - This object contains a list of statements or expressions to evaluate in its body attribute.
+    - It usually represents the content of a file.   
+- the ast.Assign object represents an assignment
+    - that is mapped to the = sign in the Python syntax
+    - Assign has a list of targets, and a value it assignates to it
+        - The list of target in this case consists of one object, ast.Name
+        - The value is a number with value being 42.
+
+- This AST can be passed to Python to be compiled and then evaluated.
+
+```python
+>>> compile(ast.parse("x = 42"), '<input>', 'exec')
+<code object <module> at 0x104c91eb0, file "<input>", line 1>
+>>> eval( compile(ast.parse("x = 42"), '<input>', 'exec') )
+>>> x
+42
+```
+         
+- An abstract syntax tree can be built manually using the classes provided in the ast module. 
+    - Obviously, this is a very long way to write Python code
+    - NOT recommend
+    - But it’s still interesting to use.
+- Hello world using Python AST
+
+```python
+>>> hello_world = ast.Str(s='hello world!', lineno=1, col_offset=1)
+>>> print_call = ast.Print(values=[hello_world], lineno=1, col_offset=1, nl=True)
+>>> module = ast.Module(body=[print_call])
+>>> code = compile(module, '', 'exec')
+>>> eval(code)
+hello world!
+```
+
+- lineno and col_offset represents the line number and column offset of the source code that has been used to generate the AST.
+    - it’s useful to find back the position of the code that generated this AST.
+- It’s for example used by Python when generating backtraces.
+- Anyway, Python refused to compile any AST object that doesn’t provide this information, this is why we pass it fake values of 1 here.
+    - The ast.fix_missing_loc ations() function can fix it for you by setting the missing values to the ones set on the parent node.
+
+- You can easily imagine that it is then possible to leverage this AST to construct a compiler that would parse strings and generate code by building a Python AST. 
+    - This is exactly what led to the Hy project discussed later.
+
+- In case you need to walk through your tree
+    - the ast.walk function will help you with that. 
+- But the ast module also provides NodeTransformer,
+    - a class that can be subclassed to walk an AST to modify some nodes. 
+    - It’s therefore easy to use it to change code dynamically.
+
+```python
+>>> import ast
+>>> class ReplaceBinOp(ast.NodeTransformer):
+...     """Replace operation by addition in binary operation"""
+...     def visit_BinOp(self, node):
+...         return ast.BinOp(left=node.left,
+...                          op=ast.Add(),
+...                          right=node.right)
+...
+>>> tree = ast.parse("x = 1/3")
+>>> ast.fix_missing_locations(tree)
+<_ast.Module object at 0x104cc27d0>
+>>> eval(compile(tree, '', 'exec'))
+>>> print(ast.dump(tree))
+Module(body=[Assign(targets=[Name(id='x', ctx=Store())], value=BinOp(left=Num(n=1), op=Div(), right=Num(n=3)))])
+>>> print(x)
+0
+>>> tree = ReplaceBinOp().visit(tree)
+>>> ast.fix_missing_locations(tree)
+<_ast.Module object at 0x104cc27d0>
+>>> print(ast.dump(tree))
+Module(body=[Assign(targets=[Name(id='x', ctx=Store())], value=BinOp(left=Num(n=1), op=Add(), right=Num(n=3)))])
+>>> eval(compile(tree, '', 'exec'))
+>>> print(x)
+4
+```
+
+- Tip
+    - If you need to evaluate a string of Python that should return a simple data type, you can use ast.literal_eval. 
+    - Contrary to eval, it disallows the input string to execute any code. It’s a safer alternative to eval.
+
+## 9.1 Hy
+
+- Now that you know about the AST, 
+    - you can easily dream of creating a new syntax for Python that you would parse and compile down to a standard Python AST.
+- The Hy programming language is doing exactly that.
+    - It is a Lisp dialect that parses a Lisp like language and converts it to regular Python AST. 
+    - You could compare it to what Clojure is to Java.
+    - Hy could deserve a book for itself, so we will only fly over it in this section.
+
+---
+
+- Most constructs are mapped from Python directly, such as function definition. Setting a variable relies on the setv function.
+
+```
+=> (defn hello [name]
+...  (print "Hello world!")
+...  (print (% "Nice to meet you %s" name)))
+=> (hello "jd")
+Hello world!
+Nice to meet you jd
+```
+
+- Internally, Hy parses the code that is provided and compiles it down to Python AST.
+- Class definition is supported through the defclass construct, that is inspired from CLOS -- common lisp object system:
+
+```
+(defclass A [object]
+[[x 42]
+ [y (fn [self value]
+      (+ self.x value))]])
+```
+
+- This defines a class named A, inheriting from object, with a class attribute x whose value is    and a method y that returns the x attribute plus the value passed as argument.
+
+- What’s really wonderful, is that you can import any Python library directly into Hy and use it with no penalty.
+
+```
+=> (import uuid)
+=> (uuid.uuid4)
+UUID('f823a749-a65a-4a62-b853-2687c69d0e1e') => (str (uuid.uuid4))
+'4efa60f2-23a4-4fc1-8134-00f5c271f809'
+```
+
+- Hy also has more advanced construct and macros. 
+    - If you ever wanted to have a case or switch statement in Python, admire what cond can do for you:
+
+```
+(cond
+((> somevar 50)
+ (print "That variable is too big!"))
+((< somevar 10)
+(print "That variable is too small!"))
+(true
+(print "That variable is jusssst right!")))
+```
+
+- Hy is a very nice project that allows you to jump into Lisp world without leaving your comfort 5one too far behind you, as you are still writing Python. 
+- The hy2py tool can even show you what your Hy code would look like once translated into Python , though it has some restrictions.
 
 
-    
+# 10 Performances and optimizations
+
+## 10.2 Profiling
+
+- Python provides a few tools to profile your program
+- The standard one is cProfile and is easy enough to use.
+
+```bash
+$ python -m cProfile myscript.py
+    343 function calls (342 primitive calls) in 0.000 seconds
+    ...
+```
+
 
 
 
