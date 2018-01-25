@@ -169,11 +169,84 @@ Guild lines for compilcation engine :
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_grammar_expression.png)
 
+- here , varName is the only case the language is  LL(2)
+
 - Parser's design
     - A set of compile*xxx* methods, one for each non-terminal rule *xxx*
     - Each method outputs some of the parse tree (XML) , and advances the input
     - The parsing logic of each method follows the right-hand side of the rule that it implements.
 
 
+## Unit 4.7: The Jack Analyzer
+
+ - If we encounter a terminalElement xxx , then the parser generates the output :
+
+```
+<terminalElement>
+    xxx
+</terminalElement>
+```
+
+ - where terminalElement should be replaced by 
+    - keyword
+    - symbol
+    - integerContant
+    - stringConstant
+    - identifier
+ 
+---
+
+ - if we encounter a nonTerminal element , then the parser generates the output: 
+
+```
+<nonTerminal>
+    Recursive output for the non-terminal body
+</nonTerminal>
+```
+
+
+ - there is a exception for the nonTermial element 
+    - when encounter **type, class name, subroutine name, variable name, statement, or subroutine call** ,
+    - the parser handles it, without generate any XML associated with them
+
+ - Example: handling let x = 17 ;  
+    - In rule  'let' varName '=' expression ';' 
+    - here x should be a varName ,  but parser will not generate a varName XML tag, instead , it dive into the identifier , which is the right-hand side of the varName rule.
+
+```
+<letStatement>
+    <keyword> let </keyword>
+    <identifier> x </identifier>
+    <symbol> = </symbol>
+    <expression>
+        ...
+```
+
+ - we skip generate `varName` tag. and we decided to do it because , some of the rules are very simple, i.e. `varName: identifier`. 
+
+## Unit 4.8: The Jack Analyzer: Proposed Implementation
+
+- Implementation plan:
+    - JackTokenizer
+    - CompilcationEngine
+    - JackAnalyzer  (top-most module)
+
+### JackAnalyzer : usage
+
+```
+$ JackAnalyzer input
+```
+
+ - input:  
+    - filename.jack
+    - directoryName  , contain one or more .jack files
+ - output:
+    - fileName.xml  , if the input is a single file
+    - one .xml file for every .jack file, stored in same directory ,  if input is a directory.
+
+
+
+
+ 
 
 
