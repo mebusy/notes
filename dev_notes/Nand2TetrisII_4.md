@@ -154,4 +154,11 @@ Guild lines for compilcation engine :
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_grammar_lexical_elements.png)
 
+### program structure 
+
+ - A Jack program is a collection of *classes*, each appearing in a separate file , and each compiled separately.  
+ - Each class is structured as follows:
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_grammar_program_structure.png)
+
 
