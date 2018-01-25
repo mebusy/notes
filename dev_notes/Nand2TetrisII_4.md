@@ -148,4 +148,10 @@ Guild lines for compilcation engine :
 
 ## Unit 4.6: The Jack Grammar
 
+### Lexical elements
+
+ - 5 categories of terminla elements (tokens)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_grammar_lexical_elements.png)
+
 
