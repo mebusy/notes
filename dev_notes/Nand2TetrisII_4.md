@@ -244,6 +244,38 @@ $ JackAnalyzer input
     - fileName.xml  , if the input is a single file
     - one .xml file for every .jack file, stored in same directory ,  if input is a directory.
 
+### JackAnalyzer : In action 
+
+ - *JackTokenizer* will handle the *Lexical elements* of Jack grammar
+ - and the reset of the grammer will be handled by *CompilcationEngine*
+    - program structure , statements , expressions
+
+### JackAnalyzer: API
+
+Routine |  Arguments |  Returns 
+constructor | input |  -
+advance | - | boolean
+tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
+
+- and 5 more detailed methods that return the actual value of this token.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jackAnalyzer_5_methods.png)
+
+### Compilation Engine 
+
+- The following rules in the Jack grammar have no corresponding compile*xxx* methods
+    - type
+    - className
+    - subroutineName
+    - variableName
+    - statement 
+    - subroutineCall 
+- The parsing logic of these rules is handled by the rules that invoke them.
+    - they are just shadow, or intermedia layer for representation
+
+
+
+
 
 
 
