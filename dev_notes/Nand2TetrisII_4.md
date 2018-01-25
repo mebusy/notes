@@ -167,4 +167,13 @@ Guild lines for compilcation engine :
 
 ### Expressions
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_grammar_expression.png)
+
+- Parser's design
+    - A set of compile*xxx* methods, one for each non-terminal rule *xxx*
+    - Each method outputs some of the parse tree (XML) , and advances the input
+    - The parsing logic of each method follows the right-hand side of the rule that it implements.
+
+
+
 
