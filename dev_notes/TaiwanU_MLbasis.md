@@ -1017,56 +1017,87 @@ convex sets | ∞
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_pointwiseerr2.png)
 
+### Ideal Mini-Target
+
+- interplay between noise and error:
+    - P(y|x) and err define ideal mini-target f(x)
+
+- `P(y = 1|x) = 0.2, P(y = 2|x) = 0.7, P(y = 3|x) = 0.1`
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_idealminitarget.png)
 
 
-    
-
-    
- 
+## Algorithmic Error Measure
 
 
+### Choice of Error Measure
+
+- Fingerprint Verification : f = 
+    - +1, you
+    - -1, intruder
+- two types of error: *false accept* and **false reject**
+
+ · | g +1  | g -1 
+--- | --- | ---
+f +1 | no error | **false reject**
+f -1 | *false accept* | no error
+
+- 0/1 error penalizes both types equally
 
 
+- supermarket: fingerprint for discount
+    - **false reject: very unhappy customer, lose future business**
+    - *false accept: give away a minor discount, intruder left fingerprint :-)*
 
 
+ cost matrix | g +1  | g -1 
+--- | --- | ---
+f +1 | 0 |  **10**
+f -1 | *1*| 0
+
+- CIA: fingerprint for entrance
+    - *false accept: very serious consequences!*
+    - **false reject: unhappy employee, but so what? :-)**
+
+ cost matrix  | g +1  | g -1 
+--- | --- | ---
+f +1 | 0 |  **1**
+f -1 | *1000*| 0
+
+### Take-home Message for Now
+
+- **err is application/user-dependent**
+- Algorithmic Error Measures err'
+    - 如果用户能说出他们想要什么，最好， 如果不能的话:
+- 1. plausible:  我们自己设计一个可以说服我们自己的算法
+    - 0/1: minimum ‘flipping noise’ --NP-hard to optimize, remember? :-)
+    - squared: minimum Gaussian noise
+-2. 或 设计一个容易一点的算法     easy to optimize for A
+    - closed-form solution
+    - convex objective function
 
 
+## Weighted Classification
 
+- CIA Cost (Error, Loss, . . .) Matrix
 
+ · | g +1  | g -1 
+--- | --- | ---
+f +1 | 0 |  **1**
+f -1 | *1000*| 0
 
+- weighted classification:
+    - different ‘weight’ for different (x, y)
 
+### Minimizing E<sub>in</sub> for Weighted Classification
 
+- Naïve Thoughts
+    - PLA: doesn’t matter if linear separable. :-)
+    - pocket: modify pocket-replacement rule
+        - pocket: some guarantee on E<sub>in</sub><sup>0/1</sup>
+        - modified pocket: similar guarantee on E<sub>in</sub><sup>W</sup> ?
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
+### Systematic Route
 
 
 
