@@ -1099,5 +1099,18 @@ f -1 | *1000*| 0
 
 ### Systematic Route
 
+- 通过复制相关资料，转化W 成等价的 0/1问题
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_weighted_pocket.png)
+
+### Weighted Pocket Algorithm
+
+- using ‘virtual copying’, weighted pocket algorithm include:
+    - weighted PLA:
+        - randomly check −1 example mistakes with **1000** times more probability (for CIA cost)
+    - weighted pocket replacement:
+
+- systematic route (called ‘reduction’): **can be applied to many other algorithms!**
+
 
 
