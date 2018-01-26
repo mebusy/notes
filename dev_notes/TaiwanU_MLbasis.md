@@ -1003,7 +1003,19 @@ convex sets | ∞
 
 ## Error Measure
 
+- naturally considered
+    - out-of-sample: averaged over unknown x
+    - pointwise: evaluated on one x
+    - classification: [ prediction ≠ target ]
+        - often also called ‘0/1 error’
 
+### Pointwise Error Measure
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_pointwiseerr.png)
+
+
+
+    
 
     
  
