@@ -11,6 +11,18 @@
          - [Parser design](#11d1b10a8e1eefdd441063908053af6f)
          - [Some observations about grammars and parsing](#d0310f6535296147836c000e8cc3c48a)
      - [Unit 4.6: The Jack Grammar](#87609c9974b897143d9c161013658dba)
+         - [Lexical elements](#557c6674ca1ac217ec67ebc48e19911b)
+         - [Program Structure](#a9f46a37894f23e7e493089738ddc394)
+         - [Statements](#5187c223ff0fffa9405f54d092d553ab)
+         - [Expressions](#d3c7279c25a23f98e777a7bebe35d002)
+     - [Unit 4.7: The Jack Analyzer](#895abff10875f03ccb2a4b21724e4722)
+     - [Unit 4.8: The Jack Analyzer: Proposed Implementation](#c10d27680d52f2dd231d982814e6a3ca)
+         - [JackAnalyzer : usage](#ef6859024ab3cb26e3af6e5006e1686e)
+         - [JackAnalyzer : In action](#87c80b0b1a884a7951ab56307326587a)
+         - [JackAnalyzer: API](#20aaf3f62aefee4c503d7b70b2918b04)
+         - [Compilation Engine](#26bf0761f0300eac7c1fca4c899f8f7d)
+     - [Unit 4.9: Project 10: Building a Syntax Analyzer](#c980d783044431dba4b94386cb76e408)
+ - [](#d41d8cd98f00b204e9800998ecf8427e)
 
 ...menuend
 
@@ -148,11 +160,15 @@ Guild lines for compilcation engine :
 
 ## Unit 4.6: The Jack Grammar
 
+<h2 id="557c6674ca1ac217ec67ebc48e19911b"></h2>
+
 ### Lexical elements
 
  - 5 categories of terminla elements (tokens)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_grammar_lexical_elements.png)
+
+<h2 id="a9f46a37894f23e7e493089738ddc394"></h2>
 
 ### Program Structure 
 
@@ -161,9 +177,13 @@ Guild lines for compilcation engine :
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_grammar_program_structure.png)
 
+<h2 id="5187c223ff0fffa9405f54d092d553ab"></h2>
+
 ### Statements 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_grammar_statement.png)
+
+<h2 id="d3c7279c25a23f98e777a7bebe35d002"></h2>
 
 ### Expressions
 
@@ -176,6 +196,8 @@ Guild lines for compilcation engine :
     - Each method outputs some of the parse tree (XML) , and advances the input
     - The parsing logic of each method follows the right-hand side of the rule that it implements.
 
+
+<h2 id="895abff10875f03ccb2a4b21724e4722"></h2>
 
 ## Unit 4.7: The Jack Analyzer
 
@@ -224,12 +246,16 @@ Guild lines for compilcation engine :
 
  - we skip generate `varName` tag. and we decided to do it because , some of the rules are very simple, i.e. `varName: identifier`. 
 
+<h2 id="c10d27680d52f2dd231d982814e6a3ca"></h2>
+
 ## Unit 4.8: The Jack Analyzer: Proposed Implementation
 
 - Implementation plan:
     - JackTokenizer
     - CompilcationEngine
     - JackAnalyzer  (top-most module)
+
+<h2 id="ef6859024ab3cb26e3af6e5006e1686e"></h2>
 
 ### JackAnalyzer : usage
 
@@ -244,11 +270,15 @@ $ JackAnalyzer input
     - fileName.xml  , if the input is a single file
     - one .xml file for every .jack file, stored in same directory ,  if input is a directory.
 
+<h2 id="87c80b0b1a884a7951ab56307326587a"></h2>
+
 ### JackAnalyzer : In action 
 
  - *JackTokenizer* will handle the *Lexical elements* of Jack grammar
  - and the reset of the grammer will be handled by *CompilcationEngine*
     - program structure , statements , expressions
+
+<h2 id="20aaf3f62aefee4c503d7b70b2918b04"></h2>
 
 ### JackAnalyzer: API
 
@@ -260,6 +290,8 @@ tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
 - and 5 more detailed methods that return the actual value of this token.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jackAnalyzer_5_methods.png)
+
+<h2 id="26bf0761f0300eac7c1fca4c899f8f7d"></h2>
 
 ### Compilation Engine 
 
@@ -274,12 +306,16 @@ tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
     - they are just shadow, or intermedia layer for representation
 
 
+<h2 id="c980d783044431dba4b94386cb76e408"></h2>
+
 ## Unit 4.9: Project 10: Building a Syntax Analyzer
 
  - for xml file, start and endwith   `<tokens> ... </tokens>` tags.
  - <, > , " , and & ,  are outputed as  `&lt;`   `&gt;`   `&quot;`  `&amp`
  
 ---
+
+<h2 id="d41d8cd98f00b204e9800998ecf8427e"></h2>
 
 # 
 

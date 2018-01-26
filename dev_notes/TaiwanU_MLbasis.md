@@ -73,6 +73,16 @@
  - [Week 8  Noise and Error](#6d87d0270ecffd6ed877bf64cf997573)
      - [Noise and Probabilistic Target](#a3f810ce646f0936df658a4d30a15b6d)
      - [Error Measure](#d2d99ba3e6ff66dfef2164352b2c98a1)
+         - [Pointwise Error Measure](#9a0ea46a375f6caa83eb7371460f252e)
+         - [Two Important Pointwise Error Measures](#6c2d0a3129771ec5553a0a7b40c04800)
+         - [Ideal Mini-Target](#4800505041049669fa7b042ae638b020)
+     - [Algorithmic Error Measure](#2187b661cffc7f0490d1f364850ab22a)
+         - [Choice of Error Measure](#46b76063f10f6397dfd67504c091971d)
+         - [Take-home Message for Now](#df794cf0b049355a25a3dc69dacf670b)
+     - [Weighted Classification](#77f01330c84d591c46ceb54c844f4fbe)
+         - [Minimizing E<sub>in</sub> for Weighted Classification](#aae4803feb7519588dfdfd0080792d30)
+         - [Systematic Route](#62efbe469e781542f448dfebe1e436d8)
+         - [Weighted Pocket Algorithm](#55d55c54777e3438c85343abfae313ac)
 
 ...menuend
 
@@ -1009,13 +1019,19 @@ convex sets | ∞
     - classification: [ prediction ≠ target ]
         - often also called ‘0/1 error’
 
+<h2 id="9a0ea46a375f6caa83eb7371460f252e"></h2>
+
 ### Pointwise Error Measure
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_pointwiseerr.png)
 
+<h2 id="6c2d0a3129771ec5553a0a7b40c04800"></h2>
+
 ### Two Important Pointwise Error Measures
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_pointwiseerr2.png)
+
+<h2 id="4800505041049669fa7b042ae638b020"></h2>
 
 ### Ideal Mini-Target
 
@@ -1027,8 +1043,12 @@ convex sets | ∞
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_idealminitarget.png)
 
 
+<h2 id="2187b661cffc7f0490d1f364850ab22a"></h2>
+
 ## Algorithmic Error Measure
 
+
+<h2 id="46b76063f10f6397dfd67504c091971d"></h2>
 
 ### Choice of Error Measure
 
@@ -1064,6 +1084,8 @@ f -1 | *1*| 0
 f +1 | 0 |  **1**
 f -1 | *1000*| 0
 
+<h2 id="df794cf0b049355a25a3dc69dacf670b"></h2>
+
 ### Take-home Message for Now
 
 - **err is application/user-dependent**
@@ -1077,6 +1099,8 @@ f -1 | *1000*| 0
     - convex objective function
 
 
+<h2 id="77f01330c84d591c46ceb54c844f4fbe"></h2>
+
 ## Weighted Classification
 
 - CIA Cost (Error, Loss, . . .) Matrix
@@ -1089,6 +1113,8 @@ f -1 | *1000*| 0
 - weighted classification:
     - different ‘weight’ for different (x, y)
 
+<h2 id="aae4803feb7519588dfdfd0080792d30"></h2>
+
 ### Minimizing E<sub>in</sub> for Weighted Classification
 
 - Naïve Thoughts
@@ -1097,11 +1123,15 @@ f -1 | *1000*| 0
         - pocket: some guarantee on E<sub>in</sub><sup>0/1</sup>
         - modified pocket: similar guarantee on E<sub>in</sub><sup>W</sup> ?
 
+<h2 id="62efbe469e781542f448dfebe1e436d8"></h2>
+
 ### Systematic Route
 
 - 通过复制相关资料，转化W 成等价的 0/1问题
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_weighted_pocket.png)
+
+<h2 id="55d55c54777e3438c85343abfae313ac"></h2>
 
 ### Weighted Pocket Algorithm
 

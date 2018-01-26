@@ -6,14 +6,17 @@
  - [3 Documentation](#f9ee102aebd5221f15b2b5e34d2b2866)
      - [3.1 Getting started with Sphinx and reST](#0315cce60722138404fe5f4dfe367f90)
  - [7 Methods and decorators](#810127df69a19f8fcc336218c6f2c3e0)
-     - [7.1](#7cd31cf6820896d838535a73cafb15ca)
-     - [7.2](#74c5d9234051010a38a669f48bfeb435)
+     - [7.1 decorator](#01410921554cbd019a05a64598407bae)
      - [7.3 Static Method](#caf1fbda831136a01cec78b788e99252)
      - [7.4 Class method](#20bf7616e373803aca38068a96f75620)
      - [7.5 Abstract methods](#fd29db4d51ec7f45079d68ebc9ce97ef)
      - [7.6 Mixing static, class, and abstract methods](#2b9c18b0eaab22d1e2348379296852cf)
      - [7.7 The truth about super](#fc3b61a6c99940dd0b3b47dadaeb05fb)
- - [Functional programming](#1fed90516cc61e1a2b4a5e0524f98d0e)
+ - [9 The AST](#61e3638e3fcb8f0e306423cd455d1f23)
+     - [9.1 Hy](#f36a69842636b49443e209a54f4126a3)
+ - [10 Performances and optimizations](#79f281b0c9a80584dba28eda35893e98)
+     - [10.2 Profiling](#1181dcb1d371dd2b727902cd6ec7551c)
+     - [10.3 Ordered list and bisect](#c930f8e82525c9ad18cb842512f6ce08)
 
 ...menuend
 
@@ -97,7 +100,7 @@ def foo():
 foo = identity(foo)
 ```
 
-<h2 id="7cd31cf6820896d838535a73cafb15ca"></h2>
+<h2 id="01410921554cbd019a05a64598407bae"></h2>
 
 ## 7.1 decorator
 
@@ -238,6 +241,8 @@ def get_food(username, type='chocolate'):
 ```
 
 
+
+<h2 id="caf1fbda831136a01cec78b788e99252"></h2>
 
 ## 7.3 Static Method
 
@@ -505,6 +510,8 @@ class B(A):
         - parent methods not being called or being called twice when using multiple inheritance.
 
 
+<h2 id="61e3638e3fcb8f0e306423cd455d1f23"></h2>
+
 # 9 The AST
 
  - Parsing Python code to AST
@@ -603,6 +610,8 @@ Module(body=[Assign(targets=[Name(id='x', ctx=Store())], value=BinOp(left=Num(n=
     - If you need to evaluate a string of Python that should return a simple data type, you can use ast.literal_eval. 
     - Contrary to eval, it disallows the input string to execute any code. It’s a safer alternative to eval.
 
+<h2 id="f36a69842636b49443e209a54f4126a3"></h2>
+
 ## 9.1 Hy
 
 - Now that you know about the AST, 
@@ -663,7 +672,11 @@ UUID('f823a749-a65a-4a62-b853-2687c69d0e1e') => (str (uuid.uuid4))
 - The hy2py tool can even show you what your Hy code would look like once translated into Python , though it has some restrictions.
 
 
+<h2 id="79f281b0c9a80584dba28eda35893e98"></h2>
+
 # 10 Performances and optimizations
+
+<h2 id="1181dcb1d371dd2b727902cd6ec7551c"></h2>
 
 ## 10.2 Profiling
 
@@ -707,6 +720,8 @@ pyprof2calltree -k -i myscript.cprof
   2           0 LOAD_CONST               1 (42)
               3 RETURN_VALUE
 ```
+
+<h2 id="c930f8e82525c9ad18cb842512f6ce08"></h2>
 
 ## 10.3 Ordered list and bisect
 
