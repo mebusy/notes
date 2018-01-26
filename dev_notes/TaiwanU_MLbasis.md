@@ -1013,6 +1013,10 @@ convex sets | ∞
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_pointwiseerr.png)
 
+### Two Important Pointwise Error Measures
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_pointwiseerr2.png)
+
 
 
     
