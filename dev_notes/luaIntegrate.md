@@ -130,5 +130,23 @@ void LuaState::addSearchPath(const char* path)
 
  - tolua
  - tolua_fix.h/c
+ - after exporting files via tolua,  you should add the generated function `TOLUA_API int  tolua_onyx_plus_open (lua_State* tolua_S);` to your Lua_state init function.
+
+
+
+### template
+
+ https://www8.cs.umu.se/kurser/TDBD12/VT04/lab/lua/tolua++.html
+
+ - 使用 TEMPLATE_BIND 实例化多个 binding
+ - 目前只支持 class method ， 
+    - function level not support yet
+
+### name space 
+
+ - call by lua
+```lua
+namespace.classname:functionname( ... )
+```
 
 
