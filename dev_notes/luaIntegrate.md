@@ -1,5 +1,20 @@
+...menustart
+
+ - [Integrate LUA](#ce184863f05a7ff711ae5677ccb11667)
+     - [1. include lua header files](#cd27a050b3dd39ef6a61a72c21f8fcb7)
+     - [2. create your lua state class](#4e920d09e03dfa78fd32050f46acef83)
+     - [3. print problem](#ccc897386af8da03fafcfabcc025c998)
+     - [4. add lua search path](#67479c3ef43bc4a573dec363b3707a90)
+     - [5. tolua++](#625a412884d68edbd61698c43079471b)
+
+...menuend
+
+
+<h2 id="ce184863f05a7ff711ae5677ccb11667"></h2>
 
 # Integrate LUA
+
+<h2 id="cd27a050b3dd39ef6a61a72c21f8fcb7"></h2>
 
 ## 1. include lua header files
 
@@ -10,6 +25,8 @@ extern "C" {
 #include "lauxlib.h"
 }
 ```
+
+<h2 id="4e920d09e03dfa78fd32050f46acef83"></h2>
 
 ## 2. create your lua state class
 
@@ -27,6 +44,8 @@ extern "C" {
         luaL_openlibs(L);
     }
 ```
+
+<h2 id="ccc897386af8da03fafcfabcc025c998"></h2>
 
 ## 3. print problem 
 
@@ -89,6 +108,8 @@ int lua_print(lua_State * luastate) {
     luaL_register(m_state, "_G", global_functions);
 ```
 
+<h2 id="67479c3ef43bc4a573dec363b3707a90"></h2>
+
 ## 4. add lua search path
 
 ```
@@ -102,6 +123,8 @@ void LuaState::addSearchPath(const char* path)
     lua_pop(m_state, 2);                                                /* L: - */
 }
 ```
+
+<h2 id="625a412884d68edbd61698c43079471b"></h2>
 
 ## 5. tolua++
 

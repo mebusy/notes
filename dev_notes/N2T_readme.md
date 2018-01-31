@@ -16,6 +16,7 @@
  - [Vitural Machine](https://github.com/mebusy/notes/blob/master/dev_notes/Nand2TetrisII.md)
  - [Jack Language](https://github.com/mebusy/notes/blob/master/dev_notes/Nand2TetrisII_3.md)
  - [Compile I    ](https://github.com/mebusy/notes/blob/master/dev_notes/Nand2TetrisII_4.md)
+ - [Compile II   ](https://github.com/mebusy/notes/blob/master/dev_notes/Nand2TetrisII_5.md)
  - 
 
 
