@@ -259,7 +259,7 @@ class List {
         - (),{},[] 
         - `,` , `;` , `=` 
         - `.`  (class membership) 
-        - + - \* / & `|` ~ < > Operators.
+        - `+ - \* / & `|` ~ < > `Operators.
     - Constants
         - integer constant
             - **must be positive**
