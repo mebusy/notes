@@ -276,7 +276,7 @@ class List {
 
  - Primitive types
     - int
-        - non-negative  , 16-bit, 0~32726
+        - non-negative  , 16-bit, 0~32767
     - boolean
         - true / false
     - char 
