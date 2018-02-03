@@ -195,7 +195,7 @@ class List {
     method void print() {
         var List current ;
         let current = this ;
-        whiel ( ~(current == null) ) {
+        whiel ( ~(current = null) ) {
             do Outout.printInt( current.getData() ) ;
             do Outout.printChar(32) ;   
             do current = current.getNext() ;    
@@ -222,7 +222,7 @@ class List {
     field List next ;
     
     method void dispose() {
-        if (~(next==null)) {
+        if (~(next=null)) {
             do next.dispose() ;    
         }    
         do Memory.deAlloc(this) ;
