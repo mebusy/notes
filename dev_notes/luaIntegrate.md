@@ -132,7 +132,7 @@ void LuaState::addSearchPath(const char* path)
  - tolua_fix.h/c
  - after exporting files via tolua,  you should add the generated function `TOLUA_API int  tolua_onyx_plus_open (lua_State* tolua_S);` to your Lua_state init function.
 
-
+ - tolua 传递 userdata 总是使用 指针，然后做相应的必须转换  `*ptr`
 
 ### template
 
@@ -148,5 +148,17 @@ void LuaState::addSearchPath(const char* path)
 ```lua
 namespace.classname:functionname( ... )
 ```
+
+### enumerate
+
+ - pkg 文件 函数声明 有用到 enum的情况，需要把 enum的定义也放入 pkg 文件
+
+### struct 
+
+ - C++ 
+    - only classes (and structs) with a constructor will have a 'new()' method
+    - You can add the constructor on your pkg (even if it's not actually implemented).
+ - C
+    - the only solution I can think of is to have a function that creates a new struct and returns it
 
 
