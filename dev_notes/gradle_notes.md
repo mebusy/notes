@@ -568,4 +568,11 @@ buildAPI.dependsOn build
 
 ```
 
+# QA
+
+ - Gradle version 2.2 is required. Current version is 2.10
+ - solution:
+    - change `classpath 'com.android.tools.build:gradle:1.3.0'` to ` classpath 'com.android.tools.build:gradle:2.0.0'`
+
+
 
