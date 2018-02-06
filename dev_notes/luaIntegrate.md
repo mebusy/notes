@@ -6,6 +6,10 @@
      - [3. print problem](#ccc897386af8da03fafcfabcc025c998)
      - [4. add lua search path](#67479c3ef43bc4a573dec363b3707a90)
      - [5. tolua++](#625a412884d68edbd61698c43079471b)
+         - [template](#66f6181bcb4cff4cd38fbc804a036db6)
+         - [name space](#3fec93f66682ce9c63af27dec7b911a2)
+         - [enumerate](#2a45a91d039693c9fb96a16030a13c5e)
+         - [struct](#0f8d6fb56fe6cdf55ad0114ec5b51dbb)
 
 ...menuend
 
@@ -134,6 +138,8 @@ void LuaState::addSearchPath(const char* path)
 
  - tolua 传递 userdata 总是使用 指针，然后做相应的必须转换  `*ptr`
 
+<h2 id="66f6181bcb4cff4cd38fbc804a036db6"></h2>
+
 ### template
 
  https://www8.cs.umu.se/kurser/TDBD12/VT04/lab/lua/tolua++.html
@@ -142,6 +148,8 @@ void LuaState::addSearchPath(const char* path)
  - 目前只支持 class level   ， 
     - function level not support yet
 
+<h2 id="3fec93f66682ce9c63af27dec7b911a2"></h2>
+
 ### name space 
 
  - call by lua
@@ -149,9 +157,13 @@ void LuaState::addSearchPath(const char* path)
 namespace.classname:functionname( ... )
 ```
 
+<h2 id="2a45a91d039693c9fb96a16030a13c5e"></h2>
+
 ### enumerate
 
  - pkg 文件 函数声明 有用到 enum的情况，需要把 enum的定义也放入 pkg 文件
+
+<h2 id="0f8d6fb56fe6cdf55ad0114ec5b51dbb"></h2>
 
 ### struct 
 

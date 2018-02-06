@@ -138,7 +138,7 @@ a | b | c | d
 
  a | b | c | d
 --- | --- | --- | ---
-[JNI](https://github.com/mebusy/notes/blob/master/dev_notes/JNI.md) |
+[JNI](https://github.com/mebusy/notes/blob/master/dev_notes/JNI.md) | [Gradle](https://github.com/mebusy/notes/blob/master/dev_notes/gradle_notes.md) | 
 
 
 <h2 id="55f37d1fd483f6a85379640fe51aafa8"></h2>
