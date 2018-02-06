@@ -189,6 +189,27 @@ literal | 两个 “ 之间除“ 以外的 任何字符 | "core dumped"
     - DFA 是一个 简单具体的识别**串**的算法
  - 每个正则表达式 或 NFA 都可以被转变成为 一个接受相同语言的 DFA.
 
+ - 模拟一个DFA
+    - 输入: 
+        - 一个以 文件结束符 eof 结尾的 字符串 x
+        - DFA D 的 开始状态为 s0
+        - D 的 接受状态集为 F 
+        - 转换函数为 move 
+    - 输出 
+        - 如果 D 接受 x， 则回答 yes, 否则，回答 no
+
+```c
+s = s0
+c = nextChar()
+while ( c!=eof )  {
+    s = move(s,c) ;
+    c = nextChar() ;     
+}
+if ( s in F ) return "yes" ;
+else return "no" ;
+```
+
+
 
 
 
