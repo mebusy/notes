@@ -26,6 +26,12 @@
      - [Gradle 指定 manifest 文件路径](#089a24d84135c1eb537e96621be085d5)
      - [proguard in android plugin](#4927795f5413b00c41eb275236b2c3c5)
      - [gradle for unity3d android example](#997304d5400f082feabc402ac46aba97)
+ - [Gradle and JNI](#124d869fe2f048f9f54668347d680079)
+     - [hello-jni with gradle](#b7cd0782fca8810a571477d4e6784736)
+ - [QA](#0ab687c6a13802a6674d5327e3d4177e)
+     - [Gradle version 2.2 is required. Current version is 2.10](#2e072d186473767187aba8236da72d93)
+     - [Could not find method runProguard() for arguments](#769f6f1c57e8b9182a031ed34dbd00e0)
+     - [android logcat filter](#a00bb7ae615e786ed0e6d98d43e7248a)
 
 ...menuend
 
@@ -407,8 +413,8 @@ sourceSets {
 ```
     buildTypes {
         release {
-	    minifyEnabled true
-	    proguardFile 'proguard-project.txt'
+        minifyEnabled true
+        proguardFile 'proguard-project.txt'
         }
     }
 
@@ -494,14 +500,14 @@ android {
   sourceSets {
       main {
           manifest.srcFile './AndroidManifest.xml'
-	   java.srcDirs  'src'
+       java.srcDirs  'src'
           res.srcDirs  'res'
-  		assets.srcDirs = ['assets']   
+        assets.srcDirs = ['assets']   
            jniLibs.srcDirs = ['libs']   
       }
   }
-	
-	lintOptions {  
+    
+    lintOptions {  
         abortOnError false  
       } 
 
@@ -541,14 +547,14 @@ android {
         main {
             manifest.srcFile 'AndroidManifest.xml'
             java.srcDirs  'src'
- 	    res.srcDirs  'res'
+        res.srcDirs  'res'
         }
     }
 
     buildTypes {
         release {
-	    minifyEnabled true
-	    proguardFile 'proguard-project.txt'
+        minifyEnabled true
+        proguardFile 'proguard-project.txt'
         }
     }
 
@@ -568,11 +574,97 @@ buildAPI.dependsOn build
 
 ```
 
+---
+
+<h2 id="124d869fe2f048f9f54668347d680079"></h2>
+
+# Gradle and JNI
+
+<h2 id="b7cd0782fca8810a571477d4e6784736"></h2>
+
+## hello-jni with gradle 
+
+ 1. use `android create`   command to create a android gradle project
+ 2. add `ndk.dir=<path-to-ndk>` to local.properties file
+ 3. in build.gradle file inside of the defaultConfig closure , add ..
+    ```
+    buildToolsVersion ...
+
+    defaultConfig {
+        // applicationId "com.apixel.luaTest"
+        ndk {
+            moduleName "hello-world"
+        }
+    }
+    sourceSets.main {
+        jni.srcDirs = ['jni']
+    }
+    ```
+
+ 4. create a folder `jni` , In that folder, create a file called *hello-world.c*
+ 5. in java Activity class, call the method in *hello-world.c*
+
+```c
+// hello-world.c
+#include <string.h>
+#include <jni.h>
+
+jstring
+Java_com_apixel_luaTest_Main_stringFromJNI(JNIEnv* env, jobject thiz) {
+    return (*env)->NewStringUTF(env, "Hello world from JNI!");
+}
+```
+
+```java
+// Main.java
+public class Main extends Activity
+{
+    static {
+        System.loadLibrary("hello-world");
+    }
+
+    public native String stringFromJNI();
+
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+        String testString = stringFromJNI();
+        System.out.println( testString );
+    }
+}
+```
+
+---
+
+
+<h2 id="0ab687c6a13802a6674d5327e3d4177e"></h2>
+
 # QA
 
- - Gradle version 2.2 is required. Current version is 2.10
+<h2 id="2e072d186473767187aba8236da72d93"></h2>
+
+## Gradle version 2.2 is required. Current version is 2.10
+
  - solution:
     - change `classpath 'com.android.tools.build:gradle:1.3.0'` to ` classpath 'com.android.tools.build:gradle:2.0.0'`
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/gradle_android_PluginVersion.png)
 
+
+<h2 id="769f6f1c57e8b9182a031ed34dbd00e0"></h2>
+
+## Could not find method runProguard() for arguments
+
+ - in `build.gralde` , Instead of "runProguard false" use "minifyEnabled false" 
+
+
+<h2 id="a00bb7ae615e786ed0e6d98d43e7248a"></h2>
+
+## android logcat filter
+
+ - `adb logcat *:I`
 
