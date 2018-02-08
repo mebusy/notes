@@ -293,6 +293,8 @@ apply plugin: 'eclipse'
 
 [Gradle Android Plugin 中文手册](http://www.kancloud.cn/kancloud/gradle-for-android/52007)
 
+[Gradle Doc](https://docs.gradle.org/current/dsl/org.gradle.api.Project.html)
+
 
 <h2 id="ff1e2724b57fa7703668d76dae901cdb"></h2>
 
@@ -637,6 +639,19 @@ public class Main extends Activity
     }
 }
 ```
+
+## tips 
+    
+ - native 方法如果定义在 cpp 文件中， 需要 加上 extern "C"
+ - link library :
+    ```
+    ndk {
+        ...
+        ldLibs "log"
+    }
+    ```
+
+ - 
 
 ---
 
