@@ -652,17 +652,18 @@ public class Main extends Activity
     ```
 
  - 这个例子中，我们演示了 java 调用 native 方法， c++ 调用 java的情况会更复杂
-    - 如果  c++ 调用 java 方法，需要先获取 java VM
+ - 有时候，我们需要获取 JAVA VM
 
 ```c
 extern "C" {
-    jint JNI_OnLoad(JavaVM *vm, void *reserved) {
+    JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void *reserved)
         JniHelper::setJavaVM(vm);
         return JNI_VERSION_1_4;
     }
 }
 ```
 
+ - PS: JNI_OnLoad 方法 必须于工程的 jni 目录中定义 ，  放在static library 中无效
 
 ---
 
