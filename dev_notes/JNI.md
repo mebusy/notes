@@ -266,6 +266,7 @@ Call a java function which returned an array , don't forget to invoke  `ReleaseB
     ...
     
     (*jniEnv).ReleaseByteArrayElements( retval, jbytes ,0 );
+    (*jniEnv).DeleteLocalRef(retval);
     if (isAttached) endJNICall(jniEnv);    
 ```
 
