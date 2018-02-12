@@ -173,4 +173,19 @@ namespace.classname:functionname( ... )
  - C
     - the only solution I can think of is to have a function that creates a new struct and returns it
 
+## 6. c++ reigster lua callback
+
+ - 使用 cocos2dx 的 tolua-fix 方法
+ - 在 .pkg 文件中， 使用 `LUA_FUCNTION` ( 实质是一个 int 类型 ) 声明一个handle 
+    - `void registerScriptHandler(int handler);`
+ - tolua-fix 会 处理成一个 lua function ref
+    - `LUA_FUNCTION handler = (  toluafix_ref_function(tolua_S,2,0));`
+ - 在 c++ 代码中 保存这个handle， 然后，使用 executeFunctionByHandler 来执行这个函数
+ - lua 方面的相关调用
+
+```lua
+    local shs = ScriptHandlerSample()
+    shs:registerScriptHandler( function()  print("lua callback");  end )
+```
+
 
