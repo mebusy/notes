@@ -733,4 +733,23 @@ elif __file__:
 config_path = os.path.join(application_path, config_name)
 ```
 
+### subprocess
+
+ - 使用subprocess模块
+    - 这个模块比较复杂，可以对子进程做更多控制
+    - `Popen(cmd , shell=True, cwd=  arg) .stdout.readlines()`
+        - stdout=subprocess.PIPE , 会等待执行完毕再返回， 同时 原来脚本的 print ，都会从 stdout read 出来
+    - 有些命令 ， 并不是从标准 stdout 输出结果，可以:
+        - `res = subprocess.Popen( cmd , stdout=subprocess.PIPE  , stdin=subprocess.PIPE,  stderr=subprocess.STDOUT ,  shell=True ).stdout.read()`
+    - TODO :  subprocess  Popen 指定 shell 执行路径
+        - `print Popen(cmd , stdout=subprocess.PIPE  ,  shell=True, cwd=  arg)`  ?
+    - 注： 如果没有 pipe 通讯的需求，推荐的用法如下
+
+```python
+subprocess.call( cmd.split() +  sys.argv[1:]  , stderr=subprocess.STDOUT ,shell=True )
+```
+
+ - `shell=True` 是在 shell中执行，以便获取环境变量之类的设置
+
+
 
