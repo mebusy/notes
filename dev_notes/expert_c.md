@@ -1009,8 +1009,64 @@ func(&my_int_array[i] );
  - `void *` 指针 赋值给 其它类型指针， C++ 中需要一个强制类型转换
  - 字符文字 'x' 在C++中 是char类型，但在C中是int 类型。也就是说，sizeof（'a'）在C++中为1，而在C中为4.
 
+## C中如何调用C++函数?
 
+ - 对于非成员函数，  将 C++ 函数声明为``extern "C"''（在你的 C++ 代码里做这个声明），然后调用它（在你的 C 或者 C++ 代码里调用）
 
+```cpp
+// C++ code declare:
+extern "C" void f(int);
+void f(int i) {
+     // ...
+}
+```
 
+ - call it 
+
+```c
+/* C code: */
+void f(int);
+void cc(int i) {
+    f(i);
+   /* ... */
+}
+```
+
+ - 对于成员函数（包括虚函数）, 则需要提供一个简单的包装（wrapper）
+
+```cpp
+// C++ code:
+class C {
+       // ...
+       virtual double f(int);
+};
+
+extern "C" double call_C_f(C* p, int i) // wrapper function
+{
+       return p->f(i);
+}
+```
+
+ - call `C::F()`
+
+```c
+/* C code: */
+double call_C_f(struct C* p, int i);
+void ccc(struct C* p, int i) {
+       double d = call_C_f(p,i);
+       /* ... */
+}
+```
+
+ - 如果你想在 C 里调用重载函数，则必须提供不同名字的包装，这样才能被 C 代码调用。
+
+```cpp
+// C++ code:
+void f(int);
+void f(double);
+
+extern "C" void f_i(int i) { f(i); }
+extern "C" void f_d(double d) { f(d); }
+```
 
 
