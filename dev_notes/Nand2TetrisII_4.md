@@ -283,6 +283,7 @@ $ JackAnalyzer input
 ### JackAnalyzer: API
 
 Routine |  Arguments |  Returns 
+--- | --- | --- 
 constructor | input |  -
 advance | - | boolean
 tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
