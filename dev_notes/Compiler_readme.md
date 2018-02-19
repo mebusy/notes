@@ -1,6 +1,7 @@
 ...menustart
 
  - [Compiler](#3bb7c24fcd6eb6468ddc51ea1dfdcee5)
+ - [FAdo](#c5aa04468d09d5a81babc195e447e3d2)
  - [Yacc / Lex](#ecef701cf8281ee7177e68fb367afa0f)
  - [ANSI C grammar 最新的 Lex 和 Yacc 描述](#871dc0b519dec2791e731a2658e723ce)
      - [over versions (native files):](#9f02cabfdaf25d406be6bf2cdf4ee4a5)
@@ -20,6 +21,14 @@
  - [Intermediate-Code Generation](https://github.com/mebusy/notes/blob/master/dev_notes/Compiler6_IntermediateCodeGeneration.md)
  - [Code Generation](https://github.com/mebusy/notes/blob/master/dev_notes/Compiler8_CodeGeneration.md)
  - [笔记](https://github.com/mebusy/notes/blob/master/dev_notes/Compiler_Notes.md)
+ - [notes](https://github.com/mebusy/notes/blob/master/dev_notes/compiler_2nd_note.md)
+
+
+<h2 id="c5aa04468d09d5a81babc195e447e3d2"></h2>
+
+# FAdo 
+
+ - [FAdo tutorial](https://github.com/mebusy/notes/blob/master/dev_notes/FAdo_tutorial.md)
 
 
 <h2 id="ecef701cf8281ee7177e68fb367afa0f"></h2>

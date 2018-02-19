@@ -28,6 +28,7 @@
      - [gradle for unity3d android example](#997304d5400f082feabc402ac46aba97)
  - [Gradle and JNI](#124d869fe2f048f9f54668347d680079)
      - [hello-jni with gradle](#b7cd0782fca8810a571477d4e6784736)
+     - [tips](#e4c9479b11955648dad558fe717a4eb2)
  - [QA](#0ab687c6a13802a6674d5327e3d4177e)
      - [Gradle version 2.2 is required. Current version is 2.10](#2e072d186473767187aba8236da72d93)
      - [Could not find method runProguard() for arguments](#769f6f1c57e8b9182a031ed34dbd00e0)
@@ -639,6 +640,8 @@ public class Main extends Activity
     }
 }
 ```
+
+<h2 id="e4c9479b11955648dad558fe717a4eb2"></h2>
 
 ## tips 
     

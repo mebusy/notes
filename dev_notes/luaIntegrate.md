@@ -10,6 +10,7 @@
          - [name space](#3fec93f66682ce9c63af27dec7b911a2)
          - [enumerate](#2a45a91d039693c9fb96a16030a13c5e)
          - [struct](#0f8d6fb56fe6cdf55ad0114ec5b51dbb)
+     - [6. c++ reigster lua callback](#5b77d3c94d428927df167f348def0026)
 
 ...menuend
 
@@ -172,6 +173,8 @@ namespace.classname:functionname( ... )
     - You can add the constructor on your pkg (even if it's not actually implemented).
  - C
     - the only solution I can think of is to have a function that creates a new struct and returns it
+
+<h2 id="5b77d3c94d428927df167f348def0026"></h2>
 
 ## 6. c++ reigster lua callback
 

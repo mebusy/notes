@@ -42,6 +42,7 @@
  - [11 You Know C, So C++ is Easy!](#927ac867951fec8e4915977d2999fb9f)
      - [Improvements in C++ Over C](#86ed791708ce65e7edac93b014c46870)
      - [Restrictions in C++ that are not in C](#a3f3a90203b121a6a75f03bea0e1a2eb)
+     - [C中如何调用C++函数?](#d4b84ef9c02abca153e5728b87c7fb16)
 
 ...menuend
 
@@ -1008,6 +1009,8 @@ func(&my_int_array[i] );
  - Typedef names 不能与C++中的 struct tag 冲突，但C中可以( 它们属于不同的名称空间 )
  - `void *` 指针 赋值给 其它类型指针， C++ 中需要一个强制类型转换
  - 字符文字 'x' 在C++中 是char类型，但在C中是int 类型。也就是说，sizeof（'a'）在C++中为1，而在C中为4.
+
+<h2 id="d4b84ef9c02abca153e5728b87c7fb16"></h2>
 
 ## C中如何调用C++函数?
 
