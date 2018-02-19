@@ -208,4 +208,9 @@ literal | 两个 “ 之间除“ 以外的 任何字符 | "core dumped"
  - 每个正则表达式 或 NFA 都可以被转变成为 一个接受相同语言的 DFA.
 
 
- - 
+ - 模拟DFA
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/compiler_dfa_simulation.png)
+ - 模拟NFA
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/compiler_nfa_simulation.png)
+
+
