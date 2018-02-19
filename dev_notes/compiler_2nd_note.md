@@ -214,3 +214,5 @@ literal | 两个 “ 之间除“ 以外的 任何字符 | "core dumped"
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/compiler_nfa_simulation.png)
 
 
+ - NFA 合并
+    - 引入 新的状态0， epsilon 跳转到 各个 nfa 的 初始状态
