@@ -297,7 +297,7 @@ env->CallStaticVoidMethod( vm_class, dump_mid );
     - 如果返回的是对象，eg. jclass, jstring, 务必 DeleteLocalRef 删除, 以避免 local reference table overflow
 - 全局引用（Global Reference）
     - 用NewGlobalRef基于局部引用创建，会阻GC回收所引用的对象。可以跨方法、跨线程使用。
-    - JVM不会自动释放，必须调用DeleteGlobalRef手动释放(*env)->DeleteGlobalRef(env,g_cls_string); 
+    - JVM不会自动释放，必须调用DeleteGlobalRef手动释放`(*env)->DeleteGlobalRef(env,g_cls_string);` 
 - 弱全局引用（Weak Global Reference） 
     - 调用NewWeakGlobalRef基于局部引用或全局引用创建，
     - 不会阻止GC回收所引用的对象，可以跨方法、跨线程使用。
