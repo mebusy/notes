@@ -60,7 +60,7 @@
  a | b | c | d
 --- | --- | --- | ---
 [Advanced Data Structure](https://github.com/mebusy/notes/blob/master/dev_notes/python_highlevel_datastructure.md) |  [lib for Functional](https://github.com/mebusy/notes/blob/master/dev_notes/python_functional_programming.md) | [OOP](https://github.com/mebusy/notes/blob/master/dev_notes/python_oop.md)  |  [tips](https://github.com/mebusy/notes/blob/master/dev_notes/python_tips_1.md) 
-[python -m](http://pythonwise.blogspot.hk/2015/01/python-m.html) | [psutil for memory usage](https://github.com/mebusy/notes/blob/master/dev_notes/python_mem_monitor.md) | 
+[python -m](http://pythonwise.blogspot.hk/2015/01/python-m.html) | [psutil for memory usage](https://github.com/mebusy/notes/blob/master/dev_notes/python_mem_monitor.md) | [hack](https://github.com/mebusy/notes/blob/master/dev_notes/python_hack.md)
 [BeautifulSoup](https://github.com/mebusy/notes/blob/master/dev_notes/PY_BeautifulSoup.md)  | [python多线程](https://github.com/mebusy/notes/blob/master/dev_notes/PY_multiprocessing.md) | [PIL_Tips](https://github.com/mebusy/notes/blob/master/dev_notes/PIL_tips.md) | 
 [uwsgi](https://github.com/mebusy/notes/blob/master/dev_notes/python_uwsgi.md) | [high performance python](https://github.com/mebusy/notes/blob/master/dev_notes/highPerformancePython.md) | [python3 features](https://github.com/mebusy/notes/blob/master/dev_notes/python3.md) |  
 [scrapy-splash](https://github.com/mebusy/notes/blob/master/dev_notes/scrapy.md) |  [xpath](https://github.com/mebusy/notes/blob/master/dev_notes/xpath.md) |
@@ -99,7 +99,8 @@
 
  a | b | c | d
 --- | --- | --- | ---
-[implementation](https://github.com/mebusy/notes/blob/master/dev_notes/LuaSC.md)
+[implementation](https://github.com/mebusy/notes/blob/master/dev_notes/LuaSC.md) | [Integrate
+ Lua](https://github.com/mebusy/notes/blob/master/dev_notes/luaIntegrate.md)
 
 
 <h2 id="818056dbd7e201243206b9c7cd88481c"></h2>
@@ -179,7 +180,7 @@ a | b | c | d
 [Learn to Learning](https://github.com/mebusy/notes/blob/master/dev_notes/Learn2Learning.md) | [RaspBerryPi I](https://github.com/mebusy/notes/blob/master/dev_notes/RaspberryPi_I.md) | [RaspPi 2](https://github.com/mebusy/notes/blob/master/dev_notes/RASPI_2.md) | [Software Debug](https://github.com/mebusy/notes/blob/master/dev_notes/SoftwareDebugging.md) 
 [github](https://github.com/mebusy/notes/blob/master/dev_notes/github.md) | [sublime](https://github.com/mebusy/notes/blob/master/dev_notes/sublime.md)   | [深入浅出nodeJS](https://github.com/mebusy/notes/blob/master/dev_notes/深入浅出nodeJS.md)	| [Html5 Game Program](https://github.com/mebusy/notes/blob/master/dev_notes/Html5GameProgramming.md)
 [MacOSX Tips](https://github.com/mebusy/notes/blob/master/dev_notes/MacOSX_Tips.md) | [workingTips](https://github.com/mebusy/notes/blob/master/dev_notes/workingTips.md)	|  [VIM](https://github.com/mebusy/notes/blob/master/dev_notes/vim.md) | [lib tcod](https://github.com/mebusy/notes/blob/master/dev_notes/libtcod_python.md) 
-[blender api](https://github.com/mebusy/notes/blob/master/dev_notes/blender.md) | [Centos 7](https://github.com/mebusy/notes/blob/master/dev_notes/Centos7.md) | [docker](https://github.com/mebusy/notes/blob/master/dev_notes/docker.md)
+[blender api](https://github.com/mebusy/notes/blob/master/dev_notes/blender.md) | [Centos 7](https://github.com/mebusy/notes/blob/master/dev_notes/Centos7.md) | [docker](https://github.com/mebusy/notes/blob/master/dev_notes/docker.md) | [mdfind](https://github.com/mebusy/notes/blob/master/dev_notes/mdfind.md)
 
 
 
