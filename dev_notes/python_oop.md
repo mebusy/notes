@@ -84,3 +84,35 @@ def __getitem__(self,key) :
 
  - using a  setter method  to copy content value 
 
+## readonly class field
+
+```python
+>>> class A(object):
+...     def __init__(self, a):
+...         self._a = a
+...
+...     @property
+...     def a(self):
+...         return self._a
+... 
+>>> a = A('test')
+>>> a.a
+'test'
+>>> a.a = 'pleh'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: can't set attribute
+```
+
+ - more simple way ... 
+    - https://github.com/oz123/oz123.github.com/blob/master/media/uploads/readonly_properties.py
+    - this `readonly_properties` is  for python3 , if you use python2.7, you may need modify some code 
+
+```
+...
+class NewClass(cls , object ):
+    ...
+        super( NewClass, self  ).__setattr__(name, value)
+```
+
+
