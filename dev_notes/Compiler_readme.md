@@ -31,6 +31,11 @@
  - [FAdo tutorial](https://github.com/mebusy/notes/blob/master/dev_notes/FAdo_tutorial.md)
 
 
+## LLVM
+
+ - [LLVM_ibm_createACompiler](https://github.com/mebusy/notes/blob/master/dev_notes/LLVM_ibm_createACompiler.md)
+
+
 <h2 id="ecef701cf8281ee7177e68fb367afa0f"></h2>
 
 # Yacc / Lex
