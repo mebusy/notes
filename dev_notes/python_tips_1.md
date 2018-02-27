@@ -464,6 +464,15 @@ unicode 可以使用 u"\uxxxx" 表示，但是当我们从某处获取 "\uxxxx"�
 反之 ，通过  uni.encode("unicode-escape")  来 获得 "\uxxxx"  形式的字符串
 
 
+#### convert '\\n' to '\n'
+
+```python
+>>> "\\n"
+'\\n'
+>>> "\\n".decode('string_escape')
+'\n'
+```
+
 
 ---
 
