@@ -185,10 +185,19 @@ txt = html_parser.unescape(html)
 ### html escape 
 
 ```python
+>>> print cgi.escape.__doc__
+Replace special characters "&", "<" and ">" to HTML-safe sequences.
+    If the optional flag quote is true, the quotation mark character (")
+    is also translated.
+
 >>> import cgi
 >>> cgi.escape( '>' )
 '&gt;'
+>>> cgi.escape( '"' , True )
+'&quot;'
 ```
+
+
 
 
 
