@@ -182,6 +182,14 @@ html_parser = HTMLParser.HTMLParser()
 txt = html_parser.unescape(html)
 ```
 
+### html escape 
+
+```python
+>>> import cgi
+>>> cgi.escape( '>' )
+'&gt;'
+```
+
 
 
 <h2 id="1c65ec66e824c6ab4c57603cf633a25d"></h2>
