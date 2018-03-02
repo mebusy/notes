@@ -193,4 +193,23 @@ namespace.classname:functionname( ... )
 
 ## 7. lua / Java
 
-https://segmentfault.com/a/1190000004252394
+ - https://segmentfault.com/a/1190000004252394
+
+
+### lua 调用 Java
+
+ - cocos2dx 提供了 luaj.callStaticMethod , 可以 调用 静态java 方法
+
+### java 调用 lua
+
+ - 1. 使用 cocos2dx 提供的 callLuaGlobalFunctionWithString 直接调用 全局lua 方法
+ - 2. 使用 cocos2dx 提供的 callLuaFunctionWithString， 通过 luaFunctionId 来调用 保存的 lua 方法
+    - 调用两次 java 方法
+    - 第一次， 注册 lua 方法， 
+        - lua方法作为 参数 调用java 方法， c++层做处理， java 方法只需要 `final int luaFunc` 接受
+    - 第二次， 调用 业务 Java 方法， 在这个业务java 方法中，使用 callLuaFunctionWithString 来调用 lua
+
+
+        
+
+
