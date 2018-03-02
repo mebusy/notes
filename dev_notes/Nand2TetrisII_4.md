@@ -318,7 +318,31 @@ tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
 
 <h2 id="d41d8cd98f00b204e9800998ecf8427e"></h2>
 
-# 
+# Homework 
+
+## Lexical Analyzer
+
+ - create automata for Tokens 
+    1. regular expression -> NFA -> DFA
+    2. manully create NFA -> DFA
+        - for some regular expression features, such lick  non-greedy matching
+ - use DFA matching algorihtm  find all tokens 
+
+## Syntax Analyzer 
+
+ - regular expression -> CFG
+    - Change A|B to grammar
+        - G -> A
+        - G -> B
+    - Change A\* to
+        - G -> @epsilon
+        - G -> A G
+    - Change A+ to
+        - G -> A
+        - G -> A G
+    - Change AB to
+        - G -> A B
+
 
 
 
