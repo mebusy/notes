@@ -191,4 +191,6 @@ namespace.classname:functionname( ... )
     shs:registerScriptHandler( function()  print("lua callback");  end )
 ```
 
+## 7. lua / Java
 
+https://segmentfault.com/a/1190000004252394
