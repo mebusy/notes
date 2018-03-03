@@ -11,6 +11,9 @@
          - [enumerate](#2a45a91d039693c9fb96a16030a13c5e)
          - [struct](#0f8d6fb56fe6cdf55ad0114ec5b51dbb)
      - [6. c++ reigster lua callback](#5b77d3c94d428927df167f348def0026)
+     - [7. lua / Java](#29f29919cc56e7bfc9f1e8aa05422952)
+         - [lua 调用 Java](#ff92401cfdc0ea1b4eb55540669ad837)
+         - [java 调用 lua](#ee4e6cf22725c18fc2d76be7234d0237)
 
 ...menuend
 
@@ -191,14 +194,20 @@ namespace.classname:functionname( ... )
     shs:registerScriptHandler( function()  print("lua callback");  end )
 ```
 
+<h2 id="29f29919cc56e7bfc9f1e8aa05422952"></h2>
+
 ## 7. lua / Java
 
  - https://segmentfault.com/a/1190000004252394
 
 
+<h2 id="ff92401cfdc0ea1b4eb55540669ad837"></h2>
+
 ### lua 调用 Java
 
  - cocos2dx 提供了 luaj.callStaticMethod , 可以 调用 静态java 方法
+
+<h2 id="ee4e6cf22725c18fc2d76be7234d0237"></h2>
 
 ### java 调用 lua
 

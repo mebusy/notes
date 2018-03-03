@@ -6,7 +6,7 @@
      - [disable dynamically del a field from a class](#d697d7eeb396fa20ed1c5109befb2a67)
      - [access like a dict](#45a042564f32c7d808e10eb2c157142b)
      - [assignment lick c struct](#b6a463819ebef130b1d9e14cc626eba5)
-     - [class property](#0766b2e74f5159a8c7d793f1f1cee8a6)
+     - [readonly class field](#ff1e065fdd70b15412dc1f6a216d1405)
 
 ...menuend
 
@@ -83,6 +83,8 @@ def __getitem__(self,key) :
 ## assignment lick c struct 
 
  - using a  setter method  to copy content value 
+
+<h2 id="ff1e065fdd70b15412dc1f6a216d1405"></h2>
 
 ## readonly class field
 

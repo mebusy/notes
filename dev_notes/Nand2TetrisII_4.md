@@ -22,7 +22,9 @@
          - [JackAnalyzer: API](#20aaf3f62aefee4c503d7b70b2918b04)
          - [Compilation Engine](#26bf0761f0300eac7c1fca4c899f8f7d)
      - [Unit 4.9: Project 10: Building a Syntax Analyzer](#c980d783044431dba4b94386cb76e408)
- - [](#d41d8cd98f00b204e9800998ecf8427e)
+ - [Homework](#5ec325c9726994dcd027d36d7929bf9b)
+     - [Lexical Analyzer](#32c763e8c1ba75932d5e0c41e589935e)
+     - [Syntax Analyzer](#9568075dac382b9105b467d296a453a9)
 
 ...menuend
 
@@ -316,9 +318,11 @@ tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
  
 ---
 
-<h2 id="d41d8cd98f00b204e9800998ecf8427e"></h2>
+<h2 id="5ec325c9726994dcd027d36d7929bf9b"></h2>
 
 # Homework 
+
+<h2 id="32c763e8c1ba75932d5e0c41e589935e"></h2>
 
 ## Lexical Analyzer
 
@@ -327,6 +331,8 @@ tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
     2. manully create NFA -> DFA
         - for some regular expression features, such lick  non-greedy matching
  - use DFA matching algorihtm  find all tokens 
+
+<h2 id="9568075dac382b9105b467d296a453a9"></h2>
 
 ## Syntax Analyzer 
 

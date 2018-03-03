@@ -11,6 +11,7 @@
          - [迭代和组合](#7b6bcc5e50cc1ddd83a25620f5739920)
          - [bisect模块保持列表排序](#04539cb02f80127546f36cb81567946d)
          - [url unescape](#18bf7f45d4c0960b7a240195d229cdbc)
+         - [html escape](#c438002415894d6f16a66c0f4af9a454)
          - [序列 ()](#1c65ec66e824c6ab4c57603cf633a25d)
          - [自省的核心 getattr 函数](#95cc82c5a8eea453d65f25f13121bd7c)
          - [callable](#765d2ec94553b7cf4c971e7dfcf0e851)
@@ -36,6 +37,7 @@
              - [unichr  <-> unicode string](#8f9892ac178f204eda8bbf3961d55d42)
              - [unicode -> special encoded string](#97293b0a09ebeed137930a0ca33f6e3a)
              - [special encoded string -> unicode](#f9b40cb363b4e4cd89aa132855dd8d41)
+             - [convert '\\n' to '\n'](#56932c830dacb8440022cdb350ae3bca)
      - [中文处理](#c4e5abc4816842dea936c9f1f20b431e)
          - [改变脚本本地编码](#7ab8dd9eb1e1a86afb68efff05a2e355)
          - [写 带中文字符的文件](#771f3b745b95ab3097fd1242137e2912)
@@ -181,6 +183,8 @@ import HTMLParser
 html_parser = HTMLParser.HTMLParser()
 txt = html_parser.unescape(html)
 ```
+
+<h2 id="c438002415894d6f16a66c0f4af9a454"></h2>
 
 ### html escape 
 
@@ -480,6 +484,8 @@ unicode 可以使用 u"\uxxxx" 表示，但是当我们从某处获取 "\uxxxx"�
 
 反之 ，通过  uni.encode("unicode-escape")  来 获得 "\uxxxx"  形式的字符串
 
+
+<h2 id="56932c830dacb8440022cdb350ae3bca"></h2>
 
 #### convert '\\n' to '\n'
 
