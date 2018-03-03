@@ -348,6 +348,11 @@ tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
         - G -> A G
     - Change AB to
         - G -> A B
+    - Change A? to
+        - G -> @epsilon
+        - G -> A 
+
+
 
 
 
