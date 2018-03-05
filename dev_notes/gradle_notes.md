@@ -302,7 +302,7 @@ apply plugin: 'eclipse'
 ### Command line create a android project with Gradle
 
 ```
-android create project -a Main -k com.example.app -t android-16 -g -v 1.1.3 -p AppWithGradleTemplate
+android create project -a MainActivity -k package_path_com.example.app -t android-16 -g -v 1.1.3 -p projectName 
 ```
 
 <h2 id="a6eec98d694e6bf6b3e7b2d2a8dec973"></h2>
@@ -667,6 +667,64 @@ extern "C" {
 ```
 
  - PS: JNI_OnLoad 方法 必须于工程的 jni 目录中定义 ，  放在static library 中无效
+
+
+## JNI Example
+
+```
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.0.0'
+    }
+}
+apply plugin: 'android'
+
+android {
+    compileSdkVersion 'android-16'
+    buildToolsVersion '24.0.0'
+
+    defaultConfig {
+        minSdkVersion 11
+        // applicationId "com.apixel.luaTest"
+        ndk {
+            moduleName "hello-world"
+            ldLibs "log" , "android" , \
+                "${project.rootDir}/../../luajit/prebuilt/android/\${TARGET_ARCH_ABI}/libluajit.a"    ,  \
+                 "${project.rootDir}/../../tolua/prebuilt/android/\${TARGET_ARCH_ABI}/libtolua.so"
+            cFlags "-O2 -I${project.rootDir}/../../luajit/include -I${project.rootDir}/../../tolua/include  \
+                    -I${project.rootDir}/../../luabinding/luabinding"
+            abiFilters "armeabi", "armeabi-v7a", "x86"// ,  "arm64-v8a"
+            stl "gnustl_static"
+        }
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("${project.rootDir}/../../../androidKeystore/test.keystore")
+            storePassword "Guardiola7"
+            keyAlias "test.keystore"
+            keyPassword "Guardiola7"
+        }
+    }
+
+    sourceSets.main {
+        jni.srcDirs = ['jni','../common_src']
+        java.srcDirs += [ '../../tolua/src_misc/android/java' ]
+        assets.srcDirs += [ '../common_res' ]
+        jniLibs.srcDirs = [ '../../tolua/prebuilt/android' ]
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFile getDefaultProguardFile('proguard-android.txt')
+            signingConfig signingConfigs.release
+        }
+    }
+}
+```
 
 ---
 
