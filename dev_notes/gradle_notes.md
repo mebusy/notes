@@ -302,7 +302,7 @@ apply plugin: 'eclipse'
 ### Command line create a android project with Gradle
 
 ```
-android create project -a Main -k com.example.app -t android-16 -g -v 1.1.3 -p AppWithGradleTemplate
+android create project -a MainActivity -k package_path_com.example.app -t android-16 -g -v 1.1.3 -p projectName 
 ```
 
 <h2 id="a6eec98d694e6bf6b3e7b2d2a8dec973"></h2>
