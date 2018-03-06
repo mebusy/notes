@@ -152,6 +152,27 @@ void LuaState::addSearchPath(const char* path)
  - 目前只支持 class level   ， 
     - function level not support yet
 
+ - example
+
+```
+struct TEST_A
+{
+    Vector<LeaderBoardItem> m_LB_items ;
+};
+```
+
+ - 假设我们导出了 如上的 struct 的 m_LB_items 字段， 我们要对 m_LB_items 做 push_back 操作
+    - 因为 m_LB_items 是 Vector<LeaderBoardItem> 范型， 我们需要 对 Vector 类做 TEMPLATE_BIND
+
+```
+class Vector {
+    TEMPLATE_BIND(T,  LeaderBoardItem  )
+
+    void push_back(const T& element);
+} ;
+```
+
+
 <h2 id="3fec93f66682ce9c63af27dec7b911a2"></h2>
 
 ### name space 
