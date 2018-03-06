@@ -148,5 +148,22 @@ return cGameSave
 ```
 
 
+## json
 
+```lua
+    local json = require("json")
+    data = json.encode(t)
+
+    t = json.decode(data)
+```
+
+## not cache module
+
+```lua
+module("GameMapOpenInfiniteMode" , package.seeall ) 
+
+if not LUA_MODULE_CACHE then
+	package.loaded.GameMapOpenInfiniteMode = nil 
+end 
+```
 
