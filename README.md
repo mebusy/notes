@@ -99,7 +99,7 @@
 
  a | b | c | d
 --- | --- | --- | ---
-[implementation](https://github.com/mebusy/notes/blob/master/dev_notes/LuaSC.md) | [Integrate Lua](https://github.com/mebusy/notes/blob/master/dev_notes/luaIntegrate.md)
+[implementation](https://github.com/mebusy/notes/blob/master/dev_notes/LuaSC.md) | [Integrate Lua](https://github.com/mebusy/notes/blob/master/dev_notes/luaIntegrate.md) | [lua tips](https://github.com/mebusy/notes/blob/master/dev_notes/lua_tips.md) | 
 
 
 <h2 id="818056dbd7e201243206b9c7cd88481c"></h2>
