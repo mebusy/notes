@@ -99,6 +99,7 @@ local function load_record()
         f:close()
 
         local json = require("json")
+        -- keep t non-local
         t = json.decode(data)
 
         if t then
