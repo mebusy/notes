@@ -215,9 +215,21 @@ namespace.classname:functionname( ... )
     shs:registerScriptHandler( function()  print("lua callback");  end )
 ```
 
+
+## 7. lua / c++
+
+ - c++ 获取 lua 方法 返回值 ， 或 变量值
+ - cocos2dx 提供 executeString 可以完成大部分事情
+    1. 执行一段lua 代码 
+        - executeString( "lua_code_string" )
+    2. 获取 lua 变量值 (目前值支持 number/boolean 返回)  
+        - executeString ( "return module.varname" ) 
+    3. 获取 lua 函数返回值
+        - executeString ( "return module.funcname()" ) 
+
 <h2 id="29f29919cc56e7bfc9f1e8aa05422952"></h2>
 
-## 7. lua / Java
+## 8. lua / Java
 
  - https://segmentfault.com/a/1190000004252394
 
