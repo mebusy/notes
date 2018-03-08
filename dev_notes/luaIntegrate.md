@@ -223,9 +223,9 @@ namespace.classname:functionname( ... )
     1. 执行一段lua 代码 
         - executeString( "lua_code_string" )
     2. 获取 lua 变量值 (目前值支持 number/boolean 返回)  
-        - executeString ( "return module.varname" ) 
+        - executeString ( "require 'modulename' ;return modulename.varname" ) 
     3. 获取 lua 函数返回值
-        - executeString ( "return module.funcname()" ) 
+        - executeString ( "require 'modulename' ;return modulename.funcname()" ) 
 
 <h2 id="29f29919cc56e7bfc9f1e8aa05422952"></h2>
 
