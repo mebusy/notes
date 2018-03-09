@@ -353,6 +353,24 @@ tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
         - G -> A 
 
 
+## Jack 文法上的难点
+
+### 二义性，有的文法需要 LL(2)
+
+ - `('subroutineCall', 'identifier') `
+    - ` [('subroutineName', "'('", 'expressionList', "')'"), ('CLASS_VAR_NAME', "'.'", 'subroutineName', "'('", 'expressionList', "')'")]`
+ - `('CLASS_VAR_NAME', 'identifier') `
+    - `[('className',), ('varName',)]`
+ - `('term', 'identifier') `
+    - `[('varName',), ('varName', 'ARRAY_SUB'), ('subroutineCall',)]`
+
+--- 
+
+ - 当出现 二义性 文法是， 即 predict-table 条目中，出现多个 production时， 向前多看1个symbol(LL2)， 选择 唯一匹配的一个 production
+ - 但是 有时，出现 多个production 向前多看1个symbol(LL2) 后 都匹配的情况
+    - 像上面的 CLASS_VAR_NAME 
+    - 或者 ` [('varName',), ('varName', 'ARRAY_SUB') ]` 这类
+ - 当出现上面的这种情况， 选择一个 匹配 symbol 最多的 production ( 如果都相等，任意选择 )
 
 
 
