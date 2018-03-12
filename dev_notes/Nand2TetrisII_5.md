@@ -247,3 +247,18 @@ else
     - the first thing to do is to take the expression and **negate** it. 
     - why to do this negation ? Because once you negate the expression in such a way , code generation becomes far simpler and tighter. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compile_if_flow_chart.png)  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compile_if_vm_code.png)
+
+ - where are these labels (L1,L2) come from ?
+    - the compiler generates these labels
+
+
+### Compiling while statements
+
+```
+while (expression)
+    statements
+```
+
+
+
