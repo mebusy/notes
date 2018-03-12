@@ -196,6 +196,23 @@ pop this 1   // y
 
 ### Parse tree
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2d_compile2_parse_tree.png)
 
+ - prefix 
+    - `* a + b c`
+    - functional 
+ - infix
+    - `a * (b+c)`
+    - human oriented , most source code are infix.
+ - postfix 
+    - `a b c + *`
+    - stack oriented 
+    - **this postfix notation is intimately related to our stack machine, because our stack language is also postfix.**
+    - our target language , the VM language , is postfix. so the compiler has to translate from infix to postfix.
+
+### Generating code for expressions: a two-stage approach
+
+ 1. source code -> parse tree  ( The XML file we output in project 10 is a parse tree )
+ 2. go throuth every node in this parse tree in a certain order , and then you generate the stack machine code.
 
 
