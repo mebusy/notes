@@ -17,6 +17,12 @@ collectgarbage("setpause", 200 )
 collectgarbage("setstepmul", 5000)
 ```
 
+ - execute a full gc
+
+```lua
+collectgarbage()
+```
+
 ## random init
 
 ```python
