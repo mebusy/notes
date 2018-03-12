@@ -215,4 +215,12 @@ pop this 1   // y
  1. source code -> parse tree  ( The XML file we output in project 10 is a parse tree )
  2. go throuth every node in this parse tree in a certain order , and then you generate the stack machine code.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compiler2_generate_code_2step.png)
+
+ - 生成 parse tree 的代价是很大的，实践中一般不会这么做。
+
+### Generating code for expressions: a one-stage approach
+
+ - The following algorithm is  going to generate the VM code on the fly without having to create  the whole parse tree in the process.
+
 
