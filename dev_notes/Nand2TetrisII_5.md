@@ -223,4 +223,10 @@ pop this 1   // y
 
  - The following algorithm is  going to generate the VM code on the fly without having to create  the whole parse tree in the process.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compiler2_generate_code_1step.png)
+
+
+## Unit 5.4: Handling Flow of Control
+
+
 
