@@ -260,5 +260,27 @@ while (expression)
     statements
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compile_while_flow_chart.png)   ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compile_while_vm_code.png)
+
+### Some (minor) complications
+
+ - A program typically contains multiple `if` and `while` statements.
+     - we have to make sure that the compiler generates unique labels
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
