@@ -228,5 +228,22 @@ pop this 1   // y
 
 ## Unit 5.4: Handling Flow of Control
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compile2_handle_flow.png)
 
+ - we have 5 statements
+    - let, do, return are trivial statements to translate
+    - translating `while` and `if` are far more challenging.
+
+### Compiling if statements
+
+```
+if (expression) 
+    statement1
+else
+    statement2
+```
+
+ - before I generate code for this statement, I would like to rewrite it using a flow chart.
+    - the first thing to do is to take the expression and **negate** it. 
+    - why to do this negation ? Because once you negate the expression in such a way , code generation becomes far simpler and tighter. 
 
