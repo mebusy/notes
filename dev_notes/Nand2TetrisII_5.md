@@ -268,6 +268,42 @@ while (expression)
      - we have to make sure that the compiler generates unique labels
 
 
+## Unit 5.5: Handling Objects: Low-Level Aspects
+
+### Handling local and argument variables 
+
+ - local, argument
+    - represent *local* and *argument* variables
+    - located on the *stack*
+ - Implementation
+    - Base addresses: LCL and ARG
+    - Managed by the VM implementation
+
+### Handling object and array data
+
+ - this, that
+    - represent *object* and *array* data
+    - localted on the *heap*
+    - you may well have numerous objects and quite a few arrays.
+ - Implementation
+    - Base address: THIS and THAT
+    - Set using `pointer 0 (this)` , `pointer 1 (that)`  
+    - Managed by VM code.
+
+### Accessing RAM data
+
+ - suppose we wish to access RAM words 8000, 8001, 8002, ...
+
+VM code (commands) | VM implementation (resulting effect)
+--- | ---
+push 8000  | sets THIS to 8000
+pop pointer | 
+push/pop this 0 | accessing RAM[8000]
+
+
+
+
+
 
 
 
