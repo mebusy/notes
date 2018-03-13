@@ -300,6 +300,8 @@ push 8000  | sets THIS to 8000
 pop pointer | 
 push/pop this 0 | accessing RAM[8000]
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_5_access_RAM_data.png)
+
 
 
 
