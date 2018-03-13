@@ -102,6 +102,9 @@ public class LimitInputTextWatcher implements TextWatcher {
 ## open browser
 
 ```java
+import android.content.Intent ;
+import android.net.Uri ;
+
 public  static void openAppStore(  final String url ) {
     Intent viewIntent = new Intent(Intent.ACTION_VIEW,Uri.parse( url ));  
     // "android.intent.action.VIEW"
