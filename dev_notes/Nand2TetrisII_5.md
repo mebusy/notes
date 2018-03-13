@@ -299,8 +299,160 @@ VM code (commands) | VM implementation (resulting effect)
 push 8000  | sets THIS to 8000
 pop pointer | 
 push/pop this 0 | accessing RAM[8000]
+push/pop this 1 | accessing RAM[8001]
+push/pop this i | accessing RAM[8000+i]
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_5_access_RAM_data.png)
+
+### Recap
+
+ - Object data is accessed via the `this` segment
+ - Array data is accessed via the `that` segment
+ - Before we use these segments, we must first anchor them using pointer.
+
+## Unit 5.6: Handling Objects: Construction
+
+### The caller's side: compiling new
+
+ - source code
+
+```
+var Point p1,p2;
+var int d ;
+...
+let p1 = Point.new(2,3);
+let p2 = Point.new(5,7);
+```
+
+ - compiled VM(pseudo) code
+
+```
+// var Point p1,p2;
+// var int d ;
+// The compiler updates the subroutine's symbol table 
+// No code is generated
+
+// let p1 = Point.new(2,3);
+// Subroutine call:
+push 2
+push 3
+call Point.new
+// Contract: the caller assumes that the constructor's code
+(i) arranges a memory block to store the new object , and 
+(ii) returns its base address to the caller.
+pop p1  // p1 = base address of the new object 
+
+// let p2 = Point.new(5,7);
+// similar
+```
+
+ - subroutine symbol table
+
+name | type | kind | #
+--- | --- | --- | ---
+p1 | Point | local | 0 
+p2 | Point | local | 1
+d  | int   | local | 2
+
+
+### Resulting impact
+
+ - During compile-time, the compiler maps p1 on local 0 , p2 on local 1, and d on local 2 ?
+ - During run-time, the execution of the constructos's code effects the creation of the objects themselves. on the heap.
+ - So, object construction is a two-stage affair that happens both during compile time and during runtime.
+
+
+### Object construction: the big picture
+
+ - A constructor typically does 2 things:
+    - Arranges the creation of a new object 
+    - Initializes the new object to some initial state
+        - Therefore , the constructor's code typically needs access to the object's *fields*.
+ - How to access the object's fields ?
+    - The constructor's code can access the object's data using the *this* segment
+    - But first , the constructor's code must anchor the *this* segment on the object's data , using pointer
+
+### Compiling constructors
+
+```
+class Point {
+    field int x,y ;
+    static int pointCount ;
+    ...
+    /** Constructs a new point  */
+    constructor Point new(int ax, int ay) {
+        let x = ax ;
+        let y = ay ;
+        let pointCount = pointCount +1;
+        return this ;    
+    }    
+}
+```
+
+ - class-level symbol table
+
+name | type | kind | #
+--- | --- | --- | --- 
+x | int | field | 0 
+y | int | field | 1
+pointCount | int | static | 0
+
+
+The compiler knows that the constructor has to create some space on the RAM for the newly constructed object.
+
+So the first question is how does the compiler know how much space is needed ?
+
+Well, the compiler can consult the class-level symbol table and realize that objects of this particular class, Point, require 2 words only , x and y. 
+
+So the 2nd question is how do we find such a free memory block on the RAM ? 
+
+Well , at this stage the operating system comes to the rescure -- `alloc` function.
+
+
+
+ - compiled code
+
+```
+// constructor Point new(int ax, int ay) 
+// The compiler creates the subroutine's symbol table, 
+// no code genrates
+
+// The compiler figures out the size of an object, and call
+// Memory.alloc(n).
+// This OS method finds a memory block of the required size, 
+// and return its base address.
+push 2
+call Memory.alloc 1
+pop pointer 0  // anchors this at the base address
+
+// let x = ax; let y = ay;
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+
+// let pointCount = pointCount + 1 ;
+push static 0
+push 1 
+add 
+pop static 0
+
+// return this
+push pointer 0
+return // returns the base address of the new object
+```
+
+
+ - constructor subroutine symbol table
+
+name | type | kind | #
+--- | --- | --- | ---
+ax | int | arg | 0
+ay | int | arg | 1 
+
+
+## Unit 5.7: Handling Objects: Manipulation
+
 
 
 
