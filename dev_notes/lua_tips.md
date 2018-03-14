@@ -177,10 +177,12 @@ end
 
 ## Luasocket
 
+http://w3.impa.br/~diego/software/luasocket/http.html#request
+
  - simple request
 
 ```lua
-
+http.request(url [, body])
 ```
 
 
@@ -189,6 +191,7 @@ end
 ```lua
 #!/usr/bin/env lua
 local http=require("socket.http");
+local ltn12 = require("ltn12")
 
 local request_body = [[login=user&password=123]]
 local response_body = {}
