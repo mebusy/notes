@@ -225,4 +225,54 @@ else
 end
 ```
 
+ - 异步 request
+
+```lua
+module( "asyncRequest" , package.seeall )
+
+local url = require("socket.url")
+local dispatch = require("dispatch")
+local http = require("socket.http")
+dispatch.TIMEOUT = 10
+
+handler = dispatch.newhandler("coroutine")
+
+local nthreads = 0
+
+-- get the status of a URL using the dispatcher
+function getstatus(link)
+    local parsed = url.parse(link, {scheme = "file"})
+    --[[
+    for k,v in pairs( parsed ) do
+        print (k,v)
+    end
+    ]]
+    if parsed.scheme == "http" or parsed.scheme == "https" then
+        nthreads = nthreads + 1
+        handler:start(function()
+            local r, c, h, s = http.request{
+                method = "HEAD",
+                url = link,
+                create = handler.tcp
+            }
+            if r and c == 200 then
+                io.write('\t', link, '\n')
+            else
+                io.write('\t', link, ': ', tostring(c), '\n')
+            end
+            nthreads = nthreads - 1
+        end)
+    end
+end
+
+function exec()
+    getstatus( "https://www.baidu.com" )
+
+    while nthreads > 0 do
+        print ( "handler:step()" )
+        handler:step()
+    end
+end
+```
+
 
