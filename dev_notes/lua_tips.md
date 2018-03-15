@@ -275,4 +275,50 @@ function exec()
 end
 ```
 
+## lua-curl
+
+ - example 1
+
+```lua
+local cURL = require("cURL")
+
+headers = {
+  "Accept: text/*",
+  "Accept-Language: en",
+  "Accept-Charset: iso-8859-1,*,utf-8",
+  "Cache-Control: no-cache"
+}
+
+login_url = "https://10.10.2.1/cgi-bin/acd/myapp/controller/method?userid=tester&password=123123"
+
+c = cURL.easy{
+  url            = login_url,
+  ssl_verifypeer = false,
+  ssl_verifyhost = false,
+  httpheader     = headers,
+  writefunction  = function(str)
+    succeed = succeed or (string.find(str, "srcId:%s+SignInAlertSupressor--"))
+  end
+}
+
+c:perform()
+```
+
+ - example 2
+
+```lua
+    local curl = require('cURL')
+    local easy = curl.easy()
+        :setopt_url('https://github.com')
+        :setopt_writefunction(io.write)
+
+    easy:setopt(curl.OPT_SSL_VERIFYHOST, 0)
+    easy:setopt(curl.OPT_SSL_VERIFYPEER, 0)
+    easy:perform():close()
+```
+
+ - more example
+    - https://www.tuicool.com/articles/yY3Erub
+    - http://www.cnblogs.com/moodlxs/archive/2012/10/15/2724318.html
+
 
