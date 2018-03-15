@@ -25,6 +25,10 @@ systemctl start squid
 
 ```
 brew install squid
+
+# config , to change port ,etc...
+/usr/local/etc/squid.conf
+
 # log path
 /usr/local/var/logs/
 

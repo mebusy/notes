@@ -214,6 +214,15 @@ grep -r --include=*.{h,cpp,as}  ReturnToMap  .
 sudo tcpdump  -XvvennSs 0 -i en0  '(port 8080) and ((tcp[20:2]=0x4745) or (tcp[20:2]=0x4854))'
 ```
 
+### bash  wait previous command to finish 
+
+```
+tar ...
+wait %% 
+# you next command 
+cd ...
+```
+
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
