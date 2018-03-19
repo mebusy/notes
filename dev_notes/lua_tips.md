@@ -170,7 +170,7 @@ return cGameSave
 module("GameMapOpenInfiniteMode" , package.seeall ) 
 
 if not LUA_MODULE_CACHE then
-	package.loaded.GameMapOpenInfiniteMode = nil 
+    package.loaded.GameMapOpenInfiniteMode = nil 
 end 
 ```
 
@@ -322,3 +322,15 @@ c:perform()
     - http://www.cnblogs.com/moodlxs/archive/2012/10/15/2724318.html
 
 
+## c access lua  Global  variable
+
+```c
+    lua_getglobal(L, "z");
+    z = (int)lua_tointeger(L, -1);
+    lua_pop(L, 1);
+```
+
+```c
+    lua_pushnumber(L, 10);
+    lua_setglobal(L, "z");
+```
