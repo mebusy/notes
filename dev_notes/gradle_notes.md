@@ -167,6 +167,20 @@ jarFiles.dependsOn build
 buildAPI.dependsOn jarFiles
 ```
 
+### add local jar 
+
+```
+...
+apply plugin: 'android'
+
+dependencies {
+   // add local jar
+   compile fileTree(dir: '../../MobileAuth/libs', include: '*.jar')
+}
+
+android {
+```
+
 ----
 
 <h2 id="99e91f3394da6444ff8b456668a550d7"></h2>
