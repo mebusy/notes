@@ -334,3 +334,12 @@ c:perform()
     lua_pushnumber(L, 10);
     lua_setglobal(L, "z");
 ```
+
+## UTC_ISO_8601totime
+
+```lua
+function UTC_ISO_8601totime (s )
+    local xyear, xmonth, xday ,h,m,s = s:match("(%d+)%-(%d+)%-(%d+)T(%d+):(%d+):(%d+)")
+    return os.time({year = xyear, month = xmonth, day = xday, hour = h, min = m, sec = s})
+end
+```
