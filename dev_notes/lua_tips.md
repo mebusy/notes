@@ -343,3 +343,11 @@ function UTC_ISO_8601totime (s )
     return os.time({year = xyear, month = xmonth, day = xday, hour = h, min = m, sec = s})
 end
 ```
+
+## get time zone 
+
+```
+> print( os.difftime( os.time(), os.time(os.date("!*t", now)))  )
+28800
+```
+
