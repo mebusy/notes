@@ -112,5 +112,8 @@ public  static void openAppStore(  final String url ) {
 }
 ```
 
+## whole-archieve prebuilt static library
+
+ - use LOCAL_WHOLE_STATIC_LIBRARIES  instead of LOCAL_STATIC_LIBRARIES
 
 
