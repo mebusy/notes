@@ -233,8 +233,9 @@ namespace.classname:functionname( ... )
 
  - https://segmentfault.com/a/1190000004252394
  - android 平台的线程问题
-    - 一般 lua会在 非UI线程中调用
+    - 一般 lua会在 非UI working 线程中调用 （如 GL线程）
     - java 的一些callback，一般都是在 UI线程中执行，这时如果要调用lua方法，就需要 在正确的线程中调用
+    - 如果可以容忍阻塞，可以使用 线程安全的 ConcurrentLinkedQueue， 在 GL线程中把结果取回，再调用 lua 方法
 
 
 <h2 id="ff92401cfdc0ea1b4eb55540669ad837"></h2>
