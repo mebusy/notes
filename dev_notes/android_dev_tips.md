@@ -116,4 +116,14 @@ public  static void openAppStore(  final String url ) {
 
  - use LOCAL_WHOLE_STATIC_LIBRARIES  instead of LOCAL_STATIC_LIBRARIES
 
+## whether is Main thread ?
+
+```java
+import android.os.Looper ;
+public static boolean isMainThread() {
+    return Looper.getMainLooper().getThread() == Thread.currentThread();
+}
+```
+
+
 
