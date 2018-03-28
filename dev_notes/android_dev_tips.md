@@ -126,4 +126,25 @@ public static boolean isMainThread() {
 ```
 
 
+## prevent background app auto close
+
+```java
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // prevent auto restarting rather than resuming
+        // on some android device
+        if (!isTaskRoot()
+                && getIntent().hasCategory(Intent.CATEGORY_LAUNCHER)
+                && getIntent().getAction() != null
+                && getIntent().getAction().equals(Intent.ACTION_MAIN)) {
+
+            finish();
+            return;
+        }
+        ...
+```
+
+
 
