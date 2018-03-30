@@ -146,5 +146,31 @@ public static boolean isMainThread() {
         ...
 ```
 
+## run on working thread
 
+```java
+    private static Handler mWorkingHandler = null  ;
+    private static Thread mWorkingThread = null;
+
+    // should be initially called by working thread
+    public static void setWorkingThread() {
+        if ( mWorkingThread == null )
+            mWorkingThread = Thread.currentThread(); 
+    }
+    public static void runOnWorkingThread( Runnable action ) {
+        if ( mWorkingThread == null )
+            return ;
+
+        if ( mWorkingHandler == null ) {
+            mWorkingHandler = new Handler() ;
+        }
+
+        if (Thread.currentThread() != mWorkingThread) {
+             mWorkingHandler.post(action);
+         } else {
+             action.run();
+         }
+
+    }
+```
 
