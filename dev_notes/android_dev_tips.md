@@ -162,6 +162,7 @@ public static boolean isMainThread() {
             return ;
 
         if ( mWorkingHandler == null ) {
+            // Default constructor associates this handler with the Looper for the current thread.
             mWorkingHandler = new Handler() ;
         }
 
