@@ -1,6 +1,11 @@
 
 # Lua Tips
 
+## luajit 优化清单
+
+ - http://wiki.luajit.org/NYI
+
+
 ## android close luajit
 
 ```lua

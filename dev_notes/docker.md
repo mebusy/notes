@@ -1782,13 +1782,22 @@ Explanation:
  - for details , see https://docs.docker.com/engine/admin/systemd/#custom-docker-daemon-options
 
 ```
-[Service]                                                                                                                                Environment="HTTP_PROXY=http://host:port/"
+[Service]
+Environment="HTTP_PROXY=http://host:port/"
 ```
 
 ```
 [Service]                                        
 Environment="HTTPS_PROXY=https://host:port/"  
 ```
+
+## run bash of existing containter
+
+```bash
+docker exec -it <container> bash
+```
+
+
 
 
 <h2 id="b8e4fd21971c56f16f0e13421bfefedc"></h2>
