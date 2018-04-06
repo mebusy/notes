@@ -453,6 +453,52 @@ ay | int | arg | 1
 
 ## Unit 5.7: Handling Objects: Manipulation
 
+ - Manipulation:
+    - Compiling `obj.methodCall()`
+    - Compiling methods
+
+### Compiling method calls 
+
+```
+// OO Style:
+... obj.foo(x1,x2,...) ... 
+```
+
+ - The target machine language is *procedural*
+ - Therefore , the compiler must rewrite the OO method calls in a procedural style
+
+
+```
+// Procedural style:
+... foo(obj,x1,x2,...) ...
+```
+
+### Compiling method calls: the general technique 
+
+```
+// obj.foo(x1,x2,...)
+// Pushes the object on which the method 
+// is called to operate(implicit parameter) ,
+// then pushes the method arguments, 
+// then calls the method for its effect
+push obj
+push x1
+push x2
+push ...
+call foo
+```
+
+### Compiling methods
+
+ - Methods are designed to operate on the current object(this):
+    - Therefore , each method's code needs access to the object's *fields*
+ - How to access the object's fields:
+    - The method's code can access the object's i-th field by accessing `this i`
+    - But first , the method's code must anchor the `this` segment on the object's data, using pointer
+
+
+
+
 
 
 
