@@ -486,6 +486,7 @@ push x1
 push x2
 push ...
 call foo
+// take care of return value
 ```
 
 ### Compiling methods
@@ -495,6 +496,67 @@ call foo
  - How to access the object's fields:
     - The method's code can access the object's i-th field by accessing `this i`
     - But first , the method's code must anchor the `this` segment on the object's data, using pointer
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/N2t_compiling_methods_distance.png)
+
+```
+// method int distance(Pointer other)
+// var int dx , dy
+// The compiler constructs the method's 
+// symbol table. No code is generated.
+// Next, it generates code that associates the 
+// this memory segment with the object on 
+// which the method is called to operate.
+push argument 0
+pop pointer 0  // THIS = argument 0
+
+// let dx = x - other.gets()
+push this 0   // x
+push argument 1   // other
+call Point.getx 1
+sub
+pop local 0   // dx
+
+// let dy = y - other.gety()
+// similar, code omitted
+
+// return Math.sqrt( (dx*dx) + (dy*dy) )
+push local 0
+push local 0
+call Math.multiply 2
+push local 1
+push local 1
+call Math.multiply 2
+add
+call Math.sqrt 1
+return
+```
+
+### Compiling void methods
+
+```
+...
+// Methods must return a value
+push constant 0
+return
+```
+
+ - for the caller ...
+
+```
+// do p1.print()
+push p1
+call Point.print
+// the caller of a void method
+// must dump the returned value
+pop temp 0
+...
+```
+
+ - Recap
+    - Each compiled method must return a value
+    - By convention, void methods return a dummy value
+    - Callers of void methods are responsible for remving the returned value from the stack.
 
 
 
