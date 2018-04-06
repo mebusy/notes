@@ -520,7 +520,7 @@ pop local 0   // dx
 // let dy = y - other.gety()
 // similar, code omitted
 
-// return Math.sqrt( (dx*dx) + (dy*dy) )
+// return Math.sqrt( (dx * dx) + (dy * dy) )
 push local 0
 push local 0
 call Math.multiply 2
@@ -557,6 +557,118 @@ pop temp 0
     - Each compiled method must return a value
     - By convention, void methods return a dummy value
     - Callers of void methods are responsible for remving the returned value from the stack.
+
+## Unit 5.8: Handling Arrays
+
+### Array construction
+
+ - `var Array arr;` ;
+    - it will alloc a variable in local segment ( stack )
+    - generates no code, only effects the symbol table
+ - `let arr = Array.new(n);`
+    - alloc Array in heap
+    - from the caller's prespective , handled exactly loke object construction
+
+### this and that ( reminder )
+
+ - 2 "portable" virtual memory segments that can be aligned to diferent RAM addresses
+
+ - | this | that
+--- | --- | ---
+VM use: |  current object |  current array
+pointer ( base address ) | THIS | THAT
+how 2 set: | `pop pointer 0`  |  `pop pointer 1`
+
+### Example : RAM access using that
+
+```
+// RAM[8056] = 17
+push 8056
+pop pointer 1    // THAT = 8056
+push 17
+pop that 0    // THAT[0] = 17
+```
+
+### Array access
+
+```
+// arr[2] = 17
+push arr  // base address
+push 2    // offset
+add 
+pop pointer 1
+push 17
+pop that 0
+```
+
+ - note we only use the entry *0* for that , why we not generate following simple code instead ?
+
+```
+push arr
+pop pointer 1
+push 17
+pop that 2
+```
+
+ - because
+    - The simple code works only for constant offsets (indices) , it  cannot be used when the source statement is, say, “let arr[x] = y”
+
+
+```
+// arr[expression1] = expression2
+push arr
+push expression1
+add
+pop pointer 1
+push expression2
+pop that 0
+```
+
+ - **Unfortunately, the above VM code does not work** when handle such kind of statement : `a[i] = b[j]  `
+ - solution: 
+
+```
+// a[i] = b[j]
+push a 
+push i
+add
+
+push b
+push j
+add
+pop pointer 1
+push that 0    // b[j] -> stack
+pop temp 0     // stack b[j] -> temp 0
+
+pop pointer 1
+push temp 0  
+pop that 0
+```
+
+ - General solution for generting array access code
+
+```
+// arr[expression1] = expression2   
+push arr
+VM code for computing and pushing the value of expression1
+add    // top stack value = RAM address of  arr[expression1]
+
+VM code for computing and pushing the value of expression2
+pop temp 0  // temp 0 = the value of expression2
+            // top stack value = RAM address of  arr[expression1]
+pop pointer 1
+push temp 0
+pop that 0
+```
+
+ - If needed ,the evaluation of expression2 can set and use *pointer 1* and *that 0* safely.
+ - What about `a[a[i]] = a[b[a[b[j]]]] ` ?
+    - No problem.
+
+
+
+
+
 
 
 
