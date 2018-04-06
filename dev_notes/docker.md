@@ -98,6 +98,9 @@
 
 [docker 实践](https://yeasy.gitbooks.io/docker_practice/content/basic_concept/)
 
+[docker samples , i.e. nginx, mysql](https://docs.docker.com/samples/library/mysql/)
+
+
 <h2 id="e2d6d0e301f7dcc1afe228f7cbcf285a"></h2>
 
 # 基本概念
