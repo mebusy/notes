@@ -64,7 +64,7 @@ firewall-cmd --reload
 firewall-cmd --zone=public --list-ports
 ```
 
-remote a port
+remove a port
 
 ```bash
 firewall-cmd --zone=public --remove-port=8091/tcp --permanent
