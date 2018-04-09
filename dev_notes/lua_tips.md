@@ -352,7 +352,7 @@ end
 ## get time zone 
 
 ```
-> print( os.difftime( os.time(), os.time(os.date("!*t", now)))  )
+> print( os.difftime( os.time(), os.time(os.date("!*t", os.time()  )))  )
 28800
 ```
 

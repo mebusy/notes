@@ -1,5 +1,5 @@
 
-# penResty 
+# openResty 
 
 ## 字符串处理优化
 
@@ -91,10 +91,34 @@
 
  - https://moonbingbing.gitbooks.io/openresty-best-practices/ngx_lua/timer.html
  - ngx.timer.at
+ - ngx.timer 运行在自己的 coroutine 里面
+    - https://moonbingbing.gitbooks.io/openresty-best-practices/ngx_lua/lua-variable-scope.html
+ - 如何只启动一个 timer 工作？
+    - https://moonbingbing.gitbooks.io/openresty-best-practices/ngx_lua/how_one_instance_time.html
+
+
 
 ## 请求返回后继续执行
 
  - https://moonbingbing.gitbooks.io/openresty-best-practices/ngx_lua/continue_after_eof.html
+
+## 变量的共享范围
+
+### 全局变量
+
+ - 在 OpenResty 里面，只有在 init_by_lua\* 和 init_worker_by_lua\* 阶段才能定义真正的全局变量。
+ - 其他阶段里面，OpenResty 会设置一个隔离的全局变量表，以免在处理过程污染了其他请求。
+ - 即使在上述两个可以定义全局变量的阶段，也尽量避免这么做。
+    - 全局变量能解决的问题，用模块变量也能解决， 而且会更清晰、更干净。
+
+### 模块变量
+
+ - 由于 Lua VM 会把 require 进来的模块缓存到 package.loaded 表里，除非设置了 lua_code_cache off， 模块里定义的变量都会被缓存起来。
+ - 重要的是，模块变量在每个请求中是共享的
+ - 模块变量的共享特性，在高并发情况下，可能会出现问题
+    - 每个请求的数据在传递和存储时须特别小心，只应通过你自己的函数参数来传递，或者通过 ngx.ctx 表。
+    - 前者效率显然较高，而后者胜在能跨阶段使用。
+
 
 ## 动态限速
 
@@ -102,6 +126,8 @@
     - Nginx 有一个 $limit_rate，这个变量反映的是当前请求每秒能响应的字节数
  - limit_conn 限制连接数
  - limit_req 限制请求数
+ - 参考 官方 [lua-resty-limit-traffic](https://github.com/openresty/lua-resty-limit-traffic)
+
 
 ## 如何引用第三方 resty 库
 
