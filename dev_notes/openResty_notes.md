@@ -1,6 +1,13 @@
 
 # openResty 
 
+## ngx.print  / ngx.say
+
+ - ngx.say 会自动添加一个换行符
+ - 支持 array table, 可以直接concat后输出
+
+
+
 ## 字符串处理优化
 
  - string.gsub / string.match 的方法无法jit 优化，尽量使用 ngx_lua 模块提供的 ngx.re.match 等接口
