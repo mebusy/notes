@@ -742,6 +742,32 @@ pop that 0
  - Object construction requires allocating space for the new object using the OS function Memory.alloc(size)
  - Object recycling is handled using the OS function Memory.deAlloc(object).
 
+## Unit 5.10: Completing the Compiler: Proposed Implementation
+
+### Symbol table
+
+ - The scope of **static** and **field** variable is the *class* in which they are defined
+ - The scope of **local** and **argument** variables is the *subroutine* in which they are defined.
+
+ - We give each variable a running index within its scope and kind
+ - The index starts at 0, increments by 1 each time a new symbol is added to the table, and is reset to 0 when starting a new scope
+
+---
+
+
+name | type | kind | #
+--- | --- | --- | ---
+this | Point | argument | 0 
+... | ... | ... | ... 
+
+
+ - Implementation notes
+    - The symbol table abstraction can be implemented using 2 seprate *hash tables* :
+        - one for the class scope
+        - and one for the subroutine scope
+    - When we start compiling a new subroutine, the latter hash table can be reset
+    - When compiling an error-free Jack code, each symbol NOT found in the the symbol table can be assumed to be either a *subroutine name* or a *class name*.
+
 
 
 
