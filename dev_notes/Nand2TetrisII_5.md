@@ -768,37 +768,52 @@ this | Point | argument | 0
     - When we start compiling a new subroutine, the latter hash table can be reset
     - When compiling an error-free Jack code, each symbol NOT found in the the symbol table can be assumed to be either a *subroutine name* or a *class name*.
 
+### VMWriter
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compiler2_vmwriter.png)
 
+## Unit 5.11: Project 11
 
+### Symbol table
 
+ - Extend the handling of identifiers
+    - output the identifier's category: 
+        - var, argument, static, field, class, subroutine
+    - if the identifier's category is `var, argument, static field` , output also the running index assigned to this variable in the symbol table
+    - output whether the identifier is being defined, or being used.
 
+### Quiz 
 
+```
+// Main.jack
+class  Main {
+    function void main() {
+        do Output.printInt( 1+(2*3) ) ;
+        return ;    
+    }    
+}
+```
 
+```
+// Main.vm
+function Main.main 0
+push constant 1
+push constant 2
+push constant 3
+call Math.mulitply 2
+add
+call Output.printInt 1
+pop temp 0     // instruction 1
+push constant  // instruction 2
+return
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ - Inspect the VM code, focusing on the 2 instructions highlighted in red. 
+    - instruction 1
+        - every subroutine must return a value.
+        - the return value of Output.printInt  serves no purpose whatever, so we simply dump it.
+    - instruction 2
+        - the method `main` also need return a value
 
 
 
