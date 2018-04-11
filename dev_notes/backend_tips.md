@@ -42,6 +42,11 @@ sudo ./squid
 sudo ./squid -k shutdown
 ```
 
+## Secure your REST API
+
+ - https://www.slideshare.net/stormpath/secure-your-rest-api-the-right-way
+ - API key  , Authc every request,   
+ - Identifiers.  URL-friendly base62 encoding
 
 
 
