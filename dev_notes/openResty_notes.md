@@ -1,11 +1,7 @@
 
 # openResty 
 
-## ngx.print  / ngx.say
-
- - ngx.say 会自动添加一个换行符
- - 支持 array table, 可以直接concat后输出
-
+# LUA
 
 
 ## 字符串处理优化
@@ -26,6 +22,7 @@
  - 推荐使用 ngx_lua 模块提供的带缓存的时间接口
     - ngx.today, ngx.time, ngx.utctime, ngx.localtime, ngx.now, ngx.http_time，以及 ngx.cookie_time 等。
 
+# Nginx
  
 ## Nginx Location 中避免使用 if
 
@@ -42,15 +39,21 @@
  - https://moonbingbing.gitbooks.io/openresty-best-practices/openresty/inline_var.html
  - `ngx.var.VARIABLE`
 
-## location 重定向
+# OpenResty
+
+## 与其它location配合
+
+### location 重定向
 
  - 外部重定向:  ngx.redirect
  - 内部重定向:  ngx.exec
 
-## 子查询
+### 子查询
     
  - 发起非阻塞的内部请求
  - `ngx.location.capture`
+
+
 
 ## 不同阶段共享变量
 
@@ -162,4 +165,9 @@
     -  问题出在 User-Agent，Nginx 认为终端的浏览器版本太低，不支持 keep alive，所以直接 close 了。
  - `keepalive_disable none;`
 
+
+## ngx.print  / ngx.say
+
+ - ngx.say 会自动添加一个换行符
+ - 支持 array table, 可以直接concat后输出
 
