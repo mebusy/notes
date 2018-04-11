@@ -275,3 +275,13 @@
  - ngx.say 会自动添加一个换行符
  - 支持 array table, 可以直接concat后输出
 
+## remote_address
+
+ - remote_addr代表客户端的IP，但它的值不是由客户端提供的，而是服务端根据客户端的ip指定的，当你的浏览器访问某个网站时，假设中间没有任何代理，那么网站的web服务器（Nginx，Apache等）就会把remote_addr设为你的机器IP，如果你用了某个代理，那么你的浏览器会先访问这个代理，然后再由这个代理转发到网站，这样web服务器就会把remote_addr设为这台代理机器的IP。
+ - 但是实际场景中，我们即使有代理，也需要将$remote_addr设置为真实的用户IP，以便记录在日志当中，当然nginx是有这个功能，但是需要编译的时候添加--with-http_realip_module 这个模块，默认是没有安装的。
+ - openResty 使用了 `--with-http_realip_module `
+
+
+
+
+
