@@ -16,6 +16,7 @@
          - [find all json file , and remove all `\r`](#75aeaa38d609e022daed8f30150edfa7)
          - [find pattern in specific file types](#b5a637298d7d74567762e4ce9127bd5e)
          - [tcpdump 抓取 HTTP GET 包](#aa252f9440484d1ebb28ca3e4015d2d4)
+         - [bash  wait previous command to finish](#639aab73c8776e2711502bd23e7dd4de)
      - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
 
 ...menuend
@@ -213,6 +214,8 @@ grep -r --include=*.{h,cpp,as}  ReturnToMap  .
 ```bash
 sudo tcpdump  -XvvennSs 0 -i en0  '(port 8080) and ((tcp[20:2]=0x4745) or (tcp[20:2]=0x4854))'
 ```
+
+<h2 id="639aab73c8776e2711502bd23e7dd4de"></h2>
 
 ### bash  wait previous command to finish 
 

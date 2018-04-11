@@ -11,6 +11,7 @@
      - [speed up](#e15919e9f3dda8070015df3a70e233ea)
  - [Examples](#ff7c0fcd6a31e735a61c001f75426961)
      - [Add a task to mv files](#10a661ffd4df8982dd9dbd53e9f9ae72)
+     - [add local jar](#3543535ab5cfcb8be02766dee55fa568)
  - [gradle java 插件](#99e91f3394da6444ff8b456668a550d7)
      - [1. 使用Java插件](#c623c7746ee0b9c37dd52277de59e0d8)
      - [2. 构建项目](#8a26c5518717adc00e89670b449413b7)
@@ -29,6 +30,7 @@
  - [Gradle and JNI](#124d869fe2f048f9f54668347d680079)
      - [hello-jni with gradle](#b7cd0782fca8810a571477d4e6784736)
      - [tips](#e4c9479b11955648dad558fe717a4eb2)
+     - [JNI Example](#50a46251dc9b0613fecae34742c7e655)
  - [QA](#0ab687c6a13802a6674d5327e3d4177e)
      - [Gradle version 2.2 is required. Current version is 2.10](#2e072d186473767187aba8236da72d93)
      - [Could not find method runProguard() for arguments](#769f6f1c57e8b9182a031ed34dbd00e0)
@@ -166,6 +168,8 @@ task buildAPI(type:Exec)  {
 jarFiles.dependsOn build
 buildAPI.dependsOn jarFiles
 ```
+
+<h2 id="3543535ab5cfcb8be02766dee55fa568"></h2>
 
 ### add local jar 
 
@@ -682,6 +686,8 @@ extern "C" {
 
  - PS: JNI_OnLoad 方法 必须于工程的 jni 目录中定义 ，  放在static library 中无效
 
+
+<h2 id="50a46251dc9b0613fecae34742c7e655"></h2>
 
 ## JNI Example
 

@@ -147,7 +147,8 @@ a | b | c | d
 
  a | b | c | d
 --- | --- | --- | ---
-[redis](https://github.com/mebusy/notes/blob/master/dev_notes/redis.md) | [swagger](https://github.com/mebusy/notes/blob/master/swagger.md) | 
+[redis](https://github.com/mebusy/notes/blob/master/dev_notes/redis.md) | [swagger](https://github.com/mebusy/notes/blob/master/swagger.md) |  [backend tips](https://github.com/mebusy/notes/blob/master/dev_notes/backend_tips.md) | 
+
 
 
 ---

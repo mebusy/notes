@@ -7,6 +7,48 @@
          - [Symbol tables](#c2d6782cdc5b56e19beaaca9864ee842)
          - [Handling nested scoping](#68293a27f79e370f88514d80226ebd17)
      - [Unit 5.3: Handling Expressions](#59051b9e08782ffd6d31280501c339eb)
+         - [Parse tree](#76c9ab57869b25403bfcfdd63b3a8b4a)
+         - [Generating code for expressions: a two-stage approach](#4f000a95e8fd9c5955d285f4c30e7005)
+         - [Generating code for expressions: a one-stage approach](#9469e0355de5f8a8d9d169f7816ba22b)
+     - [Unit 5.4: Handling Flow of Control](#f5631092f3eb428ad208da4f664a02b4)
+         - [Compiling if statements](#355ae27a43a25b85426f2cb9f597b845)
+         - [Compiling while statements](#c3f04ad354468e45e8b2f9f411906bcf)
+         - [Some (minor) complications](#bb523de8a79f81c8c049269679fbf839)
+     - [Unit 5.5: Handling Objects: Low-Level Aspects](#06effbea19f7b103138b1619a48ebd2d)
+         - [Handling local and argument variables](#06feb3971d12b929516619833999f3cc)
+         - [Handling object and array data](#ad67aa5506e69117865463c4ed0a3c39)
+         - [Accessing RAM data](#9e5d11d6d75f16160b8bd42ef9174e70)
+         - [Recap](#8912c5512db9003e5c8ce07b7ff36a88)
+     - [Unit 5.6: Handling Objects: Construction](#c8ea3a0c16bab7da5fd3f9529c1dd329)
+         - [The caller's side: compiling new](#d9e1e92208a6e2a9767df08e9a6b5f34)
+         - [Resulting impact](#bad720c9f754d4aecd8c100f268f43df)
+         - [Object construction: the big picture](#8b5d1806c2892f0de925efda271a5e25)
+         - [Compiling constructors](#b5a62b5ad862bb9e26144324adcf68c8)
+     - [Unit 5.7: Handling Objects: Manipulation](#a39c2af80faf078ce7853e7634260c19)
+         - [Compiling method calls](#0bf34995a654ca604cf786c68133f751)
+         - [Compiling method calls: the general technique](#7f98b93563fd91ec7c2d991d262356a0)
+         - [Compiling methods](#b1ccdfc4e6f647901313153e39a5b3cc)
+         - [Compiling void methods](#55e9a67b2637a22721d32d2ca744e091)
+     - [Unit 5.8: Handling Arrays](#1f250f80bd24fd913d5b306b23e5b013)
+         - [Array construction](#cd64ab1d72053726ca263d240fb599c3)
+         - [this and that ( reminder )](#545aa7c72d8f6c38b02756a6f239d786)
+         - [Example : RAM access using that](#1ba79f517d6c46192912d7458e04c2a7)
+         - [Array access](#a95b07ba412779d5ff4654b911aae1c8)
+     - [Unit 5.9: Standard Mapping Over the Virtual Machine](#e8beb7c21a1018408c7f5ac3f7bab5e1)
+         - [Files and subroutine mapping](#34cb0217bf2a49087396227957b0b082)
+         - [Variables mapping](#c0aae26691e8f3c35ee1b5c4debbd5af)
+         - [Array mapping](#ffd8db0ee66dfd1809e84e094fd0e063)
+         - [Compiling subroutines](#7399b6270fac208b58de6e641c3f3845)
+         - [Compiling subroutine calls](#71a1ddf989741040972099277b141189)
+         - [Compiling constants](#ea1910cfdfdbd85ca2643d4bd8cd028b)
+         - [OS classes and subroutines](#ea475c0e9caccb89cc9510f1eb21667e)
+         - [Special OS services](#7320544ffe6fa06e8dac4abeb73d2c0b)
+     - [Unit 5.10: Completing the Compiler: Proposed Implementation](#93d9543681348941b2eaf90c6516439c)
+         - [Symbol table](#2afeb4bd815d23bcfb0be6c37868835b)
+         - [VMWriter](#0cf366dadfdeea1a566f047ee68a9e81)
+     - [Unit 5.11: Project 11](#ebb5853f19668a28aac3fb43709781c3)
+         - [Symbol table](#2afeb4bd815d23bcfb0be6c37868835b)
+         - [Quiz](#ab458f4b361834dd802e4f40d31b5ebc)
 
 ...menuend
 
@@ -194,6 +236,8 @@ pop this 1   // y
 
 ## Unit 5.3: Handling Expressions
 
+<h2 id="76c9ab57869b25403bfcfdd63b3a8b4a"></h2>
+
 ### Parse tree
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2d_compile2_parse_tree.png)
@@ -210,6 +254,8 @@ pop this 1   // y
     - **this postfix notation is intimately related to our stack machine, because our stack language is also postfix.**
     - our target language , the VM language , is postfix. so the compiler has to translate from infix to postfix.
 
+<h2 id="4f000a95e8fd9c5955d285f4c30e7005"></h2>
+
 ### Generating code for expressions: a two-stage approach
 
  1. source code -> parse tree  ( The XML file we output in project 10 is a parse tree )
@@ -219,12 +265,16 @@ pop this 1   // y
 
  - 生成 parse tree 的代价是很大的，实践中一般不会这么做。
 
+<h2 id="9469e0355de5f8a8d9d169f7816ba22b"></h2>
+
 ### Generating code for expressions: a one-stage approach
 
  - The following algorithm is  going to generate the VM code on the fly without having to create  the whole parse tree in the process.
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compiler2_generate_code_1step.png)
 
+
+<h2 id="f5631092f3eb428ad208da4f664a02b4"></h2>
 
 ## Unit 5.4: Handling Flow of Control
 
@@ -233,6 +283,8 @@ pop this 1   // y
  - we have 5 statements
     - let, do, return are trivial statements to translate
     - translating `while` and `if` are far more challenging.
+
+<h2 id="355ae27a43a25b85426f2cb9f597b845"></h2>
 
 ### Compiling if statements
 
@@ -253,6 +305,8 @@ else
     - the compiler generates these labels
 
 
+<h2 id="c3f04ad354468e45e8b2f9f411906bcf"></h2>
+
 ### Compiling while statements
 
 ```
@@ -262,13 +316,19 @@ while (expression)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compile_while_flow_chart.png)   ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compile_while_vm_code.png)
 
+<h2 id="bb523de8a79f81c8c049269679fbf839"></h2>
+
 ### Some (minor) complications
 
  - A program typically contains multiple `if` and `while` statements.
      - we have to make sure that the compiler generates unique labels
 
 
+<h2 id="06effbea19f7b103138b1619a48ebd2d"></h2>
+
 ## Unit 5.5: Handling Objects: Low-Level Aspects
+
+<h2 id="06feb3971d12b929516619833999f3cc"></h2>
 
 ### Handling local and argument variables 
 
@@ -278,6 +338,8 @@ while (expression)
  - Implementation
     - Base addresses: LCL and ARG
     - Managed by the VM implementation
+
+<h2 id="ad67aa5506e69117865463c4ed0a3c39"></h2>
 
 ### Handling object and array data
 
@@ -289,6 +351,8 @@ while (expression)
     - Base address: THIS and THAT
     - Set using `pointer 0 (this)` , `pointer 1 (that)`  
     - Managed by VM code.
+
+<h2 id="9e5d11d6d75f16160b8bd42ef9174e70"></h2>
 
 ### Accessing RAM data
 
@@ -304,13 +368,19 @@ push/pop this i | accessing RAM[8000+i]
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_5_access_RAM_data.png)
 
+<h2 id="8912c5512db9003e5c8ce07b7ff36a88"></h2>
+
 ### Recap
 
  - Object data is accessed via the `this` segment
  - Array data is accessed via the `that` segment
  - Before we use these segments, we must first anchor them using pointer.
 
+<h2 id="c8ea3a0c16bab7da5fd3f9529c1dd329"></h2>
+
 ## Unit 5.6: Handling Objects: Construction
+
+<h2 id="d9e1e92208a6e2a9767df08e9a6b5f34"></h2>
 
 ### The caller's side: compiling new
 
@@ -355,12 +425,16 @@ p2 | Point | local | 1
 d  | int   | local | 2
 
 
+<h2 id="bad720c9f754d4aecd8c100f268f43df"></h2>
+
 ### Resulting impact
 
  - During compile-time, the compiler maps p1 on local 0 , p2 on local 1, and d on local 2 ?
  - During run-time, the execution of the constructos's code effects the creation of the objects themselves. on the heap.
  - So, object construction is a two-stage affair that happens both during compile time and during runtime.
 
+
+<h2 id="8b5d1806c2892f0de925efda271a5e25"></h2>
 
 ### Object construction: the big picture
 
@@ -371,6 +445,8 @@ d  | int   | local | 2
  - How to access the object's fields ?
     - The constructor's code can access the object's data using the *this* segment
     - But first , the constructor's code must anchor the *this* segment on the object's data , using pointer
+
+<h2 id="b5a62b5ad862bb9e26144324adcf68c8"></h2>
 
 ### Compiling constructors
 
@@ -451,11 +527,15 @@ ax | int | arg | 0
 ay | int | arg | 1 
 
 
+<h2 id="a39c2af80faf078ce7853e7634260c19"></h2>
+
 ## Unit 5.7: Handling Objects: Manipulation
 
  - Manipulation:
     - Compiling `obj.methodCall()`
     - Compiling methods
+
+<h2 id="0bf34995a654ca604cf786c68133f751"></h2>
 
 ### Compiling method calls 
 
@@ -473,6 +553,8 @@ ay | int | arg | 1
 ... foo(obj,x1,x2,...) ...
 ```
 
+<h2 id="7f98b93563fd91ec7c2d991d262356a0"></h2>
+
 ### Compiling method calls: the general technique 
 
 ```
@@ -488,6 +570,8 @@ push ...
 call foo
 // take care of return value
 ```
+
+<h2 id="b1ccdfc4e6f647901313153e39a5b3cc"></h2>
 
 ### Compiling methods
 
@@ -532,6 +616,8 @@ call Math.sqrt 1
 return
 ```
 
+<h2 id="55e9a67b2637a22721d32d2ca744e091"></h2>
+
 ### Compiling void methods
 
 ```
@@ -558,7 +644,11 @@ pop temp 0
     - By convention, void methods return a dummy value
     - Callers of void methods are responsible for remving the returned value from the stack.
 
+<h2 id="1f250f80bd24fd913d5b306b23e5b013"></h2>
+
 ## Unit 5.8: Handling Arrays
+
+<h2 id="cd64ab1d72053726ca263d240fb599c3"></h2>
 
 ### Array construction
 
@@ -568,6 +658,8 @@ pop temp 0
  - `let arr = Array.new(n);`
     - alloc Array in heap
     - from the caller's prespective , handled exactly loke object construction
+
+<h2 id="545aa7c72d8f6c38b02756a6f239d786"></h2>
 
 ### this and that ( reminder )
 
@@ -579,6 +671,8 @@ VM use: |  current object |  current array
 pointer ( base address ) | THIS | THAT
 how 2 set: | `pop pointer 0`  |  `pop pointer 1`
 
+<h2 id="1ba79f517d6c46192912d7458e04c2a7"></h2>
+
 ### Example : RAM access using that
 
 ```
@@ -588,6 +682,8 @@ pop pointer 1    // THAT = 8056
 push 17
 pop that 0    // THAT[0] = 17
 ```
+
+<h2 id="a95b07ba412779d5ff4654b911aae1c8"></h2>
 
 ### Array access
 
@@ -666,9 +762,13 @@ pop that 0
     - No problem.
 
 
+<h2 id="e8beb7c21a1018408c7f5ac3f7bab5e1"></h2>
+
 ## Unit 5.9: Standard Mapping Over the Virtual Machine
 
  - Specifies how to map the constructs of the high-level language on the constructs of the virtual machine.
+
+<h2 id="34cb0217bf2a49087396227957b0b082"></h2>
 
 ### Files and subroutine mapping
 
@@ -676,6 +776,8 @@ pop that 0
  - Each subroutine *subName* in *fileNname.jack* is compiled into a VM function *fileName.subName*
  - A Jack constructor function with k arguments is compiled into a VM function that operates on k arguments
  - A Jack method with k arguments is compiled into a VM function that operates on k+1 arguments.
+
+<h2 id="c0aae26691e8f3c35ee1b5c4debbd5af"></h2>
 
 ### Variables mapping
 
@@ -691,12 +793,16 @@ pop that 0
             - some1 has to do it for us :  the agent that does it is the generated code of the current subroutine. 
             - the i-th field of this object is mapped on `this i`
 
+<h2 id="ffd8db0ee66dfd1809e84e094fd0e063"></h2>
+
 ### Array mapping
 
  - Accessing array entries:
     - Access to any array entry `arr[i]` is realized as follows:
         - first set `pointer 1` to the entry's address (arr + i)
         - access the entry by accessing `this 0`
+
+<h2 id="7399b6270fac208b58de6e641c3f3845"></h2>
 
 ### Compiling subroutines
 
@@ -707,6 +813,8 @@ pop that 0
     - the compiled VM code must return the object's base address to the caller.
  - When compiling a void function of a void method
     - The compiled VM code must return the value constant 0
+
+<h2 id="71a1ddf989741040972099277b141189"></h2>
 
 ### Compiling subroutine calls
 
@@ -719,6 +827,8 @@ pop that 0
     - when compiling the Jack statment `do subName` , following the call the caller must pop(and ignore) the returned value.
 
 
+<h2 id="ea1910cfdfdbd85ca2643d4bd8cd028b"></h2>
+
 ### Compiling constants
 
  - null is mapped on the constant 0
@@ -726,12 +836,16 @@ pop that 0
  - true is mapped on the constant -1
     - -1 can be obtained using `push 1` followed by `neg`
 
+<h2 id="ea475c0e9caccb89cc9510f1eb21667e"></h2>
+
 ### OS classes and subroutines
 
  - The basic Jack OS is implemented as a set of compiled VM class files:
     - Math.vm, Memory.vm, Screen.vm, Output.vm, Keyboard.vm, String.vm, Array.vm, Sys.vm 
  - All the OS class files must reside in the same directory as the VM files generated by the compiler
  - Any VM function can call any OS VM function for its effect.
+
+<h2 id="7320544ffe6fa06e8dac4abeb73d2c0b"></h2>
 
 ### Special OS services
 
@@ -742,7 +856,11 @@ pop that 0
  - Object construction requires allocating space for the new object using the OS function Memory.alloc(size)
  - Object recycling is handled using the OS function Memory.deAlloc(object).
 
+<h2 id="93d9543681348941b2eaf90c6516439c"></h2>
+
 ## Unit 5.10: Completing the Compiler: Proposed Implementation
+
+<h2 id="2afeb4bd815d23bcfb0be6c37868835b"></h2>
 
 ### Symbol table
 
@@ -768,11 +886,17 @@ this | Point | argument | 0
     - When we start compiling a new subroutine, the latter hash table can be reset
     - When compiling an error-free Jack code, each symbol NOT found in the the symbol table can be assumed to be either a *subroutine name* or a *class name*.
 
+<h2 id="0cf366dadfdeea1a566f047ee68a9e81"></h2>
+
 ### VMWriter
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compiler2_vmwriter.png)
 
+<h2 id="ebb5853f19668a28aac3fb43709781c3"></h2>
+
 ## Unit 5.11: Project 11
+
+<h2 id="2afeb4bd815d23bcfb0be6c37868835b"></h2>
 
 ### Symbol table
 
@@ -781,6 +905,8 @@ this | Point | argument | 0
         - var, argument, static, field, class, subroutine
     - if the identifier's category is `var, argument, static field` , output also the running index assigned to this variable in the symbol table
     - output whether the identifier is being defined, or being used.
+
+<h2 id="ab458f4b361834dd802e4f40d31b5ebc"></h2>
 
 ### Quiz 
 

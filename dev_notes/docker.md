@@ -85,6 +85,7 @@
      - [继续一个刚刚结束的container](#5e7908d41ed1f3e6e1906d575e2dfea0)
      - [pass proxy to docker container](#e64a823c0142aaac197cc68839f54da9)
      - [docker proxy for Centos7](#7a5c94971896bfbf1a19053004e56cc1)
+     - [run bash of existing containter](#5ef5bd47a5282fb1ad1694bbb5f46954)
      - [docker 可视化环境](#b8e4fd21971c56f16f0e13421bfefedc)
 
 ...menuend
@@ -1793,6 +1794,8 @@ Environment="HTTP_PROXY=http://host:port/"
 [Service]                                        
 Environment="HTTPS_PROXY=https://host:port/"  
 ```
+
+<h2 id="5ef5bd47a5282fb1ad1694bbb5f46954"></h2>
 
 ## run bash of existing containter
 

@@ -12,7 +12,9 @@
  6. [nginx 实战](https://github.com/mebusy/notes/blob/master/dev_notes/ngx_lua/nginx实战.md)
 
 
+
  ---
 
-  - [HTTP status code](https://github.com/openresty/lua-nginx-module#http-status-constants)
+ - [openResty notes](https://github.com/mebusy/notes/blob/master/dev_notes/openResty_notes.md)
+ - [HTTP status code](https://github.com/openresty/lua-nginx-module#http-status-constants)
  

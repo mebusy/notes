@@ -1,5 +1,22 @@
+...menustart
+
+ - [android dev tips](#cedbb586db72ab93a1b4a11759bb2790)
+     - [TextEdit remove the restrict by android::digits](#e0c06a36076f5a0639f1c587a1072b0b)
+     - [TextEdit add input filter](#8d305b8ceb34e7bb075ba809c621ba63)
+     - [open browser](#36f510971eecdc6dcd92048cb126f598)
+     - [whole-archieve prebuilt static library](#55322a5875714b1c278ba95d4d7dca27)
+     - [whether is Main thread ?](#a8113f0e4f0db0e8f7a49b9697196e90)
+     - [prevent background app auto close](#0f4a700a11434bbd0f28da36dc2ab2e7)
+     - [run on working thread](#56b786df876f856f3bdbf37f4eca6a40)
+
+...menuend
+
+
+<h2 id="cedbb586db72ab93a1b4a11759bb2790"></h2>
 
 # android dev tips
+
+<h2 id="e0c06a36076f5a0639f1c587a1072b0b"></h2>
 
 ## TextEdit remove the restrict by android::digits
 
@@ -8,6 +25,8 @@ EditText text = (EditText)mLayout.findViewById(R.id.exchange_input);
 text.setKeyListener( new EditText( this.context ).getKeyListener() ) ;
 text.setInputType(InputType.TYPE_CLASS_TEXT );
 ```
+
+<h2 id="8d305b8ceb34e7bb075ba809c621ba63"></h2>
 
 ## TextEdit add input filter
 
@@ -99,6 +118,8 @@ public class LimitInputTextWatcher implements TextWatcher {
 }
 ```
 
+<h2 id="36f510971eecdc6dcd92048cb126f598"></h2>
+
 ## open browser
 
 ```java
@@ -112,9 +133,13 @@ public  static void openAppStore(  final String url ) {
 }
 ```
 
+<h2 id="55322a5875714b1c278ba95d4d7dca27"></h2>
+
 ## whole-archieve prebuilt static library
 
  - use LOCAL_WHOLE_STATIC_LIBRARIES  instead of LOCAL_STATIC_LIBRARIES
+
+<h2 id="a8113f0e4f0db0e8f7a49b9697196e90"></h2>
 
 ## whether is Main thread ?
 
@@ -125,6 +150,8 @@ public static boolean isMainThread() {
 }
 ```
 
+
+<h2 id="0f4a700a11434bbd0f28da36dc2ab2e7"></h2>
 
 ## prevent background app auto close
 
@@ -145,6 +172,8 @@ public static boolean isMainThread() {
         }
         ...
 ```
+
+<h2 id="56b786df876f856f3bdbf37f4eca6a40"></h2>
 
 ## run on working thread
 

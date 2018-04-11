@@ -11,7 +11,8 @@
          - [enumerate](#2a45a91d039693c9fb96a16030a13c5e)
          - [struct](#0f8d6fb56fe6cdf55ad0114ec5b51dbb)
      - [6. c++ reigster lua callback](#5b77d3c94d428927df167f348def0026)
-     - [7. lua / Java](#29f29919cc56e7bfc9f1e8aa05422952)
+     - [7. lua / c++](#bbcb54453c8ad2480745e76991ed17f3)
+     - [8. lua / Java](#c812e3504b54c3f45829d4b715731c9d)
          - [lua 调用 Java](#ff92401cfdc0ea1b4eb55540669ad837)
          - [java 调用 lua](#ee4e6cf22725c18fc2d76be7234d0237)
 
@@ -216,6 +217,8 @@ namespace.classname:functionname( ... )
 ```
 
 
+<h2 id="bbcb54453c8ad2480745e76991ed17f3"></h2>
+
 ## 7. lua / c++
 
  - c++ 获取 lua 方法 返回值 ， 或 变量值
@@ -227,7 +230,7 @@ namespace.classname:functionname( ... )
     3. 获取 lua 函数返回值
         - executeString ( "require 'modulename' ;return modulename.funcname()" ) 
 
-<h2 id="29f29919cc56e7bfc9f1e8aa05422952"></h2>
+<h2 id="c812e3504b54c3f45829d4b715731c9d"></h2>
 
 ## 8. lua / Java
 

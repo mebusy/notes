@@ -25,6 +25,8 @@
  - [Homework](#5ec325c9726994dcd027d36d7929bf9b)
      - [Lexical Analyzer](#32c763e8c1ba75932d5e0c41e589935e)
      - [Syntax Analyzer](#9568075dac382b9105b467d296a453a9)
+     - [Jack 文法上的难点](#f76903708c4a55a1d587dfd746ef8f4d)
+         - [二义性，有的文法需要 LL(2)](#34d5ac84f4e2fd68c7cb1f3a2ea0569e)
 
 ...menuend
 
@@ -353,7 +355,11 @@ tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
         - G -> A 
 
 
+<h2 id="f76903708c4a55a1d587dfd746ef8f4d"></h2>
+
 ## Jack 文法上的难点
+
+<h2 id="34d5ac84f4e2fd68c7cb1f3a2ea0569e"></h2>
 
 ### 二义性，有的文法需要 LL(2)
 
