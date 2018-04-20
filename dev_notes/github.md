@@ -4,7 +4,10 @@
      - [github update fork](#f6b73a9a864f02b2d14ad454c6b09e68)
      - [run html on github](#606e5c37337c2f05305ab4a4a0dc2691)
      - [git status -s ignore file mode](#ecf2b9ae77e1b9272d6716ab8337c37e)
-     - [git diff ignore `^M`](#1bdd774af72656103ebfc08907645202)
+     - [merge specific commit](#a6c7b8bc87e837e643f48e27b843d648)
+     - [show file change of a commit](#e35fc6dbd7673d56c0824c31ff378241)
+     - [get a file with specific revision](#6f4311248df3ab2115e904e14c7836c9)
+     - [git show/diff 乱码问题](#aafd38d2cb2288571bb67fc78e3a18f7)
 
 ...menuend
 
@@ -54,14 +57,42 @@
 git config core.filemode false
 ```
 
-<h2 id="1bdd774af72656103ebfc08907645202"></h2>
+<h2 id="a6c7b8bc87e837e643f48e27b843d648"></h2>
 
-## git diff ignore `^M`
+## merge specific commit 
 
-```bash
-git config --global core.autocrlf true
+```
+git cherry-pick [-n] <commit> 
 ```
 
- - `--golbal` will create `~/.gitconfig` file
+ - `-n` means `no commit `
+
+<h2 id="e35fc6dbd7673d56c0824c31ff378241"></h2>
+
+## show file change of a commit 
+
+```
+git diff-tree <commit>
+```
+
+<h2 id="6f4311248df3ab2115e904e14c7836c9"></h2>
+
+## get a file with specific revision
+
+```
+git show REVISION:filePath > outFilePath
+```
+
+
+<h2 id="aafd38d2cb2288571bb67fc78e3a18f7"></h2>
+
+## git show/diff 乱码问题
+
+```
+git diff | less -r
+```
+
+ - `-r` means `Output "raw" control characters`.
+
 
 
