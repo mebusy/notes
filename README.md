@@ -147,7 +147,7 @@ a | b | c | d
 
  a | b | c | d
 --- | --- | --- | ---
-[redis](https://github.com/mebusy/notes/blob/master/dev_notes/redis.md) | [swagger](https://github.com/mebusy/notes/blob/master/swagger.md) |  [backend tips](https://github.com/mebusy/notes/blob/master/dev_notes/backend_tips.md) | [React哲学](https://github.com/mebusy/notes/blob/master/react_philosophy.md)
+[redis](https://github.com/mebusy/notes/blob/master/dev_notes/redis.md) | [swagger](https://github.com/mebusy/notes/blob/master/swagger.md) |  [backend tips](https://github.com/mebusy/notes/blob/master/dev_notes/backend_tips.md) | [React哲学](https://github.com/mebusy/notes/blob/master/dev_notes/react_philosophy.md)
 
 
 
