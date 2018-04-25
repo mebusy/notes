@@ -1,0 +1,698 @@
+...menustart
+
+ - [A re-introduction to JavaScript (JS tutorial)](#428d98b5f468d03038613c780e48fc10)
+     - [Overview](#3b878279a04dc47d60932cb294d96259)
+     - [Numbers](#cbebfa21dbe8e87e788d94a76f073807)
+     - [Strings](#89be9433646f5939040a78971a5d103a)
+     - [Other types](#45950ecb4d9add6d144ed6737c704ca0)
+     - [Variables](#03df896fc71cd516fdcf44aa699c4933)
+     - [Operators](#b3c5827f54218753bb2c3338236446c2)
+     - [Control structures](#c48b7d4c81fcf51917066528ff5693ed)
+         - [if / eles if / else](#015a27f9173988da8d0b60ad7c792c40)
+         - [while / do-while](#02cb511523ca2dd3ea4d157f0f320bc0)
+         - [for](#d55669822f1a8cf72ec1911e462a54eb)
+         - [for...of  / for...in](#6e733d018832ecf41889c33c7d482146)
+         - [ternary operator](#7b8ca31408defce69dd51a57cfeff402)
+         - [switch](#b36eb6a54154f7301f004e1e61c87ce8)
+     - [Objects](#c8308b1eba7ba926a61b8fd802194386)
+     - [Arrays](#ff43b8de4f41d5103405ddb62eb8d34e)
+     - [Functions](#e93acb146e114b5dfa6ce2d12dcb96e4)
+     - [Custom objects](#061617f5237c49568715cd05ceef505d)
+
+...menuend
+
+
+<h2 id="428d98b5f468d03038613c780e48fc10"></h2>
+
+# A re-introduction to JavaScript (JS tutorial)
+
+<h2 id="3b878279a04dc47d60932cb294d96259"></h2>
+
+## Overview
+
+ - JavaScript's types are:
+    - Number : double-precision 64-bit
+    - String
+    - Boolean
+    - Symbol (new in ES2015)
+    - Object
+        - Function
+        - Array 
+        - Date
+        - RegExp
+    - null
+    - undefined
+
+ - And there are some built-in Error types as well.
+
+<h2 id="cbebfa21dbe8e87e788d94a76f073807"></h2>
+
+## Numbers
+
+ - Math
+    - Math.sin(3.5)
+ - convert a string to an integer
+    - parseInt('123', 10); // 123
+    - parseInt('010', 10); // 10
+        - In older browsers, strings beginning with a "0" are assumed to be in octal
+        - but this hasn't been the case since 2013 or so , octal has been removed.
+    - parseInt('0x10'); // 16
+    - parseInt('11', 2); // 3
+ - parse floating point numbers 
+    - parseFloat() always uses base 10. 
+ - You can also use the unary + operator to convert values to numbers:
+
+```
++ '42';   // 42
++ '010';  // 10
++ '0x10'; // 16
+```
+
+ - A special value called `NaN` (short for "Not a Number") is returned if the string is non-numeric:
+
+```
+parseInt('hello', 10); // NaN
+```
+
+ - You can test for NaN using the built-in isNaN() function:
+    - `isNaN(NaN); // true`
+ - JavaScript also has the special values Infinity and -Infinity:
+
+```
+1 / 0; //  Infinity
+-1 / 0; // -Infinity
+```
+
+ - You can test for Infinity, -Infinity and NaN values using the built-in isFinite() function
+
+```
+isFinite(1 / 0); // false
+isFinite(-Infinity); // false
+isFinite(NaN); // false
+```
+
+<h2 id="89be9433646f5939040a78971a5d103a"></h2>
+
+## Strings
+
+ - sequences of Unicode characters , More accurately, they are sequences of UTF-16 code units
+
+```
+'hello'.length; // 5
+'hello'.charAt(0); // "h"
+'hello, world'.replace('hello', 'goodbye'); // "goodbye, world"
+'hello'.toUpperCase(); // "HELLO"
+```
+
+<h2 id="45950ecb4d9add6d144ed6737c704ca0"></h2>
+
+## Other types
+
+ - javascript 区分 null 和 undefined
+ - boolean  ( support `&& || !` , **`&& ||` 更像python里面的 and / or**  )
+    1. false, 0, empty strings (""), NaN, null, and undefined all become false.
+    2. All other values become true.
+
+```
+// rarely necessary, 
+// as JavaScript will silently perform this conversion
+Boolean('');  // false
+Boolean(234); // true
+```
+
+ - The && and || operators use short-circuit logic
+
+```
+var name = o && o.getName();
+var name = cachedName || (cachedName = getName());
+```
+
+
+<h2 id="03df896fc71cd516fdcf44aa699c4933"></h2>
+
+## Variables
+
+ - declared keywords
+    - let
+        - to declare block-level variables.
+        - available from the block it is enclosed in.
+    - const
+        - to declare variables whose values are never intended to change.
+        - available from the block it is declared in
+    - var 
+        - available from the function it is declared in.
+
+```
+// myLetVariable is *not* visible out here
+for (let myLetVariable = 0; myLetVariable < 5; myLetVariable++) {
+  // myLetVariable is only visible in here
+}
+// myLetVariable is *not* visible out here
+```
+
+```
+// myVarVariable *is* visible out here
+
+for (var myVarVariable = 0; myVarVariable < 5; myVarVariable++) {
+  // myVarVariable is visible to the whole function
+}
+
+// myVarVariable *is* visible out here
+```
+
+ - An important difference between JavaScript and other languages like Java is that: 
+    - **in JavaScript, blocks do not have scope; only functions have a scope**. 
+    - So if a variable is defined using var in a compound statement (for example inside an if control structure), it will be visible to the entire function. 
+    - However, starting with ECMAScript 2015, let and const declarations allow you to create block-scoped variables.
+
+<h2 id="b3c5827f54218753bb2c3338236446c2"></h2>
+
+## Operators
+
+ - `+, -, *, / , % `
+ - `>= , <= , ==`
+
+```
+'3' + 4 + 5;  // "345"
+ 3 + 4 + '5'; // "75"
+```
+
+ - `==` operator performs type coercion if you give it different types
+
+```
+123 == '123'; // true
+1 == true; // true
+```
+
+ - To avoid type coercion, use the triple-equals operator:
+
+```
+123 === '123'; // false
+1 === true;    // false
+```
+
+ - There are also != and !== operators.
+    - 只有等于/不等于 有 type coercion ？
+
+ - bitwise operations also support
+    - `& | `
+    - XOR `^`
+    - NOT `~`
+    - `<< >> >>>`
+
+<h2 id="c48b7d4c81fcf51917066528ff5693ed"></h2>
+
+## Control structures
+
+ - JavaScript has a similar set of control structures to other languages in the C family
+
+<h2 id="015a27f9173988da8d0b60ad7c792c40"></h2>
+
+### if / eles if / else 
+
+```
+if (name == 'puppies') {
+  name += ' woof';
+} else if (name == 'kittens') {
+  name += ' meow';
+} else {
+  name += '!';
+}
+```
+
+<h2 id="02cb511523ca2dd3ea4d157f0f320bc0"></h2>
+
+### while / do-while
+
+```
+while (true) {
+  // an infinite loop!
+}
+
+var input;
+do {
+  input = get_input();
+} while (inputIsNotValid(input));
+```
+
+<h2 id="d55669822f1a8cf72ec1911e462a54eb"></h2>
+
+### for 
+
+```
+// for loop is the same as that in C and Java
+for (var i = 0; i < 5; i++) {
+  // Will execute 5 times
+}
+```
+
+<h2 id="6e733d018832ecf41889c33c7d482146"></h2>
+
+### for...of  / for...in
+
+ - JavaScript also contains two other prominent for loops: for...of
+
+```
+for (let value of array) {
+  // do something with value
+}
+```
+
+
+ - and for...in:
+
+```
+for (let property in object) {
+  // do something with object property
+}
+```
+
+ - 你也可以使用 for..in 来遍历数组，但是不推荐，原因见下面 Array 一节
+
+<h2 id="7b8ca31408defce69dd51a57cfeff402"></h2>
+
+### ternary operator
+
+ - JavaScript has a ternary operator for conditional expressions:
+
+```
+var allowed = (age > 18) ? 'yes' : 'no';
+```
+
+<h2 id="b36eb6a54154f7301f004e1e61c87ce8"></h2>
+
+### switch
+
+ - The switch statement can be used for multiple branches based on a number or string:
+
+```
+switch (action) {
+  case 'draw':
+    drawIt();
+    break;
+  case 'eat':
+    eatIt();
+    break;
+  default:
+    doNothing();
+}
+```
+
+<h2 id="c8308b1eba7ba926a61b8fd802194386"></h2>
+
+## Objects
+
+ - JavaScript objects can be thought of as simple collections of name-value pairs
+    - As such, they are similar to: Dictionaries in Python.
+ - create an empty object:
+
+```
+var obj = new Object();
+// or
+var obj = {};
+```
+
+ - This syntax is also the **core of JSON format** and should be preferred at all times.
+
+```
+var obj = {
+  name: 'Carrot',
+  for: 'Max', // 'for' is a reserved word, use '\_for' instead.
+  details: {
+    color: 'orange',
+    size: 12
+  }
+};
+
+obj.details.color; // orange
+obj['details']['size']; // 12
+
+// but there is something different
+obj.for = 'Simon'; // Syntax error, because 'for' is a reserved word
+obj['for'] = 'Simon'; // works fine
+```
+
+ - The following example creates an object prototype, Person and an instance of that prototype, You.
+
+```
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+// Define an object
+var you = new Person('You', 24); 
+// We are creating a new person named "You" aged 24.
+```
+
+<h2 id="ff43b8de4f41d5103405ddb62eb8d34e"></h2>
+
+## Arrays
+
+```
+var a = new Array();
+a[0] = 'dog';
+a[1] = 'cat';
+a[2] = 'hen';
+a.length; // 3
+```
+
+```
+var a = ['dog', 'cat', 'hen'];
+a.length; // 3
+```
+
+ - Note that array.length isn't necessarily the number of items in the array. 
+    - the length of the array is one more than the highest index.
+
+```
+var a = ['dog', 'cat', 'hen'];
+a[100] = 'fox';
+a.length; // 101
+```
+
+ - we can use for...of loop for iterable objects such as arrays:
+ - You could also iterate over an array using a for...in loop. 
+    - But if someone added new properties to Array.prototype, they would also be iterated over by this loop for...in
+    - Therefore this loop type is not recommended for arrays.
+ - Another way of iterating over an array that was added with ECMAScript 5 is forEach():
+
+```
+['dog', 'cat', 'hen'].forEach(function(currentValue, index, array) {
+  // Do something with currentValue or array[index]
+});
+```
+
+ - append an item
+
+```
+a.push(item);
+```
+
+ - [full documentation for array methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+
+---
+
+ Method name | Description
+--- | --- 
+a.toString() | Returns a string with the toString() of each element separated by commas.
+a.toLocaleString() | Returns a string with the toLocaleString() of each element separated by commas.
+a.concat(item1[, item2[, ...[, itemN]]]) | Returns a new array with the items added on to it.
+a.join(sep) | Converts the array to a string — with values delimited by the sep param
+a.pop() | Removes and returns the last item.
+a.push(item1, ..., itemN) | Appends items to the end of the array.
+a.reverse() | Reverses the array.
+a.shift() | Removes and returns the first item.
+a.slice(start[, end]) | Returns a sub-array.
+a.sort([cmpfn]) | Takes an optional comparison function.
+a.splice(start, delcount[, item1[, ...[, itemN]]]) | Lets you modify an array by deleting a section and replacing it with more items.
+a.unshift(item1[, item2[, ...[, itemN]]]) | Prepends items to the start of the array.
+
+
+<h2 id="e93acb146e114b5dfa6ce2d12dcb96e4"></h2>
+
+## Functions
+
+ - The most basic function couldn't be much simpler:
+
+```
+function add(x, y) {
+  var total = x + y;
+  return total;
+}
+```
+
+ - That may seem a little silly, but functions have access to an additional variable inside their body called *arguments*
+
+```
+function add() {
+  var sum = 0;
+  for (var i = 0, j = arguments.length; i < j; i++) {
+    sum += arguments[i];
+  }
+  return sum;
+}
+
+add(2, 3, 4, 5); // 14
+```
+
+ - This is pretty useful, but it does seem a little verbose
+    - you can also use **rest parameter operator** to do same thing
+
+```
+function avg(...args) {
+  var sum = 0;
+  for (let value of args) {
+    sum += value;
+  }
+  return sum / args.length;
+}
+
+avg(2, 3, 4, 5); // 3.5
+```
+
+ - but how do you calc average on all array's elements ?
+    - you may re-write another function like :
+
+```
+function avgArray(arr) { ... }  
+avgArray([2, 3, 4, 5]); // 3.5 
+```
+
+ - But it would be nice to be able to reuse the function that we've already created.
+    - Luckily, JavaScript lets you call a function with an arbitrary array of arguments,
+    - using the apply() method of any function object.
+
+```
+avg.apply(null, [2, 3, 4, 5]); // 3.5
+```
+
+ - 你还可以使用 **spread operator**  把数组展开
+
+```
+const numbers = [1, 2, 3];
+avg( ...numbers )
+```
+
+ - anonymous functions
+
+```
+var avg = function() { ... }
+```
+
+ - It's extremely powerful, as it lets you put a full function definition anywhere that you would normally put an expression. 
+    - This enables all sorts of clever tricks. 
+ - Here's a way of "hiding" some local variables — like block scope in C:
+
+```
+var a = 1;
+var b = 2;
+
+(function() {
+  var b = 3;
+  a += b;
+})();
+
+a; // 4
+b; // 2
+```
+
+ - 现在带来一个问题： 匿名函数如何递归调用？
+    - You can use named IIFEs (Immediately Invoked Function Expressions)
+    - see `counter` in above codes
+
+```
+var charsInBody = (function counter(elm) {
+  if (elm.nodeType == 3) { // TEXT_NODE
+    return elm.nodeValue.length;
+  }
+  var count = 0;
+  for (var i = 0, child; child = elm.childNodes[i]; i++) {
+    count += counter(child);
+  }
+  return count;
+})(document.body);
+```
+
+
+<h2 id="061617f5237c49568715cd05ceef505d"></h2>
+
+## Custom objects
+
+ - JavaScript is a prototype-based language that contains no class statement
+ - Instead, JavaScript uses functions as classes. 
+
+```
+function makePerson(first, last) {
+  return {
+    first: first,
+    last: last
+  };
+}
+
+function personFullName(person) {
+  return person.first + ' ' + person.last;
+}
+
+s = makePerson('Simon', 'Willison');
+personFullName(s); // "Simon Willison"
+```
+
+ - This works, but it's pretty ugly. 
+    - **You end up with dozens of functions in your global namespace.**
+ - What we really need is a way to attach a function to an object. 
+    - Since functions are objects, this is easy:
+
+```
+function makePerson(first, last) {
+  return {
+    first: first,
+    last: last,
+    fullName: function() {
+      return this.first + ' ' + this.last;
+    }
+  };
+}
+
+s = makePerson('Simon', 'Willison');
+s.fullName(); // "Simon Willison"
+```
+
+
+ - There's something here we haven't seen before: the **this** keyword
+    - Used inside a function, `this` refers to the current object. 
+ - Note that this is a frequent cause of mistakes
+
+```
+s = makePerson('Simon', 'Willison');
+var fullName = s.fullName;
+fullName(); // undefined undefined
+```
+
+ - When we call fullName() alone, without using s.fullName(), `this` is bound to the global object.
+ - We can take advantage of the this keyword to improve our makePerson function:
+
+```
+function Person(first, last) {
+  this.first = first;
+  this.last = last;
+  this.fullName = function() {
+    return this.first + ' ' + this.last;
+  };
+  this.fullNameReversed = function() {
+    return this.last + ', ' + this.first;
+  };
+}
+var s = new Person('Simon', 'Willison');
+```
+
+ - We have introduced another keyword: **new**.
+    - new is strongly related to this
+    - It creates a brand new empty object,
+        - and then calls the function specified,
+        - with `this` set to that new object.  
+ - Note: function specified with `this` does not return a value but merely modifies the this object. 
+    - It's `new` that returns the `this` object to the calling site.
+ - Functions that are designed to be called by `new` are called constructor functions. 
+
+ - 我们的 Person 看起来已经不错了。但是每次创建一个  Person 对象，我们就会创建一个全新的 function 对象。
+    - function 应该是共享的才好
+
+```
+// try 1
+function personFullName() {
+  return this.first + ' ' + this.last;
+}
+function Person(first, last) {
+  this.first = first;
+  this.last = last;
+  this.fullName = personFullName;
+}
+```
+
+ - 更好的做法:
+
+```
+function Person(first, last) {
+  this.first = first;
+  this.last = last;
+}
+Person.prototype.fullName = function() {
+  return this.first + ' ' + this.last;
+};
+```
+
+ - **Person.prototype** is an object shared by all instances of Person.
+    - 当你尝试 访问 没有设置的 Person属性时， Javascript 都会检查 Person.prototype 看属性是否存在。
+
+ - Interestingly, you can also add things to the prototype of built-in JavaScript objects.
+
+```
+var s = 'Simon';
+s.reversed(); // TypeError on line 1: s.reversed is not a function
+
+String.prototype.reversed = function() {
+  var r = '';
+  for (var i = this.length - 1; i >= 0; i--) {
+    r += this[i];
+  }
+  return r;
+};
+
+s.reversed(); // nomiS
+
+'This can now be reversed'.reversed(); // desrever eb won nac sihT
+```
+
+ - the prototype forms part of a chain
+    - The root of that chain is Object.prototype, whose methods include toString() 
+    - This is useful for debugging our Person objects:
+
+```
+var s = new Person('Simon', 'Willison');
+s.toString(); // [object Object]
+
+Person.prototype.toString = function() {
+  return '<Person: ' + this.fullName() + '>';
+}
+s.toString(); // "<Person: Simon Willison>"
+```
+
+ - Remember how avg.apply() had a null first argument? 
+    - The first argument to apply() is the object that should be treated as 'this'.
+    - For example, here's a trivial implementation of *new*:
+
+```
+function trivialNew(constructor, ...args) {
+  var o = {}; // Create an object
+  constructor.apply(o, args);
+  return o;
+}
+```
+
+```
+// Calling
+var bill = trivialNew(Person, 'William', 'Orange');
+
+// is therefore almost equivalent to
+var bill = new Person('William', 'Orange');
+```
+
+ - apply() has a sister function named `call`
+    - which again lets you set `this` but takes an expanded argument list as opposed to an array.
+
+```
+function lastNameCaps() {
+  return this.last.toUpperCase();
+}
+var s = new Person('Simon', 'Willison');
+lastNameCaps.call(s);
+// Is the same as:
+s.lastNameCaps = lastNameCaps;
+s.lastNameCaps(); // WILLISON
+```
+
+
+
+
+
