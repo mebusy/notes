@@ -692,6 +692,64 @@ s.lastNameCaps = lastNameCaps;
 s.lastNameCaps(); // WILLISON
 ```
 
+## 其它 ES6 新特性
+
+### arrow function
+
+ - An arrow function expression has a shorter syntax than a function expression and does not have its own `this, arguments, super, or new.target`. 
+ - These function expressions are best suited for non-method functions, and they cannot be used as constructors.
+
+```
+var materials = [
+  'Hydrogen',
+  'Helium',
+  'Lithium',
+  'Beryllium'
+];
+
+console.log(materials.map(material => material.length));
+```
+
+### Class
+
+ - 只是语法糖， 并没有引入任何新模型
+
+#### Defining classes
+
+```
+class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+}
+```
+
+#### Class expressions
+
+```
+// unnamed
+var Rectangle = class {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+};
+console.log(Rectangle.name);
+// output: "Rectangle"
+
+// named
+var Rectangle = class Rectangle2 {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+};
+console.log(Rectangle.name);
+// output: "Rectangle2"
+```
+
+#### Class body and method definitions
 
 
 
