@@ -751,6 +751,178 @@ console.log(Rectangle.name);
 
 #### Class body and method definitions
 
+ - Strict mode
+    - The bodies of class declarations and class expressions are executed in *strict mode* , i.e.:
+        - constructor, static and prototype methods, getter and setter functions
+ - Constructor
+    - constructor can use the *super* keyword to call the constructor of the super class.
+ - Prototype methods
+    - see  method definitions
+
+```
+class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+  // Getter
+  get area() {
+    return this.calcArea();
+  }
+  // Method
+  calcArea() {
+    return this.height * this.width;
+  }
+}
+
+const square = new Rectangle(10, 10);
+console.log(square.area); // 100
+```
+
+ - Static methods
+    - Static methods are called without instantiating their class and **cannot** be called through a class instance. 
+
+```
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  static distance(a, b) {
+    const dx = a.x - b.x;
+    const dy = a.y - b.y;
+
+    return Math.hypot(dx, dy);
+  }
+}
+
+console.log(Point.distance(p1, p2));
+```
+
+**Instance properties**
+
+ - Instance properties must be defined inside of class methods:
+
+```
+class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+}
+```
+
+ - Static class-side properties and prototype data properties must be defined outside of the ClassBody declaration:
+
+```
+Rectangle.staticWidth = 20;
+Rectangle.prototype.prototypeWidth = 25;
+```
+
+#### Sub classing with extends
+
+```
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log(this.name + ' makes a noise.');
+  }
+}
+
+class Dog extends Animal {
+  speak() {
+    console.log(this.name + ' barks.');
+  }
+}
+
+var d = new Dog('Mitzie');
+d.speak(); // Mitzie barks.
+```
+
+ - If there is a constructor present in subclass, it needs to first call super() before using "this".
+
+ - One may also extend traditional function-based "classes":
+
+```
+function Animal (name) {
+  this.name = name;
+}
+
+Animal.prototype.speak = function () {
+  console.log(this.name + ' makes a noise.');
+}
+
+class Dog extends Animal {
+  speak() {
+    console.log(this.name + ' barks.');
+  }
+}
+
+var d = new Dog('Mitzie');
+d.speak(); // Mitzie barks.
+```
+
+ - Note that classes cannot extend regular (non-constructible) objects. 
+    - If you want to inherit from a regular object, you can instead use `Object.setPrototypeOf()`:
+
+```
+var Animal = {
+  speak() {
+    console.log(this.name + ' makes a noise.');
+  }
+};
+
+class Dog {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+// If you do not do this you will get a TypeError when you invoke speak
+Object.setPrototypeOf(Dog.prototype, Animal);
+
+var d = new Dog('Mitzie');
+d.speak(); // Mitzie makes a noise.
+```
+
+#### Species
+
+ - You might want to return `Array` objects in your derived array class MyArray. 
+ - The species pattern lets you override default constructors.
+ - For example, when using methods such as map() that returns the default constructor,
+    - you want these methods to return a parent Array object, 
+    - instead of the MyArray object. The Symbol.species symbol lets you do this:
+
+```
+class MyArray extends Array {
+  // Overwrite species to the parent Array constructor
+  static get [Symbol.species]() { return Array; }
+}
+
+var a = new MyArray(1,2,3);
+var mapped = a.map(x => x * x);
+
+console.log(mapped instanceof MyArray); // false
+console.log(mapped instanceof Array);   // true
+```
+
+#### Super class calls with super
+
+ - The super keyword is used to call corresponding methods of super class.
+
+```
+class Lion extends Cat {
+  speak() {
+    super.speak();
+    console.log(this.name + ' roars.');
+  }
+}
+```
+
 
 
 
