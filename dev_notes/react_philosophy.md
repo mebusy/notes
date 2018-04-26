@@ -204,6 +204,21 @@ var person = React.createElement(
 
 ## 在JSX中使用事件
 
+ - 90年代 HTML 写法
+
+```
+<button onclick="checkAndSubmit(this.form)">Submit</button>
+```
+
+ - 使用JavaScript来绑定事件，例如在jQuery中：
+
+```
+$('#my-button').on('click', this.checkAndSubmit.bind(this));
+```
+
+ - 在看到这段事件绑定和验证逻辑之前，你无法直观的看到有事件绑定在某个元素上
+ - 幸运的是，现在JSX可以让事件绑定返璞归真：
+
 ```
 <button onClick={this.checkAndSubmit.bind(this)}>Submit</button>
 ```
