@@ -310,6 +310,42 @@ React.render(<sampleNameSpace.MyHelloWorld />, …);
 
  - 这些语法看上去有点怪，但是如果我们记住JSX语法只是JavaScript语法的一个语法映射，那么这些就非常容易理解了。
 
+
+## Functional Components
+
+ - React supports a simpler syntax called functional components for component that only consist of a render method. 
+ - ather than define a class extending React.Component, simply write a function that takes props and returns what should be rendered.
+
+
+```
+class Square extends React.Component {
+  render() {
+    return (
+      <button className="square" onClick={() => this.props.onClick()}>
+        {this.props.value}
+      </button>
+    );
+  }
+}
+```
+
+to
+
+```
+function Square(props) {
+  return (
+    <button className="square" onClick={props.onClick}>
+      {props.value}
+    </button>
+  );
+}
+```
+
+ - this.props -> props
+ - onClick={() => props.onClick()} ->  onClick={props.onClick}
+
+
+
 <h2 id="59f930043e5ce55808006dcd1262e219"></h2>
 
 ## 组件的概念和生命周期
