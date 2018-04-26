@@ -168,6 +168,7 @@ var root =(
     - 另外，由于JSX只是一种语法，因此JavaScript的关键字class, for等也不能出现在XML中，
         - 而要如例子中所示，使用className, htmlFor代替，这和原生DOM在JavaScript中的创建也是一致的。 
  - JSX本身并不是什么高深的技术，可以说只是一个比较高级但很直观的语法糖。
+ - PS: 上面的代码中，我们把 `<ul>` 标签 分成了多行来书写，我们使用 `()` 来防止 JavaScript 自动插入分号 破坏原来的代码.
 
 <h2 id="375313758b588253eea15aafd307df29"></h2>
 
