@@ -47,9 +47,16 @@
 ...menuend
 
 
+# 0 你清楚吗？
+
+ - 除了 数组， 所有的参数传递都是 值传递！！！  
+ - 除了数组， 其它 lvalue 都 可 modify
+ - 结构体 赋值 是直接 memcpy
+
+
 <h2 id="c4ca4238a0b923820dcc509a6f75849b"></h2>
 
-# 1
+# 1 Misc
 
 <h2 id="e540c9df86ffde8f8d8443c5347dab50"></h2>
 
@@ -99,11 +106,11 @@ ccp = cp;
 cp = ccp; /* results in a compilation warning */
 ```
 
- - 但是前面的 `const char ** = char **` 也由警告呢？
+ - 但是为什么前面的 `const char ** = char **` 也有警告呢？
     - 简单说，`const float *` 是一个指针(pointer to const-qualified float)，他不是一个 qualified type！！  
-    - 同样的 `const char **` is a pointer to an unqualified pointer 
-        - `const char **` 的类型是  a pointer to a pointer to a qualified type. 
- - 所以，`char **` and `const char **` 都是 指针, 但指向的是不同的 类型
+    - 同样的 `const char **` denotes a pointer to an unqualified pointer ,
+        - its type is  a pointer to a pointer to a qualified type. 
+ - 所以，`char **` and `const char **`  are both pointers to unqualified types( 指针 ) that are not the same type , they are not compatible types. 
  - 关于const
     - const 限定的是 type, 不是 variable, 因为const的功能是得到“限定的类型” 
     - C 引入const关键字的目的是优化代码，这是程序员和编译器间的约定： 
@@ -203,9 +210,10 @@ i=1,2;
 ```
 
  - what value does i end up with?
-    - 逗号表达式，所以i==2 ?
+    - 逗号表达式，所以i == 2 ?
     - 错， assignment has higher precedence ， you actually get:
-        - `(i=1),2;`   (1==1)
+        - `(i=1),2;` 
+        - i gets the value 1; then the literal 2 is evaluated and thrown away. i ends up being one, not two.
 
 
 <h2 id="646b355af48a02490fb7d836806d222e"></h2>
