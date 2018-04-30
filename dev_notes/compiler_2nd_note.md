@@ -404,7 +404,15 @@ literal | 两个 “ 之间除“ 以外的 任何字符 | "core dumped"
 ## 5.3 语法制导翻译的应用
 
  - 应用：抽象语法树的构造
-    - 有些编译器 使用抽象语法树 作为一种中间表示形式。
+    - Since some compilers use syntax trees as an intermediate representation, a common form of SDD turns its input string into a tree. 
+    - To complete the translation to intermediate code, the compiler may then walk the syntax tree, 
+        - using another set of rules that are in effect an SDD on the syntax tree rather than the parse tree. 
+ - We consider two SDD's for constructing syntax trees for expressions
+    - S-attributed definition
+        - is suitable for use during bottom-up parsing.
+    - L-attributed
+        - is suitable for use during top-down parsing.
+
 
 <h2 id="7a4f6d88b4f32982d365400f0ad73e20"></h2>
 

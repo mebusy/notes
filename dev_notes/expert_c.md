@@ -289,7 +289,7 @@ extern int y[];
 
 · | · | ·
 --- | --- | --- 
-definiton | occurs in only on place |  specifies the type of an object; reserves storage for it; is used to create new objects
+definiton | occurs in only one place |  specifies the type of an object; reserves storage for it; is used to create new objects
 · | · | example: `int my_array[100];`
 declaration | can occur multiple times | describes the type of an object; is used to refer to objects defined elsewhere (e.g., in another file)
 · | · | example: `extern int my_array[];`
