@@ -376,6 +376,10 @@ literal | 两个 “ 之间除“ 以外的 任何字符 | "core dumped"
 
 ### 5.1.1 继承属性 和综合属性
 
+ - 当一颗 语法分析树的结构和 源代码的抽象语法 不匹配时， 继承属性是很有用的
+    - 常见于 表达式文法的无左递归版本。
+    - 思想： 运算符 的 左运算分量，通过继承得到
+
 <h2 id="06bf842214b8b7d055c6c05446e80571"></h2>
 
 ## 5.2 SDD 求值顺序
@@ -404,7 +408,15 @@ literal | 两个 “ 之间除“ 以外的 任何字符 | "core dumped"
 ## 5.3 语法制导翻译的应用
 
  - 应用：抽象语法树的构造
-    - 有些编译器 使用抽象语法树 作为一种中间表示形式。
+    - Since some compilers use syntax trees as an intermediate representation, a common form of SDD turns its input string into a tree. 
+    - To complete the translation to intermediate code, the compiler may then walk the syntax tree, 
+        - using another set of rules that are in effect an SDD on the syntax tree rather than the parse tree. 
+ - We consider two SDD's for constructing syntax trees for expressions
+    - S-attributed definition
+        - is suitable for use during bottom-up parsing.
+    - L-attributed
+        - is suitable for use during top-down parsing.
+
 
 <h2 id="7a4f6d88b4f32982d365400f0ad73e20"></h2>
 
