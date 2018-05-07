@@ -13,6 +13,7 @@
      - [在JSX中使用事件](#d704b2ef48686bfeaf4c6431e7c31e22)
      - [在JSX中使用样式](#f2fc376b3fed4715ad9cfcdf05e7e792)
      - [使用自定义组件](#25f500e0d374330577b51164814a7535)
+     - [Functional Components](#04cd8282a4db14156a55d4a62e1c787a)
      - [组件的概念和生命周期](#59f930043e5ce55808006dcd1262e219)
      - [使用Babel进行JSX编译](#1e6746fd5d3442b62adf875b5f109174)
  - [虚拟DOM Diff算法解析](#3b6ecd38b8f111baf6c8136bb4b7c3f3)
@@ -310,6 +311,8 @@ React.render(<sampleNameSpace.MyHelloWorld />, …);
 
  - 这些语法看上去有点怪，但是如果我们记住JSX语法只是JavaScript语法的一个语法映射，那么这些就非常容易理解了。
 
+
+<h2 id="04cd8282a4db14156a55d4a62e1c787a"></h2>
 
 ## Functional Components
 

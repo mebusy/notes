@@ -1,6 +1,7 @@
 ...menustart
 
- - [1](#c4ca4238a0b923820dcc509a6f75849b)
+ - [0 你清楚吗？](#c2c09bef45ddf1df36d0a55702903cba)
+ - [1 Misc](#8ae7a9d09b91039571924826ab5018b8)
      - [register keyword 是个错误](#e540c9df86ffde8f8d8443c5347dab50)
      - [`char **argv` 和 `const char **p` 并不匹配](#f478e0a5be9950a75d566a3de6949efa)
      - [隐式类型转换的坑](#7441ae385364f96b273420fec579d734)
@@ -47,6 +48,8 @@
 ...menuend
 
 
+<h2 id="c2c09bef45ddf1df36d0a55702903cba"></h2>
+
 # 0 你清楚吗？
 
  - 除了 数组， 所有的参数传递都是 值传递！！！  
@@ -54,7 +57,7 @@
  - 结构体 赋值 是直接 memcpy
 
 
-<h2 id="c4ca4238a0b923820dcc509a6f75849b"></h2>
+<h2 id="8ae7a9d09b91039571924826ab5018b8"></h2>
 
 # 1 Misc
 

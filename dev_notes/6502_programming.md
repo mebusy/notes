@@ -1,3 +1,8 @@
+...menustart
+
+
+...menuend
+
 
 ```
 WAITFORVBLANK:

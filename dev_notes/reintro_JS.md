@@ -18,6 +18,15 @@
      - [Arrays](#ff43b8de4f41d5103405ddb62eb8d34e)
      - [Functions](#e93acb146e114b5dfa6ce2d12dcb96e4)
      - [Custom objects](#061617f5237c49568715cd05ceef505d)
+     - [其它 ES6 新特性](#3e3612786cff54b6bdbbbaa3f5fa85d7)
+         - [arrow function](#7cb73e5605aec93918bd62ec843a5745)
+         - [Class](#9bd81329febf6efe22788e03ddeaf0af)
+             - [Defining classes](#12a4166e02c1f403d1f1edab72b67926)
+             - [Class expressions](#3d8bb55eea05a180febf5200d718f41c)
+             - [Class body and method definitions](#a912551971a309d598fa34bca20f4b5e)
+             - [Sub classing with extends](#d2de17645050c3f9b094d417f647f2ca)
+             - [Species](#e1520b5997a532c7889f6e8883920ab8)
+             - [Super class calls with super](#e5b796fae796980b73c254cccd1851d5)
 
 ...menuend
 
@@ -692,7 +701,11 @@ s.lastNameCaps = lastNameCaps;
 s.lastNameCaps(); // WILLISON
 ```
 
+<h2 id="3e3612786cff54b6bdbbbaa3f5fa85d7"></h2>
+
 ## 其它 ES6 新特性
+
+<h2 id="7cb73e5605aec93918bd62ec843a5745"></h2>
 
 ### arrow function
 
@@ -710,9 +723,13 @@ var materials = [
 console.log(materials.map(material => material.length));
 ```
 
+<h2 id="9bd81329febf6efe22788e03ddeaf0af"></h2>
+
 ### Class
 
  - 只是语法糖， 并没有引入任何新模型
+
+<h2 id="12a4166e02c1f403d1f1edab72b67926"></h2>
 
 #### Defining classes
 
@@ -724,6 +741,8 @@ class Rectangle {
   }
 }
 ```
+
+<h2 id="3d8bb55eea05a180febf5200d718f41c"></h2>
 
 #### Class expressions
 
@@ -748,6 +767,8 @@ var Rectangle = class Rectangle2 {
 console.log(Rectangle.name);
 // output: "Rectangle2"
 ```
+
+<h2 id="a912551971a309d598fa34bca20f4b5e"></h2>
 
 #### Class body and method definitions
 
@@ -820,6 +841,8 @@ Rectangle.staticWidth = 20;
 Rectangle.prototype.prototypeWidth = 25;
 ```
 
+<h2 id="d2de17645050c3f9b094d417f647f2ca"></h2>
+
 #### Sub classing with extends
 
 ```
@@ -889,6 +912,8 @@ var d = new Dog('Mitzie');
 d.speak(); // Mitzie makes a noise.
 ```
 
+<h2 id="e1520b5997a532c7889f6e8883920ab8"></h2>
+
 #### Species
 
  - You might want to return `Array` objects in your derived array class MyArray. 
@@ -909,6 +934,8 @@ var mapped = a.map(x => x * x);
 console.log(mapped instanceof MyArray); // false
 console.log(mapped instanceof Array);   // true
 ```
+
+<h2 id="e5b796fae796980b73c254cccd1851d5"></h2>
 
 #### Super class calls with super
 
