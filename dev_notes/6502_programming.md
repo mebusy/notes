@@ -88,7 +88,7 @@ PALETTELOAD:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/6502_asm_9.png)
 
- - 64中固定颜色中挑32种颜色供游戏使用，每个tile 同时只能显示4色。
+ - 64中固定颜色中挑32种颜色供游戏使用(sprite, bg各16色)，每个tile 同时只能显示4色。
 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/6502_asm_end.png)
