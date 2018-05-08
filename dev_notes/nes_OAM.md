@@ -1,3 +1,16 @@
+...menustart
+
+ - [OAM](#1d43a61d31daf8523c598d4679150bd5)
+ - [DMA](#33fd5f6391f2f0cb4c91179d7f521949)
+ - [Sprite zero hits](#a543bc0784c262c9da625159ca924ff3)
+ - [Sprite overlapping](#93433b909a9b00016c6047bd84e2c65d)
+ - [Internal operation](#5ccdf8c4b0352ef1435663d5f5a7a22a)
+ - [Dynamic RAM decay](#72c46d82eb28c395ef46aca1c91d10aa)
+
+...menuend
+
+
+<h2 id="1d43a61d31daf8523c598d4679150bd5"></h2>
 
 # OAM
 
@@ -48,6 +61,8 @@ http://wiki.nesdev.com/w/index.php/PPU_OAM
         - left-clipping through PPUMASK ($2001) can be used to simulate this effect.
 
 
+<h2 id="33fd5f6391f2f0cb4c91179d7f521949"></h2>
+
 # DMA
 
  - 大部分程序在 CPU RAM的 2页 ( $0200-$02FF ) 处理精灵数据，然后通过 OAMDMA ($4014) register  拷贝到 PPU. 
@@ -57,21 +72,29 @@ http://wiki.nesdev.com/w/index.php/PPU_OAM
  - 不计算 OAMDMA 的写入时间， 上述过程需要 513个CPU周期;  展开的LDA/STA循环通畅需要4倍时间
 
 
+<h2 id="a543bc0784c262c9da625159ca924ff3"></h2>
+
 # Sprite zero hits
 
  - PPU绘制图片时，当精灵0的不透明像素与背景的不透明像素重叠时，这就是一个 **sprite zero hit**
  - PPU检测到这种情况，从该像素开始 将PPUSTATUS（$ 2002）的第6位设置为1，letting the CPU know how far along the PPU is in drawing the picture.
 
 
+<h2 id="93433b909a9b00016c6047bd84e2c65d"></h2>
+
 # Sprite overlapping
 
  - 精灵之间的优先权取决于他们在OAM中的地址
     - the sprite data that occurs first will overlap any other sprites after it. 
 
+<h2 id="5ccdf8c4b0352ef1435663d5f5a7a22a"></h2>
+
 # Internal operation
 
  - 除了主OAM内存之外，PPU还包含32个字节（enough for 8个精灵）的辅助OAM内存, 程序不能直接访问这部分内存。
  - 在每个可见行扫描期间， 首先清除该辅助OAM，然后执行整个主OAM的线性搜索，以找出在下一个扫描线上的精灵 (the sprite evaluation phase) , 并拷贝数据到 辅助OAM,然后用它初始化八个内部精灵输出单元。
+
+<h2 id="72c46d82eb28c395ef46aca1c91d10aa"></h2>
 
 # Dynamic RAM decay
 

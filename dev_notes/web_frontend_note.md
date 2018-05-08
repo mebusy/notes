@@ -46,4 +46,34 @@ yarn add antd
 @import '~antd/dist/antd.css';
 ```
 
+## http request from JS
+
+```javascript
+    // submit form data to api
+    fetch( "http://10.192.83.42:9000/announcementPublish" ,  {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify( values)
+    })
+      .then(res => res.json())
+      .then(
+        (result) => {
+            if (result.err) {
+                alert( "有错误发生,发布失败!!" ); 
+            } else {
+                alert( "公告发布成功" );
+                this.props.form.resetFields() ;
+            }
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+            alert( error ) ;
+        }
+      )
+```
 
