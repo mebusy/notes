@@ -20,7 +20,7 @@ http://wiki.nesdev.com/w/index.php/PPU_OAM
  - Byte 1 : The index number
     - 可以指定从哪个 4k pattern table 中获取 tile ( PPU  $0000 , $1000 )
         - 8x8 sprite , 由 PPUCTRL ($2000) 的 bit 3 指定
-        - 8x16 sprite, 由 Byte1 的 bit 0 指定
+        - 8x16 sprite, 由 Byte1 的 bit 0 指定 (注：每个8x16 精灵pattern 是连续的32个字节, i.e. #0: $0000-$001F)
 
 ```
 76543210
