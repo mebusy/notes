@@ -13,6 +13,7 @@
  - [Nes programming sample](https://github.com/mebusy/notes/blob/master/dev_notes/6502_programming.md)
  - [OAM](https://github.com/mebusy/notes/blob/master/dev_notes/nes_OAM.md)
  - [PPU register](https://github.com/mebusy/notes/blob/master/dev_notes/nes_PPU_register.md)
+ - [CS-98-026](https://github.com/mebusy/notes/blob/master/dev_notes/CS-98-026.md)
 
 
 ---
