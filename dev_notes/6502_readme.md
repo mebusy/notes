@@ -14,6 +14,9 @@
  - [OAM](https://github.com/mebusy/notes/blob/master/dev_notes/nes_OAM.md)
  - [PPU register](https://github.com/mebusy/notes/blob/master/dev_notes/nes_PPU_register.md)
  - [CS-98-026](https://github.com/mebusy/notes/blob/master/dev_notes/CS-98-026.md)
+ - [CS-98-026 Mapper](https://github.com/mebusy/notes/blob/master/dev_notes/CS-98-026_2.md)
+ - [CS-98-026 anim,random number,Gravity,multiplication,collision](https://github.com/mebusy/notes/blob/master/dev_notes/CS-98-026_3.md)
+ - [CS-98-026 code for sound, palette changing, sprite 0 hit usage-裂屏](https://github.com/mebusy/notes/blob/master/dev_notes/CS-98-026_4.md)
 
 
 ---
