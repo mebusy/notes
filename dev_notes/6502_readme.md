@@ -17,6 +17,7 @@
  - [CS-98-026 Mapper](https://github.com/mebusy/notes/blob/master/dev_notes/CS-98-026_2.md)
  - [CS-98-026 anim,random number,Gravity,multiplication,collision](https://github.com/mebusy/notes/blob/master/dev_notes/CS-98-026_3.md)
  - [CS-98-026 code for sound, palette changing, sprite 0 hit usage-裂屏](https://github.com/mebusy/notes/blob/master/dev_notes/CS-98-026_4.md)
+ - [CS-98-026 sound channel](https://github.com/mebusy/notes/blob/master/dev_notes/CS-98-026_5.md)
 
 
 ---
