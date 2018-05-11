@@ -114,11 +114,4 @@ mysql> grant select,insert,update,delete,create,drop on *.* to kbe@'%' identifie
 mysql> FLUSH PRIVILEGES;
 ```
 
-<h2 id="83b48bb8fb0bbb93b1d5115033b5a28d"></h2>
-
-## find special text in files
-
-```bash
-grep -rnw '/path/to/somewhere/' -e 'pattern'
-```
 
