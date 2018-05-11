@@ -239,6 +239,14 @@ yum-config-manager \
 yum install -y docker-ce
 ```
 
+ - 4. start up
+
+```
+$ systemctl enable docker
+$ systemctl start docker
+```
+
+
 
  [镜像加速](https://docs.docker.com/registry/recipes/mirror/#use-case-the-china-registry-mirror)
 
