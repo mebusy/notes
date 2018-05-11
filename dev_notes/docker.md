@@ -214,6 +214,32 @@
  
  [安装](https://yeasy.gitbooks.io/docker_practice/content/install/centos.html)
 
+For Centos:
+
+ - 1. 安装依赖包
+
+```
+yum install -y yum-utils \
+           device-mapper-persistent-data \
+           lvm2
+```
+
+ - 2. set up the stable repository
+
+```
+yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+```
+
+
+ - 3. INSTALL DOCKER CE
+
+```
+yum install -y docker-ce
+```
+
+
  [镜像加速](https://docs.docker.com/registry/recipes/mirror/#use-case-the-china-registry-mirror)
 
  [set docker proxy](https://docs.docker.com/engine/admin/systemd/#httphttps-proxy)
