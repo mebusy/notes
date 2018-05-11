@@ -19,7 +19,8 @@
 
 ## YouCompleteMe
 
- - yum 安装 clang
+ 1. yum 安装 clang
+ 2. build YCME
 
 ```
 CC=`which clang` CXX=`which clang++`  ./install.py ......
