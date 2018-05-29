@@ -317,7 +317,7 @@ React.render(<sampleNameSpace.MyHelloWorld />, …);
 ## Functional Components
 
  - React supports a simpler syntax called functional components for component that only consist of a render method. 
- - ather than define a class extending React.Component, simply write a function that takes props and returns what should be rendered.
+ - rather than define a class extending React.Component, simply write a function that takes props and returns what should be rendered.
 
 
 ```
@@ -374,6 +374,34 @@ React.render(
     - 组件规范中定义了setState方法，每次调用时都会更新组件的状态，触发render方法。
     - 需要注意，render方法是被异步调用的，这可以保证同步的多个setState方法只会触发一次render，有利于提高性能。
  - 和props不同，state是组件的内部状态，除了初始化时可能由props来决定，之后就完全由组件自身去维护。
+
+ - initState
+
+```
+ES5
+
+var TodoApp = React.createClass({
+  propTypes: {
+    title: PropTypes.string.isRequired
+  },
+  getInitialState () {
+    return {
+      items: []
+    };
+  }
+});
+ES6
+
+class TodoApp extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      items: []
+    }
+  }
+});
+```
+
  - 在组件的整个生命周期中，React强烈不推荐去修改自身的props，因为这会破坏UI和Model的一致性，props只能够由使用者来决定。
  - 对于自定义组件，唯一必须实现的方法就是render()，除此之外，还有一些方法会在组件生命周期中被调用，如下图所示：
 
