@@ -234,6 +234,20 @@ cd ...
     - 使用  `[[:space:]]` , 而不是 `\s`
     - 没有 `+` 的用法
 
+## 打开文件数 / 最大链接数
+
+```
+launchctl limit
+sudo launchctl limit maxfiles 100000 500000
+
+sysctl -a | grep somax
+kern.ipc.somaxconn: 128
+sudo sysctl -w kern.ipc.somaxconn=10240
+
+# will lost
+ulimit -a
+ulimit -n 8192
+```
  
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
