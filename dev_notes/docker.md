@@ -260,6 +260,17 @@ $ systemctl start docker
 ```
 
 
+ - FAQ 
+    - Requires Pigz
+    - Requires: container-selinux >= 2.9
+    
+```
+# try
+yum install --setopt=obsoletes=0 \
+   docker-ce-17.03.2.ce-1.el7.centos.x86_64 \
+   docker-ce-selinux-17.03.2.ce-1.el7.centos.noarch
+
+```
 
  [镜像加速](https://docs.docker.com/registry/recipes/mirror/#use-case-the-china-registry-mirror)
 
