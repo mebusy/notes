@@ -219,6 +219,19 @@ For Centos:
  - 1. 安装依赖包
 
 ```
+yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+
+
+
 yum install -y yum-utils \
            device-mapper-persistent-data \
            lvm2
