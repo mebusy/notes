@@ -240,6 +240,9 @@ cd ...
 launchctl limit
 sudo launchctl limit maxfiles 100000 500000
 
+sysctl kern.maxfiles
+sysctl -w kern.maxfiles=20480 (or whatever number you choose)
+
 # for centos ,  `sysctl -w net.core.somaxconn=10240`
 sysctl -a | grep somax
 kern.ipc.somaxconn: 128
