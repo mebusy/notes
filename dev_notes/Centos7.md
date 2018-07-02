@@ -146,6 +146,27 @@ usr sys idl wai hiq siq| read  writ| recv  send|  in   out | int   csw
   0   0 100   0   0   0|   0     0 | 371B  826B|   0     0 | 200   211 
 ```
 
+ - To display information provided by vmstat,
+    - Process stats
+    - Memory stats
+
+```
+$ dstat --vmstat
+```
+
+ - to monitor a single program that is using the most CPU and consuming the most amount of memory.
+
+```
+$ dstat -c --top-cpu -dn --top-mem
+```
+
+ - you can also store the output of dstat in a .csv 
+    - Here, we are displaying the time, cpu, mem, system load stats with a one second delay between 5 updates (counts).
+
+```
+$ dstat --time --cpu --mem --load --output report.csv 1 5
+```
+
 
 ## ab test 
 
@@ -161,3 +182,5 @@ yum -y install httpd-tools
 $ echo "{ \"channel\": \"official\"}" > post.json
 $ ab -k -n 500000 -c 20000 -T "application/json" -p post.json  -H "userID: debugUserID" -H "Authorization: 7eb0f0a9798af24a883f4859db88a634"  http://10.192.8.17:9000/announcement
 ```
+
+
