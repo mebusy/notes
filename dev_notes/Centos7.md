@@ -115,3 +115,49 @@ mysql> FLUSH PRIVILEGES;
 ```
 
 
+## 查看 TIME_WAIT
+
+```
+$ netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
+ESTABLISHED 20002
+TIME_WAIT 1
+```
+
+## TIME_WAIT 优化
+
+```
+# vi /etc/sysctl.conf
+
+net.ipv4.tcp_syncookies = 1
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_tw_recycle = 1
+
+# 然后执行 /sbin/sysctl -p 让参数生效。
+```
+
+## linux 系统监控
+
+```
+$ yum install -y dstat
+$ dstat 
+----total-cpu-usage---- -dsk/total- -net/total- ---paging-- ---system--
+usr sys idl wai hiq siq| read  writ| recv  send|  in   out | int   csw 
+  0   0 100   0   0   0|   0     0 | 431B  346B|   0     0 | 159   181 
+  0   0 100   0   0   0|   0     0 | 371B  826B|   0     0 | 200   211 
+```
+
+
+## ab test 
+
+ - install ab
+
+```
+yum -y install httpd-tools 
+```
+
+ - ab test
+
+```
+$ echo "{ \"channel\": \"official\"}" > post.json
+$ ab -k -n 500000 -c 20000 -T "application/json" -p post.json  -H "userID: debugUserID" -H "Authorization: 7eb0f0a9798af24a883f4859db88a634"  http://10.192.8.17:9000/announcement
+```
