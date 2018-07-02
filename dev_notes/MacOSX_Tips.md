@@ -17,6 +17,9 @@
          - [find pattern in specific file types](#b5a637298d7d74567762e4ce9127bd5e)
          - [tcpdump 抓取 HTTP GET 包](#aa252f9440484d1ebb28ca3e4015d2d4)
          - [bash  wait previous command to finish](#639aab73c8776e2711502bd23e7dd4de)
+         - [sed 使用](#ccbf87c494cf62aca0164aa04719e15f)
+     - [打开文件数 / 最大链接数](#c635de9cfd3f586235866c25b1208360)
+     - [server backlog](#a08bc91843057f871dc78e79478b6947)
      - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
 
 ...menuend
@@ -227,12 +230,16 @@ cd ...
 ```
 
 
+<h2 id="ccbf87c494cf62aca0164aa04719e15f"></h2>
+
 ### sed 使用
 
  1. sed语句中如果要引用变量， 使用 双括号 `" "` ， 不要使用 单括号 `' '` 
  2. 查找/替换中 匹配 white space
     - 使用  `[[:space:]]` , 而不是 `\s`
     - 没有 `+` 的用法
+
+<h2 id="c635de9cfd3f586235866c25b1208360"></h2>
 
 ## 打开文件数 / 最大链接数
 
@@ -247,6 +254,8 @@ sysctl -w kern.maxfiles=20480 (or whatever number you choose)
 ulimit -a
 ulimit -n 8192
 ```
+
+<h2 id="a08bc91843057f871dc78e79478b6947"></h2>
 
 ## server backlog 
 
