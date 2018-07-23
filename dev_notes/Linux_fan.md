@@ -398,6 +398,7 @@ tail -f logs/error.log
 # crontab -u
 ```
 
+
  - 一个 cron 任务在 cron表 用一行来表示。
     - 每一行被分为两列，左边是时间，右边是具体运行的命令
     - 时间由5个部分组成 ， 空格隔开
@@ -409,15 +410,264 @@ tail -f logs/error.log
     - `0,15,30,45 1 8 * echo 提醒`
     - 改进一下 `*/15 1 8 * echo 提醒`
 
----
+
+-------
 
 cron 时间符号 | 含义
 --- | --- 
-
-`*` | 任意时间
+\* | 任意时间
 `,`  | 2,3 表示 2和3 都行
 `-`  | 代表连续时间,2-4表示2,3,4
-`*/n` | 表示每隔时间单位
+\*/n | 表示每隔时间单位
+
+---
+
+ - 计划任务 不是所有用户都能添加的，具体谁能添加计划任务， 主要有系统中的4个文件来决定:
+    - at.allow, at.deny, cron.allow, cron.deny
+ - 当前的大多数linux发行版使用黑名单机制，对计划任务权限的管理相对很宽松
+
+### 2.4.3 守护进程及其作用
+
+ - 计划任务的执行，主要归功于 守护进程。
+ - Linux 服务器在启动时 需要启动很多系统服务， 它们向本地或网络用户提供了linux的系统功能接口,直接面向应用程序和用户。
+    - 提供这些服务的程序 是由运行在后台的守护进程(daemons)来执行的
+ - 查看系统中拥有哪些守护进程， 或者说能够提供哪些服务，可以使用 `ntsysv` 命令( 在 Redhad 或 CentOS中 )
+ - 实际上 守护进程 也有分类， 按 启动和管理方式来区分，可以分为
+    - 独立启动的 stand alone, 
+    - 和 xinetd
+ - stand alone
+    - 自行启动运行， 启动后会一直占用 内存与 系统资源
+    - 如 apache , myql
+ - xinted 
+    - 比较新型的守护进程
+    - 它由一个统一的 stand alone 守护进程来负责唤起, 这个特殊的守护进程被称为: super daemon 
+    - 因为 stand alone 会一直占用 内存和资源显得很浪费， 所以一些喜欢精打细算的人就提出来 按需分配这个概念
+        - 也就是说，让没有客户端要求的时候， xinetd 类型的守护进程都是 未启动，待有客户端要求服务时， super daemon 才回去唤醒具体的xinetd守护进程.
+        - 客户端联机接受后就关闭， 不会一直占用系统资源。
+
+ - 大多数linux发行版 会将所有的 stand alone 守护进程的启动脚本 都放置在 `/etc/init.d/` 目录
+    - 而 CentOS 实际上是 放在了 `/etc/rc.d/init.d/` 目录下了， `/etc/init.d/` 只是它的一个符号连接
+ - 直接执行某个 stand slone 守护进程 会显示这个启动脚本的用法
+
+
+```
+# /etc/init.d/netconsole
+Usage: /etc/init.d/netconsole {start|stop|status|restart|condrestart}
+```   
+
+ - xinetd 守护进程的配置文件 放置在 `/etc/xinetd.d/` 和 `/etc/xinetd.conf` 文件中
+    - 一般不用关心 xinetd.conf 文件
+ - 当客户端请求 rsync 服务的时候，xinetd 怎么就知道启动 /usr/bin/rysnc 这个程序呢？
+    - 答案就在 `/etc/services` 文件中 
+    - `rsync           873/tcp                         # rsync`
+
+
+### 2.4.4 全面了解程序信息
+
+ - ps / top / pstree
+ - ps 查看程序的静态信息， 即将某个时间的程序运行情况 截取下来
+    - `ps aux`  查看系统中 所有程序的数据
+    - `ps -l`  查看与当前终端关联的程序数据
+
+```bash
+# ps -l
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 R     0 25463 30153  0  80   0 - 37225 -      pts/0    00:00:00 ps
+4 S     0 30153 30150  0  80   0 - 29038 wait   pts/0    00:00:00 bash
+```
+
+ps 命令输出字段 | 说明
+--- | ---
+F  | flag, 执行权限，0:普通，4:root, 1:仅fork没有exec
+S  | status, R:running,S:sleep可唤醒，D:不可被唤醒状态，一般等待I/O, T:停止，比如被调试的时候, Z:僵尸，程序已终止，但是无法被移除到内存外
+UID | 此进程拥有着 UID
+PID |  此进程ID
+PPID | 此进程的父进程ID
+C | CPU使用率
+PRI | 运行优先级
+NI |  运行优先级调整值
+ADDR | 程序内存地址，ruuning的程序一般显示 `-`
+SZ | 此程序用到的内存
+WCHAN | 是否在运行中，`-` 表示在运行中 
+TTY | 登陆者的终端机位置 
+TIME | 使用掉的 CPU时间
+
+
+```bash
+# ps aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0  43252  3560 ?        Ss   May09   4:29 /usr/lib/systemd/systemd --system --deserialize 24
+root         2  0.0  0.0      0     0 ?        S    May09   0:00 [kthreadd]
+```
+
+字段 | 说明
+--- | --- 
+VSZ | 该进程用掉的虚拟内存量 kbytes
+RSS | 该进程占用的固定的内存量 kbytes
+TTY | 该进程所运行的终端机， 若与终端机无关 则显示"?". tty1-tty6是本机上的登陆者，如果pts/0等，则表示网络连接
+STAT | 状态,同 上面的 S
+START | 进程启动时间
+
+---
+
+ - top: 每5秒刷新一次
+
+```
+top - 18:26:32 up 75 days,  4:15,  1 user,  load average: 0.00, 0.01, 0.05
+Tasks:  84 total,   1 running,  83 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.3 us,  0.1 sy,  0.0 ni, 99.5 id,  0.1 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem :  8010792 total,  1065816 free,   418224 used,  6526752 buff/cache
+KiB Swap:        0 total,        0 free,        0 used.  7266568 avail Mem
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+    1 root      20   0   43252   3560   2316 S   0.0  0.0   4:29.47 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:00.68 kthreadd
+```
+
+ - top 输出共分为两个部分
+    - 上面部分是 整个系统的资源的使用状态
+    - 下面部分是 单个进程的资源使用情况
+ - 第一行
+    - 当前时间, up 系统连续运行时间， 已登陆系统的用户数(1 user) , 系统在1,5,15分钟的平均工作负载(load average)
+ - 第二行
+    - 进程的总数，正在运行数， 睡眠数， 停止数，僵尸数
+ - 第三行
+    - 用户空间占用CPU的百分比(us), 内核空间占用CPU的百分比(sy), 改变过优先级的进程占用的CPU百分比(ni),
+    - 空闲cpu 百分比 (id), I/O等待专用CPU百分比(wa), 硬中断占用CPU的百分比(hi), 软中断占用的CPU百分比(si)
+    - 被强制等待 虚拟CPU的时间百分比(st)
+ - 第四行
+    - 物理内存总数,空闲数，已用数，缓冲数
+ - 第五行
+    - 交换分区总数,空闲数，已用数，可用数
+ -  VIRT  /  RES  /  SHR
+    - 分别代表 虚拟内存用量(只是需要的，不是实际使用量)，常驻内存量(实际使用量，包含共享部分)，和共享内存
+    - 计算一个进程所占用的真实物理内存可以使用公式: RES-SHR 来计算
+ - CPU 占比部分，有些时候会出现超过 100%的情况。 
+    - 这是非常正常的。因为top计算占比，是按照单个CPU核心来计算。 如果一个计算机内有16个CPU核心，那么这个CPU占比最高可以达到1600%
+ - load average
+    - 想象一下 高速公路的收费口
+    - 0.00 ~ 1.00 , 很畅通
+    - 1.00 , 刚好在承受范围内。 只是车流会有些堵，不过这种情况可能会造成交通越来越慢
+    - 1.00 + ,  超过负荷，交通严重的拥堵
+    - 由此可见，load average 不能超过1.00， 超过就说明系统快 不堪重负了。
+        - 很多人的实际经验是经常看到超过 1.00的情况，原因   
+            - 1 与CPU占比相同，与 核心数量有关。 16核心系统， 平均工作负载可以达到16.00
+            - 2 系统已经不看重负了，虽然依然能够运行。
+ - top 还可以 修改数据刷新间隔(-d)， 还能单独追踪某个进程的运行状态(-p)
+    - `top -d 2 -p 12201`
+ 
+---
+
+ - pstree 
+    - 查看进程的父子祖先关系
+
+```
+# pstree
+systemd-+-YDLive---{YDLive}
+        |-YDService---6*[{YDService}]
+        |-acpid
+        |-2*[agetty]
+        |-atd
+        |-auditd---{auditd}
+        |-barad_agent-+-barad_agent
+        |             `-barad_agent---3*[{barad_agent}]
+        |-crond
+        |-dbus-daemon
+        |-dockerd-+-docker-containe-+-docker-containe-+-mysqld---29*[{mysqld}]
+        |         |                 |                 `-8*[{docker-containe}]
+        |         |                 |-docker-containe-+-openresty---2*[openresty]
+        |         |                 |                 `-8*[{docker-containe}]
+        |         |                 `-10*[{docker-containe}]
+        |         `-10*[{dockerd}]
+        |-lsmd
+        |-lvmetad
+        |-ntpd
+        |-polkitd---5*[{polkitd}]
+        |-rpcbind
+        |-rsyslogd---2*[{rsyslogd}]
+        |-sgagent---{sgagent}
+        |-sshd---sshd---bash---pstree
+        |-systemd-journal
+        |-systemd-logind
+        |-systemd-udevd
+        `-tuned---4*[{tuned}]
+```
+
+## 2.5 软件的安装方式
+
+### 2.5.1 从源文件安装
+
+ - 三部曲： 在演奏三部曲之前，因为不确定源码中是否包含上次编译过的目标文件(\*.o), 最好使用`make clean`或`make distclean` 去除目标文件,以保证新编译出来的可执行文件是在自己机器上编译完成的
+    - 第一步: configure
+        - 检查待安装的源码的 Linux系统的相关软件属性，创建 Makefile  文件
+    - 第二步: make
+    - 第三部: make install 
+        - make 根据 Makefile 这个文件里关于intall 的项目， 将编译完成的文件安装到 预定的目录中。
+        - 一般有 etc, lib, bin, 和man 等目录分别代表 配置文件，函数库，执行文件，线上说明文件
+
+### 2.5.2 利用软件管理工具 rpm 和 dpkg
+
+ - RMP:  Redhat Package Manager 
+ - DPKG:  Debian Package 
+
+### 2.5.3 更酷的线上升级
+
+ - RMP/DPKG 这些机制 并没有完全解决软件依赖的问题。
+ - dpkg 
+    - 出现了 apt 线上升级机制
+ - RMP 
+    - Red Hat 系统的 yum 
+    - SUSE 系统的 Yast Online Update (YOU)
+    - Mandriva 的 urpm
+ - yum是利用python脚本语言实现的， 所以在python升级问题上要慎重，否则会导致yum 工作不正常，系统无法实现线上升级了。
+
+
+## 2.6 磁盘的管理方式
+
+ - Linux 文件系统格式: ExtN (N=2,3,4)
+
+### 2.6.2 磁盘的基本操作
+
+ - df, du, dd, fsck, mount
+ - df
+    - 查看系统中所有磁盘的整体使用量
+
+```bash
+# df
+Filesystem     1K-blocks    Used Available Use% Mounted on
+/dev/vda1       51474024 7246028  41921920  15% /
+devtmpfs         3995892       0   3995892   0% /dev
+tmpfs            4005396      24   4005372   1% /dev/shm
+tmpfs            4005396     436   4004960   1% /run
+tmpfs            4005396       0   4005396   0% /sys/fs/cgroup
+tmpfs             801080       0    801080   0% /run/user/0
+```
+
+ - Filesystem  
+    - 磁盘分区。 
+    - 之所以叫它是文件系统，是因为每一个磁盘分区都是一个 文件系统的具体实例。如果套用面向对象的说法就是：类和对象   
+        - ExtN 就是类， 具体的磁盘分区就是 这个类的对象
+ - Mounted on   
+    - 挂载点， 它是某个具体的目录
+
+ - 具体的磁盘分区会与某个具体的目录有关
+    - 其实在这些所谓的分区中，只有 /dev/vda1 才是真正的磁盘分区，而这个名称则是这个磁盘分区的"设备名"
+    - Linux系统中， /dev 目录下的所有文件都与一个具体的设备有关。 有物理的，也有虚拟的。而 sda1 就是一个物理的设备，它对应系统第一个串口硬盘的第一个分区。
+    - 那么第二个分区呢？  sda2
+    - 对应整个硬盘就是  sda， 第二块硬盘就是 sdb...
+    - /dev/mapper/\*  下的是虚拟设备， 它实际上是 逻辑卷。
+ - tmpfs 这个设备在什么地方？  
+    - 答案是没有。 它不对应任何设备。 
+    - 它实际上是真正的文件系统名称。而这个文件系统是在内存中虚拟的， 与具体的硬盘无关， 所以也没有具体的设备。
+    - 这样的文件系统还有很多， 比如 procfs, sysfs 等。。。
+
+---
+
+ - du
+    - df命令是用来观察总体磁盘使用量的
+    - 要观察局部使用量，需要使用 du 命令.
+    - df 可以通过读取磁盘的superblock 来实现， 而du 命令不同，它要搜索所有的 inode 来计算局部数据， 所以du 的执行效率， 要比df 差很多.
+
 
 
 
