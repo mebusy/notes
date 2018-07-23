@@ -312,6 +312,114 @@ updatedb
  - 更新常用的搜索命令是 `which` 
     - 只是在$PATH 环境变量中指定的路径来搜索可执行文件的所在位置。
 
+ - find 
+    - 无所不能，效率极差。 因为它不使用什么数据库，而是 从磁盘中乱找一气
+
+```
+# 找到 在3天前的那天  发生变化的所有文件
+find / -mtime 3
+
+# 查询3天内发生变化的所有文件
+find / -mtime -3
+
+# 查询3天以前 发生变换的所有文件
+find / -mtime +3
+
+# 列出一天内 变化的文件的详细信息
+find / -mtime -1 -exec ls -l {} \;
+```
+
+## 2.4 程序的执行问题
+
+ - 如何在命令行下同时执行多个程序？
+    - 同时开几个终端的做法 你就别耍这个小聪明了，因为那个不算。
+
+### 2.4.1 执行程序的方法, 以及多任务协调机制
+
+```
+# tail -f logs/error.log
+....
+
+// Ctrl + Z is used to suspend a process by sending it the signal SIGSTOP
+^Z
+
+// switch to background
+# bg
+[1]+ tail -f logs/error.log &
+
+// directly create a background job
+# tail -f logs/access.log &
+[2] 7301
+...
+
+# jobs
+[1]-  Running                 tail -f logs/error.log &
+[2]+  Running                 tail -f logs/access.log &
+
+// switch task 1 to foreground
+# fg 1
+tail -f logs/error.log
+...
+
+// kill job
+# kill -9 %2
+# jobs
+[2]+  Killed                  tail -f logs/access.log
+# jobs
+
+```
+
+ - 还有一个 十分棘手的问题，就是不希望任务被无故干掉
+    - 任务在什么时候会被无故干掉呢？  你退出终端的时候就会。
+    - 因为 linux下 任务是与 操作者终端关联的，与其关联的所有任务都会被干掉。
+    - 只要你退出了终端，与其关联的所有任务都会被干掉。 
+ - `nohup` 能保证被他启动的任务 脱离于终端的关联。 一般的用法是:
+    - `nohup [命令于参数] &`
+    - 这样名的所有输出都会输出到 nohup.out 这个文件中
+
+
+### 2.4.2 计划任务
+
+ - 执行一次性的命令使用 `at`
+ - 执行周期性的命令`cron`
+
+```
+// list
+# crontab -l
+*/1 * * * * /usr/local/qcloud/stargate/admin/start.sh > /dev/null 2>&1 &
+
+// edit
+# crontab -e 
+
+// remove
+# crontab -r
+
+// 以某用户的身份来控制 cron 表
+# crontab -u
+```
+
+ - 一个 cron 任务在 cron表 用一行来表示。
+    - 每一行被分为两列，左边是时间，右边是具体运行的命令
+    - 时间由5个部分组成 ， 空格隔开
+ - 一个cron任务的完整定义:
+    - `分钟 小时 日 月 星期几(0-6) [用户名] 命令`
+ - 如: 设定在 8月1日，每到整点就提醒:
+    - `0 * 1 8 * echo 提醒`
+ - 想 改成8月1日，12点， 每隔15分钟提醒一次
+    - `0,15,30,45 1 8 * echo 提醒`
+    - 改进一下 `*/15 1 8 * echo 提醒`
+
+---
+
+cron 时间符号 | 含义
+--- | --- 
+
+`*` | 任意时间
+`,`  | 2,3 表示 2和3 都行
+`-`  | 代表连续时间,2-4表示2,3,4
+`*/n` | 表示每隔时间单位
+
+
 
 
 
