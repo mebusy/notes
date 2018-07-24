@@ -755,7 +755,7 @@ devpts               /dev/pts             devpts     mode=0620,gid=5       0 0
 
 
 
-### 2.6.4 弹性调整容量--逻辑卷
+### 2.6.4 弹性调整容量--逻辑卷  TODO page 109
 
  - /dev/mapper/\* 这些都是逻辑卷
  - 什么是逻辑卷？
@@ -775,8 +775,125 @@ devpts               /dev/pts             devpts     mode=0620,gid=5       0 0
 
 ---
 
- 
+ - 基本术语与原理
+ - Physical Volume, PV, 物理卷
+    - 具体硬盘分区， 或者与 硬盘分区具有相同功能的设备， 比如 RAID
+    - PV 是 LVM的基本存储单元。
+    - 但是与 普通的硬盘分区相比， 物理卷 还要包含与 LVM 相关的管理参数
+ - Volume Group, VG,  卷组
+    - 卷组 类似于 非LVM系统中的物理硬盘， 由多个物理卷组成
+    - 可以在卷组上 创建一个或多个 LVM 分区
+ - TODO
+     
 
+## 2.7 解决上网问题  TODO
+
+### 2.7.2 相关配置文件
+
+ - 网络设备地址信息可以从网络接口配置文件中获取， 它们通常在 `/etc/sysconfig/network-scripts/`  目录下
+ - ifcfg-xxxx 就是网卡的配置文件
+
+```bash
+# cat /etc/sysconfig/network-scripts/ifcfg-eth0
+# Created by cloud-init on instance boot automatically, do not edit.
+#
+BOOTPROTO=none   启动时 IP取得的协议  static/dhcp/none 
+DEFROUTE=yes
+DEVICE=eth0     网卡名称
+GATEWAY=10.23.1.1     
+HWADDR=52:54:00:17:46:72
+IPADDR=10.23.1.2
+NETMASK=255.255.255.0
+NM_CONTROLLED=no
+ONBOOT=yes      开机启动网卡
+TYPE=Ethernet   网卡的类型为 以太网类型
+USERCTL=no
+```
+
+ - 还有一些 ifup-XXX , ifdown-XXX 的文件， 它们负责关闭或开启某项网络功能，比如拨号网络等
+
+---
+
+ - Linux 使用 `/etc/resolv.conf` 文件来设定 DNS 服务器。 它的内容可如下表示
+    - 最多支持3个域名服务器
+
+```
+nameserver 183.60.83.19
+nameserver 183.60.82.98
+```
+  
+## 2.8 不能割舍的shell
+
+### 2.8.1 bash
+
+ - 在一般的Linux发行版中， bash 是 `/bin` 下的几个重量级“人物”之一
+    - alias 
+    - histroy
+    - job contorl
+        - ps
+        - kill
+        - jobs
+        - bg
+        - fg
+    - 管道 pipe 与重定向 
+
+ - kill 是用来杀掉进程，但它的实际目的远不止如此，它会想进程发信号，进程听到从操作系统的信号后开始回应，很“优雅”地退出操作。
+
+```
+# kill -l
+ 1) SIGHUP   2) SIGINT   3) SIGQUIT  4) SIGILL   5) SIGTRAP
+ 6) SIGABRT  7) SIGBUS   8) SIGFPE   9) SIGKILL 10) SIGUSR1
+11) SIGSEGV 12) SIGUSR2 13) SIGPIPE 14) SIGALRM 15) SIGTERM
+16) SIGSTKFLT   17) SIGCHLD 18) SIGCONT 19) SIGSTOP 20) SIGTSTP
+21) SIGTTIN 22) SIGTTOU 23) SIGURG  24) SIGXCPU 25) SIGXFSZ
+26) SIGVTALRM   27) SIGPROF 28) SIGWINCH    29) SIGIO   30) SIGPWR
+31) SIGSYS  34) SIGRTMIN    35) SIGRTMIN+1  36) SIGRTMIN+2  37) SIGRTMIN+3
+38) SIGRTMIN+4  39) SIGRTMIN+5  40) SIGRTMIN+6  41) SIGRTMIN+7  42) SIGRTMIN+8
+43) SIGRTMIN+9  44) SIGRTMIN+10 45) SIGRTMIN+11 46) SIGRTMIN+12 47) SIGRTMIN+13
+48) SIGRTMIN+14 49) SIGRTMIN+15 50) SIGRTMAX-14 51) SIGRTMAX-13 52) SIGRTMAX-12
+53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9  56) SIGRTMAX-8  57) SIGRTMAX-7
+58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2
+63) SIGRTMAX-1  64) SIGRTMAX
+```
+
+### 2.8.2  环境变量
+
+ - 变量包括 局部变量和 环境变量
+    - 局部变量是私有的， 无法传递给子shell
+ - 可以使用 set,env, export 来设置环境变量， unset 来清除设置 , 使用readonly 来设置 只读属性
+
+
+```bash
+# export ENVTEST="ENV1"
+# env | grep ENVTEST
+ENVTEST=ENV1
+# unset ENVTEST
+# env | grep ENVTEST
+# 
+```
+
+### 2.8.3 bash的配置文件
+
+ - login shell :  在输入了 用户名/密码 后才启动的shell
+ - non-login shell:  不需要做重复的登陆操作 获取bash 界面， 例如在x-window环境下来启动终端
+
+---
+
+ - 系统配置文件  `/etc/profile`
+    - 只有 login shell 才会读取系统设置文件 `/etc/profile` , 它是系统整体的配置文件
+    - 该配置文件里 包含很多重要的变量信息， 每隔用户登陆取得bash后一定会读取这个配置文件。
+    - 如果你想要所设置的变量对所有用户起作用， 就要在这个地方设置。
+    - `/etc/profile` 还会调用如下的外部设置文件
+        - `/etc/inputrc`  设置bash热键，等等
+        - `/etc/profile.d/*.sh`  bash操作界面，语系， 等
+ - 用户的个性设置文件
+    - login shell 读取完  `/etc/profile` ， 就会读取用户的个人配置文件。 主要是3个隐藏文件:
+        - `~/.bash_profile , ~/.bash_login , ~/.profile`
+        - 按顺序读取，一旦读取到，忽略后面的文件
+        - `~/.bash_profile` 还会尝试读取 `~/.bashrc`
+    - 如果 `/etc/bashrc` 存在的话， 它会被  `~/.bashrc` 调用
+ - non-login shell 会直接读取  `~/.bashrc`
+    - 所以个人需要的设置 写在 `~/.bashrc` 文件中即可
 
 
 
