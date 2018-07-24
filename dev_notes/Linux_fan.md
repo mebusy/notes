@@ -1,5 +1,7 @@
 
-# Linux
+# Linux 
+
+# 2 用户,文件,文件系统
 
 ## 2.2 用户的身份
 
@@ -669,6 +671,111 @@ tmpfs             801080       0    801080   0% /run/user/0
     - df 可以通过读取磁盘的superblock 来实现， 而du 命令不同，它要搜索所有的 inode 来计算局部数据， 所以du 的执行效率， 要比df 差很多.
 
 
+--- 
+
+ - dd
+    - 严格来说，dd不属于 管理磁盘的命令，它的功能是 convert and copy a file
+    - 如果你想要 直接读写磁盘的每一个扇区，或者镜像整个磁盘， dd是很好的选择
+ - 复制一个文件 `dd if=/etc/bashrc of=./bashrc`  ,  作用同 cp
+    - `dd if=input_file of=out_file`
+ - 模拟 cat
+    - `dd if=/etc/bashrc` , 
+ - 制作第一个串口硬盘 第一个分区的镜像文件 
+    - `dd if=/dev/sda1 of=./sda1.img`
+    - 如果希望生成的镜像文件压缩一下: `dd if=/dev/sda1 | gzip -9 > ./sda1.img`
+ - 将整个硬盘做一个镜像
+    - `dd if=/dev/sda | gzip -9 > ./sda.img`
+ - 恢复这个磁盘的内容 (是不是想到了windows下的 ghost...)
+    - `gzip -dc ./sda.img | dd of=/dev/sda`
+ - 使用 bs/count 参数，指定 依次读写的字节数和读写次数， 比如 要备份磁盘的主引导记录：
+    - `dd if=/dev/sda of=./mbr.img bs=512 count=1`
+    - 以上 读取 sda磁盘的 首个512字节的信息，也就是第一个扇区的内容。将这个文件反汇编掉，就能知道计算机是怎么启动的了
+ - 使用 dd 还能 
+    - 销毁磁盘数据
+        - `dd if=/dev/urandom of=/dev/sda1`
+            - /dev/urandom 代表随机数， 每次读入的数据都不会相同
+    - 测试磁盘读写速度
+        - `dd if=/dev/zero of=./test.file bs=1024 count=1000000`
+            - /dev/zero 代表0 ， 每次读入的数据都是0
+        - `dd if=./test.file  bs=8k | dd of=/dev/null` 
+            - /dev/null 主要面对写， 相当于是一个黑洞一样，无论写什么都会消失的无影无踪
+
+
+---
+
+ - fsck 
+    - fsck 很少手工执行，基本上都是在 系统启动阶段就执行了
+    - 与 windows的 SCANDISK一样， 对 **文件系统** 损坏进行修复
+    - `fsck -f -t ext3 /dev/hda3`  ( fsck -t 文件系统 设备名 )
+    - 参数 -f 要求进行强制检查。 如果没有-f ， 没有报错的磁盘中是不会做检查的。
+        - 磁盘什么时候会报错呢？   一般就是 非法关机的时候。
+
+--- 
+
+ - mount
+    - 在 windows中，如果有一个软件 必须在D盘下的某个目录中读取文件， 而这个软件若是在一个没有D盘的系统中就无法执行了
+    - 相反在Linux下， 只需要特意创建一个目录即可，如果需要单独的磁盘分区来存储它，是 mount 命令指定给它就好了
+ - `mount [-t 文件系统] 设备名称  挂接点`
+    - 比如要将 系统中 第二块串口硬盘的第一个分区 ， 挂接到 /data 目录下:
+        - `mount /dev/sdb1 /data` ,  或
+        - `mount -t vfat /dev/sdb1 /data`   
+        - 很多时候 -t 参数是多余的，因为 ExtN类的基于inode的文件系统，都是有超级块的。利用超级块就能够了解到具体的文件系统
+            - 第二种方法 多用于 挂接 windows 分区时使用, 因为这些文件系统不具备超级块
+ - 挂接磁盘分区 还只是 mount 命令的最平常的一种用法。
+ - 由于 linux 使用设备文件来描述一个设备， 那么如果有一个 实际的文件中的内容 与在某个磁盘设备文件中能读到的内容一致， 那么这个实际的文件也能够被挂载进来
+    - 比如 我们之前用 dd 创建的 sda1.img (未压缩)，就可以挂接到一个目录上
+        - `mount -o loop ./sda1.img  /mnt/sda1`
+    - 我们下载到的ios 文件 也可以这样
+        - `mount -o loop ./Centos-6.4-x86-64-bin-DVD1.ios /mnt/centos`
+    - `-o` 选项:
+        - ro  只读
+        - rw  可读写
+        - loop 说明要挂接的文件是一个虚拟设备， 而且这个虚拟设备是环形的设备(光盘，硬盘磁碟都是环形的)。
+ - unmount
+    - `unmount /data` , 或 - `unmount /dev/sdb1`
+         
+### 2.6.3 /etc/fstab 文件 -- 决定分区的连接
+
+```
+# cat /etc/fstab
+/dev/vda1            /                    ext3       noatime,acl,user_xattr 1 1
+proc                 /proc                proc       defaults              0 0
+sysfs                /sys                 sysfs      noauto                0 0
+debugfs              /sys/kernel/debug    debugfs    noauto                0 0
+devpts               /dev/pts             devpts     mode=0620,gid=5       0 0
+```
+
+ - 可以看到，每条记录一共分为 6个字段
+    - 设备文件，磁盘卷标 ， 或者 UUID
+    - 挂接点
+    - 文件系统类型
+    - mount 命令的-o 选项参数
+    - 是否使用 dump 命令备份: 0代表不做，1代表每天备份
+    - 是否使用 fsck 检查磁盘， （一般只有 根目录 `/` 是1 ）
+
+
+
+### 2.6.4 弹性调整容量--逻辑卷
+
+ - /dev/mapper/\* 这些都是逻辑卷
+ - 什么是逻辑卷？
+    - 我有一个同事，在自己的电脑中，与他的Windows 并行安装了一个 Ubuntu.
+    - 他在使用Linux的时候总是显得很小气， 只给他的Ubuntu 分了10G的硬盘空间。并划分了3个分区分别给 `/`,`/home`和swap. 
+    - 没过几天他就遇到了麻烦。 他想用这个linux系统来定制一套Android系统，于是他去下载 android的全部源代码。但是没想到7G磁盘空间不够装Android的源代码。
+    - 如果是你遇到这样的问题，要怎么做？
+        - 再从 硬盘中划分一个更大的区出来,比如100G
+        - 然后再将 这个分区格式化为Linux的文件系统， 并将 `/home` 目录下的内容全部复制到 新的分区
+        - 最后修改 `/etc/fstab` 文件， 让新的分区称为 `/home` . 重启后大功告成。
+    - 但是如果觉得100G给的太多了，Windows 又不够用了怎么办？ 难道重复上述动作，复制文件要花费很长很长时间的。
+ - 逻辑卷 就是来解决这个问题的， 它能弹性地调整文件系统的容量。
+ - 从理论上来说，逻辑卷 就是在磁盘分区 和 文件系统之间 增加了一个逻辑层。
+    - 这样，当文件系统的容量觉得不够用时，可以向逻辑卷中增加新的分区来实现扩大容量的母的。
+    - 当文件系统过大而有磁盘浪费的时候，可以选择去除一些 基本没有使用的磁盘分区 来达到减少容量的母的。
+ - 在 Linux系统中 实现逻辑卷功能是 LVM (Logical Volumn Manager)
+
+---
+
+ 
 
 
 
