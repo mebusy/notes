@@ -173,7 +173,8 @@ a | b | c | d
 
  a | b | c | d
 --- | --- | --- | ---
-[1. 重定向和管道 ](https://github.com/mebusy/notes/blob/master/dev_notes/LINUX_%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E7%AE%A1%E9%81%93.md)  | 
+[用户,文件系统,常用命令](https://github.com/mebusy/notes/blob/master/dev_notes/Linux_fan.md) | 
+[重定向和管道 ](https://github.com/mebusy/notes/blob/master/dev_notes/LINUX_%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E7%AE%A1%E9%81%93.md)  | 
 
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
