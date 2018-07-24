@@ -5,6 +5,10 @@
      - [mono](#654db8a14a5f633b9ba85ec92dc51f7c)
      - [firewall](#36e5371ad91c9d2d09e9d7c0e76055db)
      - [Mysql](#9edb3c572b56b91542af659480518681)
+     - [查看 TIME_WAIT](#6dfa7a8202801ab86e07a577ba4da59f)
+     - [TIME_WAIT 优化](#0d0306c1df74d541e32e7dcbaaf0fe69)
+     - [linux 系统监控](#65395697d2dab77dd22f054b888fb803)
+     - [ab test](#107aedca6bab06cabee6aac093e48464)
 
 ...menuend
 
@@ -115,6 +119,8 @@ mysql> FLUSH PRIVILEGES;
 ```
 
 
+<h2 id="6dfa7a8202801ab86e07a577ba4da59f"></h2>
+
 ## 查看 TIME_WAIT
 
 ```
@@ -122,6 +128,8 @@ $ netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
 ESTABLISHED 20002
 TIME_WAIT 1
 ```
+
+<h2 id="0d0306c1df74d541e32e7dcbaaf0fe69"></h2>
 
 ## TIME_WAIT 优化
 
@@ -134,6 +142,8 @@ net.ipv4.tcp_tw_recycle = 1
 
 # 然后执行 /sbin/sysctl -p 让参数生效。
 ```
+
+<h2 id="65395697d2dab77dd22f054b888fb803"></h2>
 
 ## linux 系统监控
 
@@ -167,6 +177,8 @@ $ dstat -c --top-cpu -dn --top-mem
 $ dstat --time --cpu --mem --load --output report.csv 1 5
 ```
 
+
+<h2 id="107aedca6bab06cabee6aac093e48464"></h2>
 
 ## ab test 
 
