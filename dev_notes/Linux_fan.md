@@ -482,7 +482,7 @@ ps 命令输出字段 | 说明
 --- | ---
 F  | flag, 执行权限，0:普通，4:root, 1:仅fork没有exec
 S  | status, R:running,S:sleep可唤醒，D:不可被唤醒状态，一般等待I/O, T:停止，比如被调试的时候, Z:僵尸，程序已终止，但是无法被移除到内存外
-UID | 此进程拥有着 UID
+UID | 此进程拥有者 UID
 PID |  此进程ID
 PPID | 此进程的父进程ID
 C | CPU使用率
@@ -895,5 +895,66 @@ ENVTEST=ENV1
  - non-login shell 会直接读取  `~/.bashrc`
     - 所以个人需要的设置 写在 `~/.bashrc` 文件中即可
 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/linux_fan_login_shell.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/linux_fan_nonlogin_shell.png)
+
+
+## 2.9 文本处理
+
+### 2.9.3  grep 
+
+ - grep: Global search Regualr Expression and Print out the line 
+ - egrep :  grep 的扩展，支持更多的正则表达式元字符
+ - fgrep : fixed (or fast) grep . 不实用 正则表达式搜索
+ - linux 中所使用的是 GNU版本的grep,  可以直接通过 -G, -E, -F 选项来使用 grep, egrep, fgrep
+ - grep 在一个或多个 文件中搜索 字符串模版
+    - 字符串模版使用 正则表达式来描述
+    - 如果模版包括空格， 则需要引号扩起来
+    - 模版后的所有字符串 被看作 文件名
+
+---
+
+ grep RE 元字符 | 匹配对象
+ --- | ---
+ ^ | 句首
+ $ | 句尾
+ \* | 出现 0+ 次
+ `[]` |  ·
+ `[^]` | · 
+ (...) | ?
+ \<  | 词首
+ \>  | 词尾
+
+
+### 2.9.4 排序和去重
+
+ - `cut -d' ' -f1 ~/.bash_history  | sort -d | uniq -c | sort -nr | head`
+    - 这行脚本的功能是 统计出 你最常用的十条 历史命令 及其使用次数
+ - `cut -d' ' -f1 ~/.bash_history`
+    - 从 bash_histroy 文件中， 以空格为分隔符 ( `-d' '` ) 剪出第一列 ( -f1 ) 
+    - 如果要剪出多列， 可以 -f1,3   -f1-5 等
+ - `sort -d` 
+    - 按字典序 (-d) 排序剪出的第一列
+ - `uniq -c`
+    - 对文本去重， 并统计次数 (-c) 
+    - sort 和 uniq 经常需要联合起来使用。 
+        - uniq 去重功能，只能针对连续的多行进行去重， 只剩下唯一的一条
+        - 不排序的话， 不连续的重复行 就去不掉了
+ - `sort -nr` 
+    - 按数字排序 (-n) 并 反序 (-r) 排列 , 没有 -r 默认是 生序排列
+ - `head` 
+    - 输出显示文件前面部分的内容，默认显示前面10行的内容.
+
+
+### 2.9.5 文件对比命令 -- diff
+
+ - diff 用来比较两个文本文件的差异， 是代码版本管理的基石之一
+ - diff 采用 动态规划算法实现差异比较， 次算法的基础是最长公共子序列。
+ - diff 提供 正常(normal diff), 上下本(context diff)，和 合并(unified diff) 三种报告格式
+    - normal 格式的diff 不太容易读
+    - context 格式在文件相似度比较高的情况下会 显示大量重复的内容，很浪费空间
+ - `diff -ur file01_old file01_new > file01.path`
 
 
