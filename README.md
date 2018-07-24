@@ -174,6 +174,7 @@ a | b | c | d
  a | b | c | d
 --- | --- | --- | ---
 [用户,文件系统,常用命令](https://github.com/mebusy/notes/blob/master/dev_notes/Linux_fan.md) | 
+[Centos 7](https://github.com/mebusy/notes/blob/master/dev_notes/Centos7.md) | [docker](https://github.com/mebusy/notes/blob/master/dev_notes/docker.md)  | 
 [重定向和管道 ](https://github.com/mebusy/notes/blob/master/dev_notes/LINUX_%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E7%AE%A1%E9%81%93.md)  | 
 
 
@@ -186,7 +187,7 @@ a | b | c | d
 [Learn to Learning](https://github.com/mebusy/notes/blob/master/dev_notes/Learn2Learning.md) | [RaspBerryPi I](https://github.com/mebusy/notes/blob/master/dev_notes/RaspberryPi_I.md) | [RaspPi 2](https://github.com/mebusy/notes/blob/master/dev_notes/RASPI_2.md) | [Software Debug](https://github.com/mebusy/notes/blob/master/dev_notes/SoftwareDebugging.md) 
 [github](https://github.com/mebusy/notes/blob/master/dev_notes/github.md) | [sublime](https://github.com/mebusy/notes/blob/master/dev_notes/sublime.md)   | [深入浅出nodeJS](https://github.com/mebusy/notes/blob/master/dev_notes/深入浅出nodeJS.md)	| [Html5 Game Program](https://github.com/mebusy/notes/blob/master/dev_notes/Html5GameProgramming.md)
 [MacOSX Tips](https://github.com/mebusy/notes/blob/master/dev_notes/MacOSX_Tips.md) | [workingTips](https://github.com/mebusy/notes/blob/master/dev_notes/workingTips.md)	|  [VIM](https://github.com/mebusy/notes/blob/master/dev_notes/vim.md) | [lib tcod](https://github.com/mebusy/notes/blob/master/dev_notes/libtcod_python.md) 
-[blender api](https://github.com/mebusy/notes/blob/master/dev_notes/blender.md) | [Centos 7](https://github.com/mebusy/notes/blob/master/dev_notes/Centos7.md) | [docker](https://github.com/mebusy/notes/blob/master/dev_notes/docker.md) | [mdfind](https://github.com/mebusy/notes/blob/master/dev_notes/mdfind.md)
+[blender api](https://github.com/mebusy/notes/blob/master/dev_notes/blender.md) | [mdfind](https://github.com/mebusy/notes/blob/master/dev_notes/mdfind.md) | 
 
 
 
