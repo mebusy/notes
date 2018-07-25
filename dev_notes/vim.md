@@ -9,7 +9,8 @@
          - [安装](#e655a410ff21cd07e7a0150491e04371)
          - [安装排错](#154a11cd7a6e424863c28aa29ad576d1)
      - [Markdown](#2182a74bab7188d959e795d9301e87ff)
-     - [install MacVim](#b081af9a95521e478ee6f8af8675cded)
+     - [install VIM8 on Centos7](#a80bb46a45ac01cfeecb23364ec0bb63)
+     - [install YouCompleteMe on Centos7](#e452f90f1770e33615e0eb6ee4a22953)
      - [check vim compile features](#95cec38eef2cf37c01f98f869cb8e4bc)
  - [VIM 正则表达式](#072db16a2fab851f315188d28a992133)
      - [关于magic](#9e8ec078a153381638b723f644bc0f67)
@@ -208,6 +209,8 @@ snor <silent> <C-\> <esc>i<right><c-r>=TriggerSnippet()<cr>
  - chrome 安装插件 :  [Markdown Preview Plus](https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl)
  - 打开 `chrome://extensions/` ， 在设置页中勾选 “Allow access to file URLs”
 
+<h2 id="a80bb46a45ac01cfeecb23364ec0bb63"></h2>
+
 ## install VIM8 on Centos7
 
 ```
@@ -244,6 +247,8 @@ make install
 –prefix=/usr/local/vim：指定将要安装到的路径(自行创建)
 ```
 
+
+<h2 id="e452f90f1770e33615e0eb6ee4a22953"></h2>
 
 ## install YouCompleteMe on Centos7
 
