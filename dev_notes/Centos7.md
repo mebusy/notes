@@ -18,16 +18,7 @@
 # Centos7
 
 
-<h2 id="067a2f97475db1552b986c54fc094f60"></h2>
 
-## YouCompleteMe
-
- 1. yum 安装 clang
- 2. build YCME
-
-```
-CC=`which clang` CXX=`which clang++`  ./install.py ......
-```
 
 <h2 id="654db8a14a5f633b9ba85ec92dc51f7c"></h2>
 
