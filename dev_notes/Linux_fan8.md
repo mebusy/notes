@@ -328,8 +328,182 @@ VARIABLES | 所有已定义的变量名列表， 不包含目标专有变量。 
 
 ### 8.4.4 宏与函数
 
+ - 宏的概念与经递归扩展的变量基本上是一致的。 只是写法不同
+ - 宏定义的语法:
+    - 只要将你的命令，写在 `...` 那里就行了 , 不过要注意命令的写法
+
+```
+define MACRO_NAME
+    ...
+endef
+```
+
+ - 使用定义好的宏:
+    - `$(MACRO_NAME)`  or `${MACRO_NAME}`
+ - 宏还可以引用参数:
+    - 使用这样的自动变量 `$1, $2, $3 ... ` 
+    - 使用:   `$(call MACRO_NAME [, arg1, ... , argn])`
+        - i.e. `$(call get_files_list,a,b,c)`
+ - 其实 Makefile中已经内置很多非常有用的函数，不过调用方法与我们自定义的函数不一样, 语法是这样的:
+    - `$(function arg1,[,argn])`
+    - 明显比我们自定义的要简单。
+    - 这是因为 Makefile本不打算支持自定义函数的，只是需求太多了，也就得支持了。
+        - 它并没有采用与 内置函数 相一致的语法， 取而代之的是一个巧妙的方法。 
+        - 就是 提供了一个名为 `call` 的内置函数。  用这个函数使用一些技巧来扩展宏
+        - 而且 `call` 函数不只是对 宏起作用， 对变量同样有效。
+ - 无论是宏还是函数，都是有返回值的。
+    - 这个返回值就是宏或函数命令的标准输出。
 
 
+### 8.4.5 条件指令
+
+```
+ifdef, ifndef, ifeq, ifneq
+else
+endif
+```
+
+
+## 8.5 Makefile 实战
+
+### 8.5.1 自动产生依赖
+
+ - 依赖关系始终是一个特别烦人的事情，尤其是 C的头文件。
+    - 因为只要修改了头文件， 那么所有引用的 .c 文件都应该被重新编译。
+ - 要手动维护这些依赖关系 既麻烦又容易出错。
+ - 如果能够自动维护生成，那就真是轻松愉快了。
+ - make 和 gcc 通过 狼狈为奸 成就了这种可能。
+
+---
+
+ - gcc 提供了一个 `-M` 和 `-MM` 的命令选项
+    - 前者可以输出一个 .c 文件所引入的所有头文件
+    - 后者则排除掉了 系统提供的头文件，只保留 用户自定义的头文件。
+ - 它的输出差不多是这样:
+    - 很熟悉吧，这不就是 Makefilede 目标和条件吗？ 可见gcc  与make 的关系不一般了.
+
+```
+# gcc -MM Stack.cpp
+Stack.o: Stack.cpp Stack.h UMCMacros.h HTTPRequest.h
+```
+
+ - 一个例子
+
+```
+SOURCES := $(wildcard *.cpp)
+
+all: Stack.o
+>---@echo $(SOURCES) , $$$$
+
+-include $(subst .cpp,.d,$(SOURCES))
+%.d:%.cpp
+>---gcc -MM $< > $@.$$$$; \
+>---sed 's,\($*\)\.o[:]*,\1.o $@:,g' < $@.$$$$ > $@; \
+>---rm -rf $@.$$$$
+```
+
+---
+
+ - \*  说明
+ - `SOURCES := $(wildcard *.cpp)`
+    - 列出当前目录下所有的 cpp 文件
+    - i.e. `RobotMgr.cpp RobotLogin.cpp Stack.cpp RobotGetUserData.cpp RobotChallenge.cpp HTTPRequest.cpp RobotBattle.cpp`
+ - `gcc -MM $< > $@.$$$$;`
+    - 根据 cpp 生成 类似 .d.9203  文件，文件的内容类似: `Stack.o: Stack.cpp Stack.h UMCMacros.h HTTPRequest.h`
+    - `$$` 是 bash 里的一个变量，表示 process ID (PID) of the script itself.
+ - sed 语句 是往 .d 文件中 插入 .d文件名本身 
+    - `Stack.o Stack.d: Stack.cpp Stack.h UMCMacros.h HTTPRequest.h`
+ - 注意 模版规则 的命令 需要写在 一行
+    - 多行的话，每一行 `$$` 生成的数字都会不一样
+ - `-include $(subst .cpp,.d,$(SOURCES))`
+    - subst 是字符串替换 ,  将参数1的内容，替换为参数2, 替换目标是参数3 , 并将结果返回
+        - 将 SOURCE 变量中的 .cpp 替换为 .d 
+    - 这里 include 就相当于 要引入所有的 .d 文件。 如果找不到，就 执行最后的模式规则来生成 .d 文件。
+        - 这样之前产生的那些 依赖关系(位于.d 文件中) 就被引入到这个 Makefile 中了.
+ - 为什么 确定依赖关系的规则中 有一个 .d 做目标 ?
+    - 为了保证当有文件被修改的时候， 不会遗漏依赖关系变化。 
+    - 比如 你在 一个.cpp 的头文件中 又引入了新的头文件. 这时依赖关系 需要更新， 但是我们确没有 .h -> .d 的模式规则。 加入.d 就可以解决这个问题。
+ - 新版本的 gcc 又配合这个设计，提供了一个新的 `-MT` 选项。 可以直接在 依赖关系中 加入 .d 文件
+
+
+```
+SOURCES := $(wildcard *.cpp)
+
+all: Stack.o
+>---@echo $(SOURCES) , $$$$
+
+-include $(subst .cpp,.d,$(SOURCES))
+%.d:%.cpp
+>---gcc -MM -MT "$@ $(@:.d=.o)" $<   > $@
+```
+
+### 8.5.2 递归式的Makefile
+
+ - Makefile 里 再调用make 去执行另一个 Makefile.
+ - 为什么要递归呢？ 动机很简单： 
+    - 处理单一目录的Makefile 可以非常简单， 目录越多越复杂。
+    - 给每个目录准备一个 Makefile, 可以很好的降低复杂度。
+
+```
+语法:
+
+cd subdir && $(MAKE)
+或
+$(MAKE) -C subdir
+```
+
+ - 这两条命令是等价的。 需要注意的两个地方
+    1. 一个被执行的 Makefile 在执行完毕后， 不需要类似 `cd ..` 这样的命令， 因为每个命令都有一个独立的 shell 环境
+    2. 永远使用 $(MAKE) 这样的变量来执行make, 这可以保证在一个系统中 安装了 多个版本make时， 使用的make就是你想要的
+ - Makefile的 caller 和 callee  之间你一定不希望完全没有联系。 
+    - 我们可能需要传递 1 变量 ， 2 命令行参数
+    - 但是 如果什么变量都传递 也会带来不小的麻烦， 所以也就有了下面的这些规则：
+
+---
+
+ 1. 在命令行上赋值的变量 默认传递， 并且仍以命令行方式传递
+ 2. Makefile 中定义的变量 默认不传递
+ 3. 用 export 命令可以 明确传递一个变量
+    - 和 bash 中的 export 不是一回事，不过用法一样
+    - `export CC CFLAGS`
+ 4. unexport 明确不传递某个变量
+ 5. 底层 Makefile 对上层 Makefile 传递的变量进行的修改，不会传递回上层。
+
+
+### 8.5.3 自动产生 Makefile  TODO(p343)
+
+ - 大多数 Linux 上以源代码发行的软件都没有 Makefile, 但是却带有一个 configure 文件
+    - 这是一个使用bash 脚本写成的程序， 它也是自动生成, configure 的作用就是生成Makefile文件
+ - configure 常用命令选项
+
+---
+
+ 选项名 | 描述
+--- | ---
+`--prefix=PREFIX` | 指定安装路径，默认 `/usr/local`
+`--exec-prefix=EPREFIX` | 指定默认的可执行程序安装路径，默认 PREFIX
+`--bindir=DIR`  |  可执行程序安装路径，默认 EPREFIX/bin
+`--libcdir=DIR` | 库文件安装路径， 默认的是 EPREFIX/lib
+`--sysconfdir=DIR` | 配置文件安装路径， 默认 PREFIX/etc
+`--includedir=DIR` | 需要安装的头文件路径， 默认 PREFIX/include
+`--disable-FEATURE`  | 是否关闭某个特性， 等同于 `--enable-FEATURE=no`
+`--enable-FEATURE=[ARG]MAKE_VERSION`  | 是否开启某个特性， ARG 是 yes 或 no 
+
+
+ - configure 还可以决定 生成软件时 使用什么养的 连接器，编译器，乃至编译器选项
+    - 这是通过命令中 给定的环境变量实现的
+
+
+ configure常用环境变量 | 描述
+--- | ---
+CC | C编译器
+CFLAGS | C 编译器选项
+LDFLAGS | 连接器选项
+CPPFLAGS | c++编译器选项
+
+
+ - configure 它是怎么生成的呢？  它又是怎么生成 Makefile的呢？
+    - 这里就要用到 Autotools 工具了.
 
 
 
