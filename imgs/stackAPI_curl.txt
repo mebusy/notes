@@ -1,0 +1,47 @@
+#get all 
+curl -X GET   http://10.192.81.82:5757/weapp/users   -H 'authorization: ACCESS_TOKEN' 
+
+#getOne
+curl -X GET  http://10.192.81.82:5757/weapp/users/test1?keys=\"score\"  -H 'authorization: ACCESS_TOKEN' 
+
+#create user
+curl -X POST   http://10.192.81.82:5757/weapp/users   -H 'authorization: ACCESS_TOKEN' -d "user_id=test01&keys=[]"
+curl -X POST   http://10.192.81.82:5757/weapp/users   -H 'authorization: ACCESS_TOKEN' -d "user_id=test01&keys=[ { \"key\":\"score\" , \"value\":0 } ]"
+
+#update user  , body 里需要带 user_id, 但是 不起作用
+curl -X PUT   http://10.192.81.82:5757/weapp/users/test01   -H 'authorization: ACCESS_TOKEN' -d "user_id=test01&keys=[ { \"key\":\"score\" , \"value\":1 } ]"
+
+
+# create challenge
+curl -X POST   http://10.192.81.82:5757/weapp/challenges   -H 'authorization: ACCESS_TOKEN' -d "user_id=test1"
+
+# get all challenge
+curl -X GET   http://10.192.81.82:5757/weapp/challenges   -H 'authorization: ACCESS_TOKEN'  
+
+# get One challenge
+curl -X GET   http://10.192.81.82:5757/weapp/challenges/2   -H 'authorization: ACCESS_TOKEN'  
+
+
+#join a challenge
+curl -X POST   http://10.192.81.82:5757/weapp/challenges/2/users/test2 -H 'authorization: ACCESS_TOKEN' -d"score=1"
+
+# set challenge data
+curl -X PUT   http://10.192.81.82:5757/weapp/challenges/2/users/test1 -H 'authorization: ACCESS_TOKEN' -d"score=11&status=playing"
+
+# delete a challenge
+curl -X DELETE   http://10.192.81.82:5757/weapp/challenges/2/users/test1 -H 'authorization: ACCESS_TOKEN'
+
+
+# share
+curl -X GET   http://10.192.81.82:5757/weapp/share/test1shareidididid   -H 'authorization: ACCESS_TOKEN'
+{"code":200,"data":[{"user_id":"test10"},{"user_id":"test2"},{"user_id":"test3"},{"user_id":"test4"},{"user_id":"test5"}]}
+
+
+node node_modules/knex/bin/cli.js  migrate:latest
+
+
+
+
+
+
+
