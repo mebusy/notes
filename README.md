@@ -175,6 +175,7 @@ a | b | c | d
 --- | --- | --- | ---
 [用户,文件系统,常用命令](https://github.com/mebusy/notes/blob/master/dev_notes/Linux_fan.md) | [系统结构](https://github.com/mebusy/notes/blob/master/dev_notes/Linux_fan3.md) | [Makefile](https://github.com/mebusy/notes/blob/master/dev_notes/Linux_fan8.md) | [特种文件系统](https://github.com/mebusy/notes/blob/master/dev_notes/Linux_fan9.md)
 [Centos 7](https://github.com/mebusy/notes/blob/master/dev_notes/Centos7.md) | [docker](https://github.com/mebusy/notes/blob/master/dev_notes/docker.md)  | 
+[大型网站技术架构](https://github.com/mebusy/notes/blob/master/dev_notes/WebArchitecture.md) | 
 [重定向和管道 ](https://github.com/mebusy/notes/blob/master/dev_notes/LINUX_%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E7%AE%A1%E9%81%93.md)  | 
 
 
