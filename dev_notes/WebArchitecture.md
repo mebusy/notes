@@ -380,6 +380,12 @@
  - 目前网站在线业务应用中 比较成熟的支持数据分片的分布式数据库产品 主要有 Amoeba 和 Cobar.  
  - 以 Cobar 为例， 部署模型如下:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cobar_model.png)
+
+ - Cobar 是一个分布式关系数据库访问代理， 介于应用服务器 和 数据库服务器之间( Cobar 也支持非独立部署， 以lib的方式和应用程序部署在一起 )。
+ - 应用程序通过 JDBC 驱动访问 Cobar集群， Cobar 服务器根据SQL和分库规则分解SQL, 分发到MySQL 集群不同的数据库实例上执行(每个MySQL实例都部署为主/从结构, 保证数据高可用)
+ - Cobar 系统组件模型如下:
+
 
 
     
