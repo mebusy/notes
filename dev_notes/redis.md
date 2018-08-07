@@ -79,5 +79,6 @@ struct sdshdr {
     - 通过 未使用空间， SDS实现了空间预分配和惰性空间释放两种优化策略。
         - 1. 空间预分配 
             - 对SDS进行空间扩展时，不仅会为SDS分配修改所必须的空间，还会分配和修改后长度相同的未使用空间，但是最大不会超过1MB.
-        - 
+            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ads_append.png)
+            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ads_append2.png)
 
