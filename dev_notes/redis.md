@@ -8,14 +8,14 @@
     - 关系数据库并不直接支持 交集计算操作，要计算两个集合的交集，除了需要对两个数据表执行 JOIN操作意外，还需要对合并的结果去重DISTINCT操作，最终导致交集操作的实现变得异常复杂。
     - Redis 内置了集合数据类型，其中的交集计算操作可以直接用于实现这个共同关注功能。
 
-# 1 第一章
+# 第一章
 
  - Redis数据库里面的每个键值对 都是由 对象组成的，其中
     - 数据库键 总是一个字符串对象
     - 值可以是 字符串对象, list object, hash object, set object, sorted set object
 
 
-# 2 第二章 简单动态字符串
+# 第二章 简单动态字符串
 
  - Redis没有直接使用 C字符串( `\0` 结尾 )，而是自己构建了一种名为简单动态字符串(simple dynamic string ,SDS) 的抽象类型, 并将 SDS用作Redis默认字符串表示。
  - 在Redis里面，C字符串只会作为 字符串常量string literal 用在一些无序对字符串值进行修改的地方，比如打印日志:
@@ -80,5 +80,27 @@ struct sdshdr {
         - 1. 空间预分配 
             - 对SDS进行空间扩展时，不仅会为SDS分配修改所必须的空间，还会分配和修改后长度相同的未使用空间，但是最大不会超过1MB.
             - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ads_append.png)
+            - 如果这时，我们执行 `sdscat( s " Tutorial" )` , 那么这次sdscat 将不需要执行内存重分配，因为未使用空间的13字节足以保存 9字节的" Tutorial"
             - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ads_append2.png)
+            - 注: 's' 后的省略号表示若干字符省略
+        - 2. 惰性空间释放
+            - 缩短SDS保存的字符串时， 程序并不立即使用内存重分配来回收缩短后 多出来的字节，而是使用 free属性将这些字节的数量纪录起来，并等待将来使用。 
+            - SDS 也提供了相应的API，让我们可以在有需要时，真正的释放SDS的未使用空间，所以不必担心内存浪费。
+
+
+### 2.2.4 二进制安全
+
+ - 二进制数据经常会包含 `\0` , 这给字符串处理带来了很大麻烦。
+ - SDS API 都是 binary-safe的。
+
+### 2.2.5 兼容部分C字符串函数
+
+ - 虽然SDS 是二进制安全的，但它们一样遵循C字符串以 `\0`结尾的惯例
+    - API 总会将SDS保存的数据的末尾设置为 `\0`
+    - 这是为了让那些保存文本数据的SDS可以重用一部分 <sting.h> 库定义的函数.
+
+
+# 第三章 链表
+
+
 
