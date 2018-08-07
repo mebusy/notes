@@ -41,6 +41,16 @@ struct sdshdr {
 }
 ``` 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/sds_example.png)
+
+ - 上图， free 为0， 表示这个SDS没有分配任何未使用空间
+    - len 为5，表示这个SDS保存了一个5字节长的字符串
+    - buf 属性是一个 char[], 
+ - SDS 遵循了C字符串以 `\0`结尾的惯例，保存`\0`的1字节不计算在SDS的len属性里面
+    - 为`\0`分配额外的1个字节，以及添加 `\0` 到字符串末尾的操作都是有SDS函数自动完成的。
+    - 所以这个 `\0`  对于SDS的使用者是完全透明的。
+    - 遵循 `\0` 结尾这一惯例的好处是，SDS可以直接重用一部分C字符串函数库里面的函数。
+        - `printf( "%s" , s->buf );`
 
 
 
