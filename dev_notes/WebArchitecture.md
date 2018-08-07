@@ -386,6 +386,19 @@
  - 应用程序通过 JDBC 驱动访问 Cobar集群， Cobar 服务器根据SQL和分库规则分解SQL, 分发到MySQL 集群不同的数据库实例上执行(每个MySQL实例都部署为主/从结构, 保证数据高可用)
  - Cobar 系统组件模型如下:
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Cobar_component.png)
+
+ - 前端通信模块 负责和应用程序通信， 接收到 SQL请求 `select * from users where userid in (12,22,23)` 后转交给 SQL解析模块，
+    - SQL解析模块获得SQL中的路由规则查询条件 `userid in (12,22,23)`  再转交给 SQL路由模块
+    - SQL路由模块根据路由规则配置(userid 偶数至数据库A，奇数至数据库B)， 将应用程序提交的SQL 分解为两条：
+        - `select * from users where userid in (12,22);`
+        - `select * from users where userid in (23);`
+    - 数据库A 和 数据库B的执行结果返回至 SQL执行模块， 通过结果合并模块 将两个返回结果 合并成一个结果集，最终返回给应用程序。
+ - 那么， Cobar 如果做集群的伸缩呢？
+    - Cobar的伸缩有两种: Cobar 服务器集群的伸缩 和 MySQL服务器集群的伸缩
+ - Cobar 服务器可以看作是无状态的应用服务器， 因此其集群伸缩 可以简单的使用负载均衡的手段实现。
+ - 而MySQL中存储着数据， 要想保证集群扩容后 数据一致负载均衡，必须要做数据迁移， 将集群中原来机器中的数据 迁移到新添加的机器中。
+
 
 
     
