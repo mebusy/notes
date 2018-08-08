@@ -368,6 +368,12 @@ print("Response content:", response.text)
 response = self.client.post("/login", {"username":"testuser", "password":"secret"})
 ```
 
+```python
+# add header 
+headers = {'content-type': 'application/json'}
+response = self.client.post("/login", {"username":"testuser", "password":"secret" } , headers=headers )
+```
+
 <h2 id="8f515507f68651c99f27a6790119d54b"></h2>
 
 #### Safe mode
