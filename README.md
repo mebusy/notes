@@ -66,7 +66,7 @@
 [uwsgi](https://github.com/mebusy/notes/blob/master/dev_notes/python_uwsgi.md) | [high performance python](https://github.com/mebusy/notes/blob/master/dev_notes/highPerformancePython.md) | [python3 features](https://github.com/mebusy/notes/blob/master/dev_notes/python3.md) |  
 [scrapy-splash](https://github.com/mebusy/notes/blob/master/dev_notes/scrapy.md) |  [xpath](https://github.com/mebusy/notes/blob/master/dev_notes/xpath.md) |
 [swig](https://github.com/mebusy/notes/blob/master/dev_notes/Interfacing_C_Python_withSWIG.md) | [swig_python](https://github.com/mebusy/notes/blob/master/dev_notes/swig_python.md) | 
-[load test:Locust]((https://github.com/mebusy/notes/blob/master/dev_notes/python_Locust.md) | 
+[load test:Locust](https://github.com/mebusy/notes/blob/master/dev_notes/python_Locust.md) | 
 
 
 <h2 id="0c3266dd9928d074e79930f98b42ed7d"></h2>
