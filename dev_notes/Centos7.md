@@ -133,6 +133,30 @@ net.ipv4.tcp_tw_recycle = 1
 # 然后执行 /sbin/sysctl -p 让参数生效。
 ```
 
+## 文件描述符数
+
+ - 查看系统最大打开文件描述符数:
+
+```
+# cat /proc/sys/fs/file-max
+791606
+```
+
+ - 单个进程能打开的最大文件描述符数:
+
+```
+# ulimit -n
+200000
+```
+
+ - Centos7 修改 ulimit
+
+```
+# vi /etc/security/limits.conf
+ *    soft    nofile 200001
+ *    hard    nofile 100002 
+```
+
 <h2 id="65395697d2dab77dd22f054b888fb803"></h2>
 
 ## linux 系统监控
