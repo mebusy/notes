@@ -166,5 +166,61 @@ typedef struct list {
 } list ;
 ```
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/redis_list.png)
+
+ - Redis 链表实现的特点：
+    - 双端， 获取某个节点的 prev / next  的复杂度都是 O(1)
+    - 无环， 表头的 prev 和 表尾的next 都指向 NULL, 对表的访问以 NULL结束
+    - 带 head, tail 指针:  获取链表 头/尾节点的 复杂度 O(1)
+    - 带长度计数器 : 获取 链表长度的时间复杂度 O(1)
+    - 多态: 链表节点使用 `void *` 指针来保存节点值
+
+
+# 第四章   字典
+
+ - Redis 的 key-value pair 本身就是 使用字典作为底层实现的
+ - 字典也是 哈希键的底层实现之一 ， 当一个哈希键 包含的键值对 比较对，又或者键值对中的元素都是 比较长的字符串时， Redis就会使用字典作为哈希键的底层实现
+
+## 4.1 字典的实现
+
+ - Redis的字典 使用 哈希表作为底层实现， 一个哈希表里面可以有 多个哈希表节点， 而每个哈希表节点就保存了 字典中的一个 键值对。
+
+### 4.1.1 哈希表
+
+```c
+// dict.h/dictht
+typedef struct dictht {
+    // 哈希表数据
+    dictEntry **table ;
+    // 哈希表大小
+    unsigned long size ;
+    // 哈希表大小掩码，用于计算索引值
+    unsigned long sizemask ;
+    // 该哈希表 已有的节点数量    
+    unsigned long used ;
+} dictht; 
+```
+
+ - 每个 dictEntry 保存一个 键值对
+ - size 记录 数组 table 的大小
+ - used 记录了 哈希表当前 已有的节点(键值对)的数量
+
+
+### 4.1.2 哈希表节点
+
+```c
+typedef struct dictEntry {
+   void *key;
+   union {
+        void *val;
+        uint64_tu64;    
+        int64_ts64;    
+   } v ; 
+   // 形成单向链表
+   struct dictEntry *next;
+} dictEntry ;
+```
+
+ - next 用于解决 键冲突的问题
 
 
