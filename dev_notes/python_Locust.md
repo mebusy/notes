@@ -488,7 +488,24 @@ locust.stats.CSV_STATS_INTERVAL_SEC = 5 # default is 2 seconds
 ```
 
 
+## maybe keep-alive issue ?
 
+```
+>>> r = requests.get('http://httpbin.org/get')
+>>> print r.json()['headers'][u'Connection']
+
+
+s = requests.Session()
+s.headers['Connection'] = 'keep-alive' ?
+
+
+Excellent news — thanks to urllib3, keep-alive is 100% automatic within a session! Any requests that you make within a session will automatically reuse the appropriate connection!
+
+Note that connections are only released back to the pool for reuse once all body data has been read; be sure to either set stream to False or read the content property of the Response object.
+
+you should make the request within a with statement to ensure it’s always closed:
+
+```
 
 
  
