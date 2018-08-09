@@ -21,6 +21,12 @@
 
 [docker redis image](https://docs.docker.com/samples/library/redis)
 
+```
+# redis cli
+docker run -it --link redis:redis --rm redis redis-cli -h redis -p 6379
+```
+
+
  - 需求: 实现类似微博的共同关注
     - 从集合的角度看，就是一个交集的概念。应该很容易实现？
     - 关系数据库并不直接支持 交集计算操作，要计算两个集合的交集，除了需要对两个数据表执行 JOIN操作意外，还需要对合并的结果去重DISTINCT操作，最终导致交集操作的实现变得异常复杂。
@@ -226,4 +232,96 @@ typedef struct dictEntry {
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/redict_dict.png)
 
 
+### 4.1.3 字典
 
+```c
+// dict.h/dict
+typedef struct dict {
+    dictType *type;
+    void *privdata;
+    dictht ht[2];
+    // rehash 索引
+    // 当 rehash 不在进行时，值为-1
+    int rehashidx ;  
+} dict ;
+```
+
+ - type 和 privdata 属性时针对不同类型的键值对， 为创建多台字典而设置的
+    - type 指向 dictType结构， 每个 dictType 保存了一簇用于操作特定类型键值对的函数，Redis会为用途同步的字典设置不同的类型特定函数
+    - privdata 则保存了 需要传给那些类型特定函数的可选参数
+ - ht 包含两个 dictht ， 一般只用 ht[0], ht[1] 只会在对 ht[0] 进行 rehash时使用
+ - rehashidx 用于记录 rehash 目前的进度, 如果没在 rehash，值为-1
+
+
+# 第五章 跳跃表
+
+ - skiplist 是一种有序的数据结构，它通过在每个节点中 维持多个指向其他节点的指针，从而达到快速访问节点的目的。
+ - skiplist 支持平均 O(logN), 最坏 O(N) 的节点查找， 还可以通过顺序性操作来 批量处理节点
+ - 大部分情况下，skiplist 效率可以和平衡树 相媲美 ， 而且因为跳跃表的实现比平衡树要来得更为简单，所以有不少程序都使用跳跃表来代替平衡树。
+ - Redis 使用 skiplist 作为有序集合键的底层实现之一
+ - Redis 只在两个地方用到了 skiplist 
+    - 一个是实现有序集合键
+    - 另一个是 在集群节点中用作内部数据结构
+
+
+# 第六章 整数集合
+
+ - intset 是集合键的底层实现之一， 当一个集合只包含 整数值元素，并且这个集合的元素数量不多时， Redis就会使用整数集合作为集合键的底层实现
+
+```
+redis:6379> SADD numbers 1 3 5 7 9
+(integer) 5
+redis:6379> OBJECT ENCODING numbers
+"intset"
+```
+
+## 6.1 intset 的实现
+
+ - intset 可以保存类型为 int16_t, int32_t 或 int64_t 的整数值， 并且保证集合中 不会出现重复的元素
+
+```c
+typedef struct intset {
+    uint32_t encoding;
+    // 集合包含的元素数量
+    unit32_t length ;
+    // 保存元素的数组
+    int8_t contents[]
+} intset ;
+```
+
+ - contents 中的元素 按值的大小， 从小打大 有序排列
+ - 虽然 intset 将 contents 声明为 int8_t 类型的数组，但实际上 contents 数组并不保存任何 int8_t 类型的值， contents 数组的真正类型 取决于 encoding 属性的值
+    - 如果 encoding 为 INTSET_ENC_INT16, 那么 contents 就是一个 int16_t 类型的数组，数组中的每个项 都是一个 int16_t 整数.
+ - contents 的长度 ， 等于 length * sizeof( 元素类型占用的字节数 )
+
+## 6.2 升级
+
+ - 当添加一个新的元素进来，但是 新元素的类型 当前的encoding 类型 要长时， intset 需要先进行升级 upgrade.
+    - 扩展 contents 空间大小
+    - 将底层数组现有的所有元素都转换成 与新元素相同的类型， 放置到新的位置上
+    - 将新元素添加到底层数组里面
+ - intset 不支持 降级操作
+ 
+
+# 第七章 压缩列表
+
+ - ziplist 是 列表键和哈希键的底层实现之一。
+ - 当一个 列表键只包含少量 列表项， 并且每个列表项 要么就是 小整数值，要么就是 短字符串， 那么Redis就会使用 ziplist 来做列表键的底层实现
+ - 另外，当一个哈希键 只包含少量键值对， 并且 键/值 都是 小整数值或 短字符串， Redis也会使用 ziplist.
+
+## 7.1 压缩列表的构成
+
+ - 压缩列表 是 Redis 为了节约内存而开发的， 是由一些列 特殊编码的连续内存块 组成的顺序型(sequential) 数据结构.
+ - 一个 ziplist 可以包含任意多个节点，  每个节点可以保存一个 字节数组 或者 一个 整数值。
+
+
+## 第八章 对象
+
+ - Redis 并没有直接使用上面介绍的各种数据结构来实现 键值对数据库， 而是基于这些数据结构 创建了一个 对象系统
+    - 这个系统包含了 字符串对象， 列表对象， 哈希对象， 集合对象， 和有序集合对象 这五种类型的对象。
+ - 我们可以针对 不同的使用场景， 为对象设置多种不同的数据结构实现， 从而优化对象在不同场景下的使用效率。
+ - Redis的对象系统还实现了基于 引用计数的内存回收机制
+ - 最后，Redis 对象带有访问时间记录信息， 该信息可以用于计算数据库键的空转时常， 在服务器启动了 maxmemory 功能的情况下， 空转时常较大的那些键可以会优先被服务器删除。
+ 
+
+ 
