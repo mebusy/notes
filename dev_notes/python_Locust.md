@@ -46,6 +46,8 @@ brew install libev
 pip install locustio --user
 ```
 
+ - 本文涉及的内容可能需要 从github 源码安装 latest版本
+
 
 <h2 id="e1c7074e1c4d023402ee6164766e6fde"></h2>
 
