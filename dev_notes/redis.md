@@ -140,5 +140,31 @@ struct sdshdr {
 
 # 第三章 链表
 
+ - 发布/订阅， 慢查询， 监视器 等功能都用到了 链表
+
+## 3.1 链表和链表节点的实现
+
+```c
+// adlist.h/listNode
+typedef struct listNode {
+    struct listNode *prev ;
+    struct listNode *next ;
+    void *value ;
+} listNode ;
+```
+
+```c
+// addlist.h/list
+typedef struct list {
+    listNode *head;
+    listNode *tail;
+    // 链表所包含的节点数量
+    unsigned long len ;
+    void *(*dup)(void *ptr) ;
+    void *(*free)(void *ptr) ;
+    int (*match)(void *ptr, void *key) ;
+} list ;
+```
+
 
 
