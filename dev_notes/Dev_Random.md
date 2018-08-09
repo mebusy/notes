@@ -270,3 +270,28 @@ end
 
 [参考文章: 游戏中的随机概率](http://huangwei.pro/2015-07/game-random/)
 
+
+## About python restore random seed ...
+ 
+ - use state 
+
+
+```python
+import random
+
+old_state = random.getstate()
+print random.random()
+
+random.setstate(old_state)
+print random.random()
+
+# You can also restore the state into your own instance of the PRNG, to avoid
+# thread-safety issues from using the default, global instance.
+prng = random.Random()
+prng.setstate(old_state)
+print prng.random()
+
+# The results of getstate can, of course, be pickled if you want to save it persistently.
+```
+
+
