@@ -223,4 +223,7 @@ typedef struct dictEntry {
 
  - next 用于解决 键冲突的问题
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/redict_dict.png)
+
+
 
