@@ -138,24 +138,84 @@ net.ipv4.tcp_tw_recycle = 1
  - 查看系统最大打开文件描述符数:
 
 ```
-# cat /proc/sys/fs/file-max
+$ cat /proc/sys/fs/file-max
 791606
 ```
 
  - 单个进程能打开的最大文件描述符数:
 
 ```
-# ulimit -n
+$ ulimit -n
 200000
 ```
 
  - Centos7 修改 ulimit
 
 ```
-# vi /etc/security/limits.conf
+$ vi /etc/security/limits.conf
  *    soft    nofile 200001
  *    hard    nofile 100002 
 ```
+
+## TC 云服务器的 /etc/sysctl.conf 配置
+
+```
+# sysctl settings are defined through files in
+# /usr/lib/sysctl.d/, /run/sysctl.d/, and /etc/sysctl.d/.
+#
+# Vendors settings live in /usr/lib/sysctl.d/.
+# To override a whole file, create a new file with the same in
+# /etc/sysctl.d/ and put new settings there. To override
+# only specific settings, add a file with a lexically later
+# name in /etc/sysctl.d/ and put new settings there.
+#
+# For more information, see sysctl.conf(5) and sysctl.d(5).
+
+# Controls IP packet forwarding
+net.ipv4.ip_forward = 0
+
+# Controls source route verification
+net.ipv4.conf.default.rp_filter = 1
+
+# Do not accept source routing
+net.ipv4.conf.default.accept_source_route = 0
+
+# Controls the System Request debugging functionality of the kernel
+
+# Controls whether core dumps will append the PID to the core filename.
+# Useful for debugging multi-threaded applications.
+kernel.core_uses_pid = 1
+
+# Controls the use of TCP syncookies
+net.ipv4.tcp_syncookies = 1
+
+# Controls the maximum size of a message, in bytes
+kernel.msgmnb = 65536
+
+# Controls the default maxmimum size of a mesage queue
+kernel.msgmax = 65536
+
+# disable ipv6 default
+net.ipv6.conf.lo.disable_ipv6 = 1
+
+net.ipv4.conf.all.promote_secondaries = 1
+net.ipv4.conf.default.promote_secondaries = 1
+net.ipv6.neigh.default.gc_thresh3 = 4096
+net.ipv4.neigh.default.gc_thresh3 = 4096
+
+kernel.softlockup_panic = 1
+kernel.sysrq = 1
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+vm.overcommit_memory = 1
+kernel.numa_balancing = 0
+kernel.shmmax = 68719476736
+
+# manually added...
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_tw_recycle = 1
+```
+
 
 <h2 id="65395697d2dab77dd22f054b888fb803"></h2>
 
