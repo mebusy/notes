@@ -448,6 +448,7 @@ nohup locust -f createUser.py --host=https://xxxxxxxx  --no-web --slave --master
 locust -f createUser.py --host=https://stack.upaidui.com --no-web -c 4000 -r 500 -t 1m --master --expect-slaves 8
 ```
 
+ - bug: 当 slaver 和 master 不在一台机器上时， req/s 计算会出错...
 
 ## Running Locust without the web UI
 
