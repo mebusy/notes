@@ -410,6 +410,9 @@ with client.get("/does_not_exist/", catch_response=True) as response:
         response.success()
 ```
 
+ - for MacOSX , you also need add `catch_response=True`  to solve `AttributeError `
+
+
 <h2 id="ef2e4c961c56e33d44553e9363e54ebb"></h2>
 
 #### Grouping requests to URLs with dynamic parameters
@@ -433,6 +436,18 @@ for i in range(10):
 https://docs.locust.io/en/latest/running-locust-distributed.html
 
 <h2 id="b5ef92324c2f19871c6c35b8303f2132"></h2>
+
+
+ - eg
+
+```
+# run enought slave...
+nohup locust -f createUser.py --host=https://xxxxxxxx  --no-web --slave --master-host 10.192.81.195 &
+
+# rum master
+locust -f createUser.py --host=https://stack.upaidui.com --no-web -c 4000 -r 500 -t 1m --master --expect-slaves 8
+```
+
 
 ## Running Locust without the web UI
 
