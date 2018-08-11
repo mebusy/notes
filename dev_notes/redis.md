@@ -324,4 +324,285 @@ typedef struct intset {
  - 最后，Redis 对象带有访问时间记录信息， 该信息可以用于计算数据库键的空转时常， 在服务器启动了 maxmemory 功能的情况下， 空转时常较大的那些键可以会优先被服务器删除。
  
 
- 
+## 8.1 对象的类型与编码
+
+ - redis 数据库中的键和值都是对象。
+ - redis 中的每个对象都由一个 redisObject 结构表示
+
+```c
+typedef struct redisObject {
+    unsigned type:4;
+    unsigned encoding:4;
+    // 指向底层实现数据结构的指针
+    void *ptr ; 
+    // ...    
+} robj ;
+```
+
+### 8.1.1 类型
+
+ - type 属性纪录对象的类型
+
+
+ 类型常量 | 对象的名称 | TYPE 命令输出
+--- | --- | ---
+REDIS_STRING | 字符串对象 | string
+REDIS_LIST | 列表对象 | list
+REDIS_HASH | 哈希对象 | hash
+REDIS_SET | 集合对象   | set 
+REDIS_ZSET | 有序集合对象 | zset
+
+
+``` 
+redis> TYPE msg
+string
+```
+
+### 8.1.2 编码和底层实现
+
+ - 对象的 ptr 指针指向 对象的底层实现数据结构，而这些数据结构 由encoding 属性决定
+
+
+ encoding常量 |  对应的底层数据结构 | OBJECT ENCODING 输出
+---  | --- | ---
+REDIS_ENCODING_INT |  long int | int
+REDIS_ENCODING_EMBSTR |  embstr编码的 SDS | embstr
+REDIS_ENCODING_RAW | SDS | raw
+REDIS_ENCODING_HT |  字典 | hashtable
+REDIS_ENCODING_LINKEDLIST |  双端链表 | linkedlist
+REDIS_ENCODING_ZIPLIST |  压缩列表  | ziplist
+REDIS_ENCODING_INTSET |  整数集合  | intest
+REDIS_ENCODING_SKIPLIST | 跳跃表和字典 | skiplist
+
+
+ - 每种类型的对象都至少使用了两种不同的编码
+
+
+ 类型 |  encoding | 对象
+--- | --- | ---
+REDIS_STRING | REDIS_ENCODING_INT | 使用整数值 实现的字符串对象
+REDIS_STRING | REDIS_ENCODING_EMBSTR | 使用 embstr编码实现
+REDIS_STRING | REDIS_ENCODING_RAW | 使用SDS实现
+REDIS_LIST | REDIS_ENCODING_ZIPLIST | 使用压缩表实现
+REDIS_LIST | REDIS_ENCODING_LINKEDLIST | 使用双端链表实现
+REDIS_HASH | REDIS_ENCODING_ZIPLIST | 使用压缩列表实现
+REDIS_HASH | REDIS_ENCODING_HT | 使用字典实现
+REDIS_SET | REDIS_ENCODING_INTSET | 使用整数集合实现
+REDIS_SET | REDIS_ENCODING_HT | 使用字典实现
+REDIS_ZSET | REDIS_ENCODING_ZIPLIST | 使用压缩列表实现
+REDIS_ZSET | REDIS_ENCODING_SKIPLIST | 使用跳跃表和字典实现
+
+
+
+ - `OBJECT ENCODING`命令查看对象编码
+
+```
+redis:6379> set msg "hello world"
+OK
+redis:6379> OBJECT ENCODING msg
+"embstr"
+```
+
+ - 根据性能需要，redis会自动调整对象使用的 encoding 和 底层实现
+
+
+## 8.2 字符串对象
+
+ - 编码可以是 int, raw, embstr
+ - 如果 一个字符串对象保存的是整数值， 并且这个整数可以用long表示， 那么就使用int 编码 ( 将 `void *` 转换成 long  )
+
+```
+redis:6379> SET number 10086
+OK
+redis:6379> OBJECT ENCODING number
+"int"
+redis:6379> SET number "10086"
+OK
+redis:6379> OBJECT ENCODING number
+"int"
+```
+
+ - 如果字符串对象保存的是一个字符串值， 并且这个字符串值的长度 > 44 字节，那么就使用 raw编码, 否则使用 embstr 
+
+```
+redis:6379> SET story "long, long ago there .aaaaaaaaaaaaaaaaaa.   " 
+OK
+redis:6379> STRLEN story
+(integer) 44
+redis:6379> OBJECT ENCODING story
+"embstr"
+redis:6379> SET story "long, long ago there .aaaaaaaaaaaaaaaaaa.    " 
+OK
+redis:6379> STRLEN story
+(integer) 45
+redis:6379> OBJECT ENCODING story
+"raw"
+```
+
+ - embstr 编码是专门用于保存短字符串的一种优化编码方式。
+ - 下表是 字符串对象保存 各类型值的编码方式
+
+
+ 值 | 编码
+--- | ---
+可以用long类型保存的整数 | int
+可以用 long double 类型保存的**浮点数** | embstr 或 raw
+字符串值，或者无法用 long/long doulbe保存的数值 |  embstr 或 raw
+
+
+## 8.3 列表对象
+
+ - 编码可以是 ziplist 或 linked list
+ - 当列表对象 可以同时 满足以下两个条件是， 使用 ziplist 编码, 否则使用 linked list
+    - 1. 列表对象 所保存的所有字符串元素的长度 都小于64字节
+    - 2. 列表对象保存的元素数量小于 512个，
+
+
+## 8.4 哈希对象
+
+ - 哈希对象可以是 ziplist 或 tashtable
+ - 当同时满足以下两个条件时，哈希对象使用 ziplist 编码
+    - 1. 哈希对象 保存的所有键值对的 键和值的字符串长度都小于64字节
+    - 2. 哈希对象 保存的键值队数量 小于512个
+
+
+
+## 8.5 集合对象
+
+ - 编码可以是 intset 或 hashtable
+ - 当同时满足以下两个条件时，使用intset
+    - 1. 所有元素都是整数值
+    - 2. 元素数量不超过 512
+
+## 8.6 有序集合对象
+
+ - 编码可以是 ziplist 或 skiplist
+ - 当同时满足以下两个条件时，使用 ziplist
+    - 1. 元素数量小于 128个
+    - 2. 元素成员的长度都小于 64字节
+
+
+## 8.7 类型检查与命令多态
+
+ - Redis 用于 操作 key 的命令基本上 分为两种类型
+ - 其中一种命令 可以对任何类型的键执行， 比如
+    - DEL, EXPIRE, RENAME, TYPE, OBJECT 等
+ - 而另一种命令只能对特定类型的key执行，比如
+    - SET, GET, APPEND, STRLEN 只能用于 字符串key
+    - HDEL, HSET, HGET, HLEN  只能用于 哈希key
+    - RPUSH, LPOP, LINSERT, LLEN 只能用于 列表key
+    - SADD, SPOP, SINTER, SCART 只能用于 集合key
+    - ZADD, ZCARD, ZRANK, ZSCORE 只能用于 有序集合key
+
+
+### 8.7.1 类型检查的实现
+
+ - 在执行一个类型特定的命令之前， Redis会先检查输入键的类型是否正确，然后再决定是否执行给定的命令
+ - 类型检查使用 redisObject结构的 type属性来实现
+
+
+## 8.8 内存回收
+
+ - redis 使用引用计数的内存回收机制
+ - 每个对象的引用计数信息 由 redisObject 结构的 refcount 属性纪录：
+
+```c
+typedef struct redisObject {
+    // ...
+    int refcount;
+    // ...
+} robj ;
+```
+
+ - 当 refcount 为0时，对象所占用的内存会被释放
+
+## 8.9 对象共享
+
+ - 对象的 refcount 属性还有对象共享的作用。
+ - 假设 key A 创建了一个 整数值100的字符串对象，这时如果 key B也要创建一个 整数值100的字符串对象， 那么redis可以有两种做法:
+    - 1. 为 key B 新建一个 字符串对象
+    - 2. 让 key A 和 key B 共享同一个对象， 显然这样做更节约内存
+ - redis中， 让多个key 共享 一个value 需要执行以下两个步骤
+    - 1. 将 key 的 值指针 指向一个现有的对象
+    - 2. 将被共享的值对象的引用计数 +1
+ - 目前来说， Redis 会在初始化服务器时， 创建一万个字符串对象， 这些对象包含了从 0到9999 的所有整数值，
+    - 当服务器需要用到值为 0到9999的字符串对象时， 服务器就会使用这些共享对象，而不是新创建对象。
+
+```
+redis:6379> SET A 100
+OK
+redis:6379> OBJECT REFCOUNT A
+(integer) 2147483647
+```
+
+
+## 8.10 对象的空转时长
+
+ - redisObject 结构还包含一个 名为 lru 的属性，该属性记录了对象最后一次被命令程序访问的时间
+
+```c
+typedef struct redisObject {
+        // ...
+        unsigned lru:22;
+        // ...
+} robj;
+```
+
+ - `OBJECT IDLETIME` 可以打印给定 key的空转时长 = 当前时间-lru时间 , 单位秒
+    - `OBJECT IDLETIME` 命令是特殊的，它不会修改 lru的值
+
+```
+redis:6379> OBJECT IDLETIME B
+(integer) 20
+```
+
+ - 如果服务器打开了 maxmemory 选项， 并且服务器用于 回收内存的算法为 volatile-lru 或者 allkeys-lru, 那么当服务器占用的内存数 超过了 maxmemory 选项所设置的上限值时， 空转时长较高的那部分键会 优先被 服务器释放，从而回收内存。
+ - 配置： maxmemory, maxmemory-policy
+
+----
+
+# 第二部分 单机数据库的实现
+
+---
+
+# 第九章 数据库
+
+## 9.1 服务器中的数据库
+
+ - Redis 服务器将 所有的数据库都保存在 服务器状态 `redis.h/redisServer` 结构的 db数组中
+ - db数组的每一项 都是一个 redis.h/redisDb 结构， 每个 redisDb 结构代表一个数据库：
+
+```
+struct redisServer {
+    // ...
+    redisDb *db;
+    // ... 
+    int dbnum;
+    // ...
+} ;
+```
+
+ - 在初始化服务器时， 程序会根据服务器状态的 dbnum 属性来决定应该 创建多少个数据库
+ - dbnum 属性的值， 由服务器配置的 database 选项决定， 默认16，所以redis服务器会默认创建16个数据库。
+
+
+## 9.2 切换数据库
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
