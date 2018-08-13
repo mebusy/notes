@@ -174,6 +174,105 @@ redis:6379> TTL A
  - 数据库通知四 Redis 2.8 新增功能
 
 
+```
+// key-space notification
+redis:6379> SUBSCRIBE __keyspace@0__:message
+...
+
+// key-event nofitication
+redis:6379> SUBSCRIBE __keyspace@0__:del
+```
+
+ - 服务端配置的 notify-keyspace-events 选项决定了 服务器所发送通知的类型
+    - 发送所有 通知  ， 可将选项的值设置为 AKE
+    - all key-space notification ,  -- AK
+    - only string key-space notification , -- K$
+    - only list key-event notification , -- El
+    - see official docs for more details 
+
+
+# 第十章  RDB 持久化
+
+ - RDB持久化既可以手动执行，也可以根据服务器配置 定期执行， 将数据库状态保存到一个 RDB文件中
+ - RDB文件是一个经过压缩的二进制文件
+
+## 10.1 RDB文件的创建和载入
+
+ - 两个命令可以生成 RDB文件
+    - SAVE , 阻塞服务器进程
+    - BGSAVE ， fork一个子进程， 服务器进程继续处理命令
+ - RDB文件的载入工作是在 服务器启动时 自动执行的，没有专门的命令
+ - 另外， 因为AOF文件的更新频率通过比RDB文件的更新频率高，所以：
+    - 如果服务器开启了AOF ， 那么服务器会优先使用 AOF文件来还原数据库
+    - 只有AOF 处于关闭状态时， 服务器才会使用RDB文件来还原数据库
+
+
+## 10.1.2 BGSAVE命令执行是的服务器状态
+
+ - 在 BGSAVE 命令执行期间， 客户端发送的SAVE/BGSAVE 命令会被服务器拒绝,以防止产生竞态条件
+ - BGREWRITEAOF 和 BGSAVE 两个命令不能同时执行
+    - 如果BGSAVE命令正在执行，那么客户端发送的BGREWRITEAOF 命令会被延迟到BGSAVE命令执行完毕之后执行
+    - 如果 BGREWRITEAOF命令正在执行，那么客户端发送的BGSAVE命令会被服务器拒绝。
+    - 两者其实不冲突，不能同时执行它们只是一个性能方面的考虑
+
+## 10.2 自动间隔性保存
+
+ - Redis允许用户通过设置服务器配置的save选项，让服务器每隔一段时间自动执行一次BGSAVE命令
+ - 如：
+
+```
+save 900 1
+save 300 10
+save 60 10000
+```
+
+ - 那么只要满足以下3个条件的任意一个，BGSAVE命令就会被执行
+    - 900秒内， 对数据库进行了至少1次修改
+    - 300秒内， 对数据库进行了至少10次修改
+    - 60秒内，  对数据库进行了至少10000次修改
+ - PS. 这也是Redis默认的 save选项
+
+
+# 第11章  AOF持久化
+
+ - Append Only File
+ - AOF 通过保存Redis服务器所执行的写命令来记录数据库状态
+
+
+## 11.1 AOF持久化的实现
+
+ - AOF持久化的实现 可以分为 3个步骤
+    - 命令追加 append
+        - 服务器执行完一个写命令后，会议协议格式将被执行的写命令追加到服务器状态的aof_buff缓冲区的末尾。
+    - 文件写入
+        - 服务器每次结束一个事件循环之前，会调用flushAppendOnlyFile函数，考虑是否将aof_buf缓冲区的内容写入和保存到 AOF文件里面
+    - 文件同步 sync
+        - 操作系统本身对写文件也有一个缓冲系统，这对写入数据带来了安全问题。
+        - 为此 系统提供了 fsync 和 fdatasync 两个同步函数，可以强制让操作系统立即将缓冲区中的数据写入到磁盘.
+
+ - flushAppendOnlyFile 函数的行为由服务器配置的appendfsync 选项来决定
+
+
+
+ appendfsync选项 | flushAppendOnlyFile行为
+--- | --- 
+always | aof_buf缓冲区所有内容 **写入并同步到** AOF文件
+everysec | 默认选项 , 所有内容写入到AOF文件，如果上次同步AOF文件的时间距离现在超过1s，则同步
+no |  所有内容写入到AOF文件， 由操作系统决定 何时同步
+
+
+## 11.3 AOF重写
+
+ - 随着服务器运行时间的流逝， AOF文件中的内容会越来越多， 文件体积页越来越大
+ - AOF rewrite 功能 可以创建一个新的AOF文件来替代现有的AOF文件， 去掉了一些冗余命令
+
+
+
+
+
+
+ 
+
 
 
 
