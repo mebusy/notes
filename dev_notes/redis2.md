@@ -268,6 +268,124 @@ no |  所有内容写入到AOF文件， 由操作系统决定 何时同步
 
 
 
+# 第14章 服务器
+
+## 14.2 serverCron 函数
+
+ - serverCron 函数 默认每隔 100ms 执行一次，这个函数负责管理服务器的资源，并保持服务器自身的良好运转
+
+
+### 14.2.1 更新服务器时间缓存
+
+ - Redis中 有不少功能需要获取系统的当前时间，而每次获取系统的当前时间都需要 执行一次系统调用，为了减少系统调用，服务器状态中的 unixtime属性和mstime属性 被用作当前时间的缓存(分别为 秒级和毫秒级)
+ - 因为serverCron 更新频率的原因， 上面两个属性的记录的时间的精确度并不高
+    - 服务器只会在 打印日志，更新服务器的LRU时钟 等这类对时间精确度要求不高的功能上使用 时间缓存
+    - 对于 为key设置过期时间，添加慢查询日志 这种需要高精度时间的功能来说，服务器还是会再次执行系统调用，从而获得最准确的系统当前时间。
+
+
+
+# 第三部分 多级数据库的实现
+
+# 第15章 复制
+
+ - Redis中， 用户可以通过 执行 SLAVEOF 命令或者设置 slaveof 选项，让一个服务器去复制 另一个服务器
+    - master <- slave
+ 
+
+# 第16章 Sentinel
+
+ - Sentinel 是 Redis 高可用性解决方案： 由一个或多个 Sentinel实例 组成的 Sentinel 系统 可以监视任意多个主服务器，以及它们下面的从服务器，并在 被监视的主服务器 进入下线状态时，自动将下线主服务器下的某个从服务器升级为 新的主服务器。
+    - 1. 察觉 主服务器下线， 终止从服务器的复制
+    - 2. 等待 主服务器上线，如果下线时长超过设置值，进行故障转移
+    - 3. 挑选一台从服务器升级为主服务器， 同时原来的主服务器降级为 从服务器。
+
+
+## 16.1 启动并初始化 Sentinel
+
+```
+$ redis-sentinel /path/to/your/sentinel.conf
+
+# or 
+
+$ redis-server /path/to/your/sentinel.conf --sentinel
+```
+
+ - 当一个 sentinel 启动时，它需要执行：
+    - 1. 初始化服务器
+    - 2. 将普通Redis服务器使用的代码 替换成 Sentinel 专用代码
+    - 3. 初始化 Sentinel 状态
+    - 4. 根据给定的配置文件，初始化 Sentinel的监视主服务器列表
+    - 5. 创建 连向主服务器的网络链接
+
+
+### 16.1.1 初始化服务器
+
+ - Sentinel 本质上只是一个运行在 特殊模式下的Redis服务器， 所以启动Sentinel的第一步，就是初始化一个Redis服务器
+ - 不过 因为 Sentinel执行的工作和 普通redis服务器 不同，所以Sentinel的初始化过程有所不同
+ - Sentinel 并不是用数据库，所以 不会载入 RDB或AOF 文件
+ - 很多 redis 命令 在 Sentinel 服务器上也无法使用
+
+
+### 16.1.2 使用 Sentinel 专用代码
+
+ - 比如说， 普通redis 服务器使用 `redis.h/REDIS_SERVERPORT` 作为服务器端口
+    - `#define REDIS_SERVERPORT 6379`
+ - 而 Sentinel使用 `sentinel.c/REDIS_SENTINEL_PORT` 为了服务器端口
+ - 等等
+
+### 16.1.3 初始化 Sentinel 状态
+
+### 16.1.4 初始化 Sentinel 状态的 master属性
+
+ - Sentinel 状态中的 masters 字段 记录了所有被 Sentinel 监视的 主服务器的相关信息，其中：
+    - 字典的key 是 被监视的主服务器的名字
+    - 而value 则是被监视主服务器 对象的 `sentinel.c/sentinelRedisInstance` 接哦股
+ - 每个 sentinelRedisInstance结构 代表一个 被 Sentinel监视的Redis服务器实例。
+    - 这个实例可以是 主服务器，从服务器，或者另外一个Sentinel
+ - 对 Sentinel 状态的初始化 将引发 对masters 字典的初始化， 而 masters 字典的初始化 是根据被载入的 Sentinel 配置文件来进行的。
+ - 如下面的配置文件
+
+```
+######################
+# master 1 configure #
+######################
+
+sentinel moniter master1 127.0.0.1 6379 2
+# 多少时间无响应后 判断为下线
+sentinel down-after-milliseconds master1 30000
+# 故障转移操作时， 可以同时对新的主服务器进行同步的从服务器数量
+sentinel parallel-syncs master1 1
+# 刷新故障迁移状态的最大时限
+sentinel failover-timeout master1 900000
+
+
+######################
+# master 2 configure #
+######################
+
+sentinel moniter master2 127.0.0.1 12345 5
+sentinel down-after-milliseconds master2 50000
+sentinel parallel-syncs master2 5
+sentinel failover-timeout master2 450000
+```
+
+
+### 16.1.5 创建连向主服务器的网络链接
+
+ - Sentinel 将成为主服务器的客户端 ，对于每台被监视的主服务器， Sentinel都会创建两个异步链接
+    - 一个是命令链接
+    - 一个是订阅链接 , 专门用于 订阅 主服务器的 __sentinel__:hello 频道
+
+
+## 16.2 获取主服务器信息
+
+
+
+
+
+
+
+
 
 
 
