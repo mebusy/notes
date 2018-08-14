@@ -154,7 +154,7 @@ $ ulimit -n
 ```
 $ vi /etc/security/limits.conf
  *    soft    nofile 200001
- *    hard    nofile 100002 
+ *    hard    nofile 200002 
 ```
 
 ## TC 云服务器的 /etc/sysctl.conf 配置
