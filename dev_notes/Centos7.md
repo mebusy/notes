@@ -6,6 +6,8 @@
      - [Mysql](#9edb3c572b56b91542af659480518681)
      - [查看 TIME_WAIT](#6dfa7a8202801ab86e07a577ba4da59f)
      - [TIME_WAIT 优化](#0d0306c1df74d541e32e7dcbaaf0fe69)
+     - [文件描述符数](#1056f9281c64e7ce0c0ad739e5640797)
+     - [TC 云服务器的 /etc/sysctl.conf 配置](#c5bfde7337a2b4013d953a5ef1e298f3)
      - [linux 系统监控](#65395697d2dab77dd22f054b888fb803)
      - [ab test](#107aedca6bab06cabee6aac093e48464)
 
@@ -133,6 +135,8 @@ net.ipv4.tcp_tw_recycle = 1
 # 然后执行 /sbin/sysctl -p 让参数生效。
 ```
 
+<h2 id="1056f9281c64e7ce0c0ad739e5640797"></h2>
+
 ## 文件描述符数
 
  - 查看系统最大打开文件描述符数:
@@ -156,6 +160,8 @@ $ vi /etc/security/limits.conf
  *    soft    nofile 200001
  *    hard    nofile 200002 
 ```
+
+<h2 id="c5bfde7337a2b4013d953a5ef1e298f3"></h2>
 
 ## TC 云服务器的 /etc/sysctl.conf 配置
 

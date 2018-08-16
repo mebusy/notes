@@ -7,6 +7,7 @@
      - [正态分布](#90a89776a42d6ee4f8c0dbe54dc941ea)
      - [根据权重计算掉落](#efe278b43718253190742df876de40fc)
      - [移植到lua](#c9128e4c3013af1bf48669003ac0efe6)
+     - [About python restore random seed ...](#ddd00f83fdb60d92ae0d96b22a3d8fe4)
 
 ...menuend
 
@@ -270,6 +271,8 @@ end
 
 [参考文章: 游戏中的随机概率](http://huangwei.pro/2015-07/game-random/)
 
+
+<h2 id="ddd00f83fdb60d92ae0d96b22a3d8fe4"></h2>
 
 ## About python restore random seed ...
  

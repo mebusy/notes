@@ -11,6 +11,32 @@
          - [2.2.4 二进制安全](#fe16b5423e86dd95dfb418659da3fa7b)
          - [2.2.5 兼容部分C字符串函数](#4f424f0cb00766fc9e0258ff7fb3e829)
  - [第三章 链表](#439d12ff1033af4e6bf3e78f2128f30a)
+     - [3.1 链表和链表节点的实现](#05ac251d0b38c1e50cbef0087d9fd554)
+ - [第四章   字典](#8f0b77251766e156d10a62eda7aee595)
+     - [4.1 字典的实现](#44643e64f92d05a72f45815ae337e5b6)
+         - [4.1.1 哈希表](#e7dc36fc51c2f9660dfc05e74e4ec583)
+         - [4.1.2 哈希表节点](#fce41380aa44ee19ac351ee9d7a59085)
+         - [4.1.3 字典](#841ac5fd6bd63c08630b8cc0a75dcbbe)
+ - [第五章 跳跃表](#2612dc58f20212db2dcff012cd5b8617)
+ - [第六章 整数集合](#c10c5d64f50d3fb431cbc1db2aae8cff)
+     - [6.1 intset 的实现](#0a80aebc42b85969960d3c5d956bceff)
+     - [6.2 升级](#08af8997852f2553061109773c143818)
+ - [第七章 压缩列表](#f5e6a4cb0a45c892103057b5310288b2)
+     - [7.1 压缩列表的构成](#a904d0ab3439a7e3d3fd7ecd05ccbbb5)
+     - [第八章 对象](#b0e63c6b769b17f06bfb543a76e01cc2)
+     - [8.1 对象的类型与编码](#947cb22bf41ee653483c5d1d3f423fd3)
+         - [8.1.1 类型](#d7cd82e64506ca8b3ab1f7f11af1a0b3)
+         - [8.1.2 编码和底层实现](#21d79216e0e441f46a071bcd88345608)
+     - [8.2 字符串对象](#ae2f50c1db56f741c9bfd0999dedc44d)
+     - [8.3 列表对象](#5a404c7286437e234b57849758d1a9b4)
+     - [8.4 哈希对象](#cee4aea24f032c607571fbc591125301)
+     - [8.5 集合对象](#501265bd3c5a14475cb267973a51f749)
+     - [8.6 有序集合对象](#592e43fbe94cfbf03322f3b26ef010cf)
+     - [8.7 类型检查与命令多态](#9c04bfc98d085dc31480a7eee7b85a40)
+         - [8.7.1 类型检查的实现](#e270c5e4384bbeeaf503b811edd3c14f)
+     - [8.8 内存回收](#e378b5f1615057b62aac972540bbf4ea)
+     - [8.9 对象共享](#cd5ef8edf476a73f609610fb36443aa7)
+     - [8.10 对象的空转时长](#96dfd1728db8ce4dc55fad8c37ed1523)
 
 ...menuend
 
@@ -148,6 +174,8 @@ struct sdshdr {
 
  - 发布/订阅， 慢查询， 监视器 等功能都用到了 链表
 
+<h2 id="05ac251d0b38c1e50cbef0087d9fd554"></h2>
+
 ## 3.1 链表和链表节点的实现
 
 ```c
@@ -182,14 +210,20 @@ typedef struct list {
     - 多态: 链表节点使用 `void *` 指针来保存节点值
 
 
+<h2 id="8f0b77251766e156d10a62eda7aee595"></h2>
+
 # 第四章   字典
 
  - Redis 的 key-value pair 本身就是 使用字典作为底层实现的
  - 字典也是 哈希键的底层实现之一 ， 当一个哈希键 包含的键值对 比较对，又或者键值对中的元素都是 比较长的字符串时， Redis就会使用字典作为哈希键的底层实现
 
+<h2 id="44643e64f92d05a72f45815ae337e5b6"></h2>
+
 ## 4.1 字典的实现
 
  - Redis的字典 使用 哈希表作为底层实现， 一个哈希表里面可以有 多个哈希表节点， 而每个哈希表节点就保存了 字典中的一个 键值对。
+
+<h2 id="e7dc36fc51c2f9660dfc05e74e4ec583"></h2>
 
 ### 4.1.1 哈希表
 
@@ -212,6 +246,8 @@ typedef struct dictht {
  - used 记录了 哈希表当前 已有的节点(键值对)的数量
 
 
+<h2 id="fce41380aa44ee19ac351ee9d7a59085"></h2>
+
 ### 4.1.2 哈希表节点
 
 ```c
@@ -231,6 +267,8 @@ typedef struct dictEntry {
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/redict_dict.png)
 
+
+<h2 id="841ac5fd6bd63c08630b8cc0a75dcbbe"></h2>
 
 ### 4.1.3 字典
 
@@ -253,6 +291,8 @@ typedef struct dict {
  - rehashidx 用于记录 rehash 目前的进度, 如果没在 rehash，值为-1
 
 
+<h2 id="2612dc58f20212db2dcff012cd5b8617"></h2>
+
 # 第五章 跳跃表
 
  - skiplist 是一种有序的数据结构，它通过在每个节点中 维持多个指向其他节点的指针，从而达到快速访问节点的目的。
@@ -264,6 +304,8 @@ typedef struct dict {
     - 另一个是 在集群节点中用作内部数据结构
 
 
+<h2 id="c10c5d64f50d3fb431cbc1db2aae8cff"></h2>
+
 # 第六章 整数集合
 
  - intset 是集合键的底层实现之一， 当一个集合只包含 整数值元素，并且这个集合的元素数量不多时， Redis就会使用整数集合作为集合键的底层实现
@@ -274,6 +316,8 @@ redis:6379> SADD numbers 1 3 5 7 9
 redis:6379> OBJECT ENCODING numbers
 "intset"
 ```
+
+<h2 id="0a80aebc42b85969960d3c5d956bceff"></h2>
 
 ## 6.1 intset 的实现
 
@@ -294,6 +338,8 @@ typedef struct intset {
     - 如果 encoding 为 INTSET_ENC_INT16, 那么 contents 就是一个 int16_t 类型的数组，数组中的每个项 都是一个 int16_t 整数.
  - contents 的长度 ， 等于 length * sizeof( 元素类型占用的字节数 )
 
+<h2 id="08af8997852f2553061109773c143818"></h2>
+
 ## 6.2 升级
 
  - 当添加一个新的元素进来，但是 新元素的类型 当前的encoding 类型 要长时， intset 需要先进行升级 upgrade.
@@ -303,17 +349,23 @@ typedef struct intset {
  - intset 不支持 降级操作
  
 
+<h2 id="f5e6a4cb0a45c892103057b5310288b2"></h2>
+
 # 第七章 压缩列表
 
  - ziplist 是 列表键和哈希键的底层实现之一。
  - 当一个 列表键只包含少量 列表项， 并且每个列表项 要么就是 小整数值，要么就是 短字符串， 那么Redis就会使用 ziplist 来做列表键的底层实现
  - 另外，当一个哈希键 只包含少量键值对， 并且 键/值 都是 小整数值或 短字符串， Redis也会使用 ziplist.
 
+<h2 id="a904d0ab3439a7e3d3fd7ecd05ccbbb5"></h2>
+
 ## 7.1 压缩列表的构成
 
  - 压缩列表 是 Redis 为了节约内存而开发的， 是由一些列 特殊编码的连续内存块 组成的顺序型(sequential) 数据结构.
  - 一个 ziplist 可以包含任意多个节点，  每个节点可以保存一个 字节数组 或者 一个 整数值。
 
+
+<h2 id="b0e63c6b769b17f06bfb543a76e01cc2"></h2>
 
 ## 第八章 对象
 
@@ -323,6 +375,8 @@ typedef struct intset {
  - Redis的对象系统还实现了基于 引用计数的内存回收机制
  - 最后，Redis 对象带有访问时间记录信息， 该信息可以用于计算数据库键的空转时常， 在服务器启动了 maxmemory 功能的情况下， 空转时常较大的那些键可以会优先被服务器删除。
  
+
+<h2 id="947cb22bf41ee653483c5d1d3f423fd3"></h2>
 
 ## 8.1 对象的类型与编码
 
@@ -338,6 +392,8 @@ typedef struct redisObject {
     // ...    
 } robj ;
 ```
+
+<h2 id="d7cd82e64506ca8b3ab1f7f11af1a0b3"></h2>
 
 ### 8.1.1 类型
 
@@ -357,6 +413,8 @@ REDIS_ZSET | 有序集合对象 | zset
 redis> TYPE msg
 string
 ```
+
+<h2 id="21d79216e0e441f46a071bcd88345608"></h2>
 
 ### 8.1.2 编码和底层实现
 
@@ -406,6 +464,8 @@ redis:6379> OBJECT ENCODING msg
  - 根据性能需要，redis会自动调整对象使用的 encoding 和 底层实现
 
 
+<h2 id="ae2f50c1db56f741c9bfd0999dedc44d"></h2>
+
 ## 8.2 字符串对象
 
  - 编码可以是 int, raw, embstr
@@ -450,6 +510,8 @@ redis:6379> OBJECT ENCODING story
 字符串值，或者无法用 long/long doulbe保存的数值 |  embstr 或 raw
 
 
+<h2 id="5a404c7286437e234b57849758d1a9b4"></h2>
+
 ## 8.3 列表对象
 
  - 编码可以是 ziplist 或 linked list
@@ -457,6 +519,8 @@ redis:6379> OBJECT ENCODING story
     - 1. 列表对象 所保存的所有字符串元素的长度 都小于64字节
     - 2. 列表对象保存的元素数量小于 512个，
 
+
+<h2 id="cee4aea24f032c607571fbc591125301"></h2>
 
 ## 8.4 哈希对象
 
@@ -467,12 +531,16 @@ redis:6379> OBJECT ENCODING story
 
 
 
+<h2 id="501265bd3c5a14475cb267973a51f749"></h2>
+
 ## 8.5 集合对象
 
  - 编码可以是 intset 或 hashtable
  - 当同时满足以下两个条件时，使用intset
     - 1. 所有元素都是整数值
     - 2. 元素数量不超过 512
+
+<h2 id="592e43fbe94cfbf03322f3b26ef010cf"></h2>
 
 ## 8.6 有序集合对象
 
@@ -481,6 +549,8 @@ redis:6379> OBJECT ENCODING story
     - 1. 元素数量小于 128个
     - 2. 元素成员的长度都小于 64字节
 
+
+<h2 id="9c04bfc98d085dc31480a7eee7b85a40"></h2>
 
 ## 8.7 类型检查与命令多态
 
@@ -495,11 +565,15 @@ redis:6379> OBJECT ENCODING story
     - ZADD, ZCARD, ZRANK, ZSCORE 只能用于 有序集合key
 
 
+<h2 id="e270c5e4384bbeeaf503b811edd3c14f"></h2>
+
 ### 8.7.1 类型检查的实现
 
  - 在执行一个类型特定的命令之前， Redis会先检查输入键的类型是否正确，然后再决定是否执行给定的命令
  - 类型检查使用 redisObject结构的 type属性来实现
 
+
+<h2 id="e378b5f1615057b62aac972540bbf4ea"></h2>
 
 ## 8.8 内存回收
 
@@ -515,6 +589,8 @@ typedef struct redisObject {
 ```
 
  - 当 refcount 为0时，对象所占用的内存会被释放
+
+<h2 id="cd5ef8edf476a73f609610fb36443aa7"></h2>
 
 ## 8.9 对象共享
 
@@ -535,6 +611,8 @@ redis:6379> OBJECT REFCOUNT A
 (integer) 2147483647
 ```
 
+
+<h2 id="96dfd1728db8ce4dc55fad8c37ed1523"></h2>
 
 ## 8.10 对象的空转时长
 

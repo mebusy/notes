@@ -1,9 +1,61 @@
+...menustart
+
+ - [第二部分 单机数据库的实现](#8c1b6e8cf0ad7a4cb490dfaf66ca68b1)
+ - [第九章 数据库](#0fdaaffeed5bec2c5a52ff593df3e097)
+     - [9.1 服务器中的数据库](#7584e17b45e6c724bdb205b4328b2a2a)
+     - [9.2 切换数据库](#e65a474b2e07da4193fef099a9a5a884)
+     - [9.3 数据库 key space](#85abf6d07f1ea7699a3399d4e7e88f07)
+         - [9.3.6 读写 key space的维护操作](#aa52916caf96e748e410c04b818e546c)
+     - [9.4 设置key的生存时间 或过期时间](#7dce0e3b39e2e4ca93fc1a155e2c9e92)
+         - [9.4.1 设置过期时间](#696e7890096cb2fc3d766e6f04e10201)
+         - [9.4.2 保存过期时间](#426142964ca65afd9b5390c08b027fa3)
+         - [9.4.3 移除过期时间](#e77fe4d6808fa5c257e38c9b32944cb1)
+     - [9.6 Redis 过期key的删除策略](#1f6aeaa86a387c1d445ee12955f2649a)
+     - [9.7 AOF, RDB 和 复制功能 对过期键的处理](#250cd9b1dcb13e043cf3f3934f8bf1de)
+         - [9.7.1 生成 RDB 文件](#2920a1d3c264f8880965a9cee2db82ae)
+         - [9.7.2 载入 RDB文件](#cdbd82391cc0c8b1bbfc5c10292f1ce8)
+         - [9.7.3 AOF 文件写入](#0d763e69eb6aac7370b8d671219e087b)
+         - [9.7.4 AOF 重写](#74d7b9b793407a282fc437855b567ae9)
+         - [9.7.5 复制](#cfec5987bd5114458541d6c47542a094)
+     - [9.8 数据库通知](#9f3ab26a95d047bbdde34ac48aa1c22e)
+ - [第十章  RDB 持久化](#b43b08792e45d2626f267c7fa32ea1e2)
+     - [10.1 RDB文件的创建和载入](#e4fdb7f64e0c078977e296c8204fcfa0)
+     - [10.1.2 BGSAVE命令执行是的服务器状态](#899193c751be1a257794d0c55add6a1c)
+     - [10.2 自动间隔性保存](#f7309047e97f6fd59cae1751c9ecc9ac)
+ - [第11章  AOF持久化](#6379208e54e6df4bd7230e05f1ddcd9c)
+     - [11.1 AOF持久化的实现](#6d04df896b36247259132fb82b148101)
+     - [11.3 AOF重写](#bf09e9a5e2c2f7fa63e2e63ce9d85424)
+ - [第14章 服务器](#aa0a9a66d75378fa51e47a76e278790f)
+     - [14.2 serverCron 函数](#01212d817ddb139f1bb2895bb825ac34)
+         - [14.2.1 更新服务器时间缓存](#105e46bac70d6bacbf39e68329c7462c)
+ - [第三部分 多级数据库的实现](#105b9f5eb4cd097b8d05a0689fbc6cee)
+ - [第15章 复制](#1083f1f72ccba95cb67916bfb993be58)
+ - [第16章 Sentinel](#3622aa17f59dc29d9f444a1fa691b762)
+     - [16.1 启动并初始化 Sentinel](#1729d027ffc4c25f8f95d8c6ae87439b)
+         - [16.1.1 初始化服务器](#8e86642cb4ff7a5603b4519b811c97d5)
+         - [16.1.2 使用 Sentinel 专用代码](#0980835f438dc23319a78f9c9f1e2911)
+         - [16.1.3 初始化 Sentinel 状态](#8a7bbadb30e40fd09043360410456aca)
+         - [16.1.4 初始化 Sentinel 状态的 master属性](#5c1205ac880316d36c321416d35d59b4)
+         - [16.1.5 创建连向主服务器的网络链接](#8841ef9a85d2bb92800b807f68b9aa90)
+     - [16.2 获取主服务器信息](#107d9ebc3593fc7492de4218da5f40fc)
+     - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
+ - [第17章 集群](#53276068e0f0db9687713c65e75a141d)
+     - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
+
+...menuend
+
+
+<h2 id="8c1b6e8cf0ad7a4cb490dfaf66ca68b1"></h2>
 
 # 第二部分 单机数据库的实现
 
 ---
 
+<h2 id="0fdaaffeed5bec2c5a52ff593df3e097"></h2>
+
 # 第九章 数据库
+
+<h2 id="7584e17b45e6c724bdb205b4328b2a2a"></h2>
 
 ## 9.1 服务器中的数据库
 
@@ -23,6 +75,8 @@ struct redisServer {
  - 在初始化服务器时， 程序会根据服务器状态的 dbnum 属性来决定应该 创建多少个数据库
  - dbnum 属性的值， 由服务器配置的 database 选项决定， 默认16，所以redis服务器会默认创建16个数据库。
 
+
+<h2 id="e65a474b2e07da4193fef099a9a5a884"></h2>
 
 ## 9.2 切换数据库
 
@@ -48,6 +102,8 @@ typedef struct redisClient {
  - redisClient.db 指向 redisServer.db 数组中的其中一个元素。
 
 
+<h2 id="85abf6d07f1ea7699a3399d4e7e88f07"></h2>
+
 ## 9.3 数据库 key space
 
  - `redis.h/redisDb` 结构中的 dict 字典保存了 这个 redisDb 中 所有的 key-value pair, 我们将这个字典成为 key space.
@@ -61,6 +117,8 @@ typedef struct redisDb {
 ```
 
 
+<h2 id="aa52916caf96e748e410c04b818e546c"></h2>
+
 ### 9.3.6 读写 key space的维护操作
 
  - 当使用redis 命令对数据进行读写时， 服务器不仅会对 key space 执行特定的读写操作， 还会执行一些额外的维护操作：
@@ -72,6 +130,8 @@ typedef struct redisDb {
     - 服务器每次修改一个key之后， 都会对 dirty key 计数器的值增加1， 这个计数器会触发服务器的持久化以及复制操作。
     - 如果服务器开启了 数据库通知功能， 那么在对key进行修改后，服务器将按配置发送相应的数据库通知。
 
+
+<h2 id="7dce0e3b39e2e4ca93fc1a155e2c9e92"></h2>
 
 ## 9.4 设置key的生存时间 或过期时间
 
@@ -95,6 +155,8 @@ redis:6379> TTL A
 ``` 
 
 
+<h2 id="696e7890096cb2fc3d766e6f04e10201"></h2>
+
 ### 9.4.1 设置过期时间
 
  - EXPIRE <key> <ttl>
@@ -103,12 +165,16 @@ redis:6379> TTL A
  - PEXPIREAT <key> <timestamp>
 
 
+<h2 id="426142964ca65afd9b5390c08b027fa3"></h2>
+
 ### 9.4.2 保存过期时间
 
  - redisDb 结构的 `dict *expires;` 字典 保存了 数据库中所有key的过期时间
     - 过期字典的key是一个指针， 这个指针指向 key space 中的某个key对象，也即是某个数据库key
     - 过期字典的value是一个 long long类型的整数，这个整数保存了 过期时间 -- 一个毫秒精度的 UNIX时间戳。
 
+
+<h2 id="e77fe4d6808fa5c257e38c9b32944cb1"></h2>
 
 ### 9.4.3 移除过期时间
 
@@ -123,16 +189,24 @@ redis:6379> TTL A
 ```
 
 
+<h2 id="1f6aeaa86a387c1d445ee12955f2649a"></h2>
+
 ## 9.6 Redis 过期key的删除策略
 
  - 惰性删除(访问key的时候 才进行过期检查) ，和 定期删除（每隔一定时间执行一次删除过期操作)
 
 
+<h2 id="250cd9b1dcb13e043cf3f3934f8bf1de"></h2>
+
 ## 9.7 AOF, RDB 和 复制功能 对过期键的处理
+
+<h2 id="2920a1d3c264f8880965a9cee2db82ae"></h2>
 
 ### 9.7.1 生成 RDB 文件
 
  - 执行 SAVE 或 BGSAVE 命令创建一个新的 RDB文件时， 程序会对数据库中的key进行检查，已过期的key 不会被保存到新创建的 RDB 文件中。
+
+<h2 id="cdbd82391cc0c8b1bbfc5c10292f1ce8"></h2>
 
 ### 9.7.2 载入 RDB文件
 
@@ -140,6 +214,8 @@ redis:6379> TTL A
     - 如果服务器以master模式运行， 那么在 载入RDB文件时，程序会对文件中保存的key进行检查，未过期的键会被载入到数据库中， 而过期的键则会被忽略。
     - 如果服务器以 slaver 模式运行，key无路是否过期，都会被载入到数据库总。 因为主从服务器在进行数据同步的时候， 这些过期key 就会被清空，所以不会造成影响。
 
+
+<h2 id="0d763e69eb6aac7370b8d671219e087b"></h2>
 
 ### 9.7.3 AOF 文件写入
 
@@ -151,10 +227,14 @@ redis:6379> TTL A
     3. 向执行 GET命令的客户端 返回nil
 
 
+<h2 id="74d7b9b793407a282fc437855b567ae9"></h2>
+
 ### 9.7.4 AOF 重写
 
  - 和生成 RDB 文件时类似， 在执行AOF重写的过程中， 程序会对数据库中的key进行检查，已过期的key不会被保存到重写后的AOF 文件中。
 
+
+<h2 id="cfec5987bd5114458541d6c47542a094"></h2>
 
 ### 9.7.5 复制
  
@@ -168,6 +248,8 @@ redis:6379> TTL A
     - 假设在此之后， 有客户端向 主服务器 发送 GET message， 那么主服务器将发现 message已经过期，主服务器会删除message， 向客户端返回 nil， 并向从服务器发送 DEL message 命令。
         - 从服务器在接收到 服务器发来的 DEL message 命令后，也会从数据库中删除 message.
 
+
+<h2 id="9f3ab26a95d047bbdde34ac48aa1c22e"></h2>
 
 ## 9.8 数据库通知
 
@@ -191,10 +273,14 @@ redis:6379> SUBSCRIBE __keyspace@0__:del
     - see official docs for more details 
 
 
+<h2 id="b43b08792e45d2626f267c7fa32ea1e2"></h2>
+
 # 第十章  RDB 持久化
 
  - RDB持久化既可以手动执行，也可以根据服务器配置 定期执行， 将数据库状态保存到一个 RDB文件中
  - RDB文件是一个经过压缩的二进制文件
+
+<h2 id="e4fdb7f64e0c078977e296c8204fcfa0"></h2>
 
 ## 10.1 RDB文件的创建和载入
 
@@ -207,6 +293,8 @@ redis:6379> SUBSCRIBE __keyspace@0__:del
     - 只有AOF 处于关闭状态时， 服务器才会使用RDB文件来还原数据库
 
 
+<h2 id="899193c751be1a257794d0c55add6a1c"></h2>
+
 ## 10.1.2 BGSAVE命令执行是的服务器状态
 
  - 在 BGSAVE 命令执行期间， 客户端发送的SAVE/BGSAVE 命令会被服务器拒绝,以防止产生竞态条件
@@ -214,6 +302,8 @@ redis:6379> SUBSCRIBE __keyspace@0__:del
     - 如果BGSAVE命令正在执行，那么客户端发送的BGREWRITEAOF 命令会被延迟到BGSAVE命令执行完毕之后执行
     - 如果 BGREWRITEAOF命令正在执行，那么客户端发送的BGSAVE命令会被服务器拒绝。
     - 两者其实不冲突，不能同时执行它们只是一个性能方面的考虑
+
+<h2 id="f7309047e97f6fd59cae1751c9ecc9ac"></h2>
 
 ## 10.2 自动间隔性保存
 
@@ -233,11 +323,15 @@ save 60 10000
  - PS. 这也是Redis默认的 save选项
 
 
+<h2 id="6379208e54e6df4bd7230e05f1ddcd9c"></h2>
+
 # 第11章  AOF持久化
 
  - Append Only File
  - AOF 通过保存Redis服务器所执行的写命令来记录数据库状态
 
+
+<h2 id="6d04df896b36247259132fb82b148101"></h2>
 
 ## 11.1 AOF持久化的实现
 
@@ -261,6 +355,8 @@ everysec | 默认选项 , 所有内容写入到AOF文件，如果上次同步AOF
 no |  所有内容写入到AOF文件， 由操作系统决定 何时同步
 
 
+<h2 id="bf09e9a5e2c2f7fa63e2e63ce9d85424"></h2>
+
 ## 11.3 AOF重写
 
  - 随着服务器运行时间的流逝， AOF文件中的内容会越来越多， 文件体积页越来越大
@@ -268,12 +364,18 @@ no |  所有内容写入到AOF文件， 由操作系统决定 何时同步
 
 
 
+<h2 id="aa0a9a66d75378fa51e47a76e278790f"></h2>
+
 # 第14章 服务器
+
+<h2 id="01212d817ddb139f1bb2895bb825ac34"></h2>
 
 ## 14.2 serverCron 函数
 
  - serverCron 函数 默认每隔 100ms 执行一次，这个函数负责管理服务器的资源，并保持服务器自身的良好运转
 
+
+<h2 id="105e46bac70d6bacbf39e68329c7462c"></h2>
 
 ### 14.2.1 更新服务器时间缓存
 
@@ -284,13 +386,19 @@ no |  所有内容写入到AOF文件， 由操作系统决定 何时同步
 
 
 
+<h2 id="105b9f5eb4cd097b8d05a0689fbc6cee"></h2>
+
 # 第三部分 多级数据库的实现
+
+<h2 id="1083f1f72ccba95cb67916bfb993be58"></h2>
 
 # 第15章 复制
 
  - Redis中， 用户可以通过 执行 SLAVEOF 命令或者设置 slaveof 选项，让一个服务器去复制 另一个服务器
     - master <- slave
  
+
+<h2 id="3622aa17f59dc29d9f444a1fa691b762"></h2>
 
 # 第16章 Sentinel
 
@@ -299,6 +407,8 @@ no |  所有内容写入到AOF文件， 由操作系统决定 何时同步
     - 2. 等待 主服务器上线，如果下线时长超过设置值，进行故障转移
     - 3. 挑选一台从服务器升级为主服务器， 同时原来的主服务器降级为 从服务器。
 
+
+<h2 id="1729d027ffc4c25f8f95d8c6ae87439b"></h2>
 
 ## 16.1 启动并初始化 Sentinel
 
@@ -318,6 +428,8 @@ $ redis-server /path/to/your/sentinel.conf --sentinel
     - 5. 创建 连向主服务器的网络链接
 
 
+<h2 id="8e86642cb4ff7a5603b4519b811c97d5"></h2>
+
 ### 16.1.1 初始化服务器
 
  - Sentinel 本质上只是一个运行在 特殊模式下的Redis服务器， 所以启动Sentinel的第一步，就是初始化一个Redis服务器
@@ -326,6 +438,8 @@ $ redis-server /path/to/your/sentinel.conf --sentinel
  - 很多 redis 命令 在 Sentinel 服务器上也无法使用
 
 
+<h2 id="0980835f438dc23319a78f9c9f1e2911"></h2>
+
 ### 16.1.2 使用 Sentinel 专用代码
 
  - 比如说， 普通redis 服务器使用 `redis.h/REDIS_SERVERPORT` 作为服务器端口
@@ -333,7 +447,11 @@ $ redis-server /path/to/your/sentinel.conf --sentinel
  - 而 Sentinel使用 `sentinel.c/REDIS_SENTINEL_PORT` 为了服务器端口
  - 等等
 
+<h2 id="8a7bbadb30e40fd09043360410456aca"></h2>
+
 ### 16.1.3 初始化 Sentinel 状态
+
+<h2 id="5c1205ac880316d36c321416d35d59b4"></h2>
 
 ### 16.1.4 初始化 Sentinel 状态的 master属性
 
@@ -370,6 +488,8 @@ sentinel failover-timeout master2 450000
 ```
 
 
+<h2 id="8841ef9a85d2bb92800b807f68b9aa90"></h2>
+
 ### 16.1.5 创建连向主服务器的网络链接
 
  - Sentinel 将成为主服务器的客户端 ，对于每台被监视的主服务器， Sentinel都会创建两个异步链接
@@ -377,12 +497,20 @@ sentinel failover-timeout master2 450000
     - 一个是订阅链接 , 专门用于 订阅 主服务器的 __sentinel__:hello 频道
 
 
+<h2 id="107d9ebc3593fc7492de4218da5f40fc"></h2>
+
 ## 16.2 获取主服务器信息
+
+<h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
 ## TODO
 
 
+<h2 id="53276068e0f0db9687713c65e75a141d"></h2>
+
 # 第17章 集群
+
+<h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
 ## TODO
 
