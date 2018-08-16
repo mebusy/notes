@@ -398,9 +398,205 @@ redis:6379> EVAL "return x" 0
 
 ## 20.3  EVAL命令的实现
 
+ - EVAL 命令执行过程 分为3个步骤：
+    - 1 根据 lua脚本， 在 Lua环境中定义一个Lua函数
+    - 2 将lua脚本 保存到 lua_scripts 
+    - 3 执行刚刚定义的 lua函数
 
 
+### 20.3.1 定义脚本函数
+
+ - 函数名字 由 `f_` + SHA1  组成， 函数体 则是脚本本身
+ - 对于命令
+    - `EVAL "return 'hello world'"` 0
+ - 服务器将在  Lua环境定义一下函数
 
 
+```lua
+function f_5332031c6b470dc5a0dd9b4bf2030dea6d65de91 ()
+    return 'hello world'
+end
+```
+
+
+```
+// 验证一下 sha1
+redis:6379> EVAL "return redis.sha1hex( \"return 'hello world'\" )" 0
+"5332031c6b470dc5a0dd9b4bf2030dea6d65de91"
+```
+
+ - 使用函数来保存 传入的脚本有以下好处：
+    - 执行脚本的步骤非常简单， 只要调用与脚本相对应的函数即可
+    - 通过函数的局部性 来让lua环境保持清洁， 减少垃圾回收的工作量，并避免了 使用全局变量
+    - 如果某个脚本 对应的函数在 Lua环境中 被定义过至少一次， 那么只要记得这个脚本的 sha1 ， 服务器就可以在 不知道脚本本身的情况下， 直接通过调用 函数来执行脚本，这是 EVALSHA 命令的实现原理。
+
+
+### 20.3.2  脚本保存到 lua_scripts 字典
+
+ - 对于命令
+    - `EVAL "return 'hello world'"` 0
+ - EVAL 命令要做的第一件事 是将客户端传入的脚本保存到 服务器的 lua_scripts 字典里
+    - key 是 sha1 
+    - value 就是 脚本本身 `return 'hello world'`
+
+
+### 20.3.3 执行脚本函数
+
+```
+EVAL script numkeys key [key ...] arg [arg ...]
+```
+
+
+ - 定义函数，保存脚本 完成后， 服务器还需要进行一些 设置钩子，传入参数之类的准备动作， 才能正是开始执行脚本
+ - 整个准备和执行脚本的过程如下：
+    - 1 将 EVAL 命令中 传入的 key name 参数 和 arg 参数 分别保存到 KEYS / ARGV 数组， 然后将 这两个数组作为全局变量 传入到 Lua环境里面
+    - 2 为 Lua环境装载超时 处理钩子 hook , 这个钩子可以在 脚本出现超时运行情况时， 让客户端通过 SCRIPT KILL 命令停止脚本， 或者通过 SHUTDOWN 命令直接关闭服务器。
+    - 3 执行脚本函数
+    - 4 移除之前装载的钩子
+    - 5 将 结果保存到 客户端状态的输出缓冲区里面，等待服务器 将结果返回给客户端
+    - 6 对 Lua环境执行垃圾回收工作
+
+
+## 20.5 脚本管理命令的实现
+
+ - 除了 EVAL 和  EVALSHA 命令之外， Redis中 与Lua脚本相关的命令还有4个:
+    - SCRIPT FLUSH , SCRIPT EXISTS , SCRIPT LOAD , SCRIPT KILL
+
+ - SCRIPT FLUSH 命令用于清除 服务器中所有和Lua 脚本有关的信息，
+    - 释放并重建 lua_scripts
+    - 关闭现有的lua环境，并重建一个新的Lua环境
+ - SCRIPT EXISTS 
+    - 根据输入的 sha1 ， 测试 对应的脚本是否存在与服务器中
+
+
+```
+redis:6379> SCRIPT EXISTS 5332031c6b470dc5a0dd9b4bf2030dea6d65de91
+1) (integer) 1
+```
+
+ - SCRIPT LOAD
+    - 和 EVAL 命令执行脚本所做的前两部 完全一样
+    - Lua环境中 定义函数
+    - 脚本保存到 lua_scripts
+
+
+```
+redis:6379> SCRIPT LOAD "return 'hi'"
+"2f31ba2bb6d6a0f42cc159d2e2dad55440778de3"
+redis:6379> EVALSHA 2f31ba2bb6d6a0f42cc159d2e2dad55440778de3 0
+"hi"
+```
+
+ - SCRIPT KILL
+    - 如果服务器配置了 lua-time-limit 配置选项， 那么在每次执行Lua脚本之前， 服务器都会在 Lua环境里面 设置一个超时处理钩子 hook.
+    - 一旦钩子发现脚本的运行时间 超过了 lua-time-limit 选项设置的时长， 钩子将定期在 脚本运行的间隙， 查看是否有 SCRIPT KILL 或 SHUTDOWN 命令到达服务器
+    - 如果超时脚本 未执行过任何写入操作， 那么客户端可以通过 SCRIPT KILL 命令来只是服务器停止执行这个脚本， 并返回一个错误回复。
+    - 处理完 SCRIPT KILL 命令后，服务器可以继续运行
+    - 另一方面，如果脚本已经 执行过写入操作，那么客户端只能用 SHUTDOWN nosave 命令来停止服务器，从而防止不合法的数据被写入数据库中。
+
+
+## 20.6 脚本复制
+
+ - 与其他命令一样， 当服务器运行在  复制模式模式下时， 具有写性质的脚本命令 也会被复制到从服务器
+    - 这些命令包括 EVAL命令，EVALSHA命令， SCRIPT FLUSH命令，以及 SCRIPT LOAD 命令
+ - EVAL , SCRIPT FLUSH , SCRIPT LOAD 命令相对都简单
+ - EVALSHA 的复制操作是最复杂的一个, 因为 主服务器 与 从服务器载入 Lua脚本的情况 可能有所不同
+    - 主服务器 不能像复制 其他3个命令那样， 直接将 EVALSHA 命令传播给从服务器
+
+### 20.6.2 复制 EVALSHA 命令
+
+ - 对于一个 在主服务器被成功执行的 EVALSHA命令来说，相同的EVALSHA 命令在从服务器执行时却可能会出现 脚本not found 的错误
+ - Redis要求 主服务器在 传播 EVALSHA 命令的时候，必须确保 EVALSHA 命令要执行的脚本 已经被所有的 从服务器载入过，如果不能确保这一点的话，主服务器会将 EVALSHA 命令转换为一个等价的 EVAL 命令
+ - 传播 EVALSHA 命令，或 转换为 EVAL 命令， 都需要用到服务器状态的 lua_scripts 和 repl_scriptcache_dict 字典
+
+ - 1 判断传播 EVALSHA 命令是否安全的方法
+    - 主服务器使用服务器状态的 repl_scriptcache_dict 字典 记录自己已经将哪些脚本传播给了所有从服务器。
+    - 如果一个脚本的 sha1  存在与 lua_scripts ， 却 不存在与 repl_scriptcache_dict , 说明脚本并没有传播给所有从服务器
+ - 2 清空 repl_scriptcache_dict 字典
+    - 每当 主服务器添加一个新的 从服务器时， 主服务器都会清空 自己的 repl_scriptcache_dict 字典， 强制自己重新向 所有从服务器 传播脚本
+ - 3 EVALSHA 转换成 EVAL 命令
+ - 4 传播 EVALSHA 或 EVAL 命令
+
+
+# 第21章 排序
+
+ - Redis 的 SORT 命令可以对列表键， 集合键， 或者有序集合键 的值进行排序
+
+```
+redis:6379> RPUSH numbers 5 3 1 4 2
+(integer) 5
+redis:6379> LRANGE numbers 0 -1
+1) "5"
+2) "3"
+3) "1"
+4) "4"
+5) "2"
+redis:6379> SORT numbers
+1) "1"
+2) "2"
+3) "3"
+4) "4"
+5) "5"
+```
+
+```
+redis:6379> SADD alphabet a b c d e f g
+(integer) 7
+redis:6379> SMEMBERS alphabet
+1) "b"
+2) "a"
+3) "d"
+4) "e"
+5) "g"
+6) "c"
+7) "f"
+redis:6379> SORT alphabet ALPHA
+1) "a"
+2) "b"
+3) "c"
+4) "d"
+5) "e"
+6) "f"
+7) "g"
+```
+
+ - 下面的例子 使用了 SORT 命令和 BY 选项， 以 jack_number , peter_number, tom_number 3个键的值为权重， 对有序集合 test-result 中的 jack, peter, tom 三个成员进行排序
+
+```
+redis:6379> ZADD test-result 3.0 jack 3.5 peter 4.0 tom
+(integer) 3
+redis:6379> ZRANGE test-result 0 -1
+1) "jack"
+2) "peter"
+3) "tom"
+
+redis:6379> MSET peter_number 1 tom_number 2 jack_number 3
+OK
+redis:6379> SORT test-result  BY *_number
+1) "peter"
+2) "tom"
+3) "jack"
+```
+
+
+## 21.1 SORT <key> 命令的实现
+
+ - `SORT <key>` 可以对一个包含数字value 的 key 进行排序
+
+```
+redis:6379> RPUSH numbers 3 1 2
+(integer) 3
+redis:6379> SORT numbers
+1) "1"
+2) "2"
+3) "3"
+```
+
+ - 服务器执行 SORT numbers 命令的详细步骤如下 ：
+    - 1 创建一个 和 numbers 列表长度相同的数组， 该数组的每一项都是一个 `redis.h/redisSortObject` 结构
+    - 2 遍历数组， 将 redisSortObject 的 obj 指针分别 指向 numbers 列表的各个项
+    - 3 遍历数组， 将哥哥 obj 指针指向的 列表项 转换成一个 double，并将这个 double 保存在 redisSortObject 的 u.score 属性里面
+    - 4 根据 u.score 属性的值， 对数组进行排序
+    - 5 遍历数组， 将 redisSortObject 的 obj 指针指向的列表项作为排序结果 依次返回给客户端。
 
 
