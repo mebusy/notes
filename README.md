@@ -151,6 +151,7 @@ a | b | c | d
  a | b | c | d
 --- | --- | --- | ---
 [redis 基础数据结构](https://github.com/mebusy/notes/blob/master/dev_notes/redis.md) | [redis 数据库实现](https://github.com/mebusy/notes/blob/master/dev_notes/redis2.md) | [redis 独立功能的实现](https://github.com/mebusy/notes/blob/master/dev_notes/redis3.md) | 
+[mysql相关](https://github.com/mebusy/notes/blob/master/dev_notes/mysql.md) |
 [swagger](https://github.com/mebusy/notes/blob/master/swagger.md) |  [backend tips](https://github.com/mebusy/notes/blob/master/dev_notes/backend_tips.md) | 
 [reintro JS](https://github.com/mebusy/notes/blob/master/dev_notes/reintro_JS.md) | [React哲学](https://github.com/mebusy/notes/blob/master/dev_notes/react_philosophy.md)  |  [web frontend tips](https://github.com/mebusy/notes/blob/master/dev_notes/web_frontend_note.md) | 
 
