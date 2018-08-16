@@ -760,6 +760,61 @@ redis:6379> LRANGE sorted_students 0 -1
  - Redis 提供了 SETBIT, GETBIT, BITCOUNT, BITOP 用于处理 bit array
 
 ```
+redis:6379> SETBIT bit 0 1  # 0000 0001
+(integer) 0
+redis:6379> SETBIT bit 3 1  # 0000 1001
+(integer) 0  
+redis:6379> SETBIT bit 0 0  # 0000 1000
+(integer) 1
+redis:6379> GET bit  # 是的你没看错
+"\x10"               # 实际保存的数据
+                     # bit 是逆序
+
+redis:6379> GETBIT bit 0
+(integer) 0
+redis:6379> GETBIT bit 3
+(integer) 1
+
+redis:6379> BITCOUNT bit
+(integer) 1
+redis:6379> SETBIT bit 0 1 # 0000 1001
+(integer) 0
+redis:6379> BITCOUNT bit
+(integer) 2
+
+redis:6379> SETBIT x 3 1  # 0000 1011
+(integer) 0
+redis:6379> SETBIT x 1 1
+(integer) 0
+redis:6379> SETBIT x 0 1
+(integer) 0
+redis:6379> SETBIT y 2 1  # 0000 0110
+(integer) 0
+redis:6379> SETBIT y 1 1
+(integer) 0
+redis:6379> SETBIT z 2 1  # 0000 0101
+(integer) 0
+redis:6379> SETBIT z 0 1
+(integer) 0
+redis:6379> BITOP AND and-result x y z  # 0000 0000
+(integer) 1
+redis:6379> GET and-result
+"\x00"
+redis:6379> BITOP OR or-result x y z    # 0000 1111
+(integer) 1
+redis:6379> GET or-result
+"\xf0"
+redis:6379> BITOP XOR xor-result x y z  # 0000 1000
+(integer) 1
+redis:6379> GET xor-result
+"\x10"
+
+redis:6379> SETBIT value 0 1   # 0000 1001
+(integer) 0
+redis:6379> SETBIT value 3 1
+(integer) 0
+redis:6379> BITOP NOT not-value value  # 1111 0110
+(integer) 1
 
 ```
 
@@ -777,8 +832,31 @@ redis:6379> LRANGE sorted_students 0 -1
  - 需要注意的是， buf 数组保存位数组的顺序， 和我们平时书写 位数组的顺序是 完全相反的
     - 如上图的 buf[0] , 各个位的值 从高位到地位 分别是 1,0,1,1, 0,0,1,0 ,  buf[0]中保存的其实是 0b01001101.
  - 使用逆序来保存 bit array 可以简化 SETBIT命令的实现。
+    - 是的SETBIT 命令可以不在移动现有二进制位的情况下， 对bit array 进行空间扩展
 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/redis_bit_array2.png)
+
+ - 上图展现了另一个 bit array
+    - sdshdr.len = 3, 表示这个 SDS 保存了一个3字节长的 bit array
+    - bit array:  1111 0000 1100 0011 1010 0101 ,
+    - buf 数组为  buf [0] 1010 0101 , buf [1]  1100 0011 , buf [2] 0000 1111
+
+
+# 第23章 慢查询日志
+
+ - Redis的 慢查询日志 用于记录 执行时间超过给定时长的命令请求， 用户可以通过 这个功能产生的日志来监视和优化查询速度。
+ - 服务器配置有 两个和慢查询日志相关的选项：
+    - slowlog-log-slower-than , 微秒， 1ms = 1000 微秒
+    - slowlog-max-len     最多保存多少条 慢查询日志
+        - FIFO list , 超过最大长度后， 最旧的日志删除
+ - `SLOWLOG GET` 查看慢日志
+ - `SLOWLOG LEN` 
+
+
+# 第24章 监视器 
+
+ - 通过执行 MONITOR 命令， 客户端可以将自己变成一个监视器 ， 实时地接收并打印服务器当前处理的命令的相关信息
 
 
 
