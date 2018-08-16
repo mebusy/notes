@@ -772,6 +772,11 @@ redis:6379> LRANGE sorted_students 0 -1
     - sdshdr.len 为 1 
     - buf[0] 保存了一个字节的 bit array, buf[1] 为 `\0`
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/redis_bit_array.png)
+
+ - 需要注意的是， buf 数组保存位数组的顺序， 和我们平时书写 位数组的顺序是 完全相反的
+    - 如上图的 buf[0] , 各个位的值 从高位到地位 分别是 1,0,1,1, 0,0,1,0 ,  buf[0]中保存的其实是 0b01001101.
+ - 使用逆序来保存 bit array 可以简化 SETBIT命令的实现。
 
 
 
