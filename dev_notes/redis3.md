@@ -600,3 +600,180 @@ redis:6379> SORT numbers
     - 5 遍历数组， 将 redisSortObject 的 obj 指针指向的列表项作为排序结果 依次返回给客户端。
 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/redis_sort.png)
+
+```c
+typedef struct _redisSortObject {
+    // value to sort
+    robj *obj ;
+    // weight
+    union {
+        // used for sort number
+        double score ;
+        // used sort string via `BY`
+        robj *cmpobj ;    
+    } u;
+
+} redisSortObject ;
+```
+
+## 21.2 ALPHA 选项的实现
+
+ - `SORT <key> ALPHA`  可以对包含 字符串值的 key 进行排序
+
+```
+redis:6379> SADD fruits apple banana cherry
+(integer) 3
+redis:6379> SORT fruits ALPHA
+1) "apple"
+2) "banana"
+3) "cherry"
+```
+
+## 21.3 ASC选项 和 DESC 选项的实现
+
+ - 在默认情况下， SORT 执行 升序排序 
+    - `SORT <key>` 和 `SORT <key> ASC` 是等价的
+ - `SORT <key> DESC` 可以降序排序
+
+
+## 21.4 BY 选项的实现
+
+ - 默认情况下， SORT 命令使用 元素本身作为排序的权重
+ - 通过BY选项， SORT 命令可以指定某些 string key ，或者某个 hash key 所包含的fields 来作为元素的权重， 进行排序
+    - 如下面的例子， 对于 apple， 排序使用 权重key: apple-price
+
+```
+redis:6379> MSET apple-price 8 banana-price 5.5  cherry-price 7
+OK
+redis:6379> SORT fruits BY *-price
+1) "banana"
+2) "cherry"
+3) "apple"
+```
+
+## 21.5 带有ALPHA选项的BY选项的实现
+
+ - BY 选项默认假设权重key保存的值是数字， 如果 权重key保存的是字符串值的话，那么就需要在使用BY选项的同时，配合使用ALPHA选项
+
+
+```
+redis:6379> MSET apple-id FRUIT-25 banana-id FRUIT-79 cherry-id FRUIT-13
+OK
+redis:6379> SORT fruits BY *-id
+(error) ERR One or more scores can't be converted into double
+redis:6379> SORT fruits BY *-id ALPHA
+1) "cherry"
+2) "apple"
+3) "banana"
+```
+
+
+## 21.6 LIMIT 选项的实现
+
+ - SORT 默认 将排序后的所有元素都返回给客户端
+ - 通过LIMIT选项， 可以只返回一部分 已排序的元素
+ - `LIMIT <offset> <count>`
+
+```
+redis:6379> SORT alphabet ALPHA LIMIT 0 4
+1) "a"
+2) "b"
+3) "c"
+4) "d"
+redis:6379> SORT alphabet ALPHA LIMIT 4 -1
+1) "e"
+2) "f"
+3) "g"
+```
+
+## 21.7  GET选项实现
+
+ - 默认情况下， SORT 排序会， 总是返回被排序key 包含的元素
+ - 通过GET选项， 可以让 SORT 命令在对key进行排序之后， 根据被排序的元素， 以及GET选项所指定的模式， 查找并返回某些key的值。
+ - 下面的例子， SORT首先对 students集合排序， 然后根据排序结果(对学生简称排序),  查找并返回 学生的全名:
+
+```
+redis:6379> SADD students peter jack tom
+(integer) 3
+
+// 设置全名
+redis:6379> SET peter-name "Peter White"
+OK
+redis:6379> SET jack-name "Jack Snow"
+OK
+redis:6379> SET tom-name "Tom Smith"
+OK
+
+redis:6379> SORT students ALPHA GET *-name
+1) "Jack Snow"
+2) "Peter White"
+3) "Tom Smith"
+```
+
+
+## STORE 选项的实现
+
+ - 默认情况下， SORT 命令只返回排序结果，并不 保存这个排序结果
+ - 使用 STORE 选项， 可以把 排序结果保存在 指定的 key里
+
+```
+redis:6379> SORT students ALPHA STORE sorted_students
+(integer) 3
+redis:6379> LRANGE sorted_students 0 -1
+1) "jack"
+2) "peter"
+3) "tom"
+```
+
+ - STORE 会先查找 key sorted_students ， 如果存在则删除 
+    - 然后设置 sorted_students 为 空的 list key
+    - 将排序结果 依次 推入 sorted_students ， 相当于 RPUSH
+
+
+## 21.9 多个选项的执行顺序
+
+ - SORT 命令 请求通常会用到多个选项， 而这些选项的执行顺序是有 先后之分的
+
+### 21.9.1 选项的执行顺序
+
+ - 如果按照选项来划分的话， 一个SORT命令的执行过程可以分为以下4步:
+    - 1 排序:
+        - 使用 ALPHA, ASC, DESC, BY 这几个选项， 进行排序
+    - 2 限制结果长度
+        - LIMIT 
+    - 3 获取外部键
+        - GET ， 产生新的排序结果集
+    - 4 保存排序结果
+        - STORE
+    - 5 返回排序结果
+
+
+### 29.9.2 选项的摆放顺序
+
+ - 另外要提醒的一点是， 调用 SORT 命令时 ， 除了GET选项外， 改变选项的摆放顺序 并不会影响 SORT 命令执行这些选项的顺序
+ - 不过 如果 命令包含多个 GET 选项，那么在调整选项的位置时， 我们必须保证多个 GET 选项的摆放顺序不变，这才可以让排序结果保持不变
+
+
+# 第22章 二进制位数组
+
+ - Redis 提供了 SETBIT, GETBIT, BITCOUNT, BITOP 用于处理 bit array
+
+```
+
+```
+
+
+## 22.1 位数组的表示
+
+ - Redis 使用字符串对象 来表示 bit array， 因为 字符串对象使用的 SDS 数据结构是二进制安全的，可以直接使用SDS 结果来保存 位数组, 并使用SDS结构的操作函数来处理 bit array
+ - 例： SDS 表示 一个字节长的bit array
+    - redisObject.type 为 REDIS_STRING
+    - sdshdr.len 为 1 
+    - buf[0] 保存了一个字节的 bit array, buf[1] 为 `\0`
+
+
+
+
+
+
