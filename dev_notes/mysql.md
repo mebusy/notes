@@ -179,6 +179,282 @@ COMMIT WORK;
  - 表空间 又由 段 segment, 区 extent , 页 page  组成.
 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mysql_logic_store_struct.png)
+
+
+### 4.2.1 tablespace
+
+ - 默认情况下， InnoDB 有一个共享表空间 ibdata1 , 所有数据都存放在 这个表空间内
+ - 如果用户开启了  innodb_file_per_table, 则 每张表的数据 可以单独放到一个表空间内
+
+### 4.2.2 段
+
+ - tablespace 是由各个段组成的， 常见的有 数据段， 索引段， 回滚段等
+
+### 4.2.3  区 extent
+
+ - 区有连续的页组成，在任何情况下，每个区的大小都为 1M
+ - 为了保证 区中页的连续性， InnoDB 一次从磁盘申请 4-5个区。 
+ - 默认情况下， page 大小为 16k， 即一个区 一共有64个连续的page
+ 
+### 4.2.4 页
+
+ - 常见的page类型有
+    - 数据页 B-tree node
+    - undo页  undo log page
+    - 系统页  system page
+    - 事务数据页   transaction system page
+    - 插入缓冲位图页  insert buffer bitmap
+    - 插入缓冲空闲列表页   insert buffer free list
+    - 为压缩的二进制大对象页 uncompressed BLOB page
+    - compressed BLOB page 
+
+
+## 4.3 行记录格式
+
+### 4.3.1 Compact 行记录格式
+
+ - Mysql5.1 后默认格式
+ - 设计目的是高效的存储数据。 简单来说，一个页中存放的行数据越多， 其性能就越高。
+ - Compact 存储方式
+
+```
+变长字段长度列表 | NULL标志位 | 记录头信息 | 列1数据 | 列2数据 | ... 
+```
+
+ - 变长字段长度列表: 各个VCHAR 字段实际长度， 逆序排列
+ - NULL标志位， 指示了该行数据中是否有NULL值
+ - 每行数据除了用户定义的列 外， 还有两个隐藏列 ： 事务ID列 和 回滚指针列， 分别为 6个字节和7个字节。
+    - 如果表没有定义主键，每行还会增加一个6字节的rowid 列
+
+
+### 4.3.3 行溢出数据
+
+ - InnoDB 可以将 一条记录中的某些数据 存储在 真正的数据页面之外。 
+ - VARCHAR
+    - 表的 VARCHAR 的长度 **总和** 有 65535的限制
+
+
+### 4.3.5 CHAR 的行结构存储
+
+ - 在 多字节字符集的情况下，CHAR 和 VARCHAR的实际存储基本是没有什么区别的
+
+
+## 4.6 约束
+
+### 4.6.1 数据完整性
+
+ - 关系数据库 本身能保证 存储数据的完整性，不需要应用程序的控制。
+ - 几乎所有的关系数据库 都提供了 constraint 机制， 该机制提供了一条强大而简易的途径来保证数据库中数据的完整性。
+ - 一般来说，数据完整行有以下3种形式:
+    - 实体完整性 保证表中有一个主键
+    - 域完整性 保证数据每列的值 满足特定的条件
+        - 选择合适的数据类型确保一个数据值 满足特定条件
+        - foreign key 约束
+        - 编写触发器
+        - 还可以考虑用 DEFAULT 约束作为 强制域完整性的一个方面
+    - 参照完整性  保证两张表之间的关系。
+        - 定义foreign key 强制参照完整性， 也可以通过编写触发器强制执行
+        - InnoDB 本身也提供了 以下几种约束
+            - Primary Key
+            - Unique Key
+            - Foreign Key
+            - Default
+            - NOT NULL
+
+
+### 4.6.5 ENUM 和 SET 约束
+
+ - MySQL 不支持传统的 CHECK约束， 但是通过 ENUM 和 SET 类型，可以解决部分这样的约束需求
+ - 例如 表上有一个 性别类型， 规定域的范围 只能是 male 或 female,  这种情况下用户可以通过 ENUM 类型来进行约束.
+
+```
+mysql> CREATE TABLE a (
+    -> id INT,
+    -> sex ENUM('male','female'));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO a
+    -> SELECT 1, 'female';
+Query OK, 1 row affected (0.00 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO a
+    -> SELECT 2, 'bi'; 
+ERROR 1265 (01000): Data truncated for column 'sex' at row 1
+```
+
+ - 这个约束仅限于 离散数值的约束， 对于 连续值的范围约束 ENUM/SET 还是无能为力。 用户需要通过触发器来实现对于 值域的约束。
+
+
+### 4.6.6 触发器与约束
+
+ - 触发器的作用是在执行 INSERT, DELETE, UPDATE 命令之前 或之后 自动调用 SQL命令或存储过程。
+ - 创建触发器的命令是 `CREATE TRIGGER` 
+
+```
+CREATE 
+[DEFINER = { user | CURRENT_USER } ]
+TRIGGER trigger_name BEFORE|AFTER  INSERT|UPDATE|DELETE
+ON tbl_name FOR EACH ROW trigger_stmt
+```
+
+ - 最后可以为一个表建立6个触发器  BEFORE|AFTER x INSERT|UPDATE|DELETE = 6
+ - 例如有张用户消费表， 每次用户购买的一样物品后其金额都是减的，若这是有 不怀好意的 用户做了类似 减去一个 负值 的操作，用户的钱没减少 反而增加了。
+ - 从业务逻辑上来说， 这肯定是错误的， 消费总是意味着 减去一个正值。
+ - 所以这时需要通过触发器来约束这个逻辑
+
+
+### 4.6.7 外键约束
+
+ - 一般来说， 称被引用的表 为 父表， 引用的表称为 子表
+
+```
+mysql> CREATE TABLE parent (
+    -> id INT NOT NULL,
+    -> PRIMARY KEY (id));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE child (
+    -> id INT ,
+    -> parent_id INT ,
+    -> FOREIGN KEY (parent_id) REFERENCES parent(id) );
+Query OK, 0 rows affected (0.02 sec)
+```
+
+ - 外键定义时的 ON DELETE 和 ON UPDATE 表示对父表进行 DELETE/UPDATE 操作时，对子表所做的操作
+ - 可定义的字表操作有：
+    - CASCADE
+        - 表示 相应的子表中的数据也进行 DELETE/UPDATE
+    - SET NULL
+        - 相应的子表数据被 更新为NULL， 但该项必须允许为 NULL
+    - NO ACTION
+        - 抛出错误，不允许这类操作发生
+    - RESTRICT 
+        - 抛出错误，不允许这类操作发生
+        - 没有指定 ON DELETE 和 ON UPDATE 的 默认外键设置
+ - InnoDB 在外键建立时，会自动对该列加一个索引。
+
+
+## 4.7 视图
+
+ - 视图 View 是一个命名的虚表， 它由一个SQL 查询来定义， 可以当作表使用。 视图中的数据 没有实际的物理存储
+
+### 4.7.1 视图的作用
+
+ - 视图在数据库中发挥着重要的作用
+ - 视图的主要用途之一 是被用作 一个抽象装置， 特别是对于一些应用程序， 程序本身不需要关心 base table的结构，只需要按照视图定义来取数据或更新数据，因此，数据同时在一定程度上 起到一个安全层的作用。
+ - 视图是 基于基表的一个虚拟表， 但是用户可以对某些视图进行更新操作，其本质就是通过视图的定义来 更新base table.
+    - 一般称 可以进行更新操作的视图 为 updatable view. 
+    - 视图中定义的 WITH CHECK OPTION 就是针对与 updatable view, 即 更新的值是否需要检查.
+
+```
+mysql> CREATE TABLE t ( id INT );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE VIEW v_t
+    -> AS
+    -> SELECT * FROM t WHERE id<10;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> INSERT INTO v_t SELECT 20;
+Query OK, 1 row affected (0.03 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * from v_t;
+Empty set (0.00 sec)
+```
+
+ - 上面的例子中，插入没有报错， 但是用户查询视图还是没能查到数据。  
+    - 这是因为 20 已经成功插入到了 base table， 但却不满足 v_t 的条件  
+    - 可以加上 WITH CHECK OPTION 选项禁止这类行为:
+
+```
+mysql> ALTER VIEW v_t
+    -> AS
+    -> SELECT * FROM t WHERE id<10
+    -> WITH CHECK OPTION;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> INSERT INTO v_t SELECT 20;
+ERROR 1369 (HY000): CHECK OPTION failed 'testDB.v_t'
+
+mysql> INSERT INTO v_t SELECT 1;
+Query OK, 1 row affected (0.01 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * from v_t;
++------+
+| id   |
++------+
+|    1 |
++------+
+1 row in set (0.00 sec)
+
+```
+
+ - 可以看到，大于20报错了
+
+
+### 4.7.2 物化视图 TODO
+
+ - Oracle 支持物化视图 -- 不是虚表，而是根据base table 实际存在的实表， 即 物化视图总是存储在非易失的存储设备上
+ - 物化视图 可以用于预先计算并保存多表的连接 JOIN 或 聚集 GROUP BY 等耗时较多的SQL操作结果。 这样 在执行复杂查询时， 就可以避免进行这些耗时的操作。
+
+ - MySQL 本身并不支持物化视图， MySQL的视图总是虚拟的。
+ - TODO
+
+---
+
+## 4.8 分区表  TODO
+
+### 4.8.1 分区概述
+
+ - 分区的过程 是将一个表 或 索引 分解为 多个更小，更可管理的部分。
+ - 就访问数据库的应用而言， 从逻辑上将， 只有一个表 或一个索引， 但是在物理上 这个表或索引可能由数十个物理分区组成。
+    - 每个分区是独立的对象， 可以独自处理，也可以作为一个更大对象的一部分进行处理。
+ - MySQL 支持的分区类型为 水平分区 ， 将不同行的记录分配到 不同的物理文件中。
+    - 此外MySQL的分区是局部分区， 一个分区中 既存放了数据 又存放了索引。
+ - 分区可能会给某些SQL语句性能带来提高， 但是分区 主要用于数据库的高可用性的管理。 对分区的使用应该非常小心， 乱用极有可能会对性能产生负面的影响
+ - TODO
+
+
+---
+
+
+# 第5章  索引与算法
+
+ - 若索引太多，应用程序的性能可以会受到影响； 而索引太少，对查询性能又会产生影响。 要找到一个合适的平衡点， 这对应用程序的性能至关重要
+
+## 5.1 InnoDB 索引概述
+
+ - InnoDB 常见索引
+    - B+树索引
+        - 传统意义上的索引
+        - B+树索引 并不能找到 一个给定键值的具体行， 只能找到 数据行所在的页。 然后 通过把 页读如内存， 再在内存中进行查找结果。
+    - 全文索引
+    - 哈希索引
+        - 自适应的， 不能人为干预是否在一张表中 生成哈希索引
+
+
+## 5.4 B+树索引
+
+ - B+树索引 在数据库中 有一个特点是高扇出性，因此在数据库中， B+树的高度一般都在 2-4层。
+ - 数据库中的 B+树索引 可以分为 聚集索引 clustered index 和 辅助索引 secondary index 
+    - 不同的是 ， 叶子节点存放的 是否是一整行的信息。
+
+### 5.4.1 聚集索引
+
+ - clustered index  按照每张表的主键 构造一颗B+树， 同时叶子节点中 存放的即为 整张表的 行记录数据， 也将 clustered index 的叶子节点称为 数据页.
+ - 由于实际的数据页 只能按照一颗B+树进行排序， 因此每张表只能拥有一个 clustered index.
+ - clustered index的一个好处是， 它对主键的 排序查找 和 范围查找速度非常快。
+
+### 5.4.2 辅助索引
+
+ - secondary index 也称 非聚集索引 
+ - 叶子节点 并不包含 行记录的全部数据。
+ - 叶子节点 除了包含 键值以外， 每个叶子几点的索引行中 还包含了一个 bookmark.
+    - 这个 bookmark 用来告诉 InnoDB  哪里可以找到与索引相对应的行数据。
 
 
 
