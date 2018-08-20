@@ -323,6 +323,26 @@ Perl | vim
 
 ---
 
+# 参数列表
+
+ - 每一个通过 shell 命令传递给 Vim 的文件名都被记录在一个参数列表中。
+ - 可以有多个参数列表：
+    - 默认情况下所有参数都被放在全局参数列表下，但是你可以使用 :arglocal 命令去创建一个新的本地窗口的参数列表。
+ - 使用 :args 命令可以列出当前参数
+ - 参数列表在有些情况下被大量使用：批处理 
+ - 使用 :argdo！ 一个简单的重构例子：
+
+```
+:args **/*.[ch]
+:argdo %s/foo/bar/ge | update
+```
+
+ - 这条命令将替换掉当前目录下以及当前目录的子目录中所有的 C 源文件和头文件中的“foo”，并用“bar”代替。
+
+
+
+---
+
 <h2 id="508b03ab799d17da8b37eb7801c05c8b"></h2>
 
 # VIM 常用操作
@@ -374,7 +394,7 @@ vimgrep /pattern/gj path
 
 <h2 id="476949b7922fe3e5ea39c034861527d8"></h2>
 
-### 文件夹 替换
+## 文件夹 替换
 
 查找
 
@@ -390,9 +410,11 @@ vimgrep /pattern/gj path
 :argdo %s/word/NEW/eg | update
 ```
 
+ - 见[参数列表]
+
 <h2 id="4b0c82f3072a7a2d205d934ca7413367"></h2>
 
-### 多行 行首插入字符
+## 多行 行首插入字符
 
  1. 光标置与第一行行首, ctrl-v 进入  VISUAL BLOCK
  2. 向下移动光标 选中所有行
@@ -401,7 +423,7 @@ vimgrep /pattern/gj path
 
 <h2 id="facc78c7266b3fe0364882da91e214b8"></h2>
 
-### 多行 行尾插入字符
+## 多行 行尾插入字符
 
  - 对多行行首插入的 第三步进行修改
     1. Press $ to extend the visual block to the end of each line.
@@ -411,7 +433,7 @@ vimgrep /pattern/gj path
 
 <h2 id="72ec54ea94cad51a12851d38a51ea25f"></h2>
 
-### replace all tab with 4 space
+## replace all tab with 4 space
 
 ```
 :%!expand -t4
