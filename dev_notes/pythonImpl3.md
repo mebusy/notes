@@ -54,7 +54,7 @@
 ## 3.3 赋值
 
  - 除非在函数中使用关键字 global、nolocal 指明外部名字 ， 否则赋值语句总是 **在当前名字空间创建或修改 {name:object} 关联**
- - 代码 block 不知 名字空间 ！！！ 这点和c不同
+ - 代码 block 不是 名字空间 ！！！ 这点和c不同
 
 ```python
 >>> def test():
@@ -62,7 +62,7 @@
 ...     x = 10
 ...     break
 ... print locals()
-... print  # 这个写法c里会报错 
+... print x # 这个写法c里会报错 
 
 >>> test()
 {'x': 10}

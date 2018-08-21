@@ -200,7 +200,7 @@ NameError: global name 'x' is not defined
 ```
 
  - 另外，编译期作用域不受执行期条件影响。
-    - 要不然类似 `if condition_variable:   global x ` 语句，就完全无法在编译器确定 x 的作用域了
+    - 要不然类似 `if condition_variable:   global x ` 语句，就完全无法在编译期间确定 x 的作用域了
 
 ```python
 >>> x = 10
