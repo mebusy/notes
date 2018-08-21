@@ -138,7 +138,7 @@ def visit( arg, dirname, fnames):
 if '__main__' == __name__ :
 
     all_md_filenames = {}
-    createMenu4MD( '/Volumes/WORK/WORK/HDAServer/INSTALL.md' )
+    # createMenu4MD( '/Volumes/WORK/WORK/HDAServer/INSTALL.md' )
     os.path.walk( "../" , visit , None )
 
     print '-----'
