@@ -249,6 +249,9 @@ This matrix R is the final result of elimination on A. MATLAB would use the comm
 
 If A is a square invertible matrix , in that case , rref(R) is *identity matrix*.  ***rref (A) = I***, when A is invertible.
 
+**reduced row echelon form have the same null space as the original matrix**.
+
+
 For a 5 by 8 matrix with four pivots, Figure 2.3 shows the reduced form R. **It still contains an identity matrix, in the four pivot rows and four pivot columns**. 
 
  - From R we will quickly find the nullspace of A. 
