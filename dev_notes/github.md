@@ -103,11 +103,12 @@ git diff | less -r
     - https://git-scm.com/docs/gitcredentials
 
 ```
-git config credential.${remote}.username yourusername
+git config --global credential.${remote}.username yourusername
 git config credential.helper store
 ```
 
  - here, `{remote}` is something like `https://github.com`
+ - 仓库 pull 下来后， 第一条指令 去掉 `--global` 再执行一次， 同时 删除`~/.gitconfig ` 中的 credential 设置，以避免影响其他的仓库冲突
 
 ```
 $ cat ~/.gitconfig
