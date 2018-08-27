@@ -95,4 +95,26 @@ git diff | less -r
  - `-r` means `Output "raw" control characters`.
 
 
+## how to set up username and passwords for different git repos
+
+ 1. Using SSH 
+    - `ssh-agent`  and `ssh-add`
+ 2. Using gitcredentials
+    - https://git-scm.com/docs/gitcredentials
+
+```
+git config credential.${remote}.username yourusername
+git config credential.helper store
+```
+
+ - here, `{remote}` is something like `https://github.com`
+
+```
+$ cat ~/.gitconfig
+[credential "https://github.com"]
+    username = xxxxx
+[credential]
+    helper = store
+```
+
 
