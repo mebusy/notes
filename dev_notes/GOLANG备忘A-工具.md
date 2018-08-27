@@ -153,7 +153,7 @@ func main() {
 
 ---
 
- -
+ - 注意，如果是一个不会主动停止的程序，则需要捕获以下 ctrl-c 中断, 以便主动调用 ` pprof.StopCPUProfile() `
 
 <h2 id="b19e1a4d4f517ccccc8fd5d402c438f9"></h2>
 
