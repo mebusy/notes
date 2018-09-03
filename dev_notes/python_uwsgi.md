@@ -55,7 +55,8 @@ def application(environ, start_response):
 in the folder of wsgi.py, run 
 
 ```
-uwsgi --socket 0.0.0.0:8080 --protocol=http -w wsgi
+# uwsgi --socket 0.0.0.0:8080 --protocol=http -w wsgi
+uwsgi  --http-socket :8080 --plugin python --wsgi-file wsgi.py
 ```
 
 visit  `localhost:8080`
