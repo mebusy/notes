@@ -34,7 +34,7 @@ http://localhost:3000
 
 ## Ant.design
 
- - after you create reactJS app, run :
+ - after you create reactJS app, `cd ` to project folder, then  run :
 
 ```
 yarn add antd
