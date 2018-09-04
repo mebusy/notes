@@ -276,3 +276,68 @@ $ ab -k -n 500000 -c 20000 -T "application/json" -p post.json  -H "userID: debug
 ```
 
 
+## autorun script 
+
+### 创建脚本
+
+ - 1 写脚本 autorun.sh
+
+```
+!# vi autorun.sh 
+
+#!/bin/bash
+echo "This is a sample script to test auto run during boot" > ./script.out
+echo "The time the script run was -->  `date`" >> ./script.out
+```
+
+ - 2 检查权限
+
+```
+# ls -lrt ./autorun.sh
+-rw-r--r-- 1 root root 150 Sep  4 11:45 ./autorun.sh
+```
+
+ - 3 添加执行权限
+
+```
+# ls -lrt ./autorun.sh
+-rwxr-xr-x 1 root root 150 Sep  4 11:45 ./autorun.sh
+```
+
+
+### 创建一个新的 systemd service unit
+
+```
+!# vi /etc/systemd/system/uwsgimind.service
+
+[Unit]
+Description=Description for sample script goes here
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/root/uwsgi_mind/autorun.sh
+TimeoutStartSec=0
+
+[Install]
+WantedBy=default.target
+```
+
+### Enable the systemd service unit
+
+```
+# systemctl daemon-reload
+
+# systemctl enable uwsgimind.service
+Created symlink from /etc/systemd/system/default.target.wants/uwsgimind.service to /etc/systemd/system/uwsgimind.service.
+
+# systemctl start uwsgimind.service
+```
+
+ - reboot 测试
+
+```
+# systemctl reboot
+```
+
+
