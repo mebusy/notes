@@ -364,8 +364,13 @@ Created symlink from /etc/systemd/system/default.target.wants/uwsgimind.service 
  - 查看日志:
 
 ```
-#  journalctl -u uwsgimind.service
+journalctl -e -f -u uwsgimind.service
 ```
+
+ - e : start at end
+ - f : follow  
+ - u : unit 
+ - `-e -f` 类似 `tail -f `
 
 ```
 说明: 
