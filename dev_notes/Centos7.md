@@ -420,6 +420,7 @@ Type=forking
 
 ExecStart=/usr/bin/sh /root/uwsgi_mind/autorun.sh
 KillSignal=SIGINT  # for systemctl restart
+Restart=always
 TimeoutStartSec=0
 
 [Install]
