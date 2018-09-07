@@ -379,6 +379,7 @@ journalctl -e -f -u uwsgimind.service
 启动服务：systemctl start *.service 
 停止服务：systemctl stop *.service 
 重启服务：systemctl reload *.service
+重启服务：systemctl restart *.service
 ```
 
 
@@ -418,7 +419,7 @@ After=syslog.target
 Type=forking
 
 ExecStart=/usr/bin/sh /root/uwsgi_mind/autorun.sh
-KillSignal=SIGINT
+KillSignal=SIGINT  # for systemctl restart
 TimeoutStartSec=0
 
 [Install]
