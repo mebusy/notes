@@ -276,7 +276,16 @@ $ ab -k -n 500000 -c 20000 -T "application/json" -p post.json  -H "userID: debug
 ```
 
 
-## autorun script 
+## systemctl autorun script 
+
+ - 服务又分为系统服务（system）和用户服务（user）。
+    - 系统服务：开机不登陆就能运行的程序（常用于开机自启）。
+    - 用户服务：需要登陆以后才能运行的程序。
+ - 配置文件目录
+    - systemctl脚本目录：/usr/lib/systemd/ 
+    - 系统服务目录：/usr/lib/systemd/system/ 
+    - 用户服务目录：/usr/lib/systemd/system/
+
 
 ### 创建脚本
 
@@ -304,11 +313,22 @@ echo "The time the script run was -->  `date`" >> ./script.out
 -rwxr-xr-x 1 root root 150 Sep  4 11:45 ./autorun.sh
 ```
 
+ - 注意： 因为是服务调用的脚本，如果脚本中有相对路径的使用，需要注意
+    - 下面的代码可以得到 脚本所在的目录
+
+```
+#!/bin/bash
+# Absolute path to this script, e.g. /home/user/bin/foo.sh
+SCRIPT=$(readlink -f "$0")
+# Absolute path this script is in, thus /home/user/bin
+SCRIPTPATH=$(dirname "$SCRIPT")
+# echo $SCRIPTPATH
+```
 
 ### 创建一个新的 systemd service unit
 
 ```
-!# vi /etc/systemd/system/uwsgimind.service
+!# vi /usr/lib/systemd/system/uwsgimind.service
 
 [Unit]
 Description=Description for sample script goes here
@@ -316,7 +336,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/root/uwsgi_mind/autorun.sh
+ExecStart=/usr/bin/s /root/uwsgi_mind/autorun.sh
 TimeoutStartSec=0
 
 [Install]
@@ -329,7 +349,6 @@ WantedBy=default.target
 # systemctl daemon-reload
 
 # systemctl enable uwsgimind.service
-Created symlink from /etc/systemd/system/default.target.wants/uwsgimind.service to /etc/systemd/system/uwsgimind.service.
 
 # systemctl start uwsgimind.service
 ```
@@ -340,4 +359,12 @@ Created symlink from /etc/systemd/system/default.target.wants/uwsgimind.service 
 # systemctl reboot
 ```
 
+```
+说明: 
+重载系统服务：systemctl daemon-reload 
+设置开机启动：systemctl enable *.service 
+启动服务：systemctl start *.service 
+停止服务：systemctl stop *.service 
+重启服务：systemctl reload *.service
+```
 
