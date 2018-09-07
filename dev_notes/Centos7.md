@@ -361,6 +361,12 @@ Created symlink from /etc/systemd/system/default.target.wants/uwsgimind.service 
 # systemctl reboot
 ```
 
+ - 查看日志:
+
+```
+#  journalctl -u uwsgimind.service
+```
+
 ```
 说明: 
 重载系统服务：systemctl daemon-reload 
