@@ -376,3 +376,47 @@ Created symlink from /etc/systemd/system/default.target.wants/uwsgimind.service 
 重启服务：systemctl reload *.service
 ```
 
+
+## Example 
+
+ - uwsgi 自带的 uwsgi.service
+
+```
+[Unit]
+Description=uWSGI Emperor Service
+After=syslog.target
+
+[Service]
+EnvironmentFile=-/etc/sysconfig/uwsgi
+ExecStartPre=/bin/mkdir -p /run/uwsgi
+ExecStartPre=/bin/chown uwsgi:uwsgi /run/uwsgi
+ExecStart=/usr/sbin/uwsgi --ini /root/uwsgi_mind/uwsgi.ini
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGINT
+Restart=always
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
+```
+
+ - 自定义的一个service
+
+```
+[Unit]
+Description=uWSGI for mind
+After=syslog.target
+
+[Service]
+Type=forking
+
+ExecStart=/usr/bin/sh /root/uwsgi_mind/autorun.sh
+KillSignal=SIGINT
+TimeoutStartSec=0
+
+[Install]
+WantedBy=default.target
+~
+```
