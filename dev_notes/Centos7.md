@@ -335,6 +335,7 @@ Description=Description for sample script goes here
 After=network.target
 
 [Service]
+# Type=forking  if app need run in background
 Type=simple
 ExecStart=/usr/bin/s /root/uwsgi_mind/autorun.sh
 TimeoutStartSec=0
