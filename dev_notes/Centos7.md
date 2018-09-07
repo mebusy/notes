@@ -349,6 +349,7 @@ WantedBy=default.target
 # systemctl daemon-reload
 
 # systemctl enable uwsgimind.service
+Created symlink from /etc/systemd/system/default.target.wants/uwsgimind.service to /usr/lib/systemd/system/uwsgimind.service.
 
 # systemctl start uwsgimind.service
 ```
