@@ -236,6 +236,9 @@ for i := 0; i < s.NumField(); i++ {
 1: B string = skidoo
 ```
 
+---
+
+
 <h2 id="0318e04c3f2eb7a1984ee102d5a2ed1c"></h2>
 
 ##### 没有运行期类型对象
