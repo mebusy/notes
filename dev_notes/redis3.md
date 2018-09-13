@@ -393,7 +393,6 @@ redis:6379> EVALSHA 4475bfb5919b5ad16424cb50f74d4724ae833e72 0
     - table
     - string
     - math
-    - debug
     - Lua cjson
     - Lua Struct 
         - 用于在 Lua值和C结构之间进行转换 
@@ -403,6 +402,8 @@ redis:6379> EVALSHA 4475bfb5919b5ad16424cb50f74d4724ae833e72 0
         - 用于处理 MessagePack格式的数据
         - cmsgpack.pack  将 lua值转换为 MessagePack 数据
         - cmsgpack.unpack 反之
+    - bitop
+
 
 <h2 id="f3716d66535360016ee1c2f8f143d090"></h2>
 
