@@ -672,6 +672,13 @@ redis:6379> EVALSHA 2f31ba2bb6d6a0f42cc159d2e2dad55440778de3 0
     - 另一方面，如果脚本已经 执行过写入操作，那么客户端只能用 SHUTDOWN nosave 命令来停止服务器，从而防止不合法的数据被写入数据库中。
 
 
+## 20.5.1 include third party library
+
+ - 你不能这么做
+ - The only way around this is to refactor the library and turn it into a Redis script that you can run。
+    - The refactored script can then be a part of your script, or you can SCRIPT LOAD it and call it from your script using an undocumented feature 
+    - in you script call the function f_sha1
+
 <h2 id="0728c02dd7b51dcf7102925e1b013d78"></h2>
 
 ## 20.6 脚本复制
