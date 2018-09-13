@@ -83,6 +83,10 @@ r = tty
         - (reflect.ValueOf(x)).Float可以返回实际的值
         - (reflect.ValueOf(x)).Kind可以返回一个常量定义的类型。
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/golang_reflect_img0.png)
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/golang_reflect_img1.png)
+
 
 
 ### 反射第一定律：反射可以将“接口类型变量”转换为 “reflect.Type/reflect.Value 对象”。
