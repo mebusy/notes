@@ -28,7 +28,209 @@
 
 # Reflect 反射
 
+## go 反射三定律
 
+### 类型和接口
+
+ - 反射建立在 类型系统上
+ - 静态类型Type 和底层类型Kind
+    - go每个变量都有，且只有一个静态类型
+    - 如下，i,j 具有共同的底层类型 int, 但它们的静态类型并不一样;不经过类型转换直接相互赋值时，编译器会报错.
+
+```go
+type MyInt int
+var i int
+var j MyInt
+```
+
+ - 类型的 一个重要的分类是 接口类型（interface）
+    - 每个接口类型都代表固定的方法集合
+    - 一个非常非常重要的接口类型是空接口: `interface{}`
+
+
+### 接口变量的表示
+ 
+ - Interface变量存储一对值：
+    - 赋给该变量的具体的值、值类型的描述符。
+    - 值就是实现该接口的底层数据, 类型是底层数据类型的描述。
+
+```go
+var r io.Reader
+tty, err := os.OpenFile("/dev/tty", os.O_RDWR, 0)
+if err != nil {
+    return nil, err
+}
+r = tty
+```
+
+ - 在这个例子中，变量 r 在结构上包含一个 (value, type) 对:
+    - `(tty, os.File)`
+ - (value, type) 对中的 type 必须是 具体的类型（struct或基本类型），不能是 接口类型。 
+    - 因为 接口类型不能存储接口变量。
+
+
+### 反射类型： reflect.Type/reflect.Value 
+
+ - **从用法上来讲，反射提供了一种机制，允许程序在运行时检查接口变量内部存储的 (value, type) 对.**
+ - 我们称 reflect.Value , reflect.Type 这两个类型为 反射类型 。它们使得访问接口内的数据成为可能。 
+    - 它们对应两个简单的方法，分别是:  reflect.ValueOf 和 reflect.TypeOf  
+    - 分别用来读取接口变量的 reflect.Value 和 reflect.Type 部分
+        - 当然，从 reflect.Value 也很容易获取到 reflect.Type.
+ - **reflect.Type和reflect.Value 不是并列关系，其实它们是一种包含关系**
+    - 从类型角度来看，reflect.Value是一个关于<类型, 实际的值>的二元组 , 而reflect.Type是值的类型
+    - 从方法角度来看
+        - reflect.TypeOf 和 (reflect.ValueOf(x)).Type都可以返回reflect.Type
+        - (reflect.ValueOf(x)).Float可以返回实际的值
+        - (reflect.ValueOf(x)).Kind可以返回一个常量定义的类型。
+
+
+
+### 反射第一定律：反射可以将“接口类型变量”转换为 “reflect.Type/reflect.Value 对象”。
+
+ - 首先，我们下看 reflect.TypeOf：
+
+```go
+func main() {
+    var x float64 = 3.4
+    fmt.Println("type:", reflect.TypeOf(x))
+}
+
+// will print 
+type: float64
+```
+ - 为什么没看到接口？ 
+    - 调用 reflect.TypeOf(x) 时，x 被存储在一个空接口变量中被传递过去； 然后reflect.TypeOf 对空接口变量进行拆解，恢复其类型信息。
+
+```
+// TypeOf returns the reflection Type of the value in the interface{}.
+func TypeOf(i interface{}) Type
+```
+
+ - 函数 reflect.ValueOf 也会对底层的值进行恢复
+
+```go
+var x float64 = 3.4
+fmt.Println("value:", reflect.ValueOf(x))
+
+// will print
+value: <float64 Value>
+```
+
+ - 类型 reflect.Type 和 reflect.Value 都有很多方法 可以使用
+    - reflect.Value 有一个方法 Type()，它会返回一个 reflect.Type 类型的对象
+    - Type和 Value都有一个名为 Kind 的方法，它会返回一个常量，表示底层数据的类型
+        - 常见值有：Uint、Float64、Slice等。
+        - Kind() 方法不会区分类似上面的 MyInt,int ,都返回 reflect.Int
+    - Value类型也有一些类似于Int、Float的方法，用来提取底层的数据。
+        - Int方法用来提取 int64, Float方法用来提取 float64
+    - 还有一些用来修改数据的方法，比如SetInt、SetFloat , 这个牵涉到 “可修改性”（settability）
+
+```go
+var x float64 = 3.4
+v := reflect.ValueOf(x)
+fmt.Println("type:", v.Type())
+fmt.Println("kind is float64:", v.Kind() == reflect.Float64)
+fmt.Println("value:", v.Float())
+
+// will print 
+type: float64
+kind is float64: true
+value: 3.4
+```
+
+### 反射第二定律：反射可以将“反射类型对象”转换为“接口类型变量”。
+
+ - 根据一个 reflect.Value 类型的变量，我们可以使用 Interface 方法恢复其接口类型的值。
+    - 事实上，这个方法会把 type 和 value 信息打包并填充到一个接口变量中，然后返回。
+
+```go
+// Interface returns v's value as an interface{}.
+func (v Value) Interface() interface{}
+```
+
+```
+var x MyInt = 7
+v := reflect.ValueOf(x)
+y := v.Interface().(float64)  // y will have type float64.
+```
+
+ - 事实上，我们可以更好地利用这一特性
+    - 标准库中的 fmt.Println 和 fmt.Printf 等函数都接收空接口变量作为参数
+    - fmt 包内部会对接口变量进行拆包
+    - `fmt.Println(v.Interface())` 
+
+
+### 反射第三定律：如果要修改“反射类型对象”，其值必须是“可写的”（settable）
+
+```go
+var x float64 = 3.4
+v := reflect.ValueOf(x)
+v.SetFloat(7.1) // Error: will panic.
+```
+
+ - 这里问题不在于值 7.1 不能被寻址，而是因为变量 v 是“不可写的”。
+ - “可写性”是反射类型变量的一个属性，但不是所有的反射类型变量都拥有这个属性。
+
+```go
+fmt.Println("settability of v:", v.CanSet())
+// settability of v: false
+```
+
+ - 这里，传递给 reflect.ValueOf 函数的是变量 x 的一个拷贝。
+    - 假设如果 `v.SetFloat(7.1)` 执行成功了，x的拷贝被顺利修改， 而实际上x 却没有改变。
+    - 这种操作毫无意义，而且容易产生bug. 
+    - “可写性”就是为了避免这个问题而设计的。
+ - 如果你想通过反射修改变量 x，就要把想要修改的变量的指针传递给 反射库。
+
+```go
+var x float64 = 3.4
+p := reflect.ValueOf(&x) // Note: take the address of x.
+fmt.Println("type of p:", p.Type())
+fmt.Println("settability of p:", p.CanSet())
+
+// will print  
+type of p: *float64
+settability of p: false
+```
+
+ - 这里，反射对象 p 也是不可写的， 但是我们也不想修改 p，事实上我们要修改的是 \*p。
+ - 为了得到 p 指向的数据，可以调用 Value 类型的 Elem 方法。
+    - Elem 方法能够对指针进行“解引用”，然后将结果存储到反射 Value类型对象 v中：
+
+```go
+v := p.Elem()
+fmt.Println("settability of v:", v.CanSet())
+// settability of v: true
+v.SetFloat(7.1)
+fmt.Println(v.Interface()) // 7.1
+fmt.Println(x)              // 7.1
+```
+
+### 结构体（struct）
+
+ - 上面的例子中，变量 v 本身并不是指针，它只是从指针衍生而来。
+ - 把反射应用到结构体时，常用的方式是 使用反射修改一个结构体的某些字段。
+ - 只要拥有结构体的地址，我们就可以修改它的字段。
+
+```go
+type T struct {
+    A int
+    B string
+}
+t := T{23, "skidoo"}
+
+s := reflect.ValueOf(&t).Elem()
+typeOfT := s.Type()  // 通过typeOfT 遍历所有的字段名字
+for i := 0; i < s.NumField(); i++ {
+    f := s.Field(i)
+    fmt.Printf("%d: %s %s = %v\n", i,
+        typeOfT.Field(i).Name, f.Type(), f.Interface())
+}
+
+// will print
+0: A int = 23
+1: B string = skidoo
+```
 
 <h2 id="0318e04c3f2eb7a1984ee102d5a2ed1c"></h2>
 
