@@ -421,6 +421,26 @@ redis:6379> EVAL "return redis.call('PING')" 0
 PONG
 ```
 
+ - redis.call() 和 redis.pcall() 的唯一区别在于它们对错误处理的不同。
+ - 当 redis.call() 在执行命令的过程中发生错误时，脚本会停止执行，并返回一个脚本错误，错误的输出信息会说明错误造成的原因：
+
+```
+redis> lpush foo a
+(integer) 1
+
+redis> eval "return redis.call('get', 'foo')" 0
+(error) ERR Error running script (call to f_282297a0228f48cd3fc6a55de6316f31422f5d17): ERR Operation against a key holding the wrong kind of value
+```
+
+ - redis.pcall() 出错时并不引发(raise)错误，而是返回一个带 err 域的 Lua 表(table)，用于表示错误：
+
+```
+redis 127.0.0.1:6379> EVAL "return redis.pcall('get', 'foo')" 0
+(error) ERR Operation against a key holding the wrong kind of value
+```
+
+
+
 <h2 id="320e921a509acf5f53e5865162e2cbef"></h2>
 
 ### 20.1.4  Redis Lua的随机函数
@@ -574,10 +594,26 @@ redis:6379> EVAL "return redis.sha1hex( \"return 'hello world'\" )" 0
 
 ### 20.3.3 执行脚本函数
 
+#### EVAL 语法
+
 ```
 EVAL script numkeys key [key ...] arg [arg ...]
+
+   <1> script：     你的lua脚本
+   <2> numkeys:  key的个数
+   <3> key:         redis中各种数据结构的替代符号
+   <4> arg:         你的自定义参数
+
+example: 
+
+eval "return {KEYS[1],KEYS[2],ARGV[1],ARGV[2]}" 2 username age jack 20
 ```
 
+ - `username` , `age` 被 保存到 lua环境的 KEYS 数组
+ - 剩下的参数被保存到lua环境的 ARGV 数组
+ - 最后，从 KEYS/ARGV 数组中 取的数据 返回
+
+#### 执行过程
 
  - 定义函数，保存脚本 完成后， 服务器还需要进行一些 设置钩子，传入参数之类的准备动作， 才能正是开始执行脚本
  - 整个准备和执行脚本的过程如下：
@@ -587,6 +623,13 @@ EVAL script numkeys key [key ...] arg [arg ...]
     - 4 移除之前装载的钩子
     - 5 将 结果保存到 客户端状态的输出缓冲区里面，等待服务器 将结果返回给客户端
     - 6 对 Lua环境执行垃圾回收工作
+
+
+#### 脚本的原子性
+
+ - Redis 使用单个 Lua 解释器去运行所有脚本，并且， Redis 也保证脚本会以原子性(atomic)的方式执行
+    - 当某个脚本正在运行的时候，不会有其他脚本或 Redis 命令被执行。
+    - 这和使用 MULTI / EXEC 包围的事务很类似。
 
 
 <h2 id="1df406401550a6a7d98cc7f798be128c"></h2>
