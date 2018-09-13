@@ -1,7 +1,15 @@
 ...menustart
 
  - [Reflect 反射](#139b6cfcf3c9439de790ce9742996f82)
-     - [没有运行期类型对象](#0318e04c3f2eb7a1984ee102d5a2ed1c)
+     - [go 反射三定律](#2c1c5d090ea2c7185fa8fd7e9b63d11b)
+         - [类型和接口](#bb0b4f2728204b8b714ea48327b4af7a)
+         - [接口变量的表示](#b9d9ccbf8501aa1966a00cafd6e7bfda)
+         - [反射类型： reflect.Type/reflect.Value](#a57c4f6b579173e2daf603140ac1d6d8)
+         - [反射第一定律：反射可以将“接口类型变量”转换为 “reflect.Type/reflect.Value 对象”。](#9a603138c5ea1e949f5c85cd99b4f7f0)
+         - [反射第二定律：反射可以将“反射类型对象”转换为“接口类型变量”。](#794f9fdf4a0e7420dc5fe20f1e21348f)
+         - [反射第三定律：如果要修改“反射类型对象”，其值必须是“可写的”（settable）](#5f5eab2420b563eacfc4e5c01057dfc6)
+         - [结构体（struct）](#d7ddf9e0f9fc507b359df7b80ba9afa0)
+             - [没有运行期类型对象](#0318e04c3f2eb7a1984ee102d5a2ed1c)
  - [9.4.1 reflect.Type](#8c6859ae778598e709e07536f5173e72)
      - [获取struct对象 成员字段信息，包括非导出和匿名字段](#b4f395a0193ad2063ac51bafe5bde7cb)
      - [如果是指针，先使用 Elem方法获取目标类型](#68093d5b129ae6d66b666d017e2519a8)
@@ -28,7 +36,11 @@
 
 # Reflect 反射
 
+<h2 id="2c1c5d090ea2c7185fa8fd7e9b63d11b"></h2>
+
 ## go 反射三定律
+
+<h2 id="bb0b4f2728204b8b714ea48327b4af7a"></h2>
 
 ### 类型和接口
 
@@ -47,6 +59,8 @@ var j MyInt
     - 每个接口类型都代表固定的方法集合
     - 一个非常非常重要的接口类型是空接口: `interface{}`
 
+
+<h2 id="b9d9ccbf8501aa1966a00cafd6e7bfda"></h2>
 
 ### 接口变量的表示
  
@@ -69,6 +83,8 @@ r = tty
     - 因为 接口类型不能存储接口变量。
 
 
+<h2 id="a57c4f6b579173e2daf603140ac1d6d8"></h2>
+
 ### 反射类型： reflect.Type/reflect.Value 
 
  - **从用法上来讲，反射提供了一种机制，允许程序在运行时检查接口变量内部存储的 (value, type) 对.**
@@ -88,6 +104,8 @@ r = tty
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/golang_reflect_img1.png)
 
 
+
+<h2 id="9a603138c5ea1e949f5c85cd99b4f7f0"></h2>
 
 ### 反射第一定律：反射可以将“接口类型变量”转换为 “reflect.Type/reflect.Value 对象”。
 
@@ -142,6 +160,8 @@ kind is float64: true
 value: 3.4
 ```
 
+<h2 id="794f9fdf4a0e7420dc5fe20f1e21348f"></h2>
+
 ### 反射第二定律：反射可以将“反射类型对象”转换为“接口类型变量”。
 
  - 根据一个 reflect.Value 类型的变量，我们可以使用 Interface 方法恢复其接口类型的值。
@@ -163,6 +183,8 @@ y := v.Interface().(float64)  // y will have type float64.
     - fmt 包内部会对接口变量进行拆包
     - `fmt.Println(v.Interface())` 
 
+
+<h2 id="5f5eab2420b563eacfc4e5c01057dfc6"></h2>
 
 ### 反射第三定律：如果要修改“反射类型对象”，其值必须是“可写的”（settable）
 
@@ -209,6 +231,8 @@ v.SetFloat(7.1)
 fmt.Println(v.Interface()) // 7.1
 fmt.Println(x)              // 7.1
 ```
+
+<h2 id="d7ddf9e0f9fc507b359df7b80ba9afa0"></h2>
 
 ### 结构体（struct）
 
