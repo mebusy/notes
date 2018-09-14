@@ -36,7 +36,15 @@
          - [20.3.1 定义脚本函数](#e5ac86dc960af6b95902862f4de6c281)
          - [20.3.2  脚本保存到 lua_scripts 字典](#3dd6b835b4010ffc4bca7a0051314bd6)
          - [20.3.3 执行脚本函数](#f00951bee4bbca174fd91b03528ec826)
+             - [EVAL 语法](#43e063e6dbb818871b624b2fb3271309)
+             - [执行过程](#61ee803db76c4a4ad421b3b984edb1a4)
+             - [脚本的原子性](#986c35df0da4b7fc1f5f024406bc842d)
+     - [20.4 lua 和 redis 通信](#fceebe04bb59a00b53434168656d5408)
+         - [Redis to Lua conversion table.](#6beb0a3b94586776779ad6180080dbce)
+         - [Lua to Redis conversion table.](#8c7f7ce5672b4f0fc08bf31d3fa3fedf)
+         - [important rules to note:](#88883a183878359a8fa1d7629847d304)
      - [20.5 脚本管理命令的实现](#1df406401550a6a7d98cc7f798be128c)
+     - [20.5.1 include third party library](#80f52ee50ddaafdd1e3ad14ec385358c)
      - [20.6 脚本复制](#0728c02dd7b51dcf7102925e1b013d78)
          - [20.6.2 复制 EVALSHA 命令](#a6ceeaf4494914d850150dc707837495)
  - [第21章 排序](#8b7e6e4e7ba14f17536a734562b5f28f)
@@ -595,6 +603,8 @@ redis:6379> EVAL "return redis.sha1hex( \"return 'hello world'\" )" 0
 
 ### 20.3.3 执行脚本函数
 
+<h2 id="43e063e6dbb818871b624b2fb3271309"></h2>
+
 #### EVAL 语法
 
 ```
@@ -614,6 +624,8 @@ eval "return {KEYS[1],KEYS[2],ARGV[1],ARGV[2]}" 2 username age jack 20
  - 剩下的参数被保存到lua环境的 ARGV 数组
  - 最后，从 KEYS/ARGV 数组中 取的数据 返回
 
+<h2 id="61ee803db76c4a4ad421b3b984edb1a4"></h2>
+
 #### 执行过程
 
  - 定义函数，保存脚本 完成后， 服务器还需要进行一些 设置钩子，传入参数之类的准备动作， 才能正是开始执行脚本
@@ -626,15 +638,21 @@ eval "return {KEYS[1],KEYS[2],ARGV[1],ARGV[2]}" 2 username age jack 20
     - 6 对 Lua环境执行垃圾回收工作
 
 
+<h2 id="986c35df0da4b7fc1f5f024406bc842d"></h2>
+
 #### 脚本的原子性
 
  - Redis 使用单个 Lua 解释器去运行所有脚本，并且， Redis 也保证脚本会以原子性(atomic)的方式执行
     - 当某个脚本正在运行的时候，不会有其他脚本或 Redis 命令被执行。
     - 这和使用 MULTI / EXEC 包围的事务很类似。
 
+<h2 id="fceebe04bb59a00b53434168656d5408"></h2>
+
 ## 20.4 lua 和 redis 通信
 
 Conversion between Lua and Redis data types
+
+<h2 id="6beb0a3b94586776779ad6180080dbce"></h2>
 
 ### Redis to Lua conversion table.
 
@@ -645,6 +663,8 @@ Conversion between Lua and Redis data types
  - **Redis error reply** -> Lua table with a single err field containing the error
  - Redis Nil bulk reply and Nil multi bulk reply -> Lua false boolean type
  
+<h2 id="8c7f7ce5672b4f0fc08bf31d3fa3fedf"></h2>
+
 ### Lua to Redis conversion table.
 
  - Lua number -> Redis integer reply (the number is converted into an integer)
@@ -657,6 +677,8 @@ Conversion between Lua and Redis data types
 There is an additional Lua-to-Redis conversion rule that has no corresponding Redis to Lua conversion rule:
 
  - Lua boolean true -> Redis integer reply with value of 1.
+
+<h2 id="88883a183878359a8fa1d7629847d304"></h2>
 
 ### important rules to note:
 
@@ -705,6 +727,8 @@ redis:6379> EVALSHA 2f31ba2bb6d6a0f42cc159d2e2dad55440778de3 0
     - 处理完 SCRIPT KILL 命令后，服务器可以继续运行
     - 另一方面，如果脚本已经 执行过写入操作，那么客户端只能用 SHUTDOWN nosave 命令来停止服务器，从而防止不合法的数据被写入数据库中。
 
+
+<h2 id="80f52ee50ddaafdd1e3ad14ec385358c"></h2>
 
 ## 20.5.1 include third party library
 
