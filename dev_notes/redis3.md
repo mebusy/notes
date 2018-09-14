@@ -632,6 +632,39 @@ eval "return {KEYS[1],KEYS[2],ARGV[1],ARGV[2]}" 2 username age jack 20
     - 当某个脚本正在运行的时候，不会有其他脚本或 Redis 命令被执行。
     - 这和使用 MULTI / EXEC 包围的事务很类似。
 
+## 20.4 lua 和 redis 通信
+
+Conversion between Lua and Redis data types
+
+### Redis to Lua conversion table.
+
+ - Redis integer reply -> Lua number
+ - Redis bulk reply -> Lua string
+ - Redis multi bulk reply -> Lua table (may have other Redis data types nested)
+ - **Redis status reply** -> Lua table with a single ok field containing the status
+ - **Redis error reply** -> Lua table with a single err field containing the error
+ - Redis Nil bulk reply and Nil multi bulk reply -> Lua false boolean type
+ 
+### Lua to Redis conversion table.
+
+ - Lua number -> Redis integer reply (the number is converted into an integer)
+ - Lua string -> Redis bulk reply
+ - Lua table (array) -> Redis multi bulk reply (truncated to the first nil inside the Lua array if any)
+ - Lua table with a single ok field -> Redis status reply
+ - Lua table with a single err field -> Redis error reply
+ - Lua boolean false -> Redis Nil bulk reply.
+
+There is an additional Lua-to-Redis conversion rule that has no corresponding Redis to Lua conversion rule:
+
+ - Lua boolean true -> Redis integer reply with value of 1.
+
+### important rules to note:
+
+ - **If you want to return a float from Lua you should return it as a string**
+    - Lua has a single numerical type, Lua numbers.
+    - There is no distinction between integers and floats. 
+    - So we always convert Lua numbers into integer replies, removing the decimal part of the number if any.
+
 
 <h2 id="1df406401550a6a7d98cc7f798be128c"></h2>
 
