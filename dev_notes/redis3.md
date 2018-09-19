@@ -737,6 +737,14 @@ redis:6379> EVALSHA 2f31ba2bb6d6a0f42cc159d2e2dad55440778de3 0
     - The refactored script can then be a part of your script, or you can SCRIPT LOAD it and call it from your script using an undocumented feature 
     - in you script call the function f_sha1
 
+```lua
+return _G['f_' .. lua_sha_matchFinishCheck ](  )
+```
+
+ - redis lua 脚本都是通过 KEYS, ARGV 接收参数。
+    - 所以像上面那样主动调用 脚本， 传入参数并没有用， 而是需要 在函数调用设置好 KEYS, ARGV 
+
+
 <h2 id="0728c02dd7b51dcf7102925e1b013d78"></h2>
 
 ## 20.6 脚本复制
