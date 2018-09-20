@@ -1895,3 +1895,7 @@ redis> config get save
 1 ""
 ```
 
+ - GUI redis client on MacOSX
+    - https://github.com/luin/medis
+
+
