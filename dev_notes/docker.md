@@ -1884,7 +1884,7 @@ scope launch
  - run redis with password ,  and disable persistence
 
 ```bash
-docker run -p 6379:6379 --name hdaredis -d redis redis-server --requirepass hdapwd --save ''
+docker run -p 6379:6379 --name hdaredis -d redis redis-server --requirepass <yourpassword> --save ''
 ```
 
  - check with redis-cli
