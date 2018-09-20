@@ -1879,3 +1879,19 @@ scope launch
  - Now, open your web browser to http://localhost:4040
 
 
+## docker redis 
+
+ - run redis with password ,  and disable persistence
+
+```bash
+docker run -p 6379:6379 --name hdaredis -d redis redis-server --requirepass hdapwd --save ''
+```
+
+ - check with redis-cli
+
+```bash
+redis> config get save
+0 save
+1 ""
+```
+
