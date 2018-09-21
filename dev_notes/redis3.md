@@ -772,6 +772,45 @@ return _G['f_' .. lua_sha_matchFinishCheck ](  )
  - 4 传播 EVALSHA 或 EVAL 命令
 
 
+### 20.7 redis 集群和 lua 脚本
+
+ - Redis操作（无论是 commands 还是Lua脚本）只能在所有key位于同一服务器上时才能工作。 
+    - lua 脚本的 key传递规则的目的 就是允许群集服务器找出 该把脚本发送到哪个节点，并在所有key不来自同一服务器时fast fail. 
+    - 所以 你要确保 脚本要操作的所有key位于同一服务器上。 
+        - The way to do that is to use hash tags to force keys to hash to the same slot
+        - See [documents](http://redis.io/topics/cluster-spec#keys-hash-tags)  for more details on that.
+ - Redis cluster
+    - Redis Cluster实现了Redis的非分布式版本中可用的所有单key命令。 
+    - 执行复杂的多key操作（Set type unions or intersections）的命令也可以实现，只要这些键都属于同一个节点。
+    - Redis Cluster实现了一个称为**hash tag**的概念，可用于强制某些key存储在同一节点中。
+        - 但是，在手动重新分片期间( manual resharding )，多key操作可能会在一段时间内不可用，而单key操作始终可用。
+    - Redis Cluster does not support multiple databases
+        - There is just database 0 and the **SELECT** command is not allowed.
+    - 在Redis群集中，节点负责保存数据并获取群集的状态，包括将key映射到正确的节点。 
+        - 群集节点还能够自动发现其他节点，检测非工作节点，并在需要时 promote slave nodes to master ，以便在发生故障时继续运行。
+    - The base algorithm used to map keys to hash slots is
+        - `HASH_SLOT = CRC16(key) mod 16384`
+    - Keys hash tags
+        - 计算key hash 有一个例外：hash tag
+        - hash tag 是一种确保在同一个 hash slot 中分配多个key的方法。 这用于在Redis群集中实现多键操作。
+        - 如果key包含 `{...}`模式，则仅对 { 和  }之间的子字符串进行hash以获取 hash slot。
+        - 但是，由于可能存在多次{或}，因此以下规则可以很好地指定算法：
+            - IF the key contains a { character.
+            - AND IF there is a } character to the right of {
+            - AND IF there are one or more characters between the first occurrence of { and the first occurrence of }.
+            - Then instead of hashing the key, only what is between the first occurrence of { and the following first occurrence of } is hashed.
+        - Examples:
+            - The two keys `{user1000}.following` and `{user1000}.followers` will hash to the same hash slot 
+            - For the key `foo{}{bar}` the whole key will be hashed as usually since the first occurrence of { is followed by } on the right without characters in the middle.
+            - For the key `foo{{bar}}zap` the substring `{bar` will be hashed
+            - For the key `foo{bar}{zap}` the substring bar will be hashed
+            - 如果key以{}开头，则和一般情况一样,保证整个散列。 当使用二进制数据作为键名时，这很有用。
+
+
+
+
+
+
 <h2 id="8b7e6e4e7ba14f17536a734562b5f28f"></h2>
 
 # 第21章 排序
