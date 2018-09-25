@@ -74,6 +74,18 @@
         - 1 assume A is a knight  => B is a knight => "Both of them are opposite types" 是真话 , 和假设相悖
         - 2 assume A is a knave => B is a knave => "Both of them are opposite types" 是假话，  符合假设 => A and B are both knaves.
 
+    - use `sympy`
+        - let p : A is a knight
+        - let q : B is a kinght 
+
+```
+>>> from sympy.logic.inference import satisfiable
+>>> from sympy import Symbol
+>>> p, q = symbols( 'p,q' )
+>>> satisfiable( (p >> q & q >> ~p ) & ( ~p >> ~q & ~q >> ~p ) )
+{p:False,q:False}
+```
+
 <h2 id="cba739368677d1686f6fbbfc3ef64e88"></h2>
 
 ### Biconditional
