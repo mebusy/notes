@@ -53,10 +53,37 @@
         - 1 assume A is a knight  => B is a knight => "Both of them are opposite types" 是真话 , 和假设相悖
         - 2 assume A is a knave => B is a knave => "Both of them are opposite types" 是假话，  符合假设 => A and B are both knaves.
 
+### Biconditional
+
+ - p<->q
+    - p<->q means **¬(p⊕q)**    // 异或
+
 
 
 
 ## 1.2 Proposition Equivalences
+
+ - Equivalence Laws
+    - Commutative 交换律
+    - Associative 结合律
+    - Distributive 分配律
+        - pV(q^r)⇔ (pVq)^(pVr)
+        - p^(qVr)⇔ (p^q)V(p^r)
+    - De Morganís
+        - ¬(p^q)⇔ ¬pV¬q
+        - ¬(pVq)⇔ ¬p^¬q
+ - 最重要的两条 蕴含式相关的逻辑等价
+    - p->q ⇔ ¬q->¬p
+    - p->q ⇔ ¬pVq
+        - p^¬q ⇔ ¬(p->q) 
+ - Biconditional
+    - p<->q ⇔ (p->q)^(q->p)
+    - p<->q ⇔ (p^q)V(¬p^¬q)
+        - ⇔ ¬(p⊕q)  // ⊕ means 异或
+    - p<->q ⇔ ¬p<->¬q
+
+    
+
 
 ## 1.3 Predicates and Quantifiers
 
