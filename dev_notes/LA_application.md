@@ -3,7 +3,6 @@
  - [Application Of Linear Systems](#bab780a257514ae673fc4b27315e6983)
      - [A Homogeneous System in Economics 经济学中的同质系统](#3cbec81a7200fe500c94d906ee8dba14)
      - [Balancing Chemical Equations](#1d98a3ac560ef7befccf00b9a14b8137)
-     - [Network Flow](#7edfc0c80979697731b9ba590aae97c5)
 
 ...menuend
 
@@ -129,8 +128,5 @@ ans =
  - C₃H₈ + 5O₂ → 3CO₂ + 4H₂O   
 
 
-<h2 id="7edfc0c80979697731b9ba590aae97c5"></h2>
-
-## Network Flow
 
 

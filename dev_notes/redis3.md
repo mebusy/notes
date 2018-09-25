@@ -47,6 +47,7 @@
      - [20.5.1 include third party library](#80f52ee50ddaafdd1e3ad14ec385358c)
      - [20.6 脚本复制](#0728c02dd7b51dcf7102925e1b013d78)
          - [20.6.2 复制 EVALSHA 命令](#a6ceeaf4494914d850150dc707837495)
+         - [20.7 redis 集群和 lua 脚本](#20f2c099ee2880c7a3f268657b394f9a)
  - [第21章 排序](#8b7e6e4e7ba14f17536a734562b5f28f)
      - [21.1 SORT <key> 命令的实现](#d664d619ec4593c7113859bb493886d1)
      - [21.2 ALPHA 选项的实现](#b079e3077212764095facc17223159fc)
@@ -771,6 +772,8 @@ return _G['f_' .. lua_sha_matchFinishCheck ](  )
  - 3 EVALSHA 转换成 EVAL 命令
  - 4 传播 EVALSHA 或 EVAL 命令
 
+
+<h2 id="20f2c099ee2880c7a3f268657b394f9a"></h2>
 
 ### 20.7 redis 集群和 lua 脚本
 
