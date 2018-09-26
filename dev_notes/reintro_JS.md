@@ -35,6 +35,22 @@
 
 # A re-introduction to JavaScript (JS tutorial)
 
+
+## 概要
+
+ - JS 的`&& || `更像python里面的 and / or
+ - blocks do not have scope (like python); only functions have a scope.
+    - 在ECMAScript 6中你可以通过使用let and const 来定义块级别的变量。
+ - for...of array
+    - for...in object
+ - function, Array 都是 Object, 所以都可以通过new 创建
+ - function 有很多手段支持变长参数 
+    - call:  func.apply(null, arg_array ) 
+    - or func( ... arg_array )
+ - 箭头函数没有自己的this
+ - 理解this
+
+
 <h2 id="3b878279a04dc47d60932cb294d96259"></h2>
 
 ## Overview
