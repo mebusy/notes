@@ -507,6 +507,8 @@ unicode 可以使用 u"\uxxxx" 表示，但是当我们从某处获取 "\uxxxx"�
 
 ### 改变脚本本地编码
 
+ - 有时候，print 打印某些unicode字符的时候，会报 UnicodeError
+
 ```
 reload(sys)
 sys.setdefaultencoding('utf8') 
