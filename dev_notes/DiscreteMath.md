@@ -126,6 +126,13 @@
 
 ## 1.3 Predicates and Quantifiers
 
+ - Predicate logic
+    - 谓词逻辑是命题逻辑(proposition logic)的扩展，允许对整个实体类进行简明推理。
+        - 命题逻辑将简单命题（句子）视为原子实体。
+        - 谓词逻辑将句子的主语与其谓词区分开来
+    - i.e. P(x) = "x is a girl."
+    - P 是一个命题函数。 P(x) 是P在x 点上的值,是一个命题
+
 <h2 id="a38483049b36c18171570ccafddb3158"></h2>
 
 ## 1.4 Nested Quantifiers
