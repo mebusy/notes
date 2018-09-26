@@ -201,7 +201,7 @@ for (var myVarVariable = 0; myVarVariable < 5; myVarVariable++) {
 ```
 
  - There are also != and !== operators.
- - `>` , `<` 这类操作也会 做类型转换
+ - `>` , `<` 等等 操作也会 做类型转换
 
  - bitwise operations also support
     - `& | `
