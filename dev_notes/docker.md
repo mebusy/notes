@@ -87,6 +87,7 @@
      - [docker proxy for Centos7](#7a5c94971896bfbf1a19053004e56cc1)
      - [run bash of existing containter](#5ef5bd47a5282fb1ad1694bbb5f46954)
      - [docker 可视化环境](#b8e4fd21971c56f16f0e13421bfefedc)
+     - [docker redis](#e03d31b41fc936f76920bb647520ef01)
 
 ...menuend
 
@@ -1877,5 +1878,32 @@ scope launch
 ```
 
  - Now, open your web browser to http://localhost:4040
+
+
+<h2 id="e03d31b41fc936f76920bb647520ef01"></h2>
+
+## docker redis 
+
+ - run redis with password ,  and disable persistence
+
+```bash
+docker run -p 6379:6379 --name hdaredis -d redis redis-server --requirepass <yourpassword> --save ''
+```
+
+ - check with redis-cli
+
+```bash
+redis> config get save
+0 save
+1 ""
+```
+
+ - GUI redis client on MacOSX
+    - https://github.com/luin/medis
+
+ - redis cluster
+    - https://github.com/Grokzen/docker-redis-cluster
+    - `sudo docker run --name redis-cluster --net=host -d  grokzen/redis-cluster:latest `
+    - The cluster is 6 redis instances running with 3 master & 3 slaves, one slave for each master. They run on ports 7000 to 7005.
 
 

@@ -8,6 +8,7 @@
      - [show file change of a commit](#e35fc6dbd7673d56c0824c31ff378241)
      - [get a file with specific revision](#6f4311248df3ab2115e904e14c7836c9)
      - [git show/diff 乱码问题](#aafd38d2cb2288571bb67fc78e3a18f7)
+     - [how to set up username and passwords for different git repos](#a3aecaf26f7ec612b34f4d9ed6c6532d)
 
 ...menuend
 
@@ -95,6 +96,8 @@ git diff | less -r
  - `-r` means `Output "raw" control characters`.
 
 
+<h2 id="a3aecaf26f7ec612b34f4d9ed6c6532d"></h2>
+
 ## how to set up username and passwords for different git repos
 
  1. Using SSH 
@@ -104,11 +107,11 @@ git diff | less -r
 
 ```
 git config --global credential.${remote}.username yourusername
-git config credential.helper store
+git config --global credential.helper store
 ```
 
  - here, `{remote}` is something like `https://github.com`
- - 仓库 pull 下来后， 第一条指令 去掉 `--global` 再执行一次， 同时 删除`~/.gitconfig ` 中的 credential 设置，以避免影响其他的仓库冲突
+ - 仓库 pull 下来后， 把上面两条指令 去掉 `--global` 再执行一次， 同时 删除`~/.gitconfig ` 中的 credential 设置，以避免影响其他的仓库冲突
 
 ```
 $ cat ~/.gitconfig

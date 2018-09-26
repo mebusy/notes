@@ -36,9 +36,18 @@
          - [20.3.1 定义脚本函数](#e5ac86dc960af6b95902862f4de6c281)
          - [20.3.2  脚本保存到 lua_scripts 字典](#3dd6b835b4010ffc4bca7a0051314bd6)
          - [20.3.3 执行脚本函数](#f00951bee4bbca174fd91b03528ec826)
+             - [EVAL 语法](#43e063e6dbb818871b624b2fb3271309)
+             - [执行过程](#61ee803db76c4a4ad421b3b984edb1a4)
+             - [脚本的原子性](#986c35df0da4b7fc1f5f024406bc842d)
+     - [20.4 lua 和 redis 通信](#fceebe04bb59a00b53434168656d5408)
+         - [Redis to Lua conversion table.](#6beb0a3b94586776779ad6180080dbce)
+         - [Lua to Redis conversion table.](#8c7f7ce5672b4f0fc08bf31d3fa3fedf)
+         - [important rules to note:](#88883a183878359a8fa1d7629847d304)
      - [20.5 脚本管理命令的实现](#1df406401550a6a7d98cc7f798be128c)
+     - [20.5.1 include third party library](#80f52ee50ddaafdd1e3ad14ec385358c)
      - [20.6 脚本复制](#0728c02dd7b51dcf7102925e1b013d78)
          - [20.6.2 复制 EVALSHA 命令](#a6ceeaf4494914d850150dc707837495)
+         - [20.7 redis 集群和 lua 脚本](#20f2c099ee2880c7a3f268657b394f9a)
  - [第21章 排序](#8b7e6e4e7ba14f17536a734562b5f28f)
      - [21.1 SORT <key> 命令的实现](#d664d619ec4593c7113859bb493886d1)
      - [21.2 ALPHA 选项的实现](#b079e3077212764095facc17223159fc)
@@ -393,7 +402,6 @@ redis:6379> EVALSHA 4475bfb5919b5ad16424cb50f74d4724ae833e72 0
     - table
     - string
     - math
-    - debug
     - Lua cjson
     - Lua Struct 
         - 用于在 Lua值和C结构之间进行转换 
@@ -403,6 +411,8 @@ redis:6379> EVALSHA 4475bfb5919b5ad16424cb50f74d4724ae833e72 0
         - 用于处理 MessagePack格式的数据
         - cmsgpack.pack  将 lua值转换为 MessagePack 数据
         - cmsgpack.unpack 反之
+    - bitop
+
 
 <h2 id="f3716d66535360016ee1c2f8f143d090"></h2>
 
@@ -420,6 +430,26 @@ redis:6379> EVALSHA 4475bfb5919b5ad16424cb50f74d4724ae833e72 0
 redis:6379> EVAL "return redis.call('PING')" 0
 PONG
 ```
+
+ - redis.call() 和 redis.pcall() 的唯一区别在于它们对错误处理的不同。
+ - 当 redis.call() 在执行命令的过程中发生错误时，脚本会停止执行，并返回一个脚本错误，错误的输出信息会说明错误造成的原因：
+
+```
+redis> lpush foo a
+(integer) 1
+
+redis> eval "return redis.call('get', 'foo')" 0
+(error) ERR Error running script (call to f_282297a0228f48cd3fc6a55de6316f31422f5d17): ERR Operation against a key holding the wrong kind of value
+```
+
+ - redis.pcall() 出错时并不引发(raise)错误，而是返回一个带 err 域的 Lua 表(table)，用于表示错误：
+
+```
+redis 127.0.0.1:6379> EVAL "return redis.pcall('get', 'foo')" 0
+(error) ERR Operation against a key holding the wrong kind of value
+```
+
+
 
 <h2 id="320e921a509acf5f53e5865162e2cbef"></h2>
 
@@ -574,10 +604,30 @@ redis:6379> EVAL "return redis.sha1hex( \"return 'hello world'\" )" 0
 
 ### 20.3.3 执行脚本函数
 
+<h2 id="43e063e6dbb818871b624b2fb3271309"></h2>
+
+#### EVAL 语法
+
 ```
 EVAL script numkeys key [key ...] arg [arg ...]
+
+   <1> script：     你的lua脚本
+   <2> numkeys:  key的个数
+   <3> key:         redis中各种数据结构的替代符号
+   <4> arg:         你的自定义参数
+
+example: 
+
+eval "return {KEYS[1],KEYS[2],ARGV[1],ARGV[2]}" 2 username age jack 20
 ```
 
+ - `username` , `age` 被 保存到 lua环境的 KEYS 数组
+ - 剩下的参数被保存到lua环境的 ARGV 数组
+ - 最后，从 KEYS/ARGV 数组中 取的数据 返回
+
+<h2 id="61ee803db76c4a4ad421b3b984edb1a4"></h2>
+
+#### 执行过程
 
  - 定义函数，保存脚本 完成后， 服务器还需要进行一些 设置钩子，传入参数之类的准备动作， 才能正是开始执行脚本
  - 整个准备和执行脚本的过程如下：
@@ -587,6 +637,56 @@ EVAL script numkeys key [key ...] arg [arg ...]
     - 4 移除之前装载的钩子
     - 5 将 结果保存到 客户端状态的输出缓冲区里面，等待服务器 将结果返回给客户端
     - 6 对 Lua环境执行垃圾回收工作
+
+
+<h2 id="986c35df0da4b7fc1f5f024406bc842d"></h2>
+
+#### 脚本的原子性
+
+ - Redis 使用单个 Lua 解释器去运行所有脚本，并且， Redis 也保证脚本会以原子性(atomic)的方式执行
+    - 当某个脚本正在运行的时候，不会有其他脚本或 Redis 命令被执行。
+    - 这和使用 MULTI / EXEC 包围的事务很类似。
+
+<h2 id="fceebe04bb59a00b53434168656d5408"></h2>
+
+## 20.4 lua 和 redis 通信
+
+Conversion between Lua and Redis data types
+
+<h2 id="6beb0a3b94586776779ad6180080dbce"></h2>
+
+### Redis to Lua conversion table.
+
+ - Redis integer reply -> Lua number
+ - Redis bulk reply -> Lua string
+ - Redis multi bulk reply -> Lua table (may have other Redis data types nested)
+ - **Redis status reply** -> Lua table with a single ok field containing the status
+ - **Redis error reply** -> Lua table with a single err field containing the error
+ - Redis Nil bulk reply and Nil multi bulk reply -> Lua false boolean type
+ 
+<h2 id="8c7f7ce5672b4f0fc08bf31d3fa3fedf"></h2>
+
+### Lua to Redis conversion table.
+
+ - Lua number -> Redis integer reply (the number is converted into an integer)
+ - Lua string -> Redis bulk reply
+ - Lua table (array) -> Redis multi bulk reply (truncated to the first nil inside the Lua array if any)
+ - Lua table with a single ok field -> Redis status reply
+ - Lua table with a single err field -> Redis error reply
+ - Lua boolean false -> Redis Nil bulk reply.
+
+There is an additional Lua-to-Redis conversion rule that has no corresponding Redis to Lua conversion rule:
+
+ - Lua boolean true -> Redis integer reply with value of 1.
+
+<h2 id="88883a183878359a8fa1d7629847d304"></h2>
+
+### important rules to note:
+
+ - **If you want to return a float from Lua you should return it as a string**
+    - Lua has a single numerical type, Lua numbers.
+    - There is no distinction between integers and floats. 
+    - So we always convert Lua numbers into integer replies, removing the decimal part of the number if any.
 
 
 <h2 id="1df406401550a6a7d98cc7f798be128c"></h2>
@@ -629,6 +729,23 @@ redis:6379> EVALSHA 2f31ba2bb6d6a0f42cc159d2e2dad55440778de3 0
     - 另一方面，如果脚本已经 执行过写入操作，那么客户端只能用 SHUTDOWN nosave 命令来停止服务器，从而防止不合法的数据被写入数据库中。
 
 
+<h2 id="80f52ee50ddaafdd1e3ad14ec385358c"></h2>
+
+## 20.5.1 include third party library
+
+ - 你不能这么做
+ - The only way around this is to refactor the library and turn it into a Redis script that you can run。
+    - The refactored script can then be a part of your script, or you can SCRIPT LOAD it and call it from your script using an undocumented feature 
+    - in you script call the function f_sha1
+
+```lua
+return _G['f_' .. lua_sha_matchFinishCheck ](  )
+```
+
+ - redis lua 脚本都是通过 KEYS, ARGV 接收参数。
+    - 所以像上面那样主动调用 脚本， 传入参数并没有用， 而是需要 在函数调用设置好 KEYS, ARGV 
+
+
 <h2 id="0728c02dd7b51dcf7102925e1b013d78"></h2>
 
 ## 20.6 脚本复制
@@ -654,6 +771,47 @@ redis:6379> EVALSHA 2f31ba2bb6d6a0f42cc159d2e2dad55440778de3 0
     - 每当 主服务器添加一个新的 从服务器时， 主服务器都会清空 自己的 repl_scriptcache_dict 字典， 强制自己重新向 所有从服务器 传播脚本
  - 3 EVALSHA 转换成 EVAL 命令
  - 4 传播 EVALSHA 或 EVAL 命令
+
+
+<h2 id="20f2c099ee2880c7a3f268657b394f9a"></h2>
+
+### 20.7 redis 集群和 lua 脚本
+
+ - Redis操作（无论是 commands 还是Lua脚本）只能在所有key位于同一服务器上时才能工作。 
+    - lua 脚本的 key传递规则的目的 就是允许群集服务器找出 该把脚本发送到哪个节点，并在所有key不来自同一服务器时fast fail. 
+    - 所以 你要确保 脚本要操作的所有key位于同一服务器上。 
+        - The way to do that is to use hash tags to force keys to hash to the same slot
+        - See [documents](http://redis.io/topics/cluster-spec#keys-hash-tags)  for more details on that.
+ - Redis cluster
+    - Redis Cluster实现了Redis的非分布式版本中可用的所有单key命令。 
+    - 执行复杂的多key操作（Set type unions or intersections）的命令也可以实现，只要这些键都属于同一个节点。
+    - Redis Cluster实现了一个称为**hash tag**的概念，可用于强制某些key存储在同一节点中。
+        - 但是，在手动重新分片期间( manual resharding )，多key操作可能会在一段时间内不可用，而单key操作始终可用。
+    - Redis Cluster does not support multiple databases
+        - There is just database 0 and the **SELECT** command is not allowed.
+    - 在Redis群集中，节点负责保存数据并获取群集的状态，包括将key映射到正确的节点。 
+        - 群集节点还能够自动发现其他节点，检测非工作节点，并在需要时 promote slave nodes to master ，以便在发生故障时继续运行。
+    - The base algorithm used to map keys to hash slots is
+        - `HASH_SLOT = CRC16(key) mod 16384`
+    - Keys hash tags
+        - 计算key hash 有一个例外：hash tag
+        - hash tag 是一种确保在同一个 hash slot 中分配多个key的方法。 这用于在Redis群集中实现多键操作。
+        - 如果key包含 `{...}`模式，则仅对 { 和  }之间的子字符串进行hash以获取 hash slot。
+        - 但是，由于可能存在多次{或}，因此以下规则可以很好地指定算法：
+            - IF the key contains a { character.
+            - AND IF there is a } character to the right of {
+            - AND IF there are one or more characters between the first occurrence of { and the first occurrence of }.
+            - Then instead of hashing the key, only what is between the first occurrence of { and the following first occurrence of } is hashed.
+        - Examples:
+            - The two keys `{user1000}.following` and `{user1000}.followers` will hash to the same hash slot 
+            - For the key `foo{}{bar}` the whole key will be hashed as usually since the first occurrence of { is followed by } on the right without characters in the middle.
+            - For the key `foo{{bar}}zap` the substring `{bar` will be hashed
+            - For the key `foo{bar}{zap}` the substring bar will be hashed
+            - 如果key以{}开头，则和一般情况一样,保证整个散列。 当使用二进制数据作为键名时，这很有用。
+
+
+
+
 
 
 <h2 id="8b7e6e4e7ba14f17536a734562b5f28f"></h2>

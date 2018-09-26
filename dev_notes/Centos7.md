@@ -10,6 +10,11 @@
      - [TC 云服务器的 /etc/sysctl.conf 配置](#c5bfde7337a2b4013d953a5ef1e298f3)
      - [linux 系统监控](#65395697d2dab77dd22f054b888fb803)
      - [ab test](#107aedca6bab06cabee6aac093e48464)
+     - [systemctl autorun script](#182779261a101fea13d68ad6ca885ef8)
+         - [创建脚本](#cd25acb9fca49873079b8dc3ebc5021b)
+         - [创建一个新的 systemd service unit](#fc37e2a196cecdc81fbdbe5a257b7652)
+         - [Enable the systemd service unit](#4937eedceb267c9e4326ecf2ba78b05d)
+     - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
 
 ...menuend
 
@@ -276,6 +281,8 @@ $ ab -k -n 500000 -c 20000 -T "application/json" -p post.json  -H "userID: debug
 ```
 
 
+<h2 id="182779261a101fea13d68ad6ca885ef8"></h2>
+
 ## systemctl autorun script 
 
  - 服务又分为系统服务（system）和用户服务（user）。
@@ -286,6 +293,8 @@ $ ab -k -n 500000 -c 20000 -T "application/json" -p post.json  -H "userID: debug
     - 系统服务目录：/usr/lib/systemd/system/ 
     - 用户服务目录：/usr/lib/systemd/system/
 
+
+<h2 id="cd25acb9fca49873079b8dc3ebc5021b"></h2>
 
 ### 创建脚本
 
@@ -325,6 +334,8 @@ SCRIPTPATH=$(dirname "$SCRIPT")
 # echo $SCRIPTPATH
 ```
 
+<h2 id="fc37e2a196cecdc81fbdbe5a257b7652"></h2>
+
 ### 创建一个新的 systemd service unit
 
 ```
@@ -343,6 +354,8 @@ TimeoutStartSec=0
 [Install]
 WantedBy=default.target
 ```
+
+<h2 id="4937eedceb267c9e4326ecf2ba78b05d"></h2>
 
 ### Enable the systemd service unit
 
@@ -382,6 +395,8 @@ journalctl -e -f -u uwsgimind.service
 重启服务：systemctl restart *.service
 ```
 
+
+<h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
 ## Example 
 

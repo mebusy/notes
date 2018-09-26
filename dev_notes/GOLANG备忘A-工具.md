@@ -6,6 +6,7 @@
      - [1.3 go clean](#a0d272d3a24a7f1986e0fa7bafb8a59d)
      - [1.4 go get](#467396f90a34e7517a6fe191507ebab1)
      - [1.5 go tool objdump](#10dff3e07c4de7491ca41d3f3d6a7968)
+     - [1.6 go profile: pprof](#97696a7ea989ac7decac2e8be29a04f7)
  - [条件编译](#b19e1a4d4f517ccccc8fd5d402c438f9)
      - [通过 runtime.GOOS/GOARCH判断，或使用编译约束标记](#7fb897f760321cdc29a25ac77a31a041)
      - ["+build"注释, 指示编译器检查相关环境变量](#e4ee5701df42dfb4c09086d79e67d9f6)
@@ -109,6 +110,8 @@ $ go tool objdump -s "main\.\w+" test
 $ go tool objdump -s "main\.main" test
 ```
 
+
+<h2 id="97696a7ea989ac7decac2e8be29a04f7"></h2>
 
 ### 1.6 go profile: pprof
 
