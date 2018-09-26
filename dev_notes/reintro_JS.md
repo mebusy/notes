@@ -49,6 +49,22 @@
     - or func( ... arg_array )
  - 箭头函数没有自己的this
  - 理解this
+    - JS（ES5）三种函数调用形式：
+        - func(p1, p2) 
+        - obj.child.method(p1, p2)
+        - func.call(context, p1, p2) // 先不讲 apply
+    - 前两种是语法糖，第三种才是正确的调用方式
+        - func(p1, p2) 等价于 func.call(undefined, p1, p2)
+        - obj.child.method(p1, p2) 等价于obj.child.method.call(obj.child, p1, p2)
+    - 函数调用只有一种形式：
+        - func.call(context, p1, p2)
+        - **this，就是上面代码中的 context**
+    - 其他
+        - `new foo()` 构造函数中，foo函数内部的this永远是new foo()返回的对象
+        - 箭头函数没有自己的this, 箭头函数在设计中使用的是Lexical this
+
+
+--------------------------------
 
 
 <h2 id="3b878279a04dc47d60932cb294d96259"></h2>
