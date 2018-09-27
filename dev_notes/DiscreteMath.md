@@ -132,6 +132,9 @@
         - 谓词逻辑将句子的主语与其谓词区分开来
     - i.e. P(x) = "x is a girl."
     - P 是一个命题函数。 P(x) 是P在x 点上的值,是一个命题
+ - ∀,∃ 的 De Morgan law
+    - ¬∀<sub>x</sub> P(x) ≡ ∃<sub>x</sub> ¬P(x)
+    - ¬∃<sub>x</sub> P(x) ≡ ∀<sub>x</sub> ¬P(x)
 
 <h2 id="a38483049b36c18171570ccafddb3158"></h2>
 
