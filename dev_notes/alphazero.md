@@ -1,5 +1,7 @@
 # AlphaGo Zero - How and Why it Works
 
+http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
+
 ## Monte Carlo Tree Search
 
  - The go-to algorithm for writing bots to play **discrete**, **deterministic** games with **perfect information** is **Monte Carlo tree search (MCTS)**.
