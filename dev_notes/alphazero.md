@@ -40,8 +40,16 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
             - and having low visit counts 较低的访问次数
         - A leaf node is selected by traversing down the tree from the root node (从根节点向下遍历树来选择子节点),
             - always choosing the child i with the highest upper confidence tree (UCT) score:
+            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mcts_UTCscore.png)
+            - where Wi is the accumulated value of the ith child, 
+                - Ni is the visit count for ith child, 
+                - and Np is the number of visit counts for the parent node.
+            - The parameter c≥0 controls the tradeoff between 
+                - choosing lucrative nodes (low c) 
+                - and exploring nodes with low visit counts (high c).
+            - c is often set empirically.
+        - The UCT scores (U's) for the tic-tac-toe tree with c=1 are:
             - 
-
 
         
 
