@@ -38,7 +38,8 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
             - having high estimated values 高评估值
             - being relatively unexplored 没访问过的 
             - and having low visit counts 较低的访问次数
-        - A leaf node is selected by traversing down the tree from the root node (从根节点向下遍历树来选择子节点)
+        - A leaf node is selected by traversing down the tree from the root node (从根节点向下遍历树来选择子节点),
+            - always choosing the child i with the highest upper confidence tree (UCT) score:
             - 
 
 
