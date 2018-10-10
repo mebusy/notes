@@ -53,6 +53,11 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
             - In this case we pick the first node, s<sub>0,1</sub>. (如果出现多个第一，可以随机选取，或选择第一个child)
         - That node is expanded and the values are propagated back up:
             - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mcts_tictac6.png)  
+            - s₀,s<sub>0,1</sub> 的 N,W 分别都增加了 4,3
+        - Note that each accumulated value W reflects whether **X**'s won or lost.
+            - During selection, we keep track of whether it is X's or O's turn to move, and flip the sign of W whenever it is **O**'s turn.
+
+
 
 
         
