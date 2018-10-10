@@ -49,7 +49,7 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
                 - and exploring nodes with low visit counts (high c).
             - c is often set empirically.
         - The UCT scores (U's) for the tic-tac-toe tree with c=1 are:
-            - 
+            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mcts_tictac5.png)
 
         
 
