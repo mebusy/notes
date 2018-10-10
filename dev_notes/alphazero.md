@@ -50,6 +50,10 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
             - c is often set empirically.
         - The UCT scores (U's) for the tic-tac-toe tree with c=1 are:
             - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mcts_tictac5.png)
+            - In this case we pick the first node, s<sub>0,1</sub>. (如果出现多个第一，可以随机选取，或选择第一个child)
+        - That node is expanded and the values are propagated back up:
+            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mcts_tictac6.png)  
+
 
         
 
