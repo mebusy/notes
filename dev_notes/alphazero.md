@@ -59,6 +59,8 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
     - We continue to run iterations of Monte Carlo tree search until we run out of time. 
         - The tree is gradually expanded and we (hopefully) explore the possible moves, identifying the best move to take. 
         - The bot then actually , in real game ,  makes a move by picking the first child with the highest number of visits(访问次数最多的). 
+        - For example, if the top of our tree looks like:
+            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mcts_tictac7.png)  
 
 
 
