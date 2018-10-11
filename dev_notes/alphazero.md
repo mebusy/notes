@@ -118,6 +118,13 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
  - Leaves in the search tree are **expanded** by evaluating them with the neural network. 
     - Each child is initialized with N=0, W=0, and with P corresponding to the prediction from the network. 
     - The value of the expanded node is set to the predicted value and this value is then backed up the tree.
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mcts_tictac10.png)
+    - Selection and backup are unchanged.
+        - during backup a parent's visit counts are incremented and its value is increased according to W.
+    - The search tree following another selection, expansion, and backup step is:
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mcts_tictac11.png)    
+
+
 
 
 ## Summary
