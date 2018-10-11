@@ -61,6 +61,25 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
         - The bot then actually , in real game ,  makes a move by picking the first child with the highest number of visits(访问次数最多的). 
         - For example, if the top of our tree looks like:
             - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mcts_tictac7.png)  
+            - then the bot would choose the first action and proceed to s<sub>0,1</sub>
+
+
+## Efficiency Through Expert Policies
+
+ - Games like chess and Go have very large branching factors. 
+    - In a given game state there are many possible actions to take, 
+    - making it very difficult to adequately explore the future game states. 
+ - As a result, there are an estimated 
+    - 10⁴⁶  board states in chess,
+    - and Go played on a traditional 19×19 board has around 10¹⁷⁰ 
+    - Tic-tac-toe only has 5478 states
+ - Move evaluation with vanilla Monte Carlo tree search just isn't efficient enough.
+    - We need a way to further focus our attention to worthwhile moves.  将注意力集中在有价值的动作上 。
+ - Suppose we have an *expert policy π* that, for a given state *s*, tells us how likely an expert-level player is to make each possible action.
+    - For the tic-tac-toe example, this might look like:
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mcts_tictac8.png) 
+
+
 
 
 
