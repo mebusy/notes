@@ -85,9 +85,51 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
  - Fortunately, one can improve on a policy by using a modified form of Monte Carlo tree search.  可以通过一个修改版来改进策略
     - This version will also store the probability of each node according to the policy, and this probability is used to adjust the node's score during selection.
     - The probabilistic upper confidence tree score used by DeepMind is:
-        - 
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mcts_UTCscore_m.png)
+    - As before, the score trades off between nodes that consistently produce high scores and nodes that are unexplored. 
+        - Now, node exploration is guided by the expert policy, biasing exploration towards moves the expert policy considers likely (偏向探索 专家政策可能考虑的行动).
+    - If the expert policy truly is good, then Monte Carlo tree search efficiently focuses on good evolutions of the game state.
+        - If the expert policy is poor, then Monte Carlo tree search may focus on bad evolutions of the game state.  更可能 探索其他得分较低的演变
+    - Either way, in the limit as the number of samples gets large, the value of a node is dominated by the win/loss ratio Wᵢ/Nᵢ, as before. 
+
+## Efficiency Through Value Approximation
+
+ - A second form of efficiency can be achieved by  avoiding expensive and potentially inaccurate random rollouts. 
+    - One option is to use the expert policy from the previous section to guide the random rollout.
+        - If the policy is good, then the rollout should reflect more realistic, expert-level game progressions and thus more reliably estimate a state's value.
+    - A second option is to avoid rollouts altogether, and directly approximate the value of a state with a value approximator function Ŵ(x).    
+        - This function takes a state and directly computes a value in [−1,1], without conducting rollouts. 
+        - Clearly, if Ŵ is a good approximation of the true value, but can be executed faster than a rollout, then execution time can be saved without sacrificing performance.
+ - Value approximation can be used together with an expert policy to speed up Monte Carlo tree search. 
+ - A serious concern remains: how does one obtain an expert policy and a value function? 
+    - Does an algorithm exist for training the expert policy and value function?
 
 
+## The Alpha Zero Neural Net
+
+ - The Alpha Zero algorithm produces better and better expert policies and value functions over time by playing games against itself with accelerated Monte Carlo tree search. 
+    - Alpha Zero算法通过 加速的蒙特卡罗树搜索 与自身玩游戏，从而产生更好，更好的专家政策和价值功能。
+ - The expert policy π and the approximate value function Ŵ  are both represented by deep neural networks. 
+ - In fact, to increase efficiency, Alpha Zero uses one neural network f that 
+    - takes in the game state and produces 
+    - both the probabilities over the next move and the approximate state value. 
+    - (Technically, it takes in the previous 8  game states and an indicator telling it whose turn it is.)
+ - **f(s) → [p,W]**
+ - Leaves in the search tree are **expanded** by evaluating them with the neural network. 
+    - Each child is initialized with N=0, W=0, and with P corresponding to the prediction from the network. 
+    - The value of the expanded node is set to the predicted value and this value is then backed up the tree.
+
+
+## Summary
+
+ - MCTS 
+    - for a given status 
+        - 1 expanded by all actions  , randomly rollout child node's value W=[-1,0,1], N=1 , 
+        - 2 propagate W,N to parents 
+        - 3 selecting a leaf node via UCT scores ,  continue iteration.
+ - MCTS accelerate
+    - Expert Policies  , by a modified UCT scores
+    - Value Approximation 
 
 
 
