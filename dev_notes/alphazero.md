@@ -78,6 +78,14 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
  - Suppose we have an *expert policy π* that, for a given state *s*, tells us how likely an expert-level player is to make each possible action.
     - For the tic-tac-toe example, this might look like:
     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mcts_tictac8.png) 
+    - where each Pᵢ = π(aᵢ|s₀) is the probability of choosing the ith action aᵢ given the root state s₀.
+    - If the expert policy is really good then we can produce a strong bot by directly drawing our next action according to the probabilities produces by π, by taking the move with the highest probability. 
+ - Unfortunately, getting an expert policy is difficult, and verifying that one's policy is optimal is difficult as well.
+    - :(
+ - Fortunately, one can improve on a policy by using a modified form of Monte Carlo tree search.  可以通过一个修改版来改进策略
+    - This version will also store the probability of each node according to the policy, and this probability is used to adjust the node's score during selection.
+    - The probabilistic upper confidence tree score used by DeepMind is:
+        - 
 
 
 
