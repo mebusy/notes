@@ -56,6 +56,10 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
             - s₀,s<sub>0,1</sub> 的 N,W 分别都增加了 4,3
         - Note that each accumulated value W reflects whether **X**'s won or lost.
             - During selection, we keep track of whether it is X's or O's turn to move, and flip the sign of W whenever it is **O**'s turn.
+    - We continue to run iterations of Monte Carlo tree search until we run out of time. 
+        - The tree is gradually expanded and we (hopefully) explore the possible moves, identifying the best move to take. 
+        - The bot then actually , in real game ,  makes a move by picking the first child with the highest number of visits(访问次数最多的). 
+
 
 
 
