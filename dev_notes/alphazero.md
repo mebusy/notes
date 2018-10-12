@@ -138,7 +138,26 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
     - The value portion of the neural network is improved by 
         - training the predicted value to match the eventual win/loss/tie result of the game, Z. 
         - Their loss function is:
-            - 
+            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mcts_value_loss.png)
+            - where, 
+                - (W-Z)² is the value loss 
+                - π<sup>Τ</sup>ln**p** is the policy loss  
+                - and   λ‖θ‖₂² is an on term with parameter λ≥0 and θ represents the parameters in the neural network.
+    - Training is done entirely in self-play.
+        - One starts with a randomly initialized set of neural network parameters θ. 
+        - This neural network is then used in multiple games in which it plays itself.
+        - In each of these games, for each move, Monte Carlo tree search is used to calculate π.
+        - The final outcome of each game determines that game's value for Z. 
+        - The parameters θ are then improved by using gradient descent  on the loss function for a random selection of states played. 
+            - Or any of the more sophisticated accelerated descent methods
+            - Alpha Zero used stochastic gradient descent with momentum and learning rate annealing
+
+## Closing Comments
+
+ - The folks at DeepMind contributed a clean and stable learning algorithm that 
+    - trains game-playing agents efficiently using only data from self-play.
+ - While the current Zero algorithm only works for discrete games, it will be interesting 
+    - whether it will be extended to MDPs or  partially observable counterparts in the future. 
 
 
 ## Summary
