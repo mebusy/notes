@@ -324,7 +324,7 @@ Consider this 4-state graph:
 
 How big is its search tree (from S)?
 
-** ∞ !**
+**∞ !**
 
  - **Important: Lots of repeated structure in the search tree!**
 
