@@ -9,6 +9,7 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
     - deterministic: every move has a set outcome
     - games: players competing against one another
     - perfect information: both players see everything
+        - 所以目前无法处理麻将这类游戏，因为这类游戏信息是不完整的 imperfect information
  - The algorithm works as follows. 
     - The game-in-progress is in an initial state s₀ , and it's the bot's turn.
         - The bot can choose from a set of actions A.

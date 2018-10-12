@@ -142,7 +142,7 @@ So I imagine taking an action and then I imagine my opponent will then be in the
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_single_agent_trees.png)
 
-some of there paths go forever , some of these paths end because it meet the last of the game terminates. 
+some of these paths go forever , some of these paths end because it meet the last of the game terminates. 
 
 And what we actually do ? 
 
