@@ -153,7 +153,7 @@ A better title for this course would be:
     - Breadth-First Search
     - Uniform-Cost Search
 
-Uninformed means that when we are exploring search tree we have no idea if we're getting closer to the goal or not.  
+Uninformed means that when we are exploring search tree we have no idea if we're getting closer to the goal or not. (maze 这种问题，我们是知道的，就属于 informed search)
 
 
 <h2 id="9ef57e59fc5834eb1f86775a80163590"></h2>

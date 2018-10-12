@@ -33,6 +33,8 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
             - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mcts_tictac4.png)     
         - Monte Carlo tree search continues for multiple iterations , consisting of 
             - selecting a node, expanding it, and propagating back up the new information.
+    - PS. expanding的过程，有点类似 general search problem 中的处理: 从 fringe( a list of leaves to explore ) 取出一个node,展开,children 加入到 fringe
+        - general search problem 也有 selecting的步骤, like LIFO (depth-first), FIFO(breadth-first), least cost(UCS)
     - Monte Carlo tree search does not expand all leaf nodes, as that would be very expensive.
         - Instead, the selection process chooses nodes that strike a balance between 
             - being lucrative 有利的
