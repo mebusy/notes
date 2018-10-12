@@ -75,6 +75,9 @@
  7. [MAXQ-Q](https://github.com/mebusy/notes/blob/master/dev_notes/Maxq.md)
  8. [RL,art of state](https://github.com/mebusy/notes/blob/master/dev_notes/RL_art_of_state.md)
  9. [台大 机器学习基石](https://github.com/mebusy/notes/blob/master/dev_notes/TaiwanU_MLbasis.md) 
+ 10. [how alphazero works](https://github.com/mebusy/notes/blob/master/alphazero.md)
+
+
 
 
 
