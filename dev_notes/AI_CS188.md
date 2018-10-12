@@ -1250,7 +1250,7 @@ def graphSearch( problem, fringe):
     - heuristic value 的设计需要注意, 要确保 admissible consistency. 
         - naive solution: number of corner unvisited
         - better solution: distance to the next corner ( key corners in clockwise order )
-        - more metter solution: the distance to closest corner, plus the sum of the distance between remaining corners in order.
+        - more better solution: the distance to closest corner, plus the sum of the distance between remaining corners in order.
  - case3: east all food
     - naive solution: distance to next food
     - better solution: sort food in "nunu" shape, h_val = dist2closestFood + sum( distsBetweenFoods )\*0.5
