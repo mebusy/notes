@@ -440,9 +440,9 @@ PS: 采用了 pruning 算法, 节点的取值可能就不是 最大／最小值�
 
 For a minimizer node *m* , pruning its children is possible , when both of the following conditions are met:
 
- 1. the value of another child of *m* has been metermined
+ 1. the value of another child of *m* has been determined
     - leftmost children can not be pruned
- 2. somewhere on the path from *m* to the root node, there is a maximizer mode *M* for which an alternative option has already been explored
+ 2. somewhere on the path from *m* to the root node, there is a maximizer node *M* for which an alternative option has already been explored
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/pruning_impossible.png)
 

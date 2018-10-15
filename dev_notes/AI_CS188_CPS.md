@@ -366,7 +366,7 @@ Forward checking propagates information from assigned to unassigned variables, b
 
 NT and SA cannot both be blue! Why didn’t we detect this yet?
 
-Constraint propagation: reason from constraint to constraint.
+Constraint propagation: propagate from constraint to constraint.
 
 <h2 id="4a6018d8655776208482f8b34d58f268"></h2>
 
@@ -461,7 +461,7 @@ If arc consistency had resulted in all domains having a single value left, we wo
 
 <h2 id="185f95a07ab7600e42ac6b4d80c987c5"></h2>
 
-#### Ordering: Minimum Remaining Values
+#### Ordering: Minimum Remaining Values (Variable)
 
  - Variable Ordering:  Minimum remaining values (MRV):
      - Choose the variable with the fewest legal left values in its domain
@@ -475,7 +475,7 @@ If arc consistency had resulted in all domains having a single value left, we wo
 
 <h2 id="f03154f0f61b618719c8b5dc67557aaf"></h2>
 
-#### Ordering: Least Constraining Value
+#### Ordering: Least Constraining Value 
 
  - Value Ordering: Least Constraining Value
      - Given a choice of variable, choose the least constraining value
