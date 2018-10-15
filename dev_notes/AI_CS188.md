@@ -153,7 +153,10 @@ A better title for this course would be:
     - Breadth-First Search
     - Uniform-Cost Search
 
-Uninformed means that when we are exploring search tree we have no idea if we're getting closer to the goal or not. (maze 这种问题，我们是可以使用预测值的，就可以使用 informed search 来处理)
+Uninformed means that when we are exploring search tree we have no idea if we're getting closer to the goal or not. 
+
+ - i.e 在一个位置的maze中找到出口  
+    - 如果已经知道 出口的位置，找一条最短的路径的话， 这种情况是可以使用预测值的，就可以使用 informed search 来处理
 
 
 <h2 id="9ef57e59fc5834eb1f86775a80163590"></h2>
