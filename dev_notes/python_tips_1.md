@@ -346,6 +346,8 @@ Python has a locals() function which gives you back a dictionary of local variab
 ### re.sub group: number after \number
 
 ```
+re.sub(r'(foo)', r'\1123', 'foobar') 
+=>
 re.sub(r'(foo)', r'\g<1>123', 'foobar')
 ```
 
