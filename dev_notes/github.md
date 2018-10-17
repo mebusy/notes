@@ -121,4 +121,10 @@ $ cat ~/.gitconfig
     helper = store
 ```
 
+## provide username when clone private repos
+
+```
+git clone https://username:password@github.com/username/repository.git
+```
+
 
