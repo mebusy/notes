@@ -73,6 +73,24 @@ VSO. ....
     - 一旦精灵0命中标志被设置，它将不会被清除，直到下一个VBlank结束。
         - 如果试图将该标志用于光栅定时，要确保精灵0命中检查发生在垂直空白之外，否则CPU将will "leak" through , 并且检查将失败。
 
+### PPUADDR ($2006) >> write x2
+
+ - The CPU writes to VRAM through a pair of registers on the PPU
+    - First it loads an address into PPUADDR
+    - and then it writes repeatedly to PPUDATA to fill VRAM.
+ - For example, to set the VRAM address to $2108:
+    - 选择地址后，通过 PPUDATA 连续写入数据
+
+```
+  lda #$21
+  sta PPUADDR
+  lda #$08
+  sta PPUADDR
+```
+ 
+
+
+
 ----
 
 
