@@ -17,6 +17,11 @@ chmod +x ./kubectl
 mv ./kubectl /usr/local/bin/kubectl
 ```
 
+## under proxy 
+
+ - 简单的设置 https_proxy / http_proxy , kubectl 的部分功能会有问题，建议使用 cntlm 
+
+
 ## use kubectl
 
 ```
@@ -32,3 +37,80 @@ kubectl -n umc-dunkshot-dev2 get svc
 ```
 
 
+# cntlm 设置代理 (Centos7)
+
+ - 1 `yum install cntlm`
+ - 2 Get password hash 
+    - (type your password, press enter and copy the output)
+
+```
+$ cntlm -H
+Password:
+PassLM          14BE8CB0282308185246B269C29C0A88
+PassNT          DD8F12AC2482B5BC43A6972E7DFD0F78
+PassNTLMv2      934498581AFCBE80CA0457E0FD30B0F9    # Only for user '', domain ''
+```
+
+ - 3 Edit cntlm configuration file(Example for testuser)
+
+```
+#vi /etc/cntlm.conf
+
+Username YOURUSERNAME
+Domain YOURCOMPANYDOMAIN
+########Paste result of cntlm -H here###########
+PassLM          14BE8CB0282308185246B269C29C0A88
+PassNT          DD8F12AC2482B5BC43A6972E7DFD0F78
+PassNTLMv2      934498581AFCBE80CA0457E0FD30B0F9    # Only for user '', domain ''
+
+Proxy YOUR_COMPANY_PROXY_HOST:PORT
+NoProxy localhost, 127.0.0.*, 10.*, 192.168.*
+Auth NTLM
+```
+
+ - 4 Enable cntlm service at boot , and start it now
+    - `#systemctl enable cntlm`
+    - `#systemctl start cntlm`
+
+ - 5 Set environment variables (HTTP_PROXY and HTTPS_PROXY)
+    - use:  `127.0.0.1:3128`
+
+
+# cntlm (Macosx)
+
+ - You can run cntlm in debug mode for testing purpose and see what’s happening:
+    - `cntlm -f` # Run in foreground, do not fork into daemon mode.
+ - If everything is fine you can launch it as a daemon just by typing:
+    - `cntlm`
+ - Using LaunchAgent for automatic service launch at start
+    - `~/Library/LaunchAgents/com.oho.cntlm.daemon.plist`
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.oho.cntlm.daemon</string>
+  <key>ProgramArguments</key>
+  <array>
+      <string>/usr/local/bin/cntlm</string>
+  </array>
+  <key>KeepAlive</key>
+  <false/>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>StandardErrorPath</key>
+  <string>/dev/null</string>
+  <key>StandardOutPath</key>
+  <string>/dev/null</string>
+</dict>
+</plist>
+```
+
+ - set proxy env
+
+```
+export http_proxy=http://localhost:3128
+export https_proxy=https://localhost:3128
+```
