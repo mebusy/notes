@@ -64,7 +64,7 @@ PassNT          DD8F12AC2482B5BC43A6972E7DFD0F78
 PassNTLMv2      934498581AFCBE80CA0457E0FD30B0F9    # Only for user '', domain ''
 
 Proxy YOUR_COMPANY_PROXY_HOST:PORT
-NoProxy localhost, 127.0.0.*, 10.*, 192.168.*
+NoProxy ...
 Auth NTLM
 ```
 
@@ -75,8 +75,12 @@ Auth NTLM
  - 5 Set environment variables (HTTP_PROXY and HTTPS_PROXY)
     - use:  `127.0.0.1:3128`
 
+---
 
 # cntlm (Macosx)
+
+ - /usr/local/etc/cntlm.conf 
+    - otherwise it might be in /etc/cntlm.conf
 
  - You can run cntlm in debug mode for testing purpose and see what’s happening:
     - `cntlm -f` # Run in foreground, do not fork into daemon mode.
