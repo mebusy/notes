@@ -34,6 +34,9 @@ kubectl -n umc-dunkshot-dev2 get svc
 
 4. find pod by ip
 kubectl get po --all-namespaces -o wide | grep 10.0.0.39
+
+5. get yaml 
+kubectl ... get ...  -o yaml --export 
 ```
 
 
