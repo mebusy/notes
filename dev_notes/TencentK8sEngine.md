@@ -17,9 +17,6 @@ chmod +x ./kubectl
 mv ./kubectl /usr/local/bin/kubectl
 ```
 
-## under proxy 
-
- - 简单的设置 https_proxy / http_proxy , kubectl 的部分功能会有问题，建议使用 cntlm 
 
 
 ## use kubectl
@@ -34,7 +31,14 @@ i.e. kubectl exec -ti -n <namespace> <name of workernode>
 
 3.
 kubectl -n umc-dunkshot-dev2 get svc
+
+4. find pod by ip
+kubectl get po --all-namespaces -o wide | grep 10.0.0.39
 ```
+
+
+ - doc: https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/
+ - [轻松了解Kubernetes部署功能](http://qinghua.github.io/kubernetes-deployment/)
 
 
 # cntlm 设置代理 (Centos7)
