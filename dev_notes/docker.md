@@ -1863,6 +1863,14 @@ docker exec -it <container> bash
 ```
 
 
+## get DockerFile from Image
+
+```
+docker history --no-trunc $argv  | tac | tr -s ' ' | cut -d " " -f 5- | sed 's,^/bin/sh -c #(nop) ,,g' | sed 's,^/bin/sh -c,RUN,g' | sed 's, && ,\n  & ,g' | sed 's,\s*[0-9]*[\.]*[0-9]*[kMG]*B\s*$,,g' | head -n -1
+```
+
+ - replace `$argv` with your ImageID
+
 
 
 <h2 id="b8e4fd21971c56f16f0e13421bfefedc"></h2>

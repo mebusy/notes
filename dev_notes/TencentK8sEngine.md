@@ -37,6 +37,13 @@ kubectl get po --all-namespaces -o wide | grep 10.0.0.39
 
 5. get yaml 
 kubectl ... get ...  -o yaml --export 
+
+6. service accont 
+  create serviceaccount
+  create role
+  create rolebinding
+  ...
+
 ```
 
 
