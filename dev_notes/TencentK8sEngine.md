@@ -44,6 +44,9 @@ kubectl ... get ...  -o yaml --export
   create rolebinding
   ...
 
+7. 使用 ccr.ccs.tencentyun.com 仓库上的镜像，需要 secret: 
+    - qcloudregistrykey , 
+    - tencenthubkey (自动创建？)
 ```
 
 
