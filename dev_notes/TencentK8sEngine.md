@@ -54,6 +54,38 @@ kubectl ... get ...  -o yaml --export
  - [轻松了解Kubernetes部署功能](http://qinghua.github.io/kubernetes-deployment/)
 
 
+# 腾讯云 用户管理
+
+## 策略
+
+ - 访问 COS 某个bucket的策略
+
+```
+{
+    "version": "2.0",
+    "statement": [
+        {
+            "action": [
+                "cos:*"
+            ],
+            "resource": "qcs::cos:::BUCKET-NAME/*",
+            "effect": "allow"
+        },
+        {
+            "effect": "allow",
+            "action": [
+                "monitor:*",
+                "cam:ListUsersForGroup",
+                "cam:ListGroups",
+                "cam:GetGroup"
+            ],
+            "resource": "*"
+        }
+    ]
+}
+```
+
+
 # cntlm 设置代理 (Centos7)
 
  - 1 `yum install cntlm`
