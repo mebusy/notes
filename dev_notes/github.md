@@ -140,4 +140,16 @@ git clone https://username:password@github.com/username/repository.git
 $ git clone https://myuser:password%21@github.com/myuser/repo.git
 ```
 
+## Copy branch from another repository
+
+ 1. git clone your repo , so your repo's repo is named `origin`
+ 2. add another remote repo , give it name `html5`
+    - `git remote add html5 ...` 
+ 3. fetch remote repo data
+    - `git fetch html5`
+ 4. checkout 1 branch `html5/develop`` , to your local branch `develop`
+    - `git checkout -b develop html5/develop`
+ 5. push you local branch `develop` to `origin`
+    - `git push --set-upstream origin develop`
+
 
