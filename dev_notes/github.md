@@ -127,4 +127,17 @@ $ cat ~/.gitconfig
 git clone https://username:password@github.com/username/repository.git
 ```
 
+## Calling git clone using password with special character
+
+```
+!   #   $    &   '   (   )   *   +   ,   /   :   ;   =   ?   @   [   ]
+%21 %23 %24 %26 %27 %28 %29 %2A %2B %2C %2F %3A %3B %3D %3F %40 %5B %5D
+```
+
+ - for example
+
+```
+$ git clone https://myuser:password%21@github.com/myuser/repo.git
+```
+
 
