@@ -167,3 +167,6 @@ Auth NTLM
 export http_proxy=http://localhost:3128
 export https_proxy=https://localhost:3128
 ```
+
+ - restart 
+    - `brew services restart cntlm`
