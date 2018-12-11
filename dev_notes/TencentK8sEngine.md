@@ -88,9 +88,18 @@ kubectl ... get ...  -o yaml --export
 
 # cntlm 设置代理 (Centos7)
 
- - 1 `yum install cntlm`
+ - 1 install cntlm
+
+```
+1) download from 
+    https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/c/
+2) rpm -Uvh xxx.rpm
+```
+
+
  - 2 Get password hash 
     - (type your password, press enter and copy the output)
+    - modify your username/domain first in `/etc/cntlm.conf`
 
 ```
 $ cntlm -H
