@@ -275,6 +275,17 @@ yum install --setopt=obsoletes=0 \
 
 ```
 
+ - FAQ 
+    - 最新的版本 docker 不能使用 NTLM代理
+    - 更换较旧的版本，比如 18.03.1 
+
+```
+// list docker-ce old versions
+yum list docker-ce.x86_64  --showduplicates | sort -r
+```
+
+
+
  [镜像加速](https://docs.docker.com/registry/recipes/mirror/#use-case-the-china-registry-mirror)
 
  [set docker proxy](https://docs.docker.com/engine/admin/systemd/#httphttps-proxy)

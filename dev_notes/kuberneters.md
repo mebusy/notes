@@ -382,6 +382,9 @@ systemctl disable firewalld
 ```
 modprobe br_netfilter
 echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
+echo '1' > /proc/sys/net/bridge/bridge-nf-call-ip6tables
+
+// 其实就是编辑 /etc/sysctl.conf 
 ```
 
 
@@ -428,7 +431,7 @@ systemctl start kubelet && systemctl enable kubelet
  - We need to make sure the docker-ce and kubernetes are using same 'cgroup'.
 
 ```
-WARNING: bridge-nf-call-ip6tables is disabled
+docker info | grep -i cgroup
 Cgroup Driver: cgroupfs
 ```
 
