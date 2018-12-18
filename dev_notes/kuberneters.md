@@ -471,3 +471,21 @@ kubeadm init --apiserver-advertise-address=10.192.83.78 --pod-network-cidr=10.24
 kubectl taint node <mymasternode> node-role.kubernetes.io/master:NoSchedule-
 node/<mymasternode>  untainted
 ```
+
+
+### Testing Create First Pod
+
+```
+kubectl create deployment nginx --image=nginx
+kubectl create service nodeport nginx --tcp=80:80
+
+[root@localhost ~]# kubectl get svc
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP        69m
+nginx        NodePort    10.97.24.123   <none>        80:31116/TCP   16m
+```
+
+ - Now you will get the nginx pod is now running under cluster IP address '10.97.24.123' port 80, and the node main IP address  on port '31116'.
+
+
+
