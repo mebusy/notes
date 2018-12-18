@@ -221,6 +221,7 @@ For Centos:
 
 ```
 yum remove docker \
+                  docker-cli \
                   docker-client \
                   docker-client-latest \
                   docker-common \
