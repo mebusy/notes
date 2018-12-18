@@ -582,7 +582,69 @@ nginx        NodePort    10.97.24.123   <none>        80:31116/TCP   16m
 
  - Now you will get the nginx pod is now running under cluster IP address '10.97.24.123' port 80, and the node main IP address  on port '31116'.
 
-# HTTP API Space of Kubernetes
+# Access Kuberneters
+
+## HTTP API Space of Kubernetes
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s-api-server-space.jpg)
+
+HTTP API space of Kubernetes can be divided into three independent groups:
+
+ - Core Group (/api/v1)
+    - This group includes objects such as Pods, Services, nodes, etc.
+ - Named Group
+    - This group includes objects in **/apis/$NAME/$VERSION** format
+    - These different API versions imply different levels of stability and support:
+        - Alpha level - it may be dropped at any point in time, without notice. For example, /apis/batch/v2alpha1.
+        - Beta level - it is well-tested, but the semantics of objects may change in incompatible ways in a subsequent beta or stable release. 
+            - example, /apis/certificates.k8s.io/v1beta1
+        - Stable level - appears in released software for many subsequent versions.
+            - For example, /apis/networking.k8s.io/v1
+ - System-wide
+    - This group consists of system-wide API endpoints, like /healthz, /logs, /metrics, /ui, etc.
+
+## kubectl Configuration File
+
+ - To connect to the Kubernetes cluster, kubectl needs the master node endpoint and the credentials to connect to it.
+ - On the master node machine, by default, a configuration file, config, inside the.kube directory, which resides in the user's home directory.
+ - That configuration file has all the connection details.  
+ - To look at the connection details, we can either see the content of the ~/.kube/config(Linux) file, or run the following command:
+
+
+```
+# kubectl config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://10.192.83.78:6443
+  name: kubernetes
+...
+```
+
+ - Once kubectl is installed, we can get information about the Minikube cluster with the `kubectl cluster-info` command
+
+```
+# kubectl cluster-info
+```
+
+
+## Kubernetes dashboard 
+
+### Deploying the Dashboard UI
+
+```
+kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+```
+
+### Accessing the Dashboard UI
+
+```
+kubectl proxy
+```
+
+ - Kubectl will make Dashboard available at
+    - `http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/`
 
 
 
