@@ -582,5 +582,7 @@ nginx        NodePort    10.97.24.123   <none>        80:31116/TCP   16m
 
  - Now you will get the nginx pod is now running under cluster IP address '10.97.24.123' port 80, and the node main IP address  on port '31116'.
 
+# HTTP API Space of Kubernetes
+
 
 
