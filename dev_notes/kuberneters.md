@@ -459,3 +459,15 @@ kubeadm init --apiserver-advertise-address=10.192.83.78 --pod-network-cidr=10.24
  - pod-network-cidr = specify the range of IP addresses for the pod network. We're using the 'flannel' virtual network. If you want to use another pod network such as weave-net or calico, change the range IP address.
 
 
+ - when the initialization done, do the things listed 
+    1. Create new '.kube' configuration directory and copy the configuration 'admin.conf'.
+    2. deploy the flannel network to the kubernetes cluster using the kubectl command.
+        - `kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml`
+
+
+###  Allow scheduling of pods on Kubernetes master
+
+```
+kubectl taint node <mymasternode> node-role.kubernetes.io/master:NoSchedule-
+node/<mymasternode>  untainted
+```
