@@ -359,17 +359,100 @@ deployment.extensions/kubernetes-bootcamp
 
 # Configuring Redis using a ConfigMap
 
+---
 
+# install Kubernetes
 
-# install Minikube
+## Step 1 - Kubernetes Installation
 
- - https://github.com/kubernetes/minikube/releases
+### Disable SELinux and filewall
 
 ```
-# curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.31.0/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+setenforce 0
+sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
 
+systemctl disable firewalld
+```
+
+### Enable br_netfilter Kernel Module
+
+ - The br_netfilter module is required for kubernetes installation.
+ - Enable this kernel module so that the packets traversing the bridge are processed by iptables for filtering and for port forwarding, and the kubernetes pods across the cluster can communicate with each other.
+
+```
+modprobe br_netfilter
+echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
 ```
 
 
+### Disable SWAP
+
+```
+swapoff -a
+```
+
+ - And then edit the '/etc/fstab' file.  Comment the swap line UUID as below
+
+```
+# /dev/mapper/cl-swap     swap                    swap    defaults        0 0  
+```
+
+
+### Install Kubernetes
+
+```
+cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+        https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+```
+
+```
+yum install -y kubelet kubeadm kubectl
+
+reboot
+
+systemctl start docker && systemctl enable docker
+systemctl start kubelet && systemctl enable kubelet
+```
+
+
+### Change the cgroup-driver
+
+ - We need to make sure the docker-ce and kubernetes are using same 'cgroup'.
+
+```
+WARNING: bridge-nf-call-ip6tables is disabled
+Cgroup Driver: cgroupfs
+```
+
+ - And you see the docker is using 'cgroupfs' as a cgroup-driver.
+
+ - Now run the command below to change the kuberetes cgroup-driver to 'cgroupfs'.
+
+```
+sed -i 's/cgroup-driver=systemd/cgroup-driver=cgroupfs/g' /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+
+systemctl daemon-reload
+systemctl restart kubelet
+```
+
+ - 注意，可能  10-kubeadm.conf 文件中没有 cgroup-driver . 
+    - 手动添加 `Environment="KUBELET_CGROUP_ARGS=--cgroup-driver=cgroupfs"`
+
+## Step 2 - Kubernetes Cluster Initialization
+
+```
+kubeadm init --apiserver-advertise-address=10.192.83.78 --pod-network-cidr=10.244.0.0/16
+```
+
+ - apiserver-advertise-address = determines which IP address Kubernetes should advertise its API server on.
+ - pod-network-cidr = specify the range of IP addresses for the pod network. We're using the 'flannel' virtual network. If you want to use another pod network such as weave-net or calico, change the range IP address.
 
 
