@@ -1,9 +1,28 @@
+...menustart
+
+ - [TKE](#12510f8273f9a47f538779a3afd71f53)
+ - [kubectl](#0f12ee5c9f1dd90158580f1c292b0d37)
+     - [install](#19ad89bc3e3c9d7ef68b89523eff1987)
+     - [use kubectl](#773c2c719c95cc40967b0e945ada8898)
+ - [腾讯云 用户管理](#7616e9353ba2c3c55eb7063e51fc65fb)
+     - [策略](#66914536facf5b30973b236fb814d23f)
+ - [cntlm 设置代理 (Centos7)](#c36aef5f4c92632a2362a83ed0523565)
+ - [cntlm (Macosx)](#48cd1b6a59fb119e19d9f83e6cf43668)
+
+...menuend
+
+
+<h2 id="12510f8273f9a47f538779a3afd71f53"></h2>
 
 # TKE
+
+<h2 id="0f12ee5c9f1dd90158580f1c292b0d37"></h2>
 
 # kubectl
 
  - 客户端小版本最多比服务器大1， 比如服务器版本是1.7.8 , 客户端版本可以用 1.8.x 
+
+<h2 id="19ad89bc3e3c9d7ef68b89523eff1987"></h2>
 
 ## install
 
@@ -18,6 +37,8 @@ mv ./kubectl /usr/local/bin/kubectl
 ```
 
 
+
+<h2 id="773c2c719c95cc40967b0e945ada8898"></h2>
 
 ## use kubectl
 
@@ -54,7 +75,11 @@ kubectl ... get ...  -o yaml --export
  - [轻松了解Kubernetes部署功能](http://qinghua.github.io/kubernetes-deployment/)
 
 
+<h2 id="7616e9353ba2c3c55eb7063e51fc65fb"></h2>
+
 # 腾讯云 用户管理
+
+<h2 id="66914536facf5b30973b236fb814d23f"></h2>
 
 ## 策略
 
@@ -85,6 +110,8 @@ kubectl ... get ...  -o yaml --export
 }
 ```
 
+
+<h2 id="c36aef5f4c92632a2362a83ed0523565"></h2>
 
 # cntlm 设置代理 (Centos7)
 
@@ -135,6 +162,8 @@ Auth NTLM
     - use:  `127.0.0.1:3128`
 
 ---
+
+<h2 id="48cd1b6a59fb119e19d9f83e6cf43668"></h2>
 
 # cntlm (Macosx)
 

@@ -154,7 +154,8 @@ a | b | c | d
 [mysql相关](https://github.com/mebusy/notes/blob/master/dev_notes/mysql.md) |
 [swagger](https://github.com/mebusy/notes/blob/master/swagger.md) |  [backend tips](https://github.com/mebusy/notes/blob/master/dev_notes/backend_tips.md) | 
 [reintro JS](https://github.com/mebusy/notes/blob/master/dev_notes/reintro_JS.md) | [React哲学](https://github.com/mebusy/notes/blob/master/dev_notes/react_philosophy.md)  |  [web frontend tips](https://github.com/mebusy/notes/blob/master/dev_notes/web_frontend_note.md) | 
-
+[facebook gamebot](https://github.com/mebusy/notes/blob/master/dev_notes/createFBapp.md) | 
+[k8s](https://github.com/mebusy/notes/blob/master/dev_notes/kuberneters.md) | [腾讯TKE](https://github.com/mebusy/notes/blob/master/dev_notes/TencentK8sEngine.md) | 
 
 
 

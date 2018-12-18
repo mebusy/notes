@@ -9,6 +9,9 @@
      - [get a file with specific revision](#6f4311248df3ab2115e904e14c7836c9)
      - [git show/diff 乱码问题](#aafd38d2cb2288571bb67fc78e3a18f7)
      - [how to set up username and passwords for different git repos](#a3aecaf26f7ec612b34f4d9ed6c6532d)
+     - [provide username when clone private repos](#366ee47209629dccbab3d2399247ea84)
+     - [Calling git clone using password with special character](#60f96f2175fb84d4839e67f2533a4c10)
+     - [Copy branch from another repository](#9af7d00519ec3625b399242404c33af2)
 
 ...menuend
 
@@ -121,11 +124,15 @@ $ cat ~/.gitconfig
     helper = store
 ```
 
+<h2 id="366ee47209629dccbab3d2399247ea84"></h2>
+
 ## provide username when clone private repos
 
 ```
 git clone https://username:password@github.com/username/repository.git
 ```
+
+<h2 id="60f96f2175fb84d4839e67f2533a4c10"></h2>
 
 ## Calling git clone using password with special character
 
@@ -139,6 +146,8 @@ git clone https://username:password@github.com/username/repository.git
 ```
 $ git clone https://myuser:password%21@github.com/myuser/repo.git
 ```
+
+<h2 id="9af7d00519ec3625b399242404c33af2"></h2>
 
 ## Copy branch from another repository
 

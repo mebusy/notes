@@ -1,3 +1,13 @@
+...menustart
+
+ - [Create Instant Games](#009069c69b11caef6d75739ab207e856)
+ - [Create Message Bot](#1b3b0682a7aea56937be67c5a729a846)
+ - [debug messager bot with local server](#aceacf6ca899a80c0a70aa4f2522d77c)
+
+...menuend
+
+
+<h2 id="009069c69b11caef6d75739ab207e856"></h2>
 
 # Create Instant Games
 
@@ -37,6 +47,8 @@ FBInstant.setSessionData({
 
 
 
+<h2 id="1b3b0682a7aea56937be67c5a729a846"></h2>
+
 # Create Message Bot
 
 https://developers.facebook.com/docs/messenger-platform/getting-started
@@ -57,6 +69,8 @@ https://developers.facebook.com/docs/messenger-platform/getting-started
     - send a message to your Page from facebook.com or in Messenger. 
     - If your webhook receives a webhook event, you have fully set up your app!
 
+
+<h2 id="aceacf6ca899a80c0a70aa4f2522d77c"></h2>
 
 # debug messager bot with local server
 

@@ -3,6 +3,7 @@
  - [PPU registers](#ce3374e3bdbab692e3e6d81eefca5fa6)
      - [Summary](#290612199861c31d1036b185b4e69b75)
          - [PPUSTATUS $2002 < read](#12db96d2c957aa2e0f62efba7438d684)
+         - [PPUADDR ($2006) >> write x2](#e610d6d0ebcec60e47429845a26b4cdc)
      - [PPU power up state](#2ea9139a25965e25aa6292e0d86f9ebf)
          - [Best practice](#50802d3e5a25b93d471686a10da03dd8)
      - [Init code](#08c865722ec499f5a7baef6aecb8afa0)
@@ -72,6 +73,8 @@ VSO. ....
         - 还有PPUSCROLL和PPUADDR使用的address latch。
     - 一旦精灵0命中标志被设置，它将不会被清除，直到下一个VBlank结束。
         - 如果试图将该标志用于光栅定时，要确保精灵0命中检查发生在垂直空白之外，否则CPU将will "leak" through , 并且检查将失败。
+
+<h2 id="e610d6d0ebcec60e47429845a26b4cdc"></h2>
 
 ### PPUADDR ($2006) >> write x2
 

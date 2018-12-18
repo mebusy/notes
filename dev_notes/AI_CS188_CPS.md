@@ -24,7 +24,7 @@
              - [Enforcing Arc Consistency in a CSP](#a579dbdec94528eb11f12d92e857c911)
              - [Limitations of Arc Consistency](#86e7f886811c7ef1bc00bf5730d39c8b)
          - [Ordering](#12ad9074a51088cf63b8e33236d8cc13)
-             - [Ordering: Minimum Remaining Values](#185f95a07ab7600e42ac6b4d80c987c5)
+             - [Ordering: Minimum Remaining Values (Variable)](#04b8f33966ef671d2d1c0293a74a75d4)
              - [Ordering: Least Constraining Value](#f03154f0f61b618719c8b5dc67557aaf)
  - [Constraint Satisfaction Problems II](#1dff507c8d0411804d4fbae07a040c72)
      - [Reminder: CSPs](#acc9764e38986d7c5f932a1db3eaf43d)
@@ -459,7 +459,7 @@ If arc consistency had resulted in all domains having a single value left, we wo
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_backtracking_ording.png)
 
-<h2 id="185f95a07ab7600e42ac6b4d80c987c5"></h2>
+<h2 id="04b8f33966ef671d2d1c0293a74a75d4"></h2>
 
 #### Ordering: Minimum Remaining Values (Variable)
 
