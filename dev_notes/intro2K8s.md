@@ -104,6 +104,28 @@ Starting to serve on 10.192.83.78:8001
  - now access `http://10.192.83.78:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/`
     - PS. it will lead to authoriation problem.
 
+ - for test purpose only , you can Granting admin privileges to Dashboard's Service Account 
+    - Afterwards you can use Skip option on login page to access Dashboard.
+
+```
+$ cat <<EOF | kubectl create -f -
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: kubernetes-dashboard
+  labels:
+    k8s-app: kubernetes-dashboard
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: kubernetes-dashboard
+  namespace: kube-system
+EOF
+```
+
 
 <h2 id="d7dba71d2e1aa5aea658e819489eab4d"></h2>
 
