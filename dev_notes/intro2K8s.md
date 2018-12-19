@@ -541,6 +541,21 @@ Kubernetes supports two methods of discovering a Service:
  - With the NodePort ServiceType, in addition to creating a ClusterIP, a port from the range 30000-32767 is mapped to the respective Service, from all the worker nodes.
     - For example, if the mapped NodePort is `32233` for the service frontend-svc, then, if we connect to any worker node on port 32233, the node would redirect all the traffic to the assigned ClusterIP - 172.17.0.4.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s-NodePort.png)
+
+ - The NodePort ServiceType is useful when we want to make our Services accessible from the external world.
+ - The end-user connects to the worker nodes on the specified port, which forwards the traffic to the applications running inside the cluster.
+ - To access the application from the external world, administrators can configure a reverse proxy outside the Kubernetes cluster and map the specific endpoint to the respective port on the worker nodes. 
+
+
+### ServiceType: LoadBalancer
+
+ - With the LoadBalancer ServiceType:
+    - NodePort and ClusterIP Services are automatically created, and the external load balancer will route to them
+    - The Services are exposed at a static port on each worker node
+    - The Service is exposed externally using the underlying cloud provider's load balancer feature.
+ - The LoadBalancer ServiceType will only work if the underlying infrastructure supports the automatic creation of Load Balancers and have the respective support in Kubernetes, as is the case with the Google Cloud Platform and AWS. 
+
 
 
 
