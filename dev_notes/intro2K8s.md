@@ -412,5 +412,87 @@ kube-system   Active   22h
 
         - Above example creates a pod-reader role, which has access only to the Pods of lfs158 Namespace.
         - Once the role is created, we can bind users with RoleBinding.
-         
+        - There are two kinds of RoleBindings:         
+            - RoleBinding
+                - It allows us to bind users to the same namespace as a Role 
+            - ClusterRoleBinding
+                - It allows us to grant access to resources at a cluster-level and to all Namespaces.
+        - 
+        ```
+        kind: RoleBinding
+        apiVersion: rbac.authorization.k8s.io/v1
+        metadata:
+          name: pod-read-access
+          namespace: lfs158
+        subjects:
+        ~ kind: User  # ~ should be -
+          name: nkhare
+          apiGroup: rbac.authorization.k8s.io
+        roleRef:
+          kind: Role
+          name: pod-reader
+          apiGroup: rbac.authorization.k8s.io
+        ```
+
+        - see above example,  it gives access to nkhare to read the Pods of lfs158 Namespace.
+        - To enable the RBAC authorizer, we would need to start the API server with the **--authorization-mode=RBAC** option. 
+        - With the RBAC authorizer, we dynamically configure policies. 
+
+
+## Admission Control
+
+ - Admission control is used to specify granular access control policies, which include allowing privileged containers, checking on resource quota, etc.
+ - We force these policies using different admission controllers, like ResourceQuota, AlwaysAdmit, DefaultStorageClass, etc. 
+ - To use admission controls, we must start the Kubernetes API server with the admission-control
+
+```
+--admission-control=NamespaceLifecycle,ResourceQuota,PodSecurityPolicy,DefaultStorageClass.
+```
+
+ - By default, Kubernetes comes with some built-in admission controllers.
+
+# Service
+
+## Connecting Users to Pods
+
+ - To access the application, a user/client needs to connect to the Pods
+ - Kubernetes provides a higher-level abstraction called Service, which logically groups Pods and a policy to access them. 
+    - This grouping is achieved via Labels and Selectors, which we talked about in the previous chapter. 
+ - We can assign a name to the logical grouping, referred to as a **Service name**. 
+
+## Service Object Example
+
+ - The following is an example of a Service object:
+
+```
+kind: Service
+apiVersion: v1
+metadata:
+  name: frontend-svc
+spec:
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+```
+
+ - In this example, we are creating a **frontend-svc** Service by selecting all the Pods that have the Label **app** set to the **frontend**.
+ - By default, each Service also gets an IP address, which is routable only inside the cluster. 
+    - The IP address attached to each Service is also known as the ClusterIP for that Service.
+ - The user/client now connects to a service via the IP address, which forwards the traffic to one of the Pods attached to it.
+    - A service does the load balancing while selecting the Pods for forwarding the data/traffic.
+ - While forwarding the traffic from the Service, we can select the target port on the Pod.
+    - for example, for frontend-svc, we will receive requests on Port 80.  We will then forward these requests to one of the attached Pods on Port 5000. 
+    - If the target port is not defined explicitly, then traffic will be forwarded to Pods on the port on which the Service receives traffic.
+
+## kube-proxy
+
+ - All of the worker nodes run a daemon called kube-proxy, which watches the API server on the master node for the addition and removal of Services and endpoints. 
+ - For each new Service, on each node, kube-proxy configures the iptables rules to capture the traffic for its ClusterIP and forwards it to one of the endpoints.
+ - When the service is removed, kube-proxy removes the iptables rules on all nodes as well.
+
+
+
 
