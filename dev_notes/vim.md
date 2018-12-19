@@ -465,6 +465,16 @@ vimgrep /pattern/gj path
 :%!expand -t4
 ```
 
+## Remove unwanted empty lines
+
+ - use `v` to select the range of lines you want to work on 
+ - useing either of the following command to delete all empty lines:
+
+```
+:g/^$/d
+:v/./d
+```
+
 ---
 
 
