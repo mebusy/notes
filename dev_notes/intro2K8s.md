@@ -194,3 +194,26 @@ spec:
         ports:
         - containerPort: 80
 ```
+
+ - kind
+    - mention the object type
+ - metadata
+    - attach the basic information to objects, like the name.
+ - spec
+    - define the desired state of the deployment.
+    - You may have noticed that in our example we have two spec fields (spec and spec.template.spec).
+    - In our example, we want to make sure that, at any point in time, at least 3 Pods are running, which are created using the Pods Template defined in spec.template.
+    - In spec.template.spec, we define the desired state of the Pod.
+        - Here, our Pod would be created using nginx:1.7.9.
+ - Once the object is created, the Kubernetes system attaches the **status** field to the object; we will explore it later.
+
+## Pods
+
+ - A Pod is the smallest and simplest Kubernetes object.
+    - It is the unit of deployment in Kubernetes, which represents a single instance of the application. 
+ - A Pod is a logical collection of one or more containers, which:
+    - Are scheduled together on the same host
+    - Share the same network namespace
+    - Mount the same external storage (volumes).
+ - 
+
