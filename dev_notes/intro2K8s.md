@@ -493,6 +493,57 @@ spec:
  - For each new Service, on each node, kube-proxy configures the iptables rules to capture the traffic for its ClusterIP and forwards it to one of the endpoints.
  - When the service is removed, kube-proxy removes the iptables rules on all nodes as well.
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s-kube-proxy-svc-endpoint.png)
+
+
+## Service Discovery
+
+As Services are the primary mode of communication in Kubernetes, we need a way to discover them at runtime. 
+
+Kubernetes supports two methods of discovering a Service:
+
+ - Environment Variables
+    - As soon as the Pod starts on any worker node, the kubelet daemon running on that node adds a set of environment variables in the Pod for all active Services.
+    - For example, if we have an active Service called redis-master, which exposes port 6379, and its ClusterIP is 172.17.0.6, then, on a newly created Pod, we can see the following environment variables:
+    - 
+    ```
+    REDIS_MASTER_SERVICE_HOST=172.17.0.6
+    REDIS_MASTER_SERVICE_PORT=6379
+    REDIS_MASTER_PORT=tcp://172.17.0.6:6379
+    REDIS_MASTER_PORT_6379_TCP=tcp://172.17.0.6:6379
+    REDIS_MASTER_PORT_6379_TCP_PROTO=tcp
+    REDIS_MASTER_PORT_6379_TCP_PORT=6379
+    REDIS_MASTER_PORT_6379_TCP_ADDR=172.17.0.6
+    ```
+
+ - DNS
+    - Kubernetes has an add-on for DNS, which creates a DNS record for each Service and its format is like my-svc.my-namespace.svc.cluster.local
+    - **Services within the same Namespace can reach to other Services with just their name.**
+    - For example, if we add a Service redis-master in the **my-ns** Namespace, then all the Pods in the same Namespace can reach to the redis Service just by using its name, **redis-master**. 
+    - Pods from other Namespaces can reach the Service by adding the respective Namespace as a `suffix`, like **redis-master.my-ns**. 
+    - This is the most common and highly recommended solution. 
+
+        
+## ServiceType
+
+ - While defining a Service, we can also choose its access scope.
+ - We can decide whether the Service:
+    - Is only accessible within the cluster
+    - Is accessible from within the cluster and the external world
+    - Maps to an external entity which resides outside the cluster.
+ - Access scope is decided by `ServiceType`, which can be mentioned when creating the Service.
+
+### ServiceType: ClusterIP and NodePort
+
+ - ClusterIP is the default ServiceType. 
+    - A Service gets its Virtual IP address using the ClusterIP. 
+    - That IP address is used for communicating with the Service and is accessible only within the cluster. 
+ - With the NodePort ServiceType, in addition to creating a ClusterIP, a port from the range 30000-32767 is mapped to the respective Service, from all the worker nodes.
+    - For example, if the mapped NodePort is `32233` for the service frontend-svc, then, if we connect to any worker node on port 32233, the node would redirect all the traffic to the assigned ClusterIP - 172.17.0.4.
+
+
+
+
 
 
 
