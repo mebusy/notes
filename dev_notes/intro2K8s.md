@@ -94,6 +94,16 @@ kubectl proxy
  - Kubectl will make Dashboard available at
     - `http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/`
 
+ - to access the proxy from external browse , try 
+
+```
+# kubectl proxy --port=9999 --address='<master.ip.addr>' --accept-hosts="^*$"
+Starting to serve on 10.192.83.78:9999
+```
+
+ - now access `http://10.192.83.78:9999/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/`
+
+
 <h2 id="d7dba71d2e1aa5aea658e819489eab4d"></h2>
 
 ### APIs - with 'kubectl proxy'
