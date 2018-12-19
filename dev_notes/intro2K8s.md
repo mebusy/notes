@@ -215,5 +215,23 @@ spec:
     - Are scheduled together on the same host
     - Share the same network namespace
     - Mount the same external storage (volumes).
- - 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s_pod.png)
+
+ - Pods do not have the capability to self-heal by themselves. 
+    - That is why we use them with controllers, which can handle a Pod's replication, fault tolerance, self-heal, etc. 
+    - Examples of controllers are Deployments, ReplicaSets, ReplicationControllers, etc.
+ - We attach the Pod's specification to other objects using Pods Templates, as we have seen in the previous section.
+
+
+## Labels
+
+ - Labels are key-value pairs that can be attached to any Kubernetes objects (e.g. Pods).
+ - Labels are used to organize and select a subset of objects, based on the requirements in place.
+ - Many objects can have the same Label(s). Labels do not provide uniqueness to objects.  
+
+
+
+ - In the image above, we have used two Labels: app and env.
+    - Based on our requirements, we have given different values to our four Pods.
 
