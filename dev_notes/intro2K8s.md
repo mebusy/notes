@@ -260,4 +260,61 @@ spec:
  - A ReplicaSet (rs) is the next-generation ReplicationController.
  - ReplicaSets support both equality- and set-based selectors, whereas ReplicationControllers only support equality-based Selectors.
     - Currently, this is the only difference.
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s_rs.png)
+
+ - ReplicaSets can be used independently, but they are mostly used by Deployments to orchestrate the Pod creation, deletion, and updates. 
+ - A Deployment automatically creates the ReplicaSets, and we do not have to worry about managing them. 
+
+
+## Deployments
+
+ - Deployment objects provide declarative updates to Pods and ReplicaSets.
+ - The DeploymentController is part of the master node's controller manager, and it makes sure that the current state always matches the desired state.
+ - let's say we have a **Deployment** which creates a **ReplicaSet A**.  **ReplicaSet A** then create **3 Pods**. 
+    - In each Pod, one of the containers user the nginx:1.7.9 image.
+ - Now, in the Deployment, we change the Pods Template and we update the image for the nginx container from nginx:1.7.9 to nginx:1.9.1.
+    - As have modified the Pods Template, a new **ReplicaSet B** gets created. 
+    - This process is referred to as a **Deployment rollout**.
+ - A rollout is only triggered when we update the Pods Template for a deployment.
+    - Operations like scaling the deployment do not trigger the deployment.
+ - Once **ReplicaSet B** is ready, the Deployment starts pointing to it.
+ - Once ReplicaSet B is ready, the Deployment starts pointing to it,
+    - with which, if something goes wrong, we can rollback to a previously known state.
+
+## Namespaces
+
+ - we can partition the Kubernetes cluster into sub-clusters using Namespaces.
+ - The names of the resources/objects created inside a Namespace are unique, but not across Namespaces.
+
+```
+# kubectl get namespaces
+NAME          STATUS   AGE
+default       Active   22h
+kube-public   Active   22h
+kube-system   Active   22h
+```
+
+ - Generally, Kubernetes creates two default Namespaces: kube-system and default. 
+    - The kube-system Namespace contains the objects created by the Kubernetes system.
+    - By default, we connect to the default Namespace.
+ - kube-public is a special Namespace, which is readable by all users and used for special purposes, like bootstrapping a cluster. 
+ - Using **Resource Quotas**, we can divide the cluster resources within Namespaces. 
+
+# Authentication, Authorization, and Admission Control
+
+## Overview
+
+ - To access and manage any resources/objects in the Kubernetes cluster, we need to access a specific API endpoint on the API server. 
+ - Each access request goes through the following three stages:
+    - Authentication
+        - Logs in a user.
+    - Authorization
+        - Authorizes the API requests added by the logged-in user.
+    - Admission Control
+        - Software modules that can modify or reject the requests based on some additional checks, like **Quota**.
  - 
+
+
+
+
