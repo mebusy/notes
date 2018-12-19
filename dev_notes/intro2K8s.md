@@ -97,11 +97,11 @@ kubectl proxy
  - to access the proxy from external browse , try 
 
 ```
-# kubectl proxy --port=9999 --address='<master.ip.addr>' --accept-hosts="^*$"
-Starting to serve on 10.192.83.78:9999
+# kubectl proxy --port=8001 --address='<master.ip.addr>' --accept-hosts="^*$"
+Starting to serve on 10.192.83.78:8001
 ```
 
- - now access `http://10.192.83.78:9999/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/`
+ - now access `http://10.192.83.78:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/`
     - PS. it will lead to authoriation problem.
 
 
