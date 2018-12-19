@@ -230,8 +230,34 @@ spec:
  - Labels are used to organize and select a subset of objects, based on the requirements in place.
  - Many objects can have the same Label(s). Labels do not provide uniqueness to objects.  
 
-
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s_label.png)
 
  - In the image above, we have used two Labels: app and env.
     - Based on our requirements, we have given different values to our four Pods.
 
+## Label Selectors
+
+ - With Label Selectors, we can select a subset of objects. 
+ - Kubernetes supports two types of Selectors:
+    - Equality-Based Selectors
+        - allow filtering of objects based on Label keys and values. 
+        - With this type of selectors, we can use the =, ==, or != operators. 
+        - For example, with env==dev we are selecting the objects where the env Label is set to dev. 
+    - Set-Based Selectors
+        - allow filtering of objects based on a set of values
+        - With this type of Selectors, we can use the in, notin, and exist operators. 
+        - For example, with **env in (dev,qa)**, we are selecting objects where the env Label is set to dev or qa. 
+
+## ReplicationControllers
+
+ - A ReplicationController (rc) is a controller that is part of the master node's controller manager. 
+ - It makes sure the specified number of replicas for a Pod is running at any given point in time.
+ - Generally, we don't deploy a Pod independently, as it would not be able to re-start itself, if something goes wrong. 
+ - We always use controllers like ReplicationController to create and manage Pods. 
+
+## ReplicaSets
+
+ - A ReplicaSet (rs) is the next-generation ReplicationController.
+ - ReplicaSets support both equality- and set-based selectors, whereas ReplicationControllers only support equality-based Selectors.
+    - Currently, this is the only difference.
+ - 
