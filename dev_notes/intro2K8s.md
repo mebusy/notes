@@ -102,6 +102,7 @@ Starting to serve on 10.192.83.78:9999
 ```
 
  - now access `http://10.192.83.78:9999/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/`
+    - PS. it will lead to authoriation problem.
 
 
 <h2 id="d7dba71d2e1aa5aea658e819489eab4d"></h2>
