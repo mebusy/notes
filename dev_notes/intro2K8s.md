@@ -1,8 +1,28 @@
+...menustart
+
+ - [edX  Introduction to Kuberneters](#e017284a962c40a7dc29fd29bea64bb4)
+ - [Access Kuberneters](#10ebfd4c6ede5e99a80eb32105dc4419)
+     - [HTTP API Space of Kubernetes](#c9157975d6f67292424e86421d6ca49c)
+     - [kubectl Configuration File](#70becb84ec118d75e27f125448562a2b)
+     - [Kubernetes dashboard](#6bbde18895b093a1a0fc79b5c02e4462)
+         - [Deploying the Dashboard UI](#ae1fd03692378014b99c5c70b6c121af)
+         - [Accessing the Dashboard UI](#f32d0f539f9fbaff4c670cd2e5d7b14d)
+         - [APIs - with 'kubectl proxy'](#d7dba71d2e1aa5aea658e819489eab4d)
+         - [APIs - without 'kubectl proxy'](#c4a8eba76a7943e2e98a2e8b0f014db3)
+
+...menuend
+
+
+<h2 id="e017284a962c40a7dc29fd29bea64bb4"></h2>
 
 # edX  Introduction to Kuberneters
 
 
+<h2 id="10ebfd4c6ede5e99a80eb32105dc4419"></h2>
+
 # Access Kuberneters
+
+<h2 id="c9157975d6f67292424e86421d6ca49c"></h2>
 
 ## HTTP API Space of Kubernetes
 
@@ -22,6 +42,8 @@ HTTP API space of Kubernetes can be divided into three independent groups:
             - For example, /apis/networking.k8s.io/v1
  - System-wide
     - This group consists of system-wide API endpoints, like /healthz, /logs, /metrics, /ui, etc.
+
+<h2 id="70becb84ec118d75e27f125448562a2b"></h2>
 
 ## kubectl Configuration File
 
@@ -49,13 +71,19 @@ clusters:
 ```
 
 
+<h2 id="6bbde18895b093a1a0fc79b5c02e4462"></h2>
+
 ## Kubernetes dashboard 
+
+<h2 id="ae1fd03692378014b99c5c70b6c121af"></h2>
 
 ### Deploying the Dashboard UI
 
 ```
 kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
 ```
+
+<h2 id="f32d0f539f9fbaff4c670cd2e5d7b14d"></h2>
 
 ### Accessing the Dashboard UI
 
@@ -65,6 +93,8 @@ kubectl proxy
 
  - Kubectl will make Dashboard available at
     - `http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/`
+
+<h2 id="d7dba71d2e1aa5aea658e819489eab4d"></h2>
 
 ### APIs - with 'kubectl proxy'
 
@@ -89,6 +119,8 @@ $ curl http://localhost:8001/
  ]
 }
 ```
+
+<h2 id="c4a8eba76a7943e2e98a2e8b0f014db3"></h2>
 
 ### APIs - without 'kubectl proxy'
 
