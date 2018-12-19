@@ -556,6 +556,12 @@ Kubernetes supports two methods of discovering a Service:
     - The Service is exposed externally using the underlying cloud provider's load balancer feature.
  - The LoadBalancer ServiceType will only work if the underlying infrastructure supports the automatic creation of Load Balancers and have the respective support in Kubernetes, as is the case with the Google Cloud Platform and AWS. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s-svc-lb.png)
+
+
+# Deploying an Application
+
+
 
 
 
