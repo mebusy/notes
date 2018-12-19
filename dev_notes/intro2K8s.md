@@ -161,4 +161,49 @@ curl $APISERVER/api --header "Authorization: Bearer $TOKEN" --insecure
 }
 ```
 
+# Kubernetes Building Blocks
 
+## Kubernetes Object Model
+
+ - With each object, we declare our intent or desired state using the **spec** field
+ - The Kubernetes system manages the **status** field for objects, in which it records the actual state of the object. 
+ - To create an object, we need to provide the **spec** field to the Kubernetes API server. 
+    - The spec field describes the desired state, along with some basic information, like the name. 
+ - Below is an example of a Deployment object:
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+
+  selector:
+
+    matchLabels:
+
+      app: nginx
+
+  template:
+
+    metadata:
+
+      labels:
+
+        app: nginx
+
+    spec:
+
+      containers:
+
+      - name: nginx
+
+        image: nginx:1.7.9
+
+        ports:
+
+        - containerPort: 80
+```
