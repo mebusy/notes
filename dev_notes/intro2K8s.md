@@ -313,8 +313,104 @@ kube-system   Active   22h
         - Authorizes the API requests added by the logged-in user.
     - Admission Control
         - Software modules that can modify or reject the requests based on some additional checks, like **Quota**.
- - 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s_access_the_API.png)
 
 
+## Authentication
 
+ - Kubernetes does not have an object called user, nor does it store usernames or other related details in its object store.
+ - However, even without that, Kubernetes can use usernames for access control and request logging.
+ - Kubernetes has two kinds of users:
+    - Normal Users
+        - They are managed outside of the Kubernetes cluster via independent services like User/Client Certificates, a file listing usernames/passwords, etc.
+    - Service Accounts
+        - With Service Account users, in-cluster processes communicate with the API server to perform different operations.
+        - Most of the Service Account users are created automatically via the API server, but they can also be created manually. 
+        - The Service Account users are tied to a given Namespace and mount the respective credentials to communicate with the API server as Secrets.
+ - If properly configured, Kubernetes can also support **anonymous requests**, along with requests from Normal Users and Service Accounts.
+ - For authentication, Kubernetes uses different authenticator modules:
+    - Client Certificates
+        - need to reference a file containing one or more certificate authorities by passing the **--client-ca-file=SOMEFILE** option to the API server. 
+    - Static Token File
+        - pass a file containing pre-defined bearer tokens with the **--token-auth-file=SOMEFILE** option to the API server. 
+        - Currently, these tokens would last indefinitely, and they cannot be changed without restarting the API server.
+    - Bootstrap Tokens
+        - currently in an alpha statu
+    - Static Password File
+        - It is similar to Static Token File
+        - pass a file containing basic authentication details with the **--basic-auth-file=SOMEFILE** option.
+    - Service Account Tokens
+        - This is an automatically enabled authenticator that uses signed bearer tokens to verify the requests. 
+        - These tokens get attached to Pods using the ServiceAccount Admission Controller, which allows in-cluster processes to talk to the API server.
+    - OpenID Connect Tokens
+        - OpenID Connect helps us connect with OAuth 2 providers, such as Azure Active Directory, Salesforce, Google, etc., to offload the authentication to external services.
+    - Webhook Token Authentication
+        - With Webhook-based authentication, verification of bearer tokens can be offloaded to a remote service.
+    - Keystone Password
+        - Keystone authentication can be enabled by passing the **--experimental-keystone-url=<AuthURL> option** to the API server, where AuthURL is the Keystone server endpoint.
+    - Authenticating Proxy
+        - If we want to program additional authentication logic, we can use an authenticating proxy. 
+
+ - We can enable multiple authenticators,
+    - In order to be successful, you should enable at least two methods: the service account tokens authenticator and the user authenticator.
+
+## Authorization
+
+ - After a successful authentication, users can send the API requests to perform different operations.
+ - Then, those API requests get authorized by Kubernetes using various authorization modules.
+ - Some of the API request attributes that are reviewed by Kubernetes include user, group, extra, Resource or Namespace, to name a few.
+    - Next, these attributes are evaluated against policies. 
+    - If the evaluation is successful, then the request will be allowed, otherwise it will get denied. 
+ - Similar to the Authentication step, Authorization has multiple modules/authorizers.
+
+ - Authorization modules
+    - Node Authorizer
+        - Node authorization is a special-purpose authorization mode which specifically authorizes API requests made by kubelets.
+        - It authorizes the kubelet's read operations for services, endpoints, nodes, etc., and writes operations for nodes, pods, events, etc. 
+    - Attribute-Based Access Control (ABAC) Authorizer
+        - With the ABAC authorizer, Kubernetes grants access to API requests, which combine policies with  attributes.
+        - In the following example, user nkhare can only read Pods in the Namespace lfs158.
+        - 
+        ```
+        {
+          "apiVersion": "abac.authorization.kubernetes.io/v1beta1",
+          "kind": "Policy",
+          "spec": {
+            "user": "nkhare",
+            "namespace": "lfs158",
+            "resource": "pods",
+            "readonly": true
+          }
+        }
+        ```
+
+        - To enable the ABAC authorizer, we would need to start the API server with the **--authorization-mode=ABAC** option.
+        - We would also need to specify the authorization policy, like **--authorization-policy-file=PolicyFile.json**
+    - Webhook Authorizer
+        - With the Webhook authorizer, Kubernetes can offer authorization decisions to some third-party services, which would return true for successful authorization, and false for failure. 
+        - In order to enable the Webhook authorizer, we need to start the API server with the **--authorization-webhook-config-file=SOME_FILENAME** option, where SOME_FILENAME is the configuration of the remote authorization service. 
+    - Role-Based Access Control (RBAC) Authorizer
+        - 使用RBAC，我们可以根据各个用户的角色来规范对资源的访问。
+        - In Kubernetes, we can have different roles that can be attached to subjects like users, service accounts, etc. 
+        - While creating the roles, we restrict resource access by specific operations, such as create, get, update, patch, etc.
+        - In RBAC, we can create two kinds of roles:
+            - Role  -- With Role, we can grant access to resources within a specific Namespace.
+            - ClusterRole  -- The ClusterRole can be used to grant the same permissions as Role does, but its scope is cluster-wide.
+        - 
+        ```
+        kind: Role
+        apiVersion: rbac.authorization.k8s.io/v1
+        metadata:
+          namespace: lfs158
+          name: pod-reader
+        rules:
+        ~ apiGroups: [""] # "" indicates the core API group, ~ should be -
+          resources: ["pods"]
+          verbs: ["get", "watch", "list"]
+        ```
+
+        - Above example creates a pod-reader role, which has access only to the Pods of lfs158 Namespace.
+        - Once the role is created, we can bind users with RoleBinding.
+         
 
