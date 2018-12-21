@@ -675,6 +675,14 @@ $ kubectl create -f webserver.yaml
 deployment "webserver" created
 ```
 
+ - we can also name a port  , it can be be using the referenced web-port name while creating the Service 
+
+```
+        ports:
+        - containerPort: 5000
+          name: web-port
+```
+
 ### Creating a Service and Exposing It to the External World with NodePort I
 
  - with the **NodePort**  ServiceType, Kubernetes opens up a static port on all the worker nodes. I
@@ -895,5 +903,71 @@ readinessProbe:
     - Once a suitable PersistentVolume is found, it is bound to a PersistentVolumeClaim.
  - After a successful bound, the PersistentVolumeClaim resource can be used in a Pod.
  - Once a user finishes its work, the attached PersistentVolumes can be released. The underlying PersistentVolumes can then be reclaimed and recycled for future usage. 
+
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s-pvc.png)
+
+
+
+# ConfigMaps and Secrets
+
+ - While deploying an application, we may need to pass such runtime parameters like configuration details, passwords, etc. 
+ - In such cases, we can use the ConfigMap API resource.
+ - Similarly, when we want to pass sensitive information, we can use the Secret API resource.
+
+## ConfigMaps
+
+ - ConfigMaps allow us to decouple the configuration details from the container image.
+ - Using ConfigMaps, we can pass configuration details as key-value pairs, which can be later consumed by Pods, or any other system components, such as controllers. 
+ - We can create ConfigMaps in two ways:
+    - From literal values
+    - From files.
+
+### Create a ConfigMap from Literal Values and Get Its Details
+
+```
+$ kubectl create configmap my-config --from-literal=key1=value1 --from-literal=key2=value2
+configmap "my-config" created
+```
+
+```
+$ kubectl get configmaps my-config -o yaml
+apiVersion: v1
+data:
+  key1: value1
+  key2: value2
+kind: ConfigMap
+metadata:
+  creationTimestamp: 2017-05-31T07:21:55Z
+  name: my-config
+  namespace: default
+  resourceVersion: "241345"
+  selfLink: /api/v1/namespaces/default/configmaps/my-config
+  uid: d35f0a3d-45d1-11e7-9e62-080027a46057
+```
+
+### Create a ConfigMap from a Configuration File
+
+ - First, we need to create a configuration file.
+
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: customer1
+data:
+  TEXT1: Customer1_Company
+  TEXT2: Welcomes You
+  COMPANY: Customer1 Company Technology Pct. Ltd.
+```
+
+```
+$ kubectl create -f customer1-configmap.yaml
+configmap "customer1" created
+```
+
+
+### Use ConfigMap Inside Pods
+
+
 
 
