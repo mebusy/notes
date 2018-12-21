@@ -127,6 +127,11 @@ EOF
 ```
 
 
+[more solutions on stackoverflow](https://stackoverflow.com/questions/46664104/how-to-sign-in-kubernetes-dashboard)
+
+
+
+
 <h2 id="d7dba71d2e1aa5aea658e819489eab4d"></h2>
 
 ### APIs - with 'kubectl proxy'
@@ -594,10 +599,301 @@ Kubernetes supports two methods of discovering a Service:
 
 # Deploying an Application
 
+## Deploy vi kubectl
+
+### List the Pods, along with their attached Labels
+
+```
+$ kubectl get pods -L k8s-app,label2
+NAME                         READY   STATUS    RESTARTS   AGE   K8S-APP     LABEL2
+webserver-74d8bd488f-dwbzz   1/1     Running   0          14m   webserver   <none>
+webserver-74d8bd488f-npkzv   1/1     Running   0          14m   webserver   <none>
+webserver-74d8bd488f-wvmpq   1/1     Running   0          14m   webserver   <none>
+```
+
+### Select the Pods with a given Label
+
+```
+$ kubectl get pods -l k8s-app=webserver
+NAME                         READY     STATUS    RESTARTS   AGE
+webserver-74d8bd488f-dwbzz   1/1       Running   0          17m
+webserver-74d8bd488f-npkzv   1/1       Running   0          19m
+webserver-74d8bd488f-wvmpq   1/1       Running   0          17m
+
+$ kubectl get pods -l k8s-app=webserver1
+No resources found.
+```
+
+### Delete the Deployment 
+
+```
+$ kubectl delete deployments webserver
+deployment "webserver" deleted
+```
+
+ - Deleting a Deployment also deletes the ReplicaSets and the Pods we created:
+
+```
+$ kubectl get replicasets
+No resources found.
+
+$ kubectl get pods
+No resources found.
+```
+
+### Create a YAML file with Deployment details
+
+ - Let us now create the webserver.yaml file with the following content:
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webserver
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+```
 
 
+```
+$ kubectl create -f webserver.yaml
+deployment "webserver" created
+```
+
+### Creating a Service and Exposing It to the External World with NodePort I
+
+ - with the **NodePort**  ServiceType, Kubernetes opens up a static port on all the worker nodes. I
+ - If we connect to that port from any node, we are forwarded to the respective Service.
+ - Create a webserver-svc.yaml file with the following content:
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+  labels:
+    run: web-service
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    app: nginx
+```
+
+```
+$ kubectl create -f webserver-svc.yaml
+service/web-service created
+
+$ kubectl get svc
+NAME          TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+kubernetes    ClusterIP   10.96.0.1      <none>        443/TCP        1d
+web-service   NodePort    10.110.47.84   <none>        80:31074/TCP   12s
+```
+
+ - Our web-service is now created and its ClusterIP is 10.110.47.84.
+ - In the PORT(S)section, we can see a mapping of 80:31074,
+    - which means that we have reserved a static port 31074 on the node
+    - If we connect to the node on that port, our requests will be forwarded to the ClusterIP on port 80.
+ - It is not necessary to create the Deployment first, and the Service after. They can be created in any order. 
+ - A Service will connect Pods based on the Selector.
 
 
+```
+$ kubectl describe svc web-service
+Name:                     web-service
+Namespace:                default
+Labels:                   run=web-service
+Annotations:              <none>
+Selector:                 app=nginx
+Type:                     NodePort
+IP:                       10.110.47.84
+Port:                     <unset>  80/TCP
+TargetPort:               80/TCP
+NodePort:                 <unset>  31074/TCP
+Endpoints:                172.17.0.4:80,172.17.0.5:80,172.17.0.6:80
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
+```
 
+## Liveness and Readiness Probes
+
+ - These probes are very important, because they allow the kubelet to control the health of the application running inside a Pod's container.
+
+### Liveness
+
+ - If a container in the Pod is running, but the application running inside this container is not responding to our requests, then that container is of no use to us. 
+    - This kind of situation can occur, for example, due to application deadlock or memory pressure.
+    - In such a case, it is recommended to restart the container to make the application available.
+ - Rather than doing it manually, we can use **Liveness Probe**.
+    - Liveness probe checks on an application's health, and, if for some reason, the health check fails, it restarts the affected container automatically.
+ - Liveness Probes can be set by defining:
+    - Liveness command
+    - Liveness HTTP request
+    - TCP Liveness Probe.
+
+#### Liveness Command
+
+ - In the following example, we are checking the existence of a file /tmp/healthy:
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    test: liveness
+  name: liveness-exec
+spec:
+  containers:
+  - name: liveness
+    image: k8s.gcr.io/busybox
+    args:
+    - /bin/sh
+    - -c
+    - touch /tmp/healthy; sleep 30; rm -rf /tmp/healthy; sleep 600
+    livenessProbe:
+      exec:
+        command:
+        - cat
+        - /tmp/healthy
+      initialDelaySeconds: 3
+      periodSeconds: 5
+```
+ 
+ - The existence of the **/tmp/healthy** file is configured to be checked every 5 seconds using the **periodSeconds** parameter. 
+ - The **initialDelaySeconds** parameter requests the kubelet to wait for 3 seconds before doing the first probe. 
+ - When running the container, we will first create the /tmp/healthy file, and then we will remove it after 30 seconds. 
+    -  The deletion of the file would trigger a health failure, and our Pod would get restarted.
+
+
+### Liveness HTTP Request
+
+ - In the following example, the kubelet sends the HTTP GET request to the /healthz endpoint of the application, on port 8080. 
+ - If that returns a failure, then the kubelet will restart the affected container; otherwise, it would consider the application to be alive.
+
+```
+livenessProbe:
+      httpGet:
+        path: /healthz
+        port: 8080
+        httpHeaders:
+        - name: X-Custom-Header
+          value: Awesome
+      initialDelaySeconds: 3
+      periodSeconds: 3
+```
+
+### TCP Liveness Probe
+
+ - With TCP Liveness Probe, the kubelet attempts to open the TCP Socket to the container which is running the application. 
+ - If it succeeds, the application is considered healthy, otherwise the kubelet would mark it as unhealthy and restart the affected container.
+
+```
+livenessProbe:
+      tcpSocket:
+        port: 8080
+      initialDelaySeconds: 15
+      periodSeconds: 20
+```
+
+
+## Readiness Probes
+
+ - Sometimes, applications have to meet certain conditions before they can serve traffic. 
+ - These conditions include 
+    - ensuring that the depending service is ready,
+    - or acknowledging that a large dataset needs to be loaded, etc.
+ - In such cases, we use Readiness Probes and wait for a certain condition to occur. Only then, the application can serve traffic.
+ - A Pod with containers that do not report ready status will not receive traffic from Kubernetes Services.
+
+```
+readinessProbe:
+  exec:
+    command:
+    - cat
+    - /tmp/healthy
+  initialDelaySeconds: 5
+  periodSeconds: 5
+```
+
+ - Readiness Probes are configured similarly to Liveness Probes. Their configuration also remains the same.
+
+
+# Kubernetes Volume Management  
+
+ - To back a Pod with a persistent storage, Kubernetes uses **Volumes**. 
+
+## Volumes
+
+ - containers, which create the Pods, are ephemeral in nature.
+    - All data stored inside a container is deleted if the container crashes.
+    - However, the kubelet will restart it with a clean state, which means that it will not have any of the old data.
+ - To overcome this problem, Kubernetes uses Volumes. 
+    - A Volume is essentially a directory backed by a storage medium. 
+    - The storage medium and its content are determined by the Volume Type.
+ - In Kubernetes, a Volume is attached to a Pod and shared among the containers of **that Pod**.
+    - The Volume has the same life span as the **Pod**,  and it outlives the containers of the Pod 
+        - this allows data to be preserved across container restarts.
+
+## Volume Types
+
+ - A directory which is mounted inside a Pod is backed by the underlying Volume Type.
+ - A Volume Type decides the properties of the directory, like size, content, etc. Some examples of Volume Types are:
+    - emptyDir
+        - An empty Volume is created for the Pod as soon as it is scheduled on the worker node. The Volume's life is tightly coupled with the Pod. If the Pod dies, the content of emptyDir is deleted forever.  
+    - hostPath
+        - With the hostPath Volume Type, we can share a directory from the host to the Pod. 
+        - If the Pod dies, the content of the Volume is still available on the host.
+    - gcePersistentDisk
+        - we can mount a Google Compute Engine (GCE) persistent disk into a Pod.
+    - awsElasticBlockStore
+        - we can mount an AWS EBS Volume into a Pod. 
+    - nfs
+        - we can mount an NFS share into a Pod.
+    - iscsi
+        - we can mount an iSCSI share into a Pod.
+    - secret
+        - With the secret Volume Type, we can pass sensitive information, such as passwords, to Pods.
+    - persistentVolumeClaim
+        - We can attach a PersistentVolume to a Pod.
+
+
+## PersistentVolumes
+
+ - A Persistent Volume is a network-attached storage in the cluster, which is provisioned by the administrator.
+ - PersistentVolumes can be dynamically provisioned based on the StorageClass resource. 
+    - A StorageClass contains pre-defined provisioners and parameters to create a PersistentVolume
+    - Using PersistentVolumeClaims, a user sends the request for dynamic PV creation, which gets wired to the StorageClass resource.
+ - Some of the Volume Types that support managing storage using PersistentVolumes are:
+    - GCEPersistentDisk
+    - AWSElasticBlockStore
+    - AzureFile
+    - NFS
+    - iSCSI
+
+## PersistentVolumeClaims
+
+ - A PersistentVolumeClaim (PVC) is a request for storage by a user. 
+    - Users request for PersistentVolume resources based on size, access modes, etc. 
+    - Once a suitable PersistentVolume is found, it is bound to a PersistentVolumeClaim.
+ - After a successful bound, the PersistentVolumeClaim resource can be used in a Pod.
+ - Once a user finishes its work, the attached PersistentVolumes can be released. The underlying PersistentVolumes can then be reclaimed and recycled for future usage. 
 
 
