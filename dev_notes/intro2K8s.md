@@ -1090,7 +1090,41 @@ spec:
     - Name-based virtual hosting 
     - Path-based routing
     - Custom rules.
- - 
+ - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s-ingress.png)
+
+## Ingress II
+
+ - With Ingress, users don't connect directly to a Service. Users reach the Ingress endpoint, and, from there, the request is forwarded to the respective Service. 
+
+```
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: web-ingress
+  namespace: default
+spec:
+  rules:
+  - host: blue.example.com
+    http:
+      paths:
+      - backend:
+          serviceName: webserver-blue-svc
+          servicePort: 80
+  - host: green.example.com
+    http:
+      paths:
+      - backend:
+          serviceName: webserver-green-svc
+          servicePort: 80
+```
+
+ - According to the example we provided above, users requests to both blue.example.com and green.example.com would go to the same Ingress endpoint, and, from there, they would be forwarded to webserver-blue-svc, and webserver-green-svc, respectively. 
+ - Here, we have seen an example of a Name-Based Virtual Hosting Ingress rule. 
+ - We can also have Fan Out Ingress rules, in which we send requests like example.com/blue and example.com/green, which would be forwarded to webserver-blue-svc and webserver-green-svc, respectively.
+
+
+
+
 
 
 
