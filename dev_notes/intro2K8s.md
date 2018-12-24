@@ -9,6 +9,73 @@
          - [Accessing the Dashboard UI](#f32d0f539f9fbaff4c670cd2e5d7b14d)
          - [APIs - with 'kubectl proxy'](#d7dba71d2e1aa5aea658e819489eab4d)
          - [APIs - without 'kubectl proxy'](#c4a8eba76a7943e2e98a2e8b0f014db3)
+ - [Kubernetes Building Blocks](#79ea233bebd117c1c22480caf3c940c9)
+     - [Kubernetes Object Model](#ea99654864cc0264b53634e7bf4863cb)
+     - [Pods](#dc4b70c03e8043e50e38f2068887b1d4)
+     - [Labels](#3ad6cb6100190c8f81e99fd52debf7ef)
+     - [Label Selectors](#e54704b162577ba89d8f645bfd5be15d)
+     - [ReplicationControllers](#aac34088fe3223e79b752a76ecdd321b)
+     - [ReplicaSets](#99a29afc20721ef52b3d558eb6873f30)
+     - [Deployments](#3081015fddfcd25b52903a5dc112ca7c)
+     - [Namespaces](#13d28e8dfc702e3456e0767dff9a128a)
+ - [Authentication, Authorization, and Admission Control](#1e357d04dca49d644ad9513be68b74eb)
+     - [Overview](#3b878279a04dc47d60932cb294d96259)
+     - [Authentication](#c75f7811d70d17dbcd88e9d03752cbed)
+     - [Authorization](#9cd8a2455b1839ff98ef70c05b9b5983)
+     - [Admission Control](#a7765f8868404f7c3cb890ce051f7de4)
+ - [Service](#c2ba7e785c49050f48da9aacc45c2b85)
+     - [Connecting Users to Pods](#96edaa8fd542cd7d2b685b4b038122cf)
+     - [Service Object Example](#69da20bc1f38561244d83c7efb17eb3c)
+     - [kube-proxy](#ea11065c99d9485fc7fe03aa1b668c20)
+     - [Service Discovery](#24bbdaf375ddacbe3973587b50d98790)
+     - [ServiceType](#4b351f6c3fa2b34bb1b969ce9502fe25)
+         - [ServiceType: ClusterIP and NodePort](#c82f134a33d4debd7b8f763ed6e1834f)
+         - [ServiceType: LoadBalancer](#3001d26f885c56a255f931078ae477c6)
+ - [Deploying an Application](#e7fc0ac576a6a88284d3525beadf5825)
+     - [Deploy vi kubectl](#afc6a537dc75e9e56e87f88dc5d6af11)
+         - [List the Pods, along with their attached Labels](#3b4e7053c64600e4f233a1ca0fb66946)
+         - [Select the Pods with a given Label](#744302e45006d83e73e1e80fe19d7bdd)
+         - [Delete the Deployment](#b500ea1a492ff7210ded38234bce4f8f)
+         - [Create a YAML file with Deployment details](#ea3304e0b2e6faecdb42b70d3057f290)
+         - [Creating a Service and Exposing It to the External World with NodePort I](#56255e54c326ca1c88892709ccdd62d9)
+     - [Liveness and Readiness Probes](#87bd2994afe1748bd27e511e65b532a7)
+         - [Liveness](#cacca97bb7abbf614d9c8f5a7569f5ea)
+             - [Liveness Command](#3f1dcde80733742e2de45b734a4b4990)
+         - [Liveness HTTP Request](#5b9d89f92b125d919fd5b98610ae68b9)
+         - [TCP Liveness Probe](#b0d4459ffe193a51b32c146a67e97d64)
+     - [Readiness Probes](#4f27a8cdff4a57ee4e0efc7db568d939)
+ - [Kubernetes Volume Management](#a3973c1903e1e860ead03894c4b4a082)
+     - [Volumes](#c6f01c78bfe0a0a495cb5d3ed77824a9)
+     - [Volume Types](#1760f6eeb378b6f01f6ccb20faeeac82)
+     - [PersistentVolumes](#3f91308865b7567ae097573f6d0519e9)
+     - [PersistentVolumeClaims](#455385b545189aa1f74511b5dc40d1eb)
+ - [ConfigMaps and Secrets](#e74688af9e034b8fe88786eee6b7ff2b)
+     - [ConfigMaps](#a041d4808053eb1261d0dbab572ea629)
+         - [Create a ConfigMap from Literal Values and Get Its Details](#8765f1ffd93b405ae1a91c13aae3e663)
+         - [Create a ConfigMap from a Configuration File](#ea3972a8f5c658d8ede325d13968d46f)
+         - [Use ConfigMap Inside Pods](#36b689f5b271da1324001d06c4d83dfe)
+     - [Secrets](#ffb85bfe93f1d2f1654a7048b87f0403)
+         - [Create the Secret with the 'kubectl create secret' Command](#f1f3541f0c90a9bcc70092dbedacb64b)
+         - [Create a Secret Manually](#656442f43e660ae59f8878a63474407a)
+         - [Use Secrets Inside Pods](#b81fb44d1f7de48c36dbb8f865a9cd2c)
+             - [Using Secrets as Environment Variables](#472677ea9956d73c10d21a2d17777435)
+             - [Using Secrets as Files from a Pod](#9488499f57000e087049e3d8faac3473)
+ - [Ingress](#7d05c708b92b4809bfe9bf66edf8f765)
+     - [Ingress I](#70b2b5b8a36e937c6fddf510da3968c3)
+     - [Ingress II](#dd374142ee0d3696af5151d9e9ded05f)
+     - [Ingress Controller](#a5765900d255fcb42e5ea092fe489331)
+         - [Deploy an Ingress Resource](#65c0a46ef98d210656055f61588ff4ed)
+ - [Advanced Topics](#41ef0c7e3aa81f83c8172c71f9986dfb)
+     - [Annotations](#933e469cb306a0ea9faabd3e4235d3be)
+     - [Deployment Features](#e4c677a2cc444dd3ce2cea9f020921aa)
+     - [Jobs](#12ceff2290bb9039beaa8f36d5dec226)
+     - [Quota Management](#708c25df4f4584405d14fbf936539d2e)
+     - [DaemonSets](#d1026cec97f2e9854c2a3b4a8f8bd039)
+     - [StatefulSets](#a5896f58556198d1653d2d00a0db9b06)
+     - [Kubernetes Federation](#022ea9eb4d6919b0b0b73c167d1c0083)
+     - [Custom Resources](#1eefdde32973942a371cb277943df70f)
+     - [Helm](#152090ff5e9a05ea7e1cf0c248449638)
+     - [Monitoring and Logging](#9ad24640fe10d78bada6b5e68dd0f68f)
 
 ...menuend
 
@@ -199,7 +266,11 @@ curl $APISERVER/api --header "Authorization: Bearer $TOKEN" --insecure
 }
 ```
 
+<h2 id="79ea233bebd117c1c22480caf3c940c9"></h2>
+
 # Kubernetes Building Blocks
+
+<h2 id="ea99654864cc0264b53634e7bf4863cb"></h2>
 
 ## Kubernetes Object Model
 
@@ -245,6 +316,8 @@ spec:
         - Here, our Pod would be created using nginx:1.7.9.
  - Once the object is created, the Kubernetes system attaches the **status** field to the object; we will explore it later.
 
+<h2 id="dc4b70c03e8043e50e38f2068887b1d4"></h2>
+
 ## Pods
 
  - A Pod is the smallest and simplest Kubernetes object.
@@ -262,6 +335,8 @@ spec:
  - We attach the Pod's specification to other objects using Pods Templates, as we have seen in the previous section.
 
 
+<h2 id="3ad6cb6100190c8f81e99fd52debf7ef"></h2>
+
 ## Labels
 
  - Labels are key-value pairs that can be attached to any Kubernetes objects (e.g. Pods).
@@ -272,6 +347,8 @@ spec:
 
  - In the image above, we have used two Labels: app and env.
     - Based on our requirements, we have given different values to our four Pods.
+
+<h2 id="e54704b162577ba89d8f645bfd5be15d"></h2>
 
 ## Label Selectors
 
@@ -286,12 +363,16 @@ spec:
         - With this type of Selectors, we can use the in, notin, and exist operators. 
         - For example, with **env in (dev,qa)**, we are selecting objects where the env Label is set to dev or qa. 
 
+<h2 id="aac34088fe3223e79b752a76ecdd321b"></h2>
+
 ## ReplicationControllers
 
  - A ReplicationController (rc) is a controller that is part of the master node's controller manager. 
  - It makes sure the specified number of replicas for a Pod is running at any given point in time.
  - Generally, we don't deploy a Pod independently, as it would not be able to re-start itself, if something goes wrong. 
  - We always use controllers like ReplicationController to create and manage Pods. 
+
+<h2 id="99a29afc20721ef52b3d558eb6873f30"></h2>
 
 ## ReplicaSets
 
@@ -304,6 +385,8 @@ spec:
  - ReplicaSets can be used independently, but they are mostly used by Deployments to orchestrate the Pod creation, deletion, and updates. 
  - A Deployment automatically creates the ReplicaSets, and we do not have to worry about managing them. 
 
+
+<h2 id="3081015fddfcd25b52903a5dc112ca7c"></h2>
 
 ## Deployments
 
@@ -319,6 +402,8 @@ spec:
  - Once **ReplicaSet B** is ready, the Deployment starts pointing to it.
  - Once ReplicaSet B is ready, the Deployment starts pointing to it,
     - with which, if something goes wrong, we can rollback to a previously known state.
+
+<h2 id="13d28e8dfc702e3456e0767dff9a128a"></h2>
 
 ## Namespaces
 
@@ -339,7 +424,11 @@ kube-system   Active   22h
  - kube-public is a special Namespace, which is readable by all users and used for special purposes, like bootstrapping a cluster. 
  - Using **Resource Quotas**, we can divide the cluster resources within Namespaces. 
 
+<h2 id="1e357d04dca49d644ad9513be68b74eb"></h2>
+
 # Authentication, Authorization, and Admission Control
+
+<h2 id="3b878279a04dc47d60932cb294d96259"></h2>
 
 ## Overview
 
@@ -354,6 +443,8 @@ kube-system   Active   22h
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s_access_the_API.png)
 
+
+<h2 id="c75f7811d70d17dbcd88e9d03752cbed"></h2>
 
 ## Authentication
 
@@ -392,6 +483,8 @@ kube-system   Active   22h
 
  - We can enable multiple authenticators,
     - In order to be successful, you should enable at least two methods: the service account tokens authenticator and the user authenticator.
+
+<h2 id="9cd8a2455b1839ff98ef70c05b9b5983"></h2>
 
 ## Authorization
 
@@ -477,6 +570,8 @@ kube-system   Active   22h
         - With the RBAC authorizer, we dynamically configure policies. 
 
 
+<h2 id="a7765f8868404f7c3cb890ce051f7de4"></h2>
+
 ## Admission Control
 
  - Admission control is used to specify granular access control policies, which include allowing privileged containers, checking on resource quota, etc.
@@ -489,7 +584,11 @@ kube-system   Active   22h
 
  - By default, Kubernetes comes with some built-in admission controllers.
 
+<h2 id="c2ba7e785c49050f48da9aacc45c2b85"></h2>
+
 # Service
+
+<h2 id="96edaa8fd542cd7d2b685b4b038122cf"></h2>
 
 ## Connecting Users to Pods
 
@@ -497,6 +596,8 @@ kube-system   Active   22h
  - Kubernetes provides a higher-level abstraction called Service, which logically groups Pods and a policy to access them. 
     - This grouping is achieved via Labels and Selectors, which we talked about in the previous chapter. 
  - We can assign a name to the logical grouping, referred to as a **Service name**. 
+
+<h2 id="69da20bc1f38561244d83c7efb17eb3c"></h2>
 
 ## Service Object Example
 
@@ -525,6 +626,8 @@ spec:
     - for example, for frontend-svc, we will receive requests on Port 80.  We will then forward these requests to one of the attached Pods on Port 5000. 
     - If the target port is not defined explicitly, then traffic will be forwarded to Pods on the port on which the Service receives traffic.
 
+<h2 id="ea11065c99d9485fc7fe03aa1b668c20"></h2>
+
 ## kube-proxy
 
  - All of the worker nodes run a daemon called kube-proxy, which watches the API server on the master node for the addition and removal of Services and endpoints. 
@@ -533,6 +636,8 @@ spec:
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s-kube-proxy-svc-endpoint.png)
 
+
+<h2 id="24bbdaf375ddacbe3973587b50d98790"></h2>
 
 ## Service Discovery
 
@@ -562,6 +667,8 @@ Kubernetes supports two methods of discovering a Service:
     - This is the most common and highly recommended solution. 
 
         
+<h2 id="4b351f6c3fa2b34bb1b969ce9502fe25"></h2>
+
 ## ServiceType
 
  - While defining a Service, we can also choose its access scope.
@@ -570,6 +677,8 @@ Kubernetes supports two methods of discovering a Service:
     - Is accessible from within the cluster and the external world
     - Maps to an external entity which resides outside the cluster.
  - Access scope is decided by `ServiceType`, which can be mentioned when creating the Service.
+
+<h2 id="c82f134a33d4debd7b8f763ed6e1834f"></h2>
 
 ### ServiceType: ClusterIP and NodePort
 
@@ -586,6 +695,8 @@ Kubernetes supports two methods of discovering a Service:
  - To access the application from the external world, administrators can configure a reverse proxy outside the Kubernetes cluster and map the specific endpoint to the respective port on the worker nodes. 
 
 
+<h2 id="3001d26f885c56a255f931078ae477c6"></h2>
+
 ### ServiceType: LoadBalancer
 
  - With the LoadBalancer ServiceType:
@@ -597,9 +708,15 @@ Kubernetes supports two methods of discovering a Service:
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s-svc-lb.png)
 
 
+<h2 id="e7fc0ac576a6a88284d3525beadf5825"></h2>
+
 # Deploying an Application
 
+<h2 id="afc6a537dc75e9e56e87f88dc5d6af11"></h2>
+
 ## Deploy vi kubectl
+
+<h2 id="3b4e7053c64600e4f233a1ca0fb66946"></h2>
 
 ### List the Pods, along with their attached Labels
 
@@ -610,6 +727,8 @@ webserver-74d8bd488f-dwbzz   1/1     Running   0          14m   webserver   <non
 webserver-74d8bd488f-npkzv   1/1     Running   0          14m   webserver   <none>
 webserver-74d8bd488f-wvmpq   1/1     Running   0          14m   webserver   <none>
 ```
+
+<h2 id="744302e45006d83e73e1e80fe19d7bdd"></h2>
 
 ### Select the Pods with a given Label
 
@@ -623,6 +742,8 @@ webserver-74d8bd488f-wvmpq   1/1       Running   0          17m
 $ kubectl get pods -l k8s-app=webserver1
 No resources found.
 ```
+
+<h2 id="b500ea1a492ff7210ded38234bce4f8f"></h2>
 
 ### Delete the Deployment 
 
@@ -640,6 +761,8 @@ No resources found.
 $ kubectl get pods
 No resources found.
 ```
+
+<h2 id="ea3304e0b2e6faecdb42b70d3057f290"></h2>
 
 ### Create a YAML file with Deployment details
 
@@ -682,6 +805,8 @@ deployment "webserver" created
         - containerPort: 5000
           name: web-port
 ```
+
+<h2 id="56255e54c326ca1c88892709ccdd62d9"></h2>
 
 ### Creating a Service and Exposing It to the External World with NodePort I
 
@@ -741,9 +866,13 @@ External Traffic Policy:  Cluster
 Events:                   <none>
 ```
 
+<h2 id="87bd2994afe1748bd27e511e65b532a7"></h2>
+
 ## Liveness and Readiness Probes
 
  - These probes are very important, because they allow the kubelet to control the health of the application running inside a Pod's container.
+
+<h2 id="cacca97bb7abbf614d9c8f5a7569f5ea"></h2>
 
 ### Liveness
 
@@ -756,6 +885,8 @@ Events:                   <none>
     - Liveness command
     - Liveness HTTP request
     - TCP Liveness Probe.
+
+<h2 id="3f1dcde80733742e2de45b734a4b4990"></h2>
 
 #### Liveness Command
 
@@ -791,6 +922,8 @@ spec:
     -  The deletion of the file would trigger a health failure, and our Pod would get restarted.
 
 
+<h2 id="5b9d89f92b125d919fd5b98610ae68b9"></h2>
+
 ### Liveness HTTP Request
 
  - In the following example, the kubelet sends the HTTP GET request to the /healthz endpoint of the application, on port 8080. 
@@ -808,6 +941,8 @@ livenessProbe:
       periodSeconds: 3
 ```
 
+<h2 id="b0d4459ffe193a51b32c146a67e97d64"></h2>
+
 ### TCP Liveness Probe
 
  - With TCP Liveness Probe, the kubelet attempts to open the TCP Socket to the container which is running the application. 
@@ -821,6 +956,8 @@ livenessProbe:
       periodSeconds: 20
 ```
 
+
+<h2 id="4f27a8cdff4a57ee4e0efc7db568d939"></h2>
 
 ## Readiness Probes
 
@@ -844,9 +981,13 @@ readinessProbe:
  - Readiness Probes are configured similarly to Liveness Probes. Their configuration also remains the same.
 
 
+<h2 id="a3973c1903e1e860ead03894c4b4a082"></h2>
+
 # Kubernetes Volume Management  
 
  - To back a Pod with a persistent storage, Kubernetes uses **Volumes**. 
+
+<h2 id="c6f01c78bfe0a0a495cb5d3ed77824a9"></h2>
 
 ## Volumes
 
@@ -859,6 +1000,8 @@ readinessProbe:
  - In Kubernetes, a Volume is attached to a Pod and shared among the containers of **that Pod**.
     - The Volume has the same life span as the **Pod**,  and it outlives the containers of the Pod 
         - this allows data to be preserved across container restarts.
+
+<h2 id="1760f6eeb378b6f01f6ccb20faeeac82"></h2>
 
 ## Volume Types
 
@@ -883,6 +1026,8 @@ readinessProbe:
         - We can attach a PersistentVolume to a Pod.
 
 
+<h2 id="3f91308865b7567ae097573f6d0519e9"></h2>
+
 ## PersistentVolumes
 
  - A Persistent Volume is a network-attached storage in the cluster, which is provisioned by the administrator.
@@ -896,6 +1041,8 @@ readinessProbe:
     - NFS
     - iSCSI
 
+<h2 id="455385b545189aa1f74511b5dc40d1eb"></h2>
+
 ## PersistentVolumeClaims
 
  - A PersistentVolumeClaim (PVC) is a request for storage by a user. 
@@ -908,11 +1055,15 @@ readinessProbe:
 
 
 
+<h2 id="e74688af9e034b8fe88786eee6b7ff2b"></h2>
+
 # ConfigMaps and Secrets
 
  - While deploying an application, we may need to pass such runtime parameters like configuration details, passwords, etc. 
  - In such cases, we can use the ConfigMap API resource.
  - Similarly, when we want to pass sensitive information, we can use the Secret API resource.
+
+<h2 id="a041d4808053eb1261d0dbab572ea629"></h2>
 
 ## ConfigMaps
 
@@ -921,6 +1072,8 @@ readinessProbe:
  - We can create ConfigMaps in two ways:
     - From literal values
     - From files.
+
+<h2 id="8765f1ffd93b405ae1a91c13aae3e663"></h2>
 
 ### Create a ConfigMap from Literal Values and Get Its Details
 
@@ -945,6 +1098,8 @@ metadata:
   uid: d35f0a3d-45d1-11e7-9e62-080027a46057
 ```
 
+<h2 id="ea3972a8f5c658d8ede325d13968d46f"></h2>
+
 ### Create a ConfigMap from a Configuration File
 
  - First, we need to create a configuration file.
@@ -965,6 +1120,8 @@ $ kubectl create -f customer1-configmap.yaml
 configmap "customer1" created
 ```
 
+
+<h2 id="36b689f5b271da1324001d06c4d83dfe"></h2>
 
 ### Use ConfigMap Inside Pods
 
@@ -1004,6 +1161,8 @@ configmap "customer1" created
  - For more details : [Configure a Pod to Use a ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#adding-configmap-data-to-a-volume)
 
 
+<h2 id="ffb85bfe93f1d2f1654a7048b87f0403"></h2>
+
 ## Secrets 
 
  - With Secrets, we can share sensitive information like passwords, tokens, or keys in the form of key-value pairs, similar to ConfigMaps; thus, we can control how the information in a Secret is used, reducing the risk for accidental exposures.
@@ -1012,6 +1171,8 @@ configmap "customer1" created
     - Administrators must limit the access to the API server and **etcd**.
     - etcd is distributed key-value store
 
+
+<h2 id="f1f3541f0c90a9bcc70092dbedacb64b"></h2>
 
 ### Create the Secret with the 'kubectl create secret' Command
 
@@ -1022,6 +1183,8 @@ configmap "customer1" created
 $ kubectl create secret generic my-password --from-literal=password=mysqlpassword
 ```
 
+
+<h2 id="656442f43e660ae59f8878a63474407a"></h2>
 
 ### Create a Secret Manually
 
@@ -1045,7 +1208,11 @@ data:
   password: bXlzcWxwYXNzd29yZAo=
 ```
 
+<h2 id="b81fb44d1f7de48c36dbb8f865a9cd2c"></h2>
+
 ### Use Secrets Inside Pods
+
+<h2 id="472677ea9956d73c10d21a2d17777435"></h2>
 
 #### Using Secrets as Environment Variables
 
@@ -1065,6 +1232,8 @@ spec:
 ```
 
 
+<h2 id="9488499f57000e087049e3d8faac3473"></h2>
+
 #### Using Secrets as Files from a Pod
 
  - We can also mount a Secret as a Volume inside a Pod.
@@ -1072,6 +1241,8 @@ spec:
 
 
 ---
+
+<h2 id="7d05c708b92b4809bfe9bf66edf8f765"></h2>
 
 # Ingress
 
@@ -1083,6 +1254,8 @@ spec:
  - In this chapter, we will explore the **Ingress**, which is another method we can use to access our applications from the external world.
 
 
+<h2 id="70b2b5b8a36e937c6fddf510da3968c3"></h2>
+
 ## Ingress I
 
  - An Ingress is a collection of rules that allow inbound connections to reach the cluster Services
@@ -1092,6 +1265,8 @@ spec:
     - Path-based routing
     - Custom rules.
  - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s-ingress.png)
+
+<h2 id="dd374142ee0d3696af5151d9e9ded05f"></h2>
 
 ## Ingress II
 
@@ -1130,6 +1305,8 @@ spec:
  - All of the magic is done using the Ingress Controller.
 
 
+<h2 id="a5765900d255fcb42e5ea092fe489331"></h2>
+
 ## Ingress Controller
  
  - An Ingress Controller is an application which 
@@ -1137,6 +1314,8 @@ spec:
     - updates the Layer 7 Load Balancer accordingly. 
  - The Ingress Controller creates a Load Balancer.
 
+
+<h2 id="65c0a46ef98d210656055f61588ff4ed"></h2>
 
 ### Deploy an Ingress Resource
 
@@ -1153,7 +1332,11 @@ $ cat /etc/hosts
 192.168.99.100   blue.example.com green.example.com
 ```
 
+<h2 id="41ef0c7e3aa81f83c8172c71f9986dfb"></h2>
+
 # Advanced Topics
+
+<h2 id="933e469cb306a0ea9faabd3e4235d3be"></h2>
 
 ## Annotations
 
@@ -1196,6 +1379,8 @@ Annotations:         deployment.kubernetes.io/revision=1
                      description=Deployment based PoC dates 2nd June'2017
 ```
 
+<h2 id="e4c677a2cc444dd3ce2cea9f020921aa"></h2>
+
 ## Deployment Features
 
  - Earlier, we have seen how we can use the Deployment object to deploy an application. 
@@ -1206,6 +1391,8 @@ Annotations:         deployment.kubernetes.io/revision=1
     - Pausing and resuming.
  - [More details](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#scaling-a-deployment)
 
+<h2 id="12ceff2290bb9039beaa8f36d5dec226"></h2>
+
 ## Jobs
 
  - A Job creates one or more Pods to perform a given task. 
@@ -1214,6 +1401,8 @@ Annotations:         deployment.kubernetes.io/revision=1
     - Once the task is over, all the Pods are terminated automatically.
  - Starting with the Kubernetes 1.4 release, we can also perform Jobs at specified times/dates, such as [cron jobs](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/).
  
+<h2 id="708c25df4f4584405d14fbf936539d2e"></h2>
+
 ## Quota Management
 
  - When there are many users sharing a given Kubernetes cluster, there is always a concern for fair usage. 
@@ -1226,6 +1415,8 @@ Annotations:         deployment.kubernetes.io/revision=1
     - Object Count Quota
         - We can restrict the number of objects of a given type (pods, ConfigMaps, PersistentVolumeClaims, ReplicationControllers, Services, Secrets, etc.).
 
+<h2 id="d1026cec97f2e9854c2a3b4a8f8bd039"></h2>
+
 ## DaemonSets
 
  - In some cases, like collecting monitoring data from all nodes, or running a storage daemon on all nodes, etc., we need a specific type of Pod running on all nodes at all times.
@@ -1233,15 +1424,21 @@ Annotations:         deployment.kubernetes.io/revision=1
  - Whenever a node is added to the cluster, a Pod from a given DaemonSet is created on it. When the node dies, the respective Pods are garbage collected. If a DaemonSet is deleted, all Pods it created are deleted as well.
  
 
+<h2 id="a5896f58556198d1653d2d00a0db9b06"></h2>
+
 ## StatefulSets
 
  - The StatefulSet controller is used for applications which require a unique identity, such as name, network identifications, strict ordering, etc.
     - For example, MySQL cluster, etcd cluster.
  - The StatefulSet controller provides identity and guaranteed ordering of deployment and scaling to Pods.
 
+<h2 id="022ea9eb4d6919b0b0b73c167d1c0083"></h2>
+
 ## Kubernetes Federation
 
  - With the Kubernetes Cluster Federation we can manage multiple Kubernetes clusters from a single control plane. 
+
+<h2 id="1eefdde32973942a371cb277943df70f"></h2>
 
 ## Custom Resources
 
@@ -1258,6 +1455,8 @@ Annotations:         deployment.kubernetes.io/revision=1
         - For more fine-grained control, we can write API Aggregators. They are subordinate API servers which sit behind the primary API server and act as proxy.
 
 
+<h2 id="152090ff5e9a05ea7e1cf0c248449638"></h2>
+
 ## Helm
 
  - To deploy an application, we use different Kubernetes manifests, such as Deployments, Services, Volume Claims, Ingress, etc. 
@@ -1271,6 +1470,8 @@ Annotations:         deployment.kubernetes.io/revision=1
     - A server called tiller, which runs inside your Kubernetes cluster.
  - The client helm connects to the server tiller to manage Charts. Charts submitted for Kubernetes are available [here](https://github.com/kubernetes/charts).
 
+
+<h2 id="9ad24640fe10d78bada6b5e68dd0f68f"></h2>
 
 ## Monitoring and Logging
 

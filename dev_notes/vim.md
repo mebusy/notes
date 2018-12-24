@@ -27,6 +27,7 @@
      - [多行 行首插入字符](#4b0c82f3072a7a2d205d934ca7413367)
      - [多行 行尾插入字符](#facc78c7266b3fe0364882da91e214b8)
      - [replace all tab with 4 space](#72ec54ea94cad51a12851d38a51ea25f)
+     - [Remove unwanted empty lines](#67c5f9b419ed15a16a0cb4786a4a6552)
 
 ...menuend
 
@@ -464,6 +465,8 @@ vimgrep /pattern/gj path
 ```
 :%!expand -t4
 ```
+
+<h2 id="67c5f9b419ed15a16a0cb4786a4a6552"></h2>
 
 ## Remove unwanted empty lines
 
