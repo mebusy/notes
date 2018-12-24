@@ -968,6 +968,129 @@ configmap "customer1" created
 
 ### Use ConfigMap Inside Pods
 
+**As an Environment Variable**
+
+ - We can get the values of the given key as environment variables inside a Pod
+ - In the following example, while creating the Deployment, we are assigning values for environment variables from the `customer1` ConfigMap:
+
+```
+ containers:
+      - name: rsvp-app
+        image: teamcloudyuga/rsvpapp
+        env:
+        - name: MONGODB_HOST
+          value: mongodb
+        - name: TEXT1
+          valueFrom:
+            configMapKeyRef:
+              name: customer1
+              key: TEXT1
+        - name: TEXT2
+          valueFrom:
+            configMapKeyRef:
+              name: customer1
+              key: TEXT2
+        - name: COMPANY
+          valueFrom:
+            configMapKeyRef:
+              name: customer1
+              key: COMPANY
+```
+
+**As a Volume**
+
+ - We can mount a ConfigMap as a Volume inside a Pod. 
+ - For each key, we will see a file in the mount path and the content of that file becomes the respective key's value. 
+ - For more details : [Configure a Pod to Use a ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#adding-configmap-data-to-a-volume)
+
+
+## Secrets 
+
+ - With Secrets, we can share sensitive information like passwords, tokens, or keys in the form of key-value pairs, similar to ConfigMaps; thus, we can control how the information in a Secret is used, reducing the risk for accidental exposures.
+ - In Deployments or other system components, the Secret object is referenced, without exposing its content.
+ - It is important to keep in mind that the Secret data is stored as plain text inside **etcd**. 
+    - Administrators must limit the access to the API server and **etcd**.
+
+
+### Create the Secret with the 'kubectl create secret' Command
+
+ - To create a Secret, we can use the kubectl create secret command:
+    - it would create a secret called **my-password**, which has the value of the **password** key set to **mysqlpassword**.
+
+```
+$ kubectl create secret generic my-password --from-literal=password=mysqlpassword
+```
+
+
+### Create a Secret Manually
+
+ - We can also create a Secret manually, using the YAML configuration file
+ - With Secrets, each object data must be encoded using base64.
+
+```
+$ echo mysqlpassword | base64
+bXlzcWxwYXNzd29yZAo=
+```
+
+ - and then use it in the configuration file:
+
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-password
+type: Opaque
+data:
+  password: bXlzcWxwYXNzd29yZAo=
+```
+
+### Use Secrets Inside Pods
+
+#### Using Secrets as Environment Variables
+
+```
+spec:
+  containers:
+  - image: wordpress:4.7.3-apache
+    name: wordpress
+    env:
+    - name: WORDPRESS_DB_HOST
+      value: wordpress-mysql
+    - name: WORDPRESS_DB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: my-password
+          key: password
+```
+
+
+#### Using Secrets as Files from a Pod
+
+ - We can also mount a Secret as a Volume inside a Pod.
+ - [More details](https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-files-from-a-pod)
+
+
+---
+
+# Ingress
+
+ - we can access our deployed containerized application from the external world. 
+    - Among the ServiceTypes mentioned in that chapter, NodePort and LoadBalancer are the most often used. 
+    - For the LoadBalancer ServiceType, we need to have the support from the underlying infrastructure. 
+    - Even after having the support, we may not want to use it for every Service, as LoadBalancer resources are limited and they can increase costs significantly. 
+    - Managing the NodePort ServiceType can also be tricky at times, as we need to keep updating our proxy settings and keep track of the assigned ports. 
+ - In this chapter, we will explore the **Ingress**, which is another method we can use to access our applications from the external world.
+
+
+## Ingress I
+
+ - An Ingress is a collection of rules that allow inbound connections to reach the cluster Services
+ - Ingress configures a Layer 7 HTTP load balancer for Services and provides the following:
+    - TLS (Transport Layer Security)
+    - Name-based virtual hosting 
+    - Path-based routing
+    - Custom rules.
+ - 
 
 
 
