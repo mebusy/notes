@@ -400,7 +400,6 @@ spec:
  - A rollout is only triggered when we update the Pods Template for a deployment.
     - Operations like scaling the deployment do not trigger the deployment.
  - Once **ReplicaSet B** is ready, the Deployment starts pointing to it.
- - Once ReplicaSet B is ready, the Deployment starts pointing to it,
     - with which, if something goes wrong, we can rollback to a previously known state.
 
 <h2 id="13d28e8dfc702e3456e0767dff9a128a"></h2>
