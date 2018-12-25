@@ -555,6 +555,9 @@ kubeadm init --apiserver-advertise-address=10.192.83.78 --pod-network-cidr=10.24
     2. deploy the flannel network to the kubernetes cluster using the kubectl command.
         - `kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml`
 
+ - for worker node, use `kubeadm join` to join into the cluster
+    - use `journalctl -u kubelet` to debug worker if it still in status `NotReady`
+
 
 <h2 id="3c77e740edb7196f00f94f28733a7bcb"></h2>
 
