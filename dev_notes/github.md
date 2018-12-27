@@ -132,6 +132,16 @@ $ cat ~/.gitconfig
 git clone https://username:password@github.com/username/repository.git
 ```
 
+
+## gitlab: git clone leads to "SSL certificate problem: unable to get local issuer certificate"
+
+```
+git config --global http.sslVerify false
+git clone ...
+git config --global http.sslVerify true
+```
+
+
 <h2 id="60f96f2175fb84d4839e67f2533a4c10"></h2>
 
 ## Calling git clone using password with special character
