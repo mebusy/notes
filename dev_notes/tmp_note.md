@@ -11,7 +11,18 @@ Game Programming Patterns
 
 
 
+[network ASCII](http://network-science.de/ascii/)
+
 ---
+
+# Tutorial
+
+## Tiles and Maps
+
+ - tile
+    - block path = boolean
+    - block sight = boolean
+    - type = Sand , Dirt ?
 
 # Advanced 
 
