@@ -91,6 +91,12 @@ sudo -E easy_install pip
 sudo -E pip install PyYAML
 ```
 
+or 
+
+```
+pip install PyYAML --proxy="https://127.0.0.1:3128"
+```
+
 <h2 id="1bca9692962e3deeda270ab8db1b80f2"></h2>
 
 ## pip upgrade all outdated package
