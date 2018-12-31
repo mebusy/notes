@@ -1888,6 +1888,15 @@ docker history --no-trunc $argv  | tac | tr -s ' ' | cut -d " " -f 5- | sed 's,^
  - replace `$argv` with your ImageID
 
 
+## add a restart policy to a container 
+
+ - i.e.
+
+```
+docker update --restart=always <container>
+```
+
+
 
 <h2 id="b8e4fd21971c56f16f0e13421bfefedc"></h2>
 
