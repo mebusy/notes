@@ -37,3 +37,11 @@ func If(condition bool, trueVal, falseVal interface{}) interface{} {
 ...
 If(i==0,"A","B").(string)
 ```
+
+# How to find out which types implement `ByteReader` interface  in golang pkg ?
+
+```
+https://golang.org/search?q=ReadByte
+```
+
+
