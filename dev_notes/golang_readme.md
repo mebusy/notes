@@ -4,6 +4,8 @@
 ...menuend
 
 
+[go命令详解](https://www.ctolib.com/docs-go-command-tutorial-c-0-0.html)
+
  1. [语言](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%981-%E8%AF%AD%E8%A8%80.md)   
  2. [表达式](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%982-%E8%A1%A8%E8%BE%BE%E5%BC%8F.md) 
  3. [函数 ](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%983-%E5%87%BD%E6%95%B0.md) 
@@ -21,6 +23,7 @@
  16. [cheat sheet](https://github.com/mebusy/notes/blob/master/dev_notes/golang_cheatsheet.md)
  17. [GoInPractice70Tech](https://github.com/mebusy/notes/blob/master/dev_notes/GoInPractice70Tech.md)
  18. [goTips](https://github.com/mebusy/notes/blob/master/dev_notes/goTips.md)
+ 19. [godoc](https://github.com/mebusy/notes/blob/master/dev_notes/godoc.md)
 
 
  
