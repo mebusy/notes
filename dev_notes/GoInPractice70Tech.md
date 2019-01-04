@@ -999,8 +999,74 @@ func main() {
 
  - You want to learn about a struct at runtime, discovering its fields.
  - Reflect the struct and use a combination of reflect.Value and reflect.Type to find out information about the struct.
- - 
+ - TODO
 
+
+
+## 11.2 Structs, tags, and annotations
+
+ - Go has no macros, and unlike languages such as Java and Python, Go has only Spartan support for annotations. 
+ - But one thing you can easily annotate in Go is properties on a struct. 
+
+### 11.2.1 Annotating structs
+
+ - An example of using struct annotations with things like the JSON encoder. 
+
+
+```
+// Listing 11.8 Simple JSON struct
+package main
+import (
+     "encoding/json"
+     "fmt" 
+)
+type Name struct {
+     First string `json:"firstName"`
+     Last  string `json:"lastName "`
+}
+func main() {
+     n := &Name{"Inigo", "Montoya"}
+     data, _ := json.Marshal(n)
+     fmt.Printf("%s\n", data)B
+}
+
+// result:  
+//   {"firstName":"Inigo","lastName ":"Montoya"}
+// without the annotation, it will output :  
+//   {"First":"Inigo","Last":"Montoya"}
+```
+
+ - This code declares a single struct, `Name`, that’s annotated for JSON encoding. 
+    - it maps the struct member `First` to the JSON field `firstName`, and the struct field `Last` to `lastName`. 
+    - The struct annotations make it possible to control how your JSON looks.
+ - Annotations are a free-form string enclosed in back quotes that follows the type declaration of a struct field.
+ - Annotations play no direct functional role during compilation, but annotations can be accessed at runtime by using reflection. 
+    - It’s up to the annotation parsers to fig- ure out whether any given annotation has information that the parser can use. 
+    - For example, you could modify the preceding code to include different annotations, as shown in the next listing.
+
+```
+// Listing 11.9 A variety of annotations
+type Name struct {
+             First string `json:"firstName" xml:"FirstName"`
+             Last  string `json:"lastName,omitempty"`
+             Other string `not,even.a=tag`
+}
+```
+ - These annotations are all legal, in the sense that the Go parser will correctly handle them. 
+    - And the JSON encoder will be able to pick out which of those applies to it.
+        - It will ignore the xml tag as well as the oddly formatted annotation on the `Other` field.
+ - As you can see from the tags in listing 11.9, an annotation has no fixed format. Just about any string can be used.
+    - But a certain annotation format has emerged in the Go community and is now a de facto standard. Go developers call these annotations tags.
+
+
+### 11.2.2 Using tag annotations
+
+ - The sample JSON struct you looked at earlier contained annotations of the form : `json: "NAME,DATA"`
+    - where `NAME` is the name of the field (in JSON documents),
+    - and `DATA` is a list of optional information about the field (omitempty or kind data)
+ - Likewise, if you look at the encoding/xml package,  you’d see a pattern similar to annotations for converting structs to and from XML.
+    - Tags for XML look like this:`xml:"body"` and `xml:"href,attr"`
+    - where NAME is the field name, and DATA contains a list of information about the field. 
 
 
 
