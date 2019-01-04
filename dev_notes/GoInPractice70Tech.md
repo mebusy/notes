@@ -1068,6 +1068,269 @@ type Name struct {
     - Tags for XML look like this:`xml:"body"` and `xml:"href,attr"`
     - where NAME is the field name, and DATA contains a list of information about the field. 
 
+![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_annotation_0.png)
+
+**Annotations for validation**
+
+One of the most interesting uses for annotations that we’ve seen is for validating field data on a struct.  By adding regular expressions in tags (`validate:"^[a-z]+$"`), and then writing code to run those regular expressions over struct data, you can write validation code easily and concisely. An example can be found in the Deis Router project at https://github.com/deis/router.
+
+####  TECHNIQUE 69 Processing tags on a struct
+
+ - Annotations can be useful in a wide variety of situations. 
+ - Annotations can just as readily be used to describe how database field types map to structs, or how to format data for display.
+ - And because the annotation format is undefined, to build your annotations, you need only decide on a format and then write an implementation.
+ - PROBLEM: You want to create your own annotations and then programmatically access the annotation data of a struct at runtime.
+ - SOLUTION: Define your annotation format, Then use the `reflect` package to write a tool that extracts the annotation information from a struct.
+ - Say you want to write an encoder for a simple file syntax for name-value pairs. 
+    -  This for- mat is similar to the old INI format. An example of this file format looks like this:
+
+```
+total=247
+running=2
+sleeping=245
+threads=1189
+load=70.87
+```
+
+ - Now imagine that you want to create a struct to represent this data
+
+```
+type Processes struct {
+     Total    int
+     Running  int
+     Sleeping int
+     Threads  int
+     Load     float32
+}
+```
+
+ - To convert the plain file format into a struct like this, you can create a tag that fits your needs and then mark up your struct with them
+
+```
+type Processes struct {
+     Total    int     `ini:"total"`
+     Running  int     `ini:"running"`
+     Sleeping int     `ini:"sleeping"`
+     Threads  int     `ini:"threads"`
+     Load     float32 `ini:"load"`
+}
+```
+
+ - As you design this, you can once again rely on existing conventions.  
+    - Encoders and decoders in Go tend to provide marshal() and unmarshal() methods with a fairly predictable set of parameters and return values.
+    - So your INI file decoder will implement the same pattern, as shown in the following listing.
+
+```
+// Listing 11.12 The marshal and unmarshal pattern
+func Marshal(v interface{}) ([]byte, error) {}
+func Unmarshal(data []byte, v interface{}) error {}
+```
+
+ - The bulk of both of these functions involves reflecting over the interface{} values and learning about how to extract data from or populate data into those values. 
+    - To keep the code concise, the following example deals only with marshaling and unmarshaling structs.
+
+```
+// Listing 11.13 Processesandmain()
+package main
+import (
+     "bufio"
+     "bytes"
+     "errors"
+     "fmt"
+     "reflect"
+     "strconv"
+     "strings"
+)
+
+type Processes struct {
+     Total    int     `ini:"total"`
+     Running  int     `ini:"running"`
+     Sleeping int     `ini:"sleeping"`
+     Threads  int     `ini:"threads"`
+     Load     float32 `ini:"load"`
+}
+
+func main() {
+    fmt.Println("Write a struct to output:")
+    proc := &Processes{
+       Total:    23,
+       Running:  3,
+       Sleeping: 20,
+       Threads:  34,
+       Load:     1.8,
+    }
+    // Marshals the struct into a []byte
+    data, err := Marshal(proc)
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(string(data)) // print the result
+    fmt.Println("Read the data back into a struct")
+    // Creates a new Processes struct and unmarshals the data into it
+    proc2 := &Processes{}
+    if err := Unmarshal(data, proc2); err != nil {
+       panic(err)
+    }
+    fmt.Printf("Struct: %#v", proc2)
+}
+```
+
+ - You begin with an instance of your Processes struct and then marshal it into a byte array.
+    - When you print the results, they’ll be in your INI file format.
+    - Then you take that same data and run it back through the other direction, expanding the INI data into a new Processes struct.
+    - Running the program produces output like this:
+
+```
+Write a struct to a output:
+total=23
+running=3
+sleeping=20
+threads=34
+load=1.8
+
+Read the data back into a struct
+Struct: &main.Processes{Total:23, Running:3, Sleeping:20, Threads:34,
+Load:1.8}
+``` 
+
+```
+// Listing 11.14 The Marshal function
+
+// A utility function to read tags off of struct fields
+func fieldName(field reflect.StructField) string {
+    // Gets the tag off the struct field
+    if t := field.Tag.Get("ini"); t != "" {
+        return t
+    }
+    // If there is no tag, falls back to the field name
+    return field.Name
+}
+
+func Marshal(v interface{}) ([]byte, error) {
+    var b bytes.Buffer
+    // Gets a reflect.Value of the current interface. 
+    // Dereferences pointers.
+    val := reflect.Indirect(reflect.ValueOf(v))
+    // For this program, you handle only structs
+    if val.Kind() != reflect.Struct {
+        return []byte{}, errors.New("unmarshal can only take structs")
+    }
+    t := val.Type()
+    // Loops through all of the fields on the struct
+    for i := 0; i < t.NumField(); i++ {
+        f := t.Field(i)
+        // Gets the name from tagName
+        name := fieldName(f)
+        raw := val.Field(i).Interface()
+        // Relies on the print formatter to 
+        // print the raw data into the buffer
+        fmt.Fprintf(&b, "%s=%v\n", name, raw)
+    }
+    return b.Bytes(), nil
+}
+
+```
+
+ - Elem Vs Indirect 
+    - If a reflect.Value is a pointer, then v.Elem() is equivalent to reflect.Indirect(v). 
+    - If it is not a pointer, then they are not equivalent:
+        - If the value is an interface then reflect.Indirect(v) will return the same value, while v.Elem() will return the contained dynamic value.
+        - If the value is something else, then v.Elem() will panic.
+ - This Marshal() function takes the given v interface{} and reads through its fields.
+    - By examining the type, it can iterate through all the fields on the struct, and for each field, it can access the annotation (via StructField.Tag())
+        - For any annotation tag that follows the format `NAME:"VALUE"`, you can access the value by using StructField.Tag.Get() 
+    - As it loops through the struct fields, it can also fetch the relevant values for each struct field. 
+    - Rather than man- ually convert these values from their native type to a string, you rely on fmt.Fprintf() to do that work for you.
 
 
+**Ignoring struct fields with annotations**
+
+Sometimes you want to tell encoders to ignore fields on a struct. The common idiom for doing this is to use a dash (-) in the name field of the annotation (json:"-"“).Although we don’t support this in the preceding code, you could extend the example to ignore fields whose name is -.
+
+```
+// Listing 11.15 The Unmarshal function
+
+func Unmarshal(data []byte, v interface{}) error {
+    val := reflect.Indirect(reflect.ValueOf(v))
+    t := val.Type()
+
+    b := bytes.NewBuffer(data)
+    // From data, you use a scanner to 
+    // read one line of INI data at a time.
+    scanner := bufio.NewScanner(b)
+    for scanner.Scan() { 
+        line := scanner.Text()
+        pair := strings.SplitN(line, "=", 2)
+        if len(pair) < 2 {
+            // Skip any malformed lines.
+            continue
+        }
+        // Passes the task of setting the value to setField
+        setField(pair[0], pair[1], t, val)
+    }
+    return nil
+}
+```
+
+```
+// Listing 11.16 The setField helper function
+
+// setField takes the raw name and value from the INI data, 
+// and also the type and value of the struct itself.
+func setField(name, value string, t reflect.Type, v reflect.Value) {
+    for i := 0; i < t.NumField(); i++ {
+        field := t.Field(i)
+        if name == fieldName(field) {
+            var dest reflect.Value
+            // Uses a kind switch to figure out how to 
+            // take your value string and convert it to the right type
+            switch field.Type.Kind() {
+            default:
+                // If you don’t know about the kind, just skip the field. 
+                // This isn’t an error.
+                fmt.Printf("Kind %s not supported.\n",field.Type.Kind())
+                continue
+            case reflect.Int:
+                ival, err := strconv.Atoi(value) 
+                if err != nil {
+                    fmt.Printf( "Could not convert %q to int: %s\n", value, err) 
+                    continue    
+                }
+                dest = reflect.ValueOf(ival)
+            case reflect.Float64:
+                fval, err := strconv.ParseFloat(value, 64)
+                if err != nil {
+                    fmt.Printf( "Could not convert %q to float64: %s\n", value, err) 
+                    continue
+                }
+                dest = reflect.ValueOf(fval)
+            case reflect.String:
+                dest = reflect.ValueOf(value)
+            case reflect.Bool:
+                bval, err := strconv.ParseBool(value)
+                if err != nil {
+                    fmt.Printf( "Could not convert %q to bool: %s\n", value, err) 
+                    continue
+                }
+                dest = reflect.ValueOf(bval)
+            }
+            // Sets the value for the relevant struct field
+            v.Field(i).Set(dest)
+        }
+    }
+}
+```
+
+
+ - One thing becomes clear when scanning the code you’ve written in this technique:
+    - because of Go’s strong type system, converting between types often takes a lot of boilerplate code.
+    - Sometimes you can take advantage of built-in tools (for example, fmt.Fprintf()). Other times, you must write tedious code.
+    - Instead of writing reflection code, you might find it useful to use Go’s generator tool to generate source code for you.
+    - In the next section, you’ll look at one example of writing a generator to do work that would otherwise require runtime type checking and detailed reflection code. 
+
+---
+
+## 11.3 Generating Go code with Go code
+
+ - 
 
