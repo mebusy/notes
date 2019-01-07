@@ -1006,4 +1006,51 @@ PASS
 
 ####  TECHNIQUE 31 Detecting race conditions
 
+ - PROBLEM: In programs with many goroutines, race conditions could occur. Being able to test for this possibility is desirable.
+ - SOLUTION: Use the `–race` flag (sometimes called `go race` or `grace`).
+ - Let’s begin with listing 5.22 and make an ill-conceived performance optimization.
+    - Instead of declaring a new buffer for each goroutine, let’s share one in the following listing.
+
+```
+// Listing 5.24 Benchmarks and race conditions
+
+func BenchmarkParallelOops(b *testing.B) {
+     tpl := "Hello {{.Name}}"
+     t, _ := template.New("test").Parse(tpl)
+     data := &map[string]string{
+        "Name": "World",
+     }
+     var buf bytes.Buffer
+     b.RunParallel(func(pb *testing.PB) {
+            for pb.Next() {
+                   t.Execute(&buf, data)
+                    buf.Reset()
+            } 
+    })
+}
+```
+
+ - Now let’s run that code sample.It’s likely that the parallel benchmark will fail:
+
+```
+BenchmarkParallelOops-2     panic: runtime error: slice bounds out of
+     range [recovered]
+     panic: runtime error: slice bounds out of range
+```
+
+ - A look through the stack trace gives a few clues about what happened, but the real underlying cause isn’t clear. 
+ - If you add the –race flag onto the testing call, Go instru- ments for race conditions, and the information you receive is much more helpful:
+
+```
+WARNING: DATA RACE
+Write by goroutine 20:
+    bytes.(*Buffer).Write() 
+        /usr/local/Cellar/go/1.4.2/libexec/src/bytes/buffer.go:126 +0x53 
+        text/template.(*state).walk() 
+        /usr/local/Cellar/go/1.4.2/libexec/src/text/template/exec.go:182 +0x401 
+        text/template.(*state).walk()
+...
+```
+
+ - Now the cause is much clearer: more than one thing tried to use the bytes.Buffer at once.
 
