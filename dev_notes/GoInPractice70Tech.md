@@ -813,3 +813,197 @@ func Alert(m Messager, problem []byte) error {
 
 ---
 
+### 5.4.2 Generative testing
+
+`Generative testing` is a large and complex topic. But in its most basic form, generative testing refers to the strategy of automatically generating test data in order to both broaden the information tested and overcome our biases when we choose our test data.
+
+ - PROBLEM: You want to bulletproof your code against surprising edge cases.
+ - SOLUTION: Use Go’s `testing/quick` package to generate testing data.
+ - The testing/quick package provides several helpers for rapidly building tests that are more exhaustive than usual
+ - These tools aren’t useful in all cases, but sometimes they can help you make your testing process more reliable.
+ - Say you have a simple function that pads a given string to a given length (or truncates the string if it’s greater than that length).
+
+```
+// Listing 5.18 A padding function
+func Pad(s string, max uint) string {
+    // Logs the output just for your convenience here
+    log.Printf("Testing Len: %d, Str: %s\n", max, s)
+    ln := uint(len(s))
+    if ln > max {
+        // truncates it.
+        return s[:max]
+    }
+    // Pads the string until it’s the max length
+    s += strings.Repeat(" ", int(max-ln))
+    return s
+}
+```
+
+ - Normally, you’d be inclined to write some simple tests for this function, perhaps like the following listing.
+
+```
+func TestPad(t *testing.T) {
+    if r := Pad("test", 6); len(r) != 6 {
+        t.Errorf("Expected 6, got %d", len(r)) 
+    } 
+}
+```
+
+ - Unsurprisingly, this test passes. But this is a great function to test with a **generator**. 
+    - You know that regardless of the string that’s passed in, you always want a string of exactly the given length.
+    - Using the testing/quick function called `Check()`, you can test a much broader range of strings (including those that use characters you might not have thought to test), as shown in the next listing.
+
+```
+// Listing 5.20 Generative test for pad
+
+func TestPadGenerative(t *testing.T) {
+    // fn takes a string and a uint8,
+    // runs Pad(), and checks that
+    // the returned length is right. 
+    fn := func(s string, max uint8) bool {
+        p := Pad(s, uint(max))
+        return len(p) == int(max)
+    }
+    // Using testing/quick, you tell it to 
+    // run no more than 200 
+    // randomly generated tests of fn 
+    if err := quick.Check(fn, &quick.Config{MaxCount: 200}); err != nil {
+        // You report any errors throug
+        // the normal testing package
+        t.Error(err)
+    }
+}
+```
+
+ - The "testing/quick".Check function is the heart of your test. 
+    - It takes a function that you’ve defined and an optional configuration, and then constructs numerous tests.
+    - It does this by introspecting the function’s parameters and then generating random test data of the right parameter type. 
+    - If you wanted to test longer strings, for example, you could change your fn function to take a uint16 instead of a uint8.
+ - Go’s random generator
+    - Go doesn’t automatically seed the "math/rand".Rand generator each time it runs. 
+    - If you want different data each run, you can pass a seeded random generator by using  `"testing/quick".Config` . 
+    - This is a good way to increase test data coverage, but it comes at the cost of repeatability.
+        - If you do hit a failure, you’ll need to make note of the data that caused the error because it may not come up again for a long time.
+
+
+
+## 5.5 Using performance tests and benchmarks
+
+ - Nestled inside Go’s `testing` package are some performance-testing features designed to repeatedly run pieces of code and then report on their efficiency.
+
+#### TECHNIQUE 29 Benchmarking Go code
+
+ - PROBLEM: You have code paths for accomplishing something, and you want to know which way is faster. Is it faster to use text/template for formatting text, or just stick with fmt?
+ - SOLUTION: Use the benchmarking feature, `testing.B`, to compare the two.
+ - Benchmarks are treated similarly to tests. They go in the same *_test* files that unit tests and examples go in, and they’re executed with the go test command. But their con- struction differs.
+
+```
+// Listing 5.21 Benchmark template compile and run
+
+package main
+import (
+     "bytes"
+     "testing"
+     "text/template"
+)
+
+func BenchmarkTemplates(b *testing.B) {
+    // Prints the value of b.N
+    b.Logf("b.N is %d\n", b.N)
+    tpl := "Hello {{.Name}}"
+    data := &map[string]string{
+        "Name": "World",
+    }
+    var buf bytes.Buffer
+    // Runs the core of your test b.N times
+    for i := 0; i < b.N; i++ {
+        t, _ := template.New("test").Parse(tpl)
+        t.Execute(&buf, data)
+        buf.Reset()
+    }
+}
+```
+
+ - *Benchmarks* should be prefixed with `Benchmark` , And instead of receiving a `*testing.T`, a benchmark receives a `*testing.B`.
+ - `*testing.B` has several properties specific to benchmarking.
+    - The most important is the N struct member. 
+
+```
+$ go test -bench .
+testing: warning: no tests to run
+PASS
+BenchmarkTemplates       100000          10102 ns/op
+--- BENCH: BenchmarkTemplates
+     bench_test.go:10: b.N is 1
+     bench_test.go:10: b.N is 100
+     bench_test.go:10: b.N is 10000
+     bench_test.go:10: b.N is 100000
+ok /Users/mbutcher/Code/go-in-practice/chapter5/tests/bench 1.145s
+```
+
+ - To run benchmarks, use the go test tool, but pass it `–bench PATTERN`, where *PATTERN* is a regular expression that matches the benchmarking functions you want to run.
+    - The dot (.) tells the benchmarker to run all of the benchmarks.
+ - It begins with a low value for b.N: 1. Then it raises the value of b.N (not always exponentially) until the algorithms in the benchmarking suite settle in on an average.
+
+
+####  TECHNIQUE 30 Parallel benchmarks
+
+ - One of Go’s strongest points is its goroutine model of concurrent programming. 
+ - But for any given piece of code, how can you tell how well it will perform when spread out over multiple goroutines? 
+ - Again, the benchmarking tool can help you here.
+
+ - PROBLEM: You want to test how a given piece of code performs when spread over goroutines. Ide- ally, you want to test this with a variable number of CPUs.
+ - SOLUTION: A `*testing.B `instance provides a RunParallel method for exactly this purpose. Combined with command-line flags, you can test how well goroutines parallelize.
+
+
+```
+// Listing 5.23 Parallel benchmarking
+
+unc BenchmarkParallelTemplates(b *testing.B) {
+     tpl := "Hello {{.Name}}"
+     t, _ := template.New("test").Parse(tpl)
+     data := &map[string]string{
+            "Name": "World",
+     }
+     // Instead of a for loop, 
+     // passes a closure into RunParallel
+     b.RunParallel(func(pb *testing.PB) {
+            var buf bytes.Buffer
+            for pb.Next() {
+                   t.Execute(&buf, data)
+                   buf.Reset() 
+            } 
+    })
+}
+```
+
+ - Most of our testing code remains unchanged. But instead of looping over a call to t.Execute() ,  you segment the code a little further.
+ - Running `RunParallel` runs the closure on multiple goroutines. 
+    - Each one receives an indication, through `pb.Next()`, as to whether it should continue iterating.(Again, the looping feature is required.)
+
+```
+$ go test -bench .
+testing: warning: no tests to run
+PASS
+BenchmarkTemplate               784 ns/ops
+BenchmarkCompiledTemplates      829 ns/op
+BenchmarkParallelTemplates      5.097s
+ok      _/Users/mbutcher/Code/go-in-practice/chapter5/tests/bench
+```
+
+ - Your parallel version didn’t outperform the regular version. Why? Because the gorou- tines were all run on the same processor.
+ - Let’s specify that you want to see the testing tool run several versions of the same code, using a different number of CPUs each time:
+
+```
+$ go test -bench . -cpu=1,2,4
+testing: warning: no tests to run
+PASS
+...
+```
+
+ - In this run, you specify `–cpu=1,2,4`, which tells go test to run the tests with one, two, and then four CPUs, respectively.
+
+
+####  TECHNIQUE 31 Detecting race conditions
+
+
