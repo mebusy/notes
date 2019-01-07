@@ -1,6 +1,25 @@
+...menustart
+
+ - [Tool:](#1f36ce0c302c8d31f2c4ce8b927047ab)
+ - [Books](#6225eb5bf8a031f750a1b03f810ccc6a)
+ - [Tutorial](#368fe771261fcb18f7988833c9294a20)
+     - [Tiles and Maps](#40b06c547952c7c5a66dd95a1d9c26f3)
+ - [Advanced](#9b6545e4cea9b4ad4979d41bb9170e2b)
+     - [auto tile](#4d884e87dece8f6dbaa651d1b3a86ace)
+     - [random walk](#396c9aa8a56ee3ea6e06423717b340b3)
+     - [BSP: Binary Space Partitioning](#fd8334f88acc5ac4a4b89af90ce18c0c)
+         - [Building the dungeon](#cf6432b1f365fe43ae2285cf70e002e0)
+
+...menuend
+
+
+<h2 id="1f36ce0c302c8d31f2c4ce8b927047ab"></h2>
+
 # Tool: 
 
 Roguelike Dungeon Comparsion
+
+<h2 id="6225eb5bf8a031f750a1b03f810ccc6a"></h2>
 
 # Books 
 Procedural Generation in Game Design 
@@ -15,7 +34,11 @@ Game Programming Patterns
 
 ---
 
+<h2 id="368fe771261fcb18f7988833c9294a20"></h2>
+
 # Tutorial
+
+<h2 id="40b06c547952c7c5a66dd95a1d9c26f3"></h2>
 
 ## Tiles and Maps
 
@@ -24,12 +47,18 @@ Game Programming Patterns
     - block sight = boolean
     - type = Sand , Dirt ?
 
+<h2 id="9b6545e4cea9b4ad4979d41bb9170e2b"></h2>
+
 # Advanced 
+
+<h2 id="4d884e87dece8f6dbaa651d1b3a86ace"></h2>
 
 ## auto tile
 
 bitmasking tiling : mathematically find out what every single tile is
 
+
+<h2 id="396c9aa8a56ee3ea6e06423717b340b3"></h2>
 
 ## random walk
 
@@ -41,6 +70,8 @@ bitmasking tiling : mathematically find out what every single tile is
     - 25% change direction
     - walk 1 step, set as floor
 
+
+<h2 id="fd8334f88acc5ac4a4b89af90ce18c0c"></h2>
 
 ## BSP: Binary Space Partitioning 
 
@@ -64,6 +95,8 @@ http://roguecentral.org/doryen/articles/bsp-dungeon-generation/
 
 ![](http://roguecentral.org/doryen/data/articles/dungeon_bsp3-medium.jpg)
 
+
+<h2 id="cf6432b1f365fe43ae2285cf70e002e0"></h2>
 
 ### Building the dungeon
 

@@ -23,11 +23,11 @@
      - [5.4 Testing](#8cdb7f7ceb9bff6df74283972fe543d7)
          - [5.4.1 Unit testing](#d6c479cf7ba6e15bc5b1d5044c047f6c)
              - [TECHNIQUE 28: Verifying interfaces with canary tests  TODO , page 132](#628a115ba69d21b430e18b21a0aa97a5)
- - [11 Reflection and code generation](#f226d92098f959d56447d8f0dceb5f79)
-     - [11.1 Three features of reflection](#207d97ac8eab80209297f51985f3082d)
-         - [TECHNIQUE 66 Switching based on type and kind](#cc58f61e729a92813f5391cab7b2425c)
-         - [TECHNIQUE 67: Discovering whether a value implements an interface](#a9ca11ee99ed6c97a08a7c7c459b6507)
-         - [TECHNIQUE 68 Accessing fields on a struct](#78a78128f589cf18b987ed6a4b0cf18c)
+         - [5.4.2 Generative testing](#06c04672fb6b629954349dd4be4860b3)
+     - [5.5 Using performance tests and benchmarks](#509c9d6dc870fa32bbcc6efb57099123)
+         - [TECHNIQUE 29 Benchmarking Go code](#4a6da83e7e1a0713d9cc611981c6f823)
+         - [TECHNIQUE 30 Parallel benchmarks](#5ead74fce837c4f613ef8e47066ba7d3)
+         - [TECHNIQUE 31 Detecting race conditions](#e3ea7a8c7302115e608e0693e71c25e8)
 
 ...menuend
 
@@ -813,6 +813,8 @@ func Alert(m Messager, problem []byte) error {
 
 ---
 
+<h2 id="06c04672fb6b629954349dd4be4860b3"></h2>
+
 ### 5.4.2 Generative testing
 
 `Generative testing` is a large and complex topic. But in its most basic form, generative testing refers to the strategy of automatically generating test data in order to both broaden the information tested and overcome our biases when we choose our test data.
@@ -887,9 +889,13 @@ func TestPadGenerative(t *testing.T) {
 
 
 
+<h2 id="509c9d6dc870fa32bbcc6efb57099123"></h2>
+
 ## 5.5 Using performance tests and benchmarks
 
  - Nestled inside Go’s `testing` package are some performance-testing features designed to repeatedly run pieces of code and then report on their efficiency.
+
+<h2 id="4a6da83e7e1a0713d9cc611981c6f823"></h2>
 
 #### TECHNIQUE 29 Benchmarking Go code
 
@@ -945,6 +951,8 @@ ok /Users/mbutcher/Code/go-in-practice/chapter5/tests/bench 1.145s
     - The dot (.) tells the benchmarker to run all of the benchmarks.
  - It begins with a low value for b.N: 1. Then it raises the value of b.N (not always exponentially) until the algorithms in the benchmarking suite settle in on an average.
 
+
+<h2 id="5ead74fce837c4f613ef8e47066ba7d3"></h2>
 
 ####  TECHNIQUE 30 Parallel benchmarks
 
@@ -1003,6 +1011,8 @@ PASS
 
  - In this run, you specify `–cpu=1,2,4`, which tells go test to run the tests with one, two, and then four CPUs, respectively.
 
+
+<h2 id="e3ea7a8c7302115e608e0693e71c25e8"></h2>
 
 ####  TECHNIQUE 31 Detecting race conditions
 

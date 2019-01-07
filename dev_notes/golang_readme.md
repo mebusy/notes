@@ -4,7 +4,6 @@
 ...menuend
 
 
-
  1. [语言](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%981-%E8%AF%AD%E8%A8%80.md)   
  2. [表达式](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%982-%E8%A1%A8%E8%BE%BE%E5%BC%8F.md) 
  3. [函数 ](https://github.com/mebusy/notes/blob/master/dev_notes/GOLANG%20%E5%A4%87%E5%BF%983-%E5%87%BD%E6%95%B0.md) 

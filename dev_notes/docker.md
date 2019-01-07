@@ -87,6 +87,7 @@
      - [docker proxy for Centos7](#7a5c94971896bfbf1a19053004e56cc1)
      - [run bash of existing containter](#5ef5bd47a5282fb1ad1694bbb5f46954)
      - [get DockerFile from Image](#47a7dbe444a0af8498cf01950ad552ef)
+     - [add a restart policy to a container](#9b68cd8277b36a785a1a8784426e3095)
      - [docker 可视化环境](#b8e4fd21971c56f16f0e13421bfefedc)
      - [docker redis](#e03d31b41fc936f76920bb647520ef01)
 
@@ -1887,6 +1888,8 @@ docker history --no-trunc $argv  | tac | tr -s ' ' | cut -d " " -f 5- | sed 's,^
 
  - replace `$argv` with your ImageID
 
+
+<h2 id="9b68cd8277b36a785a1a8784426e3095"></h2>
 
 ## add a restart policy to a container 
 

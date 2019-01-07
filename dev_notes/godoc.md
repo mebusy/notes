@@ -1,5 +1,18 @@
+...menustart
+
+ - [go doc 和 godoc](#0b1ba65761a964f84e21fae57faa0496)
+     - [go doc](#97dafa559620d720a718b8756436b45d)
+     - [godoc](#d320d9ee424223b08261a39e229971dd)
+         - [本机的Go文档Web服务](#556ff244b88890038cf38b8e5ac21e8a)
+
+...menuend
+
+
+<h2 id="0b1ba65761a964f84e21fae57faa0496"></h2>
 
 # go doc 和 godoc
+
+<h2 id="97dafa559620d720a718b8756436b45d"></h2>
 
 ## go doc
 
@@ -56,6 +69,8 @@ $ go doc -cmd -u User.Start
 func (u *User) Start()
 ```
 
+<h2 id="d320d9ee424223b08261a39e229971dd"></h2>
+
 ## godoc
 
  - 查看代码包fmt的文档
@@ -102,6 +117,8 @@ $ godoc cmd/go
 ```
 $ godoc -goroot="/usr/local/go" fmt
 ```
+
+<h2 id="556ff244b88890038cf38b8e5ac21e8a"></h2>
 
 ###  本机的Go文档Web服务
 

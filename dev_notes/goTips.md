@@ -3,6 +3,7 @@
  - [GO Tips](#8b1b84c36166bd2b2098cdf1fe2f18e4)
  - [multiple characters replacement](#092987d14c5ea50ca1043604d333f7f7)
  - [三元表达式](#6ada22780ed552c34465864a2648f7e9)
+ - [How to find out which types implement `ByteReader` interface  in golang pkg ?](#0dde39dcf0c3c5e0a4c1625dd3bd1862)
 
 ...menuend
 
@@ -37,6 +38,8 @@ func If(condition bool, trueVal, falseVal interface{}) interface{} {
 ...
 If(i==0,"A","B").(string)
 ```
+
+<h2 id="0dde39dcf0c3c5e0a4c1625dd3bd1862"></h2>
 
 # How to find out which types implement `ByteReader` interface  in golang pkg ?
 

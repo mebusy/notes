@@ -17,6 +17,8 @@
      - [Vbox CentOS instal Guest Addition](#0afd0f413908f4cc7cddd138dde0ddd6)
      - [Get Proxy Info](#ca07600a3602fddc156831a6716fae12)
      - [lldb 调试 Segment Fault on MacOSX](#93bc8417f2018ae4424cbad9060081fa)
+     - [download youtube playlist](#dd3177fffb44df0088f08893f1e8b000)
+     - [re-download youtube auto sub](#a86e10fc913cd54076f6a27289d1d713)
 
 ...menuend
 
@@ -178,11 +180,15 @@ chrome: `chrome://net-internals/#proxy`
  - 运行， crash后，输入 `bt` 打印跟踪堆栈
 
 
+<h2 id="dd3177fffb44df0088f08893f1e8b000"></h2>
+
 ## download youtube playlist
 
 ```
 youtube-dl -c --write-auto-sub --sub-lang=en  -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' https://www.youtube.com/playlist?list=PLKUel_nHsTQ1yX7tQxR_SQRdcOFyXfNAb
 ```
+
+<h2 id="a86e10fc913cd54076f6a27289d1d713"></h2>
 
 ## re-download youtube auto sub
 
