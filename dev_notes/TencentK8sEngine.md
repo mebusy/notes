@@ -60,14 +60,14 @@ kubectl get po --all-namespaces -o wide | grep 10.0.0.39
 kubectl ... get ...  -o yaml --export 
 
 6. service accont 
-  create serviceaccount
-  create role
-  create rolebinding
+  create serviceaccount <name>  , it will also create an secret
+  create role  by create -f
+  create rolebinding  by create -f 
   ...
 
-7. 使用 ccr.ccs.tencentyun.com 仓库上的镜像，需要 secret: 
+7. ImagePullSecret ( 如果需要从外部pull 镜像的话需要设置)
     - qcloudregistrykey , 
-    - tencenthubkey (自动创建？)
+    - or tencenthubkey 
 ```
 
 
