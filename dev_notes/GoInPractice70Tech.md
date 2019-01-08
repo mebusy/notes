@@ -129,7 +129,7 @@ func shutdown(res http.ResponseWriter, req *http.Request) {
 
  - The URL needs to be blocked in production
 
-**Graceful shutdowns using manners**
+#### TECHNIQUE 5 **Graceful shutdowns using manners**
 
  - To avoid data loss and unexpected behavior, a server may need to do some cleanup on shutdown
  - To handle these, you’ll need to implement your own logic or use a package such as
@@ -205,29 +205,162 @@ A couple of disadvantages also exist under some conditions:
 
 ### 2.3.2 Routing web requests
 
+ - i.e. `http://example.com/foo#bar?baz=quo`
+    - the path portion of the URL is `foo`
  - To correctly route requests, a web server needs to be able to quickly and efficiently parse the path portion of a URL.
- - The `net/url` package, which contains the URL type, has many useful functions for working with URLs.
  - NOTE To differentiate between HTTP methods, check the value of `http.Request.Method`. This contains the method (for example, GET, POST, and so on).
 
-**Handling complex paths with wildcards**
+```
+func main() {
+     http.HandleFunc("/hello", hello)
+     http.HandleFunc("/goodbye/", goodbye)
+     http.HandleFunc("/", homePage)
+     http.ListenAndServe(":8080", nil)
+}
 
- - Go provides the path package with functionality to work with slash-separated paths
- - This package isn’t directly designed to work with URL paths. 
-    - Instead, it’s a generic package intended to work with paths of all sorts.
-    - In fact, it works well when coupled with an HTTP handler
- - page : 52
+func hello(res http.ResponseWriter, req *http.Request)
+    // Gets the name from the query string
+    query := req.URL.Query()
+    name := query.Get("name")
+    if name == "" {
+        name = "Inigo Montoya"
+    }
+    fmt.Fprint(res, "Hello, my name is ", name)
+}
+
+func goodbye(res http.ResponseWriter, req *http.Request) {
+    // Looks in the path for a name
+    path := req.URL.Path
+    parts := strings.Split(path, "/")
+    name := parts[2]
+    if name == "" {
+        name = "Inigo Montoya"
+    }
+    fmt.Fprint(res, "Goodbye ", name)
+}
+
+func homePage(res http.ResponseWriter, req *http.Request)
+    if req.URL.Path != "/" {
+        http.NotFound(res, req)
+       return
+    }
+    fmt.Fprint(res, "The homepage.")
+}
+```
+
+ - NOTE: The `net/url` package, which contains the URL type, has many useful functions for working with URLs.
+ - NOTE: To differentiate between HTTP methods, check the value of `http.Request.Method`. This contains the method (for example, GET, POST, and so on).
+ - Here you use three handler functions for three paths or path parts.
+    - Any path that isn’t resolved prior to the `/` path will resolve to this one.
+ - It’s worth noting that paths ending in `/` can have redirection issues.
+    - In this listing, a user who visits `/goodbye` will be automatically redirected to `/goodbye/`.
+    - If you have query strings, they may be dropped. For example, `/goodbye?foo=bar` will redirect to `/goodbye/`.
+ - The way resolution works by default is important to know as well. 
+    - The handler registered to `/hello` will work only for `/hello`. 
+    - The handler registered to `/goodbye/` will be executed for `/goodbye` (with a redirect), `/goodbye/`, `/goodbye/foo`, `/goodbye/foo/bar`, and so on. 
+ - The requested URL is a property on `http.Request` as `url.URL`.
+ - The `Query` method on the URL returns either the value for the key, or an empty string if no value is available for the key.
+ - The http package contains a NotFound helper function that can optionally be used to set the response HTTP code to 404 and send the text 404 page not found.
+    - TIP The http package contains the Error function that can be used to set the HTTP error code and respond with a message. The NotFound function takes advantage of this for the 404 case.
+
+####  TECHNIQUE 7 **Handling complex paths with wildcards**
+
+ - PROBLEM: Instead of specifying exact paths for each callback, an application may need to sup- port wildcards or other simple patterns.
+ - SOLUTION: Go provides the path package with functionality to work with slash-separated paths
+    - This package isn’t directly designed to work with URL paths. 
+        - Instead, it’s a generic package intended to work with paths of all sorts.
+        - In fact, it works well when coupled with an HTTP handler
+
+```
+// Listing 2.17 Resolve URLs using path package: path_handlers.go
+package main
+import (
+     "fmt"
+     "net/http"
+     "path"       // to handle URL matches
+     "strings"
+)
+
+func main() {
+    // Gets an instance of a path-based router
+    pr := newPathResolver()
+    // Maps functions to paths
+    pr.Add("GET /hello", hello)
+    pr.Add("* /goodbye/*", goodbye)
+    http.ListenAndServe(":8080", pr)
+}
+
+// Creates new initialized pathResolver
+func newPathResolver() *pathResolver {
+     return &pathResolver{make(map[string]http.HandlerFunc)}
+}
+
+type pathResolver struct {
+     handlers map[string]http.HandlerFunc
+}
+
+func (p *pathResolver) Add(path string, handler http.HandlerFunc) {
+     p.handlers[path] = handler
+}
+
+func (p *pathResolver) ServeHTTP(res http.ResponseWriter, req *http.Request) {
+    // Constructs our method + path to check 
+    check := req.Method + " " + req.URL.Path
+    for pattern, handlerFunc := range p.handlers {
+        // Checks whether current path matches a registered one
+        if ok, err := path.Match(pattern, check); ok && err == nil {
+            handlerFunc(res, req)
+            return
+        } else if err != nil {
+            fmt.Fprint(res, err)    
+        }
+    }
+    // If no path matches, the page wasn’t found
+    http.NotFound(res, req)
+}
+
+func hello(res http.ResponseWriter, req *http.Request) {
+    ...
+}
+
+func goodbye(res http.ResponseWriter, req *http.Request) {
+    ...
+}
+```
+
+ - After an instance of the pathResolver has been created, two mappings of HTTP verbs and their paths are added to the resolver
+ - The format for these is the HTTP method name followed by a path, with a space separating the two.
+    - You can use an asterisk (`*`) as a wildcard character for the HTTP method or in the path.
+ - The pathResolver is set as the handler function for the built-in HTTP server when the server is started
+    - For pathResolver to work as a handler function, it needs to implement the ServeHTTP method and implicitly implement the HandlerFunc interface. 
+    - The ServeHTTP method is where path resolving happens.
+ - When a request comes into the server, the ServeHTTP method iterates over the paths registered with the pathResolver.
+ - You should be aware of the pros and cons of path resolution using the path pack- age. Here are the pros:
+    - pros:
+        - Easy to get started with simple path matching.
+        - Included in the standard library, the path package is well traveled and tested.
+    - The cons have a common thread in that the path package is generic to paths and not specific to URL paths. The cons are as follows:
+        - The wildcard abilities of the path package are limited.
+            - For example, a path of `foo/*` will match `foo/bar` but not `foo/bar/baz`.
+            - To match `foo/bar/baz`, you’d need to look for a path like `foo/*/*`.
+        - Because this is a generic path package rather than one specific to URLs, some nice-to-have features are missing.
+            - For example, the path `/goodbye/*` is registered. Visiting the path `/goodbye` in a browser will display a Page Not Found message, whereas visiting `/goodbye/` works. 
+ - This method is useful for simple path scenarios and it’s one that we, the authors, have successfully used.
 
 
-**URL pattern matching**
+####  TECHNIQUE 8 **URL pattern matching** (TODO)
 
- - Simple path-based matching isn’t enough for an application that needs to treat a path more like a text string and less like a file path
- - This is particularly important when matching across a path separator (/).
- - The built-in path package enables simple path-matching schemes, but sometimes you may need to match complex paths or have intimate control over the path. 
- - For those cases, you can use regular expressions to match your paths. 
- - `"regexp"`
- - page 55
+ - PROBLEM: Simple path-based matching isn’t enough for an application that needs to treat a path more like a text string and less like a file path
+    - This is particularly important when matching across a path separator (/).
+ - SOLUTION: The built-in `path` package enables simple path-matching schemes, but sometimes you may need to match complex paths or have intimate control over the path. 
+    - For those cases, you can use regular expressions to match your paths.  `"regexp"`
+ - page 55  TODO
 
-**Faster routing (without the work)**
+####  TECHNIQUE 9 **Faster routing (without the work)**
+
+ - PROBLEM: The built-in http package isn’t flexible enough, or doesn’t perform well in a particu- lar use case.
+ - SOLUTION: Routing URLs to functions is a common problem for web applications. 
+    - Therefore, numerous packages have been built and tested, and are commonly used to tackle the problem of routing. 
 
 Popular solutions include the following:
 
@@ -240,14 +373,46 @@ Popular solutions include the following:
 
 # 3 Concurrency in Go
 
-**Using multiple channels**
+## 3.1 
+
+#### TECHNIQUE 12 Locking with a mutex
+
+```
+// Listing 3.5
+
+// The words struct now inherits the mutex lock.
+type words struct {
+    sync.Mutex
+    found map[string]int    
+}
+
+func newWords() *words {
+     return &words{found: map[string]int{}}
+}
+
+func (w *words) add(word string, n int) {
+    w.Lock()
+    defer w.Unlock()
+    count, ok := w.found[word]
+    if !ok {
+       w.found[word] = n
+       return
+    }
+    w.found[word] = count + n
+}
+```
+
+## 3.2 Working with channels
+
+
+####  TECHNIQUE 13 **Using multiple channels**
 
  - You want to use channels to send data from one goroutine to another, and
     - be able to interrupt that process to exit.  
  - Use `select` and multiple channels. 
     - It’s a common practice in Go to use channels to signal when something is done or ready to close(eg. a timeout).
 
-**Closing channels**
+####  TECHNIQUE 14 **Closing channels**
 
  - What happens if you have a sender and receiver goroutine, and the sender finishes sending data?
     - Are the receiver and channel automatically cleaned up? 
@@ -300,7 +465,7 @@ func send(ch chan<- string, done <-chan bool) {
 }
 ```
 
-**Locking with buffered channels**
+####  TECHNIQUE 15 **Locking with buffered channels**
 
  - Use a channel with a buffer size of 1, and share the channel among the goroutines you want to synchronize.
  - 替代 lock
