@@ -498,10 +498,11 @@ func worker(id int, lock chan bool) {
 
 ## 4.1 Error handling
 
+
  - `errors.New`  function from the errors package is great for creating simple new errors. 
  - `fmt.Errorf` function in the fmt package gives you the option of using a formatting string on the error message. 
 
-**Custom error types**
+####  TECHNIQUE 17 Custom error types
 
  - Go’s error type is an interface that looks like the following listing.
 
@@ -533,7 +534,7 @@ func (p *ParseError) Error() string {
  - This technique is great when you need to return additional information
  - But what if you need one function to return different kinds of errors?
 
-**Error variables**
+####  TECHNIQUE 18 Error variables
 
  - One complex function may encounter more than one kind of error. 
  - One convention that’s considered good practice in Go (although not in certain other languages) is to create package-scoped error variables that can be returned whenever a certain error occurs. 
@@ -622,7 +623,7 @@ func yikes() {
 
  - If a panic on a goroutine goes unhandled on that goroutine’s call stack, it crashes the entire program
 
-a trivial little library (now part of github.com/Masterminds/cookoo) to protect us from accidentally unhandled panics on goroutines.
+ - a trivial little library (now part of github.com/Masterminds/cookoo) to protect us from accidentally unhandled panics on goroutines.
 
 ```go
 // GoDoer is a simple parameterless function.
