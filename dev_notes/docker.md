@@ -1926,6 +1926,12 @@ scope launch
 docker run -p 6379:6379 --name hdaredis -d redis redis-server --requirepass <yourpassword> --save ''
 ```
 
+ - run redis as memory cache
+
+```
+docker run -p 6379:6379 --name redis-cache -d redis redis-server --save '' --appendonly no --maxmemory 1G --maxmemory-policy volatile-lru
+```
+
  - check with redis-cli
 
 ```bash
