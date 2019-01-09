@@ -1875,6 +1875,8 @@ Environment="HTTPS_PROXY=https://host:port/"
 
 ```bash
 docker exec -it <container> bash
+
+docker exec -it <container> -- command args 
 ```
 
 
