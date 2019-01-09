@@ -1923,13 +1923,13 @@ scope launch
  - run redis with password ,  and disable persistence
 
 ```bash
-docker run --restart unless-stopped -p 6379:6379 --name hdaredis -d redis redis-server --requirepass <yourpassword> --save ''
+docker run -d --restart unless-stopped -p 6379:6379 --name hdaredis -d redis redis-server --requirepass <yourpassword> --save ''
 ```
 
  - run redis as memory cache
 
 ```
-docker run --restart unless-stopped -p 6379:6379 --name redis-cache -d redis redis-server --save '' --appendonly no --maxmemory 1G --maxmemory-policy allkeys-lru
+docker run -d --restart unless-stopped -p 6379:6379 --name redis-cache -d redis redis-server --save '' --appendonly no --maxmemory 1G --maxmemory-policy allkeys-lru
 ```
 
  - check with redis-cli
@@ -1949,3 +1949,8 @@ redis> config get save
     - The cluster is 6 redis instances running with 3 master & 3 slaves, one slave for each master. They run on ports 7000 to 7005.
 
 
+## docker mysql
+
+```
+docker run -d --restart unless-stopped -p 3306:3306 --name mysql-test -e MYSQL_USER="root"  -e MYSQL_ROOT_PASSWORD="root" mysql:5.7 --character-set-server=utf8
+```
