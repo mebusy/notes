@@ -1896,7 +1896,7 @@ docker history --no-trunc $argv  | tac | tr -s ' ' | cut -d " " -f 5- | sed 's,^
  - i.e.
 
 ```
-docker update --restart=always <container>
+docker update --restart=unless-stopped <container>
 ```
 
 
@@ -1923,13 +1923,13 @@ scope launch
  - run redis with password ,  and disable persistence
 
 ```bash
-docker run -p 6379:6379 --name hdaredis -d redis redis-server --requirepass <yourpassword> --save ''
+docker run --restart=unless-stopped -p 6379:6379 --name hdaredis -d redis redis-server --requirepass <yourpassword> --save ''
 ```
 
  - run redis as memory cache
 
 ```
-docker run -p 6379:6379 --name redis-cache -d redis redis-server --save '' --appendonly no --maxmemory 1G --maxmemory-policy allkeys-lru
+docker run --restart=unless-stopped -p 6379:6379 --name redis-cache -d redis redis-server --save '' --appendonly no --maxmemory 1G --maxmemory-policy allkeys-lru
 ```
 
  - check with redis-cli
