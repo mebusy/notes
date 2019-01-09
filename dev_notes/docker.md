@@ -1929,7 +1929,7 @@ docker run -p 6379:6379 --name hdaredis -d redis redis-server --requirepass <you
  - run redis as memory cache
 
 ```
-docker run -p 6379:6379 --name redis-cache -d redis redis-server --save '' --appendonly no --maxmemory 1G --maxmemory-policy volatile-lru
+docker run -p 6379:6379 --name redis-cache -d redis redis-server --save '' --appendonly no --maxmemory 1G --maxmemory-policy allkeys-lru
 ```
 
  - check with redis-cli
