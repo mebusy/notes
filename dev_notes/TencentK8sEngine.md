@@ -46,6 +46,9 @@ mv ./kubectl /usr/local/bin/kubectl
 1. list pods
 kubectl -n umc-dunkshot-prod2 get po
 
+  only name:
+kubectl get po --no-headers -o custom-columns=:.metadata.name
+
 2. exec
 kubectl exec -ti -n <namespace> <name of workernode> <command>
 i.e. kubectl exec -ti -n <namespace> <name of workernode>
