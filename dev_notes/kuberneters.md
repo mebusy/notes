@@ -455,6 +455,8 @@ sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig
 systemctl disable firewalld
 ```
 
+PS: [开启iptables情况下Swarm、kubernetes等组件正常工作的配置](https://blog.csdn.net/A632189007/article/details/78909835)
+
 <h2 id="f03737e43278c4e0e94939f9eec9b4f0"></h2>
 
 ### Enable br_netfilter Kernel Module
