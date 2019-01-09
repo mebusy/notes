@@ -1262,6 +1262,12 @@ def graphSearch( problem, fringe):
         - eg. greedily eats the closest dot
 
  
+### search implementation from simpleai
+
+https://raw.githubusercontent.com/simpleai-team/simpleai/master/simpleai/search/traditional.py
+
+
+
 
 ---
 
