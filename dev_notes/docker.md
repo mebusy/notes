@@ -1383,12 +1383,71 @@ docker pull centos
 
 <h2 id="bc36ecbfa87b61d606061a743e6fa334"></h2>
 
-## 私有仓库 TODO
+## 私有仓库
+
+### Deploy a registry server
+
+ - Before you can deploy a registry, you need to install Docker on the host.
+ - A registry is an instance of the *registry* image, and runs within Docker.
+
+#### Run a local registry
+
+```
+$ docker run -d -p 5000:5000 --restart=always --name registry registry:2
+```
+
+ - The registry is now ready to use.
+ - Warning: These first few examples show registry configurations that are only appropriate for testing. A production-ready registry must be protected by TLS and should ideally use an access-control mechanism.
+
+#### Copy an image from Docker Hub to your registry
+
+1. Pull the ubuntu:16.04 image from Docker Hub.
+
+```
+docker pull ubuntu:16.04
+```
+
+2. Tag the image as `localhost:5000/my-ubuntu`.   This creates an additional tag for the existing image. When the first part of the tag is a hostname and port, Docker interprets this as the location of a registry, when pushing.
+
+```
+$ docker tag ubuntu:16.04 localhost:5000/my-ubuntu
+```
+
+if the register does not run on your local machine , change the `localhost` to your IP.
+
+```
+$ docker tag ubuntu:16.04 <YOUR_IP>:5000/my-ubuntu
+```
+
+ - PROBLEM: http: server gave HTTP response to HTTPS client
+ - SOLUTION:
+    - 1 Create or modify /etc/docker/daemon.json `{ "insecure-registries":["myregistry.example.com:5000"] }`
+    - 2 Restart docker daemon `service docker restart`
+
+3. Push the image to the local registry running at localhost:5000:
+
+```
+$ docker push localhost:5000/my-ubuntu
+```
+
+4. Remove the locally-cached ubuntu:16.04 and localhost:5000/my-ubuntu images, so that you can test pulling the image from your registry. 
+
+```
+$ docker image remove ubuntu:16.04
+$ docker image remove localhost:5000/my-ubuntu
+```
+
+5. Pull the localhost:5000/my-ubuntu image from your local registry.
+
+```
+$ docker pull localhost:5000/my-ubuntu
+```
+
+For more details: [registry deploy and config](https://docs.docker.com/registry/deploying/)
 
 <h2 id="919d9a1b6552e2443bcba07ac2fcf531"></h2>
 
 ## 配置文件 TODO
-
 
 
 
