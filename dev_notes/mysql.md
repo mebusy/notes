@@ -5,7 +5,7 @@
      - [Mysql 并发更新数据 加锁处理](#f12a4c82c151d110c6ea3521e6aca5b2)
          - [SELECT显式加锁](#18a31fbbef71484ce0cc52995764a78b)
          - [使用乐观锁](#4e7e4e0d4b9110317f8e672b2aa3af35)
- - [第1章  MySQL 体系结构和存储殷勤](#e14b168c8f332d1b7d70cb163cdd7210)
+ - [第1章  MySQL 体系结构和存储引擎](#e14b168c8f332d1b7d70cb163cdd7210)
      - [1.1 配置文件](#bdf6b309174103a16017dcf95cfd0efa)
      - [1.3 MySQL 存储引擎](#d515f90f3281ec25eef39dd7a232630f)
          - [1.3.1 InnoDB 存储引擎](#76926ae879779c10f256fc887a33535f)
@@ -135,7 +135,7 @@ COMMIT WORK;
 
 <h2 id="e14b168c8f332d1b7d70cb163cdd7210"></h2>
 
-# 第1章  MySQL 体系结构和存储殷勤
+# 第1章  MySQL 体系结构和存储引擎
 
 <h2 id="bdf6b309174103a16017dcf95cfd0efa"></h2>
 
