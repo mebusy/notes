@@ -1262,6 +1262,14 @@ def graphSearch( problem, fringe):
         - eg. greedily eats the closest dot
 
  
+### other implementation 
+
+[_search in simpleai](https://raw.githubusercontent.com/simpleai-team/simpleai/master/simpleai/search/traditional.py)
+
+[best_first_graph_search in aima-python](https://raw.githubusercontent.com/aimacode/aima-python/master/search.py)
+
+
+
 
 ---
 
