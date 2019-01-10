@@ -219,7 +219,7 @@ A = |2 3| 构成的是一个过原点的 平面子空间
    - **Ax_p = b and Ax_n = 0 produce A(x_p + x_n) = b**.
    - x_p 可能有不同的选择，任选一个即可
       - 比如解集是一条直线，选择直线上任意一点即可
-      - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_completeSolution.png)
+      - ![](../imgs/LA_completeSolution.png)
 
  - Spanning involves the column space, and independence involves the nullspace.
    - To decide if b is a combination of the columns, we try to solve Ax = b.
@@ -284,7 +284,7 @@ If A is an m by n matrix:
  - The nullspace N(A) and row space C(Aᵀ) are subspaces of **Rⁿ**.
  - The left nullspace N(Aᵀ) and column space C(A) are subspaces of **Rᵐ**.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_4subspaces.png)
+![](../imgs/LA_4subspaces.png)
 
 
 

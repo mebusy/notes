@@ -385,7 +385,7 @@ removeBody: function(obj) {
 
 # Sound
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/HTML5_sound.png)
+![](../imgs/HTML5_sound.png)
 
 一般的游戏， 只需要  Sound -> Gain -> OUTPUT  这条线
 

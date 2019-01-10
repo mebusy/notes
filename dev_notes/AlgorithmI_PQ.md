@@ -44,7 +44,7 @@
     - Take nodes in **level** order
     - No explicit links needed !
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algor1_pq_heap_repre.png)
+![](../imgs/algor1_pq_heap_repre.png)
 
 <h2 id="2e582e415db1ab1e6e72b8278b9385e1"></h2>
 
@@ -66,7 +66,7 @@
     - Exchange key in child with key in parent.
     - Repeat until heap order restored.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_pq_swim.png)
+![](../imgs/algorI_pq_swim.png)
 
 ```java
 private void swim(int k) {
@@ -92,7 +92,7 @@ private void swim(int k) {
     - 添加新node到PQ最后，然后 swim到正确位置
  - Cost. At most 1 + lg N compares.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_pq_insertion.png)
+![](../imgs/algorI_pq_insertion.png)
 
 ```java
 public void insert(Key x) {
@@ -113,7 +113,7 @@ public void insert(Key x) {
         - why not the smaller one ? Power struggle. Better subordinate promoted
     - Repeat until heap order restored.
  
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_pq_sink.png)
+![](../imgs/algorI_pq_sink.png)
 
 ```java
 private void sink(int k) {
@@ -139,7 +139,7 @@ private void sink(int k) {
     - 交换根节点 到最后一个节点， 然后新的根节点 sink 到正确位置
  - Cost. At most 2 lg N compares.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_pq_deletemax.png)
+![](../imgs/algorI_pq_deletemax.png)
 
 ```java
 public Key delMax() {

@@ -50,7 +50,7 @@
  - 简单图simple graph：无环和重边的图
     - 以后讨论的基本都是 简单图
  - 完全图complete graph：任何两个不同结点间都有边关联的简单图，记做Kn
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_complete_graph.png)
+    - ![](../imgs/DM_graph_complete_graph.png)
     - n 是顶点数
     - 无向完全图 边数: n(n-1)/2
     - 有向完全图 变数: n(n-1)
@@ -59,7 +59,7 @@
     - **结点权**函数：f:V→W
     - **边权**函数：g:E→W
     - W可以是任何集合，常为实数的子集 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_weighted_graph.png)
+    - ![](../imgs/DM_graph_weighted_graph.png)
 
 
 <h2 id="a556333847a1e198e8e313a93a2ecaa3"></h2>
@@ -71,7 +71,7 @@
     - 出度d+(v)
     - 入度d-(v)
     - d(v)=d+(v)+d-(v)
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_degree.png)
+ - ![](../imgs/DM_graph_degree.png)
     - d(c) = 5
 
 
@@ -93,7 +93,7 @@
 ### 正则图(regular graph)
 
  - 所有顶点的度均相同的图称为**正则图**，按照 顶点的度数k称作**k-正则图**
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_regular_graph.png)
+ - ![](../imgs/DM_graph_regular_graph.png)
     - 1st one is 3-正则图
     - 2nd one is 2-正则图
     - last one is 4-正则图 
@@ -109,7 +109,7 @@
 
 ### 子图(subgraph)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_subgraph.png)
+![](../imgs/DM_graph_subgraph.png)
 
  - G1=<V1 ,E1>, G2=<V2 ,E2> 
     - V1 ⊆ V2 , E1 ⊆ E2，称G1是G2的**子图**
@@ -126,7 +126,7 @@
  - G1 ,G2互为补图：
     - V1=V2 , E1∩E2=∅ ,  <V1 ,E1∪E2>是完全图 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_Complement_graph.png)
+![](../imgs/DM_graph_Complement_graph.png)
 
 <h2 id="c5c929b91e4d9c87cdeb99ee9f933c36"></h2>
 
@@ -137,7 +137,7 @@
         - 顶点的个数和边的条数， 要一致
     - 如果可以将V1中所有的结点一一对应地置 换为V2中的结点名后得到的图等于G2
         - 在存在一个双射函数，它把这个V1映射为V2，同时 把E1变成E2
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_isomorphic_graph.png)
+ - ![](../imgs/DM_graph_isomorphic_graph.png)
     - 把这个五角星 的这个顶点啊，最顶上这个顶点 最上面的顶点把它挪，挪到最下方。 然后把这个左边这个顶点，挪，挪到右下方的话，我们就会发现，如果经过这样的一个操作， 移动或者说叫做置换的话，那么它就会变成一个五边形了。 
  - 不同构的图：化学中的同分异构体
     - 分子式相同而结构和性质不同的化合物之间 互称同分异构体
@@ -184,16 +184,16 @@
  - **强连通**的**有向图**
     - 有向图中**任意**两个顶点都是**互相可达**的
     - u可达v , v可达u 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_connected_graph.png)
+    - ![](../imgs/DM_graph_connected_graph.png)
  - **单向连通**的**有向图**
     - **任意**两个顶点，**至少**从一个顶点到另一个是 **可达**的
  - **弱连通**的**有向图**
     - 将有向图**看作无向图**时是连通的 (右下角图)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_weak_connected_graph.png)
+    - ![](../imgs/DM_graph_weak_connected_graph.png)
 
  - 连通分支（connected component）
     - 图G的**连通子图**G'，而且G'不是任何其它连通子图的真子图（**最大性**）
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_connect_component.png)
+    - ![](../imgs/DM_graph_connect_component.png)
 
 <h2 id="9122a3fbef09ec56dd71bf7e4cf62c86"></h2>
 
@@ -238,7 +238,7 @@
  - 哈密顿通路Hamilton path
     - 如果图G上有一条经过所有顶点的通路（非回路）
     
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_hamilton_graph.png)
+![](../imgs/DM_graph_hamilton_graph.png)
 
  - 哈密顿图 比 欧拉图 难度大很多
 
@@ -270,12 +270,12 @@
     - aᵢⱼ=0, 当<vᵢ,vⱼ>∉E
  - 是一个|V|×|V|矩阵，表示顶点邻接关系
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_adjacency_matrix.png)
+![](../imgs/DM_graph_adjacency_matrix.png)
 
  - 对角线元素为1，表示环的存在（自反关系）
  - 矩阵对称，表示双向边（对称关系）
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_adjacency_matrix2.png)
+![](../imgs/DM_graph_adjacency_matrix2.png)
 
 
 <h2 id="1d4c82b5ff427a47fddc9fc29ffc39a9"></h2>
@@ -298,7 +298,7 @@
  - 通过矩阵的**秩**来判定图的连通分支个数
     - 求秩就是求最大线性无关组，线性无关组的个数就表明了 顶点之间联通的性质。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_associative_matrix.png)
+![](../imgs/DM_graph_associative_matrix.png)
 
 
 <h2 id="7f69372395c70835a2bb15bd53f62b4f"></h2>
@@ -341,7 +341,7 @@
  - 完全二分图可以记作K<sub>m,n</sub>
     - m=|X|, n=|Y|
  
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_bipartite_graph.png)
+![](../imgs/DM_graph_bipartite_graph.png)
 
 <h2 id="50a65cad177dd67cfdb994a8d67860a6"></h2>
 
@@ -367,7 +367,7 @@
  - 如果分为两组, 是否可能组内成员不能直接交谈(语言不通)？
 
  - 解：首先按语言想通作为边，构建图
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_graph_bipartite_example.png)
+    - ![](../imgs/DM_graph_bipartite_example.png)
     - 可以看到 所有的回路长度都是偶数，所以 这是个二分图，可以按要求分成两组
 
 ---

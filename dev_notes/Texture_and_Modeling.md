@@ -326,7 +326,7 @@ step(float a, float x) {
 }
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_step.png)
+![](../imgs/TM_step.png)
 
 The main use of the step function is to replace an if statement or to produce a sharp transition between one type of texture and another type of texture. For example, an if statement such as 
 
@@ -353,7 +353,7 @@ Two step functions can be used to make a rectangular pulse as follows:
 
 This preprocessor macro generates a pulse that begins at x = a and ends at x = b.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_pulse.png)
+![](../imgs/TM_pulse.png)
 
 function *clamp(x,a,b)* returns the value a when x is less than a, the value of x when x is between a and b, and the value b when x is greater than b. The clamp function can be written in C as follows:
 
@@ -364,7 +364,7 @@ clamp(float x, float a, float b) {
 }
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_clamp.png)
+![](../imgs/TM_clamp.png)
 
 The well-known min and max functions are closely related to clamp. In fact, min and max can be written as clamp calls, as follows:
 
@@ -393,7 +393,7 @@ smoothstep(float a, float b, float x) {
 }
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ML_smoothStep.png)
+![](../imgs/ML_smoothStep.png)
 
 
 <h2 id="12c2ac8397180317852f7ac6343465e7"></h2>
@@ -418,13 +418,13 @@ mod(float a, float b) {
 
 A graph of the periodic sawtooth function mod(x,a)/a is shown in Figure 2.14. This function has an amplitude of one and a period of a.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ML_mod_sawteech.png)
+![](../imgs/ML_mod_sawteech.png)
 
 By applying mod to the inputs of some other function, we can make the other function periodic too. Take any function, say, f (x), defined on the interval from 0 to 1 (technically, on the half-open interval [0, 1]). Then f (mod(x,a)/a) is a periodic function.  To make this work out nicely, it is best if f(0) = f(1) and even better if the derivatives of f are also equal at 0 and 1. 
 
 For example, the pulse function PULSE(0.4,0.6,x) can be combined with the mod function to get the periodic square wave function PULSE(0.4,0.6,mod(x,a)/a) with its period equal to a (see Figure 2.15).
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ML_periodic_pulse.png)
+![](../imgs/ML_periodic_pulse.png)
 
 It’s often preferable to use another mod-like idiom instead of mod in your shaders. We can think of xf = mod(a,b)/b as the fractional part of the ratio a/b.  In many cases it is useful to have the integer part of the ratio, xi, as well.
 
@@ -513,7 +513,7 @@ spline(float x, int nknots, float *knot)
 
 A graph of a particular example of the spline function is shown in Figure 2.16.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_spline.png)
+![](../imgs/TM_spline.png)
 
 This code can easily be adapted to work with knots that are colors or points. Just do the same thing three times, once for each of the components of the knots. In
 other words,
@@ -565,7 +565,7 @@ metallic( ) {
 }
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_teapot_spline.jpg)
+![](../imgs/TM_teapot_spline.jpg)
 
 Figure 2.17 is an image shaded with the metallic reflection map shader.
 
@@ -580,7 +580,7 @@ gammacorrect(float gamma, float x) {
 
 Figure 2.18 shows the shape of the gamma correction function for gamma values of 0.4 and 2.3. If x varies over the [0, 1] interval, then the result is also in that interval.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ML_gamma_correction.png)
+![](../imgs/ML_gamma_correction.png)
 
 The zero and one end points of the interval are mapped to themselves. Other values are shifted upward toward one if gamma is greater than one, and shifted downward toward zero if gamma is between zero and one.
 
@@ -595,7 +595,7 @@ bias(float b, float x) {
 
 Figure 2.19 shows the shape of the bias function for different choices of b.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_bias.png)
+![](../imgs/TM_bias.png)
 
 
 Perlin and Hoffert (1989) present another function to remap the unit interval. This function is called *gain* and can be implemented as follows:
@@ -610,7 +610,7 @@ gain(float g, float x) {
 }
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_gain.png)
+![](../imgs/TM_gain.png)
 
 Regardless of the value of g, all gain functions return 0.5 when x is 0.5.  Above and below 0.5, the gain function consists of two scaled-down bias curves forming an S-shaped curve.
 
@@ -628,7 +628,7 @@ This section presents a procedural texture generator for a simple brick pattern 
 
 The bricks are separated by a mortar that has a different color than the bricks. Figure 2.21 is a diagram of the brick pattern.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.21.png)
+![](../imgs/TM_F2.21.png)
 
 The following is a listing of the shading language code for the brick shader, with explanatory remarks inserted here and there.
 
@@ -685,7 +685,7 @@ surface brick(
  - Having identified which brick contains the point being shaded, as well as the texture coordinates of the point within the brick, it remains to determine whether the point is in the brick proper or in the mortar between the bricks.
  - The rectangular brick shape results from two pulses , a horizontal pulse w and a vertical pulse h . w * h is nonzero only when the point is within the brick region both horizontally and vertically
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.22.png)
+![](../imgs/TM_F2.22.png)
 
 
 <h2 id="4b8a4928c80dbb90832685f625d39bb4"></h2>
@@ -698,9 +698,9 @@ Recall that bump mapping involves modifying the surface normal vectors to give t
 
 Blinn (1978), the paper that introduced bump mapping, describes how a bump of height F(u, v) along the normal vector N can be simulated. The modified or "perturbed" normal vector is N′ = N + D.  The perturbation vector D lies in the tangent plane of the surface and is therefore perpendicular to N. D is based on the sum of two separate perturbation vectors U and V (Figure 2.23).
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.23.png)
+![](../imgs/TM_F2.23.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_bump_U.png)
+![](../imgs/TM_bump_U.png)
 
 Let’s analyze the expression for U. Note that the cross product `N x (∂P/∂v)` is perpendicular to N and therefore lies in the tangent plane of the surface. It is also perpendicular to the partial derivative of P, the surface position, with respect to v. This derivative lies in the tangent plane and indicates the direction in which P changes as the surface parameter v is increased.  If the parametric directions are perpendicular (usually they are only approximately perpendicular), adding a perturbation to N along the direction of this cross product would tilt N as if there were an upward slope in the surface along the u direction. The partial derivative `∂F/∂u` gives the slope of the bump function in the u direction.
 
@@ -750,7 +750,7 @@ Instead of creating a new variable PP that represents the bumped surface, this c
 
 To get a better understanding of bump mapping, let’s add bump-mapped mortar grooves to our brick texture. The first step is to design the shape of the groove profile, that is, the vertical cross section of the bump function.  Figure 2.24 is a diagram of the profile of the bricks and mortar grooves.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_brick_groove_profile.png)
+![](../imgs/TM_brick_groove_profile.png)
 
 In order to realistically render the mortar groove between the bricks, we want the brick shader to compute a ***procedural bump-mapping function*** that will be used to ***adjust the normal vector before shading***.  To this end, we add the following code to the brick shader, immediately before the last statement (the one that computes Ci from the shading model).
 
@@ -774,7 +774,7 @@ Ci = Os * Ct * (Ka * ambient() + Kd * diffuse(Nf));
 
 Finally, the shading normal Nf is computed based on the bump height as described earlier in this section. The shader ends as before by using the texture color Ct and bump-mapped normal Nf in a diffuse shading model to shade the surface. Figure 2.25 is an image of the bump-mapped brick texture.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.25.png)
+![](../imgs/TM_F2.25.png)
 
 > FIGURE 2.25 The bump-mapped brick texture.
 
@@ -832,7 +832,7 @@ The star pattern seems quite difficult until you think about it in polar coordin
 Figure 2.26 shows that each point of a five-pointed star is 72 degrees wide. Each half-point (36 degrees) is described by a single edge.
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.26.png)
+![](../imgs/TM_F2.26.png)
 
 > FIGURE 2.26 The geometry of a star.
 
@@ -945,7 +945,7 @@ The next section presents an informal discussion of basic signal processing conc
 
 As shown in Figure 2.29, a continuous signal can be converted into a discrete form by measuring its value at equally spaced sample points. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.29.png)
+![](../imgs/TM_F2.29.png)
 
 > FIGURE 2.29 Sampling and reconstruction.
 
@@ -973,7 +973,7 @@ The problem of aliasing can be addressed by changing the sample points to be clo
 
 If it is possible to increase the sampling rate, that is always beneficial. With more samples, the original signal can be reconstructed more accurately. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.30.png)
+![](../imgs/TM_F2.30.png)
 
 > FIGURE 2.30 Aliasing.
 
@@ -1010,7 +1010,7 @@ If we can build a better form of antialiasing into the procedural texture, the r
 
 The brick texture from earlier in the chapter provides a concrete example of the aliasing problem. Figure 2.31 shows how the brick texture looks when the sampling rate is low. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.31.png)
+![](../imgs/TM_F2.31.png)
 
 Notice that the width of the mortar grooves appears to vary in different parts of the image due to aliasing. This is the original version of the texture, without bump-mapped grooves. Later in the chapter we’ll see how to add antialiasing techniques to the brick texture to alleviate the aliases.
 
@@ -1146,7 +1146,7 @@ This sounds tough, but it’s easy if the function is simple enough.
 
 Consider the *step* function shown in Figure 2.8. The step function is rather ill-behaved because it is discontinuous at its threshold value.  Let’s apply a box filter extending from x to x + w to the function step(b,x).  The result is the box-filtered step function, boxstep(a,b,x), where a = b - w (Figure 2.32). 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.32.png)
+![](../imgs/TM_F2.32.png)
 
 Boxstep is a linear ramp from 0 to 1 starting at a and ending at b. The slope of the ramp is 1/w.
 
@@ -1190,7 +1190,7 @@ Crow (1984) introduced the ***summed-area table*** method of antialiasing image 
 
 A summed-area table is an image made from the texture image. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.33.png)
+![](../imgs/TM_F2.33.png)
 
 > FIGURE 2.33 The summed-area table: 
 >    (a) table entry (s, t) stores area of shaded region; 
@@ -1272,7 +1272,7 @@ tt -= tbrick;
 
 because the *floor* and *mod* operations in the integrals provide the necessary periodicity for the pulse sequence. Forcing ss and tt to lie in the unit interval interferes with the calculation of the correct integral values.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.34.png)
+![](../imgs/TM_F2.34.png)
 
 > FIGURE 2.34 Box-filtered version of the brick texture.
 
@@ -1413,15 +1413,15 @@ vnoise(float x, float y, float z) {  // mark2
 
 A graph of a 1D sample of vnoise is shown in Figure 2.35(a), and an image of a 2D slice of the function is shown in Figure 2.36(a). Figure 2.37(a) shows its power spectrum. The noise obviously meets the criterion of being band-limited; it has no significant energy at frequencies above 1.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.35.png)
+![](../imgs/TM_F2.35.png)
 
 > FIGURE 2.35 Graphs of various noises: (a) vnoise; (b) gnoise (Perlin’s noise); (c) vnoise + gnoise; (d) Ward’s Hermite noise; (e) vcnoise; (f) scnoise.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.36.png)
+![](../imgs/TM_F2.36.png)
 
 > FIGURE 2.36 2D slices of various noises: (a) vnoise; (b) gnoise (Perlin’s noise); (c) vnoise + gnoise; (d) Ward’s Hermite noise; (e) vcnoise; (f) scnoise.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.37.png)
+![](../imgs/TM_F2.37.png)
 
 > FIGURE 2.37 The power spectra of various noises: (a) vnoise; (b) gnoise (Perlin’s noise); (c) vnoise + gnoise; (d) Ward’s Hermite noise; (e) vcnoise; (f) scnoise.
 
@@ -1526,7 +1526,7 @@ float turbulence(point Q) {
 
 Figure 2.38 shows a slice of the fractalsum function on the left and a slice of the turbulence function on the right. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.38.png)
+![](../imgs/TM_F2.38.png)
 
 > FIGURE 2.38 Slices of fractalsum and turbulence functions.
 
@@ -1603,7 +1603,7 @@ blue_marble(
 
 The function marble_color maps the floating-point number marble into a color using a color spline. Figure 2.40 shows an example of the marble texture.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.40.png)
+![](../imgs/TM_F2.40.png)
 
 > FIGURE 2.40 Blue marble texture.
 
@@ -1669,7 +1669,7 @@ Ct = texture(“example.tx”, ss, tt);
 
 In this example, snoise based on the 3D surface position in “shader” space is used to modify the texture coordinates slightly. Figure 2.41(a) shows the original im- age texture, and Figure 2.41(b) is a texture produced by perturbing the image texture with the code above.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.41.png)
+![](../imgs/TM_F2.41.png)
 
 > FIGURE 2.41 Perturbing an image texture: (a) original image; (b) perturbed image.
 
@@ -1763,7 +1763,7 @@ wallpaper(
 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F2.42.png)
+![](../imgs/TM_F2.42.png)
 
 > FIGURE 2.42 Random placement wallpaper texture.
 

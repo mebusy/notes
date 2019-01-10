@@ -122,7 +122,7 @@ A better title for this course would be:
     - General AI techniques for a variety of problem types
     - Learning to recognize when and how a new problem can be solved with an existing technique
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_agent.png)
+![](../imgs/cs188_agent.png)
 
 
 <h2 id="e3a18b70b77602c474ec9b3140b582e3"></h2>
@@ -194,9 +194,9 @@ Uninformed means that when we are exploring search tree we have no idea if we're
 
  - A **search problem** consists of:
     - A state space
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_state_space.png)
+        - ![](../imgs/cs188_state_space.png)
     - A successor function (with actions, costs)
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_successor_func.png)
+        - ![](../imgs/cs188_successor_func.png)
     - A start state and a goal test
  - A **solution** is a sequence of actions (a plan) which transforms the start state to a goal state
 
@@ -209,7 +209,7 @@ Uninformed means that when we are exploring search tree we have no idea if we're
 
 ### Example: Traveling in Romania
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_travel_i_romania.png)
+![](../imgs/cs188_travel_i_romania.png)
 
  - State space
     - Cities
@@ -227,7 +227,7 @@ Uninformed means that when we are exploring search tree we have no idea if we're
 ## What’s in a State Space ?
 
  - The **world state** includes every last detail of the environment
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_world_space.png) 
+    - ![](../imgs/cs188_world_space.png) 
  - A **search state** keeps only the details needed for planning (abstraction)
 
 
@@ -243,7 +243,7 @@ Goal test | is (x,y) == END | dots all flase
 
 ## State Space Sizes ?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_state_space_size.png)
+![](../imgs/cs188_state_space_size.png)
 
  - World state
     - Agent Positions: 120  
@@ -286,11 +286,11 @@ Goal test | is (x,y) == END | dots all flase
  - In a state space graph, each state occurs only once!
  - We can rarely build this full graph in memory (it’s too big), but it’s a useful idea
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_state_space_graph.png)
+![](../imgs/cs188_state_space_graph.png)
 
  - In a search graph, each state also occurs only once!
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_graph.png)
+![](../imgs/cs188_search_graph.png)
 
 <h2 id="fa3d63f947f57a28158a9af70e100ef3"></h2>
 
@@ -303,7 +303,7 @@ Goal test | is (x,y) == END | dots all flase
     - Nodes show states, but correspond to PLANS that achieve those states
     - **For most problems, we can never actually build the whole tree**
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_tree.png)
+![](../imgs/cs188_search_tree.png)
 
 
 <h2 id="3371ddd82f34162d684dfd1d1f40d8b3"></h2>
@@ -314,7 +314,7 @@ Goal test | is (x,y) == END | dots all flase
     - 节点x in search tree , 表示了 以x 为 start node 的整个子图    
  - We construct both on demand – and we construct as little as possible.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_state_space_graph2.png)  .VS.  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_tree2.png)
+![](../imgs/cs188_state_space_graph2.png)  .VS.  ![](../imgs/cs188_search_tree2.png)
 
 
 <h2 id="76acaf4079e010db2a41f612ceae95f4"></h2>
@@ -323,7 +323,7 @@ Goal test | is (x,y) == END | dots all flase
 
 Consider this 4-state graph: 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_4_state_graph.png)
+![](../imgs/cs188_4_state_graph.png)
 
 How big is its search tree (from S)?
 
@@ -342,7 +342,7 @@ How big is its search tree (from S)?
 
 ### Searching with a Search Tree
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_with_a_search_tree.png)
+![](../imgs/cs188_search_with_a_search_tree.png)
 
  - Search
     - Expand out potential plans (tree nodes)
@@ -391,7 +391,7 @@ end function
  - Implementation: 
     - Fringe is a LIFO stack
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_deep_first_search.png)
+![](../imgs/cs188_deep_first_search.png)
 
 > leftmost DFS
 
@@ -400,7 +400,7 @@ end function
 #### Search Algorithm Properties
 
 - **Cartoon of search tree**:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_cartoon_of_search_tree.png)
+    - ![](../imgs/cs188_cartoon_of_search_tree.png)
     - b is the branching factor
     - m is the maximum depth
     - solutions at various depths
@@ -441,14 +441,14 @@ end function
  - Implementation: 
     - Fringe is a FIFO queue
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BFS.png)
+![](../imgs/cs188_BFS.png)
 
 
 <h2 id="0d9bfd747ee897d1720abf029faddae4"></h2>
 
 #### Breadth-First Search (BFS) Properties
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_bfs_property.png)
+![](../imgs/cs188_bfs_property.png)
 
  - What nodes does BFS expand?
     - Processes all nodes above shallowest solution
@@ -483,7 +483,7 @@ end function
 
 ### Cost-Sensitive Search
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_cost_sensitive_search.png)
+![](../imgs/cs188_cost_sensitive_search.png)
 
  - BFS finds the shortest path in terms of **number of actions**
  - It does not find the least-cost path.  
@@ -494,7 +494,7 @@ end function
 
 #### Uniform Cost Search
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_uniform_cost_search.png)
+![](../imgs/cs188_uniform_cost_search.png)
 
  - Strategy: 
     - expand a cheapest node first:
@@ -505,7 +505,7 @@ end function
 
 #### Uniform Cost Search (UCS) Properties
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ucs_property.png)
+![](../imgs/cs188_ucs_property.png)
 
  - What nodes does UCS expand?
     - Processes all nodes with cost less than cheapest solution!
@@ -673,7 +673,7 @@ Those 3 informed search do a lot of duplicate work and graph search will be our 
  - The good: UCS is complete and optimal!
  - The bad:
     - Explores options in every “direction”
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ucs_explore_in_all_directions.png)
+        - ![](../imgs/cs188_ucs_explore_in_all_directions.png)
     - No information about goal location
  - We’ll fix that soon!
 
@@ -687,7 +687,7 @@ Those 3 informed search do a lot of duplicate work and graph search will be our 
     - Designed for a particular search problem
     - Examples: Manhattan distance, Euclidean distance for pathing
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_heruistics_euclidean_distance.png)
+![](../imgs/cs188_heruistics_euclidean_distance.png)
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
@@ -695,13 +695,13 @@ Those 3 informed search do a lot of duplicate work and graph search will be our 
 
 For romania traveling problem:  constructor a cost table h(x) with straight-line distance to Bucharest.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_heuristic_example_dist.png)
+![](../imgs/cs188_heuristic_example_dist.png)
 
 For pancake problem:
 
 h(x) = the number of the largest pancake that is still out of place
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_heuristic_example_pancake.png)
+![](../imgs/cs188_heuristic_example_pancake.png)
 
 ---
 
@@ -713,7 +713,7 @@ h(x) = the number of the largest pancake that is still out of place
 
  - Strategy: expand a node that you think is closest to a goal state
     - Heuristic: estimate of distance to nearest goal for each state
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_greedy_search.png)
+    - ![](../imgs/cs188_greedy_search.png)
  - A common case:
     - Best-first takes you straight to the (**wrong**) goal
  - Worst-case: 
@@ -737,9 +737,9 @@ h(x) = the number of the largest pancake that is still out of place
  - A\* Search orders by the sum: f(n) = g(n) + h(n)
     - for node X  : f = g(X) + h(X) 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_graph.png)
+![](../imgs/cs188_Astar_graph.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_tree.png)
+![](../imgs/cs188_Astar_tree.png)
 
  - UCS
     - S -> a -> {b,d,e}
@@ -757,7 +757,7 @@ h(x) = the number of the largest pancake that is still out of place
  - Should we stop when we enqueue a goal?
  - **No: only stop when we dequeue a goal**
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_when_terminate.png)
+![](../imgs/cs188_Astar_when_terminate.png)
 
 ```
     S : f = h + g = 3 + 0 = 3
@@ -777,7 +777,7 @@ Now we pulled this one from the fringe , we pull something from the fringe that 
 
  - Is A* Optimal?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_wrong_example.png)
+![](../imgs/cs188_Astar_wrong_example.png)
 
 ```
     S : f=7
@@ -811,7 +811,7 @@ We pull `S-G` from fringe , but it is not optimal !
 
 ### Optimality of A* Tree Search
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_optimality_of_Astar.png)
+![](../imgs/cs188_optimality_of_Astar.png)
 
  - Assume:
     - A is an optimal goal node
@@ -823,7 +823,7 @@ We pull `S-G` from fringe , but it is not optimal !
 
 **Proof:**
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_optimality_of_Astar_proof.png)
+![](../imgs/cs188_optimality_of_Astar_proof.png)
 
  - Imagine B is on the fringe
  - Some ancestor n of A is on the fringe, too (maybe A!)
@@ -843,7 +843,7 @@ We pull `S-G` from fringe , but it is not optimal !
 
 ### Properties of A*
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_property.png)
+![](../imgs/cs188_Astar_property.png)
 
 
 <h2 id="f6c0e3a1c3cfabd32ae8d3ae741fcf0a"></h2>
@@ -852,23 +852,23 @@ We pull `S-G` from fringe , but it is not optimal !
 
 DFS:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_DFS.png)
+![](../imgs/cs188_search_DFS.png)
 
 BFS:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_BFS.png)
+![](../imgs/cs188_search_BFS.png)
 
 UCS:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_UCS.png)
+![](../imgs/cs188_search_UCS.png)
 
 Greedy:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_gredy.png)
+![](../imgs/cs188_search_gredy.png)
 
 A\* :
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_search_Astar.png)
+![](../imgs/cs188_search_Astar.png)
 
 
 ---
@@ -889,7 +889,7 @@ Creating Admissible Heuristics
 
 ### Example: 8 Puzzle
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_8Puzzle.png)
+![](../imgs/cs188_8Puzzle.png)
 
  - What are the states?
  - How many states?
@@ -951,7 +951,7 @@ Average nodes expanded when the optimal path has…
 
 ### Trivial Heuristics, Dominance
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_semi_heuristic.png)
+![](../imgs/cs188_semi_heuristic.png)
 
  - Dominance: ha ≥ hc if
     - ∀n : ha(n) >= hc(n)
@@ -970,7 +970,7 @@ Admissible heuristic with tree search is optimal but graph search no guarantees.
  - Tree Search: Extra Work! 
  - Failure to detect repeated states in search-graph can cause exponentially more work.  
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_repeate_work_tree_search.png)
+![](../imgs/cs188_repeate_work_tree_search.png)
 
  - Idea: never **expand** a state twice
  - How to implement: 
@@ -987,7 +987,7 @@ Admissible heuristic with tree search is optimal but graph search no guarantees.
 
 ### A* Graph Search Gone Wrong?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Astar_go_wrong.png)
+![](../imgs/cs188_Astar_go_wrong.png)
 
 SAC can not expand because C is in closed set.
 
@@ -1010,7 +1010,7 @@ SAC can not expand because C is in closed set.
     - A\* graph search is optimal
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ConsistencyofHeuristics.png)
+![](../imgs/cs188_ConsistencyofHeuristics.png)
 
 PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitive-Closed-Set 来解决，见最后代码. 但是会导致计算量增加。
 
@@ -1026,7 +1026,7 @@ PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitiv
     - Result: A* graph search is optimal
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Optimality_Astar_GraphSearch.png)
+![](../imgs/cs188_Optimality_Astar_GraphSearch.png)
 
 ---
 
@@ -1190,7 +1190,7 @@ end // func
     - p would have been expanded before n’
     - Contradiction!
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_optimality_AStar.png)
+![](../imgs/cs188_optimality_AStar.png)
 
 
 ---

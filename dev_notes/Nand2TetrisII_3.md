@@ -56,8 +56,8 @@
 
 ### Example 
 
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_example_1.png)
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_example_2.png)
+ - ![](../imgs/n2t_jack_example_1.png)
+ - ![](../imgs/n2t_jack_example_2.png)
     - entry:  Main.main
     - flow of control:
         - if / if ... else
@@ -86,7 +86,7 @@
 
  - Jack 的基本数据类型，数值方面的，只有int ，所有有必要扩充一下数值类型，比如 rational number.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_factionAPI.png)
+![](../imgs/n2t_factionAPI.png)
 
 <h2 id="eb8fed3241e22b795da243323dd0d9df"></h2>
 
@@ -95,16 +95,16 @@
  - filed, aka property, aka member variable
  - In Jack the only way to access field values from outside the class is through *accessor* methods.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_oop_1.png)
+![](../imgs/n2t_jack_oop_1.png)
 
  - functions are equivalent to static methods in JAVA. 
  - Jack constructor must return  the base address or must return an object of the type( i.e. this)
     - Java construtors do exactly the same but they do it implicity. You don't have to say `return this`  in Java but actually , compiler will do it. 
  - Jack method must call `return`  as well
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_oop_2.png)
+![](../imgs/n2t_jack_oop_2.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/v2t_jack_dispose.png)
+![](../imgs/v2t_jack_dispose.png)
 
  - dispose method is implemented using a call to the host OS -- `Memory.deAlloc(this)`
     - which takes an address in memory and disposes the memory block 
@@ -119,11 +119,11 @@
 
 ### OO programming : object representation 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_obj_represent_1.png)
+![](../imgs/n2t_obj_represent_1.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_obj_represent_2.png)
+![](../imgs/n2t_obj_represent_2.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_obj_represent_3.png)
+![](../imgs/n2t_obj_represent_3.png)
 
 
 <h2 id="71663dfce028d17668607661995a1d37"></h2>
@@ -143,7 +143,7 @@ null
 ```
 
  - so the list is kind of a linked list, but it is indeed  one object 
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_list_example.png)
+ - ![](../imgs/n2t_list_example.png)
  - The list (2, (3, (5,null)))  commonly abbreviated as (2,3,5)
  - so how to create and manipulate such collection objects.
 
@@ -235,7 +235,7 @@ class List {
 
 ### List representation
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_list_representation.png)
+![](../imgs/n2t_list_representation.png)
 
  - who makes the magic work ?
     - high-level: the constructor
@@ -355,7 +355,7 @@ class Foo {
     - A collection of classes
     - Similar to Java's standard class library , in spirit
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_std_os.png)
+![](../imgs/n2t_jack_std_os.png)
 
 
 <h2 id="690d3dc362ad3289be5978d10480faa8"></h2>
@@ -408,13 +408,13 @@ constructor | method | function  type subroutineName ( parameter-list ) {
 
 ### Statements
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_statement.png)
+![](../imgs/n2t_jack_statement.png)
 
 <h2 id="d3c7279c25a23f98e777a7bebe35d002"></h2>
 
 ### Expressions
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_expressions.png)
+![](../imgs/n2t_jack_expressions.png)
 
 <h2 id="ff43b8de4f41d5103405ddb62eb8d34e"></h2>
 
@@ -462,7 +462,7 @@ arr[2] = Fraction.new(314,100);
     - Screen: 23 rows of 64 characters, b&w
     - Font: featured by the Jack OS
     - Output: Jack OS Output class
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_output_api.png)
+ - ![](../imgs/n2t_jack_output_api.png)
 
 <h2 id="fb89fc7b0d2a50d38e81c914c3c46bb9"></h2>
 
@@ -472,7 +472,7 @@ arr[2] = Fraction.new(314,100);
     - Screen: 256 rows of 512 pixels, b&w
     - Output: Jack OS Screen class ( or do your own )
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_screen.png)
+![](../imgs/n2t_jack_screen.png)
 
 <h2 id="ef13e4867d3df16a26f0da8e087e604d"></h2>
 
@@ -482,13 +482,13 @@ arr[2] = Fraction.new(314,100);
     - Standard keyboard
     - Input programming:  use the OS Keyboard class
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_keyboard_api.png)
+![](../imgs/n2t_jack_keyboard_api.png)
 
 <h2 id="3a642fb9488105d110aae04b379f2048"></h2>
 
 ### The Jack character set
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_character_set.png)
+![](../imgs/n2t_jack_character_set.png)
 
  - `Keyboard.keypress()`
     - return the code of the currently pressed key, or 0 when no key is pressed
@@ -497,7 +497,7 @@ arr[2] = Fraction.new(314,100);
 
 ### The Jack OS: Math
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_Math_api.png)
+![](../imgs/n2t_jack_Math_api.png)
 
  - 写 jack 程序的时候，你不需要 Math.multiply , Math.divide 这个两个方法， 你可以直接使用 \*, / 
     - 这两个方法在写Jack compiler 的时候会有帮助
@@ -506,7 +506,7 @@ arr[2] = Fraction.new(314,100);
 
 ### The Jack OS: String
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_String_api.png)
+![](../imgs/n2t_String_api.png)
 
 <h2 id="24541d4f92edd767f23faf23e21be1a3"></h2>
 
@@ -525,7 +525,7 @@ Class Array {
 
  - Let Jack programs to access the host RAM directly
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_Memory_api.png)
+![](../imgs/n2t_jack_Memory_api.png)
 
  - alloc / dealloc 
     - used to create memory blocks and dispose them when they are no longer needed. 

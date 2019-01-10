@@ -38,7 +38,7 @@
 
 ### 2.1 Forward Rendering
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_fwdrd.png)
+![](../imgs/u3d_shader_fwdrd.png)
 
  - Forward Rendering是绝大数引擎都含有的一种渲染方式
  - 要使用Forward Rendering，一般在Vertex Shader或Fragment Shader阶段对每个顶点或每个像素进行光照计算，并且是对每个光源进行计算产生最终结果 
@@ -52,14 +52,14 @@ For each ligth:
 
  - Unity3D, 对于下图中的圆圈（表示一个Geometry），进行Forward Rendering处理
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_fwdrd_01.png)
+![](../imgs/u3d_shader_fwdrd_01.png)
 
  - 将得到下面的处理结果
     - 也就是说，对于ABCD四个光源我们在Fragment Shader中我们对每个pixel处理光照，
     - 对于DEFG光源我们在Vertex Shader中对每个vertex处理光照，
     - 而对于GH光源，我们采用球调和（SH）函数进行处理
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_fwdrd_02.png)
+![](../imgs/u3d_shader_fwdrd_02.png)
 
  - Forward Rendering优缺点
     - 光源数量对计算复杂度影响巨大，所以比较适合户外这种光源较少的场景（一般只有太阳光）
@@ -79,7 +79,7 @@ For each ligth:
 
 ## 2.2 Deferred Rendering
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_defrd.png)
+![](../imgs/u3d_shader_defrd.png)
 
  - Deferred Rendering（延迟渲染）顾名思义，就是将光照处理这一步骤延迟一段时间再处理
  - 要做到这一步，需要一个重要的辅助工具 -- G-Buffer: Geometry Buffer，亦即“物体缓冲”

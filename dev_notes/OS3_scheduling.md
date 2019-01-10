@@ -50,7 +50,7 @@
 
 ## CPU Scheduling
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_process_scheduling.png)
+![](../imgs/os_process_scheduling.png)
 
 
  - Earlier, we talked about the life-cycle of a thread
@@ -89,7 +89,7 @@ Why if I'm graphing the amount of time that the thread actually uses the CPU I g
 
 This peak is waying there's a lot of short bursts and some long bursts. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cpu_burst.png)
+![](../imgs/os_thread_cpu_burst.png)
 
  - Execution model: programs alternate between bursts of CPU and I/O
     - Program typically uses the CPU for some period of time, then does I/O, then uses CPU again
@@ -137,7 +137,7 @@ P3          3
 
  - Example cont.
     - Suppose processes arrive in the order: P1 , P2 , P3 The Gantt Chart for the schedule is:
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_scheduling_gantt_chart.png)
+        - ![](../imgs/os_cpu_scheduling_gantt_chart.png)
     - Waiting time for P1 = 0; P2 = 24; P3 = 27
     - Average waiting time: (0 + 24 + 27)/3 = 17
     - Average Completion time: (24 + 27 + 30)/3 = 27
@@ -147,7 +147,7 @@ P3          3
 
  - Example continued:
     - Suppose that processes arrive in order: P2 , P3 , P1 Now, the Gantt chart for the schedule is:
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_scheduling_gantt_chart2.png)
+        - ![](../imgs/os_cpu_scheduling_gantt_chart2.png)
     - Waiting time for P1 = 6; P2 = 0; P3 = 3 
     - Average waiting time: (6 + 0 + 3)/3 = 3
     - Average Completion time: (3 + 6 + 30)/3 = 13
@@ -192,7 +192,7 @@ P4          24
 
  - Example:
     - The Gantt chart is:
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_scheduling_gantt_chart_rr.png)
+        - ![](../imgs/os_cpu_scheduling_gantt_chart_rr.png)
 
     - Waiting time for P1=(68-20)+(112-88)=72
         - P2=(20-0)=20
@@ -232,7 +232,7 @@ P4          24
  - Simple example:
     - 10 jobs, each take 100s of CPU time RR scheduler quantum of 1s All jobs start at the same time
  - Completion Times:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_scheduling_FCFS_vs_RR.png)
+    - ![](../imgs/os_cpu_scheduling_FCFS_vs_RR.png)
     - Both RR and FCFS finish at the same time
     - Average response time is much worse under RR!
         - Bad when all jobs same length
@@ -243,7 +243,7 @@ P4          24
 
 ### Earlier Example with Different Time Quantum
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_scheduling_FCFS_vs_RR2.png)
+![](../imgs/os_cpu_scheduling_FCFS_vs_RR2.png)
 
  - The short jobs really benefit from round-robin , the long jobs don't. 
 
@@ -305,7 +305,7 @@ P4          24
 
 ### Example to illustrate benefits of SRTF
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_benefits_of_SRTF.png)
+![](../imgs/os_scheduling_benefits_of_SRTF.png)
 
  - 单核 ，存在cpu密集型计算的场景
  - Three jobs:
@@ -318,7 +318,7 @@ P4          24
     - Easier to see with a timeline
  
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_benefits_of_SRTF2.png)
+![](../imgs/os_scheduling_benefits_of_SRTF2.png)
 
  - RR , 100ms 
     - low disk utilization.  If you are copying a file, it will take a long time
@@ -349,13 +349,13 @@ So clearly we're going to approximate SRTF. The real question is how to approxim
     - For instance
         - exponential averaging τ<sub>n</sub> = αt<sub>n-1</sub> + (1-α)τ<sub>n-1</sub> 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_SRTF_predicting.png)
+![](../imgs/os_scheduling_SRTF_predicting.png)
 
 <h2 id="b368ccd38ca1f20e9180849717ae985e"></h2>
 
 ## Multi-Level Feedback Scheduling
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_SRTF_predicting.png)
+![](../imgs/os_scheduling_SRTF_predicting.png)
 
  - Another method for exploiting past behavior
     - First used in CTSS
@@ -438,7 +438,7 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
 
  - Lottery Scheduling Example
     - Assume short jobs get 10 tickets, long jobs get 1 ticket
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_lottery_example.png)
+        - ![](../imgs/os_scheduling_lottery_example.png)
     - What if too many short jobs to give reasonable response time? 
         - In UNIX, if load average is 100, hard to make progress
         - One approach: log some user out
@@ -454,7 +454,7 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
  - Implementation/Simulation:
     - Build system which allows actual algorithms to be run against actual data. Most flexible/general.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_evaluate.png)
+![](../imgs/os_scheduling_evaluate.png)
 
 
 <h2 id="31f0723d929b04251bfc845445af1867"></h2>
@@ -468,7 +468,7 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
     - One approach: Buy it when it will pay for itself in improved response time
         - Assuming you’re paying for worse response time in reduced productivity, customer angst, etc…
         - Might think that you should buy a faster X when X is utilized 100%, but usually, response time goes to infinity as utilization => 100%
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_scheduling_response_vs_utilization.png)
+        - ![](../imgs/os_scheduling_response_vs_utilization.png)
  - An interesting implication of this curve:
     - Most scheduling algorithms work fine in the “linear” portion of the load curve, fail otherwise
     - Argues for buying a faster X when hit “knee” of curve
@@ -514,7 +514,7 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
  - Binding of instructions and data to addresses:
     - Choose addresses for instructions and data from the standpoint of the processor
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_virtualize_resource_binding_inst_data_to_mem.png)
+    - ![](../imgs/os_virtualize_resource_binding_inst_data_to_mem.png)
         - notice there are no actual addresses. All there are symbols. 
     - Could we place data1, start, and/or checkit at different addresses?
         - Yes
@@ -526,7 +526,7 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 ## Multi-step Processing of a Program for Execution
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_virtualize_resource_multi_step_processing.png)
+![](../imgs/os_virtualize_resource_multi_step_processing.png)
 
  - Preparation of a program for execution involves components at:
     - Compile time (i.e. “gcc”)
@@ -547,7 +547,7 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
  - Multiprogramming without Translation or Protection
     - Must somehow prevent address overlap between threads
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_virtualize_resource_memory_address_ver1.png)
+        - ![](../imgs/os_virtualize_resource_memory_address_ver1.png)
     - Trick: Use Loader/Linker: Adjust addresses while program loaded into memory (loads, stores, jumps)
         - Everything adjusted to memory location of program
         - Translation done by a linker-loader
@@ -559,7 +559,7 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 ## Multiprogramming (Version with Protection)
 
  - Can we protect programs from each other without translation?
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_virtualize_resource_memory_address_ver2.png)
+    - ![](../imgs/os_virtualize_resource_memory_address_ver2.png)
     - Yes: use two special registers Base and Limit to prevent user from straying outside designated area
         - If user tries to access an illegal address, cause an error
     - During switch, kernel loads new base/limit from TCB
@@ -569,7 +569,7 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 ## Segmentation with Base and Limit registers
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_virtualize_resource_memory_address_segmentation.png)
+![](../imgs/os_virtualize_resource_memory_address_segmentation.png)
 
 
 
@@ -586,7 +586,7 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 ## Issues with simple segmentation method
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_virtualize_resource_memory_address_segmentation_issue.png)
+![](../imgs/os_virtualize_resource_memory_address_segmentation_issue.png)
 
  - Fragmentation problem
     - Not every process is the same size
@@ -621,14 +621,14 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 ## Example of General Address Translation
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_example_address_translation.png)
+![](../imgs/os_example_address_translation.png)
 
 
 <h2 id="82f0f63373d278fc12a45e84e20b2e8f"></h2>
 
 ## Two Views of Memory
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_memory_address_2views_of_memory.png)
+![](../imgs/os_memory_address_2views_of_memory.png)
 
  - Recall: Address Space:
     - All the addresses and state a process can touch
@@ -653,7 +653,7 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 --- | --- | ---
 p1 index | p2 index | page offset
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_memory_address_translation_example.png)
+![](../imgs/os_memory_address_translation_example.png)
 
  - Page: a unit of memory translatable by memory management unit (MMU)
     - Typically 1K – 8K

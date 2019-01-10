@@ -70,7 +70,7 @@ g(z) 称为 S型函数 Sigmoid function 或 逻辑函数 Logistic function
 
 g(z)的函数图像如下：
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/g_z.png)
+![](../imgs/g_z.png)
 
 当z << 0 (-4 附近)，g(z) 接近0，而当 z >> 0 (4) ，g(z)接近 1，从而达到分类的目的。
 
@@ -141,7 +141,7 @@ J(θ)= 1/m ∑ cost( h(x) , y )   (∑ i=1,m)
 
 -log(x) (粗) , -log(1-x) (细) 函数图像:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ML_logx.png)
+![](../imgs/ML_logx.png)
 
 `特点`:
 

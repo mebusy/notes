@@ -54,7 +54,7 @@ Recommended Textook/Notes
 
 #### CPU vs GPU
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CPU_vs_GPU.png)
+![](../imgs/CPU_vs_GPU.png)
 
 
  1. CPU has more local cache
@@ -128,7 +128,7 @@ CUDA C , a heterogeneous parallel programming interface that enables exploitatio
 
 The phenomena of data parallelism is that , different parts of the data can actually be processed independently of each other. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/data_parallelism_vector_addition.png)
+![](../imgs/data_parallelism_vector_addition.png)
 
 A very simple example is vector addition. When we add 2 vector together, the elements can be added together independently.
  
@@ -149,7 +149,7 @@ CUDA is really a programming language at the C level. It actually designed as an
 
 Von-Neumann Processor:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Von_Neumann_Processor.png)
+![](../imgs/Von_Neumann_Processor.png)
 
 A thread is a "virtualized" and "abstracted" Von-Neumann Processor. 
 
@@ -167,7 +167,7 @@ How A Single Thread Block Work:
 
 threads 0-255:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/array_of_parallel_threads.png)
+![](../imgs/array_of_parallel_threads.png)
 
 执行同一份代码的threads 称为 thread block. All the thread will run the same code. But every thread has a different thread index value, that is used to compute memory addressed and make controlled decisions.
 
@@ -175,7 +175,7 @@ In this example, there's 256 thread in the thread block , each of them have an u
 
 How Multiple Thread Blocks Work:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/multiple_array_of_parallel_threads.png)
+![](../imgs/multiple_array_of_parallel_threads.png)
 
  - Divide thread array into mulitple blocks
  - Threads within a block cooperate via **shared memory**(exchange data), **atomic operations** (update same variable) , and **barrier synchronization**(屏障同步 to force others to wait)
@@ -232,7 +232,7 @@ void vecAdd(float* h_A,float* h_B,float* h_C,int n){
 }
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cuda_host_code_example.png)
+![](../imgs/cuda_host_code_example.png)
 
 Instead of performing the actual computation, this function is actually going to call a kernel function that will be executed on the device , and before calling that function , this functio also needs to do some outsourcing activity. It needs to copy data from the host memory into the device memory , so that the device is ready to precess data. And eventually after the device completes its computation it needs to copy the data's C vector back into the host memory.
 
@@ -240,7 +240,7 @@ Instead of performing the actual computation, this function is actually going to
 
 #### Partial overview of CUDA memories
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cuda_memory.png)
+![](../imgs/cuda_memory.png)
 
 
  - device code can
@@ -492,6 +492,6 @@ PictureKernel <<< DimGrid , DimBlock >>> (d_Pin , d_Pout , m,n) ;
 
 ---
 
-  [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/multiple_dimension_array_of_parallel_threads.png
+  [1]: ../imgs/multiple_dimension_array_of_parallel_threads.png
 
 

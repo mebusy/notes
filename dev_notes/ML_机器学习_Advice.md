@@ -74,7 +74,7 @@
 
 #### Diagnosing Bias vs. Variance
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BiasVsVariance.png)
+![](../imgs/BiasVsVariance.png)
 
 BiasVsVariance.png
 
@@ -115,7 +115,7 @@ large (eg.100) | heavily penalized → 0 | High Bias(underfit)
 
 train / CV set affected by λ:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/regularization_BiasVsVariance.png)
+![](../imgs/regularization_BiasVsVariance.png)
 
 ---
 
@@ -125,11 +125,11 @@ train / CV set affected by λ:
 
 Plot learning curve give you a better sense of whether there is a bias or variance problem, or a bit of both.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LearnCurve_high_bias.png)
+![](../imgs/LearnCurve_high_bias.png)
 
 ---
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LearnCurve_high_variance.png)
+![](../imgs/LearnCurve_high_variance.png)
 
 **For** variance problem, if you provide more and more training sample, J_train / J_cv may be `converge` to each other.
 

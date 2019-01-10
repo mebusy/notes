@@ -86,7 +86,7 @@
 
 ### vBucket
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/memcache_evolve_vbucket.png)
+![](../imgs/memcache_evolve_vbucket.png)
 
  - vBucket其实就是key的分组,然后配置中心只需维护vBucket到节点的映射关系
  - 复制以及数据迁移都以vBucket为单位,这样降低了复制和数据迁移的成本

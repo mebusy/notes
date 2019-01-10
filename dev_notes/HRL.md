@@ -44,7 +44,7 @@
 - T and R now include the random variable N -- the number of time steps than an abstract action *a* takes to complete.
     - T(s,a,s',N) = Pr{ s<sub>t+N</sub> = s' | s<sub>t</sub>=s, a<sub>t</sub>=a }
     - R accumulates single step rewards as it executes
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/HRL_R.png)
+        - ![](../imgs/HRL_R.png)
 - For problems that are guaranteed to terminate, the discount factor γ can be set to 1.
     - in this case , V和Q的公式 就接近 一般MDP的V和Q，除了 reward
 
@@ -61,9 +61,9 @@
 
 4 room problems
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/HRL_4_room_problems.png)
+![](../imgs/HRL_4_room_problems.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/HRL_4_room_problems_structure.png)
+![](../imgs/HRL_4_room_problems_structure.png)
 
  - A task-hierarchy decomposing the 4-room task
     - 2 lower-level subtask ared MPDs for a generic room
@@ -155,11 +155,11 @@ A hierarchical optimality can be arbitrarily worse than the globally optimal sol
         - = Q<sup>π</sup> (mₐ,s,π(s)) , if *a* is abstract
         - = ∑<sub>s'</sub> T(s,a,s')R(s,a,s')  , if *a* is primitive
  - If the path of activated subtasks from root subtask m₀ to primitive action m<sub>k</sub> is m₀,m₁,..., m<sub>k</sub> , and the hierarchical policy specifies that in subtask mᵢ, π(s) = aᵢ , then 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/HRL_maxq_value_decomposition_0_k.png)
+    - ![](../imgs/HRL_maxq_value_decomposition_0_k.png)
  - To follow an optimal greedy policy given the hierarchy
     - V<sup>\*</sup>(mₐ,s) = max<sub>s'</sub> Q<sup>\*</sup>(mₐ,s,a′)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/HRL_4_room_problems_Value_decompose.png)
+![](../imgs/HRL_4_room_problems_Value_decompose.png)
 
  - The decomposed value of the agent’s state has three terms
     - determined by the two levels in the task-hierarchy plus a primitive action.It is composed by
@@ -170,7 +170,7 @@ A hierarchical optimality can be arbitrarily worse than the globally optimal sol
 
 Algorithm 18 performs such a depth-first search and returns both the value and best action for subtask m in state s.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/HRL_algorithm18.png)
+![](../imgs/HRL_algorithm18.png)
 
 > Algorithm 18. Evaluate(m,s) [Dietterich (2000)]
 
@@ -180,7 +180,7 @@ Algorithm 18 performs such a depth-first search and returns both the value and b
 
 Algorithm 19 performs the equivalent of on-line Q-Learning for completion functions for each of the subtask SMDPs in a task-hierarchy.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/HRL_algorithm19.png)
+![](../imgs/HRL_algorithm19.png)
 
 > Algorithm 19. MAXQ(m,s) [Dietterich (2000)]
 
@@ -211,7 +211,7 @@ Require: root node m₀, starting state s₀, V,C
 
  - The designer of the task-hierarchy in Figure 9.5 has recognised several state abstraction opportunities. Recall that the state is described by the tuple (room, position).
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/HRL_f9.5.png)
+![](../imgs/HRL_f9.5.png)
 
 > Fig. 9.5 A task task-hierarchy for the four-room task. The subtasks are room-leaving actions and can be used in any of the rooms.
 

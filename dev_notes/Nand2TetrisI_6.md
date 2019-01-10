@@ -60,7 +60,7 @@ Until end-of-file
 
 ## 6.2 The Hack Assembly Language 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_assembler_symbols.png)
+![](../imgs/n2t_hack_assembler_symbols.png)
 
 <h2 id="c399c1815d9e255c57e6c274579b8a20"></h2>
 
@@ -85,7 +85,7 @@ Until end-of-file
 
  - `dest = comp ; jump`
  - `111` a c1 c2 c3 c4 c5 c6 d1 d2 d3 j1 j2 j3 
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_c_instruction_again.png)
+ - ![](../imgs/n2t_c_instruction_again.png)
 
 
 <h2 id="ff03d198aff223f51c6fe6743fd2ff49"></h2>

@@ -338,7 +338,7 @@ Record the funcion call rather than recording the GUI operations.
 
 **Application**:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SoftwareDebugging_unit5_captureCoverage.png)
+![](../imgs/SoftwareDebugging_unit5_captureCoverage.png)
 
 We can find that "quote=not quote" only executed in the failing runs. So all we need in **this situation** is to look at this condition.
 
@@ -354,7 +354,7 @@ What we want to look for are lines that statistically correlate with failure. Th
 
 ### Phi Coefficient
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SoftwareDebugging_unit5_correlation.png)
+![](../imgs/SoftwareDebugging_unit5_correlation.png)
 
 In this table you count how frequently a line was covered in failling runs, as well as in passing runs.
 

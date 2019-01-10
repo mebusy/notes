@@ -231,9 +231,9 @@ literal | 两个 “ 之间除“ 以外的 任何字符 | "core dumped"
 
 
  - 模拟DFA
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/compiler_dfa_simulation.png)
+    - ![](../imgs/compiler_dfa_simulation.png)
  - 模拟NFA
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/compiler_nfa_simulation.png)
+    - ![](../imgs/compiler_nfa_simulation.png)
 
 
  - NFA 合并

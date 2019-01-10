@@ -642,7 +642,7 @@ double spam; // (read only)
 ## Code Insertion
 
  - The structure of SWIG’s output
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/swig_structure_of_swig_output.png)
+    - ![](../imgs/swig_structure_of_swig_output.png)
  - Four directives are available for inserting code
     - %{ ... %} inserts code into the header section
     - %init %{ ... %} inserts code into the initialization function

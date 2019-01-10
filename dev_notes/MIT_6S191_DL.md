@@ -51,10 +51,10 @@ http://introtodeeplearning.com/schedule.html
 ## Fundamentals of Deep Learning
  
  - Perceptron Forward Pass
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_perceptron.png)
+    - ![](../imgs/MIT6S191_perceptron.png)
     - output = g(XW +b)
  - Comon Activation Functions
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_common_activation_function.png)
+    - ![](../imgs/MIT6S191_common_activation_function.png)
 
 <h2 id="20b50b357f447578f0eb0a92b8572479"></h2>
 
@@ -64,13 +64,13 @@ http://introtodeeplearning.com/schedule.html
     - Perceptrons are the base of every neural network
     - we need to stack them , put them together in order to actually build these things
     - Perceptron Diagram Simplified 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_perceptron_simplified.png)
+        - ![](../imgs/MIT6S191_perceptron_simplified.png)
     - Multi-Output Perceptron
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_multi_output_perceptron.png)
+        - ![](../imgs/MIT6S191_multi_output_perceptron.png)
     - Multi-Layer Perceptron (MLP)
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_multi_layer_perceptron.png)
+        - ![](../imgs/MIT6S191_multi_layer_perceptron.png)
     - Deep Neural Network
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_deep_nnet.png)
+        - ![](../imgs/MIT6S191_deep_nnet.png)
 
 <h2 id="2f89dcf6a5cb1586f393dff1f636e86c"></h2>
 
@@ -80,9 +80,9 @@ http://introtodeeplearning.com/schedule.html
     - the loss function is with respect to every training sample
     - while for batch Gradient Descent , the loss function is with respect to the whole training set.
  - Calculating the Gradient: Backpropagation
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_backpropagation.png)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_backpropagation2.png)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_backpropagation3.png)
+    - ![](../imgs/MIT6S191_backpropagation.png)
+    - ![](../imgs/MIT6S191_backpropagation2.png)
+    - ![](../imgs/MIT6S191_backpropagation3.png)
 
 <h2 id="469fdf8a17a30399d48905940e2d3495"></h2>
 
@@ -112,7 +112,7 @@ http://introtodeeplearning.com/schedule.html
     - ADAM, Momentum, NAG, Adagrad, Adadelta, RMSProp
  - Escaping Saddle Points
     - with a fixed learning rate we can really get stuck in a saddle point , while other adaptive learning rate can recognize that we're in a saddle point and escape pretty quickly by increasing the leraning rate. 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_escape_saddle_point.png)
+    - ![](../imgs/MIT6S191_escape_saddle_point.png)
 
 
 <h2 id="21c449704c125fc952b10f4ffd022c1f"></h2>
@@ -148,8 +148,8 @@ http://introtodeeplearning.com/schedule.html
         - when you reach a point at which the training accuracy goes up, but the validation actually goes down. and it continues to go down.
         - early stopping essentially is just kind of keep track of how well the validation is doing and you just kind of stopping the training once it starts doing worse.
         - it is really simple technique and it works really well in practice.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_stop_early1.png)
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_stop_early2.png)
+        - ![](../imgs/MIT6S191_stop_early1.png)
+        - ![](../imgs/MIT6S191_stop_early2.png)
     3. Weight Regularization
         - Large (big) weights typically mean model is overfitting
             - big weights means rely too much on nodes??
@@ -181,26 +181,26 @@ What if each training sample itself consisted of multiple data points, and those
 
  - idea: represent a sequence as a bag of words
     - all a bag of words means is that we have this fixed length feature vector , each slot represents a word and the number in that slot represents the number of times that word happens in the sentence. 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT_6S191_a_bag_of_words.png)
+    - ![](../imgs/MIT_6S191_a_bag_of_words.png)
  - problem: bag of words does not preserve order
     - “The food was good, not bad at all.”  
     - vs
     - “The food was bad, not good at all.”
     - they are completely different semantics meetings but in their bag of words representation, they would be exactly the same because they contain the same set of words. 
  - idea: maintain an ordering within feature vector 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_orderingWithinFeatureVector.png)
+    - ![](../imgs/MIT6S191_orderingWithinFeatureVector.png)
  - problem: hard to deal with different word orders
     - “On Monday, it was snowing.” 
     - vs
     - “It was snowing on Monday.”
     - these mean the exact same thing, but if we look at their representations, they're completely different.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_orderingWithinFeatureVector2.png)
+        - ![](../imgs/MIT6S191_orderingWithinFeatureVector2.png)
     - We would have to **relearn the rules of language** at each point in the sentence.
 
 A way to solve it is by sharing parameters across our sequence. So once we learn something like the fact that "on Monday" represents a time or a setting we can resus that fact later on in the sentence. 
 
  - idea: markov models
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_learn_sequence_markov.png)
+    - ![](../imgs/MIT6S191_learn_sequence_markov.png)
  - problem: we can’t model long-term dependencies
     - **markov assumption**: each state depends only on the last state. 
     - This is a kind of problem for complex sequences like natural language or speach waveforms. 
@@ -215,18 +215,18 @@ A way to solve it is by sharing parameters across our sequence. So once we learn
     - each hidden unit in addtion to computing a function of the input , also computes a function of its own previous output
     - in this way it's able to keep track of things that have happened in the past. 
  - RNNS **remember** their previous state:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNNs_hidden_unit.png)
+    - ![](../imgs/MIT6S191_RNNs_hidden_unit.png)
         - x₀: vector representing first word
         - s₀: cell state at t=0 (some initialization)
         - s₁: cell state at t=1
             - s₁ = tanh( Wx₀ + Us₀ )
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNNs_hidden_unit2.png)
+    - ![](../imgs/MIT6S191_RNNs_hidden_unit2.png)
         - x₁: vector representing second word
         - s₁: cell state at t=1 (some initialization)
         - s₂: cell state at t=2
             - s₂ = tanh( Wx₁ + Us₁ )
  - “unfolding” the RNN across time: 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_unfolding.png)
+    - ![](../imgs/MIT6S191_RNN_unfolding.png)
     - the orange circle is the same hidden unit just at different points in time.
     - at each time step it takes in a new word and it calculates the next output of the hidden unit based on that new word and its own previous output. And it just continues doing this throughout time. -- I say time but it also means, if we have a sentence , like the word in the sentence or the point that we're in the sentence. 
     - **notice that W and U stay the same** through out the sequence. 
@@ -237,19 +237,19 @@ A way to solve it is by sharing parameters across our sequence. So once we learn
     - all the works of shakespeare
         - -> language model ->
         - KING LEAR: O, if you were a feeble sight, the courtesy of your law, Your sight and several breath, will wear the gods With his heads, and my hands are wonder'd at the deeds, So drop upon your lordship's head, and your opinion Shall be against your honour.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_language_model.png)
+    - ![](../imgs/MIT6S191_RNN_language_model.png)
     - yᵢ is actually a probability distribution over possible next words, aka a softmax 
         - given that I'm at the start of a sentence what is the most likely next word ?  alas
         - now given that I've seen "alas" what's the most likely next word ? my
         - given that I've seen "alas my"  what's the most likely next word ? honor. 
  - possible task: classification (i.e. sentiment)
     - say we have a bunch of tweets and we want to just determine whether they're good or bad or neutral. 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_task_classification.png)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_task_classification2.png)
+    - ![](../imgs/MIT6S191_RNN_task_classification.png)
+    - ![](../imgs/MIT6S191_RNN_task_classification2.png)
         - y is a probability distribution over possible classes (like positive, negative, neutral), aka a softmax 
  - possible task: machine translation
     - encoder/decoder model 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_encode_decoder_model.png)
+    - ![](../imgs/MIT6S191_RNN_encode_decoder_model.png)
     - 2 different RNNs. first is known as an encoder.
 
 <h2 id="a71db179cb1a8655fb494133f79c535a"></h2>
@@ -262,23 +262,23 @@ A way to solve it is by sharing parameters across our sequence. So once we learn
  - we have a loss at each timestep:
     - since we’re making a prediction at each timeste
     - we're not just making a prediction at the end. Oftentimes we're doing something at each time step and making prediction.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_loss.png)
+    - ![](../imgs/MIT6S191_RNN_loss.png)
         - loss at each timestep
  - we **sum the losses** across time:
     - loss at time t = J<sub>t</sut>(Θ)
     - total loss = J(Θ) = ∑ J<sub>t</sut>(Θ)
  - what are our gradients? 
     - we sum gradients across time for each parameter P:
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_gradients.png)
+        - ![](../imgs/MIT6S191_RNN_gradients.png)
  - let’s try it out for W with the chain rule: 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_gradients2.png)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_gradients3.png)
+    - ![](../imgs/MIT6S191_RNN_gradients2.png)
+    - ![](../imgs/MIT6S191_RNN_gradients3.png)
  - how does s₂ depend on W? 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_gradients4.png)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_gradients5.png)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_gradients6.png)
+    - ![](../imgs/MIT6S191_RNN_gradients4.png)
+    - ![](../imgs/MIT6S191_RNN_gradients5.png)
+    - ![](../imgs/MIT6S191_RNN_gradients6.png)
  - backpropagation through time: 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_gradients_backpropagation.png)
+    - ![](../imgs/MIT6S191_RNN_gradients_backpropagation.png)
 
 <h2 id="ab33d2e55a6ebd5e4c71fe57baaa6087"></h2>
 
@@ -287,13 +287,13 @@ A way to solve it is by sharing parameters across our sequence. So once we learn
 It is because of this annoying problem called the vanishing gradient.
 
  - problem: vanishing gradient
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_vanishing_gradient.png)
+    - ![](../imgs/MIT6S191_RNN_vanishing_gradient.png)
         - the term ∂s₂/∂s<sub>k</sub> itself is also a chain rule.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_vanishing_gradient2.png)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_vanishing_gradient3.png)
+    - ![](../imgs/MIT6S191_RNN_vanishing_gradient2.png)
+    - ![](../imgs/MIT6S191_RNN_vanishing_gradient3.png)
         - as the gap between timesteps gets bigger, this product gets longer and longer!
         - what are each of these ∂ terms ?
-            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_vanishing_gradient4.png)
+            - ![](../imgs/MIT6S191_RNN_vanishing_gradient4.png)
             - W = sampled from standard normal distribution = mostly < 1> 
             - f = tanh or sigmoid so f’ < 1
         - we’re multiplying a lot of **small numbers** together. 
@@ -304,7 +304,7 @@ It is because of this annoying problem called the vanishing gradient.
 
  - solution #1: activation functions
     - choose ReLU: prevents f’ from shrinking the gradients
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_bias_solution1.png)
+    - ![](../imgs/MIT6S191_RNN_bias_solution1.png)
  - solution #2: initialization
     - weights initialized to identity matrix , biases initialized to zeros
     - prevents W from shrinking the gradients
@@ -313,7 +313,7 @@ It is because of this annoying problem called the vanishing gradient.
         - a gated unit basically controls what the information is passed through , prevent the vanishing gradient problem.
         - LSTM: long short term memory  
         - GRU: gated recurrent units
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_rnn_vs_lstm.png)
+    - ![](../imgs/MIT6S191_RNN_rnn_vs_lstm.png)
  - solution #3: more on LSTM
     - LSTM is very similar to a recurrent cell , it takes in a cell state and output the next cell state based on that.
     - but there is just some additional steps in between. 
@@ -334,16 +334,16 @@ It is because of this annoying problem called the vanishing gradient.
     - basic encoder-decoder model
     - add LSTM cells
     - problem: a fixed-length encoding is limiting  
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_lstm_cells_encoder_decoder_model.png)
+        - ![](../imgs/MIT6S191_RNN_lstm_cells_encoder_decoder_model.png)
         - all the decoder knows about the input sentence is in one fixed length vector, s₂
     - solution: attend over all encoder states
         - we're attending over all of the encoder states 
         - so the feature vector that's fed in to our decoder , that's telling our decoder what the original sentence was about is not just the last cell state , but a weighted sum of all of the cell states , from the encoder 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_lstm_cells_encoder_decoder_model2.png)
+        - ![](../imgs/MIT6S191_RNN_lstm_cells_encoder_decoder_model2.png)
             - if we're decoding the first word , we might choose to put most of the weight on the first cell state from the encoder, because that's most probably what's most relevant. 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_lstm_cells_encoder_decoder_model3.png)
+        - ![](../imgs/MIT6S191_RNN_lstm_cells_encoder_decoder_model3.png)
             - then we're decoding the second word, we might put most of the weight on the second cell state , but maybe a little bit on the first cell state.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_RNN_lstm_cells_encoder_decoder_model4.png)
+        - ![](../imgs/MIT6S191_RNN_lstm_cells_encoder_decoder_model4.png)
             - and so on and so forth. 
         - and those weight that we use to create this weighted sum are just learned along with the rest of our parameters in the model using backpropagation. They just come part of our data. 
 
@@ -386,14 +386,14 @@ It is because of this annoying problem called the vanishing gradient.
 ## Convolutional Neural Networks
 
  - CNN have a volumn , a 3d volumn.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_volumn.png)
+    - ![](../imgs/MIT6S191_CNN_volumn.png)
     - Each layer takes a 3d volume, produces 3d volume with some smooth function that may or may not have parameters.
  
 <h2 id="d0a817f7b8f356e5100a34f135766419"></h2>
 
 ## Convolutional Neural Networks: Layers 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_Layers.png)
+![](../imgs/MIT6S191_CNN_Layers.png)
 
 > 卷积神经网络各个层级结构
 
@@ -420,17 +420,17 @@ It is because of this annoying problem called the vanishing gradient.
     - The parameters on **a each filter** are spatially “shared”
         - (if a feature is useful in one place, it’s useful elsewhere)
  - filter
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_filter.png)
+    - ![](../imgs/MIT6S191_CNN_filter.png)
     - 多个滤波器叠加便成了卷积层
  - 不同的滤波器filter会得到不同的输出数据
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_filter_example.png)
+    - ![](../imgs/MIT6S191_CNN_filter_example.png)
  - 卷积参数
     - a. 深度depth：神经元个数，决定输出的depth厚度。同时代表滤波器个数。
     - b. 步长stride：决定滑动多少步可以到边缘。
     - c. 填充值zero-padding：在外围边缘补充若干圈0，方便从初始位置以步长为单位可以刚好滑倒末尾位置，通俗地讲就是为了总长能被步长整除。 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_properties.png)
+    - ![](../imgs/MIT6S191_CNN_properties.png)
  - 卷积过程
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/conv2d.gif)
+    - ![](../imgs/conv2d.gif)
         - 两个神经元，即depth=2，意味着有两个滤波器。
         - 数据窗口每次移动两个步长取3\*3的局部数据，即stride=2。
         - zero-padding=1。
@@ -441,13 +441,13 @@ It is because of this annoying problem called the vanishing gradient.
 
 ## Convolution
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_convolution.png)
+![](../imgs/MIT6S191_CNN_convolution.png)
 
 <h2 id="d7d278172ca7a83e10e19938b70aabaf"></h2>
 
 ## Convolution: Representation Learning
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_representation_learning.png)
+![](../imgs/MIT6S191_CNN_representation_learning.png)
 
 What CNNs are is a composition of these filters. 
 
@@ -460,9 +460,9 @@ What CNNs are is a composition of these filters.
 
 ## ConvNets: Pooling
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_max_pooling1.png)
+![](../imgs/MIT6S191_CNN_max_pooling1.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_max_pooling2.png)
+![](../imgs/MIT6S191_CNN_max_pooling2.png)
 
  - Pooling is an operation that reduces the size of the input and the output. and there is most importantly no learnable weights on this operation.
  - pool 就是 取区域平均或最大(max pool)
@@ -483,13 +483,13 @@ What CNNs are is a composition of these filters.
 
 ### Case Study: ImageNet
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_case_study_1.png)
+![](../imgs/MIT6S191_CNN_case_study_1.png)
 
 <h2 id="0cfa6b933928d71f5576ec0898641745"></h2>
 
 ### Same Architecture, Many Applications
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_CNN_objectRecog_architecture.png)
+![](../imgs/MIT6S191_CNN_objectRecog_architecture.png)
 
 ---
 
@@ -502,7 +502,7 @@ What CNNs are is a composition of these filters.
 
 ## ENTER THE DEEP
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_DL_enter_deep.png)
+![](../imgs/MIT6S191_DL_enter_deep.png)
 
 
 
@@ -512,7 +512,7 @@ What CNNs are is a composition of these filters.
 
 ## Q-Learning
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/MIT6S191_DL_QLearning1.png)
+![](../imgs/MIT6S191_DL_QLearning1.png)
 
 
 <h2 id="1993886ff857bdbc2ac91977e678a3c5"></h2>

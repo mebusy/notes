@@ -711,7 +711,7 @@ Promise/A 提议对单个异步操作做出这样的抽象定义，具体如下�
      - 完成态 和 失败态 不能互相转化
  - Promise 的状态一旦转化，将不能被更改
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_promise_transfer.png)
+![](../imgs/Nodejs_promise_transfer.png)
 
 在API的定义上，Promise/A 提议是比较简单的。 一个 Promise 对象只要具备 then()方法即可。但是对于then()方法, 有以下简单的要求。
 
@@ -771,7 +771,7 @@ Deferred.prototype.progress = function (data) {
 };
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_promise_state.png)
+![](../imgs/Nodejs_promise_state.png)
 
 利用Promise/A 提议的模式，我们可以把一个典型的响应对象:
 
@@ -839,7 +839,7 @@ promisify(res).then(function () {
 
 Promise和Deferred 整体关系如图:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_promise_deferred_relationship.png)
+![](../imgs/Nodejs_promise_deferred_relationship.png)
 
 Promise/Deferred 模式 将 业务中不可变的部分封装在 Deferred中，将可变部分交给了 promise。 此时问题就来了，对于不同的场景，都需要去封装和改造其Deferred部分，然后才能得到简洁的接口。如果场景不常用，封装花费的时间与带来的简洁相比 并不一定划算。
 
@@ -968,7 +968,7 @@ jacksontian 1438 0.0 0.2 3022452 12704 s003 S 3:25AM 0:00.14 /usr/local/bin/node
 jacksontian 1437 0.0 0.2 3031668 12696 s003 S 3:25AM 0:00.15 /usr/local/bin/node ./worker.js
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_master_worker.png)
+![](../imgs/Nodejs_master_worker.png)
 
 
 图9-1就是著名的Master-Worker模式，又称主从模式。图中的进程分为：主进程和工作进程。这是典型的分布式架构中用于并行处理业务的模式。
@@ -1085,7 +1085,7 @@ Node中实现IPC通道的是管道(pipe)技术，但此管道非彼管道。在N
 
 父进程在实际创建子进程前，会创建IPC通道并监听它，然后才真正创建出子进程，并通过环境变量( NODE_CHANNEL_FD ) 告诉子进程这个IPC通道的文件描述符。子进程在启动过程中，根据文件描述符去链接这个已经存在的IPC通道，从而完成父子进程之间的连接。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_IPC.png)
+![](../imgs/Nodejs_IPC.png)
 
 Node中，IPC通道被抽象为 Stream 对象，在调用 send() 时发送数据(类似 write())，在接收到消息会通过message事件( 类似于 data)
 触发给应用层。
@@ -1104,7 +1104,7 @@ Node中，IPC通道被抽象为 Stream 对象，在调用 send() 时发送数据
 
 要解决问题，通常的做法是每个进程监听不同的端口，其中主进程监听主端口(80), 主进程对外接收所有的网络请求，再将这些请求分别代理道不同的端口的进程上。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_proxy.png)
+![](../imgs/Nodejs_proxy.png)
 
 通过代理，可以避免端口不能重复监听的问题，甚至可以在代理进程上做适当的负载均衡。 由于进程每接收到一个连接，将会用掉一个文件描述描述符，因此代理方案中客户端连接到工作进程，需要用掉两个文件描述符。操作系统的文件描述符是有限的，代理方案浪费掉一倍数量的文件描述符的做法影响了系统的扩展能力。
 
@@ -1199,7 +1199,7 @@ $ curl "http://127.0.0.1:1337/" handled by child, pid is 24851
 这样以来，所有的请求都是由子进程处理了。这个过程中，服务的过程发生了一次改变：
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_9.5.png)  ->  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_9.6.png)
+![](../imgs/Nodejs_9.5.png)  ->  ![](../imgs/Nodejs_9.6.png)
 
 我们发现，多个子进程可以同时监听相同端口，再没有 EAADINUSE 一场发生了。
 
@@ -1231,7 +1231,7 @@ send() 方法在将消息发送到 IPC 管道前，将消息组装成两个对�
 
 连接了IPC通道的子进程可以读取到父进程发来的消息， 将字符串通过 JSON.parse()解析还原为对象后，才出发message事件将消息体传递给应用层使用。 在这个过程中，消息对象还要被进行过滤处理，message.cmd 的值如果以NODE_ 为前缀，它将响应一个内部事件 internalMessage。如果message.cmd的值为NODE_HANDLE, 它将取出 message.type值和得到的文件描述符 一起还原出一个对应的对象:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_handle_send.png)
+![](../imgs/Nodejs_handle_send.png)
 
  以发送的TCP服务器句柄为例， 子进程收到消息后的 还原过程如下:
 
@@ -1337,7 +1337,7 @@ process.kill( process.pid , 'SIGTERM' ) ;
 
 有了父子进程之间的相关事件后，就可以在这些关系之间创建出需要的机制了。  至少我们能够监听子进程的 exit 事件来获知其退出的消息, 接着前文的多进程架构，我们在主进程上要加入一些子进程管理的机制，比如重新启动一个工作进程来继续服务。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_restart_subprocess.png)
+![](../imgs/Nodejs_restart_subprocess.png)
 
 ```JavaScript
 // master.js
@@ -1444,7 +1444,7 @@ var createWorker = function () {
 };    
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_restart_suicide.png)
+![](../imgs/Nodejs_restart_suicide.png)
 
 
 这里存在的问题是 有可能我们的链接是长连接，是不是 HTTP 服务这种短连接， 等待长连接断开可能需要较久的时间。 为此 为已有链接的断开设置一个超时时间是有必要的，在限定时间内强制退出:
@@ -1563,7 +1563,7 @@ Node 进程中不宜存放太多数据,
 
 我们将 这种 用来发送通知 和查询状态是否更改 的进程叫 通知进程。为了不混合业务逻辑，可以将这个进程设计为只进行轮询和通知，不处理任何业务逻辑。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_notify_process.png)
+![](../imgs/Nodejs_notify_process.png)
 
 这种推送机制 如果按进程间信号传递，在跨多台服务器会无效(因为其他服务器无法获取配置文件)，是故可以考虑采用 TCP或UDP的方案。 进程在启动时从通知服务处 读取第一次数据外，还将进程信息注册到通知服务处。 一旦发现数据更新后，根据注册信息，将更新后的数据发送给工作进程。
 
@@ -1638,7 +1638,7 @@ cluster.isMaster = (cluster.isWorker === false);
 
 在cluster 内部隐式创建TCP服务器的方式对使用者来说十分透明，但也正是这种方式使得它无法入直接使用child_process 那样灵活。在 cluster 模块应用中, 一个主进程只能管理一组工作进程； 而通过 child_process 可以更灵活地控制工作进程，甚至控制多组工作进程。其原因在于 child_process 可以隐式地创建多个TCP服务器，使得子进程可以共享多个的服务端socket.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Nodejs_cluster_workers.png)
+![](../imgs/Nodejs_cluster_workers.png)
 
 
 <h2 id="8ebd1ca8e8de01263812a161bf26bc50"></h2>

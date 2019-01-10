@@ -123,7 +123,7 @@ That's not going to work here because we don't control our opponent. So we can't
 
 ## Adversarial Search
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_adversarial_search_illustration.png)
+![](../imgs/CS188_adversarial_search_illustration.png)
 
 we're going to have an agent is trying to figure out what to do. Just like a regular single-agent search. 
 
@@ -140,7 +140,7 @@ So I imagine taking an action and then I imagine my opponent will then be in the
 
 ## Single-Agent Trees
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_single_agent_trees.png)
+![](../imgs/CS188_advS_single_agent_trees.png)
 
 some of these paths go forever , some of these paths end because it meet the last of the game terminates. 
 
@@ -158,7 +158,7 @@ well in this state I have a choice I can get 8 or I can get whatever is down bel
 In single-agent case, we choose maximum value.
 
  - Value of a state: The best achievable outcome (utility) from that state
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_value_of_a_state.png)
+    - ![](../imgs/CS188_advS_value_of_a_state.png)
 
 
 ---
@@ -169,7 +169,7 @@ In single-agent case, we choose maximum value.
 
 Let's think about the case where we have an adversary . 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_game_trees.png)
+![](../imgs/CS188_advS_game_trees.png)
 
 In the state of root , we can still do the same thought : move left or move right. 
 
@@ -182,7 +182,7 @@ So we need to think about now what a value is in the case of an adversary. This 
 
 ## Minimax Values
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_minimaxValues.png)
+![](../imgs/CS188_advS_minimaxValues.png)
 
 8 is still gonna be the best outcome we can achieve under perfect play against an optimal adversary. 
 
@@ -195,7 +195,7 @@ We still know the value of Terminal States. For a state that is under my opponen
 
 ##  Tic-Tac-Toe Game Tree
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_ticTac_game_tree.png)
+![](../imgs/CS188_advS_ticTac_game_tree.png)
 
 Blue one moves first. 
 
@@ -224,7 +224,7 @@ The value of root will be one of { -1,1,0 }.
     - Players alternate turns
     - Compute each node’s minimax value: the best achievable utility against a rational (optimal) adversary
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_minimax.png)
+![](../imgs/CS188_advS_minimax.png)
 
 <h2 id="a58343ec090ddd8a61a686ba6cb80359"></h2>
 
@@ -241,9 +241,9 @@ def value(state):
 
  - Minimax Implementation  
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_func_max_value.png)
+![](../imgs/CS188_advS_func_max_value.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_func_min_value.png)
+![](../imgs/CS188_advS_func_min_value.png)
 
 
 具体实现时，max-value / min-valu 直接调用 value 方法，在value方法中作分发。
@@ -273,7 +273,7 @@ def value(state):
 
 If you play against a perfect player  you want to use minimax but if you are not playing against a player move random  then minimax is going to be overly pessimistic. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_minimax_properties.png)
+![](../imgs/cs188_advS_minimax_properties.png)
 
 
 <h2 id="febe674abc9aa524c322edbbd8ec668c"></h2>
@@ -292,7 +292,7 @@ If you play against a perfect player  you want to use minimax but if you are not
  - More plies makes a BIG difference
  - Use iterative deepening for an anytime algorithm
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_resource_limits.png)
+![](../imgs/cs188_advS_resource_limits.png)
 
 
 For a chess game, we can't possibly search the whole game tree. Essentially we've got resource limits in this case time. That tell us we can only look forward so far into the tree before the exponential growth of the tree gets this.
@@ -323,12 +323,12 @@ So we need to replace the terminal utilities in the minimax algorithm with what'
  - An important example of the tradeoff between complexity of features and complexity of computation
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_depth_matters.png)
+![](../imgs/cs188_advS_depth_matters.png)
 
 
 ----
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_resource_limitation_pacman_example2.png)
+![](../imgs/cs188_resource_limitation_pacman_example2.png)
 
 For this example , if we look forward just a couple steps , we're going to need know it won't be able to see actually eating of the dot or any future collisions with the ghost.  We can not see whether or not we can be closer or farther from the dot. But we have to have an evaluation function that says that. 
 
@@ -344,7 +344,7 @@ A function takes a non-terminal state and return some number,just like the heuri
 In this case we want that number to return the actual minimax value of that position. That is not going to happen. In practice what peaple do is they try to come up with some function which on average is positive when the minimax value is positive , is negative when the minimax value is negative. 
 
  - Evaluation functions score non-terminals in depth-limited search
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_eval_func_chess.png)
+    - ![](../imgs/cs188_advS_eval_func_chess.png)
  - Ideal function: returns the actual minimax value of the position
  - In practice: typically weighted linear sum of features:
     - Eval(s)=w₁f₁(s) + w₂f₂(s) + ... + w<sub>n</sub>f<sub>n</sub>(s)
@@ -357,7 +357,7 @@ In this case we want that number to return the actual minimax value of that posi
 
 ## Why Pacman Starves
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_why_pacman_starves.png)
+![](../imgs/cs188_advS_why_pacman_starves.png)
 
 
 Earning 10 points for eating a dot.
@@ -389,7 +389,7 @@ solution: closer to a dot  score point as well.
 
 ---
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_adversarial_search_pacman_example2.png)
+![](../imgs/cs188_adversarial_search_pacman_example2.png)
 
 What's going on here each agent is separately doing their own searches. But they see that the other one constrols , they treat it like min node (???). So even though each agent is actually doing its own search because they are both assuming the other one shares its evaluation function that is also minimax agent. We're goint to see cooperation emerge.
 
@@ -409,7 +409,7 @@ This shows you how you can get cooperation without programming it in, simply the
 
 ### Alpha-Beta Pruning
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_alpha_beta_pruning.png)
+![](../imgs/cs188_advS_alpha_beta_pruning.png)
 
 This figure shows the general case for alpha–beta pruning: If ***α*** is better than ***n*** for Player, we will never get to ***n*** in play.
 
@@ -429,7 +429,7 @@ PS: 采用了 pruning 算法, 节点的取值可能就不是 最大／最小值�
 ### Pruning Exampe
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_advS_minimax_example.png)
+![](../imgs/CS188_advS_minimax_example.png)
 
  - 第2层 - 
  - 最左节点, min-value 计算的 3
@@ -444,7 +444,7 @@ For a minimizer node *m* , pruning its children is possible , when both of the f
     - leftmost children can not be pruned
  2. somewhere on the path from *m* to the root node, there is a maximizer node *M* for which an alternative option has already been explored
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/pruning_impossible.png)
+![](../imgs/pruning_impossible.png)
 
 so all pruning shape showed in above pic will not be achieved.
 
@@ -485,7 +485,7 @@ def min-value(state , α, β):
 
 ### Alpha-Beta Pruning Properties
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_advS_alpha-beta-properties.png)
+![](../imgs/cs188_advS_alpha-beta-properties.png)
 
  - This pruning has ***no effect*** on minimax value computed for the root!
     - in the case that pic shows, root MAX encounters 10-10 , it may choose the right sub-tree.
@@ -520,7 +520,7 @@ def min-value(state , α, β):
     3. If “2” failed, do a DFS which only searches paths of length 3 or less.
         - ... and so on.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_deepening.png)
+![](../imgs/cs188_iterative_deepening.png)
 
 
 ---
@@ -537,7 +537,7 @@ def min-value(state , α, β):
 
 ### Worst-Case vs. Average Case
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/uncertain_outcomes.png)
+![](../imgs/uncertain_outcomes.png)
 
  - Idea for today: 
     - Uncertain outcomes controlled by chance, not an adversary!
@@ -559,13 +559,13 @@ def min-value(state , α, β):
     - I.e. take weighted average (expectation) of children
  - Later, we’ll learn how to formalize the underlying uncertain-result problems as Markov Decision Processes
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/expectimax_search_01.png)
+![](../imgs/expectimax_search_01.png)
 
 left node will be 10
 for the right node ,  if 9 and 100 happens equally likely, the value will be  (100+9)/2 = 54.5. 
 so we should probably take the right node. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Expectimax_value1.png)
+![](../imgs/Expectimax_value1.png)
 
 v = (1/2) (8) + (1/3) (24) + (1/6) (-12) = 10
 
@@ -618,7 +618,7 @@ Expectimax can not apply pruning.
 
 Estimate of true expectimax value (which would require a lot of work to compute)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/depth_limited_expectimax.png)
+![](../imgs/depth_limited_expectimax.png)
 
 we have 2 layers corresponding to the 2 sequence of random ghost actions before pacman moves again. 
 
@@ -627,7 +627,7 @@ we have 2 layers corresponding to the 2 sequence of random ghost actions before 
 
 ### Example of depth-limited search
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_pacman_depth_limited_search_example.png)
+![](../imgs/cs188_pacman_depth_limited_search_example.png)
 
  - Consider the following Pacman configuration
     - At each time step, Pacman can move either West (left) or East (right) and is using limited-depth minimax search to choose his next move
@@ -681,7 +681,7 @@ Normally , we say a search depth of 2 means the search considers of up to 2 acti
 
  - The expected value of a function of a random variable is the average, weighted by the probability distribution over outcomes
  - Example: How long to get to the airport?
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Expectations.png)
+    - ![](../imgs/cs188_Expectations.png)
 
 
 
@@ -698,7 +698,7 @@ Normally , we say a search depth of 2 means the search considers of up to 2 acti
 
  - For now, assume each chance node magically comes along with probabilities that specify the distribution over its outcomes
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_probability_use.png)
+![](../imgs/cs188_probability_use.png)
 
 One important thing to remember is that just because we assign probabilities that reflect our believes to the outcome , does not mean that the thing on the other side of flipping a coin. 
 
@@ -730,13 +730,13 @@ In general expectimax is the more general search procedures. You should always i
  Dangerous Optimism | Dangerous Pessimism
  :--- | ---:
  Assuming chance when the world is adversarial. - | Assuming the worst case when it’s not likely.
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_optimism.png) | ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_pessimism.png)
+ ![](../imgs/cs188_optimism.png) | ![](../imgs/cs188_pessimism.png)
 
 <h2 id="5db156685ba988e993b5d79d16d83b78"></h2>
 
 ### Assumptions vs. Reality
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_assumption_vs_reality.png)
+![](../imgs/cs188_assumption_vs_reality.png)
 
  - Pacman used depth 4 search with an eval function that avoids trouble
  - Ghost used depth 2 search with an eval function that seeks Pacman
@@ -763,13 +763,13 @@ The result is not bad while an expectimax pacmas vs a random ghost.
     - Environment is an extra “random agent” player that moves after each min/max agent
     - Each node computes the appropriate combination of its children
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mixed_layer.png)
+![](../imgs/cs188_mixed_layer.png)
 
 <h2 id="eaefbf5d721da4a937661b4c220a4bbb"></h2>
 
 ### Example: Backgammon
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_backgammon.png)
+![](../imgs/cs188_backgammon.png)
 
  - Dice rolls increase b: 21 possible rolls with 2 dice
     - Backgammon ~ 20 legal moves
@@ -797,7 +797,7 @@ The result is not bad while an expectimax pacmas vs a random ghost.
     - Each player maximizes its own component
     - Can give rise to cooperation and competition dynamically…
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_multi_agent_utilities.png)
+![](../imgs/cs188_multi_agent_utilities.png)
 
 
 The leaf utilities are now written as pairs (U<sub>A</sub> , U<sub>B</sub>, U<sub>C</sub> ). In this generalized setting, A seeks to maximize U<sub>A</sub>, the first component, while B seeks to maximize U<sub>B</sub> , the second component.
@@ -826,7 +826,7 @@ https://www.authorea.com/users/5754/articles/6087/_show_article
  - For worst-case minimax reasoning, terminal function scale doesn’t matter
     - We just want better states to have higher evaluations (get the ordering right)
     - We call this insensitivity to monotonic transformations
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_utilities_scale.png)
+    - ![](../imgs/cs188_utilities_scale.png)
  - For average-case expectimax reasoning, we need *magnitudes* to be meaningful
 
 <h2 id="ceba282b7418b7f199798b645e1cba56"></h2>
@@ -853,7 +853,7 @@ idea: utilities go in , behavior comes out.
 
 ### Utilities: Uncertain Outcomes
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_gettingIceCream.png)
+![](../imgs/cs188_gettingIceCream.png)
 
 
 <h2 id="d0834fcec6337785ee749c8f5464f6f6"></h2>
@@ -864,7 +864,7 @@ idea: utilities go in , behavior comes out.
     - **Prizes**: A, B, etc.
     - **Lotteries**: situations with uncertain prize
     
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_preference_prize_lottery.png)s
+![](../imgs/cs188_preference_prize_lottery.png)s
 
 
 Intuitively, the principle of Maximum Expected Utility (MEU) seems like a reasonable way to make decisions, but it is by no means obvious that it is the only rational way.
@@ -922,7 +922,7 @@ For example : an agent with intransitive preferences can be induced to give away
     
 Suppose that the agent has the nontransitive preferences A≻B≻C≻A, where A, B, and C are goods that can be freely exchanged. If the agent currently has A, then we could offer to trade C for A plus one cent. The agent prefers C, and so would be willing to make this trade. We could then offer to trade B for C, extracting another cent, and finally trade A for B. This brings us back where we started from, except that the agent has given us three cents. We can keep going around the cycle until the agent has no money at all. Clearly, the agent has acted irrationally in this case.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rational_preferences.png)
+![](../imgs/cs188_rational_preferences.png)
 
 
 ---
@@ -960,7 +960,7 @@ Each axiom can be motivated by showing that an agent that violates it will exhib
 Basically if you accept these axioms there is an theorem  says all of your preferences can be described with the utiity function. 
 So if you obey these axioms we give you the stamp of rationality. and that means the preferences violate these are irrational preferences and meet this irrational. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rational_stamp.png)
+![](../imgs/cs188_rational_stamp.png)
 
 <h2 id="6128ac98c4876851331c1db2897f6253"></h2>
 
@@ -1035,7 +1035,7 @@ Suppose you assign a utility of 5 to your current financial status (Sk), a 9 to 
     - In this sense, people are risk-averse
     - When deep in debt, people are risk-prone
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_utility_of_money.png)
+![](../imgs/cs188_utility_of_money.png)
 
 The value an agent will accept in lieu of a lottery is called the ***certainty equivalent*** of the lottery. 
 
@@ -1043,7 +1043,7 @@ Example:
 
 Consider the utility function shown below.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_quiz_certainty_equivalent_value.png)
+![](../imgs/cs188_quiz_certainty_equivalent_value.png)
 
 Under the above utility function, what is the certainty equivalent monetary value in dollars ($) of the lottery [0.6,$0; 0.4,$100] ?
 
@@ -1056,7 +1056,7 @@ Solve:
 
 Function Graph of risk behavior 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_fungraph_of_risk.png)
+![](../imgs/cs188_fungraph_of_risk.png)
 
 ---
 

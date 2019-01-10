@@ -35,7 +35,7 @@ Bayes' Nets wil give us a way to deal with distributions of our large sets of ra
 
 ## Probabilisitc Models 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNsR_probabilistic_models.png)
+![](../imgs/cs188_BNsR_probabilistic_models.png)
 
  - Models describe how (a portion of) the world works
  - **Models are always simplifications**
@@ -61,7 +61,7 @@ Bayes' Nets wil give us a way to deal with distributions of our large sets of ra
 
 In this case ,there are just 2 locations for the ghost , top or bottom.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNsR_ghostbuster_chainrule.png)
+![](../imgs/cs188_BNsR_ghostbuster_chainrule.png)
 
 So you could have a measurement on each of these squares so each of them could give you a red measurement or not a red measurement, so those are 2 random variables. The ghost's location is another random variable , whether it is being in the top .
 
@@ -104,7 +104,7 @@ We've always talked about discrete random variables , and then a distribution ca
 
 ### Example Bayes’ Net: Insurance
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNsR_example_insurance.png)
+![](../imgs/cs188_BNsR_example_insurance.png)
 
  - 27 variables
     - assuming they are binary
@@ -125,7 +125,7 @@ We've always talked about discrete random variables , and then a distribution ca
     - Indicate “direct influence” between variables
     - Formally: encode conditional independence (more later)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNsR_notation.png)
+![](../imgs/cs188_BNsR_notation.png)
 
  - For now: imagine that arrows mean direct causation (in general, they don’t!)
     - it's often true, but it doesn't have to be true.
@@ -138,7 +138,7 @@ We've always talked about discrete random variables , and then a distribution ca
  - N independent coin flips
  - No interactions between variables: **absolute independence**
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNsR_example_coin_flip.png)
+![](../imgs/cs188_BNsR_example_coin_flip.png)
 
 <h2 id="fb89b5b88a6b8a1c7631833b7faa03c8"></h2>
 
@@ -163,14 +163,14 @@ We've always talked about discrete random variables , and then a distribution ca
     - B: Ballgame
     - C: Cavity
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNsR_example_traffic2.png)
+![](../imgs/cs188_BNsR_example_traffic2.png)
 
  - L → R → T 
     - - low-pressure actually does affect traffic, but it mitigated (alleviated) through 
  - Ballgame may lead to traffic , also may be cancelled when there is a lot of rain. 
  
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNsR_example_traffic2_graph.png)
+![](../imgs/cs188_BNsR_example_traffic2_graph.png)
 
  - keep in mind that all these things are up for debate
  - whether your roof is dripping or not CAN tell you something about whether there's traffic or not ? 
@@ -188,9 +188,9 @@ We've always talked about discrete random variables , and then a distribution ca
     - E: Earthquake!
  - assume that you neighbors are just listening to things not watching things. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNsR_example_alarm_network.png)
+![](../imgs/cs188_BNsR_example_alarm_network.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNsR_alarm_network_graph.png)
+![](../imgs/cs188_BNsR_alarm_network_graph.png)
 
 ---
 
@@ -201,7 +201,7 @@ We've always talked about discrete random variables , and then a distribution ca
  - A set of nodes, one per variable X
  - A directed, acyclic graph
  - A conditional distribution for each node
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNsR_node_cpt.png)
+    - ![](../imgs/cs188_BNsR_node_cpt.png)
     - A collection of distributions over X, one for each combination of parents’ values
         - P(X|a₁,...,a<sub>n</sub>)
     - CPT: conditional probability table
@@ -220,7 +220,7 @@ We've always talked about discrete random variables , and then a distribution ca
     - To see what probability a BN gives to a full assignment, multiply all the relevant conditionals together:
         - ![][1]
     - Exampe
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNsR_probInBNs_example.png)
+        - ![](../imgs/cs188_BNsR_probInBNs_example.png)
         - P(+cavity, +catch, -toothache) = P(+cavity)·P(-toothache|+cavity)·P(+catch|+cavity)
 
 ---
@@ -231,7 +231,7 @@ We've always talked about discrete random variables , and then a distribution ca
 There are BNs graphs that don't make any assumptions. It's when you don't get rid of anything. 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNsR_no_asumption.png)
+![](../imgs/cs188_BNsR_no_asumption.png)
 
 If you look at the size of these conditional distributions they'll be huge, just as big as the full joint distribution.
 
@@ -241,20 +241,20 @@ So you are making these assumptions , limiting the size of parent set, to have m
 
 ### Example: Alarm Network
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNsR_example_alarm_joint_distribution.png)
+![](../imgs/cs188_BNsR_example_alarm_joint_distribution.png)
 
 <h2 id="fb89b5b88a6b8a1c7631833b7faa03c8"></h2>
 
 ### Example: Traffic
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNsR_example_traffic_joint_dist.png)
+![](../imgs/cs188_BNsR_example_traffic_joint_dist.png)
 
 
 <h2 id="f4b6db064e3259a2c85401269f24a90d"></h2>
 
 ### Example: Reverse Traffic
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNsR_example_traffic_joint_dist_reverse.png)
+![](../imgs/cs188_BNsR_example_traffic_joint_dist_reverse.png)
 
 
 ---
@@ -319,7 +319,7 @@ So you are making these assumptions , limiting the size of parent set, to have m
 
 ---
 
- [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNsR_probInBNs_product.png
+ [1]: ../imgs/cs188_BNsR_probInBNs_product.png
 
 
 

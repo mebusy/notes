@@ -44,7 +44,7 @@ DRAM数据吞吐就像高速公路的收费站, 为了保证进出站效率一�
 
 ### Lecture 3.2: Performance Considerations - Memory Coalescing(合并) 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/burstSection.jpg)
+![](../imgs/burstSection.jpg)
 
  - Each address space is partitioned into burst sections
     – Whenever a location is accessed, all other locations in the same section are also delivered to the processor
@@ -56,11 +56,11 @@ DRAM数据吞吐就像高速公路的收费站, 为了保证进出站效率一�
 
 #### Memory Coalescing
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/memory_coalesced.jpg)
+![](../imgs/memory_coalesced.jpg)
 
  - When all threads of a warp execute a load, if all accessed locations fall into the same burst section, only one DRAM request will be made and the access is fully coalesced.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/uncoalesced_access.jpg)
+![](../imgs/uncoalesced_access.jpg)
 
  - When the accessed locations spread across burst section boundaries, coalescing fails, multiple DRAM requests are made and the access is not fully coalesced.
  - In modern GPUs , we actually have cache memories that alleviate many of the uncoalesced access of the 2nd catagory(right 1). So we will be focusing more on the situation where the threads do not access consecutive memory locations (left 1).
@@ -76,7 +76,7 @@ DRAM数据吞吐就像高速公路的收费站, 为了保证进出站效率一�
 
 #### 2 Access Patterns of Basic Matrix Multiplication
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2AccessPatternOfMatrixMultiple.JPG)
+![](../imgs/2AccessPatternOfMatrixMultiple.JPG)
 
  - i is loop counter in the inner product loop of the kernel code
  - A is mxn, B is nxk
@@ -86,7 +86,7 @@ DRAM数据吞吐就像高速公路的收费站, 为了保证进出站效率一�
 
 #### B accesses are coalesced
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AccessPatternOfMatrixMultipleB.jpg)
+![](../imgs/AccessPatternOfMatrixMultipleB.jpg)
 
 It's not about the access of each thread. It really about the locations accessed by neighboring threads in the same memory. This is another coalesced access.
 
@@ -96,7 +96,7 @@ So whenever we see that adjacent threads are accessing adjacent locations in the
 
 #### A accesses are not be coalesced
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AccessPatternOfMatrixMultipleA.jpg) 
+![](../imgs/AccessPatternOfMatrixMultipleA.jpg) 
 
 <h2 id="c840df8e6fb6e2c83304d20c9957df54"></h2>
 
@@ -135,7 +135,7 @@ B[ty][Col]
 
 #### 1D Convolution Example
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/1DConvolutionExample.jpg)
+![](../imgs/1DConvolutionExample.jpg)
 
  - a mask of 5 elements
  - Commonly used for audio processing
@@ -196,7 +196,7 @@ defining input/output tiles diferently, in order to manager the complexity.
 
 #### Thread to Output Data Index Mapping
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/thread2outputDataIndexMapping.png)
+![](../imgs/thread2outputDataIndexMapping.png)
 
  - Each thread block calculates an output tile
  - Each output tile width is O_TILE_WIDTH
@@ -209,7 +209,7 @@ defining input/output tiles diferently, in order to manager the complexity.
 
 #### Defining Input Tiles
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/definingInputTiles.png)
+![](../imgs/definingInputTiles.png)
 
  - Each input tile has all values needed to calculate the corresponding output tile.
     - input tile size depends on the mask width
@@ -248,7 +248,7 @@ N_ds:  2 3 **4 5 6 7** 8 9
 
 ### Lecture 3.5: Parallel Computation Patterns - 2D Tiled Convolution Kernel 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2DImageMatrixPadding.png)
+![](../imgs/2DImageMatrixPadding.png)
 
  - It is sometimes desirable to pad each row of a 2D matrix to multiples of DRAM bursts
     - So each row starts at the DRAM burst boundary
@@ -312,5 +312,5 @@ __global__ void convolution_2D_kernel(float *P, float *N, height, width, channel
 
 #### Shifting from output coordinates to input coordinate
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ShiftingFromOutputCoordinates2InputCoordinate.png)
+![](../imgs/ShiftingFromOutputCoordinates2InputCoordinate.png)
 

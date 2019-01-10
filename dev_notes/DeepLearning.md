@@ -42,7 +42,7 @@
 
 The way to turn scores into probabilities is to use **softmax** function , will be denoted by *S*. It can take any kind of scores and turn them into proper probabilities. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_softmax.png)
+![](../imgs/DL_softmax.png)
 
 > scores -> probabilities
 
@@ -64,7 +64,7 @@ def softmax(x):
 print(softmax(scores))
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_softmax_graph.png)
+![](../imgs/DL_softmax_graph.png)
 
 
 Caution:
@@ -85,7 +85,7 @@ D(S,L) = -Σ Lᵢ log(Sᵢ)
 
 Cross-entropy is not symmetric :   D(S,L) != D(L,S)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_cross_entropy.png)
+![](../imgs/DL_cross_entropy.png)
 
  - We have an input , it's going to be turned into logits using a linear model
  - We're then going to feed the logits , which are scores , into a softmax to turn them into probobilities
@@ -142,7 +142,7 @@ MEAN :       Xᵢ = 0
 VARIANCE:      σ(Xᵢ) = σ(Xⱼ)
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_numerical_stability.png)
+![](../imgs/DL_numerical_stability.png)
 
 <h2 id="fff0d600f8a0b5e19e88bfb821dd1157"></h2>
 
@@ -160,7 +160,7 @@ You also want your weights and biases to be initialized at a good enough startin
 
 Draw the weights randomly from a Gaussian distribution with mean zero and standard deviation sigma.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_weights_initialization.png)
+![](../imgs/DL_weights_initialization.png)
 
 The sigma value determines the order of magnitude of you outputs at the initial point of your optimization.  Because of the softmax on top of it, the order of magnitude also determines the peakiness of your initial probability distribution.
 
@@ -298,7 +298,7 @@ We're going to construct our new function in the simplest way that we can think 
 
 Instead of having a single matrix multiplier as our classifier , we're going to insert a RELU right in the middle.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_RELU.png)
+![](../imgs/DL_RELU.png)
 
 We now have two matrices. 
 
@@ -313,7 +313,7 @@ Our function is now nonlinear thanks to the RELU in the middle , and we now have
 
 One reason to build this network by stacking simple operations is that it makes tha math very simple .
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_RELU_math.png)
+![](../imgs/DL_RELU_math.png)
 
 The key mathematical insight is the chain rule : `[g( f(x ))]' = g'( f(x) ) * f'(x)  ` . 
 
@@ -321,7 +321,7 @@ The key mathematical insight is the chain rule : `[g( f(x ))]' = g'( f(x) ) * f'
 
 As long as you know how to write the derivatives of your individual functions , there is a simple graphical way to combine them together and compute the derivative for the whole function.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_RELU_math2.png)
+![](../imgs/DL_RELU_math2.png)
 
 There's even better news for the compute scientist in you.  There is a way to write this chain rule that is very efficient computationally.
 
@@ -350,7 +350,7 @@ And you're going to repeat that all over again, many, many times. This is how yo
 
 In particular each block of the back prop often takes about twice the memory that's needed forward prop and twice the compute.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_BackProp.png)
+![](../imgs/DL_BackProp.png)
 
 ---
 
@@ -360,7 +360,7 @@ In particular each block of the back prop often takes about twice the memory tha
 
 2-layer Neural Network
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_RELU.png)
+![](../imgs/DL_RELU.png)
 
 
 You can make it bigger , more complex , by increasing the size of that hidden layer in the middle.  But it turns out that increasing this H is not particularly efficient in general .  You need to make it very , very big , and then it gets really hard to train. This is where the central idea of deep learning comes into play.
@@ -397,7 +397,7 @@ The stretch pants of deep learning are called L2 Regularization.
 
 The idea is to add another term to the loss ,which penalizes large weights.  It's typically achieved by adding the L2 norm of your weights to the loss , multiply by a small constant β.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_regularization.png)
+![](../imgs/DL_regularization.png)
 
 
 <h2 id="09bb9294aa4a843883a3f401aeaf8b5b"></h2>
@@ -408,19 +408,19 @@ There's another important technique for regularization that only emerged relativ
 
 Dropout works likes this. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_dropout.png)
+![](../imgs/DL_dropout.png)
 
 Imagine that you have one layer that connects to another layer. The values that go from one layer to the next are often called activations.  Now take those activations and randomly for every example you train your network on, set half of them to zero.  Completely randomly ,  you basically take half of the data that's flowing through your network and just destroy it. And then randomly again. If that doesn't sound crazy to you then you might qualify to become a student of Jeffery Hinto who pioneered the technique.
 
 So what happens with dropout?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_dropout2.png)
+![](../imgs/DL_dropout2.png)
 
 Your network can never rely on any given activation to be present , because they might be squashed at any given moment. So it is forced to learn a redundant representation for everything to make sure that at least some of the information remains.
 
 It's like a game of whack-a-mole.  One activations gets smashed , but there's always one or more that do the same job and that don't get killed. So every thing remains fine at the end.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_dropout3.png)
+![](../imgs/DL_dropout3.png)
 
 Forceing your network to learn redundant representations might sound very inefficient. But in practice , it makes things more rebust and prevents overfitting.  It also makes your network act as if taking the consensus over an ensemble of networks. Which is always a good way to improve performance. 
 
@@ -430,7 +430,7 @@ Dropout is one of the most important techniques to emerge in the last few years.
 
 When you evaluate the network that's been trained with drop out, you obvioulsy no longer want this randomness.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_dropout_2.png)
+![](../imgs/DL_dropout_2.png)
 
 You want something deterministic. Instead , you're going to want to take the consensus over these redundant models.  You get the consensus opinion by averaging the activations.
 
@@ -449,7 +449,7 @@ Here's the trick to make sure this expectation holds. During training , not only
 
 ## Statistical Inveriance
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_cats.png)
+![](../imgs/DL_cats.png)
 
 You have an image and you want your network to say it's an image with a cat in it.  It doesn't really matter where the cat is , it's still an image with a cat.
 
@@ -459,7 +459,7 @@ How about you telling it instead , explicitly , that objects and images are larg
 
 Yet another example . Imagine you have a long text that talks about kittens. Does the meaning of kiten change depending on whether it's in the first sentence or in the second one ? Mostly not.  So if you're tring a network on text ,maybe you want the part of the network that learns what a kitten is to be reused every time you see the work kitten, and not have to relearn it every time.  
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_weight_shareing.png)
+![](../imgs/DL_weight_shareing.png)
 
 The way you achieve this in your own networks is using what is called **weight sharing**. When you know that two inputs can contain the same kind of information, then you share the weights and train the weights jointly for those inputs.
 
@@ -474,7 +474,7 @@ Convnets are neural networks that share their parameters across space.
 
 Imagine you have a image.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_convent_1.png)
+![](../imgs/DL_convent_1.png)
 
 It can be represented as a flat pancake . It has width , height. And because you typically have red, green and blue channels , it also has a depth.  In this instance, depth is 3 ,  that's your input.
 
@@ -485,11 +485,11 @@ Let's represent those outputs vertically, in a tiny column like this.
 
 Now let's slide that little neural network across the image without changing the weights. Just slide across , and vertically like we're painting it with a brush. On the output, we've drawn another image. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_convent_2.png)
+![](../imgs/DL_convent_2.png)
 
 It's got a different witdh, a different height, and more importantly , it's got a different depth. Instead of RGB , now you have an output that's got many color channels , K of them. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_convent_3.png)
+![](../imgs/DL_convent_3.png)
 
 This operation is called a convolution.  
 
@@ -497,11 +497,11 @@ If your patch size were the size of the whole image, it would be no different th
 
 A convent is going to basically be a deep network where instead of having stacks of matrix multiply layers. we're going to have stacks of convolutions. The general idea is that they will form from a pyramid. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_convolution_pyramid.png)
+![](../imgs/DL_convolution_pyramid.png)
 
 At the bottom you have this big image but very shallow, just RGB.  You're going to apply convolutions that are going to progressively squeeze the spatial dimensions while increasing the depth, which corresponds roughly to the semantic complexity of your representation.  An the top you can put your classifier . You have a representation where all the spatial information has been squeezed out and only parameters that map to contents of the image remain.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_convolution_lingo.png)
+![](../imgs/DL_convolution_lingo.png)
 
 So that is the general idea. If you're going to implement this , there are lots of little details to get right and a fair bit of lingo to get used to. 
 
@@ -513,7 +513,7 @@ That's it.  You can build a simple convnet with just this.  Stack up your convol
 
 You might wonder what happends to training , into the chain rule in particular , when you use shared weights like this.   Nothing really happens.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_chain_rules_with_sharing.png)
+![](../imgs/DL_chain_rules_with_sharing.png)
 
 The math just works. You just add up the derivatives from all of the possible locations on the image.
 
@@ -535,7 +535,7 @@ What if instead of skipping one in every two convolutions, we still ran with a v
 
 The most common is max pooling.  At every point in the feature map, look at a small neighborhood around that point and compute the maximum of all the responses around it.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DL_max_pooling.png)
+![](../imgs/DL_max_pooling.png)
 
  - ADVANTAGE
      - **PARAMETER-FREE** , it doesn't add to your number of parameters. So you don't risk an increasing over fitting.

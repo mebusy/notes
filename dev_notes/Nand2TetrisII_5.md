@@ -78,7 +78,7 @@
             - These two compilation tasks are relatively separate and standalone. 
             - And, therefore, once again, the overall and rather formidable past of writing a compiler for multi-class program has been reduced to compiling one subroutine at a time. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compiler2_jack_observe.png)
+![](../imgs/n2t_compiler2_jack_observe.png)
 
  - Compilation challenges
     - Handling procedural code 
@@ -225,7 +225,7 @@ pop this 1   // y
  - Some languages feature unlimited nested scoping
  - Can be managed using a linked list of symbol tables.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_symbol_tables_4_nested_scoping.png)
+![](../imgs/n2t_symbol_tables_4_nested_scoping.png)
 
  - Variable lookup: 
     - start in the 1st table
@@ -240,7 +240,7 @@ pop this 1   // y
 
 ### Parse tree
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2d_compile2_parse_tree.png)
+![](../imgs/n2d_compile2_parse_tree.png)
 
  - prefix 
     - `* a + b c`
@@ -261,7 +261,7 @@ pop this 1   // y
  1. source code -> parse tree  ( The XML file we output in project 10 is a parse tree )
  2. go throuth every node in this parse tree in a certain order , and then you generate the stack machine code.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compiler2_generate_code_2step.png)
+![](../imgs/n2t_compiler2_generate_code_2step.png)
 
  - 生成 parse tree 的代价是很大的，实践中一般不会这么做。
 
@@ -271,14 +271,14 @@ pop this 1   // y
 
  - The following algorithm is  going to generate the VM code on the fly without having to create  the whole parse tree in the process.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compiler2_generate_code_1step.png)
+![](../imgs/n2t_compiler2_generate_code_1step.png)
 
 
 <h2 id="f5631092f3eb428ad208da4f664a02b4"></h2>
 
 ## Unit 5.4: Handling Flow of Control
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compile2_handle_flow.png)
+![](../imgs/n2t_compile2_handle_flow.png)
 
  - we have 5 statements
     - let, do, return are trivial statements to translate
@@ -299,7 +299,7 @@ else
     - the first thing to do is to take the expression and **negate** it. 
     - why to do this negation ? Because once you negate the expression in such a way , code generation becomes far simpler and tighter. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compile_if_flow_chart.png)  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compile_if_vm_code.png)
+![](../imgs/n2t_compile_if_flow_chart.png)  ![](../imgs/n2t_compile_if_vm_code.png)
 
  - where are these labels (L1,L2) come from ?
     - the compiler generates these labels
@@ -314,7 +314,7 @@ while (expression)
     statements
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compile_while_flow_chart.png)   ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compile_while_vm_code.png)
+![](../imgs/n2t_compile_while_flow_chart.png)   ![](../imgs/n2t_compile_while_vm_code.png)
 
 <h2 id="bb523de8a79f81c8c049269679fbf839"></h2>
 
@@ -366,7 +366,7 @@ push/pop this 0 | accessing RAM[8000]
 push/pop this 1 | accessing RAM[8001]
 push/pop this i | accessing RAM[8000+i]
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_5_access_RAM_data.png)
+![](../imgs/n2t_5_access_RAM_data.png)
 
 <h2 id="8912c5512db9003e5c8ce07b7ff36a88"></h2>
 
@@ -581,7 +581,7 @@ call foo
     - The method's code can access the object's i-th field by accessing `this i`
     - But first , the method's code must anchor the `this` segment on the object's data, using pointer
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/N2t_compiling_methods_distance.png)
+![](../imgs/N2t_compiling_methods_distance.png)
 
 ```
 // method int distance(Pointer other)
@@ -890,7 +890,7 @@ this | Point | argument | 0
 
 ### VMWriter
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compiler2_vmwriter.png)
+![](../imgs/n2t_compiler2_vmwriter.png)
 
 <h2 id="ebb5853f19668a28aac3fb43709781c3"></h2>
 

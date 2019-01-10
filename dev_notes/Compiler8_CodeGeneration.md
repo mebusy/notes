@@ -207,7 +207,7 @@ where the dividend occupies an even/odd register pair whose even register is x; 
 
 Now, consider the two three-address code sequences in Fig. 8.2 in which the only difference in (a) and (b) is the operator in the second statement. The shortest assembly-code sequences for (a) and (b) are given in Fig. 8.3.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F8.3.png)
+![](../imgs/Compiler_F8.3.png)
 
 Ri stands for register i. SRDA stands for Shift-Right-Double-Arithmetic and `SRDA R0 , 32` shifts the dividend into R1 and clears R0 so all bits equal its sign bit. `L`, `ST`, and `A` stand for load, store, and add, respectively. Note that the optimal choice for the register into which `a` is to be loaded depends on what will ultimately happen to `t`.
 
@@ -423,7 +423,7 @@ return
 
 Figure 8.4 shows the target program for this three-address code. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F8.4.png)
+![](../imgs/Compiler_F8.4.png)
 
 We use the pseudo instruction ACTION to represent the sequence of machine instructions to execute the statement action, which represents three-address code that is not relevant for this discussion. We arbitrarily start the code for procedure c at address 100 and for procedure p at address 200. We that assume each ACTION instruction takes 20 bytes. We further assume that the activation records for these procedures are statically allocated starting at locations 300 and 364; re­spectively.
 
@@ -480,11 +480,11 @@ Chapter 7 contains a broader discussion of calling sequences and the trade­offs
 
 Example 8.4 : The program in Fig. 8.5 is an abstraction of the quicksort program in the previous chapter. Procedure q is recursive, so more than one activation of q can be alive at the same time.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F8.5.png)
+![](../imgs/Compiler_F8.5.png)
 
 Suppose that the sizes of the activation records for procedures m , p, and q have been determined to be msize, psize, and qsize, respectively. The first word in each activation record will hold a return address. We arbitrarily assume that the code for these procedures starts at addresses 100, 200, and 300, respectively, and that the stack starts at address 600. The target program is shown in Figure 8.6.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F8.6.png)
+![](../imgs/Compiler_F8.6.png)
 
 We assume that ACTION4 contains a conditional jump to the address 456 of the return sequence from q; otherwise, the recursive procedure q is condemned to call itself forever.
 
@@ -550,7 +550,7 @@ Algorithm 8.5 : Partitioning three-address instructions into basic blocks.
 Example 8.6 : The intermediate code in Fig. 8.7 turns a 10 x 10 matrix a into an identity matrix. 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F8.7.png)
+![](../imgs/Compiler_F8.7.png)
 
 > Figure 8.7: Intermediate code to set a 10 x 10 matrix to an identity matrix
 
@@ -629,7 +629,7 @@ Often we add two nodes, called the *entry* and *exit*, that do not correspond to
 
 Example 8.8 : The set of basic blocks constructed in Example 8.6 yields the flow graph of Fig. 8.9. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F8.9.png)
+![](../imgs/Compiler_F8.9.png)
 
 The entry points to basic block B1 , since B1 contains the first instruction of the program. The only successor of B1 is B2 , because B1 does not end in an unconditional jump, and the leader of B2 immediately follows the end of B1 .
 

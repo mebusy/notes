@@ -365,7 +365,7 @@ c = a[i] ;
 
 ## Other Differences Between Arrays and Pointers
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_diff_array_pointer.png)
+![](../imgs/n2t_diff_array_pointer.png)
 
 ---
 
@@ -452,7 +452,7 @@ text    data     bss     dec     hex filename
 
 ---
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_segment.png)
+![](../imgs/c_segment.png)
 
  - BSS
     - The BSS segment, also known as *uninitialized data* , is usually adjacent to the data segment.
@@ -485,7 +485,7 @@ text    data     bss     dec     hex filename
  - The loader just takes each segment image in the file and puts it directly into memory.
  - The segments essentially become memory areas of an executing program, each with a dedicated purpose.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_os_do_with_aout.png)
+![](../imgs/c_os_do_with_aout.png)
 
  - The text segment contains the program instructions.
     - The loader copies that directly from the file into memory (typically with the `mmap()` system call)
@@ -509,7 +509,7 @@ text    data     bss     dec     hex filename
 
  - When you take shared libraries into account :
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_process_address_area_with_shared_lib.png)
+![](../imgs/c_process_address_area_with_shared_lib.png)
 
 <h2 id="9b556298edbaee22cddaf42efe61cba0"></h2>
 
@@ -568,7 +568,7 @@ main() {
     - supports an invocation of a procedure, 
     - and also records everything needed to get back to where you came from before the call. 
  - A Canonical Procedure Activation Record:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_procedure_activation_record.png)
+    - ![](../imgs/c_procedure_activation_record.png)
     - It is just illustrative. 
         - The exact structure will vary from implementation to implementation. 
         - The order of the fields may be quite different.
@@ -592,7 +592,7 @@ main() {
 }
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_function_call_frame.png)
+![](../imgs/c_function_call_frame.png)
 
  - Compiler-writers will try to speed up programs by  not storing information that will not be used.
  - Other optimizations include 
@@ -744,7 +744,7 @@ switch(setjmp(jbuf)) {
     - In practice, this would be prohibitively expensive, so we trade off access speed for a cheaper implementation. 
     - 虚拟内存只是进一步扩展了这个阶段，使用磁盘而不是主内存来保存正在运行的进程的映像。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_virtual_memory.png)
+![](../imgs/c_virtual_memory.png)
 
  - 虚拟内存被组织成“页面”。
  - 一个页面是操作系统移动和保护的单位，通常是几K字节的大小。
@@ -775,7 +775,7 @@ $ pagesize
  - 它是一个小而昂贵的，但速度非常快的内存缓冲区，位于CPU和物理内存之间。
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_cache_memory.png)
+![](../imgs/c_cache_memory.png)
 
  - 所有现代处理器都使用高速缓存
  - 无论何时从内存中读取数据，整个“行”（通常为16或32字节）被带入缓存。
@@ -859,7 +859,7 @@ sys 0m0.002s
     - 函数realloc（）改变指向的内存块的大小，不管是增长还是缩小，往往通过将内容复制到其他地方并给你一个指向新位置的指针。
         - 在动态增加表的大小时这很有用.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_heap.png)
+![](../imgs/c_heap.png)
 
  - 堆必须跟踪不同的区域，以及它们是否正在使用或malloc可用。
  - 一个方案是有一个可用块（“free store”）的链表. 

@@ -285,7 +285,7 @@ COMMIT WORK;
  - 表空间 又由 段 segment, 区 extent , 页 page  组成.
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mysql_logic_store_struct.png)
+![](../imgs/mysql_logic_store_struct.png)
 
 
 <h2 id="01ead1b0328abc6654e3d8392861dd35"></h2>
@@ -608,7 +608,7 @@ mysql> SELECT * from v_t;
  - 叶子节点 除了包含 键值以外， 每个叶子几点的索引行中 还包含了一个 bookmark.
     - 这个 bookmark 用来告诉 InnoDB  哪里可以找到与索引相对应的行数据。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mysql_index.png)
+![](../imgs/mysql_index.png)
 
  - 辅助索引的存在并不影响数据在 聚集索引中的组织， 因此每张表上可以有多个辅助索引。
  - 当使用 secondary index 查找时，先要先遍历 辅助索引数，在遍历聚集索引数，来得到最终数据。 需要的IO次数是 两颗树的高度之和。
@@ -704,7 +704,7 @@ S |  不兼容 |  兼容
  - 此外，InnoDB 支持多粒度 granular 锁定， 这种锁定允许事务在行级别上的锁 和 表级别上的锁 同时存在。 
  - 为了支持在不同粒度上进行加锁操作，InnoDB 支持一种额外的锁方式， 称之为 意向锁 Intention Lock. 
     - 意向锁 是将锁定的对象分为多个层次， 意向锁意味着事务希望在更细粒度 fine granularity 上进行加锁
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mysql_intention_lock.png)
+    - ![](../imgs/mysql_intention_lock.png)
     - 若将上锁的对象看作 一棵树， 那么对最下层的对象上锁， 也就是对 最细粒度的对象上锁， 那么首先要对粗粒度的对象上锁。
  - InnoDB 支持意向锁设计表比较简练，其意向锁即为表级别的锁。 设计目的主要是为了在一个事务中 揭示下一行将被请求的锁类型。 其支持两种意向锁：
     - IS Lock 意向共享锁， 事务想要获得一张表中 某几行的共享锁

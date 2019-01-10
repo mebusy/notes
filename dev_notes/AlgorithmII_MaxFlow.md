@@ -33,14 +33,14 @@
  - Def.
     - Its **capacity** is the sum of the capacities of the edges from A to B.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mcut_0.png)
+![](../imgs/algorII_mcut_0.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mcut_1.png)
+![](../imgs/algorII_mcut_1.png)
 
  - **Minimum st-cut (mincut) problem**
     - Find a cut of minimum capacity
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mcut_2.png)
+![](../imgs/algorII_mcut_2.png)
 
 <h2 id="94a80819ddc13f6dce6240f35c75622d"></h2>
 
@@ -49,7 +49,7 @@
  - **"Free world" goal** 
     - Cut supplies (if cold war turns into real war).
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mincut_application.png)
+![](../imgs/algorII_mincut_application.png)
 
 > rail network connecting Soviet Union with Eastern European countries
 
@@ -66,7 +66,7 @@
         - Capacity constraint: 0 ≤ edge's flow ≤ edge's capacity.
         - Local equilibrium: inflow = outflow at every vertex (except s and t).
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AlgorII_max_flow.png)
+![](../imgs/AlgorII_max_flow.png)
 
  - Def. The **value** of a flow is the inflow at t.
     - we assume no edge points to s or from t 
@@ -74,7 +74,7 @@
  - **Maximum st-flow (maxflow) problem**
     - Find a flow of maximum value. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AlgorII_max_flow_problem.png)
+![](../imgs/AlgorII_max_flow_problem.png)
 
 <h2 id="cbb1e31675bbfff18dfed42b332e08d6"></h2>
 
@@ -83,7 +83,7 @@
  - **Soviet Union goal**
     - Maximize flow of supplies to Eastern Europe.
  
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algroII_maxflow_application.png)
+![](../imgs/algroII_maxflow_application.png)
 
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>

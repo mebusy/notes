@@ -904,7 +904,7 @@ redis:6379> SORT numbers
     - 5 遍历数组， 将 redisSortObject 的 obj 指针指向的列表项作为排序结果 依次返回给客户端。
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/redis_sort.png)
+![](../imgs/redis_sort.png)
 
 ```c
 typedef struct _redisSortObject {
@@ -1155,7 +1155,7 @@ redis:6379> BITOP NOT not-value value  # 1111 0110
     - sdshdr.len 为 1 
     - buf[0] 保存了一个字节的 bit array, buf[1] 为 `\0`
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/redis_bit_array.png)
+![](../imgs/redis_bit_array.png)
 
  - 需要注意的是， buf 数组保存位数组的顺序， 和我们平时书写 位数组的顺序是 完全相反的
     - 如上图的 buf[0] , 各个位的值 从高位到地位 分别是 1,0,1,1, 0,0,1,0 ,  buf[0]中保存的其实是 0b01001101.
@@ -1163,7 +1163,7 @@ redis:6379> BITOP NOT not-value value  # 1111 0110
     - 是的SETBIT 命令可以不在移动现有二进制位的情况下， 对bit array 进行空间扩展
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/redis_bit_array2.png)
+![](../imgs/redis_bit_array2.png)
 
  - 上图展现了另一个 bit array
     - sdshdr.len = 3, 表示这个 SDS 保存了一个3字节长的 bit array

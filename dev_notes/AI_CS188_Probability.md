@@ -34,7 +34,7 @@ In part 2 we will assume that the models are given to us.
 
 demo: ghost busters
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_ghostbuster.png)
+![](../imgs/cs188_prob_ghostbuster.png)
 
  - A ghost is in the grid somewhere
  - Sensor readings tell how close a square is to the ghost
@@ -197,7 +197,7 @@ corresponds to a sub-table of the original joint distribution  where you conside
  - Marginal distributions are sub-tables which eliminate variables 
  - Marginalization (summing out): Combine collapsed rows by adding
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_margial_distribution.png)
+![](../imgs/cs188_prob_margial_distribution.png)
 
 
 
@@ -218,7 +218,7 @@ corresponds to a sub-table of the original joint distribution  where you conside
 
  - Conditional distributions are probability distributions over some variables given fixed values of others
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_conditional_distribution.png)
+![](../imgs/cs188_prob_conditional_distribution.png)
 
 P(W|T)  is a set of tables -- one table for each value T can take on and then for a fixed value of T you get a conditional distribution table.
 
@@ -230,7 +230,7 @@ Each of these individual tables sums to 1.
 
 It's a way to go from joint distributions to conditional distributions and has slightly quicker way and also a little more mechanical. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_normalize_trick.png)
+![](../imgs/cs188_prob_normalize_trick.png)
 
 <h2 id="730a75b3c3a77c4efa7e801fc1f306ea"></h2>
 
@@ -242,7 +242,7 @@ It's a way to go from joint distributions to conditional distributions and has s
 
 ## Probabilistic Inference
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_probabilistic_inference.png)
+![](../imgs/cs188_prob_probabilistic_inference.png)
 
  - Probabilistic inference: compute a desired probability from other known probabilities (e.g. conditional from joint)
  - We generally compute conditional probabilities
@@ -277,7 +277,7 @@ It's a way to go from joint distributions to conditional distributions and has s
 
 --- 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_joint_table_STWP.png)
+![](../imgs/cs188_prob_joint_table_STWP.png)
 
  - P(W)      
     - Q=W, E=∅ , H={S,T}
@@ -357,7 +357,7 @@ That means you have `n!` ways using the chain rule!.
  - Two ways to factor a joint distribution over two variables:
     - P(x,y) = P(x|y)P(y) = P(y|x)P(x)
  - Dividing 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_bayes_rule.png)
+    - ![](../imgs/cs188_prob_bayes_rule.png)
     - 我们把P(A)称为"先验概率"（Prior probability），即在B事件发生之前，我们对A事件概率的一个判断。
     - P(A|B)称为"后验概率"（Posterior probability），即在B事件发生之后，我们对A事件概率的重新评估。
     - P(B|A)/P(B)称为"可能性函数"（Likelyhood），这是一个调整因子，使得预估概率更接近真实概率。
@@ -392,7 +392,7 @@ This is an application of bayes' rule.  One thing you'll notice that when you ap
 So Bayes' rule can help us make dicisions:  should this person see a doctor or not ?
 
  - M: meningitis, S: stiff neck
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_bayerule_patient.png)
+ - ![](../imgs/cs188_prob_bayerule_patient.png)
  - P(+m|+s) = P(+s|+m)P(+m) / P(+s) = P(+s|+m)P(+m) / ( P(+s|+m)P(+m) + P(+s|-m)P(-m) ) = 0.8x0.0001 / (0.8x0.0001+0.01x0.999)
 
 --- why ? ---
@@ -405,7 +405,7 @@ Because the cost of undiagnosed meningitis is really high.
 ### Quiz: Bayes's Rule 
 
  - given:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_quiz_bayes_rule.png)
+    - ![](../imgs/cs188_prob_quiz_bayes_rule.png)
  - What is P(W | dry) ? 
 
 
@@ -422,7 +422,7 @@ P( rain | dry  ) = 1-P(sun|dry)
  - Let’s say we have two distributions:
     - Prior distribution over ghost location: P(G)
         - Let’s say this is uniform
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_ghostbuster1.png)
+        - ![](../imgs/cs188_prob_ghostbuster1.png)
     - Sensor reading model: P(R | G)
         - Given: we know what our sensors do
         - R = reading color measured at (1,1)
@@ -431,7 +431,7 @@ P( rain | dry  ) = 1-P(sun|dry)
     - P( g|r) ∝<sub>g</sub> P(r|g)P(g) 
         - ∝ : proportional to 
         - ∝<sub>g</sub> means that if compute the thing on right for each value of *g* and normalize, I'll get the things on the left. 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_ghostbuster2.png)
+        - ![](../imgs/cs188_prob_ghostbuster2.png)
 
 
 <h2 id="a64838254ea118409679a4e28005fefb"></h2>
@@ -454,7 +454,7 @@ P( rain | dry  ) = 1-P(sun|dry)
 
 You go to the dentist. You might have a toothache or not, you might have a cavity or not.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_probeCavity.png)
+![](../imgs/cs188_prob_probeCavity.png)
 
  - P(Toothache, Cavity, Catch)
  - If I have a cavity, the probability that the probe catches in it doesn't depend on whether I have a toothache:
@@ -483,7 +483,7 @@ You go to the dentist. You might have a toothache or not, you might have a cavit
 
 if X ⊥ Z | Y :
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_probability_conditional_independent.png)
+![](../imgs/cs188_probability_conditional_independent.png)
 
 
 --- 
@@ -501,7 +501,7 @@ T ⊥ U | R
 
 Fire / Smoke / Alarm
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_prob_conditional_independent.png)
+![](../imgs/cs188_prob_conditional_independent.png)
 
 A ⊥ S|F  is not true
 

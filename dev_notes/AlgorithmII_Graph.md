@@ -52,7 +52,7 @@
  - Maze graph
     - Trémaux maze exploration
         - Unroll a ball of string
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/graph_tremaux_maze.png)
+        - ![](../imgs/graph_tremaux_maze.png)
 
 <h2 id="c9792b88744788472d9532827650ed61"></h2>
 
@@ -88,7 +88,7 @@ private void dfs(Graph G, int v)
 } 
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/graphSearch_dfs.png)
+![](../imgs/graphSearch_dfs.png)
 
  - Proposition
     - DFS marks all vertices connected to *s* in time proportional to the sum of their degrees.
@@ -219,7 +219,7 @@ private void dfs(Graph G, int v)
 
  - Problem: Is a graph bipartite?
     - what **bipartite** means is you can divide the vertices into 2 subsets with the property that every edge connect a vertex in one subset  to a vertex in another.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algoII_graph_bipartite.png)
+    - ![](../imgs/algoII_graph_bipartite.png)
     - in this caes , we can colorize 0,3,4 in red , so that each edge will connect a red vertex and a white vertex.
  - simple DFS-based solution
 
@@ -336,7 +336,7 @@ private void dfs(Graph G, int v)
         - Edge = reference.
     - Roots. Objects known to be directly accessible by program (e.g., stack).
     - Reachable objects. Objects indirectly accessible by program (starting at a root and following a chain of pointers).
-        -![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_graph_digraph_app_gc.png)
+        -![](../imgs/algorII_graph_digraph_app_gc.png)
 
 <h2 id="8fa51b970e3f3fa377f28a3a9afa6f29"></h2>
 
@@ -388,7 +388,7 @@ private void dfs(Graph G, int v)
     - vertex = task
     - edge = precedence constraint
  - example
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_graph_precedence_scheduling.png)
+    - ![](../imgs/algorII_graph_precedence_scheduling.png)
 
 
 <h2 id="62ee2b89caa19cc2a566a5ea91336292"></h2>
@@ -397,7 +397,7 @@ private void dfs(Graph G, int v)
 
  - **DAG**. Directed acyclic graph.
  - **Topological sort**. Redraw DAG so all edges point upwards.
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_graph_topo_sort.png)
+ - ![](../imgs/algorII_graph_topo_sort.png)
  - Solution. DFS. 
     - What else solutions ?  might be hard to find a different way
     - just run DFS
@@ -407,7 +407,7 @@ private void dfs(Graph G, int v)
             - then trace back to vertex 1 
 
     - that's called reverse DFS postorder.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_graph_topo_sort_illu.png)
+    - ![](../imgs/algorII_graph_topo_sort_illu.png)
 
 ```java
 public class DepthFirstOrder {
@@ -474,7 +474,7 @@ public class DepthFirstOrder {
     - If v is strongly connected to w, then w is strongly connected to v.
     - If v is strongly connected to w and w to x, then v is strongly connected to x.
  - Def. A **strong component** is a maximal subset of strongly-connected vertices.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_graph_strong_component.png)
+    - ![](../imgs/algorII_graph_strong_component.png)
  - 强连通图必然有环
     - so if a graph has no directed cycle, the number of SCC must equal to the number of vertices
  - Strong component application: software modules
@@ -484,7 +484,7 @@ public class DepthFirstOrder {
     - Approach 1. Package strong components together.
     - Approach 2. Use to improve design!
     
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SCC.PNG)
+![](../imgs/SCC.PNG)
 
  - 如上图，如果我们从 最右侧的SCC 中的任意一个 node开始查找, DFS可以找到这3个nodes 组成的SCC; 但是 如果最下面的 node开始查找, DFS会找到下方和右方两个SCC的集合; 如果我们直接从最左边的 node 开始查找，则DFS会找到整个graph.
  - 可以看到，从不同的node开始DFS, 会得到不同的结果. 所以，在应用DFS之前，我们需要一步预处理: 我们需要一个正确的 node 访问顺序。
@@ -500,7 +500,7 @@ public class DepthFirstOrder {
     - Compute topological order (reverse postorder) in kernel DAG.  (how to ?)
     - Run DFS, considering vertices in reverse topological order.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_graph_scc_kernel_DAG.png)
+![](../imgs/algorII_graph_scc_kernel_DAG.png)
 
 > kernel DAG of G (in reverse topological order)
 

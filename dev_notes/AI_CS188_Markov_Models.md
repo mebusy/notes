@@ -41,13 +41,13 @@ Markov model means sequence of random variables.
 
 This case let's look at just 4 variables. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_4state_joint_distribution.png)
+![](../imgs/cs188_markov_4state_joint_distribution.png)
 
  - Joint distribution:
     - P(X₁, X₂, X₃, X₄) = P(X₁)·P(X₂|X₁)·P(X₃|X₂)·P(X₄|X₃)
  - More generally
     - P(X₁, X₂, ..., X<sub>T</sub>) = P(X₁)·P(X₂|X₁)·P(X₃|X₂)...P(X<sub>T</sub>|X<sub>T-1</sub>)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_4state_joint_distribution_generally.png)
+    - ![](../imgs/cs188_markov_4state_joint_distribution_generally.png)
  - 简化版 Chain Rule
 
 <h2 id="1584c0069936b81fd7e2d00d4dc7186a"></h2>
@@ -66,7 +66,7 @@ This case let's look at just 4 variables.
 --- 
 
  - generally
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_chain_rule_generally.png)
+    - ![](../imgs/cs188_markov_chain_rule_generally.png)
 
 
 <h2 id="5627b13e1756dc92c82a9b3998e04960"></h2>
@@ -76,7 +76,7 @@ This case let's look at just 4 variables.
  - We assumed : `X₃ ⊥ X₁|X₂`  , and `X₄ ⊥ X₁,X₂ | X₃` 
  - We also have :  `X₁ ⊥ X₃,X₄ |X₂`
  - proof:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_implied_conditional_probability.png)
+    - ![](../imgs/cs188_markov_implied_conditional_probability.png)
  - Additional explicit assumption
     - P(X<sub>t</sub>|X<sub>t-1</sub>) is the same for all t   // TODO  why ?
 
@@ -87,7 +87,7 @@ This case let's look at just 4 variables.
 
 ### Example Markov Chain : Weather
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_chain_example_weather.png)
+![](../imgs/cs188_markov_chain_example_weather.png)
 
  - States: X = {rain, sun}
  - Initial distribution: 1.0 sun
@@ -104,7 +104,7 @@ rain | rain | 0.7
 ---
 
  - Two new ways of representing the same CPT
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_chain_example_weather_2_new_repr.png)
+    - ![](../imgs/cs188_markov_chain_example_weather_2_new_repr.png)
  
  - What is the probability distribution after one step : P(X₂=sun) ?
 
@@ -119,7 +119,7 @@ P(X₂=sun) = P(X₂=sun,X₁=sun) + P(X₂=sun,X₁=rain)
 ### Mini-Forward Algorithm
 
  - Question: What’s P(X) on some day t?
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_forward_simulation.png)
+ - ![](../imgs/cs188_markov_forward_simulation.png)
 
 
 <h2 id="cff3dc4ffa629a6c5051471a4665a6c7"></h2>
@@ -131,7 +131,7 @@ P(X₂=sun) = P(X₂=sun,X₁=sun) + P(X₂=sun,X₁=rain)
     - The distribution we end up in is independent of the initial distribution
  - Stationary distribution:
     - The distribution we end up with is called the stationary distribution           of the chain
-    - It satisfies  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_markov_stationary_distributions.png)
+    - It satisfies  ![](../imgs/cs188_markov_stationary_distributions.png)
 
  - As the property of markov matrix , it will converge to 0.94868/0.31623 = 3:1, that means:
     - P<sub>∞</sub>(sun) = 3/4

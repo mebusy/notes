@@ -40,7 +40,7 @@ plt.title('Histogram')
 plt.show()
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/random_1.png)
+![](../imgs/random_1.png)
 
 分布地很均匀，似乎一切都很美好。
 
@@ -100,7 +100,7 @@ plt.title('Scatter'  )
 plt.show()
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/random_2.png)
+![](../imgs/random_2.png)
 
 上图绘制的是卡牌A的掉落的间隔统计，X轴是第几次掉落，Y 轴是 两次掉落的间隔。
 
@@ -117,7 +117,7 @@ plt.hist( interval , normed=1,  facecolor='blue', alpha=0.5)
 plt.title('Histogram')
 plt.show()
 ```
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/random_3.png)
+![](../imgs/random_3.png)
 
 interval 的概率密度图，X轴是间隔数，Y 轴 是各间隔的次数 出现的频率 
 
@@ -158,7 +158,7 @@ p2.plot( [ x[0] ,x[-1] ] ,  [ 20 , 20 ] , 'b' , linewidth=2  )
 plt.show()
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/random_4.png)
+![](../imgs/random_4.png)
 
 效果非常好，就是我们想要的。
 
@@ -228,7 +228,7 @@ plt.hist( intervals ,histtype='barstacked' ,  normed=1,     alpha=0.5  ) #faceco
 plt.show()
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/random_5.png)
+![](../imgs/random_5.png)
 
 perfect！
 

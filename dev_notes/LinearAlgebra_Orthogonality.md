@@ -65,7 +65,7 @@ proof:
 =>  xᵀy = 0 
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_inner_product_xTy.png)
+![](../imgs/LA_inner_product_xTy.png)
 
 > ***zero vector is orthogonal to any vector***.
 
@@ -197,7 +197,7 @@ Nullspace ⊥ Row space :
 
 Figure 3.4 summarizes the fundamental theorem of linear algebra.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Figure_3.4.png)
+![](../imgs/LA_Figure_3.4.png)
 
  - The nullspace is carried to the zero vector. 
  - Every Ax is in the column space. 
@@ -233,7 +233,7 @@ When A⁻¹ fails to exist, the best substitute is the ***pseudoinverse*** A⁺.
 ## 3.2 COSINES PROJECTIONS ONTO LINES
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_projection_onto_line.png)
+![](../imgs/LA_projection_onto_line.png)
 
 **Figure 3.5** The projection p is the point ( on the line through a ) closest to b.
 
@@ -255,7 +255,7 @@ A formula for p is easy when the subspace is a line.   Projection onto a higher 
 
 Relationship of inner products and angles.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_innerProduct_and_angle.png)
+![](../imgs/LA_innerProduct_and_angle.png)
 
 Figure 3.6 The cosine of the angle θ = β - α using inner products.
 
@@ -278,7 +278,7 @@ The numerator in formula (1) is exactly the inner product of a and b. It gives t
 
 #### Projection onto a Line
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_projection_onto_line2.png)
+![](../imgs/LA_projection_onto_line2.png)
 
  - Now we want to find the projection point p. 
  - This point must be some multiple p = x̂a of the given vector a 
@@ -296,7 +296,7 @@ That gives the formula for the number x̂ and the projection p:
 
 **3H** The projection of the vector b onto the line in the direction of a is p = x̂a:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_projection_onto_a_line.png)
+![](../imgs/LA_projection_onto_a_line.png)
 
 This leads to the **Schwarz inequality** in equation (6), which is the most important inequality in mathematics.  A special case is the fact that arithmetic means ½(x + y) ≥ geometric mean  √xy . 
 
@@ -343,7 +343,7 @@ The line through a is the same, and that's all the projection matrix cares about
 
 Example 3: Project onto the "θ-direction" in the x-y plane. The line goes through *a = (cosθ, sinθ)* and the matrix is symmetric with P² = P:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_3.2_example3.png)
+![](../imgs/LA_3.2_example3.png)
 
 Here c is cosθ, s is sinθ, and c2 + s2 = 1 in the denominator. This matrix P was discovered in Section 2.6 on linear transformations. Now we know P in any number of dimensions. We emphasize that it produces the projection p:
 
@@ -412,7 +412,7 @@ dE²/dx = 2[(2x-b₁)2 +(3x-b₂)3 +(4x-b₃)4] = 0.
 
 Solving for x, the least-squares solution of this model system ax = b is denoted by x̂ :  (you need some calculus)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_least_square_solution_example.png)  
+![](../imgs/LA_least_square_solution_example.png)  
 
 **3K**:  The least-squares solution to a problem ax = b  in one unknon is x̂ = aaᵀ/aᵀa .
 
@@ -426,13 +426,13 @@ Again the problem is to choose x̂ so as to minimize the error, and again this m
 
 We may use geometry or calculus to determine x̂ . In n dimensions, we prefer the appeal of geometry; p must be the "projection of b onto the column space." The error vector e = b - Ax̂ must be perpendicular to that space (Figure 3.8). Finding x̂ and the projection p = Ax̂ is so fundamental that we do it in two ways:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F3.8.png)
+![](../imgs/LA_F3.8.png)
 
  1. All vectors perpendicular to the column space lie in the left nullspace. Thus the error vector e = b - Ax̂ must be in the nullspace of Aᵀ:
      - `Aᵀ(b-Ax̂) = 0  , or AᵀAx̂ = Aᵀb`
      - 在坏方程左右乘上 Aᵀ ,就是好方程。 AᵀA 是本章的核心
  2. The error vector must be perpendicular to each column a₁ , ... , an of A:
-     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_errorVector_perpend_t_column.png)
+     - ![](../imgs/LA_errorVector_perpend_t_column.png)
      - This is agin `Aᵀ(b-Ax̂) = 0  , or AᵀAx̂ = Aᵀb`.
 
 The fastest way is just to multiply the unsolvable equation Ax = b by Aᵀ. All these equivalent methods produce a square coefficient matrix AᵀA. It is symmetric (its transpose is not AAᵀ!) and it is the fundamental matrix of this chapter.
@@ -571,7 +571,7 @@ This is an *overdetermined* system, with m equations and only two unknowns. If e
 
 The best solution (Ĉ, D̂) is the x̂ that minimizes the squared error E².
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F3.9.png)
+![](../imgs/LA_F3.9.png)
 
 The vector p = Ax̂ is as close as possible to b. (Figure 3.9). On the graph, the errors are the ***vertical distances*** `b - C - Dt` to the straight line (not perpendicular distances!). It is the vertical distances that are squared, summed, and minimized.
 
@@ -597,7 +597,7 @@ Note the beautiful connections between the two figures. The problem is the same 
 
 **3O**  The measurements b₁, ..., bm are given at distinct points t₁ , ..., tm. Then the straight line C + Dt which minimizes E² comes from least squares:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_3O.png)
+![](../imgs/LA_3O.png)
 
 ---
 
@@ -818,7 +818,7 @@ Second Vector
 
 B is orthogonal to q₁. It is the part of b that goes in a new direction , and not in the direction of a.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F3.10.png)
+![](../imgs/LA_F3.10.png)
 
 At this point q₁ and q₂ are set. The third orthogonal direction starts with c. It will not be in the plance of q₁ and q₂, which is the plane of a and b. However, it may have a component in that plane, and that has to be substracted. What is left is the component C we want, the part that is in a new direction perpendicular to the plane:
 

@@ -55,7 +55,7 @@
 
 ### Mnemonics
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_mlang_mnemonics.png)
+![](../imgs/n2t_mlang_mnemonics.png)
 
  - Interpretation 1: The "symbolic form" doesn't really exist but is just a convenient mnemonic to present machine language instructions to humans. 
  - Interpretation 2: We will allow humans to write machine language instructions using this "*assembly language*" and will have an "Assembler" program convert it to the bit-form.
@@ -98,7 +98,7 @@
         - 从内存取值到CPU ，和CPU本身做算数运算相比，要花费非常多的时间
  - Solution: Memory Hierachy
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_memory_hierarchy.png)
+![](../imgs/n2t_memory_hierarchy.png)
 
  - Faster access means smaller memory size
 
@@ -157,7 +157,7 @@
 
 ### Hack computer : hardware 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_compute_archi.png)
+![](../imgs/n2t_hack_compute_archi.png)
 
  - A 16-bit machine means  the atomic unit of operation is 16-bit. 
  - A 16-bit machine consising of :
@@ -175,7 +175,7 @@
     - 16-bit A-instructions
     - 16-bit C-instructions
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_computer_archi2.png)
+![](../imgs/n2t_hack_computer_archi2.png)
 
  - Control:
     - The ROM is loaded with a Hack program
@@ -186,7 +186,7 @@
 
 ### Hack computer: registers 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_computer_register.png)
+![](../imgs/n2t_hack_computer_register.png)
 
  - The Hack machine language recognizes 3 registers :
     - D holds a 16-bit value : data
@@ -242,7 +242,7 @@ dest = comp ; jump  // both dest and jump are optional
         - we can either store the result of computation in some destination ,
         - or we can use this computation to decide if we want to jump to some other instruction in the program.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_c_instruction_comp.png)
+![](../imgs/n2t_c_instruction_comp.png)
         
 dest = `null, M, D, MD, A, AM, AD, AMD`
 
@@ -306,7 +306,7 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
 --- 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_c_instruction_binary_syntax.png)
+![](../imgs/n2t_c_instruction_binary_syntax.png)
 
  - Binary syntax :
     - 
@@ -314,17 +314,17 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
     - comp bit: to specify what computation to achieve. 
         - these are the control bits that will be sent later to the ALU  (ALU 不是6位 control bits 吗 ?)
         
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_c_binary_comp.png)
+![](../imgs/n2t_c_binary_comp.png)
 
  - impossible to compute with A and M !!
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_c_binary_dest.png)
+![](../imgs/n2t_c_binary_dest.png)
 
  - d1 means writing to A enable
  - d2 means D 
  - d3 means M 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_c_binary_jump.png)
+![](../imgs/n2t_c_binary_jump.png)
 
  - j1 means less than 0
  - j2 means equals 0
@@ -340,7 +340,7 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
 
 ### Hack Computer platform: Output 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_screen_mem_map.png)
+![](../imgs/n2t_screen_mem_map.png)
 
  - Screen Memroy Map
     - A designated memory area, dedicated to manager a display unit
@@ -348,7 +348,7 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
     - Output is effected by writing code that manipulates the screen memory map.
 
  -  Display Unit
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_display_unit_hack.png)
+    - ![](../imgs/n2t_display_unit_hack.png)
     - use a bit that represents the pixel in screen memory map
     - so we need 8k, 16-bit words : `8*1024*16 = 256*512 = 131072`
  - we are going to implement the screen memory map using a 8k chip called Screen.
@@ -370,7 +370,7 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
  - The Hack character set :
     - it is a subset of the keys that you have on you regular keyboard.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_character_set.png)
+![](../imgs/n2t_hack_character_set.png)
 
  - To check which key is currently pressed: 
     - Probe the contents of the `keyboard` chip
@@ -416,7 +416,7 @@ M=D
 
 ### Hack program example: add two numbers
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_program_add2numbers.png)
+![](../imgs/n2t_hack_program_add2numbers.png)
 
 <h2 id="fa7826a41e60188c3d9aa40c67875a2e"></h2>
 
@@ -451,7 +451,7 @@ R2  |  2
 ... | ...
 R15 |  15
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_virtual_register.png)
+![](../imgs/n2t_virtual_register.png)
 
 ---
 
@@ -478,7 +478,7 @@ THAT | 4
 
 ### Branching
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_ml_branching.png)
+![](../imgs/n2t_ml_branching.png)
 
  - 这个程序可以很好的工作，但是 如果没有这些 左边的这些行号， 这段代码就是个噩梦
  - Fortunately , we have a very nice feature in assembly languages , which called symbolic references. 
@@ -487,7 +487,7 @@ THAT | 4
  - Label declarations are not translated ( to machine language ). 
  - Each reference to a label is replaced with a reference to the instruction number following that label's declaration.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_symbolic_reference.png)
+![](../imgs/n2t_symbolic_reference.png)
 
 <h2 id="03df896fc71cd516fdcf44aa699c4933"></h2>
 
@@ -498,7 +498,7 @@ THAT | 4
  - we use a single register to represent every one of our variables, if we want to create variables in our program.
  - Example: use temp to exchange the content of  R0 and R1
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_variable.png)
+![](../imgs/n2t_variable.png)
 
  - here , `temp` don't have a corresponding label called temp.  how it works ?
  - Basically , we present the following pledge to the computer: 
@@ -509,7 +509,7 @@ THAT | 4
     - Variable are allocated to the RAM from adderss 16 onward. 
         - in this example , we have only 1 variable, so it ends up being allocated to RAM 16.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_variable_rom.png)
+![](../imgs/n2t_variable_rom.png)
 
  - let's take a look at our program.
  - This program has another very nice virtue, which is more subtle. 

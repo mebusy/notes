@@ -32,7 +32,7 @@ We can list four of the main uses of determinants:
      - The most important application, and the reason this chapter is essential to the book, is to the family of matrices A - λI. The parameter λ is subtracted all along the main diagonal, and the problem is to find the eigenvalues for which A - λI is singular. The test is det(A - λI) = 0. This polynomial of degree n in X has exactly n roots. The matrix has n eigenvalues. This is a fact that follows from the determinant formula, and not from a computer.
  2. The determinant of A equals the ***volume*** of a box in n-dimensional space. 
      - The edges of the box come from the rows of A . The columns of A would give an entirely different box with the same volume.
-     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F4.1.png)
+     - ![](../imgs/LA_F4.1.png)
  3. The determinant gives a formula for each pivot. 
      - Theoretically, we could predict when a pivot entry will be zero, requiring a row exchange. 
      - From the formula ***determinant = ± (product of the pivots)***, it follows that *regardless of the order of elimination, the product of the pivots remains the same apart from sign*.
@@ -116,7 +116,7 @@ We emphasize that the rules apply to *square matrices* of any size.
          - **Product of pivots**:  detA = ± detU = ± d₁d₂ ... d𝑛 .  (also see 4A)
 
  9. *detAB = detA x detB*.
-     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Det_ProductRule.png)
+     - ![](../imgs/LA_Det_ProductRule.png)
      - This rule is the most surprising
      - A particular case of this rule gives the determinant of A⁻¹: `detA⁻¹ = 1 / detA`:
          - because (det A) (det A⁻¹) = det AA⁻¹ = det I = 1. 
@@ -154,13 +154,13 @@ The triangular factors have detL = detU = 1 , and detD = d₁...d𝑛 .
 
 In the 2 by 2 case, the standard LDU factorization is:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_LDU_2x2.png)
+![](../imgs/LA_LDU_2x2.png)
 
 The product of the pivots is ad - bc.
 
 For n = 2, we will be proving that ad - bc is correct. For n = 3, the determinant formula is again pretty well known (it has six terms):
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_3x3.png)
+![](../imgs/LA_det_3x3.png)
 
 Our goal is to derive these formulas directly from the defining properties 1-3 of det A. If we can handle n = 2 and n = 3 in an organized way, you will see the pattern.
 
@@ -172,7 +172,7 @@ To start, each row can be broken down into vectors in the coordinate directions:
 
 Then we apply the property of linearity, first in row 1 and then in row 2:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_2x2_factor.png)
+![](../imgs/LA_det_2x2_factor.png)
 
 Every row splits into n coordinate directions, so this expansion has nⁿ terms. 
 
@@ -189,7 +189,7 @@ Suppose the first row has a nonzero term in column α, the second row is nonzero
 
 The 3 by 3 case produces 3! = 6 determinants:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_3x3_6terms.png)
+![](../imgs/LA_det_3x3_6terms.png)
 
 All but these n! determinants are zero, because a column is repeated.   In other words, ***there are n! ways to permute the numbers 1, 2, ... , n***. The column numbers give the permutations:
 
@@ -201,9 +201,9 @@ Those are the 3! = 6 permutations of (1, 2, 3); the first one is the identity.
 
 The determinant of A is now reduced to six separate and much simpler determinants. Factoring out the aᵢⱼ, there is a term for every one of the six permutations:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_3x3_6terms2.png)  (5)
+![](../imgs/LA_det_3x3_6terms2.png)  (5)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_bigFormula.png)   (6)
+![](../imgs/LA_det_bigFormula.png)   (6)
 
 It remains to find the determinant of P. Row exchanges transform it to the identity matrix, and each exchange reverses the sign of the determinant:
 
@@ -227,7 +227,7 @@ It is possible to see why it has properties 1-3.
 
 Look at all the terms a₁ₐ, a₂ᵦ, ... ,  a<sub>𝑛</sub>ᵧ , involving a₁₁.  The first column is α = 1. This leaves some permutation (β, ... , γ) of the remaining columns (2, ... , n).  We collect all these terms together as a₁₁C₁₁  , where the coefficient of a₁₁ is a smaller determinant--with row 1 and column 1 removed:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_cofactor.png)
+![](../imgs/LA_det_cofactor.png)
 
 Similarly, the entry a₁₂ is multiplied by some smaller determinant C₁₂. 
 
@@ -253,7 +253,7 @@ We know that C₁ⱼ depends on rows 2, ... , n.  Row 1 is already accounted for
 
 What we are really doing is splitting the determinant into the following sum:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_cofactor_filter.png)
+![](../imgs/LA_det_cofactor_filter.png)
 
 For a determinant of order n, this splitting gives n smaller determinants ( ***minors***) of order n - 1;  The submatrix M₁ⱼ is formed by throwing away row 1 and column j.
 
@@ -286,19 +286,19 @@ This section follows through on four major applications:
 
 The 2 by 2 case shows how cofactors go into A⁻¹:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_apply_inverse.png)
+![](../imgs/LA_det_apply_inverse.png)
 
 We are dividing by the determinant, and A is invertible exactly when det A is nonzero.
 
 That is the clue we need: **A⁻¹ divides the cofactors by det A**.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_apply_inverse2.png)
+![](../imgs/LA_det_apply_inverse2.png)
 
 **Cofactor matrix C is transposed !**.
 
 Our goal is to verify this formu1 for A⁻¹. We have to see why ACᵀ = (detA) I:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_apply_inverse3.png)  (2)
+![](../imgs/LA_det_apply_inverse3.png)  (2)
 
 The critical question is: *Why do we get zeros off the diagonal*? If we combine the entries a₁ⱼ from row 1 with the cofactors C₂ⱼ for row 2, why is the result zero?
 
@@ -312,7 +312,7 @@ Dividing by the number detA (if it is not zero!) gives `A⁻¹ = Cᵀ / detA`.
 
 **Example 1:**  The inverse of a sum matrix is a difference matrix:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_inverse_of_sum_matrix.png)
+![](../imgs/LA_det_inverse_of_sum_matrix.png)
 
 
 <h2 id="ababd14c9c564481b2f47b6d96e29b0a"></h2>
@@ -321,7 +321,7 @@ Dividing by the number detA (if it is not zero!) gives `A⁻¹ = Cᵀ / detA`.
 
 **4C:** Cramer's rule: The jth component of x = A⁻¹b is the ratio
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_cramer_rule.png)
+![](../imgs/LA_det_cramer_rule.png)
 
 <h2 id="fd7c0e5423c4bd8de8470b61d40e01e1"></h2>
 
@@ -333,7 +333,7 @@ Then the volume is the product of the edge lengths: volume = *l₁l₂...l<sub>�
 
 We want to obtain the same *l₁l₂...l<sub>𝑛</sub>* from detA, *when the edges of that box are the rows of A*. With right angles, these rows are orthogonal and AAᵀ is diagonal (QQᵀ = I ):
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_right_angle_box.png)
+![](../imgs/LA_det_right_angle_box.png)
 
 
 &nbsp;&nbsp;&nbsp;&nbsp; Right-angle case:  *l₁²l₂²...l<sub>𝑛</sub>²* = det(AAᵀ) = (detA)(detAᵀ) = (detA)².
@@ -344,7 +344,7 @@ The square root of this equation says that ***the determinant equals the volume*
 
 If the angles are not 90°, the volume is not the product of the lengths.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F4.2.png)
+![](../imgs/LA_F4.2.png)
 
 The "volume" of a parallelogram equals the base l times the height h. 
 
@@ -370,13 +370,13 @@ The key observation is that the first k pivots are completely determined by the 
 
 *The remaining rows and columns of A have no effect on this corner of the problem:*
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_matrix_corner.png)
+![](../imgs/LA_det_matrix_corner.png)
 
 Certainly the first pivot depended only on the first row and column. The second pivot (ad - bc)/a depends only on the 2 by 2 corner submatrix A₂. The rest of A does not enter until the third pivot. 
 
 Actually it is not just the pivots, but the entire upper-left corners of L, D, and U, that are determined by the upper-left corner of A:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_matrix_corner2.png)
+![](../imgs/LA_det_matrix_corner2.png)
 
 What we see in the first two rows and columns is exactly the factorization of the corner submatrix A₂. This is a general rule if there are no row exchanges:
 
@@ -384,7 +384,7 @@ What we see in the first two rows and columns is exactly the factorization of th
 
 The proof is to see that this corner can be settled first, before even looking at other eliminations. Or use the laws for ***block multiplication***:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_block_multiple.png)
+![](../imgs/LA_det_block_multiple.png)
 
 Comparing the last matrix with A, the corner L<sub>k</sub>D<sub>k</sub>U<sub>k</sub> coincides with A<sub>k</sub>. Then:
 
@@ -394,7 +394,7 @@ Comparing the last matrix with A, the corner L<sub>k</sub>D<sub>k</sub>U<sub>k</
 
 We can isolate each pivot d<sub>k</sub> as ***a ratio of determinants***:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_det_formular_for_pivots.png)
+![](../imgs/LA_det_formular_for_pivots.png)
 
 From equation (5) we can finally read off the answer to our original question:
 

@@ -63,7 +63,7 @@ After defining these subtasks, we must indicate for each subtask which other sub
 
 All of this information can be summarized by a directed acyclic graph called the ***task graph***
 
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_taxi_task_graph.png)
+ - ![](../imgs/maxq_taxi_task_graph.png)
  - each node corresponds to a subtask or a primitive action
     - each subtask will executes its policy by calling child subroutine 
  - each edge corresponds to a potential way in which one subtask can "call" one of its child tasks
@@ -124,7 +124,7 @@ parameter ↑    |→ (if any) parameter of a
 
 > Table 1: Pseudo-Code for Execution of a Hierarchical Policy
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_tbl_1.png)
+![](../imgs/maxq_tbl_1.png)
 
 It is sometimes useful to think of the contents of the stack as being an additional part of the state space for the problem. Hence, a hierarchical policy implicitly defines a mapping from the current state s<sub>t</sub> and current stack contents K<sub>t</sub> to a primitive action a.
 
@@ -165,7 +165,7 @@ The sum continues until the subroutine for task Mᵢ enters a state in Tᵢ.
 
 Now let us suppose that the first action chosen by πᵢ is a subroutine *a* . This subroutine is invoked, and it executes for a number of steps N and terminates in state s' according to P<sup>π</sup>ᵢ(s',N | s,a) . We can rewriet Equation (5) as : 
 
-  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_6.png)
+  ![](../imgs/maxq_eq_6.png)
 
  - the first part of equation 6  is the discounted sum of rewards for executing subroutine *a* in state *s* until it terminates
     - in other words, it is V<sup>π</sup>(a,s), the projected value function for the child task Mₐ.
@@ -173,7 +173,7 @@ Now let us suppose that the first action chosen by πᵢ is a subroutine *a* . T
 
 We can write this in the form of a Bellman equation :
 
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_7.png)
+ ![](../imgs/maxq_eq_7.png)
 
  - This has the same form as Equation (3)
  - the first term is the expected reward R̅(s,π(s)). Q.E.D.
@@ -185,7 +185,7 @@ To obtain a hierarchical decomposition of the projected value function, let us s
 
 Let Q<sup>π</sup>(i,s,a) be the expected cumulative reward for subtask Mᵢ of performing action *a* in state *s* , end then following hierarchical policy π until Mᵢ terminates.  We can re-state Equation (7) as follows:
 
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_8.png)
+ ![](../imgs/maxq_eq_8.png)
 
  - difference from V<sup>π</sup>(i,s):
     - V: Mₐ is provided by πᵢ(s)
@@ -196,7 +196,7 @@ Let Q<sup>π</sup>(i,s,a) be the expected cumulative reward for subtask Mᵢ of 
 
 **Definition 6** The completion function, C<sup>π</sup>(i,s,a) , is the expected discounted cumulative reward of completing subtask Mᵢ after invoking the subroutine for subtask Mₐ in state *s*. The reward is discounted back to the point in time where a begins execution ( \* γᴺ ) .
 
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_9.png)
+ ![](../imgs/maxq_eq_9.png)
 
 With this definition, we can express the Q function recursively as
 
@@ -207,7 +207,7 @@ With this definition, we can express the Q function recursively as
 
 Finally, we can re-expressthe definition for  V<sup>π</sup>(i,s) as 
 
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_11.png)
+ ![](../imgs/maxq_eq_11.png)
 
 We will refer to equations (9), (10), and (11) as the *decomposition equation*  for the MAXQ hierarchy under a fixed hierarchical policy π. 
 
@@ -220,7 +220,7 @@ Now just the C values for all non-primitive subtasks and the V values for all pr
 
 To make it easier for programmers to design and debug MAXQ decompositions, we have developed a graphical representation that we call the MAX Q graph.
 
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_taxi_maxq_graph.png)
+ ![](../imgs/maxq_taxi_maxq_graph.png)
 
  - The graph contains two kinds of nodes : Max nodes and Q nodes
  - The Max nodes correspond to the subtasks in the task decomposition
@@ -255,7 +255,7 @@ Suppose that the passenger is at R and wishes to go to B. Let the hierarchical p
  - When the passenger is delivered, the agent gets a reward of +20
  - so the net value is +10
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_taxi_fig4.png)
+![](../imgs/maxq_taxi_fig4.png)
 
  - To compute the value V<sup>π</sup>(Root,s₁)  
     - MaxRoot consults its policy and finds that π<sub>root</sub>(s₁) is Get.
@@ -285,10 +285,10 @@ Suppose that the passenger is at R and wishes to go to B. Let the hierarchical p
 
 In general, the MAXQ value function decomposition has the form
 
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_12.png)
+ ![](../imgs/maxq_eq_12.png)
 
  - where a₀,a₁,...,a<sub>m</sub> is the "path" of Max nodes chosen by the hierarchical policy , going from the Root down to a primitive leaf node.
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_fig5.png)
+ - ![](../imgs/maxq_fig5.png)
 
 We can summarize the presentation of this section by the following theorem:
 
@@ -349,9 +349,9 @@ The reason to seek recursive optimality rather than hierarchical optimality is t
  - recursive optimality makes it possible to solve each subtask without reference to the context in which it is executed.
  - This context-free property makes it easier to share and re-use subtasks.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_fig6_1.png)
+![](../imgs/maxq_fig6_1.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_fig6_2.png)
+![](../imgs/maxq_fig6_2.png)
 
  - The policy shown in the left diagram is recursively optimal but not hierarchically optimal.
  - The shaded cells indicate points where the locally-optimal policy is not globally optimal.
@@ -404,7 +404,7 @@ The value a<sub>t</sub>(i) is a “learning rate” parameter that should be gra
 
 > Table 2: The MAXQ-O learning algorithm. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_tbl_2.png)
+![](../imgs/maxq_tbl_2.png)
 
 
 There are three things that must be specifiedin order to make this algorithm description complete
@@ -415,14 +415,14 @@ There are three things that must be specifiedin order to make this algorithm des
         - If subroutine i had invoked subroutine j, and j’s termination condition is satisfied, then subroutine i can update the value of C(i, s,j).
  2. Second, we must specify how to compute V<sub>t</sub> in line 11 , since it is not stored in the Max node.
     - It is computed by the following modified versions of the decomposition equations:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_13_14.png)
+    - ![](../imgs/maxq_eq_13_14.png)
         - compared with Equations (10) and (11), it is optimal value, not the value under fixed policy
     - To compute V<sub>t</sub>(i,s) using these equations, we must perform a complete search of all paths through the MAXQ graph starting at node i and ending at the leaf nodes. 
         - Table 3 gives pseudo-code for a recursive function, EVALUATEMAXNODE, that implements a depth-first search.
 
 > Table 3: Pseudo-code for Greedy Execution of the MAXQ Graph.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_tbl_3.png)
+![](../imgs/maxq_tbl_3.png)
 
 This search can be computationally expensive, and a problem for future research is to develop more efficient methods for computing the best path through the graph. 
 
@@ -520,7 +520,7 @@ The  C̃ function will be learned using an update rule similar to the Q learning
 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_tbl_4.png)
+![](../imgs/maxq_tbl_4.png)
 
 <h2 id="be6b86743fc14285b97d7d0037337a64"></h2>
 
@@ -593,17 +593,17 @@ Note that the two conditions must hold for all stationary abstract policies π r
 
 Specifically Q<sup>π</sup>(i,s,j) can be computed as follows:
 
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_5_lemma2_1.png)
+ ![](../imgs/maxq_5_lemma2_1.png)
 
 where
 
     
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_5_lemma2_2.png)
+ ![](../imgs/maxq_5_lemma2_2.png)
 
 where
 
  
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_5_lemma2_3.png) for some arbitrary value y₀ for the irrelevant state variables Yᵢ.
+ ![](../imgs/maxq_5_lemma2_3.png) for some arbitrary value y₀ for the irrelevant state variables Yᵢ.
 
 ---
 
@@ -615,7 +615,7 @@ By abstracting away the passenger source and destination, we obtain a huge savin
 
 Figure 7 shows that the irrelevant variables Y do not affect the rewards either directly or indirectly.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_f7.png)
+![](../imgs/maxq_f7.png)
 
 **怎么来发现是否可以应用 MAX NODE IRRELEVANCE 呢?**
 
@@ -843,7 +843,7 @@ We will describe two methods for non-hierarchical execution.
 
 The first method is based on the dynamic programming algorithm known as policy iteration. The policy iteration algorithm starts with an initial policy π⁰. It then repeats the following two steps until the policy converges.  In the policy evaluation step, it computes the value function V<sup>πk</sup> of the current policy π<sub>k</sub>. Then, in the policy improvement step, it computes a new policy, π<sub>k+1</sub> ccording to the rule
 
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_eq_23.png)
+ ![](../imgs/maxq_eq_23.png)
 
 Note that in order to apply this method, we need to know P and R.
 
@@ -853,7 +853,7 @@ We start with a hierarchical policy π and represent its value function using th
 
 Then, we can perform one step of policy improvement by applying Equation (23) using V<sup>π</sup>(0,s')(computed by MAXQ hierarchy) to compute V<sup>π</sup>(s') .
 
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_1step_policy_improvement.png)
+ ![](../imgs/maxq_1step_policy_improvement.png)
 
 Unfortunately, we can’t iterate this policy improvement process, because the new policy,is very unlikely to be a hierarchical policy . Nonetheless, one step of policy improvement can give very significant improvements.
 
@@ -867,7 +867,7 @@ Our second method for non-hierarchical execution of the MAXQ graph is to call EV
 
 > Table 5: The procedure for executing the one-step greedy policy.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_tbl_5.png)
+![](../imgs/maxq_tbl_5.png)
 
 We will call the policy computed by EXECUTEHGPOLICY the *hierarchical greedy policy*, and denote it  π<sup>hg\*</sup> , where the superscript \* indicates that we are computing the greedy action at each time step.  The following theorem shows that this can give a better policy than the original, hierarchical policy.
 
@@ -916,7 +916,7 @@ These configurations are controlled by many parameters.
 
 For Boltzmann exploration, we established an initial temperature and then a cooling rate. A separate temperature is maintained for each Max node in the MAXQ graph, and its temperature is reduced by multiplying by the cooling rate each time that subtask terminates in a goal state.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_performance_eval.png)
+![](../imgs/maxq_performance_eval.png)
 
  - all forms of MAXQ learning have better initial performance than flat Q learning. 
  - without state abstractions, MAXQ-Q learning actually takes longer to converge, so that the Flat Q curve crosses the MAXQ/ no abstraction curve
@@ -949,4 +949,4 @@ For Boltzmann exploration, we established an initial temperature and then a cool
 
 ---
 
- [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/maxq_taxi_fig1.png
+ [1]: ../imgs/maxq_taxi_fig1.png

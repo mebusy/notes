@@ -80,7 +80,7 @@
 ## Brute Force Approach to Pattern Matching
 
  - Pattern drives along Text
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_string_pattern_drive_on_text.png)
+    - ![](../imgs/algorithm_string_pattern_drive_on_text.png)
  - Brute Force Approach Is Fast!
     - running time of single Pattern: O(|Text|·|Pattern|)
     - The runtime of the Knuth-Morris-Pratt algorithm: O(|Text|)
@@ -94,15 +94,15 @@
 
 ## Herding Patterns into Trie
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_string_herding_pattern_into_trie.png)
+![](../imgs/algorithm_string_herding_pattern_into_trie.png)
 
 ⇓
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_string_herding_pattern_into_trie2.png)
+![](../imgs/algorithm_string_herding_pattern_into_trie2.png)
 
 ---
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_string_trie_pattern.png)
+![](../imgs/algorithm_string_trie_pattern.png)
 
 For simplicity, we assume that no pattern is a substring of another pattern.
 
@@ -114,7 +114,7 @@ TrieMatching(Text, Patterns):
         - a pattern from Patterns matches Text each time you reach a leaf
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_string_trie_pattern_match.png)
+![](../imgs/algorithm_string_trie_pattern_match.png)
 
  - Our Bus Is Fast!
     - Runtime of TrieMatching: O(|Text|\* |LongestPattern|)
@@ -136,7 +136,7 @@ New Idea: Packing Text onto a Bus
  - panamabananas$
     - Adding “$” sign in the end. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_string_trie_text.png)
+![](../imgs/algorithm_string_trie_text.png)
 
  - this tree also told us that *a* appear in the text 6 times.
 
@@ -146,18 +146,18 @@ New Idea: Packing Text onto a Bus
 
 Maybe we find a match :
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_string_trie_match_banana.png)
+![](../imgs/algorithm_string_trie_match_banana.png)
 
 But where is the match ? What is the position of "banana" in the Text ?
 
  - Idea:to find the positions of matches , add some information to leaves
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_string_suffix_trie_text.png)
+![](../imgs/algorithm_string_suffix_trie_text.png)
 
  - Walking Down to the Leaves to Find Matches
     - Once we find a match, we “walk down” to the leaf (or leaves) in order to find the starting position of the match.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_string_suffix_trie_ana.png)
+![](../imgs/algorithm_string_suffix_trie_ana.png)
 
 <h2 id="9f208e275122ae4c1c110416a76cfffe"></h2>
 
@@ -174,14 +174,14 @@ But where is the match ? What is the position of "banana" in the Text ?
 
 ## From Suffix Tries to Suffix Trees
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_string_suffix_tree.png)
+![](../imgs/algorithm_string_suffix_tree.png)
 
  - Since each suffix adds one leaf and at most one internal vertex to the suffix tree:
     - #vertices < 2|Text|
     - memory footprint of the suffix tree: O(|Text|)
     - Cheating!!! - how do we store all edge labels?
         - storing edge labels !
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_string_store_edge_labels.png)
+        - ![](../imgs/algorithm_string_store_edge_labels.png)
 
  - Why did we bother to add “$” to “panamabananas”?
     - to make sure that each suffix corresponds to a leaf
@@ -206,9 +206,9 @@ But where is the match ? What is the position of "banana" in the Text ?
 --- 
 
  - pseudocode for constructing a trie from a collection of patterns:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_string_code_trie_construction.png)
+    - ![](../imgs/algorithm_string_code_trie_construction.png)
  - pseudocode for matching a collection of patterns against the text using a trie:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_string_code_trie_matching.png)
+    - ![](../imgs/algorithm_string_code_trie_matching.png)
 
 ---
 
@@ -259,7 +259,7 @@ So our goal now is to start from the genome, apply Burrows–Wheeler transform t
  - Idea: Converting Repeats to Runs
  - Forming All Cyclic Rotations of Text
     - panamabananas$
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_cyclic_rotation_of_text.png)
+    - ![](../imgs/AOS_cyclic_rotation_of_text.png)
 
 --- 
 
@@ -281,7 +281,7 @@ So our goal now is to start from the genome, apply Burrows–Wheeler transform t
  - Sorting Cyclic Rotations
     - Sort the strings lexicographically ($ comes first)
     - BWT(panamabananas$)=smnpbnn**aaaaa**$a
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_text.png)
+    - ![](../imgs/AOS_BWT_text.png)
     - now it has many runs
  - Going Back From BWT(Genome) to Genome ? 
 
@@ -297,40 +297,40 @@ So our goal now is to start from the genome, apply Burrows–Wheeler transform t
     - We also know the first column , because the first column is simply sorting all elements of the Burrows-Wheeler transform.  排序一下可得
         - Sorting all elements of “annb$aa” gives first column of BWT matrix.
     - We now know 2-mer composition of the circular string banana$ 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_invert_banana_2mer.png)
+        - ![](../imgs/AOS_BWT_invert_banana_2mer.png)
     - Sorting gives us the first 2 columns of the matrix
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_invert_banana_first2column.png)
+        - ![](../imgs/AOS_BWT_invert_banana_first2column.png)
     - We now know 3-mer composition of the circular string banana$
     - Sorting gives us the first 3 columns of the matrix.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_invert_banana_first3column.png)
+        - ![](../imgs/AOS_BWT_invert_banana_first3column.png)
     - repeate the steps, until we reconstruct the entire matrix !
         - Symbols in the first row (after $) spell ***banana***.
  - More Memory Issues
     - Reconstructing Text from BWT(Text) required us to store |Text| cyclic rotations of |Text|.
     - Can we invert BWT(Text) with less space and without |Text| rounds of sorting?
  - A Strange Observation
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_invert_hiding_in_same_position.png)
+    - ![](../imgs/AOS_BWT_invert_hiding_in_same_position.png)
     - 1st **a** in FirstColumn and 1st **a** in LastColumn are hiding at the same position along the cycle!
     - They Are Hiding at the Same Position!
  - Is It True in General?
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_still_sorted.png)
+    - ![](../imgs/AOS_BWT_still_sorted.png)
  - First-Last Property
     - the k-th occurrence of *symbol* in ***FirstColumn***
     - and the k-th occurrence of *symbol* in ***LastColumn***
     - correspond to appearance of *symbol* at the same position in ***Text***.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_first_last_property.png)
+    - ![](../imgs/AOS_first_last_property.png)
 
 ---
 
  - Inverting BWT again 
     - let's start with the *$* that is located in the first column first row.  It corresponds to s1 in the last column first row. 
     - we know where s1 is located in the first column. let's move there.  (red line)
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_invert_BWT_again_1.png)
+        - ![](../imgs/AOS_invert_BWT_again_1.png)
     - And s1 in the first column correspond to a6 in the last column. And we know where a6 is located in the first column , so let's move to the postion a6. 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_invert_BWT_again_2.png)
+        - ![](../imgs/AOS_invert_BWT_again_2.png)
     - repeat such steps , We are done 
         - This Was Fast!
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_invert_BWT_again_done.png)
+        - ![](../imgs/AOS_invert_BWT_again_done.png)
         - Memory: 2|Text|
         - Time: O(|Text|)
 
@@ -373,17 +373,17 @@ The only question left, where is pattern matching in the Burrows-Wheeler transfo
 ### Finding Pattern Matches Using BWT
 
  - Searching for **ana** in p**ana**mab**anana**s
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_pattern_match_ana_found.png)
+    - ![](../imgs/AOS_BWT_pattern_match_ana_found.png)
  - Lets Start by Matching the Last Symbol (a) 
     - Searching for ani**a** in panamabananas
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_pattern_match_a.png)
+    - ![](../imgs/AOS_BWT_pattern_match_a.png)
  - Matching the Last Two Symbols (na)
     - Searching for a**na** in panamabananas
     - Three Matches of na Found!
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_pattern_match_na.png)
+    - ![](../imgs/AOS_BWT_pattern_match_na.png)
  - Matching **ana**
     - Searching for **ana** in panamabananas
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWT_pattern_match_ana.png)
+    - ![](../imgs/AOS_BWT_pattern_match_ana.png)
 
 
 <h2 id="577c04ac242ce1b20da613dd6aaf2a9f"></h2>
@@ -391,7 +391,7 @@ The only question left, where is pattern matching in the Burrows-Wheeler transfo
 ### Searching for ana using top and buttom pointers 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWMatching_top_bottom_pointer.png)
+![](../imgs/AOS_BWMatching_top_bottom_pointer.png)
 
 
 ```
@@ -444,7 +444,7 @@ The only problem , though , is that BW Mathing is very slow. It analyzes every s
  - The trick here is to introduce the count array. 
 
  - Introducing Count Array 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWM_count_array.png)
+    - ![](../imgs/AOS_BWM_count_array.png)
     - The count array describes the number of apearances of a given symbol 
         - the count array imply the order of sorted symbol
         - in this case , we records all count arrays **for every substring of LastColumn --  in python:  Text_Last_Column[:i] 
@@ -508,7 +508,7 @@ And as you can see, we don't need any more to explore every symbol between top a
 
  - Suffix array  holds starting position of each suffix beginning a row.
  - panamabananas$
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_suffix_array.png)
+    - ![](../imgs/AOS_suffix_array.png)
  
 
 ```python
@@ -549,7 +549,7 @@ The challenge is how to construct the suffix array quickly. Because the naive al
 There is a way to construct a suffix array if you're already construction a suffix tree. A suffix array is simply a depth-first traversal of the suffix tree. 
 
  - From Suffix Tree to Suffix Array: Depth-First Traversal
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_fromSuffixTreeToSuffixArray.png)
+    - ![](../imgs/AOS_fromSuffixTreeToSuffixArray.png)
     - Indeed, you start from lead 5, continue to lead 3, , and then 1, ....  
 
  - Constructing Suffix Array
@@ -568,10 +568,10 @@ There is a way to construct a suffix array if you're already construction a suff
 
  - Using the Partial Suffix Array to Find Matches
     - Where are these ana prefixes located in Text???
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWM_match_use_partial_suffix_array.png)
+        - ![](../imgs/AOS_BWM_match_use_partial_suffix_array.png)
     - Focus on **a₄na**
         - Partial suffix array reveals position of a₁bana
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_BWM_match_use_partial_suffix_array_a4na.png)
+        - ![](../imgs/AOS_BWM_match_use_partial_suffix_array_a4na.png)
 
 
 
@@ -593,19 +593,19 @@ There is a way to construct a suffix array if you're already construction a suff
     - eg. *ana* with 1 mismatch
     - searching for an**a** in panamabananas
         - We will start again with finding all rows in the BW matrix that start with *a*.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_10.png)
+        - ![](../imgs/AOS_approximate_matching_ana_10.png)
     - searching for ai**na** in panamabananas
         - Approximate matching with at most 1 mismatch
         - And among them , we want to find rows that containts *na*.  Among six rows that start with *a* , only three of them actually end with *n*, they form exact matching of the last 2 symbols of *ana* to our text.   They form exact matching of the last 2 symbols of *ana* to our text.
         - In the past , it was the only thing we interested, but now, we're actually interested in all six rows starting from *a*,  because we are interested in approximate matches as well. 
         - And to find approximate matches , we need to retain all the 6 rows, and specify the number of mismatches for each of these rows. 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_20.png) ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_21.png) ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_22.png)
+        - ![](../imgs/AOS_approximate_matching_ana_20.png) ![](../imgs/AOS_approximate_matching_ana_21.png) ![](../imgs/AOS_approximate_matching_ana_22.png)
     - searching for **ana** in panamabananas
         - This row results in a 2nd mismatch (the $), so we discard it.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_30.png)
+        - ![](../imgs/AOS_approximate_matching_ana_30.png)
     - Five Approximate Matches Found!
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_40.png)
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AOS_approximate_matching_ana_41.png)
+        - ![](../imgs/AOS_approximate_matching_ana_40.png)
+        - ![](../imgs/AOS_approximate_matching_ana_41.png)
  
 
 
@@ -635,7 +635,7 @@ There is a way to construct a suffix array if you're already construction a suff
     - Running time Θ(|T||P|)
  - Is it possible to skip some of positions while sliding the Pattern along the Text using only the information about the Pattern and the result of the comparsion of last alignment of the Pattern and the Text ?
     - Yes. 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP_skipping_positions_0.png)
+    - ![](../imgs/algorithm_on_string_KMP_skipping_positions_0.png)
         - now we have find a matching. if we somehow pre-precessed the pattern , and know that 
         - the prefix without last character !=  the suffix without the first character ( 'bra' != 'abr' )
             - we can skip this position
@@ -644,7 +644,7 @@ There is a way to construct a suffix array if you're already construction a suff
         - the prefix without 3 last characters ==  the suffix without the 3 characters  ( 'a'=='a' )
             - we can not skip this postion
         - so for next iteration, we can just move Pattern by |Pattern| - |'a'| = 3  position !
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP_skipping_positions.png)
+    - ![](../imgs/algorithm_on_string_KMP_skipping_positions.png)
         - another example is when we don't even find the whole pattern in the text, we still can skip some of the positions 
         - in this example, the longest prefix which is common for the text and pattern consisits 6 characters , and the pattern is longer (not entirely matching)
         - So we can not compare prefixes of the pattern with suffixes of the same pattern 
@@ -665,10 +665,10 @@ There is a way to construct a suffix array if you're already construction a suff
 --- 
 
  - Shifting Pattern
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP_shiftingPattern_uw.png)
+    - ![](../imgs/algorithm_on_string_KMP_shiftingPattern_uw.png)
     - Find longest common prefix *u* 
     - Find *w* the longest border of *u*
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP_shiftingPattern_shift.png)
+    - ![](../imgs/algorithm_on_string_KMP_shiftingPattern_shift.png)
     - Move P such that prefix w in P aligns with suffix w of u in T.
  - Now you know we can skip some of the comparisons
  - But we shouldn't miss any of the pattern occurrences in the text
@@ -706,7 +706,7 @@ There is a way to construct a suffix array if you're already construction a suff
         - let *u* be a border shorter than the longest border , so that |u| < s(i)
         - border *u* is both a prefix , and suffix  of the longest border : P[0..s(i)-1]
             - remark: P[0..s(i)-1] is longest border !!! 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_Enumerating_borders_lemma.png)
+        - ![](../imgs/algorithm_on_string_Enumerating_borders_lemma.png)
         - and *u* was also shorter than the longest border, that is *u* ≠ P[0..s(i)-1] ,  so *u* is indeed a border of P[0..s(i)-1]
  - Corollary
     - All borders of P[0..i] can be enumerated by taking the longest border **b1** of P[0..i], then the longest border **b2** of **b1**, then the longest border **b3** of **b2**, . . . , and so on.
@@ -721,7 +721,7 @@ Now lets think how to compute the prefix function.
 
  - s(0) is 0
  - now to compute s(i+1) if we already know the values of the s(i)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_compute_prefix_function_0.png)
+    - ![](../imgs/algorithm_on_string_compute_prefix_function_0.png)
     - those green part is the border as prefix and suffix of string
     - if the characters right after those 2 borders are same , then 
         - s(i+1) = s(i) + 1 
@@ -731,7 +731,7 @@ Now lets think how to compute the prefix function.
         - we know that P[0..i] has a border of length s(i + 1) − 1. 
             - ![][1]
         - So if we find that border then the next green character after it will be the same as the character in position i+1 -- 'x'
-            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_compute_prefix_function_1.png)
+            - ![](../imgs/algorithm_on_string_compute_prefix_function_1.png)
         - so what we need to is going through all the borders of the prefix ending in position i, by **decreasing** length. 
             - and as soon as we find some border that the next character after it is the same as the character at position i+1, then
             - s(i + 1) = |some border of P[0..s(i) − 1]| + 1 
@@ -764,7 +764,7 @@ Now lets think how to compute the prefix function.
 
 ### ComputePrefixFunction(P)
 
-(![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_compute_prefix_function_algorithm.png)
+(![](../imgs/algorithm_on_string_compute_prefix_function_algorithm.png)
 
  - The running time of ComputePrefixFunction is O(|P|)
  - Now you know how to compute prefix function in linear time
@@ -781,10 +781,10 @@ Now lets think how to compute the prefix function.
 
 
  - Create new string S = P + '$' + T
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP.png)
+    - ![](../imgs/algorithm_on_string_KMP.png)
     - where '$' is just **any** special character absent from both P and T
  - Compute prefix function s for string S
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP_prefix_func.png)
+    - ![](../imgs/algorithm_on_string_KMP_prefix_func.png)
     - For all positions i such that i > |P| and s(i) = |P|, add i − 2|P| to the output
         - so we'll look at all positions i , such that i is more than length of the pattern 
             - `i > |P|` --  after the pattern and '$'
@@ -808,7 +808,7 @@ Now lets think how to compute the prefix function.
 
 ### pseudo code
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_KMP_pseudo_code.png)
+![](../imgs/algorithm_on_string_KMP_pseudo_code.png)
 
  - Lemma
     - The running time of Knuth-Morris-Pratt algorithm is O(|P| + |T|).
@@ -942,9 +942,9 @@ def get_suffix_array(str):
 
 ### Sorting Cyclic Shifts
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_sorting_cyclic_shift.png)
+![](../imgs/algorithm_on_string_sorting_cyclic_shift.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_sorting_cyclic_shift2.png)
+![](../imgs/algorithm_on_string_sorting_cyclic_shift2.png)
 
  - step1: sort 
  - step2: remove characters after '$' , the suffixes of S left. 
@@ -985,7 +985,7 @@ def get_suffix_array(str):
 
 L=4 sorting : 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_PartialCyclicShifts.png)
+![](../imgs/algorithm_on_string_PartialCyclicShifts.png)
 
 
 
@@ -1020,7 +1020,7 @@ L=4 sorting :
  - Pseudo code for sorting characters. 
     - take string as input
     - return the order of the characters of that string as the output
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_pseudocode_sortcharacters.png)
+    - ![](../imgs/algorithm_on_string_pseudocode_sortcharacters.png)
 
  - Lemma
     - Running time of SortCharacters is O(|S| + |Σ|).
@@ -1042,7 +1042,7 @@ And before computing this array class, we assume that we have already sorted all
 
 So how to actually compute the classes of the cyclic shifts when we already know their order ?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_Equivalence_classes_example.png)
+![](../imgs/algorithm_on_string_Equivalence_classes_example.png)
 
 
  - we want to assign class 0 to the smallest of the cyclic shifts of the current length.
@@ -1062,7 +1062,7 @@ So how to actually compute the classes of the cyclic shifts when we already know
 
 PseudoCode :
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_Equivalence_classes_pseudocode.png)
+![](../imgs/algorithm_on_string_Equivalence_classes_pseudocode.png)
 
  - Lemma: The running time of ComputeCharClasses is O(|S|).
 
@@ -1087,7 +1087,7 @@ This is all for the initialization phase of the suffix array construction. In ne
  - Cᵢ̍ == CᵢC<sub>i+L</sub> -- concatenation of strings
  - To compare Cᵢ̍ with Cⱼ̍ , it’s sufficient to compare Cᵢ with Cⱼ and C<sub>i+L</sub> with C<sub>j+L</sub>
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_doubledCyclicShift_example1.png)
+![](../imgs/algorithm_on_string_doubledCyclicShift_example1.png)
 
 <h2 id="45056b7535c004ef33d46e84ebe688d6"></h2>
 
@@ -1103,17 +1103,17 @@ And we first need to sort by second element of pair, and then we stable sort by 
 Example:
 
  - suppose our current length is 2 , and we already sorted all the cyclic shifts of length 2
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_doubledCyclicShift_example2.png)
+ - ![](../imgs/algorithm_on_string_doubledCyclicShift_example2.png)
  - now for each of the cyclic shifts of length 2, let's look at the cyclic shift of length 4 ,which ends in the cyclic shift of length 2.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_doubledCyclicShift_example3.png)
+    - ![](../imgs/algorithm_on_string_doubledCyclicShift_example3.png)
     - so we take the 2 previous characters and add them to the left. 
  - we get a set of cyclic shifts of length 4
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_doubledCyclicShift_example4.png)
+    - ![](../imgs/algorithm_on_string_doubledCyclicShift_example4.png)
  - we have highlighted in yellow the 1st elements of the pairs , which are also cyclic shifts of length 2
     - the yellow part are not sorted. but we know their starting positions.  and we know what are the correct starting positions in the sorted order. 
     - so we can reorder this list of cyclic shifts of length 4 by the order of the 1st halves of the elements in this list using the know order.  
  - after such sorting , we actually get the sorted list of cyclic shifts of length 4. 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_doubledCyclicShift_example5.png)
+    - ![](../imgs/algorithm_on_string_doubledCyclicShift_example5.png)
 
 <h2 id="e0aa9002d2d7eaa00f7c68a2815caf65"></h2>
 
@@ -1130,7 +1130,7 @@ Example:
 
 Pseudo Code:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_suffix_array_sort_doubled.png)
+![](../imgs/algorithm_on_string_suffix_array_sort_doubled.png)
 
 
  - Lemma: The running time of SortDoubled is O(|S|).
@@ -1143,7 +1143,7 @@ Pseudo Code:
  - (P1, P2) == (Q1,Q2) <=> (P1 == Q1) and (P2 == Q2)
  - We know equivalence classes of elements of pairs
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_string_suffix_array_update_class1.png)
+![](../imgs/algr_on_string_suffix_array_update_class1.png)
 
  - we've already sorted the doubled cyclic shifts of length 2 -- newOrder[]
  - our initial cyclic shifts were of length 1. We have the equivalence classes of L1 -- class[]
@@ -1159,11 +1159,11 @@ Pseudo Code:
     - *ab* , newClass[2] = 3
     - *ba* , newClass[1] = 4 
     - *ba* , newClass[3] = 4 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_string_suffix_array_update_class2.png)
+    - ![](../imgs/algr_on_string_suffix_array_update_class2.png)
 
 Pseudo code
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_string_suffix_array_update_class_pseudocode.png)
+![](../imgs/algr_on_string_suffix_array_update_class_pseudocode.png)
 
  - Lemma : The running time of UpdateClasses is O(|S|).
  
@@ -1171,7 +1171,7 @@ Pseudo code
 
 ## Full Algorithm
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_string_build_suffxi_array_pseudocode.png)
+![](../imgs/algr_on_string_build_suffxi_array_pseudocode.png)
 
  - input : string S
  - output : the order of the suffix of string
@@ -1215,7 +1215,7 @@ Pseudo code
     - 解法：分别 为S1、S2追加#、$作为末尾，把他们压入同一个后缀树，然后找到最深的非叶子节点，该节点的叶子节点中，既有#又有$。
     - 复杂度为构造两颗后缀树的复杂度之和，取最大即可max(O(N),O(M))，其中N、M为S1、S2的长度，假设我们以线性时间构造了后缀树
     - eg S1="xabxa#" , S2="babxba$" , This is generalized suffix tree for xabxa#babxba$ :
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_string_LS1.png)
+        - ![](../imgs/algr_on_string_LS1.png)
             - 注意: S1 和 S2的 suffix string 是独立的, 即 "#" 肯定出现在 最后一个字符
                 - xabxa# , abxa# , bxa#  , xa# , a# , #
                 - babxba$ , abxba$ , ... 
@@ -1227,7 +1227,7 @@ Pseudo code
             - string X only (i.e. all leaf nodes have suffix indices in [0,4])
             - string Y only (i.e. all leaf nodes have suffix indices in [6,11]))
         - Following figure shows the internal nodes marked as “XY”, “X” or “Y” depending on which string the leaves belong to, that they have below themselves.
-            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_string_LS2.png) 
+            - ![](../imgs/algr_on_string_LS2.png) 
             - What these “XY”, “X” or “Y” marking mean ?  Path label from root to an internal node gives a substring of X or Y or both.
                 - For node marked as XY, substring from root to that node belongs to both strings X and Y.
                 - For node marked as X, substring from root to that node belongs to string X only.
@@ -1242,6 +1242,6 @@ Pseudo code
 
 ---
 
- [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_string_prefix_func_lemma_0.png
+ [1]: ../imgs/algorithm_on_string_prefix_func_lemma_0.png
 
 

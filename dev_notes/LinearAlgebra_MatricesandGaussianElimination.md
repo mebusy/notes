@@ -41,7 +41,7 @@ The central problem of linear algebra: *solving linear equations*. The most impo
 
 Two ways to solve thest equations: *elimination* and *determinants*.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/determinant_solve_equations.gif)
+![](../imgs/determinant_solve_equations.gif)
 
 When n is much large( eg. 1000 ), direct use of the determinant formular for 1000 equations would be total disaster. We will find that fomular (Cramer's Rule) in Chapter 4, but we want a good method to solve 1000 equations in Chapter 1.
 
@@ -51,11 +51,11 @@ The good method is ***Gaussian Elimination***. This is the algorithm that is con
 
  1. Linear equations lead to ***geometry of planes***. The example has one solution. Singular cases have none or too many.
 
-  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/geometry_of_planes.png)
+  ![](../imgs/geometry_of_planes.png)
   
  2. We move to ***matrix notation*** , as Ax=b. We multiply A by "elimination matrices" to reach an upper triangular matrix U. Those steps factor A into *L times U* , where L is lower triangular.
 
-  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LU_factorization.gif)  
+  ![](../imgs/LU_factorization.gif)  
   
   Every Matrix has a ***transpose*** **Aᵀ**. This matrix has an ***inverse*** **A⁻¹**.
   
@@ -79,17 +79,17 @@ We can look at that system by *rows* or by *columns*. We want to see them both.
 
 The first approach concentrates on the separate equations (the ***rows***). Each equation represented by a *straight line* in the x-y plane.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_1.2a.png)
+![](../imgs/LA_1.2a.png)
 
 The point of intersection lies on both lines. It's the only solution to both equations. That point (2,3) will soon be found by "elimination".
 
 The second approach looks at the ***columns*** of the linear system. The tow separate equations are really ***one vector equation***: 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_1.2_vector.gif)
+![](../imgs/LA_1.2_vector.gif)
 
 The problem is ***to find the combination of the column vectors on the left side that produces the vector on the right side***.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_1.2b.png)
+![](../imgs/LA_1.2b.png)
 
 I would rather move forward to n=3. 
 
@@ -101,7 +101,7 @@ I would rather move forward to n=3.
 
 Again we start with the rows. Each equation describes a ***plane*** in three dimensions. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_1.3.png)
+![](../imgs/LA_1.3.png)
 
 The first plane is 2u + v + w = 5. It is determined by any 3 of its points--provoided they do not lie on a line. Changing 5 to 10, the plane 2u + v + w = 10 *would be parallel to this one* , twice as far from the origin (0,0,0). Changing the right side moves the plane parallel to itself, and the plane 2u+v+w=0 goes through the origin.
 
@@ -120,7 +120,7 @@ The 1st equation produces an (n-1) dimemsional "plane" in *n* dimemsions. The se
 
 ### Column Vectors and Linear Combinations
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/linearAlgebra_column_form.png)  (2)
+![](../imgs/linearAlgebra_column_form.png)  (2)
 
 Those are 3-dimensional column vectors. ***The vector b is identified with the point whose coordinates are (5,-2,9)*** .
 
@@ -143,7 +143,7 @@ Row picture : Intersection of planes | Column picture : Combination of columns
 
 In 2 dimensions , parallel lines are the only possibility for breakdown. But 3 planes in 3 dimensions can even be in trouble without being parallel.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SingularCase3D.png)
+![](../imgs/SingularCase3D.png)
 
 One possibility is that two planes may be parallel. (Figure 1.5a shows an end view)
 
@@ -164,7 +164,7 @@ The extreme case is three parallel planes. For most right sides there is no solu
 
 What happens to the ***column picture*** when the system is singular? 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SingularCase3D_col.png)
+![](../imgs/SingularCase3D_col.png)
 
 There are still three columns on the left side of the equations, and we try to combine them to produce b. For b = (2, 5, 7) this was possible; for b = (2, 5, 6) it was not. The reason is that ***those three columns lie in a plane***.
 
@@ -211,7 +211,7 @@ Forward elimination produced the pivots 2, -8, 1. It reached the "triangular" sy
 
 One good way to write down the forward elimination steps is to include the right-hand side as an extra column.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/elimination.png)
+![](../imgs/elimination.png)
 
 By definition, ***pivots cannot be zero***.
 
@@ -336,7 +336,7 @@ The result was an equivalent system Ux = c, with a new coefficient matrix U:
 
 *Upper triangular*:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/UpperTriangular.png)
+![](../imgs/UpperTriangular.png)
 
 This matrix U is **upper triangular** - all entries below the diagonal are zero.
 
@@ -348,7 +348,7 @@ The matrices E for step 1, F for step 2, and G for step 3. They are called ***el
 
 **From A to U:**
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LowerTriangular.png)
+![](../imgs/LowerTriangular.png)
 
 Then another most important question is exactly the opposite ***How can we undo the steps of Gaussian elimination?***
 
@@ -357,7 +357,7 @@ Then another most important question is exactly the opposite ***How can we undo 
 
 Now we recognize the **matrix L that takes U back to A**. It is called L, because it is lower triangular. And it has a special property that can be seen only by multiplying the three inverse matrices in the right order:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/lowerTriangular2.png)
+![](../imgs/lowerTriangular2.png)
 
 The special thing is that the entries below the diagonal are the multipliers *l* = 2, -1, and -1.
 
@@ -381,7 +381,7 @@ The special thing is that the entries below the diagonal are the multipliers *l*
  
 **The triangular factorization can be written A = LDU, where L and U have *1* on the diagonal and D is the diagonal matrix of pivots.**
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_LDU_factorize.png)
+![](../imgs/LA_LDU_factorize.png)
 
 <h2 id="ee835f91c2c818fd230e9563c6b23a11"></h2>
 
@@ -429,7 +429,7 @@ The unknowns u and v are not reversed in a row exchange.
 
 We can display all 3 by 3 permutations (there are 3! = 6 matrices):
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/permutaion_3x3.png)
+![](../imgs/permutaion_3x3.png)
 
 
 <h2 id="5c3fc1e2610b8235f0cf01bfd463f2eb"></h2>
@@ -468,7 +468,7 @@ There is no stupid matrix that satisfy : A⁻¹·0 = x.
         - If A is invertible, then Ax = 0 can only have the zero solution x = 0.
     5. 2 by 2 matrix is invertible if and only if **ad - bc** is not zero: This number **ad - bc** is the determinant of A. 
     6. A diagonal matrix has an inverse.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/diagonal_inverse.png)
+        - ![](../imgs/diagonal_inverse.png)
 
  - **Inverse of AB:  (AB)⁻¹ = B⁻¹A⁻¹**
  - **Inverse of ABC:  (ABC)⁻¹ = C⁻¹B⁻¹A⁻¹**
@@ -483,9 +483,9 @@ A⁻¹ = U⁻¹·L⁻¹
 
  - Using the Gauss-Jordan Method to Find A⁻¹:
     - 1st step: forward elimination
-    ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Gauss_Jordan1.png)
+    ![](../imgs/Gauss_Jordan1.png)
     - 2nd step: Creating zeros above the pivots, we reach A⁻¹
-    ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Gauss_Jordan2.png)
+    ![](../imgs/Gauss_Jordan2.png)
         - (row 2)/8 + (row 1)
         - the 2nd half will go from U to I (multiplying by U⁻¹).
         - That takes L⁻¹ to U⁻¹L⁻¹ which is A⁻¹
@@ -508,7 +508,7 @@ If A is invertible, it has n pivots.
 
 Transpose:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/1.6_Transpose.png)
+![](../imgs/1.6_Transpose.png)
 
 ```
 (A+B)ᵀ = Aᵀ+Bᵀ
@@ -553,7 +553,7 @@ Large matrices almost always have a clear pattern- frequently a pattern of symme
 
 It comes from changing a differential equation to a matrix equation. As a simple but still very typical continuous problem, our choice falls on the differential equation:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_1.7_derivative_equation.png)
+![](../imgs/LA_1.7_derivative_equation.png)
 
 Second derivatives are essentially negative definite things so that minus sign is to really make it positive definite.
 
@@ -567,7 +567,7 @@ Remember that our goal is to produce a discrete problem-in other words, a proble
 
 The first question is: How do we replace the derivative *d²u/dx²* ? 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/1st_derivative_approximate.png)
+![](../imgs/1st_derivative_approximate.png)
 
 how to figure u(x+h)  ? It’s something called Taylor series. If I move a little bit, I start from the point x and then there is a little correction and that's given by the derivative and then there's further correnct if I want to go the second order correction, times the second derivative. Second order accuracy is often the goal in scientific compute .
 
@@ -582,7 +582,7 @@ It makes the key point. That the center defference gives the correct derivative.
 
 For the second derivative there is just one combination that uses only the values at x and x ± h:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2nd_derivative_approximate.png)
+![](../imgs/2nd_derivative_approximate.png)
 
 The right-hand side approaches the true value of d²u/dx² as h -> 0, but we have to stop at a positive h.
 
@@ -596,7 +596,7 @@ The first and last equations (j = 1 and j = n) include u(0)=0 and u(n+1)=0 , whi
 
 The structure of these n equations (5) can be better visualized in matrix form. We choose h = 1/6, to get a 5 by 5 matrix A:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_1.7_derivative_matrix_equation.png)
+![](../imgs/LA_1.7_derivative_matrix_equation.png)
 
 From now on, we will work with this equation (6). The matrix A possesses many special properties, and three of those properties are fundamental:
 
@@ -614,7 +614,7 @@ What effect does this matrix have on elimination?
 
 The final result is the LDU = LDLᵀ factorization of A. Notice the pivots!
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_1.7_LDLT.png)
+![](../imgs/LA_1.7_LDLT.png)
 
 *The L and U factors of a tridiagonal matrix are bidiagonal.*
 
@@ -689,7 +689,7 @@ A small pivot forces a practical change in elimination. Normally we compare each
 
 The new matrix C = PB has good factors:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_1.7_partial_pivoting.png)
+![](../imgs/LA_1.7_partial_pivoting.png)
 
 The pivots for C are 1 and .9999, much better than .0001 and -9999 for B.
 

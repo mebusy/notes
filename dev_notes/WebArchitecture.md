@@ -104,14 +104,14 @@
     - JBoss Cache 通常将 应用程序和 缓存部署在同一台服务器上， 应用程序可从本地快速 获取缓存数据。
     - 但这种方式带来的问题是是 缓存数据的数量  受限于 单一服务器的内存空间， 而且当集群规模较大的时候，缓存更新信息需要同步到 集群所有机器，其代价惊人。 
     - 因而这种方案 更多见于 企业应用系统中， 很少在 大型网站使用
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/jbossCache.png)
+    - ![](../imgs/jbossCache.png)
 
  - Memcached 曾一度是 网站分布式缓存的代名词，被大量网站使用
     - 简单的设计
     - 优异的性能
     - 互补通信的服务器集群
     - 海量数据可伸缩 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/memcached_pic.png)
+    - ![](../imgs/memcached_pic.png)
     - 简单的通信协议
         - Memcached 使用 TCP 协议(UDP也支持) 
     - 高性能网络通信
@@ -129,7 +129,7 @@
 
  - 使用消息队列 将调用异步化， 可改善网站的 **扩展性**.
     - 事实上，使用消息队列还可以改善网站系统的性能
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/web_async.png)
+ - ![](../imgs/web_async.png)
  - 不使用消息队列的情况下， 用户的请求数据直接写入数据库， 在高并发的情况下，会对数据库造成 巨大的压力， 同时也使得响应延迟加剧。
  - 使用消息队列后，用户请求的数据发送给 消息队列后 立即返回，再由消息队列的消费者进程(通常情况下，该进程独立部署在专门的服务器集群上) 从消息队列中获取数据，异步写入数据库。
     - 消息队列具有很好的 消峰作用， 通过异步处理，将短时间高并发产生的事务消息存储在 消息队列中，从而消平 高峰期的并发事务。
@@ -216,7 +216,7 @@
  4. Session 服务器
     - 部署独立的 Session 服务器 同一管理 Session 
     - 应用服务器 每次读写Session时，都访问 Session服务器
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/session_server.png)
+    - ![](../imgs/session_server.png)
     - 这种解决方案事实上是将应用服务器的状态分离， 分为无状态的应用服务器，和有状态的Session服务器， 然后针对这两种服务器的不同特性分别设计其架构。
     - 对于有状态的Session服务器， 一种比较简单的方法是 利用 分布式缓存，数据库等，在这些产品上进行包装，使其符合 Session的存储和访问要求。
 
@@ -273,7 +273,7 @@
         - 这就会造成 各个副本之间的数据不一致，数据内容冲突。
         - 实践中，导致数据不一致的情形有很多种， 表现形式也多种多样， 比如 数据更新返回操作失败，事实上数据在存储服务器上已经更新成功。
         - CAP 原理认为， 一个提供数据服务的存储系统，无法同时满足 数据一致性Consistency, 数据可用性Availibility, 分区耐受性 (Patition Tolerance 系统具有网络分区的伸缩性) 这三个条件.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/db_CAP.png)
+        - ![](../imgs/db_CAP.png)
         - 大型网站应用中， 数据规模总是扩张的， 因此可伸缩性 即 分区耐受性 必不可少， 规模变大后，机器数量也会变得庞大，这时网络和服务器故障会频繁出现，想要保证应用可用， 就必须保证 分布式处理系统的高可用性。
         - 所以在大型网站中， 通常会选择 强化 A和P， 而在某种程度上 放弃一致性 C
         - 一般来说，数据不一致 通常出现在 系统高并发写操作 或 集群状态不稳(故障恢复，集群扩容)的情况下， 应用系统需要对分布式数据数据处理系统的数据不一致性 有所了解 并进行某种意义上的补偿和纠错， 比避免出现应用系统数据不正确。
@@ -287,10 +287,10 @@
  - 冷备的优点是 简单和廉价， 成本和技术难度都较低。 缺点是 不能保证 **数据最终一致性**. 
  - 数据热备 份为两种: 异步热备方式 和 同步热备方式
     - 异步方式 是指多份数据副本的写入操作异步完成， 应用程序收到数据服务系统的写操作成功响应时，只写成功了一份，存储系统会异步地写其他副本(这个过程可能会失败)
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/data_backup_async.png)
+        - ![](../imgs/data_backup_async.png)
         - 在异步写入方式下， 存储服务器分为 主存储服务器Master 和 从存储服务器 Slave, 应用程序正常情况下 只连接主存储服务器，数据写入时，由主存储服务器的写操作代理模块 将数据写入本机存储系统后 立即返回写操作成功响应， 然后通过异步线程将写操作数据 同步到从存储服务器。
     - 同步方式 是指多份数据副本的写入操作同步完成， 即 应用程序收到数据服务系统的写成功响应时， 多份数据都已经写操作成功。但是当应用程序收到数据写操作失败的响应时，可能有部分副本或者全部副本都应写成功。
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/data_backup_sync.png)
+        - ![](../imgs/data_backup_sync.png)
         - 传统的企业级关系数据库系统 几乎都提供了数据实时同步备份的机制。 而各种NoSQL数据库更是将数据备份机制作为产品最主要的功能点之一。
  - 关系数据库热备机制 就是通常所说的 Master-Slave同步机制。 实践中，通常使用读写分离的方法访问 Slave和Master 数据库，写操作只访问Master数据库，读操作只访问Slave数据库。
 
@@ -345,7 +345,7 @@
 
 ### 6.2.1  HTTP 重定向负载均衡
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/lb_http_redirect.png)
+![](../imgs/lb_http_redirect.png)
 
  - HTTP 重定向服务器是一台普通的应用服务器， 其唯一的功能就是 将web服务器地址 写入HTTP重定向响应中(302) 返回给用户浏览器。
  - 这种负载均衡方案的优点是比较简单。 缺点是浏览器 需要两次请求服务器才能完成一次访问，性能较差。 
@@ -357,7 +357,7 @@
 
 ### 6.2.2 DNS 域名解析负载均衡
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/lb_DNS.png)
+![](../imgs/lb_DNS.png)
 
  - 在 DNS服务器中配置多个 A记录， 如 
     - www.mysite.com IN A 114.100.80.1
@@ -373,7 +373,7 @@
 
 ### 6.2.3 反向代理负载均衡
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/lb_reverse_proxy.png)
+![](../imgs/lb_reverse_proxy.png)
 
  - 前面提过 利用反向代理 缓存资源以改善网站性能。 实际上，大多数反向代理服务器 同时提供负载均衡的功能。
  - Web 服务器处理完成的响应 也需要通过反向代理服务器 返回给用户。 
@@ -388,7 +388,7 @@
 
  - 在网络层通过修改请求目标地址 进行负载均衡。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/lb_ip.png)
+![](../imgs/lb_ip.png)
 
  - 负载均衡服务器 在操作系统内核进程获取 网络数据包， 修改 目标IP地址， 不需要通过用户进程处理。
  - 这里的关键在于 真实物理Web服务器 响应数据包 如何返回给负载均衡服务器。 
@@ -405,7 +405,7 @@
 
  - 在通讯协议的数据链路层 修改 mac地址进行负载均衡
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/lb_dataLinkLayer.png)
+![](../imgs/lb_dataLinkLayer.png)
 
  - 这种数据传输 又称为 三角传输模式， 负载均衡服务器 分发过程中 不修改IP地址，只修改 目的mac地址， 通过配置真实物理服务器集群所有机器虚拟IP 和 负载均衡服务器IP地址一致， 从而达到不修改数据包的源地址和目的地址 就可以进行数据分发的目的， 由于实际处理请求的真实物理服务器IP 和数据请求目的IP一致，可将响应数据包直接返给用户浏览器， 避免负载均衡服务器网卡带宽称为瓶颈。  这种负载均衡方法又称作 直接路由方式 (DR).
  - 使用三角传输模式的链路层负载均衡是目前大型网站 使用最广的一种负载均衡手段。
@@ -438,7 +438,7 @@
 
 ### 6.3.1 Memcached 分布式缓存集群的访问模型
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cache_cluster_memcached.png)
+![](../imgs/cache_cluster_memcached.png)
 
  - 应用程序通过 Memcached 客户端访问 Memcached 集群， Memcached 客户端 主要由一组API, Memcached 集群路由算法， Memcached 集群列表 及 通讯模块构成
  - 其中 路由算法 负责根据应用程序输入的缓存数据KEY 计算得到 应该将数据写入/读取 到哪台服务器。
@@ -462,14 +462,14 @@
 
  - 一致性 Hash算法通过一个 叫做 一致性 Hash环的数据结构实现 KEY 到缓存服务器的Hash 映射 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/memcache_ConsistentHash.png)
+![](../imgs/memcache_ConsistentHash.png)
 
  - 具体算法过程为： 先构造一个长度为 0~2³² 的整数环， 这个环被称为 一致性Hash环， 根据节点名称的Hash值( 分布范围同样为 0~2³² ) 将缓存服务器节点放置在这个Hash 环上。
     - 然后根据 数据的KEY 值计算得到Hash值( 分布范围同样为 0~2³²) , 在 Hash 环上顺时针查找距离这个KEY的Hash值最近的缓存服务器节点，完成 KEY到服务器的Hash映射查找。
  - 上图中， NODE1 的Hash值为 3594963423, NODE2 的hash值为 1845328979 , 而KEY0的Hash值为 2534256785 , 那么KEY0 在 环上顺时针查找，找到的最近节点就是 NODE1.
  - 当缓存服务器集群 需要扩容时， 只需要将新加入的节点名称 NODE3 的 Hash值 放入一致性Hash环中， 由于 KEY 是顺时针查找距离最新的节点， 因此新加入的节点值影响整个环中的一小段。
  
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/memcache_ConsistentHash2.png)
+![](../imgs/memcache_ConsistentHash2.png)
 
  - 新加入NODE3后， KEY3， KEY0 从原来的NODE1 重新计算到NODE3， 这样就能保证大部分被缓存的数据还能继续命中。
  - 具体应用中， 这个长度为 2³² 的一致性 Hash环通常使用 二叉查找树实现。
@@ -497,7 +497,7 @@
 
  - 下图为 使用数据复制的 MySQL 集群伸缩行方案
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mysql_cluster_ex1.png)
+![](../imgs/mysql_cluster_ex1.png)
 
  - 在这种架构中，虽然多台服务器 部署 MySQL实例， 但是它们的角色有主从之分，数据写操作都在主服务器上，由主服务器数据同步到集群中其他服务器，数据读操作及数据分析 等离线操作 在 从服务器上进行。
  - 除了数据库读写分离， 里面提到的业务分割模式 也可以用在数据库，不同业务数据表 部署在不同的数据库集群上， 即俗称的数据分库。这种方式的制约条件是跨库的表不能进行 join操作
@@ -505,13 +505,13 @@
  - 目前网站在线业务应用中 比较成熟的支持数据分片的分布式数据库产品 主要有 Amoeba 和 Cobar.  
  - 以 Cobar 为例， 部署模型如下:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cobar_model.png)
+![](../imgs/cobar_model.png)
 
  - Cobar 是一个分布式关系数据库访问代理， 介于应用服务器 和 数据库服务器之间( Cobar 也支持非独立部署， 以lib的方式和应用程序部署在一起 )。
  - 应用程序通过 JDBC 驱动访问 Cobar集群， Cobar 服务器根据SQL和分库规则分解SQL, 分发到MySQL 集群不同的数据库实例上执行(每个MySQL实例都部署为主/从结构, 保证数据高可用)
  - Cobar 系统组件模型如下:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Cobar_component.png)
+![](../imgs/Cobar_component.png)
 
  - 前端通信模块 负责和应用程序通信， 接收到 SQL请求 `select * from users where userid in (12,22,23)` 后转交给 SQL解析模块，
     - SQL解析模块获得SQL中的路由规则查询条件 `userid in (12,22,23)`  再转交给 SQL路由模块
@@ -524,7 +524,7 @@
  - Cobar 服务器可以看作是无状态的应用服务器， 因此其集群伸缩 可以简单的使用负载均衡的手段实现。
  - 而MySQL中存储着数据， 要想保证集群扩容后 数据一致负载均衡，必须要做数据迁移， 将集群中原来机器中的数据 迁移到新添加的机器中。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cobar_mysql_scale.png)
+![](../imgs/cobar_mysql_scale.png)
 
  - 具体迁移哪些数据可以利用 一致性Hash算法 (即路由模块使用一致性Hash算法进行路由), 尽量是需要迁移的数据最少。
     - 但是迁移数据需要遍历 数据库中的每条记录（的索引）, 重新进行路由计算确定其是否需要迁移，这会对数据库访问造成一定压力。 并且需要迁移过程中数据的一致性，可访问性，迁移过程中服务器宕机时的可用性 等诸多问题。
@@ -553,7 +553,7 @@
     - 典型的 EDA架构就是操作系统中 常见的 生产者消费者模式。 
     - 在大型网站中，具体实现手段很多， 最常用的是 分布式消息队列。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/msg_queue.png)
+![](../imgs/msg_queue.png)
 
  - 消息队列利用 发布-订阅模式工作， 消息发送者发布消息， 一个或者多个消息接受者 订阅消息。
  - 对新增业务， 只要对该类消息感兴趣，即可订阅该消息，对原有系统和业务没有任何影响，从而实现网站业务的可扩展性。
@@ -564,7 +564,7 @@
 
 ### 7.2.2 分布式消息队列
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/msg_queue_archi.png)
+![](../imgs/msg_queue_archi.png)
 
  - 在 伸缩性方面， 由于消息队列服务器上的数据可以看作是被即时处理的， 因此类似于 无状态的服务器， 伸缩性设计比较简单。
     - 将新服务器加入分布式消息队列中， 通知生产者服务器 更改消息队列服务器列表即可。
@@ -613,7 +613,7 @@
  - 使用JS脚本控制, 该JS 文件中 加入秒杀是否开始的标志， 和下单页面URL 的随机参数，当秒杀开始的时候， 生成一个新的JS文件。
     - 这个JS文件使用 随机版本号， 并且不被浏览器，CDN 和反向代理服务器缓存。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/miaosha.png)
+![](../imgs/miaosha.png)
 
 
 <h2 id="9380d2377b51d78792393b07ecdc71cd"></h2>

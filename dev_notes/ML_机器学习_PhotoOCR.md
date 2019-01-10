@@ -97,7 +97,7 @@ Photo optical character recognition 照片光学字符识别
  - 选择任意的字体，然后加上随机的背景，这样就可以获得一个大的data set。
     - 还可以加上模糊操作，让图像变形：缩放，旋转等
  - 对既有训练集进行变形 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/artificialData.png) 
+    - ![](../imgs/artificialData.png) 
 
 
 <h2 id="d0489633abcc536d20de1ac15bc32041"></h2>

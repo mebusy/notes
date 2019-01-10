@@ -21,7 +21,7 @@
 Mono for Mac OS X: http://www.mono-project.com/download/
 
  - 使用 Xamarin Studio 运行 U3D 脚本？
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Xamarin_edit_reference.png)
+    - ![](../imgs/Xamarin_edit_reference.png)
     - .Net Assembly
     - 添加 UnityEngine.dll in
     - /Applications/Unity/Unity.app/Contents/Frameworks/Managed/

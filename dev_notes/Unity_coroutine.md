@@ -22,7 +22,7 @@
 
 Unity在每一帧（Frame）都会去处理对象上的协程, 主要是在Update后去处理协程（检查协程的条件是否满足），但也有写特例：
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/unity_render_routines.png)
+![](../imgs/unity_render_routines.png)
 
 协程跟Update()其实一样的，都是Unity每帧对会去处理的函数（如果有的话）。如果MonoBehaviour 是处于激活（active）状态的而且yield的条件满足，就会协程方法的后面代码。
 

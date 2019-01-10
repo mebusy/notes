@@ -119,13 +119,13 @@ We can write a fairly efficient sequential reduction program by following this p
 
 perferms N-1 Operations in log(N)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/parallel_reduction_tree.png)
+![](../imgs/parallel_reduction_tree.png)
 
 <h2 id="a61800fca54767d7e8735d739544f8cc"></h2>
 
 #### A tournament is a reduction tree with "max" operation
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/tournament_reduction.png)
+![](../imgs/tournament_reduction.png)
 
 <h2 id="560ca2205021d730842ddfe22863176d"></h2>
 
@@ -168,7 +168,7 @@ perferms N-1 Operations in log(N)
 
 #### A Parallel Sum Reduction Example
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/example_parallel_sum.png)
+![](../imgs/example_parallel_sum.png)
 
 <h2 id="f75e9b3cc0cd6f5fee1230d34c078ca7"></h2>
 
@@ -256,7 +256,7 @@ Why do we need `__syncthreads()`?
 
 #### An Example of 4 threads
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/better_reduction_kernel.png)
+![](../imgs/better_reduction_kernel.png)
 
 <h2 id="376ef169b4e1bbf6c451654012ae1a3d"></h2>
 
@@ -399,7 +399,7 @@ this is really naive and ridiculous.
     - double stride each iteration
  3. Write output from shared memory to device memory
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/parallelScanAlgorithm.png)
+![](../imgs/parallelScanAlgorithm.png)
 
  - Active threads stride to n-1 (n-stride threads)
  - Thread j adds elements j and `j-stride` from shared memory and writes result into element j in shared memory
@@ -490,7 +490,7 @@ __global__ void scan_kernel(float *X, float *Y, int InputSize) {
 
 #### Parallel Scan - Reduction Phase
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/parallel_scan_reduction.png)
+![](../imgs/parallel_scan_reduction.png)
 
  - start by having all the elements in the shared memory array
 
@@ -524,7 +524,7 @@ for (int stride = 1;stride <= BLOCK_SIZE; stride *= 2) {
  - the point of the computation is to as quickly as possible assemble the final result from the partial sums.
  - allows us to do just one more step and bring everyone to the final value.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/parallel_scan_post_reduction.png)
+![](../imgs/parallel_scan_post_reduction.png)
 
 <h2 id="a87ae3f880365fff7bbf1f8e9950b268"></h2>
 
@@ -532,7 +532,7 @@ for (int stride = 1;stride <= BLOCK_SIZE; stride *= 2) {
  
  - 16 elements case
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/parallel_scan_put_together.png)
+![](../imgs/parallel_scan_put_together.png)
 
 
 <h2 id="e29c9087d46c31243ecaf5f90e42c4cf"></h2>
@@ -651,6 +651,6 @@ Example:
 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/scan_flow.png)
+![](../imgs/scan_flow.png)
 
 

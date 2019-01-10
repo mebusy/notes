@@ -302,7 +302,7 @@ enum sizes { small=7, medium, large=10, humungous };
  - It's high on brevity, but very low on intuition.
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_precedence_rule_for_declaration.png%20.png)
+![](../imgs/c_precedence_rule_for_declaration.png%20.png)
 
 ```c
 // example
@@ -326,7 +326,7 @@ char* const *(*next)();
 
 
  - if you prefer something a little more intuitive, use
-    - https://raw.githubusercontent.com/mebusy/notes/master/imgs/c_magic_ring_for_c_declare.png
+    - ../imgs/c_magic_ring_for_c_declare.png
 
 ```c
 char *(*c[10])(int **p);  //  how 2 read ?

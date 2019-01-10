@@ -26,7 +26,7 @@
 
  - Symbol Table 有多种实现
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_symbol_table_imp.png)
+![](../imgs/algorI_symbol_table_imp.png)
 
  1. 无序链表的实现，复杂度都是 O(N)
  2. 有序数组，search的复杂度可以到 lgN
@@ -56,7 +56,7 @@
         - Larger than all keys in its left subtree
         - Smaller than all keys in its right subtree
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_bst_tree.png)
+![](../imgs/algorI_bst_tree.png)
 
  - Proposition. 
     - If N distinct keys are inserted into a BST in **random** order, the expected number of compares for a search/insert is ~ 2 ln N.
@@ -115,7 +115,7 @@ private class Node {
  - minimum key is always at the left most offspring , so just follow the left child pointers.
  - maximum key is always at the right most offspring, so just follow the right child pointers.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_bst_minmax.png)
+![](../imgs/algorI_bst_minmax.png)
 
 <h2 id="a5e18d49cade04fcf96644c4d2ccc0fa"></h2>
 
@@ -124,7 +124,7 @@ private class Node {
  - Floor. Largest key ≤ a given key.
  - Ceiling. Smallest key ≥ a given key.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algroI_bst_floorceil.png)
+![](../imgs/algroI_bst_floorceil.png)
 
  - Computing the floor
     - Case 1. [k equals the key at root]
@@ -135,7 +135,7 @@ private class Node {
         - The floor of k is in the right subtree (if there is any key ≤ k in right subtree);
         - otherwise it is the key in the root.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_bst_compute_floor.png)
+![](../imgs/algorI_bst_compute_floor.png)
 
 ```java
 Key floor(Key key) {
@@ -164,7 +164,7 @@ private Node floor(Node x, Key key) {
  - In each node, we store the number of nodes in the subtree rooted at that node;
  - to implement size(), return the count at the root.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_bst_subtree_cnt.png)
+![](../imgs/algorI_bst_subtree_cnt.png)
 
  - Remark. This facilitates efficient implementation of rank() and select().
 
@@ -240,14 +240,14 @@ private int rank(Key key, Node x) {
     - Easy case , just delete the k's node from tree
     - update counts
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_bst_del_case0.png)
+![](../imgs/algorI_bst_del_case0.png)
 
  - Case 1. [1 child] Delete t by replacing parent link.
     - Medium case , delete the node that you want to delete, that creates a hole in the tree, the unique child will take that hole.
     - update counts 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_bst_del_case1.png)
+![](../imgs/algorI_bst_del_case1.png)
 
  - Case 2. [2 children] 
     - DIFFICULT CASE. 
@@ -260,7 +260,7 @@ private int rank(Key key, Node x) {
     - 3. Put x in t's spot. 
         - still a BST
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_bst_del_case2.png)
+![](../imgs/algorI_bst_del_case2.png)
 
 
 <h2 id="79332b5aac6b50d5a6ac7f4f2982e277"></h2>
@@ -273,7 +273,7 @@ private int rank(Key key, Node x) {
     - Replace that node by its right link.
     - Update subtree counts.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_bst_delete_min.png)
+![](../imgs/algorI_bst_delete_min.png)
 
 ```java
 public void deleteMin() {  root = deleteMin(root);  }

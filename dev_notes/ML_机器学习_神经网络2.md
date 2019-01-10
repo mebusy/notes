@@ -46,11 +46,11 @@
 
 logistic regression cost function:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/logistical_regression_cost.png)
+![](../imgs/logistical_regression_cost.png)
 
 由于神经网络的输出层通常有多个输出，属于k维向量，因此用如下的方式定义神经网络的Cost function:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural_costFunc.png)
+![](../imgs/Neural_costFunc.png)
 
 注意，对于训练集的每一个样本，都需要对输出层所有的输出单元计算cost并求和。
 
@@ -92,11 +92,11 @@ logistic regression cost function:
 
 为了 min J(Θ)我们需要计算:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/9710b147c0a369ed8ee0fe284a8ed5373505dac6.png)
+![](../imgs/9710b147c0a369ed8ee0fe284a8ed5373505dac6.png)
 
 记住:
 
-这项是一个实数 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/71b7943041878e87ec9ad13ff72c8ef7cf7a54bd.png)
+这项是一个实数 ![](../imgs/71b7943041878e87ec9ad13ff72c8ef7cf7a54bd.png)
 
 
 ---
@@ -119,9 +119,9 @@ logistic regression cost function:
 
 以一个4层神经网络为例子:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural2_4Layer.png)
+![](../imgs/Neural2_4Layer.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural2_step_2_delta.png)
+![](../imgs/Neural2_step_2_delta.png)
 
  - 没有 `δ⁽¹⁾`, 因为第1层 是training set中的feature
  - 反向传播的名字，来源于 从输出层开始计算，依次反向推算
@@ -133,14 +133,14 @@ logistic regression cost function:
 
 δ的计算非常复杂 ，最终我们可以得到下面的公式: (ignoreλ  ,or if λ=0 )
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural2_dirivative_J_Theta_ijl_no_lamda.png)
+![](../imgs/Neural2_dirivative_J_Theta_ijl_no_lamda.png)
 
 
 <h2 id="770ae2adf9aaa0cbd1da51d0d0c539ff"></h2>
 
 #### 大量训练样本情况下，反向传播算法的应用:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Backpropagation.png)
+![](../imgs/Backpropagation.png)
 
 最后一步可以向量化:
 
@@ -148,21 +148,21 @@ logistic regression cost function:
 
 最后我们跳出循环,计算:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BackPropagation_D.png)
+![](../imgs/BackPropagation_D.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BackPropagation_Derivative.png)
+![](../imgs/BackPropagation_Derivative.png)
 
 D 就是 J(Θ)的偏导数, Δ的均值
 
     eg: 一个3层神经网络，反向传播计算流程， 注意第一步 y_k ∊ {0,1} ,第3步，需要使用 delta2=delta2(2:end) 去掉 bias unit 的误差
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/steps_4_3layers_network_computer_derivative.png)
+![](../imgs/steps_4_3layers_network_computer_derivative.png)
 
 ---
 
 再回顾一下 反向传播的计算步骤:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BackwardPropagation_desc.png)
+![](../imgs/BackwardPropagation_desc.png)
 
  1. 熟悉微积分的，可以发现，δ 其实就是对 J(Θ)求 z的偏微分
  2. 对于 bias unit的δ， 可以计算，也可以不算，依赖于你想实现的算法
@@ -206,7 +206,7 @@ Theta2 = reshape( thetaVec(111:220), 10,11  )
 
 `θ ∊ ℝ`  θ是实数的情况
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/gradientAprox.png)
+![](../imgs/gradientAprox.png)
 
 ε一般取`10⁻⁴`
 
@@ -214,11 +214,11 @@ Theta2 = reshape( thetaVec(111:220), 10,11  )
 
 `θ ∊ ℝⁿ`  θ是向量的情况 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/GradientCheckVectorTheta.png)
+![](../imgs/GradientCheckVectorTheta.png)
 
 `Octave 中具体的实现`
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/GradientCheck_Octave.png)
+![](../imgs/GradientCheck_Octave.png)
 
 `检查 gradApprox ≈ Dvec`
 
@@ -242,7 +242,7 @@ Dvec 是通过反向传播算法计算出来的 J(Θ)对Θ的偏导数
 
 对于逻辑回归来说，初始化θ 为一个零向量是可行的， 但是对于神经网络，并不适用。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/randomInitialize.png)
+![](../imgs/randomInitialize.png)
 
 如图所示, 如果所有的Θ都初始化为零向量, 那么所有隐藏层的激励值和误差，都会得到相同的结果，这就组织了神经网络学习出更多有价值的信息。
 
@@ -312,7 +312,7 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
 
 ---
 
-  [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/delta_j_l.png
-  [2]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/activate_j_l.png
-  [3]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/delta_vectorize.png
-  [4]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/derivative_Theta_jkl.png
+  [1]: ../imgs/delta_j_l.png
+  [2]: ../imgs/activate_j_l.png
+  [3]: ../imgs/delta_vectorize.png
+  [4]: ../imgs/derivative_Theta_jkl.png

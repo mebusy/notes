@@ -96,7 +96,7 @@ def Merge(left,right):
 
 recursion tree: 把 算法过程，用一颗`树`的结构表示出来。分治算法可以使用一颗`二叉树`来表示，为了简化，我们假设 待排序数组的长度 n为2的幂, 这样我们得到的就是一个`完整二叉数`。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/recursive_tree.png)
+![](../imgs/recursive_tree.png)
 
 
 我们可以知道，树的深度 levels = log₂n , 第log₂n层 的每个leave 都只有`1`个数据。
@@ -148,7 +148,7 @@ Terminology 术语: Merge sort running time = `O( nlogn )`
 `注意: c 和 n₀ 不可以依赖于n`
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Big-Oh.png)
+![](../imgs/Big-Oh.png)
 
 
 `example 1:` 
@@ -173,7 +173,7 @@ c , n₀ 不可以依赖于 n ，所以假设不成立。
 
 当且仅当 存在两个常数 c , n₀ (n₀>0),  使得对于任意 n>=n₀, T(n) >= c·f(n), 则计为 `T(n)=Ω( f(n) )`.  简单理解，就是 fn乘上一个数，比T(n)小就行。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Big-Omega.png)
+![](../imgs/Big-Omega.png)
 
 note:
 
@@ -235,7 +235,7 @@ eg. for all k>=1 , nᵏ⁻¹=o( nᵏ )
 
 题目: 函数f(n) , g(n) 只输出正值， 证明 max(f,g)=Θ(f(n) + g(n))
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/fn+gn.png)
+![](../imgs/fn+gn.png)
 
 证明: 如图可知, 
 
@@ -401,7 +401,7 @@ def ClosestPair( lists_x, lists_y ):
  5. 每个小格最多只可能有1个点存在，因为假设同一格中存在两个点，那么他们的距离就会小于delta, 而且这两个点是同left,同right的。矛盾，假设不成立。
  6. 如果对数组做 x in [x_mean-delta,x_mean+delta] 过滤，并且新数组按y 排序, q一定会在p 后面的连续的7个位置内。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/closest_pair.png)
+![](../imgs/closest_pair.png)
 
 ```python
 def ClosestSplitPair( lists_x, lists_y , delta ):
@@ -441,7 +441,7 @@ def ClosestSplitPair( lists_x, lists_y , delta ):
 
 如图: 递归方法的T(n)各种情况下的时间复杂度
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/master_method.png)
+![](../imgs/master_method.png)
 
 `a`: 子递归的数量 (>=1), 
 `b`: 输入数据 拆分因子(被拆成几部分) (>1)  (注：斐波那切递归算法不满足这条)
@@ -507,7 +507,7 @@ work on level j <=  `aʲ * C·( n/bʲ )ᵈ` = `cnᵈ·[a/bᵈ]ʲ`
 
 把所有层的work 相加，得到
 
-`total work ` <= ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/total_work_recursive.png)
+`total work ` <= ![](../imgs/total_work_recursive.png)
 
 > a: rate of subproblem  profile action (RSP)
 b: rate of work shrinkage (RWS)
@@ -519,7 +519,7 @@ b: rate of work shrinkage (RWS)
 > 1. RSP==RWS, total work <= cnᵈ·logᵦn = O(nᵈ·logn)
 > 2. RSP < RWS, most work at root, less work at each level, `[a/bᵈ]ʲ`是1个几何级数 1 + x + x² + x³ + ..., 当x小与0是，最终收敛为:1/(1-x)。 所以 `Σ[a/bᵈ]ʲ`和n无关, <= constant. 所以 total work = O(nᵈ)
 > 3. RSP > RWS, more work at each level,  `Σ[a/bᵈ]ʲ` <= constant * largest term (eg.1+2+4+...+128 < 256). 所以， total time = O( nᵈ·(a/bᵈ)ˡᵒᵍ𝑏ⁿ ).
-    ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/master_method_proof_3.png)
+    ![](../imgs/master_method_proof_3.png)
     最终表达式，其实就是 recursive tree 的叶子数。
 
 

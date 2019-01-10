@@ -32,7 +32,7 @@
 
  - You think of it a cross between a list and a dictionary. 
     - The items are all stored in an order and there's labels with which you can retrieve 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/pandas_series.png)
+    - ![](../imgs/pandas_series.png)
 
 ```python
 import pandas as pd
@@ -312,7 +312,7 @@ dtype: object
     - In fact, the distinction between a column and a row is really only a conceptual distinction. 
     - And you can think of the DataFrame itself as simply a two-axes labeled array. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/pandas_dataframe.png)
+![](../imgs/pandas_dataframe.png)
 
 ```python
 import pandas as pd
@@ -711,7 +711,7 @@ df = df.set_index(['STNAME', 'CTYNAME'])
 df.head()
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/pandas_multi_index.png)
+![](../imgs/pandas_multi_index.png)
 
  - now how to query this dataframe ?
 

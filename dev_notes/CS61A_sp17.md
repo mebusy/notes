@@ -105,7 +105,7 @@ Abbreviation | Means
 
  - one can build practically any data structure out of pair
     - In Scheme, the main one is the (linked) list
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/scheme_linklist.png)
+    - ![](../imgs/scheme_linklist.png)
 
 <h2 id="975d1c13e7672fe6f144e3439bba958b"></h2>
 
@@ -371,7 +371,7 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
     - (lambda (ARGUMENTS) EXPR1 EXPR2 ... **EXPRn**)
     - (define (NAME ARGMENTS) EXPR1 EXPR2 ... **EXPRn**)
  - If an expression is in a tail context, then certain parts of it become tail contexts all by themselves
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs61a_scheme_tail_content_in_tail_exp.png)
+    - ![](../imgs/cs61a_scheme_tail_content_in_tail_exp.png)
 
 <h2 id="8bb2b661f426ca5570b35c4b87fc2daf"></h2>
 

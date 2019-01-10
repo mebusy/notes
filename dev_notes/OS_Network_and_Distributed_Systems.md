@@ -126,7 +126,7 @@
     - In practice, table would be huge and sparse
         - the table maybe a good way to introduce it. But it isn't practical. There is no table like this in any system you're likely to use. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_file_system_authorization.png)
+![](../imgs/os_file_system_authorization.png)
 
 <h2 id="f6c5e8d2591d2f0e6108da2a03bd252b"></h2>
 
@@ -185,7 +185,7 @@
 
 ## Centralized vs Distributed Systems
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_fs_centralized_vs_distributed_systems.png)
+![](../imgs/os_fs_centralized_vs_distributed_systems.png)
 
  - **Centralized System:** System in which major functions are performed by a single physical computer
     - Originally, everything on single computer
@@ -251,11 +251,11 @@
 ## Broadcast Network
 
  - **Broadcast Network:** Shared Communication Medium
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_broadcast_networks.png)
+    - ![](../imgs/os_network_broadcast_networks.png)
     - Shared Medium can be a set of wires
         - Inside a computer, this is called a bus
         - All devices simultaneously connected to devices
-            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_broadcast_networks2.png)
+            - ![](../imgs/os_network_broadcast_networks2.png)
             - everybody can hear everything that's being said. So when the processor talks everyone listens or when I/O device talks maybe everybody listens. 
     - Originally, Ethernet was a broadcast network
         - All computers on local subnet connected to one another
@@ -265,7 +265,7 @@
 
 ## Broadcast Networks Details
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_broadcast_networks_detail.png)
+![](../imgs/os_network_broadcast_networks_detail.png)
 
  - **Delivery:** When you broadcast a packet, how does a receiver know who it is for? (packet goes to everyone!)
     - Put header on front of packet: [ Destination | Packet ]
@@ -315,7 +315,7 @@
 
 ## Point-to-point networks
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_p2p_network.png)
+![](../imgs/os_network_p2p_network.png)
 
  - Why have a shared bus at all? Why not simplify and only have point-to-point links + routers/switches?
     - Originally wasn’t cost-effective
@@ -356,20 +356,20 @@
 
 ## Point-to-Point Network design
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_switch.png)
+![](../imgs/os_network_switch.png)
 
  - Switches look like computers: inputs, memory, outputs
     - In fact probably contains a processor
  - Function of switch is to forward packet to output that gets it closer to destination
  - Can build big crossbar by combining smaller switches
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_switch2.png)
+    - ![](../imgs/os_network_switch2.png)
  - **Can perform broadcast if necessary** 
 
 <h2 id="b9aeacb3eaf8b4c14b67730a8594b2e7"></h2>
 
 ## Flow control options
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_flow_control.png)
+![](../imgs/os_network_flow_control.png)
 
  - What if everyone sends to the same output?
     - Congestion -- packets don’t flow at full rate    
@@ -384,7 +384,7 @@
 
 ---
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_flow_control2.png)
+![](../imgs/os_network_flow_control2.png)
 
  - Problem: fairness
     - Throughput of each stream is entirely dependent on topology, and relationship to bottleneck
@@ -485,7 +485,7 @@
 
 ## Hierarchical Networking: The Internet
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_hierarchical_networking.png)
+![](../imgs/os_network_hierarchical_networking.png)
 
  - How can we build a network with millions of hosts?
     - Hierarchy! Not every host connected to every other one
@@ -566,7 +566,7 @@ NAME -> ADDRESS
 
 ## Domain Name System
  
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_DNS.png)
+![](../imgs/os_network_DNS.png)
 
  - DNS is a hierarchical mechanism for naming
     - Name divided in domains, right to left: www.eecs.berkeley.edu
@@ -606,7 +606,7 @@ NAME -> ADDRESS
         - Depends on “wire speed”, but also limited by slowest router (routing delay) or by congestion at routers
     - **Latency:** time until first bit of packet arrives at receiver
         - Raw transfer time + overhead at each routing hop
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_performance.png)
+    - ![](../imgs/os_network_performance.png)
  - Contributions to Latency
     - Wire latency: depends on speed of light on wire
         - about 1–1.5 ns/foot
@@ -650,7 +650,7 @@ NAME -> ADDRESS
         - Network level: network routing, addressing
         - Transport Level: reliable message delivery
  - Protocols on today’s Internet:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_protocal_on_todays_internet.png)
+    - ![](../imgs/os_network_protocal_on_todays_internet.png)
 
 <h2 id="2de5d7f052bdd84866ff79135c2bcc58"></h2>
 
@@ -662,7 +662,7 @@ NAME -> ADDRESS
     - Packets are of limited size (called the “Maximum Transfer Unit or MTU: often 200-1500 bytes in size)
     - Routing is limited to within a physical link (wire) or perhaps through a switch
  - Our goal in the following is to show how to construct a secure, ordered, message service routed to anywhere
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_layering0.png)
+    - ![](../imgs/os_network_layering0.png)
 
 <h2 id="35a60297563ab91f4b231d31ba2ada3b"></h2>
 
@@ -684,7 +684,7 @@ NAME -> ADDRESS
 
 ## IP Packet Format
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_IP_Packet_Format.png)
+![](../imgs/os_network_IP_Packet_Format.png)
 
 <h2 id="35a60297563ab91f4b231d31ba2ada3b"></h2>
 
@@ -699,7 +699,7 @@ NAME -> ADDRESS
  - UDP: The Unreliable Datagram Protocol
     - Layered on top of basic IP (IP Protocol 17)
         - **Datagram:** an unreliable, unordered, packet sent from source user -> dest user (Call it UDP/IP) 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_UDP.png)
+        - ![](../imgs/os_network_UDP.png)
     - Important aspect: low overhead!
         - Often used for high-bandwidth video streams
         - Many uses of UDP considered “anti-social” – none of the “well-behaved” aspects of (say) TCP/IP
@@ -752,7 +752,7 @@ NAME -> ADDRESS
 
 ## Using Acknowledgements
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_ack.png)
+![](../imgs/os_network_ack.png)
 
 
  - How to ensure transmission of packets?
@@ -809,7 +809,7 @@ NAME -> ADDRESS
     - Send one message at a time; don’t send next message until ack received
     - Sender keeps last message; receiver tracks sequence # of last message received
      
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_duplicated_packet_alternating_bit_protocol.png)
+![](../imgs/os_network_duplicated_packet_alternating_bit_protocol.png)
 
  - Pros: simple, small overhead
  - Con: Poor performance
@@ -830,7 +830,7 @@ NAME -> ADDRESS
         - Receiver acknowledges each packet
         - Ack says “received all packets up to sequence number X”/send more
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_dup_packet_window_based_ack.png)
+![](../imgs/os_network_dup_packet_window_based_ack.png)
 
  - Acks serve dual purpose: 
     - Reliability: Confirming packet received
@@ -849,7 +849,7 @@ NAME -> ADDRESS
 
 ## Transmission Control Protocol (TCP)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_tcp.png)
+![](../imgs/os_network_tcp.png)
 
  - Transmission Control Protocol (TCP)
     - TCP (IP Protocol 6) layered on top of IP
@@ -869,7 +869,7 @@ NAME -> ADDRESS
 
 ## TCP Windows and Sequence Numbers
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_tcp_windows_and_sequence_numbers.png)
+![](../imgs/os_network_tcp_windows_and_sequence_numbers.png)
 
  - Sender has three regions: 
     - Sequence regions
@@ -916,13 +916,13 @@ NAME -> ADDRESS
 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_window_based_ack_tcp.png)
+![](../imgs/os_network_window_based_ack_tcp.png)
 
 <h2 id="19422d661bbc4ae1b85c110603cece66"></h2>
 
 ## Selective Acknowledgement Option (SACK)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_tcp_selective_ack.png)
+![](../imgs/os_network_tcp_selective_ack.png)
 
  - Vanilla TCP Acknowledgement
     - Every message encodes Sequence number and Ack
@@ -1001,7 +1001,7 @@ NAME -> ADDRESS
 
 ## Socket Setup (Con’t)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_socket_setup.png)
+![](../imgs/os_network_socket_setup.png)
 
  - Things to remember:
     - Connection involves 5 values:
@@ -1025,7 +1025,7 @@ NAME -> ADDRESS
  - How do you actually program a distributed application?
     - Need to synchronize multiple threads, running on different machines 
         - No shared memory, so cannot use test&set
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_distributed_app.png)
+        - ![](../imgs/os_network_distributed_app.png)
     - One Abstraction: send/receive messages
         - Already atomic: no receiver gets portion of a message and two receivers cannot get same message
  - Interface:
@@ -1081,7 +1081,7 @@ NAME -> ADDRESS
     - Named after Custer, who died at Little Big Horn because he arrived a couple of days too early
  - Can messages over an unreliable network be used to guarantee two entities do something simultaneously?
     - Remarkably, “no”, even if all messages get through
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_general_paradox.png)
+    - ![](../imgs/os_network_general_paradox.png)
     - No way to be sure last message gets through!
 
 
@@ -1171,7 +1171,7 @@ NAME -> ADDRESS
 
 ## Byzantine General’s Problem
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_byzantine_general_problem.png)
+![](../imgs/os_network_byzantine_general_problem.png)
 
  - Byazantine General’s Problem (n players):
     - One General
@@ -1190,7 +1190,7 @@ NAME -> ADDRESS
 
  - Impossibility Results:
     - Cannot solve Byzantine General’s Problem with n=3 because one malicious player can mess up things
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_byzantine_general_problem_n3.png)
+    - ![](../imgs/os_network_byzantine_general_problem_n3.png)
     - With f faults, need n > 3f to solve problem
  - Various algorithms exist to solve problem
     - Original algorithm has #messages exponential in n
@@ -1198,7 +1198,7 @@ NAME -> ADDRESS
         - One from MIT, for instance (Castro and Liskov, 1999)
  - Use of BFT (Byzantine Fault Tolerance) algorithm
     - Allow multiple machines to make a coordinated decision even if some subset of them (< n/3 ) are malicious
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_byzantine_general_problem_bft.png)
+    - ![](../imgs/os_network_byzantine_general_problem_bft.png)
  - how did we use this ? for instance in  a distributed file system
     - the request might be something like i'd like to commit this data and the decision would be a yes or or on the commit. 
     - if enough players properly decided to commit then it would be committed in a way that was guaranteed to be reconstructed and a good decision. 
@@ -1231,7 +1231,7 @@ NAME -> ADDRESS
 
 ## RPC Information Flow
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_network_rpc_flow.png)
+![](../imgs/os_network_rpc_flow.png)
 
 <h2 id="9c6093f1125a29b60e00a00805a68826"></h2>
 
@@ -1321,7 +1321,7 @@ PRC is a crucial part of how micro kernels work.
  - Example: split kernel into application-level servers.
     - File system looks remote, even though on same machine
         - so you're an application, you want to open a file, you're actually going to do RPC to the file system. 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/OS_microkernel_OS.png)
+    - ![](../imgs/OS_microkernel_OS.png)
  - Why split the OS into separate domains?
     - Fault isolation: bugs are more isolated (build a firewall)
     - Enforces modularity: allows incremental upgrades of pieces of software (client or server)
@@ -1332,7 +1332,7 @@ PRC is a crucial part of how micro kernels work.
 
 ## Distributed File Systems
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_distributed_file_system.png)
+![](../imgs/os_distributed_file_system.png)
 
  - Distributed File System: 
     - Transparent access to files stored on a remote disk
@@ -1346,13 +1346,13 @@ PRC is a crucial part of how micro kernels work.
     - A single, global name space: every file in the world has unique name
         - Location Transparency: servers can change and files can move without involving user
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_distributed_file_system_mount.png)
+![](../imgs/os_distributed_file_system_mount.png)
 
 <h2 id="319d7097a96659bafd943e791369a2ba"></h2>
 
 ## Virtual File System (VFS)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_vfs.png)
+![](../imgs/os_vfs.png)
 
 
  - **VFS:** Virtual abstraction similar to local file system
@@ -1366,7 +1366,7 @@ PRC is a crucial part of how micro kernels work.
 
 ## Simple Distributed File System
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_simple_distributed_fs.png)
+![](../imgs/os_simple_distributed_fs.png)
 
  - Remote Disk: Reads and writes forwarded to server
     - Use RPC to translate file system calls
@@ -1381,7 +1381,7 @@ PRC is a crucial part of how micro kernels work.
 
 ## Use of caching to reduce network load
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_simple_distributed_fs_use_cache.png)
+![](../imgs/os_simple_distributed_fs_use_cache.png)
 
  - Idea: Use caching to reduce network load
     - In practice: use buffer cache at source and destination

@@ -74,7 +74,7 @@ Because we're actually trying things in the environment ,all of the learning  al
 When you take an action you see what happens but you don't see everything that might have happended.  
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_1.png)
+![](../imgs/cs188_rl_1.png)
 
 
  - Basic idea:
@@ -116,10 +116,10 @@ What you don't know is what fast and slow do. So far all you know fast is the be
 
  - Offline Solution
     - Offline solution is when you know what your actions will do and in computation in simulation in your head you think about consequences , you realize the jumping into the pit is a bad idea because you know it has negative reward. so you never actually do it. 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_online_solution.png)
+    - ![](../imgs/cs188_rl_online_solution.png)
  - Online Learning
     - When you do online learning , you have to actually jump into the pit before you know it is bad. you might imagine that over time this increases the cost of the robots. 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_online_learning.png)
+    - ![](../imgs/cs188_rl_online_learning.png)
 
 
 <h2 id="59625ed88ee3303c9d5bbb05dcd878d1"></h2>
@@ -235,7 +235,7 @@ So what we track in a model-free approach is the values of interest themselves ,
 
 ## Passive Reinforcement Learning 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_passive_reinforcement_learning.png)
+![](../imgs/cs188_passive_reinforcement_learning.png)
 
 
 The idea is things are happening in the real world , some agent is taking actions and getting specific outcomes that are partially determined by chance. You have to learn from there samples you observe but you don't control the actions. Someone else is choosing the actions and you're just sitting there with your notebook trying to figure out based on the policy that is being followed what are the values of all the states. 
@@ -299,7 +299,7 @@ Episode 3: +8 from E
 
 Episode 4: -12 from E
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_direct_evaluation_output.png)
+![](../imgs/cs188_rl_direct_evaluation_output.png)
 
 
 ---
@@ -345,10 +345,10 @@ We already know how to take averages without knowing the weights. We look at sam
 ## Sample-Based Policy Evaluation ?
 
  - We want to improve our estimate of V by computing these averages:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_policy_evaluation.png)
+    - ![](../imgs/cs188_rl_policy_evaluation.png)
  - Idea: Take samples of outcomes s’ (by doing the action!) and average
     - maybe this approach ...
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_wrong_sample_based_pv.png)
+    - ![](../imgs/cs188_rl_wrong_sample_based_pv.png)
 
 What's wrong ?
 
@@ -364,7 +364,7 @@ So that a big idea of --
 
  - Big idea: learn from every experience!
     - Update V(s) each time we experience a transition (s, a, s’, r)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_td_learning.png)
+    - ![](../imgs/cs188_rl_td_learning.png)
     - Likely outcomes s’ will contribute updates more often
 
 It is a little tricky because we only get one sample of what might have happended , so we need somehow make sure that over time we accumulate the right averages. But right now we've got one sample we've got ot incorporate it and move on. 
@@ -384,7 +384,7 @@ So how do we take the average of one thing ?
  - Temporal difference learning of values
     - Policy still fixed, still doing evaluation!
     - Move values toward value of whatever successor occurs: running average
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_td_learning_update.png)
+    - ![](../imgs/cs188_rl_td_learning_update.png)
 
 One thing we do is we keep around our old value with some weight and we average in the new thing with some weight. So we interpolate them. There's some value α called learning rate. α is usually small , like 0.1 or something like that , maybe even smaller. Every time we get a sample of the new value which is a reward + discounted future , we average it in by interpolating it with the old value esitmate . 
 
@@ -396,36 +396,36 @@ this update it says take your value and add to it α times the difference betwee
 
 Demo: a = 0.5 , no time step reward.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example0.png)
+![](../imgs/cs188_rl_tdl_example0.png)
 
 We are about to do temporal different learning of values. That means we keep a big table of values and they also offer 0 because we have no idea what's going on in this grid. 
 
 The blue dot represens the agent. I'm going to issue commands and the agent will then watch what happends.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example1.png)
+![](../imgs/cs188_rl_tdl_example1.png)
  
 I went north. In this version the living reward set to 0 so that we can see how the exit rewards propagate. In this case no update happened because I thought that I was going to receive a total utility of 0 from the start state. I in fact received 0 and I landed in the state where I thought there was 0 left to come. 
 
 So I thought I was going to get a 0 . I do seem to be on track to get 0 , nothing to do. 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example2.png)
+![](../imgs/cs188_rl_tdl_example2.png)
 
 Nothing interesting happens util I receive a non-zero reward which I receive not when I enter this right-top square but when I exit it. Right now I think I'm going to get a 0 total future score.  When I tack the exit action I will in fact receive a +1 and then I'll be forced to reconcile the +1 I got with the 0 I thought I was going to get and right now α was set to 0.5 and so the average value will now be 0.5 , and I update my array. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example3.png)
+![](../imgs/cs188_rl_tdl_example3.png)
 
 I play again. What happens when I move into the square left to top-right square ? 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example4.png)
+![](../imgs/cs188_rl_tdl_example4.png)
 
 From here I'm about to move east I think I'm going to get a total score of 0. I go east. What did I receive that time step ? 0 . But I landed in the state that looks right now to be worth 0.5. On one hand I thought my total would be 0 , on the other hand this experience says I'm going to get 0 + 0.5 . I average them and I get 0.25.  That's going to continue happening as I exit here that 0.5 approaches 1 because I'm gonna get 1 every time . I is now (0.5+1) /2 = 0.75.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example5.png)
+![](../imgs/cs188_rl_tdl_example5.png)
 
 Play again, the values would be  (0+0.25)/2 = 0.13 ,  ( 0.25 + 0.75 ) /2 = 0.5 , ( 0.75+1)/2 = 0.88.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example6.png)
+![](../imgs/cs188_rl_tdl_example6.png)
 
 Every time we enter a non-zero square from a 0-value square, notice that we learn about the square we leave because when I leave this square I'm going to learn that my estimate of 0 isn't the best I can do. I can do better.  
 
@@ -433,13 +433,13 @@ So you learn about **the state you leave , not the state you land in**.
 
 I'm learning the values of these squares and the values under the policy that I'm executing. What would happen if I went the other way around ? ( move right from 0.13)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example7.png)
+![](../imgs/cs188_rl_tdl_example7.png)
 
 When I get to the square down to 0.98 and I go north , even I've never been in the state before and this is my first experience with it as soon as I see that going north lands me at 0.98 , I know that going north is pretty good and so I have an update (0 -> 0.49). That's exactly the effect the direct evaluation didn't have. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example8.png)
+![](../imgs/cs188_rl_tdl_example8.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_example9.png)
+![](../imgs/cs188_rl_tdl_example9.png)
 
 <h2 id="f014b2f80d6cee4d42ed6c19b0fdaadb"></h2>
 
@@ -447,9 +447,9 @@ When I get to the square down to 0.98 and I go north , even I've never been in t
 
  - Exponential moving average 
     - The running interpolation update:
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_tdl_interpolation_update.png)
+        - ![](../imgs/cs188_rl_tdl_interpolation_update.png)
     - Makes recent samples more important:
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rd_tdl_xn.png)
+        - ![](../imgs/cs188_rd_tdl_xn.png)
     - Forgets about the past (distant past values were wrong anyway)
  - Decreasing learning rate (alpha) can give converging averages
 
@@ -477,7 +477,7 @@ This idea of learning Q values make action selection model-free as well because 
 
 ## Active Reinforcement Learning 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_arl.png)
+![](../imgs/cs188_rl_arl.png)
 
 You have to try things. Sometimes when you try something bad you get a negative reward and you keep on going. You probably won't try that thing again but you paid the price. 
 
@@ -506,7 +506,7 @@ In full reinforcement learning we would like to be able to compute optimal polic
  - Value iteration: find successive (depth-limited) values
     - Start with V₀(s) = 0, which we know is right
     - Given V<sub>k</sub>, calculate the depth k+1 values for all states:
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_calc_formular.png)
+        - ![](../imgs/cs188_mdp_calc_formular.png)
 
 We can't do this update with samples because it's not an average but Max. And the only thing we can do with samples is computing averages of things. 
 
@@ -539,12 +539,12 @@ We're going to get some sample on the basis of the action we picked , the key le
     - Receive a sample (s,a,s’,r)
     - Consider your old estimate: ***Q(s,a)***
     - Consider your new sample estimate:
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rd_q_learning_sample.png)
+        - ![](../imgs/cs188_rd_q_learning_sample.png)
     - Incorporate the new estimate into a running average:
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_q_learning_interpolation.png)
+        - ![](../imgs/cs188_q_learning_interpolation.png)
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_q_values_after_100_it.png)
+![](../imgs/cs188_rl_q_values_after_100_it.png)
 
 
 
@@ -575,7 +575,7 @@ We're going to get some sample on the basis of the action we picked , the key le
 
 ## Example of RL :  Flappy Bird
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_flappybird.png)
+![](../imgs/cs188_rl_flappybird.png)
 
  - State space
     - Discretized vertical distance from lower pipe
@@ -674,15 +674,15 @@ You got food poisoning a couple times and you just stopped. On the other hand wh
 
 So how can we encode this?  we'd like something that forces us to explore whose badness is not yet established but eventually stopped.  The basic idea here is "in the face of uncertainty you should have optimism".  So fly into those unknown caves and see what's in their optimism. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_infaceofuncertainty.png)
+![](../imgs/cs188_rl_infaceofuncertainty.png)
 
 
 ---
 
  - Exploration function
     - Takes a value estimate u and a visit count n, and returns an optimistic utility, e.g. `f(u,n) = u + k/n`
-        - Regular Q-Update: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_explor_func_regular.png) ?
-        - Modified Q-Update: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_explor_func_modified.png) ?
+        - Regular Q-Update: ![](../imgs/cs188_rl_explor_func_regular.png) ?
+        - Modified Q-Update: ![](../imgs/cs188_rl_explor_func_modified.png) ?
             - for a q-state , number of times we've been there means the number of we've tried that action out.
     - Note: this propagates the “bonus” back to states that lead to unknown states as well!
         - Not only does it tell you that a q-state you haven't tried has higher value , but also it will propagate this bonus back. So you don't just try things that are unknown , you try things that are known to lead to states that are unknown. That's great. 
@@ -711,7 +711,7 @@ A: it's hard to know.
 
 一些指数函数也可以达到这个效果，比如：
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_action_selection_prob_e_function.png)
+![](../imgs/cs188_rl_action_selection_prob_e_function.png)
 
 where τ is a temperature parameter that is decreased over time.
 
@@ -725,7 +725,7 @@ where τ is a temperature parameter that is decreased over time.
 
 The basic idea of *regret* is even though you learn the optimal policy eventually  , because your transitions and rewards are initially unknown it's inevitable that you will make some mistakes along the way.  So you don't get to be the wise optimal robot without making some mistakes in your youth. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_regret_robot.png)
+![](../imgs/cs188_rl_regret_robot.png)
 
 So for example here this robot it's wise it's optimal and it's remembering back to its youth where it jumped into that fire pit , now it knows not to do that and you can think of this as regret. But a certain amount of fire pit jumping is inevitable because you just had no way of knowing whether or not it was a fire pit until you try it. 
 
@@ -767,7 +767,7 @@ There are multiple reasons why we can't learn about every single state. There ar
 
 In general for a game like pac-man , if you had the q tables it would just be this infinite library and that's not going to work. So we want to do is we want to generalize. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_q_table_pacman.png)
+![](../imgs/cs188_rl_q_table_pacman.png)
 
  - Instead, we want to generalize:
     - Learn about some small number of training states from experience
@@ -785,11 +785,11 @@ This is actually a fundamental idea of machine learning. We'll see it over and o
 ### Example: Pacman
 
  - Let’s say we discover through experience that this state is bad:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_generalize_pacman1.png)
+    - ![](../imgs/cs188_rl_generalize_pacman1.png)
  - In naïve q-learning, we know nothing about this state:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_generalize_pacman1.png)
+    - ![](../imgs/cs188_rl_generalize_pacman1.png)
  - Or even this one!
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_generalize_pacman1.png)
+    - ![](../imgs/cs188_rl_generalize_pacman1.png)
     - It's missing a dot. It's a totally different state as far as q-learning is concerned.  
     
 Something is wrong here if you've got to learn about the ghosts in every configuration of not only ghosts but also dots. 
@@ -851,7 +851,7 @@ The first part of q-learning algorithm doesn't actually care where the q-value c
 
  - Q-learning with linear Q-functions:
     - transition = (s,a,r,s')
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_a_exact_qs.png)
+    - ![](../imgs/cs188_rl_a_exact_qs.png)
         - For an exact q-learner the update looks like this.  This is just an algebraic rewrite of the update that says take α of one and (1-α) of the other. This can delay calculation of α. 
     - `wᵢ ← wᵢ + α[difference]fᵢ(s,a)`    ( Approximate Q’s )
         - wᵢ + α[difference]·xᵢ
@@ -865,7 +865,7 @@ The problem is now the only knobs we have are the weights.   You can't increment
 
 That looks like you've got these sliders like how bad is a ghost. And whenever you're near a ghost and something bad happens , blame the ghost , so you write down ghosts are little worse than they were before. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_pacman_weight_adjust.png)
+![](../imgs/cs188_rl_pacman_weight_adjust.png)
 
 The intuitive interpretation is adjusting these weights . So if something bad happens all of the features that are active get a penalty and so on. 
 
@@ -887,7 +887,7 @@ The intuitive interpretation is adjusting these weights . So if something bad ha
  - ghost feature
     - similar thing , if I close to a ghost , f<sub>ghost</sub> gets bigger 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_qpacman_s.png)
+![](../imgs/cs188_rl_qpacman_s.png)
 
  - Q(s,a) = 4.0·f<sub>dot</sub>(s,a) - 1.0·f<sub>ghost</sub>(s,a)
  - f<sub>dot</sub>(s, NORTH) = 0.5 
@@ -900,8 +900,8 @@ The intuitive interpretation is adjusting these weights . So if something bad ha
 What does that mean ? That means that according to our approximate q-value we think our score for the game from this point forward is going to be +1. Well what happens?  You move north you die.  You receive a -500 reward and you end up in a state where the game is over and therefore the Q values are 0 by definition. 
 
  - a = NORTH , r = -500 => 
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_qpacman_sp.png)   
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_qpacman_3.png)
+ - ![](../imgs/cs188_rl_qpacman_sp.png)   
+ - ![](../imgs/cs188_rl_qpacman_3.png)
  - Q(s', . ) = 0
 
 
@@ -938,7 +938,7 @@ What's nice about this is you learned so quickly from even 1 experience you can 
  
 For the state s shown below, which action should pacman take ? Assume that the red and blue ghosts are both sitting on top of a dot. 
  
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_feature_rep_update_example1.png)
+![](../imgs/cs188_rl_feature_rep_update_example1.png)
 
 So there 2 action available :
 
@@ -955,7 +955,7 @@ Based on this approximate Q-function , action WEST will be taken.
 
 Now we are entering state s':
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_feature_rep_update_example2.png)
+![](../imgs/cs188_rl_feature_rep_update_example2.png)
 
 Assume γ =1 , α = 0.5.
 
@@ -1105,7 +1105,7 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 ## Deep Q Learning
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_deep_ql.png)
+![](../imgs/rl_deep_ql.png)
 
  - Deep Q Learning 依然是Q Learning , 只是用神经网络去代替了Q Table
  - 还有一种更加 End to End的方法，叫做Policy Gradient
@@ -1117,7 +1117,7 @@ For example you might do some Q-learning for a while or if you've got like a hel
  - Deep Q Learning 用Ｑ网络去估计Q 表然后在规定一种策略去依据Ｑ值采取行动不同
  - Policy Gradient 的策略网络直接输出的就是策略，比如采取每一种行动的概率（对于离散控制问题），或者每一个动作的值（对于连续控制问题）。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_pg_network.png)
+![](../imgs/rl_pg_network.png)
 
  - 优点
     - 更加的 End to End，不用借用强化学习的理论框架。
@@ -1128,10 +1128,10 @@ For example you might do some Q-learning for a while or if you've got like a hel
     - π<sub>θ</sub>(s) 表示策略 
     - θ 表示 策略网络的 weight 
     - 通过学习不断更新。目标函数可以表示为 J(θ) = E<sub>π(θ)</sub>[r] 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_pg_derivative_J_theta.png)
+    - ![](../imgs/rl_pg_derivative_J_theta.png)
         - 由此导数，我们可以把每轮的折扣回馈 v<sub>t</sub> 看作改 state 真实价值 G<sub>t</sub> 的无偏估计
         - 利用Gradient ascent的方法 ， 不停地更新 θ 训练一个能够达到最大期望回馈的策略网络。
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_pg_update_theta.png)
+        - ![](../imgs/rl_pg_update_theta.png)
 
  - PG 听起来很美好 , 实践中会有很多致命的问题让它很难收敛
     - 1. 反馈分配: 反馈在大多时候都是不存在的
@@ -1156,7 +1156,7 @@ For example you might do some Q-learning for a while or if you've got like a hel
  - 动作方程 actor function 表示为: μ(s|θ<sup>μ</sup>)
  - 校正方程 critic function 表示为: Q(s,a | θ<sup>Q</sup> ) 
  - Cost function J 对于\theta的导数为：
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_DDPG_derivative_J_theta.png)
+    - ![](../imgs/rl_DDPG_derivative_J_theta.png)
  - 这个算法将对动作的Q值估计和策略估计给分离，让 agent 能够在探索更多的同时保持对一个确定策略的学习，让整个网络学习变得更容易。
  - 其他 更有利于网络的收敛 的小技巧 （小，但是很有用）
     - Replay Buffer
@@ -1199,13 +1199,13 @@ For example you might do some Q-learning for a while or if you've got like a hel
  - 但是我们要怎么确定这个行为是不是应当被增加被选的概率呢?
     - reward
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_pg_error.png)
+![](../imgs/rl_pg_error.png)
 
 <h2 id="edc520f80b6440121e2920f7f2caf86b"></h2>
 
 ## 具体更新步骤
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rl_pg_update_step.png)
+![](../imgs/rl_pg_update_step.png)
 
  - 观测的信息通过神经网络分析, 选出了左边的行为
  - 我们直接进行反向传递, 使之下次被选的可能性增加.
@@ -1239,9 +1239,9 @@ model-free  | off-policy model-free control | policy optimization
 ---
 
 
- [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_grid_input_policy.png
+ [1]: ../imgs/cs188_rl_grid_input_policy.png
  
- [2]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_grid_learnedmodel.png
+ [2]: ../imgs/cs188_rl_grid_learnedmodel.png
 
- [3]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_rl_q_values_calc.png
+ [3]: ../imgs/cs188_rl_q_values_calc.png
 

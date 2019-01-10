@@ -93,7 +93,7 @@ deletion | unacceptable  |O(logn) | O(logn) | Really good
     - height=n, worst case a chain
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/height_of_BST.PNG)    
+![](../imgs/height_of_BST.PNG)    
 
 
 <h2 id="ecc3180ec9081ee32b214c27daaae2dc"></h2>
@@ -198,7 +198,7 @@ To delete a key from a BST
     - SWAP k and l , NOTE definitly new position k has no right child , now k's node has 1 or 0 child , we know how to delete it already.
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BST_insert.png)
+![](../imgs/BST_insert.png)
 
 Runnint time: θ(height)
 
@@ -212,14 +212,14 @@ Example Augmentation:
 
 size(x) = number of tree nodes in subtrees rooted at x.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BST_size.png)
+![](../imgs/BST_size.png)
 
 
 Note: if x has children y and z , then **size(y) + size(z) + 1 equals size(x)**.
 
 How to select iᵗʰ ordered statistic from augmented searth tree (with subtree sizes)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BST_select_rank.png)
+![](../imgs/BST_select_rank.png)
 
 ```
 - start at root x, with children y and z
@@ -262,7 +262,7 @@ Example : red-black trees
 
 **Claim**: a chain of length 3 can not be a RBT.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BST_chain_height_3.png)
+![](../imgs/BST_chain_height_3.png)
 
 
 **Proof**: There is 3 nodes in the tree. The 1st has to be black, so there is 4 possible ways to color the 2nd and 3rd: BB, BR, RB, RR. But really , beacuse of the third invariant , RR is not allowd. If we color 2nd red and 3rd black, the invariant broken: when search 0, you pass through 1 black node, when search 4, you pass through 2 black nodes. Also the BB and BR will lead to same result. so proved.
@@ -307,7 +307,7 @@ Example : red-black trees
 
   - left Rotation: of the parent x , and right child y
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RBT_left_rotation1.png)
+![](../imgs/RBT_left_rotation1.png)
  
 currently x is the parent and y is the child. We want to rewire a few pointers so that y is the parent and x is the child.  Because x<y , So if x will be a child of y, it's got to be the left child.
 
@@ -317,9 +317,9 @@ currently x is the parent and y is the child. We want to rewire a few pointers s
     - after y becoming x's child , there is 3 child slot left for A,B,C
     - A < x and y, so A should be x's left child (no change)
     - C > x and y, so C should be y's right child (no change)
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RBT_left_rotation2.png)
+        - ![](../imgs/RBT_left_rotation2.png)
     - B used to be y's left child, but now x is y's left child, so the only hope is to slot B into the only space we have is x's right child. Fortunately for us this acctually works.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RBT_left_rotation3.png)
+        - ![](../imgs/RBT_left_rotation3.png)
 
 ---
 
@@ -327,7 +327,7 @@ currently x is the parent and y is the child. We want to rewire a few pointers s
 
 ### Right Rotation
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RBT_right_rotation.png)
+![](../imgs/RBT_right_rotation.png)
 
 
 Rotation Running Time:
@@ -354,7 +354,7 @@ proceed as in a normal binary search tree, then recolor and perform rotations un
     - if y is red, it should be the root, y must have a parent, we call it ***w*** , y has a black parent ***w***.
  5. there is 2 different cases:
     - case 1: the other child z of w is also red
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/insert_x_RBT.png)
+    - ![](../imgs/insert_x_RBT.png)
     - solution: recolor y,z black, w red
     - 但由于w 的父节点有可能为红色，从而违反红黑树性质。此时必须将 w节点作为新的判定点继续向上传播进行平衡操作。
     - ---

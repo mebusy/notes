@@ -151,7 +151,7 @@ audiowrite(sig2,cos(w2),fs);
 plot(y1)
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/octave_audio_s1.png)
+![](../imgs/octave_audio_s1.png)
 
 信号 2 的图像（880 赫兹）
 
@@ -160,7 +160,7 @@ plot(y1)
 plot(y2)
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/octave_audio_s2.png)
+![](../imgs/octave_audio_s2.png)
 
 
 <h2 id="777d069853661fb6fb9cd8e67b116e81"></h2>
@@ -172,7 +172,7 @@ sumres=y1+y2;
 plot(sumres)
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/octave_audio_sum.png)
+![](../imgs/octave_audio_sum.png)
 
 <h2 id="49bd8db4f8d3299524f11771f93554ce"></h2>
 
@@ -193,7 +193,7 @@ audiowrite(product, y1.*y2, fs);    %performing the product
 plot(yprod);                           %plotting the product
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/octave_audio_multiply.png)
+![](../imgs/octave_audio_multiply.png)
 
 两个基本频率相差很大的信号相乘后的图表效果（调制原理）
 
@@ -209,7 +209,7 @@ y1=cos(w);
 plot(y1);
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/octave_audio_3.1.png)
+![](../imgs/octave_audio_3.1.png)
 
 
 <h2 id="de12d6d99cdc4745c70e4ee1a8a92ab1"></h2>
@@ -221,7 +221,7 @@ y2=cos(100*w);
 plot(y2);
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/octave_audio_3.2.png)
+![](../imgs/octave_audio_3.2.png)
 
 
 <h2 id="ae927bd937602b7362bcec1dfd6c75df"></h2>
@@ -234,7 +234,7 @@ plot(y1.*y2);
 
 调制后的信号:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/octave_audio_3.3.png)
+![](../imgs/octave_audio_3.3.png)
 
 ---
 

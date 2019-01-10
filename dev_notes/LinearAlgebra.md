@@ -368,13 +368,13 @@ n个λ 的值，可能有重复的，重复的λ，会导致特征向量缺失�
 
 用A 乘以 特征向量矩阵S, 得到:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LinearAlgebra_SAS1.png)
+![](../imgs/LinearAlgebra_SAS1.png)
 
 Ax=λx
 
 拆分得到的新矩阵，得到:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LinearAlgebra_SAS2.png)
+![](../imgs/LinearAlgebra_SAS2.png)
 
 所以: AS=SΛ
 
@@ -474,7 +474,7 @@ A²=SΛS⁻¹SΛS⁻¹  =  SΛ²S⁻¹  (S表示特征向量不变, 特征值变
 
 例： F64 -> F32:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LinearAlgebra_F64_F32.png)
+![](../imgs/LinearAlgebra_F64_F32.png)
 
 
 <h2 id="1315bcee5d95b88fdd51612d5a4c38dd"></h2>

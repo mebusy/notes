@@ -78,7 +78,7 @@ We expect the parser to report any syntax errors in an intelligible fashion and 
 
 Conceptually, for well-formed programs, the parser constructs a parse tree and passes it to the rest of the compiler for further processing. In fact, the parse tree need not be constructed explicitly, since checking and translation actions can be interspersed with parsing, as we shall see. Thus, the parser and the rest of the front end could well be implemented by a single module.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.1png.png)
+![](../imgs/Compiler_F4.1png.png)
 
 There are three general types of parsers for grammars: 
 
@@ -418,7 +418,7 @@ A parse tree (CST)is a graphical representation of a derivation that filters out
 
 For example, the parse tree for -(id + id) in Fig. 4.3, results from the derivation (4.8) as well as derivation (4.9).
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.3.png)
+![](../imgs/Compiler_F4.3.png)
 
 The leaves of a parse tree are labeled by ***nonterminals or terminals*** and, read from left to right, constitute a sentential form, called the ***yield*** or ***frontier*** of the tree.
 
@@ -432,7 +432,7 @@ To model this step of the derivation, find the *j*th leaf from the left in the c
 
 Example 4.10 : The sequence of parse trees constructed from the derivation (4.8) is shown in Fig. 4.4. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.4.png)
+![](../imgs/Compiler_F4.4.png)
 
 In the first step of the derivation, E ⇒ -E. To model this step, add two children, labeled `-` and `E`, to the root `E` of the initial tree. The result is the second tree.
 
@@ -452,11 +452,11 @@ From Section 2.2.4, a grammar that produces more than one parse tree for some se
 
 Example 4.11 : The arithmetic expression grammar (4.3) permits two distinct leftmost derivations for the sentence id + id * id:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_2_distinct_leftmost_derivation.png)
+![](../imgs/Compiler_2_distinct_leftmost_derivation.png)
 
 The corresponding parse trees appear in Fig. 4.5.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.5.png)
+![](../imgs/Compiler_F4.5.png)
 
 Note that the parse tree of Fig.4.5(a) reflects the commonly assumed prece­dence of + and \*, while the tree of Fig. 4.5(b) does not. 
 
@@ -527,7 +527,7 @@ describe the same language, the set of strings of a's and b's ending in *abb*.
 
 We can construct mechanically a grammar to recognize the same language as a nondeterministic finite automaton (NFA). The grammar above was con­structed from the NFA in Fig. 3.24 using the following construction:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.24.png)
+![](../imgs/Compiler_F3.24.png)
 
  1. For each state i of the NFA, create a nonterminal Aᵢ.
  2. If state i has a transition to state j on input a, add the production Aᵢ → aAⱼ. If state i goes to state j on input ε, add the production Aᵢ → Aⱼ.
@@ -538,7 +538,7 @@ On the other hand, the language L = {aⁿbⁿ | n ≥ 1} with an equal number of
 
 To see why, suppose L were the language defined by some regular expression. We could construct a DFA D with a finite number of states, say k, to accept L. Since D has only k states, for an input beginning with more than k a's, D must enter some state twice, say sᵢ, as in Fig. 4.6. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.6.png)
+![](../imgs/Compiler_F4.6.png)
 
 Suppose that the path from sᵢ back to itself is labeled with a sequence aʲ⁻ⁱ. Since aⁱbⁱ is in the language, there must be a path labeled bⁱ from sⁱ to an accepting state f. But, then there is also a path from the initial state s₀ through sⁱ to f labeled aʲbⁱ, as shown in Fig. 4.6. Thus, D also accepts aʲbⁱ, which is not in the language, contradicting the assumption that L is the language accepted by D.
 
@@ -599,7 +599,7 @@ Here **"other"** stands for any other statement. According to this grammar, the 
 if E₁ then S₁ else if E₂ then S₂ else E₃
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.8.png)
+![](../imgs/Compiler_F4.8.png)
 
 has the parse tree shown in Fig. 4.8.1 
 
@@ -612,7 +612,7 @@ if E₁ then if E₂ then S₁ else S₂     (4.15)
 
 has the two parse trees shown in Fig. 4.9.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.9.png)
+![](../imgs/Compiler_F4.9.png)
 
 In all programming languages with conditional statements of this form, the first parse tree is preferred. The general rule is, "Match each **else** with the closest unmatched **then**."  
 
@@ -836,7 +836,7 @@ At each step of a top-down parse, the key problem is that of determining the pro
 
 The section begins with a general form of top-down parsing, called *recursive­ descent parsing*, which may require backtracking to find the correct A-production to be applied. Section 2.4.2 introduced predictive parsing, a special case of recursive-descent parsing, where no backtracking is required. Predictive parsing chooses the correct A-production by looking ahead at the input a fixed number of symbols, typically we may look only at one (that is, the next input symbol).
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.12.png)
+![](../imgs/Compiler_F4.12.png)
 
 For example, consider the top-down parse in Fig. 4.12, which constructs a tree with two nodes labeled E'. At the first E' node (in preorder), the production E' → + T E'  is chosen; at the second E' node, the production E' → ε is chosen. A predictive parser can choose between E'-productions by looking at the next input symbol.
 
@@ -881,7 +881,7 @@ A → ab | a
 
 To construct a parse tree top-down for the input string w = cad, begin with a tree consisting of a single node labeled S, and the input pointer pointing to c, the first symbol of w. S has only one production, so we use it to expand S and obtain the tree of Fig. 4.14(a) . The leftmost leaf, labeled c, matches the first symbol of input w, so we advance the input pointer to a, the second symbol of w, and consider the next leaf, labeled A.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.14.png)
+![](../imgs/Compiler_F4.14.png)
 
 Now, we expand A using the first alternative A → ab to obtain the tree of Fig. 4.14(b). We have a match for the second input symbol, a, so we advance the input pointer to d, the third input symbol, and compare d against the next leaf, labeled b. Since b does not match d, we report failure and go back to A to see whether there is another alternative for A that has not been tried, but that might produce a match.
 
@@ -901,7 +901,7 @@ The construction of both top-down and bottom-up parsers is aided by two function
 
 Define FIRST(α), where α is any string of grammar symbols, to be the set of terminals that begin strings derived from α. if α ⇒<sup>\*</sup> ε, then ε is also in FIRST(α) . For example, in Fig. 4.15, A ⇒<sup>\*</sup> cγ , so c is in FIRST(A).
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.15.png)
+![](../imgs/Compiler_F4.15.png)
 
 > Figure 4.15: Terminal *c* is in FIRST(A) and *a* is in FOLLOW(A)
 
@@ -999,7 +999,7 @@ TODO
 
 Transition diagrams are useful for visualizing predictive parsers. For exam­ple, the transition diagrams for nonterminals E and E' of grammar (4.28) appear in Fig. 4.16(a). 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.16.png)
+![](../imgs/Compiler_F4.16.png)
 
 > Figure 4.16:  Transition diagrams for nonterminals E and E' of grammar 4.28.
 
@@ -1025,7 +1025,7 @@ TODO
 
 A nonrecursive predictive parser can be built by maintaining a stack explicitly, rather than implicitly via recursive calls. The parser mimics a leftmost deriva­tion. If *w* is the input that has been matched so far, then the stack holds a sequence of grammar symbols α such that S ⇒<sup>\*</sup><sub>lm</sub> wα .
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.19.png)
+![](../imgs/Compiler_F4.19.png)
 
 > Figure 4.19: Model of a table-driven predictive parser
 
@@ -1052,7 +1052,7 @@ TODO
 
 A bottom-up parse corresponds to the construction of a parse tree for an input string beginning at the leaves (the bottom) and working up towards the root (the top). It is convenient to describe parsing as the process of building parse trees, although a front end may in fact carry out a translation directly without building an explicit tree. The sequence of tree snapshots in Fig. 4.25 illustrates a bottom-up parse of the token stream **id \* id**, with respect to the expression grammar (4.1).
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.25.png)
+![](../imgs/Compiler_F4.25.png)
 
 > Figure 4.25: A bottom-up parse for **id \* id**
 
@@ -1120,7 +1120,7 @@ Although T is the body of the production E → T, the symbol T is not a handle i
 
 Formally, if S ⇒<sup>\*</sup><sub>rm</sub> αAw ⇒<sub>rm</sub> αβw , as in Fig. 4.27, 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.27.png)
+![](../imgs/Compiler_F4.27.png)
 
 > Figure 4.27: A handle A → β in the parse tree for αβw
 
@@ -1130,7 +1130,7 @@ Notice that the string w to the right of the handle must contain only terminal s
 
 A rightmost derivation in reverse can be obtained by "handle pruning." That is, we start with a string of terminals w to be parsed. If w is a sentence of the grammar at hand, then let w = γ<sub>n</sub>, where γ<sub>n</sub> is the **n**th right-sentential form of some as yet unknown rightmost derivation
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_handle_pruning.png)
+![](../imgs/Compiler_handle_pruning.png)
 
 To reconstruct this derivation in reverse order, we locate the handle β<sub>n</sub> in γ<sub>n</sub> and replace β<sub>n</sub> by the head of the relevant production A<sub>n</sub> → β<sub>n</sub> to obtain the previous right-sentential form γ<sub>n-1</sub>. Note that we do not yet know how handles are to be found, but we shall see methods of doing so shortly.
 
@@ -1192,13 +1192,13 @@ The use of a stack in shift-reduce parsing is justified by an important fact: th
 
 This fact can be shown by considering the possible forms of two successive steps in any rightmost derivation. Figure 4.29 illustrates the two possible cases. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.29.png)
+![](../imgs/Compiler_F4.29.png)
 
 In case (1), A is replaced by βBy, and then the rightmost nonterminal B in the body  By is replaced by γ . In case (2), A is again expanded first, but this time the body is a string *y* of terminals only. The next rightmost nonterminal B will be somewhere to the left of *y* .
 
 In other words:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F429_in_other_words.png)
+![](../imgs/Compiler_F429_in_other_words.png)
 
 Consider case (1) in reverse, where a shift-reduce parser has just reached the configuration
 
@@ -1273,7 +1273,7 @@ Another common setting for conflicts occurs when we know we have a han­dle, but
 
 Example 4.39 : Suppose we have a lexical analyzer that returns the token name **id** for all names, regardless of their type. Suppose also that out lan­guage invokes procedures by giving their names, with parameters surrounded by parentheses, and that arrays are referenced by the same syntax. Since the translation of indices in array references and parameters in procedure calls are different, we want to use different productions to generate lists of actual parameters and indices. Our grammar might therefore have (among others) productions such as those in Fig. 4.30.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.30.png)
+![](../imgs/Compiler_F4.30.png)
 
 > Figure 4.30: Productions involving procedure calls and array references
 
@@ -1363,7 +1363,7 @@ For example, the item `A → ·XYZ` indicates that we hope to see a string deriv
 
 One collection of sets of LR(O) items, called the *canonical* LR(O) collection, provides the basis for constructing a deterministic finite automaton that is used to make parsing decisions. Such an automaton is called an *LR(O) automaton*. In particular, each state of the LR(O) automaton represents a set of items in the canonical LR(O) collection. The automaton for the expression grammar (4.1), shown in Fig. 4.31, will serve as the running example for discussing the canonical LR(0) collection for a grammar.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.31.png)
+![](../imgs/Compiler_F4.31.png)
 
 > Figure 4.31: LR(O) automaton for the expression grammar (4.1)
 
@@ -1445,7 +1445,7 @@ In summary, assuming + is left associative, the action of state 7 on input + sho
 
 Proceeding in this way, we obtain the LR parsing table shown in Fig. 4.49.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compile_F4.49.png)
+![](../imgs/Compile_F4.49.png)
 
 Productions 1 through 4 are `E → E+E`,`E → E*E`, `→ (E)`,and `E → id`, respectively. It is interesting that a similar parsing action table would be produced by eliminating the reductions by the single productions E → T and T → F from the SLR table for the unambiguous expression grammar (4.1) shown in Fig. 4.37. Ambiguous grammars like the one for expressions can be handled in a similar way in the context of LALR  and canonical LR parsing.
 
@@ -1472,7 +1472,7 @@ S  → i S e S | i S | a
 
 The sets of LR(O) items for grammar (4.67) are shown in Fig. 4.50. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.50.png)
+![](../imgs/Compiler_F4.50.png)
 
 The ambi­guity in (4.67) gives rise to a shift/reduce conflict in I₄. There, `S  → iS·eS` calls for a shift of *e* and, since FOLLOW(S) = {e, $}, item `S  → iS·` calls for reduction by `S  → iS` on input *e*.
 
@@ -1487,12 +1487,12 @@ on the stack and **else** as the first input symbol, should we shift **else** on
 We conclude that the shift/reduce conflict in I₄ should be resolved in favor of shift on input *e*. The SLR parsing table constructed from the sets of items of Fig. 4.48, using this resolution of the parsing-action conflict in I₄ on input *e*, is shown in Fig. 4.51. Productions 1 through 3 are `S  → i S e S `, `S  → i S`, and `S  → a `, respectively.
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.51.png)
+![](../imgs/Compiler_F4.51.png)
 > Figure 4.51: LR parsing table for the "dangling-else" grammar
 
 For example, on input `iiaea`, the parser makes the moves shown in Fig. 4.52, corresponding to the correct resolution ofthe "dangling-else." At line (5), state 4 selects the shift action on input e, whereas at line (9) , state 4 calls for reduction by `S  → i S` is on input $.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F4.52.png)
+![](../imgs/Compiler_F4.52.png)
 
 By way of comparison, if we are unable to use an ambiguous grammar to specify conditional statements, then we would have to use a bulkier (笨重的) grammar along the lines of Example 4.16.
 

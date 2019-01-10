@@ -34,7 +34,7 @@
 
 ## 5.1 Von Neumann Architecture
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_architexture_overall.png)
+![](../imgs/n2t_architexture_overall.png)
 
 <h2 id="aa56a2e65d8106aef3c61e4f6bf94fdb"></h2>
 
@@ -87,7 +87,7 @@
     - Get the instruction code itself by reading the memory contents at that location
  - How do we actually go about putting the address of the next instruction  into the address input of the programm memory ?
     - we're going to have to put it somewhere , and that's going to be into some register, and that is usually called the Program Counter. 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_the_PC.png)
+    - ![](../imgs/n2t_the_PC.png)
     - The output of the PC , feeds into the address specification of our program memory,
     - and then the *out* of the program memory , comes the actual code of instructions , that we need to execute.
  
@@ -110,7 +110,7 @@
     - that is , the fetch part of the cycle reads from the program memory, and the execute part reads from data memory.
     - and because we have a single memory , that is a clash. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_fetch-execute_clash.png)
+![](../imgs/n2t_fetch-execute_clash.png)
 
 
  - How to solve it ?
@@ -122,7 +122,7 @@
     - but how we know the acutal instruction when we are in executing cycle?
     - we need at first store the instruction to a **instruction register**.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_instruction_register.png)
+![](../imgs/n2t_instruction_register.png)
 
  - This is the usual way it's done. Now there is a shortcut.
  - Simple solution: Harvard Architecture
@@ -135,7 +135,7 @@
 
 ## 5.3 CPU 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_cpu_architecture.png)
+![](../imgs/n2t_cpu_architecture.png)
 
  - it is where all the calculations of the machine take place 
  - and it is also the seat on control.
@@ -154,7 +154,7 @@
 
 ### Hack CPU Interface 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_cpu_interface.png)
+![](../imgs/n2t_hack_cpu_interface.png)
 
  - Inputs
     - Data value , *inM* , from Data Memory
@@ -180,7 +180,7 @@
 
 ### Hack CPU Implementation 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_cpu_implementation.png)
+![](../imgs/n2t_hack_cpu_implementation.png)
 
  - the label *c* , represents the control bit.
 
@@ -218,14 +218,14 @@
     - but the fact that it knocks on these doors does not necessailly means that the doors are going to open. 
     - the programmer has to decide , which door has to be opened.
     - which register *acutally* received the incoming value is determined by the instruction's *destination bits* 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_dest_bits.png)
+    - ![](../imgs/n2t_dest_bits.png)
  - The ALU also output *zr*,*ng* bits.
 
 <h2 id="18af6f320c794ce703ecd7e4c44fbf96"></h2>
 
 ### PC logic
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_pc_logic.png)
+![](../imgs/n2t_pc_logic.png)
 
  - Emites the address of the next instruction:
     - To start / restart the program's execution: PC=0
@@ -271,7 +271,7 @@ The CPU executes the instruction according to the Hack Language specification
 
 ### Data Memory 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_data_memory.png)
+![](../imgs/n2t_hack_data_memory.png)
 
 <h2 id="f94f42245da94b6b457000847ee3b0f7"></h2>
 
@@ -300,13 +300,13 @@ The CPU executes the instruction according to the Hack Language specification
 
 ### Hack Computer implementatioin
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_compute_impl.png)
+![](../imgs/n2t_hack_compute_impl.png)
 
  - ROM - CPU
     - CPU PC 告诉 ROM 地址，ROM 输出 该地址的指令给CPU
 
  
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_compute_impl2.png)
+![](../imgs/n2t_hack_compute_impl2.png)
 
  - CPU - RAM 
     - CPU 高速 RAM 地址， RAM 输出该地址内容给 CPU
@@ -324,7 +324,7 @@ The CPU executes the instruction according to the Hack Language specification
 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hardware_project.png)
+![](../imgs/n2t_hardware_project.png)
 
 
 

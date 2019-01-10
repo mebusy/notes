@@ -21,7 +21,7 @@
 
  > 最小 Linux 系统的文件组织结构
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/linux_minimal_fs.png)
+![](../imgs/linux_minimal_fs.png)
 
 <h2 id="72bcb5b07fce5f144011534e8140baa7"></h2>
 

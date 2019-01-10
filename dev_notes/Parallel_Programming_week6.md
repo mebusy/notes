@@ -50,7 +50,7 @@
     - Transfers a number of bytes requested by OS
     - Uses system interconnect, typically PCIe in today’s systems
     - not only for GPUs , but also for other I/O devices such as network interface cards
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DMA.png)
+![](../imgs/DMA.png)
 
  - CPU sends commands to DMA and get it started. then the CPU can go to do other task
 
@@ -157,7 +157,7 @@ int main()
 
  - So far, the way we use cudaMemcpy serializes data transfer and GPU computation for VecAddKernel()
     - PCIe can actually do simulataneously transfer in both directions 
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cuda_serializedDataTransfer.png)
+ - ![](../imgs/cuda_serializedDataTransfer.png)
 
 <h2 id="676880c1ebb7d48597077ac5c7061bee"></h2>
 
@@ -208,7 +208,7 @@ for (int i = 0; i < dev_count; i++) {
     - Queues are read and processed asynchronously by the driver and device
         - device driver will be a taking operations out of the queue sequentially
     - Driver ensures that commands in a queue are processed in sequence. E.g., Memory copies end before kernel launch, etc.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CUDA_stream.png)
+    - ![](../imgs/CUDA_stream.png)
 
 <h2 id="fe152dac9b832d65ef6285dc9b5cc473"></h2>
 
@@ -216,7 +216,7 @@ for (int i = 0; i < dev_count; i++) {
 
  - To allow concurrent copying and kernel execution, use multiple queues, called “streams”
     - CUDA “events” allow the host thread to query and synchronize with individual queues (i.e. streams).
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CUDA_streams.png)
+    - ![](../imgs/CUDA_streams.png)
 
 
 <h2 id="f8fab47eba7e8b1fb86bb2c911d1b6ef"></h2>
@@ -258,7 +258,7 @@ for (int i=0; i<n; i+=SegSize*2) {
 }
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CUDA_steam_reality.png)
+![](../imgs/CUDA_steam_reality.png)
 
  - the arcs show the dependency
  - bad case because of the implementation choice
@@ -269,7 +269,7 @@ for (int i=0; i<n; i+=SegSize*2) {
 
  - C.0 blocks A.1 and B.1 in the copy engine queue
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CUDA_streaming_block.png)
+![](../imgs/CUDA_streaming_block.png)
 
 <h2 id="f4f91f8843bf7bbd46f7b3ae80dca782"></h2>
 
@@ -297,7 +297,7 @@ for (int i=0; i<n; i+=SegSize*2) {
 }
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CUDA_streaming_noblock.png)
+![](../imgs/CUDA_streaming_noblock.png)
 
 <h2 id="a598adc12ac665ba62757284e143180e"></h2>
 
@@ -306,7 +306,7 @@ for (int i=0; i<n; i+=SegSize*2) {
  - C.1 blocks next iteration A.0 and B.0 in the copy engine queue
  - 一般情况下， kernel占用的时间比例相对 data transfer是很小的，因此即便不是最优的，这种算法也会有较大的性能提升
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CUDA_streaming_noblock2.png)
+![](../imgs/CUDA_streaming_noblock2.png)
 
 <h2 id="7100c1190c2250c484c7021b91c993bb"></h2>
 
@@ -345,5 +345,5 @@ cudaDeviceSynchronize();
 
 ---
 
-[1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/CUDADeviceOverlap.png
+[1]: ../imgs/CUDADeviceOverlap.png
 

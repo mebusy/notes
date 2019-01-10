@@ -212,7 +212,7 @@
 ## Public Key Encryption Details
 
  - Idea: K<sub>public</sub> can be made public, keep k<sub>private</sub> private
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/OS_security_public_key_encryption_details.png)
+    - ![](../imgs/OS_security_public_key_encryption_details.png)
  - Gives message privacy (restricted receiver):
     - Public keys (secure destination points) can be acquired by anyone/used by anyone
     - Only person with private key can decrypt message

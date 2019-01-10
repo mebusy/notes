@@ -75,7 +75,7 @@ After lexical analysis as the sequence of tokens
 <id, 1> <=> <id, 2> <+> <id, 3> <*> <60>
 ```
 
-![][1] ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_symbol_table.png)
+![][1] ![](../imgs/Compiler_symbol_table.png)
 
 
 
@@ -261,15 +261,15 @@ The most suc­cessful tools are those that hide the details of the generation al
 
 --- 
 
-  [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/compile_translation.png
+  [1]: ../imgs/compile_translation.png
   
-  [1.5]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/compile_translation1.5.png
+  [1.5]: ../imgs/compile_translation1.5.png
     
-  [2]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/compile_translation2.png
+  [2]: ../imgs/compile_translation2.png
     
-  [2.5]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/compile_translation2.5.png
+  [2.5]: ../imgs/compile_translation2.5.png
 
-  [3]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/compile_translation3.png
+  [3]: ../imgs/compile_translation3.png
 
 
-  [3.5]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/compile_translation3.5.png
+  [3.5]: ../imgs/compile_translation3.5.png

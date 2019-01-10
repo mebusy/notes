@@ -93,7 +93,7 @@
 
 ## HTTP API Space of Kubernetes
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s-api-server-space.jpg)
+![](../imgs/k8s-api-server-space.jpg)
 
 HTTP API space of Kubernetes can be divided into three independent groups:
 
@@ -327,7 +327,7 @@ spec:
     - Share the same network namespace
     - Mount the same external storage (volumes).
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s_pod.png)
+![](../imgs/k8s_pod.png)
 
  - Pods do not have the capability to self-heal by themselves. 
     - That is why we use them with controllers, which can handle a Pod's replication, fault tolerance, self-heal, etc. 
@@ -343,7 +343,7 @@ spec:
  - Labels are used to organize and select a subset of objects, based on the requirements in place.
  - Many objects can have the same Label(s). Labels do not provide uniqueness to objects.  
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s_label.png)
+![](../imgs/k8s_label.png)
 
  - In the image above, we have used two Labels: app and env.
     - Based on our requirements, we have given different values to our four Pods.
@@ -380,7 +380,7 @@ spec:
  - ReplicaSets support both equality- and set-based selectors, whereas ReplicationControllers only support equality-based Selectors.
     - Currently, this is the only difference.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s_rs.png)
+![](../imgs/k8s_rs.png)
 
  - ReplicaSets can be used independently, but they are mostly used by Deployments to orchestrate the Pod creation, deletion, and updates. 
  - A Deployment automatically creates the ReplicaSets, and we do not have to worry about managing them. 
@@ -440,7 +440,7 @@ kube-system   Active   22h
     - Admission Control
         - Software modules that can modify or reject the requests based on some additional checks, like **Quota**.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s_access_the_API.png)
+![](../imgs/k8s_access_the_API.png)
 
 
 <h2 id="c75f7811d70d17dbcd88e9d03752cbed"></h2>
@@ -633,7 +633,7 @@ spec:
  - For each new Service, on each node, kube-proxy configures the iptables rules to capture the traffic for its ClusterIP and forwards it to one of the endpoints.
  - When the service is removed, kube-proxy removes the iptables rules on all nodes as well.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s-kube-proxy-svc-endpoint.png)
+![](../imgs/k8s-kube-proxy-svc-endpoint.png)
 
 
 <h2 id="24bbdaf375ddacbe3973587b50d98790"></h2>
@@ -687,7 +687,7 @@ Kubernetes supports two methods of discovering a Service:
  - With the NodePort ServiceType, in addition to creating a ClusterIP, a port from the range 30000-32767 is mapped to the respective Service, from all the worker nodes.
     - For example, if the mapped NodePort is `32233` for the service frontend-svc, then, if we connect to any worker node on port 32233, the node would redirect all the traffic to the assigned ClusterIP - 172.17.0.4.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s-NodePort.png)
+![](../imgs/k8s-NodePort.png)
 
  - The NodePort ServiceType is useful when we want to make our Services accessible from the external world.
  - The end-user connects to the worker nodes on the specified port, which forwards the traffic to the applications running inside the cluster.
@@ -704,7 +704,7 @@ Kubernetes supports two methods of discovering a Service:
     - The Service is exposed externally using the underlying cloud provider's load balancer feature.
  - The LoadBalancer ServiceType will only work if the underlying infrastructure supports the automatic creation of Load Balancers and have the respective support in Kubernetes, as is the case with the Google Cloud Platform and AWS. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s-svc-lb.png)
+![](../imgs/k8s-svc-lb.png)
 
 
 <h2 id="e7fc0ac576a6a88284d3525beadf5825"></h2>
@@ -1050,7 +1050,7 @@ readinessProbe:
  - After a successful bound, the PersistentVolumeClaim resource can be used in a Pod.
  - Once a user finishes its work, the attached PersistentVolumes can be released. The underlying PersistentVolumes can then be reclaimed and recycled for future usage. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s-pvc.png)
+![](../imgs/k8s-pvc.png)
 
 
 
@@ -1263,7 +1263,7 @@ spec:
     - Name-based virtual hosting 
     - Path-based routing
     - Custom rules.
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s-ingress.png)
+ - ![](../imgs/k8s-ingress.png)
 
 <h2 id="dd374142ee0d3696af5151d9e9ded05f"></h2>
 
@@ -1297,7 +1297,7 @@ spec:
  - Here, we have seen an example of a Name-Based Virtual Hosting Ingress rule. 
  - We can also have Fan Out Ingress rules, in which we send requests like example.com/blue and example.com/green, which would be forwarded to webserver-blue-svc and webserver-green-svc, respectively.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/k8s-ingress-url-map.png)
+![](../imgs/k8s-ingress-url-map.png)
 
 
  - The Ingress resource does not do any request forwarding by itself. 

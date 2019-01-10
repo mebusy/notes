@@ -99,7 +99,7 @@ CPS
 
 ## CSP Example: Map Coloring
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CS188_map_coloring.png)
+![](../imgs/CS188_map_coloring.png)
 
  - Variables: WA, NT, Q, NSW, V, SA, T
  - Domains: D = {red, green, blue}
@@ -113,7 +113,7 @@ CPS
 
 ## Exampe: N-Queens
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_N_queens.png)
+![](../imgs/cs188_N_queens.png)
 
 Formulation 1:
 
@@ -157,7 +157,7 @@ Formulation 2:
 
 ### Example : Cryptarithmetic
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Cryptarithmetic.png)
+![](../imgs/cs188_Cryptarithmetic.png)
 
  - Variables:
      - F T U W R O X₁ X₂ X₃
@@ -168,7 +168,7 @@ Formulation 2:
      - O + O = R + 10·X₁   进位
      - ...
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Cryptarithmetic_graph.png)
+![](../imgs/cs188_Cryptarithmetic_graph.png)
 
 there are boxes which are constraints and the boxes are connected to all of the variables that participate in that constraints. 
 
@@ -176,7 +176,7 @@ there are boxes which are constraints and the boxes are connected to all of the 
 
 ### Example: Sudoku
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_example_sudoku.png)
+![](../imgs/cs188_example_sudoku.png)
 
  - Variablels:
      - Each (open) square
@@ -193,7 +193,7 @@ there are boxes which are constraints and the boxes are connected to all of the 
 
 ### Example: The Waltz Algorithm
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_Waltz_algorithm.png)
+![](../imgs/cs188_Waltz_algorithm.png)
 
  - The Waltz algorithm is for interpreting line drawings of solid polyhedra as 3D objects
  - An early example of an AI computation posed as a CSP 
@@ -282,7 +282,7 @@ We’ll start with the straightforward, naïve approach, then improve it
 
  - Can solve n-queens for n <= 25
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_backtrack_search_example.png)
+![](../imgs/cs188_backtrack_search_example.png)
 
 ```
 function BACKTRACKING-SEARCH( csp ) return solution/failure
@@ -323,7 +323,7 @@ function RECURSIVE-BACKTRACKING( assignment, csp ) return soln/failure
      - Can we exploit the problem structure?
      - Do things like notice tasmanis separate and solve it separately
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_CSP_order_filter.png)
+![](../imgs/cs188_CSP_order_filter.png)
 
 <h2 id="9a588db8471730dbfebac65cd5467ad8"></h2>
 
@@ -347,7 +347,7 @@ in forward checking every time I assign a variable which collapses its domain to
 
 example 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_forward_checking_example.png)
+![](../imgs/cs188_forward_checking_example.png)
 
 If we assigned red to WA , we should remove red choice from NT , SA.
 
@@ -362,7 +362,7 @@ forward checking doesn't check interactions between unassigned variables just ch
 
 Forward checking propagates information from assigned to unassigned variables, but doesn't provide early detection for all failures:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_constraints_propagation.png)
+![](../imgs/cs188_constraints_propagation.png)
 
 NT and SA cannot both be blue! Why didn’t we detect this yet?
 
@@ -380,7 +380,7 @@ what does it mean to check an arc ?  Formally we check whether or not is consist
 
 An arc X → Y is consistent if for every x in the tail ( not arrow ) there is some y in the head which could be assigned without violating a constraint
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_consistency_of_Arc.png)
+![](../imgs/cs188_consistency_of_Arc.png)
 
 无论 X 选什么值，Y 都有相应的选择满足约束。 这样无论以后Y 怎么赋值，都不会破坏 X → Y 约束关系。
 
@@ -392,7 +392,7 @@ Forward checking: Enforcing consistency of arcs pointing to each new assignment
 
 A simple form of propagation makes sure all arcs are consistent:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_arc_consistenct_of_an_entire_CSP.png)
+![](../imgs/cs188_arc_consistenct_of_an_entire_CSP.png)
 
 ***Remember: Delete from  the tail!***
 
@@ -443,7 +443,7 @@ If arc consistency had resulted in all domains having a single value left, we wo
 
 #### Limitations of Arc Consistency
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_arc_consistency_wrong.png)
+![](../imgs/cs188_arc_consistency_wrong.png)
 
  - After enforcing arc consistency:
      - Can have one solution left
@@ -457,7 +457,7 @@ If arc consistency had resulted in all domains having a single value left, we wo
 
 ### Ordering
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_backtracking_ording.png)
+![](../imgs/cs188_backtracking_ording.png)
 
 <h2 id="04b8f33966ef671d2d1c0293a74a75d4"></h2>
 
@@ -469,7 +469,7 @@ If arc consistency had resulted in all domains having a single value left, we wo
      - Also called “most constrained variable”
     - “Fail-fast” ordering
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ordering_MRV.png)
+![](../imgs/cs188_ordering_MRV.png)
 
 --- 
 
@@ -487,9 +487,9 @@ If arc consistency had resulted in all domains having a single value left, we wo
  - Why least rather than most?
     - Combining these ordering ideas makes 1000 queens feasible
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ordering_LCV1.png)
+![](../imgs/cs188_ordering_LCV1.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ordering_LCV2.png)
+![](../imgs/cs188_ordering_LCV2.png)
 
 
 ---
@@ -537,7 +537,7 @@ So here are steps for solving CPS with enforcing arc consistency:
 
  - A simple form of propagation makes sure ***all*** arcs are simultaneously consistent:
  - Limitations of Arc Consistency:
-     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_arc_consistency_wrong.png)
+     - ![](../imgs/cs188_arc_consistency_wrong.png)
      - The reason why our consistency in this bottom case  wasn't sufficient to discorve the inevitable failures because it only looks at parents. So you might think maybe we need a stronger notion in our consistency , maybe we need to look beyond Paris 
 
 
@@ -552,7 +552,7 @@ So here are steps for solving CPS with enforcing arc consistency:
  - Higher k more expensive to compute
  - (You need to know the k=2 case: arc consistency)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_k-consitency.png)
+![](../imgs/cs188_k-consitency.png)
 
 <h2 id="b2f18a946e39a98cdff46b0f465f22db"></h2>
 
@@ -580,7 +580,7 @@ Sometimes you look at a CSP that you're trying to solve and you see it has some 
 
 So for example if your CSP involved this giant criminal robot network you might think you should go after that guy in the center. That would be an example of exploiting structure.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_structure.png)
+![](../imgs/cs188_structure.png)
 
 ---
 
@@ -614,7 +614,7 @@ Here is a case where your graph doesn't have to be broken into pieces but it's s
 
 Here is a case of a constraint graph has tree structure which means no loops, no cycles in the constraint graph . 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_tree_structure_of_CSPs.png)
+![](../imgs/cs188_tree_structure_of_CSPs.png)
 
 It is a theorem that if the constraint graph has no loops then the CSP can be solved in time that is linear in the size of graph and quadratic in the size of domains.  That's so much better thatn general CSPs worst exponential.
 
@@ -629,7 +629,7 @@ It is a theorem that if the constraint graph has no loops then the CSP can be so
      - 1. Order: Choose a root variable, order variables so that parents precede children
          - the first step is to take this tree structure and order it.
          - It means you pick a root variable , any variable works , so you grab the CSP by some root variable you gotta pick up by its anchor and that everything else hanging down. (拎住A 提起来)
-         - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_tree_structure_order.png)
+         - ![](../imgs/cs188_tree_structure_order.png)
      - 2. Remove backward: For i = n : 2, apply RemoveInconsistent(Parent(Xᵢ),Xᵢ)
      - 3. Assign forward: For i = 1 : n, assign Xᵢ consistently with Parent(Xᵢ)
  - Runtime: O(n·d²) 
@@ -658,7 +658,7 @@ Am I sure it is enough just kind of enforce consistency of the arcs once ?
 
  - Claim 1: After backward pass, all root-to-leaf arcs are consistent
  - Proof: Each X→Y was made consistent at one point and Y’s domain could not have been reduced thereafter (because Y’s children were processed before Y)
-     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_tree_structured_cps_consistency_proof.png)
+     - ![](../imgs/cs188_tree_structured_cps_consistency_proof.png)
  - Claim 2: If root-to-leaf arcs are consistent, forward assignment will not backtrack
  - Proof: Induction on position
  - This algorithm will not work with cycles in the constraint graph
@@ -675,7 +675,7 @@ So we can use this great algorithm on tree-structured CSP.  But CSP is probably 
 
 ### Nearly Tree-Structured CSPs
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_nearly_tree_structure_csp.png)
+![](../imgs/cs188_nearly_tree_structure_csp.png)
 
 What are we gonna do about SA to get rid of it. This technique called conditioning. 
 
@@ -699,7 +699,7 @@ So the algorithm we have for making something that is nearly tree-structured int
 
 ### Cutset Conditioning 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_cutset_conditioning.png)
+![](../imgs/cs188_cutset_conditioning.png)
 
 
 Finding smallest cut-set is np-hard !
@@ -714,7 +714,7 @@ Tree Decomposition is another approach :
  - Each mega-variable encodes part of the original CSP
  - Subproblems overlap to ensure consistent solutions
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_tree_decomposition.png)
+![](../imgs/cs188_tree_decomposition.png)
 
 ---
 
@@ -731,7 +731,7 @@ Tree Decomposition is another approach :
      - Algorithm starts by assigning some value to each of the variables
         - ignoring the constraints when doing so
      - No fringe!  Live on the edge.
-     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_algorithm.png)
+     - ![](../imgs/cs188_iterative_algorithm.png)
  - while at least one constraint is violated,  repeat: 
     - Variable selection: 
         - randomly select any conflicted variable
@@ -743,7 +743,7 @@ Tree Decomposition is another approach :
 
 ### Example: 4-Queens
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_algorithm_4-queens.png)
+![](../imgs/cs188_iterative_algorithm_4-queens.png)
 
  - States: 
      - 4 queens in 4 columns (4⁴ = 256 states)
@@ -753,11 +753,11 @@ Tree Decomposition is another approach :
 
 ---
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_algorithm_iterative_improvement.png)
+![](../imgs/cs188_algorithm_iterative_improvement.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_improvement_nqueens1.png)
+![](../imgs/cs188_iterative_improvement_nqueens1.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_iterative_improvement_nqueens2.png)
+![](../imgs/cs188_iterative_improvement_nqueens2.png)
 
 ---
 
@@ -767,13 +767,13 @@ Tree Decomposition is another approach :
 
  - Given random initial state, can solve n-queens in almost constant time for arbitrary n with high probability (e.g., n = 10,000,000)!
  - The same appears to be true for any randomly-generated CSP except in a narrow range of the ratio
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_performance_of_min_conflicts.png)
+ - ![](../imgs/cs188_performance_of_min_conflicts.png)
 
 Very few constraints  and ver many  constraints are both great.  There's a magical critical ratio where things suddenly get really really hard because it's kind of just constrained and often just really tough. 
 
 But you got your problem ,your prolbem probably not randomly generated : you were there (critical ratio) too.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_performance_of_min_conflicts_hard.png)
+![](../imgs/cs188_performance_of_min_conflicts_hard.png)
 
 ---
 
@@ -796,7 +796,7 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
 
 ## Local Search
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_local_search.png)
+![](../imgs/cs188_local_search.png)
 
  - Tree search keeps unexplored alternatives on the fringe (ensures completeness)
      - So far the search algorithms we've talked about is not local. They have a fringe where you trying some particular branch of the tree and effective workout you went back to the fringe and you tried your other backup strategies.  The fringe is a safety net.
@@ -804,7 +804,7 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
      - In local search you don't have the safety net.  You got one position that you are currently at and you're trying to hill climb in some way. 
  - New successor function: local changes
      - You have a new idea of a successor function. The successor function now does not take a plan and extend the plan , instead it takes a complete assignment of some kind and modifies it.  Your successor function is more about modification than about extension.
-     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_local_search_local_change.png)
+     - ![](../imgs/cs188_local_search_local_change.png)
  - Generally much faster and more memory efficient (but incomplete and suboptimal)
 
 <h2 id="3b09835fc58a6f4c68cdf9d702bb59c6"></h2>
@@ -826,7 +826,7 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
 
 ### Hill Climbing Diagram
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hill_climbing_diagram.png)
+![](../imgs/cs188_hill_climbing_diagram.png)
 
 <h2 id="d675d0b56bdafe850c953b589d02838d"></h2>
 
@@ -843,10 +843,10 @@ You will spend more times at higher places on the mountain. So essentially *e* h
  - Idea:  Escape local maxima by allowing downhill moves
     - But make them rarer as time goes on
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_simulated_annealing_function.png)
+![](../imgs/cs188_simulated_annealing_function.png)
 
  - Theoretical guarantee:
-     - Stationary distribution:  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_simulated_annealing_stationary_distribution.png)
+     - Stationary distribution:  ![](../imgs/cs188_simulated_annealing_stationary_distribution.png)
      - If T decreased slowly enough, will converge to optimal state!
  - Sounds like magic, but reality is reality:
     - The more downhill steps you need to escape a local optimum, the less likely you are to ever make them all in a row
@@ -862,7 +862,7 @@ Genetic algorithms are kind of local search in this case not one hypothesis but 
 
 You keep the best hypotheses at each step . In adition to just keeping the best one, you find pairs and you do cross-over , you made them (2 robots -> big robot ).
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_genetic_algorithm.png)
+![](../imgs/cs188_genetic_algorithm.png)
 
  - Genetic algorithms use a natural selection metaphor
     - Keep best N hypotheses at each step (selection) based on a fitness function
@@ -874,7 +874,7 @@ You keep the best hypotheses at each step . In adition to just keeping the best 
 
 #### Example: N-Queens
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_genetic_algorithm_N-queens.png)
+![](../imgs/cs188_genetic_algorithm_N-queens.png)
 
 
 
@@ -882,4 +882,4 @@ You keep the best hypotheses at each step . In adition to just keeping the best 
 ---
 
 
-  [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_constraints_graph.png
+  [1]: ../imgs/cs188_constraints_graph.png

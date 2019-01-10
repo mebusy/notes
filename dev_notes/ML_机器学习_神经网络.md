@@ -28,7 +28,7 @@
 
 ## 模型表示
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural1.png)
+![](../imgs/Neural1.png)
 
  - 左边的x , 是 input layer
  - 最右边的 单个圈， 是 output layer
@@ -37,7 +37,7 @@
  - Θ`⁽ʲ⁾` 第j层 映射到下一层的函数的参数`矩阵`
  - `x₀` 可以不用明写出来
  
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural2.png)
+![](../imgs/Neural2.png)
 
  - 如图,Θ`⁽¹⁾` 是个 3x4 矩阵: `S₍ⱼ₊₁₎ x （Sⱼ+1）=3x4`  ; `Sⱼ= j`层的单元数,不包括0单元  
 
@@ -60,7 +60,7 @@
 
 我可以看到，某一层单元的 z ，可以向量化表示
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural_vec.png)
+![](../imgs/Neural_vec.png)
 
 为了纪录方便，我们使用 `a⁽¹⁾` 来表示第一层的 x , 
 
@@ -75,11 +75,11 @@
 ---
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ForwardPropagation.png)
+![](../imgs/ForwardPropagation.png)
 
 `Neural Network Model:`
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural_network_model.png)
+![](../imgs/Neural_network_model.png)
 
 
 <h2 id="5b0520a9bf5e8d87c0b8c6e58766e184"></h2>
@@ -90,7 +90,7 @@
 
 ##### 简单的例子: 逻辑与 AND
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural_AND.png)
+![](../imgs/Neural_AND.png)
 
 如果把权重(Θ参数) 改为 [-10,20,20] , 就能模拟 逻辑或 OR 运算。
 
@@ -104,7 +104,7 @@
 
 我们可以使用上面的三个神经单元，来实现我们的 XNOR 单元。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural_XNOR.png)
+![](../imgs/Neural_XNOR.png)
 
 `更一般的理解是，在输入层中，我们只有原始的输入值, 然后我们建立一个隐藏层，用来计算一些稍微复杂的输入量的函数，
 然后通过添加另一个层，我们了一个更加复杂一点的函数，这就是神经网络可以计算较复杂函数的直观解释。
@@ -116,7 +116,7 @@
 
 多个输出单元 : One-vs-all
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Neural_OneVsAll.png)
+![](../imgs/Neural_OneVsAll.png)
 
 <h2 id="d03641410b89f4c3f6575b23aacf837f"></h2>
 

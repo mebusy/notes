@@ -26,7 +26,7 @@ nt FastDistance2D(int x, int y)
     - let a = Max(x,y) ,  x = Min(x,y)
     - sqrt(a²+x²) 以线性函数 a+bx 来拟合，系数 b 即为待确定值 
     - a=5 时的函数图像 :
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_fastdistance2d_func_a5x.png)
+        - ![](../imgs/algorithm_fastdistance2d_func_a5x.png)
     - b 的选取应使函数在 x 的取值区间 [0,a] 内误差最小
         - 1.两函数在区间 [0,a] 的绝对差值积分最小；
         - 2.两函数在区间 [0,a] 的最大差值最小。

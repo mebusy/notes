@@ -52,7 +52,7 @@ local function RandomFillMap()
 end
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Random_Cave_1.png)
+![](../imgs/Random_Cave_1.png)
 
 It looks like a black image with many many white noise on it.  
 
@@ -106,7 +106,7 @@ function OnDrawGizmos()
 end
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Random_Cave_2.png)
+![](../imgs/Random_Cave_2.png)
 
 Now, it looks much better. 
 
@@ -118,7 +118,7 @@ So far , every block has only 2 status: full black or full white.
 
 Let's image that we shrink those blocks towards there in the center.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/marching_square.png)
+![](../imgs/marching_square.png)
 
 
 Now the blocks  was shrinked into those bigger white/black block ,  such that each block actually represents the corner of a square , we call those "Control Node". 
@@ -130,7 +130,7 @@ Each of these switches is representing one digit in a 4bit binary number bXXXX .
 
 we also add some  extra  nodes at middle of edge  ( smaller grey one ), called them  "Common Node".
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Random_Cave_2.1.png)
+![](../imgs/Random_Cave_2.1.png)
 
 each square actually repersents  the center quarter parts of adjacent 4 map blocks.
 
@@ -268,7 +268,7 @@ create a MeshFilter and MeshRenderer to display the mesh
     --]]
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Random_Cave_3.png)
+![](../imgs/Random_Cave_3.png)
 
 Yeah, pretty cool.
 

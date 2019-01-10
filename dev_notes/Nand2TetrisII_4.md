@@ -36,7 +36,7 @@
 # Week4  Compiler I : Syntax Analysis
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_compiler_roadmap.png)
+![](../imgs/n2t_compiler_roadmap.png)
 
 <h2 id="a6e48139193e1fc0ff363058aa4ce501"></h2>
 
@@ -92,7 +92,7 @@
     - Terminal rule: right-hand side includes constants only
     - Non-terminal rule: all other rules 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_grammar_subset.png)
+![](../imgs/n2t_jack_grammar_subset.png)
 
 
  - Parsing:
@@ -103,14 +103,14 @@
 
 ## Unit 4.4: Parse Trees
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_parse_tree.png)
+![](../imgs/n2t_jack_parse_tree.png)
 
 <h2 id="aa2314b6b2014b9f4b3a24f0ddfeb4b9"></h2>
 
 ## Unit 4.5: Parser Logic
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_grammar_subset.png)
+![](../imgs/n2t_jack_grammar_subset.png)
 
 ```
 class CompilationEngine {
@@ -146,7 +146,7 @@ Guild lines for compilcation engine :
 
 ### Parser design 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_parser_design.png)
+![](../imgs/n2t_parser_design.png)
 
 <h2 id="d0310f6535296147836c000e8cc3c48a"></h2>
 
@@ -170,7 +170,7 @@ Guild lines for compilcation engine :
 
  - 5 categories of terminla elements (tokens)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_grammar_lexical_elements.png)
+![](../imgs/n2t_jack_grammar_lexical_elements.png)
 
 <h2 id="a9f46a37894f23e7e493089738ddc394"></h2>
 
@@ -179,19 +179,19 @@ Guild lines for compilcation engine :
  - A Jack program is a collection of *classes*, each appearing in a separate file , and each compiled separately.  
  - Each class is structured as follows:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_grammar_program_structure.png)
+![](../imgs/n2t_jack_grammar_program_structure.png)
 
 <h2 id="5187c223ff0fffa9405f54d092d553ab"></h2>
 
 ### Statements 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_grammar_statement.png)
+![](../imgs/n2t_jack_grammar_statement.png)
 
 <h2 id="d3c7279c25a23f98e777a7bebe35d002"></h2>
 
 ### Expressions
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jack_grammar_expression.png)
+![](../imgs/n2t_jack_grammar_expression.png)
 
 - here , varName is the only case the language is  LL(2)
 
@@ -294,7 +294,7 @@ tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
 
 - and 5 more detailed methods that return the actual value of this token.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_jackAnalyzer_5_methods.png)
+![](../imgs/n2t_jackAnalyzer_5_methods.png)
 
 <h2 id="26bf0761f0300eac7c1fca4c899f8f7d"></h2>
 

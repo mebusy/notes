@@ -97,7 +97,7 @@ struct sdshdr {
 }
 ``` 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/sds_example.png)
+![](../imgs/sds_example.png)
 
  - 上图， free 为0， 表示这个SDS没有分配任何未使用空间
     - len 为5，表示这个SDS保存了一个5字节长的字符串
@@ -108,7 +108,7 @@ struct sdshdr {
     - 遵循 `\0` 结尾这一惯例的好处是，SDS可以直接重用一部分C字符串函数库里面的函数。
         - `printf( "%s" , s->buf );`
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/sds_example2.png)
+![](../imgs/sds_example2.png)
 
 
 <h2 id="b9a03087283735023631acf642a4b59f"></h2>
@@ -143,9 +143,9 @@ struct sdshdr {
     - 通过 未使用空间， SDS实现了空间预分配和惰性空间释放两种优化策略。
         - 1. 空间预分配 
             - 对SDS进行空间扩展时，不仅会为SDS分配修改所必须的空间，还会分配和修改后长度相同的未使用空间，但是最大不会超过1MB.
-            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ads_append.png)
+            - ![](../imgs/ads_append.png)
             - 如果这时，我们执行 `sdscat( s " Tutorial" )` , 那么这次sdscat 将不需要执行内存重分配，因为未使用空间的13字节足以保存 9字节的" Tutorial"
-            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ads_append2.png)
+            - ![](../imgs/ads_append2.png)
             - 注: 's' 后的省略号表示若干字符省略
         - 2. 惰性空间释放
             - 缩短SDS保存的字符串时， 程序并不立即使用内存重分配来回收缩短后 多出来的字节，而是使用 free属性将这些字节的数量纪录起来，并等待将来使用。 
@@ -200,7 +200,7 @@ typedef struct list {
 } list ;
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/redis_list.png)
+![](../imgs/redis_list.png)
 
  - Redis 链表实现的特点：
     - 双端， 获取某个节点的 prev / next  的复杂度都是 O(1)
@@ -265,7 +265,7 @@ typedef struct dictEntry {
 
  - next 用于解决 键冲突的问题
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/redict_dict.png)
+![](../imgs/redict_dict.png)
 
 
 <h2 id="841ac5fd6bd63c08630b8cc0a75dcbbe"></h2>

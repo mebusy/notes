@@ -58,7 +58,7 @@
  - An OpenCL “program” is a C program that contains one or more “kernels” and any supporting routines that run on a target device
  - An OpenCL kernel is the basic unit of parallel code that can be executed on a target device
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/openCL_program.png)
+![](../imgs/openCL_program.png)
 
 <h2 id="9c2fa1176ab9635cb70ebdce90fd024d"></h2>
 
@@ -109,7 +109,7 @@ __kernel void vadd(__global const float *a, __global const float *b,
 
 #### Array of Work Items
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/openCL_workItems.png)
+![](../imgs/openCL_workItems.png)
 
  - An OpenCL kernel is executed by an array of work items
     - All work items run the same code (SPMD)
@@ -139,7 +139,7 @@ get_local_size(0); | Size of each work group in the x dimension | blockDim.x
 
 #### Multidimensional Work Indexing
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/openCL_Multidimensional.png)
+![](../imgs/openCL_Multidimensional.png)
 
 <h2 id="456b94dd241c5e2db2f7d1b37353034f"></h2>
 
@@ -170,9 +170,9 @@ get_local_size(0); | Size of each work group in the x dimension | blockDim.x
  - Each compute unit contains one or more SIMD “processing elements”,      - i.e. SP in CUDA
     - PE in pic, is equivalent to Streaming processors(SP) 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/openCLDevice.png)
+![](../imgs/openCLDevice.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/OpenCLDeviceArchitecture.png)
+![](../imgs/OpenCLDeviceArchitecture.png)
 
 <h2 id="217d5909b588812167add57a0b209c8e"></h2>
 
@@ -192,7 +192,7 @@ global memory | Dynamic allocation; Read/write access | No allocation; Read/writ
  - Contains one or more devices
  - OpenCL device memory objects are associated with a context, not a specific device
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/openCLContext.png)
+![](../imgs/openCLContext.png)
 
 
 <h2 id="9fb6db7a7cf024295eced05c3c28caf9"></h2>
@@ -309,7 +309,7 @@ clReleaseMemObject(d_a);
     - command queue is associated with individual OpenCL devices
 
     
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/openCLDeviceCommandExecution.png)
+![](../imgs/openCLDeviceCommandExecution.png)
 
 
 <h2 id="b5042a717cbffdf9640808b5b8c2ddd9"></h2>

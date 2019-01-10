@@ -76,7 +76,7 @@ repeat {
 
 根据身高体重，把 Tshirt 分成 S，M，L 三类：
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/K-means-Tshirt.png)  
+![](../imgs/K-means-Tshirt.png)  
 
 ---
 
@@ -84,7 +84,7 @@ repeat {
 
 #### Optimization Objective 优化目标
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/K-means-J.png)
+![](../imgs/K-means-J.png)
 
 上面提到的 k-mean 迭代中的 簇分配 和 移动聚类中心，其作用其实就是为了最小化 J.
 
@@ -101,7 +101,7 @@ K-means 代价函数也称为 distortion function (失真函数)。
 
 但是如果随机初始化运气不好，K-means 会卡在局部最优上面：
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/K-means-local-optimization.png)
+![](../imgs/K-means-local-optimization.png)
 
 避免局部最优的一个做法，就是 尝试多次 随机初始化, eg:
 
@@ -137,11 +137,11 @@ Elbow Method (肘部法则):
 
 尝试不同的K值，画出 J-K图像，如果图像出现 肘点，肘点值就是一个很好的K
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Elbow-method-good.png)
+![](../imgs/Elbow-method-good.png)
 
 然而大多数情况下， J-K图像并没有很明显的肘点：
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Elbow-method-bad.png)
+![](../imgs/Elbow-method-bad.png)
 
 `结论: Elbow Method 值得一试，但不要抱太大期望。`
 
@@ -160,7 +160,7 @@ Elbow Method (肘部法则):
 
 如图 2D->1D，通过把 (x₁,x₂) 投影到 绿色直线上，使用 在绿色直线上的度量 z 来替代(x₁,x₂) ，达到降维。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DimensionReduction_DataCompress.png)
+![](../imgs/DimensionReduction_DataCompress.png)
 
 <h2 id="b0328908b1f504ef7d3b11309be3b8ed"></h2>
 
@@ -219,7 +219,7 @@ PCA 之前，一般要先进行 均值归一化 。
 
  - 计算 covariance matrix 协方差矩阵 ：
  
-  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/covariance-matrix.png)
+  ![](../imgs/covariance-matrix.png)
 
  - 计算 协方差矩阵 sigma的 特征向量 eigen vectors
  
@@ -355,6 +355,6 @@ S 是nxn的 奇异值对角矩阵， 上面 平均平方投影误差／数据总
 
 
 
-  [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/PCA_k_choose.png
+  [1]: ../imgs/PCA_k_choose.png
   
-  [2]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/PCA_k_choose2.png
+  [2]: ../imgs/PCA_k_choose2.png

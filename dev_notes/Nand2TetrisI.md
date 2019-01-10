@@ -56,7 +56,7 @@
 
 ### 0.0 Introduction
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_layers.png)
+![](../imgs/n2t_layers.png)
 
  - book: `<<The Elements of Computing System>>`
 
@@ -72,7 +72,7 @@
 
 ### 1.2 Boolean Function Synthesis
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_truth_tab_2_bool_expr.png)
+![](../imgs/n2t_truth_tab_2_bool_expr.png)
 
  - Truth Table to Boolean Expression ?
     - constructing a disjuctive normal form formula  构建一个分离的范式公式 
@@ -118,20 +118,20 @@ x | y | NAND
 
 ### 1.3 Logic Gates
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_gate_interface.png)
+![](../imgs/n2t_gate_interface.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_gate_implementation.png)
+![](../imgs/n2t_gate_implementation.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_circuit_impl.png)
+![](../imgs/n2t_circuit_impl.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_circuit_impl2.png)
+![](../imgs/n2t_circuit_impl2.png)
 
 
 <h2 id="9ce58a559622579ca35bb01b7859eac4"></h2>
 
 ### 1.4 Hardware Description Language
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_xor.png)
+![](../imgs/n2t_xor.png)
 
 - General idea:
     - out =1 , when :
@@ -141,7 +141,7 @@ x | y | NAND
 
  - From gate diagram to HDL
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_gate_diag_2_hdl.png)
+![](../imgs/n2t_gate_diag_2_hdl.png)
 
  1. HDL is a functional / declarative language
  2. THe order of HDL statements is insignificant
@@ -172,7 +172,7 @@ x | y | NAND
     - sometime termed "bus"
  - HDLs will usually provide some convenient notation for handling these buses
  - Example: Addition of two 16-bit integers
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_16bit_adder.png)
+    - ![](../imgs/n2t_16bit_adder.png)
 
 ```hdl
 /*
@@ -279,7 +279,7 @@ Add16( ... , out[0..3]=t1, out[4..15]=t2 ) ;
     - The are commonly used gates
     - They comprise all the elememtary logic gates needed to build our computer
  - Multiplexor (Mux)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_multiplexor.png)
+    - ![](../imgs/n2t_multiplexor.png)
     - 3 input, 1 output
     - kind of `if` condition expression
 
@@ -295,19 +295,19 @@ else
     - Digital design
     - Communications networks
  - Example: using mux logic to build a programmable gate
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_programmable_gate_use_mux.png)
+    - ![](../imgs/n2t_programmable_gate_use_mux.png)
 
 ---
 
 
  - Demultiplexor
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_demultiplexor.png)
+    - ![](../imgs/n2t_demultiplexor.png)
     - acts like the inverse of a multiplexor
     - Distributes the single input value into one of 2 possible destinations
         - based on the selection bit, it either channels the input to an a output , or to a b output
     - DMux后数据，只有1个是in，其他都是 0
  - Example: Multiplexing / demultiplexing in communications networks
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_mux_dmux_example.png)
+    - ![](../imgs/n2t_mux_dmux_example.png)
     - we may have several channels coming in. Let's say channels of music or movies
         - that we want to send over a single communications line
     - and through this single line, I want to send multiple messages. How can I possiblely do it ?
@@ -319,7 +319,7 @@ else
     - So this logic here , the Dmux and the Mux logic taken together enable me to interleave several messages over a single communications line. 
         - which may be very expensive
  - 16-bit, 4-way multiplexor
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_16bit4waymultiplexor.png)
+    - ![](../imgs/n2t_16bit4waymultiplexor.png)
 
 ---
 
@@ -354,7 +354,7 @@ a | b | sum | carry
 1 | 0 | 1 | 0
 1 | 1 | 0 | 1
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_half_adder.png)
+![](../imgs/n2t_half_adder.png)
 
  - Xor -> sum , And -> carry ?
 
@@ -362,7 +362,7 @@ a | b | sum | carry
 
 #### Full Adder
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_fullAdder.png)
+![](../imgs/n2t_fullAdder.png)
 
  - use 2 half adder ,  plus ... 
 
@@ -405,7 +405,7 @@ a | b | sum | carry
 
  - ALU used in this course ...
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_hack_alu.png)
+![](../imgs/n2t_hack_alu.png)
 
  - take two 16-bit input, generate one 16-bit output
  - Which function to compute is set by 6 1-bit inputs
@@ -413,7 +413,7 @@ a | b | sum | carry
     - Based on these 6 control bits, the ALU computes one out of the following ***18*** functions.
         - the ALU can compute many more functions, but we will focus these 18 only
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_alu_18funcs.png)
+![](../imgs/n2t_alu_18funcs.png)
 
  - Also outputs two 1-bit valuse
     - zr, ng
@@ -423,7 +423,7 @@ a | b | sum | carry
 
 #### The 6 Control bits
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_alu_18funcs_truth_table.png)
+![](../imgs/n2t_alu_18funcs_truth_table.png)
 
  - if zx , and nx , then x = -1 (1111)
  - Example: Compute !x , x: 1100, y: 1011
@@ -503,19 +503,19 @@ a | b | sum | carry
     - at every time unit  , it can have a different input
     - and at that time unit, it will compute the output from that input in an instantaneous manner.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_clock.png)
+![](../imgs/n2t_clock.png)
 
  - The issue of delays
     - 事实上， 物理信号 并不是 瞬间就能完成 0->1, 1->0 的转换
     - 这门课 电压的转换 比较慢 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_clock_delay.png)
+    - ![](../imgs/n2t_clock_delay.png)
         - show as the picture, it takes time for the input to reach it final stage
         - and then it will also take some time for the output to reach the final stage. Probably it will take more time than it takes for the input because there's an additional delay of the gate self. 
  - The whole point of this logical we were treat -- we break time into digital into integer units --  is the fat that they won't want to think about these delays. 
  - As long as our clock cycle is not too fast , as long as we give ourselves enough time between consecutive time units, we can ignore everything that happened at the beginning of the cycle( all the gray area ).
  - In fact, the way we choose the cycle of the clock is to make sure that all the hardware there really stabilizes. And the implementations give you the logical operations by the end of the gray unit. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_clock_gray_unit.png)
+![](../imgs/n2t_clock_gray_unit.png)
 
 <h2 id="80761b62ccda39c79029f7ec0a9f0f03"></h2>
 
@@ -544,7 +544,7 @@ a | b | sum | carry
 
 ### The "Clocked Data Flip Flop"
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_flip_flop.png)
+![](../imgs/n2t_flip_flop.png)
 
  - This flip-flop has a single input and a single output , and it basically remembers the input from last time unit and outputs it in the next time unit. 
 
@@ -567,7 +567,7 @@ a | b | sum | carry
 
 ### Sequential Logic Imlementation
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_sequential_logic_impl.png)
+![](../imgs/n2t_sequential_logic_impl.png)
 
  - DFF 的应用模版?
 
@@ -582,15 +582,15 @@ a | b | sum | carry
  - Goal: remember an input it "forever": until requested to load a new value
  - DFF 应用之一： 可以持久记忆 , 1bit memory !
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_1bit_register.png)
+![](../imgs/n2t_1bit_register.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_1bit_register2.png)
+![](../imgs/n2t_1bit_register2.png)
 
 <h2 id="054e787feedbcaa8318489cd44a5f424"></h2>
 
 #### Working "Bit" Implementation 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_working_bit_impl.png)
+![](../imgs/n2t_working_bit_impl.png)
 
 ---
 
@@ -613,7 +613,7 @@ a | b | sum | carry
 
 ### The most basic memory element: Register
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_register.png)
+![](../imgs/n2t_register.png)
 
  - w (word width): 16-bit, 32-bit, 64-bit, ...
  - Register's state: the value which is currently stored inside the register
@@ -634,7 +634,7 @@ a | b | sum | carry
 
 ### RAM unit
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_ram_unit.png)
+![](../imgs/n2t_ram_unit.png)
 
  - RAM abstraction:
     - A sequences of n **addressable** registers , with addresses 0 to n-1
@@ -694,9 +694,9 @@ else out = M
 
 ### Counter abstraction
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_counter_abstraction.png)
+![](../imgs/n2t_counter_abstraction.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_counter_abstraction2.png)
+![](../imgs/n2t_counter_abstraction2.png)
 
 
 <h2 id="2b71d41a7eec0448db9bd1fba3ff759c"></h2>

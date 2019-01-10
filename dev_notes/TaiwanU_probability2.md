@@ -60,7 +60,7 @@
  - 宝剑有密度，机率也可有密度!
  - 对随机变数 𝑿 而言，其机率密度:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_pdf.png)
+![](../imgs/TU_probability_pdf.png)
 
 <h2 id="0b821c7256491cd7494160a47d4a1023"></h2>
 
@@ -68,18 +68,18 @@
 
  - 因为我们习惯处理机率，看到 PDF 如何把它跟机率连结呢?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_pdf_cdf_relation.png)
+![](../imgs/TU_probability_pdf_cdf_relation.png)
  
  - PDF 是 CDF 的微分, CDF 是 PDF 的积分
  - fₓ(x) = lim<sub>Δx→0</sub> P(x≤ X ≤x+Δx)/Δx 
  - 当 Δx 很小时：P(x≤ X ≤x+Δx) = fₓ(x)·Δx
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_pdf_calculus.png)
+ - ![](../imgs/TU_probability_pdf_calculus.png)
 
 <h2 id="5bc2e5b291e2fbe5196f9a425ad6a0c9"></h2>
 
 ## PDF 有哪些性质呢?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_pdf_property.png)
+![](../imgs/TU_probability_pdf_property.png)
 
 ---
 
@@ -91,7 +91,7 @@
 
 ## Uniform 机率分布
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability2_uniform_dist.png)
+![](../imgs/TU_probability2_uniform_dist.png)
 
  - Ex: 已知1路公交车每十分钟一班。 小美随意出发到公车站，小美须等候公交 车之时间为 X
 
@@ -99,7 +99,7 @@
 
 ## Exponential 机率分布
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability2_exp_dist.png)
+![](../imgs/TU_probability2_exp_dist.png)
 
  - 非常漂亮的CDF积分
  - Exponential 分布有失忆的性质 (memoryless)，常被用来 model 有这种性质 的事情
@@ -179,11 +179,11 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
 
 ## Erlang 机率分布
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability2_Erlang_dist.png)
+![](../imgs/TU_probability2_Erlang_dist.png)
 
  - CDF:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability2_Erlang_cdf.pn.png)
+![](../imgs/TU_probability2_Erlang_cdf.pn.png)
 
 --- 
 
@@ -219,8 +219,8 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
  - 常态分布，亦常被称作Gaussian (高斯) 机率分布 
  - X ~ Gaussian ( μ,σ )
     - 也常有人用 X ~ N( μ,σ² ) 表示
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_norm_pdf.png)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_norm_pdf_graph.png)
+    - ![](../imgs/TU_probability_norm_pdf.png)
+    - ![](../imgs/TU_probability_norm_pdf_graph.png)
  - CDF是多少?
     - 很难算，积分根本算不出来!
     - 用数值积分法去建表?
@@ -234,15 +234,15 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
 #### Standard Normal Distribution 标准常态分布
 
  - Z ~ N( 0,1 )
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_std_norm_pdf.png)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_std_norm_pdf_graph.png)
+    - ![](../imgs/TU_probability_std_norm_pdf.png)
+    - ![](../imgs/TU_probability_std_norm_pdf_graph.png)
  - CDF 表示为:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_std_norm_cdf.png)
+    - ![](../imgs/TU_probability_std_norm_cdf.png)
     - 积不出来，只能以数值方法近似出来后建表 给人家查
     - 网络上或是工程计算器上常能找到
  - Φ(z) 的性质：
     - Φ(-z)= 1 - Φ(z) 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_std_norm_property.png) 
+    - ![](../imgs/TU_probability_std_norm_property.png) 
 
 --- 
 

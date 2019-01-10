@@ -27,7 +27,7 @@ When m is very large, the computing this derivative term can be very expensive, 
 
 下面以线性回归为例，当然也适用于逻辑回归，神经网络
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Stochastic_gradient_descent.png)
+![](../imgs/Stochastic_gradient_descent.png)
 
  1. randomly shuffle dataset
  2. loop
@@ -44,7 +44,7 @@ Repeat {
 
 Let's recall the batch gradient descent:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/03d2529c7168916961bc80f15371971e3eaab7d5.png)
+![](../imgs/03d2529c7168916961bc80f15371971e3eaab7d5.png)
 
 我们可以看到, batch gradient descent 中是求 J_train(θ) 的偏导数, stochastic gradient descent 中是求 单个样本cost的偏导数.
 
@@ -65,7 +65,7 @@ Stochastic gradient descent | use *1* example in each iteration
 
  - b is about 2 ~ 100, usually 10.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/mini_batch_gradient_descent.png)
+![](../imgs/mini_batch_gradient_descent.png)
 
 <h2 id="85695b2541e3126709fe45b213bef57e"></h2>
 

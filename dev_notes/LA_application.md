@@ -17,7 +17,7 @@
 
  - 假设一个经济体由 Coal 煤炭, Electric power, 和 Steel 部门组成， 每个部门的产出分布在各个部门之间 ， 如图所示
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_APP_coal.png)
+![](../imgs/LA_APP_coal.png)
 
  - Distribution of Output from:
 

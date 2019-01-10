@@ -49,19 +49,19 @@ Model B+ :
  - Micro SD card slot
  - 3.3V I/O voltage levels
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/raspberryPi_B+.PNG)
+![](../imgs/raspberryPi_B+.PNG)
 
 <h2 id="7c9fb4b83e7d3ff04537e59f0efd1b4d"></h2>
 
 ## ARM Processors
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ARM_Family.PNG)
+![](../imgs/ARM_Family.PNG)
 
 <h2 id="bde280fad6339e66144556725e9a6925"></h2>
 
 ## Using Hardware Devices
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/UsingHardwareDevices.PNG)
+![](../imgs/UsingHardwareDevices.PNG)
 
 In Linux folder /def/xxx , you got a file in there for every device that's connected to you machine. So that file is associated with the hardware that you plugged in, eg a webcamera. Say you wanna read data from the webcamera, you read the file.  
 
@@ -254,7 +254,7 @@ The idea is that if you had several different , say Raspberry Pis, or other devi
 
 SPI: Serial parallel interface
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SPI_Pins.png)
+![](../imgs/SPI_Pins.png)
 
 This protocal basically involves four wires, at least four.
 
@@ -348,7 +348,7 @@ how to generate a pulse width modulated signal （脉冲宽度调制信号） on
  
 The pulse width modulated signal is just square wave.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/PulseWidthModulation.png)
+![](../imgs/PulseWidthModulation.png)
 
 You can see in the pic we get 3 square waves. They have the same frequency , and the difference between them is what's called pulse width , what percentage of the time their signal is high.
 

@@ -11,20 +11,20 @@
 
  - Problem
     - Given a set of points {p₁, ... , p<sub>n</sub>} find the pair of points {pᵢ,pⱼ} that are closest together.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_2d_cloestPair.png)
+    - ![](../imgs/algorithm_2d_cloestPair.png)
  - Goal
     - in O(nlgn) time.
  - Solution:
     - Divide
         - Split the points with line L so that half the points are on each side.
         - Recursively find the pair of points closest in each half.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_2d_cloestPair_divide.png)
+        - ![](../imgs/algorithm_2d_cloestPair_divide.png)
     - Merge: the hard case
         - Let d = min{d<sub>left</sub>, d<sub>right</sub>}. 
         - d would be the answer, except maybe L split a close pair!
     - Region Near L
         - If there is a pair {pᵢ,pⱼ} with `dist( pᵢ,pⱼ ) < d`  that is split by the line
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_2d_cloestPair_regoin_near_L.png)
+        - ![](../imgs/algorithm_2d_cloestPair_regoin_near_L.png)
         - then both  pᵢ and pⱼ must be within distance *d* of L.
         - Let S<sub>y</sub> be an array of the points in that region, sorted by decreasing y-coordinate value.
     - **Slab Might Contain All Points!**
@@ -34,7 +34,7 @@
         - In other words, if two points in S<sub>y</sub> are close enough in the plane, they are close in the array S<sub>y</sub>.
     - Proof 1:
         - Divide the region up into squares with sides of length d/2:
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_2d_cloestPair_proof1.png)
+        - ![](../imgs/algorithm_2d_cloestPair_proof1.png)
         - How many points in each box? 
         - At most 1. 如果 ≥2 点存在同一小格中，它们的距离就会小于 d, 与前面d的定义矛盾
     - Proof 2:
@@ -44,7 +44,7 @@
         - So the two points are father than d apart.
     - Linear Time Merge
         - Therefore, we can scan   S<sub>y</sub> for pairs of points separated by < d in linear time. 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_2d_cloestPair_pseudo.png)
+        - ![](../imgs/algorithm_2d_cloestPair_pseudo.png)
         - optimization:
             - the condition `if |Px| == 2` can be optimized by `if |Px| <=3 ` 
             - 第三部分merge 可以只考虑 pᵢ 在left array,pⱼ 在right array 的情况

@@ -186,7 +186,7 @@ Golang GC 的基本特征是 “⾮分代、⾮紧缩、写屏障、并发标记
 
 基本关系⽰意图：
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/golang_goroutine_illu.png)
+![](../imgs/golang_goroutine_illu.png)
  
  - ⾸先是 Processor（简称 P），其作⽤类似 CPU 核，⽤来控制可同时并发执⾏的任务数量。
     - 每个⼯作线程都必须绑定⼀个有效 P 才被允许执⾏任务，否则只能休眠，直到有空闲 P 时 被唤醒。

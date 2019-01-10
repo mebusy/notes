@@ -79,11 +79,11 @@ In the order from simple to complex. Often you want end up using those last 2.
 
 ## Prior Sampling 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_sampling_prior_sampling.png)
+![](../imgs/cs188_BNs_sampling_prior_sampling.png)
 
 We have a BNs, and we want to generate samples of the full joint distribution ,but without building full joint distribution. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_sampling_prior_sampling_1st_sample.png)
+![](../imgs/cs188_BNs_sampling_prior_sampling_1st_sample.png)
 
  - ordering: C → S → R → W , or  C → R → S → W 
  - we start with the 1st variable in the ordering **C** 
@@ -113,13 +113,13 @@ return (x₁,x₂,...,xn)
 
  - Question: are we sampling from the correct distribution ?
  - This process generates samples with probability:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_PS_sampling_distribution.png)
+    - ![](../imgs/cs188_BNs_PS_sampling_distribution.png)
     - S<sub>PS</sub> : sampling distribution *S* using prior sampling 
     - i.e. the BN’s joint probability
  - Let the number of samples of an event be
     - N<sub>PS</sub> (x₁,x₂,...,x<sub>n</sub>)
  - if the number of samples goes to infinity then the number of samples you get for a particular event divided by N will converge to the actual probability for that event.
-    -  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_sampling_prior_limit.png)
+    -  ![](../imgs/cs188_BNs_sampling_prior_limit.png)
  - I.e., the sampling procedure is ***consistent***.
 
 ---
@@ -154,7 +154,7 @@ return (x₁,x₂,...,xn)
 
 Now we're going to look at a way to speed this up a little bit if we know ahead of time what the queries that were asked.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_sampling_reject_sampling.png)
+![](../imgs/cs188_BNs_sampling_reject_sampling.png)
 
  - Let’s say we want P(C)
     - No point keeping all samples around
@@ -208,7 +208,7 @@ Return (x1, x2, …, xn)
 
 ## Likelihood Weighting
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_LW.png)
+![](../imgs/cs188_BNs_Sampling_LW.png)
 
 Again, we know the query ahead of time, and see if we can further improve the procedure beyond what we did for a rejection sampling. 
  
@@ -227,7 +227,7 @@ Again, we know the query ahead of time, and see if we can further improve the pr
             - ~~sphere, green~~ 
 
  - Idea: fix evidence variables and sample the rest
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_LW_fix_evidence.png)
+    - ![](../imgs/cs188_BNs_Sampling_LW_fix_evidence.png)
     - Problem: sample distribution not consistent!
     - Solution: weight by probability of evidence given parents
         - you instantiated some shape to be blue, and the probability for blue was 0.2 for that shape 
@@ -237,7 +237,7 @@ Again, we know the query ahead of time, and see if we can further improve the pr
 
 ### Example Likelihood Weighting
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_LW_example.png)
+![](../imgs/cs188_BNs_Sampling_LW_example.png)
 
  - evidence is +s , +w
  - we start with Cloudy , we got +c 
@@ -314,7 +314,7 @@ Are we still doing the right thing ?  Are we sampling from the right distributio
 
 ## Gibbs Sampling
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_GS.png)
+![](../imgs/cs188_BNs_Sampling_GS.png)
 
  - *Procedure*: 
     - keep track of a full instantiation x₁, x₂, …, x<sub>n</sub>.   
@@ -342,17 +342,17 @@ We're going to generate one sample from our BNs. Our evidence is +r.
 
  - Step 1: Fix evidence
     - R = +r
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_GS_sample_step1.png)
+    - ![](../imgs/cs188_BNs_Sampling_GS_sample_step1.png)
  - Step 2: Initialize other variables 
     - Randomly
         - say we pick +c, -s, -w
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_GS_sample_step2.png)
+    - ![](../imgs/cs188_BNs_Sampling_GS_sample_step2.png)
  - Steps 3: Repeat
     - Choose a non-evidence variable X
         - this choice here is also supposed to be random 
         - so you randomly pick one of your non-evidence variables as your current variable , that you're going to update  
     - Resample X from P( X | all other variables)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_GS_sample_step3.png)
+    - ![](../imgs/cs188_BNs_Sampling_GS_sample_step3.png)
         - we picked S , we uninstantiated it
             - now we compute the conditional distribution for S : P(S|+c,+r,-w) 
                 - this distribution can answer some query very efficiently 
@@ -372,10 +372,10 @@ This is just giving you the very basic idea of how Gibbs Sampling works. And you
 
 ### Efficient Resampling of One Variable
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_GS_sample_efficient_resample.png)
+![](../imgs/cs188_BNs_Sampling_GS_sample_efficient_resample.png)
 
  - Sample from P(S | +c, +r, -w)    
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Sampling_GS_sample_efficient_resample2.png)
+    - ![](../imgs/cs188_BNs_Sampling_GS_sample_efficient_resample2.png)
  - Many things cancel out – only CPTs with S remain!
  - More generally: only CPTs that have resampled variable need to be considered, and joined together
 

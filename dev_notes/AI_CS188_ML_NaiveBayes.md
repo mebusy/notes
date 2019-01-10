@@ -126,7 +126,7 @@
     - Step 2: sum to get probability of evidence
     - Step 3: normalize by dividing Step 1 by Step 2
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_naive_Bs_inference.png)
+![](../imgs/cs188_naive_Bs_inference.png)
 
 
 <h2 id="b135ee99bc69046ed9ad6290d2554ab6"></h2>
@@ -149,7 +149,7 @@
 
 ### Example: Conditional Probabilities
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_naive_Bs_example_CP.png)
+![](../imgs/cs188_naive_Bs_example_CP.png)
 
 
 <h2 id="546d1ef7d3d18b0a466e84f7792d2a0f"></h2>
@@ -176,7 +176,7 @@
 ### Example: Spam Filtering
 
  - What are the parameters?
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_naive_Bs_example_spam.png)
+    - ![](../imgs/cs188_naive_Bs_example_spam.png)
  - Where do these tables come from?
 
  - example below
@@ -243,7 +243,7 @@ sleep | 0.00006 | 0.00001 | -76.0 | -80.5
 
  - Laplace’s estimate:
     - Pretend you saw **every** outcome once more than you actually did
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ml_naive_laplace_smooth.png)
+    - ![](../imgs/cs188_ml_naive_laplace_smooth.png)
  - Can derive this estimate with Dirichlet priors (see cs281a)
  - for some purpose like zeor is not allowed.
  - example
@@ -253,7 +253,7 @@ sleep | 0.00006 | 0.00001 | -76.0 | -80.5
         - adding 1 red, 1 blue
  - Laplace’s estimate (extended):
     - Pretend you saw **every** outcome **k extra** time
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ml_naive_laplace_smooth_k.png)
+    - ![](../imgs/cs188_ml_naive_laplace_smooth_k.png)
     - What’s Laplace with k = 0?
     - k is the **strength** of the prior
     - P<sub>LAP,0</sub>(X) = (2/3, 1/3)
@@ -261,7 +261,7 @@ sleep | 0.00006 | 0.00001 | -76.0 | -80.5
     - P<sub>LAP,100</sub>(X) = (102/203, 101/203)
  - Laplace for conditionals:
     - Smooth each condition independently:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ml_naive_laplace_smooth_k_conditional.png)
+    - ![](../imgs/cs188_ml_naive_laplace_smooth_k_conditional.png)
 
 
 <h2 id="e7cc6a9fab279f966b739b2be71b2798"></h2>
@@ -274,7 +274,7 @@ sleep | 0.00006 | 0.00001 | -76.0 | -80.5
  - Another option: linear interpolation
     - Also get the empirical P(X) from the data
     - Make sure the estimate of P(X|Y) isn’t too different from the empirical P(X)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_ml_naive_estimation_linear_interpolation.png)
+    - ![](../imgs/cs188_ml_naive_estimation_linear_interpolation.png)
  - For even better ways to estimate parameters, as well as details of the math, see cs281a, cs288
 
 <h2 id="89dd2948ecda7325c0001d8a0e51a2d8"></h2>
@@ -326,7 +326,7 @@ sleep | 0.00006 | 0.00001 | -76.0 | -80.5
 
 ---
 
- [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_naive_BNs_bn4Digits.png
+ [1]: ../imgs/cs188_naive_BNs_bn4Digits.png
 
 
 

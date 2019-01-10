@@ -171,7 +171,7 @@ def Explore(v):
     - Clock ticks at each pre-/post- visit.
     - Records previsit and postvisit times for each v.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_graph_previst_clock_example.png)
+![](../imgs/algr_on_graph_previst_clock_example.png)
 
  - Computing Pre- and Post- Numbers
  - Initialize clock to 1.
@@ -225,7 +225,7 @@ def postvisit(v):
 
  - A **cycle** in a graph G is a sequence of vertices v1, v2, . . . , vn so that
  - (v1, v2),(v2, v3), . . . ,(vn−1, vn),(vn, v1) are all edges.
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_graph_cycles.png)
+ - ![](../imgs/algorithm_on_graph_cycles.png)
  - Theorem
     - If G contains a cycle, it cannot be linearly ordered.
 
@@ -245,11 +245,11 @@ def postvisit(v):
 
  - Last Vertex
     - Consider the last vertex in the ordering. It cannot have any edges pointing out of it
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_graph_last_vertex.png)
+    - ![](../imgs/algorithm_on_graph_last_vertex.png)
  - Sources and Sinks
     - A **source** is a vertex with no incoming edges.
     - A **sink** is a vertex with no outgoing edges
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_graph_sinks_in_dag.png)
+        - ![](../imgs/algorithm_on_graph_sinks_in_dag.png)
 
 <h2 id="2f1d4122555c30fa41c0390bd028ef60"></h2>
 
@@ -278,14 +278,14 @@ TopologicalSort(G)
  - Two vertices v, w in a directed graph are **connected** if you can reach v from w and can reach w from v.
  - Theorem
     - A directed graph can be partitioned into **strongly connected components** where two vertices are connected if and only if they are in the same component.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_graph_SCC.png)
+    - ![](../imgs/algorithm_on_graph_SCC.png)
 
 <h2 id="cd4755489eca8e682b00937d8e695b98"></h2>
 
 #### Metagraph
 
  - We can also draw a **metagraph** showing how the strongly connected components connect to one another 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_on_graph_metagraph.png)
+    - ![](../imgs/algorithm_on_graph_metagraph.png)
  - Theorem
     - The metagraph of a graph G is always a DAG.
  
@@ -329,7 +329,7 @@ How to compute the strongly connected components of a graph. ?
 ##### Reverse Graph Components
 
  - Let Gᴿ be the graph obtained from G by reversing all of the edges.  
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_graph_reverse_graph.png)
+    - ![](../imgs/algr_on_graph_reverse_graph.png)
  - Gᴿ and G have same SCCs.
  - Source components of Gᴿ are sink components of G.  
  - Find sink components of G by running DFS on Gᴿ .
@@ -370,7 +370,7 @@ def SCCs(G):
     - Any subpath of an optimal path is also optimal.
  - Proof
     - Consider an optimal path from S to t and two vertices u and v on this path. If there were a shorter path from u to v we would get a shorter path from S to t.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algr_on_graph_substructure_proof.png)
+    - ![](../imgs/algr_on_graph_substructure_proof.png)
  - Corollary
     - If S → . . . → u → t is a shortest path from S to t, then d(S,t) = d(S, u) + w(u,t) 
         - u is the previous node on that path

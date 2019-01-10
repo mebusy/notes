@@ -334,7 +334,7 @@ let s1 = String::from("hello");
 let s2 = s1;
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rust_string_copy.png)
+![](../imgs/rust_string_copy.png)
 
  - only the *String* data copied , meaning we copy the pointer, the length, and the capacity that are on the stack. 
  - We do not copy the data on the heap that the pointer refers to.
@@ -356,7 +356,7 @@ println!("{}, world!", s1);
  - But because Rust also invalidates the first variable, instead of calling this a shallow copy, it’s known as a **move**.
  - Here we would read this by saying that s1 was moved into s2. So what actually happens is :
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rust_string_move.png)
+![](../imgs/rust_string_move.png)
 
  - That solves our problem! With only s2 valid, when it goes out of scope, it alone will free the memory, and we’re done.
  - In addition, there’s a design choice that’s implied by this: 
@@ -498,7 +498,7 @@ fn calculate_length(s: &String) -> usize {
 
  - `&` are *references*, and they allow you to refer to some value without taking ownership of it.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rust_references.png)
+![](../imgs/rust_references.png)
 
  - We call having references as function parameters *borrowing*.
     - As in real life, if a person owns something, you can borrow it from them. When you’re done, you have to give it back.
@@ -667,7 +667,7 @@ let world = &s[6..11];
  - This is similar to taking a reference to the whole String but with the extra `[0..5)` bit.
  - Rather than a reference to the entire String, it’s a reference to a portion of the String.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/rust_string_slice.png)
+![](../imgs/rust_string_slice.png)
 
 ```rust
 let slice = &s[0..2];

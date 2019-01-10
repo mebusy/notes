@@ -44,7 +44,7 @@ Pong is just a fun toy test case, something we play with while we figure out how
  - Every iteration we will sample from this distribution (i.e. toss a biased coin) to get the actual move. 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/pong_policy_2layer_network.png)
+![](../imgs/pong_policy_2layer_network.png)
 
 > Our policy network is a 2-layer fully-connected net.
 
@@ -91,7 +91,7 @@ p = 1.0 / (1.0 + np.exp(-logp)) # sigmoid function (gives probability of going u
 
 I’d like to remind you briefly about supervised learning because, as we’ll see, RL is very similar. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/pong_supervised_learning.png)
+![](../imgs/pong_supervised_learning.png)
 
  - In ordinary supervised learning we would feed an image to the network and get some probabilities,  e.g. for two classes UP and DOWN.
     - log probabilities (-1.2, -0.36) for UP and DOWN instead of the raw probabilities (30% and 70% in this case) because we always optimize the log probability of the correct label
@@ -110,7 +110,7 @@ but what do we do if we do not have the correct label in the Reinforcement Learn
 
 Here is the Policy Gradients solution.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Pong_rl_policyGradients.png)
+![](../imgs/Pong_rl_policyGradients.png)
 
  - Our policy network calculated probability of going UP as 30% (logprob -1.2) and DOWN as 70% (logprob -0.36).
  - We will now sample an action from this distribution; E.g. suppose we sample DOWN, and we will execute it in the game. 

@@ -58,7 +58,7 @@ The `crossing edges` of a cut(A,B) are those with :
  - tail in A, head in B ( directed )
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cuts_of_graphs.png)
+![](../imgs/cuts_of_graphs.png)
 
 > Question: Roughly how many cuts does a graph with n vertices have?
 
@@ -149,11 +149,11 @@ return cut represented by final 2 vertices
 
 正确的最小切割:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/random_contraction_algorithm.png)
+![](../imgs/random_contraction_algorithm.png)
 
 不正确的最小切割:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/random_contraction_algorithm_fail.png)
+![](../imgs/random_contraction_algorithm_fail.png)
 
 
 可以看到，随机收缩算法并一定能得到正确的最小切割，结果依赖于被随机选择到的edge。 

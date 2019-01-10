@@ -39,7 +39,7 @@ Advantages:
 # Lec 51 - Types of Optimality
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/iit_rl_51_types_of_optimality_room.png)
+![](../imgs/iit_rl_51_types_of_optimality_room.png)
 
 
  - 1. hierarchically optimal

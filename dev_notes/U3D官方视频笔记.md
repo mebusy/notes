@@ -365,7 +365,7 @@ StreamingAssets | Yes | No | N/A
 
 ### 如何处理复杂依赖关系
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/complicated_ab_dependency.jpg)
+![](../imgs/complicated_ab_dependency.jpg)
 
 
 <h2 id="9a2b6f799c5f9ba8616ef0a9b23f3b3e"></h2>
@@ -380,11 +380,11 @@ public static string[] AssetDatabase.GetDependencies(string)
 
 只考虑入度，直接打包 入度为0的资源，可以包含入度为1的资源。
  
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AB1.jpg)
+![](../imgs/AB1.jpg)
 
 但是入度 >= 2的资源有可能被重复打包:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AB3.jpg)
+![](../imgs/AB3.jpg)
 
 <h2 id="447a142de1ac9e4a8864ffecf18c3e8e"></h2>
 
@@ -392,19 +392,19 @@ public static string[] AssetDatabase.GetDependencies(string)
 
 入度为1的资源可以被自动打包到上一级的AB包中, 为避免入度为2的资源重复打包，需要将它单独放到一个AB包.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AB4.jpg)
+![](../imgs/AB4.jpg)
 
 大多数情况，有向图会变得很复杂:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AB5.jpg)
+![](../imgs/AB5.jpg)
 
 我们可以对有向图进行简化，入度为1的可以简化，入度为2或以上的为共享资源：
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AB6.jpg)
+![](../imgs/AB6.jpg)
 
 当前节点和父节点，共同拥有的依赖关系，可将2父节点的依赖关系删除, 比如 2 和 其父节点3 都依赖于 节点1，可以将 3-1的依赖关系删除: 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AB7.jpg) 
+![](../imgs/AB7.jpg) 
 
 <h2 id="95c48c445d1eebb7ade830519c1b2d7a"></h2>
 
@@ -495,5 +495,5 @@ AssetBundlemanifest.GetDirectDependencies()
 
 如果两个资源拥有相同的 入度和出度(资源)依赖，则可以合并:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/AB8.jpg) 
+![](../imgs/AB8.jpg) 
 

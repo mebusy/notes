@@ -26,7 +26,7 @@
 
  - 给定一组2维坐标点，找出所有 位于某个矩形范围的所有点
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2dtree_question.png)
+![](../imgs/2dtree_question.png)
 
 <h2 id="70d1a3fb79b2abed2736ccad8427984f"></h2>
 
@@ -38,7 +38,7 @@
  - Insert: add (x, y) to list for corresponding square.
  - Range search: examine only squares that intersect 2d range query.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2dtree_grid_implementation.png)
+![](../imgs/2dtree_grid_implementation.png)
 
 ---
 
@@ -48,7 +48,7 @@
         - Lists are too long, even though average length is short.
         - Need data structure that adapts gracefully to data.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2dtree_grid_implementation_clustering.png)
+![](../imgs/2dtree_grid_implementation_clustering.png)
 
 <h2 id="8e09009743774efb9c0a7dceb8721b2c"></h2>
 
@@ -62,7 +62,7 @@ Use a tree to represent a recursive subdivision of 2d space.
  - BSP tree. Recursively divide space into two regions.
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2dtree_space_partitioning_trees.png)
+![](../imgs/2dtree_space_partitioning_trees.png)
 
 <h2 id="922b62791cfd0af7fb819dd01bf4efb6"></h2>
 
@@ -85,7 +85,7 @@ Use a tree to represent a recursive subdivision of 2d space.
 
  - Recursively partition plane into two halfplanes
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2dtree_construction.png)
+![](../imgs/2dtree_construction.png)
 
 <h2 id="740b6be09ccd4dc6bd568fd9dd316aa9"></h2>
 
@@ -97,9 +97,9 @@ Use a tree to represent a recursive subdivision of 2d space.
  - Insert further subdivides the plane.
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2dtree_even_levels.png)
+![](../imgs/2dtree_even_levels.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/2dtree_odd_levels.png)
+![](../imgs/2dtree_odd_levels.png)
 
 <h2 id="e2f4979395b274707c6c5a37cd7ed619"></h2>
 

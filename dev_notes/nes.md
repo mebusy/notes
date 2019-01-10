@@ -67,7 +67,7 @@ When NES is on ,
 
 # CPU / PPU address space
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/6502_CPU_PPU_address_space.png)
+![](../imgs/6502_CPU_PPU_address_space.png)
 
 from CPU
 
@@ -192,7 +192,7 @@ METHODS        |        // draw code     | ; modify sprites
 # Palettes
 
  - Less than 60 total colors
-     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NES_palette.png)
+     - ![](../imgs/NES_palette.png)
  - PPU IO ports : $2006 , $2007
      - you write to the palette table by using PPU $2006, $2007 ports
  - Sprite palette: $3F10

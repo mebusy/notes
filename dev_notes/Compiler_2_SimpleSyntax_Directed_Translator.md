@@ -125,7 +125,7 @@ For example, the postfix form of the expression `9 - 5 + 2` is `95 - 2+`.
 
 Translation into postfix form is rich enough to illustrate syntax analysis, yet simple enough. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_frontend_model.png)
+![](../imgs/Compiler_frontend_model.png)
 
 Figure 2.3: A model of a compiler front end
 
@@ -133,11 +133,11 @@ Figure 2.3: A model of a compiler front end
  - Next, we consider intermediate-code generation
      - two forms of intermedi­ate code :
          - 1- *abstract syntax trees* or simply *syntax trees*
-             - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_AST_example.png)
+             - ![](../imgs/Compiler_AST_example.png)
              - represents the hierarchical syntactic structure of the source program
              - syntax trees is further translated into three-address code
          - 2-  "three-address" instructions
-             - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_3addr_inst_example.png)
+             - ![](../imgs/Compiler_3addr_inst_example.png)
              - instructions form:  x = y **op** z
                  - **op** is a binary operator
                  - y and z the are addresses for the operands
@@ -258,7 +258,7 @@ We have not shown the productions for *param*, since parameters are really arbit
 
  - A parse tree pictorially shows how the start symbol of a grammar derives a string in the language. 
  - If nonterminal A has a production A → XYZ, then a parse tree may have an interior node labeled A with three children labeled X, Y, and Z, from left to right:
-     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compilers_parse_tree_AXYZ.png)
+     - ![](../imgs/Compilers_parse_tree_AXYZ.png)
  - Formally, given a context-free grammar, a parse tree according to the gram­mar is a tree with the following properties:
      - The root is labeled by the start symbol
      - Each leaf is labeled by a terminal or by ε.
@@ -269,7 +269,7 @@ We have not shown the productions for *param*, since parameters are really arbit
 Example 2.4 : The derivation of 9-5+2 in Example 2.2 is illustrated by the tree in Fig. 2.5.
 
  - Parse tree for 9-5+2 according to the grammar in Example 2.1
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_parse_tree_2.2.png)
+ - ![](../imgs/Compiler_parse_tree_2.2.png)
      - Each node in the tree is labeled by a *grammar symbol*
      - An interior node and its children correspond to a *production*
          - the interior node corresponds to the head of the production
@@ -299,7 +299,7 @@ string → string + string | string - string | 0|1|2|3|4|5|6|7|8|9
 
 Merging the notion of *digit* and *list* into the nonterminal *string* makes superficial sense, because a single *digit* is a special case of a *list*.
 
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_figure2.6_tow_parse_tree.png)
+ - ![](../imgs/Compiler_figure2.6_tow_parse_tree.png)
  - The two trees for 9-5+2 correspond to the two ways of parenthesizing the expression: (9-5) +2 and 9- (5+2)
  - This second parenthesization gives the expression the unexpected value 2 rather than the customary value 6.
 
@@ -323,7 +323,7 @@ right → letter = right | letter
 letter → a | b | ... | z
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compilers_fig2.7_associative.png)
+![](../imgs/Compilers_fig2.7_associative.png)
 
 Note that the parse tree for 9-5-2 grows down towards the left, whereas the parse tree for a=b=c grows down towards the right.
 
@@ -523,7 +523,7 @@ Suppose a node N in a parse tree is labeled by the grammar symbol X .
 
  For example, Fig. 2.9 shows an annotated parse tree for 9-5+2 with an attribute t associated with the nonterminals *expr* and *term*. The value 95-2+ of the attribute at the root is the postfix notation for 9-5+2. We shall see shortly how these expressions are computed.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_attr_vallue_in_parse_tree.png)
+![](../imgs/Compiler_attr_vallue_in_parse_tree.png)
 
  - An attribute is said to be *synthesized* if its value at a parse-tree node N is de­termined from attribute values at the children of N and at N itself. 
      - Synthesized attributes have the desirable property that they can be evaluated during a sin­gle bottom-up traversal of a parse tree. 
@@ -604,7 +604,7 @@ A *depth-first* traversal starts at the root and recursively visits the children
      - that is, after translations at the children have surely been computed. 
  - In general, the actions associated with a traversal can be whatever we choose, or nothing at all.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_deep_first_trav.png)
+![](../imgs/Compiler_deep_first_trav.png)
 
  - A syntax-directed definition does not impose any specific order for the eval­uation of attributes on a parse tree; 
      - 求值操作没有强制顺序的要求
@@ -643,14 +643,14 @@ When drawing a parse tree for a translation scheme,
      - that child connected by a dashed line to the node that corresponds to the head of the production. 
  - For example, the portion of the parse tree for the above production and action is shown in Fig 2.13. 
      - The node for a semantic action has no children, so the action is performed when that node is first seen.
-     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.13.png)
+     - ![](../imgs/Compiler_F2.13.png)
 
 
 Example 2.12 : The parse tree in Fig 2.14 has print statements at extra leaves, which are attached by dashed lines to interior nodes of the parse tree. 
 
 The translation scheme appears in Fig 2.15. The underlying grammar gen­erates expressions consisting of digits separated by plus and minus signs. The actions embedded in the production bodies translate such expressions into post­fix notation, provided(in case) we perform a left-to-right depth-first traversal of the tree and execute each print statement when we visit its leaf.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.14.png)
+![](../imgs/Compiler_F2.14.png)
 
 ![2.15][1]
 
@@ -706,7 +706,7 @@ We introduce top-down parsing by considering a grammar that is well-suited for t
 
 The grammar in Fig 2.16 generates a subset of the statements of C or Java:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F.2.16.png)
+![](../imgs/Compiler_F.2.16.png)
 
  - We use the boldface terminals **if** and **for** for the keywords "if" and "for", respectively, to emphasize that these character sequences are treated as units, i.e., as single terminal symbols. 
  - Further, the terminal *expr* represents expressions; a more complete grammar would use a nonterminal *expr* and have productions for nonterminal *expr*. 
@@ -714,7 +714,7 @@ The grammar in Fig 2.16 generates a subset of the statements of C or Java:
 
 The top-down construction of a parse tree like the one in Fig. 2.17:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F.2.17.png)
+![](../imgs/Compiler_F.2.17.png)
 
 It is done by starting with the root, labeled with the starting nonterminal *stmt*, and re­peatedly performing the following two steps.
 
@@ -727,7 +727,7 @@ The current terminal being scanned in the input is frequently referred to as the
 
 **for ( ; expr ; expr ) other**
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F.2.18.png)
+![](../imgs/Compiler_F.2.18.png)
 
  - Initially, the terminal **for** is the lookahead symbol, and the known part of the parse tree consists of the root, labeled with the starting nonterminal stmt in Fig. 2.18(a)
  - The objective is to construct the remainder of the parse tree 
@@ -751,7 +751,7 @@ The current terminal being scanned in the input is frequently referred to as the
 
 *Recursive-descent parsing* is a top-down method of syntax analysis in which a set of recursive procedures is used to process the input. One procedure is associated with each nonterminal of a grammar. Here, we consider a simple form of recursive-descent parsing, called *predictive parsing*, in which the lookahead symbol unambiguously determines the flow of control through the procedure body for each nonterminal. The sequence of procedure calls during the analysis of an input string implicitly defines a parse tree for the input, and can be used to build an explicit parse tree, if desired.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F.2.19.png)
+![](../imgs/Compiler_F.2.19.png)
 
 The predictive parser in Fig. 2.19 consists of procedures for the nontermi­nals *stmt* and *optexpr* of the grammar in Fig. 2.16 and an additional procedure *match*, used to simplify the code for *stmt* and *optexpr*. 
 
@@ -858,7 +858,7 @@ where α and β are sequences of terminals and nonterminals that do not start wi
 
 The nonterminal A and its production are said to be *left recursive*. Repeated application of this production builds up a sequence of a's to the right of A, as in Fig. 2.20(a). When A is finally replaced by β , we have a β followed by a sequence of zero or more a's.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.20.png)
+![](../imgs/Compiler_F2.20.png)
 
 The same effect can be achieved, as in Fig. 2.20(b),  ***introduce a new nonterminal R*** and rewrite the rule as :
 
@@ -924,7 +924,7 @@ In the abstract syntax tree for 9-5+2 in Fig. 2.22,
      - The grouping of 9-5 as an operand reflects the left-to-right evaluation of operators at the same precedence level. 
      - Since - and + have the same precedence, 9-5+2 is equivalent to (9-5) +2.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.22_ast_952.png)
+![](../imgs/Compiler_F2.22_ast_952.png)
 
 Abstract syntax trees, or simply ***syntax trees***, resemble parse trees to an extent.  However, in the syntax tree, interior nodes represent programming constructs while in the parse tree, the interior nodes represent nonterminals. 
 
@@ -971,7 +971,7 @@ Example 2.13 : Consider the translation scheme of Fig. 2.15. Let :
 
 Then the left-recursion-eliminating transformation produces the translation scheme in Fig. 2.23. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.23.png)
+![](../imgs/Compiler_F2.23.png)
 
  - The *expr* productions have been transformed into the productions for *expr*, and a new nonterminal *rest* 
      - *rest* plays the role of R. 
@@ -979,7 +979,7 @@ Then the left-recursion-eliminating transformation produces the translation sche
 
 Figure 2.24 shows how 9-5+2 is translated.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.24.png)   
+![](../imgs/Compiler_F2.24.png)   
 
 Left-recursion elimination must be done carefully, to ensure that we preserve the ordering of semantic actions. 
 
@@ -1130,7 +1130,7 @@ The lexical analyzer in this section allows numbers, identifiers, and "white spa
 
 Since the expression grammar of Fig. 2.21 must be extended to allow numbers and identifiers, we shall take this opportunity to allow multiplication and division as well. The extended translation scheme appears in Fig. 2.28.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.28.png)   
+![](../imgs/Compiler_F2.28.png)   
 
  - The terminal **num** is assumed to have an attribute **num**.value, 
      which gives the integer value corresponding to this occurrence of **num** . 
@@ -1311,7 +1311,7 @@ The classes for tokens and their fields are illustrated in Fig. 2.32; their meth
  - Subclass **Num** adds a field **value** for an integer value. 
  - Subclass **Word** adds a field **lexeme** that is used for reserved words and identifiers.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.32.png)
+![](../imgs/Compiler_F2.32.png)
 
 ```java
 package lexer ; // File Token.java 
@@ -1503,7 +1503,7 @@ The subscript is not part of an identifier; it is in fact the line number of the
 
 Example 2.16  symbol tables for the pseudocode in Exam­ple 2.15:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F.2.36.png)
+![](../imgs/Compiler_F.2.36.png)
 
  - B₁ is for the block starting on line 1 
  - B₂ is for the block starting at line 2. 
@@ -1560,7 +1560,7 @@ Since the translation of an expression *E₁* **op** *E₂* , for a typical oper
 
 Example 2.17 : The translation scheme in Fig. 2.38 illustrates how class Env can be used. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.38.png)
+![](../imgs/Compiler_F2.38.png)
 
 Figure 2.38: The use of symbol tables for translating a language with blocks
 
@@ -1609,7 +1609,7 @@ It is possible that a compiler will construct a syntax tree at the same time it 
 
 We shall first give a translation scheme that constructs syntax trees, and later, in section 2.8.4, show how the scheme can be modified to emit three-address code, along with, or instead of, the syntax tree.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_E1_op_E2.png)
+![](../imgs/Compiler_E1_op_E2.png)
 
 This syntax tree represents an expression formed by applying the operator **op** to the subexpres­sions represented by E₁ and E₂.
 
@@ -1628,7 +1628,7 @@ are the expression *expr* and the statement *stmt*. The syntax-tree node for suc
 
 The translation scheme in Fig. 2.39 constructs syntax trees for a repre­sentative language of expressions and statements. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.39.png)
+![](../imgs/Compiler_F2.39.png)
 
 All the nonterminals in the translation scheme have an attribute *n*, which is a node of the syntax tree. Nodes are implemented as objects of class *Node*.
 
@@ -1715,7 +1715,7 @@ as in
 
 Example 2.18 : In FIg. 2.40 we see part of a syntax tree representing a block or statement list. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.40.png)
+![](../imgs/Compiler_F2.40.png)
 
 There are two statements in the list, the first an if-statement and the second a while-statement. 
 
@@ -1895,7 +1895,7 @@ The layout in Fig. 2.42 illustrates the translation of **if** *expr* **then** st
     ifFalse x goto after
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.42.png)
+![](../imgs/Compiler_F2.42.png)
 
 For concreteness, we show the pseudocode for class *If* in Fig. 2.43. 
 
@@ -2088,5 +2088,5 @@ But, if j+k is a subexpression, as in `j+k+1`, then the null result address in i
 
 ---
 
-  [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F2.15.png
+  [1]: ../imgs/Compiler_F2.15.png
 

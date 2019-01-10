@@ -102,14 +102,14 @@ The way this is gonna work is that you and I gonna play a little game. So on my 
 
  - **Conceptually**: rooted, binary , as complete as possible
     - if it is not a completed tree, push the extra node as far to the left as possible.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/heap_tree.PNG)
+    - ![](../imgs/heap_tree.PNG)
 
 - **Heap property**: 
     - every node X , the key of the object stored in X , should be no more than the keys of X's children
     - key[ X ] <= all keys of X's children
     - keys could be arranged differently and it would still be a heap.
     - The important thing is that, in any heap, the root has to have a minimum value key.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/heap_tree_arrange.PNG)
+    - ![](../imgs/heap_tree_arrange.PNG)
 
 <h2 id="0b3df9e7addfc4dc5f269bcec5350c1c"></h2>
 
@@ -149,7 +149,7 @@ So if we wanna maintain the property that this tree is perfectly balanced  is pr
 
 ##### step1: stick K at end of last level
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/heap_insert.PNG)
+![](../imgs/heap_insert.PNG)
 
 如图，当往heap上添加 7,10的时候, 我们要做的就是往最后一层上一次添加node, 并不会破坏heap's property， 但是当继续添加 5 的时候，问题出现了，key property is not satisfied. In particular, it's violated at the node 12, the key of child is less than its own key. 
 
@@ -161,7 +161,7 @@ So in general , as you push up this 5 up the tree, there's only going to be one 
 
 ##### step2: Bubble-Up K until heap property is restored (eg. key of K's parent is <= k ).
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/heap_insert_step2.PNG)
+![](../imgs/heap_insert_step2.PNG)
 
 Runtime: O(logn)
 
@@ -185,13 +185,13 @@ Well, there's pretty much only one node that could fill the hole without causing
 
 ##### step2: move last leaf to be new root
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/heap_extract_min1.PNG)
+![](../imgs/heap_extract_min1.PNG)
 
 We now again have a , as perfectly balanced as possible binary tree , but of course now we've totally screwed up the heap property. 
 
 Now when you're trying to push notes down to the rightful position in the tree, there is 2 different swaps you could do, 1 for the left child, 1 for the right child.  看我这个例子，如果 交换13 和8, 那么新的 root 8 又会和 left child 4 发生冲突， 我们有制造了一个新的问题。That's a bad idea.  So we should take the smaller of the 2 children and swap the 13 with that.
     
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/heap_extract_min3.PNG) 
+![](../imgs/heap_extract_min3.PNG) 
 
 <h2 id="6ecc659c1121beb421ef62658552858f"></h2>
 

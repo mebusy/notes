@@ -30,13 +30,13 @@ One key to this chapter is to see the geometric meaning of ***linear inequalitie
 
 Figure 8.1 would look almost the same in three dimensions. The boundary becomes a plane like x + 2y + z = 4, and above it is the halfspace x + 2y + z ≥ 4. In n dimensions, the "plane" has dimension n - 1.  
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F8.1.png)
+![](../imgs/LA_F8.1.png)
 
 > Figure 8.1 Equations give lines and planes. Inequalities give halfspaces.
 
 Another constraint is fundamental to linear programming: x and y are required to be ***nonnegative***. This pair of inequalities x ≥ 0 and y ≥ 0 produces two more halfspaces. Figure 8.2 is bounded by the coordinate axes: x ≥ 0 admits all points to the right of x = 0, and y ≥ 0 is the halfspace above y = 0.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F8.2.png)
+![](../imgs/LA_F8.2.png)
 
 > Figure 8.2 The feasible set with flat sides, and the costs 2x + 3y, touching at B.
 

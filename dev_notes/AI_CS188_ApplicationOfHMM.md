@@ -30,7 +30,7 @@
     - Particle filtering is a main technique
  
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_app_robot_localization.png)
+![](../imgs/cs188_hmm_app_robot_localization.png)
 
  - eg. 初始 40000 particles 
  - 随着evidence 收集，当大量 particle 聚集到一处时， 在 resample 的时候，可以减少 particle 的数量
@@ -57,14 +57,14 @@ You can not just localize the robot , you can also build a map at the same time.
 
 DBNs are a special form of HMM. At each time it can be more than one variable that's in the state and more than one variable that's in the evidence. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_app_DBNs.png)
+![](../imgs/cs188_hmm_app_DBNs.png)
 
 So you could have 2 ghosts , each of them has own state variable -- their location, and each of them has their own evidence variable -- something noise about where they might be. 
 
 Then as time passes somehow the way to transition to next time where they might be is related. Ghost B might decide where to go based on where ghost A is. Same for ghost A. 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_app_DBNs_trans.png)
+![](../imgs/cs188_hmm_app_DBNs_trans.png)
 
  - We want to track multiple variables over time, using multiple sources of evidence
  - Idea: Repeat a fixed Bayes net structure at each time
@@ -101,7 +101,7 @@ quite important
 
 A different way of doing inference. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_MLE.png)
+![](../imgs/cs188_hmm_MLE.png)
 
 So far what we've looked at is something that computes the distribution over possible states at the current time , given all the evidence we've seen so far.
 
@@ -114,7 +114,7 @@ Sometimes what you want to do is you see all the evidence and based on all the e
 We're given an HMM still , and the query is what's the most likely explanation of the evidence we have observed. 
 
  - New query: most likely explanation:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_app_mle_query.png)
+    - ![](../imgs/cs188_hmm_app_mle_query.png)
     - we're trying to find what the most likely sequence of X variables. 
  - New method: the Viterbi algorithm
 
@@ -145,11 +145,11 @@ We're given an HMM still , and the query is what's the most likely explanation o
 
 
  - Forward Algorithm (Sum)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_app_forward_algorithm.png)
+    - ![](../imgs/cs188_hmm_app_forward_algorithm.png)
     - recursive computation 
     - we keep track of the probability of x<sub>t</sub> jointly with all the evidence so far . 
  - Viterbi Algorithm (Max)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_app_viterbi_algorithm.png)
+    - ![](../imgs/cs188_hmm_app_viterbi_algorithm.png)
     - changed ∑ to max
 
 ---
@@ -187,7 +187,7 @@ We're given an HMM still , and the query is what's the most likely explanation o
 
 ---
 
- [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_hmm_app_state_trellis.png
+ [1]: ../imgs/cs188_hmm_app_state_trellis.png
 
 
 

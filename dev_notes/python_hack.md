@@ -527,7 +527,7 @@ class B(A):
 >>> 
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/python_hack_ast_code_to_ast.png)
+![](../imgs/python_hack_ast_code_to_ast.png)
 
 - An AST construction always starts with a root element
     - which is usually an ast. Module object.
@@ -689,7 +689,7 @@ $ python -m cProfile myscript.py
     ...
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/python_hack_cprofile.png)
+![](../imgs/python_hack_cprofile.png)
 
 - You can use the -s option to sort by other fields;
     - e.g. `-s time` will sort by internal time.

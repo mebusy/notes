@@ -642,28 +642,28 @@ func (ts *TicketStore) GetDone() []string {  // wait free, return immediately
 
 ## 1. Not Accepting Interface 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_mistake_10.png)
+![](../imgs/go_mistake_10.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_mistake_11.png)
+![](../imgs/go_mistake_11.png)
 
 <h2 id="ed144dabd32394149cf28d4a7b7e6df0"></h2>
 
 ## 2. Not using io.Reader & io.Writer 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_mistake_20.png)
+![](../imgs/go_mistake_20.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_mistake_21.png)
+![](../imgs/go_mistake_21.png)
 
 
 <h2 id="51fc84b7a5892cfab769578c835e6dce"></h2>
 
 ## 3. Requiring Broad Interfaces 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_mistake_30.png)
+![](../imgs/go_mistake_30.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_mistake_31.png)
+![](../imgs/go_mistake_31.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_mistake_32.png)
+![](../imgs/go_mistake_32.png)
 
 
 <h2 id="fda18c942bbc981e6af31db7598aed9c"></h2>
@@ -676,7 +676,7 @@ func (ts *TicketStore) GetDone() []string {  // wait free, return immediately
 
 **Functions Can Be Used With Interface**
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_mistake_40.png)
+![](../imgs/go_mistake_40.png)
 
 <h2 id="5ee565fbabaaf661c451292e4fabe3b6"></h2>
 
@@ -686,7 +686,7 @@ func (ts *TicketStore) GetDone() []string {  // wait free, return immediately
  - If you want to **share** the value with a function or method, then **use a pointer**
  - if you **don't want** to **share** it, then use **a value** (copy)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_mistake_50.png)
+![](../imgs/go_mistake_50.png)
 
 <h2 id="75d85d3f3f9eb82be870483a781ae521"></h2>
 
@@ -729,17 +729,17 @@ type error interface {
  - `errors.New( "error here" )` is usually sufficient
  - Exported Error Variables can be **easily checked**
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_mistake_60.png)
+![](../imgs/go_mistake_60.png)
 
  - this is fine it works, but how do you compare that ?  usually people use string comparison and that's generally not the best way to do things 
  - so better is to export it with the variable and now we can check values 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_mistake_61.png)
+![](../imgs/go_mistake_61.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_mistake_62.png)
+![](../imgs/go_mistake_62.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_mistake_63.png)
+![](../imgs/go_mistake_63.png)
 
 <h2 id="a4e33f2edb2e0827280629149b1ebe02"></h2>
 
@@ -750,11 +750,11 @@ type error interface {
  - Can provide **dynamic values** (based on internal error state)
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_mistake_64.png)
+![](../imgs/go_mistake_64.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_mistake_65.png)
+![](../imgs/go_mistake_65.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_mistake_66.png)
+![](../imgs/go_mistake_66.png)
 
 <h2 id="895c130d3c5e6375f5b8f1d2f3fc022f"></h2>
 

@@ -34,7 +34,7 @@ SVM 在学习复杂的非线性方程时，提供了一种更清晰更强大的�
 
 我们看一下 logistic regression 的代价函数 J 和 z( θᵀx )的函数图：
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SVM_LogisticCost.png)
+![](../imgs/SVM_LogisticCost.png)
 
 与逻辑回归不同, SVM 使用2条直线（粉红色）来近似地替代 log函数。
 
@@ -53,7 +53,7 @@ SVM 在学习复杂的非线性方程时，提供了一种更清晰更强大的�
 
 如图:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SVM_cost_function.png)
+![](../imgs/SVM_cost_function.png)
 
 在逻辑回归中，我们一般使用 θᵀx >=0 来区分正负样本，SVM 中，区分会更加严格：
 
@@ -72,7 +72,7 @@ Linearly separable case： (数据集是)线性可分, 既用一条直线可以�
 
 `margin of SVM:`
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LargeMarginClassifier.png)
+![](../imgs/LargeMarginClassifier.png)
 
 SVM会 尽量使用最大的 margin 来分离样本。
 
@@ -82,7 +82,7 @@ SVM会 尽量使用最大的 margin 来分离样本。
 
 大间距分类器有时会受到 异常点(outliers) 的影响, 如图：
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LMC_with_outliers.png)
+![](../imgs/LMC_with_outliers.png)
 
 仅仅因为1个异常点，就将决策边界从黑线变为红线 是不明智的。事实上，如果SVM 正则化参数 设置的过大，就会出现这个问题。
 
@@ -108,9 +108,9 @@ p⁽ⁱ⁾·‖θ‖ <=-1,   if y=⁽ⁱ⁾0;
 
 就是为什么SVM不会选择第一幅图的决策边界(绿色)的原因:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/math_in_large_margin_classification.ppng.png)
+![](../imgs/math_in_large_margin_classification.ppng.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/math_in_large_margin_classification2.png)
+![](../imgs/math_in_large_margin_classification2.png)
 
 说明:
 
@@ -136,7 +136,7 @@ SVM 使用完全不同的做法，来创建 新的feature (假设我们要创建
 
 `fᵢ = similarity( x , l⁽ⁱ⁾ )`
 
-= ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SVM_similarity.png)
+= ![](../imgs/SVM_similarity.png)
 
  - 当 x 接近 landmark 的时候， f ≈1
  - 当 x 远离 landmark 的时候， f ≈0
@@ -145,13 +145,13 @@ SVM 使用完全不同的做法，来创建 新的feature (假设我们要创建
 
 高斯核参数的影响:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/GaussKernelParamete.png)
+![](../imgs/GaussKernelParamete.png)
 
 landmark 点和θ的作用：
 
 假设如下3个landmark，我们使用 θ₀+θ₁x₁+θ₂x₂+θ₃x₃ >= 0 来预测"1" , 并且通过拟合，得到 θ₀=0.5 ,θ₁=1, θ₂=1, θ₃=0.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Landmark_and_theta.png)
+![](../imgs/Landmark_and_theta.png)
 
 
 <h2 id="e3a358193b95ac6eef55c51c9075c131"></h2>
@@ -166,7 +166,7 @@ landmark 点和θ的作用：
 
 SVM 的代码函数变为 (其中,n=m) :
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SVM_cost_function_f.png)
+![](../imgs/SVM_cost_function_f.png)
  
 <h2 id="3930a1467c8ad5a6fa62e45b57a8cb66"></h2>
 

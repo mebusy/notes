@@ -33,7 +33,7 @@
 
 根据右图的房屋海拔数据，你可以说，海拔超过73英尺的房屋，是旧金山的房屋。  
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Visual-intro-ML-1.png)
+![](../imgs/Visual-intro-ML-1.png)
 
 
 <h2 id="f0119c0f423ac97c1fa8c55ca802f568"></h2>
@@ -43,7 +43,7 @@
 添加另一个维度 可以获得更多细微差别。 例如，纽约的公寓 每平方英尺价格非常高。  
 房屋海拔 和 每平方英尺价格的 散点图， 将帮助我们 区分低海拔的房屋。  
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Visual-intro-ML-2.png)
+![](../imgs/Visual-intro-ML-2.png)
 
 该数据表明，海拔低于73英尺的房屋中，那些 每平方英尺 超过1776美元的 房屋在 纽约。  
 
@@ -56,7 +56,7 @@
 可以按照 海拔（>73英尺） 和每平方英尺（>1776美元）在散点图划出区域。  
 绿色和蓝色区域 的房子，分别位于 旧金山和纽约 。  
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Visual-intro-ML-3.png)
+![](../imgs/Visual-intro-ML-3.png)
 
 确定边界，是 data using 数学中， 统计学习的本质。  
 
@@ -84,7 +84,7 @@
 我们把高度图 （图1） 转为 直方图 histogram。  
 
 我们可以更好地看到，房屋 在各个海拔高度上 出现的频率 。  
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Visual-intro-ML-4.png)
+![](../imgs/Visual-intro-ML-4.png)
 可以看到， 纽约最高的房屋为73英尺， 但大多数的房屋，都远远低于这个高度。
 
 <h2 id="80ab4d0fad5a889616d4b65cd37e6304"></h2>

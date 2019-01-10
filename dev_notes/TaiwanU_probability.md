@@ -179,14 +179,14 @@ P(Ace) = P({黑桃A}) + P({草花A}) + P({红心A}) + P({方块A}) = 1/52 + 1/52
  - P(A) = P(A-B) + P(A∩B)
     - 一个事件的概率，可以表示为 它 与另一个事件的差集 和 交集的 概率之和
  - 证明：
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_deduction.png)
+    - ![](../imgs/TU_probability_deduction.png)
 
 ---
 
  - P(A ∪ B) = P(A) + P(B) - P(A∩B) 
     - 两个事件并集的概率，可以用 集合各自的概率 和 它们交集的 概率来表示
  - 证明
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_deduction_01.png)
+    - ![](../imgs/TU_probability_deduction_01.png)
  - Ex: 在大陆随便碰上一个人，此人爱甜豆花或爱咸豆花 机率为何? 
     - P(爱甜 ∪ 爱咸) = P(爱甜) + P(爱咸) − P(爱甜 ∩ 爱咸) = ⋯
      
@@ -198,7 +198,7 @@ P(Ace) = P({黑桃A}) + P({草花A}) + P({红心A}) + P({方块A}) = 1/52 + 1/52
  - 证明
     - ![][1]
  - Ex: 阿宅心仪某可爱女店员。她的笑容打开了他封 闭的心。阿宅注意到她笑容会受生意的影响，于是 每天忠实记录该店生意与她有无对他笑。店生意有 满、普、惨三态，而她有笑、怒二态。根据记录:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_deduction_example_lovely_girl.png)
+    - ![](../imgs/TU_probability_deduction_example_lovely_girl.png)
     - P(笑) = 1/20 + 5/20 + 5/20 = 11/20
 
 ---
@@ -262,7 +262,7 @@ P(Ace) = P({黑桃A}) + P({草花A}) + P({红心A}) + P({方块A}) = 1/52 + 1/52
 ### 条件概率性质:
 
  - 对任何事件 X 及任何条件事件 Y ，我们有：
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ST_conditional_probability_properties.png)
+    - ![](../imgs/ST_conditional_probability_properties.png)
 
 ---
 
@@ -287,7 +287,7 @@ P(Ace) = P({黑桃A}) + P({草花A}) + P({红心A}) + P({方块A}) = 1/52 + 1/52
  - 若C₁,C₂,...,C<sub>n</sub> 互斥,且 C₁ ∪ C₂ ∪ ... ∪ C<sub>n</sub> = S , 则对任意事件 A ，我们有：
     - **P(Cⱼ|A) = P(A|Cⱼ)P(Cⱼ) / Σⁿ<sub>i=1</sub> P(A|Cⱼ)·P(Cⱼ)**
  - Proof:
-    - P(Cⱼ|A) = ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_bayes_proof.png)
+    - P(Cⱼ|A) = ![](../imgs/TU_probability_bayes_proof.png)
  - Bayes' Rule 用在很多时候，我们关心的事件(A) 根条件事件C 互换位置。
     - 其实就是全概率定理 和  条件概率的 联合使用
  - Ex: 一日，老板见可爱店员笑， 请问在此情况下，当日生意满座之机率为何？
@@ -345,7 +345,7 @@ p为在确认猫 3 死2活的情况下，打开下个猫箱看到活猫的机率
  - P(Y|X₁,X₂) = P(Y,X₁,X₂) / P(X₁,X₂) = P(Y,X₁|X₂)·P(X₂) / P(X₁|X₂)·P(X₂) 
     - = P(Y,X₁|X₂) / P(X₁|X₂)
  - P(Y|X₁,X₂,...,X<sub>n</sub>) 
-    - = ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_multivars_condition.png)
+    - = ![](../imgs/TU_probability_multivars_condition.png)
 
 
 
@@ -410,7 +410,7 @@ p为在确认猫 3 死2活的情况下，打开下个猫箱看到活猫的机率
     - 问最后小明退出追求之机率为？
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_example_graph_solve.png)
+![](../imgs/TU_probability_example_graph_solve.png)
 
 
 <h2 id="b8a639c4111775b66f390f44a870c2a0"></h2>
@@ -640,7 +640,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
 
  - 对任一个随机变数 X ，我们定义 其 CDF 为函数:
     - F<sub>X</sub>(x) = P(X ≤ x) 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_cdf.png)
+    - ![](../imgs/TU_probability_cdf.png)
     - 其中 X 是随机变数
  - Ex 幸运之轮  F<sub>X</sub>(0.5) = P(X≤0.5) = 1/2
  
@@ -652,7 +652,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
  - 最有用的用途: 计算 X 落在某范围内的机率
     - P(3< X≤ 5 ) = P(X≤ 5) - P( X<= 3)
     - **= F<sub>X</sub>(5) - F<sub>X</sub>(3)**
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_cdf_ab.png)
+    - ![](../imgs/TU_probability_cdf_ab.png)
  - P( a < X ≤ b ) = F<sub>X</sub>(b) - F<sub>X</sub>(a)
  - P( a ≤ X ≤ b ) = F<sub>X</sub>(b) - F<sub>X</sub>(a) + P(X=a)
 
@@ -662,7 +662,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
 
  - Ex:X为骰子的点数，故P(X=1) =P(X=2) =P(X=3) =P(X=4) =P(X=5) =P(X=6) =1/6
  - CDF: F<sub>X</sub>(x) = P(X ≤ x)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_discrete_pdf.png)
+    - ![](../imgs/TU_probability_discrete_pdf.png)
  - P( 3< X≤ 5 ) = F<sub>X</sub>(5) - F<sub>X</sub>(3) = 5/6 - 3/6 = 2/6
  - P( 3< X< 5 ) = P( 3< X≤ 5⁻ ) = F<sub>X</sub>(5⁻) - F<sub>X</sub>(3)  = F<sub>X</sub>(5) - P(X=5) - F<sub>X</sub>(3) = 1/6
 
@@ -672,7 +672,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
 
  - Ex: X 为幸运之轮所停下的数字，X ∈ [ 0,1 )    
     - CDF: F<sub>X</sub>(x) = P( X ≤ x )
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_conti_cdf.png)
+    - ![](../imgs/TU_probability_conti_cdf.png)
  - P( 0.3< X≤ 0.5 ) = F<sub>X</sub>(0.5) - F<sub>X</sub>(0.3) = 0.5 - 0.3 = 0.2
  - P( 0.3< X< 0.5 ) = F<sub>X</sub>(0.5⁻) - F<sub>X</sub>(0.3) = 0.5 - 0.3 = 0.2
 
@@ -709,7 +709,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
 ### PMF 跟 CDF 的关系?
 
  - PMF -> CDF
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_cdf_pmf.png)
+    - ![](../imgs/TU_probability_cdf_pmf.png)
  - CDF -> PMF
     - P<sub>X</sub>(x) = F<sub>X</sub>(x⁺) - F<sub>X</sub>(x⁻)
 
@@ -719,7 +719,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
 ### 机率分布 (Probability Distribution)
 
  - 任何一个 PMF(或是之后介绍的 PDF)都称作是一种 ***机率分布*** (将总和为 1 的机率分布在点上之故)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_PD.png)
+    - ![](../imgs/TU_probability_PD.png)
 
 ---
 
@@ -740,7 +740,7 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
  - PMF: 若实验成功机率为 p , 作 1 次实验， X 表成功次数
  - CDF 见右图
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_bernoulli.png)
+![](../imgs/TU_probability_bernoulli.png)
 
 ---
 
@@ -755,10 +755,10 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
  - 作 n 次实验，1 个机率，在意 n 次实验出 现某结果 k 次之机率 --> Binomial 机率分布
     
  - 若实验成功几率为 0.6， 做10次实验， X表示成功次数
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_binomial1.png)
+    - ![](../imgs/TU_probability_binomial1.png)
     - left is PMF, right is CDF
  - PMF: 若实验成功机率为 p, 作 n 次实验， X 表成功次数
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_binomial2.png)
+    - ![](../imgs/TU_probability_binomial2.png)
 
 ```python
 import numpy as np
@@ -768,7 +768,7 @@ plt.hist(x1, normed=1,  facecolor='green', alpha=0.5)
 plt.show()
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_Binomial_10_06_graph.png)
+![](../imgs/TU_probability_Binomial_10_06_graph.png)
 
  - 为什么这么像 正态分布？
 
@@ -783,7 +783,7 @@ pylab.plot(x,pmf)
 pylab.show()
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TaiU_probability_binom2.png)
+![](../imgs/TaiU_probability_binom2.png)
 
 
 
@@ -797,9 +797,9 @@ pylab.show()
     - 狡兔三窟:出现在窟 1、窟 2、窟 3 机会均等
  - 1 次实验，n 种结果，各结果机率均等。在意某结果发生否 -->  Uniform 机率分布
  - 如果 X 等于 3,4,...,7 的机率均等
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_uniform1.png)
+    - ![](../imgs/TU_probability_uniform1.png)
  - 如果X等于a,a+1...,b 的机率均等
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_uniform1.png)
+    - ![](../imgs/TU_probability_uniform1.png)
 
 
 <h2 id="7903bb94dad83aeea3bf8559e6cdd143"></h2>
@@ -816,7 +816,7 @@ pylab.show()
  - 六脉神剑:那妈宝废物段誉每次要打 六脉神剑，打的出来的机率为 p 。他在第 X 次 尝试才成功打出六脉神剑。 X = x 的机率?
     - 机率 = (1-p)<sup>x-1</sup> · p
  - 若实验成功机率为 p，尝 试到成功为止，作了 X 次尝试
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_geometric.png)
+    - ![](../imgs/TU_probability_geometric.png)
  - 有失忆性！ 离散分布中唯一的失忆性分布
 
 ```python
@@ -828,7 +828,7 @@ plt.title('p = 0.3')
 plt.show()
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_geometric_03_graph.png)
+![](../imgs/TU_probability_geometric_03_graph.png)
 
  - 近似 指数分布！
 
@@ -850,7 +850,7 @@ plt.show()
  - 六脉神剑:那妈宝废物段誉每次要打六脉神 剑，打的出来的机率为 p 。成功 k 次便功力耗尽。 他在第 X 次尝试才成功打出 k 次六脉神剑。 X = x 的机率?
     - C(x-1, k-1) x (1-p)<sup>x-k</sup> x pᵏ
  - 若实验成功机率为 p , 到第 k 次成功为止共作了 X 次
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_pascal.png)
+    - ![](../imgs/TU_probability_pascal.png)
 
 ```python
 import numpy as np
@@ -861,7 +861,7 @@ plt.title('k=5, p=0.1')
 plt.show()
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_Pascal_k5_p01_graph.png)
+![](../imgs/TU_probability_Pascal_k5_p01_graph.png)
 
 
 <h2 id="66e278878307932e688a55d600961fdf"></h2>
@@ -873,8 +873,8 @@ plt.show()
     - 费雯被嘘:费雯兄 po 文后， 平均每分钟会有 5 人嘘之 。 问发文后 二十分钟 变成 XX (100 嘘) 之机率?
  - 某结果出现之平均速率(rate: 次数/时间)已知。问持续观察某 时间长度后，看到该结果出现 k 次之机率? --> Poisson 机率分布
  - 已知某事发生速率为每单位时间 λ 次，观察时间为 T 时间单位。 X 为该观察时间 内发生该事的总次数。则:
-    - PMF: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_poisson_PMF.png)
-    - CDF: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_poisson_CDF.png)
+    - PMF: ![](../imgs/TU_probability_poisson_PMF.png)
+    - CDF: ![](../imgs/TU_probability_poisson_CDF.png)
  - 费雯被嘘:费雯兄 po 文后，平均 每分钟会有 5 人嘘之。问发文后 20 分钟变 成 XX (100 嘘) 之机率?
     - λ = 5 嘘/分，若定义随机变量 X 为 20 分钟内的嘘数
     - => X ~ POI(λT) = POI(100) = e⁻¹⁰⁰·100¹⁰⁰ / 100! 
@@ -893,12 +893,12 @@ plt.title('lambda = 5 ')
 plt.show()
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_poisson_dist_graph.png)
+![](../imgs/TU_probability_poisson_dist_graph.png)
 
 
 -----
 
- [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_probability_deduction_02.png
+ [1]: ../imgs/TU_probability_deduction_02.png
 
 
 

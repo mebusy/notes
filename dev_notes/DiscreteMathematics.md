@@ -323,7 +323,7 @@
  - 前n列是所有变元的取值组合
  - 最后1列是公式A的真值
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_A_truth_table.png)
+![](../imgs/DM_A_truth_table.png)
 
  - 成真赋值和成假赋值
     - 当公式A对赋值α为真时

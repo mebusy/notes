@@ -274,15 +274,15 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 
  - slop field of function x² - x
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_slope_field.png)
+    - ![](../imgs/calculusone_slope_field.png)
  - instead of plotting a value at some height, I draw little tiny line segments with that slope.
  
 --- 
 
  - slop field of function xcosx
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_slope_field_xcosx.png)
+    - ![](../imgs/calculusone_slope_field_xcosx.png)
  - 利用slop field， 可以大致画出 原函数的图像
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_slope_field_xsinx+cosx.png)
+    - ![](../imgs/calculusone_slope_field_xsinx+cosx.png)
     - graph for y = xsinx + cosx 
     - +C can move graph up and down.
 
@@ -300,9 +300,9 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 ∑<sub>n=</sub>ᵏ₁ n = ?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_2_integration_sum_meaning1.png)
+![](../imgs/calculusone_2_integration_sum_meaning1.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_2_integration_sum_meaning2.png)
+![](../imgs/calculusone_2_integration_sum_meaning2.png)
 
 
 ∑<sub>n=</sub>ᵏ₁ n = (k+1)·k/2
@@ -322,7 +322,7 @@ There's a visual way to gain some insight into these anti-differentiation proble
 = k² 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_2_integration_sum_odd.png)
+![](../imgs/calculusone_2_integration_sum_odd.png)
 
 <h2 id="bb1b3996821d028092f6f37259c6dc7d"></h2>
 
@@ -332,7 +332,7 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 = k·(k+1)·(2k+1) /6
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_2_integration_sum_square.png)
+![](../imgs/calculusone_2_integration_sum_square.png)
 
 大图正好是 4个小图的 3倍。 4个小图平铺，等于大图中间部分。
 
@@ -352,7 +352,7 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 = k²·(k+1)² /4
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_2_integration_sum_cube.png)
+![](../imgs/calculusone_2_integration_sum_cube.png)
 
 
 <h2 id="4803201396fe93254689a378f4acea16"></h2>
@@ -363,7 +363,7 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 ### What is the definition of the integral of f(x) from x = a to b?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_integration_ab.png)
+![](../imgs/calculusone_integration_ab.png)
 
  - Thm: If *f* is continuous, then *f* is integrable 
     - means ∫<sub>a,b</sub>f(x)dx  exist.
@@ -432,17 +432,17 @@ now we get the final answer:
 
 ### What sorts of properties does the integral satisfy?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_integral_satisfied_property1.png)
+![](../imgs/calculusone_integral_satisfied_property1.png)
 
 ∑<sub>n=</sub>ᵐ₁ f(n) + ∑<sub>n=</sub>ᵏ<sub>m+1</sub> f(n) = ∑<sub>n=</sub>ᵏ₁ f(n)
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_integral_satisfied_property2.png)
+![](../imgs/calculusone_integral_satisfied_property2.png)
 
 ∑<sub>n=</sub>ᵇₐ k·f(n)  = k·∑<sub>n=</sub>ᵇₐf(n)
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_integral_satisfied_property3.png)
+![](../imgs/calculusone_integral_satisfied_property3.png)
 
 ∑<sub>n=</sub>ᵇₐ (f(n)+g(n)) = ∑<sub>n=</sub>ᵇₐ f(n) + ∑<sub>n=</sub>ᵇₐ g(n)
 
@@ -454,9 +454,9 @@ now we get the final answer:
 
 When is A(x) = ∫ˣₐf(t)dt increasing ? Decreasing ?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_integral_acc_function.png)
+![](../imgs/calculusone_integral_acc_function.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_integral_acc_function_decreasing.png)
+![](../imgs/calculusone_integral_acc_function_decreasing.png)
 
 The integrals are not exactly measuring area, they're measuring **singed area**. 
 
@@ -486,7 +486,7 @@ The integrals are not exactly measuring area, they're measuring **singed area**.
     - F(x) = ∫ˣₐ f(t)dt.
  - Then F is continuous on [a,b] , differntiable on (a,b) , and F'(x) = f(x) 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_integrate_fundamental_theorem.png)
+![](../imgs/calculus_integrate_fundamental_theorem.png)
 
 --- 
 
@@ -542,7 +542,7 @@ Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>
 
 ### What is the area between the graphs of y = √x and y = x² ?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calc_integrate_area_between_2_graph.png)
+![](../imgs/calc_integrate_area_between_2_graph.png)
 
  - ∫¹₀ (√x -x²)dx = [ x<sup>3/2</sup>/(3/2) - x³/3  ]¹₀ = 1/3
 
@@ -928,7 +928,7 @@ let u=x, dv=eˣdx
 
 Now, we can use the same trick to attack  similar integration problems. For example, let's say you want to  anti-differentiate some polynomial in x times eˣ.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus1_integration_by_parts_polynomial.png)
+![](../imgs/calculus1_integration_by_parts_polynomial.png)
 
 <h2 id="f9c1c400e6d3da0434fc23aca4c66e8b"></h2>
 
@@ -1102,7 +1102,7 @@ TODO
 
 ### What happens when I use thin horizontal rectangles to compute area?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_compute_area_with_horizontal_rectangle.png)
+![](../imgs/calculus_compute_area_with_horizontal_rectangle.png)
 
  - height of rectangle : dy
  - width of rectangle: 2√y 
@@ -1112,22 +1112,22 @@ TODO
 
 ### When should I use horizontal as opposed to vertical pieces?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_integrate_horizontal_strips0.png)
+![](../imgs/calculus_integrate_horizontal_strips0.png)
 
 the bad news about vertical strips is that there's 2 different kinds of vertical strips.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_integrate_horizontal_strips1.png)
+![](../imgs/calculus_integrate_horizontal_strips1.png)
 
 The vertical strips on the left bottom-left side touch the orange and the purple edge, and the vertical strips on the right-top touch orange and blue edge.
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_integrate_horizontal_strips2.png)
+![](../imgs/calculus_integrate_horizontal_strips2.png)
 
 if I cut this up into horizontal strips, all of my horizontal strips have an orange side and a blue side. I have only **one type** of horizontal strip. 
 
 ---
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_integrate_horizontal_strips_example.png)
+![](../imgs/calculus_integrate_horizontal_strips_example.png)
 
  - height: dy
  - width :  (y²+1)/2 - y²
@@ -1152,19 +1152,19 @@ Write an integral representing the area of the region bounded by the lines x=8, 
 
 ### What does "volume" even mean?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calclus_volumn_example0.png)
+![](../imgs/calclus_volumn_example0.png)
 
 cut this thing up into slices and add up the volumes of the little slices
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calclus_volumn_example1.png)
+![](../imgs/calclus_volumn_example1.png)
 
 And what is the volumn of one of those slice ?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_volumn_vol_of_slice.png)
+![](../imgs/calculus_volumn_vol_of_slice.png)
 
  = πr²dx
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_volumn_cylinder.png)
+![](../imgs/calculus_volumn_cylinder.png)
 
 volumn = ∫ₓ₌²₀ π(x/2)²dx
 
@@ -1176,7 +1176,7 @@ volumn = ∫ₓ₌²₀ π(x/2)²dx
 
 ### What is the volume of a sphere?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_calculus_volumn_of_sphere.png)
+![](../imgs/calculus_calculus_volumn_of_sphere.png)
 
 
 volumn = ∫ʳ₋ᵣ π(√(r²-x²))²dy
@@ -1193,17 +1193,17 @@ volumn = ∫ʳ₋ᵣ π(√(r²-x²))²dy
 
 ### How do washers help to compute the volume of a solid of revolution?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_volumn_of_a_solid_of_revolution.png)
+![](../imgs/calculus_volumn_of_a_solid_of_revolution.png)
 
 计算绿色方块所在图像，饶 x 轴旋转一周后，所形成的物体的体积。
 
 We pick one of the green rectangle, and rotate 360' by *x*. We call this object "washer".
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_volumn_washer.png)
+![](../imgs/calculus_volumn_washer.png)
 
 What's the volumn of a washer ?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_volumn_washer2.png)
+![](../imgs/calculus_volumn_washer2.png)
 
 `v_washer` = π(R²-r²)dx
 
@@ -1225,10 +1225,10 @@ V = ∫¹₀ π(√x²-(x²)²)dx
 
 ### What is the volume of a thin shell?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_disk_shell_washer.png)
+![](../imgs/calculus_disk_shell_washer.png)
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_volumn_1_minus_xx.png)
+![](../imgs/calculus_volumn_1_minus_xx.png)
 
 for each shell :
 
@@ -1243,13 +1243,13 @@ V = ∫¹₀ π·2x·(1-x²) dx
 
 ### What is the volume of a sphere with a hole drilled in it?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_volumn_sphere_with_hold.png)
+![](../imgs/calculus_volumn_sphere_with_hold.png)
 
 we can solve it by cutting it in shells or washers.
 
 we use shells here.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_volumn_sphere_with_hole_shells.png)
+![](../imgs/calculus_volumn_sphere_with_hole_shells.png)
 
 V = ∫²₁ 2πx·2√(4-x²)dx 
 
@@ -1265,7 +1265,7 @@ V = ∫²₁ 2πx·2√(4-x²)dx
 
 ### What does "length" even mean?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_application_length.png)
+![](../imgs/calculus_application_length.png)
 
 The total length of stairs is 2 . What if I make those stairs even smaller ?  still 2.
 
@@ -1292,7 +1292,7 @@ So here's the formula that we're going to use ?
 
 ### On the graph of y² = x³, what is the length of a certain arc?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/caluculus_application_length_y_x_3_over_2.png)
+![](../imgs/caluculus_application_length_y_x_3_over_2.png)
 
 dy/dx = 3/2·x<sup>1/2</sup>
 

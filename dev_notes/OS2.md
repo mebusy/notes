@@ -280,7 +280,7 @@ x = 1;     x = 2;
 
 ## Where are we going with synchronization?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_what_going_to_synchronize.png)
+![](../imgs/os_thread_what_going_to_synchronize.png)
 
  - We are going to implement various higher-level synchronization primitives using atomic operations
     - Everything is pretty painful if only atomic primitives are load and store
@@ -468,7 +468,7 @@ Release() {
     - Responsibility of the next thread to re-enable ints
     - When the sleeping thread wakes up, returns to acquire and re-enables interrupts
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_reenable_ints_after_sleep.png)
+![](../imgs/os_thread_reenable_ints_after_sleep.png)
 
 
 <h2 id="fd67835f251cf36ce8c281c452376add"></h2>
@@ -655,7 +655,7 @@ Release() {
     - First defined by Dijkstra in late 60s
     - Main synchronization primitive used in original UNIX
     - Semaphores are really named after the notion of kind of the stop lights that are on train tracks
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_semaphores.png)
+        - ![](../imgs/os_thread_semaphores.png)
  - Definition: a Semaphore has a non-negative integer value and supports the following two operations:
     - **P():** an atomic operation that waits for semaphore to become positive, then decrements it by 1  
         - Think of this as the wait() operation
@@ -679,11 +679,11 @@ Release() {
     - Here is a semaphore initialized to 2 for resource control:
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_semaphores_value_2.png)
+![](../imgs/os_thread_semaphores_value_2.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_semaphores_value_1.png)
+![](../imgs/os_thread_semaphores_value_1.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_semaphores_value_0.png)
+![](../imgs/os_thread_semaphores_value_0.png)
 
 <h2 id="df3e6a40766c1b8a18ce0e66e1b5c504"></h2>
 
@@ -811,7 +811,7 @@ Basically a monitor with condition variable looks kind of this. Our conditon var
 
 The lock provides mutual exclusion to get in and deal with the condition variables . and the conditional variables are queues of threads waiting inside critical section. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_monitor.png)
+![](../imgs/os_thread_monitor.png)
 
  - **Lock:**  the lock provides mutual exclusion to shared data
     - Always acquire before accessing shared data structure
@@ -1010,7 +1010,7 @@ addToQueue(&object) {
 }
 ```
          
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_atomic_add_to_linkedlist.png)
+![](../imgs/os_thread_atomic_add_to_linkedlist.png)
 
  - 虚线的链接，是不停尝试的部分
  - 确保没有其他人修改 root的情况下，插入 新节点
@@ -1019,7 +1019,7 @@ addToQueue(&object) {
 
 ## Readers/Writers Problem
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_reader_writers_problem.png)
+![](../imgs/os_thread_reader_writers_problem.png)
 
  - Motivation: Consider a shared database
     - Two classes of users:
@@ -1204,7 +1204,7 @@ Signal() {
     - Signal when change something so any waiting threads can proceed
  - Basic structure of monitor-based program:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_monitor_conclusion.png)
+![](../imgs/os_thread_monitor_conclusion.png)
 
 
 <h2 id="28f651ed7afea2c50425c709668b676a"></h2>
@@ -1399,7 +1399,7 @@ while (!ATMRequest()) {
         - a very specific type of starvation in which you have a circular waiting for resources
         - Thread A owns Res 1 and is waiting for Res 2
         - Thread B owns Res 2 and is waiting for Res 1
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_deadlock.png)
+        - ![](../imgs/os_thread_deadlock.png)
     - Deadlock => Starvation but not vice versa
         - Starvation can end (but doesn’t have to)
         - Deadlock can’t end without external intervention
@@ -1431,7 +1431,7 @@ x.V();      y.V();
 
 ### Bridge Crossing Example
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_deadlock_example_cars.png)
+![](../imgs/os_thread_deadlock_example_cars.png)
 
  - Each segment of road can be viewed as a resource
     - Car must own the segment under them
@@ -1448,7 +1448,7 @@ x.V();      y.V();
 
 ### Train Example (Wormhole-Routed Network)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_deadlock_example_train.png)
+![](../imgs/os_thread_deadlock_example_train.png)
 
  - Circular dependency (Deadlock!)
     - Each train wants to turn right
@@ -1463,7 +1463,7 @@ x.V();      y.V();
 
 ## Dining Lawyers Problem
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_dining_lawyers_problem.png)
+![](../imgs/os_thread_dining_lawyers_problem.png)
 
  - Five chopsticks/Five lawyers (really cheap restaurant)
     - Free-for all: Lawyer will grab any one they can
@@ -1511,7 +1511,7 @@ x.V();      y.V();
     - request edge – directed edge Tᵢ → Rⱼ
     - assignment edge – directed edge  Rⱼ → Tᵢ 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_resource_allocation_graph.png)
+![](../imgs/os_thread_resource_allocation_graph.png)
 
  - resources are represented by rectangles
     - dots inside rectagles are the number of equivalent resources in the system.
@@ -1527,7 +1527,7 @@ x.V();      y.V();
     - assignment edge – directed edge  Rⱼ → Tᵢ 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_resource_allocation_graph_example.png)
+![](../imgs/os_thread_resource_allocation_graph_example.png)
 
 
 <h2 id="51cbff7f5c9ab16fb72f7f72ee951f5c"></h2>

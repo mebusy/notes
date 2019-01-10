@@ -160,7 +160,7 @@ NameError: name 'x' is not defined
     - 而是如同 "大对象" 一样，直接在堆上为对象分配内存。
  - 完全空闲的 arena 会被释放，其内存交还给操作系统。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/python_arena.png)
+![](../imgs/python_arena.png)
 
  - 多个 arena 通过 arena_object 内的链表连接起来，共同构成 Python 内存池。 
 

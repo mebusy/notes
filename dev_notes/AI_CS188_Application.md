@@ -62,7 +62,7 @@
 
 ### Search for Pathing
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_application_starcraft_search_for_pathing.png)
+![](../imgs/cs188_application_starcraft_search_for_pathing.png)
 
  - you are the red unit , the greens are enemy 
  - you wanna arrive to top-up screen
@@ -75,7 +75,7 @@
 
 ### Minimax for Targeting
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_application_starcraft_minimax_for_targeting.jpg)
+![](../imgs/cs188_application_starcraft_minimax_for_targeting.jpg)
 
 In this game there are many things you might want to target.  There are production units can produce new unit , there are battle units that can damage you, ...  
 
@@ -85,7 +85,7 @@ The question is how I decide what to do ?   This is a minimax problem.
 
 ### Machine Learning for Micro Control
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_application_starcraft_micro_control.jpg)
+![](../imgs/cs188_application_starcraft_micro_control.jpg)
 
 Reinforcemeng learning used a policy search.
 
@@ -102,7 +102,7 @@ That's a lot like learning a set of ways for a feature vector.  So your policy i
 
 ### Inference / VPI / Scouting
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_application_starcraft_inference_VPI_scouting.jpg)
+![](../imgs/cs188_application_starcraft_inference_VPI_scouting.jpg)
 
 It's really interesting to know what the other units what the other player is doing. So what you want to build depends on what the enemy builds.  
 

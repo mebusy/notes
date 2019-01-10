@@ -100,12 +100,12 @@
 
 ### Stack
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_stack.png)
+![](../imgs/n2t_stack.png)
 
  - stack pointer
     - points to the location in which the next value is going to be pushed.
  - Stack arithmetic
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_stack_arithmetic.png)
+    - ![](../imgs/n2t_stack_arithmetic.png)
     - add: pop the 2 top most values , add them , then push the result back
     - neg: not simply negate , it will first of all pop the top value , negate it on the side and then push the result back.
  - Applying a function *f* on the stack:
@@ -113,7 +113,7 @@
     - computes *f* on the arguments
     - Pushes the result onto the stack
  - Boolean operations
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_stack_boolean_operation.png)
+    - ![](../imgs/n2t_stack_boolean_operation.png)
 
 <h2 id="ce74f8cad75b6370e8c76ee00dcb3777"></h2>
 
@@ -177,7 +177,7 @@ eq
 or
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_stack_commands.png)
+![](../imgs/n2t_stack_commands.png)
 
  - boolean
     -  fales : 0, true: -1
@@ -217,7 +217,7 @@ pop c
     - we need some mechannism to record the different roles of different variables in one's program. 
     - we do this by introducing the notion of **memory segments**.
  
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_memory_segment.png)
+![](../imgs/n2t_vm_memory_segment.png)
 
  - now the vm code can be written as 
 
@@ -235,7 +235,7 @@ pop local 2
  - 如果我们增加一个 virutal segment -- *constant* , it contains just 0,1,2,... 
  - 这样 Stack的 语法就可以 统一成:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_memory_segments2.png)
+![](../imgs/n2t_memory_segments2.png)
 
  - so why we need `push constant 17` , why can't we just say `push 17` ?
     - we do that, so we get a consistant syntax. 
@@ -272,7 +272,7 @@ pop local 2
         - SP stored in RAM[0]
         - Stack base addr = 256 , that is , it will start begin in address 256
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_stack_implementation.png)
+![](../imgs/n2t_stack_implementation.png)
 
 ```
 // push constant 17
@@ -304,7 +304,7 @@ M=M+1
 
 ### Implementing local
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_local_seg_implementation.png)
+![](../imgs/n2t_local_seg_implementation.png)
 
 ```
 // vm code: 
@@ -324,7 +324,7 @@ You write it !
     - 所以可以把 M1的内容先寄存到 (M2+1) , 然后就可以 M2,M2+1 做运算
     - 当然，最简单的办法是使用 预留的  general purpose register, 如果有提供的话
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_local_seg_operation.png)
+![](../imgs/n2t_local_seg_operation.png)
 
 
 <h2 id="4f42e18745e69276fd474fa9cca7b1ce"></h2>
@@ -337,7 +337,7 @@ You write it !
     - map the *object* fields and *array* entries that the method is currently processing onto the this and that segments.
  - local , argument , this and that are implemented precisely the same way.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_impl_local_argu_this_that.png)
+![](../imgs/n2t_impl_local_argu_this_that.png)
 
 
 <h2 id="b8dcb3b490d221a9976720a7119a0db6"></h2>
@@ -388,7 +388,7 @@ M=D
     - in the order in which they appear in the program. 
     - `push static i` , i 和 内存地址并没有直接关系
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_static_segment.png)
+![](../imgs/n2t_static_segment.png)
 
 <h2 id="1247a68afcaf24b007e0f6983e4d8068"></h2>
 
@@ -401,9 +401,9 @@ M=D
     - a fixed, 8-place memory segment 
     - Mapped on RAM locations 5 to 12.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_ram_implementation.png)
+![](../imgs/n2t_ram_implementation.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_impl_temp.png)
+![](../imgs/n2t_impl_temp.png)
 
 <h2 id="7d1afed0c366e2841c1a2a0fe1ddf8ed"></h2>
 
@@ -453,7 +453,7 @@ push pointer 0/1
 
  - Standard VM mapping on the Hack platform
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_stardard_vm_mapping.png)
+![](../imgs/n2t_stardard_vm_mapping.png)
 
 <h2 id="3d462674294fc4eaf8ff5814273c7910"></h2>
 
@@ -497,7 +497,7 @@ push pointer 0/1
         - if *cond* jump to execute the command just after *label*
         - (Requires pushing the condition to the stack just before the if-goto command)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_cond_jump.png)
+![](../imgs/n2t_vm_cond_jump.png)
 
  - Implementation:
     - simple: the assembly langauge has similar branching commands.
@@ -508,7 +508,7 @@ push pointer 0/1
 ## 2.3 Functions Abstraction
 
  - Functions in the VM language
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_funcs_in_VM.png)
+    - ![](../imgs/n2t_funcs_in_VM.png)
  - The VM language features:
     - primitive operations (fixed) : add, sub, ...
     - abstract operations (  extensible) : multiply , sqrt, ...
@@ -519,7 +519,7 @@ push pointer 0/1
 
 ### function defining 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_definition.png)
+![](../imgs/n2t_vm_func_definition.png)
 
  - `function mult 2` 
     - 2 means the number of **local** variables which will be used !!! 
@@ -533,7 +533,7 @@ push pointer 0/1
 
 ### function executing
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_execute.png)
+![](../imgs/n2t_vm_func_execute.png)
 
  - `call func n` , here *n* means the number arguments 
     - 意义， call 之前的参数压栈，是 compiler 生成 vm code时候 要做的的工作之一
@@ -595,7 +595,7 @@ push pointer 0/1
     - state of caller
     - state of callee
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_state_of_caller_callee.png)
+![](../imgs/n2t_state_of_caller_callee.png)
 
  - How to maintain the states of all the functions up the calling chain ? 
     - The calling pattern is LIFO , it's a Stack
@@ -606,7 +606,7 @@ push pointer 0/1
 
  - Example: computing mult(17,212)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_example_17p212.png)
+![](../imgs/n2t_vm_func_example_17p212.png)
 
  - Net effect:
     - The function's arguments (17,212) were replaced by the function's value (3604)
@@ -618,21 +618,21 @@ push pointer 0/1
 **call**
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_details_0.png)
+![](../imgs/n2t_vm_func_details_0.png)
 
 
 
  - VM implementaion
     1. Sets arg  
         - the ARG pointer should refer to the base address of the argument's segments in the memory
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_details_1.png)
+        - ![](../imgs/n2t_vm_func_details_1.png)
     2. Saves the caller's frame
         - it consists of the working stack of the caller , and the current segment that it uses.
         - the working stack is safe. 
-            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_details_2.png)
+            - ![](../imgs/n2t_vm_func_details_2.png)
         - and now I have to save the segments , and the return address . 
             - taken together, we call these things the function's frame.
-            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_details_3.png)
+            - ![](../imgs/n2t_vm_func_details_3.png)
             - yes , the static, pointer, temp , constant   don't need to be saved  because they don't belongs to functions 
     3. Jumps to executed *foo*
     
@@ -640,26 +640,26 @@ push pointer 0/1
 **function**
 
  - we now hit the command `function foo nVars`
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_0.png)
+    - ![](../imgs/n2t_vm_function_0.png)
  - VM implementation:
     - Sets up the local segment of the called function
         - I need *n* local variables , and I also need to initialized them to 0.
         - I push *n* 0s onto the stack , and set LCL.  
         - once I do it, I can refer to these values on the stack as locol 0, local 1, and so on.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_1.png)
+        - ![](../imgs/n2t_vm_function_1.png)
     - Now the functions is ready to take off and start running. Let's assume that the function is running and doing its things. 
         - and in the process, it grows its working stack, and it now has a working stack of its own.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_2.png)  
+        - ![](../imgs/n2t_vm_function_2.png)  
     - And then at some point , it is going to return.  It need push a return value onto the stack, and then I say `return`.
 
 **return**
 
  - now VM implementation has to service the return command.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_3.png)    
+    - ![](../imgs/n2t_vm_function_3.png)    
  - VM implementation:  
     - First of all, we have to take the topmost value from the stack, the return value,  and we have to 
         - **copy the return value onto argument 0**.   See the *net effect* above.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_4.png)   
+        - ![](../imgs/n2t_vm_function_4.png)   
     - THe next thing that we do is 
         - **restore the segment pointers of the caller**
         - take the saved CLC, ARG, THIS, THAT ,  and turn them into current ones. 
@@ -671,7 +671,7 @@ push pointer 0/1
     - After I do this, I have to finally 
         - **jumps to the return address within the caller's code**. 
         - and continue executing the caller's code. 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_5.png)   
+        - ![](../imgs/n2t_vm_function_5.png)   
 
 <h2 id="f96b213d57e6b391baa08b65a47f7a52"></h2>
 
@@ -686,7 +686,7 @@ push pointer 0/1
     - my local segments 
     - and my working statck
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_global_stack.png)
+![](../imgs/n2t_vm_function_global_stack.png)
 
 
 <h2 id="053c88fa1043f8f8e84691ee98d1077a"></h2>
@@ -695,15 +695,15 @@ push pointer 0/1
 
  - Example: factorial         
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_example_factorial.png)
+![](../imgs/n2t_example_factorial.png)
 
 <h2 id="bc366f2d0ba3d681e7a3899917c5d3de"></h2>
 
 ### Runtime 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_runtime1.png)
+![](../imgs/n2t_vm_function_runtime1.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_runtime2.png)
+![](../imgs/n2t_vm_function_runtime2.png)
          
 
 <h2 id="44dc5651d1d6eeee92e44c1adf0a7fc5"></h2>
@@ -713,7 +713,7 @@ push pointer 0/1
  - A function may call another function which historically belongs to a different class.
  - But once everything is compiled into VM code , we lose this notion of classes and what we get is just a long list of functions that have a full name. i.e. Bar.mult
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_class_function.png)
+![](../imgs/n2t_vm_class_function.png)
 
  - caller's view
     - Before calling another function , I must push as many arguments as the function expects to get
@@ -732,7 +732,7 @@ push pointer 0/1
         - it's the caller's responsibility to do something with returned value.
 
  - The VM implementation view
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_func_class_assembly_code.png)
+    - ![](../imgs/n2t_vm_func_class_assembly_code.png)
  - When `Foo.main` call `Bar.mult`,  the VM translator , as we saw in above picture, is going to 
     - save the caller's state , the state of the Foo.main function
     - do a few more things to set up for the function call
@@ -749,7 +749,7 @@ push pointer 0/1
 ### Handling call
 
  - the caller is running ,doing some work .   and then all of a sudden , we encounter a call .
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_handel_call1.png)
+    - ![](../imgs/n2t_vm_function_handel_call1.png)
  - VM command : `call functionName nArgs`
     - calls the function, informing that nArgs arguments have been pushed onto the stack
     - call 之前 push arguments 的事情 ， 是 compiler 从 high level language 转 vm code 的时候完成的
@@ -757,14 +757,14 @@ push pointer 0/1
     - the first thing is I push a label onto the stack and later on I'm going to use the same label as the label to which I'm going to return after the callee terminates.
     - then I push LCL to save the state of my local segment 
     - and the ARG  , THIS , THAT
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_handel_call2.png)
+    - ![](../imgs/n2t_vm_function_handel_call2.png)
     - now, ARG should be reposition for the callee.  obviously we should reposition it at the beginning of the nArgs arguments.  where is this address ? I can calcuate because I know how many things I pushed -- nArgs + 5. 
     - then resposition LCL : LCL = SP
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_handel_call3.png)
+    - ![](../imgs/n2t_vm_function_handel_call3.png)
     - finally , I goto execute the called function.  
     - And now I do something very tricky, I insert into the generated code stream the label that I **pushed before** . 
 
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_handel_call4.png)
+ - ![](../imgs/n2t_vm_function_handel_call4.png)
 
 <h2 id="9a6ac99285250a3da217d99cc0c32c6b"></h2>
 
@@ -773,16 +773,16 @@ push pointer 0/1
  - whenever we hit a function command , the 1st thing the translator does is it takes the function name and generates a lable, and this label will serve as the entry point to the translated assembly code of this function. 
  - and then we simply have to write some assembly code that handles the setting up of the function's execution. 
  - **VM command**: `function functionName nVars` ( starts a function that has nVars local variables )
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_handle_function1.png)
+    - ![](../imgs/n2t_vm_handle_function1.png)
  - **Assembly code** (generated by the translatro):
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_handle_function_asm.png)
+    - ![](../imgs/n2t_vm_handle_function_asm.png)
     - first of all I take the function name , and generate this label. 
     - and then I repeat nVars times *push 0 to local segment* , now the function can start doing its thing. 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_handle_function2.png)
+        - ![](../imgs/n2t_vm_handle_function2.png)
         - LCL has been setted by "call" , so just push nVars 0 to stack
     - at some point , it will want to return.
         - I have to generate assembly code that moves the return value to the caller, reinstates the caller's state, and then does a `goto` Foo's return address. 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_handle_function3.png)
+        - ![](../imgs/n2t_vm_handle_function3.png)
 
  
  
@@ -795,14 +795,14 @@ push pointer 0/1
         - why we need to store it to a temporary variable ? because if the callee has 0 parameter, the next `*ARG=pop()` will overwrite the return address.
     - The next thing that I do is I reposition the return value for the caller. 
         - the return value should be copied onto `ARG[0]`
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_return_1.png)
+        - ![](../imgs/n2t_vm_function_return_1.png)
     - moving along , I know where the SP should be. The SP should be just after ARG because this is the view that the caller expectes to get. 
         - the caller expects to see a return value, and continue to do his work. 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_return_2.png)
+        - ![](../imgs/n2t_vm_function_return_2.png)
     - and now, I can begin to recover the various segments that I saved on the stack before. 
         - so `THAT` should be M[enfFrame-1] , and `THIS` , `ARG`, `LCL` ... 
     - then I jump to the address that I retrieved before. 
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_function_return_asm.png)
+ - ![](../imgs/n2t_vm_function_return_asm.png)
          
       
 <h2 id="a980b1ca368f6fd5ee3ef70efecf227c"></h2>
@@ -848,13 +848,13 @@ Call Sys.init
 
 ### Standard mapping of the VM on the Hack platform 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_standard_mapping_2.png)
+![](../imgs/n2t_standard_mapping_2.png)
 
 <h2 id="94483dac5a4cf1b1daebb28da6ba8051"></h2>
 
 ### Special symbols in VM programs. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/n2t_vm_special_symbol.png)
+![](../imgs/n2t_vm_special_symbol.png)
 
 <h2 id="eb4eb0e9c105fa3e9a4c637379cbfe82"></h2>
 

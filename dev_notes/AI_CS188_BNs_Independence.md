@@ -137,7 +137,7 @@ Math proof is annoying !  So what we're going to look at now is a way to read it
 ### Causal Chains 
 
  - This configuration is a “causal chain”
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_causal_chains_example.png)
+    - ![](../imgs/cs188_causal_chains_example.png)
     - P(x,y,z) = P(x)P(y|x)P(z|y)
  - Guaranteed X independent of Z ?   **No!**
  - Guaranteed X independent of Z given Y?  **Yes!**
@@ -154,7 +154,7 @@ P(z|x,y) = P(x,y,z) / p(x,y)
 ### Common Cause
 
  - This configuration is a “common cause”
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_common_causal_example.png)
+    - ![](../imgs/cs188_common_causal_example.png)
     - P(x,y,z) = P(y)P(x|y)P(z|y) 
  - Guaranteed X independent of Z ?   **No!**
  - Guaranteed X and Z independent given Y?  **Yes!**
@@ -171,7 +171,7 @@ P(z|x,y) = P(x,y,z) / p(x,y)
 ### Common Effect
 
  - Last configuration: two causes of one effect (v-structures)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_common_effect_example.png)
+    - ![](../imgs/cs188_common_effect_example.png)
 
  - Are X and Y independent?
     - **Yes**: the ballgame and the rain cause traffic, but they are not correlated
@@ -208,7 +208,7 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
 
 #### Reachability
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_reachability.png)
+![](../imgs/cs188_reachability.png)
 
  - Recipe: shade evidence nodes, look for paths in the resulting graph
  - Attempt 1: if two nodes are connected by an undirected path not blocked by a shaded node, they are conditionally independent
@@ -238,7 +238,7 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
  - All it takes to block a path is a single inactive segment
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_active_inactive_triples.png)
+![](../imgs/cs188_active_inactive_triples.png)
 
  - for a long path
     - we look at every triple along the path 
@@ -266,7 +266,7 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
 
 ### Example 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_independence_example.pg.png)
+![](../imgs/cs188_BNs_independence_example.pg.png)
 
  - L ⊥ T' | T   **Yes** 
     - LR(T)  this triple doesn't matter.
@@ -306,7 +306,7 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
  - they are effectively equivalent structures. 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_topology_limit_dist.png)
+![](../imgs/cs188_BNs_topology_limit_dist.png)
 
  - the blue set represent all distributions over 3 variables ,  no conditional dependencies at all 
     - explicitly blue and not also red or green

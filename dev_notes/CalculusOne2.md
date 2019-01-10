@@ -175,7 +175,7 @@ Otherwise, say ∑<sub>k=</sub>ⁿ₁ a<sub>k</sub> diverges.
  - so lim<sub>n→∞</sub> s<sub>n</sub> = lim<sub>n→∞</sub> (1-r<sup>n+1</sup> ) / (1-r) 
  - if r>1 or r<-1 ,  lim<sub>n→∞</sub> r<sup>n+1</sup> is infinite
     - if -1`<`r`<`1 ,  lim<sub>n→∞</sub> r<sup>n+1</sup> = 0
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus2_series_geometric.png)
+ - ![](../imgs/calculus2_series_geometric.png)
 
 <h2 id="0d5f7167ac9f8276415b82b6caf3c128"></h2>
 

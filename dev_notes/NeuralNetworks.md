@@ -96,7 +96,7 @@
 
 y = b + ∑ᵢ xᵢwᵢ
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_linear_neurons.png)
+![](../imgs/NNet_linear_neurons.png)
 
 <h2 id="60d743bd92d01784da86912ef3e9d3fa"></h2>
 
@@ -106,10 +106,10 @@ y = b + ∑ᵢ xᵢwᵢ
  - Then send out a fixed size spike of activity if the weighted sum exceeds a threshold. 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_bin_threshold_neurons.png)
+![](../imgs/NNet_bin_threshold_neurons.png)
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_bin_threshold_neurons2.png)
+![](../imgs/NNet_bin_threshold_neurons2.png)
 
 <h2 id="bea9f293a1d10dc9a09ab31410552fc2"></h2>
 
@@ -119,7 +119,7 @@ y = b + ∑ᵢ xᵢwᵢ
  - compute a **linear** weighted sum of their inputs.
  - The output **is a non-linear** function of the total input. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_rectified_neurons.png)
+![](../imgs/NNet_rectified_neurons.png)
 
 <h2 id="5dfb3a910337bd052071a460b50f17d7"></h2>
 
@@ -139,7 +139,7 @@ y = b + ∑ᵢ xᵢwᵢ
     - But they treat the output of the logistic as the **probability** of producing a spike in a short time window.  
     
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_stochastic_bin_neurons.png)
+![](../imgs/NNet_stochastic_bin_neurons.png)
 
 
 ---
@@ -156,7 +156,7 @@ y = b + ∑ᵢ xᵢwᵢ
 
 ### Feed-forward neural networks
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_feedforward_nnet.png)
+![](../imgs/NNet_feedforward_nnet.png)
 
  - These are the commonest type of neural network in practical applications. 
     - The first layer is the input and the last layer is the output. 
@@ -178,7 +178,7 @@ y = b + ∑ᵢ xᵢwᵢ
     - There is a lot of interest at present in finding efficient ways of training recurrent nets. 
  - They are more biologically realistic. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_recurrent_nnet.png)
+![](../imgs/NNet_recurrent_nnet.png)
 
 
  - Recurrent nets with multiple hidden layers are just a special case that has some of the hidden -> hidden connections missing. 
@@ -187,7 +187,7 @@ y = b + ∑ᵢ xᵢwᵢ
 
 #### Recurrent neural networks for modeling sequences
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_recurrent_nnet2.png)
+![](../imgs/NNet_recurrent_nnet2.png)
 
  - Recurrent neural networks are a very natural way to model sequential data: 
     - They are equivalent to very deep nets(feed-forward)  with one hidden layer per time slice.
@@ -225,7 +225,7 @@ y = b + ∑ᵢ xᵢwᵢ
 perceptron is 二分类的线性分类模型。 输入为实例的特征向量，输出为实例的类别（取+1和-1）。
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_perceptron_architecture.png)
+![](../imgs/NNet_perceptron_architecture.png)
 
 <h2 id="18fbaaed2b269781105b0c38d7d03d1f"></h2>
 
@@ -239,7 +239,7 @@ perceptron is 二分类的线性分类模型。 输入为实例的特征向量�
 
 --- 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_weight_space.png)
+![](../imgs/NNet_weight_space.png)
 
  - Each training case defines a plane (shown as a black line) 
     - The plane goes through the origin and is perpendicular to the **input vector**. 
@@ -251,7 +251,7 @@ perceptron is 二分类的线性分类模型。 输入为实例的特征向量�
     - On one side of the plane the output is **wrong** because the scalar product of the weight vector with the input vector has the wrong sign. 
         - 同侧点积为正，异侧点积为负
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_weight_space2.png)
+![](../imgs/NNet_weight_space2.png)
 
 
 <h2 id="d70801a1a8a06ad3250060f4a42e0b7d"></h2>
@@ -264,10 +264,10 @@ perceptron is 二分类的线性分类模型。 输入为实例的特征向量�
     - So the average of two good weight vectors is a good weight vector. 
         - **The problem is convex** 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_weight_space_con.png)
+![](../imgs/NNet_weight_space_con.png)
 
  - consider two inputs that both have a label of 1. we use a yellow arrow to represent a weight vectors which correctly classify the 2 inputs.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_weight_space_con2.png)
+    - ![](../imgs/NNet_weight_space_con2.png)
 
 <h2 id="f6493b60fa9aa860686d995485132458"></h2>
 
@@ -373,9 +373,9 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
     - and then adjust the guesses slightly
     - to give a better fit to the prices given by the cashier. 
  - The true weights used by the cashier
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_price_guess0.png)
+    - ![](../imgs/NNet_price_guess0.png)
  - A model of the cashier with arbitrary initial weights 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_price_guess1.png)
+    - ![](../imgs/NNet_price_guess1.png)
     - Residual error = 350  
     - The “delta-rule” for learning is: 
         - Δwᵢ = εxᵢ(t-y) 
@@ -391,10 +391,10 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
  - Define the error as the squared residuals summed over all training cases: 
     - E = 1/2·∑<sub>n∈training</sub> (tⁿ-yⁿ)²
  - Now differentiate to get error derivatives for weights 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_derive_delta_rule1.png)
+    - ![](../imgs/NNet_derive_delta_rule1.png)
  - The **batch** delta rule changes the weights in proportion to their error derivatives **summed
  over all training cases** 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_derive_delta_rule2.png)
+    - ![](../imgs/NNet_derive_delta_rule2.png)
     - minus sign in front of ε cuz we want the error to go down.
 
 <h2 id="fe011b17313c1468885c1b63d9ff3905"></h2>
@@ -434,7 +434,7 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
  - For a linear neuron with a squared error, it is a quadratic bowl. 
     - Vertical cross-sections are parabolas 抛物线
     - Horizontal cross-sections are ellipses
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_error_surface.png)
+    - ![](../imgs/NNet_error_surface.png)
  - For multi-layer, non-linear nets the error surface is much more complicated. 
 
 <h2 id="44793cbad37c888289dde4ef85d63abb"></h2>
@@ -443,10 +443,10 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
 
  - The simplest kind of batch learning does steepest descent on the error surface. 
     - This travels perpendicular to the contour lines. 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_batch_error_surface.png)
+    - ![](../imgs/NNet_batch_error_surface.png)
  - The simplest kind of online learning zig-zags around the direction of steepest descent: 
     - This travels perpendicular to the training case line.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_online_error_surface.png)
+    - ![](../imgs/NNet_online_error_surface.png)
 
 <h2 id="e160ef53e0150859367015007f2e9ffb"></h2>
 
@@ -456,7 +456,7 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
     - The red gradient vector has a large component along the short axis of the ellipse and a small component along the long axis of the ellipse
     - This is just the opposite of what we want. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_elongated_error_surface.png)
+![](../imgs/NNet_elongated_error_surface.png)
 
 ---
 
@@ -489,7 +489,7 @@ They have nice derivatives which make learning easy
 
  - To learn the weights we need the derivative of the output with respect to each weight: 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_sigmoid_error_derivative.png)
+![](../imgs/NNet_sigmoid_error_derivative.png)
 
 ---
 
@@ -550,7 +550,7 @@ this idea occurs to everyone who knows about evolution
  - Then compute error derivatives in each hidden layer from error derivatives in the layer above. 
  - Then use error derivatives w.r.t.  activities to get error derivatives w.r.t. the incoming weights. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_sketch_of_backpropagation.png)
+![](../imgs/NNet_sketch_of_backpropagation.png)
 
 <h2 id="cb74d28f01731bcc6f43f0becb84e542"></h2>
 
@@ -560,7 +560,7 @@ this idea occurs to everyone who knows about evolution
 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_Backpropagating_dEdy.png)
+![](../imgs/NNet_Backpropagating_dEdy.png)
 
 This is how you backpropagate the error derivative  with respect to the output of a unit. 
 
@@ -572,13 +572,13 @@ The first thing we need to do , is convert the error derivative with respect to 
 
 To do that we use the chain rule.  As we've seen before, when we were looking at logistic units , it is showing as following: 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_Backpropagating_dEdy1.png)
+![](../imgs/NNet_Backpropagating_dEdy1.png)
 
 So now we've got the error derivative with respect to the total input received by unit j. 
 
 Now we can compute the error derivative with respect to the output of unit i -- yᵢ. It's gonna be the sum over all of the 3 outgoing connection of unit i. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_Backpropagating_dEdy2.png)
+![](../imgs/NNet_Backpropagating_dEdy2.png)
 
 So the first term there ( dzⱼ/dyᵢ )is how the total input to unit j (zⱼ) changes as we change the output of unit i (yᵢ). And then we have to multiply that by how the error root of changes as we change the totao input to unit j , which we can compute on the line above. 
 
@@ -593,7 +593,7 @@ What we do for each unit in that hidden layer that contains i , is we compute th
 Once we've got ∂E/∂zⱼ , which we computed on the first line there, is very easy to get the error derivatives for all the weights coming into unity j. 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_Backpropagating_dEdy3.png)
+![](../imgs/NNet_Backpropagating_dEdy3.png)
 
 ∂zⱼ/∂wᵢⱼ is simply the activity of the unit in the layer below -- yᵢ. 
 
@@ -694,7 +694,7 @@ I'm gonna start with a very simple case , but it illustrates the idea about how 
 
 ### A simple example of relational information 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_family_tree.png)
+![](../imgs/NNet_4_family_tree.png)
 
 This diagram shows a simple family tree, in which, for example, Christopher and Penelope marry, and have children Arthur and Victoria. What we'd like is to train a neural network to understand the information in this family tree. We've also given it another family tree of Italian people which has pretty much the same structure as the English tree.
 
@@ -733,7 +733,7 @@ And using those relationships we can write down a set of triples such as,
 
 ### The structure of the neural net
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_structure.png)
+![](../imgs/NNet_4_structure.png)
 
 At the bottom of this diagram , we're going to put in a person and a relationship and the information is going to flow forwards through this  NNet. 
 
@@ -757,7 +757,7 @@ And after training we're gonna look at the 6 units in that layer that says "dist
 
 So here are those 6 units as the big gray blocks. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_6_neural_units.png)
+![](../imgs/NNet_4_6_neural_units.png)
 
 And I laid out the 24 people, with the twelve English people in a row along the top, and the twelve Italian people in a row underneath.
 
@@ -837,11 +837,11 @@ So far I talked about using a square area measure for training a neural net and 
 It's a kind of soft continuous version of the maximum function. 
 
  - The output units in a softmax group use a non-local non-linearity: 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_softmax1.png)
+    - ![](../imgs/NNet_4_softmax1.png)
 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_softmax2.png)
+![](../imgs/NNet_4_softmax2.png)
 
 The soft max equation has a nice simple derivative. If you ask about how the Yᵢ changes as you change the Zᵢ, that obviously depends on, all the other Zs. But then the Yᵢ itself depends on all the other Zs. And it turns out, that you get a nice simple form, just like you do for the logistic unit, where the derivative of the output with respect to the input, for an individual neuron in a softmax group, is just yᵢ\*(1-yᵢ). 
 
@@ -854,9 +854,9 @@ Now the question is, if we're using a soft max group for the outputs, what's the
 ### Cross-entropy: the right cost function to use with softmax
 
  - The right cost function is the negative log probability of the right answer
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_CrossEntropy1.png)
+    - ![](../imgs/NNet_4_CrossEntropy1.png)
  - C has a very big gradient when the target value is 1 and the output is almost zero.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_CrossEntropy2.png)
+    - ![](../imgs/NNet_4_CrossEntropy2.png)
     - A value of 0.000001 is much better than 0.000000001 
     - The steepness of dC/dy exactly balances the flatness of dy/dz
 
@@ -886,7 +886,7 @@ We're going to look at a practical use for feature vectors that represent words
     
  - Take a huge amount of text and count the frequencies of all triples of words. 
  - Use these frequencies to make bets on the relative probabilities of words given the previous two words:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_trigram1.png)
+    - ![](../imgs/NNet_4_trigram1.png)
  - Until very recently this was the state-of-the-art. 
     - We cannot use a much bigger context because there are too many possibilities to store and the counts would mostly be zero. 
     - We have to “back-off” to digrams when the count for a trigram is too small. 
@@ -915,7 +915,7 @@ We're going to look at a practical use for feature vectors that represent words
 
 It is actually very similar to the family trees network. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_4_bengio_nnet.png)
+![](../imgs/NNet_4_bengio_nnet.png)
 
 So at the bottom you can think of us as putting in the index of a word, and you could think of that as a set of neurons of which just one is on. 
 
@@ -969,7 +969,7 @@ So one way to avoid, having a 100,000 different output units is to use a serial 
 
 ---
 
- [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/NNet_sigmoid_neurons.png
+ [1]: ../imgs/NNet_sigmoid_neurons.png
 
 
 

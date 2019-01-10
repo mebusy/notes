@@ -53,7 +53,7 @@
 
 ## Convolution
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/1DConvolutionExample.jpg)
+![](../imgs/1DConvolutionExample.jpg)
 
 
 <h2 id="9e834f13e35e4edf64863ab414a6217a"></h2>
@@ -64,7 +64,7 @@
     - associative: `(A*B)*C = A*(B*C)`
     - commutative: `a+b = b+a`
  
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/better_reduction_kernel.png)
+![](../imgs/better_reduction_kernel.png)
 
  - prevent divergence in warp
 
@@ -74,7 +74,7 @@
 
 `[x₀,x₁,...,xn₋₁] => [x₀,(x₀⊕x₁),...,(x₀⊕x₁⊕...⊕xn₋₁)]`
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/parallel_scan_put_together.png)
+![](../imgs/parallel_scan_put_together.png)
 
 
 <h2 id="0f39b900b08ff634a8f210cf9ea18fa2"></h2>

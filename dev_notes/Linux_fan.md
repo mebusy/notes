@@ -1004,9 +1004,9 @@ ENVTEST=ENV1
     - 所以个人需要的设置 写在 `~/.bashrc` 文件中即可
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/linux_fan_login_shell.png)
+![](../imgs/linux_fan_login_shell.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/linux_fan_nonlogin_shell.png)
+![](../imgs/linux_fan_nonlogin_shell.png)
 
 
 <h2 id="b4c32ce358fc3585f97227c4008a1729"></h2>

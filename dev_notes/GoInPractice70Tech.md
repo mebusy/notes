@@ -704,7 +704,7 @@ example 2015/05/12 08:42:51 outfile.go:17: This is a fatal error.
 
 > Components of a log file
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/GoInPracticeLogComponent.png)
+![](../imgs/GoInPracticeLogComponent.png)
 
  - You can control the prefix field with the second argument to log.New. 
 

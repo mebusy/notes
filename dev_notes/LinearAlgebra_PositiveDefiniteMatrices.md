@@ -54,13 +54,13 @@ Does either F(x, y) or f(x, y) have a minimum at the point x = y = 0 ?
 ***Remark 2*** The ***linear terms*** give a necessary condition: To have any chance of a minimum, the first derivatives must vanish at x = y = 0:
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_minima_example.png)
+![](../imgs/LA_minima_example.png)
 
 Thus (x,y) = (0,0) is a stationary point for both functions.  The surface z = F(x,y) is tangent to the horizontal plane z = 7 , and the surface z = f(x,y) is tangent to the plane z = 0.  The question is whether the graphs *go above those planes or not*, as we move away from the tangency point x = y = 0.
 
 ***Remark 3*** The second derivatives at (0, 0) are decisive:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_minima_remark3.png)
+![](../imgs/LA_minima_remark3.png)
 
 These second derivatives 4, 4, 2 contain the answer. Since they are the same for F and f, they must contain the same answer. The two functions behave in exactly the same way near the origin. ***F has a minimum if and only if f has a minimum***. I am going to show that those functions don't!
 
@@ -68,15 +68,15 @@ These second derivatives 4, 4, 2 contain the answer. Since they are the same for
 
 *Every quadratic form f = ax² + 2bxy + cy² has a stationary point at the origin, where ∂f/∂x = ∂f/∂y = 0.*  A local minimum would also be a global minimum. The surface z = f (x, y) will then be shaped like a bowl, resting on the origin (Figure 6.1).
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F6.1.png)
+![](../imgs/LA_F6.1.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_graph_x2_2xy_y2.png)
+![](../imgs/LA_graph_x2_2xy_y2.png)
 
 > function graph of f = x² + 2xy + y²
 
 If the stationary point of F is at x = α, y = β, the only change would be to use the second derivatives at α, β:  
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_minima_quad_part_of_F.png)
+![](../imgs/LA_minima_quad_part_of_F.png)
 
 This f(x, y) behaves near (0, 0) in the same way that F(x, y) behaves near (α, β).
 
@@ -118,7 +118,7 @@ A = ⎡2 2⎤  -> saddle point.
     ⎣2 1⎦
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_2x2_4xy_y2.png)
+![](../imgs/LA_2x2_4xy_y2.png)
 
 > f = 2x² + 4xy + y²
 
@@ -171,7 +171,7 @@ From those conditions, ***both eigenvalues are positive***.
 
 Looking at a and ac - b², it is even possible to spot the appearance of the ***pivots***. They turned up when we decomposed xᵀAx into a sum of squares:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_sum_of_square.png)
+![](../imgs/LA_sum_of_square.png)
 
 Those coefficients a and (ac - b²)/a are the pivots for a 2 by 2 matrix. For larger matrices the pivots still give a simple test for positive definiteness: xᵀAx stays positive when n independent squares are multiplied by ***positive pivots***.
 
@@ -183,7 +183,7 @@ If a = c = -1 and b = 0, then det(A) = 1 but A = -I = negative definite.  The de
 
 The natural generalization will involve all n of the upper left submatrices of A:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_n_submatrices_of_A.png)
+![](../imgs/LA_n_submatrices_of_A.png)
 
 Here is the main theorem on positive definiteness, and a reasonably detailed proof:
 
@@ -221,7 +221,7 @@ If every λᵢ > 0, then equation (2) shows that xᵀAx > 0.  Thus condition 2 i
 
 *If condition 1 holds, so does condition 3*: The determinant of A is the product of the eigenvalues. And if condition 1 holds, we already know that these eigenvalues are positive. But we also have to deal with every upper left submatrix A<sub>k</sub>. The trick is to look at all nonzero vectors whose last n - k components are zero: 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_atAx_n-k_components.png)
+![](../imgs/LA_atAx_n-k_components.png)
 
 Thus A<sub>k</sub> is positive definite. Its eigenvalues (not the same λᵢ!) must be positive. Its determinant is their product, so all upper left determinants are positive.
 
@@ -231,15 +231,15 @@ Thus A<sub>k</sub> is positive definite. Its eigenvalues (not the same λᵢ!) m
 
 **Example 1** : Positive pivots 2, 3/2 , 4/3 :
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_positive_definite_LDLT.png)
+![](../imgs/LA_positive_definite_LDLT.png)
 
 I want to split xᵀAx into xᵀLDLᵀx:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_positive_definite_LDLT_2.png)
+![](../imgs/LA_positive_definite_LDLT_2.png)
 
 So xᵀAx is a sum of squares with the pivots 2, 3/2, and 4/3 as coefficients:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_positive_definite_LDLT_3.png)
+![](../imgs/LA_positive_definite_LDLT_3.png)
 
 Those positive pivots in D multiply perfect squares to make xᵀAx positive. Thus condition 4 implies condition 1 , and the proof is complete.
 
@@ -338,9 +338,9 @@ A = ⎢-1  2 -1⎥  is positive semidefinite, by all five tests:
  1. xᵀAx = (x₁ - x₂)² + (x₁ - x₃)² + (x₂ - x₃)² > 0 (zero if x₁ = x₂ = x₃)  
  2. The eigenvalues are 0, λ₁ = 0 , λ₂ = λ₃ = 3 (a zero eigenvalue).
  3. det A = 0 and smaller determinants are positive.
- 4. ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_positive_semidefinite_example_2_test_4.png)
+ 4. ![](../imgs/LA_positive_semidefinite_example_2_test_4.png)
  5. A = RᵀR with dependent columns in R:
-     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_positive_semidefinite_example_2_test_5.png)
+     - ![](../imgs/LA_positive_semidefinite_example_2_test_5.png)
 
 
 ***Remark***: The conditions for semidefiniteness could also be deduced from the original conditions 1~5 for definiteness by the following trick: Add a small multiple of the identity, giving a positive definite matrix A + εI. Then let ε approach zero. Since the determinants and eigenvalues depend continuously on ε, they will be positive until the very last moment. At ε = 0 they must still be nonnegative.
@@ -389,7 +389,7 @@ A = ⎡5 4⎤ and  xᵀAx = 5u² + 8uv + 5v² = 1.
 
 That ellipse is centered at u = v = 0, but the axes are not so clear. The off-diagonal 4s leave the matrix positive definite, but they rotate the ellipse -- its axes no longer line up with the coordinate axes.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_F6.2.png)
+![](../imgs/LA_F6.2.png)
 
 > Figure 6.2  its principal axes.
 
@@ -397,7 +397,7 @@ To locate the ellipse we compute λ₁ = 1 and λ₂ = 9.  The unit eigenvectors
 
 **New squares** 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_new_squres_xTAx.png)
+![](../imgs/LA_new_squres_xTAx.png)
 
 λ = 1 and λ = 9 are outside the squares. The eigenvectors are inside. This is different from completing the square to 5·(u + 4/5·v)² + 9/5·v², with the pivots outside.
 
@@ -415,7 +415,7 @@ The other axes are along the other eigenvectors. Their lengths are 1 / √λ₂ 
 
 An indefinite equation y₁² - 9y₂² = 1 describes a hyperbola and not an ellipse. A hyperbola is a cross-section through a saddle, and an ellipse is a cross-section through a bowl.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_hyperbola.png)
+![](../imgs/LA_hyperbola.png)
 
 The change from x to y = Qᵀx rotates the axes of the space, to match the axes of the ellipsoid. In the y variables we can see that it is an ellipsoid, because the equation
 becomes so manageable:
@@ -597,7 +597,7 @@ So the unit eigenvector Avⱼ/σⱼ = uⱼ. ***In other words, AV = U∑***.
 
 Example 1: This A has only one column: rank r = 1. Then ∑ has only σ₁ = 3:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_svd_example_1.png)
+![](../imgs/LA_svd_example_1.png)
 
 AᵀA is 1 by 1, whereas AAᵀ is 3 by 3.  They both have eigenvalue 9 (whose square root is the 3 in ∑ ).  
 
@@ -625,7 +625,7 @@ V =  1
 
 Example 2: Now A has rank 2, and AAᵀ = [ 2 -1 ; -1 2 ] with λ = 3 and 1:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_svd_example2.png)
+![](../imgs/LA_svd_example2.png)
 
 Notice √3 and √1. The columns of U are *left* singular vectors (unit eigenvectors of AAᵀ).  The columns of V are *right* singular vectors (unit eigenvectors of AᵀA).
 

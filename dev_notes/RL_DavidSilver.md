@@ -105,7 +105,7 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
         - **Improve**  the policy   by acting greedily
     - Value Iteration
         - iterative application of Bellman optimality backup
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_DP_algorithm.png)
+    - ![](../imgs/RL_DS_DP_algorithm.png)
  - MC
     - Prediction
         - idea: value = mean return
@@ -130,8 +130,8 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
             - ε-greedy policy improvement
  - Off-Policy Learning : Q-Learning
  - Relationship Between DP and TD
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_relationship_DP_TD.png)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_relationship_DP_TD2.png)
+    - ![](../imgs/RL_DS_relationship_DP_TD.png)
+    - ![](../imgs/RL_DS_relationship_DP_TD2.png)
     
 
  - v<sub>π</sub>(s) 
@@ -203,7 +203,7 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 ### Agent and Environment
 
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_agent_and_env.png)
+ - ![](../imgs/RL_DS_agent_and_env.png)
     - Agent 有两个输入： observation and reward. 这些输入共同决定 下一步措施。
  - At each step t the agent: 
     - Receives observation O<sub>t</sub> 
@@ -336,13 +336,13 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 ### Maze Example
 
  - Policy
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_maze_example_policy.png)
+    - ![](../imgs/RL_DS_maze_example_policy.png)
     - Arrows represent policy π(s) for each state s
  - Value Function
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_maze_example_vf.png)
+    - ![](../imgs/RL_DS_maze_example_vf.png)
     - Numbers represent value v<sub>π</sub>(s) of each state s
  - Model
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_maze_example_model.png)
+    - ![](../imgs/RL_DS_maze_example_model.png)
     - Agent may have an internal model of the environment
     - Dynamics: how actions change the state
     - Rewards: how much reward from each state
@@ -469,7 +469,7 @@ Two fundamental problems in sequential decision making
  - For a Markov state s and successor state s′, the state transition probability is defined by
     - *P*<sub>ss'</sub> = P[S<sub>t+1</sub>=s'|S<sub>t</sub>=s]
  - State transition matrix *P* defines transition probabilities from all states s to all successor states s′,
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_StateTransitionMatrix.png)
+    - ![](../imgs/RL_DS_StateTransitionMatrix.png)
     - where each row of the matrix sums to 1.
 
 
@@ -571,7 +571,7 @@ The value function can be decomposed into two parts:
  - The Bellman equation can be expressed concisely using matrices,
     - v = *R* + γ*P*v
  - where v is a column vector with one entry per state
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_DS_bellman_matrix_form.png)
+    - ![](../imgs/RL_DS_bellman_matrix_form.png)
 
 <h2 id="ca6ff64556e865d3cc3c89adc776f12a"></h2>
 

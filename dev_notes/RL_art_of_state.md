@@ -246,7 +246,7 @@ The full problem requires an algorithm to learn how to choose actions from an in
  - The reward is defined by
     - r<sub>t+1</sub> =1 , if s<sub>t</sub> ∈ (-2.2)
     - r<sub>t+1</sub> =-1 , otherwise. 
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_f7.2.png)
+ - ![](../imgs/RL_AOS_f7.2.png)
  - In this MDP, it is optimal to jump back and forth between the states s = −1 and s = 1
     - However, if we observe the feature vector (0,1,0)ᵀ , 
     - we can not know if we are in s = −1 or s = 1 and we cannot determine the optimal action.
@@ -271,7 +271,7 @@ The full problem requires an algorithm to learn how to choose actions from an in
 
 ### Four-Room Task
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_4_room_task.png)
+![](../imgs/RL_AOS_4_room_task.png)
 
  - the actions are stochastic
     - a 20% chance that it will stay in place
@@ -320,13 +320,13 @@ The full problem requires an algorithm to learn how to choose actions from an in
     - If the abstract action executed in state s is π(s), persists for N steps and terminates we can write the value function as two series - the sum of 
         - the rewards accumulated for the first N steps 
         - and the remainder of the series of rewards.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_r_2_parts.png)
+        - ![](../imgs/RL_AOS_SMDP_r_2_parts.png)
     - the second series is just the value function starting in s′ discounted by N steps, we can write 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_r_2_parts2.png)
+        - ![](../imgs/RL_AOS_SMDP_r_2_parts2.png)
  - other value function are also similar :
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_v_optimal.png)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_q_pi.png)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_q_optimal.png)
+    - ![](../imgs/RL_AOS_SMDP_v_optimal.png)
+    - ![](../imgs/RL_AOS_SMDP_q_pi.png)
+    - ![](../imgs/RL_AOS_SMDP_q_optimal.png)
  - For problems that are guaranteed to terminate, the discount factor γ can be set to 1. ( abstract action ?)
     - In this case the number of steps N can be marginalised out in the above equations and the sum taken with respect to s alone.
     - The equations are then similar to the ones for MDPs with the expected primitive reward replaced with the expected sum of rewards to termination of the abstract action.
@@ -345,7 +345,7 @@ The full problem requires an algorithm to learn how to choose actions from an in
 
 Task Hierarchies 只是一个限制调用关系的结构。 和 subtask并没有直接对应关系。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_4room_TH.png)
+![](../imgs/RL_AOS_4room_TH.png)
 
 > Fig 9.2
 
@@ -430,25 +430,25 @@ Task Hierarchies 只是一个限制调用关系的结构。 和 subtask并没有
 ---
 
  - recall Q<sup>π</sup> for SMDP:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_q_pi.png)
+    - ![](../imgs/RL_AOS_SMDP_q_pi.png)
  - for a particular sub-task *m*: 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_q_pi_subtask.png)
+    - ![](../imgs/RL_AOS_SMDP_q_pi_subtask.png)
  - Abstract action *a* for subtask *m*  ( subtask is a path, eg. root 4-room problem has an abstract action which policy is EAST-NORTH-NORTH,so it contain 3 subtask ) invokes a child subtask *mₐ*.
     - expected value of completing subtask *mₐ* ：V<sup>π</sup>(mₐ,s) ,The *hierarchical policy*, π , is a **set of policies**, one for each subtask. 
         - 完成第一个subtask的value, 理解成一个 small MDP的 immediate reward
     - *completion function* C<sup>π</sup>(m,s,a) : expected discounted cumulative reward  
         - after completing abstract action *a* , in state *s* in subtask *m* , to the end of subtask *m*.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_cv_subtask.png)
+        - ![](../imgs/RL_AOS_SMDP_cv_subtask.png)
         - 完成剩余subtask的 value , 理解成一个small MDP 的discounted 部分
  - now the Q function for *m* can be expressed recursively as **the value for completing mₐ** , plus the **completion value to the end of subtask m**.
     - Q<sup>π</sup>(m,s,a) = V<sup>π</sup>(mₐ,s) + C<sup>π</sup>(m,s,a)
  - V<sup>π</sup>(mₐ,s) depends on wheter it is primitive or not 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_vpi_ma.png)
+    - ![](../imgs/RL_AOS_SMDP_vpi_ma.png)
  - If the path of activated subtasks from root subtask m₀ to primitive action m<sub>k</sub> is m₀,m₁,...,m<sub>k</sub>  , and the hierarchical policy specifies that in subtask mᵢ, π(s) =aᵢ, then 
     - Q<sup>π</sup>(m₀,s,π(s)) = V<sup>π</sup>(m₁,s) + C<sup>π</sup>(m₀,s,a₀)
     - = V<sup>π</sup>(m₂,s) + C<sup>π</sup>(m₁,s,a₁) + C<sup>π</sup>(m₀,s,a₀)
     - = ...
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_q_pi_02k.png)
+    - ![](../imgs/RL_AOS_SMDP_q_pi_02k.png)
  - optimal greedy policy
     - V<sup>\*</sup>(mₐ,s) = max<sub>a'</sub> Q<sup>\*</sup>(mₐ,s,a')
 
@@ -456,7 +456,7 @@ Task Hierarchies 只是一个限制调用关系的结构。 和 subtask并没有
 
 Algorithm 18 performs  a depth-first search and returns both the value and best action for subtask m in state s.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_Algorithm18.png)
+![](../imgs/RL_AOS_SMDP_Algorithm18.png)
 
 > Algorithm 18. Evaluate(m,s)
 
@@ -466,7 +466,7 @@ Algorithm 18 performs  a depth-first search and returns both the value and best 
 
 ---
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_maxq_4_room.png)
+![](../imgs/RL_AOS_SMDP_maxq_4_room.png)
 
  - For the four-room task-hierarchy , the optimal value function for this state is  the cost of the shortest path out of the house.
  - It is composed by adding
@@ -480,7 +480,7 @@ Algorithm 18 performs  a depth-first search and returns both the value and best 
 
 **HRL Applied to the Four-Room Task**
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/RL_AOS_SMDP_f9.5.png)
+![](../imgs/RL_AOS_SMDP_f9.5.png)
 
 > Fig. 9.5 
 

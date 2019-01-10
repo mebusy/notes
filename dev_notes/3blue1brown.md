@@ -37,7 +37,7 @@
         - This means you can deduce where v must go based only on where  î and ĵ each land. 
         - This is why it is very useful to keep a copy of the original grid in the background
         - for the transformation shown here, we can read off that î lands on (1,-2) , ĵ lands on (3,0) , this means v⃑ ends up `-1*(1,-2) +2*(3,0) = (5,2)` 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_linear_transformation.png)
+        - ![](../imgs/ESS_LA_linear_transformation.png)
  - 所以，只要记录了 变换后的 î,ĵ, 我们就可以推断出任意向量在 变化后的 位置，完全不必 观察变换本身是什么样
 
 ```
@@ -57,9 +57,9 @@
 
 ---
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_linear_transform_r0.png)
+![](../imgs/ESS_LA_linear_transform_r0.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_linear_transform_r1.png)
+![](../imgs/ESS_LA_linear_transform_r1.png)
 
  - 我们完全可以把 矩阵的列， 看作变换后的基向量; 把矩阵·向量乘法 看作它们的 线性组合。
     - 这样是不是更有趣呢？
@@ -113,16 +113,16 @@ ans =
  - This new linear transformation is commonly called the "composition" of the 2 separate transformations we applied.
  - Like any linear transformation , it can be described with a matrix all of its own, by following î,ĵ.
     - In this example, the final matrix is [ 1 -1 ; 1 0 ]
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_linear_trans_compostion.png)
+    - ![](../imgs/ESS_LA_linear_trans_compostion.png)
  - Here's one way to think about that new matrix:
     - if you were to take some vector and pump it through the rotation then the shear 
     - the long way to compute where it ends up is to , first , multiply it on the left by the rotation matrix; then,take whatever you get and multiply that on the left by the shear matrix. 
     - this is the same as just applying only that composition matrix
  - **Always remember, the multiplying 2 matrices like this has the geometric meaning of applying one transformation then another**
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_matrix_multiply.png)
+    - ![](../imgs/ESS_LA_matrix_multiply.png)
     - `f(g(x))`
  - In next example, we will find the composition matrix by , just using the numberial entries in each matrix 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_linear_trans_compostion2.png)
+    - ![](../imgs/ESS_LA_linear_trans_compostion2.png)
     - First , we need to figure out where î goes.
         - after applying M1 , the new coordinates of î, by definition, are given by that 1st column of M1, [1;1] 
         - to see what happenes after applying M2 , multiply the matrix for M2 by that vector : `M2*[1;1] = [2;1]`.
@@ -138,7 +138,7 @@ ans =
 
  - 有件事对理解各种linear transformation 很有用，那就是测量 变换 究竟对 空间有**多少** 拉伸或挤压，更具体一点，就是测量一个给定区域面积 增大或减小的比例
  - This very special scaling factor , the factor by which a linear transformation changes any area, is called **the determinant of that transformation.**
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_determinant.png)
+    - ![](../imgs/ESS_LA_determinant.png)
  - The full concept of the determinant allows for negative values
     - what would scaling an area by a negative amount even mean ? 
     - This has to do with the idea of orientation. 
@@ -146,12 +146,12 @@ ans =
     - Another way to think about it , is in terms of î,ĵ.   
         - In their starting positions, ĵ is to the left of î. 
         - If , after a transformation, ĵ is now on the right of î, the orientation of space has been inverted.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_invert_orientation.png)
+        - ![](../imgs/ESS_LA_invert_orientation.png)
  - Whenever the orientation is inverted, the determinant will be negative.
     - the absolute value of the determinant though still tells you the factor by which areas have been scaled. 
  - What `det(M)<0` means in 3D ?
     - One way to describe orientation in 3D is with the right hand rule
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_right_hand_rule.png)
+    - ![](../imgs/ESS_LA_right_hand_rule.png)
     - if you still can do it after transformation, orientation has not changed. 
  - det(M₁M₂) = det(M₁)det(M₂)
 
@@ -207,7 +207,7 @@ ans =
 ## 7. Dot products and duality 
 
  - v·w
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_dot_p.png)
+    - ![](../imgs/ESS_LA_dot_p.png)
     - 如果w的投影 与 v的方向相反，`= -(Length of projected w)(Length of v)`
     - v·w > 0 方向大致相同
     - v·w = 0 垂直
@@ -220,14 +220,14 @@ ans =
     - 从几何角度可以看到一些美妙的事情: 将向量转化为数的线性变换(matrix) 和 这个向量本身 有什么某种关系
         - copy 一份数轴，保持原点，斜放到空间中
         - 考虑这样一个 二维向量 û ， 它的终点 落在这条数轴的1上
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_dot_p_uhat.png)
+        - ![](../imgs/ESS_LA_dot_p_uhat.png)
         - 如果将二维向量直接投影到这条数轴上，实际上，我们就定义了 一个从2D向量到 1D数的函数, 而且这个函数是线性的
             - 记住 虽然投影点都是数，但是û 是2D空间的一个向量，它碰巧落在这条数轴上
         - 根据这个投影，我们定义一个从 二维向量到数的线性变换。为了找到这个 1x2矩阵，我们把数轴放大看，并且需要考虑变换后 î,ĵ 的位置， 因为他们就是 矩阵的列。
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_dot_p_linear_transform.png)
+        - ![](../imgs/ESS_LA_dot_p_linear_transform.png)
         - 下面这部分超级漂亮，我们可以通过 对称性进行推理，因为î,ĵ 都是单位向量，将î向û投影， 与û向î投影看上去完全对称。
             - 所以说，î投影后的数 ，就是û 向x轴投影得到的数 -- u的横坐标: uₓ 
-            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_dot_p_ux.png)
+            - ![](../imgs/ESS_LA_dot_p_ux.png)
             - 以上推理过程对 ĵ 几乎一致，ĵ投影后的数，就是 u<sub>y</sub> 
         - 所以描述投影变换的1x2矩阵的两列，就分别是û的两个坐标。 而空间中任意向量经过投影变换的结果，也就是投影矩阵与这个向量相乘，和这个向量与û的点积在计算上完全相同.
             - Maxtix-vector product <==> Dot product
@@ -249,7 +249,7 @@ ans =
 
  - 2D vxw = signed Area of parallelogram
     - if v is on the right of w , value is positive 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_cross_positive.png)
+        - ![](../imgs/ESS_LA_cross_positive.png)
     - if v is on the left of w, value is negative 
     - vxw = -wxv
     - 如何记忆方向？ `î x ĵ = +1`  
@@ -257,10 +257,10 @@ ans =
  - 严格的讲，上面描述的东西 is not cross product.
  - 真正的叉积是 通过两个 三维向量a,b，生成一个新的三维向量c, 这个向量c的长度，就是a,b围成的平行四边形的面积
     - c 的方向 与平行四边形 所在面 垂直, 右手法则
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_cross_p_3d.png)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_cross_right_hand_rule.png)
+    - ![](../imgs/ESS_LA_cross_p_3d.png)
+    - ![](../imgs/ESS_LA_cross_right_hand_rule.png)
     - computation:
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_3d_cross_computation.png)
+        - ![](../imgs/ESS_LA_3d_cross_computation.png)
  - question: 为什么 叉积的计算 和行列式这么相像？ 之间有什么必然联系？
 
 <h2 id="d6f39fcd3624e0b509757af47be8f6c5"></h2>
@@ -278,25 +278,25 @@ ans =
     - 不过这个想法已经非常接近真实的叉积了。
     - 将第一个向量u看作可变向量，比如(x,y,z) , 而 v,w保持不变，那么我们就有一个 从三维空间到数轴的函数了:
         - 你输入一个 向量(x,y,z) ， 然后通过矩阵的行列式得到一个数。
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_cross_3d_to_1d_geo.png)
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_cross_3d_to_1d_transformation.png)
+        - ![](../imgs/ESS_LA_cross_3d_to_1d_geo.png)
+        - ![](../imgs/ESS_LA_cross_3d_to_1d_transformation.png)
         - 这个函数的几何意义是, 对于任一输入的向量(x,y,z), 你都考虑由它和v,w 确定的平行六面体 得到它的体积，然后根据定向确定符号。
         - 这个函数是线性的，这样我就可以引入 对偶的思想了。 一旦知道它是线性的，你就知道可以通过1x3矩阵 乘法来描述这个函数。
             - 1x3 matrix encoding the 3d-to-1d linear transformation
         - 对偶性的整体思路是，从多维空间到一维空间的变换的特别之处，在于你可以将这个矩阵立起来，并且将整个变换看作与这个特定向量的点积。
             - 我们要找的，就是这个特殊的三维向量 p, 使得p与其它任一向量(x,y,z) 的点积，等于一个3x3矩阵的行列式.
-            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_dot_induction.png)
+            - ![](../imgs/ESS_LA_dot_induction.png)
         - 现在我们来关注这个计算本身
-            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_dot_induction_c1.png)
+            - ![](../imgs/ESS_LA_dot_induction_c1.png)
             - 因为 v,w 的坐标的特定组合，就是我们寻找的向量p的坐标
-            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_dot_induction_c2.png)
+            - ![](../imgs/ESS_LA_dot_induction_c2.png)
             - 等号的右侧，对于那些进行过叉积计算的人来说是很熟悉的。
  - 这一切都在说明，前面奇怪的运算过程可以看作是以下问题的答案：
     - 当你将向量p和某个向量(x,y,z)点乘时，所得结果等于一个3x3矩阵的行列式，这个矩阵的第一列为 (x,y,z),其余两列为 v和w的坐标。什么样的向量p才能满足这一特殊性质?
     - 我们从几何角度再来看一下这个问题
     - 点积的几何意义是 投影的长度与p的长度相乘
     - 平行六面体的体积，等于 由v,w确定平行四边形的面积，乘以，向量(x,y,z) 垂直于平行四边形方向上的分量
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_dot_inductio_det_perd_comp.png)
+        - ![](../imgs/ESS_LA_dot_inductio_det_perd_comp.png)
         - 换句话说，我们找到的线性函数 对于给定向量(x,y,z)的作用，是将这个向量投影到垂直于v,w的直线上，然后将投影长度与v,w张成的平行四边形的面积相乘. 但是，这和垂直于v,w且长度为平行四边形面积的向量 与(x,y,z)点乘是同一回事。
         - 更重要的是，如果你选择了合适的向量方向，点积为正的情况，就会与(x,y,z),v,w 满足右手定则的情况相吻合
  - 这意味着，叉积的结果是这么一个向量p: 垂直与v,w, 且与某个向量(x,y,z)点乘时，所得结果等于 (x,y,z),v,w 构成的3x3矩阵的行列式
@@ -312,7 +312,7 @@ ans =
     - 实际上，我们说着不同的语言。虽然我们都在关注空间中的同一个向量，但是詹妮弗用不同的语言和数字来描述它。
  - 那么如何在不同的坐标系之间 进行转化呢？
     - 比如说，如果詹妮弗用坐标(-1,2) 描述一个向量，那么这个向量在我们的坐标系中如何描述？ 你如何从她的语言 转化到我们的语言？
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_change_of_basis_ex0.png)
+        - ![](../imgs/ESS_LA_change_of_basis_ex0.png)
         - 这其实就是矩阵向量乘法。 这个矩阵的列 代表的是用我们的语言表达的 詹妮弗的基向量。这其实就是一个线性变换。
         - 线性变化的一个重要特性在于， 应用变换后的 向量仍旧是 相同的线性组合， 不过使用的是 新的基向量。 
     - 这个矩阵所做的，是将我们对 **詹妮弗的向量的误解** ，变换为她提到的真正向量。
@@ -329,11 +329,11 @@ ans =
     - 这个过程的通常想想法是这样的:  
         - 从詹妮弗的语言描述的任一向量出发，say [-1;2] . 
         - 我们先不用她的语言来描述这个过程，而是用基变换矩阵 转化为用我们的语言描述
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_change_basis_matrix.png)
+        - ![](../imgs/ESS_LA_change_basis_matrix.png)
         - 然后，将所得结果 左乘 线性变换矩阵 P 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_change_basis_left_m_P.png)
+        - ![](../imgs/ESS_LA_change_basis_left_m_P.png)
         - 上面变换后的向量， 仍然是用我们的语言来描述的，所以像之前一样，所得结果左乘 基变换矩阵的逆，从而得到的最终向量，就是用詹妮弗的语言来描述的。
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_change_basis_vector_in_hers.png)
+        - ![](../imgs/ESS_LA_change_basis_vector_in_hers.png)
         - 我们可以对 用詹妮弗语言描述的 任一向量，做同样事， 首先 基变换，然后线性变换，然后基变换的逆， 这三个矩阵的复合给出的，就是用詹妮弗怨言描述的线性变换矩阵。它接收 詹妮弗语言描述的向量，输出用詹妮弗语言描述的 变换后的向量。
  - 总的来说，每当你看到这样一个表达式: A⁻¹MA , 这就暗示着一种数学上的转移作用。中间的矩阵代表一种你所见的变换，而外侧的两个矩阵代表着转移作用，也就是视角上的转化。矩阵乘积 仍然代表这同一个变换， 只不过是从其它人的角度来看的。
  - 所以，固定坐标系下一个对象的变换等价于固定对象所处的坐标系变换。
@@ -411,7 +411,7 @@ ans =
  - Let's descibe the derivative with a matrix 
     - 我们现在把目光限制在多项式空间上，比如说x²+3x+5 , 或者 4x⁷-5x² 等等
     - 虽然这个空间中的每一个多项式都只有有限项，但是整个空间应该包含任意高次的多项式
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_all_polynomials_space.png)
+        - ![](../imgs/ESS_LA_all_polynomials_space.png)
     - 首先我们要做的是给这个空间赋予坐标的含义，这需要选取一个基
         - 因为多项式已经是 数乘xⁿ 再做加和 的形式，所以我们很自然地就取x的不同次幂作为基函数
         - Basis functions
@@ -422,11 +422,11 @@ ans =
             - ...
         - 基函数在这里起的作用，和 î,ĵ,k̂ 在向量世界中起到的作用类似。
         - 因为多项式的次数可以任意高，所以这个基函数集也是无穷大
-            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_basis_functions.png)
+            - ![](../imgs/ESS_LA_basis_functions.png)
         - 在这个坐标系中，求导是用一个无限阶矩阵描述的
-            - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_functions_derivative.png)
+            - ![](../imgs/ESS_LA_functions_derivative.png)
         - 其中绝大部分是零，不过次对角线上按序排列着正整数
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ESS_LA_function_derivative_ex.png)
+        - ![](../imgs/ESS_LA_function_derivative_ex.png)
     - 求导满足线性性质使这一过程成为可能
         - 求导矩阵的构建，实际就是 求每一个 基函数的导数，然后把结果放在对应列
  - 数学中有很多类似向量的事物，只要你处理的对象具有合理的数乘和相加的概念，线性代数中所有关于向量，线性变换，和其他的概念都应该使用与它。

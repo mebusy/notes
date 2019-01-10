@@ -41,7 +41,7 @@ The cellular texturing basis functions are based on the fundamental idea of rand
 
 For any location x, there is some feature point that lies closer to x than any other feature point.  Define F₁(x) as the distance from x to that closest feature point. Figure 4.1 shows an example of this in 2D. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F4.1.png) 
+![](../imgs/TM_F4.1.png) 
 
 > FIGURE 4.1 F*n* values are the distance to the *n*th closest feature point.
 
@@ -62,7 +62,7 @@ The functions F have some interesting properties.
 
 These careful definitions are very useful when we want to start making interesting textures. Mapping values of the function into a color and normal displacement can produce visually interesting and impressive effects. In the simplest case, F₁(x) can be mapped into a color spline and bump. The character of F₁ is very simple, since the function increases radially around each feature point. Thus, mapping a color to small values of F₁ will cause a surface texture to place spots around each feature point -— polka dots! Figure 4.2 shows this radial behavior in the upper left.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F4.2.png) 
+![](../imgs/TM_F4.2.png) 
 
 > FIGURE 4.2 Gradient-mapped samples of F₁, F₂, F₃, and F₂ − F₁.
 
@@ -74,7 +74,7 @@ F₄ and other high **n** start looking similar, but the lower values of n (up t
 
 Figure 4.3 shows 20 sample surfaces that are all just examples of combinations of these low-n basis functions.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F4.3.png) 
+![](../imgs/TM_F4.3.png) 
 
 > FIGURE 4.3 A variety of example appearances formed by linear combinations of the F<sub>n</sub>  functions.
 
@@ -84,7 +84,7 @@ This is a simple loop, computing a function G<sub>n</sub> = Σ 2⁻ⁱF<sub>n</s
 
 The fractal versions of any of the basic basis function combinations become extremely appealing. Figure 4.4 shows a fractal version of F₁ forming the spotted pattern and bumps on the hide of a creature.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F4.4.png) 
+![](../imgs/TM_F4.4.png) 
 
 > FIGURE 4.4 Natural-looking reptile hide using fractal-versions of the F<sub>n</sub> functions.
 
@@ -92,7 +92,7 @@ Fractal noise is used for the tongue, and a linear gradient is applied to the ma
 
 Other fractal versions of primitives are shown in the row of cut tori in Figure 4.5.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F4.5.png) 
+![](../imgs/TM_F4.5.png) 
 
 > FIGURE 4.5 More examples of fractal combinations.
 
@@ -102,7 +102,7 @@ Applied solely as a bump map, the surface becomes crumpled like paper or tinfoil
 
 A surprising discovery was that a reflective, bumped-map plane with this “crumple” appearance bears an excellent resemblance to seawater, as shown in Figure 4.6. This bump-only fractal texture has become extremely popular in many renderers.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F4.6.png) 
+![](../imgs/TM_F4.6.png) 
 
 > FIGURE 4.6 Sea surface formed from bump-mapped fractal F₁ functions.
 
@@ -110,7 +110,7 @@ Since the cellular texture is a family of bases, it’s fun to try more advanced
 
 If the F₁ function returns a unique ID number to represent the closest feature point’s identity, this number can be used to form features that are constant over a cell, for example, to shade the entire cell a single constant color. When combined with bumping based on F₂ − F₁, quite interesting flagstonelike surfaces can be easily generated.  Figure 4.7 shows this technique, which also uses fractal noise discoloration in each cell. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F4.7.png) 
+![](../imgs/TM_F4.7.png) 
 
 > FIGURE 4.7 3D flagstone texture shows Voronoi cells.
 
@@ -138,7 +138,7 @@ The correct way to eliminate this bias is to keep the idea of splitting space in
 
 Since space will be filled with an infinite number of feature points, we need to be able to generate and test just a limited region of space at a time. The easiest way to do this is to dice space into cubes and deal with feature points inside each cube. This allows us to look at the points near our sample by examining the cube that the sample location is in plus the immediate neighbor cubes.  An example is shown in Figure 4.8
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F4.8.png) 
+![](../imgs/TM_F4.8.png) 
 
 > FIGURE 4.8 Searching for local feature points in neighboring cubes of space.
 
@@ -166,7 +166,7 @@ This procedure finds the closest feature points and the values of F₁ to F<sub>
 
 Figure 4.9 shows this elimination in a 2D example. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F4.9.png) 
+![](../imgs/TM_F4.9.png) 
 
 > FIGURE 4.9 We don’t need to test neighbor cubes that are too distant.
 

@@ -182,7 +182,7 @@ For an invertible matrix, the nullspace contains only x = 0 (multiply Ax = 0 by 
  - When b₂ = 2b₁, there are ***infinitely many solutions***. 
     - A particular solution to y + z = 2 and 2y + 2z = 4 is x_p (1, 1). The nullspace of A contains (-1, 1) and all its multiples x_n = (-c, c):
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_completeSolution.png)
+![](../imgs/LA_completeSolution.png)
 
 <h2 id="fb0727e770a06722aa7b9d64a9b6af91"></h2>
 
@@ -218,7 +218,7 @@ U -> | 0 0 3 3|
 
 Strictly speaking, we proceed to the fourth column. A zero is in the third pivot position, and nothing can be done. U is upper triangular, but its pivots are not on the main diagonal. The nonzero entries of U have a "staircase pattern," or echelon form. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_echelon_form.png)  
+![](../imgs/LA_echelon_form.png)  
 ***Figure 2.3***
 
 We can always reach this echelon form U, with zeros below the pivots:
@@ -243,7 +243,7 @@ Here is *PA = LU* for all matrices:
 
 *Now comes* ***R***. We can go further than U, to make the matrix even simpler. Divide the second row by its pivot 3, so that ***all pivots are 1***. Then use the pivot row to produce ***zero above the pivot*** (This time we subtract a row from *a higher row*). The final result (the best form we can get) is the ***reduced row echelon form R*** :
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_ReducedEchelon.png)
+![](../imgs/LA_ReducedEchelon.png)
 
 This matrix R is the final result of elimination on A. MATLAB would use the command **R = rref (A)**. Of course rref(R) would give R again!
 
@@ -263,7 +263,7 @@ For a 5 by 8 matrix with four pivots, Figure 2.3 shows the reduced form R. **It 
 
 Our goal is to read off all the solutions to Rx = 0. The pivots are crucial:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_nullspaceOfR.png)
+![](../imgs/LA_nullspaceOfR.png)
 
  - The unknowns u, v, w, y go into two groups.
  - One group contains the ***pivot variables***, those that correspond to ***columns with pivots***.
@@ -271,11 +271,11 @@ Our goal is to read off all the solutions to Rx = 0. The pivots are crucial:
 
 To find the most general solution to Rx = 0 (or, equivalently, to Ax = 0) we may ***assign arbitrary values to the free variables***. Suppose we call these values simply v and y. The pivot variables are completely determined in terms of v and y:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_R_free_solution.png)
+![](../imgs/LA_R_free_solution.png)
 
 There is a "double infinity" of solutions, with v and y free and independent. The complete solution is a combination of two **special solutions**:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_R_free_solution2png.png)
+![](../imgs/LA_R_free_solution2png.png)
 
 The special solution (-3, 1, 0, 0) has free variables v = 1, y = 0. The other special solution (1, 0, -1, 1) has v = 0 and y = 1. All solutions are *linear combinations of these two*. The best way to find all solutions to Ax = 0 is from the special solutions:
 
@@ -287,7 +287,7 @@ Within the 4-dimensional space of all possible vectors x, the solutions to Ax = 
 
 Here is a little trick. The special solutions are especially easy from R. The numbers 3 and 0 and -1 and 1 lie in the "nonpivot columns" of R. **Reverse their signs to find the pivot variables** (not free) **in the special solutions**. I will put the two special solutions from equation (2) into a nullspace matrix N, so you see this neat pattern:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_nullspace_matrix.png)
+![](../imgs/LA_nullspace_matrix.png)
 
 The free variables have values 1 and 0 (formed in identity). 
  
@@ -309,7 +309,7 @@ We begin with letters (b1, b2, b3) to find the solvability condition - for b to 
 
 For the original example Ax = b = (b1, b2, b3), apply to both sides the operations that led from A to U. The result is an upper triangular system Ux = c:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_echelon_on_both_side.png)   (3)
+![](../imgs/LA_echelon_on_both_side.png)   (3)
  
 Start now with Ux = c.   c is just L⁻¹b.
 
@@ -329,7 +329,7 @@ The column space C(A) can be described in two different ways. On the one hand, i
  
 If b belongs to the column space, the solutions of Ax = b are easy to find. The last equation in Ux = c is 0 = 0. To the free variables v and y, we may assign any values, as before. The pivot variables u and w are still determined by back-substitution. For a specific example with b3 - 2b2 + 5b1 = 0, choose b = (1, 5, 5):
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_solve_uxc.png)  
+![](../imgs/LA_solve_uxc.png)  
 (4)
 
 ***Every solution to Ax = b is the sum of one particular solution and a solution to Ax = 0:***
@@ -350,7 +350,7 @@ When the equation was Ax = 0, the particular solution was the zero vector!
 
 While producing Rx = d from Ux = c , these operations change c = (1, 3, 0) to a new vector d = (-2, 1, 0):
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_rx_equal_d.png)
+![](../imgs/LA_rx_equal_d.png)
 
 Our particular solution xp (**one choice out of many**) has free variables v = y = 0. Columns 2 and 4 can be ignored. Then we immediately have u = -2 and w = 1, exactly as in equation (4). **The entries of d go directly into x_p.**  This is because the identity matrix is sitting in the pivot columns of R!
 
@@ -446,7 +446,7 @@ v = b₁v₁ + ... + bkvk, then subtraction gives 0 = ∑(aᵢ-bᵢ)vᵢ. (不�
 
 We had better say at once that the coordinate vectors e₁, ... , en are not the only basis for **Rⁿ**. A vector space has ***infinitely many different bases***. 
 
-Example 8: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_x_y_plane_basic.png)
+Example 8: ![](../imgs/LA_x_y_plane_basic.png)
 
  - x-y plane in R²
  - A spanning set v₁, v₂, v₃, certainly span R², but are not independent.
@@ -530,7 +530,7 @@ A = U = R = |1 0 0|
 
 The column space is the line through [1 0]ᵀ, the row space is the line through [1 0 0]ᵀ. It is in **R³**. The nullspace is a plane in **R³** and the left nullspace is a line in **R²**:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_4subspace_01.png)
+![](../imgs/LA_4subspace_01.png)
 
 Note that all vectors are column vectors. Even the rows are transposed, and the row space of A is the *column space* of Aᵀ. Our problem will be to connect the four spaces for U (after elimination) to the four spaces for A:
 
@@ -601,7 +601,7 @@ A = |1 2|  , has m = n = 2, and rank r = 1.
 
 ---
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_4subspaces.png)
+![](../imgs/LA_4subspaces.png)
 
 
 
@@ -711,7 +711,7 @@ This section is *optional*, but it gives a chance to see rectangular matrices in
     - (and edges from a node to itself are forbidden). 
  - This graph is directed, because of the arrow in each edge.
  
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_directed_graph.png)
+![](../imgs/LA_directed_graph.png)
 
  - The ***edge-node incidence matrix*** is 5x4
     - with a row for every edge. 
@@ -792,7 +792,7 @@ Suppose A is n by n , x is an n-dimensional vector. When A multiplies x, it tran
 
 Four transformations that come from matrices:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_matrix_transformations.png)
+![](../imgs/LA_matrix_transformations.png)
 
 ```
 A1= |c 0| , A2= |0 -1| , A3= |0 1| , A4= |1 0|
@@ -947,7 +947,7 @@ They *must* be represented by matrices. Using the natural basis [1 0]ᵀ and [0 
 
 **1. Rotation**  
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_rotation_projection_theta_line.png)
+![](../imgs/LA_rotation_projection_theta_line.png)
 
 Figure 2.10 shows rotation through an angle θ. It also shows the effect on the 2 basis vectors.
 
@@ -955,7 +955,7 @@ Figure 2.10 shows rotation through an angle θ. It also shows the effect on the 
     - we use c and s for cos θ and sin θ.
  - The second basis vector (0, 1) rotates into (-sin θ, cos θ). 
  - By rule (6), those numbers go into the columns of the matrix 
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Q_theta.png)
+ - ![](../imgs/LA_Q_theta.png)
  - The last case contains the first two. 
     - The inverse appears when φ is -θ
     - the square appears when φ is +θ. 
@@ -996,7 +996,7 @@ P² = |c² cs|² = |c²(c²+s²) cs(c²+s²)| = P
 
 **3. Reflection**
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Reflection_thetaLine.png)
+![](../imgs/LA_Reflection_thetaLine.png)
 
 
 Figure 2.11 shows the reflection of (1, 0) in the θ-line. The length of the reflection equals the length of the original, as it did after rotation. The perpendicular line reverses direction; all points go straight through the mirror. Linearity decides the rest.
@@ -1022,7 +1022,7 @@ One approach is through the relationship of reflections to projections: *H = 2P 
 
 Other transformations Ax can increase the length of x; stretching and shearing are in the exercises. Each example has a matrix to represent it - which is the main point of this section. But there is also the question of choosing a basis, and we emphasize that the matrix depends on the choice of basis. Suppose the first basis vector is ***on the θ-line*** and the second basis vector is ***perpendicular***:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_transformations_theata_line_basis.png)
+![](../imgs/LA_transformations_theata_line_basis.png)
 
 The goal is to make the matrix diagonal, as achieved for P and H. To make Q diagonal requires complex vectors, since all real vectors are rotated.
 

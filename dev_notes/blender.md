@@ -714,7 +714,7 @@ f 6//4 3//4 2//4
 ...
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_f4.3.png)
+![](../imgs/blender_f4.3.png)
 
 **Using Coplanar Vertices to Reduce Face Count**
 
@@ -727,7 +727,7 @@ f 3//2 4//2 8//2 7//2
 ...
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_f4.4.png)
+![](../imgs/blender_f4.4.png)
 
 **Using Face Vertices to Simplify Indices**
 
@@ -760,17 +760,17 @@ f (8 4 2 6)//6
  - One very common bug we encounter is unexplainable wonky lighting
     - The issue typically comes down to normal management and can be solved with a few function calls or button clicks in Blender itself
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_cocentric_normal.png)
+![](../imgs/blender_cocentric_normal.png)
 
 The left side is a cube’s .obj file , which has been improperly given concentric normals.
 
 while the right side is correctly exported with planar normals. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_cocentric_normal_render.png)
+![](../imgs/blender_cocentric_normal_render.png)
 
 > Figure 4-6. Concentric normals (smooth shading) in WebGL
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_coplanar_render.png)
+![](../imgs/blender_coplanar_render.png)
 
 > Figure 4-7. Planar normals (flat shading) in WebGL
 
@@ -803,12 +803,12 @@ bpy.context.object.modifiers["EdgeSplit"].split_angle = (3.1415 / 180) * 5
 bpy.ops.object.modifier_apply(apply_as='DATA', modifier='EdgeSplit')
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_before_edge_split.png)
+![](../imgs/blender_before_edge_split.png)
 
 > Figure 4-8. Normal vectors before edge split (smooth shaded)
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_after_edge_split.png)
+![](../imgs/blender_after_edge_split.png)
 
 > Figure 4-9. Normal vectors after edge split (flat shaded)
 
@@ -823,7 +823,7 @@ As previously mentioned, flipped normals can make planes appear transparent. Thi
 
 This is unintuitive because common renderers treat planes as one-sided for sake of performance and consistency
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_flipped_normal.png)
+![](../imgs/blender_flipped_normal.png)
 
 Mathematically, this can be remedied by scaling each flipped normal vector by −1. 
 
@@ -843,7 +843,7 @@ Z-fighting is a common rendering issue that produces glitchy objects without thr
 
 See Figure 4-12 for an example of Z-fighting among four cubes in Blender in Rendered view.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_z_fighting.png)
+![](../imgs/blender_z_fighting.png)
 
 > Figure 4-12. Z-fighting of cubes with coplanar faces
 
@@ -895,7 +895,7 @@ Running this script will create a new tab in the Tools panel called “Simple Ad
 
 The button will print a message to the console verifying that the plugin works, then parrot back the string in the text input field. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_simpleaddon.png)
+![](../imgs/blender_simpleaddon.png)
 
 The template presented here is fairly minimal, but we also included a handful of optional quality controls. 
 
@@ -932,7 +932,7 @@ The detailed of bl_info description here:
 
 Table 5-1. The bl-info Category Options
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_tab5.1.png)
+![](../imgs/blender_tab5.1.png)
 
 There are a few remaining bl_info options that are less often seen.
 
@@ -1031,7 +1031,7 @@ def tell_time(dummy):
 bpy.app.handlers.scene_update_pre.append(tell_time)
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_clock_example.png)
+![](../imgs/blender_clock_example.png)
 
  - To instantiate a handler, we declare a function 
     - `def tell_time(dummy):`
@@ -1287,7 +1287,7 @@ The biggest problem we must solve when procedurally generating cameras is determ
  - To give some perspective, an iPhone 6 camera has a FoV of about (63°, 47°) degrees when in landscape mode. 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_fov.png)
+![](../imgs/blender_fov.png)
 
 > Figure 8-5. Field of view along the y-axis
 
@@ -1335,14 +1335,14 @@ def scene_bounding_box():
  - In Listing 8-4, we render the output of Listing 8-1 using both Blender Render and OpenGL render. 
     - This example assumes positions the camera to point upward along the x-axis at the median of the scene, from the yz-median of the scene, such that it will capture the whole scene
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/blender_render_img.png)
+![](../imgs/blender_render_img.png)
 
 > Figure 8-6. Blender Render
 
  - We can also render a snapshot of the 3D Viewport using OpenGL render. This will capture basic features of the scene similar to how we see the 3D Viewport in Object Mode with Solid view. 
     - Note that we can see both the lights and camera, but not the materials, in this view. 
     - When we call bpy.ops.render.opengl(), setting `view_context = True` will cause Blender to use the 3D Viewport camera (the user’s view) rather than the scene camera.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/opengl_render.png)
+    - ![](../imgs/opengl_render.png)
 
 Listing 8-4. Rendering Using Blender Render and OpenGL Render
 

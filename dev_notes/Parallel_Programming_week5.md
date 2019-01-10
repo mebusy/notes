@@ -66,7 +66,7 @@ To learn the parallel histogram computation pattern:
 
 #### Iteration #1 – 1st letter in each section
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/histo_step1.png)
+![](../imgs/histo_step1.png)
      
       
 <h2 id="292fcfab7969a7f0c452cb4828222d78"></h2>
@@ -149,7 +149,7 @@ The answer may vary due to data races. To avoid data races, you should use atomi
  - Reads from the input array are not coalesced
     - Adjacent threads process non-adjacent input letters
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/histo_uncoalesced.png)
+![](../imgs/histo_uncoalesced.png)
 
 <h2 id="248c001700eb0ec840c18dd5d3b7711d"></h2>
 
@@ -159,7 +159,7 @@ The answer may vary due to data races. To avoid data races, you should use atomi
     - Assign inputs to each thread in a strided pattern
     - Adjacent threads process adjacent input letters
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/histo_better_mem_access.png)
+![](../imgs/histo_better_mem_access.png)
 
 <h2 id="d47212ebdb72e211e492b58dc19235c5"></h2>
 
@@ -243,7 +243,7 @@ __global__ void histo_kernel(unsigned char *buffer, long size,
 
 #### Histogram Privatization
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/histogram_privatization.png)
+![](../imgs/histogram_privatization.png)
 
  - right pic
     - private copies of the histogram in the shared memory of each thread block

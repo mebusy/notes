@@ -86,10 +86,10 @@
  - Flux是一个相当宽松的概念框架，同样符合React简单直观的原则。
     - 不同于其它大多数MVC框架的双向数据绑定，Flux提倡的是单向数据流动，即永远只有从模型到视图的数据流动。 
  - Flux 与 MVC
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/flux_mvc.png)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/flux_flux.png)
+    - ![](../imgs/flux_mvc.png)
+    - ![](../imgs/flux_flux.png)
     - 一个 chat message的例子
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/flux_chat_example.png)
+        - ![](../imgs/flux_chat_example.png)
  - in FLUX,  what we have are 
     - an action coming into the system
     - a dispatch for that sort of acts as the traffic controller for the whole thing 
@@ -405,7 +405,7 @@ class TodoApp extends React.Component {
  - 在组件的整个生命周期中，React强烈不推荐去修改自身的props，因为这会破坏UI和Model的一致性，props只能够由使用者来决定。
  - 对于自定义组件，唯一必须实现的方法就是render()，除此之外，还有一些方法会在组件生命周期中被调用，如下图所示：
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/react_render_calllist.png)
+![](../imgs/react_render_calllist.png)
 
  method | desc
 --- | ---
@@ -479,7 +479,7 @@ renderB: <span />
  - 在React中，树的算法其实非常简单
     - 那就是两棵树只会对同一层次的节点进行比较。如下图所示：
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/react_dom_diff.png)
+![](../imgs/react_dom_diff.png)
 
  - React只会对相同颜色方框内的DOM节点进行比较，即同一个父节点下的所有子节点.
     - 当发现节点已经不存在，则该节点及其子节点会被完全删除掉，不会用于进一步的比较。
@@ -503,7 +503,7 @@ componentDidUpdate | 当组件更新时执行。
 
  - 当DOM树进行如下转变时，即从“shape1”转变到“shape2”时。我们来观察这几个方法的执行情况：
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/react_dom_diff_example.png)
+![](../imgs/react_dom_diff_example.png)
 
 
 ```
@@ -546,22 +546,22 @@ renderB: <div style={{fontWeight: 'bold'}} />
     - 那么当它们在同一层时，又是如何处理的呢？
     - 这就涉及到列表节点的Diff算法。
  - 相信很多使用React的同学大多遇到过这样的警告：
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/react_list_warning.png)
+    - ![](../imgs/react_list_warning.png)
     - 这是React在遇到列表时却又找不到key时提示的警告。
     - 虽然无视这条警告大部分界面也会正确工作，但这通常意味着潜在的性能问题。因为React觉得自己可能无法高效的去更新这个列表。
  - 列表节点的操作通常包括添加、删除和排序。
  - 例如下图，我们需要往B和C直接插入节点F
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/react_list_compare.png)
+    - ![](../imgs/react_list_compare.png)
     - 在jQuery中我们可能会直接使用$(B).after(F)来实现
     - 而在React中，我们只会告诉React新的界面应该是A-B-F-C-D-E，由Diff算法完成更新界面。
  - 这时如果每个节点都没有唯一的标识，React无法识别每一个节点，那么更新过程会很低效，即
     - 将C更新成F，D更新成C，E更新成D，最后再插入一个E节点。效果如下图所示：
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/react_list_compare2.png)
+    - ![](../imgs/react_list_compare2.png)
     - 可以看到，React会逐个对节点进行更新，转换到目标节点。
  - 而如果给每个节点唯一的标识（key），那么React能够找到正确的位置去插入新的节点，入下图所示：
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/react_list_compare3.png)
+    - ![](../imgs/react_list_compare3.png)
  - 对于列表节点顺序的调整其实也类似于插入或删除, 如我们把树的形态从shape5转换到shape6：
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/react_list_compare4.png)
+    - ![](../imgs/react_list_compare4.png)
  - 即将同一层的节点位置进行调整。如果未提供key，那么React认为B和C之后的对应位置组件类型不同，因此完全删除后重建:
 
 ```

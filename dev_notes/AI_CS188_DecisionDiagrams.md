@@ -28,7 +28,7 @@
 
 DNs will be a lot like BNs, but there will be more types of nodes rather than just random variable nodes. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_dn_example0.png)
+![](../imgs/cs188_DM_dn_example0.png)
 
  - New node types:
     - ![][1] Chance nodes (just like BNs)
@@ -80,7 +80,7 @@ So how do you select an action ?
 
 ### Simple Example 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_dn_example_simple.png)
+![](../imgs/cs188_DM_dn_example_simple.png)
 
 There are part of the problem specificaton of course.   If you are designing a robot to be deployed somewhere ,you would decide for that robot what the utilities are such that when the robot maximizes expected utility it does what you want it to try to achieve. 
 
@@ -96,14 +96,14 @@ There are part of the problem specificaton of course.   If you are designing a r
 
 This is a lot like expectimax tree. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DN_example_expectimax_tree.png)
+![](../imgs/cs188_DN_example_expectimax_tree.png)
 
  - Almost exactly like expectimax / MDPs
  - What’s changed?
 
 ---
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_dn_example_simple2.png)
+![](../imgs/cs188_DM_dn_example_simple2.png)
 
 We listened to the forecast and the forecast is bad.  
 
@@ -117,7 +117,7 @@ We listened to the forecast and the forecast is bad.
  - Optimal decision = take
     - MEU(F=bad) = maxₐ EU(a|bad) = 53
           
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DN_example_expectimax_tree2.png)
+![](../imgs/cs188_DN_example_expectimax_tree2.png)
 
 
 <h2 id="a457e316cc82b392c5e0160e69e95ab0"></h2>
@@ -128,7 +128,7 @@ We listened to the forecast and the forecast is bad.
  - you receive 250 if you buster the ghost
  - you receive 0 and game over if you buster and miss
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_GhostbustersDecisionNetwork.png)
+![](../imgs/cs188_DM_GhostbustersDecisionNetwork.png)
 
 
 
@@ -141,7 +141,7 @@ We listened to the forecast and the forecast is bad.
 
 What we're interested in now is what is the value of information.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_valueOfInformation.png)
+![](../imgs/cs188_DM_valueOfInformation.png)
 
 You have these sensors, how much would you be willing to pay to get an access to a sensor and measure its value. 
 
@@ -154,7 +154,7 @@ You have these sensors, how much would you be willing to pay to get an access to
     - You can drill in one location
     - Prior probabilities 0.5 each, & mutually exclusive
     - Drilling in either A or B has EU = k/2, MEU = k/2
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_valueOfInformation_example_drill_oil.png)
+    - ![](../imgs/cs188_DM_valueOfInformation_example_drill_oil.png)
  - Question: what’s the **value of information** of O?
     - Value of knowing which of A or B has oil.
         - if you know the oil location (somebody tells you) , then your MEU is k. 
@@ -173,7 +173,7 @@ You have these sensors, how much would you be willing to pay to get an access to
 
 ### VPI Example: Weather
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_vpi_example_weather.png)
+![](../imgs/cs188_DM_vpi_example_weather.png)
 
 We can observe only Forecast. Question is how valuable is it to observe the forecast. 
 
@@ -188,7 +188,7 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
     - we can compute by running inference in BNs
     - 0.59·95 + 0.41·53 - 70 = 7.8 
     - in this case 7.8 means that you would be willing to pay 7.8 to get to listen to the forecast.
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_vpi_formular.png)
+ - ![](../imgs/cs188_DM_vpi_formular.png)
     - we have the VPI of a particular variable or set of variables E' given that you already observed another set of variables *e* which could be the empty set.
     - in our example *e* was the empty set , E' was equal to forecast. 
       
@@ -198,30 +198,30 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 ## Value of Information Cont.
 
  - Assume we have evidence E=e.  Value if we act now:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_voi_form1.png)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_voi_graph1.png)
+    - ![](../imgs/cs188_DM_voi_form1.png)
+    - ![](../imgs/cs188_DM_voi_graph1.png)
         - you have initial evidence +e 
         - so choose an action 
         - that point the chance node kick in ,which will instantiate the parent variables of the utility node and then 
         - you have your utility nodes.
  - Assume we see that E’ = e’.  Value if we act then:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_voi_form2.png)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_voi_graph2.png)
+    - ![](../imgs/cs188_DM_voi_form2.png)
+    - ![](../imgs/cs188_DM_voi_graph2.png)
         - after you observe both {+e,+e' } 
         - you take an action 
         - and then the chance nodes kick in 
         - and then the utility nodes.
  - BUT **E’ is a random variable whose value is unknown**, so we don’t know what e’ will be
  - Expected value if E’ is revealed and then we act:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_voi_form3.png)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_voi_graph3.png)
+    - ![](../imgs/cs188_DM_voi_form3.png)
+    - ![](../imgs/cs188_DM_voi_graph3.png)
         - you were to get to observe evidence but you don't know yet what the evidence is going to be
         - you start with chance node. 
         - first thing that happens is the evidence e' will be observed. you don't know yet what it's going to be, could be +e' or -e'
         - after that get instantiated you get to choose your action 
         - after that more chance nodes will kick in for the parent variables of the utility node after which utility nodes kick in. 
  - Value of information: how much MEU goes up by revealing E’ first then acting, over acting now:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_voi_form4.png)
+    - ![](../imgs/cs188_DM_voi_form4.png)
 
 
 <h2 id="8d5bce627e9558ab88dbe1e4a4657365"></h2>
@@ -260,7 +260,7 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 ## Value of Imperfect Information?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_value_of_inperfect_info.png)
+![](../imgs/cs188_DM_value_of_inperfect_info.png)
 
  - No such thing
  - Information corresponds to the observation of a node in the decision network
@@ -272,7 +272,7 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 ## VPI Question
 
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_VPI_question.png)
+ ![](../imgs/cs188_DM_VPI_question.png)
 
  - we addd an extra variable : Scouting Report
     - so now it's possible that a scout reports on where the oil location might be. 
@@ -311,11 +311,11 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
     - Actions A
     - Transition function P(s’|s,a) (or T(s,a,s’))
     - Rewards R(s,a,s’)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_POMDP_MDP.png)
+    - ![](../imgs/cs188_DM_POMDP_MDP.png)
  - POMDPs add:
     - Observations O
     - Observation function P(o|s) (or O(s,o))
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_POMDP_PO.png)
+    - ![](../imgs/cs188_DM_POMDP_PO.png)
     - POMDP is a partially observalbe MDP. Partially observable means that you don't observe all the variables that are in play , only some are observed. 
     - When chance trasitions happens what changes is you get to observe a new variable which then in turn changes your distribution. 
         - your believe *b*  is something initially  
@@ -336,13 +336,13 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
     - Belief state determined by evidence to date {e}
     - Tree really over evidence sets
     - Probabilistic reasoning needed to predict new evidence given past evidence
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_POMDP_example_ghostbuster.png)
+    - ![](../imgs/cs188_DM_POMDP_example_ghostbuster.png)
         - there 2 are equivalent , the right one explicitly keeps track of the evidence bariabels. The left one keeps track of the probabilities of the beliefs that actually matter in these computations.
  - Solving POMDPs
     - One way: use truncated expectimax to compute approximate value of actions
     - What if you only considered busting or one sense followed by a bust?
     - You get a VPI-based agent!
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_POMDP_example_ghostbuster_solver.png)
+    - ![](../imgs/cs188_DM_POMDP_example_ghostbuster_solver.png)
         - so you have some evidence initially {e}  (red)
         - you can take a buster action a<sub>bust</sub>  (black)
             - for each of the possible locations you could bust that, there is some utility, you can compute the expected utility .   U( a<sub>bust</sub> ,{e} )  (green)
@@ -367,7 +367,7 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 ---
 
- [1]: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_chance_node.png)
- [2]: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_action_node.png)
- [3]: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_DM_utility_node.png)
+ [1]: ![](../imgs/cs188_DM_chance_node.png)
+ [2]: ![](../imgs/cs188_DM_action_node.png)
+ [3]: ![](../imgs/cs188_DM_utility_node.png)
 

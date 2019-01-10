@@ -53,7 +53,7 @@
             - `PyIntObject *free_list` : 空闲的 PyIntObject
         - 每个 PyIntBlock , 也通过一个单链表 连接 PyIntObject
         - 按需申请 PyIntBlock 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/python_PyIntBlock.png)
+        - ![](../imgs/python_PyIntBlock.png)
     - PyIntBlock 内存不会返还给操作系统，直至进程结束。
         - PyIntObject对象销毁时，它所占用的内存并不会释放，而是继续被Python使用，进而将free_list表头指向了这个要被销毁的对象上。
     - PyIntBlock 设计上像一个简化的 arena , 但不像 arena 那样有机会释放内存，它会⼀直存在

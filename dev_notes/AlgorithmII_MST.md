@@ -68,9 +68,9 @@
     - **spanning** means it includes all of the vertices
  - Goal. Find a min weight spanning tree.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_g0.png)
+![](../imgs/algorII_mst_g0.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_g0_mst.png)
+![](../imgs/algorII_mst_g0_mst.png)
 
  - Brute force. Try all spanning trees?
 
@@ -106,7 +106,7 @@
     - Remember no two edges have the same weight so there's a single edge that has minimum weight in the crossing edges of a cut.
     - 描述了一个 cut 和 MST 的联系
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_cut_property.png)
+![](../imgs/algorII_mst_cut_property.png)
 
  - Proof.
     - Suppose min-weight crossing edge *e* is not in the MST.
@@ -145,7 +145,7 @@ Easiest algorithm, we can come up with.
         - the way to think about that is just take he verticies in one of the connected components ( vertices connected by black edges ), and make that the cut. Since that's a connected component , there's gonna be no black edges in the crossing edges for that cut.  
         - if you don't have an MST yet, there's going to be some cut with no black edges. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_greedyalgor_proof.png)
+![](../imgs/algorII_mst_greedyalgor_proof.png)
 
  - but how to implementations of the greedy algorithm ?
     - how we choose the cut? Which cut are we going to use? And also, how to find the minimum weight edge in the cut?
@@ -163,11 +163,11 @@ Easiest algorithm, we can come up with.
  - Q. What if edge weights are not all distinct?
  - A. Greedy MST algorithm still correct if equal weights are present!
     - there's multiple MSTs. 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_equal_weights.png)
+    - ![](../imgs/algorII_mst_equal_weights.png)
     - our correctness proof fails, but that can be fixed
  - Q. What if graph is not connected?
  - A. Compute minimum spanning forest = MST of each component.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_equal_unconnected.png)
+    - ![](../imgs/algorII_mst_equal_unconnected.png)
 
  - **Greed is good.**
     - Basically what the greedy algorithm gives us is an easy way to prove correctness for specific algorithms. 
@@ -189,7 +189,7 @@ Easiest algorithm, we can come up with.
  - Consider edges in ascending order of weight.
     - Add next edge to tree *T* unless doing so would create a cycle
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_Kruskal.png)
+![](../imgs/algorII_mst_Kruskal.png)
 
 <h2 id="ea2e8ed0f2060e40803d07b642e735dd"></h2>
 
@@ -208,7 +208,7 @@ Easiest algorithm, we can come up with.
         - And the other thing is that there's no crossing edge with lower weight than `v-w`.
             - because we are considering the edges in increasing order of their weight. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_Kruskal_proof.png)
+![](../imgs/algorII_mst_Kruskal_proof.png)
 
 
 <h2 id="6769f30cada6dad70abd9ec0e78fab39"></h2>
@@ -227,7 +227,7 @@ Easiest algorithm, we can come up with.
     - 1
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_Kruskal_challenge.png)
+![](../imgs/algorII_mst_Kruskal_challenge.png)
 
 
  - Efficient solution. Use the *union-find* data structure.
@@ -293,7 +293,7 @@ connected | E | log\*V
     - grow the tree one edge at a time, and always keeping it connected. 
  - Repeat until V-1 edges
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim.png)
+![](../imgs/algorII_mst_prim.png)
 
  - start from vertex 0, the minimum weight edge connect to 0 is 0-7 , so we add it, now we have a MST , it have only 2 vertices 0,7
  - now we have 7 edges connect to our MST, we add the minimum one : 1-7
@@ -313,7 +313,7 @@ connected | E | log\*V
     - No crossing edge is black.
     - No crossing edge has lower weight.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim_proof.png)
+![](../imgs/algorII_mst_prim_proof.png)
 
 <h2 id="ca5d698ccb98d8b805ad4456d828f20c"></h2>
 
@@ -334,13 +334,13 @@ connected | E | log\*V
         - add to PQ any edge incident to *w* (assuming other endpoint not in *T*)
         - add *e* to *T* and mark *w*
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim_lazy_impplementpng.png)
+![](../imgs/algorII_mst_prim_lazy_impplementpng.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim_lazy_1.png)
+![](../imgs/algorII_mst_prim_lazy_1.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim_lazy_2.png)
+![](../imgs/algorII_mst_prim_lazy_2.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim_lazy_3.png)
+![](../imgs/algorII_mst_prim_lazy_3.png)
 
  - edge becomes obsolete ( 2-7, 1-2 ) , lazy implementation leaves on PQ.
 
@@ -420,7 +420,7 @@ insert | E | logE
 
  - For this eager implementation, We're going to want the vertices that are connected to the tree by one vertex. And we're going to know the shortest edge connecting that vertex to the tree.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim_eager.png)
+![](../imgs/algorII_mst_prim_eager.png)
 
 
 
@@ -472,7 +472,7 @@ int delMin()
     - qp[i] is the heap position of the key with index i
  - Use swim(qp[i]) implement decreaseKey(i, key).
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_prim_eger_implementation.png)
+![](../imgs/algorII_mst_prim_eger_implementation.png)
 
  - It's important to realize that it's possible to implement this decreased key operation in logarithmic time without ever having to search through everything,  using the idea of indexing.
  - `E + VlogV` can make a difference for a huge graph. 
@@ -527,7 +527,7 @@ int delMin()
     - distTo[v] is length of shortest path from s to v.
     - edgeTo[v] is last edge on shortest path from s to v.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_sptree.png)
+![](../imgs/algorII_sp_sptree.png)
 
 ```java
 public double distTo(int v) {  
@@ -551,7 +551,7 @@ public Iterable<DirectedEdge> pathTo(int v) {
     - edgeTo[w] is last edge on shortest **known** path from s to w
     - If *e = v→w* gives shorter path to w through v,  update both distTo[w] and edgeTo[w].
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_relax_edge.png)
+![](../imgs/algorII_sp_relax_edge.png)
 
 ```java
 private void relax(DirectedEdge e) {
@@ -621,11 +621,11 @@ Repeat until optimality conditions are satisfied:
     - so , our source is 0 in the case showed as pic below, what vertices are closest to the source ?  0-1, 5.0
  - Add vertex to tree and relax all edges pointing from that vertex.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_dijkstra_0.png)
+![](../imgs/algorII_sp_dijkstra_0.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_dijkstra_1.png)
+![](../imgs/algorII_sp_dijkstra_1.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_dijkstra_2.png)
+![](../imgs/algorII_sp_dijkstra_2.png)
 
 
 <h2 id="2880931f98f3fff633812cf6fcf35e45"></h2>
@@ -752,9 +752,9 @@ public class AcyclicSP {
 
  - Seam carving: [Avidan and Shamir] Resize an image without distortion for display on cell phones and web browsers.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_seamcarving1.png)
+![](../imgs/algorII_sp_seamcarving1.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_seamcarving2.png)
+![](../imgs/algorII_sp_seamcarving2.png)
 
  - To find vertical seam:
     - Grid DAG: vertex = pixel; edge = from pixel to 3 downward neighbors.
@@ -763,14 +763,14 @@ public class AcyclicSP {
         - energe function is a image processing concept, it is perfect for assigning weights in this instance. 
     - Seam = shortest path (sum of vertex weights) from top to bottom.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_seam.png)
+![](../imgs/algorII_sp_seam.png)
 
 
  - To remove vertical seam:
     - Delete pixels on seam (one in each row).
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_seam2.png)
+![](../imgs/algorII_sp_seam2.png)
 
  - 实现上，并不需要显式地创建 DirectedEdge 和 EdgeWeightedDigraph 
     - 一个energy 矩阵就足够了
@@ -797,9 +797,9 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
  - Parallel job scheduling
     - Given a set of jobs with durations and precedence constraints, schedule the jobs (by finding a start time for each) so as to achieve the minimum completion time, while respecting the constraints.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_parallel_job_scheduling0.png)
+![](../imgs/algorII_mst_parallel_job_scheduling0.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_parallel_job_scheduling1.png)
+![](../imgs/algorII_mst_parallel_job_scheduling1.png)
 
  - And so what we want to do is, find a start time for each job. That minimizes the completion time. 
  
@@ -817,13 +817,13 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
         - end to sink (0 weight)
     - One edge for each precedence constraint (0 weight)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_CPM1.png)
+![](../imgs/algorII_mst_CPM1.png)
 
  - we took our scheduling problem and now we have a graph. 
     - And what relates this to what we've been talking about is the longest path from the source to each job. 
  - CPM. Use **longest path** from the source to schedule each job.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_CPM2.png)
+![](../imgs/algorII_mst_CPM2.png)
 
 ---
 
@@ -837,10 +837,10 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
 
  - **Dijkstra**. Doesn’t work with negative edge weights.
     - Dijkstra selects vertex 3 immediately after 0. But shortest path from 0 to 3 is 0→1→2→3.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_neg_dijkstra.png)
+    - ![](../imgs/algorII_mst_neg_dijkstra.png)
  - **Re-weighting**. Add a constant to every edge weight doesn’t work.
     - Adding 9 to each edge weight changes the shortest path from 0→1→2→3 to 0→3.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_mst_neg_reweight.png)
+    - ![](../imgs/algorII_mst_neg_reweight.png)
  - **Conclusion**. Need a different algorithm.
 
 <h2 id="d05e7fb4b74623a5da219bc192056e4a"></h2>
@@ -921,7 +921,7 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
 
  - Observation. If there is a negative cycle, Bellman-Ford gets stuck in loop, updating distTo[] and edgeTo[] entries of vertices in the cycle.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_bellmanFold_stuck.png)
+![](../imgs/algorII_sp_bellmanFold_stuck.png)
 
  - Proposition. If any vertex *v* is updated in phase V ( means the last phase of Bellman-Ford ), there exists a negative cycle (and can trace back edgeTo[v] entries to find it).
     - and not only that, edgeTo[v] is the last edge on that cycle. 
@@ -935,7 +935,7 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
 
  - Negative cycle application: arbitrage detection
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_arbitrage_detection.png)
+![](../imgs/algorII_sp_arbitrage_detection.png)
 
  - Ex. $1,000 ⇒ 741 Euros ⇒ 1,012.206 Canadian dollars ⇒ $1,007.14497.
  - Currency exchange graph.
@@ -943,7 +943,7 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
     - Edge = transaction, with weight equal to exchange rate.
     - Find a directed cycle whose product of edge weights is > 1
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_arbitrage_detection2.png)
+![](../imgs/algorII_sp_arbitrage_detection2.png)
 
  - Challenge. Express as a negative cycle detection problem.
  - **Model as a negative cycle detection problem by taking logs**
@@ -952,7 +952,7 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
     - Multiplication turns to addition; > 1 turns to < 0.
     - Find a directed cycle whose sum of edge weights is < 0 (negative cycle). 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorII_sp_arbitrage_detection3.png)
+![](../imgs/algorII_sp_arbitrage_detection3.png)
 
  - Remark. Fastest algorithm is extraordinarily valuable!
 

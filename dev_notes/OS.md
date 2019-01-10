@@ -98,7 +98,7 @@ https://people.eecs.berkeley.edu/~kubitron/cs162/
 ## Virtual Machine Abstraction
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_vm_abstraction.png)
+![](../imgs/os_vm_abstraction.png)
 
  - Software Engineering Problem:
     - Turn hardware/software quirks => what programmers want/need
@@ -133,14 +133,14 @@ https://people.eecs.berkeley.edu/~kubitron/cs162/
  - Address Translation:
     - Translate from Virtual Addresses (emitted by CPU) into Physical Addresses (of memory)
     - Mapping often performed in Hardware by Memory Management Unit (MMU)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_address_translation.png)
+    - ![](../imgs/os_address_translation.png)
 
 
 <h2 id="fd16525056da1f4095c4cf0be4110c65"></h2>
 
 ### Example of Address Translation
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_example_address_translation.png)
+![](../imgs/os_example_address_translation.png)
 
 here program 1 has its address space. In the code segment here those addresses which might be from 0 to some point 3F433F whatever, get translated to this part of the DRAM. 
 
@@ -162,13 +162,13 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
  - Transitions from user mode to kernel mode:
     - System Calls, Interrupts, Other exceptions
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_histroy_dual_mode_operation.png)
+![](../imgs/os_histroy_dual_mode_operation.png)
 
 <h2 id="9d76355b6f43127dc97ca42e9d29c893"></h2>
 
 ## UNIX System Structure
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_unix_system_structure.png)
+![](../imgs/os_unix_system_structure.png)
 
 <h2 id="7738ca5b3efbf6c0e6bcebe55d9a4428"></h2>
 
@@ -210,7 +210,7 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
 
 ### System Calls (What is the API)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_system_calls.png)
+![](../imgs/os_system_calls.png)
 
 <h2 id="931d8ddb9c90055a717f507edf694b57"></h2>
 
@@ -269,7 +269,7 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
 
 ## How can we give the illusion of multiple processors?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_illusion_of_multiple_processors.png)
+![](../imgs/os_illusion_of_multiple_processors.png)
 
  - Assume a single processor. How do we provide the illusion of multiple processors?
     - Multiplex in time!
@@ -313,7 +313,7 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
     - Alpha, SPARC, Pentium 4 (“Hyperthreading”), Power 5
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_hyperthreading.png)
+![](../imgs/os_hyperthreading.png)
 
  - modern processors all execute more than one thing at a time
     - more than 1 instruction on a cycle
@@ -346,7 +346,7 @@ Need three important things:
 
 ## Recall: Program’s Address Space
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_program_address_space.png)
+![](../imgs/os_program_address_space.png)
 
  - here's a zero up to whatever the max address 
     - we have the text area which is where the instructions are
@@ -387,7 +387,7 @@ Need three important things:
 
 ## How do we multiplex processes?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_process_control_block.png)
+![](../imgs/os_process_control_block.png)
 
  - The current state of process held in a process control block (PCB):
     - This is a “snapshot” of the execution and protection environment
@@ -407,7 +407,7 @@ Need three important things:
 
 ## CPU Switch From Process to Process
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_cpu_context_switch.png)
+![](../imgs/os_cpu_context_switch.png)
 
  - This is also called a “context switch”
  - executing instractuions of p₀,p₁  do not overlap because only 1 cpu
@@ -421,7 +421,7 @@ Need three important things:
 
 ## Diagram of Process State
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_diagram_of_process_state.png)
+![](../imgs/os_diagram_of_process_state.png)
 
  - As a process executes, it changes state
     - new: The process is being created
@@ -435,7 +435,7 @@ Need three important things:
 
 ## Process Scheduling
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_process_scheduling.png)
+![](../imgs/os_process_scheduling.png)
 
  - PCBs move from queue to queue as they change state
     - Decisions about which order to remove from queues are **Scheduling** decisions
@@ -460,7 +460,7 @@ Need three important things:
 
 ## Process =? Program 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_process_vs_program.png)
+![](../imgs/os_process_vs_program.png)
 
  - More to a process than just a program:
     - Program is just part of the process state
@@ -473,7 +473,7 @@ Need three important things:
 
 ## Multiple Processes Collaborate on a Task
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_processes_collaborate_on_a_task.png)
+![](../imgs/os_processes_collaborate_on_a_task.png)
 
  - this is kind of the beginnings of parallelism 
     - there are 3 processes they want to collaborate together , they got to talk to each other.
@@ -493,7 +493,7 @@ Need three important things:
 
 ### Shared Memory Communication
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_shared_memory_communication.png)
+![](../imgs/os_shared_memory_communication.png)
 
  - Communication occurs by “simply” reading/writing to shared address page
     - Really low overhead communication
@@ -537,7 +537,7 @@ A modern process has more than one thread. The idea is the process still has one
 
 ### Single and Multithreaded Processes
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_single_multithreaded_process.png)
+![](../imgs/os_single_multithreaded_process.png)
 
  - each thread has its own registers and stack. 
  - Threads encapsulate concurrency: “Active” component
@@ -588,7 +588,7 @@ A modern process has more than one thread. The idea is the process still has one
 
 ### Execution Stack Example
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_execution_stack_example.png)
+![](../imgs/os_execution_stack_example.png)
 
  - Stack holds temporary results
  - Permits recursive execution
@@ -620,7 +620,7 @@ A modern process has more than one thread. The idea is the process still has one
 
 ## MIPS: Software conventions for Registers
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_MIPS_software_conventions_for_register.png)
+![](../imgs/os_MIPS_software_conventions_for_register.png)
 
  - 0 register is always 0
     - if you write to it nothing happen , if you read to it you always get 0
@@ -679,14 +679,14 @@ main() {
  - What is the behavior here?
     - Now, you would actually see the class list
     - This *should* behave as if there are two separate CPUs
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_use_of_thread.png)
+    - ![](../imgs/os_thread_disp_use_of_thread.png)
 
 
 <h2 id="96e1c1ddfad24070e74100314ca1fee6"></h2>
 
 ## Memory Footprint of Two-Thread Example
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_2thread_mem_footprint.png)
+![](../imgs/os_thread_disp_2thread_mem_footprint.png)
 
  - If we stopped this program and examined it with a debugger, we would see
     - Two sets of CPU registers
@@ -718,7 +718,7 @@ main() {
 
 ## Lifecycle of a Thread (or Process)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_lifecycle_of_thread.png)
+![](../imgs/os_thread_disp_lifecycle_of_thread.png)
 
  - As a thread executes, it changes state:
     - new: The thread is being created
@@ -737,7 +737,7 @@ main() {
     - Separate queue for each device/signal/condition 
     - Each queue can have a different scheduler policy
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_ready_queue.png)
+![](../imgs/os_thread_disp_ready_queue.png)
 
 
 <h2 id="c289df5648beb35beaf1f17ca87ee93a"></h2>
@@ -802,7 +802,7 @@ computePI() {
 
 ## Stack for Yielding Thread
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_stack_for_yielding_thread.png)
+![](../imgs/os_thread_disp_stack_for_yielding_thread.png)
 
  - why must trap to OS ?
     - It's the kernel that is actually multiplexing the threads. The TCBs are stored in kernel space. 
@@ -847,7 +847,7 @@ proc B() {
     - Threads S and T
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_stack_looks_like.png)
+![](../imgs/os_thread_disp_stack_looks_like.png)
 
  - we have 2 threads, both of the threads are running this code
 
@@ -911,7 +911,7 @@ Switch(tCur,tNew) {
 
 ## What happens when thread blocks on I/O?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_thread_block_io.png)
+![](../imgs/os_thread_disp_thread_block_io.png)
 
  - What happens when a thread requests a block of data from the file system?
     - User code invokes a system call
@@ -955,7 +955,7 @@ Network interrupt is an external interrupt.
 
  - Solution to our dispatcher problem
     - Use the timer interrupt to force scheduling decisions
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_timer_interrupt.png)
+    - ![](../imgs/os_thread_disp_timer_interrupt.png)
  - Timer Interrupt routine:
 
 ```
@@ -1013,7 +1013,7 @@ TimerInterrupt() {
 
 ## Interrupt Controller
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_interrupt_controller.png)
+![](../imgs/os_thread_cooperate_interrupt_controller.png)
 
  - the yellow thing represents something that's inside the chip, a chip talking to CPU
  - there is a hardware software interrupt , if I set some bits in my interrupt controller they essentially assert and interrupt just like anybody else, but these bits get turned on by software.
@@ -1091,14 +1091,14 @@ TimerInterrupt() {
  - Initialize stack data?
     - No. Important part of stack frame is in registers (ra)
     - Think of stack frame as just before body of ThreadRoot() really gets started
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_init_TCB_stack.png)
+    - ![](../imgs/os_thread_cooperate_init_TCB_stack.png)
 
 
 <h2 id="05c2c327c3eedac316533b39c66226be"></h2>
 
 ## How does Thread get started?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_how_thread_start.png)
+![](../imgs/os_thread_cooperate_how_thread_start.png)
 
  - Here is a thread that's been running for a while. 
     - A which was the first procedure called by the thread is actually has been called by this thread root procedure
@@ -1132,7 +1132,7 @@ ThreadRoot() {
     - once we are calling that `fcnPtr(fcnArgPtr)` we are running arbitrary code that was given to us when the thread was created and we really don't want to do that in kernel mode.
 
  
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_running_stack.png)
+![](../imgs/os_thread_cooperate_running_stack.png)
 
 
 <h2 id="7a52c0dd4d422a92b6b716b62425d940"></h2>
@@ -1180,7 +1180,7 @@ ThreadRoot() {
     - Calling thread will be taken off run queue and placed on waiting queue for thread tid
  - Where is a logical place to store this wait queue?
     - On queue inside the TCB
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_wait_queue.png)
+    - ![](../imgs/os_thread_cooperate_wait_queue.png)
  - Similar to wait() system call in UNIX
     - Lets parents wait for child processes
     - ThreadJoin is not kind of synchronization
@@ -1235,7 +1235,7 @@ A’() {
 
 ## Threading models mentioned by book
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_thread_block.png)
+![](../imgs/os_thread_cooperate_thread_block.png)
 
 
 <h2 id="d85995eb95fa627c554daf95622b6c00"></h2>
@@ -1250,7 +1250,7 @@ A’() {
     - Scheduler is free to run threads in any order and interleaving: FIFO, Random, …
     - Dispatcher can choose to run each thread to completion or time-slice in big chunks or small chunks
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_cooperate_multiprogramming.png)
+![](../imgs/os_thread_cooperate_multiprogramming.png)
 
 
 <h2 id="75d83e281c09829d3d975c15d6dff110"></h2>
@@ -1310,4 +1310,4 @@ A’() {
 ---
 
 
- [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/os_thread_disp_network_interrupt.png
+ [1]: ../imgs/os_thread_disp_network_interrupt.png

@@ -36,7 +36,7 @@ Basically what we wanna do is compute something like driving directions. So we'r
     - source vertex s
  - Output: for each v ∊ V , compute L(v):= length of a shortest s-v path in G ( "length of path" = sum of edge lengths ).
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/shortest_path.PNG)
+![](../imgs/shortest_path.PNG)
 
 We'll make 2 assumptions for the lectures. One is really just for convenience. The other is really important , without which Dijkstra's algorithm is not correct.
 
@@ -52,7 +52,7 @@ We'll make 2 assumptions for the lectures. One is really just for convenience. T
 Question: doesn't BFS already compute shortest paths in linear time ?
 A: BFS works only in the special case where the length of every edge of the graph is **one**.  At this moment we're trying to solve a more general problem. We're trying to solve the shortest paths when deges can have arbitrary non negative edge lengths.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Dijkstra_illu.PNG)
+![](../imgs/Dijkstra_illu.PNG)
 
 <h2 id="34460a35a20211ec1d40102cc5f52de5"></h2>
 
@@ -90,7 +90,7 @@ MainLoop idea 2
 
 ## Examples
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Dijkstra_iteration1.PNG)
+![](../imgs/Dijkstra_iteration1.PNG)
 
  - 1st iteration: only SV and SW 2 crossing edges, SV scores 1, SW scores 4, so we choose (s,v)
  - 2nd iteration: now there is 3 crossing edges: SW,VW,VT, SW scores 4, SVW scores 3, SVT scores 7 , so we choose (s,v,w)
@@ -128,11 +128,11 @@ Because every itertation of the wild loop is responsible for picking an edge, yo
 
 We're just going to keep vertices not yet in X and then when we extract them in from the heap , it'll tell us which is the next vertex to add into the set X.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Dijkstra_X_V-X.PNG)
+![](../imgs/Dijkstra_X_V-X.PNG)
 
 Because we're storing vertices rather than edges in the heap, we're going to maintain the property that the key of vertex V is the smallest greedy Dijkstra score of any edge which has that vertex as its head.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Dijkstra_X_X-V_key.PNG)
+![](../imgs/Dijkstra_X_X-V_key.PNG)
 
 Show as the pic, there are two different edges(I,II) whose tail is in X , and have the same vertex in V-X as their head. So what should the key of this vertex be ? Well, it shoud be the smaller one. So the key value should be 3. The last edge which head in X and tail in V-X is not an eligible edge, so the key is +∞ . 
 
@@ -144,7 +144,7 @@ Show as the pic, there are two different edges(I,II) whose tail is in X , and ha
 
 **Points**: by invariants , Extract-min yields correct vertex W\* to add to X next. and we set A[W\*] to key[W\*]
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Dijkstra_heap_speedup.PNG)
+![](../imgs/Dijkstra_heap_speedup.PNG)
 
 
 <h2 id="d52f64236fbf5cf269d2ab1ca15680bd"></h2>

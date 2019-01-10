@@ -75,7 +75,7 @@
 ## Inference by Enumeration in Bayes’ Net
 
  - Given unlimited time, inference in BNs is easy
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_example_BNgraph_alarm_network.png)
+    - ![](../imgs/cs188_BNs_inference_example_BNgraph_alarm_network.png)
  - Reminder of inference by enumeration by example:
     - P(B|+j,+m) ∝<sub>B</sub> P(B,+j,+m)
     - = ∑<sub>e,a</sub> P(B,e,a,+j,+m)
@@ -93,11 +93,11 @@
 
  - Why is inference by enumeration so slow?
     - You join up the whole joint distribution before you sum out the hidden variables
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_Inference_image_by_enumeration.png)
+    - ![](../imgs/cs188_BNs_Inference_image_by_enumeration.png)
  - Idea: interleave joining and marginalizing!
     - Called "Variable Elimination"
     - Still NP-hard, but usually much faster than inference by enumeration
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_image_by_variable_elimination.png)
+    - ![](../imgs/cs188_BNs_inference_image_by_variable_elimination.png)
     - we'll find a way to interleave joining CPTs together and summing out over hidden variables. 
     - keep in mind it's not a silver bullet. Inference in BNs is np-hard. There are BNs where no matter what you do to compute the answer to the query is equivalent to solving a SAP(storage assignment problem) problem which is known that nobody has a efficient solution for. 
     - First we’ll need some new notation: factors
@@ -106,13 +106,13 @@
 
 ## Factor Zoo
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_factor_zoo.png)
+![](../imgs/cs188_BNs_inference_factor_zoo.png)
 
 <h2 id="650e1a19d06f2dc4cb2b7f794e7467b2"></h2>
 
 ### Factor Zoo I 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_factor_zoo_1.png)
+![](../imgs/cs188_BNs_inference_factor_zoo_1.png)
 
 
  - Joint distribution: P(X,Y)
@@ -152,7 +152,7 @@ cold | rain | 0.3
  - Single conditional: P(Y | x)
     - Entries P(y | x) for fixed x, all y
     - Sums to 1
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_factor_zoo_20.png)
+    - ![](../imgs/cs188_BNs_inference_factor_zoo_20.png)
 
 
 Example: P(W|cold)
@@ -166,7 +166,7 @@ cold | rain | 0.6
     - Multiple conditionals
     - Entries P(x | y) for all x, y
     - Sums to |Y|
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_factor_zoo_21.png)
+    - ![](../imgs/cs188_BNs_inference_factor_zoo_21.png)
 
 
 Example : P(W|T)
@@ -182,7 +182,7 @@ cold | rain | 0.6
 
 ### Factor Zoo III 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_factor_zoo_3.png)
+![](../imgs/cs188_BNs_inference_factor_zoo_3.png)
 
  - Specified family: P( y | X )
     - Entries P(y | x) for fixed y, but for all x
@@ -247,17 +247,17 @@ P(L|T)
 
  - Track objects called factors
  - Initial factors are local CPTs (one per node)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_example_RTL_1.png)
+    - ![](../imgs/cs188_BNs_inference_example_RTL_1.png)
  - Any known values are selected
     - E.g. if we know L = +l  , the initial factors are
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_example_RTL_2.png)
+    - ![](../imgs/cs188_BNs_inference_example_RTL_2.png)
  - Procedure: Join all factors, then eliminate all hidden variables
 
 <h2 id="fde6f197d1413b145c1cb24a10ed58b2"></h2>
 
 ### Operation 1: Join Factors
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_op1_joinFactors.png)
+![](../imgs/cs188_BNs_inference_op1_joinFactors.png)
 
  - First basic operation: ***joining factors***
  - Combining factors:
@@ -265,7 +265,7 @@ P(L|T)
     - Get all factors over the joining variable
     - Build a new factor over the union of the variables involved
  - Example: Join on R
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_op1_joinfactors_example_joinOnR.png)
+    - ![](../imgs/cs188_BNs_inference_op1_joinfactors_example_joinOnR.png)
  - Computation for each entry: pointwise products
     - ∀<sub>r,t</sub> : P(r,t) = P(r)·P(t|r)
 
@@ -273,9 +273,9 @@ P(L|T)
 
 #### Example: Multiple Joins
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_op1_example_multiple_joins_1.png)
+![](../imgs/cs188_BNs_inference_op1_example_multiple_joins_1.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_op1_example_multiple_joins_2.png)
+![](../imgs/cs188_BNs_inference_op1_example_multiple_joins_2.png)
  
  - we call "Join on R" means that you grab all tables that have `R` in them. 
 
@@ -283,7 +283,7 @@ P(L|T)
 
 ### Operation 2: Eliminate
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_op2_eliminate_example.png)
+![](../imgs/cs188_BNs_inference_op2_eliminate_example.png)
 
  - Second basic operation: ***marginalization***
  - Take a factor and sum out a variable
@@ -293,20 +293,20 @@ P(L|T)
         - why do we even have hidden variables ? 
             - the reason we have it because we started with a joint distribution that was over more than the variables that appear in our query. 
  - Example:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_op2_eliminate.png)
+    - ![](../imgs/cs188_BNs_inference_op2_eliminate.png)
 
  
 <h2 id="3821c17868fa87d7f5cae10cccc3fa7e"></h2>
 
 #### Multiple Elimination
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_op2_multiple_elimination.png)
+![](../imgs/cs188_BNs_inference_op2_multiple_elimination.png)
 
 --- 
 
  - Thus Far: Multiple Join, Multiple Eliminate (= Inference by Enumeration)
  - Marginalizing Early (= Variable Elimination)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_marginalize_early.png)
+    - ![](../imgs/cs188_BNs_inference_marginalize_early.png)
     - switch the some order of join/eliminate 
  - intuition
     - if you want to eliminate a variable , you can not do this until you have joined on that variable.  
@@ -318,15 +318,15 @@ P(L|T)
  - R → T → L 
  - P(L) = ?
     - Inference by Enumeration
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_example_traffic_inference_by_enumeration.png)
+        - ![](../imgs/cs188_BNs_inference_example_traffic_inference_by_enumeration.png)
     - Variable Elimination
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_example_traffic_inference_by_variable_elimination.png)
+        - ![](../imgs/cs188_BNs_inference_example_traffic_inference_by_variable_elimination.png)
 
 <h2 id="76d28d073a991c878d917deb0c0ef923"></h2>
 
 #### Marginalizing Early! (aka VE)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_marginalize_early_RTL_example.png)
+![](../imgs/cs188_BNs_inference_marginalize_early_RTL_example.png)
 
  - so that is variable elimination .
  - what if your evidence ?
@@ -338,13 +338,13 @@ P(L|T)
 
  - If evidence, start with factors that select that evidence
     - No evidence  looks like this : uses these initial factors
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_VE_no_evidence.png)
+        - ![](../imgs/cs188_BNs_inference_VE_no_evidence.png)
     - with evidence looks like this: computing P(L|+r) the initial factors become
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_VE_with_evidence.png)
+        - ![](../imgs/cs188_BNs_inference_VE_with_evidence.png)
  - We eliminate all vars other than query + evidence
  - Result will be a selected joint of query and evidence
     - E.g. for P(L | +r), we would end up with:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_VE_with_evidence_L+r.png)
+    - ![](../imgs/cs188_BNs_inference_VE_with_evidence_L+r.png)
  - To get our answer, just normalize this!
  - That's it!
 
@@ -380,21 +380,21 @@ P(L|T)
 ---
 
  - Choose *A* 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_VE_example_A.png)
+    - ![](../imgs/cs188_BNs_inference_VE_example_A.png)
     - the size of the tables generated along the way is 2³,  in this case it wasn't too bad , it's possible to handle. but if you have a very large BNs you need to be careful about your orderingto make sure you keep it low. 
     - P(B) , P(E) , P(j,m|B,E)
  - Choose *E*
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_VE_example_E.png)
+    - ![](../imgs/cs188_BNs_inference_VE_example_E.png)
     - P(B) , P(j,m|B)
  - Finish with B
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_VE_example_B.png)
+    - ![](../imgs/cs188_BNs_inference_VE_example_B.png)
  
 
 <h2 id="fac810843510c673799014b64bd703d5"></h2>
 
 ### Same Example in Equations
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_VE_same_example_in_equations.png)
+![](../imgs/cs188_BNs_inference_VE_same_example_in_equations.png)
 
  - equations from top to bottom 
     1. marginal can be obtained from joint by summing out
@@ -411,7 +411,7 @@ P(L|T)
 
 ### Another Variable Elimination Example
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_VE_another_example.png)
+![](../imgs/cs188_BNs_inference_VE_another_example.png)
 
  - Query: P(X₃|Y₁=y₁,Y₂=y₂,Y₃=y₃)
  - Start by inserting evidence , which gives the following initial factors:
@@ -434,7 +434,7 @@ P(L|T)
 
 ## Variable Elimination Ordering
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_VE_ordering_q.png)
+![](../imgs/cs188_BNs_inference_VE_ordering_q.png)
 
  - For the query P(X<sub>n</sub>|y₁,…,y<sub>n</sub>) work through the following two different orderings as done in previous slide: Z, X₁, …, X<sub>n-1</sub> and X₁, …, X<sub>n-1</sub>, Z.  What is the size of the maximum factor generated for each of the orderings?
  - Answer: 2ⁿ⁺¹ versus 2² (assuming binary)
@@ -467,11 +467,11 @@ P(L|T)
 
 ### Worst Case Complexity?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_worst_case_complexity_graph.png)
+![](../imgs/cs188_BNs_inference_worst_case_complexity_graph.png)
 
  - CPS
     - a 3-Sat problem, a special kind of CSP 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_worst_case_complexity_csp.png)
+    - ![](../imgs/cs188_BNs_inference_worst_case_complexity_csp.png)
     - there are 7 variables , X₁ ... X₇, I want to find an assignment to these 7 variables , such that this clause is true
         - the clause is saying : x₁ or x₂ or not x₃ has to be true ,  and not x₁ or x₃ or not x₄ has to be true , and ... so forth   
     - P(Xᵢ=0) = P(Xᵢ=1) = 0.5
@@ -510,10 +510,10 @@ There are  atrist special graph structures of BNs , where inference can be done 
 ## Quiz BN2-2
 
  - BNs
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/hw7_bayesnets2_2.png)
+    - ![](../imgs/hw7_bayesnets2_2.png)
  - Query: P(C |e=1)
  - we have the following probability tables
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/hw7_bayesnets2_2_prob_tables.png)
+    - ![](../imgs/hw7_bayesnets2_2_prob_tables.png)
 
  - Step 1: eliminate A
     - so we get the factor A→B : f₁(B) = ∑ₐ P(a)P(B|a)
@@ -585,7 +585,7 @@ C | P(C\|e=1)
 ## Quiz BN2-3
 
  - BNs
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/hw7_bayesnets2_3.png)
+    - ![](../imgs/hw7_bayesnets2_3.png)
  - Query : P(A|+f)
  - we run variable elimination with the following ordering: E,D,C,B. 
  - After introducing evidence, we have the following factors:
@@ -643,7 +643,7 @@ C | P(C\|e=1)
 
 --- 
 
- [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_BNs_inference_example_BNgraph_alarm_network.png
+ [1]: ../imgs/cs188_BNs_inference_example_BNgraph_alarm_network.png
 
 
 

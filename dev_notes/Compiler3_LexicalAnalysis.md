@@ -71,7 +71,7 @@
 
 ## 3.1 The Role of the Lexical Analyzer
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.1.png)
+![](../imgs/Compiler_F3.1.png)
 
 lexical analyzer may perform certain other tasks besides identification of lexemes.
 
@@ -238,7 +238,7 @@ We shall introduce a two-buffer scheme that handles large lookaheads safely. We 
 
 Specialized buffering techniques have been developed to reduce the amount of overhead required to process a single input character.  An impor­tant scheme involves two buffers that are alternately reloaded, as suggested in Fig. 3.3.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.3.png)
+![](../imgs/Compiler_F3.3.png)
 
 Each buffer is of the same size N , and N is usually the size of a disk block, e.g., 4096 bytes. 
 
@@ -270,7 +270,7 @@ We must check, each time we advance forward, that we have not moved off one of t
 
 We can combine the buffer-end test with the test for the current character if we extend each buffer to hold a sentinel character at the end. The sentinel is a special character that cannot be part of the source program, and a natural choice is the character **eof**.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.4.png)
+![](../imgs/Compiler_F3.4.png)
 
 Figure 3.4 shows the same arrangement as Fig. 3.3, but with the sentinels added. 
 
@@ -587,7 +587,7 @@ Starting in Section 3.5, we shall relax the condition of determinism, making lif
  2. In addition, if it is necessary to retract the *forward* pointer one position (i.e., the lexeme does not include the symbol that got us to the accepting state) , then we shall additionally place a \* near that accepting state. 
      - In our example, it is never necessary to retract forward by more than one position, but if it were, we could attach any number of \* 's to the accepting state.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.13.png)
+![](../imgs/Compiler_F3.13.png)
 
 Example 3.9 : Figure 3.13 is a transition diagram that recognizes the lexemes matching the token **relop**. 
 
@@ -611,7 +611,7 @@ Example 3.9 : Figure 3.13 is a transition diagram that recognizes the lexemes ma
 
 Recognizing keywords and identifiers presents a problem. Usually, keywords like **if** or **then** are reserved, so they are not identifiers even though they look like identifiers. Thus, although we typically use a transition diagram like that of Fig. 3.14 to search for identifier lexemes, this diagram will also recognize the keywords **if** , **then**, and **else** of our running example.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.14.png)
+![](../imgs/Compiler_F3.14.png)
 
 There are two ways that we can handle reserved words that look like iden­tifiers :
 
@@ -620,7 +620,7 @@ There are two ways that we can handle reserved words that look like iden­tifier
      - We have supposed that this method is in use in Fig. 3.14. When we find an identifier, a call to *installID* places it in the symbol table if it is not already there and returns a pointer to the symbol-table entry for the lexeme found. 
  2. Create separate transition diagrams for each keyword; 
      - an example for the keyword **then** is shown in Fig. 3.15. 
-     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.15.png)
+     - ![](../imgs/Compiler_F3.15.png)
      - Note that such a transition diagram consists of states representing the situation after each successive letter of the keyword is seen, followed by a test for a "nonletter-or-digit". 
 
 
@@ -636,7 +636,7 @@ When we first encounter anything but a letter or digit, we go to state 11 and ac
 
 The transition diagram for token **number** is shown in Fig. 3.16, and is so far the most complex diagram we have seen. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.16.png)
+![](../imgs/Compiler_F3.16.png)
 
  - Beginning in state 12, if we see a digit, we go to state 13. In that state, we can read any number of additional digits. 
  - However, if we see anything but a digit or a dot, we have seen a number in the form of an integer; 
@@ -645,7 +645,7 @@ The transition diagram for token **number** is shown in Fig. 3.16, and is so far
 
 The final transition diagram, shown in Fig. 3.17, is for whitespace. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.17.png)
+![](../imgs/Compiler_F3.17.png)
 
 In that diagram, we look for one or more "whitespace" characters, represented by delim in that diagram -- typically these characters would be blank, tab, newline, and perhaps other characters that are not considered by the language design to be part of any token.
 
@@ -741,7 +741,7 @@ In this section, we introduce a tool called **Lex**, or in a more recent impleme
 
 Figure 3.22 suggests how Lex is used. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.22.png)
+![](../imgs/Compiler_F3.22.png)
 
  - The normal use of the compiled C program, referred to as a.out , is as a subroutine ofthe parser. 
  - It is a C function that returns an integer ? , which is a code for one of the possible token names. 
@@ -972,7 +972,7 @@ There is an edge labeled *α* from state *s* to state *t* if and only if *t* is 
  - a) The same symbol can label edges from one state to several different states, and
  - b) An edge may be labeled by ε, instead of, or in addition to, symbols from the input alphabet.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.24.png)
+![](../imgs/Compiler_F3.24.png)
 
 Example 3.14 : The transition graph for an NFA recognizing the language of regular expression **(a|b)\*abb** . 
 
@@ -986,7 +986,7 @@ We can also represent an NFA by a **transition table**, whose rows correspond to
 
 The entry for a given state and input is the value of the transition function applied to those arguments. If the transition function has no information about that state-input pair, we put ∅ in the table for the pair.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.25.png)
+![](../imgs/Compiler_F3.25.png)
 
 The transition table has the advantage that we can easily find the transitions on a given state and input. Its disadvantage is that it takes a lot of space, when the *input alphabet* is large, yet most states do not have any moves on most of the input symbols.
 
@@ -1002,7 +1002,7 @@ The language *defined* (or *accepted*) by an NFA is the set of strings labeling 
 
 As was mentioned, the NFA of Fig. 3.24 defines the same language as does the regular expression **(a|b)\*abb**, that is, all strings from the alphabet {a, b} that end in *abb*. We may use L(A) to stand for the language accepted by automaton A.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.26.png)
+![](../imgs/Compiler_F3.26.png)
 
 Example 3.17: Figure 3.26 is an NFA accepting L(aa\*|bb\*). String *aaa* is accepted. 
 
@@ -1031,9 +1031,9 @@ Algorithm 3.18 : Simulating a DFA.
  - OUTPUT: Answer "yes" if D accepts x; "no" otherwise.
  - METHOD: Apply the algorithm in Fig. 3.27 to the input string x. The function move(s, c) gives the state to which there is an edge from state s on input c. The function *nextChar* returns the next character of the input string x.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.27.png)
+![](../imgs/Compiler_F3.27.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.28.png)
+![](../imgs/Compiler_F3.28.png)
 
 Example 3.19 : In Fig. 3.28 we see the transition graph of a DFA accepting the language **(a|b)\*abb**. Given the input string *ababb*, this DFA enters the sequence of states 0,1,2,1,2,3 and returns "yes." 
 
@@ -1124,7 +1124,7 @@ Figure 3.33: Computing ε-closure(T)
 
 Example 3.21 : Figure 3.34 shows another NFA accepting **(a|b)\*abb**; it hap­pens to be the one we shall construct directly from this regular expression in Section 3.7. Let us apply Algorithm 3.20 to Fig. 3.29.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.34.png)
+![](../imgs/Compiler_F3.34.png)
 
 The start state A of the equivalent DFA is ε-closure(0), or A = {0, 1, 2, 4, 7}. Note that a path can have zero edges, so state 0 is reachable from itself by an ε-labeled path.
 
@@ -1279,18 +1279,18 @@ Algorithm 3.23 : The McNaughton-Yamada-Thompson algorithm to convert a regular e
      - The rules for constructing an NFA &nbsp; consist of basis rules for handling subexpressios with no operators, 
      - and inductive rules for constructing larger NFA's from the NFA's for the immediate subexpressions of a given expression.
 
-**BASIS**: For expression ε construct the NFA ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_NFA_for_eps.png)
+**BASIS**: For expression ε construct the NFA ![](../imgs/Compiler_NFA_for_eps.png)
 
 Here, *i* is a new state, the start state of this NFA, and *f* is another new state, the accepting state for the NFA.
 
-For any subexpressiop *a* in Σ , construct the NFA ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_NFA_for_any_expr.png)
+For any subexpressiop *a* in Σ , construct the NFA ![](../imgs/Compiler_NFA_for_any_expr.png)
 
 where again *i* and *f* are new states, the start and accepting states, respectively. Note that in both of the basis constructions, we construct a distinct NFA, with new states, for every occurrence of ε or some *a* as a subexpression of *r*.
 
 **INDUCTION**: Suppose *N(s)* and *N(t)* are NFA's for regular expressions *s* and *t*, respectively.
 
  - a) Suppose r = s|t. Then N(r) is constructed as in Fig. 3.40.
-     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.40.png)
+     - ![](../imgs/Compiler_F3.40.png)
      - Here, *i* and *j* are new states, the start and accepting states of *N(r)* , respectively.
      - There are ε-transitions from *i* to the start states of *N(s)* and *N(t)*, and each of their accepting states have ε-transitions to the accepting state *j*.
      - Note that the accepting states of *N(s)* and *N(t)* are not accepting in *N(r)*.
@@ -1298,13 +1298,13 @@ where again *i* and *f* are new states, the start and accepting states, respecti
          - and since the label of that path is not changed by the ε's leaving i or entering j.
      - we conclude that *N(r)* accepts *L(s) ∪ L(t)*, which is the same as *L(r)*. That is, Fig. 3.40 is a correct construction for the union operator.
  - b) Suppose *r* = *st*. Then construct *N(r)* as in Fig. 3.41.
-     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.41.png)
+     - ![](../imgs/Compiler_F3.41.png)
      - The start state of *N(s)* becomes the start state of *N(r)*, and the accepting state of *N(t)* is the only accepting state of *N(r)*.
      - The accepting state of *N(s)* and the start state of *N(t)* are merged into a single state.
      - A path from i to j in Fig. 3.41 must go first through N(s), and therefore its label will begin with some string in L(s). The path then continues through N(t), so the path's label  finishes with a string in L(t). 
      - As we shall soon argue, accepting states never have edges out and start states never have edges in, so it is not possible for a path to re-enter N(s) after leaving it. Thus, *N(r)* accepts exactly *L(s)L(t)*, and is a correct NFA for *r=st*.
  - c) Suppose *r* = *s\** . Then for *r* we construct the NFA *N(r)* shown in Fig. 3.42. 
-     - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.42.png)
+     - ![](../imgs/Compiler_F3.42.png)
      - Here, *i* and *f* are new states, the start state and lone accepting state of *N(r)*.
      - So the entire set of strings accepted by *N(r)* is *L(s\*)*.
  - d) Finally, suppose *r* = *(s)*. Then *L(r)* = *L(s)*, and we can use the NFA *N(s)* as *N(r)*.
@@ -1321,31 +1321,31 @@ We shall list several properties of the constructed NFA's
 
 Example 3.24 : Let us use Algorithm 3.23 to construct an NFA for r = **(a|b)\*abb**.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.43.png)
+![](../imgs/Compiler_F3.43.png)
 
 Figure 3.43 shows a parse tree for *r* that is analogous to the parse trees constructed for Arithmetic expressions in Section 2.2.3. 
 
-For subexpression r₁ , the first a, we construct the NFA: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.43_r1.png)
+For subexpression r₁ , the first a, we construct the NFA: ![](../imgs/Compiler_F3.43_r1.png)
 
 State numbers have been chosen for consistency with what follows. 
 
-For r₂ we construct: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.43_r2.png)
+For r₂ we construct: ![](../imgs/Compiler_F3.43_r2.png)
 
 We can now combine N(r₁) and N(r₂), using the construction of Fig. 3.40 to obtain the NFA for *r₃ = r₁|r₂* :
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.44.png)
+![](../imgs/Compiler_F3.44.png)
 
 The NFA for r₄ = (r₃) is the same at that for r₃.
 
 The NFA for *r₅ = (r₃)\** is then as shown in Fig. 3.45. We have used the construction in Fig. 3.42 to build this NFA.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.45.png)
+![](../imgs/Compiler_F3.45.png)
 
-Now, consider subexpression r₆ , whlch is another **a**. We use the basis con­struction for *a* again, but we must use new states. It is not permissible to reuse the NFA we constructed for r₁ , even though r₁ and r₆ are the same expression. The NFA for r₆ is: ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.45_r6.png)
+Now, consider subexpression r₆ , whlch is another **a**. We use the basis con­struction for *a* again, but we must use new states. It is not permissible to reuse the NFA we constructed for r₁ , even though r₁ and r₆ are the same expression. The NFA for r₆ is: ![](../imgs/Compiler_F3.45_r6.png)
 
 To obtain the NFA for r₇ = r₅|r₆, we apply the construction of Fig. 3.41. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.46.png)
+![](../imgs/Compiler_F3.46.png)
 
 We merge states 7 and 7'. Continuing in this fashion with new NFA's for the two subexpressions b called r₈ and r₁₀ , we eventually construct the NFA for **(a|b)\*abb** that we first met in Fig. 3.34. 
 
@@ -1379,7 +1379,7 @@ In this section we shall apply the techniques presented in Section 3.7 to see ho
 
 ### 3.8.1 The Structure of the Generated Analyzer
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.49.png)
+![](../imgs/Compiler_F3.49.png)
 
 > Figure 3.49: A Lex program is turned into a transition table and actions, which are used by a finite-automaton simulator
 
@@ -1397,7 +1397,7 @@ To construct the automaton, we begin by taking each regular-expression pattern i
 
 We need a single automaton that will recognize lexemes matching any of the patterns in the program, so we combine all the NFA's into one by introducing a new start state with ε-transitions to each of the start states of the NFA's Nᵢ for pattern *pᵢ*. This construction is shown in Fig. 3.50.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.50.png)
+![](../imgs/Compiler_F3.50.png)
 
 > Figure 3.50: An NFA constructed from a Lex program
 
@@ -1417,9 +1417,9 @@ Note that these three patterns present some conflict of the type discussed in Se
 
 Fig. 3.52 shows these three NFA's combined into a single NFA by the addition of start state 0 and three ε-transitions. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.51.png)
+![](../imgs/Compiler_F3.51.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.52.png)
+![](../imgs/Compiler_F3.52.png)
 
 ---
 
@@ -1437,7 +1437,7 @@ If there are several accepting states in that set, pick the one associated with 
 
 Example 3.27 : Suppose we have the patterns of Example 3.26 and the input begins aaba. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.53.png)
+![](../imgs/Compiler_F3.53.png)
 
 Figure 3.53 shows the sets of states of the NFA of Fig. 3.52 that we enter, 
 
@@ -1465,7 +1465,7 @@ Within each DFA state, if there are one or more accepting NFA states, determine 
 
 Example 3.28 : Figure 3.54 shows a transition diagram based on the DFA that is constructed by the subset construction from the NFA in Fig. 3.52. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.54.png)
+![](../imgs/Compiler_F3.54.png)
 
 The accepting states are labeled by the pattern that is identified by that state. 
 
@@ -1494,7 +1494,7 @@ If there is only one ε-transition state on the imaginary / in the NFA, then the
 
 Example 3.30 : An NFA for the pattern for the Fortran **IF** with lookahead, from Example 3.13.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.55.png)
+![](../imgs/Compiler_F3.55.png)
 
 Notice that the ε-transition from state 2 to state 3 represents the lookahead operator. State 6 indicates the pres­ence of the keyword **IF**. However, we find the lexeme **IF** by scanning backwards to the last occurrence of state 2, whenever state 6 is entered.
 
@@ -1560,7 +1560,7 @@ The positions in the syntax tree correspond to the important states of the const
 
 Example 3.32 : Figure 3.57 shows the NFA for the same regular expression as Fig. 3.56, with the important states numbered and other states represented by letters.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.57.png)
+![](../imgs/Compiler_F3.57.png)
 
 The numbered states in the NFA and the positions in the syntax tree correspond in a way we shall soon see.
 
@@ -1628,7 +1628,7 @@ Example 3.34 : Of all the nodes in Fig. 3.56 only the star-node is nullable. We 
 
 The computation of *firstpos* and *lastpos* for each of the nodes is shown in Fig. 3.59, with firstpos(n) to the left of node n, and lastpos(n) to its right.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.59.png)
+![](../imgs/Compiler_F3.59.png)
 
  - Each of the leaves has only itself for firstpos and lastpos, as required by the rule for non-ε leaves in Fig. 3.58. 
  - For the or-node, we take the union of firstpos at the children and do the same for lastpos. 
@@ -1667,7 +1667,7 @@ NODE n | followpos(n)
 
 We can represent the function *followpos* by creating a directed graph with a node for each position and an arc from position i to position j if and only if j is in followpos(i). Figure 3.61 shows this graph for the function of Fig. 3.60.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.61.png)
+![](../imgs/Compiler_F3.61.png)
 
 It should come as no surprise that the graph for *followpos* is almost an NFA without ε-transitions for the underlying regular expression, and would become one if we:
 
@@ -1870,9 +1870,9 @@ TODO
 
 ---
 
-[1]:  https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.56.png
-[336]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.36.png
-[363]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F3.63.png
+[1]:  ../imgs/Compiler_F3.56.png
+[336]: ../imgs/Compiler_F3.36.png
+[363]: ../imgs/Compiler_F3.63.png
 
 
 

@@ -53,7 +53,7 @@ CLEARMEM:
 
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/6502_asm_6.png)
+![](../imgs/6502_asm_6.png)
 
 
 ```
@@ -84,14 +84,14 @@ PALETTELOAD:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/6502_asm_8.png)
+![](../imgs/6502_asm_8.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/6502_asm_9.png)
+![](../imgs/6502_asm_9.png)
 
  - 64中固定颜色中挑32种颜色供游戏使用(sprite, bg各16色)，每个tile 同时只能显示4色。
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/6502_asm_end.png)
+![](../imgs/6502_asm_end.png)
 
 
  - END

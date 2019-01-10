@@ -58,7 +58,7 @@
  - Find query. Check if two objects are in the same component.
  - Union command. Replace components containing two objects with their union.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_uf_union.png)
+![](../imgs/algorI_uf_union.png)
 
 
 <h2 id="9aae2fcda3cf71e6ba9848db8aa59566"></h2>
@@ -69,12 +69,12 @@
     - Integer array id[] of length N.
     - Interpretation: p and q are connected iff they have the same id.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_uf_datastructure.png)
+![](../imgs/algorI_uf_datastructure.png)
 
  - Find. Check if p and q have the same id.
  - Union. To merge components containing p and q, change all entries whose id equals id[p] to id[q].
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_uf_datastructure2.png)
+![](../imgs/algorI_uf_datastructure2.png)
 
 
 <h2 id="6a22536fe36f7a91891c00c8353b8b52"></h2>
@@ -101,7 +101,7 @@ quick-find | N | N | 1
         - keep going until it doesn’t change (algorithm ensures no cycles)
     - Root of i is id[id[id[...id[i]...]]].
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_uf_qu_lazy_ds.png)
+![](../imgs/algorI_uf_qu_lazy_ds.png)
 
  - Find. Check if p and q have the same root.
  - Union. To merge components containing p and q, set the id of p's root to the id of q's root.
@@ -139,7 +139,7 @@ quick-union | N | N⁺ | N(worst cast)
     - Balance by linking root of smaller tree to root of larger tree.
         - reasonable alternatives: p union by height or "rank"
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_uf_weighted_qu.png)
+![](../imgs/algorI_uf_weighted_qu.png)
 
 ---
 
@@ -172,9 +172,9 @@ weighted QU | N | lgN⁺ | lgN
  - Quick union with path compression
     - Just after computing the root of p, set the id of each examined node to point to that root.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_uf_pathcompress1.png)
+![](../imgs/algorI_uf_pathcompress1.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_uf_pathcompress2.png)
+![](../imgs/algorI_uf_pathcompress2.png)
 
 
 algorithm | worst case
@@ -241,7 +241,7 @@ public static void shuffle(Object[] a)
 
  - The **convex hull** of a set of N points is the smallest perimeter fence enclosing the points.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_sort_convexhull.png)
+![](../imgs/algorI_sort_convexhull.png)
 
  - Convex hull output. Sequence of vertices in counterclockwise order.
 
@@ -252,7 +252,7 @@ public static void shuffle(Object[] a)
  - Mechanical algorithm
     - Hammer nails perpendicular to plane; stretch elastic rubber band around points.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_convexhull_mechanical.png)
+![](../imgs/algorI_convexhull_mechanical.png)
 
 
 <h2 id="c8cac5868b416483f56438fb9751cfa8"></h2>
@@ -263,7 +263,7 @@ public static void shuffle(Object[] a)
     - Find shortest path in the plane from s to t that avoids a polygonal obstacle.
  - Fact. Shortest path is either straight line from s to t or it is one of two polygonal chains of convex hull.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_convexhull_app_robot_root.png)
+![](../imgs/algorI_convexhull_app_robot_root.png)
 
 <h2 id="574a49cf3281b0f2c959e58ae347a715"></h2>
 
@@ -273,7 +273,7 @@ public static void shuffle(Object[] a)
     - Given N points in the plane, find a pair of points with the largest Euclidean distance between them.
  - Fact. Farthest pair of points are extreme points on convex hull.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_convexhull_app_farthest_pairs.png)
+![](../imgs/algorI_convexhull_app_farthest_pairs.png)
 
 <h2 id="f4c2d0947e883517a2af0291794043e0"></h2>
 
@@ -282,7 +282,7 @@ public static void shuffle(Object[] a)
  - Fact. Can traverse the convex hull by making only counterclockwise turns.
  - Fact. The vertices of convex hull appear in increasing order of polar angle with respect to point p with **lowest y-coordinate**.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_convexhull_geometry.png)
+![](../imgs/algorI_convexhull_geometry.png)
 
 <h2 id="0e0d735e6d928983e7ce806c574de983"></h2>
 
@@ -300,7 +300,7 @@ public static void shuffle(Object[] a)
     - Given three points a, b, and c, is a → b → c a counterclockwise turn?
     - is c to the left of the ray a→b 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_convexhull_CCW.png)
+![](../imgs/algorI_convexhull_CCW.png)
 
  - Lesson. Geometric primitives are tricky to implement.
     - Dealing with degenerate cases.
@@ -314,7 +314,7 @@ public static void shuffle(Object[] a)
 
  - Polar order. Given a point p, order points by polar angle they make with p.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorI_convexhull_polar_order.png)
+![](../imgs/algorI_convexhull_polar_order.png)
 
  - High-school trig solution. Compute polar angle θ w.r.t. p using atan2().
  - Drawback. Evaluating a trigonometric function is expensive.

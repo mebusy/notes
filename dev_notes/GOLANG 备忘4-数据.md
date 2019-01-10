@@ -153,7 +153,7 @@ fmt.Println(s3, len(s3), cap(s3))   //[000000] 6 6
 
     创建表达式1 使用的是 元素索引号，而非数量
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/go_slice.png)    
+![](../imgs/go_slice.png)    
 
 ```go
 --数组

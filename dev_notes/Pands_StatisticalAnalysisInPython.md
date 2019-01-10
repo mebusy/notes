@@ -84,7 +84,7 @@ stats.kurtosis(distribution)
  - 4. Skew
     - We could also move out of the normal distributions and push the peak of the curve one way or the other.And this is called the skew. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/pandas_distribution_skew.png)
+![](../imgs/pandas_distribution_skew.png)
 
 ```python
 stats.skew(distribution)
@@ -102,7 +102,7 @@ stats.skew(chi_squared_df5)
  - 5. modality. 
     - So far, all of the distributions I've shown have a single high point, a peak. But what if we have multiple peaks? 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/pandas_distribtuion_bimodal.png)
+![](../imgs/pandas_distribtuion_bimodal.png)
 
 <h2 id="87ef7fa2fecf7675715d8ca701fab666"></h2>
 

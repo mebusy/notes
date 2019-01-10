@@ -76,7 +76,7 @@ for  x  ≠ 1 , 1 + x + x² + ... = (1- xᵏ⁺¹)/(1-x)
 
 指系, 互换, 倒数, 链式公式:
 
-> ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/log_exp_serious.png)
+> ![](../imgs/log_exp_serious.png)
 
 和差公式:
 
@@ -90,11 +90,11 @@ logₐ(M/N) = logₐM - logₐN
 
 ### 选择时间最短路径
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ToMIT.png)
+![](../imgs/ToMIT.png)
 
 开车到MIT， 从家开车到麻省高速的车速是30,的垂直距离是a, 麻省高速的车速为60， 求最省时间的开车路线（红色)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ToMIT2.png)
+![](../imgs/ToMIT2.png)
 
 <h2 id="ede6fd698e87ea72dbb43980639c76f6"></h2>
 
@@ -187,14 +187,14 @@ f'(a) = 1/6
     - Particle j: radius sⱼ, position (rxⱼ, ryⱼ), velocity (vxⱼ, vyⱼ).
     - Will particles i and j collide? If so, when?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_time_2particle_collide.png)
+![](../imgs/algorithm_time_2particle_collide.png)
 
 
  - Δv=(Δvx, Δvy) = (vxᵢ −vxⱼ, vyᵢ −vyⱼ)
  - Δr=(Δrx, Δry) = (rxᵢ −rxⱼ, ryᵢ −ryⱼ)
 
  - collision time :
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/algorithm_time_2particle_collide_solution.png)
+    - ![](../imgs/algorithm_time_2particle_collide_solution.png)
     - `d =(Δv⋅Δr)² − (Δv·Δv) (Δr·Δr - σ²)    ,  σ = σᵢ + σⱼ, σ is radius`
 
 eg. let particle radius = 0.5 , σ =0.5+0.5 =1 ,  p1=( 1,0 ) , v1 = (2,0) ; p2=(3,0) , v2 = (1,0)

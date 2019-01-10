@@ -56,7 +56,7 @@ We will explain the two approaches to programmable shading in more detail and di
 
 RenderMan uses curved surfaces (both tensor-product splines and subdivision surfaces) as its primary geometric primitives. To render these surfaces, PRMan dices them into grids, then uniformly tessellates each grid into “micropolygons” that are smaller than a pixel, as in Figure 3.1(a). 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TM_F3.1.png)
+![](../imgs/TM_F3.1.png)
 
 > FIGURE 3.1 Comparison of (a) the REYES pipeline (used in Pixar’s RenderMan) and (b) the pipeline used in real-time graphics hardware.
 

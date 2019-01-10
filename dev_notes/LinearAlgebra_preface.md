@@ -11,7 +11,7 @@
 
 #Preface
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/preface_la_vectorSpace.png)
+![](../imgs/preface_la_vectorSpace.png)
 
 *Linear algebra moves to `n` vectors in `m`-dimensional space.*
 

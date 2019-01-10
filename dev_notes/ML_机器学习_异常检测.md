@@ -62,7 +62,7 @@ Say `x∊ℝ`, if x is a distributed Gaussian with mean(均值) `μ` , variance(
 
 概率密度函数如下：
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/gaussian_distribution.png)
+![](../imgs/gaussian_distribution.png)
 
 可以看到，x取 `μ` 附近值的概率非常大，因为高斯分布在这里的概率密度很大。
 
@@ -77,7 +77,7 @@ Say `x∊ℝ`, if x is a distributed Gaussian with mean(均值) `μ` , variance(
 
 参数估计问题，就是找出 μ 和 σ。 
 
-> ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/gaussian_parameter.png)
+> ![](../imgs/gaussian_parameter.png)
 
 统计学中，`σ²`计算通常会用 1/(m-1), 机器学习中，用 1/m .
 
@@ -95,7 +95,7 @@ Say `x∊ℝ`, if x is a distributed Gaussian with mean(均值) `μ` , variance(
     
     μⱼ是是特征j的平均值。
      
-    ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/gaussian_parameter_j.png)
+    ![](../imgs/gaussian_parameter_j.png)
 
  3. 对新样本，计算p(x):
     
@@ -112,7 +112,7 @@ Say `x∊ℝ`, if x is a distributed Gaussian with mean(均值) `μ` , variance(
 
 > example:
 
-  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/anomaly_example.png)
+  ![](../imgs/anomaly_example.png)
 
 
 <h2 id="c59486b104ab1cb60cb63f475557ac3d"></h2>
@@ -188,7 +188,7 @@ Fraud detection 舞弊检测 | 垃圾邮件
 在我们的异常检测算法中，我们做的事情之一就是使用这种正态（高斯）分布来对特征向量建模: `p( xᵢ, μᵢ, σᵢ²)` 。 那么我常做的一件事就是画出这些数据，或者使用`直方图`(hist in Octave)表示数据，以确保这些数据看起来是正态分布的。 虽然即使你的数据并不是高斯分布，它也基本可以良好的运行，但是我们可以对这些数据做一些转化，使得数据更像高斯分布。
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/convertData2Gaussian.png)
+![](../imgs/convertData2Gaussian.png)
 
 除了 log(x) , 也可以使用 log(x+c) , 常数c用来调节图像，使得更像高斯分布， 或则 √x , x^0.1 等等, 方法并不唯一。
 
@@ -196,7 +196,7 @@ Fraud detection 舞弊检测 | 垃圾邮件
 
 使用的 feature 需要可以把 异常样本区分出来: p(x) is comparable for normal and anomalous examples.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/errorAnalysis4anomalyDetection.png)
+![](../imgs/errorAnalysis4anomalyDetection.png)
 
 > 选择特征变量时的一些思考
 
@@ -216,7 +216,7 @@ Fraud detection 舞弊检测 | 垃圾邮件
 
 ## Multivariate Gaussian Distribution 多元高斯分布
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/anomaly_detection_problem.png)
+![](../imgs/anomaly_detection_problem.png)
 
 如图， 内存使用 和 cpu 负载一般情况下，是线性的，所以，左上的绿点是个 异常点，但是 这个异常点的 x₁,x₂ 分别的都在合理的范围内，所以 异常检测算法并不能发现它。
 
@@ -233,11 +233,11 @@ Fraud detection 舞弊检测 | 垃圾邮件
 
 ![公式][1]
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/multivariate_gaussian_distribution_pic.png)
+![](../imgs/multivariate_gaussian_distribution_pic.png)
 
 通过多元高斯分布，你可以建立x₁,x₂ 高度相关模型，通过改变协方差矩阵的非对角线元素值，可以得到不同的高斯分布。
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/multivariate_gaussian_distribution_pic2.png)
+![](../imgs/multivariate_gaussian_distribution_pic2.png)
 
 
 <h2 id="a0d57426b1ce049b2cfafa06eac4786d"></h2>
@@ -248,7 +248,7 @@ Fraud detection 舞弊检测 | 垃圾邮件
 
 Fix module p(x) by setting:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/multivariate_parameters_fitting.png)
+![](../imgs/multivariate_parameters_fitting.png)
 
 > 使用
 
@@ -287,6 +287,6 @@ Original model | Multivariate Gaussian
 ---
 
 
-  [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/multivariate_gaussian_distribution.png
+  [1]: ../imgs/multivariate_gaussian_distribution.png
 
-  [2]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/anomaly_model.png
+  [2]: ../imgs/anomaly_model.png

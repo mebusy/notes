@@ -64,7 +64,7 @@ The thread are actually executed by a hardware called **streaming multiprocessor
 
 In a CUDA hardware, it actually implements a **SIMD(Single Instruction Multiple Data)** extention to the Von-Neumann processor model.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/SIMD.png)
+![](../imgs/SIMD.png)
 
 Multiple Processing Units controlled by the same control signals that the control unit sends out.
 
@@ -152,7 +152,7 @@ Every time a warp is executs, all the 32 threads will be executed by the SIMD un
 
 Programmer View of CUDA memory:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cudaMemoryView.jpg)
+![](../imgs/cudaMemoryView.jpg)
 
 Declaring CUDA Variables:
 
@@ -185,7 +185,7 @@ Declaring CUDA Variables:
 
 #### Hardware view of CUDA memory
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/hw_view_cuda_memory.png)
+![](../imgs/hw_view_cuda_memory.png)
 
 <h2 id="3183ab10ebc57b727dff3bb7ab220612"></h2>
 
@@ -221,7 +221,7 @@ __global__ void MatrxMulKernel( int m , int n , int k, ...  )
 
 **Same as threads/block:**
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/tiles_parallel.png)
+![](../imgs/tiles_parallel.png)
 
 <h2 id="c9f42b2d9c227c29799c484b06381309"></h2>
 
@@ -242,7 +242,7 @@ __global__ void MatrxMulKernel( int m , int n , int k, ...  )
 
  - Break up the execution of the kernel into phases so that the data accesses in each phase are focused on one tile of A and one tile of B
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TiledMatrixMultiplication.jpg)
+![](../imgs/TiledMatrixMultiplication.jpg)
 
 <h2 id="54c3487cbed905442216bd53f2aa807d"></h2>
 
@@ -256,11 +256,11 @@ __global__ void MatrxMulKernel( int m , int n , int k, ...  )
 
 #### Phase 0 Load for Block (0,0)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Phase0Load4Block00.jpg)
+![](../imgs/Phase0Load4Block00.jpg)
 
 Thread [0,0] is going to be generating C [0,0] , it will load A[0,0],B[0,0] into shared memory , while Thread [1,1] is going to be generating C [1,1] , it will load A[1,1],B[1,1] into shared memory.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Phase0Load4Block00_2.jpg)
+![](../imgs/Phase0Load4Block00_2.jpg)
 
 Every thread is going to be generate one step of the dot product out of the entire computation.
 
@@ -270,9 +270,9 @@ Every A element in the shared memory and every B element in the shared memory wi
 
 #### Phase 1 Load for Block (0,0)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Phase0Load4Block00_3.jpg)
+![](../imgs/Phase0Load4Block00_3.jpg)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Phase0Load4Block00_4.jpg)
+![](../imgs/Phase0Load4Block00_4.jpg)
 
 <h2 id="05f6e5f0aec3c722b0c365e005707ab6"></h2>
 
@@ -381,11 +381,11 @@ for (i = 0; i < dev_count; i++) {
 
 #### Handling Matrix of Arbitrary Size
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Arbitary_dims_CUDA_matrix_multiply.jpg)
+![](../imgs/Arbitary_dims_CUDA_matrix_multiply.jpg)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Arbitary_dims_CUDA_matrix_multiply2.jpg)
+![](../imgs/Arbitary_dims_CUDA_matrix_multiply2.jpg)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Arbitary_dims_CUDA_matrix_multiply3.jpg)
+![](../imgs/Arbitary_dims_CUDA_matrix_multiply3.jpg)
 
 
 <h2 id="81697492e4e1b62b3f2352852d2c0fb8"></h2>

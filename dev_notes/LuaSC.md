@@ -102,7 +102,7 @@ typedef union {
     - `$a[1000000000]=1;` in Perl will lead to out of memory. 
     - `a={[1000000000]=1}` in lua creates a table with a single entry.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/lua_table.png)
+![](../imgs/lua_table.png)
 
  - Lua 5.0 brought a new algorithm to optimize the use of tables as arrays: 
     - it optimizes pairs with integer keys by not storing the keys and storing the values in an actual array. 
@@ -149,7 +149,7 @@ print(add2(5))
  - If x was created in the stack, its stack slot would no longer exist.
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/lua_upvalue.png)
+![](../imgs/lua_upvalue.png)
 
 > Figure 4: An upvalue before and after being “closed”.
 

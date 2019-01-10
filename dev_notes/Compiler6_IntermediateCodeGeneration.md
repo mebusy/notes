@@ -18,7 +18,7 @@ This chapter deals with intermediate representations, static type checking, and 
 
 For simplicity, we assume that a com­piler front end is organized as in Fig. 6.1, 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F6.1.png)
+![](../imgs/Compiler_F6.1.png)
 
 where parsing, static checking, and intermediate-code generation are done sequentially; sometimes they can be com­bined and folded into parsing. We shall use the syntax-directed formalisms of Chapters 2 and 5 to specify checking and translation. Many of the translation schemes can be implemented during either bottom-up or top-down parsing, us­ing the techniques of Chapter 5. All schemes can be implemented by creating a syntax tree and then walking the tree.
 
@@ -28,7 +28,7 @@ The approach in this chapter can be used for a wide range of intermediate repres
 
 In the process oftranslating a program in a given source language into code for a given target machine, a compiler may construct a sequence of intermediate representations, as in Fig. 6.2. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F6.2.png)
+![](../imgs/Compiler_F6.2.png)
 
 High-level representations are close to the source language and low-level representations are close to the target machine. Syntax trees are high level; they depict the natural hierarchical structure of the source program and are well suited to tasks like static type checking.
 

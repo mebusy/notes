@@ -170,11 +170,11 @@ How it works ?
  - It is designed to prevent the rear of an object losing its shape and looking too flat. 
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_half_lambert_01.png)
+![](../imgs/u3d_shader_half_lambert_01.png)
 
 > Alyx model showing Lambertian lighting (left) and Half Lambert lighting (right)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_half_lambert_02.png)
+![](../imgs/u3d_shader_half_lambert_02.png)
 
 > The Lambertian dot product lobe (red) vs. the Half Lambertian dot product lobe (blue)
 
@@ -207,7 +207,7 @@ How it works ?
 
  - To get this started you will need to create a ramp texture
     - any image editing application should be able to make a gradient
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_ramp_texture.png)
+    - ![](../imgs/u3d_shader_ramp_texture.png)
  - Simply modify the lighting function so that it includes this new code `ramp` 
 
 ```
@@ -233,7 +233,7 @@ sampler2D _RampTex;
     - 使用Ramp texture，可以用一张1D的材质图来做为索引表。用来控制漫反射的系数
  - Now it is possible for the artist to have some custom control over how the light looks on the surface of an object.
     - This is why this technique is more commonly seen on a project where you need more of an illustrative look.
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/ramEffect.jpg)
+ - ![](../imgs/ramEffect.jpg)
 
 <h2 id="394d219380b43a7353afcc1371d66f0d"></h2>
 
@@ -248,7 +248,7 @@ sampler2D _RampTex;
     - BRDF（Bidirectional Reflectance Distribution Function，即双向反射分布函数）
  - BRDF simply means the way in which light is refected off an opaque surface from both the view direction and the light direction.
  - We need gradients for both dimensions of the texture , and apply it to our Ram texture 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BRDF.jpg)
+    - ![](../imgs/BRDF.jpg)
  - How to do it ...
     1. First we need to change our lighting function to include the `viewDir` variable that Unity provides us
         - to get the current view direction  , modify your lighting function to 
@@ -275,9 +275,9 @@ inline float4 LightingBasicDiffuse (SurfaceOutput s, half3 lightDir, half3 viewD
 }
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BRDF_effect.jpg)
+![](../imgs/BRDF_effect.jpg)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/BRDF_explain.jpg)
+![](../imgs/BRDF_explain.jpg)
 
  - When using the view direction parameter, we can create a very simple falloff type effect. 
  - You can use this parameter to create a lot of different types of effects: 
@@ -426,7 +426,7 @@ void FixedUpdate() {
     - not just pixel colors as we generally tend to think of them, but for storing multiple sets of pixels in both the x and y directions and in the RGBA channels.
     - We can actually pack multiple images into one single RGBA texture and use each of the R, G, B, and A components as individual textures themselves, by extracting each of those components in the Shader code.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_rgba_pack.png)
+![](../imgs/u3d_shader_rgba_pack.png)
 
  - Why is this helpful?
     - Well, in terms of the amount of actual memory your application takes up, textures are a large portion of your application's size.
@@ -441,7 +441,7 @@ void FixedUpdate() {
     - grass, dirt, rocky dirt, and a rock texture
  - Finally, we will also need a blending texture that is packed with grayscale images. 
     - This will give us the four blending textures that we can use to direct how the color textures will be placed on the object surface.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_pack_blendTex.png)
+    - ![](../imgs/u3d_shader_pack_blendTex.png)
  - 1. We will need five sampler2D objects, or textures, and two color properties
 
 ```
@@ -521,7 +521,7 @@ Properties {
     - Involves linear interpolation:(1 – f )i\* a + b \* f
     - a and b are matching vector or scalar types. 
     - f can be either a scalar or a vector of the same type as a and b.
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/shader_blending_texture.jpg)
+    - ![](../imgs/shader_blending_texture.jpg)
 
 ---
 
@@ -601,7 +601,7 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
     normalMap = float3(normalMap.x * _NormalIntensity , normalMap.y * _NormalIntensity, normalMap.z);
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_normal_intensity.png)
+![](../imgs/u3d_shader_normal_intensity.png)
 
 <h2 id="e145bae90f5b6f3764bd5b501805f142"></h2>
 
@@ -638,7 +638,7 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
     - 这样，另外两个坐标轴就是和该点相切的两条切线
         - 这样的切线本来有无数条，但模型一般会给定该顶点的一个tangent，这个tangent方向一般是使用和纹理坐标方向相同的那条tangent（T）
         - 而另一个坐标轴的方向（B）就可以通过normal和tangent的叉乘得到。
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_tangent_space.png)
+    - ![](../imgs/u3d_shader_tangent_space.png)
     - 也就是说，通常我们所见的法线纹理还是基于原法线信息构建的坐标系来构建出来的。
         - 那种偏蓝色的法线纹理其实就是存储了在每个顶点各自的Tangent Space中，法线的扰动方向。
         - 如果一个顶点的法线方向不变，那么在它的Tangent Space中，新的normal值就是z轴方向，也就是说值为(0, 0, 1)。
@@ -768,7 +768,7 @@ float upDirection = Vector2.Angle(pixelDirection , Vector3.up)/360;
 pixelColor = new Color( rightDirection , leftDirection , upDirection ) ;
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_procedualTexture_effects.png)
+![](../imgs/u3d_shader_procedualTexture_effects.png)
 
 ---
 
@@ -1176,7 +1176,7 @@ struct Output -> Lighting<Name>
     - Create a new Shader and Material
     - attach the Shader to the Material and attach the Material to the capsule object
     - We are also going to need to get some textures together that will allow an artist to re ne the roughness of the Specular by de ning how blurry and how sharp the Specular should be. 
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_meta_soft.png)
+        - ![](../imgs/u3d_shader_meta_soft.png)
  - How to do it...
  - 1. Properties
 
@@ -1263,7 +1263,7 @@ c.a = s.Alpha;
 return c;
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_meta_soft_effect.png)
+![](../imgs/u3d_shader_meta_soft_effect.png)
 
 <h2 id="6b0ce9cf1556ed6d397c6df778513b5d"></h2>
 
@@ -1282,13 +1282,13 @@ but here we are going to learn the fundamentals of the technique first.
 
 The following screenshot shows examples of different types of Specular effects one can achieve by using Anisotropic Shaders in Unity:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_anisotropoy_example.png)
+![](../imgs/u3d_shader_anisotropoy_example.png)
 
  - Getting ready 
     - Create a new scene with some capsules
     - create a new Shader and Material, and hook them up to our objects
     - Lastly, we will need some sort of normal map that will indicate the directionality of our Anisotropic Specular highlight.
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/u3d_shader_anisotropoy_normal_map.png)
+        - ![](../imgs/u3d_shader_anisotropoy_normal_map.png)
  - How to do it ...
  - 1. properties
 

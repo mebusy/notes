@@ -38,7 +38,7 @@ Machine learning 界有一个宏大的目标: 自动地替你学习到一组优�
 
 User rates movies using 0 to 5 stars.
 
-> ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/movie_rating.png)
+> ![](../imgs/movie_rating.png)
 
 我们引入一些符号：
 
@@ -54,7 +54,7 @@ User rates movies using 0 to 5 stars.
 
 ### Content Based Recommendations 
 
-> ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/movie_rating2.png)
+> ![](../imgs/movie_rating2.png)
 
 我们假设对每部电影，都用一些特征来描述，比如: x₁=romance 表示爱情片程度, x₂=action 表示动作片程度. 有了这些特征，每部电影可以用一个特征矩阵表示，如 x⁽¹⁾＝[1; 0.9; 0] 。 
 
@@ -69,17 +69,17 @@ For each user j, learn a parameter `θ⁽ʲ⁾` ∊ ℝ³ (θ其实就是用户�
 
 For learn `θ⁽ʲ⁾`, to min J:
 
-> ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/movie_rating_costfunction.png)
+> ![](../imgs/movie_rating_costfunction.png)
  
 注意，这个代价方法和我们线性回归的cost function 有略微的区别, 前面不再是乘上 1/(2m), 而是 1/2。完全按照线性回归的标准做法, 方差项和正则项前面应该是 `1/(2m⁽ʲ⁾)` , 因为 `m⁽ʲ⁾` 会比较麻烦，所以整个cost function 乘上  `m⁽ʲ⁾`, 把这个分母消掉，方便计算。
 
 For all user's `θ⁽¹⁾`,`θ⁽²⁾`,...,`θ⁽ⁿᵘ⁾`, to min J:
 
-> ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/movie_rating_costfunction_all.png)
+> ![](../imgs/movie_rating_costfunction_all.png)
 
 Gradient descent update:
 
-> ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/movie_rating_gradient_descent.png)
+> ![](../imgs/movie_rating_gradient_descent.png)
 
 可以看到，基于内容的推荐，是线性回归的一个变种。 它的关键是假设我们有不同电影的内容的特征。事实上，我们很难得到所有电影的特征，这就需要一种 不基于内容的推荐系统。
 
@@ -100,11 +100,11 @@ If we can get these parameters θ from users then it turns out that it becomes p
 
 Give `θ⁽¹⁾,θ⁽²⁾,...,θ⁽ⁿᵘ⁾` , to learn `x⁽ⁱ⁾`:
 
-> ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/collaborative_filtering_learn_xi.png)
+> ![](../imgs/collaborative_filtering_learn_xi.png)
 
 To lean all x :
 
-> ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/collaborative_filtering_learn_xall.png)
+> ![](../imgs/collaborative_filtering_learn_xall.png)
 
 ---
 
@@ -124,7 +124,7 @@ To lean all x :
 
 Minimizing `x⁽¹⁾,x⁽²⁾,...,x⁽ⁿᵐ⁾` and `θ⁽¹⁾,θ⁽²⁾,...,θ⁽ⁿᵘ⁾` simultaneously: 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/collaborative_filtering_combined.png)
+![](../imgs/collaborative_filtering_combined.png)
 
 可以看到，原来的两个 优化函数的左半部分被合并了。 这个算法和前面的算法之间的唯一不同是不需要反复计算。
 
@@ -142,7 +142,7 @@ Steps:
 
  1. Initialize `x⁽¹⁾,x⁽²⁾,...,x⁽ⁿᵐ⁾` and `θ⁽¹⁾,θ⁽²⁾,...,θ⁽ⁿᵘ⁾` to small random value (symmetry breaking)
  2. Minimize J( x⁽¹⁾,x⁽²⁾,...,x⁽ⁿᵐ⁾,θ⁽¹⁾,θ⁽²⁾,...,θ⁽ⁿᵘ⁾ ) using gradient descent (or and advanced optimization algorithm). Eg for every j=1,...,n_u , i=1,...,n_m :
-  > ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/collaborative_filtering_gradient_descent.png)
+  > ![](../imgs/collaborative_filtering_gradient_descent.png)
 
  3. For a user with parameter θ and a movie with (learned) feature x, predict a star rating of θᵀx .
 
@@ -163,7 +163,7 @@ grad = [X_grad(:); Theta_grad(:)];
 
 ### Vectorization 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/matrix_of_movie_rating.png)
+![](../imgs/matrix_of_movie_rating.png)
 
 用户 j 对 电影 i 的评分，可以用上面的矩阵来表示, 其中，矩阵元素为 `(θ⁽ʲ⁾)ᵀ·x⁽ⁱ⁾`
 
@@ -191,7 +191,7 @@ small `‖x⁽ⁱ⁾ - x⁽ʲ⁾‖` -> movie j and i are "similar".
 
 为了让算法对新用户表现的好一点，我们可以对评分做 Mean Normalization处理,
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/collaborizate_filter_mean_normalize.png)
+![](../imgs/collaborizate_filter_mean_normalize.png)
 
 所以每个电影 在新矩阵Y中的平均评分都是0， 对这个新的评分数据集使用协同过滤算法， for user j , on movie i predict:  `(θ⁽ʲ⁾)ᵀ·x⁽ⁱ⁾ + μᵢ` , 这样没有评分的用户, 对某部电影的评分就会是 平均分，而不是 0 ， that make more sense.
 

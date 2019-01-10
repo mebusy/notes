@@ -760,7 +760,7 @@ android {
  - solution:
     - change `classpath 'com.android.tools.build:gradle:1.3.0'` to ` classpath 'com.android.tools.build:gradle:2.0.0'`
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/gradle_android_PluginVersion.png)
+![](../imgs/gradle_android_PluginVersion.png)
 
 
 <h2 id="769f6f1c57e8b9182a031ed34dbd00e0"></h2>

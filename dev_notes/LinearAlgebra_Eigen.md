@@ -89,7 +89,7 @@ or in vector notation:
 
 This is the whole key to differential equations du/dt = Au:  ***Look for pure exponential solutions***. Substituting v = e<sup>λ</sup>ᵗy and w = e<sup>λ</sup>ᵗz into the equation, we find
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigen_dif_equation.png)
+![](../imgs/LA_eigen_dif_equation.png)
 
 he factor e<sup>λ</sup>ᵗ is common to every term, and can be removed. This cancellation is the reason for assuming the same exponent λ for both unknowns; it leaves
 
@@ -167,7 +167,7 @@ Determinant :
 
 This is the *characteristic polynomial*. Its roots, where the determinant is zero, are the eigenvalues. They come from the general formula for the roots of a quadratic, or from factoring into λ² - λ - 2 = (λ + 1) (λ - 2).  That is zero if λ = -1 or λ = 2, as the general formula confirms:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigen_eigenvalues_4_exmaple.png)
+![](../imgs/LA_eigen_eigenvalues_4_exmaple.png)
 
 **There are two eigenvalues, because a quadratic has two roots.** Every 2 by 2 matrix A - λI has λ² (and no higher power of λ²) in its determinant.
 
@@ -219,25 +219,25 @@ Before going back to the application (the differential equation), we emphasize t
 
 In the differential equation, this produces the special solutions u = e<sup>λ</sup>ᵗx . They are the *pure exponential solutions* to du/dt = Au. Notice e⁻ᵗ and e²ᵗ:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigen_eigenvalues_4_exmaple_001.png)
+![](../imgs/LA_eigen_eigenvalues_4_exmaple_001.png)
 
 There two special solutions give the complete solution. They can be multiplied by any numbers c₁ and c₂, and they can be added together. When u₁ and u₂ satisfy the linear equation du/dt = Au, so does their sum u₁ + u₂.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigen_eigenvalues_4_exmaple_012.png)
+![](../imgs/LA_eigen_eigenvalues_4_exmaple_012.png)
 
 This is ***superposition***, and it applies to differential equations (homogeneous and linear) just as it applied to matrix equations Ax = 0. The nullspace is always a subspace, and combinations of solutions are still solutions.
 
 Now we have two free parameters c₁ and c₂, and it is reasonable to hope that they can be chosen to satisfy the initial condition u = u(0) at t = 0:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigen_eigenvalues_4_exmaple_013.png)
+![](../imgs/LA_eigen_eigenvalues_4_exmaple_013.png)
 
 The constants are c₁ = 3 and c₂ = 1, and the solution to the original equation is
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigen_eigenvalues_4_exmaple_014.png)
+![](../imgs/LA_eigen_eigenvalues_4_exmaple_014.png)
 
 Writing the two components separately, we have v (0) = 8 and w (0) = 5:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigen_eigenvalues_4_exmaple_014.1.png)
+![](../imgs/LA_eigen_eigenvalues_4_exmaple_014.1.png)
 
 The key was in the eigenvalues λ and eigenvectors x. Eigenvalues are important in themselves, and not just part of a trick for finding *u*. 
 
@@ -294,7 +294,7 @@ P = ⎢0 0 0 0⎥     has λ = 1,1,0,0
 
 Example 3: The eigenvalues are on the main diagonal when A is ***triangular***:
 
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigen_example_3.png)
+ ![](../imgs/LA_eigen_example_3.png)
 
 The determinant is just the product of the diagonal entries. It is zero if λ=1, λ=3/4, or λ=1/2; the eigenvalues were already sitting along the main diagonal.
 
@@ -331,7 +331,7 @@ det(A-λI) = det |a-λ   b | = λ² - (trace)λ + determinat
                 | c   d-λ|
 ```
 
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigenvalue_formular_for_2x2.png)
+ ![](../imgs/LA_eigenvalue_formular_for_2x2.png)
 
 
 <h2 id="61bdaeeae3a64dec6a9964c59d00d884"></h2>
@@ -342,7 +342,7 @@ There is a MATLAB demo (just type eigshow), displaying the eigenvalue problem fo
 
 It starts with the unit vector x = (1, 0). *The mouse makes this vector move around the unit circle*. At the same time the screen shows Ax, in color and also moving. Possibly Ax is ahead of x. Possibly Ax is behind x. Sometimes Ax is parallel to x. At that parallel moment, Ax = λx (twice in the second figure).
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_eigenshow.png)
+![](../imgs/LA_eigenshow.png)
 
 The eigenvalue λ is the length of Ax, when the ***unit*** eigenvector x is parallel. The built-in choices for A illustrate three possibilities: 0, 1, or 2 real eigenvectors.
 
@@ -664,7 +664,7 @@ Continuously   (1 + .06/N)⁵ˣᴺ 1000  → e·³⁰ 1000 = $1349.87.
 Or the bank can switch to a differential equation - the limit of the difference equation P<sub>k</sub>₊₁ = (1 + .06 Δt)P<sub>k</sub>  . Moving P<sub>k</sub> to the left side and dividing by Δt,
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Discrete_continuous.png)
+![](../imgs/LA_Discrete_continuous.png)
 
 
 *The solution is p(t) = e·⁰⁶ᵗ p₀*.   After t = 5 years, this again amounts to $1349.87. The principal stays finite, even when it is compounded every instant and the improvement over compounding every day is only four cents.
@@ -686,7 +686,7 @@ That is the difference equation. It turns up in a most fantastic variety of appl
 
 How could we find the 1000th Fibonacci number, without starting at F₀ = 0 and F₁ = 1, and working all the way out to F₁₀₀₀? The goal is to solve the difference equation F<sub>k</sub>₊₂ = F<sub>k</sub>₊₁ + F<sub>k</sub>. **This can be reduced to a one-step equation u<sub>k</sub>₊₁ = Au<sub>k</sub>. Every step multiplies u<sub>k</sub> = (F<sub>k</sub>₊₁ , F<sub>k</sub>) by a matrix A**:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Fibonacci_equation.png)
+![](../imgs/LA_Fibonacci_equation.png)
 
 The one-step system u<sub>k</sub>₊₁ = Au<sub>k</sub> is easy to solve. It starts from u₀. After one step it produces u₁ = Au₀. Then u₂ is Au₁, which is A²u₀. *Every step brings a multiplication by A*, and after k steps there are k multiplications:
 
@@ -701,7 +701,7 @@ The real problem is to find some quick way to compute the powers Aᵏ, and there
 
 The columns of S are the eigenvectors of A. Writing S⁻¹u₀ = c, the solution becomes:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_5g.png)
+![](../imgs/LA_5g.png)
 
 After k steps, u<sub>k</sub> is a combination of the n "pure solutions" λᵏx.
 
@@ -720,17 +720,17 @@ Two eigenvalues: λ₁ = ( 1 + √5 ) / 2 m
 
 The second row of A - λI is (1, -λ). To get (A - λI )x = O, the eigen vector is x = (λ, 1). The first Fibonacci numbers F₀ = 0 and F₁ = 1 go into u₀, and S⁻¹u₀ = c:
 
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Fib1.png)
+ ![](../imgs/LA_Fib1.png)
 
 Those are the constants in u<sub>k</sub> = c₁λ₁ᵏx₁ + c₂λ₂ᵏx₂. Both eigenvectors x₁ and x₂ have second component 1. That leaves F<sub>k</sub> = c₁λ₁ᵏ + c₂λ₂ᵏ  in the second component of u<sub>k</sub>:
 
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Fib2.png)
+ ![](../imgs/LA_Fib2.png)
 
 This is the answer we wanted.
 
 The fractions and square roots look surprising because Fibonacci's rule F<sub>k</sub>₊₂ = F<sub>k</sub>₊₁ + F<sub>k</sub> must produce whole numbers. Somehow that formula for F<sub>k</sub> must give an integer. In fact, since the second term [ ( 1-√5 ) /2 ] / √5  is always less than 2, it must just move the first term to the nearest integer:
 
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Fib3.png)
+ ![](../imgs/LA_Fib3.png)
 
 This is an enormous number, and F₁₀₀₁ will be even bigger. The fractions are becoming insignificant, and the ratio F₁₀₀₁ /F₁₀₀₀ must be very close to (1 + √5 )/2 ≈ 1.618. Since λ₂ᵏ is insignificant compared to λ₁ᵏ, the ratio F<sub>k</sub>₊₁ / F<sub>k</sub> approaches λ₁.
 
@@ -765,7 +765,7 @@ When the initial u₀ is an eigenvector x, this is the solution: u<sub>k</sub> =
 
 **5H** If u₀ = c₁x₁ + ... + cnxn, then after k steps u<sub>k</sub> = c₁ᵏx₁ + ... + cnᵏxn. Choose the c's to match the starting vector u₀ :
 
- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_Fib6.png)
+ ![](../imgs/LA_Fib6.png)
 
 
 
@@ -803,7 +803,7 @@ A = SΛS⁻¹ = ⎡2/3  1/3⎤⎡1   ⎤⎡1  1⎤.
 
 To find Aᵏ, and the distribution after k years, change SAS⁻¹ to SAᵏS⁻¹:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/LA_markov_matrix_example.png)
+![](../imgs/LA_markov_matrix_example.png)
 
 Those 2 terms are c₁λ₁ᵏx₁ + c₂λ₂ᵏx₂. The factor λ₁ᵏ=1 is hidden in the first term.  In the long term , the other factor (.7)ᵏ becomes extremely small. ***The solution approaches a limiting state u∞ = (y∞, z∞):***
 

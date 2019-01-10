@@ -144,10 +144,10 @@ h(x) = sigh ( WᵀX )
  - 犯了错，我们就要想办法来修正它 ， 如何修正？
     - 如果 y 应该是正的，g 得到的是负的，说明 W,X 的角度太大， 那我们就把 向量W 转回来;反之，我们把向量W  转开
     - 这两种情况，可以统一的由 `W=W+yx` 处理
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_PLA_correct.png)
+    - ![](../imgs/TU_ML_PLA_correct.png)
  - 算法伪代码如下:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_PLA_pseudo.png)
+![](../imgs/TU_ML_PLA_pseudo.png)
 
  - A fault confessed is half redressed.
  - Weight Space
@@ -162,7 +162,7 @@ h(x) = sigh ( WᵀX )
 
 ### Practical Implementation of PLA 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_CyclicPLA_pseudo.png)
+![](../imgs/TU_ML_CyclicPLA_pseudo.png)
 
  - 按某个顺序便利 样本，如果发现错误就纠错， 知道某个完整的循环没有错误。
  - 注意 PLA 样本输入 X 需要插入 bias
@@ -193,7 +193,7 @@ h(x) = sigh ( WᵀX )
 
  - linear separable D <=> exists perfect  W<sub>f</sub> such that y<sub>n</sub> = sign(  W<sub>f</sub>ᵀx<sub>n</sub> )
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_PLA_fact1.png)
+![](../imgs/TU_ML_PLA_fact1.png)
 
  - 由上可以，如果 W<sub>t</sub> 的长度没有变长的话，那么可以看到 PLA 使得  W<sub>t</sub> 更加接近W<sub>f</sub> 
 
@@ -205,11 +205,11 @@ h(x) = sigh ( WᵀX )
     - <=> sign( W<sub>t</sub>ᵀx<sub>n(t)</sub> ) ≠ y<sub>n(t)</sub> 
     - <=> y<sub>n(t)</sub> W<sub>t</sub>ᵀx<sub>n(t)</sub> ≤ 0  (WX和y 异号)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_PLA_fact2.png)
+![](../imgs/TU_ML_PLA_fact2.png)
 
  - 综合这两条，我们可以得到
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_PLA_fact_conclude.png)
+![](../imgs/TU_ML_PLA_fact_conclude.png)
 
  - Guarantee
     - as long as *linear separable* and *correct by mistake*
@@ -226,7 +226,7 @@ h(x) = sigh ( WᵀX )
 
  - modify PLA (black lines) by keeping best weights in pocket
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_ML_PLA_modify_pseudo.png)
+![](../imgs/TU_ML_PLA_modify_pseudo.png)
 
  - 遍历样本，如有有错，就纠错 -- update w
  - 把更新后的w  放到整个样本中测试错误率， 记录错误率最小的那个 wg
@@ -348,7 +348,7 @@ h(x) = sigh ( WᵀX )
  - μ = *orange* probability in bin
  - ν = *orange* fraction in sample
  - in big sample (N large) , ν is probably close to μ ( within ε ) 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLbasis_hoeffding_ineq.png)
+    - ![](../imgs/TU_MLbasis_hoeffding_ineq.png)
     - 当N很大是，μ和ν 相差很大的几率 很小
  - called **Hoeffding Inequality** , for marbles, coin, polling
  - The statement 'μ-ν' is **probably approximately correct** (PAC)
@@ -391,7 +391,7 @@ size-N sample from bin | check h on ⅅ = { (X<sub>n</sub>, y<sub>n</sub>) } , i
 
 ### The Formal Guarantee
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_fg.png)
+![](../imgs/TU_MLb_fg.png)
 
 same as the 'bin' analogy...
 
@@ -443,7 +443,7 @@ same as the 'bin' analogy...
     - <=> **no 'freedom of choice'** by A
     - <=> there exists some h such that E<sub>in</sub> and E<sub>out</sub> **far away** 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_bad_data.png)
+![](../imgs/TU_MLb_bad_data.png)
 
  - for M hypotheses , bound of ℙ<sub>D</sub>[BAD D] ?
 
@@ -451,7 +451,7 @@ same as the 'bin' analogy...
 
 ### Bound of BAD Data
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_bound_of_baddata.png)
+![](../imgs/TU_MLb_bound_of_baddata.png)
 
  - 比原来的 Hoeffding 大了100倍
 
@@ -581,7 +581,7 @@ size | possibly infinite | upper bounded by 2ᴺ
     - |  H( x₁,x₂, ... , X<sub>N</sub>  ) |: depend on inputs ( x₁,x₂, ... , X<sub>N</sub>   )
     - dichotomy set 取决于我们选好的 x₁,x₂, ... , X<sub>N</sub>  ， 我们希望移除这个依赖
  - growth function:  remove dependence by **taking max of  all possible ( x₁,x₂, ... , X<sub>N</sub>  )**
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TaiU_MLb_growth_fun.png)
+    - ![](../imgs/TaiU_MLb_growth_fun.png)
  - finite , upper-bounded by 2ᴺ
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
@@ -698,7 +698,7 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
  - N(N,k) = 2ᴺ-1 for N = k
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_tab_bounding_func_0.png)
+![](../imgs/TU_MLb_tab_bounding_func_0.png)
 
  - quiz: for the 2D perceptrons , which of the following claim is true ?
     - minimum break point k = 2.   ( False, k = 4  )
@@ -714,7 +714,7 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 
  - B(N,k) ≤ B(N-1,k) + B(N-1, k-1)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_tab_bounding_func_1.png)
+![](../imgs/TU_MLb_tab_bounding_func_1.png)
 
  - **acutally , '≤' can be '='**. 
 
@@ -722,7 +722,7 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 
 ### Bounding Function : The Theorem
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_bounding_func_theorem.png)
+![](../imgs/TU_MLb_bounding_func_theorem.png)
 
  - for fixed *k*, B(N,k) upper bounded by poly(N) 
     - ⇒ m<sub>H</sub>(N) is poly(N) **if break point exists**
@@ -737,7 +737,7 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
     - 第一件事情是，我要N夠大 
     - 然后又多出了一些常数
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_pictorial_proof_0.png)
+![](../imgs/TU_MLb_pictorial_proof_0.png)
 
  - 这个公式的证明需要一些数学上的推导等等.
 
@@ -749,7 +749,7 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 
  - Vapnik-Chervonenkis (VC) bound:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vc_bound.png)
+![](../imgs/TU_MLb_vc_bound.png)
 
 
  - Q: For positive rays , m<sub>H</sub>(N) = N+1. Plug it into the VC bound for ε=0.1, and N=10000. What is VC bound of BAD events?
@@ -841,7 +841,7 @@ convex sets | ∞
  - how ?
     - There are **some** of d+1 **inputs** we can shatter.
  - some 'trivial' inputs
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vd_dim_trivial_input.png)
+    - ![](../imgs/TU_MLb_vd_dim_trivial_input.png)
     - 最左灰色的1 是插入的 bias
  - 在二维上，只有3个点 (0,0) , (1,0) , (0,1) ,   这三个点是可以被shatter的
  - 我们需要证明的是， 在d 维度的时候，这些d+1个点也是可以被shatter的
@@ -864,7 +864,7 @@ convex sets | ∞
     - We can not shatter **any** set of d+2 inputs
  - A 2D Special Case
     - 我们在2D上加入一个点 (1,1)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_special_2d_case.png)
+    - ![](../imgs/TU_MLb_special_2d_case.png)
     - x4 = x2 + x3 - x1 , linear dependency , 会限制我们产生dichotomy 的组合
  - d-D General Case 
     - 对 D+1 方阵加入任意一笔 资料 x<sub>d+2</sub> , 产生的 D+1 x  D+2 矩阵， 行比列多，行 必然 linear dependency. 
@@ -879,7 +879,7 @@ convex sets | ∞
 
 ### Degrees of Freedom
  
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vcd_phy_intuition.png)
+![](../imgs/TU_MLb_vcd_phy_intuition.png)
 
 
  - hypothesis parameters w = ( w₀,w₁,...,w<sub>d</sub> ) :
@@ -898,10 +898,10 @@ convex sets | ∞
 ### Two Old Friends
 
  - Positive Rays ( d<sub>vc</sub>=1 ) 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_pos_ray_free.png)
+    - ![](../imgs/TU_MLb_pos_ray_free.png)
     - 只有一个可调节的 按钮
  - Positive Intervals ( d<sub>vc</sub>=2 )
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_pos_intval_free.png)
+    - ![](../imgs/TU_MLb_pos_intval_free.png)
     - 有 2个可调节 按钮
 
 <h2 id="668bae56a418c6c053a975bbc41bef59"></h2>
@@ -912,7 +912,7 @@ convex sets | ∞
     1. can we make sure that E<sub>out</sub>(g) is close enoughto E<sub>in</sub>(g)?
     2. can we make E<sub>in</sub>(g) small enough 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_M_vs_VC.png)
+![](../imgs/TU_MLb_M_vs_VC.png)
 
  - using the right d<sub>vc</sub> ( or H ) is important
 
@@ -925,13 +925,13 @@ convex sets | ∞
 
 ### VC Bound Rephrase:  Penalty for Model Complexity
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vcbound_rephrase.png)
+![](../imgs/TU_MLb_vcbound_rephrase.png)
 
  - 这个式子的意义是什么？
     - 有很高的機會 Ein跟Eout的差別會被限制在 這個根號表达式里面, 也就是說我們現在描述的是好事情發
  - Eout 会被限制在 两个部分中间，在统计上，很像  confidence interval -- 信赖区间
     - 通常，我们会比较在意， 右边这部分
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vcbound_rephrase.png)
+    - ![](../imgs/TU_MLb_vcbound_rephrase.png)
     - √... :  penalty for **model complexity**
         - 我们 hypothesis set 今天到底有多 powerful , 但是 我在 generalization的时候要付付出的代价就是这么多
         - 表示: Ω( N, H, δ ) 
@@ -944,9 +944,9 @@ convex sets | ∞
 ### THE VC Message
 
  - with **a high probability** ,
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vc_message.png)
+    - ![](../imgs/TU_MLb_vc_message.png)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_vc_message_graph.png)
+![](../imgs/TU_MLb_vc_message_graph.png)
 
  - 把 Ein 做得更低，就需要一个强大的 hypothesis set, 但是这要付出 很大的 model complexity 的代价，不见得是最好的选择。
 
@@ -1023,13 +1023,13 @@ convex sets | ∞
 
 ### Pointwise Error Measure
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_pointwiseerr.png)
+![](../imgs/TU_MLb_pointwiseerr.png)
 
 <h2 id="6c2d0a3129771ec5553a0a7b40c04800"></h2>
 
 ### Two Important Pointwise Error Measures
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_pointwiseerr2.png)
+![](../imgs/TU_MLb_pointwiseerr2.png)
 
 <h2 id="4800505041049669fa7b042ae638b020"></h2>
 
@@ -1040,7 +1040,7 @@ convex sets | ∞
 
 - `P(y = 1|x) = 0.2, P(y = 2|x) = 0.7, P(y = 3|x) = 0.1`
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_idealminitarget.png)
+![](../imgs/TU_MLb_idealminitarget.png)
 
 
 <h2 id="2187b661cffc7f0490d1f364850ab22a"></h2>
@@ -1129,7 +1129,7 @@ f -1 | *1000*| 0
 
 - 通过复制相关资料，转化W 成等价的 0/1问题
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/TU_MLb_weighted_pocket.png)
+![](../imgs/TU_MLb_weighted_pocket.png)
 
 <h2 id="55d55c54777e3438c85343abfae313ac"></h2>
 

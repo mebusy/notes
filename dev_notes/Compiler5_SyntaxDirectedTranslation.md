@@ -67,7 +67,7 @@ Terminals can have synthesized attributes, but not inherited attributes. At­tri
 
 Example 5.1 : The SDD in Fig. 5.1 is based on our familiar grammar for arithmetic expressions with operators + and \*. It evaluates expressions termi­nated by an endmarker n. In the SDD, each of the nonterminals has a single synthesized attribute, called val. We also suppose that the terminal **digit** has a synthesized attribute *lexval*, which is an integer value returned by the lexical analyzer.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Compiler_F5.1.png)
+![](../imgs/Compiler_F5.1.png)
 
 > Figure 5.1: Syntax-directed de nition of a simple desk calculator
 

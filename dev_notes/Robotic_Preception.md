@@ -29,7 +29,7 @@
 
 # 1.4 Vanishing Points
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_vanishing_point.png)
+![](../imgs/robot_perception_vanishing_point.png)
 
  - Properties
     - Any two parallel lines have the same vanishing point
@@ -41,7 +41,7 @@
 
 ## Vanishing lines
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_vanishing_lines.png)
+![](../imgs/robot_perception_vanishing_lines.png)
 
  - Multiple Vanishing Points
     - Any set of parallel lines on the plane define a vanishing point
@@ -66,7 +66,7 @@
 
  - What is the geometric intuition?
     - a point in the image is a *ray* in projective space
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_projective_plane.png)
+    - ![](../imgs/robot_perception_projective_plane.png)
     - Each point (x,y) on the plane is represented by a ray (sx,sy,s)
     - all points on the ray are equivalent:  (x, y, 1) ≅ (sx, sy, s)
         - 一个点的齐次坐标乘上一个非零标量，则所得之坐标会表示同一个点。
@@ -78,7 +78,7 @@
  - Homogeneous coordinates 齐次坐标
     - represent coordinates in 2 dimensions with a 3-vector
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_projective_lines2.png)
+![](../imgs/robot_perception_projective_lines2.png)
 
 image plane上的line  ，是投影空间中，rays 组成的一个平面
 
@@ -129,25 +129,25 @@ image plane上的line  ，是投影空间中，rays 组成的一个平面
     - 对于一个2维点p=(x,y)仿射变换(T)是线性变换(Ap)和平移变换(+t)的叠加:
         - T(p) = Ap + t
     - 线性变换在欧式空间中可以表示为矩阵乘积形式，如旋转变换和缩放变换,而平移变换却不能用矩阵相乘的形式表达。
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_linear_transform.png)
+        - ![](../imgs/robot_perception_linear_transform.png)
     - 现在引入齐次坐标系表达 p̃ =(x,y,1) (尺度不变性，实际上在高一维的空间映射到w=1w=1平面, 这样计算后结果直接可导出到欧式空间)。可以将rotate,scale,transfer变换表示为：
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_affine_transform.png)
+        - ![](../imgs/robot_perception_affine_transform.png)
     - 然后我们可以导出仿射变换的矩阵形式，
-        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_affine_transform_maxtrix_multiply.png)
+        - ![](../imgs/robot_perception_affine_transform_maxtrix_multiply.png)
     - 其中O₁ₓ₂=[0,0], 仿射变换保留了点的共线/面性质及比例, 这在图形处理中非常重要，比如对于 平面上的一个几何形状进行变换，只需要对其顶点进行变换就可实现.而齐次坐标系的 引入使仿射变换能以紧凑统一的矩阵形式表达和计算，这体现了其对仿射变换的重要性。
  - 2.4.为什么能够明确区分向量和点？
     - [a,b,1] 点
     - [a,b,0] 向量
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_homogeneous_coordinates.png)
+![](../imgs/robot_perception_homogeneous_coordinates.png)
 
 <h2 id="6e434d9a61c1a39c10721d8f2a37050c"></h2>
 
 ## Projective lines
 
  - What does a line in the image correspond to in projective space?
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_projective_lines.png)
+    - ![](../imgs/robot_perception_projective_lines.png)
     - A line is a plane of rays through origin
         - all rays (x,y,z) satisfying: ax + by + cz = 0
         - (a,b,c)·(x,y,z) = l·p = 0
@@ -162,7 +162,7 @@ image plane上的line  ，是投影空间中，rays 组成的一个平面
  - 极坐标系下的直线方程
     - 在直角坐标系中有一条直线l，原点到该直线的垂直距离为ρ，垂线与x轴的夹角为θ，这这一条直线式唯一的，且其直线方程为：
     - `ρ = xcosθ + ysinθ`    
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_line_representation.png)
+    - ![](../imgs/robot_perception_line_representation.png)
  - a line is `ρ = xcosθ + ysinθ`
     - ρ is the distance from the origin to the line
     - θ is the norm direction of the line
@@ -176,7 +176,7 @@ image plane上的line  ，是投影空间中，rays 组成的一个平面
 
 ## Example of Line
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_example_of_line.png)
+![](../imgs/robot_perception_example_of_line.png)
 
 ---
 
@@ -188,7 +188,7 @@ image plane上的line  ，是投影空间中，rays 组成的一个平面
 
 ##  Projective lines from two points 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_projective_lines_from_2_points.png)
+![](../imgs/robot_perception_projective_lines_from_2_points.png)
 
 <h2 id="347bec6c0a5fdfe9e8359f08a72678bb"></h2>
 
@@ -200,7 +200,7 @@ l = *x* x *x'*
 
 ## Example of Line
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_example_of_test_point_on_line.png)
+![](../imgs/robot_perception_example_of_test_point_on_line.png)
 
  - Verify p2 lies on the line
 
@@ -232,7 +232,7 @@ l/218.21 = [0.59116     0.80655  -139.35912] ≈ [a b c ]
 
 ## Points from two lines
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_points_from_two_lines.png)
+![](../imgs/robot_perception_points_from_two_lines.png)
 
 x = l x l'
 
@@ -251,7 +251,7 @@ x = l x l'
 
 ## Points from two lines
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_pts_from_2_lines.png)
+![](../imgs/robot_perception_pts_from_2_lines.png)
 
  - When P has the form (x,y,0)?
  - Point at infinity
@@ -306,7 +306,7 @@ ans =   0   1   0
 
 ## Ideal points and lines
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/robot_perception_ideal_pt_line.png)
+![](../imgs/robot_perception_ideal_pt_line.png)
 
  - Ideal point (“point at infinity”)
     - p ≅ (x, y, 0) – parallel to image plane

@@ -126,7 +126,7 @@ lim g(x) = lim h(x) = L
 then lim f(x) = L 
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CalculusOne_squeezed_theorum.png)
+![](../imgs/CalculusOne_squeezed_theorum.png)
 
 
 <h2 id="4483c04fa3ccf44c111cde358f218561"></h2>
@@ -161,7 +161,7 @@ PS. `(x+1)(x-1)/(x-1)`  and `(x+1)` not the same function, 一个在 x=1 处 没
 
 #### One-Sided Limit:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CalculusOne_one_side_limit.png)
+![](../imgs/CalculusOne_one_side_limit.png)
 
  - If lim<sub>x→a⁺</sub>f(x) != lim<sub>x→a⁻</sub>f(x) , then lim<sub>x→a</sub>f(x)  does not exist.
  - if lim<sub>x→a⁺</sub>f(x) =  lim<sub>x→a⁻</sub>f(x) = L,  then lim<sub>x→a</sub>f(x)  = L .
@@ -223,7 +223,7 @@ more precise :
 
  - 应用：
     - f(x) = cosx 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CalcusOne_cosx_equal_x.png)
+    - ![](../imgs/CalcusOne_cosx_equal_x.png)
 
 
 ---
@@ -272,16 +272,16 @@ more precise :
 
 The ***derivative*** of f at the point x is defined to be :
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus1_derivative_def.png)
+![](../imgs/calculus1_derivative_def.png)
 
 其他等价的定义：
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Calculus1_derivative_def2.png) , or  ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Calculus1_derivative_def3.png)
+![](../imgs/Calculus1_derivative_def2.png) , or  ![](../imgs/Calculus1_derivative_def3.png)
 
  - If the derivative of f exists at x , we say that the function is **differentiable** at x.
  - If the derivative of f exists at x ,  whenever x is between a and b, then we say that f is **defferentiable** on (a,b).
  - The **derivative** of f at the point x , is written as f'(x).
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/Calculus1_derivative_written.png)
+    - ![](../imgs/Calculus1_derivative_written.png)
 
  - **Derivative is slope !**
 
@@ -303,7 +303,7 @@ f'(0) = lim<sub>x→0</sub> |h|/h , DNE.
 
 #### How does wiggling x affect f(x) ?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/caculus1_slope_f201.png)
+![](../imgs/caculus1_slope_f201.png)
 
 f'(x) = 3x , f(2) = 4,  f(2.01) = ? 
 
@@ -391,7 +391,7 @@ d/dx ((1+2x)·(1+x²))
  
 Why is it true ?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculus_one_derivative_of_product_area_change.png)
+![](../imgs/calculus_one_derivative_of_product_area_change.png)
 
 ---
 
@@ -406,7 +406,7 @@ If g(a) ≠ 0 , and
     f and g are differentiable at a , then
 ```
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_derivative_quotient_rule.png)
+![](../imgs/calculusone_derivative_quotient_rule.png)
 
 
 下乘上导，减上乘下导，除以 下下
@@ -417,7 +417,7 @@ If g(a) ≠ 0 , and
 
 ### d/dx is just a function
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusOne_ddx_is_func.png)
+![](../imgs/calculusOne_ddx_is_func.png)
 
 
 ---
@@ -432,7 +432,7 @@ If g(a) ≠ 0 , and
 
  - If either f'(c) does not exist , or f'(c) = 0 , call *c* a ***critical point*** of f.
  
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_derivative_func_graph.png)
+![](../imgs/calculusone_derivative_func_graph.png)
 
 
 <h2 id="b2286c3f62faeddddcc3845afcb3deec"></h2>
@@ -456,7 +456,7 @@ f(x) = 1 + x + x²/2 + x³/6 + x⁴/24 + ...  = eˣ
     - g'(f(x)) :   change in g(f(x)) / change in f(x)
     - f'(x)  :  change in f(x) / change in x
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusOne_chain_rule.png)
+![](../imgs/calculusOne_chain_rule.png)
 
 
 <h2 id="6a7b8b5beb5c33160b2c36e47bf112d4"></h2>
@@ -464,7 +464,7 @@ f(x) = 1 + x + x²/2 + x³/6 + x⁴/24 + ...  = eˣ
 ### How do I find the tangent line to a curve ?
 
  - x³ + y³ - 9xy = 0 
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/CalclusOne_graph_leaf.png)
+ - ![](../imgs/CalclusOne_graph_leaf.png)
  - This in NOT the graph of a function, it's really a relation , a equation.
 
 ```
@@ -482,9 +482,9 @@ dy/dx = (- 3x² + 9y) / ( 3y² - 9x )
  - What is inverse function ?
     - f⁻¹(f(x)) = f⁻¹(y) = x
     - inverse function 就是 互换了 x轴 和 y轴
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusOne_inverse_function_exmaple.png)
+    - ![](../imgs/calculusOne_inverse_function_exmaple.png)
  - What is the derivative of an inverse function ?
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusOne_derivative_inverse_function.png)
+    - ![](../imgs/calculusOne_derivative_inverse_function.png)
     - since derivate is just the slope, and inverse function exchange the x axis and y axis, so 
     - if the derivative of *f(x)* is m , then the derivative of *f⁻¹(y)*  = 1/m.  注意：这里 x，y并不相等
 
@@ -511,7 +511,7 @@ log(ab)  = loga + logb // this is a big reason why we care so much about logs
 
 more properties of log function
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_more_properties_log_func.png)
+![](../imgs/calculusone_more_properties_log_func.png)
 
 
 
@@ -547,7 +547,7 @@ f'(x) = d/dx( eˡºᵍ² )ˣ
 
 #### What is logarithmic differentiation ?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_derivative_of_complex_function.png)
+![](../imgs/calculusone_derivative_of_complex_function.png)
 
 求 y'
 
@@ -561,7 +561,7 @@ logy = 5log(1+x²) + 8log(1+x³) - 7log(1+x⁴)
 ```
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_derivative_of_complex_function_solve.png)
+![](../imgs/calculusone_derivative_of_complex_function_solve.png)
 
 
 ---
@@ -652,7 +652,7 @@ tanθ = sinθ / cosθ
 
 cotθ = 1/tanθ 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calclusone_Trigonometric_functions.png)
+![](../imgs/calclusone_Trigonometric_functions.png)
 
 
 <h2 id="573dc971f8331989a1a87d6974f24dfb"></h2>
@@ -664,7 +664,7 @@ cotθ = 1/tanθ
 
 #### What is the derivative of sin and cos?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_derivative_sin_cos.png)
+![](../imgs/calculusone_derivative_sin_cos.png)
 
  - θ increased by h 
  - point ( cosθ, sinθ ) moved to ( cos(θ+h) , sin(θ+h) )
@@ -728,10 +728,10 @@ arctan | [-π/2, π/2]
 
  - what is the arcxxx ?
     - θ = arccos(1/2) , is just to say that θ is the length of the arc whose cosine is 1/2. 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_arccos.png)
+    - ![](../imgs/calculusone_arccos.png)
 
  - draw picture to help you under stand  inverse trig function 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_trig_draw_helper_func.png)
+    - ![](../imgs/calculusone_trig_draw_helper_func.png)
 
 <h2 id="4d4582f7a62b4c18562eab93a499b2ab"></h2>
 
@@ -854,11 +854,11 @@ lim<sub>x→∞</sub> (sin(1/x)·x ) = lim<sub>x→∞</sub> sin(1/x) / (1/x) = 
 
  - 1<sup>∞</sup>
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_limit_e.png)
+![](../imgs/calculusone_limit_e.png)
 
  - ∞⁰
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_limit_x_1_x.png)
+![](../imgs/calculusone_limit_x_1_x.png)
 
  - ∞ - ∞
 
@@ -1006,7 +1006,7 @@ f'(x) =⎧ 1 - (2x-2) , if x² - 2x > 0 , // no '=' here, because x=2 not differ
     - f not differentiable : x=2
     - end point : x=0 , x=2
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusOne_x-abs_xx-2x.png)
+![](../imgs/calculusOne_x-abs_xx-2x.png)
 
  x | f(x)
 --- | --- 
@@ -1046,7 +1046,7 @@ f'(x) =⎧ 1 - (2x-2) , if x² - 2x > 0 , // no '=' here, because x=2 not differ
 
 #### How large of an object can you carry around a corner?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_optmization_in_action.png)
+![](../imgs/calculusone_optmization_in_action.png)
 
  - break up the stick into 2 pieces , each from a wall to this corner 
     - the bottom piece has the length:  a·cscθ
@@ -1078,7 +1078,7 @@ l(θ) = (a<sup>2/3</sup> + b<sup>2/3</sup> )<sup>3/2</sup>
 
 #### How short of a ladder will clear a fence?
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_optimizatiio_action_ladder_clear_a_fence.png)
+![](../imgs/calculusone_optimizatiio_action_ladder_clear_a_fence.png)
 
  - 需要多长的梯子 ， 才能够到 谷仓？
  - 本质上，和上面的 stick 通过 corner 是一样的
@@ -1159,7 +1159,7 @@ f(1) ≈ f(0.5) + 0.5·f'(0.5)
  - your **dy**'s had better include a **dx**.
  
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_mean_of_dx.png)
+![](../imgs/calculusone_mean_of_dx.png)
 
 
 
@@ -1183,7 +1183,7 @@ f(1) ≈ f(0.5) + 0.5·f'(0.5)
     -  The downside to this bisection method is just speed, it takes a really long time
  - So a different method, called Newton's method, is much faster than this bisection trick
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_newton_method.png)
+![](../imgs/calculusone_newton_method.png)
 
  1. just start by making a potentially bad guess : x₀
     - in this case , that's not a very good guess
@@ -1196,7 +1196,7 @@ f(1) ≈ f(0.5) + 0.5·f'(0.5)
 
 We're going to start by thinking about this red line.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_newton_method2.png)
+![](../imgs/calculusone_newton_method2.png)
 
  - the point slope form Of the red line:
     - `y-f(x₀) = f'(x₀)·(x-x₀)`
@@ -1258,7 +1258,7 @@ assuming f'(x₀) != 0
         - f(x) = 1/x -b 
  - f'(x) = -1/x²
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_newton_method_1overb.png)
+![](../imgs/calculusone_newton_method_1overb.png)
 
  - Then, we'll make this even more concrete. Let's set b = 7 
     - x₀ = 1/10
@@ -1285,7 +1285,7 @@ assuming f'(x₀) != 0
     - then that formula is saying that your average velocity is achieved , at some point, instantaneously
         - ( f(b)-f(a) ) / (b-a) 是平均速度，f'(c) 是瞬时速度
         - 在某个时刻，你的瞬时速度等于 (a,b)的平均速度 
- - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/calculusone_mean_value_theorem.png)
+ - ![](../imgs/calculusone_mean_value_theorem.png)
     - mean value theorem means the slope of those 2 lines are same.
  - The mean-value theorem is often told as a story about somebody driving a car
     - At noon, you're in some city A, and at 1 p.m. You're driving your car and you've arrived in a city B, which is 100 miles away from city A.
@@ -1336,4 +1336,4 @@ assuming f'(x₀) != 0
 
 
 
-  [1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/ex_constructor.png
+  [1]: ../imgs/ex_constructor.png

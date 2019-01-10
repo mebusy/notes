@@ -78,7 +78,7 @@
  - A∧¬A 是矛盾式（矛盾律）
  - 采用命题公式的**真值表证明**重言式
     - 证明 (p∨q)∧¬p→q 是重言式
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/DM_example_proof_tautology.png)
+    - ![](../imgs/DM_example_proof_tautology.png)
 
 ---
 

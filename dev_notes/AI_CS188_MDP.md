@@ -58,7 +58,7 @@ MDP : the way of formalizing the idea of non-deterministic search which is searc
 
 why would we be unsure what the outcomes of our actions is going to be ?  Well, maybe we've got a robot on a ledge and we take the action across the ledge, what's gonna happen ? Maybe we'll cross the ledge ,maybe we will fall into the fire pit. We're not sure we can commit to the action. But of course the outcome is entirely under our control. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_robot_illustration.png)
+![](../imgs/cs188_mdp_robot_illustration.png)
 
 maybe you're a can opener robot and you take the can and you open it , and what's underneath ? More can! 
 
@@ -68,7 +68,7 @@ maybe you're a can opener robot and you take the can and you open it , and what'
 
 ## Example : Grid World 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_grid_war.png)
+![](../imgs/cs188_mdp_grid_war.png)
 
  - Noisy movement: actions do not always go as planned
     - 80% of the time, the action North takes the agent North ( if there is no wall there)
@@ -82,7 +82,7 @@ maybe you're a can opener robot and you take the can and you open it , and what'
  - Goal: maximize sum of rewards 
     - in general the agent is going to involve getting to a big reward and taking it. 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_stochastic_grid_world.png)
+![](../imgs/cs188_mdp_stochastic_grid_world.png)
 
 
 <h2 id="7b549072ca47e93fb374c9eb1a430bca"></h2>
@@ -169,7 +169,7 @@ So on one hand expectimax is a way of solving these problems and on the other ha
 
 ## Optimal Policies
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_optimal_policies.png)
+![](../imgs/cs188_mdp_optimal_policies.png)
 
 See the pic where R(s) = -0.01: 
 
@@ -188,7 +188,7 @@ What happens if we make this living penalty more severe ? check those rest 3 cas
  - Going faster gets double reward
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mpd_racing_car.png)
+![](../imgs/cs188_mpd_racing_car.png)
 
 
 
@@ -196,7 +196,7 @@ What happens if we make this living penalty more severe ? check those rest 3 cas
 
 ### Racing Search Tree
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_racing_car_search_tree.png)
+![](../imgs/cs188_mdp_racing_car_search_tree.png)
 
 
 Any MDP is defining a search tree. So if you're in some particular state , for example if you're in the state where the car is cool, you have 2 actions: slow or fast. 
@@ -208,7 +208,7 @@ It's very like an expectimax tree but we'll see very shortly why we might not wa
 
 ## MDP Search Trees
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_mdpSearchTree.png)
+![](../imgs/cs188_mdp_mdpSearchTree.png)
 
  - Each MDP state projects an expectimax-like search tree
     - That is kind of expectimax tree except ...
@@ -227,7 +227,7 @@ In a MDP the rewards come to you step-by-step , we need to figure out what our u
 
 For example shown here 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_utilities_of_sequences.png)
+![](../imgs/cs188_utilities_of_sequences.png)
 
 you might care whether or not you get these 4 gems step-by-step or all at the end in one big prize. This raises a general question for MDPs: what preferences or utilities should an agent have for rewards sequences. 
 
@@ -258,7 +258,7 @@ you might care whether or not you get these 4 gems step-by-step or all at the en
     - U([1,2,3]) = 1\*1 + 0.5\*2 + 0.25\*3
     - U([1,2,3]) < U([3,2,1])
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_discounting.png)
+![](../imgs/cs188_mdp_discounting.png)
 
 不合理的 discount 可能会阻止你找到optimal solution. 过小的 discount 会更倾向于 short-term rewards. Iff the MDP's transition model is deterministic and the MDP has zero rewards everywhere, except for a single transition at the goal with a positive reward,  optimal policy will still be found regardless discount value .
 
@@ -334,7 +334,7 @@ Here are multiple possible solutions, in general we're gonna have discounts that
 
 ---
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_Optimal_Quantities_example.png)
+![](../imgs/cs188_mdp_Optimal_Quantities_example.png)
 
 Look at the left-bottom square with 0.49. The arrow is the policy.  What's that 0.49?  That is if you started in this square  and you ran this game over and over again and sometimes you slipped, and sometimes you didn't , and you added up all of those utilities on average you would get 0.49, and you will achieve it by trying to go north whenever you're in the square. 
 
@@ -344,7 +344,7 @@ Similarly you can see if you're essentially 2 steps from the exit, it's better t
 
 ---
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_Optimal_Quantities_example_qstate.png)
+![](../imgs/cs188_mdp_Optimal_Quantities_example_qstate.png)
 
 This shows the Q values. From each state , except for the exit state , you got 4 choices of actions . If you are in the 0.57 state next to the pit, and the action you've committed to is north , then you get that same .57. 
 
@@ -361,7 +361,7 @@ So we want to be able to compute these values. We'd like to be able to take an M
     - Average sum of (discounted) rewards
     - This is just what expectimax computed!
  - Recursive definition of value:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_values_of_states.png)
+    - ![](../imgs/cs188_mdp_values_of_states.png)
     - Q 可以分解为两部分
         1. reward的期望值 R(s,a), 加上
         2. γ·V(s') 的期望值
@@ -373,7 +373,7 @@ So we want to be able to compute these values. We'd like to be able to take an M
 
 ### Racing Search Tree
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_racing_car_search_tree_infinite.png)
+![](../imgs/cs188_mdp_racing_car_search_tree_infinite.png)
 
  - We’re doing way too much work with expectimax!
  - Problem: States are repeated 
@@ -390,7 +390,7 @@ So we want to be able to compute these values. We'd like to be able to take an M
  - Key idea: time-limited values
  - Define V<sub>k</sub>(s) to be the optimal value of *s* if the game ends in *k* more time steps
     - Equivalently, it’s what a depth-k expectimax would give from s
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_vk.png)
+    - ![](../imgs/cs188_mdp_vk.png)
 
 
 What's a time step ? It's a reward. 
@@ -402,26 +402,26 @@ Example:
 ---
 
  - iteraction 0:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it0.png)
+    - ![](../imgs/cs188_grid_world_it0.png)
     - zeroes everywhere , because exit action need 1 step
  - iteraction 1:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it1.png)
+    - ![](../imgs/cs188_grid_world_it1.png)
  - iteration 2:  
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it2.png)
+    - ![](../imgs/cs188_grid_world_it2.png)
     - from the squre between wall and pit, I have time to do very stupid things -- going to the pit and receive a negative -- but that's not the optimal.  The optimal thing is kind of anything else. So I have zero. But if it allowed 3 steps I can get some rewards even from there. 
  - iteration 3:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it3.png)
+    - ![](../imgs/cs188_grid_world_it3.png)
  - iteraction 5:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it5.png)
+    - ![](../imgs/cs188_grid_world_it5.png)
 
  - iteration 6: 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it6.png)
+    - ![](../imgs/cs188_grid_world_it6.png)
     - from left-bottom square , I am now possible to  get to a positive reward.
  - iteration 7: 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it7.png)
+    - ![](../imgs/cs188_grid_world_it7.png)
     - from left-bottom square , I can not only get there in the lucky way where nothing goes wrong I can also get there in various ways where something goes wrong once. 
  - iteration 100: 
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_grid_world_it100.png)
+    - ![](../imgs/cs188_grid_world_it100.png)
     - most of the states are pretty good. 
     - In right-top square (1.0) , where the only action available is to exit. Upon which you immediately receive a reward of +1, you value is +1. 
     - In left-bottom square (0.49) , you're not usually gonna get 0.49. Sometimes you get more, sometimes you get less. This is the long-term average you're going to get. That average bakes in a lot of things. It bakes in the fact that you're going to get a small penelty each step until you get to the exit and if your actions mess up you might get that penalty more. It bakes in the fact that the +1 is far away and by the time you get there  it will be discounted. It bakes in all of the probabilities in the transition function. If you act optimally you'll get .49 as your ***average*** score. 
@@ -440,7 +440,7 @@ Example:
 
 ## Computing Time-Limited Values
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_compute_time_limited_values.png)
+![](../imgs/cs188_mdp_compute_time_limited_values.png)
 
 
 assuming it's a whole tree.
@@ -458,7 +458,7 @@ So you see at the bottom even though the tree has grown immensely it's still onl
 ## Value Iteration
 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_value_iteration.png)
+![](../imgs/cs188_mdp_value_iteration.png)
 
 ---
 
@@ -472,7 +472,7 @@ So you see at the bottom even though the tree has grown immensely it's still onl
     - Basic idea: approximations get refined towards optimal values
     - Policy may converge long before values do
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_value_iteration2.png)
+![](../imgs/cs188_mdp_value_iteration2.png)
 
 ---
 
@@ -497,7 +497,7 @@ Actually , Value iteration will converge to the same vector of values (V<sup>\*<
 
 Assume no discount!
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_value_iteraction_example.png)
+![](../imgs/cs188_mdp_value_iteraction_example.png)
 
 
 
@@ -541,7 +541,7 @@ But there are cases where we can show that it will converge.
  - discount factor = 0.5
  - initialize the value of each state to 0.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_value_iteraction_converage1.png)
+![](../imgs/cs188_value_iteraction_converage1.png)
 
  - After how many iterations of value iteration will the value for state F have become exactly equal to the true optimum? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal.)
     - 0
@@ -550,7 +550,7 @@ But there are cases where we can show that it will converge.
  - How many iterations of value iteration will it take for the values of all states to converge to the true optimal values? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal.)
     - 4
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_value_iteraction_converage2.png)
+![](../imgs/cs188_value_iteraction_converage2.png)
 
  - After how many iterations of value iteration will the value for state B have become exactly equal to the true optimum? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal.)
     - inf
@@ -582,7 +582,7 @@ Now in value iteration the vectors V<sub>k</sub> themselves were  interpretable 
 
 ## Policy Methods
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_policy_methods.png)
+![](../imgs/cs188_mdp_policy_methods.png)
 
 finding optimal policies that work over the policies themselves and make the policies better rather than simply working over the values trying to make the values better. 
 
@@ -596,7 +596,7 @@ You got a policy in your hand, maybe it's good meybe it's bad . What you want to
 
 ### Fixed Policies
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_fixed_policies.png)
+![](../imgs/cs188_mdp_fixed_policies.png)
 
 If I have a policy π which tells me what action to take , I no longer have all of these choices a , the tree looks like the right picture.
 
@@ -634,7 +634,7 @@ So we imagine we've got some policy π , it presumably bad but we're stuck with 
 
 2 policies:
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_2_policies.png)
+![](../imgs/cs188_mdp_2_policies.png)
 
 In fact go-forward policy is probably the optimal policy but when you have this policy in front you don't actually know that right now. All you know is you've got some policy and you're supposed to evaluate it. 
 
@@ -642,7 +642,7 @@ So you look in your head and you think what will happen if i use this policy? An
 
 So what are the actual values under these policies ? 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_2_policies_evaluation.png)
+![](../imgs/cs188_mdp_2_policies_evaluation.png)
 
 These are all the states on a grid world where basically the kind of center corridor is a bridge where you can move safely , there's a reward at the end of the top. If you fall to the left or the right then you receive a negative 10 when you fall into the fire pit. 
 
@@ -679,7 +679,7 @@ Now we're going to look at the opposite direction : what happens if I give you t
 
 ### Computing Actions from Values 
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_policy_extraction_example.png)
+![](../imgs/cs188_mdp_policy_extraction_example.png)
 
 
 see that pic , there are the optimal values. Then we can ask questions like how should I act ? 
@@ -698,7 +698,7 @@ So what I'll do is to consider every action *a* from state *s* and figure out wh
  - How should we act?
     - It’s not obvious!
  - We need to do a mini-expectimax (one step)
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_argmax.png)
+    - ![](../imgs/cs188_mdp_argmax.png)
     - *argmax* means consider all the values , rather than taking the maximum , give me the action  *a* which achieved the maximum. 
     - Luckily the discounted future I've assumed I actually have already (V<sup>\*</sup>(s)). So this is all the expectimax I need to do. 
         - 对每个action， 计算 K+1 的q-value
@@ -713,7 +713,7 @@ So what I'll do is to consider every action *a* from state *s* and figure out wh
 
 What about Q-Values ?  Q-Values is kind of weird.  
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_compute_action_from_q_values.png)
+![](../imgs/cs188_mdp_compute_action_from_q_values.png)
 
 
  - Let’s imagine we have the optimal q-values:
@@ -784,10 +784,10 @@ Policy iteration is an alternative approach and the basic sketch is we're going 
 
  - Evaluation: For fixed current policy π,  find values with policy evaluation:
     - Iterate until values converge:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_policy_iteration_evaluation.png)
+    - ![](../imgs/cs188_mdp_policy_iteration_evaluation.png)
  - Improvement: For fixed values, get a better policy using policy extraction
     - One-step look-ahead:
-    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_policy_iteration_improvement.png)
+    - ![](../imgs/cs188_mdp_policy_iteration_improvement.png)
 
 
 
@@ -839,7 +839,7 @@ Another way of looking at this algorithm is thinking that we're doing value iter
 
 ## Double Bandits
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_double_bandits.png)
+![](../imgs/cs188_mdp_double_bandits.png)
 
 Blue: a good machine, when you pull the handle you get 1$.
 Red: you pull the handle and you're either gonna get 2$(P=75%) or 0$(P=25%).
@@ -851,7 +851,7 @@ You can think this is a MDP.  It's actually a super boring won the state structu
     -100 time steps
     - Both states have the same value
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_doube_bandit_MDP.ong.png)
+![](../imgs/cs188_doube_bandit_MDP.ong.png)
 
 
 There's 2 states in this. But there really shouldn't be. In essence you're always in the same state which is what should I do.  The reason why we have 2 states in this formalization is because in order to actually make this idea workout that you might get 0$ or 2$. It's a little tricky because the rewards so far haven't been non-deterministic. 
@@ -956,7 +956,7 @@ This is a different setting where there is an MDP that you know red has a payoff
 
 ---
 
-[1]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_recap.png
-[2]: https://raw.githubusercontent.com/mebusy/notes/master/imgs/cs188_mdp_calc_formular.png
+[1]: ../imgs/cs188_mdp_recap.png
+[2]: ../imgs/cs188_mdp_calc_formular.png
 
  

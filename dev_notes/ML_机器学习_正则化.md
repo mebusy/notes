@@ -105,7 +105,7 @@ if λ > 0 ,
 
 ![](http://latex.codecogs.com/gif.latex?&plus;%20%5Cfrac%7B%5Clambda%7D%7B2m%7D%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%5Ctheta_j%5E2)
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/logistical_regression_cost.png)
+![](../imgs/logistical_regression_cost.png)
 
 <h2 id="f072832c961b0762dbec1d78e5504442"></h2>
 
