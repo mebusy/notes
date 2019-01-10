@@ -74,7 +74,7 @@ func main() {
  - When a request is made to a server and it contains form data, that request isn’t processed into a usable structure by default. 
  - The following example shows the simplest way to parse form data and get access to it:
 
-```
+```go
 func exampleHandler(w http.ResponseWriter, r *http.Request) {
      name := r.FormValue("name")
 }
@@ -320,10 +320,10 @@ type := mime.TypeByExtension(extension)
  - The http package contains the function DetectContentType, capable of detecting the type for a limited number of file types. 
     -  These include HTML, text, XML, PDF, PostScript, common image formats, com- pressed files such as RAR, Zip, and GZip, wave audio files, and WebM video files.
 
-```
+```go
 file, header, err := r.FormFile("file")
 buffer := make([]byte, 512)
-_, err = file.Read(buffer)
+_ , err = file.Read(buffer)
 filetype := http.DetectContentType(buffer)
 ```
 
@@ -341,4 +341,129 @@ filetype := http.DetectContentType(buffer)
 
 #### TECHNIQUE 48 Incrementally saving a file
 
- - 
+ - Imagine that you’re building a system meant to handle a lot of large file uploads. The files aren’t stored on your API server but are instead stored in a back-end service designed for files
+ - Using ParseMultipartForm is going to put those files into the tem- porary files directory on your API server while the uploads are in progress.
+ - To support large file uploads with ParseMultipartForm handling, your server would need a large disk cache for the files and careful handling to make sure it doesn’t get full while parallel uploads are happening.
+
+ - PROBLEM: You want to save the file, as it’s being uploaded, to a location of your choice. That location could be on the server, on a shared drive, or on another location altogether.
+ - SOLUTION: Instead of using `ParseMultipartForm`, read the multipart data from the request as it’s being uploaded. This can be accessed with the `MultipartReader` method on the `Request`.  
+    -  As files and other information are coming in, chunk by chunk, save and process the parts rather than wait for uploads to complete.
+
+
+```
+// Listing 7.16 HTML form containing a file and text field
+
+<!doctype html>
+<html>
+  <head>
+    <title>File Upload</title>
+  </head>
+  <body>
+    <form action="/" method="POST" enctype="multipart/form-data">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name">
+      <br>
+      <label for="file">File:</label>
+      <input type="file" name="file" id="file">
+      <br>
+      <button type="submit" name="submit">Submit</button>
+    </form>
+  </body>
+</html>      
+```
+
+ - 这里，你还是上传一个文件，但是你会额外的设置一个名字
+
+```go
+// Listing 7.17 Incrementally save uploaded files
+
+// http handler to display and 
+// process the form in file_plus.html
+func fileForm(w http.ResponseWriter, r *http.Request) {
+    if r.Method == "GET" {
+        t, _ := template.ParseFiles("file_plus.html")
+        t.Execute(w, nil)
+    } else {
+        mr, err := r.MultipartReader()
+        if err != nil {
+            panic("Failed to read multipart message")
+        }
+        // A map to store form field values not relating to files
+        values := make(map[string][]string)
+        maxValueBytes := int64(10 << 20)
+        for {
+            // Attempts to read the next part,
+            // breaking the loop if the end of 
+            // the request is reached
+            part, err := mr.NextPart()
+            if err == io.EOF {
+                break
+            }
+
+            // Retrieves the name of the form field,
+            // continuing the loop if there’s no name
+            name := part.FormName()
+            if name == "" {
+                continue
+            }
+            // Retrieves the name of the file if one exists
+            filename := part.FileName()
+            // A buffer to read the value of a text field into
+            var b bytes.Buffer
+            // If there’s no filename, treats it as a text field
+            if filename == ""{
+                n, err := io.CopyN(&b, part, maxValueBytes)
+                if err != nil && err != io.EOF {
+                    fmt.Fprint(w, "Error processing form")
+                    return
+                }
+                maxValueBytes -= n
+                if maxValueBytes == 0 {
+                    msg := "multipart message too large"
+                    fmt.Fprint(w, msg)
+                    return
+                }
+                values[name] = append(values[name],b.String())
+                continue
+            }
+
+            dst, err := os.Create("/tmp/" + filename)
+            defer dst.Close()
+            if err != nil {
+                return
+            }
+            // As the file content of a part is uploaded, 
+            // writes it to the file
+            for {
+                buffer := make([]byte, 100000)
+                cBytes, err := part.Read(buffer)
+                if err == io.EOF {
+                    break
+                }
+                dst.Write(buffer[0:cBytes])
+            }
+        } 
+        fmt.Fprint(w, "Upload complete")
+    } // end else
+}
+```
+
+ - Because the handler function parses the form, instead of relying on ParseMultipartForm, you have a few elements to set up before working with the form itself.
+    - For access to the data on the form as it comes in, you’ll need access to a reader. 
+    - The MultipartReader method on the Request object returns `*mime.Reader`, which you can use to iterate over the multipart body of the request.
+    - This reader consumes input as needed.
+    - For the form fields not being handled as files, you need a place to store the values. Here a map is created to store the values.
+ - After the setup is complete, the handler iterates over the parts of the multipart message. 
+ - The parsing loop can now start handling the parts of the message. 
+    - It first checks for the name of the form field by using the FormName method and continues the loop if there’s no name. 
+    - Files will have a filename in addition to the name of the field.This can be retrieved by using the FileName method.
+    - The existence of a filename is a way to distinguish between file and text-field handling.
+ - When there’s no filename, the handler copies the value of the content of the field into a buffer and decrements a size counter that starts at 10 megabytes.
+    - If the size counter runs down to 0, the parser returns and provides an error.
+    - This is put in place as a protection against text-field content being too large and consuming too much memory. 
+    - 10 MB is quite large and is the default value inside ParseMultipartForm as well. 
+    - If no errors occur, the content of the text form field is stored in the values map previously created and the parsing loop continues on the next part.
+ - If the parsing loop has reached this point, the form field is a file. A file on the operating system is created to store the contents of the file.
+ - After the loop completes, the files are all available on disk and the text fields are available on the values map.
+
+
