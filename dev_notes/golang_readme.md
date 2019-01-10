@@ -37,4 +37,9 @@ cd $GOPATH/src/golang.org/x
 git clone https://github.com/golang/net.git
 ```
  
+```
+mkdir -p $GOPATH/src/golang.org/x
+cd $GOPATH/src/golang.org/x
+https://github.com/golang/tools.git
+```
 
