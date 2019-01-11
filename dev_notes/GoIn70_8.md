@@ -228,4 +228,53 @@ func download(location string, file *os.File, retries int64) error {
 
 ## 8.2 Passing and handling errors over HTTP
 
+ - The Go standard library provides a rudimentary capability to pass errors. For example, the following listing provides simple HTTP generating an error.
+
+```go
+package main
+import "net/http"
+
+// Returns an HTTP status 403 with a message
+func displayError(w http.ResponseWriter, r *http.Request) {
+     http.Error(w, "An Error Occurred", http.StatusForbidden)
+}
+
+func main() {
+    // Sets up all paths to serve the 
+    // HTTP handler displayError
+    http.HandleFunc("/", displayError)
+    http.ListenAndServe(":8080", nil)
+}
+```
+
+ - This simple server always returns the error message An Error Occurred.
+    - Along with the custom message, served with a type of text/plain, the HTTP status message is set to 403, correlating to forbidden access.
+
+```go
+// client to check HTTP status
+res, _ := http.Get("http://example.com")
+fmt.Println(res.Status)
+fmt.Println(res.StatusCode)
+```
+
+### 8.2.1 Generating custom errors
+
+ - A plain text error string and an HTTP status code representing an error are often insufficient. 
+ - For example, if you’re displaying web pages, you’ll likely want your error pages to be styled like your application or site. 
+    - Or if you’re building an API server that responds with JSON, you’ll likely want error responses to be in JSON as well.
+
+#### TECHNIQUE 51 Custom HTTP error passing
+
+ - You don’t have much room for customization when using the `Error` function within the `http` package. 
+    - The response type is hardcoded as plain text, and the `X-ContentType-Options` header is set to nosniff. 
+    - This header tells some tools, such as Microsoft Internet Explorer and Google Chrome, to not attempt to detect a content type other than what was set. 
+    - This leaves little opportunity to provide a custom error, aside from the content of the plain text string.
+ - PROBLEM: How can you provide a custom response body and content type when there’s an error?
+ - SOLUTION: Instead of using the built-in `Error` function, 
+
+
+
+
+
+
 
