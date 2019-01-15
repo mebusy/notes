@@ -452,7 +452,7 @@ func (w *words) add(word string, n int) {
     - Although that answer is correct, it’s also incomplete. 
     - Closing channels the wrong way will cause your program to panic or leak goroutines
  - The predominant method for avoiding unsafe channel closing is to use additional channels to notify goroutines when it’s safe to close a channel.  
- - In Go, the close function should be closed only by a sender, and in general it should be done with some protective guards around it
+ - In Go, the close function should be called  only by a sender, and in general it should be done with some protective guards around it
     - write(send) to a closed channel will cause panic
     - read from a closed channel always return `nil` value ( eg. `false` value on a `bool` channel ).
 
@@ -473,7 +473,7 @@ func main() {
         case <- until :
             // When you time-out, 
             // lets send know the process is done
-            dont <- true
+            done <- true
             time.Sleep( 500* time.Millisecond )  
             return  
         }    
