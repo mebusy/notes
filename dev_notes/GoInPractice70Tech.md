@@ -7,10 +7,22 @@
      - [2.2 Handling configuration](#3863b9486b6e97a49ff1790df08b38dc)
      - [2.3 Working with real-world web servers](#1e5b504a7ecb0799f2b760c225242b19)
          - [2.3.1 Starting up and shutting down a server](#d1dfba069bae305472df676269e71aa9)
+             - [TECHNIQUE 5 **Graceful shutdowns using manners**](#a07a125760957367633ba77e5ed4530c)
          - [2.3.2 Routing web requests](#daef946a510d0ed9c04cffe18d824726)
+             - [TECHNIQUE 7 **Handling complex paths with wildcards**](#d4af0cb12ed09354dfbb5330e69cf4ab)
+             - [TECHNIQUE 8 **URL pattern matching** (TODO)](#4bb8963ed0a77bc17c592a558cd1cc6b)
+             - [TECHNIQUE 9 **Faster routing (without the work)**](#ec97b62dff33af2f1b3e7ec9768ab166)
  - [3 Concurrency in Go](#16f99609cccf72d44e6fb4b00b7aa9b5)
+     - [3.1](#5b068a95442c7d5505b4166a77357ea5)
+         - [TECHNIQUE 12 Locking with a mutex](#be28e97d79982d9d2558707ac5ffbf15)
+     - [3.2 Working with channels](#5c609ddacc07fb066d6f3df5528b0d89)
+         - [TECHNIQUE 13 **Using multiple channels**](#095b91b04bcc9a07cfc88460ce2b0966)
+         - [TECHNIQUE 14 **Closing channels**](#a9b7b2027d7d718a120329e6af8c6ba8)
+         - [TECHNIQUE 15 **Locking with buffered channels**](#8a5dde7c7f82ceed2cf05c02f94ecd91)
  - [4 Handling errors and panics](#5c14286df98cd800d088a14ee136b866)
      - [4.1 Error handling](#1a2bb328b5fa8ef5dcc6324dfc56d06d)
+         - [TECHNIQUE 17 Custom error types](#bb9a69e5ffcd34c51ed7ac377377e0b2)
+         - [TECHNIQUE 18 Error variables](#6eacf66e42cd6548ca6f4e4de743a7b2)
      - [4.2 The panic system](#e72b11fe4a7d7755c9bb9da078ed7c7a)
          - [4.2.2 Working with panics](#948d52c1d352272f319d60422e92f251)
          - [4.2.3 Recovering from panics](#58be2510484c3a3b9626aaa5bcbc69c9)
@@ -128,6 +140,8 @@ func shutdown(res http.ResponseWriter, req *http.Request) {
 ```
 
  - The URL needs to be blocked in production
+
+<h2 id="a07a125760957367633ba77e5ed4530c"></h2>
 
 #### TECHNIQUE 5 **Graceful shutdowns using manners**
 
@@ -263,6 +277,8 @@ func homePage(res http.ResponseWriter, req *http.Request)
  - The http package contains a NotFound helper function that can optionally be used to set the response HTTP code to 404 and send the text 404 page not found.
     - TIP The http package contains the Error function that can be used to set the HTTP error code and respond with a message. The NotFound function takes advantage of this for the 404 case.
 
+<h2 id="d4af0cb12ed09354dfbb5330e69cf4ab"></h2>
+
 ####  TECHNIQUE 7 **Handling complex paths with wildcards**
 
  - PROBLEM: Instead of specifying exact paths for each callback, an application may need to sup- port wildcards or other simple patterns.
@@ -348,6 +364,8 @@ func goodbye(res http.ResponseWriter, req *http.Request) {
  - This method is useful for simple path scenarios and it’s one that we, the authors, have successfully used.
 
 
+<h2 id="4bb8963ed0a77bc17c592a558cd1cc6b"></h2>
+
 ####  TECHNIQUE 8 **URL pattern matching** (TODO)
 
  - PROBLEM: Simple path-based matching isn’t enough for an application that needs to treat a path more like a text string and less like a file path
@@ -355,6 +373,8 @@ func goodbye(res http.ResponseWriter, req *http.Request) {
  - SOLUTION: The built-in `path` package enables simple path-matching schemes, but sometimes you may need to match complex paths or have intimate control over the path. 
     - For those cases, you can use regular expressions to match your paths.  `"regexp"`
  - page 55  TODO
+
+<h2 id="ec97b62dff33af2f1b3e7ec9768ab166"></h2>
 
 ####  TECHNIQUE 9 **Faster routing (without the work)**
 
@@ -373,7 +393,11 @@ Popular solutions include the following:
 
 # 3 Concurrency in Go
 
+<h2 id="5b068a95442c7d5505b4166a77357ea5"></h2>
+
 ## 3.1 
+
+<h2 id="be28e97d79982d9d2558707ac5ffbf15"></h2>
 
 #### TECHNIQUE 12 Locking with a mutex
 
@@ -402,8 +426,12 @@ func (w *words) add(word string, n int) {
 }
 ```
 
+<h2 id="5c609ddacc07fb066d6f3df5528b0d89"></h2>
+
 ## 3.2 Working with channels
 
+
+<h2 id="095b91b04bcc9a07cfc88460ce2b0966"></h2>
 
 ####  TECHNIQUE 13 **Using multiple channels**
 
@@ -411,6 +439,8 @@ func (w *words) add(word string, n int) {
     - be able to interrupt that process to exit.  
  - Use `select` and multiple channels. 
     - It’s a common practice in Go to use channels to signal when something is done or ready to close(eg. a timeout).
+
+<h2 id="a9b7b2027d7d718a120329e6af8c6ba8"></h2>
 
 ####  TECHNIQUE 14 **Closing channels**
 
@@ -465,6 +495,8 @@ func send(ch chan<- string, done <-chan bool) {
 }
 ```
 
+<h2 id="8a5dde7c7f82ceed2cf05c02f94ecd91"></h2>
+
 ####  TECHNIQUE 15 **Locking with buffered channels**
 
  - Use a channel with a buffer size of 1, and share the channel among the goroutines you want to synchronize.
@@ -502,6 +534,8 @@ func worker(id int, lock chan bool) {
  - `errors.New`  function from the errors package is great for creating simple new errors. 
  - `fmt.Errorf` function in the fmt package gives you the option of using a formatting string on the error message. 
 
+<h2 id="bb9a69e5ffcd34c51ed7ac377377e0b2"></h2>
+
 ####  TECHNIQUE 17 Custom error types
 
  - Go’s error type is an interface that looks like the following listing.
@@ -533,6 +567,8 @@ func (p *ParseError) Error() string {
 
  - This technique is great when you need to return additional information
  - But what if you need one function to return different kinds of errors?
+
+<h2 id="6eacf66e42cd6548ca6f4e4de743a7b2"></h2>
 
 ####  TECHNIQUE 18 Error variables
 

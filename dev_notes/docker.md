@@ -57,7 +57,10 @@
          - [清理所有处于终止状态的容器](#cd287c2794249580cfc4de4006ac9362)
  - [访问仓库   Repository](#5e6078663fa925398d77b106c67215db)
      - [Docker Hub](#ec104a6054aee6dccf8a9fc8f6842317)
-     - [私有仓库 TODO](#bc36ecbfa87b61d606061a743e6fa334)
+     - [私有仓库](#96387a3a5055939b42bfc6181ba784df)
+         - [Deploy a registry server](#8c80d32c81877be8ad508c7e075bbc13)
+             - [Run a local registry](#5f65c52efba3f11c0512e5433920dc5e)
+             - [Copy an image from Docker Hub to your registry](#17443590fa63f19e5857da6f6407d646)
      - [配置文件 TODO](#919d9a1b6552e2443bcba07ac2fcf531)
  - [Docker 数据管理](#092d280d669c713c8778047dbe6b2259)
      - [数据卷](#99b935d7193a1934689a928ae0139d33)
@@ -90,6 +93,7 @@
      - [add a restart policy to a container](#9b68cd8277b36a785a1a8784426e3095)
      - [docker 可视化环境](#b8e4fd21971c56f16f0e13421bfefedc)
      - [docker redis](#e03d31b41fc936f76920bb647520ef01)
+     - [docker mysql](#5b1064e3e54b4f22a3419f9d198df904)
 
 ...menuend
 
@@ -1381,14 +1385,18 @@ docker pull centos
 之后，可以 在Docker Hub 的 [自动创建页面](https://registry.hub.docker.com/builds/) 中跟踪每次创建的状态。
 
 
-<h2 id="bc36ecbfa87b61d606061a743e6fa334"></h2>
+<h2 id="96387a3a5055939b42bfc6181ba784df"></h2>
 
 ## 私有仓库
+
+<h2 id="8c80d32c81877be8ad508c7e075bbc13"></h2>
 
 ### Deploy a registry server
 
  - Before you can deploy a registry, you need to install Docker on the host.
  - A registry is an instance of the *registry* image, and runs within Docker.
+
+<h2 id="5f65c52efba3f11c0512e5433920dc5e"></h2>
 
 #### Run a local registry
 
@@ -1398,6 +1406,8 @@ $ docker run -d -p 5000:5000 --restart=always --name registry registry:2
 
  - The registry is now ready to use.
  - Warning: These first few examples show registry configurations that are only appropriate for testing. A production-ready registry must be protected by TLS and should ideally use an access-control mechanism.
+
+<h2 id="17443590fa63f19e5857da6f6407d646"></h2>
 
 #### Copy an image from Docker Hub to your registry
 
@@ -2009,6 +2019,8 @@ redis> config get save
     - `sudo docker run --name redis-cluster --net=host -d  grokzen/redis-cluster:latest `
     - The cluster is 6 redis instances running with 3 master & 3 slaves, one slave for each master. They run on ports 7000 to 7005.
 
+
+<h2 id="5b1064e3e54b4f22a3419f9d198df904"></h2>
 
 ## docker mysql
 

@@ -1,7 +1,17 @@
 ...menustart
 
+ - [文章](#c75625dccf148721245b46b1e3e6c79f)
+ - [国内获取 golang.org/x 包失败的方法](#0a924bf17d1b7242d5600e9b537b969f)
 
 ...menuend
+
+
+...menustart
+
+
+...menuend
+
+<h2 id="c75625dccf148721245b46b1e3e6c79f"></h2>
 
 ### 文章
 
@@ -25,6 +35,8 @@
  19. [godoc](https://github.com/mebusy/notes/blob/master/dev_notes/godoc.md)
 
 ---------
+
+<h2 id="0a924bf17d1b7242d5600e9b537b969f"></h2>
 
 ### 国内获取 golang.org/x 包失败的方法
 

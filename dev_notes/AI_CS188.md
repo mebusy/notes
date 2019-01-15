@@ -65,6 +65,7 @@
          - [Optimality of A\* Graph Search](#53d3b2a00e84590355f57034c84cc1a0)
      - [demo code in python](#c9f86c35957917fe5e25e926f8923c75)
          - [ python graph search](#41ac4b4e9e2441a0a74f1372fbca3c52)
+         - [other implementation](#65e0ab6e34746c2231d34656e5134d92)
 
 ...menuend
 
@@ -1262,6 +1263,8 @@ def graphSearch( problem, fringe):
         - eg. greedily eats the closest dot
 
  
+<h2 id="65e0ab6e34746c2231d34656e5134d92"></h2>
+
 ### other implementation 
 
 [_search in simpleai](https://raw.githubusercontent.com/simpleai-team/simpleai/master/simpleai/search/traditional.py)
