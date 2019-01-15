@@ -444,17 +444,15 @@ func (w *words) add(word string, n int) {
 
 ####  TECHNIQUE 14 **Closing channels**
 
- - What happens if you have a sender and receiver goroutine, and the sender finishes sending data?
-    - Are the receiver and channel automatically cleaned up? 
- - Nope. The memory manager will only clean up values that it can ensure won’t be used again.
-    - open channel and a goroutine can’t be safely cleaned
- - The straightforward answer to the question “How do I avoid leaking channels and goroutines?” is “Close your channels and return from your goroutines."
-    - Although that answer is correct, it’s also incomplete. 
-    - Closing channels the wrong way will cause your program to panic or leak goroutines
- - The predominant method for avoiding unsafe channel closing is to use additional channels to notify goroutines when it’s safe to close a channel.  
- - In Go, the close function should be called  only by a sender, and in general it should be done with some protective guards around it
-    - write(send) to a closed channel will cause panic
-    - read from a closed channel always return `nil` value ( eg. `false` value on a `bool` channel ).
+ - write(send) to a closed channel will cause **panic**
+    - the close function should be **called only by a sender**
+ - when receiver has done, it should notify the sender that sender can safely close the channel now
+ - implementation:
+    - sender should take 2 channel, for example:
+        - `msg` channel: for messages
+        - `done` channel: the other is for notification 
+    - when receiver is done, nofity the sender,  and now sender can close the channle safely
+
 
 ```go
 func main() {
@@ -560,7 +558,7 @@ type ParseError struct {
 
 // Implements the Error interface
 func (p *ParseError) Error() string {
-    format := "%s o1n Line %d, Char %d"
+    format := "%s on Line %d, Char %d"
     return fmt.Sprintf(format, p.Message, p.Line, p.Char)
 }
 ```
@@ -1201,7 +1199,7 @@ BenchmarkParallelTemplates      5.097s
 ok      _/Users/mbutcher/Code/go-in-practice/chapter5/tests/bench
 ```
 
- - Your parallel version didn’t outperform the regular version. Why? Because the gorou- tines were all run on the same processor.
+ - Your parallel version didn’t outperform the regular version. Why? Because the goroutines were all run on the same processor.
  - Let’s specify that you want to see the testing tool run several versions of the same code, using a different number of CPUs each time:
 
 ```
@@ -1243,6 +1241,7 @@ func BenchmarkParallelOops(b *testing.B) {
 ```
 
  - Now let’s run that code sample.It’s likely that the parallel benchmark will fail:
+ - `$ go test -bench . -cpu=1,2,4`
 
 ```
 BenchmarkParallelOops-2     panic: runtime error: slice bounds out of
@@ -1251,7 +1250,8 @@ BenchmarkParallelOops-2     panic: runtime error: slice bounds out of
 ```
 
  - A look through the stack trace gives a few clues about what happened, but the real underlying cause isn’t clear. 
- - If you add the –race flag onto the testing call, Go instru- ments for race conditions, and the information you receive is much more helpful:
+ - If you add the `–race` flag onto the testing call, Go instru- ments for race conditions, and the information you receive is much more helpful:
+ - `go test -bench Oops -race -cpu=1,2,4`
 
 ```
 WARNING: DATA RACE
@@ -1265,4 +1265,11 @@ Write by goroutine 20:
 ```
 
  - Now the cause is much clearer: more than one thing tried to use the bytes.Buffer at once.
+
+
+
+
+
+
+
 
