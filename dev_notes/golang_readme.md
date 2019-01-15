@@ -20,7 +20,7 @@
  14. [learn Go in Y minutes](https://github.com/mebusy/notes/blob/master/dev_notes/learnGoInYMinutes.md)
  15. [A Tour of GO](https://github.com/mebusy/notes/blob/master/dev_notes/ATourOfGo.md)
  16. [cheat sheet](https://github.com/mebusy/notes/blob/master/dev_notes/golang_cheatsheet.md)
- 17. [GoInPractice70Tech](https://github.com/mebusy/notes/blob/master/dev_notes/GoInPractice70Tech.md), [6 template](https://github.com/mebusy/notes/blob/master/dev_notes/GoIn70_6.md), [7 web form](https://github.com/mebusy/notes/blob/master/dev_notes/GoIn70_7.md), [8 with web service](https://github.com/mebusy/notes/blob/master/dev_notes/GoIn70_8.md), [11 reflection & code generation](https://github.com/mebusy/notes/blob/master/dev_notes/GoIn70_11.md)
+ 17. [GoInPractice70Tech](https://github.com/mebusy/notes/blob/master/dev_notes/GoInPractice70Tech.md), [6 template](https://github.com/mebusy/notes/blob/master/dev_notes/GoIn70_6.md), [7 web form](https://github.com/mebusy/notes/blob/master/dev_notes/GoIn70_7.md), [8 with web service](https://github.com/mebusy/notes/blob/master/dev_notes/GoIn70_8.md), [cloud,micro service](https://github.com/mebusy/notes/blob/master/dev_notes/GoIn70_9.md), [11 reflection & code generation](https://github.com/mebusy/notes/blob/master/dev_notes/GoIn70_11.md)
  18. [goTips](https://github.com/mebusy/notes/blob/master/dev_notes/goTips.md)
  19. [godoc](https://github.com/mebusy/notes/blob/master/dev_notes/godoc.md)
 
