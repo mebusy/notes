@@ -269,7 +269,62 @@ type User struct {
 
  - After codecgen is installed, you can use it to generate code on this file, named user.go, by executing the following command:
     - `$ codecgen -o user_generated.go user.go `
+        - it will create an output file user_generated.go which contains codec.Selfer implementations for the named types found in the files parsed.
+    - more common useage is :
+        - `$codecgen -o values_codecgen.go values.go values2.go moretypedefs.go`
+ - In the generated file, you’ll notice that two public methods have been added to the `User` type: `CodecEncodeSelf` and `CodecDecodeSelf`.
+    - When these are present, the ugorji `codec` package uses them to encode or decode the type. 
+    - When they’re absent, the ugorji `codec` package falls back to doing these at runtime.
+ - When the codecgen command is installed, it can be used with go generate.
+    - `$ go generate ./...`
+ - After the `User` type is ready for use, the encoding and decoding can be incorporated into the rest of the application, as shown in the next listing.
+
+```go
+// Listing 10.5 Encode an instance to JSON with codec
+
+// Creates a new JSON handler for the encoder
+jh := new(codec.JsonHandle)
+u := &user.User{
+    Name:  "Inigo Montoya",
+     Email: "inigo@montoya.example.com",
+}
+
+var out []byte
+// Encodes the instance of User into the 
+// output using the JSON handle.
+err := codec.NewEncoderBytes(&out, jh).Encode(&u)
+if err != nil {
+    ...
+}
+fmt.Println(string(out))
+
+// output
+{"name":"Inigo Montoya","Email":"inigo@montoya.example.com"}
+```
+
+
+ - The byte slice with the JSON that was created in listing 10.5 can be decoded into an instance of User, as shown in the following listing.
+
+```go
+// Listing 10.6 Decode JSON into an instance of a type
+var u2 user.User
+// he decoder can reuse the JSON handler.
+err = codec.NewDecoderBytes(out, jh).Decode(&u2)
+if err != nil {
+    ...
+}
+fmt.Println(u2)  
+```
+
+### 10.2.2 Moving beyond REST
+
+####  TECHNIQUE 64 Using protocol buffers (TODO)
     
+`$ go get -u github.com/golang/protobuf/protoc-gen-go`
+
+####  TECHNIQUE 65 Communicating over RPC with protocol buffers (TODO)
+
+
 
  
 
