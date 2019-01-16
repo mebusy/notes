@@ -495,6 +495,37 @@ vimgrep /pattern/gj path
 
 ---
 
+# grok VIM
+
+ - vi has 26 "marks" and 26 "registers."
+    - `ma` sets the 'a' mark to the current location
+    - use `'a'`  to jump the line has 'a' mark
+    - use ```a`` to jump the exact location of the 'a' mark.
+    - ``d`a`` to delete the content from current location to 'a' mark
+ - `d/abc` , delete the content from current location to the next matched `abc`
+    - `y?abc` , yark the content from current locationthe most recent (previous) matched `abd`
+ - There are a number of `:` commands, most notably the `:% s/foo/bar/g` global substitution technique
+    - `:` commands normally operate over lines of text
+    - So the syntax of most `:` commands includes an address or range of addresses (line number) followed by a command.
+    - `:127,215 s/foo/bar` to change the first occurrence of "foo" into "bar" on each line between 127 and 215
+    - `.` or `$` for current and last lines respectively
+    - One could also use relative prefixes `+` and `-` to refer to offsets after or before the curent line, 
+    - `:.,$j` meaning "from the current line to the last line, join them all into one line".
+    - `:%` is synonymous with `:1,$` (all the lines).
+ - The `:...g` and `:...v` commands are incredibly powerful.
+    - `:...g` is a prefix for "globally" applying a subsequent command to all lines which match a pattern (regular expression) 
+    - while `:...v` applies such a command to all lines which do NOT match the given pattern ("v" from "conVerse").
+    - Thus `:.,+21g/foo/d` means "delete any lines containing the string "foo" from the current one through the next 21 lines"
+    - while `:.,$v/bar/d` means "from here to the end of the file, delete any lines which DON'T contain the string "bar."
+    - Note that `:% g/.../d` or (its reVerse/conVerse counterpart: `:% v/.../d` are the most common usage patterns.
+        - `:g/.../d` 同样效果？
+     
+
+
+
+
+---
+
 
 
 
