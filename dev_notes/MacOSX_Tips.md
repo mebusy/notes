@@ -268,6 +268,12 @@ sudo sysctl -w kern.ipc.somaxconn=256
 
 ```
  
+## Reset Homebrew Fomular
+
+```
+$ cd $(brew --repo)/Library/Taps/homebrew/homebrew-core/
+$ git reset --hard HEAD
+```
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 

@@ -134,35 +134,26 @@ vim +BundleInstall +qall
 
 ### 安装排错
 
- - python 报错
-     - brew unlink python
  - `YouCompleteMe unavailable: No module named future`
-     - 进入YouCompleteMe目录，执行 `./install.py --all`
      - 这时提示你一些第三方依赖缺失，执行下面的命令
-         - `git submodule update --init --recursive`
- - add suport for C family
-     - `./install.py --clang-completer --system-libclang`
+
+```
+// not necessary if no issue 
+cd  ~/.vim/bundle/YouCompleteMe
+git clean -f
+git pull
+git submodule update --recursive --init
+```
+
+ - for C family support:  `./install.py --clang-completer --system-libclang`
      - using `--system-libclang` here because on MacOSX, it report error "NOT using libclang, no semantic completion for C/C++/ObjC will be available"
- - addd c# support
-    - `./install.py --omnisharp-completer`
- - add go support
-    - `go get github.com/nsf/gocode`  (not sure whether needed)
-    - `golang.org/x/tools/`  is used by many editors (not sure whether needed)
-    - `./install.py --gocode-completer`
- - add rust support
-    - `./install.py --rust-completer` 
-    - get rust source code from https://www.rust-lang.org/en-US/other-installers.html#source
-    - vi ~/.vimrc
-        - `let g:ycm_rust_src_path = '/usr/local/rust/rustc-1.20.0/src'`
-        - note: you should give the src folder which has .lock / .toml file in the root.
+ - C# support: install Mono and add --cs-completer when calling ./install.py.
+ - Go support: install Go and add --go-completer when calling ./install.py.
+ - JavaScript and TypeScript support: install Node.js and npm and add --ts-completer when calling install.py.
+ - Rust support: install Rust and add --rust-completer when calling ./install.py.
+ - Java support: install JDK8 (version 8 required) and add --java-completer when calling ./install.py.
 
-```
-# carge under proxy 
-vi ~/.cargo/config
-
-[http]
-proxy = "http://user:password@host:port"
-```
+--- 
 
  - reinstall : 
     - `vim +PluginInstall`
