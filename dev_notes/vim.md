@@ -146,6 +146,8 @@ vim +BundleInstall +qall
  - addd c# support
     - `./install.py --omnisharp-completer`
  - add go support
+    - `go get github.com/nsf/gocode`  (not sure whether needed)
+    - `golang.org/x/tools/`  is used by many editors (not sure whether needed)
     - `./install.py --gocode-completer`
  - add rust support
     - `./install.py --rust-completer` 
