@@ -101,6 +101,12 @@ Use a tree to represent a recursive subdivision of 2d space.
 
 ![](../imgs/2dtree_odd_levels.png)
 
+ - Node in tree,  for each node , it contains
+    - Point2D, the position represents the Node
+    - Rectage, the rectangle it belongs to
+    - Subtree lb, rt , 2 sub trees it divided into
+    
+
 <h2 id="e2f4979395b274707c6c5a37cd7ed619"></h2>
 
 ## Range search in a 2d tree
@@ -109,6 +115,9 @@ Use a tree to represent a recursive subdivision of 2d space.
  - start at the root and recursively search for points in ***both*** subtrees using the following ***pruning rule***: 
     - if the query rectangle does not intersect the rectangle corresponding to a node, there is no need to explore that node (or its subtrees). 
     - A subtree is searched only if it might contain a point contained in the query rectangle.
+    - That is :
+        - 如果 节点所在矩形 和 查询的矩形 不相交，直接返回; 
+        - 否则，检查 节点位置 是否 在查询矩形内，如果是  添加节点位置到 返回结果列表;  递归检查 左右子树 
 
 <h2 id="db369429b7d2c848b75e9d11b977c8d1"></h2>
 
@@ -124,10 +133,13 @@ Use a tree to represent a recursive subdivision of 2d space.
 
  - To find a closest point to a given query point
  - start at the root and recursively search in ***both*** subtrees using the following ***pruning rule***: 
-    - if the closest point discovered so far is closer than the distance between the query point and the rectangle corresponding to a node, there is no need to explore that node (or its subtrees). 
+    - if the distance between *the closest point(some node) discovered so far* and the query point ,  is `<=` the distance between the query point and the rectangle corresponding to the checking node, there is no need to explore that node (or its subtrees). 
+        - `if ( minDist <= checkingNode.rect.distanceSquaredTo( queryP )  )  return null ;`
+        - 否则，计算 节点位置和 查询点的距离， 更新minDist(如果更短的话)
     - That is, a node is searched only if it might contain a point that is closer than the best one found so far. 
     - The effectiveness of the pruning rule depends on quickly finding a nearby point. 
     - To do this, organize your recursive method so that when there are two possible subtrees to go down, you always choose ***the subtree that is on the same side of the splitting line as the query point*** as the first subtree to explore -- the closest point found while exploring the first subtree may enable pruning of the second subtree.
+        - 选择一个更可能存在 nearest point 的 子树，优先递归查找
 
 <h2 id="b5df2dde1669c08bc9b0f0b1a24fb85b"></h2>
 
