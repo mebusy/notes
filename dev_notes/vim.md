@@ -522,6 +522,20 @@ vimgrep /pattern/gj path
     - while `:.,$v/bar/d` means "from here to the end of the file, delete any lines which DON'T contain the string "bar."
     - Note that `:% g/.../d` or (its reVerse/conVerse counterpart: `:% v/.../d` are the most common usage patterns.
         - `:g/.../d` 同样效果？
+    - We can use `m` to move lines around, and `j` to join lines. 
+        - if you have a list and you want to separate all the stuff matching without deleting them,
+            - (or conversely NOT matching some pattern) 
+        - then you can use something like: `:% g/foo/m$ ...` and all the "foo" lines will have been moved to the end of the file.
+        - **Note the other tip about using the end of your file as a scratch space**
+    - Almost needless to mention you can use our old friend s (substitute) with the g and v
+        - `:% g/foo/s/bar/zzz/g`   for every line containing "foo" substitute all "bar" with "zzz." 
+ - The `:` addresses can also refer to marks. 
+    - Thus you can use: `:'a,'bg/foo/j` to join any line containing the string *foo* to its subsequent line, if it lies between the lines between the 'a' and 'b' marks. 
+ - Another very useful vi or ex command is `:r` to read in the contents of another file. 
+    - More powerful is the `:r!` command.  This reads the results of a command
+
+
+
      
 
 
