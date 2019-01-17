@@ -533,11 +533,8 @@ vimgrep /pattern/gj path
     - Thus you can use: `:'a,'bg/foo/j` to join any line containing the string *foo* to its subsequent line, if it lies between the lines between the 'a' and 'b' marks. 
  - Another very useful vi or ex command is `:r` to read in the contents of another file. 
     - More powerful is the `:r!` command.  This reads the results of a command
-
-
-
-     
-
+ - Another useful ex command is `:so` (short for `:source`). 
+    - This reads the contents of a file as a series of commands. 
 
 
 
