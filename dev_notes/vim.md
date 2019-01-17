@@ -30,6 +30,7 @@
      - [多行 行尾插入字符](#facc78c7266b3fe0364882da91e214b8)
      - [replace all tab with 4 space](#72ec54ea94cad51a12851d38a51ea25f)
      - [Remove unwanted empty lines](#67c5f9b419ed15a16a0cb4786a4a6552)
+ - [grok VIM](#fc1f1e8c6d70d860957c66f735e60e2b)
 
 ...menuend
 
@@ -494,6 +495,8 @@ vimgrep /pattern/gj path
 ```
 
 ---
+
+<h2 id="fc1f1e8c6d70d860957c66f735e60e2b"></h2>
 
 # grok VIM
 

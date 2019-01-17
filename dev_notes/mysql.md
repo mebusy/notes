@@ -5,6 +5,9 @@
      - [Mysql 并发更新数据 加锁处理](#f12a4c82c151d110c6ea3521e6aca5b2)
          - [SELECT显式加锁](#18a31fbbef71484ce0cc52995764a78b)
          - [使用乐观锁](#4e7e4e0d4b9110317f8e672b2aa3af35)
+     - [mysql 慢日志查询](#1838954ac65225f29f4cccf9131bb24f)
+     - [mysql 操作记录查询](#e1a8175ef9a04770289a68720bff0ffc)
+     - [how to check whether mysql reuse the connection](#005022c3c2f0c952bbd1532235bc4959)
  - [第1章  MySQL 体系结构和存储引擎](#6a1a36d328d46ab67d6d4af4b7f9191a)
      - [1.1 配置文件](#bdf6b309174103a16017dcf95cfd0efa)
      - [1.3 MySQL 存储引擎](#d515f90f3281ec25eef39dd7a232630f)
@@ -126,6 +129,37 @@ COMMIT WORK;
  - 当版本号有变化的时候，则无法更新数据行，因为条件不满足，此时就需要在进行一次SQL操作。（重新查询记数据行，再次使用新的版本号更新数据）
 
 原则上，这2种方式都可以支持。具体使用哪一种就看实际的业务场景，对哪种支持更好，并且对性能的影响最小。
+
+
+<h2 id="1838954ac65225f29f4cccf9131bb24f"></h2>
+
+## mysql 慢日志查询
+
+```
+set global slow_query_log='ON';
+set global long_query_time=1;
+
+show variables like 'slow_query%';
+show variables like 'long_query_time';
+```
+ - Now check the slow logs at `mysql.slow_log`
+
+<h2 id="e1a8175ef9a04770289a68720bff0ffc"></h2>
+
+## mysql 操作记录查询
+
+```
+SET GLOBAL general_log = 'ON'
+SET GLOBAL log_output = 'TABLE'
+```
+
+ - Now you can find the mysql operation log in `mysql.general_log` table
+
+<h2 id="005022c3c2f0c952bbd1532235bc4959"></h2>
+
+## how to check whether mysql reuse the connection
+
+ - in `mysql.general_log` ,  if the connection is reused, you should see the `connection` event only at the very beginning
 
 
 --- 

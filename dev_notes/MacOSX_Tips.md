@@ -20,6 +20,7 @@
          - [sed 使用](#ccbf87c494cf62aca0164aa04719e15f)
      - [打开文件数 / 最大链接数](#c635de9cfd3f586235866c25b1208360)
      - [server backlog](#a08bc91843057f871dc78e79478b6947)
+     - [Reset Homebrew Fomular](#a655cf4302df90e17053b41af734deb9)
      - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
 
 ...menuend
@@ -268,6 +269,8 @@ sudo sysctl -w kern.ipc.somaxconn=256
 
 ```
  
+<h2 id="a655cf4302df90e17053b41af734deb9"></h2>
+
 ## Reset Homebrew Fomular
 
 ```
