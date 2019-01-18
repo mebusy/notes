@@ -151,7 +151,10 @@ show variables like 'long_query_time';
 ```
 SET GLOBAL general_log = 'ON'
 SET GLOBAL log_output = 'TABLE'
+
+show variables like '%general%';
 ```
+
 
  - Now you can find the mysql operation log in `mysql.general_log` table
 
