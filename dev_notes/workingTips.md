@@ -196,4 +196,15 @@ youtube-dl -c --write-auto-sub --sub-lang=en  -f 'bestvideo[ext=mp4]+bestaudio[e
 youtube-dl --write-auto-sub --skip-download --sub-lang=en  ...
 ```
  
+## ab testing 
+
+```
+ab -r -k -s 120 -n 100000 -c 1500  <url>
+```
+
+ - `-s`  timeout, default is 30sec
+ - `-r`  Don't exit on socket receive errors.
+ - `-k`  Use HTTP KeepAlive feature
+
+
  
