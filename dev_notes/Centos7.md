@@ -385,7 +385,7 @@ journalctl -e -f -u uwsgimind.service
  - u : unit 
  - `-e -f` 类似 `tail -f `
 
-```
+```bash
 说明: 
 重载系统服务：systemctl daemon-reload 
 设置开机启动：systemctl enable *.service 
@@ -398,11 +398,11 @@ journalctl -e -f -u uwsgimind.service
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
-## Example 
+### Example 
 
  - uwsgi 自带的 uwsgi.service
 
-```
+```bash
 [Unit]
 Description=uWSGI Emperor Service
 After=syslog.target
@@ -442,3 +442,12 @@ TimeoutStartSec=0
 WantedBy=default.target
 ~
 ```
+
+
+## how the see the log of a running process which is redirected to `/dev/null` ?
+
+ - `tail -f /proc/<pid>/fd/1`
+    - where 
+    - 1 = stdout, 2 = stderr
+
+
