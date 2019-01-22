@@ -81,7 +81,10 @@ In this book , will use a subset of OpenGL 1.1 to introduce the fundamental conc
     - It then turns out that we can then represent rotation, scaling, and translation—and hence any affine transformation—on 2D space as multiplication by a 3-by-3 matrix.
     - The matrices that we need have a bottom row containing (0,0,1). Multiplying (x,y,1) by such a matrix gives a new vector (x1,y1,1).
 
+![](../imgs/cg_transform.png)
 
+
+## 2.4 Hierarchical Modeling 
 
 
 
