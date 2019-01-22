@@ -87,5 +87,22 @@ In this book , will use a subset of OpenGL 1.1 to introduce the fundamental conc
 ## 2.4 Hierarchical Modeling 
 
 
+ - The transforms are often applied in the order scale, then rotate, then translate, because scaling and rotation leave the reference point, (0,0), fixed. 
+    - the matrix is TRS
+    - Modeling transforms are not always composed in this order, but it is the most common usage.
+ - The modeling transformations that are used to place an object in the scene should not affect other objects in the scene. 
+    - we can save the current transformation before starting work on the object and restore it afterwards. 
+    - but let's suppose here that there are subroutines saveTransform() and restoreTransform() for performing those tasks.
 
+```
+saveTransform()
+translate(dx,dy) // move object into position
+rotate(r)        // set the orientation of the object
+scale(sx,sy)     // set the size of the object
+     .
+     .  // draw the object, using its natural coordinates
+     .
+restoreTransform()
+```
 
+ - 
