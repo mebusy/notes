@@ -158,6 +158,13 @@ show variables like '%general%';
 
  - Now you can find the mysql operation log in `mysql.general_log` table
 
+
+## mysql 记录 未使用 index的查询
+
+```
+log_queries_not_using_indexes -> ON
+```
+
 <h2 id="005022c3c2f0c952bbd1532235bc4959"></h2>
 
 ## how to check whether mysql reuse the connection
