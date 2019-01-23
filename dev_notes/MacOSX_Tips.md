@@ -278,6 +278,11 @@ $ cd $(brew --repo)/Library/Taps/homebrew/homebrew-core/
 $ git reset --hard HEAD
 ```
 
+## Manually download brew package 
+
+ - use `brew --cache` to find the cache folder 
+ - latest homebrew use `brew --cache`\downloads folder to keep downloaded files
+
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
 ## TODO
