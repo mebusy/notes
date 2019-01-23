@@ -188,6 +188,8 @@ chrome: `chrome://net-internals/#proxy`
 youtube-dl -c --write-auto-sub --sub-lang=en  -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' https://www.youtube.com/playlist?list=PLKUel_nHsTQ1yX7tQxR_SQRdcOFyXfNAb
 ```
 
+ - `-c` means resume downloading 
+
 <h2 id="a86e10fc913cd54076f6a27289d1d713"></h2>
 
 ## re-download youtube auto sub
