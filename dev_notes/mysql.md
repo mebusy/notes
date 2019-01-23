@@ -172,6 +172,29 @@ log_queries_not_using_indexes -> ON
  - in `mysql.general_log` ,  if the connection is reused, you should see the `connection` event only at the very beginning
 
 
+## `select count(*)` is very slow on large table
+
+ - Here's a cheap way to get an estimated row count:
+
+```
+> select TABLE_ROWS FROM INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA='your_db_name' and TABLE_NAME='your_table_name';
++------------+
+| TABLE_ROWS |
++------------+
+|      57889 |
+|          5 |
++------------+
+2 rows in set (0.00 sec)
+``` 
+
+## `select ... limit offset , n ` is slow when offset  is higher
+
+ - `limit offset ,n ` -> `where id > offset limit n` 
+ - Note:
+    - `id` is the auto incr primary key , and should be continous (that is , you should NOT delete the rows )
+
+
+
 --- 
 
 <MySQL技术内幕(InnoDB存储引擎)第2版>
