@@ -402,7 +402,7 @@ ans =
         - Additivity: L( v + w ) = L(v) + L(w)
         - Scaling: L(cv) = cL(v)
     - Linear transformations **perserve** addition and scalar multiplication.
-    - 网格线保持平行且等距分布的概念，只是这两条性质在而为空间这一特殊情况下的体现。
+    - 网格线保持平行且等距分布的概念，只是这两条性质在2D空间这一特殊情况下的体现。
     - 这两条性质的一个最终的推论是，一个线性变换可以通过它对基向量的作用来完全描述，这使得矩阵 向量乘法成为可能。这一点对函数来说同样正确。
     - 比如说，求导具有可加性和成比例性。 Derivative is linear 
         - d/dx(x³+x²) = d/dx(x³) + d/dx(x²)
