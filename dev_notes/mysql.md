@@ -162,8 +162,10 @@ show variables like '%general%';
 ## mysql 记录 未使用 index的查询
 
 ```
-log_queries_not_using_indexes -> ON
+set global log_queries_not_using_indexes=ON;
 ```
+
+ - those queries will appears in slow_log
 
 <h2 id="005022c3c2f0c952bbd1532235bc4959"></h2>
 
