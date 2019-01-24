@@ -184,9 +184,8 @@ set global log_queries_not_using_indexes=ON;
 | TABLE_ROWS |
 +------------+
 |      57889 |
-|          5 |
 +------------+
-2 rows in set (0.00 sec)
+1 rows in set (0.00 sec)
 ``` 
 
 ## `select ... limit offset , n ` is slow when offset  is higher
