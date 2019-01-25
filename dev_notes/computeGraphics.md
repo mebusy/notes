@@ -116,5 +116,6 @@ restoreTransform()
     - The modeling transform moves the object from its natural coordinates into its proper place in the scene. 
     - Then on top of that, a coordinate transform that is applied to the scene as a whole would carry the object along with it.
  - Let's look at a little example. Suppose that we want to draw a simple 2D image of a cart with two wheels.
-     
+    - ![](../imgs/cg_draw_2d_car.png)
+    - 
  
