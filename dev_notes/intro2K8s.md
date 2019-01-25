@@ -1331,6 +1331,12 @@ $ cat /etc/hosts
 192.168.99.100   blue.example.com green.example.com
 ```
 
+
+## kubernetes/ingress-nginx user-guide TLS
+
+ - https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/tls.md
+
+
 <h2 id="41ef0c7e3aa81f83c8172c71f9986dfb"></h2>
 
 # Advanced Topics

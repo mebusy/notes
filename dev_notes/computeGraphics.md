@@ -86,10 +86,17 @@ In this book , will use a subset of OpenGL 1.1 to introduce the fundamental conc
 
 ## 2.4 Hierarchical Modeling 
 
+In this section, we look at how complex scenes can be built from very simple shapes. The key is hierarchical structure.
 
- - The transforms are often applied in the order scale, then rotate, then translate, because scaling and rotation leave the reference point, (0,0), fixed. 
-    - the matrix is TRS
-    - Modeling transforms are not always composed in this order, but it is the most common usage.
+### 2.4.1  Building Complex Objects
+ 
+ - When drawing an object, use the coordinate system that is most natural for the object.
+ - Usually, we want an object in its natural coordinates to be centered at the origin, (0,0), or at least to use the origin as a convenient reference point. 
+    - Then, to place it in the scene, we can use a scaling transform, followed by a rotation, followed by a translation to set its size, orientation, and position in the scene. 
+    - Recall that transformations used in this way are called  *modeling transformations*.
+    - The transforms are often applied in the order scale, then rotate, then translate, because scaling and rotation leave the reference point, (0,0), fixed.
+        - in the code, the translation would come first, followed by the rotation and then the scaling:  TRS
+        - Modeling transforms are not always composed in this order, but it is the most common usage.
  - The modeling transformations that are used to place an object in the scene should not affect other objects in the scene. 
     - we can save the current transformation before starting work on the object and restore it afterwards. 
     - but let's suppose here that there are subroutines saveTransform() and restoreTransform() for performing those tasks.
@@ -105,4 +112,8 @@ scale(sx,sy)     // set the size of the object
 restoreTransform()
 ```
 
- - 
+ - Note that we don't know and don't need to know what the saved transform does. 
+    - The modeling transform moves the object from its natural coordinates into its proper place in the scene. 
+    - Then on top of that, a coordinate transform that is applied to the scene as a whole would carry the object along with it.
+ 
+ 
