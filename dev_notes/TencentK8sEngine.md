@@ -114,6 +114,15 @@ kubectl ... get ...  -o yaml --export
 ```
 
 
+# 腾讯云 Misc
+
+## ingress 证书 对部分低版本Android设备不兼容，导致 ssl hand shake error.
+
+ - 更换证书
+ - 检查证书兼容性  https://myssl.com/ 
+
+
+
 <h2 id="c36aef5f4c92632a2362a83ed0523565"></h2>
 
 # cntlm 设置代理 (Centos7)
