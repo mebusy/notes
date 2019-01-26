@@ -260,7 +260,11 @@ glEnd();
     - The functions glEnable and glDisable can be used to turn many features on and off. 
     - In general, the rule is that any rendering feature that requires extra computation is turned off by default.
  - There are three primitives for drawing line segments: **GL_LINES**, **GL_LINE_STRIP**, and **GL_LINE_LOOP**. 
-
+    - ![](../imgs/cg_gl_line.png)
+    - The width for line primitives can be set by calling glLineWidth(width). 
+        - The line width is always specified in pixels. It is **not** subject to scaling by transformations.
+ - There are three of triangle primitives: **GL_TRIANGLES**, **GL_TRIANGLE_STRIP**, and **GL_TRIANGLE_FAN**.
+    
 
 
  
