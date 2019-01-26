@@ -117,5 +117,40 @@ restoreTransform()
     - Then on top of that, a coordinate transform that is applied to the scene as a whole would carry the object along with it.
  - Let's look at a little example. Suppose that we want to draw a simple 2D image of a cart with two wheels.
     - ![](../imgs/cg_draw_2d_car.png)
-    - 
+    - The wheel has radius 1.
+    - The rectangular body of the cart has width 6 and height 2.
+        - it is convenient use the midpoint of the base of the large rectangle as the reference point.
+        - assume that the positive direction of the y-axis points upward, which is the common convention in mathematics.
+        - so the coordinates of the lower left corner of the rectangle are (-3,0)
+    - In wheel's coordinate system, the wheel is centered at (0,0) and has radius 1.
+ - Here is pseudocode for a subroutine that draws the cart in its own coordinate system:
+
+```
+subroutine drawCart() :
+    saveTransform()       // save the current transform
+    translate(-1.65,-0.1) // center of first wheel will be at (-1.65,-0.1)
+    scale(0.8,0.8)        // scale to reduce radius from 1 to 0.8
+    drawWheel()           // draw the first wheel
+    restoreTransform()    // restore the saved transform
+    saveTransform()       // save it again
+    translate(1.5,-0.1)   // center of second wheel will be at (1.5,-0.1)
+    scale(0.8,0.8)        // scale to reduce radius from 1 to 0.8
+    drawWheel(g2)         // draw the second wheel
+    restoreTransform()    // restore the transform
+    setDrawingColor(RED)  // use red color to draw the rectangles
+    fillRectangle(-3, 0, 6, 2)      // draw the body of the cart
+    fillRectangle(-2.3, 1, 2.6, 1)  // draw the top of the cart
+```
+     
+ - Once we have this cart-drawing subroutine, we can use it to add a cart to a scene. When we do this, we apply another modeling transformation to the cart as a whole. Indeed, we could add several carts to the scene, if we wanted, by calling the drawCart subroutine several times with different modeling transformations.
+ - Building up a complex scene out of objects is similar to building up a complex program out of subroutines.
  
+### 2.4.2  Scene Graphs
+ 
+ - Logically, the components of a complex scene form a structure. 
+    - In this structure, each object is associated with the sub-objects that it contains. 
+    - If the scene is hierarchical, then the structure is hierarchical.
+    - This structure is known as a **scene graph**.   
+    - A scene graph is a tree-like structure, with the root representing the entire scene, the children of the root representing the top-level objects in the scene, and so on.
+
+
