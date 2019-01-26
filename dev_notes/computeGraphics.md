@@ -153,4 +153,130 @@ subroutine drawCart() :
     - This structure is known as a **scene graph**.   
     - A scene graph is a tree-like structure, with the root representing the entire scene, the children of the root representing the top-level objects in the scene, and so on.
 
+![](../imgs/cg_scene_graph.png)
+
+ - In this drawing, a single object can have several connections to one or more parent objects. 
+    - Each connection represents one occurrence of the object in its parent object.
+    - Each arrow in the picture can be associated with a modeling transformation that places the sub-object into its parent object. 
+    - When an object contains several copies of a sub-object, each arrow connecting the sub-object to the object will have a different associated modeling transformation. 
+        - The object is the same for each copy; only the transformation differs.
+ - When implementing a scene graph as a data structure made up of objects, a decision has to be made about how to handle transforms.
+    - One option is to allow transformations to be associated with any node in the scene graph. 
+ - A scene graph is actually an example of a "directed acyclic graph" or "dag."
+
+
+### 2.4.3  The Transform Stack
+
+
+## 2.6 HTML Canvas Graphics
+
+### 2.6.1  The 2D Graphics Context
+
+```js
+<canvas width="800" height="600" id="theCanvas"></canvas>
+```
+
+ - The *id* is an identifier that can be used to refer to the canvas in JavaScript.
+ - To draw on a canvas, you need a graphics context. 
+    - A graphics context is an object that contains functions for drawing shapes. 
+
+```js
+canvas = document.getElementById("theCanvas");
+graphics = canvas.getContext("2d");
+```
+
+ - Typically, you will store the canvas graphics context in a global variable and use the same graphics context throughout your program. 
+
+```js
+<!DOCTYPE html>
+<html>
+<head>
+<title>Canvas Graphics</title>
+<script>
+    var canvas;    // DOM object corresponding to the canvas
+    var graphics;  // 2D graphics context for drawing on the canvas
+
+    function draw() {
+           // draw on the canvas, using the graphics context
+        graphics.fillText("Hello World", 10, 20);
+    }
+
+    function init() {
+        canvas = document.getElementById("theCanvas");
+        graphics = canvas.getContext("2d");
+        draw();  // draw something on the canvas
+    }
+</script>
+</head>
+<body onload="init()">
+    <canvas id="theCanvas" width="640" height="480"></canvas>
+</body>
+</html>
+```
+
+ - Find more canvans2d example  in http://math.hws.edu/graphicsbook/c2/s6.html
+
+
+### 2.6.2  TODO
+
+# Chapter 3 OpenGL 1.1: Geometry
+
+## 3.1 Shapes and Colors in OpenGL 1.1
+
+### 3.1.1  OpenGL Primitives
+
+ - OpenGL can draw only a few basic shapes, including points, lines, and triangles. 
+    - There is no built-in support for curves or curved surfaces; they must be approximated by simpler shapes. 
+ - A primitive in OpenGL is defined by its vertices.
+ - Let's jump right in and see how to draw a triangle. It takes a few steps:
+
+```c
+glBegin(GL_TRIANGLES);
+glVertex2f( -0.7, -0.5 );
+glVertex2f( 0.7, -0.5 );
+glVertex2f( 0, 0.7 );
+glEnd();
+```
+
+ - Vertices must be specified between calls to glBegin and glEnd.
+ - I should note that these functions actually just send commands to the GPU.
+    - OpenGL can save up batches of commands to transmit together, and the drawing won't actually be done until the commands are transmitted.
+    - To ensure that that happens, the function glFlush() must be called.
+    - In some cases, this function might be called automatically by an OpenGL API, but you might well run into times when you have to call it yourself.
+ - For OpenGL, vertices have three coordinates. The function glVertex2f specifies the x and y coordinates of the vertex, and the z coordinate is set to zero. 
+ - There is also a function glVertex3f that specifies all three coordinates.
+    - The "2" or "3" in the name tells how many parameters are passed to the function. 
+    - The "f" at the end of the name indicates that the parameters are of type float.
+ - OpenGL 1.1 has ten kinds of primitive.
+    - Seven of them still exist in modern OpenGL; the other three have been dropped.
+ - The simplest primitive is **GL_POINTS**,  which simply renders a point at each vertex of the primitive. 
+    - By default, a point is rendered as a single pixel. The size of point primitives can be changed by calling
+        - `glPointSize(size);`
+    - where the parameter, size, is of type float and specifies the diameter of the rendered point, in pixels. 
+    - By default, points are squares. You can get circular points by calling
+        - `glEnable(GL_POINT_SMOOTH);`
+ - The functions glPointSize and glEnable change the OpenGL "state." 
+    - The state includes all the settings that affect rendering. 
+    - The functions glEnable and glDisable can be used to turn many features on and off. 
+    - In general, the rule is that any rendering feature that requires extra computation is turned off by default.
+ - There are three primitives for drawing line segments: **GL_LINES**, **GL_LINE_STRIP**, and **GL_LINE_LOOP**. 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
