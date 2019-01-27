@@ -264,6 +264,7 @@ glEnd();
     - The width for line primitives can be set by calling glLineWidth(width). 
         - The line width is always specified in pixels. It is **not** subject to scaling by transformations.
  - There are three of triangle primitives: **GL_TRIANGLES**, **GL_TRIANGLE_STRIP**, and **GL_TRIANGLE_FAN**.
+    - 
     
 
 
