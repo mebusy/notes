@@ -406,7 +406,18 @@ gl2.glEnd();
     - It can give some strange results when two objects have exactly the same depth value. 
     - Logically, it's not even clear which object should be visible, but the real problem with the depth test is that it might show one object at some points and the second object at some other points. 
     - This is possible because numerical calculations are not perfectly accurate. Here an actual example:
-    - 
+    - ![](../imgs/cg_gl_depth_test_issue.png)
+    - In the two pictures shown here, a gray square was drawn, followed by a white square, followed by a black square. 
+        - The squares all lie in the same plane. A very small rotation was applied, to force the computer do some calculations before drawing the objects. 
+        - The picture on the left was drawn with the depth test disabled, so that, for example, when a pixel of the white square was drawn, the computer didn't try to figure out whether it lies in front of or behind the gray square; it simply colored the pixel white. On the right, the depth test was enabled, and you can see the strange result.
+
+ - Finally, by the way, note that the discussion here assumes that there are no transparent objects. 
+    - Unfortunately, the depth test does not handle transparency correctly, since transparency means that two or more objects can contribute to the color of the pixel, but the depth test assumes that the pixel color is the color of the object nearest to the viewer at that point. 
+    - To handle 3D transparency correctly in OpenGL, you pretty much have to resort to implementing the painter's algorithm by hand, at least for the transparent objects in the scene.
+
+---
+
+## 3.2 3D Coordinates and Transforms
 
 
 
