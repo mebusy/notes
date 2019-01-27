@@ -264,21 +264,149 @@ glEnd();
     - The width for line primitives can be set by calling glLineWidth(width). 
         - The line width is always specified in pixels. It is **not** subject to scaling by transformations.
  - There are three of triangle primitives: **GL_TRIANGLES**, **GL_TRIANGLE_STRIP**, and **GL_TRIANGLE_FAN**.
-    - 
-    
-
-
+    - ![](../imgs/cg_gl_triangle.png)
+ - The three remaining primitives, which have been removed from modern OpenGL, are **GL_QUADS**, **GL_QUAD_STRIP**, and **GL_POLYGON**. 
  
 
+### 3.1.2  OpenGL Color
 
+ - `glColor*`
+ - You can add a fourth component to the color by using *glColor4f()*. 
+    - The fourth component, known as alpha, is not used in the default drawing mode, 
+    - You need two commands to turn on transparency:
 
+```
+glEnable(GL_BLEND);   // enables use of the alpha component. 
+glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+```
 
+ - Here are some examples of commands for setting drawing colors in OpenGL:
 
+```
+glColor3f(0,0,0);         // Draw in black.
 
+glColor3f(1,1,1);         // Draw in white.
 
+glColor3f(1,0,0);         // Draw in full-intensity red.
 
+glColor3ub(1,0,0);        // Draw in a color just a tiny bit different from
+                          // black.  (The suffix, "ub" or "f", is important!)
 
+glColor3ub(255,0,0);      // Draw in full-intensity red.
 
+glColor4f(1, 0, 0, 0.5);  // Draw in transparent red, but only if OpenGL
+                          // has been configured to do transparency.  By
+                          // default this is the same as drawing in plain red.
+```
+
+ - Using any of these functions sets the value of a "current color," which is part of the OpenGL state. 
+    - When you generate a vertex with one of the `glVertex*` functions, the current color is saved along with the vertex coordinates, as an *attribute* of the vertex. 
+    - Colors are associated with individual vertices, not with complete shapes. 
+    - By changing the current color between calls to glBegin() and glEnd(), you can get a shape in which different vertices have different color attributes. 
+
+```c
+glBegin(GL_TRIANGLES);
+glColor3f( 1, 0, 0 ); // red
+glVertex2f( -0.8, -0.8 );
+glColor3f( 0, 1, 0 ); // green
+glVertex2f( 0.8, -0.8 );
+glColor3f( 0, 0, 1 ); // blue
+glVertex2f( 0, 0.9 );
+glEnd();
+```
+
+ - Note that when drawing a primitive, you do not need to explicitly set a color for each vertex, as was done here. If you want a shape that is all one color, you just have to set the current color once, before drawing the shape (or just after the call to glBegin(). 
+
+```c
+glColor3ub(255,255,0);  // yellow
+glBegin(GL_TRIANGLES);
+glVertex2f( -0.5, -0.5 );
+glVertex2f( 0.5, -0.5 );
+glVertex2f( 0, 0.5 );
+glEnd();
+```
+
+---
+
+ - A common operation is to clear the drawing area by filling it with some background color. 
+    - It is be possible to do that by drawing a big colored rectangle, but OpenGL has a potentially more efficient way to do it. 
+    - The function `glClearColor(r,g,b,a);`  sets up a color to be used for clearing the drawing area. 
+        - This only sets the color; the color isn't used until you actually give the command to clear the drawing area.
+        - The default clear color is all zeros, that is, black with an alpha component also equal to zero. 
+    - The command to do the actual clearing is: `glClear( GL_COLOR_BUFFER_BIT );`
+        - The correct term for the *drawing area* is  **color buffer**.
+        - OpenGL uses several buffers in addition to the color buffer. 
+        - The glClear command can be used to clear several different buffers at the same time, which can be more efficient than clearing them separately since the clearing can be done in parallel. For example: 
+        - `glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );`
+        - This is the form of glClear that is generally used in 3D graphics, where the depth buffer plays an essential role.
+        - For 2D graphics ,  the appropriate parameter for glClear is just GL_COLOR_BUFFER_BIT.
+
+### 3.1.3  glColor and glVertex with Arrays
+
+ - There are also versions that let you place all the data for the command in a single array parameter. 
+    - The names for such versions end with "v". 
+    - For example: `glColor3fv, glVertex2iv, glColor4ubv, and glVertex3dv`. 
+    - The "v" actually stands for "vector," meaning essentially a one-dimensional array of numbers. 
+    - For example, in the function call `glVertex3fv(coords)`, coords would be an array containing at least three floating point numbers.
+ - The existence of array parameters in OpenGL forces some differences between OpenGL implementations in different programming languages. 
+
+```c
+// c , draw a rectangle
+float coords[] = { -0.5, -0.5,  0.5, -0.5,  0.5, 0.5,  -0.5, 0.5 };
+
+glBegin(GL_TRIANGLE_FAN);
+glVertex2fv(coords);      // Uses coords[0] and coords[1].
+glVertex2fv(coords + 2);  // Uses coords[2] and coords[3].
+glVertex2fv(coords + 4);  // Uses coords[4] and coords[5].
+glVertex2fv(coords + 6);  // Uses coords[6] and coords[7].
+glEnd();
+```
+
+```java
+// java, draw a rectangle
+float[] coords = { -0.5F, -0.5F,  0.5F, -0.5F,  0.5F, 0.5F,  -0.5F, 0.5F };
+
+gl2.glBegin(GL2.GL_TRIANGLES);
+gl2.glVertex2fv(coords, 0);  // Uses coords[0] and coords[1].
+gl2.glVertex2fv(coords, 2);  // Uses coords[2] and coords[3].
+gl2.glVertex2fv(coords, 4);  // Uses coords[4] and coords[5].
+gl2.glVertex2fv(coords, 6);  // Uses coords[6] and coords[7].
+gl2.glEnd();
+```
+
+### 3.1.4  The Depth Test
+
+ - The depth test solves the hidden surface problem no matter what order the objects are drawn in, so you can draw them in any order you want!
+    - The term "depth" here has to do with the distance from the viewer to the object. 
+    - Objects at greater depth are farther from the viewer. An object with smaller depth will hide an object with greater depth. 
+    - To implement the depth test algorithm, OpenGL stores a depth value for each pixel in the image. The extra memory that is used to store these depth values makes up the **depth buffer** .
+    - During the drawing process, the depth buffer is used to keep track of what is currently visible at each pixel. 
+    - By default, the depth test is not turned on, which can lead to very bad results when drawing in 3D. 
+        - You can enable the depth test by calling `glEnable( GL_DEPTH_TEST );`
+    - If you forget to enable the depth test when drawing in 3D, the image that you get will likely be confusing and will make no sense physically. You can also get quite a mess if you forget to clear the depth buffer.
+ - Question: what happens when part of your geometry extends outside the visible range of z-values ?
+
+ - Here are are a few details about the implementation of the depth test: 
+    - For each pixel, the depth buffer stores a representation of the distance from the viewer to the point that is currently visible at that pixel.
+    - This value is essentially the z-coordinate of the point, after any transformations have been applied.
+        - (In fact, the depth buffer is often called the "z-buffer".) 
+    - The range of possible z-coordinates is scaled to the range 0 to 1. 
+    - *The fact that there is only a limited range of depth buffer values* means that OpenGL can only display objects in a limited range of distances from the viewer. 
+    - A depth value of 0 corresponds to the minimal distance; a depth value of 1 corresponds to the maximal distance.
+    - When you clear the depth buffer, every depth value is set to 1, which can be thought of as representing the background of the image.
+ - You get to choose the range of z-values that is visible in the image, by the transformations that you apply. 
+    - The default range, in the absence of any transformations, is -1 to 1.  
+    - Points with z-values outside the range are not visible in the image. 
+    - It is a common problem to use too small a range of z-values, so that objects are missing from the scene, or have their fronts or backs cut off, because they lie outside of the visible range. 
+    -  You might be tempted to use a huge range, to make sure that the objects that you want to include in the image are included within the range. However, that's not a good idea: 
+        - The depth buffer has a limited number of bits per pixel and therefore a limited amount of accuracy. 
+    - The larger the range of values that it must represent, the harder it is to distinguish between objects that are almost at the same depth. (Think about what would happen if all objects in your scene have depth values between 0.499999 and 0.500001—the depth buffer might see them all as being at exactly the same depth!)
+        - 放大range, 可能会帮助你对付一些特殊情况，却会使大部分情况下的点的深度无法分辨
+ - There is another issue with the depth buffer algorithm. 
+    - It can give some strange results when two objects have exactly the same depth value. 
+    - Logically, it's not even clear which object should be visible, but the real problem with the depth test is that it might show one object at some points and the second object at some other points. 
+    - This is possible because numerical calculations are not perfectly accurate. Here an actual example:
+    - 
 
 
 
