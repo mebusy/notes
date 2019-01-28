@@ -708,7 +708,15 @@ glPopMatrix();
 
 ## 3.4 Polygonal Meshes and glDrawArrays
 
+ - Now, our problem is to represent a set of polygons—most often a set of triangles. 
 
+### 3.4.1  Indexed Face Sets
+
+ - The polygons in a polygonal mesh are also referred to as "faces", and one of the primary means for representing a polygonal mesh is as an **indexed face set**, or IFS.
+ - The data for an IFS includes a list of all the vertices that appear in the mesh, giving the coordinates of each vertex. 
+    - A vertex can then be identified by an integer that specifies its *index* in the list.
+    - As an example, consider this "house," a polyhedron with 10 vertices and 9 faces:
+        - 
 
 
 
