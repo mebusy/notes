@@ -532,9 +532,65 @@ glPopMatrix();
     - The drawing region is a rectangle of pixels. This is the rectangle that is called the *viewport*. 
     - The  *viewport transformation* takes x and y from the clip coordinates and scales them to fit the viewport.
 
+ - Let's go through the sequence of transformations one more time. 
+    - Think of a  primitive, such as a line or triangle, the primitive goes through the following sequence of operations:
+    - ![](../imgs/opengl-transform-pipeline.png)
+        1. The points that define the primitive are specified in object coordinates. ( glVertex3f )
+        2. The points are first subjected to the modelview transformation, which is a combination of 
+            - the modeling transform that places the primitive into the world 
+            - and the viewing transform that maps the primitive into eye coordinates.
+        3. The projection transformation is then applied to map the view volume.
+            - If the transformed primitive lies outside that cube, it will not be part of the image, and the processing stops. 
+            - If part of the primitive lies inside and part outside, only the part that remains is processed further.
+        4. Finally, the viewport transform is applied to produce the device coordinates that will actually be used to draw the primitive on the display device.
+            - After that, it's just a matter of deciding how to color the individual pixels that are part of the primitive.
 
+### 3.3.2  The Viewport Transformation
 
+ - The simplest of the transforms is the viewport transform.
+    - It transforms x and y clip coordinates to the coordinates that are used on the display device. 
+    - To specify the viewport transform, it is only necessary to specify the rectangle on the device where the scene will be rendered.
+    - This is done using the *glViewport* function.
+ - OpenGL must be provided with a drawing surface by the environment in which it is running, such as
+    - JOGL for Java 
+    - or the GLUT library for C. 
+    - OpenGL uses a coordinate system on the drawing surface that puts (0,0) at the lower left. 
+    - When the drawing surface is first given to OpenGL, the viewport is set to be the entire drawing surface. 
+    - However, it is possible for OpenGL to draw to a different rectangle by calling
 
+```c
+// custom viewport
+glViewport( x, y, width, height );
+```
+
+ - where (x,y) is the lower left corner of the viewport, in the drawing surface coordinate system, and width and height are the size of the viewport.
+    - Clip coordinates from -1 to 1 will then be mapped to the specified viewport. 
+ - When the size of the drawing surface changes, such as when the user resizes a window that contains the drawing surface, OpenGL does not automatically change the viewport to match the new size.
+    - However, the environment in which OpenGL is running might do that for you. 
+ - *glViewport* is often used to draw several different scenes, or several views of the same scene, on the same drawing surface. 
+    
+
+### 3.3.3  The Projection Transformation
+
+ - OpenGL keeps track of the projection matrix separately from the matrix that represents the modelview transformation. 
+    - The same transform functions, such as glRotatef, can be applied to both matrices, so OpenGL needs some way to know which matrix those functions apply to. 
+ - This is determined by an OpenGL state property called the **matrix mode**. 
+    - The value of the matrix mode is a constant such as GL_PROJECTION or GL_MODELVIEW. 
+    - The value is set by calling the function *glMatrixMode*.
+    - The initial value is GL_MODELVIEW. 
+ - The view volume is determined by a combination of the viewing transformation and the projection transformation.
+    - The viewing transform determines where the viewer is located and what direction the viewer is facing.
+    - But it doesn't say how much of the world the viewer can see. The projection transform does that: It specifies the shape and extent of the region that is in view. 
+ - Think of the viewer as a camera, with a big invisible box attached to the front of the camera.
+    - The shape and size of the box correspond to the projection transform. 
+    - The position and orientation of the camera correspond to the viewing transform.
+ - Mathematically, the OpenGL projection transformation transforms eye coordinates to clip coordinates, mapping the view volume onto the 2x2x2 clipping cube that contains everything that will be visible in the image. 
+    - To specify a projection just means specifying the size and shape of the view volume, relative to the viewer.
+ - There are two general types of projection, perspective projection and orthographic projection. 
+ - In a perspective view, the apparent size of an object depends on how far it is away from the viewer. 
+    - Only things that are in front of the viewer can be seen.
+    - Since the depth buffer can only store a finite range of depth values, only objects in a certain range of distances from the viewer can be part of the image. 
+    - That range of distances is specified by two values, *near* and *far*. 
 
 
 
