@@ -716,7 +716,50 @@ glPopMatrix();
  - The data for an IFS includes a list of all the vertices that appear in the mesh, giving the coordinates of each vertex. 
     - A vertex can then be identified by an integer that specifies its *index* in the list.
     - As an example, consider this "house," a polyhedron with 10 vertices and 9 faces:
+        - ![](../imgs/cg_gl_house.png)
+    - The vertex list for this polyhedron has the form
         - 
-
+        ```
+        Vertex #0.  (2, -1, 2)
+        Vertex #1.  (2, -1, -2)
+        Vertex #2.  (2, 1, -2)
+        Vertex #3.  (2, 1, 2)
+        Vertex #4.  (1.5, 1.5, 0)
+        Vertex #5.  (-1.5, 1.5, 0)
+        Vertex #6.  (-2, -1, 2)
+        Vertex #7.  (-2, 1, 2)
+        Vertex #8.  (-2, 1, -2)
+        Vertex #9.  (-2, -1, -2)
+        ```
+    - The order of the vertices is completely arbitrary. The purpose is simply to allow each vertex to be identified by an integer.
+ - To describe one of the polygonal faces of a mesh, we just have to list its vertices, in order going around the polygon. 
+    - For an IFS, we can specify a vertex by giving its index in the list. 
+    - For example, we can say that one of the triangular faces of the pyramid is the polygon formed by vertex #3, vertex #2, and vertex #4. 
+    - So, we can complete our data for the mesh by giving a list of vertex indices for each face. 
+    - Here is the face data for the house. 
+        -
+        ```
+        Face #0:  (0, 1, 2, 3)
+        Face #1:  (3, 2, 4)
+        Face #2:  (7, 3, 4, 5)
+        Face #3:  (2, 8, 5, 4)
+        Face #4:  (5, 8, 7)
+        Face #5:  (0, 3, 7, 6)
+        Face #6:  (0, 6, 9, 1)
+        Face #7:  (2, 1, 9, 8)
+        Face #8:  (6, 7, 8, 9)
+        ```
+    - Again, the order in which the faces are listed in arbitrary. 
+    - There is also some freedom in how the vertices for a face are listed. 
+        - You can start with any vertex. 
+    - Once you've picked a starting vertex, there are two possible orderings.
+        - For example, starting with vertex 0, the first face in the list could be specified either as (0,1,2,3) or as (0,3,2,1). 
+        - However, the first possibility is the right one in this case.
+    - A polygon in 3D can be viewed from either side; we can think of it as having two faces, facing in opposite directions.
+        - the "front face" of the polygon and the "back face." 
+        - The usual rule is that the vertices of a polygon should be listed in **counter-clockwise** order when looking at the front face of the polygon. 
+        - When looking at the back face, the vertices will be listed in clockwise order. 
+        - This is the default rule used by OpenGL.
+        - 
 
 
