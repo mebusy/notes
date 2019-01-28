@@ -845,6 +845,176 @@ gl2.glDrawElements( GL2.GL_QUADS, 24, GL2.GL_UNSIGNED_INT, elementBuffer );
     - That is, instead of applying an affine transformation to the 3D vector (x1,y1,z1), we can apply a linear transformation to the 4D vector (x1,y1,z1,1).
  - An affine transformation is represented as a 4-by-4 matrix in which the bottom row is (0,0,0,1), and a three-dimensional vector is changed into a four dimensional vector by adding a 1 as the final coordinate.
     - The result is that all the affine transformations that are so important in computer graphics can be implemented as multiplication of vectors by matrices.
- - 
+ - ![](../imgs/cg_gl_affine2.png)
+ - It is even possible to use an arbitrary transformation matrix in OpenGL, using the function glMultMatrixf(T) or glMultMatrixd(T). 
+    - The parameter, T, is an array of numbers of type float or double, representing a transformation matrix. 
+    - The array is a one-dimensional array of length 16. 
+    - The items in the array are the numbers from the transformation matrix, stored in  **column-major order**, 
+        - that is, the numbers in the fist column, followed by the numbers in the second column, and so on. 
+    - These functions multiply the current matrix by the matrix T, on the right.  
+    - You could use them, for example, to implement a shear transform, which is not easy to represent as a sequence of scales, rotations, and translations.
+
+
+### 3.5.3  Homogeneous Coordinates
+
+ - There is one common transformation in computer graphics that is not an affine transformation: 
+    - In the case of a perspective projection, the projection transformation is not affine.
+    - In a perspective projection, an object will appear to get smaller as it moves farther away from the viewer, and that is a property that no affine transformation can express, since 
+        - affine transforms preserve parallel lines and parallel lines will seem to converge in the distance in a perspective projection.
+ - Surprisingly, we can still represent a perspective projection as a 4-by-4 matrix, provided(假如,前提是) we are willing to stretch our use of coordinates even further than we have already. 
+    - We have already represented 3D vectors by 4D vectors in which the fourth coordinate is 1. 
+    - We now allow the fourth coordinate to be anything at all. 
+    - When the fourth coordinate, w, is non-zero, we consider the coordinates (x,y,z,w) to represent the three-dimensional vector (x/w,y/w,z/w). 
+        - When the fourth coordinate is zero, there is no corresponding 3D vector, 
+        - but it is possible to think of (x,y,z,0) as representing a 3D "point at infinity" in the direction of (x,y,z), as long as at least one of x, y, and z is non-zero.
+ - Coordinates (x,y,z,w) used in this way are referred to as **homogeneous coordinates**. 
+ - If we use homogeneous coordinates, then any 4-by-4 matrix can be used to transform three-dimensional vectors, including matrices whose bottom row is not (0,0,0,1). 
+    - Among the transformations that can be represented in this way is the projection transformation for a perspective projection. 
+    - And in fact, this is what OpenGL does internally. It represents all three-dimensional points and vectors using homogeneous coordinates, and it represents all transformations as 4-by-4 matrices.
+        - You can even specify vertices using homogeneous coordinates. For example, the command  `glVertex4f(x,y,z,w);`  with a non-zero value for w, generates the 3D point (x/w,y/w,z/w). 
+ - Fortunately, you will almost never have to deal with homogeneous coordinates directly. 
+    - The only real exception to this is that homogeneous coordinates are used, surprisingly, when configuring OpenGL lighting.
+
+
+## 3.6 Using GLUT and JOGL
+
+ - For simple applications written in C or C++, one possible windowing API is GLUT (OpenGL Utility Toolkit). 
+    - GLUT is a small API. It is used to create windows that serve as simple frames for OpenGL drawing surfaces. 
+    - It has support for handling mouse and keyboard events, and it can do basic animation. 
+    - It does not support controls such as buttons or input fields, but it does allow for a menu that pops up in response to a mouse action. 
+ - You can find information about the GLUT API at https://www.opengl.org/resources/libraries/glut/
+ - If possible, you should use FreeGLUT, which is compatible with GLUT but has a few extensions and a fully open source license.
+    - http://freeglut.sourceforge.net/docs/api.php
+ - JOGL (Java OpenGL) is a collection of classes that make it possible to use OpenGL in Java applications.
+    - JOGL is integrated into Swing and AWT, the standard Java graphical user interface APIs. 
+    - JOGL is not a standard part of Java. It's home web site is http://jogamp.org/jogl/www/
+
+
+### 3.6.1  Using GLUT
+
+ - To work with GLUT, you will need a C compiler and copies of the OpenGL and GLUT (or FreeGLUT) development libraries. 
+ - You may compile it using a command such as 
+    - `gcc -o glutprog glutprog.c -lGL -lglut`
+ - If the program also uses the GLU library, compiling it would require the option "-lGLU", and if it uses the math library, it would need the option "-lm".
+ - The GLUT library makes it easy to write basic OpenGL applications in C. 
+    - GLUT uses event-handling functions. 
+    - You write functions to handle events that occur when the display needs to be redrawn or when the user clicks the mouse or presses a key on the keyboard.
+ - To use GLUT, you need to include the header file glut.h (or freeglut.h) , along with the general OpenGL header file, gl.h. 
+    - The header files should be installed in a standard location, in a folder named GL. So, the program usually begins with
+
+```c
+#include <GL/gl.h>
+#include <GL/glut.h>
+// #include <GL/freeglut.h>
+```
+
+ - The program's main() function must contain some code to initialize GLUT, to create and open a window, and to set up event handling by registering the functions that should be called in response to various events. 
+    - After this setup, it must call a function that runs the GLUT event-handling loop. 
+ - To set up the event-handling functions, GLUT uses the fact that in C, it is possible to pass a function name as a parameter to another function.
+
+```c
+    glutDisplayFunc(display);
+```
+
+
+```c
+void display() {
+   .
+   .  // OpenGL drawing code goes here!
+   .
+}
+```
+
+ - There are a lot of possible event-handling functions, and I will only cover some of them here. Let's jump right in and look at a possible main() routine for a GLUT program that uses most of the common event handlers:
+
+```c
+int main(int argc, char** argv) {
+    glutInit(&argc, argv);  // Required initialization!
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
+    glutInitWindowSize(500,500);        // size of display area, in pixels
+    glutInitWindowPosition(100,100);    // location in screen coordinates
+    glutCreateWindow("OpenGL Program"); // parameter is window title  
+
+    glutDisplayFunc(display);       // called when window needs to be redrawn
+    glutReshapeFunc(reshape);       // called when size of the window changes
+    glutKeyboardFunc(keyFunc);      // called when user types a character
+    glutSpecialFunc(specialKeyFunc);// called when user presses a special key
+    glutMouseFunc(mouseFunc);       // called for mousedown and mouseup events
+    glutMotionFunc(mouseDragFunc);  // called when mouse is dragged
+    glutIdleFunc(idleFun);          // called when there are no other events
+
+    glutMainLoop(); // Run the event loop!  This function never returns.
+    return 0;  // (This line will never actually be reached.)
+}
+```
+ 
+ - `glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH)` — Must be called to define some characteristics of the OpenGL drawing context. 
+    - The parameter specifies features that you would like the OpenGL context to have.
+    - GLUT_DEPTH says that a depth buffer should be created;  without it, the depth test won't work.
+    - GLUT_DOUBLE asks for double buffering, which means that drawing is actually done off-screen, and the off-screen copy has to copied to the screen to be seen. 
+        - The copying is done by glutSwapBuffers(), which must be called at the end of the display function. 
+        - (You can use GLUT_SINGLE instead of GLUT_DOUBLE to get single buffering; in that case, you have to call glFlush() at the end of the display function instead of glutSwapBuffers(). )
+ - `glutReshapeFunc(reshape)` — The reshape function is called when the user changes the size of the window. 
+    - Its parameters tell the new width and height of the drawing area: `void reshape( int width, int height )`
+    - For example, you might use this method to set up the projection transform, if the projection depends only on the window size. 
+        - A reshape function is not required, but if one is provided, it should always set the OpenGL viewport, which is the part of the window that is used for drawing. Do this by calling `glViewport(0,0,width,height);` 
+        - The viewport is set automatically if no reshape function is specified.
+ - `glutKeyboardFunc(keyFunc)`
+    - void keyFunc( unsigned char ch, int x, int y )
+    - ch: key code
+    - x,y : mouse position
+ - Whenever you make any changes to the program's data that require the display to be redrawn, you should call *glutPostRedisplay()*.
+    - This is similar to calling repaint() in Java. 
+ - `glutMouseFunc(mouseFunc)`
+
+```c
+void mouseFunc(int button, int buttonState, int x, int y) {
+   if (buttonState == GLUT_DOWN) {
+        // handle mousePressed event
+   }
+   else { // buttonState is GLUT_UP
+        // handle mouseReleased event
+   }
+}
+```
+
+ - GLUT also has a timer function, which schedules some function to be called once, after a specified delay. 
+    - To set a timer, call 
+        - `glutTimerFunc(delayInMilliseconds, timerFunction, userSelectedID)`
+    - and define timerFunction as
+        - `void timerFunction(int timerID) { ...`
+    - If you want to use glutTimerFunc for animation, then timerFunction should end with another call to glutTimerFunc.
+ - A GLUT window does not have a menu bar, but it is possible to add a hidden popup menu to the window. 
+    - TODO
+
+---
+
+ - GLUT includes some functions for drawing basic 3D shapes such as spheres, cones, and regular polyhedra. 
+    - It has two functions for each shape, a "solid" version that draws the shape as a solid object, and a wireframe version .
+    - For example, the function
+        - `void glutSolidSphere(double radius, int slices, int stacks)`
+        - draws a solid sphere with the given radius, centered at the origin. 
+        - the sphere is divided by lines of longitude, like the slices of an orange, and by lines of latitude, like a stack of disks. 
+        - The parameters *slices* and *stacks* tell how many subdivisions to use. 
+        -  Typical values are 32 and 16, but the number that you need to get a good approximation for a sphere depends on the size of the sphere on the screen. 
+    - The function *glutWireframeSphere* has the same parameters but draws only the lines of latitude and longitude.
+ - There are functions for the other regular polyhedra that have no parameters and draw the object at some fixed size: 
+    - glutSolidTetrahedron(), glutSolidOctahedron(), glutSolidDodecahedron(), and glutSolidIcosahedron(). 
+ - There is also glutSolidTeapot(size) that draws a famous object that is often used as an example.
+
+
+### 3.6.3  About glsim.js
+
+ - The JavaScript library glsim.js was written to accompany and support this textbook. 
+    - It implements the subset of OpenGL 1.1 that is discussed in Chapter 3 and Chapter 4, except for display lists (Subsection 3.4.4). 
+    - Note that glsim is meant for experimentation and practice only, not for serious applications.
+ - The OpenGL API that is implemented by glsim.js is essentially the same as the C API, although some of the details of semantics are different. 
+ - To use glsim.js, you need to create an HTML document with a `<canvas>` element to serve as the drawing surface. 
+    - and `<script src="glsim.js"></script>`
+    - To create the OpenGL drawing context, use the JavaScript command 
+        - `glsimUse(canvas);`
+
+  
+
 
 
