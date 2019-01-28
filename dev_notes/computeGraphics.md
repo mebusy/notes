@@ -419,7 +419,19 @@ gl2.glEnd();
 
 ## 3.2 3D Coordinates and Transforms
 
+### 3.2.1  3D Coordinates
 
+ - OpenGL中最重要的概念恐怕就是坐标系了。
+    - 在真实世界中，如果固定一个坐标系，你不改变物体的位置，物体的坐标是不会变的。
+    - 但是在OpenGL中，如果物体没有变动位置，但是你改变了看物体的位置，那么为了让物体更像真实世界的场景，物体的坐标也要进行变换，你可以理解你自己的眼睛就是坐标的原点(World Space && View Space)，这是第一点需要注意的事情。
+    - 这是第一点需要注意的事情。第二点需要注意的事情就是，你眼睛能看到的范围是有限的，屏幕所能展现的世界也是有限的(Clip Space)。
+
+
+
+ - x- and y-axes lie in the plane of the screen, and the z-axis is perpendicular to the screen with the positive direction of the z-axis pointing **out of** the screen towards the viewer. 
+ - Now, the default coordinate system in OpenGL, the one that you are using if you apply no transformations at all, is similar but has the positive direction of the z-axis pointing **into** the screen. 
+ - This is not a contradiction: The coordinate system that is actually used is arbitrary.
+    - 
 
 
 
