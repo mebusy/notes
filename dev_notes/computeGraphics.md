@@ -426,12 +426,69 @@ gl2.glEnd();
     - 但是在OpenGL中，如果物体没有变动位置，但是你改变了看物体的位置，那么为了让物体更像真实世界的场景，物体的坐标也要进行变换，你可以理解你自己的眼睛就是坐标的原点(World Space && View Space)，这是第一点需要注意的事情。
     - 这是第一点需要注意的事情。第二点需要注意的事情就是，你眼睛能看到的范围是有限的，屏幕所能展现的世界也是有限的(Clip Space)。
 
+![](../imgs/v2-c7914df6f5d49c63e6947b0d6804feea_r.jpg)
+
+ - local space, aka object space
+    - view space, aka eye space
+    - screen space, aka windows space
+
+ - OpenGL is right handed in object(local) space and world space.  But in window space (aka screen space) we are suddenly left handed.
+    - **How did this happen?**
+    - The way we get from right-handed to left-handed is *a negative z scaling entry in the `glOrtho` or `glFrustum` projection matrices* .
+
+ - openGL 程序员把 坐标系 思考为是右手法则的 (z轴朝外).
+    - 然后，OpenGL中的默认坐标系，如果没有加任和 transforamtion，是左手法则的(z轴朝屏幕内).
+    - 这并不矛盾。 OpenGL惯例是 使 z 正方向指向viewer, z 负方向远离 viewer. 施加在默认坐标系上的transformation会 反转z的方向.
+ - Right-handed coordinate system is the natural coordinate system from the viewer's point of view, the so-called "eye" or "viewing" coordinate system. 
 
 
- - x- and y-axes lie in the plane of the screen, and the z-axis is perpendicular to the screen with the positive direction of the z-axis pointing **out of** the screen towards the viewer. 
- - Now, the default coordinate system in OpenGL, the one that you are using if you apply no transformations at all, is similar but has the positive direction of the z-axis pointing **into** the screen. 
- - This is not a contradiction: The coordinate system that is actually used is arbitrary.
-    - 
+### 3.2.2  Basic 3D Transforms
+
+ - `glTranslate*( dx, dy, dz );`
+ - `glScale*( sx, sy, sz );`
+ - `glRotate*(r,ax,ay,az)`.
+ - where `*` can be *f*, or *d*.
+ - Rotation in 3D is harder.
+    - In 3D, rotation is rotation about a line, which is called the axis of rotation.  (For a math view, the axis of rotation is an eigen vector of the roation matrix).
+    - In OpenGL: An axis of rotation is specified by three numbers, (ax,ay,az), which are **not all zero**. The axis is the line through (0,0,0) and (ax,ay,az). 
+    - We still have to account for the difference between positive and negative angles. 
+        - We can't just say clockwise or counterclockwise. 
+        - To define the direction of rotation in 3D, we use the **right-hand rule**, Point the thumb of your right hand in the direction of the axis of rotateion.
+        - I should emphasize that the right-hand rule only works if you are working in a right-handed coordinate system. 
+            - If you have switched to a left-handed coordinate system, then you need to use a left-hand rule to determine the positive direction of rotation. 
+ - OpenGL does not have 2D transform functions, but you can just use the 3D versions with appropriate parameters:
+    - `glTranslatef(dx, dy, 0)`
+    - `glScalef(sx, sy, 1)`
+    - For rotation through an angle r about the origin in 2D, use `glRotatef(r, 0, 0, 1)`. 
+
+### 3.2.3  Hierarchical Modeling
+
+ - In OpenGL, the functions for operating on the stack are named glPushMatrix() and glPopMatrix().
+ - OpenGL keeps track of a current matrix, which is the composition of all transforms that have been applied. 
+    - Calling a function such as *glScalef* simply modifies the current matrix.
+    - When an object is drawn, using the `glVertex*` functions, the coordinates that are specified for the object are transformed by the **current** matrix.
+ - There is another function that affects the current matrix: *glLoadIdentity()*.
+    - It will set the current matrix to be the identity transform.
+ - As an example, suppose that we want to draw a cube. It's not hard to draw each face using glBegin/glEnd.
+
+```c
+void square( float r, float g, float b ) {
+    glColor3f(r,g,b);
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex3f(-0.5, -0.5, 0.5);
+    glVertex3f(0.5, -0.5, 0.5);
+    glVertex3f(0.5, 0.5, 0.5);
+    glVertex3f(-0.5, 0.5, 0.5);
+    glEnd();
+}
+```
+
+
+
+ - To make a red front face for the cube, we just need to call square(1,0,0).    
+
+
+
 
 
 
