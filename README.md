@@ -39,6 +39,7 @@
  - [iOS related](https://github.com/mebusy/notes/blob/master/dev_notes/ios/ios_readme.md)
  - [Texture and Modeling](https://github.com/mebusy/notes/blob/master/dev_notes/textAndModeling_readme.md)
  - [6502](https://github.com/mebusy/notes/blob/master/dev_notes/6502_readme.md)
+ - [Compute Graphics](./dev_notes/CG_readme.md)
 
 ---
 
