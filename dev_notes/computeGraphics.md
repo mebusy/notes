@@ -623,10 +623,90 @@ glMatrixMode(GL_MODELVIEW);
     - However, as with perspective projection, only a finite segment of this infinite corridor can actually be shown in an OpenGL image. 
     - This finite view volume is a parallelepiped. 
     - The value of far must be greater than near, but for an orthographic projection, the value of near is allowed to be negative, putting the "near" clipping plane behind the viewer.
+    - ![](../imgs/cg_gl_otho_proj.png)
+    - An orthographic projection can be set up in OpenGL using the glOrtho method, which is has the following form:
+        - `glOrtho( xmin, xmax, ymin, ymax, near, far );`
+    - As an example, suppose that we want the view volume to be the box centered at the origin containing x, y, and z values in the range from -10 to 10. 
+
+```c
+glMatrixMode(GL_PROJECTION);
+glLoadIdentity();
+glOrtho( -10, 10, -10, 10, -10, 10 );
+glMatrixMode(GL_MODELVIEW);
+```
+
+--- 
+
+ - The *glFrustum* method is not particularly easy to use.
+    - There is a library known as GLU that contains some utility functions for use with OpenGL. 
+    - The GLU library includes the method gluPerspective as an easier way to set up a perspective projection. 
+
+```c
+gluPerspective( fieldOfViewAngle, aspect, near, far );
+```
+
+ - It can be used instead of glFrustum. 
+    - The fieldOfViewAngle is the **vertical** angle, measured in **degrees**, between the upper side of the view volume pyramid and the lower side. 
+        - Typical values are in the range 30 to 60 degrees. 
+    - The aspect parameter is the aspect ratio of the view, that is, width/height
+    - The near and far parameters in gluPerspective have the same meaning as for glFrustum.
 
 
+### 3.3.4  The Modelview Transformation
+
+ - "Modeling" and "viewing" might seem like very different things, conceptually, but OpenGL combines them into a single transformation. 
+    - This is because there is no way to distinguish between them in principle; the difference is purely conceptual. 
+    - That is, a given transformation can be considered to be either a modeling transformation or a viewing transformation, depending on how you think about it.
+    - (One significant difference, conceptually, is that the viewing transformation usually applies to an entire scene as a whole, while modeling transformations are applied to individual objects. But this is not a difference in principle.)
+    - 对 object 做 transformation 很多时候和 对 viewer 做transformation 是等价的.
+ - It can be difficult to set up a view by combining rotations, scalings, and translations, so OpenGL provides an easier way to set up a typical view.
+    - The command is not part of OpenGL itself but is part of the GLU library.
+
+```c
+gluLookAt( eyeX,eyeY,eyeZ, refX,refY,refZ, upX,upY,upZ );
+```
+
+ - This method places the viewer at the point (eyeX,eyeY,eyeZ), looking towards the point (refX,refY,refZ).
+    - The viewer is oriented so that the vector (upX,upY,upZ) points upwards in the viewer's view. 
+    - or example, to position the viewer on the positive x-axis, 10 units from the origin, looking back at the origin, with the positive direction of the y-axis pointing up as usual, use: 
+        - `gluLookAt( 10,0,0,  0,0,0,  0,1,0 );`
+ - With all this, we can give an outline for a typical display routine for drawing an image of a 3D scene with OpenGL 1.1:
 
 
+```c
+// possibly set clear color here, if not set elsewhere
+
+glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+
+// possibly set up the projection here, if not done elsewhere
+
+glMatrixMode( GL_MODELVIEW );
+glLoadIdentity();
+gluLookAt( eyeX,eyeY,eyeZ, refX,refY,refZ, upX,upY,upZ );  // Viewing transform
+
+glPushMatrix();
+  .
+  .   // apply modeling transform and draw an object
+  .
+glPopMatrix();
+
+glPushMatrix();
+  .
+  .   // apply another modeling transform and draw another object
+  .
+glPopMatrix();
+  .
+  .
+  .
+```
+
+
+### 3.3.5  A Camera Abstraction
+
+ - Projection and viewing are often discussed using the analogy of a camera.
+ - TODO
+
+## 3.4 Polygonal Meshes and glDrawArrays
 
 
 
