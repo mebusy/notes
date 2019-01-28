@@ -587,10 +587,44 @@ glViewport( x, y, width, height );
  - Mathematically, the OpenGL projection transformation transforms eye coordinates to clip coordinates, mapping the view volume onto the 2x2x2 clipping cube that contains everything that will be visible in the image. 
     - To specify a projection just means specifying the size and shape of the view volume, relative to the viewer.
  - There are two general types of projection, perspective projection and orthographic projection. 
- - In a perspective view, the apparent size of an object depends on how far it is away from the viewer. 
+ - In a *perspective* view, the apparent size of an object depends on how far it is away from the viewer. 
     - Only things that are in front of the viewer can be seen.
     - Since the depth buffer can only store a finite range of depth values, only objects in a certain range of distances from the viewer can be part of the image. 
     - That range of distances is specified by two values, *near* and *far*. 
+    - ![](../imgs/cg_gl_truncated_pyramid.png)
+    - **The projection transformation maps the six sides of the truncated pyramid in eye coordinates to the six sides of the clipping cube in clip coordinates.**.
+    - A perspective transformation can be set up with the glFrustum command:
+        - `glFrustum( xmin, xmax, ymin, ymax, near, far );`
+    - near and far specifies the distances from the viewer.
+        - The viewer is assumed to be at the origin, (0,0,0), facing in the direction of the negative z-axis. (This is the eye coordinate system.) 
+        - So, the near clipping plane is at z = −near, and the far clipping plane is at z = −far. (Notice the minus signs!)
+    - The first four parameters specify the sides of the pyramid: 
+        - xmin, xmax, ymin, and ymax specify the horizontal and vertical limits of the view volume **at the near clipping plane**. 
+        - For example, the coordinates of the upper-left corner of the small end of the pyramid are (xmin, ymax, -near).
+        - Note that x and y limits in glFrustum are usually symmetrical about zero.   
+            - That is, xmin is usually equal to the negative of xmax. 
+            - However, this is not required. It is possible to have asymmetrical view volumes where the z-axis does not point directly down the center of the view.
+    - glFrustum is often used in a code segment of the form:
+        - The call to glLoadIdentity ensures that the starting point is the identity transform.
+        - This is important since glFrustum modifies the existing projection matrix rather than replacing it. 
+
+```c
+glMatrixMode(GL_PROJECTION);
+glLoadIdentity();
+glFrustum( xmin, xmax, ymin, ymax, near, far );
+glMatrixMode(GL_MODELVIEW);
+```
+
+ - In an *orthographic* projection, the 3D world is projected onto a 2D image by discarding the z-coordinate of the eye-coordinate system.
+    - This type of projection is unrealistic: in that it is not what a viewer would see. 
+    - Nevertheless, for orthographic projection in OpenGL, there is considered to be a viewer. 
+    - The viewer is located at the eye-coordinate origin, facing in the direction of the negative z-axis. 
+    - Theoretically, a rectangular corridor extending infinitely in both directions, in front of the viewer and in back, would be in view. 
+    - However, as with perspective projection, only a finite segment of this infinite corridor can actually be shown in an OpenGL image. 
+    - This finite view volume is a parallelepiped. 
+    - The value of far must be greater than near, but for an orthographic projection, the value of near is allowed to be negative, putting the "near" clipping plane behind the viewer.
+
+
 
 
 
