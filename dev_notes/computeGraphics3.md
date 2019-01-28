@@ -647,6 +647,7 @@ glDisable( GL_POLYGON_OFFSET_FILL );
     - type: GL_FLOAT, GL_INT, and GL_DOUBLE. 
     - stride: usually 0, meaning that the data values are stored consecutively; 
         - if that is not the case, then stride gives the distance **in bytes** between the location of the data for one vertex and location for the next vertex. 
+    - (描述数据的存取方式)
  - For example, suppose that we want to draw a square in the xy-plane. 
 
 ```c
@@ -665,5 +666,38 @@ glEnableClientState(GL_VERTEX_ARRAY);
 ```c
 void glDrawArrays( int primitiveType, int firstVertex, int vertexCount)
 ```
+
+ - This function call corresponds to one use of glBegin/glEnd. 
+    - The primitiveType tells which primitive type is being drawn
+    - firstVertex is the number of the first vertex that is to used for drawing the primitive (corresponding array index). 
+    - vertexCount is the number of vertices to be used, just as if `glVertex*` were called vertexCount times.
+    - (描述 draw 所需要的数据数量 )
+    - Often, firstVertex will be zero, and vertexCount will be the total number of vertices in the array. 
+    - `glDrawArrays( GL_TRIANGLE_FAN, 0, 4 );`
+ - Often there is other data associated with each vertex in addition to the vertex coordinates. 
+    - For example, you might want to specify a different color for each vertex.
+
+```c
+glEnableClientState(GL_COLOR_ARRAY);
+
+void glColorPointer(int size, int type, int stride, void* array)
+```
+
+ - Let's put this together to draw the standard OpenGL red/green/blue triangle:
+
+```c
+float coords[6] = { -0.9,-0.9,  0.9,-0.9,  0,0.7 }; // two coords per vertex.
+float colors[9] = { 1,0,0,  0,1,0,  1,0,0 };  // three RGB values per vertex.
+
+glVertexPointer( 2, GL_FLOAT, 0, coords );  // Set data type and location.
+glColorPointer( 3, GL_FLOAT, 0, colors );
+
+glEnableClientState( GL_VERTEX_ARRAY );  // Enable use of arrays.
+glEnableClientState( GL_COLOR_ARRAY );
+
+glDrawArrays( GL_TRIANGLES, 0, 3 ); // Use 3 vertices, starting with vertex 0.
+```
+
+---
 
 
