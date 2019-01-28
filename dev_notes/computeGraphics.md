@@ -755,11 +755,101 @@ glPopMatrix();
     - Once you've picked a starting vertex, there are two possible orderings.
         - For example, starting with vertex 0, the first face in the list could be specified either as (0,1,2,3) or as (0,3,2,1). 
         - However, the first possibility is the right one in this case.
-    - A polygon in 3D can be viewed from either side; we can think of it as having two faces, facing in opposite directions.
-        - the "front face" of the polygon and the "back face." 
-        - The usual rule is that the vertices of a polygon should be listed in **counter-clockwise** order when looking at the front face of the polygon. 
-        - When looking at the back face, the vertices will be listed in clockwise order. 
-        - This is the default rule used by OpenGL.
-        - 
+ - A polygon in 3D can be viewed from either side; we can think of it as having two faces, facing in opposite directions.
+    - the "front face" of the polygon and the "back face." 
+    - The usual rule is that the vertices of a polygon should be listed in **counter-clockwise** order when looking at the front face of the polygon. 
+    - When looking at the back face, the vertices will be listed in clockwise order. 
+    - This is the default rule used by OpenGL.
+    - ![](../imgs/cg_gl_face.png)
+ - The vertex and face data for an indexed face set can be represented as a pair of two-dimensional arrays.
+
+```java
+double[][] vertexList =
+         {  {2,-1,2}, {2,-1,-2}, {2,1,-2}, {2,1,2}, {1.5,1.5,0},
+               {-1.5,1.5,0}, {-2,-1,2}, {-2,1,2}, {-2,1,-2}, {-2,-1,-2}  };
+         
+int[][] faceList =
+         {  {0,1,2,3}, {3,2,4}, {7,3,4,5}, {2,8,5,4}, {5,8,7},
+               {0,3,7,6}, {0,6,9,1}, {2,1,9,8}, {6,7,8,9}  };
+```
+
+ - In most cases, there will be additional data for the IFS. 
+    - For example, if we want to color the faces of the polyhedron, with a different color for each face, then we could add another array, faceColors, to hold the color data. 
+
+```java
+// java JOGL
+for (int i = 0; i < faceList.length; i++) {
+    gl2.glColor3dv( faceColors[i], 0 );  // Set color for face number i.
+    gl2.glBegin(GL2.GL_TRIANGLE_FAN);
+    for (int j = 0; j < faceList[i].length; j++) {
+        int vertexNum = faceList[i][j];  // Index for vertex j of face i.
+        double[] vertexCoords = vertexList[vertexNum];  // The vertex itself.
+        gl2.glVertex3dv( vertexCoords, 0 );
+    }
+    gl2.glEnd();
+}
+```
+
+ - Indexed face sets have another advantage. Suppose that we want to modify the shape of the polygon mesh by moving its vertices...
+ - There are other ways to store the data for an IFS. 
+    - In C, for example, where two-dimensional arrays are more problematic, we might use one dimensional arrays for the data.
+
+```c
+int vertexCount = 10;  // Number of vertices.
+double vertexData[] =
+          {  2,-1,2, 2,-1,-2, 2,1,-2, 2,1,2, 1.5,1.5,0,
+                 -1.5,1.5,0, -2,-1,2, -2,1,2, -2,1,-2, -2,-1,-2  };
+
+int faceCount = 9;  // Number of faces.
+int[][] faceData =
+          {  0,1,2,3,-1, 3,2,4,-1, 7,3,4,5,-1, 2,8,5,4,-1, 5,8,7,-1,
+               0,3,7,6,-1, 0,6,9,1,-1, 2,1,9,8,-1, 6,7,8,9,-1  };
+```
+
+ - We can use the following C code to draw the house:
+
+```c
+int i,j;
+j = 0; // index into the faceData array
+for (i = 0; i < faceCount; i++) {
+    glColor3dv( &faceColors[ i*3 ] );  // Color for face number i.
+    glBegin(GL_TRIANGLE_FAN);
+    while ( faceData[j] != -1) { // Generate vertices for face number i.
+        int vertexNum = faceData[j]; // Vertex number in vertexData array.
+        glVertex3dv( &vertexData[ vertexNum*3 ] );
+        j++;
+    }
+    j++;  // increment j past the -1 that ended the data for this face.
+    glEnd();
+}
+```
+ 
+---
+
+ - We could easily draw the **edges** of the polyhedron instead of the faces simply by using GL_LINE_LOOP instead of GL_TRIANGLE_FAN in the drawing code.
+    - An interesting issue comes up if we want to draw both the faces and the edges. 
+    - This can be a nice effect, but we run into a problem with the depth test: Pixels along the edges lie at the same depth as pixels on the faces. 
+        - the depth test cannot handle this situation well. 
+    - However, OpenGL has a solution: a feature called "polygon offset." 
+    - This feature can adjust the depth, in clip coordinates, of a polygon, in order to avoid having two objects exactly at the same depth. 
+    - To apply polygon offset, you need to set the amount of offset by calling 
+        - `glPolygonOffset(1,1);`
+    - The second parameter gives the amount of offset, in units determined by the first parameter. 
+    - The meaning of the first parameter is somewhat obscure;
+        - a value of 1 seems to work in all cases.
+    - You also have to enable the GL_POLYGON_OFFSET_FILL feature while drawing the faces.
+
+```c
+glPolygonOffset(1,1);
+glEnable( GL_POLYGON_OFFSET_FILL );
+   .
+   .   // Draw the faces.
+   .
+glDisable( GL_POLYGON_OFFSET_FILL );
+   .
+   .   // Draw the edges.
+   .
+```
+
 
 
