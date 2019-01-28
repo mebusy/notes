@@ -840,7 +840,11 @@ gl2.glDrawElements( GL2.GL_QUADS, 24, GL2.GL_UNSIGNED_INT, elementBuffer );
     - followed by translation by t1 in the x direction, t2 in the y direction and t3 in the z direction. 
  - The trick is to replace each 3D  vector (x,y,z) with the four-dimensional vector (x,y,z,1), adding a "1" as the fourth coordinate. 
  - And instead of the 3-by-3 matrix, we use the 4-by-4 matrix
-    - 
-
+    - ![](../imgs/cg_gl_affine_3D.png)
+ - If the vector (x1,y1,z1,1) is multiplied by this 4-by-4 matrix, the result is precisely the vector (x2,y2,z2,1).
+    - That is, instead of applying an affine transformation to the 3D vector (x1,y1,z1), we can apply a linear transformation to the 4D vector (x1,y1,z1,1).
+ - An affine transformation is represented as a 4-by-4 matrix in which the bottom row is (0,0,0,1), and a three-dimensional vector is changed into a four dimensional vector by adding a 1 as the final coordinate.
+    - The result is that all the affine transformations that are so important in computer graphics can be implemented as multiplication of vectors by matrices.
+ - 
 
 
