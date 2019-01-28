@@ -700,4 +700,147 @@ glDrawArrays( GL_TRIANGLES, 0, 3 ); // Use 3 vertices, starting with vertex 0.
 
 ---
 
+ - The function glDrawElements is similar to glDrawArrays, but it is designed for use with data in a format similar to an indexed face set. 
+    - With glDrawArrays, OpenGL pulls data from the enabled arrays in order, vertex 0, then vertex 1, then vertex 2, and so on. 
+    - With glDrawElements, you provide a list of vertex numbers. OpenGL will go through the list of vertex numbers, pulling data for the specified vertices from the arrays. 
+ - The advantage of this comes, as with indexed face sets, from the fact that the same vertex can be reused several times.
+ - To use glDrawElements to draw a primitive, you need an array to store the vertex numbers. 
+    - The numbers in the array can be 8, 16, or 32 bit integers.
+    - You also need arrays to store the vertex coordinates and other vertex data, and you must enable those arrays in the same way as for glDrawArrays, using functions such as glVertexArray and glEnableClientState.
+
+```c
+void glDrawElements( int primitiveType, vertexCount, dataType, void *array)
+```
+
+ - vertexCount is the number of vertices to be drawn, dataType specifies the type of data in the array (in GL_UNSIGNED_BYTE, GL_UNSIGNED_SHORT, or GL_UNSIGNED_INT ), and array is the array that holds the list of vertex numbers. 
+ - As an example, we can draw a cube. 
+
+```c
+float vertexCoords[24] = {  // Coordinates for the vertices of a cube.
+           1,1,1,   1,1,-1,   1,-1,-1,   1,-1,1,
+          -1,1,1,  -1,1,-1,  -1,-1,-1,  -1,-1,1  };
+
+float vertexColors[24] = {  // An RGB color value for each vertex
+           1,1,1,   1,0,0,   1,1,0,   0,1,0,
+           0,0,1,   1,0,1,   0,0,0,   0,1,1  };
+
+int elementArray[24] = {  // Vertex numbers for the six faces.
+          0,1,2,3, 0,3,7,4, 0,4,5,1,
+          6,2,1,5, 6,5,4,7, 6,7,3,2  };
+
+glVertexPointer( 3, GL_FLOAT, 0, vertexCoords );
+glColorPointer( 3, GL_FLOAT, 0, vertexColors );
+
+glEnableClientState( GL_VERTEX_ARRAY );
+glEnableClientState( GL_COLOR_ARRAY );
+
+glDrawElements( GL_QUADS, 24, GL_UNSIGNED_INT, elementArray );
+```
+
+### 3.4.3  Data Buffers in Java
+
+ - Ordinary Java arrays are not suitable for use with glDrawElements and glDrawArrays, partly because of the format in which data is stored in them and partly because of inefficiency in transfer of data between Java arrays and the GPU.
+    - These problems are solved by using **direct nio buffers**. 
+    - The term "nio" here refers to the package java.nio, which contains classes for input/output. 
+    - A "buffer" in this case is an object of the class java.nio.Buffer or one of its subclasses, such as FloatBuffer or IntBuffer. 
+    - Finally, "direct" means that the buffer is optimized for direct transfer of data between memory and other devices such as the GPU. 
+    - Like an array, an nio buffer is a numbered sequence of elements, all of the same type.
+ - For example, JOGL has the following glVertexPointer method in the GL2 class:
+    - Only the last parameter differs from the C version. 
+
+
+```java
+public void glVertexPointer(int size, int type, int stride, Buffer buffer)
+```
+
+ - The class com.jogamp.common.nio.Buffers contains static utility methods for working with direct nio buffers. 
+    - The easiest to use are methods that create a buffer from a Java array. 
+
+```java
+float[] vertexCoords = {  // Coordinates for the vertices of a cube.
+            1,1,1,   1,1,-1,   1,-1,-1,   1,-1,1,
+            -1,1,1,  -1,1,-1,  -1,-1,-1,  -1,-1,1  };
+            
+int[] elementArray = {  // Vertex numbers for the six faces.
+            0,1,2,3, 0,3,7,4, 0,4,5,1,
+            6,2,1,5, 6,5,4,7, 6,7,3,2  };
+
+// Buffers for use with glVertexPointer and glDrawElements:            
+FloatBuffer vertexCoordBuffer = Buffers.newDirectFloatBuffer(vertexCoords);
+IntBuffer elementBuffer = Buffers.newDirectIntBuffer(elementArray);
+
+gl2.glVertexPointer( 3, GL2.GL_FLOAT, 0, vertexCoordBuffer );
+gl2.glDrawElements( GL2.GL_QUADS, 24, GL2.GL_UNSIGNED_INT, elementBuffer );
+```
+
+
+### 3.4.4  Display Lists and VBOs
+
+ - All of the OpenGL drawing commands that we have considered so far have an unfortunate inefficiency when the same object is going be drawn more than once: 
+    - The commands and data for drawing that object must be transmitted to the GPU each time the object is drawn.
+ - It should be possible to store information on the GPU, so that it can be reused without retransmitting it.  We will look at two techniques for doing this: **display lists** and  **vertex buffer objects (VBOs)**. 
+    - Display lists were part of the original OpenGL 1.0, but they are not part of the modern OpenGL API. 
+    - VBOs were introduced in OpenGL 1.5 and are still important in modern OpenGL.
+    - we will discuss them only briefly here and will consider them more fully when we get to WebGL.
+ - Display lists are useful when the same sequence of OpenGL commands will be used several times. 
+    - A display list is a list of graphics commands and the data used by those commands. 
+    - A display list can be stored in a GPU. 
+    - The contents of the display list only have to be transmitted once to the GPU. Once a list has been created, it can be "called."  
+    - The key point is that calling a list requires only one OpenGL command. 
+    - Note that calling a display list twice can result in two different effects, since the effect can depend on the OpenGL state at the time the display list is called. 
+    - If you want to use a display list, you first have to ask for an integer that will identify that list to the GPU. 
+        - `listID = glGenLists(1);`
+        - The return value is an *int* which will be the identifier for the list. 
+        - The parameter to glGenLists is also an *int*, which is usually 1. 
+            - You can actually ask for several list IDs at once; the parameter tells how many you want. 
+            - The list IDs will be consecutive integers, so that if listA is the return value from glGenLists(3), then the identifiers for the three lists will be listA, listA + 1, and listA + 2.)
+    - Once you've allocated a list in this way, you can store commands into it. 
+        - 
+        ```
+        glNewList(listID, GL_COMPILE);
+           ...  // OpenGL commands to be stored in the list.
+        glEndList();
+        ```
+    - The parameter GL_COMPILE means that you only want to store commands into the list, not execute them. 
+        - If you use the alternative parameter GL_COMPILE_AND_EXECUTE, then the commands will be executed immediately as well as stored in the list for later reuse.
+    - Once you have created a display list in this way, you can call the list with the command
+        - `glCallList(listID);`
+    - You can tell the graphics card that a list is no longer needed by calling 
+        - `gl.glDeleteLists(listID, 1);`
+        - The second parameter in this method call plays the same role as the parameter in glGenLists; that is, it allows you delete several sequentially numbered lists. 
+
+---
+
+ - Vertex buffer objects take a different approach to reusing information. 
+    - They only store data, not commands.
+    - A VBO is similar to an array. In fact, it is essentially an array that can be stored on the GPU for efficiency of reuse. 
+    - There are OpenGL commands to create and delete VBOs and to transfer data from an array on the CPU side into a VBO on the GPU. 
+    - You can configure glDrawArrays() and glDrawElements() to take the data from a VBO instead of from an ordinary array (in C) or from an nio Buffer (in JOGL). 
+    - This means that you can send the data once to the GPU and use it any number of times.
+    - I will not discuss how to use VBOs here, since it was not a part of OpenGL 1.1. 
+
+
+## 3.5 Some Linear Algebra
+
+### 3.5.2  Matrices and Transformations
+
+ - Rotation and scaling are **linear** transformations, but translation is not a **linear** transformaton. 
+    - To include translations, we have to widen our view of transformation to include *affine transformations*. 
+ - An *affine transformation* can be defined, roughly, as a linear transformation followed by a translation. 
+    - Geometrically, an affine transformation is a transformation that preserves parallel lines; 
+    - that is, if two lines are parallel, then their images under an affine transformation will also be parallel lines. 
+ - Note first of all that an affine transformation in 3D transforms a vector (x1,y1,z1) into a vector (x2,y2,z2) given by formulas
+    - 
+    ```
+    x2 = a1*x1 + a2*y1 + a3*z1 + t1
+    y2 = b1*x1 + b2*y1 + b3*z1 + t2
+    z2 = c1*x1 + c2*y1 + c3*z1 + t3
+    ```
+ - These formulas express a linear transformation given by multiplication by the 3-by-3 matrix,
+    - followed by translation by t1 in the x direction, t2 in the y direction and t3 in the z direction. 
+ - The trick is to replace each 3D  vector (x,y,z) with the four-dimensional vector (x,y,z,1), adding a "1" as the fourth coordinate. 
+ - And instead of the 3-by-3 matrix, we use the 4-by-4 matrix
+    - 
+
+
 
