@@ -484,8 +484,57 @@ void square( float r, float g, float b ) {
 ```
 
 
-
+ - ![](../imgs/cg_gl_draw_cube.png)
  - To make a red front face for the cube, we just need to call square(1,0,0).    
+    - and we can draw a green right face for the cube with:
+
+```c
+glPushMatrix();
+glRotatef(90, 0, 1, 0);
+square(0, 1, 0);
+glPopMatrix();
+```
+
+## 3.3 Projection and Viewing
+
+ - In the previous section, we looked at the modeling transformation, which transforms from object coordinates to world coordinates.
+ - However, when working with OpenGL 1.1, you need to know about several other coordinate systems and the transforms between them. 
+
+### 3.3.1  Many Coordinate Systems
+
+ - The coordinates that you actually use for drawing an object are called *object coordinates*.
+    - The object coordinate system is chosen to be convenient for the object that is being drawn. 
+    - A modeling transformation can then be applied to set the size, orientation, and position of the object in the overall scene.
+    - The modeling transformation is the first that is applied to the vertices of an object.
+ - The coordinates in which you build the complete scene are called *world coordinates*. 
+    - The modeling transformation maps *from object coordinates to world coordinates*.
+ - In the real world, what you see depends on where you are standing and the direction in which you are looking. 
+    - For the purposes of OpenGL, we imagine that the viewer is attached to their own individual coordinate system, which is known as *eye coordinates*. 
+    - In this coordinate system, the viewer is at the origin, (0,0,0), looking in the direction of the **negative** z-axis, the positive direction of the y-axis is pointing straight up, and the x-axis is pointing to the right. This is a viewer-centric coordinate system.
+    - In other words, eye coordinates are (almost) the coordinates that you actually want to use for drawing on the screen. 
+    - The transform from world coordinates to eye coordinates is called the  *viewing transformation*.
+    - Note, by the way, that OpenGL doesn't keep track of separate modeling and viewing transforms. 
+        - They are combined into a single transform, which is known as the **modelview transformation**.
+        - In fact, OpenGL doesn't have any representation for world coordinates , only object and eye coordinates have meaning. 
+        - OpenGL goes directly from object coordinates to eye coordinates by applying the modelview transformation.
+ - The viewer can't see the entire 3D world, only the part that fits into the *viewport* , which is the rectangular region of the screen or other display device where the image will be drawn.
+    - We say that the scene is "clipped" by the edges of the viewport.
+    - Furthermore, in OpenGL, the viewer can see only a limited range of z-values in the eye coordinate system. 
+        - (This is not  the way that viewing works in the real world, but it's required by the use of the depth test in OpenGL.)
+    - The volume of space that is actually rendered into the image is called the **view volume**.
+    - For purposes of drawing, OpenGL applies a coordinate transform that maps the view volume onto a **cube**. 
+        - The cube is centered at the origin and extends from -1 to 1 in the x-direction, in the y-direction, and in the z-direction. 
+    - The coordinate system on this cube is referred to as *clip coordinates*. 
+    - The transformation from eye coordinates to clip coordinates is called the *projection transformation*. 
+    - At this point, we haven't quite projected the 3D scene onto a 2D surface, but we can now do so simply by discarding the z-coordinate. 
+        -  (The z-coordinate, however, is still needed to provide the depth information that is needed for the depth test.)
+ - In the end, when things are actually drawn, there are **device coordinates**, the 2D coordinate system in which the actual drawing takes place on a physical display device such as the computer screen. 
+    - The drawing region is a rectangle of pixels. This is the rectangle that is called the *viewport*. 
+    - The  *viewport transformation* takes x and y from the clip coordinates and scales them to fit the viewport.
+
+
+
+
 
 
 
