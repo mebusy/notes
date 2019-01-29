@@ -278,6 +278,72 @@ glNormal3fv( normalArray );
     - Looking down the z-axis at the top of the cylinder, it looks like this:
     - ![](../imgs/cg_gl_cylinder_side.png)
 
+ - When we draw the side of the cylinder as a triangle strip, we have to generate pairs of vertices on alternating edges(top & buttom).
+    - The normal vector is the same for the two vertices in the pair, but it is different for different pairs. Here is the code:
+
+```c
+glBegin(GL_TRIANGLE_STRIP);
+for (i = 0; i <= 16; i++) {
+   double angle = 2*3.14159/16 * i;  // i 16-ths of a full circle
+   double x = cos(angle);
+   double y = sin(angle);
+   glNormal3f( x, y, 0 );  // Normal for both vertices at this angle.
+   glVertex3f( x, y, 1 );  // Vertex on the top edge.
+   glVertex3f( x, y, -1 ); // Vertex on the bottom edge.
+}
+glEnd();
+```
+
+ - When we draw the top and bottom of the cylinder, on the other hand, we want a flat polygon, with the normal vector pointing in the direction (0,0,1) for the top and in the direction (0,0,−1) for the bottom:
+
+```c
+glNormal3f( 0, 0, 1);
+glBegin(GL_TRIANGLE_FAN);  // Draw the top, in the plane z = 1.
+for (i = 0; i <= 16; i++) {
+   double angle = 2*3.14159/16 * i;
+   double x = cos(angle);
+   double y = sin(angle);
+   glVertex3f( x, y, 1 );
+}
+glEnd();
+
+glNormal3f( 0, 0, 1 );
+glBegin(GL_TRIANGLE_FAN);  // Draw the bottom, in the plane z = -1
+for (i = 16; i >= 0; i--) {
+   double angle = 2*3.14159/16 * i;
+   double x = cos(angle);
+   double y = sin(angle);
+   glVertex3f( x, y, -1 );
+}
+glEnd();
+```
+
+ - Note that the vertices for the bottom are generated in the opposite order from the vertices for the top, to account for the fact that the top and bottom face in opposite directions.
+ 
+---
+ 
+ - When drawing a primitive with glDrawArrays or glDrawElements, it is possible to provide a different normal for each vertex by using a normal array to hold the normal vectors. 
+    - The normal array works in the same way as the color array and the vertex array. 
+    - To use one, you need to enable the use of a normal array by calling
+        - `glEnableClientState(GL_NORMAL_ARRAY);`
+    - then calling
+        - `glNormalPointer( type, stride, data );`
+        - type: GL_INT, GL_FLOAT, or GL_DOUBLE. 
+
+---
+
+ - The lighting equation assumes that normal vectors are unit normals.
+    - The default in OpenGL is to use normal vectors as provided, even if they don't have length one, which will give incorrect results. 
+    - However, if you call 
+        - `glEnable(GL_NORMALIZE);`
+    - then OpenGL will automatically convert every normal vector into a unit normal.
+ - Note that when a geometric transform is applied, normal vectors are transformed along with vertices.
+    - so even if you provided unit normal vectors, they will not be unit normals after a scaling transformation. 
+    - However, if you have enabled GL_NORMALIZE, the transformed normals will automatically be converted back to unit normals. 
+    - My recommendation is to always enable GL_NORMALIZE as part of your OpenGL initialization.
+
+### 4.2.3  Working with Lights
+
 
 
 
