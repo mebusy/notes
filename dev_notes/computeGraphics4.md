@@ -276,7 +276,7 @@ glNormal3fv( normalArray );
     - The normal vector points in the same direction as the radius, but its z-coordinate is zero since it points directly out from the side of the cylinder. 
     - So, the normal vector to the side of the cylinder at both of these points will be (cos(a),sin(a),0). 
     - Looking down the z-axis at the top of the cylinder, it looks like this:
-    - 
+    - ![](../imgs/cg_gl_cylinder_side.png)
 
 
 
