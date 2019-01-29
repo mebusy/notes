@@ -128,6 +128,8 @@
     - And the contribution of global ambient light is obtained by multiplying the global ambient intensity, gar, by the material ambient color, mar. 
         - This is the mathematical way of saying that the material ambient color is the fraction of the ambient light that is reflected by the surface.
  - The terms I<sub>0,r</sub>, I<sub>1,r</sub>, and so on, represent the contribution to the final color from the various light sources in the environment. 
+    - For an enabled light source, we have to look at the geometry as well as the colors:
+
 
 
 
