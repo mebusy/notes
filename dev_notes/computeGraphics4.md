@@ -216,6 +216,71 @@
     - The property must be GL_SHININESS.
     - And the value is a float in the range 0.0 to 128.0.
 
+```c
+float bgcolor[4] = { 0.0, 0.7, 0.5, 1.0 };
+glMaterialfv( GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, bgcolor );
+```
+
+```c
+float gold[13] = { 0.24725, 0.1995, 0.0745, 1.0,      /* ambient */
+                   0.75164, 0.60648, 0.22648, 1.0,    /* diffuse */
+                   0.628281, 0.555802, 0.366065, 1.0, /* specular */
+                   50.0                               /* shininess */
+    };
+
+glMaterialfv( GL_FRONT_AND_BACK, GL_AMBIENT, gold );
+glMaterialfv( GL_FRONT_AND_BACK, GL_DIFFUSE, &gold[4] );
+glMaterialfv( GL_FRONT_AND_BACK, GL_SPECULAR, &gold[8] );
+glMaterialf( GL_FRONT_AND_BACK, GL_SHININESS, gold[12] );
+```
+
+ - The functions glMaterialfv and glMaterialf can be called at any time, including between calls to glBegin and glEnd. 
+    - This means that different vertices of a primitive can have different material properties.
+
+---
+
+ - So, maybe you like `glColor*` better than glMaterialfv? 
+    - If so, you can use it to work with material as well as regular color. If you call
+    - `glEnable( GL_COLOR_MATERIAL );`
+    - then some of the material color properties will track the color. By default, setting the color will also set the current front and back, ambient and diffuse material properties. 
+    - That is, for example, calling `glColor3f( 1, 0, 0,);` will, if lighting is enabled, have the same effect as calling
+        - `glMaterialfv( GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, array );`
+        - where array contains the values 1, 0, 0, 1.
+    - You can change the material property that tracks the color using
+        - `void glColorMaterial( side, property );`
+    - where side can be GL_FRONT_AND_BACK, GL_FRONT, or GL_BACK, 
+        - and property can be GL_AMBIENT, GL_DIFFUSE, GL_SPECULAR, GL_EMISSION, or GL_AMBIENT_AND_DIFFUSE.
+    - Neither glEnable nor glColorMaterial can be called between calls to glBegin and glEnd, so all of the vertices of a primitive must use the same setting.
+
+### 4.2.2  Defining Normal Vectors
+
+ - Like color and material, normal vectors are attributes of vertices. 
+ - The OpenGL state includes a current normal vector, which is set using functions in the family `glNormal*`. 
+ - When a vertex is specified with `glVertex*`, a copy of the current normal vector is saved as an attribute of the vertex.
+    - glNormal3f, glNormal3d, glNormal3fv, and glNormal3dv. 
+
+```c
+glNormal3f( 0, 0, 1 );  // (This is the default value.)
+glNormal3d( 0.707, 0.707, 0.0 );
+float normalArray[3] = { 0.577, 0.577, 0.577 };
+glNormal3fv( normalArray );
+```
+
+ - Remember that the normal vector should point out of the front face of the polygon, and that the front face is determined by the order in which the vertices are generated. 
+    - If a normal vector for a vertex points in the wrong direction, then lighting calculations will not give the correct color for that vertex.
+ - When modeling a smooth surface, normal vectors should be chosen perpendicular to the surface, rather than to the polygons that approximate the surface. 
+ - Suppose that we want to draw the side of a cylinder with radius 1 and height 2, where the center of the cylinder is at (0,0,0) and the axis lies along the z-axis. 
+    - We can approximate the surface using a single triangle strip. 
+    - The top and bottom edges of the side of a cylinder are circles. 
+    - Vertices along the top edge will have coordinates (cos(a),sin(a),1) and vertices along the bottom edge will have coordinates (cos(a),sin(a),−1), where a is some angle. 
+    - The normal vector points in the same direction as the radius, but its z-coordinate is zero since it points directly out from the side of the cylinder. 
+    - So, the normal vector to the side of the cylinder at both of these points will be (cos(a),sin(a),0). 
+    - Looking down the z-axis at the top of the cylinder, it looks like this:
+    - 
+
+
+
+
 
 ## 4.3 Image Textures
 
