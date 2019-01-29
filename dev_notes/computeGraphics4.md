@@ -202,6 +202,19 @@
  - With all that in mind, we will look at functions for setting the current values of material properties.
     - For setting the ambient, diffuse, specular, and emission material colors, the function is
     - `void glMaterialfv( int side, int property, float* valueArray )`
+    - The first parameter can be GL_FRONT_AND_BACK, GL_FRONT, or GL_BACK. 
+    - The second parameter tells which material property is being set. 
+        - It can be GL_AMBIENT, GL_DIFFUSE, GL_SPECULAR, GL_EMISSION, or GL_AMBIENT_AND_DIFFUSE(use same value). 
+    - The last parameter is an array containing four float numbers.
+        - The numbers give the RGBA color components as values in the range from 0.0 to 1.0; 
+        - values outside this range are actually allowed, and will be used in lighting computations, but such values are unusual. 
+        - Note that an alpha component is required, but it is used only in the case of diffuse color: 
+            - When the vertex color is computed, its alpha component is set equal to the alpha component of the diffuse material color.
+ - The shininess material property is a single number rather than an array, and there is a different function for setting its value 
+    - (without the "v" at the end)
+    - `void glMaterialf( int side, int property, float value )`
+    - The property must be GL_SHININESS.
+    - And the value is a float in the range 0.0 to 128.0.
 
 
 ## 4.3 Image Textures
