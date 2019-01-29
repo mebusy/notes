@@ -129,6 +129,16 @@
         - This is the mathematical way of saying that the material ambient color is the fraction of the ambient light that is reflected by the surface.
  - The terms I<sub>0,r</sub>, I<sub>1,r</sub>, and so on, represent the contribution to the final color from the various light sources in the environment. 
     - For an enabled light source, we have to look at the geometry as well as the colors:
+    - ![](../imgs/cg_gl_light.png)
+    - N is the normal vector at the point whose color we want to compute.
+    - L is a vector that points back to the light source
+    - V is a vector that points in the direction of the viewer.
+    - R is the direction of the reflected ray
+    - **All of the vectors are unit vectors, with length 1**. 
+ - Now, let's say that the light has ambient, diffuse, and specular color components (lar,lag,lab), (ldr,ldg,ldb), and (lsr,lsg,lsb).
+    - let mh be the value of the shininess property of the material. 
+    - Then the contribution of this light source to the red component of the vertex color can be computed as
+    - 
 
 
 
