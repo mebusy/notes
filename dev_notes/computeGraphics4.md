@@ -122,7 +122,7 @@
     - the global ambient intensity is (gar,gag,gab)
     - There can be several point and directional light sources, which we refer to as light number 0, light number 1, light number 2, and so on.
  - With this setup, the red component of the vertex color will be:
-    - `r = mer + gar*mar + I<sub>0,r</sub> + I<sub>1,r</sub> + I<sub>2,r</sub> + ...`
+    - r = mer + gar\*mar + I<sub>0,r</sub> + I<sub>1,r</sub> + I<sub>2,r</sub> + ...
     - where I<sub>0,r</sub> is the contribution to the color that comes from light number 0
     - This equation says that the emission color, mer, is simply added to others ...
     - And the contribution of global ambient light is obtained by multiplying the global ambient intensity, gar, by the material ambient color, mar. 
