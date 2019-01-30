@@ -760,13 +760,91 @@ for (i = 0; i < n; i++) {
 
 ### 4.3.8  Loading Textures in C
 
- - 
+ - Several free image processing libraries are available.  I will discuss one of them, *FreeImage*.
+ - FreeImage can be obtained from http://freeimage.sourceforge.net/, but I was able to use it in Linux simply by installing the package *libfreeimage-dev*. 
+    - header:  `#include "FreeImage.h"` 
+    - lib: `-lfreeimage`
 
-### 4.3.9  Using Textures with JOGL (Ignore)
 
 
 ## 4.4 Lights, Camera, Action
 
+ - When designing scene graphs, there are many options to consider. For example, 
+    - should transforms be properties of object nodes, or should there be separate nodes to represent transforms? 
+ - The same question can be asked about attributes.
+ - Another question is whether an attribute value should apply only to the node of which it is a property, or should it be inherited by the children of that node?
+ - A fundamental choice is the shape of the graph.
+ - In general, a scene graph can be a directed acyclic graph, or "dag",  which is a tree-like structure except that a node can have several parents in the graph. 
+    - This has the advantage that a single node in the graph can represent several objects in the scene, since in a dag, a node can be encountered several times as the graph is traversed. 
+    - On the other hand, representing several objects with one scene graph node can lead to a lack of flexibility, since those objects will all have the same value for any property encoded in the node. 
+ - So, in some applications, scene graphs are required to be trees. 
+    - In a tree, each node has a unique parent, and the node will be encountered only once as the tree in traversed. 
+
+
+### 4.4.1  Attribute Stack
+
+ - We have seen how the functions glPushMatrix and glPopMatrix are used to manipulate the transform stack.
+ - These functions are useful when traversing a scene graph: 
+    - When a node that contains a transform is encountered during a traversal of the graph, glPushMatrix can be called before applying the transform. 
+    - Then, after the node and its descendants have been rendered, glPopMatrix is called to restore the previous modelview transformation.
+ - Something similar can be done for attributes such as color and material, if it is assumed that an attribute value in a scene graph node should be inherited as the default value of that attribute for children of the node. 
+ - OpenGL 1.1 maintains an attribute stack, which is manipulated using the functions glPushAttrib and glPopAttrib. 
+    - In addition to object attributes like the current color, the attribute stack can store global attributes like the global ambient color and the enabled state of the depth test. 
+ - Since there are so many possible attributes, glPushAttrib does not simply save the value of every attribute. 
+    - Instead, it saves a subset of the possible attributes. 
+    - The subset that is to be saved is specified as a parameter to the function. For example, the command
+        - `glPushAttrib(GL_ENABLED_BIT);`
+        - will save a copy of each of the OpenGL state variables that can be enabled or disabled.
+        - This includes the current state of GL_DEPTH_TEST, GL_LIGHTING, GL_NORMALIZE, and others. 
+    - Similarly
+        - `glPushAttrib(GL_CURRENT_BIT);`
+        - saves a copy of the current color, normal vector, and texture coordinates. 
+    - And 
+        - `glPushAttrib(GL_LIGHTING_BIT);`
+        - saves attributes relevant to lighting such as the values of material properties and light properties, the global ambient color, color material settings, and the enabled state for lighting and each of the individual lights.
+ - Other constants can be used to save other sets of attributes; see the OpenGL documentation for details. 
+ - It is possible to call 
+    - `glPushAttrib(GL_LIGHTING_BIT | GL_ENABLED_BIT)`
+ - Calling glPopAttrib() will restore all the values that were saved by the corresponding call to glPushAttrib. 
+    - There is no need for a parameter to glPopAttrib, since the set of attributes that are restored is determined by the parameter that was passed to glPushAttrib.
+
+---
+
+ - There is an alternative way to save and restore values. 
+ - OpenGL has a variety of "get" functions for reading the values of various state variables. I will discuss just some of them here. 
+ - For example,
+    - 
+    ```c
+    glGetFloatv( GL_CURRENT_COLOR, floatArray );
+    ```
+    - retrieves the current color value, as set by `glColor*`.  The floatArray parameter should be an array of float, whose length is at least four. 
+    - Note that, later, you can simply call glColor4fv(colorArray) to restore the color. 
+ - The same function can be used with different first parameters to read the values of different floating-point state variables.
+    - To find the current value of the viewport, use
+    - 
+    ```c
+    glGetIntegerv( GL_VIEWPORT, intArray );
+    ```
+    - To read the current values of material properties, use
+    - 
+    ```c
+    glGetMaterialfv( face, property, floatArray );
+    ```
+ - Finally, I will mention `glIsEnabled(name)`, which can be used to check the enabled/disabled status of state variables such as GL_LIGHTING and GL_DEPTH_TEST. 
+    - The parameter should be the constant that identifies the state variable. 
+    - function returns 0 if the state variable is disabled and 1 if it is enabled.
+ - Since glPushAttrib can be used to push large groups of attribute values, you might think that it would be more efficient to use glIsEnabled and the `glGet*` family of commands to read the values.
+    - recall that OpenGL can queue a number of commands into a batch to be sent to the graphics card, and those commands can be executed by the GPU at the same time that your program continues to run. 
+    - A glGet command can require your program to communicate with the graphics card and wait for the response. 
+    - This is the kind of thing that can hurt performance.
+    - In fact, you should generally prefer using glPushAttrib/glPopAttrib instead of a glGet command when possible.
+
+### 4.4.2  Moving Camera
+
+
+
+
+ 
 
 ## 4.n 笔记
 
