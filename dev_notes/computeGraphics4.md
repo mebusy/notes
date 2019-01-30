@@ -550,7 +550,56 @@ void glTexCoordPointer( int size, int dataType, int stride, void* array)
     - A complete set of mipmaps consists of the full-size texture, a half-size version in which each dimension is divided by two, a quarter-sized version, a one-eighth-sized version, and so on. 
     - In any case, the final mipmap consists of a single pixel. 
     - Here are the first few images in the set of mipmaps for a brick texture:
-    - 
+    - ![](../imgs/cg_gl_mipmaps.png)
+    - The total memory used by a set of mipmaps is only about one-third more than the memory used for the original texture.
+ - Mipmaps are used only for minification filtering. 
+    - They are essentially a way of pre-computing the bulk of the averaging that is required when shrinking a texture to fit a surface. 
+    - To texture a pixel, OpenGL can first select the mipmap whose texels most closely match the size of the pixel. 
+ - In newer versions of OpenGL, you can get OpenGL to generate mipmaps automatically.
+    - In OpenGL 1.1, if you want to use mipmaps, you must either load each mipmap individually, or you must generate them yourself. 
+    - (The GLU library has a method, gluBuild2DMipmaps that can be used to generate a set of mipmaps for a 2D texture.) 
+
+
+### 4.3.3  Texture Target and Texture Parameters
+
+ - OpenGL can actually use 1D and 3D textures, as well as 3D . 
+    - Because of this, many OpenGL functions dealing with textures take a texture target as a parameter, to tell whether the function should be applied to one, two, or three dimensional textures. 
+    - For us, the only texture target will be GL_TEXTURE_2D.
+ - There are a number of options that apply to textures, to control the details of how textures are applied to surfaces. 
+    - Some of the options can be set using the glTexParameteri() function.
+
+```c
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, magFilter);
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minFilter);
+```
+
+ - The values of *magFilter* and *minFilter* are constants that specify the filtering algorithm. 
+    - GL_NEAREST , GL_LINEAR
+    - The default for the MAG filter is GL_LINEAR , and there is rarely any need to change it. 
+    - For minFilter, in addition to GL_NEAREST and GL_LINEAR, there are four options that use mipmaps for more efficient filtering. 
+    - The default MIN filter is GL_NEAREST_MIPMAP_LINEAR,
+        - which does averaging between mipmaps and nearest texel filtering within each mipmap. 
+    - For even better results, at the cost of greater inefficiency, you can use GL_LINEAR_MIPMAP_LINEAR, 
+        - which does averaging both between and within mipmaps. 
+    - The other two options are GL_NEAREST_MIPMAP_NEAREST and GL_LINEAR_MIPMAP_NEAREST.
+ - **One very important note:** , If you are **not** using mipmaps for a texture, it is imperative that you change the minification filter for that texture to GL_LINEAR or, less likely, GL_NEAREST. 
+    - The default MIN filter requires mipmaps, and if mipmaps are not available, then the texture is considered to be improperly formed, and OpenGL ignores it! 
+    - Remember that if you don't create mipmaps and if you don't change the minification filter, then your texture will simply be ignored by OpenGL.
+ - There is another pair of texture parameters to control how texture coordinates outside the range 0 to 1 are treated. 
+    - The default is to repeat the texture. 
+    - The alternative is to "clamp" the texture. 
+        - This means that when texture coordinates outside the range 0 to 1 are specified, those values are forced into that range: Values less than 0 are replaced by 0, and values greater than 1 are replaced by 1. 
+
+```c
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+```
+
+ - Passing GL_REPEAT as the last parameter restores the default behavior. 
+ - When clamping is in effect, texture coordinates outside the range 0 to 1 return the same color as a texel that lies along the outer edge of the image.
+    - Here is what the effect looks like on two textured squares:
+    -  
+
 
 
 ## 4.4 Lights, Camera, Action
