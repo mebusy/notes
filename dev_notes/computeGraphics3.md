@@ -486,6 +486,13 @@ glPopMatrix();
  - Projection and viewing are often discussed using the analogy of a camera.
  - TODO
 
+### 3.3.6 笔记
+
+ - viewport transform : glViewport 
+ - projection transform :  glFrustum , gluPerspective  
+ - view transform :  gluLookAt 
+
+
 ## 3.4 Polygonal Meshes and glDrawArrays
 
  - Now, our problem is to represent a set of polygons—most often a set of triangles. 

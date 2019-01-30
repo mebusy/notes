@@ -344,11 +344,214 @@ glEnd();
 
 ### 4.2.3  Working with Lights
 
+ - OpenGL 1.1 supports at least eight light sources, GL_LIGHT0, GL_LIGHT1, ..., GL_LIGHT7. 
+ - Each light source can be configured to be either a *directional light* or a  *point light*, 
+    - and each light can have its own diffuse, specular, and ambient intensities. 
+ - By default, all of the light sources are disabled. To enable a light, call glEnable(light).
+    - However, just enabling a light does not give any illumination, except in the case of GL_LIGHT0, 
+    - since all light intensities are zero by default, with the single exception of the diffuse color of *GL_LIGHT0*.
+ - To get any light from the other light sources, you need to change some of their properties.
+    - `void glLightfv( int light, int property, float* valueArray );`
+    - property: GL_DIFFUSE, GL_SPECULAR, GL_AMBIENT, or GL_POSITION 
+    - valueArray: {r,g,b,a}  , The alpha component is not actually used for anything.
+        - The values generally lie in the range 0.0 to 1.0, but can lie outside that range; 
+        - in fact, values larger than 1.0 are occasionally useful. 
+    - Remember that the diffuse and specular colors of a light tell how the light interacts with the diffuse and specular material colors
+        - **the ambient color is simply added to the global ambient light when the light is enabled**.
+ - For example, to set up light zero as a bluish light, with blue specular highlights, that adds a bit of blue to the ambient light when it is turned on, you might use:
+
+```c
+float blue1[4] = { 0.4, 0.4, 0.6, 1 };
+float blue2[4] = { 0.0, 0, 0.8, 1 };
+float blue3[4] = { 0.0, 0, 0.15, 1 };
+glLightfv( GL_LIGHT1, GL_DIFFUSE, blue1 );
+glLightfv( GL_LIGHT1, GL_SPECULAR, blue2 );
+glLightfv( GL_LIGHT1, GL_AMBIENT, blue3 );
+```
+
+---
+
+ - The GL_POSITION property of a light is quite a bit different. 
+    - It is used both to set 
+        - whether the light is a point light or a directional light, 
+        - and to set its position or direction. 
+    - The property value for GL_POSITION is an array of four numbers (x,y,z,w), of which at least one must be non-zero. 
+        - When the fourth number, w, is zero, then the light is directional ,and the point (x,y,z) specifies the direction of the light: 
+            - The light rays shine in the direction of the line from the point (x,y,z) towards the origin. 
+            - The source of the light can be considered to be a point at infinity in the direction of (x,y,z).
+        - On the other hand, if the fourth number, w, is non-zero, then the light is a point light, and it is located at the point (x/w,y/w,z/w). 
+ - The default position for all lights is (0,0,1,0), representing a directional light shining from the positive direction of the z-axis.
+ - One important and potentially confusing fact about lights is that 
+    - the position that is specified for a light is transformed by the modelview transformation that is in effect **at the time the position is set** using glLightfv. 
+        - ( 为灯光指定的位置会被模型视图变换转换，该变换在使用glLightfv设置位置时生效。)
+    - That is , the position is set in eye coordinates, not in  world coordinates.
+    - Calling glLightfv with the property set to GL_POSITION is very much like calling `glVertex*`. The light position is transformed in the same way that the vertex coordinates would be transformed. 
+    - For example,
+
+```c
+    float position[4] = { 1,2,3,1 }
+    glLightfv(GL_LIGHT1, GL_POSITION, position);
+
+// puts the light in the same place as
+
+    glTranslatef(1,2,3);
+    float position[4] = { 0,0,0,1 }
+    glLightfv(GL_LIGHT1, GL_POSITION, position);
+``` 
+
+ - For a directional light, the direction of the light is transformed by the rotational part of the modelview transformation.
+
+ - There are three basic ways to use light position. It is easiest to think in terms of potentially animated scenes.
+ - **First**, if the position is set before any modelview transformation is applied, then the light is fixed with respect to the viewer. 
+    - For example, the default light position is effectively set to (0,0,1,0) while the modelview transform is the identity. This means that it shines in the direction of the negative z-axis, *in the coordinate system of the viewer*, where the negative z-axis points into the screen. 
+    - Another way of saying this is that the light always shines from the direction of the viewer into the scene.
+    - It's like the light is attached to the viewer. If the viewer moves about in the world, the light moves with the viewer.
+ - **Second**, if the position is set after the viewing transform has been applied and before any modeling transform is applied, then the position of the light is fixed in world coordinates. 
+    - It will not move with the viewer, and it will not move with objects in the scene. It's like the light is attached to the world.
+ - **Third**, if the position is set after a modeling transform has been applied, then the light is subject to that modeling transformation. 
+    - This can be used to make a light that moves around in the scene as the modeling transformation changes.
+    - If the light is subject to the same modeling transformation as an object, then the light will move around with that object, as if it is attached to the object.
+ 
+    
+### 4.2.4  Global Lighting Properties
+
+ - OpenGL lighting system uses several global properties. 
+ - There are only three such properties in OpenGL 1.1. 
+ - One of them is the global ambient light.
+    - Global ambient light will be present in the environment even if all of GL_LIGHT0, GL_LIGHT1, ... are disabled.
+    - By default, the global ambient light is black. The value can be changed using the function
+    - 
+    ```c
+    void glLightModelfv( int property, float* value )
+    ```
+    - where the property must be GL_LIGHT_MODEL_AMBIENT. 
+    - In general, the global ambient light level should be quite low. For example, in C:
+    - 
+    ```c
+    float ambientLevel[] = { 0.15, 0.15, 0.15, 1 };
+    glLightModelfv( GL_LIGHT_MODEL_AMBIENT, ambientLevel );
+    ``` 
+    - The alpha component of the color is usually set to 1, but it is not used for anything.
+ - The other two light model properties are options that can be either off or on. 
+    - GL_LIGHT_MODEL_TWO_SIDE
+    - GL_LIGHT_MODEL_LOCAL_VIEWER
+    - They can be set using the function 
+    - 
+    ```c
+    void glLightModeli( int property, int value )
+    ```
+ - GL_LIGHT_MODEL_TWO_SIDE is used to turn on two-sided lighting. 
+    - When two-sided lighting is off, which is the default, only the front material is used; it is used for both the front face and the back face of the polygon. 
+    - Furthermore, the same normal vector is used for both faces. 
+    - When two-sided lighting is on,  the back material is used on the back face and the direction of the normal vector is reversed when it is used in lighting calculations for the back face.
+ - You should use two-sided lighting whenever there are back faces that might be visible in your scene. 
+    - 比如 没有盖子的 小熊饼干盒
+    - With two-sided lighting, you have the option of using the same material on both faces or specifying different materials for the two faces. 
+    - For example, to put a shiny purple material on front faces and a duller yellow material on back faces:
+
+```c
+glLightModeli( GL_LIGHT_MODEL_TWO_SIDE, 1 ); // Turn on two-sided lighting.
+
+float purple[] = { 0.6, 0, 0.6, 1 };
+float yellow[] = { 0.6, 0.6, 0, 1 };
+float white[] = { 0.4, 0.4, 0.4, 1 }; // For specular highlights.
+float black[] = { 0, 0, 0, 1 };
 
 
+glMaterialfv( GL_FRONT, GL_AMBIENT_AND_DIFFUSE, purple );  // front material
+glMaterialfv( GL_FRONT, GL_SPECULAR, white );
+glMaterialf( GL_FRONT, GL_SHININESS, 64 );
+
+glMaterialfv( GL_BACK, GL_AMBIENT_AND_DIFFUSE, yellow );  // back material
+glMaterialfv( GL_BACK, GL_SPECULAR, black );  // no specular highlights
+```
+
+ - The third material property, GL_LIGHT_MODEL_LOCAL_VIEWER, is much less important. 
+    - It has to do with *the direction from a surface to the viewer* in the lighting equation. 
+    - By default, this direction is always taken to point directly out of the screen, which is true for an orthographic projection but is not for not accurate for a perspective projection. 
+    - If you turn on the local viewer option, the true direction to the viewer is used. In practice, the difference is usually not very noticeable.
 
 
 ## 4.3 Image Textures
+
+ - A texture, in general, is some sort of variation from pixel to pixel within a single primitive. 
+ - We will consider only one kind of texture:  **image textures**. 
+ - Textures  become more complicated, in the most modern OpenGL versions. This section covers only part of the OpenGL 1.1 texture API. 
+ - Note that an image that is used as a texture should have a width and a height that are **powers of 2**. This is a requirement in OpenGL 1.1.
+    - The requirement might be relaxed in some versions, but it's still a good idea to use power-of-two textures 
+    - Some of the things will not work with non-power-of-two textures, even on modern systems.
+ - When an image texture is applied to a surface, the default behavior is to multiply the RGBA color components of pixels on the surface by the color components from the image.
+    - The surface color will be modified by light effects, if lighting is turned on, before it is multiplied by the texture color. 
+    - It is common to use white as the surface color. 
+
+### 4.3.1  Texture Coordinates
+
+ - When a texture is applied to a surface, each point on the surface has to correspond to a point in the texture. 
+ - There has to be a way to determine how this mapping is computed. 
+ - For that, the object needs **texture coordinates**. 
+    - As is generally the case in OpenGL, texture coordinates are specified for each vertex of a primitive. 
+ - A texture image comes with its own 2D coordinate system.
+    - Traditionally, *s* used for the horizontal coordinate on the image and *t* is used for the vertical coordinate.
+    - (0,0) is at left-bottom
+    - s or t outside of the range [0,1] are still valid  as texture coordinates. 
+ - To draw a textured primitive, we need a pair of numbers (s,t) for each vertex. 
+ - The texture coordinates of a vertex are an *attribute* of the vertex, just like color, normal vectors, and material properties. 
+    - `glTexCoord2f(s,t), glTexCoord2d(s,t), glTexCoord2fv(array), glTexCoord2dv(array)`
+ - The OpenGL state includes a current set of texture coordinates , as specified by these functions.
+
+```c
+glNormal3d(0,0,1);       // This normal works for all three vertices.
+glBegin(GL_TRIANGLES);
+glTexCoord2d(0.3,0.1);   // Texture coords for vertex (0,0)
+glVertex2d(0,0);
+glTexCoord2d(0.45,0.6);  // Texture coords for vertex (0,1)
+glVertex2d(0,1);
+glTexCoord2d(0.25,0.7);  // Texture coords for vertex (1,0)
+glVertex2d(1,0);
+glEnd();
+```
+
+ - One last question: What happens if you supply texture coordinates that are not in the range from 0 to 1? 
+    - By default, in OpenGL 1.1, they behave as though the entire st-plane is filled with copies of the image. 
+    - For example, if the texture coordinates for a square range from 0 to 3 in both directions, instead of 0 to 1, then you get 9 copies of the image on the square (3 copies horizontally by 3 copies vertically).
+
+---
+
+ - To draw a textured primitive using glDrawArrays or glDrawElements, you will need to supply the texture coordinates in a  vertex array, 
+    - in the same way that you supply vertex coordinates, colors, and normal vectors.
+
+```c
+glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+void glTexCoordPointer( int size, int dataType, int stride, void* array)
+```
+
+
+### 4.3.2  MipMaps and Filtering
+
+ - When a texture is applied to a surface, the pixels in the texture do not usually match up one-to-one with pixels on the surface, 
+    - and in general, the texture must be stretched or shrunk as it is being mapped onto the surface. 
+ - Sometimes, several pixels in the texture will be mapped to the same pixel on the surface. 
+    - In this case, the color that is applied to the surface pixel must somehow be computed from the colors of all the texture pixels that map to it. 
+    - This is an example of "**filtering**"; in particular, it uses a *minification filter* because the texture is being shrunk. 
+ - When one pixel from the texture covers more than one pixel on the surface, the texture has to be magnified, and we need a *magnification filter*.
+ - One bit of terminology before we proceed: 
+    - The pixels in a texture are referred to as **texels**, short for "texture pixel" or "texture element".
+ - When deciding how to apply a texture to a point on a surface, OpenGL knows the texture coordinates for that point. 
+    - Those texture coordinates correspond to one point in the texture, and that point lies in one of the texture's texels. 
+    - The easiest thing to do is to apply the color of that texel to the point on the surface.
+        - This is called "*nearest texel filtering*." It is very fast, but it does not usually give good results.
+        - It doesn't take into account the difference in size between the pixels on the surface and the texels in the image.
+    - An improvement on nearest texel filtering is "*linear filtering*," which can take an average of several texel colors to compute the color that will be applied to the surface.
+ - The problem with linear filtering is that it will be very inefficient when a large texture is applied to a much smaller surface area. 
+    - In this case, many texels map to one pixel, and computing the average of so many texels becomes very inefficient. 
+    - There is a neat solution for this:  **mipmaps**.
+ - A mipmap for a texture is a scaled-down version of that texture. 
+    - A complete set of mipmaps consists of the full-size texture, a half-size version in which each dimension is divided by two, a quarter-sized version, a one-eighth-sized version, and so on. 
+    - In any case, the final mipmap consists of a single pixel. 
+    - Here are the first few images in the set of mipmaps for a brick texture:
+    - 
+
 
 ## 4.4 Lights, Camera, Action
 
@@ -358,6 +561,8 @@ glEnd();
  - 材质各种颜色属性，可以理解为 对各种光源的反射的衰减程度。
  - back face 没有 镜面反射和漫反射
  - 漫反射和viewer 无关. 
+ - 各个光源的环境光强度 会加到 全局环境光上.
+
 
 
 
