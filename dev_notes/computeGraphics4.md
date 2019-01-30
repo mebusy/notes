@@ -598,8 +598,171 @@ glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
  - Passing GL_REPEAT as the last parameter restores the default behavior. 
  - When clamping is in effect, texture coordinates outside the range 0 to 1 return the same color as a texel that lies along the outer edge of the image.
     - Here is what the effect looks like on two textured squares:
-    -  
+    - ![](../imgs/cg_gl_texture_clamp.png)
+    - The two squares in this image have s and t texture coordinates that range from −1 to 2. 
 
+
+### 4.3.4  Texture Transformation
+
+ - OpenGL  supports textures in 1D,2D,3D.
+    - This means that texture coordinates cannot be restricted to 2D.
+    - In fact, a set of texture coordinates in OpenGL is represented internally in the form of homogeneous coordinates, which are referred to as (s,t,r,q). 
+    - We have used `glTexCoord2*` to specify texture s and t coordinates, is really just shorthand for `glTexCoord4f(s,t,0,1)`.
+ - Since texture coordinates are no different from vertex coordinates, they can be transformed in exactly the same way. 
+ - OpenGL maintains a *texture transformation* as part of its state, along with the modelview and projection transformations. 
+    - The current value of each of the three transformations is stored as a matrix.
+    - When a texture is applied to an object, the texture coordinates that were specified for its vertices are transformed by the texture matrix.
+    - The transformed texture coordinates are then used to pick out a point in the texture.
+    - Of course, the default texture transform is the identity transform, which doesn't change the coordinates.
+ - The texture matrix can represent scaling, rotation, translation and combinations of these basic transforms. 
+    - For example to install a texture transform that scales texture coordinates by a factor of two in each direction, you could say:
+
+```c
+glMatrixMode(GL_TEXTURE);
+glLoadIdentity(); // Make sure we are starting from the identity matrix.
+glScalef(2,2,1);
+glMatrixMode(GL_MODELVIEW); // Leave matrix mode set to GL_MODELVIEW.
+```
+
+ - In the example, the scaling transform multiplies each texture coordinate by 2. 
+    - If a vertex was assigned 2D texture coordinates (0.4,0.1), then after the texture transform is applied, that vertex will be mapped to the point (s,t) = (0.8,0.2) in the texture. 
+    - The texture coordinates vary twice as fast on the surface as they would without the scaling transform. 
+    - A region on the surface that would map to a 1-by-1 square in the texture image without the transform will instead map to a 2-by-2 square in the image
+        - so that a larger piece of the image will be seen inside the region. 
+    - In other words, the texture image will be shrunk by a factor of two on the surface!
+    - More generally, the effect of a texture transformation on the appearance of the texture is the **inverse** of its effect on the texture coordinates.
+    - If the texture transform is translation to the right, then the texture moves to the left on the surface. 
+    - If the texture transform is a counterclockwise rotation, then the texture rotates clockwise on the surface.
+
+### 4.3.5  Loading a Texture from Memory
+
+ - OpenGL does not have functions for loading images from a file. 
+ - For now, we assume that the file has already been loaded from the file into the computer's memory.
+ - The OpenGL function for loading image data from the computer's memory into a 2D texture:
+
+```c
+glTexImage2D(target, mipmapLevel, internalFormat, width, height, border,
+                            format, dataType, pixels);
+```
+ 
+ - The target should be GL_TEXTURE_2D. 
+ - The mipmapLevel should ordinarily be 0. 
+    - The value 0 is for loading the main texture; a larger value is used to load an individual mipmap. 
+ - The internalFormat tells OpenGL how you want the texture data to be stored in OpenGL texture memory. 
+    - It is ordinarily GL_RGB to store an 8-bit red/green/blue component for each pixel.
+    - Another possibility is GL_RGBA, which adds an alpha component.
+ - The width and height give the size of the image; the values should usually be powers of two. 
+ - The value of border should be 0; 
+    - the only other possibility is 1, which indicates that a one-pixel border has been added around the image data for reasons that I will not discuss.
+ - The last three parameters describe the image data. 
+    - The format tells how the original image data is represented in the computer's memory, such as GL_RGB or GL_RGBA. 
+    - The dataType is usually GL_UNSIGNED_BYTE, indicating that each color component is represented as a one-byte value in the range 0 to 255. 
+    - And pixels is a pointer to the start of the actual color data for the pixels. 
+ - This all looks rather complicated, but in practice, a call to glTexImage2D generally takes the following form
+
+```c
+glEnable(GL_TEXTURE_2D);
+...
+glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0,
+                    GL_RGB, GL_UNSIGNED_BYTE, pixels);
+```
+
+ - If you want to use the texture on some objects but not others, you can enable GL_TEXTURE_2D before drawing objects that you want to be textured and disable it before drawing untextured objects.
+    - You can also change the texture that is being used at any time by calling glTexImage2D.
+
+### 4.3.6  Texture from Color Buffer
+
+ - OpenGL is itself a powerful engine for creating images. Sometimes, instead of loading an image file, it's convenient to have OpenGL create the image internally, by rendering it.
+    - This is possible because OpenGL can read texture data from its own color buffer, where it does its drawing.
+ - To create a texture image using OpenGL, you just have to draw the image using standard OpenGL drawing commands and then load that image as a texture using 
+
+```c
+glCopyTexImage2D( target, mipmapLevel, internalFormat,
+                                     x, y, width, height, border );
+```
+
+ - In this method, target will be GL_TEXTURE_2D; 
+    - mipmapLevel should be zero;
+    - internalFormat will ordinarily be GL_RGB or GL_RGBA;
+    - x and y specify the lower left corner of the rectangle from which the texture will be read; 
+    - width and height are the size of that rectangle; should be power of 2
+    - and border should be 0.
+ - A call to glCopyTexImage2D will typically look like
+
+```c
+glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, x, y, width, height, 0);
+```
+
+ - The end result is that the specified rectangle from the color buffer will be copied to texture memory and will become the current 2D texture.
+    - This works in the same way as a call to glTexImage2D(), except for the source of the image data.
+ - The texture can be animated!
+
+
+### 4.3.7  Texture Objects
+
+ - Everything that I've said so far about textures was already true for OpenGL 1.0. 
+ - OpenGL 1.1 introduced a new feature called  **texture objects** to make texture handling more efficient. 
+ - Texture objects are used when you need to work with several texture images in the same program. 
+ - The usual method for loading texture images, glTexImage2D, transfers data from your program into the graphics card. 
+    - This is an expensive operation, and switching among multiple textures by using this method can seriously degrade a program's performance. 
+ - Texture objects offer the possibility of storing texture data for multiple textures on the graphics card.
+ - With texture objects, you can switch from one texture object to another with a single, fast OpenGL command: 
+    - You just have to tell OpenGL which texture object you want to use.
+    - (Of course, the graphics card has only a limited amount of memory for storing textures, and you aren't guaranteed that all of your texture objects will actually be stored on the graphics card. )
+ - Texture objects are managed by OpenGL and the graphics hardware. 
+ - A texture object is identified by an integer ID number. 
+ - To use a texture object, you need to obtain an ID number from OpenGL. This is done with the glGenTextures function:
+
+```c
+void glGenTexures( int textureCount, int* array )
+```
+
+ - This function can generate multiple texture IDs with a single call. 
+    - The first parameter specifies how many IDs you want.
+    - The second parameter says where the generated IDs will be stored.
+    - It should be an array whose length is at least textureCount. 
+ - For example, if you plan to use three texture objects, you can say
+
+```c
+int idList[3];
+glGenTextures( 3, idList );
+```
+
+ - Every texture object has its own state, which includes the values of texture parameters such as GL_TEXTURE_MIN_FILTER as well as the texture image itself. 
+ - To work with a specific texture object, you must first call
+
+```c
+// use a texture
+glBindTexture( GL_TEXTURE_2D, texID )
+```
+
+ - where texID is the texture ID returned by glGenTextures.
+ - After this call, any use of glTexParameteri, glTexImage2D, or glCopyTexImage2D will be applied to the texture object with ID texID.
+ - A typical pattern would be to load and configure a number of textures during program initialization:
+
+```c
+glGenTextures( n, textureIdList );
+for (i = 0; i < n; i++) {
+    glBindTexture( textureIDList[i] );
+      .
+      .  // Load texture image number i
+      .  // Configure texture image number i
+      .
+}
+```
+
+ - Then, while rendering a scene, you would call glBindTexture every time you want to switch from one texture image to another texture image.
+ - OpenGL 1.1 reserves texture ID zero as the default texture object, which is bound initially. 
+    - It is the texture object that you are using if you never call *glBindTexture*. 
+    - This means that you can write programs that use textures without ever mentioning glBindTexture. 
+    - (However, I should note that when we get to WebGL, that will no longer be true.) 
+
+
+### 4.3.8  Loading Textures in C
+
+ - 
+
+### 4.3.9  Using Textures with JOGL (Ignore)
 
 
 ## 4.4 Lights, Camera, Action
