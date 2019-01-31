@@ -855,11 +855,44 @@ for (i = 0; i < n; i++) {
     - However, if the node is a camera node, we don't want to apply that modeling transform; 
         - we want to apply its inverse as a viewing transform. 
     - To get the inverse, we can start at the camera node and follow the path backwards, applying the inverse of the modeling transform at each node.
+    - ![](../imgs/cg_gl_move_camera.png)
+ - To easily implement this, we can add "parent pointers" to the scene graph data structure. 
+    - A parent pointer for a node is a link to the parent of that node in the graph.
+    - Note that this only works if the graph is a tree; in a tree, each node has a unique parent, but that is not true in a general directed acyclic graph.
+    - It is possible to travel up the tree by following parent pointers.
+ - With this in mind, the algorithm for rendering the scene from the point of view of a camera goes as follows:
+    - Set the modelview transform to be the identity, by calling glLoadIdentity(). 
+    - Start at the camera node, and follow parent pointers until you reach the root of the tree. 
+    - At each node, apply the *inverse* of any modeling transformation in that node.  
+        -  (For example, if the modeling transform is translation by (a,b,c), call glTranslatef(−a,−b,−c).) 
+    - Upon reaching the root, the viewing transform corresponding to the camera has been established. 
+    - Now, traverse the scene graph to render the scene as usual. During this traversal, camera nodes should be ignored.
+ - Note that a camera can be attached to an object, in the sense that the camera and the object are both subject to the same modeling transformation and so move together as a unit. 
+    - In modeling terms, the camera and the object are sub-objects in a complex object. 
+    - For example, a camera might be attached to a car to show the view through the windshield of that car. If the car moves, because its modeling transformation changes, the camera will move along with it.
 
 
+### 4.4.3  Moving Light
 
+ - It can also be useful to think of lights as objects, even as part of a complex object. 
+ - Suppose that a scene includes a model of a lamp. The lamp is a complex object made up of an OpenGL light source plus some geometric objects.
+    - Any modeling transformation that is applied to the lamp should affect the light source as well as the geometry. 
+ - In terms of the scene graph, the light is represented by a node in the graph, and it is affected by modeling transformations in the same way as other objects in the scene graph. 
+ - You can even have animated lights -- or animated objects that include lights as sub-objects, such as the headlights on a car.
+ - Recall that a light source is subject to the modelview transform that is in effect at the time the position of the light source is set by *glLightfv*.
+ - If the light is represented as a node in a scene graph, then the modelview transform that we need is the one 
+    - that is in effect when that node is encountered during a traversal of the scene graph. 
+ - So, it seems like we should just traverse the graph and set the position of the light when we encounter it during the traversal.
+ - But there is a problem: Before any geometry is rendered, all the light sources that might affect that geometry must already be configured and enabled. 
+    - In particular, the lights' positions must be set before rendering any geometry. 
+    - This means that you can't simply set the position of light sources in the scene graph as you traverse the graph in the usual way.
+ - One solution is to do two traversals of the scene graph, the first to set up the lights and the second to draw the geometry. 
+    - Since lights are affected by the modelview transformation, you have to set up the modeling transform during the first traversal in exactly the same way that you do in the second traversal. 
+    - When you encounter the lights during the first traversal, you need to set the position of the light, since setting the position is what triggers the application of the current modelview transformation to the light. 
+    - You also need to set any other properties of the light. 
+    - During the first traversal, geometric objects in the scene graph are ignored. 
+    - During the second traversal, when geometry is being rendered, light nodes can be ignored.
 
- 
 
 ## 4.n 笔记
 
