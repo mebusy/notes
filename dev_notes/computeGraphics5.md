@@ -1094,4 +1094,81 @@ cube = new THREE.Mesh( new THREE.CubeGeometry( 100, 100, 100 ), material );
 
 ### 5.3.5  Reflection and Refraction
 
+ - A reflective surface shouldn't just reflect light—it should reflect its environment. 
+ - Three.js can use *environment mapping* to simulate reflection. 
+    - (Environment mapping is also called "reflection mapping.") 
+ - Environment mapping uses a cube map texture. 
+ - Given a point on a surface, a ray is cast from the camera position to that point, and then the ray is reflected off the surface. 
+    - The point where the reflected ray hits the cube determines which point from the texture should be mapped to the point on the surface. 
+ - For a simulation of perfect, mirror-like reflection, the surface point is simply painted with the color from the texture. 
+    - Note that the surface does not literally reflect other objects in the scene. 
+    - It reflects the contents of the cube map texture. 
+ - However, if the same cube map texture is used on a skybox, and if the skybox is the only other object in the scene, then it will look like the surface is a mirror that perfectly reflects its environment.
+
+ - This type of reflection is very easy to do in three.js. 
+    - You only need to make a MeshBasicMaterial and set its *envMap* property equal to the cubemap texture object. 
+ - For example, if texture is the texture object obtained using a THREE.CubeTextureLoader, as in the skybox example above, we can make a sphere that perfectly reflects the texture by saying:
+
+```js
+var geometry = new THREE.SphereGeometry(1,32,16);
+var material = new THREE.MeshBasicMaterial( { 
+        color: "white",  // Color will be multiplied by the environment map. 
+        envMap: texture  // Cubemap texture to be used as an environment map.
+    } );
+var mirrorSphere = new THREE.Mesh( geometry, material );
+```
+
+ - For the effect to look good, you would want to use the same texture on a skybox. 
+    - Note that no lighting is necessary in the scene, since both the skybox and the sphere use a MeshBasicMaterial.
+    - The environment map color is multiplied by the basic color.
+
+---
+
+ - Three.js can also do refraction. 
+ - A ray of light will be bent as it passes between the inside of the object and the outside. 
+    - 弯曲程度取决于 折射率
+ - Even a perfectly transparent object will be visible because of the distortion induced by this bending.
+ - In three.js, refraction is implemented using environment maps. 
+    - As with reflection, a refracting object does not show its actual environment; it refracts the cubemap texture that is used as the environment map. 
+ - For refraction, a special "mapping" must be used for the environment map texture. 
+    - The *mapping* property of a texture tells how that texture will be mapped to a surface. 
+    - For a cubemap texture being used for refraction, it should be set to THREE.CubeRefractionMapping. 
+        - The default value of this property in a cubemap texture is appropriate for reflection rather than refraction.
+ - Here is an example of loading a cubemap texture and setting its mapping property for use with refraction:
+
+```js
+texture = new THREE.CubeTextureLoader().load( textureURLs );
+texture.mapping = THREE.CubeRefractionMapping;
+```
+
+ - In addition to this, the refractionRatio property of the material that is applied to the refracting object should be set. 
+    - The value is a number between 0 and 1; the closer to 1, the less bending of light. 
+    - The default value is so close to 1 that the object will be almost invisible. 
+ - This example uses a value of 0.6:
+
+ ```js
+ var material = new THREE.MeshBasicMaterial( {
+        color: "white",
+        envMap: texture,
+        refractionRatio: 0.6
+    } );
+```
+
+ - Another property that you might set is the *reflectivity*. 
+    - For a refractive object, this value tells how much light is transmitted through the object rather than reflected from its surface. 
+    - The default value, 1, gives 100% transmission of light;
+    - smaller values make objects look like they are made out of "cloudy" glass that blocks some of the light.
+ - But what if a scene includes more than one object? 
+    - The objects won't be in the cubemap texture.
+    - However, you can make an object reflect or refract other objects by making an environment map that includes those objects. 
+    - If the objects are moving, this means that you have to make a new environment map for every frame. 
+    -  Three.js has a kind of camera that can do just that, *THREE.CubeCamera*. 
+ - CubeCamera can take a six-fold picture of a scene from a given point of view and make a cubemap texture from those images. 
+    - To use the camera, you have to place it at the location of an object—and make the object invisible so it doesn't show up in the pictures. Snap the picture, and apply it as an environment map on the object. For animated scenes, you have to do this in every frame, and you need to do it for every reflective/refractive object in the scene. Obviously, this can get very computationally expensive! And the result still isn't perfect. 
+ - For one thing, you won't see multiple reflections, where objects reflect back and forth on each other several times.
+ - For that, you need a different kind of rendering from the one used by OpenGL. 
+
+
+
+  
 
