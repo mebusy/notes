@@ -1,5 +1,39 @@
+...menustart
+
+ - [Chapter 4  OpenGL 1.1: Light and Material](#38013a2053e186e2a913a847302cb961)
+     - [4.1 Introduction to Lighting](#28d62d201f9f167a46bf8fa48482df0f)
+         - [4.1.1  Light and Material](#6788faf44f9f4aa1051a042070db7ea4)
+         - [4.1.2  Light Properties](#7cc9fc44683838aea8d3ee51ca72df05)
+         - [4.1.3  Normal Vectors](#40178615255ddfc4be6f8dab0edd186d)
+         - [4.1.4  The OpenGL Lighting Equation](#4b1becbc8f61f667b2cd75515f209e62)
+     - [4.2 Light and Material in OpenGL 1.1](#1d7df9b9e73b274a6944e83f35506827)
+         - [4.2.1  Working with Material](#212d60534ffdbd3cc3d30ed2081eb957)
+         - [4.2.2  Defining Normal Vectors](#76c4b248421ab6f8ed3961772257e729)
+         - [4.2.3  Working with Lights](#2be3f5e0b0764ab9809f624e5d350be3)
+         - [4.2.4  Global Lighting Properties](#ff6ef9be13faeb818ed39d487cfe0929)
+     - [4.3 Image Textures](#d96740a4938a1526bdbf9e5bd480f733)
+         - [4.3.1  Texture Coordinates](#4d2bd57affe01ae466ff1eec96336e2f)
+         - [4.3.2  MipMaps and Filtering](#9dfb35408c40a9f6a06f637d39978d1f)
+         - [4.3.3  Texture Target and Texture Parameters](#71891ecbd1c91d5bc9cf1dca41bba204)
+         - [4.3.4  Texture Transformation](#77215f4c082667d223529a170e100b17)
+         - [4.3.5  Loading a Texture from Memory](#4cbbc83d1742387d548637c963cd179f)
+         - [4.3.6  Texture from Color Buffer](#9a610c4b77e55f70493fb18040a49abe)
+         - [4.3.7  Texture Objects](#f195611b7e066702888980514017d6d8)
+         - [4.3.8  Loading Textures in C](#fa9c0146e107924356825bdad1b96a79)
+     - [4.4 Lights, Camera, Action](#1cfd2f92a424424d1d932006d298c47f)
+         - [4.4.1  Attribute Stack](#014e48c86844b30ed1ee648f92fef39a)
+         - [4.4.2  Moving Camera](#e90e1158c70aef209dda35c28cbf6feb)
+         - [4.4.3  Moving Light](#a8f9ce93e94e7809b551454814dda1d1)
+     - [4.n 笔记](#61af40d9607525b33bc4bc11f91078b0)
+
+...menuend
+
+
+<h2 id="38013a2053e186e2a913a847302cb961"></h2>
 
 # Chapter 4  OpenGL 1.1: Light and Material
+
+<h2 id="28d62d201f9f167a46bf8fa48482df0f"></h2>
 
 ## 4.1 Introduction to Lighting
 
@@ -7,6 +41,8 @@
  - you need to enable lighting by calling `glEnable(GL_LIGHTING)`.
     - If that's all you do, you will find that your objects are all completely black. If you want to see them, you have to turn on some lights.
  - The properties of a surface that determine how it interacts light are referred to as the **material** of the surface.  
+
+<h2 id="6788faf44f9f4aa1051a042070db7ea4"></h2>
 
 ### 4.1.1  Light and Material
 
@@ -60,6 +96,8 @@
  - In the case of the red, blue, and green components of the ambient, diffuse, or specular color, the term "color" really means reflectivity. 
     - That is, the red component of a color gives the proportion of red light hitting the surface that is reflected by that surface, and similarly for green and blue.
 
+<h2 id="7cc9fc44683838aea8d3ee51ca72df05"></h2>
+
 ### 4.1.2  Light Properties
 
  - Leaving aside ambient light, the light in an environment comes from a light source such as a lamp or the sun. 
@@ -84,6 +122,8 @@
  - I should emphasize again that this is all just an approximation.
     - Real light sources do not have separate ambient, diffuse, and specular colors, and some computer graphics systems model light sources using just one color.
 
+<h2 id="40178615255ddfc4be6f8dab0edd186d"></h2>
+
 ### 4.1.3  Normal Vectors
 
  - The visual effect of a light shining on a surface depends on the properties of the surface and of the light. 
@@ -107,6 +147,8 @@
         - OpenGL通过 顶点的顺序区分它们： the order of the vertices is counterclockwise when looking at the front face.
     - When specifying a normal vector for the polygon, the vector should point out of the front face of the polygon. 
 
+
+<h2 id="4b1becbc8f61f667b2cd75515f209e62"></h2>
 
 ### 4.1.4  The OpenGL Lighting Equation
 
@@ -173,6 +215,8 @@
         - Light shines right through them. 
 
 
+<h2 id="1d7df9b9e73b274a6944e83f35506827"></h2>
+
 ## 4.2 Light and Material in OpenGL 1.1
 
  - The use of light and material must be enabled by calling 
@@ -189,6 +233,8 @@
     - Since it shines from the direction of the viewer, it will illuminate everything that the user can see. 
     - The light is white, with no specular component; 
         - that is, you will see the diffuse color of objects, without any specular highlights. 
+
+<h2 id="212d60534ffdbd3cc3d30ed2081eb957"></h2>
 
 ### 4.2.1  Working with Material
 
@@ -251,6 +297,8 @@ glMaterialf( GL_FRONT_AND_BACK, GL_SHININESS, gold[12] );
     - where side can be GL_FRONT_AND_BACK, GL_FRONT, or GL_BACK, 
         - and property can be GL_AMBIENT, GL_DIFFUSE, GL_SPECULAR, GL_EMISSION, or GL_AMBIENT_AND_DIFFUSE.
     - Neither glEnable nor glColorMaterial can be called between calls to glBegin and glEnd, so all of the vertices of a primitive must use the same setting.
+
+<h2 id="76c4b248421ab6f8ed3961772257e729"></h2>
 
 ### 4.2.2  Defining Normal Vectors
 
@@ -342,6 +390,8 @@ glEnd();
     - However, if you have enabled GL_NORMALIZE, the transformed normals will automatically be converted back to unit normals. 
     - My recommendation is to always enable GL_NORMALIZE as part of your OpenGL initialization.
 
+<h2 id="2be3f5e0b0764ab9809f624e5d350be3"></h2>
+
 ### 4.2.3  Working with Lights
 
  - OpenGL 1.1 supports at least eight light sources, GL_LIGHT0, GL_LIGHT1, ..., GL_LIGHT7. 
@@ -413,6 +463,8 @@ glLightfv( GL_LIGHT1, GL_AMBIENT, blue3 );
     - If the light is subject to the same modeling transformation as an object, then the light will move around with that object, as if it is attached to the object.
  
     
+<h2 id="ff6ef9be13faeb818ed39d487cfe0929"></h2>
+
 ### 4.2.4  Global Lighting Properties
 
  - OpenGL lighting system uses several global properties. 
@@ -472,6 +524,8 @@ glMaterialfv( GL_BACK, GL_SPECULAR, black );  // no specular highlights
     - If you turn on the local viewer option, the true direction to the viewer is used. In practice, the difference is usually not very noticeable.
 
 
+<h2 id="d96740a4938a1526bdbf9e5bd480f733"></h2>
+
 ## 4.3 Image Textures
 
  - A texture, in general, is some sort of variation from pixel to pixel within a single primitive. 
@@ -483,6 +537,8 @@ glMaterialfv( GL_BACK, GL_SPECULAR, black );  // no specular highlights
  - When an image texture is applied to a surface, the default behavior is to multiply the RGBA color components of pixels on the surface by the color components from the image.
     - The surface color will be modified by light effects, if lighting is turned on, before it is multiplied by the texture color. 
     - It is common to use white as the surface color. 
+
+<h2 id="4d2bd57affe01ae466ff1eec96336e2f"></h2>
 
 ### 4.3.1  Texture Coordinates
 
@@ -527,6 +583,8 @@ void glTexCoordPointer( int size, int dataType, int stride, void* array)
 ```
 
 
+<h2 id="9dfb35408c40a9f6a06f637d39978d1f"></h2>
+
 ### 4.3.2  MipMaps and Filtering
 
  - When a texture is applied to a surface, the pixels in the texture do not usually match up one-to-one with pixels on the surface, 
@@ -559,6 +617,8 @@ void glTexCoordPointer( int size, int dataType, int stride, void* array)
     - In OpenGL 1.1, if you want to use mipmaps, you must either load each mipmap individually, or you must generate them yourself. 
     - (The GLU library has a method, gluBuild2DMipmaps that can be used to generate a set of mipmaps for a 2D texture.) 
 
+
+<h2 id="71891ecbd1c91d5bc9cf1dca41bba204"></h2>
 
 ### 4.3.3  Texture Target and Texture Parameters
 
@@ -602,6 +662,8 @@ glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
     - The two squares in this image have s and t texture coordinates that range from −1 to 2. 
 
 
+<h2 id="77215f4c082667d223529a170e100b17"></h2>
+
 ### 4.3.4  Texture Transformation
 
  - OpenGL  supports textures in 1D,2D,3D.
@@ -633,6 +695,8 @@ glMatrixMode(GL_MODELVIEW); // Leave matrix mode set to GL_MODELVIEW.
     - More generally, the effect of a texture transformation on the appearance of the texture is the **inverse** of its effect on the texture coordinates.
     - If the texture transform is translation to the right, then the texture moves to the left on the surface. 
     - If the texture transform is a counterclockwise rotation, then the texture rotates clockwise on the surface.
+
+<h2 id="4cbbc83d1742387d548637c963cd179f"></h2>
 
 ### 4.3.5  Loading a Texture from Memory
 
@@ -670,6 +734,8 @@ glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0,
  - If you want to use the texture on some objects but not others, you can enable GL_TEXTURE_2D before drawing objects that you want to be textured and disable it before drawing untextured objects.
     - You can also change the texture that is being used at any time by calling glTexImage2D.
 
+<h2 id="9a610c4b77e55f70493fb18040a49abe"></h2>
+
 ### 4.3.6  Texture from Color Buffer
 
  - OpenGL is itself a powerful engine for creating images. Sometimes, instead of loading an image file, it's convenient to have OpenGL create the image internally, by rendering it.
@@ -697,6 +763,8 @@ glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, x, y, width, height, 0);
     - This works in the same way as a call to glTexImage2D(), except for the source of the image data.
  - The texture can be animated!
 
+
+<h2 id="f195611b7e066702888980514017d6d8"></h2>
 
 ### 4.3.7  Texture Objects
 
@@ -758,6 +826,8 @@ for (i = 0; i < n; i++) {
     - (However, I should note that when we get to WebGL, that will no longer be true.) 
 
 
+<h2 id="fa9c0146e107924356825bdad1b96a79"></h2>
+
 ### 4.3.8  Loading Textures in C
 
  - Several free image processing libraries are available.  I will discuss one of them, *FreeImage*.
@@ -766,6 +836,8 @@ for (i = 0; i < n; i++) {
     - lib: `-lfreeimage`
 
 
+
+<h2 id="1cfd2f92a424424d1d932006d298c47f"></h2>
 
 ## 4.4 Lights, Camera, Action
 
@@ -780,6 +852,8 @@ for (i = 0; i < n; i++) {
  - So, in some applications, scene graphs are required to be trees. 
     - In a tree, each node has a unique parent, and the node will be encountered only once as the tree in traversed. 
 
+
+<h2 id="014e48c86844b30ed1ee648f92fef39a"></h2>
 
 ### 4.4.1  Attribute Stack
 
@@ -839,6 +913,8 @@ for (i = 0; i < n; i++) {
     - This is the kind of thing that can hurt performance.
     - In fact, you should generally prefer using glPushAttrib/glPopAttrib instead of a glGet command when possible.
 
+<h2 id="e90e1158c70aef209dda35c28cbf6feb"></h2>
+
 ### 4.4.2  Moving Camera
  
  - To apply a modeling transformation to the camera, we really want to apply a viewing transformation to the scene as a whole,
@@ -872,6 +948,8 @@ for (i = 0; i < n; i++) {
     - For example, a camera might be attached to a car to show the view through the windshield of that car. If the car moves, because its modeling transformation changes, the camera will move along with it.
 
 
+<h2 id="a8f9ce93e94e7809b551454814dda1d1"></h2>
+
 ### 4.4.3  Moving Light
 
  - It can also be useful to think of lights as objects, even as part of a complex object. 
@@ -893,6 +971,8 @@ for (i = 0; i < n; i++) {
     - During the first traversal, geometric objects in the scene graph are ignored. 
     - During the second traversal, when geometry is being rendered, light nodes can be ignored.
 
+
+<h2 id="61af40d9607525b33bc4bc11f91078b0"></h2>
 
 ## 4.n 笔记
 

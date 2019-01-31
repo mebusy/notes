@@ -1,3 +1,28 @@
+...menustart
+
+ - [Chapter 5 Three.js: A 3D Scene Graph API](#2f919e61bdb79078128c481d71fd720b)
+     - [5.1 Three.js Basics](#14e4a4fe172e55cfa45e6ca746e28e5b)
+         - [5.1.1  Scene, Renderer, Camera](#11264913f1512eb55f68818fa592eccd)
+         - [5.1.2  THREE.Object3D](#ee13f30b73ddd35611705260b1c59a55)
+         - [5.1.3  Object, Geometry, Material](#c85bd0f12f8ccf0590a0f94a07d4f485)
+         - [5.1.4  Lights](#f5fb4ac9a33c1420ea3ab24bb4862f2a)
+         - [5.1.5  A Modeling Example  (TODO)](#7875c6ab7291f7ebf883ff4e54577cd0)
+     - [5.2 Building Objects](#ac25e95e050cf746608c774cbf3bbfa1)
+         - [5.2.1  Indexed Face Sets](#c32a740d9368792da43e9d5b31e198b3)
+         - [5.2.2  Curves and Surfaces ( TODO )](#63048108e85b88474903113a83294634)
+         - [5.2.3  Textures](#bb9f792c2deb60dc6a34f27a8b34272e)
+         - [5.2.4  Transforms](#6b780b49cb849f516f778d2b37ec3360)
+         - [5.2.5  Loading JSON Models](#d2b076d05d575eff735326dbcef8bcb7)
+     - [5.3 Other Features](#7238dee8fcef92918d2c3b043796faa1)
+         - [5.3.2  User Input (TODO)](#e0d87f90aa1ac53a7994aed8dbe3f25a)
+         - [5.3.3  Shadows](#8d080d15b3503afbab1f4b88d57797e2)
+         - [5.3.4  Cubemap Textures and Skyboxes](#e347cba73e770eb5ea399889e4f575ba)
+         - [5.3.5  Reflection and Refraction](#2d3ad59ecbb3d0404bf4c488f7336c93)
+
+...menuend
+
+
+<h2 id="2f919e61bdb79078128c481d71fd720b"></h2>
 
 # Chapter 5 Three.js: A 3D Scene Graph API
 
@@ -7,6 +32,8 @@
     - It will allow me to introduce some new features such as shadows and environment mapping. 
     - It will let you work with a graphics library that you might use in real web applications.
     - And it will be a break from the low-level detail we have been dealing with, before we move on to an even lower level.
+
+<h2 id="14e4a4fe172e55cfa45e6ca746e28e5b"></h2>
 
 ## 5.1 Three.js Basics
 
@@ -28,6 +55,8 @@
     ```
  - In addition to this core, the three.js download has a directory containing many examples and a variety of support files that are used in the examples. 
 
+
+<h2 id="11264913f1512eb55f68818fa592eccd"></h2>
 
 ### 5.1.1  Scene, Renderer, Camera
 
@@ -116,6 +145,8 @@ camera = new THREE.PerspectiveCamera( fieldOfViewAngle, aspect, near, far );
     - Furthermore, the canvas typically fills the entire browser window. See [full-window.html](http://math.hws.edu/graphicsbook/source/threejs/full-window.html)
 
 
+<h2 id="ee13f30b73ddd35611705260b1c59a55"></h2>
+
 ### 5.1.2  THREE.Object3D
 
  - A three.js scene graph is made up of objects of type THREE.Object3D(including objects that belong to subclasses of that class). 
@@ -171,6 +202,8 @@ scene.add(nodeCopy2);
         - The angles are measured in radians. 
         - The object is rotated first about the x-axis, then about the y-axis, then about the z-axis. (It is possible to change this order.) 
         - The value of obj.rotation is not a vector. Instead, it belongs to a similar type, THREE.Euler, and the angles of rotation are called *Euler angles*.
+
+<h2 id="c85bd0f12f8ccf0590a0f94a07d4f485"></h2>
 
 ### 5.1.3  Object, Geometry, Material
 
@@ -426,6 +459,8 @@ mat = new THREE.MeshLambertMaterial({
  - The settings shown here for polygonOffset, polygonOffsetUnits, and polygonOffsetFactor will increase the depth of the object
  - One final note: You don't always need to make new materials and geometries to make new objects. You can reuse the same materials and geometries in multiple objects.
 
+<h2 id="f5fb4ac9a33c1420ea3ab24bb4862f2a"></h2>
+
 ### 5.1.4  Lights
 
  - Compared to geometries and materials, lights are easy!
@@ -509,16 +544,22 @@ mat = new THREE.MeshLambertMaterial({
  - The upshot is, if you want an object to be properly illuminated by a spotlight, use a **MeshPhongMaterial** on the object, even if it has no specular reflection. 
  - A MeshLambertMaterial will only give acceptable results if the faces of the object are very small.
 
+<h2 id="7875c6ab7291f7ebf883ff4e54577cd0"></h2>
+
 ### 5.1.5  A Modeling Example  (TODO)
 
  - Now you already know enough to build 3D models from basic geometric objects. An example is in the sample program [threejs/diskworld-1.html](http://math.hws.edu/graphicsbook/source/threejs/diskworld-1.html).
 
 ---
 
+<h2 id="ac25e95e050cf746608c774cbf3bbfa1"></h2>
+
 ## 5.2 Building Objects
 
  - In this section, we will see how to create new mesh geometries from scratch. 
  - We'll also look at some of the other support that three.js provides for working with objects and materials.
+
+<h2 id="c32a740d9368792da43e9d5b31e198b3"></h2>
 
 ### 5.2.1  Indexed Face Sets
 
@@ -650,6 +691,8 @@ material = new THREE.MeshLambertMaterial({
     - To use these colors, the vertexColors property of the material has to be set to THREE.VertexColors.
 
 
+<h2 id="63048108e85b88474903113a83294634"></h2>
+
 ### 5.2.2  Curves and Surfaces ( TODO )
 
  - In addition to letting you build indexed face sets, three.js has support for working with curves and surfaces that are defined mathematically.
@@ -692,6 +735,8 @@ var surface = new THREE.Mesh( surfaceGeometry, material );
  - Curves are more complicated in three.js (and, unfortunately, the API for working with curves is not very consistent). 
  - **TODO**
 
+
+<h2 id="bb9f792c2deb60dc6a34f27a8b34272e"></h2>
 
 ### 5.2.3  Textures
 
@@ -803,6 +848,8 @@ pyramidGeometry.faceVertexUvs = [[
 ```
 
 
+<h2 id="6b780b49cb849f516f778d2b37ec3360"></h2>
+
 ### 5.2.4  Transforms
 
  - In order to understand how to work with objects effectively in three.js, it can be useful to know more about how it implements  transforms.
@@ -839,6 +886,8 @@ pyramidGeometry.faceVertexUvs = [[
     - The object is also rotated so that its "up" direction is equal to the value of the property `obj.up`, which by default is (0,1,0).  
     - This function can be used with any object, but it is most useful for a camera.
 
+<h2 id="d2b076d05d575eff735326dbcef8bcb7"></h2>
+
 ### 5.2.5  Loading JSON Models
 
  - It's much easier, for example, to design an object in an interactive modeling program such as Blender.
@@ -873,7 +922,11 @@ function modelLoaded( geometry, material ) { // callback function for loader
     - Three.js has several classes that support animation, including
     - `THREE.AnimationMixer, THREE.AnimationAction, and THREE.AnimationClip`
 
+<h2 id="7238dee8fcef92918d2c3b043796faa1"></h2>
+
 ## 5.3 Other Features
+
+<h2 id="e0d87f90aa1ac53a7994aed8dbe3f25a"></h2>
 
 ### 5.3.2  User Input (TODO)
 
@@ -886,6 +939,8 @@ function modelLoaded( geometry, material ) { // callback function for loader
     - [OrbitControls.js](http://math.hws.edu/graphicsbook/source/threejs/OrbitControls.js) or [TrackballControls.js](http://math.hws.edu/graphicsbook/source/threejs/TrackballControls.js)
 
  - TODO
+
+<h2 id="8d080d15b3503afbab1f4b88d57797e2"></h2>
 
 ### 5.3.3  Shadows
 
@@ -965,6 +1020,8 @@ light.shadow.mapSize.width = 1024;
 light.shadow.mapSize.height = 1024;
 ```
 
+<h2 id="e347cba73e770eb5ea399889e4f575ba"></h2>
+
 ### 5.3.4  Cubemap Textures and Skyboxes
 
  - A skybox is a large cube where a different texture is applied to each face of the cube. 
@@ -1032,6 +1089,8 @@ cube = new THREE.Mesh( new THREE.CubeGeometry( 100, 100, 100 ), material );
 ```
 
  - [sky-box example](http://math.hws.edu/graphicsbook/source/threejs/skybox.html)
+
+<h2 id="2d3ad59ecbb3d0404bf4c488f7336c93"></h2>
 
 ### 5.3.5  Reflection and Refraction
 

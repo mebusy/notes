@@ -14,7 +14,8 @@
          - [创建脚本](#cd25acb9fca49873079b8dc3ebc5021b)
          - [创建一个新的 systemd service unit](#fc37e2a196cecdc81fbdbe5a257b7652)
          - [Enable the systemd service unit](#4937eedceb267c9e4326ecf2ba78b05d)
-     - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
+         - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
+     - [how the see the log of a running process which is redirected to `/dev/null` ?](#c6805678c62648e428cea464f3e8b4b7)
 
 ...menuend
 
@@ -443,6 +444,8 @@ WantedBy=default.target
 ~
 ```
 
+
+<h2 id="c6805678c62648e428cea464f3e8b4b7"></h2>
 
 ## how the see the log of a running process which is redirected to `/dev/null` ?
 

@@ -21,6 +21,7 @@
      - [打开文件数 / 最大链接数](#c635de9cfd3f586235866c25b1208360)
      - [server backlog](#a08bc91843057f871dc78e79478b6947)
      - [Reset Homebrew Fomular](#a655cf4302df90e17053b41af734deb9)
+     - [Manually download brew package](#31cfdc0a967e58b7447b2e9b456d0f2f)
      - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
 
 ...menuend
@@ -277,6 +278,8 @@ sudo sysctl -w kern.ipc.somaxconn=256
 $ cd $(brew --repo)/Library/Taps/homebrew/homebrew-core/
 $ git reset --hard HEAD
 ```
+
+<h2 id="31cfdc0a967e58b7447b2e9b456d0f2f"></h2>
 
 ## Manually download brew package 
 

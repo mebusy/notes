@@ -1,3 +1,26 @@
+...menustart
+
+ - [Introduction to Compute Graphics](#ed2522f9ccf6f8396413305da6adff58)
+     - [Chapter 1 Introduction](#ae6212de98066cfe7c4f284fb7bb0795)
+     - [1.2 Elements of 3D Graphics](#f10dad289ae05f4d583970509a372cc1)
+     - [1.3 Hardware and Software](#901578a22162231933351bb435643a38)
+ - [Chapter 2 Two-Dimensional Graphics](#1fbe7cb2eda7e6cc90bab73b26af826f)
+     - [2.1 Pixels, Coordinates, and Colors](#09f5cc118d9152e36afb92ed40ad49b0)
+     - [Section 2.2 Shapes](#6b56406a73de78eb734c95320762cbe9)
+     - [Section 2.3 Transforms](#4527049748338e479408a27beac21279)
+         - [2.3.8  Matrices and Vectors](#f1c711e7f3eb682d422fd2ae934c2453)
+     - [2.4 Hierarchical Modeling](#20f7a1734dcfbfc8b8171646bc9d424a)
+         - [2.4.1  Building Complex Objects](#c0e7574b56dd30a9c9c926536be484a2)
+         - [2.4.2  Scene Graphs](#67137954a0f48d179144a1519998eb59)
+         - [2.4.3  The Transform Stack](#39e5754cf5035d8cbca9e34fd7c163e7)
+     - [2.6 HTML Canvas Graphics](#1876f21f1147124d0889f999bd06d002)
+         - [2.6.1  The 2D Graphics Context](#3cf9519b6e48c28034d7d66e00c70f25)
+         - [2.6.2  TODO](#1a8a7607dedb19f8be29300d42880137)
+
+...menuend
+
+
+<h2 id="ed2522f9ccf6f8396413305da6adff58"></h2>
 
 # Introduction to Compute Graphics
 
@@ -11,7 +34,11 @@
 In this book , will use a subset of OpenGL 1.1 to introduce the fundamental concepts of three-dimensional graphics. 
 
 
+<h2 id="ae6212de98066cfe7c4f284fb7bb0795"></h2>
+
 ## Chapter 1 Introduction
+
+<h2 id="f10dad289ae05f4d583970509a372cc1"></h2>
 
 ## 1.2 Elements of 3D Graphics
 
@@ -25,6 +52,8 @@ In this book , will use a subset of OpenGL 1.1 to introduce the fundamental conc
     - One of the most useful kinds of material property
     - Textures allow us to add detail to a scene without using a huge number of geometric primitives;
 
+
+<h2 id="901578a22162231933351bb435643a38"></h2>
 
 ## 1.3 Hardware and Software
  
@@ -55,7 +84,11 @@ In this book , will use a subset of OpenGL 1.1 to introduce the fundamental conc
 
 ---
 
+<h2 id="1fbe7cb2eda7e6cc90bab73b26af826f"></h2>
+
 # Chapter 2 Two-Dimensional Graphics
+
+<h2 id="09f5cc118d9152e36afb92ed40ad49b0"></h2>
 
 ## 2.1 Pixels, Coordinates, and Colors
 
@@ -64,6 +97,8 @@ In this book , will use a subset of OpenGL 1.1 to introduce the fundamental conc
     - In practice, calculating this area exactly for each pixel would be too difficult, so some approximate method is used.
 
 
+<h2 id="6b56406a73de78eb734c95320762cbe9"></h2>
+
 ## Section 2.2 Shapes
 
  - Line
@@ -71,7 +106,11 @@ In this book , will use a subset of OpenGL 1.1 to introduce the fundamental conc
         - One of the first computer graphics algorithms,  **Bresenham's** algorithm for line drawing, implements a very efficient procedure for doing so. 
     - In any case, lines are typically more complicated. Antialiasing is one complication. Line width is another. A wide line might actually be drawn as a rectangle.
     
+<h2 id="4527049748338e479408a27beac21279"></h2>
+
 ## Section 2.3 Transforms
+
+<h2 id="f1c711e7f3eb682d422fd2ae934c2453"></h2>
 
 ### 2.3.8  Matrices and Vectors
 
@@ -84,9 +123,13 @@ In this book , will use a subset of OpenGL 1.1 to introduce the fundamental conc
 ![](../imgs/cg_transform.png)
 
 
+<h2 id="20f7a1734dcfbfc8b8171646bc9d424a"></h2>
+
 ## 2.4 Hierarchical Modeling 
 
 In this section, we look at how complex scenes can be built from very simple shapes. The key is hierarchical structure.
+
+<h2 id="c0e7574b56dd30a9c9c926536be484a2"></h2>
 
 ### 2.4.1  Building Complex Objects
  
@@ -145,6 +188,8 @@ subroutine drawCart() :
  - Once we have this cart-drawing subroutine, we can use it to add a cart to a scene. When we do this, we apply another modeling transformation to the cart as a whole. Indeed, we could add several carts to the scene, if we wanted, by calling the drawCart subroutine several times with different modeling transformations.
  - Building up a complex scene out of objects is similar to building up a complex program out of subroutines.
  
+<h2 id="67137954a0f48d179144a1519998eb59"></h2>
+
 ### 2.4.2  Scene Graphs
  
  - Logically, the components of a complex scene form a structure. 
@@ -165,10 +210,16 @@ subroutine drawCart() :
  - A scene graph is actually an example of a "directed acyclic graph" or "dag."
 
 
+<h2 id="39e5754cf5035d8cbca9e34fd7c163e7"></h2>
+
 ### 2.4.3  The Transform Stack
 
 
+<h2 id="1876f21f1147124d0889f999bd06d002"></h2>
+
 ## 2.6 HTML Canvas Graphics
+
+<h2 id="3cf9519b6e48c28034d7d66e00c70f25"></h2>
 
 ### 2.6.1  The 2D Graphics Context
 
@@ -216,6 +267,8 @@ graphics = canvas.getContext("2d");
 
  - Find more canvans2d example  in http://math.hws.edu/graphicsbook/c2/s6.html
 
+
+<h2 id="1a8a7607dedb19f8be29300d42880137"></h2>
 
 ### 2.6.2  TODO
 

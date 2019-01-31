@@ -65,6 +65,7 @@
      - [Ingress II](#dd374142ee0d3696af5151d9e9ded05f)
      - [Ingress Controller](#a5765900d255fcb42e5ea092fe489331)
          - [Deploy an Ingress Resource](#65c0a46ef98d210656055f61588ff4ed)
+     - [kubernetes/ingress-nginx user-guide TLS](#8fd6748f0750d9c913b9e2dfcbb7946b)
  - [Advanced Topics](#41ef0c7e3aa81f83c8172c71f9986dfb)
      - [Annotations](#933e469cb306a0ea9faabd3e4235d3be)
      - [Deployment Features](#e4c677a2cc444dd3ce2cea9f020921aa)
@@ -1331,6 +1332,8 @@ $ cat /etc/hosts
 192.168.99.100   blue.example.com green.example.com
 ```
 
+
+<h2 id="8fd6748f0750d9c913b9e2dfcbb7946b"></h2>
 
 ## kubernetes/ingress-nginx user-guide TLS
 

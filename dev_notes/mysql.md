@@ -7,7 +7,10 @@
          - [使用乐观锁](#4e7e4e0d4b9110317f8e672b2aa3af35)
      - [mysql 慢日志查询](#1838954ac65225f29f4cccf9131bb24f)
      - [mysql 操作记录查询](#e1a8175ef9a04770289a68720bff0ffc)
+     - [mysql 记录 未使用 index的查询](#06380fb607958af6dbecb617ce31f2cd)
      - [how to check whether mysql reuse the connection](#005022c3c2f0c952bbd1532235bc4959)
+     - [`select count(*)` is very slow on large table](#c4935fa15c0a1305da238eec81cc54b3)
+     - [`select ... limit offset , n ` is slow when offset  is higher](#5c7924ade1a946ba9a0af0cc562c127b)
  - [第1章  MySQL 体系结构和存储引擎](#6a1a36d328d46ab67d6d4af4b7f9191a)
      - [1.1 配置文件](#bdf6b309174103a16017dcf95cfd0efa)
      - [1.3 MySQL 存储引擎](#d515f90f3281ec25eef39dd7a232630f)
@@ -159,6 +162,8 @@ show variables like '%general%';
  - Now you can find the mysql operation log in `mysql.general_log` table
 
 
+<h2 id="06380fb607958af6dbecb617ce31f2cd"></h2>
+
 ## mysql 记录 未使用 index的查询
 
 ```
@@ -174,6 +179,8 @@ set global log_queries_not_using_indexes=ON;
  - in `mysql.general_log` ,  if the connection is reused, you should see the `connection` event only at the very beginning
 
 
+<h2 id="c4935fa15c0a1305da238eec81cc54b3"></h2>
+
 ## `select count(*)` is very slow on large table
 
  - Here's a cheap way to get an estimated row count:
@@ -187,6 +194,8 @@ set global log_queries_not_using_indexes=ON;
 +------------+
 1 rows in set (0.00 sec)
 ``` 
+
+<h2 id="5c7924ade1a946ba9a0af0cc562c127b"></h2>
 
 ## `select ... limit offset , n ` is slow when offset  is higher
 

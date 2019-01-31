@@ -6,6 +6,8 @@
      - [use kubectl](#773c2c719c95cc40967b0e945ada8898)
  - [腾讯云 用户管理](#7616e9353ba2c3c55eb7063e51fc65fb)
      - [策略](#66914536facf5b30973b236fb814d23f)
+ - [腾讯云 Misc](#4214290dc4bf8068d16758a84a3496a7)
+     - [ingress 证书 对部分低版本Android设备不兼容，导致 ssl hand shake error.](#d42d194dd306f76100f9b591fd878396)
  - [cntlm 设置代理 (Centos7)](#c36aef5f4c92632a2362a83ed0523565)
  - [cntlm (Macosx)](#48cd1b6a59fb119e19d9f83e6cf43668)
 
@@ -114,7 +116,11 @@ kubectl ... get ...  -o yaml --export
 ```
 
 
+<h2 id="4214290dc4bf8068d16758a84a3496a7"></h2>
+
 # 腾讯云 Misc
+
+<h2 id="d42d194dd306f76100f9b591fd878396"></h2>
 
 ## ingress 证书 对部分低版本Android设备不兼容，导致 ssl hand shake error.
 
