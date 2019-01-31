@@ -840,6 +840,21 @@ for (i = 0; i < n; i++) {
     - In fact, you should generally prefer using glPushAttrib/glPopAttrib instead of a glGet command when possible.
 
 ### 4.4.2  Moving Camera
+ 
+ - To apply a modeling transformation to the camera, we really want to apply a viewing transformation to the scene as a whole,
+    - and that viewing transformation is the **inverse** of the camera's modeling transformation.
+ - When using scene graphs, it can be useful to include a camera object in the graph. 
+    - That is, we want to be able to include a node in the graph that represents the camera, and we want to be able to use the camera to view the scene.
+    - It can even be useful to have several cameras in the scene, providing alternative points of view. 
+ - To implement this, we need to be able to render a scene from the point of view of a given camera. 
+    - In order to do that, we need to use a viewing transformation that is the inverse of the modeling transformation that is applied to the camera object.
+    - The viewing transform must be applied before any of the objects in the scene are rendered.
+ - When a scene graph is traversed, a modeling transformation can be applied at any node. 
+    - The modeling transform that is in effect when a given node is encountered 
+        - is the composition of all the transforms that were applied at nodes along the path that led to given node.
+    - However, if the node is a camera node, we don't want to apply that modeling transform; 
+        - we want to apply its inverse as a viewing transform. 
+    - To get the inverse, we can start at the camera node and follow the path backwards, applying the inverse of the modeling transform at each node.
 
 
 
