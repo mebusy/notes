@@ -75,7 +75,7 @@ echo $'*/1\t*\t*\t*\t*\t/usr/sbin/logrotate...' >> xxxx
 
 ### stdout/stderr 重定向日志问题
 
- - 类似 `app > log.log`
+ - 类似 `app &> log.log`
     - 这类日志文件， logrotate 的 truncate 不能生效，需要 使用追加的方式  `>>`
     - i.e. `app >> app.log 2>&1`
 
