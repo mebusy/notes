@@ -11,7 +11,7 @@
 ```bash
 #/etc/logrotate.d/ballsrace
 
-/opt/ubisoft-minigame/app.log
+/opt/wc-minigame/app.log
 {
     daily
     rotate 3
