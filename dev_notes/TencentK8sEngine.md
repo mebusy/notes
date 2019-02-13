@@ -145,7 +145,7 @@ kubectl ... get ...  -o yaml --export
  - 2 Get password hash 
     - (type your password, press enter and copy the output)
     - modify your username/domain first in `/etc/cntlm.conf`
-    - or `cntlm -H -u <Your ubisoft username> -d cop-domain` ?
+    - or `cntlm -H -u <Your username> -d cop-domain` ?
 
 ```
 $ cntlm -H
