@@ -128,6 +128,16 @@ kubectl ... get ...  -o yaml --export
  - 检查证书兼容性  https://myssl.com/ 
 
 
+## k8s node 磁盘占用过高查找并清理
+
+ - kubectl 查看node 状态 `kubectl describe nodes` .
+
+ - 登陆节点，查看硬盘占用
+    - 查看总体占用 `df | less`
+    - 查看某个path下的占用
+        - `ls -Sl`
+        - `du -m <path> | sort -nr | head -n 10`
+
 
 <h2 id="c36aef5f4c92632a2362a83ed0523565"></h2>
 
