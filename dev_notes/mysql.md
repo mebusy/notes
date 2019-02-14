@@ -207,7 +207,7 @@ set global log_queries_not_using_indexes=ON;
 ## restore specific database from dump file
 
 ```
-mysql -u root -p --one-database destdbname < dumpfile
+mysql -uroot -ppwd [dbname] < dumpfile
 ```
 
 
