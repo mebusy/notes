@@ -147,6 +147,12 @@ docker images | grep "<none>" | grep umc-app-images | awk "{print \$3}" | xargs 
 docker images | grep umc-app-images | awk "{print \$3}" | xargs docker rmi
 ```
 
+## 查找不是 running 状态的 pod
+
+```
+kubectl_umc get pods --all-namespaces | awk '{ if ($4!="Running")  print $0_ }'
+```
+
 
 <h2 id="c36aef5f4c92632a2362a83ed0523565"></h2>
 
