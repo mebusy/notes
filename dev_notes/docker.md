@@ -2014,11 +2014,6 @@ redis> config get save
  - GUI redis client on MacOSX
     - https://github.com/luin/medis
 
- - redis cluster
-    - https://github.com/Grokzen/docker-redis-cluster
-    - `sudo docker run --name redis-cluster --net=host -d  grokzen/redis-cluster:latest `
-    - The cluster is 6 redis instances running with 3 master & 3 slaves, one slave for each master. They run on ports 7000 to 7005.
-
 
 <h2 id="5b1064e3e54b4f22a3419f9d198df904"></h2>
 
