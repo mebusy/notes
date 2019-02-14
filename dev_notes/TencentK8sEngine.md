@@ -138,6 +138,15 @@ kubectl ... get ...  -o yaml --export
         - `ls -Sl`
         - `du -m <path> | sort -nr | head -n 10`
 
+## 清除不再使用的 image 
+
+```
+docker images | grep "<none>" | grep umc-app-images | awk "{print \$3}" | xargs docker rmi
+
+# more aggressive 
+docker images | grep umc-app-images | awk "{print \$3}" | xargs docker rmi
+```
+
 
 <h2 id="c36aef5f4c92632a2362a83ed0523565"></h2>
 
