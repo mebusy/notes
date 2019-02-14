@@ -204,10 +204,10 @@ set global log_queries_not_using_indexes=ON;
     - `id` is the auto incr primary key , and should be continous (that is , you should NOT delete the rows )
 
 
-## restore specific database from dump file
+## restore database from dump file
 
 ```
-mysql -uroot -ppwd [dbname] < dumpfile
+mysql -uroot -ppwd  < dumpfile
 ```
 
 
