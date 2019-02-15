@@ -696,4 +696,33 @@ CGO_ENABLED=0 go build -ldflags="-s -w" app.go && tar C app | docker import - my
 var _ io.Reader = (*MyFastReader)(nil)
 ```
 
+---
 
+# sql 
+
+## where in
+
+```go
+var openids []interface{}
+... // init openids
+
+// expand multiple `?` in `where in ()`
+table:= "tbl_user"
+query := fmt.Sprintf(" select DISTINCT id from %s where id in (?" , table ) + strings.Repeat(",?", len(openid_list)-1) + ")" 
+
+rows, err := db.Query( query ,   openid_list...  )
+if err != nil {
+    log.Fatalln( err )    
+} 
+defer rows.Close() 
+
+for rows.Next() {
+    var (
+        openid string
+    )
+    if err := rows.Scan(&openid); err != nil {
+        ... 
+    }
+    // DO something
+}
+```
