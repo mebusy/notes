@@ -265,8 +265,8 @@ A way to solve it is by sharing parameters across our sequence. So once we learn
     - ![](../imgs/MIT6S191_RNN_loss.png)
         - loss at each timestep
  - we **sum the losses** across time:
-    - loss at time t = J<sub>t</sut>(Θ)
-    - total loss = J(Θ) = ∑ J<sub>t</sut>(Θ)
+    - loss at time t = J<sub>t</sub>(Θ)
+    - total loss = J(Θ) = ∑ J<sub>t</sub>(Θ)
  - what are our gradients? 
     - we sum gradients across time for each parameter P:
         - ![](../imgs/MIT6S191_RNN_gradients.png)

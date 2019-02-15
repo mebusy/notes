@@ -18,6 +18,8 @@ RE_PATTERN_TABLE = re.compile( r"^\s*---(\s*\|\s*---)+" )
 RE_PATTERN_ITALIC_BOLD_HEAD_NON_SPACE = re.compile( r"(.?)(\*\*\*[^*]+\*\*\*)(.?)" )
 
 RE_PATTERN_CODE_BLOCK = re.compile( r"^\s*```" )
+RE_PATTERN_SINGLE_QUOTE_PAIR = re.compile( r"`[^`]+?`" )
+RE_TAG_CONTENT = re.compile( r"<([^>]+)>" )
 
 def createMenu4MD( path ):
     # print 'parsing' , path
@@ -86,7 +88,8 @@ def createMenu4MD( path ):
             body += '<h2 id="%s"></h2>\n\n' % id 
             #print sharps, title
 
-        if not re.search( RE_PATTERN_MENU_JUMP_ID , line  ):
+        isJumpIDLine = re.search( RE_PATTERN_MENU_JUMP_ID , line  ) is not None 
+        if not isJumpIDLine :
             if bFollowLinkID and line.strip() == "" :
                 pass 
             else :
@@ -110,6 +113,15 @@ def createMenu4MD( path ):
             if (result.group(1) != " " and result.group(1) != ""): # or (result.group(3) != " " and result.group(3) != "")  :            
                 print "italic bold headed non space:" , result.group(1) , result.group(2)  
                 bShowPath4debug = True 
+
+        # html tag should be in ``
+        if not isJumpIDLine:
+            results = RE_TAG_CONTENT.findall( RE_PATTERN_SINGLE_QUOTE_PAIR.sub( "" , line )  )
+            for result in results:
+                if result[-3:] != "sup" and result[-3:] != "sub":
+                    print result , "in a html tag may can not display" 
+                    print path , i, line 
+        
 
 
     menu += '\n...menuend\n\n\n'  
