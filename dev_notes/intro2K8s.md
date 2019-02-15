@@ -477,7 +477,7 @@ kube-system   Active   22h
     - Webhook Token Authentication
         - With Webhook-based authentication, verification of bearer tokens can be offloaded to a remote service.
     - Keystone Password
-        - Keystone authentication can be enabled by passing the **--experimental-keystone-url=<AuthURL> option** to the API server, where AuthURL is the Keystone server endpoint.
+        - Keystone authentication can be enabled by passing the `--experimental-keystone-url=<AuthURL> option` to the API server, where AuthURL is the Keystone server endpoint.
     - Authenticating Proxy
         - If we want to program additional authentication logic, we can use an authenticating proxy. 
 

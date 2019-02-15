@@ -5,7 +5,7 @@
          - [可在 GOPATH 中添加多个工作空间，但不能和 GOROOT 相同](#b3e0604118859c109dd897ac7ae854f8)
          - [go get 使用第一个工作空间保存下载的第三方库](#913047a1d520b9ffb6ca7aec854b966c)
      - [8.3 包结构](#0dbeeae9f285bcc430fd68fe456e41b3)
-         - [源文件头部以  "package <name>" 申明包名称](#1e157c9d6dd45f1ba03f5b7ebea38406)
+         - [源文件头部以  "package pkg_name" 申明包名称](#0c04edb05053e4d7e495c33b906f4485)
          - [包由 同一目录下的多个 源文件组成](#6938f144bcee557efd011309c199e35e)
          - [包名类似 namespace, 与包所在的目录名,编辑文件名无关](#e17b159af5c5ad59d85168752c6428f1)
          - [目录名最好不用 main, dll, std 这三个保留名称](#e7c8ec2bebe87fc347307b7aed9b0469)
@@ -71,9 +71,9 @@ export GOPATH=$HOME/projects/golib:$HOME/projects/go
 
 ## 8.3 包结构
 
-<h2 id="1e157c9d6dd45f1ba03f5b7ebea38406"></h2>
+<h2 id="0c04edb05053e4d7e495c33b906f4485"></h2>
 
-##### 源文件头部以  "package <name>" 申明包名称
+##### 源文件头部以  "package pkg_name" 申明包名称
 <h2 id="6938f144bcee557efd011309c199e35e"></h2>
 
 ##### 包由 同一目录下的多个 源文件组成
@@ -105,7 +105,7 @@ export GOPATH=$HOME/projects/golib:$HOME/projects/go
 import "相对目录/包主文件名"
 ```
 
-    根目录是指 从 <workspace>/pkg/<os_arch> 开始的子目录
+    根目录是指 从 `<workspace>/pkg/<os_arch>` 开始的子目录
     以标准库为例:
 
 ```go

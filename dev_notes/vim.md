@@ -184,7 +184,7 @@ git submodule update --recursive --init
  
  - uninstall mono framework on OSX 
     - https://gist.githubusercontent.com/powerumc/e80bb475117582d7e842/raw/ed8a29bed15655492109c91df118f22b147f025c/remove-mono.sh
- - snipmate <TAB> YouCompleteMe 冲突
+ - `snipmate <TAB>` YouCompleteMe 冲突
     - `~/.vim/bundle/snipmate.vim/after/plugin/snipMate.vim`
 
 ```

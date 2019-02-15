@@ -163,7 +163,7 @@ struct TEST_A
 ```
 
  - 假设我们导出了 如上的 struct 的 m_LB_items 字段， 我们要对 m_LB_items 做 push_back 操作
-    - 因为 m_LB_items 是 Vector<LeaderBoardItem> 范型， 我们需要 对 Vector 类做 TEMPLATE_BIND
+    - 因为 m_LB_items 是 `Vector<LeaderBoardItem>` 范型， 我们需要 对 Vector 类做 TEMPLATE_BIND
 
 ```
 class Vector {

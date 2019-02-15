@@ -19,7 +19,7 @@ RE_PATTERN_ITALIC_BOLD_HEAD_NON_SPACE = re.compile( r"(.?)(\*\*\*[^*]+\*\*\*)(.?
 
 RE_PATTERN_CODE_BLOCK = re.compile( r"^\s*```" )
 RE_PATTERN_SINGLE_QUOTE_PAIR = re.compile( r"`[^`]+?`" )
-RE_TAG_CONTENT = re.compile( r"<([^>]+)>" )
+RE_TAG_CONTENT = re.compile( r"<([\w-]+?)>" )
 
 def createMenu4MD( path ):
     # print 'parsing' , path
@@ -120,7 +120,8 @@ def createMenu4MD( path ):
             for result in results:
                 if result[-3:] != "sup" and result[-3:] != "sub":
                     print result , "in a html tag may can not display" 
-                    print path , i, line 
+                    print " -> ",path , i, line 
+                    raise Exception( "html tag issue" )
         
 
 

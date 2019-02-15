@@ -90,8 +90,8 @@
 
 ### Biconditional
 
- - p<->q
-    - p<->q means **¬(p⊕q)**    // 异或
+ - `p<->q`
+    - `p<->q` means **¬(p⊕q)**    // 异或
 
 
 
@@ -114,10 +114,10 @@
     - p->q ⇔ ¬pVq
         - p^¬q ⇔ ¬(p->q) 
  - Biconditional
-    - p<->q ⇔ (p->q)^(q->p)
-    - p<->q ⇔ (p^q)V(¬p^¬q)
+    - `p<->q ⇔ (p->q)^(q->p)`
+    - `p<->q ⇔ (p^q)V(¬p^¬q)`
         - ⇔ ¬(p⊕q)  // ⊕ means 异或
-    - p<->q ⇔ ¬p<->¬q
+    - `p<->q ⇔ ¬p<->¬q`
 
     
 

@@ -33,8 +33,8 @@
          - [编码](#cc6c35a3e0f97fb9747905dc13e9b625)
              - [string -> decode -> unicode](#0aaa38f82a7ef026cb4f1021bc6c2e78)
              - [unicode -> encode -> string](#40619c71d05ce7768e3ff72d8b7da13f)
-             - [char <-> ascii](#837e36b7cae11bd0e8b44252a6d61d1f)
-             - [unichr  <-> unicode string](#8f9892ac178f204eda8bbf3961d55d42)
+             - [char / ascii 互转](#a8f764cb43760ccd122114ec8679789b)
+             - [unichr / unicode string 互转](#d2c99ad38af1c01230e25f642fe1b412)
              - [unicode -> special encoded string](#97293b0a09ebeed137930a0ca33f6e3a)
              - [special encoded string -> unicode](#f9b40cb363b4e4cd89aa132855dd8d41)
              - [convert '\\n' to '\n'](#56932c830dacb8440022cdb350ae3bca)
@@ -435,9 +435,9 @@ def f7(list):
 ####  unicode -> encode -> string 
 
 
-<h2 id="837e36b7cae11bd0e8b44252a6d61d1f"></h2>
+<h2 id="a8f764cb43760ccd122114ec8679789b"></h2>
 
-#### char <-> ascii
+#### char / ascii 互转
 
 ```
 >>> print ord('a')
@@ -448,9 +448,9 @@ a
 
 `'2' == '\x32' == '\062'`
 
-<h2 id="8f9892ac178f204eda8bbf3961d55d42"></h2>
+<h2 id="d2c99ad38af1c01230e25f642fe1b412"></h2>
 
-#### unichr  <-> unicode string
+#### unichr / unicode string 互转
 
 ```
 >>> print ord(u"我")

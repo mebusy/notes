@@ -1095,7 +1095,7 @@ E ⇒ T ⇒ T*F ⇒ T*id ⇒ F*id ⇒ id*id
 
 This derivation is in fact a rightmost derivation.
 
-> leftmost reduction <=> rightmost derivation
+> leftmost reduction `<=>` rightmost derivation
 
 ---
 

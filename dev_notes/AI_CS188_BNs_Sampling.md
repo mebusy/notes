@@ -136,7 +136,7 @@ return (x₁,x₂,...,xn)
     - -c, -s, -r, +w
  - If we want to know P(W)
     - We have counts :   +w:4 , -w:1
-    - Normalize to get P(W) = <+w:0.8, -w:0.2>
+    - Normalize to get P(W) = `<+w:0.8, -w:0.2>`
     - This will get closer to the true distribution with more samples
     - Can estimate anything else, too
     - What about P(C| +w)?   P(C| +r, +w)?  P(C| -r, -w)?

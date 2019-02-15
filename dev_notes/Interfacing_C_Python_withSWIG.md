@@ -432,10 +432,10 @@ Generating wrappers for Python
     - C constants become Python variables.
  - Datatypes
     - C built-in datatypes are mapped into the closest Python equivalent.
-    - int, long, short <---> Python integers.
-    - float, double <---> Python floats
-    - char, char * <---> Python strings.
-    - void <---> None
+    - int, long, short `<--->` Python integers.
+    - float, double `<--->` Python floats
+    - char, char * `<--->` Python strings.
+    - void `<--->` None
     - long long, long double ---> Currently unsupported
  - SWIG tries to create an interface that is a natural extension of the underlying C code.
  - Notes

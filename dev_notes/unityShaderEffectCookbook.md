@@ -623,7 +623,7 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
 
 看起来 两种方法好像一样，只是更改了 o.Normal。 但其实，Unity在背后做了很多。
 
-虽然我们使用了同样的Lighting<Name>函数，但其中normal、lightDir、viewDir所在的坐标系已经被Unity转换过了。
+虽然我们使用了同样的 `Lighting<Name>` 函数，但其中normal、lightDir、viewDir所在的坐标系已经被Unity转换过了。
 
  - 第一种方法， 使用的 World Space
  - 第二种方法， 使用的是 **Tangent Space**.

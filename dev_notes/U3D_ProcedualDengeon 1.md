@@ -17,7 +17,7 @@
     PS: All codes are written in Lua, developed on Unity5 with ULua.
     The code is used to explain how the algorithm works, I do not guarantee it can run correctly.
     
-    author: golden_slime@hotmail.com    <Mebusy>
+    author: golden_slime@hotmail.com    `<Mebusy>`
 
 Ok, lets start to generate a procedural dungeon cave .
 

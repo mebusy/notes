@@ -377,7 +377,7 @@ they return textual information.
 
  - **APP_OPTIM**
     - Define this optional variable as either release(default) or debug
-    - Declaring **android:debuggable** in your application manifest's <application> tag will cause this variable to default to debug instead of release
+    - Declaring **android:debuggable** in your application manifest's `<application>` tag will cause this variable to default to debug instead of release
  - **APP_CFLAGS**
  - **APP_CPPFLAGS**
  - **APP_LDFLAGS**

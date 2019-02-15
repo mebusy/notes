@@ -262,7 +262,7 @@ int main() {
 ## 1.14 Functional Objects
 
  - Function objects are clases that have `operator()` defined 
- - sum = accumulate( v1, v1+3, 0.0 , minus<int>() ) ;  // sum = -7
+ - `sum = accumulate( v1, v1+3, 0.0 , minus<int>() ) ;  // sum = -7`
 
 <h2 id="2025d93d18bf7503037e013bbfda141a"></h2>
 

@@ -192,9 +192,9 @@ public static IEnumerable<int> WithIterator() {
 }
 ```
 
-调用 `WithIterator()`  不会产生任何输出，对编译器而言，就是实例化了一个 <WithIterator>d_0 对象。
+调用 `WithIterator()`  不会产生任何输出，对编译器而言，就是实例化了一个 `<WithIterator>d_0` 对象。
 
-<WithIterator>d_0 对 是编译器看到 方法中包含 yield return 语句 生成的一个迭代器类。
+`<WithIterator>d_0` 对 是编译器看到 方法中包含 yield return 语句 生成的一个迭代器类。
 
 
 <h2 id="20cc25147a42e4fa9b50e9c8a84a1859"></h2>
@@ -364,7 +364,7 @@ public static class NullExten {
  - C# 3.0 最重要的特性
  - Linq: Language Integrated Query  语言集成查询
  - Linq 主要包含4个组件
-    - Linq to Objects: 可以查询 IEnumberable 或 IEnumberable<T> 集合
+    - Linq to Objects: 可以查询 `IEnumberable` 或 `IEnumberable<T>` 集合
     - Linq to XML: 可以查询和操作 XML文件，比Xpath操作XML 更加方便
     - Linq to Dataset: 可以查询Dataset对象中的数据， 对数据增删改查
     - Linq to SQL: 可以查询关系数据库的数据

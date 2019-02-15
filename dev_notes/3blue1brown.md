@@ -215,7 +215,7 @@ ans =
  - 为什么 对应坐标相乘 并相加，和投影有所联系?
     - The most satisfactory answer comes from **duality**.
     - 数值计算角度, 点积 等同于 一个1x2 matrix 乘以向量
-        - 1x2 matrices <--> 2d vectors 
+        - 1x2 matrices `<-->` 2d vectors 
         - 放倒变成矩阵, 立起变成向量
     - 从几何角度可以看到一些美妙的事情: 将向量转化为数的线性变换(matrix) 和 这个向量本身 有什么某种关系
         - copy 一份数轴，保持原点，斜放到空间中
@@ -230,7 +230,7 @@ ans =
             - ![](../imgs/ESS_LA_dot_p_ux.png)
             - 以上推理过程对 ĵ 几乎一致，ĵ投影后的数，就是 u<sub>y</sub> 
         - 所以描述投影变换的1x2矩阵的两列，就分别是û的两个坐标。 而空间中任意向量经过投影变换的结果，也就是投影矩阵与这个向量相乘，和这个向量与û的点积在计算上完全相同.
-            - Maxtix-vector product <==> Dot product
+            - Maxtix-vector product `<==>` Dot product
         - 这就是为什么 单位向量的点积， 可以解读为 将向量投影到 单位向量所在直线上 所得到的投影长度
     - 如果 û 是非单位向量呢？eg. ( 3uₓ , 3u<sub>y</sub>  )
         - 数值上说，它的每个坐标都被放大为原来的3倍，所以要寻找这个向量相关的投影矩阵，实际上就是之前î,ĵ 投影得到的值的3倍

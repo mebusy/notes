@@ -159,10 +159,10 @@ redis:6379> TTL A
 
 ### 9.4.1 设置过期时间
 
- - EXPIRE <key> <ttl>
- - PEXPIRE <key> <ttl>
- - EXPIREAT <key> <timestamp>
- - PEXPIREAT <key> <timestamp>
+ - `EXPIRE <key> <ttl>`
+ - `PEXPIRE <key> <ttl>`
+ - `EXPIREAT <key> <timestamp>`
+ - `PEXPIREAT <key> <timestamp>`
 
 
 <h2 id="426142964ca65afd9b5390c08b027fa3"></h2>

@@ -199,7 +199,7 @@ For prefab pool:
 #### The structure of a binding -1
 
  - Basic Structure 
-    - IBinder.Bind<Key>().To<Value>();
+    - `IBinder.Bind<Key>().To<Value>();`
  - The key triggers the value
 
 <h2 id="21457396df568ec61eb723910e9908c9"></h2>
@@ -267,7 +267,7 @@ where to get ?
  - Logical folder structure
     - Use named empty game objects as scene folders
  - Use cache
-    - Cache component references , GetComponent<ComponentName>() is slow 
+    - Cache component references , `GetComponent<ComponentName>()` is slow 
     - Cache objects references , GameObject.Find() is very slow
     - Memory allocation with object pools
     - Use sharing materials

@@ -1140,7 +1140,7 @@ Pseudo Code:
 ## Updating Classes
 
  - Pairs are sorted — go through them in order, if a pair is different from previous, put it into a new class, otherwise put it into previous class
- - (P1, P2) == (Q1,Q2) <=> (P1 == Q1) and (P2 == Q2)
+ - `(P1, P2) == (Q1,Q2) <=> (P1 == Q1) and (P2 == Q2)`
  - We know equivalence classes of elements of pairs
 
 ![](../imgs/algr_on_string_suffix_array_update_class1.png)

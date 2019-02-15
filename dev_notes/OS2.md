@@ -1259,7 +1259,7 @@ void DoFoo() {
 }
 ```
 
- - **Even Better: auto_ptr<T> facility**. See C++ spec
+ - `Even Better: auto_ptr<T> facility`. See C++ spec
     - Can deallocate/free lock regardless of exit method
 
 <h2 id="d52387880e1ea22817a72d3759213819"></h2>

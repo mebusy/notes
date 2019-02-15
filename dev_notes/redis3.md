@@ -49,7 +49,7 @@
          - [20.6.2 复制 EVALSHA 命令](#a6ceeaf4494914d850150dc707837495)
          - [20.7 redis 集群和 lua 脚本](#20f2c099ee2880c7a3f268657b394f9a)
  - [第21章 排序](#8b7e6e4e7ba14f17536a734562b5f28f)
-     - [21.1 SORT <key> 命令的实现](#d664d619ec4593c7113859bb493886d1)
+     - [21.1 SORT key 命令的实现](#c62b77fb4e06a3ca43f809411a8a6a00)
      - [21.2 ALPHA 选项的实现](#b079e3077212764095facc17223159fc)
      - [21.3 ASC选项 和 DESC 选项的实现](#c870e6c991230e2406edcb5b8b5fb13c)
      - [21.4 BY 选项的实现](#6e485766032658c95966060f67c8ba0a)
@@ -881,9 +881,9 @@ redis:6379> SORT test-result  BY *_number
 ```
 
 
-<h2 id="d664d619ec4593c7113859bb493886d1"></h2>
+<h2 id="c62b77fb4e06a3ca43f809411a8a6a00"></h2>
 
-## 21.1 SORT <key> 命令的实现
+## 21.1 SORT key 命令的实现
 
  - `SORT <key>` 可以对一个包含数字value 的 key 进行排序
 

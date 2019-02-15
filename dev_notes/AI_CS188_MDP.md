@@ -274,7 +274,7 @@ stick the same reward in front of both
 if I liked A better than B now I should like it better shifted into the future as well and vice versa. 
 
  - Theorem: if we assume **stationary preferences**:
-    - [a₁,a₂,...] ≻  [b₁,b₂,...]  <=> [r, a₁,a₂,...] ≻  [r, b₁,b₂,...] 
+    - [a₁,a₂,...] ≻  [b₁,b₂,...]  `<=>` [r, a₁,a₂,...] ≻  [r, b₁,b₂,...] 
  - Then: there are only two ways to define utilities
     - Additive utility:    U( [r₀,r₁,r₂,...] ) = r₀ + r₁ + r₂ + ...
     - Discounted utility:  U( [r₀,r₁,r₂,...] ) = r₀ + γ·r₁ + γ²·r₂ + ... 
