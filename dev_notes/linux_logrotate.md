@@ -1,6 +1,28 @@
+...menustart
+
+ - [logrotate](#490162aae505a53f4f07a541323a1925)
+     - [1. 安装 logrotate （如果系统里不存在的话）](#b0ae7ac024e9251b8352f7836d29b441)
+     - [2.  配置文件](#d0992ebec741c858981a64a8ce11b040)
+     - [4. 测试配置是否正确](#ddf5d7584457b4cb8c7993699bafe0bb)
+     - [5. 手动强制切割日志](#3c6884f27d81600f244a367e1b74095d)
+     - [6. 查看各log文件的具体执行情况](#9cfde9e4f062a301495ad160e63231a8)
+     - [7. crontab定时执行](#236ff4d77e20107d290447c1bc082b5e)
+     - [8. Misc](#6803e775fc8d5aa27d11c244367853e4)
+         - [配置文件中一些指令说明](#3374665dc3e1eb7e8d997b73823475af)
+         - [stdout/stderr 重定向日志问题](#6747f534f8d4ab733e26bd14238430ac)
+
+...menuend
+
+
+<h2 id="490162aae505a53f4f07a541323a1925"></h2>
+
 # logrotate
 
+<h2 id="b0ae7ac024e9251b8352f7836d29b441"></h2>
+
 ## 1. 安装 logrotate （如果系统里不存在的话）
+
+<h2 id="d0992ebec741c858981a64a8ce11b040"></h2>
 
 ## 2.  配置文件 
 
@@ -23,11 +45,15 @@
 }
 ``` 
 
+<h2 id="ddf5d7584457b4cb8c7993699bafe0bb"></h2>
+
 ## 4. 测试配置是否正确
 
 ```bash
 /usr/sbin/logrotate -d -f /etc/logrotate.d/ballsrace
 ```
+
+<h2 id="3c6884f27d81600f244a367e1b74095d"></h2>
 
 ## 5. 手动强制切割日志
 
@@ -35,11 +61,15 @@
 /usr/sbin/logrotate -f /etc/logrotate.d/ballsrace
 ```
 
+<h2 id="9cfde9e4f062a301495ad160e63231a8"></h2>
+
 ## 6. 查看各log文件的具体执行情况
 
 ```bash
 cat /var/lib/logrotate.status
 ```
+
+<h2 id="236ff4d77e20107d290447c1bc082b5e"></h2>
 
 ## 7. crontab定时执行
 
@@ -54,7 +84,11 @@ maybe you want to use echo to append job to crontab file ...  you may find that 
 echo $'*/1\t*\t*\t*\t*\t/usr/sbin/logrotate...' >> xxxx
 ```
 
+<h2 id="6803e775fc8d5aa27d11c244367853e4"></h2>
+
 ## 8. Misc
+
+<h2 id="3374665dc3e1eb7e8d997b73823475af"></h2>
 
 ### 配置文件中一些指令说明
 
@@ -72,6 +106,8 @@ echo $'*/1\t*\t*\t*\t*\t/usr/sbin/logrotate...' >> xxxx
  - sharedscripts                           
     - 运行postrotate脚本，作用是在所有日志都轮转后统一执行一次脚本。如果没有配置这个，那么每个日志轮转后都会执行一次脚本
 
+
+<h2 id="6747f534f8d4ab733e26bd14238430ac"></h2>
 
 ### stdout/stderr 重定向日志问题
 

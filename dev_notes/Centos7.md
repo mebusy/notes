@@ -16,6 +16,9 @@
          - [Enable the systemd service unit](#4937eedceb267c9e4326ecf2ba78b05d)
          - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
      - [how the see the log of a running process which is redirected to `/dev/null` ?](#c6805678c62648e428cea464f3e8b4b7)
+     - [Vbox Centos access Host folder](#69a3af8e4da356a41a5db362a321370e)
+         - [1 create a share fold](#ced6fe808bc1654ffe62ac3e6b5888a4)
+         - [2 Install Guest Additions](#9be07da516116f6994db2e276de42d2b)
 
 ...menuend
 
@@ -453,13 +456,19 @@ WantedBy=default.target
     - where 
     - 1 = stdout, 2 = stderr
 
+<h2 id="69a3af8e4da356a41a5db362a321370e"></h2>
+
 ## Vbox Centos access Host folder
+
+<h2 id="ced6fe808bc1654ffe62ac3e6b5888a4"></h2>
 
 ### 1 create a share fold
 
 - in vbox menu,  create a shared folder 
    - choose `auto mount` and "permanent"
    - remember the shared name , i.e. "D_DRIVER"
+
+<h2 id="9be07da516116f6994db2e276de42d2b"></h2>
 
 ### 2 Install Guest Additions
 

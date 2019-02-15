@@ -1146,8 +1146,8 @@ texture.mapping = THREE.CubeRefractionMapping;
     - The default value is so close to 1 that the object will be almost invisible. 
  - This example uses a value of 0.6:
 
- ```js
- var material = new THREE.MeshBasicMaterial( {
+```js
+var material = new THREE.MeshBasicMaterial( {
         color: "white",
         envMap: texture,
         refractionRatio: 0.6

@@ -17,6 +17,8 @@ RE_PATTERN_MENU_JUMP_ID = re.compile( r"^<h\d*\s+id=" )
 RE_PATTERN_TABLE = re.compile( r"^\s*---(\s*\|\s*---)+" )
 RE_PATTERN_ITALIC_BOLD_HEAD_NON_SPACE = re.compile( r"(.?)(\*\*\*[^*]+\*\*\*)(.?)" )
 
+RE_PATTERN_CODE_BLOCK = re.compile( r"^\s*```" )
+
 def createMenu4MD( path ):
     # print 'parsing' , path
 
@@ -43,8 +45,14 @@ def createMenu4MD( path ):
 
     all_title_level = set([])
     for i, line in enumerate( lines ):
-        if line[:3] == "```":
+        if RE_PATTERN_CODE_BLOCK.search( line ) is not None:
             bCodeStart = not bCodeStart
+            DEBUG = False 
+            if DEBUG:
+                if bCodeStart :
+                    print "codeline start: " , i+1, lines[i+1]
+                else:
+                    print "codeline end: " , i-1 , lines[i-1]
 
         if bCodeStart:
             if not re.search( RE_PATTERN_MENU_JUMP_ID , line  ):

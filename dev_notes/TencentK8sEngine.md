@@ -8,6 +8,9 @@
      - [策略](#66914536facf5b30973b236fb814d23f)
  - [腾讯云 Misc](#4214290dc4bf8068d16758a84a3496a7)
      - [ingress 证书 对部分低版本Android设备不兼容，导致 ssl hand shake error.](#d42d194dd306f76100f9b591fd878396)
+     - [k8s node 磁盘占用过高查找并清理](#e8dfbb86e3e1d39df969144ae4d3f06b)
+     - [清除不再使用的 image](#77563c3ed75c144a6617a7077a1b4771)
+     - [查找不是 running 状态的 pod](#145f750dc8c7bde1231227e5d027eafd)
  - [cntlm 设置代理 (Centos7)](#c36aef5f4c92632a2362a83ed0523565)
  - [cntlm (Macosx)](#48cd1b6a59fb119e19d9f83e6cf43668)
 
@@ -128,6 +131,8 @@ kubectl ... get ...  -o yaml --export
  - 检查证书兼容性  https://myssl.com/ 
 
 
+<h2 id="e8dfbb86e3e1d39df969144ae4d3f06b"></h2>
+
 ## k8s node 磁盘占用过高查找并清理
 
  - kubectl 查看node 状态 `kubectl describe nodes` .
@@ -138,6 +143,8 @@ kubectl ... get ...  -o yaml --export
         - `ls -Sl`
         - `du -m <path> | sort -nr | head -n 10`
 
+<h2 id="77563c3ed75c144a6617a7077a1b4771"></h2>
+
 ## 清除不再使用的 image 
 
 ```
@@ -146,6 +153,8 @@ docker images | grep "<none>" | grep umc-app-images | awk "{print \$3}" | xargs 
 # more aggressive 
 docker images | grep umc-app-images | awk "{print \$3}" | xargs docker rmi
 ```
+
+<h2 id="145f750dc8c7bde1231227e5d027eafd"></h2>
 
 ## 查找不是 running 状态的 pod
 
