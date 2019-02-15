@@ -1,6 +1,5 @@
 ...menustart
 
- - [Go Tips](#0c9ac1513a8e22b00d66ef1862bcf4fe)
  - [Common](#d13bc5b68b2bd9e18f29777db17cc563)
      - [multiple characters replacement](#092987d14c5ea50ca1043604d333f7f7)
      - [Ternary expression](#50ac00ef46e6ca65b6eda7d8fbc3d3eb)
@@ -67,9 +66,75 @@
 ...menuend
 
 
-<h2 id="0c9ac1513a8e22b00d66ef1862bcf4fe"></h2>
+...menustart
 
-# Go Tips
+ - [Go Tips](#0c9ac1513a8e22b00d66ef1862bcf4fe)
+ - [Common](#d13bc5b68b2bd9e18f29777db17cc563)
+     - [multiple characters replacement](#092987d14c5ea50ca1043604d333f7f7)
+     - [Ternary expression](#50ac00ef46e6ca65b6eda7d8fbc3d3eb)
+     - [How to find out which types implement ByteReader interface in golang pkg ?](#2929210b0e8a534b0f6389e8de130779)
+     - [don't use alias for enums 'cause this breaks type safety](#c81f40d0d79a6378c73da8285af6a87f)
+     - [the short form for slice initialization is `a := \[\]T{}`](#1a2da25898c4fd8e23e5530a6d1676c4)
+         - [the zero value of a slice is nil](#3b74cf78eee2b1bdb3ac72e39aa0b9ec)
+     - [use `%+v` to print data with sufficient details](#3fb8e7e955dd2ef147753428825decc1)
+     - [using range loop to iterate over array or slice](#226081b0fa35e5ae1ca0233b34285901)
+     - [comparing timestamps by using `time.Before` or `time.After`.](#a5e5af3efeb419f96f350782021e2e41)
+     - [be careful with empty struct `struct{}`](#9b63cdf4a17f6bc00c607ce0b8c34e62)
+     - [be careful with range in Go](#96d33eb12c7b98e7c443951fcd4bd31b)
+     - [reading nonexistent key from map will not panic](#cc01793243c2fa1852f2972d1adf0972)
+     - [simple random element from a slice](#efcd04c1f0dae7d0002c6671eed2d378)
+ - [Concurrency](#3e48afddb0c5521684b8d2687b0869d6)
+     - [T12 inherits the mutex lock , YES anonymous structs are cool](#b27f2b80be1e9c908fcec253c881177c)
+     - [T14 Closing channels](#949c5b9f71365fae2a311ff363602d87)
+         - [use chan struct{} to pass signal, chan bool makes it less clear](#38d57280e166d4e78ace55c47bd88624)
+     - [T15 Locking with buffered channels (size of 1, to replace Lock)](#34f46f2a72a5a37dbfa0c051251e6d91)
+     - [best candidate to make something once in a thread-safe way is sync.Once](#61585cd8a4eb857f05a268dded0d9196)
+     - [concurrency-safe](#fe89095a25ed4db8aa993b7f4e45d1cb)
+ - [Error](#902b0d55fddef6f8d651fe1035b7d4bd)
+     - [T17 Use custom error types to return additional information](#d1de0b2cb3348dca42f909c843dcf5bc)
+         - [Or use to wrap an error](#65263ac49cb63677beb20a5cefd0791d)
+     - [T18 Error variables , create errors as package-scoped variables and reference those variables](#87b731d7e572733aa294fbdd8513c9e0)
+     - [Panics and goroutines](#d3679e82565b6cc42c359a29ad5c8ffd)
+     - [use panic only in very specific situations, you have to handle error](#88d00ec4fe58aa422b9c3e2fd7eac2a0)
+ - [Debug & Test](#4582db50ce6fbe4c2d279f27c53a8741)
+     - [Accessing stack traces](#ede22a82337ad92405e2e3f2875d248f)
+     - [dump goroutines](#0615f6469476f5c64c9c20eae6348a7b)
+     - [to get call stack we've runtime.Caller](#826c20b622dd27722a65b20623a45754)
+     - [Generative testing , random test edge cases](#3338f48367f6f6923613b593a7e0749b)
+     - [30 Parallel benchmarks  and race detection](#c5a9149a4c668ac9542a3eabd9078d5d)
+     - [easy way to split test into different builds](#a9928fbcd297bb4fb75ea5528df8edad)
+ - [Web Cloud and Micro Service](#909dbd9520809eab1b9f3c2544d7e831)
+     - [T9 URL Faster routing](#172a5c78b32d6fc444e4d1c3b61744d2)
+     - [T49 Detecting timeouts](#9b750e13615f6e945e21136f2486944e)
+     - [T50 resuming download with HTTP](#5864385d2a98ac5198627d336c9e3215)
+     - [T58 detect IP addr on the host](#70d85a28319eb9789bccde5293aeef77)
+     - [T59 Detecting where depend command exists on host](#93f6310cc55bf4890ceb40446c51d45d)
+     - [T60 Batch Cross-compiling](#60ee39b263dfd49c2df587ebd0603552)
+     - [T61 Monitoring the Go runtime](#d229185d44acbaf8549510f633db7bbf)
+     - [T62 Reusing connections](#127f2f792279fa876b89569831a2170a)
+     - [T63 Faster JSON marshal and unmarshal](#5671e185bb514a943cc0340216a81cbf)
+     - [httputil.DumpRequest is very useful thing, don't create your own](#6807f9517e74e39fcdde04bee03bd940)
+ - [Reflection](#aea1e492943ccbad7ee270ec1e064758)
+     - [T70 Generating code with go generate](#490e9ac4eae32799c8876c485d61477f)
+ - [Performance](#9446a98ad14416153cc4d45ab8b531bf)
+     - [Do NOT overuse fmt.Sprintf in your hot path.](#f2e1d768493590d77cb642c9efb98268)
+     - [always discard body e.g. `io.Copy(ioutil.Discard, resp.Body)`  if you don't use it](#a7701ee1968dee6ec433541b590f0d44)
+     - [don't use defer in a loop or you'll get a small memory leak](#8081b8d04a6f4d4ee17eeca49c63613a)
+     - [don't forget to stop ticker, unless you need a leaked channel](#3b9ec32447f983783ee40bcb4e2448fe)
+     - [`sync.Map` isn't a silver bullet, do not use it without a strong reasons](#543e9d26325c59e0d80371ab11f03a3e)
+     - [to hide a pointer from escape analysis you might carefully(!!!) use this func:](#457a0f3166a881858238dadb30c3b00d)
+     - [for fastest atomic swap you might use this `m := (*map\[int\]int)(atomic.LoadPointer(&ptr))`](#81d856f273cef05d6d36437fb6770bc8)
+     - [use buffered I/O if you do many sequential reads or writes](#ad7dad3c5b207cff2caf801d111437d3)
+     - [there are 2 ways to clear a map:](#869e770545ab96a38832ba21ea6e9199)
+ - [Build](#c74c1f42f141c011ca6bd8b1114fc3d0)
+     - [strip your binaries with this command go build -ldflags="-s -w" ...](#822c1164685d599334ea5584d4638941)
+     - [tiniest Go docker image](#e34c20517da18245d8e7fe706febc368)
+     - [check if there are mistakes in code formatting `diff -u <(echo -n) <(gofmt -d .)`](#1695cd016ed1ed01d8ff7cecde62d867)
+     - [check interface implementation during compilation](#fbc04a03c1a5ee00e1b416744fb3154b)
+
+...menuend
+
+**Go Tips**
 
 <h2 id="d13bc5b68b2bd9e18f29777db17cc563"></h2>
 
