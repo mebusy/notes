@@ -11,7 +11,7 @@ import urllib
 
 
 
-RE_PATTERN_MENU_BODY = re.compile( r"\.\.\.menustart[\s\S]*\.\.\.menuend\n\n\n" )
+RE_PATTERN_MENU_BODY = re.compile( r"\.\.\.menustart.*?\.\.\.menuend\s*" , re.DOTALL  )
 RE_PATTERN_MENU_SYNTAX = re.compile( r"^(\#+)(.*?)$" )
 RE_PATTERN_MENU_JUMP_ID = re.compile( r"^<h\d*\s+id=" )
 RE_PATTERN_TABLE = re.compile( r"^\s*---(\s*\|\s*---)+" )

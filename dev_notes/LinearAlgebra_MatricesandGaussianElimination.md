@@ -19,7 +19,7 @@
          - [Elimination in a Nutshell: PA = LU](#5c3fc1e2610b8235f0cf01bfd463f2eb)
      - [1.6 INVERSES AND TRANSPOSE](#4d72fafca6d677bb749ef5048ba77fa6)
          - [The Calculation of A⁻¹: The Gauss-Jordan Method](#5dd7a646b2bb1011c052239ac7a3ce0a)
-         - [***Invertible = Nonsingular (n pivots)***](#09b826c4478f9e67a2a6854f8783bd64)
+         - [Invertible = Nonsingular (n pivots)](#f559aa9e3fcec478e620ebc4c2817cc4)
          - [The Transpose Matrix](#242b3600224bb5f3c1f4b6458cf7b658)
          - [Symmetric Matrices](#b899f85c23e42aea33f7684a076389ca)
          - [Symmetric Products RᵀR, RRᵀ, and LDLᵀ](#1385c8c79787a12139bf60e1624cc87f)
@@ -496,9 +496,9 @@ A⁻¹ = U⁻¹·L⁻¹
  1. Though A⁻¹ can solves Ax = b in one step , but it is not recommended. Two triangular steps are better: x = A⁻¹b separates into Lc = b and Ux = c.
     - since we only need back-substitution for x (and forward substitution produced c).
 
-<h2 id="09b826c4478f9e67a2a6854f8783bd64"></h2>
+<h2 id="f559aa9e3fcec478e620ebc4c2817cc4"></h2>
 
-### ***Invertible = Nonsingular (n pivots)***
+### Invertible = Nonsingular (n pivots)
 
 If A is invertible, it has n pivots. 
 

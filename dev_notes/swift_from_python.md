@@ -4,7 +4,7 @@
 ...menuend
 
 
- - var / let
+- var / let
     - var means mutable , let means constant. 
     - really important in swift 
     - it's a multi-threaded environment from the very beginning .

@@ -4,7 +4,7 @@
 ...menuend
 
 
- 1. [Basic](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week1.md) 
+1. [Basic](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week1.md) 
  2. [Tiled](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week2.md) 
  3. [Convolution](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_programming_week3.md) 
  4. [Reduction, Scan](https://github.com/mebusy/notes/blob/master/dev_notes/Parallel_Programming_week4.md)  
