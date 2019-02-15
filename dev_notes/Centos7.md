@@ -453,4 +453,30 @@ WantedBy=default.target
     - where 
     - 1 = stdout, 2 = stderr
 
+## Vbox Centos access Host folder
+
+### 1 create a share fold
+
+- in vbox menu,  create a shared folder 
+   - choose `auto mount` and "permanent"
+   - remember the shared name , i.e. "D_DRIVER"
+
+### 2 Install Guest Additions
+
+- 1. from Centos Vbox menu `Devices` , choose `Insert Guest Additions CD Image`
+- 2. in centos shell
+
+```
+$ mkdir -p /media/cdrom
+$ mount /dev/cdrom /media/cdrom/
+$ cd /media/cdrom/
+$ sh VBoxLinuxAdditions.run
+...
+VirtualBox Guest Additions: Starting.
+```
+
+Now, the shared fold has be mounted at `/media/sf_D_DRIVE/`. (if not , try reboot)
+
+
+
 
