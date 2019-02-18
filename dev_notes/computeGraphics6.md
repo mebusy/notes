@@ -187,6 +187,34 @@ Texture coordinates | |
  · | · | geometric transform 
 
 
+ - WebGL does not come with **any** predefined attributes. 
+    - In the programmable pipeline, the attributes and uniforms that are used *are entirely up to the programmer*. 
+ - Attributes are just values that are passed into the vertex shader. 
+    - Uniforms can be passed into the vertex shader, the fragment shader, or both. 
+ - WebGL does not assign a meaning to the values. The meaning is entirely determined by what the shaders do with the values. 
+ - To understand this, we need to look at what happens in the pipeline in a little more detail.
+    - When drawing a primitive, the JavaScript program will specify values for any attributes and uniforms in the shader program. 
+        - For each attribute, it will specify an array of values, one for each vertex. 
+        - For each uniform, it will specify a single value. 
+    - The values will all be sent to the GPU before the primitive is drawn.
+    - When drawing the primitive, the GPU calls the vertex shader once for each vertex. 
+        - The attribute values for the vertex that is to be processed are passed as input into the vertex shader. 
+        - Values of uniform variables are also passed to the vertex shader. 
+    - Both attributes and uniforms are represented as global variables in the shader, whose values are set before the shader is called.
+ - As one of its outputs, the vertex shader must specify the coordinates of the vertex in the *clip coordinate system*.
+    - It does that by assigning a value to a special variable named `gl_Position`.
+    - The position is often computed by applying a transformation to the coordinates attribute in the *object coordinate system*.
+ - After the positions of all the vertices in the primitive have been computed, a fixed-function stage in the pipeline *clips away* the parts of the primitive whose coordinates are outside the range of valid clip coordinates (−1 to 1 along each coordinate axis). 
+    - The primitive is then rasterized; that is, it is determined which pixels lie inside the primitive. 
+    - The fragment shader is then called once for each pixel that lies in the primitive. 
+    - The fragment shader has access to uniform variables (but not attributes). 
+        - It can also use a special variable named `gl_FragCoord` that contains the clip coordinates of the pixel. 
+        - Pixel coordinates are computed by interpolating the values of gl_Position that were specified by the vertex shader. 
+        - The interpolation is done by another fixed-function stage that comes between the vertex shader and the fragment shader. 
+ - Other quantities besides coordinates can work in much that same way, suck like *color*.
+
+
+
 
 ## Section 2: First Examples
 ## Section 3: GLSL
