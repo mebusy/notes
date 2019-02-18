@@ -167,7 +167,24 @@ gl.useProgram( prog );
 
 ### 6.1.3  Data Flow in the Pipeline
 
+ - The basic operation in WebGL is to draw a geometric primitive. 
+    - The primitives for drawing quads and polygons have been removed.
+    - The remaining primitives draw points, line segments, and triangles.
+    - gl.POINTS, gl.LINES, gl.LINE_STRIP, gl.LINE_LOOP, gl.TRIANGLES, gl.TRIANGLE_STRIP, and gl.TRIANGLE_FAN,
+ - When WebGL is used to draw a primitive, there are two general categories of data that can be provided for the primitive. 
+    - **attribute** variables
+    - **uniform** variables
+ - A uniform variable has a single value that is the same for the entire primitive, while the value of an attribute variable can be different for different vertices.
 
+
+must be attribute | attri or uniform | must be uniform  
+--- | --- | --- 
+coordinates  | | 
+ | color | 
+ | normal vectors | 
+ | material properties | 
+Texture coordinates | | 
+ | | geometric transform 
 
 
 
