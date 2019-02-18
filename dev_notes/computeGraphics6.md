@@ -180,11 +180,11 @@ gl.useProgram( prog );
 must be attribute | attri or uniform | must be uniform  
 --- | --- | --- 
 coordinates  | | 
- | color | 
- | normal vectors | 
- | material properties | 
+     | color | 
+     | normal vectors | 
+     | material properties | 
 Texture coordinates | | 
- | | geometric transform 
+     |       | geometric transform 
 
 
 
