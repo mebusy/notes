@@ -234,8 +234,10 @@ Texture coordinates | |
         - The fragment shader can use the values of varying variables, uniform variables, and gl_FragCoord. 
         - It computes a value for gl_FragColor.
     4. This diagram summarizes the flow of data:
-        - 
+        - ![](../imgs/cg6_webgl_gsgl_workflow.png)
+        - The diagram is not complete. how are textures used?
 
+### 6.1.4  Values for Uniform Variables
 
 
 
