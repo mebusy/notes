@@ -211,7 +211,30 @@ Texture coordinates | |
         - It can also use a special variable named `gl_FragCoord` that contains the clip coordinates of the pixel. 
         - Pixel coordinates are computed by interpolating the values of gl_Position that were specified by the vertex shader. 
         - The interpolation is done by another fixed-function stage that comes between the vertex shader and the fragment shader. 
- - Other quantities besides coordinates can work in much that same way, suck like *color*.
+ - Other quantities besides coordinates can work in much that same way, suck like *color*. 
+    - That is , 
+        - the vertex shader computes a value for the quantity at each vertex of a primitive,
+        - An interpolator takes the values at the vertices and computes a value for each pixel in the primitive
+        - The value for a given pixel is then input into the fragment shader.
+    - In GLSL, this pattern is implemented using *varying variables*.
+ - A varying variable is declared both in the vertex shader and in the fragment shader.
+    - The vertex shader is responsible for assigning a value to the varying variable. 
+    - The interpolator takes the values from the vertex shader and computes a value for each pixel. 
+    - When the fragment shader is executed for a pixel, the value of the varying variable is the interpolated value for that pixel.
+    - PS. In newer versions of GLSL, the term "varying variable" has been replaced by "out variable" in the vertex shader and "in variable" in the fragment shader.
+ - After all that, the job of the fragment shader is simply to specify a color for the pixel. 
+    - It does that by assigning a value to a special variable named **gl_FragColor**. 
+    - That value will then be used in the remaining fixed-function stages of the pipeline.
+ - To summarize: 
+    1. The JavaScript side of the program sends values for attributes and uniform variables to the GPU and then issues a command to draw a primitive.
+    2. The GPU executes the vertex shader once for each vertex. 
+        - The vertex shader can use the values of attributes and uniforms. 
+        - It assigns values to gl_Position and to any varying variables that exist in the shader. 
+    3. After clipping, rasterization, and interpolation, the GPU executes the fragment shader once for each pixel in the primitive. 
+        - The fragment shader can use the values of varying variables, uniform variables, and gl_FragCoord. 
+        - It computes a value for gl_FragColor.
+    4. This diagram summarizes the flow of data:
+        - 
 
 
 
@@ -222,4 +245,11 @@ Texture coordinates | |
 ## Section 5: Implementing 2D Transforms
 
 
+## Note 
+
+ - webGL shader 没有预定义的attributes和uniform变量，程序员自己定义使用
+ - webGL 特殊变量:
+    - gl_Position
+    - gl_FragCoord
+    - gl_FragColor
 
