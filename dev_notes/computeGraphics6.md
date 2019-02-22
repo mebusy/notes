@@ -1,3 +1,21 @@
+...menustart
+
+ - [Introduction to WebGL](#ee4f3cb275cef5c1d82ace8d34788594)
+     - [Section 1: The Programmable Pipeline](#9a3040db06e663f46ca7269b3df96da5)
+         - [6.1.1  The WebGL Graphics Context](#4d00c423ae698f2f9609d15a3d6df978)
+         - [6.1.2  The Shader Program](#4f31b4e489e41f45a443c8b31846a270)
+         - [6.1.3  Data Flow in the Pipeline](#c754edff11c3f2393931f78827b9b007)
+         - [6.1.4  Values for Uniform Variables](#339ce22e55c69e7bbd8951f6e94a8586)
+     - [Section 2: First Examples](#e305dfdab0e4cefbd5abea8eacc9c474)
+     - [Section 3: GLSL](#512cc0d7b47100675a0c220edf55385a)
+     - [Section 4: Image Textures](#1f7b297214b84adbccdc248c8f3a7c4e)
+     - [Section 5: Implementing 2D Transforms](#6f0ba384aa3b845de4898ddb899a037c)
+     - [Note](#3b0649c72650c313a357338dcdfb64ec)
+
+...menuend
+
+
+<h2 id="ee4f3cb275cef5c1d82ace8d34788594"></h2>
 
 # Introduction to WebGL
 
@@ -10,6 +28,8 @@
     - Part of the program is written in *JavaScript*
     - The second part is written in *GLSL*
 
+
+<h2 id="9a3040db06e663f46ca7269b3df96da5"></h2>
 
 ## Section 1: The Programmable Pipeline
 
@@ -32,6 +52,8 @@
     - Version 2.0 was released in January 2017. and it is compatible with version 1.0.
     - At the end of 2017, WebGL 2.0 is available in some browsers.
     - The later versions of OpenGL have introduced **additional** programmable stages into the pipeline.
+
+<h2 id="4d00c423ae698f2f9609d15a3d6df978"></h2>
 
 ### 6.1.1  The WebGL Graphics Context
 
@@ -75,6 +97,8 @@ function init() {
 <body onload="init()">
 ```
 
+
+<h2 id="4f31b4e489e41f45a443c8b31846a270"></h2>
 
 ### 6.1.2  The Shader Program
 
@@ -165,6 +189,8 @@ gl.useProgram( prog );
     - Use the functions `gl.deleteShader(shader)` and `gl.deleteProgram(program)`.
 
 
+<h2 id="c754edff11c3f2393931f78827b9b007"></h2>
+
 ### 6.1.3  Data Flow in the Pipeline
 
  - The basic operation in WebGL is to draw a geometric primitive. 
@@ -237,15 +263,27 @@ Texture coordinates | |
         - ![](../imgs/cg6_webgl_gsgl_workflow.png)
         - The diagram is not complete. how are textures used?
 
+<h2 id="339ce22e55c69e7bbd8951f6e94a8586"></h2>
+
 ### 6.1.4  Values for Uniform Variables
 
 
 
+<h2 id="e305dfdab0e4cefbd5abea8eacc9c474"></h2>
+
 ## Section 2: First Examples
+<h2 id="512cc0d7b47100675a0c220edf55385a"></h2>
+
 ## Section 3: GLSL
+<h2 id="1f7b297214b84adbccdc248c8f3a7c4e"></h2>
+
 ## Section 4: Image Textures
+<h2 id="6f0ba384aa3b845de4898ddb899a037c"></h2>
+
 ## Section 5: Implementing 2D Transforms
 
+
+<h2 id="3b0649c72650c313a357338dcdfb64ec"></h2>
 
 ## Note 
 

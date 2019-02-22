@@ -62,6 +62,8 @@
      - [tiniest Go docker image](#e34c20517da18245d8e7fe706febc368)
      - [check if there are mistakes in code formatting `diff -u <(echo -n) <(gofmt -d .)`](#1695cd016ed1ed01d8ff7cecde62d867)
      - [check interface implementation during compilation](#fbc04a03c1a5ee00e1b416744fb3154b)
+ - [sql](#ac5c74b64b4b8352ef2f181affb5ac2a)
+     - [where in](#cca85d15132b75981103827efd17081b)
 
 ...menuend
 
@@ -698,7 +700,11 @@ var _ io.Reader = (*MyFastReader)(nil)
 
 ---
 
+<h2 id="ac5c74b64b4b8352ef2f181affb5ac2a"></h2>
+
 # sql 
+
+<h2 id="cca85d15132b75981103827efd17081b"></h2>
 
 ## where in
 
