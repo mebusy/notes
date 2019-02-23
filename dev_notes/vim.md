@@ -148,11 +148,16 @@ git submodule update --recursive --init
 
  - for C family support:  `./install.py --clang-completer --system-libclang`
      - using `--system-libclang` here because on MacOSX, it report error "NOT using libclang, no semantic completion for C/C++/ObjC will be available"
- - C# support: install Mono and add --cs-completer when calling ./install.py.
- - Go support: install Go and add --go-completer when calling ./install.py.
- - JavaScript and TypeScript support: install Node.js and npm and add --ts-completer when calling install.py.
- - Rust support: install Rust and add --rust-completer when calling ./install.py.
- - Java support: install JDK8 (version 8 required) and add --java-completer when calling ./install.py.
+ - C# support: install Mono and add `--cs-completer` when calling ./install.py.
+ - Go support: install Go and add `--go-completer` when calling ./install.py.
+ - JavaScript and TypeScript support: install Node.js and npm and add `--ts-completer` when calling install.py.
+ - Rust support: install Rust and add `--rust-completer` when calling ./install.py.
+ - Java support: install JDK8 (version 8 required) and add `--java-completer` when calling ./install.py.
+
+
+```bash
+python install.py --clang-completer --cs-completer  --go-completer --ts-completer --java-completer
+```
 
 --- 
 
