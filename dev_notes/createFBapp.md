@@ -132,7 +132,18 @@ POST /stack HTTP/1.1
 }
 ```
 
+ - test data ,  single event 
 
+```
+curl -X POST http://127.0.0.1:3000/stack -d '{"object":"page","more":"more","entry":[{"id":"1163397087175417","time":1551091549707,"messaging":[{"recipient":{"id":"1163397087175417"},"timestamp":1551091549707,"sender":{"id":"2396781657060600"},"game_play":{"game_id":"2223523667903679","player_id":"1766087003495604"}}]}]}'
+```
+
+ - test data , 两组 entry, 每个 entry 包含2个event; 
+    - 有一个event 是 message 
+
+```
+curl -X POST http://127.0.0.1:3000/stack -d '{"object":"page","more":"more","entry":[{"id":"1163397087175417","time":1551091549707,"messaging":[{"recipient":{"id":"1163397087175417"},"timestamp":1551091549707,"sender":{"id":"2396781657060600"},"game_play":{"game_id":"2223523667903679","player_id":"1766087003495604"}},{"recipient":{"id":"1163397087175417"},"timestamp":1551091549708,"sender":{"id":"2396781657060600"},"game_play":{"game_id":"2223523667903679","player_id":"1766087003495604"}}]},{"id":"1163397087175418","time":1551091549707,"messaging":[{"recipient":{"id":"1163397087175417"},"timestamp":1551091549707,"sender":{"id":"2396781657060600"},"game_play":{"game_id":"2223523667903679","player_id":"1766087003495604"}},{"recipient":{"id":"1163397087175417"},"timestamp":1551091549708,"sender":{"id":"2396781657060600"},"message":{"game_id":"2223523667903679","player_id":"1766087003495604"}}]}]}'
+```
 
 
 
