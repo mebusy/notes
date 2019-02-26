@@ -75,4 +75,64 @@ https://developers.facebook.com/docs/messenger-platform/getting-started
 # debug messager bot with local server
 
  - localtunnel or ngrok
+    - 使用 localtunnel 需要清理掉你本地的 代理服务器设置，不要设置 http-proxy , https-proxy, 否则会出现错误 Tunnel Server is offline 
+
+## localtunnel
+
+ - create localtunnel server
+    - https://github.com/localtunnel/server
+
+ - or just use provided service
+    - `lt -s mebusy -l 10.192.81.132 -p 5757`
+
+
+ 
+# Write GameBot server 
+
+## verify webhook
+
+```
+GET /stack?hub.mode=subscribe&hub.challenge=1709021033&hub.verify_token=TEST_VERIFY_TOKEN HTTP/1.1
+```
+
+
+## gameplay POST ( when close instance game )
+
+```
+POST /stack HTTP/1.1
+
+{"object":"page","entry":[{"id":"1163397087175417","time":1551091549707,"messaging":[{"recipient":{"id":"1163397087175417"},"timestamp":1551091549707,"sender":{"id":"2396781657060600"},"game_play":{"game_id":"2223523667903679","player_id":"1766087003495604"}}]}]}
+```
+
+```python
+// more human readable
+{
+    "entry": [
+        {
+            "id": "1163397087175417",
+            "messaging": [
+                {
+                    "game_play": {
+                        "game_id": "2223523667903679",
+                        "player_id": "1766087003495604"
+                    },
+                    "recipient": {
+                        "id": "1163397087175417"
+                    },
+                    "sender": {
+                        "id": "2396781657060600"
+                    },
+                    "timestamp": 1551091549707
+                }
+            ],
+            "time": 1551091549707
+        }
+    ],
+    "object": "page"
+}
+```
+
+
+
+
 
