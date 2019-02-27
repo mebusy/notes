@@ -152,6 +152,62 @@ $ arp -a
 
 ## 9 IP选路
 
+ - IP层工作流程
+    - ![](../imgs/tcpip_IP_workflow.png)
+ - IP层进行的选路，实际上是一种选路机制， 它搜索路由表并决定向哪个网络接口 发送分组。 这区别于选路策略。
+    - 选路策略 只是一组 决定把哪些路由 放入路由表的规则， 一般由 路由守护程序来 提供选路策略。
+ - 查看路由表 `netstat -rn`
+    - 如果没有 `-n` 选项， 返回结果会混用 主机名和IP地址
+
+```
+$ netstat -r
+Routing tables
+
+Internet:
+Destination        Gateway            Flags        Refs      Use   Netif Expire
+default            10.192.80.1        UGSc           84     2412     en0
+default            link#15            UCSI            1        0 bridge1
+10.192.80/21       link#6             UCS             3        0     en0
+10.192.80.1/32     link#6             UCS             3        0     en0
+10.192.80.1        0:0:c:9f:f0:d1     UHLWIir        12        0     en0   1185
+10.192.80.3        0:de:fb:8b:85:1    UHLWI           0        0     en0   1199
+svr4               18:60:24:95:4d:f   UHLWI           0        0     en0    875
+...
+
+$ netstat -rn
+Routing tables
+
+Internet:
+Destination        Gateway            Flags        Refs      Use   Netif Expire
+default            10.192.80.1        UGSc           71     2412     en0
+default            link#15            UCSI            1        0 bridge1
+10.192.80/21       link#6             UCS             4        0     en0
+10.192.80.1/32     link#6             UCS             3        0     en0
+10.192.80.1        0:0:c:9f:f0:d1     UHLWIir        16        0     en0   1187
+10.192.80.3        0:de:fb:8b:85:1    UHLWI           0        0     en0   1198
+10.192.81.84       18:60:24:95:4d:f   UHLWI           0        0     en0    862
+....
+```
+
+ - 路由表条目解读：如果IP目的地 == 'Destination' ,  那么 网关(路由器)将把分组转发给 'Gateway' 
+ - Flags:
+    - U: 该路由可用
+    - G: 该路由是一个网关(路由器)
+        - 非常重要, 它区分了 间接路由和直接路由(直接路由不会设置G)
+        - 发往 直接路由的分组 , 带 目的地的链路层地址; 而发往 间接路由的，链路层地址指向 网关(即下一站路由器)
+    - H: 该路由是一个主机
+        - 如果没有设置H，表明 说明目的地地址是一个网络地址.
+        - 当为 某个目的IP地址 搜索路由表时，主机地址必须与目的地地址 完全匹配； 而网络地址只需要匹配网络号.
+    - D: 该路由 是由 重定向报文创建的 (9.5)
+    - M: 该路由 已被 重定向报文 修改  (9.5)
+ - Refs
+    - 引用计数 , 正在使用 该路由的 活动进程个数。
+ - Use
+    - 通过该路由 发送的分组数
+ - 9.5 ICMP 重定向差错
+    - 当IP数据报 应该被发送到另一个路由器时，收到数据报的路由器 就要发送 ICMP 重定向差错报文 给 IP数据报的发送端。
+
+
 
 
 
