@@ -755,6 +755,16 @@ today > today-delta # compare dates
 # True
 ```
 
+### seconds to readable date 
+
+```python
+# here , `t` is  millis
+>>> datetime.datetime.utcfromtimestamp( t/1000 ).strftime('%Y-%m-%dT%H:%M:%SZ')
+'2019-03-01T09:33:08Z'
+>>> datetime.datetime.fromtimestamp( t/1000 ).strftime('%Y-%m-%dT%H:%M:%SZ')
+'2019-03-01T17:33:08Z'   # local time
+```
+
 
 <h2 id="3fea1af701d185d74668117c9555eb60"></h2>
 
