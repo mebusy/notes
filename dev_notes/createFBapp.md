@@ -64,7 +64,7 @@ https://developers.facebook.com/docs/messenger-platform/getting-started
  3. Subscribe your app to a Facebook Page
     - In the 'Token Generation' section , choose page, get the Page Access Token
         - 每选择 一次page，就会重新生成 token
-    - In the 'Webhook' section ,  select the same page , Click the 'Subscribe' to  subscribe your app to receive webhook events for the Page.
+    - then , in the 'Webhook' section ,  select the same page , Click the 'Subscribe' to  subscribe your app to receive webhook events for the Page.
  4. Test your app subscription
     - send a message to your Page from facebook.com or in Messenger. 
     - If your webhook receives a webhook event, you have fully set up your app!

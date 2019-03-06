@@ -281,7 +281,28 @@ default            link#15            UCSI            1        0 bridge1
     - 当把多播 扩展到 单个物理网络以外，需要通过路由器转发 多播数据时， 复杂性就增加了。 
     - 需要一个 协议 让多播路由器 了解确定 网络中遇雨确定多播组的任何一个主机。 这个协议就是 Internet 组管理协议 IGMP.
 
-## 13 IGMP
+## 14 DNS
+
+ - DNS 是一种用于 应用程序的 分布式数据库， 它提供 主机名字和IP地址之间的转换， 及有关电子邮件的选路信息。
+ - 从应用的角度上看，对 DNS的访问 是通过一个 地址解析器 resolver 来完成的。
+    - 在 Unix主机中， 主要是两个函数 
+        - gethostbyname(3) name->IP  
+        - gethostbyaddr(3)  IP->name
+ - resolver 通常是应用程序的一部分， 并不像 TCP/IP协议那样是操作系统的内核。
+ - 在应用程序请求 TCP打开一个连接 或使用UDP发送一个数据报之前，必需将 一个主机名 转换为一个 IP地址。 操作系统内核中的TCP/IP 协议族对于 DNS一点都不知道。
+ - DNS 定义了一个 用于查询/响应的 报文格式。
+
+```
+$ host baidu.com
+baidu.com has address 220.181.57.216
+baidu.com has address 123.125.115.110
+baidu.com mail is handled by 15 mx.n.shifen.com.
+baidu.com mail is handled by 10 mx.maillb.baidu.com.
+baidu.com mail is handled by 20 jpmx.baidu.com.
+baidu.com mail is handled by 20 mx1.baidu.com.
+baidu.com mail is handled by 20 mx50.baidu.com.
+```
+
 
 
 
