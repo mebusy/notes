@@ -267,6 +267,102 @@ Texture coordinates | |
 
 ### 6.1.4  Values for Uniform Variables
 
+ - float, int, bool, vec2, vec3, vec4
+ - Global variable
+    - Global variable declarations in a vertex shader can be marked as *attribute*, *uniform*, or *varying*. 
+        - A variable declaration with none of these modifiers defines a variable that is local to the vertex shader. 
+    - Global variables in a fragment can optionally be modified with uniform or varying, or they can be declared without a modifier. 
+        - A varying variable should be declared in both shaders, with the same name and type. 
+ - The JavaScript side of the program needs a way to refer to particular attributes and uniform variables.
+
+```js
+//  get a reference to a uniform variable in a shader program
+colorUniformLoc = gl.getUniformLocation( prog, "color" );
+// The location colorUniformLoc can then be used to set the value of the uniform variable:
+gl.uniform3f( colorUniformLoc, 1, 0, 0 );
+gl.uniform3fv( colorUniformLoc, [ 1, 0, 0 ] );
+// gl.uniform*
+```
+
+### 6.1.5  Values for Attributes
+
+ - Attribute is more complicated, because an attribute can take a different value for each vertex in a primitive. 
+    - The basic idea is to copy the complete set of data for the attribute from JavaScript  into GPU memory.  
+    - But it is non-trivial.
+ - A regular JS array is not suitable for this purpose.  For efficiency , we need the data to be in a block of memory holding values in successive locations  , but JS array don't have that form. 
+    - To fixe this problem, a new kind of array ,called *typed arrays* , was introduced into JS.  
+ - A typed array has a fixed length, which is assigned when it is created by a constructor. 
+
+```js
+var color = new Float32Array( 12 );  // space for 12 floats
+var coords = new Float32Array( [ 0,0.7, -0.7,-0.5, 0.7,-0.5 ] );
+```
+
+ - For use in WebGL, the attribute data must be transferred into a VBO (vertex buffer object).
+    - A VBO is a block of memory that is accessible to the GPU. 
+ - To use a VBO:
+
+```js
+// call gl.createBuffer() to create a VBO
+colorBuffer = gl.createBuffer();
+
+// Before transferring data into the VBO, you must "bind" the VBO:
+// here, `gl.ARRAY_BUFFER` is called the "target"
+// Only one VBO at a time can be bound to a given target.
+gl.bindBuffer( gl.ARRAY_BUFFER, colorBuffer );
+
+// copy data into that buffer, use gl.bufferData().
+// 1st param is again 'target' , 2nd is the typed array
+gl.bufferData(gl.ARRAY_BUFFER, colorArray, gl.STATIC_DRAW);
+```
+ - `gl.bufferData()`
+    - All the elements of the typed array are copied into the buffer, and the size of the array determines the size of the buffer. 
+        - Note that this is a  transfer of raw data bytes; WebGL does not remember whether the data represents floats or ints or some other kind of data.
+    - The 3rd parameter is one of the constants gl.STATIC_DRAW, gl.STREAM_DRAW, or gl.DYNAMIC_DRAW.
+        - It is a hint to WebGL about how the data will be used, and it helps WebGL to manage the data in the most efficient way. 
+        - gl.STATIC_DRAW means that you intend to use the data many times without changing it. 
+            - WebGL will probably store the data on the graphics card itself where it can be accessed most quickly by the graphics hardware. 
+        - gl.STEAM_DRAW is for data that will be used only once, then discarded. 
+            - It can be "streamed" to the card when it is needed.
+        - gl.DYNAMIC_DRAW  is somewhere between the other two values; it might be used for data that will be used a couple of times and then discarded.
+
+ - Getting attribute data into VBOs is only part of the story.
+    - You also have to tell WebGL to use the VBO as the source of values for the attribute. 
+
+```js
+// get attribute location
+colorAttribLoc = gl.getAttribLocation(prog, "a_color");
+
+// enable the use of a VBO for that attribute
+// it is reasonable to call this method just once, during initialization.
+gl.enableVertexAttribArray( colorAttribLoc );
+
+// tell WebGL which buffer contains the data and 
+// how the bits in that buffer are to be interpreted.
+// A VBO must be bound to the ARRAY_BUFFER target
+gl.bindBuffer( gl.ARRAY_BUFFER, colorBuffer );
+gl.vertexAttribPointer( colorAttribLoc, 3, gl.FLOAT, false, 0, 0 );
+```
+
+ - `gl.vertexAttribPointer`
+    - the 2nd param is the number of values per vertex
+    - the 3rd parma is the type of value 
+        - Other values include gl.BYTE, gl.UNSIGNED_BYTE, gl.UNSIGNED_SHORT, and gl.SHORT for integer values
+ - Here is the full set of commands:
+
+```js
+// the following 3 commands are often done in initialization
+colorAttribLoc = gl.getAttribLocation( prog, "a_color" );
+colorBuffer = gl.createBuffer();
+gl.enableVertexAttribArray( colorAttribLoc );
+
+gl.bindBuffer( gl.ARRAY_BUFFER, colorBuffer );
+gl.vertexAttribPointer( colorAttribLoc, 3, gl.FLOAT, false, 0, 0 );
+gl.bufferData( gl.ARRAY_BUFFER, colorArray, gl.STATIC_DRAW );
+```
+
+### 6.1.6  Drawing a Primitive
+
 
 
 <h2 id="e305dfdab0e4cefbd5abea8eacc9c474"></h2>
