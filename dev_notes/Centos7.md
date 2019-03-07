@@ -281,7 +281,7 @@ yum -y install httpd-tools
 
 ```
 $ echo "{ \"channel\": \"official\"}" > post.json
-$ ab -k -n 500000 -c 20000 -T "application/json" -p post.json  -H "userID: debugUserID" -H "Authorization: 7eb0f0a9798af24a883f4859db88a634"  http://10.192.8.17:9000/announcement
+$ ab -k -n -r  500000 -c 20000 -T "application/json" -p post.json  -H "userID: debugUserID" -H "Authorization: 7eb0f0a9798af24a883f4859db88a634"  http://10.192.8.17:9000/announcement
 ```
 
 
