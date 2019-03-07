@@ -135,14 +135,14 @@ POST /stack HTTP/1.1
  - test data ,  single event 
 
 ```
-curl -X POST http://127.0.0.1:3000/stack -d '{"object":"page","entry":[{"id":"821299701563322","time":1551944314225,"messaging":[{"recipient":{"id":"821299701563322"},"timestamp":1551944314225,"sender":{"id":"2058800797536806"},"game_play":{"game_id":"702997996724334","payload":"{\"timezone\":8,\"nickname\":\"Qi\",\"firstTime\":false,\"top1player\":\"2247834808562963\",\"randomFriendId\":\"2247834808562963\"}","player_id":"2074839315937481"}}]}]}'
+curl -X POST http://127.0.0.1:3000/bot -d '{"object":"page","entry":[{"id":"821299701563322","time":1551944314225,"messaging":[{"recipient":{"id":"821299701563322"},"timestamp":1551944314225,"sender":{"id":"2058800797536806"},"game_play":{"game_id":"702997996724334","payload":"{\"timezone\":8,\"nickname\":\"Qi\",\"firstTime\":false,\"top1player\":\"2247834808562963\",\"randomFriendId\":\"2247834808562963\"}","player_id":"2074839315937481"}}]}]}'
 ```
 
  - test data , 两组 entry, 每个 entry 包含2个event; 
     - 有一个event 是 message 
 
 ```
-curl -X POST http://127.0.0.1:3000/stack -d '{"object":"page","more":"more","entry":[{"id":"1163397087175417","time":1551091549707,"messaging":[{"recipient":{"id":"1163397087175417"},"timestamp":1551091549707,"sender":{"id":"2396781657060600"},"game_play":{"game_id":"2223523667903679","player_id":"1766087003495604"}},{"recipient":{"id":"1163397087175417"},"timestamp":1551091549708,"sender":{"id":"2396781657060600"},"game_play":{"game_id":"2223523667903679","player_id":"1766087003495604"}}]},{"id":"1163397087175418","time":1551091549707,"messaging":[{"recipient":{"id":"1163397087175417"},"timestamp":1551091549707,"sender":{"id":"2396781657060600"},"game_play":{"game_id":"2223523667903679","player_id":"1766087003495604"}},{"recipient":{"id":"1163397087175417"},"timestamp":1551091549708,"sender":{"id":"2396781657060600"},"message":{"game_id":"2223523667903679","player_id":"1766087003495604"}}]}]}'
+curl -X POST http://127.0.0.1:3000/bot -d '{"object":"page","more":"more","entry":[{"id":"1163397087175417","time":1551091549707,"messaging":[{"recipient":{"id":"1163397087175417"},"timestamp":1551091549707,"sender":{"id":"2396781657060600"},"game_play":{"game_id":"2223523667903679","player_id":"1766087003495604"}},{"recipient":{"id":"1163397087175417"},"timestamp":1551091549708,"sender":{"id":"2396781657060600"},"game_play":{"game_id":"2223523667903679","player_id":"1766087003495604"}}]},{"id":"1163397087175418","time":1551091549707,"messaging":[{"recipient":{"id":"1163397087175417"},"timestamp":1551091549707,"sender":{"id":"2396781657060600"},"game_play":{"game_id":"2223523667903679","player_id":"1766087003495604"}},{"recipient":{"id":"1163397087175417"},"timestamp":1551091549708,"sender":{"id":"2396781657060600"},"message":{"game_id":"2223523667903679","player_id":"1766087003495604"}}]}]}'
 ```
 
 
