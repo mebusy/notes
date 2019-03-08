@@ -4,6 +4,11 @@
 
 ...menuend
 
+[website](http://math.hws.edu/graphicsbook/)
+
+[course pdf](http://math.hws.edu/eck/cs424/downloads/graphicsbook-linked.pdf)
+
+[labs used to teach course 2017](http://math.hws.edu/eck/cs424/index_f17.html)
 
 [gltf view](https://gltf-viewer.donmccurdy.com/)
 

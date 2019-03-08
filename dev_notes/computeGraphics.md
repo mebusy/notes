@@ -24,11 +24,6 @@
 
 # Introduction to Compute Graphics
 
-[website](http://math.hws.edu/graphicsbook/)
-
-[course pdf](http://math.hws.edu/eck/cs424/downloads/graphicsbook-linked.pdf)
-
-[labs used to teach course 2017](http://math.hws.edu/eck/cs424/index_f17.html)
 
 
 In this book , will use a subset of OpenGL 1.1 to introduce the fundamental concepts of three-dimensional graphics. 

@@ -115,48 +115,8 @@ $ go tool objdump -s "main\.main" test
 
 ### 1.6 go profile: pprof
 
-```go
-var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to `file`")
-var memprofile = flag.String("memprofile", "", "write memory profile to `file`")
+见 [pprof](golang_pprof.md)
 
-func main() {
-    flag.Parse()
-    if *cpuprofile != "" {
-        f, err := os.Create(*cpuprofile)
-        if err != nil {
-            log.Fatal("could not create CPU profile: ", err)
-        }
-        if err := pprof.StartCPUProfile(f); err != nil {
-            log.Fatal("could not start CPU profile: ", err)
-        }
-        defer pprof.StopCPUProfile()
-    }
-
-    // ... rest of the program ...
-
-    if *memprofile != "" {
-        f, err := os.Create(*memprofile)
-        if err != nil {
-            log.Fatal("could not create memory profile: ", err)
-        }
-        runtime.GC() // get up-to-date statistics
-        if err := pprof.WriteHeapProfile(f); err != nil {
-            log.Fatal("could not write memory profile: ", err)
-        }
-        f.Close()
-    }
-}
-```
-
- 1. 加入上述代码
- 2. 程序执行是 制定profile 文件
-    - `xxxx -cpuprofile cpu.prof xxxx ... `
- 3. be visualized with the pprof tool:
-    - `go tool pprof cpu.prof`
-
----
-
- - 注意，如果是一个不会主动停止的程序，则需要捕获以下 ctrl-c 中断, 以便主动调用 ` pprof.StopCPUProfile() `
 
 <h2 id="b19e1a4d4f517ccccc8fd5d402c438f9"></h2>
 
