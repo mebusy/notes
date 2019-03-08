@@ -94,7 +94,7 @@ full goroutine stack dump
     - 要想更细致分析，就要精确到代码级别了，看看每行代码的耗时，直接定位到出现性能问题的那行代码。
         - list 命令后面跟着一个正则表达式，就能查看匹配函数的代码以及每行代码的耗时： `list yourCodeRegularExpression`
         - weblist <regex>  打开一个页面，同时显示源码 和 汇编代码
- - NOTE：更详细的 pprof 使用方法可以参考 pprof --help 或者 [pprof 文档](https://github.com/google/pprof/blob/master/doc/pprof.md)
+ - NOTE：更详细的 pprof 使用方法可以参考 pprof --help 或者 [pprof 文档](https://github.com/google/pprof/tree/master/doc)
  - heap profile
     - 默认情况下，统计的是内存使用大小
     - 如果执行命令的时候加上 
