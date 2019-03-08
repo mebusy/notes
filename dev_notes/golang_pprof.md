@@ -46,9 +46,10 @@ f.Close()
 ### 服务型应用
 
  - 如果你的应用是一直运行的，比如 web 应用，那么可以使用 net/http/pprof 库, 它提供 HTTP 服务进行分析
- - 如果使用了默认的 http.DefaultServeMux（通常是代码直接使用 `http.ListenAndServe("0.0.0.0:8000", nil)` ) ，只需要添加一行：
+ - 1. 如果使用了默认的 http.DefaultServeMux（通常是代码直接使用 `http.ListenAndServe("0.0.0.0:8000", nil)` ) ，只需要添加一行：
     - `import _ "net/http/pprof"`
- - 如果你使用自定义的 Mux，则需要手动注册一些路由规则： 比如
+ - 2. 如果你使用自定义的 Mux，则需要手动注册一些路由规则： 比如
+    - 不推荐
 
 ```go
 r.HandleFunc("/debug/pprof/", pprof.Index) // must end with '/' 
@@ -57,6 +58,19 @@ r.HandleFunc("/debug/pprof/profile", pprof.Profile)
 r.HandleFunc("/debug/pprof/symbol", pprof.Symbol)
 r.HandleFunc("/debug/pprof/trace", pprof.Trace)
 ```
+
+ - 即便你是 第2中情况， 你依然可以 令启一个 http 服务 来提供 pprof
+
+```go
+import _ "net/http/pprof 
+
+...
+
+go func() {
+    log.Println(http.ListenAndServe("localhost:6060", nil))
+}()
+```
+
 
  - 不管哪种方式，你的 HTTP 服务都会多出 `/debug/pprof/` endpoint，访问它会得到类似下面的内容：
 
