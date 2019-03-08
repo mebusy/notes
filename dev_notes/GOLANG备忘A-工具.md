@@ -2,6 +2,7 @@
 
  - [工具集](#d1f4a2ca5ebae356829301a14367e0e6)
      - [1.1 go build](#5cb3fbe2f5c14eaeec65da239fb2278b)
+     - [go build injection](#dc4c1d9510e06b1f42e03832e216b351)
      - [1.2 go install](#bfae2838680a32e56e245ff108957b89)
      - [1.3 go clean](#a0d272d3a24a7f1986e0fa7bafb8a59d)
      - [1.4 go get](#467396f90a34e7517a6fe191507ebab1)
@@ -63,6 +64,40 @@ ldflags
     go build -ldflags "-s -w" 可以减小 生成文件的大小
     -s 去掉符号表，  然后panic 的时候 stack trace的时候，就没有文件名／行号信息了
     -w 去掉 DWARF 调试信息，得到的程序就不能用 GDB调试了
+
+
+<h2 id="dc4c1d9510e06b1f42e03832e216b351"></h2>
+
+### go build injection
+
+```go
+package main
+
+import (
+        "fmt"
+)
+var GitCommit string
+func main() {
+    fmt.Printf("Hello world, version: %s\n", GitCommit)
+}
+```
+
+```bash
+$ go build && \
+  ./git-tester
+Hello world, version:
+```
+
+ - Override go build
+
+```bash
+$ export GIT_COMMIT=$(git rev-list -1 HEAD)
+$ go build -ldflags "-X main.GitCommit=$GIT_COMMIT"
+$ ./git-tester
+Hello world, version: 67b05a31758848e1e5237ad5ae1dc11c22d4e71e
+```
+
+
 
 
 <h2 id="bfae2838680a32e56e245ff108957b89"></h2>

@@ -1,5 +1,22 @@
+...menustart
+
+ - [使用 pprof 测试 golang 应用性能](#8ec32b199f9a9a6ce8a763ba4073c7d0)
+     - [Profiling](#1a226c2f1347809a185b8567ba1fc5a7)
+     - [收集方式](#2de72cd86d6ee0cf5da415280e9faeb6)
+         - [工具型应用](#d2d36738c9707ef71ede62277101dad5)
+         - [服务型应用](#743a11634b020d87ee3e35723fd383d0)
+     - [分析 Profiling](#2dc9540acc752760e72345ad9529d612)
+         - [go 1.10 提供了一个 web UI， 同时支持 火焰图](#628f3bfbcd42ebb9c0e60322c9cdfce8)
+     - [和测试工具的集成](#a553668c7b1f4095c932a2d77faae894)
+
+...menuend
+
+
+<h2 id="8ec32b199f9a9a6ce8a763ba4073c7d0"></h2>
 
 # 使用 pprof 测试 golang 应用性能
+
+<h2 id="1a226c2f1347809a185b8567ba1fc5a7"></h2>
 
 ## Profiling
 
@@ -8,11 +25,15 @@
  3. Block Profiling：报告 goroutines 不在运行状态的情况，可以用来分析和查找死锁等性能瓶颈
  4. Goroutine Profiling：报告 goroutines 的使用情况，有哪些 goroutine，它们的调用关系是怎样的
 
+<h2 id="2de72cd86d6ee0cf5da415280e9faeb6"></h2>
+
 ## 收集方式
 
  1. `runtime/pprof`
  2. `net/http/pprof`
  3. `go test`
+
+<h2 id="d2d36738c9707ef71ede62277101dad5"></h2>
 
 ### 工具型应用
 
@@ -42,6 +63,8 @@ f, err := os.Create(*memprofile)
 pprof.WriteHeapProfile(f)
 f.Close()
 ```
+
+<h2 id="743a11634b020d87ee3e35723fd383d0"></h2>
 
 ### 服务型应用
 
@@ -93,6 +116,8 @@ full goroutine stack dump
     - /debug/pprof/goroutines：运行的 goroutines 列表，以及调用关系
 
 
+<h2 id="2dc9540acc752760e72345ad9529d612"></h2>
+
 ## 分析 Profiling 
 
  - `go tool pprof` 命令行工具
@@ -107,7 +132,7 @@ full goroutine stack dump
         - web 命令 ： 在交互模式下输入 web，就能自动生成一个 svg 文件，并跳转到浏览器打开，生成了一个函数调用图.
     - 要想更细致分析，就要精确到代码级别了，看看每行代码的耗时，直接定位到出现性能问题的那行代码。
         - list 命令后面跟着一个正则表达式，就能查看匹配函数的代码以及每行代码的耗时： `list yourCodeRegularExpression`
-        - weblist <regex>  打开一个页面，同时显示源码 和 汇编代码
+        - `weblist <regex>`  打开一个页面，同时显示源码 和 汇编代码
  - NOTE：更详细的 pprof 使用方法可以参考 pprof --help 或者 [pprof 文档](https://github.com/google/pprof/tree/master/doc)
  - heap profile
     - 默认情况下，统计的是内存使用大小
@@ -119,6 +144,8 @@ full goroutine stack dump
         - 使用 web funcName 的方式，只打印和某个函数相关的内容
         - 运行 go tool pprof 命令时加上 `--nodefration=0.05` 参数，表示如果调用的子函数使用的 CPU、memory 不超过 5%，就忽略它，不要显示在图片中
 
+<h2 id="628f3bfbcd42ebb9c0e60322c9cdfce8"></h2>
+
 ### go 1.10 提供了一个 web UI， 同时支持 火焰图
 
  - 启动 pprof web ui:
@@ -128,6 +155,8 @@ $ go tool pprof -http=:8080 profile.out
 ```
 
 
+
+<h2 id="a553668c7b1f4095c932a2d77faae894"></h2>
 
 ## 和测试工具的集成
 

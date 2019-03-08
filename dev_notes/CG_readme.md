@@ -4,6 +4,7 @@
 
 ...menuend
 
+
 [website](http://math.hws.edu/graphicsbook/)
 
 [course pdf](http://math.hws.edu/eck/cs424/downloads/graphicsbook-linked.pdf)

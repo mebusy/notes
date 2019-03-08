@@ -6,6 +6,8 @@
          - [6.1.2  The Shader Program](#4f31b4e489e41f45a443c8b31846a270)
          - [6.1.3  Data Flow in the Pipeline](#c754edff11c3f2393931f78827b9b007)
          - [6.1.4  Values for Uniform Variables](#339ce22e55c69e7bbd8951f6e94a8586)
+         - [6.1.5  Values for Attributes](#969dcaf673eeb3055c02e146d2f2900b)
+         - [6.1.6  Drawing a Primitive](#82e825f128e1b88315c25d161f2545b0)
      - [Section 2: First Examples](#e305dfdab0e4cefbd5abea8eacc9c474)
      - [Section 3: GLSL](#512cc0d7b47100675a0c220edf55385a)
      - [Section 4: Image Textures](#1f7b297214b84adbccdc248c8f3a7c4e)
@@ -284,6 +286,8 @@ gl.uniform3fv( colorUniformLoc, [ 1, 0, 0 ] );
 // gl.uniform*
 ```
 
+<h2 id="969dcaf673eeb3055c02e146d2f2900b"></h2>
+
 ### 6.1.5  Values for Attributes
 
  - Attribute is more complicated, because an attribute can take a different value for each vertex in a primitive. 
@@ -360,6 +364,8 @@ gl.bindBuffer( gl.ARRAY_BUFFER, colorBuffer );
 gl.vertexAttribPointer( colorAttribLoc, 3, gl.FLOAT, false, 0, 0 );
 gl.bufferData( gl.ARRAY_BUFFER, colorArray, gl.STATIC_DRAW );
 ```
+
+<h2 id="82e825f128e1b88315c25d161f2545b0"></h2>
 
 ### 6.1.6  Drawing a Primitive
 
