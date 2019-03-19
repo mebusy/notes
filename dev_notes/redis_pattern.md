@@ -1,7 +1,36 @@
+...menustart
+
+ - [Redis Pattern](#a5b4c19e70e61f566f31c53accbd1c87)
+     - [Keys](#a73e6bf278578e09d2351ee2ec7a7908)
+         - [EXPIRE , v1.0.0 , O(1)](#a72f2c26fd355ef83497de8e838b3e23)
+         - [SORT , v1.0.0 , O(N+M\*log(M))](#fba9c599e38bf301aa2005693afa1c17)
+     - [List](#4ee29ca12c7d126654bd0e5275de6135)
+         - [BLPOP , v2.0.0 , O(1)](#3dab2c2334bb53fcc9b1a5f000495360)
+         - [BRPOPLPUSH , v2.2.0 , O(1)](#314a88a641bd4a0453876f35c9af0aa1)
+         - [RPOPLPUSH  , v1.2.0 , O(1)](#174f672c6a017d00004be8084bb99809)
+     - [Sorted Set](#cb571dbc7e0313fceb81c293e56309ed)
+         - [ZRANGEBYSCORE , v1.0.5 , O(log(N)+M)](#dcfe38818d271e9c65946619ed7deb91)
+     - [String](#27118326006d3829667a400ad23d5d98)
+         - [BITCOUNT  , v2.6.0 , O(N)](#3b950dfa0475448afdb8f212e7732e0b)
+         - [GETSET  , v1.0.0 , O(1)](#57df48b0f3178704f8d6036cb0a9fe66)
+         - [INCR  , v1.0.0 , O(1)](#2636c2e9ec390f0f737676e73c0b4441)
+         - [Set , v1.0.0, O(1)](#3c868a38311e6698d08e4ccaa2c11bac)
+         - [SETNX , v1.0.0 , O(1)](#c9738322a8437944c4b74f1eb064873f)
+             - [Handling deadlocks](#901c539d7f5fac2508bc71eccf55e1e7)
+         - [SETRANGE , v2.2.0 , O(1)](#ae634f943bf692d0391216701a2d591a)
+
+...menuend
+
+
+<h2 id="a5b4c19e70e61f566f31c53accbd1c87"></h2>
 
 # Redis Pattern
 
+<h2 id="a73e6bf278578e09d2351ee2ec7a7908"></h2>
+
 ## Keys
+
+<h2 id="a72f2c26fd355ef83497de8e838b3e23"></h2>
 
 ### EXPIRE , v1.0.0 , O(1)
  - `EXPIRE key seconds`  
@@ -16,6 +45,8 @@ EXPIRE pagewviews.user:<userid> 60
 EXEC
 ```
 
+<h2 id="fba9c599e38bf301aa2005693afa1c17"></h2>
+
 ### SORT , v1.0.0 , O(N+M\*log(M)) 
 
  - `SORT key [BY pattern] [LIMIT offset count] [GET pattern [GET pattern ...]] [ASC|DESC] [ALPHA] [STORE destination]` 
@@ -27,7 +58,11 @@ EXEC
     - Note that for correctly implementing this pattern it is important to avoid multiple clients rebuilding the cache at the same time. Some kind of locking is needed here (for instance using **SETNX**).
 
 
+<h2 id="4ee29ca12c7d126654bd0e5275de6135"></h2>
+
 ## List
+
+<h2 id="3dab2c2334bb53fcc9b1a5f000495360"></h2>
 
 ### BLPOP , v2.0.0 , O(1)
 
@@ -55,6 +90,8 @@ LPUSH helper_key x
 EXEC
 ```
 
+<h2 id="314a88a641bd4a0453876f35c9af0aa1"></h2>
+
 ### BRPOPLPUSH , v2.2.0 , O(1)
 
  - `BRPOPLPUSH source destination timeout`
@@ -66,6 +103,8 @@ EXEC
  - Pattern: Circular list
     - RPOPLPUSH 
 
+
+<h2 id="174f672c6a017d00004be8084bb99809"></h2>
 
 ### RPOPLPUSH  , v1.2.0 , O(1)
 
@@ -90,7 +129,11 @@ EXEC
     - 这种实现很容易扩展且可靠，因为即使消息丢失，该项目仍然在队列中，并将在下一次迭代时处理。
 
 
+<h2 id="cb571dbc7e0313fceb81c293e56309ed"></h2>
+
 ## Sorted Set
+
+<h2 id="dcfe38818d271e9c65946619ed7deb91"></h2>
 
 ### ZRANGEBYSCORE , v1.0.5 , O(log(N)+M) 
 
@@ -102,12 +145,18 @@ EXEC
 RANDOM_ELE = ZRANGEBYSCORE key RAND() +inf LIMIT 0 1
 ```
 
+<h2 id="27118326006d3829667a400ad23d5d98"></h2>
+
 ## String
+
+<h2 id="3b950dfa0475448afdb8f212e7732e0b"></h2>
 
 ### BITCOUNT  , v2.6.0 , O(N)
 
  - `BITCOUNT key [start end]`
  - Pattern: real-time metrics using bitmaps
+
+<h2 id="57df48b0f3178704f8d6036cb0a9fe66"></h2>
 
 ### GETSET  , v1.0.0 , O(1)
 
@@ -127,12 +176,16 @@ redis>
 ```
 
 
+<h2 id="2636c2e9ec390f0f737676e73c0b4441"></h2>
+
 ### INCR  , v1.0.0 , O(1)
 
  - `INCR key`
  - Pattern: Counter
  - Pattern: Rate limiter
 
+
+<h2 id="3c868a38311e6698d08e4ccaa2c11bac"></h2>
 
 ### Set , v1.0.0, O(1)
 
@@ -158,6 +211,8 @@ end
 ```
 
 
+<h2 id="c9738322a8437944c4b74f1eb064873f"></h2>
+
 ### SETNX , v1.0.0 , O(1)
 
  - `SETNX key value`
@@ -171,6 +226,8 @@ SETNX lock.foo <current Unix time + lock timeout + 1>
  - If SETNX returns 1 the client acquired the lock, setting the lock.foo key to the Unix time at which the lock should no longer be considered valid. 
     - The client will later use DEL lock.foo in order to release the lock.
  - If SETNX returns 0 the key is already locked by some other client. 
+
+<h2 id="901c539d7f5fac2508bc71eccf55e1e7"></h2>
 
 #### Handling deadlocks
 
@@ -196,6 +253,8 @@ SETNX lock.foo <current Unix time + lock timeout + 1>
  - In order to make this locking algorithm more robust, a client holding a lock should always check the timeout didn't expire before unlocking the key with DEL 
     - because client failures can be complex, not just crashing but also blocking a lot of time against some operations and trying to issue DEL after a lot of time (when the LOCK is already held by another client).
 
+
+<h2 id="ae634f943bf692d0391216701a2d591a"></h2>
 
 ### SETRANGE , v2.2.0 , O(1)
 
