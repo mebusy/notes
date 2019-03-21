@@ -579,6 +579,15 @@ func main() {
 
 ##### 复合类型修改示例  TODO
 
+
+
+##### 创建一个 和某个interface{} 相同类型的实例
+
+```
+m_ptr := reflect.New( reflect.TypeOf( v ) ).Interface()
+```
+
+
 ---
 
 <h2 id="61e08fe2cac9cfa9a7ab1048eaa57974"></h2>
