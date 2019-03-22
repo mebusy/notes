@@ -66,4 +66,17 @@ sudo ./squid -k shutdown
  - Identifiers.  URL-friendly base62 encoding
 
 
+## CORS 
+
+### test whether your server supoort CORS
+
+ - in chrome  console 
+
+```
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://localhost:3000',true);
+xhr.send();
+```
+
+
 
