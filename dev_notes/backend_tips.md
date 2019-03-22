@@ -74,7 +74,7 @@ sudo ./squid -k shutdown
 
 ```
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://localhost:3000',true);
+xhr.open('OPTIONS', 'http://localhost:3000',true);
 xhr.send();
 ```
 
