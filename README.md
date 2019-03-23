@@ -195,6 +195,7 @@ a | b | c | d
 [github](dev_notes/github.md) | [sublime](dev_notes/sublime.md)   | [深入浅出nodeJS](dev_notes/深入浅出nodeJS.md)	| [Html5 Game Program](dev_notes/Html5GameProgramming.md)
 [MacOSX Tips](dev_notes/MacOSX_Tips.md) | [workingTips](dev_notes/workingTips.md)	|  [VIM](dev_notes/vim.md) |
 [blender api](dev_notes/blender.md) | [mdfind](dev_notes/mdfind.md) | 
+[roguelike note](dev_notes/roguelike_note.md) | 
 
 
 
