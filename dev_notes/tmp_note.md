@@ -58,6 +58,26 @@ Game Programming Patterns
 bitmasking tiling : mathematically find out what every single tile is
 
 
+## dungeon algorithms
+
+ - tunneling 
+ - BSP , 和 tunneling 有点像，但是更好的 填充整个空间
+ - random walk  一整个cave
+ - cellular automata   , beautiful cave
+ - room additon , cave + room
+ - city building  ,  building + doors
+ - maze with rooms , complicated corridors
+ - Messy BSP , sort of mixing  room addition and BSP, i'm not sure
+
+## tunneling 
+
+ - fill entire space with wall 
+ - randomly try to dig a room 
+    - if it intersects with other rooms , skip this room
+    - otherwise , place that room 
+        - and now it need a tunnel to the other rooms (the previously added one)
+        - it always tunnel from its center.
+
 <h2 id="396c9aa8a56ee3ea6e06423717b340b3"></h2>
 
 ## random walk
