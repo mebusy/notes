@@ -232,6 +232,12 @@ net.ipv4.tcp_tw_recycle = 1
 ```
 
 
+## kill process by port 
+
+```bash
+kill $(lsof -t -i :PORTNUMBER)
+```
+
 <h2 id="65395697d2dab77dd22f054b888fb803"></h2>
 
 ## linux 系统监控

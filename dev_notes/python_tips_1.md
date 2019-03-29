@@ -804,5 +804,12 @@ subprocess.call( cmd.split() +  sys.argv[1:]  , stderr=subprocess.STDOUT ,shell=
 
  - `shell=True` 是在 shell中执行，以便获取环境变量之类的设置
 
+#### python 解析 curl 命令获取的 json 字符串 
+
+```bash
+result=`curl ... | python -c "import json,sys;obj=json.load(sys.stdin);print obj['anykey'];"`
+echo result: $result
+
+```
 
 
