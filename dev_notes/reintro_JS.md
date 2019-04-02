@@ -986,5 +986,13 @@ class Lion extends Cat {
 ```
 
 
+# tips 
+
+## compress js code
+
+```
+npm install -g uglify-js
+uglifyjs gd3d.js -c -m --keep-fnames -o xxx.min.js
+```
 
 
