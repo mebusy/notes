@@ -369,12 +369,101 @@ gl.bufferData( gl.ARRAY_BUFFER, colorArray, gl.STATIC_DRAW );
 
 ### 6.1.6  Drawing a Primitive
 
+ - After the shader program has been created and values have been set up for the uniform variables and attributes, it takes just one more command to draw a primitive:
+
+```js
+gl.drawArrays( primitiveType, startVertex, vertexCount );
+```
+ 
+ - In WebGL, support for ordinary arrays was dropped, and gl.drawArrays can only work with VBOs, even though the name still refers to arrays.
+ - Parmas:
+    - primitiveType
+        - such as gl.TRIANGLES, gl.LINE_LOOP, and gl_POINTS. 
+    - startVetex 
+        - the starting vertex number of the data within the VBOs
+    - vertexCount 
+        - the number of vertices in the primitive. 
+ - A gl.drawElements function is also available in WebGL.
+
 
 
 <h2 id="e305dfdab0e4cefbd5abea8eacc9c474"></h2>
 
 ## Section 2: First Examples
 <h2 id="512cc0d7b47100675a0c220edf55385a"></h2>
+
+### 6.2.1  WebGL Context Options
+
+```
+var options = {
+    alpha: false,
+    depth: false
+};
+gl = canvas.getContext( "webgl", options );
+```
+
+ - All of the options are boolean-valued.
+
+option | desc 
+--- | ---
+alpha | determines whether the drawing buffer has an alpha component (letting the background (on the web page behind the canvas) show through). Default is true. It is safe to set the value to false.
+depth | determines whether a depth buffer is allocated. The default value is true.You only need a depth buffer if you enable the  depth test. The depth buffer is generally not needed for 2D graphics. 
+antialias | is used to request that antialiasing be applied to the image.  A WebGL implementation might ignore the request, for example if antialiasing is not supported by the GPU. The default value is true. Antialiasing can improve the quality of an image, but it can also significantly increase the computation time.
+preserveDrawingBuffer | determines whether the contents of the drawing buffer are discarded after the image has been copied to the web page. The default value is false. As long as your rendering functions completely redraw the image every time they called, the default is fine. You should set the value to true only if you need to keep the image around so that you can add to it incrementally over time.
+
+
+### 6.2.2  A Bit of GLSL
+
+ - A vertex or fragment shader can contain global variable declarations, type definitions, and function definitions. 
+ - One of the functions must be main(), which is the entry point for the shader.
+    - takes no parameters and does not return a value
+ - Control structures in GLSL are limited. 
+    - If statements take the same form as in C or Java. 
+    - But some limitations are placed on the `for` loop syntax, and `while` and `do...while` loops are not allowed. 
+ - Data structures include arrays and structs, again with some limitations.
+ - GLSL's strength lies in its built-in data types and functions for working with vectors and matrices. 
+
+```
+attribute vec3 a_coords;  // (only in vertex shader)
+vec3 rgb;
+float width, height;
+uniform vec2 u_size;
+varying vec4 v_color;
+
+rgb = vec3( 1.0, 0.7, 0.0 );  // construct a vec3 from constants
+v_color = vec4( rgb, 1.0 );  // construct a vec4 from a vec3 and a constant
+gl_Position = vec4( a_coords, 0.0, 1.0 );  // vec4 from a vec2 and 2 constants
+```
+
+ - A vertex shader needs, at a minimum, an attribute to give the coordinates of the vertex. 
+    - For 2D drawing, it's natural for that attribute to be of type vec2.
+    - If we assume that the values of the attributes are already expressed in clip coordinates, then the complete source code for the vertex shader could be as simple as:
+
+```
+attribute vec2 coords;
+void main() {
+    gl_Position = vec4( coords, 0.0, 1.0 );
+}
+```
+
+ - For a corresponding minimal fragment shader, we might simply draw everything in yellow.
+
+```
+precision mediump float;
+void main() {
+    gl_FragColor = vec4( 1.0, 1.0, 0.0, 1.0 );
+}
+```
+
+### 6.2.3  The RGB Triangle in WebGL
+
+
+
+
+
+
+
+
 
 ## Section 3: GLSL
 <h2 id="1f7b297214b84adbccdc248c8f3a7c4e"></h2>

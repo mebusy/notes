@@ -21,3 +21,4 @@
  2. [3 OpenGL 1.1 Geometry](./computeGraphics3.md)
  3. [4 OpenGL 1.1: Light and Material](./computeGraphics4.md)
  4. [5 Three.js](./computeGraphics5.md)
+ 5. [6 Intro 2 WebGL](./computeGraphics6.md)
