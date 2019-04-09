@@ -25,6 +25,7 @@
          - [其他复合类型 array , slice ,map 取值示例](#bd597938c7e7c92297b5bbf47c1fbedf)
          - [IsNil方法判断 接口 data值是否为空](#18917556ea9e2ef4a2d1352ea9490d13)
          - [复合类型修改示例  TODO](#1646349e890242f255aca9e532cedfd6)
+         - [创建一个 和某个interface{} 相同类型的实例](#34b9abefc452f88bc8eda13d2124a3b5)
      - [9.4.3 Method](#61e08fe2cac9cfa9a7ab1048eaa57974)
          - [可获取方法参数, 返回值类型等信息](#82f01c4522eb5d25e3ab3e6f60bb72bb)
          - [动态调用, 按 in 列表准备所需参数  TODO](#e4e8d5f98a70257af0a0544047a3b167)
@@ -580,6 +581,8 @@ func main() {
 ##### 复合类型修改示例  TODO
 
 
+
+<h2 id="34b9abefc452f88bc8eda13d2124a3b5"></h2>
 
 ##### 创建一个 和某个interface{} 相同类型的实例
 

@@ -28,6 +28,8 @@
              - [Sub classing with extends](#d2de17645050c3f9b094d417f647f2ca)
              - [Species](#e1520b5997a532c7889f6e8883920ab8)
              - [Super class calls with super](#e5b796fae796980b73c254cccd1851d5)
+ - [tips](#e4c9479b11955648dad558fe717a4eb2)
+     - [compress js code](#1102ba00437059603c9604fb050a22f8)
 
 ...menuend
 
@@ -986,7 +988,11 @@ class Lion extends Cat {
 ```
 
 
+<h2 id="e4c9479b11955648dad558fe717a4eb2"></h2>
+
 # tips 
+
+<h2 id="1102ba00437059603c9604fb050a22f8"></h2>
 
 ## compress js code
 

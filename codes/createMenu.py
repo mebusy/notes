@@ -164,7 +164,7 @@ if '__main__' == __name__ :
 
     print '-----'
     
-    RE_PATTERN_LINK_FILE = re.compile( r"\[.*?\]\s*\(.*?(?=[^/]+\.md)([^/]+\.md)\s*\)" )
+    RE_PATTERN_LINK_FILE = re.compile( r"\[.*?\]\s*\(.*?(?=[^/]+\.md)([^/()]+\.md)\s*\)" )
     linkFiles = [] 
     for key in all_md_filenames:
         if key.lower().endswith( "readme.md" ):

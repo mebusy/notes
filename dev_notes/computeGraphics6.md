@@ -9,6 +9,12 @@
          - [6.1.5  Values for Attributes](#969dcaf673eeb3055c02e146d2f2900b)
          - [6.1.6  Drawing a Primitive](#82e825f128e1b88315c25d161f2545b0)
      - [Section 2: First Examples](#e305dfdab0e4cefbd5abea8eacc9c474)
+         - [6.2.1  WebGL Context Options](#5e0d0bff36be794f36cc415a1e028547)
+         - [6.2.2  A Bit of GLSL](#d63aad2971a949abb24017d785d3e556)
+         - [6.2.3  The RGB Triangle in WebGL](#38fef0ba8c35f28806306b0d69e6c5bc)
+         - [6.2.4  Shape Stamper](#7dffb95bc8a6bfd9db5183c3517eea68)
+         - [6.2.5  The POINTS Primitive](#bc62a575ed06ffa63f83404cd634f185)
+         - [6.2.6  WebGL Error Handling](#23dc2ee7e7acb2d786129dac0715532b)
      - [Section 3: GLSL](#512cc0d7b47100675a0c220edf55385a)
      - [Section 4: Image Textures](#1f7b297214b84adbccdc248c8f3a7c4e)
      - [Section 5: Implementing 2D Transforms](#6f0ba384aa3b845de4898ddb899a037c)
@@ -390,7 +396,7 @@ gl.drawArrays( primitiveType, startVertex, vertexCount );
 <h2 id="e305dfdab0e4cefbd5abea8eacc9c474"></h2>
 
 ## Section 2: First Examples
-<h2 id="512cc0d7b47100675a0c220edf55385a"></h2>
+<h2 id="5e0d0bff36be794f36cc415a1e028547"></h2>
 
 ### 6.2.1  WebGL Context Options
 
@@ -409,8 +415,10 @@ option | desc
 alpha | determines whether the drawing buffer has an alpha component (letting the background (on the web page behind the canvas) show through). Default is true. It is safe to set the value to false.
 depth | determines whether a depth buffer is allocated. The default value is true.You only need a depth buffer if you enable the  depth test. The depth buffer is generally not needed for 2D graphics. 
 antialias | is used to request that antialiasing be applied to the image.  A WebGL implementation might ignore the request, for example if antialiasing is not supported by the GPU. The default value is true. Antialiasing can improve the quality of an image, but it can also significantly increase the computation time.
-preserveDrawingBuffer | determines whether the contents of the drawing buffer are discarded after the image has been copied to the web page. The default value is false. As long as your rendering functions completely redraw the image every time they called, the default is fine. You should set the value to true only if you need to keep the image around so that you can add to it incrementally over time.
+preserveDrawingBuffer | determines whether the contents of the drawing buffer are discarded after the image has been copied to the web page. The default value is false. As long as your rendering functions completely redraw the image every time they called, the default is fine. You should set the value to true only if you need to keep the image around so that you can add to it incrementally over time (i.e. painter).
 
+
+<h2 id="d63aad2971a949abb24017d785d3e556"></h2>
 
 ### 6.2.2  A Bit of GLSL
 
@@ -455,15 +463,90 @@ void main() {
 }
 ```
 
+<h2 id="38fef0ba8c35f28806306b0d69e6c5bc"></h2>
+
 ### 6.2.3  The RGB Triangle in WebGL
 
+http://math.hws.edu/graphicsbook/source/webgl/webgl-rgb-triangle.html
+
+```
+gl.drawArrays(gl.TRIANGLES, 0, 3);
+```
+
+<h2 id="7dffb95bc8a6bfd9db5183c3517eea68"></h2>
+
+### 6.2.4  Shape Stamper
+
+```
+gl.enable( gl.BLEND );
+gl.blendFunc( gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA );
+```
+
+ - WebGL uses a default coordinate system in which each of the coordinates ranges from −1 to 1
+    - To convert pixel coordinates on the canvas into that  default coordinate system :
+
+```
+x2 = -1 + 2*( x1 / canvas.width );
+y2 = 1 - 2*( y1 / canvas.height );
+```
+
+ - In WebGL, the coordinate transformation is usually applied in the vertex shader. 
+    - In this case, to implement the transformation, the vertex shader just needs to know the width and height of the canvas.
+
+```
+attribute vec2 a_coords;   // pixel coordinates
+uniform float u_width;     // width of canvas
+uniform float u_height;    // height of canvas
+void main() {
+   float x = -1.0 + 2.0*(a_coords.x / u_width);
+   float y = 1.0 - 2.0*(a_coords.y / u_height);
+   gl_Position = vec4(x, y, 0.0, 1.0);
+}
+```
+
+ - Transformations can be much more complicated than this, especially in 3D, but the general pattern holds: 
+    - Transformations are represented by uniform variables and are applied in the vertex shader. 
+
+```
+gl.drawArrays(gl.TRIANGLE_FAN, 0, coords.length/2);
+```
+
+<h2 id="bc62a575ed06ffa63f83404cd634f185"></h2>
+
+### 6.2.5  The POINTS Primitive
+
+ - By default, each vertex is rendered as a single pixel. However, a program can specify a larger size. 
+    - In OpenGL 1.1, this was done with the function gl_PointSize(). 
+    - In WebGL, that function does not exist. Instead, the size is under the control of the vertex shader.
+ - The vertex shader should assign a value to the special built-in variable gl_PointSize.  The variable is of type float.
+ - When the fragment shader is called for a POINTS primitive, it is processing one pixel in the square of pixels surrounding the vertex.
+    - The special fragment shader variable gl_PointCoord tells the shader the location of the pixel within that square.
+    - The value of gl_PointCoord is an input to the shader. The type of gl_PointCoord is vec2.
+
+```
+float distanceFromCenter = distance( gl_PointCoord, vec2(0.5,0.5) );
+if ( distanceFromCenter >= 0.5 ) {
+   discard;  // don't draw this pixel!
+}
+```
+
+<h2 id="23dc2ee7e7acb2d786129dac0715532b"></h2>
+
+### 6.2.6  WebGL Error Handling
+
+ - 在WebGL和更常见的OpenGL中，诸如非法参数值之类的错误通常不会使程序崩溃或产生任何错误的自动通知。
+    - 而是 当WebGL检测到这样的错误时，它会忽略非法的函数调用，并设置错误代码的值，以指示错误的性质。
+ - A program can check the current value of the error code by calling gl.getError(). 
+    - This function returns an integer error code. 
+    - The return value is gl.NO_ERROR if no error has occurred. 
+
+```
+console.log("Error code is " + gl.getError());
+```
+ 
 
 
-
-
-
-
-
+<h2 id="512cc0d7b47100675a0c220edf55385a"></h2>
 
 ## Section 3: GLSL
 <h2 id="1f7b297214b84adbccdc248c8f3a7c4e"></h2>

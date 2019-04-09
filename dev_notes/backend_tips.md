@@ -4,6 +4,8 @@
      - [RESTful API test](#4b01e3a70a88bd2fd5aa2c11f7f00354)
      - [Squid set proxy](#8215185b626db2bd246208973aabf16e)
      - [Secure your REST API](#bdf38b3fd09b39e3a701db441cb2c2e9)
+     - [CORS](#5a8feff0b4bde3eec9244b76023b791d)
+         - [test whether your server supoort CORS](#1e545f4bd1d09eb09ed43fabac84aba4)
 
 ...menuend
 
@@ -66,7 +68,11 @@ sudo ./squid -k shutdown
  - Identifiers.  URL-friendly base62 encoding
 
 
+<h2 id="5a8feff0b4bde3eec9244b76023b791d"></h2>
+
 ## CORS 
+
+<h2 id="1e545f4bd1d09eb09ed43fabac84aba4"></h2>
 
 ### test whether your server supoort CORS
 

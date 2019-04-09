@@ -1,9 +1,12 @@
 ...menustart
 
- - [area of round](#b7e9322fc0d475861e2066642b1ecdb4)
+ - [chapter 1: Essense of Calculus](#5c6d0419bdcc965d881019d989ad6f1a)
+ - [chapter 2: Paradox of the derivatives](#b872997f4e311706ca6628e823fc3459)
 
 ...menuend
 
+
+<h2 id="5c6d0419bdcc965d881019d989ad6f1a"></h2>
 
 # chapter 1: Essense of Calculus
 
@@ -36,6 +39,8 @@
     - **Fundamental theorem of calculus**. 
     - It ties together the 2 big ideas of integrals and derivatives.  in some sense , eacho one is an inverse of the other. 
 
+
+<h2 id="b872997f4e311706ca6628e823fc3459"></h2>
 
 # chapter 2: Paradox of the derivatives
 

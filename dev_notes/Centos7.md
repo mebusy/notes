@@ -8,6 +8,7 @@
      - [TIME_WAIT 优化](#0d0306c1df74d541e32e7dcbaaf0fe69)
      - [文件描述符数](#1056f9281c64e7ce0c0ad739e5640797)
      - [TC 云服务器的 /etc/sysctl.conf 配置](#c5bfde7337a2b4013d953a5ef1e298f3)
+     - [kill process by port](#48cd249a485752b67116301484bb3978)
      - [linux 系统监控](#65395697d2dab77dd22f054b888fb803)
      - [ab test](#107aedca6bab06cabee6aac093e48464)
      - [systemctl autorun script](#182779261a101fea13d68ad6ca885ef8)
@@ -231,6 +232,8 @@ net.ipv4.tcp_tw_reuse = 1
 net.ipv4.tcp_tw_recycle = 1
 ```
 
+
+<h2 id="48cd249a485752b67116301484bb3978"></h2>
 
 ## kill process by port 
 
