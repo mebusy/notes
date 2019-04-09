@@ -149,6 +149,11 @@ http://roguecentral.org/doryen/articles/bsp-dungeon-generation/
 
 
 
+### lighting  
+
+https://indienova.com/indie-game-development/tile-based-line-of-sight-explained/
+
+
 
 
 

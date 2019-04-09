@@ -549,6 +549,291 @@ console.log("Error code is " + gl.getError());
 <h2 id="512cc0d7b47100675a0c220edf55385a"></h2>
 
 ## Section 3: GLSL
+
+### 6.3.1  Basic Types
+
+kink | types
+--- | --- 
+scalar | float, *int*, *bool* (may actually represented as float)
+vector | vec2, vec3, vec4 , ivec*n*, bvec*n*  (v.rgb or v.zx or even v.yyy)
+matrix | mat2 , mat3, mat4
+texture | sampler2D , samplerCube
+
+ - vectors
+ 
+```
+vec4 rgba = vec4( 0.1, 0.2, 0.3, 0.4 );
+vec3 rgb = vec3( rgba );  // takes 3 items from rgba; rgb is (0.1, 0.2, 0.3)
+float r = float( rgba );  // r is 0.1
+vec2 v = vec2( rgb, rgba );    // ERROR: No values from rgba are used.
+
+vec4 black = vec4( 1.0 );  // black is ( 1.0, 1.0, 1.0, 1.0 )
+```
+
+
+ - matrix 
+    - Arrays in GLSL, as in OpenGL, use  **column-major** order.
+    - This means that M[2] is column number 2 in M. rather than row number 2 (as it would be in Java),
+    - and `M[2][1]` is the element in column 2 and row 1.
+
+```
+mat3 m1 = mat3( 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0 );
+vec3 v = vec3( 1, 2, 3 );
+mat3 m2 = mat3( v, v, v );
+```
+
+ - As a special case, if a matrix M is constructed from a single scalar value, then that value is put into all the diagonal elements of M (M[0][0], M[1][1], and so on). 
+    - The non-diagonal elements are all set equal to zero. For example, mat4(1.0) constructs the four-by-four  identity matrix.
+
+
+### 6.3.2  Data Structures
+
+ - A GLSL program can define new types using the **struct** keyword.
+ - The syntax is the same as in C, with some limitations. 
+
+```
+struct LightProperties {
+    vec4 position;
+    vec3 color;
+    float intensity;
+};
+
+LightProperties light;
+```
+
+ - Struct types have constructors, but their constructors do not support type conversion.
+
+```
+light = LightProperties( vec4(0.0, 0.0, 0.0, 1.0), vec3(1.0), 1.0 );
+```
+
+ - GLSL also supports arrays. **Only one-dimensional arrays are allowed**. 
+    - There are no array constructors, and it is not possible to initialize an array as part of its declaration.
+    - Array indexing **can contain only integer constants and for loop variables** . That is the expression `palette[i+1]` would only be legal inside a *for* loop.
+
+```
+int A[10];
+vec3 palette[8];
+LightProperties lights[3];
+```
+
+### 6.3.3  Qualifiers
+
+ - Variable declarations can be modified by various qualifiers.
+ - You have seen examples of the qualifiers *attribute*, *uniform*, and *varying*. These are called **storage qualifiers**. 
+ - The other possible storage qualifier is *const*.
+ - In addition, it is not legal to assign a value to an attribute or uniform variable; their values come from the JavaScript side, and they are considered to be read-only. 
+
+---
+
+
+ - The attribute qualifier can only be used for global variables in the vertex shader, and it only applies to the built-in floating point types float, vec2, vec3, vec4, mat2, mat3, and mat4. 
+ - Both the vertex shader and the fragment shader can use uniform variables.
+    - Uniform variables can be of any type, including array and structure types. 
+    - Now, JavaScript only has functions for setting uniform values that are scalar variables, vectors, or matrices. 
+    - There are no functions for setting the values of structs or arrays. 
+        - The solution to this problem requires treating every component of a struct or array as a separate uniform value. 
+        - For example, consider the declarations
+        - 
+        ```
+        struct LightProperties {
+            vec4 position;
+            vec3 color;
+            float intensity;
+        };
+        uniform LightProperties light[4];
+        ```
+
+        - The variable light contains twelve basic values, which are of type vec4, vec3, or float. 
+            - To work with the light uniform in JavaScript, we need twelve variables to represent the locations of the 12 components of the uniform variable.
+            - When using gl.getUniformLocation to get the location of one of the 12 components, you need to give the full name of the component in the GLSL program. 
+                - For example: `gl.getUniformLocation(prog, "light[2].color")`.
+
+```
+lightLocations = new Array(4);
+for (i = 0; i < light.length; i++) {
+    lightLocations[i] = {
+        position: gl.getUniformLocation(prog, "light[" + i + "].position" );
+        color: gl.getUniformLocation(prog, "light[" + i + "].color" );
+        intensity: gl.getUniformLocation(prog, "light[" + i + "].intensity" );
+    };
+}
+
+for (i = 0; i < light.length; i++) {
+    gl.uniform4f( lightLocations[i].position, 0, 0, 0, 1 );
+    gl.uniform3f( lightLocations[i].color, 1, 1, 1 );
+    gl.uniforma1f( lightLocations[i].intensity, 0 );
+}
+```
+
+ - For uniform shader variables that are matrices, the JavaScript function that is used to set the value of the uniform is gl.uniformMatrix2fv for a mat2, gl.uniformMatrix3fv for a mat3, or gl.uniformMatrix4fv for a mat4. 
+    - Even though the matrix is two-dimensional, the values are stored in a one dimensional array. 
+    - The values are loaded into the array in column-major order.
+    - For example, if transform is a uniform mat3 in the shader, then JavaScript can set its value to be the identity matrix with
+    - 
+    ```
+    transformLoc = gl.getUniformLocation(prog, "transform");
+    gl.uniformMatrix3fv( transformLoc, false, [ 1,0,0, 0,1,0, 0,0,1 ] );
+    ```
+    - The second parameter must be false.
+        - (In some other versions of OpenGL, the second parameter can be set to true to indicate that the values are in row-major instead of column-major order, but WebGL requires column-major order.)
+
+ - As for the varying qualifier, it can be used only for the built-in floating point types (float, vec2, vec3, vec4, mat2, mat3, and mat4) and for arrays of those types. 
+    - A varying variable should be declared in both the vertex and fragment shader. 
+    - (This is not actually a requirement; an error only occurs if the fragment shader tries to use the value of a varying variable that does not exist in the vertex shader.) 
+ - Variable declarations can also be modified by **precision qualifiers**. 
+    - lowp : -2⁸ ~ 2⁸
+    - mediump : -2¹⁰ ~ 2¹⁰
+    - highp : -2¹⁶ ~ 2¹⁶
+ - A precision qualifier can be used on any variable declaration. If the variable also has a storage qualifier, the storage qualifier comes first. For example
+
+```
+lowp int n;
+varying highp float v;
+uniform mediump vec3 colors[3];
+```
+
+ - A varying variable can have different precisions in the vertex and in the fragment shader. 
+ - The default precision for integers and floats in the vertex shader is highp. 
+ - Fragment shaders are not required to support highp, although it is likely that they do so, except on older mobile hardware.
+    - In the fragment shader, the default precision for integers is mediump, but floats do not have a default precision. 
+    - This means that every floating point variable in the fragment shader has to be explicitly assigned a precision. 
+    - Alternatively, it is possible to set a default precision for floats with the statement
+        - `precision mediump float;`
+    - This statement was used at the start of each of the fragment shaders. 
+    - Of course, if the fragment shader does support highp, this restricts the precision unnecessarily.
+    - The following code sets the default precision to highp if it is available and to mediump if not. 
+
+```
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+    precision highp float;
+#else
+    precision mediump float;
+#endif
+```
+
+ - The last qualifier, **invariant**, is even more difficult to explain, and it has only a very limited use. 
+    - Invariance refers to the requirement that when the same expression is used to compute the value of the same variable (possibly in different shaders), then the value that is assigned to the variable should be exactly the same in both cases. 
+    - This is not automatically the case. For example, the values can be different if a compiler uses different optimizations or evaluates the operands in a different order in the two expressions
+    - The invariant qualifier on the variable will force the compiler to use exactly the same calculations for the two assignment statements. 
+    - The qualifier can only be used on declarations of varying variables. It must be the first qualifier in the declaration. For example,
+    - `invariant varying mediump vec3 color;`
+    - It can also be used to make the predefined variables such as gl_Position and gl_FragCoord invariant, using a statement such as
+    - `invariant gl_Position;`
+ - Invariance can be important in a **multi-pass algorithm** that applies two or more shader programs in succession to compute an image.
+    - It is important, for example, that both shaders get the same answer when they compute gl_Position for the same vertex, using the same expression in both vertex shaders. Making gl_Position invariant in the shaders will ensure that.
+ 
+
+### 6.3.4  Expressions
+
+
+type | operators
+--- | --- 
+Arithmetic | `+, −, *, /, ++ and −−`, work with vectors and matrices (but %, <<, and >> are not supported)
+Relational | `<, >, <=, and >=` , (can only be applied to ints and floats)
+Relational 2 |  `== and !=` , work with all built-in types except *sampler*. work with vectors, matraices, structs, but not arrays.
+Logical | `!, &&, \|\|, and ^^` , operands must be of type *bool*
+Assignment | `=, +=, −=, *=, and /=`  
+
+
+ - vector algebra functions 
+    - dot, cross, length, distance, normalize
+    - There are also functions named reflect and refract that can be used to compute the direction of reflected and refracted light rays.
+    - mix(x,y,t) computes `x*(1−t) + y*t`.
+    - clamp(x,low,high) clamps x to the range low to high;  return as min(max(x,low),high)
+        - If rgb is a vector representing a color, we could ensure that all of the components of the vector lie in the range 0 to 1 with the command
+        - `rgb = clamp( rgb, 0.0, 1.0 );`
+    - If s and t are floats, with s < t, then smoothstep(s,t,x) returns 0.0 for x less than s and returns 1.0 for x greater than t. 
+        - Here is an example that might be used in a fragment shader for rendering a gl.POINTS primitive, with transparency enabled:
+        - 
+        ```
+        float dist = distance( gl_PointCoord, vec2(0.5) );
+        float alpha = 1.0 - smoothstep( 0.45, 0.5, dist );
+        if (alpha == 0.0) {
+            discard; // discard fully transparent pixels
+        }
+        gl_FragColor = vec4( 1.0, 0.0, 0.0, alpha );
+        ```
+ - mathematical functions
+    - sin, cos, tan, asin, acos, atan, log, exp, pow, sqrt, abs, floor, ceil, min, and max.
+    - parameters can be any of the types float, vec2, vec3, or vec4.
+    - The return value is of the same type, and the function is applied to each component separately. 
+        - sqrt(vec3(16.0,9.0,4.0))  = vec3(4.0,3.0,2.0). 
+    - mod(x,y) : `x − y*floor(x/y)`. 
+
+
+### 6.3.5  Function Definitions
+
+ - Unlike C, function names can be overloaded
+ - A function must be declared before it is used. As in C, it can be declared by giving either a full definition or a function prototype.
+ - Function parameters can be of any type. 
+    - The return type for a function can be any type except for array types. 
+    - A struct type can be a return type, as long as the structure does not include any arrays. 
+ - When an array is used a formal parameter, the length of the array must be specified by an integer constant. For example,
+
+```
+float arraySum10( float A[10] ) {
+   float sum = 0.0;
+   for ( int i = 0; i < 10; i++ ) {
+       sum += A[i];
+   }
+   return sum;
+}
+```
+
+ - Function parameters can be modified by the qualifiers in, out, or inout. 
+    - The default, if no qualifier is specified, is *in*. 
+    - For output parameters, the value of the formal parameter is copied back to the actual parameter when the function returns. 
+    - For an inout parameter, the value is copied in both directions. 
+        - This type of parameter passing is referred to as "call by value/return."  (like pointer)
+ - Recursion is not supported for functions in GLSL. 
+    - This is a limitation of the type of processor that is typically found in GPUs. 
+    - There is no way to implement a stack of activation records.
+ - Also, GLSL for WebGL does not support computations that can continue indefinitely.
+
+
+### 6.3.6  Control Structures
+
+ - **if** and **for**  , on *while* loop.
+ - **If** statements are supported with the full syntax from C, including else and else if.
+ - In a for loop, the loop control variable must be declared in the loop, and it must be of type int or float. 
+    - For loops can include break and continue statements.
+    - The initial value for the loop control variable must be a constant expression .
+    - The code inside the loop is not allowed to change the value of the loop control variable.
+    - The test for ending the loop can only have the form `var op expression`
+    - Finally, the update expression must have one of the forms var++, var--, var+=expression, or var-=expression,
+
+```
+for (int i = 0; i < 10; i++)
+for (float x = 1.0; x < 2.0; x += 0.1)
+for (int k = 10; k != 0; k -= 1)
+```
+
+### 6.3.7  Limits
+
+ - WebGL imposes a set of minimum requirements that all implementations must satisfy.
+    - For example, any WebGL implementation must allow at least 8 attributes in a vertex shader.
+    - it is available on the JavaScript side as the value of the expression
+        - `gl.getParameter( gl.MAX_VERTEX_ATTRIBS )`
+    - Attribute variables of type float, vec2, vec3, and vec4 all count as one attribute against the limit.
+    - For a matrix-valued attribute, each column counts as a separate attribute as far as the limit goes.
+
+```
+gl_MaxVertexAttribs >= 8;
+gl_MaxVertexUniformVectors >= 128;
+gl_MaxFragmentUniformVectors >= 16;
+gl_MaxVaryingVectors >= 8;
+
+gl_MaxTextureImageUnits >= 8;         // limit for fragment shader
+gl_MaxVertexTextureImageUnits >= 0;   // limit for vertex shader
+gl_MaxCombinedTextureImageUnits >= 8; // total limit for both shaders
+```
+
+ - Textures are usually used in fragment shaders, but they can sometimes be useful in vertex shaders. 
+    - Note however, that gl_MaxVertexTextureImageUnits can be zero, which means that implementations are not required to allow texture units to be used in vertex shaders.
+
+
+
 <h2 id="1f7b297214b84adbccdc248c8f3a7c4e"></h2>
 
 ## Section 4: Image Textures
