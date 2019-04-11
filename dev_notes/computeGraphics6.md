@@ -879,6 +879,191 @@ gl.activeTexture( gl.TEXTURE2 );
 gl.bindTexture( gl.TEXTURE_2D, textureObj );
 ```
 
+![](../imgs/cg_texture_unit.png)
+
+ - A sampler variable uses a texture unit, which uses a texture object, which holds a texture image.
+ - Suppose that you have several images that you would like to use on several different primitives. 
+    - Between drawing primitives, you need to change the texture image that will be used. 
+ - There are at least three different ways to manage the images in WebGL:
+    1. You could use a single texture object and a single texture unit.
+        - The bound texture object, the active texture unit, and the value of the sampler variable can be set once and never changed. 
+        - To change to a new image, you would use gl.texImage2D to load the image into the texture object. 
+            - This is essentially how things were done in OpenGL 1.0. 
+            - It's very inefficient. That's why texture objects were introduced.
+    2. You could use a different texture object for each image, but use just a single texture unit.
+        - The active texture and the value of the sampler variable will never have to be changed. 
+        - You would switch to a new texture image using gl.bindTexture to bind the texture object that contains the desired image.
+    3. You could use a different texture unit for each image. 
+        - You would load a different image into its own texture object and bind that object to one of the texture units. 
+        - You would switch to a new texture image by changing the value of the sampler variable.
+
+ - I don't know how options 2 and 3 compare in terms of efficiency. 
+    - Note that you are only **forced** to use more than one texture unit if you want to apply more than one texture image to the same primitive. 
+        - that is, 当一个 primitive 用到了不止 一张贴图时， 必需使用方法 *3* . 
+    - To do that, you will need several sampler variables in the shader program.
+        - They will have different values so that they refer to different texture units. 
+
+### 6.4.2  Working with Images
+
+ - loaded an image into a texture object
+
+```js
+gl.texImage2D( target, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image );
+```
+
+ - target: 
+    - gl.TEXTURE_2D for ordinary textures; there are other targets for loading cubemap textures.
+ - second parameter is the mipmap level
+    - which is 0 for the main image.
+    - Although it is possible to load individual mipmaps, that is rarely done. 
+ - The next two parameters give the format of the texture inside the texture object and in the original image.
+    - In WebGL, the two format parameters must have the same value. 
+    - And by using gl.LUMINANCE or gl.LUMINANCE_ALPHA, you can convert the image to grayscale. 
+ - The fourth parameter is always going to be gl.UNSIGNED_BYTE
+    - Although other values are possible, they don't really make sense for web images.
+ - image:
+    - Ordinarily, image will be a DOM image element that has been loaded asynchronously by JavaScript. 
+    - The image can also be a `<canvas>` element. 
+        - This means that you can draw on a canvas, using the HTML canvas 2D graphics API, and then use the canvas as the source for a texture image.
+        - You can even do that with an  off-screen canvas that is not visible on the web page.
+
+---
+
+ - The image is loaded into the texture object that is currently bound to target in the currently active texture unit. 
+    - The active texture unit is the one that has been selected using gl.activeTexture, or is texture unit 0 if gl.activeTexture has never been called. 
+ - Using images in WebGL is complicated by the fact that images are loaded asynchronously. 
+    - You can specify a callback function that will be executed when the loading completes. 
+
+```
+/**
+ *  Loads a texture image asynchronously.  The first parameter is the url
+ *  from which the image is to be loaded.  The second parameter is the
+ *  texture object into which the image is to be loaded.  When the image
+ *  has finished loading, the draw() function will be called to draw the
+ *  triangle with the texture.  (Also, if an error occurs during loading,
+ *  an error message is displayed on the page, and draw() is called to
+ *  draw the triangle without the texture.)
+ */
+function loadTexture( url, textureObject ) {
+    var img = new Image();  //  A DOM image element to represent the image.
+    img.onload = function() {
+        // This function will be called after the image loads successfully.
+        // We have to bind the texture object to the TEXTURE_2D target before
+        // loading the image into the texture object.
+        gl.bindTexture(gl.TEXTURE_2D, textureObject);
+        gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);
+        gl.generateMipmap(gl.TEXTURE_2D);  // Create mipmaps; you must either
+                              // do this or change the minification filter.
+        draw();  // Draw the canvas, with the texture.
+    }
+    img.onerror = function(e,f) {
+        // This function will be called if an error occurs while loading.
+        document.getElementById("headline").innerHTML =
+                        "<p>Sorry, texture image could not be loaded.</p>";
+        draw();  // Draw without the texture; triangle will be black.
+    }
+    img.src = url;  // Start loading of the image.
+                    // This must be done after setting onload and onerror.
+}
+```
+
+ - Note that image textures for WebGL should be power-of-two textures. 
+    - That is, the width and the height of the image should each be a power of 2, such as 128, 256, or 512.
+    - You can, in fact, use non-power-of-two textures, but you can't use mipmaps with such textures, and the only texture repeat mode that is supported by such textures is gl.CLAMP_TO_EDGE
+
+ - There are several parameters associated with a texture object, including the texture repeat modes and the minification and magnification filters. 
+    - They can be set using the function gl.texParameteri.  The setting applies to the currently bound texture object. 
+    - Most of the details are the same as in OpenGL 1.1 (Subsection 4.3.3). 
+    - For example, the minification filter can be set to LINEAR using
+        - `gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);`
+    - Recall that the default minification filter won't work without mipmaps. 
+        - Fortunately, WebGL has a function that will generate the mipmaps for you:
+        - `gl.generateMipmap( gl.TEXTURE_2D );`
+
+ - The texture repeat modes determine what happens when texture coordinates lie outside the range 0.0 to 1.0. 
+    - There is a separate repeat mode for each direction in the texture coordinate system.
+    - In WebGL, the possible values are gl.REPEAT, gl.CLAMP_TO_EDGE, and gl.MIRRORED_REPEAT. 
+    - The default is gl.REPEAT. 
+ 
+---
+
+ - In WebGL, texture coordinates are usually input to the vertex shader as an attribute of type vec2. 
+    - They are communicated to the fragment shader in a varying variable. 
+    - Often, the vertex shader will simply copy the value of the attribute into the varying variable. 
+        - Another possibility is to apply an affine *texture transformation* to the coordinates in the vertex shader before passing them on to the fragment shader. 
+ - In the fragment shader, the texture coordinates are used to sample a texture. 
+
+```
+texture2D( samplerVariable, textureCoordinates );
+```
+
+ - The return value is an RGBA color, represented as a value of type vec4. 
+ - minimal example:
+
+```
+precision mediump float;
+uniform sampler2D u_texture;
+varying vec2 v_texCoords;
+void main() {
+   vec4 color = texture2D( u_texture, v_texCoords );
+   gl_FragColor = color;
+}
+```
+
+ - Textures are sometimes used on primitives of type gl.POINTS.
+
+---
+
+ - The pixel data for a texture image in WebGL is stored in memory starting with the row of pixels at the bottom of the image and working up from there.
+    - When WebGL creates the texture by reading the data from an image, it assumes that the image uses the same format.
+    - However, images in a web browser are stored in the opposite order, starting with the pixels in the top row of the image and working down. 
+    - The result of this mismatch is that texture images will appear upside down. You can account for this by modifying your texture coordinates. 
+    - However, you can also tell WebGL to invert the images for you as it "unpacks" them. To do that, call
+
+```js
+gl.pixelStorei( gl.UNPACK_FLIP_Y_WEBGL, 1 );
+```
+
+ - Generally, you can do this as part of initialization. 
+    - Note however that for gl.POINTS primitives, the coordinate system used by gl_PointCoord is already upside down, with the y-coordinate increasing from top to bottom.
+    - So, if you are loading an image for use on a POINTS primitive, you might want to set gl.UNPACK_FLIP_Y_WEBGL to its default value, 0.
+
+
+### 6.4.3  More Ways to Make Textures
+
+ - We have seen how to create a texture from an image or canvas element using gl.texImage2D.
+    - There are several more ways to make an image texture in WebGL. 
+ - First of all, the following function which was covered in Subsection 4.3.6 also exists in WebGL. 
+    - 
+    ```
+    glCopyTexImage2D( target, mipmapLevel, internalFormat,
+                                         x, y, width, height, border );
+    ```
+    - This function copies data from the color buffer (where WebGL renders its images) into the currently bound texture object.
+    - The data is taken from the rectangular region in the color buffer with the specified width and height and with its lower left corner at (x,y). 
+    - The internalFormat is usually gl.RGBA. For WebGL, the border must be zero. 
+    - For example, `glCopyTexImage2D( gl.TEXTURE_2, 0, gl.RGBA, 0, 0, 256, 256, 0);`
+
+ - More interesting, perhaps, is the ability to take the texture data directly from an array of numbers.
+    - The numbers will become the color component values for the pixels in the texture. 
+    - The function that is used for this is an alternative version of texImage2D:
+        - *dataArray* of texImage2D must be a typed array of type Uint8Array or Uint16Array, depending on the dataFormat of the texture. 
+```
+texImage2D( target, mipmapLevel, internalFormat, width, height,
+                                  border, dataFormat, dataType, dataArray )
+
+// and a typical function call would have the form
+gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 16, 16,
+                                  0, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+```
+
+### 6.4.4  Cubemap Texture TODO
+
+http://math.hws.edu/graphicsbook/c6/s4.html
+
+
+
+
 
 
 
@@ -886,6 +1071,8 @@ gl.bindTexture( gl.TEXTURE_2D, textureObj );
 <h2 id="6f0ba384aa3b845de4898ddb899a037c"></h2>
 
 ## Section 5: Implementing 2D Transforms
+
+
 
 
 <h2 id="3b0649c72650c313a357338dcdfb64ec"></h2>
