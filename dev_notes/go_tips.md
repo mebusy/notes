@@ -733,7 +733,7 @@ for rows.Next() {
 }
 ```
 
-# Scan rows to struct 
+## Scan rows to struct 
 
 ```
     for rows.Next() {
@@ -763,5 +763,12 @@ for rows.Next() {
     }
 
 ```
+
+## Parameter Placeholder Syntax
+
+mysql | postgreSQL  | Oracle
+--- | --- | ---
+WHERE col = ?     |  WHERE col = $1     |   WHERE col = :col
+VALUES(?, ?, ?)   |  VALUES($1, $2, $3) |   VALUES(:val1, :val2, :val3)
 
 
