@@ -771,4 +771,73 @@ mysql | postgreSQL  | Oracle
 WHERE col = ?     |  WHERE col = $1     |   WHERE col = :col
 VALUES(?, ?, ?)   |  VALUES($1, $2, $3) |   VALUES(:val1, :val2, :val3)
 
+## 数据库操作
+
+### 多行查询
+
+ - db.Query , 返回 Rows, error
+ - rows.Next() 迭代
+ - rows.Scan() 读取行
+ - 每次db.Query操作后, 都建议调用rows.Close(). 
+
+```go
+	dbw.QueryDataPre()
+	rows, err := dbw.Db.Query(`SELECT * From user where age >= 20 AND age < 30`)
+	defer rows.Close()
+	if err != nil {
+		fmt.Printf("insert data error: %v\n", err)
+		return
+	}
+	for rows.Next() {
+		rows.Scan(&dbw.UserInfo.Id, &dbw.UserInfo.Name, &dbw.UserInfo.Age)
+		if err != nil {
+			fmt.Printf(err.Error())
+			continue
+		}
+		if !dbw.UserInfo.Name.Valid {
+			dbw.UserInfo.Name.String = ""
+		}
+		if !dbw.UserInfo.Age.Valid {
+			dbw.UserInfo.Age.Int64 = 0
+		}
+		fmt.Println("get data, id: ", dbw.UserInfo.Id, " name: ", dbw.UserInfo.Name.String, " age: ", int(dbw.UserInfo.Age.Int64))
+	}
+
+	err = rows.Err()
+	if err != nil {
+		fmt.Printf(err.Error())
+	}
+```
+
+### 单行查询
+
+ - db.QueryRow , 返回 Row
+ - rows.Scan() 读取行
+ - err在Scan后才产生
+
+```go
+var name string
+err = db.QueryRow("select name from user where id = ?", 1).Scan(&name)
+```
+
+
+### 插入数据
+
+```go
+	ret, err := dbw.Db.Exec(`INSERT INTO user (name, age) VALUES ("xys", 23)`)
+	if err != nil {
+		fmt.Printf("insert data error: %v\n", err)
+		return
+	}
+	if LastInsertId, err := ret.LastInsertId(); nil == err {
+		fmt.Println("LastInsertId:", LastInsertId)
+	}
+	if RowsAffected, err := ret.RowsAffected(); nil == err {
+		fmt.Println("RowsAffected:", RowsAffected)
+	}
+```
+
+### 其他
+
+ - db.Prepare()返回的statement使用完之后需要手动关闭，即defer stmt.Close()
 
