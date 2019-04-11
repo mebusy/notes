@@ -837,6 +837,52 @@ gl_MaxCombinedTextureImageUnits >= 8; // total limit for both shaders
 <h2 id="1f7b297214b84adbccdc248c8f3a7c4e"></h2>
 
 ## Section 4: Image Textures
+
+ - there is one feature that is new since OpenGL 1.1: **texture units**
+
+### 6.4.1  Texture Units and Texture Objects
+
+ - A texture unit, also called a texture mapping unit (TMU) or a texture processing unit (TPU), is a hardware component in a GPU that does sampling.
+    - Sampling is the process of computing a color from an image texture and texture coordinates. 
+    - Mapping a texture image to a surface is a fairly complex operation, since 
+        - it requires more than just returning the color of the texel that contains some given texture coordinates. 
+        - It also requires applying the appropriate minification or magnification filter, possibly using mipmaps if available. 
+ - A texture unit must access a texture object to do its work.
+    - We encountered texture objects in Subsection 4.3.7. 
+ - In GLSL, texture lookup is done using **sampler variables**. 
+    - a variable in a shader program of type sampler2D or samplerCube.
+    - The value of a sampler variable is a reference to a texture unit.
+    - The number of units can be determined as the value of the expression
+    - `gl.getParameter( gl.MAX_COMBINED_TEXTURE_IMAGE_UNITS )`
+
+ -  If you want a sampler variable to use texture unit number 2, then you set the value of the sampler variable to 2
+
+```
+// suppose in sharer: uniform sampler2D u_texture;
+
+// get texture unit location 
+u_texture_location = gl.getUniformLocation( prog, "u_texture" );
+// Then, you can tell the sampler variable to use texture unit number 2 by calling
+gl.uniform1i( u_texture_location, 2 );
+```
+
+ - To use an image texture, you also need to create a texture object, and you need to load an image into the texture object. 
+
+```js
+// creating a texture object
+textureObj = gl.createTexture();
+
+// To make texture unit number 2 active
+gl.activeTexture( gl.TEXTURE2 );
+// "bind" the texture object, the texture target is texture2D
+// tells the texture unit which texture object to use. 
+gl.bindTexture( gl.TEXTURE_2D, textureObj );
+```
+
+
+
+
+
 <h2 id="6f0ba384aa3b845de4898ddb899a037c"></h2>
 
 ## Section 5: Implementing 2D Transforms
