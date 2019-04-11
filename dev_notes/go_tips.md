@@ -732,3 +732,36 @@ for rows.Next() {
     // DO something
 }
 ```
+
+# Scan rows to struct 
+
+```
+    for rows.Next() {
+        var match Match
+        // match == Person{0, ""}
+        pointers := make([]interface{}, len(columnNames))
+        // pointers == `[]interface{}{nil, nil}`
+        structVal := reflect.ValueOf(&match).Elem()
+        for i, colName := range columnNames {
+            fieldVal := structVal.FieldByName(strings.Title(colName))
+            // log.Println( i, colName, fieldVal )
+            if !fieldVal.IsValid() {
+                log.Println("field not valid")
+                return nil, errors.New( "field not valid " +  colName )
+            }
+            pointers[i] = fieldVal.Addr().Interface()
+        }
+        // pointers == `[]interface{}{&int, &string}`
+        err := rows.Scan(pointers...)
+        if err != nil {
+            // handle err
+            log.Println(err)
+            return nil , err
+        }
+
+        // log.Print( "%+v" , match )
+    }
+
+```
+
+
