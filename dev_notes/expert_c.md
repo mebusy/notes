@@ -462,7 +462,8 @@ text    data     bss     dec     hex filename
         - Since the BSS segment only holds variables that don't have any value yet, it doesn't actually need to store the image of these variables. 
     - The size that BSS will require at runtime is recorded in the object file, 
         - but BSS (unlike the data segment) doesn't take up any actual space in the object file.
- - 上图显示的程序中，如果加上一个 全局数组 `int test[1000];` 
+ - 上图显示的程序中，
+    - 如果加上一个 全局数组 `int test[1000];` 
         - `size a.out` 显示 bss 大小 从 72 变成了4096 ， 但是 `ls -l` 显示 a.out 大小并没有变化 
     - 现在， 给 test 一个非0初始化器 . i.e. `int test[1000] = {1};`
         - `size a.out` 显示 bss 恢复到 72， 而 data 从 568 增加到了 4592  , `ls -l` 显示 a.out 文件也变大了
