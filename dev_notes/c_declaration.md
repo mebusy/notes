@@ -375,6 +375,15 @@ ptr_to_func signal(int, ptr_to_func);
  */
 ```
 
+ - **注意区别**:
+
+```
+cdecl> explain void (*signal ) (int);
+declare signal as POINTER to function (int) returning void
+cdecl> explain void (*signal() ) (int);
+declare signal as FUNCTION returning pointer to function (int) returning void
+```
+
  - Typedef provides essentially nothing for structs, except the unhelpful ability to omit the struct keyword.
 
 <h2 id="b2964049a26ea843935c34c897b5d716"></h2>
