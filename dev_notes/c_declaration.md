@@ -377,9 +377,10 @@ ptr_to_func signal(int, ptr_to_func);
 
  - **注意区别**:
 
-```
+```c
 cdecl> explain void (*signal ) (int);
 declare signal as POINTER to function (int) returning void
+
 cdecl> explain void (*signal() ) (int);
 declare signal as FUNCTION returning pointer to function (int) returning void
 ```
