@@ -841,3 +841,44 @@ err = db.QueryRow("select name from user where id = ?", 1).Scan(&name)
 
  - db.Prepare()返回的statement使用完之后需要手动关闭，即defer stmt.Close()
 
+### 事务
+
+ - Go uses sql.DB for autocommit, and sql.Tx for manual commit. 
+ - 事务场景
+
+```go
+func clearTransaction(tx *sql.Tx){
+    err := tx.Rollback()
+    if err != sql.ErrTxDone && err != nil{
+        log.Println(err)
+    }
+}
+```
+
+```go
+func DoSomething() error {
+    tx , err := db.Begin()
+    if err != nil {
+        log.Println( err )    
+        return err
+    }
+    defer clearTransaction( tx )
+
+
+    if _, err = tx.Exec(...); err != nil {
+        return err
+    }
+    if _, err = tx.Exec(...); err != nil {
+        return err
+    }
+    // ...
+
+    if err := tx.Commit(); err != nil {
+        log.Println( err )    
+        return err
+    }
+    return nil
+}
+```
+
+ - 事务中，如果有 Query 命令， 执行后续命令之间，必需调用 rows.Close() 关闭连接
