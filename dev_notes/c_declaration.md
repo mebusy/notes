@@ -326,7 +326,7 @@ char* const *(*next)();
 
 
  - if you prefer something a little more intuitive, use
-    - ../imgs/c_magic_ring_for_c_declare.png
+    - ![](../imgs/c_magic_ring_for_c_declare.png)
 
 ```c
 char *(*c[10])(int **p);  //  how 2 read ?
