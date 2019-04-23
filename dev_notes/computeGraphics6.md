@@ -1067,11 +1067,36 @@ http://math.hws.edu/graphicsbook/c6/s4.html
 
 
 
-
 <h2 id="6f0ba384aa3b845de4898ddb899a037c"></h2>
 
 ## Section 5: Implementing 2D Transforms
 
+### 6.5.1  Transforms in GLSL
+
+ - scaling, rotation, translation, 这些变化的组合，可以使用一个 affine transform 完成
+ - 2D, (x,y) -> (x2,y2)
+
+```
+x2 = a*x1 + c*y1 + e
+y2 = b*x1 + d*y1 + f
+
+⎡ a c e⎤ ⎡ x⎤
+⎢ b d f⎥·⎢ y⎥
+⎣ 0 0 1⎦ ⎣ 1⎦
+```
+
+ - 一个2D vertex shader的例子
+
+```
+attribute vec2 a_coords;
+uniform mat3 u_transform;
+void main() {
+   vec3 transformedCoords = u_transform * vec3(a_coords,1.0);
+   gl_Position = vec4(transformedCoords.xy, 0.0, 1.0);
+}
+```
+
+ - In the last line, the value for gl_Position must be a **vec4**. 
 
 
 
