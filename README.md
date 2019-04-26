@@ -25,9 +25,6 @@
 
 ####  专题
 
- - [在线数学公式生成](http://codecogs.com/latex/eqneditor.php)
- - show html on github
-    - `http://htmlpreview.github.io/?xxx/xxxxx.html`
  - [Linear ALgebra](dev_notes/LA_readme.md) 
  - [algorithm](dev_notes/Algorithm_readme.md)
  - [Machine Learning](dev_notes/ML_readme.md)
@@ -199,5 +196,9 @@ a | b | c | d
 [roguelike note](dev_notes/roguelike_note.md) | 
 
 
+[在线数学公式生成](http://codecogs.com/latex/eqneditor.php)
+
+ - show html on github
+    - `http://htmlpreview.github.io/?xxx/xxxxx.html`
 
 
