@@ -48,6 +48,10 @@ column-major order
 
 漫反射只和 L，N有关。  镜面反射只和 R和V 有关
 
+光有颜色，材质也有颜色。材质的颜色其实就是对 相应光颜色的反射程度。
+
+normal vector is at a vertex.  大多数情况下，normal vector 是共享面法线 和再normalize.
+
 ## Mipmap
 
 大贴图 贴到一个很小的表面上，linear filtering  非常没效率，解决方案：mipmap。 mipmap会额外消耗 1/3 内存使用量.
