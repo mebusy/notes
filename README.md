@@ -19,6 +19,8 @@
 ...menuend
 
 
+[简要笔记](dev_notes/note_readme.md)
+
 <h2 id="041d1704a45f737ddaa4380bcf1dfcc7"></h2>
 
 ####  专题
@@ -42,7 +44,6 @@
  - [Compute Graphics](./dev_notes/CG_readme.md)
 
 ---
-
 
 <h2 id="8443a5022727ccc209d315492559f16f"></h2>
 
