@@ -882,3 +882,26 @@ func DoSomething() error {
 ```
 
  - 事务中，如果有 Query 命令， 执行后续命令之间，必需调用 rows.Close() 关闭连接
+
+
+# Misc
+
+## CGO_ENALBE=1 情况下, 实现纯静态连接
+
+cmd/link的两种工作模式：internal linking和external linking。
+
+1、internal linking
+
+internal linking的大致意思是若用户代码中仅仅使用了net、os/user等几个标准库中的依赖cgo的包时，cmd/link默认使用internal linking，而无需启动外部external linker(如:gcc、clang等)
+
+因此如果标准库是在CGO_ENABLED=1情况下编译的，那么编译出来的最终二进制文件依旧是动态链接的，即便在go build时传入 -ldflags '-extldflags "-static"'亦无用，因为根本没有使用external linker
+
+2、external linking
+
+而external linking机制则是cmd/link将所有生成的.o都打到一个.o文件中，再将其交给外部的链接器，比如gcc或clang去做最终链接处理。
+
+如果此时，我们在cmd/link的参数中传入 -ldflags '-linkmode "external" -extldflags "-static"'，那么gcc/clang将会去做静态链接，将.o中undefined的符号都替换为真正的代码。
+
+因为 MacOSX 上只有 libc的dylib, 没有 .a , 所以一般会失败。
+
+
