@@ -11,6 +11,7 @@
      - [random walk](#396c9aa8a56ee3ea6e06423717b340b3)
      - [BSP: Binary Space Partitioning](#fd8334f88acc5ac4a4b89af90ce18c0c)
          - [Building the dungeon](#cf6432b1f365fe43ae2285cf70e002e0)
+         - [lighting](#8e0cc612e58bb376328960e92c9b89e8)
 
 ...menuend
 
@@ -148,6 +149,8 @@ http://roguecentral.org/doryen/articles/bsp-dungeon-generation/
 ![](http://roguecentral.org/doryen/data/articles/dungeon_bsp7-medium.jpg)
 
 
+
+<h2 id="8e0cc612e58bb376328960e92c9b89e8"></h2>
 
 ### lighting  
 

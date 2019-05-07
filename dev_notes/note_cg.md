@@ -1,4 +1,25 @@
+...menustart
+
+ - [compute graph 笔记](#674fa9dea02b179c756a79f705d54783)
+     - [openGL version](#1811ce44202cb15c45b18d1ef4081860)
+     - [depth test](#8de271865f3a858ddf544a94e44468b1)
+     - [坐标系](#9109ef363a06715e7c00921de32df1bd)
+     - [affine transform](#89b41f9981538b388efe60606a182986)
+     - [矩阵数据存储](#a057710da10201eb39d68a6c747982b5)
+     - [光照](#dde9a447b2a15bf1818a818f8b3b78fd)
+     - [Mipmap](#75cfa28027d393dfbc5cb09dbe34b44e)
+     - [计算法线矩阵](#94097cd1cb4b2162a7f62aab1801143f)
+     - [scene graph](#6d756681478ba7bbe5b33b412e7fd283)
+     - [shader](#842e3e5fe6c1b834705abd4bcb213342)
+
+...menuend
+
+
+<h2 id="674fa9dea02b179c756a79f705d54783"></h2>
+
 # compute graph 笔记
+
+<h2 id="1811ce44202cb15c45b18d1ef4081860"></h2>
 
 ## openGL version
 
@@ -11,9 +32,13 @@ GL ES 2.0  | mandatorily use shader, remove large part of OpenGL 1.1 API
 WebGL |  based on GL ES 2.0
 
 
+<h2 id="8de271865f3a858ddf544a94e44468b1"></h2>
+
 ## depth test
 
 depth buffer (z-buffer)
+
+<h2 id="9109ef363a06715e7c00921de32df1bd"></h2>
 
 ## 坐标系
 
@@ -21,6 +46,8 @@ depth buffer (z-buffer)
 
 5个坐标系，object，world，view 右手法则，投影后的 clip，screen 左手法则
 
+
+<h2 id="89b41f9981538b388efe60606a182986"></h2>
 
 ## affine transform 
 
@@ -38,9 +65,13 @@ z2 = c1*x1 + c2*y1 + c3*z1 + t3
 perspective projection 不是 仿射变化。affine transforms preserve parallel lines。但是依然可以用4x4 矩阵表示透视投影-- 引入齐次坐标 (x,y,z,w)。 大多数情况下，不需要你直接使用齐次坐标，opengl 会处理。
 
 
+<h2 id="a057710da10201eb39d68a6c747982b5"></h2>
+
 ## 矩阵数据存储
 
 column-major order 
+
+<h2 id="dde9a447b2a15bf1818a818f8b3b78fd"></h2>
 
 ## 光照
 
@@ -52,10 +83,14 @@ column-major order
 
 normal vector is at a vertex.  大多数情况下，normal vector 是共享面法线 和再normalize.
 
+<h2 id="75cfa28027d393dfbc5cb09dbe34b44e"></h2>
+
 ## Mipmap
 
 大贴图 贴到一个很小的表面上，linear filtering  非常没效率，解决方案：mipmap。 mipmap会额外消耗 1/3 内存使用量.
 
+
+<h2 id="94097cd1cb4b2162a7f62aab1801143f"></h2>
 
 ## 计算法线矩阵
 
@@ -65,10 +100,14 @@ from 4x4 modelView matrix，去掉第4行，第4列，然后求 逆转置。
 ----
 
 
+<h2 id="6d756681478ba7bbe5b33b412e7fd283"></h2>
+
 ## scene graph
 
  - camera
     - start from camera node to get view transform at first
+
+<h2 id="842e3e5fe6c1b834705abd4bcb213342"></h2>
 
 ## shader
 

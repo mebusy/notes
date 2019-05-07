@@ -16,8 +16,20 @@
          - [6.2.5  The POINTS Primitive](#bc62a575ed06ffa63f83404cd634f185)
          - [6.2.6  WebGL Error Handling](#23dc2ee7e7acb2d786129dac0715532b)
      - [Section 3: GLSL](#512cc0d7b47100675a0c220edf55385a)
+         - [6.3.1  Basic Types](#fbcf3140c912e0a15fb7ec4568cbf3f8)
+         - [6.3.2  Data Structures](#5e7530b217e8c91ffd8ab502a52c44e7)
+         - [6.3.3  Qualifiers](#1158fb2909c793117311e2209b2acb70)
+         - [6.3.4  Expressions](#d0d926da814b0f4539d15dcf916330c3)
+         - [6.3.5  Function Definitions](#acb12deb98c52a48ea4cf634f0073438)
+         - [6.3.6  Control Structures](#48d48d924bdea1d592bee65254d3dfcb)
+         - [6.3.7  Limits](#23051d206852e00db9e3b630f217b448)
      - [Section 4: Image Textures](#1f7b297214b84adbccdc248c8f3a7c4e)
+         - [6.4.1  Texture Units and Texture Objects](#f5449a0a00f863c2c33f2ffc79920aa0)
+         - [6.4.2  Working with Images](#13ed5060549b7511d13507e17ee29faa)
+         - [6.4.3  More Ways to Make Textures](#d679e2eade5d6d17970f2d1dd1911954)
+         - [6.4.4  Cubemap Texture TODO](#25f1ec59a0dbc8e8aa41a4cc98afcad5)
      - [Section 5: Implementing 2D Transforms](#6f0ba384aa3b845de4898ddb899a037c)
+         - [6.5.1  Transforms in GLSL](#a2489f92cd1f40db80144b8eb8e77d93)
      - [Note](#3b0649c72650c313a357338dcdfb64ec)
 
 ...menuend
@@ -550,6 +562,8 @@ console.log("Error code is " + gl.getError());
 
 ## Section 3: GLSL
 
+<h2 id="fbcf3140c912e0a15fb7ec4568cbf3f8"></h2>
+
 ### 6.3.1  Basic Types
 
 kink | types
@@ -586,6 +600,8 @@ mat3 m2 = mat3( v, v, v );
     - The non-diagonal elements are all set equal to zero. For example, mat4(1.0) constructs the four-by-four  identity matrix.
 
 
+<h2 id="5e7530b217e8c91ffd8ab502a52c44e7"></h2>
+
 ### 6.3.2  Data Structures
 
  - A GLSL program can define new types using the **struct** keyword.
@@ -616,6 +632,8 @@ int A[10];
 vec3 palette[8];
 LightProperties lights[3];
 ```
+
+<h2 id="1158fb2909c793117311e2209b2acb70"></h2>
 
 ### 6.3.3  Qualifiers
 
@@ -724,6 +742,8 @@ uniform mediump vec3 colors[3];
     - It is important, for example, that both shaders get the same answer when they compute gl_Position for the same vertex, using the same expression in both vertex shaders. Making gl_Position invariant in the shaders will ensure that.
  
 
+<h2 id="d0d926da814b0f4539d15dcf916330c3"></h2>
+
 ### 6.3.4  Expressions
 
 
@@ -762,6 +782,8 @@ Assignment | `=, +=, −=, *=, and /=`
     - mod(x,y) : `x − y*floor(x/y)`. 
 
 
+<h2 id="acb12deb98c52a48ea4cf634f0073438"></h2>
+
 ### 6.3.5  Function Definitions
 
  - Unlike C, function names can be overloaded
@@ -792,6 +814,8 @@ float arraySum10( float A[10] ) {
  - Also, GLSL for WebGL does not support computations that can continue indefinitely.
 
 
+<h2 id="48d48d924bdea1d592bee65254d3dfcb"></h2>
+
 ### 6.3.6  Control Structures
 
  - **if** and **for**  , on *while* loop.
@@ -808,6 +832,8 @@ for (int i = 0; i < 10; i++)
 for (float x = 1.0; x < 2.0; x += 0.1)
 for (int k = 10; k != 0; k -= 1)
 ```
+
+<h2 id="23051d206852e00db9e3b630f217b448"></h2>
 
 ### 6.3.7  Limits
 
@@ -839,6 +865,8 @@ gl_MaxCombinedTextureImageUnits >= 8; // total limit for both shaders
 ## Section 4: Image Textures
 
  - there is one feature that is new since OpenGL 1.1: **texture units**
+
+<h2 id="f5449a0a00f863c2c33f2ffc79920aa0"></h2>
 
 ### 6.4.1  Texture Units and Texture Objects
 
@@ -902,6 +930,8 @@ gl.bindTexture( gl.TEXTURE_2D, textureObj );
         - that is, 当一个 primitive 用到了不止 一张贴图时， 必需使用方法 *3* . 
     - To do that, you will need several sampler variables in the shader program.
         - They will have different values so that they refer to different texture units. 
+
+<h2 id="13ed5060549b7511d13507e17ee29faa"></h2>
 
 ### 6.4.2  Working with Images
 
@@ -1029,6 +1059,8 @@ gl.pixelStorei( gl.UNPACK_FLIP_Y_WEBGL, 1 );
     - So, if you are loading an image for use on a POINTS primitive, you might want to set gl.UNPACK_FLIP_Y_WEBGL to its default value, 0.
 
 
+<h2 id="d679e2eade5d6d17970f2d1dd1911954"></h2>
+
 ### 6.4.3  More Ways to Make Textures
 
  - We have seen how to create a texture from an image or canvas element using gl.texImage2D.
@@ -1057,6 +1089,8 @@ gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 16, 16,
                                   0, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
 ```
 
+<h2 id="25f1ec59a0dbc8e8aa41a4cc98afcad5"></h2>
+
 ### 6.4.4  Cubemap Texture TODO
 
 http://math.hws.edu/graphicsbook/c6/s4.html
@@ -1070,6 +1104,8 @@ http://math.hws.edu/graphicsbook/c6/s4.html
 <h2 id="6f0ba384aa3b845de4898ddb899a037c"></h2>
 
 ## Section 5: Implementing 2D Transforms
+
+<h2 id="a2489f92cd1f40db80144b8eb8e77d93"></h2>
 
 ### 6.5.1  Transforms in GLSL
 

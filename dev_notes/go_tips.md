@@ -64,6 +64,16 @@
      - [check interface implementation during compilation](#fbc04a03c1a5ee00e1b416744fb3154b)
  - [sql](#ac5c74b64b4b8352ef2f181affb5ac2a)
      - [where in](#cca85d15132b75981103827efd17081b)
+     - [Scan rows to struct](#b589b58d1c70513bf77a35c489473590)
+     - [Parameter Placeholder Syntax](#f546c79ad1cdb480d0e3df44316a5a29)
+     - [数据库操作](#1475e8cb4633b25db26bd0b484bfc45f)
+         - [多行查询](#c8c95af3e4422ec0c4e188c720d67079)
+         - [单行查询](#520a0fe1e028d3bfd9e80f3d51311100)
+         - [插入数据](#131d2cc4055f927cc5f593ebb1042224)
+         - [其他](#0d98c74797e49d00bcc4c17c9d557a2b)
+         - [事务](#9f82401d0ae9254f9429eaa46e1fe666)
+ - [Misc](#74248c725e00bf9fe04df4e35b249a19)
+     - [CGO_ENALBE=1 情况下, 实现纯静态连接](#12f3c642086ddb0279f69574a34db7ef)
 
 ...menuend
 
@@ -733,6 +743,8 @@ for rows.Next() {
 }
 ```
 
+<h2 id="b589b58d1c70513bf77a35c489473590"></h2>
+
 ## Scan rows to struct 
 
 ```
@@ -764,6 +776,8 @@ for rows.Next() {
 
 ```
 
+<h2 id="f546c79ad1cdb480d0e3df44316a5a29"></h2>
+
 ## Parameter Placeholder Syntax
 
 mysql | postgreSQL  | Oracle
@@ -771,7 +785,11 @@ mysql | postgreSQL  | Oracle
 WHERE col = ?     |  WHERE col = $1     |   WHERE col = :col
 VALUES(?, ?, ?)   |  VALUES($1, $2, $3) |   VALUES(:val1, :val2, :val3)
 
+<h2 id="1475e8cb4633b25db26bd0b484bfc45f"></h2>
+
 ## 数据库操作
+
+<h2 id="c8c95af3e4422ec0c4e188c720d67079"></h2>
 
 ### 多行查询
 
@@ -809,6 +827,8 @@ VALUES(?, ?, ?)   |  VALUES($1, $2, $3) |   VALUES(:val1, :val2, :val3)
 	}
 ```
 
+<h2 id="520a0fe1e028d3bfd9e80f3d51311100"></h2>
+
 ### 单行查询
 
  - db.QueryRow , 返回 Row
@@ -820,6 +840,8 @@ var name string
 err = db.QueryRow("select name from user where id = ?", 1).Scan(&name)
 ```
 
+
+<h2 id="131d2cc4055f927cc5f593ebb1042224"></h2>
 
 ### 插入数据
 
@@ -837,9 +859,13 @@ err = db.QueryRow("select name from user where id = ?", 1).Scan(&name)
 	}
 ```
 
+<h2 id="0d98c74797e49d00bcc4c17c9d557a2b"></h2>
+
 ### 其他
 
  - db.Prepare()返回的statement使用完之后需要手动关闭，即defer stmt.Close()
+
+<h2 id="9f82401d0ae9254f9429eaa46e1fe666"></h2>
 
 ### 事务
 
@@ -884,7 +910,11 @@ func DoSomething() error {
  - 事务中，如果有 Query 命令， 执行后续命令之间，必需调用 rows.Close() 关闭连接
 
 
+<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
+
 # Misc
+
+<h2 id="12f3c642086ddb0279f69574a34db7ef"></h2>
 
 ## CGO_ENALBE=1 情况下, 实现纯静态连接
 
