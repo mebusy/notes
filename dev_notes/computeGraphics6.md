@@ -449,7 +449,12 @@ vec3 rgb;
 float width, height;
 uniform vec2 u_size;
 varying vec4 v_color;
+```
 
+---
+
+
+```
 rgb = vec3( 1.0, 0.7, 0.0 );  // construct a vec3 from constants
 v_color = vec4( rgb, 1.0 );  // construct a vec4 from a vec3 and a constant
 gl_Position = vec4( a_coords, 0.0, 1.0 );  // vec4 from a vec2 and 2 constants
