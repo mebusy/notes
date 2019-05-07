@@ -44,6 +44,13 @@
 
 # chapter 2: Paradox of the derivatives
 
+ - Goal
+    - 1 : Learn Derivatives
+    - 2 : Avoid Paradoxes
+ - What is Derivatives?
+    - Instantaneous rate of change
+        - instantaneous means over a very small time 
+
 
 
 
