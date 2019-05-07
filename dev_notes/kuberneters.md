@@ -448,6 +448,9 @@ deployment.extensions/kubernetes-bootcamp
 
 ### Disable SELinux and filewall
 
+- In this tutorial, we will not cover about SELinux configuration for Docker, so we will disable it.
+
+
 ```
 setenforce 0
 sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
@@ -486,6 +489,11 @@ swapoff -a
 ```
 # /dev/mapper/cl-swap     swap                    swap    defaults        0 0  
 ```
+
+ - why disable swap ?
+    - The idea of kubernetes is to tightly pack instances to as close to 100% utilized as possible. All deployments should be pinned with CPU/memory limits. So if the scheduler sends a pod to a machine it should never use swap at all. You don't want to swap since it'll slow things down.
+    - Its mainly for performance.
+    - the idea is if a node only has 3G free to use.. and your new pod wants 4.. its going to go on another node.
 
 
 <h2 id="5ed0c66dfa2ac395ad8e9830aa5964aa"></h2>
