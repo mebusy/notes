@@ -28,7 +28,7 @@
 OpenGL 1.1  | pass data in array
 OpenGL 1.5  | VBO
 OpenGL 2.0 | shader
-GL ES 2.0  | mandatorily use shader, remove large part of OpenGL 1.1 API 
+GL ES 2.0  | mandatorily use shader,VBO yes,remove large part of OpenGL 1.1 API
 WebGL |  based on GL ES 2.0
 
 
