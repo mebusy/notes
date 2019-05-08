@@ -43,14 +43,24 @@
 <h2 id="b872997f4e311706ca6628e823fc3459"></h2>
 
 # chapter 2: Paradox of the derivatives
-
+ 
  - Goal
     - 1 : Learn Derivatives
     - 2 : Avoid Paradoxes
  - What is Derivatives?
     - Instantaneous rate of change
         - instantaneous means over a very small time 
-
+ - example 
+    - 距离时间 s(t) = t³, 计算 t=2 时的速度
+    - 
+    ```
+    ds/dt(2) = ( (2+dt)³ - 2³ ) / dt 
+             = ( 2³ + 3(2)²dt + 3(2)(dt)² + (dt)³ - 2³  ) / dt
+             = 3(2)² + 3(2)dt + (dt)²
+             = 3(2)² , as dt→0
+    ```
+    - There was nothing special about choosing t=2, more generally we'd say that 
+        - the derivative of t³ , as a function of t, is 3t²
 
 
 
