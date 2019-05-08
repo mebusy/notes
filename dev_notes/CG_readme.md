@@ -23,3 +23,4 @@
  4. [5 Three.js](./computeGraphics5.md)
  5. [6 Intro 2 WebGL](./computeGraphics6.md)
  6. [7 3D with WebGL](./computeGraphics7.md)
+ 7. [8 Beyond Realtime Graphcis](./computeGraphics8.md)
