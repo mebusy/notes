@@ -65,7 +65,46 @@
     
 ---
 
- - 
+ - The ray tracing algorithm is recursive, and, as every programmer knows, recursion needs a base case. 
+    - That is, there has to come a time when, instead of calling itself, the algorithm simply returns a value. 
+    - A base case occurs whenever a casted ray does not intersect any objects. 
+ - Another kind of base case can occur when it is determined that casting more rays cannot contribute any significant amount to the color of the image. 
+    - For example, After reflecting many times, a ray would have very little color left to contribute to the final result.
+    - A ray can also lose energy because of attenuation of light with distance, and a ray-tracing algorithm might take that into account. 
+ - In addition, a ray tracing algorithm should always be run with a maximum recursion depth, to put an absolute limit on the number of times the algorithm will call itself.
+
+
+### 8.1.3  Limitations of Ray Tracing
+
+ - Although ray tracing can produce very realistic images, there are some things that it can't do. 
+    - For example, while ray tracing works well for point lights and directional lights, it can't handle area lights.
+ - Another problem with lighting in ray tracing is that it doesn't take into account illumination by reflected light. 
+    - For example, light from a light source should reflect off a mirror, and the reflected light should illuminate other objects. 
+ - OpenGL uses ambient light as an approximation for light that has been reflected and re-reflected many times. 
+    - A better approximation uses **ambient occlusion**, the idea that ambient light heading towards a surface can be blocked, or "occluded," by nearby objects.
+
+---
+
+## Section 8.2 Path Tracing
+
+ - In path tracing, the idea is to account for **all** possible paths that the light could have followed. 
+
+### 8.2.1  BSDF's
+
+ - In order to model a wide variety of physical phenomena, path tracing uses a generalization of the idea of *material* property.
+    - In OpenGL, a material is a combination of ambient,  diffuse, specular, and emission colors, plus shininess.
+    - These properties, except for emission color, model how the surface interacts with light.
+    - Material properties can vary from point to point on a surface; that's an example of a texture.
+ - OpenGL material is only a rough approximation of reality. In path tracing, a more general notion is used that is capable of more accurately representing the properties of almost any real physical surface or volume. 
+    - The replacement for materials is call a **BSDF**, or Bidirectional Scattering Distribution Function. 双向散射分布函数
+    
+
+
+---
+
+ - Blender's Cycles renderer uses path tracing
+
+
 
 
 
