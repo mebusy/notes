@@ -665,7 +665,8 @@ pop temp 0
 
  - 2 "portable" virtual memory segments that can be aligned to diferent RAM addresses
 
- - | this | that
+
+ · | this | that
 --- | --- | ---
 VM use: |  current object |  current array
 pointer ( base address ) | THIS | THAT
