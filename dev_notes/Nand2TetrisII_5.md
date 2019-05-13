@@ -642,7 +642,7 @@ pop temp 0
  - Recap
     - Each compiled method must return a value
     - By convention, void methods return a dummy value
-    - Callers of void methods are responsible for remving the returned value from the stack.
+    - Callers of void methods are responsible for removing the returned value from the stack.
 
 <h2 id="1f250f80bd24fd913d5b306b23e5b013"></h2>
 
@@ -652,7 +652,7 @@ pop temp 0
 
 ### Array construction
 
- - `var Array arr;` ;
+ - `var Array arr;` 
     - it will alloc a variable in local segment ( stack )
     - generates no code, only effects the symbol table
  - `let arr = Array.new(n);`

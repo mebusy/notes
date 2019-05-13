@@ -49,6 +49,8 @@ this  |	Point | argument | 0 (argument 0 in every method)
         - access the object's i-th field by accessing `this i`
         - But first, anchor the *this* segment on the object's data
     - compile method must return a value, caller of *void*  is responsible for removing the returned value from the stack
+ - Handling Arrays
+    - use 'pointer 1' and 'that 0'
 
 
     
