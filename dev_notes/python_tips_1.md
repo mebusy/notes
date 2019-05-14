@@ -804,6 +804,13 @@ subprocess.call( cmd.split() +  sys.argv[1:]  , stderr=subprocess.STDOUT ,shell=
 ```
 
  - `shell=True` 是在 shell中执行，以便获取环境变量之类的设置
+ - 如果需要获取 exit code
+
+```
+child = subprocess.Popen( cmd , stdout=subprocess.PIPE , stdin=subprocess.PIPE, stderr=subprocess.STDOUT , shell=True )
+streamdata = child.communicate()[0]
+rc = child.returncode
+```
 
 <h2 id="c88f2db1064b41d03c5779d4ef9aef26"></h2>
 
