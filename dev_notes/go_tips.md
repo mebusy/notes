@@ -869,6 +869,25 @@ err = db.QueryRow("select name from user where id = ?", 1).Scan(&name)
 
 ### 事务
 
+```
+CREATE PROCEDURE PRO2()
+BEGIN
+    DECLARE t_error INTEGER;
+    DECLARE    CONTINUE HANDLER FOR SQLEXCEPTION SET t_error = 1;
+
+    START TRANSACTION;
+        INSERT INTO test_tab VALUES    (1, '2');
+        INSERT INTO test_tab VALUES    (1, '3');
+
+        IF t_error = 1 THEN
+            ROLLBACK;
+        ELSE
+            COMMIT;
+        END IF;
+END
+```
+
+
  - Go uses sql.DB for autocommit, and sql.Tx for manual commit. 
  - 事务场景
 
