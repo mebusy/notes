@@ -1991,17 +1991,14 @@ scope launch
 
 ## docker redis 
 
- - run redis with password ,  and disable persistence
-
-```bash
-docker run -d --restart unless-stopped -p 6379:6379 --name hdaredis -d redis redis-server --requirepass <yourpassword> --save ''
-```
 
  - run redis as memory cache
 
 ```
 docker run -d --restart unless-stopped -p 6379:6379 --name redis-cache -d redis redis-server --save '' --appendonly no --maxmemory 1G --maxmemory-policy allkeys-lru
 ```
+
+ - with password:  `--requirepass <yourpassword>` 
 
  - check with redis-cli
 
