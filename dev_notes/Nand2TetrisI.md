@@ -509,7 +509,7 @@ a | b | sum | carry
 
  - The issue of delays
     - 事实上， 物理信号 并不是 瞬间就能完成 0->1, 1->0 的转换
-    - 这门课 电压的转换 比较慢 
+    - 电压的转换 比较慢 
     - ![](../imgs/n2t_clock_delay.png)
         - show as the picture, it takes time for the input to reach it final stage
         - and then it will also take some time for the output to reach the final stage. Probably it will take more time than it takes for the input because there's an additional delay of the gate self. 

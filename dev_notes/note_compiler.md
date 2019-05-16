@@ -31,6 +31,61 @@ NAND: 可以使用仅包含 NAND操作的表达式来表示任何布尔函数。
 </details>
 
 
+## Assembler
+
+ - 汇编器
+    1. 处理指令    
+        - `dest=comp;jump`  => binary machine code 
+    2. 处理符号 symbol 
+
+ - 汇编语言中会出现 Symbol , 汇编器 要负责把 symbol 转成地址
+    1. Variables : `Load R1, weight`
+        - 使用一个 symbol table <symbol name , memory address>
+        - 如果 label 在 表中，直接使用; 如果不在，分配一个新的地址(static memory of Hack RAM), 并将 条目<symbol,address> 放入表中
+    2. Labels : `JMP loop`
+        - 记录 label 下一条指令的地址.
+        - 但如果在声明之前 使用标签怎么办？
+            - 2 pass
+            - 1st pass , 提取 汇编code行(非注释和label定义)，添加 lable 到 symbol table
+            - 2nd pass , 翻译 code 
+
+## Virtual Machine
+
+ - The stack machine model
+    - Arithmetic / logical commands
+        - add,sub,neg, eq,gt,lt,and,or,not
+    - Memory segment commands
+        - local / argument / this / that (这4个segment的地址是动态分配的) / constant / static / pointer / temp
+        - push/pop *segment i*
+    - Branching commands
+        - 声明: label *label*
+        - 直接跳转: goto *label*
+        - 条件跳转: if-goto *label*  
+            - *cond* = pop,  会先把 条件出栈
+    - Function commands 
+        - definition/executing: `function mult 2`  (2 means it will use 2 **local** variable)
+            - 高级语言编译函数的时候，就需要确定 函数需要几个 local变量
+            - 这个时候，我应该有 一个空的堆栈，caller 已经把 *n*个参数压入了 argument segment, local segement中有两个 local variabel which initialized to 0.
+            - *return*: 最后，把结果压入堆栈
+        - 调用: `call mult n`  ( here n means the number of arguments ) 
+ - VM Implementation
+    - Misc
+        - you may create LABEL in order to do branch
+        - goto / if-goto / VM Lable
+    - Function
+        - For each function **call** during run-time
+            - 从 caller 传递参数给 callee
+            - 保存 caller的返回值，stack, memory segment
+            - 跳转 执行 被调用函数
+        - For each function start executing 
+            - 创建 working stack and some of the segments
+        - For each **function return** during run-time
+            - 返回结果给 caller
+            - 回收 callee 使用的内存
+            - 恢复 caller的  stack and memory segments
+            - 跳转到 return address
+
+
 ## Code Generation
 
  - 简化问题
@@ -59,7 +114,7 @@ NAND: 可以使用仅包含 NAND操作的表达式来表示任何布尔函数。
 --- | --- | --- | ---
 x | int | field | 0
 pointCount | int | static | 0
-this  |	Point | argument | 0 (argument 0 in every method)
+this  | Point | argument | 0 (argument 0 in every method)
 
 
  - 表达式
