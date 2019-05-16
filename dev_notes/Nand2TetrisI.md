@@ -78,10 +78,10 @@
     - constructing a disjuctive normal form formula  构建一个分离的范式公式 
  - how
     1. go row by row in the truth table, focus only on the rows have a value(f) 1 
-        - for example , the 1st row
+        - for example , the 1st, 3rd,5th rows
     2. 写一个 范式，to get a value of 1 only at this row
         - that is， 只有 这一行 会得到 1， 其它都是 0
-        - i.e. `( NOT(x) AND NOT(y) and NOT(z) )`
+        - i.e. only 1st row is 1 :  `( NOT(x) AND NOT(y) and NOT(z) )`
     3. do same operation on other row that have value 1
         - 3th :
             - `( NOT(x) AND y AND NOT(z) )` 
@@ -155,10 +155,11 @@ x | y | NAND
 
 ### 1.5 Hardware Simulation
 
+```
 .hdl --> HS  -->
       |     |
 .tst -| ....|... -> .out
-
+```
 
  - 配合 tst 文件，可以进行自动化测试 
  - tst 里可以 把结果输出， 还可以把 输出结果 和 事先准备的 .cmp 文件做比较
@@ -379,16 +380,17 @@ a | b | sum | carry
 
 ### 2.3 Negative Numbers 
 
- - Q: 为什么计算机不直接 把 最高为 解释成符号位，其他不变？
+ - Q: 为什么计算机不直接 把 最高位 解释成符号位，其他不变？
     - 以8bit为例，这样会造成 10000000 = -0 的情况，非常蠢。
  - 2ⁿ-x => -x
     - 10000000 => -128
- - Positive Numbers : 0 ... 2ⁿ⁻¹-1
- - Negative Numbers : -1 ... =-2ⁿ⁻¹
+ - Positive Numbers : 0 ~ 2ⁿ⁻¹-1
+ - Negative Numbers : -1 ~ -2ⁿ⁻¹
  - Input x , Output -x, how?
     - -x = !x +1
  - Tips for `+1`
     - 从低位开始， 逢1变0，直到把第一个碰到的0变成1，退出
+ 
 
 <h2 id="a47675cad4753ebab07a57b4a9e78e67"></h2>
 

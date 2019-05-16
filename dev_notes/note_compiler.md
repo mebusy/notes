@@ -1,3 +1,34 @@
+## Nand2Tetris 笔记
+
+
+
+## Boolean Functions and Gate Logic
+
+<details>
+<summary>根据真值表 , 写出 布尔函数</summary>
+
+1. 关注真值表中 f=1 的行, 比如 1,3,5 行的f=1
+2. 写一个范式, 只满足 第一行， 也即，这个范式, 只有1st row 结果是1; 3rd,5th row 都是0
+3. 给其他 f=1的行，写出同样的 范式
+4. 把所有的 范式相加
+</details>
+
+<details>
+<summary>很长的范式，我们怎么能得到一个 最小范式呢？</summary>
+
+ - NP-hard 
+</details>
+
+定理: 所有的布尔函数，都可以只用 AND,NOT 操作表示
+
+NAND: 可以使用仅包含 NAND操作的表达式来表示任何布尔函数。
+
+<details>
+<summary>NAND 如何表示 AND/NOT 操作?</summary>
+
+1. NOT(x) == (x NAND x)
+2. (x AND y) = NOT( x NAND y )
+</details>
 
 
 ## Code Generation
