@@ -32,17 +32,17 @@
 ### e
 
 ```octave
-    (1 + 1/n)ⁿ → e
+    (1 + 1/n)ⁿ → e  , while n → ∞
 ```
 
 相似的:
 
 ```octave
-    (1 + 1/n²)ⁿ → 1
+    (1 + 1/n²)ⁿ → 1 ,  while n → ∞
 ```
 
 ```octave
-    eˣ ≈ 1 + x
+    eˣ ≈ 1 + x  , while x → 0
 ```
 
 <h2 id="c7112c6a637487ace192a1747cc4e5a9"></h2>

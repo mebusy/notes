@@ -8,6 +8,7 @@ import md5
 import os
 
 import urllib
+import sys
 
 
 
@@ -159,7 +160,9 @@ def visit( arg, dirname, fnames):
 if '__main__' == __name__ :
 
     all_md_filenames = {}
-    # createMenu4MD( '/Volumes/WORK/WORK/HDAServer/INSTALL.md' )
+    if len( sys.argv ) >=2 and os.path.isfile(  sys.argv[1] ) :
+        createMenu4MD( sys.argv[1] )
+        sys.exit(1)
     os.path.walk( "../" , visit , None )
 
     print '-----'
