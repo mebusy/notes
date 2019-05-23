@@ -1169,6 +1169,19 @@ var material = new THREE.MeshBasicMaterial( {
  - For that, you need a different kind of rendering from the one used by OpenGL. 
 
 
+## Blender -> Three.js
+
+### rendered as same looking in blender
+
+```js
+// keep same looking as rendered by default blender
+renderer.setClearColor( 0x464646 );
+renderer.physicallyCorrectLights = true ; 
+var light = new THREE.AmbientLight( 0x464646 ); // soft white light
+scene.add( light );
+renderer.gammaOutput = true
+```
+
 
   
 
