@@ -1,4 +1,14 @@
+...menustart
+
+ - [1](#c4ca4238a0b923820dcc509a6f75849b)
+ - [2](#c81e728d9d4c2f636f067f89cc14862c)
+
+...menuend
+
+
 http://web.mit.edu/18.06
+
+<h2 id="c4ca4238a0b923820dcc509a6f75849b"></h2>
 
 ## 1
 
@@ -23,6 +33,8 @@ http://web.mit.edu/18.06
     - ax=b, x=b/a=a⁻¹b
     - same idea: Ax=b => x=A⁻¹b
 
+
+<h2 id="c81e728d9d4c2f636f067f89cc14862c"></h2>
 
 ## 2
 

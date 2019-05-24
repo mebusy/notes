@@ -18,6 +18,8 @@
          - [5.3.3  Shadows](#8d080d15b3503afbab1f4b88d57797e2)
          - [5.3.4  Cubemap Textures and Skyboxes](#e347cba73e770eb5ea399889e4f575ba)
          - [5.3.5  Reflection and Refraction](#2d3ad59ecbb3d0404bf4c488f7336c93)
+     - [Blender -> Three.js](#472673a7cd60b3501ca207fabbc88de5)
+         - [rendered as same looking in blender](#ada1d3b53e891b194499e8c02e868022)
 
 ...menuend
 
@@ -1169,7 +1171,11 @@ var material = new THREE.MeshBasicMaterial( {
  - For that, you need a different kind of rendering from the one used by OpenGL. 
 
 
+<h2 id="472673a7cd60b3501ca207fabbc88de5"></h2>
+
 ## Blender -> Three.js
+
+<h2 id="ada1d3b53e891b194499e8c02e868022"></h2>
 
 ### rendered as same looking in blender
 
