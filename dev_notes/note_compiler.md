@@ -160,6 +160,30 @@ this  | Point | argument | 0 (argument 0 in every method)
     - use 'pointer 1' and 'that 0'
 
 
+变量声明 加入 symbol table -> local ， 可能有多条， 可能需要统计nLocal
+参数  加入 symbol table   -> argument
+static/field , 加入 symbol table
+
+函数定义，  需要预先计算 local 变量的个数
+	构造函数 还要计算 实例内存大小 (field个数)
+	method / constructor 要先 anchor this
+
+函数return  , 对应vm return, 如果 return后没有表达式，需要 压一个值进堆栈
+
+函数调用 ,  call function , 需要统计 paramlist 的 实参个数
+	函数调用后，总会在 堆栈上存放结果， do 需要清理掉
+	如果是 类方法调用 var.Func() , 则需要把这个var先压栈，调用时 nParam+1
+
+
+表达式 term [op term] 中的op ， 直接 输出对应的 vm 指令(i.e. add)，或函数调用(i.e. call Math.divide 2) , 表达式的最终结果，总会在栈上
+
+let 赋值  , 先处理表达式， 在复制
+
+整数常量   push constant x
+
+id :  一般情况 push ， 赋值号= 左侧 pop
+
+
     
 
 
