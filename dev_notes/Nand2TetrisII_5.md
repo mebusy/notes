@@ -708,7 +708,7 @@ pop that 2
 ```
 
  - because
-    - The simple code works only for constant offsets (indices) , it  cannot be used when the source statement is, say, “let arr[x] = y”
+    - The simple code works only for constant offsets (indices) , it  cannot be used when the source is statement, say, “let arr[x] = y”
 
 
 ```
