@@ -1,5 +1,17 @@
+...menustart
+
+ - [Misc note](#545ef86f8085bb191435d59c503f1a74)
+     - [二进制](#6168fb08fe64663a502a132c5589b73d)
+     - [Respond to an unknown method call](#eb0862d2232fd2d27e0bf79a231e8841)
+
+...menuend
+
+
+<h2 id="545ef86f8085bb191435d59c503f1a74"></h2>
 
 # Misc note
+
+<h2 id="6168fb08fe64663a502a132c5589b73d"></h2>
 
 ## 二进制
 
@@ -43,4 +55,10 @@
     }
     ```
 
+
+<h2 id="eb0862d2232fd2d27e0bf79a231e8841"></h2>
+
+## Respond to an unknown method call
+
+[Respond to an unknown method call](https://rosettacode.org/wiki/Respond_to_an_unknown_method_call#Python)
 

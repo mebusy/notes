@@ -119,7 +119,7 @@ def createMenu4MD( path ):
         if not isJumpIDLine:
             results = RE_TAG_CONTENT.findall( RE_PATTERN_SINGLE_QUOTE_PAIR.sub( "" , line )  )
             for result in results:
-                if result[-3:] != "sup" and result[-3:] != "sub":
+                if result not in [ "sup" ,"sub" , 'summary', 'details']:
                     print result , "in a html tag may can not display" 
                     print " -> ",path , i, line 
                     raise Exception( "html tag issue" )
