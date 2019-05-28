@@ -734,6 +734,7 @@ push j
 add
 pop pointer 1
 push that 0    // b[j] -> stack
+
 pop temp 0     // stack b[j] -> temp 0
 
 pop pointer 1
