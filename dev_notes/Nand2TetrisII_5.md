@@ -708,11 +708,11 @@ pop that 2
 ```
 
  - because
-    - The simple code works only for constant offsets (indices) , it  cannot be used when the source statement is, say, “let arr[x] = y”
+    - The simple code works only for constant offsets (indices) , it  cannot be used when the source is statement, say, “let arr[x] = y” , since the compiler donot its actual value when generating code.
 
 
 ```
-// arr[expression1] = expression2
+// solution: arr[expression1] = expression2
 push arr
 push expression1
 add
@@ -722,10 +722,9 @@ pop that 0
 ```
 
  - **Unfortunately, the above VM code does not work** when handle such kind of statement : `a[i] = b[j]  `
- - solution: 
 
 ```
-// a[i] = b[j]
+// solution: a[i] = b[j]
 push a 
 push i
 add

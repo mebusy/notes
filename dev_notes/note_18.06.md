@@ -68,4 +68,10 @@ http://web.mit.edu/18.06
 ⎣ 1 0⎦
 ```
 
+## 3
+
+ 1. Matrix multiplcation (4 ways)
+ 2. Inverse of A , AB, Aᵀ
+ 3. Gauss-Jordan / find A⁻¹
+
 
