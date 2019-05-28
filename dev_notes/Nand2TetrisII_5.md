@@ -755,7 +755,8 @@ VM code for computing and pushing the value of expression2
 
 pop temp 0  // temp 0 = the value of expression2
             // top stack value = RAM address of  arr[expression1]
-pop pointer 1
+
+pop pointer 1  // that pointer to access where to store
 push temp 0
 
 // store , since its array, it use `that` segment
