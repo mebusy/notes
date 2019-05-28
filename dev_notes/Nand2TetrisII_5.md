@@ -745,8 +745,6 @@ pop that 0
 
 ```
 // arr[expression1] = expression2   
-
-// for `a[x]=` only
 push arr
 
 VM code for computing and pushing the value of expression1
@@ -755,7 +753,6 @@ add    // top stack value = RAM address of  arr[expression1]
 
 VM code for computing and pushing the value of expression2
 
-// for `a[x]=` only
 pop temp 0  // temp 0 = the value of expression2
             // top stack value = RAM address of  arr[expression1]
 pop pointer 1
