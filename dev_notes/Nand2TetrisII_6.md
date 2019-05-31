@@ -168,11 +168,47 @@ deAlloc(object):
         - the first possible segment (first fit) , or 
         - the smallest possible segment (best fit) 
     - ![](../imgs/n2t_heap_manage_freelist_search.png)
+    - if no such segment is found, return failure (or attempt defragmentataion)
     - carve a block of size ( *size* + 2 ) from this segment 
+        - update the freeList and the fields of *block* to account for the allocation
     - return the base address of the block's data part 
     - ![](../imgs/n2t_heap_manage_alloc.png)
  - deAlloc (object):
     - append *object* to the end of the freeList. 
+    - ![](../imgs/n2t_heap_manage_dealloc.png)
+    - problem:  The more we recycle (deAlloc), the more the freeList becomes fragmented.
+    - defrag: every once defrag kicks in, it go through the entire freeList, and tries to merge as more small segments into continuous segments in the memory.
+        - not required for this course project.
+
+
+### Implementation notes
+
+ - Implementing the heap / freeList (on Hack platform)
+
+```
+class Memory {
+    ...
+    static Array heap;
+    ...
+
+    // In Memory.init 
+    ...
+    let heap = 2048; // heapBase
+
+    let freeList = 2048;
+    let heap[0] = 0 // next, 0 means its tail of freelist
+    let heap[1] = 14335; // length
+    ...
+}
+```
+
+ - The *freeList* can be realized using the *heap* array
+ - The *next* and *size* properties of the memory segment beginning in address *adrr* can be realized by `heap[addr-2]` and `heap[addr-1]`.
+ - alloc, deAlloc, and deFrag can be realized as operations on the *heap* array.
+
+
+## 6.6
+
 
 
 
