@@ -151,6 +151,22 @@ deAlloc(object):
 ### Heap management 
 
  - Use a **linked list** to keep track of available heap segments , which are presently available to us
+    - ![](../imgs/n2t_heap_manage_linkedlist.png)
+ - alloc(size):
+    - find a block of size *size* in one of the segments ,remove it from the segment , and give it the client 
+ - deAlloc(object):
+    - append the object/block to the freeList ( i.e. simply append it to the end of the freeList.  )
+
+
+### Heap management (detailed)
+
+ - alloc(size):
+    - Terminology: if segment size >= *size* + 2 , we say that the segment is *possible*
+        - The *2*  is for the overhead fields which are absolutely necessary. 
+    - search the freeList for:
+        - the first possible segment (first fit) , or 
+        - the smallest possible segment (best fit) 
+    - 
 
 
 
