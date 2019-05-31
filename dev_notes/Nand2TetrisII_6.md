@@ -170,6 +170,9 @@ deAlloc(object):
     - ![](../imgs/n2t_heap_manage_freelist_search.png)
     - carve a block of size ( *size* + 2 ) from this segment 
     - return the base address of the block's data part 
+    - ![](../imgs/n2t_heap_manage_alloc.png)
+ - deAlloc (object):
+    - append *object* to the end of the freeList. 
 
 
 
