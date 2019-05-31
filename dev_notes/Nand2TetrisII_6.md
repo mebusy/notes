@@ -161,12 +161,15 @@ deAlloc(object):
 ### Heap management (detailed)
 
  - alloc(size):
+    - for an example,  *size* = 3
     - Terminology: if segment size >= *size* + 2 , we say that the segment is *possible*
         - The *2*  is for the overhead fields which are absolutely necessary. 
     - search the freeList for:
         - the first possible segment (first fit) , or 
         - the smallest possible segment (best fit) 
-    - 
+    - ![](../imgs/n2t_heap_manage_freelist_search.png)
+    - carve a block of size ( *size* + 2 ) from this segment 
+    - return the base address of the block's data part 
 
 
 
