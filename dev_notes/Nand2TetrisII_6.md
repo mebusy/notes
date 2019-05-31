@@ -94,3 +94,69 @@ def divide(x,y):
     - solution: change the condition  `(y+2ʲ)²<=x`  to `(y+2ʲ)² <=x and (y+2ʲ)² >0`
 
 
+## 6.4 Memory Access
+
+ - class Memory 
+    - int peek(int addr)
+    - void poke(int addr, int value)
+    - Array alloc(int size)
+    - void deAlloc(Array o)
+
+ - The challenge 
+    - THe OS is written in Jack: how can we access the RAM ?
+    -
+    ```
+    class Memory {
+        static array ram;
+        ...
+        function void init() {
+            let ram = 0 ;  // Jack is weak typed
+        }
+    }
+    ```
+
+## 6.5 Heap Management 
+
+ - The need
+    - During run-time , programs typically create objects and arrays
+    - Objects and arrays are implemented using 
+        - reference variables
+        - pointing at actual data blocks (in the heap)
+ - The challenge
+    - Allocating memory for new objects / arrays 
+    - Recycling memory of disposed objects / arrays 
+
+### Object construction and destruction 
+
+ - The challenge 
+    - Implementing *alloc* and *dealloc*
+ - The solution 
+    - Heap management 
+
+### Heap management (simple)
+
+```
+init:
+    free = heapBase
+    
+alloc(size):
+    block = free
+    free = free + size
+    return block
+
+deAlloc(object):
+    do nothing (simple, never recycle)
+```
+
+### Heap management 
+
+ - Use a **linked list** to keep track of available heap segments , which are presently available to us
+
+
+
+
+
+
+
+
+
