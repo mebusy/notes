@@ -231,7 +231,7 @@ function void drawPixel(int x, int y) {
 
  - Basic idea: image drawing is implemented through a sequence of *drawLine* operations
  - Challenge: draw lines *fast*
- - Naive idean: 
+ - Naive idea: 
 
 ```
 // just for an example
