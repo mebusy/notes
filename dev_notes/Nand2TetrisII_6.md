@@ -207,10 +207,72 @@ class Memory {
  - alloc, deAlloc, and deFrag can be realized as operations on the *heap* array.
 
 
-## 6.6
+## 6.6 Graphics
 
 
+### Draw Pixel
 
+ - recap
+    - 8k screen memory map 
+    - target screen:   512 pixel * 256 pixel 
+    - Jack word:  16 bits
+
+```
+function void drawPixel(int x, int y) {
+    address = 32*y + x/16 
+    value = Memory.peek[ 16384 + address ]
+    set (x%16)th bit of value to 1
+    do Memory.poke(address, value)
+}
+```
+
+
+### Line Drawing
+
+ - Basic idea: image drawing is implemented through a sequence of *drawLine* operations
+ - Challenge: draw lines *fast*
+ - Naive idean: 
+
+```
+// just for an example
+// assuming x2 > x1, y2 > y1
+drawLine(x1,y1, x2,y2)
+let:
+    x = x1
+    y = y1
+    dx = x2 - x1
+    dy = y2 - y1
+
+a = 0 ; b = 0 ;
+while ( (a<=dx) and (b<=dy) )
+    drawPixel( x + a, y + b )
+    // decide if to go right , or up
+    // to avoid going diagonally
+    if ( b/a > dy / dx ) , a = a + 1 
+    else           , b = b + 1 
+
+```
+
+ - opitmize:
+    - `( b/a > dy / dx )` has the same value as `( a*dy < b*dx )`
+    - `let diff = a*dy - b*dx`
+        - when a = a + 1 , *diff* goes up by **dy**
+        - when b = b + 1 , *diff* goes down by **dx**
+    - solution:
+        - 
+        ```
+        if (diff < 0 ) 
+            a = a + 1
+            diff = diff + dy 
+        else
+            b = b + 1
+            diff = diff - dx 
+        ```
+    - now , it involves only addition and subtraction operations 
+        - and can be implemented either in software or hardware.
+
+
+### Circle drawing 
 
 
 
