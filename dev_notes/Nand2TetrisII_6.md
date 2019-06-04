@@ -254,6 +254,7 @@ while ( (a<=dx) and (b<=dy) )
 ```
 
  - opitmize:
+    - ![](../imgs/n2t_os_line_drawing.png)
     - `( b/a > dy / dx )` has the same value as `( a*dy < b*dx )`
     - `let diff = a*dy - b*dx`
         - when a = a + 1 , *diff* goes up by **dy**
@@ -274,6 +275,10 @@ while ( (a<=dx) and (b<=dy) )
 
 ### Circle drawing 
 
+```
+drawCircle(x,y,r):
+    
+```
  
 
 
