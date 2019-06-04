@@ -275,9 +275,11 @@ while ( (a<=dx) and (b<=dy) )
 
 ### Circle drawing 
 
+![](../imgs/n2t_os_cirlcle_draw_0.png)
+
 ```
 drawCircle(x,y,r):
-    
+        
 ```
  
 
