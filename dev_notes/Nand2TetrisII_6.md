@@ -272,16 +272,31 @@ while ( (a<=dx) and (b<=dy) )
     - now , it involves only addition and subtraction operations 
         - and can be implemented either in software or hardware.
 
+ - Issue :
+    - modify this algorithm for a screen origin (0,0)  at the screen's top-left corner
+    - generalize the algorithm to draw lines that go in any direction
+    - drawing horizontal and vertical lines should probably be handled as special cases. 
+
 
 ### Circle drawing 
 
 ![](../imgs/n2t_os_cirlcle_draw_0.png)
 
+![](../imgs/n2t_os_circle_draw1.png)
+
 ```
 drawCircle(x,y,r):
-        
+    for each dy = -r tp r do:
+        drawLine( x - √(r²-dy²) , y+dy ,  x + √(r²-dy²) , y+dy  ) 
 ```
- 
+
+
+ - for *drawCircleOutline* , do twice *drawPixel*  instead of *drawCircle*
+ - Issue :
+    - can potentially lead to overflow
+    - to handle , limit r to no greater that 181
+
+## 6.8: Handling Textual Output
 
 
 
