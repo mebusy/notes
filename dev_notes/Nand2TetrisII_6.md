@@ -298,6 +298,67 @@ drawCircle(x,y,r):
 
 ## 6.8: Handling Textual Output
 
+ - Textual output:
+    - Screen : 23 rows of 64 characters , b&w
+    - Managed by the Jack OS class *Output*
+ - Hack Font
+    - Each character occupies a fixed 11x8 pixel fream
+    - The frame include 2 empty right columns and 1 empty buttom row for character spacing
+
+### Font implementation
+
+```
+class Output {
+    static Array charMaps; // character map for displaying characters
+
+    function void init() {
+        do initMap(); 
+    }
+    ...
+    // Initializes the caracter map array
+    function void intiMap() {
+        let charMaps = Array.new(127);
+
+        // Assigns the bitma for each character in the character set
+        do Output.create(97, 0,0,0,14,24, 30,27,27,54,0, 0); // a 
+        do Output.create(98, 3,3,3,15,27, 51,51,51,30,0, 0); // b
+        ...
+
+        // black square , used for non printable characters
+        do Output.create(0, 63,63,63,63,63, 63,63,63,63,63,0, 0)
+        return
+    }
+    
+    // create a character map array of the given char index with the given values 
+    function void create( int index, int a, int b, int c, int d, int e,
+                                     int f, int g, int h, int i, int j, int k) {
+        var Array map;
+        let map = Array.new(11)
+        let charMaps[index] = map;
+        let map[0] = a; let map[1] = b; let map[2] = c;
+        let map[3] = d; let map[4] = e; let map[5] = f;
+        let map[6] = g; let map[7] = h; let map[8] = i;
+        let map[9] = j; let map[10] = k;
+        return 
+    }
+}
+```
+
+
+### Cursor 
+
+ - Indicates where the next character will be written
+ - Logical / physical implications
+ - But Jack platform does not show a cursor at all
+
+ - Manage cursor
+    - if asked to display *newline* : move the cursor to the beginning of the next line
+    - if asked to display *backspace* : move the cursor one column left
+    - if asked to display any other character:  dislay the character , and move the cursor one columen to the right .
+
+---
+
+## 6.9 Input
 
 
 
