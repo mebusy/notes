@@ -360,6 +360,84 @@ class Output {
 
 ## 6.9 Input
 
+ - recap
+    - 1 word kb map ,  24576 (0x6000)
 
+ - keyPressed
+    - use `Memory.peak` to access the keyboard's memory map
+ - readChar
+    - 
+    ```
+    readChar():
+        display the cursor
+        // waits until a key is pressed
+        while (keyPressed() ==0) :
+            do nothing 
+        c = code of the currently pressed key 
+        while (keyPressed() !=0 ):
+            do nothing
+        display c at the current cursor location 
+        advance the cursor 
+    ```
+
+ - readLine
+    - 
+    ```
+    readLine():
+        str = empty string 
+        repeat 
+            c = readChar()
+            if c == newLine :
+                display newLine
+                return str 
+            else if c == backspace:
+                remove the last character from str
+                do Output.backspace()
+            else:
+                str = str.append( c )
+    ```
+
+## 6.10 String Processing 
+
+ - int2string
+    - 
+    ```
+    ini2String(val):
+        lastDigit = val % 10
+        c = character representing lastDigit
+        if val < 0 
+            return c (as a string)
+        else
+            return int2String(val/10).append(c)
+    ```
+ - string2int
+    - 
+    ```
+    string2Int(str):
+        val = 0
+        for i = 0...str.length do 
+            d = integer value of str[i]
+            val = val * 10 + d 
+        return val
+    ```
+
+
+### Implementation notes
+
+```
+class String {
+    field Array str;
+    field int length ;
+
+    constructor String new (int maxLength) {
+        let str = Array.new( maxLength ) ;
+        let length = 0
+        return this 
+    }
+    ...
+}
+```
+
+---
 
 
