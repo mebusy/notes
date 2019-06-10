@@ -135,6 +135,10 @@ COMMIT WORK;
 原则上，这2种方式都可以支持。具体使用哪一种就看实际的业务场景，对哪种支持更好，并且对性能的影响最小。
 
 
+---
+
+[深入理解SELECT ... LOCK IN SHARE MODE和SELECT ... FOR UPDATE](https://blog.csdn.net/cug_jiang126com/article/details/50544728)
+
 <h2 id="1838954ac65225f29f4cccf9131bb24f"></h2>
 
 ## mysql 慢日志查询
