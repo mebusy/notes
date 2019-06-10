@@ -441,3 +441,82 @@ class String {
 ---
 
 
+## 6.11: Array Processing
+
+```
+Class Array {
+    function Array new(int size)
+    method void dispose()
+}
+```
+
+ - Memory.alloc /  Memory.deAlloc
+
+## 6.12: The Sys Class
+
+ - Hardware contract
+    - WHen the computer is reset, execution starts with the instruction in ROM[0]
+ - VM contract
+    - The following code should be placed at the top of the ROM, beginning in ROM[0]
+    - 
+    ```
+    sp = 256
+    call Sys.init
+    ```
+ - Jack contract
+    - Program execution starts with the function `Main.main()`
+ - OS contract
+    - Sys.init should initialize the OS, and then call `Main.main()`
+
+```
+class Sys {
+    // performs all the initializations required by OS
+    function void init() {
+        // call other OS class which have init()
+        do Math.init();
+        do Memory.init();
+        ...
+        do Main.main();
+    }
+    // halts execution
+    function void halt() {
+        // can be implemented using an infinite loop
+    }
+    // waits approximately duration milliseconds  and returns
+    function void wait(int duration) {
+        // can be impleted using a loop, machine-specific
+    }
+    // prints the given error code in the form "ERR<errorCode>" , and halts
+    function void error(int errorCode) {
+        // simple
+    }
+}
+```
+
+---
+
+## 6.13: Project 12: Building the OS
+
+ - OS abstraction:  specified by the Jack OS API
+ - OS implementation 
+    - VM emulator:  features a build-in OS implementation (written in Java)
+    - nand2tetris/tools/os:  features an OS implemenetation (written in Jack) , Math.vm , Memory.vm ...
+    - your implementation: project 12
+
+### Reverse engineering
+
+ - Suppose you wish to implement an existing OS
+ - The OS consists of *n* executable modules, with high inter-dependency
+ - Strategy
+    - For each module in OS, implement the module separately , using the remaining n-1 executable modules to server it. 
+ - Example
+    - Suppose we want to develop the OS class screen, and test it using some class Main.jack
+    - put the files Screen.jack , and Main.jack in some directory
+    - compile the directory
+    - execute the directory in the VM emulator
+
+
+
+
+
+
