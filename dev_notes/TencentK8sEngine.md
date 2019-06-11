@@ -142,6 +142,7 @@ kubectl ... get ...  -o yaml --export
     - 查看某个path下的占用
         - `ls -Sl`
         - `du -m <path> | sort -nr | head -n 10`
+            - `du -shxm * | sort -nr | head -n 10`
 
 <h2 id="77563c3ed75c144a6617a7077a1b4771"></h2>
 
