@@ -1,7 +1,7 @@
 
 [TWRP for Asus Nexus 7 2013 Wi-Fi](https://twrp.me/asus/asusnexus72013wifi.html)
 
-[twrp 2.8.4](https://dl.twrp.me/flo/twrp-2.8.4.0-flo.img.html)
+[twrp 3.3.1](https://dl.twrp.me/flo/twrp-3.3.1-0-flo.img)
 
 [谷歌官方刷机](https://developers.google.com/android/images?hl=zh-cn)
 
@@ -14,6 +14,7 @@
     - choose Recovery mode
     - adb push SuperSU.zip to /sdcard
     - install -> scroll down -> zip
+        - wipe cache , and press 'reboot'
 
 
     
