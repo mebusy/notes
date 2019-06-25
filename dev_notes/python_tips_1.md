@@ -643,6 +643,8 @@ def float2IEEE754_64bit( num ):
     print ''.join("%02x" % ord(c) for c in buf )
 ```
 
+[online convert](https://www.binaryconvert.com/result_double.html?decimal=049)
+
 
 
 <h2 id="dd6b35cfcf7bc2919f28aaba9e65fa92"></h2>
