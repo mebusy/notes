@@ -633,6 +633,18 @@ profile.run ( 'func_name')
 0.5
 ```
 
+
+### float -> IEEE 754
+
+```python
+import struct
+def float2IEEE754_64bit( num ):
+    buf = struct.pack(">d", num )  # double , 8 bytes
+    print ''.join("%02x" % ord(c) for c in buf )
+```
+
+
+
 <h2 id="dd6b35cfcf7bc2919f28aaba9e65fa92"></h2>
 
 ### 输出一个对象各个成员的名称和值
