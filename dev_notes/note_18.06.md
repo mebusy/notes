@@ -70,8 +70,23 @@ http://web.mit.edu/18.06
 
 ## 3
 
- 1. Matrix multiplcation (4 ways)
+ 1. Matrix multiplcation (4 ways) :  A * B = C
+    1. regular way
+        - row·column, dot product
+    2. column way 
+        -  columns in C , are combinations of columns of A 
+        - that is , A * column of B ,  generates  a column in C 
+    3. row way
+        - rows of C , are combinations of rows of B
+        - that is , row of A * B , generates a row in C
+    4. 4th way
+        - sum of (columns of A) * (rows of B) 
+        - column * row , generates a big matrix 
+        - sum( Cn*Rn ) 
  2. Inverse of A , AB, Aᵀ
+    - 21:39
  3. Gauss-Jordan / find A⁻¹
 
 
+ - note
+    - 矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 block 元素
