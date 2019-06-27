@@ -6,6 +6,7 @@
      - [Secure your REST API](#bdf38b3fd09b39e3a701db441cb2c2e9)
      - [CORS](#5a8feff0b4bde3eec9244b76023b791d)
          - [test whether your server supoort CORS](#1e545f4bd1d09eb09ed43fabac84aba4)
+     - [check whether server enable 'keepalive' feature](#f779c9d1d9da7473f0eebf90d56dc319)
 
 ...menuend
 
@@ -84,6 +85,8 @@ xhr.open('OPTIONS', 'http://localhost:3000',true);
 xhr.send();
 ```
 
+
+<h2 id="f779c9d1d9da7473f0eebf90d56dc319"></h2>
 
 ## check whether server enable 'keepalive' feature
 

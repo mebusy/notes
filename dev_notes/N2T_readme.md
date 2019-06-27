@@ -9,14 +9,14 @@
 
 # Nand to Tetris
 
- - [Gate,ALU,Memory](https://github.com/mebusy/notes/blob/master/dev_notes/Nand2TetrisI.md)
- - [Machine Language](https://github.com/mebusy/notes/blob/master/dev_notes/Nand2TetrisI_4.md)
- - [Compute Architecture](https://github.com/mebusy/notes/blob/master/dev_notes/Nand2TetrisI_5.md)
- - [Assembler](https://github.com/mebusy/notes/blob/master/dev_notes/Nand2TetrisI_6.md)
- - [Vitural Machine](https://github.com/mebusy/notes/blob/master/dev_notes/Nand2TetrisII.md)
- - [Jack Language](https://github.com/mebusy/notes/blob/master/dev_notes/Nand2TetrisII_3.md)
- - [Compile I    ](https://github.com/mebusy/notes/blob/master/dev_notes/Nand2TetrisII_4.md)
- - [Compile II   ](https://github.com/mebusy/notes/blob/master/dev_notes/Nand2TetrisII_5.md)
- - 
+ - [Gate,ALU,Memory](Nand2TetrisI.md)
+ - [Machine Language](Nand2TetrisI_4.md)
+ - [Compute Architecture](Nand2TetrisI_5.md)
+ - [Assembler](Nand2TetrisI_6.md)
+ - [Vitural Machine](Nand2TetrisII.md)
+ - [Jack Language](Nand2TetrisII_3.md)
+ - [Compile I    ](Nand2TetrisII_4.md)
+ - [Compile II   ](Nand2TetrisII_5.md)
+ - [Operation System](Nand2TetrisII_6.md)
 
 

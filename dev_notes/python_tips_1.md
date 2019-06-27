@@ -50,6 +50,7 @@
          - [python 并行任务技巧](#eadbf8dd738ffd6eb430b8630c92d74c)
          - [profile](#7d97481b1fe66f4b51db90da7e794d9f)
          - [强制浮点数运算](#74343fa59d92ff47cbb14750228abd8f)
+         - [float -> IEEE 754](#05226bcb71c2e5f63900d9f304161387)
          - [输出一个对象各个成员的名称和值](#dd6b35cfcf7bc2919f28aaba9e65fa92)
          - [读取文件特定行](#210dd2176d44f2bd7f0c112101e62490)
          - [文件修改／创建时间](#4b373365b500e18ab7c0b8f5a83dc802)
@@ -633,6 +634,8 @@ profile.run ( 'func_name')
 0.5
 ```
 
+
+<h2 id="05226bcb71c2e5f63900d9f304161387"></h2>
 
 ### float -> IEEE 754
 

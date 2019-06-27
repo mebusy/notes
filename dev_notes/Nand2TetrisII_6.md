@@ -1,7 +1,47 @@
+...menustart
+
+ - [Module 6: Operating System](#fb71412d09271536aa98bc0e794b79c1)
+     - [6.1 Operating System](#2af59aa7a876715e2fbb8f6aa4c7f2ea)
+         - [Typical OS Services](#e7820015b6da7d3fe931e8aef85c14c3)
+         - [The Jack OS](#28a071a5b28abb405ca19096b8c221b7)
+     - [6.3 Mathematical Operations](#c67722540f5fa016dc542c75e186f4b0)
+         - [multiplcation](#b72b04759d9fed58df037ee567f851d4)
+         - [Division](#3025cdaab2deb0bb2cd642449e570833)
+         - [Square root](#921c8ec6c3d4bde5e7634dbb32de93fe)
+     - [6.4 Memory Access](#3ff40ea85319bee31ad07c4868a10260)
+     - [6.5 Heap Management](#37172e3a5b02f949dccb6a71da9d5d0f)
+         - [Object construction and destruction](#12040c88931471aab97a3abddd6a6b80)
+         - [Heap management (simple)](#f998d8459d4a637427aa37907d63fc1a)
+         - [Heap management](#48b9b0831480a06c1eb8a9aca0d62baa)
+         - [Heap management (detailed)](#36db045df60520c0aeb9d4e87c4c73c9)
+         - [Implementation notes](#a4ec9143c7ccb66f9e2bd94c70eaf4b6)
+     - [6.6 Graphics](#667ebe3f340a91efe52c4e6e6aa032b0)
+         - [Draw Pixel](#3731fbf53a579409601210e9c2cc101d)
+         - [Line Drawing](#4d3ef5d5e84c17c6c205dab36d211489)
+         - [Circle drawing](#6104bf2ce199148553bd216dccefd5ec)
+     - [6.8: Handling Textual Output](#fc13b36e9870fcb3ae5e8d19883fa8fd)
+         - [Font implementation](#4e241a5e85e955f1e8376795c97bd366)
+         - [Cursor](#9abdae4fa5d93330363a88ed8a5e7946)
+     - [6.9 Input](#fc7bc95df1b722bc56c78deb2a6d2d72)
+     - [6.10 String Processing](#06132411f843899b094ddb2cfd5f9ed8)
+         - [Implementation notes](#a4ec9143c7ccb66f9e2bd94c70eaf4b6)
+     - [6.11: Array Processing](#16ca44c5643ad0bcb9f5e0ef10525e72)
+     - [6.12: The Sys Class](#7bb88f5cc49596490f9c9dc28dfa46cc)
+     - [6.13: Project 12: Building the OS](#c39af9bce93260de68adafcf69990316)
+         - [Reverse engineering](#0641401c188fcc2e9aea8fc8f738ee07)
+
+...menuend
+
+
+<h2 id="fb71412d09271536aa98bc0e794b79c1"></h2>
 
 # Module 6: Operating System
 
+<h2 id="2af59aa7a876715e2fbb8f6aa4c7f2ea"></h2>
+
 ## 6.1 Operating System 
+
+<h2 id="e7820015b6da7d3fe931e8aef85c14c3"></h2>
 
 ### Typical OS Services 
 
@@ -20,6 +60,8 @@
     - Networking 
     - security 
 
+<h2 id="28a071a5b28abb405ca19096b8c221b7"></h2>
+
 ### The Jack OS
 
  1. Math
@@ -34,7 +76,11 @@
 
 
 
+<h2 id="c67722540f5fa016dc542c75e186f4b0"></h2>
+
 ## 6.3 Mathematical Operations
+
+<h2 id="b72b04759d9fed58df037ee567f851d4"></h2>
 
 ### multiplcation 
 
@@ -56,6 +102,8 @@
             - implement the bit test function
 
 
+
+<h2 id="3025cdaab2deb0bb2cd642449e570833"></h2>
 
 ### Division
 
@@ -82,6 +130,8 @@ def divide(x,y):
         - we can change the functions first statement to:
             - `if (y>x or y<0) return 0`
  
+<h2 id="921c8ec6c3d4bde5e7634dbb32de93fe"></h2>
+
 ### Square root
 
  - The square root function √x has 2 appealing properties:
@@ -93,6 +143,8 @@ def divide(x,y):
     - the calculation of   `(y+2ʲ)²` can overflwo
     - solution: change the condition  `(y+2ʲ)²<=x`  to `(y+2ʲ)² <=x and (y+2ʲ)² >0`
 
+
+<h2 id="3ff40ea85319bee31ad07c4868a10260"></h2>
 
 ## 6.4 Memory Access
 
@@ -115,6 +167,8 @@ def divide(x,y):
     }
     ```
 
+<h2 id="37172e3a5b02f949dccb6a71da9d5d0f"></h2>
+
 ## 6.5 Heap Management 
 
  - The need
@@ -126,12 +180,16 @@ def divide(x,y):
     - Allocating memory for new objects / arrays 
     - Recycling memory of disposed objects / arrays 
 
+<h2 id="12040c88931471aab97a3abddd6a6b80"></h2>
+
 ### Object construction and destruction 
 
  - The challenge 
     - Implementing *alloc* and *dealloc*
  - The solution 
     - Heap management 
+
+<h2 id="f998d8459d4a637427aa37907d63fc1a"></h2>
 
 ### Heap management (simple)
 
@@ -148,6 +206,8 @@ deAlloc(object):
     do nothing (simple, never recycle)
 ```
 
+<h2 id="48b9b0831480a06c1eb8a9aca0d62baa"></h2>
+
 ### Heap management 
 
  - Use a **linked list** to keep track of available heap segments , which are presently available to us
@@ -157,6 +217,8 @@ deAlloc(object):
  - deAlloc(object):
     - append the object/block to the freeList ( i.e. simply append it to the end of the freeList.  )
 
+
+<h2 id="36db045df60520c0aeb9d4e87c4c73c9"></h2>
 
 ### Heap management (detailed)
 
@@ -180,6 +242,8 @@ deAlloc(object):
     - defrag: every once defrag kicks in, it go through the entire freeList, and tries to merge as more small segments into continuous segments in the memory.
         - not required for this course project.
 
+
+<h2 id="a4ec9143c7ccb66f9e2bd94c70eaf4b6"></h2>
 
 ### Implementation notes
 
@@ -207,8 +271,12 @@ class Memory {
  - alloc, deAlloc, and deFrag can be realized as operations on the *heap* array.
 
 
+<h2 id="667ebe3f340a91efe52c4e6e6aa032b0"></h2>
+
 ## 6.6 Graphics
 
+
+<h2 id="3731fbf53a579409601210e9c2cc101d"></h2>
 
 ### Draw Pixel
 
@@ -226,6 +294,8 @@ function void drawPixel(int x, int y) {
 }
 ```
 
+
+<h2 id="4d3ef5d5e84c17c6c205dab36d211489"></h2>
 
 ### Line Drawing
 
@@ -278,6 +348,8 @@ while ( (a<=dx) and (b<=dy) )
     - drawing horizontal and vertical lines should probably be handled as special cases. 
 
 
+<h2 id="6104bf2ce199148553bd216dccefd5ec"></h2>
+
 ### Circle drawing 
 
 ![](../imgs/n2t_os_cirlcle_draw_0.png)
@@ -296,6 +368,8 @@ drawCircle(x,y,r):
     - can potentially lead to overflow
     - to handle , limit r to no greater that 181
 
+<h2 id="fc13b36e9870fcb3ae5e8d19883fa8fd"></h2>
+
 ## 6.8: Handling Textual Output
 
  - Textual output:
@@ -304,6 +378,8 @@ drawCircle(x,y,r):
  - Hack Font
     - Each character occupies a fixed 11x8 pixel fream
     - The frame include 2 empty right columns and 1 empty buttom row for character spacing
+
+<h2 id="4e241a5e85e955f1e8376795c97bd366"></h2>
 
 ### Font implementation
 
@@ -345,6 +421,8 @@ class Output {
 ```
 
 
+<h2 id="9abdae4fa5d93330363a88ed8a5e7946"></h2>
+
 ### Cursor 
 
  - Indicates where the next character will be written
@@ -357,6 +435,8 @@ class Output {
     - if asked to display any other character:  dislay the character , and move the cursor one columen to the right .
 
 ---
+
+<h2 id="fc7bc95df1b722bc56c78deb2a6d2d72"></h2>
 
 ## 6.9 Input
 
@@ -397,6 +477,8 @@ class Output {
                 str = str.append( c )
     ```
 
+<h2 id="06132411f843899b094ddb2cfd5f9ed8"></h2>
+
 ## 6.10 String Processing 
 
  - int2string
@@ -422,6 +504,8 @@ class Output {
     ```
 
 
+<h2 id="a4ec9143c7ccb66f9e2bd94c70eaf4b6"></h2>
+
 ### Implementation notes
 
 ```
@@ -441,6 +525,8 @@ class String {
 ---
 
 
+<h2 id="16ca44c5643ad0bcb9f5e0ef10525e72"></h2>
+
 ## 6.11: Array Processing
 
 ```
@@ -451,6 +537,8 @@ Class Array {
 ```
 
  - Memory.alloc /  Memory.deAlloc
+
+<h2 id="7bb88f5cc49596490f9c9dc28dfa46cc"></h2>
 
 ## 6.12: The Sys Class
 
@@ -495,6 +583,8 @@ class Sys {
 
 ---
 
+<h2 id="c39af9bce93260de68adafcf69990316"></h2>
+
 ## 6.13: Project 12: Building the OS
 
  - OS abstraction:  specified by the Jack OS API
@@ -502,6 +592,8 @@ class Sys {
     - VM emulator:  features a build-in OS implementation (written in Java)
     - nand2tetris/tools/os:  features an OS implemenetation (written in Jack) , Math.vm , Memory.vm ...
     - your implementation: project 12
+
+<h2 id="0641401c188fcc2e9aea8fc8f738ee07"></h2>
 
 ### Reverse engineering
 
