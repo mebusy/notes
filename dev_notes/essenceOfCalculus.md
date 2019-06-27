@@ -65,7 +65,40 @@
 
 # chapter 3: Derivative formulas through geometry 
 
- - Since the *dx* is very tiny, a good rule of thumb is that **you can ingore anything that includes a dx raised to a power greate than 1**.
+ - how to calculate the derivative of f(x)=x²
+ - let's see what happens when x is increased a bit :
+    - ![](../imgs/eoc_fx_x2_incr.png)
+    - Since the *dx* is very tiny, a good rule of thumb is that **you can ingore anything that includes a dx raised to a power greate than 1**.
+    - so, df = 2xdx  =>   df/dx = 2x 
+
+
+# chapter 4: Visualizing the chain rule and product rule
+
+> Using the chain rule is like peeling an onion: you have to deal with each layer at a time, and if it is too big you will start crying.
+
+ - 3 basic ways to combine functions together
+    1. Adding them  ( also substracting  )
+    2. multiplying them ( also dividing )
+    3. puting one inside the other 
+
+## Sum rule
+
+ - sum rule is the easiest. 
+    - the derivative of a sum of n functions ,  is the sum of their derivatives.
+
+## Multiply rule
+
+ - thinking df in area increasing 
+ - Left·*d(Right)* + Right·*d(Left)*
+
+## Chain rule 
+ - g(h(x))
+ - for an example: f = sin(x²)
+    - let h = x²
+    - df = cos(h)dh ,  substitude h with x²
+    - df = cos(x²)d(x²) = cos(x²) 2x dx
+
+
 
 
 
