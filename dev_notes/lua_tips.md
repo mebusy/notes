@@ -418,3 +418,8 @@ end
 28800
 ```
 
+## bit operation 
+
+[bit operation implemented in lua](lua_bit.md)
+
+
