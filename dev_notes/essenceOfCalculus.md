@@ -98,7 +98,7 @@
     - df = cos(h)dh ,  substitude h with x²
     - df = cos(x²)d(x²) = cos(x²) 2x dx
  - ![](../imgs/eoc_chain_rule.png)
-
+ - ![](../imgs/eoc_chain_of_rule2.png)
 
 
 # chapter 5: 
