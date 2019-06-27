@@ -97,8 +97,11 @@
     - let h = x²
     - df = cos(h)dh ,  substitude h with x²
     - df = cos(x²)d(x²) = cos(x²) 2x dx
+ - ![](../imgs/eoc_chain_rule.png)
 
 
+
+# chapter 5: 
 
 
 
