@@ -63,6 +63,10 @@
         - the derivative of t³ , as a function of t, is 3t²
 
 
+# chapter 3: Derivative formulas through geometry 
+
+ - Since the *dx* is very tiny, a good rule of thumb is that **you can ingore anything that includes a dx raised to a power greate than 1**.
+
 
 
 
