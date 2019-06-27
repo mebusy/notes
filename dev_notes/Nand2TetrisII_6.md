@@ -88,6 +88,7 @@
     - repeative additon  , O(N)
 - optimized solutino
     - binary shift , and then sum up , O(w)
+    - ![](../imgs/n2t_os_multiply.png)
 
 
  - Issues:
@@ -139,6 +140,7 @@ def divide(x,y):
     - it is a monotonically increasing function
  - Therefore:
     - squre roots can be computed using *binary search*
+    - ![](../imgs/n2t_os_sqrt_root.png)
  - Issus:
     - the calculation of   `(y+2ʲ)²` can overflwo
     - solution: change the condition  `(y+2ʲ)²<=x`  to `(y+2ʲ)² <=x and (y+2ʲ)² >0`
