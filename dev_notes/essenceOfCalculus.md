@@ -10,6 +10,8 @@
 
 # chapter 1: Essense of Calculus
 
+**The art of doing mathematics is finding that** ***special case*** **that contains all the germs of generality**.
+
  - how to calculate the area of round ? 
  - hard problem -> sum of many small values -> **Area under a graph**
  - Many of these types of problems turn out be to equivalent to finding the area under some graph.
@@ -74,7 +76,7 @@
 
 # chapter 4: Visualizing the chain rule and product rule
 
-> Using the chain rule is like peeling an onion: you have to deal with each layer at a time, and if it is too big you will start crying.
+**Using the chain rule is like peeling an onion: you have to deal with each layer at a time, and if it is too big you will start crying**,
 
  - 3 basic ways to combine functions together
     1. Adding them  ( also substracting  )
@@ -101,7 +103,32 @@
  - ![](../imgs/eoc_chain_of_rule2.png)
 
 
-# chapter 5: 
+# chapter 5: What's so special about Euler's number e?
+
+**Who has not been amazed to learn that the function y=eˣ, like a phoenix rising again from its own ashes, is its own derivative?**
+
+ - exponentials function , like 2ˣ, 7ˣ, eˣ
+ - let's start with M(t) = 2ᵗ
+ - dM/dt(t) = (2ᵗ⁺ᵈᵗ - 2ᵗ)/dt
+    - = (2ᵗ·2ᵈᵗ - 2ᵗ)/dt
+    - = 2ᵗ· (2ᵈᵗ-1)/dt
+ - 右半部分的 只和 *dt* 有关的项非常重要, 它并不依赖于 *t*
+    - when dt→0, this value (right part) approaches a very specific number: 0.6931...
+ - so, the derivative of 2ᵗ is itself, but multiplied by some constant. 
+ - And there's not too much special about the number 2 here,  if instead we had dealt with the function 3ᵗ, the derivative of 3ᵗ is proportional to itself, but this time it would have had a proportional constant 1.0986... .
+ - **d(aᵗ)/dt = aᵗ(some constant)**
+    - whether there's some base where that proportional constant is 1 ? 
+    - There is !  e = 2.71828... 
+ - d(e<sup>ct</sup>)/dt = ce<sup>ct</sup>
+    - 2 = e<sup>ln(2)</sup>
+    - 2ᵗ = e<sup>ln(2)t</sup>  -- Derivative --> ln(2)e<sup>ln(2)t</sup>  = ln(2)2ᵗ
+    - ln(2) = 0.6931...
+ - **The mystery proportional constant** that pops up when taking derivatives is just the natural log of the base.
+    - 事实上，在微积分的应用中， 你很少见到 aᵗ 这种写法，而经常会以 e<sup>ct</sup> 出现 : 5ᵗ = e<sup>(1.6094...)t</sup>
+ - I really want to emphasize that there are many many ways to write down any particular exponential function,
+
+
+
 
 
 
