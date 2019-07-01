@@ -126,6 +126,13 @@
  - **The mystery proportional constant** that pops up when taking derivatives is just the natural log of the base.
     - 事实上，在微积分的应用中， 你很少见到 aᵗ 这种写法，而经常会以 e<sup>ct</sup> 出现 : 5ᵗ = e<sup>(1.6094...)t</sup>
  - I really want to emphasize that there are many many ways to write down any particular exponential function,
+    - ![](../imgs/eoc_e.png)
+    - 指数函数之所以 选择使用  e<sup>ct</sup>,  is to gives that constant *c*  a nice, readable meaning. 
+
+
+# chapter 6: Implicit differentiation, what's going on here? 
+
+
 
 
 
