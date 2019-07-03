@@ -132,6 +132,30 @@
 
 # chapter 6: Implicit differentiation, what's going on here? 
 
+ - implicit differentiation 隐微分 是一种在特殊情况下使用的求导方法
+    - 一般我们碰到y=xsinx还是可以很轻松的直接求导的，但是面对x²+y²=5的时候，就比较棘手了.
+    - 这时用implicit differentiation来解决就能方便很多。(要用到chain rule)
+ - 举例: x²+y²=5 求导
+    - 方法1: y=±√(5-x²) ,  看到根号就不想进行下去了...
+    - 方法2: 使用隐微分.
+ - This curve is not the graph of a function. so we can not take a simple derivative. 
+    - x is not an input, and y is not an output. they're both just independent valuse related by some equation. 
+    - This is called an "implicit curve".  It's just the set of all points (x,y) that satisfy some property written in terms of 2 variables x and y. 
+ - The procedure for how you acutllay find dy/dx for curve like this ( implicit differentiation ) is the thing I fould very weird as a calculus student. 
+    1. take derivative of both sides
+        - 2xdx + 2ydy = 0 
+    2. you get 
+        - dy/dx = -x/y
+        - this is the slop of point(3,4)  , is -3/4
+ - But first, I want to set aside this particular problem, and show how this is related to a different type of calculus problem : **Related rates**. 
+    - Imagining a 5 meter long ladder up against a wall, where the top of the ladder starts 4 meters above the ground, which means the bottom is 3 meters away from the wall. 
+    - and let's say it's slipping down in such way that the top of the ladder is dropping at 1m/s. 
+ - The question is , in that initial moment , what is the rate at which the bottom of the ladder is moving away from the wall. 
+    - Let's label that distance from the top of the ladder to the ground y(t) ,  written in a function of time t because it's changing. 
+    - Likewise label the distance between the bottom of the ladder to the wall x(t).
+
+
+
 
 
 
