@@ -133,10 +133,10 @@
 # chapter 6: Implicit differentiation, what's going on here? 
 
  - implicit differentiation 隐微分 是一种在特殊情况下使用的求导方法
-    - 一般我们碰到y=xsinx还是可以很轻松的直接求导的，但是面对x²+y²=5的时候，就比较棘手了.
+    - 一般我们碰到y=xsinx还是可以很轻松的直接求导的，但是面对x²+y²=5² 的时候，就比较棘手了.
     - 这时用implicit differentiation来解决就能方便很多。(要用到chain rule)
- - 举例: x²+y²=5 求导
-    - 方法1: y=±√(5-x²) ,  看到根号就不想进行下去了...
+ - 举例: x²+y²=5² 求导
+    - 方法1: y=±√(5²-x²) ,  看到根号就不想进行下去了...
     - 方法2: 使用隐微分.
  - This curve is not the graph of a function. so we can not take a simple derivative. 
     - x is not an input, and y is not an output. they're both just independent valuse related by some equation. 
@@ -153,6 +153,20 @@
  - The question is , in that initial moment , what is the rate at which the bottom of the ladder is moving away from the wall. 
     - Let's label that distance from the top of the ladder to the ground y(t) ,  written in a function of time t because it's changing. 
     - Likewise label the distance between the bottom of the ladder to the wall x(t).
+    - ![](../imgs/eoc_ralated_rates_0.png)
+    - key equation:  x(t)² + y(t)² = 5²
+        - The left-hand side is a function of time, it just so **happens to equal a constant**, meaning this value evidently doesn't change while time passes, but it's still written as an expression dependent on time. 
+        - In particular, we can take a derivative of the left-hand side, which is a way of saying 
+            - "If I let a little bit of time pass, dt, which causes y to slightly decrease, and x to slightly increase, how much does this expression change"
+        - d(x(t)² + y(t)²)/dt = 0 
+        - what you get when you computing the derivative ? 
+        - 2x(t)dx/dt + 2y(t)dy/dt = 0  
+        - That is equivalent to saying x²+y² must not change while the ladder moves. 
+    - so, at the initial beginning 
+        - 2(3)dx/dt + 2(4)-1 = 0  =>  dx/dt = 4/3
+ - The reason I bring up this ladder problem is that I want to compare this to the problem of finding the slope of tangent line to the circle.
+ - 10:00
+
 
 
 
