@@ -165,10 +165,30 @@
     - so, at the initial beginning 
         - 2(3)dx/dt + 2(4)-1 = 0  =>  dx/dt = 4/3
  - The reason I bring up this ladder problem is that I want to compare this to the problem of finding the slope of tangent line to the circle.
- - 10:00
+ - As one more example, let me show how you can use this technique to help find new derivative formulas.
+    - d(ln(x))/dx = ???
+    - The curve is `y = ln(x)` , first rearrange this equation to be 
+        - eʸ = x 
+    - take the derivative both sides
+        - eʸdy = dx 
+    - we get
+        - dy/dx = 1/eʸ
+ - By the way, all of this a little peek into **multivariable** calculus , where you consider functions with multiple inputs, and how they change as you tweak those multiple inputs. 
+    - The key, as always, is to have a clear image in your head of what tiny nudges are at play, and how exactly they depend on each other 
 
+# chapter 7: Limits, L'Hopital's rule, and epsilon delta definitions
 
-
+ - this course
+    1. df/dx
+    2. lim
+    3. ∫
+ - lim
+    - Goal 1: Formal definition of a derivative
+    - Goal 2: (ε,δ) definition of limits
+    - Goal 3: L'Hopital's rule
+ - 
+    - Lefthand side: Limit idea is built in , it is just a shorthand for what the righthand side 
+    - righthand side: Formal derivative difinition
 
 
 
