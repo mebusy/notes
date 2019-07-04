@@ -186,9 +186,12 @@
     - Goal 1: Formal definition of a derivative
     - Goal 2: (ε,δ) definition of limits
     - Goal 3: L'Hopital's rule
- - 
+ - ![](../imgs/eoc_lim_0.png)
     - Lefthand side: Limit idea is built in , it is just a shorthand for what the righthand side 
     - righthand side: Formal derivative difinition
+ - when a limit exists , you can make this output range as small as you want, 
+
+ - but when the limit doesn't exists, that output range can't get smaller thant some value, not matter how much you shrink the input range around the limiting input. 
 
 
 
