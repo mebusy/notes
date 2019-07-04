@@ -189,6 +189,9 @@
  - ![](../imgs/eoc_lim_0.png)
     - Lefthand side: Limit idea is built in , it is just a shorthand for what the righthand side 
     - righthand side: Formal derivative difinition
+        - here, I want to emphasize that nothing about this righthand side references the paradoxical idea of an "infinitely small" change. 
+        - the point of limits is to avoid that. 
+        - This value h is the exact something as the *dx* referenced throughout the series. It's a nudge to the input of *f* with some nonzero, finitely small size, like 0.001.
  - when a limit exists , you can make this output range as small as you want, 
     - ![](../imgs/eoc_lim_1.png)
  - but when the limit doesn't exists, that output range can't get smaller thant some value, not matter how much you shrink the input range around the limiting input. 
@@ -197,6 +200,13 @@
     - ![](../imgs/eoc_lim_10.png)
     - so that any input within a distance δ of x corresponds to an output with a distance ε of f(x). 
     - ![](../imgs/eoc_lim_11.png)
+    - The key point here is that this is true for any ε , no matter how small, you always be able to find a corresponding δ.
+ - In contrast, when a limit doesn't exist, as in this example , 
+    - ![](../imgs/eoc_lim_20.png)
+    - you can find a sufficiently small ε , like 0.4, so that no matter how tiny δ is , the corresponding range of outputs is just always too big. 
+ - How do you compute limits ?
+    - 10:07
+
 
 
 
