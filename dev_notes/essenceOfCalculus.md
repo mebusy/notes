@@ -190,8 +190,12 @@
     - Lefthand side: Limit idea is built in , it is just a shorthand for what the righthand side 
     - righthand side: Formal derivative difinition
  - when a limit exists , you can make this output range as small as you want, 
-
+    - ![](../imgs/eoc_lim_1.png)
  - but when the limit doesn't exists, that output range can't get smaller thant some value, not matter how much you shrink the input range around the limiting input. 
+    - ![](../imgs/eoc_lim_2.png)
+ - What it means for the limit to exist is that you can always find a range of inputs around our limiting input , some distance δ around from some value x , 
+    - 
+    - so that any input within a distance δ of x corresponds to an output with a distance ε of f(x). 
 
 
 
