@@ -194,8 +194,9 @@
  - but when the limit doesn't exists, that output range can't get smaller thant some value, not matter how much you shrink the input range around the limiting input. 
     - ![](../imgs/eoc_lim_2.png)
  - What it means for the limit to exist is that you can always find a range of inputs around our limiting input , some distance δ around from some value x , 
-    - 
+    - ![](../imgs/eoc_lim_10.png)
     - so that any input within a distance δ of x corresponds to an output with a distance ε of f(x). 
+    - ![](../imgs/eoc_lim_11.png)
 
 
 
