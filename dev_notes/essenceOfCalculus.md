@@ -206,8 +206,14 @@
     - you can find a sufficiently small ε , like 0.4, so that no matter how tiny δ is , the corresponding range of outputs is just always too big. 
  - How do you compute limits ?
     - For example, let's say for some reason you were studying the functiong  sin(πx)/(x²-1)
+        - ![](../imgs/eoc_lim_30.png)
+        - it looks pretty continuous , but there's a problematic value, x=1. The function is actually not defined there, and the graph should really have a hole there.
+    - The graph certainly does seem to approach some distinct value at that point. So you might ask, how do you figure out what output this approaches as x approaches 1, since you can't just plug in 1 ?
+    - Well, one way to approximate it would be to plug in a number very close to 1, like 1.00001 , sin(π·1.00001)/(1.00001²-1) = 1.5708...
+    - But is there away to know exactly what it is ? Some systematic process to take an expression like this one , 0/0 at some input?
+        - 0/0 型， 两条曲线 f(x),g(x) 相较于某个点 x , 在该点位置 , f(x)=g(x) = 0
         - 
-        - it looks pretty continuous , but there's a problematic value, x=1. The function is actually not defined there, and the graph should really have a hole there. This also happends at -1.
+
 
 
 
