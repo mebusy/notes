@@ -212,12 +212,11 @@
     - Well, one way to approximate it would be to plug in a number very close to 1, like 1.00001 , sin(π·1.00001)/(1.00001²-1) = 1.5708...
     - But is there away to know exactly what it is ? Some systematic process to take an expression like this one , 0/0 at some input?
         - 0/0 型， 两条曲线 f(x),g(x) 相较于某个点 x , 在该点位置 , f(x)=g(x) = 0
-        - 
-
-
-
-
-
+        - ![](../imgs/eoc_lim_31.png)
+    - consider what happends just a tiny nudge dx away. 
+        - The value of sin(πx) is bumped down. 
+        - and the value of that nudge, is d(sin(πx)) = cos(πx)πdx , we plug in x=1 to this expression. we get  -πdx. 
+        - similarly , the value of x²-1 graph has changed by some d(x²-1) = 2xdx, plug in x=1, we get 2dx 
 
 
 
