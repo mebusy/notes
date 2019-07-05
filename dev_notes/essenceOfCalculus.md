@@ -211,7 +211,6 @@
     - The graph certainly does seem to approach some distinct value at that point. So you might ask, how do you figure out what output this approaches as x approaches 1, since you can't just plug in 1 ?
     - Well, one way to approximate it would be to plug in a number very close to 1, like 1.00001 , sin(π·1.00001)/(1.00001²-1) = 1.5708...
     - But is there away to know exactly what it is ? Some systematic process to take an expression like this one , 0/0 at some input?
-        - 0/0 型， 两条曲线 f(x),g(x) 相较于某个点 x , 在该点位置 , f(x)=g(x) = 0
         - ![](../imgs/eoc_lim_31.png)
     - consider what happends just a tiny nudge dx away. 
         - The value of sin(πx) is bumped down. 
@@ -220,7 +219,11 @@
         - ![](../imgs/eoc_lim_32.png)
     - so lim<sub>x→1</sub> sin(πx)/(x²-1) ≈ -πdx/2dx = -π/2
     - This ratio -π/2 actually tells us the precise limiting value as x approaches 1. Remember, what that meas is that the limiting height on our original graph is evidently exactly -π/2. 
-        - 
+        - ![](../imgs/eoc_lim_33.png)
+ - More generally , think of any 2 functions f(x) and g(x) , which are both 0 at some common value x = a.
+    - 0/0 型， 两条曲线 f(x),g(x) 相交于某个点 a  , f(a)=g(a) = 0
+    - The only constraints is they have to be functions where you're able to take a derivative of them at x=a. Which means that they each basically look like a line when you zoom in close enough to that value. 
+ 
 
 
 
