@@ -223,9 +223,12 @@
  - More generally , think of any 2 functions f(x) and g(x) , which are both 0 at some common value x = a.
     - 0/0 型， 两条曲线 f(x),g(x) 相交于某个点 a  , f(a)=g(a) = 0
     - The only constraints is they have to be functions where you're able to take a derivative of them at x=a. Which means that they each basically look like a line when you zoom in close enough to that value. 
- 
+    - ![](../imgs/eoc_lim_34.png)
+    - Even though you can't compute f/g at the trouble point, you **CAN** ask about this ratio for values of x very close to a, the limit as x approaches a. 
+    -This clever trick is called **L'Hopital's rule**. 
 
 
+# chapter 8: Integration and the fundamental theorem of calculus
 
 
 
