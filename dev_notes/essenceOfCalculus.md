@@ -205,7 +205,10 @@
     - ![](../imgs/eoc_lim_20.png)
     - you can find a sufficiently small ε , like 0.4, so that no matter how tiny δ is , the corresponding range of outputs is just always too big. 
  - How do you compute limits ?
-    - 10:07
+    - For example, let's say for some reason you were studying the functiong  sin(πx)/(x²-1)
+        - 
+        - it looks pretty continuous , but there's a problematic value, x=1. The function is actually not defined there, and the graph should really have a hole there. This also happends at -1.
+
 
 
 
