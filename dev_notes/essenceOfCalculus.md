@@ -249,6 +249,21 @@
     - A slight nudge of dT to the input causes that area to increase , some little ds represented by the area of this sliver. 
     - The height of that sliver is the height of the graph at that point, v(T),  and its width is dT. 
     - And for small enough dT, we can basically consider that sliver to be a rectangle. 
+    - ![](../imgs/eoc_intergral_3.png)
+    - ds, is paproximately equals to `v(T)*dT`.   so  ds/dT = v(T).
+    - And right there, that is super general idea, **the derivative of any function giving the area under a graph is equal to the function for the graph itself.**
+
+---
+
+ - **Fundamental theorem of calculus**
+    - ∫<sub>a</sub>ᵇf(x)dx = F(b) - F(a)
+ - One important thing to bring up before leaving is the idea of negative area. 
+    - What if our velocity function was negative at some point ? It means the car is going backwards. 
+    - In terms of our thin rectangles, if the rectangle goes below the horizontal axis like this, its area represents a bit of distance traveled backwards. 
+    - So if what you want is to find the distance between the car's start point and end point, you'd want to **subtract** it. 
+ - This is generally true of integrads: Whenever a graph dips below the horizontal axis, the area underneath is counted as negative. 
+ - What you'll commonly hear is that integrals measure the "signed" area between a graph and the horizontal axis. 
+
 
 
 
