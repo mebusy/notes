@@ -230,7 +230,7 @@
 
 # chapter 8: Integration and the fundamental theorem of calculus
 
-
+ - 小车匀速行驶 v=10m/s, 8秒后 s=10x8 =80米.
 
 
 
