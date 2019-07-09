@@ -244,6 +244,11 @@
  - For our velocity example, think of this right endpoint as a variable, T. 
  - So we thinking of this integral of the velocity function between 0 and T , the area under the curve between those two inputs , as a function, where that upper bound is the variable.  ∫₀ᵀ v(t)dt.
  - That area represents the distance the car has traveled after T seconds. So this is really a distance vs. time function s(T).
+ - ![](../imgs/eoc_intergral_2.png)
+ - Now ask yourself, what is the deriviate of that function ? 
+    - A slight nudge of dT to the input causes that area to increase , some little ds represented by the area of this sliver. 
+    - The height of that sliver is the height of the graph at that point, v(T),  and its width is dT. 
+    - And for small enough dT, we can basically consider that sliver to be a rectangle. 
 
 
 
