@@ -263,6 +263,12 @@
     - So if what you want is to find the distance between the car's start point and end point, you'd want to **subtract** it. 
  - This is generally true of integrads: Whenever a graph dips below the horizontal axis, the area underneath is counted as negative. 
  - What you'll commonly hear is that integrals measure the "signed" area between a graph and the horizontal axis. 
+ - ![](../imgs/eoc_integral_4.png)
+
+
+# chapter 9: What does area have to do with slope? 
+
+
 
 
 
