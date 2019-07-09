@@ -235,6 +235,16 @@
  - What if the velocity is not constant? 
     - v(t) = t(8-t)
     - ∫₀⁸v(t)dt
+    - ![](../imgs/eoc_integral_1.png)
+ - But finding the area between a function's graph and the horizontal axis is somewhat a common language for many disparate problems that can be broken down and approximated as the sum of a large number of small things. 
+ - How interpret and compute the area under a graph is a very general problem-solving tool. 
+
+---
+
+ - For our velocity example, think of this right endpoint as a variable, T. 
+ - So we thinking of this integral of the velocity function between 0 and T , the area under the curve between those two inputs , as a function, where that upper bound is the variable.  ∫₀ᵀ v(t)dt.
+ - That area represents the distance the car has traveled after T seconds. So this is really a distance vs. time function s(T).
+
 
 
 
