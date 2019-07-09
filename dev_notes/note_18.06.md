@@ -102,3 +102,9 @@ http://web.mit.edu/18.06
 
  - note
     - 矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 block 元素
+
+## 4 (10)
+
+ 1. Inverse of AB , Aᵀ
+ 2. Product of elimination matrices 
+ 3. A=LU (no row exchange)
