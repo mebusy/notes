@@ -73,38 +73,51 @@ http://web.mit.edu/18.06
 
 ## 3
 
- 1. Matrix multiplcation (4 ways) :  A * B = C
-    1. regular way
-        - row·column, dot product
-    2. column way 
-        -  columns in C , are combinations of columns of A 
-        - that is , A * column of B ,  generates  a column in C 
-    3. row way
-        - rows of C , are combinations of rows of B
-        - that is , row of A * B , generates a row in C
-    4. 4th way
-        - sum of (columns of A) * (rows of B) 
-        - column * row , generates a big matrix 
-        - sum( Cn*Rn ) 
- 2. Inverse of A , AB, Aᵀ
-    - A is not invertible if you can find a non-zero vector that Ax = 0
-        - Ax = 0 means some combination of columns gives 0, they contribute nothing. 
- 3. Gauss-Jordan / find A⁻¹
-    - how to find A⁻¹?
-        - A * column j of A⁻¹ = column j of I 
-        - 每次通过解一组方程组 就能得到 A⁻¹的一列
-    - Gauss-Jordan
-        - slove n equations at once.
-        - eliminate on long matrix [AI] , and get [IA⁻¹]
-        - 为什么 经过消元法后(矩阵E)，就能得到A⁻¹嗯 ?
-            - E*[AI] = [I?]
-            - E*A = I => E = A⁻¹ => E*[AI] = [IA⁻¹]
+### Matrix multiplcation (4 ways) :  A * B = C
+
+1. regular way
+    - row·column, dot product
+2. column way 
+    -  columns in C , are combinations of columns of A 
+    - that is , A * column of B ,  generates  a column in C 
+3. row way
+    - rows of C , are combinations of rows of B
+    - that is , row of A * B , generates a row in C
+4. 4th way
+    - sum of (columns of A) * (rows of B) 
+    - column * row , generates a big matrix 
+    - `sum( Cn*Rn )` 
+    
+### Inverse of A , AB, Aᵀ
+    
+ - A is not invertible if you can find a non-zero vector that Ax = 0
+    - Ax = 0 means some combination of columns gives 0, they contribute nothing. 
+ - (AB)⁻¹ = B⁻¹A⁻¹
+ - AA⁻¹ = I 
+    - => (A⁻¹)ᵀAᵀ = I 
+    - = (Aᵀ)⁻¹ = (A⁻¹)ᵀ
+
+###  Gauss-Jordan / find A⁻¹
+
+- how to find A⁻¹?
+    - A * column j of A⁻¹ = column j of I 
+    - 每次通过解一组方程组 就能得到 A⁻¹的一列
+- Gauss-Jordan
+    - slove n equations at once.
+    - eliminate on long matrix [AI] , and get [IA⁻¹]
+    - 为什么 经过消元法后(矩阵E)，就能得到A⁻¹嗯 ?
+        - E*[AI] = [I?]
+        - E*A = I => E = A⁻¹ => E*[AI] = [IA⁻¹]
 
  - note
     - 矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 block 元素
 
 ## 4 (10)
 
- 1. Inverse of AB , Aᵀ
- 2. Product of elimination matrices 
- 3. A=LU (no row exchange)
+
+### Product of elimination matrices 
+
+### A=LU (no row exchange)
+
+ - EA=U , A=LU , E⁻¹=L
+ - 16:52
