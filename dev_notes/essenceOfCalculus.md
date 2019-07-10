@@ -268,6 +268,8 @@
 
 # chapter 9: What does area have to do with slope? 
 
+ - Here, I want to disscuss one common type of problem where integration comes up:
+    - Finding the average of a continuous variable.
 
 
 
