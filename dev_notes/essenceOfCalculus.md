@@ -269,8 +269,15 @@
 # chapter 9: What does area have to do with slope? 
 
  - Here, I want to disscuss one common type of problem where integration comes up:
-    - Finding the average of a continuous variable.
-
+    - Finding the average of a continuous variable. 
+    - ![](../imgs/eoc_integral_10.png)
+    - It gives a completely different perspective for why integrals and derivatives are inverses of each other. 
+ - What is the average of f(x) = sin(x) , between 0 and π? 
+    - Usually, with averages , we think of a finite number of values, where you add all them up , and divide that sum by how many values there are. 
+    - BUt there are infinitely many values of sin(x) between 0 and π, and it's not like we can add them up and divide by infinity. 
+    - When you have this vague sense that you want to add together infinitely many values associated with a continuum like this, even though that doesn't really make sense. Almost always, when you get this sense, the key will be to use an integral somehow. 
+    - Average height = Area / Width = ∫₀<sup>π</sup>sin(x)dx / π . 
+    
 
 
 
