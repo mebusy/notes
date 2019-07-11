@@ -316,7 +316,12 @@
  - You could give yourself more control by allowing more terms in your polynomial , and matching higher order derivatives of cos(x). 
     - ![](../imgs/eoc_ts_4.png)
     - ![](../imgs/eco_ts_5.png)
- - 8:09
+ - Notice a few things
+    - First, **factorial** terms naturally come up in this process.
+        - d³(c₈x⁸)dx³ = 6·7·8·c₈x⁵
+        - d⁸(c₈x⁸)dx⁸ = 1·2·3·4·5·6·7·8·c₈x⁰.   Set c₈ = Desired derivative value/8!
+    - The second thing to notice is that adding new terms , like c₄x⁴ , doesn't mess up what old terms should be, and that's important.
+        - 
 
 
  
