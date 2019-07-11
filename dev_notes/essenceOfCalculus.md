@@ -292,11 +292,16 @@
  - Let's look at the function cos(x) , and think about how you might constructor a quadratic approximation near x=0. 
     - That is , among all the polynomials that look like P(x)=c₀+c₁x+c₂x² , find the one that most resembles cos(x) near x=0; whose graph kind of spoons with the graph of cos(x) at that point. 
  - Well, first of all, at the input 0, the value of cos(x) is 1. so if our approximation is going to be any good at all, it should also equal 1 when you plug in 0.
-    - P(0) = c₀+c₁0+c₂0² = 1  ,  so we can set c₀ equal to 1. 
+    - P(0) = c₀+c₁0+c₂0² = 1  ,  so we can set c₀ equal to 1.  so **P(x) = 1+c₁x+c₂x²** . 
     - This leaves us free to choose constant c₁ and c₂ to make this approximation as good as we can, be nothing we do to them will change the fact that the polynomial equals 1 at x=0.
  - It also be good if our approximation had the same tangent slope as cos(x) at this point of interest. Otherwise this approximation drifts away from the cos(x) graph even for value of x very close to 0.
-    - 
+    - ![](../imgs/eoc_ts_1.png) ![](../imgs/eoc_ts_2.png)
+    - The derivative of cos(x) is -sin(x) , and at x=0 that equals 0.   d(cos)/dx (0) = -sin(0) = 0 
+    - On the other hand, when working out the derivative of our quadratic, you get  dP/dx (x) = c₁+2c₂x. At x=0, dP/dx (0) = c₁+0.  Setting c₁ equal to 0 ensures that our approximation has the same derivative as cos(x), and hence the same tangent slope. **P(x) = 1+c₂x²** 
+    - This leaves us free to change c₂, but the value and slope of our polynomial at x=0 are locked in place to match that of cos(x). 
+ - The final thing is that the cos(x) graph curves downward above x=0.
 
+ 
 
 
 
