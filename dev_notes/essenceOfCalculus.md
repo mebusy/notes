@@ -282,6 +282,9 @@
 
 # chapter 11: Taylor series
 
+ - Taylor series are one of the most powerful tools that math has to offer for approximating functions. 
+ - i.e.   Near θ=0, cos(θ) = 1- 1/2·θ² 
+    - 
 
 
 
