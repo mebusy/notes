@@ -314,6 +314,7 @@
     - and c₂ was responsible for making sure the second derivatives match up. 
     - This ensurs that the way your approximation changes as you move away from x=0, and the way that the rate of change itself changes, is as similar as possible to behavior of cos(x), given the amount of control you have. 
  - You could give yourself more control by allowing more terms in your polynomial , and matching higher order derivatives of cos(x). 
+    - ![](../imgs/eoc_ts_4.png)
 
  
 
