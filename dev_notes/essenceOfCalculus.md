@@ -326,8 +326,16 @@
             - ![](../imgs/eoc_ts_7.png)
             - It's becuase we're plugging in x=0, so the second derivative of any higher order terms , which all include an x, will wash away. 
         - The same goes for any other derivative, which is why each derivative of a polynomial at x=0  is controlled by one and only one coefficient. 
-            - 
-
+            - ![](../imgs/eoc_ts_8.png)
+    - If instead you were approximating near an input other that 0, like x=π,  in order to get the same effect you would have to write your polynomial in terms of powers of (x-π), or whatever input you're looking at. 
+        - **P<sub>π</sub>(x) = c₀ + c₁(x-π)¹ + c₂(x-π)² + c₃(x-π)³ + c₄(x-π)⁴**
+        - This makes it look more complicated, but all we are doing is just making sure that the point π looks and behaviors like 0.  
+        - so the pluggin in x=π will result in a lot of nice cancelation that leaves only one constant. 
+        - **Plugging in x=π is very nice.**
+    - And finally, on a more philosophical level, notice how what we're doing here is basically taking information about the higher order derivatives of a function at a single point, and then translateing it into information about the value of that function near that point. 
+        - Derivative information at a point ---> Output information near that point  
+        - We can take as many derivatives of cos(x) as we want, it follows a nice cyclic pattern.  And the value of these derivative of x=0 have the cyclic pattern 1,0,-1,0, and repeat.
+        - 
 
  
 
