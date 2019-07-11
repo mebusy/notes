@@ -341,6 +341,8 @@
         - ![](../imgs/eoc_ts_11.png)
         - The polynomials you get by stopping this process at any point are called **Taylor polynomials**  for cos(x) around the input x=0.
  - More generally , for any function f(x)
+    - ![](../imgs/eoc_ts_12.png)
+    - for input other than 0 
     - 
 
  
