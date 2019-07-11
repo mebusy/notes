@@ -346,10 +346,14 @@
     - ![](../imgs/eoc_ts_13.png)
         - Changing the value of a changes where the approximation is hugging the original function; where its higher order derivative will be equal to those of the original function. 
 
----
+--- 
 
  - One of the simplest meaningful examples is eˣ , around the input x=0. 
-
+    - ![](../imgs/eoc_ts_14.png)
+ - A geometric view  to understand the second order term.  d²f/dx²(x) (x-a)².
+    - It's related to the fundamental theorem of calculus: graph itself represents the derivative of the area function.
+    - 
+    - The red triangle is exactly what you see with Taylor polynomials. 
  
 
 
