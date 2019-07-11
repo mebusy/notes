@@ -335,7 +335,8 @@
     - And finally, on a more philosophical level, notice how what we're doing here is basically taking information about the higher order derivatives of a function at a single point, and then translateing it into information about the value of that function near that point. 
         - Derivative information at a point ---> Output information near that point  
         - We can take as many derivatives of cos(x) as we want, it follows a nice cyclic pattern.  And the value of these derivative of x=0 have the cyclic pattern 1,0,-1,0, and repeat.
-        - 
+        - ![](../imgs/eoc_ts_10.png)
+        - So what we are doing is leveraging that information to get an approximation around this input. And we do it by creating a polynomial whose higher order derivatives are designed to match up those of cos(x), following this same 1,0,-1,0 cyclic pattern. 
 
  
 
