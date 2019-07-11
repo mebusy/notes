@@ -284,8 +284,18 @@
 
  - Taylor series are one of the most powerful tools that math has to offer for approximating functions. 
  - i.e.   Near θ=0, cos(θ) = 1- 1/2·θ² 
+    - ![](../imgs/eoc_ts_0.png)
+ - Bug how would you even think to make this approximation ? And how would you find this particular quadratic ? 
+ - The study of Taylor series is largely about takeing non-polynomial functions, and finding polynomials that approximate them near some input. 
+ - The motive is that polynomials tend to be much easier to deal with than other functions: 
+    - They're easier to compute , easier to take derivative, easier to integrate... 
+ - Let's look at the function cos(x) , and think about how you might constructor a quadratic approximation near x=0. 
+    - That is , among all the polynomials that look like P(x)=c₀+c₁x+c₂x² , find the one that most resembles cos(x) near x=0; whose graph kind of spoons with the graph of cos(x) at that point. 
+ - Well, first of all, at the input 0, the value of cos(x) is 1. so if our approximation is going to be any good at all, it should also equal 1 when you plug in 0.
+    - P(0) = c₀+c₁0+c₂0² = 1  ,  so we can set c₀ equal to 1. 
+    - This leaves us free to choose constant c₁ and c₂ to make this approximation as good as we can, be nothing we do to them will change the fact that the polynomial equals 1 at x=0.
+ - It also be good if our approximation had the same tangent slope as cos(x) at this point of interest. Otherwise this approximation drifts away from the cos(x) graph even for value of x very close to 0.
     - 
-
 
 
 
