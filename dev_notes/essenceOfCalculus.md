@@ -350,10 +350,18 @@
 
  - One of the simplest meaningful examples is eˣ , around the input x=0. 
     - ![](../imgs/eoc_ts_14.png)
- - A geometric view  to understand the second order term.  d²f/dx²(x) (x-a)².
+ - A geometric view  to understand the second order term.  d²f/dx²(a) (x-a)².
     - It's related to the fundamental theorem of calculus: graph itself represents the derivative of the area function.
-    - 
-    - The red triangle is exactly what you see with Taylor polynomials. 
+    - ![](../imgs/eoc_ts_15.png)
+    - Each term has a clear meaning you can point to on the diagram, and they are exactly what you see with Taylor polynomials. 
+ - If you add up infinite Taylor polynomial terms , it's called Taylor series.
+    - for functions like eˣ , the taylor series converges to eˣ for any input, even though these Taylor polynomials are constructed only from derivative information gathered at input 0. 
+        - ![](../imgs/eoc_ts_14.png)
+        - In case like this, we say eˣ equals its own Taylor series at all inputs x, which is kind of a magical thing to have happen.
+        - Although this is also true for some other important functions, like sine and cosine, sometimes these series only converge with a certain range around the input whose derivative information you're using.
+    - buf for functions like ln(x), around the input x=1.
+        - When you plug in an input between 0 and 2, adding more and more terms of this series will indeed get you closer and closer to the ln of that input. 
+    
  
 
 
