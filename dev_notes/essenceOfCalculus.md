@@ -337,6 +337,11 @@
         - We can take as many derivatives of cos(x) as we want, it follows a nice cyclic pattern.  And the value of these derivative of x=0 have the cyclic pattern 1,0,-1,0, and repeat.
         - ![](../imgs/eoc_ts_10.png)
         - So what we are doing is leveraging that information to get an approximation around this input. And we do it by creating a polynomial whose higher order derivatives are designed to match up those of cos(x), following this same 1,0,-1,0 cyclic pattern. 
+        - And to do that, you just make sure each coefficient of this polynomial follow this same pattern, but divide each one by the appropriate factorial, so as to cancel out the cascading effects of many power rule applications. 
+        - ![](../imgs/eoc_ts_11.png)
+        - The polynomials you get by stopping this process at any point are called **Taylor polynomials**  for cos(x) around the input x=0.
+ - More generally , for any function f(x)
+    - 
 
  
 
