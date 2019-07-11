@@ -323,8 +323,10 @@
     - The second thing to notice is that adding new terms , like c₄x⁴ , doesn't mess up what old terms should be, and that's important.
         - ![](../imgs/eoc_ts_6.png)
         - For example, the second derivative of this polynomial at x=0 is still equal to 2 times the second coefficient, even after introducing higher order terms to the polynomial.
-            - 
+            - ![](../imgs/eoc_ts_7.png)
             - It's becuase we're plugging in x=0, so the second derivative of any higher order terms , which all include an x, will wash away. 
+        - The same goes for any other derivative, which is why each derivative of a polynomial at x=0  is controlled by one and only one coefficient. 
+            - 
 
 
  
