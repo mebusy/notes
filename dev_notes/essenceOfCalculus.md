@@ -299,7 +299,21 @@
     - The derivative of cos(x) is -sin(x) , and at x=0 that equals 0.   d(cos)/dx (0) = -sin(0) = 0 
     - On the other hand, when working out the derivative of our quadratic, you get  dP/dx (x) = c₁+2c₂x. At x=0, dP/dx (0) = c₁+0.  Setting c₁ equal to 0 ensures that our approximation has the same derivative as cos(x), and hence the same tangent slope. **P(x) = 1+c₂x²** 
     - This leaves us free to change c₂, but the value and slope of our polynomial at x=0 are locked in place to match that of cos(x). 
- - The final thing is that the cos(x) graph curves downward above x=0.
+ - The final thing is that the cos(x) graph curves downward above x=0. 
+    - ![](../imgs/eoc_ts_3.png)
+    - It has a negative second derivative. Or in another words, even though the rate of change is 0 at that point, the rate of change itself is decreasing around that point. 
+    - Specifically , since its derivative is -sin(x) , its second derivative is -cos(x), so at x=0, its second derivative is -1.  d²(cos)/dx² (0) = -cos(0) = -1. 
+        - d²P/dx² (x) = 2c² ,  so c₂ = -1/2.   **P(x) = 1 -1/2·x²**
+ - To get a feel for how good this is :
+    - cos(0.1) ≈ 1-1/2·(0.1)² = 0.995
+    - cos(0.1) = 0.9950042...
+ - Take a moment to reflect on what just happened. 
+    - You has 3 degrees of freedom with a quadratic approximation, c₀,c₁,c₂ .
+    - c₀ was responsible for making sure that the output of the approximation matches that of cos(x) at x=0.
+    - c₁ was in charge of making sure the derivative match at that point. 
+    - and c₂ was responsible for making sure the second derivatives match up. 
+    - This ensurs that the way your approximation changes as you move away from x=0, and the way that the rate of change itself changes, is as similar as possible to behavior of cos(x), given the amount of control you have. 
+ - You could give yourself more control by allowing more terms in your polynomial , and matching higher order derivatives of cos(x). 
 
  
 
