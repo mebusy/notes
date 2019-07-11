@@ -360,7 +360,10 @@
         - In case like this, we say eˣ equals its own Taylor series at all inputs x, which is kind of a magical thing to have happen.
         - Although this is also true for some other important functions, like sine and cosine, sometimes these series only converge with a certain range around the input whose derivative information you're using.
     - buf for functions like ln(x), around the input x=1.
+        - ![](../imgs/eoc_ts_20.png)
         - When you plug in an input between 0 and 2, adding more and more terms of this series will indeed get you closer and closer to the ln of that input. 
+        - But outside that range, even by just a bit, the series fails to approach anything. You say the series diverges. And the maximum distance between the input you're approximating near , and points where the outputs of these polynomials actually do converge , is called the **radius of convergence** for the Taylor series. 
+
     
  
 
