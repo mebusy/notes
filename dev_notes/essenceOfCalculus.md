@@ -343,7 +343,12 @@
  - More generally , for any function f(x)
     - ![](../imgs/eoc_ts_12.png)
     - for input other than 0 
-    - 
+    - ![](../imgs/eoc_ts_13.png)
+        - Changing the value of a changes where the approximation is hugging the original function; where its higher order derivative will be equal to those of the original function. 
+
+---
+
+ - One of the simplest meaningful examples is eˣ , around the input x=0. 
 
  
 
