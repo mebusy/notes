@@ -117,7 +117,18 @@ http://web.mit.edu/18.06
 
 ### Product of elimination matrices 
 
+ - E₃E₂E₁A = U 
+
 ### A=LU (no row exchange)
 
  - EA=U , A=LU , E⁻¹=L
- - 16:52
+
+### Permutations 
+
+ - elimination may introduce row exchanges. 
+ - permutation matrix performs row exchange. 
+ - The inverse of permuation matrix P is P's transpose.
+    - P⁻¹ = Pᵀ 
+
+## 5
+
