@@ -118,6 +118,7 @@ http://web.mit.edu/18.06
 ### Product of elimination matrices 
 
  - E₃E₂E₁A = U 
+ - U 的最后一个 pivot 可以不为0
 
 ### A=LU (no row exchange)
 
@@ -128,7 +129,17 @@ http://web.mit.edu/18.06
  - elimination may introduce row exchanges. 
  - permutation matrix performs row exchange. 
  - The inverse of permuation matrix P is P's transpose.
-    - P⁻¹ = Pᵀ 
+    - P⁻¹ = Pᵀ  =>  PᵀP = I
 
 ## 5
+
+### Section 2.7 PA=LU
+
+ - Transpose 
+    - RᵀR is always symmetric
+    - (RᵀR)ᵀ = RᵀRᵀᵀ = RᵀR
+
+### Section 3.1 Vector Spaces and Subspaces
+
+ - The begining of Linear Algebra
 
