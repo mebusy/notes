@@ -142,4 +142,5 @@ http://web.mit.edu/18.06
 ### Section 3.1 Vector Spaces and Subspaces
 
  - The begining of Linear Algebra
+ - C(A)  column space
 
