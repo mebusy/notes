@@ -49,7 +49,7 @@
  a | b | c | d
 --- | --- | --- | ---
 [随机数](dev_notes/Dev_Random.md) | [微积分总览](dev_notes/微积分总览.md) | [Tricks](dev_notes/Tricks.md) |  [台大概率笔记](dev_notes/TaiwanU_probability.md)
-[台大概率笔记2](dev_notes/TaiwanU_probability2.md) |  [Calculus One](dev_notes/CalculusOne.md) | [Calculus One: Part II](dev_notes/CalculusOne_part2.md) |
+[台大概率笔记2](dev_notes/TaiwanU_probability2.md) |  [Calculus One](dev_notes/CalculusOne.md) | [Calculus One: Part II](dev_notes/CalculusOne_part2.md) | [essenceOfCalculus](dev_notes/essenceOfCalculus.md )
 
 
 ---

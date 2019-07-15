@@ -82,11 +82,10 @@
 ![](../imgs/Neural_network_model.png)
 
 
-<h2 id="5b0520a9bf5e8d87c0b8c6e58766e184"></h2>
-
-
  - weight: is kind like the strength of those connections
  - bias: is some indication of whether that neuron tends to active or inactive.
+
+<h2 id="5b0520a9bf5e8d87c0b8c6e58766e184"></h2>
 
 # 应用
 

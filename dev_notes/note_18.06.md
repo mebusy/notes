@@ -3,6 +3,16 @@
  - [1](#c4ca4238a0b923820dcc509a6f75849b)
  - [2](#c81e728d9d4c2f636f067f89cc14862c)
  - [3](#eccbc87e4b5ce2fe28308fd9f2a7baf3)
+     - [Matrix multiplcation (4 ways) :  A * B = C](#99f80b726498ad866ed76cec68ca859e)
+     - [Inverse of A , AB, Aᵀ](#785ba5483d4595815b81a1ab57fa7d38)
+     - [Gauss-Jordan / find A⁻¹](#4e2c98c06f8cb4b5e5fda933f2d08ba2)
+ - [4 (10)](#515dfcd954f57355545174f22e938c1f)
+     - [Product of elimination matrices](#214181c5442239e64cc8d942b8b189e3)
+     - [A=LU (no row exchange)](#f1248609fe6c8d2d55ee97b5d1a231d7)
+     - [Permutations](#687883d0478f7377a01db0003294c174)
+ - [5](#e4da3b7fbbce2345d7772b0674a318d5)
+     - [Section 2.7 PA=LU](#0fa27231d37120418da2892cbb00e7cf)
+     - [Section 3.1 Vector Spaces and Subspaces](#9d1fa1d7cb8b7fb75f4ac91338858795)
 
 ...menuend
 
@@ -73,6 +83,8 @@ http://web.mit.edu/18.06
 
 ## 3
 
+<h2 id="99f80b726498ad866ed76cec68ca859e"></h2>
+
 ### Matrix multiplcation (4 ways) :  A * B = C
 
 1. regular way
@@ -88,6 +100,8 @@ http://web.mit.edu/18.06
     - column * row , generates a big matrix 
     - `sum( Cn*Rn )` 
     
+<h2 id="785ba5483d4595815b81a1ab57fa7d38"></h2>
+
 ### Inverse of A , AB, Aᵀ
     
  - A is not invertible if you can find a non-zero vector that Ax = 0
@@ -96,6 +110,8 @@ http://web.mit.edu/18.06
  - AA⁻¹ = I 
     - => (A⁻¹)ᵀAᵀ = I 
     - = (Aᵀ)⁻¹ = (A⁻¹)ᵀ
+
+<h2 id="4e2c98c06f8cb4b5e5fda933f2d08ba2"></h2>
 
 ###  Gauss-Jordan / find A⁻¹
 
@@ -112,17 +128,25 @@ http://web.mit.edu/18.06
  - note
     - 矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 block 元素
 
+<h2 id="515dfcd954f57355545174f22e938c1f"></h2>
+
 ## 4 (10)
 
+
+<h2 id="214181c5442239e64cc8d942b8b189e3"></h2>
 
 ### Product of elimination matrices 
 
  - E₃E₂E₁A = U 
  - U 的最后一个 pivot 可以不为0
 
+<h2 id="f1248609fe6c8d2d55ee97b5d1a231d7"></h2>
+
 ### A=LU (no row exchange)
 
  - EA=U , A=LU , E⁻¹=L
+
+<h2 id="687883d0478f7377a01db0003294c174"></h2>
 
 ### Permutations 
 
@@ -131,13 +155,19 @@ http://web.mit.edu/18.06
  - The inverse of permuation matrix P is P's transpose.
     - P⁻¹ = Pᵀ  =>  PᵀP = I
 
+<h2 id="e4da3b7fbbce2345d7772b0674a318d5"></h2>
+
 ## 5
+
+<h2 id="0fa27231d37120418da2892cbb00e7cf"></h2>
 
 ### Section 2.7 PA=LU
 
  - Transpose 
     - RᵀR is always symmetric
     - (RᵀR)ᵀ = RᵀRᵀᵀ = RᵀR
+
+<h2 id="9d1fa1d7cb8b7fb75f4ac91338858795"></h2>
 
 ### Section 3.1 Vector Spaces and Subspaces
 

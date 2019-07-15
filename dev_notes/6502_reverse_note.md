@@ -4,7 +4,7 @@
 ...menuend
 
 
- - stack register S
+- stack register S
     - even it is designed as 16bit, but the upper 8bits are fixed to 0x01
  - Address Space  0x0000-0xFFFF
     - Zero page   0x0000-0x00FF
