@@ -152,6 +152,7 @@
  - I really want to emphasize that there are many many ways to write down any particular exponential function,
     - ![](../imgs/eoc_e.png)
     - 指数函数之所以 选择使用  e<sup>ct</sup>,  is to gives that constant *c*  a nice, readable meaning. 
+    - e<sup>ct</sup> = (e<sup>c</sup>)ᵗ
 
 
 <h2 id="91cb2bc00b850ea33ca8919983c5f6fe"></h2>
