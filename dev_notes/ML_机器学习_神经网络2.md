@@ -316,6 +316,11 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
  - And since we want it to classify the image as a 2, we want that 3rd value to get nudged up, while all of the others get nudged down.
     - Moreover, the sizes of these nudges should be proportional to how far away each current value is from its target value.  
     - For example, the increasing to that number 2 neurons activation is more important than the decreasing to the number 8 neuron which is already pretty close to where it should be. 
+    - ![](../imgs/ml_bpg_101.png)
+ - So zooming in further, let's focus just on this neuron, the one whose activation we wish to increase.  
+    -  
+ - Remember that activation is defined as a certain weighted sum of all of the activations in the previous layer, plus a bias. 
+    - 
 
 
 
