@@ -318,7 +318,7 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
     - For example, the increasing to that number 2 neurons activation is more important than the decreasing to the number 8 neuron which is already pretty close to where it should be. 
     - ![](../imgs/ml_bpg_101.png)
  - So zooming in further, let's focus just on this neuron, the one whose activation we wish to increase.  
-    -  
+    - ![](../imgs/ml_bpg_102.png)
  - Remember that activation is defined as a certain weighted sum of all of the activations in the previous layer, plus a bias. 
     - 
 
