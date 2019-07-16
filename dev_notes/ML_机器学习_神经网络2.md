@@ -320,7 +320,15 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
  - So zooming in further, let's focus just on this neuron, the one whose activation we wish to increase.  
     - ![](../imgs/ml_bpg_102.png)
  - Remember that activation is defined as a certain weighted sum of all of the activations in the previous layer, plus a bias. 
+    - ![](../imgs/ml_bpg_103.png)
+ - So there are 3 different avenues that can team up together to help increase that activation:
+    - Increase b
+    - Increase wᵢ
+    - Change aᵢ from the previous layer
+ - Focusing just on how the weights should be adjusted, notice how the weights actually have differing levels of influence: 
+    - the connections with the brightest neurons from the preceding layer have the biggest effect since those weights are multiplied by larger activation values. 
     - 
+
 
 
 
