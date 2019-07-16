@@ -336,7 +336,7 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
     - In a sense, the neurons that are firing while seeing a 2, get more strongly linked to those firing when thinking about a 2. 
  - The 3rd way that we can help increase this neuron's activation is by changing all the activations in the previous layer. 
     - Namely, if everything connected to that digit 2 neuron with a positive weight got brighter , and everything connected with a negative weight got dimmer, then that digit 2 neuron would become more active. 
-    - Of course, we cannot directly influence those activations, we only have control over the weights and biases. 
+    - Of course, we cannot directly influence those activations, we only have control over the weights and biases.  
  - keep in mind, zooming out one step here, this is only what that digit 2 output neuron wants.  Remember, we also want all of the other neurons in the last layer to become less active. And each of those other output neurons has its own thoughts about what should happen to that second-to-last layer.    
     - ![](../imgs/ml_bpg_106.png)
     - So the desire of this digit 2 neuron , is added together with the desires of all the other output neurons, for what should happen to this second-to-last layer. Again, in proportion to the corresponding weights, and in proportion to how much each of those neurons needs to change. 
@@ -347,7 +347,8 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
  - And zooming out a bit further, remember that this is all just how a single training example wishes to nudge each one of those weights and biases.
     - If we only listen to what that 2 wanted ,  the network would ultimately be incentivized just to classify all images as a 2. 
     - So what you do is you go through this same backprop routine for every other training example, recording how each of them would like to change the weights and biases, and you averaged together those desired changes. 
-    - 
+    - ![](../imgs/ml_bpg_108.png)
+    - This collection here of the averaged nudges to each weight and bias is, loosely speaking, the negative gradient of the cost function, or at least something proportional to it. 
 
 
 
