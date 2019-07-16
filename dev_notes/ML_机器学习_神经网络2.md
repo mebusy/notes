@@ -332,6 +332,9 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
  - Remember when we talked about gradient descent, we don't just care about whether each component should get nudged up or down, we care about which ones give you the most bang for you buck.
     - This , by the way, is at least somewhat reminiscent of a theory in neuron science for how biological networks of neurons learn **Hebbian Theory** -- offen summed up in the phrase ""neurons that fire together wire together". 
     - Here, the biggest increases to weights, the biggest strengthening of connections, happends between neurons which are the most active, and the ones which we wisht to become more active. 
+    - ![](../imgs/ml_bpg_105.png)
+    - In a sense, the neurons that are firing while seeing a 2, get more strongly linked to those firing when thinking about a 2. 
+ - 6:24
 
 
 
