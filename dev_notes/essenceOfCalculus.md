@@ -199,7 +199,7 @@
     - take the derivative both sides
         - eʸdy = dx 
     - we get
-        - dy/dx = 1/eʸ
+        - dy/dx = 1/eʸ =>  dy/dx = 1/x 
  - By the way, all of this a little peek into **multivariable** calculus , where you consider functions with multiple inputs, and how they change as you tweak those multiple inputs. 
     - The key, as always, is to have a clear image in your head of what tiny nudges are at play, and how exactly they depend on each other 
 
