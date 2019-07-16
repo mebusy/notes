@@ -327,8 +327,11 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
     - Change aᵢ from the previous layer
  - Focusing just on how the weights should be adjusted, notice how the weights actually have differing levels of influence: 
     - the connections with the brightest neurons from the preceding layer have the biggest effect since those weights are multiplied by larger activation values. 
-    - 
-
+    - ![](../imgs/ml_bpg_104.png)
+    - So if you were to increase one of those weights, it actually has a stronger influence on the ultimate cose function, than increasing the weights of connections with dimmer neurons, at least as far as this one training example is concerned. 
+ - Remember when we talked about gradient descent, we don't just care about whether each component should get nudged up or down, we care about which ones give you the most bang for you buck.
+    - This , by the way, is at least somewhat reminiscent of a theory in neuron science for how biological networks of neurons learn **Hebbian Theory** -- offen summed up in the phrase ""neurons that fire together wire together". 
+    - Here, the biggest increases to weights, the biggest strengthening of connections, happends between neurons which are the most active, and the ones which we wisht to become more active. 
 
 
 
