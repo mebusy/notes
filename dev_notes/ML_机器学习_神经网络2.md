@@ -338,6 +338,11 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
     - Namely, if everything connected to that digit 2 neuron with a positive weight got brighter , and everything connected with a negative weight got dimmer, then that digit 2 neuron would become more active. 
     - Of course, we cannot directly influence those activations, we only have control over the weights and biases. 
  - keep in mind, zooming out one step here, this is only what that digit 2 output neuron wants.  Remember, we also want all of the other neurons in the last layer to become less active. And each of those other output neurons has its own thoughts about what should happen to that second-to-last layer.    
+    - ![](../imgs/ml_bpg_106.png)
+    - So the desire of this digit 2 neuron , is added together with the desires of all the other output neurons, for what should happen to this second-to-last layer. Again, in proportion to the corresponding weights, and in proportion to how much each of those neurons needs to change. 
+ - This right here is where the idea of propagating backwards comes in. 
+    - By adding together all these desired effects, you basically get a list of nudges that you want to happen to the second-to-last layer. 
+    - And once you have those, you can recursively apply the same process to the relevant weights and biases that determin those values, repeating the same process and moving backwards through the network. 
 
 
 
