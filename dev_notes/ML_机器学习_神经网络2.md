@@ -304,6 +304,14 @@ Theta2_grad(:, (2:end)) += lambda/m * Theta2(:, (2:end));
 grad = [Theta1_grad(:) ; Theta2_grad(:)];
 ```
 
+-----------
+
+# What is backpropagation really doing?
+
+ - Right now, all we're gonna do is to focus our attention on 1 single example:  the image of 2 (handwriting)
+ - What effect should this one training example have ?  How the weights and biases get adjusted ?
+ - Let's say we're at a point where the network is not well trained yet, so the activations in the output layer are gonna look pretty random. 
+ - 
 
 
 
