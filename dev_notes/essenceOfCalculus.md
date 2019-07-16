@@ -166,7 +166,7 @@
     - 方法1: y=±√(5²-x²) ,  看到根号就不想进行下去了...
     - 方法2: 使用隐微分.
  - This curve is not the graph of a function. so we can not take a simple derivative. 
-    - x is not an input, and y is not an output. they're both just independent valuse related by some equation. 
+    - x is not an input, and y is not an output. they're both just independent values related by some equation. 
     - This is called an "implicit curve".  It's just the set of all points (x,y) that satisfy some property written in terms of 2 variables x and y. 
  - The procedure for how you acutllay find dy/dx for curve like this ( implicit differentiation ) is the thing I fould very weird as a calculus student. 
     1. take derivative of both sides
