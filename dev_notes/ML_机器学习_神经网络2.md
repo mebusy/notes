@@ -353,6 +353,9 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
 
 ---
 
+ - Let's just sum it up .
+ - Backpropagation is the algorithm for determining how a single training example would like to nudge the weights and biades,  not just in terms of whether they should go up or down, but in terms of what relative proportions to those changes cause the most rapid decrease to the cost.
+
 
 
 

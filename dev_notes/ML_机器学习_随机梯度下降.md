@@ -74,13 +74,6 @@ Stochastic gradient descent | use *1* example in each iteration
 When useing Stochastic Gradient Descent how to make sure it is converging okey , and how do you tune the learning rate ɑ ?
 
 
-### batch gradient descent VS mini-batch gradient descent
-
- - When you compute a step according to the mini-batch, it's not going to be the actual gradient of the cost function which depends on all of the training data not this tiny subset. 
- - So it's not the most efficient step downhill. 
- - But each mini-batch does give a pretty good aproximation, and more importantly , it gives you a significant computational speed up. 
- - If you were to plot the trajectory of your network under the relevant cost surface, it would be a little more like a drunk man stumling aimlessly down a hill, but taking quick steps;  rather than a carefully calculating man determining the exact downhill direction of each step before taking a very slow and careful step in that direction. 
-
 
 <h2 id="51e0544e48aab59893bfbf63d0b50570"></h2>
 
@@ -107,6 +100,18 @@ Stochastic gradient descent 的J(Θ)图像一般有4种情况:
 如果你想让随机梯度算法收敛到全局最小值，你可以随事件的变化，减小学习速率 ɑ 的值。
 
 一种典型的方法来设置ɑ的值，是让ɑ等于某个常数1 除以迭代次数加某个常数2 : a = const1/( iterationNumber + const2 ), 但是这样就需要额外的工作来确定 const1 和 const2， 所以很少采用逐渐减小ɑ值的方法。
+
+
+### batch gradient descent VS mini-batch gradient descent
+
+ - When you compute a step according to the mini-batch, it's not going to be the actual gradient of the cost function which depends on all of the training data not this tiny subset. 
+ - So it's not the most efficient step downhill. 
+ - But each mini-batch does give a pretty good aproximation, and more importantly , it gives you a significant computational speed up. 
+ - If you were to plot the trajectory of your network under the relevant cost surface, it would be a little more like a drunk man stumling aimlessly down a hill, but taking quick steps;  rather than a carefully calculating man determining the exact downhill direction of each step before taking a very slow and careful step in that direction. 
+
+ - ![](../imgs/ml_bpg_110.png)
+
+
 
 <h2 id="41ef0c7e3aa81f83c8172c71f9986dfb"></h2>
 
