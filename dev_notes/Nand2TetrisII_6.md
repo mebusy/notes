@@ -97,7 +97,7 @@
     - how to handle overflow ?
         - this algorithm always return the correct answer modulu 2ʷ
     - how to implement i'th bit of y quickly ?
-        - Jack doesn't have bit test function 
+        - Jack doesn't have bit test function , but have `&` and `|` bit-wise op.
         - Instead, we can use an array that holds the 16 values 2ⁱ, i=0,...,15
             - a fixed array, say , twoToThe[i]
             - implement the bit test function
