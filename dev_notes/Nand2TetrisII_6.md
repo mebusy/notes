@@ -111,7 +111,7 @@
 ```
 // return the integer part of x/y
 // where x >=0 , and y >0
-def divide(x,y):
+def positive_divide(x,y):
     if y > x :
         return 0
     q = divide(x, 2*y)
