@@ -343,6 +343,11 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
  - This right here is where the idea of propagating backwards comes in. 
     - By adding together all these desired effects, you basically get a list of nudges that you want to happen to the second-to-last layer. 
     - And once you have those, you can recursively apply the same process to the relevant weights and biases that determin those values, repeating the same process and moving backwards through the network. 
+    - ![](../imgs/ml_bpg_107.png)
+ - And zooming out a bit further, remember that this is all just how a single training example wishes to nudge each one of those weights and biases.
+    - If we only listen to what that 2 wanted ,  the network would ultimately be incentivized just to classify all images as a 2. 
+    - So what you do is you go through this same backprop routine for every other training example, recording how each of them would like to change the weights and biases, and you averaged together those desired changes. 
+    - 
 
 
 
