@@ -349,6 +349,10 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
     - So what you do is you go through this same backprop routine for every other training example, recording how each of them would like to change the weights and biases, and you averaged together those desired changes. 
     - ![](../imgs/ml_bpg_108.png)
     - This collection here of the averaged nudges to each weight and bias is, loosely speaking, the negative gradient of the cost function, or at least something proportional to it. 
+    - ![](../imgs/ml_bpg_109.png)
+
+---
+
 
 
 

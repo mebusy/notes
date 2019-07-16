@@ -73,6 +73,15 @@ Stochastic gradient descent | use *1* example in each iteration
 
 When useing Stochastic Gradient Descent how to make sure it is converging okey , and how do you tune the learning rate ɑ ?
 
+
+### batch gradient descent VS mini-batch gradient descent
+
+ - When you compute a step according to the mini-batch, it's not going to be the actual gradient of the cost function which depends on all of the training data not this tiny subset. 
+ - So it's not the most efficient step downhill. 
+ - But each mini-batch does give a pretty good aproximation, and more importantly , it gives you a significant computational speed up. 
+ - If you were to plot the trajectory of your network under the relevant cost surface, it would be a little more like a drunk man stumling aimlessly down a hill, but taking quick steps;  rather than a carefully calculating man determining the exact downhill direction of each step before taking a very slow and careful step in that direction. 
+
+
 <h2 id="51e0544e48aab59893bfbf63d0b50570"></h2>
 
 #### Checking for convergence
