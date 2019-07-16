@@ -311,7 +311,11 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
  - Right now, all we're gonna do is to focus our attention on 1 single example:  the image of 2 (handwriting)
  - What effect should this one training example have ?  How the weights and biases get adjusted ?
  - Let's say we're at a point where the network is not well trained yet, so the activations in the output layer are gonna look pretty random. 
- - 
+ - ![](../imgs/ml_backpropagation_100.png)
+ - Now we can't directly change those activations, we only have influence on the weights and biases.  But it is helpful to keep track of which adjustments we wish should take place to that output layer. 
+ - And since we want it to classify the image as a 2, we want that 3rd value to get nudged up, while all of the others get nudged down.
+    - Moreover, the sizes of these nudges should be proportional to how far away each current value is from its target value.  
+    - For example, the increasing to that number 2 neurons activation is more important than the decreasing to the number 8 neuron which is already pretty close to where it should be. 
 
 
 
