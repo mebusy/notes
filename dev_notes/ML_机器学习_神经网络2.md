@@ -323,8 +323,8 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
     - ![](../imgs/ml_bpg_103.png)
  - So there are 3 different avenues that can team up together to help increase that activation:
     - Increase b
-    - Increase wᵢ
-    - Change aᵢ from the previous layer
+    - Increase wᵢ  ( in proportion to aᵢ )
+    - Change aᵢ from the previous layer ( in proportion to wᵢ )
  - Focusing just on how the weights should be adjusted, notice how the weights actually have differing levels of influence: 
     - the connections with the brightest neurons from the preceding layer have the biggest effect since those weights are multiplied by larger activation values. 
     - ![](../imgs/ml_bpg_104.png)
@@ -334,8 +334,10 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
     - Here, the biggest increases to weights, the biggest strengthening of connections, happends between neurons which are the most active, and the ones which we wisht to become more active. 
     - ![](../imgs/ml_bpg_105.png)
     - In a sense, the neurons that are firing while seeing a 2, get more strongly linked to those firing when thinking about a 2. 
- - 6:24
-
+ - The 3rd way that we can help increase this neuron's activation is by changing all the activations in the previous layer. 
+    - Namely, if everything connected to that digit 2 neuron with a positive weight got brighter , and everything connected with a negative weight got dimmer, then that digit 2 neuron would become more active. 
+    - Of course, we cannot directly influence those activations, we only have control over the weights and biases. 
+ - keep in mind, zooming out one step here, this is only what that digit 2 output neuron wants.  Remember, we also want all of the other neurons in the last layer to become less active. And each of those other output neurons has its own thoughts about what should happen to that second-to-last layer.    
 
 
 
