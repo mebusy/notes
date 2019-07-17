@@ -422,6 +422,9 @@ You might think this is an overly simple example since all layers just have 1 ne
 
 Rather than the activation of a given layer simply being a<sup>(L)</sup>, it's going to have a subscript indicating which neuron of that layer it is.
 
+![](../imgs//ml_bpg_210.png)
+
+
 
 
 
