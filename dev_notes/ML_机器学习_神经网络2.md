@@ -443,6 +443,7 @@ In this case, the difference is the neuron influence the cost function through m
 
 Once you know how sensitive the cost function is to the activations in this second-to-last layer, you can repeat the process for all the weights and biases feeding into that layer.
 
+![](../imgs/ml_bpg_215.png)
 
 
 
