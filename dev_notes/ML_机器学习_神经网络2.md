@@ -357,6 +357,15 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
  - Backpropagation is the algorithm for determining how a single training example would like to nudge the weights and biades,  not just in terms of whether they should go up or down, but in terms of what relative proportions to those changes cause the most rapid decrease to the cost.
 
 
+# Derivatives in computational graphs
+
+Here, our main goal is to show how people in machine learning commonly think about the chain rule from the calculus in the context of networks. 
+
+Let's just start off with an extremely simple network, one where each layer has a single neuron in it. So this particular network is determined by 3 weights and 3 biases
+And our goal is to understand how sensitive the cost function is to these variables. That way we know which adjustment to these terms is gonna cause the most efficient decrease to the cost function.
+
+
+
 
 
 
