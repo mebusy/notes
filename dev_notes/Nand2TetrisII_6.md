@@ -141,6 +141,7 @@ def positive_divide(x,y):
  - Therefore:
     - squre roots can be computed using *binary search*
     - ![](../imgs/n2t_os_sqrt_root.png)
+    - `for j=n/2 ; j>=0; j--`
  - Issus:
     - the calculation of   `(y+2ʲ)²` can overflwo
     - solution: change the condition  `(y+2ʲ)²<=x`  to `(y+2ʲ)² <=x and (y+2ʲ)² >0`
