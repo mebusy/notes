@@ -426,6 +426,15 @@ Rather than the activation of a given layer simply being a<sup>(L)</sup>, it's g
 
 ![](../imgs/ml_bpg_211.png)
 
+These are all essentially the same equations we had before in the one-neuron-per-layer case.  And indeed, the chain-rule derivative expression describing how sensitive the cost is to a specific weight looks essentially the same. 
+
+![](../imgs/ml_bpg_212.png)
+
+
+What does change here , though, is the derivative of the cost with respect to one of the activations in the layer (L-1). 
+
+
+
 
 
 
