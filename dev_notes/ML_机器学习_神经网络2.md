@@ -424,6 +424,8 @@ Rather than the activation of a given layer simply being a<sup>(L)</sup>, it's g
 
 ![](../imgs//ml_bpg_210.png)
 
+![](../imgs/ml_bpg_211.png)
+
 
 
 
