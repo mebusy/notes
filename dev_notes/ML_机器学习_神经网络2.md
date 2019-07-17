@@ -364,7 +364,11 @@ Here, our main goal is to show how people in machine learning commonly think abo
 Let's just start off with an extremely simple network, one where each layer has a single neuron in it. So this particular network is determined by 3 weights and 3 biases
 And our goal is to understand how sensitive the cost function is to these variables. That way we know which adjustment to these terms is gonna cause the most efficient decrease to the cost function.
 
+![](../imgs/ml_bpg_200.png)
 
+We're just focus on the connection between the last 2 neurons. 
+
+We'll denote the cost of this one training example as C₀.
 
 
 
