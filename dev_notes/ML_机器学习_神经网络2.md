@@ -414,6 +414,16 @@ The sensitivity to the bias, for example, is almost identical.  We just need to 
 
 Also, and this is where the idea of propagating backwards comes in, you can see how sensitive this cost function is to the activation of the previous layer. 
 
+![](../imgs/ml_bpg_209.png)
+
+And again, even though we won't be able to directly influence that activation, it's helpful to keep track of, because now we can just keep iterating this chain rule idea backwards to see how sensitive the cost function is to previous weights and to previous biases.
+
+You might think this is an overly simple example since all layers just have 1 neuron.  But honestly, not that much changes when we give the layers multiple neurons. Really it's just a few more indices to keep track of. 
+
+Rather than the activation of a given layer simply being a<sup>(L)</sup>, it's going to have a subscript indicating which neuron of that layer it is.
+
+
+
 
 ---
 
