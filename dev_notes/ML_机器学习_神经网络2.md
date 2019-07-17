@@ -404,6 +404,14 @@ All of this is the derivative with respect to w<sup>(L)</sup> only of the cost f
 
 And of course that is just one component of the gradient vector, which itself is built up from the partial derivatives of the cost function with respect to all those weights and biases. 
 
+![](../imgs/ml_bpg_207.png)
+
+But even though it was just one of those partial derivatives we need, it's more than 50% of the work. 
+
+The sensitivity to the bias, for example, is almost identical.  We just need to change out this ∂z/∂w term for a ∂z/∂b. And if you look at the relevant formula, that derivative comes to be 1. 
+
+
+
 
 ---
 
