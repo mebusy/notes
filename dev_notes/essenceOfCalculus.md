@@ -405,15 +405,6 @@
  - Keep in your mind, Taylor series translate derivative information at a single point  to approximation information around that point. 
 
 
-<h2 id="11c3f4304f025322dadfb0c608bf2980"></h2>
-
-# chapter 12: 
-    
- 
-
-
-
-
 
 
 
