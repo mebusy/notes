@@ -292,7 +292,7 @@
     - What if our velocity function was negative at some point ? It means the car is going backwards. 
     - In terms of our thin rectangles, if the rectangle goes below the horizontal axis like this, its area represents a bit of distance traveled backwards. 
     - So if what you want is to find the distance between the car's start point and end point, you'd want to **subtract** it. 
- - This is generally true of integrads: Whenever a graph dips below the horizontal axis, the area underneath is counted as negative. 
+ - This is generally true of integrals: Whenever a graph dips below the horizontal axis, the area underneath is counted as negative. 
  - What you'll commonly hear is that integrals measure the "signed" area between a graph and the horizontal axis. 
  - ![](../imgs/eoc_integral_4.png)
 
