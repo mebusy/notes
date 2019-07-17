@@ -146,6 +146,24 @@ def positive_divide(x,y):
     - the calculation of   `(y+2ʲ)²` can overflwo
     - solution: change the condition  `(y+2ʲ)²<=x`  to `(y+2ʲ)² <=x and (y+2ʲ)² >0`
 
+```python
+# python code in Jack mana
+def sqrt( x ) :
+    y = 0 
+    n = 0 
+    while x >= 2**n  :
+        n += 1
+
+    j = n/2 
+    while j >=0 :
+        tmp = (y+ (2**j)) * (y+ (2**j)) 
+        if tmp > 0 :
+            if tmp <= x :
+                y = y + (2**j)
+        j = j-1
+    return y
+```
+
 
 <h2 id="3ff40ea85319bee31ad07c4868a10260"></h2>
 
