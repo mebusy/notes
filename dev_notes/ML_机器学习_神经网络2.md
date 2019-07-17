@@ -378,11 +378,17 @@ So there are a lot of terms. And a way you might conceptualize this is that the 
 
 All of these are just numbers. And it can be nice to think of each one as having its own little number line. 
 
+![](../imgs/ml_bpg_203.png)
+
 Our first gola is to understand how sensitve the cost function is to small changes in our weigth w<sup>(L)</sup>.  Or phrased differently , what's the derivative of C with respect to w<sup>(L)</sup>.
 
+What do we want is the ratio : What do we want is the ratio : ∂C₀/∂w<sup>(L)</sup> .  Conceptually, this tiny nudge to w<sup>(L)</sup> causes some nudge to z<sup>(L)</sup>, which in turn causes some change to a<sup>(L)</sup>, which directly influences the cost. 
+
+So we break this up by first looking at the ratio of a tiny change to z<sup>(L)</sup>  to this tiny change in w<sup>(L)</sup>. That is, the derivative of z<sup>(L)</sup> with respect to w<sup>(L)</sup>.  Likewise, you then consider the ratio of a change to a<sup>(L)</sup> to the tiny change in z<sup>(L)</sup> that causes it,  as well as the ratio between the final nudge to C and this intermediate nudge to a<sup>(L)</sup>.
 
 
 
+This right here is the chain rule. 
 
 ---
 
