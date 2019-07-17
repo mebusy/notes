@@ -374,7 +374,11 @@ We'll denote the cost of this one training example as C₀.
 
 So there are a lot of terms. And a way you might conceptualize this is that the weight, the previous activation, and the bias altogether are used to compute z, which in trun lets up compute a, which finally along with the constant y, let us compute the cost. And of course, a<sup>(L-1)</sup> is influenced by its own weight and bias, But we are not gonna focus on that right now. 
 
+![](../imgs/ml_bpg202.png)
 
+All of these are just numbers. And it can be nice to think of each one as having its own little number line. 
+
+Our first gola is to understand how sensitve the cost function is to small changes in our weigth w<sup>(L)</sup>.  Or phrased differently , what's the derivative of C with respect to w<sup>(L)</sup>.
 
 
 
