@@ -392,7 +392,9 @@ This right here is the chain rule, where  multiplying together these 3 ratios gi
 
 Now we are gonna compute the relevant derivatives.
 
+![](../imgs/ml_bpg_205.png)
 
+In the case of this last derivative, the amount that a small nudge to this weight influences the last layer, depends on how strong the previous neuron is. Remember, this is where that "neurons that fire together wire together" idea comes in. 
 
 
 ---
