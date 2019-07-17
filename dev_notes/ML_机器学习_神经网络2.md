@@ -386,9 +386,14 @@ What do we want is the ratio : What do we want is the ratio : ∂C₀/∂w<sup>(
 
 So we break this up by first looking at the ratio of a tiny change to z<sup>(L)</sup>  to this tiny change in w<sup>(L)</sup>. That is, the derivative of z<sup>(L)</sup> with respect to w<sup>(L)</sup>.  Likewise, you then consider the ratio of a change to a<sup>(L)</sup> to the tiny change in z<sup>(L)</sup> that causes it,  as well as the ratio between the final nudge to C and this intermediate nudge to a<sup>(L)</sup>.
 
+![](../imgs/ml_bpg_204.png)
+
+This right here is the chain rule, where  multiplying together these 3 ratios gives us the sensitivity of C to small change in w<sup>(L)</sup>. 
+
+Now we are gonna compute the relevant derivatives.
 
 
-This right here is the chain rule. 
+
 
 ---
 
