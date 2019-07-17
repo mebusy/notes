@@ -410,7 +410,9 @@ But even though it was just one of those partial derivatives we need, it's more 
 
 The sensitivity to the bias, for example, is almost identical.  We just need to change out this ∂z/∂w term for a ∂z/∂b. And if you look at the relevant formula, that derivative comes to be 1. 
 
+![](../imgs/ml_bpg_208.png)
 
+Also, and this is where the idea of propagating backwards comes in, you can see how sensitive this cost function is to the activation of the previous layer. 
 
 
 ---
