@@ -435,7 +435,13 @@ What does change here , though, is the derivative of the cost with respect to on
 
 ![](../imgs/ml_bpg_213.png)
 
-In this case, the difference is the neuron influence the cost function through multiple paths.
+In this case, the difference is the neuron influence the cost function through multiple different paths. That is, on the one hand, it influences a₀<sup>(L)</sup>, which plays a role in the cost function, but it also has an influence on a₁<sup>(L)</sup>, which also plays a role in the cost functions. And you have to add those up. 
+
+![](../imgs/ml_bpg_214.png)
+
+---
+
+Once you know how sensitive the cost function is to the activations in this second-to-last layer, you can repeat the process for all the weights and biases feeding into that layer.
 
 
 
