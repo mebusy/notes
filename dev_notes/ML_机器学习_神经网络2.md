@@ -400,6 +400,11 @@ In the case of this last derivative, the amount that a small nudge to this weigh
 
 All of this is the derivative with respect to w<sup>(L)</sup> only of the cost for a specific training example. Since the full cost function involves averaging together all those costs across many different training examples,  its derivative requires averaging this expression that we found over all training examples. 
 
+![](../imgs/ml_bpg_206.png)
+
+And of course that is just one component of the gradient vector, which itself is built up from the partial derivatives of the cost function with respect to all those weights and biases. 
+
+
 ---
 
   [1]: ../imgs/delta_j_l.png
