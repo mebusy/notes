@@ -172,5 +172,38 @@ http://web.mit.edu/18.06
 ### Section 3.1 Vector Spaces and Subspaces
 
  - The begining of Linear Algebra
+ - All vector subspace have to go through the origin.
+ - if S and T are both subspace, S∩T is a subspace.
+    - why? 
+    - Suppose I take a couple of vectors that are in the intersections, why is the sum also in the intersection? 
+        - if V and W are 2 vectors in both S and T , then 
+        - V+W is in S , and V+W is in T.   that is  , V+W is in both S and T as well. 
+        - so that , V+W must in S∩T. 
+    - 乘法的封闭性证明？ 等价若干加法所以不需要？
  - C(A)  column space
+
+
+## 6 
+
+### Column Space of A
+ 
+ - column的长度j  决定了 A的column space 是 Rʲ 下的一个 subspace.
+ - Does Ax=b has a solution for every b ? 
+    - yes only if b is a combination of the colunmn, that is, b is a vector in the column space.
+
+### Null Space of A 
+
+ - Totally different space. it contains all solutions **x** to Ax = 0.
+ - The dimension of N(A) is determined by number of columns. 
+ - Why solutions to Ax=0 always give a subspace ?
+    - That is , if Av=0 and Aw=0,  A(v+w) must be 0.
+    - A(v+w) = Av + Aw = 0 
+ - Q: Ax = b ,  is the solutions of x give a subspace ?
+    - A: No. it doesn't go through the origin.
+
+
+## 7
+
+
+
 
