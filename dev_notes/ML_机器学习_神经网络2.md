@@ -433,6 +433,10 @@ These are all essentially the same equations we had before in the one-neuron-per
 
 What does change here , though, is the derivative of the cost with respect to one of the activations in the layer (L-1). 
 
+![](../imgs/ml_bpg_213.png)
+
+In this case, the difference is the neuron influence the cost function through multiple paths.
+
 
 
 
