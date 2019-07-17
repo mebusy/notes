@@ -370,6 +370,12 @@ We're just focus on the connection between the last 2 neurons.
 
 We'll denote the cost of this one training example as C₀.
 
+![](../imgs/ml_bpg_201.png)
+
+So there are a lot of terms. And a way you might conceptualize this is that the weight, the previous activation, and the bias altogether are used to compute z, which in trun lets up compute a, which finally along with the constant y, let us compute the cost. And of course, a<sup>(L-1)</sup> is influenced by its own weight and bias, But we are not gonna focus on that right now. 
+
+
+
 
 
 
