@@ -396,6 +396,9 @@ Now we are gonna compute the relevant derivatives.
 
 In the case of this last derivative, the amount that a small nudge to this weight influences the last layer, depends on how strong the previous neuron is. Remember, this is where that "neurons that fire together wire together" idea comes in. 
 
+![](../imgs/ml_bpg_205.1.png)
+
+All of this is the derivative with respect to w<sup>(L)</sup> only of the cost for a specific training example. Since the full cost function involves averaging together all those costs across many different training examples,  its derivative requires averaging this expression that we found over all training examples. 
 
 ---
 
