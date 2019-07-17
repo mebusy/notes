@@ -311,6 +311,7 @@
     - When you have this vague sense that you want to add together infinitely many values associated with a continuum like this, even though that doesn't really make sense. Almost always, when you get this sense, the key will be to use an integral somehow. 
     - Average height = Area / Width = ∫₀<sup>π</sup>sin(x)dx / π . 
     - ![](../imgs/eoc_integral_11.png)
+    - ![](../imgs/eoc_9_100.png)
 
 
 <h2 id="f4c4612f181889150de4d5e6175f2839"></h2>
