@@ -180,7 +180,7 @@ def sqrt( x ) :
     -
     ```
     class Memory {
-        static array ram;
+        static Array ram;
         ...
         function void init() {
             let ram = 0 ;  // Jack is weak typed
