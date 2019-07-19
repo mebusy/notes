@@ -204,6 +204,42 @@ http://web.mit.edu/18.06
 
 ## 7
 
+### Computing the nullspace (Ax=0)
+
+The algorithm is elimination, but extended to the rectangular case (and won't carray b), where we have to continue even if there's zeros in the pivot position, we go on.
+
+The result, let's call it U,  is a echelon matrix.
+
+**Rank** of A = number of pivots
+
+To solve Ax=0, really I'm solving Ux=0.
+
+
+
+### Pivot variables -- free variables
+
+when you get the echelon matrix, for free variables, you can assign any value, and then you just to compute the value of pivot variables,  so that you get a vector, a special solution for Ux=0.
+
+if it have n free variables, you can find n vectors, n special solutions, those vectors span the null space.
+
+That is , the null space contains exactly all the combinations of the special solutions. And how many special solutiosn there ? There's one for every free variable.  How many free variables ?  n-Rank !  (here, n means number of xᵢ in solution).
+
+
+
+### Special Solutions -- rref(A) = R
+
+Take a more step from U ,  making 0 above and below pivots, and making pivots = 1.
+
+Then you get reduced row echelon form R.  Matlab will do it immediately with `rref(A)`. 
+
+R got all the information as clear as can be.  
+
+24:00
+
+
+
+
+
 
 
 
