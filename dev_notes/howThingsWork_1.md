@@ -20,12 +20,16 @@ Answer: An object at rest tends to remain at rest.  This behavior is known as in
 
 Answer: An object in motion tends to remain in motion.
 
-We're ready for a formal statement of the concept or principle of inertia. It's known as Newton's First Law of motion: An object that is free of external influences moves in a straight line and covers equal distances in equal times.
+We're ready for a formal statement of the concept or principle of inertia. It's known as Newton's First Law of motion: An object that is free of external forces  moves at a constant velocity (velocity is a vector).
 
 Skating is full of examples of Newton's First Law. 
 
 
 ## Skating II
+
+### How Does a Skater Start, Stop, or Turn?
+
+Answer: A force acts on the skater and causes the skater to accelerate. 
 
 
 
