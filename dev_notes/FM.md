@@ -54,5 +54,8 @@
     - ![](../imgs/rs_move_model.png)
     - decay is a decay parameter specified by ball decay or player decay.
     - Acceleration is derived from Power parameter in dash (in the case the object is a player) or kick (in the case of a ball) commands in the following manner:
-    - 
+    - ![](../imgs/rs_accelerate.png)
+    - θ is the direction of the object in timestep t 
+    - and power rate is dash power rate or is calculated from kick power rate.
+    
 
