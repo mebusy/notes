@@ -51,6 +51,8 @@
     - visible_distance: view_angle 外， visible_distance 范围内，物体依然可见
  - Movement Model
     - In each simulation step, movement of each object is calculated as following manner:
+    - ![](../imgs/rs_move_model.png)
+    - decay is a decay parameter specified by ball decay or player decay.
+    - Acceleration is derived from Power parameter in dash (in the case the object is a player) or kick (in the case of a ball) commands in the following manner:
     - 
-
 
