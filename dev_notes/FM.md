@@ -44,5 +44,13 @@
     4. 接球差，甚至传球也差的，反而适合长传冲吊，因为采用哪种传球方式更多取决于传接球频次而不是距离。 球员这两项属性差，就越要减少传接球频次，从而减少失误。
 
 
+# Robot soccer 
+
+ - 视野
+    - view_angle: 只有在view angle 物体可见
+    - visible_distance: view_angle 外， visible_distance 范围内，物体依然可见
+ - Movement Model
+    - In each simulation step, movement of each object is calculated as following manner:
+    - 
 
 
