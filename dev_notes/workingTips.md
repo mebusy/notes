@@ -75,16 +75,6 @@ cmd =  'curl --noproxy 10.192.1.35  -H "Content-Type: application/json" -X POST 
 https_proxy=$http_proxy brew xxxx
 ```
 
-<h2 id="e6674e04c08bcf49fad7d19ca0d8a4bd"></h2>
-
-## Install Pip use proxy
-<h2 id="7c3ae4a79fa7e554e876889719101165"></h2>
-
-## set proxy for python
-
-```
-sudo -E easy_install pip
-```
 
 <h2 id="762fac82abbaaf86cfc10780f5b7cc58"></h2>
 
@@ -98,6 +88,12 @@ or
 
 ```
 pip install PyYAML --proxy="https://127.0.0.1:3128"
+```
+
+## pip 使用国内源
+
+```
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple ... 
 ```
 
 <h2 id="1bca9692962e3deeda270ab8db1b80f2"></h2>

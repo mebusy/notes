@@ -214,7 +214,7 @@ The result, let's call it U,  is a echelon matrix.
 
 To solve Ax=0, really I'm solving Ux=0.
 
-
+PS: The only operation not required by our example, but needed in general, is row exchange.
 
 ### Pivot variables -- free variables
 
@@ -228,13 +228,100 @@ That is , the null space contains exactly all the combinations of the special so
 
 ### Special Solutions -- rref(A) = R
 
-Take a more step from U ,  making 0 above and below pivots, and making pivots = 1.
+Take a more step from U ,  making 0 above and below pivots, and making pivots = 1. (PS. zero above the pivot column , not needed for free column)
 
 Then you get reduced row echelon form R.  Matlab will do it immediately with `rref(A)`. 
 
 R got all the information as clear as can be.  
 
-24:00
+The solution to Rx=0  is as same as the solution to Ax=0 , or Ux=0.
+
+```
+octave:2> A
+A =
+
+    1    2    2    2
+    2    4    6    8
+    3    6    8   10
+
+octave:3> rref(A)
+ans =
+
+   1.00000   2.00000   0.00000  -2.00000
+   0.00000   0.00000   1.00000   2.00000
+   0.00000   0.00000   0.00000   0.00000
+```
+
+But how can we get solution directly from the R form ?
+
+From the pivot column, we get a identity matrix, form the free columns we get the free matrix.
+
+```
+octave:4> I = [1 0 ; 0 1]
+I =
+
+   1   0
+   0   1
+
+octave:5> F = [2 -2 ; 0 2 ]
+F =
+
+   2  -2
+   0   2
+```
+
+
+The typical R form is
+
+```
+⎡ I F⎤
+⎣ 0 0⎦
+```
+
+Now we gonna to create a 'nullspace matrix' N , which columns are the special solution, so that RN=0.
+
+So what N will do the job ?
+
+```
+⎡ -F⎤
+⎣  I⎦
+```
+
+That is ,
+
+```
+Rx = 0  
+
+=>
+
+[I F]·⎡ x_pivot⎤ = 0
+      ⎣ x_free ⎦
+
+=>
+
+x_pivot = -F * free_variables
+```
+
+---
+
+```
+R =
+
+   1   0   1
+   0   1   1
+   0   0   0
+   0   0   0
+```
+
+What's the x?  The x has a identify, it's only a single number 1, bt its the identify matix in free part. And what does it have in the pivot variables ?  [-1;-1]
+ 
+x = c·[ -1;-1;1 ]
+
+
+## 8
+
+
+
 
 
 
