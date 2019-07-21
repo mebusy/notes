@@ -300,7 +300,14 @@ Rx = 0
 =>
 
 x_pivot = -F * free_variables
+
+    P P     -2  2    -2  2
+N = F F =>   F  F =>  1  0
+    P P      0 -2     0 -2
+    F F      F  F     0  1
 ```
+
+
 
 ---
 
@@ -316,9 +323,28 @@ R =
 What's the x?  The x has a identify, it's only a single number 1, bt its the identify matix in free part. And what does it have in the pivot variables ?  [-1;-1]
  
 x = c·[ -1;-1;1 ]
-
+ 
 
 ## 8
+
+### Complete solution of Ax=b
+
+To solve Ax=b,  we create an augmented matrix [A b].
+
+Solvability condition on b: b had to be in the column space C(A).
+
+To find complete solution to Ax=b.
+
+1. one particular solution 
+    - set all free variables to 0, and then solve Ax=b for the pivot variables.
+2. add on any x in the nullspace.
+
+x = x<sub>p</sub> + x<sub>n</sub> , this pattern through all of mathematics, because it shows up everywhere.
+
+16:47
+
+
+2. 
 
 
 
