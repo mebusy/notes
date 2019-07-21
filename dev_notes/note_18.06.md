@@ -341,10 +341,10 @@ To find complete solution to Ax=b.
 
 x = x<sub>p</sub> + x<sub>n</sub> , this pattern through all of mathematics, because it shows up everywhere.
 
-16:47
+x<sub>n</sub> is a subspace, but x<sub>complete</sub> is not.  x<sub>complete</sub> is like a subspace, but it's been shifted, away from the origin, it doesn't contain 0, since it must go through x<sub>p</sub> .
 
+## 9
 
-2. 
 
 
 
