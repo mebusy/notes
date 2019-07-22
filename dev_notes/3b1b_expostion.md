@@ -15,7 +15,8 @@ And the both of them are played at once, what do you think the resulting pressur
 
 ![](../imgs/3b1b_expos_fourier_2.png)
 
-And as you add in other notes, the wave gets more and more complicated. But right now, all it is a combination of pure frequencies.
+And as you add in other notes, the wave gets more and more complicated. But right now, all it is a combination of pure frequencies.  A microphone recording any sound just picks upon the air presure at many different points in time, it only see the final sum.  So our central question is gonna be how you can take a signal like this, de decompose it into the pure frequencies that make it up.
+
 
 
 
