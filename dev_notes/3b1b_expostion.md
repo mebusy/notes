@@ -23,8 +23,11 @@ The general strategy is gonna be to build for ourselves a mathematical machine t
 
 To start, consider simply taking a pure signal, say, with a lowly 3 beats per second. 
 
+![](../imgs/3b1b_fourier_200.png)
 
+And let's limit ourselves to looking at a finite portion of this graph, in this case, the portion between 0 seconds and 4.5 seconds.
 
+The key idea is gonna be to take this graph, and sort of wrap it up around a circle. Concretely, here's what I mean by that, imagine a little rotating vector where each point in time its length is equal to the height of graph for that time. 
 
 
 
