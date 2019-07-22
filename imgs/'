@@ -46,16 +46,7 @@ And at this point, we might have some sort of vague sense that something special
 
 ![](../imgs/3b1b_fourier_202.png)
 
-All the high points on the graph happen on the right side of the circle.  And all of the low point .
-
-But how preciesly can we take advantage of that in our attempt to build a frequency-unmixing machine ?
-
-Well, imagine this graph is have some kind of mass to it, like a metal wire. This little dot is going to represent the center of mass of that wire. As we change the frequency, and the graph winds up differently, that center of mass kind of wobbles around a bit.
-
-
-
-
-
+All the high points on the graph happen on the right side of the circle.  And all of the low point happen on the left. 
 
 
 
