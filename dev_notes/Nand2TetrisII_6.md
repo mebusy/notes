@@ -280,7 +280,6 @@ class Memory {
     ...
     let heap = 2048; // heapBase
 
-    let freeList = 2048;
     let heap[0] = 0 // next, 0 means its tail of freelist
     let heap[1] = 14335; // length
     ...

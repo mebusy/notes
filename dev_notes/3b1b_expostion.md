@@ -58,6 +58,12 @@ And for most of the winding frequencies, the peaks and valleys are all spaced ou
 
 But, when the winding frequency is the same as the frequency of our signal, in this case, 3 cycles per second, the center of mass is unusually far to the right. 
 
+![](../imgs/3b1b_fourier_204.png)
+
+Here, to capture this, let's draw some kind of plot that keeps track of where that center of mass is for each winding frequency. Of course, the center of mass is a 2D thing, but for the moment, let's only keep track of the x coordinate. 
+
+
+
 
 
 
