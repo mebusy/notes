@@ -29,6 +29,23 @@ And let's limit ourselves to looking at a finite portion of this graph, in this 
 
 The key idea is gonna be to take this graph, and sort of wrap it up around a circle. Concretely, here's what I mean by that, imagine a little rotating vector where each point in time its length is equal to the height of graph for that time. 
 
+![](../imgs/3b1b_fourier_201.png)
+
+So, higher points of the graph correspond to a greater distance from the origin, and low points end up closer to the origin.
+
+And right now, I'm drawing it in such a way that moving forward 2 seconds in time corresponds to a single rotation around the circle. Our little vector drawing thit round graph is rotating at half a cycle per second. ( 2秒钟，旋转向量正好旋转了1圈 ) 
+
+So, this is important. There are two different frequencies at play here:  
+
+ 1. There's the frequency of our signal, which goes up and down, 3 times per second. 
+ 2. Separately , there's the frequency with which we're wrapping the graph around the circle , is half a cycle per second. 
+
+But we can adjust that second frequency however we want. Maybe we want to wrap it around faster or slower.  And that choice of winding frequency determines what the round graph looks like. 
+
+And at this point, we might have some sort of vague sense that something special will happen, when the winding frequency matches the frequency of our signal: 3 beats per second,  and  3 cycles per second. 
+
+
+
 
 
 
