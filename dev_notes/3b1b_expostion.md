@@ -52,7 +52,11 @@ But how preciesly can we take advantage of that in our attempt to build a freque
 
 Well, imagine this graph is have some kind of mass to it, like a metal wire. This little dot is going to represent the center of mass of that wire. As we change the frequency, and the graph winds up differently, that center of mass kind of wobbles around a bit.
 
+![](../imgs/3b1b_fourier_203.png)
 
+And for most of the winding frequencies, the peaks and valleys are all spaced out around the circle in such a way that the center of mass stays pretty close to the origin. 
+
+But, when the winding frequency is the same as the frequency of our signal, in this case, 3 cycles per second, the center of mass is unusually far to the right. 
 
 
 
