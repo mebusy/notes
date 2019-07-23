@@ -62,6 +62,11 @@ But, when the winding frequency is the same as the frequency of our signal, in t
 
 Here, to capture this, let's draw some kind of plot that keeps track of where that center of mass is for each winding frequency. Of course, the center of mass is a 2D thing, but for the moment, let's only keep track of the x coordinate. 
 
+![](../imgs/3b1b_fourier_205.png)
+
+At 3beats/s , there's a spike as everything lines up to the right. 
+
+By the way, let's look back at those really low frequencies near 0. This big spike around 0 in our new frequency plot just corresponds to the fact that the whole cosine wave is shifted up. If I chosen a signal oscillates around 0, dipping into negative values, then , as the plot for the center of mass will only have a spike at the value of 3. 
 
 
 
