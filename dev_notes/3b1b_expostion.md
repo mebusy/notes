@@ -86,6 +86,12 @@ Imagine taking the 2 signals we just looked at, 2 beats/s, 3 beats/s , and add t
 
 Now what's going on here with the 2 different spikes, is that if you were to take 2 signals, and then apply this almost-fourier transfrom to each of them individually, and then add up the result, what you get is the same as if you first added up the signals and then applied this Almost-Fourier transform.
 
+![](../imgs/3b1b_fourier_209.png)
+
+---
+
+Before continuing into the full match that describes this operation, let's just get a quick glimpse of one context where this thing is useful: Sound editing. 
+
 
 
 
