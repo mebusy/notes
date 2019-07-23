@@ -360,7 +360,18 @@ BASIS for a space is a sequence of vectors with 2 properties.
 1. they are independent
 2. they span the space.
 
-36:00
+Dimension of a space is the  number of space basis.
+
+Subspace also have basis.
+
+rank(A) = #pivot columns = dimension of C(A) (PS. NOT the dimension of matrix) .
+
+dim(C(A)) = r
+dim(N(A)) = #free variables = n-r
+
+
+## 10
+
 
 
 
