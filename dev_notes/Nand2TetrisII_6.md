@@ -557,6 +557,7 @@ Class Array {
 ```
 
  - Memory.alloc /  Memory.deAlloc
+ - You language support array access, and the implementation of array itself is very simple.
 
 <h2 id="7bb88f5cc49596490f9c9dc28dfa46cc"></h2>
 
