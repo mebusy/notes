@@ -80,7 +80,13 @@ You might be able to see how this machine lets us pick out the frequency of a si
 
 The real key point, the thing that makes this machine so delightful, is how it enables us to take a singal consisting of multiple frequencies, and pick out what they are. 
 
-Imagine taking the 2 signals we just looked at, 2 beats/s, 3 beats/s , and add them up, 
+Imagine taking the 2 signals we just looked at, 2 beats/s, 3 beats/s , and add them up , and see what our machine tells us.
+
+![](../imgs/3b1b_fourier_208.png)
+
+Now what's going on here with the 2 different spikes, is that if you were to take 2 signals, and then apply this almost-fourier transfrom to each of them individually, and then add up the result, what you get is the same as if you first added up the signals and then applied this Almost-Fourier transform.
+
+
 
 
 
