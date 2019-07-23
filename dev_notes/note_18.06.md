@@ -345,6 +345,37 @@ x<sub>n</sub> is a subspace, but x<sub>complete</sub> is not.  x<sub>complete</s
 
 ## 9
 
+### Linear independence
+
+indenpendent if N(A) = 0
+
+### Spanning a space
+
+The space consists of all combinations of those vectors.
+
+### BASIS and dimension
+
+BASIS for a space is a sequence of vectors with 2 properties.
+
+1. they are independent
+2. they span the space.
+
+Dimension of a space is the  number of space basis.
+
+Subspace also have basis.
+
+rank(A) = #pivot columns = dimension of C(A) (PS. NOT the dimension of matrix) .
+
+dim(C(A)) = r
+dim(N(A)) = #free variables = n-r
+
+
+## 10
+
+
+
+
+
 
 
 
