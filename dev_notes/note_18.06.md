@@ -369,9 +369,39 @@ rank(A) = #pivot columns = dimension of C(A) (PS. NOT the dimension of matrix) .
 dim(C(A)) = r
 dim(N(A)) = #free variables = n-r
 
+dim计算，无论从collum 还是从 row 来看，结果都是相同的
+
+
 
 ## 10
 
+### Four Fundamental Subspace 
+
+A is mxn
+
+ - C(A) , in Rᵐ
+ - N(A)
+ - Row Space C(Aᵀ) , in Rⁿ
+ - Left Null Space N(Cᵀ)  , in Rᵐ
+
+
+
+-----
+
+
+```
+A =
+
+   1   2   3
+   1   2   3
+   2   5   8
+```
+
+it looks like the collmns are independent , does it ?
+
+Actually, the rows are not inpendent ,so A is not invertible, so that the columns must be dependent. 
+
+A*[-1;2;-1 ] = 0 
 
 
 
