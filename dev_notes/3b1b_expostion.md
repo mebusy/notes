@@ -76,7 +76,11 @@ The whole plot is what I called the "Almost Fourier Transform" of the original s
 
 You might be able to see how this machine lets us pick out the frequency of a signal.  Now take a different pure signal, let's say with a lower frequency of 2 beats /s, and do the same thing. 
 
+![](../imgs/3b1b_fourier_207.png)
 
+The real key point, the thing that makes this machine so delightful, is how it enables us to take a singal consisting of multiple frequencies, and pick out what they are. 
+
+Imagine taking the 2 signals we just looked at, 2 beats/s, 3 beats/s , and add them up, 
 
 
 
