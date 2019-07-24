@@ -94,7 +94,9 @@ Before continuing into the full match that describes this operation, let's just 
 
 Let's say that you have dome recording , and it's got an annoying high pitch that you'd like to filter out. Well, at first, your singal is coming in as a function of various intensities over time. When you take the Fourier transform of that signal, the annoying high pitch is going to show up just as a spike at some high frequency. 
 
- 
+![](../imgs/3b1b_fourier_210.png)
+
+To filter that out, just smush the spikedown. 
 
 
 
