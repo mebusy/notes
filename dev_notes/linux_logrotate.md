@@ -45,6 +45,14 @@
 }
 ``` 
 
+if your log file is not owner by root (say by user 'service'), then you should add extra line :
+
+```
+{
+    su service service
+    daily
+```
+
 <h2 id="ddf5d7584457b4cb8c7993699bafe0bb"></h2>
 
 ## 4. 测试配置是否正确
