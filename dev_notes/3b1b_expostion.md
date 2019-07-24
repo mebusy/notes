@@ -98,6 +98,16 @@ Let's say that you have dome recording , and it's got an annoying high pitch tha
 
 To filter that out, just smush the spikedown. 
 
+Luckily, there's a notion of an inverse Fourier transform , that would give you back the signal without that annoise.
+
+But long story short, applying the Fourier transform to the Fourier transform gives you back something close to the original function. It's a little bit of a lie, but it's in the direction of the truth. 
+
+---
+
+Bring back this round graph , and looking at its center of mass, the x coordinate is really half the story. The thing is in 2D , it's got a y coordinate as well.And as is typical math, whenever you're dealing with something 2D, it's elegant to think of it as the complex plane, where this center of mass is gonna be a complex number. 
+
+The reason for taking in terms of complex numbers, is that complex numbers lend themselves to really nice descriptions of things that have to do with winding and rotation. For example, Euler's formula famously tells us that if you take e to some number times i, you're gonna land on the point that you get if you were to walk that number of units around a circle with radius 1, counter-clockwise starting on the right. 
+
 
 
 
