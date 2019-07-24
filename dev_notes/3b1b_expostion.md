@@ -136,6 +136,10 @@ Great, step-by-step, we have built up this surprisingly small expression, for th
 
 Physically , this has the effect that when a certain frequency persists for a long time, then the magnitude of the Fourier transform at that frequency is scaled up more and more. 
 
+![](../imgs/3b1b_fourier_216.png)
+
+
+
 
 
 
