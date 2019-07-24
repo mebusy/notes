@@ -121,6 +121,10 @@ So you can think of this little rotating vector with its changing lenght  as dra
 And remember , that thing we want to do this wound up graph is to track its center of mass. So think about what formula is going to capture that. 
 
 Well, to approximate it at least, you might sample a whole bunch of times from the original signal, see where those points end up on the wound up graph, and then just take an average. 
+
+![](../imgs/3b1b_fourier_213.png)
+
+This will become more accurate if you sample more points which are closer together. And in the limit, you take an integral of this funcion , divided by the size of the time inteval. 
  
 
 
