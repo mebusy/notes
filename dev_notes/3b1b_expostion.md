@@ -92,7 +92,9 @@ Now what's going on here with the 2 different spikes, is that if you were to tak
 
 Before continuing into the full match that describes this operation, let's just get a quick glimpse of one context where this thing is useful: Sound editing. 
 
+Let's say that you have dome recording , and it's got an annoying high pitch that you'd like to filter out. Well, at first, your singal is coming in as a function of various intensities over time. When you take the Fourier transform of that signal, the annoying high pitch is going to show up just as a spike at some high frequency. 
 
+ 
 
 
 
