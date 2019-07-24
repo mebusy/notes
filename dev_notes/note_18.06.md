@@ -53,7 +53,7 @@ http://web.mit.edu/18.06
     - Success
     - Failure  0 in pivot position , row exchange
  2. Back-Substitution 
-    - augmented matrix [Ab] ==elim=> [Uc] => Ux=c
+    - augmented matrix [A |b] ==elim=> [U |c] => Ux=c
  3. Elimination  Matrices
     - EA = U
     - 向量在 矩阵右侧，列组合；向量在矩阵左侧，行组合
@@ -236,6 +236,8 @@ R got all the information as clear as can be.
 
 The solution to Rx=0  is as same as the solution to Ax=0 , or Ux=0.
 
+PS. if A is invertible, then rref(A) = I.
+
 ```
 octave:2> A
 A =
@@ -329,7 +331,7 @@ x = c·[ -1;-1;1 ]
 
 ### Complete solution of Ax=b
 
-To solve Ax=b,  we create an augmented matrix [A b].
+To solve Ax=b,  we create an augmented matrix [A |b].
 
 Solvability condition on b: b had to be in the column space C(A).
 
@@ -369,8 +371,7 @@ rank(A) = #pivot columns = dimension of C(A) (PS. NOT the dimension of matrix) .
 dim(C(A)) = r
 dim(N(A)) = #free variables = n-r
 
-dim计算，无论从collum 还是从 row 来看，结果都是相同的
-
+A 和 Aᵀ 的 r 相等。
 
 
 ## 10
@@ -379,15 +380,21 @@ dim计算，无论从collum 还是从 row 来看，结果都是相同的
 
 A is mxn
 
- - C(A) , in Rᵐ
- - N(A)
- - Row Space C(Aᵀ) , in Rⁿ
- - Left Null Space N(Cᵀ)  , in Rᵐ
+ - C(A) , ( in Rᵐ )                       ,dim=r
+ - N(A) , dim=n-r
+ - `---------`
+ - Row Space C(Aᵀ) ,              ,dim=r
+ - Left Null Space N(Cᵀ)  , ( in Rᵐ ),  dim=m-r
 
+why we call N(Cᵀ) left null space ?
 
+ - Aᵀy = 0  ==>  yᵀA = 0ᵀ 
+
+About elimination:
+
+Elimination preserve the row space. so R and A have different colum space, but same row space.
 
 -----
-
 
 ```
 A =
@@ -401,9 +408,39 @@ it looks like the collmns are independent , does it ?
 
 Actually, the rows are not inpendent ,so A is not invertible, so that the columns must be dependent. 
 
-A*[-1;2;-1 ] = 0 
+`A*[-1;2;-1 ] = 0` 
 
+---
 
+### New vector space !
+
+All 3x3 matrices !!  we called M. 
+
+Every 3x3 matrix is one of my "vectors". They are vectors in my vectors space because they obey the rules. 
+
+Subspaces of M :
+
+ - upper triangulars
+ - symmetric matrices
+ - diagonal matrices  D 
+
+now D is a subspace. The dimension of D is 3. for example, you can shoose such 3 basis:
+
+```
+   1   0   0
+   0   0   0
+   0   0   0
+
+   0   0   0
+   0   3   0
+   0   0   0
+
+   0   0   0
+   0   0   0
+   0   0   7
+```
+  
+## 11 
 
 
 
