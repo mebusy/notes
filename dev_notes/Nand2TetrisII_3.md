@@ -253,7 +253,7 @@ class List {
         - var, static , field     // variable declarations
         - let, do , if , else, while ,return   // statements
             - var, let, do make writing the compiler easy. 
-        - true, false, null,      // constant values
+        - true(-1), false, null,      // constant values
         - this 
     - Symbols   
         - (),{},[] 
@@ -471,6 +471,7 @@ arr[2] = Fraction.new(314,100);
  - Graphical apps:
     - Screen: 256 rows of 512 pixels, b&w
     - Output: Jack OS Screen class ( or do your own )
+    - bit 0 means white , bit 1 means black
 
 ![](../imgs/n2t_jack_screen.png)
 
