@@ -130,8 +130,11 @@ Now the idea of integrating a complex-valued function might seem weird, but the 
  
 ![](../imgs/3b1b_fourer_214.png)
 
+Great, step-by-step, we have built up this surprisingly small expression, for the whole winding machine idea. And now there is only 1 final distinction to point out between this and the actual, honest-to-goodness Fourier transform. Namely, just don't divide out by the time interval. The Fourier transform is just the integral part of this. What that meas is that instead of looking at the center of mass, you would scale it up by some amount.  If the portion of the original graph spanned 3 second, you would multiply the center of mass by 3. 
 
+![](../imgs/3b1b_fourier_215.png)
 
+Physically , this has the effect that when a certain frequency persists for a long time, then the magnitude of the Fourier transform at that frequency is scaled up more and more. 
 
 
 
