@@ -33,14 +33,14 @@ The key idea is gonna be to take this graph, and sort of wrap it up around a cir
 
 So, high points of the graph correspond to a greater distance from the origin, and low points end up closer to the origin.
 
-And right now, I'm drawing it in such a way that moving forward 2 seconds in time corresponds to a single rotation around the circle. Our little vector drawing thit round graph is rotating at half a cycle per second. ( 2秒钟，旋转向量正好旋转了1圈 ) 
+And right now, I'm drawing it in such a way that moving forward 2 seconds in time corresponds to a single rotation around the circle. Our little vector drawing thit wound up graph is rotating at half a cycle per second. ( 2秒钟，旋转向量正好旋转了1圈 ) 
 
 So, this is important. There are two different frequencies at play here:  
 
  1. There's the frequency of our signal, which goes up and down, 3 times per second. 
  2. Separately , there's the frequency with which we're wrapping the graph around the circle , is half a cycle per second. 
 
-But we can adjust that second frequency however we want. Maybe we want to wrap it around faster or slower.  And that choice of winding frequency determines what the round graph looks like. 
+But we can adjust that second frequency however we want. Maybe we want to wrap it around faster or slower.  And that choice of winding frequency determines what the wound up graph looks like. 
 
 And at this point, we might have some sort of vague sense that something special will happen, when the winding frequency matches the frequency of our signal: 3 beats per second,  and  3 cycles per second. 
 
@@ -104,7 +104,7 @@ But long story short, applying the Fourier transform to the Fourier transform gi
 
 ---
 
-Bring back this round graph , and looking at its center of mass, the x coordinate is really half the story. The thing is in 2D , it's got a y coordinate as well.And as is typical math, whenever you're dealing with something 2D, it's elegant to think of it as the complex plane, where this center of mass is gonna be a complex number. 
+Bring back this wound up graph , and looking at its center of mass, the x coordinate is really half the story. The thing is in 2D , it's got a y coordinate as well.And as is typical math, whenever you're dealing with something 2D, it's elegant to think of it as the complex plane, where this center of mass is gonna be a complex number. 
 
 The reason for taking in terms of complex numbers, is that complex numbers lend themselves to really nice descriptions of things that have to do with winding and rotation. For example, Euler's formula famously tells us that if you take e to some number times i, you're gonna land on the point that you get if you were to walk that number of units around a circle with radius 1, counter-clockwise starting on the right. 
 
@@ -114,7 +114,13 @@ So , imagine you wanted to describe rotating at a rate of one cycle per second, 
 
 Now why am I telling you this , you might ask. It gives us a really nice way to write down the idea of winding up the graph into a single, tight little formula. First off, the convention in the context of Fourier transforms is to think about the rotating in the clockwise direction , so let's go ahead and throw a negative sign up into the exponent e<sup>-2πift</sup> .  Now, take some function describing a signal, like pure cosine wave , and call it g(t) , if you multiply this exponential expression time g(t) ,  g(t)·e<sup>-2πift</sup>, it means that the rotaing complex number is getting scaled up and down according to the value of g(t).
 
+![](../imgs/3b1b_fourier_212.png)
 
+So you can think of this little rotating vector with its changing lenght  as drawing the wound up graph. This is awesome. This really small expression is a super-elegant way to encapsulate the whole idea of winding a graph around a circle with a variable frequency f.  
+
+And remember , that thing we want to do this wound up graph is to track its center of mass. So think about what formula is going to capture that. 
+
+Well, to approximate it at least, you might sample a whole bunch of times from the original signal, see where those points end up on the wound up graph, and then just take an average. 
  
 
 
