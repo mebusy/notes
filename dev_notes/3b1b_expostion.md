@@ -108,6 +108,17 @@ Bring back this round graph , and looking at its center of mass, the x coordinat
 
 The reason for taking in terms of complex numbers, is that complex numbers lend themselves to really nice descriptions of things that have to do with winding and rotation. For example, Euler's formula famously tells us that if you take e to some number times i, you're gonna land on the point that you get if you were to walk that number of units around a circle with radius 1, counter-clockwise starting on the right. 
 
+![](../imgs/3b1b_fourier_211.png)
+
+So , imagine you wanted to describe rotating at a rate of one cycle per second,  one thing you can do is to take the expression e<sup>2πit</sup> , where t is the amount of time that has past.   Maybe you wanna describe a different frequency, something lower and more reasonable, and for that, you would just multiply time t by the frequency f, e<sup>2πit</sup> .   For example, if f was 1/10, then this vector make one full turn every 10 seconds. 
+
+Now why am I telling you this , you might ask. It gives us a really nice way to write down the idea of winding up the graph into a single, tight little formula. First off, the convention in the context of Fourier transforms is to think about the rotating in the clockwise direction , so let's go ahead and throw a negative sign up into the exponent e<sup>-2πift</sup> .  Now, take some function describing a signal, like pure cosine wave , and call it g(t) , if you multiply this exponential expression time g(t) ,  g(t)·e<sup>-2πift</sup>, it means that the rotaing complex number is getting scaled up and down according to the value of g(t).
+
+
+ 
+
+
+
 
 
 
