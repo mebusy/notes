@@ -124,8 +124,13 @@ Well, to approximate it at least, you might sample a whole bunch of times from t
 
 ![](../imgs/3b1b_fourier_213.png)
 
-This will become more accurate if you sample more points which are closer together. And in the limit, you take an integral of this funcion , divided by the size of the time inteval. 
+This will become more accurate if you sample more points which are closer together. And in the limit, you take an integral of this funcion , divided by the size of the time inteval.  
+
+Now the idea of integrating a complex-valued function might seem weird, but the underlying meaning here really doesn't require any calculus knowledge. The whole expression is just the center of mass of the wound up graph.  
  
+![](../imgs/3b1b_fourer_214.png)
+
+
 
 
 
