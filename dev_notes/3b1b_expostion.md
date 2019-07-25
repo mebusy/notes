@@ -152,7 +152,9 @@ The fourier transform of an intensity / time function, like g(t), is a new funct
 
 And all of this is being encapsulated inside that formula that we built up. 
 
+![](../imgs/3b1b_fourier_219.png)
 
+Btw, one quick small note before we can call this wrapped up. Even though in practice , with things like sound editing, you'be integrating over a finite time interval , t1 to t2, the theory of Fourier transform is often phrased where the bounds of this integral are -∞ to ∞ .  Concretely, what that means is that you consider this expression for all possible finite time intervals, and you just ask, "What is its limit as that time interval grows to ∞?"  
 
 
 
