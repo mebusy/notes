@@ -148,6 +148,10 @@ Let's summarize what we have so far.
 
 The fourier transform of an intensity / time function, like g(t), is a new function, which doesn't have time as an input , but instead takes in a frequency, called "the winding frequency". Let's call this function as ĝ(f).  The output of this function is a complex number, some point in the 2D plane, that corresponds to the strength of a given frequency in the original signal. The plot that I've been graphing for the fourier transform is just the **real** component of that output, the x-coordinate. But you could also graph the imaginary component separately, if you wanted a full description. 
 
+![](../imgs/3b1b_fourier_218.png)
+
+And all of this is being encapsulated inside that formula that we built up. 
+
 
 
 
