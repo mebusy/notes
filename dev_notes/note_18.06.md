@@ -418,11 +418,16 @@ All 3x3 matrices !!  we called M.
 
 Every 3x3 matrix is one of my "vectors". They are vectors in my vectors space because they obey the rules. 
 
+dim(M) = 9 !
+
 Subspaces of M :
 
  - upper triangulars
+    - dim(U) = 6
  - symmetric matrices
+    - dim(S) = 6
  - diagonal matrices  D 
+    - dim(D) = 3
 
 now D is a subspace. The dimension of D is 3. for example, you can shoose such 3 basis:
 
@@ -441,6 +446,16 @@ now D is a subspace. The dimension of D is 3. for example, you can shoose such 3
 ```
   
 ## 11 
+
+### Bases of new vector spaces
+
+12:18
+
+### Rank one matrices
+
+### Small world graphs
+
+
 
 
 
