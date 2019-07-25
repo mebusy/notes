@@ -140,7 +140,15 @@ Physically , this has the effect that when a certain frequency persists for a lo
 
 For example, what we're looking at right here is how when you have a pure frequency of 2 beats/s, and you wind it around the graph at 2 cycles/s , the center of mass stays in the same spot. It's just tracing out the same shape. The longer that signal persists, the larger the value of the Fourier transform , at that frequency. For other frequencies, though, even if you just increase it a bit, this is cancelled out by the fact that for longer time intervals, you're giving the wound up graph more of a chance to balance itsefe around the circle.
 
-![](../imgs/
+![](../imgs/3b1b_fourier_217.png)
+
+---
+
+Let's summarize what we have so far.
+
+The fourier transform of an intensity / time function, like g(t), is a new function, which doesn't have time as an input , but instead takes in a frequency, called "the winding frequency". Let's call this function as ĝ(f).  The output of this function is a complex number, some point in the 2D plane, that corresponds to the strength of a given frequency in the original signal. The plot that I've been graphing for the fourier transform is just the **real** component of that output, the x-coordinate. But you could also graph the imaginary component separately, if you wanted a full description. 
+
+
 
 
 
