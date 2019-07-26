@@ -834,7 +834,7 @@ rc = child.returncode
 ### python 解析 curl 命令获取的 json 字符串 
 
 ```bash
-result=`curl ... | python -c "import json,sys;obj=json.load(sys.stdin);print obj['anykey'];"`
+result=`curl --silent  ... | python -c "import json,sys;obj=json.load(sys.stdin);print obj['anykey'];"`
 echo result: $result
 
 ```
