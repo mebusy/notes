@@ -447,13 +447,34 @@ now D is a subspace. The dimension of D is 3. for example, you can shoose such 3
   
 ## 11 
 
-### Bases of new vector spaces
-
-12:18
-
 ### Rank one matrices
 
+A = uvᵀ
+
+We'll be interested in rank 1 matrices. Later we'll find, ok, their determinant, their eigen values, that'll be interesting. 
+
+Rank 1 matrices are like the building blocks for all matrices. And actually maybe you can guess, if I took a 5x17 matrix of rank 4, then it seems pretty likely , and it's true , that I could break that 5x17 matrix down as a combination of rank 1 matrices , -- I need 4 rank 1 matrices. The rank 1 matrices are the building blocks.
+
+Q: S = all v in R⁴ with v₁+v₂+v₃+v₄=0
+
+A: S = null space of A=[1 1 1 1]
+
+rank(A) = 1 = r,  dim(N(A)) = n-r .
+
 ### Small world graphs
+
+Graph = { nodes , edges }
+
+Every peaple is a node, there is an egde between 2 peaples if they are frinds. The question for that graph is how many steps does it take to get from anybody to anybody ? What 2 peaple are furthest apart in this friendship graph.
+
+## 12
+
+### Graphs of Networks
+
+### Incidence Matrices
+
+### Kirchhoff's Laws
+
 
 
 
