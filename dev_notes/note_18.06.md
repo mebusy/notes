@@ -461,28 +461,44 @@ A: S = null space of A=[1 1 1 1]
 
 rank(A) = 1 = r,  dim(N(A)) = n-r .
 
-### Small world graphs
+### Small graph
+
 
 Graph = { nodes , edges }
 
 Every peaple is a node, there is an egde between 2 peaples if they are frinds. The question for that graph is how many steps does it take to get from anybody to anybody ? What 2 peaple are furthest apart in this friendship graph.
 
+
+
 ## 12
 
 ### Graphs of Networks
 
-### Incidence Matrices
-
-### Kirchhoff's Laws
+Graph = { nodes , edges }
 
 
+Loops in directed graph correspond linear dependence. 
+
+Usually graph is a very sparse matrix.
+
+Directed graph matrix is always column dependent ? Ax=0
+
+电路图: x=x1,x2,x3,x4...  potential at node.  normally we need fix one node , say, connect it to groun, so that the column represent that node disappear.  
+
+Aᵀy = 0.  currency y1,y2,y3,y4,y5 on edges.
+
+#loops = #edges - ( #nodes - 1 )
+
+this is, #nodes - #edges + #loops = 1 , it's Euler's formula.
 
 
+## 14
 
+### Orthogonal vectors and subspaces
 
+### null space ⟂  row space 
 
-
-
+### N(AᵀA) = N(A)
 
 
 
