@@ -1009,19 +1009,18 @@ readinessProbe:
  - A Volume Type decides the properties of the directory, like size, content, etc. Some examples of Volume Types are:
     - emptyDir
         - An empty Volume is created for the Pod as soon as it is scheduled on the worker node. The Volume's life is tightly coupled with the Pod. If the Pod dies, the content of emptyDir is deleted forever.  
+        - emptyDir Volume 的生命周期与 Pod 一致。 Pod 中的所有容器都可以共享 Volume，它们可以指定各自的 mount 路径。
+        - emptyDir 特别适合 Pod 中的容器需要临时共享存储空间的场景.
     - hostPath
         - With the hostPath Volume Type, we can share a directory from the host to the Pod. 
         - If the Pod dies, the content of the Volume is still available on the host.
-    - gcePersistentDisk
-        - we can mount a Google Compute Engine (GCE) persistent disk into a Pod.
-    - awsElasticBlockStore
-        - we can mount an AWS EBS Volume into a Pod. 
-    - nfs
-        - we can mount an NFS share into a Pod.
-    - iscsi
-        - we can mount an iSCSI share into a Pod.
-    - secret
-        - With the secret Volume Type, we can pass sensitive information, such as passwords, to Pods.
+        - 大部分应用都不会使用 hostPath Volume，因为这实际上增加了 Pod 与节点的耦合，限制了 Pod 的使用.
+        - 不过那些需要访问 Kubernetes 或 Docker 内部数据（配置文件和二进制库）的应用则需要使用 hostPath。
+    - external Storage Provider
+        - gcePersistentDisk
+            - we can mount a Google Compute Engine (GCE) persistent disk into a Pod.
+        - awsElasticBlockStore
+            - we can mount an AWS EBS Volume into a Pod. 
     - persistentVolumeClaim
         - We can attach a PersistentVolume to a Pod.
 
