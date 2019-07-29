@@ -396,7 +396,7 @@ drawCircle(x,y,r):
     - Screen : 23 rows of 64 characters , b&w
     - Managed by the Jack OS class *Output*
  - Hack Font
-    - Each character occupies a fixed 11x8 pixel fream
+    - Each character occupies a fixed 11x8 pixel frame
     - The frame include 2 empty right columns and 1 empty buttom row for character spacing
 
 <h2 id="4e241a5e85e955f1e8376795c97bd366"></h2>
