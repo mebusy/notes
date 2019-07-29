@@ -378,7 +378,7 @@ while ( (a<=dx) and (b<=dy) )
 
 ```
 drawCircle(x,y,r):
-    for each dy = -r tp r do:
+    for each dy = -r to r do:
         drawLine( x - √(r²-dy²) , y+dy ,  x + √(r²-dy²) , y+dy  ) 
 ```
 
