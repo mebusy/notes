@@ -483,7 +483,7 @@ Usually graph is a very sparse matrix.
 
 Directed graph matrix is always column dependent ? Ax=0
 
-电路图: x=x1,x2,x3,x4...  potential at node.  normally we need fix one node , say, connect it to groun, so that the column represent that node disappear.  
+电路图: x=x1,x2,x3,x4...  potential at node.  normally we need fix one node , say, connect it to ground, so that the column represent that node disappear.  
 
 Aᵀy = 0.  currency y1,y2,y3,y4,y5 on edges.
 
@@ -496,7 +496,16 @@ this is, #nodes - #edges + #loops = 1 , it's Euler's formula.
 
 ### Orthogonal vectors and subspaces
 
+Subspace S is orthogonal to subspace T , means every vetor S is orthogonal to every vector in T.  If S is orthogonal to T, then they intersect only at 0 vector. 
+
+
 ### null space ⟂  row space 
+
+why ?
+
+beause Ax=0,  *each row*·x = 0.  
+
+25:00
 
 ### N(AᵀA) = N(A)
 
