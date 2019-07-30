@@ -504,13 +504,13 @@ class Output {
  - int2string
     - 
     ```
-    ini2String(val):
-        lastDigit = val % 10
-        c = character representing lastDigit
-        if val < 0 
-            return c (as a string)
-        else
-            return int2String(val/10).append(c)
+    def int2String(val_pos):
+        lastDigit = val_pos % 10
+        c = lastDigit + 48
+        if val_pos < 10 :
+            return chr(c)
+        else:
+            return int2String(val_pos/10) + chr(c)
     ```
  - string2int
     - 
