@@ -582,10 +582,13 @@ class Sys {
     // performs all the initializations required by OS
     function void init() {
         // call other OS class which have init()
+        do Memory.init();  // the init() order is very important
         do Math.init();
-        do Memory.init();
         ...
         do Main.main();
+        // keep running  ... 
+        do Sys.halt();
+        return ;
     }
     // halts execution
     function void halt() {
