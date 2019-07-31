@@ -174,4 +174,11 @@ $ git clone https://myuser:password%21@github.com/myuser/repo.git
  5. push you local branch `develop` to `origin`
     - `git push --set-upstream origin develop`
 
+## delete a branch locally and remotely
+
+```
+$ git push --delete <remote_name> <branch_name>
+$ git branch -d <branch_name>
+```
+
 
