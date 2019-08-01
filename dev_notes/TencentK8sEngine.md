@@ -75,7 +75,8 @@ kubectl ... get ...  -o yaml --export
 
 7. ImagePullSecret ( 如果需要从外部pull 镜像的话需要设置, in deployment)
     - qcloudregistrykey , 
-    - or tencenthubkey 
+
+it seems that TKE will automatically use  `tencenthubkey` ?
 
 8. secret can not be access across namespaces 
    to dup a secret from namespace A  into namespace B
