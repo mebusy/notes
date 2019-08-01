@@ -529,6 +529,15 @@ fp.write(jsonObj )
 fp.close()
 ```
 
+### 获取中文字符长度
+
+ - 需要转成unicode字符
+
+```
+unicode_string = bytes.decode("utf-8")
+print len(unicode_string)
+```
+
 ---
 
 <h2 id="53c82eba31f6d416f331de9162ebe997"></h2>
