@@ -73,9 +73,14 @@ kubectl ... get ...  -o yaml --export
   create rolebinding  by create -f 
   ...
 
-7. ImagePullSecret ( 如果需要从外部pull 镜像的话需要设置)
+7. ImagePullSecret ( 如果需要从外部pull 镜像的话需要设置, in deployment)
     - qcloudregistrykey , 
     - or tencenthubkey 
+
+8. secret can not be access across namespaces 
+   to dup a secret from namespace A  into namespace B
+
+   kubectl get secret <secret-name> --namespace=A --export -o yaml | kubectl apply --namespace=B -f -
 ```
 
 
