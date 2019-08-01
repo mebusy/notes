@@ -81,7 +81,11 @@ kubectl ... get ...  -o yaml --export
    to dup a secret from namespace A  into namespace B
 
    kubectl get secret <secret-name> --namespace=A --export -o yaml | kubectl apply --namespace=B -f -
+
+9. full service name across namespaces
+    <service-name>.<namespace-name>.svc.cluster.local
 ```
+
 
 
  - doc: https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/
