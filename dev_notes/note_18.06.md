@@ -505,9 +505,20 @@ why ?
 
 beause Ax=0,  *each row*·x = 0.  
 
-25:00
+nullspace and row space are orthogonal **complements** in Rⁿ.  That is, nullspace contains **all** vectors ⟂ row space.
 
 ### N(AᵀA) = N(A)
+
+Solve Ax=b when there is no solution.
+
+AᵀA:  nxn, symmetric, (AᵀA)ᵀ = AᵀA, 
+
+AᵀAx = Aᵀb
+
+AᵀA is often invertible, but not always.  Since N(AᵀA) = N(A) , so AᵀA is invertible exactly if the column of A are independent, that is N(A)=0. 
+
+## 15  crucial chapter
+
 
 
 
