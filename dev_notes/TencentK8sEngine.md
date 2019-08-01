@@ -73,14 +73,107 @@ kubectl ... get ...  -o yaml --export
   create rolebinding  by create -f 
   ...
 
-7. ImagePullSecret ( 如果需要从外部pull 镜像的话需要设置)
+7. ImagePullSecret ( 如果需要从外部pull 镜像的话需要设置, in deployment)
     - qcloudregistrykey , 
-    - or tencenthubkey 
+
+it seems that TKE will automatically use  `tencenthubkey` ?
+
+8. secret can not be access across namespaces 
+   to dup a secret from namespace A  into namespace B
+
+   kubectl get secret <secret-name> --namespace=A --export -o yaml | kubectl apply --namespace=B -f -
+
+9. full service name across namespaces
+    <service-name>.<namespace-name>.svc.cluster.local
 ```
+
 
 
  - doc: https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/
  - [轻松了解Kubernetes部署功能](http://qinghua.github.io/kubernetes-deployment/)
+
+
+## 使用自定义列格式化输出
+
+kubectl get 命令默认输出格式, 包含的信息比较有限
+
+```bash
+$ kubectl get pods
+NAME                                      READY   STATUS    RESTARTS   AGE
+nginx-app-76b6449498-86b55                1/1     Running   0          23d
+nginx-app-76b6449498-nlnkj                1/1     Running   0          23d
+opdemo-64db96d575-5mhgg                   1/1     Running   2          23d
+```
+
+自定义列输出的用法如下：
+
+```bash
+-o custom-columns=<header>:<jsonpath>[,<header>:<jsonpath>]...
+```
+
+ - each `<header>:<jsonpath>`
+    - `<header>`  is column name
+    - `<jsonpath>` is an expression to specify the resource 
+
+```bash
+$ kubectl get pods -o custom-columns='NAME:metadata.name'
+NAME
+nginx-app-76b6449498-86b55
+nginx-app-76b6449498-nlnkj
+opdemo-64db96d575-5mhgg
+```
+
+ - 选择 Pod 名称的表达式是metadata.name，这是因为 Pod 的名称被定义在 Pod 资源的 metadata 字段下面的 name 字段中
+ - 我们可以在 API 文档或者使用`kubectl explain pod.metadata.name`命令来查看
+
+现在假如我们要在输出结果中添加另外一列数据，比如显示每个 Pod 正在运行的节点:
+
+```bash
+$ kubectl get pods \
+  -o custom-columns='NAME:metadata.name,NODE:spec.nodeName'
+NAME                                      NODE
+nginx-app-76b6449498-86b55                ydzs-node2
+nginx-app-76b6449498-nlnkj                ydzs-node1
+opdemo-64db96d575-5mhgg                   ydzs-node2
+```
+
+## JSONPath 表达式
+
+```bash
+# 选择一个列表的所有元素
+$ kubectl get pods -o custom-columns='DATA:spec.containers[*].image'
+
+# 选择一个列表的指定元素
+$ kubectl get pods -o custom-columns='DATA:spec.containers[0].image'
+
+# 选择和一个过滤表达式匹配的列表元素
+$ kubectl get pods -o custom-columns='DATA:spec.containers[?(@.image!="nginx")].image'
+
+# 选择特定位置下的所有字段（无论名称是什么）
+$ kubectl get pods -o custom-columns='DATA:metadata.*'
+
+# 选择具有特定名称的所有字段（无论其位置如何）
+$ kubectl get pods -o custom-columns='DATA:..image'
+```
+
+显示 Pod 的所有容器镜像:
+
+```bash
+$ kubectl get pods \
+  -o custom-columns='NAME:metadata.name,IMAGES:spec.containers[*].image'
+```
+
+显示节点的可用区域:
+
+```bash
+$ kubectl get nodes \
+  -o custom-columns='NAME:metadata.name,ZONE:metadata.labels.failure-domain\.beta\.kubernetes\.io/zone'
+```
+
+ - 每个节点的可用区都可以通过标签`failure-domain.beta.kubernetes.io/zone`来获得
+ - 如果你的 Kubernetes 集群部署在公有云上面（比如 AWS、Azure 或 GCP），那么上面的命令就非常有用了
+
+
 
 
 <h2 id="7616e9353ba2c3c55eb7063e51fc65fb"></h2>
