@@ -519,6 +519,52 @@ AᵀA is often invertible, but not always.  Since N(AᵀA) = N(A) , so AᵀA is 
 
 ## 15  crucial chapter
 
+### Projections !!
+
+2D
+
+how to calculate the vector p , which is vector b projects on vector a ?
+
+p must be some multiple of a ,  p = xa.
+
+the error vector e = b - p  = b - xa.   since e ⟂ a , 
+
+so  aᵀe = aᵀ(b-xa) = aᵀb - xaᵀa = 0 
+
+=>  xaᵀa = aᵀb.   => x = aᵀb/(aᵀa) 
+
+p = a·aᵀb/aᵀa   => P = aaᵀ/(aᵀa) 
+
+rank(P) = 1 ,    key property: Pᵀ=P , P²=P 
+
+----
+
+ - Why project ?
+    - Because Ax=b may have no solution. 
+    - Ax has to be in the column space , but b may not in column space.
+    - So I change b to the closest vector in the column space. 
+    - So I solve Ax = p instead, where p is the projection of b onto the **column space**. 
+
+----
+
+3D
+
+project onto a place , span with independent vector a1 and a2.  that is , the place is the column space of A=[a1 a2]
+
+The crucial fact is that , e=(b-p) ⟂ the plane, and the p has to be the combination of columns Ax.
+
+p = Ax̂ . 
+
+Now the problem is to find the right combination of the columns so that the error vector is is perpendicular to the plane. 
+
+Find x̂, so that, a₁ᵀ(b - Ax̂) = 0 , and a₂ᵀ(b - Ax̂).  that is 
+
+Aᵀ(b - Ax̂) = 0.
+
+### Least square
+
+### Projection Matrix
+
 
 
 
