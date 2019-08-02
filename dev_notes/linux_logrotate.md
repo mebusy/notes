@@ -82,14 +82,24 @@ cat /var/lib/logrotate.status
 ## 7. crontab定时执行
 
 ```bash
+# 列出当前 任务
+# crontab -l
+
+
+# 编辑 /etc/crontab 文件, 
 # crontab -e
 0 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/ballsrace &> /dev/null
 ```
 
-maybe you want to use echo to append job to crontab file ...  you may find that file in `/etc/cron...`
+maybe you want to use echo to append job to crontab file ...  you may find that file in `/etc/crontab` 
+
+(不同系统，可能文件位置不一样, apline: /etc/crontabs/root   ) 
 
 ```bash
 echo $'*/1\t*\t*\t*\t*\t/usr/sbin/logrotate...' >> xxxx
+
+# daily
+echo $'0\t0\t*\t*\t*\t/usr/sbin/logrotate ...' >> xxx 
 ```
 
 <h2 id="6803e775fc8d5aa27d11c244367853e4"></h2>
