@@ -569,7 +569,19 @@ AᵀAx̂ = Aᵀb.    So the sulution is x̂ = (AᵀA)⁻¹·Aᵀb.
 
 P = A(AᵀA)⁻¹Aᵀ . 
 
+why I can not expand the euqation to AA⁻¹(Aᵀ)⁻¹Aᵀ = I  ?  becuase A is not a square matrix, it does not have an inverse. 
+
+still 
+
+ - Pᵀ=P ,  inverse of symmetric  is still symmetric.
+ - P²=P 
+
+
 ### Least square
+
+fitting line , curve
+
+
 
 ### Projection Matrix
 
