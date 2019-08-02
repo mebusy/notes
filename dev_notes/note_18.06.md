@@ -561,6 +561,14 @@ Find x̂, so that, a₁ᵀ(b - Ax̂) = 0 , and a₂ᵀ(b - Ax̂).  that is
 
 Aᵀ(b - Ax̂) = 0.
 
+now we know e is in N(Aᵀ), that is saying **e is ⟂ C(A)**.
+
+rewrite the equation :
+
+AᵀAx̂ = Aᵀb.    So the sulution is x̂ = (AᵀA)⁻¹·Aᵀb. 
+
+P = A(AᵀA)⁻¹Aᵀ . 
+
 ### Least square
 
 ### Projection Matrix
