@@ -124,4 +124,12 @@ echo $'*/1\t*\t*\t*\t*\t/usr/sbin/logrotate...' >> xxxx
     - i.e. `app >> app.log 2>&1`
 
 
+### nginx 日志清理后， 日志不再生成的问题
+
+ - 需要发送 USE1 信号给 nginx master 进程重新打开日志文件
+
+```
+# kill -USR1 `ps axu | grep "nginx: master process" | grep -v grep | awk '{print $2}'`
+```
+
 
