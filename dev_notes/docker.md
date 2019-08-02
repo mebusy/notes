@@ -1995,7 +1995,7 @@ scope launch
  - run redis as memory cache
 
 ```
-docker run -d --restart unless-stopped -p 6379:6379 --name redis-cache -d redis redis-server --save '' --appendonly no --maxmemory 1G --maxmemory-policy allkeys-lru
+docker run -d --restart unless-stopped -p 6379:6379 --name redis-cache-2.8 -d redis:2.8 redis-server --save '' --appendonly no --maxmemory 1G --maxmemory-policy allkeys-lru
 ```
 
  - with password:  `--requirepass <yourpassword>` 
