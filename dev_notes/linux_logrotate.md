@@ -86,12 +86,12 @@ cat /var/lib/logrotate.status
 # crontab -l
 
 
-# 编辑 /etc/crontab 文件, 
+# 编辑 /var/spool/cron/root  文件, 
 # crontab -e
 0 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/ballsrace &> /dev/null
 ```
 
-maybe you want to use echo to append job to crontab file ...  you may find that file in `/etc/crontab` 
+maybe you want to use echo to append job to crontab file 
 
 (不同系统，可能文件位置不一样, apline: /etc/crontabs/root   ) 
 
