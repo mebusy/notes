@@ -577,6 +577,8 @@ still
  - P²=P 
 
 
+## 16 
+
 ### Least square
 
 fitting line , curve
@@ -584,6 +586,25 @@ fitting line , curve
 
 
 ### Projection Matrix
+
+P = A(AᵀA)⁻¹Aᵀ 
+
+- if b in column space , Pb = b .
+    - so Pb = A(AᵀA)⁻¹Aᵀ·Ax = AIx = b 
+- if b ⟂ column space ,  Pb = 0 .  
+    - ( Mathematical vector is through zero vector )  
+    -  what are bs ⟂ column space  ?
+        - Those are the vectors in the null space of Aᵀ.
+        - so Pb = A(AᵀA)⁻¹Aᵀ·b = A(AᵀA)⁻¹·0 = 0 
+
+Ok now you see what happens if we use our formular. So geometrically what we're seeing is we're taking a vector , we've got the column space, and perpendicular to that is the null space of Aᵀ.
+
+And our typical vector b is out here, and what we're doing is we're projecting it to p in column space, and to e in N(Aᵀ). 
+
+p + e = b . 
+
+
+
 
 
 
