@@ -579,11 +579,6 @@ still
 
 ## 16 
 
-### Least square
-
-fitting line , curve
-
-
 
 ### Projection Matrix
 
@@ -601,7 +596,79 @@ Ok now you see what happens if we use our formular. So geometrically what we're 
 
 And our typical vector b is out here, and what we're doing is we're projecting it to p in column space, and to e in N(Aᵀ). 
 
-p + e = b . 
+
+![](../imgs/la_1806_peb.png)
+
+ - p + e = b . 
+    - so p is the project b on C(A)  ,  p = Pb 
+    - how do e come out ?  what's the projection matrix ?
+        - It's (I-P), it's another projection matrix !  It project to a perpendicular space.  
+        - e = (I-P)b.
+
+
+
+
+### Least square
+
+fitting line , curve ,  
+
+ - points in 2D plane , 
+    - (1,1), (2,2) , (3, 2 )
+    - find a line C + Dt , minimize sum of the error.
+    - |Ax̂ - b|² = |e|²
+ - The |e|² is :
+    - (C+D-1)² + (C+2D-2)² + (C+3D-2)² 
+ - no you can use calculus to find the minimn. But here we will use the linear algebra way.
+
+```octave
+A =
+   1   1
+   1   2
+   1   3
+
+x =
+   C
+   D
+
+b =
+   1
+   2
+   2
+```
+
+ - here Ax = b have no solution, but  AᵀAx̂ = Aᵀb  have.
+
+```octave
+AᵀA =
+    3    6
+    6   14
+
+Aᵀ*b = 
+    5
+   11
+```
+
+ - so 
+    - 3C + 6D = 5
+    - 6C + 14D = 11
+ - solve it:
+    - C = 2/3
+    - D = 1/2 
+
+```octave
+octave:14> x = inv(A'*A) * (A'*b)
+x =
+   0.66667
+   0.50000
+```
+
+34:47
+
+
+
+
+
+
 
 
 
