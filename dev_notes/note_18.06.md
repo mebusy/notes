@@ -662,7 +662,33 @@ x =
    0.50000
 ```
 
-34:47
+---
+
+Repeat: If A has independent columns , then AᵀA is invertible. 
+
+Proof: suppose AᵀAx = 0.  
+
+Trick:  xᵀAᵀAx=0 =>  (Ax)ᵀ(Ax)=0  => Ax=0. 
+
+(Ax)ᵀ(Ax) is the length of the vector Ax squared,  if it is 0, then Ax must be 0.
+Since A has independent columns => x=0. 
+
+Q: (1,1), (2,5), (-1,-2) ,  拟合一条2次曲线
+
+A:  ax² + bx + c 
+
+build matrix: 
+
+```
+A =
+
+   1   1   1
+   4   2   1
+   1  -1   1
+```
+
+
+## 17 
 
 
 
