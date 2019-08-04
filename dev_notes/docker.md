@@ -1971,22 +1971,6 @@ docker update --restart unless-stopped <container>
 ```
 
 
-
-<h2 id="b8e4fd21971c56f16f0e13421bfefedc"></h2>
-
-## docker 可视化环境
-
- - weave scope
-
-```bash
-sudo curl -L git.io/scope -o /usr/local/bin/scope
-sudo chmod a+x /usr/local/bin/scope
-scope launch
-```
-
- - Now, open your web browser to http://localhost:4040
-
-
 <h2 id="e03d31b41fc936f76920bb647520ef01"></h2>
 
 ## docker redis 
