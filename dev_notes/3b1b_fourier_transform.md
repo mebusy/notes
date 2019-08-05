@@ -173,6 +173,10 @@ Btw, one quick small note before we can call this wrapped up. Even though in pra
  2. 频率的振幅
  3. 每个频率的相位
 
+![](../imgs/fourier_li_001.png)
+
+
+
 
 
 
