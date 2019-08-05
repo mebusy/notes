@@ -690,6 +690,38 @@ A =
 
 ## 17 
 
+### Orthogonal basis q₁, q<sub>n</sub>
+
+Orthonormal vectors :
+
+q<sub>i</sub>ᵀq<sub>i</sub> = 0,if i≠j ;  1,if i==j
+
+ - How does having an orthonormal basis make things nice ?
+    - It makes all the calcuations better,  a lot of numerical linear algebra is buillt around working with orthonormal vectors.
+
+### Orthogonal matrix Q 
+
+```
+    | |     | |
+Q = |q₁ ... qn|
+    | |     | | 
+```
+
+QᵀQ = I  , Q doesn't have to be square here.
+
+Now we're seeing this new class of matrices with orthonormal columns. This is a long name, I'm sorry that I can't just call them orthogonal matrices. 
+
+Maybe orthonormal matrices are good name.
+
+But the convention is  that we only use that word "orthogonal matrix" when it is square.  So in the case when this is a square matrix, that's the case we call it an orthogonal matrix. 
+
+What's special about the case when it's square?  When it's a square matrix, we've got its inverse. If Q is square, then QᵀQ=I tells us Qᵀ=Q⁻¹. 
+
+### Gram-Schmidt  A -> Q
+
+18:00
+
+
 
 
 
