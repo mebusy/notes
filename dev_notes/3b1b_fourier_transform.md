@@ -157,7 +157,21 @@ And all of this is being encapsulated inside that formula that we built up.
 Btw, one quick small note before we can call this wrapped up. Even though in practice , with things like sound editing, you'be integrating over a finite time interval , t1 to t2, the theory of Fourier transform is often phrased where the bounds of this integral are -∞ to ∞ .  Concretely, what that means is that you consider this expression for all possible finite time intervals, and you just ask, "What is its limit as that time interval grows to ∞?"  
 
 
+----
 
+# 什么是傅立叶变换
+
+其实分为两部分:  1. Fourier 级数  2. Fourier 变换
+
+## 傅立叶级数
+
+任何一个周期性的函数, 都可以表示为 一些列 正(余)弦函数的和。
+
+我们把一个时域的信号，做了傅立叶变换之后， 会变换成3个内容.
+
+ 1. 一系列的频率
+ 2. 频率的振幅
+ 3. 每个频率的相位
 
 
 
