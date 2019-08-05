@@ -142,4 +142,60 @@ echo $'0\t0\t*\t*\t*\t/usr/sbin/logrotate ...' >> xxx
 # kill -USR1 `ps axu | grep "nginx: master process" | grep -v grep | awk '{print $2}'`
 ```
 
+### centos 上切割nginx日志的例子
+
+```bash
+# setup.sh
+
+APPNAME="hda"
+CONF_FILE="${APPNAME}_logr.conf"
+
+echo ... generate conf file: ${CONF_FILE}
+
+cat > ${CONF_FILE}<<EOF
+`pwd`/../logs/access.log
+`pwd`/../logs/error.log
+{
+        daily
+        rotate 5
+    missingok
+    notifempty
+    copytruncate 
+    compress
+    dateext
+}
+
+EOF
+
+
+echo ... copy conf to /etc/logrotate.d/
+cp ${CONF_FILE} /etc/logrotate.d/${APPNAME}
+
+
+echo .. add task 
+
+if grep -q `pwd`"/hda_task.sh"  /var/spool/cron/root; then
+    echo "task already exists"
+else
+    echo "add new task"
+    # echo $'0\t0\t*\t*\t*\t/usr/sbin/logrotate -f /etc/logrotate.d/'${APPNAME}'  &> /dev/null' >> /var/spool/cron/root 
+    echo $'0\t0\t*\t*\t*\t/usr/bin/sh '`pwd`"/hda_task.sh"'  &> /dev/null' >> /var/spool/cron/root 
+fi
+
+echo ... restart crond 
+
+/bin/systemctl restart crond
+
+echo ... end 
+```
+
+```
+#!/bin/sh
+# hda_task.sh
+echo run hda logrotate
+
+/usr/sbin/logrotate -f /etc/logrotate.d/hda
+kill -USR1 `ps axu | grep "nginx: master process" | grep -v grep | awk '{print $2}'`
+```
+
 
