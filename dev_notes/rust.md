@@ -35,6 +35,9 @@
 
 <h2 id="f5e265d607cb720058fc166e00083fe8"></h2>
 
+-----
+-----
+
 # Rust
 
 https://doc.rust-lang.org/book/second-edition/ch03-03-how-functions-work.html
@@ -68,9 +71,14 @@ let guess: u32 = match guess.trim().parse() {
 
 <h2 id="33aeb9ff32fc92be604650a5753b4688"></h2>
 
+-----
+-----
+
 # 3. Common Programming Concepts
 
 <h2 id="e2799508d28e790ecf602efff80d8525"></h2>
+
+-----
 
 ## 3.3 Variables and Mutability
 
@@ -80,6 +88,8 @@ let mut bar = 5; // mutable
 ```
 
 <h2 id="afc26594fed3ec8c6e3e666642c9f62c"></h2>
+
+-----
 
 ### Difference Between Variables and Constants
 
@@ -96,6 +106,8 @@ const MAX_POINTS: u32 = 100_000;
 
 <h2 id="fd170458f72897a30012683701ae874d"></h2>
 
+-----
+
 ### Shadowing 
 
  - rust support variable shadow 
@@ -108,6 +120,8 @@ let guess: u32 = guess.trim().parse() ...
 ```
  
 <h2 id="979c67baedaf7f34e1c39f5c91294bbe"></h2>
+
+-----
 
 ## 3.2 Data Types
 
@@ -159,6 +173,8 @@ let second = a[1];
 
 <h2 id="818a10091ae4990a5982cd785351aad7"></h2>
 
+-----
+
 ## 3.3 How Functions Work 
 
 
@@ -204,9 +220,13 @@ fn plus_one(x: i32) -> i32 {
 
 <h2 id="f47fa56fa78316a8b2ce7abd9a7228b1"></h2>
 
+-----
+
 ## 3.4 Control Flow
 
 <h2 id="4ef066d4aafd6c98284f5140e0daa65d"></h2>
+
+-----
 
 ### if expression 
 
@@ -226,6 +246,8 @@ fn plus_one(x: i32) -> i32 {
 
 <h2 id="fa5a5a88a5c1b046ee672a674d71abdf"></h2>
 
+-----
+
 #### Using if in a let statement
 
  - Because if is an expression, we can use it on the right side of a let statement
@@ -240,6 +262,8 @@ let number = if condition {
 ```
 
 <h2 id="89d7b10cb4238977d2b523dfd9ea7745"></h2>
+
+-----
 
 ### Loop 
 
@@ -271,6 +295,9 @@ for number in (1..4).rev() {
 
 <h2 id="703a0f194d8018e9bd046f1d66eb8a0b"></h2>
 
+-----
+-----
+
 # 4. Understanding Ownership
 
  - most unique feature
@@ -278,6 +305,8 @@ for number in (1..4).rev() {
  - several related features : borrowing, slices, and how Rust lays data out in memory.
 
 <h2 id="c8483d2e6e2023448ea8f4e9853fddf5"></h2>
+
+-----
 
 ## 4.1 What is Ownership ?
 
@@ -289,6 +318,8 @@ for number in (1..4).rev() {
     - No run-time costs are incurred for any of the ownership features.
 
 <h2 id="e4dbc79a1b693c3c9b0a60c0a844e2ca"></h2>
+
+-----
 
 ### Memory and Allocation
 
@@ -317,6 +348,8 @@ for number in (1..4).rev() {
  - The example above is simple. But the behavior of code can be unexpected in more complicated situations when we want to have multiple variables use the data we’ve allocated on the heap. 
 
 <h2 id="cdf87cffc74af0e837714390ee553425"></h2>
+
+-----
 
 ### Ways Variables and Data Interact: Move
 
@@ -366,6 +399,8 @@ println!("{}, world!", s1);
 
 <h2 id="116fd707a848a34e7bf63f1d0c4d0cef"></h2>
 
+-----
+
 ### Ways Variables and Data Interact: Clone 
 
  - If we do want to deeply copy the heap data of the *String*, not just the stack data, we can use a common method called *clone*.
@@ -377,6 +412,8 @@ println!("s1 = {}, s2 = {}", s1, s2);
 ```
 
 <h2 id="a7f9c89fa8462ca2bf517b37cc846534"></h2>
+
+-----
 
 ### Stack-Only Data: Copy
 
@@ -412,12 +449,16 @@ println!("x = {}, y = {}", x, y);
 
 <h2 id="5dba9b59a6ac8da65f7589c266c2616a"></h2>
 
+-----
+
 ### Ownership and Functions 
 
  - The semantics for passing a value to a function are similar to assigning a value to a variable
  - Passing a variable to a function will move or copy , just like assignment. 
 
 <h2 id="078919842dd64fe430dfde470a4c29a5"></h2>
+
+-----
 
 ### Return Values and Scope
 
@@ -479,6 +520,8 @@ fn calculate_length(s: String) -> (String, usize) {
 
 <h2 id="7a94ffa954e34e50e159527e51367810"></h2>
 
+-----
+
 ## References and Borrowing 
 
  - 前面返回 tuple的例子的问题是， we have to return the String to the calling function so we can still use the String after the call to calculate_length， because the String was moved into calculate_length.
@@ -519,6 +562,8 @@ fn change(some_string: &String) {
  - Just as variables are immutable by default, so are references. We’re not allowed to modify something we have a reference to.
 
 <h2 id="85e175e3ace6bb081700c58322910831"></h2>
+
+-----
 
 ### Mutable References
 
@@ -577,6 +622,8 @@ let r3 = &mut s; // BIG PROBLEM
 
 <h2 id="5ab994e9e78665eb0c26226dd2e695de"></h2>
 
+-----
+
 ### Dangling References
 
  - In languages with pointers, it’s easy to erroneously create a *dangling pointer*
@@ -615,6 +662,8 @@ fn no_dangle() -> String {
 
 <h2 id="b172e4bff02b5a9a4db1943ce0c725d0"></h2>
 
+-----
+
 ### The Rules of References
 
  1. At any given time, you can have either but not both of:
@@ -624,6 +673,8 @@ fn no_dangle() -> String {
 
 
 <h2 id="9b0c5c583b42825a78e22070349106d4"></h2>
+
+-----
 
 ## 4.3 Slices
 
@@ -652,6 +703,8 @@ fn first_word(s: &String) -> usize {
  - 这个方法只能 返回 usize, 并不完美
 
 <h2 id="4802b309597c38a0e315a41088f5e7ce"></h2>
+
+-----
 
 ### String Slices
 
@@ -715,6 +768,8 @@ fn main() {
 
 <h2 id="0326ddde0b60afd7cabed1dfa526d3b2"></h2>
 
+-----
+
 ### String Literals Are Slices 
 
 ```rust
@@ -728,6 +783,8 @@ let s = "Hello, world!";
 
 <h2 id="33d042b567d55b78fd644d49a29c1e9f"></h2>
 
+-----
+
 ### String Slices as Parameters
 
 ```rust
@@ -738,6 +795,8 @@ fn first_word(s: &str) -> &str {
 
 <h2 id="0d42b1fd2a5b5b7309665776c9f05990"></h2>
 
+-----
+
 ### Other Slices
 
 ```rust
@@ -747,6 +806,8 @@ let slice = &a[1..3];
 ```
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
+
+-----
 
 ### Summary
 

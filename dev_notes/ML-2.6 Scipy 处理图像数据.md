@@ -20,6 +20,9 @@
 
 <h2 id="b19a2f80d04c56b985a7e69f63d04915"></h2>
 
+-----
+-----
+
 ##2.6. 使用 Numpy and Scipy 处理图像数据
 
 子模块 scipy.ndimage 提供了 操作 n-维 NumPy 数组的方法.
@@ -30,6 +33,8 @@ from scipy import ndimage
 ```
 
 <h2 id="b28007ec78c21d3a75965fe86a94680b"></h2>
+
+-----
 
 ###2.6.1. 打开并写到图像文件
 ```python
@@ -75,6 +80,9 @@ lena_memmap = np.memmap('lena.raw', dtype=np.int64, shape=(512, 512))
 
 <h2 id="9c086b0de474c7ee0e6c4994c23475a3"></h2>
 
+-----
+-----
+
 ##2.6.2. 显示图片
 
 显示灰度图
@@ -109,6 +117,8 @@ plt.imshow(l[200:220, 200:220], cmap=plt.cm.gray, interpolation='nearest')
 
 <h2 id="6162bb0c1053d06bb0eab255d3d82a53"></h2>
 
+-----
+
 ### 2.6.3. 基本操作
 图像是数组， 全部使用 numpy 工具
 ![](http://scipy-lectures.github.io/_images/axis_convention.png)
@@ -139,6 +149,8 @@ lena[range(400), range(400)] = 255
 
 <h2 id="9b81935266796da309310d0f565c1bca"></h2>
 
+-----
+
 #### 2.6.3.1. 统计信息
 ```python
 >>> lena = misc.lena()
@@ -149,6 +161,8 @@ lena[range(400), range(400)] = 255
 ```
 
 <h2 id="9a60835f1916a50185c8794cc1c2b06c"></h2>
+
+-----
 
 ####2.6.3.2. 集合变换 Geometrical transformations
 
@@ -168,12 +182,16 @@ rotate_lena_noreshape = ndimage.rotate(lena, 45, reshape=False)
 
 <h2 id="b8bed379bc03325e3f86fb26c21253bd"></h2>
 
+-----
+
 ###2.6.4. Image filtering 图像滤波 
 
 本地过滤器：由相邻像素的值的函数 替换掉像素值。
 Neighbourhood：方形（选择尺寸），磁盘，或更复杂的结构元素。
 
 <h2 id="891cbaca4b10e63615d5fd4702c2db94"></h2>
+
+-----
 
 #### 2.6.4.1. Blurring/smoothing 模糊/平滑
 高斯过滤器: Gaussian filter  from scipy.ndimage:
@@ -190,6 +208,8 @@ local_mean = ndimage.uniform_filter(lena, size=11)
 ![](http://scipy-lectures.github.io/_images/plot_blur_1.png)
 
 <h2 id="4b0aa8cd2942d9bdd095df1a0ff7ff99"></h2>
+
+-----
 
 ### 2.6.4.2. Sharpening 锐化
 锐化一张被模糊处理过的图片
@@ -208,6 +228,8 @@ sharpened = blurred_l + alpha * (blurred_l - filter_blurred_l)
 ![](http://scipy-lectures.github.io/_images/plot_sharpen_1.png)
 
 <h2 id="f8962c34d7ddbf921cc3fa7d6bf96cb4"></h2>
+
+-----
 
 ### 2.6.4.3. Denoising 去燥
 noisy lena
@@ -425,9 +447,13 @@ Closing: dilation + erosion
 
 <h2 id="0fd36be3567167c262fae183a580aa7c"></h2>
 
+-----
+
 ###2.6.5. Feature extraction 特征提取
 
 <h2 id="ea0f17b8c9b0298df7e75d7f009a9323"></h2>
+
+-----
 
 #### 2.6.5.1. Edge detection 边缘检测
 合成数据
@@ -458,6 +484,8 @@ sob = np.hypot(sx, sy)
 ![](http://scipy-lectures.github.io/_images/plot_find_edges_1.png)
 
 <h2 id="ff7de7467377d111993a153fc8d65657"></h2>
+
+-----
 
 ####2.6.5.2. Segmentation 分割
 
@@ -555,6 +583,8 @@ label_im[mask] = labels
 
 
 <h2 id="bda5dcbbc5b8462fcde1a64fcc8ffc35"></h2>
+
+-----
 
 ### 2.6.6. Measuring objects properties 测量对象属性
 ndimage.measurements : 注意，结果和配图可能会有差异

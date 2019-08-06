@@ -16,6 +16,9 @@
 
 <h2 id="83925001a044cdfe0c64e9a44345b66d"></h2>
 
+-----
+-----
+
 # CSharp
 
 Mono for Mac OS X: http://www.mono-project.com/download/
@@ -28,6 +31,8 @@ Mono for Mac OS X: http://www.mono-project.com/download/
 
 <h2 id="c15a09266c6dbf2bcb4bcabd6fb14f39"></h2>
 
+-----
+
 ### Basic Type
 
     bool , string , int , float
@@ -39,6 +44,8 @@ int[] codes = { 3, 8, 2 };
 ```
 
 <h2 id="c2eafc39088c6121225cd7b36a014621"></h2>
+
+-----
 
 ## Namespacing
 
@@ -73,6 +80,8 @@ namespace Tutorial1
 ```
 
 <h2 id="7de94d9ed336931705ec2921af14270a"></h2>
+
+-----
 
 ## Add Library Project
 
@@ -129,6 +138,8 @@ namespace Tutorial1
 
 <h2 id="74ef71a5f19a745d9aa9326cdb6d5801"></h2>
 
+-----
+
 ## Enum-ination
 
 ```
@@ -161,6 +172,8 @@ public class Weather : MonoBehaviour
 
 <h2 id="886ef5dbd655a6c97726d7091c6b173e"></h2>
 
+-----
+
 ## Struct
 
 A structure is a lightweight object.
@@ -175,6 +188,8 @@ A structure is a lightweight object.
 ```
 
 <h2 id="ba02bcf94a86de2bff29fbe88fcdbbcc"></h2>
+
+-----
 
 ## get / set
 
@@ -204,6 +219,8 @@ public string FullName
 
 
 <h2 id="26545d7107c7489959a37bd671181fca"></h2>
+
+-----
 
 ## Delegate
 
@@ -285,6 +302,8 @@ test.delegateMethod += Program.OtherClassMethod;
 
 <h2 id="575210159edf066ae8277de1c0671442"></h2>
 
+-----
+
 ## Delegate 和 Event
 
  1. Delegate和Event的关系
@@ -308,6 +327,8 @@ test.delegateMethod += Program.OtherClassMethod;
     - “public Notify notifier”相当于Class里面的Field，访问级别是public，而“public event Notify notifier”则相当于Property，访问级别是private！ 
 
 <h2 id="e9a8a0ce14bcd50d20531f380758b55f"></h2>
+
+-----
 
 ## Delegate / Event 小结
 

@@ -15,6 +15,9 @@
 
 <h2 id="c2bfb8f194cb52abbd9cc9397dafc5d4"></h2>
 
+-----
+-----
+
 # numpy tips
 
  - Use the shape method to find the dimensions of the array. (rows, columns)
@@ -68,6 +71,8 @@ array([[ 1.,  0.,  0.],
 
 <h2 id="84df0f6a0e96bb96e66fdba51a103ad5"></h2>
 
+-----
+
 ## Combining Arrays
 
 ```python
@@ -106,6 +111,8 @@ array([[ 1.,  0.,  0.],
 
 <h2 id="1f1ef887de84fa2b7f644b5878b4e6ce"></h2>
 
+-----
+
 ## Math Functions
 
 ```python
@@ -126,6 +133,8 @@ a.argmin()
 ```
 
 <h2 id="6b17874075ca37cc84a6c0d09e623e1c"></h2>
+
+-----
 
 ## Indexing / Slicing
 
@@ -192,6 +201,8 @@ array([[ 0,  1,  2,  3,  4,  5],
 
 <h2 id="f32b904edd83a21e8b374913f5631504"></h2>
 
+-----
+
 ## Iterating Over Arrays
 
  - Let's create a new 4 by 3 array of random numbers 0-9.
@@ -227,6 +238,8 @@ for i, j in zip(test, test2):
 
 <h2 id="1ae1043e3a38472916094e5c042464ed"></h2>
 
+-----
+
 ## 数据 slice
 
 
@@ -251,6 +264,8 @@ train_X = data[:, [0] ]
 
 <h2 id="86260398567c0091b1c262ef98512bd6"></h2>
 
+-----
+
 ## 数据过滤
 
 - 返回第2列 值是1的 第1列数据
@@ -261,6 +276,8 @@ Train_X[ pos , 0  ]
 ```
 
 <h2 id="6ab51568114b14d4784a1fa07f6717b5"></h2>
+
+-----
 
 ## 数据 拼接
 
@@ -273,6 +290,8 @@ np.insert( Train_X , 0, 1 , axis =1 )
 
 
 <h2 id="3c30b3189b43008ec08418c0d6afc49f"></h2>
+
+-----
 
 ## 数据转换
 

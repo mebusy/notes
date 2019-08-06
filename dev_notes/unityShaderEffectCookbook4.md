@@ -8,6 +8,9 @@
 
 <h2 id="6c02a2a261673dfcbb76a586c2cfb530"></h2>
 
+-----
+-----
+
 # 4. Reflecting Your World
 
 This is in part because we are able to use a new kind of texture called a Cubemap. This type of texture is made up of six textures and uses these six textures to surround the current surface in a cube-like fashion.
@@ -19,6 +22,8 @@ We will see how to generate our own Cubemaps from our own environments, and we a
 This is great for simulating metal, car paint, and even plastics. So in this chapter we are going to learn the following:
 
 <h2 id="cd1728b058c5c94b1a75961401eac1e6"></h2>
+
+-----
 
 ## Creating Cubemaps in Unity3D
 

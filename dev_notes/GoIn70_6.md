@@ -21,6 +21,9 @@
 
 <h2 id="551cb39cf6cd61643026b5c69708ace0"></h2>
 
+-----
+-----
+
 # HTML and email template patterns
 
  - In the standard library, Go provides template han- dling for both text and HTML.
@@ -33,6 +36,8 @@
 
 <h2 id="d5210007822d9412f9be8886d1cc15d5"></h2>
 
+-----
+
 ## 6.1 Working with HTML templates
 
  - The html and html/template packages in the standard library provide the foundation for working with HTML.
@@ -41,6 +46,8 @@
 
 
 <h2 id="6313af959752e16cbeae4d485965926c"></h2>
+
+-----
 
 ### 6.1.1 Standard library HTML package overview
 
@@ -105,6 +112,8 @@ func main() {
 
 <h2 id="d9e159dad96dcd326f096b14169e7be6"></h2>
 
+-----
+
 ### 6.1.2 Adding functionality inside templates
 
  - Templates in Go have functions that can and will be called from within them. As you just saw, the intelligence in the HTML templates adds escaping functions in the right place for you. 
@@ -115,6 +124,8 @@ func main() {
 
 
 <h2 id="99fa4e3716a3778375f4959fb3f00631"></h2>
+
+-----
 
 ####  TECHNIQUE 32 Extending templates with functions
 
@@ -197,11 +208,15 @@ func parseTemplateString(name, tpl string) *template.Template {
 
 <h2 id="1de21ea456194e25d3eb6be7d9093a72"></h2>
 
+-----
+
 ### 6.1.3 Limiting template parsing
 
  - Methods such as the following technique allow you to avoid extra work by using a `text/template/parser` that can speed up your application.
 
 <h2 id="98fb0d7ee0f06d754fe01fe1b12afcd3"></h2>
+
+-----
 
 #### TECHNIQUE 33 Caching parsed templates
 
@@ -246,12 +261,16 @@ func main() {
 
 <h2 id="9163470a01d717d0da1fbab47b9b39ec"></h2>
 
+-----
+
 ### 6.1.4 When template execution breaks
 
  - All software has the potential to fail. Template execution is no exception.
  - When template execution fails, an error is returned. But in some cases, template execution can fail and partial output is displayed to the end user. This can provide an experience you want to avoid.
 
 <h2 id="da3141d1f0022f7895b324724f0cdbd7"></h2>
+
+-----
 
 #### TECHNIQUE 34 Handling template execution failures
 
@@ -274,9 +293,13 @@ func main() {
 
 <h2 id="22f853fa756854fe5fa6308f42bc872d"></h2>
 
+-----
+
 ### 6.1.5 Mixing templates
 
 <h2 id="e4e2ec9594eedd2ef2ac71c25a313a90"></h2>
+
+-----
 
 #### TECHNIQUE 35 Nested templates
 
@@ -336,6 +359,8 @@ func diaplayPage(w http.ResponseWriter, r *http.Request) {
 
 
 <h2 id="9b8782b53f9f5e3d2cedeac1cfc8c662"></h2>
+
+-----
 
 #### TECHNIQUE 36 Template inheritance
 
@@ -410,6 +435,8 @@ h1 {
 
 
 <h2 id="b2914c824c6c6300b0bbf668e252aba9"></h2>
+
+-----
 
 #### TECHNIQUE 37 Mapping data types to templates
 
@@ -510,12 +537,16 @@ func diaplayPage(w http.ResponseWriter, r *http.Request) {
 
 <h2 id="fbc0cec7a75759e1aeb8c7fae504cdc3"></h2>
 
+-----
+
 ## 6.2 Using templates for email
 
  - The Go standard library doesn’t provide a special template package for email as it does for HTML.
  - Instead, the text and html template packages provide what you need to send text and HTML email.
 
 <h2 id="699d7da5fe23a02c72bb3e698f6d583b"></h2>
+
+-----
 
 ####  TECHNIQUE 38 Generating email from templates
 

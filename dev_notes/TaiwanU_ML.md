@@ -18,9 +18,14 @@
 
 <h2 id="5974f31b4017afa6df21ffb9b31e2666"></h2>
 
+-----
+-----
+
 # Neural Network : Notivation
 
 <h2 id="38ccc56b9a6fc2fd501fcc0bd27a0b45"></h2>
+
+-----
 
 ## Linear Aggregation of Perceptrons : Pictorial View 
 
@@ -38,6 +43,8 @@
 
 <h2 id="57bc3e3d04ba0a7c8184820673a233ed"></h2>
 
+-----
+
 ## Multi-layer Perceptrons : Basic Neural Network
 
  - one more layer of AND transform ?
@@ -49,6 +56,9 @@
 
 <h2 id="6e543476b9761e3e5988cfc245333417"></h2>
 
+-----
+-----
+
 # Neural Network Hypothesis: Output
 
 ![](../imgs/TU_ml_nn_output.png)
@@ -56,6 +66,8 @@
  - OUTPUT: simply a ***linear model*** with s = wᵀ· ϕ⁽²⁾(ϕ⁽¹⁾(x)) 
 
 <h2 id="ad0de27f8c1618cd8eb6d8738e12ab57"></h2>
+
+-----
 
 ## Transformation function
 
@@ -67,6 +79,8 @@
     - ![](../imgs/TU_ml_h_function_inNN.png)
 
 <h2 id="8a95a6d10dea403031ff71630d469a27"></h2>
+
+-----
 
 ## 结构
 
@@ -85,9 +99,14 @@
 
 <h2 id="6a68b6412b3d8a605c374d3c59e02694"></h2>
 
+-----
+-----
+
 # Deep Learning
 
 <h2 id="4e961821374743cc679d4351f5717263"></h2>
+
+-----
 
 ## Challenges and Key Techniques for Deep Learning
 
@@ -113,6 +132,9 @@
  
 <h2 id="9703d584c6cdcaf305edeb3f0567cd9e"></h2>
 
+-----
+-----
+
 # Autodecoder
 
 Autodecoder 是 实现好的 pre-training 的一个方式。
@@ -126,6 +148,9 @@ Autodecoder 是 实现好的 pre-training 的一个方式。
 
 <h2 id="447564e4e2b0171973515a26650e66a2"></h2>
 
+-----
+-----
+
 # 资料
 
  - 一天搞懂深度学习
@@ -137,6 +162,9 @@ Autodecoder 是 实现好的 pre-training 的一个方式。
 ---
 
 <h2 id="43751e4eda3557fca7ab0f1b99c3e6c7"></h2>
+
+-----
+-----
 
 # Network Structure: 
  
@@ -164,6 +192,9 @@ Autodecoder 是 实现好的 pre-training 的一个方式。
         - More suitalbe for predicting continuous values ( eg. tomorrow's temperature )
  
 <h2 id="20c649642589dd245bfa69669261e277"></h2>
+
+-----
+-----
 
 # Techniques to Train Neural Network 
 

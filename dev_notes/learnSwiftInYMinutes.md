@@ -46,6 +46,9 @@
 
 <h2 id="9fa684bc441f61891a932d056d3c8246"></h2>
 
+-----
+-----
+
 # var / let
 
 ```swift
@@ -58,6 +61,9 @@ let piText = "Pi = \(π), Pi 2 = \(π * 2)" // String interpolation
 ```
 
 <h2 id="ebb061953c0454b2c8ee7b0ac615ebcd"></h2>
+
+-----
+-----
 
 # Optional
 
@@ -72,6 +78,8 @@ someOptionalString = nil
 
 <h2 id="27c595f053043a5aae110c96f30cd8de"></h2>
 
+-----
+
 ## test Optional 
 
  - `If let structure`
@@ -85,6 +93,8 @@ if let test = someOptionalString {
 ```
 
 <h2 id="afb83c0e97053d46b323ad9e665ff64e"></h2>
+
+-----
 
 ### Tips for optional test
 
@@ -101,6 +111,8 @@ func userLogIn() {
 
 <h2 id="0253a6b48c383156005b1bcbf7511d49"></h2>
 
+-----
+
 ### Tips for A or B 
 
 ```swift
@@ -108,6 +120,8 @@ var colorToUse = userChosenColor ?? defaultColor
 ```
 
 <h2 id="154c68433b1feb0dae026c6d1c088732"></h2>
+
+-----
 
 ## force unwrap 
 
@@ -118,6 +132,9 @@ var unwrappedString: String! = someOptionalString
 ```
 
 <h2 id="2557bf0a34a37fc3bd3e0ad5528169b3"></h2>
+
+-----
+-----
 
 # Any / AnyObject 
 
@@ -133,12 +150,17 @@ let anyObjectVar: AnyObject = Int(1) as NSNumber
 
 <h2 id="a9fc91939a389c7c73e7a3f3cbf411cd"></h2>
 
+-----
+-----
+
 # Collections 
      
  - Array and Dictionary types are structs
  - So `let` and `var` also indicate that they are mutable (var) or immutable (let) when declaring these types
 
 <h2 id="4410ec34d9e6c1a68100ca0ce033fb17"></h2>
+
+-----
 
 ## Array
 
@@ -149,6 +171,8 @@ var explicitEmptyMutableStringArray: [String] = [] // same as above
 ```
 
 <h2 id="3beb75d1563ebc22253341be4ce57f44"></h2>
+
+-----
 
 ## Dictionary
 
@@ -163,9 +187,14 @@ var explicitEmptyMutableDictionary: [String: Float] = [:] // same as above
 
 <h2 id="6a5ef0f472b554214a936c0224815bb3"></h2>
 
+-----
+-----
+
 # Control Flow
 
 <h2 id="3f9178c25b78ed8bed19091bcb62e266"></h2>
+
+-----
 
 ## condition
 
@@ -180,6 +209,8 @@ if let num = someNumber, num > 3 {
 
 <h2 id="e12ad53a19d5e1aa87072007bad513a3"></h2>
 
+-----
+
 ## for loop (array)
 
 ```swift
@@ -191,6 +222,8 @@ for value in myArray {
 
 <h2 id="1980b393a3a8f90611e243e0c61dc737"></h2>
 
+-----
+
 ## for loop (dictionary)
 
 ```swift
@@ -201,6 +234,8 @@ for (key, value) in dict {
 ```
 
 <h2 id="70a0808d46a6536d1aadff4818c13532"></h2>
+
+-----
 
 ##  for loop (range)
 
@@ -216,6 +251,8 @@ shoppingList[1...2] = ["1", "2"]
 
 <h2 id="599788940f123832ffad54e986d4ba65"></h2>
 
+-----
+
 ## while loop 
 
 ```swift
@@ -226,6 +263,8 @@ while i < 1000 {
 ```
 
 <h2 id="feae46ea897378fa83e0b450eab370b4"></h2>
+
+-----
 
 ### Tips for while count 
 
@@ -238,6 +277,8 @@ for _ in 1...5 { print("Count") }
 
 <h2 id="ec0bf23eb62ddf3ea82dc51880a43246"></h2>
 
+-----
+
 ## repeat-while loop
 
 ```swift
@@ -247,6 +288,8 @@ repeat {
 ```
 
 <h2 id="bbc155fb2b111bf61c4f5ff892915e6b"></h2>
+
+-----
 
 ## Switch
 
@@ -266,6 +309,9 @@ default: // required (in order to cover all possible input)
 ```
 
 <h2 id="e93acb146e114b5dfa6ce2d12dcb96e4"></h2>
+
+-----
+-----
 
 # Functions
 
@@ -300,6 +346,8 @@ let price2 = pricesTuple2.lowestPrice
 
 <h2 id="e605db264eafbaa07401939571a467d9"></h2>
 
+-----
+
 ## guard statements
 
  - guards provide early exits or breaks
@@ -317,6 +365,8 @@ func testGuard() {
 
 <h2 id="d9cac8e5e11015c9cc7d13fa9d7677e2"></h2>
 
+-----
+
 ## Variadic Args
 
 ```swift
@@ -328,6 +378,8 @@ func setup(numbers: Int...) {
 ```
 
 <h2 id="bdad91ee74b78a8decd66266df5132b3"></h2>
+
+-----
 
 ## returning functions
 
@@ -341,6 +393,8 @@ func makeIncrementer() -> ((Int) -> Int) {
 ```
 
 <h2 id="464c902a8ab52292e8ff744656e60032"></h2>
+
+-----
 
 ## pass by ref
 
@@ -356,6 +410,9 @@ swapTwoInts(a: &someIntA, b: &someIntB)
 ```
 
 <h2 id="f2d630c9f5476e26be78c865bb09939a"></h2>
+
+-----
+-----
 
 # Closures
 
@@ -379,6 +436,8 @@ numbers.map{ number in 3 * number }
 
 <h2 id="13b8b710edc3280a9931abfb03438b5a"></h2>
 
+-----
+
 ## Trailing closure
 
 ```swift
@@ -386,6 +445,8 @@ numbers = numbers.sorted { $0 > $1 }
 ```
 
 <h2 id="b37e907d573b8391a600a8f6c7172e70"></h2>
+
+-----
 
 ## Tips : Use Closure to drop function parameter name 
 
@@ -397,6 +458,8 @@ var sumUsingClosure: (Int, Int) -> (Int) = { $0 + $1 }
 ``` 
 
 <h2 id="d8f0c71e98ec37923af15ec33a5bd3c4"></h2>
+
+-----
 
 ## Tips : 函数式编程
 
@@ -418,6 +481,9 @@ print(evens) // [2, 4, 6, 8, 10]
 
 
 <h2 id="2dec5ee9db863ffb68915b70bce4efe4"></h2>
+
+-----
+-----
 
 # Structures
  
@@ -442,6 +508,9 @@ let name = namesTable[1]  // Them
 ```
 
 <h2 id="ef43236673ca0bb606b14091061ac271"></h2>
+
+-----
+-----
 
 # Error Handling
 
@@ -484,6 +553,9 @@ func testTryStuff() {
 ```
 
 <h2 id="e9878b4854d29907146149f695cb1cfb"></h2>
+
+-----
+-----
 
 # Classes
 
@@ -563,6 +635,8 @@ let aShape = mySquare as Shape
 
 <h2 id="4c2830a68ad28e3eed67d66d79723d33"></h2>
 
+-----
+
 ## Tips : 计算属性 vs 方法 
 
  - 上例的 sideLength ／ perimeter 是相互关联的两组数据
@@ -570,6 +644,8 @@ let aShape = mySquare as Shape
 
 
 <h2 id="c6612e94b6339d9a1cc12175bdfef6f5"></h2>
+
+-----
 
 ## init 方法: 构造函数
 
@@ -592,6 +668,8 @@ let aShape = mySquare as Shape
 ![](https://cdn.pupboss.com/images/blog/2016/02/designated.png)
 
 <h2 id="85f00a6be586ae47e453334f7168588a"></h2>
+
+-----
 
 ## Optional init
 
@@ -623,6 +701,9 @@ print(myCircle!.getArea())    // 3
 ```
 
 <h2 id="1b22e7dc709b52f1767fe1eb5dc56625"></h2>
+
+-----
+-----
 
 # Enums 
 
@@ -690,6 +771,8 @@ print(chair.description())    // "Chair of Foo with 40 cm"
 
 <h2 id="8da882f7c6705dad7abd441bf232c671"></h2>
 
+-----
+
 ## Tips : Enum 类型安全
 
  - eg. switch中 对字符串做匹配，是一种很危险的做法
@@ -697,6 +780,9 @@ print(chair.description())    // "Chair of Foo with 40 cm"
  - 使用 enum  可以在编译期间发现你的错误
 
 <h2 id="9985b4390c40137573e6da05caf85874"></h2>
+
+-----
+-----
 
 # Protocols
 
@@ -735,6 +821,9 @@ class MyShape: Rect {
 
 <h2 id="63e4e92bb7d207ca577b11c07f827279"></h2>
 
+-----
+-----
+
 # Extension
 
  - Add extra functionality to an already existing type
@@ -749,6 +838,9 @@ extension Int {
 ```
 
 <h2 id="0d7bdbf7f4e4f0dc8ed310a01dee3502"></h2>
+
+-----
+-----
 
 # Generics
 
@@ -769,6 +861,9 @@ print(foundAtIndex == 2) // true
 ```
 
 <h2 id="b3c5827f54218753bb2c3338236446c2"></h2>
+
+-----
+-----
 
 # Operators
 

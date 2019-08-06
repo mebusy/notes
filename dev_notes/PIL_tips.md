@@ -8,6 +8,9 @@
 
 <h2 id="044b8396fbd6ae9de3416b0b6ac5322a"></h2>
 
+-----
+-----
+
 # Trim Image Whitespace
 
 ```python
@@ -24,6 +27,8 @@ def trim(im):
 ```
 
 <h2 id="e347469f9fd55367a3a83c5761256a2c"></h2>
+
+-----
 
 ## RGB 2 HLS
 

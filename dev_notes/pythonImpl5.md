@@ -12,9 +12,14 @@
 
 <h2 id="8007985f1ff8a2c3ae3abb1775b4ce2b"></h2>
 
+-----
+-----
+
 # 5 迭代器
 
 <h2 id="14926a66d27e071bd4821a2d86af55fa"></h2>
+
+-----
 
 ## 5.1 迭代器
 
@@ -89,6 +94,8 @@ StopIteration
 
 <h2 id="71364882befa312cee5d34aeb80f07ab"></h2>
 
+-----
+
 ## 5.2 生成器
 
  - 基于索引实现的迭代器有些丑陋
@@ -121,6 +128,8 @@ StopIteration
 ```
 
 <h2 id="ebe9865478157ea2f0762aa24f6a85f5"></h2>
+
+-----
 
 ### 协程
 
@@ -161,6 +170,8 @@ StopIteration
 
 <h2 id="0bae6d90ea71b1bd81064b43a6880b48"></h2>
 
+-----
+
 ## 5.3 模式
 
  - 异步编程同步化
@@ -192,6 +203,8 @@ class GenAsyncHandler(RequestHandler):
 
 
 <h2 id="1881f62b5fd451873d1bc5b9e9db67ea"></h2>
+
+-----
 
 ## 5.4 宝藏
 

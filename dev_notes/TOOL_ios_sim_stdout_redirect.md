@@ -7,6 +7,9 @@
 
 <h2 id="808223f71402e744750e77a2865d1277"></h2>
 
+-----
+-----
+
 # ios simulator stdout stderr redirect
 
 目的: 当 iOS app 脱离xcode，在 simulator 上运行时， 我们希望可以查看到详细的日志

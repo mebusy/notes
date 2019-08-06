@@ -21,10 +21,15 @@
 [原文](http://scipy-lectures.github.io/index.html)
 <h2 id="fca8e35517fe35e6d20e8d2e3bbc1bf5"></h2>
 
+-----
+-----
+
 ##2.5.1 sparse matrix 稀疏矩阵
 为什么是稀疏矩阵，省内存，空间，计算更有效率
 
 <h2 id="9cadc88507c523d3dea5a4f476db725b"></h2>
+
+-----
 
 ###2.5.1.3 稀疏矩阵典型应用
 1 求解偏微分方程partial differential equations
@@ -38,6 +43,8 @@
 
 <h2 id="15ddb90d4e7b762fddb46580bd9bcefb"></h2>
 
+-----
+
 ###2.5.1.4 
 ```python
 import numpy as np
@@ -47,6 +54,8 @@ import matplotlib.pyplot as plt
 ```
 
 <h2 id="c360446bd3390522432da925eda08668"></h2>
+
+-----
 
 ###2.5.1.5 稀疏结构可视化
 
@@ -58,6 +67,9 @@ plt.show()
 ```
 
 <h2 id="579875f7240429c4dadfb8219bf0bcd6"></h2>
+
+-----
+-----
 
 ##2.5.2 存储方案
 
@@ -73,6 +85,8 @@ dia_matrix: DIAgonal format
 * 注意 * 符号作为矩阵乘法，不是numpy的一部分，把稀疏矩阵传给numpy 不会起作用。
 
 <h2 id="2dc46803617f7ef534fcce33d32cdf39"></h2>
+
+-----
 
 ###2.5.2.1 通用方法
 
@@ -99,6 +113,9 @@ dia_matrix: DIAgonal format
 
 <h2 id="d1ccdc928930ec7d6b9d66d9d154a6f1"></h2>
 
+-----
+-----
+
 ##2.5.3 解线性系统
 
 * 稀疏 矩阵/特征值的解法，都在scipy.sparse.linalg
@@ -109,12 +126,16 @@ eigen: 稀疏特征值问题求解
 
 <h2 id="7b13e1c4fcfcdb6da049730df1b70967"></h2>
 
+-----
+
 ###2.5.3.1. Sparse Direct Solvers
 
 * 默认解法: SuperLU 4.0
 * 可选: umfpack , 效率推荐scikits.umfpack
 
 <h2 id="a4a00f0768812a252f71feaa5d5a55ac"></h2>
+
+-----
 
 ####2.5.3.1.1. Examples
 
@@ -151,6 +172,8 @@ Error:  [ 0.  0.  0.  0.  0.]
 
 <h2 id="b9d0a750d313c7b2e876e9695bdb5268"></h2>
 
+-----
+
 ###2.5.3.2. 迭代解
 
 * isolve 模块包含以下解法:
@@ -164,9 +187,13 @@ qmr (Quasi-Minimal Residual)
 
 <h2 id="03433a82bafbd7224fd8702e88608a38"></h2>
 
+-----
+
 #### 2.5.3.2.1. 通用参数
 
 <h2 id="6cd19b9ed1714fc2c5bd241abb7b68b3"></h2>
+
+-----
 
 #### 2.5.3.2.2. LinearOperator Class
 ```python
@@ -179,8 +206,12 @@ from scipy.sparse.linalg.interface import LinearOperator
 
 <h2 id="f1e287ba5f84969a417285aa500fdf34"></h2>
 
+-----
+
 ### 2.5.3.3. 特征向量 相关问题解法
 <h2 id="2c38fb63669a60c4149b23eb29a35ceb"></h2>
+
+-----
 
 ####2.5.3.3.1. eigen 模块
 * ARPACK 为解决大型特征值问题而设计的Fortran77的子程序的集合

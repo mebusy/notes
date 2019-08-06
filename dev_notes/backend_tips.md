@@ -13,9 +13,14 @@
 
 <h2 id="6edcb6f97b94edc1579875d8335df797"></h2>
 
+-----
+-----
+
 # Backend tips
 
 <h2 id="4b01e3a70a88bd2fd5aa2c11f7f00354"></h2>
+
+-----
 
 ## RESTful API test
 
@@ -23,6 +28,8 @@
 
 
 <h2 id="8215185b626db2bd246208973aabf16e"></h2>
+
+-----
 
 ## Squid set proxy 
 
@@ -62,6 +69,8 @@ sudo ./squid -k shutdown
 
 <h2 id="bdf38b3fd09b39e3a701db441cb2c2e9"></h2>
 
+-----
+
 ## Secure your REST API
 
  - https://www.slideshare.net/stormpath/secure-your-rest-api-the-right-way
@@ -71,9 +80,13 @@ sudo ./squid -k shutdown
 
 <h2 id="5a8feff0b4bde3eec9244b76023b791d"></h2>
 
+-----
+
 ## CORS 
 
 <h2 id="1e545f4bd1d09eb09ed43fabac84aba4"></h2>
+
+-----
 
 ### test whether your server supoort CORS
 
@@ -87,6 +100,8 @@ xhr.send();
 
 
 <h2 id="f779c9d1d9da7473f0eebf90d56dc319"></h2>
+
+-----
 
 ## check whether server enable 'keepalive' feature
 

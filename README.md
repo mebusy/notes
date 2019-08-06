@@ -23,6 +23,9 @@
 
 <h2 id="041d1704a45f737ddaa4380bcf1dfcc7"></h2>
 
+-----
+-----
+
 ####  专题
 
  - [Linear ALgebra](dev_notes/LA_readme.md) 
@@ -44,6 +47,9 @@
 
 <h2 id="8443a5022727ccc209d315492559f16f"></h2>
 
+-----
+-----
+
 #### 其它数学
 
  a | b | c | d
@@ -54,6 +60,9 @@
 
 ---
 <h2 id="a7f5f35426b927411fc9231b56382173"></h2>
+
+-----
+-----
 
 #### Python
 
@@ -70,6 +79,9 @@
 
 <h2 id="0c3266dd9928d074e79930f98b42ed7d"></h2>
 
+-----
+-----
+
 #### python 实现
 
  a | b | c | d
@@ -79,6 +91,9 @@
 
 <h2 id="c78e2ad97b328dbafbd49edf182136f3"></h2>
 
+-----
+-----
+
 #### Data Science
 
  a | b | c | d
@@ -86,6 +101,9 @@
 [Numpy](dev_notes/numpy_tips.md) | [Pandas](dev_notes/Pandas.md) | [Advanced Pandas](dev_notes/Pandas_advanced.md) | [Statistic in Python](dev_notes/Pands_StatisticalAnalysisInPython.md)
 
 <h2 id="6967a2c7c19fa61c072a4b0a1072e9c7"></h2>
+
+-----
+-----
 
 #### CS61A 
 
@@ -96,6 +114,9 @@
 
 <h2 id="0ae9478a1db9d1e2c48efa49eac1c7c6"></h2>
 
+-----
+-----
+
 #### Lua
 
  a | b | c | d
@@ -104,6 +125,9 @@
 
 
 <h2 id="818056dbd7e201243206b9c7cd88481c"></h2>
+
+-----
+-----
 
 #### swift
 
@@ -114,6 +138,9 @@
 
 <h2 id="aac4d78ee7d18636803896f8b8c16aa6"></h2>
 
+-----
+-----
+
 #### Operation System 
 
 a | b | c | d
@@ -123,6 +150,9 @@ a | b | c | d
 
 
 <h2 id="0d61f8370cad1d412f80b84d143e1257"></h2>
+
+-----
+-----
 
 #### C
 
@@ -135,6 +165,9 @@ a | b | c | d
 ---
 <h2 id="e84e30b9390cdb64db6db2c9ab87846d"></h2>
 
+-----
+-----
+
 #### Android
 
  a | b | c | d
@@ -144,6 +177,9 @@ a | b | c | d
 
 
 <h2 id="55f37d1fd483f6a85379640fe51aafa8"></h2>
+
+-----
+-----
 
 #### Dev
 
@@ -163,6 +199,9 @@ a | b | c | d
 ---
 <h2 id="8625e1de7be14c39b1d14dc03d822497"></h2>
 
+-----
+-----
+
 #### Tools
 
  a | b | c | d
@@ -172,6 +211,9 @@ a | b | c | d
 
 
 <h2 id="edc9f0a5a5d57797bf68e37364743831"></h2>
+
+-----
+-----
 
 #### Linux
 
@@ -184,6 +226,9 @@ a | b | c | d
 
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
+
+-----
+-----
 
 #### Misc 
 

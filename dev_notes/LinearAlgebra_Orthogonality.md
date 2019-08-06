@@ -27,9 +27,14 @@
 
 <h2 id="878bcbccb5d63db01d2193f2e15cae28"></h2>
 
+-----
+-----
+
 # Orthogonality
 
 <h2 id="70835fd4404a5ddec835801ba42ecfb0"></h2>
+
+-----
 
 ## 3.1 ORTHOGONAL VECTORS AND SUBSPACES
 
@@ -49,6 +54,8 @@ The first step is to find the ***length of a vector***.
 
 
 <h2 id="5ef1a2d8f6384823a45b583b55b4eb4f"></h2>
+
+-----
 
 #### Orthogonal Vectors
 
@@ -84,6 +91,8 @@ Useful fact: **If nonzero vectors v₁, ... , vk are mutually orthogonal** (ever
 
 
 <h2 id="1e3ebdd6bb6b76f4c2c83481ece42bac"></h2>
+
+-----
 
 #### Orthogonal Subspaces
 
@@ -174,6 +183,8 @@ Nullspace ⊥ Row space :
  
 <h2 id="a59d22eb966cffaaaa70554ec8025d2a"></h2>
 
+-----
+
 #### 3D Fundamental Theorem of Linear Algebra, Part II
 
  - The nullspace is the *orthogonal complement* of the row space in Rⁿ.
@@ -188,6 +199,8 @@ Nullspace ⊥ Row space :
 ---
 
 <h2 id="5e674f75381627d3b48028a69ae47b43"></h2>
+
+-----
 
 #### The Matrix and the Subspaces
 
@@ -230,6 +243,8 @@ When A⁻¹ fails to exist, the best substitute is the ***pseudoinverse*** A⁺.
 
 <h2 id="870df6062f5bb62d6f82187a8efebbe1"></h2>
 
+-----
+
 ## 3.2 COSINES PROJECTIONS ONTO LINES
 
 
@@ -250,6 +265,8 @@ A formula for p is easy when the subspace is a line.   Projection onto a higher 
 
 
 <h2 id="71c346793ba386be5a1d98cd2c34c105"></h2>
+
+-----
 
 #### Inner Products and Cosines
 
@@ -275,6 +292,8 @@ The numerator in formula (1) is exactly the inner product of a and b. It gives t
 
 
 <h2 id="20ccf5b7b420465ebecf5702c5d33297"></h2>
+
+-----
 
 #### Projection onto a Line
 
@@ -310,6 +329,8 @@ One final observation about `|aᵀb| ≤ ‖a‖·‖b‖` . Equality holds *if 
 
 
 <h2 id="77cc1691c5dd2037118a1d11e100cad7"></h2>
+
+-----
 
 #### Projection Matrix of Rank 1
 
@@ -354,6 +375,8 @@ Here c is cosθ, s is sinθ, and c2 + s2 = 1 in the denominator. This matrix P w
 
 <h2 id="8cccc981ad8d934119049052d2aad585"></h2>
 
+-----
+
 #### Transposes from Inner Products
 
 Finally we connect inner products to Aᵀ. Up to now, Aᵀ is simply the reflection of A across its main diagonal; the rows of A become the columns of Aᵀ, and vice versa. The entry in row i, column j of Aᵀ is the (j, i) entry of A:
@@ -381,6 +404,8 @@ The transposes turn up in reverse order on the right side, just as the inverses 
 
 
 <h2 id="4a2df06c2d276ad56402eecaa894e5d5"></h2>
+
+-----
 
 ## 3.3 PROJECTIONS LEAST SQUARES
 
@@ -417,6 +442,8 @@ Solving for x, the least-squares solution of this model system ax = b is denoted
 **3K**:  The least-squares solution to a problem ax = b  in one unknon is x̂ = aaᵀ/aᵀa .
 
 <h2 id="b764f194bfbd3ef0f3c068388cebeea7"></h2>
+
+-----
 
 #### Least-Squares Problems with Several Variables
 
@@ -465,6 +492,8 @@ Remark:
 
 <h2 id="5757e6b48c83a9147f7bea89ff984a9c"></h2>
 
+-----
+
 #### The Cross-Product Matrix of AᵀA
 
 The matrix AᵀA is certainly symmetric. Its transpose is (AᵀA)ᵀ = AᵀAᵀᵀ, which is AᵀA again. Its i, j entry (and j, i entry) is the inner product of column i of A with column j of A. The key question is the invertibility of AᵀA, and fortunately：
@@ -488,6 +517,8 @@ We show later that AᵀA is also positive definite (all pivots and eigenvalues a
 ---
 
 <h2 id="3922a817bfd16012568e8709192d410c"></h2>
+
+-----
 
 #### Projection Matrices
 
@@ -548,6 +579,8 @@ To repeat: We cannot invert the separate parts Aᵀ and A when those matrices ar
 ---
 
 <h2 id="52a7cbb3e182ed785dad8c7bc7a8e718"></h2>
+
+-----
 
 #### Least-Squares Fitting of Data
 
@@ -620,6 +653,8 @@ TODO **Weighted Least Squares**
 ---
 
 <h2 id="09bbcb83a58fddde91f52c847cd92d46"></h2>
+
+-----
 
 ## 3.4 ORTHOGONAL BASES AND GRAM-SCHMIDT
 
@@ -726,6 +761,8 @@ x = Qᵀb = ⎢         ⎥⎢b⎥ = ⎢    ⎥    (5)
 
 <h2 id="30de4e2d90eb5352ce69b4782264cd6b"></h2>
 
+-----
+
 #### Rectangular Matrices with Orthonormal Columns
 
 This chapter is about Ax = b, when A is not necessarily square.
@@ -804,6 +841,8 @@ Orthogonal columns are so much better that it is worth changing to that case. An
 ---
 
 <h2 id="e8bd1a0d73391e5faccdebb17e16f305"></h2>
+
+-----
 
 #### The Gram-Schmidt Process
 
@@ -886,6 +925,8 @@ C = ⎢1⎥ - ⎢0⎥ - 2⎢  0 ⎥  = ⎢1⎥.
 
 <h2 id="9abeff81b513ce7e5c2268c074e45858"></h2>
 
+-----
+
 #### The Factorization A = QR
 
 We started with a matrix A, whose columns were a, b, c. We ended with a matrix Q, whose columns are q₁,q₂,q₃. What is the relation between those matrices? The matrices A and Q are m x n when the n vectors are in m-dimensional space, and there has to be a third matrix that connects them.
@@ -946,6 +987,8 @@ The same idea of orthogonality applies to functions. The sines and cosines are o
 ---
 
 <h2 id="f7b94cc4db71bd4599e6e5dd3d560808"></h2>
+
+-----
 
 #### Function Spaces and Fourier Series
 

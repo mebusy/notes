@@ -48,9 +48,14 @@
 
 <h2 id="0390e809a5857323f39ee1814afca57d"></h2>
 
+-----
+-----
+
 # IAP
 
 <h2 id="f05fa4d8ea2700881fb6150bac6cdf69"></h2>
+
+-----
 
 ## IAP Process
 
@@ -72,6 +77,8 @@
 
 <h2 id="0581a394c7c5b9dbd1f282ec2281c044"></h2>
 
+-----
+
 ### Load In-App identifiers 
 
  - when it comes to loading these identifiers  in your applications, you can do it a couple of ways.
@@ -80,6 +87,8 @@
  - anyways you will have this set of strings
 
 <h2 id="0cd9982c3996eda6c09deadde434e851"></h2>
+
+-----
 
 ### Fetch Product Info  
 
@@ -100,6 +109,8 @@ Now, you've set a delegate method on this so you'll get a response in the `didRe
 
 <h2 id="a6f26c670dcdf3da2ef9a710e89d9912"></h2>
 
+-----
+
 ### Show In-App UI 
 
  - https://developer.apple.com/in-app-purchase/
@@ -119,6 +130,8 @@ let formattedString = formatter.string( from: product.price )
  - You can let StoreKit handle all this for you.
 
 <h2 id="3f89d0fc745c3be993b761e585311976"></h2>
+
+-----
 
 ### Request Payment
 
@@ -146,6 +159,8 @@ SKPaymentQueue.default().add(payment)
 ```
 
 <h2 id="9e9b93d51ddf2aa1ede1858c33f1ecd6"></h2>
+
+-----
 
 ### Process Transaction
 
@@ -209,6 +224,8 @@ When it comes to handling errors, couple of points to remember.
 
 <h2 id="dee5f9cf944eaaab05258db5154b9ac0"></h2>
 
+-----
+
 ### Unlock Content
 
  - If you are downloading content for in-app purchases, there's a couple of ways you can do this.
@@ -218,6 +235,8 @@ When it comes to handling errors, couple of points to remember.
         - you can associate downloadable content through iTunes Connect that's accessed through the SKProduct object, directly. 
 
 <h2 id="de6faa534d9385782a88506d048e58f9"></h2>
+
+-----
 
 ### Finish Transaction
 
@@ -249,9 +268,14 @@ SKPaymentQueue.default().restoreCompletedTransaction()
 
 <h2 id="2d8b2b36933cde770a9250f72b4dff90"></h2>
 
+-----
+-----
+
 # Advanced StoreKit
 
 <h2 id="45f6fa235894e559bbfed4c294aaa42c"></h2>
+
+-----
 
 ## Receipt validation
 
@@ -290,6 +314,8 @@ func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions:
 
 <h2 id="e0f2a22d127bdcb42f3437e829be742c"></h2>
 
+-----
+
 ### On-device validation 
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_receipt_0.png)
@@ -313,6 +339,8 @@ func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions:
 
 <h2 id="008f1851f21efaf5b56749dfa20c5dc6"></h2>
 
+-----
+
 #### Locate the receipt using Bundle API
 
  - 读取 receipt对象的 加密二进制数据
@@ -331,6 +359,8 @@ let receipt = Data(contentsOf: url)
 
 <h2 id="81587df5490a6a5ed548790720db2256"></h2>
 
+-----
+
 #### Tips for using OpenSSL
 
  - OpenSSL doesn't actually ship with iOS. You have to build it and include it in your app yourself.
@@ -345,6 +375,8 @@ let receipt = Data(contentsOf: url)
 
 <h2 id="621e5d2c86f816065245a62f6c68a898"></h2>
 
+-----
+
 #### Downloading pre-built solutions
 
  - maybe download a pre-build solution from github 
@@ -357,6 +389,8 @@ let receipt = Data(contentsOf: url)
 
 <h2 id="3a5f295a20d45ac638e2eed855dd6804"></h2>
 
+-----
+
 #### Certificate verification
 
  - When you're verifying the receipt -- the actual certificate used to sign the receipt, a couple of tips here.
@@ -368,6 +402,8 @@ let receipt = Data(contentsOf: url)
 
 
 <h2 id="a57740e6c71bea91d87abc940ac67f42"></h2>
+
+-----
 
 #### Receipt payload
 
@@ -384,6 +420,8 @@ let receipt = Data(contentsOf: url)
 
 <h2 id="f76f324bde9b4e65f1251223a787db65"></h2>
 
+-----
+
 #### Verify application
 
  - 现在你已经检查实际文件是否已经使用正确的Apple证书进行签名, 你需要确定进行签名的程序就是用户运行的程序。
@@ -394,6 +432,8 @@ let receipt = Data(contentsOf: url)
     - Not Info.plist values, plist 很容易被伪造修改
 
 <h2 id="6f40f01ca4e4a270e460a398370f25f2"></h2>
+
+-----
 
 #### Verify device
 
@@ -420,10 +460,14 @@ So now you've done those three checks. That's the process of validating the rece
 
 <h2 id="11fd4b761490e26bfc03282dad341fd5"></h2>
 
+-----
+
 ### In-App Purchase Process
 
 
 <h2 id="803016c6af90651418c47284500b5357"></h2>
+
+-----
 
 #### Processing transactions
 
@@ -434,9 +478,13 @@ So now you've done those three checks. That's the process of validating the rece
 
 <h2 id="4f3f99d97127265360c73642828cdbda"></h2>
 
+-----
+
 ### On-Device In-App Purchase State
 
 <h2 id="5db82a216102ce1d17d687b83ab34c87"></h2>
+
+-----
 
 #### In-app purchase attributes
 
@@ -458,6 +506,8 @@ So now you've done those three checks. That's the process of validating the rece
 
 <h2 id="95605d378317855617cfe23110dd6a66"></h2>
 
+-----
+
 #### Unlocking content on-device
 
  - 现在你可以读出这些交易信息，你可以适用这些信息来核实它们是否与 StoreKit 告诉你的用户购买内容一致
@@ -472,6 +522,8 @@ So now you've done those three checks. That's the process of validating the rece
 
 <h2 id="6b95b2f7cbcb9954a1d2bb2ede0b9c94"></h2>
 
+-----
+
 #### Subscription: Does the user have an active subscription?
 
  - Valid receipt ≠ subscribed
@@ -485,6 +537,8 @@ So now you've done those three checks. That's the process of validating the rece
 
 
 <h2 id="a11873e55117e863f3fa9bf9111797ad"></h2>
+
+-----
 
 #### Subscription:  Caveat
 
@@ -503,6 +557,8 @@ So now you've done those three checks. That's the process of validating the rece
 
 <h2 id="08cb56eeb715e8a6c37332633774221b"></h2>
 
+-----
+
 #### Receipt Refresh on iOS
 
  - If the receipt doesn’t exist or is invalid, refresh the receipt using StoreKit
@@ -519,6 +575,8 @@ request.start()
 
 <h2 id="f325ffdc194c967be1041f47a4303582"></h2>
 
+-----
+
 #### Receipt Refresh on macOS
 
  - If the receipt is invalid
@@ -529,9 +587,13 @@ request.start()
 
 <h2 id="45db248d4b941523cfe553958f42497b"></h2>
 
+-----
+
 ### Receipt Tips
 
 <h2 id="fddcd7391aeb092c0a61b433f627eb93"></h2>
+
+-----
 
 #### Restoring transactions vs. refreshing receipt
 
@@ -542,6 +604,8 @@ request.start()
  - So you kind of have that one chance to actually verify the consumable product and it won't be restored for either of these calls.
 
 <h2 id="68a460ec9852ff81d8f5bfd73b9502ea"></h2>
+
+-----
 
 #### Switching to subscriptions
 
@@ -558,6 +622,8 @@ request.start()
 
 <h2 id="03f5910152461e582cf8cd03b4490af1"></h2>
 
+-----
+
 ### Finish the transaction
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_finish_transaction.png)
@@ -573,9 +639,13 @@ request.start()
 
 <h2 id="331b5abc7e7efd004823b27dec6b5fe7"></h2>
 
+-----
+
 ### Server-Side Receipt Validation
 
 <h2 id="bd2a595308cde34bbfce510a813a5c3b"></h2>
+
+-----
 
 #### Verifying a purchase on your server
 
@@ -595,6 +665,8 @@ request.start()
 
 <h2 id="d893bbd350ae9e58d3ca5bbdd31f667d"></h2>
 
+-----
+
 #### Unlocking content on your server
 
  - In addition to receipt validity, `verifyReceipt` returns  
@@ -604,6 +676,8 @@ request.start()
  - Tell the device to finishTransaction()
 
 <h2 id="21a7bf8de8a8188401033b1714247992"></h2>
+
+-----
 
 #### Does the user have an active subscription?
 
@@ -615,6 +689,8 @@ request.start()
 
 <h2 id="87bf076f38bc5a9288b536cbc7593a83"></h2>
 
+-----
+
 ## Maintaining subscription state
 
  - particularly on the server
@@ -622,9 +698,13 @@ request.start()
 
 <h2 id="74c9628ca548f9f12d6104c8f2524c90"></h2>
 
+-----
+
 ## Developing with the Sandbox
 
 <h2 id="d8d54e1efcbc1ea594cbb4167576afb3"></h2>
+
+-----
 
 ### The Sandbox
 
@@ -640,6 +720,8 @@ request.start()
 
 <h2 id="46e951d214c2ed98e37d9b65f91f0734"></h2>
 
+-----
+
 #### Setting up the test environment
 
  - Setup in iTunes Connect
@@ -652,6 +734,8 @@ request.start()
 
 <h2 id="8109b0c0205566f624c6df98ca2c431c"></h2>
 
+-----
+
 #### App review considerations
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_server_side_app_review.png)
@@ -662,6 +746,8 @@ request.start()
  - Then try against Sandbox
 
 <h2 id="601c6fb1a4ee18105f8a5159346c6dfa"></h2>
+
+-----
 
 #### Server notifications
 

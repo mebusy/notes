@@ -8,6 +8,9 @@
 
 <h2 id="2b9d12e2be9c88ae4472d67fb4f304a8"></h2>
 
+-----
+-----
+
 # Chapter 6 : Intermediate-Code Generation
 
 In the analysis-synthesis model of a compiler, the front end analyzes a source program and creates an intermediate representation, from which the back end generates target code. 
@@ -39,6 +42,8 @@ The choice or design of an intermediate representation varies from compiler to c
 ---
 
 <h2 id="12afec74d79e469881c523f301883f14"></h2>
+
+-----
 
 ## 6.1 Variants of Syntax Trees
 

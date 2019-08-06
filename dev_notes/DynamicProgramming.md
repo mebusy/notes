@@ -46,6 +46,9 @@ Sometimes, *applying memoization to the naive recursive algorithm*   already res
 
 <h2 id="a4d3b02a466677324278a9a153fb4adb"></h2>
 
+-----
+-----
+
 ## 概述
 
 ![](http://upload.wikimedia.org/wikipedia/en/4/42/Shortest_path_optimal_substructure.png)  (1)

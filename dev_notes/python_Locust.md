@@ -34,9 +34,14 @@
 
 <h2 id="ee9c4c52006ab904c02898addbd22f91"></h2>
 
+-----
+-----
+
 # Locust
 
 <h2 id="7cd8fb6e31cc946c078d2740c76a9899"></h2>
+
+-----
 
 ## Installation
 
@@ -52,9 +57,13 @@ pip install locustio --user
 
 <h2 id="e1c7074e1c4d023402ee6164766e6fde"></h2>
 
+-----
+
 ## Quich start
 
 <h2 id="07a0fcb9aeae9150db1994f575768fc1"></h2>
+
+-----
 
 ### Example locustfile.py
 
@@ -98,6 +107,8 @@ class WebsiteUser(HttpLocust):
 
 <h2 id="5818c3f44e2dc782824809dface48782"></h2>
 
+-----
+
 ### Start Locust
 
 ```
@@ -126,6 +137,8 @@ $ locust -f locust_files/my_locust_file.py --slave --master-host=192.168.0.100 -
 
 <h2 id="0b83bfe6ef2a315017a7a511a659738d"></h2>
 
+-----
+
 ### Open up Locust’s web interface
 
 http://127.0.0.1:8089
@@ -134,9 +147,13 @@ http://127.0.0.1:8089
 
 <h2 id="a68f707e65b8641b73c329764e983414"></h2>
 
+-----
+
 ## Writing a locustfile
 
 <h2 id="17909d322ee85b757b0a2da94f5a6c65"></h2>
+
+-----
 
 ### The Locust class
 
@@ -171,6 +188,8 @@ class MobileUserLocust(Locust):
 
 <h2 id="9c07c110dc52aed577d7d571811f6d80"></h2>
 
+-----
+
 ### TaskSet class
 
  - a collection of tasks
@@ -182,6 +201,8 @@ class MobileUserLocust(Locust):
     - wait again, and so on
 
 <h2 id="856e1ed6703f100ddb34260e858157ff"></h2>
+
+-----
 
 ####  Declaring tasks:
 
@@ -205,6 +226,8 @@ class MobileUserLocust(Locust):
 ```
 
 <h2 id="69b67acae5e44a6d396ebf8b48e0f7ba"></h2>
+
+-----
 
 #### tasks attribute
 
@@ -265,6 +288,8 @@ class MyTaskSet(TaskSet):
 
 <h2 id="80b785988c0e04f1f45801f4f6b70c3d"></h2>
 
+-----
+
 #### Referencing the Locust instance, or the parent TaskSet instance
 
  - A TaskSet instance will have the attribute locust point to its Locust instance,
@@ -273,6 +298,8 @@ class MyTaskSet(TaskSet):
 ---
 
 <h2 id="68364ef1a4284141a6ee8f52d2b212c9"></h2>
+
+-----
 
 ### TaskSequence class
 
@@ -299,6 +326,8 @@ class MyTaskSequence(TaskSequence):
 
 <h2 id="bb8557529751c16ab2fdf9bda9d837d0"></h2>
 
+-----
+
 ### Setups, Teardowns, on_start, and on_stop
 
  - Locust optionally supports
@@ -306,6 +335,8 @@ class MyTaskSequence(TaskSequence):
     - TaskSet level setup and teardown, and TaskSet on_start and on_stop
 
 <h2 id="09288898f790687018c0a6e33f1fe57d"></h2>
+
+-----
 
 #### Setups and Teardowns
 
@@ -317,6 +348,8 @@ class MyTaskSequence(TaskSequence):
 
 <h2 id="c185ebe8be7bef6661e45bf00e6e3291"></h2>
 
+-----
+
 #### The on_start and on_stop methods
 
  - The on_start method is called when a simulated user starts executing that TaskSet class, 
@@ -324,6 +357,8 @@ class MyTaskSequence(TaskSequence):
  
 
 <h2 id="9466aa1dc479ae1c7da40c3d273d25ae"></h2>
+
+-----
 
 #### Order of events
 
@@ -337,6 +372,8 @@ class MyTaskSequence(TaskSequence):
 
 
 <h2 id="9e1edb42e7f308a64ccee832eb1ab5bf"></h2>
+
+-----
 
 ### Making HTTP requests
 
@@ -353,6 +390,8 @@ class MyTaskSet(TaskSet):
  - PS:  TaskSet has a convenience property called *client*  that simply returns `self.locust.client`.
 
 <h2 id="ea493d7b6bf94bafb89e84a3637c0a14"></h2>
+
+-----
 
 #### Using the HTTP client
 
@@ -379,6 +418,8 @@ response = self.client.post("/login", {"username":"testuser", "password":"secret
 
 <h2 id="8f515507f68651c99f27a6790119d54b"></h2>
 
+-----
+
 #### Safe mode
 
  - The HTTP client is configured to run in safe_mode
@@ -387,6 +428,8 @@ response = self.client.post("/login", {"username":"testuser", "password":"secret
  - The returned dummy Response’s content attribute will be set to None, and its status_code will be 0.
 
 <h2 id="b5431017aad3c9e5df25938d8cee350e"></h2>
+
+-----
 
 #### Manually controlling if a request should be considered successful or a failure
 
@@ -416,6 +459,8 @@ with client.get("/does_not_exist/", catch_response=True) as response:
 
 <h2 id="ef2e4c961c56e33d44553e9363e54ebb"></h2>
 
+-----
+
 #### Grouping requests to URLs with dynamic parameters
 
  - It’s very common for websites to have pages whose URLs contain some kind of dynamic parameter(s).
@@ -431,6 +476,8 @@ for i in range(10):
 ---
 
 <h2 id="3e38fcc9f82e983c75263725bd426b37"></h2>
+
+-----
 
 ## Running Locust distributed
 
@@ -450,6 +497,8 @@ locust -f createUser.py --host=https://stack.upaidui.com --no-web -c 4000 -r 500
 
 <h2 id="b5ef92324c2f19871c6c35b8303f2132"></h2>
 
+-----
+
 ## Running Locust without the web UI
 
  - You can run locust without the web UI 
@@ -463,6 +512,8 @@ $ locust -f locust_files/my_locust_file.py --no-web -c 1000 -r 100
  - and `-r` specifies the hatch rate (number of users to spawn per second).
 
 <h2 id="b7485a0fc6cd00ba97c74332b56d1b0d"></h2>
+
+-----
 
 ### Setting a time limit for the test
 
@@ -478,6 +529,8 @@ $ locust -f --no-web -c 1000 -r 100 --run-time 1h30m
 
 <h2 id="a6192bcf475fe53f0db6cc7f137a5924"></h2>
 
+-----
+
 ### Running Locust distributed without the web UI
 
  - If you want to run Locust distributed without the web UI, you should specify the `--expect-slaves` option when starting the master node, to specify the number of slave nodes that are expected to connect. 
@@ -485,6 +538,8 @@ $ locust -f --no-web -c 1000 -r 100 --run-time 1h30m
 
 
 <h2 id="3c26f7b316cf2486f480c9c90f5dbd9e"></h2>
+
+-----
 
 ## Retrieve test statistics in CSV format
 
@@ -505,6 +560,8 @@ locust.stats.CSV_STATS_INTERVAL_SEC = 5 # default is 2 seconds
 
 
 <h2 id="d67a333af59c0917a55250a93d5fbb99"></h2>
+
+-----
 
 ## maybe keep-alive issue ?
 

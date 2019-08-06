@@ -27,6 +27,9 @@
 
 <h2 id="0d2765b30694ee9f4fb7be2ae3b676dc"></h2>
 
+-----
+-----
+
 # Probability
 
 In part 2 we will assume that the models are given to us.
@@ -55,6 +58,8 @@ demo: ghost busters
 
 <h2 id="9df64ea44035467d4b3b1d3137556ccb"></h2>
 
+-----
+
 ## Uncertainty
 
 When we deal with an uncertainty usually we can split the random variables into 2 groups. 
@@ -76,6 +81,8 @@ When we deal with an uncertainty usually we can split the random variables into 
 
 <h2 id="8a93f7814e04aeb4a3435d0667b581d7"></h2>
 
+-----
+
 ## Random Variables
 
  - A random variable is some aspect of the world about which we (may) have uncertainty
@@ -94,6 +101,8 @@ When we deal with an uncertainty usually we can split the random variables into 
 
 
 <h2 id="65b393733707f82733184765aa503081"></h2>
+
+-----
 
 ## Probability Distribution 
 
@@ -130,6 +139,8 @@ When we deal with an uncertainty usually we can split the random variables into 
 
 <h2 id="7d5c8826b9086639339acd137cdef0cc"></h2>
 
+-----
+
 ## Joint Distributions
 
 The reason we care about joint distribution is because we want to infer things about variables we haven't observed based on observations we made of these observed variables. 
@@ -157,6 +168,8 @@ cold | rain | 0.3
 
 
 <h2 id="e4859243f072fa05a4c2f94eecfdfc4c"></h2>
+
+-----
 
 ## Probabilistic Models
 
@@ -190,6 +203,8 @@ cold | rain | true
 
 <h2 id="34b3d41097573990cabbad8ae1d9c969"></h2>
 
+-----
+
 ## Marginal Distributions
 
 corresponds to a sub-table of the original joint distribution  where you consider only a subset of the random variables.
@@ -205,6 +220,8 @@ corresponds to a sub-table of the original joint distribution  where you conside
 
 <h2 id="9b6ebd3c632df1c60267481ca65ec2f5"></h2>
 
+-----
+
 ## Conditional Probabilities
 
  - A simple relation between joint and conditional probabilities
@@ -213,6 +230,8 @@ corresponds to a sub-table of the original joint distribution  where you conside
 
 
 <h2 id="d22ece9f9682b018dfb17860cc5aedd7"></h2>
+
+-----
 
 ## Conditional Distribution
 
@@ -226,6 +245,8 @@ Each of these individual tables sums to 1.
 
 <h2 id="1a18f3ea65669c3a4a2a7eff540de62e"></h2>
 
+-----
+
 ## Normalization Trick
 
 It's a way to go from joint distributions to conditional distributions and has slightly quicker way and also a little more mechanical. 
@@ -234,11 +255,15 @@ It's a way to go from joint distributions to conditional distributions and has s
 
 <h2 id="730a75b3c3a77c4efa7e801fc1f306ea"></h2>
 
+-----
+
 ## To Normalize 
 
  All entries sum to 1. 
 
 <h2 id="e806b0d3eeb72e7431bb8cdb823c4517"></h2>
+
+-----
 
 ## Probabilistic Inference
 
@@ -259,6 +284,8 @@ It's a way to go from joint distributions to conditional distributions and has s
 ---
 
 <h2 id="314fa4378b3b188832e3f68fd46ac015"></h2>
+
+-----
 
 ## Inference by Enumeration
 
@@ -325,6 +352,8 @@ r   |  o.05/0.15 = 1/3
 
 <h2 id="47d0d61476b8bc9f946aba690e7193cf"></h2>
 
+-----
+
 ## The Product Rule
 
  - Sometimes have conditional distributions but want the joint
@@ -334,6 +363,8 @@ r   |  o.05/0.15 = 1/3
 
 
 <h2 id="62568a512f5b51ee525d33114a235b26"></h2>
+
+-----
 
 ## The Chain Rule
 
@@ -351,6 +382,8 @@ That means you have `n!` ways using the chain rule!.
 
 
 <h2 id="0a5416d1f7924e7448621d5634cddd61"></h2>
+
+-----
 
 ## Bayes' Rule
 
@@ -374,6 +407,8 @@ That means you have `n!` ways using the chain rule!.
     - ?? 
 
 <h2 id="534db09beb168ffccbe6a4f375c4c83d"></h2>
+
+-----
 
 ### Inference with Bayes' Rule
 
@@ -402,6 +437,8 @@ Because the cost of undiagnosed meningitis is really high.
 
 <h2 id="60e78d88608536cbe1771c99e9f822ca"></h2>
 
+-----
+
 ### Quiz: Bayes's Rule 
 
  - given:
@@ -416,6 +453,8 @@ P( rain | dry  ) = 1-P(sun|dry)
 ---
 
 <h2 id="993bd13d7ce69f119a65be6a3d92b3c0"></h2>
+
+-----
 
 ## Ghostbusters, Revisited 
 
@@ -436,6 +475,8 @@ P( rain | dry  ) = 1-P(sun|dry)
 
 <h2 id="a64838254ea118409679a4e28005fefb"></h2>
 
+-----
+
 ## Independcence
 
  - Two variables are independent `X⊥Y`  in a joint distribution if:
@@ -449,6 +490,8 @@ P( rain | dry  ) = 1-P(sun|dry)
 
 
 <h2 id="0f1513d04ac32269de73d0f17465488e"></h2>
+
+-----
 
 ## Conditional Independence 
 

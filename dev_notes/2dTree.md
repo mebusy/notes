@@ -18,9 +18,14 @@
 
 <h2 id="24e1aa2b5be033c7c0dcaacc43b2b645"></h2>
 
+-----
+-----
+
 # 2D Tree
 
 <h2 id="a97ea56b0e00b2379736ae60869ff66a"></h2>
+
+-----
 
 ## Question
 
@@ -29,6 +34,8 @@
 ![](../imgs/2dtree_question.png)
 
 <h2 id="70d1a3fb79b2abed2736ccad8427984f"></h2>
+
+-----
 
 ## Grid implementation
 
@@ -52,6 +59,8 @@
 
 <h2 id="8e09009743774efb9c0a7dceb8721b2c"></h2>
 
+-----
+
 ## Space-partitioning trees
 
 Use a tree to represent a recursive subdivision of 2d space.
@@ -65,6 +74,8 @@ Use a tree to represent a recursive subdivision of 2d space.
 ![](../imgs/2dtree_space_partitioning_trees.png)
 
 <h2 id="922b62791cfd0af7fb819dd01bf4efb6"></h2>
+
+-----
 
 ### Space-partitioning trees: applications
 
@@ -81,6 +92,8 @@ Use a tree to represent a recursive subdivision of 2d space.
 
 <h2 id="d11bea9d4fe095af9f1ba36b85f24c9d"></h2>
 
+-----
+
 ## 2d tree construction
 
  - Recursively partition plane into two halfplanes
@@ -88,6 +101,8 @@ Use a tree to represent a recursive subdivision of 2d space.
 ![](../imgs/2dtree_construction.png)
 
 <h2 id="740b6be09ccd4dc6bd568fd9dd316aa9"></h2>
+
+-----
 
 ## 2d tree implementation
 
@@ -109,6 +124,8 @@ Use a tree to represent a recursive subdivision of 2d space.
 
 <h2 id="e2f4979395b274707c6c5a37cd7ed619"></h2>
 
+-----
+
 ## Range search in a 2d tree
 
  - To find all points contained in a given query rectangle
@@ -121,6 +138,8 @@ Use a tree to represent a recursive subdivision of 2d space.
 
 <h2 id="db369429b7d2c848b75e9d11b977c8d1"></h2>
 
+-----
+
 ### Range search in a 2d tree analysis
 
  - Typical case. R + log N.
@@ -128,6 +147,8 @@ Use a tree to represent a recursive subdivision of 2d space.
 
 
 <h2 id="d8734e1f289bf1794afcd19da08a8a6d"></h2>
+
+-----
 
 ## Nearest neighbor search in a 2d tree
 
@@ -143,6 +164,8 @@ Use a tree to represent a recursive subdivision of 2d space.
 
 <h2 id="b5df2dde1669c08bc9b0f0b1a24fb85b"></h2>
 
+-----
+
 ### Nearest neighbor search in a 2d tree analysis
 
  - Typical case. log N.
@@ -152,6 +175,8 @@ Use a tree to represent a recursive subdivision of 2d space.
 ---
 
 <h2 id="37fe8d31c8ddcdaf1d3002f5c46d9aa1"></h2>
+
+-----
 
 ## 实现时，需要注意的地方
 

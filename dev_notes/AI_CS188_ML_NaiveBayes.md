@@ -28,6 +28,9 @@
 
 <h2 id="6856afc5ad38d66b5a3b6ff807def28d"></h2>
 
+-----
+-----
+
 # ML: Naive Bayes
 
  - Up until now: how use a model to make optimal decisions
@@ -40,9 +43,13 @@
 
 <h2 id="5c9335b28e6277ddbe0137f04e5e58a7"></h2>
 
+-----
+
 ## Classification
 
 <h2 id="a21106d371e3b781cefa4ea3fb2d4265"></h2>
+
+-----
 
 ### Example: Spam Filter
  
@@ -62,6 +69,8 @@
 
 <h2 id="de03e1744be4ca06ea00adc90983e302"></h2>
 
+-----
+
 ### Example: Digit Recognition
 
  - Input: images / pixel grids
@@ -77,6 +86,8 @@
 
 <h2 id="e080178592b7b3e0a141aaf2e841797e"></h2>
 
+-----
+
 ## Model-Based Classification
 
  - Model-based approach
@@ -89,6 +100,8 @@
 
 
 <h2 id="f5547915f2e7052183052cf6dbad10ce"></h2>
+
+-----
 
 ## Naïve Bayes for Digits
 
@@ -106,6 +119,8 @@
 
 <h2 id="e27a6ed5d3c268f25d469754df7657a9"></h2>
 
+-----
+
 ## General Naïve Bayes
 
  - A general Naive Bayes model:
@@ -119,6 +134,8 @@
 
 <h2 id="56fd5f361e6690802d9a291400491091"></h2>
 
+-----
+
 ### Inference for Naïve Bayes
 
  - Goal: compute posterior distribution over label variable Y
@@ -130,6 +147,8 @@
 
 
 <h2 id="b135ee99bc69046ed9ad6290d2554ab6"></h2>
+
+-----
 
 ## General Naïve Bayes, Cont.
 
@@ -147,12 +166,16 @@
 
 <h2 id="fd27d6138c6ef3054424479dd595b6d5"></h2>
 
+-----
+
 ### Example: Conditional Probabilities
 
 ![](../imgs/cs188_naive_Bs_example_CP.png)
 
 
 <h2 id="546d1ef7d3d18b0a466e84f7792d2a0f"></h2>
+
+-----
 
 ## Naïve Bayes for Text
 
@@ -172,6 +195,8 @@
     - Called “bag-of-words” because model is insensitive to word order or reordering
 
 <h2 id="6b03991376723e26480509d0419c1d80"></h2>
+
+-----
 
 ### Example: Spam Filtering
 
@@ -200,9 +225,13 @@ sleep | 0.00006 | 0.00001 | -76.0 | -80.5
 
 <h2 id="6e4505b252955533c68da1374c8a1eef"></h2>
 
+-----
+
 ## Training and Testing
 
 <h2 id="66899ae5468ceb740e26c9e451751434"></h2>
+
+-----
 
 ### Important Concepts
 
@@ -226,6 +255,8 @@ sleep | 0.00006 | 0.00001 | -76.0 | -80.5
 
 <h2 id="c9880662a00c1e4f5ae91bd05c1e072b"></h2>
 
+-----
+
 ## Parameter Estimation
 
  - Estimating the distribution of a random variable
@@ -235,9 +266,13 @@ sleep | 0.00006 | 0.00001 | -76.0 | -80.5
 
 <h2 id="7d2f4f11883a6048b4d25e8cfaff5d03"></h2>
 
+-----
+
 ## Smoothing
 
 <h2 id="cd5ec321ae237a8948ceab20a0ed5dbe"></h2>
+
+-----
 
 ### Laplace Smoothing
 
@@ -266,6 +301,8 @@ sleep | 0.00006 | 0.00001 | -76.0 | -80.5
 
 <h2 id="e7cc6a9fab279f966b739b2be71b2798"></h2>
 
+-----
+
 ## Estimation: Linear Interpolation* 
 
  - In practice, Laplace often performs poorly for P(X|Y):
@@ -279,9 +316,13 @@ sleep | 0.00006 | 0.00001 | -76.0 | -80.5
 
 <h2 id="89dd2948ecda7325c0001d8a0e51a2d8"></h2>
 
+-----
+
 ## Tuning
 
 <h2 id="bd8ac944519f42bc432e184e790e1481"></h2>
+
+-----
 
 ### Tuning on Held-Out Data
 
@@ -296,9 +337,13 @@ sleep | 0.00006 | 0.00001 | -76.0 | -80.5
 
 <h2 id="98f770b0af18ca763421bac22b4b6805"></h2>
 
+-----
+
 ## Features
 
 <h2 id="46a4571fe7fc8f635e1199e64c06e3c3"></h2>
+
+-----
 
 ### Errors, and What to Do
 

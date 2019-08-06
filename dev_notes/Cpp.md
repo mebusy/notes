@@ -38,9 +38,14 @@
 
 <h2 id="c81e728d9d4c2f636f067f89cc14862c"></h2>
 
+-----
+-----
+
 # 2
 
 <h2 id="8b8ba54e7ed58d6969a51a91d54e1545"></h2>
+
+-----
 
 ## 2.4  Graph as data structure
 
@@ -53,6 +58,8 @@
 
 <h2 id="eabdefffaadf27a2e17eac89b418d03c"></h2>
 
+-----
+
 ### List representation 
 
 A representation of a directed graph with n vertices can use a list , for example , an array of n lists of vertices.
@@ -64,6 +71,8 @@ A representation of a directed graph with n vertices can use a list , for exampl
 
  
 <h2 id="3304451984d7d4ffea5486e84e449302"></h2>
+
+-----
 
 ### Matrix vs. list directed graph
 
@@ -83,6 +92,8 @@ A representation of a directed graph with n vertices can use a list , for exampl
 
 <h2 id="227230825bf5db0b29a77b5e8f635b19"></h2>
 
+-----
+
 ### Dijkstra shortest path
 
 We're going to use undirected graphs with weights(cost). So costs are going to all be non-negative.
@@ -90,9 +101,14 @@ We're going to use undirected graphs with weights(cost). So costs are going to a
 
 <h2 id="3a82c7106488509941d71fa688027345"></h2>
 
+-----
+-----
+
 # C++ B
 
 <h2 id="5f12fc29b222aa9424266e81f94a342f"></h2>
+
+-----
 
 ## 1.4 Iterator Categories
 
@@ -111,11 +127,15 @@ for (auto i:w) ...
 
 <h2 id="7ea3be90d2db0c633e1a4bb97b65fbb6"></h2>
 
+-----
+
 ## 1.6 Bidiretional Iterator 
 
 Iteractor both support ++ and -- operator.
 
 <h2 id="b199fd823ad561a75c1164f72f3a25da"></h2>
+
+-----
 
 ## 1.7 Random Acess Iteractor
 
@@ -131,6 +151,8 @@ RandomAcess pickRandEI( RandomAccess first , RandomAccess last ) {
 
 
 <h2 id="38835a39d07b751a0f52392548224352"></h2>
+
+-----
 
 ## 1.9 Associative Containers
 
@@ -155,6 +177,8 @@ int main() {
 
 <h2 id="b99045ec5edde01d7405cdd9d484e67c"></h2>
 
+-----
+
 ## 1.10 STL:Algorithms Library
 
 Sorting Algorithm Prototypes
@@ -166,6 +190,8 @@ Sorting Algorithm Prototypes
     - elements remain in their relative same position
 
 <h2 id="9d2a97889138dd384b60bcde90d22559"></h2>
+
+-----
 
 ## 1.11 Non-mutating Algorithm
 
@@ -191,9 +217,13 @@ where = find(words, words+5, "hop") ;
 
 <h2 id="8c9a9aba5d3082f61648829828108863"></h2>
 
+-----
+
 ## 1.12 Lambda Expressions : for_each Function
 
 <h2 id="1dc1f865d68d3023ddd5ccccd3fe2f88"></h2>
+
+-----
 
 ### old style for_each()
 
@@ -211,6 +241,8 @@ int main() {
 
 <h2 id="f846829c9d3760db36427428211f1e0b"></h2>
 
+-----
+
 ### lambda c++11
 
  - [] : lambda 
@@ -222,6 +254,8 @@ int main() {
 
 <h2 id="2a200b3f9c1c0b836ece23a6ea362f17"></h2>
 
+-----
+
 ### Mutating Function
 
  - template <class InputIter,class OutputIter> 
@@ -232,6 +266,8 @@ int main() {
 
 
 <h2 id="9220fb7c282f0c6605d9f35e13c57944"></h2>
+
+-----
 
 ## 1.13 Numerical algorithms
 
@@ -259,12 +295,16 @@ int main() {
 
 <h2 id="e87d732617748bf074865fbbce1a4582"></h2>
 
+-----
+
 ## 1.14 Functional Objects
 
  - Function objects are clases that have `operator()` defined 
  - `sum = accumulate( v1, v1+3, 0.0 , minus<int>() ) ;  // sum = -7`
 
 <h2 id="2025d93d18bf7503037e013bbfda141a"></h2>
+
+-----
 
 ### Generator Object
 
@@ -284,6 +324,8 @@ class gen {
 
 <h2 id="3861b29161427b38210b5fdbbffa7a1b"></h2>
 
+-----
+
 ## 1.15 Define Function Object Classes:  Function Adapters
 
  - Function Adapters
@@ -293,6 +335,8 @@ class gen {
     - Adapters for pointer to function 
 
 <h2 id="de828ad4dbe13bf1a9930b26a5aa502e"></h2>
+
+-----
 
 ## 2.3 Basic of Inheritance
 
@@ -304,6 +348,8 @@ class point: public duo {
 
 <h2 id="62083d2f266cdfad9baa4aaa5ce8531d"></h2>
 
+-----
+
 ## 2.4 C++11 Feature : "final"
  
 ```
@@ -313,6 +359,8 @@ class point3d final : public point { // no further inheritance
 
 
 <h2 id="20281bb92cdbc42ed96aaafa8336dba8"></h2>
+
+-----
 
 ##  2.14 Virtual Function Selection
 
@@ -340,11 +388,15 @@ class point3d final : public point { // no further inheritance
 
 <h2 id="18ee821d94f99da3b611714b62c27a81"></h2>
 
+-----
+
 ## 2.15 Virtual Confusion with Overloading 
 
 基类 有虚函数重载，派生类 要避免 override 这个overload 的部分方法，否则会出现混乱
 
 <h2 id="80ec8c1aa9d77641d66b2d65f1a819b3"></h2>
+
+-----
 
 ### Restrictions on Virtual Functions 
 
@@ -356,6 +408,8 @@ class point3d final : public point { // no further inheritance
  
 
 <h2 id="a86bfb8c341e12c9b614fd2a4c94c24e"></h2>
+
+-----
 
 ## 3.2 Some Further Constructors
 
@@ -369,6 +423,8 @@ explicit my_container (T * b ) : my_container()  {
 
 
 <h2 id="fe7f80120156a50493bf86436ed5dedf"></h2>
+
+-----
 
 ## 3.10 Abstract Base Class = 0  Notation 
 
@@ -385,6 +441,8 @@ class LeafNode: public Node {
 
 <h2 id="3b7f38abea242fd2c0d2de96986f2551"></h2>
 
+-----
+
 ## 4.6 Asserts and Exceptions
 
  - Static_asserts added to C++ 11  allow ***compiler*** to statically test conditions
@@ -394,6 +452,8 @@ class LeafNode: public Node {
 
 
 <h2 id="022c2a7f8dad1e47d6f88eade9351b64"></h2>
+
+-----
 
 ## 4.8 Exception 
 
@@ -410,6 +470,8 @@ try {
 
 <h2 id="5be82f8b49f7de553e3463e57899e4e6"></h2>
 
+-----
+
 ## 4.10 C++11 Standard
 
  - tuple  -- pair and more
@@ -422,6 +484,8 @@ try {
 
 <h2 id="f38f209014f0a6500ff416757a4c9a4d"></h2>
 
+-----
+
 ## 4.11 Thread 
 
  - `<thread>`
@@ -432,6 +496,8 @@ try {
     - `<condition_variable>`
 
 <h2 id="8e4f88e4e3418d17c64f080cd4b28cef"></h2>
+
+-----
 
 ## 4.12 tuple 
 

@@ -16,13 +16,20 @@
 
 <h2 id="fce483626a497324f611e4f2b5280580"></h2>
 
+-----
+-----
+
 # 6 Assembler
 
 <h2 id="675ad263deec8581de3c4355b16dc008"></h2>
 
+-----
+
 ## 6.1  Assembly Language and Assemblers
 
 <h2 id="1697b74ff75c9037295ea0360dab438e"></h2>
+
+-----
 
 ### Basic Asserbler Logic
 
@@ -44,6 +51,8 @@ Until end-of-file
 
 <h2 id="5214a8a633c296d1d9d504fc54556692"></h2>
 
+-----
+
 ### Symbols
 
  - Used for 
@@ -58,15 +67,21 @@ Until end-of-file
 
 <h2 id="a3705a0beeda458fbe09f9670a1240e9"></h2>
 
+-----
+
 ## 6.2 The Hack Assembly Language 
 
 ![](../imgs/n2t_hack_assembler_symbols.png)
 
 <h2 id="c399c1815d9e255c57e6c274579b8a20"></h2>
 
+-----
+
 ## 6.3 The Assembly Proces -- Handling Instructions 
 
 <h2 id="a4915c54182d3d2de090f589e46eb63f"></h2>
+
+-----
 
 ### Translating A-instructions 
 
@@ -81,6 +96,8 @@ Until end-of-file
 
 <h2 id="1d4a9403e40681b2681e88aee8685845"></h2>
 
+-----
+
 ### Translating C-instructions 
 
  - `dest = comp ; jump`
@@ -89,6 +106,8 @@ Until end-of-file
 
 
 <h2 id="ff03d198aff223f51c6fe6743fd2ff49"></h2>
+
+-----
 
 ## 6.4: The Assembly Process - Handling Symbols
 
@@ -103,6 +122,8 @@ Until end-of-file
 
 
 <h2 id="4c88a50b09faa4df288744256a85ae83"></h2>
+
+-----
 
 ## 6.6: Project 6 Overview: Programming Option
 

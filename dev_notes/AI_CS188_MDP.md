@@ -51,6 +51,9 @@
 
 <h2 id="1ccc83e0a393554a640bc1e194680b67"></h2>
 
+-----
+-----
+
 # Markov Decision Processes
 
 
@@ -65,6 +68,8 @@ maybe you're a can opener robot and you take the can and you open it , and what'
 
 
 <h2 id="92a5227a1ada900fd758bfb60872e6a2"></h2>
+
+-----
 
 ## Example : Grid World 
 
@@ -87,6 +92,8 @@ maybe you're a can opener robot and you take the can and you open it , and what'
 
 <h2 id="7b549072ca47e93fb374c9eb1a430bca"></h2>
 
+-----
+
 ## Grid World Actions
 
 you're not sure what the results gonna be. 
@@ -95,6 +102,8 @@ if you take north , you may move left, and it's bad.  So when you plan you're go
 
 
 <h2 id="1ccc83e0a393554a640bc1e194680b67"></h2>
+
+-----
 
 ## Markov Decision Processes
 
@@ -136,6 +145,8 @@ MDP is basically taking search that we know and love , and adding the necessary 
 
 <h2 id="1713fea7ca38d867ec082e94dcc902e8"></h2>
 
+-----
+
 ## What is Markov about MDPs ?
 
  - “Markov” generally means that given the present state, the future and the past are independent
@@ -148,6 +159,8 @@ MDP is basically taking search that we know and love , and adding the necessary 
 So this is important property in MDP is to make sure that you define your transition function and your state in such a way that the transition probabilities depend only on the current state and action. 
 
 <h2 id="9e476387322a5c250893cf9c5c4ce78c"></h2>
+
+-----
 
 ## Policies
 
@@ -167,6 +180,8 @@ So on one hand expectimax is a way of solving these problems and on the other ha
 
 <h2 id="d115341e528ef1f1b013adbf6f075f21"></h2>
 
+-----
+
 ## Optimal Policies
 
 ![](../imgs/cs188_mdp_optimal_policies.png)
@@ -179,6 +194,8 @@ What happens if we make this living penalty more severe ? check those rest 3 cas
  
 
 <h2 id="b2f5ac1e017207a93a053f4d77b1c9b3"></h2>
+
+-----
 
 ## Example: Racing
 
@@ -194,6 +211,8 @@ What happens if we make this living penalty more severe ? check those rest 3 cas
 
 <h2 id="91f1e32998454ca46d598646f7260d3c"></h2>
 
+-----
+
 ### Racing Search Tree
 
 ![](../imgs/cs188_mdp_racing_car_search_tree.png)
@@ -205,6 +224,8 @@ It's very like an expectimax tree but we'll see very shortly why we might not wa
 
 
 <h2 id="b92430f9047d02bbe1a11b4118967089"></h2>
+
+-----
 
 ## MDP Search Trees
 
@@ -220,6 +241,8 @@ It's very like an expectimax tree but we'll see very shortly why we might not wa
  
 
 <h2 id="e25373331ca3b1a3b334be0d44204fd0"></h2>
+
+-----
 
 ## Utilities of Sequences
 
@@ -237,6 +260,8 @@ you might care whether or not you get these 4 gems step-by-step or all at the en
 
 
 <h2 id="339bfa7ae181495413ac7e41d61c714c"></h2>
+
+-----
 
 ## Discounting 
 
@@ -265,6 +290,8 @@ you might care whether or not you get these 4 gems step-by-step or all at the en
 
 <h2 id="945d15839357ecf3965c8cfb2f679995"></h2>
 
+-----
+
 ## Stationary Preferences
 
 What we want from an agent that looks at sequences of rewards in order to consider it kind of reasonable. 
@@ -283,6 +310,8 @@ if I liked A better than B now I should like it better shifted into the future a
 
 <h2 id="1148a36cad988c80eafafde4e7a9daf0"></h2>
 
+-----
+
 ## Infinite Utilities ?!
 
  - Problem: What if the game lasts forever?  Do we get infinite rewards?
@@ -299,6 +328,8 @@ Here are multiple possible solutions, in general we're gonna have discounts that
 
 <h2 id="37aad9792c79680719c1e086fd0c815a"></h2>
 
+-----
+
 ## Recap: Defining MDPs
 
  - Markov decision processes:
@@ -314,9 +345,13 @@ Here are multiple possible solutions, in general we're gonna have discounts that
 
 <h2 id="b2bfba9db087cb6ccda7abec663dd720"></h2>
 
+-----
+
 ## Solving MDPs
 
 <h2 id="60dc1ec3b23db40849df64de46bcd91a"></h2>
+
+-----
 
 ### Optimal Quantities 
 
@@ -352,6 +387,8 @@ This shows the Q values. From each state , except for the exit state , you got 4
 
 <h2 id="80597d513b9a36fc1e61e869000ff30f"></h2>
 
+-----
+
 ## Values of States 
 
 So we want to be able to compute these values. We'd like to be able to take an MDP and compute these expectimax values for a state and actully we usually do with these algorithms we compute the values for all of the states. We'll see that there are ways to save time by doing all the states at once provided your MDP is small enough that you can actually go through all the states. 
@@ -371,6 +408,8 @@ So we want to be able to compute these values. We'd like to be able to take an M
 
 <h2 id="91f1e32998454ca46d598646f7260d3c"></h2>
 
+-----
+
 ### Racing Search Tree
 
 ![](../imgs/cs188_mdp_racing_car_search_tree_infinite.png)
@@ -384,6 +423,8 @@ So we want to be able to compute these values. We'd like to be able to take an M
     
 
 <h2 id="50ca9febbd3c1377d708c024f60310fc"></h2>
+
+-----
 
 ## Time-Limited Values
 
@@ -438,6 +479,8 @@ Example:
 
 <h2 id="24539dd5879397f8300a78d2bebba208"></h2>
 
+-----
+
 ## Computing Time-Limited Values
 
 ![](../imgs/cs188_mdp_compute_time_limited_values.png)
@@ -454,6 +497,8 @@ Then at the very top where only computing one value but conceptually this top la
 So you see at the bottom even though the tree has grown immensely it's still only 3 values, and each layer is V<sub>k</sub> for K . So this actually gives us an idea of how we can compute these values in an efficient way where we don't get the explosion in depth because you can see at the bottom it's no worse than at the top. That's now going called value iteration.
 
 <h2 id="4b0084dc52868eb35410667a6679229a"></h2>
+
+-----
 
 ## Value Iteration
 
@@ -493,6 +538,8 @@ Actually , Value iteration will converge to the same vector of values (V<sup>\*<
 
 <h2 id="d5cac644e6c3bb194c235c0b55977d1d"></h2>
 
+-----
+
 ### Example: Value Iteration 
 
 Assume no discount!
@@ -513,6 +560,8 @@ The optimal policy is if you're cool go fast and once you warm up you go slow an
  
 <h2 id="8645457c64703c956325a6f44824acdb"></h2>
 
+-----
+
 ## Convergence 
 
 How do we know ?
@@ -530,6 +579,8 @@ But there are cases where we can show that it will converge.
 ---
 
 <h2 id="9223390b107c103d49be9c7fbe9cc601"></h2>
+
+-----
 
 ### Value Iteration Convergence
 
@@ -563,6 +614,8 @@ But there are cases where we can show that it will converge.
 
 <h2 id="61640a53698e261681c172ef08db4f13"></h2>
 
+-----
+
 ## Recap: MDPs
 
 
@@ -580,6 +633,8 @@ Now in value iteration the vectors V<sub>k</sub> themselves were  interpretable 
 
 <h2 id="0d2fefe88e5d008dbb325c962c5b6f0e"></h2>
 
+-----
+
 ## Policy Methods
 
 ![](../imgs/cs188_mdp_policy_methods.png)
@@ -588,11 +643,15 @@ finding optimal policies that work over the policies themselves and make the pol
 
 <h2 id="abdad08f23e1ad71d82cbdd56cfcdd30"></h2>
 
+-----
+
 ## Policy Evaluation
 
 You got a policy in your hand, maybe it's good meybe it's bad . What you want to know is for this policy ,which is presumably suboptimal , how good is it ? How will I perform if I follow it. For each state what will the value be not under optimal action but under this specific policy. 
 
 <h2 id="30112022d9cb040ec9e1b2b577503981"></h2>
+
+-----
 
 ### Fixed Policies
 
@@ -612,6 +671,8 @@ Of course the value at the root is presumably going to be worse unless the π(s)
 
 <h2 id="bfb9b9e2f445011c32315f61f81634c5"></h2>
 
+-----
+
 ### Utilities for a Fixed Policy 
 
  - Another basic operation: compute the utility of a state s under a fixed (generally non-optimal) policy
@@ -629,6 +690,8 @@ So we imagine we've got some policy π , it presumably bad but we're stuck with 
 π : the function π is a policy. it takes a state and returns an action. It has no information about past or future . So far it is a function from states to actions. What is actually living inside the implementation of π ? It could be a lookup table, or it could be a snippet of code which executes expectimax. Now π is implemented by on-demand expectimax computations which is not what value iteration does. 
 
 <h2 id="1a1b5dffe87b8d0f61d62897935810f1"></h2>
+
+-----
 
 ### Example : Policy Evaluation
 
@@ -656,6 +719,8 @@ Sometimes we actually have a policy we just want to know how good it is but we'r
 
 <h2 id="abdad08f23e1ad71d82cbdd56cfcdd30"></h2>
 
+-----
+
 ### Policy Evaluation
 
  - How do we calculate the V’s for a fixed policy π
@@ -669,6 +734,8 @@ Sometimes we actually have a policy we just want to know how good it is but we'r
 
 <h2 id="51f9aace37db4e0d0e8573fee03ea997"></h2>
 
+-----
+
 ## Policy Extraction
 
 Policy evaluation was about taking a policy and figuring out for each state how good it was. 
@@ -676,6 +743,8 @@ Policy evaluation was about taking a policy and figuring out for each state how 
 Now we're going to look at the opposite direction : what happens if I give you the values and I asked you the question what policy should I use if these values are correct. 
 
 <h2 id="34833eb820b21cf1bc001e77769ade32"></h2>
+
+-----
 
 ### Computing Actions from Values 
 
@@ -709,6 +778,8 @@ So what I'll do is to consider every action *a* from state *s* and figure out wh
 
 <h2 id="6fcb06d49e1d3878ae11e06deb275042"></h2>
 
+-----
+
 ### Computing Actions from Q-Values
 
 What about Q-Values ?  Q-Values is kind of weird.  
@@ -726,6 +797,8 @@ What about Q-Values ?  Q-Values is kind of weird.
 
 <h2 id="93eb2ac210d009dea486d01934ca6116"></h2>
 
+-----
+
 ## Policy Iteration 
 
 ***Policy Iteration*** combines the idea of evaluating one policy , with the idea of improving that policy on the basis of those values. 
@@ -733,6 +806,8 @@ What about Q-Values ?  Q-Values is kind of weird.
 You can think of policy iteration as you've got a policy in front of you and you're constantly trying to make it better.
 
 <h2 id="d9622bd26a30e7e2d9272dc2488415cd"></h2>
+
+-----
 
 ### Problems with value iteration
 
@@ -762,6 +837,8 @@ Policy tends to finish long before the values converge.
 So what can we do?  The idea herer is an algorithm called **policy iteration**. 
 
 <h2 id="adafb823f7939e061bf30caad4dddbae"></h2>
+
+-----
 
 ## policy iteration
 
@@ -807,6 +884,8 @@ Another way of looking at this algorithm is thinking that we're doing value iter
 
 <h2 id="f6c0e3a1c3cfabd32ae8d3ae741fcf0a"></h2>
 
+-----
+
 ## Comparison 
 
  - Both value iteration and policy iteration compute the same thing (all optimal values)
@@ -823,6 +902,8 @@ Another way of looking at this algorithm is thinking that we're doing value iter
 
 <h2 id="ae6ed616074a489e9415c789beb2b2b2"></h2>
 
+-----
+
 ## Summary: MDP Algorithms
 
  - So you want to….
@@ -836,6 +917,8 @@ Another way of looking at this algorithm is thinking that we're doing value iter
 
 
 <h2 id="c4f36742c324ffd3a65b06a71c7ae8cd"></h2>
+
+-----
 
 ## Double Bandits
 
@@ -872,6 +955,8 @@ It doesn't matter which state you're at because the actions do the same thing fr
 
 <h2 id="0dc48d869913049d654fb802ff0093d2"></h2>
 
+-----
+
 ## Offline Planning
 
  - Solving MDPs is offline planning
@@ -887,6 +972,8 @@ what's the value for playing blue?  You always get 1$ and if you only play blue 
 Yet I know the values I know the optimal policy : always play red.  
 
 <h2 id="ffd944085fd77275ec8af19385faca8c"></h2>
+
+-----
 
 ### Lets play
 
@@ -907,6 +994,8 @@ This is a different setting where there is an MDP that you know red has a payoff
 
 <h2 id="7553726584ed6f80e379b6e8190ec1bc"></h2>
 
+-----
+
 ### What Just Happened?
 
  - That wasn’t planning, it was learning!
@@ -922,6 +1011,8 @@ This is a different setting where there is an MDP that you know red has a payoff
 
 
 <h2 id="8343234e23eeed284d9f9c00356c8219"></h2>
+
+-----
 
 ## Asynchronous Value Iteration \*
 

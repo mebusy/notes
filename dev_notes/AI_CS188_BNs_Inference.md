@@ -36,16 +36,23 @@
 
 <h2 id="38e014f1208386f021d316fdc47cc05e"></h2>
 
+-----
+-----
+
 # Bayes' Nets: Inference
 
 
 <h2 id="93e93ad719ade4a5e39433beadf3956a"></h2>
+
+-----
 
 ## Recap: Example: Alarm Network
 
 ![][1]
 
 <h2 id="bfc7647fbfe6e589911d2da73377b475"></h2>
+
+-----
 
 ## Inference
 
@@ -60,6 +67,8 @@
 
 <h2 id="314fa4378b3b188832e3f68fd46ac015"></h2>
 
+-----
+
 ## Inference by Enumeration
 
  - the first type of inference is the naive type of inference is inference by enumeration
@@ -71,6 +80,8 @@
  - see details in [Probability](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_Probability.md)
 
 <h2 id="501eae82a1dd02d9d72cb6f324e1d35d"></h2>
+
+-----
 
 ## Inference by Enumeration in Bayes’ Net
 
@@ -89,6 +100,8 @@
 
 <h2 id="703eaeb1dc68923979993136c3c56afe"></h2>
 
+-----
+
 ## Inference by Enumeration vs. Variable Elimination
 
  - Why is inference by enumeration so slow?
@@ -104,11 +117,15 @@
 
 <h2 id="4913febebac60df104885a8b6794a63d"></h2>
 
+-----
+
 ## Factor Zoo
 
 ![](../imgs/cs188_BNs_inference_factor_zoo.png)
 
 <h2 id="650e1a19d06f2dc4cb2b7f794e7467b2"></h2>
+
+-----
 
 ### Factor Zoo I 
 
@@ -147,6 +164,8 @@ cold | rain | 0.3
 
 <h2 id="ebe6338e5d98d7cb0ce41e0f40711330"></h2>
 
+-----
+
 ### Factor Zoo II 
 
  - Single conditional: P(Y | x)
@@ -180,6 +199,8 @@ cold | rain | 0.6
 
 <h2 id="3ab7f86e66f7b2bcc38510b416009292"></h2>
 
+-----
+
 ### Factor Zoo III 
 
 ![](../imgs/cs188_BNs_inference_factor_zoo_3.png)
@@ -197,6 +218,8 @@ cold | rain | 0.6
 
 <h2 id="b865584c7b554987faf8a85c0ecd151d"></h2>
 
+-----
+
 ### Factor Zoo Summary
 
  - In general, when we write P(Y₁ … Y<sub>N</sub> | X₁ … X<sub>M</sub>)
@@ -205,6 +228,8 @@ cold | rain | 0.6
     - Any assigned (=lower-case) X or Y is a dimension missing (selected) from the array
      
 <h2 id="4d406eeb866d87e85043283df1c17bc7"></h2>
+
+-----
 
 ### Example : Traffic Domain 
 
@@ -243,6 +268,8 @@ P(L|T)
 
 <h2 id="2d4159dc7049bf54b99ed3854ab30d54"></h2>
 
+-----
+
 ## Inference by Enumeration: Procedural Outline
 
  - Track objects called factors
@@ -254,6 +281,8 @@ P(L|T)
  - Procedure: Join all factors, then eliminate all hidden variables
 
 <h2 id="fde6f197d1413b145c1cb24a10ed58b2"></h2>
+
+-----
 
 ### Operation 1: Join Factors
 
@@ -271,6 +300,8 @@ P(L|T)
 
 <h2 id="44dc9c3cb61be07661f0b59c4c5eeeb7"></h2>
 
+-----
+
 #### Example: Multiple Joins
 
 ![](../imgs/cs188_BNs_inference_op1_example_multiple_joins_1.png)
@@ -280,6 +311,8 @@ P(L|T)
  - we call "Join on R" means that you grab all tables that have `R` in them. 
 
 <h2 id="7e886379f4ade029f5799405307898de"></h2>
+
+-----
 
 ### Operation 2: Eliminate
 
@@ -298,6 +331,8 @@ P(L|T)
  
 <h2 id="3821c17868fa87d7f5cae10cccc3fa7e"></h2>
 
+-----
+
 #### Multiple Elimination
 
 ![](../imgs/cs188_BNs_inference_op2_multiple_elimination.png)
@@ -313,6 +348,8 @@ P(L|T)
 
 <h2 id="cc0dd64e1b254202b05fe8934cc5e2ef"></h2>
 
+-----
+
 ### Example:  Traffic Domain again
 
  - R → T → L 
@@ -324,6 +361,8 @@ P(L|T)
 
 <h2 id="76d28d073a991c878d917deb0c0ef923"></h2>
 
+-----
+
 #### Marginalizing Early! (aka VE)
 
 ![](../imgs/cs188_BNs_inference_marginalize_early_RTL_example.png)
@@ -333,6 +372,8 @@ P(L|T)
     - just like with the inference by enumeration , when there is evidence you just look at your tabels and you only retain those entries consistent with your evidence. 
 
 <h2 id="c7b2a4d55fbea4d044644cf5b2b45d29"></h2>
+
+-----
 
 ### Evidence
 
@@ -353,6 +394,8 @@ P(L|T)
 
 <h2 id="29338145e918c543db5115601ceedae4"></h2>
 
+-----
+
 ## General Variable Elimination
 
  - Query: P( Q| E₁=e₁,...,E<sub>k</sub>=e<sub>k</sub> )
@@ -368,6 +411,8 @@ P(L|T)
  - Join all remaining factors and normalize
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
+
+-----
 
 ### Example 
 
@@ -392,6 +437,8 @@ P(L|T)
 
 <h2 id="fac810843510c673799014b64bd703d5"></h2>
 
+-----
+
 ### Same Example in Equations
 
 ![](../imgs/cs188_BNs_inference_VE_same_example_in_equations.png)
@@ -408,6 +455,8 @@ P(L|T)
     - suggestion here was **a variable with very few connections** .  Connections means that it is participating in a factor. 
 
 <h2 id="60b0a3c9ae175891ccee2e70e11f5141"></h2>
+
+-----
 
 ### Another Variable Elimination Example
 
@@ -432,6 +481,8 @@ P(L|T)
 
 <h2 id="7ace6202153b69d2eaaee232c913dc52"></h2>
 
+-----
+
 ## Variable Elimination Ordering
 
 ![](../imgs/cs188_BNs_inference_VE_ordering_q.png)
@@ -451,6 +502,8 @@ P(L|T)
 
 <h2 id="e7a5369a94522ddbfba1d7c3f326d981"></h2>
 
+-----
+
 ## VE: Computational and Space Complexity
 
  - The computational and space complexity of variable elimination is determined by the largest factor
@@ -464,6 +517,8 @@ P(L|T)
 
 
 <h2 id="c2d228ff5891fce6cd51dc9df9953ed6"></h2>
+
+-----
 
 ### Worst Case Complexity?
 
@@ -489,6 +544,8 @@ P(L|T)
 
 <h2 id="3210fceb43cd33c7a8871b75e98de3ee"></h2>
 
+-----
+
 ## Polytrees
 
 There are  atrist special graph structures of BNs , where inference can be done efficiently.  One example is Ploytree.
@@ -506,6 +563,8 @@ There are  atrist special graph structures of BNs , where inference can be done 
 ---
 
 <h2 id="25d7ce91a9821147da689c3a48401fb1"></h2>
+
+-----
 
 ## Quiz BN2-2
 
@@ -581,6 +640,8 @@ C | P(C\|e=1)
 
 
 <h2 id="74e6f31ec1cddabd42e093bb90394707"></h2>
+
+-----
 
 ## Quiz BN2-3
 

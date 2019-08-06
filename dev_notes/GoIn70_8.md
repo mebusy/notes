@@ -21,6 +21,9 @@
 
 <h2 id="7b7d63cdbd26f14f69e7e90dcf4103c7"></h2>
 
+-----
+-----
+
 # 8 Working with web services
 
 This chapter covers
@@ -33,9 +36,13 @@ This chapter covers
 
 <h2 id="df0d7e0985c9b27af7dc8078bdd935d9"></h2>
 
+-----
+
 ## 8.1 Using REST APIs
 
 <h2 id="2ac9bab6e0e1503af929373e262bf4dd"></h2>
+
+-----
 
 ### 8.1.1 Using the HTTP client
 
@@ -99,9 +106,13 @@ res, err := cc.Get("http://goinpracticebook.com")
 
 <h2 id="dcde17007e2905d1c0bf2150aaa80808"></h2>
 
+-----
+
 ### 8.1.2 When faults happen
 
 <h2 id="ed8f378a99622e6fa9e881ad40b1ee0a"></h2>
+
+-----
 
 #### TECHNIQUE 49 Detecting timeouts
 
@@ -158,6 +169,8 @@ if err != nil && hasTimedOut(err) {
 
 
 <h2 id="9828258f9f00dd06f2a1b4105c62f4d6"></h2>
+
+-----
 
 ####  TECHNIQUE 50 Timing out and resuming with HTTP
 
@@ -261,6 +274,8 @@ func download(location string, file *os.File, retries int64) error {
 
 <h2 id="963cdae66bec16a79ef7690052d2047e"></h2>
 
+-----
+
 ## 8.2 Passing and handling errors over HTTP
 
  - The Go standard library provides a rudimentary capability to pass errors. For example, the following listing provides simple HTTP generating an error.
@@ -294,6 +309,8 @@ fmt.Println(res.StatusCode)
 
 <h2 id="43ed9eb04540fe3034b5b6aa06b1abef"></h2>
 
+-----
+
 ### 8.2.1 Generating custom errors
 
  - A plain text error string and an HTTP status code representing an error are often insufficient. 
@@ -301,6 +318,8 @@ fmt.Println(res.StatusCode)
     - Or if you’re building an API server that responds with JSON, you’ll likely want error responses to be in JSON as well.
 
 <h2 id="53341acb9a0f40cb60854a46f49a5bf5"></h2>
+
+-----
 
 #### TECHNIQUE 51 Custom HTTP error passing
 
@@ -374,9 +393,13 @@ func main() {
 
 <h2 id="85ec98278abcac16ca569a4d95066559"></h2>
 
+-----
+
 ### 8.2.2 Reading and using custom errors
 
 <h2 id="7fcf93c53d7e837263928d5a87298e27"></h2>
+
+-----
 
 #### TECHNIQUE 52 Reading custom errors  TODO
  
@@ -448,9 +471,13 @@ func get(u string) (*http.Response, error) {
 
 <h2 id="b9493334b93683d27a08169df7ff3596"></h2>
 
+-----
+
 ## 8.3 Parsing and mapping JSON
 
 <h2 id="2f8befbec4b0d9643b9d8557bfc3225f"></h2>
+
+-----
 
 #### TECHNIQUE 53 Parsing JSON without knowing the schema
 
@@ -557,6 +584,8 @@ func printJSON(v interface{}) {
 
 <h2 id="532f794974813631d51112acb41bd774"></h2>
 
+-----
+
 ## 8.4 Versioning REST APIs
 
  - Web services evolve and change, which leads to changes in the APIs used to access or manage them. To provide a stable API contract for API consumers, changes to the API need to be versioned. 
@@ -570,6 +599,8 @@ func printJSON(v interface{}) {
 
 
 <h2 id="50b7ca8917f1e5e536411383d910e59c"></h2>
+
+-----
 
 ####  TECHNIQUE 54 API version in the URL  (TODO)
 

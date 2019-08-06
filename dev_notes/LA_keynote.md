@@ -25,6 +25,9 @@
 
 <h2 id="5cf06822087ff10dec2ac74cf1e20d30"></h2>
 
+-----
+-----
+
 ## Preface
 
  - n vectors in m - dimensional space
@@ -40,6 +43,9 @@
 
 <h2 id="37ce2a99728857da54756961009fe633"></h2>
 
+-----
+-----
+
 ## Elimination
 
  - 消元法基本运算
@@ -48,6 +54,8 @@
  - 对于方程组来说，这两种操作不会影响解
 
 <h2 id="e3b14c3d3017ac3bb230a442e7e757ef"></h2>
+
+-----
 
 ### Row Picture , Column Picture
 
@@ -72,6 +80,8 @@
 
 <h2 id="19c0e5b53cd312dea89ed35c4445ca18"></h2>
 
+-----
+
 ### 消元矩阵
 
 One Elimination Step:
@@ -86,6 +96,8 @@ E₃₁ = | 0  1  0|   has E₃₁·b = |  b₂  |
 
 <h2 id="12127f40ff36ed84744a1af8c6e336be"></h2>
 
+-----
+
 ### 矩阵乘法
 
  - 矩阵乘法
@@ -96,6 +108,8 @@ E₃₁ = | 0  1  0|   has E₃₁·b = |  b₂  |
          - **A(B+C) =AB+AC and (B+C)D=BD+CD**
 
 <h2 id="9ef9abc9eda686571cb1d8e4e47c3d10"></h2>
+
+-----
 
 ### LU 分解
 
@@ -112,6 +126,8 @@ E₃₁ = | 0  1  0|   has E₃₁·b = |  b₂  |
    - 因为奇异矩阵也有LU分解
 
 <h2 id="2f79a6b54ab5e88029090d5fe24a83bf"></h2>
+
+-----
 
 ### 置换矩阵
 
@@ -142,6 +158,8 @@ A*P = // column exchange
 
 <h2 id="3a9e344c1e6d675b13d40464c481227f"></h2>
 
+-----
+
 ### INVERSES AND TRANSPOSE
 
  - INVERSES 
@@ -155,6 +173,8 @@ A*P = // column exchange
 
 <h2 id="b899f85c23e42aea33f7684a076389ca"></h2>
 
+-----
+
 ### Symmetric Matrices
 
  - **Aᵀ = A**
@@ -165,6 +185,8 @@ A*P = // column exchange
          - 不是所有的对称矩阵都有LDLᵀ 分解
 
 <h2 id="4c6c909215a7371958d82af08be17233"></h2>
+
+-----
 
 ### partial pivoting
 
@@ -177,9 +199,14 @@ A*P = // column exchange
 
 <h2 id="2f21953656c07a77cad97b71c89a69de"></h2>
 
+-----
+-----
+
 ## Vector Spaces
 
 <h2 id="50d531aa756e5c11625170cc1c9cfbda"></h2>
+
+-----
 
 ### subspace
 
@@ -194,6 +221,8 @@ A = |2 3| 构成的是一个过原点的 平面子空间
 
 <h2 id="684f816b438089969d265be5216aa435"></h2>
 
+-----
+
 ### Column Space  C(A)
 
  - a subspace of **Rᵐ**
@@ -201,12 +230,16 @@ A = |2 3| 构成的是一个过原点的 平面子空间
 
 <h2 id="23705503ad60700b867022f40a8543dc"></h2>
 
+-----
+
 ### Nullspace N(A)
 
  - a subspace of **Rⁿ**
  - The solutions to Ax = 0 ,  are from N(A)
 
 <h2 id="9405663c8d12328a80ae3457c45d5995"></h2>
+
+-----
 
 ### SOLVING Ax=0 and Ax=b
 
@@ -227,6 +260,8 @@ A = |2 3| 构成的是一个过原点的 平面子空间
 
 <h2 id="bee5654627ea92bad93731a29fd8d7bc"></h2>
 
+-----
+
 #### Echelon Form(梯形) U ,  and Row Reduced Form R
  - Echelon U
    - 消元法 即使主元不能避免的变0 也继续下去
@@ -241,6 +276,8 @@ A = |2 3| 构成的是一个过原点的 平面子空间
 
 <h2 id="7d21299ec6409c5d95f4c4c2dde8468c"></h2>
 
+-----
+
 ### Basis for Vector Space
 
  - 不同基组合可以得到相同的结果，但是只要确定了基，某一结果的组合就是唯一的
@@ -251,6 +288,8 @@ A = |2 3| 构成的是一个过原点的 平面子空间
 
 
 <h2 id="277acc5b1627dc1a1e613976782c994b"></h2>
+
+-----
 
 ### Dimension of a Vector Space
  
@@ -269,6 +308,8 @@ You must notice that the word "dimensional" is used in two different ways.
 
 
 <h2 id="ab80affa0ab7ca1586b19dd67f41f505"></h2>
+
+-----
 
 ### 4 FUNDAMENTAL SUBSPACES
 

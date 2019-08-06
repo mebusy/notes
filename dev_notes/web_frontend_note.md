@@ -10,9 +10,14 @@
 
 <h2 id="4a5647bb8fe0a7a3f6eb3fe7e2d038d6"></h2>
 
+-----
+-----
+
 # Web FrontEnd Note
 
 <h2 id="6f2631dbb72803960030d1912849b034"></h2>
+
+-----
 
 ## reactJS
 
@@ -32,6 +37,8 @@ http://localhost:3000
 
 <h2 id="2efb47900229246f126114d5446309c8"></h2>
 
+-----
+
 ## Ant.design
 
  - after you create reactJS app, `cd ` to project folder, then  run :
@@ -48,6 +55,8 @@ yarn add antd
 ```
 
 <h2 id="b63638704f9953ca8cb4512dcf01b2a2"></h2>
+
+-----
 
 ## http request from JS
 

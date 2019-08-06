@@ -44,9 +44,14 @@
 
 <h2 id="e60d07a2276dd36a7d773fe7cd27bd41"></h2>
 
+-----
+-----
+
 # Lecture 10.2 :  Scheduling
 
 <h2 id="8fcbb9a0a25e5acc174128998b728417"></h2>
+
+-----
 
 ## CPU Scheduling
 
@@ -61,6 +66,8 @@
  - **Scheduling:**  deciding which threads are given access to resources from moment to moment 
 
 <h2 id="2419f2fbd020f118b23694c1f0e47206"></h2>
+
+-----
 
 ## Scheduling Assumptions
 
@@ -78,6 +85,8 @@
     - Time ------> 
 
 <h2 id="1a52cbfd158e7b68d0f91ed7b02de6d3"></h2>
+
+-----
 
 ## Assumption: CPU Bursts
 
@@ -97,6 +106,8 @@ This peak is waying there's a lot of short bursts and some long bursts.
     - With timeslicing, thread may be forced to give up CPU before finishing current CPU burst
 
 <h2 id="71f5cba64c54a9ccd02a0dc20998f03f"></h2>
+
+-----
 
 ## Scheduling Policy Goals/Criteria
 
@@ -119,6 +130,8 @@ This peak is waying there's a lot of short bursts and some long bursts.
         - Better average response time by making system less fair
 
 <h2 id="934d08f0fe90032b3d2b69e171bed01a"></h2>
+
+-----
 
 ## First-Come, First-Served (FCFS) Scheduling
 
@@ -161,6 +174,8 @@ P3          3
 
 <h2 id="4d9cb10d6aed8975b338c4064f6a0925"></h2>
 
+-----
+
 ## Round Robin (RR)
 
  - FCFS Scheme: Potentially bad for short jobs!
@@ -179,6 +194,8 @@ P3          3
     - q must be large with respect to context switch, otherwise overhead is too high (all overhead)
 
 <h2 id="8c9abdd49b5817b01b784b3a3dc74129"></h2>
+
+-----
 
 ### Example of RR with Time Quantum = 20
 
@@ -206,6 +223,8 @@ P4          24
 
 <h2 id="73b976e6777c18b0646b8fba53c74f1f"></h2>
 
+-----
+
 ### Round-Robin Discussion
 
  - How do you choose time slice?
@@ -226,6 +245,8 @@ P4          24
 
 <h2 id="a17cc4d1e78d599c26e90059b67d5d79"></h2>
 
+-----
+
 ## Comparisons between FCFS and Round Robin
 
  - Assuming zero-cost context-switching time, is RR always better than FCFS?
@@ -241,6 +262,8 @@ P4          24
 
 <h2 id="c20b726dfc6cd74004f79d30362040d2"></h2>
 
+-----
+
 ### Earlier Example with Different Time Quantum
 
 ![](../imgs/os_cpu_scheduling_FCFS_vs_RR2.png)
@@ -250,6 +273,8 @@ P4          24
 
 
 <h2 id="906d3fda01d00ac165cea4ea04f36b6a"></h2>
+
+-----
 
 ## Summary (Scheduling)
 
@@ -269,10 +294,15 @@ P4          24
 
 <h2 id="7da24b9369b762c967f238adee7993bf"></h2>
 
+-----
+-----
+
 # Lecture 11 : Scheduling (con't)  / Protection: Kernel and Address Spaces
 
  
 <h2 id="3f92d4014064c6ce70d7bba6c004291d"></h2>
+
+-----
 
 ## What if we Knew the Future?
 
@@ -290,6 +320,8 @@ P4          24
     
 <h2 id="eed9474fd944d045ff056d20004acaa3"></h2>
 
+-----
+
 ## Discussion
 
  - SJF/SRTF are the best you can do at minimizing average response time
@@ -302,6 +334,8 @@ P4          24
         - SRTF (and RR): short jobs not stuck behind long ones
 
 <h2 id="fc449a6dd196bacba2d7e0ae4535f0a1"></h2>
+
+-----
 
 ### Example to illustrate benefits of SRTF
 
@@ -333,6 +367,8 @@ So clearly we're going to approximate SRTF. The real question is how to approxim
 
 <h2 id="cb6a025806000bb1a4cd415ed9363242"></h2>
 
+-----
+
 ## Predicting the Length of the Next CPU Burst
 
  - **Adaptive:** Changing policy based on past behavior
@@ -352,6 +388,8 @@ So clearly we're going to approximate SRTF. The real question is how to approxim
 ![](../imgs/os_scheduling_SRTF_predicting.png)
 
 <h2 id="b368ccd38ca1f20e9180849717ae985e"></h2>
+
+-----
 
 ## Multi-Level Feedback Scheduling
 
@@ -374,6 +412,8 @@ It is like a sorting where we sort of have really fast short things up top and l
 
 
 <h2 id="0f566175567203ebe404bbd822b25ce3"></h2>
+
+-----
 
 ## Scheduling Details
 
@@ -401,6 +441,8 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
 
 <h2 id="97f1f705024fb4bac7d649b68cb2ac90"></h2>
 
+-----
+
 ## Scheduling Fairness
 
  - What about fairness?
@@ -420,6 +462,8 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
 
 <h2 id="45cf7e2476f1de886b762a6e617f5811"></h2>
 
+-----
+
 ## Lottery Scheduling
 
  - Yet another alternative: Lottery Scheduling
@@ -434,6 +478,8 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
 
 <h2 id="cf0f12552ddb45c69e45ed54dc2f5ff1"></h2>
 
+-----
+
 ### Lottery Scheduling Example
 
  - Lottery Scheduling Example
@@ -444,6 +490,8 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
         - One approach: log some user out
 
 <h2 id="33afb76a6ff1f10de47fadb924c09d27"></h2>
+
+-----
 
 ## How to Evaluate a Scheduling algorithm?
 
@@ -458,6 +506,8 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
 
 
 <h2 id="31f0723d929b04251bfc845445af1867"></h2>
+
+-----
 
 ## A Final Word On Scheduling
 
@@ -475,6 +525,8 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
 
 <h2 id="5221e88f6aad30fda4e4c5f05fbfec0c"></h2>
 
+-----
+
 ## Virtualizing Resources
 
 So we've talking about virtualizing the CPU with our scheduling algorithms. So lets to virtualize other things.
@@ -490,6 +542,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
     - Probably don’t want different threads to even have access to each other’s memory (protection)
 
 <h2 id="cea69a0c5085e78dbfde9cc73a34bd85"></h2>
+
+-----
 
 ## Important Aspects of Memory Multiplexing
 
@@ -510,6 +564,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 <h2 id="8b47f1e39f922927e58c299f8a0a9977"></h2>
 
+-----
+
 ## Binding of Instructions and Data to Memory
 
  - Binding of instructions and data to addresses:
@@ -523,6 +579,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 
 <h2 id="8e342d50a842d8b770ec01d2e1a6f834"></h2>
+
+-----
 
 ## Multi-step Processing of a Program for Execution
 
@@ -543,6 +601,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 <h2 id="88606f8ea46da947c105e71fa640cf11"></h2>
 
+-----
+
 ## Multiprogramming (First Version)
 
  - Multiprogramming without Translation or Protection
@@ -556,6 +616,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 <h2 id="3743788a25e4eae2c8ffbd8b73cb741d"></h2>
 
+-----
+
 ## Multiprogramming (Version with Protection)
 
  - Can we protect programs from each other without translation?
@@ -566,6 +628,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
         - User not allowed to change base/limit registers
 
 <h2 id="eabe64c3ad5f33e2c57aa521b8e17db8"></h2>
+
+-----
 
 ## Segmentation with Base and Limit registers
 
@@ -584,6 +648,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 <h2 id="1481bffc1d7d34c5d0dab0491bcdd551"></h2>
 
+-----
+
 ## Issues with simple segmentation method
 
 ![](../imgs/os_virtualize_resource_memory_address_segmentation_issue.png)
@@ -598,6 +664,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
  - Need enough physical memory for every process
 
 <h2 id="e8f5488c454d6ab1f3f774b77bb9e83a"></h2>
+
+-----
 
 ## Multiprogramming (Translation and Protection version 2) 
 
@@ -619,12 +687,16 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 <h2 id="8cb0ddad9e2227d129016417865b8804"></h2>
 
+-----
+
 ## Example of General Address Translation
 
 ![](../imgs/os_example_address_translation.png)
 
 
 <h2 id="82f0f63373d278fc12a45e84e20b2e8f"></h2>
+
+-----
 
 ## Two Views of Memory
 
@@ -644,6 +716,8 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
     - Overlap avoided through translation, not relocation
 
 <h2 id="3fcf38fc343c687c120a30b93e5afaa2"></h2>
+
+-----
 
 ## Example of Translation Table Format
 
@@ -667,6 +741,8 @@ p1 index | p2 index | page offset
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
 
+-----
+
 ## Summary
 
  - Shortest Job First (SJF)/Shortest Remaining Time First (SRTF):
@@ -683,6 +759,8 @@ p1 index | p2 index | page offset
     - Analytical, Queuing Theory, Simulation
 
 <h2 id="17f8807634b643b8281b1e4a680d5ced"></h2>
+
+-----
 
 ## Summary (2)
 

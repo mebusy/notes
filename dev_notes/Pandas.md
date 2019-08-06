@@ -20,13 +20,21 @@
 
 <h2 id="251d2bbfe9a3b95e5691ceb30dc6784a"></h2>
 
+-----
+-----
+
 # Pandas 
 
 <h2 id="2beb23af04774d7f04142fdc60c1e388"></h2>
 
+-----
+-----
+
 # Basic Data Processing with Pandas
 
 <h2 id="b2d7146a323c3e1734532ceb0f3b8b85"></h2>
+
+-----
 
 ## The Series Data Structure
 
@@ -138,6 +146,8 @@ dtype: object
 ```
 
 <h2 id="8397ade4c8ed93da5a52c39691b7879e"></h2>
+
+-----
 
 ## Querying a Series
 
@@ -305,6 +315,8 @@ dtype: object
 
 <h2 id="831bfe24989afb7977d21427c1cfa747"></h2>
 
+-----
+
 ## The DataFrame Data Structure
 
  - The DataFrame is conceptually a two-dimensional series object
@@ -454,6 +466,8 @@ Store 2     5.0     Bird Seed       Vinod   None
 
 <h2 id="17bcec63e2ffc6f28d1d43dc3bd736d3"></h2>
 
+-----
+
 ## Dataframe Indexing and Loading
 
  - The common work flow is to read your data into a DataFrame then reduce this DataFrame to the particular columns or rows that you're interested in working with.
@@ -550,9 +564,13 @@ for i,col in enumerate(df.columns):
 
 <h2 id="3c5b4efeb3926eb0d2e01d57122c4af8"></h2>
 
+-----
+
 ## Querying a DataFrame
 
 <h2 id="c381bd7fc934be857f568d5a2990c95d"></h2>
+
+-----
 
 ### Boolean masking
 
@@ -628,6 +646,8 @@ Name: Combined total, dtype: int64
 ```
 
 <h2 id="c26698ba4e53d8440e2c2572357e9c84"></h2>
+
+-----
 
 ## Indexing Dataframes
 
@@ -733,6 +753,8 @@ Michigan    Washtenaw County    977 3826    3780    3662    3683    3709    3455
 
 <h2 id="2b134ac285731f9d66fccfb31a8be4e1"></h2>
 
+-----
+
 ### Insert record to Dataframe
 
 ```python
@@ -744,9 +766,13 @@ df = df.append(pd.Series(data={'Cost': 3.00, 'Item Purchased': 'Kitty Food'}, na
 
 <h2 id="ebae125e702774e5fc2e20a8dd47e231"></h2>
 
+-----
+
 ### 行选择和列选择小结
 
 <h2 id="dca178c13c61d3a5ff6723592c7570eb"></h2>
+
+-----
 
 #### 行选择
 
@@ -780,6 +806,8 @@ t = fandango_drop.iloc[2]  # return Series , cuz only 1 record
 
 <h2 id="c6e891c9937fb079fbb759e96c0eb44c"></h2>
 
+-----
+
 ### 列选择
 
  - 列选择比较简单，只要直接把列名传递过去即可
@@ -797,6 +825,8 @@ w = fandango[list(range(5))]  # works
 ---
 
 <h2 id="4f62be1b7c56d639aec435b0d7e53b81"></h2>
+
+-----
 
 ## Missing Values
 

@@ -22,9 +22,14 @@
 
 <h2 id="62e0b5b350c9e3d2c19aa801d9442ba9"></h2>
 
+-----
+-----
+
 ## Nginx
 
 <h2 id="65036706833561dc5b0be60031e23734"></h2>
+
+-----
 
 ### location 匹配规则
 
@@ -104,6 +109,8 @@ location / {
 
 <h2 id="93636e7713b2bfbfb6870fa0c2f4052d"></h2>
 
+-----
+
 ### ReWrite语法
 
  - last – 基本上都用这个 Flag
@@ -112,6 +119,8 @@ location / {
  - permanent – 返回永久重定向的 HTTP 状态 301
 
 <h2 id="b69cd322affa5f72ee270ece8cf29113"></h2>
+
+-----
 
 ### 可以用来判断的表达式
 
@@ -122,6 +131,8 @@ location / {
 
 
 <h2 id="6cee1d1d18aeb9bff5d6d226016c0eef"></h2>
+
+-----
 
 ### if 是邪恶的
 
@@ -139,6 +150,8 @@ location / {
 
 
 <h2 id="7b9633c105cfd5818516ea5c9612b038"></h2>
+
+-----
 
 ### Nginx 静态文件服务
 
@@ -194,6 +207,8 @@ http {
 
 <h2 id="f9ec24bd7c322b41cb742de2eef83411"></h2>
 
+-----
+
 #### 如何安装和配置基础缓存  Basic Caching
 
  - proxy_cache_path 用来设置缓存的路径和配置，
@@ -233,12 +248,18 @@ server {
 
 <h2 id="1e0c9af54f0620b1412ad6c496f3e341"></h2>
 
+-----
+
 #### 缓存微调 TODO
 <h2 id="3d124ed5fca2ee7d48481e391205c5f4"></h2>
+
+-----
 
 #### 跨多硬盘分割缓存 TODO
 
 <h2 id="39fdee1a60aa3d1942ecac9bc4d55129"></h2>
+
+-----
 
 ### 反向代理
 
@@ -292,9 +313,13 @@ http {
 
 <h2 id="4eaa6f6da0f943db22ee7df8ed5e8d86"></h2>
 
+-----
+
 ### 负载均衡
 
 <h2 id="8c7abf9252c14e770bb8b7a63465baa7"></h2>
+
+-----
 
 #### upstream 负载均衡概要
 
@@ -319,6 +344,8 @@ server {
 
 <h2 id="0e5e6e2abcca5d5200772a59178c69a7"></h2>
 
+-----
+
 #### upstream 支持的负载均衡算法
 
 upstream 支持的负载均衡算法
@@ -339,6 +366,8 @@ Nginx 的负载均衡模块目前支持 6 种调度算法， 后两项属于第�
 
 <h2 id="b1577d4475a60b4aee2a200c3b54108f"></h2>
 
+-----
+
 #### upstream 支持的状态参数
 
  - down：表示当前的server暂时不参与负载均衡。
@@ -352,6 +381,8 @@ Nginx 的负载均衡模块目前支持 6 种调度算法， 后两项属于第�
 
 <h2 id="0c23468b07d39fbbf4b89831f45c318d"></h2>
 
+-----
+
 #### 配置 nginx 进行健康状态检查
 
 ```
@@ -362,6 +393,8 @@ upstream webservers {
 ```
 
 <h2 id="42f78f76deabbbea593e4d7fb7fc4db6"></h2>
+
+-----
 
 ### Nginx 陷阱和常见错误
 

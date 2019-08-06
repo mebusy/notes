@@ -16,9 +16,15 @@
 
 <h2 id="18cd2f733f76d1da621dab13f59c7272"></h2>
 
+-----
+-----
+
 # KBEngine 
 
 <h2 id="349838fb1d851d3e2014b9fe39203275"></h2>
+
+-----
+-----
 
 # Install 
 
@@ -32,12 +38,18 @@
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
+-----
+-----
+
 # Misc
 
  1. assets/res/server/kbengine.xml , 关闭 自动创建账号
  
 
 <h2 id="b65900167c5add9414d6f7a28eb639af"></h2>
+
+-----
+-----
 
 # Login System
  - baseApp
@@ -108,9 +120,14 @@ public void onLoginSuccessfully( UInt64 uuid, Int32 id, Account account ) {
 
 <h2 id="9a9a71efcb676c76eb1e51d60ae2cb31"></h2>
 
+-----
+-----
+
 # Say hello to server 
 
 <h2 id="d3ecf7a46680a0dd28cc7a616800e186"></h2>
+
+-----
 
 ## server side 
 
@@ -145,6 +162,8 @@ def reqHello(self):
 
 <h2 id="2f66c7f591948a0efcf4d4f44052b519"></h2>
 
+-----
+
 ## client side 
 
  - Entity class has `baseCall` method 
@@ -171,6 +190,9 @@ public void onHello(string data) {
 
 <h2 id="26c985492cc3eb77b7d7e3333d30d1a1"></h2>
 
+-----
+-----
+
 # Avatar List
 
  - avatar property
@@ -182,6 +204,8 @@ public void onHello(string data) {
  - we need add *Avatar* entity 
     
 <h2 id="4451dbc15dd7b598f0579474e56e74a8"></h2>
+
+-----
 
 ## Register Entity
 
@@ -340,6 +364,8 @@ def _onCharacterSaved( self, success , avatar ):
 ```
 
 <h2 id="62608e08adc29a8d6dbc9754e659f125"></h2>
+
+-----
 
 ## client 
 

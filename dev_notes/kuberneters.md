@@ -36,17 +36,27 @@
 
 <h2 id="2282b019d5749f94b3ff99dadd4d9293"></h2>
 
+-----
+-----
+
 # K8s Tutorial
 
 <h2 id="d6241ba7176a22c6f5508a221d1716b7"></h2>
+
+-----
+-----
 
 # Learn Kubernetes Basics
 
 <h2 id="f4b3bba7f2a3c2742429d4af98964158"></h2>
 
+-----
+
 ## Create a Cluster
 
 <h2 id="f47adff278a05ec02bc76b4d7d802a42"></h2>
+
+-----
 
 ### Using Minikube to Create a Cluster
  
@@ -87,9 +97,13 @@ minikube   Ready     <none>    51s       v1.10.0
 
 <h2 id="13279284e535f428ddd0037d4839f217"></h2>
 
+-----
+
 ## Deploy an App
 
 <h2 id="6770f897a032a9c25dea6adbd0cb237a"></h2>
+
+-----
 
 ### Using kubectl to Create a Deployment
 
@@ -167,9 +181,13 @@ Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-5c69669756-jwzln | 
 
 <h2 id="d98050e1771fa15a6ada9626483804bf"></h2>
 
+-----
+
 ## Explore Your App
 
 <h2 id="17dbb8a1e22daa6afbafb5065b15096c"></h2>
+
+-----
 
 ### Viewing Pods and Nodes
 
@@ -200,9 +218,13 @@ Containers should only be scheduled together in a single Pod if they are tightly
 
 <h2 id="82df24365fe3fd9599b3424f53d10145"></h2>
 
+-----
+
 ## Expose Your App Publicly 
 
 <h2 id="6b755767754f0bdf07e6cc0138438cbf"></h2>
+
+-----
 
 ### Using a Service to Expose Your App
 
@@ -249,6 +271,8 @@ Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-5c69669756-t9t9k | 
 
 
 <h2 id="a0147bf58c57372feeab86fd35f3c75c"></h2>
+
+-----
 
 #### Using labels 
 
@@ -303,6 +327,8 @@ Labels:         app=v1
 
 <h2 id="3eaae17da90da6db3f5a359aff990fac"></h2>
 
+-----
+
 #### Deleting a service
 
 ```
@@ -325,13 +351,19 @@ Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-5c69669756-t9t9k | 
 
 <h2 id="9ed959ed9324ef3c3af26b8fd76e65c6"></h2>
 
+-----
+
 ## Scale Your App 
 
 <h2 id="97368dc0d5ea684b04a059061d75f892"></h2>
 
+-----
+
 ### Running Multiple Instances of Your App
 
 <h2 id="1cc09de5a7dc45ea6ce22e48ab7741e4"></h2>
+
+-----
 
 #### Scaling a deployment
 
@@ -363,6 +395,8 @@ kubernetes-bootcamp-5c69669756-vg59n   1/1       Running   0          27s       
 
 <h2 id="88788d3d6b03d421c6cf518ace672e36"></h2>
 
+-----
+
 #### Load Balancing
 
 ```
@@ -378,6 +412,8 @@ Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-5c69669756-klk9v | 
  - We hit a different Pod with every request. This demonstrates that the load-balancing is working.
 
 <h2 id="321a4150256dc52ed121fe7088de69ee"></h2>
+
+-----
 
 #### Scale Down
 
@@ -396,9 +432,13 @@ kubernetes-bootcamp-5c69669756-vg59n   1/1       Terminating   0          4m    
 
 <h2 id="77246ae2f33852920cb5d43806f8027f"></h2>
 
+-----
+
 ## Update Your App
 
 <h2 id="a1f50c0414138a0b33c3f5841fd1f686"></h2>
+
+-----
 
 ### Performing a Rolling Update
 
@@ -432,19 +472,29 @@ deployment.extensions/kubernetes-bootcamp
 
 <h2 id="27338a7f81ebe603ac23ab9e401ba99a"></h2>
 
+-----
+-----
+
 # Configuring Redis using a ConfigMap
 
 ---
 
 <h2 id="fde4a6a869ea132a44d1703b574f94c2"></h2>
 
+-----
+-----
+
 # install Kubernetes
 
 <h2 id="d960b90c6bd83a0c38ebb3243a43ac65"></h2>
 
+-----
+
 ## Step 1 - Kubernetes Installation
 
 <h2 id="70ed350d94ea2ee4beeb7d951dcc3f76"></h2>
+
+-----
 
 ### Disable SELinux and filewall
 
@@ -462,6 +512,8 @@ PS: [开启iptables情况下Swarm、kubernetes等组件正常工作的配置](ht
 
 <h2 id="f03737e43278c4e0e94939f9eec9b4f0"></h2>
 
+-----
+
 ### Enable br_netfilter Kernel Module
 
  - The br_netfilter module is required for kubernetes installation.
@@ -477,6 +529,8 @@ echo '1' > /proc/sys/net/bridge/bridge-nf-call-ip6tables
 
 
 <h2 id="f20da027e3ec9141171d13ff93807f52"></h2>
+
+-----
 
 ### Disable SWAP
 
@@ -497,6 +551,8 @@ swapoff -a
 
 
 <h2 id="5ed0c66dfa2ac395ad8e9830aa5964aa"></h2>
+
+-----
 
 ### Install Kubernetes
 
@@ -525,6 +581,8 @@ systemctl start kubelet && systemctl enable kubelet
 
 <h2 id="2e1d298d7606fec45de7985efbfd555c"></h2>
 
+-----
+
 ### Change the cgroup-driver
 
  - We need to make sure the docker-ce and kubernetes are using same 'cgroup'.
@@ -550,6 +608,8 @@ systemctl restart kubelet
 
 <h2 id="451e4690c07ec59f02a5d699d9e63196"></h2>
 
+-----
+
 ## Step 2 - Kubernetes Cluster Initialization
 
 ```
@@ -571,6 +631,8 @@ kubeadm init --apiserver-advertise-address=10.192.83.78 --pod-network-cidr=10.24
 
 <h2 id="3c77e740edb7196f00f94f28733a7bcb"></h2>
 
+-----
+
 ###  Allow scheduling of pods on Kubernetes master
 
 ```
@@ -580,6 +642,8 @@ node/<mymasternode>  untainted
 
 
 <h2 id="9010772af260a642bed9bb232163577c"></h2>
+
+-----
 
 ### Testing Create First Pod
 

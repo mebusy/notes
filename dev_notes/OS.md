@@ -83,6 +83,9 @@
 
 <h2 id="aab338915e32b60e92c8de3a23aa5c5d"></h2>
 
+-----
+-----
+
 # Operating Systems
 
 https://cs162.eecs.berkeley.edu/
@@ -91,9 +94,14 @@ https://people.eecs.berkeley.edu/~kubitron/cs162/
 
 <h2 id="0256cfb29115315df7b78ed8ea4bb934"></h2>
 
+-----
+-----
+
 # Lecture 2: Histroy 
 
 <h2 id="58716e48659df59b681167f89ef9c4b0"></h2>
+
+-----
 
 ## Virtual Machine Abstraction
 
@@ -108,6 +116,8 @@ https://people.eecs.berkeley.edu/~kubitron/cs162/
     - What’s the application interface? (nicer abstraction)
 
 <h2 id="331dfccf115bc05798fa93bcdce2dc74"></h2>
+
+-----
 
 ## Protecting Processes from Each Other
 
@@ -125,6 +135,8 @@ https://people.eecs.berkeley.edu/~kubitron/cs162/
 
 <h2 id="380ed2e00b4cd7595c6b22a289c2fb9c"></h2>
 
+-----
+
 ## Address Translation
 
  - Address Space
@@ -138,6 +150,8 @@ https://people.eecs.berkeley.edu/~kubitron/cs162/
 
 <h2 id="fd16525056da1f4095c4cf0be4110c65"></h2>
 
+-----
+
 ### Example of Address Translation
 
 ![](../imgs/os_example_address_translation.png)
@@ -150,6 +164,8 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
 
 
 <h2 id="36df3bc20eac02b4897f57dcdab35103"></h2>
+
+-----
 
 ## The other half of protection: Dual Mode Operation
 
@@ -166,15 +182,21 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
 
 <h2 id="9d76355b6f43127dc97ca42e9d29c893"></h2>
 
+-----
+
 ## UNIX System Structure
 
 ![](../imgs/os_unix_system_structure.png)
 
 <h2 id="7738ca5b3efbf6c0e6bcebe55d9a4428"></h2>
 
+-----
+
 ## a quick tour of OS Structures
 
 <h2 id="9c5677a822e4354ba4a478ac864ad78b"></h2>
+
+-----
 
 ### Operating Systems Components (What are the pieces of the OS)
 
@@ -187,6 +209,8 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
 
 
 <h2 id="2b5860ab171d58029c23f7d7edd38436"></h2>
+
+-----
 
 ### Operating System Services (What things does the OS do?)
 
@@ -208,11 +232,15 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
 
 <h2 id="0c927d7416fb5c027d2bbf7105cc5b12"></h2>
 
+-----
+
 ### System Calls (What is the API)
 
 ![](../imgs/os_system_calls.png)
 
 <h2 id="931d8ddb9c90055a717f507edf694b57"></h2>
+
+-----
 
 ### Operating Systems Structure (What is the organizational Principle?)
 
@@ -230,9 +258,14 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
 
 <h2 id="fb8c0d273917625f92c875243e4a2497"></h2>
 
+-----
+-----
+
 # Lecture3 : Concurrency: Processes and Threads
 
 <h2 id="3e48afddb0c5521684b8d2687b0869d6"></h2>
+
+-----
 
 ## Concurrency
 
@@ -249,6 +282,8 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
     - Often called “multitasking”, but multitasking has other meanings (talk about this later)
 
 <h2 id="1e79f26f9654bb8d72398bb5c30144a2"></h2>
+
+-----
 
 ## The Basic Problem of Concurrency
 
@@ -267,6 +302,8 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
 
 <h2 id="033fa663302a4ef18ab84e5b9af656ee"></h2>
 
+-----
+
 ## How can we give the illusion of multiple processors?
 
 ![](../imgs/os_illusion_of_multiple_processors.png)
@@ -284,6 +321,8 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
 
 <h2 id="cff2ef352548c0e25914f4d9c36604f5"></h2>
 
+-----
+
 ## Properties of this simple multiprogramming technique
  
  - All virtual CPUs share same non-CPU resources
@@ -299,6 +338,8 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
     - Windows 95—ME? (switch with both yield and timer)
 
 <h2 id="1e0a2e02c40633be2aea2e6359e15fc9"></h2>
+
+-----
 
 ## Modern Technique: SMT/Hyperthreading
 
@@ -329,6 +370,8 @@ There is a simple problem here:  that mapping need s to somehow be out of the re
 
 <h2 id="ed5b8b8ad56ce8ffbec1c9cdc69e63e8"></h2>
 
+-----
+
 ## How to protect threads from one another?
 
 Need three important things:
@@ -343,6 +386,8 @@ Need three important things:
 
 
 <h2 id="68b88a3e849b7984dabc7d5067c41ac6"></h2>
+
+-----
 
 ## Recall: Program’s Address Space
 
@@ -368,6 +413,8 @@ Need three important things:
 
 <h2 id="33c3a77337646a23a39a78d05dbba257"></h2>
 
+-----
+
 ## Traditional UNIX Process
 
  - **Process: Operating system abstraction to represent what is needed to run a single program**
@@ -384,6 +431,8 @@ Need three important things:
     - which means there's only one thread
 
 <h2 id="3b275413bdec5abbb590a02846455aa2"></h2>
+
+-----
 
 ## How do we multiplex processes?
 
@@ -405,6 +454,8 @@ Need three important things:
 
 <h2 id="533647e51f52c2f453104c716ea7f16c"></h2>
 
+-----
+
 ## CPU Switch From Process to Process
 
 ![](../imgs/os_cpu_context_switch.png)
@@ -418,6 +469,8 @@ Need three important things:
         - you could actually have 2 processes loaded at the same time ,and that overhead switching in the hardware , and there is no overhead they're pretty much because the hardware is doing it for you. 
 
 <h2 id="766af2d268f2980b8f9da323e38d8d99"></h2>
+
+-----
 
 ## Diagram of Process State
 
@@ -433,6 +486,8 @@ Need three important things:
 
 <h2 id="26aa9adeb372bec1483847a510bc0c1f"></h2>
 
+-----
+
 ## Process Scheduling
 
 ![](../imgs/os_process_scheduling.png)
@@ -442,6 +497,8 @@ Need three important things:
     - Many algorithms possible (few weeks from now)
 
 <h2 id="06d2773d0e98a13f626e61c8f02fed7b"></h2>
+
+-----
 
 ## What does it take to create a process?
 
@@ -458,6 +515,8 @@ Need three important things:
 
 <h2 id="d23c2c45437a7a02dd6ac512a50aed61"></h2>
 
+-----
+
 ## Process =? Program 
 
 ![](../imgs/os_process_vs_program.png)
@@ -470,6 +529,8 @@ Need three important things:
     - cc starts up cpp, cc1, cc2, as, and ld
 
 <h2 id="a89baf66badbd0d10a0386e0e2c268ef"></h2>
+
+-----
 
 ## Multiple Processes Collaborate on a Task
 
@@ -491,6 +552,8 @@ Need three important things:
 
 <h2 id="eafc28015dfc7e15274ce676910f83bb"></h2>
 
+-----
+
 ### Shared Memory Communication
 
 ![](../imgs/os_shared_memory_communication.png)
@@ -500,6 +563,8 @@ Need three important things:
     - Introduces complex synchronization problems 
 
 <h2 id="26708f8bafc80deea5109312beef3a55"></h2>
+
+-----
 
 ### Inter-process Communication (IPC)
 
@@ -518,6 +583,8 @@ Need three important things:
 
 <h2 id="c8acda2a62eb8f84ee2ac849ca190688"></h2>
 
+-----
+
 ## Modern “Lightweight” Process with Threads
 
 A modern process has more than one thread. The idea is the process still has one address space , but it has multiple threads in it. 
@@ -535,6 +602,8 @@ A modern process has more than one thread. The idea is the process still has one
 
 <h2 id="d2a7607c8438e7c909aa626bf36b88b5"></h2>
 
+-----
+
 ### Single and Multithreaded Processes
 
 ![](../imgs/os_single_multithreaded_process.png)
@@ -546,6 +615,8 @@ A modern process has more than one thread. The idea is the process still has one
  - Why have multiple threads per address space?
     
 <h2 id="1d3a9c8598f8f7e04a2ab97b813a16fc"></h2>
+
+-----
 
 ### Examples of multithreaded programs
 
@@ -571,6 +642,8 @@ A modern process has more than one thread. The idea is the process still has one
 
 <h2 id="a1147205dad273a01357ee03a0ba625a"></h2>
 
+-----
+
 ## Thread State
 
  - State shared by all threads in process/addr space
@@ -586,6 +659,8 @@ A modern process has more than one thread. The idea is the process still has one
 
 <h2 id="bb392bbd04a404cae3ddf84271fea20e"></h2>
 
+-----
+
 ### Execution Stack Example
 
 ![](../imgs/os_execution_stack_example.png)
@@ -595,6 +670,8 @@ A modern process has more than one thread. The idea is the process still has one
  - Crucial to modern languages
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
+
+-----
 
 ## Summary
 
@@ -614,9 +691,14 @@ A modern process has more than one thread. The idea is the process still has one
 
 <h2 id="457166539d2868e71cf47f89e1866a96"></h2>
 
+-----
+-----
+
 # Lecture 4: Thread Dispatching 
 
 <h2 id="f05c1465a1018a7ad2c550d165769c67"></h2>
+
+-----
 
 ## MIPS: Software conventions for Registers
 
@@ -646,6 +728,8 @@ A modern process has more than one thread. The idea is the process still has one
 
 <h2 id="8a12b0f492c9809b6b63f829eb80ca3a"></h2>
 
+-----
+
 ## Single-Threaded Example
 
  - Imagine the following C program:
@@ -662,6 +746,8 @@ main() {
     - because ComputePI would never finish
 
 <h2 id="9f6481747b526e48cbc3c3235f2a1721"></h2>
+
+-----
 
 ## Use of Threads
 
@@ -684,6 +770,8 @@ main() {
 
 <h2 id="96e1c1ddfad24070e74100314ca1fee6"></h2>
 
+-----
+
 ## Memory Footprint of Two-Thread Example
 
 ![](../imgs/os_thread_disp_2thread_mem_footprint.png)
@@ -701,6 +789,8 @@ main() {
 
 <h2 id="8168b86f8351d4b3c96d05d294392e85"></h2>
 
+-----
+
 ## Per Thread State
 
  - Each Thread has a **Thread Control Block** (TCB)
@@ -715,6 +805,8 @@ main() {
     - In Array, or Linked List, or …
 
 <h2 id="36327051d52814b03a2ef7b83183f3f9"></h2>
+
+-----
 
 ## Lifecycle of a Thread (or Process)
 
@@ -731,6 +823,8 @@ main() {
 
 <h2 id="29bab3cf6a6d53393f8f549b2335f121"></h2>
 
+-----
+
 ## Ready Queue And Various I/O Device Queues
 
  - Thread not running => TCB is in some scheduler queue
@@ -741,6 +835,8 @@ main() {
 
 
 <h2 id="c289df5648beb35beaf1f17ca87ee93a"></h2>
+
+-----
 
 ## Dispatch Loop
 
@@ -762,6 +858,8 @@ Loop {
 
 <h2 id="72e542fbe4c7df30c850a9d83b37186c"></h2>
 
+-----
+
 ## Running a thread
 
 Consider first portion: RunThread()
@@ -776,6 +874,8 @@ Consider first portion: RunThread()
 
 
 <h2 id="67c2ae43ca95bbb942c50877d4699be0"></h2>
+
+-----
 
 ### Internal Events
 
@@ -799,6 +899,8 @@ computePI() {
 
 
 <h2 id="9301ba00a710f2f0c3d0e987b55894d4"></h2>
+
+-----
 
 ## Stack for Yielding Thread
 
@@ -825,6 +927,8 @@ run_new_thread() {
     - Maintain isolation for each thread
 
 <h2 id="0ccbdade8f62d5a109297de93bcfdf91"></h2>
+
+-----
 
 ## What do the stacks look like?
 
@@ -854,6 +958,8 @@ proc B() {
 
 <h2 id="5c74b6578d4a2a69bfe3efd742f8abfd"></h2>
 
+-----
+
 ## Saving/Restoring state (often called “Context Switch)
 
 ```
@@ -875,6 +981,8 @@ Switch(tCur,tNew) {
 ```
 
 <h2 id="a65d9d0db4d0e56258f8a9790865b242"></h2>
+
+-----
 
 ## Switch Details
 
@@ -909,6 +1017,8 @@ Switch(tCur,tNew) {
 
 <h2 id="10ce6000fcb49adf0650c21f0781928b"></h2>
 
+-----
+
 ## What happens when thread blocks on I/O?
 
 ![](../imgs/os_thread_disp_thread_block_io.png)
@@ -922,6 +1032,8 @@ Switch(tCur,tNew) {
     - Networking
 
 <h2 id="2cfda7f7062e0275e0247c3d069998d1"></h2>
+
+-----
 
 ## External Events
 
@@ -937,6 +1049,8 @@ Switch(tCur,tNew) {
 
 <h2 id="ac3e78e7384b0cd735da6f27aed285ed"></h2>
 
+-----
+
 ### Example: Network Interrupt
 
 Network interrupt is an external interrupt.
@@ -950,6 +1064,8 @@ Network interrupt is an external interrupt.
 
 
 <h2 id="b5a9674b6b2a701a6281fc2cfa5e01c0"></h2>
+
+-----
 
 ## Use of Timer Interrupt to Return Control
 
@@ -968,6 +1084,8 @@ TimerInterrupt() {
  - I/O interrupt: same as timer interrupt except that DoHousekeeping() replaced by ServiceIO().
 
 <h2 id="76509dab7986ec644502722976e77b9b"></h2>
+
+-----
 
 ## Choosing a Thread to Run
 
@@ -990,6 +1108,8 @@ TimerInterrupt() {
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
 
+-----
+
 ## Summary
 
  - The state of a thread is contained in the TCB
@@ -1007,9 +1127,14 @@ TimerInterrupt() {
 
 <h2 id="ddab5200bd0e32c18f6873e50ef64a6c"></h2>
 
+-----
+-----
+
 # Lecture 5 : Cooperating Threads
 
 <h2 id="9169db7925a4b838c995af1390fb85e0"></h2>
+
+-----
 
 ## Interrupt Controller
 
@@ -1036,6 +1161,8 @@ TimerInterrupt() {
 
 <h2 id="ac3e78e7384b0cd735da6f27aed285ed"></h2>
 
+-----
+
 ### Example: Network Interrupt
 
 ![][1]
@@ -1054,12 +1181,16 @@ TimerInterrupt() {
 
 <h2 id="758d109b4d744f94947421576f9f6d07"></h2>
 
+-----
+
 ## Review:  Timer Interrupt
 
  - This is often called **preemptive multithreading** , since threads are preempted for better scheduling
     - Solves problem of user who doesn’t insert yield();
 
 <h2 id="483ab3314892a7155e32e35ddd1b451d"></h2>
+
+-----
 
 ## ThreadFork(): Create a New Thread
 
@@ -1082,6 +1213,8 @@ TimerInterrupt() {
 
 <h2 id="1fa694bd693c3f651cbd9b3bcda0caf2"></h2>
 
+-----
+
 ### How do we initialize TCB and Stack?
 
  - Initialize Register fields of TCB
@@ -1096,6 +1229,8 @@ TimerInterrupt() {
 
 <h2 id="05c2c327c3eedac316533b39c66226be"></h2>
 
+-----
+
 ## How does Thread get started?
 
 ![](../imgs/os_thread_cooperate_how_thread_start.png)
@@ -1108,6 +1243,8 @@ TimerInterrupt() {
 
 
 <h2 id="55e254b64fdd3360649fd5a61753aa42"></h2>
+
+-----
 
 ### What does ThreadRoot() look like?
 
@@ -1137,6 +1274,8 @@ ThreadRoot() {
 
 <h2 id="7a52c0dd4d422a92b6b716b62425d940"></h2>
 
+-----
+
 ## What does ThreadFinish() do?
 
  - Needs to re-enter kernel mode (system call)
@@ -1152,6 +1291,8 @@ ThreadRoot() {
 
 <h2 id="c6439ecf3dfbc55f09ca225af8da3310"></h2>
 
+-----
+
 ## Additional Detail
 
  - Thread Fork is not the same thing as UNIX fork
@@ -1166,6 +1307,8 @@ ThreadRoot() {
 
 <h2 id="c79ae88038e30470ef90ea5320eb4b7a"></h2>
 
+-----
+
 ## Parent-Child relationship
 
  - Every thread (and/or Process) has a parentage
@@ -1173,6 +1316,8 @@ ThreadRoot() {
     - A child of a parent was created by that parent
 
 <h2 id="b5a1e99d1ec2bc3322bf39aa42393596"></h2>
+
+-----
 
 ## ThreadJoin() system call
 
@@ -1186,6 +1331,8 @@ ThreadRoot() {
     - ThreadJoin is not kind of synchronization
 
 <h2 id="cc1a47fb651850a86462158fab0d7c1d"></h2>
+
+-----
 
 ## Use of Join for Traditional Procedure Call
 
@@ -1210,6 +1357,8 @@ A’() {
 
 <h2 id="29661fa8b809ab28a5b51934e38b1001"></h2>
 
+-----
+
 ## Kernel versus User-Mode threads
 
  - We have been talking about Kernel threads
@@ -1233,12 +1382,16 @@ A’() {
 
 <h2 id="dc111ca82bd76ac49f508cd56898996b"></h2>
 
+-----
+
 ## Threading models mentioned by book
 
 ![](../imgs/os_thread_cooperate_thread_block.png)
 
 
 <h2 id="d85995eb95fa627c554daf95622b6c00"></h2>
+
+-----
 
 ## Multiprocessing vs Multiprogramming
 
@@ -1254,6 +1407,8 @@ A’() {
 
 
 <h2 id="75d83e281c09829d3d975c15d6dff110"></h2>
+
+-----
 
 ## Correctness for systems with concurrent threads
 
@@ -1274,6 +1429,8 @@ A’() {
 
 <h2 id="d40b5e12a4bd27bfb433bab8e179726f"></h2>
 
+-----
+
 ## Interactions Complicate Debugging
 
  - Is any program truly independent?
@@ -1291,6 +1448,8 @@ A’() {
         - User typing of letters used to help generate secure keys
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
+
+-----
 
 ## Summary
 

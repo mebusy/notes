@@ -93,9 +93,15 @@
 
 <h2 id="fa33d1b29e3eccffe78a5783a9d43764"></h2>
 
+-----
+-----
+
 # Calculus One , Part II 
 
 <h2 id="f2b7b4d00d78e3fd5414e3486cced898"></h2>
+
+-----
+-----
 
 # Week 11 Antidifferentiation
 
@@ -103,6 +109,8 @@ You can really think of anti-differentiation as a sort of bridge between the, th
 
 
 <h2 id="e5f2ceb4aa78ecec5012e1f271ec48d0"></h2>
+
+-----
 
 ## How do we handle the fact that there are many antiderivatives?
 
@@ -113,9 +121,13 @@ You can really think of anti-differentiation as a sort of bridge between the, th
 
 <h2 id="f3171cf7edd44fec9674414241d559a1"></h2>
 
+-----
+
 ## How am I supposed to compute antiderivatives ?
 
 <h2 id="9a774c13632f99aade9ae58467e1839b"></h2>
+
+-----
 
 ### What is the antiderivative of a sum?
 
@@ -130,6 +142,8 @@ You can really think of anti-differentiation as a sort of bridge between the, th
  - The antiderivative of the sum is the sum of the antiderivative . 
 
 <h2 id="2b4ad78f06a02378ecd2fb58fa1e0d88"></h2>
+
+-----
 
 ### What is an antiderivative for xⁿ ?
 
@@ -150,6 +164,8 @@ f(x) = 15x² -4x +3
     - ∫a·f(x)dx = a·∫f(x)dx
 
 <h2 id="9602e1d6d174f0797eea3631e85257b0"></h2>
+
+-----
 
 ### What is the most general antiderivative of 1/x?
 
@@ -181,6 +197,8 @@ F(x)= ⎨
 
 <h2 id="ef8ce61c6eaaba0c86730eee57732a7a"></h2>
 
+-----
+
 ### What are antiderivatives of trigonometric functions?
 
  - ∫cosxdx = sinx + C
@@ -193,6 +211,8 @@ F(x)= ⎨
 
 <h2 id="f25d9687ab2a19385a54403be540b9fa"></h2>
 
+-----
+
 ### What are antiderivatives of eˣ and natural log?
 
  - ∫eˣdx = eˣ + C
@@ -201,9 +221,13 @@ F(x)= ⎨
 
 <h2 id="884aac3316eafa26375608fe965ec95b"></h2>
 
+-----
+
 ## Why is this so hard ?
 
 <h2 id="f4ad4b23e7f189ae03e08f4479b96fad"></h2>
+
+-----
 
 ### What is the antiderivative of f(mx+b)?
 
@@ -215,6 +239,8 @@ F(x)= ⎨
      
 <h2 id="51698d7dfac653ae45039307500ba6ed"></h2>
 
+-----
+
 ### What is an antiderivative for e^(-x²) ?
 
  - ∫e<sup>-x²</sup>dx **can not be expressed using elementary functions**.
@@ -224,9 +250,13 @@ F(x)= ⎨
 
 <h2 id="eed598ddc44da35152d9cd8fa4f72500"></h2>
 
+-----
+
 ## Why would anybody want to do this ?
 
 <h2 id="53f3b74109dd53d0637327e1c4461353"></h2>
+
+-----
 
 ### Knowing my velocity, what is my position?
 
@@ -243,6 +273,8 @@ F(x)= ⎨
 
 <h2 id="2d170c5dab6fbe2b16e00620d9777204"></h2>
 
+-----
+
 ### Knowing my acceleration, what is my position?
 
  - a(t) = 8
@@ -256,6 +288,8 @@ F(x)= ⎨
 
 <h2 id="1278e0b4deef4be8e19deb27ec0db474"></h2>
 
+-----
+
 ### What is the antiderivative of sine squared?
 
 ```
@@ -267,6 +301,8 @@ F(x)= ⎨
 ``` 
 
 <h2 id="4f9b1095d71cf63bce0bd635d59babae"></h2>
+
+-----
 
 ### What is a slope field?
 
@@ -288,13 +324,20 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 <h2 id="514e1caaba7832bf708c3cbba5572912"></h2>
 
+-----
+-----
+
 # Week12 Integration
 
 <h2 id="5b0c78a8b489b5951d6133d512173fd2"></h2>
 
+-----
+
 ## What is summation notation ?
 
 <h2 id="fd783af9af00d3861d1ff94414ccb5fd"></h2>
+
+-----
 
 ### What is the sum 1 + 2 + ... + k? 
 
@@ -308,6 +351,8 @@ There's a visual way to gain some insight into these anti-differentiation proble
 ∑<sub>n=</sub>ᵏ₁ n = (k+1)·k/2
 
 <h2 id="64b7c829a64912cded7e4fb1748bf931"></h2>
+
+-----
 
 ### What is the sum of the first k odd numbers?
 
@@ -326,6 +371,8 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 <h2 id="bb1b3996821d028092f6f37259c6dc7d"></h2>
 
+-----
+
 ### What is the sum of the first k perfect squares?
 
   ∑<sub>n=</sub>ᵏ₁ n² = 1² + 2² + ... + k² 
@@ -342,6 +389,8 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 <h2 id="9a72aabb581b21f673d346308b47b1ec"></h2>
 
+-----
+
 ### What is the sum of the first k perfect cubes?
 
   ∑<sub>n=</sub>ᵏ₁ n³ 
@@ -357,9 +406,13 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 <h2 id="4803201396fe93254689a378f4acea16"></h2>
 
+-----
+
 ## So how do we calculate area precisely ?
 
 <h2 id="a2a6a595d166557f2b5ba00e7e8f36cc"></h2>
+
+-----
 
 ### What is the definition of the integral of f(x) from x = a to b?
 
@@ -370,9 +423,13 @@ There's a visual way to gain some insight into these anti-differentiation proble
  
 <h2 id="0b347bc298049db4ffd8970d79c31ef6"></h2>
 
+-----
+
 ## Can we compute any other integrals ?
 
 <h2 id="407504fcb5d2b2a2db97282f9349f4c6"></h2>
+
+-----
 
 ### What is the integral of x^2 from x = 0 to 1?
 
@@ -396,6 +453,8 @@ There's a visual way to gain some insight into these anti-differentiation proble
 = 1/3
 
 <h2 id="6693d9715518594ce91728437de46c79"></h2>
+
+-----
 
 ### What is the integral of x^3 from x = 1 to 2?
 
@@ -426,9 +485,13 @@ now we get the final answer:
 
 <h2 id="267eece5a0855676c858702fe0ba61ca"></h2>
 
+-----
+
 ## Can we understand anything conceptually about integrals ?
 
 <h2 id="5104183620b8440565164d50f7160ce0"></h2>
+
+-----
 
 ### What sorts of properties does the integral satisfy?
 
@@ -449,6 +512,8 @@ now we get the final answer:
 **The derivatives have the same rules about sum !**
 
 <h2 id="adf7c6d36d552a2cdce06fa0a8c2b306"></h2>
+
+-----
 
 ### When is the accumulation function increasing? Decreasing?
 
@@ -476,9 +541,14 @@ The integrals are not exactly measuring area, they're measuring **singed area**.
 
 <h2 id="76e5d32d317a3d89cedfea3744cc9d75"></h2>
 
+-----
+-----
+
 # Week 13 Fundamental Theorem of Calculus
 
 <h2 id="235a74dfbd48742f9c1a75862fd0c35a"></h2>
+
+-----
 
 ## What is the fundamental theorem of calculus?
 
@@ -504,9 +574,13 @@ Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>
  
 <h2 id="15e487fe2795a4de1be5a306bf55ada9"></h2>
 
+-----
+
 ## How am I supposed to use this theorem ?
 
 <h2 id="53e29059931fae1bb39ae6498494625c"></h2>
+
+-----
 
 ### to evaluate integrals
 
@@ -522,12 +596,16 @@ Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>
  
 <h2 id="44c1bf08687574267775be1feeb42efc"></h2>
 
+-----
+
 ### What is the integral of sin x dx from x = 0 to x = pi?
 
  - ∫<sup>π</sup>₀ sinxdx = ?
  - -cos(π) - (-cos(0))  = 1 - (-1) = 2
 
 <h2 id="2b221d77b3789b96e070d508881cc2fb"></h2>
+
+-----
 
 ### What is the integral of x⁴ dx from x = 0 to x = 1?
 
@@ -536,9 +614,13 @@ Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>
  
 <h2 id="2354b07f92446373f273db4940266dd4"></h2>
 
+-----
+
 ## What else can we compute this way ?
 
 <h2 id="c09b0bfa71c020ac859c14e57108a8b1"></h2>
+
+-----
 
 ### What is the area between the graphs of y = √x and y = x² ?
 
@@ -549,9 +631,13 @@ Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>
 
 <h2 id="c51347a969d83291908d473077d934ca"></h2>
 
+-----
+
 ## Bug why is the fundamental theorem true ?
 
 <h2 id="a4ab0b1660248f0d9e62b35341c1b1e6"></h2>
+
+-----
 
 ### Why does the Euler method resemble a Riemann sum?
 
@@ -564,6 +650,8 @@ Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>
 
 
 <h2 id="2ac4f9dd2d934474613787c8f2541b2a"></h2>
+
+-----
 
 ### In what way is summation like integration?
 
@@ -579,6 +667,8 @@ summing | *differencing*
 
 <h2 id="3d25e750b4fc1ef196b9f5374dfb1e5e"></h2>
 
+-----
+
 ### Physically, why is the fundamental theorem of calculus true?
 
  - v(t) = my velocity at time t
@@ -590,6 +680,8 @@ summing | *differencing*
  - The derivative of displacement is velocity. 
 
 <h2 id="dd8a004feac789f359b9f1d0c411bf67"></h2>
+
+-----
 
 ### What is d/da integral f(x) dx from x = a to x = b?
 
@@ -605,6 +697,8 @@ summing | *differencing*
 
 <h2 id="db021f4670ba22ce77ef0acb0aba7ba0"></h2>
 
+-----
+
 ### Quiz:
 
  - ∫<sup>6.02</sup>₆ f(x)dx = 0.1 , Approximate f(6) as well as you can given this information 
@@ -614,6 +708,9 @@ summing | *differencing*
 ---
 
 <h2 id="d2c2e3f1cc8835457610b328bdcd7a82"></h2>
+
+-----
+-----
 
 # Week 14 : Substitution Rule
 
@@ -627,9 +724,13 @@ Now it turns out that finding anti-derivatives is also really hard to do. So we 
 
 <h2 id="fd339d56f0e61ade587ffb1a32f60377"></h2>
 
+-----
+
 ## What is the chain rule backwards ?
 
 <h2 id="61791445b8db9f9af652e5b5faef1722"></h2>
+
+-----
 
 ### How does the chain rule help with antidifferentiation?
 
@@ -652,6 +753,8 @@ I know you might feel kind of bad, because I don't really see a *2xdx*, I only s
 
 <h2 id="586760ec16df4dfafb1ade061114f837"></h2>
 
+-----
+
 ### When I do u-substitution, what should u be?
 
  - How to pick *u* ?
@@ -665,6 +768,8 @@ I know you might feel kind of bad, because I don't really see a *2xdx*, I only s
 
 
 <h2 id="06c352fcad5ce7eb9b2691e623454640"></h2>
+
+-----
 
 ### How should I handle the endpoints when doing u-substitution?
 
@@ -697,6 +802,8 @@ We did it. But I could've finished this problem off in a slightly diferent but e
 
 <h2 id="9bd1a0f264093d981b3c1a8170148e94"></h2>
 
+-----
+
 ### Might I want to do u-substitution more than once?
 
  - Sometimes you might want to do u substitution more than once. 
@@ -720,10 +827,14 @@ We did it. But I could've finished this problem off in a slightly diferent but e
 
 <h2 id="ee830a5a4339c0b9c8e33044eb004562"></h2>
 
+-----
+
 ## What are some tricks for doing substitutions ?
 
 
 <h2 id="f817608cb35f2dc36ff3722a609c8d49"></h2>
+
+-----
 
 ### What is the integral of dx / (x² + 4x + 7)?
 
@@ -755,6 +866,8 @@ So :
 
 <h2 id="96c0d2032815787089715ac1c89bf6e6"></h2>
 
+-----
+
 ### What is the integral of (x+10)(x-1)¹⁰ dx from x = 0 to x = 1?
 
   ∫<sub>x=</sub>¹₀ (x+10)(x-1)¹⁰dx
@@ -770,6 +883,8 @@ So :
 = 11/12
 
 <h2 id="ab56342063f7a7e3b701824705d1bacd"></h2>
+
+-----
 
 ### What is the integral of x / (x+1)^(1/3) dx?
 
@@ -793,6 +908,8 @@ There is a more easy way to do this.
 
 
 <h2 id="8f940df21711cbfbefdc907d9a92ceba"></h2>
+
+-----
 
 ### What is the integral of dx / (1 + cos x) ?
 
@@ -821,9 +938,13 @@ Sometimes the best substitution to make isn't even visible until after we've  me
 
 <h2 id="3bf470483ea31266a09b5a4fde4ed3da"></h2>
 
+-----
+
 ## What if I differentiate an accumulation function ?
 
 <h2 id="e4a77f0ab697bc7b531b4444d20b1a4e"></h2>
+
+-----
 
 ### What is d/dx integral sin t dt from t = 0 to t = x² ?
 
@@ -854,6 +975,8 @@ We know d/dx ∫<sup>x</sup>₀ sintdt = sinx. What I'm asking is what if this e
 
 <h2 id="285814dfce98e5f31b17fed78e7102f4"></h2>
 
+-----
+
 #### Quiz :
 
 Define a functin f: ℝ → ℝ , by the rule f(t) = ∫<sup>sint</sup>₀ cosxdx. what is f'(t) ?
@@ -863,6 +986,8 @@ Define a functin f: ℝ → ℝ , by the rule f(t) = ∫<sup>sint</sup>₀ cosxd
 
 
 <h2 id="94f3bff1a51d9ea1dea6a80ef6c97d18"></h2>
+
+-----
 
 ### Formally, why is the fundamental theorem of calculus true?
 
@@ -878,13 +1003,20 @@ F'(x) = f(x)
 
 <h2 id="ec623201de625f3e9220cee3ed36bece"></h2>
 
+-----
+-----
+
 # Week 15: Techniques of Integration
 
 <h2 id="a3efff727e311f003222e5da51002f75"></h2>
 
+-----
+
 ## How do I do integration by parts
 
 <h2 id="caaef88063b48f24b4658808509d16c9"></h2>
+
+-----
 
 ### What antidifferentiation rule corresponds to the product rule in reverse?
 
@@ -912,6 +1044,8 @@ It's trading game. I'm trading ∫udv with ∫vdu. But now on part is differenti
 
 <h2 id="02bbfedeb8eb2ccc58d29cbd11721a0b"></h2>
 
+-----
+
 ### What is ∫xeˣdx ?
 
 The basic idea of integration by parts is that it lets you differentiate part of  the integrand, but only if you're willing to pay a price.  And that price is anti-differentiating the other part of the integrand.
@@ -932,6 +1066,8 @@ Now, we can use the same trick to attack  similar integration problems. For exam
 
 <h2 id="f9c1c400e6d3da0434fc23aca4c66e8b"></h2>
 
+-----
+
 ### How does parts help when antidifferentiating logx ? 
 
   ∫logxdx 
@@ -943,6 +1079,8 @@ so
 ∫logxdx = xlogx - ∫x·1/xdx = xlogx - x + C 
 
 <h2 id="914aefa422b729c23d6fafdcff73122a"></h2>
+
+-----
 
 ### What is an ∫eˣcosxdx ?
 
@@ -968,9 +1106,13 @@ we get ∫sinxeˣdx  = -eˣcosx + ∫cosxeˣdx
 
 <h2 id="5dd205d5d25e6f560cea2d96e4bae8c2"></h2>
 
+-----
+
 ## How do I know when to use parts ?
 
 <h2 id="75332a48e4c41082ba764690eec3df2c"></h2>
+
+-----
 
 ### What is an antiderivative of e^√x d?
 
@@ -997,9 +1139,13 @@ let v=2u , dw = eᵘdu ; dv = 2du , w =  eᵘ
 
 <h2 id="6f10e0ee98aa01caf88f44a8ddd1f9e9"></h2>
 
+-----
+
 ## How do I integrate powers of sin and cos ?
 
 <h2 id="1594c9119beb52d6951d2a239ad13553"></h2>
+
+-----
 
 ### What is ∫sin<sup>2n+1</sup>x·cos²ⁿxdx ?
 
@@ -1028,6 +1174,8 @@ let u=cosx, du=-sinxdx
 
 
 <h2 id="daeff048471d45e5b694c61ba1538360"></h2>
+
+-----
 
 ### What is ∫<sup>π</sup>₀ sin²ⁿxdx ?
 
@@ -1074,6 +1222,8 @@ I should say that in some cases you can  get away with doing a bit less work.
 
 <h2 id="e6c1871b792c82c40999a7da6c07c873"></h2>
 
+-----
+
 ### What is ∫sinⁿxdx in terms of ∫sinⁿ⁻²xdx ?
 
   ∫<sup>π/2</sup>₀ sin³²xdx = 300540195·π / 4294967296
@@ -1088,17 +1238,26 @@ TODO
 
 <h2 id="879c0c1f206e5d620e7ce0bfd2a2e0b2"></h2>
 
+-----
+-----
+
 # Week 16: Applications of Integration
 
 <h2 id="155fe6d0ba46bf21608d4267f5431cbf"></h2>
+
+-----
 
 ## What can we do with integrals besides calculating area?  Volumns ! 
 
 <h2 id="790fe246d1dd6f4d2162fc4fe4f28e61"></h2>
 
+-----
+
 ## How else can I calculate area ?
 
 <h2 id="ebb665e75800b60c1affdaa77fc9e5c3"></h2>
+
+-----
 
 ### What happens when I use thin horizontal rectangles to compute area?
 
@@ -1109,6 +1268,8 @@ TODO
  - area = ∫¹₀ 2√ydy   (Ps. not [-1,1], [-1,1] is for ∫xxxdx  )
 
 <h2 id="1eff9e402e1402bf1d1c8984c1387c61"></h2>
+
+-----
 
 ### When should I use horizontal as opposed to vertical pieces?
 
@@ -1135,6 +1296,8 @@ if I cut this up into horizontal strips, all of my horizontal strips have an ora
 
 <h2 id="ab458f4b361834dd802e4f40d31b5ebc"></h2>
 
+-----
+
 ### Quiz
 
 Write an integral representing the area of the region bounded by the lines x=8, x=12, the function f(x)=6x+7, and the function g(x) = √(10+arctan(x)).
@@ -1146,9 +1309,13 @@ Write an integral representing the area of the region bounded by the lines x=8, 
 
 <h2 id="6d7ddc94e89335ca03c91ea5976a39a9"></h2>
 
+-----
+
 ## How I can calculate volumn ?
 
 <h2 id="50d38fafec7026a597e2116789e124d4"></h2>
+
+-----
 
 ### What does "volume" even mean?
 
@@ -1174,6 +1341,8 @@ volumn = ∫ₓ₌²₀ π(x/2)²dx
 
 <h2 id="2c5d1b5cc187a6c7ab03086f49434c4c"></h2>
 
+-----
+
 ### What is the volume of a sphere?
 
 ![](../imgs/calculus_calculus_volumn_of_sphere.png)
@@ -1190,6 +1359,8 @@ volumn = ∫ʳ₋ᵣ π(√(r²-x²))²dy
 = 4/3πr³
 
 <h2 id="32c7f2421ed02a30ee7e2e4c7b45d331"></h2>
+
+-----
 
 ### How do washers help to compute the volume of a solid of revolution?
 
@@ -1223,6 +1394,8 @@ V = ∫¹₀ π(√x²-(x²)²)dx
 
 <h2 id="7660cc24ddc825e2c685482bdfda7354"></h2>
 
+-----
+
 ### What is the volume of a thin shell?
 
 ![](../imgs/calculus_disk_shell_washer.png)
@@ -1240,6 +1413,8 @@ V = ∫¹₀ π·2x·(1-x²) dx
  = π/2
 
 <h2 id="ff243addc34fe33a3b0d1d8fd1387cd8"></h2>
+
+-----
 
 ### What is the volume of a sphere with a hole drilled in it?
 
@@ -1259,9 +1434,13 @@ V = ∫²₁ 2πx·2√(4-x²)dx
 
 <h2 id="9ee7a107678b439893e2559c05a14dcc"></h2>
 
+-----
+
 ## How can I calculate length ?
 
 <h2 id="de5e7676d649c7468e2bb575b9ab93af"></h2>
+
+-----
 
 ### What does "length" even mean?
 
@@ -1289,6 +1468,8 @@ So here's the formula that we're going to use ?
 ---
 
 <h2 id="37a18465856958ba97dc6aeaaa06389e"></h2>
+
+-----
 
 ### On the graph of y² = x³, what is the length of a certain arc?
 

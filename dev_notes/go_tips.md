@@ -82,9 +82,14 @@
 
 <h2 id="d13bc5b68b2bd9e18f29777db17cc563"></h2>
 
+-----
+-----
+
 # Common
 
 <h2 id="092987d14c5ea50ca1043604d333f7f7"></h2>
+
+-----
 
 ## multiple characters replacement
 
@@ -94,6 +99,8 @@ fmt.Println( r.Replace( "a(b)c)d" )  )
 ```
 
 <h2 id="50ac00ef46e6ca65b6eda7d8fbc3d3eb"></h2>
+
+-----
 
 ## Ternary expression
 
@@ -110,6 +117,8 @@ func If(condition bool, trueVal, falseVal interface{}) interface{} {
 
 <h2 id="2929210b0e8a534b0f6389e8de130779"></h2>
 
+-----
+
 ## How to find out which types implement ByteReader interface in golang pkg ?
 
 ```
@@ -118,6 +127,8 @@ https://golang.org/search?q=ReadByte
 
 
 <h2 id="c81f40d0d79a6378c73da8285af6a87f"></h2>
+
+-----
 
 ## don't use alias for enums 'cause this breaks type safety
 
@@ -136,9 +147,13 @@ func main() {
 
 <h2 id="1a2da25898c4fd8e23e5530a6d1676c4"></h2>
 
+-----
+
 ## the short form for slice initialization is `a := []T{}`
 
 <h2 id="3b74cf78eee2b1bdb3ac72e39aa0b9ec"></h2>
+
+-----
 
 ### the zero value of a slice is nil
 
@@ -166,10 +181,14 @@ fmt.Println(reflect.DeepEqual(b, []string{}))
 
 <h2 id="3fb8e7e955dd2ef147753428825decc1"></h2>
 
+-----
+
 ## use `%+v` to print data with sufficient details
 
 
 <h2 id="226081b0fa35e5ae1ca0233b34285901"></h2>
+
+-----
 
 ## using range loop to iterate over array or slice 
 
@@ -179,9 +198,13 @@ for _, c := range a[3:7] {...}
 
 <h2 id="a5e5af3efeb419f96f350782021e2e41"></h2>
 
+-----
+
 ## comparing timestamps by using `time.Before` or `time.After`.
 
 <h2 id="9b63cdf4a17f6bc00c607ce0b8c34e62"></h2>
+
+-----
 
 ## be careful with empty struct `struct{}`
 
@@ -201,6 +224,8 @@ func f2() {
 
 <h2 id="96d33eb12c7b98e7c443951fcd4bd31b"></h2>
 
+-----
+
 ## be careful with range in Go
 
  - `for i := range a` and `for i, v := range &a` doesn't make a copy of a
@@ -208,12 +233,16 @@ func f2() {
 
 <h2 id="cc01793243c2fa1852f2972d1adf0972"></h2>
 
+-----
+
 ## reading nonexistent key from map will not panic 
 
  - `value := map["no_key"]` will be zero value
  - `value, ok := map["no_key"]` is much better
 
 <h2 id="efcd04c1f0dae7d0002c6671eed2d378"></h2>
+
+-----
 
 ## simple random element from a slice
 
@@ -226,9 +255,14 @@ func f2() {
 
 <h2 id="3e48afddb0c5521684b8d2687b0869d6"></h2>
 
+-----
+-----
+
 # Concurrency
 
 <h2 id="b27f2b80be1e9c908fcec253c881177c"></h2>
+
+-----
 
 ## T12 inherits the mutex lock , YES anonymous structs are cool
 
@@ -247,6 +281,8 @@ func (w *words) add(word string, n int) {
 
 <h2 id="949c5b9f71365fae2a311ff363602d87"></h2>
 
+-----
+
 ## T14 Closing channels
 
  - write(send) to a closed channel will cause **panic**
@@ -260,22 +296,30 @@ func (w *words) add(word string, n int) {
 
 <h2 id="38d57280e166d4e78ace55c47bd88624"></h2>
 
+-----
+
 ### use chan struct{} to pass signal, chan bool makes it less clear
 
 
 
 <h2 id="34f46f2a72a5a37dbfa0c051251e6d91"></h2>
 
+-----
+
 ## T15 Locking with buffered channels (size of 1, to replace Lock)
 
 
 <h2 id="61585cd8a4eb857f05a268dded0d9196"></h2>
+
+-----
 
 ## best candidate to make something once in a thread-safe way is sync.Once
 
  - don't use flags, mutexes, channels or atomics
 
 <h2 id="fe89095a25ed4db8aa993b7f4e45d1cb"></h2>
+
+-----
 
 ## concurrency-safe
 
@@ -288,13 +332,20 @@ func (w *words) add(word string, n int) {
 
 <h2 id="902b0d55fddef6f8d651fe1035b7d4bd"></h2>
 
+-----
+-----
+
 # Error
 
 <h2 id="d1de0b2cb3348dca42f909c843dcf5bc"></h2>
 
+-----
+
 ## T17 Use custom error types to return additional information
 
 <h2 id="65263ac49cb63677beb20a5cefd0791d"></h2>
+
+-----
 
 ### Or use to wrap an error 
 
@@ -308,6 +359,8 @@ errors.Wrap(err, "additional message to a given error")
 
 <h2 id="87b731d7e572733aa294fbdd8513c9e0"></h2>
 
+-----
+
 ## T18 Error variables , create errors as package-scoped variables and reference those variables
 
 ```go
@@ -318,6 +371,8 @@ return "", ErrTimeout
 
 <h2 id="d3679e82565b6cc42c359a29ad5c8ffd"></h2>
 
+-----
+
 ## Panics and goroutines
 
  - If a panic on a goroutine goes unhandled on that goroutine’s call stack, it crashes the entire program
@@ -326,15 +381,22 @@ return "", ErrTimeout
 
 <h2 id="88d00ec4fe58aa422b9c3e2fd7eac2a0"></h2>
 
+-----
+
 ## use panic only in very specific situations, you have to handle error
 
 
 
 <h2 id="4582db50ce6fbe4c2d279f27c53a8741"></h2>
 
+-----
+-----
+
 # Debug & Test 
 
 <h2 id="ede22a82337ad92405e2e3f2875d248f"></h2>
+
+-----
 
 ## Accessing stack traces
 
@@ -364,6 +426,8 @@ func bar() {
 
 <h2 id="0615f6469476f5c64c9c20eae6348a7b"></h2>
 
+-----
+
 ## dump goroutines 
 
  - To mimic the Java behaviour of stack-dump on SIGQUIT but still leaving the program running:
@@ -388,6 +452,8 @@ sigs := make(chan os.Signal, 1)
 
 <h2 id="826c20b622dd27722a65b20623a45754"></h2>
 
+-----
+
 ## to get call stack we've runtime.Caller
 
 
@@ -398,6 +464,8 @@ func Caller(skip int) (pc uintptr, file string, line int, ok bool)
 ```
         
 <h2 id="3338f48367f6f6923613b593a7e0749b"></h2>
+
+-----
 
 ## Generative testing , random test edge cases
 
@@ -432,6 +500,8 @@ func TestPadGenerative(t *testing.T) {
 
 <h2 id="c5a9149a4c668ac9542a3eabd9078d5d"></h2>
 
+-----
+
 ## 30 Parallel benchmarks  and race detection
 
 ```
@@ -445,6 +515,8 @@ $ go test -bench . -race -cpu=1,2,4
 
 <h2 id="a9928fbcd297bb4fb75ea5528df8edad"></h2>
 
+-----
+
 ## easy way to split test into different builds 
 
  - use `// +build integration` and run them with `go test -v --tags integration` .
@@ -452,9 +524,14 @@ $ go test -bench . -race -cpu=1,2,4
 
 <h2 id="909dbd9520809eab1b9f3c2544d7e831"></h2>
 
+-----
+-----
+
 # Web Cloud and Micro Service
 
 <h2 id="172a5c78b32d6fc444e4d1c3b61744d2"></h2>
+
+-----
 
 ## T9 URL Faster routing
 
@@ -464,11 +541,15 @@ github.com/gorilla/mux
 
 <h2 id="9b750e13615f6e945e21136f2486944e"></h2>
 
+-----
+
 ## T49 Detecting timeouts
 
  - https://github.com/mebusy/notes/blob/master/dev_notes/GoIn70_8.md#ed8f378a99622e6fa9e881ad40b1ee0a
 
 <h2 id="5864385d2a98ac5198627d336c9e3215"></h2>
+
+-----
 
 ## T50 resuming download with HTTP
 
@@ -476,6 +557,8 @@ github.com/gorilla/mux
 
 
 <h2 id="70d85a28319eb9789bccde5293aeef77"></h2>
+
+-----
 
 ## T58 detect IP addr on the host
 
@@ -503,6 +586,8 @@ func main() {
 
 <h2 id="93f6310cc55bf4890ceb40446c51d45d"></h2>
 
+-----
+
 ## T59 Detecting where depend command exists on host
 
 ```go
@@ -519,6 +604,8 @@ func checkDep(name string) error {
 
 <h2 id="60ee39b263dfd49c2df587ebd0603552"></h2>
 
+-----
+
 ## T60 Batch Cross-compiling
 
 ```
@@ -530,6 +617,8 @@ $ gox \
 ```
 
 <h2 id="d229185d44acbaf8549510f633db7bbf"></h2>
+
+-----
 
 ## T61 Monitoring the Go runtime
 
@@ -549,6 +638,8 @@ func monitorRuntime() {
 ```
 
 <h2 id="127f2f792279fa876b89569831a2170a"></h2>
+
+-----
 
 ## T62 Reusing connections
 
@@ -571,6 +662,8 @@ tr := &http.Transport{
 
 <h2 id="5671e185bb514a943cc0340216a81cbf"></h2>
 
+-----
+
 ## T63 Faster JSON marshal and unmarshal
 
 ```
@@ -578,6 +671,8 @@ $ go get -u github.com/ugorji/go/codec/codecgen
 ```
 
 <h2 id="6807f9517e74e39fcdde04bee03bd940"></h2>
+
+-----
 
 ## httputil.DumpRequest is very useful thing, don't create your own
 
@@ -590,9 +685,14 @@ func DumpRequest(req *http.Request, body bool) ([]byte, error)
 
 <h2 id="aea1e492943ccbad7ee270ec1e064758"></h2>
 
+-----
+-----
+
 # Reflection
 
 <h2 id="490e9ac4eae32799c8876c485d61477f"></h2>
+
+-----
 
 ## T70 Generating code with go generate
 
@@ -601,9 +701,14 @@ func DumpRequest(req *http.Request, body bool) ([]byte, error)
 
 <h2 id="9446a98ad14416153cc4d45ab8b531bf"></h2>
 
+-----
+-----
+
 # Performance
 
 <h2 id="f2e1d768493590d77cb642c9efb98268"></h2>
+
+-----
 
 ## Do NOT overuse fmt.Sprintf in your hot path. 
  - It is costly due to maintaining the buffer pool and dynamic dispatches for interfaces.
@@ -613,17 +718,23 @@ func DumpRequest(req *http.Request, body bool) ([]byte, error)
 
 <h2 id="a7701ee1968dee6ec433541b590f0d44"></h2>
 
+-----
+
 ## always discard body e.g. `io.Copy(ioutil.Discard, resp.Body)`  if you don't use it
 
  - HTTP client's Transport will not reuse connections unless the body is read to completion and closed
 
 <h2 id="8081b8d04a6f4d4ee17eeca49c63613a"></h2>
 
+-----
+
 ## don't use defer in a loop or you'll get a small memory leak
 
  - cause defers will grow your stack without the reason
 
 <h2 id="3b9ec32447f983783ee40bcb4e2448fe"></h2>
+
+-----
 
 ## don't forget to stop ticker, unless you need a leaked channel
 
@@ -634,9 +745,13 @@ defer ticker.Stop()
 
 <h2 id="543e9d26325c59e0d80371ab11f03a3e"></h2>
 
+-----
+
 ## `sync.Map` isn't a silver bullet, do not use it without a strong reasons
 
 <h2 id="457a0f3166a881858238dadb30c3b00d"></h2>
+
+-----
 
 ## to hide a pointer from escape analysis you might carefully(!!!) use this func:
 
@@ -653,15 +768,21 @@ x := uintptr(p)
 
 <h2 id="81d856f273cef05d6d36437fb6770bc8"></h2>
 
+-----
+
 ## for fastest atomic swap you might use this `m := (*map[int]int)(atomic.LoadPointer(&ptr))`
 
 <h2 id="ad7dad3c5b207cff2caf801d111437d3"></h2>
+
+-----
 
 ## use buffered I/O if you do many sequential reads or writes
 
  - to reduce number of syscalls
 
 <h2 id="869e770545ab96a38832ba21ea6e9199"></h2>
+
+-----
 
 ## there are 2 ways to clear a map:
 
@@ -682,13 +803,20 @@ m = make(map[int]int)
 
 <h2 id="c74c1f42f141c011ca6bd8b1114fc3d0"></h2>
 
+-----
+-----
+
 # Build
 
 <h2 id="822c1164685d599334ea5584d4638941"></h2>
 
+-----
+
 ## strip your binaries with this command go build -ldflags="-s -w" ...
 
 <h2 id="e34c20517da18245d8e7fe706febc368"></h2>
+
+-----
 
 ## tiniest Go docker image
 
@@ -698,9 +826,13 @@ CGO_ENABLED=0 go build -ldflags="-s -w" app.go && tar C app | docker import - my
 
 <h2 id="1695cd016ed1ed01d8ff7cecde62d867"></h2>
 
+-----
+
 ## check if there are mistakes in code formatting `diff -u <(echo -n) <(gofmt -d .)`
 
 <h2 id="fbc04a03c1a5ee00e1b416744fb3154b"></h2>
+
+-----
 
 ## check interface implementation during compilation
 
@@ -712,9 +844,14 @@ var _ io.Reader = (*MyFastReader)(nil)
 
 <h2 id="ac5c74b64b4b8352ef2f181affb5ac2a"></h2>
 
+-----
+-----
+
 # sql 
 
 <h2 id="cca85d15132b75981103827efd17081b"></h2>
+
+-----
 
 ## where in
 
@@ -744,6 +881,8 @@ for rows.Next() {
 ```
 
 <h2 id="b589b58d1c70513bf77a35c489473590"></h2>
+
+-----
 
 ## Scan rows to struct 
 
@@ -778,6 +917,8 @@ for rows.Next() {
 
 <h2 id="f546c79ad1cdb480d0e3df44316a5a29"></h2>
 
+-----
+
 ## Parameter Placeholder Syntax
 
 mysql | postgreSQL  | Oracle
@@ -787,9 +928,13 @@ VALUES(?, ?, ?)   |  VALUES($1, $2, $3) |   VALUES(:val1, :val2, :val3)
 
 <h2 id="1475e8cb4633b25db26bd0b484bfc45f"></h2>
 
+-----
+
 ## 数据库操作
 
 <h2 id="c8c95af3e4422ec0c4e188c720d67079"></h2>
+
+-----
 
 ### 多行查询
 
@@ -829,6 +974,8 @@ VALUES(?, ?, ?)   |  VALUES($1, $2, $3) |   VALUES(:val1, :val2, :val3)
 
 <h2 id="520a0fe1e028d3bfd9e80f3d51311100"></h2>
 
+-----
+
 ### 单行查询
 
  - db.QueryRow , 返回 Row
@@ -842,6 +989,8 @@ err = db.QueryRow("select name from user where id = ?", 1).Scan(&name)
 
 
 <h2 id="131d2cc4055f927cc5f593ebb1042224"></h2>
+
+-----
 
 ### 插入数据
 
@@ -861,11 +1010,15 @@ err = db.QueryRow("select name from user where id = ?", 1).Scan(&name)
 
 <h2 id="0d98c74797e49d00bcc4c17c9d557a2b"></h2>
 
+-----
+
 ### 其他
 
  - db.Prepare()返回的statement使用完之后需要手动关闭，即defer stmt.Close()
 
 <h2 id="9f82401d0ae9254f9429eaa46e1fe666"></h2>
+
+-----
 
 ### 事务
 
@@ -931,9 +1084,14 @@ func DoSomething() error {
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
+-----
+-----
+
 # Misc
 
 <h2 id="12f3c642086ddb0279f69574a34db7ef"></h2>
+
+-----
 
 ## CGO_ENALBE=1 情况下, 实现纯静态连接
 

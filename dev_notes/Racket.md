@@ -24,9 +24,14 @@
 
 <h2 id="e562d6dad5f981a01d738a4952dab014"></h2>
 
+-----
+-----
+
 # Racket
 
 <h2 id="94045c75a2c232612b3a4e126101e957"></h2>
+
+-----
 
 ## Curring
 
@@ -73,6 +78,8 @@ add3(4);
 ```
 
 <h2 id="0353dc1eed8b4b87199b8c9c03989937"></h2>
+
+-----
 
 ## Local bindings
 
@@ -141,6 +148,8 @@ Racket has 4 ways to define local variables. If any will work, use `let`
 
 <h2 id="a9f153cbc2200a8ce0c1985a8ea72821"></h2>
 
+-----
+
 ## Top-Level Bindings
 
  - The bindings in a file work like local defines, i.e., `letrec`
@@ -157,6 +166,8 @@ Racket has 4 ways to define local variables. If any will work, use `let`
 
 <h2 id="ea19e92f8d006fa85834419bd79af5bf"></h2>
 
+-----
+
 ### REPL
  
 Unfortunate detail: 
@@ -166,6 +177,8 @@ Unfortunate detail:
  - Best to avoid recursive function definitions or forward references in REPL
 
 <h2 id="0e48dc83dfd46c7225e129659c22651c"></h2>
+
+-----
 
 ## Mutation With set!
 
@@ -197,6 +210,8 @@ Unfortunate detail:
 
 <h2 id="fa1ef937dc64cfda0dc7670b9c484fb7"></h2>
 
+-----
+
 ## The Truth About Cons
 
  - cons just makes a pair
@@ -216,6 +231,8 @@ Unfortunate detail:
 
 <h2 id="f148a743d10c0e16ef1e5fa1cfb7ad32"></h2>
 
+-----
+
 ## mcons For Mutable Pairs
 
  - What if you wanted to mutate the contents of a cons cell?
@@ -234,6 +251,8 @@ Unfortunate detail:
 
 <h2 id="bf564d7e07267ec2a56ea25badb217b7"></h2>
 
+-----
+
 ## Delayed Evaluation and Thunks
 
  - Thunks delay 
@@ -247,6 +266,8 @@ Unfortunate detail:
 ```
 
 <h2 id="58d096f9941e336f1b2d4f5883e7c6dd"></h2>
+
+-----
 
 ## Delay and Force
 
@@ -280,6 +301,8 @@ Unfortunate detail:
 
 
 <h2 id="e2736603a5a4a8409d04cd0a60352a14"></h2>
+
+-----
 
 ## Using Streams
 
@@ -324,6 +347,8 @@ Unfortunate detail:
 
 <h2 id="e11b2976ba9976d0f434c6440c05aa03"></h2>
 
+-----
+
 ### Getting it wrong
 
  - This goes into an infinite loop making an infinite-length list
@@ -334,6 +359,8 @@ Unfortunate detail:
 ```
 
 <h2 id="e1f6117dc3db522234c9192b89a8a453"></h2>
+
+-----
 
 ## Memoization
 
@@ -346,6 +373,8 @@ Unfortunate detail:
 
 <h2 id="8c82961548c250119f60999aefdd7388"></h2>
 
+-----
+
 ## Macros: The Key Points
 
  - A **macro definition** describes how to transform some new syntax into different syntax in the source language
@@ -356,6 +385,8 @@ Unfortunate detail:
     - Before a program is run (or even compiled)
 
 <h2 id="4d619861aae163c2cd9641cb25e05159"></h2>
+
+-----
 
 ### Tokenization
 
@@ -368,6 +399,8 @@ Unfortunate detail:
         - But would in C where head-door is subtraction
 
 <h2 id="6958e63d2aa98070ff3ef52155089891"></h2>
+
+-----
 
 ### Parenthesization
 
@@ -383,6 +416,8 @@ Unfortunate detail:
     - After expansion: ( something else in same parens )
 
 <h2 id="5d113f2038d289f391614c39043629e8"></h2>
+
+-----
 
 ### Scope 
 
@@ -407,6 +442,8 @@ Would become
     - **the local variable would simply shadow the macro !**
 
 <h2 id="e2bbd176186bdb6451c205d226a473bf"></h2>
+
+-----
 
 ## Racket Macros with define-syntax
 

@@ -46,9 +46,15 @@
 
 <h2 id="bd8d63148bd763bf382e622b7f6ba4c5"></h2>
 
+-----
+-----
+
 # Golang 源码剖析 笔记
 
 <h2 id="96d69e4c5664ac7ab9e1b6cc57f45713"></h2>
+
+-----
+-----
 
 # 3 初始化
 
@@ -61,6 +67,9 @@
 
 <h2 id="3cb43e4796e6a8656e179f3c60617099"></h2>
 
+-----
+-----
+
 # 4 内存分配
 
  - 内置运⾏时的编程语⾔通常会抛弃传统的内存分配⽅式，改由⾃主管理。
@@ -68,6 +77,8 @@
  - 当然，还有⼀个重要原因是 为了更好地配合垃圾回收。
 
 <h2 id="423bc1ba50d3ddb690541b8f7c49e8f9"></h2>
+
+-----
 
 ## 1. 概述 
 
@@ -87,6 +98,8 @@
 ```
 
 <h2 id="f003c5f9f55cdd50278a726b69658195"></h2>
+
+-----
 
 ### 内存块 
 
@@ -117,6 +130,8 @@
 
 <h2 id="68813faa72d7f7699aba1c808012dd73"></h2>
 
+-----
+
 ### 管理组件 
 
 优秀的内存分配器必须要在性能和内存利⽤率之间做到平衡。
@@ -124,6 +139,8 @@
 好在，Golang 的起点很⾼， 直接采⽤了 tcmalloc 的成熟架构。
 
 <h2 id="6d09b6372dc01d0af84688cb42556585"></h2>
+
+-----
 
 ## 3. 分配 
 
@@ -141,6 +158,8 @@ newobject 具体是如何为对象分配内存的:
 
 <h2 id="16170c8f80c0fdb3360e1beb33fd3a83"></h2>
 
+-----
+
 ## 4. 回收 
 
  - 内存回收的源头是垃圾清理操作
@@ -151,12 +170,16 @@ newobject 具体是如何为对象分配内存的:
 
 <h2 id="26be3afe2c6bb79dc07f00dce919e7e6"></h2>
 
+-----
+
 ## 5. 释放 
 
  - 在运⾏时⼊⼜函数 main.main ⾥，会专门启动⼀个监控任务 sysmon，它每隔⼀段时间就会 检查 heap ⾥的闲置内存块。
  - 遍历 free、freelarge ⾥的所有 span，如闲置时间超过阈值，则释放其关联的物理内存。 
 
 <h2 id="d278fae3e36ea2f387c7343239c0d02a"></h2>
+
+-----
 
 ## 6. 其他 
 
@@ -166,17 +189,25 @@ newobject 具体是如何为对象分配内存的:
 
 <h2 id="1e32365e0937a0c0bc87a60fcad9acc6"></h2>
 
+-----
+-----
+
 # 5 垃圾回收
 
 Golang GC 的基本特征是 “⾮分代、⾮紧缩、写屏障、并发标记清理”。
 
 <h2 id="0d020f99af32eebe8d32de7cf7af1567"></h2>
 
+-----
+-----
+
 # 6 并发调度 
 
 因为 Goroutine，才让 Golang 与众不同。
 
 <h2 id="423bc1ba50d3ddb690541b8f7c49e8f9"></h2>
+
+-----
 
 ## 1. 概述 
 
@@ -207,11 +238,15 @@ Golang GC 的基本特征是 “⾮分代、⾮紧缩、写屏障、并发标记
 
 <h2 id="df2012ae5f31ded9662bae1a626c1fa6"></h2>
 
+-----
+
 ## 2. 初始化
 
  - 虽然可在运⾏期⽤ runtime.GOMAXPROCS 函数修改 P 数量，但需付出极⼤代价
 
 <h2 id="0c191fd62a6e8c0f7e69094d7f0a9f03"></h2>
+
+-----
 
 ## 3. 任务 
 
@@ -317,6 +352,8 @@ type struct {
 
 <h2 id="ea78082204416e4f34e71cadbabb0acd"></h2>
 
+-----
+
 ## 4. 线程 
 
  - 当 newproc1 成功创建 G 任务后，会尝试⽤ wakep 唤醒 M 执⾏任务。 
@@ -350,13 +387,19 @@ SCHED 6048ms: gomaxprocs=2 idleprocs=2 threads=858 spinningthreads=0 idlethreads
 
 <h2 id="a2134d222761a6e2bd2ef6a4cc2aa9f6"></h2>
 
+-----
+
 ## 5. 执行  TODO
 
 <h2 id="bb03c9eb129655133f2249ea8bf53a36"></h2>
 
+-----
+
 ## 6. 连续栈  TODO
 
 <h2 id="b5e8a1c460ec883e7639e85e7366da49"></h2>
+
+-----
 
 ## 7. 系统调用
 
@@ -369,6 +412,8 @@ SCHED 6048ms: gomaxprocs=2 idleprocs=2 threads=858 spinningthreads=0 idlethreads
 
 <h2 id="e9978f4a6239196891873e4ea1feba96"></h2>
 
+-----
+
 ## 8. 监控
 
  - 释放闲置超过 5 分钟的 span 物理内存。
@@ -379,6 +424,8 @@ SCHED 6048ms: gomaxprocs=2 idleprocs=2 threads=858 spinningthreads=0 idlethreads
 
 <h2 id="866b63527a694c6c1e749061b2012a89"></h2>
 
+-----
+
 ### 抢占调度 
 
  - 所谓抢占调度要⽐你想象的简单许多，远不是你以为的 “抢占式多任务操作系统” 那种样⼦
@@ -387,11 +434,15 @@ SCHED 6048ms: gomaxprocs=2 idleprocs=2 threads=858 spinningthreads=0 idlethreads
 
 <h2 id="f25b50ca66ffe99bed4b29e510545e53"></h2>
 
+-----
+
 ## 9. 其他 
 
 与任务执⾏有关的⼏种暂停操作。
 
 <h2 id="7f06675de43e6d5aefecae106f52d8ca"></h2>
+
+-----
 
 ### Gosched
 
@@ -406,12 +457,16 @@ func Gosched() {
 
 <h2 id="aa896b57e7f90ea829e73d2e4d668ffc"></h2>
 
+-----
+
 ### gopark
 
  - 与 Gosched 最⼤的区别在于，gopark 并没将 G 放回待运⾏队列。
  - 也就是说，必须主动恢 复，否则该任务会遗失。
 
 <h2 id="d3c78919a69267edda18fb9ad9cc1463"></h2>
+
+-----
 
 ### notesleep
 
@@ -427,12 +482,16 @@ Futex 通常称作 “快速⽤户区互斥”，是⼀种在⽤户空间实现�
 
 <h2 id="639a3023c09d383a7faac7cb8296ce15"></h2>
 
+-----
+
 ### Goexit
 
  - ⽤户可调⽤ runtime.Goexit ⽴即终⽌ G 任务，不管当前处于调⽤堆栈的哪个层次。
  - 在终⽌ 前，它确保所有 G.defer 被执⾏。
 
 <h2 id="daeb73ede1d3edfa35aa9953a6021fd5"></h2>
+
+-----
 
 ### stopTheWorld
 
@@ -445,6 +504,9 @@ Futex 通常称作 “快速⽤户区互斥”，是⼀种在⽤户空间实现�
 
 <h2 id="7655f7b3cad86e3ce6c125bc6963df80"></h2>
 
+-----
+-----
+
 # 7. 通道
 
  - 通道（channel）是 Golang 实现 CSP 并发模型的关键，⿎励⽤通讯来实现数据共享。
@@ -455,6 +517,8 @@ CSP: Communicating Sequential Process.
 ```
 
 <h2 id="fdf28238a16b11944d8c2221aad97cfa"></h2>
+
+-----
 
 ## 1. 创建 
 
@@ -473,9 +537,13 @@ type hchan struct {
 
 <h2 id="1161015033b4f7c6cd8c2ffc012ebeaf"></h2>
 
+-----
+
 ## 2. 收发 
 
 <h2 id="6a620e3c07048291fdb26b6edcee7aba"></h2>
+
+-----
 
 ### 同步
 
@@ -487,6 +555,8 @@ type hchan struct {
 
 <h2 id="8b5a247dc2c747c7daa722dd9357c4d6"></h2>
 
+-----
+
 ### 异步
 
  - 异步模式围绕缓冲槽进⾏。
@@ -494,6 +564,8 @@ type hchan struct {
  - 双⽅都有唤醒 排队另⼀⽅继续⼯作的责任。 
 
 <h2 id="b15d91274e9fc68608c609999e0413fa"></h2>
+
+-----
 
 ### 关闭 
 
@@ -503,6 +575,8 @@ type hchan struct {
     - ⽆论收发，nil channel 都会阻塞
 
 <h2 id="7a78b12c63142fd545ce428c023e07dc"></h2>
+
+-----
 
 ## 3. 选择 
 
@@ -521,12 +595,17 @@ type hchan struct {
 
 <h2 id="a1554d04258a4866ffe3bc369e55da7b"></h2>
 
+-----
+-----
+
 # 8. Defer
 
  - 延迟调⽤（defer） 最⼤优势是，即便函数执⾏出错，依然能保证回收资源等操作得以执 ⾏。
  - 但如果对性能有要求，且错误能被控制，那么还是直接执⾏⽐较好。 
 
 <h2 id="37f4607af585bcc2d00391247adf7f80"></h2>
+
+-----
 
 ## 1. 定义 
 
@@ -535,12 +614,16 @@ type hchan struct {
 
 <h2 id="dd11daa20fb3f671cdddf8e2855537e6"></h2>
 
+-----
+
 ## 2. 性能 
 
  - 延迟调⽤远不是⼀个 CALL 指令那么简单，会涉及很多内容。诸如对象分配、 缓存，以及多次函数调⽤.
  - 在某些性能要求⽐较⾼的场合，应该避免使⽤ defer。
 
 <h2 id="f0a5b882f03b8ff96932e7cbf1b9fc66"></h2>
+
+-----
 
 ## 3. 错误
 
@@ -551,6 +634,9 @@ type hchan struct {
 其实，对于不可恢复性的错误⽤ panic 并 ⽆不妥，见仁见智吧。
 
 <h2 id="f30311ee9907d46d180f637ebe6ad581"></h2>
+
+-----
+-----
 
 # 9. Finalizer
 
@@ -573,6 +659,9 @@ func main() {
 
 
 <h2 id="d75ed6fa3c3ea3fe144b84b2156f1bdf"></h2>
+
+-----
+-----
 
 # 10. 缓存池
 

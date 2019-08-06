@@ -8,6 +8,9 @@
 
 <h2 id="bd8cfe5912b0bee7fd7d191afedf8995"></h2>
 
+-----
+-----
+
 # Linear ALgebra
 
  - [preface](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra_preface.md) 
@@ -28,6 +31,9 @@
 
 
 <h2 id="d2bcb78d5ac194c66f434e9fbcb3565e"></h2>
+
+-----
+-----
 
 # Discrete Mathematics
 

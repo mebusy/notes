@@ -37,17 +37,26 @@
 
 <h2 id="d53cfc4bdeb96eaee47dd710b3c2ed21"></h2>
 
+-----
+-----
+
 # VIM 
 
 <h2 id="78d0b83eb54eb1aa949d4600958cb397"></h2>
+
+-----
 
 ## 插件安装
 
 <h2 id="5a8a69602edd805333aea10c2817e37e"></h2>
 
+-----
+
 ### 插件管理工具vunble
 
 <h2 id="f1c28a7da5182846402b968966299c4c"></h2>
+
+-----
 
 #### 安装vundle
 
@@ -58,6 +67,8 @@ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 <h2 id="88320719ea4a6c706aeaa3ae1d8c133d"></h2>
 
+-----
+
 #### 在.vimrc配置文件中添加vundle支持
 
 ```
@@ -67,6 +78,8 @@ call vundle#rc()
 ```
 
 <h2 id="7a886abbb5da4373ffcfd88df9575954"></h2>
+
+-----
 
 ### 配置插件
 
@@ -122,6 +135,8 @@ Bundle "Valloric/YouCompleteMe"
 
 <h2 id="e655a410ff21cd07e7a0150491e04371"></h2>
 
+-----
+
 ### 安装
 
 打开vim，运行 `:BundleInstall` 或在shell中直接运行
@@ -132,6 +147,8 @@ vim +BundleInstall +qall
 ```
 
 <h2 id="154a11cd7a6e424863c28aa29ad576d1"></h2>
+
+-----
 
 ### 安装排错
 
@@ -208,12 +225,16 @@ snor <silent> <C-\> <esc>i<right><c-r>=TriggerSnippet()<cr>
 
 <h2 id="2182a74bab7188d959e795d9301e87ff"></h2>
 
+-----
+
 ## Markdown 
 
  - chrome 安装插件 :  [Markdown Preview Plus](https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl)
  - 打开 `chrome://extensions/` ， 在设置页中勾选 “Allow access to file URLs”
 
 <h2 id="a80bb46a45ac01cfeecb23364ec0bb63"></h2>
+
+-----
 
 ## install VIM8 on Centos7
 
@@ -254,6 +275,8 @@ make install
 
 <h2 id="e452f90f1770e33615e0eb6ee4a22953"></h2>
 
+-----
+
 ## install YouCompleteMe on Centos7
 
  1. yum 安装 clang
@@ -265,6 +288,8 @@ CC=`which clang` CXX=`which clang++`  ./install.py ......
 
 <h2 id="95cec38eef2cf37c01f98f869cb8e4bc"></h2>
 
+-----
+
 ## check vim compile features
 
 ```bash
@@ -275,9 +300,14 @@ vim --version
 
 <h2 id="072db16a2fab851f315188d28a992133"></h2>
 
+-----
+-----
+
 # VIM 正则表达式
 
 <h2 id="9e8ec078a153381638b723f644bc0f67"></h2>
+
+-----
 
 ## 关于magic
 
@@ -298,6 +328,8 @@ vim --version
 
 
 <h2 id="1ca7c638c2ce8ef41b651ccf8e827bf3"></h2>
+
+-----
 
 ## 捕获组
 
@@ -320,6 +352,8 @@ Perl | vim
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
+-----
+
 ## Misc
 
  - vim 没有 \b, 匹配单词词首词尾使用 `<` , `>`
@@ -328,6 +362,9 @@ Perl | vim
 ---
 
 <h2 id="cba8744406ca022515965ad373474f74"></h2>
+
+-----
+-----
 
 # 参数列表
 
@@ -348,6 +385,9 @@ Perl | vim
 ----
 
 <h2 id="b82a9a13f4651e9abcbde90cd24ce2cb"></h2>
+
+-----
+-----
 
 # Mark 
 
@@ -373,13 +413,20 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
 
 <h2 id="508b03ab799d17da8b37eb7801c05c8b"></h2>
 
+-----
+-----
+
 # VIM 常用操作
 
 <h2 id="e5f71fc31e7246dd6ccc5539570471b0"></h2>
 
+-----
+
 ## 搜索
 
 <h2 id="32b92ada221fd37f58c6db5897bd605c"></h2>
+
+-----
 
 ### 反向肯定搜索 lookahead
 
@@ -394,6 +441,8 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
 
 <h2 id="852639e354e873ce19ce571888957160"></h2>
 
+-----
+
 ### 前向肯定搜索 lookahead
 
 搜索 exp1, followed by exp2
@@ -404,6 +453,8 @@ exp1\(exp2\)\@=
 
 <h2 id="47adfa39c01f2f314cecd05ce29d59ef"></h2>
 
+-----
+
 ### 搜索 带`/` 的字符串，比如 URL
 
 ```
@@ -411,6 +462,8 @@ exp1\(exp2\)\@=
 ```
 
 <h2 id="abe5b5622d91b2a879e91da6a550f067"></h2>
+
+-----
 
 ### clear a register
 
@@ -423,6 +476,8 @@ qiq
 ```
 
 <h2 id="4d36d00db257fed5fe7d2a2036ad930f"></h2>
+
+-----
 
 ### 文件夹搜索
 
@@ -441,6 +496,8 @@ vimgrep /pattern/gj path
 搜索完毕 copen 或 cw 查看搜索列表
 
 <h2 id="476949b7922fe3e5ea39c034861527d8"></h2>
+
+-----
 
 ## 文件夹 替换
 
@@ -462,6 +519,8 @@ vimgrep /pattern/gj path
 
 <h2 id="4b0c82f3072a7a2d205d934ca7413367"></h2>
 
+-----
+
 ## 多行 行首插入字符
 
  1. 光标置与第一行行首, ctrl-v 进入  VISUAL BLOCK
@@ -470,6 +529,8 @@ vimgrep /pattern/gj path
  4. 等 1秒钟， 修改完成
 
 <h2 id="facc78c7266b3fe0364882da91e214b8"></h2>
+
+-----
 
 ## 多行 行尾插入字符
 
@@ -481,6 +542,8 @@ vimgrep /pattern/gj path
 
 <h2 id="72ec54ea94cad51a12851d38a51ea25f"></h2>
 
+-----
+
 ## replace all tab with 4 space
 
 ```
@@ -488,6 +551,8 @@ vimgrep /pattern/gj path
 ```
 
 <h2 id="67c5f9b419ed15a16a0cb4786a4a6552"></h2>
+
+-----
 
 ## Remove unwanted empty lines
 
@@ -502,6 +567,9 @@ vimgrep /pattern/gj path
 ---
 
 <h2 id="fc1f1e8c6d70d860957c66f735e60e2b"></h2>
+
+-----
+-----
 
 # grok VIM
 

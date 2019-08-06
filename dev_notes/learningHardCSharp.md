@@ -30,9 +30,14 @@
 
 <h2 id="fa94b771653cde1bb927b44cc47760b0"></h2>
 
+-----
+-----
+
 # C# 基础知识系列
 
 <h2 id="e9bafc1ba9b32792e1a6767a5b90cb0b"></h2>
+
+-----
 
 ## 1. 委托
 
@@ -67,6 +72,8 @@ delegatechain += d3 ;
 
 <h2 id="9ab5d9239891b8704b41fa25af9ff4d8"></h2>
 
+-----
+
 ## 2. 事件
 
  - 事件 其实是委托， 确切的说 事件就是委托链
@@ -87,6 +94,8 @@ delegatechain += d3 ;
     - 外部观察者  通过该 event 进行注册
 
 <h2 id="ef9dd3e4da51997ee0ad36f4bffd7a0f"></h2>
+
+-----
 
 ## 3 泛型
 
@@ -116,6 +125,8 @@ public static void Swap<T> (ref T a, ref T b) {
 
 <h2 id="a01b9a5c094abd236183cf580055b070"></h2>
 
+-----
+
 ## 4 可空类型
 
  - 值类型， 是包括 null的值类型
@@ -123,6 +134,8 @@ public static void Swap<T> (ref T a, ref T b) {
 
 
 <h2 id="7cc9ae5fc50b276b255e933a6b62bb0c"></h2>
+
+-----
 
 ## 5 匿名方法
 
@@ -146,6 +159,8 @@ MyDelagate my = param => param + str1 + str2;
 
 <h2 id="9ba1d6d409520c3031f7588729aed101"></h2>
 
+-----
+
 ## 6 迭代器
  
  - 实现一个迭代器， 必须实现 IEnumeralbe 接口
@@ -168,6 +183,8 @@ public class Friends: IEnumeralbe {
 
 <h2 id="bad9144ea9ca4fa82d4aa0ea5e3ea0d0"></h2>
 
+-----
+
 ### 迭代器的执行过程
 
  - `foreach (Friend f in friendcollection ) `
@@ -177,6 +194,8 @@ public class Friends: IEnumeralbe {
     4. Friend f 访问 IEnumerator.Current
 
 <h2 id="2fcaf0c251bb72907daf4d7ec989dc37"></h2>
+
+-----
 
 ### 迭代器的延迟计算
 
@@ -199,9 +218,13 @@ public static IEnumerable<int> WithIterator() {
 
 <h2 id="20cc25147a42e4fa9b50e9c8a84a1859"></h2>
 
+-----
+
 ## 7 C# 3.0 特性
 
 <h2 id="bce7c98a3eeee6f5f37a6ccef15810f5"></h2>
+
+-----
 
 ### 一. 自动实现的属性
 
@@ -225,6 +248,8 @@ public string Name { get ; set ; }
 
 <h2 id="5671331782e45072798988ee21cf67f1"></h2>
 
+-----
+
 ### 隐式类型
 
  - `var intarray = new[]{ 1,3,4 }`
@@ -234,6 +259,8 @@ public string Name { get ; set ; }
  - 不能初始化为 null
 
 <h2 id="3282d55660474313ceab1e9ca18de830"></h2>
+
+-----
 
 ### 三. 对象集合初始化
 
@@ -277,6 +304,8 @@ var names = new List<string> {
 
 <h2 id="3c3d86c7bda7588d827ce5891115a72e"></h2>
 
+-----
+
 ### 四.匿名类型
 
 ```c#
@@ -284,6 +313,8 @@ var person1 = new { Name="Bob", Age=1 };
 ```
 
 <h2 id="f3aeee35464ad2b54ddfd5b9e8e33ee0"></h2>
+
+-----
 
 ## 8 Lambda 表达式
 
@@ -308,6 +339,8 @@ Func<string,int> delegate= text => text.Length ;
 C# 编译器还可以把 lambda表达式 转换成 表达式树。
 
 <h2 id="dc48b917570b210718938a1f427c98a0"></h2>
+
+-----
 
 ## 9 扩展方法
 
@@ -341,6 +374,8 @@ public static class StreamExten {
 
 <h2 id="e188ac55989f14949d223a0b08aeb3ca"></h2>
 
+-----
+
 ### 在空引用上调用方法
 
  - 在C#中，在空引用上调用实例方法是会引发NullReferenceException异常
@@ -359,6 +394,8 @@ public static class NullExten {
 
 <h2 id="a40e46bb8e65367d364d3b42e7f5bb27"></h2>
 
+-----
+
 ## 10 Linq
 
  - C# 3.0 最重要的特性
@@ -373,6 +410,8 @@ public static class NullExten {
 
 <h2 id="bb4d84cc46c04279eb1b35c1fd7bb100"></h2>
 
+-----
+
 ## 11 动态类型
 
  - introduced in c# 4.0
@@ -380,11 +419,15 @@ public static class NullExten {
 
 <h2 id="74b653574acf96f0e265db4a4ef07db3"></h2>
 
+-----
+
 ## 12 Async / Await
 
  - C# 5.0 
 
 <h2 id="b43b5bcd822c27a24551fe2faa29f9d8"></h2>
+
+-----
 
 ## 13 解析C# 中参数传递
 
@@ -403,6 +446,8 @@ public static class NullExten {
 
 <h2 id="50d5399284c57a1336886a51b855596d"></h2>
 
+-----
+
 ## 14 typeof  和 GetType 区别
 
  - typeof 是 运算符， GetType 是方法
@@ -419,6 +464,8 @@ Console.WriteLine( m1.GetType().IsValueType ) ;      // True
 
 <h2 id="7c920bcef1735cc77408e22a57e3c919"></h2>
 
+-----
+
 ## 14 浅拷贝 和 深拷贝
 
  - 浅拷贝实现很简单， System.Object 的 MemberwiseClone 方法 就可以实现 浅拷贝
@@ -427,6 +474,8 @@ Console.WriteLine( m1.GetType().IsValueType ) ;      // True
     - 建议使用 反序列化 方式
 
 <h2 id="d554ea9229b0d95487b99114d79a0dfe"></h2>
+
+-----
 
 ## c# 高级数据结构
 

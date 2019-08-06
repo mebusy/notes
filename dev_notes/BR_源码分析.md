@@ -11,6 +11,9 @@
 
 <h2 id="10df90b45c7197ec6a3b41830e711272"></h2>
 
+-----
+-----
+
 ## dungeon grid:  short[][]
 
 CELL VALUE | TYPE
@@ -23,6 +26,9 @@ CELL VALUE | TYPE
 
 
 <h2 id="613d5eda83a93341aa4af1d532915ace"></h2>
+
+-----
+-----
 
 ## 8 种 room type 
 
@@ -41,6 +47,9 @@ CELL VALUE | TYPE
 
 <h2 id="31c4a6f18acb8397634b67978b7b6398"></h2>
 
+-----
+-----
+
 ## 4 种 dungeon Profile
 
  1. 基本地牢
@@ -58,6 +67,9 @@ CELL VALUE | TYPE
 
 
 <h2 id="20ebe4265fa72799ee79717e0be19438"></h2>
+
+-----
+-----
 
 ## designRandomRoom
 
@@ -79,6 +91,9 @@ CELL VALUE | TYPE
 
 
 <h2 id="bb168d2d6231793ce94f3c1ff263d3f6"></h2>
+
+-----
+-----
 
 ## ROOM 构建流程
 

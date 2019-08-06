@@ -33,6 +33,9 @@
 
 <h2 id="70359ede2a47ed4a3c8ca9b6521d7629"></h2>
 
+-----
+-----
+
 # Hidden Markov Model 
 
 This pacman can eat ghost but first he has to find them. So soon as pacman start moving , you will see in the bottom colord numbers , which are kind of noisy readings of how far the ghosts are. 
@@ -41,6 +44,8 @@ Now let's say I want to eat the orange ghost. If you could somehow take these nu
 
 
 <h2 id="d656a155bed68a7dec83cd56ff973bbc"></h2>
+
+-----
 
 ## Markov Models
 
@@ -58,6 +63,8 @@ Now let's say I want to eat the orange ghost. If you could somehow take these nu
 
 <h2 id="0f1513d04ac32269de73d0f17465488e"></h2>
 
+-----
+
 ### Conditional Independence
 
  - Basic conditional independence:
@@ -71,6 +78,8 @@ Now let's say I want to eat the orange ghost. If you could somehow take these nu
 ---
 
 <h2 id="94d2b6fed9dd768fe2edec7e6c85546f"></h2>
+
+-----
 
 ## Hidden Markov Models
 
@@ -95,6 +104,8 @@ But hidden Markov model says 2 things: I know how the world changes in a time st
 ---
 
 <h2 id="c7624bc33d3af36dde93578541120635"></h2>
+
+-----
 
 ### Example : Weather HMM 
 
@@ -130,6 +141,8 @@ So from a single observation of an umbrella you don't know very much , but if da
 
 <h2 id="29e2fd6f91ff2c795e0611725208492a"></h2>
 
+-----
+
 ### Example: GhostBusters HMM
 
  - P(X₁) = uniform
@@ -153,6 +166,8 @@ So from a single observation of an umbrella you don't know very much , but if da
 
 <h2 id="70edd3baf536c5134e73a1c0aa1b5e9d"></h2>
 
+-----
+
 ### HMM Conditional Independence 
 
  - HMMs have 2 import independence properties
@@ -169,6 +184,8 @@ So from a single observation of an umbrella you don't know very much , but if da
 ---
 
 <h2 id="1bebd9da99c29add41fd9b5f55b647e0"></h2>
+
+-----
 
 ### HMM example
 
@@ -194,6 +211,8 @@ We incorporate the evidenc E₁=b. We fill in the evidence-weighted distribution
 
 <h2 id="a28d273e7e37d7b9dac9b8648afa65c2"></h2>
 
+-----
+
 ### Real HMM Examples
 
 For every HMM there is a hidden state -- which is usually the thing you want to figure out -- , and an evidence variable -- which is the thing you got to observe. 
@@ -216,6 +235,8 @@ You get the evidence at every time and you usually want to figure out the state 
 
 <h2 id="7d5a5544b159698a3c0d234ed796ab6c"></h2>
 
+-----
+
 ## Filtering / Monitoring
 
 Now we are going to talk about how to keep track of what you believe about a variable X -- the state variable -- as evidence comes it and time passes, and from this we'll build up the full-forward algorithm. 
@@ -230,6 +251,8 @@ The task is to figure out at any given time what do I believe is happening in th
 ---
 
 <h2 id="8eb802f81a304b8d30bbde98a9341934"></h2>
+
+-----
 
 ### Example:  Robot Localization
 
@@ -271,6 +294,8 @@ As I continue reading north and south walls , what will happen is there will be 
 ---
 
 <h2 id="6cdd6a9a5085ef26dcbe01cba728e9fa"></h2>
+
+-----
 
 ## Inference: Base Cases
 
@@ -332,6 +357,8 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 <h2 id="3fd013cbb540e9c1e999d77ef692dc16"></h2>
 
+-----
+
 ## Passage of Time  (case 2)
 
  - Assume we have current belief P(X | evidence to date)
@@ -354,6 +381,8 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 <h2 id="25cfc18fb11a92c7484035257a6e5d7d"></h2>
 
+-----
+
 ### Example: Passage of Time
 
  - As time passes, uncertainty “accumulates”
@@ -366,6 +395,8 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 --- 
 
 <h2 id="2690e7eb741e31d792c0834583a6dcc9"></h2>
+
+-----
 
 ## Observation  (case 1)
 
@@ -387,6 +418,8 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 <h2 id="22a77e6cdda4b68b0d0175942f8c991b"></h2>
 
+-----
+
 ### Example of Observation 
 
  - As we get observations, beliefs get reweighted, uncertainty “decreases”
@@ -396,6 +429,8 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 <h2 id="75fc03589b48053de414b7e5d43b25a6"></h2>
 
+-----
+
 ### Example: Weather HMM
 
 ![](../imgs/cs1188_hmm_example_wather_hmm_2.png)
@@ -403,6 +438,8 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 ---
 
 <h2 id="6dbc07cd7c694bd7ba7917098b848d8b"></h2>
+
+-----
 
 ## The Forward Algorithm
 
@@ -418,6 +455,8 @@ The forward algorithm is a dynamic program for computing at each time slice , th
 
 <h2 id="dec94cde56942725d8a224ed9c065de2"></h2>
 
+-----
+
 ## Online Belief Updates
 
  - Every time step, we start with current P(X | evidence)
@@ -428,6 +467,8 @@ The forward algorithm is a dynamic program for computing at each time slice , th
  - The forward algorithm does both at once (and doesn’t normalize)
 
 <h2 id="dc8ab069265738c8965ed6fe1ffb2ea5"></h2>
+
+-----
 
 ## Example : Ghost Buster 
 
@@ -461,6 +502,8 @@ The forward algorithm is a dynamic program for computing at each time slice , th
 ---
 
 <h2 id="410d3f5a2938bf0efb5fb0b5ef6ca702"></h2>
+
+-----
 
 ## Particle Filtering 
 
@@ -502,6 +545,8 @@ We are going to replace the idea of a probability distribution that for each pos
 
 <h2 id="66e6211dd1d94379d2e996793264b1b9"></h2>
 
+-----
+
 ### Prepresentation: Particles
 
 ![](../imgs/cs188_hmm_particle_filtering_repr.png)
@@ -520,6 +565,8 @@ We are going to replace the idea of a probability distribution that for each pos
 ---
 
 <h2 id="853995ed6d9bf9986864449b043774f2"></h2>
+
+-----
 
 ### Particle Filtering : Elapse Time 
 
@@ -545,6 +592,8 @@ Now what do I do ?  I might start with my particles uniform or I have some parti
 ---
 
 <h2 id="48c6c2f783c106c655abca3552e166b3"></h2>
+
+-----
 
 ### Particle Filtering: Observe
 
@@ -573,6 +622,8 @@ There's one more trick. If I did this my samples would kind of go all over the p
 
 <h2 id="988c88ad650c59ea6c4f609059420535"></h2>
 
+-----
+
 ### Particle Filtering: Resample
 
 ![](../imgs/cs188_hmm_particle_filtering_resample.png)
@@ -592,6 +643,8 @@ There's one more trick. If I did this my samples would kind of go all over the p
 
 <h2 id="5d32a4d32d2126113fcc6cc88fde5a32"></h2>
 
+-----
+
 ## Recap: Particle Filtering
 
  - Particles: track samples of states rather than an explicit distribution
@@ -608,6 +661,8 @@ Then you decide you don't actually want these weighted particles. So you resampl
 
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
+
+-----
 
 ## Example 
 

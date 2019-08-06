@@ -23,12 +23,17 @@
 
 <h2 id="49a443e49b3428f71dc00fddc2d659c4"></h2>
 
+-----
+-----
+
 # 5. Using Structs to Structure Related Data 
 
  - struct and enum concepts are the building blocks for creating new types in your program’s domain ,
     - to take full advantage of Rust’s compile time type checking.
 
 <h2 id="3128feda0fe9d177871815f05dbb661a"></h2>
+
+-----
 
 ## 5.1 Defining and Instantiating Structs 
 
@@ -80,6 +85,8 @@ fn build_user(email: String, username: String) -> User {
 
 <h2 id="f0753757bb933212e620a7794f6469fd"></h2>
 
+-----
+
 ### Using the Field Init Shorthand when Variables and Fields Have the Same Name
 
  - Because the parameter names and the struct field names are exactly the same in previous example
@@ -98,6 +105,8 @@ fn build_user(email: String, username: String) -> User {
 
 <h2 id="24960bada8bbf0d9a5c39de5135ff239"></h2>
 
+-----
+
 ### Creating Instances From Other Instances With Struct Update Syntax
 
  - It’s often useful to create a new instance of a struct that uses most of an old instance’s values , but changes some
@@ -114,6 +123,8 @@ let user2 = User {
 ```
 
 <h2 id="1779a3699512e1d557bd24974645a7c2"></h2>
+
+-----
 
 ### Tuple Structs without Named Fields to Create Different Types
 
@@ -140,6 +151,8 @@ println!( "{},{},{}" , x,y,z );
 
 <h2 id="c7202a4116975ab1109a8e7db1df1108"></h2>
 
+-----
+
 ### Unit-Like Structs without Any Fields
 
  - We can also define structs that don’t have any fields!
@@ -149,6 +162,8 @@ println!( "{},{},{}" , x,y,z );
  - Unit-like structs can be useful in situations such as when you need to implement a trait on some type, but you don’t have any data that you want to store in the type itself.
 
 <h2 id="0ebbec0168c436ab46ac83f8ab552c7a"></h2>
+
+-----
 
 ### Ownership of Struct Data
 
@@ -183,6 +198,8 @@ fn main() {
  - We’ll discuss how to fix these errors so you can store references in structs in Chapter 10
 
 <h2 id="b5e7437d476bfb974ba61a1f94fa1ed7"></h2>
+
+-----
 
 ## 5.2 An Example Program Using Structs
 
@@ -237,6 +254,8 @@ rect1 is Rectangle {
 
 <h2 id="71e159f6b1af9a93f012817af67f5e02"></h2>
 
+-----
+
 ## 5.3 Method Syntax
 
  - Methods defined within the context of a struct 
@@ -245,6 +264,8 @@ rect1 is Rectangle {
  - their first parameter is always `self`
 
 <h2 id="13717147c0d0073a4c1bbcb91d21cd1c"></h2>
+
+-----
 
 ### Defining Methods
 
@@ -273,6 +294,8 @@ fn main() {
 
 <h2 id="1ec178468e7808ee8c910d46fb6dc46c"></h2>
 
+-----
+
 ### Methods with More Parameters
 
 ```rust
@@ -288,6 +311,8 @@ impl Rectangle {
 ```
 
 <h2 id="c68e21e14fe90054ac00331d0be925cd"></h2>
+
+-----
 
 ### Associated Functions
 
@@ -311,6 +336,8 @@ let sq = Rectangle::square(3);
 
 <h2 id="48eeb3737079e5ad6ee4b5cad613071c"></h2>
 
+-----
+
 ### Multiple impl Blocks
 
  - Each struct is allowed to have multiple `impl` blocks
@@ -333,12 +360,17 @@ impl Rectangle {
 
 <h2 id="a38637e7381ef21dfe3360b05080ce0a"></h2>
 
+-----
+-----
+
 # 6. Enums and Pattern Matching
 
  - Enums allow you to define a type by enumerating its possible values
  - Rust’s enums are most similar to algebraic data types in functional languages like F#, OCaml, and Haskell.
 
 <h2 id="fdad361153c038e64a843eb25389b74d"></h2>
+
+-----
 
 ## 6.1 Defining an Enum
 
@@ -352,6 +384,8 @@ enum IpAddrKind {
  - IpAddrKind is now a custom data type that we can use elsewhere in our code.
 
 <h2 id="c5346465419d51659c616961d763d8c3"></h2>
+
+-----
 
 ### Enum Values
 
@@ -431,6 +465,8 @@ m.call();
 ```
 
 <h2 id="64218f717df4167ce75371e5c2d61866"></h2>
+
+-----
 
 ### The Option Enum and Its Advantages Over Null Values
 

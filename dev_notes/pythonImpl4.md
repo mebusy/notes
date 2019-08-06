@@ -16,6 +16,9 @@
 
 <h2 id="8cd7054fb7a85f44fc74a35376860214"></h2>
 
+-----
+-----
+
 # 4. 函数
 
  - 当编译器遇到 def，会生成创建函数对象指令
@@ -59,6 +62,8 @@ typedef struct {
 
 <h2 id="1623b5e1ae4a521c5b23729d002020bd"></h2>
 
+-----
+
 ## 4.1 创建
 
  - python 函数 可以重载吗？
@@ -66,6 +71,8 @@ typedef struct {
  - python  不进行 尾递归优化。最大递归深度 sys.getrecursionlimit()
 
 <h2 id="945f3fc449518a73b9f5f32868db466c"></h2>
+
+-----
 
 ### lambda
 
@@ -87,6 +94,8 @@ from __future__ import print_function
 ```
 
 <h2 id="8b2b5184e327df133bfd017ad04a3f60"></h2>
+
+-----
 
 ## 4.2 参数
 
@@ -141,6 +150,8 @@ from __future__ import print_function
 ```
 
 <h2 id="416013af2072858d19949ec722058389"></h2>
+
+-----
 
 ## 4.3 作用域
 
@@ -224,6 +235,8 @@ UnboundLocalError: local variable 'x' referenced before assignment
 
 <h2 id="e4f33957d3d056b09ebec5b81b966605"></h2>
 
+-----
+
 ## 4.4 闭包
 
  - 闭包是指:当函数离开创建环境后，依然持有其上下文状态
@@ -303,6 +316,8 @@ True
 
 <h2 id="ec73f536153946064715628cc1da2b34"></h2>
 
+-----
+
 ### 延迟获取
 
  - 使用闭包，还需注意 "延迟获取" 现象
@@ -324,6 +339,8 @@ True
 ```
 
 <h2 id="2feedbb718e5dfcf31198bd610ef6765"></h2>
+
+-----
 
 ## 4.5 堆栈帧
 
@@ -354,6 +371,8 @@ typedef struct _frame {
 
 <h2 id="23bbdd59d0b1d94621fc98e7f533ad9f"></h2>
 
+-----
+
 ### 权限管理
 
  - 检查函数 Caller，以实现权限管理
@@ -377,6 +396,8 @@ ok
 ```
 
 <h2 id="50f198f07fc820a4911d1c97a0ceb8c2"></h2>
+
+-----
 
 ### 上下文
 

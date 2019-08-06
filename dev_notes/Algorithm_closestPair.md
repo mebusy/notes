@@ -7,6 +7,9 @@
 
 <h2 id="257e1d9294fecbcaba498a89b62ab52a"></h2>
 
+-----
+-----
+
 # 2D Closest Pair Algorithm
 
  - Problem
