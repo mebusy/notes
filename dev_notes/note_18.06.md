@@ -1112,7 +1112,53 @@ step :
 Gram-Schmidt method will keep the same column space. A = QR is the magic formula here. R turns to be upper triangular.  pls see the book one more time.
 
 
+<details>
+<summary>
+Example
+</summary>
 
+```
+A = [a b c]
+
+   1   2   4
+   0   0   5
+   0   3   6
+
+
+q1 =
+
+   1
+   0
+   0
+
+> q2' = b - q1'*b/(q1'*q1) * q1 
+      = b - q1'*b * q1 
+q2' =
+
+   0
+   0
+   3
+
+q2 =
+
+   0
+   0
+   1
+
+> q3' = c - q1'*c*q1 - q2'*c*q2
+q3' =
+
+   0
+   5
+   0
+
+q3 = 
+
+   0
+   1
+   0
+```
+</details>
 
 
 
