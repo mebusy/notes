@@ -24,7 +24,7 @@
  - [Linear Programming and Game theory](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra_Linear_Programming_and_Game_theory.md)
  - [Netshell](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra_Netshell.md)  
  - TODO
- - [笔记](https://github.com/mebusy/notes/blob/master/dev_notes/LA_keynote.md) 
+ - [18.06 lecture vidoe note](https://github.com/mebusy/notes/blob/master/dev_notes/note_18.06.md) 
  - [线性代数摘要](https://github.com/mebusy/notes/blob/master/dev_notes/LinearAlgebra.md) 
  - [Essence of LA](https://github.com/mebusy/notes/blob/master/dev_notes/3blue1brown.md)
 

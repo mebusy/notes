@@ -146,6 +146,10 @@ Ax = b
 
 ### Elimination   
 
+- Base operations:  
+    1. row exchange   
+    2. subtracting multiples of a row from the low above.
+
 **GAUSSIAN ELIMINATION** starts by subtracting multiples of the first equation from the other equations. 
 
 Breakdown of Elimination: 0 in pivot position , then do row exchange , by definition, **pivots cannot be zero**.
@@ -185,6 +189,11 @@ U is a triangular matrix, and then we can use **back-substitution** to get the s
 -----
 
 ## 3. Matrix multiplication
+
+ - associative
+    - (AB)C = A(BC)
+ - distributive
+    - A(B+C) =AB+AC and (B+C)D=BD+CD
 
 
 <h2 id="99f80b726498ad866ed76cec68ca859e"></h2>
@@ -278,8 +287,31 @@ note:  矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 
  - permutation matrix performs row exchange. 
  - The inverse of permutation matrix P is P's transpose.
     - P⁻¹ = Pᵀ  =>  PᵀP = I
-    - since permutation matrix has to be orthogonal matrix.
+    - Since permutation matrix has to be orthogonal matrix.
 
+<details>
+<summary>
+Permutation Matrices
+</summary>
+
+```
+A =
+   1   2
+   3   4
+
+P =
+   0   1
+   1   0
+
+P*A = // row exchange
+   3   4
+   1   2
+
+A*P = // column exchange
+   2   1
+   4   3
+```
+</details>
 
 <h2 id="d766ba9a978926809be1b6ac5d77e39d"></h2>
 
@@ -287,15 +319,26 @@ note:  矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 
 
 ### Transpose Matrix Aᵀ
 
+- (A+B)ᵀ = Aᵀ+Bᵀ
+- (AB)ᵀ = BᵀAᵀ
+- (A⁻¹)ᵀ = (Aᵀ)⁻¹ # 转置的逆,等于 逆的转置
 - RᵀR is always symmetric
 - (RᵀR)ᵀ = RᵀRᵀᵀ = RᵀR
+
+
+### INVERSES 
+
+- A⁻¹A = I , AA⁻¹ = I
+- (AB)⁻¹ = B⁻¹A⁻¹
+- (ABC)⁻¹ = C⁻¹B⁻¹A⁻¹
+
 
 <h2 id="e4da3b7fbbce2345d7772b0674a318d5"></h2>
 
 -----
 -----
 
-## 5
+## 5. Vector Space
 
 
 <h2 id="9d1fa1d7cb8b7fb75f4ac91338858795"></h2>
@@ -307,21 +350,14 @@ note:  矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 
  - The begining of Linear Algebra
  - All vector subspace have to go through the origin.
  - if S and T are both subspace, S∩T is a subspace.
-    - why? 
-    - Suppose I take a couple of vectors that are in the intersections, why is the sum also in the intersection? 
+    - why? suppose I take a couple of vectors that are in the intersections, why is the sum also in the intersection? 
         - if V and W are 2 vectors in both S and T , then 
         - V+W is in S , and V+W is in T.   that is  , V+W is in both S and T as well. 
+        - and the same to cV , cW .
         - so that , V+W must in S∩T. 
-    - 乘法的封闭性证明？ 等价若干加法所以不需要？
- - C(A)  column space
 
 
-<h2 id="1679091c5a880faf6fb5e6087eb1b2dc"></h2>
-
------
------
-
-## 6 
+## 6. Column Space C(A)
 
 <h2 id="6b209870f2238fe90b6a06eacf3352f4"></h2>
 
@@ -329,6 +365,7 @@ note:  矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 
 
 ### Column Space of A
  
+ - The column space contains all linear combinations of the columns of A.
  - column的长度j  决定了 A的column space 是 Rʲ 下的一个 subspace.
  - Does Ax=b has a solution for every b ? 
     - yes only if b is a combination of the colunmn, that is, b is a vector in the column space.
@@ -345,7 +382,7 @@ note:  矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 
     - That is , if Av=0 and Aw=0,  A(v+w) must be 0.
     - A(v+w) = Av + Aw = 0 
  - Q: Ax = b ,  is the solutions of x give a subspace ?
-    - A: No. it doesn't go through the origin.
+    - A: **No**. it doesn't go through the origin.
 
 
 <h2 id="8f14e45fceea167a5a36dedd4bea2543"></h2>
@@ -353,7 +390,7 @@ note:  矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 
 -----
 -----
 
-## 7
+## 7. Special Solution  Ax=0
 
 <h2 id="b5352408af1619a3d4c23bc24b7a9be1"></h2>
 
@@ -391,15 +428,20 @@ That is , the null space contains exactly all the combinations of the special so
 
 ### Special Solutions -- rref(A) = R
 
-Take a more step from U ,  making 0 above and below pivots, and making pivots = 1. (PS. zero above the pivot column , not needed for free column)
+Take a more step from U ,  making 0 above and below pivots, and making pivots = 1 by dividing pivot on each row . (PS. zero above the pivot column , not needed for free column)
 
 Then you get reduced row echelon form R.  Matlab will do it immediately with `rref(A)`. 
 
 R got all the information as clear as can be.  
 
-The solution to Rx=0  is as same as the solution to Ax=0 , or Ux=0.
+Reduced row echelon form have the same null space as the original matrix. That is the solution to Rx=0  is as same as the solution to Ax=0 , or Ux=0.
 
 PS. if A is invertible, then rref(A) = I.
+
+<details>
+<summary>
+Example:
+</summary>
 
 ```
 octave:2> A
@@ -489,13 +531,15 @@ What's the x?  The x has a identify, it's only a single number 1, bt its the ide
  
 x = c·[ -1;-1;1 ]
  
+</details>
 
 <h2 id="c9f0f895fb98ab9159f51fd0297e236d"></h2>
 
 -----
 -----
 
-## 8
+## 8. Solve Ax=b 
+
 
 <h2 id="9de0ef58d914b04f049388c958ac1a74"></h2>
 
@@ -517,12 +561,19 @@ x = x<sub>p</sub> + x<sub>n</sub> , this pattern through all of mathematics, bec
 
 x<sub>n</sub> is a subspace, but x<sub>complete</sub> is not.  x<sub>complete</sub> is like a subspace, but it's been shifted, away from the origin, it doesn't contain 0, since it must go through x<sub>p</sub> .
 
+
+### Recap
+
+ - Spanning involves the column space, and independence involves the nullspace.
+    - To decide if b is a combination of the columns, we try to solve Ax = b.
+    - To decide if the columns are independent, we solve Ax = 0.
+
 <h2 id="45c48cce2e2d7fbdea1afc51c7c6ad26"></h2>
 
 -----
 -----
 
-## 9
+## 9. Dimemsion
 
 <h2 id="ab6b0812ad1ce14864584b2657a527a1"></h2>
 
@@ -551,9 +602,9 @@ BASIS for a space is a sequence of vectors with 2 properties.
 1. they are independent
 2. they span the space.
 
-Dimension of a space is the  number of space basis.
+Dimension of a space is the number of space basis.
 
-Subspace also have basis.
+**Subspace also have basis**.
 
 rank(A) = #pivot columns = dimension of C(A) (PS. NOT the dimension of matrix) .
 
@@ -562,13 +613,21 @@ dim(N(A)) = #free variables = n-r
 
 A 和 Aᵀ 的 r 相等。
 
+---
+
+ - You must notice that the word "dimensional" is used in two different ways.
+    - We speak about a four-dimensional vector, meaning a vector in R⁴.
+    - Now we have defined a 4D subspace;
+        - an example is the set of vectors in R⁶ whose first and last components are zero.
+        - i.e. (0, 5, 1, 3, 4, 0)
+ - We never use the terms "basis of a matrix" or "rank of a space" or "dimension of a basis."  These phrases have no meaning.
 
 <h2 id="d3d9446802a44259755d38e6d163e820"></h2>
 
 -----
 -----
 
-## 10
+## 10. Fundamental Subspace 
 
 <h2 id="2d18c3506588b8d120fd1814df9c542f"></h2>
 
@@ -578,21 +637,25 @@ A 和 Aᵀ 的 r 相等。
 
 A is mxn
 
- - C(A) , ( in Rᵐ )                       ,dim=r
- - N(A) , dim=n-r
- - `---------`
- - Row Space C(Aᵀ) ,              ,dim=r
- - Left Null Space N(Cᵀ)  , ( in Rᵐ ),  dim=m-r
+subspace | vector in  | dimemsion
+--- | --- | ---
+  C(A) |   Rᵐ  | r
+  N(A) |   Rⁿ |  n-r
+Row Space C(Aᵀ) |  Rⁿ  | r 
+Left Null Space N(Cᵀ)  |  Rᵐ |  dim=m-r
 
-why we call N(Cᵀ) left null space ?
+ - why we call N(Cᵀ) left null space ?
+    - Aᵀy = 0  ==>  yᵀA = 0ᵀ 
+ - elimination:
+    - Elimination preserve the row space. so R and A have different colum space, but same row space.
 
- - Aᵀy = 0  ==>  yᵀA = 0ᵀ 
 
-About elimination:
+![](../imgs/LA_4subspaces.png)
 
-Elimination preserve the row space. so R and A have different colum space, but same row space.
-
------
+<details>
+<summary>
+An mistake in lecture video
+</summary>
 
 ```
 A =
@@ -608,7 +671,8 @@ Actually, the rows are not inpendent ,so A is not invertible, so that the column
 
 `A*[-1;2;-1 ] = 0` 
 
----
+</details>
+
 
 <h2 id="097b0bf7ca0b3f1b1998a2e0a692c81a"></h2>
 
@@ -652,7 +716,7 @@ now D is a subspace. The dimension of D is 3. for example, you can shoose such 3
 -----
 -----
 
-## 11 
+## 11. Application ? 
 
 <h2 id="49ffec6957c7988a3bb3cec6322ce09b"></h2>
 
