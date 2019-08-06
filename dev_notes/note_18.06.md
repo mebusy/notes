@@ -717,22 +717,49 @@ But the convention is  that we only use that word "orthogonal matrix" when it is
 
 What's special about the case when it's square?  When it's a square matrix, we've got its inverse. If Q is square, then QᵀQ=I tells us Qᵀ=Q⁻¹. 
 
+---
+
+What's the good of having a Q ? What formula becomes easy.
+
+Suppose Q has orthonormal columns, project onto its column space, what's the projection matrix. 
+
+P = Q(QᵀQ)⁻¹Qᵀ = QQᵀ
+
+```
+Q =
+
+   0   1
+  -1   0
+   0   0
+
+Q*Q'=
+
+   1   0   0
+   0   1   0
+   0   0   0
+```
+
+---
+
+Ax = b, when A is Q,  x̂=Qᵀb.
+
+
+
 ### Gram-Schmidt  A -> Q
 
-18:00
+We start with independent vectors ans we want to make them orthonormal.
 
+Here comes Gram-Schmidt.
 
+step :
+ 0. vector a,b
+ 1. orthogonal A,B  ( Gram )
+    - a -> A is ok.
+    - b is not ok. I'm looking for a vector , starts with b, but makes it orthogonal to A. B should be the error vector when b projection onto a. 
+    - B = b - p.  B won't be zero since a,b is independent.
+ 2. q₁= A/|A| , q₂= B/|B|.   (Schmidt)
 
-
-
-
-
-
-
-
-
-
-
+32:00
 
 
 
