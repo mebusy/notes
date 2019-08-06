@@ -711,16 +711,6 @@ now D is a subspace. The dimension of D is 3. for example, you can shoose such 3
    0   0   7
 ```
   
-<h2 id="6512bd43d9caa6e02c990b0a82652dca"></h2>
-
------
------
-
-## 11. Application ? 
-
-<h2 id="49ffec6957c7988a3bb3cec6322ce09b"></h2>
-
------
 
 ### Rank one matrices
 
@@ -736,9 +726,14 @@ A: S = null space of A=[1 1 1 1]
 
 rank(A) = 1 = r,  dim(N(A)) = n-r .
 
-<h2 id="d42a81a20d066bbb2afc576729176c38"></h2>
+
+
+<h2 id="c20ad4d76fe97759aa27a0c99bff6710"></h2>
 
 -----
+-----
+
+## 12. Networks
 
 ### Small graph
 
@@ -747,14 +742,6 @@ Graph = { nodes , edges }
 
 Every peaple is a node, there is an egde between 2 peaples if they are frinds. The question for that graph is how many steps does it take to get from anybody to anybody ? What 2 peaple are furthest apart in this friendship graph.
 
-
-
-<h2 id="c20ad4d76fe97759aa27a0c99bff6710"></h2>
-
------
------
-
-## 12
 
 <h2 id="f4f0e61f230052f73a45b10df498ee07"></h2>
 
@@ -786,7 +773,7 @@ this is, #nodes - #edges + #loops = 1 , it's Euler's formula.
 -----
 -----
 
-## 14
+## 14. Orthogonal
 
 <h2 id="6f2c485c71fb691471a44db33644095c"></h2>
 
@@ -794,7 +781,11 @@ this is, #nodes - #edges + #loops = 1 , it's Euler's formula.
 
 ### Orthogonal vectors and subspaces
 
-Subspace S is orthogonal to subspace T , means every vetor S is orthogonal to every vector in T.  If S is orthogonal to T, then they intersect only at 0 vector. 
+Subspace S is orthogonal to subspace T , means every vetor S is orthogonal to every vector in T.  
+
+If S is orthogonal to T, then they intersect only at 0 vector. 
+
+Blackboard wall is **NOT** orthogonal to the floor.
 
 
 <h2 id="6d51fae8845c5c8fd88e68e74a9e2b51"></h2>
@@ -822,6 +813,14 @@ AᵀA:  nxn, symmetric, (AᵀA)ᵀ = AᵀA,
 AᵀAx = Aᵀb
 
 AᵀA is often invertible, but not always.  Since N(AᵀA) = N(A) , so AᵀA is invertible exactly if the column of A are independent, that is N(A)=0. 
+
+
+### Summarizes the fundamental theorem of linear algebra.
+
+ - ![](../imgs/LA_Figure_3.4.png)
+ - 事实上, 任意 vector a 都可以拆分 两部分, 一部分是在某个子空间S 上的投影， 另一部分是在 S的正交补 S⊥ 上的投影
+ - S<sup>⊥</sup> 其实就是 法线空间, I = P + P<sub>N</sub>
+ - ***Every matrix transforms its row space onto its column space***.
 
 <h2 id="5ac01a8dcddca1156c071b45acd1bb50"></h2>
 
