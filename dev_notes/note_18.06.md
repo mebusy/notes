@@ -8,17 +8,17 @@
  - [2. Elimination](#007512dbf0eecf82a8ebf4c1e7b71357)
      - [Elimination](#37ce2a99728857da54756961009fe633)
      - [Back-Substitution](#3377dc23ba4243098066d43864323ef8)
-     - [Elimination  Matrices](#2ca71dcfb9d41862ad1272b22958b92e)
+     - [Elimination Matrices](#d890c325530f9d6ea581e8a1991bb8d7)
  - [3. Matrix multiplication](#36c22d87c505ccb870696f9dddce56c3)
      - [Matrix multiplcation (4 ways) :  A * B = C](#99f80b726498ad866ed76cec68ca859e)
      - [Inverse of A , AB, Aᵀ](#785ba5483d4595815b81a1ab57fa7d38)
      - [Gauss-Jordan / find A⁻¹](#4e2c98c06f8cb4b5e5fda933f2d08ba2)
- - [4 (10)](#515dfcd954f57355545174f22e938c1f)
+ - [4. Elimination Matrices](#cc7c0652009c7a8f963de3a81fcb5322)
      - [Product of elimination matrices](#214181c5442239e64cc8d942b8b189e3)
      - [A=LU (no row exchange)](#f1248609fe6c8d2d55ee97b5d1a231d7)
-     - [Permutations](#687883d0478f7377a01db0003294c174)
+     - [PA=LU, Row Exchanges and Permutations](#ee908f5e0d345fe7fe854a3d5c7106ca)
+     - [Transpose Matrix Aᵀ](#d766ba9a978926809be1b6ac5d77e39d)
  - [5](#e4da3b7fbbce2345d7772b0674a318d5)
-     - [Section 2.7 PA=LU](#0fa27231d37120418da2892cbb00e7cf)
      - [Section 3.1 Vector Spaces and Subspaces](#9d1fa1d7cb8b7fb75f4ac91338858795)
  - [6](#1679091c5a880faf6fb5e6087eb1b2dc)
      - [Column Space of A](#6b209870f2238fe90b6a06eacf3352f4)
@@ -163,11 +163,11 @@ One good way to write down the forward elimination steps is to include the right
 
 U is a triangular matrix, and then we can use **back-substitution** to get the solve.
     
-<h2 id="2ca71dcfb9d41862ad1272b22958b92e"></h2>
+<h2 id="d890c325530f9d6ea581e8a1991bb8d7"></h2>
 
 -----
 
-### Elimination  Matrices
+### Elimination Matrices
 
 - EA = U
 - subtract 3 x column1 from column2
@@ -177,13 +177,6 @@ U is a triangular matrix, and then we can use **back-substitution** to get the s
     ⎡  1 0 0⎤
     ⎢ -3 1 0⎥
     ⎣  0 0 1⎦
-    ```
-- permutation matrix
-    - suppose to exchange row1 and row2
-    - 
-    ```
-    ⎡ 0 1⎤
-    ⎣ 1 0⎦
     ```
     
 <h2 id="36c22d87c505ccb870696f9dddce56c3"></h2>
@@ -213,6 +206,8 @@ U is a triangular matrix, and then we can use **back-substitution** to get the s
     - column * row , generates a big matrix 
     - `sum( Cn*Rn )` 
     
+note:  矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 block 元素
+
 <h2 id="785ba5483d4595815b81a1ab57fa7d38"></h2>
 
 -----
@@ -237,20 +232,22 @@ U is a triangular matrix, and then we can use **back-substitution** to get the s
     - each time we solve a Ax=i , we get a column of A⁻¹.
 - Gauss-Jordan
     - slove n equations at once.
+    - Instead of stopping at U and switching to back-substitution , it continues by subtracting multiples of a row *from the low above*.
+        - step 1: forward elimination
+        - step 2: creating zeros above the pivots
+        - last step: divided the rows by their pivots 
     - eliminate on long matrix [AI] , and get [IA⁻¹]
-    - 为什么 经过消元法后(矩阵E)，就能得到A⁻¹嗯 ?
-        - E*[AI] = [I?]
-        - E*A = I => E = A⁻¹ => E*[AI] = [IA⁻¹]
+    - 为什么 经过消元后，就能得到A⁻¹嗯 ?
+        - E*[AI] = [I?] 
+        - E*A=I => E=A⁻¹ => E*[AI]=[IA⁻¹]
 
- - note
-    - 矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 block 元素
 
-<h2 id="515dfcd954f57355545174f22e938c1f"></h2>
+<h2 id="cc7c0652009c7a8f963de3a81fcb5322"></h2>
 
 -----
 -----
 
-## 4 (10)
+## 4. Elimination Matrices
 
 
 <h2 id="214181c5442239e64cc8d942b8b189e3"></h2>
@@ -270,16 +267,28 @@ U is a triangular matrix, and then we can use **back-substitution** to get the s
 
  - EA=U , A=LU , E⁻¹=L
 
-<h2 id="687883d0478f7377a01db0003294c174"></h2>
+
+<h2 id="ee908f5e0d345fe7fe854a3d5c7106ca"></h2>
 
 -----
 
-### Permutations 
+### PA=LU, Row Exchanges and Permutations 
 
  - elimination may introduce row exchanges. 
  - permutation matrix performs row exchange. 
- - The inverse of permuation matrix P is P's transpose.
+ - The inverse of permutation matrix P is P's transpose.
     - P⁻¹ = Pᵀ  =>  PᵀP = I
+    - since permutation matrix has to be orthogonal matrix.
+
+
+<h2 id="d766ba9a978926809be1b6ac5d77e39d"></h2>
+
+-----
+
+### Transpose Matrix Aᵀ
+
+- RᵀR is always symmetric
+- (RᵀR)ᵀ = RᵀRᵀᵀ = RᵀR
 
 <h2 id="e4da3b7fbbce2345d7772b0674a318d5"></h2>
 
@@ -288,15 +297,6 @@ U is a triangular matrix, and then we can use **back-substitution** to get the s
 
 ## 5
 
-<h2 id="0fa27231d37120418da2892cbb00e7cf"></h2>
-
------
-
-### Section 2.7 PA=LU
-
- - Transpose 
-    - RᵀR is always symmetric
-    - (RᵀR)ᵀ = RᵀRᵀᵀ = RᵀR
 
 <h2 id="9d1fa1d7cb8b7fb75f4ac91338858795"></h2>
 

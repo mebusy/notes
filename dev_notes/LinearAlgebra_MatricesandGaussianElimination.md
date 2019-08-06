@@ -524,26 +524,36 @@ Similarly Ax₂ = e₂  and Ax₃ = e₃.  The e's are the columns of I.
 
 In a 3x3 example, A times A⁻¹ is I: 
 
+![](../imgs/la_1.6_Ax_e.png)
+
+Thus we have 3 systems of equations ( or n systems).  The right-hand sides e₁,e₂,e₃ are different, but elimination is possible *on all systems simultaneously*. This is the **Gauss-Jordan method**. 
+
+Instead of stopping at U and switching to back-substitution , it continues by subtracting multiples of a row *from the low above*.  This produces zeros above the diagonal as well as below.  When it reaches the identity matrix we have found A⁻¹⁻¹.
 
 
-A = LU
+Example 1: Using the Gauss-Jordan Method to Find A⁻¹:
 
-A⁻¹ = U⁻¹·L⁻¹
+ - 1st step: forward elimination
+    - ![](../imgs/Gauss_Jordan1.png)
+    - This completes the first half -- forward elimination. 
+        - The upper triangular U appears in the first three columns.
+        - The other three columns are the same as L⁻¹.
+ - 2nd step: Creating zeros above the pivots, we reach A⁻¹
+    - Now the second half will go from U to I (multiplying by U⁻¹).  That takes L⁻¹ to U⁻¹L⁻¹ which is A⁻¹.
+    - ![](../imgs/Gauss_Jordan2.png)
+ - last step: we divided the rows by their pivots 2 and -8. 
+    - The coefficient matrix in the left-hand half became the identity.
+    - Since A went to I, the same operations on the right-hand half must have carried I into A⁻¹. 
+        - why ?
+        - E*[AI] = [I?] 
+        - E*A=I => E=A⁻¹ => E*[AI]=[IA⁻¹]
+         
+A note for the future: You can see the determinant -16 appearing in the denominators of A⁻¹. **The determinant is the product of the pivots (2)(-8)(1)**. 
 
- - Using the Gauss-Jordan Method to Find A⁻¹:
-    - 1st step: forward elimination
-    ![](../imgs/Gauss_Jordan1.png)
-    - 2nd step: Creating zeros above the pivots, we reach A⁻¹
-    ![](../imgs/Gauss_Jordan2.png)
-        - (row 2)/8 + (row 1)
-        - the 2nd half will go from U to I (multiplying by U⁻¹).
-        - That takes L⁻¹ to U⁻¹L⁻¹ which is A⁻¹
-        
+Though A⁻¹ can solves Ax = b in one step , but it is not recommended. Two triangular steps are better: x = A⁻¹b separates into Lc = b and Ux = c.
 
-小结:
+Since we only need back-substitution for x (and forward substitution produced c).
 
- 1. Though A⁻¹ can solves Ax = b in one step , but it is not recommended. Two triangular steps are better: x = A⁻¹b separates into Lc = b and Ux = c.
-    - since we only need back-substitution for x (and forward substitution produced c).
 
 <h2 id="f559aa9e3fcec478e620ebc4c2817cc4"></h2>
 
@@ -552,6 +562,8 @@ A⁻¹ = U⁻¹·L⁻¹
 ### Invertible = Nonsingular (n pivots)
 
 If A is invertible, it has n pivots. 
+
+奇异矩阵 singular matrix is square matrix with dependent columns.   若不是方阵，那就谈不上奇异矩阵和非奇异矩阵. 
 
 <h2 id="242b3600224bb5f3c1f4b6458cf7b658"></h2>
 
