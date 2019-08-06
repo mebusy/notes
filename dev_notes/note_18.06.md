@@ -59,16 +59,19 @@
 http://web.mit.edu/18.06
 
 <h2 id="37ce2a99728857da54756961009fe633"></h2>
+-----
 
 ## Elimination
 
 <h2 id="91e33357c93456f5d4fcdd5d83e73499"></h2>
+-----
 
 ###  m linear equations, n unknowns
 
 ![](../imgs/preface_la_vectorSpace.png)
 
 <h2 id="105886be937f14bad5b4f729649f33b2"></h2>
+-----
 
 ### Row picture  
 
@@ -79,6 +82,7 @@ In n dimensions space, each equation produces an (n-1) dimemsional "plane" in n 
 At the end, when all n planes are accounted for, the intersection has dimension zero. It's a point , it lies on all planes, and its coordinates satisfy all n equations. It's the solution!
 
 <h2 id="1cd37a33867b1e386181f495f9fc46bd"></h2>
+-----
 
 ###  `*` Column picture
 
@@ -87,6 +91,7 @@ At the end, when all n planes are accounted for, the intersection has dimension 
 The equations ask for a linear combination of the n columns that equals b.
 
 <h2 id="0cf5af3caf7569284abcadfc4d362a04"></h2>
+-----
 
 ### Maxtrix form
 
@@ -107,6 +112,7 @@ The equations ask for a linear combination of the n columns that equals b.
 
 
 <h2 id="c81e728d9d4c2f636f067f89cc14862c"></h2>
+-----
 
 ## 2
 
@@ -141,10 +147,12 @@ The equations ask for a linear combination of the n columns that equals b.
 ```
 
 <h2 id="eccbc87e4b5ce2fe28308fd9f2a7baf3"></h2>
+-----
 
 ## 3
 
 <h2 id="99f80b726498ad866ed76cec68ca859e"></h2>
+-----
 
 ### Matrix multiplcation (4 ways) :  A * B = C
 
@@ -162,6 +170,7 @@ The equations ask for a linear combination of the n columns that equals b.
     - `sum( Cn*Rn )` 
     
 <h2 id="785ba5483d4595815b81a1ab57fa7d38"></h2>
+-----
 
 ### Inverse of A , AB, Aᵀ
     
@@ -173,6 +182,7 @@ The equations ask for a linear combination of the n columns that equals b.
     - = (Aᵀ)⁻¹ = (A⁻¹)ᵀ
 
 <h2 id="4e2c98c06f8cb4b5e5fda933f2d08ba2"></h2>
+-----
 
 ###  Gauss-Jordan / find A⁻¹
 
@@ -190,11 +200,13 @@ The equations ask for a linear combination of the n columns that equals b.
     - 矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 block 元素
 
 <h2 id="515dfcd954f57355545174f22e938c1f"></h2>
+-----
 
 ## 4 (10)
 
 
 <h2 id="214181c5442239e64cc8d942b8b189e3"></h2>
+-----
 
 ### Product of elimination matrices 
 
@@ -202,12 +214,14 @@ The equations ask for a linear combination of the n columns that equals b.
  - U 的最后一个 pivot 可以不为0
 
 <h2 id="f1248609fe6c8d2d55ee97b5d1a231d7"></h2>
+-----
 
 ### A=LU (no row exchange)
 
  - EA=U , A=LU , E⁻¹=L
 
 <h2 id="687883d0478f7377a01db0003294c174"></h2>
+-----
 
 ### Permutations 
 
@@ -217,10 +231,12 @@ The equations ask for a linear combination of the n columns that equals b.
     - P⁻¹ = Pᵀ  =>  PᵀP = I
 
 <h2 id="e4da3b7fbbce2345d7772b0674a318d5"></h2>
+-----
 
 ## 5
 
 <h2 id="0fa27231d37120418da2892cbb00e7cf"></h2>
+-----
 
 ### Section 2.7 PA=LU
 
@@ -229,6 +245,7 @@ The equations ask for a linear combination of the n columns that equals b.
     - (RᵀR)ᵀ = RᵀRᵀᵀ = RᵀR
 
 <h2 id="9d1fa1d7cb8b7fb75f4ac91338858795"></h2>
+-----
 
 ### Section 3.1 Vector Spaces and Subspaces
 
@@ -245,10 +262,12 @@ The equations ask for a linear combination of the n columns that equals b.
 
 
 <h2 id="1679091c5a880faf6fb5e6087eb1b2dc"></h2>
+-----
 
 ## 6 
 
 <h2 id="6b209870f2238fe90b6a06eacf3352f4"></h2>
+-----
 
 ### Column Space of A
  
@@ -257,6 +276,7 @@ The equations ask for a linear combination of the n columns that equals b.
     - yes only if b is a combination of the colunmn, that is, b is a vector in the column space.
 
 <h2 id="aae362f830f86beea7700082eba79028"></h2>
+-----
 
 ### Null Space of A 
 
@@ -270,10 +290,12 @@ The equations ask for a linear combination of the n columns that equals b.
 
 
 <h2 id="8f14e45fceea167a5a36dedd4bea2543"></h2>
+-----
 
 ## 7
 
 <h2 id="b5352408af1619a3d4c23bc24b7a9be1"></h2>
+-----
 
 ### Computing the nullspace (Ax=0)
 
@@ -288,6 +310,7 @@ To solve Ax=0, really I'm solving Ux=0.
 PS: The only operation not required by our example, but needed in general, is row exchange.
 
 <h2 id="fe178efd74327aee4c4fb7261a34154b"></h2>
+-----
 
 ### Pivot variables -- free variables
 
@@ -300,6 +323,7 @@ That is , the null space contains exactly all the combinations of the special so
 
 
 <h2 id="2913817abf898dbe3ad9d3e5e39e3026"></h2>
+-----
 
 ### Special Solutions -- rref(A) = R
 
@@ -403,10 +427,12 @@ x = c·[ -1;-1;1 ]
  
 
 <h2 id="c9f0f895fb98ab9159f51fd0297e236d"></h2>
+-----
 
 ## 8
 
 <h2 id="9de0ef58d914b04f049388c958ac1a74"></h2>
+-----
 
 ### Complete solution of Ax=b
 
@@ -425,22 +451,26 @@ x = x<sub>p</sub> + x<sub>n</sub> , this pattern through all of mathematics, bec
 x<sub>n</sub> is a subspace, but x<sub>complete</sub> is not.  x<sub>complete</sub> is like a subspace, but it's been shifted, away from the origin, it doesn't contain 0, since it must go through x<sub>p</sub> .
 
 <h2 id="45c48cce2e2d7fbdea1afc51c7c6ad26"></h2>
+-----
 
 ## 9
 
 <h2 id="ab6b0812ad1ce14864584b2657a527a1"></h2>
+-----
 
 ### Linear independence
 
 indenpendent if N(A) = 0
 
 <h2 id="8244f5d68b8b82ffeadf91818ea34850"></h2>
+-----
 
 ### Spanning a space
 
 The space consists of all combinations of those vectors.
 
 <h2 id="e85643186cee77ad9ac05f9f5f251c51"></h2>
+-----
 
 ### BASIS and dimension
 
@@ -462,10 +492,12 @@ A 和 Aᵀ 的 r 相等。
 
 
 <h2 id="d3d9446802a44259755d38e6d163e820"></h2>
+-----
 
 ## 10
 
 <h2 id="2d18c3506588b8d120fd1814df9c542f"></h2>
+-----
 
 ### Four Fundamental Subspace 
 
@@ -504,6 +536,7 @@ Actually, the rows are not inpendent ,so A is not invertible, so that the column
 ---
 
 <h2 id="097b0bf7ca0b3f1b1998a2e0a692c81a"></h2>
+-----
 
 ### New vector space !
 
@@ -539,10 +572,12 @@ now D is a subspace. The dimension of D is 3. for example, you can shoose such 3
 ```
   
 <h2 id="6512bd43d9caa6e02c990b0a82652dca"></h2>
+-----
 
 ## 11 
 
 <h2 id="49ffec6957c7988a3bb3cec6322ce09b"></h2>
+-----
 
 ### Rank one matrices
 
@@ -559,6 +594,7 @@ A: S = null space of A=[1 1 1 1]
 rank(A) = 1 = r,  dim(N(A)) = n-r .
 
 <h2 id="d42a81a20d066bbb2afc576729176c38"></h2>
+-----
 
 ### Small graph
 
@@ -570,10 +606,12 @@ Every peaple is a node, there is an egde between 2 peaples if they are frinds. T
 
 
 <h2 id="c20ad4d76fe97759aa27a0c99bff6710"></h2>
+-----
 
 ## 12
 
 <h2 id="f4f0e61f230052f73a45b10df498ee07"></h2>
+-----
 
 ### Graphs of Networks
 
@@ -591,6 +629,7 @@ Directed graph matrix is always column dependent ? Ax=0
 Aᵀy = 0.  currency y1,y2,y3,y4,y5 on edges.
 
 <h2 id="7ad2dbc94ce8e2ce890a994d227285e6"></h2>
+-----
 
 #loops = #edges - ( #nodes - 1 )
 
@@ -598,10 +637,12 @@ this is, #nodes - #edges + #loops = 1 , it's Euler's formula.
 
 
 <h2 id="aab3238922bcc25a6f606eb525ffdc56"></h2>
+-----
 
 ## 14
 
 <h2 id="6f2c485c71fb691471a44db33644095c"></h2>
+-----
 
 ### Orthogonal vectors and subspaces
 
@@ -609,6 +650,7 @@ Subspace S is orthogonal to subspace T , means every vetor S is orthogonal to ev
 
 
 <h2 id="6d51fae8845c5c8fd88e68e74a9e2b51"></h2>
+-----
 
 ### null space ⟂  row space 
 
@@ -619,6 +661,7 @@ beause Ax=0,  *each row*·x = 0.
 nullspace and row space are orthogonal **complements** in Rⁿ.  That is, nullspace contains **all** vectors ⟂ row space.
 
 <h2 id="1381809db6ebf7c77b7a83e941330b8d"></h2>
+-----
 
 ### N(AᵀA) = N(A)
 
@@ -631,10 +674,12 @@ AᵀAx = Aᵀb
 AᵀA is often invertible, but not always.  Since N(AᵀA) = N(A) , so AᵀA is invertible exactly if the column of A are independent, that is N(A)=0. 
 
 <h2 id="5ac01a8dcddca1156c071b45acd1bb50"></h2>
+-----
 
 ## 15  crucial chapter
 
 <h2 id="7bf91f47e22dc40630e1fda5272cbb05"></h2>
+-----
 
 ### Projections !!
 
@@ -695,11 +740,13 @@ still
 
 
 <h2 id="c74d97b01eae257e44aa9d5bade97baf"></h2>
+-----
 
 ## 16 
 
 
 <h2 id="3f74ad10af3eacd7e34e00ff5d659663"></h2>
+-----
 
 ### Projection Matrix
 
@@ -730,6 +777,7 @@ And our typical vector b is out here, and what we're doing is we're projecting i
 
 
 <h2 id="508a75177e1b86cd02457f1b8d091909"></h2>
+-----
 
 ### Least square
 
@@ -812,10 +860,12 @@ A =
 
 
 <h2 id="70efdf2ec9b086079795c442636b55fb"></h2>
+-----
 
 ## 17 
 
 <h2 id="77c10fd5007190b1606ec52dee42d392"></h2>
+-----
 
 ### Orthogonal basis q₁, q<sub>n</sub>
 
@@ -827,6 +877,7 @@ q<sub>i</sub>ᵀq<sub>i</sub> = 0,if i≠j ;  1,if i==j
     - It makes all the calcuations better,  a lot of numerical linear algebra is buillt around working with orthonormal vectors.
 
 <h2 id="ddab1e3788581e4947eff92141a6891c"></h2>
+-----
 
 ### Orthogonal matrix Q 
 
@@ -875,6 +926,7 @@ Ax = b, when A is Q,  x̂=Qᵀb.
 
 
 <h2 id="074ad2dd56bc627b14e5a90ad7e9b2e8"></h2>
+-----
 
 ### Gram-Schmidt  A -> Q
 
