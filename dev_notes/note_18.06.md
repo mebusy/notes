@@ -1107,7 +1107,7 @@ step :
         - B = b-p= b- Aᵀb/(AᵀA)·A.  B won't be zero since a,b is independent.
     - Now C is the problem.  C has to be perpendicular to both A and B.
         - C = c-p<sub>A</sub>-p<sub>B</sub> = c - Aᵀc/(AᵀA)·A - Bᵀc/(BᵀB)·B
- 2. q₁=A/|A| , q₂=B/|B|, q₃=C/|C|.   (Schmidt)
+ 2. q₁=A/‖A‖ , q₂=B/‖B‖ q₃=C/‖C‖   (Schmidt)
 
 Gram-Schmidt method will keep the same column space. A = QR is the magic formula here. R turns to be upper triangular.  pls see the book one more time.
 
