@@ -10,6 +10,8 @@
      - [8. Misc](#6803e775fc8d5aa27d11c244367853e4)
          - [配置文件中一些指令说明](#3374665dc3e1eb7e8d997b73823475af)
          - [stdout/stderr 重定向日志问题](#6747f534f8d4ab733e26bd14238430ac)
+         - [nginx 日志清理后， 日志不再生成的问题](#59ec735f1b20927d1572086d1ff12c40)
+         - [centos 上切割nginx日志的例子](#f6b8fb64715407af569f56a897b2cbf4)
 
 ...menuend
 
@@ -134,6 +136,8 @@ echo $'0\t0\t*\t*\t*\t/usr/sbin/logrotate ...' >> xxx
     - i.e. `app >> app.log 2>&1`
 
 
+<h2 id="59ec735f1b20927d1572086d1ff12c40"></h2>
+
 ### nginx 日志清理后， 日志不再生成的问题
 
  - 需要发送 USE1 信号给 nginx master 进程重新打开日志文件
@@ -141,6 +145,8 @@ echo $'0\t0\t*\t*\t*\t/usr/sbin/logrotate ...' >> xxx
 ```
 # kill -USR1 `ps axu | grep "nginx: master process" | grep -v grep | awk '{print $2}'`
 ```
+
+<h2 id="f6b8fb64715407af569f56a897b2cbf4"></h2>
 
 ### centos 上切割nginx日志的例子
 

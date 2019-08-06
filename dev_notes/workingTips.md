@@ -6,9 +6,8 @@
      - [curl POST json](#6e7f57f08bd46f2974f740a03f93d823)
      - [telnet proxy](#345083ba0f34a9b30e91bb1e37094517)
      - [brew work with proxy](#9158a77bfc692a7ddb411e8c41776b56)
-     - [Install Pip use proxy](#e6674e04c08bcf49fad7d19ca0d8a4bd)
-     - [set proxy for python](#7c3ae4a79fa7e554e876889719101165)
      - [pip install package with proxy](#762fac82abbaaf86cfc10780f5b7cc58)
+     - [pip 使用国内源](#2dea1f148fc0810bfd87d46579674f7e)
      - [pip upgrade all outdated package](#1bca9692962e3deeda270ab8db1b80f2)
      - [bazel](#24ef4c36ec66c15ef9f0c96fe27c0e0b)
      - [FileMerge](#19a991a87a69e4435918f98d2ffc8421)
@@ -89,6 +88,8 @@ or
 ```
 pip install PyYAML --proxy="https://127.0.0.1:3128"
 ```
+
+<h2 id="2dea1f148fc0810bfd87d46579674f7e"></h2>
 
 ## pip 使用国内源
 

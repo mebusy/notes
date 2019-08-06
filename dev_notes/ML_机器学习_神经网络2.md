@@ -13,6 +13,8 @@
  - [put all together](#d1ce73089ce012666ab305131351d508)
      - [选择神经网络架构](#801876e7e97044976d75b835fac97ca3)
      - [训练神经网络](#67fd927dbbde24e0a4e33a49821346bd)
+ - [What is backpropagation really doing?](#3fa803ad477d12baa72d67cc8ab8acb7)
+ - [Derivatives in computational graphs](#55fc63612f8fefdee49a1ba4e2d4b86c)
 
 ...menuend
 
@@ -306,6 +308,8 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
 
 -----------
 
+<h2 id="3fa803ad477d12baa72d67cc8ab8acb7"></h2>
+
 # What is backpropagation really doing?
 
  - Right now, all we're gonna do is to focus our attention on 1 single example:  the image of 2 (handwriting)
@@ -356,6 +360,8 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
  - Let's just sum it up .
  - Backpropagation is the algorithm for determining how a single training example would like to nudge the weights and biades,  not just in terms of whether they should go up or down, but in terms of what relative proportions to those changes cause the most rapid decrease to the cost.
 
+
+<h2 id="55fc63612f8fefdee49a1ba4e2d4b86c"></h2>
 
 # Derivatives in computational graphs
 

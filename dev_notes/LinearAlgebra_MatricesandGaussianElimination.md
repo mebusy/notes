@@ -126,7 +126,7 @@ Those are 3-dimensional column vectors. ***The vector b is identified with the p
 
 Equation(2) asked for multipliers *u,v,w* that produce the right side *b*. Those numbers are (u,v,w)= (1,1,2). They give the correct combination of the columns. They also gave the point(1,1,2) in the **row picture**(where the three plans intersect). 
 
-**译: Ax=b的解, 位于row space ?**
+**Ax=b的 特殊解, 位于row space ?**
 
 With *n* equations in *n* unknowns, there are *n* planes in the row picture ; there are *n* vectors and a vector *b* in the column picture. ***The equations ask for a linear combination of the n columns that equals b***. For centain equations that will be impossible , in the **singular case**.
 

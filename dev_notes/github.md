@@ -13,6 +13,7 @@
      - [gitlab: git clone leads to "SSL certificate problem: unable to get local issuer certificate"](#8da880caa0ca98d1c46a028c0da79aac)
      - [Calling git clone using password with special character](#60f96f2175fb84d4839e67f2533a4c10)
      - [Copy branch from another repository](#9af7d00519ec3625b399242404c33af2)
+     - [delete a branch locally and remotely](#65804564299051849847b74237b908e7)
 
 ...menuend
 
@@ -173,6 +174,8 @@ $ git clone https://myuser:password%21@github.com/myuser/repo.git
     - `git checkout -b develop html5/develop`
  5. push you local branch `develop` to `origin`
     - `git push --set-upstream origin develop`
+
+<h2 id="65804564299051849847b74237b908e7"></h2>
 
 ## delete a branch locally and remotely
 

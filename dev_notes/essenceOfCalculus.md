@@ -13,7 +13,6 @@
  - [chapter 8: Integration and the fundamental theorem of calculus](#eeacb3a6987b61fae56993eb1f78fd4f)
  - [chapter 9: What does area have to do with slope?](#b9130735d7a51c85445d7b6434f2dea9)
  - [chapter 11: Taylor series](#f4c4612f181889150de4d5e6175f2839)
- - [chapter 12:](#11c3f4304f025322dadfb0c608bf2980)
 
 ...menuend
 

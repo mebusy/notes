@@ -5,6 +5,7 @@
      - [Mini-Batch Gradient Descent](#34beb6ea7ec5d6cc52927d78751d4ff9)
      - [Stochastic Gradient Descent Convergence](#85695b2541e3126709fe45b213bef57e)
          - [Checking for convergence](#51e0544e48aab59893bfbf63d0b50570)
+     - [batch gradient descent VS mini-batch gradient descent](#c0e9a4f7a4e5915754d07942a3aa42fd)
  - [Advanced Topics](#41ef0c7e3aa81f83c8172c71f9986dfb)
      - [Online Learning](#1a1b4213089da03d151647442f86c8d5)
          - [Other online learning example:](#5e500c2b37846f8bc8c9fbfbaa15608d)
@@ -101,6 +102,8 @@ Stochastic gradient descent 的J(Θ)图像一般有4种情况:
 
 一种典型的方法来设置ɑ的值，是让ɑ等于某个常数1 除以迭代次数加某个常数2 : a = const1/( iterationNumber + const2 ), 但是这样就需要额外的工作来确定 const1 和 const2， 所以很少采用逐渐减小ɑ值的方法。
 
+
+<h2 id="c0e9a4f7a4e5915754d07942a3aa42fd"></h2>
 
 ### batch gradient descent VS mini-batch gradient descent
 

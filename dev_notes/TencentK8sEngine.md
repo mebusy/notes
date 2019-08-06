@@ -4,6 +4,8 @@
  - [kubectl](#0f12ee5c9f1dd90158580f1c292b0d37)
      - [install](#19ad89bc3e3c9d7ef68b89523eff1987)
      - [use kubectl](#773c2c719c95cc40967b0e945ada8898)
+     - [使用自定义列格式化输出](#32a13011ccded1584ff2253d3356b336)
+     - [JSONPath 表达式](#f0cfc2eb04f3c904ba876b4ff5e36744)
  - [腾讯云 用户管理](#7616e9353ba2c3c55eb7063e51fc65fb)
      - [策略](#66914536facf5b30973b236fb814d23f)
  - [腾讯云 Misc](#4214290dc4bf8068d16758a84a3496a7)
@@ -93,6 +95,8 @@ it seems that TKE will automatically use  `tencenthubkey` ?
  - [轻松了解Kubernetes部署功能](http://qinghua.github.io/kubernetes-deployment/)
 
 
+<h2 id="32a13011ccded1584ff2253d3356b336"></h2>
+
 ## 使用自定义列格式化输出
 
 kubectl get 命令默认输出格式, 包含的信息比较有限
@@ -136,6 +140,8 @@ nginx-app-76b6449498-86b55                ydzs-node2
 nginx-app-76b6449498-nlnkj                ydzs-node1
 opdemo-64db96d575-5mhgg                   ydzs-node2
 ```
+
+<h2 id="f0cfc2eb04f3c904ba876b4ff5e36744"></h2>
 
 ## JSONPath 表达式
 
