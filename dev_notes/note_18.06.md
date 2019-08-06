@@ -1,6 +1,6 @@
 ...menustart
 
- - [Elimination](#37ce2a99728857da54756961009fe633)
+ - [The Geometry of Linear Equations](#61845c7be69370d209bcd74688ec2035)
      - [m linear equations, n unknowns](#91e33357c93456f5d4fcdd5d83e73499)
      - [Row picture](#105886be937f14bad5b4f729649f33b2)
      - [`*` Column picture](#1cd37a33867b1e386181f495f9fc46bd)
@@ -57,12 +57,12 @@
 
 http://web.mit.edu/18.06
 
-<h2 id="37ce2a99728857da54756961009fe633"></h2>
+<h2 id="61845c7be69370d209bcd74688ec2035"></h2>
 
 -----
 -----
 
-## Elimination
+## 1. The Geometry of Linear Equations
 
 <h2 id="91e33357c93456f5d4fcdd5d83e73499"></h2>
 
@@ -78,11 +78,15 @@ http://web.mit.edu/18.06
 
 ### Row picture  
 
-**Intersection of planes**
+<details>
+<summary>
+Intersection of planes
+</summary>
 
 In n dimensions space, each equation produces an (n-1) dimemsional "plane" in n dimemsions. Assuming all goes well , every new "plane" (every new equation) reduce the dimension by 1.
 
 At the end, when all n planes are accounted for, the intersection has dimension zero. It's a point , it lies on all planes, and its coordinates satisfy all n equations. It's the solution!
+</details>
 
 <h2 id="1cd37a33867b1e386181f495f9fc46bd"></h2>
 
@@ -90,9 +94,14 @@ At the end, when all n planes are accounted for, the intersection has dimension 
 
 ###  `*` Column picture
 
-**Combination of columns**
+
+<details>
+<summary>
+Combination of columns
+</summary>
 
 The equations ask for a linear combination of the n columns that equals b.
+</details>
 
 <h2 id="0cf5af3caf7569284abcadfc4d362a04"></h2>
 
@@ -100,9 +109,12 @@ The equations ask for a linear combination of the n columns that equals b.
 
 ### Maxtrix form
 
-    - Ax = b
 
---- 
+<details>
+<summary>
+Ax = b
+</summary>
+
  - Q: how to compute Ax 
     1. each row dot product x 
     2. combination of columns
@@ -115,61 +127,62 @@ The equations ask for a linear combination of the n columns that equals b.
     - ax=b, x=b/a=a⁻¹b
     - same idea: Ax=b => x=A⁻¹b
 
+</details>
+
 
 <h2 id="c81e728d9d4c2f636f067f89cc14862c"></h2>
 
 -----
 -----
 
-## 2
+## 2. Elimination
 
- 1. Elimination   
-    - Success
-    - Failure  0 in pivot position , row exchange
- 2. Back-Substitution 
-    - augmented matrix [A |b] ==elim=> [U |c] => Ux=c
- 3. Elimination  Matrices
-    - EA = U
-    - 向量在 矩阵右侧，列组合；向量在矩阵左侧，行组合
-    - Matrix x column => column
-    - row x Marix => row 
-    - subtract 3 x column1 from column2 is : (elementary matrix E₂₁)
- 4. Matrix multiplication
+### Elimination   
 
-----
+**GAUSSIAN ELIMINATION** starts by subtracting multiples of the first equation from the other equations. 
 
- - E₂₁
+Breakdown of Elimination: 0 in pivot position , then do row exchange , by definition, **pivots cannot be zero**.
+ 
+### Back-Substitution 
 
-```
-⎡  1 0 0⎤
-⎢ -3 1 0⎥
-⎣  0 0 1⎦
-```
 
- - permutation matrix: suppose to exchange row1 and row2
+One good way to write down the forward elimination steps is to include the right-hand side as an extra column, this matrix [A |b] is an augmented matrix.
 
-```
-⎡ 0 1⎤
-⎣ 1 0⎦
-```
+[A |b] ==elim==> [U |c] ==> Ux=c
 
-<h2 id="eccbc87e4b5ce2fe28308fd9f2a7baf3"></h2>
+U is a triangular matrix, and then we can use **back-substitution** to get the solve.
+    
+### Elimination  Matrices
 
------
------
+- EA = U
+- 向量在 矩阵右侧，列组合；向量在矩阵左侧，行组合
+    - Matrix \* column => column
+    - row \* Marix => row 
+- subtract 3 x column1 from column2
+    - elementary matrix: E₂₁
+    - 
+    ```
+    ⎡  1 0 0⎤
+    ⎢ -3 1 0⎥
+    ⎣  0 0 1⎦
+    ```
+- permutation matrix
+    - suppose to exchange row1 and row2
+    - 
+    ```
+    ⎡ 0 1⎤
+    ⎣ 1 0⎦
+    ```
+    
+## 3. Matrix multiplication
 
-## 3
-
-<h2 id="99f80b726498ad866ed76cec68ca859e"></h2>
-
------
 
 ### Matrix multiplcation (4 ways) :  A * B = C
 
 1. regular way
     - row·column, dot product
 2. column way 
-    -  columns in C , are combinations of columns of A 
+    - columns in C , are combinations of columns of A 
     - that is , A * column of B ,  generates  a column in C 
 3. row way
     - rows of C , are combinations of rows of B
