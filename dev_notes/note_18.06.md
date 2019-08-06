@@ -38,20 +38,19 @@
      - [Small graph](#d42a81a20d066bbb2afc576729176c38)
  - [12](#c20ad4d76fe97759aa27a0c99bff6710)
      - [Graphs of Networks](#f4f0e61f230052f73a45b10df498ee07)
- - [loops = #edges - ( #nodes - 1 )](#7ad2dbc94ce8e2ce890a994d227285e6)
-     - [14](#aab3238922bcc25a6f606eb525ffdc56)
-         - [Orthogonal vectors and subspaces](#6f2c485c71fb691471a44db33644095c)
-         - [null space ⟂  row space](#6d51fae8845c5c8fd88e68e74a9e2b51)
-         - [N(AᵀA) = N(A)](#1381809db6ebf7c77b7a83e941330b8d)
-     - [15  crucial chapter](#5ac01a8dcddca1156c071b45acd1bb50)
-         - [Projections !!](#7bf91f47e22dc40630e1fda5272cbb05)
-     - [16](#c74d97b01eae257e44aa9d5bade97baf)
-         - [Projection Matrix](#3f74ad10af3eacd7e34e00ff5d659663)
-         - [Least square](#508a75177e1b86cd02457f1b8d091909)
-     - [17](#70efdf2ec9b086079795c442636b55fb)
-         - [Orthogonal basis q₁, q<sub>n</sub>](#77c10fd5007190b1606ec52dee42d392)
-         - [Orthogonal matrix Q](#ddab1e3788581e4947eff92141a6891c)
-         - [Gram-Schmidt  A -> Q](#074ad2dd56bc627b14e5a90ad7e9b2e8)
+ - [14](#aab3238922bcc25a6f606eb525ffdc56)
+     - [Orthogonal vectors and subspaces](#6f2c485c71fb691471a44db33644095c)
+     - [null space ⟂  row space](#6d51fae8845c5c8fd88e68e74a9e2b51)
+     - [N(AᵀA) = N(A)](#1381809db6ebf7c77b7a83e941330b8d)
+ - [15  crucial chapter](#5ac01a8dcddca1156c071b45acd1bb50)
+     - [Projections !!](#7bf91f47e22dc40630e1fda5272cbb05)
+ - [16](#c74d97b01eae257e44aa9d5bade97baf)
+     - [Projection Matrix](#3f74ad10af3eacd7e34e00ff5d659663)
+     - [Least square](#508a75177e1b86cd02457f1b8d091909)
+ - [17](#70efdf2ec9b086079795c442636b55fb)
+     - [Orthogonal basis q₁, q<sub>n</sub>](#77c10fd5007190b1606ec52dee42d392)
+     - [Orthogonal matrix Q](#ddab1e3788581e4947eff92141a6891c)
+     - [Gram-Schmidt  A -> Q](#074ad2dd56bc627b14e5a90ad7e9b2e8)
 
 ...menuend
 
@@ -678,18 +677,15 @@ Directed graph matrix is always column dependent ? Ax=0
 
 Aᵀy = 0.  currency y1,y2,y3,y4,y5 on edges.
 
-<h2 id="7ad2dbc94ce8e2ce890a994d227285e6"></h2>
 
------
------
-
-#loops = #edges - ( #nodes - 1 )
+ - #loops = #edges - ( #nodes - 1 )
 
 this is, #nodes - #edges + #loops = 1 , it's Euler's formula.
 
 
 <h2 id="aab3238922bcc25a6f606eb525ffdc56"></h2>
 
+-----
 -----
 
 ## 14
@@ -731,6 +727,7 @@ AᵀA is often invertible, but not always.  Since N(AᵀA) = N(A) , so AᵀA is 
 
 <h2 id="5ac01a8dcddca1156c071b45acd1bb50"></h2>
 
+-----
 -----
 
 ## 15  crucial chapter
@@ -799,6 +796,7 @@ still
 
 <h2 id="c74d97b01eae257e44aa9d5bade97baf"></h2>
 
+-----
 -----
 
 ## 16 
@@ -922,6 +920,7 @@ A =
 
 <h2 id="70efdf2ec9b086079795c442636b55fb"></h2>
 
+-----
 -----
 
 ## 17 

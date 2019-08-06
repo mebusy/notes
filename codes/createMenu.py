@@ -22,6 +22,8 @@ RE_PATTERN_CODE_BLOCK = re.compile( r"^\s*```" )
 RE_PATTERN_SINGLE_QUOTE_PAIR = re.compile( r"`[^`]+?`" )
 RE_TAG_CONTENT = re.compile( r"<([\w-]+?)>" )
 
+PARAGRAPH_SEP = "-----"
+
 def createMenu4MD( path ):
     # print 'parsing' , path
 
@@ -84,14 +86,15 @@ def createMenu4MD( path ):
             escaped_title = title.replace( "["  , "\\[")
             escaped_title = escaped_title.replace( "]"  , "\\]")
             
-            menu +=   ( '%s - [%s](#%s)' % ( '    ' * (  sorted(all_title_level).index( curTitleActualLevel )  )  , escaped_title ,  id  ) )  +  '\n'
+            nIndent = sorted(all_title_level).index( curTitleActualLevel ) 
+            menu +=   ( '%s - [%s](#%s)' % ( '    ' * nIndent  , escaped_title ,  id  ) )  +  '\n'
 
-            body += '<h2 id="%s"></h2>\n\n' % id 
+            body += '<h2 id="{}"></h2>\n\n{}\n'.format(  id , ( PARAGRAPH_SEP + "\n" ) * ( max( 1, 2 - nIndent  )  )  )
             #print sharps, title
 
         isJumpIDLine = re.search( RE_PATTERN_MENU_JUMP_ID , line  ) is not None 
         if not isJumpIDLine :
-            if bFollowLinkID and line.strip() == "" :
+            if bFollowLinkID and ( line.strip() == "" or line.strip() == PARAGRAPH_SEP ) :
                 pass 
             else :
                 bFollowLinkID = False
