@@ -1,12 +1,15 @@
 ...menustart
 
- - [The Geometry of Linear Equations](#61845c7be69370d209bcd74688ec2035)
+ - [1. The Geometry of Linear Equations](#8c1303f71444d7754a705424f793b9ae)
      - [m linear equations, n unknowns](#91e33357c93456f5d4fcdd5d83e73499)
      - [Row picture](#105886be937f14bad5b4f729649f33b2)
      - [`*` Column picture](#1cd37a33867b1e386181f495f9fc46bd)
      - [Maxtrix form](#0cf5af3caf7569284abcadfc4d362a04)
- - [2](#c81e728d9d4c2f636f067f89cc14862c)
- - [3](#eccbc87e4b5ce2fe28308fd9f2a7baf3)
+ - [2. Elimination](#007512dbf0eecf82a8ebf4c1e7b71357)
+     - [Elimination](#37ce2a99728857da54756961009fe633)
+     - [Back-Substitution](#3377dc23ba4243098066d43864323ef8)
+     - [Elimination  Matrices](#2ca71dcfb9d41862ad1272b22958b92e)
+ - [3. Matrix multiplication](#36c22d87c505ccb870696f9dddce56c3)
      - [Matrix multiplcation (4 ways) :  A * B = C](#99f80b726498ad866ed76cec68ca859e)
      - [Inverse of A , AB, Aᵀ](#785ba5483d4595815b81a1ab57fa7d38)
      - [Gauss-Jordan / find A⁻¹](#4e2c98c06f8cb4b5e5fda933f2d08ba2)
@@ -57,7 +60,7 @@
 
 http://web.mit.edu/18.06
 
-<h2 id="61845c7be69370d209bcd74688ec2035"></h2>
+<h2 id="8c1303f71444d7754a705424f793b9ae"></h2>
 
 -----
 -----
@@ -130,12 +133,16 @@ Ax = b
 </details>
 
 
-<h2 id="c81e728d9d4c2f636f067f89cc14862c"></h2>
+<h2 id="007512dbf0eecf82a8ebf4c1e7b71357"></h2>
 
 -----
 -----
 
 ## 2. Elimination
+
+<h2 id="37ce2a99728857da54756961009fe633"></h2>
+
+-----
 
 ### Elimination   
 
@@ -143,6 +150,10 @@ Ax = b
 
 Breakdown of Elimination: 0 in pivot position , then do row exchange , by definition, **pivots cannot be zero**.
  
+<h2 id="3377dc23ba4243098066d43864323ef8"></h2>
+
+-----
+
 ### Back-Substitution 
 
 
@@ -152,6 +163,10 @@ One good way to write down the forward elimination steps is to include the right
 
 U is a triangular matrix, and then we can use **back-substitution** to get the solve.
     
+<h2 id="2ca71dcfb9d41862ad1272b22958b92e"></h2>
+
+-----
+
 ### Elimination  Matrices
 
 - EA = U
@@ -174,8 +189,17 @@ U is a triangular matrix, and then we can use **back-substitution** to get the s
     ⎣ 1 0⎦
     ```
     
+<h2 id="36c22d87c505ccb870696f9dddce56c3"></h2>
+
+-----
+-----
+
 ## 3. Matrix multiplication
 
+
+<h2 id="99f80b726498ad866ed76cec68ca859e"></h2>
+
+-----
 
 ### Matrix multiplcation (4 ways) :  A * B = C
 
