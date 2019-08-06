@@ -516,6 +516,16 @@ There is no stupid matrix that satisfy : A⁻¹·0 = x.
 
 ### The Calculation of A⁻¹: The Gauss-Jordan Method
 
+Consider the equation AA⁻¹=I.  If it is taken **a column at a time** , that equation determines each column of A⁻¹. 
+
+The first column of A⁻¹ is multiplied by A , to yield the first column of the I:    Ax₁=e₁. 
+
+Similarly Ax₂ = e₂  and Ax₃ = e₃.  The e's are the columns of I. 
+
+In a 3x3 example, A times A⁻¹ is I: 
+
+
+
 A = LU
 
 A⁻¹ = U⁻¹·L⁻¹

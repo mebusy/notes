@@ -170,9 +170,6 @@ U is a triangular matrix, and then we can use **back-substitution** to get the s
 ### Elimination  Matrices
 
 - EA = U
-- 向量在 矩阵右侧，列组合；向量在矩阵左侧，行组合
-    - Matrix \* column => column
-    - row \* Marix => row 
 - subtract 3 x column1 from column2
     - elementary matrix: E₂₁
     - 
@@ -236,8 +233,8 @@ U is a triangular matrix, and then we can use **back-substitution** to get the s
 ###  Gauss-Jordan / find A⁻¹
 
 - how to find A⁻¹?
-    - A * column j of A⁻¹ = column j of I 
-    - 每次通过解一组方程组 就能得到 A⁻¹的一列
+    - A * *column j of A⁻¹* = *column j of I* 
+    - each time we solve a Ax=i , we get a column of A⁻¹.
 - Gauss-Jordan
     - slove n equations at once.
     - eliminate on long matrix [AI] , and get [IA⁻¹]
