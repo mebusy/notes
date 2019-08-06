@@ -827,7 +827,7 @@ AᵀA is often invertible, but not always.  Since N(AᵀA) = N(A) , so AᵀA is 
 -----
 -----
 
-## 15  crucial chapter
+## 15 Projection ( crucial chapter )
 
 <h2 id="7bf91f47e22dc40630e1fda5272cbb05"></h2>
 
@@ -847,9 +847,13 @@ so  aᵀe = aᵀ(b-xa) = aᵀb - xaᵀa = 0
 
 =>  xaᵀa = aᵀb.   => x = aᵀb/(aᵀa) 
 
-p = a·aᵀb/aᵀa   => P = aaᵀ/(aᵀa) 
+p = a·aᵀb/(aᵀa)   => P = aaᵀ/(aᵀa) 
 
 rank(P) = 1 ,    key property: Pᵀ=P , P²=P 
+
+To calculate p, the trick is to associate (aᵀb) first to avoid matrix:
+
+p = aᵀb/(aᵀa)·a
 
 ----
 
@@ -1097,13 +1101,20 @@ Here comes Gram-Schmidt.
 
 step :
  0. vector a,b
- 1. orthogonal A,B  ( Gram )
+ 1. orthogonal A,B,C  ( Gram )
     - a -> A is ok.
     - b is not ok. I'm looking for a vector , starts with b, but makes it orthogonal to A. B should be the error vector when b projection onto a. 
-    - B = b - p.  B won't be zero since a,b is independent.
- 2. q₁= A/|A| , q₂= B/|B|.   (Schmidt)
+        - B = b-p= b- Aᵀb/(AᵀA)·A.  B won't be zero since a,b is independent.
+    - Now C is the problem.  C has to be perpendicular to both A and B.
+        - C = c-p<sub>A</sub>-p<sub>B</sub> = c - Aᵀc/(AᵀA)·A - Bᵀc/(BᵀB)·B
+ 2. q₁=A/|A| , q₂=B/|B|, q₃=C/|C|.   (Schmidt)
 
-32:00
+Gram-Schmidt method will keep the same column space. A = QR is the magic formula here. R turns to be upper triangular.  pls see the book one more time.
+
+
+
+
+
 
 
 
