@@ -101,7 +101,6 @@ We emphasize that the rules apply to *square matrices* of any size.
 
  6. *If A has a row of zeros, then det A = 0*.
     - deduce from 3
-    -
     ```
     5|0 0| =|0 0| ,  5x =x -> x=0 
      |c d|  |c d|
