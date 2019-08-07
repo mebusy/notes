@@ -555,7 +555,7 @@ To find complete solution to Ax=b.
 
 1. one particular solution 
     - set all free variables to 0, and then solve Ax=b for the pivot variables.
-2. add on any x in the nullspace.
+2. add any x in the nullspace.
 
 x = x<sub>p</sub> + x<sub>n</sub> , this pattern through all of mathematics, because it shows up everywhere.
 
@@ -837,11 +837,14 @@ AᵀA is often invertible, but not always.  Since N(AᵀA) = N(A) , so AᵀA is 
 
 2D
 
+<details>
+<summary>
+P = aaᵀ/(aᵀa)
+</summary>
+
 how to calculate the vector p , which is vector b projects on vector a ?
 
-p must be some multiple of a ,  p = xa.
-
-the error vector e = b - p  = b - xa.   since e ⟂ a , 
+p must be some multiple of a ,  p = xa.  The error vector e = b - p  = b - xa   since e ⟂ a , 
 
 so  aᵀe = aᵀ(b-xa) = aᵀb - xaᵀa = 0 
 
@@ -849,23 +852,32 @@ so  aᵀe = aᵀ(b-xa) = aᵀb - xaᵀa = 0
 
 p = a·aᵀb/(aᵀa)   => P = aaᵀ/(aᵀa) 
 
+</details>
+
 rank(P) = 1 ,    key property: Pᵀ=P , P²=P 
 
-To calculate p, the trick is to associate (aᵀb) first to avoid matrix:
+To calculate p, here is a trick:  associate (aᵀb) first to avoid yield a matrix: p = aᵀb/(aᵀa)·a .
 
-p = aᵀb/(aᵀa)·a
 
-----
+<details>
+<summary>
+Why project ?
+</summary>
 
- - Why project ?
-    - Because Ax=b may have no solution. 
-    - Ax has to be in the column space , but b may not in column space.
-    - So I change b to the closest vector in the column space. 
-    - So I solve Ax = p instead, where p is the projection of b onto the **column space**. 
+- Because Ax=b may have no solution. 
+- Ax has to be in the column space , but b may not in column space.
+- So I change b to the closest vector in the column space. 
+- So I solve Ax = p instead, where p is the projection of b onto the **column space**. 
+
+</details>
 
 ----
 
 3D
+<details>
+<summary>
+P = A(AᵀA)⁻¹Aᵀ
+</summary>
 
 project onto a place , span with independent vector a1 and a2.  that is , the place is the column space of A=[a1 a2]
 
@@ -887,9 +899,10 @@ AᵀAx̂ = Aᵀb.    So the sulution is x̂ = (AᵀA)⁻¹·Aᵀb.
 
 P = A(AᵀA)⁻¹Aᵀ . 
 
+</details>
+
 why I can not expand the euqation to AA⁻¹(Aᵀ)⁻¹Aᵀ = I  ?  becuase A is not a square matrix, it does not have an inverse. 
 
-still 
 
  - Pᵀ=P ,  inverse of symmetric  is still symmetric.
  - P²=P 
@@ -900,7 +913,7 @@ still
 -----
 -----
 
-## 16 
+## 16. Projection and Least Square 
 
 
 <h2 id="3f74ad10af3eacd7e34e00ff5d659663"></h2>
@@ -929,7 +942,7 @@ And our typical vector b is out here, and what we're doing is we're projecting i
  - p + e = b . 
     - so p is the project b on C(A)  ,  p = Pb 
     - how do e come out ?  what's the projection matrix ?
-        - It's (I-P), it's another projection matrix !  It project to a perpendicular space.  
+        - It's (I-P), it's another projection matrix !  It project to a perpendicular space.  (投影矩阵特有性质?)
         - e = (I-P)b.
 
 
@@ -941,7 +954,7 @@ And our typical vector b is out here, and what we're doing is we're projecting i
 
 ### Least square
 
-fitting line , curve ,  
+fitting line
 
  - points in 2D plane , 
     - (1,1), (2,2) , (3, 2 )
@@ -993,16 +1006,11 @@ x =
    0.50000
 ```
 
----
 
-Repeat: If A has independent columns , then AᵀA is invertible. 
-
-Proof: suppose AᵀAx = 0.  
-
-Trick:  xᵀAᵀAx=0 =>  (Ax)ᵀ(Ax)=0  => Ax=0. 
-
-(Ax)ᵀ(Ax) is the length of the vector Ax squared,  if it is 0, then Ax must be 0.
-Since A has independent columns => x=0. 
+<details>
+<summary>
+But what if to fit a curve ? 
+</summary>
 
 Q: (1,1), (2,5), (-1,-2) ,  拟合一条2次曲线
 
@@ -1017,6 +1025,27 @@ A =
    4   2   1
    1  -1   1
 ```
+
+</details>
+
+---
+
+
+<details>
+<summary>
+**If A has independent columns , then AᵀA is invertible.** 
+</summary>
+
+Proof: 
+
+suppose AᵀAx = 0.  
+
+Trick:  xᵀAᵀAx=0 =>  (Ax)ᵀ(Ax)=0  => Ax=0. 
+
+(Ax)ᵀ(Ax) is the length of the vector Ax squared,  if it is 0, then Ax must be 0.  But A has independent columns , the only case is x=0 , that is AᵀA is invertible.
+
+</details>
+
 
 
 <h2 id="70efdf2ec9b086079795c442636b55fb"></h2>
