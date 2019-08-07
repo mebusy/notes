@@ -964,6 +964,11 @@ fitting line
     - (C+D-1)² + (C+2D-2)² + (C+3D-2)² 
  - no you can use calculus to find the minimn. But here we will use the linear algebra way.
 
+<details>
+<summary>
+Fit a line
+</summary>
+
 ```octave
 A =
    1   1
@@ -1006,6 +1011,8 @@ x =
    0.50000
 ```
 
+</details>
+
 
 <details>
 <summary>
@@ -1033,7 +1040,7 @@ A =
 
 <details>
 <summary>
-**If A has independent columns , then AᵀA is invertible.** 
+* If A has independent columns , then AᵀA is invertible. 
 </summary>
 
 Proof: 
@@ -1053,7 +1060,7 @@ Trick:  xᵀAᵀAx=0 =>  (Ax)ᵀ(Ax)=0  => Ax=0.
 -----
 -----
 
-## 17 
+## 17. Orthogonal Matrix
 
 <h2 id="77c10fd5007190b1606ec52dee42d392"></h2>
 
