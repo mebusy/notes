@@ -94,15 +94,15 @@ We emphasize that the rules apply to *square matrices* of any size.
         ```
          - det2A = 2ⁿ detA
  4. *If two rows of A are equal, then det A = 0.*
-     - deduce from rule 2 ,  r = -r => r = 0 
- 5. *Subtracting k*row i from row j , leaves the same determinant*.  
-     - deduce from 3.1,3.2 : 消元不改变 determinant
-     - 几何意义: 向量ab,cd, 向量ab不变，平行四边型的底不变; 向量cd 沿着 ab 方向发生切变，平行四边型的高不变，所以ab,cd 构成的面积不变。
+    - deduce from rule 2 ,  r = -r => r = 0 
+ 5. *Subtracting k x row i from row j , leaves the same determinant*.  
+    - deduce from 3.1,3.2 : 消元不改变 determinant
+    - 几何意义: 向量ab,cd, 向量ab不变，平行四边型的底不变; 向量cd 沿着 ab 方向发生切变，平行四边型的高不变，所以ab,cd 构成的面积不变。
 
  6. *If A has a row of zeros, then det A = 0*.
-     - deduce from 3
-
-     ```
+    - deduce from 3
+    -
+    ```
     5|0 0| =|0 0| ,  5x =x -> x=0 
      |c d|  |c d|
     ```
