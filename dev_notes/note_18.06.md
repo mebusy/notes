@@ -18,39 +18,41 @@
      - [A=LU (no row exchange)](#f1248609fe6c8d2d55ee97b5d1a231d7)
      - [PA=LU, Row Exchanges and Permutations](#ee908f5e0d345fe7fe854a3d5c7106ca)
      - [Transpose Matrix Aᵀ](#d766ba9a978926809be1b6ac5d77e39d)
- - [5](#e4da3b7fbbce2345d7772b0674a318d5)
+     - [INVERSES](#3709f91de887b21ce8b18d5c5ef0aee8)
+ - [5. Vector Space](#012f7a01157a02313543c929beb369a2)
      - [Section 3.1 Vector Spaces and Subspaces](#9d1fa1d7cb8b7fb75f4ac91338858795)
- - [6](#1679091c5a880faf6fb5e6087eb1b2dc)
+ - [6. Column Space C(A)](#58ff046a28e34ea85d40cab30e06d99c)
      - [Column Space of A](#6b209870f2238fe90b6a06eacf3352f4)
      - [Null Space of A](#aae362f830f86beea7700082eba79028)
- - [7](#8f14e45fceea167a5a36dedd4bea2543)
+ - [7. Special Solution  Ax=0](#a036b682183a90d2f1fbe10ce6a5bb86)
      - [Computing the nullspace (Ax=0)](#b5352408af1619a3d4c23bc24b7a9be1)
      - [Pivot variables -- free variables](#fe178efd74327aee4c4fb7261a34154b)
      - [Special Solutions -- rref(A) = R](#2913817abf898dbe3ad9d3e5e39e3026)
- - [8](#c9f0f895fb98ab9159f51fd0297e236d)
+ - [8. Solve Ax=b](#db10e97585f9668efc2383e6d41ca6af)
      - [Complete solution of Ax=b](#9de0ef58d914b04f049388c958ac1a74)
- - [9](#45c48cce2e2d7fbdea1afc51c7c6ad26)
+     - [Recap](#8912c5512db9003e5c8ce07b7ff36a88)
+ - [9. Dimemsion](#bb0eb4b8063e088d31678fdec95899bb)
      - [Linear independence](#ab6b0812ad1ce14864584b2657a527a1)
      - [Spanning a space](#8244f5d68b8b82ffeadf91818ea34850)
      - [BASIS and dimension](#e85643186cee77ad9ac05f9f5f251c51)
- - [10](#d3d9446802a44259755d38e6d163e820)
+ - [10. Fundamental Subspace](#98bc29d7d49a86b70f6140dac882744a)
      - [Four Fundamental Subspace](#2d18c3506588b8d120fd1814df9c542f)
      - [New vector space !](#097b0bf7ca0b3f1b1998a2e0a692c81a)
- - [11](#6512bd43d9caa6e02c990b0a82652dca)
      - [Rank one matrices](#49ffec6957c7988a3bb3cec6322ce09b)
+ - [12. Networks](#a8d3ffcce3f08795c52dc9ea5c6b3db1)
      - [Small graph](#d42a81a20d066bbb2afc576729176c38)
- - [12](#c20ad4d76fe97759aa27a0c99bff6710)
      - [Graphs of Networks](#f4f0e61f230052f73a45b10df498ee07)
- - [14](#aab3238922bcc25a6f606eb525ffdc56)
+ - [14. Orthogonal](#ee4d7074d86f494d6184ecbbab637e69)
      - [Orthogonal vectors and subspaces](#6f2c485c71fb691471a44db33644095c)
      - [null space ⟂  row space](#6d51fae8845c5c8fd88e68e74a9e2b51)
      - [N(AᵀA) = N(A)](#1381809db6ebf7c77b7a83e941330b8d)
- - [15  crucial chapter](#5ac01a8dcddca1156c071b45acd1bb50)
+     - [Summarizes the fundamental theorem of linear algebra.](#c704ddab32fc266fd88c4965485fa706)
+ - [15 Projection ( crucial chapter )](#28a646261723ad5829e3503081225adc)
      - [Projections !!](#7bf91f47e22dc40630e1fda5272cbb05)
- - [16](#c74d97b01eae257e44aa9d5bade97baf)
+ - [16. Projection and Least Square](#86d100a731b3c593d4c0e193feb27d38)
      - [Projection Matrix](#3f74ad10af3eacd7e34e00ff5d659663)
      - [Least square](#508a75177e1b86cd02457f1b8d091909)
- - [17](#70efdf2ec9b086079795c442636b55fb)
+ - [17. Orthogonal Matrix](#90c7d7715eaf8334023266fddcba7ea5)
      - [Orthogonal basis q₁, q<sub>n</sub>](#77c10fd5007190b1606ec52dee42d392)
      - [Orthogonal matrix Q](#ddab1e3788581e4947eff92141a6891c)
      - [Gram-Schmidt  A -> Q](#074ad2dd56bc627b14e5a90ad7e9b2e8)
@@ -326,6 +328,10 @@ A*P = // column exchange
 - (RᵀR)ᵀ = RᵀRᵀᵀ = RᵀR
 
 
+<h2 id="3709f91de887b21ce8b18d5c5ef0aee8"></h2>
+
+-----
+
 ### INVERSES 
 
 - A⁻¹A = I , AA⁻¹ = I
@@ -333,7 +339,7 @@ A*P = // column exchange
 - (ABC)⁻¹ = C⁻¹B⁻¹A⁻¹
 
 
-<h2 id="e4da3b7fbbce2345d7772b0674a318d5"></h2>
+<h2 id="012f7a01157a02313543c929beb369a2"></h2>
 
 -----
 -----
@@ -356,6 +362,11 @@ A*P = // column exchange
         - and the same to cV , cW .
         - so that , V+W must in S∩T. 
 
+
+<h2 id="58ff046a28e34ea85d40cab30e06d99c"></h2>
+
+-----
+-----
 
 ## 6. Column Space C(A)
 
@@ -385,7 +396,7 @@ A*P = // column exchange
     - A: **No**. it doesn't go through the origin.
 
 
-<h2 id="8f14e45fceea167a5a36dedd4bea2543"></h2>
+<h2 id="a036b682183a90d2f1fbe10ce6a5bb86"></h2>
 
 -----
 -----
@@ -533,7 +544,7 @@ x = c·[ -1;-1;1 ]
  
 </details>
 
-<h2 id="c9f0f895fb98ab9159f51fd0297e236d"></h2>
+<h2 id="db10e97585f9668efc2383e6d41ca6af"></h2>
 
 -----
 -----
@@ -562,13 +573,17 @@ x = x<sub>p</sub> + x<sub>n</sub> , this pattern through all of mathematics, bec
 x<sub>n</sub> is a subspace, but x<sub>complete</sub> is not.  x<sub>complete</sub> is like a subspace, but it's been shifted, away from the origin, it doesn't contain 0, since it must go through x<sub>p</sub> .
 
 
+<h2 id="8912c5512db9003e5c8ce07b7ff36a88"></h2>
+
+-----
+
 ### Recap
 
  - Spanning involves the column space, and independence involves the nullspace.
     - To decide if b is a combination of the columns, we try to solve Ax = b.
     - To decide if the columns are independent, we solve Ax = 0.
 
-<h2 id="45c48cce2e2d7fbdea1afc51c7c6ad26"></h2>
+<h2 id="bb0eb4b8063e088d31678fdec95899bb"></h2>
 
 -----
 -----
@@ -622,7 +637,7 @@ A 和 Aᵀ 的 r 相等。
         - i.e. (0, 5, 1, 3, 4, 0)
  - We never use the terms "basis of a matrix" or "rank of a space" or "dimension of a basis."  These phrases have no meaning.
 
-<h2 id="d3d9446802a44259755d38e6d163e820"></h2>
+<h2 id="98bc29d7d49a86b70f6140dac882744a"></h2>
 
 -----
 -----
@@ -712,6 +727,10 @@ now D is a subspace. The dimension of D is 3. for example, you can shoose such 3
 ```
   
 
+<h2 id="49ffec6957c7988a3bb3cec6322ce09b"></h2>
+
+-----
+
 ### Rank one matrices
 
 A = uvᵀ
@@ -728,12 +747,16 @@ rank(A) = 1 = r,  dim(N(A)) = n-r .
 
 
 
-<h2 id="c20ad4d76fe97759aa27a0c99bff6710"></h2>
+<h2 id="a8d3ffcce3f08795c52dc9ea5c6b3db1"></h2>
 
 -----
 -----
 
 ## 12. Networks
+
+<h2 id="d42a81a20d066bbb2afc576729176c38"></h2>
+
+-----
 
 ### Small graph
 
@@ -768,7 +791,7 @@ Aᵀy = 0.  currency y1,y2,y3,y4,y5 on edges.
 this is, #nodes - #edges + #loops = 1 , it's Euler's formula.
 
 
-<h2 id="aab3238922bcc25a6f606eb525ffdc56"></h2>
+<h2 id="ee4d7074d86f494d6184ecbbab637e69"></h2>
 
 -----
 -----
@@ -815,6 +838,10 @@ AᵀAx = Aᵀb
 AᵀA is often invertible, but not always.  Since N(AᵀA) = N(A) , so AᵀA is invertible exactly if the column of A are independent, that is N(A)=0. 
 
 
+<h2 id="c704ddab32fc266fd88c4965485fa706"></h2>
+
+-----
+
 ### Summarizes the fundamental theorem of linear algebra.
 
  - ![](../imgs/LA_Figure_3.4.png)
@@ -822,7 +849,7 @@ AᵀA is often invertible, but not always.  Since N(AᵀA) = N(A) , so AᵀA is 
  - S<sup>⊥</sup> 其实就是 法线空间, I = P + P<sub>N</sub>
  - ***Every matrix transforms its row space onto its column space***.
 
-<h2 id="5ac01a8dcddca1156c071b45acd1bb50"></h2>
+<h2 id="28a646261723ad5829e3503081225adc"></h2>
 
 -----
 -----
@@ -908,7 +935,7 @@ why I can not expand the euqation to AA⁻¹(Aᵀ)⁻¹Aᵀ = I  ?  becuase A is
  - P²=P 
 
 
-<h2 id="c74d97b01eae257e44aa9d5bade97baf"></h2>
+<h2 id="86d100a731b3c593d4c0e193feb27d38"></h2>
 
 -----
 -----
@@ -1055,7 +1082,7 @@ Trick:  xᵀAᵀAx=0 =>  (Ax)ᵀ(Ax)=0  => Ax=0.
 
 
 
-<h2 id="70efdf2ec9b086079795c442636b55fb"></h2>
+<h2 id="90c7d7715eaf8334023266fddcba7ea5"></h2>
 
 -----
 -----
