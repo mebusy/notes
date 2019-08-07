@@ -1,6 +1,9 @@
 ...menustart
 
  - [Linear ALgebra](#bd8cfe5912b0bee7fd7d191afedf8995)
+ - [Calculus](#0349a55a6a70f89e604c28892ce24d82)
+ - [Probability](#0d2765b30694ee9f4fb7be2ae3b676dc)
+ - [Misc](#74248c725e00bf9fe04df4e35b249a19)
  - [Discrete Mathematics](#d2bcb78d5ac194c66f434e9fbcb3565e)
 
 ...menuend
@@ -29,6 +32,11 @@
  - [Essence of LA](3blue1brown.md)
 
 
+<h2 id="0349a55a6a70f89e604c28892ce24d82"></h2>
+
+-----
+-----
+
 # Calculus
 
  - [Calculus One](CalculusOne.md) 
@@ -37,12 +45,22 @@
  - [essenceOfCalculus](essenceOfCalculus.md )
 
 
+<h2 id="0d2765b30694ee9f4fb7be2ae3b676dc"></h2>
+
+-----
+-----
+
 # Probability 
 
  - [台大概率笔记](TaiwanU_probability.md)
  - [台大概率笔记2](TaiwanU_probability2.md) 
  - [随机数](Dev_Random.md)
 
+
+<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
+
+-----
+-----
 
 # Misc 
 

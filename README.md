@@ -1,10 +1,6 @@
 ...menustart
 
  - [专题](#041d1704a45f737ddaa4380bcf1dfcc7)
- - [其它数学](#8443a5022727ccc209d315492559f16f)
- - [Python](#a7f5f35426b927411fc9231b56382173)
- - [python 实现](#0c3266dd9928d074e79930f98b42ed7d)
- - [Data Science](#c78e2ad97b328dbafbd49edf182136f3)
  - [CS61A](#6967a2c7c19fa61c072a4b0a1072e9c7)
  - [Lua](#0ae9478a1db9d1e2c48efa49eac1c7c6)
  - [swift](#818056dbd7e201243206b9c7cd88481c)
