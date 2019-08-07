@@ -1070,7 +1070,7 @@ Trick:  xᵀAᵀAx=0 =>  (Ax)ᵀ(Ax)=0  => Ax=0.
 
 Orthonormal vectors :
 
-q<sub>i</sub>ᵀq<sub>i</sub> = 0,if i≠j ;  1,if i==j
+![](../imgs/la_18.06_ortho_vector.gif)
 
  - How does having an orthonormal basis make things nice ?
     - It makes all the calcuations better,  a lot of numerical linear algebra is buillt around working with orthonormal vectors.
@@ -1087,23 +1087,12 @@ Q = |q₁ ... qn|
     | |     | | 
 ```
 
-QᵀQ = I  , Q doesn't have to be square here.
+**QᵀQ = I**  , Q doesn't have to be square here.
 
-Now we're seeing this new class of matrices with orthonormal columns. This is a long name, I'm sorry that I can't just call them orthogonal matrices. 
-
-Maybe orthonormal matrices are good name.
-
-But the convention is  that we only use that word "orthogonal matrix" when it is square.  So in the case when this is a square matrix, that's the case we call it an orthogonal matrix. 
-
-What's special about the case when it's square?  When it's a square matrix, we've got its inverse. If Q is square, then QᵀQ=I tells us Qᵀ=Q⁻¹. 
-
----
-
-What's the good of having a Q ? What formula becomes easy.
-
-Suppose Q has orthonormal columns, project onto its column space, what's the projection matrix. 
-
-P = Q(QᵀQ)⁻¹Qᵀ = QQᵀ
+<details>
+<summary>
+but normally QQᵀ≠I
+</summary>
 
 ```
 Q =
@@ -1118,10 +1107,36 @@ Q*Q'=
    0   1   0
    0   0   0
 ```
+</details>
+
+
+<details>
+<summary>
+Call Q "orthogonal matrix" ONLY when it is square.
+</summary>
+
+
+Now we're seeing this new class of matrices with orthonormal columns. This is a long name, I'm sorry that I can't just call them orthogonal matrices. 
+
+Maybe orthonormal matrices are good name.
+
+But the convention is  that we only use that word "orthogonal matrix" when it is square.  So in the case when this is a square matrix, that's the case we call it an orthogonal matrix. 
+
+</details>
 
 ---
 
-Ax = b, when A is Q,  x̂=Qᵀb.
+- What's special about the case when it's square?  
+    - When it's a square matrix, we've got its inverse. 
+    - If Q is square, then QᵀQ=I tells us **Qᵀ=Q⁻¹**. 
+
+---
+
+ - What's the good of having a Q ? What formula becomes easy.
+    - Suppose Q has orthonormal columns, project onto its column space 
+        - P = Q(QᵀQ)⁻¹Qᵀ = **QQᵀ**
+    - Solve Ax = b, when A is Q
+        - x̂=Qᵀb.
 
 
 
@@ -1131,19 +1146,19 @@ Ax = b, when A is Q,  x̂=Qᵀb.
 
 ### Gram-Schmidt  A -> Q
 
-We start with independent vectors ans we want to make them orthonormal.
+We start with independent vectors and we want to make them orthonormal.
 
 Here comes Gram-Schmidt.
 
-step :
- 0. vector a,b
- 1. orthogonal A,B,C  ( Gram )
-    - a -> A is ok.
-    - b is not ok. I'm looking for a vector , starts with b, but makes it orthogonal to A. B should be the error vector when b projection onto a. 
-        - B = b-p= b- Aᵀb/(AᵀA)·A.  B won't be zero since a,b is independent.
-    - Now C is the problem.  C has to be perpendicular to both A and B.
-        - C = c-p<sub>A</sub>-p<sub>B</sub> = c - Aᵀc/(AᵀA)·A - Bᵀc/(BᵀB)·B
- 2. q₁=A/‖A‖ , q₂=B/‖B‖ q₃=C/‖C‖   (Schmidt)
+ - step :
+    0. vector a,b
+    1. orthogonal A,B,C  ( Gram )
+        - a -> A is ok.
+        - b is not ok. I'm looking for a vector , starts with b, but makes it orthogonal to A. B should be the error vector when b projection onto a. 
+            - B = b-p= b- Aᵀb/(AᵀA)·A.  B won't be zero since a,b is independent.
+        - Now C is the problem.  C has to be perpendicular to both A and B.
+            - C = c-p<sub>A</sub>-p<sub>B</sub> = c - Aᵀc/(AᵀA)·A - Bᵀc/(BᵀB)·B
+    2. q₁=A/‖A‖ , q₂=B/‖B‖ q₃=C/‖C‖   (Schmidt)
 
 Gram-Schmidt method will keep the same column space. A = QR is the magic formula here. R turns to be upper triangular.  pls see the book one more time.
 
