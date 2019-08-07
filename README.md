@@ -29,6 +29,9 @@
 ####  专题
 
  - [Math](dev_notes/math_readme.md) 
+    - Linear Algebra
+    - Calculus
+    - Probability
  - [algorithm](dev_notes/Algorithm_readme.md)
  - [Machine Learning](dev_notes/ML_readme.md)
  - [Compiler](dev_notes/Compiler_readme.md)
@@ -41,52 +44,15 @@
  - [iOS related](dev_notes/ios/ios_readme.md)
  - [Texture and Modeling](dev_notes/textAndModeling_readme.md)
  - [6502](dev_notes/6502_readme.md)
- - [Compute Graphics](./dev_notes/CG_readme.md)
+ - [Compute Graphics](dev_notes/CG_readme.md)
+ - [Python](dev_notes/py_readme.md)
 
 ---
 
 
----
-<h2 id="a7f5f35426b927411fc9231b56382173"></h2>
-
------
------
-
-#### Python
-
- a | b | c | d
---- | --- | --- | ---
-[Advanced Data Structure](dev_notes/python_highlevel_datastructure.md) |  [lib for Functional](dev_notes/python_functional_programming.md) | [OOP](dev_notes/python_oop.md)  |  [tips](dev_notes/python_tips_1.md) 
-[python -m](http://pythonwise.blogspot.hk/2015/01/python-m.html) | [psutil for memory usage](dev_notes/python_mem_monitor.md) | [hack](dev_notes/python_hack.md)
-[BeautifulSoup](dev_notes/PY_BeautifulSoup.md)  | [python多线程](dev_notes/PY_multiprocessing.md) | [PIL_Tips](dev_notes/PIL_tips.md) | 
-[uwsgi](dev_notes/python_uwsgi.md) | [high performance python](dev_notes/highPerformancePython.md) | [python3 features](dev_notes/python3.md) |  
-[scrapy-splash](dev_notes/scrapy.md) |  [xpath](dev_notes/xpath.md) |
-[swig](dev_notes/Interfacing_C_Python_withSWIG.md) | [swig_python](dev_notes/swig_python.md) | 
-[load test:Locust](dev_notes/python_Locust.md) | 
 
 
-<h2 id="0c3266dd9928d074e79930f98b42ed7d"></h2>
 
------
------
-
-#### python 实现
-
- a | b | c | d
---- | --- | --- | ---
-[1. 基本环境](dev_notes/pythonImpl.md) | [2. 内置类型](dev_notes/pythonImpl2.md) | [3. 表达式](dev_notes/pythonImpl3.md) | [4. 函数](dev_notes/pythonImpl4.md) 
-[5. 迭代器](dev_notes/pythonImpl5.md)
-
-<h2 id="c78e2ad97b328dbafbd49edf182136f3"></h2>
-
------
------
-
-#### Data Science
-
- a | b | c | d
---- | --- | --- | ---
-[Numpy](dev_notes/numpy_tips.md) | [Pandas](dev_notes/Pandas.md) | [Advanced Pandas](dev_notes/Pandas_advanced.md) | [Statistic in Python](dev_notes/Pands_StatisticalAnalysisInPython.md)
 
 <h2 id="6967a2c7c19fa61c072a4b0a1072e9c7"></h2>
 
