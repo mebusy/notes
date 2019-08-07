@@ -130,6 +130,8 @@ def createMenu4MD( path ):
 
 
     menu += '\n...menuend\n\n\n'  
+    if path.lower().endswith( "readme.md" ):
+        menu = ""
     
     if bCodeStart :
         print _name

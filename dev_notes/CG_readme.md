@@ -1,10 +1,3 @@
-...menustart
-
- - [Compute Graphics](#5967d3e33c64ff7f2266daa725898281)
-
-...menuend
-
-
 [website](http://math.hws.edu/graphicsbook/)
 
 [course pdf](http://math.hws.edu/eck/cs424/downloads/graphicsbook-linked.pdf)

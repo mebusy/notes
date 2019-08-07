@@ -1,14 +1,3 @@
-...menustart
-
- - [Linear ALgebra](#bd8cfe5912b0bee7fd7d191afedf8995)
- - [Calculus](#0349a55a6a70f89e604c28892ce24d82)
- - [Probability](#0d2765b30694ee9f4fb7be2ae3b676dc)
- - [Misc](#74248c725e00bf9fe04df4e35b249a19)
- - [Discrete Mathematics](#d2bcb78d5ac194c66f434e9fbcb3565e)
-
-...menuend
-
-
 <h2 id="bd8cfe5912b0bee7fd7d191afedf8995"></h2>
 
 -----

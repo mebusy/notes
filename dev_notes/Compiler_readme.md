@@ -1,15 +1,3 @@
-...menustart
-
- - [Compiler](#3bb7c24fcd6eb6468ddc51ea1dfdcee5)
- - [FAdo](#c5aa04468d09d5a81babc195e447e3d2)
-     - [LLVM](#66a0128ad08b2053e4809e07fe05728c)
- - [Yacc / Lex](#ecef701cf8281ee7177e68fb367afa0f)
- - [ANSI C grammar 最新的 Lex 和 Yacc 描述](#871dc0b519dec2791e731a2658e723ce)
-     - [over versions (native files):](#9f02cabfdaf25d406be6bf2cdf4ee4a5)
-
-...menuend
-
-
 <h2 id="3bb7c24fcd6eb6468ddc51ea1dfdcee5"></h2>
 
 -----

@@ -1,10 +1,3 @@
-...menustart
-
- - [Nand to Tetris](#45b170be1600a1c6c571bd4e1a5fa6e9)
-
-...menuend
-
-
 <h2 id="45b170be1600a1c6c571bd4e1a5fa6e9"></h2>
 
 -----

@@ -1,12 +1,3 @@
-...menustart
-
- - [Python](#a7f5f35426b927411fc9231b56382173)
- - [Python implementation](#1b5abc0bb936130701c7dfc8025642f1)
- - [Data Science](#c78e2ad97b328dbafbd49edf182136f3)
-
-...menuend
-
-
 <h2 id="a7f5f35426b927411fc9231b56382173"></h2>
 
 -----

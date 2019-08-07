@@ -1,20 +1,3 @@
-...menustart
-
- - [专题](#041d1704a45f737ddaa4380bcf1dfcc7)
- - [CS61A](#6967a2c7c19fa61c072a4b0a1072e9c7)
- - [Lua](#0ae9478a1db9d1e2c48efa49eac1c7c6)
- - [swift](#818056dbd7e201243206b9c7cd88481c)
- - [Operation System](#aac4d78ee7d18636803896f8b8c16aa6)
- - [C](#0d61f8370cad1d412f80b84d143e1257)
- - [Android](#e84e30b9390cdb64db6db2c9ab87846d)
- - [Dev](#55f37d1fd483f6a85379640fe51aafa8)
- - [Tools](#8625e1de7be14c39b1d14dc03d822497)
- - [Linux](#edc9f0a5a5d57797bf68e37364743831)
- - [Misc](#74248c725e00bf9fe04df4e35b249a19)
-
-...menuend
-
-
 [简要笔记](dev_notes/note_readme.md)
 
 <h2 id="041d1704a45f737ddaa4380bcf1dfcc7"></h2>
