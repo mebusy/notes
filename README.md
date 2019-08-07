@@ -28,7 +28,7 @@
 
 ####  专题
 
- - [Linear ALgebra](dev_notes/LA_readme.md) 
+ - [Math](dev_notes/math_readme.md) 
  - [algorithm](dev_notes/Algorithm_readme.md)
  - [Machine Learning](dev_notes/ML_readme.md)
  - [Compiler](dev_notes/Compiler_readme.md)
@@ -44,18 +44,6 @@
  - [Compute Graphics](./dev_notes/CG_readme.md)
 
 ---
-
-<h2 id="8443a5022727ccc209d315492559f16f"></h2>
-
------
------
-
-#### 其它数学
-
- a | b | c | d
---- | --- | --- | ---
-[随机数](dev_notes/Dev_Random.md) | [微积分总览](dev_notes/微积分总览.md) | [Tricks](dev_notes/Tricks.md) |  [台大概率笔记](dev_notes/TaiwanU_probability.md)
-[台大概率笔记2](dev_notes/TaiwanU_probability2.md) |  [Calculus One](dev_notes/CalculusOne.md) | [Calculus One: Part II](dev_notes/CalculusOne_part2.md) | [essenceOfCalculus](dev_notes/essenceOfCalculus.md )
 
 
 ---
