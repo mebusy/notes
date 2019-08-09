@@ -12,6 +12,12 @@ Every square matrix has a number associated with , called its determinant.
 - det A = 0 , means A is singular.  
 - det A !=0 , means A is invertible.
 
+## Signed
+
+Determinant is signed.
+
+## Properties 
+
 3 base properties:
 
 1. det I = 1.
@@ -55,8 +61,24 @@ p4 ~ p10
 
 </details>
 
-## Properties 
 
-## Signed
+# 19. 
+
+## Formula for detA ( n! terms )
+
+ - use property 3 to break down each row 
+    - [a b c] = [a 0 0] + [0 b 0] + [0 0 c]
+ - the determinant of A can be expanded into nⁿ terms 
+ - many terms has 0 det.  they will be removed.
+ - The nonzero terms have to come in different columns and rows. 
+    - ![](../imgs/LA_det_3x3_6terms.png)
+ - ![](../imgs/LA_det_bigFormula.png)
+ 
+## Cofactor formula
+
+Cofactor is a way of breaking up above big formula that connects the nxn determinant to a determinant one smaller. 
+
+## Tridiagonal matrices
+
 
 

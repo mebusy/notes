@@ -5,12 +5,13 @@ docker run --rm -it --entrypoint="manim" -v `pwd`/output:/media -v `pwd`:/work  
 
 
 brew install cairo  ffmpeg  sox  
-brea cask install mactex-no-gui
+brew cask install mactex-no-gui
+
+# brew info libffi   ,  export PKG_CONFIG_PATH
 
 pip3 install -r requirements.txt --user  ??
 pip3 install manimlib --user
 
-brew info libffi   ,  export PKG_CONFIG_PATH
 
 pip3 install pycairo --user
 
