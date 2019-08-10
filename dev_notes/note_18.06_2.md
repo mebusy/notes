@@ -90,6 +90,8 @@ Cofactor is a way of breaking up above big formula that connects the nxn determi
 
 ## Formula for A⁻¹
 
+
+
 ## Cramers Rule for x=A⁻¹b
 
 ## |detA| = volume of box
