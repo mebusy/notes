@@ -90,7 +90,20 @@ Cofactor is a way of breaking up above big formula that connects the nxn determi
 
 ## Formula for A⁻¹
 
+![](../imgs/la_det_ap_inverse.gif)
 
+<details>
+<summary>
+ACᵀ = (detA) I
+</summary>
+
+![](../imgs/LA_det_apply_inverse3.png)
+
+The critical question is: Why do we get zeros off the diagonal? 
+
+The answer is: we are actually computing the determinant of a new matrix which has equal rows. 
+
+</details>
 
 ## Cramers Rule for x=A⁻¹b
 
