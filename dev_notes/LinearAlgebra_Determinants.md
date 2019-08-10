@@ -271,9 +271,9 @@ There is a similar expansion on any other row, say row i :
 
 **4B** The determinant of A is a combination of any row i times its cofactors:
 
-&nbsp;&nbsp;&nbsp;&nbsp;**det A bs cofactors:** det A = aᵢ₁Cᵢ₁ + aᵢ₂Cᵢ₂ + ... + aᵢ<sub>𝑛</sub>Cᵢ<sub>𝑛</sub>. (10)
+&nbsp;&nbsp;&nbsp;&nbsp;**det A by cofactors:** det A = aᵢ₁Cᵢ₁ + aᵢ₂Cᵢ₂ + ... + aᵢ<sub>𝑛</sub>Cᵢ<sub>𝑛</sub>. (10)
 
-The cofactor is the determinant of Mᵢⱼ , wyith the correct sign:
+The cofactor is the determinant of Mᵢⱼ , with the correct sign:
 
 &nbsp;&nbsp;&nbsp;&nbsp;**delete row i and column j:** Cᵢⱼ = (-1)ⁱ⁺ʲ detMᵢⱼ.   (11)
 

@@ -62,14 +62,14 @@ p4 ~ p10
 </details>
 
 
-# 19. 
+# 19. Formular for Determinant
 
 ## Formula for detA ( n! terms )
 
  - use property 3 to break down each row 
     - [a b c] = [a 0 0] + [0 b 0] + [0 0 c]
  - the determinant of A can be expanded into nⁿ terms 
- - many terms has 0 det.  they will be removed.
+ - a lot terms has 0 det,  they can be removed.
  - The nonzero terms have to come in different columns and rows. 
     - ![](../imgs/LA_det_3x3_6terms.png)
  - ![](../imgs/LA_det_bigFormula.png)
@@ -78,7 +78,23 @@ p4 ~ p10
 
 Cofactor is a way of breaking up above big formula that connects the nxn determinant to a determinant one smaller. 
 
-## Tridiagonal matrices
+![](../imgs/LA_det_cofactor_filter.png)
+
+- **The determinant of A is a combination of any row i times its cofactors**.
+    - **det A by cofactors:** det A = aᵢ₁Cᵢ₁ + aᵢ₂Cᵢ₂ + ... + aᵢ<sub>𝑛</sub>Cᵢ<sub>𝑛</sub>. (10)
+    - The cofactor is the determinant of Mᵢⱼ , with the correct sign:
+        - **delete row i and column j:** Cᵢⱼ = (-1)ⁱ⁺ʲ detMᵢⱼ.   (11)
+
+
+# 20. APPLICATIONS OF DETERMINANTS
+
+## Formula for A⁻¹
+
+## Cramers Rule for x=A⁻¹b
+
+## |detA| = volume of box
+
+
 
 
 
