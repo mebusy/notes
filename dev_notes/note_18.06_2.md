@@ -107,6 +107,8 @@ The answer is: we are actually computing the determinant of a new matrix which h
 
 ## Cramers Rule for x=A⁻¹b
 
+ 
+
 ## |detA| = volume of box
 
 
