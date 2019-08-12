@@ -213,4 +213,9 @@ $ git push --delete <remote_name> <branch_name>
 $ git branch -d <branch_name>
 ```
 
+## ignore system proxy setting 
+
+```
+git config --global  --add remote.origin.proxy ""
+```
 
