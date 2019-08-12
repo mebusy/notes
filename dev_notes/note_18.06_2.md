@@ -108,7 +108,9 @@ But having a formula allows you to do algebra instead of algorithms. They're nic
 
 ## |detA| = volume of box
 
+---
 
+# 21. 
 
 
 
