@@ -94,7 +94,57 @@ But having a formula allows you to do algebra instead of algorithms. They're nic
 
 ---
 
-# 21. 
+# 21. EigenValues - EigenVectors 
+
+There are certain vectors where Ax comes out parallel to x. And those are the eigenvectors.  **Ax=λx**.
+
+If A is singular, λ=0 is an eigenvalue.
+
+Now the question is how do we find these x-s and λ.
+
+<details>
+<summary>
+Projection Matrix
+</summary>
+
+Any x in projection plane  Ax=x , λ=1
+
+Any x ⟂ plane,  Ax=0 , λ=0.
+
+</details>
+
+<details>
+<summary>
+Permutation Matrix
+</summary>
+
+```
+A =
+
+   0   1
+   1   0
+```
+
+x = [1;1] , λ=1
+
+x = [-1;1] , λ=-1. In fact, the trace tells you right away what the other eigenvalue is.
+
+</details>
+
+How to solve Ax=λx ?
+
+(A-Iλ)x = 0.    A-Iλ has to be singular.
+
+
+## det[A-λI] = 0 
+
+The idea will be to find λ first. I'll find n λ's.  A λ could be repeated, A repeated λ is source of all trouble in 18.06.
+
+## Trace = λ₁+λ₂+ ... + λ<sub>n</sub>
+
+Fact: sum of λ's = a₁₁+a₂₂+ ... + a<sub>nn</sub>.
+
+
 
 
 
