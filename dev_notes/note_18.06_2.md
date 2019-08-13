@@ -1,35 +1,3 @@
-
-# 18.Determinants 
-
-Up to now we paid a lot of attention to rectangular matrices. 
-
-Now, concentrating on square matrices. Determinants and Eigen values are big, big chunk of 18.06.
-
-## Determinants , det A = |A| 
-
-Every square matrix has a number associated with , called its determinant. 
-
-- det A = 0 , means A is singular.  
-- det A !=0 , means A is invertible.
-
-## Signed
-
-Determinant is signed.
-
-## Properties 
-
-3 base properties:
-
-1. det I = 1.
-2. Exchanging rows reverse sign of det.  
-3. The determinant depends linearly on **one** row. (single row linearity)
-    - 3a: Add vectors in a row
-        - 
-        ```
-        |a+a' b+b'| =|a b| + |a' b'|
-        |c    d   |  |c d|   |c  d |
-        ```
-    
     - 3b: Multiply by t in row
         - 
         ```
@@ -106,7 +74,23 @@ Actually, Cramer's Rule is a disastrous way to go, because compute these determi
 But having a formula allows you to do algebra instead of algorithms. They're nice formulas, but I just don't want you to use them. 
 
 
-## |detA| = volume of box
+## | detA | = volume of box
+
+
+```
+    已知三角形的三个顶点：
+    (x1,y1),(x2,y2),(x3,y3),求面积:
+    解：
+                |x1 y1 1|
+    S= 1/2 det  |x2 y2 1|
+                |x3 y3 1|
+    
+    
+    如果有个顶点是原点,比如(x1,y1)=(0,0)
+    
+    S =  1/2 det|x2,y2|
+                |x3,y3|
+```
 
 ---
 
