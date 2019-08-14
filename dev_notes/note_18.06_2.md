@@ -282,16 +282,105 @@ Symmetric Matrix Example
 
 ```
 A =
-
    3   1
    1   3
+
+
+det(A-λI) = |3-λ 1| = (3-λ)²-1
+            |1 3-λ|
+
+          = λ²-6λ+8 
 ```
+
+This example is great. 6 is the trace ,and 8 is the determinant. 
+
+λ₁=4, λ₂=2 . 
+
+```
+A-4I = 
+  -1   1
+   1  -1
+```
+
+x₁= [1;1]
+
+```
+A-2I = 
+   1   1
+   1   1
+```
+
+x₂= [-1;1]
+
+</details>
+
+What's the relateion between the Permutation example and Symmetric example ?
+
+Simple but useful observation: if I add *n*·I to a matrix, its eigenvectors don't change, and its eigen values are *n* bigger.
+
+
+<details>
+<summary>
+Why does it happen ? 
+</summary>
+
+Suppose I have a matrix A, and Ax=λx. I add 3I to that matrix. 
+
+(A+3I)x = λx + 3x = (λ+3)x
+
 </details>
 
 
+<details>
+<summary>
+Rotation matrix Q
+</summary>
+
+Q = 
+   0  -1
+   1   0
 
 
+90° rotation.
+
+trace = 0 = λ₁+λ₂ , det = 1 = λ₁λ₂.  λ²=-1.
+
+What I'm leading up to with this example is that something is gonna go wrong, because what vector can come out parallel to itself after a 90° rotation? 
+
+λ₁=i, λ₂=-i. 
+
+</details>
+
+If a matrix was symmetric, it wouldn't happen ( complex number λ ). So if we stick to matrices that are symmetric , or close to symmetri, then the eigenvalues will stay real. But if we move far away from symmetric , for this example it's anti-symmetric , the bad thing will happen. 
 
 
+<details>
+<summary>
+Here's one more bad thing that could happen.
+</summary>
+
+```
+A =
+   3   1
+   0   3
+```
+
+This is a triangular matrix.  It's really useful to know you can read the eigenvalues off, they're  right on the diagonal. 
+
+λ₁ = λ₂ = 3. 
+
+```
+(A-λI)x = |0 1|x = 0
+          |0 0|
+```
+
+x₁=[1;0]  , x₂= NO 2nd independent x 
+
+This is a degenerate matrix. It's only got one line of eigenvectors instead of two.  It's this possibility of a repeated eigenvalue opens this further possiblity of a shortage of eigenvectors. 
+
+</details>
+
+
+# 22.
 
 
