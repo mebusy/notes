@@ -14,6 +14,7 @@
      - [Calling git clone using password with special character](#60f96f2175fb84d4839e67f2533a4c10)
      - [Copy branch from another repository](#9af7d00519ec3625b399242404c33af2)
      - [delete a branch locally and remotely](#65804564299051849847b74237b908e7)
+     - [ignore system proxy setting](#69a87c5b277c131f12dde6841d30e6bc)
 
 ...menuend
 
@@ -212,6 +213,10 @@ $ git clone https://myuser:password%21@github.com/myuser/repo.git
 $ git push --delete <remote_name> <branch_name>
 $ git branch -d <branch_name>
 ```
+
+<h2 id="69a87c5b277c131f12dde6841d30e6bc"></h2>
+
+-----
 
 ## ignore system proxy setting 
 

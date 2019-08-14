@@ -1,9 +1,37 @@
+...menustart
+
+ - [18.Determinants](#ae8178b3d3c78ee97adfcc298fe0b11e)
+     - [Determinants , det A = |A|](#fc7bcc02eaa53ccf05c2b3f48461de47)
+     - [Signed](#71fed0c3428bf1a2e19af257c4bac379)
+     - [Properties](#9fc2d28c05ed9eb1d75ba4465abf15a9)
+ - [19. Formular for Determinant](#077014dde3a16154d48a5807d1c351bb)
+     - [Formula for detA ( n! terms )](#a4ea43d88bcd4db4f7d7fe3abe7052b4)
+     - [Cofactor formula](#d02910574d79a0726db429910342d33e)
+ - [20. APPLICATIONS OF DETERMINANTS](#d32bea3e6901eaca807e7ff0a03afc52)
+     - [Formula for A⁻¹](#23d31b234b8839bc2675b16fff1de2da)
+     - [Cramers Rule for x=A⁻¹b](#8d1f376d9179ba4326b17606a2f64136)
+     - [| detA | = volume of box](#b99ff4a9543c3ccbfac05190cc07dd68)
+ - [21. EigenValues - EigenVectors](#2a051e916e56ff2ad1a6b47745f85a6b)
+     - [det\[A-λI\] = 0](#9e08a229f7feafd17be0f57fed7d544d)
+     - [Trace = λ₁+λ₂+ ... + λ<sub>n</sub>](#95946abeb88b298e53a6c970166fb7aa)
+
+...menuend
+
+
+<h2 id="ae8178b3d3c78ee97adfcc298fe0b11e"></h2>
+
+-----
+-----
 
 # 18.Determinants 
 
 Up to now we paid a lot of attention to rectangular matrices. 
 
 Now, concentrating on square matrices. Determinants and Eigen values are big, big chunk of 18.06.
+
+<h2 id="fc7bcc02eaa53ccf05c2b3f48461de47"></h2>
+
+-----
 
 ## Determinants , det A = |A| 
 
@@ -12,9 +40,17 @@ Every square matrix has a number associated with , called its determinant.
 - det A = 0 , means A is singular.  
 - det A !=0 , means A is invertible.
 
+<h2 id="71fed0c3428bf1a2e19af257c4bac379"></h2>
+
+-----
+
 ## Signed
 
 Determinant is signed.
+
+<h2 id="9fc2d28c05ed9eb1d75ba4465abf15a9"></h2>
+
+-----
 
 ## Properties 
 
@@ -63,7 +99,16 @@ p4 ~ p10
 
 
 
+<h2 id="077014dde3a16154d48a5807d1c351bb"></h2>
+
+-----
+-----
+
 # 19. Formular for Determinant
+
+<h2 id="a4ea43d88bcd4db4f7d7fe3abe7052b4"></h2>
+
+-----
 
 ## Formula for detA ( n! terms )
 
@@ -75,6 +120,10 @@ p4 ~ p10
     - ![](../imgs/LA_det_3x3_6terms.png)
  - ![](../imgs/LA_det_bigFormula.png)
  
+<h2 id="d02910574d79a0726db429910342d33e"></h2>
+
+-----
+
 ## Cofactor formula
 
 Cofactor is a way of breaking up above big formula that connects the nxn determinant to a determinant one smaller. 
@@ -87,7 +136,16 @@ Cofactor is a way of breaking up above big formula that connects the nxn determi
         - **delete row i and column j:** Cᵢⱼ = (-1)ⁱ⁺ʲ detMᵢⱼ.   (11)
 
 
+<h2 id="d32bea3e6901eaca807e7ff0a03afc52"></h2>
+
+-----
+-----
+
 # 20. APPLICATIONS OF DETERMINANTS
+
+<h2 id="23d31b234b8839bc2675b16fff1de2da"></h2>
+
+-----
 
 ## Formula for A⁻¹
 
@@ -105,6 +163,10 @@ The critical question is: Why do we get zeros off the diagonal?
 The answer is: we are actually computing the determinant of a new matrix which has equal rows. 
 
 </details>
+
+<h2 id="8d1f376d9179ba4326b17606a2f64136"></h2>
+
+-----
 
 ## Cramers Rule for x=A⁻¹b
 
@@ -125,6 +187,10 @@ Actually, Cramer's Rule is a disastrous way to go, because compute these determi
 But having a formula allows you to do algebra instead of algorithms. They're nice formulas, but I just don't want you to use them. 
 
 
+<h2 id="b99ff4a9543c3ccbfac05190cc07dd68"></h2>
+
+-----
+
 ## | detA | = volume of box
 
 
@@ -144,6 +210,11 @@ But having a formula allows you to do algebra instead of algorithms. They're nic
 ```
 
 ---
+
+<h2 id="2a051e916e56ff2ad1a6b47745f85a6b"></h2>
+
+-----
+-----
 
 # 21. EigenValues - EigenVectors 
 
@@ -187,9 +258,17 @@ How to solve Ax=λx ?
 (A-Iλ)x = 0.    A-Iλ has to be singular.
 
 
+<h2 id="9e08a229f7feafd17be0f57fed7d544d"></h2>
+
+-----
+
 ## det[A-λI] = 0 
 
 The idea will be to find λ first. I'll find n λ's.  A λ could be repeated, A repeated λ is source of all trouble in 18.06.
+
+<h2 id="95946abeb88b298e53a6c970166fb7aa"></h2>
+
+-----
 
 ## Trace = λ₁+λ₂+ ... + λ<sub>n</sub>
 
