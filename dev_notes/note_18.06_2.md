@@ -383,4 +383,72 @@ This is a degenerate matrix. It's only got one line of eigenvectors instead of t
 
 # 22.
 
+## Diagonalizing a matrix 
+
+
+<details>
+<summary>
+S⁻¹AS = Λ
+</summary>
+
+Suppose we have n independent eigenvectors of A , put them in columns of S.  
+S is the eigenvector matrix. 
+
+```
+     ⎡ |  |      |  ⎤   ⎡ |    |        |   ⎤
+AS = ⎢ x₁ x₂ ... xn ⎥ = ⎢λ₁x₁ λ₂x₂ ... λnxn ⎥.
+     ⎢ |  |      |  ⎥   ⎢ |    |        |   ⎥
+     ⎣ |  |      |  ⎦   ⎣ |    |        |   ⎦
+```
+
+Each time A multiply eigenvectors , the eigen value comes out.
+
+```
+     ⎡  |   |        |  ⎤   ⎡  | |      |  ⎤ ⎡λ₁       ⎤
+AS = ⎢λ₁x₁ λ₂x₂ ... λnxn⎥ = ⎢ x₁ x₂ ... xn ⎥ ⎢  λ₂     ⎥.
+     ⎢  |   |        |  ⎥   ⎢  | |      |  ⎥ ⎢    ...  ⎥
+     ⎣  |   |        |  ⎦   ⎣  | |      |  ⎦ ⎣       λn⎦
+```
+
+If I want a number to multiply x,  then I can do it by puting xᵢ in column i (I get S back again), and multiply by a diagonal matrix. 
+
+**AS = SΛ**. 
+
+Provided my assumption of n independent eigenvectors,  I multiply S⁻¹ on the left , I got 
+
+**S⁻¹AS=Λ**.
+
+if I multiply  S⁻¹ on the right , I got 
+
+**A=SΛS⁻¹**.
+
+</details>
+
+
+<details>
+<summary>
+Can I just begin to use that ? For example how about A² ? What's eigenvectors and eigenvalues of A² ? 
+</summary>
+
+If Ax = λx 
+
+A²x = λAx = λ²x. 
+
+So the eigenvalues of A² are λ², and the eigenvector is the same x as A.
+
+Now let me see that also from formual A=SΛS⁻¹.
+
+</details>
+
+
+## Powers of A / equation u<sub>k+1</sub> = Au<sub>k</sub>
+
+
+
+
+
+
+
+
+
 
