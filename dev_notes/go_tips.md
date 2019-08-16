@@ -1112,3 +1112,11 @@ internal linking的大致意思是若用户代码中仅仅使用了net、os/user
 因为 MacOSX 上只有 libc的dylib, 没有 .a , 所以一般会失败。
 
 
+## BASH: auto add current path to GOPATH when opening a new terminal window 
+
+```
+if [ -d "./src" ] && [[ ! $GOPATH =~ $curDir ]]
+then
+    export GOPATH=$curDir:$GOPATH
+fi
+```
