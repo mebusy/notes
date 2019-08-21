@@ -336,10 +336,11 @@ Suppose I have a matrix A, and Ax=λx. I add 3I to that matrix.
 Rotation matrix Q
 </summary>
 
+```
 Q = 
    0  -1
    1   0
-
+```
 
 90° rotation.
 
@@ -425,6 +426,8 @@ if I multiply  S⁻¹ on the right , I got
 </details>
 
 
+## Powers of A / equation u<sub>k+1</sub> = Au<sub>k</sub>
+
 <details>
 <summary>
 Can I just begin to use that ? For example how about A² ? What's eigenvectors and eigenvalues of A² ? 
@@ -436,19 +439,24 @@ A²x = λAx = λ²x.
 
 So the eigenvalues of A² are λ², and the eigenvector is the same x as A.
 
-Now let me see that also from formual A=SΛS⁻¹.
+This is one way to do it . 
+
+Now let me see that also from formula A=SΛS⁻¹.
+
+A²x = SΛS⁻¹·SΛS⁻¹x = SΛ²S⁻¹. It's telling me the same thing that I just learned here, but in a matrix form. It's telling me that the S is the same, the eigenvectors are the same; but the eigenvalues are squared.
 
 </details>
 
+Aᵏ = SΛᵏS⁻¹ . 
 
-## Powers of A / equation u<sub>k+1</sub> = Au<sub>k</sub>
+Eigenvalues and eigenvectors give a great way to understand the powers of a matrix. 
 
+Theorem: Aᵏ→0 as k→∞  if all |λᵢ|<1 .  
 
+So far I'm operationg on one assumption: I had a full set of n independent eigenvectors. If we don't have n independent eigenvectors can not diagonalize the matrix,  S⁻¹ can not make sense.
 
+**A is sure to have n independent eigenvectors (and be diagonalizable) if all the λ's are different (no repeated λ)**. 
 
-
-
-
-
+If I have repeated λ's , I may or may not have n independent eigenvectors (think about the Identity matrix). 
 
 
