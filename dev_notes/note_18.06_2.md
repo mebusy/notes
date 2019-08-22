@@ -492,8 +492,11 @@ Fibonacci Example:  F<sub>k+2</sub> = F<sub>k+1</sub> + F<sub>k</sub>
 
 F<sub>k+2</sub> = F<sub>k+1</sub> + F<sub>k</sub>
 
-Right now what I've got is a single equation, not a system, and it's second-order, with second derivatives. I want to get first derivatives. The way to do it is to introduce u<sub>k</sub> will be a vector.
+Right now what I've got is a single equation, not a system, and it's second-order, with second derivatives. I want to get first derivatives. The way to do it is to introduce u<sub>k</sub> will be a vector:
 
+![](../imgs/la_1806_uk.png)
+
+So I'm going to get a 2x2 system, first order, instead of a scalar system, second order:
 
 
 </details>
