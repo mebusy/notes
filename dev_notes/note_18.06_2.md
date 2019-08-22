@@ -381,8 +381,23 @@ This is a degenerate matrix. It's only got one line of eigenvectors instead of t
 
 </details>
 
+## Recap 
 
-# 22.
+ - eigenvalue λ
+    1. nxn matrix has n eigenvalues
+    2. eigenvalue is allowed to be 0 ( i.e. projection matrix )
+    3. sum of λ's  equals the trace of matrix,  
+    4. product of λ's equals determinant of matrix. 
+    5. singular matrix must have 0 λ.  
+        - number of 0 λ's = dimension of null space.
+    6. repeated λ **MAY or may NOT** result in missing eigenvectors
+    7. eigenvalue could be complex number.
+        - Symmetric matrix's eigenvalues are all real. 
+ - eigenvector 
+    1. Eigenvectors of sysmmetric matrix are orthogonal.  (doesn's all eigenvectors orthogonal )
+    2. A matrix may have no eigenvectors.  ( ? any example ? )
+
+# 22. Diagonalizing 
 
 ## Diagonalizing a matrix 
 
