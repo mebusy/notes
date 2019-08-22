@@ -381,21 +381,6 @@ This is a degenerate matrix. It's only got one line of eigenvectors instead of t
 
 </details>
 
-## Recap 
-
- - eigenvalue λ
-    1. nxn matrix has n eigenvalues
-    2. eigenvalue is allowed to be 0 ( i.e. projection matrix )
-    3. sum of λ's  equals the trace of matrix,  
-    4. product of λ's equals determinant of matrix. 
-    5. singular matrix must have 0 λ.  
-        - number of 0 λ's = dimension of null space.
-    6. repeated λ **MAY or may NOT** result in missing eigenvectors
-    7. eigenvalue could be complex number.
-        - Symmetric matrix's eigenvalues are all real. 
- - eigenvector 
-    1. Eigenvectors of sysmmetric matrix are orthogonal.  (doesn's all eigenvectors orthogonal )
-    2. A matrix may have no eigenvectors.  ( ? any example ? )
 
 # 22. Diagonalizing 
 
@@ -475,3 +460,56 @@ So far I'm operationg on one assumption: I had a full set of n independent eigen
 If I have repeated λ's , I may or may not have n independent eigenvectors (think about the Identity matrix). 
 
 
+<details>
+<summary>
+Start with given vector u₀ , u<sub>k+1</sub> = Au<sub>k</sub>, calculate u₁₀₀
+</summary>
+
+u₁=Au₀, u<sub>k</sub>=Aᵏu₀
+
+The next section is gonna to solve systems of differential equations. I'm going to have derivatives. 
+
+write u₀ as the combination of eigenvectors: 
+
+u₀ = c₁x₁ +c₂x₂ + ... +c<sub>n</sub>x<sub>n</sub>
+
+Now multiply by A :
+
+Au₀ = c₁λ₁x₁ +c₂λ₂x₂ + ... +c<sub>n</sub>λ<sub>n</sub>x<sub>n</sub>
+
+u₁₀₀ = A¹⁰⁰u₀ = c₁λ₁¹⁰⁰x₁ +c₂λ₂¹⁰⁰x₂ + ... +c<sub>n</sub>λ<sub>n</sub>¹⁰⁰x<sub>n</sub> = Λ¹⁰⁰Sc
+
+
+</details>
+
+
+<details>
+<summary>
+Fibonacci Example:  F<sub>k+2</sub> = F<sub>k+1</sub> + F<sub>k</sub>
+</summary>
+
+0,1,1,2,3,5,8,13, ... 
+
+F<sub>k+2</sub> = F<sub>k+1</sub> + F<sub>k</sub>
+
+Right now what I've got is a single equation, not a system, and it's second-order, with second derivatives. I want to get first derivatives. The way to do it is to introduce u<sub>k</sub> will be a vector.
+
+
+
+</details>
+
+## Recap 
+
+ - eigenvalue λ
+    1. nxn matrix has n eigenvalues
+    2. eigenvalue is allowed to be 0 ( i.e. projection matrix )
+    3. sum of λ's  equals the trace of matrix,  
+    4. product of λ's equals determinant of matrix. 
+    5. singular matrix must have 0 λ.  
+        - number of 0 λ's = dimension of null space.
+    6. repeated λ **MAY or may NOT** result in missing eigenvectors
+    7. eigenvalue could be complex number.
+        - Symmetric matrix's eigenvalues are all real. 
+ - eigenvector 
+    1. Eigenvectors of sysmmetric matrix are orthogonal.  (doesn's all eigenvectors orthogonal )
+    2. A matrix may have no eigenvectors.  ( ? any example ? )
