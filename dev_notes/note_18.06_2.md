@@ -496,7 +496,16 @@ Right now what I've got is a single equation, not a system, and it's second-orde
 
 ![](../imgs/la_1806_uk.png)
 
+This is my unknown. 
+
 So I'm going to get a 2x2 system, first order, instead of a scalar system, second order:
+
+![](../imgs/la_1806_fib_system.png)
+
+This is my system. 
+
+And what's my one step equation? 
+
 
 
 </details>
