@@ -506,6 +506,20 @@ This is my system.
 
 And what's my one step equation? 
 
+![](../imgs/la_1806_fib_equation.png)
+
+What's the eigenvalues and eigenvectors of this matrix ?  
+
+λ₁ = -0.61803, λ₂ = 1.61803 . 
+
+How fast are those Fibonacci numbers increasing ? What's controlling the growth of these Fibonacci numbers? It's the eigenvalues. 
+
+And which eigenvalue is controlling that growth? The big one. 
+
+Since u₀ = [1;0] , c₁x₁+c₂x₂ = [1;0].
+
+F₁₀₀ ≈ c₁·(1.61803)¹⁰⁰.   ( the other terms involves c₂ is ignored since it is very slow. )
+
 
 
 </details>
@@ -525,3 +539,8 @@ And what's my one step equation?
  - eigenvector 
     1. Eigenvectors of sysmmetric matrix are orthogonal.  (doesn's all eigenvectors orthogonal )
     2. A matrix may have no eigenvectors.  ( ? any example ? )
+
+
+# 23. 
+
+
