@@ -68,4 +68,16 @@ security cms -D -i example.mobileprovision
     - `/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/`
 
 
+## Swift use OC framework
+
+1. create a bridging header file
+    - `<#YourProjectName#>-Bridging-Header.h`
+
+2. Build Setting / Objective-C Bridging Header
+    - link your bridging header file
+    - It's best practice to link your project using the $(SRCROOT) macro so that if you move your project. $(SRCROOT) can be thought of as the directory that contains your .xcodeproj file.
+
+3. In YourProject-Bridging-Header.h:
+    - `#import "<#yourFrameWork/yourheader>.h"`
+
 
