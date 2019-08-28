@@ -330,6 +330,8 @@ $ git reset --hard HEAD
 
  - use `brew --cache` to find the cache folder 
  - latest homebrew use `brew --cache`\downloads folder to keep downloaded files
+ - 目标文件 可以通过如下命令获得
+    - `brew --cache -s <package_name>`
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
