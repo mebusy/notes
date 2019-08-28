@@ -1089,6 +1089,11 @@ func DoSomething() error {
 
 # Misc
 
+
+## regexp , reference captured group 
+
+ - use `$1` instead of `\1` 
+
 <h2 id="12f3c642086ddb0279f69574a34db7ef"></h2>
 
 -----
