@@ -163,8 +163,8 @@ git pull
 git submodule update --recursive --init
 ```
 
- - for C family support:  `./install.py --clang-completer --system-libclang`
-     - using `--system-libclang` here because on MacOSX, it report error "NOT using libclang, no semantic completion for C/C++/ObjC will be available"
+ - for C family support:  `./install.py --clang-completer`
+     - 加上 `--system-libclang` 则使用mac 自带的libclang，但是一般版本比较旧，会有问题
  - C# support: install Mono and add `--cs-completer` when calling ./install.py.
  - Go support: install Go and add `--go-completer` when calling ./install.py.
  - JavaScript and TypeScript support: install Node.js and npm and add `--ts-completer` when calling install.py.
@@ -183,7 +183,6 @@ python install.py --clang-completer --cs-completer  --go-completer --ts-complete
  - update :
     - `vim +PluginUpdate`
  - `msbuild or xbuild is required to build Omnisharp`
-    - You used `--all`, so you need to install mono for C sharp completion. If you don't want C sharp completion, use different flags.
     - install MonoFrameWork
  - `vim +PluginInstall` YouCompleteMe 有时 helptags 会报错
     - 修复报错 目录权限 `chmod -R 777 xxx` 
@@ -192,15 +191,9 @@ python install.py --clang-completer --cs-completer  --go-completer --ts-complete
     - use : `TagbarToggle`
  - python 语法检查
     - `pip install flake8`
- - use older YouCompleteMe in case of lower version of vim 
-    - enter YouCompleteMe plugin foler 
-    - git reset --hard 68d78719a45ee8e9e86a2effb99c80842ccadada
-    - or to install vim 7.4.2356
-        - vim 7.4.2358 git hash: d47d83745ff450232328ca7a4b8b00b31bad22fc
  
  - vim 诊断
     - `:YcmDebugInfo`
- 
  - vim check logs
     - `YcmToggleLogs`
  
@@ -208,20 +201,19 @@ python install.py --clang-completer --cs-completer  --go-completer --ts-complete
     - https://gist.githubusercontent.com/powerumc/e80bb475117582d7e842/raw/ed8a29bed15655492109c91df118f22b147f025c/remove-mono.sh
  - `snipmate <TAB>` YouCompleteMe 冲突
     - `~/.vim/bundle/snipmate.vim/after/plugin/snipMate.vim`
+    ```
+    change 
 
-```
-change 
+    " You can safely adjust these mappings to your preferences (as explained in
+    " :help snipMate-remap).
+    ino <silent> <tab> <c-r>=TriggerSnippet()<cr>
+    snor <silent> <tab> <esc>i<right><c-r>=TriggerSnippet()<cr>
 
-" You can safely adjust these mappings to your preferences (as explained in
-" :help snipMate-remap).
-ino <silent> <tab> <c-r>=TriggerSnippet()<cr>
-snor <silent> <tab> <esc>i<right><c-r>=TriggerSnippet()<cr>
+    to 
 
-to 
-
-ino <silent> <C-\> <c-r>=TriggerSnippet()<cr>
-snor <silent> <C-\> <esc>i<right><c-r>=TriggerSnippet()<cr>
-```
+    ino <silent> <C-\> <c-r>=TriggerSnippet()<cr>
+    snor <silent> <C-\> <esc>i<right><c-r>=TriggerSnippet()<cr>
+    ```
 
 <h2 id="2182a74bab7188d959e795d9301e87ff"></h2>
 
@@ -354,7 +346,7 @@ Perl | vim
 
 -----
 
-## Misc
+## Regexp Misc
 
  - vim 没有 \b, 匹配单词词首词尾使用 `<` , `>`
 
@@ -402,12 +394,16 @@ a-z | 用户 | 仅对当前的一个文件生效，也就意味着只可以在�
 A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称为「文件标注」。跳转时有可能会切换到另一个缓冲区
 0-9 | viminfo | 0 代表 viminfo 最后一次被写入的位置。实际使用中，就代表 Vim 进程最后一次结束的位置。1 代表 Vim 进程倒数第二次结束的位置，以此类推
 
- - 跳转到 mark
-    - `'X` 或 ``X`
+## mark 命令小结
 
-
-
-
+```
+m ——创建标记
+' ——移动到标记的文本行首
+` ——移动到标记的光标位置
+:marks ——列示所有标记
+:delmarks ——删除指定标记
+:delmarks! ——删除所有标记
+```
 
 ---
 
