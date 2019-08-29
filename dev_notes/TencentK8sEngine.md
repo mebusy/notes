@@ -362,31 +362,9 @@ Auth NTLM
     - `cntlm -f` # Run in foreground, do not fork into daemon mode.
  - If everything is fine you can launch it as a daemon just by typing:
     - `cntlm`
- - Using LaunchAgent for automatic service launch at start
-    - `~/Library/LaunchAgents/com.oho.cntlm.daemon.plist`
+ - To have launchd start cntlm now and restart at startup:
+    - `sudo brew services start cntlm`
 
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-  <key>Label</key>
-  <string>com.oho.cntlm.daemon</string>
-  <key>ProgramArguments</key>
-  <array>
-      <string>/usr/local/bin/cntlm</string>
-  </array>
-  <key>KeepAlive</key>
-  <false/>
-  <key>RunAtLoad</key>
-  <true/>
-  <key>StandardErrorPath</key>
-  <string>/dev/null</string>
-  <key>StandardOutPath</key>
-  <string>/dev/null</string>
-</dict>
-</plist>
-```
 
  - set proxy env
 
