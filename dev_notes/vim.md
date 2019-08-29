@@ -218,6 +218,8 @@ python install.py --clang-completer --cs-completer  --go-completer --ts-complete
     1. 解决方法1:  使用其他工具把资源下载下来，放到相应的位置
     2. 最新的 go-complete YCMD会去下载 golang.org/x 的资源包,
         - 只要在 `third_party/ycmd/third_party/go/src/` 目录下 放上 golang.org 的版本库就可，也可以`ln -s`创建一个link 
+    3. jdt-server 文件路径
+        - `./third_party/ycmd/third_party/eclipse.jdt.ls/target/cache/`
 
 <h2 id="2182a74bab7188d959e795d9301e87ff"></h2>
 
