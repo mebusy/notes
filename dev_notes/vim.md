@@ -217,7 +217,7 @@ python install.py --clang-completer --cs-completer  --go-completer --ts-complete
  - YCMD安装中 会下载一些资源， 这个工程中会出现个中 下载慢，下载失败，http代理 等各种问题
     1. 解决方法1:  使用其他工具把资源下载下来，放到相应的位置
     2. 最新的 go-complete YCMD会去下载 golang.org/x 的资源包,
-        - 只要在 `third_party/ycmd/third_party/go/src/` 目录下 放上 golang.org 的版本库就可，也可以`ln -s`创建一个link 
+        - 只要在 `third_party/ycmd/third_party/go/src/` 目录下 放上 golang.org 的版本库就可，YCMD 插件更新会变更tools的revision，所以不要`ln -s`建 软连接
 
 <h2 id="2182a74bab7188d959e795d9301e87ff"></h2>
 
