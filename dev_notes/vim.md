@@ -220,6 +220,7 @@ python install.py --clang-completer --cs-completer  --go-completer --ts-complete
         - 只要在 `third_party/ycmd/third_party/go/src/` 目录下 放上 golang.org 的版本库就可，YCMD 插件更新会变更tools的revision，所以不要`ln -s`建 软连接
     3. jdt-server 文件路径
         - `./third_party/ycmd/third_party/eclipse.jdt.ls/target/cache/`
+    4. `export HTTPS_PROXY=$HTTP_PROXY`
 
 <h2 id="2182a74bab7188d959e795d9301e87ff"></h2>
 
