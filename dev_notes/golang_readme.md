@@ -49,3 +49,15 @@ cd $GOPATH/src/golang.org/x
 git clone https://github.com/golang/tools.git
 ```
 
+### get get update multiple pacakge 
+
+```
+go get -u all
+```
+
+or 
+
+```
+go get -u github.com/...
+go get -u gopkg.in/...
+```
