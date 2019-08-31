@@ -61,3 +61,10 @@ or
 go get -u github.com/...
 go get -u gopkg.in/...
 ```
+
+### list all package 
+
+```
+go list ...
+```
+
