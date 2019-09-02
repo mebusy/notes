@@ -302,6 +302,15 @@ def addword2dict(word, pagenumber):
     dict.setdefault(word, []).append(pagenumber)
 ```
 
+或者直接使用  defaultdict
+
+```
+from collections import defaultdict
+d = defaultdict( dict )  # default value is empty dict
+d = defaultdict( lambda: 2 )  # default value is 2
+
+```
+
 <h2 id="2292cf7bac8199cfa91cb22160b26f76"></h2>
 
 -----
