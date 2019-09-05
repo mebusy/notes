@@ -160,11 +160,11 @@ l.sort(cmp=lambda x,y:cmp( x.lower(), y.lower()  ))
 >>> d={"b":2, "a":3, "c":1}
 >>> sorted(d)     #对 key 进行排序，输出一个key list
 ['a', 'b', 'c']      
->>> sorted(d.items())     #对key 进行排序，返回 元组 list
+>>> sorted(d.iteritems())     #对key 进行排序，返回 元组 list
 [('a', 3), ('b', 2), ('c', 1)]
->>> sorted(d.items() , key=lambda x:x[1])    # 对 值 进行排序， 返回 元组 list
+>>> sorted(d.iteritems() , key=lambda x:x[1])    # 对 值 进行排序， 返回 元组 list
 [('c', 1), ('b', 2), ('a', 3)]
->>> sorted(d.items() , key=lambda x:x[1] , reverse = True )
+>>> sorted(d.iteritems() , key=lambda x:x[1] , reverse = True )
 [('a', 3), ('b', 2), ('c', 1)]
 ```
 
