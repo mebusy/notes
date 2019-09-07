@@ -49,6 +49,11 @@ cd $GOPATH/src/golang.org/x
 git clone https://github.com/golang/tools.git
 ```
 
+<h2 id="592aa5aafd64f18a5b4759ec0820ef33"></h2>
+
+-----
+-----
+
 ### get get update multiple pacakge 
 
 ```
@@ -61,6 +66,11 @@ or
 go get -u github.com/...
 go get -u gopkg.in/...
 ```
+
+<h2 id="e8db5cfdd7d47c516453db67161e7537"></h2>
+
+-----
+-----
 
 ### list all package 
 

@@ -1,5 +1,37 @@
+...menustart
+
+ - [Rust](#f5e265d607cb720058fc166e00083fe8)
+     - [所有权](#ed840a18e255779553359d5e0ec6f8a8)
+     - [Data Types](#637881603c973c4967d77ec4ba147e0c)
+         - [Scalar Types](#09d9982852d86c2479924a4e3b723b1e)
+         - [Compound Types](#9e57b6b46532794638212df8e239adde)
+     - [Grammar](#d305bbe79fb9dd87a3fda339c8b601b6)
+         - [String](#27118326006d3829667a400ad23d5d98)
+         - [Vectors/arrays](#a9ed91a0564c396f668757003053c533)
+         - [Tuples](#e7e26a0ac2e1758814e4999a9242ba71)
+         - [Struct](#886ef5dbd655a6c97726d7091c6b173e)
+         - [Enum](#cf20423ed48998082c20099488a0917c)
+         - [Generics](#0d7bdbf7f4e4f0dc8ed310a01dee3502)
+         - [Methods](#20c51b5f4e9aeb5334c90ff072e6f928)
+         - [Traits (Interface)](#fb0066fcef08c6094e2f12e05e3b347f)
+         - [Pattern matching](#b72e68f7732ac254f401f88ed4911ada)
+         - [Control flow](#af68915e510fea51b880a5e4e7577708)
+     - [Memory safety & pointers](#24356b0edc0a65ad0b52ef7b6ee12dae)
+     - [Modules](#bf17ac149e2e7a530c677e9bd51d3fd2)
+
+...menuend
+
+
+<h2 id="f5e265d607cb720058fc166e00083fe8"></h2>
+
+-----
+-----
 
 # Rust
+
+<h2 id="ed840a18e255779553359d5e0ec6f8a8"></h2>
+
+-----
 
 ## 所有权
 
@@ -20,7 +52,15 @@
  - 当大家都在读一个东西的时候，是不能写的。当一个人在写的时候，别人是不能读的。
     - 经典的读写锁问题, Rust在编译器级别做了限制.
 
+<h2 id="637881603c973c4967d77ec4ba147e0c"></h2>
+
+-----
+
 ## Data Types 
+
+<h2 id="09d9982852d86c2479924a4e3b723b1e"></h2>
+
+-----
 
 ### Scalar Types
 
@@ -35,13 +75,25 @@
     - Rust’s char type is four bytes in size and represents a Unicode Scalar Value, which means it can represent a lot more than just ASCII.
     - Unicode Scalar Values range from U+0000 to U+D7FF and U+E000 to U+10FFFF inclusive
 
+<h2 id="9e57b6b46532794638212df8e239adde"></h2>
+
+-----
+
 ### Compound Types
 
  - Tuple
  - Array
 
 
+<h2 id="d305bbe79fb9dd87a3fda339c8b601b6"></h2>
+
+-----
+
 ## Grammar
+
+<h2 id="27118326006d3829667a400ad23d5d98"></h2>
+
+-----
 
 ### String 
 
@@ -64,6 +116,10 @@
     - This is basically an immutable pair of pointers to a string
 
 
+<h2 id="a9ed91a0564c396f668757003053c533"></h2>
+
+-----
+
 ### Vectors/arrays
 
  - A fixed-size array
@@ -85,6 +141,10 @@
     println!("{:?} {:?}", vector, slice); // [1, 2, 3, 4, 5] [1, 2, 3, 4, 5]
     ```
 
+<h2 id="e7e26a0ac2e1758814e4999a9242ba71"></h2>
+
+-----
+
 ### Tuples 
 
  - A fixed-size set of values of possibly different types
@@ -104,6 +164,10 @@
     ```
 
 
+<h2 id="886ef5dbd655a6c97726d7091c6b173e"></h2>
+
+-----
+
 ### Struct
 
 ```rust
@@ -121,6 +185,10 @@ let origin: Point = Point { x: 0, y: 0 };
     struct Point2(i32, i32);
     let origin2 = Point2(0, 0);
     ```
+
+<h2 id="cf20423ed48998082c20099488a0917c"></h2>
+
+-----
 
 ### Enum
 
@@ -147,6 +215,10 @@ let origin: Point = Point { x: 0, y: 0 };
     let nothing = OptionalI32::Nothing;
     ```
 
+<h2 id="0d7bdbf7f4e4f0dc8ed310a01dee3502"></h2>
+
+-----
+
 ### Generics
 
 ```rust
@@ -158,6 +230,10 @@ enum Optional<T> {
     NoVal,
 }
 ```
+
+<h2 id="20c51b5f4e9aeb5334c90ff072e6f928"></h2>
+
+-----
 
 ### Methods
 
@@ -172,6 +248,10 @@ impl<T> Foo<T> {
 let a_foo = Foo { bar: 1 };
 println!("{}", a_foo.get_bar()); // 1
 ```
+
+<h2 id="fb0066fcef08c6094e2f12e05e3b347f"></h2>
+
+-----
 
 ### Traits (Interface)
 
@@ -194,6 +274,10 @@ trait Frobnicate<T> {
     let another_foo = Foo { bar: 1 };
     println!("{:?}", another_foo.frobnicate()); // Some(1)
     ```
+
+<h2 id="b72e68f7732ac254f401f88ed4911ada"></h2>
+
+-----
 
 ### Pattern matching
 
@@ -228,6 +312,10 @@ match bar {
 
 </details>
 
+
+<h2 id="af68915e510fea51b880a5e4e7577708"></h2>
+
+-----
 
 ### Control flow
 
@@ -296,6 +384,10 @@ match bar {
     }
     ```
 
+<h2 id="24356b0edc0a65ad0b52ef7b6ee12dae"></h2>
+
+-----
+
 ## Memory safety & pointers
 
  - 
@@ -336,6 +428,10 @@ let mut now_its_mine = mine;
     // var2 = 2; 
     ```
 
+
+<h2 id="bf17ac149e2e7a530c677e9bd51d3fd2"></h2>
+
+-----
 
 ## Modules
 

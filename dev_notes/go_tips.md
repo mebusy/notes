@@ -73,7 +73,9 @@
          - [其他](#0d98c74797e49d00bcc4c17c9d557a2b)
          - [事务](#9f82401d0ae9254f9429eaa46e1fe666)
  - [Misc](#74248c725e00bf9fe04df4e35b249a19)
+     - [regexp , reference captured group](#ae4367a7f966679339c605ac0b009418)
      - [CGO_ENALBE=1 情况下, 实现纯静态连接](#12f3c642086ddb0279f69574a34db7ef)
+     - [BASH: auto add current path to GOPATH when opening a new terminal window](#b052a32a028f65a554fd6d75ca2cb331)
 
 ...menuend
 
@@ -1090,6 +1092,10 @@ func DoSomething() error {
 # Misc
 
 
+<h2 id="ae4367a7f966679339c605ac0b009418"></h2>
+
+-----
+
 ## regexp , reference captured group 
 
  - use `$1` instead of `\1` 
@@ -1116,6 +1122,10 @@ internal linking的大致意思是若用户代码中仅仅使用了net、os/user
 
 因为 MacOSX 上只有 libc的dylib, 没有 .a , 所以一般会失败。
 
+
+<h2 id="b052a32a028f65a554fd6d75ca2cb331"></h2>
+
+-----
 
 ## BASH: auto add current path to GOPATH when opening a new terminal window 
 

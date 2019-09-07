@@ -15,9 +15,10 @@
  - [VIM 正则表达式](#072db16a2fab851f315188d28a992133)
      - [关于magic](#9e8ec078a153381638b723f644bc0f67)
      - [捕获组](#1ca7c638c2ce8ef41b651ccf8e827bf3)
-     - [Misc](#74248c725e00bf9fe04df4e35b249a19)
+     - [Regexp Misc](#1afd0aabffaf4251ce9d948cf5d8a391)
  - [参数列表](#cba8744406ca022515965ad373474f74)
  - [Mark](#b82a9a13f4651e9abcbde90cd24ce2cb)
+     - [mark 命令小结](#fd15a836fee2c57937cfba0b4e6322da)
  - [VIM 常用操作](#508b03ab799d17da8b37eb7801c05c8b)
      - [搜索](#e5f71fc31e7246dd6ccc5539570471b0)
          - [反向肯定搜索 lookahead](#32b92ada221fd37f58c6db5897bd605c)
@@ -350,7 +351,7 @@ Perl | vim
     - Perl的写法 `(?<=foo)bar`
     - vim的写法 `(foo)@<=bar` 
 
-<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
+<h2 id="1afd0aabffaf4251ce9d948cf5d8a391"></h2>
 
 -----
 
@@ -401,6 +402,10 @@ mark | 设置者  | 使用
 a-z | 用户 | 仅对当前的一个文件生效，也就意味着只可以在当前文件中跳转
 A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称为「文件标注」。跳转时有可能会切换到另一个缓冲区
 0-9 | viminfo | 0 代表 viminfo 最后一次被写入的位置。实际使用中，就代表 Vim 进程最后一次结束的位置。1 代表 Vim 进程倒数第二次结束的位置，以此类推
+
+<h2 id="fd15a836fee2c57937cfba0b4e6322da"></h2>
+
+-----
 
 ## mark 命令小结
 

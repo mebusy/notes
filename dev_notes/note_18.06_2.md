@@ -14,6 +14,11 @@
  - [21. EigenValues - EigenVectors](#2a051e916e56ff2ad1a6b47745f85a6b)
      - [det\[A-λI\] = 0](#9e08a229f7feafd17be0f57fed7d544d)
      - [Trace = λ₁+λ₂+ ... + λ<sub>n</sub>](#95946abeb88b298e53a6c970166fb7aa)
+ - [22. Diagonalizing](#7082803699d165541950b7de2ae708e3)
+     - [Diagonalizing a matrix](#7b86df847bba7602c3c3d17d03b2841f)
+     - [Powers of A / equation u<sub>k+1</sub> = Au<sub>k</sub>](#d975eb14bcadcace9392fa08591c6162)
+     - [Recap](#8912c5512db9003e5c8ce07b7ff36a88)
+ - [23.](#d4fbca7834560377a100c91364ec53ec)
 
 ...menuend
 
@@ -382,7 +387,16 @@ This is a degenerate matrix. It's only got one line of eigenvectors instead of t
 </details>
 
 
+<h2 id="7082803699d165541950b7de2ae708e3"></h2>
+
+-----
+-----
+
 # 22. Diagonalizing 
+
+<h2 id="7b86df847bba7602c3c3d17d03b2841f"></h2>
+
+-----
 
 ## Diagonalizing a matrix 
 
@@ -425,6 +439,10 @@ if I multiply  S⁻¹ on the right , I got
 
 </details>
 
+
+<h2 id="d975eb14bcadcace9392fa08591c6162"></h2>
+
+-----
 
 ## Powers of A / equation u<sub>k+1</sub> = Au<sub>k</sub>
 
@@ -524,6 +542,10 @@ F₁₀₀ ≈ c₁·(1.61803)¹⁰⁰.   ( the other terms involves c₂ is ign
 
 </details>
 
+<h2 id="8912c5512db9003e5c8ce07b7ff36a88"></h2>
+
+-----
+
 ## Recap 
 
  - eigenvalue λ
@@ -540,6 +562,11 @@ F₁₀₀ ≈ c₁·(1.61803)¹⁰⁰.   ( the other terms involves c₂ is ign
     1. Eigenvectors of sysmmetric matrix are orthogonal.  (doesn's all eigenvectors orthogonal )
     2. A matrix may have no eigenvectors.  ( ? any example ? )
 
+
+<h2 id="d4fbca7834560377a100c91364ec53ec"></h2>
+
+-----
+-----
 
 # 23. 
 
