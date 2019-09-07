@@ -20,6 +20,26 @@
  - 当大家都在读一个东西的时候，是不能写的。当一个人在写的时候，别人是不能读的。
     - 经典的读写锁问题, Rust在编译器级别做了限制.
 
+## Data Types 
+
+### Scalar Types
+
+ - integers
+    - i8,i32,u64,...
+ - floating-point numbers
+    - f32,f64
+ - Booleanbs
+    - bool : true/false
+ - characters
+    - `'z'`
+    - Rust’s char type is four bytes in size and represents a Unicode Scalar Value, which means it can represent a lot more than just ASCII.
+    - Unicode Scalar Values range from U+0000 to U+D7FF and U+E000 to U+10FFFF inclusive
+
+### Compound Types
+
+ - Tuple
+ - Array
+
 
 ## Grammar
 
@@ -247,6 +267,15 @@ match bar {
         "bad"
     };
     ```
+ - if let = 
+    -
+    ```rust
+    if let Coin::Quarter(state) = coin {
+        println!("State quarter from {:?}!", state);
+    } else {
+        count += 1;
+    }
+    ```
  - `while` loop
     -
     ```rust
@@ -302,9 +331,14 @@ let mut now_its_mine = mine;
     ```rust
     let mut var2 = 4;
     let ref_var2: &mut i32 = &mut var2;
-    *ref_var2 += 2;   
-    // var2 = 2; // this would not compile because `var2` is borrowed.
+     *ref_var2 += 2;   
+    // this would not compile because `var2` is borrowed.
+    // var2 = 2; 
     ```
+
+
+---
+
 
 
 
