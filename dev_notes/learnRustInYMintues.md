@@ -283,6 +283,28 @@ let mut now_its_mine = mine;
 *now_its_mine += 2;
 ```
  - Here, `now_its_mine` takes ownership of `mine`. In other words, `mine` is moved.
+ - Reference
+    - an immutable pointer that refers to other data
+    - While a value is borrowed immutably, it cannot be mutated or moved.
+    - A borrow lasts until the end of the scope it was created in.
+    -
+    ```rust
+    let mut var = 4;
+    var = 3;
+    let ref_var: &i32 = &var;
+
+    println!("{}", var); // Unlike `mine`, `var` can still be used
+    println!("{}", *ref_var);
+    ```
+ - Mutable reference
+    - While a value is mutably borrowed, it cannot be accessed at all.
+    -
+    ```rust
+    let mut var2 = 4;
+    let ref_var2: &mut i32 = &mut var2;
+    *ref_var2 += 2;   
+    // var2 = 2; // this would not compile because `var2` is borrowed.
+    ```
 
 
 
