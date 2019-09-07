@@ -1,4 +1,6 @@
-1.[learnRustInYMintues](./learnRustInYMintues.md)
+
+1. [rust cheat sheet](https://cheats.rs)
+2. [learnRustInYMintues](./learnRustInYMintues.md)
 
 
 
