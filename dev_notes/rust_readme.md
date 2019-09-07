@@ -1,4 +1,18 @@
-1. [Common Concept](https://github.com/mebusy/notes/blob/master/dev_notes/rust.md)
- 2. [Struct Enums](https://github.com/mebusy/notes/blob/master/dev_notes/rust2.md)
+
+1.[learnRustInYMintues](./learnRustInYMintues.md)
 
 
+
+----
+
+ - 为rust crates.io换上国内中科大的源
+
+```
+vi ~/.cargo/config
+
+[source.crates-io]
+registry = "https://github.com/rust-lang/crates.io-index"
+replace-with = 'ustc'
+[source.ustc]
+registry = "git://mirrors.ustc.edu.cn/crates.io-index"
+```
