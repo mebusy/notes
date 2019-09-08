@@ -78,3 +78,8 @@ go get -u gopkg.in/...
 go list ...
 ```
 
+### list all GOOS/GOARCH
+
+```
+go tool dist list
+```
