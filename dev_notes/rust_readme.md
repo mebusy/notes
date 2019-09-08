@@ -1,6 +1,7 @@
 
 1. [rust cheat sheet](https://cheats.rs)
 2. [learnRustInYMintues](./learnRustInYMintues.md)
+3. [rust & webasm](https://rustwasm.github.io/docs/book/introduction.html)
 
 
 
