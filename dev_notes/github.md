@@ -119,6 +119,13 @@ git diff | less -r
  - `-r` means `Output "raw" control characters`.
 
 
+## [trick] use git log to display the diffs while searching
+
+```
+git log -p -- path/to/file
+```
+
+
 <h2 id="a3aecaf26f7ec612b34f4d9ed6c6532d"></h2>
 
 -----
