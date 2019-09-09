@@ -97,6 +97,9 @@ a | b | c | d
 [C内存知识 未完](dev_notes/c_memory.md) | 
 [c declaration,struct/union/enums/typedef](dev_notes/c_declaration.md) | [expert c](dev_notes/expert_c.md) | 
 
+[oop in C](https://www.cs.rit.edu/~ats/books/ooc.pdf)
+
+
 ---
 <h2 id="e84e30b9390cdb64db6db2c9ab87846d"></h2>
 
