@@ -98,6 +98,14 @@ xhr.open('OPTIONS', 'http://localhost:3000',true);
 xhr.send();
 ```
 
+```
+var xhr = new XMLHttpRequest();
+xhr.open('POST', 'http://localhost:3000/setuserdata/test-UUID-0',true);
+xhr.setRequestHeader("auth-ts", 12234 )
+xhr.setRequestHeader("auth-sig", 12234 )
+xhr.send();
+```
+
 
 <h2 id="f779c9d1d9da7473f0eebf90d56dc319"></h2>
 
