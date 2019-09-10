@@ -8,6 +8,7 @@
      - [show file change of a commit](#e35fc6dbd7673d56c0824c31ff378241)
      - [get a file with specific revision](#6f4311248df3ab2115e904e14c7836c9)
      - [git show/diff 乱码问题](#aafd38d2cb2288571bb67fc78e3a18f7)
+     - [\[trick\] use git log to display the diffs while searching](#a9df5d1d20b4eb063767169d82151fdc)
      - [how to set up username and passwords for different git repos](#a3aecaf26f7ec612b34f4d9ed6c6532d)
      - [provide username when clone private repos](#366ee47209629dccbab3d2399247ea84)
      - [gitlab: git clone leads to "SSL certificate problem: unable to get local issuer certificate"](#8da880caa0ca98d1c46a028c0da79aac)
@@ -118,6 +119,10 @@ git diff | less -r
 
  - `-r` means `Output "raw" control characters`.
 
+
+<h2 id="a9df5d1d20b4eb063767169d82151fdc"></h2>
+
+-----
 
 ## [trick] use git log to display the diffs while searching
 
