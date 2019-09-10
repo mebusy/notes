@@ -96,8 +96,7 @@ a | b | c | d
 [C89 C99区别](dev_notes/C_C89_vs_C99.md) | [c99](dev_notes/C99.md) | [理清gcc、libc、libstdc++的关系](dev_notes/CLib.md) | [C VS C++](dev_notes/c_vs_c++.md)
 [C内存知识 未完](dev_notes/c_memory.md) | 
 [c declaration,struct/union/enums/typedef](dev_notes/c_declaration.md) | [expert c](dev_notes/expert_c.md) | 
-
-[oop in C](https://www.cs.rit.edu/~ats/books/ooc.pdf)
+[oop in C](https://www.cs.rit.edu/~ats/books/ooc.pdf) | [C语言常见问题集合](http://c-faq-chn.sourceforge.net/ccfaq/index.html) | 
 
 
 ---
