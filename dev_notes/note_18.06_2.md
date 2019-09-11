@@ -570,4 +570,36 @@ F₁₀₀ ≈ c₁·(1.61803)¹⁰⁰.   ( the other terms involves c₂ is ign
 
 # 23. 
 
+This section is about how to solve a system of first order, first derivative, constant coefficient linear equations. And if we do it right, it turns directly into linear algebra. The key idea is the sulutions to contant coefficient linear equations are **exponentials**.  
+
+And the result, one thing we will find it's completely parallel to powers of a matrix. 
+
+
+## Differential Equations  du/dt=Au
+
+<details>
+<summary>
+Example 
+</summary>
+
+u(0) = [1;0]
+
+du₁/dt = -u₁+2u₂
+
+du₂/dt =  u₁-2u₂
+
+-> A = ⎡ -1  2 ⎤
+       ⎣  1 -2 ⎦
+
+So it starts u at time 0, everything starts at u₁. And as time goes on, du₂/dt weill be positive because of that u₁ term, so flow will move into the u₂ component and it will go out of the u₁ component. 
+
+So we'll just follow that movement as time goes forward by looking at the eigenvalues and eigenvectors of that matrix.
+
+
+
+</details>
+
+
+## Exponential e<sup>At</sup> of a matrix
+
 
