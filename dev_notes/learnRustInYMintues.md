@@ -18,6 +18,20 @@
          - [Control flow](#af68915e510fea51b880a5e4e7577708)
      - [Memory safety & pointers](#24356b0edc0a65ad0b52ef7b6ee12dae)
      - [Modules](#bf17ac149e2e7a530c677e9bd51d3fd2)
+     - [Error Handling](#ef43236673ca0bb606b14091061ac271)
+         - [Unrecoverable Errors with panic!](#689fed929813adeb0bf87f95904bb0ed)
+         - [Recoverable Errors with Result](#05da5d7fbff37a203b05610205bcc83e)
+         - [unwrap and expect](#d0dd9c6057e4b7304e97d4b63a862cdc)
+         - [Propagating Errors](#fb49d19dc99200030dd86a0b9521e776)
+         - [? Operator](#38427ebf412a041dbb876847293e30ae)
+     - [Traits](#42dff6d9ccc56c155188778aff284f7c)
+         - [Default Implementations](#f78cdd8ee64bc0232a9d010a9ab3502a)
+         - [Traits as Parameters `impl Trait` syntax](#3d591b9a37ce5be1a66a4106f0f326be)
+         - [Specifying Multiple Trait Bounds with the `+` Syntax](#7ae84d1dbd2b9229bdcfbf5c7894d4ce)
+         - [Clearer Trait Bounds with where Clauses](#a7dbea5d964307601e9192a4c3574b31)
+         - [Returning Types that Implement Traits](#8bc762cd737affa437bd5226f1a3f07a)
+         - [Fixing the largest Function with Trait Bounds](#bce419857a72cd38b5c75c2ed17433c0)
+         - [Using Trait Bounds to Conditionally Implement Methods](#8d14778e381116681aa5fcf8e7fad595)
 
 ...menuend
 
@@ -275,6 +289,8 @@ trait Frobnicate<T> {
     println!("{:?}", another_foo.frobnicate()); // Some(1)
     ```
 
+See more details at *Traits* section.
+
 <h2 id="b72e68f7732ac254f401f88ed4911ada"></h2>
 
 -----
@@ -505,7 +521,15 @@ mod serving {
 </details>
 
 
+<h2 id="ef43236673ca0bb606b14091061ac271"></h2>
+
+-----
+
 ## Error Handling
+
+<h2 id="689fed929813adeb0bf87f95904bb0ed"></h2>
+
+-----
 
 ### Unrecoverable Errors with panic!
 
@@ -515,6 +539,10 @@ To abort on panic in release mode, add the following lines into `[profile]` sect
 [profile.release]
 panic = 'abort'
 ```
+
+<h2 id="05da5d7fbff37a203b05610205bcc83e"></h2>
+
+-----
 
 ### Recoverable Errors with Result
 
@@ -581,6 +609,10 @@ fn main() {
 </details>
 
 
+<h2 id="d0dd9c6057e4b7304e97d4b63a862cdc"></h2>
+
+-----
+
 ### unwrap and expect
 
 If the Result value is the Ok variant, unwrap will return the value inside the Ok.
@@ -596,6 +628,10 @@ fn main() {
 ```
 
 Another method, expect, which is similar to unwrap, lets us also choose the panic! error message. 
+
+<h2 id="fb49d19dc99200030dd86a0b9521e776"></h2>
+
+-----
 
 ### Propagating Errors
 
@@ -629,6 +665,10 @@ fn read_username_from_file() -> Result<String, io::Error> {
 
 </details>
 
+<h2 id="38427ebf412a041dbb876847293e30ae"></h2>
+
+-----
+
 ### ? Operator
 
 <details>
@@ -655,5 +695,173 @@ If the value of the Result is an Ok, the value inside the Ok will get returned f
 If the value is an Err, the Err will be returned from the whole function as if we had used the return keyword so the error value gets propagated to the calling code.
 
 **The ? Operator Can Only Be Used in Functions That Return Result.**
+
+<h2 id="42dff6d9ccc56c155188778aff284f7c"></h2>
+
+-----
+
+## Traits
+
+```rust
+pub trait Summary {
+    fn summarize(&self) -> String;
+}
+```
+
+<h2 id="f78cdd8ee64bc0232a9d010a9ab3502a"></h2>
+
+-----
+
+### Default Implementations
+
+```rust
+pub trait Summary {
+    fn summarize(&self) -> String {
+        String::from("(Read more...)")
+    }
+}
+```
+
+<h2 id="3d591b9a37ce5be1a66a4106f0f326be"></h2>
+
+-----
+
+### Traits as Parameters `impl Trait` syntax
+
+```rust
+pub fn notify(item: impl Summary) {
+    println!("Breaking news! {}", item.summarize());
+}
+```
+
+It is actually syntax sugar for a longer form, which is called a `trait bound` it looks like this:
+
+```rust
+pub fn notify<T: Summary>(item: T) {
+    println!("Breaking news! {}", item.summarize());
+}
+```
+
+<h2 id="7ae84d1dbd2b9229bdcfbf5c7894d4ce"></h2>
+
+-----
+
+### Specifying Multiple Trait Bounds with the `+` Syntax
+
+```rust
+pub fn notify(item: impl Summary + Display) {
+```
+
+The `+` syntax is  also valid with trait bounds on generic types:
+
+```rust
+pub fn notify<T: Summary + Display>(item: T) {
+```
+
+<h2 id="a7dbea5d964307601e9192a4c3574b31"></h2>
+
+-----
+
+### Clearer Trait Bounds with where Clauses
+
+We can rewrite the following code 
+
+```rust
+fn some_function<T: Display + Clone, U: Clone + Debug>(t: T, u: U) -> i32 {
+```
+
+to :
+
+```rust
+fn some_function<T, U>(t: T, u: U) -> i32
+    where T: Display + Clone,
+          U: Clone + Debug
+{
+```
+
+<h2 id="8bc762cd737affa437bd5226f1a3f07a"></h2>
+
+-----
+
+### Returning Types that Implement Traits
+
+you can only use `impl Trait` if you’re returning a single type. 
+
+```rust
+fn returns_summarizable() -> impl Summary {
+```
+
+See *Using Trait Objects That Allow for Values of Different Types* in chapter 17.
+
+
+<h2 id="bce419857a72cd38b5c75c2ed17433c0"></h2>
+
+-----
+
+### Fixing the largest Function with Trait Bounds
+
+```rust
+fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
+    let mut largest = list[0];
+
+    for &item in list.iter() {
+        if item > largest {
+            largest = item;
+        }
+    }
+
+    largest
+}
+```
+
+`>` operator is defined as a default method on the standard library trait std::cmp::PartialOrd, we need to specify PartialOrd in the trait bounds for T so the largest function can work on slices of any type that we can compare. 
+
+
+When we made the largest function generic, it became possible for the list parameter to have types in it that don’t implement the Copy trait. Consequently, we wouldn’t be able to move the value out of list[0] and into the largest variable, resulting in this error. To call this code with only those types that implement the Copy trait, we can add Copy to the trait bounds of T! 
+
+<h2 id="8d14778e381116681aa5fcf8e7fad595"></h2>
+
+-----
+
+### Using Trait Bounds to Conditionally Implement Methods
+
+For example, the type `Pair<T>` always implements the new function. But `Pair<T>` only implements the cmp_display method if its inner type T implements the PartialOrd trait that enables comparison and the Display trait that enables printing.
+
+```rust
+use std::fmt::Display;
+
+struct Pair<T> {
+    x: T,
+    y: T,
+}
+
+impl<T> Pair<T> {
+    fn new(x: T, y: T) -> Self {
+        Self {
+            x,
+            y,
+        }
+    }
+}
+
+impl<T: Display + PartialOrd> Pair<T> {
+    fn cmp_display(&self) {
+        if self.x >= self.y {
+            println!("The largest member is x = {}", self.x);
+        } else {
+            println!("The largest member is y = {}", self.y);
+        }
+    }
+}
+```
+
+We can also conditionally implement a trait for any type that implements another trait. 
+
+```rust
+impl<T: Display> ToString for T {
+    // --snip--
+}
+```
+
 
 

@@ -19,6 +19,8 @@
      - [Powers of A / equation u<sub>k+1</sub> = Au<sub>k</sub>](#d975eb14bcadcace9392fa08591c6162)
      - [Recap](#8912c5512db9003e5c8ce07b7ff36a88)
  - [23.](#d4fbca7834560377a100c91364ec53ec)
+     - [Differential Equations  du/dt=Au](#9c0f59a904be7c01984a683e511ca015)
+     - [Exponential e<sup>At</sup> of a matrix](#627bb884755ff95a306e6587c9bed913)
 
 ...menuend
 
@@ -575,6 +577,10 @@ This section is about how to solve a system of first order, first derivative, co
 And the result, one thing we will find it's completely parallel to powers of a matrix. 
 
 
+<h2 id="9c0f59a904be7c01984a683e511ca015"></h2>
+
+-----
+
 ## Differential Equations  du/dt=Au
 
 <details>
@@ -599,6 +605,10 @@ So we'll just follow that movement as time goes forward by looking at the eigenv
 
 </details>
 
+
+<h2 id="627bb884755ff95a306e6587c9bed913"></h2>
+
+-----
 
 ## Exponential e<sup>At</sup> of a matrix
 
