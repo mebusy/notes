@@ -2198,3 +2198,12 @@ redis> config get save
 ```
 docker run -d --restart unless-stopped -p 3306:3306 --name mysql-test -e MYSQL_USER="root"  -e MYSQL_ROOT_PASSWORD="root" mysql:5.7 --character-set-server=utf8
 ```
+
+
+## docker cleanup
+
+```
+docker system prune
+docker image prune
+docker container prune
+```
