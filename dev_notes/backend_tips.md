@@ -156,5 +156,11 @@ openssl req \
 
 Trust it in KeyChain Access, this cert is named your ipi
 
+More simplier:
+
+```bash
+go run $GOROOT/src/crypto/tls/generate_cert.go --host golangtc.com
+```
+
 
 
