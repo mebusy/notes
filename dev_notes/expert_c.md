@@ -683,15 +683,13 @@ main() {
 
  - `setjmp()` and `longjmp()` are implemented by manipulating activation records.
  - it's a feature unique to C. 
- - They partially compensate for C's limited branching ability, and they work in pairs like this:
+ - they works like `long goto` in some other language
     - `setjmp(jmp_buf j)` must be called first.
-        - It says *use the variable j to remember where you are now. Return 0 from the call*.
+        - it store the context to jmp_buf `j` , Return 0 from first time calling. 
     - `longjmp(jmp_buf j,int i)` can then be called.
-        - It says *go back to the place that the j is remembering.  Make it look like you're returning from the original setjmp(),  but return the value of i so the code can tell when you actually got back here via longjmp().*
+        - it restore the saved context, and continue executing from that point.
+        - longjmp never return,  it returns from setjmp, the return value is its 2nd parameter `i`
     - The contents of the j are destroyed when it is used in a `longjmp()`.
- - Setjmp saves a copy of the  PC , and the current pointer to the top of the stack. 
-    - This saves some initial values, if you like. 
- - Then longjmp restores these values, effectively transferring control and resetting the state back to where you were when you did the save. 
     - It's termed "unwinding the stack," because you unroll activation records from the stack until you get to the saved one.  
  - Although it causes a branch, longjmp differs from a goto in that:
     - A goto can't jump out of the current function in C 
