@@ -1135,3 +1135,9 @@ then
     export GOPATH=$curDir:$GOPATH
 fi
 ```
+
+## go time format 
+
+[time format example](https://programming.guide/go/format-parse-string-time-date-example.html)
+
+
