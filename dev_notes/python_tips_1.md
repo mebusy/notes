@@ -930,6 +930,8 @@ today > today-delta # compare dates
 '2019-03-01T09:33:08Z'
 >>> datetime.datetime.fromtimestamp( t/1000 ).strftime('%Y-%m-%dT%H:%M:%SZ')
 '2019-03-01T17:33:08Z'   # local time
+>>> datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]+"Z" 
+'2019-09-19 07:56:37.326Z'
 ```
 
 
