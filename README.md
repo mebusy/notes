@@ -55,6 +55,8 @@
  a | b | c | d
 --- | --- | --- | ---
 [implementation](dev_notes/LuaSC.md) | [Integrate Lua](dev_notes/luaIntegrate.md) | [lua tips](dev_notes/lua_tips.md) | 
+[lua 5.3 manual](dev_notes/lua5.3_manual.md) |
+
 
 
 <h2 id="818056dbd7e201243206b9c7cd88481c"></h2>
