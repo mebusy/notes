@@ -42,6 +42,23 @@
     - You can use load (or loadfile) to load a chunk with a different environment. 
         - (In C, you have to load the chunk and then change the value of its first upvalue.) 
 
+[5.2 ENV](https://blog.codingnow.com/2011/12/lua_52_env.html)
+
+- Lua 5.2 去掉了5.1的 module, get/setfenv()
+
+```lua
+    -- Lua 5.1
+    function foobar()
+    setfenv(1, {})
+     -- code here
+    end
+    -- Lua 5.2
+    function foobar()
+    local _ENV = {}
+    -- code here
+    end
+```
+
 ## 2.3 – Error Handling
 
 - Lua code can explicitly generate an error by calling the *error* function. 
@@ -298,6 +315,21 @@ xpcall(main,  __G__TRACKBACK__)
 - All functions and types from the auxiliary library are defined in header file `lauxlib.h` and have a prefix `luaL_`.
 
 
+
+
+
+# Misc
+
+## Lua 多线程
+
+- 单个 Lua 虚拟机只能工作在一个线程下，如果你需要在同一个进程中让 Lua 并行处理一些事务，必须为每个线程部署独立的 Lua 虚拟机。
+- lua 多线程库
+    - [Lanes](https://github.com/LuaLanes/lanes) , 有 deep userdata 可以在不同线程间共享。
+    - [Effil](https://github.com/effil/effil) , 使用effil.table 去模拟 table 并让多个虚拟机可以共享数据。
+
+## GC
+
+- [Lua GC](https://www.lua.org/wshop18/Ierusalimschy.pdf)
 
 
 
