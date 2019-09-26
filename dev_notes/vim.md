@@ -223,6 +223,15 @@ python install.py --clang-completer --cs-completer  --go-completer --ts-complete
     3. jdt-server 文件路径
         - `./third_party/ycmd/third_party/eclipse.jdt.ls/target/cache/`
     4. `export HTTPS_PROXY=$HTTP_PROXY`
+ - 傻逼 cregex 
+    - 
+    ```
+    ycmd/
+    rm -rf third_party/cregex
+    git pull
+    git submodule update --init --recursive
+    ```
+
 
 <h2 id="2182a74bab7188d959e795d9301e87ff"></h2>
 
