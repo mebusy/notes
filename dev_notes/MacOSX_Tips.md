@@ -310,31 +310,6 @@ kern.ipc.somaxconn: 128
 sudo sysctl -w kern.ipc.somaxconn=256
 
 ```
- 
-<h2 id="a655cf4302df90e17053b41af734deb9"></h2>
-
------
-
-## Reset Homebrew Fomular
-
-```
-$ cd $(brew --repo)/Library/Taps/homebrew/homebrew-core/
-$ git reset --hard HEAD
-```
-
-<h2 id="31cfdc0a967e58b7447b2e9b456d0f2f"></h2>
-
------
-
-## Manually download brew package 
-
- - use `brew --cache` to find the cache folder 
- - homebrew use `brew --cache`\downloads folder to keep downloaded files
-    - and use `ln -s` to make a reference at `brew --cache` folder 
- - 目标文件 可以通过如下命令获得
-    - `brew --cache [-s] <package_name>`  ( -s means from source , not bottle )
-
-<h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
 -----
 
