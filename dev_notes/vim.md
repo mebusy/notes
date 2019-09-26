@@ -237,9 +237,14 @@ python install.py --clang-completer --cs-completer  --go-completer --ts-complete
     path_ycmd_bak="ycmd_bak"
     path_ycmd="YouCompleteMe/third_party/ycmd"
 
+    path_dest="third_party/omnisharp-roslyn/v1.32.19"
+    mkdir -p $path_ycmd/$path_dest/
+    cp $path_ycmd_bak/$path_dest/*   $path_ycmd/$path_dest/
+
     path_dest="third_party/eclipse.jdt.ls/target/cache"
     mkdir -p $path_ycmd/$path_dest/
     cp $path_ycmd_bak/$path_dest/*   $path_ycmd/$path_dest/
+
 
     path_dest="clang_archives"
     mkdir -p $path_ycmd/$path_dest/
@@ -248,7 +253,7 @@ python install.py --clang-completer --cs-completer  --go-completer --ts-complete
     path_dest="third_party/go/src/golang.org"
     rm -rf  $path_ycmd/$path_dest/x
     mkdir -p $path_ycmd/$path_dest/
-    cp -R $path_ycmd_bak/$path_dest/x   $path_ycmd/$path_dest/x
+    cp -R "/Volumes/WORK/WORK/GoGlobalPath/src/golang.org/x"   $path_ycmd/$path_dest/x
     ```
 
 
