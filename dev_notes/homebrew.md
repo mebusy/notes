@@ -50,6 +50,8 @@ brew update
 
 ### brew binary 安装包  镜像
 
+实测还不如不换 。。。 
+
 ```bash
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+# export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 ```
