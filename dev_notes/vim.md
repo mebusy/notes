@@ -231,6 +231,25 @@ python install.py --clang-completer --cs-completer  --go-completer --ts-complete
     git pull
     git submodule update --init --recursive
     ```
+ - reinstall ycmd
+    - 
+    ```
+    path_ycmd_bak="ycmd_bak"
+    path_ycmd="YouCompleteMe/third_party/ycmd"
+
+    path_dest="third_party/eclipse.jdt.ls/target/cache"
+    mkdir -p $path_ycmd/$path_dest/
+    cp $path_ycmd_bak/$path_dest/*   $path_ycmd/$path_dest/
+
+    path_dest="clang_archives"
+    mkdir -p $path_ycmd/$path_dest/
+    cp $path_ycmd_bak/$path_dest/*   $path_ycmd/$path_dest/
+
+    path_dest="third_party/go/src/golang.org"
+    rm -rf  $path_ycmd/$path_dest/x
+    mkdir -p $path_ycmd/$path_dest/
+    cp -R $path_ycmd_bak/$path_dest/x   $path_ycmd/$path_dest/x
+    ```
 
 
 <h2 id="2182a74bab7188d959e795d9301e87ff"></h2>
