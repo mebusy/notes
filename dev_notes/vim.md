@@ -176,11 +176,7 @@ git submodule update --recursive --init
 
  - JavaScript and TypeScript support: install Node.js and npm and add `--ts-completer` when calling install.py.
  - Rust support: install Rust and add `--rust-completer` when calling ./install.py.
-    - 
-    ```
-    # rust
-    export PATH=$PATH:`which cargo`/..
-    ```
+    - put `cargo/bin`   in you $PATH ?
  - Java support: install JDK8 (version 8 required) and add `--java-completer` when calling ./install.py.
 
 
