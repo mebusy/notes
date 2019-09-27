@@ -168,8 +168,19 @@ git submodule update --recursive --init
      - 加上 `--system-libclang` 则使用mac 自带的libclang，但是一般版本比较旧，会有问题
  - C# support: install Mono and add `--cs-completer` when calling ./install.py.
  - Go support: install Go and add `--go-completer` when calling ./install.py.
+    - go 1.13
+    - 
+    ```
+    export GOPROXY=https://goproxy.io
+    ```
+
  - JavaScript and TypeScript support: install Node.js and npm and add `--ts-completer` when calling install.py.
  - Rust support: install Rust and add `--rust-completer` when calling ./install.py.
+    - 
+    ```
+    # rust
+    export PATH=$PATH:`which cargo`/..
+    ```
  - Java support: install JDK8 (version 8 required) and add `--java-completer` when calling ./install.py.
 
 
