@@ -199,6 +199,10 @@
  - 日志 统一放到 log_by_lua\* 阶段
  - 配合 ngx.ctx
 
+## log response body
+
+ - add `body_filter_by_lua 'ngx.log(ngx.INFO,ngx.arg[1])';`  to right location
+
 <h2 id="ade50a0c00771d6260bb66a3c31e149a"></h2>
 
 -----
