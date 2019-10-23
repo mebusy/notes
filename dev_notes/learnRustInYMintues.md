@@ -32,6 +32,11 @@
          - [Returning Types that Implement Traits](#8bc762cd737affa437bd5226f1a3f07a)
          - [Fixing the largest Function with Trait Bounds](#bce419857a72cd38b5c75c2ed17433c0)
          - [Using Trait Bounds to Conditionally Implement Methods](#8d14778e381116681aa5fcf8e7fad595)
+     - [Validating References with Lifetimes](#64ddc28a0ac7f69186ee86b1f8bc8786)
+         - [Lifetime Annotations in Function Signatures](#f3d4e3f175edde17a6397d2dbb331920)
+         - [Lifetime Annotations in Struct Definitions](#7a84101a7a68dae9cd05990ef3ccfa86)
+         - [Lifetime Annotations in Method Definitions](#f3d510a4e30d6a89ebee0474abaa57a9)
+         - [The Static Lifetime](#2bb98037fd2da57e912de143f6c29347)
 
 ...menuend
 
@@ -864,6 +869,10 @@ impl<T: Display> ToString for T {
 ```
 
 
+<h2 id="64ddc28a0ac7f69186ee86b1f8bc8786"></h2>
+
+-----
+
 ## Validating References with Lifetimes
 
 Every reference in Rust has a lifetime, which is the scope for which that reference is valid.
@@ -887,6 +896,10 @@ fn longest(x: &str, y: &str) -> &str {
     }
 }
 ```
+
+<h2 id="f3d4e3f175edde17a6397d2dbb331920"></h2>
+
+-----
 
 ### Lifetime Annotations in Function Signatures
 
@@ -937,6 +950,10 @@ fn main() {
 }
 ```
 
+<h2 id="7a84101a7a68dae9cd05990ef3ccfa86"></h2>
+
+-----
+
 ### Lifetime Annotations in Struct Definitions
 
 ```rust
@@ -944,6 +961,10 @@ struct ImportantExcerpt<'a> {
     part: &'a str,
 }
 ```
+
+<h2 id="f3d510a4e30d6a89ebee0474abaa57a9"></h2>
+
+-----
 
 ### Lifetime Annotations in Method Definitions
 
@@ -954,6 +975,10 @@ impl<'a> ImportantExcerpt<'a> {
     }
 }
 ```
+
+<h2 id="2bb98037fd2da57e912de143f6c29347"></h2>
+
+-----
 
 ### The Static Lifetime
 

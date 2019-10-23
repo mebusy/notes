@@ -76,6 +76,7 @@
      - [regexp , reference captured group](#ae4367a7f966679339c605ac0b009418)
      - [CGO_ENALBE=1 情况下, 实现纯静态连接](#12f3c642086ddb0279f69574a34db7ef)
      - [BASH: auto add current path to GOPATH when opening a new terminal window](#b052a32a028f65a554fd6d75ca2cb331)
+     - [go time format](#d631c51d63e223eda44e441f1ce4c0ac)
 
 ...menuend
 
@@ -1135,6 +1136,10 @@ then
     export GOPATH=$curDir:$GOPATH
 fi
 ```
+
+<h2 id="d631c51d63e223eda44e441f1ce4c0ac"></h2>
+
+-----
 
 ## go time format 
 

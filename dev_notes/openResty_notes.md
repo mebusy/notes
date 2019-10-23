@@ -18,6 +18,7 @@
      - [如何发起新 HTTP 请求](#042d5977081f357a19a120018ae11d33)
  - [LuaNginxModule](#9cca9de1daf187e925e4af72d9eb1bd1)
      - [正确的记录日志](#2081eee0b4b974d68a1d64f844b561e0)
+     - [log response body](#e64b0c98f68c9a90948513a701a70acf)
      - [OpenResty 的缓存](#ade50a0c00771d6260bb66a3c31e149a)
      - [Sleep](#243924bfd56a682be235638b53961e09)
      - [定时任务](#a1bd9760fc7a20ba5c57564d2d173bf0)
@@ -198,6 +199,10 @@
 
  - 日志 统一放到 log_by_lua\* 阶段
  - 配合 ngx.ctx
+
+<h2 id="e64b0c98f68c9a90948513a701a70acf"></h2>
+
+-----
 
 ## log response body
 

@@ -1,8 +1,35 @@
+...menustart
+
+ - [2 – Basic Concepts](#5eadd983edcd006d1d7c77cacf304d01)
+     - [2.1 – Values and Types](#3053af0cf7ed59b35a33bbac43f61692)
+     - [2.2 – Environments and the Global Environment](#450e6c4e856637db95564a960db61fa8)
+     - [2.3 – Error Handling](#9ab14e9a3a5b6b4651d3f0f1d6fc3e3e)
+     - [2.4 – Metatables and Metamethods](#e8338b957cfebba82f352026ce533a5c)
+     - [2.5 – Garbage Collection](#b96bb9af2b541d8cd6752cb8b514f397)
+         - [2.5.2 – Weak Tables](#2ee0667701209dc7ecf0ae9d309a8a95)
+     - [2.6 – Coroutines](#a7629f76b2e07fbf8dbca4a41d7114c0)
+ - [3 – The Language](#ac362547474c89f8b882abc7326b6ebe)
+ - [4 – The Application Program Interface](#dfc1f4912c18595eb03abb457f9d5460)
+ - [5 – The Auxiliary Library](#da0790e25c16fe93480803e7aa545a29)
+ - [Misc](#74248c725e00bf9fe04df4e35b249a19)
+     - [Lua 多线程](#63f5a0b12473a9e9f903d98796a34e28)
+     - [GC](#7359c3eb5c57547295a76ac1bf775b29)
+
+...menuend
 
 
 [Lua 5.3 manual](http://www.lua.org/manual/5.3/manual.html#4)
 
+<h2 id="5eadd983edcd006d1d7c77cacf304d01"></h2>
+
+-----
+-----
+
 # 2 – Basic Concepts
+
+<h2 id="3053af0cf7ed59b35a33bbac43f61692"></h2>
+
+-----
 
 ## 2.1 – Values and Types
 
@@ -28,6 +55,10 @@
         - `a.name` as syntactic sugar for `a["name"]`
  - *Tables*, *functions*, *threads*, and (full) *userdata* values are objects: 
     - variables do not actually contain these values, only references to them.
+
+<h2 id="450e6c4e856637db95564a960db61fa8"></h2>
+
+-----
 
 ## 2.2 – Environments and the Global Environment
 
@@ -59,6 +90,10 @@
     end
 ```
 
+<h2 id="9ab14e9a3a5b6b4651d3f0f1d6fc3e3e"></h2>
+
+-----
+
 ## 2.3 – Error Handling
 
 - Lua code can explicitly generate an error by calling the *error* function. 
@@ -76,6 +111,10 @@ function __G__TRACKBACK__(msg)
 end
 xpcall(main,  __G__TRACKBACK__)
 ```
+
+<h2 id="e8338b957cfebba82f352026ce533a5c"></h2>
+
+-----
 
 ## 2.4 – Metatables and Metamethods
 
@@ -105,6 +144,10 @@ xpcall(main,  __G__TRACKBACK__)
     - that is, there is one single metatable for all numbers, one for all strings, etc. 
 
 
+<h2 id="b96bb9af2b541d8cd6752cb8b514f397"></h2>
+
+-----
+
 ## 2.5 – Garbage Collection
 
 - GC uses two numbers to control its garbage-collection cycles, both use percentage points as units. ( 100 means  an internal value of 1 )
@@ -122,6 +165,10 @@ xpcall(main,  __G__TRACKBACK__)
     collectgarbage("setstepmul", 200)
     ```
 
+<h2 id="2ee0667701209dc7ecf0ae9d309a8a95"></h2>
+
+-----
+
 ### 2.5.2 – Weak Tables
 
 - A weak table is a table whose elements are weak references. 
@@ -135,6 +182,10 @@ xpcall(main,  __G__TRACKBACK__)
 - A table with weak keys and strong values is also called an **ephemeron** table. 
     - In an ephemeron table, a value is considered reachable only if its key is reachable. 
     - In particular, if the only reference to a key comes through its value, the pair is removed.
+
+<h2 id="a7629f76b2e07fbf8dbca4a41d7114c0"></h2>
+
+-----
 
 ## 2.6 – Coroutines
 
@@ -185,6 +236,11 @@ xpcall(main,  __G__TRACKBACK__)
      main    false   cannot resume dead coroutine
 ```
 
+
+<h2 id="ac362547474c89f8b882abc7326b6ebe"></h2>
+
+-----
+-----
 
 # 3 – The Language
 
@@ -280,6 +336,11 @@ xpcall(main,  __G__TRACKBACK__)
     - `f'string' (or f"string" or f[[string]])` is syntactic sugar for `f('string')`
 
 
+<h2 id="dfc1f4912c18595eb03abb457f9d5460"></h2>
+
+-----
+-----
+
 # 4 – The Application Program Interface
 
 - All API functions and related types and constants are declared in the header file `lua.h`.
@@ -309,6 +370,11 @@ xpcall(main,  __G__TRACKBACK__)
 ```
 
 
+<h2 id="da0790e25c16fe93480803e7aa545a29"></h2>
+
+-----
+-----
+
 # 5 – The Auxiliary Library
 
 - The auxiliary library provides several convenient functions to interface C with Lua.
@@ -318,7 +384,16 @@ xpcall(main,  __G__TRACKBACK__)
 
 
 
+<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
+
+-----
+-----
+
 # Misc
+
+<h2 id="63f5a0b12473a9e9f903d98796a34e28"></h2>
+
+-----
 
 ## Lua 多线程
 
@@ -326,6 +401,10 @@ xpcall(main,  __G__TRACKBACK__)
 - lua 多线程库
     - [Lanes](https://github.com/LuaLanes/lanes) , 有 deep userdata 可以在不同线程间共享。
     - [Effil](https://github.com/effil/effil) , 使用effil.table 去模拟 table 并让多个虚拟机可以共享数据。
+
+<h2 id="7359c3eb5c57547295a76ac1bf775b29"></h2>
+
+-----
 
 ## GC
 

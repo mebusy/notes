@@ -93,6 +93,7 @@
      - [add a restart policy to a container](#9b68cd8277b36a785a1a8784426e3095)
      - [docker redis](#e03d31b41fc936f76920bb647520ef01)
      - [docker mysql](#5b1064e3e54b4f22a3419f9d198df904)
+     - [docker cleanup](#ada28088d8540a0471c00fb0673b9882)
 
 ...menuend
 
@@ -2199,6 +2200,10 @@ redis> config get save
 docker run -d --restart unless-stopped -p 3306:3306 --name mysql-test -e MYSQL_USER="root"  -e MYSQL_ROOT_PASSWORD="root" mysql:5.7 --character-set-server=utf8
 ```
 
+
+<h2 id="ada28088d8540a0471c00fb0673b9882"></h2>
+
+-----
 
 ## docker cleanup
 

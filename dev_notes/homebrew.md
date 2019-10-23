@@ -1,5 +1,25 @@
+...menustart
+
+ - [homebrew](#c922a641cc5dc03a497e540996d12198)
+     - [Reset Homebrew Fomular](#a655cf4302df90e17053b41af734deb9)
+     - [Manually download brew package](#31cfdc0a967e58b7447b2e9b456d0f2f)
+     - [Homebrew 使用 清华索引](#387e3f4aa69662696cce11325cecc502)
+         - [brew update 索引镜像](#2b4d5ebf708a8726acef8ace48915e9f)
+         - [brew binary 安装包  镜像](#eacd77990df567221ae4eec63f170ef4)
+
+...menuend
+
+
+<h2 id="c922a641cc5dc03a497e540996d12198"></h2>
+
+-----
+-----
 
 # homebrew
+
+<h2 id="a655cf4302df90e17053b41af734deb9"></h2>
+
+-----
 
 ## Reset Homebrew Fomular
 
@@ -9,6 +29,10 @@ $ git reset --hard HEAD
 ```
 
 
+<h2 id="31cfdc0a967e58b7447b2e9b456d0f2f"></h2>
+
+-----
+
 ## Manually download brew package 
 
  - use `brew --cache` to find the cache folder 
@@ -17,10 +41,15 @@ $ git reset --hard HEAD
  - 目标文件 可以通过如下命令获得
     - `brew --cache [-s] <package_name>`  ( -s means from source , not bottle )
 
-<h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
+<h2 id="387e3f4aa69662696cce11325cecc502"></h2>
 
+-----
 
 ## Homebrew 使用 清华索引
+
+<h2 id="2b4d5ebf708a8726acef8ace48915e9f"></h2>
+
+-----
 
 ### brew update 索引镜像
 
@@ -47,6 +76,10 @@ git -C "$(brew --repo homebrew/cask)" remote set-url origin https://github.com/H
 
 brew update
 ```
+
+<h2 id="eacd77990df567221ae4eec63f170ef4"></h2>
+
+-----
 
 ### brew binary 安装包  镜像
 
