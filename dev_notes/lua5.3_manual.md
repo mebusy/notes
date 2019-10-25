@@ -297,7 +297,7 @@ xpcall(main,  __G__TRACKBACK__)
 - Arithmetic Operators
     - 
     ```lua
-    //: floor division
+    //: integer division
     %: modulo
     ^: exponentiation
     ```
