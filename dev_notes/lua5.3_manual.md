@@ -369,6 +369,26 @@ xpcall(main,  __G__TRACKBACK__)
  lua_State    lua_State    lua_State
 ```
 
+## 4.1 - The Stack 
+
+- Lua uses a virtual stack to pass values to and from C. 
+    - Each element in this stack represents a Lua value (nil, number, string, etc.). 
+- Whenever Lua calls C, the called function gets a new stack,
+    - which is independent of previous stacks and of stacks of C functions that are still active.
+    - This stack initially contains any arguments to the C function and it is where the C function can store temporary Lua values and must push its results to be returned to the caller.
+- For convenience, most query operations in the API do not follow a strict stack discipline. 
+    - Instead, they can refer to any element in the stack by using an index: 
+        - A positive index represents an absolute stack position (starting at 1); 
+        - a negative index represents an offset relative to the top of the stack.
+    - More specifically, if the stack has n elements, then 
+        - index 1 , -n represents the first element.
+        - and index n , -1 represents the last element; 
+
+
+
+
+
+
 
 <h2 id="da0790e25c16fe93480803e7aa545a29"></h2>
 
