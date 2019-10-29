@@ -208,6 +208,51 @@
 
  - add `body_filter_by_lua 'ngx.log(ngx.INFO,ngx.arg[1])';`  to right location
 
+## encrypt response data
+
+```nginx
+body_filter_by_lua_file lua/body_filter_gameserver.lua ;
+```
+
+注意: body_filter 在一个请求中可能会被多次调用，每次filter一个chunk
+
+```lua
+-- lua/body_filter_gameserver.lua
+local req_headers = ngx.req.get_headers()
+local clientCodeVersion  = tonumber(  req_headers["clientCodeVersion"] ) or -1 
+
+if clientCodeVersion >= 20 and ngx.arg[1] and not ngx.is_subrequest then  
+    -- ngx.log( ngx.INFO, "client version code: " .. clientCodeVersion  )
+    local key = string.sub( "UMC_HDA_OHIAOSJDAS" , 1, 16)
+    local iv = "0123456789ABCDEF"
+    local src = ngx.arg[1]
+
+    local aes = require "resty.aes"
+    local str = require "resty.string"
+    local aes_128_cbc_with_iv = assert(aes:new(key,
+        nil, aes.cipher(128,"cbc"), {iv=iv}))
+        -- AES 128 CBC with IV and no SALT
+    local encrypted = aes_128_cbc_with_iv:encrypt( src )
+    -- ngx.log("AES 128 CBC (WITH IV) Encrypted HEX: ", str.to_hex(encrypted))
+    -- ngx.log( ngx.INFO , "AES 128 CBC (WITH IV) Decrypted: ",  aes_128_cbc_with_iv:decrypt(encrypted))
+
+    
+    ngx.arg[1] = ngx.encode_base64(encrypted)  .. ','
+    ngx.log( ngx.INFO, ngx.arg[1]  .. src .. ngx.req.get_method() )
+end
+```
+
+```lua
+-- head_filter.lua
+-- 假设上游的服务器返回了 Content-Length 报头，而 body_filter_by_lua* 又修改了响应体的实际大小。
+-- 客户端收到这个报头后，按其中的 Content-Length 去处理，顺着一头栽进坑里。由于Nginx 的流式响应，发出去的报头就像泼出去的水，要想修改只能提前进行。
+-- OpenResty 提供了跟 body_filter_by_lua* 相对应的 header_filter_by_lua*。
+-- header_filter 会在 Nginx 发送报头之前调用，所以可以在这里置空 Content-Length 报头：
+
+ngx.header.content_length = nil
+```
+
+
 <h2 id="ade50a0c00771d6260bb66a3c31e149a"></h2>
 
 -----
