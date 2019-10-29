@@ -59,12 +59,8 @@
 ```bash
 serverName=hdaserver
 
-( cd luaRedis && find . -type f -name '*.lua' > list.txt )
-
-
 if [ "$1" == "force" ] ; then
     docker rm -f ${serverName}
-    # rm -rf DB/data
 fi
 
 if [ "$(docker ps -aq -f name=${serverName})" ]; then
@@ -74,7 +70,6 @@ if [ "$(docker ps -aq -f name=${serverName})" ]; then
 else
 
 echo "run a new server instance"
-# docker rm -f ${serverName}
 
 mkdir -p logs
 mkdir -p staticRes/ads
