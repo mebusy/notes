@@ -162,6 +162,7 @@ a | b | c | d
 [用户,文件系统,常用命令](dev_notes/Linux_fan.md) | [系统结构](dev_notes/Linux_fan3.md) | [Makefile](dev_notes/Linux_fan8.md) | [特种文件系统](dev_notes/Linux_fan9.md)
 [Centos 7](dev_notes/Centos7.md) | [docker](dev_notes/docker.md)  | [logrotate](dev_notes/linux_logrotate.md)
 [大型网站技术架构](dev_notes/WebArchitecture.md) | 
+[Linux performace tool](imgs/linux_performance.jpg) |
 
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
