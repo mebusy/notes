@@ -540,19 +540,3 @@ Now, the shared fold has be mounted at `/media/sf_D_DRIVE/`. (if not , try reboo
 
 
 
-## create root use 
-
-```bash
-$ adduser user_name 
-$ passwd user_name 
-$ chmod -v u+w /etc/sudoers   (add write permission)
-$ vi /etc/sudoers 
--------------------------------------------------------
-## Allow root to run any commands anywhere
-root    ALL=(ALL)       ALL
-user_name    ALL=(ALL)       ALL 
--------------------------------------------------------
-
-$ chmod -v u-w /etc/sudoers  (restore to read-only)
-```
-
