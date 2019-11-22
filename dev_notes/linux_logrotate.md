@@ -119,6 +119,12 @@ echo $'*/1\t*\t*\t*\t*\t/usr/sbin/logrotate...' >> xxxx
 echo $'0\t0\t*\t*\t*\t/usr/sbin/logrotate ...' >> xxx 
 ```
 
+```bash
+# restart crond
+systemctl restart crond
+```
+
+
 <h2 id="6803e775fc8d5aa27d11c244367853e4"></h2>
 
 -----
