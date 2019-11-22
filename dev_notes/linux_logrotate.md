@@ -115,8 +115,10 @@ maybe you want to use echo to append job to crontab file
 ```bash
 echo $'*/1\t*\t*\t*\t*\t/usr/sbin/logrotate...' >> xxxx
 
-# daily
+# daily 00:00
 echo $'0\t0\t*\t*\t*\t/usr/sbin/logrotate ...' >> xxx 
+# daily 01:00
+echo $'0\t1\t*\t*\t*\t/usr/sbin/logrotate ...' >> xxx 
 ```
 
 ```bash
