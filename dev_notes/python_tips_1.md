@@ -934,6 +934,21 @@ today > today-delta # compare dates
 '2019-09-19 07:56:37.326Z'
 ```
 
+### convert between seconds since the epoch  and  struct_time
+
+Use | From  | To
+--- | --- | --- 
+gmtime() | seconds since the epoch | struct_time in UTC
+calendar.timegm() | struct_time in UTC  |  seconds since the epoch
+
+Example:
+
+```python
+>>> calendar.timegm(  ( 2020,1,1,0,0,0 )  )
+1577836800
+>>> time.gmtime( 1577836800  )
+time.struct_time(tm_year=2020, tm_mon=1, tm_mday=1, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=2, tm_yday=1, tm_isdst=0)
+```
 
 <h2 id="3fea1af701d185d74668117c9555eb60"></h2>
 
