@@ -10,6 +10,7 @@
      - [2.6 – Coroutines](#a7629f76b2e07fbf8dbca4a41d7114c0)
  - [3 – The Language](#ac362547474c89f8b882abc7326b6ebe)
  - [4 – The Application Program Interface](#dfc1f4912c18595eb03abb457f9d5460)
+     - [4.1 - The Stack](#ede5deeca64781b0f5637625fef01c6b)
  - [5 – The Auxiliary Library](#da0790e25c16fe93480803e7aa545a29)
  - [Misc](#74248c725e00bf9fe04df4e35b249a19)
      - [Lua 多线程](#63f5a0b12473a9e9f903d98796a34e28)
@@ -368,6 +369,10 @@ xpcall(main,  __G__TRACKBACK__)
     |             |             |
  lua_State    lua_State    lua_State
 ```
+
+<h2 id="ede5deeca64781b0f5637625fef01c6b"></h2>
+
+-----
 
 ## 4.1 - The Stack 
 
