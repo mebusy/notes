@@ -2212,3 +2212,10 @@ docker system prune
 docker image prune
 docker container prune
 ```
+
+## docker pandoc
+
+```bash
+docker run --volume "`pwd`:/data" --user `id -u`:`id -g` --rm  pandoc/latex:2.6
+```
+
