@@ -561,7 +561,7 @@ F₁₀₀ ≈ c₁·(1.61803)¹⁰⁰.   ( the other terms involves c₂ is ign
     7. eigenvalue could be complex number.
         - Symmetric matrix's eigenvalues are all real. 
  - eigenvector 
-    1. Eigenvectors of sysmmetric matrix are orthogonal.  (doesn's all eigenvectors orthogonal )
+    1. Eigenvectors of sysmmetric matrix are orthogonal.  (doesn't all eigenvectors orthogonal )
     2. A matrix may have no eigenvectors.  ( ? any example ? )
 
 
@@ -601,6 +601,19 @@ So it starts u at time 0, everything starts at u₁. And as time goes on, du₂/
 
 So we'll just follow that movement as time goes forward by looking at the eigenvalues and eigenvectors of that matrix.
 
+λ₁ = 0, λ₂ = -3.
+
+The eigen values are telling me something. λ₂ = -3 , this eigen value is going to disappear, e⁻³ᵗ.  λ₁ = 0, e⁰ᵗ=1. 
+
+So I'm expecting that this solution'll have 2 parts, e⁰ᵗ and e⁻³ᵗ parts. and as time goes on, the second part'll disappear and the first part will be a steady status. ( 因为这是微分方程，所以0是steady status??? )
+
+x₁=[2;1] , x₂=[1;-1]
+
+Solution: u(t) = c₁e<sup>λ₁</sup>x₁ + c₂e<sup>λ₂</sup>x₂
+
+TODO 看书。
+
+
 
 
 </details>
@@ -611,5 +624,90 @@ So we'll just follow that movement as time goes forward by looking at the eigenv
 -----
 
 ## Exponential e<sup>At</sup> of a matrix
+
+TODO
+
+---
+
+# 24. 
+
+## Markov matrices
+
+
+```bash
+A =
+
+   0.10000   0.01000   0.30000
+   0.20000   0.99000   0.30000
+   0.70000   0.00000   0.40000
+```
+
+<details>
+<summary>
+property: 
+</summary>
+
+1. all entreis >= 0
+2. all columns add to 1.
+
+The powers of Markov matrix are all Markov matrices.
+
+**Steady State**:  λ = 1. 
+
+Key points:
+
+1.  λ = 1 is an eigenvalue
+2. all other |λᵢ| < 1
+
+Remember: uk = Aᵏu₀ = c₁λ₁ᵏx₁ +c₂λ₂ᵏx₂ + ... +cnλnᵏxn 
+
+Those terms which has |λᵢ| < 1 goes to 0.
+
+since all columns of A markov matrix add to 1, then A-I must be singular ( all columns of A-I add to 0 ) . That is , one of the eigenvalues must be 1. 
+
+**Eigenvalus of Aᵀ are the same as eigenvalues of A.**  because det(A-λI) = det(Aᵀ-λI).  (Determinant's property 10.)
+
+</details>
+
+<details>
+<summary>
+application :
+</summary>
+
+u<sub>k+1</sub> = Au<sub>k</sub> , A is Markov Matrix
+
+The populations in California and Massachusetts.
+
+Every year, 90% people of California stays, and 10% moves to Massachusetts, while 80% people of Massachusetts stays , and 20% moves to California.
+
+```
+u = |u_cal |
+    |u_mass|
+
+A =
+
+   0.90000   0.20000
+   0.10000   0.80000
+```
+
+after many many  yeas later, where are those peoples ? 
+
+We can easily get the 2 eigenvalues : λ₁=1, λ₂=0.7.
+
+and the eigenvector for the steady status is x₁=[2;1].  Now we can jump to infinity right now, finally , the California will have 2/3 total peoples, while Mass has 1/3 of all. 
+
+since u₀ = c₁x₁ +c₂x₂  =  c₁[2;1] +c₂[-1;1] , we get c₁ = 1000/3.
+
+A<sup>k+1</sup>u₀ = c₁·1<sup>k+1</sup>[2;1] = [666.67 ; 333.33] 
+
+
+
+</details>
+
+
+
+## Fourier Series and projections 
+
+
 
 
