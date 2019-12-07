@@ -713,5 +713,57 @@ A<sup>k+1</sup>u₀ = c₁·1<sup>k+1</sup>[2;1] = [666.67 ; 333.33]
 ## Fourier Series and projections 
 
 
+<details>
+<summary>
+Projections with orthonormal basis  
+</summary>
+
+for any v ,  
+
+v = x₁q₁+ x₂q₂+ ... + x<sub>n</sub>q<sub>n</sub>
+
+how to calculate x₁ quickly ?  multiplied by q₁ᵀ on both side 
+
+q₁ᵀv = x₁.
+
+This result can be achieved from the maxtix view .
+
+Qx = v.  x=Q⁻¹v = Qᵀv  => x₁=q₁ᵀv
+
+
+</details>
+
+<details>
+<summary>
+Fourier Series 
+</summary>
+
+f(x) =a₀ + a₁cosx + b₁sinx + a2cos2x + b₂cos2x + ... 
+
+This one's infinite, but the key property of things being orthogonal is still true for sin and cos. So it is the propery that makes Fourier series work. 
+
+Joseph Fourier realized that, hey, I could could work in function space.
+
+Instead of a vector v, I could have a function f(x) . Instead of orthornal vectors q₁,q₂,..., I could have orthogonal functions, but infinitely many of them. 
+
+So the basis are functions , 1, cosx, sinx, cos2x, sin2x, ... , and they are orthogonal. 
+
+What does it means "funtions are orthogonal" ?
+
+fᵀg = ∫₀<sup>2π</sup> f(x)g(x)dx = 0.
+
+How do I get a₁?  I take the inner product of everything with cos(x).
+
+
+</details>
+
+
+---
+
+
+# 25.
+
+
+
 
 
