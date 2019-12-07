@@ -696,6 +696,10 @@ We can easily get the 2 eigenvalues : λ₁=1, λ₂=0.7.
 
 and the eigenvector for the steady status is x₁=[2;1].  Now we can jump to infinity right now, finally , the California will have 2/3 total peoples, while Mass has 1/3 of all. 
 
+To verify: 
+
+let u₀ = [0;1000],
+
 since u₀ = c₁x₁ +c₂x₂  =  c₁[2;1] +c₂[-1;1] , we get c₁ = 1000/3.
 
 A<sup>k+1</sup>u₀ = c₁·1<sup>k+1</sup>[2;1] = [666.67 ; 333.33] 
