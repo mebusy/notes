@@ -760,8 +760,45 @@ How do I get a₁?  I take the inner product of everything with cos(x).
 
 ---
 
-
 # 25.
+
+## Symmetric Matrices
+
+A = Aᵀ
+ 
+<details>
+<summary>
+Eignvalues / Eigenvectors 
+</summary>
+
+What's special about the eigenvectors ?
+
+1. The eigenvalues are REAL.
+2. The eigenvectors are (can be chosen) PERPENDICULAR
+
+Usual case :  A = SΛS⁻¹
+Symmetric case: A = QΛQ⁻¹ = QΛQᵀ , one of the most famous theorem.
+
+Why real eigenvalues ?
+
+
+
+
+
+
+
+
+
+
+</details>
+
+
+<details>
+<summary>
+Start: Positive Definite Matrices
+</summary>
+
+</details>
 
 
 
