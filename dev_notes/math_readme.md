@@ -44,7 +44,7 @@
 
  - [台大概率笔记](TaiwanU_probability.md)
  - [台大概率笔记2](TaiwanU_probability2.md) 
- - [随机数](Dev_Random.md)
+ - [随机数](Dev_Random.md) , [random number](random_number.md)
 
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
