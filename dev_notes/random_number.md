@@ -53,14 +53,19 @@ Pseudo random numbers:  a series of numbers in a particular range that seems unp
 
 ```python
 class Random(object):
-    def __init__(self, x=None):
+    def __init__(self, e ,  x=None):
         if x is None:
             import time
             self.seed = long(time.time())
         else:
             self.seed = long(x)
         self._seed = self.seed
-        
+
+        self.e = e
+        self.k = (self.e + 1) / 2
+        self.m = 2** self.e
+        # self.a = (2** self.k) + 1
+
     def random_LCG(self):
         '''
         generate ranom in 0~1
@@ -68,14 +73,20 @@ class Random(object):
         X(k) = [a * X(k-1) + c] mod m
         '''
         # m,a,c is referenced in GCC compiler
-        m = 2**32
-        a = 1103515245
-        c = 12345
-        self._seed = (a * self._seed + c) % m
-        return self._seed / float(m-1)
+        # self._seed = (self.a * self._seed + 1) & ( self.m-1 )
+        self._seed = ( self._seed + (self._seed<<self.k) + 1) & ( self.m-1 )
+        return self._seed
+
+
+for e in xrange( 8 , 20 ,1  ) :
+    r = Random( e  )
+    d = { r.random_LCG() for _ in xrange( 2**e  )  }
+    print "e:{} , loop: {}".format( e , len(d) )
+    assert len(d) == 2**e
+
 ```
 
-## Python random
+## Python random implementation
 
 ```python
 def random(self):
@@ -123,7 +134,34 @@ def random(self):
     - Probability Density Function --> Cumulative Distribution Function. 
     - we uniformly randomly select a point on the y-axis ( Cumulative Distribution Function graph ) , and then determine the point on the x-axis, it gives that function value. 
 
+
+### Python normalvariate implementation
+
+```python
+    def normalvariate(self, mu, sigma):
+        """Normal distribution.
+        mu is the mean, and sigma is the standard deviation.
+        """
+        # mu = mean, sigma = standard deviation
+
+        # Uses Kinderman and Monahan method. Reference: Kinderman,
+        # A.J. and Monahan, J.F., "Computer generation of random
+        # variables using the ratio of uniform deviates", ACM Trans
+        # Math Software, 3, (1977), pp257-260.
+
+        random = self.random
+        while 1:
+            u1 = random()
+            u2 = 1.0 - random()
+            z = NV_MAGICCONST*(u1-0.5)/u2
+            zz = z*z/4.0
+            if zz <= -_log(u2):  # math.e
+                break
+        return mu + z*sigma
+```
+
 Book <<Probability Theory and Examples>>
+
 
 
     
