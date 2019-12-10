@@ -781,10 +781,13 @@ Symmetric case: A = QΛQ⁻¹ = QΛQᵀ , one of the most famous theorem.
 
 Why real eigenvalues ?
 
+TODO
 
+If A is a real matrix , A has real eigenvalues and perpendicular eigenvectors means  A = Aᵀ.
 
+If A is a complex matrix ,  it meas A = A̅ᵀ.
 
-
+A = QΛQᵀ 
 
 
 
