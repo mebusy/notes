@@ -160,7 +160,7 @@ def random(self):
         return mu + z*sigma
 ```
 
-Book <<Probability Theory and Examples>>
+Book "Probability Theory and Examples"
 
 
 
