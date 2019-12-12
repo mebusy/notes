@@ -787,11 +787,13 @@ If A is a real matrix , A has real eigenvalues and perpendicular eigenvectors me
 
 If A is a complex matrix ,  it meas A = A̅ᵀ.
 
-A = QΛQᵀ 
+A = QΛQᵀ  = λ₁q₁q₁ᵀ + λ₂q₂q₂ᵀ + ...  
 
+here all q are orthonoraml , and qqᵀ is a projection matrix.
 
+Every symmetric matrix is a combination of perpendicular projection matrices. 
 
-
+Symmetric  matrix has another property:  #positive pivots == #positive eigenvalues.
 
 </details>
 
@@ -801,7 +803,15 @@ A = QΛQᵀ
 Start: Positive Definite Matrices
 </summary>
 
+It's symmtrix.   
+
+1. All eigenvalues are positive.  
+2. All the pivots are positive.  
+3. **all** the **sub**determinant is positive. (including the determinant) 
+
 </details>
+
+## 26.
 
 
 
