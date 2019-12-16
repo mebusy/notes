@@ -98,6 +98,20 @@ cat /var/lib/logrotate.status
 
 ## 7. crontab定时执行
 
+
+crontal job 文件可能位于：
+
+```bash
+/etc/crontab.
+d/
+daily/
+hourly/
+monthly/
+weekly/
+/var/spool/cron/<user>
+```
+
+
 ```bash
 # 列出当前 任务
 # crontab -l
