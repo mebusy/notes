@@ -1,6 +1,8 @@
 
 # 动态规划
 
+[原贴](https://zhuanlan.zhihu.com/p/91582909)
+
 动态规划，无非就是利用历史记录，来避免我们的重复计算。 而这些历史记录，我们得需要一些变量来保存，一般是用一维数组或者二维数组来保存。
 
 动态规划的三大步骤:
@@ -90,8 +92,130 @@ print steps2(50) # 20365011074
 - 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
 - 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角.
 - 问总共有多少条不同的路径？
+- ![](../imgs/dp_prob2.jpg)
 
 
+解题步骤:
+
+1. 定义数组元素的含义
+    - 定义 `dp[i][j]`的含义为： **当机器人从左上角走到(i, j) 这个位置时，一共有 `dp[i][j]` 种路径**. 
+    - dp[m-1] [n-1] 就是我们要的答案了。
+2. 找出关系数组元素间的关系式
+    - 机器人移动到某一格， 只能从  上边，或左边的格子移动过来
+    - `dp[i][j] = dp[i-1][j] + dp[i][j-1]`
+3. 找出初始值
+    - 如果 i,j=0, 上面的公式 就会出现数组越界。
+    - 事实上，最左边一列的任意格子, 只能从它上边的一格 移动过来，只有1种做法，所以 dp=1 ; 最上面的一行 同理.
+        - 唯一列外是 起始点, dp=0, 不过它实际上没有机会参与到计算中来。
+
+
+```python
+def memoize(f):
+    memo = {}
+    def helper(a,b):
+        x = "{},{}".format( a,b )
+        if x not in memo:
+            memo[x] = f(a,b)
+        return memo[x]
+    return helper
+
+@memoize
+def moveto_aug(m, n):
+    if m == 0 or n == 0 :
+        if m == n :
+            # start point
+            # actually it is not used in subsequent calc
+            return 0
+        return 1   # left column, top row
+    return moveto_aug( m-1,n ) + moveto_aug( m, n-1 )
+
+print moveto_aug( 29, 9 )  # 163011640
+```
+
+## 3. 二维数组 DP
+
+问题描述: 给定一个包含非负整数的 m x n 网格，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。
+
+说明：每次只能向下或者向右移动一步。
+
+```python
+输入:
+arr = [
+  [1,3,1],
+  [1,5,1],
+  [4,2,1]
+]
+输出: 7
+解释: 因为路径 1→3→1→1→1 的总和最小。
+```
+
+和上一题类似，不过是算最优路径和。
+
+1. 定义数组元素的含义
+    - 定义 `dp[i][j]`: **当机器人从左上角走到(i, j) 这个位置时，最小的路径和是 dp[i][j]**
+    - `dp[m-1][n-1]` 就是答案
+2. 找出关系数组元素间的关系式
+    - `dp[i][j] = min(dp[i-1][j]，dp[i][j-1]) + arr[i][j];`  // `arr[i][j]` 表示网格种的值
+3. 找出初始值
+    - `dp[0][j] = dp[0][j-1] + arr[0][j];`
+    - `dp[i][0] = dp[i-1][0] + arr[i][0];`
+
+
+```python
+def memoize(f):
+    memo = {}
+    def helper(p,a,b):
+        x = "{},{}".format(a,b )
+        if x not in memo:
+            memo[x] = f(p, a,b)
+        return memo[x]
+    return helper
+
+@memoize
+def shortestPath( arr, m,n  ) :
+    if m == 0 or n == 0 :
+        if m == n:
+            return arr[m][n]
+        elif m == 0 :
+            return shortestPath(arr, m ,n-1 ) + arr[m][n]
+        else:
+            return shortestPath(arr, m-1, n ) + arr[m][n]
+    return min(   shortestPath(arr, m ,n-1 ) ,   shortestPath(arr, m-1, n )  ) + arr[m][n]
+
+
+arr = [
+  [1,3,1],
+  [1,5,1],
+  [4,2,1]
+]
+
+print shortestPath(arr, 2, 2 ) #7
+```
+
+> O(n*m) 的空间复杂度可以优化成 O(min(n, m)) 的空间复杂度的，不过这里先不讲
+
+## 4. 编辑距离
+
+问题描述: 给定两个单词 word1 和 word2，计算出将 word1 转换成 word2 所使用的最少操作数 。
+
+你可以对一个单词进行如下三种操作： 插入一个字符, 删除一个字符, 替换一个字符
+
+```python
+示例：
+输入: word1 = "horse", word2 = "ros"
+输出: 3
+解释:
+horse -> rorse (将 'h' 替换为 'r')
+rorse -> rose (删除 'r')
+rose -> ros (删除 'e')
+```
+
+还是老样子，按照上面三个步骤来。 并且我这里可以告诉你，90% 的字符串问题都可以用动态规划解决，并且90%是采用二维数组。
+
+1. 定义数组元素的含义
+    - 定义 `dp[i][j]`的含义为： **当字符串 word1 的长度为 i，字符串 word2 的长度为 j 时，将 word1 转化为 word2 所使用的最少操作次数为 dp[i][j]**.
+2. 找出关系数组元素间的关系式
+    - 
 
 
 
