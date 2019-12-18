@@ -69,9 +69,7 @@ afpd    29393 root    4u  IPv6 13706292      0t0  TCP *:afpovertcp (LISTEN)
 ```
 finder -> Go -> connect to Server 
 
-add ...
-
-afp://ip
+add "afp://<ip>", and choosing  `Guest` login
 ```
 
 ----
