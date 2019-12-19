@@ -27,6 +27,7 @@
 2. 自下而上
     - 先行求解所有可能用到的子问题，然后用其构造更大问题的解。
 
+> 80% 的动态规划题都可以画图，其中 80% 的题都可以通过画图一下子知道怎么优化。
 
 # 案例
 
@@ -215,7 +216,53 @@ rose -> ros (删除 'e')
 1. 定义数组元素的含义
     - 定义 `dp[i][j]`的含义为： **当字符串 word1 的长度为 i，字符串 word2 的长度为 j 时，将 word1 转化为 word2 所使用的最少操作次数为 dp[i][j]**.
 2. 找出关系数组元素间的关系式
-    - 
+    - 如果 word1[:i] == word2[:j] ,   那么 `dp[i][j] = dp[i-1][j-1]` 
+    - 如果 word1[:i] != word2[:j] ， 那么
+        1. 如果 替换word1[i]相等, `dp[i][j] = dp[i-1][j-1] + 1` 
+        2. 如果 word1末尾插入字符后相等, `dp[i][j] = dp[i][j-1] + 1` 
+        3. 如果 删除word1[i]后相等, `dp[i][j] = dp[i-1][j] + 1` 
+    - 所以:
+        - `dp[i][j] = min(dp[i-1][j-1]，dp[i][j-1]，dp[[i-1][j]]) + 1;`
+3. 找出初始值
+    - i,j == 0 的情况，要转换为另外一个字符串，就只能不停的删除，或插入. 
+
+
+```python
+def memoize(f):
+    memo = {}
+    def helper(w1,w2, a,b):
+        x = "{},{},{},{}".format(w1,w2, a,b )
+        if x not in memo:
+            memo[x] = f(w1,w2, a,b)
+        return memo[x]
+    return helper
+
+@memoize
+def minOps( word1, word2 , i,j ) :
+    if i < 0 :
+        i = len(word1)
+    if j < 0 :
+        j = len(word2)
+
+    if i == 0 :
+        return j 
+    elif j == 0 :
+        return i 
+
+    if word1[i-1] == word2[j-1] :
+        return minOps( word1,word2, i-1,j-1 )
+    else:
+        return min( minOps( word1, word2 , i-1, j-1 ), minOps( word1, word2 , i, j-1 ), minOps( word1, word2 , i-1, j )  ) + 1
+
+
+print minOps(   "horse" , "ros", -1,-1 ) #3
+print minOps( "ros" , "horse", -1,-1) #3
+print minOps(   "assume" , "assumption", -1,-1  ) #5
+```
+
+----
+
+
 
 
 
