@@ -10,10 +10,10 @@
 When you’re writing code for computing the Softmax function in practice, the intermediate terms efyi and e<sup>f</sup>  may be very large due to the exponentials.
 
 ```python
->>> def softmax( f ):
-...     # Bad: Numeric problem, potential blowup
-...     return np.exp(f) / np.sum(np.exp(f))
-...
+def softmax( f ):
+    # Bad: Numeric problem, potential blowup
+    return np.exp(f) / np.sum(np.exp(f))
+    
 >>>
 >>> softmax( np.array([123, 456, 789])  )
 __main__:3: RuntimeWarning: overflow encountered in exp
@@ -50,4 +50,18 @@ array([  1.26641655e-14,   5.60279641e-09,   9.99999994e-01])
 
 [cs231n softmax notes](http://cs231n.github.io/linear-classify/#softmax)
 
+
+## VS Sigmoid 
+
+Sigmoid function:  
+
+
+```python
+def sigmoid(X):
+   return 1/(1+np.exp(-X))
+```
+
+In the case of two actions, if the preference value of the actions is a and b,  a≥b.  Then ,
+
+![](../imgs/softmax-sigmoid.gif)
 
