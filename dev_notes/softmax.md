@@ -24,7 +24,7 @@ Notice that if we multiply the top and bottom of the fraction by a constant C an
 
 ![](../imgs/softmax4.gif) 
 
-We are free to choose the value of C. This will not change any of the results.  
+We are free to choose the value of C. This will not change any of the results. That is , only the relative difference of one action over another is important.
 
 ```python
 >>> softmax( np.array([12,25,44]) )
