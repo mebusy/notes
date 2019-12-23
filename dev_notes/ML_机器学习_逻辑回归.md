@@ -70,7 +70,7 @@ h(x) = g(θᵀx)
 
 其中,
 
-![](http://latex.codecogs.com/gif.latex?g%28z%29=%5Cfrac%7B1%7D%7B1&plus;%20e%5E%7B-z%7D%7D)
+![](../imgs/sigmoid.gif)
 
 完整的假设函数如下：
 
