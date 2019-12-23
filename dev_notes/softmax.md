@@ -38,11 +38,11 @@ A common choice for C is to set logC=−max(f). This simply states that we shoul
 
 
 ```python
->>> def softmax( f ):
-...     # instead: first shift the values of f so that the highest number is 0:
-...     f -= np.max(f) # f becomes [-666, -333, 0]
-...     return np.exp(f) / np.sum(np.exp(f))  # safe to do, gives the correct answer
-... 
+def softmax( f ):
+    # instead: first shift the values of f so that the highest number is 0:
+    f -= np.max(f) # f becomes [-666, -333, 0]
+    return np.exp(f) / np.sum(np.exp(f))  # safe to do, gives the correct answer
+
 >>> softmax( np.array([12,25,44]) )
 array([  1.26641655e-14,   5.60279641e-09,   9.99999994e-01])
 ```
