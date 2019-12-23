@@ -61,7 +61,7 @@
  10. [how alphazero works](https://github.com/mebusy/notes/blob/master/alphazero.md)
 
 
-**机器学习**
+**Old article**
 
  1. [scipy 统计和随机数](https://github.com/mebusy/notes/blob/master/dev_notes/ML-1.5.6%20scipy%20%E7%BB%9F%E8%AE%A1%E5%92%8C%E9%9A%8F%E6%9C%BA%E6%95%B0.md) 
  2. [scipy 稀疏矩阵](https://github.com/mebusy/notes/blob/master/dev_notes/ML-2.5%20Sparse%20Matrices%20in%20SciPy.md) 
