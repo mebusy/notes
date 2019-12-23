@@ -7,7 +7,7 @@
 
 ## Practical issues: Numeric stability
 
-When you’re writing code for computing the Softmax function in practice, the intermediate terms efyi and e<sup>f</sup>  may be very large due to the exponentials.
+When you’re writing code for computing the Softmax function in practice, the intermediate terms e<sup>f</sup>  may be very large due to the exponentials.
 
 ```python
 def softmax( f ):
@@ -51,7 +51,7 @@ array([  1.26641655e-14,   5.60279641e-09,   9.99999994e-01])
 [cs231n softmax notes](http://cs231n.github.io/linear-classify/#softmax)
 
 
-## VS Sigmoid 
+## Softmax & Sigmoid 
 
 Sigmoid function:
 
@@ -63,11 +63,13 @@ def sigmoid(X):
    return 1/(1+np.exp(-X))
 ```
 
-In the case of two actions, if the preference value of the actions is a and b,  a≥b.  Then ,
+What is the softmax distribution in case of 2 weights [a,b] ?
+
+Suppose a≥b, Then:
 
 ![](../imgs/softmax-sigmoid.gif)
 
-Yes, the soft-max distribution is the same as that given by the sigmoid
+Yes, the soft-max distribution is the same as that given by the sigmoid.
 
 ```python
 >>> softmax( np.array([14,12]) )
