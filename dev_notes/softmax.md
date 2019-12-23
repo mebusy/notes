@@ -53,7 +53,9 @@ array([  1.26641655e-14,   5.60279641e-09,   9.99999994e-01])
 
 ## VS Sigmoid 
 
-Sigmoid function:  
+Sigmoid function:
+
+![](../imgs/sigmoid.gif)
 
 
 ```python
@@ -64,4 +66,15 @@ def sigmoid(X):
 In the case of two actions, if the preference value of the actions is a and b,  a≥b.  Then ,
 
 ![](../imgs/softmax-sigmoid.gif)
+
+Yes, the soft-max distribution is the same as that given by the sigmoid
+
+```python
+>>> softmax( np.array([14,12]) )
+array([ 0.88079708,  0.11920292])
+>>> sigmoid( 12-14 )
+0.11920292202211755
+```
+
+
 
