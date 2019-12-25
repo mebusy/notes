@@ -423,6 +423,12 @@ def __init__(self) :
 ```
 
 
+### numpy argmax tie breaking 
+
+```python
+b = np.array( [0,1,1] )
+np.random.choice(np.where(b == b.max())[0])
+```
 
 ----------
 
