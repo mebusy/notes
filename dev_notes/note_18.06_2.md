@@ -813,6 +813,44 @@ It's symmtrix.
 
 ## 26.
 
+### Complexo
+
+The Fourier Matrix is the most important complex matrix.  It's the matrix that we need in Fourier transform.  
+
+And the really special thing is the fast Fourier transform (FFT). It's being used in a thousand places. How do I mulitply fast by that matrix? 
+
+Normally, multiplications by nxn matrix would be O(n²).  The FFT's idea reduces this n² down to nlog₂n. 
+
+### Complex Vectors , length
+
+zᵀz is no good.  Doing that inner productio won't give me the right thing.
+
+Because the length square should be positive, but complex number may make it 0 or negative.
+
+What I really want is z̅ᵀz = |z|². 
+
+Here is a symbol to do both: zᴴz.   H stands for Hermite. 
+
+**Inner product** of complex vector:  y̅ᵀx.
+
+### Complex Matrices
+
+Symmetric Aᵀ=A  is no good if A is complex. 
+
+right version:  A̅ᵀ=A.   The diagonal should be real, and the other entries should be conjugate.  Hermitian matrix :
+
+```octave
+A =
+   2        3 + 1i
+   3 - 1i   5 
+```
+
+12:00
+
+
+### Discrete Fourier
+
+### Fast Transform
 
 
 
