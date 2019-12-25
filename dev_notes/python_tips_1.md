@@ -419,7 +419,7 @@ re.sub(r'(foo)', r'\g<1>123', 'foobar')
 
 ```python
 def __init__(self) :
-    super(self.__class__ , self).__init__()
+    super( <CLASS> , self).__init__()
 ```
 
 
