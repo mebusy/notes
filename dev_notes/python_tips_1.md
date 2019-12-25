@@ -414,6 +414,16 @@ re.sub(r'(foo)', r'\1123', 'foobar')
 re.sub(r'(foo)', r'\g<1>123', 'foobar')
 ```
 
+
+###  call super class constructor
+
+```python
+def __init__(self) :
+    super(self.__class__ , self).__init__()
+```
+
+
+
 ----------
 
 
