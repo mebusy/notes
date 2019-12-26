@@ -1,5 +1,3 @@
-[简要笔记](dev_notes/note_readme.md)
-
 <h2 id="041d1704a45f737ddaa4380bcf1dfcc7"></h2>
 
 -----
@@ -185,5 +183,8 @@ a | b | c | d
 
  - show html on github
     - `http://htmlpreview.github.io/?xxx/xxxxx.html`
+
+
+[简要笔记](dev_notes/note_readme.md)
 
 
