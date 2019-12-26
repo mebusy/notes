@@ -833,11 +833,12 @@ Here is a symbol to do both: zᴴz.   H stands for Hermite.
 
 **Inner product** of complex vector:  y̅ᵀx.
 
+
 ### Complex Matrices
 
 Symmetric Aᵀ=A  is no good if A is complex. 
 
-right version:  A̅ᵀ=A.   The diagonal should be real, and the other entries should be conjugate.  Hermitian matrix :
+right version:  A̅ᵀ=A.   The diagonal should be real, and the other entries should be conjugate.  Hermitian matrix :  Aᴴ=A
 
 ```octave
 A =
@@ -845,7 +846,51 @@ A =
    3 - 1i   5 
 ```
 
-12:00
+Unitary matrix: like an orthogonal matrix, nxn matrix with orthonormal columns, perpendicular unit columns, perpendicularity is computed by **conjugate**. Fourier matrix happens to be one of these guys. 
+
+1. the 1st column fills with 1
+2. the 2nd column is 1, w, w², ... wⁿ⁻¹
+3. the 3rd column is the power of 2nd column: 1,w²,w⁴,...,w²⁽ⁿ⁻¹⁾
+4. more columns ...
+5. the last colun is 1,wⁿ⁻¹, w²⁽ⁿ⁻¹⁾, ..., w⁽ⁿ⁻¹⁾⁽ⁿ⁻¹⁾
+
+
+This is a symmetric matrix , not in perfect way, and 
+
+(F<sub>n</sub>)<sub>ij</sub> = wⁱʲ ,  i,j=0,...,n-1
+
+Here, w is a special number.
+
+wⁿ=1.
+
+w = e<sup>i2π/n</sup> = ~~cos 2π/n + i·sin 2π/n~~
+
+w is no the unit circle of complex plane. for example ,if n = 6, then w lands on unit circle ( 1/6 circle, 60 degree ). 
+
+Where is w² ? the angle is doubled ( 2/6 circle, 120 degree )
+
+if n =4 , w = e<sup>iπ/2</sup> = i .
+
+```
+F₄ = 
+
+  1  1  1  1
+  1  i  i² i³
+  1  i² i⁴ i⁶
+  1  1³ i⁶ i⁹
+
+   = 
+
+  1  1  1  1
+  1  i -1 -i
+  1 -1  1 -1
+  1 -i -1  i
+```
+
+This matrix is so remarkable.   It's the 4x4 matrix that comes into the 4 point Fourier transform. The inverse matrix will be a nice matrix also. 
+
+
+
 
 
 ### Discrete Fourier
