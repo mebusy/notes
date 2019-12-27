@@ -698,7 +698,8 @@ vimgrep /pattern/gj path
         - A very common macro is `{!}fmt` (reformat the current paragraph). 
  - Another useful ex command is `:so` (short for `:source`). 
     - This reads the contents of a file as *a series of commands*. 
-
+ - The @ command is probably the most obscure vi command. 
+    - @ executes the contents of a register as if it were a *vi* or *ex* command.
 
 
 ---
