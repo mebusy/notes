@@ -253,6 +253,11 @@ $ kubectl get nodes \
         - `ls -Sl`
         - `du -m <path> | sort -nr | head -n 10`
             - `du -shxm * | sort -nr | head -n 10`
+    - 查看某个 目录占用的磁盘空间
+        - 
+        ```bash
+        du -sh <your dictory>
+        ```
 
 <h2 id="77563c3ed75c144a6617a7077a1b4771"></h2>
 
