@@ -51,21 +51,17 @@
 
 <h2 id="af2d164baa01dda742bb0b4c677c09e9"></h2>
 
------
------
 
 # 1. RL and MDP
 
 <h2 id="acde297a6e27ea7e53029241c5a6305f"></h2>
 
------
 
 ## 1.2 Learning Sequential Decision Making
 
 
 <h2 id="035137860e7e4247d74a85eb0e10061a"></h2>
 
------
 
 ### Approaching Sequential Decision Making
 
@@ -76,7 +72,6 @@
 
 <h2 id="150ab469734e6f0ae691285c4974a33d"></h2>
 
------
 
 ### Online versus Off-line Learning
 
@@ -85,7 +80,6 @@
 
 <h2 id="5b396ab89ba35c4f1ff46e3d8becb7a2"></h2>
 
------
 
 ### Credit Assignment
 
@@ -101,7 +95,6 @@ Is an action  ”good” or ”bad” ? The real problem is that the effect of a
 
 <h2 id="27ec3d29b7bcd3593ac29264ab236bdf"></h2>
 
------
 
 ## 1.5 Solving MDP
 
@@ -118,13 +111,11 @@ Is an action  ”good” or ”bad” ? The real problem is that the effect of a
 
 <h2 id="46d9ab4d1fcb0a9d9f3a6a11cae542ed"></h2>
 
------
 
 ## 1.7 Reinforcement Learning: Model-Free Solution Techniques
 
 <h2 id="363f570a4b4a99bf32366e3aad0c8f60"></h2>
 
------
 
 ### 1.7.1 Temporal Difference Learning
 
@@ -132,7 +123,6 @@ TD methods learn their value estimates based on estimates of other values, which
 
 <h2 id="bbf66ab09ee416e47152f13db922551d"></h2>
 
------
 
 #### TD(0)
 
@@ -140,7 +130,6 @@ estimates V<sup>π</sup> for some policy π.
 
 <h2 id="939510ea3b0ac054a3e5b63f0faca36f"></h2>
 
------
 
 #### Q-learning
 
@@ -152,7 +141,6 @@ Q-learning is exploration-insensitive.  It means that it will converge to the op
 
 <h2 id="e31b2edb8e4e3560a5424ba0e582d7b6"></h2>
 
------
 
 #### SARSA
 
@@ -166,7 +154,6 @@ estimate Q-value functions.  But a *on-policy* algorithm.
 
 <h2 id="9259dde194f9f6a2651f98dd5e959dc6"></h2>
 
------
 
 #### Actor-Critic Learning
 
@@ -179,7 +166,6 @@ estimate Q-value functions.  But a *on-policy* algorithm.
 
 <h2 id="38e0a0b5ffe19b5022b9d1cd78a7cf83"></h2>
 
------
 
 #### Average Reward Temporal Difference Learning
 
@@ -187,7 +173,6 @@ Q-learning can also be adapted to the average-reward framework.  for example in 
 
 <h2 id="05607551050dfbfcb72ed41f4b12dbf0"></h2>
 
------
 
 ### 1.7.2 Monte Carlo Methods
 
@@ -200,8 +185,6 @@ Q-learning can also be adapted to the average-reward framework.  for example in 
 
 <h2 id="037c0990be192a7a4e6385413deff87e"></h2>
 
------
------
 
 # 2. Batch Reinforcement Learning
 
@@ -209,8 +192,6 @@ Whereas basic algorithms like Q-learning usually need many interactions until co
 
 <h2 id="3168b44be3ae0f4c41acbb2fbacc0290"></h2>
 
------
------
 
 # 7. Reinforcement Learning in Continuous State and Action Spaces
 
@@ -220,13 +201,11 @@ The full problem requires an algorithm to learn how to choose actions from an in
 
 <h2 id="2fba89f932af64927f15097b7908a622"></h2>
 
------
 
 ## 7.1 Introduction
 
 <h2 id="06f2eb2da398a25fb9bbc9afc1dd8626"></h2>
 
------
 
 ### 7.1.1 Markov Decision Processes in Continuous Spaces
 
@@ -253,31 +232,26 @@ The full problem requires an algorithm to learn how to choose actions from an in
 
 <h2 id="9ba5dcdc6e9625471b8ed54d7bfde991"></h2>
 
------
 
 ### 7.1.2 Methodologies to Solve a Continuous MDP
 
 <h2 id="7c91bc91f487f36b070c97574c0642a9"></h2>
 
------
 
 ## 7.2 Function Approximation
 
 <h2 id="8bc449671e6e584e3e9a0b00137060a7"></h2>
 
------
 
 ### 7.2.1 Linear Function Approximation
 
 <h2 id="d8d28f5475c9fb51d9f6eae1eb516d95"></h2>
 
------
 
 #### 7.2.1.1 Discretizing the State Space: Tile Coding
 
 <h2 id="12c749612dfc3ec9a6e2b6e3ca7b190b"></h2>
 
------
 
 #### 7.2.1.2 Issues with Discretization
 
@@ -304,7 +278,6 @@ The full problem requires an algorithm to learn how to choose actions from an in
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
------
 
 ## TODO
 
@@ -312,20 +285,16 @@ The full problem requires an algorithm to learn how to choose actions from an in
 
 <h2 id="726734763c46379e0d6c951a173b07da"></h2>
 
------
------
 
 # 9 Hierarchical Approaches
 
 <h2 id="986e38b94b315a13ccb8d292cd4fc774"></h2>
 
------
 
 ## 9.1 Introduction
 
 <h2 id="2c4a889f21aa7b3b1377a80bdff49537"></h2>
 
------
 
 ### Four-Room Task
 
@@ -350,13 +319,11 @@ The full problem requires an algorithm to learn how to choose actions from an in
 
 <h2 id="e0eb39251dc1255d15e6f6717f876367"></h2>
 
------
 
 ## 9.2 Background
 
 <h2 id="7a196e8a35cbe33015f93789e7322a9b"></h2>
 
------
 
 ### 9.2.1 Abstract Actions
 
@@ -368,7 +335,6 @@ The full problem requires an algorithm to learn how to choose actions from an in
 
 <h2 id="c0fd61bff8d135abe31168b5ce0eecbd"></h2>
 
------
 
 ### 9.2.2 Semi-Markov Decision Problems
 
@@ -399,7 +365,6 @@ The full problem requires an algorithm to learn how to choose actions from an in
 
 <h2 id="4ab5f1b218bc0998df755271151fe6c1"></h2>
 
------
 
 ### 9.2.3 Structure
 
@@ -417,7 +382,6 @@ Task Hierarchies 只是一个限制调用关系的结构。 和 subtask并没有
 
 <h2 id="1d8d72002e4937d1fd2707e0efc714be"></h2>
 
------
 
 ### 9.2.4 State Abstraction
 
@@ -441,7 +405,6 @@ Task Hierarchies 只是一个限制调用关系的结构。 和 subtask并没有
 
 <h2 id="4ddf06de46280d60a2f1acc0e058964d"></h2>
 
------
 
 ### 9.2.5 Value-Function Decomposition
 
@@ -459,7 +422,6 @@ Task Hierarchies 只是一个限制调用关系的结构。 和 subtask并没有
 
 <h2 id="4cceecb142bcb86ff97dfa1b59e1d70c"></h2>
 
------
 
 ### 9.2.6 Optimality
 
@@ -479,14 +441,12 @@ Task Hierarchies 只是一个限制调用关系的结构。 和 subtask并没有
 
 <h2 id="5870c8051d8f90dbc5ca54cd29b6624a"></h2>
 
------
 
 ## 9.3 Approaches to Hierarchical Reinforcement Learning (HRL)
 
  
 <h2 id="333e9924bda20bd6aae508c4a3beac0d"></h2>
 
------
 
 ### 9.3.3 MAXQ
 
@@ -580,8 +540,6 @@ Algorithm 18 performs  a depth-first search and returns both the value and best 
 
 <h2 id="b03dd5c4b689315a1e49434bb1e2f2d0"></h2>
 
------
------
 
 # Chapter 14 Game Theory and Multi-agent Reinforcement Learning
 
@@ -601,7 +559,6 @@ In these domains multi-agent learning is used, either because of the complexity 
 
 <h2 id="f699cce799d22a7e667845ac4cc4cec8"></h2>
 
------
 
 ## 14.1 Introduction
 
@@ -618,20 +575,16 @@ The problem will become  more complex if we assume a dynamic environment which r
 
 <h2 id="70efdf2ec9b086079795c442636b55fb"></h2>
 
------
------
 
 # 17
 
 <h2 id="821f385c528ba8559a8d2656bde7bbda"></h2>
 
------
 
 ## 17.3 Challenges of Applying Reinforcement Learning to Games
 
 <h2 id="159f060421a409495041a0d55aecaef2"></h2>
 
------
 
 ### 17.3.3 Source of Training Data
 
@@ -644,7 +597,6 @@ The problem will become  more complex if we assume a dynamic environment which r
 
 <h2 id="ea57817c9c272ae21f6d94ec0945dd20"></h2>
 
------
 
 #### 17.3.3.1 Self-play
 
@@ -657,7 +609,6 @@ The problem will become  more complex if we assume a dynamic environment which r
 
 <h2 id="4fe9a79baec7bf729b53902439061b00"></h2>
 
------
 
 #### 17.3.3.2 Tutoring
 
@@ -667,7 +618,6 @@ The problem will become  more complex if we assume a dynamic environment which r
 
 <h2 id="4508786cfe5273ad5725fdcef2d255c4"></h2>
 
------
 
 #### 17.3.3.3 Other Training Strategies
 
@@ -680,7 +630,6 @@ The problem will become  more complex if we assume a dynamic environment which r
 
 <h2 id="77ca6aeb81fb6daee0629389be2d82b3"></h2>
 
------
 
 #### 17.3.4 Dealing with Missing Information
 

@@ -43,8 +43,6 @@
 
 <h2 id="387f728bb737b1de0668033d5bc04a2c"></h2>
 
------
------
 
 # Redis 设计与实现
 
@@ -63,8 +61,6 @@ docker run -it --link redis:redis --rm redis redis-cli -h redis -p 6379
 
 <h2 id="ce87533fbd746b8a6487078028fd3162"></h2>
 
------
------
 
 # 第一章
 
@@ -75,8 +71,6 @@ docker run -it --link redis:redis --rm redis redis-cli -h redis -p 6379
 
 <h2 id="c3e17e255aaa5c90ba15bf6b7b8dd4b6"></h2>
 
------
------
 
 # 第二章 简单动态字符串
 
@@ -91,7 +85,6 @@ docker run -it --link redis:redis --rm redis redis-cli -h redis -p 6379
 
 <h2 id="0f2451d5f33972e84f60e9ce6d71de9b"></h2>
 
------
 
 ## SDS的定义
 
@@ -124,13 +117,11 @@ struct sdshdr {
 
 <h2 id="b9a03087283735023631acf642a4b59f"></h2>
 
------
 
 ## 2.2 SDS 与字符串的区别
 
 <h2 id="b24ce3884a7989b428894b5b9e6215ce"></h2>
 
------
 
 ### 2.2.1 常数复杂度 获取字符串长度
 
@@ -141,7 +132,6 @@ struct sdshdr {
 
 <h2 id="5aea993c723bbb93af487fc4a44f27b5"></h2>
 
------
 
 ### 2.2.2 杜绝缓冲区溢出
 
@@ -151,7 +141,6 @@ struct sdshdr {
 
 <h2 id="50a3e42afacfa5113a5ef835f81a59d7"></h2>
 
------
 
 ### 2.2.3 减少修改字符串时带来的内存重分配次数
 
@@ -173,7 +162,6 @@ struct sdshdr {
 
 <h2 id="fe16b5423e86dd95dfb418659da3fa7b"></h2>
 
------
 
 ### 2.2.4 二进制安全
 
@@ -182,7 +170,6 @@ struct sdshdr {
 
 <h2 id="4f424f0cb00766fc9e0258ff7fb3e829"></h2>
 
------
 
 ### 2.2.5 兼容部分C字符串函数
 
@@ -193,8 +180,6 @@ struct sdshdr {
 
 <h2 id="439d12ff1033af4e6bf3e78f2128f30a"></h2>
 
------
------
 
 # 第三章 链表
 
@@ -202,7 +187,6 @@ struct sdshdr {
 
 <h2 id="05ac251d0b38c1e50cbef0087d9fd554"></h2>
 
------
 
 ## 3.1 链表和链表节点的实现
 
@@ -240,8 +224,6 @@ typedef struct list {
 
 <h2 id="8f0b77251766e156d10a62eda7aee595"></h2>
 
------
------
 
 # 第四章   字典
 
@@ -250,7 +232,6 @@ typedef struct list {
 
 <h2 id="44643e64f92d05a72f45815ae337e5b6"></h2>
 
------
 
 ## 4.1 字典的实现
 
@@ -258,7 +239,6 @@ typedef struct list {
 
 <h2 id="e7dc36fc51c2f9660dfc05e74e4ec583"></h2>
 
------
 
 ### 4.1.1 哈希表
 
@@ -283,7 +263,6 @@ typedef struct dictht {
 
 <h2 id="fce41380aa44ee19ac351ee9d7a59085"></h2>
 
------
 
 ### 4.1.2 哈希表节点
 
@@ -307,7 +286,6 @@ typedef struct dictEntry {
 
 <h2 id="841ac5fd6bd63c08630b8cc0a75dcbbe"></h2>
 
------
 
 ### 4.1.3 字典
 
@@ -332,8 +310,6 @@ typedef struct dict {
 
 <h2 id="2612dc58f20212db2dcff012cd5b8617"></h2>
 
------
------
 
 # 第五章 跳跃表
 
@@ -348,8 +324,6 @@ typedef struct dict {
 
 <h2 id="c10c5d64f50d3fb431cbc1db2aae8cff"></h2>
 
------
------
 
 # 第六章 整数集合
 
@@ -364,7 +338,6 @@ redis:6379> OBJECT ENCODING numbers
 
 <h2 id="0a80aebc42b85969960d3c5d956bceff"></h2>
 
------
 
 ## 6.1 intset 的实现
 
@@ -387,7 +360,6 @@ typedef struct intset {
 
 <h2 id="08af8997852f2553061109773c143818"></h2>
 
------
 
 ## 6.2 升级
 
@@ -400,8 +372,6 @@ typedef struct intset {
 
 <h2 id="f5e6a4cb0a45c892103057b5310288b2"></h2>
 
------
------
 
 # 第七章 压缩列表
 
@@ -411,7 +381,6 @@ typedef struct intset {
 
 <h2 id="a904d0ab3439a7e3d3fd7ecd05ccbbb5"></h2>
 
------
 
 ## 7.1 压缩列表的构成
 
@@ -421,7 +390,6 @@ typedef struct intset {
 
 <h2 id="b0e63c6b769b17f06bfb543a76e01cc2"></h2>
 
------
 
 ## 第八章 对象
 
@@ -434,7 +402,6 @@ typedef struct intset {
 
 <h2 id="947cb22bf41ee653483c5d1d3f423fd3"></h2>
 
------
 
 ## 8.1 对象的类型与编码
 
@@ -453,7 +420,6 @@ typedef struct redisObject {
 
 <h2 id="d7cd82e64506ca8b3ab1f7f11af1a0b3"></h2>
 
------
 
 ### 8.1.1 类型
 
@@ -476,7 +442,6 @@ string
 
 <h2 id="21d79216e0e441f46a071bcd88345608"></h2>
 
------
 
 ### 8.1.2 编码和底层实现
 
@@ -528,7 +493,6 @@ redis:6379> OBJECT ENCODING msg
 
 <h2 id="ae2f50c1db56f741c9bfd0999dedc44d"></h2>
 
------
 
 ## 8.2 字符串对象
 
@@ -576,7 +540,6 @@ redis:6379> OBJECT ENCODING story
 
 <h2 id="5a404c7286437e234b57849758d1a9b4"></h2>
 
------
 
 ## 8.3 列表对象
 
@@ -588,7 +551,6 @@ redis:6379> OBJECT ENCODING story
 
 <h2 id="cee4aea24f032c607571fbc591125301"></h2>
 
------
 
 ## 8.4 哈希对象
 
@@ -601,7 +563,6 @@ redis:6379> OBJECT ENCODING story
 
 <h2 id="501265bd3c5a14475cb267973a51f749"></h2>
 
------
 
 ## 8.5 集合对象
 
@@ -612,7 +573,6 @@ redis:6379> OBJECT ENCODING story
 
 <h2 id="592e43fbe94cfbf03322f3b26ef010cf"></h2>
 
------
 
 ## 8.6 有序集合对象
 
@@ -624,7 +584,6 @@ redis:6379> OBJECT ENCODING story
 
 <h2 id="9c04bfc98d085dc31480a7eee7b85a40"></h2>
 
------
 
 ## 8.7 类型检查与命令多态
 
@@ -641,7 +600,6 @@ redis:6379> OBJECT ENCODING story
 
 <h2 id="e270c5e4384bbeeaf503b811edd3c14f"></h2>
 
------
 
 ### 8.7.1 类型检查的实现
 
@@ -651,7 +609,6 @@ redis:6379> OBJECT ENCODING story
 
 <h2 id="e378b5f1615057b62aac972540bbf4ea"></h2>
 
------
 
 ## 8.8 内存回收
 
@@ -670,7 +627,6 @@ typedef struct redisObject {
 
 <h2 id="cd5ef8edf476a73f609610fb36443aa7"></h2>
 
------
 
 ## 8.9 对象共享
 
@@ -694,7 +650,6 @@ redis:6379> OBJECT REFCOUNT A
 
 <h2 id="96dfd1728db8ce4dc55fad8c37ed1523"></h2>
 
------
 
 ## 8.10 对象的空转时长
 

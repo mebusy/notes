@@ -25,14 +25,11 @@
 
 <h2 id="5e36152a2ca8486c6434db9265f0a638"></h2>
 
------
------
 
 # 工作 working Tips
 
 <h2 id="a96aeb959a8752f7651b158432def768"></h2>
 
------
 
 ## curl, git use proxy server
 
@@ -43,7 +40,6 @@ export https_proxy=https://username:password@IP_or_DOMAIN:3128
 
 <h2 id="b679a9a1692cc49ba9e914809bbe4f66"></h2>
 
------
 
 ## curl 对某些 url 不使用代理
 
@@ -53,7 +49,6 @@ curl -v --noproxy 127.0.0.1
 
 <h2 id="6e7f57f08bd46f2974f740a03f93d823"></h2>
 
------
 
 ## curl POST json
 
@@ -63,7 +58,6 @@ cmd =  'curl --noproxy 10.192.1.35  -H "Content-Type: application/json" -X POST 
 
 <h2 id="345083ba0f34a9b30e91bb1e37094517"></h2>
 
------
 
 ## telnet proxy
 
@@ -79,7 +73,6 @@ cmd =  'curl --noproxy 10.192.1.35  -H "Content-Type: application/json" -X POST 
 
 <h2 id="9158a77bfc692a7ddb411e8c41776b56"></h2>
 
------
 
 ## brew work with proxy
 
@@ -90,7 +83,6 @@ https_proxy=$http_proxy brew xxxx
 
 <h2 id="762fac82abbaaf86cfc10780f5b7cc58"></h2>
 
------
 
 ## pip install package with proxy
 
@@ -106,7 +98,6 @@ pip install PyYAML --proxy="https://127.0.0.1:3128"
 
 <h2 id="2dea1f148fc0810bfd87d46579674f7e"></h2>
 
------
 
 ## pip 使用国内源
 
@@ -116,7 +107,6 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple ...
 
 <h2 id="1bca9692962e3deeda270ab8db1b80f2"></h2>
 
------
 
 ## pip upgrade all outdated package
 
@@ -126,7 +116,6 @@ pip list --outdated | cut -d' ' -f1 | xargs pip install --upgrade
 
 <h2 id="24ef4c36ec66c15ef9f0c96fe27c0e0b"></h2>
 
------
 
 ## bazel 
 
@@ -138,7 +127,6 @@ sudo -E HTTP_PROXY=$http_proxy  HTTPS_PROXY=$https_proxy bazel
 
 <h2 id="19a991a87a69e4435918f98d2ffc8421"></h2>
 
------
 
 ## FileMerge
 
@@ -156,7 +144,6 @@ or
 
 <h2 id="0dcd3e0e4377857453bb9a2db4a20139"></h2>
 
------
 
 ## tcpkill
 
@@ -164,7 +151,6 @@ https://github.com/ggreer/dsniff
 
 <h2 id="16c9778b7075982cf3d39ff738d292f0"></h2>
 
------
 
 ## CentOS yum 无法更新 
 
@@ -177,7 +163,6 @@ yum upgrade
 
 <h2 id="0afd0f413908f4cc7cddd138dde0ddd6"></h2>
 
------
 
 ## Vbox CentOS instal Guest Addition
 
@@ -191,7 +176,6 @@ sh /media/cdrom/VBoxLinuxAdditions.run
 
 <h2 id="ca07600a3602fddc156831a6716fae12"></h2>
 
------
 
 ## Get Proxy Info
 
@@ -200,7 +184,6 @@ chrome: `chrome://net-internals/#proxy`
 
 <h2 id="93bc8417f2018ae4424cbad9060081fa"></h2>
 
------
 
 ## lldb 调试 Segment Fault on MacOSX
  
@@ -213,7 +196,6 @@ chrome: `chrome://net-internals/#proxy`
 
 <h2 id="dd3177fffb44df0088f08893f1e8b000"></h2>
 
------
 
 ## download youtube playlist
 
@@ -230,7 +212,6 @@ youtube-dl -c --write-auto-sub --sub-lang=en  -f 'bestvideo[ext=mp4]+bestaudio[e
 
 <h2 id="a86e10fc913cd54076f6a27289d1d713"></h2>
 
------
 
 ## re-download youtube auto sub
 
@@ -240,7 +221,6 @@ youtube-dl --write-auto-sub --skip-download --sub-lang=en  ...
  
 <h2 id="ac1edf8d7497b1d5b6039ad9656cdeee"></h2>
 
------
 
 ## ab testing 
 

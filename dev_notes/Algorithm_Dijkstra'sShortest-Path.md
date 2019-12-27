@@ -17,14 +17,11 @@
 
 <h2 id="26e3bfaa6f7cabafa5ca159b210d4d49"></h2>
 
------
------
 
 # Dijkstra's Shortest-Path
 
 <h2 id="9da49bac70bc04960fbddf1ef0a5d2d9"></h2>
 
------
 
 ## Dijkstra's Shortest-Path Algorithm
 
@@ -32,7 +29,6 @@
 
 <h2 id="ca071722757a16a38066ef54846aa6c3"></h2>
 
------
 
 ### Problem: Single-Source Shortest Paths
 
@@ -54,7 +50,6 @@ We'll make 2 assumptions for the lectures. One is really just for convenience. T
 
 <h2 id="1eaef9d12a746195ea15ef25ebc3a7c8"></h2>
 
------
 
 ### Why Another Shortest-Path Algorithm?
 
@@ -65,7 +60,6 @@ A: BFS works only in the special case where the length of every edge of the grap
 
 <h2 id="34460a35a20211ec1d40102cc5f52de5"></h2>
 
------
 
 ### Pseudo code
 
@@ -99,7 +93,6 @@ MainLoop idea 2
 
 <h2 id="ff7c0fcd6a31e735a61c001f75426961"></h2>
 
------
 
 ## Examples
 
@@ -111,7 +104,6 @@ MainLoop idea 2
 
 <h2 id="3e5d3e41b577901d52f5a80509aae808"></h2>
 
------
 
 ## Implementation and Running time
 
@@ -124,7 +116,6 @@ We can do better by not changing the algorithm but changing how we organize the 
 
 <h2 id="377e23358a8c1384601aa5401d0c7af4"></h2>
 
------
 
 ### Heap Review
 
@@ -139,7 +130,6 @@ Heaps are generally logically thought of as a complete binary tree, even though 
 
 <h2 id="6d07a1b2f36548f5400dad288e02b4f8"></h2>
 
------
 
 ### Use Heap to Speedup Dijkstra
 
@@ -168,7 +158,6 @@ Show as the pic, there are two different edges(I,II) whose tail is in X , and ha
 
 <h2 id="d52f64236fbf5cf269d2ab1ca15680bd"></h2>
 
------
 
 ### Maintaining the Invariants
 
@@ -196,7 +185,6 @@ when W extracted from heap( ie. added to X )
 
 <h2 id="e1c6f3377a2758270a95bc56571d46a5"></h2>
 
------
 
 ## Running Time Analysis
 

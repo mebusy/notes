@@ -31,14 +31,11 @@
 
 <h2 id="d6f637a63e7895f9421d593d67341644"></h2>
 
------
------
 
 ## Week 1
 
 <h2 id="2cdeeb8374a080a7972a9b075f99dcff"></h2>
 
------
 
 ### 1.1: Course Overview 
 
@@ -50,7 +47,6 @@ Recommended Textook/Notes
 
 <h2 id="cf9294220a0762a8cececdf70c4ea74d"></h2>
 
------
 
 ### 1.2: Introduction to Heterogeneous Parallel Computing 
 
@@ -59,7 +55,6 @@ Recommended Textook/Notes
 
 <h2 id="aa7c7d5b4c30ec637fd00228d3ea2c8a"></h2>
 
------
 
 #### CPU vs GPU
 
@@ -75,7 +70,6 @@ Recommended Textook/Notes
 
 <h2 id="6c88a57a4b326d3113cd17afa653818c"></h2>
 
------
 
 #### CPU: Latency Oriented Design
 
@@ -89,7 +83,6 @@ Recommended Textook/Notes
 
 <h2 id="1e9ce0b6e6533573d50acdf2f1218504"></h2>
 
------
 
 #### GPU : Throughput Oriented Design
 
@@ -105,7 +98,6 @@ Recommended Textook/Notes
 
 <h2 id="b9676d64f54e4404bc56bf2aa97ce266"></h2>
 
------
 
 #### Winning Applications Use Both CPU and GPU
 
@@ -117,7 +109,6 @@ Recommended Textook/Notes
 
 <h2 id="f5a7578445f570db14a004a201c288cc"></h2>
 
------
 
 ### 1.3: Portability and Scalability in Heterogeneous Parallel Computing
 
@@ -135,7 +126,6 @@ Keys to Software Cost Control:
 
 <h2 id="58169605407651f9f0bc706aaf8f8935"></h2>
 
------
 
 ### 1.4: Introduction to CUDA, Data Parallelism and Threads
 
@@ -153,7 +143,6 @@ A very simple example is vector addition. When we add 2 vector together, the ele
  
 <h2 id="f9312ad800b52c07be7869572e85b704"></h2>
 
------
 
 #### Basic concept of CUDA
 
@@ -219,7 +208,6 @@ Multidimensional index is very convenient for image processing, or solve three-d
 
 <h2 id="c345dcdd0f1480d0615c23660e8ead7f"></h2>
 
------
 
 ### 1.5 Introduction to CUDA, Memory Allocation and Data Movement API Functions
 
@@ -261,7 +249,6 @@ Instead of performing the actual computation, this function is actually going to
 
 <h2 id="647c4e8c47a9d998a27047d5905c78b8"></h2>
 
------
 
 #### Partial overview of CUDA memories
 
@@ -280,7 +267,6 @@ All threads will have access to a shared global memory. It's important that the 
 
 <h2 id="bee998a5f82c060231c5da13b586e5da"></h2>
 
------
 
 #### CUDA Device Memory Management API 
 
@@ -299,7 +285,6 @@ All threads will have access to a shared global memory. It's important that the 
 
 <h2 id="d3c85cba12bf184449321d9fcf98e23d"></h2>
 
------
 
 #### Host-Device Data Transfer API
 
@@ -337,7 +322,6 @@ In general , when we actually try to get performance from this kind of code, we 
 
 <h2 id="249193c955d9a399e5b6d394f125f4ca"></h2>
 
------
 
 #### Check Error
 
@@ -356,7 +340,6 @@ if (err != cudaSuccess) {
    
 <h2 id="c7516ab5ae95323c88e6ba2f6c5a9e87"></h2>
 
------
 
 ### 1.6: Introduction to CUDA, Kernel-Based SPMD Parallel Programming
 
@@ -364,7 +347,6 @@ if (err != cudaSuccess) {
 
 <h2 id="cc0101d6edf97bca2b29489bd7690fb8"></h2>
 
------
 
 #### Vector Addition Kernel *Device Code*:
 
@@ -390,7 +372,6 @@ This is the vector addition kernel that we will eventually be launching from the
 
 <h2 id="0a3b4fb126a9ddf3c6bad83a6ee3fa2a"></h2>
 
------
 
 #### Vector Addition Kernel *Host Code*:
 
@@ -418,7 +399,6 @@ int vecAdd(float* h_A, float* h_B, float* h_C , int n) {
 
 <h2 id="8703cc93226ad97ddcc6875e0769e4b1"></h2>
 
------
 
 #### More on kernel launch *Host Code*:
 
@@ -436,7 +416,6 @@ int vecAdd(float* h_A, float* h_B, float* h_C , int n) {
  
 <h2 id="23b200f11b54fdd1900c87c76b1d1728"></h2>
 
------
 
 #### Kernel execution in a nutshell
 
@@ -448,7 +427,6 @@ All the threads have built-in variables: blockIdx, blockDim and threadIdx , ther
 
 <h2 id="5fa4b3ab59c14a578c48d78a5822a0e8"></h2>
 
------
 
 #### More on CUDA Function Declarations
 
@@ -468,7 +446,6 @@ All the threads have built-in variables: blockIdx, blockDim and threadIdx , ther
 
 <h2 id="923b0c37c56ea509b884446ce8f3e4b5"></h2>
 
------
 
 #### Compile A CUDA Program
 
@@ -485,7 +462,6 @@ So then both types of executables will be used for this Heterogeneous Computing 
 
 <h2 id="e1042c6b86d63348a1cf26537f0f9c21"></h2>
 
------
 
 ### 1.7: Kernel-based Parallel Programming, Multidimensional Kernel Configuration
 
@@ -495,7 +471,6 @@ This picture was shown earlier , and we assume that user has specified that we'r
 
 <h2 id="a5760ea6ff2d89622a671912f7dccbae"></h2>
 
------
 
 #### Precessing a Picture with a 2D Grid
 
@@ -535,7 +510,6 @@ PictureKernel <<< DimGrid , DimBlock >>> (d_Pin , d_Pout , m,n) ;
 
 <h2 id="a12044933b22603657e15aa252c723b1"></h2>
 
------
 
 ### 1.8: Kernel-based Parallel Programming, Basic Matrix-Matrix Multiplication
 

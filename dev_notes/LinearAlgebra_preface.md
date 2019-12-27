@@ -9,8 +9,6 @@
 
 <h2 id="5cf06822087ff10dec2ac74cf1e20d30"></h2>
 
------
------
 
 # Preface
 
@@ -29,7 +27,6 @@ The interplay of columns and rows is the heart of linear algebra. Here are 4 of 
 
 <h2 id="f2864cfd076d07529c709b68323c5f0a"></h2>
 
------
 
 ## Web Pages
 
@@ -43,7 +40,6 @@ http://ocw.mit.edu/faculty/gilbert-strang/
  
 <h2 id="651012eed3bc0d1a932a2738caba9457"></h2>
 
------
 
 ## Structure of the Course
 

@@ -18,20 +18,16 @@
 
 <h2 id="31a8f3f664a49f0116e7d7ceacaff56c"></h2>
 
------
------
 
 # 2.4 PRIORITY QUEUES
 
 <h2 id="01f70acef6efe0e1e07b6c8847ae493a"></h2>
 
------
 
 ## binary heaps
 
 <h2 id="45c2a6499668ae8a669f5f812b56379a"></h2>
 
------
 
 ### Complete binary tree
 
@@ -40,7 +36,6 @@
 
 <h2 id="05a360d5d6f9939aabfd6bd00823d80e"></h2>
 
------
 
 ### Binary heap representations
 
@@ -57,7 +52,6 @@
 
 <h2 id="2e582e415db1ab1e6e72b8278b9385e1"></h2>
 
------
 
 ### Binary heap properties
 
@@ -70,7 +64,6 @@
 
 <h2 id="8bff03ac1b55987683317d94044219d1"></h2>
 
------
 
 ### Promotion in a heap
 
@@ -99,7 +92,6 @@ private void swim(int k) {
 
 <h2 id="cb0565d93960f3556f5f0ca7c24c3134"></h2>
 
------
 
 ### Insertion in a heap
 
@@ -120,7 +112,6 @@ public void insert(Key x) {
 
 <h2 id="32a8207179f9f552bbec38561312becf"></h2>
 
------
 
 ### Demotion in a heap
 
@@ -149,7 +140,6 @@ private void sink(int k) {
 
 <h2 id="34f42d75083165489f2d1288aa203637"></h2>
 
------
 
 ### Delete the maximum in a heap
 
@@ -175,7 +165,6 @@ public Key delMax() {
 
 <h2 id="dee2139d14dc9b4129086c422806e8a4"></h2>
 
------
 
 ### Priority queues implementation cost summary
 
@@ -191,7 +180,6 @@ Fibonacci | 1 | log N⁺ | 1
 
 <h2 id="08fdfb23883b137987adc5a563f835b0"></h2>
 
------
 
 ### Binary heap considerations
 
@@ -227,7 +215,6 @@ private void resize(int capacity) {
 
 <h2 id="2b3a9baf85c09205eff605615163f824"></h2>
 
------
 
 ## event-driven simulation
 

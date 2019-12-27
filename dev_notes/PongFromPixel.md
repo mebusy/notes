@@ -14,8 +14,6 @@
 
 <h2 id="14c8bcab6d8cbd9dd30f671937d1930e"></h2>
 
------
------
 
 # Pong From Pixel 
 
@@ -38,7 +36,6 @@ Pong is just a fun toy test case, something we play with while we figure out how
 
 <h2 id="c8ec2431da786d1805ac35666846a034"></h2>
 
------
 
 ## Policy network
 
@@ -55,7 +52,6 @@ Pong is just a fun toy test case, something we play with while we figure out how
 
 <h2 id="8527e311e4e8e7b217e4eb3df745bacf"></h2>
 
------
 
 ### implement this policy network in Python/numpy
 
@@ -73,7 +69,6 @@ p = 1.0 / (1.0 + np.exp(-logp)) # sigmoid function (gives probability of going u
 
 <h2 id="4da478b2dea92208e1212e4dfc88e520"></h2>
 
------
 
 ## preprocessing
 
@@ -83,7 +78,6 @@ p = 1.0 / (1.0 + np.exp(-logp)) # sigmoid function (gives probability of going u
 
 <h2 id="ba0a2315087f7fb29261db63e3183a76"></h2>
 
------
 
 ## It sounds kind of impossible.
 
@@ -98,7 +92,6 @@ p = 1.0 / (1.0 + np.exp(-logp)) # sigmoid function (gives probability of going u
 
 <h2 id="43db94d830cd7723a6d7a21a311d9bf4"></h2>
 
------
 
 ## Supervised Learning. 
 
@@ -117,7 +110,6 @@ I’d like to remind you briefly about supervised learning because, as we’ll s
 
 <h2 id="6c11e2dd65ad60a6dd6cf3a2be08fa0c"></h2>
 
------
 
 ## Policy Gradients
 
@@ -138,7 +130,6 @@ Here is the Policy Gradients solution.
 
 <h2 id="abc3a1be8d17524478c2cc2d1399fe32"></h2>
 
------
 
 ## Training protocol
 

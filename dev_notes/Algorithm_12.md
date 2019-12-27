@@ -25,21 +25,17 @@
 
 <h2 id="db8c4fa2ffa5f5337a11c39e5c3548bf"></h2>
 
------
------
 
 # 算法1,2
 
  
 <h2 id="19a655d3c2b379ac5f3939da282171ce"></h2>
 
------
 
 ## Introduce
 
 <h2 id="2c25ac4f1d4c0332ec7361b4a588027c"></h2>
 
------
 
 ### * Merge sort 归并排序
 
@@ -90,7 +86,6 @@ def Merge(left,right):
 
 <h2 id="2dffdee1d503567d43c631986c599012"></h2>
 
------
 
 #### Running time 
 
@@ -120,7 +115,6 @@ Total Runing time = 6n x (log₂n +1) = `6n·log₂n + 6n` .
 
 <h2 id="f1579c6456d1081d1fb1fab0538c9fd0"></h2>
 
------
 
 #### Mergesort: practical improvements
 
@@ -130,7 +124,6 @@ Total Runing time = 6n x (log₂n +1) = `6n·log₂n + 6n` .
 
 <h2 id="a3b94ca02e9a48292c9644ca761f6370"></h2>
 
------
 
 #### Asymptotic analysis 渐近分析
 
@@ -142,7 +135,6 @@ Terminology 术语: Merge sort running time = `O( nlogn )`
 
 <h2 id="fede0c757a997bccb043b815fae4b9c0"></h2>
 
------
 
 ##### Big-Oh
 
@@ -182,7 +174,6 @@ c , n₀ 不可以依赖于 n ，所以假设不成立。
 
 <h2 id="daa4de82b37d76981d80c7ccbacabc06"></h2>
 
------
 
 ##### Big Omega Ω
 
@@ -207,7 +198,6 @@ note:
 
 <h2 id="f7013ee4fafd97a3dfd919d868a4e46c"></h2>
 
------
 
 ##### Theta Notation Θ
 
@@ -220,7 +210,6 @@ T(n)=Θ( f(n) )  当且仅当 T(n)=O( f(n) ) and T(n)=Ω( f(n) )。
 
 <h2 id="fd6fd45dcd7b59f02ed1cb5a099d0c8c"></h2>
 
------
 
 ##### Little-Oh Notation
 
@@ -231,7 +220,6 @@ eg. for all k>=1 , nᵏ⁻¹=o( nᵏ )
 
 <h2 id="8cb94eb1990adbea3766315549a066d8"></h2>
 
------
 
 ##### 例子
 
@@ -273,7 +261,6 @@ eg. for all k>=1 , nᵏ⁻¹=o( nᵏ )
 
 <h2 id="96e912ecc2f216fb4592e14b6fc0f253"></h2>
 
------
 
 ### * Counting Inversions 计算逆序
 
@@ -339,7 +326,6 @@ def Merge_Count_Inv(left,right):
 
 <h2 id="a7821e54d9166580e80d347a40579b9b"></h2>
 
------
 
 ### * closest pairt 距离最近两个点
 
@@ -464,7 +450,6 @@ def ClosestSplitPair( lists_x, lists_y , delta ):
 
 <h2 id="3d588385624782d33755dbed1d2055b0"></h2>
 
------
 
 #### Master Method
 
@@ -524,7 +509,6 @@ a < bᵈ , 所以是case(2) ,  O(n²)
 
 <h2 id="62ba17118eebe254d98279c6b41311d1"></h2>
 
------
 
 #### Proof Master Method
 
@@ -558,7 +542,6 @@ b: rate of work shrinkage (RWS)
 
 <h2 id="2eb8bb773d9f8334d49ff0ded73c5a1e"></h2>
 
------
 
 ### * BinarySearch
 
@@ -583,7 +566,6 @@ def BinarySearch( sorted_list , lo, hi , num ):
 
 <h2 id="09fa4ffc1e0ce3b966b8e18f696c808a"></h2>
 
------
 
 ### * Quick Sort
 
@@ -657,13 +639,11 @@ def QuickSort( lists , lo , hi  ):
 
 <h2 id="e9bced6ef0b00f17aa977807b93dc751"></h2>
 
------
 
 ## Linear-Time Selection
 
 <h2 id="465c2b7e3cca8883109e9929ea950b48"></h2>
 
------
 
 ### * Randomized Selection
 

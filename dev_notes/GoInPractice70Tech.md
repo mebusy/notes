@@ -46,27 +46,21 @@
 
 <h2 id="71c585005b73e8b143984da7dee9b0d3"></h2>
 
------
------
 
 # Go In Practice , 70 Teches
 
 <h2 id="0d64118c7f6ff8aeadfb2c9db268f32b"></h2>
 
------
------
 
 # 2 A solid foundation
 
 <h2 id="f4fc9ba35db46faa075c17a7587260c1"></h2>
 
------
 
 ## 2.1 Working wiht CLI applications, the Go way
 
 <h2 id="56dfd6c36821c5a64983eff289699453"></h2>
 
------
 
 ### 2.1.1 Command-line flags
 
@@ -115,7 +109,6 @@ Hola Buttercup!
 
 <h2 id="3863b9486b6e97a49ff1790df08b38dc"></h2>
 
------
 
 ## 2.2 Handling configuration
 
@@ -131,13 +124,11 @@ Hola Buttercup!
 
 <h2 id="1e5b504a7ecb0799f2b760c225242b19"></h2>
 
------
 
 ## 2.3 Working with real-world web servers
 
 <h2 id="d1dfba069bae305472df676269e71aa9"></h2>
 
------
 
 ### 2.3.1 Starting up and shutting down a server
 
@@ -159,7 +150,6 @@ func shutdown(res http.ResponseWriter, req *http.Request) {
 
 <h2 id="a07a125760957367633ba77e5ed4530c"></h2>
 
------
 
 #### TECHNIQUE 5 **Graceful shutdowns using manners**
 
@@ -235,7 +225,6 @@ A couple of disadvantages also exist under some conditions:
 
 <h2 id="daef946a510d0ed9c04cffe18d824726"></h2>
 
------
 
 ### 2.3.2 Routing web requests
 
@@ -299,7 +288,6 @@ func homePage(res http.ResponseWriter, req *http.Request)
 
 <h2 id="d4af0cb12ed09354dfbb5330e69cf4ab"></h2>
 
------
 
 ####  TECHNIQUE 7 **Handling complex paths with wildcards**
 
@@ -388,7 +376,6 @@ func goodbye(res http.ResponseWriter, req *http.Request) {
 
 <h2 id="4bb8963ed0a77bc17c592a558cd1cc6b"></h2>
 
------
 
 ####  TECHNIQUE 8 **URL pattern matching** (TODO)
 
@@ -400,7 +387,6 @@ func goodbye(res http.ResponseWriter, req *http.Request) {
 
 <h2 id="ec97b62dff33af2f1b3e7ec9768ab166"></h2>
 
------
 
 ####  TECHNIQUE 9 **Faster routing (without the work)**
 
@@ -417,20 +403,16 @@ Popular solutions include the following:
 
 <h2 id="16f99609cccf72d44e6fb4b00b7aa9b5"></h2>
 
------
------
 
 # 3 Concurrency in Go
 
 <h2 id="5b068a95442c7d5505b4166a77357ea5"></h2>
 
------
 
 ## 3.1 
 
 <h2 id="be28e97d79982d9d2558707ac5ffbf15"></h2>
 
------
 
 #### TECHNIQUE 12 Locking with a mutex
 
@@ -461,14 +443,12 @@ func (w *words) add(word string, n int) {
 
 <h2 id="5c609ddacc07fb066d6f3df5528b0d89"></h2>
 
------
 
 ## 3.2 Working with channels
 
 
 <h2 id="095b91b04bcc9a07cfc88460ce2b0966"></h2>
 
------
 
 ####  TECHNIQUE 13 **Using multiple channels**
 
@@ -479,7 +459,6 @@ func (w *words) add(word string, n int) {
 
 <h2 id="a9b7b2027d7d718a120329e6af8c6ba8"></h2>
 
------
 
 ####  TECHNIQUE 14 **Closing channels**
 
@@ -534,7 +513,6 @@ func send(ch chan<- string, done <-chan bool) {
 
 <h2 id="8a5dde7c7f82ceed2cf05c02f94ecd91"></h2>
 
------
 
 ####  TECHNIQUE 15 **Locking with buffered channels**
 
@@ -563,14 +541,11 @@ func worker(id int, lock chan bool) {
 
 <h2 id="5c14286df98cd800d088a14ee136b866"></h2>
 
------
------
 
 # 4 Handling errors and panics
 
 <h2 id="1a2bb328b5fa8ef5dcc6324dfc56d06d"></h2>
 
------
 
 ## 4.1 Error handling
 
@@ -580,7 +555,6 @@ func worker(id int, lock chan bool) {
 
 <h2 id="bb9a69e5ffcd34c51ed7ac377377e0b2"></h2>
 
------
 
 ####  TECHNIQUE 17 Custom error types
 
@@ -616,7 +590,6 @@ func (p *ParseError) Error() string {
 
 <h2 id="6eacf66e42cd6548ca6f4e4de743a7b2"></h2>
 
------
 
 ####  TECHNIQUE 18 Error variables
 
@@ -660,13 +633,11 @@ func main() {
 
 <h2 id="e72b11fe4a7d7755c9bb9da078ed7c7a"></h2>
 
------
 
 ## 4.2 The panic system
 
 <h2 id="948d52c1d352272f319d60422e92f251"></h2>
 
------
 
 ### 4.2.2 Working with panics
 
@@ -683,7 +654,6 @@ func main() {
 
 <h2 id="58be2510484c3a3b9626aaa5bcbc69c9"></h2>
 
------
 
 ### 4.2.3 Recovering from panics
 
@@ -709,7 +679,6 @@ func yikes() {
 
 <h2 id="23ae8dbb31cc7891d0c3de597f0bc523"></h2>
 
------
 
 ### 4.2.4 Panics and goroutines
 
@@ -741,20 +710,16 @@ func Go(todo GoDoer) {
 
 <h2 id="b8ad4f9f531cf42a4bbe3bc9ecf746ab"></h2>
 
------
------
 
 # 5 Debugging and testing
 
 <h2 id="2c0ce02cb81521bcb1e13a7d2537d1dd"></h2>
 
------
 
 ## 5.2 Logging
 
 <h2 id="0a06ab7d7bc94825761e4f71180d1739"></h2>
 
------
 
 ### 5.2.1 Using Go’s logge
 
@@ -881,7 +846,6 @@ TCP logging is prone to back pressure, but UDP logging won’t guarantee data ac
 
 <h2 id="b11462d84b0c705a445bf62b0d7af407"></h2>
 
------
 
 ### 5.2.2 Working with system loggers
 
@@ -954,7 +918,6 @@ Jun 30 08:52:06 technosophos narwhal[76635]: Alert message.
 
 <h2 id="9c010432392bbfc8119a5ee9de0994a3"></h2>
 
------
 
 ## 5.3 Accessing stack traces
 
@@ -1006,13 +969,11 @@ Both the `runtime` and the `runtime/debug` packages contain numerous other funct
 
 <h2 id="8cdb7f7ceb9bff6df74283972fe543d7"></h2>
 
------
 
 ## 5.4 Testing
 
 <h2 id="d6c479cf7ba6e15bc5b1d5044c047f6c"></h2>
 
------
 
 ### 5.4.1 Unit testing
 
@@ -1082,7 +1043,6 @@ func Alert(m Messager, problem []byte) error {
 
 <h2 id="628a115ba69d21b430e18b21a0aa97a5"></h2>
 
------
 
 #### TECHNIQUE 28: Verifying interfaces with canary tests  TODO , page 132
 
@@ -1090,7 +1050,6 @@ func Alert(m Messager, problem []byte) error {
 
 <h2 id="06c04672fb6b629954349dd4be4860b3"></h2>
 
------
 
 ### 5.4.2 Generative testing
 
@@ -1168,7 +1127,6 @@ func TestPadGenerative(t *testing.T) {
 
 <h2 id="509c9d6dc870fa32bbcc6efb57099123"></h2>
 
------
 
 ## 5.5 Using performance tests and benchmarks
 
@@ -1176,7 +1134,6 @@ func TestPadGenerative(t *testing.T) {
 
 <h2 id="4a6da83e7e1a0713d9cc611981c6f823"></h2>
 
------
 
 #### TECHNIQUE 29 Benchmarking Go code
 
@@ -1235,7 +1192,6 @@ ok /Users/mbutcher/Code/go-in-practice/chapter5/tests/bench 1.145s
 
 <h2 id="5ead74fce837c4f613ef8e47066ba7d3"></h2>
 
------
 
 ####  TECHNIQUE 30 Parallel benchmarks
 
@@ -1297,7 +1253,6 @@ PASS
 
 <h2 id="e3ea7a8c7302115e608e0693e71c25e8"></h2>
 
------
 
 ####  TECHNIQUE 31 Detecting race conditions
 

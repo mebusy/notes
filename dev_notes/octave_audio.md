@@ -21,14 +21,11 @@
 
 <h2 id="b7b05952d509c439f94113324ff52318"></h2>
 
------
------
 
 # 基本操作
 
 <h2 id="19ad89bc3e3c9d7ef68b89523eff1987"></h2>
 
------
 
 ## install
 
@@ -41,7 +38,6 @@ brew reinstall octave --with-sndfile --with-libsndfile --with-docs
 
 <h2 id="3413dd4049308da2951e7a4e76d5f36f"></h2>
 
------
 
 ## 音频信息
 
@@ -54,7 +50,6 @@ info = audioinfo ('testing.ogg')
 
 <h2 id="4e57f1fdd6e72178dedecf98c08602b2"></h2>
 
------
 
 ## 读取音频文件
 
@@ -88,7 +83,6 @@ samples = [1, fs)
 
 <h2 id="1994a8ca2987014975c8f885e42f0efd"></h2>
 
------
 
 ## 音频文件的写操作
 
@@ -109,7 +103,6 @@ audiowrite(filename, signal, fs);
 
 <h2 id="168ed667ff59ad9971f9bc226839bc65"></h2>
 
------
 
 ## 播放音频文件
 
@@ -136,14 +129,11 @@ play(player);
 
 <h2 id="907979cef2ac1030b1862469aab35c41"></h2>
 
------
------
 
 # 信号叠加
 
 <h2 id="7859357f85cdd30bf0efeae9e4d5f6ff"></h2>
 
------
 
 ## 1. 产生两个不同频率的信号
 
@@ -160,7 +150,6 @@ audiowrite(sig2,cos(w2),fs);
 
 <h2 id="529d85ceb420010bbae4ff8ddfc8ac23"></h2>
 
------
 
 ## 1.1 绘制出两个信号的图像
 
@@ -185,7 +174,6 @@ plot(y2)
 
 <h2 id="777d069853661fb6fb9cd8e67b116e81"></h2>
 
------
 
 ## 1.2 把两个信号叠加
 
@@ -198,7 +186,6 @@ plot(sumres)
 
 <h2 id="49bd8db4f8d3299524f11771f93554ce"></h2>
 
------
 
 ## 3. 两个信号的乘积
 
@@ -223,7 +210,6 @@ plot(yprod);                           %plotting the product
 
 <h2 id="3a964a6ddc88e66ce54d2b99a7614a25"></h2>
 
------
 
 ## 3.1 生成两个频率为 220 赫兹的声音信号
 
@@ -240,7 +226,6 @@ plot(y1);
 
 <h2 id="de12d6d99cdc4745c70e4ee1a8a92ab1"></h2>
 
------
 
 ## 3.2 生成一个 22000 赫兹的高频调制信号
 
@@ -254,7 +239,6 @@ plot(y2);
 
 <h2 id="ae927bd937602b7362bcec1dfd6c75df"></h2>
 
------
 
 ## 3.3 把两个信号相乘并绘出图像
 
@@ -270,8 +254,6 @@ plot(y1.*y2);
 
 <h2 id="583240736100dab274fa2e9518318d79"></h2>
 
------
------
 
 # 信号调制
 

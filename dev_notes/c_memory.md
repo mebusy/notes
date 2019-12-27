@@ -18,8 +18,6 @@ http://marek.vavrusa.com/c/memory/2015/02/20/memory/
 
 <h2 id="75f48a9c273a33756e8ae606aa2891d2"></h2>
 
------
------
 
 # Understanding virtual memory
 
@@ -57,8 +55,6 @@ if (block == NULL) {
 
 <h2 id="e9abc565ddad947fe9678102d8ed79a1"></h2>
 
------
------
 
 # Detour - a process memory layout
 
@@ -81,8 +77,6 @@ if (block == NULL) {
 
 <h2 id="c251fa342236f44cff491f1ffd0fe6a1"></h2>
 
------
------
 
 # Understanding stack allocation
 
@@ -117,8 +111,6 @@ void laugh(void) {
 
 <h2 id="f0169258f54b63cd198619a926b2314c"></h2>
 
------
------
 
 # Understanding heap allocation
 
@@ -168,8 +160,6 @@ anonymous mapping.
 
 <h2 id="4b711b08c39982986516ec24ff983c4e"></h2>
 
------
------
 
 # When to bother with a custom allocator
 
@@ -180,7 +170,6 @@ anonymous mapping.
 
 <h2 id="6754f3e939b64d06193d4e34bbecaadf"></h2>
 
------
 
 ## Slab allocator
 
@@ -231,7 +220,6 @@ if((item = slab->head)) {
 
 <h2 id="e384d5d460238cd7ea1f7bb14a0b095c"></h2>
 
------
 
 ## Memory pools
 
@@ -264,7 +252,6 @@ obstack_free(&animal_stack, NULL);
 
 <h2 id="e5527fb5c0f5b2d80a8ec07bbc6102a9"></h2>
 
------
 
 ## Demand paging explained
 
@@ -289,8 +276,6 @@ mlock(block, 1024 * sizeof(char));
 
 <h2 id="c741aee852115b810755f9adb3b8dbe4"></h2>
 
------
------
 
 # Fun with 'flags' memory mapping
 
@@ -314,7 +299,6 @@ long page_size = sysconf(_SC_PAGESIZE); /* Slice and dice. */
 
 <h2 id="ce2d413f96c9e9adbb49e8441f8a4e60"></h2>
 
------
 
 ## Fixed memory mappings TODO...
 

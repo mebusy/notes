@@ -12,15 +12,12 @@
 
 <h2 id="e5791d6498bab7b31b7898e9e93b421c"></h2>
 
------
------
 
 # android DMP 文件解析
 
 
 <h2 id="894a26d71405e3fb8de576d3d9490545"></h2>
 
------
 
 ##  安装 google breakpad
 
@@ -37,13 +34,11 @@ make
 
 <h2 id="91c8954f90dfd17b00934b72fd7cf8cd"></h2>
 
------
 
 ##  把dmp文件转为txt文件
 
 <h2 id="26187d0e98251eb68e16f449d5fd4c03"></h2>
 
------
 
 ### 1 建立一个空文件夹，里面放进四个必要文件
  
@@ -60,7 +55,6 @@ cp src/processor/minidump_stackwalk mybin
 
 <h2 id="c97793d9feed912272ee53800337fedf"></h2>
 
------
 
 ### 2 准备symbols
 
@@ -106,7 +100,6 @@ mv $1.sym   $DIST
 
 <h2 id="83c487b85db581c525da4ee0c540346b"></h2>
 
------
 
 ### 3. 导出 文本信息
 

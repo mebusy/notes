@@ -2,50 +2,26 @@
 
  - [VIM](#d53cfc4bdeb96eaee47dd710b3c2ed21)
      - [插件安装](#78d0b83eb54eb1aa949d4600958cb397)
-         - [插件管理工具vunble](#5a8a69602edd805333aea10c2817e37e)
-             - [安装vundle](#f1c28a7da5182846402b968966299c4c)
-             - [在.vimrc配置文件中添加vundle支持](#88320719ea4a6c706aeaa3ae1d8c133d)
-         - [配置插件](#7a886abbb5da4373ffcfd88df9575954)
-         - [安装](#e655a410ff21cd07e7a0150491e04371)
-         - [安装排错](#154a11cd7a6e424863c28aa29ad576d1)
+     - [YouCompleteMe 配置](#95e1e8a5d4d20276318a364f9428f879)
+         - [YCMD 排错](#f7abfec0b5984a0314616bd13f7ae8c3)
      - [Markdown](#2182a74bab7188d959e795d9301e87ff)
-     - [install VIM8 on Centos7](#a80bb46a45ac01cfeecb23364ec0bb63)
-     - [install YouCompleteMe on Centos7](#e452f90f1770e33615e0eb6ee4a22953)
-     - [check vim compile features](#95cec38eef2cf37c01f98f869cb8e4bc)
- - [VIM 正则表达式](#072db16a2fab851f315188d28a992133)
-     - [关于magic](#9e8ec078a153381638b723f644bc0f67)
-     - [捕获组](#1ca7c638c2ce8ef41b651ccf8e827bf3)
-     - [Regexp Misc](#1afd0aabffaf4251ce9d948cf5d8a391)
- - [参数列表](#cba8744406ca022515965ad373474f74)
- - [Mark](#b82a9a13f4651e9abcbde90cd24ce2cb)
-     - [mark 命令小结](#fd15a836fee2c57937cfba0b4e6322da)
- - [VIM 常用操作](#508b03ab799d17da8b37eb7801c05c8b)
-     - [搜索](#e5f71fc31e7246dd6ccc5539570471b0)
-         - [反向肯定搜索 lookahead](#32b92ada221fd37f58c6db5897bd605c)
-         - [前向肯定搜索 lookahead](#852639e354e873ce19ce571888957160)
-         - [搜索 带`/` 的字符串，比如 URL](#47adfa39c01f2f314cecd05ce29d59ef)
-         - [clear a register](#abe5b5622d91b2a879e91da6a550f067)
-         - [文件夹搜索](#4d36d00db257fed5fe7d2a2036ad930f)
-     - [文件夹 替换](#476949b7922fe3e5ea39c034861527d8)
-     - [多行 行首插入字符](#4b0c82f3072a7a2d205d934ca7413367)
-     - [多行 行尾插入字符](#facc78c7266b3fe0364882da91e214b8)
-     - [replace all tab with 4 space](#72ec54ea94cad51a12851d38a51ea25f)
-     - [Remove unwanted empty lines](#67c5f9b419ed15a16a0cb4786a4a6552)
+     - [VIM on Centos7](#a43a706fb4d224cd0a1a793434080a10)
+     - [VIM 正则表达式](#072db16a2fab851f315188d28a992133)
+     - [vim Mark](#ac4aee7e186902860d64dcf2a6065905)
+     - [VIM tips](#a1c1a23da31214c88d29928e14c64ef0)
  - [grok VIM](#fc1f1e8c6d70d860957c66f735e60e2b)
+     - [A sampling of more advanced tricks:](#a5787082a16f14e8db2acbf78497ee99)
 
 ...menuend
 
 
 <h2 id="d53cfc4bdeb96eaee47dd710b3c2ed21"></h2>
 
------
------
 
 # VIM 
 
 <h2 id="78d0b83eb54eb1aa949d4600958cb397"></h2>
 
------
 
 ## 插件安装
 
@@ -94,6 +70,9 @@
     vim +PluginUpdate
     ```
 
+<h2 id="95e1e8a5d4d20276318a364f9428f879"></h2>
+
+
 ## YouCompleteMe 配置
 
 - for C family support:  `./install.py --clang-completer`
@@ -119,6 +98,9 @@
     ```bash
     python install.py --clang-completer --cs-completer  --go-completer --ts-completer --java-completer
     ```
+
+<h2 id="f7abfec0b5984a0314616bd13f7ae8c3"></h2>
+
 
 ### YCMD 排错
 
@@ -163,14 +145,15 @@
 
 
 
+<h2 id="2182a74bab7188d959e795d9301e87ff"></h2>
+
+
 ## Markdown 
 
 - chrome 安装插件 :  [Markdown Preview Plus](https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl)
 - 打开 `chrome://extensions/` ， 在设置页中勾选 “Allow access to file URLs”
 
-<h2 id="a80bb46a45ac01cfeecb23364ec0bb63"></h2>
-
------
+<h2 id="a43a706fb4d224cd0a1a793434080a10"></h2>
 
 
 ## VIM on Centos7
@@ -232,10 +215,7 @@ install YouCompleteMe on Centos7
 
 
 
-<h2 id="95cec38eef2cf37c01f98f869cb8e4bc"></h2>
-
------
-
+<h2 id="072db16a2fab851f315188d28a992133"></h2>
 
 
 ## VIM 正则表达式
@@ -291,6 +271,9 @@ Perl | vim
 
 
 
+<h2 id="ac4aee7e186902860d64dcf2a6065905"></h2>
+
+
 ## vim Mark 
 
 - 设置mark
@@ -314,6 +297,9 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
     :delmarks ——删除指定标记
     :delmarks! ——删除所有标记
     ```
+
+<h2 id="a1c1a23da31214c88d29928e14c64ef0"></h2>
+
 
 ## VIM tips
 
@@ -415,6 +401,9 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
     :v/./d
     ```
 
+<h2 id="fc1f1e8c6d70d860957c66f735e60e2b"></h2>
+
+
 # grok VIM
 
 - The "Zen" of **vi** is that you're speaking a language. 
@@ -457,6 +446,9 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
 - **This is all intermediate level vi.**
 
 ---
+
+<h2 id="a5787082a16f14e8db2acbf78497ee99"></h2>
+
 
 ## A sampling of more advanced tricks:
 

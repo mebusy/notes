@@ -24,15 +24,11 @@
 
 <h2 id="e2028ec0b6d18c6dc1518b1218fe67e9"></h2>
 
------
------
 
 # Compiler Note
 
 <h2 id="0b79795d3efc95b9976c7c5b933afce2"></h2>
 
------
------
 
 # Introduction
 
@@ -41,7 +37,6 @@
 
 <h2 id="19d107f572eb681d34f40cde481b4468"></h2>
 
------
 
 ## lexical analysis ，or scanning 
 
@@ -49,7 +44,6 @@
 
 <h2 id="ec681573771e1e3fb7e7c285b64847f6"></h2>
 
------
 
 ## Syntax analysis ,  or parsing
 
@@ -60,7 +54,6 @@
 
 <h2 id="e0b53b573761582598d1a195e4ac1ce7"></h2>
 
------
 
 ### Concrete syntax tree 
 
@@ -76,7 +69,6 @@
 
 <h2 id="e3ae6ba0b6984fbc4fd3a4c211a567d2"></h2>
 
------
 
 ### (abstract) syntax tree
 
@@ -86,7 +78,6 @@
 
 <h2 id="33cf9420c47bd66697f4b0d8ff143901"></h2>
 
------
 
 ### Precedence of Operators 操作符优先级
 
@@ -97,7 +88,6 @@
 
 <h2 id="c496fb929875aa957c91118cbbd9d2d0"></h2>
 
------
 
 ### syntax-directed translation (SDT)
 
@@ -108,7 +98,6 @@
 
 <h2 id="d8eb8df3e127bc91356f655467013119"></h2>
 
------
 
 #### Syntax-directed definition
 
@@ -123,7 +112,6 @@ expr → expr₁ + term | expr.t = expr₁.t ‖ term.t ‖ '+'
 
 <h2 id="6261c2c3983122039f48b1eb1b3e06a4"></h2>
 
------
 
 #### Syntax-directed Translation Schemes
 
@@ -141,7 +129,6 @@ term → 0             {print('0')}
 
 <h2 id="8b08e51f06fabcbfa16942fbff59ab29"></h2>
 
------
 
 ### Parsing 
 
@@ -153,7 +140,6 @@ term → 0             {print('0')}
 
 <h2 id="e10c5506cd3ee1526ab22ec45ed61cad"></h2>
 
------
 
 #### Top-Down Parsing
 
@@ -161,7 +147,6 @@ term → 0             {print('0')}
 
 <h2 id="0e793c03a59ad4fe7a3a95bc1eac783d"></h2>
 
------
 
 #### Bottom-up Parsing
  
@@ -170,7 +155,6 @@ term → 0             {print('0')}
 
 <h2 id="7fdb4425ae20f138f82d1c89cfe8d5bf"></h2>
 
------
 
 #### Predictive Parsing
 
@@ -184,7 +168,6 @@ term → 0             {print('0')}
 
 <h2 id="0eb1784eda9b81e0d55b27d4f8cb46d3"></h2>
 
------
 
 ## Semantic analysis
 
@@ -195,7 +178,6 @@ term → 0             {print('0')}
 
 <h2 id="81862566cf2fdc0d212a8dd1d169dc90"></h2>
 
------
 
 ## Intermediate code generation
 
@@ -207,13 +189,11 @@ term → 0             {print('0')}
 
 <h2 id="ae0b27365844a81d865ccbc6516f84ec"></h2>
 
------
 
 ## Code optimize
 
 <h2 id="43dbed76634f46606bc217bd2f6f4c2c"></h2>
 
------
 
 ## Code generation
 

@@ -26,15 +26,11 @@
 
 <h2 id="cd199ed2976951a7d7d1815e672e5c66"></h2>
 
------
------
 
 # Learn GO in Y Minutes
 
 <h2 id="93473a7344419b15c4219cc2b6c64c6f"></h2>
 
------
------
 
 # import 
 
@@ -47,8 +43,6 @@ import (
 
 <h2 id="c1c425268e68385d1ab5074c17a94f14"></h2>
 
------
------
 
 # function
 
@@ -68,7 +62,6 @@ func learnNamedReturns(x, y int) (z int) {
 
 <h2 id="c59d2f464a983c6ff5bdc89bc9a43eb9"></h2>
 
------
 
 ## variadic parameters
 
@@ -88,8 +81,6 @@ func learnVariadicParams(myStrings ...interface{}) {
 
 <h2 id="5a5b931922991e8a8194dc09e118a999"></h2>
 
------
------
 
 # built-in types and literals
 
@@ -108,7 +99,6 @@ can include line breaks.`
 
 <h2 id="54e9d460b3f0df842fbc4d60b12b0e85"></h2>
 
------
 
 ## array and slice 
 
@@ -135,7 +125,6 @@ can include line breaks.`
 
 <h2 id="1d78dc8ed51214e518b5114fe24490ae"></h2>
 
------
 
 ## map 
 
@@ -148,7 +137,6 @@ can include line breaks.`
 
 <h2 id="ccac8a66d468e2522611be86933cc0d9"></h2>
 
------
 
 ## pointer
 
@@ -171,14 +159,11 @@ fmt.Println(*p, *q)   // * follows a pointer. This prints two ints.
 
 <h2 id="1e759e9af8386a8de2e3b62c66dc8158"></h2>
 
------
------
 
 # flow control
 
 <h2 id="39c8942e1038872a822c0dc75eedbde3"></h2>
 
------
 
 ## if 
 
@@ -201,7 +186,6 @@ fmt.Println(*p, *q)   // * follows a pointer. This prints two ints.
 
 <h2 id="b36eb6a54154f7301f004e1e61c87ce8"></h2>
 
------
 
 ## switch
 
@@ -223,7 +207,6 @@ fmt.Println(*p, *q)   // * follows a pointer. This prints two ints.
 
 <h2 id="d55669822f1a8cf72ec1911e462a54eb"></h2>
 
------
 
 ## for
 
@@ -252,7 +235,6 @@ fmt.Println(*p, *q)   // * follows a pointer. This prints two ints.
 
 <h2 id="de94e676c0358eefea4794f03d6bda4f"></h2>
 
------
 
 ## goto 
 
@@ -264,8 +246,6 @@ love:
 
 <h2 id="580601915d6ef3900dc60cebbc7ba2b5"></h2>
 
------
------
 
 # closure
 
@@ -304,8 +284,6 @@ love:
 
 <h2 id="c9df09b4610bb43e290507a37c658ae8"></h2>
 
------
------
 
 # defer
 
@@ -322,8 +300,6 @@ func learnDefer() (ok bool) {
 
 <h2 id="751c2c89dd7c37aa3dc386830b472cf7"></h2>
 
------
------
 
 # struct / interface 
 
@@ -365,8 +341,6 @@ type Stringer interface {
 
 <h2 id="db0b59b9623daf50a80d69cd1518a7d2"></h2>
 
------
------
 
 # error handling 
 
@@ -387,14 +361,11 @@ type Stringer interface {
 
 <h2 id="3e48afddb0c5521684b8d2687b0869d6"></h2>
 
------
------
 
 # Concurrency
 
 <h2 id="c485d2ed5cc4ce64fcccca710c7a0bb7"></h2>
 
------
 
 ## channel 
 
@@ -433,8 +404,6 @@ select {
 
 <h2 id="ab8fda1e677dfff59768829ab3ef8906"></h2>
 
------
------
 
 # web programming
 

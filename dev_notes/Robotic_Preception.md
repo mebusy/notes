@@ -27,8 +27,6 @@
 
 <h2 id="416e617e8164f09d5f2cb88d97aaa29d"></h2>
 
------
------
 
 # 1.4 Vanishing Points
 
@@ -42,7 +40,6 @@
 
 <h2 id="aab45f4c2a6599bed4bf590cc4504d2b"></h2>
 
------
 
 ## Vanishing lines
 
@@ -63,14 +60,11 @@
 
 <h2 id="e3bcbb1142a1f84990f0757c530827ac"></h2>
 
------
------
 
 # 1.5 Projective projection
 
 <h2 id="3fd090afb1fba45f2981b3bf6c6bc4e1"></h2>
 
------
 
 ## The projective plane
 
@@ -83,7 +77,6 @@
 
 <h2 id="2a3cd5946cfd317eb99c3d32e35e2d4c"></h2>
 
------
 
 ## Point
 
@@ -98,7 +91,6 @@ image plane上的line  ，是投影空间中，rays 组成的一个平面
 
 <h2 id="c24cc7a6f92f81c3fb65ed02c79e7952"></h2>
 
------
 
 ## 齐次坐标 
 
@@ -158,7 +150,6 @@ image plane上的line  ，是投影空间中，rays 组成的一个平面
 
 <h2 id="6e434d9a61c1a39c10721d8f2a37050c"></h2>
 
------
 
 ## Projective lines
 
@@ -173,7 +164,6 @@ image plane上的line  ，是投影空间中，rays 组成的一个平面
 
 <h2 id="b42a0384896207b92556bfbc2e2b774c"></h2>
 
------
 
 ## Line Representation
 
@@ -192,7 +182,6 @@ image plane上的line  ，是投影空间中，rays 组成的一个平面
 
 <h2 id="b2c2388e6dd9d4b529bf55ddd2561a5f"></h2>
 
------
 
 ## Example of Line
 
@@ -202,14 +191,11 @@ image plane上的line  ，是投影空间中，rays 组成的一个平面
 
 <h2 id="d640fdd2a21b3264b78056e46cdc00d9"></h2>
 
------
------
 
 # 1.6 Projective projection2
 
 <h2 id="8f1680bff46ddc0057c0316e0d4aac52"></h2>
 
------
 
 ##  Projective lines from two points 
 
@@ -217,7 +203,6 @@ image plane上的line  ，是投影空间中，rays 组成的一个平面
 
 <h2 id="347bec6c0a5fdfe9e8359f08a72678bb"></h2>
 
------
 
 ## Line passing through two points
 
@@ -225,7 +210,6 @@ l = *x* x *x'*
 
 <h2 id="b2c2388e6dd9d4b529bf55ddd2561a5f"></h2>
 
------
 
 ## Example of Line
 
@@ -251,7 +235,6 @@ l/218.21 = [0.59116     0.80655  -139.35912] ≈ [a b c ]
 
 <h2 id="ab458f4b361834dd802e4f40d31b5ebc"></h2>
 
------
 
 ## Quiz
 
@@ -261,7 +244,6 @@ l/218.21 = [0.59116     0.80655  -139.35912] ≈ [a b c ]
 
 <h2 id="9880beb72dfffaf502ca96adb21fa1e3"></h2>
 
------
 
 ## Points from two lines
 
@@ -273,8 +255,6 @@ x = l x l'
 
 <h2 id="f40a24c3d9296c58fbdc7c14fca3c20b"></h2>
 
------
------
 
 # 1.7 Point and line duality
 
@@ -285,7 +265,6 @@ x = l x l'
 
 <h2 id="9880beb72dfffaf502ca96adb21fa1e3"></h2>
 
------
 
 ## Points from two lines
 
@@ -309,7 +288,6 @@ ans =   0   1   0
 
 <h2 id="9300f2d4660e6103bfcfc34c9c11d163"></h2>
 
------
 
 ## Point at infinity, Ideal points
 
@@ -319,7 +297,6 @@ ans =   0   1   0
 
 <h2 id="8ab86ba3e1c0e429c210a28fa2550900"></h2>
 
------
 
 ## Points at infinity
 
@@ -331,7 +308,6 @@ ans =   0   1   0
 
 <h2 id="b3d6d793f09b2d9db36b3ab1d43d4f3c"></h2>
 
------
 
 ## Line at infinity
 
@@ -348,7 +324,6 @@ ans =   0   1   0
 
 <h2 id="167afd45203324fc5b1fb35aee95f2c0"></h2>
 
------
 
 ## Ideal points and lines
 

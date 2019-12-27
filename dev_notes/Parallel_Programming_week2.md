@@ -41,14 +41,11 @@
 
 <h2 id="65c4ba2387f7eb9eb19a3404f6e9e578"></h2>
 
------
------
 
 ## Week 2
 
 <h2 id="0002eb0b09283b59a8dfd367e68f2828"></h2>
 
------
 
 ### Lecture 2.1: Kernel-based Parallel Programming - Thread Scheduling 
 
@@ -65,7 +62,6 @@ The thread are actually executed by a hardware called **streaming multiprocessor
 
 <h2 id="585e29d9c9ba7bf2c1b5471e7378a866"></h2>
 
------
 
 #### the Von-Neumann model with SIMD units
 
@@ -77,7 +73,6 @@ Multiple Processing Units controlled by the same control signals that the contro
 
 <h2 id="a90029d0415e65f69dd99367923c951a"></h2>
 
------
 
 #### Warps(变形) as Scheduling Units
 
@@ -90,7 +85,6 @@ Multiple Processing Units controlled by the same control signals that the contro
 
 <h2 id="789c3a65c368f07af19c9140ed4fcee9"></h2>
 
------
 
 #### Warp Example
 
@@ -102,7 +96,6 @@ Every time a warp is executs, all the 32 threads will be executed by the SIMD un
 
 <h2 id="80b1f47d5a822a86d12e6c89a809528c"></h2>
 
------
 
 #### Block Granularity Considerations
 
@@ -113,13 +106,11 @@ Every time a warp is executs, all the 32 threads will be executed by the SIMD un
 
 <h2 id="4bbd287817b082c0c66c8d3511e8561c"></h2>
 
------
 
 ### Lecture 2.2: Control Divergence 
 
 <h2 id="839b56bd18fadb576e93f6cad503342c"></h2>
 
------
 
 #### How thread blocks are partitioned
 
@@ -135,7 +126,6 @@ Every time a warp is executs, all the 32 threads will be executed by the SIMD un
 
 <h2 id="3a61428f682a64764c8ee10cb08047c9"></h2>
 
------
 
 #### Control Flow Instructions
 
@@ -153,7 +143,6 @@ Every time a warp is executs, all the 32 threads will be executed by the SIMD un
 
 <h2 id="2b5d215bd8a777456df7e1798de92043"></h2>
 
------
 
 #### Control Divergence Examples
     
@@ -169,7 +158,6 @@ Every time a warp is executs, all the 32 threads will be executed by the SIMD un
 
 <h2 id="1f0e12d8037b1360b152b3919758c50f"></h2>
 
------
 
 ### Lecture 2.3: Memory Model and Locality -- CUDA Memories
 
@@ -196,7 +184,6 @@ Declaring CUDA Variables:
     
 <h2 id="1219239487fe58703cbeef6926565678"></h2>
 
------
 
 #### Shared Memory in CUDA
 
@@ -208,7 +195,6 @@ Declaring CUDA Variables:
 
 <h2 id="b219e36479cf5b980f9392c55e0ebf6c"></h2>
 
------
 
 #### Hardware view of CUDA memory
 
@@ -216,7 +202,6 @@ Declaring CUDA Variables:
 
 <h2 id="3183ab10ebc57b727dff3bb7ab220612"></h2>
 
------
 
 #### A Common Programming Strategy
 
@@ -228,7 +213,6 @@ Declaring CUDA Variables:
 
 <h2 id="7d42b61796363f73a5cb34b3454dd847"></h2>
 
------
 
 #### Matrix Multiplication Kernel Shared Memory Variable Declaration
 
@@ -241,7 +225,6 @@ __global__ void MatrxMulKernel( int m , int n , int k, ...  )
     
 <h2 id="fa264df43ed0c870866e5a1189dfca2d"></h2>
 
------
 
 ### Lecture 2.4: Tiled Parallel Algorithms
 
@@ -258,7 +241,6 @@ __global__ void MatrxMulKernel( int m , int n , int k, ...  )
 
 <h2 id="c9f42b2d9c227c29799c484b06381309"></h2>
 
------
 
 #### Outline of Tiling Technique
 
@@ -269,13 +251,11 @@ __global__ void MatrxMulKernel( int m , int n , int k, ...  )
 
 <h2 id="df7f258b3c190a7786a73969f40c7876"></h2>
 
------
 
 ### Lecture 2.5: Tiled Matrix Multiplication
 
 <h2 id="e6bb7ec2f47353d90a937519a9bbdcd0"></h2>
 
------
 
 #### Tiled Matrix Multiplication
 
@@ -285,7 +265,6 @@ __global__ void MatrxMulKernel( int m , int n , int k, ...  )
 
 <h2 id="54c3487cbed905442216bd53f2aa807d"></h2>
 
------
 
 #### Loading a Tile
 
@@ -295,7 +274,6 @@ __global__ void MatrxMulKernel( int m , int n , int k, ...  )
 
 <h2 id="e7ae5e8476caaef36b7b325efe6ea38f"></h2>
 
------
 
 #### Phase 0 Load for Block (0,0)
 
@@ -311,7 +289,6 @@ Every A element in the shared memory and every B element in the shared memory wi
 
 <h2 id="4e844bfec02b6eb7144678d613169a5e"></h2>
 
------
 
 #### Phase 1 Load for Block (0,0)
 
@@ -321,7 +298,6 @@ Every A element in the shared memory and every B element in the shared memory wi
 
 <h2 id="05f6e5f0aec3c722b0c365e005707ab6"></h2>
 
------
 
 #### Barrier Synchronization
 
@@ -342,7 +318,6 @@ Caution: __syncthreads() can significantly reduce active threads in a block. Thi
 
 <h2 id="8c20d72295f054dfec39cceaff3d05b6"></h2>
 
------
 
 ### Lecture 2.6: Tiled Matrix Multiplication Kernel
 
@@ -375,7 +350,6 @@ __global__ void MatrixMulKernel(int m, int n, int k, float* A,float* B, float* C
      
 <h2 id="d341490ecbbce14eba0d2e9cf03b4fcd"></h2>
 
------
 
 #### First-order Size Considerations
 
@@ -387,7 +361,6 @@ __global__ void MatrixMulKernel(int m, int n, int k, float* A,float* B, float* C
     
 <h2 id="b26dad104ff5019d6d087dec37d62783"></h2>
 
------
 
 #### Shared Memory and Threading
  - Each SM (Streaming Multiprocessor) in Fermi has 16KB or 48KB shared memory (configurable vs. L1 cache)
@@ -407,7 +380,6 @@ __global__ void MatrixMulKernel(int m, int n, int k, float* A,float* B, float* C
 
 <h2 id="afb88027399d01d622718722195efb3b"></h2>
 
------
 
 #### Device Query
  - Number of devices in the system
@@ -430,13 +402,11 @@ for (i = 0; i < dev_count; i++) {
     
 <h2 id="632e348b2be685fb56cf013fe7edea7e"></h2>
 
------
 
 ### Lecture 2.7: Handling Boundary Conditions in Tiling
 
 <h2 id="36163dc0760ea3b315915b599cd4fa2b"></h2>
 
------
 
 #### Handling Matrix of Arbitrary Size
 
@@ -449,7 +419,6 @@ for (i = 0; i < dev_count; i++) {
 
 <h2 id="81697492e4e1b62b3f2352852d2c0fb8"></h2>
 
------
 
 #### Major Cases in Toy Example
 
@@ -460,13 +429,11 @@ for (i = 0; i < dev_count; i++) {
     
 <h2 id="8d2db0c8d46de05bfb88b8206028adca"></h2>
 
------
 
 ### Lecture 2.8: A Tiled Kernel for Arbitrary Matrix Dimensions
 
 <h2 id="980269dfb458cf354a27f8af783f6cc1"></h2>
 
------
 
 #### A “Simple” Solution
  - When a thread is to load any input element, test if it is in the valid index range
@@ -481,7 +448,6 @@ for (i = 0; i < dev_count; i++) {
     
 <h2 id="f19c19580a27edbfffc35f335206a7d3"></h2>
 
------
 
 #### Boundary Condition for Input A Tile
 
@@ -499,7 +465,6 @@ Else , load 0
  
 <h2 id="c99cbcd4928e3eed824dec8e069f9af9"></h2>
 
------
 
 #### Boundary Condition for Input B Tile
 
@@ -517,7 +482,6 @@ Else , load 0
 
 <h2 id="bcadae33273a0da5fc70f9ec2e3e311e"></h2>
 
------
 
 #### Loading Elements – with boundary check
 

@@ -25,15 +25,11 @@
 
 <h2 id="0c293a6a2db2eb8e3c978bd886f70114"></h2>
 
------
------
 
 # Unite Beijing 2015
 
 <h2 id="b656670a94151f6937af7e6aae08ad5a"></h2>
 
------
------
 
 # Unity 资源架构
 
@@ -53,15 +49,12 @@
 
 <h2 id="8a1b195e72d94755b074af742d0b0cf6"></h2>
 
------
------
 
 # Asset Bundles
 
 
 <h2 id="0b0ba87fc49100e5abed047e87709872"></h2>
 
------
 
 ## 老版本创建 AB
 
@@ -75,7 +68,6 @@
 
 <h2 id="8fb356dc499af99071132fa005b5fa02"></h2>
 
------
 
 ## 老版本加载 AB
 
@@ -92,13 +84,11 @@
 
 <h2 id="0ddcb8f8137cb118ce292fb25eeb3346"></h2>
 
------
 
 ## 新版本打包
 
 <h2 id="922ef5b2826051cb78894baf22e49160"></h2>
 
------
 
 ### 建立 ASSET 到 ASSETBUNDLE的映射 (1)
 
@@ -113,7 +103,6 @@
 
 <h2 id="140bd46bb7082048e6b86f5993095c75"></h2>
 
------
 
 ### 建立 ASSET 到 ASSETBUNDLE的映射 (2)
 
@@ -128,7 +117,6 @@
 
 <h2 id="a70c85d4c2378c0ffbf56560693a63d8"></h2>
 
------
 
 ### 创建 ASSETBUNDLE (2)
 
@@ -160,7 +148,6 @@ struct AssetBundleBuild {
 
 <h2 id="5c5b627e609949b6a146e5d8845516b4"></h2>
 
------
 
 ### BuildAssetBundleOptions
 
@@ -174,7 +161,6 @@ struct AssetBundleBuild {
 
 <h2 id="599f569a4a7e2d2f75375e8c0d2a5ab6"></h2>
 
------
 
 ### 新的 BuildAssetBundleOptions
 
@@ -188,7 +174,6 @@ struct AssetBundleBuild {
 
 <h2 id="6297ddfb8b80d1a4392ee7ac8b71c319"></h2>
 
------
 
 ### 查找 ASSETBUNDLE
 
@@ -202,13 +187,11 @@ struct AssetBundleBuild {
 
 <h2 id="54086f056a59578dd3a697bbe657be74"></h2>
 
------
 
 ### 5.0 Advanced Features
 
 <h2 id="4e6583637514ecbe6bfdaf7c43b863d4"></h2>
 
------
 
 #### ASSETBUNDLE 增量式打包
 
@@ -233,7 +216,6 @@ struct AssetBundleBuild {
 
 <h2 id="99d53a33fd6a1bf62611e567a230fb36"></h2>
 
------
 
 #### MANIFEST 文件
 
@@ -247,7 +229,6 @@ struct AssetBundleBuild {
 
 <h2 id="0d136daf0d135271201fddb2162f3a5e"></h2>
 
------
 
 #### MANIFEST ASSETBUNDLE
 
@@ -261,7 +242,6 @@ struct AssetBundleBuild {
 
 <h2 id="0275f23626c41e070ecac3ea90ac2fc4"></h2>
 
------
 
 #### EDITOR SIMULATION 
 
@@ -271,7 +251,6 @@ struct AssetBundleBuild {
 
 <h2 id="dfe815a1916b2373c98bab408b6bd919"></h2>
 
------
 
 ### ASSETBUNDLE LOAD函数
 
@@ -291,7 +270,6 @@ struct AssetBundleBuild {
 
 <h2 id="423868078a7986ec0ddcdfb8a0496654"></h2>
 
------
 
 ### DEMO Prject
 

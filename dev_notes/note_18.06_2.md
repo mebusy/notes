@@ -21,14 +21,23 @@
  - [23.](#d4fbca7834560377a100c91364ec53ec)
      - [Differential Equations  du/dt=Au](#9c0f59a904be7c01984a683e511ca015)
      - [Exponential e<sup>At</sup> of a matrix](#627bb884755ff95a306e6587c9bed913)
+ - [24.](#21250cdbabe0f7964564376f3d523f38)
+     - [Markov matrices](#0134f701c2230c4f2fc4488d2214160a)
+     - [Fourier Series and projections](#1c401566682351198dc0b2cf460094c1)
+ - [25.](#13f3022d707d2db79b2bbc152c21c483)
+     - [Symmetric Matrices](#b899f85c23e42aea33f7684a076389ca)
+     - [26.](#dd3391b01e6d23199e9d35f0a4f5d427)
+         - [Complexo](#023666df9ae9590deecc67a35fb5839e)
+         - [Complex Vectors , length](#e5c0693de0b5a3e017ca1bcabf2a8444)
+         - [Complex Matrices](#9ff43aa3e54f31207991c2e82ccf292d)
+         - [Discrete Fourier](#2863407614e2585ffc756f6a2485f06e)
+         - [Fast Transform](#f53bc93546799cd2984bed0d0a434ef3)
 
 ...menuend
 
 
 <h2 id="ae8178b3d3c78ee97adfcc298fe0b11e"></h2>
 
------
------
 
 # 18.Determinants 
 
@@ -38,7 +47,6 @@ Now, concentrating on square matrices. Determinants and Eigen values are big, bi
 
 <h2 id="fc7bcc02eaa53ccf05c2b3f48461de47"></h2>
 
------
 
 ## Determinants , det A = |A| 
 
@@ -49,7 +57,6 @@ Every square matrix has a number associated with , called its determinant.
 
 <h2 id="71fed0c3428bf1a2e19af257c4bac379"></h2>
 
------
 
 ## Signed
 
@@ -57,7 +64,6 @@ Determinant is signed.
 
 <h2 id="9fc2d28c05ed9eb1d75ba4465abf15a9"></h2>
 
------
 
 ## Properties 
 
@@ -108,14 +114,11 @@ p4 ~ p10
 
 <h2 id="077014dde3a16154d48a5807d1c351bb"></h2>
 
------
------
 
 # 19. Formular for Determinant
 
 <h2 id="a4ea43d88bcd4db4f7d7fe3abe7052b4"></h2>
 
------
 
 ## Formula for detA ( n! terms )
 
@@ -129,7 +132,6 @@ p4 ~ p10
  
 <h2 id="d02910574d79a0726db429910342d33e"></h2>
 
------
 
 ## Cofactor formula
 
@@ -145,14 +147,11 @@ Cofactor is a way of breaking up above big formula that connects the nxn determi
 
 <h2 id="d32bea3e6901eaca807e7ff0a03afc52"></h2>
 
------
------
 
 # 20. APPLICATIONS OF DETERMINANTS
 
 <h2 id="23d31b234b8839bc2675b16fff1de2da"></h2>
 
------
 
 ## Formula for A⁻¹
 
@@ -173,7 +172,6 @@ The answer is: we are actually computing the determinant of a new matrix which h
 
 <h2 id="8d1f376d9179ba4326b17606a2f64136"></h2>
 
------
 
 ## Cramers Rule for x=A⁻¹b
 
@@ -196,7 +194,6 @@ But having a formula allows you to do algebra instead of algorithms. They're nic
 
 <h2 id="b99ff4a9543c3ccbfac05190cc07dd68"></h2>
 
------
 
 ## | detA | = volume of box
 
@@ -220,8 +217,6 @@ But having a formula allows you to do algebra instead of algorithms. They're nic
 
 <h2 id="2a051e916e56ff2ad1a6b47745f85a6b"></h2>
 
------
------
 
 # 21. EigenValues - EigenVectors 
 
@@ -267,7 +262,6 @@ How to solve Ax=λx ?
 
 <h2 id="9e08a229f7feafd17be0f57fed7d544d"></h2>
 
------
 
 ## det[A-λI] = 0 
 
@@ -275,7 +269,6 @@ The idea will be to find λ first. I'll find n λ's.  A λ could be repeated, A 
 
 <h2 id="95946abeb88b298e53a6c970166fb7aa"></h2>
 
------
 
 ## Trace = λ₁+λ₂+ ... + λ<sub>n</sub>
 
@@ -391,14 +384,11 @@ This is a degenerate matrix. It's only got one line of eigenvectors instead of t
 
 <h2 id="7082803699d165541950b7de2ae708e3"></h2>
 
------
------
 
 # 22. Diagonalizing 
 
 <h2 id="7b86df847bba7602c3c3d17d03b2841f"></h2>
 
------
 
 ## Diagonalizing a matrix 
 
@@ -444,7 +434,6 @@ if I multiply  S⁻¹ on the right , I got
 
 <h2 id="d975eb14bcadcace9392fa08591c6162"></h2>
 
------
 
 ## Powers of A / equation u<sub>k+1</sub> = Au<sub>k</sub>
 
@@ -546,7 +535,6 @@ F₁₀₀ ≈ c₁·(1.61803)¹⁰⁰.   ( the other terms involves c₂ is ign
 
 <h2 id="8912c5512db9003e5c8ce07b7ff36a88"></h2>
 
------
 
 ## Recap 
 
@@ -567,8 +555,6 @@ F₁₀₀ ≈ c₁·(1.61803)¹⁰⁰.   ( the other terms involves c₂ is ign
 
 <h2 id="d4fbca7834560377a100c91364ec53ec"></h2>
 
------
------
 
 # 23. 
 
@@ -579,7 +565,6 @@ And the result, one thing we will find it's completely parallel to powers of a m
 
 <h2 id="9c0f59a904be7c01984a683e511ca015"></h2>
 
------
 
 ## Differential Equations  du/dt=Au
 
@@ -621,7 +606,6 @@ TODO 看书。
 
 <h2 id="627bb884755ff95a306e6587c9bed913"></h2>
 
------
 
 ## Exponential e<sup>At</sup> of a matrix
 
@@ -629,7 +613,13 @@ TODO
 
 ---
 
+<h2 id="21250cdbabe0f7964564376f3d523f38"></h2>
+
+
 # 24. 
+
+<h2 id="0134f701c2230c4f2fc4488d2214160a"></h2>
+
 
 ## Markov matrices
 
@@ -710,6 +700,9 @@ A<sup>k+1</sup>u₀ = c₁·1<sup>k+1</sup>[2;1] = [666.67 ; 333.33]
 
 
 
+<h2 id="1c401566682351198dc0b2cf460094c1"></h2>
+
+
 ## Fourier Series and projections 
 
 
@@ -760,7 +753,13 @@ How do I get a₁?  I take the inner product of everything with cos(x).
 
 ---
 
+<h2 id="13f3022d707d2db79b2bbc152c21c483"></h2>
+
+
 # 25.
+
+<h2 id="b899f85c23e42aea33f7684a076389ca"></h2>
+
 
 ## Symmetric Matrices
 
@@ -811,7 +810,13 @@ It's symmtrix.
 
 </details>
 
+<h2 id="dd3391b01e6d23199e9d35f0a4f5d427"></h2>
+
+
 ## 26.
+
+<h2 id="023666df9ae9590deecc67a35fb5839e"></h2>
+
 
 ### Complexo
 
@@ -820,6 +825,9 @@ The Fourier Matrix is the most important complex matrix.  It's the matrix that w
 And the really special thing is the fast Fourier transform (FFT). It's being used in a thousand places. How do I mulitply fast by that matrix? 
 
 Normally, multiplications by nxn matrix would be O(n²).  The FFT's idea reduces this n² down to nlog₂n. 
+
+<h2 id="e5c0693de0b5a3e017ca1bcabf2a8444"></h2>
+
 
 ### Complex Vectors , length
 
@@ -832,6 +840,9 @@ What I really want is z̅ᵀz = |z|².
 Here is a symbol to do both: zᴴz.   H stands for Hermite. 
 
 **Inner product** of complex vector:  y̅ᵀx.
+
+
+<h2 id="9ff43aa3e54f31207991c2e82ccf292d"></h2>
 
 
 ### Complex Matrices
@@ -893,7 +904,13 @@ This matrix is so remarkable.   It's the 4x4 matrix that comes into the 4 point 
 
 
 
+<h2 id="2863407614e2585ffc756f6a2485f06e"></h2>
+
+
 ### Discrete Fourier
+
+<h2 id="f53bc93546799cd2984bed0d0a434ef3"></h2>
+
 
 ### Fast Transform
 

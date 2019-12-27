@@ -12,14 +12,11 @@
 
 <h2 id="c922a641cc5dc03a497e540996d12198"></h2>
 
------
------
 
 # homebrew
 
 <h2 id="a655cf4302df90e17053b41af734deb9"></h2>
 
------
 
 ## Reset Homebrew Fomular
 
@@ -31,7 +28,6 @@ $ git reset --hard HEAD
 
 <h2 id="31cfdc0a967e58b7447b2e9b456d0f2f"></h2>
 
------
 
 ## Manually download brew package 
 
@@ -43,13 +39,11 @@ $ git reset --hard HEAD
 
 <h2 id="387e3f4aa69662696cce11325cecc502"></h2>
 
------
 
 ## Homebrew 使用 清华索引
 
 <h2 id="2b4d5ebf708a8726acef8ace48915e9f"></h2>
 
------
 
 ### brew update 索引镜像
 
@@ -79,7 +73,6 @@ brew update
 
 <h2 id="eacd77990df567221ae4eec63f170ef4"></h2>
 
------
 
 ### brew binary 安装包  镜像
 

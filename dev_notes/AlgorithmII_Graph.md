@@ -36,8 +36,6 @@
 
 <h2 id="4cdbd2bafa8193091ba09509cedf94fd"></h2>
 
------
------
 
 # Graph
 
@@ -50,8 +48,6 @@
 
 <h2 id="8a2c8888eec23acf4be67a33b9be6fb5"></h2>
 
------
------
 
 # 4.1 Undirected Graphs
 
@@ -62,7 +58,6 @@
 
 <h2 id="c9792b88744788472d9532827650ed61"></h2>
 
------
 
 ## Depth-first search
 
@@ -122,7 +117,6 @@ public Iterable<Integer> pathTo(int v)
 
 <h2 id="9f5783932f655ffe3908ff7d3410497e"></h2>
 
------
 
 ## Breadth-first search
 
@@ -170,7 +164,6 @@ private void bfs(Graph G, int s)
 
 <h2 id="4f075a5c6b893a805fb941a4db775c4a"></h2>
 
------
 
 ## connected components
 
@@ -223,13 +216,11 @@ private void dfs(Graph G, int v)
 
 <h2 id="6b393b6b209b981e9c552d3d3814c420"></h2>
 
------
 
 ## challenges
 
 <h2 id="2456b0a94d181fa5acdc222379fa31a4"></h2>
 
------
 
 ### Graph-processing challenge 1
 
@@ -241,7 +232,6 @@ private void dfs(Graph G, int v)
 
 <h2 id="d0c6e57f517565d2345c41932e4dc87d"></h2>
 
------
 
 ### Graph-processing challenge 2
 
@@ -251,7 +241,6 @@ private void dfs(Graph G, int v)
 
 <h2 id="a4021ddbdacdc95fe954ced6fcbb0ede"></h2>
 
------
 
 ### Graph-processing challenge 3
 
@@ -267,7 +256,6 @@ private void dfs(Graph G, int v)
 
 <h2 id="cf914ca85d408d62a2a1516a25f8e447"></h2>
 
------
 
 ### Graph-processing challenge 4
 
@@ -278,7 +266,6 @@ private void dfs(Graph G, int v)
 
 <h2 id="5da01db9ac6e1d4794f12d241f02b364"></h2>
 
------
 
 ### Graph-processing challenge 5
 
@@ -289,7 +276,6 @@ private void dfs(Graph G, int v)
 
 <h2 id="5fddb61a31eb31f5def11f0602585786"></h2>
 
------
 
 ### Graph-processing challenge 6
 
@@ -300,13 +286,11 @@ private void dfs(Graph G, int v)
 
 <h2 id="6ce3bdc39e544725038e0e87b771db1e"></h2>
 
------
 
 ## Questions 
 
 <h2 id="5b4ecf427bc18de53a5c801f386c6c91"></h2>
 
------
 
 ### Diameter and center of a tree
 
@@ -319,7 +303,6 @@ private void dfs(Graph G, int v)
 
 <h2 id="e587cf6e48e5962824675f4d75ae6ebb"></h2>
 
------
 
 ### Euler cycle.
 
@@ -330,8 +313,6 @@ private void dfs(Graph G, int v)
 
 <h2 id="6b40f342b24bb4dd337d6e975bc81e1b"></h2>
 
------
------
 
 # 4.2 Directed Graphs
 
@@ -345,7 +326,6 @@ private void dfs(Graph G, int v)
 
 <h2 id="fac13f50fe5cb105f583268b2e58ee49"></h2>
 
------
 
 ## digraph search
 
@@ -354,7 +334,6 @@ private void dfs(Graph G, int v)
 
 <h2 id="880d06ec2473d3c18e0271c16f4cf125"></h2>
 
------
 
 ### Depth-first search in digraphs
 
@@ -379,7 +358,6 @@ private void dfs(Graph G, int v)
 
 <h2 id="8fa51b970e3f3fa377f28a3a9afa6f29"></h2>
 
------
 
 ### Depth-first search in digraphs summary
 
@@ -395,7 +373,6 @@ private void dfs(Graph G, int v)
 
 <h2 id="d45bcb0c4de24ae91cbd8c1ddaa95dc1"></h2>
 
------
 
 ### Breadth-first search in digraphs
 
@@ -420,13 +397,11 @@ private void dfs(Graph G, int v)
 
 <h2 id="3f9c4755d1b2c530f17ce3f80a0fb896"></h2>
 
------
 
 ## Topological Sort
 
 <h2 id="43a816705a6096bcad303b50bf740746"></h2>
 
------
 
 ### Precedence scheduling
 
@@ -440,7 +415,6 @@ private void dfs(Graph G, int v)
 
 <h2 id="62ee2b89caa19cc2a566a5ea91336292"></h2>
 
------
 
 ### Topological sort
 
@@ -494,7 +468,6 @@ public class DepthFirstOrder {
 
 <h2 id="71fb8dfa2678cc85259174067fbb7bb2"></h2>
 
------
 
 ### Directed cycle detection
 
@@ -513,13 +486,11 @@ public class DepthFirstOrder {
 
 <h2 id="4c16fa64d0ac59c4e44c2b55e9a532cf"></h2>
 
------
 
 ## strong components
 
 <h2 id="d0a679dff20875ea17dcf0679ddd9ae9"></h2>
 
------
 
 ### Strongly-connected components
  
@@ -546,7 +517,6 @@ public class DepthFirstOrder {
 
 <h2 id="78bc7c6434676c150d3fcd374edb673d"></h2>
 
------
 
 ### Kosaraju-Sharir algorithm: intuition
 
@@ -563,7 +533,6 @@ public class DepthFirstOrder {
 
 <h2 id="9844834019d43e5059b822f482b610df"></h2>
 
------
 
 ### Kosaraju-Sharir algorithm
 
@@ -625,7 +594,6 @@ private void dfs(Digraph G, int v)
 
 <h2 id="9b34efa15d2453e1e219c449b0fbf698"></h2>
 
------
 
 ### Digraph-processing summary: algorithms of the day
 
@@ -637,7 +605,6 @@ strong components in a digraph | Kosaraju-Sharir DFS (twice)
 
 <h2 id="ea0a68eef2b9a51cdfc378ef383ff7da"></h2>
 
------
 
 ## Digraph question
 

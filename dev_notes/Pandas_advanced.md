@@ -22,14 +22,11 @@
 
 <h2 id="adf4334b9c5df6b20ed4f5f5e20bb7a0"></h2>
 
------
------
 
 # Advanced Pandas
 
 <h2 id="ee2aad0e21ce73c25e8bcddcd01d1426"></h2>
 
------
 
 ## Merging Dataframes
 
@@ -151,7 +148,6 @@ pd.merge(staff_df, student_df, how='inner', left_on=['First Name','Last Name'], 
 
 <h2 id="4c7fe48a07b6ad92d0c079eccc80142d"></h2>
 
------
 
 ## Pandas Idioms
 
@@ -180,7 +176,6 @@ df.rename(columns={'ESTIMATESBASE2010': 'Estimates Base 2010'})
 
 <h2 id="6255c3e0f88024e53b86048db1711cc1"></h2>
 
------
 
 ### apply function
 
@@ -210,7 +205,6 @@ df.apply(lambda x: np.max(x[rows]), axis=1)
 
 <h2 id="be87d8c3de2675bbc53f9442af9d8feb"></h2>
 
------
 
 ## Group by
 
@@ -261,7 +255,6 @@ for group, frame in df.groupby(fun):
 
 <h2 id="39adbeb6bc21a3133e5fdcf1ec05d1a0"></h2>
 
------
 
 ### aggregate
 
@@ -321,7 +314,6 @@ Arizona 427213.866667   431248.800000   6408208 6468732
 
 <h2 id="34da875e03f8175113bd901cb46c2945"></h2>
 
------
 
 ## Scales
 
@@ -386,7 +378,6 @@ Categories (3, object): [Small < Medium < Large]
 
 <h2 id="2df968ba4419f25ab2e5bbeaee9eacc3"></h2>
 
------
 
 ## Pivot Tables
 
@@ -432,7 +423,6 @@ All 125.0   104.0   107.0   81.0    49.0    80.0    35.0    345.478261  190.6226
 
 <h2 id="124cf81690d7ad3c6cb1a8e2572c30b7"></h2>
 
------
 
 ## Date Functionality
 
@@ -441,7 +431,6 @@ All 125.0   104.0   107.0   81.0    49.0    80.0    35.0    345.478261  190.6226
 
 <h2 id="a3d5de3eac8bb00ae86fd1a1005f1500"></h2>
 
------
 
 ### Timestamp
 
@@ -455,7 +444,6 @@ Timestamp('2016-09-01 10:05:00')
 
 <h2 id="1901606ea069a83dc7beea17881ef95a"></h2>
 
------
 
 ### Period
 
@@ -472,7 +460,6 @@ Period('2016-03-05', 'D')
 
 <h2 id="31c3ed93084fde1e4cfb189455db3ae0"></h2>
 
------
 
 ### DatetimeIndex
 
@@ -491,7 +478,6 @@ pandas.tseries.index.DatetimeIndex
 
 <h2 id="3e4d11c471477ea15990deaf351ecbe2"></h2>
 
------
 
 ### PeriodIndex
 
@@ -508,7 +494,6 @@ pandas.tseries.period.PeriodIndex
 
 <h2 id="e5e5d211bc65027dfbc69a0ab7b42824"></h2>
 
------
 
 ### Converting to Datetime
 
@@ -545,7 +530,6 @@ Timestamp('2012-07-04 00:00:00')
 
 <h2 id="345b4ea198c499ed502b17952e076b36"></h2>
 
------
 
 ### Timedeltas
 
@@ -561,7 +545,6 @@ Timestamp('2016-09-14 11:10:00')
 
 <h2 id="ee353674a132153d42025f4ba3237d30"></h2>
 
------
 
 ### Working with Dates in a Dataframe
 

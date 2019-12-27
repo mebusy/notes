@@ -1,3 +1,15 @@
+...menustart
+
+ - [Bayes' theorem](#876a7616557a158b737cb2c8ac29802e)
+     - [Steve's story](#15050a66ef13d9d540df239e4d1e37d2)
+     - [Heart of Bayes' theorem](#385197024bf25ae23f2f4cca723d3c62)
+     - [When to use Bayes's rule](#02747bb5d2c4f6da1c5a0b6bde6c33a1)
+
+...menuend
+
+
+<h2 id="876a7616557a158b737cb2c8ac29802e"></h2>
+
 
 # Bayes' theorem
 
@@ -17,6 +29,9 @@ P(*H* |**E**) = P(*H* )·P(**E** |*H* ) / P(**E**)
 
 
 With the goal of gainning a deeper understanding, let's tackle these in reverse order.
+
+
+<h2 id="15050a66ef13d9d540df239e4d1e37d2"></h2>
 
 
 ## Steve's story 
@@ -59,12 +74,18 @@ it should update prior beliefs.
 - ![](../imgs/steve_story_3.png)
 
 
+<h2 id="385197024bf25ae23f2f4cca723d3c62"></h2>
+
+
 ## Heart of Bayes' theorem
 
 
 - ![](../imgs/steve_story_4.png)
 
 If this line of reasoning makes sense to you, the way seeing evidence restricts the space of possibilities, then congratulations, you understand the heart of Bayes' theorem. 
+
+
+<h2 id="02747bb5d2c4f6da1c5a0b6bde6c33a1"></h2>
 
 
 ## When to use Bayes's rule 

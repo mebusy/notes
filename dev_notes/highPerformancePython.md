@@ -24,20 +24,16 @@
 
 <h2 id="d105e42e2a2538a926e25076acc61be3"></h2>
 
------
------
 
 # 2 profile
 
 <h2 id="11e4ad9c685f7ebda02bf471870b42ec"></h2>
 
------
 
 ## Cpu profile
 
 <h2 id="3acd262af042ae4143c1e2e86b55ad52"></h2>
 
------
 
 ### use timeit
 
@@ -50,7 +46,6 @@ python -m timeit -n 5 -r 5 -s "import julia1" "julia1.calc_pure_python(False, de
 
 <h2 id="324369ebf4aa30c14eae18ba1231bcd9"></h2>
 
------
 
 ### use unix time command
 
@@ -70,7 +65,6 @@ By adding user and sys, you get a sense of how much time was spent in the CPU. T
 
 <h2 id="36a6ae8bfb5442419d701bb4af008274"></h2>
 
------
 
 ### use cprofile 
 
@@ -100,7 +94,6 @@ python -m cProfile -s cumulative julia1_nopil.py
 
 <h2 id="d7dd7fb89c8a9ffea55f74bc3a6018be"></h2>
 
------
 
 ### use line_profile 
 
@@ -117,7 +110,6 @@ It works by profiling individual func‐ tions on a line-by-line basis, so you s
 
 <h2 id="ec8e55e3ee8a8f8049bf7d540a3679ec"></h2>
 
------
 
 ## Memory profile 
 
@@ -128,14 +120,11 @@ It works by profiling individual func‐ tions on a line-by-line basis, so you s
 
 <h2 id="3a5f793d765efeae35bf8449952f7d01"></h2>
 
------
------
 
 # 3 List and Tuple 
 
 <h2 id="9c810920649050b97ee2f736d74355e9"></h2>
 
------
 
 ## binary search
 
@@ -161,14 +150,12 @@ def binary_search(needle, haystack):
 
 <h2 id="789315c7d328e462184bae7f5269422f"></h2>
 
------
 
 ## 6 Matrix and Vector Computation
 
 
 <h2 id="7c19d1264b48dbaef6f19b626ed16c2c"></h2>
 
------
 
 ### problem with  Allocating Too Much
 
@@ -177,7 +164,6 @@ def binary_search(needle, haystack):
  
 <h2 id="5775736264cc198fd819593e551b8403"></h2>
 
------
 
 ### Memory Fragmentation
  
@@ -193,7 +179,6 @@ def binary_search(needle, haystack):
   
 <h2 id="8670a80dcf372e8b7ad9cf6eb3168809"></h2>
 
------
 
 ### Enter numpy
 
@@ -201,7 +186,6 @@ numpy stores data in contiguous chunks of memory and supports vectorized operati
 
 <h2 id="228c682c9eb16b3494c7b3a67132cb7d"></h2>
 
------
 
 ### Memory Allocations and In-Place Operations
 
@@ -223,7 +207,6 @@ numpy stores data in contiguous chunks of memory and supports vectorized operati
 
 <h2 id="56f456dc0e224555f1be6f250d7ce29a"></h2>
 
------
 
 ### Making most numpy operations in-place
 
@@ -236,22 +219,16 @@ def evolve(grid, dt, out, D=1):
 
 <h2 id="851bb2aeae97198e18a9d391be7bbb1e"></h2>
 
------
------
 
 # 8 Concurrency   page 200
 
 <h2 id="9ca43b7228989d90337fe842ce8ae131"></h2>
 
------
------
 
 # 9 The multiprocessing Module
 
 <h2 id="d41d8cd98f00b204e9800998ecf8427e"></h2>
 
------
------
 
 # 
 

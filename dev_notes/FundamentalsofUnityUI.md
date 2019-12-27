@@ -13,15 +13,11 @@
 
 <h2 id="1dfc0817fb1b2cab37c5877272360d75"></h2>
 
------
------
 
 # Fundamentals of Unity UI
 
 <h2 id="6d5c26750224532b44582db82a984403"></h2>
 
------
------
 
 # 术语
 
@@ -52,8 +48,6 @@
 
 <h2 id="2a168379a54008088b779159b876072f"></h2>
 
------
------
 
 # 渲染细节
 
@@ -63,8 +57,6 @@
 
 <h2 id="919839be384cb16c603fcf7941d47a2b"></h2>
 
------
------
 
 # The Batch building process (Canvases)
 
@@ -76,8 +68,6 @@
 
 <h2 id="4b236b0defe0140ab7c6ca4d6eb9ce03"></h2>
 
------
------
 
 # The rebuild process (Graphics)
 
@@ -92,8 +82,6 @@
 
 <h2 id="48573fb33426281a66a7df414d308adf"></h2>
 
------
------
 
 # Layout rebuilds
 
@@ -103,8 +91,6 @@
 
 <h2 id="3bb07e02843305c2da7e77bb4877f16b"></h2>
 
------
------
 
 # Graphic rebuilds
 

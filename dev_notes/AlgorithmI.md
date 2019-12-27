@@ -36,8 +36,6 @@
 
 <h2 id="36624ed78487c59c4972f2d421e985d5"></h2>
 
------
------
 
 # 1.5 UNION-FIND
 
@@ -48,7 +46,6 @@
 
 <h2 id="b175d1bc18d1ee96547e64bd9a71dc50"></h2>
 
------
 
 ## dynamic connectivity
 
@@ -58,7 +55,6 @@
 
 <h2 id="750643bb1af5c016a77bcd7385866166"></h2>
 
------
 
 ### Implementing the operations
  
@@ -70,7 +66,6 @@
 
 <h2 id="9aae2fcda3cf71e6ba9848db8aa59566"></h2>
 
------
 
 ### Quick-find  [eager approach]
 
@@ -88,7 +83,6 @@
 
 <h2 id="6a22536fe36f7a91891c00c8353b8b52"></h2>
 
------
 
 ### Quick-find is too slow
 
@@ -104,7 +98,6 @@ quick-find | N | N | 1
 
 <h2 id="bb8d9b733fe7c5d5a81b14d5f15d1811"></h2>
 
------
 
 ## Quick-union [lazy approach]
 
@@ -140,13 +133,11 @@ quick-union | N | N⁺ | N(worst cast)
 
 <h2 id="f867a4fdb09b251cca05d0a8937af271"></h2>
 
------
 
 ## improvements
 
 <h2 id="ffd277ffee445dabbe1a2e6e83fae275"></h2>
 
------
 
 ### Improvement 1: weighting
 
@@ -184,7 +175,6 @@ weighted QU | N | lgN⁺ | lgN
 
 <h2 id="f96ae0dc0ea4dbddd95e2813e4a8581a"></h2>
 
------
 
 ### Improvement 2: path compression
 
@@ -212,14 +202,11 @@ weight QU + path compression | N+Mlg<sup>\*</sup>N
 
 <h2 id="da1a466c331146a618340e89aa655b05"></h2>
 
------
------
 
 # 2.1 ELEMENTARY SORTS
 
 <h2 id="03b785186d0322e5a1a31c105fc534ee"></h2>
 
------
 
 ## shuffling
 
@@ -228,7 +215,6 @@ weight QU + path compression | N+Mlg<sup>\*</sup>N
 
 <h2 id="1e7778f2afb3096f1731d0f25daf0fd1"></h2>
 
------
 
 ### Shuffle sort
 
@@ -240,7 +226,6 @@ weight QU + path compression | N+Mlg<sup>\*</sup>N
 
 <h2 id="18bfcbf8d708ee9650922d916c1d595b"></h2>
 
------
 
 ### Knuth shuffle
 
@@ -265,7 +250,6 @@ public static void shuffle(Object[] a)
 
 <h2 id="ab573f869e7d3b25f303d40501ee42dd"></h2>
 
------
 
 ## convex hull
 
@@ -277,7 +261,6 @@ public static void shuffle(Object[] a)
 
 <h2 id="f7b4a7d0272cd3b9f0aa24e173a8ac02"></h2>
 
------
 
 ### Convex hull: mechanical algorithm
 
@@ -289,7 +272,6 @@ public static void shuffle(Object[] a)
 
 <h2 id="c8cac5868b416483f56438fb9751cfa8"></h2>
 
------
 
 ### Convex hull application: motion planning
  
@@ -301,7 +283,6 @@ public static void shuffle(Object[] a)
 
 <h2 id="574a49cf3281b0f2c959e58ae347a715"></h2>
 
------
 
 ### Convex hull application: farthest pair
 
@@ -313,7 +294,6 @@ public static void shuffle(Object[] a)
 
 <h2 id="f4c2d0947e883517a2af0291794043e0"></h2>
 
------
 
 ### Convex hull: geometric properties
 
@@ -324,7 +304,6 @@ public static void shuffle(Object[] a)
 
 <h2 id="0e0d735e6d928983e7ce806c574de983"></h2>
 
------
 
 ### Graham scan
 
@@ -334,7 +313,6 @@ public static void shuffle(Object[] a)
 
 <h2 id="63899fcbf3cd4f4fe086e6cf6229b75f"></h2>
 
------
 
 ### Implementing ccw
 
@@ -352,7 +330,6 @@ public static void shuffle(Object[] a)
 
 <h2 id="53743c83882b2e0a5016648231ccb9bd"></h2>
 
------
 
 ### Polar Order
 
@@ -385,14 +362,11 @@ private class PolarOrder implements Comparator<Point2D>A {
 
 <h2 id="0f231cf5608bbdbebfc5195f998dddf0"></h2>
 
------
------
 
 # 2.2 MERGESORT
 
 <h2 id="7da6be45309d0c6b5cd3d0c9770ab1db"></h2>
 
------
 
 ## Two classic sorting algorithms
 
@@ -405,7 +379,6 @@ private class PolarOrder implements Comparator<Point2D>A {
 
 <h2 id="2d20788503105e07ffecf0a832e5a1d6"></h2>
 
------
 
 ## Merge Sort 
 
@@ -415,7 +388,6 @@ private class PolarOrder implements Comparator<Point2D>A {
 
 <h2 id="f1579c6456d1081d1fb1fab0538c9fd0"></h2>
 
------
 
 ## Mergesort: practical improvements
 
@@ -426,7 +398,6 @@ private class PolarOrder implements Comparator<Point2D>A {
 
 <h2 id="7b2970d4873d39e47447102079af953b"></h2>
 
------
 
 ## Stability
 
@@ -438,7 +409,6 @@ private class PolarOrder implements Comparator<Point2D>A {
 
 <h2 id="0145c61a0daa592012099167c895b26f"></h2>
 
------
 
 ## 2.3 QUICKSORT
 
@@ -464,7 +434,6 @@ private static void sort(Comparable[] a, int lo, int hi) {
 
 <h2 id="8d035825ac310d00799b8e0218304083"></h2>
 
------
 
 ### Quicksort properties 
 
@@ -473,7 +442,6 @@ private static void sort(Comparable[] a, int lo, int hi) {
 
 <h2 id="cb0ba743125423b1e1e3bc3e08c9a02c"></h2>
 
------
 
 ### Quicksort: practical improvements
 
@@ -482,7 +450,6 @@ private static void sort(Comparable[] a, int lo, int hi) {
 
 <h2 id="c33b4377d843f4b615014192187f269f"></h2>
 
------
 
 ## Quick-select
 

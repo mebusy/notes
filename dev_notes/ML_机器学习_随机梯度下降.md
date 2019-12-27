@@ -16,8 +16,6 @@
 
 <h2 id="f76fe91515c665720b0e43fa5fe0e9dc"></h2>
 
------
------
 
 ## Gradient Descent with Large Datasets
 
@@ -27,7 +25,6 @@ When m is very large, the computing this derivative term can be very expensive, 
 
 <h2 id="a15f477ff9ba7b33f7616f6feb95b0b1"></h2>
 
------
 
 ### Stochastic(随机) Gradient Descent
 
@@ -62,7 +59,6 @@ Let's recall the batch gradient descent:
 
 <h2 id="34beb6ea7ec5d6cc52927d78751d4ff9"></h2>
 
------
 
 ### Mini-Batch Gradient Descent
 
@@ -77,7 +73,6 @@ Stochastic gradient descent | use *1* example in each iteration
 
 <h2 id="85695b2541e3126709fe45b213bef57e"></h2>
 
------
 
 ### Stochastic Gradient Descent Convergence
 
@@ -87,7 +82,6 @@ When useing Stochastic Gradient Descent how to make sure it is converging okey ,
 
 <h2 id="51e0544e48aab59893bfbf63d0b50570"></h2>
 
------
 
 #### Checking for convergence
 
@@ -116,7 +110,6 @@ Stochastic gradient descent 的J(Θ)图像一般有4种情况:
 
 <h2 id="c0e9a4f7a4e5915754d07942a3aa42fd"></h2>
 
------
 
 ### batch gradient descent VS mini-batch gradient descent
 
@@ -131,14 +124,11 @@ Stochastic gradient descent 的J(Θ)图像一般有4种情况:
 
 <h2 id="41ef0c7e3aa81f83c8172c71f9986dfb"></h2>
 
------
------
 
 ## Advanced Topics
 
 <h2 id="1a1b4213089da03d151647442f86c8d5"></h2>
 
------
 
 ### Online Learning
 
@@ -159,7 +149,6 @@ Repeat forever {
 
 <h2 id="5e500c2b37846f8bc8c9fbfbaa15608d"></h2>
 
------
 
 #### Other online learning example:
 
@@ -173,7 +162,6 @@ Repeat forever {
 
 <h2 id="046be23b70007e2aedcbe8de6813f338"></h2>
 
------
 
 ### Map Reduce and Data Parallelism
 

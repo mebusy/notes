@@ -12,8 +12,6 @@
 
 <h2 id="65960f0506f5463f2851a8de00e13354"></h2>
 
------
------
 
 # Behavior Tree
 
@@ -69,8 +67,6 @@
 
 <h2 id="ffdbc3c1ec6e7d5a3ebd35c186cd29bc"></h2>
 
------
------
 
 # Source code of BTSK
 
@@ -142,7 +138,6 @@
 
 <h2 id="8e7d1bb4b23679d03820f8aade337c40"></h2>
 
------
 
 ## Spearate Out Behaviors
 
@@ -203,7 +198,6 @@ CHECK_EQUAL(1, t->m_iInitializeCalled);
 
 <h2 id="c78c9cd9849639c586dee4874cbd56ce"></h2>
 
------
 
 ## Part 2.a  DATA-ORIENTED BT
 
@@ -228,7 +222,6 @@ CHECK_EQUAL(1, t->m_iInitializeCalled);
 
 <h2 id="34ee2906f2c05f35040b98dcaf55ab4f"></h2>
 
------
 
 ## Event-Driven BT
 
@@ -249,7 +242,6 @@ CHECK_EQUAL(1, t->m_iInitializeCalled);
 
 <h2 id="ad5480f838ed67e92fecf7af3cef120d"></h2>
 
------
 
 ## What's Next
 

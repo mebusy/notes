@@ -70,15 +70,11 @@
 
 <h2 id="df38bbe2a4af790c40b09b4166f7cd18"></h2>
 
------
------
 
 # 第4部分 独立功能的实现
 
 <h2 id="964eeccfeea4a36c1736f2e5a57d1936"></h2>
 
------
------
 
 # 第18章  发布与订阅
 
@@ -92,7 +88,6 @@
 
 <h2 id="06ae8f1a3c62b1b2f86eaf94eaf16a95"></h2>
 
------
 
 ## 18.1 频道的订阅与退订
 
@@ -103,7 +98,6 @@ UNSUBSCRIBE "news.sport" "news.movie"
 
 <h2 id="57376f3b970f2fa57e1395386936e16a"></h2>
 
------
 
 ## 18.2 模式的订阅和退订
 
@@ -115,7 +109,6 @@ PUNSUBSCRIBE "news.*"
 
 <h2 id="d29e119278212c7ebc10e295e8537d37"></h2>
 
------
 
 ## 18.3  发送消息
 
@@ -125,7 +118,6 @@ PUBLISH <channel> <message>
 
 <h2 id="109b71be8b317986473c5dfea90cf2dc"></h2>
 
------
 
 ## 18.4 查看订阅信息
  
@@ -134,7 +126,6 @@ PUBLISH <channel> <message>
 
 <h2 id="f4ed095f5f37088707ed460c010630af"></h2>
 
------
 
 ### 18.4.1 PUBSUB CHANNELS
 
@@ -149,7 +140,6 @@ PUBSUB CHANNELS [pattern]
 
 <h2 id="5768c710779e10adb7b6ac9772a0ab4b"></h2>
 
------
 
 ### 18.4.2  PUBSUB NUMSUB
 
@@ -162,7 +152,6 @@ PUBSUB NUMSUB [channel-1 channel-2 ... channel-n]
 
 <h2 id="c54263018f8148338bf46a8d46bf6c31"></h2>
 
------
 
 ### 18.4.3 PUBSUB NUMPAT
 
@@ -172,8 +161,6 @@ PUBSUB NUMSUB [channel-1 channel-2 ... channel-n]
 
 <h2 id="87cde6ca54c7579c03f69be070dd141b"></h2>
 
------
------
 
 # 第19章  事务
 
@@ -205,7 +192,6 @@ redis:6379> EXEC
 
 <h2 id="efd312b27b5968e83fc3763546a4083a"></h2>
 
------
 
 ## 19.1 事务的实现
 
@@ -216,7 +202,6 @@ redis:6379> EXEC
 
 <h2 id="832549cf829596df424ce8fe8fcc7ae1"></h2>
 
------
 
 ### 19.1.1  事务开始
 
@@ -239,7 +224,6 @@ def MULTI():
 
 <h2 id="163e958e079058bd91fc09d892070cb8"></h2>
 
------
 
 ### 19.1.2 命令入队
 
@@ -251,7 +235,6 @@ def MULTI():
 
 <h2 id="98fc14fcc3aa0ea174ff99dc98acd2ce"></h2>
 
------
 
 ### 19.1.3 事务队列
 
@@ -276,7 +259,6 @@ typedef struct multiState {
 
 <h2 id="a2769c0c7bfc442d2ed32b1821b406c1"></h2>
 
------
 
 ### 19.1.4 执行事务
 
@@ -285,7 +267,6 @@ typedef struct multiState {
 
 <h2 id="40d7a197f4d7802573ddb3741cec9901"></h2>
 
------
 
 ## 19.2 WATCH 命令的实现
 
@@ -325,7 +306,6 @@ redis:6379> EXEC
 
 <h2 id="f69269c4b0fefb086441b343bb3bd69c"></h2>
 
------
 
 ### 19.2.1 使用 WATCH 命令监视 数据库key
 
@@ -341,7 +321,6 @@ typedef struct redisDb {
 
 <h2 id="71eec7edb0e465feb174dbb7a805762e"></h2>
 
------
 
 ### 19.2.2 监视机制的触发
 
@@ -351,7 +330,6 @@ typedef struct redisDb {
 
 <h2 id="f37824e7144573b13696356a88310c66"></h2>
 
------
 
 ### 19.2.3 判断事务是否安全
 
@@ -360,7 +338,6 @@ typedef struct redisDb {
 
 <h2 id="5910e65d9e1898114ba68ef5aa5124a9"></h2>
 
------
 
 ## 19.3 事务的ACID性质
 
@@ -404,8 +381,6 @@ redis:6379> EXEC
 
 <h2 id="bdd07bac10a5c190d07d7da0b6e5262b"></h2>
 
------
------
 
 # 第20章  Lua 脚本
 
@@ -429,7 +404,6 @@ redis:6379> EVALSHA 4475bfb5919b5ad16424cb50f74d4724ae833e72 0
 
 <h2 id="8e13c8c836d81c99a7b8989bf49ff176"></h2>
 
------
 
 ## 20.1 创建并修改 Lua环境
 
@@ -446,7 +420,6 @@ redis:6379> EVALSHA 4475bfb5919b5ad16424cb50f74d4724ae833e72 0
 
 <h2 id="08c32bfcc6dd8ba085bd89dc3b60e47a"></h2>
 
------
 
 ### 20.1.1 创建Lua环境
 
@@ -470,7 +443,6 @@ redis:6379> EVALSHA 4475bfb5919b5ad16424cb50f74d4724ae833e72 0
 
 <h2 id="f3716d66535360016ee1c2f8f143d090"></h2>
 
------
 
 ### 20.1.3 创建 global table -- redis
 
@@ -509,7 +481,6 @@ redis 127.0.0.1:6379> EVAL "return redis.pcall('get', 'foo')" 0
 
 <h2 id="320e921a509acf5f53e5865162e2cbef"></h2>
 
------
 
 ### 20.1.4  Redis Lua的随机函数
 
@@ -522,7 +493,6 @@ redis 127.0.0.1:6379> EVAL "return redis.pcall('get', 'foo')" 0
 
 <h2 id="09b113a02594419ad610060d36c7757d"></h2>
 
------
 
 ### 20.1.5 创建排序辅助函数
 
@@ -542,7 +512,6 @@ redis 127.0.0.1:6379> EVAL "return redis.pcall('get', 'foo')" 0
 
 <h2 id="9d3823c412cc867c5f9b84f7c2ab3814"></h2>
 
------
 
 ### 20.1.6 redis.pcall 函数的错误报告辅助函数
 
@@ -552,7 +521,6 @@ redis 127.0.0.1:6379> EVAL "return redis.pcall('get', 'foo')" 0
 
 <h2 id="9e88edb771987464623d7b8ceea6c5d9"></h2>
 
------
 
 ### 20.1.7 保护 Lua的全局环境
 
@@ -577,7 +545,6 @@ redis:6379> EVAL "return x" 0
 
 <h2 id="54370b6dbbd2e6cb81f19079c5ac064a"></h2>
 
------
 
 ### 20.1.8 将 Lua环境保存到服务器状态的 lua属性里面
 
@@ -586,7 +553,6 @@ redis:6379> EVAL "return x" 0
 
 <h2 id="7f48d61252f581eae9861e6f213b4119"></h2>
 
------
 
 ## 20.2 Lua 环境协作组件
 
@@ -596,7 +562,6 @@ redis:6379> EVAL "return x" 0
 
 <h2 id="5a2bddf043ce45f378296dd0dbe723a5"></h2>
 
------
 
 ### 20.2.1 伪客户端
 
@@ -611,7 +576,6 @@ redis:6379> EVAL "return x" 0
 
 <h2 id="b24debb9c12c4bd3b56f9a4804d91af1"></h2>
 
------
 
 ### 20.2.2 lua_scripts 字典
 
@@ -624,7 +588,6 @@ redis:6379> EVAL "return x" 0
 
 <h2 id="f71560aef16e627ab080511bffca4666"></h2>
 
------
 
 ## 20.3  EVAL命令的实现
 
@@ -636,7 +599,6 @@ redis:6379> EVAL "return x" 0
 
 <h2 id="e5ac86dc960af6b95902862f4de6c281"></h2>
 
------
 
 ### 20.3.1 定义脚本函数
 
@@ -667,7 +629,6 @@ redis:6379> EVAL "return redis.sha1hex( \"return 'hello world'\" )" 0
 
 <h2 id="3dd6b835b4010ffc4bca7a0051314bd6"></h2>
 
------
 
 ### 20.3.2  脚本保存到 lua_scripts 字典
 
@@ -680,13 +641,11 @@ redis:6379> EVAL "return redis.sha1hex( \"return 'hello world'\" )" 0
 
 <h2 id="f00951bee4bbca174fd91b03528ec826"></h2>
 
------
 
 ### 20.3.3 执行脚本函数
 
 <h2 id="43e063e6dbb818871b624b2fb3271309"></h2>
 
------
 
 #### EVAL 语法
 
@@ -709,7 +668,6 @@ eval "return {KEYS[1],KEYS[2],ARGV[1],ARGV[2]}" 2 username age jack 20
 
 <h2 id="61ee803db76c4a4ad421b3b984edb1a4"></h2>
 
------
 
 #### 执行过程
 
@@ -725,7 +683,6 @@ eval "return {KEYS[1],KEYS[2],ARGV[1],ARGV[2]}" 2 username age jack 20
 
 <h2 id="986c35df0da4b7fc1f5f024406bc842d"></h2>
 
------
 
 #### 脚本的原子性
 
@@ -735,7 +692,6 @@ eval "return {KEYS[1],KEYS[2],ARGV[1],ARGV[2]}" 2 username age jack 20
 
 <h2 id="fceebe04bb59a00b53434168656d5408"></h2>
 
------
 
 ## 20.4 lua 和 redis 通信
 
@@ -743,7 +699,6 @@ Conversion between Lua and Redis data types
 
 <h2 id="6beb0a3b94586776779ad6180080dbce"></h2>
 
------
 
 ### Redis to Lua conversion table.
 
@@ -756,7 +711,6 @@ Conversion between Lua and Redis data types
  
 <h2 id="8c7f7ce5672b4f0fc08bf31d3fa3fedf"></h2>
 
------
 
 ### Lua to Redis conversion table.
 
@@ -773,7 +727,6 @@ There is an additional Lua-to-Redis conversion rule that has no corresponding Re
 
 <h2 id="88883a183878359a8fa1d7629847d304"></h2>
 
------
 
 ### important rules to note:
 
@@ -785,7 +738,6 @@ There is an additional Lua-to-Redis conversion rule that has no corresponding Re
 
 <h2 id="1df406401550a6a7d98cc7f798be128c"></h2>
 
------
 
 ## 20.5 脚本管理命令的实现
 
@@ -827,7 +779,6 @@ redis:6379> EVALSHA 2f31ba2bb6d6a0f42cc159d2e2dad55440778de3 0
 
 <h2 id="80f52ee50ddaafdd1e3ad14ec385358c"></h2>
 
------
 
 ## 20.5.1 include third party library
 
@@ -846,7 +797,6 @@ return _G['f_' .. lua_sha_matchFinishCheck ](  )
 
 <h2 id="0728c02dd7b51dcf7102925e1b013d78"></h2>
 
------
 
 ## 20.6 脚本复制
 
@@ -858,7 +808,6 @@ return _G['f_' .. lua_sha_matchFinishCheck ](  )
 
 <h2 id="a6ceeaf4494914d850150dc707837495"></h2>
 
------
 
 ### 20.6.2 复制 EVALSHA 命令
 
@@ -877,7 +826,6 @@ return _G['f_' .. lua_sha_matchFinishCheck ](  )
 
 <h2 id="20f2c099ee2880c7a3f268657b394f9a"></h2>
 
------
 
 ### 20.7 redis 集群和 lua 脚本
 
@@ -920,8 +868,6 @@ return _G['f_' .. lua_sha_matchFinishCheck ](  )
 
 <h2 id="8b7e6e4e7ba14f17536a734562b5f28f"></h2>
 
------
------
 
 # 第21章 排序
 
@@ -986,7 +932,6 @@ redis:6379> SORT test-result  BY *_number
 
 <h2 id="c62b77fb4e06a3ca43f809411a8a6a00"></h2>
 
------
 
 ## 21.1 SORT key 命令的实现
 
@@ -1028,7 +973,6 @@ typedef struct _redisSortObject {
 
 <h2 id="b079e3077212764095facc17223159fc"></h2>
 
------
 
 ## 21.2 ALPHA 选项的实现
 
@@ -1045,7 +989,6 @@ redis:6379> SORT fruits ALPHA
 
 <h2 id="c870e6c991230e2406edcb5b8b5fb13c"></h2>
 
------
 
 ## 21.3 ASC选项 和 DESC 选项的实现
 
@@ -1056,7 +999,6 @@ redis:6379> SORT fruits ALPHA
 
 <h2 id="6e485766032658c95966060f67c8ba0a"></h2>
 
------
 
 ## 21.4 BY 选项的实现
 
@@ -1075,7 +1017,6 @@ redis:6379> SORT fruits BY *-price
 
 <h2 id="e667b92bc65c794901ce2a5c6ed6aa05"></h2>
 
------
 
 ## 21.5 带有ALPHA选项的BY选项的实现
 
@@ -1096,7 +1037,6 @@ redis:6379> SORT fruits BY *-id ALPHA
 
 <h2 id="25f5d57661e7396017dabac798e1532a"></h2>
 
------
 
 ## 21.6 LIMIT 选项的实现
 
@@ -1118,7 +1058,6 @@ redis:6379> SORT alphabet ALPHA LIMIT 4 -1
 
 <h2 id="9b66c377235226caeed9907a45c3eeab"></h2>
 
------
 
 ## 21.7  GET选项实现
 
@@ -1147,7 +1086,6 @@ redis:6379> SORT students ALPHA GET *-name
 
 <h2 id="e827f3cf644b0fa8c422b250b175ece2"></h2>
 
------
 
 ## STORE 选项的实现
 
@@ -1170,7 +1108,6 @@ redis:6379> LRANGE sorted_students 0 -1
 
 <h2 id="9842cb1c660f7bf9b088ef1c7457b73b"></h2>
 
------
 
 ## 21.9 多个选项的执行顺序
 
@@ -1178,7 +1115,6 @@ redis:6379> LRANGE sorted_students 0 -1
 
 <h2 id="4272f1ffef6354d1545f6a04f04887ca"></h2>
 
------
 
 ### 21.9.1 选项的执行顺序
 
@@ -1196,7 +1132,6 @@ redis:6379> LRANGE sorted_students 0 -1
 
 <h2 id="46c9c370774b781b2cbc3ed9cc644051"></h2>
 
------
 
 ### 29.9.2 选项的摆放顺序
 
@@ -1206,8 +1141,6 @@ redis:6379> LRANGE sorted_students 0 -1
 
 <h2 id="be26e27ba9a2192ff9ba71abe4189252"></h2>
 
------
------
 
 # 第22章 二进制位数组
 
@@ -1275,7 +1208,6 @@ redis:6379> BITOP NOT not-value value  # 1111 0110
 
 <h2 id="c1526473ffa8c6b4c03daceb2a9b56b8"></h2>
 
------
 
 ## 22.1 位数组的表示
 
@@ -1303,8 +1235,6 @@ redis:6379> BITOP NOT not-value value  # 1111 0110
 
 <h2 id="f787db5001caad44b970aa8c22b64219"></h2>
 
------
------
 
 # 第23章 慢查询日志
 
@@ -1319,8 +1249,6 @@ redis:6379> BITOP NOT not-value value  # 1111 0110
 
 <h2 id="5f558a433b25327fc447a899fac6fa9d"></h2>
 
------
------
 
 # 第24章 监视器 
 

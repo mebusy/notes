@@ -27,20 +27,16 @@
 
 <h2 id="c1d1ce0b33b655a7dde5b4d609a518d5"></h2>
 
------
------
 
 # Unsupervised Learning 非监督学习
 
 <h2 id="a563d3e237c313e5a4560f308de6f738"></h2>
 
------
 
 ## Clustering 聚类
 
 <h2 id="bcc51acf93a8cd15d71a96c4fcfdd302"></h2>
 
------
 
 #### K-Means Algorithm (K均值算法)
 
@@ -79,7 +75,6 @@ repeat {
 
 <h2 id="8f9904362f6c29c84f094296d7130ca1"></h2>
 
------
 
 #### K-means for non-separated clusters
 
@@ -91,7 +86,6 @@ repeat {
 
 <h2 id="ff473a43fe9dc4205004d2f52538424d"></h2>
 
------
 
 #### Optimization Objective 优化目标
 
@@ -106,7 +100,6 @@ K-means 代价函数也称为 distortion function (失真函数)。
 
 <h2 id="6616b7ec75a5203b5f24981832e68fbc"></h2>
 
------
 
 #### Random Initialization
 
@@ -140,7 +133,6 @@ centroids = X(randidx(1:K), :);
 
 <h2 id="a71856b2552f2959d2ae202a892eacc2"></h2>
 
------
 
 #### Choosing the number of clusters
 
@@ -167,13 +159,11 @@ Elbow Method (肘部法则):
 
 <h2 id="e2ae21220b47819f9bd84e1eda384a96"></h2>
 
------
 
 ## Dimensionality Reduction (降维)
 
 <h2 id="e053c5235ca7a941b610e80e9dd74df0"></h2>
 
------
 
 #### Motivation I : Data Compression
 
@@ -183,7 +173,6 @@ Elbow Method (肘部法则):
 
 <h2 id="b0328908b1f504ef7d3b11309be3b8ed"></h2>
 
------
 
 ##### 应用：数据压缩
 
@@ -210,7 +199,6 @@ X = reshape(A, img_size(1) * img_size(2), 3);
 
 <h2 id="20f796dd4f825616edc79d31ef8589db"></h2>
 
------
 
 #### Motivation II : Data Visualization
 
@@ -219,7 +207,6 @@ X = reshape(A, img_size(1) * img_size(2), 3);
 
 <h2 id="66148dd9ca1a5d6fcd3f8c9a1f27ed86"></h2>
 
------
 
 ## Principal Component Analysis (主成分分析法)
 
@@ -236,7 +223,6 @@ PCA 之前，一般要先进行 均值归一化 。
 
 <h2 id="34e4fca9e0793ce258ca8115a5b84b1e"></h2>
 
------
 
 #### PCA algorithm
 
@@ -266,7 +252,6 @@ PCA 之前，一般要先进行 均值归一化 。
 
 <h2 id="86e7a46b9ec08012091d12c9edfaf375"></h2>
 
------
 
 #### PCA 后面的数学知识点
 
@@ -282,7 +267,6 @@ PCA 之前，一般要先进行 均值归一化 。
 
 <h2 id="48044b62e705ee1890e92a8f80606938"></h2>
 
------
 
 #### 举例
 
@@ -291,13 +275,11 @@ PCA 之前，一般要先进行 均值归一化 。
 
 <h2 id="a56e1784c2921d9821335f4bd39bf69f"></h2>
 
------
 
 ## Applying PCA
 
 <h2 id="eb475cfbc7f43744ddc30cac92087dda"></h2>
 
------
 
 #### Reconstruction from Compressed Representation
 
@@ -317,7 +299,6 @@ X = Z * U_reduceᵀ
 
 <h2 id="15c00f95f0b61b33533b7db63974f6cb"></h2>
 
------
 
 #### Choosing k ( Number of Principal Components )
 
@@ -367,7 +348,6 @@ S 是nxn的 奇异值对角矩阵， 上面 平均平方投影误差／数据总
 
 <h2 id="1ac9054c912d3563ba7aa5d15cac229f"></h2>
 
------
 
 #### Advice for Applying PCA
 

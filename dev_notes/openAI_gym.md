@@ -14,14 +14,11 @@
 
 <h2 id="e4d81f13f96fb9bc905f4ad89615032b"></h2>
 
------
------
 
 # gym
 
 <h2 id="349838fb1d851d3e2014b9fe39203275"></h2>
 
------
 
 ## Install 
 
@@ -32,13 +29,11 @@ pip install gym[all]
 
 <h2 id="db974238714ca8de634a7ce1d083a14f"></h2>
 
------
 
 ## API
 
 <h2 id="aa9f9a8454a370443372f6259447844e"></h2>
 
------
 
 ### Env
 
@@ -71,7 +66,6 @@ print(envs.registry.all())
 
 <h2 id="263df4303fc8e2f27499caefad0c6f25"></h2>
 
------
 
 ###  Observations
     
@@ -88,7 +82,6 @@ print(envs.registry.all())
 
 <h2 id="d511f8439ecde36647437fbba67a4394"></h2>
 
------
 
 ### Space
 
@@ -126,7 +119,6 @@ assert space.n == 8
 
 <h2 id="580d8bcd9865196d4daf2e7514174d27"></h2>
 
------
 
 ### Recording and uploading results
 
@@ -149,7 +141,6 @@ gym.upload('/tmp/cartpole-experiment-1', api_key='YOUR_API_KEY')
 
 <h2 id="d1ec602319f9da672ff7e6e84f8ec53d"></h2>
 
------
 
 ### Evaluations
 

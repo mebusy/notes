@@ -47,8 +47,6 @@
 
 <h2 id="8c1b6e8cf0ad7a4cb490dfaf66ca68b1"></h2>
 
------
------
 
 # 第二部分 单机数据库的实现
 
@@ -56,14 +54,11 @@
 
 <h2 id="0fdaaffeed5bec2c5a52ff593df3e097"></h2>
 
------
------
 
 # 第九章 数据库
 
 <h2 id="7584e17b45e6c724bdb205b4328b2a2a"></h2>
 
------
 
 ## 9.1 服务器中的数据库
 
@@ -86,7 +81,6 @@ struct redisServer {
 
 <h2 id="e65a474b2e07da4193fef099a9a5a884"></h2>
 
------
 
 ## 9.2 切换数据库
 
@@ -114,7 +108,6 @@ typedef struct redisClient {
 
 <h2 id="85abf6d07f1ea7699a3399d4e7e88f07"></h2>
 
------
 
 ## 9.3 数据库 key space
 
@@ -131,7 +124,6 @@ typedef struct redisDb {
 
 <h2 id="aa52916caf96e748e410c04b818e546c"></h2>
 
------
 
 ### 9.3.6 读写 key space的维护操作
 
@@ -147,7 +139,6 @@ typedef struct redisDb {
 
 <h2 id="7dce0e3b39e2e4ca93fc1a155e2c9e92"></h2>
 
------
 
 ## 9.4 设置key的生存时间 或过期时间
 
@@ -173,7 +164,6 @@ redis:6379> TTL A
 
 <h2 id="696e7890096cb2fc3d766e6f04e10201"></h2>
 
------
 
 ### 9.4.1 设置过期时间
 
@@ -185,7 +175,6 @@ redis:6379> TTL A
 
 <h2 id="426142964ca65afd9b5390c08b027fa3"></h2>
 
------
 
 ### 9.4.2 保存过期时间
 
@@ -196,7 +185,6 @@ redis:6379> TTL A
 
 <h2 id="e77fe4d6808fa5c257e38c9b32944cb1"></h2>
 
------
 
 ### 9.4.3 移除过期时间
 
@@ -213,7 +201,6 @@ redis:6379> TTL A
 
 <h2 id="1f6aeaa86a387c1d445ee12955f2649a"></h2>
 
------
 
 ## 9.6 Redis 过期key的删除策略
 
@@ -222,13 +209,11 @@ redis:6379> TTL A
 
 <h2 id="250cd9b1dcb13e043cf3f3934f8bf1de"></h2>
 
------
 
 ## 9.7 AOF, RDB 和 复制功能 对过期键的处理
 
 <h2 id="2920a1d3c264f8880965a9cee2db82ae"></h2>
 
------
 
 ### 9.7.1 生成 RDB 文件
 
@@ -236,7 +221,6 @@ redis:6379> TTL A
 
 <h2 id="cdbd82391cc0c8b1bbfc5c10292f1ce8"></h2>
 
------
 
 ### 9.7.2 载入 RDB文件
 
@@ -247,7 +231,6 @@ redis:6379> TTL A
 
 <h2 id="0d763e69eb6aac7370b8d671219e087b"></h2>
 
------
 
 ### 9.7.3 AOF 文件写入
 
@@ -261,7 +244,6 @@ redis:6379> TTL A
 
 <h2 id="74d7b9b793407a282fc437855b567ae9"></h2>
 
------
 
 ### 9.7.4 AOF 重写
 
@@ -270,7 +252,6 @@ redis:6379> TTL A
 
 <h2 id="cfec5987bd5114458541d6c47542a094"></h2>
 
------
 
 ### 9.7.5 复制
  
@@ -287,7 +268,6 @@ redis:6379> TTL A
 
 <h2 id="9f3ab26a95d047bbdde34ac48aa1c22e"></h2>
 
------
 
 ## 9.8 数据库通知
 
@@ -313,8 +293,6 @@ redis:6379> SUBSCRIBE __keyspace@0__:del
 
 <h2 id="b43b08792e45d2626f267c7fa32ea1e2"></h2>
 
------
------
 
 # 第十章  RDB 持久化
 
@@ -323,7 +301,6 @@ redis:6379> SUBSCRIBE __keyspace@0__:del
 
 <h2 id="e4fdb7f64e0c078977e296c8204fcfa0"></h2>
 
------
 
 ## 10.1 RDB文件的创建和载入
 
@@ -338,7 +315,6 @@ redis:6379> SUBSCRIBE __keyspace@0__:del
 
 <h2 id="899193c751be1a257794d0c55add6a1c"></h2>
 
------
 
 ## 10.1.2 BGSAVE命令执行是的服务器状态
 
@@ -350,7 +326,6 @@ redis:6379> SUBSCRIBE __keyspace@0__:del
 
 <h2 id="f7309047e97f6fd59cae1751c9ecc9ac"></h2>
 
------
 
 ## 10.2 自动间隔性保存
 
@@ -372,8 +347,6 @@ save 60 10000
 
 <h2 id="6379208e54e6df4bd7230e05f1ddcd9c"></h2>
 
------
------
 
 # 第11章  AOF持久化
 
@@ -383,7 +356,6 @@ save 60 10000
 
 <h2 id="6d04df896b36247259132fb82b148101"></h2>
 
------
 
 ## 11.1 AOF持久化的实现
 
@@ -409,7 +381,6 @@ no |  所有内容写入到AOF文件， 由操作系统决定 何时同步
 
 <h2 id="bf09e9a5e2c2f7fa63e2e63ce9d85424"></h2>
 
------
 
 ## 11.3 AOF重写
 
@@ -420,14 +391,11 @@ no |  所有内容写入到AOF文件， 由操作系统决定 何时同步
 
 <h2 id="aa0a9a66d75378fa51e47a76e278790f"></h2>
 
------
------
 
 # 第14章 服务器
 
 <h2 id="01212d817ddb139f1bb2895bb825ac34"></h2>
 
------
 
 ## 14.2 serverCron 函数
 
@@ -436,7 +404,6 @@ no |  所有内容写入到AOF文件， 由操作系统决定 何时同步
 
 <h2 id="105e46bac70d6bacbf39e68329c7462c"></h2>
 
------
 
 ### 14.2.1 更新服务器时间缓存
 
@@ -449,15 +416,11 @@ no |  所有内容写入到AOF文件， 由操作系统决定 何时同步
 
 <h2 id="105b9f5eb4cd097b8d05a0689fbc6cee"></h2>
 
------
------
 
 # 第三部分 多级数据库的实现
 
 <h2 id="1083f1f72ccba95cb67916bfb993be58"></h2>
 
------
------
 
 # 第15章 复制
 
@@ -467,8 +430,6 @@ no |  所有内容写入到AOF文件， 由操作系统决定 何时同步
 
 <h2 id="3622aa17f59dc29d9f444a1fa691b762"></h2>
 
------
------
 
 # 第16章 Sentinel
 
@@ -480,7 +441,6 @@ no |  所有内容写入到AOF文件， 由操作系统决定 何时同步
 
 <h2 id="1729d027ffc4c25f8f95d8c6ae87439b"></h2>
 
------
 
 ## 16.1 启动并初始化 Sentinel
 
@@ -502,7 +462,6 @@ $ redis-server /path/to/your/sentinel.conf --sentinel
 
 <h2 id="8e86642cb4ff7a5603b4519b811c97d5"></h2>
 
------
 
 ### 16.1.1 初始化服务器
 
@@ -514,7 +473,6 @@ $ redis-server /path/to/your/sentinel.conf --sentinel
 
 <h2 id="0980835f438dc23319a78f9c9f1e2911"></h2>
 
------
 
 ### 16.1.2 使用 Sentinel 专用代码
 
@@ -525,13 +483,11 @@ $ redis-server /path/to/your/sentinel.conf --sentinel
 
 <h2 id="8a7bbadb30e40fd09043360410456aca"></h2>
 
------
 
 ### 16.1.3 初始化 Sentinel 状态
 
 <h2 id="5c1205ac880316d36c321416d35d59b4"></h2>
 
------
 
 ### 16.1.4 初始化 Sentinel 状态的 master属性
 
@@ -570,7 +526,6 @@ sentinel failover-timeout master2 450000
 
 <h2 id="8841ef9a85d2bb92800b807f68b9aa90"></h2>
 
------
 
 ### 16.1.5 创建连向主服务器的网络链接
 
@@ -581,27 +536,22 @@ sentinel failover-timeout master2 450000
 
 <h2 id="107d9ebc3593fc7492de4218da5f40fc"></h2>
 
------
 
 ## 16.2 获取主服务器信息
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
------
 
 ## TODO
 
 
 <h2 id="53276068e0f0db9687713c65e75a141d"></h2>
 
------
------
 
 # 第17章 集群
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
------
 
 ## TODO
 

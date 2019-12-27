@@ -21,8 +21,6 @@
 
 <h2 id="551cb39cf6cd61643026b5c69708ace0"></h2>
 
------
------
 
 # HTML and email template patterns
 
@@ -36,7 +34,6 @@
 
 <h2 id="d5210007822d9412f9be8886d1cc15d5"></h2>
 
------
 
 ## 6.1 Working with HTML templates
 
@@ -47,7 +44,6 @@
 
 <h2 id="6313af959752e16cbeae4d485965926c"></h2>
 
------
 
 ### 6.1.1 Standard library HTML package overview
 
@@ -112,7 +108,6 @@ func main() {
 
 <h2 id="d9e159dad96dcd326f096b14169e7be6"></h2>
 
------
 
 ### 6.1.2 Adding functionality inside templates
 
@@ -125,7 +120,6 @@ func main() {
 
 <h2 id="99fa4e3716a3778375f4959fb3f00631"></h2>
 
------
 
 ####  TECHNIQUE 32 Extending templates with functions
 
@@ -208,7 +202,6 @@ func parseTemplateString(name, tpl string) *template.Template {
 
 <h2 id="1de21ea456194e25d3eb6be7d9093a72"></h2>
 
------
 
 ### 6.1.3 Limiting template parsing
 
@@ -216,7 +209,6 @@ func parseTemplateString(name, tpl string) *template.Template {
 
 <h2 id="98fb0d7ee0f06d754fe01fe1b12afcd3"></h2>
 
------
 
 #### TECHNIQUE 33 Caching parsed templates
 
@@ -261,7 +253,6 @@ func main() {
 
 <h2 id="9163470a01d717d0da1fbab47b9b39ec"></h2>
 
------
 
 ### 6.1.4 When template execution breaks
 
@@ -270,7 +261,6 @@ func main() {
 
 <h2 id="da3141d1f0022f7895b324724f0cdbd7"></h2>
 
------
 
 #### TECHNIQUE 34 Handling template execution failures
 
@@ -293,13 +283,11 @@ func main() {
 
 <h2 id="22f853fa756854fe5fa6308f42bc872d"></h2>
 
------
 
 ### 6.1.5 Mixing templates
 
 <h2 id="e4e2ec9594eedd2ef2ac71c25a313a90"></h2>
 
------
 
 #### TECHNIQUE 35 Nested templates
 
@@ -360,7 +348,6 @@ func diaplayPage(w http.ResponseWriter, r *http.Request) {
 
 <h2 id="9b8782b53f9f5e3d2cedeac1cfc8c662"></h2>
 
------
 
 #### TECHNIQUE 36 Template inheritance
 
@@ -436,7 +423,6 @@ h1 {
 
 <h2 id="b2914c824c6c6300b0bbf668e252aba9"></h2>
 
------
 
 #### TECHNIQUE 37 Mapping data types to templates
 
@@ -537,7 +523,6 @@ func diaplayPage(w http.ResponseWriter, r *http.Request) {
 
 <h2 id="fbc0cec7a75759e1aeb8c7fae504cdc3"></h2>
 
------
 
 ## 6.2 Using templates for email
 
@@ -546,7 +531,6 @@ func diaplayPage(w http.ResponseWriter, r *http.Request) {
 
 <h2 id="699d7da5fe23a02c72bb3e698f6d583b"></h2>
 
------
 
 ####  TECHNIQUE 38 Generating email from templates
 

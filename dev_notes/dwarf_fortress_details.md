@@ -8,8 +8,6 @@
 
 <h2 id="940dbcc8bedbede96c767701b4b9e4d1"></h2>
 
------
------
 
 # path finding
 
@@ -19,8 +17,6 @@
 
 <h2 id="306914f8c24cdc1289fef8a48fef588a"></h2>
 
------
------
 
 # The World Generator
 

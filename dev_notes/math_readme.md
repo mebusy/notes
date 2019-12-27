@@ -1,7 +1,5 @@
 <h2 id="bd8cfe5912b0bee7fd7d191afedf8995"></h2>
 
------
------
 
 # Linear ALgebra
 
@@ -24,8 +22,6 @@
 
 <h2 id="0349a55a6a70f89e604c28892ce24d82"></h2>
 
------
------
 
 # Calculus
 
@@ -37,8 +33,6 @@
 
 <h2 id="0d2765b30694ee9f4fb7be2ae3b676dc"></h2>
 
------
------
 
 # Probability 
 
@@ -49,8 +43,6 @@
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
------
------
 
 # Misc 
 
@@ -63,8 +55,6 @@
 
 <h2 id="d2bcb78d5ac194c66f434e9fbcb3565e"></h2>
 
------
------
 
 # Discrete Mathematics
 

@@ -13,8 +13,6 @@
 
 <h2 id="009069c69b11caef6d75739ab207e856"></h2>
 
------
------
 
 # Create Instant Games
 
@@ -56,8 +54,6 @@ FBInstant.setSessionData({
 
 <h2 id="1b3b0682a7aea56937be67c5a729a846"></h2>
 
------
------
 
 # Create Message Bot
 
@@ -82,8 +78,6 @@ https://developers.facebook.com/docs/messenger-platform/getting-started
 
 <h2 id="aceacf6ca899a80c0a70aa4f2522d77c"></h2>
 
------
------
 
 # debug messager bot with local server
 
@@ -92,7 +86,6 @@ https://developers.facebook.com/docs/messenger-platform/getting-started
 
 <h2 id="627aea0b68e33e1e89d82f9b7303f7a1"></h2>
 
------
 
 ## localtunnel
 
@@ -106,14 +99,11 @@ https://developers.facebook.com/docs/messenger-platform/getting-started
  
 <h2 id="b0c374aec5250909fe4a1c18e6889ae0"></h2>
 
------
------
 
 # Write GameBot server 
 
 <h2 id="4a6ec9d128ee67c8fb62497859117c6c"></h2>
 
------
 
 ## verify webhook
 
@@ -124,7 +114,6 @@ GET /stack?hub.mode=subscribe&hub.challenge=1709021033&hub.verify_token=TEST_VER
 
 <h2 id="dd8d4a0d714285457d9f4d8ded0d4284"></h2>
 
------
 
 ## gameplay POST ( when close instance game )
 

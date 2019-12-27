@@ -27,8 +27,6 @@
 
 <h2 id="0a90d03ec88e2482664b9f0c6adc6631"></h2>
 
------
------
 
 # 8 我是Makefile
 
@@ -39,13 +37,11 @@
 
 <h2 id="4fd59a44db61539acebb9e94ce703e21"></h2>
 
------
 
 ## 8.2 基本概念
 
 <h2 id="3dae9c4e7839d0a98e1a387f3f23ce72"></h2>
 
------
 
 ### 8.2.2 目标,条件和命令
 
@@ -67,7 +63,6 @@ main.o : main.c line.h buffer.h tedef.h
 
 <h2 id="fe0198d3d2568f2848eb86c256650721"></h2>
 
------
 
 ### 8.2.4 工作方式
 
@@ -80,7 +75,6 @@ main.o : main.c line.h buffer.h tedef.h
 
 <h2 id="851458679c96a263b7e9f5a9711397c8"></h2>
 
------
 
 ### 8.2.5 基本语法
 
@@ -109,13 +103,11 @@ main.o : main.c line.h buffer.h tedef.h
 
 <h2 id="64006e68160fb1df531eaa4e9d761742"></h2>
 
------
 
 ## 8.3 认识规则
 
 <h2 id="b293d527ac15c52b704e3092f19ec9f1"></h2>
 
------
 
 ### 8.3.3 变量
 
@@ -131,7 +123,6 @@ CC := gcc -g
 
 <h2 id="ddd6f066f49236d2d17892373783ee8c"></h2>
 
------
 
 ### 8.3.4 自动变量
 
@@ -162,7 +153,6 @@ main.o : main.c line.h buffer.h tedef.h
 
 <h2 id="595d9b4dd1f915c7739946b264de73eb"></h2>
 
------
 
 ### 8.3.5 模式规则
 
@@ -195,7 +185,6 @@ myless : myless.o line.o buffer.o ...
 
 <h2 id="76d2cd2a5eb29facccd351abf19ed9c8"></h2>
 
------
 
 ### 8.3.6
 
@@ -234,7 +223,6 @@ clean:
     
 <h2 id="a3e7b516db12b7c28683b3fc203886a9"></h2>
 
------
 
 ### 8.3.7 路径搜索
 
@@ -263,13 +251,11 @@ vpath %.h include
 
 <h2 id="7de7f543f7a0c66294d52d50a98b3ae0"></h2>
 
------
 
 ## 8.4 高级特性
 
 <h2 id="4c6350b1d43adf2fe7174cd52807b0d3"></h2>
 
------
 
 ### 8.4.1 文件包含
 
@@ -294,7 +280,6 @@ vpath %.h include
 
 <h2 id="3dfdafa4f93d237dd6fe476a8d7f8f89"></h2>
 
------
 
 ### 8.4.2 命令
 
@@ -322,7 +307,6 @@ for d in a b d ;  do echo $$d/* ; done > list.txt
 
 <h2 id="991e6e00c1a762dd68a627f167a0f5be"></h2>
 
------
 
 ### 8.4.3 深入变量
 
@@ -389,7 +373,6 @@ VARIABLES | 所有已定义的变量名列表， 不包含目标专有变量。 
 
 <h2 id="f610a17c766cc26f3e522a720231fa04"></h2>
 
------
 
 ### 8.4.4 宏与函数
 
@@ -422,7 +405,6 @@ endef
 
 <h2 id="2075f0bead1510a75d102054610f9300"></h2>
 
------
 
 ### 8.4.5 条件指令
 
@@ -435,13 +417,11 @@ endif
 
 <h2 id="c2e93709eebc4d5d8f767a4238b01310"></h2>
 
------
 
 ## 8.5 Makefile 实战
 
 <h2 id="d3ae68d2c064323c91eb51fb33bd572c"></h2>
 
------
 
 ### 8.5.1 自动产生依赖
 
@@ -516,7 +496,6 @@ all: Stack.o
 
 <h2 id="8a18c8cddb6ee0f3b48312efbf4c5e72"></h2>
 
------
 
 ### 8.5.2 递归式的Makefile
 
@@ -553,7 +532,6 @@ $(MAKE) -C subdir
 
 <h2 id="e36936613671d9d20738638097658e56"></h2>
 
------
 
 ### 8.5.3 自动产生 Makefile  TODO(p343)
 

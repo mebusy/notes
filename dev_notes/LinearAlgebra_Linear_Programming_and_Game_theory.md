@@ -10,14 +10,11 @@
 
 <h2 id="adb23269688b0aa7f8855b8987514b14"></h2>
 
------
------
 
 # 8 linear Prograffiffliog and Game Theory
 
 <h2 id="4d62bef35d1beae693322a0f9c87ffb7"></h2>
 
------
 
 ## 8.1  LINEAR INEQUALITIES
 
@@ -47,7 +44,6 @@ Another constraint is fundamental to linear programming: x and y are required to
 
 <h2 id="8775939e2cfb40d13172e60558b51fea"></h2>
 
------
 
 ### The Feasible Set and the Cost Function 
 
@@ -81,7 +77,6 @@ The empty and unbounded cases should be very uncommon for a genuine problem in e
 
 <h2 id="690c20def841af809622d7d42099c17a"></h2>
 
------
 
 ### Slack Variables
 

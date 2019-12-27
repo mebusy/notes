@@ -32,20 +32,16 @@
 
 <h2 id="e03b130e1f3b2c56de9bb84e75301d14"></h2>
 
------
------
 
 # Raspberry Pi II
 
 <h2 id="eec89088ee408b80387155272b113256"></h2>
 
------
 
 ## Network
 
 <h2 id="6163d0d5344363e3ed9c8c35cba6aa8f"></h2>
 
------
 
 ### Connecting to a network
 
@@ -56,7 +52,6 @@
 
 <h2 id="01f4c6bc4bda78ced8f1cd4555d8afb1"></h2>
 
------
 
 ### Using a Web Browse
 
@@ -65,7 +60,6 @@
 
 <h2 id="765553e6c7ac8592c389acb9878a050a"></h2>
 
------
 
 ### SSH
 
@@ -80,7 +74,6 @@ sudo rm /etc/ssh/ssh_host_* && sudo dpkg-reconfigure openssh-server
     
 <h2 id="71a93e1fa9812a362d4c96147fc4b9d9"></h2>
 
------
 
 ### Internet Protocal Family
 
@@ -99,7 +92,6 @@ sudo rm /etc/ssh/ssh_host_* && sudo dpkg-reconfigure openssh-server
 
 <h2 id="12cb487a02c71008e53bd64a004d0860"></h2>
 
------
 
 ### Domain Names
 
@@ -116,7 +108,6 @@ When you visit cnn.com, your web browser sends a message to a DNS server and say
 
 <h2 id="5d46e505618626b201a5aca4fe2e6b29"></h2>
 
------
 
 #### nslookup
 
@@ -141,7 +132,6 @@ Address: 123.125.114.144
 
 <h2 id="2ab4aec4cb63c31debb0851551876d1b"></h2>
 
------
 
 ### Internect Connections
 
@@ -153,7 +143,6 @@ Address: 123.125.114.144
 
 <h2 id="719aa84114261906ae42b32d3b2cc7ab"></h2>
 
------
 
 ### Sockets on the Client
 
@@ -168,7 +157,6 @@ Creating a generic network client:
 
 <h2 id="c62666960662903ff488cbddd3791625"></h2>
 
------
 
 #### Creating a Socket
 
@@ -183,7 +171,6 @@ mysock = socket.socket( socket.AF_INET , socket.SOCK_STREAM )
 
 <h2 id="fbc296173c66a5f84aff3a2bf69304a1"></h2>
 
------
 
 #### Connect Socket to Server
 
@@ -195,7 +182,6 @@ mysock = socket.socket( socket.AF_INET , socket.SOCK_STREAM )
 
 <h2 id="ba86050b8bd9d3cae071425f71deaeff"></h2>
 
------
 
 #### Sending Data on a Socket
 
@@ -208,7 +194,6 @@ mysock.sendall(message)
 
 <h2 id="82c00833b57823a4f596c6d0ba003f8d"></h2>
 
------
 
 #### Receiving Data on a Socket
 
@@ -223,7 +208,6 @@ data = mysock.recv(1024)
 
 <h2 id="18c78f12845c54db7dba0ccd0ed01290"></h2>
 
------
 
 #### Closing a Socket
 
@@ -233,7 +217,6 @@ mysock.close()  # free up port
 
 <h2 id="d5f1381c5f97f928df4ef8d18c2a27c0"></h2>
 
------
 
 ### Exceptions 
 
@@ -243,7 +226,6 @@ mysock.close()  # free up port
 
 <h2 id="4eec4beeae261bf08c1ad4afbdc2b9c5"></h2>
 
------
 
 #### Socket Exceptions
 
@@ -255,7 +237,6 @@ mysock.close()  # free up port
 
 <h2 id="404181167afb206bd622e39eb1c6cebe"></h2>
 
------
 
 ### Sockets on the Server
 
@@ -268,7 +249,6 @@ mysock.close()  # free up port
 
 <h2 id="2919cf8e2b08084c5c14534d8380797c"></h2>
 
------
 
 #### Creating and Binding a Socket
 
@@ -283,7 +263,6 @@ mysock.bind( "",1234 ) # mysock.bind( ("",1234) ) 2.7
 
 <h2 id="b85c73f27fd0d1b3769572044aa4cfd5"></h2>
 
------
 
 #### Listening and Accepting a Connect
 
@@ -299,7 +278,6 @@ conn , addr = mysock.accept()
 
 <h2 id="c7dbc4fd55364e7eb7d9f6f8b04c3174"></h2>
 
------
 
 #### Sending and  Receiving
 
@@ -327,13 +305,11 @@ mysock.close()
 
 <h2 id="967d35e40f3f95b1f538bd248640bf3b"></h2>
 
------
 
 ## Camera
 
 <h2 id="a01b7f8cc255f7cab060ae9f1f19caf5"></h2>
 
------
 
 ### Enabling the Camera
 
@@ -343,7 +319,6 @@ mysock.close()
 
 <h2 id="9e62a134a017a3ddea4fe303a1c83ae4"></h2>
 
------
 
 ### python-picamera Library
 
@@ -386,7 +361,6 @@ mysock.close()
     
 <h2 id="0b8bb194abe8d7202369a512619484e8"></h2>
 
------
 
 ### Capturing Image
 
@@ -403,7 +377,6 @@ camera.capture( conn, 'jpeg' )
  
 <h2 id="7a1314d2fcc369c3eb926f232d841e62"></h2>
 
------
 
 ### Timelapse Photography
 

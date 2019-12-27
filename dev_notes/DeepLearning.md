@@ -30,21 +30,16 @@
 
 <h2 id="6a68b6412b3d8a605c374d3c59e02694"></h2>
 
------
------
 
 # Deep Learning 
 
 <h2 id="d41184f514356348f59aa91ad4f37c98"></h2>
 
------
------
 
 # From Machine Learning to Deep Learning
 
 <h2 id="1d993169621e0855bad00d71c005cf1b"></h2>
 
------
 
 ## SOFTMAX
 
@@ -84,7 +79,6 @@ Caution:
 
 <h2 id="e227f3d7f7e740bb759f0066342ff799"></h2>
 
------
 
 ## CROSS-ENTROPY
 
@@ -107,7 +101,6 @@ This entire setting is often called multinominal logistic classification.
 
 <h2 id="0b3ff0c33c38d07fc732b5ec92ce1647"></h2>
 
------
 
 ## Minimizing Cross Entropy
 
@@ -130,7 +123,6 @@ Ways:
 
 <h2 id="6bd7e96f5a6e9231f7d947c5fc18e876"></h2>
 
------
 
 ## Numerical Stability
 
@@ -160,7 +152,6 @@ VARIANCE:      σ(Xᵢ) = σ(Xⱼ)
 
 <h2 id="fff0d600f8a0b5e19e88bfb821dd1157"></h2>
 
------
 
 ### Images
 
@@ -170,7 +161,6 @@ It doesn't change the content of your image, but it makes it much easier for the
 
 <h2 id="9457fbceb006e0a464b95be0ee804d83"></h2>
 
------
 
 ### Weight initialization
 
@@ -192,7 +182,6 @@ It's usually better to begin with an uncertain distribution and let the optimiza
 
 <h2 id="caa736eb798e357900ffcd35d1a78e99"></h2>
 
------
 
 ### Initialization of the lgistic classifier
 
@@ -291,7 +280,6 @@ open http://`docker-machine ip default`:8888
 
 <h2 id="0c4981f443dd7633e4286cbaa482c579"></h2>
 
------
 
 ## The Kaggle Challenge
 
@@ -301,14 +289,11 @@ machine learning 竞赛网站
 
 <h2 id="87b3239cbf57b3e46249505264571228"></h2>
 
------
------
 
 # Deep Neural Networks
 
 <h2 id="f880aa9c184596fc12ff27937ebaf8ca"></h2>
 
------
 
 ## Linear Model Limited
 
@@ -319,7 +304,6 @@ machine learning 竞赛网站
 
 <h2 id="9be412d16c60d2fa986ffc1f194643c0"></h2>
 
------
 
 ## Network of ReLUs
 
@@ -338,7 +322,6 @@ Our function is now nonlinear thanks to the RELU in the middle , and we now have
 
 <h2 id="62568a512f5b51ee525d33114a235b26"></h2>
 
------
 
 ## The Chain Rule
 
@@ -361,7 +344,6 @@ There's even better news for the compute scientist in you.  There is a way to wr
 
 <h2 id="d93c592036c29f14635824ddf09aab87"></h2>
 
------
 
 ## Back prop 
 
@@ -389,7 +371,6 @@ In particular each block of the back prop often takes about twice the memory tha
 
 <h2 id="3964943701fa3f4989658e59f88cc110"></h2>
 
------
 
 ## Training a Deep Learning Network 
 
@@ -409,7 +390,6 @@ Instead , you can also add more layers and make your model deeper.  There are lo
 
 <h2 id="949b893e589d45ecfe63894272b7b754"></h2>
 
------
 
 ## Regularization Intro
 
@@ -424,7 +404,6 @@ So in practice , we always try networks that are way too big for our data and th
 
 <h2 id="853cc01c0ad043a93a400b3b1dc15614"></h2>
 
------
 
 ## Regularization
 
@@ -441,7 +420,6 @@ The idea is to add another term to the loss ,which penalizes large weights.  It'
 
 <h2 id="09bb9294aa4a843883a3f401aeaf8b5b"></h2>
 
------
 
 ## Dropout
 
@@ -484,14 +462,11 @@ Here's the trick to make sure this expectation holds. During training , not only
 
 <h2 id="02ed75b713cdaf7bbe2faae40ba76279"></h2>
 
------
------
 
 # Convolutional Neural Network
 
 <h2 id="78289659377fe0ce4edb6cc2c3e44939"></h2>
 
------
 
 ## Statistical Inveriance
 
@@ -514,7 +489,6 @@ It is a very important idea. Statisitcal invariants , things that don't change o
 
 <h2 id="4f15f700f5c4dc733c503ae470344017"></h2>
 
------
 
 ## Convolutional Networks , or CONVNETS
 
@@ -569,7 +543,6 @@ The math just works. You just add up the derivatives from all of the possible lo
 
 <h2 id="3e6416a016525c87f33de8dad90df107"></h2>
 
------
 
 ## Explore The Design Space
 
@@ -606,7 +579,6 @@ Another notable form of pooling is average pooling. Instead of taking the max, j
 
 <h2 id="557f2cb10e34586ed5a05c43c0c3d26a"></h2>
 
------
 
 ## 1x1 Convolutions
 

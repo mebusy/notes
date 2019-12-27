@@ -83,8 +83,6 @@
 
 <h2 id="9524b1c1f1bedffb663a033d3c61945b"></h2>
 
------
------
 
 # RL David Silver
 
@@ -156,20 +154,16 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="9d93bb2c4dac212799da231d0de41baa"></h2>
 
------
------
 
 # Lecture Introduction 
 
 <h2 id="b653b982b2e157521c85448fa1691ee7"></h2>
 
------
 
 ## 2 About Reinforcement Learning
 
 <h2 id="020ca729d2be3285264a5a18406cf5dd"></h2>
 
------
 
 ### Characteristics of Reinforcement Learning
 
@@ -182,13 +176,11 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="68fe7bb3961118eaaa887017e9783062"></h2>
 
------
 
 ## 3 The Reinforcement Learning Problem
 
 <h2 id="0d1c608c1498367815da8105e26b0a9e"></h2>
 
------
 
 ### Rewards
 
@@ -205,7 +197,6 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="aa3defd392f2e41771f6eb18dd4fa83b"></h2>
 
------
 
 ### Sequential Decision Making
 
@@ -217,7 +208,6 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="4ac238303a852194c91c7f6049b8bf96"></h2>
 
------
 
 ### Agent and Environment
 
@@ -236,7 +226,6 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="97d4e953a41e7b6286e4b64996685f5f"></h2>
 
------
 
 ### History and State
 
@@ -251,7 +240,6 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="e3cfaeeacd3da2524172e159513a16a6"></h2>
 
------
 
 ### Environment State
 
@@ -267,7 +255,6 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="3b46cd6952a6d7d4f5242eed8d2f16dd"></h2>
 
------
 
 ### Agent State 
 
@@ -279,7 +266,6 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="1b3aea5674ac4ad59a561a6d55cfaf4d"></h2>
 
------
 
 ### Information State
 
@@ -295,7 +281,6 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="dd001f6c9dbf7a80bee787f2a211bc62"></h2>
 
------
 
 ### Fully Observable Environments
 
@@ -306,7 +291,6 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="e335cf476058a7c19c94c20f9bb4a45a"></h2>
 
------
 
 ### Partially Observable Environments
 
@@ -323,13 +307,11 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="b1a766cbf71cf8079d7378af1763be7b"></h2>
 
------
 
 ## 4 Inside An RL Agent
 
 <h2 id="8920cbd38d5a445d3758b6a04e5ac9df"></h2>
 
------
 
 ### Major Components of an RL Agent
 
@@ -339,7 +321,6 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="51359e8b51c63b87d50cb1bab73380e2"></h2>
 
------
 
 ### Policy
 
@@ -350,7 +331,6 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="52790a9930eefe2ce7b9c9e29dec6dd5"></h2>
 
------
 
 ### Value Function
 
@@ -361,7 +341,6 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="a559b87068921eec05086ce5485e9784"></h2>
 
------
 
 ### Model
  
@@ -373,7 +352,6 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="887dd5c11df64a83f383a29393db9f0c"></h2>
 
------
 
 ### Maze Example
 
@@ -395,7 +373,6 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="2f14f08fef3dc09988aac5fd9e735876"></h2>
 
------
 
 ### Categorizing RL agents 1
 
@@ -412,7 +389,6 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="c155b44e0ed60f75e1bcdb19547a1b19"></h2>
 
------
 
 ### Categorizing RL agents 2
 
@@ -427,13 +403,11 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 
 <h2 id="fc1b5d6a77ce0ec6ffbaf2fdd8749fe6"></h2>
 
------
 
 ## 5 Problems within Reinforcement Learning
 
 <h2 id="87bd5df92a07c7da0886cec0ba36524a"></h2>
 
------
 
 ### Learning and Planning
 
@@ -451,7 +425,6 @@ Two fundamental problems in sequential decision making
 
 <h2 id="9cb8554f07a9abcb138ed2f10a9218c8"></h2>
 
------
 
 ### Exploration and Exploitation
 
@@ -468,7 +441,6 @@ Two fundamental problems in sequential decision making
 
 <h2 id="f887d9035769a495f7c1003560288bf7"></h2>
 
------
 
 ### Prediction and Control
 
@@ -483,21 +455,17 @@ Two fundamental problems in sequential decision making
 
 <h2 id="37b66eeb744820b6efbb09622f9cb190"></h2>
 
------
------
 
 # Lecture 2 : MDP
 
 <h2 id="c440584a5fa828371c523cfccd255b9e"></h2>
 
------
 
 ## 1 Markov Processes
 
 
 <h2 id="37e7b8a197c50d52ae8423cb9109686b"></h2>
 
------
 
 ### Introduction to MDPs
 
@@ -513,7 +481,6 @@ Two fundamental problems in sequential decision making
 
 <h2 id="4ea596ca10da5f1b5af07b3347b23993"></h2>
 
------
 
 ### Markov Property
 
@@ -527,7 +494,6 @@ Two fundamental problems in sequential decision making
 
 <h2 id="8e647e1e832a07ce0d2090fc315726c5"></h2>
 
------
 
 ### State Transition Matrix
 
@@ -541,7 +507,6 @@ Two fundamental problems in sequential decision making
 
 <h2 id="e2902ed9b6c060e5f1f0e3167f1e1944"></h2>
 
------
 
 ### Markov Process ( Markov Chain )
 
@@ -556,13 +521,11 @@ Two fundamental problems in sequential decision making
 
 <h2 id="f91687486a039993c58cfec983acacd3"></h2>
 
------
 
 ## 2 Markov Reward Processes
 
 <h2 id="ae22669a0c18be8c9c4e1de1329591f3"></h2>
 
------
 
 ### Markov Reward Process
 
@@ -572,7 +535,6 @@ Two fundamental problems in sequential decision making
 
 <h2 id="988fd738de9c6d177440c5dcf69e73ce"></h2>
 
------
 
 ### Return
 
@@ -592,7 +554,6 @@ Two fundamental problems in sequential decision making
 
 <h2 id="41458dcd9501edf77aaf22898b653157"></h2>
 
------
 
 #### Why discount?
 
@@ -617,7 +578,6 @@ Most Markov reward and decision processes are discounted. Why?
 
 <h2 id="bccc96e13f6db6cbc1bf97ba5a9f3bcf"></h2>
 
------
 
 ## MRP Value Function
 
@@ -631,7 +591,6 @@ value is expectation because the environment is stochastic.
 
 <h2 id="60c71554b7b04c962c22896abeeb3f06"></h2>
 
------
 
 ### Bellman Equation for MRPs
 
@@ -644,7 +603,6 @@ The value function can be decomposed into two parts:
 
 <h2 id="22623095aa6a91da57af0415ea951ad3"></h2>
 
------
 
 ## Bellman Equation in Matrix Form
 
@@ -656,7 +614,6 @@ The value function can be decomposed into two parts:
 
 <h2 id="ca6ff64556e865d3cc3c89adc776f12a"></h2>
 
------
 
 ### Solving the Bellman Equation
 
@@ -675,14 +632,12 @@ Bellman Equation for MRPs has no concept of maximum. So t can be expressed conci
 
 <h2 id="ac193cf39fe5c7158da7e14f1994b9c9"></h2>
 
------
 
 ## 3 Markov Decision Processes
 
 
 <h2 id="95ca0b19e36749a112193d611503cf95"></h2>
 
------
 
 ### Markov Decision Process
 
@@ -696,7 +651,6 @@ Bellman Equation for MRPs has no concept of maximum. So t can be expressed conci
 
 <h2 id="9e476387322a5c250893cf9c5c4ce78c"></h2>
 
------
 
 ### Policies
 
@@ -713,7 +667,6 @@ Bellman Equation for MRPs has no concept of maximum. So t can be expressed conci
 
 <h2 id="44b625919ec17030b52b99aa088fdd61"></h2>
 
------
 
 ### MDP Value Function
 
@@ -721,7 +674,6 @@ you can get different rewards. It is not one expectation any more , there are di
 
 <h2 id="167a4b79c8f956139d3b35587ddaa9b1"></h2>
 
------
 
 ### MDP Bellman Expectation Equation
 
@@ -732,7 +684,6 @@ With a fixed policy π,  MDP Bellman Expectation Equation can also be expressed 
 
 <h2 id="1841bc99dd9e3ee97c4db9280bedd143"></h2>
 
------
 
 ## Optimal Value Function
 
@@ -743,7 +694,6 @@ v<sup>\*</sup> is the maximum, q<sup>\*</sup> is the average (expectation).
 
 <h2 id="5ff924758554c32561fac1c148ff2f77"></h2>
 
------
 
 ## Solving the Bellman Optimality Equation
 
@@ -757,14 +707,11 @@ v<sup>\*</sup> is the maximum, q<sup>\*</sup> is the average (expectation).
 
 <h2 id="584d541d9b907d43acf49966effa7bdd"></h2>
 
------
------
 
 # Lecture 3:  Planning by Dynamic Programming
 
 <h2 id="93eb2ac210d009dea486d01934ca6116"></h2>
 
------
 
 ## Policy Iteration
 
@@ -780,7 +727,6 @@ A:  1-step expertimax for each state.
 
 <h2 id="50e497bcd60bb8a8db19c9ebf9491087"></h2>
 
------
 
 ## Modified Policy Iteration
 
@@ -795,7 +741,6 @@ A:  1-step expertimax for each state.
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
------
 
 ## TODO
 
@@ -805,7 +750,6 @@ Value Iteration:  choose optimal action every step.
 
 <h2 id="b42b555fa80b1183db917a141f970757"></h2>
 
------
 
 ## In-Place Dynamic Programming
 
@@ -813,8 +757,6 @@ The ordering is very important. 这就产生了 priorities sweeping.
 
 <h2 id="f2a4c04b9562782f979f6f6365a693ea"></h2>
 
------
------
 
 # Lecture 4: Model-Free Prediction
 
@@ -824,7 +766,6 @@ The ordering is very important. 这就产生了 priorities sweeping.
 
 <h2 id="cca9ebf243a52673a1532a42bbd2e3f5"></h2>
 
------
 
 ## Monte-Carlo Reinforcement Learning
 
@@ -839,7 +780,6 @@ The ordering is very important. 这就产生了 priorities sweeping.
 
 <h2 id="e35ea465ea31939812aef342727fbfe5"></h2>
 
------
 
 ## Monte-Carlo Policy Evaluation
 
@@ -851,7 +791,6 @@ We have 2 different ways to do this.
 
 <h2 id="ca72e9315ea8f81a61e682131eb8c332"></h2>
 
------
 
 ### First-Visit Monte-Carlo Policy Evaluation
 
@@ -865,7 +804,6 @@ We have 2 different ways to do this.
 
 <h2 id="ffbd1472cb4d7535eda096f7d4995b6a"></h2>
 
------
 
 ### Every-Visit Monte-Carlo Policy Evaluation
 
@@ -878,7 +816,6 @@ We have 2 different ways to do this.
 
 <h2 id="33efd086713c355c13f11c79e8304480"></h2>
 
------
 
 ### Incremental Mean
 
@@ -889,7 +826,6 @@ We have 2 different ways to do this.
 
 <h2 id="e4ce07df12b2ef7a0b0f745ea0185fd9"></h2>
 
------
 
 ## Temporal-Difference Learning
 
@@ -900,7 +836,6 @@ We have 2 different ways to do this.
 
 <h2 id="db2dcb707660729f9ba68926965d2e58"></h2>
 
------
 
 ## MC and TD
 
@@ -913,7 +848,6 @@ We have 2 different ways to do this.
 
 <h2 id="906bb81a2a5f3c85ecb0f8fd2d2463e3"></h2>
 
------
 
 ## Driving Home Example
 
@@ -924,7 +858,6 @@ We have 2 different ways to do this.
 
 <h2 id="68154201a64057ceb4291f9695de4590"></h2>
 
------
 
 ## Advantages and Disadvantages of MC vs. TD (3)
 
@@ -936,7 +869,6 @@ We have 2 different ways to do this.
 
 <h2 id="4261968fe68698635cb479b713e3873f"></h2>
 
------
 
 ## Dynamic Programming Backup
 
@@ -944,7 +876,6 @@ we also did one step lookahead, but we didn't sample. We have to know the dynami
 
 <h2 id="b5bad1ef88d485efddae73555382fcb5"></h2>
 
------
 
 ## Bootstrapping and Sampling
 
@@ -961,15 +892,12 @@ we also did one step lookahead, but we didn't sample. We have to know the dynami
 
 <h2 id="3d2617dd982260ee654a16d8dec7d2a1"></h2>
 
------
------
 
 # Lecture 5: Model-Free Control
 
 
 <h2 id="4c8ab096508f52654a28c785f6748251"></h2>
 
------
 
 ## Example of Greedy Action Selection
 
@@ -978,7 +906,6 @@ You open the right door forever if you improve policy greedily.   The problem is
 
 <h2 id="07a161e40945e4b056c712775b4703ea"></h2>
 
------
 
 ## Monte-Carlo Control
 
@@ -998,7 +925,6 @@ How to balance exploration and exploitation ?
 
 <h2 id="85d04a96bae9047010fec0f9592110da"></h2>
 
------
 
 ## GLIE Monte-Carlo Control
 
@@ -1006,7 +932,6 @@ How to balance exploration and exploitation ?
 
 <h2 id="08a9532ec1aa3228c440d83d04997958"></h2>
 
------
 
 ## Convergence of Sarsa
 
@@ -1014,7 +939,6 @@ In practice , we don't worry about the step-size α<sub>t</sub>.  Sometimes we e
 
 <h2 id="aaa26500d020666213140c69406d0d64"></h2>
 
------
 
 ## Sarsa on the Windy Gridworld
 
@@ -1029,7 +953,6 @@ So the first episode takes about 2000 steps to complete. 因为它一开始的�
 
 <h2 id="a77c65574fc09544e64c5ab604f73346"></h2>
 
------
 
 ## Backward View Sarsa(λ)
 
@@ -1042,7 +965,6 @@ So the first episode takes about 2000 steps to complete. 因为它一开始的�
 
 <h2 id="49ba094543faf8342001ad06e950e315"></h2>
 
------
 
 ## Sarsa(λ) Gridworld Example
 
@@ -1054,7 +976,6 @@ So the first episode takes about 2000 steps to complete. 因为它一开始的�
 
 <h2 id="93860339a61c014360f61ae14296ae1c"></h2>
 
------
 
 ## Off-Policy Learning
 
@@ -1065,13 +986,11 @@ Everything so far 所有的讨论都是建立在已知策略的基础之上的�
 
 <h2 id="08c2fa83f31563f4fa7749548cf87ff4"></h2>
 
------
 
 ## Importance Sampling
 
 <h2 id="c44f5bf2a0106935c78e4b5f365a0940"></h2>
 
------
 
 ## Importance Sampling for Off-Policy Monte-Carlo
 
@@ -1079,7 +998,6 @@ So MC is really a bad idea for off-policy.
 
 <h2 id="2aab383140e413901e497a99f9b40704"></h2>
 
------
 
 ## Importance Sampling for Off-Policy TD
 
@@ -1087,7 +1005,6 @@ TD is still not so good for off-policy even if it is much much better than MC.
 
 <h2 id="e4d17333d58040b1db710abe36cd5aec"></h2>
 
------
 
 ## Q-Learning
 

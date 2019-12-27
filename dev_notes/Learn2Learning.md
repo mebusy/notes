@@ -41,8 +41,6 @@
 
 <h2 id="2bd2c1678bf6f4fb2b3dd646a0a4e689"></h2>
 
------
------
 
 # Learn to learning
 
@@ -67,19 +65,16 @@ Essentials:
 
 <h2 id="4e36467da5395675d149e37f963f3104"></h2>
 
------
 
 ## What's Learning
 
 <h2 id="0f6a929f75505cb21bd825944116c43f"></h2>
 
------
 
 ### Focus mode & Diffuse mode
 
 <h2 id="bac5132fb0ee5ab40c519090027a968b"></h2>
 
------
 
 ### Procrastination 拖延症
 
@@ -94,7 +89,6 @@ Essentials:
  
 <h2 id="a072d2c627e5b08f8e5989de60fcb2d7"></h2>
 
------
 
 ### Practice Makes Permanent
 
@@ -105,7 +99,6 @@ Essentials:
 
 <h2 id="efc1e102396e433f648596b57b7ae114"></h2>
 
------
 
 ### importance of Sleeping
 
@@ -113,13 +106,11 @@ Essentials:
 
 <h2 id="e3f24dcebca8aac7bab918766483f604"></h2>
 
------
 
 ## Chucking
 
 <h2 id="a602bb85e559e3f1ea7b161de23fb4ce"></h2>
 
------
 
 ### how to form a chuck
 
@@ -135,7 +126,6 @@ Focus 模式下，我们的注意力就像一只大章鱼，会在必要时把�
  
 <h2 id="fe277330ca69df73206e1dfaaf097fd1"></h2>
 
------
 
 ### Illusions of Competence
 
@@ -152,13 +142,11 @@ Focus 模式下，我们的注意力就像一只大章鱼，会在必要时把�
 
 <h2 id="46d62627b35abfd75ef163f4b042d9d1"></h2>
 
------
 
 ## Seeing Big Picture
 
 <h2 id="292b4cb887c20bf0e19be79527ad829d"></h2>
 
------
 
 ### The Value of a Library Chucks
 
@@ -171,7 +159,6 @@ Chucks can help you understand new concepts through a process called `transfer`.
 
 <h2 id="064516143e195a393abf464c6bfceee9"></h2>
 
------
 
 ### Overlearning, Choking , Einstellung Effect , and Interleaving
 
@@ -200,13 +187,11 @@ Chucks can help you understand new concepts through a process called `transfer`.
 
 <h2 id="b8dc875571b9d741352f7405b0ba2df0"></h2>
 
------
 
 ## Procrastination and Memory
 
 <h2 id="26bb1e0b2b8ac68e3b3773fc26cd7cff"></h2>
 
------
 
 ## Procrastination
 
@@ -226,7 +211,6 @@ Chucks can help you understand new concepts through a process called `transfer`.
 
 <h2 id="238fbdc9e156b940090ab007553155b1"></h2>
 
------
 
 ### Zombie everywhere
 
@@ -242,7 +226,6 @@ chunk的形成与习惯有关。 习惯是我们的节能机制，它让我们�
 
 <h2 id="08e17bbc60fab2684773d89d5cfb7935"></h2>
 
------
 
 ### Surf's up! Process versus product 过程和结果
 
@@ -264,7 +247,6 @@ chunk的形成与习惯有关。 习惯是我们的节能机制，它让我们�
 
 <h2 id="4eeaacf44b691a992a034ae43a2f5653"></h2>
 
------
 
 ### Harnessing Your Zombie to Help You
 
@@ -304,7 +286,6 @@ chunk的形成与习惯有关。 习惯是我们的节能机制，它让我们�
 
 <h2 id="d372b78c2d8b98ad75e5c4c8c3fda023"></h2>
 
------
 
 ### Juggling Life and Learning
 
@@ -323,7 +304,6 @@ chunk的形成与习惯有关。 习惯是我们的节能机制，它让我们�
 
 <h2 id="e2db86db91ea165e87a7ec1bb17d417f"></h2>
 
------
 
 ### Summing Up Procrastination
 
@@ -339,13 +319,11 @@ chunk的形成与习惯有关。 习惯是我们的节能机制，它让我们�
 
 <h2 id="4789f23283b3a61f858b641a1bef19a3"></h2>
 
------
 
 ## Memory
 
 <h2 id="fbdfd8abc41ecb72c86d10a25b1bbb1d"></h2>
 
------
 
 ### Diving Deeper into Memory
 
@@ -362,7 +340,6 @@ Two things should happen to move something from `working memory` to `long term m
 
 <h2 id="7b1193c9a52e69dcddad0996ac1824ca"></h2>
 
------
 
 ### What's long term memory
 
@@ -377,7 +354,6 @@ Short term memory 通过 reconsolidation 变为 Long term Memory。 长时记忆
 
 <h2 id="6cbacda9f4d5ae1bcc40f39df139e202"></h2>
 
------
 
 ### Creating Meaningful Groups and the Memory Palace Techinque
 
@@ -389,7 +365,6 @@ Memory Palace Techinque 可以高效地将你要记的东西分类，它包括�
 
 <h2 id="555181f0b7edca758c534ca303110a7a"></h2>
 
------
 
 ### Summing up memory
 
@@ -402,13 +377,11 @@ Memory Palace Techinque 可以高效地将你要记的东西分类，它包括�
 
 <h2 id="88ee954f42aa06e7b8351c45e96e2ed7"></h2>
 
------
 
 ## Renaissance Learning and Unlocking Your Potential
 
 <h2 id="ec80a83755a5f5f3ce5b329214dd5af7"></h2>
 
------
 
 ### How 2 become a better learner
 
@@ -420,7 +393,6 @@ Memory Palace Techinque 可以高效地将你要记的东西分类，它包括�
 
 <h2 id="0b79795d3efc95b9976c7c5b933afce2"></h2>
 
------
 
 ### Introduction 
 
@@ -432,7 +404,6 @@ Memory Palace Techinque 可以高效地将你要记的东西分类，它包括�
  
 <h2 id="9a41d955461d5fa549dd9c17d63c0e21"></h2>
 
------
 
 ### Create a Lively Visual Metaphor or Analogy
 
@@ -442,7 +413,6 @@ Metaphors and analogies are useful for getting peaple out of **Einstellung** tha
 
 <h2 id="8f05251fdb9bb0980f85cc4121849c4d"></h2>
 
------
 
 ### No Need for Genius Envy
 
@@ -455,7 +425,6 @@ Particularly deliberate practice on the toughest aspects of the material that ca
 
 <h2 id="ae41910f3609ea059d036da64fe2f29b"></h2>
 
------
 
 ### Change Your Thoughts , Change Your Life
 
@@ -468,13 +437,11 @@ Particularly deliberate practice on the toughest aspects of the material that ca
 
 <h2 id="ae8c3dac9a834d7875650d17745701ef"></h2>
 
------
 
 ## Renaissance Learning and Unlocking Your Potential II
 
 <h2 id="281817eba8b3e8e9eac01121e955eb42"></h2>
 
------
 
 ### The Value of Teamwork
 
@@ -486,7 +453,6 @@ The right hemisphere helps us step back and put our work into big picture perspe
 
 <h2 id="956f55483f0081051ece73b963dbaa39"></h2>
 
------
 
 ### A Test Checklist
 
@@ -494,7 +460,6 @@ Testing is itself an extraordinarily powerful, learning experience. 1小时的�
 
 <h2 id="a599948930af2c011ac7d8bc42d082fd"></h2>
 
------
 
 ### Hard Start - Jump to Easy
 
@@ -506,7 +471,6 @@ Testing is itself an extraordinarily powerful, learning experience. 1小时的�
 
 <h2 id="7ef04fda1aeb46c259b043e32430f19d"></h2>
 
------
 
 ### Final Helpful Hints for Tests
 

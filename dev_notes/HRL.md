@@ -22,21 +22,16 @@
 
 <h2 id="72951ae790682a0dd4da4d8283364a3c"></h2>
 
------
------
 
 # Hierarchical Reinforcement Learning 
 
 <h2 id="72a11dd0d9d97622fd79ef03f39aabe2"></h2>
 
------
------
 
 # 9.2 Hierarchical Reinforcement Learning (HRL)
 
 <h2 id="58b3fd94a42d5f425c70a99f6914813b"></h2>
 
------
 
 ## Abstract Actions
 
@@ -46,7 +41,6 @@
 
 <h2 id="6243737489af539daef833ecd0db63c5"></h2>
 
------
 
 ## Semi-Markov Decision Problems
 
@@ -60,7 +54,6 @@
 
 <h2 id="dc4c71563b9bc39a65be853457e6b7b6"></h2>
 
------
 
 ## Structure
 
@@ -88,7 +81,6 @@
 
 <h2 id="230fa5f50e6eaca111e3ea68317d2e14"></h2>
 
------
 
 ## State Abstraction 
 
@@ -97,7 +89,6 @@
 
 <h2 id="ab4f4d1eab009cf07b82bff65ef8b303"></h2>
 
------
 
 ### eliminate irrelevant variables
 
@@ -107,7 +98,6 @@
 
 <h2 id="29fbd9047435ed3eff4bae33951dbcb7"></h2>
 
------
 
 ### Funnelling
 
@@ -116,7 +106,6 @@
 
 <h2 id="89bc22afc5ad4a92ab4b96584ba49eb6"></h2>
 
------
 
 ## Value-Function Decomposition
 
@@ -128,7 +117,6 @@
 
 <h2 id="c1e81f3c2f720c3a2e3a765ba6a11d59"></h2>
 
------
 
 ## Optimality
 
@@ -144,26 +132,21 @@ A hierarchical optimality can be arbitrarily worse than the globally optimal sol
 
 <h2 id="5870c8051d8f90dbc5ca54cd29b6624a"></h2>
 
------
------
 
 # 9.3 Approaches to Hierarchical Reinforcement Learning (HRL)
 
 <h2 id="6ce751b73792fb587ffb3563be3586b2"></h2>
 
------
 
 ## 9.3.1 Options
 
 <h2 id="59885b0a50c40a55d8ea2f2f9bcfad23"></h2>
 
------
 
 ## 9.3.2 HAMQ-Learning
 
 <h2 id="333e9924bda20bd6aae508c4a3beac0d"></h2>
 
------
 
 ## 9.3.3 MAXQ
 
@@ -207,7 +190,6 @@ Algorithm 18 performs such a depth-first search and returns both the value and b
 
 <h2 id="39ff216260ca44f8e043fab82a1476e9"></h2>
 
------
 
 ### MAXQ Learning and Execution
 
@@ -240,7 +222,6 @@ Require: root node m₀, starting state s₀, V,C
 
 <h2 id="cb494095255945d6f0b34b81aa9ebd96"></h2>
 
------
 
 ### HRL Applied to the Four-Room Task
 

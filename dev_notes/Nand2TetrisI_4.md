@@ -39,14 +39,11 @@
 
 <h2 id="2176a3b0fd81007e70e0dab6fdf6b1e2"></h2>
 
------
------
 
 # Week 4  Machine Language
 
 <h2 id="d14ae9a46f5db30f2e3671e3260bad56"></h2>
 
------
 
 ## 4.1 Overview
 
@@ -58,7 +55,6 @@
 
 <h2 id="e7e3a5617750708cf2c2d2bd66835df3"></h2>
 
------
 
 ### Mnemonics
 
@@ -70,7 +66,6 @@
 
 <h2 id="7572d5e2c2cbff0b74dffe9eb8f946af"></h2>
 
------
 
 ## 4.2 Machine Languages : Elements
 
@@ -86,7 +81,6 @@
 
 <h2 id="90c98ad75c6e684802b11191a6ee1e48"></h2>
 
------
 
 ### Machine Language : Operations 
 
@@ -101,7 +95,6 @@
 
 <h2 id="b00adf6a12808f6581dab31c33b53648"></h2>
 
------
 
 ### Machine Language : Addressing 
 
@@ -117,7 +110,6 @@
 
 <h2 id="a9682ea50df45368189078864618a7cd"></h2>
 
------
 
 #### Registers
 
@@ -133,7 +125,6 @@
 
 <h2 id="011ddc58d58d2714f6ab1823a833a279"></h2>
 
------
 
 #### Addressing Modes
 
@@ -148,7 +139,6 @@
 
 <h2 id="6a8b3c75d2b148310a110bf194c67f26"></h2>
 
------
 
 #### Input / Output
 
@@ -162,7 +152,6 @@
    
 <h2 id="785a7f6de7d8cc20365a065384792be0"></h2>
 
------
 
 ### Machine Language : Flow Control 
 
@@ -172,13 +161,11 @@
 
 <h2 id="bb308f6cd7b0bcbd8347e07247272ed7"></h2>
 
------
 
 ## 4.3 The Hack Computer and Machine Language 
 
 <h2 id="59440b54dcccb2580f829b511a3ab454"></h2>
 
------
 
 ### Hack computer : hardware 
 
@@ -209,7 +196,6 @@
 
 <h2 id="6bccf7c3f8c59b04ccbc9be6a8917a0f"></h2>
 
------
 
 ### Hack computer: registers 
 
@@ -223,7 +209,6 @@
 
 <h2 id="7a47f762af8bb05b5c4b7663c365bbdc"></h2>
 
------
 
 ### The A-instruction
 
@@ -253,7 +238,6 @@ M=-1   // RAM[100] = -1
 
 <h2 id="2656df8b06102adadd0f4e8d28ca7d3b"></h2>
 
------
 
 ### The C-instruction
 
@@ -304,7 +288,6 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
 
 <h2 id="8bfeef857873fbe94ceeca536b8ba8df"></h2>
 
------
 
 ### 为什么要划分 A/C 两套 指令？
 
@@ -314,13 +297,11 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
 
 <h2 id="07f3d75ea1037290fb379184f55486ac"></h2>
 
------
 
 ## 4.4 Hack Language Specification 
 
 <h2 id="a74da8b3478acd4a7ca3b8c93f7a0d15"></h2>
 
------
 
 ### The A-instruction: symbolic and binary syntax
 
@@ -334,7 +315,6 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
 
 <h2 id="fb409005082bcbc783a0b8c36745ee7a"></h2>
 
------
 
 ### The C-instruction: symbolic and binary syntax
 
@@ -373,13 +353,11 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
 
 <h2 id="3ee61240a785681403c329e4721faa17"></h2>
 
------
 
 ## 4.5 Input/Output 
 
 <h2 id="88654d0d30b3eafe4fcc2c9fc29c0a7f"></h2>
 
------
 
 ### Hack Computer platform: Output 
 
@@ -403,7 +381,6 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
 
 <h2 id="4bdb00d0e3d6c18d3f264fd18717ff21"></h2>
 
------
 
 ### Hack computer platform: Input
 
@@ -424,13 +401,11 @@ D-1; JEQ  //  if (D-1 EQ 0) Jump to 56
 
 <h2 id="a18eff3da7a07aee87a273f3fa131a52"></h2>
 
------
 
 ## 4.6 Hack Programming, Part1
 
 <h2 id="43ac21454f5d3b1ba15c3c9070c3574b"></h2>
 
------
 
 ### Working with register and memory
 
@@ -463,7 +438,6 @@ M=D
 
 <h2 id="e4e5a06fdd10851c3e7b7c0c5a04052c"></h2>
 
------
 
 ### Hack program example: add two numbers
 
@@ -471,7 +445,6 @@ M=D
 
 <h2 id="fa7826a41e60188c3d9aa40c67875a2e"></h2>
 
------
 
 ### How to terminate a program properly?
 
@@ -488,7 +461,6 @@ M=D  // RAM[2] =D
 
 <h2 id="c6485feeba4ed4c45bed624bd9d153e1"></h2>
 
------
 
 ### Built-in symbols
 
@@ -527,13 +499,11 @@ THAT | 4
 
 <h2 id="433672a84dd80f224b715113f64d6b2f"></h2>
 
------
 
 ## 4.7: Hack Programming , Part 2
 
 <h2 id="cec9f877aea82b580a4bd8292d6fd05b"></h2>
 
------
 
 ### Branching
 
@@ -550,7 +520,6 @@ THAT | 4
 
 <h2 id="03df896fc71cd516fdcf44aa699c4933"></h2>
 
------
 
 ### Variables
 
@@ -582,7 +551,6 @@ THAT | 4
  
 <h2 id="f26bb1b6fe9c2cee3fb09973ed60da69"></h2>
 
------
 
 ### Iterative processing 
 
@@ -595,13 +563,11 @@ THAT | 4
 
 <h2 id="0fbcaf38632f1b7a6eb86b99e1e1ea63"></h2>
 
------
 
 ## 4.8 Hack Programming , Part 3
 
 <h2 id="7bba5d01d3778f550d69f87dca50fc3f"></h2>
 
------
 
 ### Pointers 
 

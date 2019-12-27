@@ -34,8 +34,6 @@
 
 <h2 id="f116aafd0ac2c33054fe0b2220fff999"></h2>
 
------
------
 
 # MIT S6191, Deep Learning
 
@@ -44,8 +42,6 @@ http://introtodeeplearning.com/schedule.html
 
 <h2 id="7571e94e9960582145f94d7fbceac96d"></h2>
 
------
------
 
 # Lecture 1 : Intro
 
@@ -54,7 +50,6 @@ http://introtodeeplearning.com/schedule.html
 
 <h2 id="882cce400ea6815dec4b6a157dab7253"></h2>
 
------
 
 ## Fundamentals of Deep Learning
  
@@ -66,7 +61,6 @@ http://introtodeeplearning.com/schedule.html
 
 <h2 id="20b50b357f447578f0eb0a92b8572479"></h2>
 
------
 
 ## How do we build neural networks with perceptrons?
 
@@ -84,7 +78,6 @@ http://introtodeeplearning.com/schedule.html
 
 <h2 id="2f89dcf6a5cb1586f393dff1f636e86c"></h2>
 
------
 
 ## Training Neural Networks
 
@@ -98,7 +91,6 @@ http://introtodeeplearning.com/schedule.html
 
 <h2 id="469fdf8a17a30399d48905940e2d3495"></h2>
 
------
 
 ## Training Neural Networks In Practice
 
@@ -131,7 +123,6 @@ http://introtodeeplearning.com/schedule.html
 
 <h2 id="21c449704c125fc952b10f4ffd022c1f"></h2>
 
------
 
 ## Training Neural Networks In Practice 2: MiniBatches
 
@@ -149,7 +140,6 @@ http://introtodeeplearning.com/schedule.html
 
 <h2 id="e70a3e602f9bc4ee8901e4c0cb6fe643"></h2>
 
------
 
 ## Training Neural Networks In Practice 3: Fighting Overfitting
 
@@ -180,8 +170,6 @@ http://introtodeeplearning.com/schedule.html
 
 <h2 id="cfbbf757778ad2df29a62a798b172b63"></h2>
 
------
------
 
 # Lecture 2 : Sequence Modeling with Neural Networks
 
@@ -198,7 +186,6 @@ What if each training sample itself consisted of multiple data points, and those
 
 <h2 id="b5e9f30832182b11c10313379438da5b"></h2>
 
------
 
 ## how do we model sequences? 
 
@@ -277,7 +264,6 @@ A way to solve it is by sharing parameters across our sequence. So once we learn
 
 <h2 id="a71db179cb1a8655fb494133f79c535a"></h2>
 
------
 
 ## how do we train an RNN? 
 
@@ -307,7 +293,6 @@ A way to solve it is by sharing parameters across our sequence. So once we learn
 
 <h2 id="ab33d2e55a6ebd5e4c71fe57baaa6087"></h2>
 
------
 
 ## why are RNNs hard to train? 
 
@@ -397,14 +382,11 @@ It is because of this annoying problem called the vanishing gradient.
 
 <h2 id="025402f9c315331049c668ea7be76a62"></h2>
 
------
------
 
 # Lecture 3:    Deep Computer Vision
 
 <h2 id="24aa0335724bdc6a5a27223d3549b946"></h2>
 
------
 
 ## Famous Computer Vision Datasets
 
@@ -415,7 +397,6 @@ It is because of this annoying problem called the vanishing gradient.
 
 <h2 id="6ce916fc429bf02b2897f166fd592ac5"></h2>
 
------
 
 ## Convolutional Neural Networks
 
@@ -425,7 +406,6 @@ It is because of this annoying problem called the vanishing gradient.
  
 <h2 id="d0a817f7b8f356e5100a34f135766419"></h2>
 
------
 
 ## Convolutional Neural Networks: Layers 
 
@@ -449,7 +429,6 @@ It is because of this annoying problem called the vanishing gradient.
 
 <h2 id="005649cd0b2e95b1a940c55e7698a998"></h2>
 
------
 
 ## 什么是卷积？
 
@@ -477,7 +456,6 @@ It is because of this annoying problem called the vanishing gradient.
 
 <h2 id="fa0f0ae43fdca46d1d68255409ec0b89"></h2>
 
------
 
 ## Convolution
 
@@ -485,7 +463,6 @@ It is because of this annoying problem called the vanishing gradient.
 
 <h2 id="d7d278172ca7a83e10e19938b70aabaf"></h2>
 
------
 
 ## Convolution: Representation Learning
 
@@ -500,7 +477,6 @@ What CNNs are is a composition of these filters.
 
 <h2 id="2bf7644c7479fcd2c8907f2b13e3b07e"></h2>
 
------
 
 ## ConvNets: Pooling
 
@@ -513,7 +489,6 @@ What CNNs are is a composition of these filters.
 
 <h2 id="fe2d632388e0d217878437554a365016"></h2>
 
------
 
 ## Why ReLU ?
 
@@ -523,13 +498,11 @@ What CNNs are is a composition of these filters.
 
 <h2 id="0bc3fe8a34ad082c47547245bee64457"></h2>
 
------
 
 ## Object Recognition
 
 <h2 id="917dabfd4adecc2a3396519bfa5d6b5b"></h2>
 
------
 
 ### Case Study: ImageNet
 
@@ -537,7 +510,6 @@ What CNNs are is a composition of these filters.
 
 <h2 id="0cfa6b933928d71f5576ec0898641745"></h2>
 
------
 
 ### Same Architecture, Many Applications
 
@@ -548,14 +520,11 @@ What CNNs are is a composition of these filters.
 
 <h2 id="25a8f28fe0cf18103a3886ba04919923"></h2>
 
------
------
 
 # Lecture 6 : 
 
 <h2 id="097467a8f22176b837dd18af3a2a7abd"></h2>
 
------
 
 ## ENTER THE DEEP
 
@@ -567,7 +536,6 @@ What CNNs are is a composition of these filters.
 
 <h2 id="e4d17333d58040b1db710abe36cd5aec"></h2>
 
------
 
 ## Q-Learning
 
@@ -576,7 +544,6 @@ What CNNs are is a composition of these filters.
 
 <h2 id="1993886ff857bdbc2ac91977e678a3c5"></h2>
 
------
 
 ##  The problems with Q-learning
 

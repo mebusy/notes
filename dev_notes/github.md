@@ -22,14 +22,11 @@
 
 <h2 id="bf215181b5140522137b3d4f6b73544a"></h2>
 
------
------
 
 # github 
 
 <h2 id="f6b73a9a864f02b2d14ad454c6b09e68"></h2>
 
------
 
 ## github update fork
 
@@ -48,7 +45,6 @@
         
 <h2 id="606e5c37337c2f05305ab4a4a0dc2691"></h2>
 
------
 
 ## run html on github
 
@@ -66,7 +62,6 @@
 
 <h2 id="ecf2b9ae77e1b9272d6716ab8337c37e"></h2>
 
------
 
 ## git status -s ignore file mode
 
@@ -76,7 +71,6 @@ git config core.filemode false
 
 <h2 id="a6c7b8bc87e837e643f48e27b843d648"></h2>
 
------
 
 ## merge specific commit 
 
@@ -88,7 +82,6 @@ git cherry-pick [-n] <commit>
 
 <h2 id="e35fc6dbd7673d56c0824c31ff378241"></h2>
 
------
 
 ## show file change of a commit 
 
@@ -98,7 +91,6 @@ git diff-tree <commit>
 
 <h2 id="6f4311248df3ab2115e904e14c7836c9"></h2>
 
------
 
 ## get a file with specific revision
 
@@ -109,7 +101,6 @@ git show REVISION:filePath > outFilePath
 
 <h2 id="aafd38d2cb2288571bb67fc78e3a18f7"></h2>
 
------
 
 ## git show/diff 乱码问题
 
@@ -122,7 +113,6 @@ git diff | less -r
 
 <h2 id="a9df5d1d20b4eb063767169d82151fdc"></h2>
 
------
 
 ## [trick] use git log to display the diffs while searching
 
@@ -133,7 +123,6 @@ git log -p -- path/to/file
 
 <h2 id="a3aecaf26f7ec612b34f4d9ed6c6532d"></h2>
 
------
 
 ## how to set up username and passwords for different git repos
 
@@ -160,7 +149,6 @@ $ cat ~/.gitconfig
 
 <h2 id="366ee47209629dccbab3d2399247ea84"></h2>
 
------
 
 ## provide username when clone private repos
 
@@ -171,7 +159,6 @@ git clone https://username:password@github.com/username/repository.git
 
 <h2 id="8da880caa0ca98d1c46a028c0da79aac"></h2>
 
------
 
 ## gitlab: git clone leads to "SSL certificate problem: unable to get local issuer certificate"
 
@@ -184,7 +171,6 @@ git config --global http.sslVerify true
 
 <h2 id="60f96f2175fb84d4839e67f2533a4c10"></h2>
 
------
 
 ## Calling git clone using password with special character
 
@@ -201,7 +187,6 @@ $ git clone https://myuser:password%21@github.com/myuser/repo.git
 
 <h2 id="9af7d00519ec3625b399242404c33af2"></h2>
 
------
 
 ## Copy branch from another repository
 
@@ -217,7 +202,6 @@ $ git clone https://myuser:password%21@github.com/myuser/repo.git
 
 <h2 id="65804564299051849847b74237b908e7"></h2>
 
------
 
 ## delete a branch locally and remotely
 
@@ -228,7 +212,6 @@ $ git branch -d <branch_name>
 
 <h2 id="69a87c5b277c131f12dde6841d30e6bc"></h2>
 
------
 
 ## ignore system proxy setting 
 

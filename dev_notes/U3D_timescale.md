@@ -7,8 +7,6 @@
 
 <h2 id="052b29689e3fddb3f8de79d80f5c356f"></h2>
 
------
------
 
 ## Time.timeScale
 

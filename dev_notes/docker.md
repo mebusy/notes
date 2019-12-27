@@ -94,14 +94,13 @@
      - [docker redis](#e03d31b41fc936f76920bb647520ef01)
      - [docker mysql](#5b1064e3e54b4f22a3419f9d198df904)
      - [docker cleanup](#ada28088d8540a0471c00fb0673b9882)
+     - [docker pandoc](#b64e99ff98a5173b25e6d0d91bc330f3)
 
 ...menuend
 
 
 <h2 id="05b6053c41a2130afd6fc3b158bda4e6"></h2>
 
------
------
 
 # docker 
 
@@ -114,8 +113,6 @@
 
 <h2 id="e2d6d0e301f7dcc1afe228f7cbcf285a"></h2>
 
------
------
 
 # 基本概念
 
@@ -123,7 +120,6 @@
 
 <h2 id="19f6588aaa5d5f651bf694f2b7a7a6a3"></h2>
 
------
 
 ## 镜像（Image）
 
@@ -134,7 +130,6 @@
 
 <h2 id="f96eee41708b8eed50d6e54fcee9ff58"></h2>
 
------
 
 ### 分层存储
 
@@ -153,7 +148,6 @@
 
 <h2 id="ce9d5c685661911c7fe0bcb1c08c3705"></h2>
 
------
 
 ## 容器（Container）
 
@@ -176,13 +170,11 @@
 
 <h2 id="e9ce47c1438cc8cd01d7147f7d93a169"></h2>
 
------
 
 ## 仓库（Repository）
 
 <h2 id="a6713cd9dc3c442c7735a2b08a2a768d"></h2>
 
------
 
 ### Docker Registry
 
@@ -210,7 +202,6 @@
 
 <h2 id="c77b89c512b53b948badba879bcb7411"></h2>
 
------
 
 ### Docker Registry 公开服务
 
@@ -223,7 +214,6 @@
 
 <h2 id="3b51596a30d07a4cccce378ebc71a546"></h2>
 
------
 
 ### 私有 Docker Registry
 
@@ -237,8 +227,6 @@
 
 <h2 id="e655a410ff21cd07e7a0150491e04371"></h2>
 
------
------
 
 # 安装
  
@@ -323,8 +311,6 @@ yum list docker-ce.x86_64  --showduplicates | sort -r
 
 <h2 id="4da5582c2bd22e8a31b18a4362a2e4db"></h2>
 
------
------
 
 # 使用 Docker 镜像
 
@@ -332,7 +318,6 @@ Docker 运行容器前需要本地存在对应的镜像，如果镜像不存在�
 
 <h2 id="dde7c093537b2671dc3e20601fe1ad50"></h2>
 
------
 
 ## 获取镜像
 
@@ -346,7 +331,6 @@ docker pull [选项] [Docker Registry地址]<仓库名>:<标签>
 
 <h2 id="4c763bb67e6013dd35dd97d1efd9c8f2"></h2>
 
------
 
 ## 运行
 
@@ -380,7 +364,6 @@ $
 
 <h2 id="edfeb4bbaa399a7dd5981ee43139839e"></h2>
 
------
 
 ## 列出镜像
 
@@ -400,7 +383,6 @@ ubuntu               14.04               1e0c3dd64ccd        4 weeks ago        
 
 <h2 id="27a7f5880024c773ace50993e2478d92"></h2>
 
------
 
 ### 虚悬镜像
 
@@ -415,7 +397,6 @@ ubuntu               14.04               1e0c3dd64ccd        4 weeks ago        
 
 <h2 id="472571f817083bd6c1adc28636865cbc"></h2>
 
------
 
 ### 中间层镜像
 
@@ -427,7 +408,6 @@ ubuntu               14.04               1e0c3dd64ccd        4 weeks ago        
 
 <h2 id="44e1a2382c5d3428c9e6991adff4b6cd"></h2>
 
------
 
 ### 列出部分镜像
 
@@ -459,7 +439,6 @@ $ docker images -f label=com.example.version=0.1
 
 <h2 id="572b05bc4b772aa9955181aa862e489e"></h2>
 
------
 
 ### 以特定格式显示
 
@@ -487,7 +466,6 @@ fe9198c04d62: mongo
 
 <h2 id="4b409ece8383ea0f14f598b08fa3f7fc"></h2>
 
------
 
 ## 利用 commit 理解镜像构成
 
@@ -579,7 +557,6 @@ docker run --name web2 -d -p 81:80 nginx:v2
 
 <h2 id="a93f325da3a605ac9c7976c259cc3c99"></h2>
 
------
 
 ### 慎用 docker commit
 
@@ -598,7 +575,6 @@ docker commit 命令除了学习之外，还有一些特殊的应用场合，比
 
 <h2 id="ca15f31abd0e0c5beb65f69cd39f697e"></h2>
 
------
 
 ## 使用 Dockerfile 定制镜像
 
@@ -627,7 +603,6 @@ RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
 
 <h2 id="ad64b82a688e4563306595a8bcbd75df"></h2>
 
------
 
 ### FROM 指定基础镜像
 
@@ -653,7 +628,6 @@ FROM scratch
 
 <h2 id="c40a005104159611a8abcc3e7f4e8e8f"></h2>
 
------
 
 ### RUN 执行命令
 
@@ -712,7 +686,6 @@ Dockerfile 支持 Shell 类的行尾添加 \ 的命令换行方式，以及行�
 
 <h2 id="0cd7fc52e88767f46089b6fc4bc14cdc"></h2>
 
------
 
 ### 构建镜像
 
@@ -747,7 +720,6 @@ docker build [选项] <上下文路径/URL/->
 
 <h2 id="697df4e515f25078aa8b3ba4573d6964"></h2>
 
------
 
 ### 镜像构建上下文（Context）
 
@@ -789,13 +761,11 @@ Sending build context to Docker daemon 2.048 kB
 
 <h2 id="e2ccb8bb6d2b9d1f6ef53430262eb335"></h2>
 
------
 
 ### 其它 docker build 的用法
 
 <h2 id="e3b76237c22c121138eb68b7e15928ed"></h2>
 
------
 
 #### 直接用 Git repo 进行构建
 
@@ -816,7 +786,6 @@ aed15891ba52: Already exists
 
 <h2 id="ffc9590011c00baebbf79d7d2db28ba3"></h2>
 
------
 
 #### 用给定的 tar 压缩包构建
 
@@ -829,7 +798,6 @@ $ docker build http://server/context.tar.gz
 
 <h2 id="20183161339129a8f9da73bc60cc95ba"></h2>
 
------
 
 #### 从标准输入中读取 Dockerfile 进行构建
 
@@ -848,7 +816,6 @@ cat Dockerfile | docker build -
 
 <h2 id="c3257bd208d0a3934d193cf26aa2df71"></h2>
 
------
 
 #### 从标准输入中读取上下文压缩包进行构建
 
@@ -860,13 +827,11 @@ $ docker build - < context.tar.gz
 
 <h2 id="ab7b66399bb75089097e87d4fe04cf86"></h2>
 
------
 
 ## Dockerfile 指令详解
 
 <h2 id="36960c37c1514474b4d1eb8f2e9af565"></h2>
 
------
 
 ### COPY 复制文件
 
@@ -899,7 +864,6 @@ COPY hom?.txt /mydir/
 
 <h2 id="bc734ce94f563958ed54ed85e7c24626"></h2>
 
------
 
 ### ADD 更高级的复制文件
 
@@ -921,7 +885,6 @@ ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
 
 <h2 id="d3bc2b31db3b0c82ec91ac3e2f9dd85b"></h2>
 
------
 
 ### CMD 容器启动命令
 
@@ -982,7 +945,6 @@ CMD ["nginx", "-g", "daemon off;"]
 
 <h2 id="1cd6041bdc91a8e6a4c862d3636ce5ed"></h2>
 
------
 
 ### ENTRYPOINT 入口点
 
@@ -1030,7 +992,6 @@ CMD [ "redis-server" ]
 
 <h2 id="15a80d9facd5298221ecbed6e7ee75c7"></h2>
 
------
 
 ### ENV 设置环境变量
 
@@ -1068,7 +1029,6 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
 
 <h2 id="14e2e3b76460818c68b72dfaa4534d96"></h2>
 
------
 
 ### ARG 构建参数
 
@@ -1084,7 +1044,6 @@ Dockerfile 中的 ARG 指令是定义参数名称，以及定义其默认值。�
 
 <h2 id="49b45cf4204f235e160ea09e07a16829"></h2>
 
------
 
 ### VOLUME 定义匿名卷
 
@@ -1111,7 +1070,6 @@ docker run -d -v mydata:/data xxxx
 
 <h2 id="a7a926de3ef2a0c352f59030d0bbc6dd"></h2>
 
------
 
 ### EXPOSE 声明端口
 
@@ -1132,7 +1090,6 @@ EXPOSE 指令是声明运行时容器提供服务端口，这只是一个声明�
 
 <h2 id="5a844af8a8f0576eb7a818856d201a20"></h2>
 
------
 
 ### WORKDIR 指定工作目录
 
@@ -1156,7 +1113,6 @@ RUN echo "hello" > world.txt
 
 <h2 id="40211142c56583b06d2fe618fa0b3405"></h2>
 
------
 
 ### USER 指定当前用户
 
@@ -1188,7 +1144,6 @@ CMD [ "exec", "gosu", "redis", "redis-server" ]
 
 <h2 id="28feabf1a02ad73fb34a3d5aa47c26e9"></h2>
 
------
 
 ### HEALTHCHECK 健康检查
 
@@ -1262,7 +1217,6 @@ $ docker inspect --format '{{json .State.Health}}' web | python -m json.tool
 
 <h2 id="8487eec94911eb65c7d2f4bc18cbbe2b"></h2>
 
------
 
 ### ONBUILD 为他人做嫁衣裳
 
@@ -1283,8 +1237,6 @@ TODO
 
 <h2 id="84c8ea5f92b2186182f00a2443cbab12"></h2>
 
------
------
 
 # 操作容器
 
@@ -1292,13 +1244,11 @@ TODO
 
 <h2 id="b093c1c365b165c1d14e32dba65e94f6"></h2>
 
------
 
 ## 启动容器
 
 <h2 id="54aae6275e57c681fe430764be974c77"></h2>
 
------
 
 ### 新建并启动
 
@@ -1320,7 +1270,6 @@ root@af8bae53bdd3:/#
 
 <h2 id="63e39864e294349dc722ce9ba8b51ee7"></h2>
 
------
 
 ### 启动已终止容器
 
@@ -1329,7 +1278,6 @@ root@af8bae53bdd3:/#
 
 <h2 id="28b855ee0bcfa0640199f634fb5c23a0"></h2>
 
------
 
 ## 后台(background)运行
 
@@ -1349,7 +1297,6 @@ docker logs [container ID or NAMES]
 
 <h2 id="cd1786012578ed41f6a2435c1dcc5966"></h2>
 
------
 
 ### 终止容器
 
@@ -1360,7 +1307,6 @@ docker logs [container ID or NAMES]
 
 <h2 id="51fddac8e0d43b8c4cedf5c7536a2b12"></h2>
 
------
 
 ## 进入容器
 
@@ -1368,7 +1314,6 @@ docker logs [container ID or NAMES]
 
 <h2 id="ed8bd9329f54fdae47e248ee852d1a1d"></h2>
 
------
 
 ### attach 命令
 
@@ -1378,7 +1323,6 @@ docker attach [container ID or NAMES]
 
 <h2 id="bfc5650eb46f0bddb423c490b0c28be3"></h2>
 
------
 
 ## 导出和导入容器
 
@@ -1395,7 +1339,6 @@ $ docker export 7691a814370e > ubuntu.tar
 
 <h2 id="21eccb9f6a6709dc17c387515e123d28"></h2>
 
------
 
 ### 导入容器快照
 
@@ -1424,7 +1367,6 @@ docker import http://example.com/exampleimage.tgz example/imagerepo
 
 <h2 id="2f4aaddde33c9b93c36fd2503f3d122b"></h2>
 
------
 
 ## 删除
 
@@ -1436,7 +1378,6 @@ $ docker rm  trusting_newton
 
 <h2 id="cd287c2794249580cfc4de4006ac9362"></h2>
 
------
 
 ### 清理所有处于终止状态的容器
 
@@ -1449,14 +1390,11 @@ docker rm $(docker ps -a -q)
 
 <h2 id="5e6078663fa925398d77b106c67215db"></h2>
 
------
------
 
 # 访问仓库   Repository
 
 <h2 id="ec104a6054aee6dccf8a9fc8f6842317"></h2>
 
------
 
 ## Docker Hub
 
@@ -1507,13 +1445,11 @@ docker pull centos
 
 <h2 id="96387a3a5055939b42bfc6181ba784df"></h2>
 
------
 
 ## 私有仓库
 
 <h2 id="8c80d32c81877be8ad508c7e075bbc13"></h2>
 
------
 
 ### Deploy a registry server
 
@@ -1522,7 +1458,6 @@ docker pull centos
 
 <h2 id="5f65c52efba3f11c0512e5433920dc5e"></h2>
 
------
 
 #### Run a local registry
 
@@ -1535,7 +1470,6 @@ $ docker run -d -p 5000:5000 --restart=always --name registry registry:2
 
 <h2 id="17443590fa63f19e5857da6f6407d646"></h2>
 
------
 
 #### Copy an image from Docker Hub to your registry
 
@@ -1585,7 +1519,6 @@ For more details: [registry deploy and config](https://docs.docker.com/registry/
 
 <h2 id="919d9a1b6552e2443bcba07ac2fcf531"></h2>
 
------
 
 ## 配置文件 TODO
 
@@ -1596,8 +1529,6 @@ For more details: [registry deploy and config](https://docs.docker.com/registry/
 
 <h2 id="092d280d669c713c8778047dbe6b2259"></h2>
 
------
------
 
 # Docker 数据管理
 
@@ -1610,7 +1541,6 @@ For more details: [registry deploy and config](https://docs.docker.com/registry/
 
 <h2 id="99b935d7193a1934689a928ae0139d33"></h2>
 
------
 
 ## 数据卷
 
@@ -1625,7 +1555,6 @@ For more details: [registry deploy and config](https://docs.docker.com/registry/
 
 <h2 id="f1a6ea6cc69a550bafe35f56eb079327"></h2>
 
------
 
 ### 创建一个数据卷
 
@@ -1642,7 +1571,6 @@ docker run -d -P --name web -v /webapp training/webapp python app.py
 
 <h2 id="9e416de2b887c7c78160255665c297bd"></h2>
 
------
 
 ### 删除数据卷
 
@@ -1651,7 +1579,6 @@ docker run -d -P --name web -v /webapp training/webapp python app.py
 
 <h2 id="e5be13163123d804d337301b9c09eeb4"></h2>
 
------
 
 ### 挂载一个主机目录作为数据卷
 
@@ -1675,7 +1602,6 @@ $ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp:ro training/webapp
 
 <h2 id="f7d1e7013f50a458471e5d4c805fbb4f"></h2>
 
------
 
 ### 查看数据卷的具体信息
 
@@ -1687,7 +1613,6 @@ $ docker inspect web
 
 <h2 id="bb673754af06a1493de8c9a1255c3947"></h2>
 
------
 
 ### 挂载一个本地主机文件作为数据卷
 
@@ -1705,7 +1630,6 @@ docker run --rm -it -v ~/.bash_history:/.bash_history ubuntu /bin/bash
 
 <h2 id="2df5c8a6ca62324d4237ab45a6fc7391"></h2>
 
------
 
 ## 数据卷容器
 
@@ -1736,7 +1660,6 @@ docker run -d --name db3 --volumes-from db1 training/postgres
 
 <h2 id="35de814218f4269e2c883f78d4f1e504"></h2>
 
------
 
 ## 利用数据卷容器来备份、恢复、迁移数据卷
 
@@ -1744,7 +1667,6 @@ docker run -d --name db3 --volumes-from db1 training/postgres
 
 <h2 id="664b37da2222287adcb1ecc4e48edb73"></h2>
 
------
 
 ### 备份
 
@@ -1758,7 +1680,6 @@ docker run --volumes-from dbdata -v $(pwd):/backup ubuntu tar cvf /backup/backup
 
 <h2 id="c7db6d4f1a42987a0df962e927926f14"></h2>
 
------
 
 ### 恢复
 
@@ -1783,14 +1704,11 @@ docker run --volumes-from dbdata2 busybox /bin/ls /dbdata
 
 <h2 id="55e0f8921afc8ae4c8c0536410b973af"></h2>
 
------
------
 
 # 使用网络
 
 <h2 id="fe6bb93e4d01fd9317947eef46670807"></h2>
 
------
 
 ## 外部访问容器
 
@@ -1824,7 +1742,6 @@ $ docker logs -f nostalgic_morse
 
 <h2 id="cc4add018dea50c5c26e286522ecaa9f"></h2>
 
------
 
 ### 映射所有接口地址
 
@@ -1839,7 +1756,6 @@ docker run -d -p 5000:5000 training/webapp python app.py
 
 <h2 id="7a9d7a6fd9999d4c50012bf194a0d5f8"></h2>
 
------
 
 ### 映射到指定地址的指定端口
 
@@ -1851,7 +1767,6 @@ docker run -d -p 127.0.0.1:5000:5000 training/webapp python app.py
 
 <h2 id="5bfc1ca85e80abb7f382b15b0d1e05ae"></h2>
 
------
 
 ### 映射到指定地址的任意端口
 
@@ -1869,7 +1784,6 @@ docker run -d -p 127.0.0.1:5000:5000/udp training/webapp python app.py
 
 <h2 id="2689da8e24fd82172b01f89e377c0081"></h2>
 
------
 
 ### 查看映射端口配置
 
@@ -1891,7 +1805,6 @@ docker run -d -p 5000:5000  -p 3000:80 training/webapp python app.py
 
 <h2 id="06dc7504152a3981b873a938686fbb62"></h2>
 
------
 
 ## 容器互联
 
@@ -1901,7 +1814,6 @@ docker run -d -p 5000:5000  -p 3000:80 training/webapp python app.py
 
 <h2 id="2a4bb5c86ebcad25a1debf231dc8e752"></h2>
 
------
 
 ### 自定义容器命名
 
@@ -1935,7 +1847,6 @@ $ sudo docker inspect -f "{{ .Name }}" aed84ee21bde
 
 <h2 id="06dc7504152a3981b873a938686fbb62"></h2>
 
------
 
 ### 容器互联
 
@@ -2030,8 +1941,6 @@ PING db (172.17.0.5): 48 data bytes
 
 <h2 id="89a0c0e3c241795282a7a015dcf8f159"></h2>
 
------
------
 
 # 高级网络配置
 
@@ -2057,14 +1966,11 @@ TODO
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
------
------
 
 # Misc
 
 <h2 id="106810e843fbd66af6ee48cb3ee7e07f"></h2>
 
------
 
 ## stop / rm all container 
 
@@ -2076,7 +1982,6 @@ docker rm $(docker ps -a -q)
 
 <h2 id="5e7908d41ed1f3e6e1906d575e2dfea0"></h2>
 
------
 
 ## 继续一个刚刚结束的container 
 
@@ -2096,7 +2001,6 @@ Explanation:
 
 <h2 id="e64a823c0142aaac197cc68839f54da9"></h2>
 
------
 
 ## pass proxy to docker container 
 
@@ -2105,7 +2009,6 @@ Explanation:
 
 <h2 id="7a5c94971896bfbf1a19053004e56cc1"></h2>
 
------
 
 ## docker proxy for Centos7
 
@@ -2126,7 +2029,6 @@ Environment="HTTPS_PROXY=https://host:port/"
 
 <h2 id="5ef5bd47a5282fb1ad1694bbb5f46954"></h2>
 
------
 
 ## run bash of existing containter
 
@@ -2139,7 +2041,6 @@ docker exec -it <container> -- command args
 
 <h2 id="47a7dbe444a0af8498cf01950ad552ef"></h2>
 
------
 
 ## get DockerFile from Image
 
@@ -2152,7 +2053,6 @@ docker history --no-trunc $argv  | tac | tr -s ' ' | cut -d " " -f 5- | sed 's,^
 
 <h2 id="9b68cd8277b36a785a1a8784426e3095"></h2>
 
------
 
 ## add a restart policy to a container 
 
@@ -2165,7 +2065,6 @@ docker update --restart unless-stopped <container>
 
 <h2 id="e03d31b41fc936f76920bb647520ef01"></h2>
 
------
 
 ## docker redis 
 
@@ -2192,7 +2091,6 @@ redis> config get save
 
 <h2 id="5b1064e3e54b4f22a3419f9d198df904"></h2>
 
------
 
 ## docker mysql
 
@@ -2203,7 +2101,6 @@ docker run -d --restart unless-stopped -p 3306:3306 --name mysql-test -e MYSQL_U
 
 <h2 id="ada28088d8540a0471c00fb0673b9882"></h2>
 
------
 
 ## docker cleanup
 
@@ -2212,6 +2109,9 @@ docker system prune
 docker image prune
 docker container prune
 ```
+
+<h2 id="b64e99ff98a5173b25e6d0d91bc330f3"></h2>
+
 
 ## docker pandoc
 

@@ -16,14 +16,11 @@
 
 <h2 id="eed06c033cde767faa02ef27643d337a"></h2>
 
------
------
 
 # c 笔记
 
 <h2 id="870a51ba2a9edfadc62ce99af52cabd1"></h2>
 
------
 
 ## 函数
 
@@ -33,7 +30,6 @@
 
 <h2 id="ce7fd94261a99ab0ff14f1d0fe507ffc"></h2>
 
------
 
 ## 声明，定义
 
@@ -50,7 +46,6 @@
 
 <h2 id="03638f60b1ca9b72e82ca23e29daf48c"></h2>
 
------
 
 ## compile
 
@@ -60,7 +55,6 @@
 
 <h2 id="c27d7133d76323625ad6705ae704cbd4"></h2>
 
------
 
 ## app 内存使用
 
@@ -74,7 +68,6 @@ Bus：atomic data数据项只能存放在 其大小倍数的地址处。而且�
 
 <h2 id="0e67d4b0e351b00f4bea9840aa6b99d7"></h2>
 
------
 
 ## 数组
 
@@ -82,7 +75,6 @@ Bus：atomic data数据项只能存放在 其大小倍数的地址处。而且�
 
 <h2 id="0f8d6fb56fe6cdf55ad0114ec5b51dbb"></h2>
 
------
 
 ## struct
 
@@ -96,7 +88,6 @@ struct 是实现各种动态数据结构的关键，如 node of tree
 
 <h2 id="6680dba00f3a88f66f8029a93d71d93c"></h2>
 
------
 
 ## const 
 
@@ -104,7 +95,6 @@ struct 是实现各种动态数据结构的关键，如 node of tree
 
 <h2 id="87ea20565caee58f2e8ba1ef56426ff1"></h2>
 
------
 
 ## typedef
 
@@ -115,7 +105,6 @@ alias 可以存在于 TYPE 中.
 
 <h2 id="5970929a425637241abb7a44591e32b3"></h2>
 
------
 
 ## don't
 

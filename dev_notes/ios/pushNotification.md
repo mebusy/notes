@@ -10,14 +10,11 @@
 
 <h2 id="1294a83ff96c5c0ee3c4b9620dd74edf"></h2>
 
------
------
 
 # APNS 服务器证书制作，客户端部分代码
 
 <h2 id="105dbfd27d203f637ce0d3c08eb78878"></h2>
 
------
 
 ## 准备文件
 
@@ -43,7 +40,6 @@
 
 <h2 id="81f55b42ec661d67d432330fd47cd07c"></h2>
 
------
 
 ## 证书测试
 
@@ -64,7 +60,6 @@ openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert apns-dev-cer
 
 <h2 id="0c64cd168e7b43ebccec68a62f1d85e7"></h2>
 
------
 
 ## 客户端修改
 

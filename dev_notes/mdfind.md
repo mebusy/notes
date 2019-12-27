@@ -11,8 +11,6 @@
 
 <h2 id="c5c1098a067d3e19b900a3fdd6c6ad4d"></h2>
 
------
------
 
 # Basic Search
 
@@ -28,8 +26,6 @@ $ mdfind "invoice apress"
 
 <h2 id="99447b31568f35c690284a7990af044b"></h2>
 
------
------
 
 # Boolean Operators
 
@@ -87,8 +83,6 @@ $ mdfind O'Reilly
 
 <h2 id="7ec8df286ac371d3900dc523ef9e9daa"></h2>
 
------
------
 
 # Narrowing Search Results
 
@@ -109,8 +103,6 @@ $ mdfind -onlyin ~/writing -onlyin "/Users/alester/to be filed" invoice
 
 <h2 id="bbc752d74b076db37c447790cb425249"></h2>
 
------
------
 
 # Filtering mdfind's output
 
@@ -125,8 +117,6 @@ $ mdfind -onlyin ~/writing -onlyin "/Users/alester/to be filed" invoice
 
 <h2 id="2f632d202624dbb9c7814dabbd14c77c"></h2>
 
------
------
 
 # Listing Metadata with mdls
 

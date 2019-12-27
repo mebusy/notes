@@ -62,14 +62,11 @@
 
 <h2 id="6778eced7db02d1b66c03c39306bc708"></h2>
 
------
------
 
 # Adversarial Search
 
 <h2 id="82c396e55e8a69361a547039258d0479"></h2>
 
------
 
 ## Types of Games
 
@@ -91,7 +88,6 @@ That's not going to work here because we don't control our opponent. So we can't
 
 <h2 id="cc82ac9a2727eb1d5950b8affab7d93b"></h2>
 
------
 
 ## Deterministic Games
 
@@ -116,7 +112,6 @@ That's not going to work here because we don't control our opponent. So we can't
 
 <h2 id="d821b153288450f3f70a8b5429bd79e7"></h2>
 
------
 
 ## Zero-Sum Games
 
@@ -130,7 +125,6 @@ That's not going to work here because we don't control our opponent. So we can't
 
 <h2 id="6778eced7db02d1b66c03c39306bc708"></h2>
 
------
 
 ## Adversarial Search
 
@@ -149,7 +143,6 @@ So I imagine taking an action and then I imagine my opponent will then be in the
 
 <h2 id="06c1352495eca3c370be92255d91cc6e"></h2>
 
------
 
 ## Single-Agent Trees
 
@@ -178,7 +171,6 @@ In single-agent case, we choose maximum value.
 
 <h2 id="d21873e6049038af1b9127a1c8220791"></h2>
 
------
 
 ## Adversarial Game Trees
 
@@ -195,7 +187,6 @@ So we need to think about now what a value is in the case of an adversary. This 
 
 <h2 id="a4d1f6cf51517d66b29531f7e039ffb0"></h2>
 
------
 
 ## Minimax Values
 
@@ -210,7 +201,6 @@ We still know the value of Terminal States. For a state that is under my opponen
 
 <h2 id="0a6312d7d59a7975900e968c851dadd1"></h2>
 
------
 
 ##  Tic-Tac-Toe Game Tree
 
@@ -231,7 +221,6 @@ The value of root will be one of { -1,1,0 }.
 
 <h2 id="dcf0514b6a79cf87fcd3bd43487c2421"></h2>
 
------
 
 ## Adversarial Search (Minimax)
 
@@ -249,7 +238,6 @@ The value of root will be one of { -1,1,0 }.
 
 <h2 id="a58343ec090ddd8a61a686ba6cb80359"></h2>
 
------
 
 ## Minimax Implementation
 
@@ -279,7 +267,6 @@ def value(state):
 
 <h2 id="86563aad0e1c5702c26fc95c039b8f5d"></h2>
 
------
 
 ## Minimax Efficiency
 
@@ -294,7 +281,6 @@ def value(state):
 
 <h2 id="41f6acef7d955252a54191e4a588c49d"></h2>
 
------
 
 ## Minimax Properties
 
@@ -305,7 +291,6 @@ If you play against a perfect player  you want to use minimax but if you are not
 
 <h2 id="febe674abc9aa524c322edbbd8ec668c"></h2>
 
------
 
 ## Resource Limits
 
@@ -345,7 +330,6 @@ So we need to replace the terminal utilities in the minimax algorithm with what'
 
 <h2 id="1d6bb0121e05033d0b24687e099f1cd7"></h2>
 
------
 
 ## Depth Matters
 
@@ -368,7 +352,6 @@ If we can see all the way into the future , we can see the whole game play out o
 
 <h2 id="374868e68849b0b659b2677c21e7e73d"></h2>
 
------
 
 ## Evaluation Functions
 
@@ -388,7 +371,6 @@ In this case we want that number to return the actual minimax value of that posi
 
 <h2 id="60f84bbd0786516b9c113184771ff9ad"></h2>
 
------
 
 ## Why Pacman Starves
 
@@ -436,7 +418,6 @@ This shows you how you can get cooperation without programming it in, simply the
 
 <h2 id="89d4e1dda46082b0db4e378df9ea47fa"></h2>
 
------
 
 ## Game Tree Pruning 
 
@@ -444,7 +425,6 @@ This shows you how you can get cooperation without programming it in, simply the
 
 <h2 id="358c18c4263b1fc77ce96e4af26835e5"></h2>
 
------
 
 ### Alpha-Beta Pruning
 
@@ -465,7 +445,6 @@ PS: 采用了 pruning 算法, 节点的取值可能就不是 最大／最小值�
 
 <h2 id="c19957d4c3956796b41234017dc153e6"></h2>
 
------
 
 ### Pruning Exampe
 
@@ -491,7 +470,6 @@ so all pruning shape showed in above pic will not be achieved.
 
 <h2 id="e846bcc2e55ec4d7cfa03d4713218f5b"></h2>
 
------
 
 ### Alpha-Beta Implementation
 
@@ -526,7 +504,6 @@ def min-value(state , α, β):
 
 <h2 id="ec4a6665d642ea66a394cbde7e464a8d"></h2>
 
------
 
 ### Alpha-Beta Pruning Properties
 
@@ -556,7 +533,6 @@ def min-value(state , α, β):
 
 <h2 id="fcbd892c255445e0e3c99ceeb0dbc2e9"></h2>
 
------
 
 ## Iterative Deepening
 
@@ -574,20 +550,16 @@ def min-value(state , α, β):
 
 <h2 id="a45c912b3f29a85dfaf265df7e679a37"></h2>
 
------
------
 
 # Expectimax and Utilities
 
 <h2 id="6149fc2d88c6c1923cb69bc8cb99a646"></h2>
 
------
 
 ## Uncertainty and Utilities
 
 <h2 id="f061a414b47ce02e647fdb25d80714af"></h2>
 
------
 
 ### Worst-Case vs. Average Case
 
@@ -599,7 +571,6 @@ def min-value(state , α, β):
 
 <h2 id="6ecc2099b9f0d08ca4a5fe81a800cacb"></h2>
 
------
 
 ## Expectimax Search 
 
@@ -629,7 +600,6 @@ v = (1/2) (8) + (1/3) (24) + (1/6) (-12) = 10
 
 <h2 id="ce695dc2a23c6c72b11e27d31153eceb"></h2>
 
------
 
 ### Expectimax Pseudocode
 
@@ -664,7 +634,6 @@ def exp-value(state):
 
 <h2 id="b6996c09f631626a1825a6d8fac7b02c"></h2>
 
------
 
 ### Expectimax Pruning?
 
@@ -674,7 +643,6 @@ Expectimax can not apply pruning.
 
 <h2 id="ab3291e21188d4069affc1afa9072371"></h2>
 
------
 
 ### Depth-Limited Expectimax
 
@@ -687,7 +655,6 @@ we have 2 layers corresponding to the 2 sequence of random ghost actions before 
 
 <h2 id="6aaf3cf66d3305bdc35b0f67041a57dc"></h2>
 
------
 
 ### Example of depth-limited search
 
@@ -720,13 +687,11 @@ Normally , we say a search depth of 2 means the search considers of up to 2 acti
 
 <h2 id="bc078a4ec09e22213bd1e3f41d17bed5"></h2>
 
------
 
 ## Probabilities
 
 <h2 id="0d8aebbdf090456382759c0b150f34e4"></h2>
 
------
 
 ### Reminder: Probabilities
 
@@ -745,7 +710,6 @@ Normally , we say a search depth of 2 means the search considers of up to 2 acti
 
 <h2 id="a5d4bf7a63230c8571ac6c2e4ccbe07c"></h2>
 
------
 
 ### Reminder: Expectations
 
@@ -758,7 +722,6 @@ Normally , we say a search depth of 2 means the search considers of up to 2 acti
 
 <h2 id="09e97ac67711291782476420d32639a6"></h2>
 
------
 
 ### What Probabilities to Use ?
 
@@ -778,7 +741,6 @@ If I think there is a 20% chance that the ghost go to left , it doesn't mean tha
 
 <h2 id="28f9be702977991f6e9af6eac821e5bf"></h2>
 
------
 
 ### Quiz: Informed Probabilities
 
@@ -795,13 +757,11 @@ In general expectimax is the more general search procedures. You should always i
 
 <h2 id="96c41e6537362c1152d9cffd89d3ce2d"></h2>
 
------
 
 ## Modeling Assumptions
 
 <h2 id="173903fff204e9fa2902106ecc393c8a"></h2>
 
------
 
 ### The Dangers of Optimism and Pessimism
 
@@ -812,7 +772,6 @@ In general expectimax is the more general search procedures. You should always i
 
 <h2 id="5db156685ba988e993b5d79d16d83b78"></h2>
 
------
 
 ### Assumptions vs. Reality
 
@@ -832,13 +791,11 @@ The result is not bad while an expectimax pacmas vs a random ghost.
 
 <h2 id="36a5d8463dcd3e452a6804e1f817860e"></h2>
 
------
 
 ## Other Game Types
 
 <h2 id="4d83149ccdc520d6725e433ae1277e06"></h2>
 
------
 
 ### Mixed Layer Types
 
@@ -851,7 +808,6 @@ The result is not bad while an expectimax pacmas vs a random ghost.
 
 <h2 id="eaefbf5d721da4a937661b4c220a4bbb"></h2>
 
------
 
 ### Example: Backgammon
 
@@ -873,7 +829,6 @@ The result is not bad while an expectimax pacmas vs a random ghost.
 
 <h2 id="3c4af92d68993b46c547310f35e6f8eb"></h2>
 
------
 
 ### Multi-Agent Utilities
 
@@ -894,7 +849,6 @@ In above example , the leftmost green node should be:  ***(1,6,6)***
 
 <h2 id="ceba282b7418b7f199798b645e1cba56"></h2>
 
------
 
 ## Utilities
 
@@ -903,7 +857,6 @@ https://www.authorea.com/users/5754/articles/6087/_show_article
 
 <h2 id="eabc9c95ab9e6d9e17f2ecd517a1670b"></h2>
 
------
 
 ### Maximum Expected Utility
 
@@ -913,7 +866,6 @@ https://www.authorea.com/users/5754/articles/6087/_show_article
 
 <h2 id="f0400acd1ae1ee97ec4a2afe860937cd"></h2>
 
------
 
 ### What Utilities to Use?
 
@@ -925,7 +877,6 @@ https://www.authorea.com/users/5754/articles/6087/_show_article
 
 <h2 id="ceba282b7418b7f199798b645e1cba56"></h2>
 
------
 
 ### Utilities
 
@@ -947,7 +898,6 @@ idea: utilities go in , behavior comes out.
 
 <h2 id="84c1a66a044dc64ee4f3cf4fadc6cdb6"></h2>
 
------
 
 ### Utilities: Uncertain Outcomes
 
@@ -956,7 +906,6 @@ idea: utilities go in , behavior comes out.
 
 <h2 id="d0834fcec6337785ee749c8f5464f6f6"></h2>
 
------
 
 ## Preferences
 
@@ -1004,13 +953,11 @@ so there lotteries and prizes  we must have preference, means an agent has to pr
 
 <h2 id="63000348f12e5505f8ea8b0b2b208698"></h2>
 
------
 
 ## Rationality
 
 <h2 id="1e6df6b0bb22997a095d015d4ac31630"></h2>
 
------
 
 ### Rational Preferences
 
@@ -1068,7 +1015,6 @@ So if you obey these axioms we give you the stamp of rationality. and that means
 
 <h2 id="6128ac98c4876851331c1db2897f6253"></h2>
 
------
 
 ### MEU Principle
 
@@ -1098,7 +1044,6 @@ In other words, once the probabilities and utilities of the possible outcome sta
 
 <h2 id="21657c7363e3c0a908c10915dce59712"></h2>
 
------
 
 ### Utility Scales
 
@@ -1113,7 +1058,6 @@ In other words, once the probabilities and utilities of the possible outcome sta
 
 <h2 id="bdd76b2b194dadbe5e0a331ee46a45fd"></h2>
 
------
 
 ### The utility of money
 
@@ -1174,7 +1118,6 @@ Function Graph of risk behavior
 
 <h2 id="dad93deae38068bd9b575b9c56b23afe"></h2>
 
------
 
 ### Example: Insurance
 
@@ -1195,7 +1138,6 @@ Function Graph of risk behavior
 
 <h2 id="f0a715611d4f38f774d419d0be398be6"></h2>
 
------
 
 ## Example: Human Rationality ?
 

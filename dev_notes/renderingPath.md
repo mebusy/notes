@@ -11,14 +11,11 @@
 
 <h2 id="da2911de682ed5ee8e31f8abbeef66bd"></h2>
 
------
------
 
 # Rendering Path
 
 <h2 id="e722c0b9325d2999ef6de4bdea693829"></h2>
 
------
 
 ## 1. rendering path 的 技术基础
 
@@ -33,7 +30,6 @@
 
 <h2 id="5acfcac9feda152fef0e8da1d3a5f248"></h2>
 
------
 
 ## 2. 几种常用的Rendering Path
 
@@ -43,7 +39,6 @@
 
 <h2 id="32762037d3dcc652fa76349f30eeb1f6"></h2>
 
------
 
 ### 2.1 Forward Rendering
 
@@ -86,7 +81,6 @@ For each ligth:
 
 <h2 id="446ff669713810d90d8c929eda9ec749"></h2>
 
------
 
 ## 2.2 Deferred Rendering
 

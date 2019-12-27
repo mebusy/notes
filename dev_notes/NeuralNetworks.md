@@ -80,27 +80,21 @@
 
 <h2 id="6b347be0e79381eeb5689396d9e59438"></h2>
 
------
------
 
 # Neural Networks
 
 <h2 id="b685b2632f64514a84fc8cbb0b4b7d2c"></h2>
 
------
------
 
 # Lecture 1 
 
 <h2 id="b02cb3fa93ab8f0e6485b0d13bc303cc"></h2>
 
------
 
 ## Some simple models of neurons 
 
 <h2 id="1ed293fed5b9ae1cf9d961b5ce17cff8"></h2>
 
------
 
 ### Linear neurons
 
@@ -110,7 +104,6 @@ y = b + ∑ᵢ xᵢwᵢ
 
 <h2 id="60d743bd92d01784da86912ef3e9d3fa"></h2>
 
------
 
 ### Binary threshold neurons 
 
@@ -125,7 +118,6 @@ y = b + ∑ᵢ xᵢwᵢ
 
 <h2 id="bea9f293a1d10dc9a09ab31410552fc2"></h2>
 
------
 
 ### Rectified Linear Neurons
 
@@ -137,7 +129,6 @@ y = b + ∑ᵢ xᵢwᵢ
 
 <h2 id="5dfb3a910337bd052071a460b50f17d7"></h2>
 
------
 
 ### Sigmoid neurons 
 
@@ -149,7 +140,6 @@ y = b + ∑ᵢ xᵢwᵢ
 
 <h2 id="9fa3726b2244619bd1b4f0a6f3c0ad10"></h2>
 
------
 
 ### Stochastic binary neurons 
 
@@ -164,20 +154,16 @@ y = b + ∑ᵢ xᵢwᵢ
 
 <h2 id="2cd2c77c9f81b7be54284357f2c55290"></h2>
 
------
------
 
 # Lecture 2
 
 <h2 id="b553e95fb37e615918e131140aec36b1"></h2>
 
------
 
 ## Types of neural network architectures
 
 <h2 id="27403055d079f8f5057e91999fe9ff29"></h2>
 
------
 
 ### Feed-forward neural networks
 
@@ -195,7 +181,6 @@ y = b + ∑ᵢ xᵢwᵢ
 
 <h2 id="3aa835dbc7f8ec8429d7671acae6aab5"></h2>
 
------
 
 ### Recurrent Networks 
 
@@ -212,7 +197,6 @@ y = b + ∑ᵢ xᵢwᵢ
 
 <h2 id="ab481de40578ba1e54e09346c919fe23"></h2>
 
------
 
 #### Recurrent neural networks for modeling sequences
 
@@ -229,7 +213,6 @@ y = b + ∑ᵢ xᵢwᵢ
 
 <h2 id="ac843506e5b9c5acc3c517304fae2ab6"></h2>
 
------
 
 #### An example of what recurrent neural nets can now do (to whet your interest!) 
 
@@ -239,7 +222,6 @@ y = b + ∑ᵢ xᵢwᵢ
 
 <h2 id="bd53760cfb4568281010b21ad9f4c944"></h2>
 
------
 
 ### Symmetrically connected networks
 
@@ -253,7 +235,6 @@ y = b + ∑ᵢ xᵢwᵢ
 
 <h2 id="b2f07d14cff56667ff8ce65beaa92ace"></h2>
 
------
 
 ## A geometrical view of perceptrons
 
@@ -264,7 +245,6 @@ perceptron is 二分类的线性分类模型。 输入为实例的特征向量�
 
 <h2 id="18fbaaed2b269781105b0c38d7d03d1f"></h2>
 
------
 
 ### Weight-space
 
@@ -293,7 +273,6 @@ perceptron is 二分类的线性分类模型。 输入为实例的特征向量�
 
 <h2 id="d70801a1a8a06ad3250060f4a42e0b7d"></h2>
 
------
 
 ### The cone of feasible solutions
 
@@ -310,13 +289,11 @@ perceptron is 二分类的线性分类模型。 输入为实例的特征向量�
 
 <h2 id="f6493b60fa9aa860686d995485132458"></h2>
 
------
 
 ## What perceptrons can’t do 
 
 <h2 id="8bac84924ecd4f05b2ef5fb5415cda08"></h2>
 
------
 
 ### The limitations of Perceptrons
 
@@ -327,7 +304,6 @@ perceptron is 二分类的线性分类模型。 输入为实例的特征向量�
 
 <h2 id="14461318bc8dca1452e9768872689b06"></h2>
 
------
 
 ### What binary threshold neurons cannot do 
 
@@ -340,7 +316,6 @@ perceptron is 二分类的线性分类模型。 输入为实例的特征向量�
 
 <h2 id="b984ea836f81bad4a3764c2908f793ec"></h2>
 
------
 
 ### Learning with hidden units 
 
@@ -356,20 +331,16 @@ perceptron is 二分类的线性分类模型。 输入为实例的特征向量�
 
 <h2 id="28b761e5205ba2e17062ee27b6958d08"></h2>
 
------
------
 
 # Lecture 3 
 
 <h2 id="3798fa7c5a40bf15ef1f83520a95cd9e"></h2>
 
------
 
 ## Learning the weights of a linear neuron 
 
 <h2 id="62fab41508857c0c13294ed083f177f8"></h2>
 
------
 
 ### Why the perceptron learning procedure cannot be generalised to hidden layers 
     
@@ -380,7 +351,6 @@ perceptron is 二分类的线性分类模型。 输入为实例的特征向量�
 
 <h2 id="c61743d3bbfb887b9168af23380eed87"></h2>
 
------
 
 ### A different way to show that a learning procedure makes progress 
 
@@ -391,7 +361,6 @@ perceptron is 二分类的线性分类模型。 输入为实例的特征向量�
 
 <h2 id="5cd0f54138d8b7ce0d43128a5075d301"></h2>
 
------
 
 ### Linear neurons (also called linear filters) 
 
@@ -404,7 +373,6 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
 
 <h2 id="bab151580faa1cad100a0d453e419d58"></h2>
 
------
 
 ### Why don’t we solve it analytically? 
 
@@ -416,7 +384,6 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
 
 <h2 id="0c4bfcbad67bcd54a6ff298e0eeee743"></h2>
 
------
 
 ### A toy example to illustrate the iterative method 
 
@@ -428,7 +395,6 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
 
 <h2 id="0edc8f69095e8449ed09865e4e602616"></h2>
 
------
 
 ### Solving the equations iteratively
 
@@ -450,7 +416,6 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
 
 <h2 id="d001ac53343716fde35bea9864a2e62c"></h2>
 
------
 
 ### Deriving the delta rule 
 
@@ -465,7 +430,6 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
 
 <h2 id="fe011b17313c1468885c1b63d9ff3905"></h2>
 
------
 
 ### Behaviour of the iterative learning procedure 
 
@@ -479,7 +443,6 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
      
 <h2 id="6d26dffff5e7929dfcfd10f7899e5c41"></h2>
 
------
 
 ### The relationship between the online delta-rule and the learning rule for perceptrons
 
@@ -492,13 +455,11 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
 
 <h2 id="d637ae0e4758d08ab9cb653d964f5cc0"></h2>
 
------
 
 ## The error surface for a linear neuron
 
 <h2 id="d637ae0e4758d08ab9cb653d964f5cc0"></h2>
 
------
 
 ### The error surface for a linear neuron 
 
@@ -513,7 +474,6 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
 
 <h2 id="44793cbad37c888289dde4ef85d63abb"></h2>
 
------
 
 ### Online versus batch learning 
 
@@ -526,7 +486,6 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
 
 <h2 id="e160ef53e0150859367015007f2e9ffb"></h2>
 
------
 
 ### Why learning can be slow 
 
@@ -540,13 +499,11 @@ y = ∑<sub>ᵢ</sub> wᵢxᵢ = wᵀx
 
 <h2 id="7faab456a191c1609e8fa535ba7f246b"></h2>
 
------
 
 ## Learning the weights of a logistic output neuron 
 
 <h2 id="cb0962568720082c771cb150b419153e"></h2>
 
------
 
 ### Logistic neurons 
 
@@ -557,7 +514,6 @@ They have nice derivatives which make learning easy
 
 <h2 id="d938f3f9f233cee2aec2d95a787370d5"></h2>
 
------
 
 ### The derivatives of a logistic neuron 
 
@@ -569,7 +525,6 @@ They have nice derivatives which make learning easy
 
 <h2 id="9e566a8d635816845a8514b2be63e940"></h2>
 
------
 
 ### Using the chain rule to get the derivatives needed for learning the weights of a logistic unit
 
@@ -581,13 +536,11 @@ They have nice derivatives which make learning easy
 
 <h2 id="f134b6b0a34834048be96a9595500168"></h2>
 
------
 
 ## The backpropagation algorithm 
 
 <h2 id="8ad8d860bc6bd1812c93eb4689ff4e27"></h2>
 
------
 
 ### Learning with hidden units (again) 
 
@@ -598,7 +551,6 @@ They have nice derivatives which make learning easy
 
 <h2 id="efb8c8024ad6e26591687c673bd2f8ae"></h2>
 
------
 
 ### Learning by perturbing weights
 
@@ -611,7 +563,6 @@ this idea occurs to everyone who knows about evolution
 
 <h2 id="f8a34148efcf90c3cf63a397ada225eb"></h2>
 
------
 
 ### Learning by using perturbations 
 
@@ -624,7 +575,6 @@ this idea occurs to everyone who knows about evolution
 
 <h2 id="46dc1eb40926aa8892f0022cb7904d30"></h2>
 
------
 
 ### The idea behind backpropagation
 
@@ -640,7 +590,6 @@ this idea occurs to everyone who knows about evolution
 
 <h2 id="a03dcf514317e4b26494bfde1e3bb437"></h2>
 
------
 
 ### Sketch of the backpropagation algorithm on a single case 
 
@@ -652,7 +601,6 @@ this idea occurs to everyone who knows about evolution
 
 <h2 id="cb74d28f01731bcc6f43f0becb84e542"></h2>
 
------
 
 ### Backpropagating dE/dy
 
@@ -717,7 +665,6 @@ let xᵢ = yᵢ
 
 <h2 id="3ffd8cc841a75b557853a7c099ef10f7"></h2>
 
------
 
 ## Using the derivatives computed by backpropagation 
 
@@ -725,7 +672,6 @@ There are a number of other issues that have to be addressed before we actually 
 
 <h2 id="676fab2157c0b82f2d6b0e54e74e44ce"></h2>
 
------
 
 ### Converting error derivatives into a learning procedure 
 
@@ -737,7 +683,6 @@ There are a number of other issues that have to be addressed before we actually 
 
 <h2 id="aec56cef3564b265a0fcfea53a309058"></h2>
 
------
 
 ### Optimization issues in using the weight derivatives 
 
@@ -753,7 +698,6 @@ There are a number of other issues that have to be addressed before we actually 
 
 <h2 id="7fc625e0f39ddc78085bf099ef122f6b"></h2>
 
------
 
 ### Overfitting: The downside of using powerful models
 
@@ -766,7 +710,6 @@ There are a number of other issues that have to be addressed before we actually 
 
 <h2 id="c4219facad442ef66e3f091000bd7032"></h2>
 
------
 
 ### Ways to reduce overfitting
 
@@ -790,14 +733,11 @@ There are a number of other issues that have to be addressed before we actually 
 
 <h2 id="a2d2c3adca93050c524a375b914c0427"></h2>
 
------
------
 
 # Lecture 4
 
 <h2 id="62a6949a4d62437a75df11f1298048e3"></h2>
 
------
 
 ## Learning to predict the next word
 
@@ -807,7 +747,6 @@ I'm gonna start with a very simple case , but it illustrates the idea about how 
 
 <h2 id="53b2af15a65032a516dec7a64698459b"></h2>
 
------
 
 ### A simple example of relational information 
 
@@ -819,7 +758,6 @@ And perhaps when it tries to learn both sets of facts, the neural net is going t
 
 <h2 id="41886b821c76c67b343a72ba9900095e"></h2>
 
------
 
 ### Another way to express the same information 
 
@@ -840,7 +778,6 @@ And using those relationships we can write down a set of triples such as,
 
 <h2 id="7a08ad833702af5958ac40bb413ee53d"></h2>
 
------
 
 ### A relational learning task 
 
@@ -852,7 +789,6 @@ And using those relationships we can write down a set of triples such as,
 
 <h2 id="26614a4a51d034c6d965e5f02c536e68"></h2>
 
------
 
 ### The structure of the neural net
 
@@ -898,7 +834,6 @@ It has a negative weight to Andrew, James, Charles, Christine and Jennifer and n
 
 <h2 id="d848f8c0a727bb1129f14297eb7336a9"></h2>
 
------
 
 ### What the network learns 
 
@@ -914,7 +849,6 @@ But notice to capture that rule, you have to extract appropriate features at the
 
 <h2 id="cbc4e5c1cf42ea1488fb05278ed33ec9"></h2>
 
------
 
 ### Another way to see that it works 
 
@@ -929,7 +863,6 @@ But notice to capture that rule, you have to extract appropriate features at the
 
 <h2 id="4cc045397134d9dbdcde92f93c9354ae"></h2>
 
------
 
 ### A large-scale example 
 
@@ -943,7 +876,6 @@ But notice to capture that rule, you have to extract appropriate features at the
 
 <h2 id="b7aee90e84000ac779a3e4a95e2937a2"></h2>
 
------
 
 ## Another diversion: The softmax output function
 
@@ -953,7 +885,6 @@ So far I talked about using a square area measure for training a neural net and 
 
 <h2 id="95e795035feb93bf19141b3722ed22f9"></h2>
 
------
 
 ### Problems with squared error 
 
@@ -965,7 +896,6 @@ So far I talked about using a square area measure for training a neural net and 
 
 <h2 id="31d953b9d49a6b4378f45097047976d0"></h2>
 
------
 
 ### Softmax
 
@@ -986,7 +916,6 @@ Now the question is, if we're using a soft max group for the outputs, what's the
 
 <h2 id="21c7e1b0bcad7862fc5842c0b521f165"></h2>
 
------
 
 ### Cross-entropy: the right cost function to use with softmax
 
@@ -1001,7 +930,6 @@ Now the question is, if we're using a soft max group for the outputs, what's the
 
 <h2 id="59e724021bfe3a5ca52ee3487d72b4ce"></h2>
 
------
 
 ## Neuro-probabilistic language models
 
@@ -1009,7 +937,6 @@ We're going to look at a practical use for feature vectors that represent words
 
 <h2 id="9171415699026cffb7ff3cab04228939"></h2>
 
------
 
 ### A basic problem in speech recognition 
 
@@ -1023,7 +950,6 @@ We're going to look at a practical use for feature vectors that represent words
 
 <h2 id="83beda8ed15519912a2b29bd570d59c0"></h2>
 
------
 
 ### The standard “trigram” method 
     
@@ -1037,7 +963,6 @@ We're going to look at a practical use for feature vectors that represent words
 
 <h2 id="fa2663ecc2a6e9d62b864d527ac1486a"></h2>
 
------
 
 ### Information that the trigram model fails to use 
 
@@ -1056,7 +981,6 @@ We're going to look at a practical use for feature vectors that represent words
 
 <h2 id="bff96611be9933e8a194bdd5f3a8ee93"></h2>
 
------
 
 ### Bengio’s neural net for predicting the next word 
 
@@ -1076,7 +1000,6 @@ When extra refinement that makes it work better is to use skip-layer connections
 
 <h2 id="e84e1c2eab6228e880e086f8ea982e9c"></h2>
 
------
 
 ### A problem with having 100,000 output words
 
@@ -1093,7 +1016,6 @@ One problem with having a big softmax output layer, is that you might have to de
 
 <h2 id="c93c855033bdc0b648b96f7ec6b4fafb"></h2>
 
------
 
 ## Ways to deal with the large number of possible outputs
 
@@ -1103,7 +1025,6 @@ So one way to avoid, having a 100,000 different output units is to use a serial 
 
 <h2 id="8e457024f2de01030ed63d42a274f257"></h2>
 
------
 
 ### A serial architecture 
 

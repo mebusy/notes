@@ -81,15 +81,12 @@
 
 <h2 id="09032c37d093937622b81cc8296200e6"></h2>
 
------
------
 
 # Lecture 21: Networking
 
 
 <h2 id="1d1be5d2a7d7a1ea955754c7c1daf6c3"></h2>
 
------
 
 ## Review: File System Caching
 
@@ -108,7 +105,6 @@
 
 <h2 id="134f950c115f6aa46f3605b42a307174"></h2>
 
------
 
 ## Goals for Today
 
@@ -121,7 +117,6 @@
 
 <h2 id="1a82c99da54d455606fbf432082c1505"></h2>
 
------
 
 ## Authorization: Who Can Do What?
 
@@ -139,7 +134,6 @@
 
 <h2 id="f6c5e8d2591d2f0e6108da2a03bd252b"></h2>
 
------
 
 ## Authorization: Two Implementation Choices
 
@@ -159,7 +153,6 @@
 
 <h2 id="6c11ebc3ed96e89c913d7f928a42bde8"></h2>
 
------
 
 ## Authorization: Combination Approach
 
@@ -174,7 +167,6 @@
 
 <h2 id="01e28eaff534c3eda1e4fa91ed2ff24b"></h2>
 
------
 
 ## Authorization: How to Revoke?
 
@@ -187,7 +179,6 @@
 
 <h2 id="7a87dc1d4ca28896e80c861b75d42812"></h2>
 
------
 
 ## Revoking Capabilities
 
@@ -200,7 +191,6 @@
 
 <h2 id="98445c49a71bbdeba3cbed4f22fa44e9"></h2>
 
------
 
 ## Centralized vs Distributed Systems
 
@@ -218,7 +208,6 @@
 
 <h2 id="5cee22de108837e478e134d126fceeba"></h2>
 
------
 
 ## Distributed Systems: Motivation/Issues
 
@@ -242,7 +231,6 @@
 
 <h2 id="483d6e9ecc380b0f29253ac000c64ad1"></h2>
 
------
 
 ## Distributed Systems: Goals/Requirements
 
@@ -260,7 +248,6 @@
 
 <h2 id="ef4023ed9b9bfc426ddbb79e5e2a1242"></h2>
 
------
 
 ## Networking Definitions
 
@@ -273,7 +260,6 @@
 
 <h2 id="d03b87cd9c53d43ade8109f5b220515b"></h2>
 
------
 
 ## Broadcast Network
 
@@ -290,7 +276,6 @@
 
 <h2 id="542790f4cc0e06b00a695038d1861a08"></h2>
 
------
 
 ## Broadcast Networks Details
 
@@ -305,7 +290,6 @@
 
 <h2 id="6c264d7492ca57e74be76844f6177664"></h2>
 
------
 
 ## Broadcast Network Arbitration
 
@@ -323,7 +307,6 @@
 
 <h2 id="85ff18972c945522692f7e5d601d663c"></h2>
 
------
 
 ## Carrier Sense, Multiple Access/Collision Detection
 
@@ -346,7 +329,6 @@
 
 <h2 id="25f3815c65379b8289fa74ec8cb1c580"></h2>
 
------
 
 ## Point-to-point networks
 
@@ -365,7 +347,6 @@
 
 <h2 id="1944dda119b5df5095693250b1d75494"></h2>
 
------
 
 ## Point-to-Point Networks Discussion
 
@@ -391,7 +372,6 @@
 
 <h2 id="bebffdbbf02502a7a3eecbacbe1579e1"></h2>
 
------
 
 ## Point-to-Point Network design
 
@@ -406,7 +386,6 @@
 
 <h2 id="b9aeacb3eaf8b4c14b67730a8594b2e7"></h2>
 
------
 
 ## Flow control options
 
@@ -440,7 +419,6 @@
 
 <h2 id="8215d2dfcac9083491da658993ee05e6"></h2>
 
------
 
 ## The Internet Protocol: “IP”
 
@@ -460,7 +438,6 @@
 
 <h2 id="d77893f82e59e70b1fdfdd1549fbaa03"></h2>
 
------
 
 ## Address Subnets
 
@@ -479,7 +456,6 @@
 
 <h2 id="6f8b794f3246b0c1e1780bb4d4d5dc53"></h2>
 
------
 
 ## Conclusion
 
@@ -504,15 +480,12 @@
 
 <h2 id="7d8b4355959556da0ee12fe49dd9cf34"></h2>
 
------
------
 
 # Lecture 22: Network II
 
 
 <h2 id="25bdb0b85c45cecdeb2f3e83e1ada6f5"></h2>
 
------
 
 ## Address Ranges in IP
 
@@ -535,7 +508,6 @@
 
 <h2 id="9b995261f7f935cccfec6e225bb22444"></h2>
 
------
 
 ## Hierarchical Networking: The Internet
 
@@ -548,7 +520,6 @@
 
 <h2 id="d9f360b8789b18dd3b0b723059e1ad7c"></h2>
 
------
 
 ## Simple Network Terminology
 
@@ -564,7 +535,6 @@
 
 <h2 id="786c4135070aa1910d2f4ac8b2253235"></h2>
 
------
 
 ## Routing
 
@@ -585,7 +555,6 @@
 
 <h2 id="bb55ba056d36bf2e0c922c2f6ef667ca"></h2>
 
------
 
 ## Setting up Routing Tables
 
@@ -608,7 +577,6 @@
 
 <h2 id="2a4b85613b98b7ff0539bf80ab1cd2ae"></h2>
 
------
 
 ## Naming in the Internet
 
@@ -626,7 +594,6 @@ NAME -> ADDRESS
  
 <h2 id="76ada12e2cf128a9bd1e5db3c106f915"></h2>
 
------
 
 ## Domain Name System
  
@@ -642,7 +609,6 @@ NAME -> ADDRESS
 
 <h2 id="150186ba8cbc5a54acd7cb5cf61e8025"></h2>
 
------
 
 ## How Important is Correct Resolution?
 
@@ -664,7 +630,6 @@ NAME -> ADDRESS
 
 <h2 id="d5e238de3ec209bec453d8aef09d080e"></h2>
 
------
 
 ## Performance Considerations
 
@@ -684,7 +649,6 @@ NAME -> ADDRESS
 
 <h2 id="5d6fca3fac25bbea2a7ca6be38053ac6"></h2>
 
------
 
 ## Sample Computations
 
@@ -710,7 +674,6 @@ NAME -> ADDRESS
 
 <h2 id="fe9bf79396cb093675bcd87ba6ffe56d"></h2>
 
------
 
 ## Network Protocols
 
@@ -726,7 +689,6 @@ NAME -> ADDRESS
 
 <h2 id="2de5d7f052bdd84866ff79135c2bcc58"></h2>
 
------
 
 ## Network Layering
 
@@ -740,7 +702,6 @@ NAME -> ADDRESS
 
 <h2 id="35a60297563ab91f4b231d31ba2ada3b"></h2>
 
------
 
 ## Building a messaging service
 
@@ -758,7 +719,6 @@ NAME -> ADDRESS
 
 <h2 id="b6cc1459c243ac253323b35089dab87b"></h2>
 
------
 
 ## IP Packet Format
 
@@ -766,7 +726,6 @@ NAME -> ADDRESS
 
 <h2 id="35a60297563ab91f4b231d31ba2ada3b"></h2>
 
------
 
 ## Building a messaging service
 
@@ -787,7 +746,6 @@ NAME -> ADDRESS
 
 <h2 id="9199dae771f316f9a3e90a0046bb0758"></h2>
 
------
 
 ## Sequence Numbers
 
@@ -813,7 +771,6 @@ NAME -> ADDRESS
 
 <h2 id="83cf3f8245c0357abe77e7154b88ea69"></h2>
 
------
 
 ## Reliable Message Delivery: the Problem
 
@@ -834,7 +791,6 @@ NAME -> ADDRESS
 
 <h2 id="9d3c809afd1b2930170860d0dbebb353"></h2>
 
------
 
 ## Using Acknowledgements
 
@@ -854,7 +810,6 @@ NAME -> ADDRESS
  
 <h2 id="6f8b794f3246b0c1e1780bb4d4d5dc53"></h2>
 
------
 
 ## Conclusion
 
@@ -878,14 +833,11 @@ NAME -> ADDRESS
 
 <h2 id="097f836a49e3a196c1bdfca778384e04"></h2>
 
------
------
 
 # Lecture 23 : Network Communication Abstractions / Distributed Programming
 
 <h2 id="734c62df7a31ed5cd87d6f1e6a9db145"></h2>
 
------
 
 ## How to deal with message duplication
 
@@ -913,7 +865,6 @@ NAME -> ADDRESS
 
 <h2 id="048d5b9f156debfd6e9e0df35ef73d94"></h2>
 
------
 
 ## Better messaging: Window-based acknowledgements
 
@@ -942,7 +893,6 @@ NAME -> ADDRESS
 
 <h2 id="712c97a373236b579081db769f2e26f0"></h2>
 
------
 
 ## Transmission Control Protocol (TCP)
 
@@ -964,7 +914,6 @@ NAME -> ADDRESS
 
 <h2 id="9ee07f82193171f545c07569c849fc4c"></h2>
 
------
 
 ## TCP Windows and Sequence Numbers
 
@@ -984,7 +933,6 @@ NAME -> ADDRESS
 
 <h2 id="752bf5ab4629c71fba6167a3b3252d10"></h2>
 
------
 
 ## Window-Based Acknowledgements (TCP)
 
@@ -1021,7 +969,6 @@ NAME -> ADDRESS
 
 <h2 id="19422d661bbc4ae1b85c110603cece66"></h2>
 
------
 
 ## Selective Acknowledgement Option (SACK)
 
@@ -1040,7 +987,6 @@ NAME -> ADDRESS
 
 <h2 id="051092838b6a9dd05b10e688a31060ee"></h2>
 
------
 
 ## Congestion Avoidance
 
@@ -1063,7 +1009,6 @@ NAME -> ADDRESS
 
 <h2 id="5cfa878082764510a7747ec1e56c5d58"></h2>
 
------
 
 ## Sequence-Number Initialization
 
@@ -1085,7 +1030,6 @@ NAME -> ADDRESS
 
 <h2 id="87cd758891288ebba3176b567e28e316"></h2>
 
------
 
 ## Use of TCP: Sockets
 
@@ -1108,7 +1052,6 @@ NAME -> ADDRESS
 
 <h2 id="fc3dbe3e3a94b62da50694eed60c5514"></h2>
 
------
 
 ## Socket Setup (Con’t)
 
@@ -1131,7 +1074,6 @@ NAME -> ADDRESS
 
 <h2 id="f08a0c5ed12bbe6830815cd6005da5ce"></h2>
 
------
 
 ## Distributed Applications
 
@@ -1152,7 +1094,6 @@ NAME -> ADDRESS
 
 <h2 id="18c72d71b52916649113b05f56176cec"></h2>
 
------
 
 ## Using Messages: Send/Receive behavior
 
@@ -1171,7 +1112,6 @@ NAME -> ADDRESS
 
 <h2 id="e327f500a2224a9491f7242769760478"></h2>
 
------
 
 ## Messaging for Request/Response communication
 
@@ -1185,7 +1125,6 @@ NAME -> ADDRESS
 
 <h2 id="388f60d4b525c1360c27584291a7106c"></h2>
 
------
 
 ## General’s Paradox
 
@@ -1206,7 +1145,6 @@ NAME -> ADDRESS
 
 <h2 id="76bb77f6a61692c6cdd1b078f2efe26f"></h2>
 
------
 
 ## Two-Phase Commit
 
@@ -1227,7 +1165,6 @@ NAME -> ADDRESS
 
 <h2 id="33e90a963f562f1fc7f8323b825b9c74"></h2>
 
------
 
 ### Two phase commit example
 
@@ -1254,7 +1191,6 @@ NAME -> ADDRESS
 
 <h2 id="66913dbd4594ec5201af10bd1925f0aa"></h2>
 
------
 
 ## Distributed Decision Making Discussion
 
@@ -1277,7 +1213,6 @@ NAME -> ADDRESS
 
 <h2 id="6f8b794f3246b0c1e1780bb4d4d5dc53"></h2>
 
------
 
 ## Conclusion
 
@@ -1292,14 +1227,11 @@ NAME -> ADDRESS
 
 <h2 id="fcdc007ff783dbd9743a00efcbffc113"></h2>
 
------
------
 
 # Lecture 24: Distributed File Systems
 
 <h2 id="1535a061d2792d321e26bc9bfae487ab"></h2>
 
------
 
 ## Byzantine General’s Problem
 
@@ -1339,7 +1271,6 @@ NAME -> ADDRESS
 
 <h2 id="7823b02b00549b08b9e7479a27712bcd"></h2>
 
------
 
 ## Remote Procedure Call
 
@@ -1363,7 +1294,6 @@ NAME -> ADDRESS
 
 <h2 id="619ad21e81fa60f6f6b7ff4224879877"></h2>
 
------
 
 ## RPC Information Flow
 
@@ -1371,7 +1301,6 @@ NAME -> ADDRESS
 
 <h2 id="9c6093f1125a29b60e00a00805a68826"></h2>
 
------
 
 ## RPC Details
 
@@ -1414,7 +1343,6 @@ NAME -> ADDRESS
 
 <h2 id="587682328c851d08e822e45af127ff21"></h2>
 
------
 
 ## Problems with RPC
 
@@ -1437,7 +1365,6 @@ NAME -> ADDRESS
 
 <h2 id="27deff3c4c33317556eb1e3dd687c4a0"></h2>
 
------
 
 ## Cross-Domain Communication/Location Transparency
 
@@ -1458,7 +1385,6 @@ PRC is a crucial part of how micro kernels work.
 
 <h2 id="a92be5b27fb0bbf79ae97a4fdd6f3295"></h2>
 
------
 
 ## Microkernel operating systems
 
@@ -1474,7 +1400,6 @@ PRC is a crucial part of how micro kernels work.
 
 <h2 id="ad416a4ba30fb9f91e5f56d6736c6ebb"></h2>
 
------
 
 ## Distributed File Systems
 
@@ -1496,7 +1421,6 @@ PRC is a crucial part of how micro kernels work.
 
 <h2 id="319d7097a96659bafd943e791369a2ba"></h2>
 
------
 
 ## Virtual File System (VFS)
 
@@ -1512,7 +1436,6 @@ PRC is a crucial part of how micro kernels work.
 
 <h2 id="42dcaa5f1e270cbc074827204d6cad5b"></h2>
 
------
 
 ## Simple Distributed File System
 
@@ -1529,7 +1452,6 @@ PRC is a crucial part of how micro kernels work.
 
 <h2 id="0e4cb9f12d45adbc366ce89051b43dda"></h2>
 
------
 
 ## Use of caching to reduce network load
 
@@ -1546,7 +1468,6 @@ PRC is a crucial part of how micro kernels work.
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
------
 
 ## TODO 
 

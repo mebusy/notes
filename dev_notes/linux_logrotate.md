@@ -18,20 +18,16 @@
 
 <h2 id="490162aae505a53f4f07a541323a1925"></h2>
 
------
------
 
 # logrotate
 
 <h2 id="b0ae7ac024e9251b8352f7836d29b441"></h2>
 
------
 
 ## 1. 安装 logrotate （如果系统里不存在的话）
 
 <h2 id="d0992ebec741c858981a64a8ce11b040"></h2>
 
------
 
 ## 2.  配置文件 
 
@@ -64,7 +60,6 @@ if your log file is not owner by root (say by user 'service'), then you should a
 
 <h2 id="ddf5d7584457b4cb8c7993699bafe0bb"></h2>
 
------
 
 ## 4. 测试配置是否正确
 
@@ -74,7 +69,6 @@ if your log file is not owner by root (say by user 'service'), then you should a
 
 <h2 id="3c6884f27d81600f244a367e1b74095d"></h2>
 
------
 
 ## 5. 手动强制切割日志
 
@@ -84,7 +78,6 @@ if your log file is not owner by root (say by user 'service'), then you should a
 
 <h2 id="9cfde9e4f062a301495ad160e63231a8"></h2>
 
------
 
 ## 6. 查看各log文件的具体执行情况
 
@@ -94,7 +87,6 @@ cat /var/lib/logrotate.status
 
 <h2 id="236ff4d77e20107d290447c1bc082b5e"></h2>
 
------
 
 ## 7. crontab定时执行
 
@@ -143,13 +135,11 @@ systemctl restart crond
 
 <h2 id="6803e775fc8d5aa27d11c244367853e4"></h2>
 
------
 
 ## 8. Misc
 
 <h2 id="3374665dc3e1eb7e8d997b73823475af"></h2>
 
------
 
 ### 配置文件中一些指令说明
 
@@ -170,7 +160,6 @@ systemctl restart crond
 
 <h2 id="6747f534f8d4ab733e26bd14238430ac"></h2>
 
------
 
 ### stdout/stderr 重定向日志问题
 
@@ -181,7 +170,6 @@ systemctl restart crond
 
 <h2 id="59ec735f1b20927d1572086d1ff12c40"></h2>
 
------
 
 ### nginx 日志清理后， 日志不再生成的问题
 
@@ -193,7 +181,6 @@ systemctl restart crond
 
 <h2 id="f6b8fb64715407af569f56a897b2cbf4"></h2>
 
------
 
 ### centos 上切割nginx日志的例子
 

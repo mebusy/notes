@@ -43,15 +43,11 @@
 
 <h2 id="ca9e235d09110401a16af79048fda2c4"></h2>
 
------
------
 
 # Textuer and Modeling
 
 <h2 id="1788370b6ffe3e0fccf62aa9f5c4146d"></h2>
 
------
------
 
 # Renderman Shading Language
 
@@ -148,14 +144,11 @@ surface helloWorld(
 
 <h2 id="d033f70e239df7ab34718d5d84cb09a8"></h2>
 
------
------
 
 # CHAPTER 2  BUILDING PROCEDURAL TEXTURES
 
 <h2 id="5933ba40c36942af6d85eae2b87d1ac5"></h2>
 
------
 
 ## INTRODUCTION
 
@@ -172,7 +165,6 @@ All of the shading models described above are so-called local models, which deal
 
 <h2 id="1a38b8dc7a6f3cc864aeb4087f7eaefa"></h2>
 
------
 
 ## PROCEDURAL PATTERN GENERATION
 
@@ -183,7 +175,6 @@ Most surface shaders can be split into two components called *pattern generation
 
 <h2 id="c1c57c5f10d610630830380ed9b332fe"></h2>
 
------
 
 ## Shading Models
 
@@ -237,7 +228,6 @@ The plastic shader is a good starting point for many procedural texture shaders.
 
 <h2 id="e4cd46bef3dc3447197083c7ac518e60"></h2>
 
------
 
 ## Pattern Generation
 
@@ -258,7 +248,6 @@ The shading language also provides an *environment* function whose 2D texture sp
 
 <h2 id="9a9839c8b7e66591077ec5e354ef3952"></h2>
 
------
 
 ## Texture Spaces
 
@@ -290,7 +279,6 @@ It is a simplification to say that a texture is defined in terms of a single tex
 
 <h2 id="b4a79de0915ebf290a02cc4dec4ed3cb"></h2>
 
------
 
 ## Layering and Composition
 
@@ -336,7 +324,6 @@ Another way to combine simple functions to make complex functions is *functional
 
 <h2 id="2d8bf93ca75aca5774f21a431ba5e3de"></h2>
 
------
 
 ## Steps, Clamps, and Conditionals
 
@@ -421,7 +408,6 @@ smoothstep(float a, float b, float x) {
 
 <h2 id="12c2ac8397180317852f7ac6343465e7"></h2>
 
------
 
 ## Periodic Functions
 
@@ -476,7 +462,6 @@ A closely related function is the ceiling function ceil(x).  The following macro
 
 <h2 id="36921c934698e556132ccd41df579bf0"></h2>
 
------
 
 ## Splines and Mappings
 
@@ -645,7 +630,6 @@ Schlick (1994) presents approximations to bias and gain that can be evaluated mo
 
 <h2 id="95e100e8006b35e4017b4ac5e98f590e"></h2>
 
------
 
 ## Example: Brick Texture
 
@@ -719,7 +703,6 @@ surface brick(
 
 <h2 id="4b8a4928c80dbb90832685f625d39bb4"></h2>
 
------
 
 ### Bump-Mapped Brick
 
@@ -854,7 +837,6 @@ Nf = normalize(faceforward(Nf, I));
 
 <h2 id="3f9e2847ee4cdb15d32b99840caec017"></h2>
 
------
 
 ## Example: Procedural Star Texture
 
@@ -925,7 +907,6 @@ star(
 
 <h2 id="5783f81ef8917c860636ac9d7d695102"></h2>
 
------
 
 ## Spectral Synthesis  光谱合成
 
@@ -970,7 +951,6 @@ But first, let’s digress a bit and examine one of the most important issues th
 
 <h2 id="57e6091478ea0070020ae98a10147920"></h2>
 
------
 
 ## ALIASING AND HOW TO PREVENT IT
 
@@ -978,7 +958,6 @@ The next section presents an informal discussion of basic signal processing conc
 
 <h2 id="fb93336ab960d4ccca06e3a9ff73596b"></h2>
 
------
 
 ### Signal Processing
 
@@ -1057,7 +1036,6 @@ Notice that the width of the mortar grooves appears to vary in different parts o
 
 <h2 id="5daadabdd389ed925f78dd58dc8a4d68"></h2>
 
------
 
 ## Methods of Antialiasing Procedural Textures
 
@@ -1081,7 +1059,6 @@ The *texture* function and its relatives have built-in filtering, so they are al
 
 <h2 id="1d1c18f28e90a17dd98ca3a3805cf950"></h2>
 
------
 
 ## Determining the Sampling Rate
 
@@ -1125,7 +1102,6 @@ It is especially tricky to find the right filter width to antialias a bump heigh
 
 <h2 id="296d6837655d97560e6ec0d135dee4db"></h2>
 
------
 
 ## Clamping
 
@@ -1181,7 +1157,6 @@ Even if the primitive is perfectly band-limited to frequencies lower than its no
 
 <h2 id="53ec4b61ddd25eb11d220ad40fcfb118"></h2>
 
------
 
 ## Analytic Prefiltering
 
@@ -1207,7 +1182,6 @@ Now the step(b,x) can be replaced with boxstep(b-w,b,x). If the filter width w i
 
 <h2 id="e0c69d35a15d0876291ee3c294639c89"></h2>
 
------
 
 ## Better Filters
 
@@ -1233,7 +1207,6 @@ A Catmull-Rom filter can be convolved with a step function (which is equivalent 
 
 <h2 id="ee6bda864552024462560f79bf0e5d54"></h2>
 
------
 
 ## Integrals and Summed-Area Tables
 
@@ -1255,7 +1228,6 @@ If the region corresponds to the size and position of a ***box*** filter in the 
 
 <h2 id="c7143f12bd99e3604f7d8adf4e8e0804"></h2>
 
------
 
 ### Example: Antialiased Brick Texture
 
@@ -1332,7 +1304,6 @@ because the *floor* and *mod* operations in the integrals provide the necessary 
 
 <h2 id="5fff91936d2b35e5829804e2f21bd376"></h2>
 
------
 
 ## MAKING NOISES
 
@@ -1365,7 +1336,6 @@ The properties of an ideal ***noise*** function are as follows:
 
 <h2 id="96cdfd02d5849846686f2eecc6bc24bf"></h2>
 
------
 
 ### Lattice Noises
 
@@ -1409,7 +1379,6 @@ static unsigned char perm[TABSIZE] = {
 
 <h2 id="dc84a69bdc96850f89b6c4a9b9de5adb"></h2>
 
------
 
 ### Value Noise
 
@@ -1486,25 +1455,21 @@ A graph of a 1D sample of vnoise is shown in Figure 2.35(a), and an image of a 2
 
 <h2 id="7d2055bc181beddaa2492eac27f6391b"></h2>
 
------
 
 ### Gradient Noise (TODO)
 
 <h2 id="c4c1767627f4d536aaa1f5d36e06766e"></h2>
 
------
 
 ### Value-Gradient Noise (TODO)
 
 <h2 id="90a621169450e7dda33fc8525a104e57"></h2>
 
------
 
 ### Lattice Convolution Noise (TODO)
 
 <h2 id="52b2eb22dca333a7d0e00fcb3fd94634"></h2>
 
------
 
 ### Sparse Convolution Noise (TODO)
 
@@ -1512,7 +1477,6 @@ A graph of a 1D sample of vnoise is shown in Figure 2.35(a), and an image of a 2
 
 <h2 id="8d18618ccbae1c5db4a02e261d5013ef"></h2>
 
------
 
 ## GENERATING IRREGULAR PATTERNS
 
@@ -1558,7 +1522,6 @@ It is easy to implement pnoise by making the choice of lattice PRNs periodic wit
 
 <h2 id="b5b337d45c62d6e1c218bb5b93d105cb"></h2>
 
------
 
 ## Spectral Synthesis
 
@@ -1681,7 +1644,6 @@ The function marble_color maps the floating-point number marble into a color usi
 
 <h2 id="fcbfd4afc8873594d0a5a5b78dd16fda"></h2>
 
------
 
 ## Perturbed 扰乱的 Regular Patterns 
 
@@ -1721,7 +1683,6 @@ tt -= tbrick;
 
 <h2 id="d441872eec16d305851e98aa1b90393c"></h2>
 
------
 
 ## Perturbed Image Textures
 
@@ -1751,7 +1712,6 @@ In this example, snoise based on the 3D surface position in “shader” space i
 
 <h2 id="33a888b2462b6062c56320b035b02c89"></h2>
 
------
 
 ## Random Placement Patterns
 

@@ -31,8 +31,6 @@
 
 <h2 id="830e73effc335657c8837f820d540d29"></h2>
 
------
------
 
 # Chapter 8 : Code Generation
 
@@ -70,7 +68,6 @@ The remaining sections explore instruction selection and register allocation.
 
 <h2 id="5ff1fce12b9d8a95fd5edf15e993fcbf"></h2>
 
------
 
 ## 8.1 Issues in the Desjgn of a Code Generator
 
@@ -82,7 +79,6 @@ The most important criterion for a code generator is that it produce cor­rect c
 
 <h2 id="109887e516084b34d2dad7ecc5b5bc40"></h2>
 
------
 
 ### 8.1.1 Input to the Code Generator
 
@@ -105,7 +101,6 @@ In this chapter, we assume that the front end has scanned, parsed, and translate
 
 <h2 id="10880c231144de03f241dd50ed847e89"></h2>
 
------
 
 ### 8.1.2 The Target Program
 
@@ -133,7 +128,6 @@ In this chapter, we shall use a very simple RISC-like computer as our target mac
 
 <h2 id="c07ebb13842b3d7df40404463e0d96e9"></h2>
 
------
 
 ### 8.1.3 Instruction Selection
 
@@ -190,7 +184,6 @@ In Section 8.9 we shall see that instruction selection can be modeled as a tree-
 
 <h2 id="42a67b9586b929e789e5441b0b46b433"></h2>
 
------
 
 ### 8.1.4 Register Allocation
 
@@ -229,7 +222,6 @@ Strategies for register allocation and assignment are discussed in Section 8.8. 
 
 <h2 id="37c2c790f0774513a8b2ce5189028ba1"></h2>
 
------
 
 ### 8.1.5 Evaluation Order
 
@@ -239,7 +231,6 @@ The order in which computations are performed can affect the efficiency of the t
 
 <h2 id="e62e84c1a57e7550603a734b7765510e"></h2>
 
------
 
 ## 8.2 The Target Language
 
@@ -248,7 +239,6 @@ Familiarity with the target machine and its instruction set is a prerequisite fo
 
 <h2 id="c9b2afcb3e1b79afecbf6a464ffd634a"></h2>
 
------
 
 ### 8.2.1 A Simple Target Machine Model
 
@@ -352,7 +342,6 @@ Here, M is the label that represents the first machine instruction generated fro
 
 <h2 id="e495518feaac3d8e7e4b5882920d1d83"></h2>
 
------
 
 ### 8.2.2 Program and Instruction Costs
 
@@ -376,7 +365,6 @@ In this chapter we assume the cost of a target-language program on a given input
 
 <h2 id="6d4d798ee603fff7b45373e0dd5c31dd"></h2>
 
------
 
 ## 8.3 Addresses in the Target Code
 
@@ -396,7 +384,6 @@ In this section, we show how names in the IR can be converted into addresses in 
 
 <h2 id="bda4c525efeeaf310fd933902ea0b7c1"></h2>
 
------
 
 ### 8.3.1 Static Allocation
 
@@ -463,7 +450,6 @@ After executing ACTION3, the jump instruction at location 220 is executed. Since
 
 <h2 id="3ae25ae0f1fb53ecdb143a7fb20ad988"></h2>
 
------
 
 ### 8.3.2 Stack Allocation
 
@@ -521,7 +507,6 @@ if msize, psize, and qsize are 20, 40, and 60, respectively, the first instructi
 
 <h2 id="e01e13bc01c76ae3d6a93af6781a8d38"></h2>
 
------
 
 ### 8.3.3 Run-Time Addresses for Names
 
@@ -543,7 +528,6 @@ LD 112 , #0
 
 <h2 id="2c3c856092398efb26997bf43f94919d"></h2>
 
------
 
 ## 8.4 Basic Blocks and Flow Graphs
 
@@ -562,7 +546,6 @@ Starting in Chapter 9, we discuss transformations on flow graphs that turn the o
 
 <h2 id="5382830f44c8ab1f0f2d56fe8cf4ac65"></h2>
 
------
 
 ### 8.4.1 Basic Blocks
 
@@ -618,7 +601,6 @@ We conclude that the leaders are instructions 1, 2, 3, 10, 12, and 13. The basic
 
 <h2 id="21d7d35b190002b687bfd4fbe96db30f"></h2>
 
------
 
 ### 8.4.2 Next-Use Information
 
@@ -645,7 +627,6 @@ Here we have used + as a symbol representing any operator. If the three-address 
 
 <h2 id="2e0f84d0f92e1f49404739bec34b3dd2"></h2>
 
------
 
 ### 8.4.3 Flow Graphs
 
@@ -678,7 +659,6 @@ Only B6 points to the exit of the flow graph, since the only way to get to code 
 
 <h2 id="d9681c5961ade940b16db92265f07922"></h2>
 
------
 
 ### 8.4.4 Representation of Flow Graphs
 
@@ -690,7 +670,6 @@ Flow graphs, being quite ordinary graphs, can be represented by any of the data 
 
 <h2 id="57ba69ba8ce34a37752db17e8dc9e160"></h2>
 
------
 
 ### 8.4.5 Loops
 
@@ -714,7 +693,6 @@ The third loop, L = {B2, B3, B4}, has B2 as its loop entry. Note that among thes
 
 <h2 id="895e7d88eb5f9758b1bb9bcad8448f0d"></h2>
 
------
 
 ## 8.5 Optimization of Basic Blocks
 
@@ -724,7 +702,6 @@ We can often obtain a substantial improvement in the running time of code merely
 
 <h2 id="66e1b4db709e780933b28a758e46d599"></h2>
 
------
 
 ### 8.5.1 The DAG Representation of Basic Blocks
 
@@ -747,7 +724,6 @@ The DAG representation of a basic block lets us perform several code­ improving
 
 <h2 id="2ca093ee9b3646bbed3c5a7150480019"></h2>
 
------
 
 ### 8.5.2 Finding Local Common Subexpressions  (TODO)
 
@@ -757,7 +733,6 @@ TODO
 
 <h2 id="3cac79754c1e27df5c39a1578a7df8a3"></h2>
 
------
 
 ## 8.6 A Simple Code Generator
 
@@ -784,7 +759,6 @@ We assume that the basic block has already been transformed into a preferred seq
 
 <h2 id="e2391a4ecbd6fee9999aecdd40eecb75"></h2>
 
------
 
 ### 8.6.1 Register and Address Descriptors
 

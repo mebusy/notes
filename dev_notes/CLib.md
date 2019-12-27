@@ -14,14 +14,11 @@
 
 <h2 id="441e557a97e06dfaa2e6aeb7e6bfe8f7"></h2>
 
------
------
 
 # 理清gcc、libc、libstdc++的关系
 
 <h2 id="e5823ba08cf6f8acc6662017ec572078"></h2>
 
------
 
 ## libc
 
@@ -31,7 +28,6 @@
 
 <h2 id="0ded6244fb02e7fb8db8e873d25656c5"></h2>
 
------
 
 ## glibc
 
@@ -41,7 +37,6 @@
 
 <h2 id="d99c3fe41c18c77615321392436de25b"></h2>
 
------
 
 ## eglibc
 
@@ -52,7 +47,6 @@
 
 <h2 id="380e406ab5ba1b6659ea00c4513cfc13"></h2>
 
------
 
 ## glib
 
@@ -63,7 +57,6 @@
 
 <h2 id="c5cd131cf241c09f42050abdfc0fe15c"></h2>
 
------
 
 ## libc++/libstdc++
 
@@ -75,7 +68,6 @@
 
 <h2 id="4769de7975850859f943d6ec1e83df57"></h2>
 
------
 
 ## libstdc++，glibc的关系
 
@@ -86,7 +78,6 @@
  
 <h2 id="e91bd64c7c0b2d24fbed4ed80f3d42f8"></h2>
 
------
 
 ## g++是做什么的? 
 

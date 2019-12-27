@@ -31,14 +31,11 @@
 
 <h2 id="abb8dacb4b3a6b2753a9bf368b0f04e2"></h2>
 
------
------
 
 # Matrices and Gaussian Elimination
 
 <h2 id="550db00849ad37a0926e6ec4f59d71c7"></h2>
 
------
 
 ## 1.1 Introduction
 
@@ -73,7 +70,6 @@ The final result of this chapter will be an elimination algorithm that is about 
 
 <h2 id="992f66663115d5ef2e15386d995e53e9"></h2>
 
------
 
 ## 1.2 The Geometry of Linear Equations
 
@@ -118,7 +114,6 @@ Finally the third plane intersects this line in a point.
 
 <h2 id="f3e2771bb4ba31fb79a43ae62aaab1e6"></h2>
 
------
 
 ### n Dimensions
 
@@ -127,7 +122,6 @@ The 1st equation produces an (n-1) dimemsional "plane" in *n* dimemsions. The se
 
 <h2 id="c2da619cbc890f55d4715ed875a9eb64"></h2>
 
------
 
 ### Column Vectors and Linear Combinations
 
@@ -150,7 +144,6 @@ Row picture : Intersection of planes | Column picture : Combination of columns
 
 <h2 id="eef9ce517195c244778811d97ec80a8f"></h2>
 
------
 
 ### The Singular case
 
@@ -193,7 +186,6 @@ The truth is that we knew the columns would combine to give zero, because the ro
 
 <h2 id="aeb6fbe1b69d56ea9622eb6766ea5c39"></h2>
 
------
 
 ## 1.3 AN EXAMPLE OF GAUSSIAN ELIMINATION
 
@@ -232,7 +224,6 @@ By definition, ***pivots cannot be zero***.
 
 <h2 id="2b33b6ac684eea3a04b7a90f58554d3b"></h2>
 
------
 
 ### The Breakdown of Elimination
 
@@ -244,7 +235,6 @@ Temporary breakdown can be solved by exchanging rows.
 
 <h2 id="b34d1b23e46d808504dce8cc095fee73"></h2>
 
------
 
 ### The Cost of Elimination
 
@@ -252,7 +242,6 @@ A good estimate for the number of operations is **n³/3**.
 
 <h2 id="9ac25990605bccf45a2c61dea50093d6"></h2>
 
------
 
 ## 1.4 MATRIX NOTATION AND MATRIX MULTIPLICATION
 
@@ -268,7 +257,6 @@ A = | 4 -6  0|
 
 <h2 id="5c58db5a1c2e2903f1fbeec62d6ea4a5"></h2>
 
------
 
 ### Multiplication of a Matrix and a Vector
 
@@ -286,7 +274,6 @@ Matrix form Ax = b:
 
 <h2 id="8afd4d0866e9cda428c450f1f4723feb"></h2>
 
------
 
 ### The Matrix Form of One Elimination Step
 
@@ -316,7 +303,6 @@ E₃₁ = | 0  1  0|   has E₃₁·b = |  b₂  |
 
 <h2 id="fe759ee30ec010c2c1f589ed520c3a0f"></h2>
 
------
 
 ### Matrix Multiplication
 
@@ -351,7 +337,6 @@ Some rules:
 
 <h2 id="6e9d018eb5ce2e083a4703bfcb7526d2"></h2>
 
------
 
 ## 1.5 TRIANGULAR FACTORS AND ROW EXCHANGES
 
@@ -401,7 +386,6 @@ The special thing is that the entries below the diagonal are the multipliers *l*
 
 <h2 id="17f5e1579a1578ab8db20e0eb910d224"></h2>
 
------
 
 ### One Linear System = Two Triangular Systems
 
@@ -416,7 +400,6 @@ The special thing is that the entries below the diagonal are the multipliers *l*
 
 <h2 id="ee835f91c2c818fd230e9563c6b23a11"></h2>
 
------
 
 ### Row Exchanges and Permutation Matrices
 
@@ -467,7 +450,6 @@ We can display all 3 by 3 permutations (there are 3! = 6 matrices):
 
 <h2 id="5c3fc1e2610b8235f0cf01bfd463f2eb"></h2>
 
------
 
 ### Elimination in a Nutshell: PA = LU
 
@@ -485,7 +467,6 @@ Those matrices carry the information that originally came in A - and they carry 
 
 <h2 id="4d72fafca6d677bb749ef5048ba77fa6"></h2>
 
------
 
 ## 1.6 INVERSES AND TRANSPOSE
 
@@ -512,7 +493,6 @@ There is no stupid matrix that satisfy : A⁻¹·0 = x.
 
 <h2 id="5dd7a646b2bb1011c052239ac7a3ce0a"></h2>
 
------
 
 ### The Calculation of A⁻¹: The Gauss-Jordan Method
 
@@ -557,7 +537,6 @@ Since we only need back-substitution for x (and forward substitution produced c)
 
 <h2 id="f559aa9e3fcec478e620ebc4c2817cc4"></h2>
 
------
 
 ### Invertible = Nonsingular (n pivots)
 
@@ -567,7 +546,6 @@ If A is invertible, it has n pivots.
 
 <h2 id="242b3600224bb5f3c1f4b6458cf7b658"></h2>
 
------
 
 ### The Transpose Matrix
 
@@ -583,7 +561,6 @@ Transpose:
 
 <h2 id="b899f85c23e42aea33f7684a076389ca"></h2>
 
------
 
 ### Symmetric Matrices
 
@@ -593,7 +570,6 @@ Transpose:
 
 <h2 id="1385c8c79787a12139bf60e1624cc87f"></h2>
 
------
 
 ### Symmetric Products RᵀR, RRᵀ, and LDLᵀ
 
@@ -611,7 +587,6 @@ Inverse of symmetric is symmetric.
 
 <h2 id="ed0eb6118820d3734285fd1a953dab73"></h2>
 
------
 
 ## 1.7 SPECIAL MATRICES AND APPLICATIONS
 
@@ -701,7 +676,6 @@ For each column, elimination requires w(w - 1) operations: a row of length w act
 
 <h2 id="84cbf7b58bea5dda0f6a3e9f8dbc31c4"></h2>
 
------
 
 ### Roundoff Error
 

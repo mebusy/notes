@@ -1,9 +1,28 @@
+...menustart
+
+ - [random number](#54424d73e284242c90ae6c2c711487cf)
+     - [Linear Congruential Generator](#3d6ac243e2eed84b3e761431b17bb56b)
+         - [Choice of modulus](#ac4e828dbe54fb1d2feb694108ce5480)
+         - [Choice of multiplier](#bdc47eab24c15e7a55f50a5e665743de)
+         - [An implementation :  No guaranteed of correctness](#29c8b42cc2ff4fc09c6a75a4dfbc1885)
+     - [Python random implementation](#31d89b288043a80670b7a9af27dba6b6)
+     - [Distribution](#f0bac093bb884df2891d32385d053788)
+         - [Python normalvariate implementation](#ee34ac09342e568469b18ca9916547d5)
+
+...menuend
+
+
+<h2 id="54424d73e284242c90ae6c2c711487cf"></h2>
+
 
 # random number
 
 There's actually no way for software to produce a truly random number.
 
 Pseudo random numbers:  a series of numbers in a particular range that seems unpredicatable but is actually produced by a straightforward mathematical process.
+
+
+<h2 id="3d6ac243e2eed84b3e761431b17bb56b"></h2>
 
 
 ## Linear Congruential Generator 
@@ -26,6 +45,9 @@ Pseudo random numbers:  a series of numbers in a particular range that seems unp
 - if we select good values for m , a ,c ,  then the period will be m.   
 
 
+<h2 id="ac4e828dbe54fb1d2feb694108ce5480"></h2>
+
+
 ### Choice of modulus
 
  - We want m to be rather large, since the period can not have more than m elements.
@@ -34,6 +56,9 @@ Pseudo random numbers:  a series of numbers in a particular range that seems unp
     - We want to pick a value so that the computation of (aX<sub>n</sub> + c ) mod m is fast.
     - like 2³².
     - Another alternative is to let m be the largest prime number less than *w* .
+
+<h2 id="bdc47eab24c15e7a55f50a5e665743de"></h2>
+
 
 ### Choice of multiplier
 
@@ -48,6 +73,9 @@ Pseudo random numbers:  a series of numbers in a particular range that seems unp
 - We may take c=1,
     - X<sub>n+1</sub> = ( ( zᵏ + 1 )  X<sub>n</sub> + 1 ) mod zᵉ
     - then we can avoid multiplication ; merely shifting and adding will suffice.
+
+<h2 id="29c8b42cc2ff4fc09c6a75a4dfbc1885"></h2>
+
 
 ### An implementation :  No guaranteed of correctness 
 
@@ -85,6 +113,9 @@ for e in xrange( 8 , 20 ,1  ) :
     assert len(d) == 2**e
 
 ```
+
+<h2 id="31d89b288043a80670b7a9af27dba6b6"></h2>
+
 
 ## Python random implementation
 
@@ -126,6 +157,9 @@ def random(self):
     - 这样，通过结合几个随机数发生器的输出，可以产生一个更长的序列。
 
 
+<h2 id="f0bac093bb884df2891d32385d053788"></h2>
+
+
 ## Distribution
 
  - It's much more useful to have a sequence of numbers with the uniform distribution on the interval 0 to 1. 
@@ -133,6 +167,9 @@ def random(self):
  - Let's say we want to generate a sequence of random numbers with the normal distribution with mean=162cm, and standard deviation=5cm , to represent the height of an American woman.
     - Probability Density Function --> Cumulative Distribution Function. 
     - we uniformly randomly select a point on the y-axis ( Cumulative Distribution Function graph ) , and then determine the point on the x-axis, it gives that function value. 
+
+
+<h2 id="ee34ac09342e568469b18ca9916547d5"></h2>
 
 
 ### Python normalvariate implementation

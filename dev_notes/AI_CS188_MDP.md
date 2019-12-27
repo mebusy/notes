@@ -51,8 +51,6 @@
 
 <h2 id="1ccc83e0a393554a640bc1e194680b67"></h2>
 
------
------
 
 # Markov Decision Processes
 
@@ -69,7 +67,6 @@ maybe you're a can opener robot and you take the can and you open it , and what'
 
 <h2 id="92a5227a1ada900fd758bfb60872e6a2"></h2>
 
------
 
 ## Example : Grid World 
 
@@ -92,7 +89,6 @@ maybe you're a can opener robot and you take the can and you open it , and what'
 
 <h2 id="7b549072ca47e93fb374c9eb1a430bca"></h2>
 
------
 
 ## Grid World Actions
 
@@ -103,7 +99,6 @@ if you take north , you may move left, and it's bad.  So when you plan you're go
 
 <h2 id="1ccc83e0a393554a640bc1e194680b67"></h2>
 
------
 
 ## Markov Decision Processes
 
@@ -145,7 +140,6 @@ MDP is basically taking search that we know and love , and adding the necessary 
 
 <h2 id="1713fea7ca38d867ec082e94dcc902e8"></h2>
 
------
 
 ## What is Markov about MDPs ?
 
@@ -160,7 +154,6 @@ So this is important property in MDP is to make sure that you define your transi
 
 <h2 id="9e476387322a5c250893cf9c5c4ce78c"></h2>
 
------
 
 ## Policies
 
@@ -180,7 +173,6 @@ So on one hand expectimax is a way of solving these problems and on the other ha
 
 <h2 id="d115341e528ef1f1b013adbf6f075f21"></h2>
 
------
 
 ## Optimal Policies
 
@@ -195,7 +187,6 @@ What happens if we make this living penalty more severe ? check those rest 3 cas
 
 <h2 id="b2f5ac1e017207a93a053f4d77b1c9b3"></h2>
 
------
 
 ## Example: Racing
 
@@ -211,7 +202,6 @@ What happens if we make this living penalty more severe ? check those rest 3 cas
 
 <h2 id="91f1e32998454ca46d598646f7260d3c"></h2>
 
------
 
 ### Racing Search Tree
 
@@ -225,7 +215,6 @@ It's very like an expectimax tree but we'll see very shortly why we might not wa
 
 <h2 id="b92430f9047d02bbe1a11b4118967089"></h2>
 
------
 
 ## MDP Search Trees
 
@@ -242,7 +231,6 @@ It's very like an expectimax tree but we'll see very shortly why we might not wa
 
 <h2 id="e25373331ca3b1a3b334be0d44204fd0"></h2>
 
------
 
 ## Utilities of Sequences
 
@@ -261,7 +249,6 @@ you might care whether or not you get these 4 gems step-by-step or all at the en
 
 <h2 id="339bfa7ae181495413ac7e41d61c714c"></h2>
 
------
 
 ## Discounting 
 
@@ -290,7 +277,6 @@ you might care whether or not you get these 4 gems step-by-step or all at the en
 
 <h2 id="945d15839357ecf3965c8cfb2f679995"></h2>
 
------
 
 ## Stationary Preferences
 
@@ -310,7 +296,6 @@ if I liked A better than B now I should like it better shifted into the future a
 
 <h2 id="1148a36cad988c80eafafde4e7a9daf0"></h2>
 
------
 
 ## Infinite Utilities ?!
 
@@ -328,7 +313,6 @@ Here are multiple possible solutions, in general we're gonna have discounts that
 
 <h2 id="37aad9792c79680719c1e086fd0c815a"></h2>
 
------
 
 ## Recap: Defining MDPs
 
@@ -345,13 +329,11 @@ Here are multiple possible solutions, in general we're gonna have discounts that
 
 <h2 id="b2bfba9db087cb6ccda7abec663dd720"></h2>
 
------
 
 ## Solving MDPs
 
 <h2 id="60dc1ec3b23db40849df64de46bcd91a"></h2>
 
------
 
 ### Optimal Quantities 
 
@@ -387,7 +369,6 @@ This shows the Q values. From each state , except for the exit state , you got 4
 
 <h2 id="80597d513b9a36fc1e61e869000ff30f"></h2>
 
------
 
 ## Values of States 
 
@@ -408,7 +389,6 @@ So we want to be able to compute these values. We'd like to be able to take an M
 
 <h2 id="91f1e32998454ca46d598646f7260d3c"></h2>
 
------
 
 ### Racing Search Tree
 
@@ -424,7 +404,6 @@ So we want to be able to compute these values. We'd like to be able to take an M
 
 <h2 id="50ca9febbd3c1377d708c024f60310fc"></h2>
 
------
 
 ## Time-Limited Values
 
@@ -479,7 +458,6 @@ Example:
 
 <h2 id="24539dd5879397f8300a78d2bebba208"></h2>
 
------
 
 ## Computing Time-Limited Values
 
@@ -498,7 +476,6 @@ So you see at the bottom even though the tree has grown immensely it's still onl
 
 <h2 id="4b0084dc52868eb35410667a6679229a"></h2>
 
------
 
 ## Value Iteration
 
@@ -538,7 +515,6 @@ Actually , Value iteration will converge to the same vector of values (V<sup>\*<
 
 <h2 id="d5cac644e6c3bb194c235c0b55977d1d"></h2>
 
------
 
 ### Example: Value Iteration 
 
@@ -560,7 +536,6 @@ The optimal policy is if you're cool go fast and once you warm up you go slow an
  
 <h2 id="8645457c64703c956325a6f44824acdb"></h2>
 
------
 
 ## Convergence 
 
@@ -580,7 +555,6 @@ But there are cases where we can show that it will converge.
 
 <h2 id="9223390b107c103d49be9c7fbe9cc601"></h2>
 
------
 
 ### Value Iteration Convergence
 
@@ -614,7 +588,6 @@ But there are cases where we can show that it will converge.
 
 <h2 id="61640a53698e261681c172ef08db4f13"></h2>
 
------
 
 ## Recap: MDPs
 
@@ -633,7 +606,6 @@ Now in value iteration the vectors V<sub>k</sub> themselves were  interpretable 
 
 <h2 id="0d2fefe88e5d008dbb325c962c5b6f0e"></h2>
 
------
 
 ## Policy Methods
 
@@ -643,7 +615,6 @@ finding optimal policies that work over the policies themselves and make the pol
 
 <h2 id="abdad08f23e1ad71d82cbdd56cfcdd30"></h2>
 
------
 
 ## Policy Evaluation
 
@@ -651,7 +622,6 @@ You got a policy in your hand, maybe it's good meybe it's bad . What you want to
 
 <h2 id="30112022d9cb040ec9e1b2b577503981"></h2>
 
------
 
 ### Fixed Policies
 
@@ -671,7 +641,6 @@ Of course the value at the root is presumably going to be worse unless the π(s)
 
 <h2 id="bfb9b9e2f445011c32315f61f81634c5"></h2>
 
------
 
 ### Utilities for a Fixed Policy 
 
@@ -691,7 +660,6 @@ So we imagine we've got some policy π , it presumably bad but we're stuck with 
 
 <h2 id="1a1b5dffe87b8d0f61d62897935810f1"></h2>
 
------
 
 ### Example : Policy Evaluation
 
@@ -719,7 +687,6 @@ Sometimes we actually have a policy we just want to know how good it is but we'r
 
 <h2 id="abdad08f23e1ad71d82cbdd56cfcdd30"></h2>
 
------
 
 ### Policy Evaluation
 
@@ -734,7 +701,6 @@ Sometimes we actually have a policy we just want to know how good it is but we'r
 
 <h2 id="51f9aace37db4e0d0e8573fee03ea997"></h2>
 
------
 
 ## Policy Extraction
 
@@ -744,7 +710,6 @@ Now we're going to look at the opposite direction : what happens if I give you t
 
 <h2 id="34833eb820b21cf1bc001e77769ade32"></h2>
 
------
 
 ### Computing Actions from Values 
 
@@ -778,7 +743,6 @@ So what I'll do is to consider every action *a* from state *s* and figure out wh
 
 <h2 id="6fcb06d49e1d3878ae11e06deb275042"></h2>
 
------
 
 ### Computing Actions from Q-Values
 
@@ -797,7 +761,6 @@ What about Q-Values ?  Q-Values is kind of weird.
 
 <h2 id="93eb2ac210d009dea486d01934ca6116"></h2>
 
------
 
 ## Policy Iteration 
 
@@ -807,7 +770,6 @@ You can think of policy iteration as you've got a policy in front of you and you
 
 <h2 id="d9622bd26a30e7e2d9272dc2488415cd"></h2>
 
------
 
 ### Problems with value iteration
 
@@ -838,7 +800,6 @@ So what can we do?  The idea herer is an algorithm called **policy iteration**.
 
 <h2 id="adafb823f7939e061bf30caad4dddbae"></h2>
 
------
 
 ## policy iteration
 
@@ -884,7 +845,6 @@ Another way of looking at this algorithm is thinking that we're doing value iter
 
 <h2 id="f6c0e3a1c3cfabd32ae8d3ae741fcf0a"></h2>
 
------
 
 ## Comparison 
 
@@ -902,7 +862,6 @@ Another way of looking at this algorithm is thinking that we're doing value iter
 
 <h2 id="ae6ed616074a489e9415c789beb2b2b2"></h2>
 
------
 
 ## Summary: MDP Algorithms
 
@@ -918,7 +877,6 @@ Another way of looking at this algorithm is thinking that we're doing value iter
 
 <h2 id="c4f36742c324ffd3a65b06a71c7ae8cd"></h2>
 
------
 
 ## Double Bandits
 
@@ -955,7 +913,6 @@ It doesn't matter which state you're at because the actions do the same thing fr
 
 <h2 id="0dc48d869913049d654fb802ff0093d2"></h2>
 
------
 
 ## Offline Planning
 
@@ -973,7 +930,6 @@ Yet I know the values I know the optimal policy : always play red.
 
 <h2 id="ffd944085fd77275ec8af19385faca8c"></h2>
 
------
 
 ### Lets play
 
@@ -994,7 +950,6 @@ This is a different setting where there is an MDP that you know red has a payoff
 
 <h2 id="7553726584ed6f80e379b6e8190ec1bc"></h2>
 
------
 
 ### What Just Happened?
 
@@ -1012,7 +967,6 @@ This is a different setting where there is an MDP that you know red has a payoff
 
 <h2 id="8343234e23eeed284d9f9c00356c8219"></h2>
 
------
 
 ## Asynchronous Value Iteration \*
 

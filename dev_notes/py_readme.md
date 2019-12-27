@@ -1,7 +1,5 @@
 <h2 id="a7f5f35426b927411fc9231b56382173"></h2>
 
------
------
 
 # Python 
 
@@ -26,8 +24,6 @@
 
 <h2 id="1b5abc0bb936130701c7dfc8025642f1"></h2>
 
------
------
 
 # Python implementation
 
@@ -41,8 +37,6 @@
 
 <h2 id="c78e2ad97b328dbafbd49edf182136f3"></h2>
 
------
------
 
 # Data Science
 

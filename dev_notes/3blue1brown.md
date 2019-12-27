@@ -18,14 +18,11 @@
 
 <h2 id="ab7dcbdd05408bb8c50281f539119f94"></h2>
 
------
------
 
 # Essence of linear algebra
 
 <h2 id="ebf4ed4e5dbdf709f6e2a501e1c5cbce"></h2>
 
------
 
 ## 3 Linear transformations and matrices
 
@@ -111,7 +108,6 @@ ans =
 
 <h2 id="9e3659318b7054360844875560006980"></h2>
 
------
 
 ## 4. Matrix multiplication as composition
 
@@ -141,7 +137,6 @@ ans =
 
 <h2 id="0a05f70d4501925ef20156f580f0b07d"></h2>
 
------
 
 ## 5. The determinant
 
@@ -166,7 +161,6 @@ ans =
 
 <h2 id="59e335b6a8c34e003dd810410fbf4e21"></h2>
 
------
 
 ## 6. Inverse matrices, column space and null space
 
@@ -189,7 +183,6 @@ ans =
 
 <h2 id="8e0c7f26d1f694558baee5ef34fe55ef"></h2>
 
------
 
 ## footnote. Nonsquare matrices as transformations between dimensions
 
@@ -217,7 +210,6 @@ ans =
 
 <h2 id="04629028685253ba3138ddced808a1ce"></h2>
 
------
 
 ## 7. Dot products and duality 
 
@@ -260,7 +252,6 @@ ans =
 
 <h2 id="c21e7bf7d55df7edb7e2f6a780fbccd6"></h2>
 
------
 
 ## 8. Cross products
 
@@ -282,7 +273,6 @@ ans =
 
 <h2 id="d6f39fcd3624e0b509757af47be8f6c5"></h2>
 
------
 
 ### Cross products in the light of linear transformations
 
@@ -323,7 +313,6 @@ ans =
 
 <h2 id="a08ecda2d10894d7eda0f957ef9a7ce4"></h2>
 
------
 
 ## 9. Change of basis
      
@@ -366,7 +355,6 @@ ans =
         
 <h2 id="d7095a9bb84406d5fb5ed382385c7d16"></h2>
 
------
 
 ## 10. Eigenvectors and eigenvalues
 
@@ -409,7 +397,6 @@ ans =
 
 <h2 id="d0019094c72f442cca76cf5e53f49e73"></h2>
 
------
 
 ## 11. Abstract vector spaces
 

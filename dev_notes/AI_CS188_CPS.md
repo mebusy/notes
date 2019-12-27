@@ -54,8 +54,6 @@
 
 <h2 id="8c8072703357c878142be0f423e13a69"></h2>
 
------
------
 
 # Constraint Satisfaction Problems I
 
@@ -64,7 +62,6 @@ CPS
 
 <h2 id="6135abe1c86a58db9f536d2f0279d4b1"></h2>
 
------
 
 ## What is Search For?
 
@@ -88,7 +85,6 @@ CPS
 
 <h2 id="ff7da4833835bc7f3506b068905f376c"></h2>
 
------
 
 ## Constraint Satisfaction Problems
 
@@ -104,7 +100,6 @@ CPS
 
 <h2 id="7c497b01fb991be051180f4dd6bc4dfd"></h2>
 
------
 
 ## CSP Example: Map Coloring
 
@@ -120,7 +115,6 @@ CPS
 
 <h2 id="aee23a02cf0a428f8a3380804926c5ba"></h2>
 
------
 
 ## Exampe: N-Queens
 
@@ -150,7 +144,6 @@ Formulation 2:
 
 <h2 id="5e3fadab67cd58dfc836b52e0eec6403"></h2>
 
------
 
 ## Constraint Graphs
 
@@ -168,7 +161,6 @@ Formulation 2:
 
 <h2 id="e4f09537d31b275d624175f497d7a7a0"></h2>
 
------
 
 ### Example : Cryptarithmetic
 
@@ -189,7 +181,6 @@ there are boxes which are constraints and the boxes are connected to all of the 
 
 <h2 id="1b0c55d7a4c5a4fc32c6095016869b4e"></h2>
 
------
 
 ### Example: Sudoku
 
@@ -208,7 +199,6 @@ there are boxes which are constraints and the boxes are connected to all of the 
 
 <h2 id="de9c82c8eb4d71f6d701b657ce8528b9"></h2>
 
------
 
 ### Example: The Waltz Algorithm
 
@@ -225,13 +215,11 @@ Approach:
 
 <h2 id="b9434fb596306e69d9867441d7d9fa5f"></h2>
 
------
 
 ## Varieties of CSPs and Constraints
 
 <h2 id="62e238fa7cf63ce3e6bcd9fe1ebead89"></h2>
 
------
 
 ### Varieties of CSPs
 
@@ -249,7 +237,6 @@ Approach:
 
 <h2 id="03a54c9ac014bf6015d74f7b0468f36c"></h2>
 
------
 
 ### Varieties of Constraints
 
@@ -269,13 +256,11 @@ Approach:
 
 <h2 id="c7847ab059ee8aebf6d6b477f0c5c5a3"></h2>
 
------
 
 ## Solving CSPs
 
 <h2 id="8aac949f2dcb8f35a610fe421087b36d"></h2>
 
------
 
 ### Standard Search Formulation
 
@@ -293,7 +278,6 @@ We’ll start with the straightforward, naïve approach, then improve it
 
 <h2 id="fe6282319a2be73c021b58a6d190368e"></h2>
 
------
 
 ### Backtracking Search 
 
@@ -342,7 +326,6 @@ function RECURSIVE-BACKTRACKING( assignment, csp ) return soln/failure
 
 <h2 id="b9b8d3f554a684894d60e5c3a7cdcf8e"></h2>
 
------
 
 ### Improving Backtracking
 
@@ -360,7 +343,6 @@ function RECURSIVE-BACKTRACKING( assignment, csp ) return soln/failure
 
 <h2 id="9a588db8471730dbfebac65cd5467ad8"></h2>
 
------
 
 ### Filtering
 
@@ -370,7 +352,6 @@ Keep track of domains for unassigned variables and cross off bad options.
  
 <h2 id="2dc9675ac8062df94ad72d42c57f68e1"></h2>
 
------
 
 #### Forward Checking
 
@@ -395,7 +376,6 @@ forward checking doesn't check interactions between unassigned variables just ch
 
 <h2 id="7e161a29d4c082578ae409a87a8988f0"></h2>
 
------
 
 #### Constraint Propagation
 
@@ -409,7 +389,6 @@ Constraint propagation: propagate from constraint to constraint.
 
 <h2 id="4a6018d8655776208482f8b34d58f268"></h2>
 
------
 
 #### Consistency of A Single Arc
 
@@ -429,7 +408,6 @@ Forward checking: Enforcing consistency of arcs pointing to each new assignment
 
 <h2 id="0ca5bb56dad2fa5871eec95372182139"></h2>
 
------
 
 #### Arc Consistency of an Entire CSP
 
@@ -447,7 +425,6 @@ A simple form of propagation makes sure all arcs are consistent:
 
 <h2 id="a579dbdec94528eb11f12d92e857c911"></h2>
 
------
 
 #### Enforcing Arc Consistency in a CSP
 
@@ -486,7 +463,6 @@ If arc consistency had resulted in all domains having a single value left, we wo
 
 <h2 id="86e7f886811c7ef1bc00bf5730d39c8b"></h2>
 
------
 
 #### Limitations of Arc Consistency
 
@@ -502,7 +478,6 @@ If arc consistency had resulted in all domains having a single value left, we wo
 
 <h2 id="12ad9074a51088cf63b8e33236d8cc13"></h2>
 
------
 
 ### Ordering
 
@@ -510,7 +485,6 @@ If arc consistency had resulted in all domains having a single value left, we wo
 
 <h2 id="04b8f33966ef671d2d1c0293a74a75d4"></h2>
 
------
 
 #### Ordering: Minimum Remaining Values (Variable)
 
@@ -526,7 +500,6 @@ If arc consistency had resulted in all domains having a single value left, we wo
 
 <h2 id="f03154f0f61b618719c8b5dc67557aaf"></h2>
 
------
 
 #### Ordering: Least Constraining Value 
 
@@ -566,14 +539,11 @@ So here are steps for solving CPS with enforcing arc consistency:
 
 <h2 id="1dff507c8d0411804d4fbae07a040c72"></h2>
 
------
------
 
 # Constraint Satisfaction Problems II
 
 <h2 id="acc9764e38986d7c5f932a1db3eaf43d"></h2>
 
------
 
 ## Reminder: CSPs
 
@@ -591,7 +561,6 @@ So here are steps for solving CPS with enforcing arc consistency:
 
 <h2 id="838c78b5c5b72f9770550d74bf0213df"></h2>
 
------
 
 ## Arc Consitency of an Entire CSP:
 
@@ -603,7 +572,6 @@ So here are steps for solving CPS with enforcing arc consistency:
 
 <h2 id="8bba60b06aea42c1d4246dd17c987e0b"></h2>
 
------
 
 ## K-Consistency
 
@@ -618,7 +586,6 @@ So here are steps for solving CPS with enforcing arc consistency:
 
 <h2 id="b2f18a946e39a98cdff46b0f465f22db"></h2>
 
------
 
 ### Strong K-Consistency
 
@@ -636,7 +603,6 @@ So here are steps for solving CPS with enforcing arc consistency:
 
 <h2 id="dc4c71563b9bc39a65be853457e6b7b6"></h2>
 
------
 
 ## Structure
 
@@ -674,7 +640,6 @@ This is RARE to actually see separate subproblems. So let's see if we can come u
 
 <h2 id="28db87697415187402d34b1a3b3d0de3"></h2>
 
------
 
 ## Tree-Structured CSPs
 
@@ -735,7 +700,6 @@ Am I sure it is enough just kind of enforce consistency of the arcs once ?
 
 <h2 id="709ac339582a9376bc2eeca7e10d07cc"></h2>
 
------
 
 ## Improving Structure
 
@@ -743,7 +707,6 @@ So we can use this great algorithm on tree-structured CSP.  But CSP is probably 
 
 <h2 id="130b46626de2ded14ad9027586d218d2"></h2>
 
------
 
 ### Nearly Tree-Structured CSPs
 
@@ -769,7 +732,6 @@ So the algorithm we have for making something that is nearly tree-structured int
 
 <h2 id="c81f59e20d96cc96fb1a78af50455703"></h2>
 
------
 
 ### Cutset Conditioning 
 
@@ -780,7 +742,6 @@ Finding smallest cut-set is np-hard !
 
 <h2 id="15a6670cc8efa82fc50198c0cce30f04"></h2>
 
------
 
 ### Tree Decomposition
 
@@ -796,13 +757,11 @@ Tree Decomposition is another approach :
 
 <h2 id="4dbd4d648c894941f112d1a8d83cae25"></h2>
 
------
 
 ## Iterative Improvement
 
 <h2 id="846761c44202fc6587390df7e27e33f8"></h2>
 
------
 
 ### Iterative Algorithms for CSPs
 
@@ -821,7 +780,6 @@ Tree Decomposition is another approach :
 
 <h2 id="d0813c5b61b7d928b7b0bd53bc40b3e2"></h2>
 
------
 
 ### Example: 4-Queens
 
@@ -845,7 +803,6 @@ Tree Decomposition is another approach :
 
 <h2 id="e9c367ec703849cbd55be1cc17396330"></h2>
 
------
 
 ### Performance of Min-Conflicts
 
@@ -863,7 +820,6 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
 
 <h2 id="240e072c49e1269d63abd125b0dd5ede"></h2>
 
------
 
 ## Summary: CSPs
 
@@ -880,7 +836,6 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
 
 <h2 id="e1ea5bc107355233f10e2288fe7fc0ae"></h2>
 
------
 
 ## Local Search
 
@@ -897,7 +852,6 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
 
 <h2 id="3b09835fc58a6f4c68cdf9d702bb59c6"></h2>
 
------
 
 ### Hill Climbing
 
@@ -914,7 +868,6 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
 
 <h2 id="6d905a5baf3b8995646bc1c96ff9bae4"></h2>
 
------
 
 ### Hill Climbing Diagram
 
@@ -922,7 +875,6 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
 
 <h2 id="d675d0b56bdafe850c953b589d02838d"></h2>
 
------
 
 ### Simulated Annealing 退火
 
@@ -950,7 +902,6 @@ You will spend more times at higher places on the mountain. So essentially *e* h
 
 <h2 id="0a02d3b8f5cb85d83848b73ba2b78219"></h2>
 
------
 
 ### Genetic Algorithems
 
@@ -968,7 +919,6 @@ You keep the best hypotheses at each step . In adition to just keeping the best 
 
 <h2 id="e8cba6398fc6216fef8e64d0a854ea7f"></h2>
 
------
 
 #### Example: N-Queens
 

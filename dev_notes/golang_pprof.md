@@ -14,14 +14,11 @@
 
 <h2 id="8ec32b199f9a9a6ce8a763ba4073c7d0"></h2>
 
------
------
 
 # 使用 pprof 测试 golang 应用性能
 
 <h2 id="1a226c2f1347809a185b8567ba1fc5a7"></h2>
 
------
 
 ## Profiling
 
@@ -32,7 +29,6 @@
 
 <h2 id="2de72cd86d6ee0cf5da415280e9faeb6"></h2>
 
------
 
 ## 收集方式
 
@@ -42,7 +38,6 @@
 
 <h2 id="d2d36738c9707ef71ede62277101dad5"></h2>
 
------
 
 ### 工具型应用
 
@@ -75,7 +70,6 @@ f.Close()
 
 <h2 id="743a11634b020d87ee3e35723fd383d0"></h2>
 
------
 
 ### 服务型应用
 
@@ -129,7 +123,6 @@ full goroutine stack dump
 
 <h2 id="2dc9540acc752760e72345ad9529d612"></h2>
 
------
 
 ## 分析 Profiling 
 
@@ -155,7 +148,6 @@ full goroutine stack dump
 
 <h2 id="628f3bfbcd42ebb9c0e60322c9cdfce8"></h2>
 
------
 
 ### go 1.10 提供了一个 web UI， 同时支持 火焰图
 
@@ -169,7 +161,6 @@ $ go tool pprof -http=:8080 profile.out
 
 <h2 id="a553668c7b1f4095c932a2d77faae894"></h2>
 
------
 
 ## 和测试工具的集成
 

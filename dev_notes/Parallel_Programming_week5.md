@@ -31,14 +31,11 @@
 
 <h2 id="25920ae7a2a6fa8497cb554670bd4767"></h2>
 
------
------
 
 ## Week5
 
 <h2 id="58997de450d57cd85d02ccf09f2e2abd"></h2>
 
------
 
 ### Lecture 5.1: Parallel Computation Patterns - Histogramming 
 
@@ -48,7 +45,6 @@ To learn the parallel histogram computation pattern:
 
 <h2 id="0f39b900b08ff634a8f210cf9ea18fa2"></h2>
 
------
 
 #### Histogramming
 
@@ -60,7 +56,6 @@ To learn the parallel histogram computation pattern:
 
 <h2 id="e00d95c8bf8108f0383cf23e1ee248e9"></h2>
 
------
 
 #### A Histogram Example
 
@@ -73,7 +68,6 @@ To learn the parallel histogram computation pattern:
 
 <h2 id="cecb00877fc1ee8d286513d59d676d81"></h2>
 
------
 
 #### Iteration #1 – 1st letter in each section
 
@@ -82,7 +76,6 @@ To learn the parallel histogram computation pattern:
       
 <h2 id="292fcfab7969a7f0c452cb4828222d78"></h2>
 
------
 
 ### Lecture 5.2: Parallel Computation Patterns - Atomic Operations 
 
@@ -92,7 +85,6 @@ To learn the parallel histogram computation pattern:
 
 <h2 id="76dcecf2c662e26592bafa2d3783442a"></h2>
 
------
 
 #### A Common Parallel Coordination Pattern
 
@@ -106,7 +98,6 @@ To learn the parallel histogram computation pattern:
 
 <h2 id="eaa1709ae37b41b0f052cd5eae6a14b4"></h2>
 
------
 
 #### Atomic Operations
 
@@ -120,13 +111,11 @@ The answer may vary due to data races. To avoid data races, you should use atomi
 
 <h2 id="b86c5421464bfb4b3760fb3253ccb8cc"></h2>
 
------
 
 ### Lecture 5.3: Parallel Computation Patterns - Atomic Operations in CUDA 
 
 <h2 id="e850c6d1bca94e185e6934bf7014ae80"></h2>
 
------
 
 #### Atomic Operations in General
 
@@ -138,7 +127,6 @@ The answer may vary due to data races. To avoid data races, you should use atomi
 
 <h2 id="0b926d25c67b0f91f3602829806ca6d3"></h2>
 
------
 
 #### Atomic Operations in CUDA
 
@@ -154,7 +142,6 @@ The answer may vary due to data races. To avoid data races, you should use atomi
     
 <h2 id="f66f0c25c7798013930725d00f53caf5"></h2>
 
------
 
 #### More Atomic Adds in CUDA
 
@@ -167,7 +154,6 @@ The answer may vary due to data races. To avoid data races, you should use atomi
 
 <h2 id="056df4bf1bf3d6fbc89379597169cb9b"></h2>
 
------
 
 #### Uncoalesced memory accesses in Sectoned Histogram Algorithm 
 
@@ -180,7 +166,6 @@ The answer may vary due to data races. To avoid data races, you should use atomi
 
 <h2 id="248c001700eb0ec840c18dd5d3b7711d"></h2>
 
------
 
 #### A Better Thread to Data Mapping
 
@@ -192,7 +177,6 @@ The answer may vary due to data races. To avoid data races, you should use atomi
 
 <h2 id="d47212ebdb72e211e492b58dc19235c5"></h2>
 
------
 
 #### A Basic Histogram Kernel
 
@@ -219,7 +203,6 @@ __global__ void histo_kernel(unsigned char *buffer, long size,
 
 <h2 id="d3796b1cce8dbf0223e0f4fa4fd82f98"></h2>
 
------
 
 ### Lecture 5.4: Parallel Computation Patters - Atomic Operations Performance 
 
@@ -232,7 +215,6 @@ __global__ void histo_kernel(unsigned char *buffer, long size,
 
 <h2 id="4a3720472ae67754378c84d9d0907dde"></h2>
 
------
 
 #### Atomic Operations on DRAM
 
@@ -244,7 +226,6 @@ __global__ void histo_kernel(unsigned char *buffer, long size,
 
 <h2 id="9a94be20a1d3213c0c86924a4febff7d"></h2>
 
------
 
 #### Latency determines throughput
 
@@ -255,7 +236,6 @@ __global__ void histo_kernel(unsigned char *buffer, long size,
  
 <h2 id="e02a081794adc5f41802f522a901e5eb"></h2>
 
------
 
 #### Hardware Improvements 
 
@@ -272,7 +252,6 @@ __global__ void histo_kernel(unsigned char *buffer, long size,
 
 <h2 id="e81801010304a2c41dba8d36139dcca7"></h2>
 
------
 
 ### Lecture 5.5: Parallel Computation Patterns - A Privatized Histogram Kernel
 
@@ -282,7 +261,6 @@ __global__ void histo_kernel(unsigned char *buffer, long size,
 
 <h2 id="8b827d905dd0d9428a134f198f6546d7"></h2>
 
------
 
 #### Histogram Privatization
 
@@ -295,7 +273,6 @@ __global__ void histo_kernel(unsigned char *buffer, long size,
 
 <h2 id="cd5e53e4691603e32d958875fe5ac4ec"></h2>
 
------
 
 #### Atomics in Shared Memory Requires Privatization
 
@@ -313,7 +290,6 @@ __global__ void histo_kernel(unsigned char *buffer,
     
 <h2 id="5059b97b67f882680b3493ed08fb35db"></h2>
 
------
 
 #### Build Private Histogram
 
@@ -331,7 +307,6 @@ __global__ void histo_kernel(unsigned char *buffer,
 
 <h2 id="4021b789d0b1fc634fc88867cf649d92"></h2>
 
------
 
 #### Build Final Histogram
 
@@ -346,7 +321,6 @@ __global__ void histo_kernel(unsigned char *buffer,
 
 <h2 id="9b8d74978162365fbf93789fae84e077"></h2>
 
------
 
 #### More on Privatization
 

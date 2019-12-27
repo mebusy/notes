@@ -25,14 +25,11 @@
 
 <h2 id="ce3bc4fb33b241d8ecb14566e3cb7ce0"></h2>
 
------
------
 
 # Bayes' Nets II : Independence
 
 <h2 id="e2dd24943ffa85789b54e75a83bbe8bd"></h2>
 
------
 
 ## Recap: Bayes’ Nets
 
@@ -44,7 +41,6 @@
 
 <h2 id="4dbc391a5b44f9e161311a3fba175cc0"></h2>
 
------
 
 ## Bayes’ Net Semantics
 
@@ -59,7 +55,6 @@
 
 <h2 id="964508d9edbdf6c01844d69c96708106"></h2>
 
------
 
 ## Size of a Bayes’ Net
 
@@ -73,7 +68,6 @@
 
 <h2 id="ef1a928c977906877d6b80e2a41e9438"></h2>
 
------
 
 ## Bayes Nets: Assumptions
 
@@ -86,7 +80,6 @@
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
------
 
 ### Example
 
@@ -123,7 +116,6 @@ Math proof is annoying !  So what we're going to look at now is a way to read it
 
 <h2 id="f10bd0a1b1e91ed5409df88f9b43513f"></h2>
 
------
 
 ## Independence in a BN
 
@@ -141,7 +133,6 @@ Math proof is annoying !  So what we're going to look at now is a way to read it
 
 <h2 id="b744fe0bc9612fbfbc259a06f0dbd29b"></h2>
 
------
 
 ## D-separation: Outline
 
@@ -151,7 +142,6 @@ Math proof is annoying !  So what we're going to look at now is a way to read it
 
 <h2 id="ccca6bb2b201caf52ba8662d28af0169"></h2>
 
------
 
 ### Causal Chains 
 
@@ -170,7 +160,6 @@ P(z|x,y) = P(x,y,z) / p(x,y)
 
 <h2 id="c4b2f358e8026aa99cbd43e765359c00"></h2>
 
------
 
 ### Common Cause
 
@@ -189,7 +178,6 @@ P(z|x,y) = P(x,y,z) / p(x,y)
 
 <h2 id="b014052dfbaa594c59ecbab983631e40"></h2>
 
------
 
 ### Common Effect
 
@@ -221,7 +209,6 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
 
 <h2 id="e4467b9c25f4f5fa7e82de809d585fae"></h2>
 
------
 
 ### The General Case
 
@@ -231,7 +218,6 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
 
 <h2 id="c79782e896e55b3bb238bb9a5e5b3403"></h2>
 
------
 
 #### Reachability
 
@@ -248,7 +234,6 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
 
 <h2 id="12e81e928621fbaa77f76f16a1b95f98"></h2>
 
------
 
 #### Active / Inactive Paths
 
@@ -282,7 +267,6 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
 
 <h2 id="f4700a89b684ee2885763c02ec03ddb8"></h2>
 
------
 
 ## D-separation
 
@@ -295,7 +279,6 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
------
 
 ### Example 
 
@@ -321,7 +304,6 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
  
 <h2 id="31d6deec4e1ea27b89ee3c34bbe706d8"></h2>
 
------
 
 ## Structure Implications
 
@@ -332,7 +314,6 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
 
 <h2 id="3a8cd9d38bf713649aa6025704704c78"></h2>
 
------
 
 ## Topology Limits Distributions 
 
@@ -362,7 +343,6 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
 
 <h2 id="f3beb40b43acd62d29efb20ba1bf53d1"></h2>
 
------
 
 ## Bayes Nets Representation Summary
 

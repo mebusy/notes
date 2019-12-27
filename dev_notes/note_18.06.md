@@ -64,14 +64,11 @@ http://web.mit.edu/18.06
 
 <h2 id="8c1303f71444d7754a705424f793b9ae"></h2>
 
------
------
 
 ## 1. The Geometry of Linear Equations
 
 <h2 id="91e33357c93456f5d4fcdd5d83e73499"></h2>
 
------
 
 ###  m linear equations, n unknowns
 
@@ -79,7 +76,6 @@ http://web.mit.edu/18.06
 
 <h2 id="105886be937f14bad5b4f729649f33b2"></h2>
 
------
 
 ### Row picture  
 
@@ -95,7 +91,6 @@ At the end, when all n planes are accounted for, the intersection has dimension 
 
 <h2 id="1cd37a33867b1e386181f495f9fc46bd"></h2>
 
------
 
 ###  `*` Column picture
 
@@ -110,7 +105,6 @@ The equations ask for a linear combination of the n columns that equals b.
 
 <h2 id="0cf5af3caf7569284abcadfc4d362a04"></h2>
 
------
 
 ### Maxtrix form
 
@@ -137,14 +131,11 @@ Ax = b
 
 <h2 id="007512dbf0eecf82a8ebf4c1e7b71357"></h2>
 
------
------
 
 ## 2. Elimination
 
 <h2 id="37ce2a99728857da54756961009fe633"></h2>
 
------
 
 ### Elimination   
 
@@ -158,7 +149,6 @@ Breakdown of Elimination: 0 in pivot position , then do row exchange , by defini
  
 <h2 id="3377dc23ba4243098066d43864323ef8"></h2>
 
------
 
 ### Back-Substitution 
 
@@ -171,7 +161,6 @@ U is a triangular matrix, and then we can use **back-substitution** to get the s
     
 <h2 id="d890c325530f9d6ea581e8a1991bb8d7"></h2>
 
------
 
 ### Elimination Matrices
 
@@ -187,8 +176,6 @@ U is a triangular matrix, and then we can use **back-substitution** to get the s
     
 <h2 id="36c22d87c505ccb870696f9dddce56c3"></h2>
 
------
------
 
 ## 3. Matrix multiplication
 
@@ -200,7 +187,6 @@ U is a triangular matrix, and then we can use **back-substitution** to get the s
 
 <h2 id="99f80b726498ad866ed76cec68ca859e"></h2>
 
------
 
 ### Matrix multiplcation (4 ways) :  A * B = C
 
@@ -221,7 +207,6 @@ note:  矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 
 
 <h2 id="785ba5483d4595815b81a1ab57fa7d38"></h2>
 
------
 
 ### Inverse of A , AB, Aᵀ
     
@@ -234,7 +219,6 @@ note:  矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 
 
 <h2 id="4e2c98c06f8cb4b5e5fda933f2d08ba2"></h2>
 
------
 
 ###  Gauss-Jordan / find A⁻¹
 
@@ -255,15 +239,12 @@ note:  矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 
 
 <h2 id="cc7c0652009c7a8f963de3a81fcb5322"></h2>
 
------
------
 
 ## 4. Elimination Matrices
 
 
 <h2 id="214181c5442239e64cc8d942b8b189e3"></h2>
 
------
 
 ### Product of elimination matrices 
 
@@ -272,7 +253,6 @@ note:  矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 
 
 <h2 id="f1248609fe6c8d2d55ee97b5d1a231d7"></h2>
 
------
 
 ### A=LU (no row exchange)
 
@@ -281,7 +261,6 @@ note:  矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 
 
 <h2 id="ee908f5e0d345fe7fe854a3d5c7106ca"></h2>
 
------
 
 ### PA=LU, Row Exchanges and Permutations 
 
@@ -317,7 +296,6 @@ A*P = // column exchange
 
 <h2 id="d766ba9a978926809be1b6ac5d77e39d"></h2>
 
------
 
 ### Transpose Matrix Aᵀ
 
@@ -330,7 +308,6 @@ A*P = // column exchange
 
 <h2 id="3709f91de887b21ce8b18d5c5ef0aee8"></h2>
 
------
 
 ### INVERSES 
 
@@ -341,15 +318,12 @@ A*P = // column exchange
 
 <h2 id="012f7a01157a02313543c929beb369a2"></h2>
 
------
------
 
 ## 5. Vector Space
 
 
 <h2 id="9d1fa1d7cb8b7fb75f4ac91338858795"></h2>
 
------
 
 ### Section 3.1 Vector Spaces and Subspaces
 
@@ -365,14 +339,11 @@ A*P = // column exchange
 
 <h2 id="58ff046a28e34ea85d40cab30e06d99c"></h2>
 
------
------
 
 ## 6. Column Space C(A)
 
 <h2 id="6b209870f2238fe90b6a06eacf3352f4"></h2>
 
------
 
 ### Column Space of A
  
@@ -383,7 +354,6 @@ A*P = // column exchange
 
 <h2 id="aae362f830f86beea7700082eba79028"></h2>
 
------
 
 ### Null Space of A 
 
@@ -398,14 +368,11 @@ A*P = // column exchange
 
 <h2 id="a036b682183a90d2f1fbe10ce6a5bb86"></h2>
 
------
------
 
 ## 7. Special Solution  Ax=0
 
 <h2 id="b5352408af1619a3d4c23bc24b7a9be1"></h2>
 
------
 
 ### Computing the nullspace (Ax=0)
 
@@ -421,7 +388,6 @@ PS: The only operation not required by our example, but needed in general, is ro
 
 <h2 id="fe178efd74327aee4c4fb7261a34154b"></h2>
 
------
 
 ### Pivot variables -- free variables
 
@@ -435,7 +401,6 @@ That is , the null space contains exactly all the combinations of the special so
 
 <h2 id="2913817abf898dbe3ad9d3e5e39e3026"></h2>
 
------
 
 ### Special Solutions -- rref(A) = R
 
@@ -546,15 +511,12 @@ x = c·[ -1;-1;1 ]
 
 <h2 id="db10e97585f9668efc2383e6d41ca6af"></h2>
 
------
------
 
 ## 8. Solve Ax=b 
 
 
 <h2 id="9de0ef58d914b04f049388c958ac1a74"></h2>
 
------
 
 ### Complete solution of Ax=b
 
@@ -575,7 +537,6 @@ x<sub>n</sub> is a subspace, but x<sub>complete</sub> is not.  x<sub>complete</s
 
 <h2 id="8912c5512db9003e5c8ce07b7ff36a88"></h2>
 
------
 
 ### Recap
 
@@ -585,14 +546,11 @@ x<sub>n</sub> is a subspace, but x<sub>complete</sub> is not.  x<sub>complete</s
 
 <h2 id="bb0eb4b8063e088d31678fdec95899bb"></h2>
 
------
------
 
 ## 9. Dimemsion
 
 <h2 id="ab6b0812ad1ce14864584b2657a527a1"></h2>
 
------
 
 ### Linear independence
 
@@ -600,7 +558,6 @@ indenpendent if N(A) = 0
 
 <h2 id="8244f5d68b8b82ffeadf91818ea34850"></h2>
 
------
 
 ### Spanning a space
 
@@ -608,7 +565,6 @@ The space consists of all combinations of those vectors.
 
 <h2 id="e85643186cee77ad9ac05f9f5f251c51"></h2>
 
------
 
 ### BASIS and dimension
 
@@ -639,14 +595,11 @@ A 和 Aᵀ 的 r 相等。
 
 <h2 id="98bc29d7d49a86b70f6140dac882744a"></h2>
 
------
------
 
 ## 10. Fundamental Subspace 
 
 <h2 id="2d18c3506588b8d120fd1814df9c542f"></h2>
 
------
 
 ### Four Fundamental Subspace 
 
@@ -691,7 +644,6 @@ Actually, the rows are not inpendent ,so A is not invertible, so that the column
 
 <h2 id="097b0bf7ca0b3f1b1998a2e0a692c81a"></h2>
 
------
 
 ### New vector space !
 
@@ -729,7 +681,6 @@ now D is a subspace. The dimension of D is 3. for example, you can shoose such 3
 
 <h2 id="49ffec6957c7988a3bb3cec6322ce09b"></h2>
 
------
 
 ### Rank one matrices
 
@@ -749,14 +700,11 @@ rank(A) = 1 = r,  dim(N(A)) = n-r .
 
 <h2 id="a8d3ffcce3f08795c52dc9ea5c6b3db1"></h2>
 
------
------
 
 ## 12. Networks
 
 <h2 id="d42a81a20d066bbb2afc576729176c38"></h2>
 
------
 
 ### Small graph
 
@@ -768,7 +716,6 @@ Every peaple is a node, there is an egde between 2 peaples if they are frinds. T
 
 <h2 id="f4f0e61f230052f73a45b10df498ee07"></h2>
 
------
 
 ### Graphs of Networks
 
@@ -793,14 +740,11 @@ this is, #nodes - #edges + #loops = 1 , it's Euler's formula.
 
 <h2 id="ee4d7074d86f494d6184ecbbab637e69"></h2>
 
------
------
 
 ## 14. Orthogonal
 
 <h2 id="6f2c485c71fb691471a44db33644095c"></h2>
 
------
 
 ### Orthogonal vectors and subspaces
 
@@ -813,7 +757,6 @@ Blackboard wall is **NOT** orthogonal to the floor.
 
 <h2 id="6d51fae8845c5c8fd88e68e74a9e2b51"></h2>
 
------
 
 ### null space ⟂  row space 
 
@@ -825,7 +768,6 @@ nullspace and row space are orthogonal **complements** in Rⁿ.  That is, nullsp
 
 <h2 id="1381809db6ebf7c77b7a83e941330b8d"></h2>
 
------
 
 ### N(AᵀA) = N(A)
 
@@ -840,7 +782,6 @@ AᵀA is often invertible, but not always.  Since N(AᵀA) = N(A) , so AᵀA is 
 
 <h2 id="c704ddab32fc266fd88c4965485fa706"></h2>
 
------
 
 ### Summarizes the fundamental theorem of linear algebra.
 
@@ -851,14 +792,11 @@ AᵀA is often invertible, but not always.  Since N(AᵀA) = N(A) , so AᵀA is 
 
 <h2 id="28a646261723ad5829e3503081225adc"></h2>
 
------
------
 
 ## 15 Projection ( crucial chapter )
 
 <h2 id="7bf91f47e22dc40630e1fda5272cbb05"></h2>
 
------
 
 ### Projections !!
 
@@ -937,15 +875,12 @@ why I can not expand the euqation to AA⁻¹(Aᵀ)⁻¹Aᵀ = I  ?  becuase A is
 
 <h2 id="86d100a731b3c593d4c0e193feb27d38"></h2>
 
------
------
 
 ## 16. Projection and Least Square 
 
 
 <h2 id="3f74ad10af3eacd7e34e00ff5d659663"></h2>
 
------
 
 ### Projection Matrix
 
@@ -977,7 +912,6 @@ And our typical vector b is out here, and what we're doing is we're projecting i
 
 <h2 id="508a75177e1b86cd02457f1b8d091909"></h2>
 
------
 
 ### Least square
 
@@ -1084,14 +1018,11 @@ Trick:  xᵀAᵀAx=0 =>  (Ax)ᵀ(Ax)=0  => Ax=0.
 
 <h2 id="90c7d7715eaf8334023266fddcba7ea5"></h2>
 
------
------
 
 ## 17. Orthogonal Matrix
 
 <h2 id="77c10fd5007190b1606ec52dee42d392"></h2>
 
------
 
 ### Orthogonal basis q₁, q<sub>n</sub>
 
@@ -1104,7 +1035,6 @@ Orthonormal vectors :
 
 <h2 id="ddab1e3788581e4947eff92141a6891c"></h2>
 
------
 
 ### Orthogonal matrix Q 
 
@@ -1169,7 +1099,6 @@ But the convention is  that we only use that word "orthogonal matrix" when it is
 
 <h2 id="074ad2dd56bc627b14e5a90ad7e9b2e8"></h2>
 
------
 
 ### Gram-Schmidt  A -> Q
 

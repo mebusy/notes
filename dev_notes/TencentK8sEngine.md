@@ -21,15 +21,11 @@
 
 <h2 id="12510f8273f9a47f538779a3afd71f53"></h2>
 
------
------
 
 # TKE
 
 <h2 id="0f12ee5c9f1dd90158580f1c292b0d37"></h2>
 
------
------
 
 # kubectl
 
@@ -37,7 +33,6 @@
 
 <h2 id="19ad89bc3e3c9d7ef68b89523eff1987"></h2>
 
------
 
 ## install
 
@@ -55,7 +50,6 @@ mv ./kubectl /usr/local/bin/kubectl
 
 <h2 id="773c2c719c95cc40967b0e945ada8898"></h2>
 
------
 
 ## use kubectl
 
@@ -107,7 +101,6 @@ it seems that TKE will automatically use  `tencenthubkey` ?
 
 <h2 id="32a13011ccded1584ff2253d3356b336"></h2>
 
------
 
 ## 使用自定义列格式化输出
 
@@ -155,7 +148,6 @@ opdemo-64db96d575-5mhgg                   ydzs-node2
 
 <h2 id="f0cfc2eb04f3c904ba876b4ff5e36744"></h2>
 
------
 
 ## JSONPath 表达式
 
@@ -198,14 +190,11 @@ $ kubectl get nodes \
 
 <h2 id="7616e9353ba2c3c55eb7063e51fc65fb"></h2>
 
------
------
 
 # 腾讯云 用户管理
 
 <h2 id="66914536facf5b30973b236fb814d23f"></h2>
 
------
 
 ## 策略
 
@@ -239,14 +228,11 @@ $ kubectl get nodes \
 
 <h2 id="4214290dc4bf8068d16758a84a3496a7"></h2>
 
------
------
 
 # 腾讯云 Misc
 
 <h2 id="d42d194dd306f76100f9b591fd878396"></h2>
 
------
 
 ## ingress 证书 对部分低版本Android设备不兼容，导致 ssl hand shake error.
 
@@ -256,7 +242,6 @@ $ kubectl get nodes \
 
 <h2 id="e8dfbb86e3e1d39df969144ae4d3f06b"></h2>
 
------
 
 ## k8s node 磁盘占用过高查找并清理
 
@@ -271,7 +256,6 @@ $ kubectl get nodes \
 
 <h2 id="77563c3ed75c144a6617a7077a1b4771"></h2>
 
------
 
 ## 清除不再使用的 image 
 
@@ -284,7 +268,6 @@ docker images | grep umc-app-images | awk "{print \$3}" | xargs docker rmi
 
 <h2 id="145f750dc8c7bde1231227e5d027eafd"></h2>
 
------
 
 ## 查找不是 running 状态的 pod
 
@@ -295,8 +278,6 @@ kubectl_umc get pods --all-namespaces | awk '{ if ($4!="Running")  print $0_ }'
 
 <h2 id="c36aef5f4c92632a2362a83ed0523565"></h2>
 
------
------
 
 # cntlm 设置代理 (Centos7)
 
@@ -350,8 +331,6 @@ Auth NTLM
 
 <h2 id="48cd1b6a59fb119e19d9f83e6cf43668"></h2>
 
------
------
 
 # cntlm (Macosx)
 

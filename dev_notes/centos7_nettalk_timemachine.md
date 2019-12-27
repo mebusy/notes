@@ -1,5 +1,23 @@
+...menustart
+
+ - [Netatalk for MacOSX time Machine , based on Centos7](#21d8e147d016e150b87f7bd971d215b0)
+     - [1. download source code](#e79b3a42a17c7a2bf329fe406b3ba7dd)
+     - [2. Compiling](#f8f8c77181ce68a21549bf3e9652fbee)
+     - [3. Config file](#fa4a6f76b1af639944343585a226d4a9)
+     - [4. Start netatalk](#906e14ef731f74fbe1f2f200c988f8ac)
+     - [5. Mount afp server in MacOSX](#1f73b26cf83fa01cf0b48b078ebad47e)
+     - [5. let MacOSX auto detect afp servies](#5a11d94ae8d2ba093c339a25659087ec)
+
+...menuend
+
+
+<h2 id="21d8e147d016e150b87f7bd971d215b0"></h2>
+
 
 # Netatalk for MacOSX time Machine , based on Centos7
+
+<h2 id="e79b3a42a17c7a2bf329fe406b3ba7dd"></h2>
+
 
 ## 1. download source code
 
@@ -7,6 +25,9 @@
 https://sourceforge.net/projects/netatalk/
 https://github.com/Netatalk/Netatalk
 ```
+
+<h2 id="f8f8c77181ce68a21549bf3e9652fbee"></h2>
+
 
 ## 2. Compiling
 
@@ -24,6 +45,9 @@ autoreconf -i
 make
 make install 
 ```
+
+
+<h2 id="fa4a6f76b1af639944343585a226d4a9"></h2>
 
 
 ## 3. Config file
@@ -49,6 +73,9 @@ adduser nas
   # vol size limit = 100000  #限制贡献volume大小为100GB，单位为MB。
 ```
 
+<h2 id="906e14ef731f74fbe1f2f200c988f8ac"></h2>
+
+
 ## 4. Start netatalk
 
 ```bash
@@ -64,6 +91,9 @@ COMMAND   PID USER   FD   TYPE   DEVICE SIZE/OFF NODE NAME
 afpd    29393 root    4u  IPv6 13706292      0t0  TCP *:afpovertcp (LISTEN)
 ```
 
+<h2 id="1f73b26cf83fa01cf0b48b078ebad47e"></h2>
+
+
 ## 5. Mount afp server in MacOSX 
 
 ```
@@ -73,6 +103,9 @@ add "afp://<ip>", and choosing  `Guest` login
 ```
 
 ----
+
+<h2 id="5a11d94ae8d2ba093c339a25659087ec"></h2>
+
 
 ## 5. let MacOSX auto detect afp servies
 

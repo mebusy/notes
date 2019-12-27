@@ -23,14 +23,11 @@
 
 <h2 id="5eadd983edcd006d1d7c77cacf304d01"></h2>
 
------
------
 
 # 2 – Basic Concepts
 
 <h2 id="3053af0cf7ed59b35a33bbac43f61692"></h2>
 
------
 
 ## 2.1 – Values and Types
 
@@ -59,7 +56,6 @@
 
 <h2 id="450e6c4e856637db95564a960db61fa8"></h2>
 
------
 
 ## 2.2 – Environments and the Global Environment
 
@@ -93,7 +89,6 @@
 
 <h2 id="9ab14e9a3a5b6b4651d3f0f1d6fc3e3e"></h2>
 
------
 
 ## 2.3 – Error Handling
 
@@ -115,7 +110,6 @@ xpcall(main,  __G__TRACKBACK__)
 
 <h2 id="e8338b957cfebba82f352026ce533a5c"></h2>
 
------
 
 ## 2.4 – Metatables and Metamethods
 
@@ -147,7 +141,6 @@ xpcall(main,  __G__TRACKBACK__)
 
 <h2 id="b96bb9af2b541d8cd6752cb8b514f397"></h2>
 
------
 
 ## 2.5 – Garbage Collection
 
@@ -168,7 +161,6 @@ xpcall(main,  __G__TRACKBACK__)
 
 <h2 id="2ee0667701209dc7ecf0ae9d309a8a95"></h2>
 
------
 
 ### 2.5.2 – Weak Tables
 
@@ -186,7 +178,6 @@ xpcall(main,  __G__TRACKBACK__)
 
 <h2 id="a7629f76b2e07fbf8dbca4a41d7114c0"></h2>
 
------
 
 ## 2.6 – Coroutines
 
@@ -240,8 +231,6 @@ xpcall(main,  __G__TRACKBACK__)
 
 <h2 id="ac362547474c89f8b882abc7326b6ebe"></h2>
 
------
------
 
 # 3 – The Language
 
@@ -339,8 +328,6 @@ xpcall(main,  __G__TRACKBACK__)
 
 <h2 id="dfc1f4912c18595eb03abb457f9d5460"></h2>
 
------
------
 
 # 4 – The Application Program Interface
 
@@ -372,7 +359,6 @@ xpcall(main,  __G__TRACKBACK__)
 
 <h2 id="ede5deeca64781b0f5637625fef01c6b"></h2>
 
------
 
 ## 4.1 - The Stack 
 
@@ -397,8 +383,6 @@ xpcall(main,  __G__TRACKBACK__)
 
 <h2 id="da0790e25c16fe93480803e7aa545a29"></h2>
 
------
------
 
 # 5 – The Auxiliary Library
 
@@ -411,14 +395,11 @@ xpcall(main,  __G__TRACKBACK__)
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
------
------
 
 # Misc
 
 <h2 id="63f5a0b12473a9e9f903d98796a34e28"></h2>
 
------
 
 ## Lua 多线程
 
@@ -429,7 +410,6 @@ xpcall(main,  __G__TRACKBACK__)
 
 <h2 id="7359c3eb5c57547295a76ac1bf775b29"></h2>
 
------
 
 ## GC
 

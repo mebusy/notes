@@ -31,14 +31,11 @@
 
 <h2 id="34d3b17eb545626b3da04f656b32dba5"></h2>
 
------
------
 
 ## OpenResty
 
 <h2 id="b10a8db164e0754105b7a99be72e3fe5"></h2>
 
------
 
 ### Hello World
 
@@ -56,7 +53,6 @@ location / {
 
 <h2 id="0e9ddb16cae12bbe4dc2ef1dee9a519a"></h2>
 
------
 
 ### 与其他 location 配合
 
@@ -69,7 +65,6 @@ location / {
 
 <h2 id="7e7169cfd1010b3a75a35c7035c9f49c"></h2>
 
------
 
 #### 内部调用 internal
 
@@ -105,7 +100,6 @@ location = /app/test {
 
 <h2 id="74c5b1f8490c21f2b3ef0d2078285193"></h2>
 
------
 
 #### 并行请求结果 capture_multi
 
@@ -126,7 +120,6 @@ location = /app/test_parallels {
 
 <h2 id="b9aa5c9bccf29ad02876bfb302515ddd"></h2>
 
------
 
 #### 流水线方式跳转 exec
 
@@ -152,7 +145,6 @@ location /download_internal {
 
 <h2 id="6204c6255e2094adcdb78a9304a12985"></h2>
 
------
 
 #### 外部重定向 redirect
 
@@ -183,13 +175,11 @@ location = / {
 
 <h2 id="6332af131d6935bf3d7818c230e932b4"></h2>
 
------
 
 ### 获取 uri 参数  
  
 <h2 id="8ad1878074c1c4d4922029f0801edd4c"></h2>
 
------
 
 #### 获取请求 uri 参数
 
@@ -229,7 +219,6 @@ curl --noproxy 127.0.0.1  '127.0.0.1:8080/print_param?a=1&b=2' -d 'c=3&d=4'
 
 <h2 id="131c02d5387e97c6a12a5d003d064608"></h2>
 
------
 
 #### 传递请求 uri 参数
 
@@ -255,7 +244,6 @@ location /test {
 
 <h2 id="501f0447592ecf46d66b8d0c33bfa998"></h2>
 
------
 
 ### 获取请求 body
 
@@ -316,7 +304,6 @@ location /test {
 
 <h2 id="9cdce21d64b3eda20ffd4a1d985a93e2"></h2>
 
------
 
 ### 输出响应体
 
@@ -336,7 +323,6 @@ HTTP响应报文分为三个部分：
 
 <h2 id="5a133c7df0632cdd9da980956e49341c"></h2>
 
------
 
 #### ngx.say 与 ngx.print 均为异步输出
 
@@ -379,7 +365,6 @@ location /test3 {
 
 <h2 id="01730ff5798a5ad9fd0470f2fd9a847e"></h2>
 
------
 
 #### 如何优雅处理响应体过大的输出
 
@@ -421,13 +406,11 @@ hello, world: true or false: nil
 
 <h2 id="d5cbc6b298e61668d9142904c323a565"></h2>
 
------
 
 ### 日志输出
 
 <h2 id="ae14caf007373643facb2990a75fc3d9"></h2>
 
------
 
 #### 标准日志输出
 
@@ -457,7 +440,6 @@ ngx.log(ngx.INFO, " string:" )
 
 <h2 id="5d35b34aac80d856a0a8800c9ad8c855"></h2>
 
------
 
 #### 网络日志输出
 
@@ -467,7 +449,6 @@ ngx.log(ngx.INFO, " string:" )
 
 <h2 id="e25752827350f8b953dbed96b1e2146b"></h2>
 
------
 
 ### 简单API Server框架
 
@@ -506,7 +487,6 @@ server {
 
 <h2 id="0fed4bfac6edad9599bbda093993abc2"></h2>
 
------
 
 ### 使用 Nginx 内置绑定变量
 
@@ -554,7 +534,6 @@ location /download {
 
 <h2 id="3b3ff6cfc8a6826438c02a8f663e35dc"></h2>
 
------
 
 ### 子查询 capture/capture_multi
 
@@ -623,7 +602,6 @@ location /blah {
 
 <h2 id="84e72e59fc559138e049799de3c59ada"></h2>
 
------
 
 ### 不同阶段共享变量 ngx.ctx
 
@@ -663,7 +641,6 @@ location /test {
 
 <h2 id="f96743151321aae02f6c3d2c0f24ca6d"></h2>
 
------
 
 ### 防止 SQL 注入
 
@@ -676,13 +653,11 @@ location /test {
 
 <h2 id="042d5977081f357a19a120018ae11d33"></h2>
 
------
 
 ### 如何发起新 HTTP 请求
 
 <h2 id="cf2ce2505b174e42b2adc163b2a615b1"></h2>
 
------
 
 #### 利用 proxy_pass
 
@@ -756,7 +731,6 @@ http {
 
 <h2 id="b888cd5bb81793b53547243438aa8df6"></h2>
 
------
 
 #### 利用 cosocket
 

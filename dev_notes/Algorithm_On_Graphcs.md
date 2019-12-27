@@ -37,20 +37,16 @@
 
 <h2 id="311ad33f7584ac17012490ce8852f7e8"></h2>
 
------
------
 
 # Algorithm On Graphs
 
 <h2 id="3c88e16de2066fa3ce3055a55a3e473b"></h2>
 
------
 
 ## Week1
 
 <h2 id="030495a245248ce0deed9c13f9576cd0"></h2>
 
------
 
 ### Representing Graphs
 
@@ -79,7 +75,6 @@ Adj. List | Θ(deg) | Θ(&#124;E&#124;) | Θ(deg)
 
 <h2 id="6d620d4a966ddb637a736ea4670b6782"></h2>
 
------
 
 ### Exploring Graphs
 
@@ -93,7 +88,6 @@ Adj. List | Θ(deg) | Θ(&#124;E&#124;) | Θ(deg)
 
 <h2 id="78f63ae6b311ad607db08a56dd79649a"></h2>
 
------
 
 #### Explore , starting from a Node
 
@@ -109,7 +103,6 @@ def Explore(v):
 
 <h2 id="c1bb62b63c65be3760b715faad0bdf8d"></h2>
 
------
 
 #### DFS
 
@@ -125,13 +118,11 @@ def DFS(G):
 
 <h2 id="9bd9d0ebc081bd74f5bef4e136bb1aed"></h2>
 
------
 
 ### Connectivity
 
 <h2 id="8a4d6dec35ad6f01d54531c509cf7d37"></h2>
 
------
 
 #### Connected Components
 
@@ -161,7 +152,6 @@ def DFS(G):
 
 <h2 id="cb7d104acd7ef78260476fb96e632beb"></h2>
 
------
 
 ### Previsit and Postvisit Orderings
 
@@ -172,7 +162,6 @@ def DFS(G):
 
 <h2 id="c190b4dd3a865a419b7d42ecdded4b14"></h2>
 
------
 
 #### Previsit and Postvisit Functions
 
@@ -218,13 +207,11 @@ def postvisit(v):
 
 <h2 id="687c054c8abba26ef7b123d19d29bee7"></h2>
 
------
 
 ## Week2 
 
 <h2 id="7a53b8f5717213d05b5a349b30218b27"></h2>
 
------
 
 ### Directed Acyclic Graphs
 
@@ -237,7 +224,6 @@ def postvisit(v):
 
 <h2 id="82842893b1046ac7ea43887a7d4c6c97"></h2>
 
------
 
 #### Directed DFS
 
@@ -248,7 +234,6 @@ def postvisit(v):
 
 <h2 id="d3240659659cbfa93d781d1510717a66"></h2>
 
------
 
 #### Cycles
 
@@ -260,7 +245,6 @@ def postvisit(v):
 
 <h2 id="1f979bae5ccfb6a193fde8d275355540"></h2>
 
------
 
 #### DAGs
 
@@ -271,7 +255,6 @@ def postvisit(v):
 
 <h2 id="3f9c4755d1b2c530f17ce3f80a0fb896"></h2>
 
------
 
 ### Topological Sort
 
@@ -286,7 +269,6 @@ def postvisit(v):
 
 <h2 id="2f1d4122555c30fa41c0390bd028ef60"></h2>
 
------
 
 #### Finding Sink
 
@@ -297,7 +279,6 @@ def postvisit(v):
 
 <h2 id="7325cfd5224854fdee2a8cd7f046a1f6"></h2>
 
------
 
 #### TopologicalSort Algorithm
 
@@ -310,7 +291,6 @@ TopologicalSort(G)
 
 <h2 id="670190ac033bf942d8013492dc8f8b0f"></h2>
 
------
 
 ### Strongly Connected Components
 
@@ -321,7 +301,6 @@ TopologicalSort(G)
 
 <h2 id="cd4755489eca8e682b00937d8e695b98"></h2>
 
------
 
 #### Metagraph
 
@@ -335,7 +314,6 @@ How to compute the strongly connected components of a graph. ?
 
 <h2 id="b3a7569c9a7d363bd55ee91cf45641f9"></h2>
 
------
 
 ### Computing Strongly Connected Components
 
@@ -345,7 +323,6 @@ How to compute the strongly connected components of a graph. ?
 
 <h2 id="80d29df79dc221a3cd1b8e554a6a3828"></h2>
 
------
 
 #### Sink Components
 
@@ -360,7 +337,6 @@ How to compute the strongly connected components of a graph. ?
 
 <h2 id="57c30fe3a2297ed1dfa107e753e2752e"></h2>
 
------
 
 #### Finding Sink Components
 
@@ -373,7 +349,6 @@ How to compute the strongly connected components of a graph. ?
 
 <h2 id="509d136ac9a437456bbe67dd6b003890"></h2>
 
------
 
 ##### Reverse Graph Components
 
@@ -386,7 +361,6 @@ How to compute the strongly connected components of a graph. ?
 
 <h2 id="4afa80e77a07f7488ce4d1bdd8c4977a"></h2>
 
------
 
 #### Algorithm
 
@@ -407,19 +381,16 @@ def SCCs(G):
 
 <h2 id="81f77ede3fa5efdc0417b37ade6871a6"></h2>
 
------
 
 ## Week4 Fastest Route 
 
 <h2 id="b7d8dac92149c1cdc7a8e81befdfb08b"></h2>
 
------
 
 ### Naive Algorithm
 
 <h2 id="57942cdc67d1172d4aff18d81651ba69"></h2>
 
------
 
 ####  Optimal substructure
 
@@ -437,7 +408,6 @@ def SCCs(G):
 
 <h2 id="f1800f07c216d493e8e9ff2761ccfc33"></h2>
 
------
 
 #### Edge relaxation
 
@@ -459,7 +429,6 @@ def Relax((u, v) ∈ E):
 
 <h2 id="cc6cc606f58f43f4ddfafcf6043ba8ce"></h2>
 
------
 
 #### Naive approach
 
@@ -476,7 +445,6 @@ def Naive(G, S):
 
 <h2 id="b34e2384a9cd203b59f2660349fdb5fe"></h2>
 
------
 
 #### Correct distances
 

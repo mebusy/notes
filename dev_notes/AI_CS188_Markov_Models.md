@@ -15,15 +15,12 @@
 
 <h2 id="d656a155bed68a7dec83cd56ff973bbc"></h2>
 
------
------
 
 # Markov Models
 
 
 <h2 id="d656a155bed68a7dec83cd56ff973bbc"></h2>
 
------
 
 ## Markov Models
 
@@ -42,7 +39,6 @@ Markov model means sequence of random variables.
     
 <h2 id="2549029b268b93144235df84effeb97d"></h2>
 
------
 
 ### Joint Distribution of a Markov Model
 
@@ -59,7 +55,6 @@ This case let's look at just 4 variables.
 
 <h2 id="1584c0069936b81fd7e2d00d4dc7186a"></h2>
 
------
 
 ### Chain Rule and Markov Models
 
@@ -80,7 +75,6 @@ This case let's look at just 4 variables.
 
 <h2 id="5627b13e1756dc92c82a9b3998e04960"></h2>
 
------
 
 ### Implied Conditional Independencies 
 
@@ -96,7 +90,6 @@ This case let's look at just 4 variables.
 
 <h2 id="a3e9d92d013e8bd559c093cbca5a7684"></h2>
 
------
 
 ### Example Markov Chain : Weather
 
@@ -129,7 +122,6 @@ P(X₂=sun) = P(X₂=sun,X₁=sun) + P(X₂=sun,X₁=rain)
 
 <h2 id="cd0df25e7ecc8f5591d125ef5318fae1"></h2>
 
------
 
 ### Mini-Forward Algorithm
 
@@ -139,7 +131,6 @@ P(X₂=sun) = P(X₂=sun,X₁=sun) + P(X₂=sun,X₁=rain)
 
 <h2 id="cff3dc4ffa629a6c5051471a4665a6c7"></h2>
 
------
 
 ### Stationary Distributions
 
@@ -180,7 +171,6 @@ Diagonal Matrix
 
 <h2 id="485984b095c6416cdcac20510c1c3a37"></h2>
 
------
 
 ## Application of Stationary Distribution: Web Link Analysis
 

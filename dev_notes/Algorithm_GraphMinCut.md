@@ -24,20 +24,16 @@
 
 <h2 id="8838f183aef5848250de4897b5cca27d"></h2>
 
------
------
 
 # Graphs Minimum Cut
 
 <h2 id="b1f975d5e57f73d265bd450020825183"></h2>
 
------
 
 ## Graphs
 
 <h2 id="b1f975d5e57f73d265bd450020825183"></h2>
 
------
 
 #### Graphs
 
@@ -50,7 +46,6 @@
 
 <h2 id="700ca7a84453fe2e2cd6e86cf3487952"></h2>
 
------
 
 #### Cuts of Graphs
 
@@ -75,7 +70,6 @@ The `crossing edges` of a cut(A,B) are those with :
 
 <h2 id="d359711b4a2711f1b5bd1cb2df9bd593"></h2>
 
------
 
 #### The Minimum Cut Problem
 
@@ -91,7 +85,6 @@ The `crossing edges` of a cut(A,B) are those with :
 
 <h2 id="ee3677876ffa61d1f94bf3105ebd5d59"></h2>
 
------
 
 ## Graph Representations
 
@@ -103,7 +96,6 @@ The `crossing edges` of a cut(A,B) are those with :
 
 <h2 id="ca053e50fb190468ef7a4495ab1bb8f1"></h2>
 
------
 
 #### Sparse vs. Dense Graphs 稀疏图和密集图
 
@@ -115,7 +107,6 @@ let n= #vertices , m= #edges , in most applications, `m=Ω(n) and O(n²)`.
 
 <h2 id="2f61bb87d28860c4fceb6823a19da296"></h2>
 
------
 
 #### The Adjacency Matrix 邻接矩阵
 
@@ -131,7 +122,6 @@ let n= #vertices , m= #edges , in most applications, `m=Ω(n) and O(n²)`.
  
 <h2 id="517f0edec32111fbc09b2c24bf45f5c4"></h2>
 
------
 
 #### Adjacency lists 邻接表
 
@@ -149,7 +139,6 @@ let n= #vertices , m= #edges , in most applications, `m=Ω(n) and O(n²)`.
 
 <h2 id="a52b9c1fd3cd8a0714384ab857ce49af"></h2>
 
------
 
 ## Random Contraction Algorithm
 
@@ -194,7 +183,6 @@ Goal: compute F 不在n-2次迭代中被选中的概率:  `Pr[ ¬S₁ ∩ ¬S₂
 
 <h2 id="c7a2f8ded128a3b4a7eca35d3c385c3c"></h2>
 
------
 
 #### The 1st Iteraction 
 
@@ -214,7 +202,6 @@ Goal: compute F 不在n-2次迭代中被选中的概率:  `Pr[ ¬S₁ ∩ ¬S₂
 
 <h2 id="fa01fad0da49c075b1a21923eb3620ed"></h2>
 
------
 
 #### The 2nd Iteraction 
 
@@ -232,7 +219,6 @@ Pr[ ¬S₁ | ¬S₂ ] = 1- k/#remainingEdges
 
 <h2 id="9de9247d481b4d611a7395f06f775b26"></h2>
 
------
 
 #### All Iterations
 
@@ -254,7 +240,6 @@ Pr[ ¬S₁ ∩ ¬S₂ ∩ ... ∩ ¬Sｎ-₂ ]
 
 <h2 id="f67eb7963d3bac1762a11b0c4ce1e2d5"></h2>
 
------
 
 #### Repeated Trials
 
@@ -279,7 +264,6 @@ polynomiol in n and m, very slow.  算法最大的优势在于处理逻辑简单
 
 <h2 id="7b0a4c5a471508b8553bba5a86c2709b"></h2>
 
------
 
 ## The Number of Minimum Cuts
 

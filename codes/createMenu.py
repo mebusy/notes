@@ -89,7 +89,7 @@ def createMenu4MD( path ):
             nIndent = sorted(all_title_level).index( curTitleActualLevel ) 
             menu +=   ( '%s - [%s](#%s)' % ( '    ' * nIndent  , escaped_title ,  id  ) )  +  '\n'
 
-            body += '<h2 id="{}"></h2>\n\n{}\n'.format(  id , ( PARAGRAPH_SEP + "\n" ) * ( max( 1, 2 - nIndent  )  )  )
+            body += '<h2 id="{}"></h2>\n\n\n'.format(  id )
             #print sharps, title
 
         isJumpIDLine = re.search( RE_PATTERN_MENU_JUMP_ID , line  ) is not None 

@@ -37,8 +37,6 @@
 
 <h2 id="ee4f3cb275cef5c1d82ace8d34788594"></h2>
 
------
------
 
 # Introduction to WebGL
 
@@ -54,7 +52,6 @@
 
 <h2 id="9a3040db06e663f46ca7269b3df96da5"></h2>
 
------
 
 ## Section 1: The Programmable Pipeline
 
@@ -80,7 +77,6 @@
 
 <h2 id="4d00c423ae698f2f9609d15a3d6df978"></h2>
 
------
 
 ### 6.1.1  The WebGL Graphics Context
 
@@ -127,7 +123,6 @@ function init() {
 
 <h2 id="4f31b4e489e41f45a443c8b31846a270"></h2>
 
------
 
 ### 6.1.2  The Shader Program
 
@@ -220,7 +215,6 @@ gl.useProgram( prog );
 
 <h2 id="c754edff11c3f2393931f78827b9b007"></h2>
 
------
 
 ### 6.1.3  Data Flow in the Pipeline
 
@@ -296,7 +290,6 @@ Texture coordinates | |
 
 <h2 id="339ce22e55c69e7bbd8951f6e94a8586"></h2>
 
------
 
 ### 6.1.4  Values for Uniform Variables
 
@@ -319,7 +312,6 @@ gl.uniform3fv( colorUniformLoc, [ 1, 0, 0 ] );
 
 <h2 id="969dcaf673eeb3055c02e146d2f2900b"></h2>
 
------
 
 ### 6.1.5  Values for Attributes
 
@@ -400,7 +392,6 @@ gl.bufferData( gl.ARRAY_BUFFER, colorArray, gl.STATIC_DRAW );
 
 <h2 id="82e825f128e1b88315c25d161f2545b0"></h2>
 
------
 
 ### 6.1.6  Drawing a Primitive
 
@@ -424,12 +415,10 @@ gl.drawArrays( primitiveType, startVertex, vertexCount );
 
 <h2 id="e305dfdab0e4cefbd5abea8eacc9c474"></h2>
 
------
 
 ## Section 2: First Examples
 <h2 id="5e0d0bff36be794f36cc415a1e028547"></h2>
 
------
 
 ### 6.2.1  WebGL Context Options
 
@@ -453,7 +442,6 @@ preserveDrawingBuffer | determines whether the contents of the drawing buffer ar
 
 <h2 id="d63aad2971a949abb24017d785d3e556"></h2>
 
------
 
 ### 6.2.2  A Bit of GLSL
 
@@ -505,7 +493,6 @@ void main() {
 
 <h2 id="38fef0ba8c35f28806306b0d69e6c5bc"></h2>
 
------
 
 ### 6.2.3  The RGB Triangle in WebGL
 
@@ -517,7 +504,6 @@ gl.drawArrays(gl.TRIANGLES, 0, 3);
 
 <h2 id="7dffb95bc8a6bfd9db5183c3517eea68"></h2>
 
------
 
 ### 6.2.4  Shape Stamper
 
@@ -557,7 +543,6 @@ gl.drawArrays(gl.TRIANGLE_FAN, 0, coords.length/2);
 
 <h2 id="bc62a575ed06ffa63f83404cd634f185"></h2>
 
------
 
 ### 6.2.5  The POINTS Primitive
 
@@ -578,7 +563,6 @@ if ( distanceFromCenter >= 0.5 ) {
 
 <h2 id="23dc2ee7e7acb2d786129dac0715532b"></h2>
 
------
 
 ### 6.2.6  WebGL Error Handling
 
@@ -596,13 +580,11 @@ console.log("Error code is " + gl.getError());
 
 <h2 id="512cc0d7b47100675a0c220edf55385a"></h2>
 
------
 
 ## Section 3: GLSL
 
 <h2 id="fbcf3140c912e0a15fb7ec4568cbf3f8"></h2>
 
------
 
 ### 6.3.1  Basic Types
 
@@ -642,7 +624,6 @@ mat3 m2 = mat3( v, v, v );
 
 <h2 id="5e7530b217e8c91ffd8ab502a52c44e7"></h2>
 
------
 
 ### 6.3.2  Data Structures
 
@@ -677,7 +658,6 @@ LightProperties lights[3];
 
 <h2 id="1158fb2909c793117311e2209b2acb70"></h2>
 
------
 
 ### 6.3.3  Qualifiers
 
@@ -788,7 +768,6 @@ uniform mediump vec3 colors[3];
 
 <h2 id="d0d926da814b0f4539d15dcf916330c3"></h2>
 
------
 
 ### 6.3.4  Expressions
 
@@ -830,7 +809,6 @@ Assignment | `=, +=, −=, *=, and /=`
 
 <h2 id="acb12deb98c52a48ea4cf634f0073438"></h2>
 
------
 
 ### 6.3.5  Function Definitions
 
@@ -864,7 +842,6 @@ float arraySum10( float A[10] ) {
 
 <h2 id="48d48d924bdea1d592bee65254d3dfcb"></h2>
 
------
 
 ### 6.3.6  Control Structures
 
@@ -885,7 +862,6 @@ for (int k = 10; k != 0; k -= 1)
 
 <h2 id="23051d206852e00db9e3b630f217b448"></h2>
 
------
 
 ### 6.3.7  Limits
 
@@ -914,7 +890,6 @@ gl_MaxCombinedTextureImageUnits >= 8; // total limit for both shaders
 
 <h2 id="1f7b297214b84adbccdc248c8f3a7c4e"></h2>
 
------
 
 ## Section 4: Image Textures
 
@@ -922,7 +897,6 @@ gl_MaxCombinedTextureImageUnits >= 8; // total limit for both shaders
 
 <h2 id="f5449a0a00f863c2c33f2ffc79920aa0"></h2>
 
------
 
 ### 6.4.1  Texture Units and Texture Objects
 
@@ -989,7 +963,6 @@ gl.bindTexture( gl.TEXTURE_2D, textureObj );
 
 <h2 id="13ed5060549b7511d13507e17ee29faa"></h2>
 
------
 
 ### 6.4.2  Working with Images
 
@@ -1119,7 +1092,6 @@ gl.pixelStorei( gl.UNPACK_FLIP_Y_WEBGL, 1 );
 
 <h2 id="d679e2eade5d6d17970f2d1dd1911954"></h2>
 
------
 
 ### 6.4.3  More Ways to Make Textures
 
@@ -1151,7 +1123,6 @@ gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 16, 16,
 
 <h2 id="25f1ec59a0dbc8e8aa41a4cc98afcad5"></h2>
 
------
 
 ### 6.4.4  Cubemap Texture TODO
 
@@ -1165,13 +1136,11 @@ http://math.hws.edu/graphicsbook/c6/s4.html
 
 <h2 id="6f0ba384aa3b845de4898ddb899a037c"></h2>
 
------
 
 ## Section 5: Implementing 2D Transforms
 
 <h2 id="a2489f92cd1f40db80144b8eb8e77d93"></h2>
 
------
 
 ### 6.5.1  Transforms in GLSL
 
@@ -1204,7 +1173,6 @@ void main() {
 
 <h2 id="3b0649c72650c313a357338dcdfb64ec"></h2>
 
------
 
 ## Note 
 

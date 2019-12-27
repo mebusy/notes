@@ -28,8 +28,6 @@ http://scipy-lectures.github.io/index.html
 
 <h2 id="61f0c3c78cb774f4522759cb5b766e48"></h2>
 
------
------
 
 ### 3.5.1 加载一个数据集
 
@@ -92,8 +90,6 @@ data = digits.images.reshape((digits.images.shape[0], -1))
 
 <h2 id="9042e2951924403f2563670df6a5907a"></h2>
 
------
------
 
 ### 3.5.1.1 学习和预测
 
@@ -125,14 +121,11 @@ array([[ 0.18423466,  0.45122537, -0.80794548, -0.45071632],
 ======================================
 <h2 id="c5e9f6f031f38c79c84a12648b17e5bc"></h2>
 
------
------
 
 ### 3.5.2. 分类 Classification
 
 <h2 id="a928bb9b5283c675ea5b0d403fa28ce6"></h2>
 
------
 
 #### 3.5.2.1. k-Nearest neighbors classifierK 最近邻(KNN)分类器
 
@@ -154,7 +147,6 @@ array([0])
 
 <h2 id="6b142be1538abf7c9b27eceb24a31693"></h2>
 
------
 
 #### 训练集和测试集
 当验证学习算法时，不要用一个用来拟合估计器的数据来验证估计器的预测非常重要。
@@ -178,7 +170,6 @@ KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
 
 <h2 id="7608de9c0b5c2ef3728f6a862c34be93"></h2>
 
------
 
 #### 3.5.2.2 支持向量机（SVM）进行分类
 
@@ -189,7 +180,6 @@ SVM的主要思想可以概括为两点：
 
 <h2 id="21368cab7e6be750f6930f26872bdd34"></h2>
 
------
 
 #### 线性支持向量机
 
@@ -214,7 +204,6 @@ scikit-learn中有好几种支持向量机实现。
 
 <h2 id="30e6dc519b02a1c9361c44a4e728aa7d"></h2>
 
------
 
 #### 3.5.2.2.2. Using kernels 使用内核
 
@@ -249,8 +238,6 @@ PS.前两个对数字数据集有更好的预测性能
 
 <h2 id="df7233c170cd11b783e36cd881fe5f88"></h2>
 
------
------
 
 ### 3.5.3. 聚类 Clustering ：将观测值分组
 
@@ -259,7 +246,6 @@ PS.前两个对数字数据集有更好的预测性能
 
 <h2 id="4fcb97c71c13c4ea699fc9e733ed6b41"></h2>
 
------
 
 #### 3.5.3.1  k均值聚类 K-means clustering 
 
@@ -295,7 +281,6 @@ array([0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2])
 
 <h2 id="b6716bcc1f4eef556f17e78ffdcc6da2"></h2>
 
------
 
 #### 应用到图像压缩
 
@@ -346,8 +331,6 @@ plt.show()
 
 <h2 id="0613c6a0178e373ecd734f761709b23d"></h2>
 
------
------
 
 ### 3.5.4. 用主成分分析(Principal Component Analysis)来降维
 
@@ -384,8 +367,6 @@ PCA不仅在可视化高维数据集时非常有用。
 
 <h2 id="845933fcaeb6332543e41cb01e51c792"></h2>
 
------
------
 
 ### 3.5.5。全部放在一起：人脸识别
 
@@ -435,8 +416,6 @@ for i in range(10):
 
 <h2 id="07bc8d8f0c7abc03e7873690065e2bfd"></h2>
 
------
------
 
 ### 3.5.6 线性模型：从回归稀疏
 
@@ -456,7 +435,6 @@ diabetes_y_test  = diabetes.target[-20:]
 
 <h2 id="8db4f290d806d5df45b60a1a83cddd4b"></h2>
 
------
 
 #### 稀疏模型
 
@@ -484,7 +462,6 @@ lin.score(diabetes_X_test, diabetes_y_test)
 
 <h2 id="137b0c419cd6ce6b57e7320eb41b5735"></h2>
 
------
 
 #### 同一问题的不同算法
 
@@ -492,20 +469,16 @@ lin.score(diabetes_X_test, diabetes_y_test)
 
 <h2 id="130526ec2eb670f8b6aef37b9efe2535"></h2>
 
------
------
 
 ###3.5.7。型号选择：选择估值器及其参数
 
 <h2 id="bcf64e07398790bedec0c72f9f2e7c0b"></h2>
 
------
 
 #### 3.5.7.1。网格搜索和交叉验证估计
 
 <h2 id="bad9c05bf8d2f051d7ad419947e10e2b"></h2>
 
------
 
 #### 3.5.7.1.1 网格搜索
 
@@ -530,7 +503,6 @@ GridSearchCV默认使用三次(3-fold)交叉验证。如果它探测到一个分
 
 <h2 id="0ad88aee957ce82d156a5b067bc31e61"></h2>
 
------
 
 #### 3.5.7.1.2。交叉验证估计器
 

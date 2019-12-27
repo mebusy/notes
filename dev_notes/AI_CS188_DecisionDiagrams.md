@@ -20,14 +20,11 @@
 
 <h2 id="bcce11f51a8ba9f718e13496df69ff75"></h2>
 
------
------
 
 # Decision Diagrams / Value of Perfect Information
 
 <h2 id="4110b017c078c49b44248d46eddf6146"></h2>
 
------
 
 ## Decision Networks
 
@@ -83,7 +80,6 @@ So how do you select an action ?
 
 <h2 id="ecaa6de7751a679c6478caccd8dd7a12"></h2>
 
------
 
 ### Simple Example 
 
@@ -129,7 +125,6 @@ We listened to the forecast and the forecast is bad.
 
 <h2 id="a457e316cc82b392c5e0160e69e95ab0"></h2>
 
------
 
 ### Ghostbusters Decision Network
 
@@ -146,7 +141,6 @@ We listened to the forecast and the forecast is bad.
 
 <h2 id="b2d66baefeea18631d1b722cc43aaba2"></h2>
 
------
 
 ## Value of Information
 
@@ -182,7 +176,6 @@ You have these sensors, how much would you be willing to pay to get an access to
 
 <h2 id="6b03d15ebadf245e2baef29c08855d20"></h2>
 
------
 
 ### VPI Example: Weather
 
@@ -208,7 +201,6 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 <h2 id="260873a6e0aea26253ac70a3ed980cd0"></h2>
 
------
 
 ## Value of Information Cont.
 
@@ -241,7 +233,6 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 <h2 id="8d5bce627e9558ab88dbe1e4a4657365"></h2>
 
------
 
 ## VPI Properties
 
@@ -264,7 +255,6 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 <h2 id="910d92a2d65cc89a6ef483dd86990ade"></h2>
 
------
 
 ## Quick VPI Questions
 
@@ -277,7 +267,6 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 <h2 id="d4bc3ccdbc840b465ba352eb224292e4"></h2>
 
------
 
 ## Value of Imperfect Information?
 
@@ -291,7 +280,6 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 <h2 id="dd719415208cb58777d2b82621b8ad0b"></h2>
 
------
 
 ## VPI Question
 
@@ -324,7 +312,6 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 <h2 id="c5d83905dcd5413dcd5f7fbc5f944126"></h2>
 
------
 
 ## POMDPs
 
@@ -355,7 +342,6 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 <h2 id="dfd2620b95a7eff322bbdc48f2efa51a"></h2>
 
------
 
 ### Example: Ghostbusters
 
@@ -380,7 +366,6 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
  
 <h2 id="2bc124c39197760014dd5558b073785b"></h2>
 
------
 
 ## More Generally
 

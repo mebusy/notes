@@ -23,26 +23,21 @@
 
 <h2 id="d1c54b84242e47f19f87c6482d86b347"></h2>
 
------
------
 
 # 9 Taking your applications to the cloud
 
 <h2 id="722dd4a8225fec63838397a1e8ba207c"></h2>
 
------
 
 ## 9.3 Running on cloud servers
 
 <h2 id="de29fefdb9208a13a7236e3f64dda169"></h2>
 
------
 
 ### 9.3.1 Performing runtime detection
 
 <h2 id="523b30db1ce05d9b8780caa7538b4d95"></h2>
 
------
 
 #### TECHNIQUE 58 Gathering information on the host
 
@@ -82,7 +77,6 @@ func main() {
 
 <h2 id="28b83a853afe9e4eb77ff363948c13e2"></h2>
 
------
 
 #### TECHNIQUE 59 Detecting dependencies
 
@@ -113,13 +107,11 @@ func checkDep(name string) error {
 
 <h2 id="779ab6eebba31d416bb98e7c1a7c7bbb"></h2>
 
------
 
 ### 9.3.2 Building for the cloud
 
 <h2 id="0ecbf8661f18cd43d5a37a5387b78338"></h2>
 
------
 
 ####  TECHNIQUE 60 Cross-compiling
 
@@ -143,13 +135,11 @@ $ gox \
 
 <h2 id="6b1dcbf228ab822cc2300ce214a5c0d1"></h2>
 
------
 
 ### 9.3.3 Performing runtime monitoring
 
 <h2 id="55a5d506b71cfaed0b4a6a2de2c70870"></h2>
 
------
 
 #### TECHNIQUE 61 Monitoring the Go runtime
 
@@ -185,8 +175,6 @@ func monitorRuntime() {
 
 <h2 id="6e82ecdb480e38d4c1507234f48fcca5"></h2>
 
------
------
 
 # 10 Communication between cloud services
 
@@ -197,7 +185,6 @@ func monitorRuntime() {
 
 <h2 id="f85f828e97ebd8b490a68bb2c57b060d"></h2>
 
------
 
 ## 10.2 Communicating between services
 
@@ -205,13 +192,11 @@ func monitorRuntime() {
 
 <h2 id="36cf47bc343116e82448b9ff8c7de4b8"></h2>
 
------
 
 ### 10.2.1 Making REST faster
 
 <h2 id="e3ed230aa10632ff0809c4857dfb430a"></h2>
 
------
 
 #### TECHNIQUE 62 Reusing connections
 
@@ -315,7 +300,6 @@ if err != nil {
 
 <h2 id="0f692d034f145bcf50b4d730ae829ad1"></h2>
 
------
 
 #### TECHNIQUE 63 Faster JSON marshal and unmarshal
 
@@ -399,13 +383,11 @@ fmt.Println(u2)
 
 <h2 id="78beaa31ae8968d176dcb56d425cf05b"></h2>
 
------
 
 ### 10.2.2 Moving beyond REST
 
 <h2 id="b044a1bb14a386f83f90d29a5f7bef5b"></h2>
 
------
 
 ####  TECHNIQUE 64 Using protocol buffers (TODO)
     
@@ -413,7 +395,6 @@ fmt.Println(u2)
 
 <h2 id="ba0a5026d7b0a528526dd0e7c6af1c61"></h2>
 
------
 
 ####  TECHNIQUE 65 Communicating over RPC with protocol buffers (TODO)
 

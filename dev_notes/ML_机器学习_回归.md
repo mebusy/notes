@@ -30,14 +30,11 @@
 
 <h2 id="d4e059aa2dea728bb16aad610c76b642"></h2>
 
------
------
 
 # 机器学习分类
 
 <h2 id="10a375ced8a7b4d85a46fd5fea03babf"></h2>
 
------
 
 ## 监督学习 `Supervised Learning`
 
@@ -50,7 +47,6 @@
 
 <h2 id="5580d4c479d2fd9f43643920ab5db437"></h2>
 
------
 
 ### 回归问题 `Regression`
 
@@ -58,7 +54,6 @@ Predict continuous valued output(price)
 
 <h2 id="891399f7f59a9b55867ee9ed58dbcb3a"></h2>
 
------
 
 ### 分类  `Classification`
 
@@ -67,7 +62,6 @@ Discrete valued output ( example : 0 or 1  ...)
 
 <h2 id="b1f41e6e708ea0f5ba77a3ee23c0ee3b"></h2>
 
------
 
 ## 非监督学习 `UnSupervised Learning`
 
@@ -75,7 +69,6 @@ Discrete valued output ( example : 0 or 1  ...)
 
 <h2 id="9e07946239dc75499748432fa69e45f4"></h2>
 
------
 
 ### 聚类  cluster
 
@@ -83,7 +76,6 @@ Discrete valued output ( example : 0 or 1  ...)
 
 <h2 id="efa057fca7ef3a0aac89009080529218"></h2>
 
------
 
 ### 密度估计
 
@@ -91,7 +83,6 @@ Discrete valued output ( example : 0 or 1  ...)
 
 <h2 id="2b63798c9081daaef0832436fd5a1bff"></h2>
 
------
 
 ### 降维
 
@@ -101,14 +92,11 @@ Discrete valued output ( example : 0 or 1  ...)
 
 <h2 id="ab6786cf3acaeffdf623edec73b6d1ef"></h2>
 
------
------
 
 # 线性回归 `Linear Regression`
 
 <h2 id="5f21a31b8f74cb7e4f1adecc5b851abf"></h2>
 
------
 
 ## Linear Regression with One Variable
 
@@ -143,7 +131,6 @@ h 是 预测算法
 
 <h2 id="e879d2c8a1317ed87a8589fe2371aae2"></h2>
 
------
 
 ## Parameter learning
 
@@ -152,7 +139,6 @@ h 是 预测算法
 
 <h2 id="7362d93eab8fbf6fb87d1e3d8e0b4bde"></h2>
 
------
 
 ### 1. 梯度下降算法 Gradient descent
 
@@ -214,7 +200,6 @@ repeate until convergence  { //直到收敛
  
 <h2 id="72f55bb74fdea14f443df16fc11b9a02"></h2>
 
------
 
 ### 2. 最小二乘法
 
@@ -245,7 +230,6 @@ repeate until convergence  { //直到收敛
 
 <h2 id="55bd5da2a0ef54a34e52ba27730e93fb"></h2>
 
------
 
 ## 多元线性回归 Multivariate Linear Regression
 
@@ -279,7 +263,6 @@ h(x)= θᵀX   (行 x 列)
 
 <h2 id="4a63c3d4868fde8ac5c68fa2e2c67f97"></h2>
 
------
 
 ### 多元梯度下降
 
@@ -292,13 +275,11 @@ h(x)= θᵀX   (行 x 列)
 
 <h2 id="f5af984ffbb3c8884d16e2dccc7064f1"></h2>
 
------
 
 ## 梯度下降中的实用方法 
 
 <h2 id="d97c1b98b57da53358e25cc58c5004f9"></h2>
 
------
 
 ### 1: 特征缩放 `feature scale`
 
@@ -329,7 +310,6 @@ h(x)= θᵀX   (行 x 列)
 
 <h2 id="8c90aad13faf855714e23eca1f6054f2"></h2>
 
------
 
 ### 2. 均值归一化  Mean normalization
 
@@ -355,7 +335,6 @@ x = (feature-value - avg ) / range
 
 <h2 id="67aae18504608dd415e0474604df6822"></h2>
 
------
 
 ### 3. 确保算法正确工作
 
@@ -365,7 +344,6 @@ x = (feature-value - avg ) / range
 
 <h2 id="bf2fcf96476b592ec97ec644b4fdd854"></h2>
 
------
 
 ### 4. `α`的选择
 
@@ -374,7 +352,6 @@ x = (feature-value - avg ) / range
 
 <h2 id="b1505ac0c1809ef54996c36249ac3b2d"></h2>
 
------
 
 ## 特征的选择
 
@@ -392,7 +369,6 @@ h(x)= θ₀ + θ₁ area
 
 <h2 id="e305d31c6b4117d97bf94a78f95187ee"></h2>
 
------
 
 ## 多项式回归 Polynomial regression
 
@@ -436,8 +412,6 @@ h(x)= θ₀x₀ + θ₁x₁ + θ₂√x₂  // 不会出现下降
 
 <h2 id="32657d9928f53ceeadbcd4af4e8eb664"></h2>
 
------
------
 
 # 线性回归一般流程
 
@@ -609,7 +583,6 @@ plot(theta(1), theta(2), 'rx', 'MarkerSize', 10, 'LineWidth', 2);
 
 <h2 id="904ecae43db6d1d30f2e51afe79291ca"></h2>
 
------
 
 ##### feature normalize
 

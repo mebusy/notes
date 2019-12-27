@@ -20,14 +20,11 @@
 
 <h2 id="78b2b08ad01c22c1f14bc8819c10dd29"></h2>
 
------
------
 
 # Unity Prefab 研究
 
 <h2 id="6d709c5dbee8c6e1d4833e35ea5ed9a3"></h2>
 
------
 
 ## 空 prefab
 
@@ -50,7 +47,6 @@ Prefab:
 
 <h2 id="e386fc72a64bbb6f28f320bfcc082f2a"></h2>
 
------
 
 ## 空 prefab, 添加一个 game object
 
@@ -82,7 +78,6 @@ Prefab:
 
 <h2 id="35ca7ecc7d43115b34d96761e3a112d7"></h2>
 
------
 
 ## prefab 上挂载一个空脚本后
 
@@ -99,7 +94,6 @@ Prefab:
 
 <h2 id="8e11a01ecccc92c779ea4236c659dacf"></h2>
 
------
 
 ## 脚本增加一个 public int aaa
 
@@ -107,7 +101,6 @@ Prefab:
 
 <h2 id="d7521ff8314459d28ef10fa96c59e054"></h2>
 
------
 
 ###  prefab 修改 aaa 属性的值
 
@@ -133,7 +126,6 @@ MonoBehaviour:
 
 <h2 id="94720a7b28fb47e9d387e0e3182ce839"></h2>
 
------
 
 ## 脚本添加 public GameObject bbb
 
@@ -142,7 +134,6 @@ MonoBehaviour:
 
 <h2 id="b4236c8d3afa787bc275008053008471"></h2>
 
------
 
 ## bbb 挂载 prefab 自身
 
@@ -172,7 +163,6 @@ Prefab 中:
 
 <h2 id="6631c7ed396f518c2bfa5571fe54398b"></h2>
 
------
 
 ## 继续添加脚本 public GameObject[] ccc ;
 
@@ -199,7 +189,6 @@ Prefab: 也增加了 , 纪录 ccc size 的信息
 
 <h2 id="4e88c150f945c68cc53c3796fdc3c04e"></h2>
 
------
 
 ## 给 ccc[0] ， 挂载 prefab 自身后
 
@@ -222,7 +211,6 @@ Prefab: 增加了 ：
 
 <h2 id="d26305a20f7a0ecc5633081925662694"></h2>
 
------
 
 ### ccc size 设回0 
 
@@ -256,7 +244,6 @@ prefab中：
 
 <h2 id="580d91660f00d6322bd42b9483f32333"></h2>
 
------
 
 ## 修改 ccc size 为 5
 
@@ -283,7 +270,6 @@ Prefab:
 
 <h2 id="bc66081dee086ba862581d22f6a78bfb"></h2>
 
------
 
 ## 脚本中，删除 public int aaa;
 
@@ -292,7 +278,6 @@ prefab 不发生变化，仅当 prefab 中的任意 property 发生变化，并�
 
 <h2 id="5db9fd7c5a5554033a1f4bb7e6d86e7e"></h2>
 
------
 
 ## 小结
 

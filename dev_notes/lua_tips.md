@@ -26,14 +26,11 @@
 
 <h2 id="cdff923ceb0686b15a9e6a7646ce39a5"></h2>
 
------
------
 
 # Lua Tips
 
 <h2 id="124860a10068c39b324d96ce2ff9e594"></h2>
 
------
 
 ## luajit 优化清单
 
@@ -42,7 +39,6 @@
 
 <h2 id="03849b48cc42973dbda2c89ebdc1ff53"></h2>
 
------
 
 ## android close luajit
 
@@ -55,7 +51,6 @@
 
 <h2 id="198420b0c9c9176d55de8c58dcf4ccc8"></h2>
 
------
 
 ## GC setting
 
@@ -72,7 +67,6 @@ collectgarbage()
 
 <h2 id="7ecf64cd7995ca180352c318105b1856"></h2>
 
------
 
 ## random init
 
@@ -82,7 +76,6 @@ math.randomseed(os.time())
 
 <h2 id="9741c873c3c8e2fd5d43335abc57499b"></h2>
 
------
 
 ## lua module
 
@@ -104,7 +97,6 @@ module( "MODULE_NAME" , package.seeall )
 
 <h2 id="a2f2ed4f8ebc2cbb4c21a29dc40ab61d"></h2>
 
------
 
 ## class
 
@@ -119,7 +111,6 @@ cBall = P
 
 <h2 id="c3641e56a8060f791a11698de3839a0f"></h2>
 
------
 
 ## save / load 
 
@@ -189,7 +180,6 @@ return cGameSave
 
 <h2 id="7751b8d5fe7cb21e5515f6330b3ad09b"></h2>
 
------
 
 ## iOS ffi 
 
@@ -197,7 +187,6 @@ return cGameSave
 
 <h2 id="1bc29b36f623ba82aaf6724fd3b16718"></h2>
 
------
 
 ## md5
 
@@ -208,7 +197,6 @@ return cGameSave
 
 <h2 id="95a1446a7120e4af5c0c8878abb7e6d2"></h2>
 
------
 
 ## base64
 
@@ -220,7 +208,6 @@ return cGameSave
 
 <h2 id="ce509be573ac98e87743ae5e3ba37d52"></h2>
 
------
 
 ## des56
 
@@ -236,7 +223,6 @@ return cGameSave
 
 <h2 id="466deec76ecdf5fca6d38571f6324d54"></h2>
 
------
 
 ## json
 
@@ -249,7 +235,6 @@ return cGameSave
 
 <h2 id="13191226ee63cce3f5a2ef675051c00e"></h2>
 
------
 
 ## not cache module
 
@@ -264,7 +249,6 @@ end
 
 <h2 id="aa10c42754e7263b5a85b332598e98b7"></h2>
 
------
 
 ## Luasocket
 
@@ -368,7 +352,6 @@ end
 
 <h2 id="772edb00955646c4775cfeae8610fb55"></h2>
 
------
 
 ## lua-curl
 
@@ -419,7 +402,6 @@ c:perform()
 
 <h2 id="52d1c0a8e0957b2df01bb1ae04d48fad"></h2>
 
------
 
 ## c access lua  Global  variable
 
@@ -436,7 +418,6 @@ c:perform()
 
 <h2 id="4f32e37b3035e200ef8423edee6f5402"></h2>
 
------
 
 ## UTC_ISO_8601totime
 
@@ -449,7 +430,6 @@ end
 
 <h2 id="544369429982c1f0dbf82a4b37ca3663"></h2>
 
------
 
 ## get time zone 
 
@@ -460,7 +440,6 @@ end
 
 <h2 id="f3d96fbe7760483bbb08625d5a30024e"></h2>
 
------
 
 ## bit operation 
 

@@ -57,8 +57,6 @@
 
 <h2 id="c2ed0329d2d3cf54c78317b209d7c0d5"></h2>
 
------
------
 
 # BeautifulSoup
 
@@ -67,7 +65,6 @@
 
 <h2 id="06129a15a17f5bf8197a5a520e00a2cb"></h2>
 
------
 
 ## bs 解析器
 
@@ -87,7 +84,6 @@
 
 <h2 id="5316642266b09c1a37c74751ff570d00"></h2>
 
------
 
 ## 对象的种类
 
@@ -96,7 +92,6 @@ Beautiful Soup将复杂HTML文档转换成一个复杂的树形结构,每个节�
 
 <h2 id="c101058e7ea21bbbf2a5ac893088e90b"></h2>
 
------
 
 ### Tag
 
@@ -111,7 +106,6 @@ tag中最重要的属性: name和attributes
 
 <h2 id="49ee3087348e8d44e1feda1917443987"></h2>
 
------
 
 #### Name
 
@@ -131,7 +125,6 @@ tag
 
 <h2 id="287234a1ff35a314b5b6bc4e5828e745"></h2>
 
------
 
 #### Attributes
 
@@ -153,7 +146,6 @@ tag的属性可以被添加,删除或修改. 再说一次, tag的属性操作方
 
 <h2 id="f7c0b37da30bc4400b27198d2caf96f3"></h2>
 
------
 
 ##### 多值属性
 
@@ -187,7 +179,6 @@ xml_soup.p['class']
 
 <h2 id="379f03de69572c4d3aa54f8f8650f428"></h2>
 
------
 
 ### NavigableString 可以遍历的字符串
 
@@ -216,7 +207,6 @@ tag
 
 <h2 id="c2ed0329d2d3cf54c78317b209d7c0d5"></h2>
 
------
 
 ### BeautifulSoup
 
@@ -230,7 +220,6 @@ soup.name
 
 <h2 id="0753968b4545fc501a4836fa6f324d04"></h2>
 
------
 
 ### Comment 注释及特殊字符串
 
@@ -262,13 +251,11 @@ print(soup.b.prettify())
 
 <h2 id="8e18b129f83a9689f747b1880e12ed33"></h2>
 
------
 
 ## 遍历文档树
 
 <h2 id="315dcc9412a4499cf846736fdbaaa72a"></h2>
 
------
 
 ### 子节点
 
@@ -279,7 +266,6 @@ Beautiful Soup提供了许多操作和遍历子节点的属性.
 
 <h2 id="974c48224a70145276128073c7c0b3e4"></h2>
 
------
 
 #### tag的名字
 
@@ -308,7 +294,6 @@ soup.find_all('a')
 
 <h2 id="5ef69ba35fbd6c33a99a7bdc5c5992b1"></h2>
 
------
 
 #### .contents 和 .children 和 .descendants
 
@@ -334,7 +319,6 @@ for child in head_tag.descendants:
 
 <h2 id="826098db4d2fd79ad3b0ea00dc4424f8"></h2>
 
------
 
 #### .string
 
@@ -361,7 +345,6 @@ print(soup.html.string)
 
 <h2 id="f0f015a1c0a337a26cd3e058a356728e"></h2>
 
------
 
 #### .strings 和 stripped_strings
 
@@ -403,13 +386,11 @@ for string in soup.stripped_strings:
 
 <h2 id="50200948c0bbd9d2770e21cff2b43d01"></h2>
 
------
 
 ### 父节点
 
 <h2 id="7e9024fe9b16b6df01cb1178eccde435"></h2>
 
------
 
 #### .parent
 
@@ -424,7 +405,6 @@ title_tag.parent
 
 <h2 id="f84b68a3ba6dbdd825f4d2d61556be28"></h2>
 
------
 
 #### .parents
 
@@ -447,7 +427,6 @@ for parent in link.parents:
 
 <h2 id="6fa498651667a0c6b50860e2a59b3747"></h2>
 
------
 
 ### 兄弟节点
 
@@ -457,7 +436,6 @@ sibling_soup = BeautifulSoup("< a >< b >text1</b>< c >text2</c></b></a>")
 
 <h2 id="0ab728758563d908f3cfd5c256c58368"></h2>
 
------
 
 #### .next_sibling 和 .previous_sibling
 
@@ -472,7 +450,6 @@ sibling_soup.c.previous_sibling
 
 <h2 id="78e321b204d8e94aad526caa22ccf129"></h2>
 
------
 
 #### .next_siblings 和 .previous_siblings
 
@@ -481,13 +458,11 @@ sibling_soup.c.previous_sibling
 
 <h2 id="2b1854c45093976077cd9e7e92817f93"></h2>
 
------
 
 ### 回退和前进
 
 <h2 id="5f9f6a3e9a16fa700480d0adf0f83049"></h2>
 
------
 
 #### .next_element 和 .previous_element
 
@@ -495,7 +470,6 @@ sibling_soup.c.previous_sibling
 
 <h2 id="f575adec86f5ee8b708ad4844c4809e9"></h2>
 
------
 
 #### .next_elements 和 .previous_elements
 
@@ -504,7 +478,6 @@ sibling_soup.c.previous_sibling
 
 <h2 id="891834dc47e736b404e84e1fc9067127"></h2>
 
------
 
 ## 搜索文档树
 
@@ -514,7 +487,6 @@ Beautiful Soup定义了很多搜索方法,这里着重介绍2个: find() 和 fin
 
 <h2 id="04bd0c61c9045f9144991ea380edbf3d"></h2>
 
------
 
 ### 过滤器
 
@@ -525,7 +497,6 @@ Beautiful Soup定义了很多搜索方法,这里着重介绍2个: find() 和 fin
 
 <h2 id="cc4dd1da7e1a754534215f02fb9ba85d"></h2>
 
------
 
 #### 字符串
 
@@ -537,7 +508,6 @@ soup.find_all('b')
 
 <h2 id="2e576047ae509e55d8e86f36d730caf4"></h2>
 
------
 
 #### 正则表达式
 
@@ -559,7 +529,6 @@ for tag in soup.find_all(re.compile("t")):
 
 <h2 id="3712972d84adf48acbd6ad24b4d75ad0"></h2>
 
------
 
 #### 列表
 
@@ -576,7 +545,6 @@ soup.find_all(["a", "b"])
 
 <h2 id="f827cf462f62848df37c5e1e94a4da74"></h2>
 
------
 
 #### True
 
@@ -600,7 +568,6 @@ for tag in soup.find_all(True):
 
 <h2 id="ea340b9dda8b893ddf2d9176220aac32"></h2>
 
------
 
 #### 方法
 
@@ -627,14 +594,12 @@ for tag in soup.find_all(surrounded_by_strings):
 
 <h2 id="9e9956ecd644adb40afec6ad79df7c4b"></h2>
 
------
 
 ### find_all( name , attrs , recursive , text , **kwargs )
 
 
 <h2 id="620c64f80d81ac35f42b9200016164a5"></h2>
 
------
 
 #### name 参数
 
@@ -650,7 +615,6 @@ soup.find_all("title")
 
 <h2 id="7cd7d7c7f2d3bb007817c6c4d9ed06c6"></h2>
 
------
 
 #### keyword 参数 和 attrs
 
@@ -683,7 +647,6 @@ data_soup.find_all(attrs={"data-foo": "value"})
 
 <h2 id="0317b50465de46c94b7d444218895e08"></h2>
 
------
 
 #### 按CSS搜索
 
@@ -712,7 +675,6 @@ css_soup.find_all("p", class_="body")
 
 <h2 id="b85ff64b46933e9f70850eb0d1c182a8"></h2>
 
------
 
 #### text 参数
 通过 text 参数可以搜搜文档中的字符串内容.与 name 参数的可选值一样, 
@@ -721,7 +683,6 @@ css_soup.find_all("p", class_="body")
 
 <h2 id="3b7c4439f88ee8659212d7d097af17ba"></h2>
 
------
 
 #### limit 参数
 
@@ -735,7 +696,6 @@ soup.find_all("a", limit=2)
 
 <h2 id="dfb1da32cfedce18e06febd3de8dfaa1"></h2>
 
------
 
 #### recursive 参数
 
@@ -744,7 +704,6 @@ soup.find_all("a", limit=2)
 
 <h2 id="e87c304af3b634dd48a0c133d8f2d834"></h2>
 
------
 
 ### 像调用 find_all() 一样调用tag
 
@@ -766,7 +725,6 @@ soup.title(text=True)
 
 <h2 id="eddd24d106b00f012296abf15aecdf7a"></h2>
 
------
 
 ### find( name , attrs , recursive , text , **kwargs )
 
@@ -786,7 +744,6 @@ soup.find("head").find("title")
 
 <h2 id="9a1af792c8edfcf1821778b793c1de1c"></h2>
 
------
 
 ### find_parents() 和 find_parent()
 
@@ -798,7 +755,6 @@ find_parent( name , attrs , recursive , text , **kwargs )
 
 <h2 id="f0de90db60172672a319539d3c33328b"></h2>
 
------
 
 ### find_next_siblings() 合 find_next_sibling()
 
@@ -807,7 +763,6 @@ find_parent( name , attrs , recursive , text , **kwargs )
 
 <h2 id="c287dbef8cf91421167b4294673a0540"></h2>
 
------
 
 ### find_previous_siblings() 和 find_previous_sibling()
 
@@ -815,7 +770,6 @@ find_parent( name , attrs , recursive , text , **kwargs )
 
 <h2 id="aca730699d61e6508ac53886823adabb"></h2>
 
------
 
 ### find_all_next() 和 find_next()
 
@@ -823,7 +777,6 @@ find_parent( name , attrs , recursive , text , **kwargs )
 
 <h2 id="a9427ebd054cb5e6b4869a2d711399c4"></h2>
 
------
 
 ###find_all_previous() 和 find_previous()
 
@@ -831,7 +784,6 @@ find_parent( name , attrs , recursive , text , **kwargs )
 
 <h2 id="4dab32e8ec6a7a43a9adb0fedaaa7afb"></h2>
 
------
 
 ### CSS选择器
 
@@ -839,13 +791,11 @@ Beautiful Soup支持大部分的CSS选择器,在 Tag 或 BeautifulSoup 对象的
 
 <h2 id="f2fb137262eb44eb2a60a3a1858187f5"></h2>
 
------
 
 ## 修改 soup 文档
 
 <h2 id="13f7d242b154ae0c680ecf7cfb1acf7f"></h2>
 
------
 
 ### get_text() 
 

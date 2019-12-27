@@ -20,14 +20,11 @@
 
 <h2 id="cc9a4c958f31f481f18fcc2449a18506"></h2>
 
------
------
 
 # Approximate inference: Sampling 
 
 <h2 id="1d07814d12178c958e4233501cb0bdc7"></h2>
 
------
 
 ## Sampling
 
@@ -71,7 +68,6 @@ blue | 0.3
 
 <h2 id="7bdab2b4b6b4f6a48cbf1e07f48c7f94"></h2>
 
------
 
 ## Sampling in Bayes’ Nets
 
@@ -84,7 +80,6 @@ In the order from simple to complex. Often you want end up using those last 2.
 
 <h2 id="d9850ac369194d66ab390de368f1cf63"></h2>
 
------
 
 ## Prior Sampling 
 
@@ -135,7 +130,6 @@ return (x₁,x₂,...,xn)
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
------
 
 ### Example 
 
@@ -161,7 +155,6 @@ return (x₁,x₂,...,xn)
 
 <h2 id="da3112458f911630996b5661ccd81e9d"></h2>
 
------
 
 ## Rejection Sampling 
 
@@ -204,7 +197,6 @@ Return (x1, x2, …, xn)
 
 <h2 id="c6947b6b4431fade42a12cf65b3c9a80"></h2>
 
------
 
 ### Sampling Example 
 
@@ -221,7 +213,6 @@ Return (x1, x2, …, xn)
 
 <h2 id="6e0d79ed12bd0076ebad0fc27629611e"></h2>
 
------
 
 ## Likelihood Weighting
 
@@ -252,7 +243,6 @@ Again, we know the query ahead of time, and see if we can further improve the pr
 
 <h2 id="3eb57101576ca6e2a3251b14ff38ce8f"></h2>
 
------
 
 ### Example Likelihood Weighting
 
@@ -288,7 +278,6 @@ Again, we know the query ahead of time, and see if we can further improve the pr
 
 <h2 id="6d927b96f874f88bd5461de8ac4b040a"></h2>
 
------
 
 ## Likelihood Weighting Cont.
 
@@ -333,7 +322,6 @@ Are we still doing the right thing ?  Are we sampling from the right distributio
 
 <h2 id="16169430c0295688db141ebd3163baf5"></h2>
 
------
 
 ## Gibbs Sampling
 
@@ -359,7 +347,6 @@ Are we still doing the right thing ?  Are we sampling from the right distributio
 
 <h2 id="a4d4a785b477b26309b7ec181f443a28"></h2>
 
------
 
 ### Gibbs Sampling Example: P( S | +r)
 
@@ -395,7 +382,6 @@ This is just giving you the very basic idea of how Gibbs Sampling works. And you
 
 <h2 id="5fb1b8f1b2e4f8b4d7772cae296c4642"></h2>
 
------
 
 ### Efficient Resampling of One Variable
 
@@ -409,7 +395,6 @@ This is just giving you the very basic idea of how Gibbs Sampling works. And you
 
 <h2 id="e71302c1ea74db4751ea7bc9282430c5"></h2>
 
------
 
 ### Further Reading on Gibbs Sampling
 

@@ -54,14 +54,11 @@
 
 <h2 id="ede56b0e2be5bbfcf53933d43ef1f740"></h2>
 
------
------
 
 # Week1 Suffix Trees 
 
 <h2 id="a8d5f7810493a28ca313b038a21c0173"></h2>
 
------
 
 ## From Genome Sequencing to Pattern Matching
 
@@ -82,7 +79,6 @@
 
 <h2 id="0bbf0b0ddc6dc0d500db46cbd60489c2"></h2>
 
------
 
 ## Brute Force Approach to Pattern Matching
 
@@ -99,7 +95,6 @@
 
 <h2 id="cd82dafbae81bae40211a2c7f374942f"></h2>
 
------
 
 ## Herding Patterns into Trie
 
@@ -134,7 +129,6 @@ TrieMatching(Text, Patterns):
 
 <h2 id="38728a7876efba9de4422511579b2ddd"></h2>
 
------
 
 ## Herding Text into Suffix Trie
 
@@ -153,7 +147,6 @@ New Idea: Packing Text onto a Bus
 
 <h2 id="e7849ccbb64da45c5b8246d6f100af54"></h2>
 
------
 
 ### Where Are the Matches???
 
@@ -174,7 +167,6 @@ But where is the match ? What is the position of "banana" in the Text ?
 
 <h2 id="9f208e275122ae4c1c110416a76cfffe"></h2>
 
------
 
 ### Memory Footprint of Suffix Trie
  
@@ -187,7 +179,6 @@ But where is the match ? What is the position of "banana" in the Text ?
 
 <h2 id="6df9f85e12d53da5a7faab3233bbbcf3"></h2>
 
------
 
 ## From Suffix Tries to Suffix Trees
 
@@ -211,7 +202,6 @@ But where is the match ? What is the position of "banana" in the Text ?
 
 <h2 id="eeb864ae13cd09f3fc8b2e37ef0dac43"></h2>
 
------
 
 ## Constructing Suffix Tree:
 
@@ -233,7 +223,6 @@ But where is the match ? What is the position of "banana" in the Text ?
 
 <h2 id="ab458f4b361834dd802e4f40d31b5ebc"></h2>
 
------
 
 ## Quiz
 
@@ -259,14 +248,11 @@ But where is the match ? What is the position of "banana" in the Text ?
 
 <h2 id="7b4bb7010bb5cc258a877c223ce396fa"></h2>
 
------
------
 
 # Week2 Burrows-Wheeler Transform and Suffix Arrays 
 
 <h2 id="c77af5b3abfc315781377fb29256c39f"></h2>
 
------
 
 ## Burrows-Wheeler Transform
 
@@ -274,7 +260,6 @@ So our goal now is to start from the genome, apply Burrows–Wheeler transform t
 
 <h2 id="ae31601ab819806b46842f7459b1a9f1"></h2>
 
------
 
 ### Text Compression by Run-Length Encoding
 
@@ -318,7 +303,6 @@ So our goal now is to start from the genome, apply Burrows–Wheeler transform t
 
 <h2 id="2958b02379af181c5d50fdb9eb76f1f8"></h2>
 
------
 
 ### Inverting Burrows-Wheeler Transform
 
@@ -394,7 +378,6 @@ The only question left, where is pattern matching in the Burrows-Wheeler transfo
 
 <h2 id="353b08ef75d5176db7f70fe5d2e3d617"></h2>
 
------
 
 ### Using BWT for Pattern Matching
 
@@ -402,7 +385,6 @@ The only question left, where is pattern matching in the Burrows-Wheeler transfo
 
 <h2 id="ad4f3a6c1f6f60c79912e399831fe50e"></h2>
 
------
 
 ### Finding Pattern Matches Using BWT
 
@@ -422,7 +404,6 @@ The only question left, where is pattern matching in the Burrows-Wheeler transfo
 
 <h2 id="577c04ac242ce1b20da613dd6aaf2a9f"></h2>
 
------
 
 ### Searching for ana using top and buttom pointers 
 
@@ -540,7 +521,6 @@ And as you can see, we don't need any more to explore every symbol between top a
 
 <h2 id="4297164b1e2c9e6f4924b39ebdad0b14"></h2>
 
------
 
 ## Suffix Arrays
 
@@ -617,7 +597,6 @@ There is a way to construct a suffix array if you're already construction a suff
 
 <h2 id="699b0062252bc43a8e1c97a871b1b3fd"></h2>
 
------
 
 ## Approximate Pattern Matching
 
@@ -659,14 +638,11 @@ There is a way to construct a suffix array if you're already construction a suff
 
 <h2 id="a13edce40a6797ca350bb37ecae33e7d"></h2>
 
------
------
 
 # Week3: Algorithmic Challenges: Knuth-Morris-Pratt Algorithm 
 
 <h2 id="9f189b44c5da7aabf3ba7ce283ed775c"></h2>
 
------
 
 ## Exact Pattern Matching
 
@@ -721,7 +697,6 @@ There is a way to construct a suffix array if you're already construction a suff
 
 <h2 id="56d24cce97717b776b1c66489991f675"></h2>
 
------
 
 ## Prefix Function
 
@@ -745,7 +720,6 @@ There is a way to construct a suffix array if you're already construction a suff
  
 <h2 id="d1d75d9e4070f158aeaa17e37bc34991"></h2>
 
------
 
 ### Enumerating borders
 
@@ -764,7 +738,6 @@ There is a way to construct a suffix array if you're already construction a suff
 
 <h2 id="7458f83cf5feb375ce613102ad4cf673"></h2>
 
------
 
 ### Computing s(i + 1)
 
@@ -813,7 +786,6 @@ Now lets think how to compute the prefix function.
 
 <h2 id="52b3a75d31d9676c1ccf5234adc3347b"></h2>
 
------
 
 ### ComputePrefixFunction(P)
 
@@ -828,7 +800,6 @@ Now lets think how to compute the prefix function.
 
 <h2 id="a27872b96c92390fbd9d96e8553f69ca"></h2>
 
------
 
 ## Knuth-Morris-Pratt Algorithm
 
@@ -853,7 +824,6 @@ Now lets think how to compute the prefix function.
  
 <h2 id="b72ac10807b29c77f5b7e4b80ea40414"></h2>
 
------
 
 ### Explanation
 
@@ -863,7 +833,6 @@ Now lets think how to compute the prefix function.
 
 <h2 id="d5c1daf026b98296ae4747476c5a2b2d"></h2>
 
------
 
 ### pseudo code
 
@@ -879,7 +848,6 @@ Now lets think how to compute the prefix function.
 
 <h2 id="6f8b794f3246b0c1e1780bb4d4d5dc53"></h2>
 
------
 
 ### Conclusion
 
@@ -898,20 +866,16 @@ In the next lessons, we will learn how to build suffix array and suffix tree in 
 
 <h2 id="024f2ea1afa39552cc7823dfeaeeba8c"></h2>
 
------
------
 
 # Week 4
 
 <h2 id="070de002eb9fe6a242a3eea58a6b0a47"></h2>
 
------
 
 ## Suffix Array
 
 <h2 id="b3d93ca2f2b1bae05ed120cebaaaf0c3"></h2>
 
------
 
 ###  Construct Suffix Array
  
@@ -968,7 +932,6 @@ def get_suffix_array(str):
 
 <h2 id="0315a918e4426dc96ef07eca2ff9c282"></h2>
 
------
 
 ### Storing Suffix Array
 
@@ -1006,13 +969,11 @@ def get_suffix_array(str):
 
 <h2 id="de6482d736735d19a98b6d7a3dbfcc6d"></h2>
 
------
 
 ## General Construction Strategy
 
 <h2 id="888bc7579c1220dbe1b54eb1ae879f1a"></h2>
 
------
 
 ### Sorting Cyclic Shifts
 
@@ -1031,7 +992,6 @@ def get_suffix_array(str):
 
 <h2 id="451551949780f6ab99bc7aef6b615713"></h2>
 
------
 
 ### Partial Cyclic Shifts
 
@@ -1050,7 +1010,6 @@ def get_suffix_array(str):
 
 <h2 id="15ec4eae4da6642dc613154ae7f2dfe7"></h2>
 
------
 
 ### General strategy
 
@@ -1069,7 +1028,6 @@ L=4 sorting :
 
 <h2 id="61bcd96a2c1f8026527cbf2019d6e9a4"></h2>
 
------
 
 ## Initialization
 
@@ -1079,7 +1037,6 @@ L=4 sorting :
 
 <h2 id="220fede2d20dea1a24a2451daa5924fb"></h2>
 
------
 
 ### Sorting single characters
 
@@ -1109,7 +1066,6 @@ L=4 sorting :
  
 <h2 id="db5dda92fb337ee173853f6dc222c5a5"></h2>
 
------
 
 ### Equivalence classes
 
@@ -1156,7 +1112,6 @@ This is all for the initialization phase of the suffix array construction. In ne
 
 <h2 id="81480019c9809a4ee289e1a7961e2976"></h2>
 
------
 
 ## Sort Doubled Cyclic Shifts 
 
@@ -1166,7 +1121,6 @@ This is all for the initialization phase of the suffix array construction. In ne
 
 <h2 id="158d7558ee87d9a8caa77b59abcdd9ef"></h2>
 
------
 
 ### Idea
 
@@ -1179,7 +1133,6 @@ This is all for the initialization phase of the suffix array construction. In ne
 
 <h2 id="45056b7535c004ef33d46e84ebe688d6"></h2>
 
------
 
 ### Sorting pairs
 
@@ -1207,7 +1160,6 @@ Example:
 
 <h2 id="e0aa9002d2d7eaa00f7c68a2815caf65"></h2>
 
------
 
 ### Sorting doubled cyclic shifts
 
@@ -1229,7 +1181,6 @@ Pseudo Code:
 
 <h2 id="efb4b863c9f924263ba6b0b74cf2ad5c"></h2>
 
------
 
 ## Updating Classes
 
@@ -1263,7 +1214,6 @@ Pseudo code
  
 <h2 id="fa2a8b4fe46e36086e1dd6bbdb67af76"></h2>
 
------
 
 ## Full Algorithm
 
@@ -1282,7 +1232,6 @@ Pseudo code
 
 <h2 id="6f8b794f3246b0c1e1780bb4d4d5dc53"></h2>
 
------
 
 ### Conclusion
 
@@ -1298,8 +1247,6 @@ Pseudo code
 
 <h2 id="f8d40ebc6cf8e6129d70c91e882080ac"></h2>
 
------
------
 
 # Suffix Tree Application
 

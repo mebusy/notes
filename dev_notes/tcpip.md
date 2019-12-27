@@ -19,14 +19,11 @@
 
 <h2 id="dbd68a88c93d638952f9d0b09e7e21ac"></h2>
 
------
------
 
 # TCP/IP 详解
 
 <h2 id="72d064a1fffe4b224018d51a836a0801"></h2>
 
------
 
 ## 1 概述
 
@@ -45,7 +42,6 @@
 
 <h2 id="82d13516ff2dc5e9d705658238a92fae"></h2>
 
------
 
 ## 2 链路层
 
@@ -54,7 +50,6 @@
 
 <h2 id="7a3efc3d948c7aacdbdb977dde79f6b7"></h2>
 
------
 
 ## 3 IP
 
@@ -145,7 +140,6 @@ en1   1500  169.254       169.254.211.156    26973     -   184365     -     -
 
 <h2 id="24eec574030983becf05e4344c39942b"></h2>
 
------
 
 ## 4 ARP
 
@@ -165,7 +159,6 @@ $ arp -a
 
 <h2 id="b56060e45ad042ac2a664a7073e2fe49"></h2>
 
------
 
 ## 6 ICMP  Internet 控制报文协议
 
@@ -177,7 +170,6 @@ $ arp -a
 
 <h2 id="0b094523272a3465c4ae52b7a72559b6"></h2>
 
------
 
 ## 7 ping 
 
@@ -185,7 +177,6 @@ $ arp -a
 
 <h2 id="1b0bde2e46f0bc853adf5c028e32c8d0"></h2>
 
------
 
 ## 8 traceroute 
 
@@ -204,7 +195,6 @@ $ arp -a
 
 <h2 id="f9022dd5836d474c7436aa3a723847af"></h2>
 
------
 
 ## 9 IP选路
 
@@ -274,7 +264,6 @@ default            link#15            UCSI            1        0 bridge1
 
 <h2 id="5ba7364bf9c0d8a15fa1e7ee609391d9"></h2>
 
------
 
 ## 10 动态选路协议
 
@@ -284,7 +273,6 @@ default            link#15            UCSI            1        0 bridge1
 
 <h2 id="ac2d94cc6d04c9c939cf70a9002fbd80"></h2>
 
------
 
 ## 11 UDP 用户数据报协议
 
@@ -296,7 +284,6 @@ default            link#15            UCSI            1        0 bridge1
 
 <h2 id="dea5e84b2bca417b5cca65396b6116fc"></h2>
 
------
 
 ## 12 广播和多播
  
@@ -351,7 +338,6 @@ default            link#15            UCSI            1        0 bridge1
 
 <h2 id="b10c518c6c28acb3352d497f10bd3157"></h2>
 
------
 
 ## 14 DNS
 

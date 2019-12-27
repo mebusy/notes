@@ -17,20 +17,16 @@
 
 <h2 id="b1d2be64b8e22579873ae5a2374af5e7"></h2>
 
------
------
 
 # 3.4 HASH TABLES
 
 <h2 id="9a8132e3af6bfede36d4c47b3debc144"></h2>
 
------
 
 ## hash functions
 
 <h2 id="b75a0b08f1f8b9d1b5674473a56b947d"></h2>
 
------
 
 ### Uniform hashing assumption
 
@@ -41,7 +37,6 @@
 
 <h2 id="0289e2bf1c12517b3df378089036ca81"></h2>
 
------
 
 ### Collisions
 
@@ -53,7 +48,6 @@
 
 <h2 id="57ce7d434d28b0136eaf7946e7c41d39"></h2>
 
------
 
 ## separate chaining
 
@@ -68,7 +62,6 @@
 
 <h2 id="739e6d2a73723ec7b1919fa5a51f9b07"></h2>
 
------
 
 ### Analysis
 
@@ -102,13 +95,11 @@ pylab.show()
 
 <h2 id="52e5c1097204596b99fe5b017f034610"></h2>
 
------
 
 ## linear probing
 
 <h2 id="5c4e28381d69187fa0c07eebc8db352a"></h2>
 
------
 
 ### Collision resolution: open addressing
 
@@ -121,7 +112,6 @@ pylab.show()
  
 <h2 id="de3a31857992c01e9d9a1139971b66bc"></h2>
 
------
 
 ### Clustering
 
@@ -132,7 +122,6 @@ pylab.show()
 
 <h2 id="2d6ab71801bd058747c3b85fc4ab03c5"></h2>
 
------
 
 ### Knuth's parking problem
 
@@ -150,7 +139,6 @@ pylab.show()
 
 <h2 id="b609a1736a398fa3f648d959048caab5"></h2>
 
------
 
 ### Analysis of linear probing
 

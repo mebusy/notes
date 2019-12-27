@@ -24,14 +24,11 @@
 
 <h2 id="e65885a24642ea6caa9b4cc3fa9648d4"></h2>
 
------
------
 
 ## Photo OCR
 
 <h2 id="c05b00495e12d4e6e63699b01eef0e5f"></h2>
 
------
 
 ### Problem Description and Pipeline
 
@@ -39,7 +36,6 @@ Photo optical character recognition 照片光学字符识别
 
 <h2 id="c75bffa5028e099b547517e79ecbedb6"></h2>
 
------
 
 #### Photo OCR pipeline
 
@@ -52,13 +48,11 @@ Photo optical character recognition 照片光学字符识别
  
 <h2 id="a413de0b7d3ca5e448aa7c58535e57ef"></h2>
 
------
 
 ### Sliding Windows
 
 <h2 id="059f4dd0bafb0e73889c8660d52c1a5c"></h2>
 
------
 
 #### Supervised learning for pedestrian detection
  
@@ -68,7 +62,6 @@ Photo optical character recognition 照片光学字符识别
 
 <h2 id="45cc6d3b5bf3f3b586155dcbc5e04d88"></h2>
 
------
 
 #### Sliding window detection
 
@@ -79,7 +72,6 @@ Photo optical character recognition 照片光学字符识别
 
 <h2 id="69b71ae7534d013b30aa980fedf1d6fd"></h2>
 
------
 
 #### Text detection
 
@@ -87,7 +79,6 @@ Photo optical character recognition 照片光学字符识别
 
 <h2 id="e55dfb0a899b9302b944074fbd127e65"></h2>
 
------
 
 #### 1D Sliding window for character segmentation
 
@@ -98,7 +89,6 @@ Photo optical character recognition 照片光学字符识别
 
 <h2 id="f6c38a87532bcba6d340d665a5f4db8b"></h2>
 
------
 
 ### Getting Lots of Data and Artificial Data
 
@@ -111,7 +101,6 @@ Photo optical character recognition 照片光学字符识别
 
 <h2 id="d44110b04e334d5138f9080526090261"></h2>
 
------
 
 #### Artificial data synthesis for photo OCR
 
@@ -123,7 +112,6 @@ Photo optical character recognition 照片光学字符识别
 
 <h2 id="d0489633abcc536d20de1ac15bc32041"></h2>
 
------
 
 #### Synthesizing data by introducing distortions: Speech recognition
 
@@ -138,7 +126,6 @@ Photo optical character recognition 照片光学字符识别
 
 <h2 id="3cac9850b41b50b8e4c44d5de7de1148"></h2>
 
------
 
 #### Synthesizing data by introducing distortions
 
@@ -149,7 +136,6 @@ Photo optical character recognition 照片光学字符识别
 
 <h2 id="aaf61b0c47bdfa1a04301b1e0efb7b17"></h2>
 
------
 
 #### Discussion on getting more data
 
@@ -164,7 +150,6 @@ Photo optical character recognition 照片光学字符识别
 
 <h2 id="3157909fcba2bb0204f25acba117af96"></h2>
 
------
 
 ### Ceiling Analysis: What Part of the Pipeline to Work on Next
 
@@ -172,7 +157,6 @@ Photo optical character recognition 照片光学字符识别
 
 <h2 id="fa04582d22d410df441e1c1170299998"></h2>
 
------
 
 #### Estimating the errors due to each component(ceiling analysis)
 
@@ -203,8 +187,6 @@ Character recognition | 100%
 
 <h2 id="97ac67a319b4892c162d49f2693870de"></h2>
 
------
------
 
 ## Summary: Main topics
 

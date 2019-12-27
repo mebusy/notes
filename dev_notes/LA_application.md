@@ -9,14 +9,11 @@
 
 <h2 id="bab780a257514ae673fc4b27315e6983"></h2>
 
------
------
 
 # Application Of Linear Systems
 
 <h2 id="3cbec81a7200fe500c94d906ee8dba14"></h2>
 
------
 
 ## A Homogeneous System in Economics 经济学中的同质系统
 
@@ -88,7 +85,6 @@ P = ⎢ Pe⎪ =⎢ .85Ps⎪ =Ps⎢ .85⎪
 
 <h2 id="1d98a3ac560ef7befccf00b9a14b8137"></h2>
 
------
 
 ## Balancing Chemical Equations
 

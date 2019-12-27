@@ -12,8 +12,6 @@
 
 <h2 id="1d43a61d31daf8523c598d4679150bd5"></h2>
 
------
------
 
 # OAM
 
@@ -66,8 +64,6 @@ http://wiki.nesdev.com/w/index.php/PPU_OAM
 
 <h2 id="33fd5f6391f2f0cb4c91179d7f521949"></h2>
 
------
------
 
 # DMA
 
@@ -80,8 +76,6 @@ http://wiki.nesdev.com/w/index.php/PPU_OAM
 
 <h2 id="a543bc0784c262c9da625159ca924ff3"></h2>
 
------
------
 
 # Sprite zero hits
 
@@ -91,8 +85,6 @@ http://wiki.nesdev.com/w/index.php/PPU_OAM
 
 <h2 id="93433b909a9b00016c6047bd84e2c65d"></h2>
 
------
------
 
 # Sprite overlapping
 
@@ -101,8 +93,6 @@ http://wiki.nesdev.com/w/index.php/PPU_OAM
 
 <h2 id="5ccdf8c4b0352ef1435663d5f5a7a22a"></h2>
 
------
------
 
 # Internal operation
 
@@ -111,8 +101,6 @@ http://wiki.nesdev.com/w/index.php/PPU_OAM
 
 <h2 id="72c46d82eb28c395ef46aca1c91d10aa"></h2>
 
------
------
 
 # Dynamic RAM decay
 

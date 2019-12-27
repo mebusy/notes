@@ -9,14 +9,11 @@
 
 <h2 id="336ff1e9aa6177ea7a71984fa8c241b9"></h2>
 
------
------
 
 # Swagger 
 
 <h2 id="7a8a1e62c3e177c335813e2cda4f44f0"></h2>
 
------
 
 ## run swagger editor
 
@@ -25,7 +22,6 @@ docker run -p 8080:8080 swaggerapi/swagger-ui
 
 <h2 id="d965025d55377342fd1e4ff3e57ad750"></h2>
 
------
 
 ## swagger UI 
 

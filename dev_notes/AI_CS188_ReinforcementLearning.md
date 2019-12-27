@@ -59,8 +59,6 @@
 
 <h2 id="222b7b1e6c2303acdbfb4c0dbc31aeb8"></h2>
 
------
------
 
 # Reinforcement Learning I
 
@@ -92,7 +90,6 @@ When you take an action you see what happens but you don't see everything that m
 
 <h2 id="44f8995701f5e6cc074e161e0e2f6f24"></h2>
 
------
 
 ## Reinforcement Learning
 
@@ -117,7 +114,6 @@ What you don't know is what fast and slow do. So far all you know fast is the be
 
 <h2 id="fa7a57352e7766a41e16ad0c7512f002"></h2>
 
------
 
 ## Offline (MDPs) vs. Online (RL)
 
@@ -131,7 +127,6 @@ What you don't know is what fast and slow do. So far all you know fast is the be
 
 <h2 id="59625ed88ee3303c9d5bbb05dcd878d1"></h2>
 
------
 
 ## Model-Based Learning
 
@@ -169,7 +164,6 @@ Now there are a lot of small points here that are very important like how do you
 
 <h2 id="649cab67d1a5faba80f08355ba3f468b"></h2>
 
------
 
 ### Example : Model-Based Learning 
 
@@ -208,7 +202,6 @@ Now we have a MDP,  maybe a wrong  MDP  , but we still know how to solve it.
 
 <h2 id="ee455b40b88c7bf5b65e5d7b95ebaddc"></h2>
 
------
 
 ### Example: Expected Age 
 
@@ -237,7 +230,6 @@ This is the high level view of model-based vs model-free. In model-based you lea
 
 <h2 id="873e73c28eb2e383f892a21d8ff49827"></h2>
 
------
 
 ## Model-Free Learning
 
@@ -248,7 +240,6 @@ So what we track in a model-free approach is the values of interest themselves ,
 
 <h2 id="dd0e9af361861e9d611430c8132e7d5d"></h2>
 
------
 
 ## Passive Reinforcement Learning 
 
@@ -279,7 +270,6 @@ This is policy evaluation. We're watching or executing a fixed policy and we're 
 
 <h2 id="6be4a86e5c5f149ec4fe321811c28f03"></h2>
 
------
 
 ## Direct Evaluation
 
@@ -297,7 +287,6 @@ The idea of direct evaluation is super simple. All we're gonna do is watch actio
 
 <h2 id="539ea74ae630f5a093e0d00dd1d6d4c3"></h2>
 
------
 
 ### Example: Direct Evaluation 
 
@@ -333,7 +322,6 @@ So somehow even though this is going to work in the limit , we've thrown out a h
 
 <h2 id="47acc2a68b2bdf55855a781553d71aa6"></h2>
 
------
 
 ## Problems with Direct Evaluation 
 
@@ -354,7 +342,6 @@ We waste information about how the states connect up to each other. If we know t
 
 <h2 id="09c2a431928cce9d30f7b080b8520765"></h2>
 
------
 
 ## Why Not Use Policy Evaluation ?
 
@@ -367,7 +354,6 @@ We already know how to take averages without knowing the weights. We look at sam
 
 <h2 id="1249deda865401b3c63bbe67c870bdd6"></h2>
 
------
 
 ## Sample-Based Policy Evaluation ?
 
@@ -387,7 +373,6 @@ So that a big idea of --
 
 <h2 id="feec14513956127a8ae7c515e76e1928"></h2>
 
------
 
 ## Temporal Difference Learning 
 
@@ -472,7 +457,6 @@ When I get to the square down to 0.98 and I go north , even I've never been in t
 
 <h2 id="f014b2f80d6cee4d42ed6c19b0fdaadb"></h2>
 
------
 
 ## Exponential Moving Average 
 
@@ -487,7 +471,6 @@ When I get to the square down to 0.98 and I go north , even I've never been in t
 
 <h2 id="1f7e6611a83a4f6ff38b6ad2c39e9d76"></h2>
 
------
 
 ## Problems with TD Value Learning 
 
@@ -508,7 +491,6 @@ This idea of learning Q values make action selection model-free as well because 
 
 <h2 id="4257de889e9b4c2ff394f77e8c8f2a3d"></h2>
 
------
 
 ## Active Reinforcement Learning 
 
@@ -536,7 +518,6 @@ In full reinforcement learning we would like to be able to compute optimal polic
 
 <h2 id="9c44f6960e40910e0ab9dd050471404e"></h2>
 
------
 
 ## Detour: Q-Value Iteration
 
@@ -559,7 +540,6 @@ We can't do this update with samples because it's not an average but Max. And th
 
 <h2 id="e4d17333d58040b1db710abe36cd5aec"></h2>
 
------
 
 ## Q-Learning
 
@@ -589,7 +569,6 @@ We're going to get some sample on the basis of the action we picked , the key le
 
 <h2 id="f87765bc4a6754139d81d47c5c59fc65"></h2>
 
------
 
 ## Q-Learning Properties 
 
@@ -610,14 +589,11 @@ We're going to get some sample on the basis of the action we picked , the key le
 
 <h2 id="03bcb6b7c0cf2da8df829ce2604b1487"></h2>
 
------
------
 
 # Reinforcement Learning II
 
 <h2 id="f9a4dc6ca04dd7f381391682fe726a9d"></h2>
 
------
 
 ## Example of RL :  Flappy Bird
 
@@ -638,7 +614,6 @@ We're going to get some sample on the basis of the action we picked , the key le
 
 <h2 id="29c79992d5caf68d44b3fb65e9b012fd"></h2>
 
------
 
 ## The Story So Far: MDPs and RL
 
@@ -654,7 +629,6 @@ Unknown MDP: Model-Free | Compute V<sup>\*</sup>, Q<sup>\*</sup>, π<sup>\*</sup
 
 <h2 id="915129bb469e127e787304e5d49bb4d7"></h2>
 
------
 
 ## Model-free (temporal difference) learning
 
@@ -668,7 +642,6 @@ Unknown MDP: Model-Free | Compute V<sup>\*</sup>, Q<sup>\*</sup>, π<sup>\*</sup
 
 <h2 id="6887d347f473c82f866b53ab67baeee7"></h2>
 
------
 
 ## Exploration vs. Exploitation 
 
@@ -678,7 +651,6 @@ You meet this all the time in your daily life.  Some new restaurant opens and yo
 
 <h2 id="7f41348c29c7350b667f261729b08433"></h2>
 
------
 
 ## How To Explore ?
 
@@ -717,7 +689,6 @@ So one solution here is we just lower ε over time , and let the randomness decr
 
 <h2 id="2ba1d8903e326a683ab1fb8eee1ff2cf"></h2>
 
------
 
 ## Exploration Functions 
 
@@ -775,7 +746,6 @@ where τ is a temperature parameter that is decreased over time.
 
 <h2 id="3141af4744f17a254e58c913ae90281e"></h2>
 
------
 
 ## Regret 
 
@@ -801,7 +771,6 @@ Minimizing regret is more than learning to be optimal. It's more like **optimall
 
 <h2 id="668619154180bf7f1109c15ddd7bb574"></h2>
 
------
 
 ## Approximate Q-Learning
 
@@ -811,7 +780,6 @@ The basic idea we'er going to have is called approximate q-learning. And boils d
 
 <h2 id="38a0a5072b333125a17507e211474044"></h2>
 
------
 
 ### Generalizeing Across States
 
@@ -844,7 +812,6 @@ This is actually a fundamental idea of machine learning. We'll see it over and o
 
 <h2 id="1901b8793773f8b3217bebefb14159e4"></h2>
 
------
 
 ### Example: Pacman
 
@@ -864,7 +831,6 @@ Q-learn may work in 2x3 pacman board , but it hardly work even in 3x5 pacman boa
 
 <h2 id="0b5d3ca99a43d01394248c1aa1ef3313"></h2>
 
------
 
 ### Feature-Based Representations
 
@@ -894,7 +860,6 @@ Of course now we're going to have to describe q-states which gives us features l
 
 <h2 id="57e2e557640ea36670bca3275dc3baef"></h2>
 
------
 
 ### Linear Value Functions 
 
@@ -911,7 +876,6 @@ Ok you job is to come up with features that make sure that important differences
 
 <h2 id="668619154180bf7f1109c15ddd7bb574"></h2>
 
------
 
 ### Approximate Q-Learning
 
@@ -949,7 +913,6 @@ The intuitive interpretation is adjusting these weights . So if something bad ha
 
 <h2 id="9f255bd21e3c3e685bca408fc92e97d4"></h2>
 
------
 
 ### Example : Q-Pacman
 
@@ -1000,7 +963,6 @@ What's nice about this is you learned so quickly from even 1 experience you can 
 
 <h2 id="1a76030ec4ea873977b1ed0668f5f87a"></h2>
 
------
 
 ### Another example
 
@@ -1065,7 +1027,6 @@ Now we should add the difference to weights:
 
 <h2 id="25f9c7fa3b50aebe5125112ac1187777"></h2>
 
------
 
 ### 总结
 
@@ -1077,7 +1038,6 @@ Now we should add the difference to weights:
 
 <h2 id="dfd9c3589510f42d75cc643582c741ee"></h2>
 
------
 
 ## Q-Learning and Least Squares
 
@@ -1088,13 +1048,11 @@ So in general we might want do some kind of linear approximation. In particular 
 
 <h2 id="7c2917ddb383d4aca5702f57b1bf97a6"></h2>
 
------
 
 ### Optimization: Least Squares *
 
 <h2 id="431c26cfba3b0e63e31187e82c47bdd4"></h2>
 
------
 
 ### Minimizing Error * 
 
@@ -1104,7 +1062,6 @@ Now how does it work in q-learning ? The weights are the weights , the target th
 
 <h2 id="4d834ce4e64c89be3da78e77c76c4357"></h2>
 
------
 
 ### Overfitting : Why Limiting Capacity Can Help *
 
@@ -1113,7 +1070,6 @@ Now how does it work in q-learning ? The weights are the weights , the target th
 
 <h2 id="20e0fd886eda9402c6c8c3dd18b4bb87"></h2>
 
------
 
 ## Policy Search 
 
@@ -1160,7 +1116,6 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 <h2 id="6f8b794f3246b0c1e1780bb4d4d5dc53"></h2>
 
------
 
 ## Conclusion
 
@@ -1178,14 +1133,11 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 <h2 id="96bbd2b31616de4e05850fa5d1d2da71"></h2>
 
------
------
 
 # More About Reinforcement Learning
 
 <h2 id="39e455faa2cee078107349ed5a79c485"></h2>
 
------
 
 ## Q-Learning 的问题
 
@@ -1196,7 +1148,6 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 <h2 id="61f0ce8542a3f21f795b45c4c133c04c"></h2>
 
------
 
 ## Deep Q Learning
 
@@ -1207,7 +1158,6 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 <h2 id="d4680878cbefd1ce084325dd933e82f9"></h2>
 
------
 
 ## Policy Gradient
 
@@ -1242,7 +1192,6 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 <h2 id="60ca1673615c7ff54bc9af8925335b66"></h2>
 
------
 
 ## Deep Deterministic Policy Gradient
 
@@ -1275,14 +1224,11 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 <h2 id="6c11e2dd65ad60a6dd6cf3a2be08fa0c"></h2>
 
------
------
 
 # Policy Gradients
 
 <h2 id="241bce13578cf2fc98c72f432c5bc204"></h2>
 
------
 
 ## 和以往的强化学习方法不同
 
@@ -1294,7 +1240,6 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 <h2 id="1a843b1039c85dd724a126708a375915"></h2>
 
------
 
 ## 更新不同之处
     
@@ -1309,7 +1254,6 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 <h2 id="edc520f80b6440121e2920f7f2caf86b"></h2>
 
------
 
 ## 具体更新步骤
 
@@ -1331,8 +1275,6 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 <h2 id="60e65bfe1069d9e782077a65bdd16a2a"></h2>
 
------
------
 
 # Q Learning  VS. Policy Gradient
 

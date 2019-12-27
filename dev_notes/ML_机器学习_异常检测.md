@@ -21,14 +21,11 @@
 
 <h2 id="8d364c79a6770dc7395296c168efd622"></h2>
 
------
------
 
 # Anomaly Detection 异常检测
 
 <h2 id="29c53a82180b5184c50d4d772303e088"></h2>
 
------
 
 ## Density estimation
 
@@ -36,7 +33,6 @@
 
 <h2 id="347118b310696c7f93c1ff66f8faf8aa"></h2>
 
------
 
 #### Anomaly Detection Example
 
@@ -59,7 +55,6 @@
 
 <h2 id="532e6903300860673cb95c382b974fd0"></h2>
 
------
 
 #### Gaussian (Normal) Distribution
 
@@ -80,7 +75,6 @@ Say `x∊ℝ`, if x is a distributed Gaussian with mean(均值) `μ` , variance(
 
 <h2 id="f084e616e40ec63ecf915155cb46a54c"></h2>
 
------
 
 #### Parameter estimation
 
@@ -94,7 +88,6 @@ Say `x∊ℝ`, if x is a distributed Gaussian with mean(均值) `μ` , variance(
 
 <h2 id="68a5f465a0d97c3d5229bd80531c4d0e"></h2>
 
------
 
 #### Anomaly Detection Algorithm
 
@@ -130,13 +123,11 @@ Say `x∊ℝ`, if x is a distributed Gaussian with mean(均值) `μ` , variance(
 
 <h2 id="c59486b104ab1cb60cb63f475557ac3d"></h2>
 
------
 
 ## Building an Anomaly Detection System
 
 <h2 id="7e93cc035fcb67fd9180c2e41487373d"></h2>
 
------
 
 #### 开发并评估 anomaly detection system
 
@@ -171,7 +162,6 @@ Say `x∊ℝ`, if x is a distributed Gaussian with mean(均值) `μ` , variance(
  
 <h2 id="f1f47b770f28badf6af9c7627badbfb5"></h2>
 
------
 
 #### Anomaly Detection vs. Supervised learning
 
@@ -200,7 +190,6 @@ Fraud detection 舞弊检测 | 垃圾邮件
 
 <h2 id="711dff46b8015be0217bd08ede807ffb"></h2>
 
------
 
 #### Choose What features to Use
 
@@ -235,7 +224,6 @@ Fraud detection 舞弊检测 | 垃圾邮件
 
 <h2 id="08a98dde435875e68d7ff5e48688956e"></h2>
 
------
 
 ## Multivariate Gaussian Distribution 多元高斯分布
 
@@ -265,7 +253,6 @@ Fraud detection 舞弊检测 | 垃圾邮件
 
 <h2 id="a0d57426b1ce049b2cfafa06eac4786d"></h2>
 
------
 
 #### Using Multivariate Gaussian Distribution 
 
@@ -290,7 +277,6 @@ Flag an anomaly if p(x) < ε .
 
 <h2 id="a0afe19d45ea8a302c6f1c352e52d417"></h2>
 
------
 
 #### Original model vs. Multivariate Gaussian
 

@@ -13,20 +13,16 @@
 
 <h2 id="65c4ba2387f7eb9eb19a3404f6e9e578"></h2>
 
------
------
 
 # Week 2
 
 <h2 id="15cc068ce06a999646d795adcd4aafe3"></h2>
 
------
 
 ## Skating I
 
 <h2 id="9a925bed844d18ebf5fa51e6789e437c"></h2>
 
------
 
 ### Skating Introduction 
 
@@ -35,7 +31,6 @@ Coasting is what makes skating so fun.  Coasting is also an example of one of th
 
 <h2 id="b5cbea3dc794267b60153a80e05b8e6d"></h2>
 
------
 
 ### Why Does a Motionless Skater Tend to Remain Motionless?
 
@@ -46,7 +41,6 @@ Answer: An object at rest tends to remain at rest.  This behavior is known as in
 
 <h2 id="76f7d996e867ae6e921f9801d5bbbd4d"></h2>
 
------
 
 ### Why Does a Moving Skater Tend to Continue Moving?
 
@@ -59,13 +53,11 @@ Skating is full of examples of Newton's First Law.
 
 <h2 id="2295c7f704860345a08ab682bce7f3c1"></h2>
 
------
 
 ## Skating II
 
 <h2 id="cb911b2cc38a22fff519302b09740541"></h2>
 
------
 
 ### How Does a Skater Start, Stop, or Turn?
 

@@ -13,14 +13,11 @@
 
 <h2 id="945ecd032baf804bdb76100ab68067b0"></h2>
 
------
------
 
 # 3 系统结构
 
 <h2 id="be43e58e6be359b522be6d81834cd1fc"></h2>
 
------
 
 ## 3.1 Linux 的文件组织结构
 
@@ -30,13 +27,11 @@
 
 <h2 id="72bcb5b07fce5f144011534e8140baa7"></h2>
 
------
 
 ## 3.3 根文件系统
 
 <h2 id="ad095e1db62dba73d13badb1f2375dde"></h2>
 
------
 
 ### 3.3.1 原则与特性
 
@@ -57,7 +52,6 @@ bin  boot  data  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  
 
 <h2 id="cce7ed50e9ad40cb376d2558ba47d967"></h2>
 
------
 
 ### 3.3.2 必备的内容
 
@@ -84,7 +78,6 @@ var | 可变数据
 
 <h2 id="055d5c3afa5654eb8d72d02d80d3d7f9"></h2>
 
------
 
 ### 3.3.3 可选的内容
 
@@ -101,7 +94,6 @@ root | root 用户的专有目录
 
 <h2 id="244962dc992e1423d077d71cc059bc42"></h2>
 
------
 
 ## 3.5 /usr 目录组织结构
  

@@ -32,15 +32,12 @@
 
 <h2 id="5f723efe7dc9cef80c50e92f6ff538cb"></h2>
 
------
------
 
 ## Week 7
 
 
 <h2 id="c7432b7a0748ce1e4849f27287b2333d"></h2>
 
------
 
 ### Lecture 7.1: Related Programming Models - OpenCL Data Parallelism Model 
 
@@ -48,7 +45,6 @@
 
 <h2 id="a9ded1e5ce5d75814730bb4caaf49419"></h2>
 
------
 
 #### Background
 
@@ -60,7 +56,6 @@
 
 <h2 id="c7ccad9560480aff2b55dfed320a2552"></h2>
 
------
 
 #### OpenCL Programs
 
@@ -71,7 +66,6 @@
 
 <h2 id="9c2fa1176ab9635cb70ebdce90fd024d"></h2>
 
------
 
 #### OpenCL Execution Model
 
@@ -81,7 +75,6 @@
  
 <h2 id="48786de47093a4dc47410e6d9a6406b4"></h2>
 
------
 
 #### Mapping between OpenCL and CUDA data parallelism model concepts.
 
@@ -97,7 +90,6 @@ work group | block
 
 <h2 id="458797bd2ad3871d5a600521e053c82c"></h2>
 
------
 
 #### OpenCL Kernels
 
@@ -122,7 +114,6 @@ __kernel void vadd(__global const float *a, __global const float *b,
 
 <h2 id="c07a54e204d8fdd5fb6f0748617b5f12"></h2>
 
------
 
 #### Array of Work Items
 
@@ -134,7 +125,6 @@ __kernel void vadd(__global const float *a, __global const float *b,
 
 <h2 id="dbea784301db812486aeaeec74f99543"></h2>
 
------
 
 #### Work Groups: Scalable Cooperation
 
@@ -145,7 +135,6 @@ __kernel void vadd(__global const float *a, __global const float *b,
 
 <h2 id="86b62dec366f72cb574136cfe3f65ffd"></h2>
 
------
 
 #### OpenCL Dimensions and Indices
 
@@ -158,7 +147,6 @@ get_local_size(0); | Size of each work group in the x dimension | blockDim.x
 
 <h2 id="1a9d2ea89cc54694eeccb82c720ef43c"></h2>
 
------
 
 #### Multidimensional Work Indexing
 
@@ -166,7 +154,6 @@ get_local_size(0); | Size of each work group in the x dimension | blockDim.x
 
 <h2 id="456b94dd241c5e2db2f7d1b37353034f"></h2>
 
------
 
 #### OpenCL Data Parallel Model Summary
 
@@ -179,7 +166,6 @@ get_local_size(0); | Size of each work group in the x dimension | blockDim.x
      
 <h2 id="b6389fb0bc37cad8e59a895ce8148d89"></h2>
 
------
 
 ### Lecture 7.2: Related Programming Models - OpenCL Device Architecture 
 
@@ -189,7 +175,6 @@ get_local_size(0); | Size of each work group in the x dimension | blockDim.x
 
 <h2 id="e25bbe40f8fc005857691ead14f6f2f2"></h2>
 
------
 
 #### OpenCL Hardware Abstraction
 
@@ -205,7 +190,6 @@ get_local_size(0); | Size of each work group in the x dimension | blockDim.x
 
 <h2 id="217d5909b588812167add57a0b209c8e"></h2>
 
------
 
 #### OpenCL Device Memory Types
 
@@ -218,7 +202,6 @@ global memory | Dynamic allocation; Read/write access | No allocation; Read/writ
 
 <h2 id="415ebc36fe3195a3b7bc91e9b9b6458a"></h2>
 
------
 
 #### OpenCL Context
 
@@ -230,7 +213,6 @@ global memory | Dynamic allocation; Read/write access | No allocation; Read/writ
 
 <h2 id="9fb6db7a7cf024295eced05c3c28caf9"></h2>
 
------
 
 ### Lecture 7.3: Related Programming Models - OpenCL Host Code Part 1 
 
@@ -244,7 +226,6 @@ global memory | Dynamic allocation; Read/write access | No allocation; Read/writ
 
 <h2 id="415ebc36fe3195a3b7bc91e9b9b6458a"></h2>
 
------
 
 #### OpenCL Context
 
@@ -262,7 +243,6 @@ global memory | Dynamic allocation; Read/write access | No allocation; Read/writ
     
 <h2 id="88652bebc36b7fb6cdd9d090fb1d2efe"></h2>
 
------
 
 #### OpenCL Context Setup Code (simple)
 
@@ -283,7 +263,6 @@ cldevs[0], 0, &clerr);
 
 <h2 id="6cde352c0f9b0354bd2c1c1dce55fa27"></h2>
 
------
 
 #### OpenCL Kernel Compilation: vadd
 
@@ -306,7 +285,6 @@ cl_kernel clkern = clCreateKernel(clpgm, "vadd", &clerr);
 
 <h2 id="77e8e9cb5211e6b6f0e53fca7015bff4"></h2>
 
------
 
 #### OpenCL Device Memory Allocation
 
@@ -325,7 +303,6 @@ cl_kernel clkern = clCreateKernel(clpgm, "vadd", &clerr);
 
 <h2 id="5bcd279a1826871953f9e811106ee3c0"></h2>
 
------
 
 #### OpenCL Device Memory Allocation (cont.)
 
@@ -347,7 +324,6 @@ clReleaseMemObject(d_a);
 
 <h2 id="8cb6a1858f1a479d95624664b07bad4f"></h2>
 
------
 
 #### OpenCL Device Command Execution
 
@@ -361,7 +337,6 @@ clReleaseMemObject(d_a);
 
 <h2 id="b5042a717cbffdf9640808b5b8c2ddd9"></h2>
 
------
 
 ### Lecture 7.4: Related Programming Models - OpenCL Host Code (Cont.) 
 
@@ -369,7 +344,6 @@ clReleaseMemObject(d_a);
 
 <h2 id="f355a4597adb366f8398f58948887325"></h2>
 
------
 
 ### Lecture 7.5: Related Programming Models - OpenACC 
 
@@ -377,7 +351,6 @@ clReleaseMemObject(d_a);
  
 <h2 id="f52c7b9c0c1619f30488b93abed9a99c"></h2>
 
------
 
 ### Lecture 7.6: Related Programming Models - OpenACC Details 
 

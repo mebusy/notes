@@ -36,15 +36,12 @@
 
 <h2 id="428d98b5f468d03038613c780e48fc10"></h2>
 
------
------
 
 # A re-introduction to JavaScript (JS tutorial)
 
 
 <h2 id="7f1b21a571bc81517bbf8b85b1ef7ccd"></h2>
 
------
 
 ## 概要
 
@@ -79,7 +76,6 @@
 
 <h2 id="3b878279a04dc47d60932cb294d96259"></h2>
 
------
 
 ## Overview
 
@@ -100,7 +96,6 @@
 
 <h2 id="cbebfa21dbe8e87e788d94a76f073807"></h2>
 
------
 
 ## Numbers
 
@@ -148,7 +143,6 @@ isFinite(NaN); // false
 
 <h2 id="89be9433646f5939040a78971a5d103a"></h2>
 
------
 
 ## Strings
 
@@ -163,7 +157,6 @@ isFinite(NaN); // false
 
 <h2 id="45950ecb4d9add6d144ed6737c704ca0"></h2>
 
------
 
 ## Other types
 
@@ -189,7 +182,6 @@ var name = cachedName || (cachedName = getName());
 
 <h2 id="03df896fc71cd516fdcf44aa699c4933"></h2>
 
------
 
 ## Variables
 
@@ -228,7 +220,6 @@ for (var myVarVariable = 0; myVarVariable < 5; myVarVariable++) {
 
 <h2 id="b3c5827f54218753bb2c3338236446c2"></h2>
 
------
 
 ## Operators
 
@@ -265,7 +256,6 @@ for (var myVarVariable = 0; myVarVariable < 5; myVarVariable++) {
 
 <h2 id="c48b7d4c81fcf51917066528ff5693ed"></h2>
 
------
 
 ## Control structures
 
@@ -273,7 +263,6 @@ for (var myVarVariable = 0; myVarVariable < 5; myVarVariable++) {
 
 <h2 id="015a27f9173988da8d0b60ad7c792c40"></h2>
 
------
 
 ### if / eles if / else 
 
@@ -289,7 +278,6 @@ if (name == 'puppies') {
 
 <h2 id="02cb511523ca2dd3ea4d157f0f320bc0"></h2>
 
------
 
 ### while / do-while
 
@@ -306,7 +294,6 @@ do {
 
 <h2 id="d55669822f1a8cf72ec1911e462a54eb"></h2>
 
------
 
 ### for 
 
@@ -319,7 +306,6 @@ for (var i = 0; i < 5; i++) {
 
 <h2 id="6e733d018832ecf41889c33c7d482146"></h2>
 
------
 
 ### for...of  / for...in
 
@@ -344,7 +330,6 @@ for (let property in object) {
 
 <h2 id="7b8ca31408defce69dd51a57cfeff402"></h2>
 
------
 
 ### ternary operator
 
@@ -356,7 +341,6 @@ var allowed = (age > 18) ? 'yes' : 'no';
 
 <h2 id="b36eb6a54154f7301f004e1e61c87ce8"></h2>
 
------
 
 ### switch
 
@@ -377,7 +361,6 @@ switch (action) {
 
 <h2 id="c8308b1eba7ba926a61b8fd802194386"></h2>
 
------
 
 ## Objects
 
@@ -426,7 +409,6 @@ var you = new Person('You', 24);
 
 <h2 id="ff43b8de4f41d5103405ddb62eb8d34e"></h2>
 
------
 
 ## Arrays
 
@@ -492,7 +474,6 @@ a.unshift(item1[, item2[, ...[, itemN]]]) | Prepends items to the start of the a
 
 <h2 id="e93acb146e114b5dfa6ce2d12dcb96e4"></h2>
 
------
 
 ## Functions
 
@@ -600,7 +581,6 @@ var charsInBody = (function counter(elm) {
 
 <h2 id="061617f5237c49568715cd05ceef505d"></h2>
 
------
 
 ## Custom objects
 
@@ -779,13 +759,11 @@ s.lastNameCaps(); // WILLISON
 
 <h2 id="3e3612786cff54b6bdbbbaa3f5fa85d7"></h2>
 
------
 
 ## 其它 ES6 新特性
 
 <h2 id="7cb73e5605aec93918bd62ec843a5745"></h2>
 
------
 
 ### arrow function
 
@@ -805,7 +783,6 @@ console.log(materials.map(material => material.length));
 
 <h2 id="9bd81329febf6efe22788e03ddeaf0af"></h2>
 
------
 
 ### Class
 
@@ -813,7 +790,6 @@ console.log(materials.map(material => material.length));
 
 <h2 id="12a4166e02c1f403d1f1edab72b67926"></h2>
 
------
 
 #### Defining classes
 
@@ -828,7 +804,6 @@ class Rectangle {
 
 <h2 id="3d8bb55eea05a180febf5200d718f41c"></h2>
 
------
 
 #### Class expressions
 
@@ -856,7 +831,6 @@ console.log(Rectangle.name);
 
 <h2 id="a912551971a309d598fa34bca20f4b5e"></h2>
 
------
 
 #### Class body and method definitions
 
@@ -931,7 +905,6 @@ Rectangle.prototype.prototypeWidth = 25;
 
 <h2 id="d2de17645050c3f9b094d417f647f2ca"></h2>
 
------
 
 #### Sub classing with extends
 
@@ -1004,7 +977,6 @@ d.speak(); // Mitzie makes a noise.
 
 <h2 id="e1520b5997a532c7889f6e8883920ab8"></h2>
 
------
 
 #### Species
 
@@ -1029,7 +1001,6 @@ console.log(mapped instanceof Array);   // true
 
 <h2 id="e5b796fae796980b73c254cccd1851d5"></h2>
 
------
 
 #### Super class calls with super
 
@@ -1047,14 +1018,11 @@ class Lion extends Cat {
 
 <h2 id="e4c9479b11955648dad558fe717a4eb2"></h2>
 
------
------
 
 # tips 
 
 <h2 id="1102ba00437059603c9604fb050a22f8"></h2>
 
------
 
 ## compress js code
 

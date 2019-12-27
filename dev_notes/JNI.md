@@ -16,14 +16,11 @@
 
 <h2 id="4ceb3f5b846fa736acaada4c2f37a419"></h2>
 
------
------
 
 # JNI
 
 <h2 id="3c0039dc7d45a744d2c9b232978cb819"></h2>
 
------
 
 ## JNI type
 
@@ -33,7 +30,6 @@ jboolean，jbyte，jchar，jshort，jint，jlong，jfloat，jdouble
 
 <h2 id="bf35fd3a3fda4957619c07f85f036dd0"></h2>
 
------
 
 ## JNI字段描述符
 
@@ -88,7 +84,6 @@ objects  对象   以"L"开头，以";"结尾，中间是用"/"隔开的包及�
 
 <h2 id="c9c0d7e93e0fa367c4a2bdbcddad831d"></h2>
 
------
 
 ## Get JavaVM
 
@@ -103,7 +98,6 @@ JNI_OnLoad will be invoked when library was loaded
 
 <h2 id="fa15bc9805662c14849ccf40909ac09c"></h2>
 
------
 
 ## Call JNI methods in Thread
  1. 线程中调用的JNI 方法，不要试图去保存它们的值
@@ -118,7 +112,6 @@ JNI_OnLoad will be invoked when library was loaded
 
 <h2 id="f07f47bc6f6a26bc270b1e488aec9251"></h2>
 
------
 
 ## Get JNIEnv in threads
 
@@ -160,7 +153,6 @@ void endJNICall(JNIEnv* g_env) {
 
 <h2 id="f102c7b4bc313edc56ef03574977c9c4"></h2>
 
------
 
 ## FindClass in threads
 
@@ -227,7 +219,6 @@ extern "C" {
 
 <h2 id="f86c3261eb610e6b5e421d813e16328c"></h2>
 
------
 
 ## JNI call methods
 
@@ -290,7 +281,6 @@ Call a java function which returned an array , don't forget to invoke  `ReleaseB
 
 <h2 id="52f4967c772459b9a729c2451e425db8"></h2>
 
------
 
 ## Dump local reference table
 
@@ -305,7 +295,6 @@ env->CallStaticVoidMethod( vm_class, dump_mid );
 
 <h2 id="555f3c5d95f6b94b6620e775945dd341"></h2>
 
------
 
 ## JNI 中的引用
 

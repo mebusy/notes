@@ -59,8 +59,6 @@
 
 <h2 id="30a63c77c1af80be66640ae14eeb6ad5"></h2>
 
------
------
 
 # A Simple Syntax-Directed Translator
 
@@ -109,7 +107,6 @@ Figure 2.2: Simplified intermediate code
 
 <h2 id="af0cf6c4627b1e734c8a7fc86c534ac9"></h2>
 
------
 
 ## 2.1 Introduction
 
@@ -152,7 +149,6 @@ Figure 2.3: A model of a compiler front end
 
 <h2 id="49e3a75fe90809fc7abafbcfbc51fd7b"></h2>
 
------
 
 ## 2.2 Syntax Definition
 
@@ -170,7 +166,6 @@ Figure 2.3: A model of a compiler front end
 
 <h2 id="034fe90866337af0fbb672df1de0b66d"></h2>
 
------
 
 ### 2.2.1 Definition of Grammars
 
@@ -231,7 +226,6 @@ We say a production is *for* a nonterminal if the nonterminal is the head of the
 
 <h2 id="1050ffd6bfcbf072adafa71cd6bc7391"></h2>
 
------
 
 ### 2.2.2 Derivations
 
@@ -265,7 +259,6 @@ We have not shown the productions for *param*, since parameters are really arbit
 
 <h2 id="e270ca1319a8a19beaad53b4e3df5f0e"></h2>
 
------
 
 ### 2.2.3 Parse trees (Concrete Syntax Tree)
 
@@ -298,7 +291,6 @@ The process of finding a parse tree for a given string of terminals is called **
 
 <h2 id="4ad96debb40880b43bd7d10f5554a448"></h2>
 
------
 
 ### 2.2.4 Ambiguity
 
@@ -320,7 +312,6 @@ Merging the notion of *digit* and *list* into the nonterminal *string* makes sup
 
 <h2 id="711cb58dcac9926888c6efb7c422cb65"></h2>
 
------
 
 ### 2.2.5 Associativity of Operators
 
@@ -349,7 +340,6 @@ Note that the parse tree for 9-5-2 grows down towards the left, whereas the pars
 
 <h2 id="c8edab02a3dd9647a9c67a2f197f375d"></h2>
 
------
 
 ### 2.2.6 Precedence of Operators
 
@@ -448,7 +438,6 @@ The placement of semicolons is subtle; they appear at the end of every body that
 
 <h2 id="99db435bf694af3e4470d2abbd602218"></h2>
 
------
 
 ## 2.3 Syntax-Directed translation
 
@@ -491,7 +480,6 @@ Syntax-directed translations will be used throughout this chapter to trans­late
 
 <h2 id="7a041cb4d74009fe19e6d7fa75a6ccbe"></h2>
 
------
 
 ### 2.3.1 Postfix Notation
 
@@ -521,7 +509,6 @@ Scanning from the left, we first encounter the plus sign. Looking to its left we
 
 <h2 id="b7a3a963137495701696a042acfa2d64"></h2>
 
------
 
 ### 2.3.2 Synthesized Attributes
 
@@ -592,7 +579,6 @@ Figure 2.10: Syntax-directed definition for infix to postfix translation
 
 <h2 id="6de6204039ada6e7a2a4ffa51849e7b2"></h2>
 
------
 
 ### 2.3.3 Simple Syntax-Directed Definitions
 
@@ -620,7 +606,6 @@ When translation schemes are discussed, we shall see that a simple syntax­ dire
 
 <h2 id="5b8e21acbc1a41e26950d04eb4016a66"></h2>
 
------
 
 ### 2.3.4 Tree Traversals
 
@@ -649,7 +634,6 @@ A *depth-first* traversal starts at the root and recursively visits the children
 
 <h2 id="5006a324c3c1dbb8238e2f7acc0db632"></h2>
 
------
 
 ### 2.3.5 Translation Schemes
 
@@ -712,7 +696,6 @@ The semantic actions in the parse tree in Fig 2.14 translate the infix ex­press
 
 <h2 id="f4914c078fe8c7b18906652239ace52f"></h2>
 
------
 
 ## 2.4 Parsing
 
@@ -733,7 +716,6 @@ Most parsing methods fall into one of two classes, called the *top-down* and *bo
 
 <h2 id="f17ccb955a076df374b5842f7e7c8a7f"></h2>
 
------
 
 ### 2.4.1 Top-Down Parsing
 
@@ -782,7 +764,6 @@ The current terminal being scanned in the input is frequently referred to as the
 
 <h2 id="99a9f275f59362168c3615e281bca19a"></h2>
 
------
 
 ### 2.4.2 Predictive Parsing
 
@@ -819,7 +800,6 @@ Procedure *match(t)* com­pares its argument t with the lookahead symbol and adv
 
 <h2 id="c601306090856b08c316efc502d5c4a5"></h2>
 
------
 
 ### 2.4.3 When to Use ε-Productions
 
@@ -831,7 +811,6 @@ Our predictive parser uses an ε-production as a default when no other produc­ 
 
 <h2 id="66972cfc9c080d80ea54706369483340"></h2>
 
------
 
 ### 2.4.4 Designing a Predictive Parser
 
@@ -863,7 +842,6 @@ An algo­rithm for this purpose is given in Section 5.4. The following limited c
 
 <h2 id="4a2d5ee1151a64b791b34dc425b2d95e"></h2>
 
------
 
 ### 2.4.5 Left Recursion
 
@@ -923,7 +901,6 @@ Right-recursive productions lead to trees that grow down towards the right, as i
 
 <h2 id="dc36424ed69c3a7f569433fa185a4d31"></h2>
 
------
 
 ## 2.5 A Translator for Simple Expressions
 
@@ -951,7 +928,6 @@ By eliminating the left recursion in Fig. 2.21, we can obtain a grammar suitable
 
 <h2 id="fe6d9d9777fded4d7cc0bea999b3490f"></h2>
 
------
 
 ### 2.5.1 Abstract and Concrete Syntax
 
@@ -989,7 +965,6 @@ The grouping of subexpressions by the grammar in Fig. 2.21 is similar to their g
 
 <h2 id="af23deae5c2b14d5574f5833d7540a17"></h2>
 
------
 
 ### 2.5.2 Adapting the Translation Scheme
 
@@ -1038,7 +1013,6 @@ If the actions were to be moved to the end, after rest, then the translations wo
 
 <h2 id="01d4e2ca5af7ec1b23af29a3c6c8cedb"></h2>
 
------
 
 ### 2.5.3 Procedures for the Nonterminals
 
@@ -1075,7 +1049,6 @@ The 10 productions for *term* generate the 10 digits.
 
 <h2 id="d018fd5adc4547a6ad51aa356e41b6b0"></h2>
 
------
 
 ### 2.5.4 Simplifying the Translator
 
@@ -1117,7 +1090,6 @@ Figure 2.26: Eliminating tail recursion in the procedure rest of Fig. 2.25.
 
 <h2 id="1a1ea37b9c37e0e1025a499311325dfe"></h2>
 
------
 
 ### 2.5.5 The Complete Program
 
@@ -1173,7 +1145,6 @@ Figure 2.27: Java program to translate in x expressions into post x form
 
 <h2 id="1124c548716947bf1d9af7327cd25a88"></h2>
 
------
 
 ## 2.6 Lexical Analysis
 
@@ -1200,7 +1171,6 @@ Section 3.5 de­scribes a tool called *Lex* that generates a lexical analyzer fr
 
 <h2 id="4ffe382825aa482e44d922e6011d438e"></h2>
 
------
 
 ### 2.6.1 Removal of White Space and Comments
 
@@ -1227,7 +1197,6 @@ Figure 2.29: Skipping white spac
 
 <h2 id="8e6167f7cfe35d955af94e9fd07a69c8"></h2>
 
------
 
 ### 2.6.2 Reading Ahead
 
@@ -1251,7 +1220,6 @@ The invariant assertion in this section is that when the lexical analyzer return
 
 <h2 id="eae3ef9a16e0a5126020316b892f2f8b"></h2>
 
------
 
 ### 2.6.3 Constants
 
@@ -1289,7 +1257,6 @@ Figure 2.30: Grouping digits into integers
 
 <h2 id="1e169be343415b0e2313599ace15555c"></h2>
 
------
 
 ### 2.6.4 Recognizing Keywords and Identifiers
 
@@ -1352,7 +1319,6 @@ Figure 2.31: Distinguishing keywords from identifiers
 
 <h2 id="bac8700bcbb6552788ffed034f760ceb"></h2>
 
------
 
 ### 2.6.5 A Lexical Analyzer
 
@@ -1508,7 +1474,6 @@ The integer variable **line** on line 4 counts input lines, and character variab
 
 <h2 id="434f55fe88fd25c8152d796e3570a9f3"></h2>
 
------
 
 ## 2.7 Symbol Tables
 
@@ -1544,7 +1509,6 @@ Example 2.14: On the above input (2.7), the goal is to produce:
 
 <h2 id="0b968b1c0e10984c774f810fa51a6f63"></h2>
 
------
 
 ### 2.7.1 Symbol Table Per Scope
 
@@ -1620,7 +1584,6 @@ public class Env {
 
 <h2 id="fbc602841eaa84d8266b8cd68a9b0eca"></h2>
 
------
 
 ### 2.7.2 The Use of Symbol Tables
 
@@ -1650,7 +1613,6 @@ the transltion scheme strips the declarations and produces
 
 <h2 id="34e5a4a6d3a58ed77921d67b06e25cb5"></h2>
 
------
 
 ## 2.8 Intermediate Code Generation
 
@@ -1658,7 +1620,6 @@ The front end of a compiler constructs an intermediate representation of the sou
 
 <h2 id="66c733687afcb7c5eb00b1d5d1579e9b"></h2>
 
------
 
 ### 2.8.1 Two Kinds of Intermediate Representations
 
@@ -1682,7 +1643,6 @@ It is possible that a compiler will construct a syntax tree at the same time it 
 
 <h2 id="ae16ee3868feeaebf52a44b7030a9257"></h2>
 
------
 
 ### 2.8.2 Construction of Syntax Trees
 
@@ -1729,7 +1689,6 @@ First, the productions defining different types of statements are explained, fol
 
 <h2 id="a575ff09f5b0e915ba023178f4e8156b"></h2>
 
------
 
 #### Syntax Trees for Statements
 
@@ -1765,7 +1724,6 @@ Expression statements do not begin with a keyword, so we define a new op­erator
 
 <h2 id="0e2d70ac0a5f7fe503cc3c18910291f3"></h2>
 
------
 
 #### Representing Blocks in Syntax Trees
 
@@ -1804,7 +1762,6 @@ There are two statements in the list, the first an if-statement and the second a
 
 <h2 id="b0181a55a85e25b720ba8728cab22c31"></h2>
 
------
 
 #### Syntax  Trees for Expressions 
 
@@ -1848,7 +1805,6 @@ creates a node of class *Op*, which implements the operators **op** . The constr
 
 <h2 id="9d5cecdb99d5dae795be316ef310ad3b"></h2>
 
------
 
 ### 2.8.3 Static Checking
 
@@ -1867,7 +1823,6 @@ Not only do they assure that a program can be compiled successfully, but they al
 
 <h2 id="a226617c26f0efa2fab04802a7ecb968"></h2>
 
------
 
 #### L-values and R-values
 
@@ -1894,7 +1849,6 @@ Static checking must assure that the left side of an assignment denotes an l-val
 
 <h2 id="ef0b52f08f0934c7369102646a8a9f6d"></h2>
 
------
 
 #### Type Checking
 
@@ -1932,7 +1886,6 @@ The idea of matching actual with expected types continues to apply, even in the 
 
 <h2 id="5c6ea36a95209bc29141acbedc432405"></h2>
 
------
 
 ### 2.8.4 Three-Address Code
 
@@ -1942,7 +1895,6 @@ We illustrate the possibilities by walking syntax trees to generate three-addres
 
 <h2 id="58323055fdcda7a470037de00dc07353"></h2>
 
------
 
 #### Three-Address Instructions
 
@@ -1980,7 +1932,6 @@ Finally, we need instructions that copy a value. The following three-address ins
 
 <h2 id="325e35ed8e9e36ec01949e91f99bec8c"></h2>
 
------
 
 #### Translation of Statements
 
@@ -2026,7 +1977,6 @@ In this example, function *gen* calls *E.rvalue*() to translate the expression *
 
 <h2 id="1b4f954d64e096fe675d68b0988fa58a"></h2>
 
------
 
 #### Translation of Expressions
 
@@ -2151,7 +2101,6 @@ function *rvalue* generates
 
 <h2 id="db95f2e74506a3daa31c97e26bf78cc6"></h2>
 
------
 
 #### Better Code for Expressions
 

@@ -29,14 +29,11 @@
 
 <h2 id="7e88324d8a5031b150fdf371a7cda3a0"></h2>
 
------
------
 
 ## Lua Nginx Module
 
 <h2 id="992792a653fcb3d29eb9f1e11e39f623"></h2>
 
------
 
 ### 官方文档
 
@@ -45,7 +42,6 @@
 
 <h2 id="403fd6344109d58ada6ef715b8ba4800"></h2>
 
------
 
 ### 执行阶段概念
 
@@ -92,7 +88,6 @@ location /mixed {
 
 <h2 id="2081eee0b4b974d68a1d64f844b561e0"></h2>
 
------
 
 ### 正确的记录日志
 
@@ -104,7 +99,6 @@ location /mixed {
 
 <h2 id="ed12dbb6cd4a0c740d0a6a499567a40f"></h2>
 
------
 
 ### 阻塞操作
 
@@ -114,7 +108,6 @@ location /mixed {
 
 <h2 id="36854f32d5ebad1e3475e8de5a57ea33"></h2>
 
------
 
 #### Openresty中的阻塞函数
 
@@ -133,13 +126,11 @@ location /mixed {
 
 <h2 id="e80c310e6ae7ca889532ec40388a497f"></h2>
 
------
 
 ### 缓存
 
 <h2 id="a89216afe9a6418fa4a8f9a06595d27b"></h2>
 
------
 
 #### 缓存的原则
 
@@ -154,7 +145,6 @@ location /mixed {
 
 <h2 id="dec5759700d95b906fbec8ae79cd802b"></h2>
 
------
 
 #### OpenResty的缓存
 
@@ -219,7 +209,6 @@ return _M
 
 <h2 id="07104413e7871baef1daadc00b838ce2"></h2>
 
------
 
 #### 如何选择？
 
@@ -236,7 +225,6 @@ return _M
 
 <h2 id="243924bfd56a682be235638b53961e09"></h2>
 
------
 
 ### Sleep 
 
@@ -261,7 +249,6 @@ server {
 
 <h2 id="a1bd9760fc7a20ba5c57564d2d173bf0"></h2>
 
------
 
 ### 定时任务
 
@@ -297,7 +284,6 @@ server {
 
 <h2 id="2455984e9b282791ed3d861d41e1fdf9"></h2>
 
------
 
 ### 禁止某些终端访问
 
@@ -340,7 +326,6 @@ location / {
 
 <h2 id="0c17af5ce22abf1dcf75152b78f8ec1c"></h2>
 
------
 
 ### 请求返回后继续执行
 
@@ -370,7 +355,6 @@ end
 
 <h2 id="b7c0bfff1b6f1cc255716a1cb8b68011"></h2>
 
------
 
 ### 调试
 
@@ -398,7 +382,6 @@ end
 
 <h2 id="7bc945278de209b6fa66b6e671a0d759"></h2>
 
------
 
 ### 调用其他C函数动态库  FFI
 
@@ -456,7 +439,6 @@ assert(txt2 == txt)
 
 <h2 id="ecf8271962fadee06343c2d4e99b56c2"></h2>
 
------
 
 ### 变量的共享范围
 
@@ -468,7 +450,6 @@ assert(txt2 == txt)
 
 <h2 id="141235ab3d9e0753ee255b4c20c90f88"></h2>
 
------
 
 #### NGX_LUA的三种变量范围
 
@@ -483,7 +464,6 @@ assert(txt2 == txt)
 
 <h2 id="a90be3ca6701b64f0deaedc88c9cd7e9"></h2>
 
------
 
 ### 正确使用长链接 KeepAlive
 
@@ -495,7 +475,6 @@ assert(txt2 == txt)
 
 <h2 id="4ec18a5d7bdffacc089a0c2b5d465d8c"></h2>
 
------
 
 ### 如何引用第三方 resty 库
 
@@ -522,7 +501,6 @@ content_by_lua_block {
 
 <h2 id="a2629135f9ad86918f066730063772cb"></h2>
 
------
 
 ### 典型应用场景
 
@@ -540,7 +518,6 @@ content_by_lua_block {
 
 <h2 id="50fba432c2bad62aa1922e8f7a6b14a2"></h2>
 
------
 
 #### 不擅长的应用场景
 
@@ -568,7 +545,6 @@ content_by_lua_block {
 
 <h2 id="f48a360106aa1d72ab7f87d3fda39941"></h2>
 
------
 
 ### 怎样理解 cosocket
 

@@ -28,14 +28,11 @@
 
 <h2 id="82c3a1ecfb73757b332ca9d07818fea2"></h2>
 
------
------
 
 # 5. Computer Architecture
 
 <h2 id="33999dda2fa6608276c40dda9517d0c1"></h2>
 
------
 
 ## 5.1 Von Neumann Architecture
 
@@ -43,7 +40,6 @@
 
 <h2 id="aa56a2e65d8106aef3c61e4f6bf94fdb"></h2>
 
------
 
 ### Elements
 
@@ -56,7 +52,6 @@
 
 <h2 id="4cddecdacbbc625f8b0abf04f6aa1e86"></h2>
 
------
 
 ### Information Flows
 
@@ -66,7 +61,6 @@
 
 <h2 id="4c7bdd90410042e10dd67436384e17aa"></h2>
 
------
 
 ### Buses
 
@@ -81,7 +75,6 @@
 
 <h2 id="44e3bf233a0e7a5decff0aaab2d17d15"></h2>
 
------
 
 ## 5.2 The Fetch-Execute Cycle
 
@@ -93,7 +86,6 @@
 
 <h2 id="7865d8f54c20047006223a67ab639b70"></h2>
 
------
 
 ### Fetching
 
@@ -108,7 +100,6 @@
  
 <h2 id="63c4cc5944eb60b1969f2333ead70fc9"></h2>
 
------
 
 ### Executing 
  
@@ -116,7 +107,6 @@
 
 <h2 id="24e481da85387c537c02bb45d1bbc147"></h2>
 
------
 
 ### Fetch-Execute Clash 
 
@@ -152,7 +142,6 @@
 
 <h2 id="b43585e7acd4132480f7f36e8e58c499"></h2>
 
------
 
 ## 5.3 CPU 
 
@@ -165,7 +154,6 @@
 
 <h2 id="3fee1c0b6153717300bc562cf724cc03"></h2>
 
------
 
 ### The Hack CPU: Abstraction 
 
@@ -175,7 +163,6 @@
 
 <h2 id="66265d28f431087151dad2e1471f5db8"></h2>
 
------
 
 ### Hack CPU Interface 
 
@@ -203,7 +190,6 @@
 
 <h2 id="fb18d6304583643441f45cc4da665c41"></h2>
 
------
 
 ### Hack CPU Implementation 
 
@@ -213,7 +199,6 @@
 
 <h2 id="d0879da14db1669fd7cc551b67fe7b6f"></h2>
 
------
 
 ### Instruction handling 
 
@@ -230,7 +215,6 @@
 
 <h2 id="5dd0ed8d0cd686c9ca44dd3a0f3484a8"></h2>
 
------
 
 ### ALU operation 
 
@@ -254,7 +238,6 @@
 
 <h2 id="18af6f320c794ce703ecd7e4c44fbf96"></h2>
 
------
 
 ### PC logic
 
@@ -277,13 +260,11 @@ else
 
 <h2 id="2d5b2381493e2e74b418ec4570b18f6c"></h2>
 
------
 
 ## 5.4 The Hack Computer
 
 <h2 id="c366294d33d33ad8f41ff39d909e530f"></h2>
 
------
 
 ### Hack CPU Operation
 
@@ -306,7 +287,6 @@ The CPU executes the instruction according to the Hack Language specification
 
 <h2 id="fdef999b11b2cf3acbf0df16e8882100"></h2>
 
------
 
 ### Data Memory 
 
@@ -314,7 +294,6 @@ The CPU executes the instruction according to the Hack Language specification
 
 <h2 id="f94f42245da94b6b457000847ee3b0f7"></h2>
 
------
 
 ### Instruction Memory (ROM)
 
@@ -339,7 +318,6 @@ The CPU executes the instruction according to the Hack Language specification
 
 <h2 id="d1ab5781342f30b0410b1955380662e6"></h2>
 
------
 
 ### Hack Computer implementatioin
 
@@ -359,7 +337,6 @@ The CPU executes the instruction according to the Hack Language specification
 
 <h2 id="6aa600c7db11b3f439b312fdeaab651c"></h2>
 
------
 
 ## 5.5 Project Overview
 

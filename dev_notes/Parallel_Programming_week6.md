@@ -31,14 +31,11 @@
 
 <h2 id="9a7f65f62bfbd892678d5cf675c8fee4"></h2>
 
------
------
 
 ## Week #6
 
 <h2 id="d44b0c6ea12b9430bd3cf48d076ec58d"></h2>
 
------
 
 ### Lecture 6.1: Efficient Host-Device Data Transfer - Pinned Host Memory 
  - important concepts involved in copying (transferring) data between host and device
@@ -48,7 +45,6 @@
 
 <h2 id="e10c1c3c1ea5392c5f1eea7ca0b3873c"></h2>
 
------
 
 #### CPU-GPU Data Transfer using DMA
 
@@ -63,7 +59,6 @@
 
 <h2 id="2cd02b906eadba617d7c6ac88d30fe53"></h2>
 
------
 
 #### Virtual Memory Management
 
@@ -82,7 +77,6 @@ To understand how DMA works, we'd better know something about Virtual Memory.
 
 <h2 id="b2a9d5a12eab1f941738bd5c801aaedd"></h2>
 
------
 
 #### Data Transfer and Virtual Memory 
 
@@ -96,7 +90,6 @@ To understand how DMA works, we'd better know something about Virtual Memory.
 
 <h2 id="7df7be93264776b9f5c008a7ef802f50"></h2>
 
------
 
 #### Pinned Memory and DMA Data Transfer 
 
@@ -109,7 +102,6 @@ To understand how DMA works, we'd better know something about Virtual Memory.
 
 <h2 id="40e346ff128b7af79670d95f3284ab5e"></h2>
 
------
 
 #### CUDA data transfer uses pinned memory
 
@@ -118,7 +110,6 @@ To understand how DMA works, we'd better know something about Virtual Memory.
 
 <h2 id="bdef598b63a9326341f68bcbb7016c7b"></h2>
 
------
 
 #### Allocate/Free Pinned Memory
 
@@ -131,7 +122,6 @@ To understand how DMA works, we'd better know something about Virtual Memory.
 
 <h2 id="c3811783084bd13e3f88d10fc162289d"></h2>
 
------
 
 #### Using Pinned Memory in CUDA
 
@@ -144,7 +134,6 @@ To understand how DMA works, we'd better know something about Virtual Memory.
 
 <h2 id="d3eb5c06fd39e6588b7e91991de747dc"></h2>
 
------
 
 #### Vector Addition Host Code Example
 
@@ -167,7 +156,6 @@ int main()
     
 <h2 id="1b80c064703cd2aaabbcf87adf1180a2"></h2>
 
------
 
 ### Lecture 6.2: Efficient Host-Device Data Transfer - Task Parallelism in CUDA
 
@@ -176,7 +164,6 @@ int main()
 
 <h2 id="1eec9afb0b999eed4e565e0e8d8a0255"></h2>
 
------
 
 #### Serialized Data Transfer and Computation
 
@@ -186,7 +173,6 @@ int main()
 
 <h2 id="676880c1ebb7d48597077ac5c7061bee"></h2>
 
------
 
 #### Device Overlap
 
@@ -205,7 +191,6 @@ for (int i = 0; i < dev_count; i++) {
     
 <h2 id="7100c1190c2250c484c7021b91c993bb"></h2>
 
------
 
 #### Ideal, Pipelined Timing
 
@@ -221,7 +206,6 @@ for (int i = 0; i < dev_count; i++) {
 
 <h2 id="8ba448cc3c6d4d958f09a2867e647e0e"></h2>
 
------
 
 #### CUDA Streams
 
@@ -233,7 +217,6 @@ for (int i = 0; i < dev_count; i++) {
 
 <h2 id="21b3cb64e5310225472b9fa9ad3e1ee3"></h2>
 
------
 
 #### Streams
 
@@ -245,7 +228,6 @@ for (int i = 0; i < dev_count; i++) {
 
 <h2 id="fe152dac9b832d65ef6285dc9b5cc473"></h2>
 
------
 
 #### Streams cont.
 
@@ -256,7 +238,6 @@ for (int i = 0; i < dev_count; i++) {
 
 <h2 id="f8fab47eba7e8b1fb86bb2c911d1b6ef"></h2>
 
------
 
 ### Lecture 6.3: Efficient Host-Device Data Transfer - Overlapping Data Transfer with Computation 
 
@@ -266,7 +247,6 @@ for (int i = 0; i < dev_count; i++) {
 
 <h2 id="07016f41ae194ded6bfa2b27f9856ca3"></h2>
 
------
 
 #### A Simple Multi-Stream Host Code
 
@@ -304,7 +284,6 @@ for (int i=0; i<n; i+=SegSize*2) {
 
 <h2 id="42dd46ef1f223b467126091b06f1f702"></h2>
 
------
 
 #### Not quite the overlap we want in some GPUs
 
@@ -314,7 +293,6 @@ for (int i=0; i<n; i+=SegSize*2) {
 
 <h2 id="f4f91f8843bf7bbd46f7b3ae80dca782"></h2>
 
------
 
 #### A Better Multi-Stream Host Code 
 
@@ -344,7 +322,6 @@ for (int i=0; i<n; i+=SegSize*2) {
 
 <h2 id="a598adc12ac665ba62757284e143180e"></h2>
 
------
 
 #### Better, not quite the best overlap
 
@@ -355,7 +332,6 @@ for (int i=0; i<n; i+=SegSize*2) {
 
 <h2 id="7100c1190c2250c484c7021b91c993bb"></h2>
 
------
 
 #### Ideal, Pipelined Timing
 
@@ -365,7 +341,6 @@ for (int i=0; i<n; i+=SegSize*2) {
 
 <h2 id="68e72eae3146d9dce16fd5fe0b75e830"></h2>
 
------
 
 #### Hyper Queues
 
@@ -374,7 +349,6 @@ for (int i=0; i<n; i+=SegSize*2) {
 
 <h2 id="3c2be719fbfcb512887002eac82b7bdb"></h2>
 
------
 
 #### Wait until all tasks have completed
 

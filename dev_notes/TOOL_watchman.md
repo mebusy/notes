@@ -16,14 +16,11 @@
 
 <h2 id="b50e0466a03291f83abf9cda054a962f"></h2>
 
------
------
 
 #facebook watchman
 
 <h2 id="d5725e1e142236069d95ca3b37eb719d"></h2>
 
------
 
 ### watch 某个目录
 
@@ -33,7 +30,6 @@ watchman watch /path/to/dir
 
 <h2 id="151d08852b1d146ac7c81968d3d018b0"></h2>
 
------
 
 ### 删除 某个watched 目录
 
@@ -43,7 +39,6 @@ watchman watch-del /path/to/dir
 
 <h2 id="71ddfb561fa5139ff5a2ab4f01e85d1b"></h2>
 
------
 
 ### 查看 watch list
 
@@ -53,7 +48,6 @@ watchman watch-list
 
 <h2 id="0014c3e14eb578443ec0f3caf758c03c"></h2>
 
------
 
 ### 设置trigger
 
@@ -69,7 +63,6 @@ match 模式：  '*.lua' , 只会出发 根目录下的 lua 文件
 
 <h2 id="42f6410136119df6991d9591beb26ccb"></h2>
 
------
 
 ### 删除某个 trigger 
 
@@ -79,7 +72,6 @@ watchman trigger-del /path/to/dir triggername
 
 <h2 id="a1f2ce9a6b0ca6c348836701115c6454"></h2>
 
------
 
 ### 查看 trigger 列表
 
@@ -89,7 +81,6 @@ watchman trigger-list /path/to/dir
 
 <h2 id="3947fc934eb080775ca62aa126dad96b"></h2>
 
------
 
 ### 关闭watchman 服务
 
@@ -99,7 +90,6 @@ watchman shutdown-server
 
 <h2 id="0565f8f66838fec3a5ad3909c08ff395"></h2>
 
------
 
 ### 查看 watchman 相关路径设置
 
@@ -110,7 +100,6 @@ ps -ef | grep watchman
 
 <h2 id="b99af44161fb3b1829c3e2067544f1b7"></h2>
 
------
 
 ### 一个简单的 监视 lua 文件改动的例子
 

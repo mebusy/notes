@@ -31,14 +31,11 @@
 
 <h2 id="38013a2053e186e2a913a847302cb961"></h2>
 
------
------
 
 # Chapter 4  OpenGL 1.1: Light and Material
 
 <h2 id="28d62d201f9f167a46bf8fa48482df0f"></h2>
 
------
 
 ## 4.1 Introduction to Lighting
 
@@ -49,7 +46,6 @@
 
 <h2 id="6788faf44f9f4aa1051a042070db7ea4"></h2>
 
------
 
 ### 4.1.1  Light and Material
 
@@ -105,7 +101,6 @@
 
 <h2 id="7cc9fc44683838aea8d3ee51ca72df05"></h2>
 
------
 
 ### 4.1.2  Light Properties
 
@@ -133,7 +128,6 @@
 
 <h2 id="40178615255ddfc4be6f8dab0edd186d"></h2>
 
------
 
 ### 4.1.3  Normal Vectors
 
@@ -161,7 +155,6 @@
 
 <h2 id="4b1becbc8f61f667b2cd75515f209e62"></h2>
 
------
 
 ### 4.1.4  The OpenGL Lighting Equation
 
@@ -230,7 +223,6 @@
 
 <h2 id="1d7df9b9e73b274a6944e83f35506827"></h2>
 
------
 
 ## 4.2 Light and Material in OpenGL 1.1
 
@@ -251,7 +243,6 @@
 
 <h2 id="212d60534ffdbd3cc3d30ed2081eb957"></h2>
 
------
 
 ### 4.2.1  Working with Material
 
@@ -317,7 +308,6 @@ glMaterialf( GL_FRONT_AND_BACK, GL_SHININESS, gold[12] );
 
 <h2 id="76c4b248421ab6f8ed3961772257e729"></h2>
 
------
 
 ### 4.2.2  Defining Normal Vectors
 
@@ -411,7 +401,6 @@ glEnd();
 
 <h2 id="2be3f5e0b0764ab9809f624e5d350be3"></h2>
 
------
 
 ### 4.2.3  Working with Lights
 
@@ -486,7 +475,6 @@ glLightfv( GL_LIGHT1, GL_AMBIENT, blue3 );
     
 <h2 id="ff6ef9be13faeb818ed39d487cfe0929"></h2>
 
------
 
 ### 4.2.4  Global Lighting Properties
 
@@ -549,7 +537,6 @@ glMaterialfv( GL_BACK, GL_SPECULAR, black );  // no specular highlights
 
 <h2 id="d96740a4938a1526bdbf9e5bd480f733"></h2>
 
------
 
 ## 4.3 Image Textures
 
@@ -565,7 +552,6 @@ glMaterialfv( GL_BACK, GL_SPECULAR, black );  // no specular highlights
 
 <h2 id="4d2bd57affe01ae466ff1eec96336e2f"></h2>
 
------
 
 ### 4.3.1  Texture Coordinates
 
@@ -612,7 +598,6 @@ void glTexCoordPointer( int size, int dataType, int stride, void* array)
 
 <h2 id="9dfb35408c40a9f6a06f637d39978d1f"></h2>
 
------
 
 ### 4.3.2  MipMaps and Filtering
 
@@ -649,7 +634,6 @@ void glTexCoordPointer( int size, int dataType, int stride, void* array)
 
 <h2 id="71891ecbd1c91d5bc9cf1dca41bba204"></h2>
 
------
 
 ### 4.3.3  Texture Target and Texture Parameters
 
@@ -695,7 +679,6 @@ glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 
 <h2 id="77215f4c082667d223529a170e100b17"></h2>
 
------
 
 ### 4.3.4  Texture Transformation
 
@@ -731,7 +714,6 @@ glMatrixMode(GL_MODELVIEW); // Leave matrix mode set to GL_MODELVIEW.
 
 <h2 id="4cbbc83d1742387d548637c963cd179f"></h2>
 
------
 
 ### 4.3.5  Loading a Texture from Memory
 
@@ -771,7 +753,6 @@ glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0,
 
 <h2 id="9a610c4b77e55f70493fb18040a49abe"></h2>
 
------
 
 ### 4.3.6  Texture from Color Buffer
 
@@ -803,7 +784,6 @@ glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, x, y, width, height, 0);
 
 <h2 id="f195611b7e066702888980514017d6d8"></h2>
 
------
 
 ### 4.3.7  Texture Objects
 
@@ -867,7 +847,6 @@ for (i = 0; i < n; i++) {
 
 <h2 id="fa9c0146e107924356825bdad1b96a79"></h2>
 
------
 
 ### 4.3.8  Loading Textures in C
 
@@ -880,7 +859,6 @@ for (i = 0; i < n; i++) {
 
 <h2 id="1cfd2f92a424424d1d932006d298c47f"></h2>
 
------
 
 ## 4.4 Lights, Camera, Action
 
@@ -898,7 +876,6 @@ for (i = 0; i < n; i++) {
 
 <h2 id="014e48c86844b30ed1ee648f92fef39a"></h2>
 
------
 
 ### 4.4.1  Attribute Stack
 
@@ -960,7 +937,6 @@ for (i = 0; i < n; i++) {
 
 <h2 id="e90e1158c70aef209dda35c28cbf6feb"></h2>
 
------
 
 ### 4.4.2  Moving Camera
  
@@ -997,7 +973,6 @@ for (i = 0; i < n; i++) {
 
 <h2 id="a8f9ce93e94e7809b551454814dda1d1"></h2>
 
------
 
 ### 4.4.3  Moving Light
 
@@ -1023,7 +998,6 @@ for (i = 0; i < n; i++) {
 
 <h2 id="61af40d9607525b33bc4bc11f91078b0"></h2>
 
------
 
 ## 4.n 笔记
 

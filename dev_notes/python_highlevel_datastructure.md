@@ -17,22 +17,17 @@
 
 <h2 id="7fd56e59b5fba7ede4bdfe85d4ca3e80"></h2>
 
------
------
 
 # High Level Datastructure In Python 
 
 
 <h2 id="255caa31493a976f6d48a798880b037d"></h2>
 
------
------
 
 # 1 Collections
 
 <h2 id="fdfff165187c00eddf4de38373dae439"></h2>
 
------
 
 ## 1.1 Counter()
 
@@ -48,7 +43,6 @@ Counter({'Dog': 3, 42: 2, 'Cat': 2, 'Mouse': 1})
 
 <h2 id="6a7d8a9f9964930eeb69ad32b992c975"></h2>
 
------
 
 ## 1.2 Deque 
 
@@ -79,7 +73,6 @@ deque([3, 4, 0, 1, 2])
 
 <h2 id="79c19eeedbe88e9f7463649482c2d96c"></h2>
 
------
 
 ## 1.3 Defaultdict
 
@@ -101,8 +94,6 @@ defaultdict(<type 'list'>, {'not exist': []})
 
 <h2 id="accc7ea4c2626a83ee808ea519a956a1"></h2>
 
------
------
 
 # 2 Heapq
 
@@ -161,8 +152,6 @@ class PriorityQueue:
 
 <h2 id="bdcdfbb57bb9cc2e3ffde8fe201d6778"></h2>
 
------
------
 
 # 3 Bisect
 
@@ -189,7 +178,6 @@ class PriorityQueue:
 
 <h2 id="2f868162e8d150124929f479e23cbf03"></h2>
 
------
 
 ##  Searching Sorted Lists
 
@@ -236,7 +224,6 @@ def find_ge(a, x):
 
 <h2 id="08b87bb6671fe3c2c92f77e4f561e7fb"></h2>
 
------
 
 ## Other Examples
 
@@ -256,8 +243,6 @@ This example uses bisect() to look up a letter grade for an exam score (say) bas
 
 <h2 id="487df11c262ee217b21843a7dfe5d472"></h2>
 
------
------
 
 # 4 Copy 
 
@@ -272,8 +257,6 @@ This example uses bisect() to look up a letter grade for an exam score (say) bas
 
 <h2 id="ec77e0a5fa7be31d129ddd57e635c4bc"></h2>
 
------
------
 
 # 5 Pprint 
 

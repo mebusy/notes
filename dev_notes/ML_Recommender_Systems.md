@@ -18,20 +18,16 @@
 
 <h2 id="bd1e9577d90cd9b99bbc584f4899cdd3"></h2>
 
------
------
 
 # Recommender Systems
 
 <h2 id="ae4850a11bf72fcf96312dbdaa01416a"></h2>
 
------
 
 ## Predicting Movie Ratings
 
 <h2 id="d3ed97478e5bb62df6a73642fb3eb2cf"></h2>
 
------
 
 ### Problem Formulation
 
@@ -41,7 +37,6 @@ Machine learning 界有一个宏大的目标: 自动地替你学习到一组优�
 
 <h2 id="91256a34c3c416ed111c1c1f0f6d0cf8"></h2>
 
------
 
 #### Example: Predicting movie ratings.
 
@@ -61,7 +56,6 @@ User rates movies using 0 to 5 stars.
  
 <h2 id="a71ae4758962a9d66c5eed0209ee7790"></h2>
 
------
 
 ### Content Based Recommendations 
 
@@ -97,7 +91,6 @@ Gradient descent update:
 
 <h2 id="1d0676de81840f76265b22da2bd66cfe"></h2>
 
------
 
 ## Collaborative Filtering 协同过滤
 
@@ -109,7 +102,6 @@ If we can get these parameters θ from users then it turns out that it becomes p
 
 <h2 id="89642905e18066000c83d4fadf9e16d6"></h2>
 
------
 
 ### Optimization algorithm
 
@@ -131,7 +123,6 @@ To lean all x :
 
 <h2 id="bda473b95d57bd8ddf09a8e81b15dd0c"></h2>
 
------
 
 ## Collaborative Filtering Algorithm
 
@@ -174,13 +165,11 @@ grad = [X_grad(:); Theta_grad(:)];
 
 <h2 id="f97e45631aaf46ad6a70583cf84aeacd"></h2>
 
------
 
 ## Low Rank Matrix Factorization
 
 <h2 id="ccc5742e475a0775e47cf832d54606d2"></h2>
 
------
 
 ### Vectorization 
 
@@ -195,7 +184,6 @@ grad = [X_grad(:); Theta_grad(:)];
 
 <h2 id="2c5b941c4e8f1f592ca82323d7a0ed07"></h2>
 
------
 
 #### Finding related movies
 
@@ -208,7 +196,6 @@ small `‖x⁽ⁱ⁾ - x⁽ʲ⁾‖` -> movie j and i are "similar".
 
 <h2 id="4ea68a58b5d62dbfb35eec3f95eb7494"></h2>
 
------
 
 ### Implementational Detail: Mean Normalization
 

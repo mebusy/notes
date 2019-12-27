@@ -35,14 +35,11 @@
 
 <h2 id="c2ffa44d58b8bac831cb4c782fb01ade"></h2>
 
------
------
 
 # Unity - Android
 
 <h2 id="e0c2f5b13be3164313231f7289407244"></h2>
 
------
 
 ## Android SDK Setup
 
@@ -67,7 +64,6 @@
 
 <h2 id="bbddfbb27c097a0f4075d43d6e054e79"></h2>
 
------
 
 ## Unity Remove 4
 
@@ -75,7 +71,6 @@ Remote Setting:  Menu Edit > Project Settings > Editor
     
 <h2 id="527af06b45ea8371224628d1e9f8a52d"></h2>
 
------
 
 ## Inside the Android Build Process
 
@@ -93,7 +88,6 @@ List of devices attached
 
 <h2 id="dcabe0dca89861f1a51eb815d92b7f80"></h2>
 
------
 
 ### Texture Compression
 
@@ -102,7 +96,6 @@ By default, Unity uses **ETC1/RGBA16** texture format for textures that don’t 
 
 <h2 id="76be2860342f35d1b19db62423df76d0"></h2>
 
------
 
 ### Features currently not supported by Unity Android
 
@@ -117,7 +110,6 @@ By default, Unity uses **ETC1/RGBA16** texture format for textures that don’t 
 
 <h2 id="7753889e829e7f7c51771a01e862e7bf"></h2>
 
------
 
 ### Android Scripting
 
@@ -125,7 +117,6 @@ macro : `UNITY_ANDROID`
 
 <h2 id="2db8de39645d281d9071415f5aac2319"></h2>
 
------
 
 #### Advanced Unity Mobile Scripting
 
@@ -141,13 +132,11 @@ macro : `UNITY_ANDROID`
 
 <h2 id="6a90ae54dfe15833c91435281d0ea1ef"></h2>
 
------
 
 ### Building Plugins for Android
 
 <h2 id="0edb001a0a575634d2fcd655007e12e5"></h2>
 
------
 
 #### Native Plugin
 
@@ -155,7 +144,6 @@ To build a plugin for Android, you should first obtain the ***Android NDK*** and
 
 <h2 id="4193dbb572f85515fe526433c9cf2a94"></h2>
 
------
 
 #### Android Library Projects
 
@@ -177,7 +165,6 @@ AndroidManifest.xml from these folders will get automatically **merged** with th
 
 <h2 id="ea355214fd4bc7c57f471bd92918879b"></h2>
 
------
 
 ####  Deployment
 
@@ -188,7 +175,6 @@ For specific Android platform (armv7, x86), the libraries (lib*.so) should be pl
 
 <h2 id="538a16b6cc13007d77ca9afa193488ad"></h2>
 
------
 
 #### Using Java Plugins
 
@@ -202,7 +188,6 @@ A .jar file containing the .class files for your plugin
 
 <h2 id="85d7c5a7595a0c5f6ef85f4187416d99"></h2>
 
------
 
 ##### Using Your Java Plugin from Native Code
 
@@ -212,13 +197,11 @@ A .jar file containing the .class files for your plugin
 
 <h2 id="28e3c4f8fa197ba60f832800460e36e7"></h2>
 
------
 
 ## Android SDK
 
 <h2 id="f6851bab6b694b76b183e4a29ab9d0e1"></h2>
 
------
 
 ### create AVD
 
@@ -246,13 +229,11 @@ emulator --avd A16_4.1.2
 
 <h2 id="a781e0468f15d9a9776aa0ec03389053"></h2>
 
------
 
 ## NDK
 
 <h2 id="3ae6be565f1e33e90e0b11f768de1f6c"></h2>
 
------
 
 ### Android.mk
 
@@ -267,7 +248,6 @@ emulator --avd A16_4.1.2
 
 <h2 id="bbc9105ee8508ce6e083a589a351e83a"></h2>
 
------
 
 #### Basics
 
@@ -289,7 +269,6 @@ emulator --avd A16_4.1.2
 
 <h2 id="71d8a20d51b4fd098e224bbceafe5e3e"></h2>
 
------
 
 #### Variables and Macros
 
@@ -304,7 +283,6 @@ NDK 保留字:
 
 <h2 id="34a0ad7ce398db363c3bea74d3bf8158"></h2>
 
------
 
 #### NDK-defined variables
 
@@ -333,7 +311,6 @@ NDK 保留字:
 
 <h2 id="f1f83bbb1daf12a9ecb64594df31a8be"></h2>
 
------
 
 #### Module-Description Variables
 
@@ -399,7 +376,6 @@ Variables:
 
 <h2 id="23475e2848e87691b2297b77ec135d34"></h2>
 
------
 
 #### NDK-provided function macros
     
@@ -420,7 +396,6 @@ they return textual information.
 
 <h2 id="8e3060573a2bb39017e391f1f7ec4997"></h2>
 
------
 
 ### Application.mk
 
@@ -439,13 +414,11 @@ they return textual information.
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
------
 
 ## Misc
 
 <h2 id="169abc368db1ed3b7ced23a4f442cb7b"></h2>
 
------
 
 ### 获取 android id
 
@@ -456,7 +429,6 @@ adb shell settings get secure android_id
 
 <h2 id="83dc2a583afc95dfd2221b8220e16748"></h2>
 
------
 
 ### 获取 mac address
 
@@ -466,7 +438,6 @@ adb shell cat /sys/class/net/wlan0/address
 
 <h2 id="cf00f742bf3ddb4dbebe6f4dbd32f96c"></h2>
 
------
 
 ### unity android get Current Application context
 
@@ -482,7 +453,6 @@ using(AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.
 
 <h2 id="29701a188748cb389ef5d6db4b65d70d"></h2>
 
------
 
 ### jar 打包
 

@@ -7,8 +7,6 @@
 
 <h2 id="5bad3f86a8e3adc99ff4947ad97b0703"></h2>
 
------
------
 
 # linear Algebra in a Nutshell
 

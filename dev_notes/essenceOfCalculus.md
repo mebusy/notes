@@ -19,8 +19,6 @@
 
 <h2 id="5c6d0419bdcc965d881019d989ad6f1a"></h2>
 
------
------
 
 # chapter 1: Essense of Calculus
 
@@ -58,8 +56,6 @@
 
 <h2 id="b872997f4e311706ca6628e823fc3459"></h2>
 
------
------
 
 # chapter 2: Paradox of the derivatives
  
@@ -84,8 +80,6 @@
 
 <h2 id="13e7953947a312a1272a400065326d94"></h2>
 
------
------
 
 # chapter 3: Derivative formulas through geometry 
 
@@ -98,8 +92,6 @@
 
 <h2 id="9546814bd16cc3f81d041e7b9b643ecb"></h2>
 
------
------
 
 # chapter 4: Visualizing the chain rule and product rule
 
@@ -112,7 +104,6 @@
 
 <h2 id="06aa9025652035d38814388a75abf573"></h2>
 
------
 
 ## Sum rule
 
@@ -121,7 +112,6 @@
 
 <h2 id="418eebdc34081971062598381d44d9ad"></h2>
 
------
 
 ## Multiply rule
 
@@ -130,7 +120,6 @@
 
 <h2 id="eb0c844221ea9727339a6c0c9233c27f"></h2>
 
------
 
 ## Chain rule 
  - g(h(x))
@@ -144,8 +133,6 @@
 
 <h2 id="a80580cc58514e0b419bbc32ed0e79d2"></h2>
 
------
------
 
 # chapter 5: What's so special about Euler's number e?
 
@@ -177,8 +164,6 @@
 
 <h2 id="91cb2bc00b850ea33ca8919983c5f6fe"></h2>
 
------
------
 
 # chapter 6: Implicit differentiation, what's going on here? 
 
@@ -228,8 +213,6 @@
 
 <h2 id="59a59b02331a322ab57018951bb6d886"></h2>
 
------
------
 
 # chapter 7: Limits, L'Hopital's rule, and epsilon delta definitions
 
@@ -285,8 +268,6 @@
 
 <h2 id="eeacb3a6987b61fae56993eb1f78fd4f"></h2>
 
------
------
 
 # chapter 8: Integration and the fundamental theorem of calculus
 
@@ -328,8 +309,6 @@
 
 <h2 id="b9130735d7a51c85445d7b6434f2dea9"></h2>
 
------
------
 
 # chapter 9: What does area have to do with slope? 
 
@@ -348,8 +327,6 @@
 
 <h2 id="f4c4612f181889150de4d5e6175f2839"></h2>
 
------
------
 
 # chapter 11: Taylor series
 

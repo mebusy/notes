@@ -12,8 +12,6 @@
 
 <h2 id="1f2926170990cf2be315dea64f695138"></h2>
 
------
------
 
 # 9 特种文件系统
 
@@ -24,7 +22,6 @@
 
 <h2 id="530245fecdfde469a4e7671a391909df"></h2>
 
------
 
 ## 9.2 进程文件系统 procfs
 
@@ -35,7 +32,6 @@
 
 <h2 id="0725a0d61db90b83f77a95a287e57039"></h2>
 
------
 
 ### 9.2.2 /proc 目录
 
@@ -80,7 +76,6 @@
 
 <h2 id="8e736138fbc50e7e4678aae7a5c1c001"></h2>
 
------
 
 ### 9.2.3 procfs 实战
 
@@ -140,7 +135,6 @@ PIW:          0          0          0          0   Posted-interrupt wakeup event
 
 <h2 id="92f11218638e56b59b5012b7f9dc69ad"></h2>
 
------
 
 ## 9.3 tmpfs 满足你对 "时空" 的双重渴望
 
@@ -148,7 +142,6 @@ PIW:          0          0          0          0   Posted-interrupt wakeup event
 
 <h2 id="53e039499b6c1a8a91b3f21fd6ab739c"></h2>
 
------
 
 ### 9.3.3 tmpfs实战
 

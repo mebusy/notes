@@ -35,20 +35,16 @@
 
 <h2 id="fb71412d09271536aa98bc0e794b79c1"></h2>
 
------
------
 
 # Module 6: Operating System
 
 <h2 id="2af59aa7a876715e2fbb8f6aa4c7f2ea"></h2>
 
------
 
 ## 6.1 Operating System 
 
 <h2 id="e7820015b6da7d3fe931e8aef85c14c3"></h2>
 
------
 
 ### Typical OS Services 
 
@@ -69,7 +65,6 @@
 
 <h2 id="28a071a5b28abb405ca19096b8c221b7"></h2>
 
------
 
 ### The Jack OS
 
@@ -87,13 +82,11 @@
 
 <h2 id="c67722540f5fa016dc542c75e186f4b0"></h2>
 
------
 
 ## 6.3 Mathematical Operations
 
 <h2 id="b72b04759d9fed58df037ee567f851d4"></h2>
 
------
 
 ### multiplcation 
 
@@ -119,7 +112,6 @@
 
 <h2 id="3025cdaab2deb0bb2cd642449e570833"></h2>
 
------
 
 ### Division
 
@@ -148,7 +140,6 @@ def positive_divide(x,y):
  
 <h2 id="921c8ec6c3d4bde5e7634dbb32de93fe"></h2>
 
------
 
 ### Square root
 
@@ -184,7 +175,6 @@ def sqrt( x ) :
 
 <h2 id="3ff40ea85319bee31ad07c4868a10260"></h2>
 
------
 
 ## 6.4 Memory Access
 
@@ -209,7 +199,6 @@ def sqrt( x ) :
 
 <h2 id="37172e3a5b02f949dccb6a71da9d5d0f"></h2>
 
------
 
 ## 6.5 Heap Management 
 
@@ -224,7 +213,6 @@ def sqrt( x ) :
 
 <h2 id="12040c88931471aab97a3abddd6a6b80"></h2>
 
------
 
 ### Object construction and destruction 
 
@@ -235,7 +223,6 @@ def sqrt( x ) :
 
 <h2 id="f998d8459d4a637427aa37907d63fc1a"></h2>
 
------
 
 ### Heap management (simple)
 
@@ -254,7 +241,6 @@ deAlloc(object):
 
 <h2 id="48b9b0831480a06c1eb8a9aca0d62baa"></h2>
 
------
 
 ### Heap management 
 
@@ -268,7 +254,6 @@ deAlloc(object):
 
 <h2 id="36db045df60520c0aeb9d4e87c4c73c9"></h2>
 
------
 
 ### Heap management (detailed)
 
@@ -295,7 +280,6 @@ deAlloc(object):
 
 <h2 id="a4ec9143c7ccb66f9e2bd94c70eaf4b6"></h2>
 
------
 
 ### Implementation notes
 
@@ -324,14 +308,12 @@ class Memory {
 
 <h2 id="667ebe3f340a91efe52c4e6e6aa032b0"></h2>
 
------
 
 ## 6.6 Graphics
 
 
 <h2 id="3731fbf53a579409601210e9c2cc101d"></h2>
 
------
 
 ### Draw Pixel
 
@@ -352,7 +334,6 @@ function void drawPixel(int x, int y) {
 
 <h2 id="4d3ef5d5e84c17c6c205dab36d211489"></h2>
 
------
 
 ### Line Drawing
 
@@ -407,7 +388,6 @@ while ( (a<=dx) and (b<=dy) )
 
 <h2 id="6104bf2ce199148553bd216dccefd5ec"></h2>
 
------
 
 ### Circle drawing 
 
@@ -429,7 +409,6 @@ drawCircle(x,y,r):
 
 <h2 id="fc13b36e9870fcb3ae5e8d19883fa8fd"></h2>
 
------
 
 ## 6.8: Handling Textual Output
 
@@ -442,7 +421,6 @@ drawCircle(x,y,r):
 
 <h2 id="4e241a5e85e955f1e8376795c97bd366"></h2>
 
------
 
 ### Font implementation
 
@@ -486,7 +464,6 @@ class Output {
 
 <h2 id="9abdae4fa5d93330363a88ed8a5e7946"></h2>
 
------
 
 ### Cursor 
 
@@ -503,7 +480,6 @@ class Output {
 
 <h2 id="fc7bc95df1b722bc56c78deb2a6d2d72"></h2>
 
------
 
 ## 6.9 Input
 
@@ -546,7 +522,6 @@ class Output {
 
 <h2 id="06132411f843899b094ddb2cfd5f9ed8"></h2>
 
------
 
 ## 6.10 String Processing 
 
@@ -575,7 +550,6 @@ class Output {
 
 <h2 id="a4ec9143c7ccb66f9e2bd94c70eaf4b6"></h2>
 
------
 
 ### Implementation notes
 
@@ -598,7 +572,6 @@ class String {
 
 <h2 id="16ca44c5643ad0bcb9f5e0ef10525e72"></h2>
 
------
 
 ## 6.11: Array Processing
 
@@ -614,7 +587,6 @@ Class Array {
 
 <h2 id="7bb88f5cc49596490f9c9dc28dfa46cc"></h2>
 
------
 
 ## 6.12: The Sys Class
 
@@ -664,7 +636,6 @@ class Sys {
 
 <h2 id="c39af9bce93260de68adafcf69990316"></h2>
 
------
 
 ## 6.13: Project 12: Building the OS
 
@@ -676,7 +647,6 @@ class Sys {
 
 <h2 id="0641401c188fcc2e9aea8fc8f738ee07"></h2>
 
------
 
 ### Reverse engineering
 

@@ -14,27 +14,21 @@
 
 <h2 id="d2bcb78d5ac194c66f434e9fbcb3565e"></h2>
 
------
------
 
 # Discrete Mathematics
 
 <h2 id="1528d69d906941f195dbd4052b705454"></h2>
 
------
------
 
 # Chapter 1 Foundations of Logic
 
 <h2 id="57af49f5272c485d0fbc802a05d36c22"></h2>
 
------
 
 ## 1.1 Proposition Logic
 
 <h2 id="8e71db7c81436b5c108940a9a5712cb2"></h2>
 
------
 
 ### The Implication Operator →
 
@@ -98,7 +92,6 @@
 
 <h2 id="cba739368677d1686f6fbbfc3ef64e88"></h2>
 
------
 
 ### Biconditional
 
@@ -110,7 +103,6 @@
 
 <h2 id="aa8d3b3a207fde866ac608d5c61a3f3f"></h2>
 
------
 
 ## 1.2 Proposition Equivalences
 
@@ -138,7 +130,6 @@
 
 <h2 id="964abe8e7ce3c7be1d9658b6dd67544f"></h2>
 
------
 
 ## 1.3 Predicates and Quantifiers
 
@@ -154,7 +145,6 @@
 
 <h2 id="a38483049b36c18171570ccafddb3158"></h2>
 
------
 
 ## 1.4 Nested Quantifiers
 

@@ -13,8 +13,6 @@
 
 <h2 id="ce3374e3bdbab692e3e6d81eefca5fa6"></h2>
 
------
------
 
 # PPU registers
 
@@ -25,7 +23,6 @@ https://wiki.nesdev.com/w/index.php/PPU_registers
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
 
------
 
 ## Summary
 
@@ -44,7 +41,6 @@ OAMDMA | $4014 | write | aaaa aaaa | OAM DMA high address
 
 <h2 id="12db96d2c957aa2e0f62efba7438d684"></h2>
 
------
 
 ### PPUSTATUS $2002 < read
 
@@ -83,7 +79,6 @@ VSO. ....
 
 <h2 id="e610d6d0ebcec60e47429845a26b4cdc"></h2>
 
------
 
 ### PPUADDR ($2006) >> write x2
 
@@ -110,7 +105,6 @@ VSO. ....
 
 <h2 id="2ea9139a25965e25aa6292e0d86f9ebf"></h2>
 
------
 
 ## PPU power up state
 
@@ -135,7 +129,6 @@ CHR RAM (external, in Game Pak) | unspecified pattern | unchanged
 
 <h2 id="50802d3e5a25b93d471686a10da03dd8"></h2>
 
------
 
 ### Best practice
 
@@ -158,7 +151,6 @@ vwait2:
 
 <h2 id="08c865722ec499f5a7baef6aecb8afa0"></h2>
 
------
 
 ## Init code
 

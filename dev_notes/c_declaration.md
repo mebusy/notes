@@ -17,14 +17,11 @@
 
 <h2 id="4d4d41296119a89b97e6c8d1d2b12d61"></h2>
 
------
------
 
 # C Declaration 
 
 <h2 id="0e8496ac4e183c0a93f348bea3eb755a"></h2>
 
------
 
 ## How a Declaration Is Formed
 
@@ -85,7 +82,6 @@ semi-colon | `;` | 1
 
 <h2 id="b6883b80c1162c486c5fc1f7cd01ef57"></h2>
 
------
 
 ## how to combine variables in structs and unions
 
@@ -93,7 +89,6 @@ and also look at enums.
 
 <h2 id="f630d4bf06506c3ab082d636b29f7243"></h2>
 
------
 
 ### A Word About structs
 
@@ -192,7 +187,6 @@ a.next->next=NULL;
 
 <h2 id="80a514cf94d858b0e7609f0f08d34686"></h2>
 
------
 
 ### struct 内存对齐
 
@@ -235,7 +229,6 @@ struct E2 {
 
 <h2 id="d4e244f54df03fa025bc569ccfabc85a"></h2>
 
------
 
 ### A Word About unions
 
@@ -283,7 +276,6 @@ union bits32_tag {
 
 <h2 id="e42747e8ccfb6720aed43d4f3052931e"></h2>
 
------
 
 ### A Word About enums
 
@@ -310,7 +302,6 @@ enum sizes { small=7, medium, large=10, humungous };
 
 <h2 id="9ecf79b05d37fa25da955c7e0c4461ee"></h2>
 
------
 
 ## The Precedence Rule
 
@@ -357,7 +348,6 @@ char *(*c[10])(int **p);  //  how 2 read ?
 
 <h2 id="180084aeda94c4da5d99c51a5c576d1c"></h2>
 
------
 
 ## typedef Can Be Your Friend
 
@@ -408,7 +398,6 @@ declare signal as FUNCTION returning pointer to function (int) returning void
 
 <h2 id="b2964049a26ea843935c34c897b5d716"></h2>
 
------
 
 ### Difference Between typedef int x[10] and #define x int[10]
 
@@ -425,7 +414,6 @@ unsigned banana i; /* Bzzzt! illegal */
 
 <h2 id="3d484886fd516f41ecd9c20e76065a47"></h2>
 
------
 
 ### What typedef struct foo { ... foo; } foo; Means
 

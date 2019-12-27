@@ -21,14 +21,11 @@
 
 <h2 id="ce184863f05a7ff711ae5677ccb11667"></h2>
 
------
------
 
 # Integrate LUA
 
 <h2 id="cd27a050b3dd39ef6a61a72c21f8fcb7"></h2>
 
------
 
 ## 1. include lua header files
 
@@ -42,7 +39,6 @@ extern "C" {
 
 <h2 id="4e920d09e03dfa78fd32050f46acef83"></h2>
 
------
 
 ## 2. create your lua state class
 
@@ -63,7 +59,6 @@ extern "C" {
 
 <h2 id="ccc897386af8da03fafcfabcc025c998"></h2>
 
------
 
 ## 3. print problem 
 
@@ -128,7 +123,6 @@ int lua_print(lua_State * luastate) {
 
 <h2 id="67479c3ef43bc4a573dec363b3707a90"></h2>
 
------
 
 ## 4. add lua search path
 
@@ -146,7 +140,6 @@ void LuaState::addSearchPath(const char* path)
 
 <h2 id="625a412884d68edbd61698c43079471b"></h2>
 
------
 
 ## 5. tolua++
 
@@ -158,7 +151,6 @@ void LuaState::addSearchPath(const char* path)
 
 <h2 id="66f6181bcb4cff4cd38fbc804a036db6"></h2>
 
------
 
 ### template
 
@@ -191,7 +183,6 @@ class Vector {
 
 <h2 id="3fec93f66682ce9c63af27dec7b911a2"></h2>
 
------
 
 ### name space 
 
@@ -202,7 +193,6 @@ namespace.classname:functionname( ... )
 
 <h2 id="2a45a91d039693c9fb96a16030a13c5e"></h2>
 
------
 
 ### enumerate
 
@@ -210,7 +200,6 @@ namespace.classname:functionname( ... )
 
 <h2 id="0f8d6fb56fe6cdf55ad0114ec5b51dbb"></h2>
 
------
 
 ### struct 
 
@@ -222,7 +211,6 @@ namespace.classname:functionname( ... )
 
 <h2 id="5b77d3c94d428927df167f348def0026"></h2>
 
------
 
 ## 6. c++ reigster lua callback
 
@@ -242,7 +230,6 @@ namespace.classname:functionname( ... )
 
 <h2 id="bbcb54453c8ad2480745e76991ed17f3"></h2>
 
------
 
 ## 7. lua / c++
 
@@ -257,7 +244,6 @@ namespace.classname:functionname( ... )
 
 <h2 id="c812e3504b54c3f45829d4b715731c9d"></h2>
 
------
 
 ## 8. lua / Java
 
@@ -270,7 +256,6 @@ namespace.classname:functionname( ... )
 
 <h2 id="ff92401cfdc0ea1b4eb55540669ad837"></h2>
 
------
 
 ### lua 调用 Java
 
@@ -278,7 +263,6 @@ namespace.classname:functionname( ... )
 
 <h2 id="ee4e6cf22725c18fc2d76be7234d0237"></h2>
 
------
 
 ### java 调用 lua
 

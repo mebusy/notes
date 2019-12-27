@@ -11,14 +11,11 @@
 
 <h2 id="348c880664f2e1458b899ced2a3518e6"></h2>
 
------
------
 
 # sublime 
 
 <h2 id="9b170543939c6cd7f1429de2594d607c"></h2>
 
------
 
 ## Install "Package Control"
 
@@ -29,7 +26,6 @@
 
 <h2 id="16f3f1badf0bd7511a11113a33732008"></h2>
 
------
 
 ## Set Proxy
 
@@ -46,7 +42,6 @@
 
 <h2 id="ba3b64da711156e4984775335117b21d"></h2>
 
------
 
 ## Use Package Control Install Plugins
 
@@ -56,7 +51,6 @@
 
 <h2 id="bb38096ab39160dc20d44f3ea6b44507"></h2>
 
------
 
 ## Plugins
 

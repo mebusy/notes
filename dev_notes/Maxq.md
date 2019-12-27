@@ -28,8 +28,6 @@
 
 <h2 id="ef0aea7fada38d87f635b347acae4117"></h2>
 
------
------
 
 # Maxq 
 
@@ -40,14 +38,11 @@ Q-learning will converge to the optimal  , while SARSA(0) will need a GLIE polic
  
 <h2 id="1ca2a53e3aee2426fbe0471c0788f16d"></h2>
 
------
------
 
 # 3. The MAXQ Value Function Decomposition
  
 <h2 id="11b7c68186495355b7770a6777ab2f40"></h2>
 
------
 
 ## 3.1 Taxi example
 
@@ -80,7 +75,6 @@ All of this information can be summarized by a directed acyclic graph called the
 
 <h2 id="28fc65dfb6f48abdf33b71b4b0440cf7"></h2>
 
------
 
 ## 3.2 Definitions
 
@@ -156,7 +150,6 @@ The purpose of the MAXQ value function decomposition is to decompose V(0,s) (the
 
 <h2 id="753a9eaa2be4ced1fa5875c05dfdff70"></h2>
 
------
 
 ## 3.3 Decomposition of the Projected Value Function
 
@@ -315,8 +308,6 @@ This theorem captures the representational power of the MAXQ decomposition, but 
 
 <h2 id="d6441f91c197a8e36b0008ba2307889a"></h2>
 
------
------
 
 # A Learning Algorithm for the MAXQ Decomposition
 
@@ -329,7 +320,6 @@ This theorem captures the representational power of the MAXQ decomposition, but 
 
 <h2 id="891e7168eccd8d630e8c572615d85781"></h2>
 
------
 
 ## 4.1 Two Kinds of Optimality
 
@@ -405,7 +395,6 @@ In the worst case, it is possible for the programmer to specify pseudo-rewards s
 
 <h2 id="3b97da78e886b3f8d17c9f4c54540171"></h2>
 
------
 
 ## 4.2 The MAXQ-O Learning Algorithm
 
@@ -473,7 +462,6 @@ The most important aspect of this theorem is that it proves that Q learning can 
 
 <h2 id="23feda6ab3a0c28739ff075e59ed559e"></h2>
 
------
 
 ## 4.3 Techniques for Speeding Up MAXQ-0
 
@@ -512,7 +500,6 @@ Although this considerably reduces the usefulness of all-goals updating, it does
 
 <h2 id="9847a1803bd225e326da8c36497968a6"></h2>
 
------
 
 ## 4.4 The MAXQ-Q Learning Algorithm 
 
@@ -547,8 +534,6 @@ The  C̃ function will be learned using an update rule similar to the Q learning
 
 <h2 id="be6b86743fc14285b97d7d0037337a64"></h2>
 
------
------
 
 # 5. State Abstraction
 
@@ -570,7 +555,6 @@ A flat Q learning representation need store a separate value for each of the six
 
 <h2 id="287fa4871442358e00cdd22bdccfe7fc"></h2>
 
------
 
 ## 5.1 Five Conditions that Permit State Abstraction
 
@@ -603,7 +587,6 @@ Now let us describe and analyze the 5 abstraction conditions. We have identified
 
 <h2 id="0fd7085da1b16936628a34768637ff1c"></h2>
 
------
 
 ### 5.1.1 CONDITION 1: MAX NODE IRRELEVANCE
 
@@ -669,7 +652,6 @@ In the Taxi task, the primitive navigation actions, North, South, East, and West
 
 <h2 id="87349168dccb260456b23839e9702af4"></h2>
 
------
 
 ### 5.1.2 CONDITION 2: LEAF IRRELEVANCE
 
@@ -708,7 +690,6 @@ Similarly, the expected rewards of the Pickup and Putdown actions each require o
 
 <h2 id="a9f97f89dbb6e80750e445877a4cc214"></h2>
 
------
 
 ### 5.1.3 CONDITION 3: RESULT DISTRIBUTION IRRELEVANCE
 
@@ -742,7 +723,6 @@ The Result Distribution Irrelevance condition is applicable in all such situatio
 
 <h2 id="fa47406de877edbd1d58fe0b8f4489b6"></h2>
 
------
 
 ### 5.1.4 CONDITION 4: TERMINATION
 
@@ -766,7 +746,6 @@ It is easy to detect caseswhere the Termination condition is satisfied. We only 
 
 <h2 id="3bd22ac574778f26097a5d3c815bcee5"></h2>
 
------
 
 ### 5.1.5 CONDITION 5: SHIELDING
 
@@ -778,7 +757,6 @@ In the Taxi domain, a simple example of this arises in the Put task,  which is t
 
 <h2 id="fb8187ec15df35190dbc58aa6d7d4815"></h2>
 
------
 
 ### 5.1.6 DICUSSION
 
@@ -835,7 +813,6 @@ Hence, applying these 5 conditions to introduce state abstractions is a straight
 
 <h2 id="a905db7d811ede823e2afa218e22b5d8"></h2>
 
------
 
 ##  5.2 Convergence of MAXQ-Q with State Abstraction
 
@@ -846,7 +823,6 @@ The goal of this section is to prove these two results:
 
 <h2 id="3a77b82cf90e359bca449dc6baea1a13"></h2>
 
------
 
 ## 5.3 The Hierarchical Credit Assignment Problem
 
@@ -877,8 +853,6 @@ Lines 15 and 16 of the MAXQ-Q algorithm are easily modifiedto include R(i, s’|
 
 <h2 id="be3d80bb862c5123b4a97b94416dd9cd"></h2>
 
------
------
 
 # 6. Non-Hierarchical Execution of the MAXQ Hierarchy
 
@@ -939,8 +913,6 @@ In particular, we need to introduce hierarchically- greedy execution early enoug
 
 <h2 id="624966685e552964b681142cfb943122"></h2>
 
------
------
 
 # 7. Experimental Evaluation of the MAXQ Method
 
