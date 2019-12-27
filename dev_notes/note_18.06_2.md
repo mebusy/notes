@@ -919,6 +919,9 @@ Here is the idea. F₆ has a neat connection to F₃, half as big. There's a con
 
 (w₆₄)² = w₃₂.
 
+![](../imgs/la_fourier_6to3.png)
+
+F₆₄ 也有类似上面的 F₆=DF₃P 的分解，这样就可以 64² 降低为 2(32)²+32.
 
 
 <h2 id="2863407614e2585ffc756f6a2485f06e"></h2>
