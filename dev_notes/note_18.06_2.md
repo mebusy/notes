@@ -880,9 +880,9 @@ w is no the unit circle of complex plane. for example ,if n = 6, then w lands on
 
 Where is w² ? the angle is doubled ( 2/6 circle, 120 degree )
 
-if n =4 , w = e<sup>iπ/2</sup> = i .
+if n =4 , w<sub>n</sub> = e<sup>iπ/2</sup> = i .
 
-```
+```octave
 F₄ = 
 
   1  1  1  1
@@ -900,7 +900,24 @@ F₄ =
 
 This matrix is so remarkable.   It's the 4x4 matrix that comes into the 4 point Fourier transform. The inverse matrix will be a nice matrix also. 
 
+Those columns are orthogonal ( PS. you should take 1 column's conjugate ). They're not quite orthonormal.  But I can fix it easily, they all have length 2. 
 
+```octave
+F₄ = 1/2 *
+
+  1  1  1  1
+  1  i -1 -i
+  1 -1  1 -1
+  1 -i -1  i
+```
+
+Now I can inverse it right away:  F₄ᴴ.
+
+So what's good? What property is it that leads to the FFT ? 
+
+Here is the idea. F₆ has a neat connection to F₃, half as big. There's a connection of F₈ to F₄. There's a connection of F₆₄ to F₃₂. 
+
+(w₆₄)² = w₃₂.
 
 
 
@@ -915,5 +932,9 @@ This matrix is so remarkable.   It's the 4x4 matrix that comes into the 4 point 
 ### Fast Transform
 
 
+
+# 5th edition
+
+http://math.mit.edu/~gs/linearalgebra/
 
 
