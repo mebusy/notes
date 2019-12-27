@@ -690,8 +690,14 @@ vimgrep /pattern/gj path
  - Another very useful vi or ex command is `:r` to read in the contents of another file. 
     - Thus: :r foo inserts the contents of the file named "foo" at the current line.
     - More powerful is the `:r!` command.  This reads the results of a command , and insert it at the current line.
+ - Even more powerful are the `!` (bang) and `:... !` (ex bang) commands.
+    - These also execute external commands and read the results into the current text.
+    - However, they also filter selections of **our text** through the command! 
+        - This we can sort all the lines in our file using `1G!Gsort`. This is equivalent to the ex variant `:1,$!sort`.
+        - > Writers often use ! with the Unix fmt or fold utilities for reformating or "word wrapping" selections of text. 
+        - A very common macro is `{!}fmt` (reformat the current paragraph). 
  - Another useful ex command is `:so` (short for `:source`). 
-    - This reads the contents of a file as a series of commands. 
+    - This reads the contents of a file as *a series of commands*. 
 
 
 
