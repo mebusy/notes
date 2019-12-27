@@ -619,20 +619,56 @@ vimgrep /pattern/gj path
 
 # grok VIM
 
- - vi has 26 "marks" and 26 "registers."
+ - The "Zen" of **vi** is that you're speaking a language. 
+    - `yy`
+        - The initial *y* is a verb. 
+        - The statement *yy* is a synonym for *y_*. The y is doubled up to make it easier to type.
+        - the verb can take any movements as their "subject." 
+ - vi has 26 "marks" and 26 "registers."  ( lower case characters)
     - `ma` sets the 'a' mark to the current location
-    - use `'a'`  to jump the line has 'a' mark
-    - use ```a`` to jump the exact location of the 'a' mark.
-    - ``d`a`` to delete the content from current location to 'a' mark
- - `d/abc` , delete the content from current location to the next matched `abc`
+    - use `'a`  (single quote) to jump the beginning of the **LINE** has 'a' mark
+    - use `` `a`` (backquote)  to jump the precise location of the 'a' mark.
+        - > markdown tips:  use a space infront and surrounded by doulbe backquote to display single backquote.
+        - > similarly, use space infront and surrounded by single backquote to display double backquote.
+    - more special mark jumping
+        - ` `` ` , `''` , to jump back to where jumped from
+        - `` `0`` , jump to position in last file edited (when exited Vim)
+        - `` `1`` , like `` `0`` ,  but the previous file (also `` `2`` etc)
+    - Because these are "movements" they can also be used as subjects for other "statements."
+        - ``d`a`` to delete the content from current location to 'a' mark
+ - So, one way to cut an arbitrary selection of text would be to drop a mark.
+    - this is one way to cut or copy text. However, it is only one of many.
+    - Frequently we can more succinctly describe the range of text without moving our cursor around and dropping a mark.
+    - For example if I'm in a paragraph of text I can use { and } movements to the beginning or end of the paragraph respectively.
+    - So, to move a paragraph of text I cut it using `{ d}` (3 keystrokes).
+ - Searching forwards or backwards are movements in vi. Thus they can also be used as "subjects" in our "statements." 
+    - `d/abc` , delete the content from current location to the next matched `abc`
     - `y?abc` , yark the content from current locationthe most recent (previous) matched `abd`
+
+----
+
+ - In addition to "verbs" and "subjects" vi also has "objects".
+    - So far I've only described the use of the anonymous register. 
+    - However, I can use any of the 26 "named" registers by *prefixing* the "object" reference with " (the double quote modifier).
+    - Thus if I use `"add` I'm cutting the current line into the 'a' register.
+    - To paste from a register I simply prefix the paste with the same modifier sequence: `"ap`  pastes a copy of the 'a' register's contents.
+    - This notion of "prefixes" is something like "adjectives" / "adverbs".
+    - Most commands (verbs) and movement (verbs or objects, depending on context) can also take numeric prefixes.
+        - Thus `3J` means "join the next three lines" 
+        - and `d5}` means "delete from the current line through the end of the fifth paragraph down from here."
+ - **This is all intermediate level vi.**
+
+---
+
+## A sampling of more advanced tricks:
+
  - There are a number of `:` commands, most notably the `:% s/foo/bar/g` global substitution technique
-    - `:` commands normally operate over lines of text
+    - `:` commands normally operate over lines of text. The whole : set of commands was historically inherited by vi's previous incarnations ,ed and ex, very elder.
     - So the syntax of most `:` commands includes an address or range of addresses (line number) followed by a command.
     - `:127,215 s/foo/bar` to change the first occurrence of "foo" into "bar" on each line between 127 and 215
-    - `.` or `$` for current and last lines respectively
+    - One could also use some abbreviations such as `.` or `$` for current and last line respectively
     - One could also use relative prefixes `+` and `-` to refer to offsets after or before the curent line, 
-    - `:.,$j` meaning "from the current line to the last line, join them all into one line".
+    - Thus, `:.,$j` meaning "from the current line to the last line, join them all into one line".
     - `:%` is synonymous with `:1,$` (all the lines).
  - The `:...g` and `:...v` commands are incredibly powerful.
     - `:...g` is a prefix for "globally" applying a subsequent command to all lines which match a pattern (regular expression) 
