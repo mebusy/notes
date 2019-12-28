@@ -937,19 +937,17 @@ D =
 
 Q: what is the P ?  How does recursive idea use here ? 
 
+64² -> 2(32)²+32 -> 2( 2(16)²+16 ) + 32
+
+When I do the recursion more and more times, I get simpler and simpler factors in the middle, eventually I'll be down to 2 point or 1 point Fourier transforms.  Finally I get to 6x32, that's my final count. 
+
+Conclusion: the FFT multiplies by nxn matrix, but it does it not in n² steps, but in 1/2·nlogn steps. 
 
 
-<h2 id="2863407614e2585ffc756f6a2485f06e"></h2>
+## 2.7 
 
 
-### Discrete Fourier
-
-<h2 id="f53bc93546799cd2984bed0d0a434ef3"></h2>
-
-
-### Fast Transform
-
-
+----
 
 # 5th edition
 
