@@ -923,6 +923,21 @@ Here is the idea. F₆ has a neat connection to F₃, half as big. There's a con
 
 F₆₄ 也有类似上面的 F₆=DF₃P 的分解，这样就可以 64² 降低为 2(32)²+32.
 
+D is powers of w 
+
+```octave
+D = 
+
+  1  
+     w
+       w²
+         ...
+            wⁿ⁻¹
+```
+
+Q: what is the P ?  How does recursive idea use here ? 
+
+
 
 <h2 id="2863407614e2585ffc756f6a2485f06e"></h2>
 
