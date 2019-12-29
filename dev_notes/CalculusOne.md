@@ -1327,6 +1327,9 @@ assuming f'(x₀) != 0
     - the intermediate value theorem promises me that there is a root
     - Newton's method, or this bi-section algorithm permits me to get better and better approximations to that root
 
+[python implementaion](newton_methods.py)
+
+
 <h2 id="845c1341a5fd23cff388a26b42d30ec5"></h2>
 
 
