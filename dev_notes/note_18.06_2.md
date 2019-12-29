@@ -946,6 +946,24 @@ Conclusion: the FFT multiplies by nxn matrix, but it does it not in n² steps, b
 
 ## 2.7 
 
+### Positive Definite Matrix (Tests)
+
+Now, all matrices are symmetric. my question is , is it postive definite.
+
+1. all eigen values are positive
+2. all determinate of submatrices are postive.
+3. all pivots are positive. 
+4. `*`  xᵀAx > 0
+
+
+
+### Tests for Minumum 
+
+### Ellipsoids in Rⁿ
+
+
+
+
 
 ----
 
