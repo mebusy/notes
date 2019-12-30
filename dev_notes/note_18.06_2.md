@@ -30,8 +30,11 @@
          - [Complexo](#023666df9ae9590deecc67a35fb5839e)
          - [Complex Vectors , length](#e5c0693de0b5a3e017ca1bcabf2a8444)
          - [Complex Matrices](#9ff43aa3e54f31207991c2e82ccf292d)
-         - [Discrete Fourier](#2863407614e2585ffc756f6a2485f06e)
-         - [Fast Transform](#f53bc93546799cd2984bed0d0a434ef3)
+     - [2.7](#23cb05d4a2e5bf28363909d92cd244e2)
+         - [Positive Definite Matrix (Tests)](#4cf3e789d3a58f3fd2346661d3d01046)
+         - [Tests for Minumum](#dba4a84ad31aa9e54c57ceeb9a69cf86)
+         - [Ellipsoids in Rⁿ](#e77fe7259561aabc1f580cd55ad18daa)
+ - [5th edition](#bb3960a52bdbb47b997ae1259f1acc14)
 
 ...menuend
 
@@ -944,7 +947,13 @@ When I do the recursion more and more times, I get simpler and simpler factors i
 Conclusion: the FFT multiplies by nxn matrix, but it does it not in n² steps, but in 1/2·nlogn steps. 
 
 
+<h2 id="23cb05d4a2e5bf28363909d92cd244e2"></h2>
+
+
 ## 2.7 
+
+<h2 id="4cf3e789d3a58f3fd2346661d3d01046"></h2>
+
 
 ### Positive Definite Matrix (Tests)
 
@@ -957,7 +966,13 @@ Now, all matrices are symmetric. my question is , is it postive definite.
 
 
 
+<h2 id="dba4a84ad31aa9e54c57ceeb9a69cf86"></h2>
+
+
 ### Tests for Minumum 
+
+<h2 id="e77fe7259561aabc1f580cd55ad18daa"></h2>
+
 
 ### Ellipsoids in Rⁿ
 
@@ -966,6 +981,9 @@ Now, all matrices are symmetric. my question is , is it postive definite.
 
 
 ----
+
+<h2 id="bb3960a52bdbb47b997ae1259f1acc14"></h2>
+
 
 # 5th edition
 
