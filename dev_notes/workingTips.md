@@ -147,5 +147,12 @@ ab -r -k -s 120 -n 100000 -c 1500  <url>
  - `-k`  Use HTTP KeepAlive feature
     - caution: not work with nodejs. it is a bug of ab , since ab is a http 1.0 client. You should add extra `-H "TE: chunked"`
 
+## check wheter `keep-alive` is  enabled by server
 
+- `url -lv -k <url> <url>  2>&1 | grep  "Re-using" `
+
+```bash
+$ url -lv -k https://xxx.com/ https://xxx.com/  2>&1 | grep  "Re-using"
+* Re-using existing connection! (#0) with host xxx.com
+```
  
