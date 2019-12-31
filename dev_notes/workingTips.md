@@ -145,6 +145,7 @@ ab -r -k -s 120 -n 100000 -c 1500  <url>
  - `-s`  timeout, default is 30sec
  - `-r`  Don't exit on socket receive errors.
  - `-k`  Use HTTP KeepAlive feature
+    - caution: not work with nodejs. it is a bug of ab , since ab is a http 1.0 client. You should add extra `-H "TE: chunked"`
 
 
  
