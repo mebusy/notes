@@ -207,6 +207,11 @@ import urllib
 urllib.unquote(a)
 ```
 
+```python3
+# for python3
+urllib.parse.unquote(url)
+```
+
 
 <h2 id="c438002415894d6f16a66c0f4af9a454"></h2>
 
