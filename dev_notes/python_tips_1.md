@@ -196,11 +196,17 @@ l.sort(cmp=lambda x,y:cmp( x.lower(), y.lower()  ))
 ### url unescape
 
 
-```
+```python
 import HTMLParser
 html_parser = HTMLParser.HTMLParser()
 txt = html_parser.unescape(html)
 ```
+
+```python
+import urllib
+urllib.unquote(a)
+```
+
 
 <h2 id="c438002415894d6f16a66c0f4af9a454"></h2>
 
