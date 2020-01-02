@@ -127,6 +127,15 @@ it seems that TKE will automatically use  `tencenthubkey` ?
 
 on TKE, add it on deployment yaml, following the `image` property.
 
+example: when this pod restart , before it really ready,  make 1 another service/pod relanuch.
+
+```yaml
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "_NS=umc-hse-dev && _APP=umc-hse-app  && replinum=`kubectl -n $_NS get deploy $_APP -o=jsonpath='{.status.replicas}'` && kubectl -n $_NS  scale  deployments/$_APP --replicas=$(($replinum-1)) && kubectl -n $_NS  scale  deployments/$_APP --replicas=$replinum"]
+```
+
 
 <h2 id="32a13011ccded1584ff2253d3356b336"></h2>
 
