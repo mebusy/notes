@@ -47,7 +47,7 @@
  a | b | c | d
 --- | --- | --- | ---
 [implementation](dev_notes/LuaSC.md) | [Integrate Lua](dev_notes/luaIntegrate.md) | [lua tips](dev_notes/lua_tips.md) | 
-[lua 5.3 manual](dev_notes/lua5.3_manual.md) |
+[lua 5.3 manual](dev_notes/lua5.3_manual.md) | [lua版本变迁](dev_notes/lua_version.md) | 
 
 
 
