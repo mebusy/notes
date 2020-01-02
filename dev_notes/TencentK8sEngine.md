@@ -73,11 +73,6 @@ kubectl get po --all-namespaces -o wide | grep 10.0.0.39
 5. get yaml 
 kubectl ... get ...  -o yaml --export 
 
-6. service accont 
-  create serviceaccount <name>  , it will also create an secret
-  create role  by create -f
-  create rolebinding  by create -f 
-  ...
 
 7. ImagePullSecret ( 如果需要从外部pull 镜像的话需要设置, in deployment)
     - qcloudregistrykey , 
@@ -97,6 +92,34 @@ it seems that TKE will automatically use  `tencenthubkey` ?
 
  - doc: https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/
  - [轻松了解Kubernetes部署功能](http://qinghua.github.io/kubernetes-deployment/)
+
+
+## role , rolebinding
+
+- [kubectl role/rolebinding 例子](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#command-line-utilities)
+- [role yaml 文件，resouce/verb 例子](https://github.com/kubernetes/kubernetes/blob/master/plugin/pkg/auth/authorizer/rbac/bootstrappolicy/testdata/controller-roles.yaml)
+
+使用 role / rolebinding 的一般方法
+
+1. create serveraccount
+    - `create serviceaccount <name> ` , it will also create an secret
+    - 任何namespace 下都有一个默认的 serviceacount:  default
+2. create role
+    - 
+    ```bash
+    # create a role
+    kubectl -n $_NS create role role_po --verb="list" --resource=po --dry-run -o yaml
+    kubectl -n $_NS create role role_deploy --verb="get" --resource=deploy --dry-run -o yaml
+    kubectl -n $_NS create role role_scale --verb="update" --resource=replicasets --dry-run -o yaml
+    ```
+    - we also can merge different roles ,by merging --dry-run output into 1 yaml file then.
+        - `kubectl -n $_NS create -f role.yaml`
+3. create rolebinding
+    - 
+    ```bash
+    # To bind the "default" serviceaccount and "role_scale"
+    kubectl -n $_NS create rolebinding default_scale_binding --serviceaccount="$_NS:default" --role=role_scale --dry-run -o yaml
+    ```
 
 
 <h2 id="32a13011ccded1584ff2253d3356b336"></h2>
