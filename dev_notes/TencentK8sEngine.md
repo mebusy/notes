@@ -121,6 +121,12 @@ it seems that TKE will automatically use  `tencenthubkey` ?
     kubectl -n $_NS create rolebinding default_scale_binding --serviceaccount="$_NS:default" --role=role_scale --dry-run -o yaml
     ```
 
+## postStart / preStop event handle
+
+[Define postStart and preStop handlers](https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/#define-poststart-and-prestop-handlers)
+
+on TKE, add it on deployment yaml, following the `image` property.
+
 
 <h2 id="32a13011ccded1584ff2253d3356b336"></h2>
 
