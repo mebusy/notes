@@ -288,6 +288,17 @@ sudo sysctl -w kern.ipc.somaxconn=256
 
 ```
 
+
+## 性能测试
+
+```bash
+# cpu performance
+python -c 'import test.pystone;print test.pystone.pystones()'
+
+# memory speed
+dd if=/dev/zero of=/dev/null bs=1m count=32768
+```
+
 -----
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
