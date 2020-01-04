@@ -17,6 +17,7 @@
      - [delete a branch locally and remotely](#65804564299051849847b74237b908e7)
      - [ignore system proxy setting](#69a87c5b277c131f12dde6841d30e6bc)
 
+
 ...menuend
 
 
@@ -174,4 +175,28 @@ $ git branch -d <branch_name>
 ```
 git config --global  --add remote.origin.proxy ""
 ```
+
+# git 国内加速
+
+1. 使用[站长工具](http://tool.chinaz.com/dns) 找到下面两个域名 较快的ip
+    - `assets-cdn.github.com`
+    - `github.global.ssl.fastly.net`
+2. 把查到的ip 加入到 `/etc/hosts`
+    - 
+    ```bash
+    185.199.109.153 assets-cdn.github.com
+    185.199.108.153 assets-cdn.github.com
+    185.199.110.153 assets-cdn.github.com
+    185.199.111.153 assets-cdn.github.com
+
+    69.63.184.14 github.global.ssl.fastly.net
+    31.13.82.1 github.global.ssl.fastly.net
+    ```
+3. 刷新 NDS 缓存
+    - 
+    ```bash
+    sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+    ```
+
+
 
