@@ -192,7 +192,7 @@ git config --global  --add remote.origin.proxy ""
     69.63.184.14 github.global.ssl.fastly.net
     31.13.82.1 github.global.ssl.fastly.net
     ```
-3. 刷新 NDS 缓存
+3. 刷新 DNS 缓存
     - 
     ```bash
     sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
