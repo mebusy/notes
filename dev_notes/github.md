@@ -181,9 +181,6 @@ git config --global  --add remote.origin.proxy ""
 1. 使用[站长工具](http://tool.chinaz.com/dns) 找到下面两个域名 较快的ip
     - `assets-cdn.github.com`
     - `github.global.ssl.fastly.net`
-    - `github.githubassets.com`
-    - `avatars3.githubusercontent.com`  , 0,1,2
-    - `raw.githubusercontent.com`
 2. 把查到的ip 加入到 `/etc/hosts`
     - 
     ```bash
