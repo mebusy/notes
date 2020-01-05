@@ -76,8 +76,22 @@ brew update
 
 ### brew binary 安装包  镜像
 
-实测还不如不换 。。。 
-
 ```bash
-# export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 ```
+
+
+### 初次安装 homebrew 出问题...
+
+1. 先下载 brew install 文件 ( 安装命令的 curl 那一段 ), 保存为 `brew_install`
+2. 修改
+    - 
+    ```bash
+    BREW_REPO = "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git".freeze
+    CORE_TAP_REPO="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git".freeze
+    ```
+3. `ruby brew_install` 安装
+4. 安装完成后，替换homebrew源
+5. `brew update`
+
+
