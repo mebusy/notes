@@ -152,7 +152,7 @@ ab -r -k -s 120 -n 100000 -c 1500  <url>
 - `url -lv -k <url> <url>  2>&1 | grep  "Re-using" `
 
 ```bash
-$ url -lv -k https://xxx.com/ https://xxx.com/  2>&1 | grep  "Re-using"
+$ curl -lv -k https://xxx.com/ https://xxx.com/  2>&1 | grep  "Re-using"
 * Re-using existing connection! (#0) with host xxx.com
 ```
  
