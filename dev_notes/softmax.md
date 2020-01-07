@@ -95,4 +95,20 @@ array([ 0.88079708,  0.11920292])
 ```
 
 
+## Derivative
+
+Softmax is fundamentally a vector function. It takes a vector as input and produces a vector as output; in other words, it has multiple inputs and multiple outputs.
+
+Therefore, we cannot just ask for "the derivative of softmax"; We should instead specify:
+
+1. Which component (output element) of softmax we're seeking to find the derivative of.
+2. Since softmax has multiple inputs, with respect to which input element the partial derivative is computed.
+
+
+Take the derivative in multiple direction in space is very complicated if you think about it in the mathematical way. 
+
+
+[求导&证明](https://zhuanlan.zhihu.com/p/25723112)
+
+
 
