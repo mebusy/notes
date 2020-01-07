@@ -85,6 +85,10 @@ if your log file is not owner by root (say by user 'service'), then you should a
 cat /var/lib/logrotate.status
 ```
 
+- 如果有报错: error: Ignoring xxxx because it is writable by group or others
+    - 这是因为你的 conf 文件没有设置正确的权限
+    - `chmod 644  <you conf file> `
+
 <h2 id="236ff4d77e20107d290447c1bc082b5e"></h2>
 
 
