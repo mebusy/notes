@@ -11,6 +11,9 @@ defaults write com.Apple.NetworkBrowser BrowseAllInterfaces 1
 
 # Catalina 下 CAT 激活 
 
+https://github.com/dokterdok/Continuity-Activation-Tool/issues/463
+
+
 ```bash
 // 重要
 sudo mount -uw /
