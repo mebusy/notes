@@ -93,6 +93,20 @@ NvmExpressDxe-64.efi = Driver support for NVM Express devices.
 
 https://cloudwrk.com/create-centos-7-bootable-usb-on-osx/
 
+1. Format a USB drive as eFAT with Disk Utility
+2. Download CentOS 7 Full or Minimal iso file
+3. Open terminal and find USB drive partition name with command “diskutil list“
+4. In terminal, use dd command to copy CentOS iso to usb
+5. Test usb drive in Parallels virtual machine
+
+```bash
+sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
+```
+
+**Note the additional “r” prepended to the usb partition name rdisk2 instead of disk2**.
+
+
+
 
 
 
