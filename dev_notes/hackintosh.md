@@ -9,6 +9,14 @@ defaults write com.Apple.NetworkBrowser BrowseAllInterfaces 1
 - 黑苹果的话， 型号设置为 "MacPro5,1" ?
 
 
+# Catalina 下 CAT 激活 
+
+```bash
+// 重要
+sudo mount -uw /
+```
+
+
 # Clover USB Creation
 
 - [post on tonymac86](https://www.tonymacx86.com/threads/guide-booting-the-os-x-installer-on-laptops-with-clover.148093/#post-917900)
