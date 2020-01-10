@@ -155,4 +155,14 @@ ab -r -k -s 120 -n 100000 -c 1500  <url>
 $ curl -lv -k https://xxx.com/ https://xxx.com/  2>&1 | grep  "Re-using"
 * Re-using existing connection! (#0) with host xxx.com
 ```
- 
+
+## change .pem password
+
+```bash
+mv config/private.pem config/private_old.pem
+
+openssl rsa -in config/private_old.pem -out config/private.pem -des3
+```
+
+
+
