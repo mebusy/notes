@@ -80,7 +80,7 @@ NvmExpressDxe-64.efi = Driver support for NVM Express devices.
 0. Hackintool 查看 System ID,  Gq3489ugfi 等一堆信息...
 1. 挂载硬盘的EFI分区用Clover Configurator打开config.plist..
 2. System Parameters /  从系统中获取
-3. RT Variable  / 依次点击从SMBIOS获取 然后 hack 获取。command+s  保存
+3. RT Variable  / 依次点击 from SMBIOS 获取 然后 from system /  hack 获取。command+s  保存
 
 > 有同学说不是三码吗，怎么才改了两个地方？其实还有一个最重要的序列号没改，这就是为什么安装后序列号搜是一样的原因。主要是因为我们是黑苹果，只需要iMessage info就够了，尽量避免污染其他的序列号。改动方式是，选择SMBIOS，然后点击生成新的（generate）。
 
