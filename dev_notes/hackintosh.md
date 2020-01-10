@@ -112,6 +112,10 @@ NvmExpressDxe-64.efi = Driver support for NVM Express devices.
 > 可能需要 EmuVariableUefi-64.efi
 
 
+# Clover 自动启动
+
+use volume name of your OSX volume.
+
 
 
 # Centos bootable USB installer on OSX
@@ -129,6 +133,7 @@ sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
 ```
 
 **Note the additional “r” prepended to the usb partition name rdisk2 instead of disk2**.
+
 
 
 
