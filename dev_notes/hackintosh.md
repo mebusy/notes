@@ -9,6 +9,31 @@ defaults write com.Apple.NetworkBrowser BrowseAllInterfaces 1
 - 黑苹果的话， 型号设置为 "MacPro5,1" ?
 
 
+# Catalina 下 CAT 激活 
+
+https://github.com/dokterdok/Continuity-Activation-Tool/issues/463
+
+
+```bash
+// 重要
+sudo mount -uw /
+```
+
+```bash
+// 另一个，不确定是否需要
+$ ioreg -l | grep "board-id" | awk -F\" '{print $4}'
+Mac-*YourBoardID*
+
+
+sudo /usr/libexec/PlistBuddy -c "Set:Mac-*YourBoardID*:ContinuitySupport true" "/System/Library/Frameworks/IOBluetooth.framework/Versions/A/Resources/SystemParameters.plist"
+
+
+sudo -E perl -pi -e "s/\Mac-00BE6ED71E35EB86/\Mac-*YourBoardID*/" /System/Library/Extensions/IO80211Family.kext/Contents/PlugIns/AirPortBrcm4360.kext/Contents/MacOS/AirPortBrcm4360
+
+sudo -E perl -pi -e "s/\Mac-00BE6ED71E35EB86/\Mac-*YourBoardID*/" /System/Library/Extensions/IO80211Family.kext/Contents/PlugIns/AirPortBrcmNIC.kext/Contents/MacOS/AirPortBrcmNIC
+```
+
+
 # Clover USB Creation
 
 - [post on tonymac86](https://www.tonymacx86.com/threads/guide-booting-the-os-x-installer-on-laptops-with-clover.148093/#post-917900)
