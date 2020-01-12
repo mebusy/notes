@@ -299,6 +299,20 @@ python -c 'import test.pystone;print test.pystone.pystones()'
 dd if=/dev/zero of=/dev/null bs=1m count=32768
 ```
 
+## 内网传输速度测试
+
+1台机器上 开启 iperf3 server
+
+```bash
+iperf3 -s
+```
+
+另一台机器上 发包测试
+
+```bash
+iperf3 -c 192.168.1.8 -R
+```
+
 -----
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
