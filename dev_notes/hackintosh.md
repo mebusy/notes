@@ -1,12 +1,25 @@
 
 
+# NUC8i5BEK BISO setting
+
+- « Intel VT for directed I/VO (VT-d) » ： disabled
+- « Secure Boot » ： disabled
+- « Fast Boot » ： disabled
+- UEFI boot enalbe /   Legacy Boot disable
+- SATA mode ： AHCI
+- Boot->Boot Configuration-> « Boot Network Devices Last » ： disabled
+- Power->Secondary Power Settings, « Wake on LAN from S4/S5 », set to « Stay Off »
+- Devices->Video, « IGD Minimum Memory » set to 64mb
+- Devices->Video, « IGD Aperture Size » set to 256mb
+- disable reader-card
+
+
 # 有线以太网实现 AirDrop 功能
 
 ```bash
 defaults write com.Apple.NetworkBrowser BrowseAllInterfaces 1
 ```
 
-- 黑苹果的话， 型号设置为 "MacPro5,1" ?
 
 
 # Catalina 下 CAT 激活 
