@@ -313,6 +313,17 @@ iperf3 -s
 iperf3 -c 192.168.1.8 -R
 ```
 
+## speedtest 
+
+```bash
+docker run -d --name speedtest -p 0.0.0.0:81:80 adolfintel/speedtest:latest
+
+webpage
+http://10.192.89.89:81/
+```
+
+
+
 -----
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
