@@ -30,40 +30,6 @@
 
 # MacOSX 
 
-<h2 id="c585405730fcd92667781471df41f4fb"></h2>
-
-
-## vim 设置
-
- - `cp /usr/share/vim/vimrc ~/.vimrc`
- - `编辑 ~/.vimrc`
-
-```bash
-syntax enable
-syntax on
-
-set number
-set relativenumber
-
-set ts=4  # table 4 bytes
-```
-
-<h2 id="d1b5bbfe80897599d07253429886f700"></h2>
-
-
-## 设置 目录访问权限(禁止别的用户浏览)
-
-```
-sudo chmod 700 文件夹
-```
-
-
-rwx           |         rwx          |         rwx
---- | --- | ---
-文件主权限  |    组用户权限      |        其他用户权限
-
-700 ＝  111 000 000
-
 
 <h2 id="2921868f08055ef268441139489a6130"></h2>
 
@@ -114,18 +80,6 @@ unsigned int note_txt_len = 61;
 [mdfind](https://raw.githubusercontent.com/mebusy/notes/master/dev_notes/mdfind.md)
 
 
-<h2 id="724874d1be77f450a09b305fc1534afb"></h2>
-
-
-### alias 
-
-```bash
-alias blender='/Volumes/WORK/Tools/Blender/blender.app/Contents/MacOS/blender'
-```
-
- - 可放入 .profile  中
- - alias 
-    - 查看所有别名
 
 <h2 id="726e07a4bf9abb9ebcdce89b16eb7807"></h2>
 
@@ -177,13 +131,13 @@ export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 ### find all json file , and remove all `\r` 
 
-```
+```bash
 ls *.json | xargs -I {}  sh -c  "cat {} | tr -d '\r' > {}2 && mv {}2 {} "
 or
 ls *.json | xargs -I {}  sh -c  " tr -d '\r' < {}  > {}2 && mv {}2 {} "
 ```
  
-  - `{}` :  handle every file
+  - `{}` :  handle every file , and to prevent path with space
   - `sh -c`  : directly use `{}` in redirection `>` not works, put them in a shell command
   - you can not do that by sed  , remember  sed delimits on `\n` newlines - they are always removed on input and reinserted on output.   you may need `-z` mode 
  
@@ -198,19 +152,18 @@ find . -type f -name '*.cpp' -o -name '*.h' -o -name '*.as'  | xargs -I {} grep 
 ```
 
  - `*.ext1` -o `*.ext2` 
- - `"{}"` is to prevent path with space 
  - `/dev/null` is to show the file path
  - ` -m 1`  stop when 1st matching
 
 use mdfind ...
 
-```
+```bash
 mdfind -onlyin . "kMDItemDisplayName == *.as || kMDItemDisplayName == *.cpp || kMDItemDisplayName == *.h"  | xargs -I {} grep  -m 1  ReturnToMap "{}" /dev/null
 ```
 
 最高效的方式
 
-```
+```bash
 grep -r --include \*.h --include \*.cpp --include \*.as ReturnToMap  .
 ```
 
@@ -218,32 +171,26 @@ grep -r --include \*.h --include \*.cpp --include \*.as ReturnToMap  .
 
  - or more clean 
 
-```
+```bash
 grep -r --include=*.{h,cpp,as}  ReturnToMap  .
 ```
 
  - add `-w ` if you want matching the whole word 
 
 
-<h2 id="aa252f9440484d1ebb28ca3e4015d2d4"></h2>
-
-
-### tcpdump 抓取 HTTP GET 包
-
-```bash
-sudo tcpdump  -XvvennSs 0 -i en0  '(port 8080) and ((tcp[20:2]=0x4745) or (tcp[20:2]=0x4854))'
-```
-
 <h2 id="639aab73c8776e2711502bd23e7dd4de"></h2>
 
 
 ### bash  wait previous command to finish 
 
-```
-tar ...
-wait %% 
-# you next command 
-cd ...
+```bash
+#！/bin/sh
+echo “1”
+sleep 5&
+echo “3”
+echo “4”
+wait  #会等待wait所在bash上的所有子进程的执行结束，本例中就是sleep 5这句
+echo”5”
 ```
 
 
@@ -277,18 +224,6 @@ ulimit -n 8192
 <h2 id="a08bc91843057f871dc78e79478b6947"></h2>
 
 
-## server backlog 
-
-```
-# ???
-# for centos ,  `sysctl -w net.core.somaxconn=512`
-sysctl -a | grep somax
-kern.ipc.somaxconn: 128
-sudo sysctl -w kern.ipc.somaxconn=256
-
-```
-
-
 ## 性能测试
 
 ```bash
@@ -313,7 +248,7 @@ iperf3 -s
 iperf3 -c 192.168.1.8 -R
 ```
 
-## speedtest 
+## 传输速度测试方案2: speedtest
 
 ```bash
 docker run -d --name speedtest -p 0.0.0.0:81:80 adolfintel/speedtest:latest
@@ -323,11 +258,84 @@ http://10.192.89.89:81/
 ```
 
 
+## launchd
 
------
+About crond : *"“The cron utility is launched by launchd(8) when it sees the existence of /etc/crontab or files in /usr/lib/cron/tabs. There should be no need to start it manually.”"*
 
-<h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
+There are three main directories you can use with launchd:
+
+1. /Library/LaunchDaemons
+    - job needs to run even when no users are logged in.
+2. /Library/LaunchAgents
+    - if the job is only useful when users are logged in.
+    - I learned that this has the side-effect of your job being run as 'root' after a system reboot.)
+3. $HOME/Library/LaunchAgents
+    - your job will be run under your username.
+
+### Create a Mac plist file to describe your job
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.alvin.crontabtest</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/al/bin/crontab-test.sh</string>
+  </array>
+
+  <key>Nice</key>
+  <integer>1</integer>
+
+  <key>StartInterval</key>
+  <integer>60</integer>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>StandardErrorPath</key>
+  <string>/tmp/AlTest1.err</string>
+
+  <key>StandardOutPath</key>
+  <string>/dev/null</string>
+</dict>
+</plist>
+```
+
+### load and test it
+
+```bash
+launchctl load <path>/com.alvin.crontabtest.plist
+```
+
+To turned it off 
+
+```bash
+launchctl unload <path>/com.alvin.crontabtest.plist
+```
+
+### An important note about root and sudo access
+
+If you placed your Mac plist file in one of the two system directories (/Library/LaunchDaemons, /Library/LaunchAgents), your job will be running as the root user after a system reboot. This means a couple of things:
+
+1. First, output files created by your script will be owned by the root user.
+2. Second, you'll need to use sudo before any of your launchctl commands, as shown here:
 
 
-## TODO
+
+
+
+
+
+
+
+
+
+
+
+
+
 

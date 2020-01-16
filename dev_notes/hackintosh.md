@@ -1,20 +1,7 @@
 
+# AirDrop/Continuity for those unsupported Mac device 
 
-# NUC8i5BEK BISO setting
-
-- « Intel VT for directed I/VO (VT-d) » ： disabled
-- « Secure Boot » ： disabled
-- « Fast Boot » ： disabled
-- UEFI boot enalbe /   Legacy Boot disable
-- SATA mode ： AHCI
-- Boot->Boot Configuration-> « Boot Network Devices Last » ： disabled
-- Power->Secondary Power Settings, « Wake on LAN from S4/S5 », set to « Stay Off »
-- Devices->Video, « IGD Minimum Memory » set to 64mb
-- Devices->Video, « IGD Aperture Size » set to 256mb
-- disable reader-card
-
-
-# 有线以太网实现 AirDrop 功能
+## use Air Drop with ethernet
 
 ```bash
 defaults write com.Apple.NetworkBrowser BrowseAllInterfaces 1
@@ -22,7 +9,9 @@ defaults write com.Apple.NetworkBrowser BrowseAllInterfaces 1
 
 
 
-# Catalina 下 CAT 激活 
+## Catalina Continuity Activation 
+
+For earlier mac device which has replaced with newer wifi-bluetooth moudle:
 
 https://github.com/dokterdok/Continuity-Activation-Tool/issues/463
 
@@ -46,8 +35,22 @@ sudo -E perl -pi -e "s/\Mac-00BE6ED71E35EB86/\Mac-*YourBoardID*/" /System/Librar
 sudo -E perl -pi -e "s/\Mac-00BE6ED71E35EB86/\Mac-*YourBoardID*/" /System/Library/Extensions/IO80211Family.kext/Contents/PlugIns/AirPortBrcmNIC.kext/Contents/MacOS/AirPortBrcmNIC
 ```
 
+# NUC8i5BEK Hackintosh
 
-# Clover USB Creation
+## NUC8i5BEK BISO setting
+
+- « Intel VT for directed I/VO (VT-d) » ： disabled
+- « Secure Boot » ： disabled
+- « Fast Boot » ： disabled
+- UEFI boot enalbe /   Legacy Boot disable
+- SATA mode ： AHCI
+- Boot->Boot Configuration-> « Boot Network Devices Last » ： disabled
+- Power->Secondary Power Settings, « Wake on LAN from S4/S5 », set to « Stay Off »
+- Devices->Video, « IGD Minimum Memory » set to 64mb
+- Devices->Video, « IGD Aperture Size » set to 256mb
+- disable reader-card
+
+## Clover USB Creation
 
 - [post on tonymac86](https://www.tonymacx86.com/threads/guide-booting-the-os-x-installer-on-laptops-with-clover.148093/#post-917900)
 
@@ -98,7 +101,7 @@ sudo -E perl -pi -e "s/\Mac-00BE6ED71E35EB86/\Mac-*YourBoardID*/" /System/Librar
     sudo /Applications/Install\ macOS\ Mojave.app/Contents/Resources/createinstallmedia --volume /Volumes/install_osx/ --nointeraction --downloadassets
     ```
 
-# Misc
+## Misc
 
 ```
 DataHubDxe-64.efi = DataHub protocol and mandatory for macOS.
@@ -113,7 +116,7 @@ NvmExpressDxe-64.efi = Driver support for NVM Express devices.
 ```
 
 
-# 改3码
+## 改3码
 
 0. Hackintool 查看 System ID,  Gq3489ugfi 等一堆信息...
 1. 挂载硬盘的EFI分区用Clover Configurator打开config.plist..
@@ -122,34 +125,14 @@ NvmExpressDxe-64.efi = Driver support for NVM Express devices.
 
 > 有同学说不是三码吗，怎么才改了两个地方？其实还有一个最重要的序列号没改，这就是为什么安装后序列号搜是一样的原因。主要是因为我们是黑苹果，只需要iMessage info就够了，尽量避免污染其他的序列号。改动方式是，选择SMBIOS，然后点击生成新的（generate）。
 
-> 可能需要 EmuVariableUefi-64.efi
+> 需要 EmuVariableUefi-64.efi
 
 
-# Clover 自动启动
+## Clover 自动启动
 
 use volume name of your OSX volume.
 
-
-
-# Centos bootable USB installer on OSX
-
-https://cloudwrk.com/create-centos-7-bootable-usb-on-osx/
-
-1. Format a USB drive as eFAT with Disk Utility
-2. Download CentOS 7 Full or Minimal iso file
-3. Open terminal and find USB drive partition name with command “diskutil list“
-4. In terminal, use dd command to copy CentOS iso to usb
-5. Test usb drive in Parallels virtual machine
-
-```bash
-sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
-```
-
-**Note the additional “r” prepended to the usb partition name rdisk2 instead of disk2**.
-
-
-
-# Clover 目录结构
+## Clover 目录结构
 
 - BOOT   clover引导文件
 - CLOVER 
@@ -179,13 +162,74 @@ sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
     12. tools  没什么用, 一般可以忽略
 
 
-# Clover 引导界面快捷键
+## Clover 引导界面快捷键
 
 - F4 如上
 - F5 保存初步修复的 DSDT
 - F6 保存显卡 BIOS 文件
 
 
+## active native bluetooth
+
+- brew install libusb
+- firmware source:  https://github.com/wulf7/iwmbt-firmware
+- firmware download: https://www.tonymacx86.com/attachments/bluetooth_fix-zip.439550/
+- thread: https://www.tonymacx86.com/threads/guide-intel-nuc7-nuc8-using-clover-uefi-nuc7i7bxx-nuc8i7bxx-etc.261711/page-207
+
+```bash
+sudo launchctl load -w /Library/LaunchDaemons/iwmbtfw.plist
+
+iwmbtfw.plist
+---------------------------------------------------------------------------------
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.iwmbtfw.firmwares</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/etc/rc.boot.d/30.fix_bluetooth.local</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>KeepAlive</key>
+	<true/>
+</dict>
+</plist>
+```
+
+Does it need specifiy root user ?
+
+```xml
+<key>UserName</key>
+<string>root</string>
+```
+
+# Misc 
+
+
+## Centos bootable USB installer on OSX
+
+https://cloudwrk.com/create-centos-7-bootable-usb-on-osx/
+
+1. Format a USB drive as eFAT with Disk Utility
+2. Download CentOS 7 Full or Minimal iso file
+3. Open terminal and find USB drive partition name with command “diskutil list“
+4. In terminal, use dd command to copy CentOS iso to usb
+5. Test usb drive in Parallels virtual machine
+
+```bash
+sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
+```
+
+**Note the additional “r” prepended to the usb partition name rdisk2 instead of disk2**.
+
+
+ 
 
 
 
