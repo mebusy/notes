@@ -163,6 +163,15 @@ sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
     6. driver64-UEFI  驱动 for UEFI boot
     7. kerts   可以配置各个OS版本的驱动，一般只留下Other 一个文件夹
         - Other
+            - Lilu.kext  补丁驱动，多用于配合其他驱动使用
+            - AppleALC.kext  Realtek onboard audio  需要配合lilu.kext使用，主要的作用就是加载原生AppleHDA声卡驱动。
+            - VoodooHDA-2.9.1.kext黑苹果万能声卡驱动
+            - CodecCommander.kext   解决耳机有杂音和睡眠唤醒无法自动切换或无声的问题
+            - CPUFriend.kextCPU  变频动态注入 CPU 电源管理数据
+            - Fake-PCI-ID.kext  牛逼
+            - USBInjectAll.kext  In 10.11+ Apple has changed significantly the way the USB drivers work.
+            - WhateverGreen.kext  Lilu plugin providing patches to select GPUs on macOS. 显卡驱动补丁集
+            - XHCI-unsupported.kext： 英特X99系列主板驱动
     8. misc  主要存放日志，用于排错
     9. OEM   存放不同主板电脑型号的一个配置文件. OEM可以包含整个clover文件夹下面的所有文件(除了OEM). 除了你希望用一个引导去引导多台电脑，否则没什么用
     10. ROM  一般用于存放显卡提取
