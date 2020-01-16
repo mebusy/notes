@@ -149,6 +149,28 @@ sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
 
 
 
+# Clover 目录结构
+
+- BOOT   clover引导文件
+- CLOVER 
+    1. ACPI/
+        - origin  提取/储存 DSDT/SSDT 的问题， 如果你需要修改你的 DSDT/SSDT, 可以在4叶草引导界面下 直接按F4进行提取，提取的DSDT/SSDT 就会存放到这里。
+        - patched  提取的DSDT/SSDT 修改好后，放到这个文件夹中，它会被自动加载。
+    2. CLOVERX64.efi  引导clover最主要的文件之一
+    3. config.plist   clover引导配置文件. 通过它的配置，可以驱动你的声卡 显卡 睡眠，等等.
+    4. doc  clover 帮助文档
+    5. driver   驱动 legacy boot
+    6. driver64-UEFI  驱动 for UEFI boot
+    7. kerts   可以配置各个OS版本的驱动，一般只留下Other 一个文件夹
+        - Other
+    8. misc  主要存放日志，用于排错
+    9. OEM   存放不同主板电脑型号的一个配置文件. OEM可以包含整个clover文件夹下面的所有文件(除了OEM). 除了你希望用一个引导去引导多台电脑，否则没什么用
+    10. ROM  一般用于存放显卡提取
+    11. themes 开机引导界面主题
+    12. tools  没什么用, 一般可以忽略
+
+
+
 
 
 
