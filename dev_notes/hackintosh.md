@@ -170,6 +170,11 @@ sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
     12. tools  没什么用, 一般可以忽略
 
 
+# Clover 引导界面快捷键
+
+- F4 如上
+- F5 保存初步修复的 DSDT
+- F6 保存显卡 BIOS 文件
 
 
 
