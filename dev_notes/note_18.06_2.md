@@ -950,7 +950,7 @@ Conclusion: the FFT multiplies by nxn matrix, but it does it not in n² steps, b
 <h2 id="23cb05d4a2e5bf28363909d92cd244e2"></h2>
 
 
-## 2.7 
+## 27 
 
 <h2 id="4cf3e789d3a58f3fd2346661d3d01046"></h2>
 
