@@ -955,7 +955,7 @@ Conclusion: the FFT multiplies by nxn matrix, but it does it not in n² steps, b
 <h2 id="4cf3e789d3a58f3fd2346661d3d01046"></h2>
 
 
-### Positive Definite Matrix (Tests)
+### Positive Definite Matrix (Tests)²
 
 Now, all matrices are symmetric. my question is , is it postive definite.
 
@@ -964,19 +964,17 @@ Now, all matrices are symmetric. my question is , is it postive definite.
 3. all pivots are positive. 
 4. `*`  xᵀAx > 0
 
+Graphics of f(x,y) = x⃗ᵀAx⃗ = ax²+2bxy+cy² 
 
+saddle point, imagine the graph something like human legs.
 
-<h2 id="dba4a84ad31aa9e54c57ceeb9a69cf86"></h2>
-
-
-### Tests for Minumum 
 
 <h2 id="e77fe7259561aabc1f580cd55ad18daa"></h2>
 
 
 ### Ellipsoids in Rⁿ
 
-
+A = QΛQᵀ  (how to connect them ? )
 
 
 
