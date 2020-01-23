@@ -978,6 +978,24 @@ A = QΛQᵀ  (how to connect them ? )
 
 
 
+
+## 2.8 
+
+
+### AᵀA is positive definite
+
+If A,B are pos def , so is A+B.  xᵀ(A+B)x > 0.
+
+xᵀAᵀAx = (Ax)ᵀAx = |Ax|² >= 0.
+
+
+
+### Similar Matrices A,B
+
+B = M⁻¹AM
+
+
+
 ----
 
 <h2 id="bb3960a52bdbb47b997ae1259f1acc14"></h2>
