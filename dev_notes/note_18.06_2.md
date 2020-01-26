@@ -988,11 +988,67 @@ If A,B are pos def , so is A+B.  xᵀ(A+B)x > 0.
 
 xᵀAᵀAx = (Ax)ᵀAx = |Ax|² >= 0.
 
+One comment about numerial things: with a positive definte matrix, you never have to do row exchanges, you never run into unsuitably small numbers or zeroes in the pivot postion. 
 
 
 ### Similar Matrices A,B
 
-B = M⁻¹AM
+nxn matrices A and B are simular means : for some invertible M, B = M⁻¹AM.
+
+Example:
+
+S⁻¹AS = Λ  , A is similar to Λ.
+
+like, I'm putting these matrices into families, all the matrices in the family are similar to each other. The outstanding member of the family is the diagonal guy (i.e. Λ) . 
+
+suppose 
+
+```octave
+A =
+
+   2   1
+   1   2
+```
+
+```octave
+Λ =
+
+   3   0 
+   0   1 
+```
+
+```octave
+M =
+
+   1   4
+   0   1
+
+
+B = M⁻¹AM = 
+
+   -2  -15
+    1    6
+```
+
+A,Λ,B are all similar matrices. They all have something in common. And that is they have the same eigenvalues. 
+
+proof:
+
+```octave
+Ax=λx  (B=M⁻¹AM)
+AMM⁻¹x = λx 
+M⁻¹AMM⁻¹x = λM⁻¹x 
+BM⁻¹x = λM⁻¹x  , let b=M⁻¹x
+Bb = λb
+```
+
+Eigenvector of B is M⁻¹(eigenvector of A).
+
+---- 
+
+I now have to get into the less happy possibility that the 2 eigenvalues could be the same. 
+
+
 
 
 
