@@ -1030,7 +1030,7 @@ B = M⁻¹AM =
     1    6
 ```
 
-A,Λ,B are all similar matrices. They all have something in common. And that is they have the same eigenvalues. 
+A,Λ,B are all similar matrices. They all have something in common. And that is they have the same eigenvalues.  ( and same number of eigenvectors. )  
 
 proof:
 
@@ -1048,7 +1048,40 @@ Eigenvector of B is M⁻¹(eigenvector of A).
 
 I now have to get into the less happy possibility that the 2 eigenvalues could be the same. 
 
+BAD CASE 
 
+for example, λ₁=λ₂=4.
+
+There are 2 families :
+
+1. the small one family includes only 1 matrix : 4I 
+    - 
+    ```octave
+    A =
+
+       4   0
+       0   4
+    ```
+    - since M⁻¹AM = A 
+2. the big one family includes 
+    - 
+    ```octave
+    A =
+
+       4   1
+       0   4
+    ```
+    - those matrices has only 1 eigenvector.
+    - more members of family
+    ```octave
+    B =
+
+       5   1
+      -1   3
+    ```
+
+
+## 2.9
 
 
 
