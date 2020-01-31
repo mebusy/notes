@@ -979,7 +979,7 @@ A = QΛQᵀ  (how to connect them ? )
 
 
 
-## 2.8 
+## 28 
 
 
 ### AᵀA is positive definite
@@ -1081,7 +1081,7 @@ There are 2 families :
     ```
 
 
-## 2.9
+## 29
 
 ### Singular Value Decomposition = SVD
 
@@ -1119,21 +1119,82 @@ I'm not only going to make these orthogonal, but also make them orthonormal.
 
 σ₂u₂=Av₂
 
+AV = UΣ
+
+So, this is my goal, to find an orthonormal basis in the row space(V), and an orthonormal basis in the column space(U).
+
+A = U∑V⁻¹ = U∑Vᵀ
+
+Now I have 2 orthogonal matrices here, And I don't want to find them both at once. So I want to cook up some expression that will make the Us disappear and leave me only the V. 
+
+It's the same combination that keeps showing up whenever we have a general rectangular matrix:
+
+AᵀA = V∑ᵀUᵀU∑Vᵀ = V∑²Vᵀ
+
+Now Us are out of the picture now. I'm only having to choose the Vs, and what are these Vs?  And what are these ∑s ?
+
+They're the eigenvectors and eigenvalues for the matrix AᵀA.
+
+How I going to find the Us ? One way would be to look at AAᵀ. 
+
+So the overall picture is , the Vs are the eigenvectors of AᵀA , and Us are the eigenvectors of AAᵀ. The σs are the positive  square roots of eigenvalue of AᵀA ?
+
+Example
+
+```octave
+A =
+
+   4   4
+  -3   3
+
+AᵀA =
+
+   25    7
+    7   25
+```
+
+v₁ = [1/√2;1/√2] ,  v₂ = [1/√2, -1/√2]
+
+σ₁ = 32 , σ₂ = 18
+
+So 
+
+```octave
+V = 
+
+    1/√2    1/√2 
+    1/√2   -1/√2
+
+∑ =
+
+    √32     0
+     0     √18
+```
+
+```octave
+AAᵀ = 
+   
+   32    0
+    0   18
+```
+
+u₁ = [1;0] , u₂ = [0;-1]
+
+The eigenvalues are the same as AᵀA.
 
 
- 
+---
 
+## 30
 
+### Linear Transformation 
 
+T(v+w) = T(v)+T(w)
 
+T(cv) = cT(v)
 
-----
+In linear transformation, zero vector can not move.  T(0) = 0 .
 
-<h2 id="bb3960a52bdbb47b997ae1259f1acc14"></h2>
-
-
-# 5th edition
-
-http://math.mit.edu/~gs/linearalgebra/
+10.05
 
 
