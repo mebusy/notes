@@ -177,6 +177,15 @@ $ git branch -d <branch_name>
 git config --global  --add remote.origin.proxy ""
 ```
 
+
+## git set v2ray proxy
+
+```bash
+# http协议，8001端口修改成自己的本地代理端口
+git config --global http.https://github.com.proxy https://127.0.0.1:8001
+git config --global https.https://github.com.proxy https://127.0.0.1:8001
+```
+
 <h2 id="2a4fb72ead39f0a2aa9fa7a599de7fd9"></h2>
 
 
