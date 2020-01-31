@@ -1,7 +1,31 @@
+...menustart
+
+ - [TypeScript](#558b544cf685f39d34e4903e39c38b67)
+     - [Basic](#972e73b7a882d0802a4e3a16946a2f94)
+     - [collections](#0b9abfe67cc31fcf1ecd022eb19a5216)
+     - [Iterators and Generators](#0ffc4b85f97ccbcd76d00c2ea4013048)
+     - [enumerations](#5d4d047c0c2c2d415d43bb476b2d73d8)
+     - [Functions](#e93acb146e114b5dfa6ce2d12dcb96e4)
+     - [Interfaces](#756640f0aea5f5bea1cbe250a9d08989)
+     - [Classes](#e9878b4854d29907146149f695cb1cfb)
+     - [implementing an interface](#2da55be28182388a63be9be8a204cd56)
+     - [Inheritance](#e40489cd1e7102e35469c937e05c8bba)
+     - [Modules](#bf17ac149e2e7a530c677e9bd51d3fd2)
+     - [Generics](#0d7bdbf7f4e4f0dc8ed310a01dee3502)
+     - [Misc](#74248c725e00bf9fe04df4e35b249a19)
+
+...menuend
+
+
+<h2 id="558b544cf685f39d34e4903e39c38b67"></h2>
+
 
 # TypeScript
 
 > focus only on TypeScript extra syntax 
+
+<h2 id="972e73b7a882d0802a4e3a16946a2f94"></h2>
+
 
 ## Basic 
 
@@ -36,6 +60,9 @@
     of a multiline string`;
     ```
 
+<h2 id="0b9abfe67cc31fcf1ecd022eb19a5216"></h2>
+
+
 ## collections
 - typed array 
 - generic arrays  // Alternatively
@@ -44,6 +71,9 @@
 let list: number[] = [1, 2, 3];
 let list: Array<number> = [1, 2, 3]; // Alternatively, generic array type
 ```
+
+<h2 id="0ffc4b85f97ccbcd76d00c2ea4013048"></h2>
+
 
 ## Iterators and Generators
 
@@ -68,12 +98,18 @@ let list: Array<number> = [1, 2, 3]; // Alternatively, generic array type
     }
     ```
 
+<h2 id="5d4d047c0c2c2d415d43bb476b2d73d8"></h2>
+
+
 ## enumerations
 - 
 ```ts
 enum Color { Red, Green, Blue };
 let c: Color = Color.Green;
 ```
+
+<h2 id="e93acb146e114b5dfa6ce2d12dcb96e4"></h2>
+
 
 ## Functions
 - support the lambda "fat arrow" syntax
@@ -87,6 +123,9 @@ let f3 = (i: number): number => { return i * i; } // =>
 let f4 = (i: number) => { return i * i; }  // => with return type inferred
 let f5 = (i: number) => i * i;  // + return keyword omit
 ```
+
+<h2 id="756640f0aea5f5bea1cbe250a9d08989"></h2>
+
 
 ## Interfaces
 
@@ -121,6 +160,9 @@ let f5 = (i: number) => i * i;  // + return keyword omit
     }
     ```
 
+<h2 id="e9878b4854d29907146149f695cb1cfb"></h2>
+
+
 ## Classes
 
 - members are public by default
@@ -148,6 +190,9 @@ let p2 = new Point(25); //y will be 0
 ```
 - READONLY (from TS 3.1 , see details below )
 
+<h2 id="2da55be28182388a63be9be8a204cd56"></h2>
+
+
 ## implementing an interface
 
 - 
@@ -157,6 +202,9 @@ class PointPerson implements Person {
     move() {}
 }
 ```
+
+<h2 id="e40489cd1e7102e35469c937e05c8bba"></h2>
+
 
 ## Inheritance
 
@@ -175,6 +223,9 @@ class Point3D extends Point {
     }
 }
 ```
+
+<h2 id="bf17ac149e2e7a530c677e9bd51d3fd2"></h2>
+
 
 ## Modules
 
@@ -199,6 +250,9 @@ class Point3D extends Point {
     import G = Geometry;
     let s2 = new G.Square(10);
     ```
+
+<h2 id="0d7bdbf7f4e4f0dc8ed310a01dee3502"></h2>
+
 
 ## Generics
 
@@ -228,6 +282,9 @@ class Point3D extends Point {
     let tuple = pairToTuple({ item1: "hello", item2: "world" });
     ```
 
+
+
+<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
 
 ## Misc

@@ -6,6 +6,7 @@
      - [Homebrew 使用 清华索引](#387e3f4aa69662696cce11325cecc502)
          - [brew update 索引镜像](#2b4d5ebf708a8726acef8ace48915e9f)
          - [brew binary 安装包  镜像](#eacd77990df567221ae4eec63f170ef4)
+         - [初次安装 homebrew 出问题...](#ecd6d4ba468480e8557dcc476348dc6b)
 
 ...menuend
 
@@ -79,6 +80,9 @@ brew update
 ```bash
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 ```
+
+
+<h2 id="ecd6d4ba468480e8557dcc476348dc6b"></h2>
 
 
 ### 初次安装 homebrew 出问题...

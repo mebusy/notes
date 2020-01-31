@@ -4,6 +4,8 @@
  - [kubectl](#0f12ee5c9f1dd90158580f1c292b0d37)
      - [install](#19ad89bc3e3c9d7ef68b89523eff1987)
      - [use kubectl](#773c2c719c95cc40967b0e945ada8898)
+     - [role , rolebinding](#a65165eaad917e08dbaab4ca345c9140)
+     - [postStart / preStop event handle](#3cfc0b587c5bea5919d967aa0c0f7629)
      - [使用自定义列格式化输出](#32a13011ccded1584ff2253d3356b336)
      - [JSONPath 表达式](#f0cfc2eb04f3c904ba876b4ff5e36744)
  - [腾讯云 用户管理](#7616e9353ba2c3c55eb7063e51fc65fb)
@@ -94,6 +96,9 @@ it seems that TKE will automatically use  `tencenthubkey` ?
  - [轻松了解Kubernetes部署功能](http://qinghua.github.io/kubernetes-deployment/)
 
 
+<h2 id="a65165eaad917e08dbaab4ca345c9140"></h2>
+
+
 ## role , rolebinding
 
 - [kubectl role/rolebinding 例子](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#command-line-utilities)
@@ -120,6 +125,9 @@ it seems that TKE will automatically use  `tencenthubkey` ?
     # To bind the "default" serviceaccount and "role_scale"
     kubectl -n $_NS create rolebinding default_scale_binding --serviceaccount="$_NS:default" --role=role_scale --dry-run -o yaml
     ```
+
+<h2 id="3cfc0b587c5bea5919d967aa0c0f7629"></h2>
+
 
 ## postStart / preStop event handle
 

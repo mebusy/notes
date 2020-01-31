@@ -11,6 +11,8 @@
      - [download youtube playlist](#dd3177fffb44df0088f08893f1e8b000)
      - [re-download youtube auto sub](#a86e10fc913cd54076f6a27289d1d713)
      - [ab testing](#ac1edf8d7497b1d5b6039ad9656cdeee)
+     - [check wheter `keep-alive` is  enabled by server](#e06944207d65338bc4b5d43aef44aef4)
+     - [change .pem password](#60a277f978363c21b4ced8cb1ea9c06f)
 
 ...menuend
 
@@ -147,6 +149,9 @@ ab -r -k -s 120 -n 100000 -c 1500  <url>
  - `-k`  Use HTTP KeepAlive feature
     - caution: not work with nodejs. it is a bug of ab , since ab is a http 1.0 client. You should add extra `-H "TE: chunked"`
 
+<h2 id="e06944207d65338bc4b5d43aef44aef4"></h2>
+
+
 ## check wheter `keep-alive` is  enabled by server
 
 - `url -lv -k <url> <url>  2>&1 | grep  "Re-using" `
@@ -155,6 +160,9 @@ ab -r -k -s 120 -n 100000 -c 1500  <url>
 $ curl -lv -k https://xxx.com/ https://xxx.com/  2>&1 | grep  "Re-using"
 * Re-using existing connection! (#0) with host xxx.com
 ```
+
+<h2 id="60a277f978363c21b4ced8cb1ea9c06f"></h2>
+
 
 ## change .pem password
 

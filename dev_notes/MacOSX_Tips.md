@@ -1,26 +1,27 @@
 ...menustart
 
  - [MacOSX](#5dad7f6f2d7af4cc1196128ec251af8a)
-     - [vim 设置](#c585405730fcd92667781471df41f4fb)
-     - [设置 目录访问权限(禁止别的用户浏览)](#d1b5bbfe80897599d07253429886f700)
      - [sidebar 丢失](#2921868f08055ef268441139489a6130)
      - [openofficer error](#1c305ad1fad7ba14dd448d08a73f3ab8)
      - [Useful Commands](#ec69fb46be4996fda376dcb4054c528b)
          - [xxd](#25c04b9b782789c092a38c06cc87632a)
          - [mdfind](#0968ea4dc36ecbcdc0810a8ca0f674c8)
-         - [alias](#724874d1be77f450a09b305fc1534afb)
          - [man ascii  字符表](#726e07a4bf9abb9ebcdce89b16eb7807)
          - [cal 日历](#e1bde9f80b42328020cb6b0a4c7d26ab)
          - [find files to rm](#a21d96fb754b9ce8455858e14ed36571)
          - [in terminal, show git branch in path](#394dd2658e932bd638e3017ac1a98c39)
          - [find all json file , and remove all `\r`](#75aeaa38d609e022daed8f30150edfa7)
          - [find pattern in specific file types](#b5a637298d7d74567762e4ce9127bd5e)
-         - [tcpdump 抓取 HTTP GET 包](#aa252f9440484d1ebb28ca3e4015d2d4)
          - [bash  wait previous command to finish](#639aab73c8776e2711502bd23e7dd4de)
          - [sed 使用](#ccbf87c494cf62aca0164aa04719e15f)
      - [打开文件数 / 最大链接数](#c635de9cfd3f586235866c25b1208360)
-     - [server backlog](#a08bc91843057f871dc78e79478b6947)
-     - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
+     - [性能测试](#ddd22119a924356d5fd97057285c0689)
+     - [内网传输速度测试](#d8f5e5c499ab6b35afcd8cfed2906d9d)
+     - [传输速度测试方案2: speedtest](#87c5409b5cb0632cb1d44f17c36c7d83)
+     - [launchd](#f488c026a96a1c56683f3f6afb629010)
+         - [Create a Mac plist file to describe your job](#00379fb669143aee93f220a535b222a5)
+         - [load and test it](#548797edc19fa3483f6f9a6f36faa5e2)
+         - [An important note about root and sudo access](#cfdb23d5d79b7e7d55330583c081e20c)
 
 ...menuend
 
@@ -221,7 +222,7 @@ ulimit -a
 ulimit -n 8192
 ```
 
-<h2 id="a08bc91843057f871dc78e79478b6947"></h2>
+<h2 id="ddd22119a924356d5fd97057285c0689"></h2>
 
 
 ## 性能测试
@@ -233,6 +234,9 @@ python -c 'import test.pystone;print test.pystone.pystones()'
 # memory speed
 dd if=/dev/zero of=/dev/null bs=1m count=32768
 ```
+
+<h2 id="d8f5e5c499ab6b35afcd8cfed2906d9d"></h2>
+
 
 ## 内网传输速度测试
 
@@ -248,6 +252,9 @@ iperf3 -s
 iperf3 -c 192.168.1.8 -R
 ```
 
+<h2 id="87c5409b5cb0632cb1d44f17c36c7d83"></h2>
+
+
 ## 传输速度测试方案2: speedtest
 
 ```bash
@@ -256,6 +263,9 @@ docker run -d --name speedtest -p 0.0.0.0:81:80 adolfintel/speedtest:latest
 webpage
 http://10.192.89.89:81/
 ```
+
+
+<h2 id="f488c026a96a1c56683f3f6afb629010"></h2>
 
 
 ## launchd
@@ -271,6 +281,9 @@ There are three main directories you can use with launchd:
     - I learned that this has the side-effect of your job being run as 'root' after a system reboot.)
 3. $HOME/Library/LaunchAgents
     - your job will be run under your username.
+
+<h2 id="00379fb669143aee93f220a535b222a5"></h2>
+
 
 ### Create a Mac plist file to describe your job
 
@@ -305,6 +318,9 @@ There are three main directories you can use with launchd:
 </plist>
 ```
 
+<h2 id="548797edc19fa3483f6f9a6f36faa5e2"></h2>
+
+
 ### load and test it
 
 ```bash
@@ -316,6 +332,9 @@ To turned it off
 ```bash
 launchctl unload <path>/com.alvin.crontabtest.plist
 ```
+
+<h2 id="cfdb23d5d79b7e7d55330583c081e20c"></h2>
+
 
 ### An important note about root and sudo access
 

@@ -30,11 +30,16 @@
          - [Complexo](#023666df9ae9590deecc67a35fb5839e)
          - [Complex Vectors , length](#e5c0693de0b5a3e017ca1bcabf2a8444)
          - [Complex Matrices](#9ff43aa3e54f31207991c2e82ccf292d)
-     - [2.7](#23cb05d4a2e5bf28363909d92cd244e2)
-         - [Positive Definite Matrix (Tests)](#4cf3e789d3a58f3fd2346661d3d01046)
-         - [Tests for Minumum](#dba4a84ad31aa9e54c57ceeb9a69cf86)
+     - [27](#02e74f10e0327ad868d138f2b4fdd6f0)
+         - [Positive Definite Matrix (Tests)²](#f374bd8e0ba50a2cca911b7d328d59fb)
          - [Ellipsoids in Rⁿ](#e77fe7259561aabc1f580cd55ad18daa)
- - [5th edition](#bb3960a52bdbb47b997ae1259f1acc14)
+     - [28](#33e75ff09dd601bbe69f351039152189)
+         - [AᵀA is positive definite](#714c646ab1eb70195e6ae70fbf2681b6)
+         - [Similar Matrices A,B](#ae75137209c482f86ac4dd1100e7e6af)
+     - [29](#6ea9ab1baa0efb9e19094440c317e21b)
+         - [Singular Value Decomposition = SVD](#cdbd45bcf4e7ece0654c0d7b925abb97)
+     - [30](#34173cb38f07f89ddbebc2ac9128303f)
+         - [Linear Transformation](#1b08f35b032e4fa969a0b2e5ebcb2c03)
 
 ...menuend
 
@@ -947,12 +952,12 @@ When I do the recursion more and more times, I get simpler and simpler factors i
 Conclusion: the FFT multiplies by nxn matrix, but it does it not in n² steps, but in 1/2·nlogn steps. 
 
 
-<h2 id="23cb05d4a2e5bf28363909d92cd244e2"></h2>
+<h2 id="02e74f10e0327ad868d138f2b4fdd6f0"></h2>
 
 
 ## 27 
 
-<h2 id="4cf3e789d3a58f3fd2346661d3d01046"></h2>
+<h2 id="f374bd8e0ba50a2cca911b7d328d59fb"></h2>
 
 
 ### Positive Definite Matrix (Tests)²
@@ -979,7 +984,13 @@ A = QΛQᵀ  (how to connect them ? )
 
 
 
+<h2 id="33e75ff09dd601bbe69f351039152189"></h2>
+
+
 ## 28 
+
+
+<h2 id="714c646ab1eb70195e6ae70fbf2681b6"></h2>
 
 
 ### AᵀA is positive definite
@@ -989,6 +1000,9 @@ If A,B are pos def , so is A+B.  xᵀ(A+B)x > 0.
 xᵀAᵀAx = (Ax)ᵀAx = |Ax|² >= 0.
 
 One comment about numerial things: with a positive definte matrix, you never have to do row exchanges, you never run into unsuitably small numbers or zeroes in the pivot postion. 
+
+
+<h2 id="ae75137209c482f86ac4dd1100e7e6af"></h2>
 
 
 ### Similar Matrices A,B
@@ -1081,7 +1095,13 @@ There are 2 families :
     ```
 
 
+<h2 id="6ea9ab1baa0efb9e19094440c317e21b"></h2>
+
+
 ## 29
+
+<h2 id="cdbd45bcf4e7ece0654c0d7b925abb97"></h2>
+
 
 ### Singular Value Decomposition = SVD
 
@@ -1185,7 +1205,13 @@ The eigenvalues are the same as AᵀA.
 
 ---
 
+<h2 id="34173cb38f07f89ddbebc2ac9128303f"></h2>
+
+
 ## 30
+
+<h2 id="1b08f35b032e4fa969a0b2e5ebcb2c03"></h2>
+
 
 ### Linear Transformation 
 

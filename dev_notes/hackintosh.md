@@ -1,5 +1,31 @@
+...menustart
+
+ - [AirDrop/Continuity for those unsupported Mac device](#8578ff6a91accdcff6d3de6a3b278a69)
+     - [use Air Drop with ethernet](#7f77ab6117c55a32468b643b1cc6cf31)
+     - [Catalina Continuity Activation](#c544b3043a75d36024e96b058bfd617f)
+ - [NUC8i5BEK Hackintosh](#da39d68f2cf6c3c46123458cd98bd79d)
+     - [NUC8i5BEK BISO setting](#90b4244131823d7d8c05f4f1c274183e)
+     - [Clover USB Creation](#fca6772f09655f60d2a1571eb468f4b5)
+     - [Misc](#74248c725e00bf9fe04df4e35b249a19)
+     - [改3码](#41fcd485d3c9d5dbc0a06851ea1cda21)
+     - [Clover 自动启动](#584ee5f9f8b24f6f275547b4d05d20e4)
+     - [Clover 目录结构](#80aa301beb5576eafb123ce4f8d0536d)
+     - [Clover 引导界面快捷键](#41f234410b778a2c38d3ad364d2f32dd)
+     - [active native bluetooth](#8f75e5aa62bb7c0a9d9e0740fb76bea1)
+     - [update Clover](#b661467e7a885061e79bcd1aff928d46)
+ - [Misc](#74248c725e00bf9fe04df4e35b249a19)
+     - [Centos bootable USB installer on OSX](#e529594e6b7af1bbc305ae37bca03507)
+
+...menuend
+
+
+<h2 id="8578ff6a91accdcff6d3de6a3b278a69"></h2>
+
 
 # AirDrop/Continuity for those unsupported Mac device 
+
+<h2 id="7f77ab6117c55a32468b643b1cc6cf31"></h2>
+
 
 ## use Air Drop with ethernet
 
@@ -7,6 +33,9 @@
 defaults write com.Apple.NetworkBrowser BrowseAllInterfaces 1
 ```
 
+
+
+<h2 id="c544b3043a75d36024e96b058bfd617f"></h2>
 
 
 ## Catalina Continuity Activation 
@@ -35,7 +64,13 @@ sudo -E perl -pi -e "s/\Mac-00BE6ED71E35EB86/\Mac-*YourBoardID*/" /System/Librar
 sudo -E perl -pi -e "s/\Mac-00BE6ED71E35EB86/\Mac-*YourBoardID*/" /System/Library/Extensions/IO80211Family.kext/Contents/PlugIns/AirPortBrcmNIC.kext/Contents/MacOS/AirPortBrcmNIC
 ```
 
+<h2 id="da39d68f2cf6c3c46123458cd98bd79d"></h2>
+
+
 # NUC8i5BEK Hackintosh
+
+<h2 id="90b4244131823d7d8c05f4f1c274183e"></h2>
+
 
 ## NUC8i5BEK BISO setting
 
@@ -49,6 +84,9 @@ sudo -E perl -pi -e "s/\Mac-00BE6ED71E35EB86/\Mac-*YourBoardID*/" /System/Librar
 - Devices->Video, « IGD Minimum Memory » set to 64mb
 - Devices->Video, « IGD Aperture Size » set to 256mb
 - disable reader-card
+
+<h2 id="fca6772f09655f60d2a1571eb468f4b5"></h2>
+
 
 ## Clover USB Creation
 
@@ -101,6 +139,9 @@ sudo -E perl -pi -e "s/\Mac-00BE6ED71E35EB86/\Mac-*YourBoardID*/" /System/Librar
     sudo /Applications/Install\ macOS\ Mojave.app/Contents/Resources/createinstallmedia --volume /Volumes/install_osx/ --nointeraction --downloadassets
     ```
 
+<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
+
+
 ## Misc
 
 ```
@@ -116,6 +157,9 @@ NvmExpressDxe-64.efi = Driver support for NVM Express devices.
 ```
 
 
+<h2 id="41fcd485d3c9d5dbc0a06851ea1cda21"></h2>
+
+
 ## 改3码
 
 0. Hackintool 查看 System ID,  Gq3489ugfi 等一堆信息...
@@ -128,9 +172,15 @@ NvmExpressDxe-64.efi = Driver support for NVM Express devices.
 > 需要 EmuVariableUefi-64.efi
 
 
+<h2 id="584ee5f9f8b24f6f275547b4d05d20e4"></h2>
+
+
 ## Clover 自动启动
 
 use volume name of your OSX volume.
+
+<h2 id="80aa301beb5576eafb123ce4f8d0536d"></h2>
+
 
 ## Clover 目录结构
 
@@ -162,11 +212,17 @@ use volume name of your OSX volume.
     12. tools  没什么用, 一般可以忽略
 
 
+<h2 id="41f234410b778a2c38d3ad364d2f32dd"></h2>
+
+
 ## Clover 引导界面快捷键
 
 - F4 如上
 - F5 保存初步修复的 DSDT
 - F6 保存显卡 BIOS 文件
+
+
+<h2 id="8f75e5aa62bb7c0a9d9e0740fb76bea1"></h2>
 
 
 ## active native bluetooth
@@ -209,6 +265,9 @@ Does it need specifiy root user ?
 <string>root</string>
 ```
 
+<h2 id="b661467e7a885061e79bcd1aff928d46"></h2>
+
+
 ## update Clover
 
 1. colver configurator
@@ -227,7 +286,13 @@ Does it need specifiy root user ?
     - EFI/CLOVER/tools/
 
 
+<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
+
+
 # Misc 
+
+
+<h2 id="e529594e6b7af1bbc305ae37bca03507"></h2>
 
 
 ## Centos bootable USB installer on OSX

@@ -1,22 +1,20 @@
 ...menustart
 
  - [github](#bf215181b5140522137b3d4f6b73544a)
-     - [github update fork](#f6b73a9a864f02b2d14ad454c6b09e68)
      - [run html on github](#606e5c37337c2f05305ab4a4a0dc2691)
-     - [git status -s ignore file mode](#ecf2b9ae77e1b9272d6716ab8337c37e)
      - [merge specific commit](#a6c7b8bc87e837e643f48e27b843d648)
      - [show file change of a commit](#e35fc6dbd7673d56c0824c31ff378241)
      - [get a file with specific revision](#6f4311248df3ab2115e904e14c7836c9)
      - [git show/diff 乱码问题](#aafd38d2cb2288571bb67fc78e3a18f7)
      - [\[trick\] use git log to display the diffs while searching](#a9df5d1d20b4eb063767169d82151fdc)
-     - [how to set up username and passwords for different git repos](#a3aecaf26f7ec612b34f4d9ed6c6532d)
+     - [show files changed between 2 commit](#384d969c3957ddc0b7be9841ff3549a8)
      - [provide username when clone private repos](#366ee47209629dccbab3d2399247ea84)
      - [gitlab: git clone leads to "SSL certificate problem: unable to get local issuer certificate"](#8da880caa0ca98d1c46a028c0da79aac)
      - [Calling git clone using password with special character](#60f96f2175fb84d4839e67f2533a4c10)
      - [Copy branch from another repository](#9af7d00519ec3625b399242404c33af2)
      - [delete a branch locally and remotely](#65804564299051849847b74237b908e7)
      - [ignore system proxy setting](#69a87c5b277c131f12dde6841d30e6bc)
-
+ - [git 国内加速](#2a4fb72ead39f0a2aa9fa7a599de7fd9)
 
 ...menuend
 
@@ -94,6 +92,9 @@ git diff | less -r
 ```
 git log -p -- path/to/file
 ```
+
+
+<h2 id="384d969c3957ddc0b7be9841ff3549a8"></h2>
 
 
 ## show files changed between 2 commit 
@@ -175,6 +176,9 @@ $ git branch -d <branch_name>
 ```
 git config --global  --add remote.origin.proxy ""
 ```
+
+<h2 id="2a4fb72ead39f0a2aa9fa7a599de7fd9"></h2>
+
 
 # git 国内加速
 
