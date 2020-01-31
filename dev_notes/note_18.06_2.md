@@ -1083,6 +1083,48 @@ There are 2 families :
 
 ## 2.9
 
+### Singular Value Decomposition = SVD
+
+A = UΣVᵀ
+
+- It is the final and best factorization of a matrix.
+    - ∑ diagonal matrix
+    - U,V  orthogonal matrix
+
+A can be any matrix.  Any matrix has this SVD. 
+
+One thing we'll bring together is the very good family: 
+
+
+- symmtric , postive , definte matrix.
+    - A = QΛQᵀ.  Because they were symmetic , their eigenvectors were orthogonal.
+    - This is the SVD in case our matrix is symmetric postive definte.
+
+- A = SΛSᵀ. 
+    - This is my usual one. My usual one is the eigenvectors and eigenvalues. This is no good in general because usually S isn't orthogonal.
+    - In the symmetric case , the eigenvectors are orthogonal, so my ordinary S has become Q. And 
+    - In the positive definite case , the ordinary Λ become positive Λ.
+
+---
+
+What am I looking for now? 
+
+Av₁=u₁.  v₁ in row space gets taken over to u₁ in column space.
+
+In SVD, what I'm looking for is an orthogonal basis in row space that gets knocked over into an orthogonal space in columm space.
+
+I'm not only going to make these orthogonal, but also make them orthonormal. 
+
+σ₁u₁=Av₁
+
+σ₂u₂=Av₂
+
+
+
+ 
+
+
+
 
 
 ----

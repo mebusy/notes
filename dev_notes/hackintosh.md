@@ -188,16 +188,16 @@ iwmbtfw.plist
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Label</key>
-	<string>com.iwmbtfw.firmwares</string>
-	<key>ProgramArguments</key>
-	<array>
-		<string>/etc/rc.boot.d/30.fix_bluetooth.local</string>
-	</array>
-	<key>RunAtLoad</key>
-	<true/>
-	<key>KeepAlive</key>
-	<true/>
+    <key>Label</key>
+    <string>com.iwmbtfw.firmwares</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/etc/rc.boot.d/30.fix_bluetooth.local</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
 </dict>
 </plist>
 ```
@@ -208,6 +208,24 @@ Does it need specifiy root user ?
 <key>UserName</key>
 <string>root</string>
 ```
+
+## update Clover
+
+1. colver configurator
+    - Install/Update Clover
+    - click "Save to desktop"
+2. 安装
+    - 不要勾选。 安装Clover 到 EFI系统区
+    - 不要勾选。安装Clover系统偏好设置面板
+    - 会安装到 root 目录 /
+        - EFI
+        - EFI_backup   删除
+3. 升级
+    - EFI/BOOT/BOOTX64.efi
+    - EFI/CLOVER/CLOVERX64.efi
+    - EFI/CLOVER/driver64UEFI/
+    - EFI/CLOVER/tools/
+
 
 # Misc 
 
