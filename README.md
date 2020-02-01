@@ -87,6 +87,12 @@ a | b | c | d
 [oop in C](https://www.cs.rit.edu/~ats/books/ooc.pdf) | [C语言常见问题集合](http://c-faq-chn.sourceforge.net/ccfaq/index.html) | 
 
 
+#### C++
+
+ a | b | c | d
+--- | --- | --- | ---
+[cast,smart pointer](dev_notes/cpp_cast_smart.md) |
+
 ---
 <h2 id="e84e30b9390cdb64db6db2c9ab87846d"></h2>
 
