@@ -152,7 +152,7 @@
     - 分子式相同而结构和性质不同的化合物之间 互称同分异构体
 
 
- - 无向完全图 K3的不同构的生成子图有: 3 个
+ - 无向完全图 K3的不同构的生成子图有: 4 个 ( 感谢[hitfzyangdianshi](https://github.com/hitfzyangdianshi)纠正)
 
 <h2 id="e6cea5afff7ebe29924e99d4127bfa8b"></h2>
 
