@@ -91,7 +91,7 @@ a | b | c | d
 
  a | b | c | d
 --- | --- | --- | ---
-[cast,smart pointer](dev_notes/cpp_cast_smart.md) |
+[cast,smart pointer](dev_notes/cpp_cast_smart.md) | [cpp note](dev_notes/cpp_notes.md) |
 
 ---
 <h2 id="e84e30b9390cdb64db6db2c9ab87846d"></h2>
