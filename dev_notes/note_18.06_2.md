@@ -1221,6 +1221,16 @@ T(cv) = cT(v)
 
 In linear transformation, zero vector can not move.  T(0) = 0 .
 
-10.05
+Example: Matrix multiplication
 
+T(v) = Av
+
+
+This idea of a linear transformation is like kind of the abstract description of matrix multiplication. And what's our goal here?  Our goal is to understand linear transformations, and the way to understand them is to find a matrix that lies behind them.  That's really the idea. 
+
+Information needed to know T(v) for all inputs:
+
+If I know what the transformation does to every vector in a basis, then I know everything. 
+
+ 
 
