@@ -7,3 +7,5 @@
 #ignore special file in current folder
 #/*.csproj
 #/*.sln
+*.swp
+

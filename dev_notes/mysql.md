@@ -220,6 +220,12 @@ set global log_queries_not_using_indexes=ON;
     - `id` is the auto incr primary key , and should be continous (that is , you should NOT delete the rows )
 
 
+## use default value if select get no result
+
+```
+select COALESCE(AVG(distance), 0) as baseline from records where uuid=?
+```
+
 <h2 id="c4606a5312075cb8424b31a364e46848"></h2>
 
 
