@@ -1232,5 +1232,133 @@ Information needed to know T(v) for all inputs:
 
 If I know what the transformation does to every vector in a basis, then I know everything. 
 
- 
+Construct matrix A that represents linear Transformation T.
+
+## 31 
+
+JPEG , it changes the basis
+
+standard basis:
+
+[1;0;0...;0], [0;1;0...;0], [0;0;0...;1]
+
+better basis:
+
+[1;1;1,...;1] , very useful for solid image(i.e. a black image)
+
+[1;1;1,...-1;-1;-1] , half dark , half light
+
+[1;-1;1;-1;...1;-1;1;-1] ,  checkerboard
+
+Those basis are all part of the 
+
+Fourier basis (8x8 is better)
+
+```
+            signal
+              |
+   lossless   |  change basis
+              ↓  
+          coeffs c
+              |
+    lossy     |  compress
+              ↓  
+          coeffs ĉ (many zeros)
+              |
+              |
+              ↓
+         x̂ = ∑ĉᵢvᵢ 
+```
+
+What will happen at the compression step?
+
+One thing we could do is just throw away the small coefficients. That is called thresholding.
+
+Probably, there is enough of this vector of all 1s we very seldom throw that away. Usually,its coefficient will be large.
+
+But the coefficient of something like the 'checkerboard' that quickly alternative vector, there's probably very little of that in any smooth signal. 
+
+x̂:  this sum doesn;t have 64 terms any more.   Probably it has about 2 or 3 terms. That's the kind of compression you are looking for. 
+
+
+let's call the input signal `p` ,  what is the coefficients `c` ?  c = M⁻¹p
+
+This shows the critical point. A good basis has a nice,fast inverse.
+
+- Properties of good basis
+    1. fast   Fourier basis has FFT.
+    2. Few is enough. 
+        - A few basis vectors are enough to reproduce the image.
+
+JPEG 2000 will include Wavelet basis.
+
+---
+
+珍妮弗's story
+
+---
+
+The very best basis is the eigenvector basis. 
+
+```
+λ₁ 0        0
+0  λ₂       0
+0  0        0
+      ...
+0  0        λn
+```
+
+So that's the perfect basis, that's the basis we'd love to have for image processing. 
+
+But to find the eigenvectors of our pixel matrix would be too expensive. So we do something cheaper and close which is to choose a good basis like wavelets.
+
+
+## 33
+
+2-sided inverse : AA⁻¹ = I = A⁻¹A
+
+
+Left Inverse:  If A is full column rank(r=n) rectangle matix ,  (AᵀA) is a good matrix, (AᵀA)⁻¹Aᵀ  is A's left inverse.
+
+A rectangular matrix can't have a 2-sided inverse. 
+
+If I multiply the left inverse on the wrong side  A(AᵀA)⁻¹Aᵀ , it is a projection matrix. It is the projection onto the column space. It's trying to be the identity matrix which is an impossible job. 
+
+---
+
+Right Inverse:  r=m , (AAᵀ) is good matrix.   Aᵀ(AAᵀ)⁻¹ is A's right inverse.
+
+If I multiply the right inverse on the wrong side, Aᵀ(AAᵀ)⁻¹A is a projection matrix too, it is the projection on the row space.
+
+---
+
+Ax = b  , row space, column space one to one mapping.
+
+If x≠y both in row space, then Ax ≠ Ay.
+
+Proof: since x,y in row sapce,  x-y is also in row space. Suppose Ax=Ay , then A(x-y) = 0.  That is, x-y also in nullspace. x-y should be the zero vector, that is x=y. 
+
+From the row space to the column space,  it we limited it to those 2 spaces , and then its inverse, called pseudo-inverse.  A matrix A is really a nice,invertible mapping from row space to columns space. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
