@@ -1315,6 +1315,8 @@ But to find the eigenvectors of our pixel matrix would be too expensive. So we d
 
 ## 33
 
+### Left/Right Inverse
+
 2-sided inverse : AA⁻¹ = I = A⁻¹A
 
 
@@ -1330,7 +1332,7 @@ Right Inverse:  r=m , (AAᵀ) is good matrix.   Aᵀ(AAᵀ)⁻¹ is A's right in
 
 If I multiply the right inverse on the wrong side, Aᵀ(AAᵀ)⁻¹A is a projection matrix too, it is the projection on the row space.
 
----
+### Pseudo Inverse
 
 Ax = b  , row space, column space one to one mapping.
 
@@ -1339,6 +1341,14 @@ If x≠y both in row space, then Ax ≠ Ay.
 Proof: since x,y in row sapce,  x-y is also in row space. Suppose Ax=Ay , then A(x-y) = 0.  That is, x-y also in nullspace. x-y should be the zero vector, that is x=y. 
 
 From the row space to the column space,  it we limited it to those 2 spaces , and then its inverse, called pseudo-inverse.  A matrix A is really a nice,invertible mapping from row space to columns space. 
+
+Find the Pseudo Inverse A⁺
+
+- Start from SVD :  A=U∑Vᵀ 
+    - ∑∑⁺ , (mxm), trying to be I,  projection on column space
+    - ∑⁺∑ , (nxn), trying to be I,  projection on row space
+    - A⁺ = V∑⁺Uᵀ
+
 
 
 
