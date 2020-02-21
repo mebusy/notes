@@ -99,7 +99,6 @@ class ChangeColorAndSizeAnimation2(Scene):
         self.wait()
 ```
 
-## 4.2 Problems with Transform
 
 
 
