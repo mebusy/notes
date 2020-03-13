@@ -110,14 +110,30 @@
 
 ![](../imgs/TU_probability2_exp_dist.png)
 
+```python
+import scipy, scipy.stats
+x = scipy.linspace(0,10,11)
+lamda = 1
+pmf = scipy.stats.expon.pdf(x, 0, 1.0/lamda)
+cdf = scipy.stats.expon.cdf(x, 0, 1.0/lamda)
+import pylab
+pylab.plot(x,pmf)
+pylab.plot(x,cdf,color="red")
+pylab.show()
+```
+
+![](../imgs/TU_probability2_exp_dist2.png)
+
+ - 连续的"几何分布" ?
  - 非常漂亮的CDF积分
  - Exponential 分布有失忆的性质 (memoryless)，常被用来 model 有这种性质 的事情
     - Ex: 小美出门化妆所需之时间
     - Ex: 某宅打LOL所花的时间
+    - 指数函数的无记忆性来自于泊松过程k=0时的 时间指数性，而泊松过程k=0时的 时间指数性 来自于泊松分布时 lambda的恒定性，也就是离散情况下，二项分布的n*p的恒定性。
  - The only memoryless continuous probability distributions are the exponential distributions,
     - `P( X>t+s | X>t ) = P( X>s )`.
-     
-```
+
+```bash
    P( X>t+s | X>t ) = P( X>s )
 => P( X>t+s , X>t ) / P(X>t) = P( X>s )
 => P( X>t+s  ) / P(X>t) = P( X>s )
@@ -135,6 +151,10 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
  - A: 柏松分布 单位时间(300s) λ = 1 ，
     - 5分钟内 捡到钱的概率 P(x≤1) = F( 1 ) = 1 - e⁻¹
     - 5分钟后 捡到钱的概率 P(x>1 ) = 1 - F(1) = e⁻¹ = 0.37
+        ```python
+        >>> 1.0 - scipy.stats.expon.cdf(1,0,1)
+        0.36787944117144233
+        ```
 
 ---
 
@@ -167,8 +187,8 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
  - 都是失忆性分布
  - 期望值都是 倒数 形式
  - 服从指数分布的随机变量，可以表示 某些易碎品的 寿命， 如电子元件，玻璃制品。 虽然它们的寿命与多种因素有关，但是有一种因素是决定性的。它正好与 “服从正态分布是与 多种相互独立的因素有关，但是没有一种因素是起决定作用” 相反。
- - 几何分布 是一种 “知道 。。。为止” 型概率分布，也是一种 “寿命”。
- - 相互独立的设计，知道击中为止，射击次数服从几何分布。被枪手离散地射击，知道几种，它的寿命 就 "为止"了
+ - 几何分布 是一种 “直到 。。。为止” 型概率分布，也是一种 “寿命”。
+ - 相互独立的设计，直到击中为止，射击次数服从几何分布。被枪手离散地射击，直到击中，它的寿命 就 "为止"了
 
 <h2 id="dc45153d24cf787ea2b2917ec03ca044"></h2>
 
@@ -198,6 +218,20 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
  - CDF:
 
 ![](../imgs/TU_probability2_Erlang_cdf.pn.png)
+
+```python
+import scipy, scipy.stats
+x = scipy.linspace(0,10,11)
+lamda = 1
+pmf = scipy.stats.erlang.pdf(x, 3, 0, 1.0/lamda)
+cdf = scipy.stats.erlang.cdf(x, 3, 0, 1.0/lamda)
+import pylab
+pylab.plot(x,pmf)
+pylab.plot(x,cdf,color="red")
+pylab.show()
+```
+
+![](../imgs/TU_probability2_Erlang_cdf2.png)
 
 --- 
 
@@ -281,6 +315,10 @@ Fₓ(x) = P( X≤x )
 
  - Ex. 已知 10 名水源阿伯每日拖车总重量总和 X ~ N(500, 100²) (kg) , 问本日总重量少于700 之机率为 ？
     - F<sub>X</sub>(700) = P( X≤700 ) = P( (X-μ)/σ ≤ (700-500)/100 ) = Φ(2) = 0.977
+        ```python
+        >>> scipy.stats.norm.cdf( 700, 500,100 )
+        0.97724986805182079
+        ```
 
 ---
 
@@ -490,5 +528,13 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
     - X∈[nΔ,(n+1Δ) -> Y=nΔ
 - 根据第五周
     - p<sub>Y</sub>(nΔ) = P(nΔ ≤ X < nΔ+Δ) ≈ f<sub>X</sub>(nΔ)·Δ
-- E[X] = lim<sub>Δ→0</sub>E[Y] = lim<sub>Δ→0</sub> ∑<sup>∞</sup><sub>n=-∞</sub> nΔ·P<sub>Y</sub>(nΔ)
+- E[X] = lim<sub>Δ→0</sub>E[Y] = lim<sub>Δ→0</sub> ∑<sub>n=-∞</sub><sup>∞</sup> nΔ·P<sub>Y</sub>(nΔ)
+    - = ∫<sub>-∞</sub><sup>∞</sup> xf<sub>X</sub>(x)dx
+    - 即， x乘上pdf,然后积分
+
+### 随机变数函数 期望值
+
+- 对于任一连续随机变数X，其任意函数g(X)亦是一随机变数
+    - E[g(X)] = ∫<sub>-∞</sub><sup>∞</sup> g(x)f<sub>X</sub>(x)dx
+
 
