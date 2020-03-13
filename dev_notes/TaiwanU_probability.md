@@ -314,8 +314,8 @@ P(Ace) = P({黑桃A}) + P({草花A}) + P({红心A}) + P({方块A}) = 1/52 + 1/52
 
 0.34
 
----
 
+```
 作为一个物理学家，抱持著实验精神是很重要的，著名的量子物理学家薛丁格 
 似乎可以做为这句话的实证。在一本据说是他实验日记的笔记本中，记载了他 
 的猫咪与他一起做实验的时光 : 
@@ -334,8 +334,9 @@ q是多少…
 …… 
 今天是我生日，全家度过了愉快的一天，明天也要抱持著愉 
 快的心情做实验。 
-简而言之，现在有 9个猫箱，其中猫死亡的机率 分别是 0.1~0. 9
+```
 
+简而言之，现在有 9个猫箱，其中猫死亡的机率 分别是 0.1~0. 9
 
 p为在确认猫 3 死2活的情况下，打开下个猫箱看到活猫的机率 q为在确认猫 2 死2活的情况下，再打开 3个猫箱，看到猫 2 死1活的机率 
 试问， q除以 p的值是多少 ?
@@ -800,20 +801,14 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
     - ![](../imgs/TU_probability_binomial2.png)
 
 ```python
-import numpy as np
-import matplotlib.pyplot as plt
-x1 = np.random.binomial( 10, 0.6 , 100000  )  
-plt.hist(x1, normed=1,  facecolor='green', alpha=0.5)
-plt.show()
 ```
 
 ![](../imgs/TU_probability_Binomial_10_06_graph.png)
 
- - 为什么这么像 正态分布？
 
  - another method, use scipy
 
-```
+```python
 import scipy, scipy.stats
 x = scipy.linspace(0,10,11)
 pmf = scipy.stats.binom.pmf(x,10,0.6)
@@ -863,15 +858,27 @@ pylab.show()
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
-x1 = np.random.geometric( 0.3 , 100000  )  
-plt.hist(x1, normed=1, facecolor='green', alpha=0.5)
+x1 = np.random.geometric( 0.3 , 100000  )
+weights = np.ones_like(x1)/float(len(x1))
+plt.hist(x1, normed=False,weights=weights, facecolor='green', alpha=0.5,bins=100)
 plt.title('p = 0.3')
 plt.show()
 ```
 
 ![](../imgs/TU_probability_geometric_03_graph.png)
 
- - 近似 指数分布！
+
+```python
+import scipy, scipy.stats
+x = scipy.linspace(0,10,11)
+pmf = scipy.stats.geom.pmf(x, 0.3 )
+import pylab
+pylab.plot(x,pmf)
+pylab.show()
+```
+
+![](../imgs/TU_probability_geometric_03_graph2.png)
+
 
 
 
@@ -897,14 +904,26 @@ plt.show()
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
-x1 = np.random.negative_binomial( 5, 0.1 , 100000  )  
-plt.hist(x1, normed=1, bins=40, facecolor='green', alpha=0.5)
+x1 = np.random.negative_binomial( 5, 0.1 , 100000  )
+weights = np.ones_like(x1)/float(len(x1))
+plt.hist(x1, normed=False, weights=weights, facecolor='green', alpha=0.5,bins=500)
 plt.title('k=5, p=0.1')
 plt.show()
 ```
 
 ![](../imgs/TU_probability_Pascal_k5_p01_graph.png)
 
+
+```python
+import scipy, scipy.stats
+x = scipy.linspace(0,100,101)
+pmf = scipy.stats.nbinom.pmf(x,5,0.1)
+import pylab
+pylab.plot(x,pmf)
+pylab.show()
+```
+
+![](../imgs/TU_probability_Pascal_k5_p01_graph2.png)
 
 <h2 id="66e278878307932e688a55d600961fdf"></h2>
 
@@ -930,11 +949,25 @@ plt.show()
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
-x1 = np.random.poisson( 5 , 100000  )  
-plt.hist(x1, normed=1, bins=40, facecolor='green', alpha=0.5 )
-plt.title('lambda = 5 ')
+x1 = np.random.poisson( 5 , 100000  )
+weights = np.ones_like(x1)/float(len(x1))
+plt.hist(x1, normed=False, weights=weights, facecolor='green', alpha=0.5,bins=100)
 plt.show()
 ```
+
+
+![](../imgs/TU_probability_poisson_dist_graph2.png)
+
+```python
+import scipy, scipy.stats
+x = scipy.linspace(0,20,21)
+pmf = scipy.stats.poisson.pmf(x, 5 )
+import pylab
+pylab.plot(x,pmf)
+pylab.show()
+```
+
+![](../imgs/TU_probability_poisson_dist_graph3.png)
 
 ![](../imgs/TU_probability_poisson_dist_graph.png)
 

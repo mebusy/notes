@@ -30,7 +30,6 @@
 ...menuend
 
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
 
 
 <h2 id="fc548c0411701f3a57c7799ad18245e3"></h2>
@@ -493,5 +492,3 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
     - p<sub>Y</sub>(nΔ) = P(nΔ ≤ X < nΔ+Δ) ≈ f<sub>X</sub>(nΔ)·Δ
 - E[X] = lim<sub>Δ→0</sub>E[Y] = lim<sub>Δ→0</sub> ∑<sup>∞</sup><sub>n=-∞</sub> nΔ·P<sub>Y</sub>(nΔ)
 
-
-$$ {J(\theta) =\frac{1}{2m} [\sum^m_{i=1}(h_\theta(x^{(i)}) - y^{(i)})2 + \lambda\sum^n_{j=1}\theta^2_j} $$
