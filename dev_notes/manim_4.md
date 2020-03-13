@@ -25,14 +25,14 @@ class TransformationText1V1(Scene):
     self.wait()
     self.play( FadeOut(M1) )
     ```
-- `ReplaceTransform(M1,M2)`
+- `ReplacementTransform(M1,M2)`
     - M1 transforms from M1 to M2, after transformation, M1 is hidden it has been replace by M2. 
         - you normally need `.copy()` when u are using ReplaceTransform
     - 
     ```python
-    self.play(Transform(M1,M2))
+    self.play(ReplacementTransform(M1,M2))
     self.wait()
-    self.play(Transform(M2,M3))
+    self.play(ReplacementTransform(M2,M3))
     self.wait()
     self.play( FadeOut(M3) )
     ```
