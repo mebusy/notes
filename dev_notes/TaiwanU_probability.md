@@ -801,6 +801,13 @@ A: 花编号 1-8， 考虑 8在不同位置下， 采到最美玫瑰的概率：
     - ![](../imgs/TU_probability_binomial2.png)
 
 ```python
+import numpy as np
+import matplotlib.pyplot as plt
+x1 = np.random.binomial( 10, 0.6 , 100000 )
+# If you want the sum of all bars to be equal 1, weight each bin by the total number of values:
+weights = np.ones_like(x1)/float(len(x1))
+plt.hist(x1, normed=False, weights=weights, facecolor='green', alpha=0.5,bins=100)
+plt.show()
 ```
 
 ![](../imgs/TU_probability_Binomial_10_06_graph.png)
@@ -937,19 +944,21 @@ pylab.show()
  - 已知某事发生速率为每单位时间 λ 次，观察时间为 T 时间单位。 X 为该观察时间 内发生该事的总次数。则:
     - PMF: ![](../imgs/TU_probability_poisson_PMF.png)
     - CDF: ![](../imgs/TU_probability_poisson_CDF.png)
- - 费雯被嘘:费雯兄 po 文后，平均 每分钟会有 5 人嘘之。问发文后 20 分钟变 成 XX (100 嘘) 之机率?
+ - 费雯被嘘:费雯兄 po 文后，平均 每分钟会有 5 人嘘之。问发文后 20 分钟变 成 XX (80 嘘) 之机率?
     - λ = 5 嘘/分，若定义随机变量 X 为 20 分钟内的嘘数
-    - => X ~ POI(λT) = POI(100) = e⁻¹⁰⁰·100¹⁰⁰ / 100! 
+    - => X ~ POI(λT) = POI(100) = e⁻¹⁰⁰·100⁸⁰ / 80! 
     - 若条件是 每小时 300人嘘之，答案一样
  - 理解泊松分布的特性:
     - 它常用来描述大量随机试验中稀有事件出现的次数
-    - 比如 抽卡抽到 詹姆斯卡次数 ?
+    - 比如 抽卡抽到 詹姆斯卡次数 ?  
 
 
 ```python
+# 被嘘
+# u = 5 * 20 == 100
 import numpy as np
 import matplotlib.pyplot as plt
-x1 = np.random.poisson( 5 , 100000  )
+x1 = np.random.poisson( 100 , 100000  )
 weights = np.ones_like(x1)/float(len(x1))
 plt.hist(x1, normed=False, weights=weights, facecolor='green', alpha=0.5,bins=100)
 plt.show()
@@ -960,8 +969,8 @@ plt.show()
 
 ```python
 import scipy, scipy.stats
-x = scipy.linspace(0,20,21)
-pmf = scipy.stats.poisson.pmf(x, 5 )
+x = scipy.linspace(50,150,101)
+pmf = scipy.stats.poisson.pmf(x, 100 )
 import pylab
 pylab.plot(x,pmf)
 pylab.show()
@@ -970,6 +979,12 @@ pylab.show()
 ![](../imgs/TU_probability_poisson_dist_graph3.png)
 
 ![](../imgs/TU_probability_poisson_dist_graph.png)
+
+
+- 泊松分布通常也用于二项分布的近似计算。
+    - 当n很大，而p很小时，在没有计算机时，二项分布的计算是非常麻烦的，而用泊松分布来近似计算可以降低大量的计算量。
+    - 近似时，λ=np，下表就是在n=100，p=0.02时，二项分布和泊松分布计算结果的对比，可以看出，两者差异很小。一般来讲，n≥100，np≤10近似效果较好。
+
 
 
 -----
