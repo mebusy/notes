@@ -948,6 +948,10 @@ pylab.show()
     - λ = 5 嘘/分，若定义随机变量 X 为 20 分钟内的嘘数
     - => X ~ POI(λT) = POI(100) = e⁻¹⁰⁰·100⁸⁰ / 80! 
     - 若条件是 每小时 300人嘘之，答案一样
+        ```python
+        scipy.stats.poisson.pmf( 80, 100 )
+        0.0051978541259802931
+        ```
  - 理解泊松分布的特性:
     - 它常用来描述大量随机试验中稀有事件出现的次数
     - 比如 抽卡抽到 詹姆斯卡次数 ?  
@@ -978,7 +982,9 @@ pylab.show()
 
 ![](../imgs/TU_probability_poisson_dist_graph3.png)
 
-![](../imgs/TU_probability_poisson_dist_graph.png)
+
+#### 和Binomial 的关系
+
 
 
 - 泊松分布通常也用于二项分布的近似计算。
