@@ -537,4 +537,76 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
 - 对于任一连续随机变数X，其任意函数g(X)亦是一随机变数
     - E[g(X)] = ∫<sub>-∞</sub><sup>∞</sup> g(x)f<sub>X</sub>(x)dx
 
+### 常见连续分布的期望值/变异数
+
+- X ~ Exponential(λ)
+    - μ = 1/λ
+    - σ² = 1/λ²
+- X ~ Erlang(n,λ)
+    - μ = n/λ
+    - σ² = n/λ²
+- X ~ Gaussian(μ,σ)
+    - μ = μ
+    - σ² = σ²
+- X ~ UNIF(a,b)
+    - μ = (a+b)/2
+    - σ² = 1/12 · (b-a)²
+
+### 期望值推导
+
+- 一些有用的微积分性质
+    - e<sup>`*`</sup>𝑑`*` = 𝑑e<sup>`*`</sup>
+    - ∫U𝑑V = UV - ∫VdU
+    - ∫c𝑑x = ∫𝑑cx  , c 是常数
+    - ∫pdf = 1
+
+## 7.2 隨機變數之函數
+
+- 随机变数X的任意函数g(X)也是一个随机变数
+- 通常被称为 Derived Random Variable
+    - 从 random variable X 衍生出来的一个新的random variable
+
+
+### 如何求 g(X)几率分布?
+
+- 若X为离散
+    - 直接推 g(X) 的 PMF
+- 若X为连续
+    - 先推 g(X)的CDF， 再微分得到PDF
+
+- Ex:某宅宅超爱战LOL。每次一战就连续战 𝑿 场不可收拾，已知 𝑿~GEO(0.2)。某宅宅内心仍有 一点清明，其良心亦会因战过度而内疚，依战的次数 多寡，内疚程度 𝒀分别为1, 2, 3 不同等级:
+    ```
+               ⎧ 1, if 1≤X≤3
+    Y = g(X) = ⎨ 2, if 4≤X≤6
+               ⎩ 3, if X≥7
+    ```
+    - 问Y=g(X)的几率分布?
+    - 解: X~GEO(0.2) => p<sub>X</sub>(x) = (1-0.2)<sup>x-1</sup>·0.2
+        - p<sub>Y</sub>(1) = p<sub>X</sub>(1)+p<sub>X</sub>(2)+p<sub>X</sub>(3) 
+            - = 0.2 + 0.8·0.2 + 0.8²·0.2
+        - p<sub>Y</sub>(2) = p<sub>X</sub>(4)+p<sub>X</sub>(5)+p<sub>X</sub>(6) 
+            - = (0.8)³·0.2 + (0.8)⁴·0.2 + (0.8)⁵·0.2
+        - p<sub>Y</sub>(3) = P(Y=3) = 1-p<sub>Y</sub>(2)-p<sub>Y</sub>(3)
+- 离散g(X)
+    - Y = g(X) 的 PMF为 
+    - ![](../imgs/TU_prob2_gx_PMF.png)
+- 连续g(X) 
+    - 先计算g(X)的CDF: 
+        - F<sub>g(X)</sub>(y) = P[g(X)≤y]
+    - 若 g(X)可微分, 再对y微分得到PDF:
+        - ![](../imgs/TU_prob2_gx_PDF.png)
+- 连续g(x) = aX + b
+    - Ex: 若Y=3X+2, 请问Y的PDF 跟f<sub>X</sub>(x)之关系为何?
+    - F<sub>Y</sub>(y) = P(Y≤y)
+        - = P(3X+2≤y)
+        - = P(X≤(y-2)/3 )
+        - = F<sub>X</sub>( (y-2)/3 )
+    - f<sub>Y</sub>(y) = f<sub>X</sub>( (y-2)/3 )·(1/3)
+    - generic solution:
+        - f<sub>Y</sub>(y) = (1/|a|)·f<sub>X</sub>( (y-b)/a )
+
+
+
+
+
 
