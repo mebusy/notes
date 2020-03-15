@@ -112,7 +112,7 @@
 
 ```python
 import scipy, scipy.stats
-x = scipy.linspace(0,10,11)
+x = scipy.linspace(0,10,101)
 lamda = 1
 pmf = scipy.stats.expon.pdf(x, 0, 1.0/lamda)
 cdf = scipy.stats.expon.cdf(x, 0, 1.0/lamda)
@@ -221,7 +221,7 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
 
 ```python
 import scipy, scipy.stats
-x = scipy.linspace(0,10,11)
+x = scipy.linspace(0,10,101)
 lamda = 1
 pmf = scipy.stats.erlang.pdf(x, 3, 0, 1.0/lamda)
 cdf = scipy.stats.erlang.cdf(x, 3, 0, 1.0/lamda)
@@ -596,7 +596,7 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
     - 若 g(X)可微分, 再对y微分得到PDF:
         - ![](../imgs/TU_prob2_gx_PDF.png)
 - 连续g(x) = aX + b
-    - Ex: 若Y=3X+2, 请问Y的PDF 跟f<sub>X</sub>(x)之关系为何?
+    - Ex1: 若Y=3X+2, 请问Y的PDF 跟f<sub>X</sub>(x)之关系为何?
     - F<sub>Y</sub>(y) = P(Y≤y)
         - = P(3X+2≤y)
         - = P(X≤(y-2)/3 )
@@ -604,6 +604,30 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
     - f<sub>Y</sub>(y) = f<sub>X</sub>( (y-2)/3 )·(1/3)
     - generic solution:
         - f<sub>Y</sub>(y) = (1/|a|)·f<sub>X</sub>( (y-b)/a )
+
+    - Ex2: X~Exponential(λ) , Y = 2X
+    - f<sub>X</sub>(x) = λe<sup>-λx</sup>u(x), Y=2x (a=2,b=0)
+        - 这里 u(x)是工程上常见的一个函数，表示只有x>0时有值，即x>0时u(x)=1, 其他情况u(x)=0
+    - f<sub>Y</sub>(y) = (1/|a|)·f<sub>X</sub>( (y-b)/a )
+        - = 1/2·λe<sup>-λ·y/2</sup>·u(y/2)   (a,b代入)
+        - = λ/2·e<sup>-λ/2·y</sup>·u(y) 
+        - => Y~Exponential(λ/2)
+- 连续g(x) = aX² + b
+    - Ex: Y = 2X²+1, X~UNIF(-1,7), 求 Y的PDF
+    - 不要好高骛远，先算CDF
+    - F<sub>Y</sup>(y) = P(Y=2X²+1≤y)
+        - = P(X²≤(y-1)/2)
+        - = P( -√((y-1)/2) ≤ X ≤ √((y-1)/2) )
+        - = ∫<sub>-z</sub><sup>z</sup>f<sub>X</sub>(x)dx  , 令 z = √((y-1)/2)
+    - 需要注意积分的范围, 这里注意 Y > 3的情况
+        - y≤3: F<sub>Y</sub>(y) = ∫<sub>-z</sub><sup>z</sup>1/8dx = 
+        - y>3: F<sub>Y</sub>(y) = ∫<sub>-1</sub><sup>z</sup>1/8dx =
+        - 微分得到 f<sub>Y</sub>(y)
+
+
+## 7.3 条件概率分布 与 失忆性
+
+
 
 
 
