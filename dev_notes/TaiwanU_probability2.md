@@ -66,6 +66,10 @@
 
 ![](../imgs/TU_probability_pdf.png)
 
+- PS:
+    - the value of PMF can not be greater than 1
+    - but the value of PDF can be greater than 1
+
 <h2 id="0b821c7256491cd7494160a47d4a1023"></h2>
 
 
@@ -365,7 +369,7 @@ Fₓ(x) = P( X≤x )
 ### 期望值运算性质
 
  - E[ 3X² ] = ∑<sub>x=</sub><sup>∞</sup><sub>-∞</sub> 3x²·P<sub>X</sub>(x) 
-    - = 3·∑<sub>x=</sub><sup>∞</sup><sub>-∞</sub> x²·P<sub>X</sub>(x)  = 3·E( X² )
+    - = 3·∑<sub>x=</sub><sup>∞</sup><sub>-∞</sub> x²·P<sub>X</sub>(x)  = 3·E[X²]
     - 常数项可以提出来
  - E[α·g(X)] = α·E[g(X)] 
  - E[α·g(X) + β·h(X) ] = α·E[g(X)] + β·E[h(X)]
@@ -642,10 +646,79 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
     - ![](../imgs/TU_prob2_cond_dis_PDF.png)
 - 条件期望值 Conditional Expectation 
     - ![](../imgs/TU_prob2_cond_E.png)
+    - ![](../imgs/TU_prob2_cond_var.png)
 
 
-## 7.3a 失忆性
+## 7.3a 失忆性 (Memoryless)
 
+- 宅宅与店员妹相约出门。宅宅出门前在战LOL，场数 𝑿~GEO (𝟎.2) 。店员妹等了两场后，宅宅还在玩。 店员妹甚怒，怒催宅宅。宅宅曰「快好了、快好了」。问宅宅剩余场 数 𝑿’ 之机率分布为何?
+
+- 店员妹与宅宅相约出门。店员妹出门前化妆时间为 𝑿(小时)， 𝑿~Exponential(𝟏)。经过一小时后， 仍未完成。宅宅甚怒，怒催店员妹。店员妹曰「快好了、快好了」。 问店员妹剩余化妆时间𝑿′机率分布为何? 
+
+- Geometric 跟 Exponential 机率分布 皆有失忆性的性质
+    - 不管事情已经进行多久，对于事情之后的进行 一点影响都没有!
+
+
+
+## QUIZ
+
+1. X~Exponential( 0.5 ) , 请问下列哪个错误？
+    1. Y=2x+1, Var[Y] = 9   (错)
+    2. E[X] = 2 
+    3. Var[X] = 4 
+    4. Y=2x+1, E[Y] = 5 
+
+    - A: 
+        - 可以很容易知道 E = 1/0.5 = 2, Var = 1/0.5² = 4
+        - E[Y] = E[2X+1] = 2E[X] + E[1] = 4+1 = 5
+        - Var[Y] = E[(Y-5)²] = E[Y²] - 25 = E[4X²+4X+1] - 25 = 4E[X²]+4E[X]+1-25
+            - = 4·( Var[X] + E[X]² ) + 8+1-25 = 16
+        - using scipy
+            ```python
+            >>> scipy.stats.expon.expect( scale=1/0.5 )
+            1.9999999999999998
+            >>> scipy.stats.expon.var( scale=1/0.5 )
+            4.0
+            >>> scipy.stats.expon.expect( func=lambda x:2*x+1,  scale=1/0.5 )
+            5.0
+            >>> scipy.stats.expon.expect( func=lambda x:x**2,  scale=1/0.5 )
+            8.0    # E[X²]
+            >>> Y = scipy.stats.expon.rvs(scale=1/0.5 , size=1000000) *2 + 1
+            >>> Y.var()
+            15.989224062316483
+            ```
+2. 假設等一班特定的公車所花費的的時間 TT 是Uniform Distribution，小速在公車站打滾多年的經驗，已經知道168路公車的平均要花5分鐘等一班公車，請問168號公車是幾分鐘會有一班車經過?
+    - A:
+        - T~UNIF
+        - E[T] = 5
+        - 10分钟
+
+3. 星仔跟阿達兩人準備要出席今晚在學校的晚會，為了在晚會上引起眾人目光，星仔決定大手筆打扮自己，但是阿達其實只是為了去吃美食而已。下午3點兩人相約在阿達家集合，因為阿達有車可以載星仔一起去會場，但是星仔帶著所有行頭打算三點才開始在阿達家開始打扮。假設連續隨機變數TT 是星仔打扮所需要的時間(單位 hr)，且T∼Exponential(λ=1/3)。但是晚會六點就開始了，加上從阿達家過去的路程要半小時以上，如果阿達下午五點20以前沒即時出門前往會場，阿達或許就會吃不到今日開場限量的好吃麵包，於是阿達決定就等到下午五點20分，如果星仔依然還沒打扮好，就直接拋下星仔自行前往會場。也就是離散型隨機變數RR代表阿達有沒有成功到達會場:
+    - R = 1 if 阿達載星仔到會場 ; R = 0 if 阿達沒有載星仔到會場. 請問，Var[R]=?
+    - A: using scipy
+        ```python
+        >>> P_R1 = scipy.stats.expon.cdf( 2+1/3.0 ,   scale=3)
+        >>> P_R1
+        0.5405741759640734
+        >>> P_R1 * (1-P_R1)
+        0.2483537362448364
+        ```
+4. 同上題情境，如果5點的時候阿達確認星仔還沒打扮完，在此情況下，隨機變數R2==(R∣T>2) 代表最後阿達是否會載星仔到會場，請問E[R2] ?
+    - A: using scipy , 由指数分布的失忆性
+        ```
+        >>> P_R1 = scipy.stats.expon.cdf( 1/3.0 ,   scale=3)
+        >>> P_R1
+        0.10516068318563022
+        ```
+5. 某便利超商今天早上09:00開始推出兩款限量的商品，一個是可愛的馬克杯，另外一個是熱門卡通玩偶，假設限量商品全部賣完所需的時間都是Exponential Distribution的隨機變數，而且互相獨立，馬克杯和玩偶賣完所需的時間分別是T_1,T_2 (單位是hr)，而兩者的λ 分别为 1/12, 1/6. 請幫店長估計，平均需要幾個小時才能把兩項商品都賣完。
+    - A:
+        - U = max(X,Y)
+        - P(U≤u) = P(max(X,Y)≤u) = P(X≤u, Y≤u) 
+            - = P(X≤u)P(Y≤u) = F<sub>X</sub>(u)F<sub>Y</sub>(u)
+        - 两边求导，得
+            - f<sub>U</sub>(u) = f<sub>X</sub>(u)F<sub>Y</sub>(u) + F<sub>X</sub>(u)f<sub>Y</sub>(u)
+
+# 8 
 
 
 
