@@ -719,11 +719,11 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
             - f<sub>U</sub>(u) = f<sub>X</sub>(u)F<sub>Y</sub>(u) + F<sub>X</sub>(u)f<sub>Y</sub>(u)
         - scipy
             ```python
-            >>> x = scipy.linspace(0,100,10000)
+            >>> x = scipy.linspace(0,1000,100000)
             >>> pdf = scipy.stats.expon.pdf( x , scale=12 )*scipy.stats.expon.cdf( x , scale=6 ) + 
                 scipy.stats.expon.pdf( x , scale=6 )*scipy.stats.expon.cdf( x , scale=12 )
             >>> (pdf * delta * x ).sum()  # pdf*delta 近似pmf
-            13.973082515655916
+            14.001260126012166
             ```
 
 # 8 
