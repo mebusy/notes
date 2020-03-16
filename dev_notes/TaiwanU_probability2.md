@@ -641,7 +641,7 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
 - 若𝑿是一连续随机变量，其PDF为 𝒇𝑿(𝒙)。若已知某事件 𝑩 已发生，则在此情况下 之条件机率分布为:
     - ![](../imgs/TU_prob2_cond_dis_PDF.png)
 - 条件期望值 Conditional Expectation 
-    - 
+    - ![](../imgs/TU_prob2_cond_E.png)
 
 
 ## 7.3a 失忆性
