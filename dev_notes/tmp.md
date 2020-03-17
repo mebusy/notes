@@ -44,7 +44,20 @@
 
 定点数 + 辅以三角函数查表
 
+大菠萝3   tracks the amount of time you spend fighting creatures without finding a legendary and after a certain perion of time will slowling start increasing the legendary drop rate.
 
+
+```python
+>>> a = [2,1]
+>>> b = [1,2]
+>>> np.cross(a,b)
+array(3)
+>>> a = [2,1,0]
+>>> b = [1,2,0]
+>>> np.cross(a,b)
+array([0, 0, 3])
+>>>
+```
 
 
 
