@@ -147,7 +147,7 @@ When you see evidence, the space of possibilites gets restricted. Crucially, tha
 
 ![](../imgs/3b1b_bayes_5.png)
 
-If you want to read the Bayes formula geometrically , then P(*H* )·P(**E** |*H* )  is just the area of this little left-bottom rectangle. 
+If you want to read the Bayes formula geometrically , then P(*H* )·P(**E** |*H* )  is just the area of this little left-bottom rectangle.  ( P(*H* ∩ E) )
 
 
 
