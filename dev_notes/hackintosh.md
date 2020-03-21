@@ -285,6 +285,29 @@ Does it need specifiy root user ?
     - EFI/CLOVER/driver64UEFI/
     - EFI/CLOVER/tools/
 
+# PMSET
+
+https://eclecticlight.co/2017/01/20/power-management-in-detail-using-pmset/
+
+1. Sleep
+2. displaysleep is the time in minutes before the display is put to sleep
+3. disksleep is the time in minutes before hard disks are spun down and put to sleep; 
+4. gpuswitch sets GPU behaviour during sleep, and appears to be undocumented;
+5. hibernatefile sets the location of the cache to be used when going into standby mode, which must be on the boot disk; 
+6. hibernatemode is set to 0 for plain sleep (desktops), 3 to store a copy of memory to disk and keep memory powered up (laptops), or 25 for full hibernation in which memory is powered down too;
+7. highstandbythreshold, which is set to 50 by default (i.e. 50 percent battery capacity). Instead of one standbydelay argument you now have two: standbydelayhigh and standbydelaylow. If you’re above 50, the high delay is used, if you’re below 50 percent battery, the low delay kicks in.
+8. networkoversleep - this setting affects how OS X networking presents shared network services during system sleep. This setting is not used by all platforms; changing its value is unsupported.
+9. powernap sets whether your Mac will take Power Naps, where supported;
+10. proximitywake - On supported systems, this option controls system wake from sleep based on proximity of devices using same iCloud id. (value = 0/1)
+11. sleep is the time in minutes to system sleep; 0 means never;
+12. standby sets whether to hibernate when a Mac has been asleep for a set period; this writes memory to disk and powers down memory;
+13. standbydelay
+14.     is the delay in seconds between going to sleep and switching to standby mode;
+15. tcpkeepalive
+16. ttyskeepawake can prevent sleep when a text input, such as a remote login session, is active;
+17. womp is 1 if you want your Mac to wake when it receives a ‘magic’ network packet, which is the same as wake for network access in the pane;
+
+
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
