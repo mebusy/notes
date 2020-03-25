@@ -308,6 +308,20 @@ https://eclecticlight.co/2017/01/20/power-management-in-detail-using-pmset/
 17. womp is 1 if you want your Mac to wake when it receives a ‘magic’ network packet, which is the same as wake for network access in the pane;
 
 
+## Catalina 10.5.2 Sleep problem
+
+```bash
+launchctl unload -w /System/Library/LaunchAgents/com.apple.parsec-fbf.plist
+```
+
+As parsec-fbf sends analytical data to Apple and flushes which is sent from local machine, then probably there is no any serious drawbacks on disabling parsec.fbf agent, except that data collected by Siri is not flushed. Data is collected in users Cashes into com.apple.parsecd folder.
+
+Data can be flushed manually if needed:
+
+```bash
+cd ~/Library/Caches
+rm -R com.apple.parsecd
+```
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
