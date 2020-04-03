@@ -869,6 +869,55 @@ Y = 10 | 0.05 | 0.1 | 0.15
     - ![](../imgs/TU_prob2_8.1_var.png)
 
 
+# Week 9
+
+## 9.1 随机变数之和
+
+- Z = X + Y 的几率分布？
+- Ex: 老张面店只卖牛肉面跟豆腐脑已知每天的面销量 𝑿碗与豆腐脑销量𝒀碗的联合机率分布 p<sub>X,Y</sub>(x,y). 兄弟们约老张收摊后喝酒小聚。老婆规定老张洗完碗后才能赴约。 请问老张洗碗数量的机率分布是?
+    - ![](../imgs/TU_prob2_9.1_01.png)
+- Ex: 小明写国文作业的时间 𝑿 与算术作业 𝒀 的联合 机率分布 f<sub>X,Y</sub>(x,y) 。兄弟们约小明喝酒小聚 老妈规定小明写完作业后才能赴约。请问小明兄弟要等多久时间 的机率分布是? 
+    - ![](../imgs/TU_prob2_9.1_02.png)
+
+- 若 X,Y独立？
+    - ![](../imgs/TU_prob2_9.1_03.png)
+- 如果有不止 两个随机变量？
+    - X = X₁+X₂+...+X<sub>n</sub>
+    - ![](../imgs/TU_prob2_9.1_04.png)
+
+- Convolution 很难算，怎么办?
+    - 因为有限制条件，比如 X+Y=3
+
+## 9.2 MGF(MOMENT GENERATING FUNCTION)
+
+- 先看个例子吧!辛苦的红娘业
+    - ![](../imgs/TU_prob2_9.2_01.png)
+- 回到卷积
+    - ![](../imgs/TU_prob2_9.2_02.png)
+    - 原来这个函数都是在x这个世界，因为他们都是x的函数，我们现在要把它转换到一个新世界S, MGF 就是在S世界改造出来的结果。
+        - 把 x 这个函数，转换过去变成s这个函数
+        - 我有 X₁的PMF了，我就可以算 X₁的任何函数的期望值了
+- MGF 也可以应用到多个随机变数和
+    - ![](../imgs/TU_prob2_9.2_03.png)
+    - ![](../imgs/TU_prob2_9.2_04.png)
+
+
+### MGF 
+
+- MGF ɸ<sub>X</sub>(s) 定义:
+    - ![](../imgs/TU_prob2_9.2_05.png)
+    - 所以這是為什麼就叫 ɸ<sub>X</sub>(s) 叫moment generating function, 因為只要有了它，你就可以生成任何一個moment，
+- 逆转换怎么做 ?
+    - 通常靠查表法
+- 我说 MGF 为什么叫 MGF 呢 
+    - 还记得什么叫 moment吗？ E[Xⁿ] 叫做 nth moment
+    - ɸ<sub>X</sub>(s) 跟 moment 有关系吗 ?
+    - ![](../imgs/TU_prob2_9.2_06.png)
+    - ![](../imgs/TU_prob2_9.2_07.png)
+
+
+
+
 
 
 
