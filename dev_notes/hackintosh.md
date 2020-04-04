@@ -225,7 +225,12 @@ use volume name of your OSX volume.
 <h2 id="8f75e5aa62bb7c0a9d9e0740fb76bea1"></h2>
 
 
-## active native bluetooth
+## active native bluetooth , not work since 10.15.4
+
+<details>
+<summary>
+deprecated
+</summary>
 
 - brew install libusb
 - firmware source:  https://github.com/wulf7/iwmbt-firmware
@@ -264,6 +269,14 @@ Does it need specifiy root user ?
 <key>UserName</key>
 <string>root</string>
 ```
+
+</details>
+
+## active native bluetooth , kert for clover
+
+https://github.com/zxystd/IntelBluetoothFirmware
+
+
 
 <h2 id="b661467e7a885061e79bcd1aff928d46"></h2>
 
