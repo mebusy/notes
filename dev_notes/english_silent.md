@@ -1,5 +1,5 @@
 
-# 特殊单一字音， 不发音的t,m,n
+# 特殊单一字音， 不发音的t,b,n
 
 - -s***t*** le, -s***t*** en, -f***t*** en, -m***b***, -m***n***  粗斜体不发音
     - castle, jostle, nestle, bristle, whistle, wrestle, hustle, bustle, rustle 
