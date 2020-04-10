@@ -218,4 +218,19 @@ private void resize(int capacity) {
 
 ## event-driven simulation
 
+Example: Particle-particle collision, event-driven simulation
+
+- Initialization
+    - fill PQ with all potential particle-vall collisions
+    - fill PQ with all potential particle-particle collisions.
+- Main Loop
+    - Delete the impending event from PQ
+    - If the event has been invalidated, ignore it.
+    - handling the collision
+        - Advance all particles to time t, on a straight-line trajectory.
+        - Update the velocities of the colliding particle(s).
+        - re-Predict future particle-wall and particle-particle collisions involving the colliding particle(s) and insert events onto PQ.
+
+
+
 
