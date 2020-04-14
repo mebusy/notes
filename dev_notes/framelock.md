@@ -30,8 +30,94 @@ server负责统一tick，并转发client的指令，通知其他client
 
 
 
+# 实现 #1 传统客户端
+
+1. 服务器定期广播
+2. 客户端只有接收到服务器的消息后，才step  模拟
+
+对输入做预测？
+
+会有延迟
+
+# 实现 #2 预测回滚
+
+- 客户端本地有2个 buffer， 
+    - 客户端把操作发给服务器的时候，还会 插入到本地的buffer: LBuffer.
+        - 本地buffer，其他玩家的操作，需要客户端自己使用一定的算法做预测
+    - 同时从服务器接收到的，放入 SBuffer 
+- step 的时候，某一个step的，如果 服务器的输入到了的话，就用 SBuffer 的数据, 否则就用 LBuffer 
+    - 因为 LBuffer 中的其他玩家输入都是预测的，所以会出现预估失败的情况
+    - 客户端的帧，一般都是超前服务器的
+        - 比如客户端在第7帧的时候，服务器第2帧数据才到， 如果和本地第二帧的数据不一样了，你预测失败了，这个时候，就需要回滚到第1帧执行完后的状态。然后重新step直到当前帧
+- 如何回滚
+    1. 数据备份
+        - 代码生成
+        - memcpy
+    2. 数据恢复
+        - 写入文件
+        - 命令 ( 如 地图中删除一个物件)
 
 
 
+# Overwatch 
+
+- client go head by half RTT + buffer 
+- mispredict
+    - rollback
+    - regenerate LBuffer , re-predict
+- client 的包丢失
+    - the server tries to keep this tiny buffer of unsimulated input as small as possible 
+    - if the server has to starve out this little buffer, it's just gonna guess and duplicate your last input
+    - and by the time that real input arrives you look how to reconcile that and make sure you don't lose any buttons, but they're gonna mispredict. 
+        - if server can not receive the frame packet from client,  server send its packet, and tells clents  by the way hey I lost some input something's wrong. 
+        - what's gonna happen is the client is going to start to simulate slightly faster :
+            - if the fixed time step is 16ms, the client is just going to pretent that the fixed time step is now 15.2 ms. it's gonna advance much faster.  it will lead to that the server's gonna have a much bigger buffer.
+    - once the server realizes that you're healthy it'll send you messages saying hey you know it's fine , the client will do the opposite.  The feedback loop is happening constantly and the goal of it is to try to minimize mispredictions because of input duplication. 
+    - once client catch up the input that was skipped is in danger of being lost, to solve this problem, the client always sends up a sliding window of input 
+        - it send all of the input that have simulated from the last acknowledged frame from server. 
+        - the subsequent packets still has all those inputs. 
+
+
+# Mortal Kombat 
+
+- Lockstep
+    - only send gamepad data
+    - the game will not proceed until it has input from the remote player for the current frame
+    - input is delayed  by enough frames to cover the network latency
+- Rollback
+    - only send gamepad data
+    - Game proceeds without remote input
+    - when remote input is received , rollback and simulate forward
+
+
+ · | Rollback | Lockstep
+--- | --- | ---
+simple | | Y
+visually smooth | | Y
+Performant | | Y 
+Robuts | Y | Y 
+Low bandwitdh | Y | Y
+Responsive | Y | 
+Single Frame Latency | Y | 
+
+- High-Level Lessons Learned
+    - Design game systems to drive visual state, *not* depend on it
+    - Design systems to update with variable time steps
+        - Parametriacally is even better
+    - Everyone should work with debug rollback system enabled
+    - Defer processing until after the rollback window if reasonable 
+    - Bog is no longer a function of a single frame
+
+# Halo
+
+- "The TRIBES engine networking model", Frohnmayer and Gift, GDC 1999
+- A host/client model, resilient to cheating
+- Protocols for semi-reliable data delivery
+- Support persistent *state* and transient *events*
+- Highly scalable to match available bandwidth
+
+- UDP state sync
+    - server -> client, world state, packet drop is not essential
+    - client -> server, commands is essential, each command packet contains all command from the acknowledged frame.
 
 
