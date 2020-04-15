@@ -121,3 +121,11 @@ Single Frame Latency | Y |
     - client -> server, commands is essential, each command packet contains all command from the acknowledged frame.
 
 
+# 其他
+
+- 通过发送 前后3帧数据，抗丢包
+- 逻辑和显示的分离
+
+http://mauve.mizuumi.net/2012/07/05/understanding-fighting-game-networking/
+
+
