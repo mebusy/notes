@@ -67,6 +67,9 @@
 </html>
 ```
 
+- actions (also called *directives*), which are enclosed in double curly brackets
+
+
 ```
 // Listing 6.2 Using a simple HTML template: simple_template.go
 
@@ -98,12 +101,15 @@ func main() {
 
  - The html/template package is used here instead of the text/template package because it’s context-aware and handles some operations for you.
  - Being context-aware is more than knowing that these are HTML templates. The package understands what’s happening inside the templates.
- - Take the following tem- plate snippet: `<a href="/user?id={{.Id}}">{{.Content}}</a>`
+ - Take the following template snippet: `<a href="/user?id={{.Id}}">{{.Content}}</a>`
  - The html/template package expands this intelligently. 
     - For escaping purposes, it adds context-appropriate functionality. The preceding snippet is automatically expanded to look like this:
     - `<a href="/user?id={{.Id | urlquery}}">{{.Content | html}}</a>` 
-    - The variables (in this case, .Id and .Content) are piped through appropriate functions to escape their content before turning it into the final output.
+    - The variables (in this case, .Id and .Content) are piped through appropriate functions to **escape** their content before turning it into the final output.
     - If you were using the text/template package, you would need to add the escaping yourself.
+
+ - When you want a variable to be rendered as is, without being escaped, you can use the HTML type in the html/template package.
+    - Technique 35 provides an example that uses the HTML type to inject data into a template and avoid escaping.
 
 
 <h2 id="d9e159dad96dcd326f096b14169e7be6"></h2>
@@ -126,9 +132,16 @@ func main() {
  - Although templates provide quite a few features, often you need to extend them with your own functionality. 
  - For example, we’ve often seen the need to display a date and time in an easy-to-read format. 
  - This common request could easily be implemented as part of the template system.
+ - PROBLEM
+    - The built-in functions in the templates don’t provide all the functionality you need.
+ - SOLUTION
+    - Just as Go makes functions available in templates (such as fmt.Sprintf being avail- able in templates as printf), make your own functions available.
+
  - Go actions, the data and commands enclosed in double curly brackets, can have commands that act on the data. 
     - These commands can be chained into pipelines separated by a `|` . 
     - This is the same idea as using pipes from a UNIX-based command- line interface (CLI)
+- Go provides an API to add commands to the **set** available to a template. 
+    - The following listing takes a template and adds the capability to display formatted dates.
 
 ```go
 // Listing 6.3 Add template functions: date_command.go
@@ -184,8 +197,12 @@ func main() {
 }
 ```
 
+- Rather than referencing an external file, this HTML template is stored as a string in a variable. 
+
  - Because dateFormat isn’t one of the core template functions, it needs to be made available to the template. 
-    - the function map (here, named funcMap) needs to be passed into `Funcs` to make the new function mapping available to templates. 
+    - Making custom functions available in templates requires two steps.
+        1. a map needs to be created, function name : function 
+        2. the function map (here, named funcMap) needs to be passed into `t.Funcs` to make the new function mapping available to templates. 
  - If you’re going to apply the same function set to numerous templates, you can use a Go function to create your templates and add your template functions each time:
 
 ```
@@ -197,7 +214,7 @@ func parseTemplateString(name, tpl string) *template.Template {
 }
 ```
 
- - This function could be repeatedly used to create a new template object from a tem- plate string with your custom template functions included.
+ - This function could be repeatedly used to create a new template object from a template string with your custom template functions included.
 
 
 <h2 id="1de21ea456194e25d3eb6be7d9093a72"></h2>
@@ -205,6 +222,9 @@ func parseTemplateString(name, tpl string) *template.Template {
 
 ### 6.1.3 Limiting template parsing
 
+- Parsing templates that were originally in text into type instances is a bit of work for a Go application. 
+    - Parsing a template turns a string of characters into an object model with a variety of nodes and node types that Go knows how to use.
+    - The parser in the `text/template/parser` package sits behind functions such as `template.Parse` and `template.ParseFiles`
  - Methods such as the following technique allow you to avoid extra work by using a `text/template/parser` that can speed up your application.
 
 <h2 id="98fb0d7ee0f06d754fe01fe1b12afcd3"></h2>
@@ -229,6 +249,8 @@ import (
 )
 
 // Parses the template when the package is initialized
+// Must is a helper that wraps a call to a function returning (*Template, error) and panics if the error is non-nil. 
+//     It is intended for use in variable initializations.
 var t = template.Must(template.ParseFiles("templates/simple.html"))
 
 type Page struct {
@@ -286,6 +308,14 @@ func main() {
 
 ### 6.1.5 Mixing templates
 
+
+1. Template nesting
+2. Inheritance
+3. Mapping a data object to a specific template
+    - for example, a user object being mapped to a user template
+
+
+
 <h2 id="e4e2ec9594eedd2ef2ac71c25a313a90"></h2>
 
 
@@ -293,7 +323,7 @@ func main() {
 
  - Sharing and reusing sections of templates, like code reuse, is a common need. 
  - If you have an application with numerous web pages, you’ll typically find that most elements are common across pages, and some elements are custom.
- - PROBLEM: You want to avoid duplicating the common sections of HTML markup in each tem- plate and the maintenance burden that goes along with that. Like the software you’re developing, you want to take advantage of reuse.
+ - PROBLEM: You want to avoid duplicating the common sections of HTML markup in each template and the maintenance burden that goes along with that. Like the software you’re developing, you want to take advantage of reuse.
  - SOLUTION: Use nested templates to share common sections of HTML. The subtemplates enable reuse for sections of markup, cutting down on duplication.
 
 ```
@@ -310,9 +340,9 @@ func main() {
 ```
 
  - The directive {{template "head.html" .}} has three parts.
-    - `template` tells the template engine to include another template,
-    - and `head.html` is the name of that template.
-    - The final part is the `.` after head.html.  This is the dataset to pass to the template.
+    1. `template` tells the template engine to include another template,
+    2. and `head.html` is the name of that template.
+    3. The final part is the `.` after head.html.  This is the dataset to pass to the template.
         - In this case, the entire dataset from the parent template is passed to this template.
         - If a property on the dataset contained a dataset for a subtemplate, that could be passed in.
             - For example, if `{{template "head.html" .Foo}}` were used, the properties on `.Foo` would be the ones available inside head.html
@@ -342,8 +372,26 @@ func diaplayPage(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
- - When the template is executed, ExecuteTemplate is used so that the template name to execute can be specified.
- - If Execute had been used, as in the previous listings, the first template listed in ParseFiles would be used. 
+ - When the template is executed, *ExecuteTemplate* is used so that the template name to execute can be specified.
+ - If *Execute* had been used, as in the previous listings, the first template listed in ParseFiles would be used. 
+ - *ExecuteTemplate* provides control over the template file when multiple ones are available.
+
+---
+
+ - If you want nest template not from file but strings...
+
+
+```go
+  {{template "head_html" .}}
+  
+....
+
+    t:= template.New("head_html")
+    t = template.Must(t.Parse(t_head_html))
+
+    t = t.New( "event_html" )
+    t = template.Must(t.Parse(t_event_html))
+```
 
 
 <h2 id="9b8782b53f9f5e3d2cedeac1cfc8c662"></h2>
@@ -396,7 +444,7 @@ func diaplayPage(w http.ResponseWriter, r *http.Request) {
 
  - Templates extending the base need to make sure all of the subtemplates without a default are filled out.
     - Here the title and content sections need to be defined because they’re required. 
-    - You’ll notice that the optional sections with empty or default con- tent defined from listing 6.9 don’t need to have sections defined.
+    - You’ll notice that the optional sections with empty or default content defined from listing 6.9 don’t need to have sections defined.
 
  - The following listing showcases filling in an optional template in addition to the required sections.
 
@@ -451,6 +499,7 @@ h1 {
     - The template is used to render the Quote object as HTML and has Quote object fields to render.
     - You’ll notice there are no other elements for a complete page here.
     - Instead those are part of index.html, shown in the following listing.
+    - Here, `.Content` will be an template.HTML object
 
 ```
 // Listing 6.14 A generic page wrapper: index.html
