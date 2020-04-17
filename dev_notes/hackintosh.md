@@ -82,7 +82,7 @@ sudo -E perl -pi -e "s/\Mac-00BE6ED71E35EB86/\Mac-*YourBoardID*/" /System/Librar
 - Boot->Boot Configuration-> « Boot Network Devices Last » ： disabled
 - Power->Secondary Power Settings, « Wake on LAN from S4/S5 », set to « Stay Off »
 - Devices->Video, « IGD Minimum Memory » set to 64mb
-- Devices->Video, « IGD Aperture Size » set to 256mb
+- Devices->Video, « IGD Aperture Size » set to MAX
 - disable reader-card
 
 <h2 id="fca6772f09655f60d2a1571eb468f4b5"></h2>
@@ -198,12 +198,15 @@ use volume name of your OSX volume.
         - Other
             - Lilu.kext  补丁驱动，多用于配合其他驱动使用
             - AppleALC.kext  Realtek onboard audio  需要配合lilu.kext使用，主要的作用就是加载原生AppleHDA声卡驱动。
+                - 目前AppleACL 已经能够进行很好的仿冒声卡
             - VoodooHDA-2.9.1.kext黑苹果万能声卡驱动
+                - 万能声卡，适用于很少一部分人。万能声卡是个玄学驱动，但对hdmi音频输出却基本能做到
             - CodecCommander.kext   解决耳机有杂音和睡眠唤醒无法自动切换或无声的问题
             - CPUFriend.kextCPU  变频动态注入 CPU 电源管理数据
             - Fake-PCI-ID.kext  牛逼
             - USBInjectAll.kext  In 10.11+ Apple has changed significantly the way the USB drivers work.
             - WhateverGreen.kext  Lilu plugin providing patches to select GPUs on macOS. 显卡驱动补丁集
+                - 对于集显，A/N卡显示的补丁驱动，解决黑屏，花屏等问题。
             - XHCI-unsupported.kext： 英特X99系列主板驱动
     8. misc  主要存放日志，用于排错
     9. OEM   存放不同主板电脑型号的一个配置文件. OEM可以包含整个clover文件夹下面的所有文件(除了OEM). 除了你希望用一个引导去引导多台电脑，否则没什么用
