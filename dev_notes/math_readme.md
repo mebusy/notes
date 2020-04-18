@@ -51,6 +51,7 @@
  - [3b1b Fourier Transform](3b1b_fourier_transform.md)
  - [softmax implementation](softmax.md)
  - [3b1b Bayes theorem](bayes_theorem.md)
+ - [3b1b quadratic formula](3b1b_quadratic_formula.md)
 
 
 
