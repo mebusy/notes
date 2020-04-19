@@ -52,6 +52,7 @@
  - [softmax implementation](softmax.md)
  - [3b1b Bayes theorem](bayes_theorem.md)
  - [3b1b quadratic formula](3b1b_quadratic_formula.md)
+ - [prime number](math_prime.md)
 
 
 
