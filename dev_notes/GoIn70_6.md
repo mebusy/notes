@@ -662,9 +662,221 @@ func main() {
 
 -----
 
-END
+
+## Misc
+
+[template cheatsheet](https://curtisvermeeren.github.io/2017/09/14/Golang-Templates-Cheatsheet)
+
+### [Template Variables] save data passed to template to a variable
+
+```
+{{$number := .}}
+<h1> It is day number {{$number}} of the month </h1>
+```
+
+```go
+var tpl *template.Template
+tpl = template.Must(template.ParseFiles("templateName"))
+err := tpl.ExecuteTemplate(os.Stdout, "templateName", 23)
+```
+
+### [Template Actions] If/Else Statements
+
+```
+<h1>Hello, {{if .Name}} {{.Name}} {{else}} there {{end}}!</h1>
+```
+
+Templates also provide `{{else if .Name2 }}` which can be used to evaluate a second option after an if.
 
 
+### [Template Actions] Range Blocks
+
+```go
+type Item struct {
+    Name  string
+    Price int
+}
+```
+
+
+
+```
+{{range .Items}}
+  <div class="item">
+    <h3 class="name">{{.Name}}</h3>
+    <span class="price">${{.Price}}</span>
+  </div>
+{{end}}
+```
+
+Within a range each Item becomes the {{.}} in the template and the item properties become {{.Name}} or {{.Price}} .
+
+---
+
+```
+{{ range $index, $event := .Events }}
+    <tr>
+        <td> {{$event.Event}} </td>
+        <td> {{$event.StartTime | utctimestampToBeijingDate}} </td>
+        <td> {{$event.Deadline | utctimestampToBeijingDate}} </td>
+        <td> {{$event.EndTime | utctimestampToBeijingDate}} </td>
+    </tr>
+{{ end }}
+```
+
+### [Template Functions] Indexing structures in Templates
+
+```
+<body>
+    <h1> {{index .FavNums 2 }}</h1>
+</body>
+```
+
+### [Template Functions] The and/or/not Function
+
+```
+{{if and .User .User.Admin}}
+  You are an admin user!
+{{else}}
+  Access denied!
+{{end}}
+```
+
+```
+{{ if not .Authenticated}}
+  Access Denied!
+{{ end }}
+```
+
+### [Template Comparison Functions] Comparisons
+
+- The html/template package provides a variety of functions to do comparisons between operators.
+- The operators may only be basic types or named basic types such as `type Temp float32` 
+- Remember that template functions take the form `{{ function arg1 arg2 }}`.
+    - eq Returns the result of arg1 == arg2
+    - ne Returns the result of arg1 != arg2
+    - lt Returns the result of arg1 < arg2
+    - le Returns the result of arg1 <= arg2
+    - gt Returns the result of arg1 > arg2
+    - ge Returns the result of arg1 >= arg
+- `{{ eq arg1 arg2 }}`
+- `{{ eq arg1 arg2 arg3 arg4}}` will result in the following logical expression:
+    - `arg1==arg2 || arg1==arg3 || arg1==arg4`
+
+
+### [Templates Calling Functions] Function Variables (calling struct methods)
+
+```go
+type User struct {
+  ID    int
+  Email string
+}
+
+func (u User) HasPermission(feature string) bool {
+  if feature == "feature-a" {
+    return true
+  } else {
+    return false
+  }
+}
+```
+
+```
+{{if .User.HasPermission "feature-a"}}
+  <div class="feature">
+    <h3>Feature A</h3>
+    <p>Some other stuff here...</p>
+  </div>
+{{else}}
+  <div class="feature disabled">
+    <h3>Feature A</h3>
+    <p>To enable Feature A please upgrade your plan</p>
+  </div>
+{{end}}
+```
+
+### [Templates Calling Functions] Function Variables (call)
+
+If the Method HasPermission has to change at times, previous implementation may not fit the design.
+
+Instead a HasPermission func(string) bool attribute can be added on the *User* type.
+
+```go
+type User struct {  
+  ID            int
+  Email         string
+  HasPermission func(string) bool
+}
+
+// Example of creating a ViewData
+vd := ViewData{
+        User: User{
+            ID:    1,
+            Email: "curtis.vermeeren@gmail.com",
+            // Create the HasPermission function
+            HasPermission: func(feature string) bool {
+                if feature == "feature-b" {
+                    return true
+                }
+                return false
+            },
+        },
+    }
+```
+
+We use the `call` keyword supplied by the go html/template package. 
+
+```
+{{if (call .User.HasPermission "feature-b")}}
+  <div class="feature">
+    <h3>Feature B</h3>
+    <p>Some other stuff here...</p>
+  </div>
+{{else}}
+  <div class="feature disabled">
+    <h3>Feature B</h3>
+    <p>To enable Feature B please upgrade your plan</p>
+  </div>
+{{end}}
+```
+
+
+### [Templates Calling Functions] Custom Functions
+
+Create custom function with template.FuncMap .
+
+```go
+// Creating a template with function hasPermission
+testTemplate, err = template.New("hello.gohtml").Funcs(template.FuncMap{
+    "hasPermission": func(user User, feature string) bool {
+      if user.ID == 1 && feature == "feature-a" {
+        return true
+      }
+      return false
+    },
+  }).ParseFiles("hello.gohtml")
+```
+
+The function could be executed in the template as follows:
+
+```
+{{ if hasPermission .User "feature-a" }}
+```
+
+The .User and string "feature-a" are both passed to hasPermission as arguments.
+
+
+### [Templates Calling Functions] Custom Functions (Globally)
+
+Functions that dost not rely on object ( e.g `user` ).  And this is one that introduced in very beginning of this chapter.
+
+```go
+  testTemplate, err = template.New("hello.gohtml").Funcs(template.FuncMap{
+    "hasPermission": func(feature string) bool {
+      return false
+    },
+  }).ParseFiles("hello.gohtml")
+```
 
 
 
