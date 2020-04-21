@@ -660,6 +660,10 @@ func main() {
     - For example, you could use the html/template package to send HTML email. 
     - Or you could combine this with the other template techniques to create complex templates.
 
+-----
+
+END
+
 
 
 
