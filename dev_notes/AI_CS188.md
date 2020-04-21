@@ -83,9 +83,16 @@ https://edge.edx.org
 
 https://edge.edx.org/courses/BerkeleyX/CS188x-8/Artificial_Intelligence/courseware/c78976d210314651abb740912d8279bb/0460a6606a3e4630b0b4e913dd88c135/
 
-what's that fuck ?
+----
 
-> https://courses.edx.org/courses/course-v1:ColumbiaX+CSMM.101x+1T2017/info
+2018 fa
+
+http://inst.cs.berkeley.edu/~cs188/fa18/
+
+video:
+
+https://www.youtube.com/watch?v=16Dir4QqCUg&list=PLsOUugYMBBJENfZ3XAToMsg44W7LeUVhF
+
 
 
 <h2 id="0b79795d3efc95b9976c7c5b933afce2"></h2>
@@ -98,22 +105,17 @@ what's that fuck ?
 
 ## What is AI
 
-The science of making machines that: 
+The science of making machines that: Rational Decisions
 
-<h2 id="113b7e5d42d49b2f76a69a3517ebcde9"></h2>
-
-
-## Rational Decisions
-
- - We’ll use the term **rational** in a very specific, technical way:
+- We’ll use the term **rational** in a very specific, technical way:
     - Rational: maximally achieving pre-defined goals
     - Rationality only concerns what decisions are made  (not the thought process behind them)
- - Goals are expressed in terms of the **utility** of outcomes
- - Being rational means **maximizing your expected utility**
+- Goals are expressed in terms of the **utility** of outcomes
+- Being rational means **maximizing your expected utility**
 
 A better title for this course would be:
 
- - **Computational Rationality**
+- **Computational Rationality**
 
 
 <h2 id="04052b6bc5dad6a9f6a00dfb9cd988da"></h2>
@@ -129,43 +131,6 @@ A better title for this course would be:
     - Learning to recognize when and how a new problem can be solved with an existing technique
 
 ![](../imgs/cs188_agent.png)
-
-
-<h2 id="e3a18b70b77602c474ec9b3140b582e3"></h2>
-
-
-## Course Topics
-
- - Part I: Making Decisions
-    - Fast search / planning
-    - Constraint satisfaction
-    - Adversarial and uncertain search
- - Part II: Reasoning under Uncertainty
-    - Bayes’ nets
-    - Decision theory
-    - Machine learning
- - Throughout: Applications
-    - Natural language, vision, robotics, games, …
-
-
-
-<h2 id="faccc055dce5dfee94eba9a23ec379bc"></h2>
-
-
-# Uninformed Search
-
- - Agents that Plan Ahead
- - Search Problems
- - Uninformed Search Methods
-    - Depth-First Search
-    - Breadth-First Search
-    - Uniform-Cost Search
-
-Uninformed means that when we are exploring search tree we have no idea if we're getting closer to the goal or not. 
-
- - i.e 在一个位置的maze中找到出口  
-    - 如果已经知道 出口的位置，找一条最短的路径的话， 这种情况是可以使用预测值的，就可以使用 informed search 来处理
-
 
 <h2 id="9ef57e59fc5834eb1f86775a80163590"></h2>
 
@@ -196,6 +161,43 @@ Uninformed means that when we are exploring search tree we have no idea if we're
     - **Consider how the world WOULD BE**
  - **Optimal vs. complete planning**
  - **Planning vs. replanning**
+
+<h2 id="e3a18b70b77602c474ec9b3140b582e3"></h2>
+
+
+## Course Topics *
+
+- Part I: Intelligence from Computation
+    - Fast search / planning
+    - Constraint satisfaction
+    - Adversarial and uncertain search
+- Part II: Intelligence from Data
+    - Bayes' nets
+    - Decision theory
+    - Machine learning
+- Throughout: Application
+    - Natural language, vision, robotics, games, ...
+
+
+<h2 id="faccc055dce5dfee94eba9a23ec379bc"></h2>
+
+--------
+
+# Uninformed Search
+
+ - Agents that Plan Ahead
+ - Search Problems
+ - Uninformed Search Methods
+    - Depth-First Search
+    - Breadth-First Search
+    - Uniform-Cost Search
+
+Uninformed means that when we are exploring search tree we have no idea if we're getting closer to the goal or not. 
+
+ - i.e 在一个位置的maze中找到出口  
+    - 如果已经知道 出口的位置，找一条最短的路径的话， 这种情况是可以使用预测值的，就可以使用 informed search 来处理
+
+
 
 
 <h2 id="fc72ba154e470ee2e177ed8e75ee4de2"></h2>
@@ -271,6 +273,7 @@ Goal test | is (x,y) == END | dots all flase
  - How many
     - World states ?
         - 120 x 2³⁰ x 12² x 4
+        - because food's position is fixed, we only care about its state
     - State for pathing ?
         - 120
     - State for eat-all-dots ?
@@ -283,9 +286,10 @@ Goal test | is (x,y) == END | dots all flase
 ## Quiz: Safe Passage
 
  - Problem: eat all dots while keeping the ghosts permanent-scared
+    - ghosts don't respawn alive
  - What does the state space have to specify?
     - (agent position, dot booleans, power pellet booleans, remaining scared time)
-
+    - you don't care about ghost position here because you're supposed to be always keeping the ghost scared
 
 <h2 id="12227407175834cc50274fb425cf4e2d"></h2>
 
@@ -306,7 +310,8 @@ Goal test | is (x,y) == END | dots all flase
 
 ![](../imgs/cs188_state_space_graph.png)
 
- - In a search graph, each state also occurs only once!
+- In a search graph, each state also occurs only once!
+    - This is a really small state space graph search problem, we'll use it as our running example. But keep in mind this is just to illustrative purposes. In practice, you would **never** first draw a state space graph and then solve it.
 
 ![](../imgs/cs188_search_graph.png)
 
@@ -315,12 +320,16 @@ Goal test | is (x,y) == END | dots all flase
 
 ### Search Trees
 
+What we're actually going to build up when an algorithm runs is called a search tree. 
+
  - A search tree:
     - A “what if” tree of plans and their outcomes
     - The start state is the root node
     - Children correspond to successors
     - Nodes show states, but correspond to PLANS that achieve those states
     - **For most problems, we can never actually build the whole tree**
+        - In fact the search tree will typically be much large even than the state space graph because there might be multiple ways to get to the same state. And in that case, the search tree will have multiple occurrences of that same state.
+        - but it is the underlying abstraction we're going to work with.
 
 ![](../imgs/cs188_search_tree.png)
 
@@ -330,11 +339,11 @@ Goal test | is (x,y) == END | dots all flase
 
 ### State Space Graphs vs. Search Trees
 
- - Each NODE in in the search tree is an entire PATH in the state space graph.
-    - 节点x in search tree , 表示了 以x 为 start node 的整个子图    
- - We construct both on demand – and we construct as little as possible.
-
 ![](../imgs/cs188_state_space_graph2.png)  .VS.  ![](../imgs/cs188_search_tree2.png)
+
+ - Each NODE in in the search tree is an entire PATH in the state space graph.
+    - TODO  what does `PATH` here exactly means?  算法运行的search tree并不是真实存在的, 所以需要在search tree node里保留search path?
+ - We construct both on demand – and we construct as little as possible.
 
 
 <h2 id="76acaf4079e010db2a41f612ceae95f4"></h2>
@@ -348,17 +357,10 @@ Consider this 4-state graph:
 
 How big is its search tree (from S)?
 
-**∞ !**
-
- - **Important: Lots of repeated structure in the search tree!**
-
-
----
-
-<h2 id="6281565533d78912ee355e95d1263fef"></h2>
+- **∞ !**
+- **Important: Lots of repeated structure in the search tree!**
 
 
-## Tree Search
 
 <h2 id="643025d557c3b9f6d43cdd62b77f5530"></h2>
 
@@ -369,7 +371,9 @@ How big is its search tree (from S)?
 
  - Search
     - Expand out potential plans (tree nodes)
-    - Maintain a ***fringe*** of partial plans under consideration ( here, fringe is the nodes with white background and black font ) 
+    - Maintain a ***fringe*** of partial plans under consideration 
+        - *fringe* is the leaves of your drawing search tree
+        - here, *fringe* is the nodes with white background and black font, Arad is in *fringe* 
     - Try to expand as few tree nodes as possible
 
 
@@ -380,18 +384,18 @@ How big is its search tree (from S)?
 
 ```
 function TREE-SEARCH(problem,strategy) returns a solution, or failure
-    initialize the search tree using the initial state of problem
+    initialize the search tree using the initial state of problem(init fringe)
     loop do
         if there are no candidates for expansion then 
             return failure
         end
 
-        choose a leaf node for expansion according to strategy
+        choose a leaf node(of fringe) for expansion according to strategy
 
         if the node contain a goal state then
             return the corresponding solution
         else
-            expand the node and add the resulting node to the search tree
+            expand(popup from fringe) the node and add the resulting node to the search tree
         end
     end
 end function
@@ -399,10 +403,11 @@ end function
 
  - Important ideas:
     - Fringe
-        - 添加到 待处理列表中的 nodes
+        - a set of leaf nodes that are waiting to be expanded
     - Expansion
-        - 从待处理列表中 选择一个 nodes 展开
+        - pick one out of the fringe and expand it.
     - Exploration strategy
+        - which one of the elements in the fringe are you going to pick first to expand ?
  - Main question: which fringe nodes to explore?
 
 
@@ -425,6 +430,11 @@ end function
 
 #### Search Algorithm Properties
 
+- **Complete**: Guaranteed to find a solution if one exists?
+- **Optimal**: Guaranteed to find the least cost path?
+- Time complexity?
+- Space complexity?
+
 - **Cartoon of search tree**:
     - ![](../imgs/cs188_cartoon_of_search_tree.png)
     - b is the branching factor
@@ -432,12 +442,6 @@ end function
     - solutions at various depths
 - **Number of nodes** in entire tree?
     - 1 + b + b² + ... + bᵐ = O(bᵐ)
-- **Complete**: Guaranteed to find a solution if one exists?
-- **Optimal**: Guaranteed to find the least cost path?
-- Time complexity?
-- Space complexity?
-
-
 
 
 <h2 id="62a9189e6707b0db89f80a7a5bb6c15e"></h2>
@@ -446,12 +450,12 @@ end function
 #### Depth-First Search (DFS) Properties
 
  - What nodes DFS expand?
+    - ![](../imgs/cs188_dfs_analyse.png)
     - Some left prefix of the tree.
     - **Could process the whole tree!**
-    - If m is finite, takes time **O(bᵐ)** 最坏的情况，遍历所有的节点
+    - If m is finite, takes time **O(bᵐ)** 
  - How much space does the fringe take?
-    - Only has siblings on path to root, so **O(b·m)**  
-    - 每一层展开一个节点, 每个节点有 b successors, 最大m 层
+    - Only has siblings on path to root, so **O(b·m)**
  - Is it complete?
     - Yes. but under some assumptions that have a cycle check to avoid recursion
     - m could be infinite, so only if we prevent cycles 
@@ -477,12 +481,12 @@ end function
 
 #### Breadth-First Search (BFS) Properties
 
-![](../imgs/cs188_bfs_property.png)
-
- - What nodes does BFS expand?
+- What nodes does BFS expand?
+    - ![](../imgs/cs188_bfs_analyse.png)
     - Processes all nodes above shallowest solution
+        - go through the search tree layer by layer by layer...
     - Let depth of shallowest solution be *s*
-    - Search takes time **O(bˢ)** , 最坏情况，遍历所有s 层节点
+    - Search takes time **O(bˢ)** 
  - How much space does the fringe take?
     - Has roughly the last tier, so **O(bˢ)**
  - Is it complete?
