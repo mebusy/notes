@@ -384,14 +384,14 @@ How big is its search tree (from S)?
 ### General Tree Search
 
 ```
-function TREE-SEARCH(problem,strategy) returns a solution, or failure
-    initialize the search tree using the initial state of problem(init fringe)
+function TREE-SEARCH(problem,strategy) return a solution, or failure
+    initialize the fringe using the initial state of problem
     loop do
-        if there are no candidates for expansion then 
+        if there are no candidates for expansion(fringe is empty) then 
             return failure
         end
 
-        choose a leaf node(of fringe) for expansion according to strategy
+        choose a node in fringe for expansion according to strategy
 
         if the node contain a goal state then
             return the corresponding solution
@@ -410,6 +410,7 @@ end function
     - Exploration strategy
         - which one of the elements in the fringe are you going to pick first to expand ?
  - Main question: which fringe nodes to explore?
+ - PS. Tree Search does **NOT** maintain a *closed* or *visited* list
 
 
 <h2 id="d292eaede65eb34e66db0db9ebb6b9bc"></h2>
@@ -607,6 +608,7 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
 ## Search and Models
 
  - Search operates over models of the world
+    - Keep in mind, whenever you are doing search for real world problems, building the right models is really critical to get result.
     - The agent doesn’t actually try all the plans out in the real world!
     - Planning is all “in simulation”
     - Your search is only as good as your models
@@ -698,7 +700,6 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
  - Graph search is almost always better than tree search (when not?)
  - Implement your closed list as a dict or set!
  - Nodes are conceptually paths, but better to represent with a state, cost, last action, and reference to the parent node
-    - Terms used in Printon Algorithm course shortest path chapter :  state , distTo(v), edgeTo(v) 
 
 ---
 
@@ -707,6 +708,7 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
 
 # Informed Search 
 
+
  - Informed Search
     - Heuristics
     - Greedy Search
@@ -714,32 +716,6 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
  - Graph Search
 
 Those 3 informed search do a lot of duplicate work and graph search will be our solution to that to avoid that duplicate work.
-
-
-<h2 id="6fa04493ae42918af4621de6aae2ccc2"></h2>
-
-
-## The One Queue
-
- - All these search algorithms are the same except for fringe strategies
-    - Conceptually, all fringes are priority queues 
-        - (i.e. collections of nodes with attached priorities)
-    - Practically, for DFS and BFS, you can avoid the log(n) overhead from an actual priority queue, by using stacks and queues
-    - Can even code one implementation that takes a variable queuing object
-
-
-<h2 id="eec9120ae950a6604e2b58e9a3ca0035"></h2>
-
-
-## Uniform Cost Issues
-
- - Remember: UCS explores increasing cost contours
- - The good: UCS is complete and optimal!
- - The bad:
-    - Explores options in every “direction”
-        - ![](../imgs/cs188_ucs_explore_in_all_directions.png)
-    - No information about goal location
- - We’ll fix that soon!
 
 
 <h2 id="fdb1b92add98d8aa548a1d33445c6a67"></h2>
@@ -1137,28 +1113,6 @@ PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitiv
  - A* is optimal with admissible / consistent heuristics
  - Heuristic design is key: often use relaxed problems
 
-<h2 id="b9ab5ba1566688494ce5474bb592f8c4"></h2>
-
-
-### Tree Search Pseudo-Code
-
-```
-function TREE-SEARCH(problem,fringe) return a solution,or failure
-    fringe <- INSERT(MAKE-NODE(INITIAL-STATE[problem]),fringe)
-    loop do
-        if fringe is empty then 
-            return failure
-        end
-        node <- REMOVE-FRONT(fringe)
-        if GOAL-TEST(problem,STATE[node]) then
-            return node
-        end
-        for child-node in EXPAND(STATE[node],problem) do
-            fringe <- INSERT(child-node,fringe)
-        end
-    end
-end // func
-```
 
 <h2 id="1388b32869f8288febeb18f8ec802b42"></h2>
 
