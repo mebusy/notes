@@ -1,11 +1,11 @@
 ...menustart
 
- - [特殊单一子音， 不发音的t,b,n](#3fa5acf8f14a3d3835b6b05c9ef2594c)
+ - [特殊单一子音， 不发音的t,b,n](#7fa088760663a293435f73be1aefc2e2)
 
 ...menuend
 
 
-<h2 id="3fa5acf8f14a3d3835b6b05c9ef2594c"></h2>
+<h2 id="7fa088760663a293435f73be1aefc2e2"></h2>
 
 
 # 特殊单一子音， 不发音的t,b,n

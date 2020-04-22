@@ -1,7 +1,7 @@
 ...menustart
 
-- [Algorithm On Graphs](#311ad33f7584ac17012490ce8852f7e8)
-- [Week1 Exploring Undirected Graphs](#edbf6a2cb4c2f45a6c6f05f7981ececd)
+ - [Algorithm On Graphs](#311ad33f7584ac17012490ce8852f7e8)
+ - [Week1 Exploring Undirected Graphs](#edbf6a2cb4c2f45a6c6f05f7981ececd)
      - [Graph Basics](#887b235eb2dfc010821effbf5b9689f7)
          - [Representing Graphs](#030495a245248ce0deed9c13f9576cd0)
      - [Exploring Undirected Graphs](#fa4ec304233cb938cae388a53fe8dc4e)
@@ -13,7 +13,8 @@
          - [Previsit and Postvisit Orderings](#cb7d104acd7ef78260476fb96e632beb)
              - [Previsit and Postvisit Functions](#c190b4dd3a865a419b7d42ecdded4b14)
              - [Clock](#98a892aea3359481ae30e7b66c44d7a8)
-     - [Week2 Directed Graphs](#2b39565942c0c8f530d738cf53da9df6)
+ - [Week2 Directed Graphs](#2b39565942c0c8f530d738cf53da9df6)
+     - [Directed Graphs](#2b12ab1371d8f9b1ce9580a395b2e9b2)
          - [Directed Acyclic Graphs](#7a53b8f5717213d05b5a349b30218b27)
              - [Directed DFS](#82842893b1046ac7ea43887a7d4c6c97)
              - [Cycles](#d3240659659cbfa93d781d1510717a66)
@@ -28,12 +29,15 @@
              - [Finding Sink Components](#57c30fe3a2297ed1dfa107e753e2752e)
                  - [Reverse Graph Components](#509d136ac9a437456bbe67dd6b003890)
              - [Algorithm](#4afa80e77a07f7488ce4d1bdd8c4977a)
-     - [Week4 Fastest Route](#81f77ede3fa5efdc0417b37ade6871a6)
-         - [Naive Algorithm](#b7d8dac92149c1cdc7a8e81befdfb08b)
-             - [Optimal substructure](#57942cdc67d1172d4aff18d81651ba69)
-             - [Edge relaxation](#f1800f07c216d493e8e9ff2761ccfc33)
-             - [Naive approach](#cc6cc606f58f43f4ddfafcf6043ba8ce)
-             - [Correct distances](#b34e2384a9cd203b59f2660349fdb5fe)
+ - [Week3 Shortest Path](#ebf4c5795e7e039832b0c383127c1af7)
+     - [Breadth-First Search](#ae5c4b868b5b24149decba70c74165c2)
+     - [Creating MST by BFS](#e426fd50467bdd2d4e182815b0eee5ae)
+     - [Constructing shortest-path tree](#b677abc0402df239cc73865a664d147a)
+ - [Week4 Weighted Edge Graph](#f48846cfd1c263bd3b157547c127e20d)
+     - [Dijkstra's Algorithm](#f5465cb36bdbaa6b373c184f42e56778)
+         - [Implementation](#b672f52ade975e864ae6b58722c03689)
+     - [Currency Exchange](#003f976d33ac8c24e95d86528dd29140)
+         - [Currency Exchange](#003f976d33ac8c24e95d86528dd29140)
 
 ...menuend
 
@@ -269,9 +273,13 @@ def postvisit(v):
 
 # Week2 Directed Graphs
 
-<h2 id="7a53b8f5717213d05b5a349b30218b27"></h2>
+<h2 id="2b12ab1371d8f9b1ce9580a395b2e9b2"></h2>
+
 
 ## Directed Graphs
+
+
+<h2 id="7a53b8f5717213d05b5a349b30218b27"></h2>
 
 
 ### Directed Acyclic Graphs
@@ -500,11 +508,20 @@ How to compute the strongly connected components of a graph. ?
 ---
 
 
+<h2 id="ebf4c5795e7e039832b0c383127c1af7"></h2>
+
+
 # Week3 Shortest Path
+
+<h2 id="ae5c4b868b5b24149decba70c74165c2"></h2>
+
 
 ## Breadth-First Search
 
 skip ...
+
+
+<h2 id="e426fd50467bdd2d4e182815b0eee5ae"></h2>
 
 
 ## Creating MST by BFS
@@ -527,6 +544,9 @@ def BFS(G,S):
 ```
 
 
+<h2 id="b677abc0402df239cc73865a664d147a"></h2>
+
+
 ## Constructing shortest-path tree
 
 By BFS, you have found the shortest path , but how you reconstuct the shortest path ? 
@@ -542,14 +562,20 @@ def ReconstructPath(S, u, prev):
 
 
 
-<h2 id="81f77ede3fa5efdc0417b37ade6871a6"></h2>
+<h2 id="f48846cfd1c263bd3b157547c127e20d"></h2>
 
 
 # Week4 Weighted Edge Graph
 
 What is the MST of weighted edges graph ?
 
+<h2 id="f5465cb36bdbaa6b373c184f42e56778"></h2>
+
+
 ## Dijkstra's Algorithm
+
+<h2 id="b672f52ade975e864ae6b58722c03689"></h2>
+
 
 ### Implementation
 
@@ -571,10 +597,16 @@ def Dijkstra(G , S ):
 ```
 
 
+<h2 id="003f976d33ac8c24e95d86528dd29140"></h2>
+
+
 ## Currency Exchange
 
 - We've know how to find shortest path in the graph with non-negative edge weight. 
 - Now we will learn to find shortest path even in the graphs where some of the edge weigths can be negative.
+
+
+<h2 id="003f976d33ac8c24e95d86528dd29140"></h2>
 
 
 ### Currency Exchange

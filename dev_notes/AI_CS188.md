@@ -6,7 +6,7 @@
      - [Designing Rational Agents](#04052b6bc5dad6a9f6a00dfb9cd988da)
      - [Reflex Agents](#9ef57e59fc5834eb1f86775a80163590)
      - [Planning Agents](#b35ab1adff6f2f91e25f048a1f1ecfcc)
-     - [Course Topics *](#178acb72be9a63a5db24aa4d7aaca24a)
+     - [Course Topics \*](#75947eb557ad99ec6bd6f19e5842e7c0)
  - [Uninformed Search](#faccc055dce5dfee94eba9a23ec379bc)
      - [Search Problems](#fc72ba154e470ee2e177ed8e75ee4de2)
      - [Search Problems Are Models](#0a9e0b58d3ed416bdb73713846200baa)
@@ -162,10 +162,10 @@ A better title for this course would be:
  - **Optimal vs. complete planning**
  - **Planning vs. replanning**
 
-<h2 id="178acb72be9a63a5db24aa4d7aaca24a"></h2>
+<h2 id="75947eb557ad99ec6bd6f19e5842e7c0"></h2>
 
 
-## Course Topics *
+## Course Topics \*
 
 - Part I: Intelligence from Computation
     - Fast search / planning
