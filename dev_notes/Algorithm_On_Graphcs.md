@@ -43,19 +43,20 @@
 <h2 id="3c88e16de2066fa3ce3055a55a3e473b"></h2>
 
 
-## Week1
+# Week1 
 
 <h2 id="030495a245248ce0deed9c13f9576cd0"></h2>
 
+## Graph Basics 
 
 ### Representing Graphs
 
- - Edge List
+ 1. Edge List
     - egdes: (A, B), (A, C), (A,D), (C,D) 
     - A,B,C,D are vertices
- - Adjacency Matrix
+ 2. Adjacency Matrix
     - Entries 1 if there is an edge, 0 if there is not.
- - Adjacency List
+ 3. Adjacency List
     - For each vertex, a list of adjacent vertices.
     - A adjacent to B, C,D
     - B adjacent to A
@@ -63,8 +64,8 @@
     - D adjacent to A, C
     - can be implemented by a dictionary 
  
- - Defferent operations are faster in defferent representations
- - for many problems , want adjacency list .
+ - Different operations are faster in different representations
+ - for many problems , we want adjacency list because a lot of operations really want to be able to find neighbors.
 
 Op | Is Edge? | List Edge | List Nbrs 
 --- | --- | --- | ---
@@ -73,10 +74,17 @@ Edge List | Θ(&#124;E&#124;) | Θ(&#124;E&#124;) |  Θ(&#124;E&#124;)
 Adj. List | Θ(deg) | Θ(&#124;E&#124;) | Θ(deg)
 
 
+- Graph algorithm runtimes depend on |V| and |E|.
+    - i.e. `O(|V|+|E|)`
+
+
+## Exploring Undirected Graphs
+
 <h2 id="6d620d4a966ddb637a736ea4670b6782"></h2>
 
 
 ### Exploring Graphs
+
 
  - Visit Markers
     - To keep track of vertices found: Give each vertex boolean visited(v).
@@ -84,32 +92,36 @@ Adj. List | Θ(deg) | Θ(&#124;E&#124;) | Θ(deg)
     - Keep a list of vertices with edges left to check.
     - This will end up getting hidden in the program stack
  - Depth First Ordering
-    - We will explore new edges in Depth First order. 
-
-<h2 id="78f63ae6b311ad607db08a56dd79649a"></h2>
+    - We will *explore new edges* in Depth First order. 
 
 
-#### Explore , starting from a Node
+#### Explore
 
- - Need adjacency list representation!
+- Explore(v) marks as visited exactly the vertices **reachable** from v.
+- Good for adjacency list representation!
 
 ```python
 def Explore(v):
     visited(v) ← true
-    for (v, w) ∈ E:
+    for w in neighbors(v):
         if not visited(w):
             Explore(w)
 ```
+
+
 
 <h2 id="c1bb62b63c65be3760b715faad0bdf8d"></h2>
 
 
 #### DFS
 
+- DFS to find all vertices of G, not just those reachable from v.
+
 ```python
 def DFS(G):
-    for all v ∈ V : mark v unvisited
-    for v ∈ V :
+    for all v in V : 
+        mark v unvisited
+    for v in V :
         if not visited(v):
             Explore(v)
 ```
@@ -129,22 +141,31 @@ def DFS(G):
  - Explore(v) finds the connected component of v
  - Just need to repeat to find other components.
  - Modify DFS to do this.
- - Modify goal to label connected components
+ - Modify goal to **label** connected components
+
+---- 
+
+ - Solution: We also assign the vertices a number corresponding to the connected components
+ - Runtime: still O(|V|+|E|)
 
 ```python
 def Explore(v):
     visited(v) ← true
+    # changes: cc is passed in outside
     CCnum(v) ← cc
-    for (v, w) ∈ E:
+    for w in neighbors(v):
         if not visited(w):
             Explore(w)
 
 def DFS(G):
-    for all v ∈ V mark v unvisited
+    for all v in V : 
+        mark v unvisited
+    # changes: generating connected components number
     cc ← 1
-    for v ∈ V :
+    for v in V :
         if not visited(v):
             Explore(v)
+            # changes: increment cc
             cc ← cc + 1
 ```
 
@@ -157,8 +178,8 @@ def DFS(G):
 
  - Need to Record Data
     - Plain DFS just marks all vertices as visited.
-    - Need to keep track of other data to be useful.
-    - Augment functions to store additional information
+    - In general if we want ot make DFS useful, we need to keep track of other data to be useful,  just like how we find the connected components.
+    - Adding functions to store additional information, for example, let's look at the `Explore(v)`
 
 <h2 id="c190b4dd3a865a419b7d42ecdded4b14"></h2>
 
@@ -169,17 +190,25 @@ def DFS(G):
 ```python
 def Explore(v):
     visited(v) ← true
+    # changes
     previsit(v)
-    for (v, w) ∈ E:
+    for w in neighbors(v):
         if not visited(w):
             Explore(w)
+    # changes
     postvisit(v)
 ```
 
- - Clock
-    - Keep track of order of visits.
-    - Clock ticks at each pre-/post- visit.
-    - Records previsit and postvisit times for each v.
+So , what are those funcitons , previsit/postvisit going to be ? They could be many kind of things. 
+
+
+####  Clock
+
+One that we might want to do is to keep track of what order are we visit vertices in.  And so one way to do this is we have a clock.
+
+- This clock keep track of order of visits.
+- Clock ticks forward once it hit a pre-/post- visit.
+- Records previsit and postvisit times for each v.
 
 ![](../imgs/algr_on_graph_previst_clock_example.png)
 
@@ -195,12 +224,12 @@ def postvisit(v):
     clock ← clock + 1
 ```
 
- - Previsit and Postvisit numbers tell us about the execution of DFS.
- - Lemma
+- Previsit and Postvisit numbers tell us about the execution of DFS.
+- Lemma
     - For any vertices u, v the intervals pre(u), post(u)] and [pre(v), post(v)] are either **nested** or **disjoint**.
         - nested: eg.  (1,8) , (2,5)
         - disjoint: eg.  (1,8) , (9,12)
-    - that is , Interleaved (not possible) 
+    - that is , Interleaved is not possible
         - eg. ( 1, 8 ) , ( 5, 9  )
 
 ---
