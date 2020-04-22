@@ -691,6 +691,7 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
  - Graph search is almost always better than tree search (when not?)
  - Implement your closed list as a dict or set!
  - Nodes are conceptually paths, but better to represent with a state, cost, last action, and reference to the parent node
+    - Terms used in Printon Algorithm course shortest path chapter :  state , distTo(v), edgeTo(v) 
 
 ---
 
