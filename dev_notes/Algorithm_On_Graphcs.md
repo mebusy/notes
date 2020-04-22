@@ -1,7 +1,7 @@
 ...menustart
 
- - [Algorithm On Graphs](#311ad33f7584ac17012490ce8852f7e8)
- - [Week1 Exploring Undirected Graphs](#edbf6a2cb4c2f45a6c6f05f7981ececd)
+- [Algorithm On Graphs](#311ad33f7584ac17012490ce8852f7e8)
+- [Week1 Exploring Undirected Graphs](#edbf6a2cb4c2f45a6c6f05f7981ececd)
      - [Graph Basics](#887b235eb2dfc010821effbf5b9689f7)
          - [Representing Graphs](#030495a245248ce0deed9c13f9576cd0)
      - [Exploring Undirected Graphs](#fa4ec304233cb938cae388a53fe8dc4e)
@@ -71,8 +71,8 @@
     - D adjacent to A, C
     - can be implemented by a dictionary 
  
- - Different operations are faster in different representations
- - for many problems , we want adjacency list because a lot of operations really want to be able to find neighbors.
+- Different operations are faster in different representations
+- for many problems , we want adjacency list because a lot of operations really want to be able to find neighbors.
 
 Op | Is Edge? | List Edge | List Nbrs 
 --- | --- | --- | ---
@@ -96,12 +96,12 @@ Adj. List | Θ(deg) | Θ(&#124;E&#124;) | Θ(deg)
 ### Exploring Graphs
 
 
- - Visit Markers
+- Visit Markers
     - To keep track of vertices found: Give each vertex boolean visited(v).
- - Unprocessed Vertices
+- Unprocessed Vertices
     - Keep a list of vertices with edges left to check.
     - This will end up getting hidden in the program stack
- - Depth First Ordering
+- Depth First Ordering
     - We will *explore new edges* in Depth First order. 
 
 
@@ -151,15 +151,15 @@ def DFS(G):
 
 #### Connected Components
 
- - Explore(v) finds the connected component of v
- - Just need to repeat to find other components.
- - Modify DFS to do this.
- - Modify goal to **label** connected components
+- Explore(v) finds the connected component of v
+- Just need to repeat to find other components.
+- Modify DFS to do this.
+- Modify goal to **label** connected components
 
 ---- 
 
- - Solution: We also assign the vertices a number corresponding to the connected components
- - Runtime: still O(|V|+|E|)
+- Solution: We also assign the vertices a number corresponding to the connected components
+- Runtime: still O(|V|+|E|)
 
 ```python
 def Explore(v):
@@ -189,7 +189,7 @@ def DFS(G):
 
 ### Previsit and Postvisit Orderings
 
- - Need to Record Data
+- Need to Record Data
     - Plain DFS just marks all vertices as visited.
     - In general if we want ot make DFS useful, we need to keep track of other data to be useful,  just like how we find the connected components.
     - Adding functions to store additional information, for example, let's look at the `Explore(v)`
@@ -228,8 +228,8 @@ One that we might want to do is to keep track of what order are we visit vertice
 
 ![](../imgs/algr_on_graph_previst_clock_example.png)
 
- - Computing Pre- and Post- Numbers
- - Initialize clock to 1.
+- Computing Pre- and Post- Numbers
+- Initialize clock to 1.
 
 ```python
 def previsit(v):
@@ -262,7 +262,7 @@ def postvisit(v):
 
 ### Directed Acyclic Graphs
 
- - Directed graphs might be used to represent:
+- Directed graphs might be used to represent:
     - Streets with one-way roads.
     - Links between webpages.
     - Followers on social network.
@@ -274,7 +274,7 @@ def postvisit(v):
 
 #### Directed DFS
 
- - Can still run DFS in directed graphs.
+- Can still run DFS in directed graphs.
     - Only follow **directed** edges
     - explore(v) finds all vertices **reachable** from v.
     - Can still compute pre- and post- orderings.
@@ -284,12 +284,12 @@ def postvisit(v):
 
 #### Cycles
 
- - A **cycle** in a graph G is a sequence of vertices v1, v2, . . . , vn so that
- - (v1, v2),(v2, v3), . . . ,(vn−1, vn),(vn, v1) are all edges.
- - ![](../imgs/algorithm_on_graph_cycles.png)
- - Theorem
+- A **cycle** in a graph G is a sequence of vertices v1, v2, . . . , vn so that
+- (v1, v2),(v2, v3), . . . ,(vn−1, vn),(vn, v1) are all edges.
+- ![](../imgs/algorithm_on_graph_cycles.png)
+- Theorem
     - If G contains a cycle, it cannot be linearly ordered.
- - linearly ordered
+- linearly ordered
     - Redraw DAG so all edges sit in a line, and all point upwards.
     - ![](../imgs/algorII_graph_precedence_scheduling.png) 
 
@@ -317,10 +317,10 @@ Goal. Given a set of tasks to be completed with precedence constraints, in which
     2. Prove that a DAG can be linearly ordered
 
 
- - Last Vertex
+- Last Vertex
     - Consider the last vertex in the ordering. It cannot have any edges pointing out of it
     - ![](../imgs/algorithm_on_graph_last_vertex.png)
- - Sources and Sinks
+- Sources and Sinks
     - A **source** is a vertex with no incoming edges.
     - A **sink** is a vertex with no outgoing edges
         - ![](../imgs/algorithm_on_graph_sinks_in_dag.png)
@@ -339,8 +339,8 @@ This is all well and good, but it depends on us being able to find a sink.
 
 #### Finding Sink
 
- - Question: How do we know that there is a sink?
- - Follow path as far as possible v1 → v2 → . . . → vn. Eventually either:
+- Question: How do we know that there is a sink?
+- Follow path as far as possible v1 → v2 → . . . → vn. Eventually either:
     - Cannot extend (found sink).
     - Repeat a vertex (have a cycle).
 
@@ -406,7 +406,7 @@ How to compute the strongly connected components of a graph. ?
 
 ### Computing Strongly Connected Components
 
- - Problem
+- Problem
     - Input: A directed graph G
     - Output: The strongly connected components of G. 
 
@@ -415,11 +415,11 @@ How to compute the strongly connected components of a graph. ?
 
 #### Sink Components
 
- - Idea: 
+- Idea: 
     - If v is in a sink SCC, explore(v) finds vertices reachable from v. This is exactly the SCC **of v**.
         - 因为SCC的性质，无论你从SCC中的任何一个点node开始，你都是 explore 真个SCC
     - that also means, you will get different SCC, if you start from different node.
- - Need a way to find a sink SCC.
+- Need a way to find a sink SCC.
     - why ? 
     - if you start from a source SCC, you many visit the whole graph, it won't help you.
 
@@ -429,10 +429,10 @@ How to compute the strongly connected components of a graph. ?
 
 #### Finding Sink Components
 
- - Theorem
+- Theorem
     - If C and C' are two strongly connected components with an edge from some vertex of C to some vertex of C' , 
     - then largest post in C bigger than largest post in C'.
- - Conclusion
+- Conclusion
     - The vertex with the largest postorder number is in a source component!
     - Problem: We wanted a sink component
 
@@ -441,11 +441,11 @@ How to compute the strongly connected components of a graph. ?
 
 ##### Reverse Graph Components
 
- - Let Gᴿ be the graph obtained from G by reversing all of the edges.  
+- Let Gᴿ be the graph obtained from G by reversing all of the edges.  
     - ![](../imgs/algr_on_graph_reverse_graph.png)
- - Gᴿ and G have same SCCs.
- - Source components of Gᴿ are sink components of G.  
- - Find sink components of G by running DFS on Gᴿ .
+- Gᴿ and G have same SCCs.
+- Source components of Gᴿ are sink components of G.  
+- Find sink components of G by running DFS on Gᴿ .
     - The vertex with largest postorder in Gᴿ is in a sink SCC of G.
 
 <h2 id="4afa80e77a07f7488ce4d1bdd8c4977a"></h2>
@@ -463,7 +463,7 @@ def SCCs(G):
             mark visited vertices as new SCC
 ```
 
- - Runtime
+- Runtime
     - Essentially DFS on Gᴿ and then on G.  
     - Runtime O(|V| + |E|).
 
@@ -483,12 +483,12 @@ def SCCs(G):
 
 ####  Optimal substructure
 
- - Observation
+- Observation
     - Any subpath of an optimal path is also optimal.
- - Proof
+- Proof
     - Consider an optimal path from S to t and two vertices u and v on this path. If there were a shorter path from u to v we would get a shorter path from S to t.
     - ![](../imgs/algr_on_graph_substructure_proof.png)
- - Corollary
+- Corollary
     - If S → . . . → u → t is a shortest path from S to t, then d(S,t) = d(S, u) + w(u,t) 
         - u is the previous node on that path
         - w means weight
@@ -500,9 +500,9 @@ def SCCs(G):
 
 #### Edge relaxation
 
- - dist[v] will be an upper bound on the actual distance from S to v.
+- dist[v] will be an upper bound on the actual distance from S to v.
     - it store our **estimation** distance from the origin to this particular node v.
- - The edge relaxation procedure for an edge (u, v) just checks whether going from S to v through u improves the current value of dist[v].
+- The edge relaxation procedure for an edge (u, v) just checks whether going from S to v through u improves the current value of dist[v].
 
 ```python
 def Relax((u, v) ∈ E):
@@ -511,7 +511,7 @@ def Relax((u, v) ∈ E):
         prev[v] ← u
 ```
 
- - if both dist[v]=∞ and dist[u]=∞ , and w(u,v)=5, should the edge(u,v) be relaxed ?
+- if both dist[v]=∞ and dist[u]=∞ , and w(u,v)=5, should the edge(u,v) be relaxed ?
     - NO! 
 
 
@@ -537,7 +537,7 @@ def Naive(G, S):
 
 #### Correct distances
 
- - Lemma
+- Lemma
     - After the call to Naive algorithm all the distances are set correctly.
 
 
