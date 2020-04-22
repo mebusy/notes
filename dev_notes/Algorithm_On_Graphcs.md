@@ -58,12 +58,12 @@
 
 ### Representing Graphs
 
- 1. Edge List
+1. Edge List
     - egdes: (A, B), (A, C), (A,D), (C,D) 
     - A,B,C,D are vertices
- 2. Adjacency Matrix
+2. Adjacency Matrix
     - Entries 1 if there is an edge, 0 if there is not.
- 3. Adjacency List
+3. Adjacency List
     - For each vertex, a list of adjacent vertices.
     - A adjacent to B, C,D
     - B adjacent to A
