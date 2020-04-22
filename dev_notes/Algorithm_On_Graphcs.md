@@ -253,9 +253,11 @@ def postvisit(v):
 <h2 id="2b39565942c0c8f530d738cf53da9df6"></h2>
 
 
-## Week2 Directed Graphs
+# Week2 Directed Graphs
 
 <h2 id="7a53b8f5717213d05b5a349b30218b27"></h2>
+
+## Directed Graphs
 
 
 ### Directed Acyclic Graphs
@@ -264,7 +266,7 @@ def postvisit(v):
     - Streets with one-way roads.
     - Links between webpages.
     - Followers on social network.
-    - Dependencies between tasks.
+    - **Dependencies** between tasks.
 
 
 <h2 id="82842893b1046ac7ea43887a7d4c6c97"></h2>
@@ -275,7 +277,7 @@ def postvisit(v):
  - Can still run DFS in directed graphs.
     - Only follow **directed** edges
     - explore(v) finds all vertices **reachable** from v.
-    - Can still compute pre- and postorderings.
+    - Can still compute pre- and post- orderings.
 
 <h2 id="d3240659659cbfa93d781d1510717a66"></h2>
 
@@ -287,21 +289,32 @@ def postvisit(v):
  - ![](../imgs/algorithm_on_graph_cycles.png)
  - Theorem
     - If G contains a cycle, it cannot be linearly ordered.
+ - linearly ordered
+    - Redraw DAG so all edges sit in a line, and all point upwards.
+    - ![](../imgs/algorII_graph_precedence_scheduling.png) 
 
 <h2 id="1f979bae5ccfb6a193fde8d275355540"></h2>
 
 
 #### DAGs
 
- - A directed graph G is a **Directed Acyclic Graph** (or DAG) if it has no cycles.
- - Theorem
+- A directed graph G is a **Directed Acyclic Graph** (or DAG) if it has no cycles.
+- Theorem
     - Any DAG can be linearly ordered
+- Beiing a DAG is necessary to linearly order.
+    - Is it sufficient ? 
 
 
 <h2 id="3f9c4755d1b2c530f17ce3f80a0fb896"></h2>
 
 
 ### Topological Sort
+
+Goal. Given a set of tasks to be completed with precedence constraints, in which order should we schedule the tasks?
+ 
+- Learning Objectives
+    1. Implement the topological sort algorithm
+    2. Prove that a DAG can be linearly ordered
 
 
  - Last Vertex
@@ -311,6 +324,15 @@ def postvisit(v):
     - A **source** is a vertex with no incoming edges.
     - A **sink** is a vertex with no outgoing edges
         - ![](../imgs/algorithm_on_graph_sinks_in_dag.png)
+
+
+- Idea
+    1. Find sink
+    2. Put at end of order
+    3. Remove from graph
+    4. Repeat
+
+This is all well and good, but it depends on us being able to find a sink.
 
 <h2 id="2f1d4122555c30fa41c0390bd028ef60"></h2>
 
@@ -327,6 +349,26 @@ def postvisit(v):
 
 #### TopologicalSort Algorithm
 
+- First Try
+    - 
+    ```
+    # LinearOrder(G )
+    while G non-empty:
+        Follow a path until cannot extend 
+        Find sink v
+        Put v at end of order
+        Remove v from G
+    ```
+- Runtime
+    - O(|V|) paths
+    - Each takes O(|V|) time
+    - Runtime O(|V|²)
+- Speed Up
+    - `LinearOrder` retrace same path every time 
+    - Instead only back up as far as necessary
+        - This is just DFS !
+        - And in particular whenever we finish the post visit block at a vertex, 
+
 ```python
 TopologicalSort(G)
     DFS(G)
@@ -339,8 +381,9 @@ TopologicalSort(G)
 
 ### Strongly Connected Components
 
- - Two vertices v, w in a directed graph are **connected** if you can reach v from w and can reach w from v.
- - Theorem
+- Connectivity is complex in directed graph.
+- Two vertices v, w in a directed graph are **connected** if you can reach v from w **AND** can reach w from v.
+- Theorem
     - A directed graph can be partitioned into **strongly connected components** where two vertices are connected if and only if they are in the same component.
     - ![](../imgs/algorithm_on_graph_SCC.png)
 
@@ -349,9 +392,10 @@ TopologicalSort(G)
 
 #### Metagraph
 
- - We can also draw a **metagraph** showing how the strongly connected components connect to one another 
-    - ![](../imgs/algorithm_on_graph_metagraph.png)
- - Theorem
+- Once we've split our graph into connected components, they still have edges connecting these components to each other
+- So one useful thing to do is to draw what's known as **metagraph**, which sort of telles us how these strongly connected components connect to one another 
+    - ![](../imgs/algorithm_on_graph_metagraph.png) ,  ![](../imgs/algorithm_on_graph_metagraph2.png)  
+- Theorem
     - The metagraph of a graph G is always a DAG.
  
 How to compute the strongly connected components of a graph. ?
