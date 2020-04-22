@@ -43,6 +43,20 @@
 
 # Algorithm On Graphs
 
+content | method | graph | comments
+--- | --- | --- | --- 
+connected component | DFS   | indirected graph
+connectivity    | DFS   | indirected graph
+topology sort   | DFS | DAG  | sink vertex
+strongly connected component    | DFS   | directed graph
+strongly connected component    | DFS  | reverse directed graph  | sink component
+shortest path | BFS   | graph
+MST | BFS   | graph
+MST | Dijkstra  | weighted edge
+
+
+
+
 <h2 id="edbf6a2cb4c2f45a6c6f05f7981ececd"></h2>
 
 
@@ -368,12 +382,12 @@ This is all well and good, but it depends on us being able to find a sink.
     - Instead only back up as far as necessary
         - This is just DFS !
         - And in particular whenever we finish the post visit block at a vertex, 
-
-```python
-TopologicalSort(G)
-    DFS(G)
-    sort vertices by reverse post-order
-```
+    - 
+    ```python
+    TopologicalSort(G)
+        DFS(G)
+        sort vertices by reverse post-order
+    ```
 
 
 <h2 id="670190ac033bf942d8013492dc8f8b0f"></h2>
@@ -396,7 +410,7 @@ TopologicalSort(G)
 - So one useful thing to do is to draw what's known as **metagraph**, which sort of telles us how these strongly connected components connect to one another 
     - ![](../imgs/algorithm_on_graph_metagraph.png) ,  ![](../imgs/algorithm_on_graph_metagraph2.png)  
 - Theorem
-    - The metagraph of a graph G is always a DAG.
+    - The metagraph of a (directed) graph G is always a DAG.
  
 How to compute the strongly connected components of a graph. ?
 
@@ -417,7 +431,7 @@ How to compute the strongly connected components of a graph. ?
 
 - Idea: 
     - If v is in a sink SCC, explore(v) finds vertices reachable from v. This is exactly the SCC **of v**.
-        - 因为SCC的性质，无论你从SCC中的任何一个点node开始，你都是 explore 真个SCC
+        - 因为SCC的性质，无论你从SCC中的任何一个点node开始，你都是 explore 整个SCC
     - that also means, you will get different SCC, if you start from different node.
 - Need a way to find a sink SCC.
     - why ? 
@@ -431,7 +445,8 @@ How to compute the strongly connected components of a graph. ?
 
 - Theorem
     - If C and C' are two strongly connected components with an edge from some vertex of C to some vertex of C' , 
-    - then largest post in C bigger than largest post in C'.
+    - then **largest** postorder in C bigger than **largest** postorder in C'  no matter you visit vertex first in C or C'.
+    - 但是，最小的 postorder 不一定在 C'里
 - Conclusion
     - The vertex with the largest postorder number is in a source component!
     - Problem: We wanted a sink component
@@ -453,94 +468,115 @@ How to compute the strongly connected components of a graph. ?
 
 #### Algorithm
 
-```python
-def SCCs(G):
-    run DFS(Gᴿ)
-    for v ∈ V in reverse postorder:
-        if not visited(v):
-            Explore(v)
-            # mark the learder node as that SCC
-            mark visited vertices as new SCC
-```
+- Naive Implementation
+    - 
+    ```python
+    def SCCs(G ):
+        repeate:
+            run DFS(Gᴿ)
+            let v have largest post number 
+            run Explore(v) on G
+            vertices found are first SCC , Remove from G 
+    ```
+- Improvement
+    - Don't need to rerun DFS on Gᴿ
+    - Largest remaining post number comes from sink component
+        - The point is, after you remove this sink component, and if you just then look for the vertex with the single largest remaining postorder, that's going to be sink component of the new graph.
+- New Algorithm
+    - 
+    ```python
+    def SCCs(G):
+        run DFS(Gᴿ)
+        for v ∈ V in reverse postorder:
+            if not visited(v):
+                Explore(v)
+                mark visited vertices as new SCC
+    ```
 
 - Runtime
     - Essentially DFS on Gᴿ and then on G.  
     - Runtime O(|V| + |E|).
 
+---
+
+
+# Week3 Shortest Path
+
+## Breadth-First Search
+
+skip ...
+
+
+## Creating MST by BFS
+
+![](../imgs/alg_on_graph_bfs_mst.png)
+
+```python
+def BFS(G,S):
+    for all u∈V:
+        dist[u] ← ∞, prev[u] ← nil
+    dist[S] ← 0
+    Q ← {S} {queue containing just S} 
+    while Q is not empty:
+        u ← Dequeue(Q) 
+        for all (u,v)∈E:
+            if dist[v] = ∞:
+                Enqueue(Q , v )
+                dist[v] ← dist[u] + 1
+                prev[v] ← u
+```
+
+
+## Constructing shortest-path tree
+
+By BFS, you have found the shortest path , but how you reconstuct the shortest path ? 
+
+```python
+def ReconstructPath(S, u, prev):
+    result ← empty 
+    while u ≠ S:
+        result.append(u)
+        u ← prev[u]
+    return Reverse(result)
+```
+
+
 
 <h2 id="81f77ede3fa5efdc0417b37ade6871a6"></h2>
 
 
-## Week4 Fastest Route 
+# Week4 Weighted Edge Graph
 
-<h2 id="b7d8dac92149c1cdc7a8e81befdfb08b"></h2>
+What is the MST of weighted edges graph ?
 
+## Dijkstra's Algorithm
 
-### Naive Algorithm
-
-<h2 id="57942cdc67d1172d4aff18d81651ba69"></h2>
-
-
-####  Optimal substructure
-
-- Observation
-    - Any subpath of an optimal path is also optimal.
-- Proof
-    - Consider an optimal path from S to t and two vertices u and v on this path. If there were a shorter path from u to v we would get a shorter path from S to t.
-    - ![](../imgs/algr_on_graph_substructure_proof.png)
-- Corollary
-    - If S → . . . → u → t is a shortest path from S to t, then d(S,t) = d(S, u) + w(u,t) 
-        - u is the previous node on that path
-        - w means weight
-
-
-
-<h2 id="f1800f07c216d493e8e9ff2761ccfc33"></h2>
-
-
-#### Edge relaxation
-
-- dist[v] will be an upper bound on the actual distance from S to v.
-    - it store our **estimation** distance from the origin to this particular node v.
-- The edge relaxation procedure for an edge (u, v) just checks whether going from S to v through u improves the current value of dist[v].
+### Implementation
 
 ```python
-def Relax((u, v) ∈ E):
-    if dist[v] > dist[u] + w(u, v):
-        dist[v] ← dist[u] + w(u, v)
-        prev[v] ← u
-```
-
-- if both dist[v]=∞ and dist[u]=∞ , and w(u,v)=5, should the edge(u,v) be relaxed ?
-    - NO! 
-
-
-
-<h2 id="cc6cc606f58f43f4ddfafcf6043ba8ce"></h2>
-
-
-#### Naive approach
-
-```python
-def Naive(G, S):
-    for all u ∈ V :
-        dist[u] ← ∞
-        prev[u] ← nil
+def Dijkstra(G , S ):
+    for all u∈V:
+        dist[u] ← ∞, prev[u] ← nil
     dist[S] ← 0
-    do:
-        relax all the edges
-    while at least one dist changes
+    H ← MakeQueue(V ) {dist-values as keys} 
+    while H is not empty:
+        u ← ExtractMin(H) 
+        for all (u,v)∈E:
+            # the next 3 lines called relax edge
+            if dist[v]>dist[u]+w(u,v): 
+                dist[v] ← dist[u] + w(u, v) 
+                prev[v] ← u 
+
+                ChangePriority(H , v , dist [v ])
 ```
 
-<h2 id="b34e2384a9cd203b59f2660349fdb5fe"></h2>
+
+## Currency Exchange
+
+- We've know how to find shortest path in the graph with non-negative edge weight. 
+- Now we will learn to find shortest path even in the graphs where some of the edge weigths can be negative.
 
 
-#### Correct distances
-
-- Lemma
-    - After the call to Naive algorithm all the distances are set correctly.
-
-
-
+### Currency Exchange
 
 
