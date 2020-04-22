@@ -1,3 +1,13 @@
+...menustart
+
+ - [Manim](#cbcd3fecff4c0ef0c063f8c41726d34a)
+     - [Installation](#7cd8fb6e31cc946c078d2740c76a9899)
+     - [FAQ](#1fe917b01f9a3f87fa2d7d3b7643fac1)
+
+...menuend
+
+
+<h2 id="cbcd3fecff4c0ef0c063f8c41726d34a"></h2>
 
 
 # Manim
@@ -11,6 +21,9 @@ Manim is composed of 5 parts
 5. Sox, audio program
 
 But we only need to write codes in python to create the animations.
+
+
+<h2 id="7cd8fb6e31cc946c078d2740c76a9899"></h2>
 
 
 ## Installation 
@@ -35,6 +48,9 @@ But we only need to write codes in python to create the animations.
         /bin/sh -c "manim $input/$cmd" \
             | tee o.txt 
     ```
+
+<h2 id="1fe917b01f9a3f87fa2d7d3b7643fac1"></h2>
+
 
 ## FAQ
 

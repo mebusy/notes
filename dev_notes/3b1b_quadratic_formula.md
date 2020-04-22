@@ -1,5 +1,19 @@
+...menustart
+
+ - [The simpler quadratic formula | Lockdown math ep.1](#07ce9c8defcca1a8cf2f97556ea53127)
+     - [Mental Math Tricks](#c236129fe028b8f8a5fafd195a9426c5)
+     - [Quadratic Formula](#2e0557fe7fcb444a6bdded79c3f233ed)
+
+...menuend
+
+
+<h2 id="07ce9c8defcca1a8cf2f97556ea53127"></h2>
+
 
 # The simpler quadratic formula | Lockdown math ep.1
+
+<h2 id="c236129fe028b8f8a5fafd195a9426c5"></h2>
+
 
 ## Mental Math Tricks 
 
@@ -34,6 +48,9 @@ r,s = m ± d
 And what this is telling us is to think about products is always the same as thinking about a difference of squares. Which is weird because products can be very chaotic. If I just walk through the number line , and I say look at 101,102,103,104,105,... ,  and I just say take a look at all the numbers on the number line, and I want you to systematically tell me can each one of them be broken down as a product of 2 smaller whole numbers ? Well we know that what that's asking is what are the primes because only the primes can't be broken down like that.  And yes evidently that's a very similar question to say when can I walk through those numbers and say hey am I able to express you as a difference of squares? Could I add a square number to you to get another square? 
 
 I think if you were doing some arithmetic and you has this in the back of your mind, that's a good pattern, and that's a pattern that's gonna come up later in life. For example let's say later in life you find yourself wanting to understand quadratic functions.
+
+
+<h2 id="2e0557fe7fcb444a6bdded79c3f233ed"></h2>
 
 
 ## Quadratic Formula

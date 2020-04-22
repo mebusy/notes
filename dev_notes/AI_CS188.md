@@ -3,12 +3,11 @@
  - [AI , CS 188](#aea7deb258843dff16f9b84b46ec1461)
  - [Introduction](#0b79795d3efc95b9976c7c5b933afce2)
      - [What is AI](#9fa835a40078a81e452b0cbb4362a6f5)
-     - [Rational Decisions](#113b7e5d42d49b2f76a69a3517ebcde9)
      - [Designing Rational Agents](#04052b6bc5dad6a9f6a00dfb9cd988da)
-     - [Course Topics](#e3a18b70b77602c474ec9b3140b582e3)
- - [Uninformed Search](#faccc055dce5dfee94eba9a23ec379bc)
      - [Reflex Agents](#9ef57e59fc5834eb1f86775a80163590)
      - [Planning Agents](#b35ab1adff6f2f91e25f048a1f1ecfcc)
+     - [Course Topics *](#178acb72be9a63a5db24aa4d7aaca24a)
+ - [Uninformed Search](#faccc055dce5dfee94eba9a23ec379bc)
      - [Search Problems](#fc72ba154e470ee2e177ed8e75ee4de2)
      - [Search Problems Are Models](#0a9e0b58d3ed416bdb73713846200baa)
          - [Example: Traveling in Romania](#30f0fbd7fae0ee74806b20a52d15e3ee)
@@ -20,7 +19,6 @@
          - [Search Trees](#fa3d63f947f57a28158a9af70e100ef3)
          - [State Space Graphs vs. Search Trees](#3371ddd82f34162d684dfd1d1f40d8b3)
          - [Quiz: State Space Graphs vs. Search Trees](#76acaf4079e010db2a41f612ceae95f4)
-     - [Tree Search](#6281565533d78912ee355e95d1263fef)
          - [Searching with a Search Tree](#643025d557c3b9f6d43cdd62b77f5530)
          - [General Tree Search](#a23c40de844ed1e2415dc477845012af)
          - [Depth-First Search](#d292eaede65eb34e66db0db9ebb6b9bc)
@@ -32,10 +30,12 @@
          - [Cost-Sensitive Search](#ea10a2ff2bc1cbc4cb292e4f88cad9e9)
              - [Uniform Cost Search](#1bd1e9029adb17c5893239e7288210a9)
              - [Uniform Cost Search (UCS) Properties](#8fcce2120d7405462b72fce3bf1fcaaa)
+             - [Uniform Cost Issue](#be3a9de1eb8b7a58870eafd5232dc9ce)
+         - [The One Queue](#6fa04493ae42918af4621de6aae2ccc2)
          - [DFS vs BFS vs UCS](#46ea5fe25e20e5c9f2466692baeb1848)
+     - [Search and Models](#7f1afff8243e3009eb892111dcc4413f)
      - [Graph Search VS Tree Search](#f2ef45f33145362c2a215128cc677ccc)
      - [Uniform cost search vs. Dijkstra's Algorithm](#e609c39a6581f06c0e176c5be71abfa3)
-     - [Search and Models](#7f1afff8243e3009eb892111dcc4413f)
      - [Some Hints for P1](#b04314d7dafd45796af0bf245e3ae8e8)
  - [Informed Search](#29990be19ae238ca1071a838229e85f3)
      - [The One Queue](#6fa04493ae42918af4621de6aae2ccc2)
@@ -162,7 +162,7 @@ A better title for this course would be:
  - **Optimal vs. complete planning**
  - **Planning vs. replanning**
 
-<h2 id="e3a18b70b77602c474ec9b3140b582e3"></h2>
+<h2 id="178acb72be9a63a5db24aa4d7aaca24a"></h2>
 
 
 ## Course Topics *
@@ -179,9 +179,10 @@ A better title for this course would be:
     - Natural language, vision, robotics, games, ...
 
 
+--------
+
 <h2 id="faccc055dce5dfee94eba9a23ec379bc"></h2>
 
---------
 
 # Uninformed Search
 
@@ -561,6 +562,9 @@ Now let's switch gears to a different kink of problem formulation. What if we ca
     - Yes!  (Proof next lecture via A\* )
 
 
+<h2 id="be3a9de1eb8b7a58870eafd5232dc9ce"></h2>
+
+
 #### Uniform Cost Issue
 
 - Remember: UCS explores increasing cost contours
@@ -568,6 +572,9 @@ Now let's switch gears to a different kink of problem formulation. What if we ca
 - The bad:
     - Explores options in every "direction"
     - No information about goal location
+
+<h2 id="6fa04493ae42918af4621de6aae2ccc2"></h2>
+
 
 ### The One Queue
 

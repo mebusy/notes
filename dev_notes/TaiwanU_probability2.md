@@ -26,10 +26,37 @@
          - [常见离散分布之期望值/变异数](#33805636b57d3a4f61be9c79a1d93947)
          - [几率推导奥义： 「凑」字诀](#367685545196820c0c173d14fe4c9421)
          - [Quiz](#ab458f4b361834dd802e4f40d31b5ebc)
+ - [Week7](#b9d0e738b55594e8d3824de9b91b0914)
+     - [7-1 期望值II](#041a19cd2e4bebb61913e1566b7cfb67)
+         - [随机变数函数 期望值](#45c2600156e6a1f700dfe4260c9694c4)
+         - [常见连续分布的期望值/变异数](#29e116aede7ee7f00af95ca5edd4c6d0)
+         - [期望值推导](#4fdbd553cf6f3c5cfd46baa1993c8dc2)
+     - [7.2 隨機變數之函數](#27fdd10ac05020268c5d6bb6954f4099)
+         - [如何求 g(X)几率分布?](#317aa5bd89ce045575f8cb8491b70c62)
+     - [7.3a 条件概率分布](#33f8148fbbdcedb32e214651afcff8d9)
+     - [7.3a 失忆性 (Memoryless)](#f16b66e705a9a610a0da37b5dae105eb)
+     - [QUIZ](#e1f7ff5183a361cd3b41e3ab5e647cb5)
+ - [Week 8](#1223874fb29922e4e7bb1474bbc33147)
+     - [8.1 联合概率分布](#7a6e0b2a0774b9a999a5e891f7cc3d2c)
+         - [联合 PMF (Joint PMF)](#ecfdf56b8825bb6021bc398b2687da18)
+         - [联合 PMF 的性质](#12c3181de32d16311d0a1a1c713d480c)
+         - [联合 CDF (Joint CDF)](#ae2555933cfea0bde5a2585b0d731631)
+         - [联合 CDF 的性质](#2ddfa5d23aecf6d8e642c4f5063fa615)
+         - [联合 PDF 例子](#82a4552a73f360a69c244464918476f9)
+         - [若𝑿, 𝒀 皆为连续随机变数怎办?](#62cff33c593fc9c62714039fbd68d2f3)
+         - [连续联合 PDF 的性质](#81b351c0506c1a71878441a0a81088d1)
+     - [8.2 边际机率分布](#2ddbe1ee6b0b9481c8a52627056fedd5)
+         - [已知联合 PMF，欲得个别 PMF](#41d4f6592d31a4b16ba8e2d84689f26b)
+         - [边际 PMF (Marginal PMF)](#88467bd1b22479904c4cda0b92cbed46)
+         - [边际 PDF (Marginal PDF)](#dcfc73f8fb33ef1e323fa7af282e7f12)
+     - [8.3 双变数期望值](#b7c12c38cf6f0bd638bb87f785c54a6b)
+ - [Week 9 多个随机变数之和的概率分布](#1762299309d6cb253f2fdb43d353f294)
+     - [9.1 随机变数之和](#193f6cd419c84d21dae97441a455bb44)
+     - [9.2 MGF(MOMENT GENERATING FUNCTION)](#09fcfdc987674ca8b8ddac2800de6f82)
+         - [MGF](#cdd64cb797821d59ddd73236bda46533)
+         - [MFG重要性质](#f8dbbf3c577f493b3b6ff0bffd301e3f)
 
 ...menuend
-
-
 
 
 <h2 id="fc548c0411701f3a57c7799ad18245e3"></h2>
@@ -520,7 +547,13 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
 
 
 
+<h2 id="b9d0e738b55594e8d3824de9b91b0914"></h2>
+
+
 # Week7 
+
+<h2 id="041a19cd2e4bebb61913e1566b7cfb67"></h2>
+
 
 ## 7-1 期望值II
 
@@ -536,10 +569,16 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
     - = ∫<sub>-∞</sub><sup>∞</sup> xf<sub>X</sub>(x)dx
     - 即， x乘上pdf,然后积分
 
+<h2 id="45c2600156e6a1f700dfe4260c9694c4"></h2>
+
+
 ### 随机变数函数 期望值
 
 - 对于任一连续随机变数X，其任意函数g(X)亦是一随机变数
     - E[g(X)] = ∫<sub>-∞</sub><sup>∞</sup> g(x)f<sub>X</sub>(x)dx
+
+<h2 id="29e116aede7ee7f00af95ca5edd4c6d0"></h2>
+
 
 ### 常见连续分布的期望值/变异数
 
@@ -556,6 +595,9 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
     - μ = (a+b)/2
     - σ² = 1/12 · (b-a)²
 
+<h2 id="4fdbd553cf6f3c5cfd46baa1993c8dc2"></h2>
+
+
 ### 期望值推导
 
 - 一些有用的微积分性质
@@ -564,11 +606,17 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
     - ∫c𝑑x = ∫𝑑cx  , c 是常数
     - ∫pdf = 1
 
+<h2 id="27fdd10ac05020268c5d6bb6954f4099"></h2>
+
+
 ## 7.2 隨機變數之函數
 
 - 随机变数X的任意函数g(X)也是一个随机变数
 - 通常被称为 Derived Random Variable
     - 从 random variable X 衍生出来的一个新的random variable
+
+
+<h2 id="317aa5bd89ce045575f8cb8491b70c62"></h2>
 
 
 ### 如何求 g(X)几率分布?
@@ -629,6 +677,9 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
         - 微分得到 f<sub>Y</sub>(y)
 
 
+<h2 id="33f8148fbbdcedb32e214651afcff8d9"></h2>
+
+
 ## 7.3a 条件概率分布 
 
 - Ex:为了更了解宅宅的心，店员妹亦开始战 LOL。 已知店员妹战LOL场数 𝑿~UNIF (1, 5)。若已知 店员妹战了两场仍战意甚浓、继续战。请问在此情况下，店员妹 今日战LOL场数 𝑿 之机率分布为何?
@@ -649,6 +700,9 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
     - ![](../imgs/TU_prob2_cond_var.png)
 
 
+<h2 id="f16b66e705a9a610a0da37b5dae105eb"></h2>
+
+
 ## 7.3a 失忆性 (Memoryless)
 
 - 宅宅与店员妹相约出门。宅宅出门前在战LOL，场数 𝑿~GEO (𝟎.2) 。店员妹等了两场后，宅宅还在玩。 店员妹甚怒，怒催宅宅。宅宅曰「快好了、快好了」。问宅宅剩余场 数 𝑿’ 之机率分布为何?
@@ -658,6 +712,9 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
 - Geometric 跟 Exponential 机率分布 皆有失忆性的性质
     - 不管事情已经进行多久，对于事情之后的进行 一点影响都没有!
 
+
+
+<h2 id="e1f7ff5183a361cd3b41e3ab5e647cb5"></h2>
 
 
 ## QUIZ
@@ -729,7 +786,13 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
         - for min(X,Y)
             - ![](../imgs/TU_prob2_min_expon.png)
 
+<h2 id="1223874fb29922e4e7bb1474bbc33147"></h2>
+
+
 # Week 8
+
+<h2 id="7a6e0b2a0774b9a999a5e891f7cc3d2c"></h2>
+
 
 ## 8.1 联合概率分布 
 
@@ -751,6 +814,9 @@ JOINT PROBABILITY DISTRIBUTION
 - 同时将多个随机变量的行为一起拿来看， 我们可以看出更多以往看不到的信息!
 - 同时考虑多个随机变量的机率分布称之为联合机率分布 (joint probability distribution)
 
+<h2 id="ecfdf56b8825bb6021bc398b2687da18"></h2>
+
+
 ### 联合 PMF (Joint PMF)
 
 - 若𝑿,𝒀皆为离散随机变量，我们 可以定义他们的联合PMF
@@ -761,9 +827,15 @@ JOINT PROBABILITY DISTRIBUTION
     - ![](../imgs/TU_prob2_8.1_02.png)
 
 
+<h2 id="12c3181de32d16311d0a1a1c713d480c"></h2>
+
+
 ### 联合 PMF 的性质
 
 - ![](../imgs/TU_prob2_8.1_03.png)
+
+<h2 id="ae2555933cfea0bde5a2585b0d731631"></h2>
+
 
 ### 联合 CDF (Joint CDF)
 
@@ -772,6 +844,9 @@ JOINT PROBABILITY DISTRIBUTION
 - ![](../imgs/TU_prob2_8.1_04.png)
 
 - 即, (X,Y) 会落在黄色区域的几率
+
+
+<h2 id="2ddfa5d23aecf6d8e642c4f5063fa615"></h2>
 
 
 ### 联合 CDF 的性质
@@ -786,12 +861,18 @@ JOINT PROBABILITY DISTRIBUTION
 
 
 
+<h2 id="82a4552a73f360a69c244464918476f9"></h2>
+
+
 ### 联合 PDF 例子
 
 - Ex:小美等公交车时间为 𝑿, 小园等公交车时间为 𝒀 𝑿, 𝒀 两者独立且皆为连续之机率分布 𝑼𝑵𝑰𝑭 𝟎, 𝟏𝟎 。则 𝑿, 𝒀之联合 PDF 为
     - ![](../imgs/TU_prob2_joint_ex1.png)
 - 其他的联合pdf例子
     - ![](../imgs/TU_prob2_joint_ex2.png)
+
+
+<h2 id="62cff33c593fc9c62714039fbd68d2f3"></h2>
 
 
 ### 若𝑿, 𝒀 皆为连续随机变数怎办?
@@ -803,15 +884,24 @@ JOINT PROBABILITY DISTRIBUTION
     - ![](../imgs/TU_prob2_8.1_cont_joint_pdf3.png)
 
 
+<h2 id="81b351c0506c1a71878441a0a81088d1"></h2>
+
+
 ### 连续联合 PDF 的性质 
 
 - ![](../imgs/TU_prob2_cont_joint_pdf_prop.png)
     - P(B) 是圆锥体体积
 
 
+<h2 id="2ddbe1ee6b0b9481c8a52627056fedd5"></h2>
+
+
 ## 8.2 边际机率分布
 
 MARGINAL PROBABILITY DISTRIBUTION
+
+<h2 id="41d4f6592d31a4b16ba8e2d84689f26b"></h2>
+
 
 ### 已知联合 PMF，欲得个别 PMF
 
@@ -830,10 +920,16 @@ Y = 10 | 0.05 | 0.1 | 0.15
 - 整列加起来，然后(在它的边缘)写上数字，这就是 "边际"的由来
 
 
+<h2 id="88467bd1b22479904c4cda0b92cbed46"></h2>
+
+
 ### 边际 PMF (Marginal PMF)
 
 - 已知联合PMF p<sub>X,Y</sub>(𝒙,𝒚)，则可求得 p<sub>X</sub>(x), p<sub>Y</sub>(y) ，称之为边际 PMF
 - ![](../imgs/TU_prob2_8.2_02.png)
+
+
+<h2 id="dcfc73f8fb33ef1e323fa7af282e7f12"></h2>
 
 
 ### 边际 PDF (Marginal PDF)
@@ -844,6 +940,9 @@ Y = 10 | 0.05 | 0.1 | 0.15
 - Ex:
     - ![](../imgs/TU_prob2_8.2_ex1.png)
 
+
+
+<h2 id="b7c12c38cf6f0bd638bb87f785c54a6b"></h2>
 
 
 ## 8.3 双变数期望值
@@ -869,7 +968,13 @@ Y = 10 | 0.05 | 0.1 | 0.15
     - ![](../imgs/TU_prob2_8.1_var.png)
 
 
+<h2 id="1762299309d6cb253f2fdb43d353f294"></h2>
+
+
 # Week 9 多个随机变数之和的概率分布
+
+<h2 id="193f6cd419c84d21dae97441a455bb44"></h2>
+
 
 ## 9.1 随机变数之和
 
@@ -888,6 +993,9 @@ Y = 10 | 0.05 | 0.1 | 0.15
 - Convolution 很难算，怎么办?
     - 因为有限制条件，比如 X+Y=3
 
+<h2 id="09fcfdc987674ca8b8ddac2800de6f82"></h2>
+
+
 ## 9.2 MGF(MOMENT GENERATING FUNCTION)
 
 - 先看个例子吧!辛苦的红娘业
@@ -902,6 +1010,9 @@ Y = 10 | 0.05 | 0.1 | 0.15
     - ![](../imgs/TU_prob2_9.2_04.png)
 
 
+<h2 id="cdd64cb797821d59ddd73236bda46533"></h2>
+
+
 ### MGF 
 
 - MGF ɸ<sub>X</sub>(s) 定义:
@@ -914,6 +1025,9 @@ Y = 10 | 0.05 | 0.1 | 0.15
     - ɸ<sub>X</sub>(s) 跟 moment 有关系吗 ?
     - ![](../imgs/TU_prob2_9.2_06.png)
     - ![](../imgs/TU_prob2_9.2_07.png)
+
+
+<h2 id="f8dbbf3c577f493b3b6ff0bffd301e3f"></h2>
 
 
 ### MFG重要性质

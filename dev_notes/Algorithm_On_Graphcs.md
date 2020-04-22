@@ -1,16 +1,19 @@
 ...menustart
 
  - [Algorithm On Graphs](#311ad33f7584ac17012490ce8852f7e8)
-     - [Week1](#3c88e16de2066fa3ce3055a55a3e473b)
+ - [Week1 Exploring Undirected Graphs](#edbf6a2cb4c2f45a6c6f05f7981ececd)
+     - [Graph Basics](#887b235eb2dfc010821effbf5b9689f7)
          - [Representing Graphs](#030495a245248ce0deed9c13f9576cd0)
+     - [Exploring Undirected Graphs](#fa4ec304233cb938cae388a53fe8dc4e)
          - [Exploring Graphs](#6d620d4a966ddb637a736ea4670b6782)
-             - [Explore , starting from a Node](#78f63ae6b311ad607db08a56dd79649a)
+             - [Explore](#1819001b72329e2ef5799fe504238035)
              - [DFS](#c1bb62b63c65be3760b715faad0bdf8d)
          - [Connectivity](#9bd9d0ebc081bd74f5bef4e136bb1aed)
              - [Connected Components](#8a4d6dec35ad6f01d54531c509cf7d37)
          - [Previsit and Postvisit Orderings](#cb7d104acd7ef78260476fb96e632beb)
              - [Previsit and Postvisit Functions](#c190b4dd3a865a419b7d42ecdded4b14)
-     - [Week2](#687c054c8abba26ef7b123d19d29bee7)
+             - [Clock](#98a892aea3359481ae30e7b66c44d7a8)
+     - [Week2 Directed Graphs](#2b39565942c0c8f530d738cf53da9df6)
          - [Directed Acyclic Graphs](#7a53b8f5717213d05b5a349b30218b27)
              - [Directed DFS](#82842893b1046ac7ea43887a7d4c6c97)
              - [Cycles](#d3240659659cbfa93d781d1510717a66)
@@ -40,14 +43,18 @@
 
 # Algorithm On Graphs
 
-<h2 id="3c88e16de2066fa3ce3055a55a3e473b"></h2>
+<h2 id="edbf6a2cb4c2f45a6c6f05f7981ececd"></h2>
 
 
-# Week1 
+# Week1 Exploring Undirected Graphs
+
+<h2 id="887b235eb2dfc010821effbf5b9689f7"></h2>
+
+
+## Graph Basics 
 
 <h2 id="030495a245248ce0deed9c13f9576cd0"></h2>
 
-## Graph Basics 
 
 ### Representing Graphs
 
@@ -78,6 +85,9 @@ Adj. List | Θ(deg) | Θ(&#124;E&#124;) | Θ(deg)
     - i.e. `O(|V|+|E|)`
 
 
+<h2 id="fa4ec304233cb938cae388a53fe8dc4e"></h2>
+
+
 ## Exploring Undirected Graphs
 
 <h2 id="6d620d4a966ddb637a736ea4670b6782"></h2>
@@ -93,6 +103,9 @@ Adj. List | Θ(deg) | Θ(&#124;E&#124;) | Θ(deg)
     - This will end up getting hidden in the program stack
  - Depth First Ordering
     - We will *explore new edges* in Depth First order. 
+
+
+<h2 id="1819001b72329e2ef5799fe504238035"></h2>
 
 
 #### Explore
@@ -202,6 +215,9 @@ def Explore(v):
 So , what are those funcitons , previsit/postvisit going to be ? They could be many kind of things. 
 
 
+<h2 id="98a892aea3359481ae30e7b66c44d7a8"></h2>
+
+
 ####  Clock
 
 One that we might want to do is to keep track of what order are we visit vertices in.  And so one way to do this is we have a clock.
@@ -234,10 +250,10 @@ def postvisit(v):
 
 ---
 
-<h2 id="687c054c8abba26ef7b123d19d29bee7"></h2>
+<h2 id="2b39565942c0c8f530d738cf53da9df6"></h2>
 
 
-## Week2 
+## Week2 Directed Graphs
 
 <h2 id="7a53b8f5717213d05b5a349b30218b27"></h2>
 

@@ -1,3 +1,17 @@
+...menustart
+
+ - [static_cast](#7788e276172dacc2d8d33631b670d026)
+ - [dynamic_cast](#fe9be20b5d842a2d5963b97405c48505)
+ - [Smart Pointers](#132ccb2c923b36fd08733ec8f59196f0)
+     - [Unique Pointer](#a8b9a57e98c9268264fa808b175965f8)
+     - [Shared Pointer](#75880725e5db6e3d8e78a307329a85c5)
+ - [Weak Pointer](#48b3c31e5708bb24903988d567528fd3)
+
+...menuend
+
+
+<h2 id="7788e276172dacc2d8d33631b670d026"></h2>
+
 
 ## static_cast
 
@@ -50,6 +64,9 @@ Error found at compile-time.
     ```
 
 
+<h2 id="fe9be20b5d842a2d5963b97405c48505"></h2>
+
+
 ## dynamic_cast
 
 Dynamic_cast is used for only 1 reason:  to find out correct down-cast(base -> derived).
@@ -83,6 +100,9 @@ catch( std::exception& e) {
 - using this cast has run-time overhead, because it checks object types at run-time using RTTI.
 - if we are sure that we will never cast to wrong object then we should always avoid this cast and use static_cast instead.
 
+<h2 id="132ccb2c923b36fd08733ec8f59196f0"></h2>
+
+
 ## Smart Pointers
 
 - NOTES
@@ -97,6 +117,9 @@ catch( std::exception& e) {
     3. weak_ptr
         - It is special type of shared_ptr which doesn't count the reference.
         - The best use of this weak pointer when there is a cyclic dependency when we use shared_pointer. 
+
+
+<h2 id="a8b9a57e98c9268264fa808b175965f8"></h2>
 
 
 ### Unique Pointer 
@@ -150,6 +173,9 @@ int main() {
 ```
 
 
+<h2 id="75880725e5db6e3d8e78a307329a85c5"></h2>
+
+
 ### Shared Pointer 
 
 - NOTES
@@ -178,6 +204,9 @@ int main() {
     cout << sp.use_count() << endl ; // 2
 }
 ```
+
+<h2 id="48b3c31e5708bb24903988d567528fd3"></h2>
+
 
 ## Weak Pointer 
 

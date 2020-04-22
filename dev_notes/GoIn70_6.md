@@ -15,6 +15,17 @@
              - [TECHNIQUE 37 Mapping data types to templates](#b2914c824c6c6300b0bbf668e252aba9)
      - [6.2 Using templates for email](#fbc0cec7a75759e1aeb8c7fae504cdc3)
          - [TECHNIQUE 38 Generating email from templates](#699d7da5fe23a02c72bb3e698f6d583b)
+     - [Misc](#74248c725e00bf9fe04df4e35b249a19)
+         - [\[Template Variables\] save data passed to template to a variable](#ed30bbc495303129fb4477e513e551cb)
+         - [\[Template Actions\] If/Else Statements](#0812de613c4cb300a833d5814db883e9)
+         - [\[Template Actions\] Range Blocks](#90b958d9e4def0f21334970148c2e468)
+         - [\[Template Functions\] Indexing structures in Templates](#ab8399154e5022b391c61841fd1cbd13)
+         - [\[Template Functions\] The and/or/not Function](#a9f09db2a01293b05017049ce5f00277)
+         - [\[Template Comparison Functions\] Comparisons](#a57ee11d00ba4d9aa7ff987a09dfc04f)
+         - [\[Templates Calling Functions\] Function Variables (calling struct methods)](#6a9f61e6e9d9d5477d3b3e8909cd64d5)
+         - [\[Templates Calling Functions\] Function Variables (call)](#e1a1b477b6952c7a826e61ed78f242b6)
+         - [\[Templates Calling Functions\] Custom Functions](#2669d3ad900881a39850a20c145a0da4)
+         - [\[Templates Calling Functions\] Custom Functions (Globally)](#0d7594202ff310485a4fc1e0be91ba11)
 
 ...menuend
 
@@ -663,9 +674,15 @@ func main() {
 -----
 
 
+<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
+
+
 ## Misc
 
 [template cheatsheet](https://curtisvermeeren.github.io/2017/09/14/Golang-Templates-Cheatsheet)
+
+<h2 id="ed30bbc495303129fb4477e513e551cb"></h2>
+
 
 ### [Template Variables] save data passed to template to a variable
 
@@ -680,6 +697,9 @@ tpl = template.Must(template.ParseFiles("templateName"))
 err := tpl.ExecuteTemplate(os.Stdout, "templateName", 23)
 ```
 
+<h2 id="0812de613c4cb300a833d5814db883e9"></h2>
+
+
 ### [Template Actions] If/Else Statements
 
 ```
@@ -687,6 +707,9 @@ err := tpl.ExecuteTemplate(os.Stdout, "templateName", 23)
 ```
 
 Templates also provide `{{else if .Name2 }}` which can be used to evaluate a second option after an if.
+
+
+<h2 id="90b958d9e4def0f21334970148c2e468"></h2>
 
 
 ### [Template Actions] Range Blocks
@@ -724,6 +747,9 @@ Within a range each Item becomes the {{.}} in the template and the item properti
 {{ end }}
 ```
 
+<h2 id="ab8399154e5022b391c61841fd1cbd13"></h2>
+
+
 ### [Template Functions] Indexing structures in Templates
 
 ```
@@ -731,6 +757,9 @@ Within a range each Item becomes the {{.}} in the template and the item properti
     <h1> {{index .FavNums 2 }}</h1>
 </body>
 ```
+
+<h2 id="a9f09db2a01293b05017049ce5f00277"></h2>
+
 
 ### [Template Functions] The and/or/not Function
 
@@ -748,6 +777,9 @@ Within a range each Item becomes the {{.}} in the template and the item properti
 {{ end }}
 ```
 
+<h2 id="a57ee11d00ba4d9aa7ff987a09dfc04f"></h2>
+
+
 ### [Template Comparison Functions] Comparisons
 
 - The html/template package provides a variety of functions to do comparisons between operators.
@@ -762,6 +794,9 @@ Within a range each Item becomes the {{.}} in the template and the item properti
 - `{{ eq arg1 arg2 }}`
 - `{{ eq arg1 arg2 arg3 arg4}}` will result in the following logical expression:
     - `arg1==arg2 || arg1==arg3 || arg1==arg4`
+
+
+<h2 id="6a9f61e6e9d9d5477d3b3e8909cd64d5"></h2>
 
 
 ### [Templates Calling Functions] Function Variables (calling struct methods)
@@ -794,6 +829,9 @@ func (u User) HasPermission(feature string) bool {
   </div>
 {{end}}
 ```
+
+<h2 id="e1a1b477b6952c7a826e61ed78f242b6"></h2>
+
 
 ### [Templates Calling Functions] Function Variables (call)
 
@@ -841,6 +879,9 @@ We use the `call` keyword supplied by the go html/template package.
 ```
 
 
+<h2 id="2669d3ad900881a39850a20c145a0da4"></h2>
+
+
 ### [Templates Calling Functions] Custom Functions
 
 Create custom function with template.FuncMap .
@@ -864,6 +905,9 @@ The function could be executed in the template as follows:
 ```
 
 The .User and string "feature-a" are both passed to hasPermission as arguments.
+
+
+<h2 id="0d7594202ff310485a4fc1e0be91ba11"></h2>
 
 
 ### [Templates Calling Functions] Custom Functions (Globally)

@@ -14,6 +14,7 @@
      - [Copy branch from another repository](#9af7d00519ec3625b399242404c33af2)
      - [delete a branch locally and remotely](#65804564299051849847b74237b908e7)
      - [ignore system proxy setting](#69a87c5b277c131f12dde6841d30e6bc)
+     - [git set v2ray proxy](#1c28f585542f9ac3069d876441feb3ee)
  - [git 国内加速](#2a4fb72ead39f0a2aa9fa7a599de7fd9)
 
 ...menuend
@@ -176,6 +177,9 @@ $ git branch -d <branch_name>
 ```
 git config --global  --add remote.origin.proxy ""
 ```
+
+
+<h2 id="1c28f585542f9ac3069d876441feb3ee"></h2>
 
 
 ## git set v2ray proxy

@@ -11,8 +11,11 @@
      - [Clover 自动启动](#584ee5f9f8b24f6f275547b4d05d20e4)
      - [Clover 目录结构](#80aa301beb5576eafb123ce4f8d0536d)
      - [Clover 引导界面快捷键](#41f234410b778a2c38d3ad364d2f32dd)
-     - [active native bluetooth](#8f75e5aa62bb7c0a9d9e0740fb76bea1)
+     - [active native bluetooth , not work since 10.15.4](#8097784a066a6a0cad28895ddd08926d)
+     - [active native bluetooth , kert for clover](#2343f1ca2f25f0a3692f4d8e079d3ba3)
      - [update Clover](#b661467e7a885061e79bcd1aff928d46)
+ - [PMSET](#4aef377d2268514c138fb8df812de501)
+     - [Catalina 10.5.2 Sleep problem](#bcbe6e609bff0627e2e3654d1a1123e8)
  - [Misc](#74248c725e00bf9fe04df4e35b249a19)
      - [Centos bootable USB installer on OSX](#e529594e6b7af1bbc305ae37bca03507)
 
@@ -225,7 +228,7 @@ use volume name of your OSX volume.
 - F6 保存显卡 BIOS 文件
 
 
-<h2 id="8f75e5aa62bb7c0a9d9e0740fb76bea1"></h2>
+<h2 id="8097784a066a6a0cad28895ddd08926d"></h2>
 
 
 ## active native bluetooth , not work since 10.15.4
@@ -275,6 +278,9 @@ Does it need specifiy root user ?
 
 </details>
 
+<h2 id="2343f1ca2f25f0a3692f4d8e079d3ba3"></h2>
+
+
 ## active native bluetooth , kert for clover
 
 https://github.com/zxystd/IntelBluetoothFirmware
@@ -301,6 +307,9 @@ https://github.com/zxystd/IntelBluetoothFirmware
     - EFI/CLOVER/driver64UEFI/
     - EFI/CLOVER/tools/
 
+<h2 id="4aef377d2268514c138fb8df812de501"></h2>
+
+
 # PMSET
 
 https://eclecticlight.co/2017/01/20/power-management-in-detail-using-pmset/
@@ -322,6 +331,9 @@ https://eclecticlight.co/2017/01/20/power-management-in-detail-using-pmset/
 15. tcpkeepalive
 16. ttyskeepawake can prevent sleep when a text input, such as a remote login session, is active;
 17. womp is 1 if you want your Mac to wake when it receives a ‘magic’ network packet, which is the same as wake for network access in the pane;
+
+
+<h2 id="bcbe6e609bff0627e2e3654d1a1123e8"></h2>
 
 
 ## Catalina 10.5.2 Sleep problem

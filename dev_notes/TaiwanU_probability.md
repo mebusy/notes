@@ -43,6 +43,7 @@
          - [Geometric 机率分布](#7903bb94dad83aeea3bf8559e6cdd143)
          - [Pascal 机率分布](#f7b44a579af87c25b4b1cf0b98602a56)
          - [Poisson 机率分布](#66e278878307932e688a55d600961fdf)
+             - [和Binomial 的关系](#583ba9bfcbd2e04c6f0f65a92061f123)
 
 ...menuend
 
@@ -982,6 +983,9 @@ pylab.show()
 ```
 
 ![](../imgs/TU_probability_poisson_dist_graph3.png)
+
+
+<h2 id="583ba9bfcbd2e04c6f0f65a92061f123"></h2>
 
 
 #### 和Binomial 的关系

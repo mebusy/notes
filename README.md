@@ -21,6 +21,7 @@
  - [6502](dev_notes/6502_readme.md)
  - [Compute Graphics](dev_notes/CG_readme.md)
  - [Python](dev_notes/py_readme.md)
+ - [EN](dev_notes/english_readme.md)
 
 ---
 
@@ -85,6 +86,9 @@ a | b | c | d
 [C内存知识 未完](dev_notes/c_memory.md) | 
 [c declaration,struct/union/enums/typedef](dev_notes/c_declaration.md) | [expert c](dev_notes/expert_c.md) | 
 [oop in C](https://www.cs.rit.edu/~ats/books/ooc.pdf) | [C语言常见问题集合](http://c-faq-chn.sourceforge.net/ccfaq/index.html) | 
+
+
+<h2 id="f6f87c9fdcf8b3c3f07f93f1ee8712c9"></h2>
 
 
 #### C++

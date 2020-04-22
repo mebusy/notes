@@ -40,6 +40,10 @@
          - [Singular Value Decomposition = SVD](#cdbd45bcf4e7ece0654c0d7b925abb97)
      - [30](#34173cb38f07f89ddbebc2ac9128303f)
          - [Linear Transformation](#1b08f35b032e4fa969a0b2e5ebcb2c03)
+     - [31](#c16a5320fa475530d9583c34fd356ef5)
+     - [33](#182be0c5cdcd5072bb1864cdee4d3d6e)
+         - [Left/Right Inverse](#3f163d64e05a5e233e942266c95c8272)
+         - [Pseudo Inverse](#3cb290203c57a167d5b432a708ce74dc)
 
 ...menuend
 
@@ -1234,6 +1238,9 @@ If I know what the transformation does to every vector in a basis, then I know e
 
 Construct matrix A that represents linear Transformation T.
 
+<h2 id="c16a5320fa475530d9583c34fd356ef5"></h2>
+
+
 ## 31 
 
 JPEG , it changes the basis
@@ -1313,7 +1320,13 @@ So that's the perfect basis, that's the basis we'd love to have for image proces
 But to find the eigenvectors of our pixel matrix would be too expensive. So we do something cheaper and close which is to choose a good basis like wavelets.
 
 
+<h2 id="182be0c5cdcd5072bb1864cdee4d3d6e"></h2>
+
+
 ## 33
+
+<h2 id="3f163d64e05a5e233e942266c95c8272"></h2>
+
 
 ### Left/Right Inverse
 
@@ -1331,6 +1344,9 @@ If I multiply the left inverse on the wrong side  A(AᵀA)⁻¹Aᵀ , it is a pr
 Right Inverse:  r=m , (AAᵀ) is good matrix.   Aᵀ(AAᵀ)⁻¹ is A's right inverse.
 
 If I multiply the right inverse on the wrong side, Aᵀ(AAᵀ)⁻¹A is a projection matrix too, it is the projection on the row space.
+
+<h2 id="3cb290203c57a167d5b432a708ce74dc"></h2>
+
 
 ### Pseudo Inverse
 

@@ -1,12 +1,34 @@
+...menustart
+
+ - [帧同步](#a9592bd6610be7f901063c580069e497)
+     - [客户端计算的一致性](#d262643e7cacb177cde62b3346ad0abd)
+     - [网络](#7ddbe15c845fa27a2bab496183042ca6)
+ - [实现 #1 传统客户端](#8fb429f2c732df02beed40b4aee2d98a)
+ - [实现 #2 预测回滚](#9eafae7566ddfa5de0886c16c02cbd00)
+ - [Overwatch](#fcaeeb6e34b4303e99b91206bd325f2b)
+ - [Mortal Kombat](#0be50d21cd18f6cf70ec79971504b63b)
+ - [Halo](#aa6df57fb6fe377d80b4a257b4a92cba)
+ - [其他](#0d98c74797e49d00bcc4c17c9d557a2b)
+
+...menuend
+
+
+<h2 id="a9592bd6610be7f901063c580069e497"></h2>
 
 
 # 帧同步
+
+<h2 id="d262643e7cacb177cde62b3346ad0abd"></h2>
+
 
 ##  客户端计算的一致性
 
 1. 使用定点数取代浮点数
 2. 三角函数查表
 3. 自己实现 PRNG
+
+
+<h2 id="7ddbe15c845fa27a2bab496183042ca6"></h2>
 
 
 ## 网络
@@ -30,6 +52,9 @@ server负责统一tick，并转发client的指令，通知其他client
 
 
 
+<h2 id="8fb429f2c732df02beed40b4aee2d98a"></h2>
+
+
 # 实现 #1 传统客户端
 
 1. 服务器定期广播
@@ -38,6 +63,9 @@ server负责统一tick，并转发client的指令，通知其他client
 对输入做预测？
 
 会有延迟
+
+<h2 id="9eafae7566ddfa5de0886c16c02cbd00"></h2>
+
 
 # 实现 #2 预测回滚
 
@@ -59,6 +87,9 @@ server负责统一tick，并转发client的指令，通知其他client
 
 
 
+<h2 id="fcaeeb6e34b4303e99b91206bd325f2b"></h2>
+
+
 # Overwatch 
 
 - client go head by half RTT + buffer 
@@ -76,6 +107,9 @@ server负责统一tick，并转发client的指令，通知其他client
     - once client catch up the input that was skipped is in danger of being lost, to solve this problem, the client always sends up a sliding window of input 
         - it send all of the input that have simulated from the last acknowledged frame from server. 
         - the subsequent packets still has all those inputs. 
+
+
+<h2 id="0be50d21cd18f6cf70ec79971504b63b"></h2>
 
 
 # Mortal Kombat 
@@ -108,6 +142,9 @@ Single Frame Latency | Y |
     - Defer processing until after the rollback window if reasonable 
     - Bog is no longer a function of a single frame
 
+<h2 id="aa6df57fb6fe377d80b4a257b4a92cba"></h2>
+
+
 # Halo
 
 - "The TRIBES engine networking model", Frohnmayer and Gift, GDC 1999
@@ -119,6 +156,9 @@ Single Frame Latency | Y |
 - UDP state sync
     - server -> client, world state, packet drop is not essential
     - client -> server, commands is essential, each command packet contains all command from the acknowledged frame.
+
+
+<h2 id="0d98c74797e49d00bcc4c17c9d557a2b"></h2>
 
 
 # 其他
