@@ -97,7 +97,6 @@ defaultdict(<type 'list'>, {'not exist': []})
 
 # 2 Heapq
 
- - priority queue , implemented by heap 
 
 ```python
 >>> import heapq
@@ -129,7 +128,12 @@ defaultdict(<type 'list'>, {'not exist': []})
 [-4, 1, 2]
 ```
 
- - 一个优先级队列的例子,每次pop操作都返回优先级最高的元素
+##  Priority Queue 
+
+<details>
+<summary>
+一个优先级队列的例子,每次pop操作都返回优先级最高的元素
+</summary>
 
 ```python
 class PriorityQueue:                                                            
@@ -149,6 +153,70 @@ class PriorityQueue:
     def isEmpty(self):                                                          
         return len(self.heap) == 0                                              
 ```
+
+</details>
+
+
+<details>
+<summary>
+python official implementation
+</summary>
+
+```python
+import itertools
+import heapq
+
+REMOVED = '<removed-task>'      # placeholder for a removed task
+
+
+class PriorityQueue():
+
+    def __init__(self):
+        self.pq = []                         # list of entries arranged in a heap
+        self.entry_finder = {}               # mapping of tasks to entries
+        self.counter = itertools.count()     # unique sequence count
+
+    def add(self, task, priority=0):
+        'Add a new task or update the priority of an existing task'
+        if task in self.entry_finder:
+            self.remove_task(task)
+        count = next(self.counter)
+        entry = [priority, count, task]
+        self.entry_finder[task] = entry
+        heapq.heappush(self.pq, entry)
+
+    def remove_task(self, task):
+        'Mark an existing task as REMOVED.  Raise KeyError if not found.'
+        entry = self.entry_finder.pop(task)
+        entry[-1] = REMOVED
+
+    def pop(self):
+        'Remove and return the lowest priority task. Raise KeyError if empty.'
+        while self.pq :
+            priority, count, task = heapq.heappop(self.pq)
+            if task is not REMOVED:
+                del self.entry_finder[task]
+                return task
+        raise KeyError('pop from an empty priority queue')
+
+
+if __name__ == '__main__':
+    import random
+
+    for _ in range(1000):
+        samples = random.sample(range(1000), k=60)
+        s_min = min(samples)
+        s_max = max(samples)
+        pq = PriorityQueue()
+        for v in samples :
+            pq.add( v,v )
+        assert s_min == pq.pop()
+        # update
+        pq.add( s_max , -3 )
+        assert s_max == pq.pop()
+```
+
+</details>
 
 <h2 id="bdcdfbb57bb9cc2e3ffde8fe201d6778"></h2>
 
