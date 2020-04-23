@@ -79,6 +79,8 @@ To visit a vertex v :
         - (edgeTo[w] == v) means that edge v-w taken to visit w for first time
  
 ```java
+// it is actually the `explore` method
+// it explores node in a connected components
 private void dfs(Graph G, int v)
 {
     marked[v] = true;
@@ -238,6 +240,8 @@ private void dfs(Graph G, int v)
  - Problem. Find a cycle. 
     - does the graph exist a cycle ?
  - simple DFS-based solution
+ - mark *visited*  later,  when exporing a node, mark it as *visiting* and mark it *visited* only when the sub-exploring done.
+    - if we encouter a vertex that is in *visiting*,  that is , I want to mark it as *visiting* but it already have been , which means that we found a circle?
 
 <h2 id="a4021ddbdacdc95fe954ced6fcbb0ede"></h2>
 

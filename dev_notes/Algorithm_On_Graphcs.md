@@ -59,6 +59,12 @@ MST | BFS   | graph
 MST | Dijkstra  | weighted edge
 
 
+More applications 
+
+problem | method | graph | comments
+--- | --- | ---  | --- 
+Is a graph bipartite  | DFS | undirected graph
+does the graph exist a cycle  | DFS | graph
 
 
 <h2 id="edbf6a2cb4c2f45a6c6f05f7981ececd"></h2>
@@ -137,6 +143,17 @@ def Explore(v):
     for w in neighbors(v):
         if not visited(w):
             Explore(w)
+```
+
+- Normaly, we are used to save parent node for each vertex, so that we can easily reconstruct the path.
+
+```python
+def Explore(v):
+    visited(v) ← true
+    for w in neighbors(v):
+        if not visited(w):
+            Explore(w)
+            edgeTo[w] = v
 ```
 
 
@@ -518,8 +535,7 @@ How to compute the strongly connected components of a graph. ?
 
 ## Breadth-First Search
 
-skip ...
-
+[BFS algorithm](https://github.com/mebusy/notes/blob/master/dev_notes/AlgorithmII_Graph.md#9f5783932f655ffe3908ff7d3410497e)
 
 <h2 id="e426fd50467bdd2d4e182815b0eee5ae"></h2>
 
@@ -542,6 +558,10 @@ def BFS(G,S):
                 dist[v] ← dist[u] + 1
                 prev[v] ← u
 ```
+
+Here, we use `dist[]` to save the accumulative distance, it also servers as `visited`.
+
+Normally the application of DFS, BFS visits each node only once.
 
 
 <h2 id="b677abc0402df239cc73865a664d147a"></h2>
