@@ -388,12 +388,12 @@ function TREE-SEARCH(problem,strategy) return a solution, or failure
             return failure
         end
 
-        choose a node in fringe for expansion according to strategy
+        popup a node from fringe for expansion according to strategy
 
         if the node contain a goal state then
             return the corresponding solution
         else
-            expand(popup from fringe) the node and add the resulting node to the search tree
+            expand the node and add the resulting node to the search tree
         end
     end
 end function
@@ -891,8 +891,13 @@ We pull `S-G` from fringe , but it is not optimal !
         - f(n) ≤ g(A)      // Admissibility of h 
         - g(A) = f(A)      // h = 0 at goal
     2. f(A) ≤ f(B)
-        - g(A) < g(B)  //  B is suboptimal
-        - f(A) < f(B)  //  h = 0 at goal.
+        - g(A) < g(B)  //  B is suboptimal >
+        - f(A) < f(B)  //  h = 0 at goal >
+        - PS. why are we not done yet?
+            - The reason we are not done yet, because we need to show that the process of how we pop things from fringe will also get a before b.
+            - what this is showing here is that you go in order of f() cost. You keep expanding in order of f() cost. 
+            - The reason at this point we say this is not enough is that A might be not on fringe when B is on the fringe. So we need say, when a is not on the fringe, we know an ancestor of a has to be on the fringe.
+            - and then we say, well, are we guaranteed that that ancestor will be expanded before b. 
     3. n expands before B
         - f(n) ≤ f(A) ≤ f(B)
 - All ancestors of A expand before B
@@ -946,7 +951,7 @@ Creating Admissible Heuristics
 - Most of the work in solving hard search problems optimally is in coming up with admissible heuristics
 - Often, admissible heuristics are solutions to *relaxed problems*, where new actions are available
 - Inadmissible heuristics are often useful too
-    - In the case you lose you optimality guarantee , but your A star starts to look a little more like greedy , mean that you might not find out the path to goal but you might find a path to goal more quickly. 
+    - In the case you lose you optimality guarantee , but your A star starts to look a little more like greedy , mean that you might not find out the path to goal but you might sometimes just want to find a path to goal more quickly. 
 
 
 <h2 id="f8097ec9827afc9065c89741a344d53f"></h2>
@@ -957,30 +962,36 @@ Creating Admissible Heuristics
 ![](../imgs/cs188_8Puzzle.png)
 
 - What are the states?
-- How many states?
+- How many states?  9!
 - What are the actions? 
-    - up to 4 directions moves to empty space 
+    - you can move a tile onto the empty spot, or anther way to say you can move the empty spot around
 - How many successors from the start state?
     - 4
 - What should the costs be?
     - cost 1 per action take
 
-
-8 Puzzle I:
+---
 
 - Heuristic: Number of tiles misplaced
 - Why is it admissible?
-    - every misplaced tile must move at least once , so that you can never do more moves than the number of tiles that currently misplaced. 
+    - every tile in the wrong place will need undergo an action. and likely more actions will be needed. so it's underestimate of the cost you will incur to achieve the goal state.
 - h(start) = 8
-- This is a relaxed-problem heuristic
+- This is a *relaxed-problem* heuristic (relax: less constrained)
+    - Another way to think of this heuristic is that it's a relaxed problem heuristic.
+    - What do I mean with that?  One way to ensure that your heuristic is admissible  is to introduce new actions. You take your original problem, you add new actions, and in this new hypothetical problem space you find the optimal solution.  And because this is the optimal solution, in the new space we have more actions available to you, the optimal solution there will be cheaper or same as the optimal solution in the original scenario.
+- How we can relax this ?
+    - if you have an action available to just grab a tile and place onto the destination.
 
-8 Puzzle II:
+---
 
 - What if we had an easier 8-puzzle where any tile could slide any direction at any time, ignoring other tiles?
-    - give a more accurate estimate of how many moves you still need to make before you can reach the goal.
+    - How does that correspond to a relaxed problem ? 
+    - It's as if you can slide the tiles without them constraining each other. So it's a relaxed problem, less constrained.
+    - For Pacman, a relaxed would be something like ignoring the walls. Here it ignores the other tiles.
 - Total Manhattan distance
-    - 所有tile 独立自由移动到 目标位置所需的部数
 - Why is it admissible?
+    - It is admissible because it's a relaxed problem solution. 
+    - Another way to think of it is every tile has to undergo at least that many steps before you can achieve the goal. 
 - h(start) = 3 + 1 + 2 + … = 18
 
 
@@ -992,26 +1003,27 @@ Average nodes expanded when the optimal path has…
  TILES | 13 | 39 | 227 
  MANHATTAN | 12 | 25 | 73
 
-
-8 Puzzle III:
+---
 
 - How about using the actual cost as a heuristic?
     - Whould it be admissible ?
         - Yes
     - Would we save on nodes expanded ?
-        - Yes
+        - Yes, a lot
     - What's wroing with it ?
-        - it can be quit expensive
+        - We don't know it. If you know it, you're done ,you've already solved the problem.
 
 
-- With A\* :  a trade-off between quality of estimate and work per node
-    - As heuristics get closer to the true cost, you will expand fewer nodes but usually do more work per node to compute the heuristic itself
+- With A\* : a trade-off between quality of estimate and work per node
+    - As heuristics get closer to the true cost, you will expand fewer nodes. But usually do more work per node to compute the **heuristic itself**
 
 
 <h2 id="7e9aa2fe208a956ac44d1ee31a5035d9"></h2>
 
 
 ## Semi-Lattice of Heuristics  半启发式
+
+So earlier we were talking about is one heuristic better than the other one and so forth. For example, for pancake flipping. Well, you can define this as follows. 
 
 <h2 id="30887de01fbff37aef091345781445d5"></h2>
 
@@ -1020,12 +1032,20 @@ Average nodes expanded when the optimal path has…
 
 ![](../imgs/cs188_semi_heuristic.png)
 
-- Dominance: ha ≥ hc if
-    - ∀n : ha(n) >= hc(n)
+- Dominance: h<sub>a</sub> ≥ h<sub>c</sub> if
+    - ∀n : h<sub>a</sub>(n ) >= h<sub>c</sub>(n)
+    - You have 2 heuristics 
+    - And we say h<sub>a</sub>(n) is domainating h<sub>c</sub>(n) if for all nodes h<sub>a</sub>(n) is higher that h<sub>c</sub>(n)
+    - Now not all heuristics can be compared this way. Sometimes the heuristic is higher in one node lower in another node. Then they will live kind of next to each other like h<sub>b</sub>.
+    - Buf if you are strickly higher in all nodes, you can put yourself above another node.
+        - for example, a is above c, and all above 0. 
+    - And you build this partial ordering shown in this graph here. 
+        - at the bottom has the 0 heuristic, at the top has the exact. And the further you go to the top, the more informative your heruistic is but possibly more expensive to compute.
+        - And one nice trick is that if you have 2 heuristics, you take the max, **double dominate them**. 
 - Heuristics form a semi-lattice:
     - Max of admissible heuristics is admissible
-    - h(n) = max( ha(n) , hb(n) )
-    - ha, hb 有大有小，很难比较, 可以通过取最大值 合成一个 Heuristics
+    - h(n) = max( h<sub>a</sub>(n) , h<sub>b</sub>(n) )
+    - h<sub>a</sub> , h<sub>b</sub> 有大有小，很难比较, 可以通过取最大值 合成一个 Heuristics
 
 
 <h2 id="00ba899c02fa6651c15e5e948a7a4aac"></h2>
@@ -1033,23 +1053,33 @@ Average nodes expanded when the optimal path has…
 
 ## Graph Search
 
-Admissible heuristic with tree search is optimal but graph search no guarantees.
+So far we've done Tree Search. Now we're going to change Tree Search into Graph Search. 
 
-- Tree Search: Extra Work! 
-- Failure to detect repeated states in search-graph can cause exponentially more work.  
+Why ?
 
-![](../imgs/cs188_repeate_work_tree_search.png)
+### Tree Search: Extra Work! 
+
+- Failure to detect repeated states in search-graph can cause exponentially more work.
+    - ![](../imgs/cs188_repeate_work_tree_search.png)
+
+
+### Graph Search 
+
+- Graph Search will keep track of a list of nodes you've expanded and not expand them again.
 
 - Idea: never **expand** a state twice
 - How to implement: 
     - Tree search + set of expanded states (“closed set”)
     - Expand the search tree node-by-node, but…
-    - Before expanding a node, check to make sure its state has never been expanded before
-    - If not new, skip it, if new add to closed set
+        - Before expanding a node, check to make sure its state has never been expanded before
+        - If you have, skip it, if you haven't, call the successor function and then add it to closed set.
 - Important: **store the closed set as a set**, not a list
 - Can graph search wreck completeness?  Why/why not?
+    - No. It's parts of the Search Tree.
 - How about optimality?
     - Unfortunately close list will introduce another problem 
+    - Admissible heuristic with tree search is optimal but graph search no guarantees.
+
 
 <h2 id="9afaf22785328c0bf6267acf13add5da"></h2>
 
@@ -1060,7 +1090,9 @@ Admissible heuristic with tree search is optimal but graph search no guarantees.
 
 SAC can not expand because C is in closed set.
 
+So we need to be careful in Graph Search, the first time we expand, if it is when we were there NOT an optimal way, we never do the optimal way.
 
+The issue here is some kind of poor choice of heuristics guiding us down the wrong path. So what we need is more than Admissible Heuristics.
 
 <h2 id="cb964f845fc822953ddb83ca6d124e6b"></h2>
 
@@ -1073,9 +1105,13 @@ SAC can not expand because C is in closed set.
         - h(A) ≤ actual cost from A to G
     - Consistency: heuristic “arc” cost ≤ actual cost for each arc
         - h(A) – h(C) ≤ cost(A to C)
+        - Consistency will be about locally checking that things are consistent within the heuristic and the actual cost. 
 - Consequences of consistency:
     - The f value along a path never decreases
         - h(A) ≤ cost(A to C) + h(C)
+        - add g(A) on both side 
+        - **f(A)** =g(A)+h(A) **≤** g(A)+cost(A to C)+h(C)= **f(C)**
+        - Consistency implies as we expand, f will go up and up and up. f  will keep going up as we expand. And that means that if we have consistency, whenever we expand the goal state, we know we're done. Because everyting else will have a higher f on the fringe.  
         - 由公式可知，h(C) 陡然变大也是允许的，只要不破坏 admissibility ; h(C) 变小也是可以的, 只要不破坏 consistency
     - A\* graph search is optimal
 
@@ -1124,7 +1160,7 @@ PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitiv
 
 - A* uses both backward costs and (estimates of) forward costs
 - A* is optimal with admissible / consistent heuristics
-- Heuristic design is key: often use relaxed problems
+- Heuristic design is key: often use *relaxed* problems
 
 
 <h2 id="1388b32869f8288febeb18f8ec802b42"></h2>
@@ -1137,14 +1173,12 @@ PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitiv
 ```
 function GRAPH-SEARCH(problem,fringe) return a solution, or failure
     closed <- an empty set
-    // pop into fringe 
+    fringe <- INSERT(MAKE-NODE(INITIAL-STATE[problem]),fringe)
     loop do
         if fringe is empty then
             return failure
         end
 
-        // pull from fringe
-        // 只有在 这个时候 检查 closed,
         node <- REMOVE-FRONT(fringe)
         if GOAL-TEST(problem,STATE[node]) then 
             return node
@@ -1152,9 +1186,6 @@ function GRAPH-SEARCH(problem,fringe) return a solution, or failure
 
         if STATE[node] is not in closed then
             add STATE[node] to closed
-             
-            fringe <- INSERT(MAKE-NODE(INITIAL-STATE[problem]),fringe)
-            
             for child-node in EXPAND(STATE[node],problem) do
                 fringe <- INSERT(child-node,fringe)
             end
@@ -1171,7 +1202,7 @@ end // func
 
 **Memory Efficient Graph Search**
 
-如果在 pop onto fringe 过程中，发现 node 已经在 fringe中存在, 比较这两个node , 如果
+如果在 add onto fringe 过程中，发现 node 已经在 fringe中存在, 比较这两个node , 如果
 
 - new node cost < node in fringe cost ,  replace the old 1
 - new node cost >= node in fringe cost , ignore it
@@ -1214,7 +1245,7 @@ function GRAPH-SEARCH(problem,fringe) return a solution, or failure
             return node
         end
         if STATE[node] is not in closed  
-            or COST[node] < closed[STATE[node]]   // 2
+            or COST[node] < COST[ closed[STATE[node]] ]   // 2
         then
             closed[STATE[node]] <- COST[node]  // 3
             for child-node in EXPAND(STATE[node],problem) do
