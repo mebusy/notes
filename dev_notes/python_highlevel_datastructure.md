@@ -159,7 +159,7 @@ class PriorityQueue:
 
 <details>
 <summary>
-python official implementation
+python official implementation , 通过标记删除再添加的方式，实现更新优先级
 </summary>
 
 ```python
