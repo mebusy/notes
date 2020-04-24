@@ -44,6 +44,7 @@
      - [A* search](#4eb045a9450d6e7de8a9b8cb2e420c89)
          - [Combining UCS and Greedy](#07e5a0c69feece254a168e7da5932151)
          - [When should A* terminate?](#9fa7d37bafbf919eec2833224d5de03c)
+         - [Is A\* Optimal?](#ea311a4ecb13c55b4cd70a212419aeb9)
          - [Admissible Heuristics](#bf8f38651446764fc008980354ad6746)
          - [Optimality of A* Tree Search](#3073e988edee383f5983f6a7fc2212a2)
          - [Properties of A*](#26e3cfa1ee4375a33dca3b380348e972)
@@ -53,6 +54,8 @@
      - [Semi-Lattice of Heuristics  半启发式](#7e9aa2fe208a956ac44d1ee31a5035d9)
          - [Trivial Heuristics, Dominance](#30887de01fbff37aef091345781445d5)
      - [Graph Search](#00ba899c02fa6651c15e5e948a7a4aac)
+         - [Tree Search: Extra Work!](#cf1432b4daa7e1fe63cecb1365185f0b)
+         - [Graph Search](#00ba899c02fa6651c15e5e948a7a4aac)
          - [A* Graph Search Gone Wrong?](#9afaf22785328c0bf6267acf13add5da)
          - [Consistency of Heuristics](#cb964f845fc822953ddb83ca6d124e6b)
          - [Optimality of A* Graph Search](#ea9a7016fa68c3fd6434c9c0fb4afa3d)
@@ -827,6 +830,9 @@ What would pull from the frige next ? This 1 over here , `S-A : f = 4` . So we p
 
 Now we pulled this one from the fringe , we pull something from the fringe that achieves the goal at this point we want to declare success and we did indeed find the optimal path to the goal. 
 
+<h2 id="ea311a4ecb13c55b4cd70a212419aeb9"></h2>
+
+
 ### Is A\* Optimal?
 
 In general, it's not guaranteed to be optimal. Some extra conditions have to be met before that guarantee is satisfied.
@@ -1058,10 +1064,16 @@ So far we've done Tree Search. Now we're going to change Tree Search into Graph 
 
 Why ?
 
+<h2 id="cf1432b4daa7e1fe63cecb1365185f0b"></h2>
+
+
 ### Tree Search: Extra Work! 
 
 - Failure to detect repeated states in search-graph can cause exponentially more work.
     - ![](../imgs/cs188_repeate_work_tree_search.png)
+
+
+<h2 id="00ba899c02fa6651c15e5e948a7a4aac"></h2>
 
 
 ### Graph Search 

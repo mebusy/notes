@@ -31,13 +31,19 @@
              - [Algorithm](#4afa80e77a07f7488ce4d1bdd8c4977a)
  - [Week3 Shortest Path](#ebf4c5795e7e039832b0c383127c1af7)
      - [Breadth-First Search](#ae5c4b868b5b24149decba70c74165c2)
-     - [Creating MST by BFS](#e426fd50467bdd2d4e182815b0eee5ae)
+     - [Using BFS to find shortest path](#3beb167902a9a7e0fb85607fb6ae23cf)
      - [Constructing shortest-path tree](#b677abc0402df239cc73865a664d147a)
  - [Week4 Weighted Edge Graph](#f48846cfd1c263bd3b157547c127e20d)
      - [Dijkstra's Algorithm](#f5465cb36bdbaa6b373c184f42e56778)
          - [Implementation](#b672f52ade975e864ae6b58722c03689)
      - [Currency Exchange](#003f976d33ac8c24e95d86528dd29140)
          - [Currency Exchange](#003f976d33ac8c24e95d86528dd29140)
+             - [Reduction to shortest paths](#2aebb509894a3435926b0358757ced2b)
+             - [Reduction](#9e834f13e35e4edf64863ab414a6217a)
+             - [Where Dijkstra's algorithm goes wrong ?](#4da7ea452fdcf0be458d18f360167fa8)
+             - [Negative weight cycles](#f976d1a3a77908d613907e00e02f40fd)
+         - [Bellman-Ford Algorithm](#9297e36e7774bdfc6df3122a1161af31)
+             - [Running Time](#60743dca1167fe1657b6ced5259479a0)
 
 ...menuend
 
@@ -54,9 +60,8 @@ connectivity    | DFS   | indirected graph
 topology sort   | DFS | DAG  | sink vertex
 strongly connected component    | DFS   | directed graph
 strongly connected component    | DFS  | reverse directed graph  | sink component
-shortest path | BFS   | graph
-MST | BFS   | graph
-MST | Dijkstra  | weighted edge
+shortest path | Dijkstra  | weighted edge
+shortest path | Bellman-Ford  | negative weighted edge
 
 
 More applications 
@@ -537,10 +542,10 @@ How to compute the strongly connected components of a graph. ?
 
 [BFS algorithm](https://github.com/mebusy/notes/blob/master/dev_notes/AlgorithmII_Graph.md#9f5783932f655ffe3908ff7d3410497e)
 
-<h2 id="e426fd50467bdd2d4e182815b0eee5ae"></h2>
+<h2 id="3beb167902a9a7e0fb85607fb6ae23cf"></h2>
 
 
-## Creating MST by BFS
+## Using BFS to find shortest path 
 
 ![](../imgs/alg_on_graph_bfs_mst.png)
 
@@ -587,7 +592,7 @@ def ReconstructPath(S, u, prev):
 
 # Week4 Weighted Edge Graph
 
-What is the MST of weighted edges graph ?
+How to compute shortest path of a weighted edges graph ?
 
 <h2 id="f5465cb36bdbaa6b373c184f42e56778"></h2>
 
@@ -646,6 +651,9 @@ But we will soon find out it does.
     - But in theory, this is possible. 
 - The graph edge is *conversion rate*.
 
+<h2 id="2aebb509894a3435926b0358757ced2b"></h2>
+
+
 #### Reduction to shortest paths 
 
 - use 2 standard approaches 
@@ -660,11 +668,17 @@ But we will soon find out it does.
     - is is the same as minimize the sum of *-value* 
 
 
+<h2 id="9e834f13e35e4edf64863ab414a6217a"></h2>
+
+
 #### Reduction 
 
 - Finally: replace edge weights *r<sub>eᵢ</sub>* by *-log( r<sub>eᵢ</sub> )* , and find the shortest path between USD and RUR in the graph.
 - Solved ?  Can we now apply Dijkstra algorithm to find the solution ?
     - NOT exactly work. 
+
+<h2 id="4da7ea452fdcf0be458d18f360167fa8"></h2>
+
 
 #### Where Dijkstra's algorithm goes wrong ?
 
@@ -672,13 +686,19 @@ But we will soon find out it does.
     - And this is rely on the fact that edge weights are positive
 - This is no longer the case for graphs with negative edges 
     - ![](../imgs/algor_on_graph_dijkstra_negative_weight.png)
-    - PS. 不是很明白。 如果 是tree search 并且生成 MST的话，应该是能找到 S->B->A = -10 的啊 ？ 除非找到
+    - PS. 不是很明白。 如果 是tree search 应该是能找到 S->B->A = -10 的啊 ？ 
+
+
+<h2 id="f976d1a3a77908d613907e00e02f40fd"></h2>
 
 
 #### Negative weight cycles
 
 - Worst problems in graphs with negative weights come from negative weight cycles. 
 - ![](../imgs/algor_on_graph_neg_weight_cycles.png)
+
+
+<h2 id="9297e36e7774bdfc6df3122a1161af31"></h2>
 
 
 ### Bellman-Ford Algorithm
@@ -698,6 +718,9 @@ def BellmanFord(G , S ):
         for all (u,v)∈E: 
             Relax(u, v )
 ```
+
+<h2 id="60743dca1167fe1657b6ced5259479a0"></h2>
+
 
 #### Running Time
 
