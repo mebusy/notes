@@ -9,3 +9,5 @@
 #/*.sln
 *.swp
 __pycache__/
+*.pyc
+

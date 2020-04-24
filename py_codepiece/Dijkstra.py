@@ -3,7 +3,7 @@ from PriorityQueue import PriorityQueue
 import sys
 
 
-def Dijkstra_tree( V_adj, s ) :
+def Dijkstra( V_adj, s ) :
     dist = {}
     prev = {}
     pq = PriorityQueue()
@@ -14,7 +14,7 @@ def Dijkstra_tree( V_adj, s ) :
             prev[w] = v
             # update PQ
             pq.push( w, dist[w] )
-            print ( "update/insert to PQ", w, dist[w] )
+            print ( "\trelax edge: {}->{}, {}".format(v,w,dist[w] ) )
 
     for v in V_adj:
         dist[v] = sys.maxsize
@@ -39,21 +39,22 @@ if __name__ == '__main__':
         "C": { "D":2 },
         "D": {}
     }
-    # Dijkstra_tree(G , "S")
+    # Dijkstra(G , "S")
 
+    print ( "example: Dijkstra v1 not work with negative weight" )
     G = {
         "A": { "B":1, "C":0, "D":99 },
         "B": { "C":1 },
         "C": { },
         "D": { "B":-300 }
     }
-    Dijkstra_tree(G , "A")
+    Dijkstra(G , "A")
     
 
-    # V_adj = {
-    #     0: { 1: 5 , 2: 10 },  # S
-    #     1: {} ,  # A
-    #     2: { 1:-20  }  # B
-    # }
-    # Dijkstra_tree(V_adj , 0)
+    V_adj = {
+        0: { 1: 5 , 2: 10 },  # S
+        1: {} ,  # A
+        2: { 1:-20  }  # B
+    }
+    Dijkstra(V_adj , 0)
 
