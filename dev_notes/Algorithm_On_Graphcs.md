@@ -728,6 +728,6 @@ def BellmanFord(G , S ):
 - During the iterations, if no edge was actually relaxed , we can just stop there and the distance will already be correct.
 
 
-
+https://stackoverflow.com/questions/13159337/why-doesnt-dijkstras-algorithm-work-for-negative-weight-edges
 
 
