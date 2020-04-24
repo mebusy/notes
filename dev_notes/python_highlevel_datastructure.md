@@ -191,12 +191,12 @@ class PriorityQueue():
         entry[-1] = REMOVED
 
     def pop(self):
-        'Remove and return the lowest priority task. Raise KeyError if empty.'
+        'Remove and return the lowest priority task with priority. Raise KeyError if empty.'
         while self.pq :
             priority, count, task = heapq.heappop(self.pq)
             if task is not REMOVED:
                 del self.entry_finder[task]
-                return task
+                return task, priority
         raise KeyError('pop from an empty priority queue')
 
     def isEmpty(self):
@@ -214,10 +214,12 @@ if __name__ == '__main__':
         # print (pq.isEmpty())
         for v in samples :
             pq.push( v,v )
-        assert s_min == pq.pop()
+        ret ,_ = pq.pop()
+        assert s_min == ret
         # update
         pq.push( s_max , -3 )
-        assert s_max == pq.pop()
+        ret , _ = pq.pop()
+        assert s_max == ret
 ```
 
 </details>
