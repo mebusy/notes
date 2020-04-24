@@ -176,7 +176,7 @@ class PriorityQueue():
         self.entry_finder = {}               # mapping of tasks to entries
         self.counter = itertools.count()     # unique sequence count
 
-    def add(self, task, priority=0):
+    def push(self, task, priority=0):
         'Add a new task or update the priority of an existing task'
         if task in self.entry_finder:
             self.remove_task(task)
@@ -199,6 +199,9 @@ class PriorityQueue():
                 return task
         raise KeyError('pop from an empty priority queue')
 
+    def isEmpty(self):
+        return len(self.pq) == 0
+
 
 if __name__ == '__main__':
     import random
@@ -208,11 +211,12 @@ if __name__ == '__main__':
         s_min = min(samples)
         s_max = max(samples)
         pq = PriorityQueue()
+        # print (pq.isEmpty())
         for v in samples :
-            pq.add( v,v )
+            pq.push( v,v )
         assert s_min == pq.pop()
         # update
-        pq.add( s_max , -3 )
+        pq.push( s_max , -3 )
         assert s_max == pq.pop()
 ```
 
