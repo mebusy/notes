@@ -672,27 +672,37 @@ But we will soon find out it does.
     - And this is rely on the fact that edge weights are positive
 - This is no longer the case for graphs with negative edges 
     - ![](../imgs/algor_on_graph_dijkstra_negative_weight.png)
-    - what is the shortest path from S to A ?
-    - If we use Dijkstra , as soon as it saw only 2 edges from S,  it will decide that the shortest path S->A is exactly 5.
-    - But in this example , we can improve it.  S->B->A is -10 , less than 5. 
-    - So Dijkstra's algorithm doesn't work in such case. 
-- Such an example is also possible in the currency exchange problem 
-    - ![](../imgs/algro_on_graph_dijk_not_work.png)
-        - RUR -> EUR -> USD is better.
-    - ![](../imgs/algro_on_graph_dijk_not_work2.png)
-        - Dijkstra will claim that RUR->USD is better, because `6.0589<6.2653`.
+    - PS. 不是很明白。 如果 是tree search 并且生成 MST的话，应该是能找到 S->B->A = -10 的啊 ？ 除非找到
 
 
 #### Negative weight cycles
 
-- So, all problems in graphs with negative weights come from negative weight cycles. 
+- Worst problems in graphs with negative weights come from negative weight cycles. 
 - ![](../imgs/algor_on_graph_neg_weight_cycles.png)
-
 
 
 ### Bellman-Ford Algorithm
 
 - Bellman-Ford Algorithm works even for negative edges weights.
+- This algorithm assumes that there are no negative weight cycles in G.
+    - Otherwise it works still, but it won't return correct distances for some of the nodes. 
+
+```python
+def BellmanFord(G , S ):
+    {no negative weight cycles in G} 
+    for all u∈V:
+        dist[u] ← ∞
+        prev[u] ← nil 
+    dist[S] ← 0
+    repeat |V|−1 times:
+        for all (u,v)∈E: 
+            Relax(u, v )
+```
+
+#### Running Time
+
+- The running time of Bellman–Ford algorithm is O(|V||E|).
+- During the iterations, if no edge was actually relaxed , we can just stop there and the distance will already be correct.
 
 
 

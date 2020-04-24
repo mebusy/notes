@@ -200,7 +200,7 @@ class PriorityQueue():
         raise KeyError('pop from an empty priority queue')
 
     def isEmpty(self):
-        return len(self.pq) == 0
+        return len(self.entry_finder) == 0
 
 
 if __name__ == '__main__':
