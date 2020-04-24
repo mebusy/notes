@@ -613,9 +613,11 @@ def Dijkstra(G , S ):
                 dist[v] ← dist[u] + w(u, v) 
                 prev[v] ← u 
 
-                ChangePriority(H , v , dist [v ])
+                ChangePriority(H , v , dist [v ]) # update or insert
 ```
 
+- Caution: this algorithm is tree-search !!!
+- And it only relax edges when dist changed.
 
 <h2 id="003f976d33ac8c24e95d86528dd29140"></h2>
 
@@ -630,5 +632,69 @@ def Dijkstra(G , S ):
 
 
 ### Currency Exchange
+
+We will explore that using a problem about currency exchange, which doesn't seem to have anything to do with shortest paths. 
+
+But we will soon find out it does.
+
+- initial: $1000 
+- convert it into Russian Rubles. 
+- Potentially doing many conversions on the way, such that you get as many Russian rubles as you can in the end. 
+
+- ![](../imgs/algor_on_graph_cur_exchange.png)
+    - These triangular arbitrages exist very rarely and only due to some market inefficients.
+    - But in theory, this is possible. 
+- The graph edge is *conversion rate*.
+
+#### Reduction to shortest paths 
+
+- use 2 standard approaches 
+    1. Replace product with sum by taking log() of weights
+    2. Negate weights to solve minimization instead maximization
+- Taking the logarithm
+- xy = 2<sup>log₂(x)</sup> 2<sup>log₂(y)</sup> = 2<sup>log₂(x)+log₂(y)</sup>
+- xy → max ⇔ log₂(x)+log₂(y) → max
+- So, if all weights are positive , then we reduce our problem of maximizing product of some numbers to maximizing sum of some numbers. 
+    - because we can not take log() of negative values, and we also can not take log() of 0. ( value of exponential function is positive )
+- But we actually want minimization ... That is easy
+    - is is the same as minimize the sum of *-value* 
+
+
+#### Reduction 
+
+- Finally: replace edge weights *r<sub>eᵢ</sub>* by *-log( r<sub>eᵢ</sub> )* , and find the shortest path between USD and RUR in the graph.
+- Solved ?  Can we now apply Dijkstra algorithm to find the solution ?
+    - NOT exactly work. 
+
+#### Where Dijkstra's algorithm goes wrong ?
+
+- Dijkstra's algorithm rely on the fact that a shortest path from s to t goes only through vertices that are close to s. 
+    - And this is rely on the fact that edge weights are positive
+- This is no longer the case for graphs with negative edges 
+    - ![](../imgs/algor_on_graph_dijkstra_negative_weight.png)
+    - what is the shortest path from S to A ?
+    - If we use Dijkstra , as soon as it saw only 2 edges from S,  it will decide that the shortest path S->A is exactly 5.
+    - But in this example , we can improve it.  S->B->A is -10 , less than 5. 
+    - So Dijkstra's algorithm doesn't work in such case. 
+- Such an example is also possible in the currency exchange problem 
+    - ![](../imgs/algro_on_graph_dijk_not_work.png)
+        - RUR -> EUR -> USD is better.
+    - ![](../imgs/algro_on_graph_dijk_not_work2.png)
+        - Dijkstra will claim that RUR->USD is better, because `6.0589<6.2653`.
+
+
+#### Negative weight cycles
+
+- So, all problems in graphs with negative weights come from negative weight cycles. 
+- ![](../imgs/algor_on_graph_neg_weight_cycles.png)
+
+
+
+### Bellman-Ford Algorithm
+
+- Bellman-Ford Algorithm works even for negative edges weights.
+
+
+
 
 

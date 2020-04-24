@@ -687,6 +687,7 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
 - Dijkstra's algorithm, which is perhaps better-known, can be regarded as a variant of uniform-cost search,
      - where there is no goal state and processing continues until all nodes have been removed from the priority queue,
      - i.e. until shortest paths to all nodes (not just a goal node) have been determined.
+- Dijkstra's algorithm searches for shortest paths from root to every other node in a graph, whereas uniform-cost searches for shortest paths in terms of cost to a goal node.
 
 
 <h2 id="b04314d7dafd45796af0bf245e3ae8e8"></h2>
@@ -1168,7 +1169,7 @@ PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitiv
 
 ### Graph Search Pseudo-Code
 
-- even if a node is ***added*** to the fringe multiple times it will not be ***expanded*** more than once
+- even if same node is ***added*** to the fringe multiple times it will not be ***expanded*** more than once  as long as using consistent heuristics
 
 ```
 function GRAPH-SEARCH(problem,fringe) return a solution, or failure
@@ -1245,9 +1246,9 @@ function GRAPH-SEARCH(problem,fringe) return a solution, or failure
             return node
         end
         if STATE[node] is not in closed  
-            or COST[node] < COST[ closed[STATE[node]] ]   // 2
+            or COST[node] < COST[ closed[STATE[node]] ]   // 2 visit even if in closed set
         then
-            closed[STATE[node]] <- COST[node]  // 3
+            add/update  STATE[node] to closed  // 3 maybe update an old one
             for child-node in EXPAND(STATE[node],problem) do
                 fringe <- INSERT(child-node,fringe)
             end
