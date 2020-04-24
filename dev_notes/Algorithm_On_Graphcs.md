@@ -599,30 +599,10 @@ How to compute shortest path of a weighted edges graph ?
 
 ## Dijkstra's Algorithm
 
-<h2 id="b672f52ade975e864ae6b58722c03689"></h2>
+[Java Implementation](https://github.com/mebusy/notes/blob/master/dev_notes/AlgorithmII_MST.md#f1d4978722895ce40af6d3ebe0c8c6c0)
 
+Note: normally there are 2 versions of Dijkstra. The key difference is whether a vertex is allowed be enqueued more than once.  If re-enqueued is allowed, that version algorithm can work with negative weight.
 
-### Implementation
-
-```python
-def Dijkstra(G , S ):
-    for all u∈V:
-        dist[u] ← ∞, prev[u] ← nil
-    dist[S] ← 0
-    H ← MakeQueue(V ) {dist-values as keys} 
-    while H is not empty:
-        u ← ExtractMin(H) 
-        for all (u,v)∈E:
-            # the next 3 lines called relax edge
-            if dist[v]>dist[u]+w(u,v): 
-                dist[v] ← dist[u] + w(u, v) 
-                prev[v] ← u 
-
-                ChangePriority(H , v , dist [v ]) # update or insert
-```
-
-- Caution: this algorithm is tree-search !!!
-- And it only relax edges when dist changed.
 
 <h2 id="003f976d33ac8c24e95d86528dd29140"></h2>
 
@@ -728,6 +708,5 @@ def BellmanFord(G , S ):
 - During the iterations, if no edge was actually relaxed , we can just stop there and the distance will already be correct.
 
 
-https://stackoverflow.com/questions/13159337/why-doesnt-dijkstras-algorithm-work-for-negative-weight-edges
 
 

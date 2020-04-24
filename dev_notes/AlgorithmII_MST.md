@@ -703,9 +703,12 @@ public class DijkstraSP {
 }
 ```
 
- - support multi-source ? YES!
- - IndexMinPQ can decrease the computation , but is only works for simple state ( for above algorim, the state is the vertex index ) 
+- support multi-source ? YES!
+- IndexMinPQ can decrease the computation , but is only works for simple state ( for above algorim, the state is the vertex index ) 
     - it may cause memory consumption for complex state
+- Note: this version Dijkstra(allows a vertex to be enqueued more than once) is correct in the presence of negative edge weights (but no negative cycles) but its running time is exponential in the worst case.  
+    - using a marked[] array to mark those vertices that have been relaxed guaranteed to run in E log V time but it may yield incorrect results when there are edges with negative weights.
+- [Does Dijkstra's algorithm work with negative weights](https://algs4.cs.princeton.edu/44sp/)
 
 <h2 id="5d21b219a367d8ca1eb434230c3f4be1"></h2>
 
