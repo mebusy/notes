@@ -14,6 +14,7 @@ def Dijkstra_tree( V_adj, s ) :
             prev[w] = v
             # update PQ
             pq.push( w, dist[w] )
+            print ( "update/insert to PQ", w, dist[w] )
 
     for v in V_adj:
         dist[v] = sys.maxsize
@@ -22,6 +23,7 @@ def Dijkstra_tree( V_adj, s ) :
 
     while not pq.isEmpty():
         v, _ = pq.pop()
+        print("expanding", v  )
         for w in V_adj[v]:
             relax( v , w )
 
@@ -37,7 +39,16 @@ if __name__ == '__main__':
         "C": { "D":2 },
         "D": {}
     }
-    Dijkstra_tree(G , "S")
+    # Dijkstra_tree(G , "S")
+
+    G = {
+        "A": { "B":1, "C":0, "D":99 },
+        "B": { "C":1 },
+        "C": { },
+        "D": { "B":-300 }
+    }
+    Dijkstra_tree(G , "A")
+    
 
     # V_adj = {
     #     0: { 1: 5 , 2: 10 },  # S
