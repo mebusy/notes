@@ -7,6 +7,7 @@ def Dijkstra( V_adj, s ) :
     dist = {}
     prev = {}
     pq = PriorityQueue()
+    closed = {}
 
     def relax( v, w ):
         if dist[w] > dist[v] + V_adj[v][w]:
@@ -23,6 +24,9 @@ def Dijkstra( V_adj, s ) :
 
     while not pq.isEmpty():
         v, _ = pq.pop()
+        if v in closed:
+            continue
+        closed[v] = v
         print("expanding", v  )
         for w in V_adj[v]:
             relax( v , w )

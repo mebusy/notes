@@ -709,6 +709,7 @@ public class DijkstraSP {
 - Note: this version Dijkstra(allows a vertex to be enqueued more than once) is correct in the presence of negative edge weights (but no negative cycles) but its running time is exponential in the worst case.  
     - using a marked[] array to mark those vertices that have been relaxed guaranteed to run in E log V time but it may yield incorrect results when there are edges with negative weights.
 - [Does Dijkstra's algorithm work with negative weights](https://algs4.cs.princeton.edu/44sp/)
+- [Example: Dijkstra v1 not work with negative weight](https://stackoverflow.com/questions/6799172/negative-weights-using-dijkstras-algorithm/6799344#6799344)
 
 <h2 id="5d21b219a367d8ca1eb434230c3f4be1"></h2>
 
