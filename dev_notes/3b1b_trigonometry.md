@@ -129,6 +129,8 @@ It turns out that if you have a number that behaves this way it gives you a comp
         - linear combinaton of 2 perpendicular vectors z , zi 
 
 Q: What is the complex number z, so that multiplying by z has the effect of rotating 30°, or π/6 radians, counterclockwise ?
+A: z = cos(π/6) + isin(π/6)
+
 
 
 
