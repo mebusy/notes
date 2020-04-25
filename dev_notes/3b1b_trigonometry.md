@@ -76,6 +76,60 @@ It actually lies tangent to the circle, so is where the word "tan" comes from.
 
 **Where is cos²(θ) ?**
 
-If draw the graph of cos(x) and cos²(x) simultaneously 
+If we draw the graph of cos(x) and cos²(x) simultaneously 
+
+![](../imgs/3b1b_trig_cos_sqaure.png)
+
+The square of that value looks like anothe cosine wave.
+
+Where is the cos²(x) on the unit circle ?
+
+![](../imgs/3b1b_cos_squre_on_circle.png)
+
+
+# Complex number fundamentals | Lockdown math ep. 3
+
+```
+cos(α+β) = cos(α)cos(β) - sin(α)sin(β)
+sin(α+β) = cos(α)sin(β) + cos(β)sin(α)
+```
+
+It's something that's very error-prone if you're just trying to memorize it as it is. 
+
+However if you come at it with complex numbers this is not only much less error-prone it has a very beautiful meaning and it just falls right out. 
+
+So even if you don't necessarily believe in the reality of the √-1 , you at the very least have to admit that it's interesting that it can make other pieces of math useful that other pieces of math a little bit more understandable too. And trigonometry is just the tip of the iceberg. 
+
+If talk to anybody who's in engineering anybody who's going into serious math they'll tell you that complex numbers are as real a part of their work in their life as real numbers are. 
+
+But the starting point looks very strange 
+
+- Weird assumptions:
+    - **i² = -1**
+
+The *i* does not exist on the real number line, it on the line perpendicular to it. 
+
+--- 
+
+You have a vector (3,2),  rotated by 90 degree, you get (-2,3).  
+
+(x,y) -> rotate 90 degree -> (-y,x)
+
+What's result of i·(3+2i) ?  -2+3i. 
+
+So that should give you some indication that , ok multiplying by *i* has this action of rotating things by 90 degrees. 
+
+It turns out that if you have a number that behaves this way it gives you a computational mechanism for all of the types of rotations that you might want to do that might not necessarily be 90 degree. 
+
+- 3 Facts about Multiplication, suppose we have a complex number
+    1. z·1 = z
+    2. z·i = rot 90(z)
+    3. z·(c+di) = c·z + d·zi
+        - we know what z is, and we also know what zi is.
+        - linear combinaton of 2 perpendicular vectors z , zi 
+
+Q: What is the complex number z, so that multiplying by z has the effect of rotating 30°, or π/6 radians, counterclockwise ?
+
+
 
 
