@@ -32,6 +32,13 @@ eaten  母母子|母子|   long|weak
 音节门的前面，如果是一个母音，那么就称为是 open   (门直接被妈妈打开来了)
 ```
 
+注: 一些不规则的情况，使得 phonics 规则变得复杂，在一些特殊情况，单词里只有一个元音的时候，该元音是发长音:
+
+- i后面接gh, gh, ld, nd 
+    - sign, high, child, kind
+- o后面接 ld,st 时，o 有时候发长音 cold, gold, most, host
+    - 但接st时，有时候还发短音:  lost, cost
+
 <h2 id="998d8b7fa953068bd5a52d955ddb11a9"></h2>
 
 
@@ -41,6 +48,12 @@ eaten  母母子|母子|   long|weak
 he       母|		 long
 she      母|     long
 ```
+
+只要是元音在单词 或 音节结尾，发长音
+
+paper, fiber, piano, open
+
+y 在单音节单词结尾时，被当作元音来用  cry, dry, my
 
 <h2 id="d4f6c6fd9d452c0f6b7117223d8f3952"></h2>
 
@@ -97,7 +110,16 @@ or | for
 ur | fur
 
 
+----
 
+[知乎-自然拼读法基本规则及技巧汇总](https://zhuanlan.zhihu.com/p/55146679)
 
+一般来说，除了以下几种情况外，元音都发短音：
+
+1. 元音字母组合
+2. 跟着字母r；
+3. 单词或重读音节的结尾
+4. 单词以字母e结尾；
+5. 该元音是元音规则的特例。
 
 
