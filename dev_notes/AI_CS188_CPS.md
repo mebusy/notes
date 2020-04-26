@@ -57,8 +57,6 @@
 
 # Constraint Satisfaction Problems I
 
-CPS
-
 
 <h2 id="6135abe1c86a58db9f536d2f0279d4b1"></h2>
 
@@ -79,7 +77,7 @@ CPS
      - Heuristics give problem-specific guidance
 
  - Identification: assignments to variables
-     - The goal itself is important, not the path
+     - The goal itself is important, **not the path**
      - All paths at the same depth (for some formulations)
      - CSPs are specialized for identification problems
 
@@ -90,12 +88,14 @@ CPS
 
  - Standard search problems:
      - State is a “black box”: arbitrary data structure
+        - The only thing you can do on a state is calling `getSuccessor` and `isGoal`. That's your whole API.
      - Goal test can be any function over states
      - Successor function can also be anything
  - Constraint satisfaction problems (CSPs):
      - A special subset of search problems
      - State is defined by ***variables Xᵢ***  with values from a ***domain D*** (sometimes D depends on i)
-     - Goal test is a ***set of constraints*** specifying allowable combinations of values for subsets of variables
+     - Successor functions now are things like assign a new variable.
+     - Goal test is a ***set of constraints*** which specify allowable combinations of values for subsets of variables
  - Allows useful general-purpose algorithms with more power than standard search algorithms
 
 <h2 id="7c497b01fb991be051180f4dd6bc4dfd"></h2>
@@ -110,7 +110,7 @@ CPS
  - Constraints: adjacent regions must have different colors
      - Implicit: WA ≠ NT 
      - Explicit: (WA, NT) ∈ { (red,green),(red,blue), ... }
- - Solutions are assignments satisfying all constraints, e.g.
+ - Solutions are assignments where every variable takes value on the domain that satisfies all constraints, e.g.
      - {WA=red, NT=green, Q=red, NSW=green, V=red, SA=blue, T=green}
 
 <h2 id="aee23a02cf0a428f8a3380804926c5ba"></h2>
