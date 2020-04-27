@@ -53,24 +53,6 @@
 
 # Algorithm On Graphs
 
-content | method | graph | comments
---- | --- | --- | --- 
-connected component | DFS   | indirected graph
-connectivity    | DFS   | indirected graph
-topology sort   | DFS | DAG  | sink vertex
-strongly connected component    | DFS   | directed graph
-strongly connected component    | DFS  | reverse directed graph  | sink component
-shortest path | Dijkstra  | weighted edge
-shortest path | Bellman-Ford  | negative weighted edge
-
-
-More applications 
-
-problem | method | graph | comments
---- | --- | ---  | --- 
-Is a graph bipartite  | DFS | undirected graph
-does the graph exist a cycle  | DFS | graph
-
 
 <h2 id="edbf6a2cb4c2f45a6c6f05f7981ececd"></h2>
 
@@ -706,6 +688,153 @@ def BellmanFord(G , S ):
 
 - The running time of Bellman–Ford algorithm is O(|V||E|).
 - During the iterations, if no edge was actually relaxed , we can just stop there and the distance will already be correct.
+
+----
+
+# Week 5: Minimum Spanning Tree (MST)
+
+
+## Building a Network
+
+- Input: A connected, **undirected** graph G = (V,E) with **positive** edge weights.
+- Output: A subset of edges E′ ⊆ E of **minimum** total weight such that the graph (V , E′) is connected.
+
+### Properties of Trees 
+
+- A **tree** is an undirected graph that is connected and acyclic
+- A tree on *n* vertices has *n*-1 edges
+- Any **connected** undirected graph G(V,E)  with |E| = |V|-1 is a tree
+- An undirected graph is a tree iff there is a unique path between any pair of its vertices.
+
+
+### Greedy Algorithms 
+
+Algorithm | description
+--- | --- 
+Kruskal  |  repeatedly add the next lightest edge if this doesn't produce a cycle 
+Prim | repeatedly attach a new vertex to the current tree by a lightest edge 
+
+
+- Example 
+    - ![](../imgs/algor_on_graph_mst_example0.png)
+    - Kruskal's algorithm 
+        1. Initially, our soulution is empty, so we just add the first lightest edge ( with weight 1)
+        2. And there is also another edge with has weight 1,  so we also add it to our solution. 
+        3. The next 1 is weight 2, we add it. 
+        4. The next lightest available edge has weight 3, 
+            - ![](../imgs/algor_on_graph_mst_example1.png)
+            - However, if we added it to our current solution, this would produce a cycle. So we skip this edge.
+        5. The next lightest available edge has weight 4. Wee add it. 
+            - ![](../imgs/algor_on_graph_mst_example2.png)
+        6. Then, again, we try to add the edge with weight 5, however it produces a cycle, so we skip this edge, and instead we add the edge of weight 6.
+        - This gives us a solution. 
+    - Prim's algorithm 
+        - It works in a different way, it repeatedly grows just 1 tree. It will select a root for this tree. At each iteration we are going to attach a new node to this tree. 
+        1. ![](../imgs/algor_on_graph_mst_prim0.png)
+        2. ![](../imgs/algor_on_graph_mst_prim1.png)
+        3. ![](../imgs/algor_on_graph_mst_prim2.png)
+        4. ![](../imgs/algor_on_graph_mst_prim3.png)
+
+
+- They start with an empty solution , with an empty set of edges.  And at each iteration they expand the current set of edges by one edge. 
+    - But they use different stratedies for selecting the next edge.
+    - The Kruskal's Algorithm selects the next lighted edge that **doesn't produce a cycle**.
+    - While the Prim's Algorithm selects the next lightest edge that attaches a **new vertex to the current tree**.
+
+
+### Cut Property
+
+- Let X ⊆ E be a part of a MST of G(V,E), S ⊆ V be such that no edge of X crosses between S and V − S, and e ∈ E be a lightest edge across this partition. Then X + {e} is a part of some MST.
+    1. X is edges part of MST
+    2. we partition all vertices into  2 parts -- S , and V-S
+    3. this partition is required to satisfies the following property: 
+        - no edge from X joins 2 vertices from different parts (one in S, the other one in V-S). 
+        - ![](../imgs/algor_on_graph_partition_example.png)
+    4. *e* is the lightest edge connect the verticese across S and V-S
+    5. Then if we add the edge *e* to our current X , then what we get will also be a subset of some minimum spanning tree.
+        - In other words, adding *e* to X in this case is a safe move.
+
+- Example 
+    - ![](../imgs/algor_on_graph_cut_0.png)
+    - We are given some subset of edges of a MST, shown here in blue. It is the set X. 
+        - So X is a subset of some MST.
+    - Then consider some partition vertices into 2 parts 
+        - no edge from X, on our picture no blue edge , joins 2 vertices from different parts. 
+        - ![](../imgs/algor_on_graph_cut_1.png)
+    - Next we consider the lightest edge that joins 2 vertices from different parts, assume that this edge is *e*, shown here in red 
+        - ![](../imgs/algor_on_graph_cut_2.png)
+    - Then what lemma states is that if we add this edge to our set X, then the resulting set of edges will also be a part of some MST.
+
+
+### Kruskal's Algorithm
+
+1. repeatedly add to X the next lightest edge *e* that doesn’t produce a cycle
+2. At any point of time, the set X is a forest, that is, a collection of trees
+    - a single isolated vertex is also a tree 
+3. The next edge *e* connects two different trees , say, T₁ and T₂
+    - if not , it produe a cycle
+4. The edge *e* is the lightest between T₁ and V − T₁, hence adding *e* is safe
+    - the cut property
+
+
+#### Implementation Details 
+
+1. use **disjoint** sets data structure
+2. initially, each vertex lies in a separate set
+3. each set is the set of vertices of a connected component
+    - that is, initially, each vertex forms a separate connected component
+4. to check whether the current edge {u,v} produces a cycle, we check whether u and v belong to the same set -- in the same connected component
+    - and also, if they are lie in different connected components, we need to merge the corresponding 2 trees, *union* 2 sets
+
+
+```python
+def Kruskal(G ):
+    for all u∈V: 
+        MakeSet(v )
+    X ← empty set
+    sort the edges E by weight
+    for all {u,v}∈E in non-decreasing weight order:
+        if Find(u) ≠  Find(v):
+            add {u,v} to X
+            Union(u, v ) 
+    return X
+```
+
+#### Running Time 
+
+O(|E|·log|V|)
+
+
+---
+
+### Prim's Algorithm 
+
+1. X is always a subtree, grows by one edge at each iteration
+2. we add a lightest edge between a vertex of the tree and a vertex not in the tree
+3. very similar to Dijkstra’s algorithm
+    - Prim is greedy, it does not care about the accumulative cost, it just use the edge weight for priority 
+
+
+```python
+def Prim(G ):
+    for all u∈V:
+        cost[u] ← ∞, parent[u] ← nil
+    pick any initial vertex u0
+    cost[u0] ← 0
+    PrioQ ← MakeQueue(V ) {priority is cost} 
+
+    while PrioQ is not empty:
+        v ← ExtractMin(PrioQ) 
+        for all {v,z} ∈ E:
+            if z ∈ PrioQ and cost[z] > w(v, z): 
+                cost[z] ← w(v, z), parent[z] ← v 
+                ChangePriority(PrioQ , z , cost [z ])
+```
+
+
+
+
+
 
 
 

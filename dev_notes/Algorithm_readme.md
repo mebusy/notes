@@ -18,10 +18,33 @@
  
 
  1. [Algorithm on String](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_On_Strings.md)
+ 1. [Algorithm on Graph](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_On_Graphcs.md)
+
 
 ---
 
  - [2D clostest pair](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_closestPair.md) 
  - [Fast Distance 2D](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_fastdistance2D.md)
  - [2D Tree](https://github.com/mebusy/notes/blob/master/dev_notes/2dTree.md)
+
+---
+
+solved problem | method | graph | comments
+--- | --- | --- | --- 
+connected component | DFS   | undirected graph
+connectivity    | DFS   | undirected graph
+topology sort   | DFS | DAG  | sink vertex
+strongly connected component    | DFS   | directed graph | reverse G,  sink component
+shortest path | Dijkstra  | weighted edge
+shortest path | Bellman-Ford  | negative weighted edge
+MST | Kruskal  | undirected graph
+MST | Prim  | undirected graph
+
+
+More applications 
+
+problem | method | graph | comments
+--- | --- | ---  | --- 
+Is a graph bipartite  | DFS | undirected graph
+does the graph exist a cycle  | DFS | graph
 
