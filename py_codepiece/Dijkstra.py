@@ -4,6 +4,10 @@ import sys
 
 
 def Dijkstra( V_adj, s ) :
+    """
+    you don't nedd closed set if
+    weights are all not-negative
+    """
     dist = {}
     prev = {}
     pq = PriorityQueue()
