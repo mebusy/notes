@@ -202,15 +202,20 @@ there are boxes which are constraints and the boxes are connected to all of the 
 
 ### Example: The Waltz Algorithm
 
-![](../imgs/cs188_Waltz_algorithm.png)
 
  - The Waltz algorithm is for interpreting line drawings of solid polyhedra as 3D objects
  - An early example of an AI computation posed as a CSP 
+ 
+- ![](../imgs/cs188_Waltz_algorithm.png)
+    - those 3 dimensional-ish drawing here ,
+    - the left 1 is outie , the right 1 is innie
 
 Approach:
  
  - Each intersection is a variable
+    - the values are sort of going to be things like it's an outie verusu it's an innie
  - Adjacent intersections impose constraints on each other
+    - the constraints are something like that if 2 things are connected, you can't have 1 convex and the other is concave ? 
  - Solutions are physically realizable 3D interpretations
 
 <h2 id="b9434fb596306e69d9867441d7d9fa5f"></h2>
@@ -225,7 +230,7 @@ Approach:
 
  - Discrete Variables
     - Finite domains
-        - Size d means O(dn) complete assignments
+        - Size d means O(dⁿ) complete assignments
         - E.g., Boolean CSPs, including Boolean satisfiability (NP-complete)
     - Infinite domains (integers, strings, etc.)
         - E.g., job scheduling, variables are start/end times for each job
@@ -275,6 +280,11 @@ Approach:
 
 We’ll start with the straightforward, naïve approach, then improve it
 
+- What would BFS do ?
+    - will expand all levels
+    - the worst possible case because 
+- What would DFS do ?
+    - going to look everywhere where they aren't first. 
 
 <h2 id="fe6282319a2be73c021b58a6d190368e"></h2>
 
@@ -295,19 +305,20 @@ We’ll start with the straightforward, naïve approach, then improve it
  - Depth-first search with these two improvements
     is called backtracking search (not the best name)
 
- - Can solve n-queens for n <= 25
+ - Can solve n-queens for n `<= 25`
 
 ![](../imgs/cs188_backtrack_search_example.png)
 
-```
+```python
 function BACKTRACKING-SEARCH( csp ) return solution/failure
     return RECURSIVE-BACKTRACKING( {} , csp )
 
 function RECURSIVE-BACKTRACKING( assignment, csp ) return soln/failure
     if assignment is complete then return assignment
+    // a choice point
     var <- SELECT-UNASSIGNED-VARIABLE( VARIABLES[csp], assigment, csp )
 
-    // for each value in that values , you loop through them in some order
+    // for each value in that values , you loop through them in some order , it is going to be another choice point
     for each value in ORDER-DOMAIN-VALUES( var, assignment , csp ) do
         // for each of those values you check if
         // this variable takes this new value did I break a constraint.
@@ -320,8 +331,10 @@ function RECURSIVE-BACKTRACKING( assignment, csp ) return soln/failure
     return failure
 ```
 
- - Backtracking = DFS + variable-ordering + fail-on-violation
- - What are the choice points?
+- It's often implementedd recursively
+
+- Backtracking = DFS + variable-ordering + fail-on-violation
+- What are the choice points?
 
 
 <h2 id="b9b8d3f554a684894d60e5c3a7cdcf8e"></h2>
@@ -347,6 +360,7 @@ function RECURSIVE-BACKTRACKING( assignment, csp ) return soln/failure
 ### Filtering
 
 Filtering is about ruling out suspects.
+
 Keep track of domains for unassigned variables and cross off bad options.
 
  
@@ -358,9 +372,9 @@ Keep track of domains for unassigned variables and cross off bad options.
 Cross off values that violate a constraint when added to the existing assignment.
 
 
-idea : keep track of all of the unassigned variables , keep track of what values they might reasonably take when we finally get to them.
+Idea : keep track of all of the unassigned variables , keep track of what values they might reasonably take when we finally get to them.
 
-in forward checking every time I assign a variable which collapses its domain to a single choice for now , I checked to see whether there are other unassigned variables that have some illegal values when I take into account that new assignment. 
+In forward checking every time I assign a variable which collapses its domain to a single choice for now, I checkto see whether there are other unassigned variables that have some illegal values when I take into account that new assignment. 
 
 
 example 
