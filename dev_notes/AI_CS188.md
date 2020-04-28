@@ -1207,6 +1207,8 @@ function GRAPH-SEARCH(problem,fringe) return a solution, or failure
 end // func
 ```
 
+- Note: Some general algorithms, e.g. Dijkstra,  it was implemented by using one array to store distance, one array to store previous node.
+    - in our search problem, we normally do not do that since we may have very large number of states
 
 
 ---

@@ -35,10 +35,11 @@ connected component | DFS   | undirected graph
 connectivity    | DFS   | undirected graph
 topology sort   | DFS | DAG  | sink vertex
 strongly connected component    | DFS   | directed graph | reverse G,  sink component
-shortest path | Dijkstra  | weighted edge
+shortest path | Dijkstra  | graph
 shortest path | Bellman-Ford  | negative weighted edge
 MST | Kruskal  | undirected graph
 MST | Prim  | undirected graph
+shortest path in social network | Bidirectional Dijkstra  | graph
 
 
 More applications 

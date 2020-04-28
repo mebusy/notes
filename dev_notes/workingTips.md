@@ -117,14 +117,13 @@ chrome: `chrome://net-internals/#proxy`
 
 
 ```
-youtube-dl -c --write-auto-sub --sub-lang=en  -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' 'https://www.youtube.com/playlist?list=PLKUel_nHsTQ1yX7tQxR_SQRdcOFyXfNAb'
+youtube-dl -c --write-auto-sub --sub-lang=en --ignore-errors -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' 'https://www.youtube.com/playlist?list=PLKUel_nHsTQ1yX7tQxR_SQRdcOFyXfNAb'
 ```
 
  - 如果视频确定有 premade 字幕， 使用  `--write-sub`
-
  - ensure you add `' '` to url since some special character may appears in URL has a special meaning in bash
-
  - `-c` means resume downloading 
+ - `--ignore-errors` 忽略下载错误，比如 private vidoe
 
 <h2 id="a86e10fc913cd54076f6a27289d1d713"></h2>
 

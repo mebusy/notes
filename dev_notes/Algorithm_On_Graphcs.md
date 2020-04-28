@@ -648,7 +648,7 @@ But we will soon find out it does.
     - And this is rely on the fact that edge weights are positive
 - This is no longer the case for graphs with negative edges 
     - ![](../imgs/algor_on_graph_dijkstra_negative_weight.png)
-    - PS. 不是很明白。 如果 是tree search 应该是能找到 S->B->A = -10 的啊 ？ 
+    - 注: 有两个版本的 Dijkstra, 其中 定点可以重入的版本是可以处理 negative edge的，但这样就无法保证 Dijkstra 的时间复杂度.
 
 
 <h2 id="f976d1a3a77908d613907e00e02f40fd"></h2>
@@ -830,6 +830,204 @@ def Prim(G ):
                 cost[z] ← w(v, z), parent[z] ← v 
                 ChangePriority(PrioQ , z , cost [z ])
 ```
+
+---
+
+# Week6 Advanced Shortest Path
+
+## Advanced Shortest Paths : Bidirectional Dijkstra
+
+- What problem is this algorithm solved?
+    - The shortest path between source vertex *s* and a target vertex *t*.
+    - Yes, we have a goal.
+- Why not just Dijkstra ?
+    - It is pretty fast, right ?
+    - Can we even do better in the worst case ?
+    - Yes, Mikkel Thorup came up with an algorithm in 19999 that solves this problem for undirected graphs in linear time. 
+        - Such algorithm is still not known for directed graph. But for undirected graphs, we can definitely do better, and for directed graphs, we can do better also.
+    - For a graph of USA with 20M vertices and 50M edges it will work for serveral seconds for average.
+    - Millions of users of Google Maps want the result in a blink of an eye, all at the same time. 
+    - Need something significantly faster
+
+### Idea: Bidirectional Search 
+
+- Instead of going from S and growing the "search circle" until it touches point, we want to go simultaneously forward from S , and backward from T until we meet. 
+- And as soon as we meet, we can find the shortest path between S and T by combining the half of the path S->Mid-point  and Mid-point->T.
+- We will alternate the turns of those 2 Dijkstra.
+- ![](../imgs/algor_on_graph_bi_dijkstra.png)
+- And now, we can reconstruct the shortest path from S to T, and we can fill in the correct distances from S to all the nodes on that path.
+- ![](../imgs/algor_on_graph_bi_dijkstra2.png)
+
+- Roughly 2x speedup
+    - Good, but not great
+
+### Six Handshakes
+
+- Applying the idea of bidirectional search to social network data, we will see that it will work exceptionally well, going up to thousands of times faster. 
+- But first , let's learn an interesting fact about our world. 
+    - In 1929, Hungarian mathematician Frigyes Karinthy made a "Small world" conjecture :
+    - Can pass a message from any person to any person in at most 6 handshakes.
+    - This is close to truth according to experiments and it called a "six handshakes" or "six degrees of separation" idea.
+- Meet-in-the-middle
+    - More general idea, not just for graphs
+    - Instead of searching for all possible objects, search for 1st halves and for 2nd halves separately
+    - Then find "compatible" havles
+    - √N instead of N
+
+### Bidirectional Dijkstra 
+
+1. Build Gᴿ 
+2. Start Dijkstra from **s** in G , and from **t** in Gᴿ
+3. Alternate between Dijkstra steps in G and in Gᴿ
+4. Stop when some vertex **v** is processed both in G and in Gᴿ
+    - process means that it is extracted from the PQ 
+5. Compute the shortest path between **s** and **t**
+
+### Finding Shortest Path after Meeting in the Middle
+
+- Let *v* be the 1st vertex which is processed both in G and Gᴿ. Can we guarantee then that there exists a shortest path from *s* to *t* that goes through *v*?
+- No.
+    - ![](../imgs/algor_on_graph_bi_dijkstra3.png)
+    - The middle vertex will be considered first in both forward Dijkstra and backward Dijkstra.
+    - So what exactly then do we need to compute the distance? 
+
+
+- Lemma
+    - Let dist[u] be the distance estimate in the forward Dijkstra from *s* in G 
+        - and distᴿ[u] -- the same in the backward Dijkstra from *t* in Gᴿ. 
+    - After some node *v* is processed both in G and Gᴿ, 
+    - there exists some shortest path from *s* to *t* passes through some node *u* which is **processed either in G, in Gᴿ, or both**, and d(s,t) = dist[u] + distᴿ[u].
+    - ![](../imgs/algor_on_graph_bi_dijk_lemma.png)
+
+### Computing Distance
+
+- Implementation
+    1. Do alternating turns of forward search and backward search , until we meet at some point *v*
+        - and we remember which vertices are processed in forward search and  which are in backward search
+    2. Then we take all those vertices which are processed at least in one of them , and for each of those vertices, we minimize the sum of distance estimate of d[u]+dᴿ[u],
+        - and for the node for which this sum is minimal , we know that there is a shortest path going through this vertex. 
+    3. And then to reconstruct the path itself
+        - We can reconstruct the shorteset path from *s* to *u* in forward search, and separately we reconstruct the path from *u* to *t* in backward search.
+        - and then just join those 2 parts into a single shortest path from *s* to *t*.
+
+```python
+def BidirectionalDijkstra(G , s , t ):
+    Gᴿ ← ReverseGraph(G) # create reverse graph
+    Fill dist,distᴿ with +∞ for each node  # init dist
+    dist[s] ← 0, distᴿ [t] ← 0
+    Fill prev,prevᴿ with None for each node  # prev vertex
+    proc ← empty, procᴿ ← empty  # processing vertices
+
+    while True
+        v ← ExtractMin(dist) 
+        Process(v , G , dist, prev, proc) 
+        if v in procᴿ:
+            return ShortestPath(s, dist, prev, proc, t, . . . ) 
+        vᴿ ← ExtractMin(distᴿ)
+        repeat symmetrically for vᴿ as for v
+
+def Relax(u, v , dist, prev):
+    if dist[v]>dist[u]+w(u,v): 
+        dist[v] ← dist[u] + w(u, v) 
+        prev[v] ← u
+
+def Process(u, G , dist, prev, proc):
+    for (u,v)∈E(G): 
+        Relax(u, v , dist, prev)
+    proc.Append(u)
+
+def ShortestPath(s, dist, prev, proc, t, distᴿ , prevᴿ , procᴿ ):
+    distance ← +∞, ubest ← None 
+    for u in proc+procᴿ:  # union, at least in one set
+        if dist[u]+distᴿ[u]<distance:
+            ubest ← u
+            distance ← dist[u] + distᴿ [u] 
+
+    path ← empty
+    last ← ubest 
+    while last≠ s:
+        path.Append(last)
+        last ← prev[last] 
+    path ← Reverse(path) 
+    last ← ubest
+    while last≠ t:
+        last ← prevᴿ[last]
+        path.Append(last) 
+
+    return (distance,path)
+```
+
+### Conclusion
+
+- Worst-case running time of Bidirectional Dijkstra is the same as for Dijkstra
+- Speedup in practic depends on the graph , e.g. social network graph
+- Memory consumption is 2x to store G and Gᴿ
+
+---
+
+## Contraction Hierarchies
+
+### Highway Hierarchies and Node Importance
+
+- Bidirectional Dijkstra can be 1000s of times faster than Dijkstra for social networks
+- But just 2x speedup for road network
+- This lecture -- great speedup for road networks
+
+----
+
+- Long-distance trips go through highways 
+- Less important roads merge into more important roads
+- Hierarchies of roads
+    - So the idea is to use the structure of the shortest paths in the real road networks,
+    - this will allow us to acutally avoid scanning many small roads, many not important vertices in the graph
+    - If you go from San Francisco to New York, then most probably you don't need to go through small streets somewhere in Las Vegas or Chicago. Most of the way, you'll be going through a big highway. 
+
+
+#### Highway Hierarchies 
+
+- There are algorithms based on this idea
+- “Highway Hierarchies” and “Transit Node Routing” by Sanders and Schultes
+- Millions of times faster than Dijkstra 
+- Pretty complex
+- This lecture — “Contraction Hierarchies”, thousands of times faster than Dijkstra
+
+
+#### Node Ordering
+
+
+- Nodes can be ordered by some “importance”
+    - The idea of the contraction hierarchies algorithm is to order the nodes by importance. 
+- Importance first increases, then decreases back along any shortest path
+- E.g., points where a highway merges into another highway
+- Can use bidirectional search
+
+
+#### Shortest Paths with Preprocessing
+
+- Preprocess the graph
+    - It can be a long process, It can take a few hours or even days. 
+- Find distance and shortest path in the preprocessed graph
+    - But then when you're ready , and you've saved the results of your preprocessing, you can answer the queries for distance and shortest paths much faster.
+- Reconstruct the shortest path in the initial graph
+
+
+### Preprocessing
+
+- Eliminate nodes one by one in some order
+    - when we eliminate the node, some of the shortest paths that existed in the initial graph can be gone because they were passing through this node.
+- Add **shortcuts** to preserve distances 
+    - and in this case we need to add some shortcuts so that we preserve the distance. 
+    - so that the distances between any 2 nodes that are still in the graph , are the same as the distances in the initial graph.
+    - so we'll add some shortcuts , some new edges to the graph
+- Output: augmented graph + node order
+    - that augmented graph is the graph with augmented set of edges
+        - it has the same set of vertices as the initial graph. 
+        - it also has all the edges of the initial graph. 
+        - but apart from that it has all the added shortcuts as edges. 
+    - and also we'll output the order of the nodes that we used in this preprocessing.
+
+#### How Node Contraction Work ?
+
 
 
 
