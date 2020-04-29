@@ -73,6 +73,7 @@ a | b | c | d
 --- | --- | --- | --- 
 [process/thread](dev_notes/OS.md) | [synchronize](dev_notes/OS2.md) | [Scheduling](dev_notes/OS3_scheduling.md) | [network](dev_notes/OS_Network_and_Distributed_Systems.md) 
 [Security TODO](dev_notes/OS_ProtectionSecurityinDistributedSystems.md) | 
+[阻塞/非阻塞，同步/异步，IO](dev_notes/sync_block.md) |
 
 
 <h2 id="0d61f8370cad1d412f80b84d143e1257"></h2>
