@@ -42,17 +42,23 @@
  - [随机数](Dev_Random.md) , [random number](random_number.md)
 
 
+# 3Blue1Brown
+
+- Lockdown Math
+    - [ep.1 quadratic formula](3b1b_quadratic_formula.md)
+    - [ep.2,3 Trigonometry & Complex number](3b1b_trigonometry.md)
+    - [ep.4 euler formular](3b1b_euler_formula.md)
+- [3b1b Fourier Transform](3b1b_fourier_transform.md)
+- [3b1b Bayes theorem](bayes_theorem.md)
+
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
 
 # Misc 
 
- - [Tricks](Tricks.md)
- - [3b1b Fourier Transform](3b1b_fourier_transform.md)
- - [softmax implementation](softmax.md)
- - [3b1b Bayes theorem](bayes_theorem.md)
- - [3b1b quadratic formula](3b1b_quadratic_formula.md)
- - [prime number](math_prime.md)
+- [Tricks](Tricks.md)
+- [softmax implementation](softmax.md)
+- [prime number](math_prime.md)
 
 
 
