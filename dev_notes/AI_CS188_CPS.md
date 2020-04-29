@@ -383,10 +383,9 @@ example
 
 If we assigned red to WA , we should remove red choice from NT , SA.
 
-so that basic idea when I assigned something I look at its ***neighbors*** in the graph and cross things off, that's called forward checking.
+so that basic idea when I assigned something I look at its ***neighbors*** in the graph and cross things off, that's called forward checking. So the neighbors of WA would lose red. 
 
-forward checking doesn't check interactions between unassigned variables just checks interactions between assigned variables and their neighbors.  只检测 比邻的 变量
-
+forward checking doesn't check interactions between unassigned variables just checks interactions between assigned variables and their neighbors.  Anything further is thinking too hard for forward checking.
 
 <h2 id="7e161a29d4c082578ae409a87a8988f0"></h2>
 
@@ -408,15 +407,50 @@ Constraint propagation: propagate from constraint to constraint.
 
 The idea of checking single arcs:
 
-so far we talked about checking an assignment against its neighbors and here we were talking just in this last slide about checking between two unassigned variables.
+so far we talked about checking an assignment against its neighbors, here we were talking out checking between two unassigned variables.
 
-what does it mean to check an arc ?  Formally we check whether or not is consistent. So we say: 
+- 2 things
+    1. for every edge on the graph, there are actually 2 arcs you could check: a to b, and b to a . We can check whether it's satisfied in both directions. 
+    2. conceptually, you can check an arc between 2 things that are't connected by a constraint. 
 
-An arc X → Y is consistent if for every x in the tail ( not arrow ) there is some y in the head which could be assigned without violating a constraint
+What does it mean to check an arc ? And we say that arc is consistent , intuitively, it's consistent if there's no constraint violation along that arc.  But formally, it's sort of half of that.
+
+An arc X → Y is consistent iff for every x in the tail ( not arrow ) there is some y in the head which could be assigned without violating a constraint. That is,  for everything in the tail, there is at least one OK option in the head.
+
+无论 X 选什么值，Y 都有相应的选择满足约束。 这样无论以后Y 怎么赋值，都不会破坏 X → Y 约束关系。
+
+
+<details>
+<summary>
+So let's do some examples.
+</summary>
 
 ![](../imgs/cs188_consistency_of_Arc.png)
 
-无论 X 选什么值，Y 都有相应的选择满足约束。 这样无论以后Y 怎么赋值，都不会破坏 X → Y 约束关系。
+Here WA is assigned. The NT is not assigned, but I can still look at the 2 of them and check if this arc is consistent.  So let's do it, we check everything in the tail. So we look at the NT and we say, is there anything in you remaining domain which would have no continuation into the head ? So we say, well, if I assigned you blue, it would be ok.  Green ? it would be ok. Red ? not ok. So red is something in the tail for which there is no assignments in the head which doesn't cause a constraint violation. So this arc is not constraint.
+
+We can however, make it consistent. We can remove things from the tail, the red in NT. 
+
+So now we can check other consistencies, let's try Q->WA. These two are not actually connected by a constraint, so it sould be easy to check. This is arc is already consistent.
+
+</details>
+
+In general, there's a question of how do you remember this ?
+
+<details>
+<summary>
+Here's How I remember it.
+</summary>
+
+Remember, the constraints are like rules, and these algorithms are like police. They're going to go and enforce the rules. And you can imagine this arc is going to get pulled over by your algorithm, which is the CSP police. And what do they do when they pull the arc over? Right they pop open the trunk and they look for anything that's illegal. They are going to take anything bad out. 
+
+All these algorithms have the same shape. You pull over an arc, you fish around in its trunk and cross the bad thing off. That's enforcing the consistency of a single arc. 
+
+![](../imgs/cs188_csp_police.png)
+
+Now we're going to have to do a whole bunch of arcs in order to get a filtering algorithm.
+
+</details>
 
 Forward checking: Enforcing consistency of arcs pointing to each new assignment
 
@@ -425,24 +459,56 @@ Forward checking: Enforcing consistency of arcs pointing to each new assignment
 
 #### Arc Consistency of an Entire CSP
 
-A simple form of propagation makes sure all arcs are consistent:
+A simple form of propagation makes sure **all** arcs are consistent:
 
 ![](../imgs/cs188_arc_consistenct_of_an_entire_CSP.png)
 
+<details>
+<summary>
+Let's see this example.
+</summary>
+
+WA and Q have been assigned , red and green.  NT,NSW,SA have had their domain reduced by some previous pruning. 
+
+I can go visit arcs. First we check V->NSW.  We notice they are neighbors. All right, this is the first time we're checking the consistency of an arc that doesn't point to an assignment. So I go through and I check the tail V , blue is find, red is fine, green is fine too. 
+
+Let's look SA->NSW.  SA and NSW are adjacent, so I'm going to look at SA. What is in the tail ? Blue, it is fine.
+
+BUT, let's check the arc in the other direction. So now I look at NSW , is red ok ? Yes.  Is blue ok? NO.  So we erase blue from NSW. Not it's consistent.
+
+There's a tricky case. We just check V->NSW. We just declared it consistent, but that was on the basis of having blue and red available in the head at NSW.  And one of those is gone, so the consistency may no longer hold. 
+
+So I have to go back to V, and I have to check V->NSW again. Red now is no longer ok.  Erasing red from V. 
+
+So any time do delete a value fomr a domain, every arc pointing into it need be rechecked. 
+
+So I keep doing this. The whold reason to do this is acutally a completely different arc, SA->NT, neither of which is assigned. You noticed that you have to delete the blue from SA, which results in an empty domain , and an empty domain means a detected failure, which means backtracking. 
+
+</details>
+
 ***Remember: Delete from  the tail!***
 
- - Important: If X loses a value, neighbors of X need to be rechecked!
- - Arc consistency detects failure earlier than forward checking
- - Can be run as a preprocessor or after each assignment 
-     - must return after each assignment !
-     - you run it after every assignment at every step in the backtracking search
+- Important: If X loses a value, neighbors of X need to be rechecked!
+- Arc consistency **detects failure earlier** than forward checking
+    - what forward checking think a little harder, arc consistency will expose this. 
+- Can be run as a preprocessor, or more commonly after each assignment 
+    - you are still in a backtracking search
+    - must return after each assignment !
+    - you run it after every assignment at every step in the backtracking search
+- What's the downside of enforceing arc consistency ?
+    - runtime is bad. 
+    - so there's a trade-off between doing more filtering and just making the core search run faster. 
+    - In general , this is a very powerful method. 
+
 
 <h2 id="a579dbdec94528eb11f12d92e857c911"></h2>
 
 
 #### Enforcing Arc Consistency in a CSP
 
-```
+- So far , we only talk about binary CSPs. 
+
+```python
 function AC-3(csp) return the CSP, possibly with reduced domains
     inputs: csp // a binary CSP with variables {X₁, X₂, ... ,Xn}
     local variables: queue // a queue of arcs, initially all the arcs in csp
