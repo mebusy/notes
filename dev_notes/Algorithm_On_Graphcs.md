@@ -1028,11 +1028,53 @@ def ShortestPath(s, dist, prev, proc, t, distᴿ , prevᴿ , procᴿ ):
 
 #### How Node Contraction Work ?
 
+![](../imgs/algor_on_graph_node_contraction_ex0.png)
+
+<details>
+<summary>
+Let's look at this very simple line graph.
+</summary>
 
 
+All nodes in one chain. The nodes are numbered ,and already in the order , in which we going to contract the nodes in this example. 
+
+Let's look what happens when we contract the nodes.  First, we contract node 1,  it goes down, means that we contracted it.
+
+![](../imgs/algor_on_graph_node_contraction_ex1.png)
+
+And you see that there was a path  6-1-4 ,  when we contracted it, it's no longer in the graph  . And then we need to reconstruct that path.  So we add a new edge 6-4 with length 5, which is colored in blue in the picture. 
+
+Now what happens when we contract node 2 ?  Nothing really happens.
+
+Now let's contract node 3.
+
+![](../imgs/algor_on_graph_node_contraction_ex3.png)
+
+When we contract the node 4, it is the most interesting node because it already has 2 blue nodes. But nevertheless, when we contract it we remove the path between 6-4-5, and add a new edge 6-5. 
+
+![](../imgs/algor_on_graph_node_contraction_ex4.png)
+
+In the end we contract node 5. Nothing changes. 
+
+![](../imgs/algor_on_graph_node_contraction_ex5.png)
+
+We don't need to contract node 6 because it's the last node in the graph.
 
 
+</details>
 
+![](../imgs/algor_on_graph_node_contraction_ex5.png)
+
+You see that the nodes in the new picture are different heights. And this just symbolizes that the higher is the node, the later it was contracted. 
+
+And the higher the node , the more important it is.  So we first contract or remove the **least** important nodes.  And the nodes which are left in the end are the most important nodes. 
+
+
+#### Witness Paths 
+
+Now let's see what happens in general when we contract node v.
+
+![](../imgs/algor_on_graph_witness_0.png)
 
 
 
