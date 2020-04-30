@@ -533,9 +533,9 @@ end func
 
 ---
 
- - some tips on enforcing arc consistency
-    - 1. Unary Constraints at first
-    - 2. avoid adding duplicate arc to queue while enforcing a binary arc 
+- some tips on enforcing arc consistency
+    1. Unary Constraints at first
+    2. avoid adding duplicate arc to queue while enforcing a binary arc 
         - 注意： binary 约束是双向的，都需要 enforce, 因为node的赋值要求不依赖顺序 
 
 If arc consistency had resulted in all domains having a single value left, we would have already found a solution. Otherwise we need to start searching.
