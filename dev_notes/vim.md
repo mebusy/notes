@@ -75,7 +75,7 @@
 
 ## YouCompleteMe 配置
 
-- for C family support:  `./install.py --clang-completer`
+- for C family support:  `./install.py --clangd-completer`
     - 加上 `--system-libclang` 则使用mac 自带的libclang，但是一般版本比较旧，会有问题
 - C# support: install Mono and add `--cs-completer` when calling ./install.py.
 - Go support: install Go and add `--go-completer` when calling ./install.py.
@@ -96,7 +96,7 @@
 - for common using
     - 
     ```bash
-    python install.py --clang-completer --cs-completer  --go-completer --ts-completer --java-completer
+    python install.py --clangd-completer --cs-completer  --go-completer --ts-completer --java-completer
     ```
 
 <h2 id="f7abfec0b5984a0314616bd13f7ae8c3"></h2>
