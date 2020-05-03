@@ -89,7 +89,7 @@ func (*Queue) Push(e interface{}) error {
     panic("not implemented")
 }
 func (self0 *Queue) length() int {
-    return len(self.elements)
+    return len(self0.elements)
 }
 ```
 
