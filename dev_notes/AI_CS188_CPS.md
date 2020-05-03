@@ -568,11 +568,12 @@ If arc consistency had resulted in all domains having a single value left, we wo
 
 #### Ordering: Minimum Remaining Values (Variable)
 
- - Variable Ordering:  Minimum remaining values (MRV):
-     - Choose the variable with the fewest legal left values in its domain
- - Why min rather than max?
-     - Also called “most constrained variable”
+- Variable Ordering:  Minimum remaining values (MRV):
+    - Choose the variable with the fewest legal left values in its domain
+- Why min rather than max?
     - “Fail-fast” ordering
+    - Also called “most constrained variable”
+- **hardest variable**
 
 ![](../imgs/cs188_ordering_MRV.png)
 
@@ -583,20 +584,22 @@ If arc consistency had resulted in all domains having a single value left, we wo
 
 #### Ordering: Least Constraining Value 
 
- - Value Ordering: Least Constraining Value
-     - Given a choice of variable, choose the least constraining value
-         - 选择这个值，产生的约束最少
-     - I.e., the one that rules out the fewest values in the remaining variables
+- Value Ordering: Least Constraining Value
+    - Given a choice of variable, choose the least constraining value
+    - I.e., the one that rules out the fewest values in the remaining variables
     - Note that it may take some computation to determine this!  (E.g., rerunning filtering)
- - To choose which value is the least-constraining value, enforce arc consistency for each value (on a scratch piece of paper). 
-    - For each value, count the total number of values remaining over all variables.   
- - Why least rather than most?
-    - Combining these ordering ideas makes 1000 queens feasible
+- To choose which value is the least-constraining value, enforce arc consistency for each value (on a scratch piece of paper). 
+    - For each value, count the total number of values remaining over all variables.
+- **easiest value**
+    - we want the one that has the least impact on the rest of the graph
+- Why least rather than most?
+    - because it's a CSP, and in CSP, you have to do every variable. Sooner or later, you have to do it. You don't have to do every value.
+    - So you might as well do the hard variables first, but if you're picking values, you want to pick the ones that are likely to work out, and maybe you don't even have to try the hard ones.
+- Combining these ordering ideas makes 1000 queens feasible
 
 ![](../imgs/cs188_ordering_LCV1.png)
 
 ![](../imgs/cs188_ordering_LCV2.png)
-
 
 ---
 
