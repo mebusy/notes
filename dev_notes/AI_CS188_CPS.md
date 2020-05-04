@@ -459,7 +459,7 @@ Forward checking: Enforcing consistency of arcs pointing to each new assignment
 
 #### Arc Consistency of an Entire CSP
 
-A simple form of propagation makes sure **all** arcs are consistent:
+- A simple form of propagation makes sure ***all*** arcs are simultaneously consistent:
 
 ![](../imgs/cs188_arc_consistenct_of_an_entire_CSP.png)
 
@@ -528,8 +528,10 @@ function REMOVE-INCONSISTENT-VALUES(Xᵢ, Xⱼ) returns true iff succeeds
 end func
 ```
 
- - Runtime: O(n²d³), can be reduced to O(n²d²)
- - but detecting all possible future problems is NP-hard 
+- Runtime: O(n²d³), can be reduced to O(n²d²)
+    - after you do all this filtering, you'r going to do an assignment. and start the filtering again. 
+    - this is something you run once for every single node in you search tree. 
+- but detecting all possible future problems is NP-hard 
 
 ---
 
@@ -548,12 +550,12 @@ If arc consistency had resulted in all domains having a single value left, we wo
 
 ![](../imgs/cs188_arc_consistency_wrong.png)
 
- - After enforcing arc consistency:
-     - Can have one solution left
-     - Can have multiple solutions left
-     - Can have no solutions left 
-
- - Arc consistency still runs inside a backtracking search!
+- After enforcing arc consistency:
+    - Can have one solution left
+    - Can have multiple solutions left
+    - Can have no solutions left 
+- Arc consistency still runs inside a backtracking search!
+- The reason why our consistency in this bottom case  wasn't sufficient to discorve the inevitable failures because it only looks at parents. So you might think maybe we need a stronger notion in our consistency , maybe we need to look beyond Paris 
 
 
 <h2 id="12ad9074a51088cf63b8e33236d8cc13"></h2>
@@ -642,17 +644,6 @@ So here are steps for solving CPS with enforcing arc consistency:
      - Also:  find all , find best , etc.
 
 
-<h2 id="838c78b5c5b72f9770550d74bf0213df"></h2>
-
-
-## Arc Consitency of an Entire CSP:
-
- - A simple form of propagation makes sure ***all*** arcs are simultaneously consistent:
- - Limitations of Arc Consistency:
-     - ![](../imgs/cs188_arc_consistency_wrong.png)
-     - The reason why our consistency in this bottom case  wasn't sufficient to discorve the inevitable failures because it only looks at parents. So you might think maybe we need a stronger notion in our consistency , maybe we need to look beyond Paris 
-
-
 <h2 id="8bba60b06aea42c1d4246dd17c987e0b"></h2>
 
 
@@ -660,6 +651,9 @@ So here are steps for solving CPS with enforcing arc consistency:
 
  - Increasing degrees of consistency
      - 1-Consistency (Node Consistency): Each single node’s domain has a value which meets that node’s unary constraints
+        - sometimes called node-consistency.
+        - every node's domain has at least one value that meets that node's consitraints
+        - basically just means you enfore unary constraints
      - 2-Consistency (Arc Consistency): For each pair of nodes, any consistent assignment to one can be extended to the other
      - K-Consistency: For each k nodes, any consistent assignment to k-1 can be extended to the kth node.
  - Higher k more expensive to compute
