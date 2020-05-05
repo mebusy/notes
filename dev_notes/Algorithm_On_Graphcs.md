@@ -35,7 +35,6 @@
      - [Constructing shortest-path tree](#b677abc0402df239cc73865a664d147a)
  - [Week4 Weighted Edge Graph](#f48846cfd1c263bd3b157547c127e20d)
      - [Dijkstra's Algorithm](#f5465cb36bdbaa6b373c184f42e56778)
-         - [Implementation](#b672f52ade975e864ae6b58722c03689)
      - [Currency Exchange](#003f976d33ac8c24e95d86528dd29140)
          - [Currency Exchange](#003f976d33ac8c24e95d86528dd29140)
              - [Reduction to shortest paths](#2aebb509894a3435926b0358757ced2b)
@@ -44,6 +43,31 @@
              - [Negative weight cycles](#f976d1a3a77908d613907e00e02f40fd)
          - [Bellman-Ford Algorithm](#9297e36e7774bdfc6df3122a1161af31)
              - [Running Time](#60743dca1167fe1657b6ced5259479a0)
+ - [Week 5: Minimum Spanning Tree (MST)](#efaca9e70dbf43ff2e6721b566e8c08b)
+     - [Building a Network](#16c7498bf7b447bf072bee49903d8987)
+         - [Properties of Trees](#4337affdb3b134ce849d1cc6650670a6)
+         - [Greedy Algorithms](#b85c9288c07b7e4e4b4e27ab9591a53e)
+         - [Cut Property](#e53faf4bce755256bb1dbe463ea9e25c)
+         - [Kruskal's Algorithm](#deffa39808ce0c46dbed0dcdf62d8043)
+             - [Implementation Details](#c2b2b81b0d6751c1aa98cc1822ba50b1)
+             - [Running Time](#60743dca1167fe1657b6ced5259479a0)
+         - [Prim's Algorithm](#8851972d9d159c78edf10480a6211300)
+ - [Week6 Advanced Shortest Path](#1c151f86eba1a21ae18d729675bae1a3)
+     - [Advanced Shortest Paths : Bidirectional Dijkstra](#8d1e9e528ac79f740265585f372cea34)
+         - [Idea: Bidirectional Search](#f4cd5a835ef4f3349f9721e05565ca1a)
+         - [Six Handshakes](#73bf6b749aa20e59d85d7be50e9d7319)
+         - [Bidirectional Dijkstra](#e764537919e46614077b78e9e0191de1)
+         - [Finding Shortest Path after Meeting in the Middle](#434270d395ff546c2f75b9a2a0b54c34)
+         - [Computing Distance](#95f4770065ff47d2c8645f7997e78839)
+         - [Conclusion](#6f8b794f3246b0c1e1780bb4d4d5dc53)
+     - [Contraction Hierarchies](#d33433d24d9ffb9608d3e6411ec9fa2b)
+         - [Highway Hierarchies and Node Importance](#233f77692f07da82132a3ae75d33127e)
+             - [Highway Hierarchies](#0012bd109b088ff2cc888af51d74134f)
+             - [Node Ordering](#f361803b56eb81eaabddadd949ab3ece)
+             - [Shortest Paths with Preprocessing](#4520bd6310cb62fcdd381db986302036)
+         - [Preprocessing](#d397d6750cedf9d79f3600af61a1641e)
+             - [How Node Contraction Work ?](#867892c0bfaddd887d95f2efd5b7482a)
+             - [Witness Paths](#6341d14a4b0f707c95f30884ce778d9c)
 
 ...menuend
 
@@ -691,7 +715,13 @@ def BellmanFord(G , S ):
 
 ----
 
+<h2 id="efaca9e70dbf43ff2e6721b566e8c08b"></h2>
+
+
 # Week 5: Minimum Spanning Tree (MST)
+
+
+<h2 id="16c7498bf7b447bf072bee49903d8987"></h2>
 
 
 ## Building a Network
@@ -699,12 +729,18 @@ def BellmanFord(G , S ):
 - Input: A connected, **undirected** graph G = (V,E) with **positive** edge weights.
 - Output: A subset of edges E′ ⊆ E of **minimum** total weight such that the graph (V , E′) is connected.
 
+<h2 id="4337affdb3b134ce849d1cc6650670a6"></h2>
+
+
 ### Properties of Trees 
 
 - A **tree** is an undirected graph that is connected and acyclic
 - A tree on *n* vertices has *n*-1 edges
 - Any **connected** undirected graph G(V,E)  with |E| = |V|-1 is a tree
 - An undirected graph is a tree iff there is a unique path between any pair of its vertices.
+
+
+<h2 id="b85c9288c07b7e4e4b4e27ab9591a53e"></h2>
 
 
 ### Greedy Algorithms 
@@ -742,6 +778,9 @@ Prim | repeatedly attach a new vertex to the current tree by a lightest edge
     - While the Prim's Algorithm selects the next lightest edge that attaches a **new vertex to the current tree**.
 
 
+<h2 id="e53faf4bce755256bb1dbe463ea9e25c"></h2>
+
+
 ### Cut Property
 
 - Let X ⊆ E be a part of a MST of G(V,E), S ⊆ V be such that no edge of X crosses between S and V − S, and e ∈ E be a lightest edge across this partition. Then X + {e} is a part of some MST.
@@ -766,6 +805,9 @@ Prim | repeatedly attach a new vertex to the current tree by a lightest edge
     - Then what lemma states is that if we add this edge to our set X, then the resulting set of edges will also be a part of some MST.
 
 
+<h2 id="deffa39808ce0c46dbed0dcdf62d8043"></h2>
+
+
 ### Kruskal's Algorithm
 
 1. repeatedly add to X the next lightest edge *e* that doesn’t produce a cycle
@@ -775,6 +817,9 @@ Prim | repeatedly attach a new vertex to the current tree by a lightest edge
     - if not , it produe a cycle
 4. The edge *e* is the lightest between T₁ and V − T₁, hence adding *e* is safe
     - the cut property
+
+
+<h2 id="c2b2b81b0d6751c1aa98cc1822ba50b1"></h2>
 
 
 #### Implementation Details 
@@ -800,12 +845,18 @@ def Kruskal(G ):
     return X
 ```
 
+<h2 id="60743dca1167fe1657b6ced5259479a0"></h2>
+
+
 #### Running Time 
 
 O(|E|·log|V|)
 
 
 ---
+
+<h2 id="8851972d9d159c78edf10480a6211300"></h2>
+
 
 ### Prim's Algorithm 
 
@@ -833,7 +884,13 @@ def Prim(G ):
 
 ---
 
+<h2 id="1c151f86eba1a21ae18d729675bae1a3"></h2>
+
+
 # Week6 Advanced Shortest Path
+
+<h2 id="8d1e9e528ac79f740265585f372cea34"></h2>
+
 
 ## Advanced Shortest Paths : Bidirectional Dijkstra
 
@@ -849,6 +906,9 @@ def Prim(G ):
     - Millions of users of Google Maps want the result in a blink of an eye, all at the same time. 
     - Need something significantly faster
 
+<h2 id="f4cd5a835ef4f3349f9721e05565ca1a"></h2>
+
+
 ### Idea: Bidirectional Search 
 
 - Instead of going from S and growing the "search circle" until it touches point, we want to go simultaneously forward from S , and backward from T until we meet. 
@@ -860,6 +920,9 @@ def Prim(G ):
 
 - Roughly 2x speedup
     - Good, but not great
+
+<h2 id="73bf6b749aa20e59d85d7be50e9d7319"></h2>
+
 
 ### Six Handshakes
 
@@ -874,6 +937,9 @@ def Prim(G ):
     - Then find "compatible" havles
     - √N instead of N
 
+<h2 id="e764537919e46614077b78e9e0191de1"></h2>
+
+
 ### Bidirectional Dijkstra 
 
 1. Build Gᴿ 
@@ -882,6 +948,9 @@ def Prim(G ):
 4. Stop when some vertex **v** is processed both in G and in Gᴿ
     - process means that it is extracted from the PQ 
 5. Compute the shortest path between **s** and **t**
+
+<h2 id="434270d395ff546c2f75b9a2a0b54c34"></h2>
+
 
 ### Finding Shortest Path after Meeting in the Middle
 
@@ -898,6 +967,9 @@ def Prim(G ):
     - After some node *v* is processed both in G and Gᴿ, 
     - there exists some shortest path from *s* to *t* passes through some node *u* which is **processed either in G, in Gᴿ, or both**, and d(s,t) = dist[u] + distᴿ[u].
     - ![](../imgs/algor_on_graph_bi_dijk_lemma.png)
+
+<h2 id="95f4770065ff47d2c8645f7997e78839"></h2>
+
 
 ### Computing Distance
 
@@ -957,6 +1029,9 @@ def ShortestPath(s, dist, prev, proc, t, distᴿ , prevᴿ , procᴿ ):
     return (distance,path)
 ```
 
+<h2 id="6f8b794f3246b0c1e1780bb4d4d5dc53"></h2>
+
+
 ### Conclusion
 
 - Worst-case running time of Bidirectional Dijkstra is the same as for Dijkstra
@@ -965,7 +1040,13 @@ def ShortestPath(s, dist, prev, proc, t, distᴿ , prevᴿ , procᴿ ):
 
 ---
 
+<h2 id="d33433d24d9ffb9608d3e6411ec9fa2b"></h2>
+
+
 ## Contraction Hierarchies
+
+<h2 id="233f77692f07da82132a3ae75d33127e"></h2>
+
 
 ### Highway Hierarchies and Node Importance
 
@@ -983,6 +1064,9 @@ def ShortestPath(s, dist, prev, proc, t, distᴿ , prevᴿ , procᴿ ):
     - If you go from San Francisco to New York, then most probably you don't need to go through small streets somewhere in Las Vegas or Chicago. Most of the way, you'll be going through a big highway. 
 
 
+<h2 id="0012bd109b088ff2cc888af51d74134f"></h2>
+
+
 #### Highway Hierarchies 
 
 - There are algorithms based on this idea
@@ -990,6 +1074,9 @@ def ShortestPath(s, dist, prev, proc, t, distᴿ , prevᴿ , procᴿ ):
 - Millions of times faster than Dijkstra 
 - Pretty complex
 - This lecture — “Contraction Hierarchies”, thousands of times faster than Dijkstra
+
+
+<h2 id="f361803b56eb81eaabddadd949ab3ece"></h2>
 
 
 #### Node Ordering
@@ -1002,6 +1089,9 @@ def ShortestPath(s, dist, prev, proc, t, distᴿ , prevᴿ , procᴿ ):
 - Can use bidirectional search
 
 
+<h2 id="4520bd6310cb62fcdd381db986302036"></h2>
+
+
 #### Shortest Paths with Preprocessing
 
 - Preprocess the graph
@@ -1009,6 +1099,9 @@ def ShortestPath(s, dist, prev, proc, t, distᴿ , prevᴿ , procᴿ ):
 - Find distance and shortest path in the preprocessed graph
     - But then when you're ready , and you've saved the results of your preprocessing, you can answer the queries for distance and shortest paths much faster.
 - Reconstruct the shortest path in the initial graph
+
+
+<h2 id="d397d6750cedf9d79f3600af61a1641e"></h2>
 
 
 ### Preprocessing
@@ -1025,6 +1118,9 @@ def ShortestPath(s, dist, prev, proc, t, distᴿ , prevᴿ , procᴿ ):
         - it also has all the edges of the initial graph. 
         - but apart from that it has all the added shortcuts as edges. 
     - and also we'll output the order of the nodes that we used in this preprocessing.
+
+<h2 id="867892c0bfaddd887d95f2efd5b7482a"></h2>
+
 
 #### How Node Contraction Work ?
 
@@ -1068,6 +1164,9 @@ We don't need to contract node 6 because it's the last node in the graph.
 You see that the nodes in the new picture are different heights. And this just symbolizes that the higher is the node, the later it was contracted. 
 
 And the higher the node , the more important it is.  So we first contract or remove the **least** important nodes.  And the nodes which are left in the end are the most important nodes. 
+
+
+<h2 id="6341d14a4b0f707c95f30884ce778d9c"></h2>
 
 
 #### Witness Paths 

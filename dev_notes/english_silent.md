@@ -1,6 +1,8 @@
 ...menustart
 
  - [特殊单一子音， 不发音的t,b,n](#7fa088760663a293435f73be1aefc2e2)
+ - [p在n、s、t之前时不发音,这些字一般都是从希腊语转写而来,如：](#2e0fa8d8a7b8ff4a5650c0e4cfe7f66a)
+ - [不发音的辅音字母组合](#eeb90152df24f0e5685a0a4d3d65dffc)
 
 ...menuend
 
@@ -20,6 +22,9 @@
 - sten, ften, mn ，如果后面加母音，就会发声
     - autumnal, solemnity, damnation, condemnation, hymnal
 
+<h2 id="2e0fa8d8a7b8ff4a5650c0e4cfe7f66a"></h2>
+
+
 # p在n、s、t之前时不发音,这些字一般都是从希腊语转写而来,如：
 
 - pneumonia 肺炎
@@ -27,6 +32,9 @@
 - psalm 圣诗
 - receipt 收据
 - Ptolomy 托勒密
+
+
+<h2 id="eeb90152df24f0e5685a0a4d3d65dffc"></h2>
 
 
 # 不发音的辅音字母组合

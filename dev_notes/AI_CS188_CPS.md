@@ -28,7 +28,6 @@
              - [Ordering: Least Constraining Value](#f03154f0f61b618719c8b5dc67557aaf)
  - [Constraint Satisfaction Problems II](#1dff507c8d0411804d4fbae07a040c72)
      - [Reminder: CSPs](#acc9764e38986d7c5f932a1db3eaf43d)
-     - [Arc Consitency of an Entire CSP:](#838c78b5c5b72f9770550d74bf0213df)
      - [K-Consistency](#8bba60b06aea42c1d4246dd17c987e0b)
          - [Strong K-Consistency](#b2f18a946e39a98cdff46b0f465f22db)
      - [Structure](#dc4c71563b9bc39a65be853457e6b7b6)
@@ -63,40 +62,40 @@
 
 ## What is Search For?
 
- - Assumptions about the world:  
-     - a single agent
-     - deterministic actions
-     - fully observed state
+- Assumptions about the world:  
+    - a single agent
+    - deterministic actions
+    - fully observed state
          - you KNOW the configuration that you start in
          - and then you plan about exactly how the world will evolve
-     - discrete state space
+    - discrete state space
 
- - Planning: sequences of actions
-     - The path to the goal is the important thing
-     - Paths have various costs, depths
-     - Heuristics give problem-specific guidance
+- Planning: sequences of actions
+    - The path to the goal is the important thing
+    - Paths have various costs, depths
+    - Heuristics give problem-specific guidance
 
- - Identification: assignments to variables
-     - The goal itself is important, **not the path**
-     - All paths at the same depth (for some formulations)
-     - CSPs are specialized for identification problems
+- Identification: assignments to variables
+    - The goal itself is important, **not the path**
+    - All paths at the same depth (for some formulations)
+    - CSPs are specialized for identification problems
 
 <h2 id="ff7da4833835bc7f3506b068905f376c"></h2>
 
 
 ## Constraint Satisfaction Problems
 
- - Standard search problems:
-     - State is a “black box”: arbitrary data structure
+- Standard search problems:
+    - State is a “black box”: arbitrary data structure
         - The only thing you can do on a state is calling `getSuccessor` and `isGoal`. That's your whole API.
-     - Goal test can be any function over states
-     - Successor function can also be anything
- - Constraint satisfaction problems (CSPs):
-     - A special subset of search problems
-     - State is defined by ***variables Xᵢ***  with values from a ***domain D*** (sometimes D depends on i)
-     - Successor functions now are things like assign a new variable.
-     - Goal test is a ***set of constraints*** which specify allowable combinations of values for subsets of variables
- - Allows useful general-purpose algorithms with more power than standard search algorithms
+    - Goal test can be any function over states
+    - Successor function can also be anything
+- Constraint satisfaction problems (CSPs):
+    - A special subset of search problems
+    - State is defined by ***variables Xᵢ***  with values from a ***domain D*** (sometimes D depends on i)
+    - Successor functions now are things like assign a new variable.
+    - Goal test is a ***set of constraints*** which specify allowable combinations of values for subsets of variables
+- Allows useful general-purpose algorithms with more power than standard search algorithms
 
 <h2 id="7c497b01fb991be051180f4dd6bc4dfd"></h2>
 
@@ -105,13 +104,13 @@
 
 ![](../imgs/CS188_map_coloring.png)
 
- - Variables: WA, NT, Q, NSW, V, SA, T
- - Domains: D = {red, green, blue}
- - Constraints: adjacent regions must have different colors
-     - Implicit: WA ≠ NT 
-     - Explicit: (WA, NT) ∈ { (red,green),(red,blue), ... }
- - Solutions are assignments where every variable takes value on the domain that satisfies all constraints, e.g.
-     - {WA=red, NT=green, Q=red, NSW=green, V=red, SA=blue, T=green}
+- Variables: WA, NT, Q, NSW, V, SA, T
+- Domains: D = {red, green, blue}
+- Constraints: adjacent regions must have different colors
+    - Implicit: WA ≠ NT 
+    - Explicit: (WA, NT) ∈ { (red,green),(red,blue), ... }
+- Solutions are assignments where every variable takes value on the domain that satisfies all constraints, e.g.
+    - {WA=red, NT=green, Q=red, NSW=green, V=red, SA=blue, T=green}
 
 <h2 id="aee23a02cf0a428f8a3380804926c5ba"></h2>
 
@@ -122,24 +121,24 @@
 
 Formulation 1:
 
- - Variables: Xᵢⱼ
- - Domains: {0,1}
- - Constraints
-     - ∀i,j,k (Xᵢⱼ, X<sub>ik</sub>) ∈ { (0,0), (0,1), (1,0) }
-     - ∀i,j,k (Xᵢⱼ, X<sub>kj</sub>) ∈ { (0,0), (0,1), (1,0) }
-     - ∀i,j,k (Xᵢⱼ, X<sub>i+k, j+k</sub>) ∈ { (0,0), (0,1), (1,0) }
-     - ∀i,j,k (Xᵢⱼ, X<sub>i+k, j-k</sub>) ∈ { (0,0), (0,1), (1,0) }
-     - Σ Xᵢⱼ = N
+- Variables: Xᵢⱼ
+- Domains: {0,1}
+- Constraints
+    - ∀i,j,k (Xᵢⱼ, X<sub>ik</sub>) ∈ { (0,0), (0,1), (1,0) }
+    - ∀i,j,k (Xᵢⱼ, X<sub>kj</sub>) ∈ { (0,0), (0,1), (1,0) }
+    - ∀i,j,k (Xᵢⱼ, X<sub>i+k, j+k</sub>) ∈ { (0,0), (0,1), (1,0) }
+    - ∀i,j,k (Xᵢⱼ, X<sub>i+k, j-k</sub>) ∈ { (0,0), (0,1), (1,0) }
+    - Σ Xᵢⱼ = N
 
 
 Formulation 2:
 
- - Variables: Q<sub>k</sub>
-     - in each row , the value is going to be where the Queen for that row is.
- - Domains: {1,2,3, ... , N } 
- - Constraints:
-     - Implicit: ∀i,j non-threatening(Qᵢ,Qⱼ) 
-     - Explicit: (Q₁,Q₂) ∈ { (1,3),(1,4), ... } , ...
+- Variables: Q<sub>k</sub>
+    - in each row , the value is going to be where the Queen for that row is.
+- Domains: {1,2,3, ... , N } 
+- Constraints:
+    - Implicit: ∀i,j non-threatening(Qᵢ,Qⱼ) 
+    - Explicit: (Q₁,Q₂) ∈ { (1,3),(1,4), ... } , ...
 
 
 <h2 id="5e3fadab67cd58dfc836b52e0eec6403"></h2>
@@ -151,12 +150,12 @@ Formulation 2:
 
 
 
- - Binary CSP: 
-     - each constraint relates (at most) two variables
- - Binary constraint graph: 
-     - nodes are variables, arcs show constraints
- - General-purpose CSP algorithms use the graph structure to speed up search. 
-     - E.g., Tasmania is an independent subproblem!
+- Binary CSP: 
+    - each constraint relates (at most) two variables
+- Binary constraint graph: 
+    - nodes are variables, arcs show constraints
+- General-purpose CSP algorithms use the graph structure to speed up search. 
+    - E.g., Tasmania is an independent subproblem!
 
 
 <h2 id="e4f09537d31b275d624175f497d7a7a0"></h2>
@@ -166,14 +165,14 @@ Formulation 2:
 
 ![](../imgs/cs188_Cryptarithmetic.png)
 
- - Variables:
-     - F T U W R O X₁ X₂ X₃
- - Domains:
-     - { 0,1,2,3,4,5,6,7,8,9 }
- - Constraints:
-     - all diff ( F T U W R O  )
-     - O + O = R + 10·X₁   进位
-     - ...
+- Variables:
+    - F T U W R O X₁ X₂ X₃
+- Domains:
+    - { 0,1,2,3,4,5,6,7,8,9 }
+- Constraints:
+    - all diff ( F T U W R O  )
+    - O + O = R + 10·X₁   进位
+    - ...
 
 ![](../imgs/cs188_Cryptarithmetic_graph.png)
 
@@ -186,15 +185,15 @@ there are boxes which are constraints and the boxes are connected to all of the 
 
 ![](../imgs/cs188_example_sudoku.png)
 
- - Variablels:
-     - Each (open) square
- - Domains:
-     - { 1,2, ... , 9 }
- - Constraints:
-     - 9-way alldiff for each columen
-     - 9-way alldiff for each row
-     - 9-way alldiff for each region
-     - (or can have a bunch of pairwise inequality constraints)
+- Variablels:
+    - Each (open) square
+- Domains:
+    - { 1,2, ... , 9 }
+- Constraints:
+    - 9-way alldiff for each columen
+    - 9-way alldiff for each row
+    - 9-way alldiff for each region
+    - (or can have a bunch of pairwise inequality constraints)
 
 
 <h2 id="de9c82c8eb4d71f6d701b657ce8528b9"></h2>
@@ -203,8 +202,8 @@ there are boxes which are constraints and the boxes are connected to all of the 
 ### Example: The Waltz Algorithm
 
 
- - The Waltz algorithm is for interpreting line drawings of solid polyhedra as 3D objects
- - An early example of an AI computation posed as a CSP 
+- The Waltz algorithm is for interpreting line drawings of solid polyhedra as 3D objects
+- An early example of an AI computation posed as a CSP 
  
 - ![](../imgs/cs188_Waltz_algorithm.png)
     - those 3 dimensional-ish drawing here ,
@@ -212,11 +211,11 @@ there are boxes which are constraints and the boxes are connected to all of the 
 
 Approach:
  
- - Each intersection is a variable
+- Each intersection is a variable
     - the values are sort of going to be things like it's an outie verusu it's an innie
- - Adjacent intersections impose constraints on each other
+- Adjacent intersections impose constraints on each other
     - the constraints are something like that if 2 things are connected, you can't have 1 convex and the other is concave ? 
- - Solutions are physically realizable 3D interpretations
+- Solutions are physically realizable 3D interpretations
 
 <h2 id="b9434fb596306e69d9867441d7d9fa5f"></h2>
 
@@ -228,7 +227,7 @@ Approach:
 
 ### Varieties of CSPs
 
- - Discrete Variables
+- Discrete Variables
     - Finite domains
         - Size d means O(dⁿ) complete assignments
         - E.g., Boolean CSPs, including Boolean satisfiability (NP-complete)
@@ -236,7 +235,7 @@ Approach:
         - E.g., job scheduling, variables are start/end times for each job
         - Linear constraints solvable, nonlinear undecidable
 
- - Continuous variables
+- Continuous variables
     - E.g., start/end times for Hubble Telescope observations
     - Linear constraints solvable in polynomial time by LP methods (see cs170 for a bit of this theory)
 
@@ -245,7 +244,7 @@ Approach:
 
 ### Varieties of Constraints
 
- - Varieties of Constraints
+- Varieties of Constraints
     - Unary constraints involve a single variable (equivalent to reducing domains), e.g.:
         - SA ≠ green
     - Binary constraints involve pairs of variables, e.g.:
@@ -269,8 +268,8 @@ Approach:
 
 ### Standard Search Formulation
 
- - Standard search formulation of CSPs
- - States defined by the values assigned so far (partial assignments)
+- Standard search formulation of CSPs
+- States defined by the values assigned so far (partial assignments)
     - Initial state: 
         - the empty assignment, {}
     - Successor function: 
@@ -291,21 +290,21 @@ We’ll start with the straightforward, naïve approach, then improve it
 
 ### Backtracking Search 
 
- - Backtracking search is the basic ***uninformed*** algorithm for solving CSPs
- - Idea 1: One variable at a time
+- Backtracking search is the basic ***uninformed*** algorithm for solving CSPs
+- Idea 1: One variable at a time
     - Variable assignments are commutative, so fix ordering
     - I.e., [WA = red then NT = green] same as [NT = green then WA = red]
     - Only need to consider assignments to a single variable at each step
 
- - Idea 2: Check constraints as you go
+- Idea 2: Check constraints as you go
     - I.e. consider only values which do not conflict previous assignments
     - Might have to do some computation to check the constraints
     - “Incremental goal test”
 
- - Depth-first search with these two improvements
+- Depth-first search with these two improvements
     is called backtracking search (not the best name)
 
- - Can solve n-queens for n `<= 25`
+- Can solve n-queens for n `<= 25`
 
 ![](../imgs/cs188_backtrack_search_example.png)
 
@@ -342,15 +341,15 @@ function RECURSIVE-BACKTRACKING( assignment, csp ) return soln/failure
 
 ### Improving Backtracking
 
- - General-purpose ideas give huge gains in speed
- - Ordering:
+- General-purpose ideas give huge gains in speed
+- Ordering:
     - Which variable should be assigned next?  变量顺序
     - In what order should its values be tried?  值选择顺序
- - Filtering: 
-     - Can we detect inevitable failure early?
- - Structure: 
-     - Can we exploit the problem structure?
-     - Do things like notice tasmanis separate and solve it separately
+- Filtering: 
+    - Can we detect inevitable failure early?
+- Structure: 
+    - Can we exploit the problem structure?
+    - Do things like notice tasmanis separate and solve it separately
 
 ![](../imgs/cs188_CSP_order_filter.png)
 
@@ -632,16 +631,16 @@ So here are steps for solving CPS with enforcing arc consistency:
 
 ## Reminder: CSPs
 
- - CSPS:
-     - Variables
-     - Domains
-     - Constraints
+- CSPS:
+    - Variables
+    - Domains
+    - Constraints
          - Implicit ( provide code to compute )
          - Explicit ( provide a list of the legal tuples )
          - Unary / Binary / N-ary
- - Goals:
-     - Here : find any solution
-     - Also:  find all , find best , etc.
+- Goals:
+    - Here : find any solution
+    - Also:  find all , find best , etc.
 
 
 <h2 id="8bba60b06aea42c1d4246dd17c987e0b"></h2>
@@ -649,15 +648,17 @@ So here are steps for solving CPS with enforcing arc consistency:
 
 ## K-Consistency
 
- - Increasing degrees of consistency
-     - 1-Consistency (Node Consistency): Each single node’s domain has a value which meets that node’s unary constraints
+- Increasing degrees of consistency
+    - 1-Consistency (Node Consistency): Each single node’s domain has a value which meets that node’s unary constraints
         - sometimes called node-consistency.
         - every node's domain has at least one value that meets that node's consitraints
         - basically just means you enfore unary constraints
-     - 2-Consistency (Arc Consistency): For each pair of nodes, any consistent assignment to one can be extended to the other
-     - K-Consistency: For each k nodes, any consistent assignment to k-1 can be extended to the kth node.
- - Higher k more expensive to compute
- - (You need to know the k=2 case: arc consistency)
+    - 2-Consistency (Arc Consistency): For each pair of nodes, any consistent assignment to one can be extended to the other
+    - K-Consistency: For each k nodes, any consistent assignment to k-1 can be extended to the kth node.
+        - Arc-consistency says, if you can get one assigned, you can get 2 assigned
+        - K-consistency says , if you can get k-1 assigned, then you can get  k assigned. It's sort of mathematically a little weird, because it assumes that you can get to k-1, but who says you actually can? There is a stronger notion called strong k-consistency.
+- Higher k more expensive to compute
+- (You need to know the k=2 case: arc consistency)
 
 ![](../imgs/cs188_k-consitency.png)
 
@@ -666,16 +667,16 @@ So here are steps for solving CPS with enforcing arc consistency:
 
 ### Strong K-Consistency
 
- - Strong k-consistency: also k-1, k-2, … 1 consistent
- - Claim: **strong n-consistency means we can solve without backtracking**!
- - Why?
-     - Choose any assignment to any variable
-     - Choose a new variable
-     - By 2-consistency, there is a choice consistent with the first
-     - Choose a new variable
-     - By 3-consistency, there is a choice consistent with the first 2
-    …
- - Lots of middle ground between arc consistency and n-consistency!  (e.g. k=3, called path consistency)
+- Strong k-consistency: also k-1, k-2, … 1 consistent
+- Claim: **strong n-consistency means we can solve without backtracking**!
+- Why?
+    - Choose any assignment to any variable
+    - Choose a new variable
+    - By 2-consistency, there is a choice consistent with the first
+    - Choose a new variable
+    - By 3-consistency, there is a choice consistent with the first 2
+    - …
+- Lots of middle ground between arc consistency and n-consistency!  (e.g. k=3, called path consistency)
 
 
 <h2 id="dc4c71563b9bc39a65be853457e6b7b6"></h2>
@@ -705,10 +706,10 @@ How do we tell we have independence to solve problems ? You can do a connected c
 
 This is RARE to actually see separate subproblems. So let's see if we can come up with some methods that are more broadly applicable.
 
- - Extreme case: independent subproblems
+- Extreme case: independent subproblems
     - Example: Tasmania and mainland do not interact
- - Independent subproblems are identifiable as connected components of constraint graph
- - Suppose a graph of n variables can be broken into subproblems of only c variables:
+- Independent subproblems are identifiable as connected components of constraint graph
+- Suppose a graph of n variables can be broken into subproblems of only c variables:
     - Worst-case solution cost is O((n/c)(d<sup>c</sup>)), linear in n
     - E.g., n = 80, d = 2, c =20
     - 2⁸⁰ = 4 billion years at 10 million nodes/sec
@@ -728,21 +729,21 @@ Here is a case of a constraint graph has tree structure which means no loops, no
 
 It is a theorem that if the constraint graph has no loops then the CSP can be solved in time that is linear in the size of graph and quadratic in the size of domains.  That's so much better thatn general CSPs worst exponential.
 
- - Theorem: if the constraint graph has no loops, the CSP can be solved in O(n·d²) time
+- Theorem: if the constraint graph has no loops, the CSP can be solved in O(n·d²) time
     - Compare to general CSPs, where worst-case time is O(dⁿ)
- - This property also applies to probabilistic reasoning (later): 
-     - an example of the relation between syntactic restrictions and the complexity of reasoning
+- This property also applies to probabilistic reasoning (later): 
+    - an example of the relation between syntactic restrictions and the complexity of reasoning
 
 ---
 
- - Algorithm for solving a tree-structured CSPs:
-     - 1. Order: Choose a root variable, order variables so that parents precede children
+- Algorithm for solving a tree-structured CSPs:
+    - 1. Order: Choose a root variable, order variables so that parents precede children
          - the first step is to take this tree structure and order it.
          - It means you pick a root variable , any variable works , so you grab the CSP by some root variable you gotta pick up by its anchor and that everything else hanging down. (拎住A 提起来)
          - ![](../imgs/cs188_tree_structure_order.png)
-     - 2. Remove backward: For i = n : 2, apply RemoveInconsistent(Parent(Xᵢ),Xᵢ)
-     - 3. Assign forward: For i = 1 : n, assign Xᵢ consistently with Parent(Xᵢ)
- - Runtime: O(n·d²) 
+    - 2. Remove backward: For i = n : 2, apply RemoveInconsistent(Parent(Xᵢ),Xᵢ)
+    - 3. Assign forward: For i = 1 : n, assign Xᵢ consistently with Parent(Xᵢ)
+- Runtime: O(n·d²) 
 
 **因为 step3 赋值是有顺序的，所以 consistency check 简单了**.
 
@@ -766,13 +767,13 @@ This algorithm guarantees you that in this forward assignment phase there will a
 
 Am I sure it is enough just kind of enforce consistency of the arcs once ?
 
- - Claim 1: After backward pass, all root-to-leaf arcs are consistent
- - Proof: Each X→Y was made consistent at one point and Y’s domain could not have been reduced thereafter (because Y’s children were processed before Y)
-     - ![](../imgs/cs188_tree_structured_cps_consistency_proof.png)
- - Claim 2: If root-to-leaf arcs are consistent, forward assignment will not backtrack
- - Proof: Induction on position
- - This algorithm will not work with cycles in the constraint graph
- - Note: we’ll see this basic idea again with Bayes’ nets
+- Claim 1: After backward pass, all root-to-leaf arcs are consistent
+- Proof: Each X→Y was made consistent at one point and Y’s domain could not have been reduced thereafter (because Y’s children were processed before Y)
+    - ![](../imgs/cs188_tree_structured_cps_consistency_proof.png)
+- Claim 2: If root-to-leaf arcs are consistent, forward assignment will not backtrack
+- Proof: Induction on position
+- This algorithm will not work with cycles in the constraint graph
+- Note: we’ll see this basic idea again with Bayes’ nets
 
 
 <h2 id="709ac339582a9376bc2eeca7e10d07cc"></h2>
@@ -799,11 +800,11 @@ So we get a simple graph once we instantiate SA and then remove it.
 
 So the algorithm we have for making something that is nearly tree-structured into a tree structure is called  ***cut-set*** conditioning.
 
- - Conditioning: 
-     - instantiate a variable, prune (修剪) its neighbors' domains
- - Cutset conditioning: 
-     - instantiate (in all ways) a set of variables such that the remaining constraint graph is a tree
- - Cutset size c gives runtime O( (d<sup>c</sup>) (n-c) d² ), very fast for small c
+- Conditioning: 
+    - instantiate a variable, prune (修剪) its neighbors' domains
+- Cutset conditioning: 
+    - instantiate (in all ways) a set of variables such that the remaining constraint graph is a tree
+- Cutset size c gives runtime O( (d<sup>c</sup>) (n-c) d² ), very fast for small c
 
 
 
@@ -824,9 +825,9 @@ Finding smallest cut-set is np-hard !
 
 Tree Decomposition is another approach :
 
- - Idea: create a tree-structured graph of mega-variables
- - Each mega-variable encodes part of the original CSP
- - Subproblems overlap to ensure consistent solutions
+- Idea: create a tree-structured graph of mega-variables
+- Each mega-variable encodes part of the original CSP
+- Subproblems overlap to ensure consistent solutions
 
 ![](../imgs/cs188_tree_decomposition.png)
 
@@ -842,13 +843,13 @@ Tree Decomposition is another approach :
 
 ### Iterative Algorithms for CSPs
 
- - Local search methods typically work with “complete” states, i.e., all variables assigned
- - To apply to CSPs:
-     - Algorithm starts by assigning some value to each of the variables
+- Local search methods typically work with “complete” states, i.e., all variables assigned
+- To apply to CSPs:
+    - Algorithm starts by assigning some value to each of the variables
         - ignoring the constraints when doing so
-     - No fringe!  Live on the edge.
-     - ![](../imgs/cs188_iterative_algorithm.png)
- - while at least one constraint is violated,  repeat: 
+    - No fringe!  Live on the edge.
+    - ![](../imgs/cs188_iterative_algorithm.png)
+- while at least one constraint is violated,  repeat: 
     - Variable selection: 
         - randomly select any conflicted variable
     - Value selection: min-conflicts heuristic:
@@ -862,11 +863,11 @@ Tree Decomposition is another approach :
 
 ![](../imgs/cs188_iterative_algorithm_4-queens.png)
 
- - States: 
-     - 4 queens in 4 columns (4⁴ = 256 states)
- - Operators: move queen in column
- - Goal test: no attacks
- - Evaluation: c(n) = number of attacks
+- States: 
+    - 4 queens in 4 columns (4⁴ = 256 states)
+- Operators: move queen in column
+- Goal test: no attacks
+- Evaluation: c(n) = number of attacks
 
 ---
 
@@ -883,9 +884,9 @@ Tree Decomposition is another approach :
 
 ### Performance of Min-Conflicts
 
- - Given random initial state, can solve n-queens in almost constant time for arbitrary n with high probability (e.g., n = 10,000,000)!
- - The same appears to be true for any randomly-generated CSP except in a narrow range of the ratio
- - ![](../imgs/cs188_performance_of_min_conflicts.png)
+- Given random initial state, can solve n-queens in almost constant time for arbitrary n with high probability (e.g., n = 10,000,000)!
+- The same appears to be true for any randomly-generated CSP except in a narrow range of the ratio
+- ![](../imgs/cs188_performance_of_min_conflicts.png)
 
 Very few constraints  and ver many  constraints are both great.  There's a magical critical ratio where things suddenly get really really hard because it's kind of just constrained and often just really tough. 
 
@@ -900,15 +901,15 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
 
 ## Summary: CSPs
 
- - CSPs are a special kind of search problem:
+- CSPs are a special kind of search problem:
     - States are partial assignments
     - Goal test defined by constraints
- - Basic solution:  backtracking search
- - Speed-ups:
-     - Ordering
-     - Filtering 
-     - Structure
- - ***Iterative min-conflicts is often effective in practice***
+- Basic solution:  backtracking search
+- Speed-ups:
+    - Ordering
+    - Filtering 
+    - Structure
+- ***Iterative min-conflicts is often effective in practice***
 
 
 <h2 id="e1ea5bc107355233f10e2288fe7fc0ae"></h2>
@@ -918,30 +919,30 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
 
 ![](../imgs/cs188_local_search.png)
 
- - Tree search keeps unexplored alternatives on the fringe (ensures completeness)
-     - So far the search algorithms we've talked about is not local. They have a fringe where you trying some particular branch of the tree and effective workout you went back to the fringe and you tried your other backup strategies.  The fringe is a safety net.
- - Local search: improve a single option until you can’t make it better (no fringe!)
-     - In local search you don't have the safety net.  You got one position that you are currently at and you're trying to hill climb in some way. 
- - New successor function: local changes
-     - You have a new idea of a successor function. The successor function now does not take a plan and extend the plan , instead it takes a complete assignment of some kind and modifies it.  Your successor function is more about modification than about extension.
-     - ![](../imgs/cs188_local_search_local_change.png)
- - Generally much faster and more memory efficient (but incomplete and suboptimal)
+- Tree search keeps unexplored alternatives on the fringe (ensures completeness)
+    - So far the search algorithms we've talked about is not local. They have a fringe where you trying some particular branch of the tree and effective workout you went back to the fringe and you tried your other backup strategies.  The fringe is a safety net.
+- Local search: improve a single option until you can’t make it better (no fringe!)
+    - In local search you don't have the safety net.  You got one position that you are currently at and you're trying to hill climb in some way. 
+- New successor function: local changes
+    - You have a new idea of a successor function. The successor function now does not take a plan and extend the plan , instead it takes a complete assignment of some kind and modifies it.  Your successor function is more about modification than about extension.
+    - ![](../imgs/cs188_local_search_local_change.png)
+- Generally much faster and more memory efficient (but incomplete and suboptimal)
 
 <h2 id="3b09835fc58a6f4c68cdf9d702bb59c6"></h2>
 
 
 ### Hill Climbing
 
- - Simple, general idea:
+- Simple, general idea:
     - Start wherever
     - Repeat: move to the best neighboring state
     - If no neighbors better than current, quit
- - What’s bad about this approach?
-     - Complete ? No. 
+- What’s bad about this approach?
+    - Complete ? No. 
     - Optimal ? No.
     - may reach local maximum.
- - What’s good about it?
-     - you can start anywhere you can do the best you can and there are a wide range of problems in the real world where kind of any solution will work , and you'd like to make it as good as possible and you know you can't get to the optimal solution.
+- What’s good about it?
+    - you can start anywhere you can do the best you can and there are a wide range of problems in the real world where kind of any solution will work , and you'd like to make it as good as possible and you know you can't get to the optimal solution.
 
 <h2 id="6d905a5baf3b8995646bc1c96ff9bae4"></h2>
 
@@ -963,15 +964,15 @@ You lower the temperature and you take these downhill steps less and less often.
 You will spend more times at higher places on the mountain. So essentially *e* here is your fitness function. If the fitness function is high you'll spend more time up there because it takes you longer to bounce.  As the temperature decreases you tend to get stuck where you are.  You get the beautiful guarantee that such as T goes to 0 you got to do it right then you will converge to the optimal state. And you will spend kind of infinitely much time . 
 
 
- - Idea:  Escape local maxima by allowing downhill moves
+- Idea:  Escape local maxima by allowing downhill moves
     - But make them rarer as time goes on
 
 ![](../imgs/cs188_simulated_annealing_function.png)
 
- - Theoretical guarantee:
-     - Stationary distribution:  ![](../imgs/cs188_simulated_annealing_stationary_distribution.png)
-     - If T decreased slowly enough, will converge to optimal state!
- - Sounds like magic, but reality is reality:
+- Theoretical guarantee:
+    - Stationary distribution:  ![](../imgs/cs188_simulated_annealing_stationary_distribution.png)
+    - If T decreased slowly enough, will converge to optimal state!
+- Sounds like magic, but reality is reality:
     - The more downhill steps you need to escape a local optimum, the less likely you are to ever make them all in a row
     - People think hard about ridge operators which let you jump around the space in better ways
 
@@ -988,10 +989,10 @@ You keep the best hypotheses at each step . In adition to just keeping the best 
 
 ![](../imgs/cs188_genetic_algorithm.png)
 
- - Genetic algorithms use a natural selection metaphor
+- Genetic algorithms use a natural selection metaphor
     - Keep best N hypotheses at each step (selection) based on a fitness function
     - Also have pairwise crossover operators, with optional mutation to give variety
- - Possibly the most misunderstood, misapplied (and even maligned) technique around
+- Possibly the most misunderstood, misapplied (and even maligned) technique around
 
 
 <h2 id="e8cba6398fc6216fef8e64d0a854ea7f"></h2>

@@ -42,6 +42,9 @@
  - [随机数](Dev_Random.md) , [random number](random_number.md)
 
 
+<h2 id="682352d7b7d88f46edac62cd97b58db1"></h2>
+
+
 # 3Blue1Brown
 
 - Lockdown Math
