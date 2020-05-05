@@ -721,7 +721,7 @@ This is RARE to actually see separate subproblems. So let's see if we can come u
 
 ## Tree-Structured CSPs
 
-Here is a case where your graph doesn't have to be broken into pieces but it's still simple in some way and this is a very important case that will see coming up over and over in this class. That's the case where you constraint graph it's not separated into pieces but it's not a general graph either.   
+Here is a case where your graph doesn't have to be broken into pieces but it's still simple in some way and this is a very important case that will see coming up over and over in this class. That's the case where you constraint graph it's not separated into pieces but it's not a general graph either.
 
 Here is a case of a constraint graph has tree structure which means no loops, no cycles in the constraint graph . 
 
@@ -737,29 +737,38 @@ It is a theorem that if the constraint graph has no loops then the CSP can be so
 ---
 
 - Algorithm for solving a tree-structured CSPs:
-    - 1. Order: Choose a root variable, order variables so that parents precede children
-         - the first step is to take this tree structure and order it.
-         - It means you pick a root variable , any variable works , so you grab the CSP by some root variable you gotta pick up by its anchor and that everything else hanging down. (拎住A 提起来)
-         - ![](../imgs/cs188_tree_structure_order.png)
-    - 2. Remove backward: For i = n : 2, apply RemoveInconsistent(Parent(Xᵢ),Xᵢ)
-    - 3. Assign forward: For i = 1 : n, assign Xᵢ consistently with Parent(Xᵢ)
+    1. Order: Choose a root variable, order variables so that parents precede children
+        - the first step is to take this tree structure and order it.
+        - It means you pick a root variable , any variable works , so you grab the CSP by some root variable you gotta pick up by its anchor and that everything else hanging down. (拎住A 提起来)
+        - ![](../imgs/cs188_tree_structure_order.png)
+    2. Remove backward: For i := n to 2, apply RemoveInconsistent(Parent(Xᵢ),Xᵢ)
+        - once you've ordered it, we do a backwards path. 
+        - we start at F, and we go leftward. And for each node in this pass, we are going to make the arc which pointing to that node consistent.
+    3. Assign forward: For i := 1 to n, assign Xᵢ consistently with Parent(Xᵢ)
+
 - Runtime: O(n·d²) 
 
-**因为 step3 赋值是有顺序的，所以 consistency check 简单了**.
 
-let's make there arcs consistent . We will start with F , and we will work our way leftward.  When we visit F, we gonna say what arcs comes into you , how many arcs can come into F ?  1 , because it's a tree , ***VERY IMPORTANT*** !
+<details>
+<summary>
+Example: Let's make there arcs consistent !
+</summary>
+
+We will start with F , and we will work our way leftward.  When we visit F, we gonna say what arcs comes into you , how many arcs can come into F ?  1 , because it's a tree , ***VERY IMPORTANT*** !
 
 So I look at D->F , so I remove blue in D.
 
 Now we go to E , D->E , that arc is already consistent.
 
-Noe I go to D,  B->D ,that arc is already consistent.
+Now I go to D,  B->D ,that arc is already consistent.
 
 B->C ,  remove green in B.
 
 A->B , remove blue in A.
 
 Now start assigning. When assigning , everything is safe. 
+
+</details>
 
 This algorithm guarantees you that in this forward assignment phase there will always be a consistent solution at each point you pick it and you move on. Which means ***no backtracking*** and so this whole thing was pretty efficient.
 
