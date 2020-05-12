@@ -305,7 +305,7 @@ yum list docker-ce.x86_64  --showduplicates | sort -r
 
  [镜像加速](https://docs.docker.com/registry/recipes/mirror/#use-case-the-china-registry-mirror)
 
- [set docker proxy](https://docs.docker.com/engine/admin/systemd/#httphttps-proxy)
+ [set docker daemon proxy](https://docs.docker.com/engine/admin/systemd/#httphttps-proxy)
 
 ---
 
@@ -2010,7 +2010,7 @@ Explanation:
 <h2 id="7a5c94971896bfbf1a19053004e56cc1"></h2>
 
 
-## docker proxy for Centos7
+## docker daemon proxy for Centos7
 
  - you need set proxy info in 
      - `/etc/systemd/system/docker.service.d/http-proxy.conf`
@@ -2025,6 +2025,12 @@ Environment="HTTP_PROXY=http://host:port/"
 ```
 [Service]                                        
 Environment="HTTPS_PROXY=https://host:port/"  
+```
+
+## proxy when docker build 
+
+```bash
+docker build ... --build-arg http_proxy=http://host:port --build-arg http_proxys=https://host:port
 ```
 
 <h2 id="5ef5bd47a5282fb1ad1694bbb5f46954"></h2>
