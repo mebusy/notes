@@ -815,6 +815,7 @@ So the algorithm we have for making something that is nearly tree-structured int
     - instantiate (in all ways) a set of variables such that the remaining constraint graph is a tree
 - Cutset size c gives runtime O( (d<sup>c</sup>) (n-c) d² ), very fast for small c
 
+Question: Can I find the smallest custset that will turn my graph into a tree? 
 
 
 <h2 id="c81f59e20d96cc96fb1a78af50455703"></h2>
@@ -847,23 +848,42 @@ Tree Decomposition is another approach :
 
 ## Iterative Improvement
 
+All of the things that we've talked about so far are ways of solving CSPs that basically boil down to search. 
+
+Iterative improvement is the frist time we're going to see a randomized algorithm. And it works in a very, vary different way.
+
+
 <h2 id="846761c44202fc6587390df7e27e33f8"></h2>
 
 
 ### Iterative Algorithms for CSPs
 
-- Local search methods typically work with “complete” states, i.e., all variables assigned
+- Iterative Algorithms for CSPs is our first example of a local search.
+- Local search methods typically work with **“complete”** states, i.e., all variables assigned
 - To apply to CSPs:
-    - Algorithm starts by assigning some value to each of the variables
+    1. Algorithm starts by assigning some value to each of the variables
         - ignoring the constraints when doing so
+    2. Take an assignment with unsatisfied constraints
+    3. Operators reassign variable values
+        - ![](../imgs/cs188_iterative_algorithm.png)
     - No fringe!  Live on the edge.
-    - ![](../imgs/cs188_iterative_algorithm.png)
-- while at least one constraint is violated,  repeat: 
+        - There is no backup plan, like the queue in search problem.
+
+- Algorithm: While not solved, while at least one constraint is violated,  repeat: 
     - Variable selection: 
         - randomly select any conflicted variable
     - Value selection: min-conflicts heuristic:
         - Choose a value that violates the fewest constraints( among all possible selections of values in its domain )
         - I.e., hill climb with h(n) = total number of violated constraints
+
+- Questions
+    - Do you risk introducing a new conflict ? Yes
+    - Can this thing run forever ? Yes
+    - Will it give you an optimal solution if there are waits ? No.
+    - Do you have any guarantee whatever ? No
+    - **BUT** it's very fast very often.
+
+
 
 <h2 id="d0813c5b61b7d928b7b0bd53bc40b3e2"></h2>
 
@@ -897,7 +917,9 @@ Tree Decomposition is another approach :
 - The same appears to be true for any randomly-generated CSP except in a narrow range of the ratio
 - ![](../imgs/cs188_performance_of_min_conflicts.png)
 
-Very few constraints  and ver many  constraints are both great.  There's a magical critical ratio where things suddenly get really really hard because it's kind of just constrained and often just really tough. 
+Very few constraints  and ver many constraints are both great. Why many constraints is easy ? The solution turns out very quickly, you can chase your solution down really quickly.
+
+There's a magical critical ratio where things suddenly get really really hard because it's kind of just constrained and often just really tough. 
 
 But you got your problem ,your prolbem probably not randomly generated : you were there (critical ratio) too.
 
@@ -919,6 +941,7 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
     - Filtering 
     - Structure
 - ***Iterative min-conflicts is often effective in practice***
+    - though, you have almost no guarantees.
 
 
 <h2 id="e1ea5bc107355233f10e2288fe7fc0ae"></h2>
@@ -965,18 +988,29 @@ But you got your problem ,your prolbem probably not randomly generated : you wer
 
 ### Simulated Annealing 退火
 
-You have some current state just like any local search algorithm and you're going to look at the successors just like any local search algorithm. The difference is you have this other concept of a temperature. And the idea is when the temperature is high you're bouncing around like crazy and essentially you're going to go to a neighbor whether it's better than you or not. So what you do is you pick a random successor not the best success. You figure out is it better or worse than me . It's better than me I'll take it. If it's worse than me maybe I'll take it. I'll take it when the temperature is high . So you just kinds of bouncing around like crazy. 
-
-You lower the temperature and you take these downhill steps less and less often. But if it's only one downhill step away from making huge progress you know you'll sit there bouncing around for a while eventually escaped and continue going.
-
-
-You will spend more times at higher places on the mountain. So essentially *e* here is your fitness function. If the fitness function is high you'll spend more time up there because it takes you longer to bounce.  As the temperature decreases you tend to get stuck where you are.  You get the beautiful guarantee that such as T goes to 0 you got to do it right then you will converge to the optimal state. And you will spend kind of infinitely much time . 
 
 
 - Idea:  Escape local maxima by allowing downhill moves
     - But make them rarer as time goes on
 
 ![](../imgs/cs188_simulated_annealing_function.png)
+
+You start witn an initial state (current), and you do the following forever. You're never actually down, you just decide to shut it off at some point( if T=0 return ).
+
+You get a temperature schedule. A temperature is just a physics analogy that has to do with how much you're bouncing around. 
+
+And the idea is when the temperature is high you're bouncing around like crazy and essentially you're going to go to a neighbor whether it's better than you or not. 
+
+So what you do is you pick a random successor not the best success. You figure out is it better or worse than me . It's better than me I'll take it. If it's worse than me **maybe** I'll take it. I'll take it when the temperature is high . So you just kinds of bouncing around like crazy. 
+
+You lower the temperature and you take these downhill steps less and less often. 
+
+You will spend more times at higher places on the mountain. So essentially *E* here is your fitness function. If the fitness function is high you'll spend more time up there because it takes you longer to bounce.  As the temperature decreases you tend to get stuck where you are.
+
+You get the beautiful guarantee that such as T goes to 0 you got to do it right then you will converge to the optimal state. And you will spend kind of infinitely much time (more likely stay at there) . 
+
+
+-------
 
 - Theoretical guarantee:
     - Stationary distribution:  ![](../imgs/cs188_simulated_annealing_stationary_distribution.png)
@@ -1012,7 +1046,13 @@ You keep the best hypotheses at each step . In adition to just keeping the best 
 ![](../imgs/cs188_genetic_algorithm_N-queens.png)
 
 
+I have 2 pretty good n-queen solutions. Neither is actually a solution. They both have a small number of conflicts.
 
+So I'm going to slice my board down the middle,  and I'm going to take part of a and part of b, and slam them together. 
+
+Why does this make sense ?
+
+This is an example of not just nudging your thing locally, but just taking entirely different ways of traversing the space.
 
 ---
 
