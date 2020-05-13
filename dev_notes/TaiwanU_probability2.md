@@ -780,7 +780,10 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
             >>> x = scipy.linspace(0,1000,100000)
             >>> pdf = scipy.stats.expon.pdf( x , scale=12 )*scipy.stats.expon.cdf( x , scale=6 ) + 
                 scipy.stats.expon.pdf( x , scale=6 )*scipy.stats.expon.cdf( x , scale=12 )
-            >>> (pdf * delta * x ).sum()  # pdf*delta 近似pmf
+            >>> delta = 1000./100000
+            >>> delta
+            0.01
+            >>> (pdf * delta * x ).sum()  # 应该求积分计算期望值 (这里偷懒了: pdf*delta 近似pmf)
             14.001260126012166
             ```
         - for min(X,Y)
