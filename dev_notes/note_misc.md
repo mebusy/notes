@@ -57,6 +57,25 @@
     }
     ```
 
+### flip bits 
+
+```go
+func Flipbyte(b uint8) uint8 {
+    b = (b & 0xF0) >> 4 | (b & 0x0F) << 4
+    b = (b & 0xCC) >> 2 | (b & 0x33) << 2
+    b = (b & 0xAA) >> 1 | (b & 0x55) << 1
+    return b
+}
+```
+
+## XOR
+
+- x ^ 0 = x
+    - 不变
+- x ^ -1 = ~x 
+    - 等效 各位求反
+- 把 x 第n位 求反 
+    - `x ^ (1<<n)`
 
 <h2 id="eb0862d2232fd2d27e0bf79a231e8841"></h2>
 
