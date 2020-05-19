@@ -154,7 +154,7 @@ full goroutine stack dump
  - 启动 pprof web ui:
 
 ```bash
-$ go tool pprof -http=:8080 profile.out
+$ go tool pprof -http=:8080 [binary] profile.out
 ```
 
 
