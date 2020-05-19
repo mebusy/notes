@@ -162,14 +162,15 @@ $ go tool pprof -http=:8080 profile.out
 <h2 id="a553668c7b1f4095c932a2d77faae894"></h2>
 
 
-## 和测试工具的集成
+## 和go test files 的集成
 
- - go test 命令有两个参数和 pprof 相关，它们分别指定生成的 CPU 和 Memory profiling 保存的文件：
+- go test 命令有两个参数和 pprof 相关，它们分别指定生成的 CPU 和 Memory profiling 保存的文件：
     - -cpuprofile：cpu profiling 数据要保存的文件地址
     - -memprofile：memory profiling 数据要报文的文件地址
- - 比如下面执行测试的同时，也会执行 CPU profiling，并把结果保存在 cpu.prof 文件中：
+- 比如下面执行go test的同时，也会执行 CPU profiling，并把结果保存在 cpu.prof 文件中：
     - `$ go test -bench . -cpuprofile=cpu.prof`
- - 执行结束之后，就会生成 main.test 和 cpu.prof 文件。要想使用 go tool pprof，需要指定的二进制文件就是 main.test。
+- 执行结束之后，就会生成 main.test 和 cpu.prof 文件。要想使用 go tool pprof，需要指定的二进制文件就是 main.test。
+- 等效于上面的CPU profile等 
 
 
 
