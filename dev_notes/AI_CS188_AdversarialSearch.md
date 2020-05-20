@@ -103,6 +103,7 @@ That's not going to work here because we don't control our opponent. So we can't
         - which is true when the game is over and false otherwise. 
         - States where the game has ended are called ***terminal states*** .
     - Terminal Utilities: SxP →R
+        - every outcome of the game will be socred.
         - defines the final numeric value for a game that ends in terminal state ***s*** for a player ***p***
         - This tell us for an end-state how much it is worth to each of the players.
         - In chess, the outcome is a win, loss, or draw, with values +1, 0, or -1
@@ -157,7 +158,7 @@ We image there is  associated values with this. Let's say this is the best possi
 In the case of single-agent , I get to pick any outcome I like.  In this  actual search case , showed as the pic , we should make that value-8 outcome happen.
 
 
-For terminal state the value is known. What about the other ones?  
+For terminal state the value is known. What about the other ones? for example, the previous state of the state with value 8.
 
 well in this state I have a choice I can get 8 or I can get whatever is down below the left path (4-n-6). So I can write the value of the state is defined to be the maximum over the values of its children. 
 
@@ -190,6 +191,8 @@ So we need to think about now what a value is in the case of an adversary. This 
 
 ## Minimax Values
 
+The following example is a very small game. The pacman take a turn, then the ghost take a turn. And then the game ends.
+
 ![](../imgs/CS188_advS_minimaxValues.png)
 
 8 is still gonna be the best outcome we can achieve under perfect play against an optimal adversary. 
@@ -216,6 +219,7 @@ The value of root will be one of { -1,1,0 }.
  - For tic-tac-toe the game tree is relatively small—fewer than 9! = 362, 880 terminal nodes.
  - But for chess there are over 10⁴⁰ nodes, so the game tree is best thought of as a theoretical construct that we cannot realize in the physical world. 
  - But regardless of the size of the game tree, it is MAX's job to search for a good move. We use the term search tree for a tree that is superimposed on the full game tree, and examines enough nodes to allow a player to determine what move to make.
+ - if both players play optimally, the value of root should will 0.
 
 
 
@@ -239,9 +243,7 @@ The value of root will be one of { -1,1,0 }.
 <h2 id="a58343ec090ddd8a61a686ba6cb80359"></h2>
 
 
-## Minimax Implementation
-
- - Dispatch
+## Minimax Implementation (Dispatch)
 
 ```python
 def value(state):
