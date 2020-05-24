@@ -133,6 +133,24 @@ youtube-dl -c --write-auto-sub --sub-lang=en --ignore-errors -f 'bestvideo[ext=m
 ```
 youtube-dl --write-auto-sub --skip-download --sub-lang=en  ...
 ```
+
+## youtube-dl download mp3 audio only
+
+```bash
+youtube-dl -x --audio-format mp3  'your-url'
+```
+
+## using ffmpeg to convert video to mp3 (未验证)
+
+```bash
+To encode a high quality MP3 from an AVI best use -q:a for variable bit rate:
+
+ffmpeg -i sample.avi -q:a 0 -map a sample.mp3
+
+-af 'volume=2'
+
+-q:a for variable bit rate:
+```
  
 <h2 id="ac1edf8d7497b1d5b6039ad9656cdeee"></h2>
 
