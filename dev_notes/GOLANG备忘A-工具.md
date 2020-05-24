@@ -71,7 +71,7 @@ ldflags
 <h2 id="dc4c1d9510e06b1f42e03832e216b351"></h2>
 
 
-### go build injection
+#### go build injection
 
 ```go
 package main
@@ -100,6 +100,11 @@ $ ./git-tester
 Hello world, version: 67b05a31758848e1e5237ad5ae1dc11c22d4e71e
 ```
 
+#### 逃逸分析
+
+```
+go build -gcflags '-m -l'
+```
 
 
 
