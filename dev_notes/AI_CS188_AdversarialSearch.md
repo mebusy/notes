@@ -273,7 +273,9 @@ def value(state):
 ## Minimax Efficiency
 
  - How efficient is minimax?
-    - Just like (exhaustive) DFS
+    - Just like (exhaustive) DFS.
+        - traversing the entire tree, not skiping anything, not prioritizing anything 
+        - just going successor by successor, going deeper, deeper, deeper before its coming back up.
     - Time: O(bᵐ)
     - Space: O(bm)
  - Pacma mple: For chess, b ≈35, m ≈100
