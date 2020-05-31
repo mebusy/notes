@@ -190,31 +190,19 @@ git config --global http.https://github.com.proxy https://127.0.0.1:8001
 git config --global https.https://github.com.proxy https://127.0.0.1:8001
 ```
 
-<h2 id="2a4fb72ead39f0a2aa9fa7a599de7fd9"></h2>
+## delete all commit history in github
 
-
-# git 国内加速
-
-1. 使用[站长工具](http://tool.chinaz.com/dns) 找到下面两个域名 较快的ip
-    - `assets-cdn.github.com`
-    - `github.global.ssl.fastly.net`
-    - `github.map.fastly.net` , pdf loader related
-2. 把查到的ip 加入到 `/etc/hosts`
-    - 
-    ```bash
-    185.199.109.153 assets-cdn.github.com
-    185.199.108.153 assets-cdn.github.com
-    185.199.110.153 assets-cdn.github.com
-    185.199.111.153 assets-cdn.github.com
-
-    69.63.184.14 github.global.ssl.fastly.net
-    31.13.82.1 github.global.ssl.fastly.net
-    ```
-3. 刷新 DNS 缓存
-    - 
-    ```bash
-    sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
-    ```
-
+1. Checkout
+    - `git checkout --orphan latest_branch`
+2. Add all the files
+    - `git add -A`
+3. Commit the changes
+    - `git commit -am "commit message"`
+4. Delete the branch
+    - `git branch -D master`
+5. Rename the current branch to master
+    - `git branch -m master`
+6. Finally, force update your repository
+    - `git push -f origin master`
 
 
