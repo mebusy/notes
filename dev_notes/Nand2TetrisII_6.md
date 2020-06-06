@@ -402,7 +402,7 @@ drawCircle(x,y,r):
 ```
 
 
- - for *drawCircleOutline* , do twice *drawPixel*  instead of *drawCircle*
+ - for *drawCircleOutline* , do twice *drawPixel*  instead of *drawLine*
  - Issue :
     - can potentially lead to overflow
     - to handle , limit r to no greater that 181
