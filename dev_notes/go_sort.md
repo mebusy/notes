@@ -34,8 +34,8 @@ func main() {
 ```go
     s := []float64{4, 2, 3, 1}
     sort.SliceStable(s, func(i, j int) bool {
-    return s[i] > s[j]
-})
+        return s[i] > s[j]
+    })
     fmt.Println(s) // [4 3 2 1]
 ```
 
