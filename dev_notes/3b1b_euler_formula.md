@@ -37,7 +37,11 @@ The thing that makes the equation misleading is that that's not the function. Th
 
 eˣ ≠ e·····e 
 
-This is NOT its convertion. Instead what has emerged in math is that we use eˣ  to be a shorthand for another function, defined to be certain polynomial
+This is NOT its convertion. Instead what has emerged in math is that we use eˣ  to be a shorthand for another function, defined to be certain polynomial.
+
+Whenever we see the eˣ  we acutally think of it a shortant hand for a certain polynomial  exp(x) =  ∑ xᵏ/k!.
+
+![](../imgs/3b1b_ex_polynomial.png)
 
 exp(x) = 1 + x + x²/2 + x³/6 + x⁴/24 + ... + xⁿ/n!A + ...
 

@@ -125,7 +125,7 @@ a | b | c | d
 [TypeScript](dev_notes/typescript.md) |
 [facebook gamebot](dev_notes/createFBapp.md) | 
 [k8s Tutorial,Installation](dev_notes/kuberneters.md) | [腾讯TKE](dev_notes/TencentK8sEngine.md) | [edx intro2K8s](dev_notes/intro2K8s.md) | 
-[帧同步笔记](dev_notes/framelock.md) | [可靠UDP](dev_notes/reliableUDP.md) |
+[帧同步笔记](dev_notes/framelock.md) | 
 
 
 ---
