@@ -13,39 +13,85 @@
 ...menuend
 
 
-<h2 id="a9592bd6610be7f901063c580069e497"></h2>
+# UDP
+
+- 问题
+    1. udp包无序
+    2. 丢包问题
+- 解决
+    1. 服务器/客户端 发送的包都带一个序号，并且对收到的包进行排序
+    2. 一个简单抗丢包策略是 每次发送 前后3帧数据, 使用冗余包来抗丢包.
+        - 如果还是发生了丢包， 服务器可以选择忽略，客户端必须使用 TCP API 从服务器重新拉取丢失的数据.
 
 
-# 帧同步
 
-<h2 id="d262643e7cacb177cde62b3346ad0abd"></h2>
+# 帧同步 Lockstep
+
+几个难点
+
+## 1 客户端计算的一致性
+
+1. 浮点数计算 在不同的平台上结果不一致
+    - 包括 系统提供的数据输，数学库提供的三角函数等等...
+    - 解决方案
+        1. 使用定点数取代浮点数
+        2. 三角函数查表
+        3. 自己实现 PRNG
+    - PS. 浮点数计算的一致性在APP game中是确定存在的，但是在微信小游戏 v8/JSC 虚拟机下是否存在一执行问题，有必要先做个测试。
+2. 一些容器遍历顺序的不确定性, map, dictionary 等等
+    - 逻辑上 不要依赖遍历的顺序
+3. 物理引擎
+    - 慎重使用第三方物理引擎
 
 
-##  客户端计算的一致性
 
-1. 使用定点数取代浮点数
-2. 三角函数查表
-3. 自己实现 PRNG
+## 2 逻辑和显示分离
 
-
-<h2 id="7ddbe15c845fa27a2bab496183042ca6"></h2>
-
-
-## 网络
-
-server负责统一tick，并转发client的指令，通知其他client 
+- 游戏逻辑一定不能依赖于动画之类的美术资源
+- 脱离美术资源，一样可以跑比赛的逻辑。
+- 建议:
+    - 游戏设计成 逻辑驱动可视状态，而不是依赖于它
+    - 游戏设计成 可以使用不同的 time step 进行 update
 
 
-- 网络协议的选择
-    - 基于可靠传输的UDP
-        - UDP上加一层封装，自己去实现丢包处理，消息序列，重传等类似TCP的消息处理方式，保证上层逻辑在处理数据包的时候，不需要考虑包的顺序，丢包等。
-        - 类似实现 Enet, KCP
-        - 不是非常合适在帧同步中使用
-    - 冗余信息的UDP
-        - 需要上层逻辑自己处理丢包，乱序，重传等问题
-        - 两端的消息里面，带有确认帧信息
-            - 比如客户端（C）通知服务器（S）第100帧的数据，S收到后通知C，已收到C的第100帧，如果C一直没收到S的通知（丢包，乱序等原因），就会继续发送第100帧的数据给S，直到收到S的确认信息。
-        - kcp+fec的模式 实现上更好？？？
+3. 让操作流畅
+    - Lockstep 模式下，客户端不能再对玩家的输入 立刻作出反应，而是在某个逻辑帧将操作发送给服务器，等到从服务器那里收到 这个逻辑帧所有玩家的操作后，执行游戏逻辑。
+    - 问题1: 网速慢的玩家会卡到网速快的玩家 。 
+        - 解决方案: 服务器采用 乐观帧同步。
+    - 问题2: 对玩家输入作出反应至少需要等待一个RTT的时间,如果降低操作延迟感?
+        - Predict/Rollback
+            - [Understanding Fighting Game Networking](http://mauve.mizuumi.net/2012/07/05/understanding-fighting-game-networking/)
+        - 开发难度非常大.
+        - 客户端在感知到自己延迟增大的情况下，加速预测
+        - 需要对游戏世界做快照，一旦发生回滚，使用快照立刻恢复游戏世界。
+        - 真实玩家越多, Predict/Rollback 效果越差，因为预测很容易发生错误，会频繁回滚。
+
+
+# Lockstep VS Rollback
+
+- Lockstep
+    - 只发送玩家操作
+    - 直到收到从服务器返回的所有玩家操作后，才开始处理逻辑
+    - 取决于网络情况, 输入被延迟不同的时间
+- Rollback
+    - 只发送玩家操作
+    - 不需要等待服务器的返回数据
+    - 当收到了服务器的数据, 回滚并向前执行游戏逻辑
+
+
+ · | Rollback | Lockstep
+--- | --- | ---
+简单| | Y
+视觉平滑 | | Y
+高效 | | Y 
+低带宽 | Y | Y
+反应灵敏 | Y | 
+延迟 | Y | 
+
+
+
+-------------------------------------------------
+
 
 
 [游戏逻辑回滚](https://zhuanlan.zhihu.com/p/38468615)  适合少数角色联机的，对操作反馈要求非常高的, 比如格斗游戏
@@ -129,7 +175,7 @@ server负责统一tick，并转发client的指令，通知其他client
 simple | | Y
 visually smooth | | Y
 Performant | | Y 
-Robuts | Y | Y 
+Robust | Y | Y 
 Low bandwitdh | Y | Y
 Responsive | Y | 
 Single Frame Latency | Y | 
@@ -138,9 +184,6 @@ Single Frame Latency | Y |
     - Design game systems to drive visual state, *not* depend on it
     - Design systems to update with variable time steps
         - Parametriacally is even better
-    - Everyone should work with debug rollback system enabled
-    - Defer processing until after the rollback window if reasonable 
-    - Bog is no longer a function of a single frame
 
 <h2 id="aa6df57fb6fe377d80b4a257b4a92cba"></h2>
 
@@ -156,16 +199,4 @@ Single Frame Latency | Y |
 - UDP state sync
     - server -> client, world state, packet drop is not essential
     - client -> server, commands is essential, each command packet contains all command from the acknowledged frame.
-
-
-<h2 id="0d98c74797e49d00bcc4c17c9d557a2b"></h2>
-
-
-# 其他
-
-- 通过发送 前后3帧数据，抗丢包
-- 逻辑和显示的分离
-
-http://mauve.mizuumi.net/2012/07/05/understanding-fighting-game-networking/
-
 
