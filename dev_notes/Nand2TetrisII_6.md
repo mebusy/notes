@@ -402,7 +402,8 @@ drawCircle(x,y,r):
 ```
 
 
- - for *drawCircleOutline* , do twice *drawPixel*  instead of *drawCircle*
+ - for *drawCircleOutline* , do twice *drawPixel*  instead of *drawLine*
+    - PS. 不准确  twice *drawPixel* 并不能完全的描出边来，会有断点
  - Issue :
     - can potentially lead to overflow
     - to handle , limit r to no greater that 181

@@ -22,6 +22,7 @@
  18. [go tips](go_tips.md)
  19. [godoc](godoc.md)
  20. [go pprof](golang_pprof.md)
+ 21. [ways to sort in go](go_sort.md)
 
 ---------
 
