@@ -191,7 +191,9 @@ openssl rsa -in config/private_old.pem -out config/private.pem -des3
 
 ## Python NTLM proxyserver
 
-http://ntlmaps.sourceforge.net/
+[ntlm download](http://ntlmaps.sourceforge.net/)
+
+[share-a-proxied-network on MacOSX](https://www.jeffgeerling.com/articles/computing/2010/share-a-proxied-network)
 
 
 
