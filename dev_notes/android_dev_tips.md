@@ -17,109 +17,7 @@
 
 # android dev tips
 
-<h2 id="e0c06a36076f5a0639f1c587a1072b0b"></h2>
 
-
-## TextEdit remove the restrict by android::digits
-
-```java
-EditText text = (EditText)mLayout.findViewById(R.id.exchange_input);
-text.setKeyListener( new EditText( this.context ).getKeyListener() ) ;
-text.setInputType(InputType.TYPE_CLASS_TEXT );
-```
-
-<h2 id="8d305b8ceb34e7bb075ba809c621ba63"></h2>
-
-
-## TextEdit add input filter
-
-```java
-EditText text = (EditText)mLayout.findViewById(R.id.exchange_input);
-text.addTextChangedListener(new LimitInputTextWatcher(text));
-```
-
-```java
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.EditText;
-
-import java.util.HashMap;
-import java.lang.StringBuilder ;
-
-
-public class LimitInputTextWatcher implements TextWatcher {
-    /**
-     * et
-     */
-    private EditText et = null;
-
-    /**
-     * 构造方法
-     *
-     * @param et
-     */
-    public LimitInputTextWatcher(EditText et) {
-        this.et = et;
-        makeCharLimit() ;
-    }
-
-
-    @Override
-    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable editable) {
-        String str = editable.toString();
-        String inputStr = filterString( str );
-        et.removeTextChangedListener(this);
-        // et.setText方法可能会引起键盘变化,所以用editable.replace来显示内容
-        editable.replace(0, editable.length(), inputStr.trim());
-        et.addTextChangedListener(this);
-
-    }
-
-    // TODO
-    String allChars = ... // filter strings
-
-    HashMap<String, Integer> hmap_allChars = new HashMap<String , Integer>();
-    void makeCharLimit() {
-        int nStr = allChars.length() ;
-        for ( int i = 0 ; i< nStr ; i++ ) {
-            String item = allChars.substring( i, i+1  ) ;
-            hmap_allChars.put( item, 1 ) ; 
-        } 
-        // test 
-        // for ( String key :  hmap_allChars.keySet() ) {
-        //     System.out.println( key );   
-        // }
-    }
-    
-    
-    StringBuilder sb = new StringBuilder () ;
-    static final int MAXLENGTH = 8 ;
-    String filterString( String testString  ) {
-        sb.setLength(0);
-        int nStr = testString.length() ;
-        for ( int i = 0 ; i< nStr ; i++ ) {
-            String sub = testString.substring( i, i+1  ) ;
-            // System.out.println( sub );
-            if ( hmap_allChars.containsKey( sub )  ) {
-                sb.append( sub ) ;
-                if(sb.length() >= MAXLENGTH ) break ;
-            }
-        } 
-        return sb.toString() ;
-    }
-
-}
-```
 
 <h2 id="36f510971eecdc6dcd92048cb126f598"></h2>
 
@@ -180,10 +78,23 @@ public static boolean isMainThread() {
         ...
 ```
 
+## Run on UI thread
+
+```java
+	    mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText( mActivity , str, Toast.LENGTH_SHORT ).show();
+            }
+        });
+```
+
 <h2 id="56b786df876f856f3bdbf37f4eca6a40"></h2>
 
 
 ## run on working thread
+
+- more details : Cocos2dxHelper
 
 ```java
     private static Handler mWorkingHandler = null  ;
@@ -228,7 +139,6 @@ dependencies {
 using in your android project
 
 ```java
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -255,6 +165,61 @@ public final class ObjectUtils {
 }
 ```
 
+
+## AsyncTask
+
+- This class was deprecated in API level 30.
+- Use the standard java.util.concurrent or Kotlin concurrency utilities instead.
+
+
+```java
+ private class DownloadFilesTask extends AsyncTask<URL, Integer, Long> {
+     // invoked on the UI thread before the task is executed. 
+     // This step is normally used to setup the task, for instance by showing a progress bar in the user interface.
+    protected void onPreExecute() {
+        super.onPreExecute();
+        Log.d(TAG + " PreExceute","On pre Exceute......");
+    }
+
+     // invoked on the background thread immediately after onPreExecute() finishes executing. 
+     // The parameters of the asynchronous task are passed to this step.
+     protected Long doInBackground(URL... urls) {
+         int count = urls.length;
+         long totalSize = 0;
+         for (int i = 0; i < count; i++) {
+             totalSize += Downloader.downloadFile(urls[i]);
+
+             // This step can also use publishProgress(Progress...) to publish one or more units of progress. 
+             // These values are published on the UI thread, in the onProgressUpdate(Progress...) step.
+             publishProgress((int) ((i / (float) count) * 100));
+             // Escape early if cancel() is called
+             if (isCancelled()) break;
+         }
+         return totalSize;
+     }
+
+     protected void onProgressUpdate(Integer... progress) {
+         // invoked on the UI thread after a call to publishProgress(Progress...).
+         // This method is used to display any form of progress in the user interface while the background computation is still executing.
+         setProgressPercent(progress[0]);
+     }
+
+     protected void onPostExecute(Long result) {
+         // invoked on the UI thread after the background computation finishes.
+         // The result of the background computation is passed to this step as a parameter.
+         showDialog("Downloaded " + result + " bytes");
+     }
+ }
+ 
+```
+
+Once created, a task is executed very simply:
+
+```java
+ new DownloadFilesTask().execute(url1, url2, url3);
+```
+
+![](https://i.stack.imgur.com/ytin1.png)
 
 
 
