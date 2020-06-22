@@ -234,6 +234,13 @@ Once created, a task is executed very simply:
  new DownloadFilesTask().execute(url1, url2, url3);
 ```
 
+sometime you just want to do some simple test, and don't care about whether AsyncTask will freeze the UI thread ...
+
+```java
+TYPE ret = new DownloadFilesTask().execute(url1, url2, url3).get() ;
+```
+
+
 ![](https://i.stack.imgur.com/ytin1.png)
 
 
