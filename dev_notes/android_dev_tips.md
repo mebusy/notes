@@ -141,10 +141,11 @@ using in your android project
 ```java
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.util.HashMap;
 
 /**
  * This class provides basic/common functionalities to be applied on Java Objects.
- */
+//*/
 public final class ObjectUtils {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
@@ -162,9 +163,23 @@ public final class ObjectUtils {
     public static String deserializeObjectToString(final Object object) {
         return GSON.toJson(object);
     }
+    public static HashMap<String,Object> json2map( String json )  {
+            HashMap<String,Object> map = new HashMap<String,Object>();
+            map = (HashMap<String,Object>) GSON.fromJson(json, map.getClass());
+            return map ;
+    }
 }
 ```
 
+to use:
+
+```java
+import com.google.gson.internal.StringMap;
+...
+
+     HashMap<String,Object> map = ObjectUtils.json2map(  response.toString() );
+    StringMap<String> ret_data = (StringMap<String>)map.get( "data" );
+```
 
 ## AsyncTask
 
