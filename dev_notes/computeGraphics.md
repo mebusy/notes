@@ -120,20 +120,15 @@ In this book , will use a subset of OpenGL 1.1 to introduce the fundamental conc
     - Other graphics systems might render the same lines differently.
 
 
-<h2 id="6b56406a73de78eb734c95320762cbe9"></h2>
-
-
-## Section 2.2 Shapes
-
- - Line
-    - A simple one-pixel-wide line segment, without antialiasing, is the most basic shape.
-        - One of the first computer graphics algorithms,  **Bresenham's** algorithm for line drawing, implements a very efficient procedure for doing so. 
-    - In any case, lines are typically more complicated. Antialiasing is one complication. Line width is another. A wide line might actually be drawn as a rectangle.
-    
 <h2 id="4527049748338e479408a27beac21279"></h2>
 
 
 ## Section 2.3 Transforms
+
+**affine transform**:  A transformation of this form `T(x,y) = ( a*x + b*y + e, c*x + d*y + f )`.
+
+An affine transform has the property that, when it is applied to two parallel lines, the transformed lines will also be parallel.
+
 
 <h2 id="f1c711e7f3eb682d422fd2ae934c2453"></h2>
 
@@ -304,4 +299,16 @@ graphics = canvas.getContext("2d");
 
 
 ### 2.6.2  TODO
+
+
+## Recap
+
+- The transformation from 3D to 2D involves viewing and projection.
+- Improving OpenGL performance : VBO , texture objects.
+- Affine transform: T(x,y) = ( a*x + b*y + e, c*x + d*y + f ).
+    - An affine transform has the property that, when it is applied to two parallel lines, the transformed lines will also be parallel.
+- Translation is not a linear transformation. To bring translation into same framework, using (x,y,1) instead.
+
+
+
 
