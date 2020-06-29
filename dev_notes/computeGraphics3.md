@@ -258,25 +258,27 @@ gl2.glEnd();
 
 ### 3.2.1  3D Coordinates
 
- - OpenGL中最重要的概念恐怕就是坐标系了。
-    - 在真实世界中，如果固定一个坐标系，你不改变物体的位置，物体的坐标是不会变的。
-    - 但是在OpenGL中，如果物体没有变动位置，但是你改变了看物体的位置，那么为了让物体更像真实世界的场景，物体的坐标也要进行变换，你可以理解你自己的眼睛就是坐标的原点(World Space && View Space)，这是第一点需要注意的事情。
-    - 这是第一点需要注意的事情。第二点需要注意的事情就是，你眼睛能看到的范围是有限的，屏幕所能展现的世界也是有限的(Clip Space)。
-
 ![](../imgs/v2-c7914df6f5d49c63e6947b0d6804feea_r.jpg)
 
- - local space, aka object space
+- local space, aka object space
     - view space, aka eye space
     - screen space, aka windows space
 
- - OpenGL is right handed in object(local) space and world space.  But in window space (aka screen space) we are suddenly left handed.
+
+- OpenGL programmers usually think in terms of a coordinate system is right-handed (z-axis pointing out of the screen towards the viewer)
+    - The default internal coordinate system in OpenGL, *the one that you are using if you apply no transformations at all,* , is left-handed (z-axis pointing into the screen, (which is hardly ever used) .
+        - The glDepthRange is by default [0, 1] (near, far) making the +z axis point into the screen and with +x to the right and +y up it is a left-handed system.
+        - Changing the depth range to [1, 0] will make the system right-handed.
+    - This is not a contradiction: 
+        - The coordinate system that is actually used is arbitrary.  It is set up by a transformation. 
+        - The convention in OpenGL is to work with a right-handed coordinate system. The transformation into default coordinates reverses the direction of the z-axis.
+
+- Right-handed coordinate system is the natural coordinate system from the viewer's point of view, the so-called "eye" or "viewing" coordinate system. 
+
+- OpenGL is right handed in object(local) space and world space.  But in window space (aka screen space) we are suddenly left handed.
     - **How did this happen?**
     - The way we get from right-handed to left-handed is *a negative z scaling entry in the `glOrtho` or `glFrustum` projection matrices* .
 
- - openGL 程序员把 坐标系 思考为是右手法则的 (z轴朝外).
-    - 然后，OpenGL中的默认坐标系，如果没有加任和 transforamtion，是左手法则的(z轴朝屏幕内).
-    - 这并不矛盾。 OpenGL惯例是 使 z 正方向指向viewer, z 负方向远离 viewer. 施加在默认坐标系上的transformation会 反转z的方向.
- - Right-handed coordinate system is the natural coordinate system from the viewer's point of view, the so-called "eye" or "viewing" coordinate system. 
 
 
 <h2 id="0890c9c579e155c44153869f09be0222"></h2>

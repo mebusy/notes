@@ -29,6 +29,15 @@
 
 In this book , will use a subset of OpenGL 1.1 to introduce the fundamental concepts of three-dimensional graphics. 
 
+- Notes
+    - The transformation from 3D to 2D involves viewing and projection.
+    - Improving OpenGL performance : VBO , texture objects.
+    - Affine transform: T(x,y) = ( a*x + b*y + e, c*x + d*y + f ).
+        - An affine transform has the property that, when it is applied to two parallel lines, the transformed lines will also be parallel.
+    - Translation is not a linear transformation. To bring translation into same framework, using (x,y,1) instead.
+
+
+
 
 <h2 id="ae6212de98066cfe7c4f284fb7bb0795"></h2>
 
@@ -299,15 +308,6 @@ graphics = canvas.getContext("2d");
 
 
 ### 2.6.2  TODO
-
-
-## Recap
-
-- The transformation from 3D to 2D involves viewing and projection.
-- Improving OpenGL performance : VBO , texture objects.
-- Affine transform: T(x,y) = ( a*x + b*y + e, c*x + d*y + f ).
-    - An affine transform has the property that, when it is applied to two parallel lines, the transformed lines will also be parallel.
-- Translation is not a linear transformation. To bring translation into same framework, using (x,y,1) instead.
 
 
 
