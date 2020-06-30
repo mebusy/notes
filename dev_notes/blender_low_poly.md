@@ -34,6 +34,11 @@
     - cut: k 
     - remove doubles:  editor mode, a to select all, then
         - ![](../imgs/blender_model_1.png)
+    - inset faces
+        - ![](../imgs/blender_model_2.png)
+
+- Cursor
+    - shift+s / cursor to seledtion
 
 
 
@@ -82,5 +87,16 @@
 2. shift-D to duplicate
 3. seprate by select ,  to make a separated object
 
+## Mace
 
+1. cube to create the handle, and then
+1. add a Ico sphere for the mace
+2. random select face
+3. e to extrude , escape,  then scale 
+    - ![](../imgs/blender_mice_1.png)
+4. how to modle spikes?
+    - use individual pivot point 
+    - ![](../imgs/blender_mice_3.png)
+    - and then scale to 0 to make spikes
+    - ![](../imgs/blender_mice_4.png)
 
