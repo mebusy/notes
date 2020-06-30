@@ -35,7 +35,31 @@
 <h2 id="c2eb6e6c261aa6eae6ebeb4c2ac6cb4a"></h2>
 
 
-# Chapter 3 OpenGL 1.1: Geometry
+# Chapter 3 OpenGL v1.1: Geometry
+
+- Notes
+    - openGL buffers: GL_COLOR_BUFFER_BIT, GL_DEPTH_BUFFER_BIT
+    - depth test 
+        - solves the hidden surface problem 
+        - depth test is not perfect, and it can not handle 3D transparency correctly.
+    - coordinates
+        - object coordinates   use for drawing an object 
+        - world coordinates   you build the complete scene 
+        - eye coordinates   use for drawing on the screen , right-handed
+        - object coordinates **--modeling transformation->** world coordinates **--modeling transformation->**  eye coordinates
+            - openGL combined into a single transform, which is known as the **modelview transformation**.
+            - OpenGL doesn't have any representation for world coordinates , only object and eye coordinates have meaning.
+
+    - OpenGl maintains only 2 matrix: GL_PROJECTION  and GL_MODELVIEW.
+    - to draw both the faces and the edges 
+        - use glPolygonOffset to avoid the problem with the depth test
+    - affine transformation 
+        - a linear transformation followed by a translation
+        - (x,y,z,1) 
+    - Homogeneous Coordinates
+        - projection transformation is not affine.
+        - (x,y,z,w) this is what OpenGL does internally
+
 
 <h2 id="bf21e7d6d891525c8b28031c8fd4ce4d"></h2>
 
