@@ -100,3 +100,12 @@
     - and then scale to 0 to make spikes
     - ![](../imgs/blender_mice_4.png)
 
+
+## Armature
+
+- check "X-ray" in object panel to see all bone
+- 2 bones
+    - ctrl P :  connected,  or make offset
+        - make offset: ![](../imgs/blender_bone_1.png)
+            - note: order of bone added matters
+    - alt P : clear parant , or disconnect bone
