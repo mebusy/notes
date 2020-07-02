@@ -61,6 +61,19 @@ void mtxLoadPerspective(float* mtx, float fov, float aspect, float nearZ, float 
 ![](../imgs/opengl_glperspective.png)
 
 
+## Frustum 
+
+[khronos glFrustum, safari](https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glFrustum.xml)
+
+same as perspective
+
+- Parameters
+    - left, right: Specify the coordinates for the left and right vertical clipping planes.
+    - bottom, top: Specify the coordinates for the bottom and top horizontal clipping planes.
+    - nearVal, farVal: Specify the distances to the near and far depth clipping planes. Both distances must be positive.
+
+![](../imgs/open_projection_frustum.png)
 
 
-[glFrustum](https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glFrustum.xml)
+
+
