@@ -109,3 +109,18 @@
         - make offset: ![](../imgs/blender_bone_1.png)
             - note: order of bone added matters
     - alt P : clear parant , or disconnect bone
+- symmetrize Armature
+    - search `symmetrize`
+- one thing is very useful to do is 
+    - in edit mode, select all bones, and CTRL-N , select 'View axis'
+    - ![](../imgs/blender_bone_2.png)
+    - if in post mode you animate some bone like this
+    - ![](../imgs/blender_bone_3.png)
+    - and the select all bone, CTRL-C,  SHIFT-CTRL-V, I can perfectly flip x.
+    - ![](../imgs/blender_bone_4.png)
+- restore post
+    - ALT-G : clear pose location
+    - + ALT-R : clear pose rotation
+- connect armature and your character
+    - object mode, select both, and CTRL+P, you can choose "With Automatic Weights"
+
