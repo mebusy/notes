@@ -122,5 +122,21 @@
     - ALT-G : clear pose location
     - + ALT-R : clear pose rotation
 - connect armature and your character
-    - object mode, select both, and CTRL+P, you can choose "With Automatic Weights"
+    1. select character (object mode)
+    2. shift select bones ( pose mode )
+    3. CTRL+P, you can choose "With Automatic Weights".
+
+
+## Paint Weights
+
+1. pose mode, choose bone
+2. select you character, now you are in object mode, change to "Weight Paint"
+    - ![](../imgs/blender_bone_5.png)
+    - since the character is mirrored, and the bone are symmetric, so we just need do weight changs on half side.
+
+
+## Inverse Kinematics
+
+
+
 
