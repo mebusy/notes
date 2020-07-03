@@ -86,6 +86,8 @@ will be projected to the near plane
 
 x' = x<sub>e</sub>·n/ -z<sub>e</sub>
 
+PS. Many 3d points will be projected on the same 2d point on the near plane( z' is fixed on ), the z-info will be lost. so we need the 4th deminsion to store z-info.
+
 
 ```
 ? 0  0   0
