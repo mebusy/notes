@@ -230,6 +230,16 @@ set global log_queries_not_using_indexes=ON;
 select COALESCE(AVG(distance), 0) as baseline from records where uuid=?
 ```
 
+## Sub query example
+
+```mysql
+select COALESCE( sum(orderAmount), 0 )  from payment_vivosdk   
+where 
+	uuid="test-User-0" and 
+	paidtime >= ( select COALESCE( AVG(startTime), -1) from tbl_rechargeAcc where activity_kind = 2 and endTime > 969393337  ) and 
+	paidtime <= ( select COALESCE( AVG(deadline),  -1) from tbl_rechargeAcc where activity_kind = 2 and endTime > 969393337  ) 
+```
+
 <h2 id="c4606a5312075cb8424b31a364e46848"></h2>
 
 
