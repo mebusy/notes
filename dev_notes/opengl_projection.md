@@ -74,6 +74,37 @@ same as perspective
 
 ![](../imgs/open_projection_frustum.png)
 
+[more frustum details](http://www.songho.ca/opengl/gl_projectionmatrix.html)
 
+z in the eye space is always projected to -ZNear on the near plane.
+
+(x<sub>e</sub>,y<sub>e</sub>,z<sub>e</sub>)
+
+will be projected to the near plane
+
+(-n/z<sub>e</sub> · x<sub>e</sub>, -n/z<sub>e</sub> · y<sub>e</sub>, -n)   (PS. this coordinate not normalized in frustum)
+
+x' = x<sub>e</sub>·n/ -z<sub>e</sub>
+
+
+```
+? 0  0   0
+0  ?  0   0
+0  0  A   B
+ 0  0  -1  0   // that is w=-z
+```
+
+z' = z/w = (A·z + B·1)/w = (A·z + B)/-z
+
+To find the coefficients, A and B,
+
+1. (A·-zn + B)/zn = -1   =>  -A·zn + B = -zn
+2. (A·-zf + B)/zf = 1    =>  -A·zf + B = zf
+
+solve this equation:
+
+A = -(zf+zn)/(zf-zn)
+
+B = -2·zf·zn/(zf-zn)
 
 
