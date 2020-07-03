@@ -226,6 +226,8 @@ set global log_queries_not_using_indexes=ON;
 
 ## use default value if select get no result
 
+COALESCE returns 1st non-NULL value
+
 ```
 select COALESCE(AVG(distance), 0) as baseline from records where uuid=?
 ```
