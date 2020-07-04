@@ -111,6 +111,7 @@
     - alt P : clear parant , or disconnect bone
 - symmetrize Armature
     - search `symmetrize`
+    - if you named your bone as `xxx.L` , then the symmetrized bone will be names as `xxx.R`
 - one thing is very useful to do is 
     - in edit mode, select all bones, and CTRL-N , select 'View axis'
     - ![](../imgs/blender_bone_2.png)
@@ -137,6 +138,35 @@
 
 ## Inverse Kinematics
 
-
+- bone, edit mode, extrude extra bone.
+- ALT-P, clear parent, move to this postion
+    - ![](../imgs/blender_ik_1.png)
+    - this is going to be a bone that the knee is going to be aimed towards at all times
+- selec foot bone, SHIFT-A to add a bone , adjust the position
+    - ![](../imgs/blender_ik_2.png)
+    - ![](../imgs/blender_ik_3.png)
+- symmertized control bones
+- select lowerLeg bone, add *bone constrait* -- inverse kinematics
+    - ![](../imgs/blender_ik_4.png)
+    - ![](../imgs/blender_ik_5.png)
+    - change chain length to 2
+    - ![](../imgs/blender_ik_6.png)
+    - set target and pole target
+        - ![](../imgs/blender_ik_8.png)
+        - target -> Lower Leg(self), bone -> 脚后跟的控制骨骼
+        - pole target -> upper leg , bone -> Leg pole 膝盖前方的控制骨骼
+    - ![](../imgs/blender_ik_7.png)
+- parent the top 2 bone respectively to the bottom FootControl bone
+    - ![](../imgs/blender_ik_9.png)
+    - there is still a problem, foot bone may detach from the LowerLeg bone
+    - ![](../imgs/blender_ik_10.png)
+    - so we need to a copy location of foot joint, add constraints *Copy Location*
+        - set Target to LowerLeg bone
+        - set Bone to LowerLeg
+        - set Head/Tail to *Tail*
+        - ![](../imgs/blender_ik_11.png)
+        - ![](../imgs/blender_ik_12.png)
+- move the leg control bone upper , 否则膝盖无法抬得很高
+    - ![](../imgs/blender_ik_13.png)
 
 
