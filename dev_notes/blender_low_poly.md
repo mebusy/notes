@@ -153,8 +153,8 @@
     - ![](../imgs/blender_ik_6.png)
     - set target and pole target
         - ![](../imgs/blender_ik_8.png)
-        - target -> Lower Leg(self), bone -> 脚后跟的控制骨骼
-        - pole target -> upper leg , bone -> Leg pole 膝盖前方的控制骨骼
+        - target -> Armature , bone -> 脚后跟的控制骨骼
+        - pole target -> Armature , bone -> Leg pole 膝盖前方的控制骨骼
     - ![](../imgs/blender_ik_7.png)
 - parent the top 2 bone respectively to the bottom FootControl bone
     - ![](../imgs/blender_ik_9.png)
@@ -168,5 +168,52 @@
         - ![](../imgs/blender_ik_12.png)
 - move the leg control bone upper , 否则膝盖无法抬得很高
     - ![](../imgs/blender_ik_13.png)
+
+
+## Animation
+
+- In Animation Editor,  select *Action Edtor* Mode
+    - ![](../imgs/blender_anim_1.png)
+- then click "New" , and name your action
+    - this it important you need to click this *F* to save this data-block even if it has no users. So it saves this to the file line. 
+    - ![](../imgs/blender_anim_2.png)
+- **Insert Key Frames**
+    - in Action Editor
+        - select all bones, I ,  for all channel
+    - in Scene editor
+        - I ,  Loc and Rot
+        - ![](../imgs/blender_anim_3.png)
+        - ![](../imgs/blender_anim_4.png)
+- automatically insert key frames
+    - ![](../imgs/blender_anim_5.png)
+- **Copy/Paste** key frame
+    1. in action editor , select a frame line
+    2. in pose mode editor, select all bone , CTRL-C
+    3. back to action editor, select target frame line
+    4. **Back 2 Pose Mode** , CTRL-V
+
+
+## Attach a weapon
+
+1. select weapon object,  add object constrait *Child Of*
+    - ![](../imgs/blender_anim_weapon_1.png)
+    - we don't want any scale
+2. reset the position of weapon to 0,0,0, and adjust the rotaion
+    - may need go back to action editor to adjust the weapon position to perfectly grab it.
+    - you'd betten to turn *automatically insert key frame* to off.
+3. 
+
+
+## Copy Transformation Properties to other weapons
+
+1. select the object you want to transform
+2. shift-select the target object
+3. click object tab
+4. In transformation, right click the Location X/Y/Z property 
+5. in the pop-up list, choose *Copy All To Select*
+6. do the same for rotaion and scale
+
+
+
 
 
