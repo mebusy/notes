@@ -191,6 +191,10 @@
     2. in pose mode editor, select all bone , CTRL-C
     3. back to action editor, select target frame line
     4. **Back 2 Pose Mode** , CTRL-V
+- walk tips
+    - for the key frames in 2nd half cycle 
+    - select any bones which is recorded in the key frames
+    - use CTRL-C / SHIFT-CTRL-V to copy
 
 
 ## Attach a weapon
@@ -201,7 +205,6 @@
 2. reset the position of weapon to 0,0,0, and adjust the rotaion
     - may need go back to action editor to adjust the weapon position to perfectly grab it.
     - you'd betten to turn *automatically insert key frame* to off.
-3. 
 
 
 ## Copy Transformation Properties to other weapons
@@ -211,6 +214,7 @@
 3. click object tab
 4. In transformation, right click the Location X/Y/Z property 
 5. in the pop-up list, choose *Copy All To Select*
+    - ![](../imgs/blender_prop_copy.png)
 6. do the same for rotaion and scale
 
 
