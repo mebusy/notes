@@ -1,7 +1,18 @@
 <h2 id="bd8cfe5912b0bee7fd7d191afedf8995"></h2>
 
-
 # Linear ALgebra
+
+![](../imgs/LA_1806_new_start.png)
+
+- the 1st half, 1,2,3, is about solving equations
+- the 2nd half, 4,5,6, is about eigenvalues and eigenvectors and singular values.
+
+- A =  Column matrix * Row matrix  ?
+- LU  famous computer commands for elimination, for solving equations, the first job of linear algebra.
+- S is symmetric matrix
+- You really don't want to miss them.
+
+---
 
  - [preface](LinearAlgebra_preface.md) 
  - [Elimination](LinearAlgebra_MatricesandGaussianElimination.md)  
@@ -73,3 +84,7 @@
  1. [数理逻辑:基本概念](DiscreteMathematics.md)
  2. [数理逻辑:命题逻辑及形式系统](DiscreteMathematics_week2.md)
  3. [图论](DiscreteMathematics_Week7.md)
+
+
+
+
