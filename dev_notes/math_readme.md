@@ -10,7 +10,9 @@
 - A =  Column matrix * Row matrix  ?
 - LU  famous computer commands for elimination, for solving equations, the first job of linear algebra.
 - S is symmetric matrix
-- You really don't want to miss them.
+- You really don't want to miss Singualr value.
+- Symmetric matrix, S,  is the king of linear algebra
+- Orthogonal matrix, Q, is the queen of linear algebra
 
 ---
 
