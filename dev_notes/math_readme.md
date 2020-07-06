@@ -2,35 +2,37 @@
 
 # Linear ALgebra
 
-![](../imgs/LA_1806_new_start.png)
+- [MIT: A 2020 Vision of Linear Algebra](LA_1806_new_vision2020.md)
+    - ![](../imgs/LA_1806_new_start.png)
 
-- the 1st half, 1,2,3, is about solving equations
-- the 2nd half, 4,5,6, is about eigenvalues and eigenvectors and singular values.
+    - the 1st half, 1,2,3, is about solving equations
+    - the 2nd half, 4,5,6, is about eigenvalues and eigenvectors and singular values.
 
-- A =  Column matrix * Row matrix  ?
-- LU  famous computer commands for elimination, for solving equations, the first job of linear algebra.
-- S is symmetric matrix
-- You really don't want to miss Singualr value.
-- Symmetric matrix, S,  is the king of linear algebra
-- Orthogonal matrix, Q, is the queen of linear algebra
+    - A =  Column matrix * Row matrix  ?
+    - LU  famous computer commands for elimination, for solving equations, the first job of linear algebra.
+    - S is symmetric matrix
+    - You really don't want to miss Singualr value.
+    - Symmetric matrix, S,  is the king of linear algebra
+    - Orthogonal matrix, Q, is the queen of linear algebra
 
 ---
 
- - [preface](LinearAlgebra_preface.md) 
- - [Elimination](LinearAlgebra_MatricesandGaussianElimination.md)  
- - [Vector Space](LinearAlgebra_VectorSpace.md)  
- - [Orthogonality](LinearAlgebra_Orthogonality.md)
- - [Determinants](LinearAlgebra_Determinants.md) 
- - [Eigen](LinearAlgebra_Eigen.md)  
- - [Positive Definite Matrices](LinearAlgebra_PositiveDefiniteMatrices.md)
- - [Computing With Matrix](LinearAlgebra_Computing_With_Matrix.md)
- - [Linear Programming and Game theory](LinearAlgebra_Linear_Programming_and_Game_theory.md)
- - [Netshell](LinearAlgebra_Netshell.md)  
- - TODO
- - [18.06 lecture vidoe note](note_18.06.md) 
- - [18.06 lecture vidoe note 2](note_18.06_2.md) 
- - [线性代数摘要](LinearAlgebra.md) 
- - [Essence of LA](3blue1brown.md)
+- MIT 18.06
+    - [preface](LinearAlgebra_preface.md) 
+    - [Elimination](LinearAlgebra_MatricesandGaussianElimination.md)  
+    - [Vector Space](LinearAlgebra_VectorSpace.md)  
+    - [Orthogonality](LinearAlgebra_Orthogonality.md)
+    - [Determinants](LinearAlgebra_Determinants.md) 
+    - [Eigen](LinearAlgebra_Eigen.md)  
+    - [Positive Definite Matrices](LinearAlgebra_PositiveDefiniteMatrices.md)
+    - [Computing With Matrix](LinearAlgebra_Computing_With_Matrix.md)
+    - [Linear Programming and Game theory](LinearAlgebra_Linear_Programming_and_Game_theory.md)
+    - [Netshell](LinearAlgebra_Netshell.md)  
+    - TODO
+    - [18.06 lecture vidoe note](note_18.06.md) 
+    - [18.06 lecture vidoe note 2](note_18.06_2.md) 
+    - [线性代数摘要](LinearAlgebra.md) 
+- 3Brown1Blue  [Essence of LA](3blue1brown.md)
 
 
 <h2 id="0349a55a6a70f89e604c28892ce24d82"></h2>

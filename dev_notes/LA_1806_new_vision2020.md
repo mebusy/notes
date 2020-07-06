@@ -69,7 +69,48 @@ A =
 # Part 4: Eigenvalues and Eigenvectors
 
 - **S = Sᵀ  Real Eigenvalues and Orthogonal Eigenvectors**
-- S = QAQᵀ
+
+## Eigenvectors of S go into Orthogonal Matrix Q
+
+- S = QΛQᵀ
+- With S = AᵀA this will lead to the singualr values of A
+    - A = UΣVᵀ
+
+
+## Eigenvalues and Eigenvectors:  Not symmetric 
+
+- Now I'm not going to get perpendicular eigenvectors
+- AX = XΛ
+- with n independent eigenvectors A = XΛX⁻¹
+    - Λ = X⁻¹AX
+- A²,A³,... have the same eigenvectors as A
+    - Aⁿx = λⁿx
+    - Aⁿ = XΛⁿX⁻¹
+    - Aⁿ → 0  when Λⁿ → 0 : **All |λᵢ| < 1**
+
+## AᵀA is square, symmetric, nonnegative definite
+
+
+# Part 5: Singular Values and Singular Vectors
+
+- A is not square, we need something that replaces eigenvalues and eigenvectors, it is singular values and singular vectors.
+- **SINGULAR VALUE DECOMPOSITION**
+    - ![](../imgs/LA_1806_2020_svd.png)
+    - all the us are orthogonal to each other,  all the vs are orthogonal to each other
+    - the bottom is the geometry of a 2x2 matrix
+- How to choose orthonormal vᵢ in the row space of A ?
+    - the vᵢ are eigenvectors of AᵀA.
+- How to choose uᵢ in the column space ?
+    - uᵢ = A·vᵢ / σᵢ
+    - uᵢ are also othronormal.
+- SVD example
+    - ![](../imgs/LA_1806_2020_svd_example.png)
+    - sum of rank-1 matrix , this is what data science want.
+
+## Low rank approximation to a big matrix
+
+- ![](../imgs/LA_1806_2020_svd_approxi.png)
+
 
 
 
