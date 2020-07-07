@@ -49,6 +49,8 @@ A =
     - **N(Aᵀ) ⟂  C(A)**
 - **Big Picture**
     - ![](../imgs/LA_Figure_3.4.png)
+    - If A is singualr, row space and null space can not fill up the whole n-D space
+        - so any x can split into 2 parts, one is in the row space, the other is in the null space
 
 - **Multiplying Columns time Rows / Six Factorizations**
     - ![](../imgs/LA_1806_2020_multiply.png)
