@@ -31,7 +31,6 @@
     - TODO
     - [18.06 lecture vidoe note](note_18.06.md) 
     - [18.06 lecture vidoe note 2](note_18.06_2.md) 
-    - [线性代数摘要](LinearAlgebra.md) 
 - 3Brown1Blue  [Essence of LA](3blue1brown.md)
 
 
