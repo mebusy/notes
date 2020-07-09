@@ -525,26 +525,26 @@ def min-value(state , α, β):
 
 ### Alpha-Beta Pruning Properties
 
-![](../imgs/cs188_advS_alpha-beta-properties.png)
 
  - This pruning has ***no effect*** on minimax value computed for the root!
-    - in the case that pic shows, root MAX encounters 10-10 , it may choose the right sub-tree.
-    - if the algorithm will not prune on equality , then this case will no happen.
  - Values of intermediate nodes might be wrong
     - Important: children of the root may have the wrong value
     - So the most naive version won’t let you do action selection
-
+ - ![](../imgs/cs188_advS_alpha-beta-properties.png)
+    - in the case that pic shows, the left min is 10, the value passes to root, the right min satisfied the condition ≤ 10, it will skip the rest, it may choose the right sub-tree if ties break on equality, 
+    - if the algorithm will not prune on equality( change ≤ to `<` ) , then this case will no happen.
+    - or you do the pruning first on the children of root node.
+ - So there are 3 ways to do it
+    1. keep track of which one was first
+    2. run pruning on the children
+    3. prune on only strict inequalities
+        - you lose out a lot of pruning, you will compute more nodes.
  - Good child ordering improves effectiveness of pruning
     - The effectiveness of alpha–beta pruning is highly dependent on the order in which the states are examined
  - With “perfect ordering”:
     - Time complexity drops to O(b<sup>m/2</sup>)
     - Doubles solvable depth!
     - Full search of, e.g. chess, is still hopeless…
-
-
-**You must apply pruning after doing some actions**.
-
-
 
 
 ---
@@ -560,6 +560,19 @@ def min-value(state , α, β):
     2. If “1” failed, do a DFS which only searches paths of length 2 or less.
     3. If “2” failed, do a DFS which only searches paths of length 3 or less.
         - ... and so on.
+
+
+## Synergies between Evaluation Function and Alpha-Beta ?
+
+- Alpha-Beta: amount of pruning depends on expansion ordering
+    - Evaluation function can provide guidance to expand most promising nodes first ( which later makes it more likely there is already a good alternative on the path to the root )
+    - somewhat similar to role of A\* heuristic , CSPs filtering
+- Alpha-Beta: similar for roles of min-max swapped
+    - Value at a min-node will only keep going down
+    - Once value of min-node lower than better option for max along path to root, can prune
+    - Hence: If evaluation function provides upper-bound on value at min-node, and upper-bound already lower than better option for max along path to root THEN can prune.
+
+
 
 ![](../imgs/cs188_iterative_deepening.png)
 
