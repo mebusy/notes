@@ -292,6 +292,20 @@ If you play against a perfect player  you want to use minimax but if you are not
 
 ![](../imgs/cs188_advS_minimax_properties.png)
 
+And so, if just periodically they were to make a mistake, it's worth to going the right way ( 9-100 ). So now we're doing some probability calculation really. It's like what's the chances that they might make a mistake.
+
+
+## Minimax Efficiency
+
+- How efficients is minimax?
+    - Just like (exhaustive) DFS
+    - Time: O(bᵐ)
+    - Space: O(bm)
+- Example: For chess, b≈35, m≈100
+    - Exact solution is completely infeasible
+    - But, do we need to explore the whole tree?
+
+
 
 <h2 id="febe674abc9aa524c322edbbd8ec668c"></h2>
 
