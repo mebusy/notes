@@ -245,3 +245,11 @@ TYPE ret = new DownloadFilesTask().execute(url1, url2, url3).get() ;
 
 
 
+## Update Eclipse project to ant
+
+```bash
+android update project -p . -t android-23
+ant debug
+```
+
+
