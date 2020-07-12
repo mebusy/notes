@@ -76,6 +76,7 @@ maybe you're a can opener robot and you take the can and you open it , and what'
     - 80% of the time, the action North takes the agent North ( if there is no wall there)
     - 10% of the time, North takes the agent West; 10% East
     - If there is a wall in the direction the agent would have been taken, the agent stays put
+    - similar rules for the other 3 directions
  - The agent receives rewards each time step
     - Small “living” reward each step (can be negative)
         - this is sometimes called a living reward or a living penalty based on whether it's positive or negative.
@@ -161,7 +162,7 @@ So this is important property in MDP is to make sure that you define your transi
     - but it does not work for MDPs. because we don't know what actions are gonna to do.  
     - The relevant idea is not a plan now but a policy. Policy is a mapping from states to actions and tells  in each state what action to take. 
  - For MDPs, we want an optimal policy π<sup>\*</sup> : S → A
-    - A policy π gives an action for each state
+    - A policy π gives an action for each state, like a recommendation action
     - An optimal policy is one that maximizes expected utility if followed
     - An explicit policy defines a reflex agent
  - Expectimax didn’t compute entire policies

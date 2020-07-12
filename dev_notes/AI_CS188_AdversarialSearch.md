@@ -561,6 +561,8 @@ def min-value(state , α, β):
     3. If “2” failed, do a DFS which only searches paths of length 3 or less.
         - ... and so on.
 
+![](../imgs/cs188_iterative_deepening.png)
+
 
 ## Synergies between Evaluation Function and Alpha-Beta ?
 
@@ -574,7 +576,6 @@ def min-value(state , α, β):
 
 
 
-![](../imgs/cs188_iterative_deepening.png)
 
 
 ---
@@ -583,6 +584,7 @@ def min-value(state , α, β):
 
 
 # Expectimax and Utilities
+
 
 <h2 id="6149fc2d88c6c1923cb69bc8cb99a646"></h2>
 
@@ -615,7 +617,7 @@ def min-value(state , α, β):
     - Chance nodes are like min nodes but the outcome is uncertain
     - Calculate their expected utilities
     - I.e. take weighted average (expectation) of children
- - Later, we’ll learn how to formalize the underlying uncertain-result problems as Markov Decision Processes
+ - Later, we’ll learn how to formalize the underlying uncertain-result problems as **Markov Decision Processes**
 
 ![](../imgs/expectimax_search_01.png)
 
@@ -873,10 +875,14 @@ The result is not bad while an expectimax pacmas vs a random ghost.
 
 ![](../imgs/cs188_multi_agent_utilities.png)
 
+Each player has its own value of terminal node, and will optimize for their own outcome. Minimax , we kind of have that too. The maximizer had the number that we were showing, and the minimizer had the negative of that number. So there were actually 2 numbers sitting there, but it was the negative of each other, so we only showed one. Minimax is a special case of this where we just collapse those 2 opposite numbers into one number that we display. 
+
 
 The leaf utilities are now written as pairs (U<sub>A</sub> , U<sub>B</sub>, U<sub>C</sub> ). In this generalized setting, A seeks to maximize U<sub>A</sub>, the first component, while B seeks to maximize U<sub>B</sub> , the second component.
 
 In above example , the leftmost green node should be:  ***(1,6,6)***
+
+Different things can emerge here, though these numbers are not just complementary to each other.  In the left sub tree, blue prefer to 6, can they make that happen? What will green do ? Green will choose the (1,6,6), which will happen that blue also gets 6 and gets what they want. So what have herer is actually a collaboration between blue and green.
 
 <h2 id="ceba282b7418b7f199798b645e1cba56"></h2>
 
@@ -893,7 +899,7 @@ https://www.authorea.com/users/5754/articles/6087/_show_article
 
  - Why should we average utilities?  Why not minimax?
  - Principle of maximum expected utility:
-    - A rational agent should chose the action that maximizes its expected utility, given its knowledge
+    - A rational agent should chose the action that **maximizes its expected utility, given its knowledge**
 
 <h2 id="f0400acd1ae1ee97ec4a2afe860937cd"></h2>
 
@@ -911,7 +917,7 @@ https://www.authorea.com/users/5754/articles/6087/_show_article
 
 ### Utilities
 
- - Utilities are functions from outcomes (states of the world) to real numbers that describe an agent’s preferences
+ - **Utilities are functions from outcomes (states of the world) to real numbers that describe an agent’s preferences**
 
  - Where do utilities come from?
     - In a game, may be simple (+1/-1)
