@@ -158,6 +158,9 @@ x = np.linspace( 1,len(interval),num=len(interval) )
 
 
 
+直方图(Histogram)，又叫质量分布图, 可以很方便地把我们的数据的形状和分布 可视化出来。
+
+
 
 
 

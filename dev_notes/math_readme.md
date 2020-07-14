@@ -31,6 +31,15 @@
     - TODO
     - [18.06 lecture vidoe note](note_18.06.md) 
     - [18.06 lecture vidoe note 2](note_18.06_2.md) 
+
+---
+
+- MIT 18.065
+    - [1-6 Review of 18.06](MIT_18065_1.md)
+    - [7 PCA, 8 norm](MIT_18065_7.md)
+
+---
+
 - 3Brown1Blue  [Essence of LA](3blue1brown.md)
 
 
