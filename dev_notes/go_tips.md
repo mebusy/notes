@@ -1091,3 +1091,9 @@ const (
 )
 ```
 
+- a common used format : "20060102150405"
+
+
+
+
+
