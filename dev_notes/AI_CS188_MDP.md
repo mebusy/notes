@@ -269,7 +269,7 @@ you might care whether or not you get these 4 gems step-by-step or all at the en
     - Also helps our algorithms converge
  - Example: discount of 0.5
     - U([1,2,3]) = 1\*1 + 0.5\*2 + 0.25\*3
-    - U([1,2,3]) < U([3,2,1])
+    - `U([1,2,3]) < U([3,2,1])`
 
 ![](../imgs/cs188_mdp_discounting.png)
 
@@ -345,7 +345,7 @@ Here are multiple possible solutions, in general we're gonna have discounts that
     - what the star means is  this is the value under optimal action.
  - ***The value (utility) of a q-state (s,a):***
     - Q<sup>\*</sup>(s,a) = expected utility starting out having taken action a from state s and (thereafter) acting optimally
-    - 每个 action 都有一个 Q-value
+    - Each action do have a Q-value
  - The optimal policy:
     - π<sup>\*</sup>(s) = optimal action from state s
 
