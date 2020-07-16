@@ -37,6 +37,7 @@
 - MIT 18.065
     - [1-6 Review of 18.06](MIT_18065_1.md)
     - [7 PCA, 8 norm](MIT_18065_7.md)
+    - [9 least², 10 Difficult of Ax=b](MIT_18065_9.md)
 
 ---
 
