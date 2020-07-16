@@ -6,7 +6,6 @@
      - [1.3 Hardware and Software](#901578a22162231933351bb435643a38)
  - [Chapter 2 Two-Dimensional Graphics](#1fbe7cb2eda7e6cc90bab73b26af826f)
      - [2.1 Pixels, Coordinates, and Colors](#09f5cc118d9152e36afb92ed40ad49b0)
-     - [Section 2.2 Shapes](#6b56406a73de78eb734c95320762cbe9)
      - [Section 2.3 Transforms](#4527049748338e479408a27beac21279)
          - [2.3.8  Matrices and Vectors](#f1c711e7f3eb682d422fd2ae934c2453)
      - [2.4 Hierarchical Modeling](#20f7a1734dcfbfc8b8171646bc9d424a)

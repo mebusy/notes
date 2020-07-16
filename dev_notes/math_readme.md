@@ -1,5 +1,6 @@
 <h2 id="bd8cfe5912b0bee7fd7d191afedf8995"></h2>
 
+
 # Linear ALgebra
 
 - [MIT: A 2020 Vision of Linear Algebra](LA_1806_new_vision2020.md)

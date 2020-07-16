@@ -12,6 +12,7 @@
      - [`select count(*)` is very slow on large table](#c4935fa15c0a1305da238eec81cc54b3)
      - [`select ... limit offset , n ` is slow when offset  is higher](#5c7924ade1a946ba9a0af0cc562c127b)
      - [use default value if select get no result](#7b83de8606257483382081d2e0e808de)
+     - [Sub query example](#60df3279b8377ba6468528ab017f1dc0)
      - [restore database from dump file](#c4606a5312075cb8424b31a364e46848)
  - [第1章  MySQL 体系结构和存储引擎](#6a1a36d328d46ab67d6d4af4b7f9191a)
      - [1.1 配置文件](#bdf6b309174103a16017dcf95cfd0efa)
@@ -231,6 +232,9 @@ COALESCE returns 1st non-NULL value
 ```
 select COALESCE(AVG(distance), 0) as baseline from records where uuid=?
 ```
+
+<h2 id="60df3279b8377ba6468528ab017f1dc0"></h2>
+
 
 ## Sub query example
 

@@ -2,7 +2,8 @@
 
  - [工具集](#d1f4a2ca5ebae356829301a14367e0e6)
      - [1.1 go build](#5cb3fbe2f5c14eaeec65da239fb2278b)
-     - [go build injection](#dc4c1d9510e06b1f42e03832e216b351)
+         - [go build injection](#dc4c1d9510e06b1f42e03832e216b351)
+         - [逃逸分析](#39e51e767418357eef4ac9bcb4330f50)
      - [1.2 go install](#bfae2838680a32e56e245ff108957b89)
      - [1.3 go clean](#a0d272d3a24a7f1986e0fa7bafb8a59d)
      - [1.4 go get](#467396f90a34e7517a6fe191507ebab1)
@@ -99,6 +100,9 @@ $ go build -ldflags "-X main.GitCommit=$GIT_COMMIT"
 $ ./git-tester
 Hello world, version: 67b05a31758848e1e5237ad5ae1dc11c22d4e71e
 ```
+
+<h2 id="39e51e767418357eef4ac9bcb4330f50"></h2>
+
 
 #### 逃逸分析
 

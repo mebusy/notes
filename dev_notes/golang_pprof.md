@@ -7,7 +7,7 @@
          - [服务型应用](#743a11634b020d87ee3e35723fd383d0)
      - [分析 Profiling](#2dc9540acc752760e72345ad9529d612)
          - [go 1.10 提供了一个 web UI， 同时支持 火焰图](#628f3bfbcd42ebb9c0e60322c9cdfce8)
-     - [和测试工具的集成](#a553668c7b1f4095c932a2d77faae894)
+     - [和go test files 的集成](#f6876b634c1b05222f8af0f08779c5bb)
 
 ...menuend
 
@@ -159,7 +159,7 @@ $ go tool pprof -http=:8080 [binary] profile.out
 
 
 
-<h2 id="a553668c7b1f4095c932a2d77faae894"></h2>
+<h2 id="f6876b634c1b05222f8af0f08779c5bb"></h2>
 
 
 ## 和go test files 的集成

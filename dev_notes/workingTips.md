@@ -10,9 +10,12 @@
      - [lldb 调试 Segment Fault on MacOSX](#93bc8417f2018ae4424cbad9060081fa)
      - [download youtube playlist](#dd3177fffb44df0088f08893f1e8b000)
      - [re-download youtube auto sub](#a86e10fc913cd54076f6a27289d1d713)
+     - [youtube-dl download mp3 audio only](#a070b11a3504a9c79ea234b981f7db6d)
+     - [using ffmpeg to convert video to mp3 (未验证)](#a8e23293ddbb3302f18d430ee2fdaaf2)
      - [ab testing](#ac1edf8d7497b1d5b6039ad9656cdeee)
      - [check wheter `keep-alive` is  enabled by server](#e06944207d65338bc4b5d43aef44aef4)
      - [change .pem password](#60a277f978363c21b4ced8cb1ea9c06f)
+     - [Python NTLM proxyserver](#3f1c0d7e44459f6410faabec903ea4ac)
 
 ...menuend
 
@@ -134,11 +137,17 @@ youtube-dl -c --write-auto-sub --sub-lang=en --ignore-errors -f 'bestvideo[ext=m
 youtube-dl --write-auto-sub --skip-download --sub-lang=en  ...
 ```
 
+<h2 id="a070b11a3504a9c79ea234b981f7db6d"></h2>
+
+
 ## youtube-dl download mp3 audio only
 
 ```bash
 youtube-dl -x --audio-format mp3  'your-url'
 ```
+
+<h2 id="a8e23293ddbb3302f18d430ee2fdaaf2"></h2>
+
 
 ## using ffmpeg to convert video to mp3 (未验证)
 
@@ -188,6 +197,9 @@ mv config/private.pem config/private_old.pem
 
 openssl rsa -in config/private_old.pem -out config/private.pem -des3
 ```
+
+<h2 id="3f1c0d7e44459f6410faabec903ea4ac"></h2>
+
 
 ## Python NTLM proxyserver
 

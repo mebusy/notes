@@ -1,5 +1,29 @@
+...menustart
+
+ - [Blender Low Polygon Modeling](#014f19a3d96b43cc1200682c7c2f7a79)
+     - [UI](#71ff71526d15db86eb50fcac245d183b)
+     - [Mirror](#2403def5083f02105e7802b3b315681e)
+     - [Head](#98921133d10fbdb0fb6dbb7b2648befe)
+     - [UV](#deaa2adbeb26802ae61609c3f3642d82)
+     - [Helm](#152090ff5e9a05ea7e1cf0c248449638)
+     - [Mace](#17d2c299e4d02f7b375eec3f057a5b50)
+     - [Armature](#03908bf22d3b0082ebc42831dd082b3a)
+     - [Paint Weights](#fef75a1d83f32588ac72f338e0ecd077)
+     - [Inverse Kinematics](#dfcf9dd022ec7d7f4548e411e3667700)
+     - [Animation](#d6b6b668dbca9d4fe774bb654226ebe3)
+     - [Attach a weapon](#11c6b8a0ea0ed031c6acb4536ff0f3ca)
+     - [Copy Transformation Properties to other weapons](#c577c7dc58bc18f9008d10465b2d268a)
+
+...menuend
+
+
+<h2 id="014f19a3d96b43cc1200682c7c2f7a79"></h2>
+
 
 # Blender Low Polygon Modeling 
+
+<h2 id="71ff71526d15db86eb50fcac245d183b"></h2>
+
 
 ## UI
 
@@ -44,6 +68,9 @@
 
 
 
+<h2 id="2403def5083f02105e7802b3b315681e"></h2>
+
+
 ## Mirror
 
 - unselect this 
@@ -54,6 +81,9 @@
 - add Mirror modifier
     - ensure the Clipping is checked
     - ![](../imgs/blender_mirror_3.png)
+
+
+<h2 id="98921133d10fbdb0fb6dbb7b2648befe"></h2>
 
 
 ## Head 
@@ -75,17 +105,26 @@
     - same for the front nect vertex, eventuall we got a perfect square.
 
 
+<h2 id="deaa2adbeb26802ae61609c3f3642d82"></h2>
+
+
 ## UV
 
 1. obj -> edit mode -> shading / UV tab
 2. load texture, a to select a , scale the selector to a reasonable size
 3. obj -> N to show property panel -> check "Shading/Textured solid"
 
+<h2 id="152090ff5e9a05ea7e1cf0c248449638"></h2>
+
+
 ## Helm 
 
 1. select faces
 2. shift-D to duplicate
 3. seprate by select ,  to make a separated object
+
+<h2 id="17d2c299e4d02f7b375eec3f057a5b50"></h2>
+
 
 ## Mace
 
@@ -99,6 +138,9 @@
     - ![](../imgs/blender_mice_3.png)
     - and then scale to 0 to make spikes
     - ![](../imgs/blender_mice_4.png)
+
+
+<h2 id="03908bf22d3b0082ebc42831dd082b3a"></h2>
 
 
 ## Armature
@@ -128,12 +170,18 @@
     3. CTRL+P, you can choose "With Automatic Weights".
 
 
+<h2 id="fef75a1d83f32588ac72f338e0ecd077"></h2>
+
+
 ## Paint Weights
 
 1. pose mode, choose bone
 2. select you character, now you are in object mode, change to "Weight Paint"
     - ![](../imgs/blender_bone_5.png)
     - since the character is mirrored, and the bone are symmetric, so we just need do weight changs on half side.
+
+
+<h2 id="dfcf9dd022ec7d7f4548e411e3667700"></h2>
 
 
 ## Inverse Kinematics
@@ -170,6 +218,9 @@
     - ![](../imgs/blender_ik_13.png)
 
 
+<h2 id="d6b6b668dbca9d4fe774bb654226ebe3"></h2>
+
+
 ## Animation
 
 - In Animation Editor,  select *Action Edtor* Mode
@@ -197,6 +248,9 @@
     - use CTRL-C / SHIFT-CTRL-V to copy
 
 
+<h2 id="11c6b8a0ea0ed031c6acb4536ff0f3ca"></h2>
+
+
 ## Attach a weapon
 
 1. select weapon object,  add object constrait *Child Of*
@@ -205,6 +259,9 @@
 2. reset the position of weapon to 0,0,0, and adjust the rotaion
     - may need go back to action editor to adjust the weapon position to perfectly grab it.
     - you'd betten to turn *automatically insert key frame* to off.
+
+
+<h2 id="c577c7dc58bc18f9008d10465b2d268a"></h2>
 
 
 ## Copy Transformation Properties to other weapons

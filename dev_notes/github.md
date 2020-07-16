@@ -15,7 +15,7 @@
      - [delete a branch locally and remotely](#65804564299051849847b74237b908e7)
      - [ignore system proxy setting](#69a87c5b277c131f12dde6841d30e6bc)
      - [git set v2ray proxy](#1c28f585542f9ac3069d876441feb3ee)
- - [git 国内加速](#2a4fb72ead39f0a2aa9fa7a599de7fd9)
+     - [delete all commit history in github](#299ba8422f7eafd171b8c712b9319131)
 
 ...menuend
 
@@ -189,6 +189,9 @@ git config --global  --add remote.origin.proxy ""
 git config --global http.https://github.com.proxy https://127.0.0.1:8001
 git config --global https.https://github.com.proxy https://127.0.0.1:8001
 ```
+
+<h2 id="299ba8422f7eafd171b8c712b9319131"></h2>
+
 
 ## delete all commit history in github
 

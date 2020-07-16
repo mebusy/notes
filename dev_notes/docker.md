@@ -87,7 +87,8 @@
      - [stop / rm all container](#106810e843fbd66af6ee48cb3ee7e07f)
      - [继续一个刚刚结束的container](#5e7908d41ed1f3e6e1906d575e2dfea0)
      - [pass proxy to docker container](#e64a823c0142aaac197cc68839f54da9)
-     - [docker proxy for Centos7](#7a5c94971896bfbf1a19053004e56cc1)
+     - [docker daemon proxy for Centos7](#ed931520f4337c85396faa61455d56ec)
+     - [proxy when docker build](#68175df37efb964151e614c93d3e62ae)
      - [run bash of existing containter](#5ef5bd47a5282fb1ad1694bbb5f46954)
      - [get DockerFile from Image](#47a7dbe444a0af8498cf01950ad552ef)
      - [add a restart policy to a container](#9b68cd8277b36a785a1a8784426e3095)
@@ -2007,7 +2008,7 @@ Explanation:
  - set https_proxy and http_proxy in you host machine
  - `docker run -e https_proxy -e http_proxy ... ` 
 
-<h2 id="7a5c94971896bfbf1a19053004e56cc1"></h2>
+<h2 id="ed931520f4337c85396faa61455d56ec"></h2>
 
 
 ## docker daemon proxy for Centos7
@@ -2026,6 +2027,9 @@ Environment="HTTP_PROXY=http://host:port/"
 [Service]                                        
 Environment="HTTPS_PROXY=https://host:port/"  
 ```
+
+<h2 id="68175df37efb964151e614c93d3e62ae"></h2>
+
 
 ## proxy when docker build 
 

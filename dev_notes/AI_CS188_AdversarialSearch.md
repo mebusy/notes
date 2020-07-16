@@ -10,9 +10,10 @@
      - [Minimax Values](#a4d1f6cf51517d66b29531f7e039ffb0)
      - [Tic-Tac-Toe Game Tree](#0a6312d7d59a7975900e968c851dadd1)
      - [Adversarial Search (Minimax)](#dcf0514b6a79cf87fcd3bd43487c2421)
-     - [Minimax Implementation](#a58343ec090ddd8a61a686ba6cb80359)
+     - [Minimax Implementation (Dispatch)](#c71419720f45dda9ca197f86de277c73)
      - [Minimax Efficiency](#86563aad0e1c5702c26fc95c039b8f5d)
      - [Minimax Properties](#41f6acef7d955252a54191e4a588c49d)
+     - [Minimax Efficiency](#86563aad0e1c5702c26fc95c039b8f5d)
      - [Resource Limits](#febe674abc9aa524c322edbbd8ec668c)
      - [Depth Matters](#1d6bb0121e05033d0b24687e099f1cd7)
      - [Evaluation Functions](#374868e68849b0b659b2677c21e7e73d)
@@ -23,6 +24,7 @@
          - [Alpha-Beta Implementation](#e846bcc2e55ec4d7cfa03d4713218f5b)
          - [Alpha-Beta Pruning Properties](#ec4a6665d642ea66a394cbde7e464a8d)
      - [Iterative Deepening](#fcbd892c255445e0e3c99ceeb0dbc2e9)
+     - [Synergies between Evaluation Function and Alpha-Beta ?](#76ae59199372bb5d14e647a0d18b2179)
  - [Expectimax and Utilities](#a45c912b3f29a85dfaf265df7e679a37)
      - [Uncertainty and Utilities](#6149fc2d88c6c1923cb69bc8cb99a646)
          - [Worst-Case vs. Average Case](#f061a414b47ce02e647fdb25d80714af)
@@ -240,7 +242,7 @@ The value of root will be one of { -1,1,0 }.
 
 ![](../imgs/CS188_advS_minimax.png)
 
-<h2 id="a58343ec090ddd8a61a686ba6cb80359"></h2>
+<h2 id="c71419720f45dda9ca197f86de277c73"></h2>
 
 
 ## Minimax Implementation (Dispatch)
@@ -293,6 +295,9 @@ If you play against a perfect player  you want to use minimax but if you are not
 ![](../imgs/cs188_advS_minimax_properties.png)
 
 And so, if just periodically they were to make a mistake, it's worth to going the right way ( 9-100 ). So now we're doing some probability calculation really. It's like what's the chances that they might make a mistake.
+
+
+<h2 id="86563aad0e1c5702c26fc95c039b8f5d"></h2>
 
 
 ## Minimax Efficiency
@@ -562,6 +567,9 @@ def min-value(state , α, β):
         - ... and so on.
 
 ![](../imgs/cs188_iterative_deepening.png)
+
+
+<h2 id="76ae59199372bb5d14e647a0d18b2179"></h2>
 
 
 ## Synergies between Evaluation Function and Alpha-Beta ?

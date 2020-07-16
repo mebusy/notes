@@ -1,3 +1,20 @@
+...menustart
+
+ - [Part 1: The Column Space of a Matrix](#2b5fb5172d609c51c767a27f5ad390d0)
+ - [Part 2: The Big Picture of Linear Algebra](#34cff108da517ed4b0d8484280f95554)
+ - [Part 3: Orthogonal Vectors](#a11c7c4055d707cb2268f8ac7bc0f9a7)
+ - [Part 4: Eigenvalues and Eigenvectors](#1aa6f915d5f24977e2cdd346a923dde6)
+     - [Eigenvectors of S go into Orthogonal Matrix Q](#84d19e75f92868fc4a46bb2f544d5b09)
+     - [Eigenvalues and Eigenvectors:  Not symmetric](#4e6b8315b53bb0ddcafdef484959a882)
+     - [AᵀA is square, symmetric, nonnegative definite](#901296be65b54f663cb2cf80743a391c)
+ - [Part 5: Singular Values and Singular Vectors](#d55dcf6b90867473b4114bc94a455420)
+     - [Low rank approximation to a big matrix](#d6e287a3d85e85c9056e240bb9c7a972)
+
+...menuend
+
+
+<h2 id="2b5fb5172d609c51c767a27f5ad390d0"></h2>
+
 
 # Part 1: The Column Space of a Matrix
 
@@ -41,6 +58,9 @@ A =
     - if A is invertible, then C = A, R = I
 
 
+<h2 id="34cff108da517ed4b0d8484280f95554"></h2>
+
+
 # Part 2: The Big Picture of Linear Algebra
 
 - If Ax = 0 then x is orthogonal to every row of A
@@ -57,6 +77,9 @@ A =
     - LU : elimination
 
 
+<h2 id="a11c7c4055d707cb2268f8ac7bc0f9a7"></h2>
+
+
 # Part 3: Orthogonal Vectors
 
 - if Q is square,  Qᵀ = Q⁻¹
@@ -68,15 +91,24 @@ A =
     - ![](../imgs/LA_F3.8.png)
 
 
+<h2 id="1aa6f915d5f24977e2cdd346a923dde6"></h2>
+
+
 # Part 4: Eigenvalues and Eigenvectors
 
 - **S = Sᵀ  Real Eigenvalues and Orthogonal Eigenvectors**
+
+<h2 id="84d19e75f92868fc4a46bb2f544d5b09"></h2>
+
 
 ## Eigenvectors of S go into Orthogonal Matrix Q
 
 - S = QΛQᵀ
 - With S = AᵀA this will lead to the singualr values of A
     - A = UΣVᵀ
+
+
+<h2 id="4e6b8315b53bb0ddcafdef484959a882"></h2>
 
 
 ## Eigenvalues and Eigenvectors:  Not symmetric 
@@ -90,7 +122,13 @@ A =
     - Aⁿ = XΛⁿX⁻¹
     - Aⁿ → 0  when Λⁿ → 0 : **All |λᵢ| < 1**
 
+<h2 id="901296be65b54f663cb2cf80743a391c"></h2>
+
+
 ## AᵀA is square, symmetric, nonnegative definite
+
+
+<h2 id="d55dcf6b90867473b4114bc94a455420"></h2>
 
 
 # Part 5: Singular Values and Singular Vectors
@@ -108,6 +146,9 @@ A =
 - SVD example
     - ![](../imgs/LA_1806_2020_svd_example.png)
     - sum of rank-1 matrix , this is what data science want.
+
+<h2 id="d6e287a3d85e85c9056e240bb9c7a972"></h2>
+
 
 ## Low rank approximation to a big matrix
 

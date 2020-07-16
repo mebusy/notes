@@ -1,16 +1,21 @@
 ...menustart
 
- - [帧同步](#a9592bd6610be7f901063c580069e497)
-     - [客户端计算的一致性](#d262643e7cacb177cde62b3346ad0abd)
-     - [网络](#7ddbe15c845fa27a2bab496183042ca6)
+ - [UDP](#f5ef036b4d8b630721e51fe23489fbc9)
+ - [帧同步 Lockstep](#4237cc523ddf51a463a91d770ebafc75)
+     - [1 客户端计算的一致性](#d5096ffe34c40c04bb3c8ebcda25887b)
+     - [2 逻辑和显示分离](#71ade8c4ad1d399e5de3d4c3811320ab)
+     - [3 让操作流畅](#40939848cc300fb489826d839a1243c2)
+ - [Lockstep VS Rollback](#16731c5804652b67d31b9d80f92e9419)
  - [实现 #1 传统客户端](#8fb429f2c732df02beed40b4aee2d98a)
  - [实现 #2 预测回滚](#9eafae7566ddfa5de0886c16c02cbd00)
  - [Overwatch](#fcaeeb6e34b4303e99b91206bd325f2b)
  - [Mortal Kombat](#0be50d21cd18f6cf70ec79971504b63b)
  - [Halo](#aa6df57fb6fe377d80b4a257b4a92cba)
- - [其他](#0d98c74797e49d00bcc4c17c9d557a2b)
 
 ...menuend
+
+
+<h2 id="f5ef036b4d8b630721e51fe23489fbc9"></h2>
 
 
 # UDP
@@ -25,9 +30,15 @@
 
 
 
+<h2 id="4237cc523ddf51a463a91d770ebafc75"></h2>
+
+
 # 帧同步 Lockstep
 
 几个难点。是的，都是客户端的。
+
+<h2 id="d5096ffe34c40c04bb3c8ebcda25887b"></h2>
+
 
 ## 1 客户端计算的一致性
 
@@ -46,11 +57,17 @@
 
 
 
+<h2 id="71ade8c4ad1d399e5de3d4c3811320ab"></h2>
+
+
 ## 2 逻辑和显示分离
 
 - 游戏逻辑不要依赖于动画,或其他的美术资源
 - 做到脱离美术资源，一样可以跑比赛的逻辑。
 - 游戏设计成 可以使用不同的 time step 进行 update
+
+
+<h2 id="40939848cc300fb489826d839a1243c2"></h2>
 
 
 ## 3 让操作流畅
@@ -65,6 +82,9 @@
     - 客户端在感知到自己延迟增大的情况下，加速预测
     - 需要对游戏世界做快照，一旦发生回滚，使用快照立刻恢复游戏世界。
     - 真实玩家越多, Predict/Rollback 效果越差，因为预测很容易发生错误，会频繁回滚。
+
+
+<h2 id="16731c5804652b67d31b9d80f92e9419"></h2>
 
 
 # Lockstep VS Rollback
