@@ -114,6 +114,29 @@ for e in xrange( 8 , 20 ,1  ) :
 
 ```
 
+```python
+# a simple implementation
+class LCG():
+    def __init__( self, seed, mul, inc , mod ):
+        self.seed = seed
+        self.mul = mul
+        self.inc = inc
+        self.mod = mod
+
+    def next(self):
+        self.seed = (( self.mul * self.seed + self.inc ) % self.mod)
+        return self.seed
+
+
+if __name__ == "__main__":
+    lcg = LCG( 7,7,7, 10  )
+    print( [ lcg.next() for i in range(16) ] )
+
+
+    lcg = LCG( 7, 5 ,1, 16  )
+    print( [ lcg.next() for i in range(20) ] )
+```
+
 <h2 id="31d89b288043a80670b7a9af27dba6b6"></h2>
 
 
