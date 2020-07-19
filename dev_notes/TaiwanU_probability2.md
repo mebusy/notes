@@ -351,6 +351,21 @@ Fₓ(x) = P( X≤x )
         0.97724986805182079
         ```
 
+- Draw PDF 
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy.stats as stats
+
+mu = 20
+sigma = 2
+
+x = np.linspace( mu - 5*sigma, mu + 5*sigma, 200 )
+plt.plot( x, stats.norm.pdf( x, mu, sigma  ) )
+plt.show()
+```
+
 ---
 
 
