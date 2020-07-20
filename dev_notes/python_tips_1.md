@@ -424,6 +424,16 @@ b = np.array( [0,1,1] )
 np.random.choice(np.where(b == b.max())[0])
 ```
 
+or 
+
+```python
+np.random.choice(np.flatnonzero(b == b.max()))
+```
+
+- b == b.max() will return an array of boolean, with values of true where items are max and values of false for other items
+- flatnonzero() will do to things: ignore the false values (nonzero part) then return indices of true values. In other words, you get an array with indices of items matching the max value
+- Finally, you pick random index of these
+
 ----------
 
 
