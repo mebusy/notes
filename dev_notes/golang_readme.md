@@ -23,6 +23,7 @@
  19. [godoc](godoc.md)
  20. [go pprof](golang_pprof.md)
  21. [ways to sort in go](go_sort.md)
+ 22. [go encrypt](go_encrypt.md)
 
 ---------
 
