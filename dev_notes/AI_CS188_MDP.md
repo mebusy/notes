@@ -480,7 +480,6 @@ So you see at the bottom even though the tree has grown immensely it's still onl
 
 ## Value Iteration
 
-
 ![](../imgs/cs188_mdp_value_iteration.png)
 
 ---
@@ -523,9 +522,7 @@ Assume no discount!
 
 ![](../imgs/cs188_mdp_value_iteraction_example.png)
 
-
-
-So what we see ?  
+So what we see ?
 
  1. As I go further up the numbers are increasing and that make sense becaues as I have more time steps in this MDP I can get more rewards
  2. I also see that every layer it's better to be in the cool state than to be in the warm state.
@@ -534,6 +531,24 @@ So what we see ?
 Now you can look at this, you can probably figure out the optimal policy. 
 
 The optimal policy is if you're cool go fast and once you warm up you go slow and you never risk overheating. Now that optimal policy is actually already found at V₁ . These number 2,1,0 already reflect it. But it takes longer for the values to actually figure out how good that is . In general , V₁ is not enough to find the vest policy and in particular in this MDP because there's no discount the V<sub>s</sub> aren't going to converge. 
+
+---
+
+## Recap 2
+
+- Bellman equations **characterize** the optimal value
+    - ![](../imgs/cs188_mdp_values_of_states.png)
+    - Bellman equation is NOT the algorithm to computer it!
+- Value iteration **computes** them
+    - ![][2]
+    - I don't know how to solve that system of equations directly
+        - but if I imagine I had an approximation of all the status V<sub>k</sub> , maybe it's a bad approximation, maybe it's 0 (V₀), 
+        - I could get a better approximation, or at least a new approximation to the values of all the status V<sub>k+1</sub> , by running from each state, a one step, one ply expectimax seach, plugging in my old approximatin as the future cost.
+- Value iteration is just a fixed point solution method
+    - ... though the V<sub>k</sub> vectors are also interpretable as time-limited values.
+
+
+
  
 <h2 id="8645457c64703c956325a6f44824acdb"></h2>
 
