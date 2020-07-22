@@ -625,6 +625,10 @@ Now in value iteration the vectors V<sub>k</sub> themselves were  interpretable 
 
 ## Policy Methods
 
+Value iteration can be pretty slow. So we're going to talk about better methods to do that.
+
+So we're going to talk about methods that look at policies, evaluating policies, improving policies, and extracting polices.
+
 ![](../imgs/cs188_mdp_policy_methods.png)
 
 finding optimal policies that work over the policies themselves and make the policies better rather than simply working over the values trying to make the values better. 
