@@ -145,13 +145,11 @@ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | gre
 
 # b 开始 kubectl proxy.
 kubectl proxy
-
-# c 
-[本地dash](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#!/login)
-# 填入 token
-
 ```
 
+[本地dash](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#!/login)
+
+> 填入 token
 
 ## Misc
 
