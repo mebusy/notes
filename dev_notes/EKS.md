@@ -80,22 +80,24 @@ eksctl create cluster \
 --region cn-northwest-1 \
 --nodegroup-name test-workers \
 --node-type t3.medium \
---nodes 1 \
---nodes-min 1 \
+--nodes 2 \
+--nodes-min 2 \
 --nodes-max 4 \
+--vpc-private-subnets=subnet-993f04d3,subnet-99c11ee2 \
 --node-private-networking \
---vpc-cidr 172.31.0.0/16 \
 --ssh-access \
 --ssh-public-key hda.pub \
 --managed
 ```
 
+
 - 说明:
-    - `node-private-networking`  不分配外网IP
+    - 指定subnet的话，是否自动分配公网ip 是由subnet 指定的
+    - [release public IP](https://stackoverflow.com/questions/38533725/can-i-remove-the-public-ip-on-my-instance-without-terminating-it)
 
 ```bash
 # delte cluster ,normally you will fail, delete, or detach?  the VPC in first
-eksctl delete cluster --name=<...>
+eksctl delete cluster --region=cn-northwest-1 --name=<...>
 ```
 
 ## Deploy k8s control panel
@@ -163,6 +165,8 @@ kubectl proxy
 ## Misc
 
 [容器服务](https://cn-northwest-1.console.amazonaws.cn/eks/home?region=cn-northwest-1#/clusters)
+
+[实例](https://cn-northwest-1.console.amazonaws.cn/ec2/v2/home?region=cn-northwest-1#Instances:sort=publicIp)
 
 ```go
 # find cluster security group
