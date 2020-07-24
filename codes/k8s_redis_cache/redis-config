@@ -1,0 +1,6 @@
+maxmemory 370m
+maxmemory-policy allkeys-lru
+protected-mode no
+save ''
+appendonly no
+

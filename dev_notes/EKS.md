@@ -75,19 +75,28 @@ ssh-keygen -y -f hdaKeyPair.pem  > hda.pub
 # 使用 eksctl 创建集群
 
 eksctl create cluster \
---name prod \
+--name test \
 --version 1.17 \
 --region cn-northwest-1 \
---nodegroup-name standard-workers \
+--nodegroup-name test-workers \
 --node-type t3.medium \
 --nodes 1 \
 --nodes-min 1 \
 --nodes-max 4 \
+--node-private-networking \
+--vpc-cidr 172.31.0.0/16 \
 --ssh-access \
 --ssh-public-key hda.pub \
 --managed
 ```
 
+- 说明:
+    - `node-private-networking`  不分配外网IP
+
+```bash
+# delte cluster ,normally you will fail, delete, or detach?  the VPC in first
+eksctl delete cluster --name=<...>
+```
 
 ## Deploy k8s control panel
 
