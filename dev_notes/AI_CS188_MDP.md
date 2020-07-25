@@ -674,7 +674,8 @@ So we imagine we've got some policy π , it presumably bad but we're stuck with 
     - the π indicates that we're following π , it used to be a star which meant we were acting optimally.
  
  - Recursive relation (one-step look-ahead / Bellman equation):
-    - it's the same kind of bellman equation but the "maximum" is gone, and the action *a* replace by π(s)
+    - ![](../imgs/cs188_util_fixed_policy.png)
+    - **PS**: it's the same kind of bellman equation but the "maximum" is gone, and the action *a* replace by π(s)
 
 π : the function π is a policy. it takes a state and returns an action. It has no information about past or future . So far it is a function from states to actions. What is actually living inside the implementation of π ? It could be a lookup table, or it could be a snippet of code which executes expectimax. Now π is implemented by on-demand expectimax computations which is not what value iteration does. 
 
