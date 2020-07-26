@@ -562,7 +562,7 @@ How do we know ?
 
 But there are cases where we can show that it will converge. 
 
- - Case 1: If the tree has maximum depth M, then VV<sub>M</sub> holds the actual untruncated values
+ - Case 1: If the tree has maximum depth M, then V<sub>M</sub> holds the actual untruncated values
  - Case 2: If the discount is less than 1
     - as k increases, the values converge
     - Proof: pass
@@ -676,6 +676,7 @@ So we imagine we've got some policy π , it presumably bad but we're stuck with 
  - Recursive relation (one-step look-ahead / Bellman equation):
     - ![](../imgs/cs188_util_fixed_policy.png)
     - **PS**: it's the same kind of bellman equation but the "maximum" is gone, and the action *a* replace by π(s)
+    - This is now a linear system of equations. I can always just solve linear equations by sticking them in MATLAB or something.
 
 π : the function π is a policy. it takes a state and returns an action. It has no information about past or future . So far it is a function from states to actions. What is actually living inside the implementation of π ? It could be a lookup table, or it could be a snippet of code which executes expectimax. Now π is implemented by on-demand expectimax computations which is not what value iteration does. 
 
@@ -713,6 +714,7 @@ Sometimes we actually have a policy we just want to know how good it is but we'r
 
  - How do we calculate the V’s for a fixed policy π
  - Idea 1: Turn recursive Bellman equations into updates (like value iteration)
+    - ![](../imgs/cs188_equation_policy_eval.png)
     - Efficiency: O(S²) per iteration
  - Idea 2: Without the maxes, the Bellman equations are just a linear system
     - Solve with Matlab (or your favorite linear system solver)
@@ -729,10 +731,16 @@ Policy evaluation was about taking a policy and figuring out for each state how 
 
 Now we're going to look at the opposite direction : what happens if I give you the values and I asked you the question what policy should I use if these values are correct. 
 
+So how are we going to turn scores of states into moves ? And so you think, well that's maybe not too hard. I'll do a look ahead, I'll see what I can do, and then look at the values. That's basically the idea, but let's dig in a little more, and we'll see something that's actually very deep that will show up next week as well with reinforcement learning.
+
 <h2 id="34833eb820b21cf1bc001e77769ade32"></h2>
 
 
 ### Computing Actions from Values 
+
+- Let's imagine we have the optimal values V<sup>*</sup>(s). 
+
+How are you going to extract a policy for them ?  Or equivalently what policy do these values imply ?
 
 ![](../imgs/cs188_mdp_policy_extraction_example.png)
 
@@ -745,19 +753,18 @@ The values let you figure out that the square to the north of you is better than
 
 So it's actually not obvious at all.  How would you figure out from optimal values how to act ? 
 
-The answer is basically you've got to do expectimax.  I need basically unroll and expertimax one layer and do a one-step lookahead. 
+**The answer is basically you've got to do expectimax.  I need basically unroll and expertimax one layer and do a one-step lookahead.** 
 
 So what I'll do is to consider every action *a* from state *s* and figure out which is the good one. So I need to consider every action *a* , and then for each action I need to consider all of the results s' that action could have. Now for each action *a*, we know the score is gonna be an average over the s's.  
 
- - Let’s imagine we have the optimal values V<sup>\*<sup>(s)
- - How should we act?
+- How should we act?
     - It’s not obvious!
- - We need to do a mini-expectimax (one step)
+- We need to do a mini-expectimax (one step)
     - ![](../imgs/cs188_mdp_argmax.png)
     - *argmax* means consider all the values , rather than taking the maximum , give me the action  *a* which achieved the maximum. 
     - Luckily the discounted future I've assumed I actually have already (V<sup>\*</sup>(s)). So this is all the expectimax I need to do. 
         - 对每个action， 计算 K+1 的q-value
- - This is called **policy extraction** , since it gets the policy implied by the values
+- This is called **policy extraction** , since it gets the policy implied by the values
     - Action selection from values is kind of a pain. This process by which I take values which maybe optimal or may not and I computer a one-step lookahead policy according to them is called **policy extraction**. Because what is does is it digs out the policy that those values imply. It requires a one-step expectimax from every state to reconstruct. 
 
 
@@ -767,7 +774,7 @@ So what I'll do is to consider every action *a* from state *s* and figure out wh
 
 ### Computing Actions from Q-Values
 
-What about Q-Values ?  Q-Values is kind of weird.  
+On the other hand, Q-Values is kind of weird, they are really nice for this purpose. Because if instead of giving you the values, somebody gave you the optimal Q values, it would be really, really easy to select actions.
 
 ![](../imgs/cs188_mdp_compute_action_from_q_values.png)
 
@@ -776,7 +783,7 @@ What about Q-Values ?  Q-Values is kind of weird.
  - How should we act ?
     - The Q-values make it super easy to decide actions. 
     - Completely trivial to decide !
-    - π<sup>\*</sup>(s) = argmaxₐ Q<sup>\*</sup>(s,a)
+        - **π<sup>\*</sup>(s) = argmaxₐ Q<sup>\*</sup>(s,a)**
  - Important lesson: actions are easier to select from q-values than values!
 
 
@@ -803,9 +810,10 @@ What value iteration does is essentially mimics 模仿 the bellman updates. You 
 
  - Problem 2: The “max” at each state rarely changes
     - Although you've considered all of these actions the maximum often doesn't change. 
+    - So for every action other than the one that we had already landed on, that computations was wasted.
  
  - Problem 3: The policy often converges long before the values
-
+    - once the policy converges, every branch of that expectimax tree that doesn't correspond to an optimal action is wasted computation.
 
 Example (TODO):
 
