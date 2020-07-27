@@ -760,6 +760,24 @@ Sending build context to Docker daemon 2.048 kB
 
 一般来说，应该会将 Dockerfile 置于一个空目录下，或者**项目**根目录下。如果该目录下没有所需文件，那么应该把所需文件复制一份过来。如果目录下有些东西确实不希望构建时传给 Docker 引擎，那么可以用 .gitignore 一样的语法写一个 .dockerignore，该文件是用于剔除不需要作为上下文传递给 Docker 引擎的。
 
+```dockerignore
+# .dockerignore
+
+# Ignore everything
+**
+
+# Allow files and directories
+!/file.txt
+!/src/**
+
+# Ignore unnecessary files inside allowed directories
+# This should go after the allowed directories
+**/*~
+**/*.log
+**/.DS_Store
+**/Thumbs.db
+```
+
 <h2 id="e2ccb8bb6d2b9d1f6ef53430262eb335"></h2>
 
 

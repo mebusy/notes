@@ -256,6 +256,13 @@ mysql -uroot -ppwd  < dumpfile
 ```
 
 
+## Create a `new_user` and Grant all privileges on db `db_test`
+
+```mysql
+CREATE USER 'new_user'@'%' IDENTIFIED BY 'new_user_pwd';
+GRANT ALL PRIVILEGES  ON db_test.* TO 'new_user'@'%' WITH GRANT OPTION;
+```
+
 --- 
 
 <MySQL技术内幕(InnoDB存储引擎)第2版>
