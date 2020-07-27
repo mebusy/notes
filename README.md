@@ -125,7 +125,8 @@ a | b | c | d
 [reintro JS](dev_notes/reintro_JS.md) | [React哲学](dev_notes/react_philosophy.md)  |  [web frontend tips](dev_notes/web_frontend_note.md) | [js tips](dev_notes/nodejs_tips.md) 
 [TypeScript](dev_notes/typescript.md) |
 [facebook gamebot](dev_notes/createFBapp.md) | 
-[k8s Tutorial,Installation](dev_notes/kuberneters.md) | [腾讯TKE](dev_notes/TencentK8sEngine.md) | [edx intro2K8s](dev_notes/intro2K8s.md) | [redis-cache in k8s](dev_notes/k8s_redis-cache.md) 
+[k8s Tutorial,Installation](dev_notes/kuberneters.md) | [腾讯TKE](dev_notes/TencentK8sEngine.md) | [edx intro2K8s](dev_notes/intro2K8s.md) | 
+[redis-cache in k8s](dev_notes/k8s_redis-cache.md)  | [mysql-test in k8s](dev_notes/k8s_mysql-test.md) |
 [帧同步笔记](dev_notes/framelock.md) | 
 
 
