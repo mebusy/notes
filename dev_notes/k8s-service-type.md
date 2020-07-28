@@ -32,9 +32,6 @@ NodePort 服务会路由到 ClusterIP 服务，该 ClusterIP 服务会自动创�
 除了测试以及非生产环境以外，不推荐在生产环境中直接通过集群节点 **对外** 甚至公网提供服务。从安全上考虑，使用该类型会直接暴露集群节点，容易受到攻击。使用该类型使得对外提供服务的地址和集群节点有了耦合。
 
 
-1. externalTrafficPolicy
-2. type: NodePort
-
 
 ```yaml
   apiVersion: v1
@@ -42,7 +39,6 @@ NodePort 服务会路由到 ClusterIP 服务，该 ClusterIP 服务会自动创�
   metadata:
     name: ipa-server
   spec:
-    externalTrafficPolicy: Cluster
     ports:
     - name: 7001-7001-tcp
       port: 7001
@@ -54,19 +50,11 @@ NodePort 服务会路由到 ClusterIP 服务，该 ClusterIP 服务会自动创�
     type: NodePort
 ```
 
-## Loadbalancer
+## LoadBalancer
 
 负载均衡器可以路由到 NodePort 服务，或直接转发到处于 VPC-CNI 网络条件下的容器中。
 
-1. externalTrafficPolicy: Cluster
-2. type: LoadBalancer
-3. status:
-    ```yaml
-    status:
-      loadBalancer:
-        ingress:
-        - ip: 150.158.220.177
-    ```
-4. depends on service provider
+1. type: LoadBalancer
+2. depends on service provider
 
 

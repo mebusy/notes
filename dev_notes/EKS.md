@@ -162,6 +162,117 @@ kubectl proxy
 
 > 填入 token
 
+
+## 部署 ALB 入口控制器
+
+[官方文档](https://docs.aws.amazon.com/zh_cn/eks/latest/userguide/alb-ingress.html)
+
+1 标记 VPC 中要用于负载均衡器的子网，以便 ALB 入口控制器知道它可以使用这些子网
+
+tag key | value | for ...
+--- | --- | --- 
+kubernetes.io/cluster/<cluster-name> | shared |  标记 VPC 中的所有子网，以便 Kubernetes 能够发现它们
+kubernetes.io/role/elb | 1 | 标记 VPC 中的公有子网，以便 Kubernetes 知道仅将这些子网用于外部负载均衡器
+
+
+2 创建 IAM OIDC 提供程序，并将该提供程序与您的集群关联。
+
+```bash
+eksctl utils associate-iam-oidc-provider \
+    --region cn-northwest-1 \
+    --cluster test \
+    --approve
+```
+
+3 下载 ALB 入口控制器 pod 的 IAM 策略，该策略允许此 pod 代表您调用 AWS API
+
+```bash
+curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.8/docs/examples/iam-policy.json
+```
+
+4 使用上一步中下载的策略创建一个名为 ALBIngressControllerIAMPolicy 的 IAM 策略。
+
+```bash
+aws iam create-policy \
+    --policy-name ALBIngressControllerIAMPolicy \
+    --policy-document file://iam-policy.json
+```
+
+记下返回的策略 ARN。
+
+5 在 kube-system 命名空间中创建一个名为 alb-ingress-controller 的 Kubernetes 服务账户，并创建集群角色和针对 ALB 入口控制器的集群角色绑定
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.8/docs/examples/rbac-role.yaml
+```
+
+6 为 ALB 入口控制器创建一个 IAM 角色，并将该角色附加到在上一步中创建的服务账户
+
+```bash
+eksctl create iamserviceaccount \
+    --region cn-northwest-1 \
+    --name alb-ingress-controller \
+    --namespace kube-system \
+    --cluster test \
+    --attach-policy-arn arn:aws-cn:iam::2249932229B6:policy/ALBIngressControllerIAMPolicy \
+    --override-existing-serviceaccounts \
+    --approve
+```
+
+7 部署 ALB 入口控制器
+
+```bash
+# download yaml
+wget https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.8/docs/examples/alb-ingress-controller.yaml
+# edit , add cluster name
+    spec:
+      containers:
+      - args:
+        - --ingress-class=alb
+        - --cluster-name=prod
+        # for WAFv2 is not available in AWS China regions
+        - --feature-gates=waf=false,wafv2=false
+
+
+# deploy
+kubectl apply -f alb-ingress-controller.yaml 
+```
+
+8 确认 ALB 入口控制器是否正在运行
+
+```
+kubectl get pods -n kube-system
+```
+
+9 部署 ingress
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test-ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+  labels:
+    k8s-app: test-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: ipa-server
+              servicePort: 7001
+```
+
+10 如果在几分钟后尚未创建入口，请运行以下命令以查看入口控制器日志。
+
+```bash
+kubectl logs -n kube-system   deployment.apps/alb-ingress-controller
+```
+
+
 ## Misc
 
 [容器服务](https://cn-northwest-1.console.amazonaws.cn/eks/home?region=cn-northwest-1#/clusters)
