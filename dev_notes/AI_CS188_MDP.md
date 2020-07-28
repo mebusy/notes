@@ -971,6 +971,7 @@ So we just played our policy how did we do ?
 
 Looks like we got 12$. What the values suggest we would get ? One average we should have gotten 15 so we're a little bit unlucky but not ridiculously unlucky. Here it's very important we solved it offline in our heads we actually played in the real world using the policy that we determined to be optimal in our heads. 
 
+## Online Planning
 
 Let's change the rules. We don't know the probabilities of red machine.  What's the optimal policy ? What should I do ? 
 
@@ -1006,28 +1007,7 @@ This is a different setting where there is an MDP that you know red has a payoff
  - Actually, *any* sequences of Bellman updates will converge if every state is visited infinitely often
  - In fact, we can update the policy as seldom or often as we like, and we will still converge
  - Idea: Update states whose value we expect to change:
-    - if | Vᵢ₊₁(s) = Vᵢ(s) | is large then update predecessors of s
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
+    - if | Vᵢ₊₁(s) - Vᵢ(s) | is large then update predecessors of s
 
 
 
