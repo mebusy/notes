@@ -96,6 +96,10 @@ it seems that TKE will automatically use  `tencenthubkey` ?
  - [轻松了解Kubernetes部署功能](http://qinghua.github.io/kubernetes-deployment/)
 
 
+## kubectl cheatsheet
+
+[cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+
 ## kubectl delete po by selector
 
 ```
