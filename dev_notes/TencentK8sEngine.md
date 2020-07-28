@@ -106,6 +106,12 @@ it seems that TKE will automatically use  `tencenthubkey` ?
 kubectl -n <namespace> delete po --selector=<selector-key>=<selector-value>
 ```
 
+## restart deployment
+
+```
+kubectl -n <namespace> rollout restart deployment <deployment-name>
+```
+
 <h2 id="a65165eaad917e08dbaab4ca345c9140"></h2>
 
 
