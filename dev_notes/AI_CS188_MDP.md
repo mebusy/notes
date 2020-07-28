@@ -851,10 +851,13 @@ Policy iteration is an alternative approach and the basic sketch is we're going 
 
  - Evaluation: For fixed current policy π,  find values with policy evaluation:
     - Iterate until values converge:
-    - ![](../imgs/cs188_mdp_policy_iteration_evaluation.png)
+        - ![](../imgs/cs188_mdp_policy_iteration_evaluation.png)
+        - you might do this 100 times so as to make value converge
+        - **when you do this in practice, you don't start the evaluation over at 0, you start it at your old values**.
  - Improvement: For fixed values, get a better policy using policy extraction
     - One-step look-ahead:
-    - ![](../imgs/cs188_mdp_policy_iteration_improvement.png)
+        - ![](../imgs/cs188_mdp_policy_iteration_improvement.png)
+        - you only do this once
 
 
 
