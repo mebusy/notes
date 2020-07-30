@@ -272,6 +272,40 @@ spec:
 kubectl logs -n kube-system   deployment.apps/alb-ingress-controller
 ```
 
+For TLS loader balancer 
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: umc-test-ingress-443
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+  labels:
+    k8s-app: umc-test-ingress-443
+spec:
+  rules:
+  - host: server1-test.domain.com
+    http:
+      paths:
+        - path: /*
+          backend:
+            serviceName: my-game-server
+            servicePort: 9000
+  - host: server2-test.domain.com
+    http:
+      paths:
+        - path: /*
+          backend:
+            serviceName: my-ipa-server
+            servicePort: 7001
+```
+
+- alb.ingress.kubernetes.io/security-groups: sg-xxxx, nameOfSg1
+    - When this annotation is not present, the controller will automatically create 2 security groups
+- [more ALB annotation](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/ingress/annotation/)
 
 ## Misc
 
