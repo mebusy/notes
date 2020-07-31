@@ -171,7 +171,7 @@ kubectl proxy
 
 tag key | value | for ...
 --- | --- | --- 
-kubernetes.io/cluster/<cluster-name> | shared |  标记 VPC 中的所有子网，以便 Kubernetes 能够发现它们
+`kubernetes.io/cluster/<cluster-name>` | shared |  标记 VPC 中的所有子网，以便 Kubernetes 能够发现它们
 kubernetes.io/role/elb | 1 | 标记 VPC 中的公有子网，以便 Kubernetes 知道仅将这些子网用于外部负载均衡器
 
 
