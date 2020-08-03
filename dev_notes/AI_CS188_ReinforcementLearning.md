@@ -228,6 +228,14 @@ This is the high level view of model-based vs model-free. In model-based you lea
         - Model Free
             - E[A] ≈ 1/N·∑ᵢ aᵢ 
 
+
+![](../imgs/cs188_RL_modelfree_example_1.png)
+
+A very striking difference is that, on the left, there is a weighting by the probability. On the right, there is not.
+
+The compute the same thing actually here, but in a different way. This is going to be fundamental to understanding model-free RL.
+
+
 <h2 id="873e73c28eb2e383f892a21d8ff49827"></h2>
 
 

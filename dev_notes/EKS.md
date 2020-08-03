@@ -100,6 +100,31 @@ eksctl create cluster \
 eksctl delete cluster --region=cn-northwest-1 --name=<...>
 ```
 
+- to create a new manged nodegroup ...
+    - 
+    ```bash
+    eksctl create nodegroup --cluster <cluster name> \
+    --region cn-northwest-1 \
+    --name <nodegroup name> \
+    --node-type t3.xlarge \
+    --node-volume-size 150 \
+    --nodes 1 \
+    --nodes-min 1 \
+    --nodes-max 8 \
+    --node-private-networking \
+    --ssh-access \
+    --ssh-public-key hda.pub \
+    --managed    
+    ```
+- 注意: 新增了nodegroup后，你需要 attach existing load balancer to the new node group
+    1. Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/.
+    2. On the navigation pane, under AUTO SCALING, choose the Auto Scaling Group.
+    3. On the Details tab, choose Edit.
+    4. Do one of the following:
+        - [Classic Load Balancers] For Classic Load Balancers, choose your load balancer.
+        - [Application/Network Load Balancers] For Target Groups, choose your target group.
+
+
 ## Deploy k8s control panel
 
 [部署 Kubernetes 控制面板 (Web UI)](https://docs.amazonaws.cn/eks/latest/userguide/dashboard-tutorial.html)
