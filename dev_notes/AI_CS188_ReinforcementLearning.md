@@ -245,6 +245,8 @@ In model-free learning we don't construct a model of the transition function. Wh
 
 So what we track in a model-free approach is the values of interest themselves , not the transition functins and the rewards.  
 
+We'll do this in 2 phases. We'll look at *passive reinforcement learning*, and *active reinforcement learning*.
+
 
 <h2 id="dd0e9af361861e9d611430c8132e7d5d"></h2>
 
@@ -253,6 +255,7 @@ So what we track in a model-free approach is the values of interest themselves ,
 
 ![](../imgs/cs188_passive_reinforcement_learning.png)
 
+Passive will mean that we just are trying to estimate quantities we care about-- let's say, values, -- but we don't worry about acting in the world.
 
 The idea is things are happening in the real world , some agent is taking actions and getting specific outcomes that are partially determined by chance. You have to learn from there samples you observe but you don't control the actions. Someone else is choosing the actions and you're just sitting there with your notebook trying to figure out based on the policy that is being followed what are the values of all the states. 
 
@@ -263,6 +266,9 @@ So the task we're going to think about in the passive case is this simplified ta
 The input is a fixed policy. In previous example the agent is just watching some other execute this policy. but in any case it's a fixed policy. The agent does no know the transitions and the rewards. **Our goal is to learn the state values**. Of course because we're watching this policy π execute we're going to learn the values under the policy π. If π is really bad we're probably going to learn values that are also really bad. 
 
 This is policy evaluation. We're watching or executing a fixed policy and we're trying to figure out how good each state is under that policy execution. In this case the learner is along for the ride. It doesn't get to actually control things even if it's already learned they're bad.  We have no choice about the actions , we're just executing the policy. It's still not offline planning. 
+
+![](../imgs/cs188_passive_RL_1.png)
+
 
  - Simplified task: policy evaluation
     - Input: a fixed policy π(s)
@@ -280,6 +286,15 @@ This is policy evaluation. We're watching or executing a fixed policy and we're 
 
 
 ## Direct Evaluation
+
+```
+model-free --- passive -- direct
+           \           \- indirect
+            \
+             \- active
+```
+
+
 
 The simplest way you could imagine doing model-free is what's called **direct evaluation**.
 
@@ -342,8 +357,12 @@ They are not optimal values , they are values for the policy being executed ,  i
 
  - What bad about it?
     - It wastes information about state connections
+        - because it never really considers correlations between states.
+        - when you're in E, you always go through C. Or when you're in B, you go through C. But somehow B's value is 8 , and for E value is -2. But really they should be the same.
     - Each state must be learned separately
     - So, it takes a long time to learn
+        - but if you keep collecting data infinitely long, it will average out to the right thing.
+        - but often in learning, it's not about what you learn after infinite data, you want to learn more quickly than after infinite time.
 
 
 We waste information about how the states connect up to each other. If we know the state is good and we know another state leads to it , that state should be good as well. Because we're learning each state separately , we're failing to exploit information across episodes. 
@@ -353,11 +372,12 @@ We waste information about how the states connect up to each other. If we know t
 
 ## Why Not Use Policy Evaluation ?
 
-Policy Evaluation exploited the connections between the states , Unfortunately, we need T and R to do it!
+- Policy Evaluation exploited the connections between the states
+- Unfortunately, we need T and R to do it!
 
 We already know how to take averages without knowing the weights. We look at samples of the things we're average and we add up those samples with equal weight.  How can we turn that into an algorithm ?
 
- - Key question: how can we do this update to V without knowing T and R?
+- Key question: how can we do this update to V without knowing T and R?
     - In other words, how to we take a weighted average without knowing the weights ?
 
 <h2 id="1249deda865401b3c63bbe67c870bdd6"></h2>
