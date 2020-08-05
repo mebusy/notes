@@ -124,6 +124,11 @@ eksctl delete cluster --region=cn-northwest-1 --name=<...>
         - [Classic Load Balancers] For Classic Load Balancers, choose your load balancer.
         - [Application/Network Load Balancers] For Target Groups, choose your target group.
 
+- 切换集群
+    - 
+    ```bash
+    aws eks update-kubeconfig --name  TEST  --region cn-northwest-1
+    ```
 
 ## Deploy k8s control panel
 
