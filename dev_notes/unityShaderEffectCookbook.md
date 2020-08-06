@@ -164,7 +164,7 @@ How it works ?
  - finally, return that value as the color. See the following code:
 
 
-[rending path 介绍](https://github.com/mebusy/notes/blob/master/dev_notes/renderingPath.md)
+[rending path 介绍](renderingPath.md)
 
 
 <h2 id="17d9822b08d510c47c7a909f396c4f47"></h2>

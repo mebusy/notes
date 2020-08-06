@@ -162,7 +162,7 @@ h(x) = sigh ( WᵀX )
     - each training case X can be represented as a hyperplane through the origin.
         - The plane goes through the origin and is perpendicular to the input vector X .
     - The weights must lie on one side of this hyper-plane to get the answer correct.
-    - 更具体的 weight space 说明，见 [Neural Networks](https://github.com/mebusy/notes/blob/master/dev_notes/NeuralNetworks.md)
+    - 更具体的 weight space 说明，见 [Neural Networks](NeuralNetworks.md)
         - 实践中，也能把 W，X角色互换也可以？
 
 <h2 id="03ed0e617baca54a8f30c4314b8395c6"></h2>

@@ -278,7 +278,7 @@ j = (char (*)[20]) malloc( 20 );
 char* const *(*next)();
 ```
 
- - see [c declaration,struct/union/enums/typedef](https://github.com/mebusy/notes/blob/master/dev_notes/c_declaration.md) 
+ - see [c declaration,struct/union/enums/typedef](c_declaration.md) 
 
 
 <h2 id="b7e9138ae25a9bed094f2fc2baac2ec7"></h2>

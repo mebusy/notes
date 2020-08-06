@@ -4,28 +4,28 @@
 
 ---
 
- 1. [排序 选择](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_12.md)  , [**SORT**](https://github.com/mebusy/notes/blob/master/dev_notes/AlgorithmI.md)
- 2. [**Graph Search**](https://github.com/mebusy/notes/blob/master/dev_notes/AlgorithmII_Graph.md) 
- 3. [**MST, Shortest Path**](https://github.com/mebusy/notes/blob/master/dev_notes/AlgorithmII_MST.md) 
- 4. [图 Min Cut](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_GraphMinCut.md) 
- 5. [Heap](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_Heap.md) , [**Priority Queue**](https://github.com/mebusy/notes/blob/master/dev_notes/AlgorithmI_PQ.md)
- 6. [Binary Search Tree](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_BinarySearchTree.md) 
- 7. [hash](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_hash.md)
- 8. [**Symbol Table 实现**](https://github.com/mebusy/notes/blob/master/dev_notes/AlgorithmI_SmybolTables.md), [**HASH**](https://github.com/mebusy/notes/blob/master/dev_notes/AlgorithmI_HashTables.md)
- 9. [Dynamic Programming](https://github.com/mebusy/notes/blob/master/dev_notes/DynamicProgramming.md)
+ 1. [排序 选择](Algorithm_12.md)  , [**SORT**](AlgorithmI.md)
+ 2. [**Graph Search**](AlgorithmII_Graph.md) 
+ 3. [**MST, Shortest Path**](AlgorithmII_MST.md) 
+ 4. [图 Min Cut](Algorithm_GraphMinCut.md) 
+ 5. [Heap](Algorithm_Heap.md) , [**Priority Queue**](AlgorithmI_PQ.md)
+ 6. [Binary Search Tree](Algorithm_BinarySearchTree.md) 
+ 7. [hash](Algorithm_hash.md)
+ 8. [**Symbol Table 实现**](AlgorithmI_SmybolTables.md), [**HASH**](AlgorithmI_HashTables.md)
+ 9. [Dynamic Programming](DynamicProgramming.md)
 
 ---
  
 
- 1. [Algorithm on String](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_On_Strings.md)
- 1. [Algorithm on Graph](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_On_Graphcs.md)
+ 1. [Algorithm on String](Algorithm_On_Strings.md)
+ 1. [Algorithm on Graph](Algorithm_On_Graphcs.md)
 
 
 ---
 
- - [2D clostest pair](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_closestPair.md) 
- - [Fast Distance 2D](https://github.com/mebusy/notes/blob/master/dev_notes/Algorithm_fastdistance2D.md)
- - [2D Tree](https://github.com/mebusy/notes/blob/master/dev_notes/2dTree.md)
+ - [2D clostest pair](Algorithm_closestPair.md) 
+ - [Fast Distance 2D](Algorithm_fastdistance2D.md)
+ - [2D Tree](2dTree.md)
 
 ---
 

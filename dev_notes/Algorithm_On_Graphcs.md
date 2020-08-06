@@ -546,7 +546,7 @@ How to compute the strongly connected components of a graph. ?
 
 ## Breadth-First Search
 
-[BFS algorithm](https://github.com/mebusy/notes/blob/master/dev_notes/AlgorithmII_Graph.md#9f5783932f655ffe3908ff7d3410497e)
+[BFS algorithm](AlgorithmII_Graph.md#9f5783932f655ffe3908ff7d3410497e)
 
 <h2 id="3beb167902a9a7e0fb85607fb6ae23cf"></h2>
 
@@ -605,7 +605,7 @@ How to compute shortest path of a weighted edges graph ?
 
 ## Dijkstra's Algorithm
 
-[Java Implementation](https://github.com/mebusy/notes/blob/master/dev_notes/AlgorithmII_MST.md#f1d4978722895ce40af6d3ebe0c8c6c0)
+[Java Implementation](AlgorithmII_MST.md#f1d4978722895ce40af6d3ebe0c8c6c0)
 
 Note: normally there are 2 versions of Dijkstra. The key difference is whether a vertex is allowed be enqueued more than once.  If re-enqueued is allowed, that version algorithm can work with negative weight.
 

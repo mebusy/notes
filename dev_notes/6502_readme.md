@@ -3,14 +3,14 @@
 
 # NesDev
 
- - [NES架构 和6502指令集](https://github.com/mebusy/notes/blob/master/dev_notes/6502.md)
- - [OAM](https://github.com/mebusy/notes/blob/master/dev_notes/nes_OAM.md)
- - [PPU register](https://github.com/mebusy/notes/blob/master/dev_notes/nes_PPU_register.md)
- - [CS-98-026](https://github.com/mebusy/notes/blob/master/dev_notes/CS-98-026.md)
- - [CS-98-026 Mapper](https://github.com/mebusy/notes/blob/master/dev_notes/CS-98-026_2.md)
- - [CS-98-026 anim,random number,Gravity,multiplication,collision](https://github.com/mebusy/notes/blob/master/dev_notes/CS-98-026_3.md)
- - [CS-98-026 code for sound, palette changing, sprite 0 hit usage-裂屏](https://github.com/mebusy/notes/blob/master/dev_notes/CS-98-026_4.md)
- - [CS-98-026 sound channel](https://github.com/mebusy/notes/blob/master/dev_notes/CS-98-026_5.md)
+ - [NES架构 和6502指令集](6502.md)
+ - [OAM](nes_OAM.md)
+ - [PPU register](nes_PPU_register.md)
+ - [CS-98-026](CS-98-026.md)
+ - [CS-98-026 Mapper](CS-98-026_2.md)
+ - [CS-98-026 anim,random number,Gravity,multiplication,collision](CS-98-026_3.md)
+ - [CS-98-026 code for sound, palette changing, sprite 0 hit usage-裂屏](CS-98-026_4.md)
+ - [CS-98-026 sound channel](CS-98-026_5.md)
  - [nes简要笔记](nes.md)
 
 

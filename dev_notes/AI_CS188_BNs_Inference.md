@@ -72,7 +72,7 @@
     - some query variables Q , the ones which we want to distribution given the evidence variables.
     - some hidden variables. H₁...H<sub>r</sub> , the ones that are not query variables , not query variables, but yet still are in our joint distribution.
         - we have to deal with them, you will have to sum them out effectively to get rid of them.
- - see details in [Probability](https://github.com/mebusy/notes/blob/master/dev_notes/AI_CS188_Probability.md)
+ - see details in [Probability](AI_CS188_Probability.md)
 
 <h2 id="501eae82a1dd02d9d72cb6f324e1d35d"></h2>
 

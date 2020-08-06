@@ -58,7 +58,7 @@ pip install scrapy-splash --user
 
  - under proxy 
     1. pass proxy to docker container 
-        - see [docker](https://github.com/mebusy/notes/blob/master/dev_notes/docker.md) 
+        - see [docker](docker.md) 
     2. set proxy for scrapinghub/splash
         - [docker api](http://splash.readthedocs.io/en/stable/api.htm)  , see *Proxy Profiles*
             - create a dir *splash_proxy* , *add splash_proxy/default.ini*
