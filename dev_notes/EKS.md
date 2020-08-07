@@ -101,21 +101,22 @@ eksctl delete cluster --region=cn-northwest-1 --name=<...>
 ```
 
 - to create a new manged nodegroup ...
-    - 
-    ```bash
-    eksctl create nodegroup --cluster <cluster name> \
-    --region cn-northwest-1 \
-    --name <nodegroup name> \
-    --node-type t3.xlarge \
-    --node-volume-size 150 \
-    --nodes 1 \
-    --nodes-min 1 \
-    --nodes-max 8 \
-    --node-private-networking \
-    --ssh-access \
-    --ssh-public-key hda.pub \
-    --managed    
-    ```
+
+```bash
+eksctl create nodegroup --cluster <cluster name> \
+--region cn-northwest-1 \
+--name <nodegroup name> \
+--node-type t3.xlarge \
+--node-volume-size 150 \
+--nodes 1 \
+--nodes-min 1 \
+--nodes-max 8 \
+--node-private-networking \
+--ssh-access \
+--ssh-public-key hda.pub \
+--managed    
+```
+
 - 注意: 新增了nodegroup后，你需要 attach existing load balancer to the new node group
     1. Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/.
     2. On the navigation pane, under AUTO SCALING, choose the Auto Scaling Group.
