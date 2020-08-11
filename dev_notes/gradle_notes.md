@@ -809,5 +809,5 @@ android {
 
 ## android logcat filter
 
- - `adb logcat *:I`
+ - `adb logcat -s TAG1*:I  TAG2:*`
 
