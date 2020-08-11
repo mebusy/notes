@@ -777,6 +777,64 @@ android {
 }
 ```
 
+## More update-date example
+
+```gradle
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.1'
+    }
+}
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'android'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "you-app-package-id"
+        minSdkVersion 21
+        targetSdkVersion 26
+
+        ndk {
+            abiFilters 'armeabi'
+        }
+
+    }
+      lintOptions {
+          abortOnError false
+      }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFile getDefaultProguardFile('proguard-android.txt')
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+
+dependencies {
+    // implementation 'com.google.code.gson:gson:2.2.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+}
+
+```
+
 ---
 
 
