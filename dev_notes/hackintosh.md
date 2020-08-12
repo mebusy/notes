@@ -376,8 +376,16 @@ sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
 
 **Note the additional “r” prepended to the usb partition name rdisk2 instead of disk2**.
 
+## Create a normal bootable usb installer
 
- 
+1. Usb format to **Mac OS Extended**, at least 12G
+2. *MyVolume* is the name of the USB flash drive 
+
+```bash
+# Catalina:*
+sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
+```
+
 
 
 

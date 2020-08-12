@@ -68,7 +68,7 @@ When the action is resolved what the agent receive back is 2 things: one is the 
 
 For now we take an action which we essentially submit to the environment by doing it and the environment returns to us a state which is the result and a reward which we want to maximize.   
 
-We want to act ot maximize our rewards but we have to learn to do that , because in this setting we won't know what actions will produce rewards until we try them. 
+We want to act to maximize our rewards but we have to learn to do that , because in this setting we won't know what actions will produce rewards until we try them. 
 
 Because we're actually trying things in the environment ,all of the learning  all of the ways we have available to us  to make decision, are mediated by what we experience -- which are samples of outcomes.  
 
@@ -289,7 +289,7 @@ This is policy evaluation. We're watching or executing a fixed policy and we're 
 
 ```
 model-free --- passive -- direct
-           \           \- indirect
+           \           \- indirect (TD)
             \
              \- active
 ```
@@ -483,24 +483,42 @@ When I get to the square down to 0.98 and I go north , even I've never been in t
 
 ![](../imgs/cs188_rl_tdl_example9.png)
 
+
+
+---
+
+We can decide to never build a model of how the world works. We never build a T, we never build an R, yet we can recover V values, the values of policy for each state. 
+
+And then it turns out, if you run this long enough and the learning rate goes down over time, you get accurate values for each of your states. 
+
+
 <h2 id="f014b2f80d6cee4d42ed6c19b0fdaadb"></h2>
 
 
 ## Exponential Moving Average 
 
- - Exponential moving average 
+- Exponential moving average b
     - The running interpolation update:
         - ![](../imgs/cs188_rl_tdl_interpolation_update.png)
     - Makes recent samples more important:
         - ![](../imgs/cs188_rd_tdl_xn.png)
     - Forgets about the past (distant past values were wrong anyway)
- - Decreasing learning rate (alpha) can give converging averages
+    - So it's kind of a skewed average where later experiences count for more than earlier experiences.
+        - you might think of it as a bug. Soon enough, you'll see why this is acutally even better. It's better to skew towards the later ones.
+- Decreasing learning rate (alpha) can give converging averages
 
 
 <h2 id="1f7e6611a83a4f6ff38b6ad2c39e9d76"></h2>
 
 
 ## Problems with TD Value Learning 
+
+- TD value leaning is a model-free way to do policy evaluation, mimicking Bellman updates with running sample averages
+- However, if we want to turn values into a (new) policy, we’re sunk:
+    - policy evaluation needs T & R
+- Idea: learn Q-values, not values
+- Makes action selection model-free too!
+
 
 TD value learning is not going to work for the general problem of active reinforcement learning where we want to not only evaluate but also choose actions . 
 
@@ -510,12 +528,8 @@ The idea here is that if we want to be able to do action selection as well we so
 
 This idea of learning Q values make action selection model-free as well because we just look at the Q values and choose whichever one is best. 
 
- - TD value leaning is a model-free way to do policy evaluation, mimicking Bellman updates with running sample averages
- - However, if we want to turn values into a (new) policy, we’re sunk:
- - Idea: learn Q-values, not values
- - Makes action selection model-free too!
 
-
+So this now will be active reinforcement learning, because now, when we learn Q values, the Q values can prescribe to us what we want to do. And we can actively collect our data while learning the Q values.
 
 <h2 id="4257de889e9b4c2ff394f77e8c8f2a3d"></h2>
 
@@ -534,7 +548,7 @@ In full reinforcement learning we would like to be able to compute optimal polic
  - Full reinforcement learning: optimal policies (like value iteration)
     - You don’t know the transitions T(s,a,s’)
     - You don’t know the rewards R(s,a,s’)
-    - You choose the actions now
+    - *You choose the actions now*
     - ***Goal: learn the optimal policy / values***
  - In this case:
     - Learner makes choices!
@@ -562,6 +576,9 @@ We can't do this update with samples because it's not an average but Max. And th
         - ![][3]
         - For the part of discount of future value. I might be tempted to write (s') here , but I'm not learning values , I'm learning Q values. So I need to do 1 more layer. What is the value ? The value of the state is just the maximum of all the Q values going out of that states -- I have to maximize over all of the actions that I could take from that state.
         - The max is still there , the average is still there.  But this equation is an average and therefore this equation we can do with samples. 
+
+- These are essentially the same, but just reorganized a bit to be written in terms of Q values rather that V values.
+    - for T, we can just average the actual samples we experience.
 
 
 ---
@@ -736,8 +753,8 @@ So how can we encode this?  we'd like something that forces us to explore whose 
 
  - Exploration function
     - Takes a value estimate u and a visit count n, and returns an optimistic utility, e.g. `f(u,n) = u + k/n`
-        - Regular Q-Update: ![](../imgs/cs188_rl_explor_func_regular.png) ?
-        - Modified Q-Update: ![](../imgs/cs188_rl_explor_func_modified.png) ?
+        - Regular Q-Update: ![](../imgs/cs188_rl_explor_func_regular.png)
+        - Modified Q-Update: ![](../imgs/cs188_rl_explor_func_modified.png)
             - for a q-state , number of times we've been there means the number of we've tried that action out.
     - Note: this propagates the “bonus” back to states that lead to unknown states as well!
         - Not only does it tell you that a q-state you haven't tried has higher value , but also it will propagate this bonus back. So you don't just try things that are unknown , you try things that are known to lead to states that are unknown. That's great. 
