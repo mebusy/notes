@@ -819,7 +819,9 @@ Minimizing regret is more than learning to be optimal. It's more like **optimall
 
 ## Approximate Q-Learning
 
-Now we're going to think about the problems of what you do in a game like pac-man where there are so many states that you can't learn about each one.
+So far we've looked at exact methods, that is methods that give us the exact solution we need if we run it long enough.  Now we're going to look at ways of approximating the solution.
+
+We're going to think about the problems of what you do in a game like pac-man where there are so many states that you can't learn about each one.
 
 The basic idea we'er going to have is called approximate q-learning. And boils down to the fact when you learn that ghost is in scary -- for example through one experience. You should transfer that to all other states that similar. 
 
