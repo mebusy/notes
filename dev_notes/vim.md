@@ -98,6 +98,11 @@
     ```bash
     python install.py --clangd-completer --cs-completer  --go-completer --ts-completer --java-completer
     ```
+    - --clangd-completer 不支持 c/c++/Objc ？
+    - 
+    ```bash
+    --clang-completer --system-libclang
+    ```
 
 <h2 id="f7abfec0b5984a0314616bd13f7ae8c3"></h2>
 
