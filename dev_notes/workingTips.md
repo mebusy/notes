@@ -208,5 +208,11 @@ openssl rsa -in config/private_old.pem -out config/private.pem -des3
 [share-a-proxied-network on MacOSX](https://www.jeffgeerling.com/articles/computing/2010/share-a-proxied-network)
 
 
+## 获取外网ip
+
+```bash
+curl ifconfig.co
+```
+
 
 
