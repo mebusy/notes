@@ -112,6 +112,17 @@ kubectl -n <namespace> delete po --selector=<selector-key>=<selector-value>
 kubectl -n <namespace> rollout restart deployment <deployment-name>
 ```
 
+## Specify a Context 
+
+```bash
+# list all context
+kubectl config get-contexts
+
+# specify context
+kubectl_tke --context=<ContextName>  get nodes
+```
+
+
 <h2 id="a65165eaad917e08dbaab4ca345c9140"></h2>
 
 
