@@ -197,6 +197,10 @@ repeate until convergence  { //直到收敛
    对于较大的数据集，一般采用效率较高的随机梯度下降法
  - TODO
  - TODO
+
+
+[more math](LinearRegressionDerive.md)
+
  
 <h2 id="72f55bb74fdea14f443df16fc11b9a02"></h2>
 
