@@ -2100,7 +2100,11 @@ docker update --restart unless-stopped <container>
  - run redis as memory cache
 
 ```
+# 2.8
 docker run -d --restart unless-stopped -p 6379:6379 --name redis-cache-2.8 -d redis:2.8 redis-server --save '' --appendonly no --maxmemory 1G --maxmemory-policy allkeys-lru
+
+# 4.0
+docker run -d --restart unless-stopped -p 6379:6379 --name redis-cache-4 -d redis:4.0 redis-server --save '' --appendonly no --maxmemory 1G --maxmemory-policy allkeys-lru
 ```
 
  - with password:  `--requirepass <yourpassword>` 
