@@ -57,7 +57,8 @@
  7. [MAXQ-Q](Maxq.md)
  8. [RL,art of state](RL_art_of_state.md)
  9. [台大 机器学习基石](TaiwanU_MLbasis.md) 
- 10. [how alphazero works](https://github.com/mebusy/notes/blob/master/alphazero.md)
+ 10. [how alphazero works](alphazero.md)
+ 11. [梯度下降推导](LinearRegressionDerive.md)
 
 
 **Old article**
