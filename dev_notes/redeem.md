@@ -5,8 +5,15 @@
 
 剔除大写字母 O , 以及 I , 共60个字符
 
-```
+```python
 abcdefghijklmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXZY0123456789
+```
+
+或 使用base58
+
+```python
+# base58
+123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz
 ```
 
 ## 兑换码设计，本身包含重要信息
@@ -25,6 +32,11 @@ CREATE TABLE if not exists tbl_redeem (
   UNIQUE KEY (redeemCode)
 )
 ```
+
+## CRC 
+
+
+## Base X
 
 
 

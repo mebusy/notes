@@ -434,6 +434,22 @@ np.random.choice(np.flatnonzero(b == b.max()))
 - flatnonzero() will do to things: ignore the false values (nonzero part) then return indices of true values. In other words, you get an array with indices of items matching the max value
 - Finally, you pick random index of these
 
+
+### CRC32 IEEE
+
+```python
+# python
+import binascii
+binascii.crc32(b"hello world")
+```
+
+```go
+# go
+import "hash/crc32"
+
+crc32.ChecksumIEEE( []byte("hello world") ) )
+```
+
 ----------
 
 
