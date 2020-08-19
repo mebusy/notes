@@ -1,3 +1,20 @@
+...menustart
+
+ - [EKS](#f79368a88745f4dba5e0fc92aa545c61)
+     - [EKS getting started](#9c7235108be4bd172807717650dfe1fa)
+     - [How to get started](#07e1d66babe77070cc76a4e637c9f26d)
+     - [Create Cluster](#015ce80764f67c3fa35ff5b824724d95)
+         - [aws](#ac68bbf921d953d1cfab916cb6120864)
+         - [kubectl & eksctl](#0797d40efd8aa563d7e4fe7a4dd0ca0d)
+     - [Deploy k8s control panel](#0fb3db388cb28547e6b0d17ca0c608b5)
+     - [部署 ALB 入口控制器](#64e08a2de07bf4869794d3b8c5666add)
+     - [Misc](#74248c725e00bf9fe04df4e35b249a19)
+
+...menuend
+
+
+<h2 id="f79368a88745f4dba5e0fc92aa545c61"></h2>
+
 
 # EKS
 
@@ -8,6 +25,9 @@
     - and when you deploy your worker nodes , they'll connect into this cluster by connecting directly to that cname.
 - when you want to actually connect into it, you'll configure a kuberneters config file, used by `kubectl` tool.
     - this cname represents the managed control plane for your EKS cluster, and allows you to send operations to k8s.
+
+
+<h2 id="9c7235108be4bd172807717650dfe1fa"></h2>
 
 
 ## EKS getting started
@@ -24,6 +44,9 @@
 4. Launch workload
     - once your worker nodes are up, you can deploy any container you'd like. 
 
+<h2 id="07e1d66babe77070cc76a4e637c9f26d"></h2>
+
+
 ## How to get started
 
 1. AWS CloudFormation
@@ -37,7 +60,13 @@
 3. Terraform , etc...
 
 
+<h2 id="015ce80764f67c3fa35ff5b824724d95"></h2>
+
+
 ## Create Cluster
+
+<h2 id="ac68bbf921d953d1cfab916cb6120864"></h2>
+
 
 ### aws
 
@@ -50,6 +79,9 @@ Default output format [None]: json
 ```
 
 - those information are stored in `~/.aws/`
+
+<h2 id="0797d40efd8aa563d7e4fe7a4dd0ca0d"></h2>
+
 
 ### kubectl & eksctl
 
@@ -131,6 +163,9 @@ eksctl create nodegroup --cluster <cluster name> \
     aws eks update-kubeconfig --name  TEST  --region cn-northwest-1
     ```
 
+<h2 id="0fb3db388cb28547e6b0d17ca0c608b5"></h2>
+
+
 ## Deploy k8s control panel
 
 [部署 Kubernetes 控制面板 (Web UI)](https://docs.amazonaws.cn/eks/latest/userguide/dashboard-tutorial.html)
@@ -192,6 +227,9 @@ kubectl proxy
 [本地dashboard](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#!/login)
 
 > 填入 token
+
+
+<h2 id="64e08a2de07bf4869794d3b8c5666add"></h2>
 
 
 ## 部署 ALB 入口控制器
@@ -337,6 +375,9 @@ spec:
 - alb.ingress.kubernetes.io/security-groups: sg-xxxx, nameOfSg1
     - When this annotation is not present, the controller will automatically create 2 security groups
 - [more ALB annotation](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/ingress/annotation/)
+
+<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
+
 
 ## Misc
 

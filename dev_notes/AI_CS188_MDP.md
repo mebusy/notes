@@ -23,6 +23,7 @@
      - [Computing Time-Limited Values](#24539dd5879397f8300a78d2bebba208)
      - [Value Iteration](#4b0084dc52868eb35410667a6679229a)
          - [Example: Value Iteration](#d5cac644e6c3bb194c235c0b55977d1d)
+     - [Recap 2](#c344ffd5b55d45fffa8bd1cb0a4edab1)
      - [Convergence](#8645457c64703c956325a6f44824acdb)
          - [Value Iteration Convergence](#9223390b107c103d49be9c7fbe9cc601)
      - [Recap: MDPs](#61640a53698e261681c172ef08db4f13)
@@ -43,6 +44,7 @@
      - [Double Bandits](#c4f36742c324ffd3a65b06a71c7ae8cd)
      - [Offline Planning](#0dc48d869913049d654fb802ff0093d2)
          - [Lets play](#ffd944085fd77275ec8af19385faca8c)
+     - [Online Planning](#483c9ce5abb394a43a9e0c0077dde7f8)
          - [What Just Happened?](#7553726584ed6f80e379b6e8190ec1bc)
      - [Asynchronous Value Iteration \*](#8343234e23eeed284d9f9c00356c8219)
 
@@ -534,6 +536,9 @@ The optimal policy is if you're cool go fast and once you warm up you go slow an
 
 ---
 
+<h2 id="c344ffd5b55d45fffa8bd1cb0a4edab1"></h2>
+
+
 ## Recap 2
 
 - Bellman equations **characterize** the optimal value
@@ -970,6 +975,9 @@ We played 10 times. $2, $2, $0, $2, $2, $2, $2, $0, $0, $0.
 So we just played our policy how did we do ? 
 
 Looks like we got 12$. What the values suggest we would get ? One average we should have gotten 15 so we're a little bit unlucky but not ridiculously unlucky. Here it's very important we solved it offline in our heads we actually played in the real world using the policy that we determined to be optimal in our heads. 
+
+<h2 id="483c9ce5abb394a43a9e0c0077dde7f8"></h2>
+
 
 ## Online Planning
 

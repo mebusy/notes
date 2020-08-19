@@ -18,6 +18,7 @@
      - [Catalina 10.5.2 Sleep problem](#bcbe6e609bff0627e2e3654d1a1123e8)
  - [Misc](#74248c725e00bf9fe04df4e35b249a19)
      - [Centos bootable USB installer on OSX](#e529594e6b7af1bbc305ae37bca03507)
+     - [Create a normal bootable usb installer](#e4b093a32d54db737e399188ce596791)
 
 ...menuend
 
@@ -375,6 +376,9 @@ sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
 ```
 
 **Note the additional “r” prepended to the usb partition name rdisk2 instead of disk2**.
+
+<h2 id="e4b093a32d54db737e399188ce596791"></h2>
+
 
 ## Create a normal bootable usb installer
 

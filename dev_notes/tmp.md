@@ -1,3 +1,7 @@
+...menustart
+
+
+...menuend
 
 
 十、注意点

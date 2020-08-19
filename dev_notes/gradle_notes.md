@@ -31,6 +31,7 @@
      - [hello-jni with gradle](#b7cd0782fca8810a571477d4e6784736)
      - [tips](#e4c9479b11955648dad558fe717a4eb2)
      - [JNI Example](#50a46251dc9b0613fecae34742c7e655)
+     - [More update-date example](#897b756c8e40a52eb8834378681d0283)
  - [QA](#0ab687c6a13802a6674d5327e3d4177e)
      - [Gradle version 2.2 is required. Current version is 2.10](#2e072d186473767187aba8236da72d93)
      - [Could not find method runProguard() for arguments](#769f6f1c57e8b9182a031ed34dbd00e0)
@@ -776,6 +777,9 @@ android {
     }
 }
 ```
+
+<h2 id="897b756c8e40a52eb8834378681d0283"></h2>
+
 
 ## More update-date example
 

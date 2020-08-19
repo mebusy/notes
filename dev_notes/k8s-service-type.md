@@ -1,5 +1,20 @@
+...menustart
+
+ - [k8s service type](#28dbdd4dd2eec72ed1c8a0d094e0e734)
+     - [cluster only](#adeb8290f6fec56c6145dcbadf958d9a)
+     - [NodePort](#846878672192bac928450b192d70503b)
+     - [LoadBalancer](#a38b02b14f77fc6ad85cfb7df9d27b2e)
+
+...menuend
+
+
+<h2 id="28dbdd4dd2eec72ed1c8a0d094e0e734"></h2>
+
 
 # k8s service type
+
+<h2 id="adeb8290f6fec56c6145dcbadf958d9a"></h2>
+
 
 ## cluster only
 
@@ -23,11 +38,14 @@
 ```
 
 
+<h2 id="846878672192bac928450b192d70503b"></h2>
+
+
 ## NodePort 
 
 通过每个集群节点上的 IP 和静态端口（NodePort）暴露服务。
 
-NodePort 服务会路由到 ClusterIP 服务，该 ClusterIP 服务会自动创建。通过请求 <NodeIP>:<NodePort>，可从集群的外部访问该 NodePort 服务。
+NodePort 服务会路由到 ClusterIP 服务，该 ClusterIP 服务会自动创建。通过请求 `<NodeIP>:<NodePort>`，可从集群的外部访问该 NodePort 服务。
 
 除了测试以及非生产环境以外，不推荐在生产环境中直接通过集群节点 **对外** 甚至公网提供服务。从安全上考虑，使用该类型会直接暴露集群节点，容易受到攻击。使用该类型使得对外提供服务的地址和集群节点有了耦合。
 
@@ -49,6 +67,9 @@ NodePort 服务会路由到 ClusterIP 服务，该 ClusterIP 服务会自动创�
     sessionAffinity: None
     type: NodePort
 ```
+
+<h2 id="a38b02b14f77fc6ad85cfb7df9d27b2e"></h2>
+
 
 ## LoadBalancer
 

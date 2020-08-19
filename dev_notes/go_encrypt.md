@@ -1,5 +1,21 @@
+...menustart
+
+ - [Go Encrype/Decrytp](#a11036bc4335f8906456a2d883026810)
+     - [HMAC SHA1](#37974fcc45ff56bd96019b499affde1b)
+     - [Java's SHA256withRSA in GO way](#2aab9f8f7b040df1b0b94142b2d0a157)
+         - ["crypto/md5"](#e825ff9cfb339d337f0bd935d0df0a14)
+     - [SHA1WithRSA 公钥验签](#445d8588e7c1da8fc65aa336369ad632)
+
+...menuend
+
+
+<h2 id="a11036bc4335f8906456a2d883026810"></h2>
+
 
 # Go Encrype/Decrytp
+
+<h2 id="37974fcc45ff56bd96019b499affde1b"></h2>
+
 
 ## HMAC SHA1
 
@@ -13,6 +29,9 @@ mac := hmac.New(sha1.New, key)
 mac.Write([]byte(signString))
 return fmt.Sprintf( "%x" , mac.Sum(nil)  )
 ```
+
+
+<h2 id="2aab9f8f7b040df1b0b94142b2d0a157"></h2>
 
 
 ## Java's SHA256withRSA in GO way
@@ -70,6 +89,9 @@ return fmt.Sprintf( "%x" , mac.Sum(nil)  )
 [RSA 加密/解密 source](https://github.com/polaris1119/myblog_article_code/blob/master/rsa/rsa.go)
 
 
+<h2 id="e825ff9cfb339d337f0bd935d0df0a14"></h2>
+
+
 ### "crypto/md5"
 
 ```go
@@ -77,6 +99,9 @@ return fmt.Sprintf( "%x" , mac.Sum(nil)  )
 
 m5 := fmt.Sprintf("%x", md5.Sum(data))
 ```
+
+<h2 id="445d8588e7c1da8fc65aa336369ad632"></h2>
+
 
 ## SHA1WithRSA 公钥验签
 

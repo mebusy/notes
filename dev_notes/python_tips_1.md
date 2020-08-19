@@ -26,6 +26,8 @@
          - [re.sub group: number after \number](#8160fc3170b680fdd05d32a93937bcb9)
          - [call super class constructor](#7bb8886dc369a3137b7dd907c9ff7993)
          - [numpy argmax tie breaking](#4330cb83a720d5c17727f9762bff14cd)
+         - [CRC32 IEEE](#d86a76b0e9825d4420259cf836f9230a)
+         - [Base58](#0f3fed443cef1a400f3ac44edebf896b)
      - [数字进制转换](#4155a2d7d71ebf1611555bda413d2961)
          - [10进制数字 => 2,8,16进制字符串](#4b65978fe4cba7b22aecf6375e8737db)
          - [2,8,16进制字符串 ==> 10进制数字](#819934946947aa7e3778247b469c1e4c)
@@ -435,6 +437,9 @@ np.random.choice(np.flatnonzero(b == b.max()))
 - Finally, you pick random index of these
 
 
+<h2 id="d86a76b0e9825d4420259cf836f9230a"></h2>
+
+
 ### CRC32 IEEE
 
 ```python
@@ -449,6 +454,22 @@ import "hash/crc32"
 
 crc32.ChecksumIEEE( []byte("hello world") ) )
 ```
+
+<h2 id="0f3fed443cef1a400f3ac44edebf896b"></h2>
+
+
+### Base58
+
+```python
+import base58
+base58.b58encode( raw_str )
+```
+
+```go
+import "github.com/btcsuite/btcutil/base58"
+decoded := base58.Decode(b58_str)
+```
+
 
 ----------
 

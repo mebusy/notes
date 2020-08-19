@@ -4,6 +4,10 @@
  - [kubectl](#0f12ee5c9f1dd90158580f1c292b0d37)
      - [install](#19ad89bc3e3c9d7ef68b89523eff1987)
      - [use kubectl](#773c2c719c95cc40967b0e945ada8898)
+     - [kubectl cheatsheet](#d4b1fc7497d32f6554e52b3a22b5685f)
+     - [kubectl delete po by selector](#8daa29dd6dc24f597382f05f82206a96)
+     - [restart deployment](#cdd368345c1399226f29c445f2d344f7)
+     - [Specify a Context](#bd251ed977799cf91b83164dbb4e6bab)
      - [role , rolebinding](#a65165eaad917e08dbaab4ca345c9140)
      - [postStart / preStop event handle](#3cfc0b587c5bea5919d967aa0c0f7629)
      - [使用自定义列格式化输出](#32a13011ccded1584ff2253d3356b336)
@@ -96,9 +100,15 @@ it seems that TKE will automatically use  `tencenthubkey` ?
  - [轻松了解Kubernetes部署功能](http://qinghua.github.io/kubernetes-deployment/)
 
 
+<h2 id="d4b1fc7497d32f6554e52b3a22b5685f"></h2>
+
+
 ## kubectl cheatsheet
 
 [cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+
+<h2 id="8daa29dd6dc24f597382f05f82206a96"></h2>
+
 
 ## kubectl delete po by selector
 
@@ -106,11 +116,17 @@ it seems that TKE will automatically use  `tencenthubkey` ?
 kubectl -n <namespace> delete po --selector=<selector-key>=<selector-value>
 ```
 
+<h2 id="cdd368345c1399226f29c445f2d344f7"></h2>
+
+
 ## restart deployment
 
 ```
 kubectl -n <namespace> rollout restart deployment <deployment-name>
 ```
+
+<h2 id="bd251ed977799cf91b83164dbb4e6bab"></h2>
+
 
 ## Specify a Context 
 

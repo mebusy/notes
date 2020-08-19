@@ -16,6 +16,7 @@
      - [check wheter `keep-alive` is  enabled by server](#e06944207d65338bc4b5d43aef44aef4)
      - [change .pem password](#60a277f978363c21b4ced8cb1ea9c06f)
      - [Python NTLM proxyserver](#3f1c0d7e44459f6410faabec903ea4ac)
+     - [获取外网ip](#869d7745a2b610e3fcd5afed798f8986)
 
 ...menuend
 
@@ -206,6 +207,9 @@ openssl rsa -in config/private_old.pem -out config/private.pem -des3
 [ntlm download](http://ntlmaps.sourceforge.net/)
 
 [share-a-proxied-network on MacOSX](https://www.jeffgeerling.com/articles/computing/2010/share-a-proxied-network)
+
+
+<h2 id="869d7745a2b610e3fcd5afed798f8986"></h2>
 
 
 ## 获取外网ip

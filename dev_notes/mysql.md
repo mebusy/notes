@@ -14,6 +14,7 @@
      - [use default value if select get no result](#7b83de8606257483382081d2e0e808de)
      - [Sub query example](#60df3279b8377ba6468528ab017f1dc0)
      - [restore database from dump file](#c4606a5312075cb8424b31a364e46848)
+     - [Create a `new_user` and Grant all privileges on db `db_test`](#c3b5d31eac469e51b08ec13a8edc866e)
  - [第1章  MySQL 体系结构和存储引擎](#6a1a36d328d46ab67d6d4af4b7f9191a)
      - [1.1 配置文件](#bdf6b309174103a16017dcf95cfd0efa)
      - [1.3 MySQL 存储引擎](#d515f90f3281ec25eef39dd7a232630f)
@@ -254,6 +255,9 @@ where
 ```
 mysql -uroot -ppwd  < dumpfile
 ```
+
+
+<h2 id="c3b5d31eac469e51b08ec13a8edc866e"></h2>
 
 
 ## Create a `new_user` and Grant all privileges on db `db_test`
