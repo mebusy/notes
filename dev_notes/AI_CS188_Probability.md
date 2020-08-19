@@ -61,18 +61,20 @@ demo: ghost busters
 
 When we deal with an uncertainty usually we can split the random variables into 2 groups. 
 
- - one group is the group of random variables that would get to observe. We get to measure them.
- - something about the variables we don't get to measure -- the hidden variables , the unobserved variables -- and do that in some structured way. 
+- one group is the group of random variables that would get to observe. We get to measure them.
+- something about the variables we don't get to measure -- the hidden variables , the unobserved variables -- and do that in some structured way. 
  
+---
 
- - General situation:
+- General situation:
     - **Observed variables (evidence)**: 
         - Agent knows certain things about the state of the world (e.g., sensor readings or symptoms)
+        - It's not uncertain anymore.
     - **Unobserved variables**: 
         - Agent needs to reason about other aspects (e.g. where an object is or what disease is present)
     - **Model**: 
         - Agent knows something about how the known variables relate to the unknown variables
- - Probabilistic reasoning gives us a framework for managing our beliefs and knowledge
+- Probabilistic reasoning gives us a framework for managing our beliefs and knowledge
 
 
 
@@ -81,13 +83,13 @@ When we deal with an uncertainty usually we can split the random variables into 
 
 ## Random Variables
 
- - A random variable is some aspect of the world about which we (may) have uncertainty
+- A random variable is some aspect of the world about which we (may) have uncertainty
     - R = Is it raining?
     - T = Is it hot or cold?
     - D = How long will it take to drive to work?
     - L = Where is the ghost?
- - We denote random variables with capital letters
- - Like variables in a CSP, random variables have domains
+- We denote random variables with capital letters
+- Like variables in a CSP, random variables have domains
     - R in {true, false}   (often write as {+r, -r})
     - T in {hot, cold}
     - D in [0, ∞ )
