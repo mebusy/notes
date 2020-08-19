@@ -107,7 +107,7 @@ for homebrew go, replace GOROOT is `/usr/local/opt/go/libexec`
 
 ## Redeem 
 
-[redeem](dev_notes/redeem.md)
+[redeem](redeem.md)
 
 
 
