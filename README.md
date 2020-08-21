@@ -98,6 +98,8 @@ a | b | c | d
  a | b | c | d
 --- | --- | --- | ---
 [cast,smart pointer](dev_notes/cpp_cast_smart.md) | [cpp note](dev_notes/cpp_notes.md) |
+[cpp guide in CS144](dev_notes/cpp_cs144_guide.md) |
+
 
 ---
 <h2 id="e84e30b9390cdb64db6db2c9ab87846d"></h2>
