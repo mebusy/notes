@@ -103,7 +103,7 @@ When we deal with an uncertainty usually we can split the random variables into 
 
 ## Probability Distribution 
 
- - Associate a probability with each value
+- Associate a probability with each value
 
 **Temperature:  P(T)**
 
@@ -122,12 +122,12 @@ When we deal with an uncertainty usually we can split the random variables into 
  memeor | 0.0
 
 
- - A distribution is a TABLE of probabilities of values
- - A probability (lower case value) is a single number
+- A distribution is a TABLE of probabilities of values
+- A probability (lower case value) is a single number
     - P(W = rain ) = 0.1 
     - shorthand notation: P(rain) = P(W=rain), OK if all domain entries are unique
- - Must have:  ∀x P(X=x) ≥ 0 , and ∑ᵪ P(X=x) = 1
-
+- Must have:  ∀x P(X=x) ≥ 0 , and ∑ᵪ P(X=x) = 1
+    - So **0 is allowd, but usually a BAD idea in practice**.
 
 
 ---

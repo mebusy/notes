@@ -46,7 +46,7 @@ Error found at compile-time.
         Base *bp2 = static_cast<Base*>(&d1); // Not allowed at compile-time
     }
     ```
-3. Use for all upcasts, but never use for confused down cast
+4. Use for all upcasts, but never use for confused down cast
     - 
     ```c
     Base *bp1 = static_cast<Base*>(&d1); //OK
@@ -55,7 +55,7 @@ Error found at compile-time.
     Derived1 *d1p = static_cast<Derived1*>(bp2) ; //NEVER do that though compiling ok
     // should use dynamic_cast instead.
     ```
-4. should be prefered when converting to `void*` OR from `void*`
+5. should be prefered when converting to `void*` OR from `void*`
     - 
     ```c
     int i = 10 ;
