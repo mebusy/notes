@@ -246,10 +246,8 @@ It's a way to go from joint distributions to conditional distributions and has s
 
 <h2 id="730a75b3c3a77c4efa7e801fc1f306ea"></h2>
 
+To Normalize,  all entries sum to 1.  Think about this like operations on a big database table,  you select rows, you normalize what's left.
 
-## To Normalize 
-
- All entries sum to 1. 
 
 <h2 id="e806b0d3eeb72e7431bb8cdb823c4517"></h2>
 
@@ -258,14 +256,15 @@ It's a way to go from joint distributions to conditional distributions and has s
 
 ![](../imgs/cs188_prob_probabilistic_inference.png)
 
- - Probabilistic inference: compute a desired probability from other known probabilities (e.g. conditional from joint)
- - We generally compute conditional probabilities
+- Probabilistic inference: compute a desired probability from other known probabilities (e.g. conditional from joint)
+- We generally compute conditional probabilities
     - P(on time | no reported accidents) = 0.90
     - These represent the agent’s beliefs given the evidence
- - Probabilities change with new evidence:
+- Probabilities change with new evidence:
     - P(on time | no accidents, 5 a.m.) = 0.95
     - P(on time | no accidents, 5 a.m., raining) = 0.80
-    - Observing new evidence causes beliefs to be updated
+    - **Observing new evidence causes beliefs to be updated**
+        - That's an important part of rational intelligence.
 
 
 
@@ -277,7 +276,14 @@ It's a way to go from joint distributions to conditional distributions and has s
 
 ## Inference by Enumeration
 
- - General case:
+The general case for computing a quantity from a joint distribution is an algorithm called inference by emuneration.
+
+It's an exponentially slow thing operating on an exponential large table. In general this is not going to be tractable.
+
+But the algorithms that we are going to use that are often going to be more tractable.
+
+
+- General case:
     - All variables: X₁,X₂,...,X<sub>n</sub>
         - Evidence variables: E₁,...,E<sub>k</sub> = e₁,...,e<sub>k</sub>
         - Query<sup>\*</sup> variable: Q
@@ -285,20 +291,25 @@ It's a way to go from joint distributions to conditional distributions and has s
     - We Want :
         P(Q | e₁,...,e<sub>k</sub> )
 
- - Step 1: Select the entries consistent with the evidence 
+- Step 1: Select the entries consistent with the evidence 
     - 联合概率表中，找出 和 evidence 相符的 entry
- - Step 2: Sum out H to get joint of Query and evidence
- - Step 3: Normalize
+- Step 2: Sum out H to get joint of Query and evidence
+- Step 3: Normalize
+
+
+That's it. Take your whole distribution, select what's consistent with your evidence, collapse out variables you don't care about. We will be left with only one demension left which is your query, and you normalize. 
+
+What makes this hard is, often, you don't actually have the joint distribution to begin with.
 
 --- 
 
 ![](../imgs/cs188_prob_joint_table_STWP.png)
 
- - P(W)      
+- P(W)
     - Q=W, E=∅ , H={S,T}
 
 ---
-                                
+
 P(W) | / 
 --- | ---
 s   | 0.65
@@ -307,7 +318,7 @@ r   | 0.35
 ---
 
 
- - P(W|winter)    
+- P(W|winter)
     - Q=W, E=S , H=T
 
 ---
@@ -331,7 +342,7 @@ r   |  o.05/0.15 = 1/3
 
 ---
 
- - Obvious problems:
+- Obvious problems:
     - Worst-case time complexity O(dⁿ) 
     - Space complexity O(dⁿ) to store the joint distribution
 
@@ -376,12 +387,7 @@ That means you have `n!` ways using the chain rule!.
     - P(x,y) = P(x|y)P(y) = P(y|x)P(x)
  - Dividing 
     - ![](../imgs/cs188_prob_bayes_rule.png)
-    - 我们把P(A)称为"先验概率"（Prior probability），即在B事件发生之前，我们对A事件概率的一个判断。
-    - P(A|B)称为"后验概率"（Posterior probability），即在B事件发生之后，我们对A事件概率的重新评估。
-    - P(B|A)/P(B)称为"可能性函数"（Likelyhood），这是一个调整因子，使得预估概率更接近真实概率。
-    - 条件概率可以理解成下面的式子： 后验概率 = 先验概率 x 调整因子
-        - 这就是贝叶斯推断的含义。我们先预估一个"先验概率"，然后加入实验结果，看这个实验到底是增强还是削弱了"先验概率"，由此得到更接近事实的"后验概率"。
-        - 如果"可能性函数"P(B|A)/P(B)>1，意味着"先验概率"被增强，事件A的发生的可能性变大；如果"可能性函数"=1，意味着B事件无助于判断事件A的可能性；如果"可能性函数"<1，意味着"先验概率"被削弱，事件A的可能性变小。
+    - gives you the other conditional.
  - Why is this at all helpful?
      - build one conditional from its reverse
      - Often one conditional is tricky but the other one is simple
@@ -440,15 +446,15 @@ P( rain | dry  ) = 1-P(sun|dry)
 
 ## Ghostbusters, Revisited 
 
- - Let’s say we have two distributions:
-    - Prior distribution over ghost location: P(G)
+- Let’s say we have two distributions:
+    - **Prior distribution** over ghost location: P(G)
         - Let’s say this is uniform
         - ![](../imgs/cs188_prob_ghostbuster1.png)
     - Sensor reading model: P(R | G)
         - Given: we know what our sensors do
         - R = reading color measured at (1,1)
         - E.g. P(R = yellow | G=(1,1)) = 0.1
- - We can calculate the posterior distribution P(G|r) over ghost locations given a reading using Bayes’ rule:
+- We can calculate the **posterior distribution** P(G|r) over ghost locations given a reading using Bayes’ rule:
     - P( g|r) ∝<sub>g</sub> P(r|g)P(g) 
         - ∝ : proportional to 
         - ∝<sub>g</sub> means that if compute the thing on right for each value of *g* and normalize, I'll get the things on the left. 
