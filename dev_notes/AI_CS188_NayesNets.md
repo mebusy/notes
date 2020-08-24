@@ -27,6 +27,8 @@
 
 # Bayes' Nets
 
+Bayes' Nets, also known as graphical models, which are a technique for building probabilistic models over large numbers of random variables, in a way that is efficient to sepcify and efficient to reason over.
+
 The development of AI stop in 80s because the difficulty of uncertainty. You can not compute such a large joint probability table with thousands variable.
 
 Bayes' Nets wil give us a way to deal with distributions of our large sets of random variable in a meaningful way. 
@@ -210,16 +212,20 @@ We've always talked about discrete random variables , and then a distribution ca
 
 ## Bayes’ Net Semantics
 
- - A set of nodes, one per variable X
- - A directed, acyclic graph
- - A conditional distribution for each node
+For a given Bayes' Net, what does it mean ? What joint probability distribution does it encode ? How do we know that ?
+
+- A set of nodes, one per variable X
+- A directed, acyclic graph
+- A conditional distribution for each node
     - ![](../imgs/cs188_BNsR_node_cpt.png)
     - A collection of distributions over X, one for each combination of parents’ values
         - P(X|a₁,...,a<sub>n</sub>)
     - CPT: conditional probability table
     - Description of a noisy “causal” process
+        - e.g. if it rains, then there's 90% probability of traffic, if it doesn't rain, there's a 30% probability of traffic.
         - this is not part of the definition
- - **A Bayes net = Topology (graph) + Local Conditional Probabilities**.  
+- **A Bayes net = Topology (graph) + Local Conditional Probabilities**. 
+    - a graph, plus all the little local conditional probabilities that live inside the nodes.
 
 ---
 
@@ -264,6 +270,8 @@ So you are making these assumptions , limiting the size of parent set, to have m
 
 ![](../imgs/cs188_BNsR_example_traffic_joint_dist.png)
 
+So here is the joint distribution over T and R, that is implied by the Bayes' Net on the left. Great.
+
 
 <h2 id="f4b6db064e3259a2c85401269f24a90d"></h2>
 
@@ -272,6 +280,7 @@ So you are making these assumptions , limiting the size of parent set, to have m
 
 ![](../imgs/cs188_BNsR_example_traffic_joint_dist_reverse.png)
 
+This network here, which does not match the causal process, encodes the exact same joint distribution over those varialbes as the previous one.  Now you might like the previous one better. And there's a lot of advantages to drawing these things causally. But mathematically, it is just an expansion of the chain rule.
 
 ---
 
@@ -303,13 +312,13 @@ So you are making these assumptions , limiting the size of parent set, to have m
 
 ## Bayes’ Nets
 
- - So far: how a Bayes’ net encodes a joint distribution
- - Next: how to answer queries about that distribution
+- So far: how a Bayes’ net encodes a joint distribution
+- Next: how to answer queries about that distribution
     - Today: 
         - First assembled BNs using an intuitive notion of conditional independence as causality
         - Then saw that key property is conditional independence
     - Main goal: answer queries about conditional independence and influence 
- - After that: how to answer numerical queries (inference)
+- After that: how to answer numerical queries (inference)
 
 
 

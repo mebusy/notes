@@ -485,27 +485,28 @@ You go to the dentist. You might have a toothache or not, you might have a cavit
 
 ![](../imgs/cs188_prob_probeCavity.png)
 
- - P(Toothache, Cavity, Catch)
- - If I have a cavity, the probability that the probe catches in it doesn't depend on whether I have a toothache:
+- P(Toothache, Cavity, Catch)
+- If I have a cavity, the probability that the probe catches in it doesn't depend on whether I have a toothache:
     - P(+catch | +toothache, +cavity) = P(+catch | +cavity)
- - The same independence holds if I don’t have a cavity:
+- The same independence holds if I don’t have a cavity:
     - P(+catch | +toothache, -cavity) = P(+catch| -cavity)
- - Catch is conditionally independent of Toothache given Cavity:
+- Catch is conditionally independent of Toothache given Cavity:
     - P(Catch | Toothache, Cavity) = P(Catch | Cavity)
- - Equivalent statements:
+- Equivalent statements:
     - P(Toothache | Catch , Cavity) = P(Toothache | Cavity)
     - P(Toothache, Catch | Cavity) = P(Toothache | Cavity) P(Catch | Cavity)
     - One can be derived from the other easily
  
 ---
 
- - Unconditional (absolute) independence very rare (why?)
- - Conditional independence is our most basic and robust form of knowledge about uncertain environments.
- - X is conditionally independent of Y given Z -- X ⊥ Y | Z 
+- Unconditional (absolute) independence very rare (why?)
+- Conditional independence is our most basic and robust form of knowledge about uncertain environments.
+- X is conditionally independent of Y given Z -- X ⊥ Y | Z 
     - if and only if:
         - ∀<sub>x,y,z</sub> : P(x,y | z) = P(x|z)P(y|z)
     - or, equivalently, if and only if:
         - ∀<sub>x,y,z</sub> : P(x | z,y) = P(x|z)
+    - 当z发生时，x发生与否与y发生与否 无关
 
 
 ---
