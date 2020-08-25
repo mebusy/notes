@@ -533,6 +533,12 @@ There are  atrist special graph structures of BNs , where inference can be done 
 
 ---
 
+## Quiz 
+
+- Alarm Network
+    - ![](../imgs/cs188_quiz_alarmNetwork.png)
+
+
 <h2 id="25d7ce91a9821147da689c3a48401fb1"></h2>
 
 
