@@ -61,7 +61,7 @@
  - How big is a joint distribution over N Boolean variables?
     - 2ᴺ
  - How big is an N-node net if nodes have up to k parents?
-    - O(N \* 2k+1)
+    - O(N \* 2ᵏ⁺¹)
  - Both give you the power to calculate joint distribution
  - BNs: Huge space savings!  Also easier to elicit local CPTs
     - Also faster to answer queries (coming)    
