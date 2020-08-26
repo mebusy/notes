@@ -59,6 +59,7 @@
  9. [台大 机器学习基石](TaiwanU_MLbasis.md) 
  10. [how alphazero works](alphazero.md)
  11. [梯度下降推导](LinearRegressionDerive.md)
+ 12. [Inferring DQN structure](RL_dqn_article_1.md)
 
 
 **Old article**
