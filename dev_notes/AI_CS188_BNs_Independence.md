@@ -85,7 +85,9 @@
 
  - (X) → (Y) → (Z) → (W)
  - Conditional independence assumptions directly from simplifications in chain rule:
-    - P(X,Y,Z,W) = ***P(X)·P(Y|X)·P(Z|Y)·P(W|Z)*** = P(X)·P(Y|X)·P(Z|X,Y)·P(W|X,Y,Z) 
+    - P(X,Y,Z,W) 
+        - = P(X)·P(Y|X)·P(Z|X,Y)·P(W|X,Y,Z) 
+        - = ***P(X)·P(Y|X)·P(Z|Y)·P(W|Z)*** 
     - from the fomular , we get:
         - Z⊥X |Y
         - W⊥(X,Y) |Z
@@ -128,7 +130,7 @@ Math proof is annoying !  So what we're going to look at now is a way to read it
     - Answer: no.  Example: low pressure causes rain, which causes traffic.
     - X can influence Z, Z can influence X (via Y)
     - Addendum: they ***could*** be independent: how?
-        - independence is possible , just by a special choice. eg. always be a uniform distribution.
+        - independence is possible , just by a special choice. eg. flip coin.  always be a uniform distribution.
         - but the question is : Is independence guaranteed ?
 
 <h2 id="b744fe0bc9612fbfbc259a06f0dbd29b"></h2>
