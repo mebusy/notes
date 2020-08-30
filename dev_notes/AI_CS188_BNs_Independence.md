@@ -156,7 +156,7 @@ Math proof is annoying !  So what we're going to look at now is a way to read it
 
 ```
 P(z|x,y) = P(x,y,z) / p(x,y)
-         = P(x)P(y|z)P(z|y) / ( P(x)P(y|z) )
+         = P(x)P(y|x)P(z|y) / ( P(x)P(y|x) )
          = P(z|y)
 ```
 
@@ -174,7 +174,7 @@ P(z|x,y) = P(x,y,z) / p(x,y)
 
 ```
 P(z|x,y) = P(x,y,z) / p(x,y)  
-         = P(y)P(x|y)P(z|y) / ( P(x)P(y|z) )
+         = P(y)P(x|y)P(z|y) / ( P(y)P(x|y) )
          = P(z|y)  
 ```
 
@@ -192,9 +192,9 @@ P(z|x,y) = P(x,y,z) / p(x,y)
     - for X,Y,Z , Y is independent of it's preceding variables, which is X , minus its parents , wich is ∅ , so Y is independent of X and then given the parents , which is empty set ∅ 
         - Y⊥X | ∅
 
-P(x,y,z) = P(y)P(y)P(z|x,y)  
+P(x,y,z) = P(x)P(y)P(z|x,y)
 
-∑<sub>z</sub> P(x,y,z) = ∑<sub>z</sub> P(y)P(y)P(z|x,y) 
+∑<sub>z</sub> P(x,y,z) = ∑<sub>z</sub> P(x)P(y)P(z|x,y) 
 
 ∑<sub>z</sub> P(x,y,z) = P(x)P(y) · ∑<sub>z</sub> P(z|x,y) 
 
@@ -240,23 +240,28 @@ P(x,y,z) = P(y)P(y)P(z|x,y)
 #### Active / Inactive Paths
 
 
- - Question: Are X and Y conditionally independent given evidence variables {Z}?
+- Question: Are X and Y conditionally independent given evidence variables {Z}?
     - Yes, if X and Y “d-separated” by Z
     - Consider all (undirected) paths from X to Y
     - No active paths = independence!
- - A path is active if each triple is active:
+- A path is active if each triple is active:
     - Causal chain A → B → C where B is unobserved (either direction)
     - Common cause A ← B → C where B is unobserved
     - Common effect (aka v-structure)
         - A → B ← C where B or **one of its descendents** is observed
         - for last one of active triples, if the children are just deterministic copies of their parents , then observing the variable at the bottom is the same as observing the the variable up there. 
         - so we're in the same scenario we've shown that influence can propagate.
- - All it takes to block a path is a single inactive segment
+- All it takes to block a path is a single inactive segment
 
 
 ![](../imgs/cs188_active_inactive_triples.png)
 
- - for a long path
+- Typically, when a node is shaded, it'll block the path. But the exception is when it's one of those V-structures. where it will actually activate the path rather than block it.
+
+- Look the bottom *active* one
+    - This one is saying, if I have a common effect, or there's multiple things that could cause something, it's not just the case that influence can travel in the above scenario  `X-> evidence <-Y`, but the evidence that we observe can also be much further down.
+
+- for a long path
     - we look at every triple along the path 
     - if every triple along the path is active , we have an active path
     - if one of the triples along the path is not active , we have an inactiv path. 
