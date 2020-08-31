@@ -12,6 +12,41 @@ array([0, 0, 3])
 >>>
 ```
 
+AI
+
+BFS 
+
+bᵐ, 没有权重
+
+
++ 权重 UCS
+
+A*  UCS +  Heuristics (Greedy)
+
+
+8 Puzzle
+
+
+
+CSP
+
+N-Queens
+
+
+Adv
+
+mini-max , act as a ghost? 
+
+Expectimax Search -> MDP
+
+
+
+
+
+
+
+
+
 
 
 
