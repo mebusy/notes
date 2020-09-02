@@ -89,10 +89,10 @@
         - = P(X)·P(Y|X)·P(Z|X,Y)·P(W|X,Y,Z) 
         - = ***P(X)·P(Y|X)·P(Z|Y)·P(W|Z)*** 
     - from the fomular , we get:
-        - Z⊥X |Y
-        - W⊥(X,Y) |Z
+        - Z⫫X |Y
+        - W⫫(X,Y) |Z
  - Additional implied conditional independence assumptions?
-    - W⊥X |Y
+    - W⫫X |Y
 
 P(W|X,Y) =?= P(W|Y) ?
 
@@ -190,7 +190,7 @@ P(z|x,y) = P(x,y,z) / p(x,y)
     - **Yes**: the ballgame and the rain cause traffic, but they are not correlated
     - that is the basic assumptions of BNs : Xᵢ is independent of its preceding variables X₁ ... X<sub>i-1</sub> , except its parents Pa(X₁) , given its parents | Pa(X₁)
     - for X,Y,Z , Y is independent of it's preceding variables, which is X , minus its parents , wich is ∅ , so Y is independent of X and then given the parents , which is empty set ∅ 
-        - Y⊥X | ∅
+        - Y⫫X | ∅
 
 P(x,y,z) = P(x)P(y)P(z|x,y)
 
@@ -264,11 +264,11 @@ P(x,y,z) = P(x)P(y)P(z|x,y)
 - for a long path
     - we look at every triple along the path 
     - if every triple along the path is active , we have an active path
-    - if one of the triples along the path is not active , we have an inactiv path. 
+    - if one of the triples along the path is not active , we have an inactive path. 
     - eg. (A) → (B) → (C) → (D) → (E) → (F)
         - you should check all possible triples 
         - ABC, BCD, CDE , DEF
-    - every node on that path, has to be a middle node in one of your triples.
+        - then check the middle point in every triple
 
 ---
 
@@ -277,12 +277,12 @@ P(x,y,z) = P(x)P(y)P(z|x,y)
 
 ## D-separation
 
- - Query: Xᵢ ⊥ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } ?
+ - Query: Xᵢ ⫫ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } ?
  - Check all (undirected!) paths between Xᵢ and Xⱼ 
     - If one or more active, then independence not guaranteed
-        - Xᵢ not ⊥ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
+        - Xᵢ not ⫫ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
     - Otherwise (i.e. if all paths are inactive), then independence is guaranteed
-        - Xᵢ ⊥ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
+        - Xᵢ ⫫ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
@@ -291,21 +291,21 @@ P(x,y,z) = P(x)P(y)P(z|x,y)
 
 ![](../imgs/cs188_BNs_independence_example.pg.png)
 
- - L ⊥ T' | T   **Yes** 
+ - L ⫫ T' | T   **Yes** 
     - LR(T)  this triple doesn't matter.
     - LR(T)T'  
- - L ⊥ B    **Yes**
+ - L ⫫ B    **Yes**
     - LRT 
     - RTB is inactive , make that whole path inactive 
- - L ⊥ B | T 
-    - LR(T) , this is a triple where the 3rd node is observed. that actually doesn't matter. we look at triples all that matters the middle node observed or not.  
+ - L ⫫ B | T 
+    - LR(T) , this is a triple where the 3rd node is observed. that actually doesn't matter. we look at triples all that matters the middle node observed or not.
         - the triple LR(T) , we talked about the influence propagating through R or not. We're not worring abouth these side nodes.
         - so here the influence will propagate to R , the causal chain is active. 
     - R(T)B is active
- - L ⊥ B | T' 
+ - L ⫫ B | T' 
     - LRT  active
     - RTB ~ (T')  active 
- - L ⊥ B | T,R   **Yes**
+ - L ⫫ B | T,R   **Yes**
     - L(R)(T)   inactive
     - no need to check the 2nd triple 
  
@@ -314,9 +314,29 @@ P(x,y,z) = P(x)P(y)P(z|x,y)
 
 ## Structure Implications
 
- - Given a Bayes net structure, can run d-separation algorithm to build a complete list of conditional independences that are necessarily true of the form
-    - Xᵢ ⊥ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
- - This list determines the set of probability distributions that can be represented 
+We now have an algorithm called d-separation, which we step through in our heads and on the slides. But in principle, you can code in a computer program. You could write a computer program that given a Bayes net structure, and the graph finds al the paths, along each path checks the triplets and then checkes whether or not each triple is active. And the Bayes Net decides whether or not there exists an active path. And if there is an active path, then it says, can not claim anything. If there is no active path, it says independence.
+
+- Given a Bayes net structure, can run d-separation algorithm to build a complete list of conditional independences that are necessarily true of the form
+    - Xᵢ ⫫ Xⱼ | { X<sub>k1</sub> , ... , X<sub>kn</sub> } 
+- This list determines the set of probability distributions that can be represented 
+    - What it actually does, the list that we can generate this way, if we try to look at all of them, is a list of assumptions we make by choosing a specific Bayes net struction.
+    - Here is a few Bayes net structures. Let's compute all the independencies that we can claim for each of those Bayes net structures.
+        - ![](../imgs/cs188_BNs_sample_net_structure.png)
+    - How about the 1st one ? What independencies are present there ?
+        - only 1. { X ⫫ Z | Y }
+    - the 2nd one
+        - only 1. { X ⫫ Z | Y }
+    - the 3rd one
+        - { X ⫫ Z }
+    - the last one
+        - {} None. Because every node has all the previous nodes in the ordering as its parents.
+- So one interesting thing already comes up here. If you look at these 2 bayes nets, the 1st and the 2nd, they actually end up with the same set of independencies.
+    - What that means is that if you want to represent a distribution over 3 variables X,Y, and Z, that represents something in the real world, whether you use the 1st one or the 2nd one, you'll be equally capable of capturing that distribution.
+    - If somebody represents it with the 1st one, you can turn that into a new Bayes net structured like the 2nd one that represents the exact same distribution.
+        - Because the assumptions you make by using the structure is the same. So they can represent the same distributions.
+    - On the other hand, if somebody gives you a distribution represented by the bottom Bayes net over here, that Bayes net makes no assumptions. So it's very unlikely that if you get such a distribution, you can then represent it by any of the other Bayes nets ?
+- Why do we even have both versions (the 1st and 2nd ones) if they can represent the same distributions anyway ?
+    - Sometimes it's easier to specify one than the other.
 
 
 <h2 id="3a8cd9d38bf713649aa6025704704c78"></h2>
