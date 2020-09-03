@@ -333,7 +333,7 @@ We now have an algorithm called d-separation, which we step through in our heads
 - So one interesting thing already comes up here. If you look at these 2 bayes nets, the 1st and the 2nd, they actually end up with the same set of independencies.
     - What that means is that if you want to represent a distribution over 3 variables X,Y, and Z, that represents something in the real world, whether you use the 1st one or the 2nd one, you'll be equally capable of capturing that distribution.
     - If somebody represents it with the 1st one, you can turn that into a new Bayes net structured like the 2nd one that represents the exact same distribution.
-        - Because the assumptions you make by using the structure is the same. So they can represent the same distributions.
+        - Because the assumptions you make by using the structure is the same. So they can represent the same distributions, they are effectively equivalent structures. 
     - On the other hand, if somebody gives you a distribution represented by the bottom Bayes net over here, that Bayes net makes no assumptions. So it's very unlikely that if you get such a distribution, you can then represent it by any of the other Bayes nets ?
 - Why do we even have both versions (the 1st and 2nd ones) if they can represent the same distributions anyway ?
     - Sometimes it's easier to specify one than the other.
@@ -344,27 +344,44 @@ We now have an algorithm called d-separation, which we step through in our heads
 
 ## Topology Limits Distributions 
 
-
-
- - When anybody gives you a distribution of "Common Cause" ,  you can turn that into a distribution specify through a BNs of "causal chain" format. 
-    - because any distribution that you can represent with the first BNs , you can also represent with the 2nd BNs. 
- - they are effectively equivalent structures. 
-
+So taking a further step back,  let's look at distributions over 3 variables.
 
 ![](../imgs/cs188_BNs_topology_limit_dist.png)
 
- - the blue set represent all distributions over 3 variables ,  no conditional dependencies at all 
-    - explicitly blue and not also red or green
- - the green set , is a subset of all distribtuions are the ones that satisfy complete independence. 
- - the reset is yet something else we have one conditional dependence assumption. 
+
+You can think of a distribution as a point in the space here.  So this space here is any point corresponds to a distribution.
+
+
+- the green set (middle area) , is a subset of all distribtuions are the ones that satisfy complete independence. 
+    - X,Y,Z, 0 connections.
+    - where a different point in that set corresponds to a different distribution. Like maybe one distribution has probably 0.5,0.5 for each of X,Y,Z; anther onbe might be a biased coin flip for X, maybe 0.9,0.1,  and Y and Z still be 0.5,0.5; ... So any such choices will be representable by this Bayes net here and live in that small cell.
+- the red set is yet something else we have one conditional dependence assumption. 
+    - for any one of those three, you get the same conditional independence assumption, only 1.
+    - it's also the same distributions. Any distribution represented by this first one, you can re-formulate as represented by the second one or the third one. It's interchangeable from a mathematical point of view, even if from a practical point of view, you often will still prefer one structure over another one.
+- the blue set represent all distributions that is no conditional dependencies at all 
+    - These are all Bayes nets that make 0 assumptions.
+    - So if you use any of these Bayes net structures, you're not forced to make any assumptions. And you can represent any distribution over the 3 variables.
+    - How come there is 6 of them ? It corresponds to the 6 possible ways of ordering those variables. It's like chain rule.
+
+- Question: 
+    - How about a V-shaped model ?  `X -> Y <- Z`   { X⫫Z }
+    - Answer:
+        - `X -> Y <- Z` { X⫫Z }, we may call it purple set,  makes less assumptions that the green set.
+        - So everything that lives in the green set, purple can handle.
+        - How about everything in red? This is kind of a different assumption here. These assumptions are not directly comparable.
+        - So what's going to happen here is that you're going to have a purple set that have all the green included.  But we wouldn't want it to overlap with the red one. It's hard to draw. We may earse part of the red area , and colored with purple.
+        - ![](../imgs/cs188_BNs_topology_limit_dist2.png)
+    - The blue one will always have them all included. Because the blue one makes no assumptions. So it can capture everything any Bayes net with less edges can represent.
+        - Essentially, whenever you remove an edge, you make an assumption. When you have all the edges, you've made no assumptions.
+
 
 ---
 
- - Given some graph topology G, only certain joint distributions can be encoded
- - The graph structure guarantees certain (conditional) independences
- - (There might be more independence)
- - Adding arcs increases the set of distributions, but has several costs
- - Full conditioning can encode any distribution
+- Given some graph topology G, only certain joint distributions can be encoded
+- The graph structure guarantees certain (conditional) independences
+- (There might be more independence)
+- Adding arcs increases the set of distributions, but has several costs
+- Full conditioning can encode any distribution
 
 --
 
@@ -373,11 +390,12 @@ We now have an algorithm called d-separation, which we step through in our heads
 
 ## Bayes Nets Representation Summary
 
- - Bayes nets compactly encode joint distributions
- - Guaranteed independencies of distributions can be deduced from BN graph structure
- - D-separation gives precise conditional independence guarantees from graph alone
- - A Bayes’ net’s joint distribution may have further (conditional) independence that is not detectable until you inspect its specific distribution
-    - the trivial example to keep in mind there is every distribution uniform , where effectively you shouldn't have any parents , everything is independent. 
+- Bayes nets compactly encode joint distributions
+- Guaranteed independencies of distributions can be deduced from BN graph structure
+- D-separation gives precise conditional independence guarantees from graph alone
+- A Bayes’ net’s joint distribution may have further (conditional) independence that is not detectable until you inspect its specific distribution
+    - It is possible to have independencies that your d-separation algorithm does not find, what I mean with that is that d-separation will only find the independencies that are true, no matter what numbers you put in the conditional tables. But if you put in very speical numbers in the tables, there might be additional independenciese that you cannot read off from your grap structure. Such as if you put 0.5 everywhere, then there will be complete independence, and you won't be able to read it off from your graph structure. Because the graph structure doesn't tell you there is 0.5 everywhere, it just shows you the structure of the Bayes net.
+    - The trivial example to keep in mind there is every distribution uniform , where effectively you shouldn't have any parents , everything is independent. 
 
 
 
