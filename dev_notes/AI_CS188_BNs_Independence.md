@@ -51,7 +51,7 @@
  - Bayes’ nets implicitly encode joint distributions
     - As a product of local conditional distributions
     - To see what probability a BN gives to a full assignment, multiply all the relevant conditionals together:
-        - P(x₁,x₂,...,x<sub>n</sub>) = ∏ⁿ<sub>i=1</sub> P(xᵢ|parent(Xᵢ) )
+        - ![](../imgs/cs188_BNsR_probInBNs_product.png)
 
 <h2 id="964508d9edbdf6c01844d69c96708106"></h2>
 
