@@ -40,6 +40,18 @@
 # Bayes' Nets: Inference
 
 
+## Recap: Bayes' Net Representation
+
+- A directed, acyclic graph, one node per random variable
+- A conditional probability table (CPT) for each node
+    - A collection of distributions over X, one for each combination of parents’ values
+        - P(X|a₁,...,a<sub>n</sub>)
+- Bayes' nets implicitly encode joint distributions
+    - As a product of local conditional distributions
+    - TO see what probability a BN gives to a full assignment, multiply all the relevant conditionals together.
+        - ![](../imgs/cs188_BNsR_probInBNs_product.png)
+
+
 <h2 id="93e93ad719ade4a5e39433beadf3956a"></h2>
 
 
@@ -52,8 +64,8 @@
 
 ## Inference
 
- - Inference: calculating some useful quantity from a joint probability distribution
- - Examples:
+- Inference: calculating some useful quantity from a joint probability distribution
+- Examples:
     - Posterior probability
         - P( Q| E₁=e₁,...,E<sub>k</sub>=e<sub>k</sub> )
         - computing the posterior probability of some set of query variables conditioned on some evidence having been observed 
