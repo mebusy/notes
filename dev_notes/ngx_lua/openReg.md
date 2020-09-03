@@ -791,6 +791,8 @@ http {
 ## DNS
 
 ```nginx
+# openresty/openresty:1.15.8.1-3-bionic
+
 http {
     # use system resolver
     resolver local=on ipv6=off;
