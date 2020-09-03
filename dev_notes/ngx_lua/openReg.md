@@ -788,6 +788,15 @@ http {
  - 但如果你的请求数量比较多，或者需要频繁的修改上游地址，那么 resty.http就更适合你。
 
 
+## DNS
+
+```nginx
+http {
+    # use system resolver
+    resolver local=on ipv6=off;
+    resolver_timeout 5s;
+```
+
 
 
 
