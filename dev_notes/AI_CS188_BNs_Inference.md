@@ -59,16 +59,31 @@
 
 ![][1]
 
+![](../imgs/cs188_BNsR_example_alarm_joint_distribution.png)
+
+You build up the local little piececs, CPT,  and then you can answer questions of the whole distribution by assembling it from the BN.
+
+```
+  P(+b,-e,+a,-j,+m) 
+= P(+b)P(-e)P(+a |+b,-e)P(-j|+a)P(+m|+a)
+= 0.001 x 0.998 x 0.94 x 0.1 x 0.7
+```
+
 <h2 id="bfc7647fbfe6e589911d2da73377b475"></h2>
 
 
 ## Inference
 
 - Inference: calculating some useful quantity from a joint probability distribution
+    - So you image the given is some collection of probabilites. 
+    - Maybe it's the whole joint probability table in all its exponential size glory. More often, it'a a bunch of conditional probabilities that define a Bayes' Net.
+    - Some examples of things you might calculate from those givens are the canonical thing is a posterior probability.
+    - Another classic canonical query you might do is a most likely explanation query, where you say, I have some evidence, I would like to know the most likely value of a one or more variables given that evidence.
 - Examples:
     - Posterior probability
         - P( Q| E₁=e₁,...,E<sub>k</sub>=e<sub>k</sub> )
         - computing the posterior probability of some set of query variables conditioned on some evidence having been observed 
+        - I care about variable Q. There's a bunch of evidence variables whose values I know and unfortunately there's going to be a bunch of other variables called hidden variables that I don't care about, and I also don't observe. And we're going to have to sum them out, and that creates a lot of time complexity.
     - Most likely explanation
         - argmax<sub>q</sub> P( Q=q | E₁=e₁...)
         - given some evidence has bee observed, what's the most likely association of some query variables.
@@ -78,31 +93,47 @@
 
 ## Inference by Enumeration
 
- - the first type of inference is the naive type of inference is inference by enumeration
- - we have some query , and the query has 
+- General case
+    - All variables: X₁,X₂,...,X<sub>n</sub>
+        - Evidence variables: E₁,...,E<sub>k</sub> = e₁,...,e<sub>k</sub>
+        - Query<sup>\*</sup> variable: Q
+        - Hidden variables: H₁, ..., Hᵣ
+
+
+- the first type of inference is the naive type of inference is inference by enumeration
+- we have some query , and the query has 
     - some evidence variables E₁...E<sub>k</sub> , 
     - some query variables Q , the ones which we want to distribution given the evidence variables.
     - some hidden variables. H₁...H<sub>r</sub> , the ones that are not query variables , not query variables, but yet still are in our joint distribution.
         - we have to deal with them, you will have to sum them out effectively to get rid of them.
- - see details in [Probability](AI_CS188_Probability.md)
+- see details in [Probability](AI_CS188_Probability.md)
+- Problem with this algorithm:
+    1. we don't have the giant joint distribution, we've got a Bayes Net
+    2. while we could, in principle, build the giant joint distribution would be a waste of space and time.
+
 
 <h2 id="501eae82a1dd02d9d72cb6f324e1d35d"></h2>
 
 
 ## Inference by Enumeration in Bayes’ Net
 
- - Given unlimited time, inference in BNs is easy
+- Given unlimited time, inference in BNs is easy
     - ![](../imgs/cs188_BNs_inference_example_BNgraph_alarm_network.png)
- - Reminder of inference by enumeration by example:
-    - P(B|+j,+m) ∝<sub>B</sub> P(B,+j,+m)
-    - = ∑<sub>e,a</sub> P(B,e,a,+j,+m)
-    - now we can use the definition if the joint distribution as its specified through the Bayes net :
-    - = ∑<sub>e,a</sub> P(B)P(e)P(a|B,e)P(+j|a)P(+m|a)
-    - = P(B)P(+e)P(+a|B,+e)P(+j|+a)P(+m|+a) + P(B)P(+e)P(-a|B,+e)P(+j|-a)P(+m|-a) + P(B)P(-e)P(+a|B,-e)P(+j|+a)P(+m|+a) + P(B)P(-e)P(-a|B,-e)P(+j|-a)P(+m|-a)
+- Reminder of inference by enumeration by example:
+    - P(B|+j,+m) 
+        - ∝<sub>B</sub> P(B,+j,+m)
+            - proportional to
+            - this says these 2 things are almost equal, not actually equal.
+            - but they'd be euqal if we summed up the values over b, and multiply by the inverse.
+            - And so what this says if you want a conditional probability, you compute the equivalent joint probability, and then normalize.
+        - = ∑<sub>e,a</sub> P(B,e,a,+j,+m)
+            - now we can use the definition if the joint distribution as its specified through the Bayes net :
+        - = ∑<sub>e,a</sub> P(B)P(e)P(a|B,e)P(+j|a)P(+m|a)
+        - = P(B)P(+e)P(+a|B,+e)P(+j|+a)P(+m|+a) + P(B)P(+e)P(-a|B,+e)P(+j|-a)P(+m|-a) + P(B)P(-e)P(+a|B,-e)P(+j|+a)P(+m|+a) + P(B)P(-e)P(-a|B,-e)P(+j|-a)P(+m|-a)
 
- - if we have 100 variables in the BNs , 50 of them are evidence variables,  means 50 of them not evidence variables that will look at 2⁵⁰ entries 
+- if we have 100 variables in the BNs , 50 of them are evidence variables,  means 50 of them not evidence variables that will look at 2⁵⁰ entries 
     - it gets very expensive,  exponential in a number of non-evidence variables ,  unless almost everything is evidence
- - It's not ideal to do it this way
+- It's not ideal to do it this way
 
 <h2 id="703eaeb1dc68923979993136c3c56afe"></h2>
 
@@ -135,7 +166,7 @@
 ![](../imgs/cs188_BNs_inference_factor_zoo_1.png)
 
 
- - Joint distribution: P(X,Y)
+- Joint distribution: P(X,Y)
     - Entries P(x,y) for all x, y
     - Sums to 1
 
@@ -149,7 +180,7 @@ cold | sun | 0.2
 cold | rain | 0.3
 
 
- - Selected joint: P(x,Y)
+- Selected joint: P(x,Y)
     - A slice of the joint distribution
     - Entries P(x,y) for fixed x, all y
     - Sums to P(x)
@@ -162,7 +193,11 @@ T | W | P
 cold | sun | 0.2
 cold | rain | 0.3
 
- - Number of capitals = dimensionality of the table
+- **Number of capitals = dimensionality of the table**
+    - P(T,W) is a 2D array
+    - P(cold,W) is a 1D array
+    - p(cold,sun),it's still a joint probability, but now it's a 1D object as a scalar.
+    - That's important. We can reduce the size of data structure without changing the semantics of what's in it.
  - So as we work in this variable elimination process , the game will be one of trying to keep the number of capitialized variables small in our factor. 
 
 <h2 id="ebe6338e5d98d7cb0ce41e0f40711330"></h2>
