@@ -447,7 +447,8 @@ P(L|T)
 - so that is variable elimination .
 - what if your evidence ?
     - just like with the inference by enumeration , when there is evidence you just look at your tabels and you only retain those entries consistent with your evidence. 
-- Q: how to know whether we can sum out R ?
+- Q: why sum out R in the 1st step?
+    - Actually we are eliminating a hidden variable, we are hunting down the hidden variables.
 
 <h2 id="c7b2a4d55fbea4d044644cf5b2b45d29"></h2>
 
@@ -494,15 +495,17 @@ P(L|T)
 ![][1]
 
 - P(B|j,m) ∝ P(B,j,m)
-- after  introducing evidence , we have following factors:
+- Somebody comes along and says, hey, I want the probability of burglary given that John and Mary are both calling. 
+    - after introducing evidence , we have following factors:
     - P(B) , P(E) , P(A|B,E) , P(j|A) , P(m|A) 
 
 ---
 
 - Choose *A* 
     - ![](../imgs/cs188_BNs_inference_VE_example_A.png)
-    - the size of the tables generated along the way is 2³,  in this case it wasn't too bad , it's possible to handle. but if you have a very large BNs you need to be careful about your orderingto make sure you keep it low. 
-    - P(B) , P(E) , P(j,m|B,E)
+    - the size of the tables generated along the way is 2³,  in this case it wasn't too bad , it's possible to handle. but if you have a very large BNs you need to be careful about your ordering to make sure you keep it low. 
+    - Now these 3 things, P(A|B,E) , P(j|A) , P(m|A), have been replaced by P(j,m|B,E), and we got:
+        - P(B) , P(E) , P(j,m|B,E)
 - Choose *E*
     - ![](../imgs/cs188_BNs_inference_VE_example_E.png)
     - P(B) , P(j,m|B)
@@ -517,15 +520,17 @@ P(L|T)
 
 ![](../imgs/cs188_BNs_inference_VE_same_example_in_equations.png)
 
- - equations from top to bottom 
+- Do not process the slide! Don't do it. The slide is simply saying that instead of working with these factors, I could have worked all that out using products, and sums, and laws of distribution, and all of that.
+
+- equations from top to bottom 
     1. marginal can be obtained from joint by summing out
     2. use Bayes' net joint distribution expression
     3. use `x*(y+z) = xy + xz`
     4. joining on *a* , and then summing out give f₁
     5. use `x*(y+z) = xy + xz` 
     6. joining on *e* , and then summing out give f₂
- - **All we are doing is exploiting uwy + uwz + uxy + uxz + vwy + vwz + vxy +vxz = (u+v)(w+x)(y+z) to improve computational efficiency** !
- - how do you decide which variables to pick first ?  
+- **All we are doing is exploiting uwy + uwz + uxy + uxz + vwy + vwz + vxy +vxz = (u+v)(w+x)(y+z) to improve computational efficiency** !
+- how do you decide which variables to pick first ?
     - suggestion here was **a variable with very few connections** .  Connections means that it is participating in a factor. 
 
 <h2 id="60b0a3c9ae175891ccee2e70e11f5141"></h2>
@@ -535,20 +540,20 @@ P(L|T)
 
 ![](../imgs/cs188_BNs_inference_VE_another_example.png)
 
- - Query: P(X₃|Y₁=y₁,Y₂=y₂,Y₃=y₃)
- - Start by inserting evidence , which gives the following initial factors:
+- Query: P(X₃|Y₁=y₁,Y₂=y₂,Y₃=y₃)
+- Start by inserting evidence , which gives the following initial factors:
     - p(Z),p(X₁|Z),p(X₂|Z),p(X₃|Z),p(y₁|X₁),p(y₂|X₂),p(y₃|X₃)
- - Eliminate X₁, this introduce the factor f₁(Z,y₁) = ∑ₓ₁ p(x₁|Z)p(y₁|x₁) , and we are left with 
+- Eliminate X₁, this introduce the factor f₁(Z,y₁) = ∑ₓ₁ p(x₁|Z)p(y₁|x₁) , and we are left with 
     - p(Z),f₁(Z,y₁),p(X₂|Z),p(X₃|Z),p(y₂|X₂),p(y₃|X₃)
- - Eliminate X₂, this introduce the factor f₂(Z,y₂) = ∑ₓ₂ p(x₂|Z)p(y₂|x₂) , and we are left with 
-    - p(Z),f₁(Z,y₁),f₂(Z,y₂),p(X₃|Z),p(y₃|X₃)       
+- Eliminate X₂, this introduce the factor f₂(Z,y₂) = ∑ₓ₂ p(x₂|Z)p(y₂|x₂) , and we are left with 
+    - p(Z),f₁(Z,y₁),f₂(Z,y₂),p(X₃|Z),p(y₃|X₃)
  - Eliminate Z, this introduces the factor f₃(y₁,y₂,X₃) = ∑<sub>z</sub> p(z)f₁(Z,y₁)f₂(Z,y₂)p(X₃|z) , and we are left:
     - p(y₃|X₃),f₃(y₁,y₂,X₃)
     - quiz: why there is a factor p(X₃|z) ? why not the other ones , like p(X₃,z) or P(Z,y) ?
         - X₃ is the query variable, the query variable doesn't go through the elimination process, the same way as a hidden variable 
- - No hidden variables left. Join the remaining factors to get 
+- No hidden variables left. Join the remaining factors to get 
     - f₄(y₁,y₂,y₃, X₃) = p(y₃|X₃)·f₃(y₁,y₂,X₃)
- - Normalizing over X₃ gives P(X₃|y₁,y₂,y₃)
+- Normalizing over X₃ gives P(X₃|y₁,y₂,y₃)
 
 ---
 
@@ -754,23 +759,6 @@ C | P(C\|e=1)
  - Step 4: After joining on B and summing out over 
     - **A,+f**
     - **P(A) , f₄**  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
  
