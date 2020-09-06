@@ -23,6 +23,8 @@
 
 # Approximate inference: Sampling 
 
+A way of doing interence really, really fast, any maybe getting the wrong answer.
+
 <h2 id="1d07814d12178c958e4233501cb0bdc7"></h2>
 
 
