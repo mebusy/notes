@@ -25,24 +25,37 @@
 
 A way of doing interence really, really fast, any maybe getting the wrong answer.
 
+And this is different than how we normally approach problems in this class. Normally, we have an exact answer. And we're gonna to find it. 
+
+Sampling-based methods, which you can run them as quickly as you want. But if you don't run them long enough, your answer may not be very accurate.
+
+
+
 <h2 id="1d07814d12178c958e4233501cb0bdc7"></h2>
 
 
 ## Sampling
 
- - Sampling is a lot like repeated simulation
+- Sampling is a lot like repeated simulation
     - Predicting the weather, basketball games, …
- - Basic idea
-    - Draw N samples from a sampling distribution S
-    - Compute an approximate posterior probability
-    - Show this converges to the true probability P
- - Why sample?
+- Why sample?
     - Learning: get samples from a distribution you don’t know
     - Inference: getting a sample is faster than computing the right answer (e.g. with variable elimination)
+        - We're going to go to our Bayes net, in which we know all of the probabilities. But we're going to sample anyway. 
+        - When you sample in a network that you already know, it looks like simulation. You walk along the network, and you say, hmm if this happened, let's see what would happen at this variable. And you slip some coins. And you get a sample out that is a sort of probabilistic simulation.
+        - And in this case, the reason you're getting a sample is not because you don't actually know or are not able to compute the underlying probabilities. It's because sampling turns out to be faster than computing the right answer through brute force.
+
+- Basic idea
+    - Draw N samples from a sampling distribution S
+        - and we get to define the sampling distribution.
+    - Compute an approximate posterior probability
+        - inside those samples, which are all events that look like outcomes of S, and you're going to compute an approximate posterior probability. Whatever query you're trying to answer, you'll compute it over you samples.
+    - Show this converges to the true probability P
+
 
 --- 
 
- - Sampling from given distribution
+- Sampling from given distribution
     - Step 1: Get sample *u* from uniform distribution over \[0, 1)
         - E.g. random() in python
     - Step 2: Convert this sample *u* that lies in \[0,1) interval  into an outcome from the distribution that we want a sample from
