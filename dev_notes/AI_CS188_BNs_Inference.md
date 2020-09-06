@@ -205,7 +205,7 @@ cold | rain | 0.3
 
 ### Factor Zoo II 
 
- - Single conditional: P(Y | x)
+- Single conditional: P(Y | x)
     - Entries P(y | x) for fixed x, all y
     - Sums to 1
     - ![](../imgs/cs188_BNs_inference_factor_zoo_20.png)
@@ -218,11 +218,12 @@ T | W | P
 cold | sun | 0.4
 cold | rain | 0.6
 
- - Family of conditionals: P(X |Y)
+- Family of conditionals: P(X |Y)
     - Multiple conditionals
     - Entries P(x | y) for all x, y
     - Sums to |Y|
     - ![](../imgs/cs188_BNs_inference_factor_zoo_21.png)
+    - a little weird. This is distributions over Y, but it's one for every value of x , not a fixed x. It's got a value for every value of x and every value for y, If you add them up, each little distribution over Y adds up to 1, and there are many of x. So this whole thing together sums to more than 1.
 
 
 Example : P(W|T)
@@ -239,11 +240,20 @@ cold | rain | 0.6
 
 ### Factor Zoo III 
 
+Now we get to the weird stuff.
+
+<center>
+
 ![](../imgs/cs188_BNs_inference_factor_zoo_3.png)
 
- - Specified family: P( y | X )
+</center>
+
+- Specified family: P( y | X )
     - Entries P(y | x) for fixed y, but for all x
     - Sums to … who knows!
+
+
+<center>
 
 Example: P(rain | T)
 
@@ -251,6 +261,12 @@ T | W | P
 --- | --- | ---
 hot | rain | 0.2
 cold | rain | 0.6
+
+</center>
+
+- It's not a distribution over rain and sun, it's a bunch of probability of rains.
+    - This is no longer a distribution. It's no longer a family of distributions. It's a 1D array, each of those entries is the conditional probability of some particular value for Y, which is usually an evidence value.
+- How do we get these things. We get these things because somebody hands us little pieces of Bayes' Net. We're going to selecting the value of the evidence, and then we're gonna to start multiplying things together. So we're going to get all kinds of stuff.
 
 <h2 id="b865584c7b554987faf8a85c0ecd151d"></h2>
 
@@ -261,7 +277,7 @@ cold | rain | 0.6
     - It is a “factor,” a multi-dimensional array
     - Its values are P(y₁ … y<sub>N</sub> | x₁ … x<sub>M</sub>)
     - Any assigned (=lower-case) X or Y is a dimension missing (selected) from the array
-     
+
 <h2 id="4d406eeb866d87e85043283df1c17bc7"></h2>
 
 
@@ -273,13 +289,15 @@ cold | rain | 0.6
     - T: Traffic
     - L: Late for class!
 
+<center>
+
 P(R)
 
 +r | 0.1
 --- | ---
 -r | 0.9
 
-P(T|R)
+P(T|R), family of conditional distributions
 
 +r | +t | 0.8
 --- | --- | ---
@@ -294,6 +312,9 @@ P(L|T)
 +t | -l | 0.7
 -t | +l | 0.1
 -t | -l | 0.9
+
+</center>
+
 
  - query: P(L) = ?
     - for inference enumertation:
@@ -366,13 +387,27 @@ P(L|T)
 
 ![](../imgs/cs188_BNs_inference_op2_multiple_elimination.png)
 
---- 
 
- - Thus Far: Multiple Join, Multiple Eliminate (= Inference by Enumeration)
- - Marginalizing Early (= Variable Elimination)
-    - ![](../imgs/cs188_BNs_inference_marginalize_early.png)
-    - switch the some order of join/eliminate 
- - intuition
+###  Thus Far: Multiple Join, Multiple Eliminate (= Inference by Enumeration)
+
+<center>
+
+![](../imgs/cs188_BNs_inference_op1_example_multiple_joins_1.png)
+
+![](../imgs/cs188_BNs_inference_op2_eliminate_example.png)
+
+</center>
+
+###  Marginalizing Early (= Variable Elimination)
+
+<center>
+
+![](../imgs/cs188_BNs_inference_marginalize_early.png)
+
+</center>
+
+- switch the some order of join/eliminate 
+- intuition
     - if you want to eliminate a variable , you can not do this until you have joined on that variable.  
 
 <h2 id="cc0dd64e1b254202b05fe8934cc5e2ef"></h2>
@@ -390,30 +425,33 @@ P(L|T)
 <h2 id="76d28d073a991c878d917deb0c0ef923"></h2>
 
 
-#### Marginalizing Early! (aka VE)
+### Marginalizing Early! (aka VE)
+
+- P(L) = ?
 
 ![](../imgs/cs188_BNs_inference_marginalize_early_RTL_example.png)
 
- - so that is variable elimination .
- - what if your evidence ?
+- so that is variable elimination .
+- what if your evidence ?
     - just like with the inference by enumeration , when there is evidence you just look at your tabels and you only retain those entries consistent with your evidence. 
+- Q: how to know whether we can sum out R ?
 
 <h2 id="c7b2a4d55fbea4d044644cf5b2b45d29"></h2>
 
 
 ### Evidence
 
- - If evidence, start with factors that select that evidence
+- If evidence, start with factors that select that evidence
     - No evidence  looks like this : uses these initial factors
         - ![](../imgs/cs188_BNs_inference_VE_no_evidence.png)
     - with evidence looks like this: computing P(L|+r) the initial factors become
         - ![](../imgs/cs188_BNs_inference_VE_with_evidence.png)
- - We eliminate all vars other than query + evidence
- - Result will be a selected joint of query and evidence
+- We eliminate all vars other than query + evidence
+- Result will be a selected joint of query and evidence
     - E.g. for P(L | +r), we would end up with:
     - ![](../imgs/cs188_BNs_inference_VE_with_evidence_L+r.png)
- - To get our answer, just normalize this!
- - That's it!
+- To get our answer, just normalize this!
+- That's it!
 
 
 ---
@@ -423,17 +461,17 @@ P(L|T)
 
 ## General Variable Elimination
 
- - Query: P( Q| E₁=e₁,...,E<sub>k</sub>=e<sub>k</sub> )
- - Start with initial factors:
+- Query: P( Q| E₁=e₁,...,E<sub>k</sub>=e<sub>k</sub> )
+- Start with initial factors:
     - Local CPTs (but instantiated by evidence) 
- - While there are still hidden variables (not Q or evidence):
+- While there are still hidden variables (not Q or evidence):
     - Pick a hidden variable H
         - any ordering of hidden variables is valid
         - but some orderings will lead to very big factors being generated along the way 
         - and some orderings might be able to keep the factors generated along the way very small 
     - Join all factors mentioning H
     - Eliminate (sum out) H
- - Join all remaining factors and normalize
+- Join all remaining factors and normalize
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
@@ -442,20 +480,20 @@ P(L|T)
 
 ![][1]
 
- - P(B|j,m) ∝ P(B,j,m)
- - after  introducing evidence , we have following factors:
+- P(B|j,m) ∝ P(B,j,m)
+- after  introducing evidence , we have following factors:
     - P(B) , P(E) , P(A|B,E) , P(j|A) , P(m|A) 
 
 ---
 
- - Choose *A* 
+- Choose *A* 
     - ![](../imgs/cs188_BNs_inference_VE_example_A.png)
     - the size of the tables generated along the way is 2³,  in this case it wasn't too bad , it's possible to handle. but if you have a very large BNs you need to be careful about your orderingto make sure you keep it low. 
     - P(B) , P(E) , P(j,m|B,E)
- - Choose *E*
+- Choose *E*
     - ![](../imgs/cs188_BNs_inference_VE_example_E.png)
     - P(B) , P(j,m|B)
- - Finish with B
+- Finish with B
     - ![](../imgs/cs188_BNs_inference_VE_example_B.png)
  
 
