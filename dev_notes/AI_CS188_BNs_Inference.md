@@ -1,6 +1,7 @@
 ...menustart
 
  - [Bayes' Nets: Inference](#38e014f1208386f021d316fdc47cc05e)
+     - [Recap: Bayes' Net Representation](#c08ae97044cb96965599bb540763c91f)
      - [Recap: Example: Alarm Network](#93e93ad719ade4a5e39433beadf3956a)
      - [Inference](#bfc7647fbfe6e589911d2da73377b475)
      - [Inference by Enumeration](#314fa4378b3b188832e3f68fd46ac015)
@@ -17,8 +18,10 @@
              - [Example: Multiple Joins](#44dc9c3cb61be07661f0b59c4c5eeeb7)
          - [Operation 2: Eliminate](#7e886379f4ade029f5799405307898de)
              - [Multiple Elimination](#3821c17868fa87d7f5cae10cccc3fa7e)
+         - [Thus Far: Multiple Join, Multiple Eliminate (= Inference by Enumeration)](#a0254600f083a94ddd9ca563bed0427b)
+         - [Marginalizing Early (= Variable Elimination)](#b82050c7b2c9df624ba985a4e613ee9f)
          - [Example:  Traffic Domain again](#cc0dd64e1b254202b05fe8934cc5e2ef)
-             - [Marginalizing Early! (aka VE)](#76d28d073a991c878d917deb0c0ef923)
+         - [Marginalizing Early! (aka VE)](#76d28d073a991c878d917deb0c0ef923)
          - [Evidence](#c7b2a4d55fbea4d044644cf5b2b45d29)
      - [General Variable Elimination](#29338145e918c543db5115601ceedae4)
          - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
@@ -28,6 +31,7 @@
      - [VE: Computational and Space Complexity](#e7a5369a94522ddbfba1d7c3f326d981)
          - [Worst Case Complexity?](#c2d228ff5891fce6cd51dc9df9953ed6)
      - [Polytrees](#3210fceb43cd33c7a8871b75e98de3ee)
+     - [Quiz](#ab458f4b361834dd802e4f40d31b5ebc)
      - [Quiz BN2-2](#25d7ce91a9821147da689c3a48401fb1)
      - [Quiz BN2-3](#74e6f31ec1cddabd42e093bb90394707)
 
@@ -38,6 +42,9 @@
 
 
 # Bayes' Nets: Inference
+
+
+<h2 id="c08ae97044cb96965599bb540763c91f"></h2>
 
 
 ## Recap: Bayes' Net Representation
@@ -388,6 +395,9 @@ P(L|T)
 ![](../imgs/cs188_BNs_inference_op2_multiple_elimination.png)
 
 
+<h2 id="a0254600f083a94ddd9ca563bed0427b"></h2>
+
+
 ###  Thus Far: Multiple Join, Multiple Eliminate (= Inference by Enumeration)
 
 <center>
@@ -397,6 +407,9 @@ P(L|T)
 ![](../imgs/cs188_BNs_inference_op2_eliminate_example.png)
 
 </center>
+
+<h2 id="b82050c7b2c9df624ba985a4e613ee9f"></h2>
+
 
 ###  Marginalizing Early (= Variable Elimination)
 
@@ -617,6 +630,9 @@ There are  atrist special graph structures of BNs , where inference can be done 
 
 
 ---
+
+<h2 id="ab458f4b361834dd802e4f40d31b5ebc"></h2>
+
 
 ## Quiz 
 

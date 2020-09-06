@@ -25,6 +25,7 @@
      - [如何发起新 HTTP 请求](#042d5977081f357a19a120018ae11d33)
          - [利用 proxy_pass](#cf2ce2505b174e42b2adc163b2a615b1)
          - [利用 cosocket](#b888cd5bb81793b53547243438aa8df6)
+ - [DNS](#ed5f2bdecbd4bd349d09412d1ff6a6fb)
 
 ...menuend
 
@@ -786,6 +787,9 @@ http {
  - ② request_uri 函数完成了连接池、HTTP 请求等一系列动作。
  - 如果你的内部请求比较少，使用 ngx.location.capture+proxy_pass 的方式还没什么问题。
  - 但如果你的请求数量比较多，或者需要频繁的修改上游地址，那么 resty.http就更适合你。
+
+
+<h2 id="ed5f2bdecbd4bd349d09412d1ff6a6fb"></h2>
 
 
 ## DNS

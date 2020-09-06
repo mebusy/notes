@@ -1,13 +1,11 @@
 ...menustart
 
  - [Backend tips](#6edcb6f97b94edc1579875d8335df797)
-     - [RESTful API test](#4b01e3a70a88bd2fd5aa2c11f7f00354)
-     - [Squid set proxy](#8215185b626db2bd246208973aabf16e)
-     - [Secure your REST API](#bdf38b3fd09b39e3a701db441cb2c2e9)
      - [CORS](#5a8feff0b4bde3eec9244b76023b791d)
          - [test whether your server supoort CORS](#1e545f4bd1d09eb09ed43fabac84aba4)
      - [check whether server enable 'keepalive' feature](#f779c9d1d9da7473f0eebf90d56dc319)
      - [self signed cert](#b09fb18aea2fecd5ff9b30027f00a5aa)
+     - [Redeem](#81ed4dcb851fefbbbc791eeef4cd97a2)
 
 ...menuend
 
@@ -103,6 +101,9 @@ go run $GOROOT/src/crypto/tls/generate_cert.go --host golangtc.com
 ```
 
 for homebrew go, replace GOROOT is `/usr/local/opt/go/libexec`
+
+
+<h2 id="81ed4dcb851fefbbbc791eeef4cd97a2"></h2>
 
 
 ## Redeem 

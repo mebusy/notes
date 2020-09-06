@@ -4,7 +4,9 @@
      - [限制字符集](#d451326fd2b4c1b301f29a5ea7fe4e1e)
      - [兑换码设计，本身包含重要信息](#3f9352573d37d3ec177bc6496e4b13a4)
      - [CRC](#1a4b5d84a0328c4a33bd669c608a34c3)
-     - [Base X](#325d83b8f57ce9fbb4071f7bdfaf2a74)
+     - [Base 58](#36e3a1ad5f706ac6414ea1c1bb708494)
+     - [decode/verify redeemCode](#03174a9cd6c332b4ed1a3fe8d4b64c77)
+     - [python script to generate RedeemCode](#2440b42391dd88dc32b14c0253b3a95a)
 
 ...menuend
 
@@ -54,12 +56,15 @@ CREATE TABLE if not exists tbl_redeem (
 
 [crc IEEE](python_tips_1.md#d86a76b0e9825d4420259cf836f9230a)
 
-<h2 id="325d83b8f57ce9fbb4071f7bdfaf2a74"></h2>
+<h2 id="36e3a1ad5f706ac6414ea1c1bb708494"></h2>
 
 
 ## Base 58
 
 [base58](python_tips_1.md#0f3fed443cef1a400f3ac44edebf896b)
+
+
+<h2 id="03174a9cd6c332b4ed1a3fe8d4b64c77"></h2>
 
 
 ## decode/verify redeemCode
@@ -97,6 +102,9 @@ import (
 
 
 ```
+
+
+<h2 id="2440b42391dd88dc32b14c0253b3a95a"></h2>
 
 
 ## python script to generate RedeemCode

@@ -59,11 +59,6 @@
      - [5.6 B+树索引的使用](#a3f3f22ce2ecd49e0899aa0470bb4188)
          - [5.6.1 不同应用中的 B+树索引](#cc473a5ef59e8cf3e28bc6618a4db748)
          - [5.6.2 联合索引](#121f3825a3bc99fa74e52a95c6fcb3fa)
- - [第6章 锁](#9627bfb6fb25c97aa462bddaaa45655a)
-     - [6.2 lock 于 latch](#3196df3cba04e0101e5e4cdfaccaf8ea)
-     - [6.3 InnoDB 中的锁](#526cdd31b6b29a0b261428a6922f7b69)
-         - [6.3.1 锁的类型](#84dc1cc2c3408f6e837e79b9c0e9ebc5)
-         - [TODO](#b7b1e314614cf326c6e2b6eba1540682)
 
 ...menuend
 

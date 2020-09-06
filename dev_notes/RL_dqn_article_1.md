@@ -1,3 +1,12 @@
+...menustart
+
+ - [Inferring DQN structure for high-dimensional continuous control](#30b6658c5954486ffbd28f91e0eefeaf)
+
+...menuend
+
+
+<h2 id="30b6658c5954486ffbd28f91e0eefeaf"></h2>
+
 
 # Inferring DQN structure for high-dimensional continuous control
 

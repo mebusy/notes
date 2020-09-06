@@ -1,3 +1,8 @@
+...menustart
+
+
+...menuend
+
 
 We want to avoid “paired” operations (e.g. malloc/free, or
 new/delete), where it might be possible for the second half of the pair not to happen.

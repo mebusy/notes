@@ -10,7 +10,6 @@
      - [Conditional Probabilities](#9b6ebd3c632df1c60267481ca65ec2f5)
      - [Conditional Distribution](#d22ece9f9682b018dfb17860cc5aedd7)
      - [Normalization Trick](#1a18f3ea65669c3a4a2a7eff540de62e)
-     - [To Normalize](#730a75b3c3a77c4efa7e801fc1f306ea)
      - [Probabilistic Inference](#e806b0d3eeb72e7431bb8cdb823c4517)
      - [Inference by Enumeration](#314fa4378b3b188832e3f68fd46ac015)
      - [The Product Rule](#47d0d61476b8bc9f946aba690e7193cf)
@@ -243,8 +242,6 @@ Each of these individual tables sums to 1.
 It's a way to go from joint distributions to conditional distributions and has slightly quicker way and also a little more mechanical. 
 
 ![](../imgs/cs188_prob_normalize_trick.png)
-
-<h2 id="730a75b3c3a77c4efa7e801fc1f306ea"></h2>
 
 To Normalize,  all entries sum to 1.  Think about this like operations on a big database table,  you select rows, you normalize what's left.
 
