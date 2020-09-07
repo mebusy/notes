@@ -179,9 +179,25 @@ systemctl restart crond
 
  - 需要发送 USE1 信号给 nginx master 进程重新打开日志文件
 
+```bash
+$ kill -USR1 `ps axu | grep "nginx: master process" | grep -v grep | awk '{print $2}'`
 ```
-# kill -USR1 `ps axu | grep "nginx: master process" | grep -v grep | awk '{print $2}'`
+
+- 更多的，是使用 `postrotate`
+
+```bash
+{
+    ...
+
+    sharedscripts
+    postrotate
+        [ -e /var/run/nginx.pid ] && kill -USR1 `cat /var/run/nginx.pid`
+    endscript
+}
 ```
+
+- `sharedscripts` The sharedscripts means that the postrotate script will only be run once (after the old logs have been compressed), not once for each log which is rotated.
+
 
 <h2 id="f6b8fb64715407af569f56a897b2cbf4"></h2>
 
