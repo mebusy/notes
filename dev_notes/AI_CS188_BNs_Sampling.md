@@ -105,42 +105,54 @@ We have a BNs, and we want to generate samples of the full joint distribution ,b
 
 ![](../imgs/cs188_BNs_sampling_prior_sampling_1st_sample.png)
 
- - ordering: C → S → R → W , or  C → R → S → W 
- - we start with the 1st variable in the ordering **C** 
-    - we generate the number in \[0,1) , then map it to +c , or -c. 
+Given time, I know how to create the whole joint distribution. So I could do that right now. I could ask you, hey, what's the probability that it's cloudy, there's a sprinkler, it's rainy, but the grass is dry? We can compute that right now by multiplying a bunch of conditional probabilities together.
+
+We're going to do something similar to that. Instead of computing an entry of the joint distribution, we are going to create an event which is an assignment to these 4 variables. But we're going to create it by walking along the Bayes net.
+
+
+- ordering: C → S → R → W , or  C → R → S → W 
+- we start with the 1st variable in the ordering **C** 
+    - we generate the number in `[0,1)` , then map it to +c , or -c. 
     - this case , we got +c 
- - then we pick up next variable , this case *S* 
+- then we pick up next variable , this case *S* 
     - C is already sampled as +c, so we just consider the highlighted part of this table. 
     - again we generate a number, and map it into either +s , or -s
     - this case , we got -s
- - next we have to proceed with R 
+- next we have to proceed with R 
     - we can not proceed W yet, because W depends on both S and R 
     - this case , we got +r 
- - Now we can sample W 
+- Now we can sample W 
     - this case , we got +w 
     - this generated our first sample from this BNs.   +c,-s,+r,+w
- - repeat this process , and build up a set of samples from this BNs distribution here.   
- - algorithm to generate 1 sample : 
+- repeat this process , and build up a set of samples from this BNs distribution here.
+- What's the probability that I'll get the sample +c,-s,+r,+w
+    - 0.5 * 0.9 * 0.8 * 0.9
+    - If I multiply those together, I can determine the probability of the sample, which is just the probability of this event in the distribution described by the Bayes net.
 
-```
+---
+
+- algorithm to generate 1 sample : 
+
+```python
 // single sample
 For i=1,2,...,n
     Sample xᵢ from P(Xᵢ| Parents(Xᵢ))
 return (x₁,x₂,...,xn)
 ```
 
+- Question: are we sampling from the correct distribution ?
+
 ---
 
- - Question: are we sampling from the correct distribution ?
- - This process generates samples with probability:
+- This process generates samples with probability:
     - ![](../imgs/cs188_BNs_PS_sampling_distribution.png)
     - S<sub>PS</sub> : sampling distribution *S* using prior sampling 
     - i.e. the BN’s joint probability
- - Let the number of samples of an event be
+- Let the number of samples of an event be
     - N<sub>PS</sub> (x₁,x₂,...,x<sub>n</sub>)
- - if the number of samples goes to infinity then the number of samples you get for a particular event divided by N will converge to the actual probability for that event.
+- if the number of samples goes to infinity then the number of samples you get for a particular event divided by N will converge to the actual probability for that event.
     -  ![](../imgs/cs188_BNs_sampling_prior_limit.png)
- - I.e., the sampling procedure is ***consistent***.
+- I.e., the sampling procedure is ***consistent***.
 
 ---
 
@@ -149,13 +161,13 @@ return (x₁,x₂,...,xn)
 
 ### Example 
 
- - We’ll get a bunch of samples from the BN: (let's say we ended up with following samples)
+- We’ll get a bunch of samples from the BN: (let's say we ended up with following samples)
     - +c, -s, +r, +w
     - +c, +s, +r, +w
     - -c, +s, +r, -w
     - +c, -s, +r, +w
     - -c, -s, -r, +w
- - If we want to know P(W)
+- If we want to know P(W)
     - We have counts :   +w:4 , -w:1
     - Normalize to get P(W) = `<+w:0.8, -w:0.2>`
     - This will get closer to the true distribution with more samples
@@ -166,6 +178,7 @@ return (x₁,x₂,...,xn)
         - P(-c|-r,-w) : not computable from the samples we have.  
     - Fast: can use fewer samples if less time 
         - what’s the drawback?  the accuracy of course. 
+        - 和做概率题一个道理。可以套公式硬算，也可以根据先验概率写程序模拟抽样来计算结果
 
 ---
 
