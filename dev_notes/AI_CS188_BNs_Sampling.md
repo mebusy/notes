@@ -70,7 +70,7 @@ blue | 0.3
 
 ---
  
- - Example 
+- Example 
     - 0 ≤ u ≤ 0.6, → C = red
     - 0.6 ≤ u ≤ 0.7, → C = green
     - 0.7 ≤ u ≤ 1 , → C = blue
@@ -78,6 +78,7 @@ blue | 0.3
     - E.g, after sampling 8 times:
         - 5 reds , 2 blues , 1 green 
         - so what's the probability of blue ?  2/8 = 0.25 , that's our estimate of the probability of blue give this set of samples. 
+        - Why would I ever want to do this? Well I basically wouldn't, right? I already know the probability. For this 1D single variable, I wouldn't actually have much useful sampling from this known distribution. However, in a Bayes net, there is a useful sampling from the entire network. Because listing all the outcomes is too expensive, even if I can create them given infinite time.
 
 ---
 
@@ -86,10 +87,10 @@ blue | 0.3
 
 ## Sampling in Bayes’ Nets
 
- - Prior Sampling
- - Rejection Sampling
- - Likelihood Weighting
- - Gibbs Sampling
+- Prior Sampling
+- Rejection Sampling
+- Likelihood Weighting
+- Gibbs Sampling
 
 In the order from simple to complex. Often you want end up using those last 2. 
 
