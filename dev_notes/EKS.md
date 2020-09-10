@@ -381,10 +381,6 @@ spec:
 
 ## Misc
 
-[容器服务](https://cn-northwest-1.console.amazonaws.cn/eks/home?region=cn-northwest-1#/clusters)
-
-[实例](https://cn-northwest-1.console.amazonaws.cn/ec2/v2/home?region=cn-northwest-1#Instances:sort=publicIp)
-
 ```go
 # find cluster security group
 aws eks describe-cluster --name cluster_name --query cluster.resourcesVpcConfig.clusterSecurityGroupId
