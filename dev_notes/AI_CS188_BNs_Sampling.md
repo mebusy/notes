@@ -281,20 +281,21 @@ Again, we know the query ahead of time, and see if we can further improve the pr
 
 ![](../imgs/cs188_BNs_Sampling_LW_example.png)
 
- - evidence is +s , +w
- - we start with Cloudy , we got +c 
+- evidence is +s , +w
+- we start with Cloudy , we got +c 
     - weight is 1.0
- - next we go to Sprinkler,  it is instantiated to be +s, we have weight P(+s|+c) = 0.1 
+- next we go to Sprinkler,  it is instantiated to be +s, we have weight P(+s|+c) = 0.1 
     - now weight is 1.0\*0.1 
- - next we look at rain, we sample , we got +r 
-    - weight is still 1.0\*0.1  
- - last is WetGrass , it is instantiated to be +w , we weight it P(+w|+s,+r) = 0.99
+    - *here, instead of flipping a coin and risking a 90% chance of getting minus sprinkler, I'm going to take the universes where I actually get +sAnd I pretend I'm going into those universes, which means this sample only really represents 10% of the sample that make it to this point*.
+- next we look at rain, we sample , we got +r 
+    - weight is still 1.0\*0.1
+- last is WetGrass , it is instantiated to be +w , we weight it P(+w|+s,+r) = 0.99
     - now the weight is 1.0\*0.1\*0.99 = 0.099
- - so this sample +c,+s,+r,+w has weigth 0.099
+- so this sample +c,+s,+r,+w has weigth 0.099
 
 ---
 
- - Quiz2:
+- Quiz2:
     - 5 Likelihood Weighting samples
         - weight 0.32 , satisfy the query P(C=1|B=1,E=1)
         - weight 0.24 , not satisfy the query
@@ -306,15 +307,13 @@ Again, we know the query ahead of time, and see if we can further improve the pr
         - normalize: [ 0.17647059, 0.82352941]
         - P(C=1|B=1,E=1) = 0.82352941
 
-         
-
 
 <h2 id="6d927b96f874f88bd5461de8ac4b040a"></h2>
 
 
 ## Likelihood Weighting Cont.
 
-```
+```python
 // single sample
 IN: evidence instantiation
 w = 1.0
@@ -327,29 +326,28 @@ for i=1, 2, …, n
 Return (x1, x2, …, xn) , w
 ```
 
-Are we still doing the right thing ?  Are we sampling from the right distribution ?
-
- - Proof:  ignore
+- Are we still doing the right thing ?  Are we sampling from the right distribution ?
+    - Sampling distribution if z sampled and e fixed evidence
+    - Now, samples have weights
+    - Together, weigthed sampling distribution is consistent.
 
 ---
 
- - Likelihood weighting is good
+- Likelihood weighting is good
     - We have taken evidence into account as we generate the sample
-        - E.g. here, W’s value will get picked based on the evidence values of S, R
+    - E.g. here, W’s value will get picked based on the evidence values of S, R
     - More of our samples will reflect the state of the world suggested by the evidence
- - Likelihood weighting doesn’t solve all our problems
+- *BUT*, Likelihood weighting doesn’t solve all our problems
     - Evidence influences the choice of downstream variables, but not upstream ones (C isn’t more likely to get a value matching the evidence)
-        - if you look at how the evidence comes into play , it only comes into play once it's been encountered in the BNs
-        - so you walk through your BNs top-down, once you encounter the evidence variable , you fix it and everything that comes after it will know that it took on that value and will be conditioning on that value.
+        - *Likelihood works really well when your evidence is at the top because then everything else that falls out of the network after that, conditions on that evidence naturally.*
         - but things than came before an evidence variable are not influenced by the evidence variable. 
         - so things have come before the evidence variable are still samples from a prior that doesn't involve the evidence 
-        - so it's possible that you are sampling things at the top of your BNs that end up being very inconsistent with what happens at the bottom in terms of evidence. 
-        - let's say you get to observe some evidence that's extremely unlikely a priori , you measure very unlikely sensor measurement. Then as you sampling from top-down  you're not aware of that unlikely measurement that will be incorporated in the future only. And you just sampling from the prior, and going on, and then you encounter your evidence variable. It'll be really unlikely . You'll set it to that really unlikely value and your weight will be really low for your sample. 
-        - The quality of your samples is influenced by their weight. So you can effectively think of the weight as quantifying how valuable your sample is.
-            - In prior sampling , they're all equally valuable, they are all valid samples from your distribution. 
-        - so if you always encounter this evidence variable at the very end and it's very unlikely , then you will get samples that are not informative yet. You'll have to wait a really long time till you finally sample this really unlikely cause of  this really unlikely observation. When you finally sample that really unlikely cause ,finally we'll have a sample with a high weight and that'll give you a good esimate of the distribution. 
- - We would like to consider evidence when we sample every variable
-    - -> Gibbs sampling
+        - **so it's possible that you are sampling things at the top of your BNs that end up being very inconsistent with what happens at the bottom in terms of evidence.** 
+        - so if you always encounter this evidence variable at the very end and it's very unlikely, then you will get samples that are not informative yet. e.g. no burglary no earthquake no alarm, but mary called, john called, this sample comes with a very low weight.
+        - You'll have to wait a really long time till you finally sample this really unlikely cause of  this really unlikely observation. When you finally sample that really unlikely cause ,finally we'll have a sample with a high weight and that'll give you a good esimate of the distribution. 
+
+- We would like to consider evidence when we sample every variable
+    - leads to Gibbs sampling, which has its own issues, but fixes this problem of wanting your samples to take into account the evidence, regardless of where the evidence is placed in the network.
 
 ---
 
