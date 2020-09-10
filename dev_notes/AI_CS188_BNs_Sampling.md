@@ -191,20 +191,24 @@ Now we're going to look at a way to speed this up a little bit if we know ahead 
 
 ![](../imgs/cs188_BNs_sampling_reject_sampling.png)
 
- - Let’s say we want P(C)
+> e.g. P(Shape | Color = Blue)
+
+As the samples come off our conveyor belt, we take a look at them. And if they're the samples we can use, meaning they match our evidence, we keep them. And if they're samples we can't use, we reject them.
+
+- Let’s say we want P(C)
     - No point keeping all samples around
     - Just tally counts of C as we go
         - we know we sampled top down through BNs, so we know once we sampled C and if later all interesting is counting how often we have +c/-c 
         - there's no need to still sample S,R and W. 
         - we just stop sampling after we got C. 
- - Let’s say we want P(C| +s)
+- Let’s say we want P(C| +s)
     - Same thing: tally C outcomes, but ignore (reject) samples which don’t have S=+s
         - when you sampled -s , there is no point in continuing.
         - that sample is going to be going unused when you answer your query 
     - This is called rejection sampling
     - It is also consistent for conditional probabilities (i.e., correct in the limit)
 
-```
+```bash
 // single sample 
 IN: evidence instantiation
 For i=1, 2, …, n
@@ -214,10 +218,10 @@ For i=1, 2, …, n
 Return (x1, x2, …, xn)
 ```
 
- - Quiz: BNs has 5 randomes, you sampled 5 times, 
+- Quiz: BNs has 5 randomes, you sampled 5 times, 
     - 4 rejected , 1 accepted . 
     - And that accepted samples satisfy my query , say, eg. P(C=1|B=1,E=1)..
- - so what is answer of that query ?
+- so what is answer of that query ?
     - 1.0 
     - 在符合 B=1,E=1 的 样本中，计算 C=1的概率
 
@@ -229,13 +233,13 @@ Return (x1, x2, …, xn)
 
 ### Sampling Example 
 
- - There are 2 cups
+- There are 2 cups
     - The frist contains 1 penny and 1 quarter
     - Then second contains 2 quaters
- - Say I pick a cup uniformly at random, then pick a coin randomly from that cup. It's a quarter ( yes!). 
+- Say I pick a cup uniformly at random, then pick a coin randomly from that cup. It's a quarter ( yes!). 
     - What is the probability that the other coin in that cup is also a quarter ? 
 
- - One way to answer this question is to use essentially BNs inference to find the answer
+- One way to answer this question is to use essentially BNs inference to find the answer
  - another way to do it is to just run sampling : 2/3
 
 ---
@@ -249,9 +253,8 @@ Return (x1, x2, …, xn)
 
 Again, we know the query ahead of time, and see if we can further improve the procedure beyond what we did for a rejection sampling. 
  
- - Problem with rejection sampling:
+- Problem with rejection sampling:
     - If evidence is unlikely, rejects lots of samples
-        - 证据发生的概率很低
     - Evidence not exploited as you sample
         - if the evidence variable are very deep in your BNs, you might have done all that work 
         - reach all the way to the bottom of you BNs, you sample your evidence variable , you sample it the wrong way , now you reject -- that sample can not use . 
@@ -263,8 +266,9 @@ Again, we know the query ahead of time, and see if we can further improve the pr
             - ~~cube, red~~
             - ~~sphere, green~~ 
 
- - Idea: fix evidence variables and sample the rest
+- Idea: fix evidence variables and sample the rest
     - ![](../imgs/cs188_BNs_Sampling_LW_fix_evidence.png)
+    - Now we don't have the problem of throwing out samples, because we make them all blue. That is when we're drawing samples from the network, we don't risk the sample not matching the evidence. We fix it to equal the evidence.
     - Problem: sample distribution not consistent!
     - Solution: weight by probability of evidence given parents
         - you instantiated some shape to be blue, and the probability for blue was 0.2 for that shape 
