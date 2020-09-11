@@ -89,8 +89,8 @@ blue | 0.3
 
 - Prior Sampling
 - Rejection Sampling
-- Likelihood Weighting
-- Gibbs Sampling
+- * Likelihood Weighting
+- * Gibbs Sampling
 
 In the order from simple to complex. Often you want end up using those last 2. 
 
@@ -273,6 +273,7 @@ Again, we know the query ahead of time, and see if we can further improve the pr
     - Solution: weight by probability of evidence given parents
         - you instantiated some shape to be blue, and the probability for blue was 0.2 for that shape 
         - you now weight that particular sample by a factor 0.2. 
+        - **No dropping samples, but adding a weight to each sample**. Instead of being rejected, you get a small weight.
 
 <h2 id="3eb57101576ca6e2a3251b14ff38ce8f"></h2>
 
@@ -356,23 +357,23 @@ Return (x1, x2, …, xn) , w
 
 ## Gibbs Sampling
 
+In Gibbs Sampling, we don't walk through the network from top to bottom, get a sample, and reset. Instead, we're going to do sort of like iterative improvoment for CSP. We're going to start with a complete assigment, and we're going to tweak it a little bit. The end result is going to be that we take into account evidence upstream and downstream, but there's going to be a price.
+
 ![](../imgs/cs188_BNs_Sampling_GS.png)
 
- - *Procedure*: 
+- *Procedure*: 
     - keep track of a full instantiation x₁, x₂, …, x<sub>n</sub>.   
-        - it might remind you of something like hill climbing what we had for solving CSPs. we has a full association and then work from there to get something better. This is going to be very similar.  
     - Start with an arbitrary instantiation consistent with the evidence.  
-        - we already account for the evidence, the other variables are arbitrarily instantiated.
+        - *we already account for the evidence, the other variables are arbitrarily instantiated.*
     - Sample one variable at a time, conditioned on all the rest, but keep evidence fixed.  
-        - do not pick evidence variable, evidence variables stay fixed
-        - the other variables we cycle through in some way in a random cycling procedure. And when we look at that variable we uninstantiated and sample it condition on them all the other variables in our instantiation. 
-        - we have a distriution, a conditional distribution , compute that distribution and then sample from that conditional distribution.  
-        - we haven't yet looked at what it takes to compute that conditional distribution but in principle you could compute a conditional distribution for one variable given all other variables being instantiated , and then sample from that. 
+        - *You're then going to walk to the variables one at a time, round robin, and leave the evidence fixed. But for every non-evidence variable, you will resample just that variable, conditioned on all the reset staying fixed.*
+        - *we have a distriution, a conditional distribution , compute that distribution and then sample from that conditional distribution.*
+        - *we haven't yet looked at what it takes to compute that conditional distribution but in principle you could compute a conditional distribution for one variable given all other variables being instantiated , and then sample from that.* 
     - Keep repeating this for a long time.
- - *Property*: in the limit of repeating this infinitely many times the resulting sample is coming from the correct distribution
+- *Property*: in the limit of repeating this infinitely many times the resulting sample is coming from the correct distribution
     - P( unobserved variables | evidence variables )
     - so we're not going to have to weight samples anymore. We're going to directly get samples from the conditional distribution.  
- - *Rationale*: both upstream and downstream variables condition on evidence.
+- *Rationale*: both upstream and downstream variables condition on evidence.
  - In contrast: likelihood weighting only conditions on upstream evidence, and hence weights obtained in likelihood weighting can sometimes be very small.  Sum of weights over all samples is indicative of how many “effective” samples were obtained, so want high weight.
 
 
@@ -381,23 +382,24 @@ Return (x1, x2, …, xn) , w
 
 ### Gibbs Sampling Example: P( S | +r)
 
-We're going to generate one sample from our BNs. Our evidence is +r. 
+We're going to generate one sample from our BNs, Cloudy, Sprinkler, Rain, WetGrass. Our evidence is +r. 
 
- - Step 1: Fix evidence
+- Step 1: Fix evidence
     - R = +r
     - ![](../imgs/cs188_BNs_Sampling_GS_sample_step1.png)
- - Step 2: Initialize other variables 
+- Step 2: Initialize other variables 
     - Randomly
         - say we pick +c, -s, -w
     - ![](../imgs/cs188_BNs_Sampling_GS_sample_step2.png)
- - Steps 3: Repeat
+- Steps 3: Repeat
     - Choose a non-evidence variable X
         - this choice here is also supposed to be random 
         - so you randomly pick one of your non-evidence variables as your current variable , that you're going to update  
     - Resample X from P( X | all other variables)
+        - Note: **It is not your Bayes Net**. Your Bayes Net has P( X | it's parents )
     - ![](../imgs/cs188_BNs_Sampling_GS_sample_step3.png)
         - we picked S , we uninstantiated it
-            - now we compute the conditional distribution for S : P(S|+c,+r,-w) 
+            - so we compute the conditional distribution for S : P(S|+c,+r,-w) 
                 - this distribution can answer some query very efficiently 
             - sample from that distribution ,  and we happen to sample +s 
         - again, we randomly pick C 
@@ -407,7 +409,9 @@ We're going to generate one sample from our BNs. Our evidence is +r.
             - we compute the conditinal distribution for W : P(W|+s,+c,+r) 
             - sample from that distribution ,  this case we got -w 
         - keep going 
-            - we can look at properties of your BNs, you can infer how long -- how many steps --  you might need to sample  
+            - we can look at properties of your BNs, you can infer how long -- how many steps --  you might need to sample
+            - Unlike Prior Sampling, here every sample you get looks exactly the same as the previous one. The samples are now highly correlated. 
+            - If we grab a sample, and we do this thing for a long time, and we grab another sample, and then we rotate around robin for a while, and grap another sample ...  If we wait long enough between samples, then the correlations reduce, and we're grabbing samples from the joint distribution over all non-evidence variables conditioned on the evidence.
 
 This is just giving you the very basic idea of how Gibbs Sampling works. And you can make it work this way , but if you used it in practice , you'd want to use a lot of methods to make it more efficient. 
 
@@ -418,10 +422,13 @@ This is just giving you the very basic idea of how Gibbs Sampling works. And you
 
 ![](../imgs/cs188_BNs_Sampling_GS_sample_efficient_resample.png)
 
- - Sample from P(S | +c, +r, -w)    
+- Sample from P(S | +c, +r, -w)
     - ![](../imgs/cs188_BNs_Sampling_GS_sample_efficient_resample2.png)
- - Many things cancel out – only CPTs with S remain!
- - More generally: only CPTs that have resampled variable need to be considered, and joined together
+    - a) The numerator came from the Bayes net formula. And the denominator is the exact same thing, but summed over S.
+- Many things cancel out – only CPTs with S remain!
+- More generally: only CPTs that have resampled variable need to be considered, and joined together
+    - b) You take all the terms that mention S, you assign them, and then you normalize over all the different values of S.  The whole reset of the network doesn't matter.
+- It's not so bad.
 
 
 <h2 id="e71302c1ea74db4751ea7bc9282430c5"></h2>
@@ -429,17 +436,75 @@ This is just giving you the very basic idea of how Gibbs Sampling works. And you
 
 ### Further Reading on Gibbs Sampling
 
- - Gibbs sampling produces sample from the query distribution P( Q | e ) in limit of re-sampling infinitely often
- - Gibbs sampling is a special case of more general methods called Markov chain Monte Carlo (MCMC) methods 
+- Gibbs sampling produces sample from the query distribution P( Q | e ) in limit of re-sampling infinitely often
+- Gibbs sampling is a special case of more general methods called Markov chain Monte Carlo (MCMC) methods 
     - Metropolis-Hastings is one of the more famous MCMC methods (in fact, Gibbs sampling is a special case of Metropolis-Hastings) 
- - You may read about Monte Carlo methods – they’re just sampling
-
-   
-     
+- You may read about Monte Carlo methods – they’re just sampling
 
 
+## Example
+
+- (Rain) -> (Traffic)
 
 
+r | P(R)
+--- | ---
++r | 0.3
+-r | 0.7
+
+
+t  |r  |  P(T \| R)
+--- | --- | --- 
++t |+r |  0.9
+-t |+r |  0.1
++t |-r |  0.5
+-t |-r |  0.5
+
+---
+
+Let's start sampling. 
+
+- Prior Sampling.  P(T)
+    1. -r, +t
+    2. -r, -t
+    3. +r, +t
+    4. +r, +t
+    - P(T)  3/4, 1/4
+- Rejection Sampling. P(R|+t)
+    1. -r, +t
+    2. +r, +t
+    3. +r, +t
+    - P(R|+t)  2/3, 1/3
+- Likelihood Sampling. P(R|+t)
+    1. +r, +t, 0.9
+    2. -r, +t, 0.5
+    3. +r, +r, 0.9
+    - +r:1.8, -r:0.5,  P(+r)=1.8/2.3
+
+
+The failure case of Likelihood Sampling is like fire causes alarm. Fire happens only 1% of the time. 
+
+- (Fire) -> (Alarm)
+
+f | P(F)
+--- | ---
++f | 0.01
+-r | 0.99
+
+a | f | P(A \| F)
+--- | --- | ---
++a | +f | 0.9
+-a | +f | 0.1
++a | -f | 0.01
+-a | -f | 0.99
+
+
+- Likelihood Sampling. P(F|+a)
+    1. -f, +a, 0.01
+    2. -f, +a, 0.01
+    3. -f, +a, 0.01
+    4. ...
+    - it need many many samples to get the close answer
 
 
 
