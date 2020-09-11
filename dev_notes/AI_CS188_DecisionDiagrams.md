@@ -28,6 +28,8 @@
 
 ## Decision Networks
 
+DNs are way of graphically connecting Bayes nets and actions and utilities.
+
 DNs will be a lot like BNs, but there will be more types of nodes rather than just random variable nodes. 
 
 ![](../imgs/cs188_DM_dn_example0.png)
@@ -41,7 +43,7 @@ DNs will be a lot like BNs, but there will be more types of nodes rather than ju
         - you have a choice here 
         - you can either take your umbrella with you , or you can leave it at home 
         - so this is something you get to set
-    - ![][3] Utility node (diamond, depends on action and chance nodes)
+    - ![][3] Utility node (diamond, depends on **action** and **chance** nodes)
         - dislike the utility we met before, this node is not a number ,but a function , a table 
         - it tells you for every possible combination of its parent values , what is the utility for experiencing that combination of parent values. 
         - over there, there are 2 parents: umbrella and weather.   It could be that 
@@ -50,11 +52,11 @@ DNs will be a lot like BNs, but there will be more types of nodes rather than ju
             - it's rainy , you didn't bring an umbrella, that's the worst case
             - it's rainy , but you brought your umbrella, at least you have a way to protect yourself from the rain. 
         - all 4 of these will have a number associated with them , the utility for that particular outcome .
-        - if there is only 1 agent , where will only be one utility node, if there's more than 1 agent there could be more than 1 utility node.
+        - **if there is only 1 agent , where will only be one utility node, if there's more than 1 agent there could be more than 1 utility node.**
 
 What are we going to be doing ?  We are still going to be maximizing expected utility. 
 
- - MEU: choose the action which maximizes the expected utility given the evidence
+ - **MEU: choose the action which maximizes the expected utility given the evidence**
  - Can directly operationalize this with decision networks
     - Bayes nets with nodes for utility and actions
     - Lets us calculate the expected utility for each action
@@ -381,7 +383,7 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 ---
 
- [1]: ![](../imgs/cs188_DM_chance_node.png)
- [2]: ![](../imgs/cs188_DM_action_node.png)
- [3]: ![](../imgs/cs188_DM_utility_node.png)
+ [1]: ../imgs/cs188_DM_chance_node.png
+ [2]: ../imgs/cs188_DM_action_node.png
+ [3]: ../imgs/cs188_DM_utility_node.png
 
