@@ -302,6 +302,19 @@ array([0, 0, 1, 1])
 np.array( 0.4 , ndmin=2  )
 ```
 
+--------
+
+# SciPy 2019
+
+## Array Slicing
+
+numpy 可以把多个维度的slicing 放在一个方括号内...
+
+![](../imgs/np_array_slicing.png)
+
+- single colon : everything
+
+
 
 
 
