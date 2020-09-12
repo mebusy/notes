@@ -32,6 +32,8 @@ DNs are way of graphically connecting Bayes nets and actions and utilities.
 
 DNs will be a lot like BNs, but there will be more types of nodes rather than just random variable nodes. 
 
+**In a Bayes Net, the whole point is to query Posterior probability, in a Decision Network, the whold point is to decide which action is best.**
+
 ![](../imgs/cs188_DM_dn_example0.png)
 
  - New node types:
@@ -71,7 +73,7 @@ So how do you select an action ?
     - Instantiate all evidence
     - Set action node(s) each possible way
         - loop over all possible choices for the actions 
-    - Calculate posterior for all parents of utility node, given the evidence
+    - Calculate posterior for all **parents of utility node**, given the evidence
         - this case you would compute the conditional distribution of Weather, given the evidence. 
         - if weather itself is evidence it's very easy ,  if there's no evidence then it's just a prior for Weather
         - if there is some forecase you will essentially apply Bayes rule to find out P(weather | forecase)
@@ -89,13 +91,13 @@ So how do you select an action ?
 
 There are part of the problem specificaton of course.   If you are designing a robot to be deployed somewhere ,you would decide for that robot what the utilities are such that when the robot maximizes expected utility it does what you want it to try to achieve. 
 
- - we need to loop over all possible actions , the Umbrella 
+- we need to loop over all possible actions , the Umbrella 
     - Umbrella = leave
         - what is the expected utility ?  Sum over all possible outcomes for Weather 
         - EU(leave) = ∑<sub>w</sub> P(w)U(leave, w) = 0.7 * 100 + 0.3 * 0 = 70
     - Umbrella = take 
         - EU(take) = ∑<sub>w</sub> P(w)U(take, w) = 0.7 * 20 + 0.3 * 70 = 35
- - Optimal decision = leave
+- Optimal decision = leave
     - MEU(∅) = maxₐ EU(a) = 70
         - ∅ means no evidence.   
 
@@ -103,8 +105,10 @@ This is a lot like expectimax tree.
 
 ![](../imgs/cs188_DN_example_expectimax_tree.png)
 
- - Almost exactly like expectimax / MDPs
- - What’s changed?
+- Almost exactly like expectimax / MDPs
+- What’s changed?
+    - when we did expectimax, we have the probability 
+    - when in DNs, here, when we say, what's the probability of weather given the forecast, we actually have to do computation to figure out the probabilities from that expectation node. We shall do that by running Bayes Net inference.
 
 ---
 
@@ -112,16 +116,18 @@ This is a lot like expectimax tree.
 
 We listened to the forecast and the forecast is bad.  
 
- - So in this kind of computations we compute the conditional distribution of the parents given evidence.
+- So in this kind of computations we compute the conditional distribution of the parents given evidence.
     - P(W|F=bad)
- - loop
+    - Bayes net provides the CPT P(F|W), we need to compute P(W|F=bad).
+- loop
     - Umbrella = leave  
         - EU(leave|bad) = ∑<sub>w</sub> P(w|bad)U(leave, w) = 0.34 * 100 + 0.66 * 0 = 34
     - Umbrella = take 
         - EU(take|bad) = ∑<sub>w</sub> P(w|bad)U(take, w) = 0.34 * 20 + 0.66 * 70 = 53
- - Optimal decision = take
+- Optimal decision = take
     - MEU(F=bad) = maxₐ EU(a|bad) = 53
-          
+
+
 ![](../imgs/cs188_DN_example_expectimax_tree2.png)
 
 
@@ -130,13 +136,15 @@ We listened to the forecast and the forecast is bad.
 
 ### Ghostbusters Decision Network
 
- - you receive -1 at every time step
- - you receive 250 if you buster the ghost
- - you receive 0 and game over if you buster and miss
+- you receive -1 at every time step
+- you receive 250 if you buster the ghost
+- you receive 0 and game over if you buster and miss
 
 ![](../imgs/cs188_DM_GhostbustersDecisionNetwork.png)
 
-
+- The top part (Bust) says I can bust.
+    - and the bust action has some large number of actions.
+    - for now, let's just imagine it's time to bust. Bust now is an action where there is a value of that action for each square on the board.
 
 
 
@@ -146,7 +154,7 @@ We listened to the forecast and the forecast is bad.
 
 ## Value of Information
 
-What we're interested in now is what is the value of information.
+What we're interested in now is what is the value of information. How many utility points is it worth if I reveal this variable to you?
 
 ![](../imgs/cs188_DM_valueOfInformation.png)
 
@@ -154,15 +162,17 @@ You have these sensors, how much would you be willing to pay to get an access to
 
 ---
 
- - Idea: compute value of acquiring evidence
+- Idea: compute value of acquiring evidence
     - Can be done directly from decision network
- - Example: buying oil drilling rights
+    - What's that mean?
+        - *Well remember, if I put DNs in front of you and say, all right, decision time. Are you taking the umbrella or not? You can say, ok, hold on a second, calculate, calculate, calculate. I'm going to take the umbrella, and my MEU is going to be 53. We can then talk hypothetically about what would happen if I showed you variable. You'd make better decisions, and you get higher utilities.*
+- Example: buying oil drilling rights
     - Two blocks A and B, exactly one has oil, worth k
     - You can drill in one location
     - Prior probabilities 0.5 each, & mutually exclusive
     - Drilling in either A or B has EU = k/2, MEU = k/2
     - ![](../imgs/cs188_DM_valueOfInformation_example_drill_oil.png)
- - Question: what’s the **value of information** of O?
+- Question: what’s the **value of information** of O?
     - Value of knowing which of A or B has oil.
         - if you know the oil location (somebody tells you) , then your MEU is k. 
         - before, your MEU is k/2
@@ -173,6 +183,7 @@ You have these sensors, how much would you be willing to pay to get an access to
     - Gain in MEU from knowing OilLoc?
     - VPI(OilLoc) = k/2
         - value of **perfect** information
+        - That is the difference between the MEU whether or not taking the action with the variable.
     - Fair price of information: k/2
 
 
@@ -193,7 +204,7 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
     - MEU(F=good) = 95
  - Forecast distribution
     - P(F=good) = 0.59, P(F=bad) = 0.41
-    - we can compute by running inference in BNs
+        - P(F) is not in BNs. We can compute by running inference in BNs
     - 0.59·95 + 0.41·53 - 70 = 7.8 
     - in this case 7.8 means that you would be willing to pay 7.8 to get to listen to the forecast.
  - ![](../imgs/cs188_DM_vpi_formular.png)
