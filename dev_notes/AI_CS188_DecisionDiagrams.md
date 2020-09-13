@@ -220,26 +220,21 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
  - Assume we have evidence E=e.  Value if we act now:
     - ![](../imgs/cs188_DM_voi_form1.png)
     - ![](../imgs/cs188_DM_voi_graph1.png)
-        - you have initial evidence +e 
-        - so choose an action 
-        - that point the chance node kick in ,which will instantiate the parent variables of the utility node and then 
-        - you have your utility nodes.
+        - you have initial evidence +e, so choose an action, that point the chance node kick in ,which will instantiate the parent variables of the utility node and then you have your utility nodes.
  - Assume we see that E’ = e’.  Value if we act then:
     - ![](../imgs/cs188_DM_voi_form2.png)
     - ![](../imgs/cs188_DM_voi_graph2.png)
-        - after you observe both {+e,+e' } 
-        - you take an action 
-        - and then the chance nodes kick in 
-        - and then the utility nodes.
- - BUT **E’ is a random variable whose value is unknown**, so we don’t know what e’ will be
+        - after you observe both {+e,+e' }, you take an action, and then the chance nodes kick in and then the utility nodes.
+ - BUT **E’ is a random variable whose value is unknown**, so we don’t know what e’ will be.
+    - So we need to have to prediction about what e' will be in order to compute how valuable that information is to us. 
  - Expected value if E’ is revealed and then we act:
     - ![](../imgs/cs188_DM_voi_form3.png)
+        - *the missing image part is `e'`*
     - ![](../imgs/cs188_DM_voi_graph3.png)
-        - you were to get to observe evidence but you don't know yet what the evidence is going to be
-        - you start with chance node. 
-        - first thing that happens is the evidence e' will be observed. you don't know yet what it's going to be, could be +e' or -e'
-        - after that get instantiated you get to choose your action 
-        - after that more chance nodes will kick in for the parent variables of the utility node after which utility nodes kick in. 
+        - now we have an extra chance node
+        - you were to get to observe evidence but you don't know yet what the evidence is going to be.  You start with chance node. 
+        - first thing that happens is the evidence e' will be observed. you don't know yet what it's going to be, could be +e' or -e'.
+        - after that get instantiated you get to choose your action, after that more chance nodes will kick in for the parent variables of the utility node after which utility nodes kick in. 
  - Value of information: how much MEU goes up by revealing E’ first then acting, over acting now:
     - ![](../imgs/cs188_DM_voi_form4.png)
 
@@ -283,12 +278,17 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 ## Value of Imperfect Information?
 
+What if somebody offers you some imperfect, slightly decayed information?
+
 ![](../imgs/cs188_DM_value_of_inperfect_info.png)
 
- - No such thing
+ - No such thing( as we formulate it )
+    - *in our formulation, there is no imperfect information.*
  - Information corresponds to the observation of a node in the decision network
+    - Information is revealing the value of a random variable in your network.
     - observing means you know what the value is
  - If data is “noisy” that just means we don’t observe the original variable, but another variable which is a noisy version of the original one
+    - e.g. we observe forcast, not weather.
 
 
 <h2 id="dd719415208cb58777d2b82621b8ad0b"></h2>
@@ -308,7 +308,7 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
  - VPI(OilLoc) ?
     - saw that before, that is still k/2
  - VPI(ScoutingReport) ?
-    - > 0 
+    - [0,k/2]
     - can not put the number on this. 
  - VPI(Scout) ?
     - for knowning what scout is doing the scouting report
@@ -328,16 +328,18 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 ## POMDPs
 
+Partially observable Markov Decision Processes.
 
-
-
- - MDPs have:
+- MDPs have:
     - States S
     - Actions A
     - Transition function P(s’|s,a) (or T(s,a,s’))
     - Rewards R(s,a,s’)
     - ![](../imgs/cs188_DM_POMDP_MDP.png)
- - POMDPs add:
+    - **the thing that was uncertain was the outcome of taking action A in state S**.
+- POMDPs add:
+    - *not only am I not sure what my actions will do, but also what state I'm actually in.* 
+        - *You're a robot, and you're moving around and you have actions like drive left, drive right. But you're not really even entirely sure where you are. You may have a belief distribution over where you are. But in general, you don't even know the state of the world for sure. The only thing you really know is your observations over that state.*
     - Observations O
     - Observation function P(o|s) (or O(s,o))
     - ![](../imgs/cs188_DM_POMDP_PO.png)
@@ -348,9 +350,8 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
         - then chance kicks in ( b,a ) 
         - and then you have a new distribution *b'* after that
 
- - POMDPs are MDPs over belief
-    - states b (distributions over S)
- - We’ll be able to say more in a few lectures
+- **POMDPs are MDPs over belief states b (distributions over S)**
+- We’ll be able to say more in a few lectures
 
 
 <h2 id="dfd2620b95a7eff322bbdc48f2efa51a"></h2>
@@ -358,13 +359,15 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 ### Example: Ghostbusters
 
- - In (static) Ghostbusters:
+- In (static) Ghostbusters:
     - Belief state determined by evidence to date {e}
+        - b is a distribution over actual states, it's my distribution over ghost location. That's a function of all the sensor readings. 
     - Tree really over evidence sets
     - Probabilistic reasoning needed to predict new evidence given past evidence
     - ![](../imgs/cs188_DM_POMDP_example_ghostbuster.png)
         - there 2 are equivalent , the right one explicitly keeps track of the evidence bariabels. The left one keeps track of the probabilities of the beliefs that actually matter in these computations.
- - Solving POMDPs
+- Solving POMDPs
+    - POMDPs are really hard.
     - One way: use truncated expectimax to compute approximate value of actions
     - What if you only considered busting or one sense followed by a bust?
     - You get a VPI-based agent!
@@ -382,12 +385,12 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 ## More Generally
 
- - General solutions map belief functions to actions
+- General solutions map belief functions to actions
     - Can divide regions of belief space (set of belief functions) into policy regions (gets complex quickly)
     - Can build approximate policies using discretization methods
     - Can factor belief functions in various ways
- - Overall, POMDPs are very (actually PSACE-) hard
- - Most real problems are POMDPs, but we can rarely solve then in general!
+- Overall, POMDPs are very (actually PSACE-) hard
+- Most real problems are POMDPs, but we can rarely solve then in general!
 
 
 
