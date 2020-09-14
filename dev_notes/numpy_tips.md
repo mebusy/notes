@@ -34,40 +34,7 @@
 - `resize` changes the shape and size of array **in-place**.
     - `o.resize(3, 3)`
     - `array([[ 0. ,  0.5,  1. ], [ 1.5,  2. ,  2.5], [ 3. ,  3.5,  4. ]])`
-- `ones` returns a new array of given shape and type, filled with ones.
-    - `np.ones((3, 2))`
-    - `array([[ 1.,  1.], [ 1.,  1.], [ 1.,  1.]])`
-- `zeros` returns a new array of given shape and type, filled with zeros.
-    - `np.zeros((2, 3))`
-- `eye` returns a 2-D array with ones on the diagonal and zeros elsewhere.
-    - `np.eye(3)`
 
-```python
-array([[ 1.,  0.,  0.],
-       [ 0.,  1.,  0.],
-       [ 0.,  0.,  1.]])
-```
-
-- `diag` extracts a diagonal or constructs a diagonal array.
-
-```python
->>> y = np.array([4, 5, 6])
->>> y
->>> array([4, 5, 6])
->>>
->>> np.diag(y)
->>> array([[4, 0, 0],
-           [0, 5, 0],
-           [0, 0, 6]])
-```
-
-- Create an array using repeating list (or see np.tile)
-    - `np.array([1, 2, 3] * 3)`
-    - `array([1, 2, 3, 1, 2, 3, 1, 2, 3])`
-- Repeat elements of an array using repeat.
-    - `np.repeat([1, 2, 3], 4)`
-    - `array([1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3])`
- 
 
 <h2 id="84df0f6a0e96bb96e66fdba51a103ad5"></h2>
 
@@ -111,90 +78,6 @@ array([[ 1.,  0.,  0.],
 <h2 id="1f1ef887de84fa2b7f644b5878b4e6ce"></h2>
 
 
-## Math Functions
-
-```python
-a = np.array([-4, -2, 1, 3, 5])
-a.mean()
-0.59999999999999998
-a.std()
-3.2619012860600183
-
-# argmax and argmin return the index of the maximum and minimum values in the array.
-a.argmax()
-4 
-a.argmin()
-0
-
-# PS. also works on multidimensional array 
-# but will flatten the array , then do operations
-```
-
-<h2 id="6b17874075ca37cc84a6c0d09e623e1c"></h2>
-
-
-## Indexing / Slicing
-
-```python
-s = np.arange(13)**2
-s
-array([  0,   1,   4,   9,  16,  25,  36,  49,  64,  81, 100, 121, 144])
-
-# 切片
-s[-5::-2]
-array([64, 36, 16,  4,  0])
-
-# Let's look at a multidimensional array.
-r = np.arange(36)
-r.resize((6, 6))
-r
-array([[ 0,  1,  2,  3,  4,  5],
-       [ 6,  7,  8,  9, 10, 11],
-       [12, 13, 14, 15, 16, 17],
-       [18, 19, 20, 21, 22, 23],
-       [24, 25, 26, 27, 28, 29],
-       [30, 31, 32, 33, 34, 35]])
-
-# Use bracket notation to slice: array[row, column]
-r[2, 2]
-14
-
-# And use : to select a range of rows or columns
-r[3, 3:6]
-array([21, 22, 23])
-
-# Here we are selecting all the rows up to (and not including) row 2,
-# and all the columns up to (and not including) the last column.
-r[:2, :-1]
-array([[ 0,  1,  2,  3,  4],
-       [ 6,  7,  8,  9, 10]])
-
-# This is a slice of the last row, and only every other element.
-r[-1, ::2]
-array([30, 32, 34])
-
-# We can also perform conditional indexing. 
-# Here we are selecting values from the array that
-# that are greater than 27. (Also see `np.where`)
-r[r > 27]
-array([28, 29, 30, 31, 32, 33, 34, 35])
-
-# Here we are assigning all values in the array 
-# that are greater than 30 to the value of 30.
-r[r > 30] = 30
-r
-array([[ 0,  1,  2,  3,  4,  5],
-       [ 6,  7,  8,  9, 10, 11],
-       [12, 13, 14, 15, 16, 17],
-       [18, 19, 20, 21, 22, 23],
-       [24, 25, 26, 27, 28, 29],
-       [30, 30, 30, 30, 30, 30]])
-```
-
-
-- **Be careful with copying and modifying arrays in NumPy!**
-- use `r.copy` to create a copy that will not affect the original array
-    - `r_copy = r.copy()`
 
 <h2 id="f32b904edd83a21e8b374913f5631504"></h2>
 
@@ -231,79 +114,6 @@ for i, j in zip(test, test2):
 ```
 
 
-
-<h2 id="1ae1043e3a38472916094e5c042464ed"></h2>
-
-
-## 数据 slice
-
-
-- 从2维度数据中 抽取第一列
-
-```python
-train_X = data[:,0]  
-```
-
-- 从2维度数据中 抽取第1,3列
-
-```python
-train_X = data[:,[0,2]]  
-```
-
-- 从2维度数据中 抽取第一列 ，返回一个 Nx1 的 2维度数组
-
-```python
-train_X = data[:, [0] ] 
-```
-
-
-<h2 id="86260398567c0091b1c262ef98512bd6"></h2>
-
-
-## 数据过滤
-
-- 返回第2列 值是1的 第1列数据
-
-```python
-pos = data[:, 1] == 1
-Train_X[ pos , 0  ]
-```
-
-<h2 id="6ab51568114b14d4784a1fa07f6717b5"></h2>
-
-
-## 数据 拼接
-
-- 在2维数组 第一列 ， 插入 1列 1
-    - 注意，要确保 Train_X 是2维数据，如果不是，使用 reshape 转成2维数组
-
-```python
-np.insert( Train_X , 0, 1 , axis =1 )
-```
-
-
-<h2 id="3c30b3189b43008ec08418c0d6afc49f"></h2>
-
-
-## 数据转换
-
-- bool 数据转 int 数组
-
-```python
->>> y
-array([False, False,  True,  True], dtype=bool)
->>> 1*y                      # Method 1
-array([0, 0, 1, 1])
->>> y.astype(int)            # Method 2
-array([0, 0, 1, 1]) 
-```
-
-- constant 转 2维数组
-
-```python
-np.array( 0.4 , ndmin=2  )
-```
-
 --------
 
 <h2 id="e7bb3b7194c96eb93fb9a2777411aca8"></h2>
@@ -318,10 +128,82 @@ np.array( 0.4 , ndmin=2  )
 
 numpy 可以把多个维度的slicing 放在一个方括号内...
 
-![](../imgs/np_array_slicing.png)
+- ![](../imgs/np_array_slicing.png)
 
 - single colon : everything
+- **slicing is just a view into original array, it won't create a copy.**
+    - use `r.copy` to create a copy that will not affect the original array
+        - `r_copy = r.copy()`
 
+## Fancy Indexing 
+
+Also called masking or boolean indexing , or logical indexing.
+
+- ![](../imgs/numpy_fancy_indexing.png)
+- this 1st orange case is 2 fancy index, while the other 2 are mixing of regular slicing and fancy indexing.
+
+Fancy Indexing in 2-D
+
+- ![](../imgs/numpy_fancy_indexing_example.png)
+
+
+
+**Unlike sliciing, fancy indexing creates copies instead of a view into original array.**
+
+
+## Creating Array
+
+1. arange
+2. linspace
+3. array
+4. zeros
+5. ones
+6. eye
+    - 
+    ```python
+    >>> np.eye(3)
+    array([[ 1.,  0.,  0.],
+           [ 0.,  1.,  0.],
+           [ 0.,  0.,  1.]])
+    ```
+
+
+## Computations with Arrays
+
+1. Rule 1: Operations between multiple array objects are first checked for proper shape match
+    - Broadcasting rule
+    - shape must be same , or compatible
+2. Rule 2: Mathematical operators ( `+ - * / exp log` ) apply element by element, on the values
+3. Rule 3: Reduction operations ( mean, std, skew, kurt, sum, prod, ... ) apply to the whole array, unless an axis is specified.
+4. Rule 4: Missing values propagate unless explicitly ignored( nanmean, nansum, ... )
+
+
+- Broadcasting rule
+    - ![](../imgs/numpy_broadcasting_rule.png)
+    - what numpy does here is 
+        1. prepend 1 to smaller array's shape
+        2. dimensions of size 1 are repeated without copying
+- Reduction operations
+    - ![](../imgs/numpy_compute_rule3.png)
+    - Mathematical functions
+        - sum, prod
+        - min, max, argmin, argmax
+        - ptp (max-min), peak to peak
+    - Statistics
+        - mean, std, var
+    - Truth value testing
+        - any, all
+    - UNRAVELING
+        - reduction operations take our multi-dimensional array and flatten it into just 1D, which is kind of annoying because usually we care about the fact that our data is multi-dimensional.
+        - there's a super helpful function called `unravel_index`.
+        - 
+        ```python
+        >>> a = np.arange(12).reshape(3,4)
+        >>> np.unravel_index( a.argmax(), a.shape )
+        (2, 3)
+        ```
+        - it does have 1 downside which is if you're there are multiple maxima or multiple minima,  it'll only give you the coordinates of the first one that it encouters, that is why `where` kicks in.
+    - 
 
 
 
