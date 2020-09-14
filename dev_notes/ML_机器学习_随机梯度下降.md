@@ -1,15 +1,15 @@
 ...menustart
 
- - [Gradient Descent with Large Datasets](#f76fe91515c665720b0e43fa5fe0e9dc)
-     - [Stochastic(随机) Gradient Descent](#a15f477ff9ba7b33f7616f6feb95b0b1)
-     - [Mini-Batch Gradient Descent](#34beb6ea7ec5d6cc52927d78751d4ff9)
-     - [Stochastic Gradient Descent Convergence](#85695b2541e3126709fe45b213bef57e)
-         - [Checking for convergence](#51e0544e48aab59893bfbf63d0b50570)
-     - [batch gradient descent VS mini-batch gradient descent](#c0e9a4f7a4e5915754d07942a3aa42fd)
- - [Advanced Topics](#41ef0c7e3aa81f83c8172c71f9986dfb)
-     - [Online Learning](#1a1b4213089da03d151647442f86c8d5)
-         - [Other online learning example:](#5e500c2b37846f8bc8c9fbfbaa15608d)
-     - [Map Reduce and Data Parallelism](#046be23b70007e2aedcbe8de6813f338)
+- [Gradient Descent with Large Datasets](#f76fe91515c665720b0e43fa5fe0e9dc)
+    - [Stochastic(随机) Gradient Descent](#a15f477ff9ba7b33f7616f6feb95b0b1)
+    - [Mini-Batch Gradient Descent](#34beb6ea7ec5d6cc52927d78751d4ff9)
+    - [Stochastic Gradient Descent Convergence](#85695b2541e3126709fe45b213bef57e)
+        - [Checking for convergence](#51e0544e48aab59893bfbf63d0b50570)
+    - [batch gradient descent VS mini-batch gradient descent](#c0e9a4f7a4e5915754d07942a3aa42fd)
+- [Advanced Topics](#41ef0c7e3aa81f83c8172c71f9986dfb)
+    - [Online Learning](#1a1b4213089da03d151647442f86c8d5)
+        - [Other online learning example:](#5e500c2b37846f8bc8c9fbfbaa15608d)
+    - [Map Reduce and Data Parallelism](#046be23b70007e2aedcbe8de6813f338)
 
 ...menuend
 

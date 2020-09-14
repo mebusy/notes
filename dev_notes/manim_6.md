@@ -1,11 +1,11 @@
 ...menustart
 
- - [6 2D and 3D graphs](#312bf578721d08a7b38fd5618e429125)
-     - [CONFIG](#73e99d350a4aa6f1a5af04ec29173f73)
-         - [Camera Config](#a66b5d8b4f3b40557caa6f1c314a4d03)
-     - [GraphSceen](#06be78bec5d0013e03f081750f9f368d)
-     - [Path](#ac70412e939d72a9234cdebb1af5867b)
- - [7 Add sounds, svgs and Images](#496fb824b065320ced81010be958c7d7)
+- [6 2D and 3D graphs](#312bf578721d08a7b38fd5618e429125)
+    - [CONFIG](#73e99d350a4aa6f1a5af04ec29173f73)
+        - [Camera Config](#a66b5d8b4f3b40557caa6f1c314a4d03)
+    - [GraphSceen](#06be78bec5d0013e03f081750f9f368d)
+    - [Path](#ac70412e939d72a9234cdebb1af5867b)
+- [7 Add sounds, svgs and Images](#496fb824b065320ced81010be958c7d7)
 
 ...menuend
 

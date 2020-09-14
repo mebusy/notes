@@ -1,7 +1,7 @@
 ...menustart
 
- - [ngx_lua 安装,使用](#737edafc16acd1a5ff7fa0d34d5860a7)
- - [run openresty in docker](#8cf251cb8d6c4c7584d34bd8e60273c8)
+- [ngx_lua 安装,使用](#737edafc16acd1a5ff7fa0d34d5860a7)
+- [run openresty in docker](#8cf251cb8d6c4c7584d34bd8e60273c8)
 
 ...menuend
 

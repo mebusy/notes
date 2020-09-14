@@ -1,6 +1,6 @@
 ...menustart
 
- - [FAdo Tutorial](#844c992587ad53d6fa24ff03c8921787)
+- [FAdo Tutorial](#844c992587ad53d6fa24ff03c8921787)
 
 ...menuend
 

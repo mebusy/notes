@@ -1,17 +1,17 @@
 ...menustart
 
- - [Neural Network : Notivation](#5974f31b4017afa6df21ffb9b31e2666)
-     - [Linear Aggregation of Perceptrons : Pictorial View](#38ccc56b9a6fc2fd501fcc0bd27a0b45)
-     - [Multi-layer Perceptrons : Basic Neural Network](#57bc3e3d04ba0a7c8184820673a233ed)
- - [Neural Network Hypothesis: Output](#6e543476b9761e3e5988cfc245333417)
-     - [Transformation function](#ad0de27f8c1618cd8eb6d8738e12ab57)
-     - [结构](#8a95a6d10dea403031ff71630d469a27)
- - [Deep Learning](#6a68b6412b3d8a605c374d3c59e02694)
-     - [Challenges and Key Techniques for Deep Learning](#4e961821374743cc679d4351f5717263)
- - [Autodecoder](#9703d584c6cdcaf305edeb3f0567cd9e)
- - [资料](#447564e4e2b0171973515a26650e66a2)
- - [Network Structure:](#43751e4eda3557fca7ab0f1b99c3e6c7)
- - [Techniques to Train Neural Network](#20c649642589dd245bfa69669261e277)
+- [Neural Network : Notivation](#5974f31b4017afa6df21ffb9b31e2666)
+    - [Linear Aggregation of Perceptrons : Pictorial View](#38ccc56b9a6fc2fd501fcc0bd27a0b45)
+    - [Multi-layer Perceptrons : Basic Neural Network](#57bc3e3d04ba0a7c8184820673a233ed)
+- [Neural Network Hypothesis: Output](#6e543476b9761e3e5988cfc245333417)
+    - [Transformation function](#ad0de27f8c1618cd8eb6d8738e12ab57)
+    - [结构](#8a95a6d10dea403031ff71630d469a27)
+- [Deep Learning](#6a68b6412b3d8a605c374d3c59e02694)
+    - [Challenges and Key Techniques for Deep Learning](#4e961821374743cc679d4351f5717263)
+- [Autodecoder](#9703d584c6cdcaf305edeb3f0567cd9e)
+- [资料](#447564e4e2b0171973515a26650e66a2)
+- [Network Structure:](#43751e4eda3557fca7ab0f1b99c3e6c7)
+- [Techniques to Train Neural Network](#20c649642589dd245bfa69669261e277)
 
 ...menuend
 

@@ -1,7 +1,7 @@
 ...menustart
 
- - [1.5.6。统计数据和随机数：scipy.stats](#13f0949d6c57f6b2f15ff881b61d4308)
-     - [1.5.6.1。直方图和概率密度函数](#52b76b5ffc0d467aa403fe05eb57cf02)
+- [1.5.6。统计数据和随机数：scipy.stats](#13f0949d6c57f6b2f15ff881b61d4308)
+    - [1.5.6.1。直方图和概率密度函数](#52b76b5ffc0d467aa403fe05eb57cf02)
 
 ...menuend
 

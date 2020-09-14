@@ -1,13 +1,13 @@
 ...menustart
 
- - [Application](#e498749f3c42246d50b15c81c101d988)
-     - [Starcraft](#8a6f8fa384efc23dcdcc19e7384bdc45)
-         - [Why is Starcraft Hard?](#1fb75cfb7fe7923ca2bab57e2ebead57)
-         - [The Berkeley Overmind](#8ae5d98a904e4bd489a504ec2b2154da)
-         - [Search for Pathing](#b5c737bc93e07f225f5df7fc55d33245)
-         - [Minimax for Targeting](#6f47e9d670285b5ac6e4db3ff10372d1)
-         - [Machine Learning for Micro Control](#561c4a6fa7b27afca6a8b0eb8bf58887)
-         - [Inference / VPI / Scouting](#85068d975072cc7193a0e53faa6e51ec)
+- [Application](#e498749f3c42246d50b15c81c101d988)
+    - [Starcraft](#8a6f8fa384efc23dcdcc19e7384bdc45)
+        - [Why is Starcraft Hard?](#1fb75cfb7fe7923ca2bab57e2ebead57)
+        - [The Berkeley Overmind](#8ae5d98a904e4bd489a504ec2b2154da)
+        - [Search for Pathing](#b5c737bc93e07f225f5df7fc55d33245)
+        - [Minimax for Targeting](#6f47e9d670285b5ac6e4db3ff10372d1)
+        - [Machine Learning for Micro Control](#561c4a6fa7b27afca6a8b0eb8bf58887)
+        - [Inference / VPI / Scouting](#85068d975072cc7193a0e53faa6e51ec)
 
 ...menuend
 

@@ -1,19 +1,19 @@
 ...menustart
 
- - [Pandas](#251d2bbfe9a3b95e5691ceb30dc6784a)
- - [Basic Data Processing with Pandas](#2beb23af04774d7f04142fdc60c1e388)
-     - [The Series Data Structure](#b2d7146a323c3e1734532ceb0f3b8b85)
-     - [Querying a Series](#8397ade4c8ed93da5a52c39691b7879e)
-     - [The DataFrame Data Structure](#831bfe24989afb7977d21427c1cfa747)
-     - [Dataframe Indexing and Loading](#17bcec63e2ffc6f28d1d43dc3bd736d3)
-     - [Querying a DataFrame](#3c5b4efeb3926eb0d2e01d57122c4af8)
-         - [Boolean masking](#c381bd7fc934be857f568d5a2990c95d)
-     - [Indexing Dataframes](#c26698ba4e53d8440e2c2572357e9c84)
-         - [Insert record to Dataframe](#2b134ac285731f9d66fccfb31a8be4e1)
-         - [行选择和列选择小结](#ebae125e702774e5fc2e20a8dd47e231)
-             - [行选择](#dca178c13c61d3a5ff6723592c7570eb)
-         - [列选择](#c6e891c9937fb079fbb759e96c0eb44c)
-     - [Missing Values](#4f62be1b7c56d639aec435b0d7e53b81)
+- [Pandas](#251d2bbfe9a3b95e5691ceb30dc6784a)
+- [Basic Data Processing with Pandas](#2beb23af04774d7f04142fdc60c1e388)
+    - [The Series Data Structure](#b2d7146a323c3e1734532ceb0f3b8b85)
+    - [Querying a Series](#8397ade4c8ed93da5a52c39691b7879e)
+    - [The DataFrame Data Structure](#831bfe24989afb7977d21427c1cfa747)
+    - [Dataframe Indexing and Loading](#17bcec63e2ffc6f28d1d43dc3bd736d3)
+    - [Querying a DataFrame](#3c5b4efeb3926eb0d2e01d57122c4af8)
+        - [Boolean masking](#c381bd7fc934be857f568d5a2990c95d)
+    - [Indexing Dataframes](#c26698ba4e53d8440e2c2572357e9c84)
+        - [Insert record to Dataframe](#2b134ac285731f9d66fccfb31a8be4e1)
+        - [行选择和列选择小结](#ebae125e702774e5fc2e20a8dd47e231)
+            - [行选择](#dca178c13c61d3a5ff6723592c7570eb)
+        - [列选择](#c6e891c9937fb079fbb759e96c0eb44c)
+    - [Missing Values](#4f62be1b7c56d639aec435b0d7e53b81)
 
 ...menuend
 

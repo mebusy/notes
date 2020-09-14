@@ -1,18 +1,18 @@
 ...menustart
 
- - [chapter 1: Essense of Calculus](#5c6d0419bdcc965d881019d989ad6f1a)
- - [chapter 2: Paradox of the derivatives](#b872997f4e311706ca6628e823fc3459)
- - [chapter 3: Derivative formulas through geometry](#13e7953947a312a1272a400065326d94)
- - [chapter 4: Visualizing the chain rule and product rule](#9546814bd16cc3f81d041e7b9b643ecb)
-     - [Sum rule](#06aa9025652035d38814388a75abf573)
-     - [Multiply rule](#418eebdc34081971062598381d44d9ad)
-     - [Chain rule](#eb0c844221ea9727339a6c0c9233c27f)
- - [chapter 5: What's so special about Euler's number e?](#a80580cc58514e0b419bbc32ed0e79d2)
- - [chapter 6: Implicit differentiation, what's going on here?](#91cb2bc00b850ea33ca8919983c5f6fe)
- - [chapter 7: Limits, L'Hopital's rule, and epsilon delta definitions](#59a59b02331a322ab57018951bb6d886)
- - [chapter 8: Integration and the fundamental theorem of calculus](#eeacb3a6987b61fae56993eb1f78fd4f)
- - [chapter 9: What does area have to do with slope?](#b9130735d7a51c85445d7b6434f2dea9)
- - [chapter 11: Taylor series](#f4c4612f181889150de4d5e6175f2839)
+- [chapter 1: Essense of Calculus](#5c6d0419bdcc965d881019d989ad6f1a)
+- [chapter 2: Paradox of the derivatives](#b872997f4e311706ca6628e823fc3459)
+- [chapter 3: Derivative formulas through geometry](#13e7953947a312a1272a400065326d94)
+- [chapter 4: Visualizing the chain rule and product rule](#9546814bd16cc3f81d041e7b9b643ecb)
+    - [Sum rule](#06aa9025652035d38814388a75abf573)
+    - [Multiply rule](#418eebdc34081971062598381d44d9ad)
+    - [Chain rule](#eb0c844221ea9727339a6c0c9233c27f)
+- [chapter 5: What's so special about Euler's number e?](#a80580cc58514e0b419bbc32ed0e79d2)
+- [chapter 6: Implicit differentiation, what's going on here?](#91cb2bc00b850ea33ca8919983c5f6fe)
+- [chapter 7: Limits, L'Hopital's rule, and epsilon delta definitions](#59a59b02331a322ab57018951bb6d886)
+- [chapter 8: Integration and the fundamental theorem of calculus](#eeacb3a6987b61fae56993eb1f78fd4f)
+- [chapter 9: What does area have to do with slope?](#b9130735d7a51c85445d7b6434f2dea9)
+- [chapter 11: Taylor series](#f4c4612f181889150de4d5e6175f2839)
 
 ...menuend
 

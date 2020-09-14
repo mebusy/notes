@@ -1,7 +1,7 @@
 ...menustart
 
- - [Misc note](#545ef86f8085bb191435d59c503f1a74)
-     - [Respond to an unknown method call](#eb0862d2232fd2d27e0bf79a231e8841)
+- [Misc note](#545ef86f8085bb191435d59c503f1a74)
+    - [Respond to an unknown method call](#eb0862d2232fd2d27e0bf79a231e8841)
 
 ...menuend
 

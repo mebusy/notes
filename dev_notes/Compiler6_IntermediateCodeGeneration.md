@@ -1,7 +1,7 @@
 ...menustart
 
- - [Chapter 6 : Intermediate-Code Generation](#2b9d12e2be9c88ae4472d67fb4f304a8)
-     - [6.1 Variants of Syntax Trees](#12afec74d79e469881c523f301883f14)
+- [Chapter 6 : Intermediate-Code Generation](#2b9d12e2be9c88ae4472d67fb4f304a8)
+    - [6.1 Variants of Syntax Trees](#12afec74d79e469881c523f301883f14)
 
 ...menuend
 

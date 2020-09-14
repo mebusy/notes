@@ -1,16 +1,16 @@
 ...menustart
 
- - [simctl iOS模拟器操作](#7135c26666c1e715aeffe14303892276)
-     - [启动模拟器](#4ec0728efe7e68db35a1e6077f0deaae)
-     - [启动某个特定模拟器](#9bb710bd8a9706a3e1f9262e167b9d05)
-     - [安装 app bundle 到当前启动的模拟器中](#bfcfd6b70f52469736492a147544d405)
-     - [用安装好的 app 打开web页面](#951f42007d7a6df508140b29d5bbe421)
-     - [通过 bundle id 启动 app](#a7541a2fc37177c41fa4a72df5e41831)
-     - [重启app](#f51c612b79aa3963cad0432d2eaafce7)
-     - [应用](#5b0520a9bf5e8d87c0b8c6e58766e184)
-         - [获取 激活设备的 apps目录, 并由此活动名字中包含 nba_heroes 的 app 应用目录](#8ae5fd09698f7625952015b04258d4f3)
-         - [根据指定 bundle id, 重新打开当前device的相关app](#461860f98245977eac3a2994e72b05be)
-         - [安装模拟器版本 app](#777203f91f5115a210fd9dc90df43d15)
+- [simctl iOS模拟器操作](#7135c26666c1e715aeffe14303892276)
+    - [启动模拟器](#4ec0728efe7e68db35a1e6077f0deaae)
+    - [启动某个特定模拟器](#9bb710bd8a9706a3e1f9262e167b9d05)
+    - [安装 app bundle 到当前启动的模拟器中](#bfcfd6b70f52469736492a147544d405)
+    - [用安装好的 app 打开web页面](#951f42007d7a6df508140b29d5bbe421)
+    - [通过 bundle id 启动 app](#a7541a2fc37177c41fa4a72df5e41831)
+    - [重启app](#f51c612b79aa3963cad0432d2eaafce7)
+    - [应用](#5b0520a9bf5e8d87c0b8c6e58766e184)
+        - [获取 激活设备的 apps目录, 并由此活动名字中包含 nba_heroes 的 app 应用目录](#8ae5fd09698f7625952015b04258d4f3)
+        - [根据指定 bundle id, 重新打开当前device的相关app](#461860f98245977eac3a2994e72b05be)
+        - [安装模拟器版本 app](#777203f91f5115a210fd9dc90df43d15)
 
 ...menuend
 

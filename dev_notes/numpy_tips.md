@@ -1,14 +1,16 @@
 ...menustart
 
- - [numpy tips](#c2bfb8f194cb52abbd9cc9397dafc5d4)
-     - [Combining Arrays](#84df0f6a0e96bb96e66fdba51a103ad5)
-     - [Math Functions](#1f1ef887de84fa2b7f644b5878b4e6ce)
-     - [Indexing / Slicing](#6b17874075ca37cc84a6c0d09e623e1c)
-     - [Iterating Over Arrays](#f32b904edd83a21e8b374913f5631504)
-     - [数据 slice](#1ae1043e3a38472916094e5c042464ed)
-     - [数据过滤](#86260398567c0091b1c262ef98512bd6)
-     - [数据 拼接](#6ab51568114b14d4784a1fa07f6717b5)
-     - [数据转换](#3c30b3189b43008ec08418c0d6afc49f)
+- [numpy tips](#c2bfb8f194cb52abbd9cc9397dafc5d4)
+    - [Combining Arrays](#84df0f6a0e96bb96e66fdba51a103ad5)
+    - [Math Functions](#1f1ef887de84fa2b7f644b5878b4e6ce)
+    - [Indexing / Slicing](#6b17874075ca37cc84a6c0d09e623e1c)
+    - [Iterating Over Arrays](#f32b904edd83a21e8b374913f5631504)
+    - [数据 slice](#1ae1043e3a38472916094e5c042464ed)
+    - [数据过滤](#86260398567c0091b1c262ef98512bd6)
+    - [数据 拼接](#6ab51568114b14d4784a1fa07f6717b5)
+    - [数据转换](#3c30b3189b43008ec08418c0d6afc49f)
+- [SciPy 2019](#e7bb3b7194c96eb93fb9a2777411aca8)
+    - [Array Slicing](#458a3cb8ba7cd1c7a812c577db825242)
 
 ...menuend
 
@@ -304,7 +306,13 @@ np.array( 0.4 , ndmin=2  )
 
 --------
 
+<h2 id="e7bb3b7194c96eb93fb9a2777411aca8"></h2>
+
+
 # SciPy 2019
+
+<h2 id="458a3cb8ba7cd1c7a812c577db825242"></h2>
+
 
 ## Array Slicing
 

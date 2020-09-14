@@ -1,10 +1,10 @@
 ...menustart
 
- - [Rendering Path](#da2911de682ed5ee8e31f8abbeef66bd)
-     - [1. rendering path 的 技术基础](#e722c0b9325d2999ef6de4bdea693829)
-     - [2. 几种常用的Rendering Path](#5acfcac9feda152fef0e8da1d3a5f248)
-         - [2.1 Forward Rendering](#32762037d3dcc652fa76349f30eeb1f6)
-     - [2.2 Deferred Rendering](#446ff669713810d90d8c929eda9ec749)
+- [Rendering Path](#da2911de682ed5ee8e31f8abbeef66bd)
+    - [1. rendering path 的 技术基础](#e722c0b9325d2999ef6de4bdea693829)
+    - [2. 几种常用的Rendering Path](#5acfcac9feda152fef0e8da1d3a5f248)
+        - [2.1 Forward Rendering](#32762037d3dcc652fa76349f30eeb1f6)
+    - [2.2 Deferred Rendering](#446ff669713810d90d8c929eda9ec749)
 
 ...menuend
 

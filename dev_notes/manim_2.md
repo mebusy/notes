@@ -1,8 +1,8 @@
 ...menustart
 
- - [Manim 2 : Tex Forumulas](#f2ef3b7cd3a34c64c98a94fe040e565b)
- - [Manim 3: Array](#f1727aac5db801c7193d3042b4245149)
-     - [Cross Text](#0ae65dbb4d1614de1289b3b6ae3bcfb7)
+- [Manim 2 : Tex Forumulas](#f2ef3b7cd3a34c64c98a94fe040e565b)
+- [Manim 3: Array](#f1727aac5db801c7193d3042b4245149)
+    - [Cross Text](#0ae65dbb4d1614de1289b3b6ae3bcfb7)
 
 ...menuend
 

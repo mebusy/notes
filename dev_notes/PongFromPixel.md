@@ -1,13 +1,13 @@
 ...menustart
 
- - [Pong From Pixel](#14c8bcab6d8cbd9dd30f671937d1930e)
-     - [Policy network](#c8ec2431da786d1805ac35666846a034)
-         - [implement this policy network in Python/numpy](#8527e311e4e8e7b217e4eb3df745bacf)
-     - [preprocessing](#4da478b2dea92208e1212e4dfc88e520)
-     - [It sounds kind of impossible.](#ba0a2315087f7fb29261db63e3183a76)
-     - [Supervised Learning.](#43db94d830cd7723a6d7a21a311d9bf4)
-     - [Policy Gradients](#6c11e2dd65ad60a6dd6cf3a2be08fa0c)
-     - [Training protocol](#abc3a1be8d17524478c2cc2d1399fe32)
+- [Pong From Pixel](#14c8bcab6d8cbd9dd30f671937d1930e)
+    - [Policy network](#c8ec2431da786d1805ac35666846a034)
+        - [implement this policy network in Python/numpy](#8527e311e4e8e7b217e4eb3df745bacf)
+    - [preprocessing](#4da478b2dea92208e1212e4dfc88e520)
+    - [It sounds kind of impossible.](#ba0a2315087f7fb29261db63e3183a76)
+    - [Supervised Learning.](#43db94d830cd7723a6d7a21a311d9bf4)
+    - [Policy Gradients](#6c11e2dd65ad60a6dd6cf3a2be08fa0c)
+    - [Training protocol](#abc3a1be8d17524478c2cc2d1399fe32)
 
 ...menuend
 

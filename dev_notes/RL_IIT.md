@@ -1,18 +1,18 @@
 ...menustart
 
- - [RL IIT](#bfe5f76aa0ffff1c61f8e731c44d413c)
- - [Lec 50 - Hierarchical RL](#b8fa68aac56b07e6b380ea91637e054f)
- - [Lec 51 - Types of Optimality](#ffa411e0c712e269348ec97e67938f11)
- - [Lec 52: Semi Markov Decision Process](#dea643812f3c38d43b22e936ae4e2e96)
-     - [SMDP](#accd95b8e78c80b20ffe9e4eed7096ec)
-     - [SMDP Definition](#abafe4a0b9b20f75c81527b5d6126cdf)
-     - [SMDP Q-Learning](#ac7cd9d04bff3f5467432de98f587b6f)
- - [Lec 53 :  Options](#9dd8cdd14e9fb7409d79f732d6fad4bd)
-     - [macro action](#db51e8e30decc185ef0a832692206c9e)
-     - [Two kinds of options](#2aa72195d24daa01c8bc25749b6454a9)
- - [Lec 54 : Learning with Options](#4b519a7a64bf60c84e3429985f71bf7c)
- - [Lec 55: Hierarchy of Abstract Machine (HAM)](#b290df95e9d6534f3fd0f7fadc97fe1f)
- - [Lec 56: MAXQ](#67ab3535e778c2e13f79d3d60e849021)
+- [RL IIT](#bfe5f76aa0ffff1c61f8e731c44d413c)
+- [Lec 50 - Hierarchical RL](#b8fa68aac56b07e6b380ea91637e054f)
+- [Lec 51 - Types of Optimality](#ffa411e0c712e269348ec97e67938f11)
+- [Lec 52: Semi Markov Decision Process](#dea643812f3c38d43b22e936ae4e2e96)
+    - [SMDP](#accd95b8e78c80b20ffe9e4eed7096ec)
+    - [SMDP Definition](#abafe4a0b9b20f75c81527b5d6126cdf)
+    - [SMDP Q-Learning](#ac7cd9d04bff3f5467432de98f587b6f)
+- [Lec 53 :  Options](#9dd8cdd14e9fb7409d79f732d6fad4bd)
+    - [macro action](#db51e8e30decc185ef0a832692206c9e)
+    - [Two kinds of options](#2aa72195d24daa01c8bc25749b6454a9)
+- [Lec 54 : Learning with Options](#4b519a7a64bf60c84e3429985f71bf7c)
+- [Lec 55: Hierarchy of Abstract Machine (HAM)](#b290df95e9d6534f3fd0f7fadc97fe1f)
+- [Lec 56: MAXQ](#67ab3535e778c2e13f79d3d60e849021)
 
 ...menuend
 

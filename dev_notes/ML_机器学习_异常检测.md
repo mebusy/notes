@@ -1,18 +1,18 @@
 ...menustart
 
- - [Anomaly Detection 异常检测](#8d364c79a6770dc7395296c168efd622)
-     - [Density estimation](#29c53a82180b5184c50d4d772303e088)
-         - [Anomaly Detection Example](#347118b310696c7f93c1ff66f8faf8aa)
-         - [Gaussian (Normal) Distribution](#532e6903300860673cb95c382b974fd0)
-         - [Parameter estimation](#f084e616e40ec63ecf915155cb46a54c)
-         - [Anomaly Detection Algorithm](#68a5f465a0d97c3d5229bd80531c4d0e)
-     - [Building an Anomaly Detection System](#c59486b104ab1cb60cb63f475557ac3d)
-         - [开发并评估 anomaly detection system](#7e93cc035fcb67fd9180c2e41487373d)
-         - [Anomaly Detection vs. Supervised learning](#f1f47b770f28badf6af9c7627badbfb5)
-         - [Choose What features to Use](#711dff46b8015be0217bd08ede807ffb)
-     - [Multivariate Gaussian Distribution 多元高斯分布](#08a98dde435875e68d7ff5e48688956e)
-         - [Using Multivariate Gaussian Distribution](#a0d57426b1ce049b2cfafa06eac4786d)
-         - [Original model vs. Multivariate Gaussian](#a0afe19d45ea8a302c6f1c352e52d417)
+- [Anomaly Detection 异常检测](#8d364c79a6770dc7395296c168efd622)
+    - [Density estimation](#29c53a82180b5184c50d4d772303e088)
+        - [Anomaly Detection Example](#347118b310696c7f93c1ff66f8faf8aa)
+        - [Gaussian (Normal) Distribution](#532e6903300860673cb95c382b974fd0)
+        - [Parameter estimation](#f084e616e40ec63ecf915155cb46a54c)
+        - [Anomaly Detection Algorithm](#68a5f465a0d97c3d5229bd80531c4d0e)
+    - [Building an Anomaly Detection System](#c59486b104ab1cb60cb63f475557ac3d)
+        - [开发并评估 anomaly detection system](#7e93cc035fcb67fd9180c2e41487373d)
+        - [Anomaly Detection vs. Supervised learning](#f1f47b770f28badf6af9c7627badbfb5)
+        - [Choose What features to Use](#711dff46b8015be0217bd08ede807ffb)
+    - [Multivariate Gaussian Distribution 多元高斯分布](#08a98dde435875e68d7ff5e48688956e)
+        - [Using Multivariate Gaussian Distribution](#a0d57426b1ce049b2cfafa06eac4786d)
+        - [Original model vs. Multivariate Gaussian](#a0afe19d45ea8a302c6f1c352e52d417)
 
 ...menuend
 

@@ -1,6 +1,6 @@
 ...menustart
 
- - [Nginx 转发 mysql 链接](#72aac95dc2177165b34981486a4bbb97)
+- [Nginx 转发 mysql 链接](#72aac95dc2177165b34981486a4bbb97)
 
 ...menuend
 

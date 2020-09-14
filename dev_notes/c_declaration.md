@@ -1,16 +1,16 @@
 ...menustart
 
- - [C Declaration](#4d4d41296119a89b97e6c8d1d2b12d61)
-     - [How a Declaration Is Formed](#0e8496ac4e183c0a93f348bea3eb755a)
-     - [how to combine variables in structs and unions](#b6883b80c1162c486c5fc1f7cd01ef57)
-         - [A Word About structs](#f630d4bf06506c3ab082d636b29f7243)
-         - [struct 内存对齐](#80a514cf94d858b0e7609f0f08d34686)
-         - [A Word About unions](#d4e244f54df03fa025bc569ccfabc85a)
-         - [A Word About enums](#e42747e8ccfb6720aed43d4f3052931e)
-     - [The Precedence Rule](#9ecf79b05d37fa25da955c7e0c4461ee)
-     - [typedef Can Be Your Friend](#180084aeda94c4da5d99c51a5c576d1c)
-         - [Difference Between typedef int x\[10\] and #define x int\[10\]](#b2964049a26ea843935c34c897b5d716)
-         - [What typedef struct foo { ... foo; } foo; Means](#3d484886fd516f41ecd9c20e76065a47)
+- [C Declaration](#4d4d41296119a89b97e6c8d1d2b12d61)
+    - [How a Declaration Is Formed](#0e8496ac4e183c0a93f348bea3eb755a)
+    - [how to combine variables in structs and unions](#b6883b80c1162c486c5fc1f7cd01ef57)
+        - [A Word About structs](#f630d4bf06506c3ab082d636b29f7243)
+        - [struct 内存对齐](#80a514cf94d858b0e7609f0f08d34686)
+        - [A Word About unions](#d4e244f54df03fa025bc569ccfabc85a)
+        - [A Word About enums](#e42747e8ccfb6720aed43d4f3052931e)
+    - [The Precedence Rule](#9ecf79b05d37fa25da955c7e0c4461ee)
+    - [typedef Can Be Your Friend](#180084aeda94c4da5d99c51a5c576d1c)
+        - [Difference Between typedef int x\[10\] and #define x int\[10\]](#b2964049a26ea843935c34c897b5d716)
+        - [What typedef struct foo { ... foo; } foo; Means](#3d484886fd516f41ecd9c20e76065a47)
 
 ...menuend
 

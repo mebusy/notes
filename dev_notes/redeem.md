@@ -1,12 +1,12 @@
 ...menustart
 
- - [兑换码](#9bff7a874cd7d0dd3b7574a0917de15f)
-     - [限制字符集](#d451326fd2b4c1b301f29a5ea7fe4e1e)
-     - [兑换码设计，本身包含重要信息](#3f9352573d37d3ec177bc6496e4b13a4)
-     - [CRC](#1a4b5d84a0328c4a33bd669c608a34c3)
-     - [Base 58](#36e3a1ad5f706ac6414ea1c1bb708494)
-     - [decode/verify redeemCode](#03174a9cd6c332b4ed1a3fe8d4b64c77)
-     - [python script to generate RedeemCode](#2440b42391dd88dc32b14c0253b3a95a)
+- [兑换码](#9bff7a874cd7d0dd3b7574a0917de15f)
+    - [限制字符集](#d451326fd2b4c1b301f29a5ea7fe4e1e)
+    - [兑换码设计，本身包含重要信息](#3f9352573d37d3ec177bc6496e4b13a4)
+    - [CRC](#1a4b5d84a0328c4a33bd669c608a34c3)
+    - [Base 58](#36e3a1ad5f706ac6414ea1c1bb708494)
+    - [decode/verify redeemCode](#03174a9cd6c332b4ed1a3fe8d4b64c77)
+    - [python script to generate RedeemCode](#2440b42391dd88dc32b14c0253b3a95a)
 
 ...menuend
 

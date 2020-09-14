@@ -1,19 +1,19 @@
 ...menustart
 
- - [过度拟合 overfitting](#6129858f4f4ae385452b94ae0589e3c2)
- - [正则化 Regularization](#36360bac2874c6fa4fbebdc1731c80f6)
-     - [线性回归的例子:](#60a340b4fe60aaefadfb4199d44edda3)
- - [正则化线性回归](#ec1dbd4eccae79c7bc2091316de35224)
-     - [代价函数:](#73db361f556832cf91d56357c8203949)
-     - [梯度下降算法:](#21acf0b2bd3a8d644af69fb6d0f63733)
-     - [正规方程组解法](#62dc9889b8e1aeda5b4dc46f7665acf6)
- - [正则化 逻辑回归](#d79c5efa3a07a2273edafc98c34fb708)
-     - [代价函数](#287340d512ad4b09754b4574719e412f)
-     - [梯度下降算法](#f072832c961b0762dbec1d78e5504442)
- - [正则化处理流程](#c87d57915b8ec0bd3094315644b4794f)
-     - [特征映射 feature mapping](#da4ad33e42cddccf3cc687f937bdfc06)
-     - [代价函数，和梯度](#d4bb0a33bce7e76d7df296d1f45f3a3d)
-     - [一般流程](#869492f5afdb7e6bc022701f149b2c48)
+- [过度拟合 overfitting](#6129858f4f4ae385452b94ae0589e3c2)
+- [正则化 Regularization](#36360bac2874c6fa4fbebdc1731c80f6)
+    - [线性回归的例子:](#60a340b4fe60aaefadfb4199d44edda3)
+- [正则化线性回归](#ec1dbd4eccae79c7bc2091316de35224)
+    - [代价函数:](#73db361f556832cf91d56357c8203949)
+    - [梯度下降算法:](#21acf0b2bd3a8d644af69fb6d0f63733)
+    - [正规方程组解法](#62dc9889b8e1aeda5b4dc46f7665acf6)
+- [正则化 逻辑回归](#d79c5efa3a07a2273edafc98c34fb708)
+    - [代价函数](#287340d512ad4b09754b4574719e412f)
+    - [梯度下降算法](#f072832c961b0762dbec1d78e5504442)
+- [正则化处理流程](#c87d57915b8ec0bd3094315644b4794f)
+    - [特征映射 feature mapping](#da4ad33e42cddccf3cc687f937bdfc06)
+    - [代价函数，和梯度](#d4bb0a33bce7e76d7df296d1f45f3a3d)
+    - [一般流程](#869492f5afdb7e6bc022701f149b2c48)
 
 ...menuend
 

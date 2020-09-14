@@ -1,13 +1,13 @@
 ...menustart
 
- - [random number](#54424d73e284242c90ae6c2c711487cf)
-     - [Linear Congruential Generator](#3d6ac243e2eed84b3e761431b17bb56b)
-         - [Choice of modulus](#ac4e828dbe54fb1d2feb694108ce5480)
-         - [Choice of multiplier](#bdc47eab24c15e7a55f50a5e665743de)
-         - [An implementation :  No guaranteed of correctness](#29c8b42cc2ff4fc09c6a75a4dfbc1885)
-     - [Python random implementation](#31d89b288043a80670b7a9af27dba6b6)
-     - [Distribution](#f0bac093bb884df2891d32385d053788)
-         - [Python normalvariate implementation](#ee34ac09342e568469b18ca9916547d5)
+- [random number](#54424d73e284242c90ae6c2c711487cf)
+    - [Linear Congruential Generator](#3d6ac243e2eed84b3e761431b17bb56b)
+        - [Choice of modulus](#ac4e828dbe54fb1d2feb694108ce5480)
+        - [Choice of multiplier](#bdc47eab24c15e7a55f50a5e665743de)
+        - [An implementation :  No guaranteed of correctness](#29c8b42cc2ff4fc09c6a75a4dfbc1885)
+    - [Python random implementation](#31d89b288043a80670b7a9af27dba6b6)
+    - [Distribution](#f0bac093bb884df2891d32385d053788)
+        - [Python normalvariate implementation](#ee34ac09342e568469b18ca9916547d5)
 
 ...menuend
 

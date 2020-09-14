@@ -1,8 +1,8 @@
 ...menustart
 
- - [Swagger](#336ff1e9aa6177ea7a71984fa8c241b9)
-     - [run swagger editor](#7a8a1e62c3e177c335813e2cda4f44f0)
-     - [swagger UI](#d965025d55377342fd1e4ff3e57ad750)
+- [Swagger](#336ff1e9aa6177ea7a71984fa8c241b9)
+    - [run swagger editor](#7a8a1e62c3e177c335813e2cda4f44f0)
+    - [swagger UI](#d965025d55377342fd1e4ff3e57ad750)
 
 ...menuend
 

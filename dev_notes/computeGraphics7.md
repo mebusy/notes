@@ -1,12 +1,12 @@
 ...menustart
 
- - [7 3D Graphics with WebGL](#357aa0eaaaeef801f1492788310cb7be)
-     - [Section 7.1 Transformations in 3D](#dd2ae5afe7a2b9b238ae7ef9ebc002a4)
-         - [7.1.1  About Shader Scripts](#d7e9359f5c67d29398a9a63005ea1d5f)
-         - [7.1.2  Introducing glMatrix (TODO)](#946786c5977adc425dfb64f6ad11dbb0)
-         - [7.1.3  Transforming Coordinates](#fb11bb92ab03584cb21aff9f56123db8)
-         - [7.1.4  Transforming Normals](#51ac8c3a78a5610dfe32a5cbbbd92793)
-     - [Section 7.2 Lighting and Material](#ed46036a806368c04e89b1863df8b00e)
+- [7 3D Graphics with WebGL](#357aa0eaaaeef801f1492788310cb7be)
+    - [Section 7.1 Transformations in 3D](#dd2ae5afe7a2b9b238ae7ef9ebc002a4)
+        - [7.1.1  About Shader Scripts](#d7e9359f5c67d29398a9a63005ea1d5f)
+        - [7.1.2  Introducing glMatrix (TODO)](#946786c5977adc425dfb64f6ad11dbb0)
+        - [7.1.3  Transforming Coordinates](#fb11bb92ab03584cb21aff9f56123db8)
+        - [7.1.4  Transforming Normals](#51ac8c3a78a5610dfe32a5cbbbd92793)
+    - [Section 7.2 Lighting and Material](#ed46036a806368c04e89b1863df8b00e)
 
 ...menuend
 

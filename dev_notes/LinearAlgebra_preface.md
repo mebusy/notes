@@ -1,8 +1,8 @@
 ...menustart
 
- - [Preface](#5cf06822087ff10dec2ac74cf1e20d30)
-     - [Web Pages](#f2864cfd076d07529c709b68323c5f0a)
-     - [Structure of the Course](#651012eed3bc0d1a932a2738caba9457)
+- [Preface](#5cf06822087ff10dec2ac74cf1e20d30)
+    - [Web Pages](#f2864cfd076d07529c709b68323c5f0a)
+    - [Structure of the Course](#651012eed3bc0d1a932a2738caba9457)
 
 ...menuend
 

@@ -1,12 +1,12 @@
 ...menustart
 
- - [Create Instant Games](#009069c69b11caef6d75739ab207e856)
- - [Create Message Bot](#1b3b0682a7aea56937be67c5a729a846)
- - [debug messager bot with local server](#aceacf6ca899a80c0a70aa4f2522d77c)
-     - [localtunnel](#627aea0b68e33e1e89d82f9b7303f7a1)
- - [Write GameBot server](#b0c374aec5250909fe4a1c18e6889ae0)
-     - [verify webhook](#4a6ec9d128ee67c8fb62497859117c6c)
-     - [gameplay POST ( when close instance game )](#dd8d4a0d714285457d9f4d8ded0d4284)
+- [Create Instant Games](#009069c69b11caef6d75739ab207e856)
+- [Create Message Bot](#1b3b0682a7aea56937be67c5a729a846)
+- [debug messager bot with local server](#aceacf6ca899a80c0a70aa4f2522d77c)
+    - [localtunnel](#627aea0b68e33e1e89d82f9b7303f7a1)
+- [Write GameBot server](#b0c374aec5250909fe4a1c18e6889ae0)
+    - [verify webhook](#4a6ec9d128ee67c8fb62497859117c6c)
+    - [gameplay POST ( when close instance game )](#dd8d4a0d714285457d9f4d8ded0d4284)
 
 ...menuend
 

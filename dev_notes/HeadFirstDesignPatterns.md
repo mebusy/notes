@@ -1,14 +1,14 @@
 ...menustart
 
- - [Head First Design Patterns](#ceb4d27597053532d28b90d23519ea82)
- - [Head First 学习原则](#5e8c168218e62b9925b996275d1c4e29)
- - [1 设计模式入门](#5616caa0254d9d34b75045c12685203e)
- - [策略模式](#7f10b11f53861282996d481d333af15f)
- - [观察者模式](#ed69b1ebfd1c60c731c99be83683c89a)
- - [装饰者模式](#815e385363f17f4a5efd3aadecc64271)
- - [工厂模式](#b98e9d7c0cb2b3d179c16457b10e53b4)
- - [单件模式](#c8ef5b6fbf8c995ba753dbf56c4f4981)
- - [命令模式](#a5c7aeffdabd7096cc1366f19600fa62)
+- [Head First Design Patterns](#ceb4d27597053532d28b90d23519ea82)
+- [Head First 学习原则](#5e8c168218e62b9925b996275d1c4e29)
+- [1 设计模式入门](#5616caa0254d9d34b75045c12685203e)
+- [策略模式](#7f10b11f53861282996d481d333af15f)
+- [观察者模式](#ed69b1ebfd1c60c731c99be83683c89a)
+- [装饰者模式](#815e385363f17f4a5efd3aadecc64271)
+- [工厂模式](#b98e9d7c0cb2b3d179c16457b10e53b4)
+- [单件模式](#c8ef5b6fbf8c995ba753dbf56c4f4981)
+- [命令模式](#a5c7aeffdabd7096cc1366f19600fa62)
 
 ...menuend
 

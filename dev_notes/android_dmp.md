@@ -1,11 +1,11 @@
 ...menustart
 
- - [android DMP 文件解析](#e5791d6498bab7b31b7898e9e93b421c)
-     - [安装 google breakpad](#894a26d71405e3fb8de576d3d9490545)
-     - [把dmp文件转为txt文件](#91c8954f90dfd17b00934b72fd7cf8cd)
-         - [1 建立一个空文件夹，里面放进四个必要文件](#26187d0e98251eb68e16f449d5fd4c03)
-         - [2 准备symbols](#c97793d9feed912272ee53800337fedf)
-         - [3. 导出 文本信息](#83c487b85db581c525da4ee0c540346b)
+- [android DMP 文件解析](#e5791d6498bab7b31b7898e9e93b421c)
+    - [安装 google breakpad](#894a26d71405e3fb8de576d3d9490545)
+    - [把dmp文件转为txt文件](#91c8954f90dfd17b00934b72fd7cf8cd)
+        - [1 建立一个空文件夹，里面放进四个必要文件](#26187d0e98251eb68e16f449d5fd4c03)
+        - [2 准备symbols](#c97793d9feed912272ee53800337fedf)
+        - [3. 导出 文本信息](#83c487b85db581c525da4ee0c540346b)
 
 ...menuend
 

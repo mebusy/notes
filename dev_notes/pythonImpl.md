@@ -1,17 +1,17 @@
 ...menustart
 
- - [python 实现笔记](#f5a8090cfbf3141fa074bf597c5a1d15)
- - [1 基本环境](#957ca81de7391c55455d5889ff744bc3)
-     - [1.2 类型和对象](#a42ee72fe365212ee9342285a0f26ee2)
-     - [1.3 名字空间](#9f1d912adac327c6a0f76de998ea956c)
-         - [Names have no type, but objects do.](#115664aa6997c25b797d3e9545c9b0b4)
-     - [1.4 内存管理](#4a98d7faf3b0d89767d6214bb8368c14)
-         - [内存池](#b8294ac34a7b17ac2803dd1bf67aa16b)
-         - [引用传递](#8d1c66d29f78e3ca80303b73cc5d57e6)
-         - [引用计数](#0a8cbff6e3a3532ede2e30b88dbed5c1)
-         - [GC](#7359c3eb5c57547295a76ac1bf775b29)
-     - [1.5 编译](#404010db360ecac14364cfeb798bb6be)
-     - [1.6 执行](#032a3feced1954f3d6d6dee838163c3c)
+- [python 实现笔记](#f5a8090cfbf3141fa074bf597c5a1d15)
+- [1 基本环境](#957ca81de7391c55455d5889ff744bc3)
+    - [1.2 类型和对象](#a42ee72fe365212ee9342285a0f26ee2)
+    - [1.3 名字空间](#9f1d912adac327c6a0f76de998ea956c)
+        - [Names have no type, but objects do.](#115664aa6997c25b797d3e9545c9b0b4)
+    - [1.4 内存管理](#4a98d7faf3b0d89767d6214bb8368c14)
+        - [内存池](#b8294ac34a7b17ac2803dd1bf67aa16b)
+        - [引用传递](#8d1c66d29f78e3ca80303b73cc5d57e6)
+        - [引用计数](#0a8cbff6e3a3532ede2e30b88dbed5c1)
+        - [GC](#7359c3eb5c57547295a76ac1bf775b29)
+    - [1.5 编译](#404010db360ecac14364cfeb798bb6be)
+    - [1.6 执行](#032a3feced1954f3d6d6dee838163c3c)
 
 ...menuend
 

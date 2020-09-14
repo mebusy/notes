@@ -1,10 +1,10 @@
 ...menustart
 
- - [Manim tutorial 1](#fa8eae884562efa031678a4f969634c7)
-     - [1.1 Basic elements](#b1ca84327953e47e438a77e1dfbdceb1)
-     - [1.2 Animations and pauses](#028178975b2d3dfe503d769da4acc4a5)
-     - [1.3 Positions, rotations and fonts](#be289a13773875e5f0f91d2b57183105)
-     - [1.4 Render Setting](#c407b4893110cfbf424118ba9d7c140e)
+- [Manim tutorial 1](#fa8eae884562efa031678a4f969634c7)
+    - [1.1 Basic elements](#b1ca84327953e47e438a77e1dfbdceb1)
+    - [1.2 Animations and pauses](#028178975b2d3dfe503d769da4acc4a5)
+    - [1.3 Positions, rotations and fonts](#be289a13773875e5f0f91d2b57183105)
+    - [1.4 Render Setting](#c407b4893110cfbf424118ba9d7c140e)
 
 ...menuend
 

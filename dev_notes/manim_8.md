@@ -1,9 +1,9 @@
 ...menustart
 
- - [8](#c9f0f895fb98ab9159f51fd0297e236d)
-     - [8.1 Update Function](#df1cf19aca45f655925be995ae3491d0)
-     - [8.2 Advanced Animation - Using Methods and alpha parameter](#d7aa3049ba8eeb1a11825c6907405f9b)
-     - [8.3 Rate Frunction](#3473e7a6278c2b485bb52a2dcad706b5)
+- [8](#c9f0f895fb98ab9159f51fd0297e236d)
+    - [8.1 Update Function](#df1cf19aca45f655925be995ae3491d0)
+    - [8.2 Advanced Animation - Using Methods and alpha parameter](#d7aa3049ba8eeb1a11825c6907405f9b)
+    - [8.3 Rate Frunction](#3473e7a6278c2b485bb52a2dcad706b5)
 
 ...menuend
 

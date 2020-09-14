@@ -1,11 +1,11 @@
 ...menustart
 
- - [Chapter 5 : Syntax-Directed Translation](#540b35b48067336ac81ed72b19b2d25d)
-     - [5.1 Syntax-Directed Definitions](#c17f9eaa10ce812de9972d19e5f8c9d6)
-         - [5.1.1 Inherited and Synthesized Attributes](#04ebabaa61165c801fcaf1d9edb7eb0e)
-         - [5.1.2 Evaluating an SDD at the Nodes of a Parse Tree  (TODO)](#6a8f31023d1957d6a63144698dc91303)
-     - [5.3 Applications of Syntax-Directed Translation](#b0f40c652517be0bfddc1eec315f7fc6)
-         - [5.3.1 Construction of Syntax Trees  (TODO)](#e3e96ea672ac084ac9f816eef5a05639)
+- [Chapter 5 : Syntax-Directed Translation](#540b35b48067336ac81ed72b19b2d25d)
+    - [5.1 Syntax-Directed Definitions](#c17f9eaa10ce812de9972d19e5f8c9d6)
+        - [5.1.1 Inherited and Synthesized Attributes](#04ebabaa61165c801fcaf1d9edb7eb0e)
+        - [5.1.2 Evaluating an SDD at the Nodes of a Parse Tree  (TODO)](#6a8f31023d1957d6a63144698dc91303)
+    - [5.3 Applications of Syntax-Directed Translation](#b0f40c652517be0bfddc1eec315f7fc6)
+        - [5.3.1 Construction of Syntax Trees  (TODO)](#e3e96ea672ac084ac9f816eef5a05639)
 
 ...menuend
 

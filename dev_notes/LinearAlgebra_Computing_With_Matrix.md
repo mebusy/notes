@@ -1,7 +1,7 @@
 ...menustart
 
- - [7 Computations with Matrices](#a11f9fe43dfed0d30be3a8fbf4d57420)
-     - [7.1 INTRODUCTION](#f3fd8c325ad2bd72e12ccb6f8f17afc4)
+- [7 Computations with Matrices](#a11f9fe43dfed0d30be3a8fbf4d57420)
+    - [7.1 INTRODUCTION](#f3fd8c325ad2bd72e12ccb6f8f17afc4)
 
 ...menuend
 

@@ -1,16 +1,16 @@
 ...menustart
 
- - [Yacc](#f4892ae9e5ea764a416fcc3b54a5bad9)
-     - [A Yacc Parser](#04c3eaf154277491767399176f9e1cab)
-     - [The Lexer](#9186d80d21b4c0a934c9a685bf9b3e78)
-     - [Arithmetic Expressions and Ambiguity](#c22bb56c30e059edbf2ee5f6a7177e48)
-     - [Variables and Typed Tokens](#f30b224b5f5b850b587e0d7b3e6ce825)
-     - [Symbol Tables](#743974c76894dcbff127f41b4dcaa71b)
-     - [Functions and Reserved Words](#8c439d47137d2b02b587a9cb733a993a)
-     - [Reserved Words in the Symbol Table](#3ffc9c6bc2ffcb3c6cd4ac1be2b51ae4)
- - [A Menu Generation Language](#7c126d1eae3bd63f0f8148348ee5a9ac)
-     - [Overview of the MGL](#d504e2653122de9057c354b89fbf789b)
- - [Parsing SQL](#696fd52bce92183aa43d6186ed737d33)
+- [Yacc](#f4892ae9e5ea764a416fcc3b54a5bad9)
+    - [A Yacc Parser](#04c3eaf154277491767399176f9e1cab)
+    - [The Lexer](#9186d80d21b4c0a934c9a685bf9b3e78)
+    - [Arithmetic Expressions and Ambiguity](#c22bb56c30e059edbf2ee5f6a7177e48)
+    - [Variables and Typed Tokens](#f30b224b5f5b850b587e0d7b3e6ce825)
+    - [Symbol Tables](#743974c76894dcbff127f41b4dcaa71b)
+    - [Functions and Reserved Words](#8c439d47137d2b02b587a9cb733a993a)
+    - [Reserved Words in the Symbol Table](#3ffc9c6bc2ffcb3c6cd4ac1be2b51ae4)
+- [A Menu Generation Language](#7c126d1eae3bd63f0f8148348ee5a9ac)
+    - [Overview of the MGL](#d504e2653122de9057c354b89fbf789b)
+- [Parsing SQL](#696fd52bce92183aa43d6186ed737d33)
 
 ...menuend
 

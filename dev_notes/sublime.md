@@ -1,10 +1,10 @@
 ...menustart
 
- - [sublime](#348c880664f2e1458b899ced2a3518e6)
-     - [Install "Package Control"](#9b170543939c6cd7f1429de2594d607c)
-     - [Set Proxy](#16f3f1badf0bd7511a11113a33732008)
-     - [Use Package Control Install Plugins](#ba3b64da711156e4984775335117b21d)
-     - [Plugins](#bb38096ab39160dc20d44f3ea6b44507)
+- [sublime](#348c880664f2e1458b899ced2a3518e6)
+    - [Install "Package Control"](#9b170543939c6cd7f1429de2594d607c)
+    - [Set Proxy](#16f3f1badf0bd7511a11113a33732008)
+    - [Use Package Control Install Plugins](#ba3b64da711156e4984775335117b21d)
+    - [Plugins](#bb38096ab39160dc20d44f3ea6b44507)
 
 ...menuend
 

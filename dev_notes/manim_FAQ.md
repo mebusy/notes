@@ -1,8 +1,8 @@
 ...menustart
 
- - [Manim](#cbcd3fecff4c0ef0c063f8c41726d34a)
-     - [Installation](#7cd8fb6e31cc946c078d2740c76a9899)
-     - [FAQ](#1fe917b01f9a3f87fa2d7d3b7643fac1)
+- [Manim](#cbcd3fecff4c0ef0c063f8c41726d34a)
+    - [Installation](#7cd8fb6e31cc946c078d2740c76a9899)
+    - [FAQ](#1fe917b01f9a3f87fa2d7d3b7643fac1)
 
 ...menuend
 

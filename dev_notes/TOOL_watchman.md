@@ -1,15 +1,15 @@
 ...menustart
 
- - [facebook watchman](#b50e0466a03291f83abf9cda054a962f)
-     - [watch 某个目录](#d5725e1e142236069d95ca3b37eb719d)
-     - [删除 某个watched 目录](#151d08852b1d146ac7c81968d3d018b0)
-     - [查看 watch list](#71ddfb561fa5139ff5a2ab4f01e85d1b)
-     - [设置trigger](#0014c3e14eb578443ec0f3caf758c03c)
-     - [删除某个 trigger](#42f6410136119df6991d9591beb26ccb)
-     - [查看 trigger 列表](#a1f2ce9a6b0ca6c348836701115c6454)
-     - [关闭watchman 服务](#3947fc934eb080775ca62aa126dad96b)
-     - [查看 watchman 相关路径设置](#0565f8f66838fec3a5ad3909c08ff395)
-     - [一个简单的 监视 lua 文件改动的例子](#b99af44161fb3b1829c3e2067544f1b7)
+- [facebook watchman](#b50e0466a03291f83abf9cda054a962f)
+    - [watch 某个目录](#d5725e1e142236069d95ca3b37eb719d)
+    - [删除 某个watched 目录](#151d08852b1d146ac7c81968d3d018b0)
+    - [查看 watch list](#71ddfb561fa5139ff5a2ab4f01e85d1b)
+    - [设置trigger](#0014c3e14eb578443ec0f3caf758c03c)
+    - [删除某个 trigger](#42f6410136119df6991d9591beb26ccb)
+    - [查看 trigger 列表](#a1f2ce9a6b0ca6c348836701115c6454)
+    - [关闭watchman 服务](#3947fc934eb080775ca62aa126dad96b)
+    - [查看 watchman 相关路径设置](#0565f8f66838fec3a5ad3909c08ff395)
+    - [一个简单的 监视 lua 文件改动的例子](#b99af44161fb3b1829c3e2067544f1b7)
 
 ...menuend
 

@@ -1,11 +1,11 @@
 ...menustart
 
- - [OAM](#1d43a61d31daf8523c598d4679150bd5)
- - [DMA](#33fd5f6391f2f0cb4c91179d7f521949)
- - [Sprite zero hits](#a543bc0784c262c9da625159ca924ff3)
- - [Sprite overlapping](#93433b909a9b00016c6047bd84e2c65d)
- - [Internal operation](#5ccdf8c4b0352ef1435663d5f5a7a22a)
- - [Dynamic RAM decay](#72c46d82eb28c395ef46aca1c91d10aa)
+- [OAM](#1d43a61d31daf8523c598d4679150bd5)
+- [DMA](#33fd5f6391f2f0cb4c91179d7f521949)
+- [Sprite zero hits](#a543bc0784c262c9da625159ca924ff3)
+- [Sprite overlapping](#93433b909a9b00016c6047bd84e2c65d)
+- [Internal operation](#5ccdf8c4b0352ef1435663d5f5a7a22a)
+- [Dynamic RAM decay](#72c46d82eb28c395ef46aca1c91d10aa)
 
 ...menuend
 

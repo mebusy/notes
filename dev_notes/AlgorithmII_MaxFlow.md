@@ -1,14 +1,14 @@
 ...menustart
 
- - [6.4 MAXIMUM FLOW](#60804ce1e5e1b895af839b4ef2122a99)
- - [introduction](#8800e1c9b3e22c44ba59a34db3fe4841)
-     - [Mincut problem](#450389af6383415c1047574d48dd0785)
-         - [Mincut application](#94a80819ddc13f6dce6240f35c75622d)
-     - [Maxflow problem](#e5e9af9ecfee06cab309dca7d7623ddf)
-     - [Maxflow application](#cbb1e31675bbfff18dfed42b332e08d6)
-     - [Summary](#290612199861c31d1036b185b4e69b75)
- - [Ford-Fulkerson algorithm](#3c8155f8b956bc76bd3865785d9cc8c1)
-     - [Ford-Fulkerson algorithm](#3c8155f8b956bc76bd3865785d9cc8c1)
+- [6.4 MAXIMUM FLOW](#60804ce1e5e1b895af839b4ef2122a99)
+- [introduction](#8800e1c9b3e22c44ba59a34db3fe4841)
+    - [Mincut problem](#450389af6383415c1047574d48dd0785)
+        - [Mincut application](#94a80819ddc13f6dce6240f35c75622d)
+    - [Maxflow problem](#e5e9af9ecfee06cab309dca7d7623ddf)
+    - [Maxflow application](#cbb1e31675bbfff18dfed42b332e08d6)
+    - [Summary](#290612199861c31d1036b185b4e69b75)
+- [Ford-Fulkerson algorithm](#3c8155f8b956bc76bd3865785d9cc8c1)
+    - [Ford-Fulkerson algorithm](#3c8155f8b956bc76bd3865785d9cc8c1)
 
 ...menuend
 

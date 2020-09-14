@@ -1,13 +1,13 @@
 ...menustart
 
- - [让物品掉落符合正态分布，以及lua实现](#43f9b53ed2ee3d129d2574d2936f1b3a)
-     - [随机数](#5bfedcffafba0b2e774d1ec6d40004c0)
-     - [平均分布](#8f9d1fad3452cc29769c94d2d285f88d)
-         - [吗？](#16f7fa08dbbb1144afc6ef34b1dff2e2)
-     - [正态分布](#90a89776a42d6ee4f8c0dbe54dc941ea)
-     - [根据权重计算掉落](#efe278b43718253190742df876de40fc)
-     - [移植到lua](#c9128e4c3013af1bf48669003ac0efe6)
-     - [About python restore random seed ...](#ddd00f83fdb60d92ae0d96b22a3d8fe4)
+- [让物品掉落符合正态分布，以及lua实现](#43f9b53ed2ee3d129d2574d2936f1b3a)
+    - [随机数](#5bfedcffafba0b2e774d1ec6d40004c0)
+    - [平均分布](#8f9d1fad3452cc29769c94d2d285f88d)
+        - [吗？](#16f7fa08dbbb1144afc6ef34b1dff2e2)
+    - [正态分布](#90a89776a42d6ee4f8c0dbe54dc941ea)
+    - [根据权重计算掉落](#efe278b43718253190742df876de40fc)
+    - [移植到lua](#c9128e4c3013af1bf48669003ac0efe6)
+    - [About python restore random seed ...](#ddd00f83fdb60d92ae0d96b22a3d8fe4)
 
 ...menuend
 

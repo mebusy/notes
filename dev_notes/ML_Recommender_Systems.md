@@ -1,17 +1,17 @@
 ...menustart
 
- - [Recommender Systems](#bd1e9577d90cd9b99bbc584f4899cdd3)
-     - [Predicting Movie Ratings](#ae4850a11bf72fcf96312dbdaa01416a)
-         - [Problem Formulation](#d3ed97478e5bb62df6a73642fb3eb2cf)
-             - [Example: Predicting movie ratings.](#91256a34c3c416ed111c1c1f0f6d0cf8)
-         - [Content Based Recommendations](#a71ae4758962a9d66c5eed0209ee7790)
-     - [Collaborative Filtering 协同过滤](#1d0676de81840f76265b22da2bd66cfe)
-         - [Optimization algorithm](#89642905e18066000c83d4fadf9e16d6)
-     - [Collaborative Filtering Algorithm](#bda473b95d57bd8ddf09a8e81b15dd0c)
-     - [Low Rank Matrix Factorization](#f97e45631aaf46ad6a70583cf84aeacd)
-         - [Vectorization](#ccc5742e475a0775e47cf832d54606d2)
-             - [Finding related movies](#2c5b941c4e8f1f592ca82323d7a0ed07)
-         - [Implementational Detail: Mean Normalization](#4ea68a58b5d62dbfb35eec3f95eb7494)
+- [Recommender Systems](#bd1e9577d90cd9b99bbc584f4899cdd3)
+    - [Predicting Movie Ratings](#ae4850a11bf72fcf96312dbdaa01416a)
+        - [Problem Formulation](#d3ed97478e5bb62df6a73642fb3eb2cf)
+            - [Example: Predicting movie ratings.](#91256a34c3c416ed111c1c1f0f6d0cf8)
+        - [Content Based Recommendations](#a71ae4758962a9d66c5eed0209ee7790)
+    - [Collaborative Filtering 协同过滤](#1d0676de81840f76265b22da2bd66cfe)
+        - [Optimization algorithm](#89642905e18066000c83d4fadf9e16d6)
+    - [Collaborative Filtering Algorithm](#bda473b95d57bd8ddf09a8e81b15dd0c)
+    - [Low Rank Matrix Factorization](#f97e45631aaf46ad6a70583cf84aeacd)
+        - [Vectorization](#ccc5742e475a0775e47cf832d54606d2)
+            - [Finding related movies](#2c5b941c4e8f1f592ca82323d7a0ed07)
+        - [Implementational Detail: Mean Normalization](#4ea68a58b5d62dbfb35eec3f95eb7494)
 
 ...menuend
 

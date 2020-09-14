@@ -1,6 +1,6 @@
 ...menustart
 
- - [Time.timeScale](#052b29689e3fddb3f8de79d80f5c356f)
+- [Time.timeScale](#052b29689e3fddb3f8de79d80f5c356f)
 
 ...menuend
 

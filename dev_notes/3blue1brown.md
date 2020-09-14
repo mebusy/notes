@@ -1,17 +1,17 @@
 ...menustart
 
- - [Essence of linear algebra](#ab7dcbdd05408bb8c50281f539119f94)
-     - [3 Linear transformations and matrices](#ebf4ed4e5dbdf709f6e2a501e1c5cbce)
-     - [4. Matrix multiplication as composition](#9e3659318b7054360844875560006980)
-     - [5. The determinant](#0a05f70d4501925ef20156f580f0b07d)
-     - [6. Inverse matrices, column space and null space](#59e335b6a8c34e003dd810410fbf4e21)
-     - [footnote. Nonsquare matrices as transformations between dimensions](#8e0c7f26d1f694558baee5ef34fe55ef)
-     - [7. Dot products and duality](#04629028685253ba3138ddced808a1ce)
-     - [8. Cross products](#c21e7bf7d55df7edb7e2f6a780fbccd6)
-         - [Cross products in the light of linear transformations](#d6f39fcd3624e0b509757af47be8f6c5)
-     - [9. Change of basis](#a08ecda2d10894d7eda0f957ef9a7ce4)
-     - [10. Eigenvectors and eigenvalues](#d7095a9bb84406d5fb5ed382385c7d16)
-     - [11. Abstract vector spaces](#d0019094c72f442cca76cf5e53f49e73)
+- [Essence of linear algebra](#ab7dcbdd05408bb8c50281f539119f94)
+    - [3 Linear transformations and matrices](#ebf4ed4e5dbdf709f6e2a501e1c5cbce)
+    - [4. Matrix multiplication as composition](#9e3659318b7054360844875560006980)
+    - [5. The determinant](#0a05f70d4501925ef20156f580f0b07d)
+    - [6. Inverse matrices, column space and null space](#59e335b6a8c34e003dd810410fbf4e21)
+    - [footnote. Nonsquare matrices as transformations between dimensions](#8e0c7f26d1f694558baee5ef34fe55ef)
+    - [7. Dot products and duality](#04629028685253ba3138ddced808a1ce)
+    - [8. Cross products](#c21e7bf7d55df7edb7e2f6a780fbccd6)
+        - [Cross products in the light of linear transformations](#d6f39fcd3624e0b509757af47be8f6c5)
+    - [9. Change of basis](#a08ecda2d10894d7eda0f957ef9a7ce4)
+    - [10. Eigenvectors and eigenvalues](#d7095a9bb84406d5fb5ed382385c7d16)
+    - [11. Abstract vector spaces](#d0019094c72f442cca76cf5e53f49e73)
 
 ...menuend
 

@@ -1,14 +1,14 @@
 ...menustart
 
- - [3. 表达式](#680c8f0fc92b0567222e133e40862ee0)
-     - [3.2 命名规范](#10bc14b9093cc6c13287e1716eae2314)
-     - [3.3 赋值](#ee3f6f66dd85c01d0cc7a47853768819)
-     - [3.4 表达式](#012bcc3676254ba476bef97e1d28c099)
-         - [while](#901889f4f34f8ca18ac2f53d1fed346e)
-         - [del](#d2bcc286168bf8e040885c5cb7b6df13)
-         - [Generator](#92a8f0b9d28a89b480bd1d29f46f0484)
-         - [Slice](#d140d37ad98c12ccd8e1c432f548bcdb)
-         - [相等 , 操作符 "==" 可被重载](#1596d63c8ed6ef83ea2fee5f847baca9)
+- [3. 表达式](#680c8f0fc92b0567222e133e40862ee0)
+    - [3.2 命名规范](#10bc14b9093cc6c13287e1716eae2314)
+    - [3.3 赋值](#ee3f6f66dd85c01d0cc7a47853768819)
+    - [3.4 表达式](#012bcc3676254ba476bef97e1d28c099)
+        - [while](#901889f4f34f8ca18ac2f53d1fed346e)
+        - [del](#d2bcc286168bf8e040885c5cb7b6df13)
+        - [Generator](#92a8f0b9d28a89b480bd1d29f46f0484)
+        - [Slice](#d140d37ad98c12ccd8e1c432f548bcdb)
+        - [相等 , 操作符 "==" 可被重载](#1596d63c8ed6ef83ea2fee5f847baca9)
 
 ...menuend
 

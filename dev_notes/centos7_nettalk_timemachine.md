@@ -1,12 +1,12 @@
 ...menustart
 
- - [Netatalk for MacOSX time Machine , based on Centos7](#21d8e147d016e150b87f7bd971d215b0)
-     - [1. download source code](#e79b3a42a17c7a2bf329fe406b3ba7dd)
-     - [2. Compiling](#f8f8c77181ce68a21549bf3e9652fbee)
-     - [3. Config file](#fa4a6f76b1af639944343585a226d4a9)
-     - [4. Start netatalk](#906e14ef731f74fbe1f2f200c988f8ac)
-     - [5. Mount afp server in MacOSX](#1f73b26cf83fa01cf0b48b078ebad47e)
-     - [5. let MacOSX auto detect afp servies](#5a11d94ae8d2ba093c339a25659087ec)
+- [Netatalk for MacOSX time Machine , based on Centos7](#21d8e147d016e150b87f7bd971d215b0)
+    - [1. download source code](#e79b3a42a17c7a2bf329fe406b3ba7dd)
+    - [2. Compiling](#f8f8c77181ce68a21549bf3e9652fbee)
+    - [3. Config file](#fa4a6f76b1af639944343585a226d4a9)
+    - [4. Start netatalk](#906e14ef731f74fbe1f2f200c988f8ac)
+    - [5. Mount afp server in MacOSX](#1f73b26cf83fa01cf0b48b078ebad47e)
+    - [5. let MacOSX auto detect afp servies](#5a11d94ae8d2ba093c339a25659087ec)
 
 ...menuend
 

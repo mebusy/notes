@@ -1,7 +1,7 @@
 ...menustart
 
- - [XPath](#b6454d498635710a189184ea13beed1c)
- - [List of XPaths](#81f2b3a9d3694a74b785c9d556f5b180)
+- [XPath](#b6454d498635710a189184ea13beed1c)
+- [List of XPaths](#81f2b3a9d3694a74b785c9d556f5b180)
 
 ...menuend
 

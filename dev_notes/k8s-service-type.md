@@ -1,9 +1,9 @@
 ...menustart
 
- - [k8s service type](#28dbdd4dd2eec72ed1c8a0d094e0e734)
-     - [cluster only](#adeb8290f6fec56c6145dcbadf958d9a)
-     - [NodePort](#846878672192bac928450b192d70503b)
-     - [LoadBalancer](#a38b02b14f77fc6ad85cfb7df9d27b2e)
+- [k8s service type](#28dbdd4dd2eec72ed1c8a0d094e0e734)
+    - [cluster only](#adeb8290f6fec56c6145dcbadf958d9a)
+    - [NodePort](#846878672192bac928450b192d70503b)
+    - [LoadBalancer](#a38b02b14f77fc6ad85cfb7df9d27b2e)
 
 ...menuend
 

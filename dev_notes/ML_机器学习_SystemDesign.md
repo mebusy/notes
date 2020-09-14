@@ -1,16 +1,16 @@
 ...menustart
 
- - [ML System Design](#0f37957d7f1f5bd5de2a41d8bc2c1d8f)
-     - [Spam classification example](#fdd8a248b4498925961eda78672dd490)
-         - [model](#20f35e630daf44dbfa4c3f68f5399d8c)
-         - [how 2 spend your time to make it have low error](#c568e952b628d68476fe579f33a608ce)
-         - [Error Analysis](#7f9ed9579be60a55e194a10a58934676)
-             - [recommended approach](#0c43ce66674fab970f4745cc51f5a08d)
-     - [Handling Skewed Data](#3b463e85a6fc1768653d6f94ebeec03a)
-         - [Trading off precision and recall](#81b1eb7e22f3395b2655f25e9b8af855)
-         - [how 2 compare precision/recall numbers](#442c265b01ce99095ce64d12ca75ebc7)
-     - [Use Large Data set](#427c5bfcdec0cf350cba5548fb1e4ef1)
-         - [Large data rationale](#f0668a5d4294962318ee1112e57e8108)
+- [ML System Design](#0f37957d7f1f5bd5de2a41d8bc2c1d8f)
+    - [Spam classification example](#fdd8a248b4498925961eda78672dd490)
+        - [model](#20f35e630daf44dbfa4c3f68f5399d8c)
+        - [how 2 spend your time to make it have low error](#c568e952b628d68476fe579f33a608ce)
+        - [Error Analysis](#7f9ed9579be60a55e194a10a58934676)
+            - [recommended approach](#0c43ce66674fab970f4745cc51f5a08d)
+    - [Handling Skewed Data](#3b463e85a6fc1768653d6f94ebeec03a)
+        - [Trading off precision and recall](#81b1eb7e22f3395b2655f25e9b8af855)
+        - [how 2 compare precision/recall numbers](#442c265b01ce99095ce64d12ca75ebc7)
+    - [Use Large Data set](#427c5bfcdec0cf350cba5548fb1e4ef1)
+        - [Large data rationale](#f0668a5d4294962318ee1112e57e8108)
 
 ...menuend
 

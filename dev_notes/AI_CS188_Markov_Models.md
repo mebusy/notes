@@ -1,14 +1,14 @@
 ...menustart
 
- - [Markov Models](#d656a155bed68a7dec83cd56ff973bbc)
-     - [Markov Models](#d656a155bed68a7dec83cd56ff973bbc)
-         - [Joint Distribution of a Markov Model](#2549029b268b93144235df84effeb97d)
-         - [Chain Rule and Markov Models](#1584c0069936b81fd7e2d00d4dc7186a)
-         - [Implied Conditional Independencies](#5627b13e1756dc92c82a9b3998e04960)
-         - [Example Markov Chain : Weather](#a3e9d92d013e8bd559c093cbca5a7684)
-         - [Mini-Forward Algorithm](#cd0df25e7ecc8f5591d125ef5318fae1)
-         - [Stationary Distributions](#cff3dc4ffa629a6c5051471a4665a6c7)
-     - [Application of Stationary Distribution: Web Link Analysis](#485984b095c6416cdcac20510c1c3a37)
+- [Markov Models](#d656a155bed68a7dec83cd56ff973bbc)
+    - [Markov Models](#d656a155bed68a7dec83cd56ff973bbc)
+        - [Joint Distribution of a Markov Model](#2549029b268b93144235df84effeb97d)
+        - [Chain Rule and Markov Models](#1584c0069936b81fd7e2d00d4dc7186a)
+        - [Implied Conditional Independencies](#5627b13e1756dc92c82a9b3998e04960)
+        - [Example Markov Chain : Weather](#a3e9d92d013e8bd559c093cbca5a7684)
+        - [Mini-Forward Algorithm](#cd0df25e7ecc8f5591d125ef5318fae1)
+        - [Stationary Distributions](#cff3dc4ffa629a6c5051471a4665a6c7)
+    - [Application of Stationary Distribution: Web Link Analysis](#485984b095c6416cdcac20510c1c3a37)
 
 ...menuend
 

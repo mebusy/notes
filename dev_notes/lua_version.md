@@ -1,9 +1,9 @@
 ...menustart
 
- - [lua 版本变迁](#eaaef1c8653afdf3b15044436e32bcc6)
-     - [5.1](#43ff194f410f3e93a8680bef5ba51e50)
-     - [5.2](#d3fc3e6e42d7ebd71ce2e5001c965277)
-     - [5.3](#02e299f5ec237798b763a1565169ed12)
+- [lua 版本变迁](#eaaef1c8653afdf3b15044436e32bcc6)
+    - [5.1](#43ff194f410f3e93a8680bef5ba51e50)
+    - [5.2](#d3fc3e6e42d7ebd71ce2e5001c965277)
+    - [5.3](#02e299f5ec237798b763a1565169ed12)
 
 ...menuend
 

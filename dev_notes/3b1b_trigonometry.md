@@ -1,14 +1,14 @@
 ...menustart
 
- - [Trigonometry fundamentals | Lockdown math ep. 2](#c3747e4cefb7c22e073615c8f0adcf67)
-     - [cos²(x) and cos(2x)](#f481852fd11d79b842d8e4b334e679d4)
-     - [Trigonometry is about circles](#526cf70cd498e0861be1d3420a6827c3)
-     - [Pythagorean theorem](#d5f7765e3debfe3fa6b7dbf00ffc6f48)
-     - [cos(x/2)](#73ae02540a4c988c767f6a41ed5a99e5)
- - [Complex number fundamentals | Lockdown math ep. 3](#c3c421e1caa75d1788f81ac64d05fa47)
-     - [Complex number and Rotation](#85ba6f123827a8e936ea9597617f42f8)
-     - [Reverse operation](#c08d63b19ebc85a1011a5ef3f5925b47)
-     - [relation between cos²(x) and cos(2x)](#9e719b4aef3ac4ce4b37b41a28ffea30)
+- [Trigonometry fundamentals | Lockdown math ep. 2](#c3747e4cefb7c22e073615c8f0adcf67)
+    - [cos²(x) and cos(2x)](#f481852fd11d79b842d8e4b334e679d4)
+    - [Trigonometry is about circles](#526cf70cd498e0861be1d3420a6827c3)
+    - [Pythagorean theorem](#d5f7765e3debfe3fa6b7dbf00ffc6f48)
+    - [cos(x/2)](#73ae02540a4c988c767f6a41ed5a99e5)
+- [Complex number fundamentals | Lockdown math ep. 3](#c3c421e1caa75d1788f81ac64d05fa47)
+    - [Complex number and Rotation](#85ba6f123827a8e936ea9597617f42f8)
+    - [Reverse operation](#c08d63b19ebc85a1011a5ef3f5925b47)
+    - [relation between cos²(x) and cos(2x)](#9e719b4aef3ac4ce4b37b41a28ffea30)
 
 ...menuend
 

@@ -1,12 +1,12 @@
 ...menustart
 
- - [The Implementation of Lua 5.0](#4f290eb80083e0bb6b40f6d87c09981a)
-     - [2 An Overview of Lua’s Design and Implementation](#250c904a9716f8ab74be081555c63afa)
-     - [3 The Representation of Values](#ee226301a572d11c468ef9d94be631c3)
-     - [4 Tables](#44eab1c91179898399b5ef2c31ddb47e)
-     - [5 Functions and Closures](#572568b8164104249d51df24e8df1e39)
-     - [6 Threads and Coroutines](#76d231147e33d5baa99ed608ad62ec0c)
-     - [7 The Virtual Machine](#7c89324fd0ad9c0688759cd8b0df39f7)
+- [The Implementation of Lua 5.0](#4f290eb80083e0bb6b40f6d87c09981a)
+    - [2 An Overview of Lua’s Design and Implementation](#250c904a9716f8ab74be081555c63afa)
+    - [3 The Representation of Values](#ee226301a572d11c468ef9d94be631c3)
+    - [4 Tables](#44eab1c91179898399b5ef2c31ddb47e)
+    - [5 Functions and Closures](#572568b8164104249d51df24e8df1e39)
+    - [6 Threads and Coroutines](#76d231147e33d5baa99ed608ad62ec0c)
+    - [7 The Virtual Machine](#7c89324fd0ad9c0688759cd8b0df39f7)
 
 ...menuend
 

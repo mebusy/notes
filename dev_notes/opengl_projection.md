@@ -1,8 +1,8 @@
 ...menustart
 
- - [OpenGL projection matrix](#0f2b3b75b7ab66400a079d4462330c14)
-     - [Perspective](#a80420eef88d11f77532f1b9cb467fa3)
-     - [Frustum](#6662e570aa6f4c7113c69b4c240dab96)
+- [OpenGL projection matrix](#0f2b3b75b7ab66400a079d4462330c14)
+    - [Perspective](#a80420eef88d11f77532f1b9cb467fa3)
+    - [Frustum](#6662e570aa6f4c7113c69b4c240dab96)
 
 ...menuend
 

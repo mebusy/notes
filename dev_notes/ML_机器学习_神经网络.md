@@ -1,19 +1,19 @@
 ...menustart
 
- - [Neural Networks](#6b347be0e79381eeb5689396d9e59438)
-     - [模型表示](#633607159f2d767251de0a59ecc2224a)
-     - [Forward Propagation 前向传播](#48f5ee78299fe1abc75a1c1eeb092987)
-         - [向量化实现](#de4610a2676339b809bcaed3760a4a48)
- - [应用](#5b0520a9bf5e8d87c0b8c6e58766e184)
-     - [简单的例子: 逻辑与 AND](#2b48d38921d4b7e972ca7faa373d0636)
-     - [逻辑 异或非  XNOR:  y=1 if x1=x2](#34aa32d0c88265c3844ec8d69db1a63d)
- - [多类分类](#848a31140f2770dc2fc104ac797f04ec)
- - [手写字体识别](#d03641410b89f4c3f6575b23aacf837f)
-     - [可视化部分数字图像数据](#c80e4b414d969c7715f30ca965aa4555)
-     - [Regularized Logistic Regression 代价函数](#6e8021123ec11e3d46f617944b71e50a)
-     - [训练所有的分类器](#0a47f3339ef5651d457d8bd6c1151b6f)
-     - [多类分类流程](#640ee449b46c005a1be04723e22058d5)
-     - [使用3层神经网络 多类分类的示例](#8fbb40805ca0978fe75cafa4fc310549)
+- [Neural Networks](#6b347be0e79381eeb5689396d9e59438)
+    - [模型表示](#633607159f2d767251de0a59ecc2224a)
+    - [Forward Propagation 前向传播](#48f5ee78299fe1abc75a1c1eeb092987)
+        - [向量化实现](#de4610a2676339b809bcaed3760a4a48)
+- [应用](#5b0520a9bf5e8d87c0b8c6e58766e184)
+    - [简单的例子: 逻辑与 AND](#2b48d38921d4b7e972ca7faa373d0636)
+    - [逻辑 异或非  XNOR:  y=1 if x1=x2](#34aa32d0c88265c3844ec8d69db1a63d)
+- [多类分类](#848a31140f2770dc2fc104ac797f04ec)
+- [手写字体识别](#d03641410b89f4c3f6575b23aacf837f)
+    - [可视化部分数字图像数据](#c80e4b414d969c7715f30ca965aa4555)
+    - [Regularized Logistic Regression 代价函数](#6e8021123ec11e3d46f617944b71e50a)
+    - [训练所有的分类器](#0a47f3339ef5651d457d8bd6c1151b6f)
+    - [多类分类流程](#640ee449b46c005a1be04723e22058d5)
+    - [使用3层神经网络 多类分类的示例](#8fbb40805ca0978fe75cafa4fc310549)
 
 ...menuend
 

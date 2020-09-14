@@ -1,9 +1,9 @@
 ...menustart
 
- - [But what is the Fourier Transform? A visual introduction.](#cca32b346dc008638fca79b78f457504)
- - [什么是傅立叶变换](#b46cd00ce66cf213faa8731568d09839)
-     - [傅立叶级数](#f638045f1760eebb183feb59937fd197)
-     - [连续傅立叶变换](#87f152e061070fbeb8bf2d97f37a75e6)
+- [But what is the Fourier Transform? A visual introduction.](#cca32b346dc008638fca79b78f457504)
+- [什么是傅立叶变换](#b46cd00ce66cf213faa8731568d09839)
+    - [傅立叶级数](#f638045f1760eebb183feb59937fd197)
+    - [连续傅立叶变换](#87f152e061070fbeb8bf2d97f37a75e6)
 
 ...menuend
 

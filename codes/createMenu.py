@@ -87,7 +87,7 @@ def createMenu4MD( path ):
             escaped_title = escaped_title.replace( "]"  , "\\]")
             
             nIndent = sorted(all_title_level).index( curTitleActualLevel ) 
-            menu +=   ( '%s - [%s](#%s)' % ( '    ' * nIndent  , escaped_title ,  id  ) )  +  '\n'
+            menu +=   ( '%s- [%s](#%s)' % ( '    ' * nIndent  , escaped_title ,  id  ) )  +  '\n'
 
             body += '<h2 id="{}"></h2>\n\n\n'.format(  id )
             #print sharps, title

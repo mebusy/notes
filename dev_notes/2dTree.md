@@ -1,17 +1,17 @@
 ...menustart
 
- - [2D Tree](#24e1aa2b5be033c7c0dcaacc43b2b645)
-     - [Question](#a97ea56b0e00b2379736ae60869ff66a)
-     - [Grid implementation](#70d1a3fb79b2abed2736ccad8427984f)
-     - [Space-partitioning trees](#8e09009743774efb9c0a7dceb8721b2c)
-         - [Space-partitioning trees: applications](#922b62791cfd0af7fb819dd01bf4efb6)
-     - [2d tree construction](#d11bea9d4fe095af9f1ba36b85f24c9d)
-     - [2d tree implementation](#740b6be09ccd4dc6bd568fd9dd316aa9)
-     - [Range search in a 2d tree](#e2f4979395b274707c6c5a37cd7ed619)
-         - [Range search in a 2d tree analysis](#db369429b7d2c848b75e9d11b977c8d1)
-     - [Nearest neighbor search in a 2d tree](#d8734e1f289bf1794afcd19da08a8a6d)
-         - [Nearest neighbor search in a 2d tree analysis](#b5df2dde1669c08bc9b0f0b1a24fb85b)
-     - [实现时，需要注意的地方](#37fe8d31c8ddcdaf1d3002f5c46d9aa1)
+- [2D Tree](#24e1aa2b5be033c7c0dcaacc43b2b645)
+    - [Question](#a97ea56b0e00b2379736ae60869ff66a)
+    - [Grid implementation](#70d1a3fb79b2abed2736ccad8427984f)
+    - [Space-partitioning trees](#8e09009743774efb9c0a7dceb8721b2c)
+        - [Space-partitioning trees: applications](#922b62791cfd0af7fb819dd01bf4efb6)
+    - [2d tree construction](#d11bea9d4fe095af9f1ba36b85f24c9d)
+    - [2d tree implementation](#740b6be09ccd4dc6bd568fd9dd316aa9)
+    - [Range search in a 2d tree](#e2f4979395b274707c6c5a37cd7ed619)
+        - [Range search in a 2d tree analysis](#db369429b7d2c848b75e9d11b977c8d1)
+    - [Nearest neighbor search in a 2d tree](#d8734e1f289bf1794afcd19da08a8a6d)
+        - [Nearest neighbor search in a 2d tree analysis](#b5df2dde1669c08bc9b0f0b1a24fb85b)
+    - [实现时，需要注意的地方](#37fe8d31c8ddcdaf1d3002f5c46d9aa1)
 
 ...menuend
 

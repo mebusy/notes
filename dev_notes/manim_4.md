@@ -1,8 +1,8 @@
 ...menustart
 
- - [Manim 4 : Transformations](#edc8203f2749087e0abd5ed52ef70450)
-     - [4.1 Transformations](#812642eb847f98612b85d4b9a44d4067)
-         - [Change Property Animation](#33bb4f9e468d8b4f7b031952f45ecbf1)
+- [Manim 4 : Transformations](#edc8203f2749087e0abd5ed52ef70450)
+    - [4.1 Transformations](#812642eb847f98612b85d4b9a44d4067)
+        - [Change Property Animation](#33bb4f9e468d8b4f7b031952f45ecbf1)
 
 ...menuend
 

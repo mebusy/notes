@@ -1,12 +1,12 @@
 ...menustart
 
- - [AlphaGo Zero - How and Why it Works](#5d17082ba3158d9e17b986347bd1dce0)
-     - [Monte Carlo Tree Search](#d0a68bbde4a8ba76f8761cef0126247c)
-     - [Efficiency Through Expert Policies](#f83582d3cb7300b10a355aa52addac33)
-     - [Efficiency Through Value Approximation](#7416d7a47adba4e952a08ac91c59590d)
-     - [The Alpha Zero Neural Net](#0589a0b135b9ba95a92505e046e6b9c6)
-     - [Closing Comments](#f02a63d42734acc8484d26e8a55cb40c)
-     - [Summary](#290612199861c31d1036b185b4e69b75)
+- [AlphaGo Zero - How and Why it Works](#5d17082ba3158d9e17b986347bd1dce0)
+    - [Monte Carlo Tree Search](#d0a68bbde4a8ba76f8761cef0126247c)
+    - [Efficiency Through Expert Policies](#f83582d3cb7300b10a355aa52addac33)
+    - [Efficiency Through Value Approximation](#7416d7a47adba4e952a08ac91c59590d)
+    - [The Alpha Zero Neural Net](#0589a0b135b9ba95a92505e046e6b9c6)
+    - [Closing Comments](#f02a63d42734acc8484d26e8a55cb40c)
+    - [Summary](#290612199861c31d1036b185b4e69b75)
 
 ...menuend
 

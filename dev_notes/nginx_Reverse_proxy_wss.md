@@ -1,9 +1,9 @@
 ...menustart
 
- - [Nginx 转发 websocket secure](#7c5ba97417d6a694ecb09b70b7874040)
-     - [1 准备好 ca 证书](#a531b2993886b54ffe0570554f93f575)
-     - [2 配置 nginx.conf](#d1981f613ae630bff78fe54af74f9c17)
- - [Nginx配置proxy_pass转发的/路径问题](#f000b6463e33ea7670c393ee0b4927bf)
+- [Nginx 转发 websocket secure](#7c5ba97417d6a694ecb09b70b7874040)
+    - [1 准备好 ca 证书](#a531b2993886b54ffe0570554f93f575)
+    - [2 配置 nginx.conf](#d1981f613ae630bff78fe54af74f9c17)
+- [Nginx配置proxy_pass转发的/路径问题](#f000b6463e33ea7670c393ee0b4927bf)
 
 ...menuend
 

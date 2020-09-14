@@ -1,11 +1,11 @@
 ...menustart
 
- - [Statistical Analysis in Python and Project](#b12fdb9660ff87143953ef6b8062e5de)
-     - [Distributions](#8c88565cb04f9c9f8cb8c9cb9309d1f2)
-     - [More Distributions](#0e8df8dbf98a41a0f9b074ae6afbb382)
-         - [five different characteristics of distributions](#9b3ddce31a3cfefd07476ea6ac4e9049)
-     - [Book : Think Stats , free PDF provided](#87ef7fa2fecf7675715d8ca701fab666)
-     - [Hypothesis Testing in Python](#a776871f9fd445962837a4dc94b0eb74)
+- [Statistical Analysis in Python and Project](#b12fdb9660ff87143953ef6b8062e5de)
+    - [Distributions](#8c88565cb04f9c9f8cb8c9cb9309d1f2)
+    - [More Distributions](#0e8df8dbf98a41a0f9b074ae6afbb382)
+        - [five different characteristics of distributions](#9b3ddce31a3cfefd07476ea6ac4e9049)
+    - [Book : Think Stats , free PDF provided](#87ef7fa2fecf7675715d8ca701fab666)
+    - [Hypothesis Testing in Python](#a776871f9fd445962837a4dc94b0eb74)
 
 ...menuend
 

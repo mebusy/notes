@@ -1,15 +1,15 @@
 ...menustart
 
- - [Understanding virtual memory](#75f48a9c273a33756e8ae606aa2891d2)
- - [Detour - a process memory layout](#e9abc565ddad947fe9678102d8ed79a1)
- - [Understanding stack allocation](#c251fa342236f44cff491f1ffd0fe6a1)
- - [Understanding heap allocation](#f0169258f54b63cd198619a926b2314c)
- - [When to bother with a custom allocator](#4b711b08c39982986516ec24ff983c4e)
-     - [Slab allocator](#6754f3e939b64d06193d4e34bbecaadf)
-     - [Memory pools](#e384d5d460238cd7ea1f7bb14a0b095c)
-     - [Demand paging explained](#e5527fb5c0f5b2d80a8ec07bbc6102a9)
- - [Fun with 'flags' memory mapping](#c741aee852115b810755f9adb3b8dbe4)
-     - [Fixed memory mappings TODO...](#ce2d413f96c9e9adbb49e8441f8a4e60)
+- [Understanding virtual memory](#75f48a9c273a33756e8ae606aa2891d2)
+- [Detour - a process memory layout](#e9abc565ddad947fe9678102d8ed79a1)
+- [Understanding stack allocation](#c251fa342236f44cff491f1ffd0fe6a1)
+- [Understanding heap allocation](#f0169258f54b63cd198619a926b2314c)
+- [When to bother with a custom allocator](#4b711b08c39982986516ec24ff983c4e)
+    - [Slab allocator](#6754f3e939b64d06193d4e34bbecaadf)
+    - [Memory pools](#e384d5d460238cd7ea1f7bb14a0b095c)
+    - [Demand paging explained](#e5527fb5c0f5b2d80a8ec07bbc6102a9)
+- [Fun with 'flags' memory mapping](#c741aee852115b810755f9adb3b8dbe4)
+    - [Fixed memory mappings TODO...](#ce2d413f96c9e9adbb49e8441f8a4e60)
 
 ...menuend
 

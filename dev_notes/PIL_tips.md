@@ -1,7 +1,7 @@
 ...menustart
 
- - [Trim Image Whitespace](#044b8396fbd6ae9de3416b0b6ac5322a)
-     - [RGB 2 HLS](#e347469f9fd55367a3a83c5761256a2c)
+- [Trim Image Whitespace](#044b8396fbd6ae9de3416b0b6ac5322a)
+    - [RGB 2 HLS](#e347469f9fd55367a3a83c5761256a2c)
 
 ...menuend
 

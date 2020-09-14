@@ -1,6 +1,6 @@
 ...menustart
 
- - [create a test mysql in k8s with root/root](#595140279525e99ad195e33954e2f6cf)
+- [create a test mysql in k8s with root/root](#595140279525e99ad195e33954e2f6cf)
 
 ...menuend
 

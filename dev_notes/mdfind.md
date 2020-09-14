@@ -1,10 +1,10 @@
 ...menustart
 
- - [Basic Search](#c5c1098a067d3e19b900a3fdd6c6ad4d)
- - [Boolean Operators](#99447b31568f35c690284a7990af044b)
- - [Narrowing Search Results](#7ec8df286ac371d3900dc523ef9e9daa)
- - [Filtering mdfind's output](#bbc752d74b076db37c447790cb425249)
- - [Listing Metadata with mdls](#2f632d202624dbb9c7814dabbd14c77c)
+- [Basic Search](#c5c1098a067d3e19b900a3fdd6c6ad4d)
+- [Boolean Operators](#99447b31568f35c690284a7990af044b)
+- [Narrowing Search Results](#7ec8df286ac371d3900dc523ef9e9daa)
+- [Filtering mdfind's output](#bbc752d74b076db37c447790cb425249)
+- [Listing Metadata with mdls](#2f632d202624dbb9c7814dabbd14c77c)
 
 ...menuend
 

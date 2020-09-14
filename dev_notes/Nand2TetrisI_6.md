@@ -1,15 +1,15 @@
 ...menustart
 
- - [6 Assembler](#fce483626a497324f611e4f2b5280580)
-     - [6.1  Assembly Language and Assemblers](#675ad263deec8581de3c4355b16dc008)
-         - [Basic Asserbler Logic](#1697b74ff75c9037295ea0360dab438e)
-         - [Symbols](#5214a8a633c296d1d9d504fc54556692)
-     - [6.2 The Hack Assembly Language](#a3705a0beeda458fbe09f9670a1240e9)
-     - [6.3 The Assembly Proces -- Handling Instructions](#c399c1815d9e255c57e6c274579b8a20)
-         - [Translating A-instructions](#a4915c54182d3d2de090f589e46eb63f)
-         - [Translating C-instructions](#1d4a9403e40681b2681e88aee8685845)
-     - [6.4: The Assembly Process - Handling Symbols](#ff03d198aff223f51c6fe6743fd2ff49)
-     - [6.6: Project 6 Overview: Programming Option](#4c88a50b09faa4df288744256a85ae83)
+- [6 Assembler](#fce483626a497324f611e4f2b5280580)
+    - [6.1  Assembly Language and Assemblers](#675ad263deec8581de3c4355b16dc008)
+        - [Basic Asserbler Logic](#1697b74ff75c9037295ea0360dab438e)
+        - [Symbols](#5214a8a633c296d1d9d504fc54556692)
+    - [6.2 The Hack Assembly Language](#a3705a0beeda458fbe09f9670a1240e9)
+    - [6.3 The Assembly Proces -- Handling Instructions](#c399c1815d9e255c57e6c274579b8a20)
+        - [Translating A-instructions](#a4915c54182d3d2de090f589e46eb63f)
+        - [Translating C-instructions](#1d4a9403e40681b2681e88aee8685845)
+    - [6.4: The Assembly Process - Handling Symbols](#ff03d198aff223f51c6fe6743fd2ff49)
+    - [6.6: Project 6 Overview: Programming Option](#4c88a50b09faa4df288744256a85ae83)
 
 ...menuend
 

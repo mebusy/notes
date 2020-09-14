@@ -1,6 +1,6 @@
 ...menustart
 
- - [2D Closest Pair Algorithm](#257e1d9294fecbcaba498a89b62ab52a)
+- [2D Closest Pair Algorithm](#257e1d9294fecbcaba498a89b62ab52a)
 
 ...menuend
 

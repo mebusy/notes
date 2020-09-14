@@ -1,7 +1,7 @@
 ...menustart
 
- - [swift tips](#3acaa7c4a789484d951ddabfacd81ccd)
-     - [swift4 gcd](#1199cc9f00bed626fcf3b39d762743a0)
+- [swift tips](#3acaa7c4a789484d951ddabfacd81ccd)
+    - [swift4 gcd](#1199cc9f00bed626fcf3b39d762743a0)
 
 ...menuend
 

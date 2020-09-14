@@ -1,17 +1,17 @@
 ...menustart
 
- - [并行计算key concept](#e9baed1ff669cdf45540a3cc4a489e1d)
-     - [why thread block?](#7013df2804f996276490d1bd5ed46b62)
-     - [Control Divergence](#e371125d3bb809b1dff55732564b5247)
-     - [Tiled Parallel Algorithms：](#b48c04522007f86979cc8d0ab4bfa014)
-     - [Convolution](#fa0f0ae43fdca46d1d68255409ec0b89)
-     - [Reduction](#9e834f13e35e4edf64863ab414a6217a)
-     - [Scan](#22efdbe132eabc102306bd7a334fb434)
-     - [Histogramming](#0f39b900b08ff634a8f210cf9ea18fa2)
-         - [Atomic Operations](#eaa1709ae37b41b0f052cd5eae6a14b4)
-         - [Privatization technique](#64d108ae7d98c064d5d748811072d5de)
-         - [DMA transfers](#98d55f70bc1bc9116f3127e60600d3ac)
-         - [Task Parallelism](#002e6af863fe6857b7152c49678d364f)
+- [并行计算key concept](#e9baed1ff669cdf45540a3cc4a489e1d)
+    - [why thread block?](#7013df2804f996276490d1bd5ed46b62)
+    - [Control Divergence](#e371125d3bb809b1dff55732564b5247)
+    - [Tiled Parallel Algorithms：](#b48c04522007f86979cc8d0ab4bfa014)
+    - [Convolution](#fa0f0ae43fdca46d1d68255409ec0b89)
+    - [Reduction](#9e834f13e35e4edf64863ab414a6217a)
+    - [Scan](#22efdbe132eabc102306bd7a334fb434)
+    - [Histogramming](#0f39b900b08ff634a8f210cf9ea18fa2)
+        - [Atomic Operations](#eaa1709ae37b41b0f052cd5eae6a14b4)
+        - [Privatization technique](#64d108ae7d98c064d5d748811072d5de)
+        - [DMA transfers](#98d55f70bc1bc9116f3127e60600d3ac)
+        - [Task Parallelism](#002e6af863fe6857b7152c49678d364f)
 
 ...menuend
 

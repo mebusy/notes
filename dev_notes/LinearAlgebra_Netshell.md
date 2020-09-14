@@ -1,6 +1,6 @@
 ...menustart
 
- - [linear Algebra in a Nutshell](#5bad3f86a8e3adc99ff4947ad97b0703)
+- [linear Algebra in a Nutshell](#5bad3f86a8e3adc99ff4947ad97b0703)
 
 ...menuend
 

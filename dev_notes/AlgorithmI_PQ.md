@@ -1,17 +1,17 @@
 ...menustart
 
- - [2.4 PRIORITY QUEUES](#31a8f3f664a49f0116e7d7ceacaff56c)
-     - [binary heaps](#01f70acef6efe0e1e07b6c8847ae493a)
-         - [Complete binary tree](#45c2a6499668ae8a669f5f812b56379a)
-         - [Binary heap representations](#05a360d5d6f9939aabfd6bd00823d80e)
-         - [Binary heap properties](#2e582e415db1ab1e6e72b8278b9385e1)
-         - [Promotion in a heap](#8bff03ac1b55987683317d94044219d1)
-         - [Insertion in a heap](#cb0565d93960f3556f5f0ca7c24c3134)
-         - [Demotion in a heap](#32a8207179f9f552bbec38561312becf)
-         - [Delete the maximum in a heap](#34f42d75083165489f2d1288aa203637)
-         - [Priority queues implementation cost summary](#dee2139d14dc9b4129086c422806e8a4)
-         - [Binary heap considerations](#08fdfb23883b137987adc5a563f835b0)
-     - [event-driven simulation](#2b3a9baf85c09205eff605615163f824)
+- [2.4 PRIORITY QUEUES](#31a8f3f664a49f0116e7d7ceacaff56c)
+    - [binary heaps](#01f70acef6efe0e1e07b6c8847ae493a)
+        - [Complete binary tree](#45c2a6499668ae8a669f5f812b56379a)
+        - [Binary heap representations](#05a360d5d6f9939aabfd6bd00823d80e)
+        - [Binary heap properties](#2e582e415db1ab1e6e72b8278b9385e1)
+        - [Promotion in a heap](#8bff03ac1b55987683317d94044219d1)
+        - [Insertion in a heap](#cb0565d93960f3556f5f0ca7c24c3134)
+        - [Demotion in a heap](#32a8207179f9f552bbec38561312becf)
+        - [Delete the maximum in a heap](#34f42d75083165489f2d1288aa203637)
+        - [Priority queues implementation cost summary](#dee2139d14dc9b4129086c422806e8a4)
+        - [Binary heap considerations](#08fdfb23883b137987adc5a563f835b0)
+    - [event-driven simulation](#2b3a9baf85c09205eff605615163f824)
 
 ...menuend
 

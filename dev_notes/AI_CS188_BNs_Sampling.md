@@ -1,19 +1,20 @@
 ...menustart
 
- - [Approximate inference: Sampling](#cc9a4c958f31f481f18fcc2449a18506)
-     - [Sampling](#1d07814d12178c958e4233501cb0bdc7)
-     - [Sampling in Bayes’ Nets](#7bdab2b4b6b4f6a48cbf1e07f48c7f94)
-     - [Prior Sampling](#d9850ac369194d66ab390de368f1cf63)
-         - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
-     - [Rejection Sampling](#da3112458f911630996b5661ccd81e9d)
-         - [Sampling Example](#c6947b6b4431fade42a12cf65b3c9a80)
-     - [Likelihood Weighting](#6e0d79ed12bd0076ebad0fc27629611e)
-         - [Example Likelihood Weighting](#3eb57101576ca6e2a3251b14ff38ce8f)
-     - [Likelihood Weighting Cont.](#6d927b96f874f88bd5461de8ac4b040a)
-     - [Gibbs Sampling](#16169430c0295688db141ebd3163baf5)
-         - [Gibbs Sampling Example: P( S | +r)](#a4d4a785b477b26309b7ec181f443a28)
-         - [Efficient Resampling of One Variable](#5fb1b8f1b2e4f8b4d7772cae296c4642)
-         - [Further Reading on Gibbs Sampling](#e71302c1ea74db4751ea7bc9282430c5)
+- [Approximate inference: Sampling](#cc9a4c958f31f481f18fcc2449a18506)
+    - [Sampling](#1d07814d12178c958e4233501cb0bdc7)
+    - [Sampling in Bayes’ Nets](#7bdab2b4b6b4f6a48cbf1e07f48c7f94)
+    - [Prior Sampling](#d9850ac369194d66ab390de368f1cf63)
+        - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
+    - [Rejection Sampling](#da3112458f911630996b5661ccd81e9d)
+        - [Sampling Example](#c6947b6b4431fade42a12cf65b3c9a80)
+    - [Likelihood Weighting](#6e0d79ed12bd0076ebad0fc27629611e)
+        - [Example Likelihood Weighting](#3eb57101576ca6e2a3251b14ff38ce8f)
+    - [Likelihood Weighting Cont.](#6d927b96f874f88bd5461de8ac4b040a)
+    - [Gibbs Sampling](#16169430c0295688db141ebd3163baf5)
+        - [Gibbs Sampling Example: P( S | +r)](#a4d4a785b477b26309b7ec181f443a28)
+        - [Efficient Resampling of One Variable](#5fb1b8f1b2e4f8b4d7772cae296c4642)
+        - [Further Reading on Gibbs Sampling](#e71302c1ea74db4751ea7bc9282430c5)
+    - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
 
 ...menuend
 
@@ -440,6 +441,9 @@ This is just giving you the very basic idea of how Gibbs Sampling works. And you
 - Gibbs sampling is a special case of more general methods called Markov chain Monte Carlo (MCMC) methods 
     - Metropolis-Hastings is one of the more famous MCMC methods (in fact, Gibbs sampling is a special case of Metropolis-Hastings) 
 - You may read about Monte Carlo methods – they’re just sampling
+
+
+<h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
 
 ## Example

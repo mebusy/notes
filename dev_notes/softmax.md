@@ -1,9 +1,9 @@
 ...menustart
 
- - [Softmax](#31d953b9d49a6b4378f45097047976d0)
-     - [Practical issues: Numeric stability](#40eb18ef5b1bf8f66fcdf418e2cef2cd)
-     - [Softmax & Sigmoid](#72db2e1699f3b38e8823c7cd58ff5821)
-     - [Derivative](#70ae6e285cc14c8486e3cf5bec39d1fd)
+- [Softmax](#31d953b9d49a6b4378f45097047976d0)
+    - [Practical issues: Numeric stability](#40eb18ef5b1bf8f66fcdf418e2cef2cd)
+    - [Softmax & Sigmoid](#72db2e1699f3b38e8823c7cd58ff5821)
+    - [Derivative](#70ae6e285cc14c8486e3cf5bec39d1fd)
 
 ...menuend
 

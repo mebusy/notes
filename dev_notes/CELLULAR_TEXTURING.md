@@ -1,11 +1,11 @@
 ...menustart
 
- - [CELLULAR TEXTURING](#eb512174cb9eab61d18d2b32ac10d757)
-     - [THE NEW BASES](#d69d9e02dafa3af0d24ce1601f70a74f)
-     - [IMPLEMENTATION STRATEGY](#281ce9a8a2a4d6b847c885aeadb20d87)
-         - [Dicing Space](#4edf7eb38d47853aa36e3402b93cf234)
-         - [Neighbor Testing](#fa5e753bb6b23904853dbf0639e6201a)
-         - [The Subtle Population Table](#46504218a9420f71f7daaed533bed27a)
+- [CELLULAR TEXTURING](#eb512174cb9eab61d18d2b32ac10d757)
+    - [THE NEW BASES](#d69d9e02dafa3af0d24ce1601f70a74f)
+    - [IMPLEMENTATION STRATEGY](#281ce9a8a2a4d6b847c885aeadb20d87)
+        - [Dicing Space](#4edf7eb38d47853aa36e3402b93cf234)
+        - [Neighbor Testing](#fa5e753bb6b23904853dbf0639e6201a)
+        - [The Subtle Population Table](#46504218a9420f71f7daaed533bed27a)
 
 ...menuend
 

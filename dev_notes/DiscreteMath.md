@@ -1,13 +1,13 @@
 ...menustart
 
- - [Discrete Mathematics](#d2bcb78d5ac194c66f434e9fbcb3565e)
- - [Chapter 1 Foundations of Logic](#1528d69d906941f195dbd4052b705454)
-     - [1.1 Proposition Logic](#57af49f5272c485d0fbc802a05d36c22)
-         - [The Implication Operator →](#8e71db7c81436b5c108940a9a5712cb2)
-         - [Biconditional](#cba739368677d1686f6fbbfc3ef64e88)
-     - [1.2 Proposition Equivalences](#aa8d3b3a207fde866ac608d5c61a3f3f)
-     - [1.3 Predicates and Quantifiers](#964abe8e7ce3c7be1d9658b6dd67544f)
-     - [1.4 Nested Quantifiers](#a38483049b36c18171570ccafddb3158)
+- [Discrete Mathematics](#d2bcb78d5ac194c66f434e9fbcb3565e)
+- [Chapter 1 Foundations of Logic](#1528d69d906941f195dbd4052b705454)
+    - [1.1 Proposition Logic](#57af49f5272c485d0fbc802a05d36c22)
+        - [The Implication Operator →](#8e71db7c81436b5c108940a9a5712cb2)
+        - [Biconditional](#cba739368677d1686f6fbbfc3ef64e88)
+    - [1.2 Proposition Equivalences](#aa8d3b3a207fde866ac608d5c61a3f3f)
+    - [1.3 Predicates and Quantifiers](#964abe8e7ce3c7be1d9658b6dd67544f)
+    - [1.4 Nested Quantifiers](#a38483049b36c18171570ccafddb3158)
 
 ...menuend
 

@@ -1,17 +1,17 @@
 ...menustart
 
- - [Chapter 1 Introduction](#ae6212de98066cfe7c4f284fb7bb0795)
-     - [1.2 The Structure of a Compiler](#63ae37c8857aa96df730388676adc2ca)
-         - [1.2.1 Lexical Analysis](#57d98a0f3632f4cb940598f6256ecdfc)
-         - [1.2.2 Syntax Analysis](#fb2142e810f2e9a15030f6d78c437bae)
-         - [1.2.3 Semantic Analysis](#7789dd8d5a08e6298027a099409c1443)
-         - [1.2.4 Intermediate Code Generation](#2a40a73e86de0c4274e59ac45cef1f7b)
-         - [1.2.5 Code Optimization](#5b9a8770c747a97b075151171355ecb8)
-         - [1.2.6 Code Generation](#f867ceceefb3b47936eac11f9a2e08cd)
-         - [1.2.7 Symbol-Table Management](#f0b723a9df83685761f99355086abeda)
-         - [1.2.8 The Grouping of Phases into Passes](#0cceed88f71885842f77f164b25c71cc)
-         - [1.2.9 Compiler-Construction Tools](#57b05cd7416d7b9ca9b6f8a630f258c3)
-     - [1 .3 The Evolution of Programming Languages](#b47c0652562ded5280a48bb68a3745ac)
+- [Chapter 1 Introduction](#ae6212de98066cfe7c4f284fb7bb0795)
+    - [1.2 The Structure of a Compiler](#63ae37c8857aa96df730388676adc2ca)
+        - [1.2.1 Lexical Analysis](#57d98a0f3632f4cb940598f6256ecdfc)
+        - [1.2.2 Syntax Analysis](#fb2142e810f2e9a15030f6d78c437bae)
+        - [1.2.3 Semantic Analysis](#7789dd8d5a08e6298027a099409c1443)
+        - [1.2.4 Intermediate Code Generation](#2a40a73e86de0c4274e59ac45cef1f7b)
+        - [1.2.5 Code Optimization](#5b9a8770c747a97b075151171355ecb8)
+        - [1.2.6 Code Generation](#f867ceceefb3b47936eac11f9a2e08cd)
+        - [1.2.7 Symbol-Table Management](#f0b723a9df83685761f99355086abeda)
+        - [1.2.8 The Grouping of Phases into Passes](#0cceed88f71885842f77f164b25c71cc)
+        - [1.2.9 Compiler-Construction Tools](#57b05cd7416d7b9ca9b6f8a630f258c3)
+    - [1 .3 The Evolution of Programming Languages](#b47c0652562ded5280a48bb68a3745ac)
 
 ...menuend
 

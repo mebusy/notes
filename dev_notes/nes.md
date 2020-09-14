@@ -1,17 +1,17 @@
 ...menustart
 
- - [NES](#8d93d9819942f8e443fdde4fc2d67bc2)
- - [Architecture](#2d242bb36ec91b32005f9296ff03a912)
- - [CPU / PPU address space](#2be3d76538a593e1735d07715f79b68d)
- - [6502 Assembly](#b240c56be56568f36b4c5fdc76556e61)
- - [6502 Opcodes](#4d0e908847f66f494010fd565b1f6c4c)
- - [Assembly Starter](#0b0a01d40c7bdf214e285f59726626bf)
- - [Sprite](#51f2b7b14433aa22c67d1f4fc18943cd)
- - [Palettes](#5b9ee9aa42c46ecdbaae966ca84cc8fa)
- - [Background](#a9ded1e5ce5d75814730bb4caaf49419)
- - [Controller Input](#47b8dd4685c135e432339d9c07f3502b)
- - [Playing Sounds](#ed9cf94969b1915b1fb44110a9fba599)
- - [NES ROM Image](#1ccd04b836dc65aa6c64598136974e04)
+- [NES](#8d93d9819942f8e443fdde4fc2d67bc2)
+- [Architecture](#2d242bb36ec91b32005f9296ff03a912)
+- [CPU / PPU address space](#2be3d76538a593e1735d07715f79b68d)
+- [6502 Assembly](#b240c56be56568f36b4c5fdc76556e61)
+- [6502 Opcodes](#4d0e908847f66f494010fd565b1f6c4c)
+- [Assembly Starter](#0b0a01d40c7bdf214e285f59726626bf)
+- [Sprite](#51f2b7b14433aa22c67d1f4fc18943cd)
+- [Palettes](#5b9ee9aa42c46ecdbaae966ca84cc8fa)
+- [Background](#a9ded1e5ce5d75814730bb4caaf49419)
+- [Controller Input](#47b8dd4685c135e432339d9c07f3502b)
+- [Playing Sounds](#ed9cf94969b1915b1fb44110a9fba599)
+- [NES ROM Image](#1ccd04b836dc65aa6c64598136974e04)
 
 ...menuend
 

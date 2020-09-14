@@ -1,19 +1,19 @@
 ...menustart
 
- - [2.6. 使用 Numpy and Scipy 处理图像数据](#b19a2f80d04c56b985a7e69f63d04915)
-     - [2.6.1. 打开并写到图像文件](#b28007ec78c21d3a75965fe86a94680b)
- - [2.6.2. 显示图片](#9c086b0de474c7ee0e6c4994c23475a3)
-     - [2.6.3. 基本操作](#6162bb0c1053d06bb0eab255d3d82a53)
-         - [2.6.3.1. 统计信息](#9b81935266796da309310d0f565c1bca)
-         - [2.6.3.2. 集合变换 Geometrical transformations](#9a60835f1916a50185c8794cc1c2b06c)
-     - [2.6.4. Image filtering 图像滤波](#b8bed379bc03325e3f86fb26c21253bd)
-         - [2.6.4.1. Blurring/smoothing 模糊/平滑](#891cbaca4b10e63615d5fd4702c2db94)
-     - [2.6.4.2. Sharpening 锐化](#4b0aa8cd2942d9bdd095df1a0ff7ff99)
-     - [2.6.4.3. Denoising 去燥](#f8962c34d7ddbf921cc3fa7d6bf96cb4)
-     - [2.6.5. Feature extraction 特征提取](#0fd36be3567167c262fae183a580aa7c)
-         - [2.6.5.1. Edge detection 边缘检测](#ea0f17b8c9b0298df7e75d7f009a9323)
-         - [2.6.5.2. Segmentation 分割](#ff7de7467377d111993a153fc8d65657)
-     - [2.6.6. Measuring objects properties 测量对象属性](#bda5dcbbc5b8462fcde1a64fcc8ffc35)
+- [2.6. 使用 Numpy and Scipy 处理图像数据](#b19a2f80d04c56b985a7e69f63d04915)
+    - [2.6.1. 打开并写到图像文件](#b28007ec78c21d3a75965fe86a94680b)
+- [2.6.2. 显示图片](#9c086b0de474c7ee0e6c4994c23475a3)
+    - [2.6.3. 基本操作](#6162bb0c1053d06bb0eab255d3d82a53)
+        - [2.6.3.1. 统计信息](#9b81935266796da309310d0f565c1bca)
+        - [2.6.3.2. 集合变换 Geometrical transformations](#9a60835f1916a50185c8794cc1c2b06c)
+    - [2.6.4. Image filtering 图像滤波](#b8bed379bc03325e3f86fb26c21253bd)
+        - [2.6.4.1. Blurring/smoothing 模糊/平滑](#891cbaca4b10e63615d5fd4702c2db94)
+    - [2.6.4.2. Sharpening 锐化](#4b0aa8cd2942d9bdd095df1a0ff7ff99)
+    - [2.6.4.3. Denoising 去燥](#f8962c34d7ddbf921cc3fa7d6bf96cb4)
+    - [2.6.5. Feature extraction 特征提取](#0fd36be3567167c262fae183a580aa7c)
+        - [2.6.5.1. Edge detection 边缘检测](#ea0f17b8c9b0298df7e75d7f009a9323)
+        - [2.6.5.2. Segmentation 分割](#ff7de7467377d111993a153fc8d65657)
+    - [2.6.6. Measuring objects properties 测量对象属性](#bda5dcbbc5b8462fcde1a64fcc8ffc35)
 
 ...menuend
 

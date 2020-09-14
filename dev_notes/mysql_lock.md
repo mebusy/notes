@@ -1,13 +1,13 @@
 ...menustart
 
- - [MySQL 锁](#8dc99461a1c4b9110a35ea875b10b70d)
-     - [锁的类型](#dfa8b5aa96cb4af6e6c28cf50b2a3c43)
-     - [锁的粒度](#cbc301535e8455434b2bbd29a183e55d)
-     - [死锁](#60461afa5afbcb0457a420056c14a6c9)
-     - [乐观锁/悲观锁](#685a6699c143f3090ecdabcc3618a2c5)
-         - [乐观锁](#bf97e7abc7c23d4f37d6da39acc011d8)
-         - [悲观锁](#891f975efa0ad8ed8582636e0bd98e41)
-     - [锁升级](#f631c0a2d27c606f697b1e5987b74732)
+- [MySQL 锁](#8dc99461a1c4b9110a35ea875b10b70d)
+    - [锁的类型](#dfa8b5aa96cb4af6e6c28cf50b2a3c43)
+    - [锁的粒度](#cbc301535e8455434b2bbd29a183e55d)
+    - [死锁](#60461afa5afbcb0457a420056c14a6c9)
+    - [乐观锁/悲观锁](#685a6699c143f3090ecdabcc3618a2c5)
+        - [乐观锁](#bf97e7abc7c23d4f37d6da39acc011d8)
+        - [悲观锁](#891f975efa0ad8ed8582636e0bd98e41)
+    - [锁升级](#f631c0a2d27c606f697b1e5987b74732)
 
 ...menuend
 

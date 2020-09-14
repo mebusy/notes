@@ -1,17 +1,17 @@
 ...menustart
 
- - [Unity Plugin](#2962917f23f1d3e579023b279d5a53e5)
-     - [Plugin Inspector](#f4af3b85dca0c4507ca55336825a6a50)
-     - [Managed Plugins](#334c3c4f311455f3445d04c4b67a2dbd)
-         - [Creating a DLL](#615030f8cecae4a4ce7e6e4680b9e71f)
-         - [Using the DLL](#ccb1d2c22ab430836b0ac9c8fd75cef7)
-         - [Step by Step Guide for MonoDevelop and Visual Studio](#a0c7997f40bf2289c6f6f3600ad4c990)
-     - [Native Plugins](#7724ec709771ed12ee9db9d817ec7ec4)
-     - [Low-level Native Plugin Interface](#45f4836b184bb61e6897d414e2adaa3a)
-         - [Interface Registry](#21e58543396d6ee441246b0e6483dba9)
-         - [Access to the Graphics Device](#e7dedd682cf6b74d514fab90df8ed549)
-         - [Plugin Callbacks on the Rendering Thread](#2df08455093d0b5c92d03c8e2109a55f)
-     - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
+- [Unity Plugin](#2962917f23f1d3e579023b279d5a53e5)
+    - [Plugin Inspector](#f4af3b85dca0c4507ca55336825a6a50)
+    - [Managed Plugins](#334c3c4f311455f3445d04c4b67a2dbd)
+        - [Creating a DLL](#615030f8cecae4a4ce7e6e4680b9e71f)
+        - [Using the DLL](#ccb1d2c22ab430836b0ac9c8fd75cef7)
+        - [Step by Step Guide for MonoDevelop and Visual Studio](#a0c7997f40bf2289c6f6f3600ad4c990)
+    - [Native Plugins](#7724ec709771ed12ee9db9d817ec7ec4)
+    - [Low-level Native Plugin Interface](#45f4836b184bb61e6897d414e2adaa3a)
+        - [Interface Registry](#21e58543396d6ee441246b0e6483dba9)
+        - [Access to the Graphics Device](#e7dedd682cf6b74d514fab90df8ed549)
+        - [Plugin Callbacks on the Rendering Thread](#2df08455093d0b5c92d03c8e2109a55f)
+    - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
 
 ...menuend
 

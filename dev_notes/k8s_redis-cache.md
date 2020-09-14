@@ -1,6 +1,6 @@
 ...menustart
 
- - [Deploy a Redis cache to k8s](#ec3e4afb789f2148ebf5986909183d13)
+- [Deploy a Redis cache to k8s](#ec3e4afb789f2148ebf5986909183d13)
 
 ...menuend
 

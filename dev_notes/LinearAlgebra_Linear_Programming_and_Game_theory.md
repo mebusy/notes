@@ -1,9 +1,9 @@
 ...menustart
 
- - [8 linear Prograffiffliog and Game Theory](#adb23269688b0aa7f8855b8987514b14)
-     - [8.1  LINEAR INEQUALITIES](#4d62bef35d1beae693322a0f9c87ffb7)
-         - [The Feasible Set and the Cost Function](#8775939e2cfb40d13172e60558b51fea)
-         - [Slack Variables](#690c20def841af809622d7d42099c17a)
+- [8 linear Prograffiffliog and Game Theory](#adb23269688b0aa7f8855b8987514b14)
+    - [8.1  LINEAR INEQUALITIES](#4d62bef35d1beae693322a0f9c87ffb7)
+        - [The Feasible Set and the Cost Function](#8775939e2cfb40d13172e60558b51fea)
+        - [Slack Variables](#690c20def841af809622d7d42099c17a)
 
 ...menuend
 

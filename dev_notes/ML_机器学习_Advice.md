@@ -1,16 +1,16 @@
 ...menustart
 
- - [Advice for Applying Machine Learning](#68d3cfbbc89d95b35d0d45b599f6cf74)
-     - [Evaluating a Learning Algorithm](#3ec179b6c0e3e96ee6b0629d4c3b92ac)
-         - [Evaluating a hypothesis](#b9af6d27e0fe127a70b5f0104eb1aeb2)
-         - [training/testing procedure](#8a9c44e950f9cc7463bb7b9ac3d17180)
-         - [Model Selection and Train/Validation/Test Sets](#2f0617787b3e1c5f3b6b37a52cbd7ed1)
-     - [Bias vs. Variance](#a52f9a77971bc5c163e9040d5142a50a)
-         - [Diagnosing Bias vs. Variance](#713d2bd98e92803db5e42aa3e39895e1)
-         - [regularization in high-order polynomial](#322ae1bc590fce3811ec460541460d63)
-         - [choosing the regularization parameter λ](#6ec33b8ff0734363f1d6bf897c1709cb)
-         - [Learning Curve](#1d88cab8749545f0c0c6efe16d64c780)
-         - [What should you try next ?](#bea09adf1a4b8e8ccb2a6f3cd2d04e84)
+- [Advice for Applying Machine Learning](#68d3cfbbc89d95b35d0d45b599f6cf74)
+    - [Evaluating a Learning Algorithm](#3ec179b6c0e3e96ee6b0629d4c3b92ac)
+        - [Evaluating a hypothesis](#b9af6d27e0fe127a70b5f0104eb1aeb2)
+        - [training/testing procedure](#8a9c44e950f9cc7463bb7b9ac3d17180)
+        - [Model Selection and Train/Validation/Test Sets](#2f0617787b3e1c5f3b6b37a52cbd7ed1)
+    - [Bias vs. Variance](#a52f9a77971bc5c163e9040d5142a50a)
+        - [Diagnosing Bias vs. Variance](#713d2bd98e92803db5e42aa3e39895e1)
+        - [regularization in high-order polynomial](#322ae1bc590fce3811ec460541460d63)
+        - [choosing the regularization parameter λ](#6ec33b8ff0734363f1d6bf897c1709cb)
+        - [Learning Curve](#1d88cab8749545f0c0c6efe16d64c780)
+        - [What should you try next ?](#bea09adf1a4b8e8ccb2a6f3cd2d04e84)
 
 ...menuend
 

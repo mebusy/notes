@@ -1,6 +1,6 @@
 ...menustart
 
- - [ngx_lua 中 使用Lua库注意事项](#d0e7b64b0f812084fef447a088ff7709)
+- [ngx_lua 中 使用Lua库注意事项](#d0e7b64b0f812084fef447a088ff7709)
 
 ...menuend
 

@@ -1,12 +1,12 @@
 ...menustart
 
- - [oop for python](#cad1f4790e85f2b08e65e3c6fd4ce14b)
-     - [Singleton](#6ff5f73c8b5ebd311406568c8ef50bfd)
-     - [disable dynamically define new fields to a class](#0b45bfca581dfd81b42b816b63798e78)
-     - [disable dynamically del a field from a class](#d697d7eeb396fa20ed1c5109befb2a67)
-     - [access like a dict](#45a042564f32c7d808e10eb2c157142b)
-     - [assignment lick c struct](#b6a463819ebef130b1d9e14cc626eba5)
-     - [readonly class field](#ff1e065fdd70b15412dc1f6a216d1405)
+- [oop for python](#cad1f4790e85f2b08e65e3c6fd4ce14b)
+    - [Singleton](#6ff5f73c8b5ebd311406568c8ef50bfd)
+    - [disable dynamically define new fields to a class](#0b45bfca581dfd81b42b816b63798e78)
+    - [disable dynamically del a field from a class](#d697d7eeb396fa20ed1c5109befb2a67)
+    - [access like a dict](#45a042564f32c7d808e10eb2c157142b)
+    - [assignment lick c struct](#b6a463819ebef130b1d9e14cc626eba5)
+    - [readonly class field](#ff1e065fdd70b15412dc1f6a216d1405)
 
 ...menuend
 

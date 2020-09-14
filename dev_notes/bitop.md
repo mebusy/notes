@@ -1,9 +1,9 @@
 ...menustart
 
- - [位运算](#c04f8667013a3097bf12e98e424a915b)
-     - [二进制](#6168fb08fe64663a502a132c5589b73d)
-         - [flip bits](#bf94eee92531fcf0a63c55eddb6a558c)
-     - [XOR](#97675eb3f268048604dc5155511a2a4d)
+- [位运算](#c04f8667013a3097bf12e98e424a915b)
+    - [二进制](#6168fb08fe64663a502a132c5589b73d)
+        - [flip bits](#bf94eee92531fcf0a63c55eddb6a558c)
+    - [XOR](#97675eb3f268048604dc5155511a2a4d)
 
 ...menuend
 

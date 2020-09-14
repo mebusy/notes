@@ -1,16 +1,16 @@
 ...menustart
 
- - [Reference](#63d5049791d9d79d86e9a108b0a999ca)
-     - [When should we use reference over pointer and vice versa ?](#15fd66c7db63e7108a1fd09bbd1d2cde)
- - [friend function](#1444dfb74703eaade9660d234e949cf6)
- - [difference between plain Enum and Enum class in C++ ?](#a0ab3cec5d48671dbfb8ec94af9abce6)
- - [How to prevent someone from taking address of your object?](#b481cf231c83433850a9093fcad42a7b)
- - [How to prevent someone from inheriting from your class ?](#bf5f87d9fd968d2a044309009ce2139b)
- - [How to return mulitple values ?](#5e91e30f56f2071d31406f011e3e7181)
- - [How to assign object to int ?](#74fed14e181e19aa7cda3c0fc0a41b08)
- - [Why use `override` keyword ?](#f9e9c42f6b9d3238ad453faa75e19196)
- - [Why copy constructor take argument as reference ?](#87759128b7fe62b12b7a07d2947f909a)
- - [Function Hiding in C++](#a78a7dd142e4347a3c846d15ef09f39c)
+- [Reference](#63d5049791d9d79d86e9a108b0a999ca)
+    - [When should we use reference over pointer and vice versa ?](#15fd66c7db63e7108a1fd09bbd1d2cde)
+- [friend function](#1444dfb74703eaade9660d234e949cf6)
+- [difference between plain Enum and Enum class in C++ ?](#a0ab3cec5d48671dbfb8ec94af9abce6)
+- [How to prevent someone from taking address of your object?](#b481cf231c83433850a9093fcad42a7b)
+- [How to prevent someone from inheriting from your class ?](#bf5f87d9fd968d2a044309009ce2139b)
+- [How to return mulitple values ?](#5e91e30f56f2071d31406f011e3e7181)
+- [How to assign object to int ?](#74fed14e181e19aa7cda3c0fc0a41b08)
+- [Why use `override` keyword ?](#f9e9c42f6b9d3238ad453faa75e19196)
+- [Why copy constructor take argument as reference ?](#87759128b7fe62b12b7a07d2947f909a)
+- [Function Hiding in C++](#a78a7dd142e4347a3c846d15ef09f39c)
 
 ...menuend
 

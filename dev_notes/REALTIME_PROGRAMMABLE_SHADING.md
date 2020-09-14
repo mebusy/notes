@@ -1,17 +1,17 @@
 ...menustart
 
- - [REAL-TIME PROGRAMMABLE SHADING](#d28a0486786f74d1b8b87e4f0f4ba0d8)
-     - [What Makes Real-Time Shading Different?](#ac3b68d5bc77b0af11c49582c731effc)
-     - [What You Need to Learn Elsewhere](#bceaf8901c4bf8e690d273b9ca06e873)
-     - [Object Space Shading versus Screen Space Shading](#194e16940099edf5d5feb9cf49cd534c)
-     - [Parallelism](#374424d359c920b4d388c77660224bd7)
-     - [Hardware Data Types](#08dfcbeeca887b168a095c5853221419)
-     - [Resource Limits](#febe674abc9aa524c322edbbd8ec668c)
-     - [Memory Bandwidth and Performance Tuning](#eb87a55c812665df93a3f47793d84492)
-     - [SIMPLE EXAMPLES](#67141f3d173330f740c944f069952a6f)
-         - [Vertex and Fragment Code in the Stanford Shading System](#b2f1e90c968407082785bde9f97eec3d)
-         - [Two Versions of the Heidrich/Banks Anisotropic Shader](#28e05f431b21ce4215b2a2fa4f7dd5a1)
-         - [TODO , stop @ pdf page 143 of 722](#16eaf98c8673903dab1be6ce345c07c9)
+- [REAL-TIME PROGRAMMABLE SHADING](#d28a0486786f74d1b8b87e4f0f4ba0d8)
+    - [What Makes Real-Time Shading Different?](#ac3b68d5bc77b0af11c49582c731effc)
+    - [What You Need to Learn Elsewhere](#bceaf8901c4bf8e690d273b9ca06e873)
+    - [Object Space Shading versus Screen Space Shading](#194e16940099edf5d5feb9cf49cd534c)
+    - [Parallelism](#374424d359c920b4d388c77660224bd7)
+    - [Hardware Data Types](#08dfcbeeca887b168a095c5853221419)
+    - [Resource Limits](#febe674abc9aa524c322edbbd8ec668c)
+    - [Memory Bandwidth and Performance Tuning](#eb87a55c812665df93a3f47793d84492)
+    - [SIMPLE EXAMPLES](#67141f3d173330f740c944f069952a6f)
+        - [Vertex and Fragment Code in the Stanford Shading System](#b2f1e90c968407082785bde9f97eec3d)
+        - [Two Versions of the Heidrich/Banks Anisotropic Shader](#28e05f431b21ce4215b2a2fa4f7dd5a1)
+        - [TODO , stop @ pdf page 143 of 722](#16eaf98c8673903dab1be6ce345c07c9)
 
 ...menuend
 

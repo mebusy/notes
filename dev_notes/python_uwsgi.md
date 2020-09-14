@@ -1,9 +1,9 @@
 ...menustart
 
- - [python uwsgi ,  for CentOS7](#4772e5ef02f48618e5862db7f1c68160)
-     - [install](#19ad89bc3e3c9d7ef68b89523eff1987)
-     - [run uwsgi](#06ac6355a1466c1b747b9165bfd48c34)
-     - [使用脚本](#12bb593fd1f45ba7bbe017d3fe06d51d)
+- [python uwsgi ,  for CentOS7](#4772e5ef02f48618e5862db7f1c68160)
+    - [install](#19ad89bc3e3c9d7ef68b89523eff1987)
+    - [run uwsgi](#06ac6355a1466c1b747b9165bfd48c34)
+    - [使用脚本](#12bb593fd1f45ba7bbe017d3fe06d51d)
 
 ...menuend
 

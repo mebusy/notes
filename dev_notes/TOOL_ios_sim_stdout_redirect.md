@@ -1,6 +1,6 @@
 ...menustart
 
- - [ios simulator stdout stderr redirect](#808223f71402e744750e77a2865d1277)
+- [ios simulator stdout stderr redirect](#808223f71402e744750e77a2865d1277)
 
 ...menuend
 

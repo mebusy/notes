@@ -1,17 +1,17 @@
 ...menustart
 
- - [7 Serving and receiving assets and forms](#4c4f94964de9b380c09ef02655cd111c)
-     - [7.1 Serving static content](#3a682f610038c898479871d57c7b1805)
-         - [TECHNIQUE 39 Serving subdirectories](#3c5523c5e1abe28dfc6de26a395bb6bf)
-     - [7.2 Handling form posts](#35df994f14b36fba0672e7b4cff94f9f)
-         - [7.2.1 Introduction to form requests](#cc10622fdbb0431fa2f773bfd734aaed)
-             - [TECHNIQUE 44 Accessing multiple values for a form field](#d899152b3a89a982e960535b41d046e8)
-         - [7.2.2 Working with files and multipart submissions](#8ce582ef69928a1ebfc5d6ba03a524b0)
-             - [TECHNIQUE 45 Uploading a single file](#8c979490bd1b37dcea666c8f9b4467a9)
-             - [TECHNIQUE 46 Uploading multiple files](#a0208958d6a483dda58216795b0b4afe)
-             - [TECHNIQUE 47 Verify uploaded file is allowed type](#d2fb3ec944fda34debbc612113660bd6)
-         - [7.2.3 Working with raw multipart data](#226c031cb6a7636b20c3491377c5d1eb)
-             - [TECHNIQUE 48 Incrementally saving a file](#2aa8a6363809849fc0475ef29b6405c4)
+- [7 Serving and receiving assets and forms](#4c4f94964de9b380c09ef02655cd111c)
+    - [7.1 Serving static content](#3a682f610038c898479871d57c7b1805)
+        - [TECHNIQUE 39 Serving subdirectories](#3c5523c5e1abe28dfc6de26a395bb6bf)
+    - [7.2 Handling form posts](#35df994f14b36fba0672e7b4cff94f9f)
+        - [7.2.1 Introduction to form requests](#cc10622fdbb0431fa2f773bfd734aaed)
+            - [TECHNIQUE 44 Accessing multiple values for a form field](#d899152b3a89a982e960535b41d046e8)
+        - [7.2.2 Working with files and multipart submissions](#8ce582ef69928a1ebfc5d6ba03a524b0)
+            - [TECHNIQUE 45 Uploading a single file](#8c979490bd1b37dcea666c8f9b4467a9)
+            - [TECHNIQUE 46 Uploading multiple files](#a0208958d6a483dda58216795b0b4afe)
+            - [TECHNIQUE 47 Verify uploaded file is allowed type](#d2fb3ec944fda34debbc612113660bd6)
+        - [7.2.3 Working with raw multipart data](#226c031cb6a7636b20c3491377c5d1eb)
+            - [TECHNIQUE 48 Incrementally saving a file](#2aa8a6363809849fc0475ef29b6405c4)
 
 ...menuend
 

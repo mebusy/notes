@@ -1,15 +1,15 @@
 ...menustart
 
- - [Determinants](#44858f4401928ded6e165da37ea948a5)
-     - [4.1 INTRODUCTION](#1cf6e82fd421ceda204af00707567518)
-     - [4.2 PROPERTIES OF THE DETERMINANT](#14ed27a135e747655e17c482f074d582)
-     - [4.3 FORMULAS FOR THE DETERMINANT](#f1652258e62063b8ce99a27a30fdb173)
-         - [Expansion of detA in Cofactors](#bc04ae4273a1f4807770b5acb33f990b)
-     - [4.4 APPLICATIONS OF DETERMINANTS](#2279c075e64bc81f35bb0751f9b2ea86)
-         - [1. Computation of A⁻¹](#b105d89fa880f05d88cef65dec54a920)
-         - [2. The Solution of Ax = b.](#ababd14c9c564481b2f47b6d96e29b0a)
-         - [3. The Volume of a Box.](#fd7c0e5423c4bd8de8470b61d40e01e1)
-         - [4. A Formula for the Pivots.](#6427117566de9225a3e174e57ee98198)
+- [Determinants](#44858f4401928ded6e165da37ea948a5)
+    - [4.1 INTRODUCTION](#1cf6e82fd421ceda204af00707567518)
+    - [4.2 PROPERTIES OF THE DETERMINANT](#14ed27a135e747655e17c482f074d582)
+    - [4.3 FORMULAS FOR THE DETERMINANT](#f1652258e62063b8ce99a27a30fdb173)
+        - [Expansion of detA in Cofactors](#bc04ae4273a1f4807770b5acb33f990b)
+    - [4.4 APPLICATIONS OF DETERMINANTS](#2279c075e64bc81f35bb0751f9b2ea86)
+        - [1. Computation of A⁻¹](#b105d89fa880f05d88cef65dec54a920)
+        - [2. The Solution of Ax = b.](#ababd14c9c564481b2f47b6d96e29b0a)
+        - [3. The Volume of a Box.](#fd7c0e5423c4bd8de8470b61d40e01e1)
+        - [4. A Formula for the Pivots.](#6427117566de9225a3e174e57ee98198)
 
 ...menuend
 

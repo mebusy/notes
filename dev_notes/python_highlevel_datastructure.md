@@ -1,17 +1,17 @@
 ...menustart
 
- - [High Level Datastructure In Python](#7fd56e59b5fba7ede4bdfe85d4ca3e80)
- - [1 Collections](#255caa31493a976f6d48a798880b037d)
-     - [1.1 Counter()](#fdfff165187c00eddf4de38373dae439)
-     - [1.2 Deque](#6a7d8a9f9964930eeb69ad32b992c975)
-     - [1.3 Defaultdict](#79c19eeedbe88e9f7463649482c2d96c)
- - [2 Heapq](#accc7ea4c2626a83ee808ea519a956a1)
-     - [Priority Queue](#5441b4dd11737699e41b0533a5419022)
- - [3 Bisect](#bdcdfbb57bb9cc2e3ffde8fe201d6778)
-     - [Searching Sorted Lists](#2f868162e8d150124929f479e23cbf03)
-     - [Other Examples](#08b87bb6671fe3c2c92f77e4f561e7fb)
- - [4 Copy](#487df11c262ee217b21843a7dfe5d472)
- - [5 Pprint](#ec77e0a5fa7be31d129ddd57e635c4bc)
+- [High Level Datastructure In Python](#7fd56e59b5fba7ede4bdfe85d4ca3e80)
+- [1 Collections](#255caa31493a976f6d48a798880b037d)
+    - [1.1 Counter()](#fdfff165187c00eddf4de38373dae439)
+    - [1.2 Deque](#6a7d8a9f9964930eeb69ad32b992c975)
+    - [1.3 Defaultdict](#79c19eeedbe88e9f7463649482c2d96c)
+- [2 Heapq](#accc7ea4c2626a83ee808ea519a956a1)
+    - [Priority Queue](#5441b4dd11737699e41b0533a5419022)
+- [3 Bisect](#bdcdfbb57bb9cc2e3ffde8fe201d6778)
+    - [Searching Sorted Lists](#2f868162e8d150124929f479e23cbf03)
+    - [Other Examples](#08b87bb6671fe3c2c92f77e4f561e7fb)
+- [4 Copy](#487df11c262ee217b21843a7dfe5d472)
+- [5 Pprint](#ec77e0a5fa7be31d129ddd57e635c4bc)
 
 ...menuend
 

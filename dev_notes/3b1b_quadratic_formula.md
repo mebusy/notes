@@ -1,8 +1,8 @@
 ...menustart
 
- - [The simpler quadratic formula | Lockdown math ep.1](#07ce9c8defcca1a8cf2f97556ea53127)
-     - [Mental Math Tricks](#c236129fe028b8f8a5fafd195a9426c5)
-     - [Quadratic Formula](#2e0557fe7fcb444a6bdded79c3f233ed)
+- [The simpler quadratic formula | Lockdown math ep.1](#07ce9c8defcca1a8cf2f97556ea53127)
+    - [Mental Math Tricks](#c236129fe028b8f8a5fafd195a9426c5)
+    - [Quadratic Formula](#2e0557fe7fcb444a6bdded79c3f233ed)
 
 ...menuend
 

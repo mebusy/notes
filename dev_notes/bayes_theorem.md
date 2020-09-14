@@ -1,9 +1,9 @@
 ...menustart
 
- - [Bayes' theorem](#876a7616557a158b737cb2c8ac29802e)
-     - [Steve's story](#15050a66ef13d9d540df239e4d1e37d2)
-     - [Heart of Bayes' theorem](#385197024bf25ae23f2f4cca723d3c62)
-     - [When to use Bayes's rule](#02747bb5d2c4f6da1c5a0b6bde6c33a1)
+- [Bayes' theorem](#876a7616557a158b737cb2c8ac29802e)
+    - [Steve's story](#15050a66ef13d9d540df239e4d1e37d2)
+    - [Heart of Bayes' theorem](#385197024bf25ae23f2f4cca723d3c62)
+    - [When to use Bayes's rule](#02747bb5d2c4f6da1c5a0b6bde6c33a1)
 
 ...menuend
 

@@ -1,12 +1,12 @@
 ...menustart
 
- - [homebrew](#c922a641cc5dc03a497e540996d12198)
-     - [Reset Homebrew Fomular](#a655cf4302df90e17053b41af734deb9)
-     - [Manually download brew package](#31cfdc0a967e58b7447b2e9b456d0f2f)
-     - [Homebrew 使用 清华索引](#387e3f4aa69662696cce11325cecc502)
-         - [brew update 索引镜像](#2b4d5ebf708a8726acef8ace48915e9f)
-         - [brew binary 安装包  镜像](#eacd77990df567221ae4eec63f170ef4)
-         - [初次安装 homebrew 出问题...](#ecd6d4ba468480e8557dcc476348dc6b)
+- [homebrew](#c922a641cc5dc03a497e540996d12198)
+    - [Reset Homebrew Fomular](#a655cf4302df90e17053b41af734deb9)
+    - [Manually download brew package](#31cfdc0a967e58b7447b2e9b456d0f2f)
+    - [Homebrew 使用 清华索引](#387e3f4aa69662696cce11325cecc502)
+        - [brew update 索引镜像](#2b4d5ebf708a8726acef8ace48915e9f)
+        - [brew binary 安装包  镜像](#eacd77990df567221ae4eec63f170ef4)
+        - [初次安装 homebrew 出问题...](#ecd6d4ba468480e8557dcc476348dc6b)
 
 ...menuend
 

@@ -1,19 +1,19 @@
 ...menustart
 
- - [Decision Diagrams / Value of Perfect Information](#bcce11f51a8ba9f718e13496df69ff75)
-     - [Decision Networks](#4110b017c078c49b44248d46eddf6146)
-         - [Simple Example](#ecaa6de7751a679c6478caccd8dd7a12)
-         - [Ghostbusters Decision Network](#a457e316cc82b392c5e0160e69e95ab0)
-     - [Value of Information](#b2d66baefeea18631d1b722cc43aaba2)
-         - [VPI Example: Weather](#6b03d15ebadf245e2baef29c08855d20)
-     - [Value of Information Cont.](#260873a6e0aea26253ac70a3ed980cd0)
-     - [VPI Properties](#8d5bce627e9558ab88dbe1e4a4657365)
-     - [Quick VPI Questions](#910d92a2d65cc89a6ef483dd86990ade)
-     - [Value of Imperfect Information?](#d4bc3ccdbc840b465ba352eb224292e4)
-     - [VPI Question](#dd719415208cb58777d2b82621b8ad0b)
-     - [POMDPs](#c5d83905dcd5413dcd5f7fbc5f944126)
-         - [Example: Ghostbusters](#dfd2620b95a7eff322bbdc48f2efa51a)
-     - [More Generally](#2bc124c39197760014dd5558b073785b)
+- [Decision Diagrams / Value of Perfect Information](#bcce11f51a8ba9f718e13496df69ff75)
+    - [Decision Networks](#4110b017c078c49b44248d46eddf6146)
+        - [Simple Example](#ecaa6de7751a679c6478caccd8dd7a12)
+        - [Ghostbusters Decision Network](#a457e316cc82b392c5e0160e69e95ab0)
+    - [Value of Information](#b2d66baefeea18631d1b722cc43aaba2)
+        - [VPI Example: Weather](#6b03d15ebadf245e2baef29c08855d20)
+    - [Value of Information Cont.](#260873a6e0aea26253ac70a3ed980cd0)
+    - [VPI Properties](#8d5bce627e9558ab88dbe1e4a4657365)
+    - [Quick VPI Questions](#910d92a2d65cc89a6ef483dd86990ade)
+    - [Value of Imperfect Information?](#d4bc3ccdbc840b465ba352eb224292e4)
+    - [VPI Question](#dd719415208cb58777d2b82621b8ad0b)
+    - [POMDPs](#c5d83905dcd5413dcd5f7fbc5f944126)
+        - [Example: Ghostbusters](#dfd2620b95a7eff322bbdc48f2efa51a)
+    - [More Generally](#2bc124c39197760014dd5558b073785b)
 
 ...menuend
 

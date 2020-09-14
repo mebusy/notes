@@ -1,7 +1,7 @@
 ...menustart
 
- - [path finding](#940dbcc8bedbede96c767701b4b9e4d1)
- - [The World Generator](#306914f8c24cdc1289fef8a48fef588a)
+- [path finding](#940dbcc8bedbede96c767701b4b9e4d1)
+- [The World Generator](#306914f8c24cdc1289fef8a48fef588a)
 
 ...menuend
 

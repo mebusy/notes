@@ -1,12 +1,12 @@
 ...menustart
 
- - [Phonics Rules](#1655cffa40b51304803e39ee8b5de503)
-     - [1. Closed syllable](#77556b3cb3f4c7d3be14f34e4568e224)
-     - [2. Open syllable](#998d8b7fa953068bd5a52d955ddb11a9)
-     - [3. silent "e"](#d4f6c6fd9d452c0f6b7117223d8f3952)
-     - [4. vowel combination](#ba62558f2ca56236f21d5d3c44d8e82e)
-     - [5. consonant + "l" + "e"   子+le](#548e677117e1493a20d04b70647bf3a3)
-     - [6. R-controlled syllable](#759282e7f43770ffb1d471cd07029f82)
+- [Phonics Rules](#1655cffa40b51304803e39ee8b5de503)
+    - [1. Closed syllable](#77556b3cb3f4c7d3be14f34e4568e224)
+    - [2. Open syllable](#998d8b7fa953068bd5a52d955ddb11a9)
+    - [3. silent "e"](#d4f6c6fd9d452c0f6b7117223d8f3952)
+    - [4. vowel combination](#ba62558f2ca56236f21d5d3c44d8e82e)
+    - [5. consonant + "l" + "e"   子+le](#548e677117e1493a20d04b70647bf3a3)
+    - [6. R-controlled syllable](#759282e7f43770ffb1d471cd07029f82)
 
 ...menuend
 
