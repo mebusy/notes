@@ -203,8 +203,51 @@ Fancy Indexing in 2-D
         (2, 3)
         ```
         - it does have 1 downside which is if you're there are multiple maxima or multiple minima,  it'll only give you the coordinates of the first one that it encouters, that is why `where` kicks in.
-    - 
+    - Where
+        - 
+        ```python
+        >>> np.where( a.max(0) )
+        (array([0, 1, 2, 3]),)
+        >>> np.where( a.max(0) >= 10 )
+        (array([2, 3]),)
+        ```
+        - Coordinates are returned as a tuple of arrays, one for each axis
 
+## Memory
+
+```bash
+# in memory
+0 1 2 3 4 5 
+
+# python 2d array
+0 1 2
+3 4 5
+```
+
+- Data in memory is 1D, in python, data is multi-dimensional. So somehow we need some information to map between the data in memory to the multi-dimensional array in our program.
+    1. dtype: int64  (for example)
+    2. shape:  (2,3)
+    3. ndim: 2
+    4. data: pointer to the underlying memory
+    5. strides: (24,8)
+        - the number of bytes that numpy has to jump over to go from one element to the other along each dimension.
+        - to go from 0 to 3 in the original memory buffer it has to jump over 24 bytes. to jump from 0 to 1 it jumps 8 bytes.
+- a.T 
+    - shape: (3,2)
+    - strides: (8,24)
+- a[:, ::2]  first and last column
+    - shape: (2,2)
+    - striders: (24,16)
+- when you using fancy indexing, numpy give up, and is gonna create a new array.
+
+
+## Flattening Arrays
+
+1. flatten
+    - return a copy of the original data
+2. revel
+    - return a reference (or view) if possible(i.e. the memory is contiguous) 
+    - otherwise copy the original data
 
 
 
