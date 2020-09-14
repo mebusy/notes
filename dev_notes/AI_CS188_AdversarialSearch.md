@@ -72,7 +72,7 @@
 
 ## Types of Games
 
- - Axes
+- Axes
     - Deterministic or stochastic?
     - One, two, or more players?
     - Zero sum?
@@ -93,7 +93,7 @@ That's not going to work here because we don't control our opponent. So we can't
 
 ## Deterministic Games
 
- - Many possible formalizations, one is:
+- Many possible formalizations, one is:
     - States: S (start at s₀)
     - Players: P={1...N} (usually take turns)
         - Defines which player has the move in a state.
@@ -109,7 +109,7 @@ That's not going to work here because we don't control our opponent. So we can't
         - defines the final numeric value for a game that ends in terminal state ***s*** for a player ***p***
         - This tell us for an end-state how much it is worth to each of the players.
         - In chess, the outcome is a win, loss, or draw, with values +1, 0, or -1
- - Solution for a player is a **policy**: S → A
+- Solution for a player is a **policy**: S → A
     - the solution to a game like this is a policy which map states to actions.
 
 
@@ -119,7 +119,7 @@ That's not going to work here because we don't control our opponent. So we can't
 ## Zero-Sum Games
 
  Zero-Sum Games | General Games
- --- | --- 
+--- | --- 
  Agents have opposite utilities (values on outcomes) | Agents have independent utilities (values on outcomes)
  Lets us think of a single value that one maximizes and the other minimizes | Cooperation, indifference, competition, and more are all possible
  Adversarial, pure competition | More later on non-zero-sum games
@@ -166,7 +166,7 @@ well in this state I have a choice I can get 8 or I can get whatever is down bel
 
 In single-agent case, we choose maximum value.
 
- - Value of a state: The best achievable outcome (utility) from that state
+- Value of a state: The best achievable outcome (utility) from that state
     - ![](../imgs/CS188_advS_value_of_a_state.png)
 
 
@@ -215,13 +215,13 @@ Blue one moves first.
 
 The value of root will be one of { -1,1,0 }.
 
- - From the initial state, MAX has nine possible moves. 
- - Play alternates between MAX 's placing an `x` and MIN's placing an `o` until we reach leaf nodes corresponding to terminal states . 
- - The number on each leaf node indicates the utility value of the terminal state from the point of view of MAX: high values are assumed to be good for MAX and bad for MIN
- - For tic-tac-toe the game tree is relatively small—fewer than 9! = 362, 880 terminal nodes.
- - But for chess there are over 10⁴⁰ nodes, so the game tree is best thought of as a theoretical construct that we cannot realize in the physical world. 
- - But regardless of the size of the game tree, it is MAX's job to search for a good move. We use the term search tree for a tree that is superimposed on the full game tree, and examines enough nodes to allow a player to determine what move to make.
- - if both players play optimally, the value of root should will 0.
+- From the initial state, MAX has nine possible moves. 
+- Play alternates between MAX 's placing an `x` and MIN's placing an `o` until we reach leaf nodes corresponding to terminal states . 
+- The number on each leaf node indicates the utility value of the terminal state from the point of view of MAX: high values are assumed to be good for MAX and bad for MIN
+- For tic-tac-toe the game tree is relatively small—fewer than 9! = 362, 880 terminal nodes.
+- But for chess there are over 10⁴⁰ nodes, so the game tree is best thought of as a theoretical construct that we cannot realize in the physical world. 
+- But regardless of the size of the game tree, it is MAX's job to search for a good move. We use the term search tree for a tree that is superimposed on the full game tree, and examines enough nodes to allow a player to determine what move to make.
+- if both players play optimally, the value of root should will 0.
 
 
 
@@ -230,12 +230,12 @@ The value of root will be one of { -1,1,0 }.
 
 ## Adversarial Search (Minimax)
 
- - Deterministic, zero-sum games:
+- Deterministic, zero-sum games:
     - Tic-tac-toe, chess, checkers
     - One player maximizes result
     - The other minimizes result
 
- - Minimax search:
+- Minimax search:
     - A state-space search tree
     - Players alternate turns
     - Compute each node’s minimax value: the best achievable utility against a rational (optimal) adversary
@@ -254,7 +254,7 @@ def value(state):
     if the next agent is MIN: return min-value(state)
 ```
 
- - Minimax Implementation  
+- Minimax Implementation  
 
 ![](../imgs/CS188_advS_func_max_value.png)
 
@@ -274,13 +274,13 @@ def value(state):
 
 ## Minimax Efficiency
 
- - How efficient is minimax?
+- How efficient is minimax?
     - Just like (exhaustive) DFS.
         - traversing the entire tree, not skiping anything, not prioritizing anything 
         - just going successor by successor, going deeper, deeper, deeper before its coming back up.
     - Time: O(bᵐ)
     - Space: O(bm)
- - Pacma mple: For chess, b ≈35, m ≈100
+- Pacma mple: For chess, b ≈35, m ≈100
     - Exact solution is completely infeasible
     - But, do we need to explore the whole tree?
 
@@ -317,17 +317,17 @@ And so, if just periodically they were to make a mistake, it's worth to going th
 
 ## Resource Limits
 
- - Problem: In realistic games, cannot search to leaves!
- - Solution: Depth-limited search
+- Problem: In realistic games, cannot search to leaves!
+- Solution: Depth-limited search
     - Instead, search only to a limited depth in the tree
     - Replace terminal utilities with an evaluation function for non-terminal positions
- - Example:
+- Example:
     - Suppose we have 100 seconds, can explore 10K nodes / sec
     - So can check 1M nodes per move
     - α-β reaches about depth 8 – decent chess program
- - Guarantee of optimal play is ***gone***
- - More plies makes a BIG difference
- - Use iterative deepening for an anytime algorithm
+- Guarantee of optimal play is ***gone***
+- More plies makes a BIG difference
+- Use iterative deepening for an anytime algorithm
 
 ![](../imgs/cs188_advS_resource_limits.png)
 
@@ -356,9 +356,9 @@ So we need to replace the terminal utilities in the minimax algorithm with what'
 
 ## Depth Matters
 
- - Evaluation functions are always imperfect
- - The deeper in the tree the evaluation function is buried, the less the quality of the evaluation function matters
- - An important example of the tradeoff between complexity of features and complexity of computation
+- Evaluation functions are always imperfect
+- The deeper in the tree the evaluation function is buried, the less the quality of the evaluation function matters
+- An important example of the tradeoff between complexity of features and complexity of computation
 
 
 ![](../imgs/cs188_advS_depth_matters.png)
@@ -382,10 +382,10 @@ A function takes a non-terminal state and return some number,just like the heuri
 
 In this case we want that number to return the actual minimax value of that position. That is not going to happen. In practice what peaple do is they try to come up with some function which on average is positive when the minimax value is positive , is negative when the minimax value is negative. 
 
- - Evaluation functions score non-terminals in depth-limited search
+- Evaluation functions score non-terminals in depth-limited search
     - ![](../imgs/cs188_advS_eval_func_chess.png)
- - Ideal function: returns the actual minimax value of the position
- - In practice: typically weighted linear sum of features:
+- Ideal function: returns the actual minimax value of the position
+- In practice: typically weighted linear sum of features:
     - Eval(s)=w₁f₁(s) + w₂f₂(s) + ... + w<sub>n</sub>f<sub>n</sub>(s)
     - eg. f₁(s)=(num white queens – num black queens), etc.
 
@@ -414,7 +414,7 @@ The problem is if we take the right branch , look at that state ( right,  2nd le
 so we trash.  
 
 
- - A danger of replanning agents!
+- A danger of replanning agents!
     - He knows his score will go up by eating the dot now (west, east)
     - He knows his score will go up just as much by eating the dot later (east, west)
     - There are no point-scoring opportunities after eating the dots (within the horizon, two here)
@@ -455,14 +455,14 @@ This shows you how you can get cooperation without programming it in, simply the
 
 This figure shows the general case for alpha–beta pruning: If ***α*** is better than ***n*** for Player, we will never get to ***n*** in play.
 
- - General configuration (MIN version)
+- General configuration (MIN version)
     - We’re computing the MIN-VALUE at some node n
     - We’re looping over n’s children
     - n’s estimate of the childrens’ min is dropping
     - Who cares about n’s value?  MAX
     - Let α be the best value that MAX can get at any choice point along the current path from the root
     - If n becomes worse than α, MAX will avoid it, so we can stop considering n’s other children (it’s already bad enough that it won’t be played)
- - MAX version is symmetric
+- MAX version is symmetric
 
 PS: 采用了 pruning 算法, 节点的取值可能就不是 最大／最小值了
 
@@ -474,9 +474,9 @@ PS: 采用了 pruning 算法, 节点的取值可能就不是 最大／最小值�
 
 ![](../imgs/CS188_advS_minimax_example.png)
 
- - 第2层 - 
- - 最左节点, min-value 计算的 3
- - 中间节点
+- 第2层 - 
+- 最左节点, min-value 计算的 3
+- 中间节点
     - 1st successor is 2 , than means the min value of parent is ≤ 2. 
     - so the value of rest successor is not important now, because they will not influence the choice of max-value ,calculated by the first level node
     - computation break
@@ -496,8 +496,8 @@ so all pruning shape showed in above pic will not be achieved.
 
 ### Alpha-Beta Implementation
 
- - α: MAX’s best option on path to root
- - β: MIN’s best option on path to root
+- α: MAX’s best option on path to root
+- β: MIN’s best option on path to root
 
 ```python
 def max-value(state, α, β):
@@ -531,22 +531,22 @@ def min-value(state , α, β):
 ### Alpha-Beta Pruning Properties
 
 
- - This pruning has ***no effect*** on minimax value computed for the root!
- - Values of intermediate nodes might be wrong
+- This pruning has ***no effect*** on minimax value computed for the root!
+- Values of intermediate nodes might be wrong
     - Important: children of the root may have the wrong value
     - So the most naive version won’t let you do action selection
- - ![](../imgs/cs188_advS_alpha-beta-properties.png)
+- ![](../imgs/cs188_advS_alpha-beta-properties.png)
     - in the case that pic shows, the left min is 10, the value passes to root, the right min satisfied the condition ≤ 10, it will skip the rest, it may choose the right sub-tree if ties break on equality, 
     - if the algorithm will not prune on equality( change ≤ to `<` ) , then this case will no happen.
     - or you do the pruning first on the children of root node.
- - So there are 3 ways to do it
+- So there are 3 ways to do it
     1. keep track of which one was first
     2. run pruning on the children
     3. prune on only strict inequalities
         - you lose out a lot of pruning, you will compute more nodes.
- - Good child ordering improves effectiveness of pruning
+- Good child ordering improves effectiveness of pruning
     - The effectiveness of alpha–beta pruning is highly dependent on the order in which the states are examined
- - With “perfect ordering”:
+- With “perfect ordering”:
     - Time complexity drops to O(b<sup>m/2</sup>)
     - Doubles solvable depth!
     - Full search of, e.g. chess, is still hopeless…
@@ -559,7 +559,7 @@ def min-value(state , α, β):
 
 ## Iterative Deepening
 
- - Iterative deepening uses DFS as a subroutine:
+- Iterative deepening uses DFS as a subroutine:
     1. Do a DFS which only searches for paths of length 1 or less.  i
         - (DFS gives up on any path of length 2)
     2. If “1” failed, do a DFS which only searches paths of length 2 or less.
@@ -606,7 +606,7 @@ def min-value(state , α, β):
 
 ![](../imgs/uncertain_outcomes.png)
 
- - Idea for today: 
+- Idea for today: 
     - Uncertain outcomes controlled by chance, not an adversary!
 
 
@@ -615,17 +615,17 @@ def min-value(state , α, β):
 
 ## Expectimax Search 
 
- - Why wouldn’t we know what the result of an action will be?
+- Why wouldn’t we know what the result of an action will be?
     - Explicit randomness: rolling dice
     - Unpredictable opponents: the ghosts respond randomly
     - Actions can fail: when moving a robot, wheels might slip
- - Values should now reflect average-case (expectimax) outcomes, not worst-case (minimax) outcomes
- - Expectimax search: compute the average score under optimal play
+- Values should now reflect average-case (expectimax) outcomes, not worst-case (minimax) outcomes
+- Expectimax search: compute the average score under optimal play
     - Max nodes as in minimax search
     - Chance nodes are like min nodes but the outcome is uncertain
     - Calculate their expected utilities
     - I.e. take weighted average (expectation) of children
- - Later, we’ll learn how to formalize the underlying uncertain-result problems as **Markov Decision Processes**
+- Later, we’ll learn how to formalize the underlying uncertain-result problems as **Markov Decision Processes**
 
 ![](../imgs/expectimax_search_01.png)
 
@@ -701,7 +701,7 @@ we have 2 layers corresponding to the 2 sequence of random ghost actions before 
 
 ![](../imgs/cs188_pacman_depth_limited_search_example.png)
 
- - Consider the following Pacman configuration
+- Consider the following Pacman configuration
     - At each time step, Pacman can move either West (left) or East (right) and is using limited-depth minimax search to choose his next move
         - (where the minimizing agent does not really do anything) 
     - Pacman is 3 East moves away from the food
@@ -712,13 +712,13 @@ we have 2 layers corresponding to the 2 sequence of random ghost actions before 
 
 Normally , we say a search depth of 2 means the search considers of up to 2 actions by the maximizer (or minimizer).
 
- - when using F1 as the state evaluation function 
+- when using F1 as the state evaluation function 
     - East could be an optimal action if do 1,2,3,4,5 depth-limited search 
     - West could be an optimal action if do 1,2,    5 depth-limited search
     - For depth 1,2 , action East and West are both optimal action , there are ties 
     - For depth 3,4 , action East will be optimal because it ate the dot , while action West can not
     - For depth 5,  both are optimal because they all can eat the dot.
- - when using F2 as the state evaluation function
+- when using F2 as the state evaluation function
     - East could be an optimal action if do 1,2,3,4,5 depth-limited search 
     - West could be an optimal action only if do 5 depth-limited search
 
@@ -736,16 +736,16 @@ Normally , we say a search depth of 2 means the search considers of up to 2 acti
 
 ### Reminder: Probabilities
 
- - A random variable represents an event whose outcome is unknown
- - A probability distribution is an assignment of weights to outcomes
- - Example: Traffic on freeway
+- A random variable represents an event whose outcome is unknown
+- A probability distribution is an assignment of weights to outcomes
+- Example: Traffic on freeway
     - Random variable: T = whether there’s traffic
     - Outcomes: T in {none, light, heavy}
     - Distribution: P(T=none) = 0.25, P(T=light) = 0.50, P(T=heavy) = 0.25
- - Some laws of probability (more later):
+- Some laws of probability (more later):
     - Probabilities are always non-negative
     - Probabilities over all possible outcomes sum to one
- - As we get more evidence, probabilities may change:
+- As we get more evidence, probabilities may change:
     - P(T=heavy) = 0.25, P(T=heavy | Hour=8am) = 0.60
     - We’ll talk about methods for reasoning and updating probabilities later
 
@@ -754,8 +754,8 @@ Normally , we say a search depth of 2 means the search considers of up to 2 acti
 
 ### Reminder: Expectations
 
- - The expected value of a function of a random variable is the average, weighted by the probability distribution over outcomes
- - Example: How long to get to the airport?
+- The expected value of a function of a random variable is the average, weighted by the probability distribution over outcomes
+- Example: How long to get to the airport?
     - ![](../imgs/cs188_Expectations.png)
 
 
@@ -766,13 +766,13 @@ Normally , we say a search depth of 2 means the search considers of up to 2 acti
 
 ### What Probabilities to Use ?
 
- - In expectimax search, we have a probabilistic model of how the opponent (or environment) will behave in any state
+- In expectimax search, we have a probabilistic model of how the opponent (or environment) will behave in any state
     - Model could be a simple uniform distribution (roll a die)
     - Model could be sophisticated and require a great deal of computation
     - We have a chance node for any outcome out of our control: opponent or environment
     - The model might say that adversarial actions are likely!
 
- - For now, assume each chance node magically comes along with probabilities that specify the distribution over its outcomes
+- For now, assume each chance node magically comes along with probabilities that specify the distribution over its outcomes
 
 ![](../imgs/cs188_probability_use.png)
 
@@ -785,9 +785,9 @@ If I think there is a 20% chance that the ghost go to left , it doesn't mean tha
 
 ### Quiz: Informed Probabilities
 
- - Let’s say you know that your opponent is actually running a depth 2 minimax, using the result 80% of the time, and moving randomly otherwise
- - Question: What tree search should you use?  
- - Answer: Expectimax!
+- Let’s say you know that your opponent is actually running a depth 2 minimax, using the result 80% of the time, and moving randomly otherwise
+- Question: What tree search should you use?  
+- Answer: Expectimax!
     - To figure out EACH chance node’s probabilities, you have to run a simulation of your opponent
     - This kind of thing gets very slow very quickly
     - Even worse if you have to simulate your opponent simulating you…
@@ -818,13 +818,13 @@ In general expectimax is the more general search procedures. You should always i
 
 ![](../imgs/cs188_assumption_vs_reality.png)
 
- - Pacman used depth 4 search with an eval function that avoids trouble
- - Ghost used depth 2 search with an eval function that seeks Pacman
+- Pacman used depth 4 search with an eval function that avoids trouble
+- Ghost used depth 2 search with an eval function that seeks Pacman
 
 ---
 
  \\ | Adversarial Ghost | Random Ghost
- --- | --- | ---
+--- | --- | ---
  Minimax Pacman |  Won 5/5 ,  Avg. Score: 483 | Won 5/5 ,  Avg. Score: 493
  Expectimax Pacman | Won 1/5 ,  Avg. Score: -303 | Won 5/5 ,  Avg. Score: 503
 
@@ -840,8 +840,8 @@ The result is not bad while an expectimax pacmas vs a random ghost.
 
 ### Mixed Layer Types
 
- - E.g. Backgammon
- - Expectiminimax
+- E.g. Backgammon
+- Expectiminimax
     - Environment is an extra “random agent” player that moves after each min/max agent
     - Each node computes the appropriate combination of its children
 
@@ -854,16 +854,16 @@ The result is not bad while an expectimax pacmas vs a random ghost.
 
 ![](../imgs/cs188_backgammon.png)
 
- - Dice rolls increase b: 21 possible rolls with 2 dice
+- Dice rolls increase b: 21 possible rolls with 2 dice
     - Backgammon ~ 20 legal moves
     - Depth 2 = 20 x (21 x 20)³ = 1.2 x 10⁹
 
- - As depth increases, probability of reaching a given search node shrinks
+- As depth increases, probability of reaching a given search node shrinks
     - So usefulness of search is diminished
     - So limiting depth is less damaging
     - But pruning is trickier 困难的…
 
- - Historic AI: TDGammon uses depth-2 search + very good evaluation function + reinforcement learning: 
+- Historic AI: TDGammon uses depth-2 search + very good evaluation function + reinforcement learning: 
     - world-champion level play
     - 1st AI world champion in any game!
 
@@ -873,9 +873,9 @@ The result is not bad while an expectimax pacmas vs a random ghost.
 
 ### Multi-Agent Utilities
 
- - What if the game is not zero-sum, or has multiple players?
+- What if the game is not zero-sum, or has multiple players?
 
- - Generalization of minimax:
+- Generalization of minimax:
     - Terminals have utility tuples
     - Node values are also utility tuples
     - Each player maximizes its own component
@@ -905,8 +905,8 @@ https://www.authorea.com/users/5754/articles/6087/_show_article
 
 ### Maximum Expected Utility
 
- - Why should we average utilities?  Why not minimax?
- - Principle of maximum expected utility:
+- Why should we average utilities?  Why not minimax?
+- Principle of maximum expected utility:
     - A rational agent should chose the action that **maximizes its expected utility, given its knowledge**
 
 <h2 id="f0400acd1ae1ee97ec4a2afe860937cd"></h2>
@@ -914,25 +914,25 @@ https://www.authorea.com/users/5754/articles/6087/_show_article
 
 ### What Utilities to Use?
 
- - For worst-case minimax reasoning, terminal function scale doesn’t matter
+- For worst-case minimax reasoning, terminal function scale doesn’t matter
     - We just want better states to have higher evaluations (get the ordering right)
     - We call this insensitivity to monotonic transformations
     - ![](../imgs/cs188_utilities_scale.png)
- - For average-case expectimax reasoning, we need *magnitudes* to be meaningful
+- For average-case expectimax reasoning, we need *magnitudes* to be meaningful
 
 <h2 id="ceba282b7418b7f199798b645e1cba56"></h2>
 
 
 ### Utilities
 
- - **Utilities are functions from outcomes (states of the world) to real numbers that describe an agent’s preferences**
+- **Utilities are functions from outcomes (states of the world) to real numbers that describe an agent’s preferences**
 
- - Where do utilities come from?
+- Where do utilities come from?
     - In a game, may be simple (+1/-1)
     - Utilities summarize the agent’s goals
     - Theorem: any “rational” preferences can be summarized as a utility function
 
- - We hard-wire utilities and let behaviors emerge
+- We hard-wire utilities and let behaviors emerge
     - Why don’t we let agents pick utilities?
         - why do we want the goal is to be the input and the optimal behavior to be the output of the computation?  why don't you just let the agent picks their own utilities? 
         - vacuum cleaner  example: the agent would like to do nothing ,and so easy to do nothing. 
@@ -954,7 +954,7 @@ idea: utilities go in , behavior comes out.
 
 ## Preferences
 
- - An agent must have preferences among:
+- An agent must have preferences among:
     - **Prizes**: A, B, etc.
     - **Lotteries**: situations with uncertain prize
     
@@ -970,7 +970,7 @@ These questions can be answered by writing down some constraints on the preferen
 We use the following notation to describe an agent's preferences:
 
  NOTATION | preference 
- --- | --- 
+--- | --- 
   A ≻ B  | the agent prefers A over B
   A ~ B | the agent is indifferent between A and B
   A ≻= B | the agent prefers A over B , or is indifferent between them
@@ -1006,7 +1006,7 @@ so there lotteries and prizes  we must have preference, means an agent has to pr
 
 ### Rational Preferences
 
- - We want some constraints on preferences before we call them rational, such as:
+- We want some constraints on preferences before we call them rational, such as:
     - Axiom of Transitivity: `(A≻B)∧(B≻C)⇒ (A≻C)` 
 
 
@@ -1027,20 +1027,20 @@ The primary issue for utility theory is to understand how preferences between co
 To address this issue we list six constraints that we require any reasonable preference relation to obey:
 
 
- - Orderability
+- Orderability
     - (A≻B)∨(B≻A)∨(A~B)
     - given any 2 lotteries , a rational agent must either prefer one to ther other , or else rate the two as equally preferable.
     - that is , the agent cannot avoid deciding.
- - Transitivity 
+- Transitivity 
     - (A≻B)∧(B≻C)⇒ (A≻C)
     - given any 3 lotteries , if an agent prefers A to B and prefers B to C , then the agent must prefer A to C
- - Continuity
+- Continuity
     - A≻B≻C ⇒ ∃p[p,A; 1-p,C] ~ B
     - if some lottery B is between A and C in preference , then there is some probability *p* for which the rational agent will be indifferent between getting B for sure and the lottery that yields A with probability *p* and C with probability *1-p* .
- - Substitutability
+- Substitutability
     - A~B ⇒ [p,A; 1-p,C] ~ [p,B; 1-p,C]
     - if an agent is indifferent between two lotteries A and B , then the agent is indifferent betwwen two more complex lotteries that are the same except that B is substituted for A in one of them. This holds regardless of the probabilities and the other outcome(s) in the lotteries.
- - Monotonicity 单调性
+- Monotonicity 单调性
     - A≻B ⇒ (p≥q ⇔ [p,A; 1-p,B] ≻= [q,A; 1-q,B]) 
     - suppose 2 lotteries have the same two possible outcomes, A and B. If an agent prefers A to B , then the agent must prefer the lottery that has a higher probability for A (and vice versa)
     - you prefer more A in the mix
@@ -1051,7 +1051,7 @@ Each axiom can be motivated by showing that an agent that violates it will exhib
 
 ---
 
- - Theorem: Rational preferences imply behavior describable as maximization of expected utility
+- Theorem: Rational preferences imply behavior describable as maximization of expected utility
 
 Basically if you accept these axioms there is an theorem  says all of your preferences can be described with the utiity function. 
 So if you obey these axioms we give you the stamp of rationality. and that means the preferences violate these are irrational preferences and meet this irrational. 
@@ -1068,20 +1068,20 @@ So if you obey these axioms we give you the stamp of rationality. and that means
 Notice that the axioms of utility theory are really axioms about preferences--they say nothing about a utility function. 
 But in fact from the axioms of utility we can derive the following consequences :
 
- - Existence of Utility Function
+- Existence of Utility Function
     - U(A)>U(B) ⇔ A≻B
     - U(A)=U(B) ⇔ A=B
     - U(A)≥U(B) ⇔ A≻=B
     - If an agent's preferences obey the axioms of utility, then there exists a function U such that U(A) > U(B) if and only if A is preferred to B, and U(A) = U(B) if and only if the agent is indifferent between A and B.
- - Expected Utility of a Lottery:
+- Expected Utility of a Lottery:
     - `U[p₁,S₁; p₂,S₂; ... ; pn,Sn] = ΣpᵢU(Sᵢ)`.
     - The utility of a lottery is the sum of the probability of each outcome times the utility of that outcome.
 
 In other words, once the probabilities and utilities of the possible outcome states are specified. the utility of a compound lottery involving those states is completely determined. 
 
- - I.e. values assigned by U preserve preferences of both prizes and lotteries!
+- I.e. values assigned by U preserve preferences of both prizes and lotteries!
 
- - Maximum expected utility (MEU) principle:
+- Maximum expected utility (MEU) principle:
     - Choose the action that maximizes expected utility
     - Note: an agent can be entirely rational (consistent with MEU) without ever representing or manipulating utilities and probabilities
     - E.g., a lookup table for perfect tic-tac-toe, a reflex vacuum cleaner
@@ -1092,13 +1092,13 @@ In other words, once the probabilities and utilities of the possible outcome sta
 
 ### Utility Scales
 
- - Normalized utilities: u+ = 1.0, u- = 0.0
- - Micromorts: one-millionth chance of death, useful for paying to reduce product risks, etc.
- - QALYs: quality-adjusted life years, useful for medical decisions involving substantial risk
+- Normalized utilities: u+ = 1.0, u- = 0.0
+- Micromorts: one-millionth chance of death, useful for paying to reduce product risks, etc.
+- QALYs: quality-adjusted life years, useful for medical decisions involving substantial risk
     - QALY, or quality-adjusted life year. Patients with a disability are willing to accept a shorter life expectancy to be restored to full health. For example. kidney patients on average are indifferent between living two years on a dialysis machine and one year at full health.
- - Note: behavior is invariant under positive linear transformation
+- Note: behavior is invariant under positive linear transformation
     - with a positive linear transformation of leaf values , i.e., transforming a value x to ax + b where a > 0, the choice of move remains unchanged in a game tree, even when there are chance nodes.
- - With deterministic prizes only (no lottery choices), only ordinal utility can be determined, i.e., total order on prizes
+- With deterministic prizes only (no lottery choices), only ordinal utility can be determined, i.e., total order on prizes
 
 
 <h2 id="bdd76b2b194dadbe5e0a331ee46a45fd"></h2>
@@ -1114,8 +1114,8 @@ Assuming the coin is fair, the ***expected monetary value*** (EMV) of the gamble
 
 Suppose we use S<sub>n</sub> to denote the state of possessing total wealth $<sub>n</sub>, and that your current wealth is $<sub>k</sub>. Then the ***expected utilities*** of the two actions of accepting and declining the gamble are
 
- - EU(Accept) = 0.5·U(S<sub>k</sub>) + 0.5·U(S<sub>k + 2,500,000</sub>)
- - EU(Reject) = U(S<sub>k + 1,000,000</sub>)
+- EU(Accept) = 0.5·U(S<sub>k</sub>) + 0.5·U(S<sub>k + 2,500,000</sub>)
+- EU(Reject) = U(S<sub>k + 1,000,000</sub>)
 
 To determine what to do, we need to assign utilities to the outcome states.Utility is not directly proportional to monetary value, because the utility for your **first million is very high** (or so they say), whereas the utility for an additional million is smaller.
 
@@ -1123,8 +1123,8 @@ Suppose you assign a utility of 5 to your current financial status (Sk), a 9 to 
 
 ----
 
- - Money does not behave as a utility function, but we can talk about the utility of having money (or being in debt)
- - Given a lottery L = [p, $X; (1-p), $Y]
+- Money does not behave as a utility function, but we can talk about the utility of having money (or being in debt)
+- Given a lottery L = [p, $X; (1-p), $Y]
     - The ***expected monetary value*** EMV(L) is p\*X + (1-p)\*Y
         - eg. L = [0.6,$0; 0.4,$100] , EMV(L) = 40
     - U(L) = p\*U($X) + (1-p)\*U($Y)
@@ -1148,8 +1148,8 @@ Under the above utility function, what is the certainty equivalent monetary valu
 
 Solve: 
 
- - U([0.6,$0; 0.4,$100]) = 0.6 \* U($0) + 0.4 \* U($100) = 0.6 \* 0 + 0.4 \* 1000 = 400.
- - because U($10) = 400 , so the certainty equivalent monetary value is **10** .
+- U([0.6,$0; 0.4,$100]) = 0.6 \* U($0) + 0.4 \* U($100) = 0.6 \* 0 + 0.4 \* 1000 = 400.
+- because U($10) = 400 , so the certainty equivalent monetary value is **10** .
 
 ---
 
@@ -1166,15 +1166,15 @@ Function Graph of risk behavior
 
 ### Example: Insurance
 
- - Consider the lottery [0.5, $1000;  0.5, $0]
+- Consider the lottery [0.5, $1000;  0.5, $0]
     - What is its expected monetary value?  ($500)
     - What is its certainty equivalent?
         - Monetary value acceptable in lieu of lottery
         - $400 for most people
- - Difference of $100 is the insurance premium
+- Difference of $100 is the insurance premium
     - There’s an insurance industry because people will pay to reduce their risk
     - If everyone were risk-neutral, no insurance needed!
- - It’s win-win: you’d rather have the $400 and the insurance company would rather have the lottery (their utility curve is flat and they have many lotteries)
+- It’s win-win: you’d rather have the $400 and the insurance company would rather have the lottery (their utility curve is flat and they have many lotteries)
     - People would rather pay a small insurance premium than gamble the price of their house against the chance of a fire.
     - From the insurance company's point of view, the price of the house is very small compared with the firm's total reserves. This means that the insurer's utility curve is approximately linear over such a small region, and the gamble costs the company almost nothing.
 

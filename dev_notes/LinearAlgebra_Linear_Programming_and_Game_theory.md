@@ -22,9 +22,9 @@ Algebra is about equations, and analysis is often about inequalities. But I have
 
 There are three ways to approach the underlying mathematics: 
 
- - intuitively through the geometry
- - computationally through the simplex method
- - lgebraically through duality
+- intuitively through the geometry
+- computationally through the simplex method
+- lgebraically through duality
 
 These approaches are developed in Sections 8.1, 8.2, and 8.3. Then Section 8.4 is about problems (like marriage) in which the solution is an integer. Section 8.5 discusses poker and other matrix games. 
 

@@ -29,7 +29,7 @@ CELL VALUE | TYPE
 ## 8 种 room type 
 
  INDEX | ROOM KIND | desc
- --- | --- | ---
+--- | --- | ---
  0 | Cross room
  1 | Small symmetrical cross room
  2 | Small room
@@ -56,8 +56,8 @@ CELL VALUE | TYPE
 
 每种 dungeon Profile 属性如下 , 并且随 level deep 发生修改 :
 
- - 8 种 room type 出现的频率
- - 有走廊的几率
+- 8 种 room type 出现的频率
+- 有走廊的几率
 
 
 <h2 id="20ebe4265fa72799ee79717e0be19438"></h2>
@@ -65,8 +65,8 @@ CELL VALUE | TYPE
 
 ## designRandomRoom
 
- - 把一个随机的房间形 放在在网格的某个地方
- - (可选)记录最多4个 门的位置
+- 把一个随机的房间形 放在在网格的某个地方
+- (可选)记录最多4个 门的位置
      - chooseRandomDoorSites
          - 房间的墙，是可能的门的位置，除了墙角
         - 所以，符合这个要求的 tile, 它的上下左右，必然只有 1个 是 floor, 其他都是 花岗岩
@@ -75,11 +75,11 @@ CELL VALUE | TYPE
             - E 形房间 可能出现这个问题
         - 在所有的合法的 门位置上，随机选取4个门，每个方向一个， 保存到 doorSites[dir]
 
- - (可选)如果 attachHallway is true, 将会在4个标准门站之一 上添加一个垂直的走廊, 
+- (可选)如果 attachHallway is true, 将会在4个标准门站之一 上添加一个垂直的走廊, 
      - 并且从走廊尽头 重新安置3个门
          - 一般来说 ，带走廊的room， 只有走廊尽头 一个门
          - 但是如果允许 Oblique Hallway Exit，可以有最多3个门
- - RoomTypeFrequencies  指定每个房间类型的概率
+- RoomTypeFrequencies  指定每个房间类型的概率
 
 
 <h2 id="bb168d2d6231793ce94f3c1ff263d3f6"></h2>

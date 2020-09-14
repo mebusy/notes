@@ -36,7 +36,7 @@ DNs will be a lot like BNs, but there will be more types of nodes rather than ju
 
 ![](../imgs/cs188_DM_dn_example0.png)
 
- - New node types:
+- New node types:
     - ![][1] Chance nodes (just like BNs)
         - we have random variable for weather ,which could be sunny or rainy 
         - with a random variable for forecase , tends to be a noisy version of actual weather
@@ -58,18 +58,18 @@ DNs will be a lot like BNs, but there will be more types of nodes rather than ju
 
 What are we going to be doing ?  We are still going to be maximizing expected utility. 
 
- - **MEU: choose the action which maximizes the expected utility given the evidence**
- - Can directly operationalize this with decision networks
+- **MEU: choose the action which maximizes the expected utility given the evidence**
+- Can directly operationalize this with decision networks
     - Bayes nets with nodes for utility and actions
     - Lets us calculate the expected utility for each action
- - What will we do with a network like above ?
+- What will we do with a network like above ?
     - We'll look at every possible action we might take, compute the expected utility  if we were to take that action and then pick the action that maximizes the expected utility. 
 
 ---
 
 So how do you select an action ?
 
- - Action selection
+- Action selection
     - Instantiate all evidence
     - Set action node(s) each possible way
         - loop over all possible choices for the actions 
@@ -196,18 +196,18 @@ You have these sensors, how much would you be willing to pay to get an access to
 
 We can observe only Forecast. Question is how valuable is it to observe the forecast. 
 
- - MEU with no evidence
+- MEU with no evidence
     - MEU(∅) = 70
- - MEU if forecast is bad
+- MEU if forecast is bad
     - MEU(F=bad) = 53
- - MEU if forecast is good
+- MEU if forecast is good
     - MEU(F=good) = 95
- - Forecast distribution
+- Forecast distribution
     - P(F=good) = 0.59, P(F=bad) = 0.41
         - P(F) is not in BNs. We can compute by running inference in BNs
     - 0.59·95 + 0.41·53 - 70 = 7.8 
     - in this case 7.8 means that you would be willing to pay 7.8 to get to listen to the forecast.
- - ![](../imgs/cs188_DM_vpi_formular.png)
+- ![](../imgs/cs188_DM_vpi_formular.png)
     - we have the VPI of a particular variable or set of variables E' given that you already observed another set of variables *e* which could be the empty set.
     - in our example *e* was the empty set , E' was equal to forecast. 
       
@@ -217,17 +217,17 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 ## Value of Information Cont.
 
- - Assume we have evidence E=e.  Value if we act now:
+- Assume we have evidence E=e.  Value if we act now:
     - ![](../imgs/cs188_DM_voi_form1.png)
     - ![](../imgs/cs188_DM_voi_graph1.png)
         - you have initial evidence +e, so choose an action, that point the chance node kick in ,which will instantiate the parent variables of the utility node and then you have your utility nodes.
- - Assume we see that E’ = e’.  Value if we act then:
+- Assume we see that E’ = e’.  Value if we act then:
     - ![](../imgs/cs188_DM_voi_form2.png)
     - ![](../imgs/cs188_DM_voi_graph2.png)
         - after you observe both {+e,+e' }, you take an action, and then the chance nodes kick in and then the utility nodes.
- - BUT **E’ is a random variable whose value is unknown**, so we don’t know what e’ will be.
+- BUT **E’ is a random variable whose value is unknown**, so we don’t know what e’ will be.
     - So we need to have to prediction about what e' will be in order to compute how valuable that information is to us. 
- - Expected value if E’ is revealed and then we act:
+- Expected value if E’ is revealed and then we act:
     - ![](../imgs/cs188_DM_voi_form3.png)
         - *the missing image part is `e'`*
     - ![](../imgs/cs188_DM_voi_graph3.png)
@@ -235,7 +235,7 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
         - you were to get to observe evidence but you don't know yet what the evidence is going to be.  You start with chance node. 
         - first thing that happens is the evidence e' will be observed. you don't know yet what it's going to be, could be +e' or -e'.
         - after that get instantiated you get to choose your action, after that more chance nodes will kick in for the parent variables of the utility node after which utility nodes kick in. 
- - Value of information: how much MEU goes up by revealing E’ first then acting, over acting now:
+- Value of information: how much MEU goes up by revealing E’ first then acting, over acting now:
     - ![](../imgs/cs188_DM_voi_form4.png)
 
 
@@ -244,18 +244,18 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 ## VPI Properties
 
- - Nonnegative
+- Nonnegative
     - ∀E',e : VPI(E'|e) ≥ 0
     - more information will always help you . **on the average** , when you don't know yet what the information is going to be, it is good to get information. But again some informaction could be negative for you -- things get worse you just unlucky scenario. 
- - Nonadditive  (think of observing Eⱼ twice)
+- Nonadditive  (think of observing Eⱼ twice)
     - VPI(Eⱼ,E<sub>k</sub> |e) ≠ VPI(Eⱼ |e) + VPI(E<sub>k</sub> |e)
     - that VPI(Eⱼ,E<sub>k</sub> |e)  is not the same as the sum of the individual VPI.
- - Order-independent
+- Order-independent
     - VPI(Eⱼ,E<sub>k</sub> |e) = VPI(Eⱼ |e) + VPI(E<sub>k</sub> |e , Eⱼ )
     -   = VPI(E<sub>k</sub> |e) + VPI( Eⱼ |e , E<sub>k</sub>  )
     - a lot like the chain rule 
 
- - The following statements are true:
+- The following statements are true:
     - VPI is guaranteed to be nonnegative (≥0).
     - The MEU after observing a node could potentially be less than the MEU before observing that node.
     - VPI is guaranteed to be exactly zero for any node that is conditionally independent (given the evidence so far) of all parents of the utility node.
@@ -266,11 +266,11 @@ We can observe only Forecast. Question is how valuable is it to observe the fore
 
 ## Quick VPI Questions
 
- - The soup of the day is either clam chowder or split pea, but you wouldn’t order either one.  What’s the value of knowing which it is?
+- The soup of the day is either clam chowder or split pea, but you wouldn’t order either one.  What’s the value of knowing which it is?
     - 0
- - There are two kinds of plastic forks at a picnic.  One kind is slightly sturdier.  What’s the value of knowing which?
+- There are two kinds of plastic forks at a picnic.  One kind is slightly sturdier.  What’s the value of knowing which?
     - somewhat positive.  can not really put a number on it this.
- - You’re playing the lottery.  The prize will be $0 or $100.  You can play any number between 1 and 100 (chance of winning is 1%).  What is the value of knowing the winning number?
+- You’re playing the lottery.  The prize will be $0 or $100.  You can play any number between 1 and 100 (chance of winning is 1%).  What is the value of knowing the winning number?
     - 99$
 
 <h2 id="d4bc3ccdbc840b465ba352eb224292e4"></h2>
@@ -282,12 +282,12 @@ What if somebody offers you some imperfect, slightly decayed information?
 
 ![](../imgs/cs188_DM_value_of_inperfect_info.png)
 
- - No such thing( as we formulate it )
+- No such thing( as we formulate it )
     - *in our formulation, there is no imperfect information.*
- - Information corresponds to the observation of a node in the decision network
+- Information corresponds to the observation of a node in the decision network
     - Information is revealing the value of a random variable in your network.
     - observing means you know what the value is
- - If data is “noisy” that just means we don’t observe the original variable, but another variable which is a noisy version of the original one
+- If data is “noisy” that just means we don’t observe the original variable, but another variable which is a noisy version of the original one
     - e.g. we observe forcast, not weather.
 
 
@@ -298,26 +298,26 @@ What if somebody offers you some imperfect, slightly decayed information?
 
  ![](../imgs/cs188_DM_VPI_question.png)
 
- - we addd an extra variable : Scouting Report
+- we addd an extra variable : Scouting Report
     - so now it's possible that a scout reports on where the oil location might be. 
     - it's going to be a noisy version of the actual oil location 
     - but they might have some kind of measurement tools in which they can get some report back and then the scout could be one of many scouts. some of them might be good, some of them might be bad.  So which one you get might influence the quality of the report .
 
 --- 
 
- - VPI(OilLoc) ?
+- VPI(OilLoc) ?
     - saw that before, that is still k/2
- - VPI(ScoutingReport) ?
+- VPI(ScoutingReport) ?
     - [0,k/2]
     - can not put the number on this. 
- - VPI(Scout) ?
+- VPI(Scout) ?
     - for knowning what scout is doing the scouting report
     - = 0
     - if we observe evidence that does not change the distribution for the parent variables , it will not change our decision, it will not change our expected utility. 
     - Scout is independent of OilLoc with no other evidence. So knowing the Scout is not affecting the distribution  of parent variables , hence not affecting our MEU. 
- - VPI(Scout | ScoutingReport) ?
+- VPI(Scout | ScoutingReport) ?
     - > 0 
- - Generally: 
+- Generally: 
     - If Parents(U) ⊥ Z | CurrentEvidence
     - Then VPI( Z | CurrentEvidence) = 0 
     - that is , VPI is guaranteed to be exactly zero for any node that is conditionally independent (given the evidence so far) of all parents of the utility node.

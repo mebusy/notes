@@ -46,10 +46,10 @@ User rates movies using 0 to 5 stars.
 
 我们引入一些符号：
 
- - nᵤ = number of users, here nᵤ＝4
- - n_m = number of movies, here n_m= 5
- - r(i,j) = 1 if user j has rated movie i
- - `y⁽ⁱ,ʲ⁾` = rating by user j on movie i (defined only if r(i,j)=1) 
+- nᵤ = number of users, here nᵤ＝4
+- n_m = number of movies, here n_m= 5
+- r(i,j) = 1 if user j has rated movie i
+- `y⁽ⁱ,ʲ⁾` = rating by user j on movie i (defined only if r(i,j)=1) 
 
 推荐系统的问题就是，给定这些数据，预测这些 `?` 地方的rating。
 
@@ -67,10 +67,10 @@ For each user j, learn a parameter `θ⁽ʲ⁾` ∊ ℝ³ (θ其实就是用户�
 
 因此我们做的所有事，实际上就是对每个用户应用不同的线性回归模型。
 
- - `θ⁽ʲ⁾` = parameter vector for user j
- - `x⁽ⁱ⁾` = parameter vector for movie i
- - For user j, movie i, predicted rating: `θ⁽ʲ⁾ᵀ·x⁽ⁱ⁾`
- - `m⁽ʲ⁾` = number of movies rated by user j (我们就只在这里使用这个定义1次)
+- `θ⁽ʲ⁾` = parameter vector for user j
+- `x⁽ⁱ⁾` = parameter vector for movie i
+- For user j, movie i, predicted rating: `θ⁽ʲ⁾ᵀ·x⁽ⁱ⁾`
+- `m⁽ʲ⁾` = number of movies rated by user j (我们就只在这里使用这个定义1次)
 
 For learn `θ⁽ʲ⁾`, to min J:
 

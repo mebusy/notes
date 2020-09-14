@@ -37,9 +37,9 @@ pip install gym[all]
 
 ### Env
 
- - reset(self):重置环境的状态，返回观察。
- - step(self,action):推进一个时间步长，返回 observation，reward，done，info
- - render(self,mode=’human’,close=False):重绘环境的一帧。默认模式一般比 较友好，如弹出一个窗口。
+- reset(self):重置环境的状态，返回观察。
+- step(self,action):推进一个时间步长，返回 observation，reward，done，info
+- render(self,mode=’human’,close=False):重绘环境的一帧。默认模式一般比 较友好，如弹出一个窗口。
 
 
 ```python
@@ -69,7 +69,7 @@ print(envs.registry.all())
 
 ###  Observations
     
- - env.step return 4 values
+- env.step return 4 values
     - observation (object) 
         - 观察，一个与环境相关的对象描述你观察到的环境。如相 机的像素信息，机器人的角速度和角加速度，棋盘游戏中的棋盘状态
     - reward (float)
@@ -94,9 +94,9 @@ Discrete(2)
 Box(4,)
 ```
 
- - Discrete space
+- Discrete space
     - allows a fixed range of non-negative numbers, so in this case valid actions are either 0 or 1.
- - Box space
+- Box space
     - represents an n-dimensional box, so valid observations will be an array of 4 numbers. We can also check the Box's bounds:
     - 3.40282347e+38 is kind of *inf*
 

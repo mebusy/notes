@@ -59,8 +59,8 @@ header_filter_by_lua | 应答HTTP过滤处理(例如添加头部信息)
 body_filter_by_lua | 应答BODY过滤处理(例如完成应答内容统一成大写)
 log_by_lua | 回话完成后本地异步完成日志记录(日志可以记录在本地，还可以同步到其他机器)
 
- - 实际上我们只使用其中一个阶段content_by_lua，也可以完成所有的处理。
- - 但这样 会让我们的代码比较臃肿，越到后期越发难以维护。把我们的逻辑放在不同阶段，分工明确，代码独立，后期发力可以有很多有意思的玩法。
+- 实际上我们只使用其中一个阶段content_by_lua，也可以完成所有的处理。
+- 但这样 会让我们的代码比较臃肿，越到后期越发难以维护。把我们的逻辑放在不同阶段，分工明确，代码独立，后期发力可以有很多有意思的玩法。
 
 
 Example:
@@ -81,8 +81,8 @@ location /mixed {
 }
 ```
 
- - 内容处理部分都是在content_by_lua阶段完成，第一版本API接口开发都是基于明文。
- - 为了传输体积、安全等要求，我们设计了支持压缩、加密的密文协议(上下行) 
+- 内容处理部分都是在content_by_lua阶段完成，第一版本API接口开发都是基于明文。
+- 为了传输体积、安全等要求，我们设计了支持压缩、加密的密文协议(上下行) 
     -在access_by_lua完成密文协议解码，body_filter_by_lua完成应答加密编码。
 
 
@@ -91,10 +91,10 @@ location /mixed {
 
 ### 正确的记录日志
 
- - log_by_lua是一个请求阶段最后发生的，文件操作是阻塞的（FreeBSD直接无视）
- - nginx为了实时高效的给请求方应答后，**日志记录是在应答后异步记录完成的**。由此可见如果我们有日志输出的情况，**最好统一到log_by_lua阶段**。
+- log_by_lua是一个请求阶段最后发生的，文件操作是阻塞的（FreeBSD直接无视）
+- nginx为了实时高效的给请求方应答后，**日志记录是在应答后异步记录完成的**。由此可见如果我们有日志输出的情况，**最好统一到log_by_lua阶段**。
      - 可能需要 ngx.ctx 来保存 content 或其他阶段的数据， 以便在 log 阶段使用
- - **如果我们自定义放在content_by_lua阶段，那么将线性的增加请求处理时间**。
+- **如果我们自定义放在content_by_lua阶段，那么将线性的增加请求处理时间**。
 
 
 <h2 id="ed12dbb6cd4a0c740d0a6a499567a40f"></h2>
@@ -102,8 +102,8 @@ location /mixed {
 
 ### 阻塞操作
 
- - Nginx为了减少系统上下文切换，它的worker是用单进程单线程设计的，事实证明这种做法运行效率很高。
- - Nginx要么是在等待网络讯号，要么就是在处理业务（请求数据解析、过滤、内容应答等），没有任何额外资源消耗。
+- Nginx为了减少系统上下文切换，它的worker是用单进程单线程设计的，事实证明这种做法运行效率很高。
+- Nginx要么是在等待网络讯号，要么就是在处理业务（请求数据解析、过滤、内容应答等），没有任何额外资源消耗。
 
 
 <h2 id="36854f32d5ebad1e3475e8de5a57ea33"></h2>
@@ -113,10 +113,10 @@ location /mixed {
 
 官方有明确说明，Openresty的官方API绝对100% noblock，所以我们只能在她的外面寻找了。我这里大致归纳总结了一下，包含下面几种情况：
 
- - 高CPU的调用（压缩、解压缩、加解密等）
- - 高磁盘的调用（所有文件操作）
- - 非Openresty提供的网络操作（luasocket等）
- - 系统命令行调用（os.execute等）
+- 高CPU的调用（压缩、解压缩、加解密等）
+- 高磁盘的调用（所有文件操作）
+- 非Openresty提供的网络操作（luasocket等）
+- 系统命令行调用（os.execute等）
 
 这些都应该是我们尽量要避免的。理想丰满，现实骨感，谁能保证我们的应用中不使用这些类型的API？
 
@@ -134,8 +134,8 @@ location /mixed {
 
 #### 缓存的原则
 
- - 一个生产环境的缓存系统，需要根据自己的业务场景和系统瓶颈，来找出最好的方案，这是一门平衡的艺术。
- - 一般来说，缓存有两个原则。
+- 一个生产环境的缓存系统，需要根据自己的业务场景和系统瓶颈，来找出最好的方案，这是一门平衡的艺术。
+- 一般来说，缓存有两个原则。
      - 一是越靠近用户的请求越好，
          - 比如能用本地缓存的就不要发送HTTP请求，
          - 能用CDN缓存的就不要打到Web服务器，
@@ -172,9 +172,9 @@ function set_to_cache(key, value, exptime)
 end
 ```
 
- - ngx.shared.my_cache 要在 nginx.conf 中定义
+- ngx.shared.my_cache 要在 nginx.conf 中定义
      - `lua_shared_dict my_cache 128m;`
- - nginx所有worker之间共享的，内部使用的LRU算法（最近最少使用）来判断缓存是否在内存占满时被清除。
+- nginx所有worker之间共享的，内部使用的LRU算法（最近最少使用）来判断缓存是否在内存占满时被清除。
 
 
 **使用Lua LRU cache**:
@@ -212,12 +212,12 @@ return _M
 
 #### 如何选择？
 
- - shared.dict 使用的是共享内存，
+- shared.dict 使用的是共享内存，
      - 每次操作都是全局锁，如果高并发环境，不同worker之间容易引起竞争。
      - 所以单个shared.dict的体积不能过大。
      - 丰富API add、replace、incr、get_stale（在key过期时也可以返回之前的值）、get_keys（获取所有key，虽然不推荐，但说不定你的业务需要呢）
      - 内存占用比较少。
- - lrucache是worker内使用的，
+- lrucache是worker内使用的，
      - 由于nginx是单进程方式存在，所以永远不会触发锁，效率上有优势，并且没有shared.dict的体积限制，内存上也更弹性，
      - 不同worker之间数据不同享，同一缓存数据可能被冗余存储。
      - 供的API比较少，现在只有get、set和delete
@@ -252,7 +252,7 @@ server {
 
 ### 定时任务
 
- - ngx.timer.at()
+- ngx.timer.at()
      - 这个函数是在后台用nginx轻线程（light thread），在指定的延时后，调用指定的函数。 
      - 我们有机会做一些更有想象力的功能出来。比如 批量提交和cron任务。
      - 特别注意：有一些ngx_lua的API不能在这里调用，
@@ -287,21 +287,21 @@ server {
 
 ### 禁止某些终端访问
 
- - 不同的业务应用场景，会有完全不同的非法终端控制策略
+- 不同的业务应用场景，会有完全不同的非法终端控制策略
      - 常见的限制策略有终端IP、访问域名端口，这些可以通过防火墙等很多成熟手段完成。
      - 也有一些特定限制策略，例如特定cookie、url、location，甚至请求body包含有特殊内容，这种情况下普通防火墙就比较难限制。
 
- - Nginx的是HTTP 7层协议的实现者
+- Nginx的是HTTP 7层协议的实现者
      - 相对普通防火墙从通讯协议有自己的弱势，同等的配置下的性能表现绝对远不如防火墙，
      - 但它的优势胜在价格便宜、调整方便，还可以完成HTTP协议上一些更具体的控制策略，与iptable的联合使用，让Nginx玩出更多花样。
 
 列举几个限制策略来源:
 
- - IP地址
- - 域名、端口
- - Cookie特定标识
- - location
- - body中特定标识
+- IP地址
+- 域名、端口
+- Cookie特定标识
+- location
+- body中特定标识
 
 示例配置（allow、deny）:
 
@@ -315,9 +315,9 @@ location / {
 }
 ```
 
- - The rules are checked in sequence until the first match is found. 
- - In this example, access is allowed only for IPv4 networks 10.1.1.0/16 and 192.168.1.0/24 excluding the address 192.168.1.1, and for IPv6 network 2001:0db8::/32. 
- - In case of a lot of rules, the use of the ngx_http_geo_module module variables is preferable.
+- The rules are checked in sequence until the first match is found. 
+- In this example, access is allowed only for IPv4 networks 10.1.1.0/16 and 192.168.1.0/24 excluding the address 192.168.1.1, and for IPv6 network 2001:0db8::/32. 
+- In case of a lot of rules, the use of the ngx_http_geo_module module variables is preferable.
 
 
 目前为止所有的控制，都是用Nginx模块完成，执行效率、配置明确是它的优点。缺点也比较明显，修改配置代价比较高（reload服务）。并且无法完成与第三方服务的对接功能交互（例如调用iptable）。
@@ -329,10 +329,10 @@ location / {
 
 ### 请求返回后继续执行
 
- - 在一些请求中，我们会做一些日志的推送、用户数据的统计等和返回给终端数据无关的操作。
+- 在一些请求中，我们会做一些日志的推送、用户数据的统计等和返回给终端数据无关的操作。
      - 这些操作，即使你用异步非阻塞的方式，在终端看来，也是会影响速度的。
      - 这个和我们的原则：终端请求，需要用最快的速度返回给终端，是冲突的。
- - 最理想的是，获取完给终端返回的数据后，就断开连接，后面的日志和统计等动作，在断开连接后，后台继续完成即可。
+- 最理想的是，获取完给终端返回的数据后，就断开连接，后面的日志和统计等动作，在断开连接后，后台继续完成即可。
 
 怎么做到呢？我们先看其中的一种方法：
 
@@ -358,10 +358,10 @@ end
 
 ### 调试
 
- - 关闭code cache
+- 关闭code cache
     - 这个选项在调试的时候最好关闭。
     - lua_code_cache off;
- - 记录日志
+- 记录日志
     - 看上去谁都会的东西，要想做好也不容易。
     - QA发现了一个bug，开发说我修改代码加个日志看看，然后QA重现这个问题，发现日志不够详细，需要再加，反复...
     - **你在写代码的时候，就需要考虑到调试日志**
@@ -374,10 +374,10 @@ if response then
 end
 ```
 
- - 我们在做一个操作后，就把结果记录到nginx的error.log里面，等级是warn。
- - 在生产环境下，日志等级默认为error，在我们需要详细日志的时候，把等级调整为warn即可。
- - 在我们的实际使用中，我们会把一些很少发生的重要事件，做为error级别记录下来，即使它并不是nginx的错误。
- - 与日志配套的，你需要 **logrotate** 来做日志的切分和备份。
+- 我们在做一个操作后，就把结果记录到nginx的error.log里面，等级是warn。
+- 在生产环境下，日志等级默认为error，在我们需要详细日志的时候，把等级调整为warn即可。
+- 在我们的实际使用中，我们会把一些很少发生的重要事件，做为error级别记录下来，即使它并不是nginx的错误。
+- 与日志配套的，你需要 **logrotate** 来做日志的切分和备份。
 
 
 <h2 id="7bc945278de209b6fa66b6e671a0d759"></h2>
@@ -442,8 +442,8 @@ assert(txt2 == txt)
 
 ### 变量的共享范围
 
- - Lua module 是 VM 级别共享的
- - 各个请求的私有数据 , 只应通过你自己的函数参数来传递，或者通过 ngx.ctx 表。
+- Lua module 是 VM 级别共享的
+- 各个请求的私有数据 , 只应通过你自己的函数参数来传递，或者通过 ngx.ctx 表。
     - 前者是推荐 ，因为效率高得多。
 
 
@@ -467,9 +467,9 @@ assert(txt2 == txt)
 
 ### 正确使用长链接 KeepAlive
 
- - 在OpenResty中，连接池在使用上如果不加以注意，容易产生数据写错地方，或者得到的应答数据异常以及类似的问题，
- - 当然使用短连接可以规避这样的问题，但是在一些企业用户环境下，短连接+高并发对企业内部的防火墙是一个巨大的考验，因此，长连接自有其勇武之地，
- - 使用长连接的时候要记住，长连接一定要保持其连接池中所有连接的正确性。
+- 在OpenResty中，连接池在使用上如果不加以注意，容易产生数据写错地方，或者得到的应答数据异常以及类似的问题，
+- 当然使用短连接可以规避这样的问题，但是在一些企业用户环境下，短连接+高并发对企业内部的防火墙是一个巨大的考验，因此，长连接自有其勇武之地，
+- 使用长连接的时候要记住，长连接一定要保持其连接池中所有连接的正确性。
      - 如果连接 出现错误，则不要将该连接加入连接池。
 
 
@@ -504,8 +504,8 @@ content_by_lua_block {
 
 ### 典型应用场景
 
- - 任何一个开发语言、开发框架，都有它存在的明确目的，重心是为了解决什么问题。
- - OpenResty的存在也有其自身适用的应用场景。
+- 任何一个开发语言、开发框架，都有它存在的明确目的，重心是为了解决什么问题。
+- OpenResty的存在也有其自身适用的应用场景。
     - 在lua中混合处理不同nginx模块输出（proxy, drizzle, postgres, redis, memcached等）。
     - 在请求真正到达上游服务之前，lua中处理复杂的准入控制和安全检查。
     - 比较随意的控制应答头（通过Lua）。
@@ -521,24 +521,24 @@ content_by_lua_block {
 
 #### 不擅长的应用场景
 
- - 有长时间阻塞调用的过程
+- 有长时间阻塞调用的过程
      - 例如通过 Lua 完成系统命令行调用
     - 使用阻塞的Lua API完成相应操作
- - 单个请求处理逻辑复杂，尤其是需要和请求方多次交互的长连接场景
+- 单个请求处理逻辑复杂，尤其是需要和请求方多次交互的长连接场景
     - Nginx的内存池 pool 是每次新申请内存存放数据
     - 所有的内存释放都是在请求退出的时候统一释放
     - 如果单个请求处理过于复杂，将会有过多内存无法及时释放
- - 内存占用高的处理
+- 内存占用高的处理
     - 受制于Lua VM的最大使用内存 1G 的限制
     - 这个限制是单个Lua VM，也就是单个Nginx worker
- - 两个请求之间有交流的场景
+- 两个请求之间有交流的场景
     - 例如你做个在线聊天，要完成两个用户之间信息的传递
     - 当前OpenResty还不具备这个通讯能力（后面可能会有所完善）
- - 与行业专用的组件对接
+- 与行业专用的组件对接
     - 最好是 TCP 协议对接，不要是 API 方式对接，防止里面有阻塞 TCP 处理
     - 由于OpenResty必须要使用非阻塞 API ，所以传统的阻塞 API ，我们是没法直接使用的
     - 获取 TCP 协议，使用 cosocket 重写（重写后的效率还是很赞的）
- - 每请求开启的 light thread 过多的场景
+- 每请求开启的 light thread 过多的场景
     - 虽然已经是light thread，但它对系统资源的占用相对是比较大的
     - 这些适合、不适合信息可能在后面随着 OpenResty 的发展都会有新的变化，大家拭目以待。
 
@@ -548,33 +548,33 @@ content_by_lua_block {
 
 ### 怎样理解 cosocket
 
- - cosocket 是 OpenResty 世界中技术、实用价值最高的部分。
- - 可以用非常低廉的成本，优雅的姿势，比传统 socket 编程效率高好几倍的方式进行网络编程。
- - 无论资源占用、执行效率、并发数等都非常出色
+- cosocket 是 OpenResty 世界中技术、实用价值最高的部分。
+- 可以用非常低廉的成本，优雅的姿势，比传统 socket 编程效率高好几倍的方式进行网络编程。
+- 无论资源占用、执行效率、并发数等都非常出色
 
 `cosocket = coroutine + socket`
 
- - 需要协程特性支撑，
- - 需要 nginx 非常最重要的一部分“事件循环回调机制”
+- 需要协程特性支撑，
+- 需要 nginx 非常最重要的一部分“事件循环回调机制”
 
 在 Lua 世界中调用任何一个有关 cosocket 网络函数内部关键调用如图所示：
 
 ![](https://moonbingbing.gitbooks.io/openresty-best-practices/content/images/cosocket_internal.png)
 
- - 用户的 Lua 脚本每触发一个网络操作，都会触发一个协程的 yield 以及 resume，
+- 用户的 Lua 脚本每触发一个网络操作，都会触发一个协程的 yield 以及 resume，
      - 因为每请求的 Lua 脚本实际上都运行在独享协程之上，可以在任何需要的时候暂停自己（yield），也可以在任何需要的时候被唤醒（resume）。
 暂停自己，把网络事件注册到 Nginx 监听列表中，并把运行权限交给 Nginx。
- - 当有 Nginx 注册网络事件达到触发条件时，唤醒对应的协程继续处理。
- - 依此为蓝板，封装实现 connect、read、recieve 等操作，形成了大家目前所看到的 cosocket API。
- - cosocket 对象是全双工的，也就是说，一个专门读取的 "light thread"，一个专门写入的 "light thread"，它们可以同时对同一个 cosocket 对象进行操作（两个 "light threads" 必须运行在同一个 Lua 环境中，原因见上）。
+- 当有 Nginx 注册网络事件达到触发条件时，唤醒对应的协程继续处理。
+- 依此为蓝板，封装实现 connect、read、recieve 等操作，形成了大家目前所看到的 cosocket API。
+- cosocket 对象是全双工的，也就是说，一个专门读取的 "light thread"，一个专门写入的 "light thread"，它们可以同时对同一个 cosocket 对象进行操作（两个 "light threads" 必须运行在同一个 Lua 环境中，原因见上）。
      - 但是你不能让两个 "light threads" 对同一个 cosocket 对象都进行读（或者写入、或者连接）操作，否则当调用 cosocket 对象时，你将得到一个类似 "socket busy reading" 的错误。
 
 
 特性:
 
- - 它是异步的；
- - 它是非阻塞的；
- - 它是全双工的；
+- 它是异步的；
+- 它是非阻塞的；
+- 它是全双工的；
 
 
 异步／同步是做事派发方式，阻塞／非阻塞是如何处理事情，两组概念不在同一个层面。
@@ -583,16 +583,16 @@ content_by_lua_block {
 
 下面这些函数，都是用来辅助完成更高级的 socket 行为控制：
 
- - connect
- - sslhandshake
- - send
- - receive
- - close
- - settimeout
- - setoption
- - receiveuntil
- - setkeepalive
- - getreusedtimes
+- connect
+- sslhandshake
+- send
+- receive
+- close
+- settimeout
+- setoption
+- receiveuntil
+- setkeepalive
+- getreusedtimes
 
 它们不仅完整兼容 LuaSocket 库的 TCP API，而且还是 100% 非阻塞的。
 
@@ -629,17 +629,17 @@ location /test {
 }
 ```
 
- - 这里的 socket 操作都是异步非阻塞的
+- 这里的 socket 操作都是异步非阻塞的
 
 官方默认绑定包有多少是基于 cosocket 的：
 
- - ngx_stream_lua_module Nginx "stream" 子系统的官方模块版本（通用的下游 TCP 对话）。
- - lua-resty-memcached 基于 ngx_lua cosocket 的库。
- - lua-resty-redis 基于 ngx_lua cosocket 的库。
- - lua-resty-mysql 基于 ngx_lua cosocket 的库。
- - lua-resty-upload 基于 ngx_lua cosocket 的库。
- - lua-resty-dns 基于 ngx_lua cosocket的库。
- - lua-resty-websocket 提供 WebSocket 的客户端、服务端，基于 ngx_lua cosocket 的库。
+- ngx_stream_lua_module Nginx "stream" 子系统的官方模块版本（通用的下游 TCP 对话）。
+- lua-resty-memcached 基于 ngx_lua cosocket 的库。
+- lua-resty-redis 基于 ngx_lua cosocket 的库。
+- lua-resty-mysql 基于 ngx_lua cosocket 的库。
+- lua-resty-upload 基于 ngx_lua cosocket 的库。
+- lua-resty-dns 基于 ngx_lua cosocket的库。
+- lua-resty-websocket 提供 WebSocket 的客户端、服务端，基于 ngx_lua cosocket 的库。
 
 
 

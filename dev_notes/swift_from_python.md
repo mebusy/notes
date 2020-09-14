@@ -9,31 +9,31 @@
     - really important in swift 
     - it's a multi-threaded environment from the very beginning .
     - they make no compromise for single-threaded performance 
- - string interpolation
+- string interpolation
     - let apples = 3
     - let oranges = 5
     - `I have \(apples+oranges) fruits.`
- - array 
+- array 
     - pretty same
     - `var emptyArray = [String]()` , or `[]`
- - dictionary
+- dictionary
     - not `{...}` , but `[ "a":xxx ]`
     - `var emptyDictionary = [String:Float]()` , or `[:]` if type cam be inferred
- - for 
+- for 
    - `for xxx in xxxx {  }`
    - `for i in 0..<4 `
    - `for i in 0...3 `
    - `for var i=0;i<4;i++ `
- - optional construct
+- optional construct
     - `var optionalString: String? = "Hello"`
     - optional variables have actually 2 states:  have nothing , or have a value 
     - 0 is not the same thing as nothing 
- - switch
+- switch
     - you can switch on many types , integer, string , object, ... 
- - tuple 
+- tuple 
     - `for (key, value) in someDict { ... }` 
- - while / do ... while
- - function
+- while / do ... while
+- function
     - keyword: `func`
     - `func calc( scores:[Int] ) -> (min: Int, max: Int, sum: Int) { return (0,0,0) }` 
     - `let result = calc( [5,3,100,3,9])` 
@@ -63,7 +63,7 @@ let mappedNumbers = numbers.map( { number in 3*number } )
 let sortedNumbers = numbers.sorted { $0 > $1 }
 ``` 
 
- - class
+- class
     - `var shape = Shape()`
     - `__init__` in python => `init` in swift
         - `super.init(xxx)`
@@ -82,7 +82,7 @@ var perimeter : Double {
 }
 ``` 
 
- - structure
+- structure
     - structures are passed by value 
     - and this gets into the whole multi-threaded  multiprocessing 
 

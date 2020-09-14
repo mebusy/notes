@@ -39,8 +39,8 @@
 
 > Two ingredients:
 
- - vertices  ( nodes V )
- - edges (E) = pairs of vertices
+- vertices  ( nodes V )
+- edges (E) = pairs of vertices
  
 根据vertices are `undirected` or `directed` , 图分为 `undirected graphs` and `directed graphs` .
 
@@ -58,8 +58,8 @@ A cut of a graph (V,E) is a partition of V into 2 non-empty set A and B.
 
 The `crossing edges` of a cut(A,B) are those with :
 
- - one endpoint in A , one endpoint in B ( undirected )
- - tail in A, head in B ( directed )
+- one endpoint in A , one endpoint in B ( undirected )
+- tail in A, head in B ( directed )
 
 
 ![](../imgs/cuts_of_graphs.png)
@@ -79,9 +79,9 @@ The `crossing edges` of a cut(A,B) are those with :
 
 > Application:
 
- - identify weakness of a phisical network
- - community detection in social network
- - image segmentation 图像分割
+- identify weakness of a phisical network
+- community detection in social network
+- image segmentation 图像分割
 
 <h2 id="ee3677876ffa61d1f94bf3105ebd5d59"></h2>
 
@@ -101,8 +101,8 @@ The `crossing edges` of a cut(A,B) are those with :
 
 let n= #vertices , m= #edges , in most applications, `m=Ω(n) and O(n²)`.
 
- - in a 'sparse graph' , m is `Ω(n)` or close to it.
- - in a 'dense graph' , m is close to `O(n²)` 
+- in a 'sparse graph' , m is `Ω(n)` or close to it.
+- in a 'dense graph' , m is close to `O(n²)` 
 
 
 <h2 id="2f61bb87d28860c4fceb6823a19da296"></h2>
@@ -114,9 +114,9 @@ let n= #vertices , m= #edges , in most applications, `m=Ω(n) and O(n²)`.
 
 > variants 变种：
 
- - `Aᵢⱼ` = # i-j edges  ( if parallel edges )
- - `Aᵢⱼ` = weight of i-j edges ( if any )
- - `Aᵢⱼ` = `1` if i->j, or `-1` if i<-j  (directed)
+- `Aᵢⱼ` = # i-j edges  ( if parallel edges )
+- `Aᵢⱼ` = weight of i-j edges ( if any )
+- `Aᵢⱼ` = `1` if i->j, or `-1` if i<-j  (directed)
 
 邻接矩阵 需要的空间是 θ(n²)。
  
@@ -127,10 +127,10 @@ let n= #vertices , m= #edges , in most applications, `m=Ω(n) and O(n²)`.
 
 `Ingredients:`
 
- - array of vertices
- - array of edges
- - each edge 包含两个顶点
- - each vertex point to all of the 与自己相关的 edges （有向图，只关心是tail顶点的边）.
+- array of vertices
+- array of edges
+- each edge 包含两个顶点
+- each vertex point to all of the 与自己相关的 edges （有向图，只关心是tail顶点的边）.
 
 
 邻接链表 需要的空间是 θ(n+m)。 分析：第一部分需要 θ(n)空间，第二部分需要θ(m)空间，第三部分，每条边需要两个顶点，所以需要再加 θ(m)，第4部分，1个顶点可能只和1条边关联，也可能和n-1条边关联。实际上，第4部分中的顶点 -> 边 的关系，总能在第三部分找到对应的 边->顶点的 关系，所以第4部分其实也是 θ(m)。

@@ -45,7 +45,7 @@ http://introtodeeplearning.com/schedule.html
 
 # Lecture 1 : Intro
 
- - Why Deep Learning ?
+- Why Deep Learning ?
     - Deep learning is powerful because it is able to learn powerful feature representations in an unsupervised manner.
 
 <h2 id="882cce400ea6815dec4b6a157dab7253"></h2>
@@ -53,10 +53,10 @@ http://introtodeeplearning.com/schedule.html
 
 ## Fundamentals of Deep Learning
  
- - Perceptron Forward Pass
+- Perceptron Forward Pass
     - ![](../imgs/MIT6S191_perceptron.png)
     - output = g(XW +b)
- - Comon Activation Functions
+- Comon Activation Functions
     - ![](../imgs/MIT6S191_common_activation_function.png)
 
 <h2 id="20b50b357f447578f0eb0a92b8572479"></h2>
@@ -64,7 +64,7 @@ http://introtodeeplearning.com/schedule.html
 
 ## How do we build neural networks with perceptrons?
 
- - How do we build neural networks with perceptrons ?
+- How do we build neural networks with perceptrons ?
     - Perceptrons are the base of every neural network
     - we need to stack them , put them together in order to actually build these things
     - Perceptron Diagram Simplified 
@@ -81,10 +81,10 @@ http://introtodeeplearning.com/schedule.html
 
 ## Training Neural Networks
 
- - Stochastic Gradient Descent (SGD)
+- Stochastic Gradient Descent (SGD)
     - the loss function is with respect to every training sample
     - while for batch Gradient Descent , the loss function is with respect to the whole training set.
- - Calculating the Gradient: Backpropagation
+- Calculating the Gradient: Backpropagation
     - ![](../imgs/MIT6S191_backpropagation.png)
     - ![](../imgs/MIT6S191_backpropagation2.png)
     - ![](../imgs/MIT6S191_backpropagation3.png)
@@ -94,7 +94,7 @@ http://introtodeeplearning.com/schedule.html
 
 ## Training Neural Networks In Practice
 
- - Loss function can be difficult to optimize
+- Loss function can be difficult to optimize
     - How to Choose Learning Rate?
         - Small Learning Rate 
             - many iterations unitl convergence
@@ -107,16 +107,16 @@ http://introtodeeplearning.com/schedule.html
         2. Do something smarter : Adaptive Learning Rate
             - no fixed learning rate
             - gonna consider learning rates that can adapt and change based on how the learning is going
- - Adaptive Learning Rate
+- Adaptive Learning Rate
     - Learning rate is no longer fixed
     - Can be made larger or smaller depending on:
         - how large gradient is
         - how fast learning is happening
         - size of particular weights
         - etc
- - Adaptive Learning Rate Algorithms
+- Adaptive Learning Rate Algorithms
     - ADAM, Momentum, NAG, Adagrad, Adadelta, RMSProp
- - Escaping Saddle Points
+- Escaping Saddle Points
     - with a fixed learning rate we can really get stuck in a saddle point , while other adaptive learning rate can recognize that we're in a saddle point and escape pretty quickly by increasing the leraning rate. 
     - ![](../imgs/MIT6S191_escape_saddle_point.png)
 
@@ -126,12 +126,12 @@ http://introtodeeplearning.com/schedule.html
 
 ## Training Neural Networks In Practice 2: MiniBatches
 
- - Stochastic Gradient Descent issue
+- Stochastic Gradient Descent issue
     - we are only looking at one example to get each gradient so this is a pretty non consistent and kind of stochastic representation of our loss and gradient. 
     - it's not a very reliable and consistent learning singal 
- - Minibatches Reduce Gradient Variance
+- Minibatches Reduce Gradient Variance
     - more accurate estimate of gradient  
- - Advantages of Minibatches
+- Advantages of Minibatches
     - More accurate estimation of gradient
         - Smoother convergence
         - Allows for larger learning rates
@@ -143,8 +143,8 @@ http://introtodeeplearning.com/schedule.html
 
 ## Training Neural Networks In Practice 3: Fighting Overfitting
 
- - Sometimes NNet can be a little bit too powerful and they can either overfit or maybe memorize training examples.
- - Regularization Techniques
+- Sometimes NNet can be a little bit too powerful and they can either overfit or maybe memorize training examples.
+- Regularization Techniques
     1. Dropout
         - During training, randomly set some activations (hidden layer nodes) to 0
             - Typically ‘drop’ 50% of activations in layer
@@ -175,12 +175,12 @@ http://introtodeeplearning.com/schedule.html
 
 What if each training sample itself consisted of multiple data points, and those data points were somehow related or dependent on each other. 
 
- - What is a sequence? 
+- What is a sequence? 
     - sentence : “I took the dog for a walk this morning.”
         - a sentence consists of multiple words, and each words is dependent on other words in the sentence
     - function : sinx
     - speech waveform 
- - Successes of deep models 
+- Successes of deep models 
     - Machine translation
     - Question Answering
 
@@ -189,17 +189,17 @@ What if each training sample itself consisted of multiple data points, and those
 
 ## how do we model sequences? 
 
- - idea: represent a sequence as a bag of words
+- idea: represent a sequence as a bag of words
     - all a bag of words means is that we have this fixed length feature vector , each slot represents a word and the number in that slot represents the number of times that word happens in the sentence. 
     - ![](../imgs/MIT_6S191_a_bag_of_words.png)
- - problem: bag of words does not preserve order
+- problem: bag of words does not preserve order
     - “The food was good, not bad at all.”  
     - vs
     - “The food was bad, not good at all.”
     - they are completely different semantics meetings but in their bag of words representation, they would be exactly the same because they contain the same set of words. 
- - idea: maintain an ordering within feature vector 
+- idea: maintain an ordering within feature vector 
     - ![](../imgs/MIT6S191_orderingWithinFeatureVector.png)
- - problem: hard to deal with different word orders
+- problem: hard to deal with different word orders
     - “On Monday, it was snowing.” 
     - vs
     - “It was snowing on Monday.”
@@ -209,22 +209,22 @@ What if each training sample itself consisted of multiple data points, and those
 
 A way to solve it is by sharing parameters across our sequence. So once we learn something like the fact that "on Monday" represents a time or a setting we can resus that fact later on in the sentence. 
 
- - idea: markov models
+- idea: markov models
     - ![](../imgs/MIT6S191_learn_sequence_markov.png)
- - problem: we can’t model long-term dependencies
+- problem: we can’t model long-term dependencies
     - **markov assumption**: each state depends only on the last state. 
     - This is a kind of problem for complex sequences like natural language or speach waveforms. 
         - “In **France**, I had a great time and I learnt some of the `____` **language**.”
         - We need information from the far past and future to accurately guess the correct word.
- - let’s turn to **recurrent neural networks**! (RNNs)
+- let’s turn to **recurrent neural networks**! (RNNs)
     1. to maintain **word order**
     2. to **share parameters** across the sequence
     3. to keep track of **long-term dependencies**
- - RNN
+- RNN
     - the key difference is that each of those hidden units is just doing something a little bit different. 
     - each hidden unit in addtion to computing a function of the input , also computes a function of its own previous output
     - in this way it's able to keep track of things that have happened in the past. 
- - RNNS **remember** their previous state:
+- RNNS **remember** their previous state:
     - ![](../imgs/MIT6S191_RNNs_hidden_unit.png)
         - x₀: vector representing first word
         - s₀: cell state at t=0 (some initialization)
@@ -235,7 +235,7 @@ A way to solve it is by sharing parameters across our sequence. So once we learn
         - s₁: cell state at t=1 (some initialization)
         - s₂: cell state at t=2
             - s₂ = tanh( Wx₁ + Us₁ )
- - “unfolding” the RNN across time: 
+- “unfolding” the RNN across time: 
     - ![](../imgs/MIT6S191_RNN_unfolding.png)
     - the orange circle is the same hidden unit just at different points in time.
     - at each time step it takes in a new word and it calculates the next output of the hidden unit based on that new word and its own previous output. And it just continues doing this throughout time. -- I say time but it also means, if we have a sentence , like the word in the sentence or the point that we're in the sentence. 
@@ -243,7 +243,7 @@ A way to solve it is by sharing parameters across our sequence. So once we learn
         - this solves one of the key problem about sharing parameters throughout the sequence. 
     - **s<sub>n</sub> can contain information from all past timesteps**
         - solves the problem about remembering information from far back in the sequence.
- - possible task: language model 
+- possible task: language model 
     - all the works of shakespeare
         - -> language model ->
         - KING LEAR: O, if you were a feeble sight, the courtesy of your law, Your sight and several breath, will wear the gods With his heads, and my hands are wonder'd at the deeds, So drop upon your lordship's head, and your opinion Shall be against your honour.
@@ -252,12 +252,12 @@ A way to solve it is by sharing parameters across our sequence. So once we learn
         - given that I'm at the start of a sentence what is the most likely next word ?  alas
         - now given that I've seen "alas" what's the most likely next word ? my
         - given that I've seen "alas my"  what's the most likely next word ? honor. 
- - possible task: classification (i.e. sentiment)
+- possible task: classification (i.e. sentiment)
     - say we have a bunch of tweets and we want to just determine whether they're good or bad or neutral. 
     - ![](../imgs/MIT6S191_RNN_task_classification.png)
     - ![](../imgs/MIT6S191_RNN_task_classification2.png)
         - y is a probability distribution over possible classes (like positive, negative, neutral), aka a softmax 
- - possible task: machine translation
+- possible task: machine translation
     - encoder/decoder model 
     - ![](../imgs/MIT6S191_RNN_encode_decoder_model.png)
     - 2 different RNNs. first is known as an encoder.
@@ -267,28 +267,28 @@ A way to solve it is by sharing parameters across our sequence. So once we learn
 
 ## how do we train an RNN? 
 
- - remember: backpropagation
+- remember: backpropagation
     1. **take the derivative** (gradient) of the loss with respect to each parameter
     2. **shift parameters in the opposite direction** in order to minimize loss
- - we have a loss at each timestep:
+- we have a loss at each timestep:
     - since we’re making a prediction at each timeste
     - we're not just making a prediction at the end. Oftentimes we're doing something at each time step and making prediction.
     - ![](../imgs/MIT6S191_RNN_loss.png)
         - loss at each timestep
- - we **sum the losses** across time:
+- we **sum the losses** across time:
     - loss at time t = J<sub>t</sub>(Θ)
     - total loss = J(Θ) = ∑ J<sub>t</sub>(Θ)
- - what are our gradients? 
+- what are our gradients? 
     - we sum gradients across time for each parameter P:
         - ![](../imgs/MIT6S191_RNN_gradients.png)
- - let’s try it out for W with the chain rule: 
+- let’s try it out for W with the chain rule: 
     - ![](../imgs/MIT6S191_RNN_gradients2.png)
     - ![](../imgs/MIT6S191_RNN_gradients3.png)
- - how does s₂ depend on W? 
+- how does s₂ depend on W? 
     - ![](../imgs/MIT6S191_RNN_gradients4.png)
     - ![](../imgs/MIT6S191_RNN_gradients5.png)
     - ![](../imgs/MIT6S191_RNN_gradients6.png)
- - backpropagation through time: 
+- backpropagation through time: 
     - ![](../imgs/MIT6S191_RNN_gradients_backpropagation.png)
 
 <h2 id="ab33d2e55a6ebd5e4c71fe57baaa6087"></h2>
@@ -298,7 +298,7 @@ A way to solve it is by sharing parameters across our sequence. So once we learn
 
 It is because of this annoying problem called the vanishing gradient.
 
- - problem: vanishing gradient
+- problem: vanishing gradient
     - ![](../imgs/MIT6S191_RNN_vanishing_gradient.png)
         - the term ∂s₂/∂s<sub>k</sub> itself is also a chain rule.
     - ![](../imgs/MIT6S191_RNN_vanishing_gradient2.png)
@@ -314,19 +314,19 @@ It is because of this annoying problem called the vanishing gradient.
         - “In **France**, I had a great time and I learnt some of the `____` **language**.”
             - our parameters are not trained to capture long-term dependencies, so the word we predict will mostly depend on the previous few words, not much earlier ones
 
- - solution #1: activation functions
+- solution #1: activation functions
     - choose ReLU: prevents f’ from shrinking the gradients
     - ![](../imgs/MIT6S191_RNN_bias_solution1.png)
- - solution #2: initialization
+- solution #2: initialization
     - weights initialized to identity matrix , biases initialized to zeros
     - prevents W from shrinking the gradients
- - solution #3: gated cells 
+- solution #3: gated cells 
     - rather each node being just a simple recurrent cell, make each node a more **complex unit with gates** 
         - a gated unit basically controls what the information is passed through , prevent the vanishing gradient problem.
         - LSTM: long short term memory  
         - GRU: gated recurrent units
     - ![](../imgs/MIT6S191_RNN_rnn_vs_lstm.png)
- - solution #3: more on LSTM
+- solution #3: more on LSTM
     - LSTM is very similar to a recurrent cell , it takes in a cell state and output the next cell state based on that.
     - but there is just some additional steps in between. 
         1. forget irrelevant parts of previous state
@@ -337,12 +337,12 @@ It is because of this annoying problem called the vanishing gradient.
             - there might be certain things that I want to keep in the cell state that are not relevant to the output at this time.
             - so say I have the word "France" in my cell state , I might want to keep it there but not output it , because it won't be relevant to this current word that I'm predicting. But it will be relevant at some furture time. 
             - in this way I'm able to hold on to things without them contributing to the loss at that time step.
- - why do LSTMs help? 
+- why do LSTMs help? 
     1. forget gate allows you forgot certain information but also remember it and let it  **pass through unchanged**
         - when taking the derivative, f’ is 1 for what we want to keep!
     2. sⱼ depends on sⱼ₋₁ through **addition**! (middel step)
         - when taking the derivative, not lots of small W terms!
- - in practice: machine translation.
+- in practice: machine translation.
     - basic encoder-decoder model
     - add LSTM cells
     - problem: a fixed-length encoding is limiting  
@@ -361,13 +361,13 @@ It is because of this annoying problem called the vanishing gradient.
 
 ---
 
- - now we can model sequences!
+- now we can model sequences!
     - why recurrent neural networks?
     - building models for language, classification, and machine translation
     - training them with backpropagation through time
     - solving the vanishing gradient problem with activation functions, initialization, and gated cells (like LSTMs)
     - using attention mechanisms
- - and there’s lots more to do!
+- and there’s lots more to do!
     - extending our models to timeseries + waveforms
     - complex language models to generate long text or books
     - language models to generate code
@@ -390,17 +390,17 @@ It is because of this annoying problem called the vanishing gradient.
 
 ## Famous Computer Vision Datasets
 
- - MNIST: handwritten digits
- - ImageNet: WordNet hierarchy
- - CIFAR-10(0): tiny images 
- - Places: natural scenes
+- MNIST: handwritten digits
+- ImageNet: WordNet hierarchy
+- CIFAR-10(0): tiny images 
+- Places: natural scenes
 
 <h2 id="6ce916fc429bf02b2897f166fd592ac5"></h2>
 
 
 ## Convolutional Neural Networks
 
- - CNN have a volumn , a 3d volumn.
+- CNN have a volumn , a 3d volumn.
     - ![](../imgs/MIT6S191_CNN_volumn.png)
     - Each layer takes a 3d volume, produces 3d volume with some smooth function that may or may not have parameters.
  
@@ -413,18 +413,18 @@ It is because of this annoying problem called the vanishing gradient.
 
 > 卷积神经网络各个层级结构
 
- - 最左边是数据输入层
+- 最左边是数据输入层
     - 对数据做一些处理，比如去均值（把输入数据各个维度都中心化为0，避免数据过多偏差，影响训练效果）,  归一化（把所有的数据都归一到同样的范围）,PCA/白化等等。
     - CNN只对训练集做“去均值”这一步
     - INPUT [32x32x3] will hold the raw pixel values of the image, in this case an image of width 32, height 32, and with three color channels R,G,B
- - 中间是
+- 中间是
     - CONV：卷积计算层，线性乘积 求和
         - CONV layer will compute the output of neurons that are connected to local regions in the input, each computing a dot product between their weights and a small region they are connected to in the input volume. This may result in volume such as [32x32x12] if we decided to use 12 filters.  
     - RELU：激励层
         - RELU layer will apply an elementwise activation function, such as the max(0,x) thresholding at zero. This leaves the size of the volume unchanged ([32x32x12]).
     - POOL：池化层，简言之，即取区域平均或最大
         - POOL layer will perform a downsampling operation along the spatial dimensions (width, height), resulting in volume such as [16x16x12].
- - 最右边是
+- 最右边是
     - FC：全连接层
 
 <h2 id="005649cd0b2e95b1a940c55e7698a998"></h2>
@@ -432,21 +432,21 @@ It is because of this annoying problem called the vanishing gradient.
 
 ## 什么是卷积？
 
- - 对 **图像**（不同的数据窗口数据） 和 **滤波矩阵** 做内积的操作就是所谓的『卷积』操作
+- 对 **图像**（不同的数据窗口数据） 和 **滤波矩阵** 做内积的操作就是所谓的『卷积』操作
     - 滤波矩阵是 一组固定的权重：因为每个神经元的多个权重固定，所以又可以看做一个恒定的滤波器filter
     - The parameters on **a each filter** are spatially “shared”
         - (if a feature is useful in one place, it’s useful elsewhere)
- - filter
+- filter
     - ![](../imgs/MIT6S191_CNN_filter.png)
     - 多个滤波器叠加便成了卷积层
- - 不同的滤波器filter会得到不同的输出数据
+- 不同的滤波器filter会得到不同的输出数据
     - ![](../imgs/MIT6S191_CNN_filter_example.png)
- - 卷积参数
+- 卷积参数
     - a. 深度depth：神经元个数，决定输出的depth厚度。同时代表滤波器个数。
     - b. 步长stride：决定滑动多少步可以到边缘。
     - c. 填充值zero-padding：在外围边缘补充若干圈0，方便从初始位置以步长为单位可以刚好滑倒末尾位置，通俗地讲就是为了总长能被步长整除。 
     - ![](../imgs/MIT6S191_CNN_properties.png)
- - 卷积过程
+- 卷积过程
     - ![](../imgs/conv2d.gif)
         - 两个神经元，即depth=2，意味着有两个滤波器。
         - 数据窗口每次移动两个步长取3\*3的局部数据，即stride=2。
@@ -470,10 +470,10 @@ It is because of this annoying problem called the vanishing gradient.
 
 What CNNs are is a composition of these filters. 
 
- - layer1 are very primitive filter -- edges 
- - layer2
+- layer1 are very primitive filter -- edges 
+- layer2
     - then you start composing those features together for higher and higher order representation of features to form corners -- in this case  parts of face 
- - layers : entire faces.
+- layers : entire faces.
 
 <h2 id="2bf7644c7479fcd2c8907f2b13e3b07e"></h2>
 
@@ -484,17 +484,17 @@ What CNNs are is a composition of these filters.
 
 ![](../imgs/MIT6S191_CNN_max_pooling2.png)
 
- - Pooling is an operation that reduces the size of the input and the output. and there is most importantly no learnable weights on this operation.
- - pool 就是 取区域平均或最大(max pool)
+- Pooling is an operation that reduces the size of the input and the output. and there is most importantly no learnable weights on this operation.
+- pool 就是 取区域平均或最大(max pool)
 
 <h2 id="fe2d632388e0d217878437554a365016"></h2>
 
 
 ## Why ReLU ?
 
- - sigmoid 在实际梯度下降中 容易饱和、造成终止梯度传递。且没有0中心化。
- - ReLU的优点是收敛快，求梯度简单。
- - 所以sigmoid 一般只用于 全链接层
+- sigmoid 在实际梯度下降中 容易饱和、造成终止梯度传递。且没有0中心化。
+- ReLU的优点是收敛快，求梯度简单。
+- 所以sigmoid 一般只用于 全链接层
 
 <h2 id="0bc3fe8a34ad082c47547245bee64457"></h2>
 
@@ -532,7 +532,7 @@ What CNNs are is a composition of these filters.
 
 
 
- - the output is the Q value : Q(s,a)
+- the output is the Q value : Q(s,a)
 
 <h2 id="e4d17333d58040b1db710abe36cd5aec"></h2>
 
@@ -547,8 +547,8 @@ What CNNs are is a composition of these filters.
 
 ##  The problems with Q-learning
 
- - Restrictive Assumptions
- - Handles long horizons poorly
- - Requires a simulator
+- Restrictive Assumptions
+- Handles long horizons poorly
+- Requires a simulator
 
 

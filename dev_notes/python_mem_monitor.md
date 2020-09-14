@@ -10,7 +10,7 @@
 
 # Python 内存测试
 
- - install `psutil`
+- install `psutil`
 
 ```python
 import gc 

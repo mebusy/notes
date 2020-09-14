@@ -44,9 +44,9 @@ We can list four of the main uses of determinants:
 There is one more problem about the determinant. It is difficult not only to decide on its importance, and its proper place in the theory of linear algebra, but also to choose the best definition. Obviously, detA will not be some extremely simple function of n² variables; otherwise A⁻¹ would be much easier to find than it actually is.
 
 ***The simple things about the determinant are not the explicit formulas, but the properties it possesses***. This suggests the natural place to begin. The determinant can be (and will be) defined by its three most basic properties: 
- - det I = 1, 
- - **the sign is reversed by a row exchange**, 
- - the determinant is linear in each row separately. 
+- det I = 1, 
+- **the sign is reversed by a row exchange**, 
+- the determinant is linear in each row separately. 
 
 The problem is then to show how the determinant can be computed , by systematically using these properties .  This will bring us back to the product of the pivots.
 
@@ -210,7 +210,7 @@ The determinant of A is now reduced to six separate and much simpler determinant
 
 It remains to find the determinant of P. Row exchanges transform it to the identity matrix, and each exchange reverses the sign of the determinant:
 
- - det P = +1 or - 1 , ***for an even or odd number of row exchanges***.
+- det P = +1 or - 1 , ***for an even or odd number of row exchanges***.
 
 ```
                     |1    |
@@ -392,7 +392,7 @@ Actually it is not just the pivots, but the entire upper-left corners of L, D, a
 
 What we see in the first two rows and columns is exactly the factorization of the corner submatrix A₂. This is a general rule if there are no row exchanges:
 
- - **4D** If A is factored into LDU, the upper left corners satisfy A<sub>k</sub> = L<sub>k</sub>D<sub>k</sub>U<sub>k</sub> . For every k, the submatrix A<sub>k</sub> is going through a Gaussian elimination of its own.
+- **4D** If A is factored into LDU, the upper left corners satisfy A<sub>k</sub> = L<sub>k</sub>D<sub>k</sub>U<sub>k</sub> . For every k, the submatrix A<sub>k</sub> is going through a Gaussian elimination of its own.
 
 The proof is to see that this corner can be settled first, before even looking at other eliminations. Or use the laws for ***block multiplication***:
 
@@ -412,6 +412,6 @@ From equation (5) we can finally read off the answer to our original question:
 
 ***The pivot entries are all nonzero whenever the numbers det A<sub>k</sub> are all nonzero:***
 
- - **4E** Elimination can be completed without row exchanges (so P = I and A= LU), if and only if the leading submatrice,, A₁, A₂, ... , A<sub>𝑛</sub>  are all nonsingular.
+- **4E** Elimination can be completed without row exchanges (so P = I and A= LU), if and only if the leading submatrice,, A₁, A₂, ... , A<sub>𝑛</sub>  are all nonsingular.
 
 

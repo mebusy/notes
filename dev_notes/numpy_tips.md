@@ -20,26 +20,26 @@
 
 # numpy tips
 
- - Use the shape method to find the dimensions of the array. (rows, columns)
+- Use the shape method to find the dimensions of the array. (rows, columns)
     - `m.shape   # (2, 3) `
- - `arange` returns evenly spaced values within a given interval.
+- `arange` returns evenly spaced values within a given interval.
     - `np.arange(0, 30, 2) # start at 0 count up by 2, stop before 30`
     - `array([ 0,  2,  4,  6,  8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28])`
- - `reshape` returns an array with the same data with a new shape.
+- `reshape` returns an array with the same data with a new shape.
     - `n.reshape(3, 5) # reshape array to be 3x5`
     - `array([[ 0,  2,  4,  6,  8], [10, 12, 14, 16, 18], [20, 22, 24, 26, 28]])`
- - `linspace` returns evenly spaced numbers over a specified interval.
+- `linspace` returns evenly spaced numbers over a specified interval.
     - `o = np.linspace(0, 4, 9)`
     - `array([ 0. ,  0.5,  1. ,  1.5,  2. ,  2.5,  3. ,  3.5,  4. ])`
- - `resize` changes the shape and size of array **in-place**.
+- `resize` changes the shape and size of array **in-place**.
     - `o.resize(3, 3)`
     - `array([[ 0. ,  0.5,  1. ], [ 1.5,  2. ,  2.5], [ 3. ,  3.5,  4. ]])`
- - `ones` returns a new array of given shape and type, filled with ones.
+- `ones` returns a new array of given shape and type, filled with ones.
     - `np.ones((3, 2))`
     - `array([[ 1.,  1.], [ 1.,  1.], [ 1.,  1.]])`
- - `zeros` returns a new array of given shape and type, filled with zeros.
+- `zeros` returns a new array of given shape and type, filled with zeros.
     - `np.zeros((2, 3))`
- - `eye` returns a 2-D array with ones on the diagonal and zeros elsewhere.
+- `eye` returns a 2-D array with ones on the diagonal and zeros elsewhere.
     - `np.eye(3)`
 
 ```python
@@ -48,7 +48,7 @@ array([[ 1.,  0.,  0.],
        [ 0.,  0.,  1.]])
 ```
 
- - `diag` extracts a diagonal or constructs a diagonal array.
+- `diag` extracts a diagonal or constructs a diagonal array.
 
 ```python
 >>> y = np.array([4, 5, 6])
@@ -61,10 +61,10 @@ array([[ 1.,  0.,  0.],
            [0, 0, 6]])
 ```
 
- - Create an array using repeating list (or see np.tile)
+- Create an array using repeating list (or see np.tile)
     - `np.array([1, 2, 3] * 3)`
     - `array([1, 2, 3, 1, 2, 3, 1, 2, 3])`
- - Repeat elements of an array using repeat.
+- Repeat elements of an array using repeat.
     - `np.repeat([1, 2, 3], 4)`
     - `array([1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3])`
  
@@ -81,7 +81,7 @@ array([[ 1.,  0.,  0.],
            [1, 1, 1]])
 ```
 
- - Use `vstack` to stack arrays in sequence vertically (row wise).
+- Use `vstack` to stack arrays in sequence vertically (row wise).
 
 ```python
 >>> np.vstack([p, 2*p])
@@ -91,7 +91,7 @@ array([[ 1.,  0.,  0.],
            [2, 2, 2]])
 ```
 
- - Use hstack to stack arrays in sequence horizontally (column wise).
+- Use hstack to stack arrays in sequence horizontally (column wise).
 
 ```python
 >>> np.hstack([p, 2*p])
@@ -99,13 +99,13 @@ array([[ 1.,  0.,  0.],
            [1, 1, 1, 2, 2, 2]])
 ```
 
- - Dot Product:
+- Dot Product:
     - `x.dot(y)`
- - Use .T to get the transpose.
+- Use .T to get the transpose.
     - `z.T`
- - Use .dtype to see the data type of the elements in the array.
+- Use .dtype to see the data type of the elements in the array.
     - `z.dtype`
- - Use .astype to cast to a specific type.
+- Use .astype to cast to a specific type.
     - `z = z.astype('f')`
 
 <h2 id="1f1ef887de84fa2b7f644b5878b4e6ce"></h2>
@@ -192,8 +192,8 @@ array([[ 0,  1,  2,  3,  4,  5],
 ```
 
 
- - **Be careful with copying and modifying arrays in NumPy!**
- - use `r.copy` to create a copy that will not affect the original array
+- **Be careful with copying and modifying arrays in NumPy!**
+- use `r.copy` to create a copy that will not affect the original array
     - `r_copy = r.copy()`
 
 <h2 id="f32b904edd83a21e8b374913f5631504"></h2>
@@ -201,7 +201,7 @@ array([[ 0,  1,  2,  3,  4,  5],
 
 ## Iterating Over Arrays
 
- - Let's create a new 4 by 3 array of random numbers 0-9.
+- Let's create a new 4 by 3 array of random numbers 0-9.
 
 ```python
 test = np.random.randint(0, 10, (4,3))
@@ -212,7 +212,7 @@ array([[5, 2, 9],
        [3, 8, 0]])
 ```
 
- - Use zip to iterate over multiple iterables.
+- Use zip to iterate over multiple iterables.
 
 ```python
 test2 = test**2

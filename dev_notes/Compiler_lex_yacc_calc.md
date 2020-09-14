@@ -325,10 +325,10 @@ struct symtab *symlook( ) ;
 
 The parser changes only slightly to use the symbol table . The value for a **NAME** token is now a pointer into the symbol table rather than an index as before.
 
- - We change the **%union** and call the pointer field **symp**.
- - **We use** ***strdup()*** **to make a permanent copy of the name string**.
+- We change the **%union** and call the pointer field **symp**.
+- **We use** ***strdup()*** **to make a permanent copy of the name string**.
      - Since each subsequent token overwrites **yytext**, we need to make a copy ourselves here.
- - Sequential search is too slow for symbol tables of appreciable size, so use hashing or some other faster search function.
+- Sequential search is too slow for symbol tables of appreciable size, so use hashing or some other faster search function.
 
 
 > calc.y
@@ -491,8 +491,8 @@ The specific patterns come first so they match before than the general symbol pa
 
 This works, but it has problems. 
 
- - One is that you must hard-code every function into the parserand the lexer, which is tedious and makes it hard to add more functions.
- - Another is that function names are reserved words,
+- One is that you must hard-code every function into the parserand the lexer, which is tedious and makes it hard to add more functions.
+- Another is that function names are reserved words,
     - i.e., you cannot use **sqrt** as a variable name. This may or may not be a problem, depending on your intentions.
 
 
@@ -501,8 +501,8 @@ This works, but it has problems.
 
 ### Reserved Words in the Symbol Table
 
- - take the specific patterns for function names out of the lexer and put them in the symbol table
- - add a new field to each symbol table entry: **funcptr**, a pointer to the C function to call if this entry is a function name.
+- take the specific patterns for function names out of the lexer and put them in the symbol table
+- add a new field to each symbol table entry: **funcptr**, a pointer to the C function to call if this entry is a function name.
 
 
 > ch3hdr.h
@@ -518,7 +518,7 @@ struct symtab {
 struct symtab *symlook( ) ;
 ```
 
- - calls the new routine **addfunc()** in **main()** to add each of the function names to the symbol table, then calls yyparse().
+- calls the new routine **addfunc()** in **main()** to add each of the function names to the symbol table, then calls yyparse().
 
 
 > calc.l 

@@ -218,16 +218,16 @@ func f2() {
 
 ## be careful with range in Go
 
- - `for i := range a` and `for i, v := range &a` doesn't make a copy of a
- - but `for i, v := range` a does
+- `for i := range a` and `for i, v := range &a` doesn't make a copy of a
+- but `for i, v := range` a does
 
 <h2 id="cc01793243c2fa1852f2972d1adf0972"></h2>
 
 
 ## reading nonexistent key from map will not panic 
 
- - `value := map["no_key"]` will be zero value
- - `value, ok := map["no_key"]` is much better
+- `value := map["no_key"]` will be zero value
+- `value, ok := map["no_key"]` is much better
 
 <h2 id="efcd04c1f0dae7d0002c6671eed2d378"></h2>
 
@@ -269,10 +269,10 @@ func (w *words) add(word string, n int) {
 
 ## T14 Closing channels
 
- - write(send) to a closed channel will cause **panic**
+- write(send) to a closed channel will cause **panic**
     - the close function should be **called only by a sender**
- - when receiver has done, it should notify the sender that sender can safely close the channel now
- - implementation:
+- when receiver has done, it should notify the sender that sender can safely close the channel now
+- implementation:
     - sender should take 2 channel, for example:
         - `msg` channel: for messages
         - `done` channel: the other is for notification 
@@ -296,14 +296,14 @@ func (w *words) add(word string, n int) {
 
 ## best candidate to make something once in a thread-safe way is sync.Once
 
- - don't use flags, mutexes, channels or atomics
+- don't use flags, mutexes, channels or atomics
 
 <h2 id="fe89095a25ed4db8aa993b7f4e45d1cb"></h2>
 
 
 ## concurrency-safe
 
- - In general the rule is this: 
+- In general the rule is this: 
     - top-level functions like strings.Split or fmt.Printf or rand.Int63 may be called from any goroutine at any time
         - (otherwise programming with them would be too restrictive)
     - but objects you create (like a new bytes.Buffer or rand.Rand) must only be used by one goroutine at a time unless otherwise noted 
@@ -349,8 +349,8 @@ return "", ErrTimeout
 
 ## Panics and goroutines
 
- - If a panic on a goroutine goes unhandled on that goroutine’s call stack, it crashes the entire program
- - `github.com/Masterminds/cookoo/safely`
+- If a panic on a goroutine goes unhandled on that goroutine’s call stack, it crashes the entire program
+- `github.com/Masterminds/cookoo/safely`
     - `safely.Go( xxxx )`
 
 <h2 id="88d00ec4fe58aa422b9c3e2fd7eac2a0"></h2>
@@ -399,7 +399,7 @@ func bar() {
 
 ## dump goroutines 
 
- - To mimic the Java behaviour of stack-dump on SIGQUIT but still leaving the program running:
+- To mimic the Java behaviour of stack-dump on SIGQUIT but still leaving the program running:
 
 ```go
 go func() {
@@ -414,9 +414,9 @@ sigs := make(chan os.Signal, 1)
 }()
 ```
 
- - On `*NIX` systems (including OSX) send a signal abort SIGQUIT:
+- On `*NIX` systems (including OSX) send a signal abort SIGQUIT:
     - `pkill -SIGQUIT program_name`
- - [stackoverflow discussion](https://stackoverflow.com/questions/19094099/how-to-dump-goroutine-stacktraces/27398062#27398062)
+- [stackoverflow discussion](https://stackoverflow.com/questions/19094099/how-to-dump-goroutine-stacktraces/27398062#27398062)
 
 
 <h2 id="826c20b622dd27722a65b20623a45754"></h2>
@@ -425,7 +425,7 @@ sigs := make(chan os.Signal, 1)
 ## to get call stack we've runtime.Caller
 
 
- - https://golang.org/pkg/runtime/#Caller
+- https://golang.org/pkg/runtime/#Caller
 
 ```go
 func Caller(skip int) (pc uintptr, file string, line int, ok bool)
@@ -436,7 +436,7 @@ func Caller(skip int) (pc uintptr, file string, line int, ok bool)
 
 ## Generative testing , random test edge cases
 
- - `testing/quick`
+- `testing/quick`
 
 ```go
 // assume your Pad function always return 
@@ -484,7 +484,7 @@ $ go test -bench . -race -cpu=1,2,4
 
 ## easy way to split test into different builds 
 
- - use `// +build integration` and run them with `go test -v --tags integration` .
+- use `// +build integration` and run them with `go test -v --tags integration` .
 
 
 <h2 id="909dbd9520809eab1b9f3c2544d7e831"></h2>
@@ -506,14 +506,14 @@ github.com/gorilla/mux
 
 ## T49 Detecting timeouts
 
- - https://github.com/mebusy/notes/blob/master/dev_notes/GoIn70_8.md#ed8f378a99622e6fa9e881ad40b1ee0a
+- https://github.com/mebusy/notes/blob/master/dev_notes/GoIn70_8.md#ed8f378a99622e6fa9e881ad40b1ee0a
 
 <h2 id="5864385d2a98ac5198627d336c9e3215"></h2>
 
 
 ## T50 resuming download with HTTP
 
- - https://github.com/mebusy/notes/blob/master/dev_notes/GoIn70_8.md#9828258f9f00dd06f2a1b4105c62f4d6
+- https://github.com/mebusy/notes/blob/master/dev_notes/GoIn70_8.md#9828258f9f00dd06f2a1b4105c62f4d6
 
 
 <h2 id="70d85a28319eb9789bccde5293aeef77"></h2>
@@ -598,8 +598,8 @@ func monitorRuntime() {
 
 ## T62 Reusing connections
 
- - Go tries to reuse connections out of the box.
- - **It’s the patterns in an application’s code that can cause this to not happen.**, for example:
+- Go tries to reuse connections out of the box.
+- **It’s the patterns in an application’s code that can cause this to not happen.**, for example:
     - one response body not being closed before another HTTP request is made.
         - **ALWAYS close http body**
     - custom `http.Transport` without `Dial` property in which the `KeepAlive` is set.
@@ -629,7 +629,7 @@ $ go get -u github.com/ugorji/go/codec/codecgen
 
 ## httputil.DumpRequest is very useful thing, don't create your own
 
- - https://godoc.org/net/http/httputil#DumpRequest
+- https://godoc.org/net/http/httputil#DumpRequest
 
 ```go
 func DumpRequest(req *http.Request, body bool) ([]byte, error)
@@ -646,7 +646,7 @@ func DumpRequest(req *http.Request, body bool) ([]byte, error)
 
 ## T70 Generating code with go generate
 
- - https://github.com/mebusy/notes/blob/master/dev_notes/GoIn70_11.md#eb80f5b52be56947902eca88e1c67eb4
+- https://github.com/mebusy/notes/blob/master/dev_notes/GoIn70_11.md#eb80f5b52be56947902eca88e1c67eb4
 
 
 <h2 id="9446a98ad14416153cc4d45ab8b531bf"></h2>
@@ -658,9 +658,9 @@ func DumpRequest(req *http.Request, body bool) ([]byte, error)
 
 
 ## Do NOT overuse fmt.Sprintf in your hot path. 
- - It is costly due to maintaining the buffer pool and dynamic dispatches for interfaces.
- - if you are doing fmt.Sprintf("%s%s", var1, var2), consider simple string concatenation.
- - if you are doing fmt.Sprintf("%x", var), consider using hex.EncodeToString or strconv.FormatInt(var, 16)
+- It is costly due to maintaining the buffer pool and dynamic dispatches for interfaces.
+- if you are doing fmt.Sprintf("%s%s", var1, var2), consider simple string concatenation.
+- if you are doing fmt.Sprintf("%x", var), consider using hex.EncodeToString or strconv.FormatInt(var, 16)
 
 
 <h2 id="a7701ee1968dee6ec433541b590f0d44"></h2>
@@ -668,14 +668,14 @@ func DumpRequest(req *http.Request, body bool) ([]byte, error)
 
 ## always discard body e.g. `io.Copy(ioutil.Discard, resp.Body)`  if you don't use it
 
- - HTTP client's Transport will not reuse connections unless the body is read to completion and closed
+- HTTP client's Transport will not reuse connections unless the body is read to completion and closed
 
 <h2 id="8081b8d04a6f4d4ee17eeca49c63613a"></h2>
 
 
 ## don't use defer in a loop or you'll get a small memory leak
 
- - cause defers will grow your stack without the reason
+- cause defers will grow your stack without the reason
 
 <h2 id="3b9ec32447f983783ee40bcb4e2448fe"></h2>
 
@@ -718,7 +718,7 @@ x := uintptr(p)
 
 ## use buffered I/O if you do many sequential reads or writes
 
- - to reduce number of syscalls
+- to reduce number of syscalls
 
 <h2 id="869e770545ab96a38832ba21ea6e9199"></h2>
 
@@ -864,10 +864,10 @@ VALUES(?, ?, ?)   |  VALUES($1, $2, $3) |   VALUES(:val1, :val2, :val3)
 
 ### 多行查询
 
- - db.Query , 返回 Rows, error
- - rows.Next() 迭代
- - rows.Scan() 读取行
- - 每次db.Query操作后, 都建议调用rows.Close(). 
+- db.Query , 返回 Rows, error
+- rows.Next() 迭代
+- rows.Scan() 读取行
+- 每次db.Query操作后, 都建议调用rows.Close(). 
 
 ```go
 	dbw.QueryDataPre()
@@ -903,9 +903,9 @@ VALUES(?, ?, ?)   |  VALUES($1, $2, $3) |   VALUES(:val1, :val2, :val3)
 
 ### 单行查询
 
- - db.QueryRow , 返回 Row
- - rows.Scan() 读取行
- - err在Scan后才产生
+- db.QueryRow , 返回 Row
+- rows.Scan() 读取行
+- err在Scan后才产生
 
 ```go
 var name string
@@ -937,7 +937,7 @@ err = db.QueryRow("select name from user where id = ?", 1).Scan(&name)
 
 ### 其他
 
- - db.Prepare()返回的statement使用完之后需要手动关闭，即defer stmt.Close()
+- db.Prepare()返回的statement使用完之后需要手动关闭，即defer stmt.Close()
 
 <h2 id="9f82401d0ae9254f9429eaa46e1fe666"></h2>
 
@@ -963,8 +963,8 @@ END
 ```
 
 
- - Go uses sql.DB for autocommit, and sql.Tx for manual commit. 
- - 事务场景
+- Go uses sql.DB for autocommit, and sql.Tx for manual commit. 
+- 事务场景
 
 ```go
 func clearTransaction(tx *sql.Tx){
@@ -1001,7 +1001,7 @@ func DoSomething() error {
 }
 ```
 
- - 事务中，如果有 Query 命令， 执行后续命令之间，必需调用 rows.Close() 关闭连接
+- 事务中，如果有 Query 命令， 执行后续命令之间，必需调用 rows.Close() 关闭连接
 
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
@@ -1015,7 +1015,7 @@ func DoSomething() error {
 
 ## regexp , reference captured group 
 
- - use `$1` instead of `\1` 
+- use `$1` instead of `\1` 
 
 <h2 id="12f3c642086ddb0279f69574a34db7ef"></h2>
 

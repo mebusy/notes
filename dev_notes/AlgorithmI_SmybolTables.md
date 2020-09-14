@@ -25,7 +25,7 @@
 
 # Symbol Table
 
- - Symbol Table 有多种实现
+- Symbol Table 有多种实现
 
 ![](../imgs/algorI_symbol_table_imp.png)
 
@@ -49,21 +49,21 @@
 
 ## BSTs
 
- - Definition. 
+- Definition. 
     - A BST is a **binary tree** in **symmetric order**.
- - A binary tree is either:
+- A binary tree is either:
     - Empty.
     - Two disjoint binary trees (left and right).
- - Symmetric order.
+- Symmetric order.
     - Each node has a key, and every node’s key is:
         - Larger than all keys in its left subtree
         - Smaller than all keys in its right subtree
 
 ![](../imgs/algorI_bst_tree.png)
 
- - Proposition. 
+- Proposition. 
     - If N distinct keys are inserted into a BST in **random** order, the expected number of compares for a search/insert is ~ 2 ln N.
- - Proposition. [Reed, 2003] 
+- Proposition. [Reed, 2003] 
     - If N distinct keys are inserted in random order, expected height of tree is ~ 4.311 ln N.
 
 
@@ -72,8 +72,8 @@
 
 ## BST representation
 
- - A BST is a reference to a root Node.
- - A Node is comprised of four fields:
+- A BST is a reference to a root Node.
+- A Node is comprised of four fields:
     - A Key and a Value.
     - A reference to the left  and right subtree
         - left: smaller keys
@@ -102,14 +102,14 @@ private class Node {
 
 ### Search
 
- - If less, go left; if greater, go right; if equal, search hit.
+- If less, go left; if greater, go right; if equal, search hit.
 
 <h2 id="a458be0f08b7e4ff3c0f633c100176c0"></h2>
 
 
 ### Insert
     
- - If less, go left; if greater, go right; if null, insert.
+- If less, go left; if greater, go right; if null, insert.
      
 <h2 id="e0c655699c66cbcbde00b1bf5fba638b"></h2>
 
@@ -121,8 +121,8 @@ private class Node {
 
 ### Minimum and maximum
 
- - minimum key is always at the left most offspring , so just follow the left child pointers.
- - maximum key is always at the right most offspring, so just follow the right child pointers.
+- minimum key is always at the left most offspring , so just follow the left child pointers.
+- maximum key is always at the right most offspring, so just follow the right child pointers.
 
 ![](../imgs/algorI_bst_minmax.png)
 
@@ -131,12 +131,12 @@ private class Node {
 
 ### Floor and ceiling
 
- - Floor. Largest key ≤ a given key.
- - Ceiling. Smallest key ≥ a given key.
+- Floor. Largest key ≤ a given key.
+- Ceiling. Smallest key ≥ a given key.
 
 ![](../imgs/algroI_bst_floorceil.png)
 
- - Computing the floor
+- Computing the floor
     - Case 1. [k equals the key at root]
         - The floor of k is k.
     - Case 2. [k is less than the key at root] 
@@ -172,12 +172,12 @@ private Node floor(Node x, Key key) {
 
 ### Subtree counts
 
- - In each node, we store the number of nodes in the subtree rooted at that node;
- - to implement size(), return the count at the root.
+- In each node, we store the number of nodes in the subtree rooted at that node;
+- to implement size(), return the count at the root.
 
 ![](../imgs/algorI_bst_subtree_cnt.png)
 
- - Remark. This facilitates efficient implementation of rank() and select().
+- Remark. This facilitates efficient implementation of rank() and select().
 
 ```java
 private class Node {
@@ -213,9 +213,9 @@ private Node put(Node x, Key key, Value val) {
 
 ### Rank
 
- - Rank. 
+- Rank. 
     - How many keys < k ?
- - Easy recursive algorithm (3 cases!)
+- Easy recursive algorithm (3 cases!)
 
 ```java
 public int rank(Key key) {  return rank(key, root);  }
@@ -239,31 +239,31 @@ private int rank(Key key, Node x) {
 
 ---
 
- - Property. Inorder traversal of a BST yields keys in ascending order.
+- Property. Inorder traversal of a BST yields keys in ascending order.
 
 <h2 id="a1998652b01bdc9e7128734efb804780"></h2>
 
 
 ## Deletion
 
- - In most data structions, deletion is the most difficult operation , and in search trees there is no exception.
- - To delete a node with key k: search for node t containing key k.
+- In most data structions, deletion is the most difficult operation , and in search trees there is no exception.
+- To delete a node with key k: search for node t containing key k.
     - and there are 3 cases ,  depends on the number of child
 
- - Case 0. [0 children] Delete t by setting parent link to null.
+- Case 0. [0 children] Delete t by setting parent link to null.
     - Easy case , just delete the k's node from tree
     - update counts
 
 ![](../imgs/algorI_bst_del_case0.png)
 
- - Case 1. [1 child] Delete t by replacing parent link.
+- Case 1. [1 child] Delete t by replacing parent link.
     - Medium case , delete the node that you want to delete, that creates a hole in the tree, the unique child will take that hole.
     - update counts 
 
 
 ![](../imgs/algorI_bst_del_case1.png)
 
- - Case 2. [2 children] 
+- Case 2. [2 children] 
     - DIFFICULT CASE. 
     - 1. Find successor x of t.
         - x has no left child 
@@ -282,8 +282,8 @@ private int rank(Key key, Node x) {
 
 ### how to Deleting the minimum ?
 
- - it is either case 0 , or case 1
- - To delete the minimum key:
+- it is either case 0 , or case 1
+- To delete the minimum key:
     - Go left until finding a node with a null left link.
     - Replace that node by its right link.
     - Update subtree counts.

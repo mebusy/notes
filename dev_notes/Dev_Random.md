@@ -284,7 +284,7 @@ end
 
 ## About python restore random seed ...
  
- - use state 
+- use state 
 
 
 ```python

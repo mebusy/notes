@@ -114,15 +114,15 @@ The equations ask for a linear combination of the n columns that equals b.
 Ax = b
 </summary>
 
- - Q: how to compute Ax 
+- Q: how to compute Ax 
     1. each row dot product x 
     2. combination of columns
 
- - Q: can I solve Ax=b for every b?
+- Q: can I solve Ax=b for every b?
     - That is , do the linear combination of columns fill the whole space (i.e. 3D).
     - It depends on columns of A.
 
- - solve Ax=b
+- solve Ax=b
     - ax=b, x=b/a=a⁻¹b
     - same idea: Ax=b => x=A⁻¹b
 
@@ -179,9 +179,9 @@ U is a triangular matrix, and then we can use **back-substitution** to get the s
 
 ## 3. Matrix multiplication
 
- - associative
+- associative
     - (AB)C = A(BC)
- - distributive
+- distributive
     - A(B+C) =AB+AC and (B+C)D=BD+CD
 
 
@@ -210,10 +210,10 @@ note:  矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 
 
 ### Inverse of A , AB, Aᵀ
     
- - A is not invertible if you can find a non-zero vector that Ax = 0
+- A is not invertible if you can find a non-zero vector that Ax = 0
     - Ax = 0 means some combination of columns gives 0, they contribute nothing. 
- - (AB)⁻¹ = B⁻¹A⁻¹
- - AA⁻¹ = I 
+- (AB)⁻¹ = B⁻¹A⁻¹
+- AA⁻¹ = I 
     - => (A⁻¹)ᵀAᵀ = I 
     - = (Aᵀ)⁻¹ = (A⁻¹)ᵀ
 
@@ -248,15 +248,15 @@ note:  矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 
 
 ### Product of elimination matrices 
 
- - E₃E₂E₁A = U 
- - U 的最后一个 pivot 可以不为0
+- E₃E₂E₁A = U 
+- U 的最后一个 pivot 可以不为0
 
 <h2 id="f1248609fe6c8d2d55ee97b5d1a231d7"></h2>
 
 
 ### A=LU (no row exchange)
 
- - EA=U , A=LU , E⁻¹=L
+- EA=U , A=LU , E⁻¹=L
 
 
 <h2 id="ee908f5e0d345fe7fe854a3d5c7106ca"></h2>
@@ -264,9 +264,9 @@ note:  矩阵乘法规则， 适用于 单个数字元素， 也同样适用于 
 
 ### PA=LU, Row Exchanges and Permutations 
 
- - elimination may introduce row exchanges. 
- - permutation matrix performs row exchange. 
- - The inverse of permutation matrix P is P's transpose.
+- elimination may introduce row exchanges. 
+- permutation matrix performs row exchange. 
+- The inverse of permutation matrix P is P's transpose.
     - P⁻¹ = Pᵀ  =>  PᵀP = I
     - Since permutation matrix has to be orthogonal matrix.
 
@@ -327,9 +327,9 @@ A*P = // column exchange
 
 ### Section 3.1 Vector Spaces and Subspaces
 
- - The begining of Linear Algebra
- - All vector subspace have to go through the origin.
- - if S and T are both subspace, S∩T is a subspace.
+- The begining of Linear Algebra
+- All vector subspace have to go through the origin.
+- if S and T are both subspace, S∩T is a subspace.
     - why? suppose I take a couple of vectors that are in the intersections, why is the sum also in the intersection? 
         - if V and W are 2 vectors in both S and T , then 
         - V+W is in S , and V+W is in T.   that is  , V+W is in both S and T as well. 
@@ -347,9 +347,9 @@ A*P = // column exchange
 
 ### Column Space of A
  
- - The column space contains all linear combinations of the columns of A.
- - column的长度j  决定了 A的column space 是 Rʲ 下的一个 subspace.
- - Does Ax=b has a solution for every b ? 
+- The column space contains all linear combinations of the columns of A.
+- column的长度j  决定了 A的column space 是 Rʲ 下的一个 subspace.
+- Does Ax=b has a solution for every b ? 
     - yes only if b is a combination of the colunmn, that is, b is a vector in the column space.
 
 <h2 id="aae362f830f86beea7700082eba79028"></h2>
@@ -357,12 +357,12 @@ A*P = // column exchange
 
 ### Null Space of A 
 
- - Totally different space. it contains all solutions **x** to Ax = 0.
- - The dimension of N(A) is determined by number of columns. 
- - Why solutions to Ax=0 always give a subspace ?
+- Totally different space. it contains all solutions **x** to Ax = 0.
+- The dimension of N(A) is determined by number of columns. 
+- Why solutions to Ax=0 always give a subspace ?
     - That is , if Av=0 and Aw=0,  A(v+w) must be 0.
     - A(v+w) = Av + Aw = 0 
- - Q: Ax = b ,  is the solutions of x give a subspace ?
+- Q: Ax = b ,  is the solutions of x give a subspace ?
     - A: **No**. it doesn't go through the origin.
 
 
@@ -540,7 +540,7 @@ x<sub>n</sub> is a subspace, but x<sub>complete</sub> is not.  x<sub>complete</s
 
 ### Recap
 
- - Spanning involves the column space, and independence involves the nullspace.
+- Spanning involves the column space, and independence involves the nullspace.
     - To decide if b is a combination of the columns, we try to solve Ax = b.
     - To decide if the columns are independent, we solve Ax = 0.
 
@@ -586,12 +586,12 @@ A 和 Aᵀ 的 r 相等。
 
 ---
 
- - You must notice that the word "dimensional" is used in two different ways.
+- You must notice that the word "dimensional" is used in two different ways.
     - We speak about a four-dimensional vector, meaning a vector in R⁴.
     - Now we have defined a 4D subspace;
         - an example is the set of vectors in R⁶ whose first and last components are zero.
         - i.e. (0, 5, 1, 3, 4, 0)
- - We never use the terms "basis of a matrix" or "rank of a space" or "dimension of a basis."  These phrases have no meaning.
+- We never use the terms "basis of a matrix" or "rank of a space" or "dimension of a basis."  These phrases have no meaning.
 
 <h2 id="98bc29d7d49a86b70f6140dac882744a"></h2>
 
@@ -612,9 +612,9 @@ subspace | vector in  | dimemsion
 Row Space C(Aᵀ) |  Rⁿ  | r 
 Left Null Space N(Cᵀ)  |  Rᵐ |  dim=m-r
 
- - why we call N(Cᵀ) left null space ?
+- why we call N(Cᵀ) left null space ?
     - Aᵀy = 0  ==>  yᵀA = 0ᵀ 
- - elimination:
+- elimination:
     - Elimination preserve the row space. so R and A have different colum space, but same row space.
 
 
@@ -655,11 +655,11 @@ dim(M) = 9 !
 
 Subspaces of M :
 
- - upper triangulars
+- upper triangulars
     - dim(U) = 6
- - symmetric matrices
+- symmetric matrices
     - dim(S) = 6
- - diagonal matrices  D 
+- diagonal matrices  D 
     - dim(D) = 3
 
 now D is a subspace. The dimension of D is 3. for example, you can shoose such 3 basis:
@@ -733,7 +733,7 @@ Directed graph matrix is always column dependent ? Ax=0
 Aᵀy = 0.  currency y1,y2,y3,y4,y5 on edges.
 
 
- - #loops = #edges - ( #nodes - 1 )
+- #loops = #edges - ( #nodes - 1 )
 
 this is, #nodes - #edges + #loops = 1 , it's Euler's formula.
 
@@ -785,10 +785,10 @@ AᵀA is often invertible, but not always.  Since N(AᵀA) = N(A) , so AᵀA is 
 
 ### Summarizes the fundamental theorem of linear algebra.
 
- - ![](../imgs/LA_Figure_3.4.png)
- - 事实上, 任意 vector a 都可以拆分 两部分, 一部分是在某个子空间S 上的投影， 另一部分是在 S的正交补 S⊥ 上的投影
- - S<sup>⊥</sup> 其实就是 法线空间, I = P + P<sub>N</sub>
- - ***Every matrix transforms its row space onto its column space***.
+- ![](../imgs/LA_Figure_3.4.png)
+- 事实上, 任意 vector a 都可以拆分 两部分, 一部分是在某个子空间S 上的投影， 另一部分是在 S的正交补 S⊥ 上的投影
+- S<sup>⊥</sup> 其实就是 法线空间, I = P + P<sub>N</sub>
+- ***Every matrix transforms its row space onto its column space***.
 
 <h2 id="28a646261723ad5829e3503081225adc"></h2>
 
@@ -869,8 +869,8 @@ P = A(AᵀA)⁻¹Aᵀ .
 why I can not expand the euqation to AA⁻¹(Aᵀ)⁻¹Aᵀ = I  ?  becuase A is not a square matrix, it does not have an inverse. 
 
 
- - Pᵀ=P ,  inverse of symmetric  is still symmetric.
- - P²=P 
+- Pᵀ=P ,  inverse of symmetric  is still symmetric.
+- P²=P 
 
 
 <h2 id="86d100a731b3c593d4c0e193feb27d38"></h2>
@@ -901,7 +901,7 @@ And our typical vector b is out here, and what we're doing is we're projecting i
 
 ![](../imgs/la_1806_peb.png)
 
- - p + e = b . 
+- p + e = b . 
     - so p is the project b on C(A)  ,  p = Pb 
     - how do e come out ?  what's the projection matrix ?
         - It's (I-P), it's another projection matrix !  It project to a perpendicular space.  (投影矩阵特有性质?)
@@ -917,13 +917,13 @@ And our typical vector b is out here, and what we're doing is we're projecting i
 
 fitting line
 
- - points in 2D plane , 
+- points in 2D plane , 
     - (1,1), (2,2) , (3, 2 )
     - find a line C + Dt , minimize sum of the error.
     - |Ax̂ - b|² = |e|²
- - The |e|² is :
+- The |e|² is :
     - (C+D-1)² + (C+2D-2)² + (C+3D-2)² 
- - no you can use calculus to find the minimn. But here we will use the linear algebra way.
+- no you can use calculus to find the minimn. But here we will use the linear algebra way.
 
 <details>
 <summary>
@@ -946,7 +946,7 @@ b =
    2
 ```
 
- - here Ax = b have no solution, but  AᵀAx̂ = Aᵀb  have.
+- here Ax = b have no solution, but  AᵀAx̂ = Aᵀb  have.
 
 ```octave
 AᵀA =
@@ -958,10 +958,10 @@ Aᵀ*b =
    11
 ```
 
- - so 
+- so 
     - 3C + 6D = 5
     - 6C + 14D = 11
- - solve it:
+- solve it:
     - C = 2/3
     - D = 1/2 
 
@@ -1030,7 +1030,7 @@ Orthonormal vectors :
 
 ![](../imgs/la_18.06_ortho_vector.gif)
 
- - How does having an orthonormal basis make things nice ?
+- How does having an orthonormal basis make things nice ?
     - It makes all the calcuations better,  a lot of numerical linear algebra is buillt around working with orthonormal vectors.
 
 <h2 id="ddab1e3788581e4947eff92141a6891c"></h2>
@@ -1089,7 +1089,7 @@ But the convention is  that we only use that word "orthogonal matrix" when it is
 
 ---
 
- - What's the good of having a Q ? What formula becomes easy.
+- What's the good of having a Q ? What formula becomes easy.
     - Suppose Q has orthonormal columns, project onto its column space 
         - P = Q(QᵀQ)⁻¹Qᵀ = **QQᵀ**
     - Solve Ax = b, when A is Q
@@ -1106,7 +1106,7 @@ We start with independent vectors and we want to make them orthonormal.
 
 Here comes Gram-Schmidt.
 
- - step :
+- step :
     0. vector a,b
     1. orthogonal A,B,C  ( Gram )
         - a -> A is ok.

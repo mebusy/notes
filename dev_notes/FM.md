@@ -11,10 +11,10 @@
 
 # 球员属性
 
- - 首先要明白这么几件事
+- 首先要明白这么几件事
     1. 很多属性是双刃剑，不是高了一定好，只是一种选择
     2. 你的战术也是一种选择，是基于球队属性的顺应时势的选择
- - 属性
+- 属性
     - 决断
         - 低了，拿球后犹豫不决，容易被压迫丢球
     - 镇定
@@ -47,7 +47,7 @@
     - 身高/弹跳
         - 共同作用 最终争顶高度
 
- - 有几个点还是说一下
+- 有几个点还是说一下
     1. 团队合作高低都没关系，高的适合打配合，在窄场以及自己减少利用宽度下有利；低的适合打个人，要给予每个人足够大的空间。
     2. 体重也是，体重大的能站住位置拿住球，就打长传冲吊和往对方球门吊；轻的就打短传，往两翼吊
     3. 身高也是，小个子更擅长突破，速度快反应也快；高个子更擅长争顶，但速度慢反应也慢
@@ -59,10 +59,10 @@
 
 # Robot soccer 
 
- - 视野
+- 视野
     - view_angle: 只有在view angle 物体可见
     - visible_distance: view_angle 外， visible_distance 范围内，物体依然可见
- - Movement Model
+- Movement Model
     - In each simulation step, movement of each object is calculated as following manner:
     - ![](../imgs/rs_move_model.png)
     - decay is a decay parameter specified by ball decay or player decay.

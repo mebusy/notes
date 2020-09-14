@@ -143,8 +143,8 @@ An affine transform has the property that, when it is applied to two parallel li
 
 ### 2.3.8  Matrices and Vectors
 
- - If we want to apply a scaling followed by a rotation to the point v = (x,y), we can compute either R(Sv) or (RS)v. 
- - Translation is not a linear transformation. 
+- If we want to apply a scaling followed by a rotation to the point v = (x,y), we can compute either R(Sv) or (RS)v. 
+- Translation is not a linear transformation. 
     - To bring translation into this framework (rotate and scale) , we do something that looks a little strange at first: Instead of representing a point in 2D as a pair of numbers (x,y), we represent it as the triple of numbers (x,y,1). 
     - It then turns out that we can then represent rotation, scaling, and translation—and hence any affine transformation—on 2D space as multiplication by a 3-by-3 matrix.
     - The matrices that we need have a bottom row containing (0,0,1). Multiplying (x,y,1) by such a matrix gives a new vector (x1,y1,1).
@@ -164,14 +164,14 @@ In this section, we look at how complex scenes can be built from very simple sha
 
 ### 2.4.1  Building Complex Objects
  
- - When drawing an object, use the coordinate system that is most natural for the object.
- - Usually, we want an object in its natural coordinates to be centered at the origin, (0,0), or at least to use the origin as a convenient reference point. 
+- When drawing an object, use the coordinate system that is most natural for the object.
+- Usually, we want an object in its natural coordinates to be centered at the origin, (0,0), or at least to use the origin as a convenient reference point. 
     - Then, to place it in the scene, we can use a scaling transform, followed by a rotation, followed by a translation to set its size, orientation, and position in the scene. 
     - Recall that transformations used in this way are called  *modeling transformations*.
     - The transforms are often applied in the order scale, then rotate, then translate, because scaling and rotation leave the reference point, (0,0), fixed.
         - in the code, the translation would come first, followed by the rotation and then the scaling:  TRS
         - Modeling transforms are not always composed in this order, but it is the most common usage.
- - The modeling transformations that are used to place an object in the scene should not affect other objects in the scene. 
+- The modeling transformations that are used to place an object in the scene should not affect other objects in the scene. 
     - we can save the current transformation before starting work on the object and restore it afterwards. 
     - but let's suppose here that there are subroutines saveTransform() and restoreTransform() for performing those tasks.
 
@@ -186,10 +186,10 @@ scale(sx,sy)     // set the size of the object
 restoreTransform()
 ```
 
- - Note that we don't know and don't need to know what the saved transform does. 
+- Note that we don't know and don't need to know what the saved transform does. 
     - The modeling transform moves the object from its natural coordinates into its proper place in the scene. 
     - Then on top of that, a coordinate transform that is applied to the scene as a whole would carry the object along with it.
- - Let's look at a little example. Suppose that we want to draw a simple 2D image of a cart with two wheels.
+- Let's look at a little example. Suppose that we want to draw a simple 2D image of a cart with two wheels.
     - ![](../imgs/cg_draw_2d_car.png)
     - The wheel has radius 1.
     - The rectangular body of the cart has width 6 and height 2.
@@ -197,7 +197,7 @@ restoreTransform()
         - assume that the positive direction of the y-axis points upward, which is the common convention in mathematics.
         - so the coordinates of the lower left corner of the rectangle are (-3,0)
     - In wheel's coordinate system, the wheel is centered at (0,0) and has radius 1.
- - Here is pseudocode for a subroutine that draws the cart in its own coordinate system:
+- Here is pseudocode for a subroutine that draws the cart in its own coordinate system:
 
 ```
 subroutine drawCart() :
@@ -216,15 +216,15 @@ subroutine drawCart() :
     fillRectangle(-2.3, 1, 2.6, 1)  // draw the top of the cart
 ```
      
- - Once we have this cart-drawing subroutine, we can use it to add a cart to a scene. When we do this, we apply another modeling transformation to the cart as a whole. Indeed, we could add several carts to the scene, if we wanted, by calling the drawCart subroutine several times with different modeling transformations.
- - Building up a complex scene out of objects is similar to building up a complex program out of subroutines.
+- Once we have this cart-drawing subroutine, we can use it to add a cart to a scene. When we do this, we apply another modeling transformation to the cart as a whole. Indeed, we could add several carts to the scene, if we wanted, by calling the drawCart subroutine several times with different modeling transformations.
+- Building up a complex scene out of objects is similar to building up a complex program out of subroutines.
  
 <h2 id="67137954a0f48d179144a1519998eb59"></h2>
 
 
 ### 2.4.2  Scene Graphs
  
- - Logically, the components of a complex scene form a structure. 
+- Logically, the components of a complex scene form a structure. 
     - In this structure, each object is associated with the sub-objects that it contains. 
     - If the scene is hierarchical, then the structure is hierarchical.
     - This structure is known as a **scene graph**.   
@@ -232,14 +232,14 @@ subroutine drawCart() :
 
 ![](../imgs/cg_scene_graph.png)
 
- - In this drawing, a single object can have several connections to one or more parent objects. 
+- In this drawing, a single object can have several connections to one or more parent objects. 
     - Each connection represents one occurrence of the object in its parent object.
     - Each arrow in the picture can be associated with a modeling transformation that places the sub-object into its parent object. 
     - When an object contains several copies of a sub-object, each arrow connecting the sub-object to the object will have a different associated modeling transformation. 
         - The object is the same for each copy; only the transformation differs.
- - When implementing a scene graph as a data structure made up of objects, a decision has to be made about how to handle transforms.
+- When implementing a scene graph as a data structure made up of objects, a decision has to be made about how to handle transforms.
     - One option is to allow transformations to be associated with any node in the scene graph. 
- - A scene graph is actually an example of a "directed acyclic graph" or "dag."
+- A scene graph is actually an example of a "directed acyclic graph" or "dag."
 
 
 <h2 id="39e5754cf5035d8cbca9e34fd7c163e7"></h2>
@@ -262,8 +262,8 @@ subroutine drawCart() :
 <canvas width="800" height="600" id="theCanvas"></canvas>
 ```
 
- - The *id* is an identifier that can be used to refer to the canvas in JavaScript.
- - To draw on a canvas, you need a graphics context. 
+- The *id* is an identifier that can be used to refer to the canvas in JavaScript.
+- To draw on a canvas, you need a graphics context. 
     - A graphics context is an object that contains functions for drawing shapes. 
 
 ```js
@@ -271,7 +271,7 @@ canvas = document.getElementById("theCanvas");
 graphics = canvas.getContext("2d");
 ```
 
- - Typically, you will store the canvas graphics context in a global variable and use the same graphics context throughout your program. 
+- Typically, you will store the canvas graphics context in a global variable and use the same graphics context throughout your program. 
 
 ```js
 <!DOCTYPE html>
@@ -300,7 +300,7 @@ graphics = canvas.getContext("2d");
 </html>
 ```
 
- - Find more canvans2d example  in http://math.hws.edu/graphicsbook/c2/s6.html
+- Find more canvans2d example  in http://math.hws.edu/graphicsbook/c2/s6.html
 
 
 <h2 id="1a8a7607dedb19f8be29300d42880137"></h2>

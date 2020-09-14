@@ -43,10 +43,10 @@
 
 ### Elements
 
- - CPU  
+- CPU  
     - ALU
     - Register
- - Memoy
+- Memoy
     - Program
     - Data
 
@@ -55,20 +55,20 @@
 
 ### Information Flows
 
- - control bus
- - data bus
- - address bus
+- control bus
+- data bus
+- address bus
 
 <h2 id="4c7bdd90410042e10dd67436384e17aa"></h2>
 
 
 ### Buses
 
- - ALU loads information from the Data bus and manipulates it using the Control bits.
+- ALU loads information from the Data bus and manipulates it using the Control bits.
     - so it must connect to Data / Control bus
- - Register definitely connect to Data bus , and some time it used to specify some  address , so it connect to address bus as well
+- Register definitely connect to Data bus , and some time it used to specify some  address , so it connect to address bus as well
     - data / address are stored in registers
- - Memory is simular to Register 
+- Memory is simular to Register 
     - There is an important thing, is the program instruction tell the system what to do, so we need to be able to actually take information from the next instruction , from the data output of program memory , and feed it into the control bus.   
 
 ---
@@ -78,9 +78,9 @@
 
 ## 5.2 The Fetch-Execute Cycle
 
- - we're going to talk about the very basic thing that a compute does, which is
+- we're going to talk about the very basic thing that a compute does, which is
     - execute one instruction after the other.
- - THe basic CPU loop
+- THe basic CPU loop
     - **Fetch** an instruction from the Program memory
     - **Execute** it
 
@@ -89,10 +89,10 @@
 
 ### Fetching
 
- -  Fetching
+-  Fetching
     - Put the location of the next instrution into the "address" of the program memory
     - Get the instruction code itself by reading the memory contents at that location
- - How do we actually go about putting the address of the next instruction  into the address input of the programm memory ?
+- How do we actually go about putting the address of the next instruction  into the address input of the programm memory ?
     - we're going to have to put it somewhere , and that's going to be into some register, and that is usually called the Program Counter. 
     - ![](../imgs/n2t_the_PC.png)
     - The output of the PC , feeds into the address specification of our program memory,
@@ -103,14 +103,14 @@
 
 ### Executing 
  
- - Executing the operation involves also accessing registers and/or data memory
+- Executing the operation involves also accessing registers and/or data memory
 
 <h2 id="24e481da85387c537c02bb45d1bbc147"></h2>
 
 
 ### Fetch-Execute Clash 
 
- - There is a fact that we really have a clash between the fetch cycle and the execute cycle.
+- There is a fact that we really have a clash between the fetch cycle and the execute cycle.
     - both the program and the data reside in memory 
     - In the fetch cycle , basically we need to get from the program memory the next instruction 
         - so we need to put into the address of the memory , the address of the next instruction and get the instruction output.  
@@ -122,19 +122,19 @@
 ![](../imgs/n2t_fetch-execute_clash.png)
 
 
- - How to solve it ?
+- How to solve it ?
     - basically we are going to do one after the other, that is the usual way. 
     - There is going to be a multiplexer that feeds into the address of the memory. 
     - In the first part of the cycle , the fetch cycle, we're going to actually set the multiplexer to plug into the address input of the memory, the program counter that is the location of the next instruction. 
     - while in the execute cycle, the multiplexer will actually set the memory to actually point into the data address that we need to access. 
- - so now ,in fetch cycle, we get the instruction , in executing cycle  we get the data.
+- so now ,in fetch cycle, we get the instruction , in executing cycle  we get the data.
     - but how we know the acutal instruction when we are in executing cycle?
     - we need at first store the instruction to a **instruction register**.
 
 ![](../imgs/n2t_instruction_register.png)
 
- - This is the usual way it's done. Now there is a shortcut.
- - Simple solution: Harvard Architecture
+- This is the usual way it's done. Now there is a shortcut.
+- Simple solution: Harvard Architecture
     - Variant of von Neumann Architecture
     - Keep Program and Data in 2 separate memory modules
         - each module has its own address.
@@ -147,8 +147,8 @@
 
 ![](../imgs/n2t_cpu_architecture.png)
 
- - it is where all the calculations of the machine take place 
- - and it is also the seat on control.
+- it is where all the calculations of the machine take place 
+- and it is also the seat on control.
     - this is where decisions are made about which instruction should be fetched and executed next.
 
 
@@ -157,7 +157,7 @@
 
 ### The Hack CPU: Abstraction 
 
- - A 16-bit processor, designed to
+- A 16-bit processor, designed to
     - Execute the current instruction 
     - Figure out which instruction to execute next
 
@@ -168,25 +168,25 @@
 
 ![](../imgs/n2t_hack_cpu_interface.png)
 
- - Inputs
+- Inputs
     - Data value , *inM* , from Data Memory
     - Instruction , *instruction* , from Instruction Memory
     - Reset bit, *reset* , From the user
- - at any time , there is always a selected memory both in Data memory and Instruction memory.
+- at any time , there is always a selected memory both in Data memory and Instruction memory.
 
 ---
 
- - Outputs
+- Outputs
     - Data value , *outM* , to Data Memory 
     - Write to memory ? (yes/no) , *writeM*, to Data Memory
     - Memory Address, *addressM*, to Data Memory
     - Address of next instruction, *pc*, **to Instruction Memory**
- - first of all, it the ALU wants to write something to the data memory, 
+- first of all, it the ALU wants to write something to the data memory, 
     - it has to specify 3 different things 
         1. what is that we want to write
         2. where we want to write it
         3. a load bit , that enables the data memory for write operation.
- - In addition , there's one extremely important output , pc , that holds the address of next instruction
+- In addition , there's one extremely important output , pc , that holds the address of next instruction
 
 <h2 id="fb18d6304583643441f45cc4da665c41"></h2>
 
@@ -195,20 +195,20 @@
 
 ![](../imgs/n2t_hack_cpu_implementation.png)
 
- - the label *c* , represents the control bit.
+- the label *c* , represents the control bit.
 
 <h2 id="d0879da14db1669fd7cc551b67fe7b6f"></h2>
 
 
 ### Instruction handling 
 
- - left-top part
- - CPU handling of an A-instruction
+- left-top part
+- CPU handling of an A-instruction
     - Decodes the instruction into op-code + 15-bit value
     - Stores the value in the A-register    
     - it also takes the output of the A-register , and emits it outside to the memory address output
         - i.e., `@100` 执行后， M[100] 就被选中了
- - CPU handling of an C-instruction
+- CPU handling of an C-instruction
     - The instrcution bits are decoded into :
         - op-code , ALU control bits, dest bits, jump bits
     - op-code is 1, in this case we want to route the input of the A-register in such a way that the input will come from the ALU. 
@@ -218,15 +218,15 @@
 
 ### ALU operation 
 
- - the entire top part, exclude *reset* line
- - so there is a C-instruction comes in
- - ALU data inputs :
+- the entire top part, exclude *reset* line
+- so there is a C-instruction comes in
+- ALU data inputs :
     - 1.From the D-register
     - 2. From the A-register / M-register
- - the control bit of ALU's  multilexer is one of the bits in the instruction  
- - ALU control inputs:
+- the control bit of ALU's  multilexer is one of the bits in the instruction  
+- ALU control inputs:
     - 6 control bits  is also from the instruction 
- - ALU data output:
+- ALU data output:
     - Result of ALU calculation ,fed simultaneously to:
         - D-register, A-register, M-register
     - the same ALU output knocking on 3 different doors
@@ -234,7 +234,7 @@
     - the programmer has to decide , which door has to be opened.
     - which register *acutally* received the incoming value is determined by the instruction's *destination bits* 
     - ![](../imgs/n2t_dest_bits.png)
- - The ALU also output *zr*,*ng* bits.
+- The ALU also output *zr*,*ng* bits.
 
 <h2 id="18af6f320c794ce703ecd7e4c44fbf96"></h2>
 
@@ -243,7 +243,7 @@
 
 ![](../imgs/n2t_pc_logic.png)
 
- - Emites the address of the next instruction:
+- Emites the address of the next instruction:
     - To start / restart the program's execution: PC=0
     - no jump:  PC++
     - goto :  PC=A
@@ -270,13 +270,13 @@ else
 
 The CPU executes the instruction according to the Hack Language specification
 
- - if the instruction includes D and A , the respective value are read from , and / ro write to , the CPU-resident D-register and A-register
+- if the instruction includes D and A , the respective value are read from , and / ro write to , the CPU-resident D-register and A-register
     - D = D-A
- - if the instruction is `@x` , then x is stored in the A-register; this value is emitted by addressM
- - if the instrction's RHS includes M, this value is read from *imM*
+- if the instruction is `@x` , then x is stored in the A-register; this value is emitted by addressM
+- if the instrction's RHS includes M, this value is read from *imM*
     - M = M+1
- - if the instruction's LHS includes M, then the ALU output is emmited by *outM*, and the *writeM* bit is asserted.
- - if there is a jump
+- if the instruction's LHS includes M, then the ALU output is emmited by *outM*, and the *writeM* bit is asserted.
+- if there is a jump
     - if (reset==0)
         - The CPU logic uses the instruction's jump bits, and the ALU output's to decide if there should be a jump
             - if there is a jump: PC is set to the value of the A-register 
@@ -297,18 +297,18 @@ The CPU executes the instruction according to the Hack Language specification
 
 ### Instruction Memory (ROM)
 
- - 32k ROM
- - To run a program on the Hack computer:
+- 32k ROM
+- To run a program on the Hack computer:
     - Load the program into the ROM
     - Press "reset"
     - The program starts running
- - Loading a program
+- Loading a program
     - Hardware implementation: plug-and-play ROM chips
         - i.e. 游戏卡带
     - Hardware simulation: 
         - programs are stored in text file
         - program loading is emulated by the built-in ROM chip
- - ROM interface
+- ROM interface
     - 15-bit address in ,  16-bit address out
     - the output of the ROM is always the contents of the register that is selected by the address input.
         - if I enter 17 into the address input, the contents of register number 17 comes out.
@@ -323,13 +323,13 @@ The CPU executes the instruction according to the Hack Language specification
 
 ![](../imgs/n2t_hack_compute_impl.png)
 
- - ROM - CPU
+- ROM - CPU
     - CPU PC 告诉 ROM 地址，ROM 输出 该地址的指令给CPU
 
  
 ![](../imgs/n2t_hack_compute_impl2.png)
 
- - CPU - RAM 
+- CPU - RAM 
     - CPU 高速 RAM 地址， RAM 输出该地址内容给 CPU
     - 如果有写操作，CPU 同时提供 要写入的data
 
@@ -340,9 +340,9 @@ The CPU executes the instruction according to the Hack Language specification
 
 ## 5.5 Project Overview
 
- - Hack 并不是冯诺依曼架构的计算机。
- - 冯诺依曼架构 不区分 program ROM/data RAM , 你可以随时改变运行的程序。
- - 冯诺依曼架构 实现，一般是 增加一个 state 的输入， 使用有限状态机 来告诉CPU 这个周期做这件事，下个周期做 另外的事。
+- Hack 并不是冯诺依曼架构的计算机。
+- 冯诺依曼架构 不区分 program ROM/data RAM , 你可以随时改变运行的程序。
+- 冯诺依曼架构 实现，一般是 增加一个 state 的输入， 使用有限状态机 来告诉CPU 这个周期做这件事，下个周期做 另外的事。
 
 
 

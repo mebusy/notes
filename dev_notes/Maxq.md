@@ -48,29 +48,29 @@ Q-learning will converge to the optimal  , while SARSA(0) will need a GLIE polic
 
 **subtasks** : Each of following subtasks is defined by a subgoal, and each subtask terminates when the subgoal is achieved.
 
- - Navigate(t)
+- Navigate(t)
     - the goal is to move the taxi from its current location to one of the four target locations,
     - which will be indicated by the formal parameter t.
- - Get
+- Get
     - the goal is to move the taxi from its current location to the passenger’s current location and pick up the passenger.
- - Put
+- Put
     - The goal of this subtask is to move the taxi from the current location to the passenger’s destination location and drop off the passenger.
- - Root
+- Root
     - This is the whole taxi task.
 
 
 After defining these subtasks, we must indicate for each subtask which other subtasks or primitive actions it should employ to reach its goal. 
 
- - the Navigate(t) subtask should use the four primitive actions North, South, East, and West
- - The Get subtask should use the Navigate subtask and the Pickup primitive action
+- the Navigate(t) subtask should use the four primitive actions North, South, East, and West
+- The Get subtask should use the Navigate subtask and the Pickup primitive action
 
 All of this information can be summarized by a directed acyclic graph called the ***task graph***
 
- - ![](../imgs/maxq_taxi_task_graph.png)
- - each node corresponds to a subtask or a primitive action
+- ![](../imgs/maxq_taxi_task_graph.png)
+- each node corresponds to a subtask or a primitive action
     - each subtask will executes its policy by calling child subroutine 
- - each edge corresponds to a potential way in which one subtask can "call" one of its child tasks
- - this collection of policies is called *hierarchical policy* 
+- each edge corresponds to a potential way in which one subtask can "call" one of its child tasks
+- this collection of policies is called *hierarchical policy* 
     - In a hierarchical policy, each subroutine executes until it enters a terminal state for its subtask.
 
 <h2 id="28fc65dfb6f48abdf33b71b4b0440cf7"></h2>
@@ -78,16 +78,16 @@ All of this information can be summarized by a directed acyclic graph called the
 
 ## 3.2 Definitions
 
- - given MDP M 
- - decomposed M into a finite set of subtasks { M₀,M₁,...,M<sub>n</sub> }
+- given MDP M 
+- decomposed M into a finite set of subtasks { M₀,M₁,...,M<sub>n</sub> }
     - with the convention that M₀ is the root task
 
 **Definition 2** An unparameterized subtask is a *3-tuple* , < Tᵢ,Aᵢ,R̃ᵢ  > 
 
- - Tᵢ is a termination predicate *that partitions S into a set of active states, Sᵢ, and a set of terminal states, Tᵢ*
+- Tᵢ is a termination predicate *that partitions S into a set of active states, Sᵢ, and a set of terminal states, Tᵢ*
     - The policy for subtask Mᵢ can only be executed if current state *s* is in *Sᵢ*.
     - If , at any time Mᵢ is being executed, the MDP enters a state in Tᵢ , then Mᵢ terminates immediately , even if it is still executing a subtask
- - Aᵢ is a set of actions that can be performed to achieve subtask Mᵢ.
+- Aᵢ is a set of actions that can be performed to achieve subtask Mᵢ.
     - can either be primitive action from A
     - or can be other subtasks , which we will denote by their indexes i.
     - Aᵢ define a direct graph over subtasks
@@ -95,7 +95,7 @@ All of this information can be summarized by a directed acyclic graph called the
     - If a child subtask Mⱼ has formal parameters, then this is interpreted as if the subtask occurred multiple times in Aᵢ 
     - Aᵢ may differ from one state to another , and from on set of actual parameter values to another 
         - so Aᵢ is a function of *s and actual parameters*. 
- - R̃ᵢ(s')  is the pseudo-reward function,which specifies a (deterministic) pseudo-reward for each transition to a terminal state s' ∈ Tᵢ 
+- R̃ᵢ(s')  is the pseudo-reward function,which specifies a (deterministic) pseudo-reward for each transition to a terminal state s' ∈ Tᵢ 
     - This pseudo-reward tells how desirable each of the terminal states is for this subtask.
     - It is typically employed to give goal terminal states a pseudo-reward of 0 and any non-goal terminal states a negative reward.
     - By definition, the pseudo-reward R̃ᵢ(s) is also zero or all non-terminal states s. 
@@ -139,8 +139,8 @@ Because a hierarchical policy maps from states *s* and stack contents K to actio
 
 **Definition 4**  A hierarchical value function, V<sup>π</sup>( (s,K) ) , gives the expected cumulative reward of following the hierarchical policy π starting in state *s* with stack contents K . 
 
- - This hierarchical value function is exactly what is learned by HAMQ 
- - in this paper, we will focus on learning only the *projected value functions* of each of the subtasks M₀,M₁,...,M<sub>n</sub> in the hierarchy.
+- This hierarchical value function is exactly what is learned by HAMQ 
+- in this paper, we will focus on learning only the *projected value functions* of each of the subtasks M₀,M₁,...,M<sub>n</sub> in the hierarchy.
 
 **Definition 5** The projected value function of hierarchical policy π on subtask Mᵢ , V<sup>π</sup>(i,s) , is the expected cumulative reward of executing πᵢ ( and the policies of all descendents of Mᵢ ) starting in state *s* until Mᵢ terminiates.
 
@@ -157,7 +157,7 @@ The decomposition is based on the following theorem:
 
 **Theorem 1** Given a task graph over tasks M₀,M₁,...,M<sub>n</sub>  and a hierarchical policy π, each subtask Mᵢ defines a semi-MDP with state Sᵢ, actions Aᵢ, probability transition function P<sup>π</sup>ᵢ(s',N | s,a) , and expected reward function R̅(s,a) = V<sup>π</sup>(a,s) , where  V<sup>π</sup>(a,s) is the projected value function for child task Mₐ in state *s*. 
 
- - If a is a primitive action, V<sup>π</sup>(a,s) is defined as the expectedimmediate reward of executing a in s:
+- If a is a primitive action, V<sup>π</sup>(a,s) is defined as the expectedimmediate reward of executing a in s:
     - V<sup>π</sup>(a,s) = ∑<sub>s'</sub> P(s'|s,a)·R(s'|s,a).
 
 **Proof**: 
@@ -172,16 +172,16 @@ Now let us suppose that the first action chosen by πᵢ is a subroutine *a* . T
 
   ![](../imgs/maxq_eq_6.png)
 
- - the first part of equation 6  is the discounted sum of rewards for executing subroutine *a* in state *s* until it terminates
+- the first part of equation 6  is the discounted sum of rewards for executing subroutine *a* in state *s* until it terminates
     - in other words, it is V<sup>π</sup>(a,s), the projected value function for the child task Mₐ.
- - the 2nd term of the equation is the value of s' for the current task i , V<sup>π</sup>(i,s') , discounted by γᴺ , where s' is the current state when subroutine *a* terminates.
+- the 2nd term of the equation is the value of s' for the current task i , V<sup>π</sup>(i,s') , discounted by γᴺ , where s' is the current state when subroutine *a* terminates.
 
 We can write this in the form of a Bellman equation :
 
  ![](../imgs/maxq_eq_7.png)
 
- - This has the same form as Equation (3)
- - the first term is the expected reward R̅(s,π(s)). Q.E.D.
+- This has the same form as Equation (3)
+- the first term is the expected reward R̅(s,π(s)). Q.E.D.
 
 ---
 
@@ -192,10 +192,10 @@ Let Q<sup>π</sup>(i,s,a) be the expected cumulative reward for subtask Mᵢ of 
 
  ![](../imgs/maxq_eq_8.png)
 
- - difference from V<sup>π</sup>(i,s):
+- difference from V<sup>π</sup>(i,s):
     - V: Mₐ is provided by πᵢ(s)
     - Q: Mₐ is chosen
- - then 2nd term is the expected discounted reward of *completing task* Mᵢ after executing action *a* in state *s*.
+- then 2nd term is the expected discounted reward of *completing task* Mᵢ after executing action *a* in state *s*.
     - This term only depends on i, s, and a, because the summation marginalizes away the dependence on s' and N.
     - Let us define C<sup>π</sup>(i,s,a) to be equal to this term:
 
@@ -207,7 +207,7 @@ With this definition, we can express the Q function recursively as
 
  Q<sup>π</sup>(i,s,a)  = V<sup>π</sup>(a,s) + C<sup>π</sup>(i,s,a)     (10)
 
- - 实际上，C<sup>π</sup> is related to *s'*
+- 实际上，C<sup>π</sup> is related to *s'*
 
 
 Finally, we can re-expressthe definition for  V<sup>π</sup>(i,s) as 
@@ -227,21 +227,21 @@ To make it easier for programmers to design and debug MAXQ decompositions, we ha
 
  ![](../imgs/maxq_taxi_maxq_graph.png)
 
- - The graph contains two kinds of nodes : Max nodes and Q nodes
- - The Max nodes correspond to the subtasks in the task decomposition
+- The graph contains two kinds of nodes : Max nodes and Q nodes
+- The Max nodes correspond to the subtasks in the task decomposition
     - There is one Max node for each primitive action and one Max node for each subtask (including the Root) task.
     - Each primitive Max node i stores the value of V<sup>π</sup>(i,s) 
- - The Q nodes correspond to the actions that are available for each subtask
+- The Q nodes correspond to the actions that are available for each subtask
     - Each Q node for **parent** task i, state *s*,  and subtask *a* stores the value of C<sup>π</sup>(i,s,a).
     - eg. QGet shores C<sup>π</sup>(0,s,Get) ??? 
- - The children of any node are unordered ( nothing about the order in which they will be executed )
+- The children of any node are unordered ( nothing about the order in which they will be executed )
     - Indeed, a child action may be executed multiple times before its parent subtask is completed.
- - the Max nodes and Q nodes can be viewed as performing parts of the computation 
+- the Max nodes and Q nodes can be viewed as performing parts of the computation 
     - Specifically, each Max node i can be viewed as computing the projected value function V<sup>π</sup>(i,s)  for its subtask. 
     - For primitive Max nodes, this information is stored in the node.
- - Each Q node with parent task i and child task a can be viewed as computing the value of Q<sup>π</sup>(i,s,a) 
+- Each Q node with parent task i and child task a can be viewed as computing the value of Q<sup>π</sup>(i,s,a) 
 
- - Q node 保存 C, 用于计算 Q value ; Max node 用来计算 V value (primtive Max node 保存V )
+- Q node 保存 C, 用于计算 Q value ; Max node 用来计算 V value (primtive Max node 保存V )
 
 ----
 
@@ -251,40 +251,40 @@ As an example , consider the situation shown in Figure 1, which we will denote b
 
 Suppose that the passenger is at R and wishes to go to B. Let the hierarchical policy we are evaluating be an ***optimal*** policy denoted by π ( we will omit the superscript \* to reduce the clutter of the notation) . 
 
- - The value of this state under π is 10
- - π need 10 units action  (a reward of -10)
+- The value of this state under π is 10
+- π need 10 units action  (a reward of -10)
     - 1 unit to move the taxi to R
     - 1 unit to pickup the passenge
     - 7 units to move the taxi to B
     - 1 unit to putdown the passenger
- - When the passenger is delivered, the agent gets a reward of +20
- - so the net value is +10
+- When the passenger is delivered, the agent gets a reward of +20
+- so the net value is +10
 
 ![](../imgs/maxq_taxi_fig4.png)
 
- - To compute the value V<sup>π</sup>(Root,s₁)  
+- To compute the value V<sup>π</sup>(Root,s₁)  
     - MaxRoot consults its policy and finds that π<sub>root</sub>(s₁) is Get.
     - Hence, it "ask" the Q node , QGet to compute Q<sup>π</sup>(Root,s₁,Get) 
     - The completion cost for the Root task after performing a Get , C<sup>π</sup>(Root,s₁,Get)  , is 12
         - it will cost 8 units to deliver the customer after completing the Get subtask
     - then it must ask MaxGet to estimate the expected reward of performing the Get itself.
- - The policy for MaxGet dictates that in s₁, the Navigate subroutine should be invoked with *t* bound to R 
+- The policy for MaxGet dictates that in s₁, the Navigate subroutine should be invoked with *t* bound to R 
     - so MaxGet consults the Q node, QNavigateForGet to compute the expected reward.
     - QNavigateForGet knows that after completing the Navigate(R) task, one more action (the Pickup) will be required to complete the Get
         - so C<sup>π</sup>(MaxGet,s₁,Navigate(R)) = -1
     - it then ask MaxNavigate(R) to compute the expected reward of performing a Navigate to location R
- - The policy for MaxNavigate chooses the North action, so MaxNavigate asks QNorth to compute the value.
+- The policy for MaxNavigate chooses the North action, so MaxNavigate asks QNorth to compute the value.
     - QNorth looks up its completion cost, and finds that C<sup>π</sup>( Navigate, s₁ , North) is 0
         - i.e., the Navigate task will be completed after performing the North action)
     - It consults MaxNorth to determine the expected cost of performing the North action itself.
         - Because MaxNorth is a primitive action, it looks up its expected reward, which is -1
- - Now this series of recursive computations can conclude as follows:  
+- Now this series of recursive computations can conclude as follows:  
     - Q<sup>π</sup>( Navigate(R), s₁ , North) = -1 + 0
     - V<sup>π</sup>( Navigate(R), s₁ ) = -1
     - Q<sup>π</sup>( Get, s₁ , Navigate(R) ) = -1 + -1
     - V<sup>π</sup>( Get, s₁ ) = -2
     - Q<sup>π</sup>( Root, s₁ ,Get) = -2 + 12
- - The end result of all of this is that the value of V<sup>π</sup>( Root,s₁ ) is decomposed into a sum of C terms plus the expected reward of the chosen primitive action:
+- The end result of all of this is that the value of V<sup>π</sup>( Root,s₁ ) is decomposed into a sum of C terms plus the expected reward of the chosen primitive action:
     - V<sup>π</sup>( Root,s₁ ) = V<sup>π</sup>( North,s₁ ) + C<sup>π</sup>( Navigate(R), s₁ , North) + C<sup>π</sup>( Get, s₁ , Navigate(R) ) + C<sup>π</sup>( Root, s₁ ,Get) = -10
 
 
@@ -292,8 +292,8 @@ In general, the MAXQ value function decomposition has the form
 
  ![](../imgs/maxq_eq_12.png)
 
- - where a₀,a₁,...,a<sub>m</sub> is the "path" of Max nodes chosen by the hierarchical policy , going from the Root down to a primitive leaf node.
- - ![](../imgs/maxq_fig5.png)
+- where a₀,a₁,...,a<sub>m</sub> is the "path" of Max nodes chosen by the hierarchical policy , going from the Root down to a primitive leaf node.
+- ![](../imgs/maxq_fig5.png)
 
 We can summarize the presentation of this section by the following theorem:
 
@@ -311,10 +311,10 @@ This theorem captures the representational power of the MAXQ decomposition, but 
 
 # A Learning Algorithm for the MAXQ Decomposition
 
- - MAXQ-0 learning algorithm
+- MAXQ-0 learning algorithm
     - which can learn value functions (and policies) for MAXQ hierarchies in which there are no pseudo-rewards , i.e., the pseudo-rewards are 0.
     - converges to a recursively optimal policy for the given MAXQ hierarchy.
- - MAXQ-Q learning algorithm
+- MAXQ-Q learning algorithm
     - which handles non-zero pseudo-reward functions.
     - a of accelerating MAXQ-O learning.
 
@@ -345,36 +345,36 @@ Incidentally, they also show that if the primitive actions are also made availab
 
 Because the MAXQ decomposition can represent the value function of any hierarchical policy, we could easily construct a modified version of the HAMQ algorithm and apply it to learn hierarchically optimal policies.  However, we decided to pursue an even weaker form of optimality. This form of optimality is called **recursive optimality**.
 
- - hierarchically optimal is to say that I have to respect the hierarchy but I need not necessarily solve each component optimally , overall the problem should be optimally solved. 
- - recursively optimal is to say that not only should I respect the hierarchy but for each individual components in the sub hierarchy I should have an optimal solution. 
+- hierarchically optimal is to say that I have to respect the hierarchy but I need not necessarily solve each component optimally , overall the problem should be optimally solved. 
+- recursively optimal is to say that not only should I respect the hierarchy but for each individual components in the sub hierarchy I should have an optimal solution. 
 
 Recursive optimality is a kind of local optimality in which the policy at each node is optimal  , given the policies of its children.
 
  
 The reason to seek recursive optimality rather than hierarchical optimality is that 
 
- - recursive optimality makes it possible to solve each subtask without reference to the context in which it is executed.
- - This context-free property makes it easier to share and re-use subtasks.
+- recursive optimality makes it possible to solve each subtask without reference to the context in which it is executed.
+- This context-free property makes it easier to share and re-use subtasks.
 
 ![](../imgs/maxq_fig6_1.png)
 
 ![](../imgs/maxq_fig6_2.png)
 
- - The policy shown in the left diagram is recursively optimal but not hierarchically optimal.
- - The shaded cells indicate points where the locally-optimal policy is not globally optimal.
+- The policy shown in the left diagram is recursively optimal but not hierarchically optimal.
+- The shaded cells indicate points where the locally-optimal policy is not globally optimal.
 
 If we consider for a moment, we can see a way to fix this problem. 
     
- - The value of the upper starred state under the optimal hierarchical policy is -2 and the value of the lower starred state is -6
- - Hence, if we changed pseudo reward R̃ to have these values(intead of being zero) , then the recursively-optimal policy would be hierarchically optimal (and globally optimal).
- - In other words, if the programmer can guess the right values for the terminal states of a subtask, then the recursively optimal policy will be hierarchically optimal.
+- The value of the upper starred state under the optimal hierarchical policy is -2 and the value of the lower starred state is -6
+- Hence, if we changed pseudo reward R̃ to have these values(intead of being zero) , then the recursively-optimal policy would be hierarchically optimal (and globally optimal).
+- In other words, if the programmer can guess the right values for the terminal states of a subtask, then the recursively optimal policy will be hierarchically optimal.
 
 in principle, it is possible to learn good values for the pseudo-reward function, in practice, we must rely on the programmer to specify a single pseudo-reward function, R̃  , for each subtask. 
 
 
 In our experiments, we have employed the following simplified approach to defining R̃.  
 
- - For each subtask Mᵢ, we define two predicates: the termination predicate, Tᵢ, and a goal predicate, Gᵢ. 
+- For each subtask Mᵢ, we define two predicates: the termination predicate, Tᵢ, and a goal predicate, Gᵢ. 
     - The goal predicate defines a subset of the terminal states that are “goal states”, and these have a pseudo-reward of 0.
     - All other terminal states have a fixed constant pseudo-reward (e.g., -100)  , that is set so that it is always better to terminate in a goal state than in a non-goal state.  
 
@@ -594,10 +594,10 @@ The first condition arises when a set of state variables is irrelevant to a Max 
 
 **Definition 12 (Max Node Irrelevance)**  Let Mᵢ be a Max node in a MAXQ graph H for MDP M. A set of state variable Y is irrelevant for node i if the state variables of M can be partitioned into 2 sets X and Y such that for any stationary abstract hierarchical policy π executed by the descendents of i , the following 2 properties hold:
 
- - the state transition probability distribution P<sup>π</sup>(s',N|s,a) at node i can be factored into the product of 2 distructions 
+- the state transition probability distribution P<sup>π</sup>(s',N|s,a) at node i can be factored into the product of 2 distructions 
     - P<sup>π</sup>(x',y',N|x,y,a) = P<sup>π</sup>(y'|x,y,a)·P<sup>π</sup>(x',N|x,a)     (17)
     - where y and y' give values for the variables in Y , and x and x' give values for the variable X. 
- - for any pair of state s₁ = (x,y₁) and s₂=(x,y₂) such that *x*(s₁) = *x*(s₂) = x , and any child action a, V<sup>π</sup>(a,s₁) = V<sup>π</sup>(a,s₂), and R̃(s₁) = R̃(s₂).
+- for any pair of state s₁ = (x,y₁) and s₂=(x,y₂) such that *x*(s₁) = *x*(s₂) = x , and any child action a, V<sup>π</sup>(a,s₁) = V<sup>π</sup>(a,s₂), and R̃(s₁) = R̃(s₂).
 
 
 Note that the two conditions must hold for all stationary abstract policies π rexecuted by all of the descendents of the subtask i. 
@@ -638,10 +638,10 @@ If a set of state variables is irrelevant to the leaf state transition probabili
 
 **Lemma 3** A set of state variables Yᵢ, is irrelevant to node i if 
 
- - For each primitive leaf node a that is a descendent of i,
+- For each primitive leaf node a that is a descendent of i,
     - P(x',y'|x,y,a) = P(y'|x,y,a)·P(x'|x,a) and 
     - R(x',y'|x,y,a) = R(x'|x,a)
- - For each internal node j that is equal to node i or is a descendent of i 
+- For each internal node j that is equal to node i or is a descendent of i 
     - R̃ⱼ(x',y') = R̃ⱼ(x')  
     - and the termination predicate Tⱼ(x',y') is true iff Tⱼ(x').
 
@@ -738,7 +738,7 @@ It applies when a subtask is guaranteed to cause its parent task to terminate in
 
 Then for any policy executed at node i, the completion cost  C(i,s,a) is 0 and does not need to be explicitly represented.
 
- - 子任务a 执行总是 满足  Gᵢi(s')=true
+- 子任务a 执行总是 满足  Gᵢi(s')=true
 
 For example, in the Taxi task, in all states where the taxi is holding the passenger, the Put subroutine will succeed and result in a goal terminal state for Root.This is because the termination predicate for Put (i.e., that the passenger is at his or her destination location) implies the goal condition for Root (which is the same).This means that C(Root, s, Put) is uniformly zero, for all states s where Put is not terminated.
 
@@ -762,19 +762,19 @@ In the Taxi domain, a simple example of this arises in the Put task,  which is t
 
 By applying these 5 abstraction conditions, we obtain the following “safe” state abstractions for the Taxi task:
 
- - North, South, East, and West. These terminal nodes require one quantity each, for a total of four values. (Leaf Irrelevance).
+- North, South, East, and West. These terminal nodes require one quantity each, for a total of four values. (Leaf Irrelevance).
     - for any s , V = -1
- - Pickup and Putdown each require 2 values (legal and illegal states), for a total of four. (Leaf Irrelevance.)
- - QNorth(t), QSouth(t), QEast(t), and QWest(t) each require 100 values (four values for t and 25 locations). (Max Node Irrelevance.)
+- Pickup and Putdown each require 2 values (legal and illegal states), for a total of four. (Leaf Irrelevance.)
+- QNorth(t), QSouth(t), QEast(t), and QWest(t) each require 100 values (four values for t and 25 locations). (Max Node Irrelevance.)
     - QNorth(t) : C( Navigate , s , North )
- - QNavigateForGet requires 4 values (for the four possible source locations). 
+- QNavigateForGet requires 4 values (for the four possible source locations). 
     - (The passenger destination is Max Node Irrelevant for MaxGet, and the taxi starting location is Result Distribution Irrelevant for the Navigate action.)
- - QPickup requires 100 possible values, 4 possible source locations and 25 possible taxi locations. (Passenger destination is Max Node Irrelevant to MaxGet.)
- - QGet requires 16 possible values(4 source locations, 4 destination locations). (Result Distribution Irrelevance.)
- - QNavigateForPut requires only 4 values (for the four possible destination locations). 
+- QPickup requires 100 possible values, 4 possible source locations and 25 possible taxi locations. (Passenger destination is Max Node Irrelevant to MaxGet.)
+- QGet requires 16 possible values(4 source locations, 4 destination locations). (Result Distribution Irrelevance.)
+- QNavigateForPut requires only 4 values (for the four possible destination locations). 
     - (The passenger source and destination are Max Node Irrelevant to MaxPut; the taxi location is Result Distribution Irrelevant for the Navigate action.)
- - QPutdown requires 100 possible values (25 taxi locations, 4 possible destination locations). (Passengersourceis Max Node Irrelevant for MaxPut.)
- - QPut requires 0 values. (Termination and Shielding.) 
+- QPutdown requires 100 possible values (25 taxi locations, 4 possible destination locations). (Passengersourceis Max Node Irrelevant for MaxPut.)
+- QPut requires 0 values. (Termination and Shielding.) 
 
 
 This gives a total of 632 distinct values, which is much less than the 3000 values required by flat Q learning.  
@@ -793,10 +793,10 @@ the value of a state s₁ with the passenger at R, the destination at B , and th
 
 With state abstractions, we can see that each term on the right-hand side only depends on a subset of the features:
 
- - V(North,s₁) is a constant
- - C(Navigate(R) , s₁, North )  depends only on the taxi location and the passenger’s source location.
- - C(Get, s₁, Navigate(R) ) depends only on the source location.
- - C(Root, s₁,Get) depends only on the passenger’s source and destination. 
+- V(North,s₁) is a constant
+- C(Navigate(R) , s₁, North )  depends only on the taxi location and the passenger’s source location.
+- C(Get, s₁, Navigate(R) ) depends only on the source location.
+- C(Root, s₁,Get) depends only on the passenger’s source and destination. 
 
 ---
 
@@ -818,8 +818,8 @@ Hence, applying these 5 conditions to introduce state abstractions is a straight
 
 The goal of this section is to prove these two results: 
 
- - (a) that the ordered recursively-optimal policy is an abstract policy (and, hence, can be represented using state abstractions) 
- - (b) that MAXQ-Q will converge to this policy when applied to a MAXQ graph with safe state abstractions.
+- (a) that the ordered recursively-optimal policy is an abstract policy (and, hence, can be represented using state abstractions) 
+- (b) that MAXQ-Q will converge to this policy when applied to a MAXQ graph with safe state abstractions.
 
 <h2 id="3a77b82cf90e359bca449dc6baea1a13"></h2>
 
@@ -918,32 +918,32 @@ In particular, we need to introduce hierarchically- greedy execution early enoug
 
 4 different configurations of the learning algorithm:
 
- - a) flat Q learning,
- - b) MAXQ-Q learning without any form of state abstraction
+- a) flat Q learning,
+- b) MAXQ-Q learning without any form of state abstraction
     - initial values of 0.123, a learn- ing rate of 0.50, 
     - and Boltzmann exploration with an initial temperature of 50 and cooling rates of 0.9996 at MaxRoot and MaxPut, 0.9939 at MaxGet, and 0.9879 at MaxNavigate.
- - c) MAXQ-Q learning with state abstraction
+- c) MAXQ-Q learning with state abstraction
     - initial values of 0.123, a learning rate of 0.25, 
     - and Boltzmann exploration with an initial temperature of 50 and cooling rates of 0.9074 at MaxRoot, 0.9526 at MaxPut, 0.9526 at MaxGet, and 0.9879 at MaxNavigate.
- - d) MAXQ-Q learning with state abstraction and greedy execution.
+- d) MAXQ-Q learning with state abstraction and greedy execution.
     - same setting with (c)
 
 
 These configurations are controlled by many parameters. 
 
- - a) the initial values of the Q and C functions,
- - b) the learning rate (we employed a fixed learning rate)
- - c) the cooling schedule for Boltzmann exploration (the GLIE policy that we employed)
- - d) for non-hierarchical execution,the schedule for decreasing L, the number of steps of consecutive hierarchical execution.
+- a) the initial values of the Q and C functions,
+- b) the learning rate (we employed a fixed learning rate)
+- c) the cooling schedule for Boltzmann exploration (the GLIE policy that we employed)
+- d) for non-hierarchical execution,the schedule for decreasing L, the number of steps of consecutive hierarchical execution.
 
 For Boltzmann exploration, we established an initial temperature and then a cooling rate. A separate temperature is maintained for each Max node in the MAXQ graph, and its temperature is reduced by multiplying by the cooling rate each time that subtask terminates in a goal state.
 
 ![](../imgs/maxq_performance_eval.png)
 
- - all forms of MAXQ learning have better initial performance than flat Q learning. 
- - without state abstractions, MAXQ-Q learning actually takes longer to converge, so that the Flat Q curve crosses the MAXQ/ no abstraction curve
- - with state abstractions, MAXQ-Q quickly to a hierarchically optimal policy.
- - with greedy execution, the MAXQ policy is also able to attain optimal performance. 
+- all forms of MAXQ learning have better initial performance than flat Q learning. 
+- without state abstractions, MAXQ-Q learning actually takes longer to converge, so that the Flat Q curve crosses the MAXQ/ no abstraction curve
+- with state abstractions, MAXQ-Q quickly to a hierarchically optimal policy.
+- with greedy execution, the MAXQ policy is also able to attain optimal performance. 
     - But as the execution becomes “more greedy”, there is a temporary drop in performance,because MAXQ-Q must learn C values in new regions of the state space that were not visited by the recursively optimal policy.
 
 

@@ -62,7 +62,7 @@ extern "C" {
 
 ## 3. print problem 
 
- - sometime lua print function will not output to your engine's console 
+- sometime lua print function will not output to your engine's console 
 
 ```c
 namespace {
@@ -110,7 +110,7 @@ int lua_print(lua_State * luastate) {
 }  // namespace {
 ```
 
- - register lua_print 
+- register lua_print 
 
 ```c
     // Register our version of the global "print" function
@@ -143,11 +143,11 @@ void LuaState::addSearchPath(const char* path)
 
 ## 5. tolua++
 
- - tolua
- - tolua_fix.h/c
- - after exporting files via tolua,  you should add the generated function `TOLUA_API int  tolua_onyx_plus_open (lua_State* tolua_S);` to your Lua_state init function.
+- tolua
+- tolua_fix.h/c
+- after exporting files via tolua,  you should add the generated function `TOLUA_API int  tolua_onyx_plus_open (lua_State* tolua_S);` to your Lua_state init function.
 
- - tolua 传递 userdata 总是使用 指针，然后做相应的必须转换  `*ptr`
+- tolua 传递 userdata 总是使用 指针，然后做相应的必须转换  `*ptr`
 
 <h2 id="66f6181bcb4cff4cd38fbc804a036db6"></h2>
 
@@ -156,11 +156,11 @@ void LuaState::addSearchPath(const char* path)
 
  https://www8.cs.umu.se/kurser/TDBD12/VT04/lab/lua/tolua++.html
 
- - 使用 TEMPLATE_BIND 实例化多个 binding
- - 目前只支持 class level   ， 
+- 使用 TEMPLATE_BIND 实例化多个 binding
+- 目前只支持 class level   ， 
     - function level not support yet
 
- - example
+- example
 
 ```
 struct TEST_A
@@ -169,7 +169,7 @@ struct TEST_A
 };
 ```
 
- - 假设我们导出了 如上的 struct 的 m_LB_items 字段， 我们要对 m_LB_items 做 push_back 操作
+- 假设我们导出了 如上的 struct 的 m_LB_items 字段， 我们要对 m_LB_items 做 push_back 操作
     - 因为 m_LB_items 是 `Vector<LeaderBoardItem>` 范型， 我们需要 对 Vector 类做 TEMPLATE_BIND
 
 ```
@@ -186,7 +186,7 @@ class Vector {
 
 ### name space 
 
- - call by lua
+- call by lua
 ```lua
 namespace.classname:functionname( ... )
 ```
@@ -196,17 +196,17 @@ namespace.classname:functionname( ... )
 
 ### enumerate
 
- - pkg 文件 函数声明 有用到 enum的情况，需要把 enum的定义也放入 pkg 文件
+- pkg 文件 函数声明 有用到 enum的情况，需要把 enum的定义也放入 pkg 文件
 
 <h2 id="0f8d6fb56fe6cdf55ad0114ec5b51dbb"></h2>
 
 
 ### struct 
 
- - C++ 
+- C++ 
     - only classes (and structs) with a constructor will have a 'new()' method
     - You can add the constructor on your pkg (even if it's not actually implemented).
- - C
+- C
     - the only solution I can think of is to have a function that creates a new struct and returns it
 
 <h2 id="5b77d3c94d428927df167f348def0026"></h2>
@@ -214,13 +214,13 @@ namespace.classname:functionname( ... )
 
 ## 6. c++ reigster lua callback
 
- - 使用 cocos2dx 的 tolua-fix 方法
- - 在 .pkg 文件中， 使用 `LUA_FUCNTION` ( 实质是一个 int 类型 ) 声明一个handle 
+- 使用 cocos2dx 的 tolua-fix 方法
+- 在 .pkg 文件中， 使用 `LUA_FUCNTION` ( 实质是一个 int 类型 ) 声明一个handle 
     - `void registerScriptHandler(int handler);`
- - tolua-fix 会 处理成一个 lua function ref
+- tolua-fix 会 处理成一个 lua function ref
     - `LUA_FUNCTION handler = (  toluafix_ref_function(tolua_S,2,0));`
- - 在 c++ 代码中 保存这个handle， 然后，使用 executeFunctionByHandler 来执行这个函数
- - lua 方面的相关调用
+- 在 c++ 代码中 保存这个handle， 然后，使用 executeFunctionByHandler 来执行这个函数
+- lua 方面的相关调用
 
 ```lua
     local shs = ScriptHandlerSample()
@@ -233,8 +233,8 @@ namespace.classname:functionname( ... )
 
 ## 7. lua / c++
 
- - c++ 获取 lua 方法 返回值 ， 或 变量值
- - cocos2dx 提供 executeString 可以完成大部分事情
+- c++ 获取 lua 方法 返回值 ， 或 变量值
+- cocos2dx 提供 executeString 可以完成大部分事情
     1. 执行一段lua 代码 
         - executeString( "lua_code_string" )
     2. 获取 lua 变量值 (目前值支持 number/boolean 返回)  
@@ -247,8 +247,8 @@ namespace.classname:functionname( ... )
 
 ## 8. lua / Java
 
- - https://segmentfault.com/a/1190000004252394
- - android 平台的线程问题
+- https://segmentfault.com/a/1190000004252394
+- android 平台的线程问题
     - 一般 lua会在 非UI working 线程中调用 （如 GL线程）
     - java 的一些callback，一般都是在 UI线程中执行，这时如果要调用lua方法，就需要 在正确的线程中调用
     - 如果可以容忍阻塞，可以使用 线程安全的 ConcurrentLinkedQueue， 在 GL线程中把结果取回，再调用 lua 方法
@@ -259,15 +259,15 @@ namespace.classname:functionname( ... )
 
 ### lua 调用 Java
 
- - cocos2dx 提供了 luaj.callStaticMethod , 可以 调用 静态java 方法
+- cocos2dx 提供了 luaj.callStaticMethod , 可以 调用 静态java 方法
 
 <h2 id="ee4e6cf22725c18fc2d76be7234d0237"></h2>
 
 
 ### java 调用 lua
 
- - 1. 使用 cocos2dx 提供的 callLuaGlobalFunctionWithString 直接调用 全局lua 方法
- - 2. 使用 cocos2dx 提供的 callLuaFunctionWithString， 通过 luaFunctionId 来调用 保存的 lua 方法
+- 1. 使用 cocos2dx 提供的 callLuaGlobalFunctionWithString 直接调用 全局lua 方法
+- 2. 使用 cocos2dx 提供的 callLuaFunctionWithString， 通过 luaFunctionId 来调用 保存的 lua 方法
     - 调用两次 java 方法
     - 第一次， 注册 lua 方法， 
         - lua方法作为 参数 调用java 方法， c++层做处理， java 方法只需要 `final int luaFunc` 接受

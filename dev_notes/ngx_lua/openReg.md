@@ -50,7 +50,7 @@ location / {
 }
 ```
 
- -  openresty 1.9.3.2 以上，content_by_lua 改成了 content_by_lua_block
+-  openresty 1.9.3.2 以上，content_by_lua 改成了 content_by_lua_block
 
 <h2 id="0e9ddb16cae12bbe4dc2ef1dee9a519a"></h2>
 
@@ -59,18 +59,18 @@ location / {
 
 利用不同 location 的功能组合，我们可以完成：
 
- - 内部调用
- - 流水线方式跳转
- - 外部重定向
- - 等几大不同方式
+- 内部调用
+- 流水线方式跳转
+- 外部重定向
+- 等几大不同方式
 
 <h2 id="7e7169cfd1010b3a75a35c7035c9f49c"></h2>
 
 
 #### 内部调用 internal
 
- - 例如对数据库、内部公共函数的统一接口，可以把它们放到统一的 location 中。
- - 通常情况下，为了保护这些内部接口，都会把这些接口设置为 **internal** 。
+- 例如对数据库、内部公共函数的统一接口，可以把它们放到统一的 location 中。
+- 通常情况下，为了保护这些内部接口，都会把这些接口设置为 **internal** 。
      - 这么做的最主要好处就是可以让这个内部接口相对独立，不受外界干扰。
 
 示例代码：
@@ -140,9 +140,9 @@ location /download_internal {
 }
 ```
 
- - 注意，ngx.exec 方法与 ngx.redirect 是完全不同的
- - 前者是个纯粹的内部跳转并且没有引入任何额外 HTTP 信号。 
- - 这里的两个 location 更像是流水线上工人之间的协作关系。第一环节的工人对完成自己处理部分后，直接交给第二环节处理人（实际上可以有更多环节），它们之间的数据流是定向的。
+- 注意，ngx.exec 方法与 ngx.redirect 是完全不同的
+- 前者是个纯粹的内部跳转并且没有引入任何额外 HTTP 信号。 
+- 这里的两个 location 更像是流水线上工人之间的协作关系。第一环节的工人对完成自己处理部分后，直接交给第二环节处理人（实际上可以有更多环节），它们之间的数据流是定向的。
 
 <h2 id="6204c6255e2094adcdb78a9304a12985"></h2>
 
@@ -165,9 +165,9 @@ location = / {
 }
 ```
 
- - 外部重定向是可以跨域名的。
+- 外部重定向是可以跨域名的。
      - 例如从 A 网站跳转到 B 网站是绝对允许的
- - 在 CDN 场景的大量下载应用中，一般分为调度、存储两个重要环节。
+- 在 CDN 场景的大量下载应用中，一般分为调度、存储两个重要环节。
      - 调度就是通过根据请求方 IP 、下载文件等信息寻找最近、最快节点，应答跳转给请求方完成下载。
 
 
@@ -186,7 +186,7 @@ location = / {
 
 uri 中 "?"后面的参数?
 
- - 获取一个 uri 有两个方法： 二者主要的区别是参数来源有区别(GET , POST )
+- 获取一个 uri 有两个方法： 二者主要的区别是参数来源有区别(GET , POST )
      - ngx.req.get_uri_args
          - uri 请求参数
      - ngx.req.get_post_args
@@ -223,7 +223,7 @@ curl --noproxy 127.0.0.1  '127.0.0.1:8080/print_param?a=1&b=2' -d 'c=3&d=4'
 
 #### 传递请求 uri 参数
 
- - 调用 ngx.encode_args 进行转义
+- 调用 ngx.encode_args 进行转义
 
 ```
 location /test {
@@ -248,11 +248,11 @@ location /test {
 
 ### 获取请求 body
 
- - 在 Nginx 的典型应用场景中，几乎都是只读取 HTTP 头即可，
+- 在 Nginx 的典型应用场景中，几乎都是只读取 HTTP 头即可，
      - 例如负载均衡、正反向代理等场景。
- - 但是对于 API Server 或者 Web Application ，对 body 可以说就比较敏感了。
+- 但是对于 API Server 或者 Web Application ，对 body 可以说就比较敏感了。
      - 由于 OpenResty 基于 Nginx ，所以天然的对请求 body 的读取细节与其他成熟 Web 框架有些不同。
- - 由于 Nginx 是为了解决负载均衡场景诞生的，所以它默认是不读取 body 的行为，会对 API Server 和 Web Application 场景造成一些影响。
+- 由于 Nginx 是为了解决负载均衡场景诞生的，所以它默认是不读取 body 的行为，会对 API Server 和 Web Application 场景造成一些影响。
      - 根据需要正确读取、丢弃 body 对 OpenResty 开发是至关重要的。
 
 
@@ -275,12 +275,12 @@ $ curl --noproxy 127.0.0.1  127.0.0.1:8080/test -d jack
 hello nil
 ```
 
- - 可以看到 data 部分获取为空
- - 要正确获取到 data
+- 可以看到 data 部分获取为空
+- 要正确获取到 data
      - 打开 lua_need_request_body 选项强制本模块读取请求体 , 不推荐！！
      - 先调用 ngx.req.read_body() 
          - `ngx.req.read_body()  ; ngx.req.get_body_data();`
- - 如果设置了 `client_body_in_file_only on;` 
+- 如果设置了 `client_body_in_file_only on;` 
      - 请求体会被存入临时文件, 之后可以 ngx.req.get_body_file() 函数获取。
 
 
@@ -357,9 +357,9 @@ location /test3 {
 }
 ```
 
- - /test 响应内容实在触发请求 3s 后一起接收到响应体，
- - /test2 则是先收到一个 hello 停顿 3s 后又接收到后面的 the world。
- - /test3 和 /test 又不一样, 首先收到了所有的 "hello" ，停顿大约 3 秒后，接着又收到了 "the world"
+- /test 响应内容实在触发请求 3s 后一起接收到响应体，
+- /test2 则是先收到一个 hello 停顿 3s 后又接收到后面的 the world。
+- /test3 和 /test 又不一样, 首先收到了所有的 "hello" ，停顿大约 3 秒后，接着又收到了 "the world"
      - 相同处理,不一样的输出时机
 
 
@@ -369,7 +369,7 @@ location /test3 {
 
 #### 如何优雅处理响应体过大的输出
 
- - 1. 输出内容本身体积很大，例如超过 2G 的文件下载
+- 1. 输出内容本身体积很大，例如超过 2G 的文件下载
      - 利用 HTTP 1.1 特性 CHUNKED 编码来完成
      - 注：其实 nginx 自带的静态文件解析能力已经非常好了。下面只是一个例子，实际中过大响应体都是后端服务生成的，为了演示环境相对封闭，所以这里选择本地文件。
 
@@ -388,7 +388,7 @@ file:close()
 
 
 
- - 2. 输出内容本身是由各种碎片拼凑的，碎片数量庞大，例如应答数据是某地区所有人的姓名
+- 2. 输出内容本身是由各种碎片拼凑的，碎片数量庞大，例如应答数据是某地区所有人的姓名
      - 使用 ngx.print
      - 当有非常多碎片数据时，没有必要一定连接成字符串后再进行输出。完全可以直接存放在 table 中
 
@@ -423,20 +423,20 @@ ngx.log(ngx.ERR, "err:" , "error" )
 ngx.log(ngx.INFO, " string:" )
 ```
 
- - 日志会输出到 logs/error.log ,  日志输出级别 会过滤掉一部分日志
- - 日志会输是异步的
+- 日志会输出到 logs/error.log ,  日志输出级别 会过滤掉一部分日志
+- 日志会输是异步的
 
 日志级别:
 
- - ngx.STDERR     -- 标准输出
- - ngx.EMERG      -- 紧急报错
- - ngx.ALERT      -- 报警
- - ngx.CRIT       -- 严重，系统故障，触发运维告警系统
- - ngx.ERR        -- 错误，业务不可恢复性错误
- - ngx.WARN       -- 告警，业务中可忽略错误
- - ngx.NOTICE     -- 提醒，业务比较重要信息
- - ngx.INFO       -- 信息，业务琐碎日志信息，包含不同情况判断等
- - ngx.DEBUG      -- 调试
+- ngx.STDERR     -- 标准输出
+- ngx.EMERG      -- 紧急报错
+- ngx.ALERT      -- 报警
+- ngx.CRIT       -- 严重，系统故障，触发运维告警系统
+- ngx.ERR        -- 错误，业务不可恢复性错误
+- ngx.WARN       -- 告警，业务中可忽略错误
+- ngx.NOTICE     -- 提醒，业务比较重要信息
+- ngx.INFO       -- 信息，业务琐碎日志信息，包含不同情况判断等
+- ngx.DEBUG      -- 调试
 
 
 <h2 id="5d35b34aac80d856a0a8800c9ad8c855"></h2>
@@ -444,8 +444,8 @@ ngx.log(ngx.INFO, " string:" )
 
 #### 网络日志输出
 
- - lua-resty-logger-socket 的目标是替代 Nginx 标准的 ngx_http_log_module 以非阻塞 IO 方式推送 access log 到远程服务器上。
- - 对远程服务器的要求是支持 syslog-ng 的日志服务。
+- lua-resty-logger-socket 的目标是替代 Nginx 标准的 ngx_http_log_module 以非阻塞 IO 方式推送 access log 到远程服务器上。
+- 对远程服务器的要求是支持 syslog-ng 的日志服务。
 
 
 <h2 id="e25752827350f8b953dbed96b1e2146b"></h2>
@@ -479,8 +479,8 @@ server {
 }
 ```
 
- - content_by_lua_file 后面的参数 可以是 相对 nginx prefix path 的相对路径
- - lua_package_path  
+- content_by_lua_file 后面的参数 可以是 相对 nginx prefix path 的相对路径
+- lua_package_path  
      - 对后续的 lua require 命令生效 
      - lua 环境
 
@@ -520,8 +520,8 @@ access_by_lua_block {
 };
 ```
 
- - 大多数nginx 内置变量都是不允许写入的，例如刚刚的终端IP地址，在请求中是不允许对其进行更新的。
- - 对于可写的变量中的limit_rate，值得一提，它能完成传输速率限制，并且它的影响是单个请求级别。
+- 大多数nginx 内置变量都是不允许写入的，例如刚刚的终端IP地址，在请求中是不允许对其进行更新的。
+- 对于可写的变量中的limit_rate，值得一提，它能完成传输速率限制，并且它的影响是单个请求级别。
 
 
 ```
@@ -538,28 +538,28 @@ location /download {
 
 ### 子查询 capture/capture_multi
 
- - 发起非阻塞的内部请求访问目标 location。
- - 目标 location 可以是配置文件中其他文件目录，或 任何 其他 nginx C 模块，包括 ngx_proxy、ngx_fastcgi、ngx_memc、ngx_postgres、ngx_drizzle，甚至 ngx_lua 自身等等
+- 发起非阻塞的内部请求访问目标 location。
+- 目标 location 可以是配置文件中其他文件目录，或 任何 其他 nginx C 模块，包括 ngx_proxy、ngx_fastcgi、ngx_memc、ngx_postgres、ngx_drizzle，甚至 ngx_lua 自身等等
 
- - 子请求只是模拟 HTTP 接口的形式， 没有 额外的 HTTP/TCP 流量，也 没有 IPC (进程间通信) 调用。
+- 子请求只是模拟 HTTP 接口的形式， 没有 额外的 HTTP/TCP 流量，也 没有 IPC (进程间通信) 调用。
      - 所有工作在内部高效地在 C 语言级别完成。
- - 子请求与 HTTP 301/302 重定向指令 (通过 ngx.redirect) 完全不同，也与内部重定向 ((通过 ngx.exec) 完全不同。
- - 在发起子请求前，用户程序应总是读取完整的 HTTP 请求体 (通过调用 ngx.req.read_body 或设置 lua_need_request_body 指令为 on).
- - capture/capture_multi API 总是缓冲整个请求体到内存中。因此，当需要处理一个大的子请求响应，用户程序应使用 cosockets 进行流式处理，
+- 子请求与 HTTP 301/302 重定向指令 (通过 ngx.redirect) 完全不同，也与内部重定向 ((通过 ngx.exec) 完全不同。
+- 在发起子请求前，用户程序应总是读取完整的 HTTP 请求体 (通过调用 ngx.req.read_body 或设置 lua_need_request_body 指令为 on).
+- capture/capture_multi API 总是缓冲整个请求体到内存中。因此，当需要处理一个大的子请求响应，用户程序应使用 cosockets 进行流式处理，
 
 
 ```
 res = ngx.location.capture(uri)
 ```
 
- - 返回一个包含四个元素的 Lua 表 (res.status, res.header, res.body, 和 res.truncated)。
- - res.status (状态) 保存子请求的响应状态码。
- - res.header (头) 用一个标准 Lua 表储子请求响应的所有头信息。如果是“多值”响应头，这些值将使用 Lua (数组) 表顺序存储。例如，如果子请求响应头包含下面的行：
+- 返回一个包含四个元素的 Lua 表 (res.status, res.header, res.body, 和 res.truncated)。
+- res.status (状态) 保存子请求的响应状态码。
+- res.header (头) 用一个标准 Lua 表储子请求响应的所有头信息。如果是“多值”响应头，这些值将使用 Lua (数组) 表顺序存储。例如，如果子请求响应头包含下面的行：
      - Set-Cookie: a=3
      - Set-Cookie: foo=bar
      - Set-Cookie: baz=blah
      - 则 res.header["Set-Cookie"] 将存储 Lua 表 {"a=3", "foo=bar", "baz=blah"}
- - res.body (体) 保存子请求的响应体数据，它可能被截断。
+- res.body (体) 保存子请求的响应体数据，它可能被截断。
      - 用户需要检测 res.truncated (截断) 布尔值标记来判断 res.body 是否包含截断的数据。
      - 这种数据截断的原因只可能是因为子请求发生了不可恢复的错误，例如远端在发送响应体时过早中断了连接，或子请求在接收远端响应体时超时。
 
@@ -573,19 +573,19 @@ res = ngx.location.capture(
  )
 ```
 
- - method 选项默认值是 ngx.HTTP_GET
- - args 选项可以设置附加的 URI 参数，例如：
+- method 选项默认值是 ngx.HTTP_GET
+- args 选项可以设置附加的 URI 参数，例如：
      - `ngx.location.capture('/foo?a=1',  { args = { b = 3, c = ':' } }   )`
      - 等同于 `ngx.location.capture('/foo?a=1&b=3&c=%3a')`
 
 
- - 请注意，通过 ngx.location.capture 创建的子请求默认继承当前请求的所有请求头信息，这有可能导致子请求响应中不可预测的副作用。
+- 请注意，通过 ngx.location.capture 创建的子请求默认继承当前请求的所有请求头信息，这有可能导致子请求响应中不可预测的副作用。
      - 例如，当使用标准的 ngx_proxy 模块服务子请求时，如果主请求头中包含 "Accept-Encoding: gzip"，可能导致子请求返回 Lua 代码无法正确处理的 gzip 压缩过的结果。
      - 通过设置 `proxy_pass_request_headers` 为 off ，在子请求 location 中忽略原始请求头。
- - ngx.location.capture 和 ngx.location.capture_multi 指令无法抓取包含以下指令的 location： 
+- ngx.location.capture 和 ngx.location.capture_multi 指令无法抓取包含以下指令的 location： 
      - add_before_body, add_after_body, auth_request, echo_location, echo_location_async, echo_subrequest, 或 echo_subrequest_async 。
 
- - 下面的代码不会如预期般工作
+- 下面的代码不会如预期般工作
 
 ```
 location /foo {
@@ -606,7 +606,7 @@ location /blah {
 
 ### 不同阶段共享变量 ngx.ctx
 
- - 几种需要共享数据的场合
+- 几种需要共享数据的场合
      - 1. 进程间
          - 通过共享内存的方式完成不同工作进程的数据共享
      - 2. 单个进程内不同请求的数据共享
@@ -629,14 +629,14 @@ location /test {
 }
 ```
 
- - ngx.ctx 是一个表， 可以对他添加、修改。
+- ngx.ctx 是一个表， 可以对他添加、修改。
      - 任意数据值，包括 Lua 闭包与嵌套表
- - 用来存储基于请求的 Lua 环境数据，其生存周期与当前请求相同 (类似 Nginx 变量)。
- - 它有一个最重要的特性：单个请求内的 rewrite (重写)，access (访问)，和 content (内容) 等各处理阶段是保持一致的。
- - 额外注意，每个请求，包括子请求，都有一份自己的 ngx.ctx 表
- - ngx.ctx 表查询需要 **相对昂贵的元方法调用**，这比通过用户自己的函数参数 直接传递基于请求的数据要慢得多。
+- 用来存储基于请求的 Lua 环境数据，其生存周期与当前请求相同 (类似 Nginx 变量)。
+- 它有一个最重要的特性：单个请求内的 rewrite (重写)，access (访问)，和 content (内容) 等各处理阶段是保持一致的。
+- 额外注意，每个请求，包括子请求，都有一份自己的 ngx.ctx 表
+- ngx.ctx 表查询需要 **相对昂贵的元方法调用**，这比通过用户自己的函数参数 直接传递基于请求的数据要慢得多。
      - 不要为了节约用户函数参数而滥用此 API，因为它可能对性能有明显影响。
- - ngx.ctx  不能直接共享给其他请求使用的
+- ngx.ctx  不能直接共享给其他请求使用的
 
 
 
@@ -645,10 +645,10 @@ location /test {
 
 ### 防止 SQL 注入
 
- - MySQL 
+- MySQL 
      - ndk.set_var.set_quote_sql_str
      - db:query(string.format([[select * from cats where id = '%s']], ndk.set_var.set_quote_sql_str(req_id)))
- - PostgreSQL
+- PostgreSQL
      - ndk.set_var.set_quote_pgsql_str
 
 
@@ -721,13 +721,13 @@ http {
 ```
 
 
- - ① 上游访问地址清单
+- ① 上游访问地址清单
      - (可以按需配置不同的权重规则)； 
- - ② 上游访问长连接，是否开启长连接，对整体性能影响比较大
- - ③ 接口访问通过 ngx.location.capture 的子查询方式发起； 
- - ④ 由于 ngx.location.capture 方式只能是 nginx 自身的子查询，需要借助 proxy_pass 发出 HTTP 连接信号； 
- - ⑤ 公共 API 输出服务；
- - 借用 nginx 周边成熟组件力量，为了发起一个 HTTP 请求，我们需要绕好几个弯子，甚至还有可能踩到坑（upstream 中长连接的细节处理），显然没有足够优雅，所以我们继续看下一章节。
+- ② 上游访问长连接，是否开启长连接，对整体性能影响比较大
+- ③ 接口访问通过 ngx.location.capture 的子查询方式发起； 
+- ④ 由于 ngx.location.capture 方式只能是 nginx 自身的子查询，需要借助 proxy_pass 发出 HTTP 连接信号； 
+- ⑤ 公共 API 输出服务；
+- 借用 nginx 周边成熟组件力量，为了发起一个 HTTP 请求，我们需要绕好几个弯子，甚至还有可能踩到坑（upstream 中长连接的细节处理），显然没有足够优雅，所以我们继续看下一章节。
 
 
 <h2 id="b888cd5bb81793b53547243438aa8df6"></h2>
@@ -782,11 +782,11 @@ http {
 }
 ```
 
- - ① 引用 resty.http 
+- ① 引用 resty.http 
      - [github](https://github.com/pintsized/lua-resty-http) 
- - ② request_uri 函数完成了连接池、HTTP 请求等一系列动作。
- - 如果你的内部请求比较少，使用 ngx.location.capture+proxy_pass 的方式还没什么问题。
- - 但如果你的请求数量比较多，或者需要频繁的修改上游地址，那么 resty.http就更适合你。
+- ② request_uri 函数完成了连接池、HTTP 请求等一系列动作。
+- 如果你的内部请求比较少，使用 ngx.location.capture+proxy_pass 的方式还没什么问题。
+- 但如果你的请求数量比较多，或者需要频繁的修改上游地址，那么 resty.http就更适合你。
 
 
 <h2 id="ed5f2bdecbd4bd349d09412d1ff6a6fb"></h2>

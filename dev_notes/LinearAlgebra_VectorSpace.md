@@ -44,7 +44,7 @@
 
 For the concept of a ***vector space***, we start immediately with the most important spaces. They are denoted by **R¹, R², R³**, ... ; the space **Rⁿ** consists of all column vectors with ***n*** components.
 
- - **We can add any two vectors, and we can multiply all vectors by scalars. In other words, we can take linear combinations.** 
+- **We can add any two vectors, and we can multiply all vectors by scalars. In other words, we can take linear combinations.** 
 
 Normally our vectors belong to one of the spaces **Rⁿ**; they are ordinary column vectors. The formal definition allows other things to be ***"vectors"*** - provided that addition and scalar multiplication are all right. We give three examples:
 
@@ -61,23 +61,23 @@ Normally our vectors belong to one of the spaces **Rⁿ**; they are ordinary col
 
 A ***subspace*** of a vector space is a nonempty subset that satisfies the requirements for a vector space: Linear combinations stay in the subspace.
 
- - (i) If we add any vectors x and y in the subspace, x + y is in the subspace.
- - (ii) If we multiply any vector x in the subspace by any scalar c, cx is in the subspace.
+- (i) If we add any vectors x and y in the subspace, x + y is in the subspace.
+- (ii) If we multiply any vector x in the subspace by any scalar c, cx is in the subspace.
 
 ---
 
 Notice in particular that ***the zero vector will belong to every subspace***. That comes from rule (ii): Choose the scalar to be c = 0. The smallest subspace **Z** contains only one vector, the zero vector.
 
- - Example:
+- Example:
 
 Start from the vector space of 3 by 3 matrices. One possible subspace is the set of lower triangular matrices. Another is the set of symmetric matrices. A + B and cA are lower triangular if A and B are lower triangular, and they are symmetric if A and B are
 symmetric. Of course, the zero matrix is in both subspaces.
 
 
- - 两个子空间的交集，还是一个子空间
+- 两个子空间的交集，还是一个子空间
     - S⋂T is a subplace
 
- - PS. **Ax=b解不是子空间，因为解不包含0向量**
+- PS. **Ax=b解不是子空间，因为解不包含0向量**
 
 <h2 id="8181c20bb270d985c5745507fd8a273b"></h2>
 
@@ -153,7 +153,7 @@ The vectors b are in the column space and the vectors x are in the nullspace.
 
 We hope to end up by understanding all four of the subspaces that are intimately related to each other and to A - the ***column space*** of A, the ***nullspace*** of A, and their two perpendicular spaces.
 
- - matlab 可以通过 null 指令求出
+- matlab 可以通过 null 指令求出
 
 ```
 #TODO
@@ -183,9 +183,9 @@ For an invertible matrix, the nullspace contains only x = 0 (multiply Ax = 0 by 
 |2  2|
 ```
 
- - This matrix is not invertible: y + z = b₁, and 2y + 2z = b₂ usually have no solution.
- - There is no solution **unless** b₂ = 2b₁ . The column space of A contains only those b's: the multiples of (1, 2).
- - When b₂ = 2b₁, there are ***infinitely many solutions***. 
+- This matrix is not invertible: y + z = b₁, and 2y + 2z = b₂ usually have no solution.
+- There is no solution **unless** b₂ = 2b₁ . The column space of A contains only those b's: the multiples of (1, 2).
+- When b₂ = 2b₁, there are ***infinitely many solutions***. 
     - A particular solution to y + z = 2 and 2y + 2z = 4 is x_p (1, 1). The nullspace of A contains (-1, 1) and all its multiples x_n = (-c, c):
 
 ![](../imgs/LA_completeSolution.png)
@@ -246,7 +246,7 @@ The only operation not required by our example, but needed in general, is row ex
 
 Here is *PA = LU* for all matrices:
 
- - **2B:** For any m by n matrix A there is a permutation P, a lower triangular L with unit diagonal, and an m by n echelon matrix U, such that *PA = LU*
+- **2B:** For any m by n matrix A there is a permutation P, a lower triangular L with unit diagonal, and an m by n echelon matrix U, such that *PA = LU*
 
 *Now comes* ***R***. We can go further than U, to make the matrix even simpler. Divide the second row by its pivot 3, so that ***all pivots are 1***. Then use the pivot row to produce ***zero above the pivot*** (This time we subtract a row from *a higher row*). The final result (the best form we can get) is the ***reduced row echelon form R*** :
 
@@ -261,8 +261,8 @@ If A is a square invertible matrix , in that case , rref(R) is *identity matrix*
 
 For a 5 by 8 matrix with four pivots, Figure 2.3 shows the reduced form R. **It still contains an identity matrix, in the four pivot rows and four pivot columns**. 
 
- - From R we will quickly find the nullspace of A. 
- - *Rx = 0* has the same solutions as *Ux = 0* and *Ax=0*
+- From R we will quickly find the nullspace of A. 
+- *Rx = 0* has the same solutions as *Ux = 0* and *Ax=0*
 
 <h2 id="1e32c695f24ac4d5108ba9cca53ac86a"></h2>
 
@@ -273,9 +273,9 @@ Our goal is to read off all the solutions to Rx = 0. The pivots are crucial:
 
 ![](../imgs/LA_nullspaceOfR.png)
 
- - The unknowns u, v, w, y go into two groups.
- - One group contains the ***pivot variables***, those that correspond to ***columns with pivots***.
- - The other group is made up of the ***free variables***, corresponding to ***columns without pivots***.
+- The unknowns u, v, w, y go into two groups.
+- One group contains the ***pivot variables***, those that correspond to ***columns with pivots***.
+- The other group is made up of the ***free variables***, corresponding to ***columns without pivots***.
 
 To find the most general solution to Rx = 0 (or, equivalently, to Ax = 0) we may ***assign arbitrary values to the free variables***. Suppose we call these values simply v and y. The pivot variables are completely determined in terms of v and y:
 
@@ -301,7 +301,7 @@ The free variables have values 1 and 0 (formed in identity).
  
 This is the place to recognize one extremely important theorem. Suppose a matrix has more columns than rows, n > m. Since m rows can hold at most m pivots, there must be at least n - m free variables. There will be even more free variables if some rows of R reduce to zero; but no matter what, at least one variable must be free. This free variable can be assigned any value, leading to the following conclusion:
 
- - **2C:** If Ax ***=0*** has more unknowns than equations (n > m), it has at least one special solution: There are more solutions than the trivial x=0.
+- **2C:** If Ax ***=0*** has more unknowns than equations (n > m), it has at least one special solution: There are more solutions than the trivial x=0.
 
 There must be infinitely many solutions, since any multiple cx will also satisfy A(cx) = 0. *The nullspace has the same "dimension" as the number of free variables and special solutions.*
 
@@ -372,9 +372,9 @@ Elimination reveals the pivot variables and free variables. ***If there are r pi
 
 **2D:**
 
- - Suppose elimination reduces Ax = b to Ux = c and Rx = d, with r pivot rows and r pivot columns. ***The rank of those matrices is r***. The last m - r **rows** of U and R are zero, so there is a solution only if the last m - r *entries of c and d* are also zero.
- - The complete solution is x =x_p + x_n. One particular solution x_p has all free variables zero. Its pivot variables are the first r entries of d, so Rx_p= d.
- - The nullspace solutions x are combinations of n - r special solutions, with one free variable equal to 1. The pivot variables in that special solution can be found in the corresponding column of R (with sign reversed).
+- Suppose elimination reduces Ax = b to Ux = c and Rx = d, with r pivot rows and r pivot columns. ***The rank of those matrices is r***. The last m - r **rows** of U and R are zero, so there is a solution only if the last m - r *entries of c and d* are also zero.
+- The complete solution is x =x_p + x_n. One particular solution x_p has all free variables zero. Its pivot variables are the first r entries of d, so Rx_p= d.
+- The nullspace solutions x are combinations of n - r special solutions, with one free variable equal to 1. The pivot variables in that special solution can be found in the corresponding column of R (with sign reversed).
  
 You see how the rank r is crucial. It counts the pivot rows in the "row space" and the pivot columns in the column space. There are *n - r special solutions* in the nullspace. There are *m - r solvability conditions* on b or c or d.
 
@@ -442,8 +442,8 @@ The column space of A is exactly ***the space that is spanned by its columns***.
 
 ### Basis for a Vector Space
 
- - To decide if b is a combination of the columns, we try to solve Ax = b. 
- - To decide if the columns are independent, we solve Ax = 0. 
+- To decide if b is a combination of the columns, we try to solve Ax = b. 
+- To decide if the columns are independent, we solve Ax = 0. 
 
 ***Spanning involves the column space, and independence involves the nullspace***. 
 
@@ -461,9 +461,9 @@ We had better say at once that the coordinate vectors e₁, ... , en are not the
 
 Example 8: ![](../imgs/LA_x_y_plane_basic.png)
 
- - x-y plane in R²
- - A spanning set v₁, v₂, v₃, certainly span R², but are not independent.
- - Bases: v₁, v₂ and v₁, v₃ and v₂, v₃.
+- x-y plane in R²
+- A spanning set v₁, v₂, v₃, certainly span R², but are not independent.
+- Bases: v₁, v₂ and v₁, v₃ and v₂, v₃.
 
 Example 9: 
 
@@ -477,10 +477,10 @@ These four columns span the column space of U, but they are not independent. The
 
 To summarize: 
 
- - *The columns of any matrix span its column space.*
- - If they are independent, they are a basis for the column space
+- *The columns of any matrix span its column space.*
+- If they are independent, they are a basis for the column space
     - whether the matrix is square or rectangular.
- - If we are asking the columns to be a basis for the whole space Rⁿ, then the matrix must be ***square*** and ***invertible***. 
+- If we are asking the columns to be a basis for the whole space Rⁿ, then the matrix must be ***square*** and ***invertible***. 
 
 
 
@@ -497,14 +497,14 @@ To summarize:
  
 You must notice that the word "dimensional" is used in two different ways. 
 
- - We speak about a four-dimensional ***vector***, meaning a vector in **R⁴**. 
- - Now we have defined a four-dimensional ***subspace***;
+- We speak about a four-dimensional ***vector***, meaning a vector in **R⁴**. 
+- Now we have defined a four-dimensional ***subspace***;
     - an example is the set of vectors in **R⁶** whose first and last components are zero. 
     - The members of this four-dimensional subspace are six- dimensional ***vectors*** like (0, 5, 1, 3, 4, 0). 
     
 We never use the terms "basis of a matrix" or "rank of a space" or "dimension of a basis." These phrases have no meaning. It is the ***dimension of the column space*** that equals the ***rank of the matrix***, as we prove in the coming section.
 
- - 基向量的个数，就是列空间C(A)的维数 (注意维数是空间的属性)
+- 基向量的个数，就是列空间C(A)的维数 (注意维数是空间的属性)
 
 <h2 id="a1e826e3adda502b8e640e95e34a88d8"></h2>
 
@@ -533,8 +533,8 @@ When elimination on A produces an echelon matrix U or a reduced R, we will find 
 
 If A is an m by n matrix, you can see which "host" spaces contain the four subspaces by looking at the number of components:
 
- - The nullspace N(A) and row space C(Aᵀ) are subspaces of **Rⁿ**.
- - The left nullspace N(Aᵀ) and column space C(A) are subspaces of **Rᵐ**.
+- The nullspace N(A) and row space C(Aᵀ) are subspaces of **Rⁿ**.
+- The left nullspace N(Aᵀ) and column space C(A) are subspaces of **Rᵐ**.
  
 The rows have *n* components and the columns have *m*. For a simple matrix like:
 
@@ -557,20 +557,20 @@ U = | 0 0 3 3|  came from   A = | 2  6  9  7|.
 
 For novelty, we take the four subspaces in a more interesting order.
 
- - 3 **The row space of A**
+- 3 **The row space of A**
     - For an echelon matrix like U, the row space is clear. A similar rule applies to every echelon matrix U or R, with r pivots and r nonzero rows: ***The nonzero rows are a basis, and the row space has dimension r.***
     - The row space of A has the same dimensions as the row space of U, and it has the same bases, because the ***row spaces of A and U (and R) are the same***.
         - The reason is that each elementary operation leaves the row space unchanged.
         - The rows in U are combinations of the original rows in A. The rows of A can be recovered from U. It is true that A and U have different rows, but the combinations of the rows are identical: same space!
 
- - 2 **The nullspace of A**
+- 2 **The nullspace of A**
     - Elimination simplifies a system of linear equations without changing the solutions. The system Ax = 0 is reduced to Ux = 0, and this process is reversible.
     - ***The nullspace of A is the same as the nullspace of U and R***.
     - Choosing the n - r "special solutions" to Ax = 0 provides a definite basis for the nullspace:
     - The nallspace has dimension *n-r*. The 'special solutions" are a basis - each tree yariablc is given the value 1. while the other free variables are 0. 
     - The nullspace is also called the *kernel* of A, and its dimension *n-r* is the *nullity*.
 
- - 1 **The column space of A**
+- 1 **The column space of A**
     - The column space is sometimes called the **range**. x is in the domain and f (x) is in the range. In our case the function is f (x) = Ax. 
     - Our problem is to find bases for the column spaces of U and A. ***Those spaces are different*** (just look at the matrices!) but their dimensions are the same.
         - The first and third columns of U are a basis for its column space. They are the ***columns with pivots***.
@@ -580,7 +580,7 @@ For novelty, we take the four subspaces in a more interesting order.
         - **row rank = column rank!** This is one of the most important theorems in linear algebra.
         - pivots shared by row and column ?
 
- - 4 **The left nullspace of A** (= the nullspace of Aᵀ)
+- 4 **The left nullspace of A** (= the nullspace of Aᵀ)
     - Aᵀy = 0 means yᵀA = 0, this is why called "left nullspace"
     - If A is an m by n matrix, then Aᵀ is n by m.  Its, Aᵀ, nullspace is a subspace of **Rᵐ**; the vector y has m components.
     - For any matrix, ***the number of pivot variables + the number of free variables must match the total number of columns***. In other words, rank plus nullity equals n:
@@ -628,19 +628,19 @@ A = |1 2|  , has m = n = 2, and rank r = 1.
 
 From the rank of a matrix, it is easy to decide which matrices actually have these inverses. Roughly speaking, ***an inverse exists only when the rank is as large as possible***.
 
- - The rank always satisfies r ≤ m and also r ≤ n. 
- - We want to prove that when r = m there is a right-inverse, and Ax = b always has a solution. When r = n there is a left-inverse, and the solution (**if it exists**) is unique.
- - Only a square matrix can have both r = m and r = n, and therefore only a square matrix can achieve both existence and uniqueness.
+- The rank always satisfies r ≤ m and also r ≤ n. 
+- We want to prove that when r = m there is a right-inverse, and Ax = b always has a solution. When r = n there is a left-inverse, and the solution (**if it exists**) is unique.
+- Only a square matrix can have both r = m and r = n, and therefore only a square matrix can achieve both existence and uniqueness.
     - Only a square matrix has a two-sided inverse.
 
 **2Q** 
 
- - **EXISTENCE: Full row rank r = m**.
+- **EXISTENCE: Full row rank r = m**.
     - x = b has ***at least*** one solution x for every b if and only if the columns span **Rᵐ**.
     - Then A has a **right-inverse** C such that AC=I(mxm)
     - This is possible onh if in < rt
     - The number of solutions  is 1 or ∞.
- - **UNIQUENESS: Full column rank r = n**.
+- **UNIQUENESS: Full column rank r = n**.
     - Ax = b has ***at most*** one solution x for every b if and only if the columns are linearly independent.  
     - Then A has an nxm **left-inverse** B such that BA = I(nxn).
     - This is possible only if m > n
@@ -711,7 +711,7 @@ A = (col)(row) =| 4  2  2 | = | 2|
                 |-2 -1 -1 |   |-1|
 ```
 
- - ***Every matrix of rank 1 has the simple form A = uvᵀ = column x row.***
+- ***Every matrix of rank 1 has the simple form A = uvᵀ = column x row.***
 
 The row space and column space are lines-the easiest case.
 
@@ -720,25 +720,25 @@ The row space and column space are lines-the easiest case.
 
 ## 2.5 GRAPHICS NETWORKS
 
- - ***incidence matrices of graphs***
+- ***incidence matrices of graphs***
     - every entry is 1, -1, or 0. 
     
 This section is *optional*, but it gives a chance to see rectangular matrices in action - and how the square symmetric matrix AᵀA turns up in the end.
 
- - A ***graph*** consists of a set of vertices or *nodes*, and a set of *edges* that connect them. 
- - The graph in Figure 2.6 has 4 nodes and 5 edges. It does not have an edge between nodes1 and 4 
+- A ***graph*** consists of a set of vertices or *nodes*, and a set of *edges* that connect them. 
+- The graph in Figure 2.6 has 4 nodes and 5 edges. It does not have an edge between nodes1 and 4 
     - (and edges from a node to itself are forbidden). 
- - This graph is directed, because of the arrow in each edge.
+- This graph is directed, because of the arrow in each edge.
  
 ![](../imgs/LA_directed_graph.png)
 
- - The ***edge-node incidence matrix*** is 5x4
+- The ***edge-node incidence matrix*** is 5x4
     - with a row for every edge. 
- - ***If the edge goes from node j to node k, then that row has -1 in column j and +1 in column k.*** 
+- ***If the edge goes from node j to node k, then that row has -1 in column j and +1 in column k.*** 
     - Row 1 shows the edge from node 1 to node 2. 
     - Row 5 comes from the fifth edge, from node 3 to node 4.
     
- - Notice the columns of A. Column 3 gives information about node 3 - it tells which edges enter and leave. 
+- Notice the columns of A. Column 3 gives information about node 3 - it tells which edges enter and leave. 
     - Edges 2 and 3 go in, 
     - Edge 5 goes out (with the minus sign). 
 
@@ -764,30 +764,30 @@ The equation Ax = b asks: Given the differences b1.... , b5, find the actual pot
 
 ## 2.6 LINEAR TRANSFORMATIONS
 
- - Notes：
- - 在线性空间中的选定基之后, 向量刻画对象, 矩阵刻画对象的运动，用矩阵与向量的乘法 施加运动
- - 在一个线性空间V里的一个线性变换T, 当选定一组基之后，就可以表示为矩阵 ?
- - 线性变换，就是从一个线性空间V的某一个点, 跃迁到 另一个线性空间W的另一个点的运动
+- Notes：
+- 在线性空间中的选定基之后, 向量刻画对象, 矩阵刻画对象的运动，用矩阵与向量的乘法 施加运动
+- 在一个线性空间V里的一个线性变换T, 当选定一组基之后，就可以表示为矩阵 ?
+- 线性变换，就是从一个线性空间V的某一个点, 跃迁到 另一个线性空间W的另一个点的运动
      - 这句话里蕴含着一层意思，就是说一个点不仅可以变换到同一个线性空间中的另一个点，而且变换到另一个线性空间中的另一个点去
      - 不管你怎么变，只要变换前后都是线性空间中的对象，这个变化就一定是线性变换，也就一定可以用一个非奇异矩阵来描述 ； 而你用一个非奇异矩阵去描述一个变换，一定是一个线性变换。
- - 最后，我们把矩阵的定义完善如下: 矩阵是线性空间中的 线性变换的 一个**描述**。
+- 最后，我们把矩阵的定义完善如下: 矩阵是线性空间中的 线性变换的 一个**描述**。
      - 注意，这里用的是 **描述**, 因为同一个线性变换可以有多个描述。
      - 好比，给人A拍照，只要选定一个镜头位置，这张照片就是A的一个描述，但只是一个片面的描述；换个镜头位置，可以得到另一个不同的描述; 所有的照片都是同一个人的描述，但是由都不是A本身
- - 同样的, 对一个线性变换，只要你选定一组基，那么就可以找到一个矩阵来描述这个线性变换。换一组基，就得到一个不同的矩阵。 所有这些矩阵都是这同一个线性变换的描述，但又都不是线性变换本身。
- - 若矩阵 A 与 B 是同一个线性变化的两个不同的描述，则一定能找到一个非奇异矩阵 P , 是的 A，B之间满足:
+- 同样的, 对一个线性变换，只要你选定一组基，那么就可以找到一个矩阵来描述这个线性变换。换一组基，就得到一个不同的矩阵。 所有这些矩阵都是这同一个线性变换的描述，但又都不是线性变换本身。
+- 若矩阵 A 与 B 是同一个线性变化的两个不同的描述，则一定能找到一个非奇异矩阵 P , 是的 A，B之间满足:
      - `A = P⁻¹BP`
      - 所以相似矩阵, 就是同一个线性变换 的不同的描述矩阵
      - 矩阵P, 其实就是A矩阵所基于的基，与 B矩阵所基于的基， 这两组基之间的一个变换关系。
- - \*\*\*\*\*\*\*\*
- - 矩阵不仅可以作为线性变换的描述，而且可以作为一组基的描述。 
+- \*\*\*\*\*\*\*\*
+- 矩阵不仅可以作为线性变换的描述，而且可以作为一组基的描述。 
      - 不仅可以把线性空间中的一个点，变换到另一个点去，也能把线性空间中的一个坐标系（基）变换到另一个坐标系（基）去。而且变换点与坐标系，具有异曲同工的效果。
- - **运动等价于 坐标系变换 ，或, 对象的变换等价于坐标系的变换 , 或, 固定坐标系下，一个对象的变换，等价于固定对象所处的坐标系的变换。**
- - Ma = b 
+- **运动等价于 坐标系变换 ，或, 对象的变换等价于坐标系的变换 , 或, 固定坐标系下，一个对象的变换，等价于固定对象所处的坐标系的变换。**
+- Ma = b 
      - 向量a ,经过矩阵M所描述的变换，变成了向量b
      - 有一个向量，它在坐标系M的度量下得到的度量结果是a ，那么它在坐标系 I 的度量下，结果是b : `Ma = Ib`
      - 在M为坐标系的意义下，`Ma` 这种形式，我们可以认为这是 **对向量a的一个环境声明。**
      - 注意到, M矩阵表示的坐标系，由一组基组成。那组基由向量构成，同样存在这组向量是在哪个坐标系下度量而成的问题。所以 M其实是 IM, 也就是说，M中的那组基的度量是在 I坐标系中得出来的。 从这个视角来说， MxN 也不是什么矩阵乘法，而是声明了一个 在M坐标系中量出的另一个坐标系 N , 其中，M本身是在 I 坐标系中度量出来的。
- - 对坐标系施加变化的办法，就是让 表示那个坐标系的矩阵 与表示那个变化的矩阵相乘。 ( 变换x坐标 ? )
+- 对坐标系施加变化的办法，就是让 表示那个坐标系的矩阵 与表示那个变化的矩阵相乘。 ( 变换x坐标 ? )
      - 再一次 MxN
      - 一方面表示 坐标系N 在 运动 M 下的变换结果
      - 另一方面, 在M坐标系度量下，有另一个坐标系 N。 这个坐标系 N 如果放在 I坐标系中度量，其结果为 坐标系 MxN
@@ -799,7 +799,7 @@ The equation Ax = b asks: Given the differences b1.... , b5, find the actual pot
 
 ---
 
- - We know how a matrix moves subspaces around when we multiply by A.
+- We know how a matrix moves subspaces around when we multiply by A.
     - The nullspace goes into the zero vector. 
         - A=[1 1 ; 2 2 ]
         - A*[1 ; 2] = [3;6]
@@ -848,11 +848,11 @@ Every transformation *T(x)* that meets this requirement is a ***linear transform
 Any matrix leads immediately to a linear transformation. Also, every linear transformation lead to a matrix.
 
 
- - Most transformations are not linear -- for example, 
+- Most transformations are not linear -- for example, 
     - to square the polynomial (Ap = p²)
     - or to add 1 (Ap = p + 1)
     - or to keep the positive coefficients (A(t - t²) = t). 
- - It will be linear transformations, and only those, that lead us back to matrices.
+- It will be linear transformations, and only those, that lead us back to matrices.
 
 Linearity has a crucial consequence: ***If we know Ax for each vector in a basis, then we know Ax for each vector in the entire space***.
 
@@ -861,7 +861,7 @@ Linearity If x = c₁x₁ + ... + cnxn then
             Ax = c₁(Ax₁) + ... + cn(Axn).   (4)
 ```
 
- - 我们平时说向量x, 是指在单位矩阵中，基的一个坐标 的向量表示
+- 我们平时说向量x, 是指在单位矩阵中，基的一个坐标 的向量表示
 
 **Example 4**:
 
@@ -910,12 +910,12 @@ Adiff = |0 0 2 0|
         |0 0 0 0|
 ```
 
- - Ap₁ is its first column, which is zero.
- - Ap₂ is the second column, which is p₁.
- - Ap₃ is 2p₂, and Ap₄ is 3p₃
- - The nullspace contains p₁ (the derivative of a constant is zero).
- - The column space contains p₁, p₂, p₃ (the derivative of a cubic is a quadratic).
- - The derivative of a combination like p = 2 + t - t² - t³ is decided by linearity
+- Ap₁ is its first column, which is zero.
+- Ap₂ is the second column, which is p₁.
+- Ap₃ is 2p₂, and Ap₄ is 3p₃
+- The nullspace contains p₁ (the derivative of a constant is zero).
+- The column space contains p₁, p₂, p₃ (the derivative of a cubic is a quadratic).
+- The derivative of a combination like p = 2 + t - t² - t³ is decided by linearity
 
 The matrix can differentiate that p(t), because matrices build in linearity!
 
@@ -940,9 +940,9 @@ Column j of A:  T(xⱼ)= Axⱼ = a₁ⱼy₁ + a₂ⱼy₂ + … + a_mⱼ·ym  (
 
  
 
- - 如何发现隐藏在一个 linear transmation 后面的 变换矩阵。 只要知道了 基的 linear transmation , 就能确定这个矩阵。
+- 如何发现隐藏在一个 linear transmation 后面的 变换矩阵。 只要知道了 基的 linear transmation , 就能确定这个矩阵。
     - 特征向量基 是一组很好的基，it leads to 对角矩阵 Λ ， 对角线上都是特征值 。
- - 2U 解释了如何 确定变换矩阵的 列向量
+- 2U 解释了如何 确定变换矩阵的 列向量
 
 TODO, Example
 
@@ -972,15 +972,15 @@ They *must* be represented by matrices. Using the natural basis [1 0]ᵀ and [0 
 
 Figure 2.10 shows rotation through an angle θ. It also shows the effect on the 2 basis vectors.
 
- - The first one (1,0) goes to (cos θ, sin θ) , it lies on the "θ-line". 
+- The first one (1,0) goes to (cos θ, sin θ) , it lies on the "θ-line". 
     - we use c and s for cos θ and sin θ.
- - The second basis vector (0, 1) rotates into (-sin θ, cos θ). 
- - By rule (6), those numbers go into the columns of the matrix 
- - ![](../imgs/LA_Q_theta.png)
- - The last case contains the first two. 
+- The second basis vector (0, 1) rotates into (-sin θ, cos θ). 
+- By rule (6), those numbers go into the columns of the matrix 
+- ![](../imgs/LA_Q_theta.png)
+- The last case contains the first two. 
     - The inverse appears when φ is -θ
     - the square appears when φ is +θ. 
- - All three questions were decided by trigonometric identities 
+- All three questions were decided by trigonometric identities 
     - and they give a new way, to remember those identities. 
 
 **2V** Suppose A and B are linear transformations from V to W and from U to V. Their product AB starts with a vector u in U, goes to Bu in V. and finishes with ABu in W. This "composition" AB is again a linear transformation (from U to
@@ -989,10 +989,10 @@ W). Its matrix is the product of the individual matrices representing A and B.
 
 **2. Projection**
 
- - Figure 2.10 also shows the projection of (1, 0) onto the 6-line. 
+- Figure 2.10 also shows the projection of (1, 0) onto the 6-line. 
     - The length of the projection is c = cos θ. 
     - Notice that the point of projection is not (c, s), we must multiply by c. 
- - Similarly the projection of (0, 1) has length s, and falls at s(c, s) = (cs, s²). 
+- Similarly the projection of (0, 1) has length s, and falls at s(c, s) = (cs, s²). 
     - That gives the second column of the projection matrix P:
 
 ```
@@ -1000,8 +1000,8 @@ Projection onto θ-line:  P = |c² cs|
                              |cs s²|
 ```
 
- - This matrix has no inverse, because the transformation has no inverse. 
- - Points on the perpendicular line (through zero vector) are projected onto the origin
+- This matrix has no inverse, because the transformation has no inverse. 
+- Points on the perpendicular line (through zero vector) are projected onto the origin
     - that line is the nullspace of P. 
 - Points on the θ-line are projected to themselves! 
 - Projecting twice is the same as projecting once, and ***p² = P***:
@@ -1011,8 +1011,8 @@ P² = |c² cs|² = |c²(c²+s²) cs(c²+s²)| = P
      |cs s²|    |cs(c²+s²) s²(c²+s²)|
 ```
  
- - Of course c²+s² = cos²θ + sin²θ = 1
- - ***A projection matrix equals its own square***.
+- Of course c²+s² = cos²θ + sin²θ = 1
+- ***A projection matrix equals its own square***.
 
 
 **3. Reflection**
@@ -1029,14 +1029,14 @@ Reflection matrix   H = |2c²-1   2cs |
 
 This matrix H has the remarkable property H² = I. 
 
- - ***Two reflections bring back the original***.
+- ***Two reflections bring back the original***.
     - A reflection is its own inverse, *H = H⁻¹* 
     - which is clear from the geometry but less clear from the matrix
 
 One approach is through the relationship of reflections to projections: *H = 2P - I*. 
 
- - This means that Hx + x = 2Px
- - the image plus the original equals twice the projection. It also confirms that H² = I:
+- This means that Hx + x = 2Px
+- the image plus the original equals twice the projection. It also confirms that H² = I:
     - `H² = (2P-I)2² = 4P²-4P +I = I, since P²=P`
 
 ---
@@ -1049,8 +1049,8 @@ The goal is to make the matrix diagonal, as achieved for P and H. To make Q diag
 
 We mention here the effect on the matrix of a change of basis, while the linear transformation stays the same. 
 
- - The matrix A (or Q or P or H) is altered to ***S⁻¹AS***. 
- - Thus a single transformation is represented by different matrices (via different bases, accounted for by S). 
+- The matrix A (or Q or P or H) is altered to ***S⁻¹AS***. 
+- Thus a single transformation is represented by different matrices (via different bases, accounted for by S). 
 
 The theory of eigenvectors will lead to this formula S⁻¹AS, and to the best basis.
 

@@ -39,17 +39,17 @@
 
 # 1.5 UNION-FIND
 
- - dynamic connectivity
- - quick find
- - quick union
- - improvements
+- dynamic connectivity
+- quick find
+- quick union
+- improvements
 
 <h2 id="b175d1bc18d1ee96547e64bd9a71dc50"></h2>
 
 
 ## dynamic connectivity
 
- - Given a set of N objects.
+- Given a set of N objects.
     - Union command: connect two objects.
     - Find/connected query: is there a path connecting the two objects?
 
@@ -58,8 +58,8 @@
 
 ### Implementing the operations
  
- - Find query. Check if two objects are in the same component.
- - Union command. Replace components containing two objects with their union.
+- Find query. Check if two objects are in the same component.
+- Union command. Replace components containing two objects with their union.
 
 ![](../imgs/algorI_uf_union.png)
 
@@ -69,14 +69,14 @@
 
 ### Quick-find  [eager approach]
 
- - Data structure.
+- Data structure.
     - Integer array id[] of length N.
     - Interpretation: p and q are connected iff they have the same id.
 
 ![](../imgs/algorI_uf_datastructure.png)
 
- - Find. Check if p and q have the same id.
- - Union. To merge components containing p and q, change all entries whose id equals id[p] to id[q].
+- Find. Check if p and q have the same id.
+- Union. To merge components containing p and q, change all entries whose id equals id[p] to id[q].
 
 ![](../imgs/algorI_uf_datastructure2.png)
 
@@ -86,13 +86,13 @@
 
 ### Quick-find is too slow
 
- - Cost model. Number of array accesses (for read or write).
+- Cost model. Number of array accesses (for read or write).
 
 algorithm | initialize | union | find
 --- | --- | --- | --- 
 quick-find | N | N | 1
 
- - Union is too expensive 
+- Union is too expensive 
     - It takes N² array accesses to process a sequence of N union commands on N objects.
 
 
@@ -101,7 +101,7 @@ quick-find | N | N | 1
 
 ## Quick-union [lazy approach]
 
- - Data structure.
+- Data structure.
     - Integer array id[] of length N.
     - Interpretation: id[i] is parent of i. 
         - keep going until it doesn’t change (algorithm ensures no cycles)
@@ -109,12 +109,12 @@ quick-find | N | N | 1
 
 ![](../imgs/algorI_uf_qu_lazy_ds.png)
 
- - Find. Check if p and q have the same root.
- - Union. To merge components containing p and q, set the id of p's root to the id of q's root.
+- Find. Check if p and q have the same root.
+- Union. To merge components containing p and q, set the id of p's root to the id of q's root.
     - e.g. to connect 3 and 5 , set the 3's root (9) to 5's root (6) 
     - `id[9] = 6`
 
- - Cost model. Number of array accesses (for read or write).
+- Cost model. Number of array accesses (for read or write).
 
 
 algorithm | initialize | union | find
@@ -122,12 +122,12 @@ algorithm | initialize | union | find
 quick-find | N | N | 1
 quick-union | N | N⁺ | N(worst cast)
 
- - `⁺` includes cost of finding roots
+- `⁺` includes cost of finding roots
 
 
- - Quick-find defect.
+- Quick-find defect.
     - Union too expensive (N array accesses).
- - Quick-union defect.
+- Quick-union defect.
     - Trees can get tall.
     - Find too expensive (could be N array accesses).
 
@@ -141,7 +141,7 @@ quick-union | N | N⁺ | N(worst cast)
 
 ### Improvement 1: weighting
 
- - Weighted quick-union.
+- Weighted quick-union.
     - Modify quick-union to avoid tall trees.
     - Keep track of size of each tree **(number of objects)**.
     - Balance by linking root of smaller tree to root of larger tree.
@@ -151,18 +151,18 @@ quick-union | N | N⁺ | N(worst cast)
 
 ---
 
- - Data structure. Same as quick-union, but maintain extra array sz[i] to count number of objects in the tree rooted at i.
- - Find. Identical to quick-union.
+- Data structure. Same as quick-union, but maintain extra array sz[i] to count number of objects in the tree rooted at i.
+- Find. Identical to quick-union.
     - `return root(p) == root(q);`
- - Union. Modify quick-union to:
+- Union. Modify quick-union to:
     - Link root of smaller tree to root of larger tree.
     - Update the sz[] array.
 
 
- - Running time.
+- Running time.
     - Find: takes time proportional to depth of p and q.
     - Union: takes constant time, if given roots.
- - Proposition. Depth of any node x is at most lgN.
+- Proposition. Depth of any node x is at most lgN.
 
 
 algorithm | initialize | union | find
@@ -171,14 +171,14 @@ quick-find | N | N | 1
 quick-union | N | N⁺ | N(worst cast)
 weighted QU | N | lgN⁺ | lgN
 
- - `⁺` includes cost of finding roots
+- `⁺` includes cost of finding roots
 
 <h2 id="f96ae0dc0ea4dbddd95e2813e4a8581a"></h2>
 
 
 ### Improvement 2: path compression
 
- - Quick union with path compression
+- Quick union with path compression
     - Just after computing the root of p, set the id of each examined node to point to that root.
 
 ![](../imgs/algorI_uf_pathcompress1.png)
@@ -194,9 +194,9 @@ weighted QU | N+MlgN
 QU + path compression | N+MlgN
 weight QU + path compression | N+Mlg<sup>\*</sup>N
 
- - M union-find operations on a set of N objects
+- M union-find operations on a set of N objects
 
- - Ex. [10⁹ unions and finds with 10⁹ objects]
+- Ex. [10⁹ unions and finds with 10⁹ objects]
 
 ---
 
@@ -210,18 +210,18 @@ weight QU + path compression | N+Mlg<sup>\*</sup>N
 
 ## shuffling
 
- - How to shuffle an array
- - Goal. Rearrange array so that result is a uniformly random permutation.
+- How to shuffle an array
+- Goal. Rearrange array so that result is a uniformly random permutation.
 
 <h2 id="1e7778f2afb3096f1731d0f25daf0fd1"></h2>
 
 
 ### Shuffle sort
 
- - Generate a random real number for each array entry.
+- Generate a random real number for each array entry.
     - useful for shuffling columns in a spreadsheet
- - Sort the array.
- - Proposition. Shuffle sort produces a uniformly random permutation of the input array, provided no duplicate values.
+- Sort the array.
+- Proposition. Shuffle sort produces a uniformly random permutation of the input array, provided no duplicate values.
     - assuming real numbers uniformly at random
 
 <h2 id="18bfcbf8d708ee9650922d916c1d595b"></h2>
@@ -229,10 +229,10 @@ weight QU + path compression | N+Mlg<sup>\*</sup>N
 
 ### Knuth shuffle
 
- - In iteration i, pick integer r between 0 and i uniformly at random
- - Swap a[i] and a[r].
+- In iteration i, pick integer r between 0 and i uniformly at random
+- Swap a[i] and a[r].
 
- - Proposition. [Fisher-Yates 1938] Knuth shuffling algorithm produces a uniformly random permutation of the input array in linear time.
+- Proposition. [Fisher-Yates 1938] Knuth shuffling algorithm produces a uniformly random permutation of the input array in linear time.
     - assuming integers uniformly at random
 
 ```java
@@ -253,18 +253,18 @@ public static void shuffle(Object[] a)
 
 ## convex hull
 
- - The **convex hull** of a set of N points is the smallest perimeter fence enclosing the points.
+- The **convex hull** of a set of N points is the smallest perimeter fence enclosing the points.
 
 ![](../imgs/algorI_sort_convexhull.png)
 
- - Convex hull output. Sequence of vertices in counterclockwise order.
+- Convex hull output. Sequence of vertices in counterclockwise order.
 
 <h2 id="f7b4a7d0272cd3b9f0aa24e173a8ac02"></h2>
 
 
 ### Convex hull: mechanical algorithm
 
- - Mechanical algorithm
+- Mechanical algorithm
     - Hammer nails perpendicular to plane; stretch elastic rubber band around points.
 
 ![](../imgs/algorI_convexhull_mechanical.png)
@@ -275,9 +275,9 @@ public static void shuffle(Object[] a)
 
 ### Convex hull application: motion planning
  
- - Robot motion planning
+- Robot motion planning
     - Find shortest path in the plane from s to t that avoids a polygonal obstacle.
- - Fact. Shortest path is either straight line from s to t or it is one of two polygonal chains of convex hull.
+- Fact. Shortest path is either straight line from s to t or it is one of two polygonal chains of convex hull.
 
 ![](../imgs/algorI_convexhull_app_robot_root.png)
 
@@ -286,9 +286,9 @@ public static void shuffle(Object[] a)
 
 ### Convex hull application: farthest pair
 
- - Farthest pair problem
+- Farthest pair problem
     - Given N points in the plane, find a pair of points with the largest Euclidean distance between them.
- - Fact. Farthest pair of points are extreme points on convex hull.
+- Fact. Farthest pair of points are extreme points on convex hull.
 
 ![](../imgs/algorI_convexhull_app_farthest_pairs.png)
 
@@ -297,8 +297,8 @@ public static void shuffle(Object[] a)
 
 ### Convex hull: geometric properties
 
- - Fact. Can traverse the convex hull by making only counterclockwise turns.
- - Fact. The vertices of convex hull appear in increasing order of polar angle with respect to point p with **lowest y-coordinate**.
+- Fact. Can traverse the convex hull by making only counterclockwise turns.
+- Fact. The vertices of convex hull appear in increasing order of polar angle with respect to point p with **lowest y-coordinate**.
 
 ![](../imgs/algorI_convexhull_geometry.png)
 
@@ -307,25 +307,25 @@ public static void shuffle(Object[] a)
 
 ### Graham scan
 
- - Choose point p with smallest y-coordinate.
- - Sort points by polar angle with p.
- - Consider points in order; discard unless it create a ccw turn.
+- Choose point p with smallest y-coordinate.
+- Sort points by polar angle with p.
+- Consider points in order; discard unless it create a ccw turn.
 
 <h2 id="63899fcbf3cd4f4fe086e6cf6229b75f"></h2>
 
 
 ### Implementing ccw
 
- - CCW. 
+- CCW. 
     - Given three points a, b, and c, is a → b → c a counterclockwise turn?
     - is c to the left of the ray a→b 
 
 ![](../imgs/algorI_convexhull_CCW.png)
 
- - Lesson. Geometric primitives are tricky to implement.
+- Lesson. Geometric primitives are tricky to implement.
     - Dealing with degenerate cases.
     - Coping with floating-point precision.
- - Determinant (or cross product) > 0 , then a → b → c is counterclockwise.
+- Determinant (or cross product) > 0 , then a → b → c is counterclockwise.
 
 
 <h2 id="53743c83882b2e0a5016648231ccb9bd"></h2>
@@ -333,13 +333,13 @@ public static void shuffle(Object[] a)
 
 ### Polar Order
 
- - Polar order. Given a point p, order points by polar angle they make with p.
+- Polar order. Given a point p, order points by polar angle they make with p.
 
 ![](../imgs/algorI_convexhull_polar_order.png)
 
- - High-school trig solution. Compute polar angle θ w.r.t. p using atan2().
- - Drawback. Evaluating a trigonometric function is expensive.
- - A ccw-based solution.
+- High-school trig solution. Compute polar angle θ w.r.t. p using atan2().
+- Drawback. Evaluating a trigonometric function is expensive.
+- A ccw-based solution.
     - If q1 is above p and q2 is below p, then q1 makes smaller polar angle.
     - If q1 is below p and q2 is above p, then q1 makes larger polar angle.
     - Otherwise, ccw(p, q1, q2) identifies which of q1 or q2 makes larger angle.
@@ -370,10 +370,10 @@ private class PolarOrder implements Comparator<Point2D>A {
 
 ## Two classic sorting algorithms
 
- - Mergesort
+- Mergesort
     - Java sort for objects.
     - Perl, C++ stable sort, Python stable sort, Firefox JavaScript, ...
- - Quicksort. [next lecture]
+- Quicksort. [next lecture]
     - Java sort for primitive types.
     - C qsort, Unix, Visual C++, Python, Matlab, Chrome JavaScript, ...
 
@@ -391,7 +391,7 @@ private class PolarOrder implements Comparator<Point2D>A {
 
 ## Mergesort: practical improvements
 
- - Use insertion sort for small subarrays.
+- Use insertion sort for small subarrays.
     - Mergesort has too much overhead for tiny subarrays.
     - Cutoff to insertion sort for ≈ 7 items.
 
@@ -401,8 +401,8 @@ private class PolarOrder implements Comparator<Point2D>A {
 
 ## Stability
 
- - A typical application. First, sort by name; **then** sort by section.
- - Q. Which sorts are stable?
+- A typical application. First, sort by name; **then** sort by section.
+- Q. Which sorts are stable?
     - A. Insertion sort and mergesort (but not selection sort or shellsort).
 
 ---
@@ -437,15 +437,15 @@ private static void sort(Comparable[] a, int lo, int hi) {
 
 ### Quicksort properties 
 
- - in-place  
- - not stable
+- in-place  
+- not stable
 
 <h2 id="cb0ba743125423b1e1e3bc3e08c9a02c"></h2>
 
 
 ### Quicksort: practical improvements
 
- - Insertion sort small subarrays.
+- Insertion sort small subarrays.
 
 
 <h2 id="c33b4377d843f4b615014192187f269f"></h2>
@@ -453,7 +453,7 @@ private static void sort(Comparable[] a, int lo, int hi) {
 
 ## Quick-select
 
- - Goal. Given an array of N items, find a k<sub>th</sub> smallest item.
- - Quick-select takes linear time on average.
+- Goal. Given an array of N items, find a k<sub>th</sub> smallest item.
+- Quick-select takes linear time on average.
 
 ---

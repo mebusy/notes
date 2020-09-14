@@ -96,7 +96,7 @@ Mike    NaN             Law
 Sally   Course liasion  Engineering
 ```
 
- - The merge method has a couple of other interesting parameters. 
+- The merge method has a couple of other interesting parameters. 
     - First, you don't need to use indices to join on, you can use columns as well.
 
 ```python
@@ -110,7 +110,7 @@ pd.merge(staff_df, student_df, how='left', left_on='Name', right_on='Name')
 2   James   Grader          Business
 ```
 
- - What happens when we have conflicts between the DataFrames?
+- What happens when we have conflicts between the DataFrames?
 
 ```python
 # staff and student has different "Location"
@@ -129,7 +129,7 @@ pd.merge(staff_df, student_df, how='left', left_on='Name', right_on='Name')
 2   Washington Avenue   James   Grader          1024 Billiard Avenue    Business
 ```
 
- - multi-indexing and multiple columns. 
+- multi-indexing and multiple columns. 
 
 ```python
 staff_df = pd.DataFrame([{'First Name': 'Kelly', 'Last Name': 'Desjardins', 'Role': 'Director of HR'},
@@ -151,12 +151,12 @@ pd.merge(staff_df, student_df, how='inner', left_on=['First Name','Last Name'], 
 
 ## Pandas Idioms
 
- - Chain Inexing :
+- Chain Inexing :
     - `df.loc["Washtenaw"]["Total Population"]` 
     - Generally bad, pandas could return a copy of a view depending upon numpy
- - Code smell
+- Code smell
     - if you see a `][` , you should think carefully about what you are doing 
- - Method chaining
+- Method chaining
     - Method chaining though, little bit different. 
     - The general idea behind method chaining is that every method on an object returns a reference to that object. 
     - The beauty of this is that you can condense many different operations on a DataFrame, for instance, into one line or at least one statement of code.
@@ -179,7 +179,7 @@ df.rename(columns={'ESTIMATESBASE2010': 'Estimates Base 2010'})
 
 ### apply function
 
- - apply something to all rows
+- apply something to all rows
 
 ```python
 import numpy as np
@@ -208,7 +208,7 @@ df.apply(lambda x: np.max(x[rows]), axis=1)
 
 ## Group by
 
- - takes some column name or names and splits the dataframe up into chunks based on those names, it returns a dataframe group by object. 
+- takes some column name or names and splits the dataframe up into chunks based on those names, it returns a dataframe group by object. 
     - 非常适合需要对部分数据进行统计的情形
 
 ```python
@@ -234,7 +234,7 @@ Colorado
 ```
 
 
- - Now, 99% of the time, you'll use group by on one or more columns. 
+- Now, 99% of the time, you'll use group by on one or more columns. 
     - But you can actually provide a function to group by as well and use that to segment your data. 
     - eg. you may want to handle 1/3 data each time
 
@@ -258,7 +258,7 @@ for group, frame in df.groupby(fun):
 
 ### aggregate
 
- - A common work flow with group by that you split your data, you apply some function, then you combine the results. 
+- A common work flow with group by that you split your data, you apply some function, then you combine the results. 
     - This is called split apply combine pattern. 
     - And we've seen the splitting method, but what about apply? 
         - the groupby object also has a method called `agg` which is short for aggregate. 
@@ -280,7 +280,7 @@ California  642309.586207
 ...
 ```
 
- - while much of the documentation and examples will talk about a single groupby object, there's really two different objects. 
+- while much of the documentation and examples will talk about a single groupby object, there's really two different objects. 
     - The data frame groupby and the series groupby. 
     - And these objects behave a little bit differently with aggregate. 
 
@@ -317,7 +317,7 @@ Arizona 427213.866667   431248.800000   6408208 6468732
 
 ## Scales
 
- - Q: try casting this series to categorical with the oridering Low < Medium < High
+- Q: try casting this series to categorical with the oridering Low < Medium < High
 
 ```python
 s = pd.Series(['Low', 'Low', 'High', 'Medium', 'Low', 'High', 'Low'])
@@ -333,7 +333,7 @@ dtype: category
 Categories (3, object) : [Low < Medium < High ]
 ```
 
- - `pd.cut` can bin your data into bins
+- `pd.cut` can bin your data into bins
 
 ```python
 s = pd.Series([168, 180, 174, 190, 170, 185, 179, 181, 175, 169, 182, 177, 180, 171])
@@ -381,10 +381,10 @@ Categories (3, object): [Small < Medium < Large]
 
 ## Pivot Tables
 
- - A pivot table is a way of summarizing data in a data frame for a particular purpose. 
+- A pivot table is a way of summarizing data in a data frame for a particular purpose. 
     - It makes heavy use of the aggregation function. 
- - A pivot table is itself a data frame, where the rows represent one variable that you're interested in, the columns another, and the cell's some aggregate value. 
- - A pivot table also tends to includes marginal values as well, which are the sums for each column and row.
+- A pivot table is itself a data frame, where the rows represent one variable that you're interested in, the columns another, and the cell's some aggregate value. 
+- A pivot table also tends to includes marginal values as well, which are the sums for each column and row.
 
 ```python
 #http://open.canada.ca/data/en/dataset/98f1a129-f628-4ce4-b24d-6f16bf24dd64
@@ -397,7 +397,7 @@ df.head()
 ```
 
 
- - A pivot table allows us to pivot out one of these columns into a new column headers and compare it against another column as row indices. 
+- A pivot table allows us to pivot out one of these columns into a new column headers and compare it against another column as row indices. 
     - For instance, let's say we wanted to compare the makes of electric vehicles versus the years and that we wanted to do this comparison in terms of battery capacity. 
 
 ```python
@@ -426,7 +426,7 @@ All 125.0   104.0   107.0   81.0    49.0    80.0    35.0    345.478261  190.6226
 
 ## Date Functionality
 
- - Pandas has four main time related classes. 
+- Pandas has four main time related classes. 
     - Timestamp, DatetimeIndex, Period, and PeriodIndex.
 
 <h2 id="a3d5de3eac8bb00ae86fd1a1005f1500"></h2>
@@ -434,7 +434,7 @@ All 125.0   104.0   107.0   81.0    49.0    80.0    35.0    345.478261  190.6226
 
 ### Timestamp
 
- - Timestamp represents a single timestamp and associates values with points in time. 
+- Timestamp represents a single timestamp and associates values with points in time. 
     - Timestamp is interchangeable with Python's datetime in most cases. 
 
 ```python
@@ -447,7 +447,7 @@ Timestamp('2016-09-01 10:05:00')
 
 ### Period
 
- - Period represents a single time span, such as a specific day or month. 
+- Period represents a single time span, such as a specific day or month. 
 
 
 ```python
@@ -463,7 +463,7 @@ Period('2016-03-05', 'D')
 
 ### DatetimeIndex
 
- - The index of a timestamp is DatetimeIndex.
+- The index of a timestamp is DatetimeIndex.
 
 ```python
 t1 = pd.Series(list('abc'), [pd.Timestamp('2016-09-01'), pd.Timestamp('2016-09-02'), pd.Timestamp('2016-09-03')])
@@ -508,8 +508,8 @@ Aug 29, 2014    14  66
 7/12/16         27  17
 ```
 
- - Looking at the index we can see that it’s pretty messy and the dates are all in different formats. 
- - Using pandas `to_datetime`, pandas will try to convert these to Datetime and put them in a standard format. 
+- Looking at the index we can see that it’s pretty messy and the dates are all in different formats. 
+- Using pandas `to_datetime`, pandas will try to convert these to Datetime and put them in a standard format. 
 
 ```python
 ts3.index = pd.to_datetime(ts3.index)
@@ -520,7 +520,7 @@ ts3.index = pd.to_datetime(ts3.index)
 2016-07-12  27  17
 ```
 
- - `to_datetime` also has options to change the date parse order
+- `to_datetime` also has options to change the date parse order
     - For example, we can pass in the argument `dayfirst = True` to parse the date in European date format. 
 
 ```python
@@ -533,7 +533,7 @@ Timestamp('2012-07-04 00:00:00')
 
 ### Timedeltas
 
- - Timedeltas are differences in times
+- Timedeltas are differences in times
 
 ```python
 pd.Timestamp('9/3/2016')-pd.Timestamp('9/1/2016')
@@ -548,7 +548,7 @@ Timestamp('2016-09-14 11:10:00')
 
 ### Working with Dates in a Dataframe
 
- - `data_range`
+- `data_range`
 
 ```python
 # Suppose we want to look at nine measurements, taken bi-weekly, every Sunday, starting in October 2016.
@@ -560,7 +560,7 @@ DatetimeIndex(['2016-10-02', '2016-10-16', '2016-10-30', '2016-11-13',
 
 ```
 
- - Now, let's create a DataFrame using these dates, and some random data
+- Now, let's create a DataFrame using these dates, and some random data
 
 ```python
 df = pd.DataFrame({'Count 1': 100 + np.random.randint(-5, 10, 9).cumsum(),
@@ -577,7 +577,7 @@ df = pd.DataFrame({'Count 1': 100 + np.random.randint(-5, 10, 9).cumsum(),
 2017-01-22  101 123
 ```
 
- - we can check what day of the week a specific date is
+- we can check what day of the week a specific date is
 
 ```python
 df.index.weekday_name
@@ -585,7 +585,7 @@ array(['Sunday', 'Sunday', 'Sunday', 'Sunday', 'Sunday', 'Sunday',
        'Sunday', 'Sunday', 'Sunday'], dtype=object)
 ```
 
- - We can use *diff* to find the difference between each date's value. 
+- We can use *diff* to find the difference between each date's value. 
 
 ```python
 df.diff()
@@ -601,7 +601,7 @@ df.diff()
 2017-01-22  -4.0    -2.0
 ```
 
- - Suppose we wanted to know what the mean count is for each month in our DataFrame. 
+- Suppose we wanted to know what the mean count is for each month in our DataFrame. 
     - We can do this using `resample`. 
 
 ```python
@@ -613,7 +613,7 @@ df.resample('M').mean()
 2017-01-31  103.0   124.000000
 ```
 
- - We can use partial string indexing to find values from a particular year, or from a particular month, or we can even slice on a range of dates. 
+- We can use partial string indexing to find values from a particular year, or from a particular month, or we can even slice on a range of dates. 
     - For example, here we only want the values from December 2016 onwards. 
 
 ```python
@@ -635,7 +635,7 @@ df['2016-12':]
 2017-01-22  101 123
 ```
 
- - Another cool thing we can do is change the frequency of our dates in our DataFrame using `asfreq`
+- Another cool thing we can do is change the frequency of our dates in our DataFrame using `asfreq`
 
 ```python
 df.asfreq('W', method='ffill')
@@ -649,7 +649,7 @@ df.asfreq('W', method='ffill')
 ...
 ```
 
- - Importing matplotlib.pyplot, and using the iPython magic %mapplotlib inline, will allow you to visualize the time series in the notebook. 
+- Importing matplotlib.pyplot, and using the iPython magic %mapplotlib inline, will allow you to visualize the time series in the notebook. 
 
 ```python
 import matplotlib.pyplot as plt

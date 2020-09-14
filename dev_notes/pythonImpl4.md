@@ -19,21 +19,21 @@
 
 # 4. 函数
 
- - 当编译器遇到 def，会生成创建函数对象指令
- - 也就是说 def 是执行指令， 不仅仅是个语法关键字
+- 当编译器遇到 def，会生成创建函数对象指令
+- 也就是说 def 是执行指令， 不仅仅是个语法关键字
 
- - 一个完整的函数对象由函数和代码两部分组成:
+- 一个完整的函数对象由函数和代码两部分组成:
     - PyCodeObject 包含了字节码等执行数据
     - PyFunctionObject 为 PyCodeObject 提供了状态信息
 
- - 函数声明:
+- 函数声明:
 
 ```python
 def name([arg,... arg = value,... *arg, **kwarg]):
     suite
 ```
 
- - 结构定义:
+- 结构定义:
 
 ```c
 typedef struct {
@@ -50,10 +50,10 @@ typedef struct {
 } PyFunctionObject;
 ```
 
- - PyCodeObject 本质上 是⼀种静态源代码, 只不过以字节码方式存储
+- PyCodeObject 本质上 是⼀种静态源代码, 只不过以字节码方式存储
     - 它面向虚拟机
     - Code 关注的是如何执行这些字节码，比如栈空间大小，各种常量变量符号列表，以及字节码与 源码行号的对应关系等等
- - PyFunctionObject 是运行期产生的
+- PyFunctionObject 是运行期产生的
     - 它提供⼀个动态环境，让 PyCodeObject 与运行环境关联起来。
     - 同时为函数调用提供⼀系列的上下文属性，诸如所在模块、全局名字空间、参数默认值等等
     - PyFunctionObject 让函数面向逻辑，而不仅仅是虚拟机。
@@ -63,9 +63,9 @@ typedef struct {
 
 ## 4.1 创建
 
- - python 函数 可以重载吗？
+- python 函数 可以重载吗？
     - 不能。 因为 在名字空间内， 名字是唯一的主键。 在重载这一点上,函数参数并不能派上什么忙.
- - python  不进行 尾递归优化。最大递归深度 sys.getrecursionlimit()
+- python  不进行 尾递归优化。最大递归深度 sys.getrecursionlimit()
 
 <h2 id="945f3fc449518a73b9f5f32868db466c"></h2>
 
@@ -76,7 +76,7 @@ typedef struct {
 >>> add = lambda x, y = 0: x + y
 ```
 
- - lambda 内使用多条语句？
+- lambda 内使用多条语句？
     - 使用 and / or
     - 你要确保 每个语句都不会返回任何东西
 
@@ -94,7 +94,7 @@ from __future__ import print_function
 
 ## 4.2 参数
 
- - 可不关心顺序，用 命名传参数
+- 可不关心顺序，用 命名传参数
 
 ```python
 >>> def test(a, b):
@@ -104,8 +104,8 @@ from __future__ import print_function
 100 x
 ```
 
- - 支持参数默认值
- - 不过要小心，**默认值对象在创建函数时生成**    
+- 支持参数默认值
+- 不过要小心，**默认值对象在创建函数时生成**    
     - 所有调用都使用 同一对象
     - 如果该默认值是 可变类型，那么就如同 c 局部静态变量
 
@@ -127,8 +127,8 @@ from __future__ import print_function
 [1, 2, 3]
 ```
 
- - `*args` 收集 "多余" 的位置参数，`**kwargs` 收集 "额外" 的命名参数
- - 可 "展开" 序列类型和字典，将全部元素当做多个实参使用
+- `*args` 收集 "多余" 的位置参数，`**kwargs` 收集 "额外" 的命名参数
+- 可 "展开" 序列类型和字典，将全部元素当做多个实参使用
     - `单个 "*" 展开序列类型，或者仅是字典的主键列表`
     - `"**" 展开字典键值对`
 
@@ -149,13 +149,13 @@ from __future__ import print_function
 
 ## 4.3 作用域
 
- - 函数形参和内部变量都存储在 locals 名字空间中
- - 除非使用 global、nonlocal(python3) 特别声明, 否则在函数内部使 **赋值语句**，总是在 locals 名字空间中 新建一个对象关联。
+- 函数形参和内部变量都存储在 locals 名字空间中
+- 除非使用 global、nonlocal(python3) 特别声明, 否则在函数内部使 **赋值语句**，总是在 locals 名字空间中 新建一个对象关联。
     - 注意:"赋值" 是指名字指向新的对象，而非通过名字改变对象状态
 
- - 如果仅仅是引用外部变量，那么按 LEGB 顺序在不同作用域查找该名字
+- 如果仅仅是引用外部变量，那么按 LEGB 顺序在不同作用域查找该名字
     - 名字查找顺序: locals -> enclosing function -> globals -> __builtins__
- - 如果将对象引入 __builtins__ 名字空间，那么就可以在任何模块中直接访问, 如同内置函数一样
+- 如果将对象引入 __builtins__ 名字空间，那么就可以在任何模块中直接访问, 如同内置函数一样
     - 不过 这并不是一个好主意
 
 ```
@@ -163,7 +163,7 @@ from __future__ import print_function
 CPython implementation detail: Most modules have the name __builtins__ (note the 's') made available as part of their globals. The value of __builtins__ is normally either this module or the value of this modules’s __dict__ attribute. Since this is an implementation detail, it may not be used by alternate implementations of Python.
 ```
 
- - 需要注意，名字作用域是在 **编译时** 确定的
+- 需要注意，名字作用域是在 **编译时** 确定的
 
 ```
 >>> def test():
@@ -173,7 +173,7 @@ CPython implementation detail: Most modules have the name __builtins__ (note the
 NameError: global name 'x' is not defined
 ```
 
- - 要解决这个问题，可动态访问名字，或使用 exec 语句，解释器会做动态化处理
+- 要解决这个问题，可动态访问名字，或使用 exec 语句，解释器会做动态化处理
 
 ```python
 >>> def test():
@@ -185,7 +185,7 @@ NameError: global name 'x' is not defined
 10
 ```
 
- - 实际运行时， 解释器会将 locals 名字复制到 FAST 区域来优化访问速度
+- 实际运行时， 解释器会将 locals 名字复制到 FAST 区域来优化访问速度
     - 因此直接修改 locals 名字空间并不会 影响该区域 ，及 运行结果
     - 解决办法还是 exec
 
@@ -204,7 +204,7 @@ NameError: global name 'x' is not defined
 100
 ```
 
- - 另外，编译期作用域不受执行期条件影响。
+- 另外，编译期作用域不受执行期条件影响。
     - 要不然类似 `if condition_variable:   global x ` 语句，就完全无法在编译期间确定 x 的作用域了
 
 ```python
@@ -232,7 +232,7 @@ UnboundLocalError: local variable 'x' referenced before assignment
 
 ## 4.4 闭包
 
- - 闭包是指:当函数离开创建环境后，依然持有其上下文状态
+- 闭包是指:当函数离开创建环境后，依然持有其上下文状态
 
 ```python
 >>> def test():
@@ -256,8 +256,8 @@ UnboundLocalError: local variable 'x' referenced before assignment
 0x109b925a8 [1, 2, 3]
 ```
 
- - test 在创建 a 和 b 时，将它们所引用的外部对象 x 添加到 func_closure 列表中。
- - 因为 **x的引用计数增加了**, 所以就算 test 堆栈帧没有了，x 对象也不会被回收。
+- test 在创建 a 和 b 时，将它们所引用的外部对象 x 添加到 func_closure 列表中。
+- 因为 **x的引用计数增加了**, 所以就算 test 堆栈帧没有了，x 对象也不会被回收。
 
 ```python
 >>> a.func_closure
@@ -295,8 +295,8 @@ UnboundLocalError: local variable 'x' referenced before assignment
 True
 ```
 
- - 通过 func_code, 可以获知闭包所引用的外部名字
- - 编译器在生成 PyCodeObject test 时就已经确定了被内层函数引用的变量，并将它们的名字保存在 co_cellvars 字段里
+- 通过 func_code, 可以获知闭包所引用的外部名字
+- 编译器在生成 PyCodeObject test 时就已经确定了被内层函数引用的变量，并将它们的名字保存在 co_cellvars 字段里
     - co_cellvars: 被内部函数引用的名字列表
     - co_freevars: 当前函数引用外部的名字列表
 
@@ -312,7 +312,7 @@ True
 
 ### 延迟获取
 
- - 使用闭包，还需注意 "延迟获取" 现象
+- 使用闭包，还需注意 "延迟获取" 现象
 
 ```python
 >>> def test():
@@ -335,8 +335,8 @@ True
 
 ## 4.5 堆栈帧
 
- - Python 堆栈帧基本上就是对 x86 的模拟, 用指针对应 BP、SP、IP 寄存器。
- - 堆栈帧成员包括函数执行所需的 名字空间、调用堆栈链表、异常状态等。
+- Python 堆栈帧基本上就是对 x86 的模拟, 用指针对应 BP、SP、IP 寄存器。
+- 堆栈帧成员包括函数执行所需的 名字空间、调用堆栈链表、异常状态等。
 
 ```python
 typedef struct _frame {
@@ -357,15 +357,15 @@ typedef struct _frame {
 } PyFrameObject;
 ```
 
- - 可使  `sys._getframe(0)` 或 `inspect.currentframe()` 获取当前堆栈帧。
- - 除用于调试外，还可利用堆栈帧做些有意思的事情。
+- 可使  `sys._getframe(0)` 或 `inspect.currentframe()` 获取当前堆栈帧。
+- 除用于调试外，还可利用堆栈帧做些有意思的事情。
 
 <h2 id="23bbdd59d0b1d94621fc98e7f533ad9f"></h2>
 
 
 ### 权限管理
 
- - 检查函数 Caller，以实现权限管理
+- 检查函数 Caller，以实现权限管理
 
 ```python
 >>> import sys
@@ -390,8 +390,8 @@ ok
 
 ### 上下文
 
- - 通过call stack , 我们可以隐式向整个执行流程传递上下文对象
- - `inspect.stack` 比  `frame.f_back` 更方便一些。
+- 通过call stack , 我们可以隐式向整个执行流程传递上下文对象
+- `inspect.stack` 比  `frame.f_back` 更方便一些。
 
 ```python
 >>> import inspect
@@ -411,8 +411,8 @@ ok
 ContextObject
 ```
 
- - `sys._current_frames` 返回所有线程的当前堆栈帧对象
- - 虚拟机会缓存 200 个堆栈帧复用对象，以获得更好的执行性能
+- `sys._current_frames` 返回所有线程的当前堆栈帧对象
+- 虚拟机会缓存 200 个堆栈帧复用对象，以获得更好的执行性能
 
 
 

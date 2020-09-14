@@ -50,8 +50,8 @@ Recommended Textook/Notes
 
 ### 1.2: Introduction to Heterogeneous Parallel Computing 
 
- - to learn the major difference between latency devices (CPU cores) and throughput devices (GPU cores)
- - to understand why winning applications increasingly use both types of devices
+- to learn the major difference between latency devices (CPU cores) and throughput devices (GPU cores)
+- to understand why winning applications increasingly use both types of devices
 
 <h2 id="aa7c7d5b4c30ec637fd00228d3ea2c8a"></h2>
 
@@ -73,11 +73,11 @@ Recommended Textook/Notes
 
 #### CPU: Latency Oriented Design
 
- - Powerful ALU (Arithmetic Logic Units 算术逻辑单元)
+- Powerful ALU (Arithmetic Logic Units 算术逻辑单元)
     - Reduced operation latency
- - Large caches
+- Large caches
     - Convert long latency memory accesses to short latency cache accesses 
- - Sophisticated control
+- Sophisticated control
     -  Branch prediction for reduced branch latency
     -  Data forwarding for reduced data latency
 
@@ -86,14 +86,14 @@ Recommended Textook/Notes
 
 #### GPU : Throughput Oriented Design
 
- - Small caches
+- Small caches
     - To boost memory throughput , the cache not used for future data acceses, but designed for as staging units for a large number of threads.
- - Simple Control
+- Simple Control
     - No branch prediction
     - No data forwarding
- - Energy efficient ALUs
+- Energy efficient ALUs
     - Many , long latency but heavily pipelined for high throughput 
- - Require massive number of threads to tolerate latencies.
+- Require massive number of threads to tolerate latencies.
     - 多个线程可以同时请求一个数据，这些请求会被打包成一个请求, 这样latency 就被分摊了。
 
 <h2 id="b9676d64f54e4404bc56bf2aa97ce266"></h2>
@@ -101,9 +101,9 @@ Recommended Textook/Notes
 
 #### Winning Applications Use Both CPU and GPU
 
- - CPUs for sequential parts where latency matters
+- CPUs for sequential parts where latency matters
     - CPUs can be 10+X faster then GPUs for sequential code 
- - GPUs for parallel parts where throughput wins
+- GPUs for parallel parts where throughput wins
     - GPUs can be 10+X faster than CPUs for paralled code
 
 
@@ -116,10 +116,10 @@ In future , software development cost growing much faster than hardware cose. So
 
 Keys to Software Cost Control:
 
- - Scalability
+- Scalability
     - The same application runs efficiently on new generations of cores (coreA 2.0)
     - The same application runs efficiently on more of the same cores ( coreA *4 )
- - Portability
+- Portability
     - The same application runs efficiently on different types of cores (coreA, coreB, coreC)
     - The samp application runs efficiently on systems with different organizations and interfaces
 
@@ -131,9 +131,9 @@ Keys to Software Cost Control:
 
 CUDA C , a heterogeneous parallel programming interface that enables exploitation of data parallelism
 
- - Hierarchical thread organization
- - Main interfaces for launching parallel execution
- - Thread index to data index mapping
+- Hierarchical thread organization
+- Main interfaces for launching parallel execution
+- Thread index to data index mapping
 
 The phenomena of data parallelism is that , different parts of the data can actually be processed independently of each other. 
 
@@ -150,10 +150,10 @@ The parallel execution model of CUDA , close to Open CL, are both based on a hos
 
 CUDA is really a programming language at the C level. It actually designed as an extension to the C language. More recently , more and more of the C++ features are also available in CUDA. 
 
- - An Instruction Set Architecture (ISA) is a contract between the hardware and the software.
- - As the name suggests, it is a set of instructions that the architecture (hardware) can execute.
- - A programm is a set of instructions stored in memory that can be read, interpreted , and executed by the hardware.
- - Program instructions operate on data stored in memory or provide by I/O device.
+- An Instruction Set Architecture (ISA) is a contract between the hardware and the software.
+- As the name suggests, it is a set of instructions that the architecture (hardware) can execute.
+- A programm is a set of instructions stored in memory that can be read, interpreted , and executed by the hardware.
+- Program instructions operate on data stored in memory or provide by I/O device.
 
 ---
 
@@ -167,7 +167,7 @@ The kernel function we describe is that program. And the hardware will actually 
 
 The number of real processors may be much ,much smaller than the threads that a CUDA program will create. Some of them will be actively executing and some of them will not be actively execution, can this is what we called **context switching**.
 
- - A CUDA kernel is executed by a ***grid*** (array) of threads
+- A CUDA kernel is executed by a ***grid*** (array) of threads
     - All threads in a grid run the same kernel code (SPMD)
     - Each thread has indexed that it uses to compute memory addresses and make control decisions
 
@@ -187,9 +187,9 @@ How Multiple Thread Blocks Work:
 
 ![](../imgs/multiple_array_of_parallel_threads.png)
 
- - Divide thread array into mulitple blocks
- - Threads within a block cooperate via **shared memory**(exchange data), **atomic operations** (update same variable) , and **barrier synchronization**(屏障同步 to force others to wait)
- - Threads in different blocks do not interact
+- Divide thread array into mulitple blocks
+- Threads within a block cooperate via **shared memory**(exchange data), **atomic operations** (update same variable) , and **barrier synchronization**(屏障同步 to force others to wait)
+- Threads in different blocks do not interact
 
 Here every thread not only have a thread index , but also have a block index.  There are predefined CUDA variables that we can use in a kernel , and they actually are initialized by the hardware for each thread.
 
@@ -255,10 +255,10 @@ Instead of performing the actual computation, this function is actually going to
 ![](../imgs/cuda_memory.png)
 
 
- - device code can
+- device code can
     - R/W per-thread **register**
     - R/W all-shared **global memory**
- - host code can 
+- host code can 
     - Transfer data to/from per grid **global memory** 
 
 Each device have many many threads, remember , these threads are actually virtualized Von Neumann processors. So you can think about these threads as processors.  And each of processor will have a set of registers. These registers hold variables that are private to the thread.
@@ -270,14 +270,14 @@ All threads will have access to a shared global memory. It's important that the 
 
 #### CUDA Device Memory Management API 
 
- - cudaMalloc()
+- cudaMalloc()
     - Allocates object in the device global memory
     - 2 parameters
         - **address of a pointer** to the allocated object
             - 和标准c的malloc函数不同,c malloc返回一个指针, cudaMalloc()需要提供一个指针的指针(地址)。
             - 之所以有这个区别，是因为**all the CUDA API functions returen error code**.
         - **size of** allocated object in terms of bytes
- - cudaFree()
+- cudaFree()
     - Free object from device global memory
     - takes 1 parameter:
         -  **pointer** to freed object
@@ -288,7 +288,7 @@ All threads will have access to a shared global memory. It's important that the 
 
 #### Host-Device Data Transfer API
 
- - cudaMemcpy()
+- cudaMemcpy()
     - memory data transfer
     - Require 4 parameters
         - pointer to destination
@@ -365,7 +365,7 @@ void vecAddKernel(float* A, float* B, float* C, int n) {
 
 This is the vector addition kernel that we will eventually be launching from the host code.
 
- - **__global__** keyword
+- **__global__** keyword
     - Every CUDA kernel function needs to be preceded by `__global__`
     - `__global__` tells the compile that it's a kernel function
 
@@ -389,7 +389,7 @@ int vecAdd(float* h_A, float* h_B, float* h_C , int n) {
 ```
  
 
- - **<<< ceil(n/256.0) , 256>>>**
+- **<<< ceil(n/256.0) , 256>>>**
     - we need supply a configuration parameter set to the kernel
     - here we actually have 2 configuration parameters
         1. number of blocks in the grid
@@ -410,9 +410,9 @@ int vecAdd(float* h_A, float* h_B, float* h_C , int n) {
 }
 ```
 
- - dim3 only means that a variable has 3 parts (x,y,z) , each part is a integer value
- - DimGrid / DimBlock to initialize the x,y,z value
- - in this case, we're using a 1-D grid, we only need to initialize the x-values of both the DimGrid and DimBlock.
+- dim3 only means that a variable has 3 parts (x,y,z) , each part is a integer value
+- DimGrid / DimBlock to initialize the x,y,z value
+- in this case, we're using a 1-D grid, we only need to initialize the x-values of both the DimGrid and DimBlock.
  
 <h2 id="23b200f11b54fdd1900c87c76b1d1728"></h2>
 
@@ -431,17 +431,17 @@ All the threads have built-in variables: blockIdx, blockDim and threadIdx , ther
 #### More on CUDA Function Declarations
 
  keyword | Example | Execute on | Only callable from
- --- | --- | --- | ---
+--- | --- | --- | ---
  `__device__` | float DeviceFunc() | Device | Device
  `__global__` | void KernelFunc()  | Device | Host
  `__host__` | float HostFunc()   | Host  | Host
  
  
- - kernel function must return **void**
- - `__device__` / `__host__` can be used together
+- kernel function must return **void**
+- `__device__` / `__host__` can be used together
     - It will be compiled into a host function,also compiled into a device function, and the function can be used in both the host and device. 
- - `__host__` is optional if used alone
- - `__device__` keyword tells compile that is a device function.
+- `__host__` is optional if used alone
+- `__device__` keyword tells compile that is a device function.
  
 
 <h2 id="923b0c37c56ea509b884446ce8f3e4b5"></h2>

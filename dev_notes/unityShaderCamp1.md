@@ -35,11 +35,11 @@
 
 ## 网格数据
 
- - 常数属性数据 Properties
+- 常数属性数据 Properties
     - shader的变量
     - 可以由 `资源，脚本和动画数据` 驱动
     - 可以起  vertex/fragment 函数中使用
- - 网格数据
+- 网格数据
     - 将 网格mesh 数据输入到 Shader 
     - 使用 appdata struct 把网格数据 直接给 顶点函数
 
@@ -55,7 +55,7 @@ struct appdata
 }
 ```
 
- - 冒号后边的是语义，帮助结构体更好的传递，以及更容易被理解
+- 冒号后边的是语义，帮助结构体更好的传递，以及更容易被理解
 
 
 <h2 id="10bfff2b9f6e3f8264f386b9db32e2c3"></h2>
@@ -63,8 +63,8 @@ struct appdata
 
 ## 顶点函数  Vertex 
 
- - 用来构建对象
- - 输入参数是 网格数据， 输出的是  顶点到片元struct ( Vertex to Fragment , 简称 v2f )
+- 用来构建对象
+- 输入参数是 网格数据， 输出的是  顶点到片元struct ( Vertex to Fragment , 简称 v2f )
 
 ```c
 v2f vert(appdata v) 
@@ -77,15 +77,15 @@ v2f vert(appdata v)
 }
 ```
 
- - UnityObjectToClipPos 封装了 computing M\*VP matrix product
+- UnityObjectToClipPos 封装了 computing M\*VP matrix product
 
 <h2 id="952f518b997e7016e2d36d7378723cbf"></h2>
 
 
 ## 顶点到片元结构体 v2f
 
- - v2f 用于存储从 顶点函数 输出和 片元函数 输入的数据
- - 计算输出的 顶点位置， 自动绘制在屏幕上
+- v2f 用于存储从 顶点函数 输出和 片元函数 输入的数据
+- 计算输出的 顶点位置， 自动绘制在屏幕上
 
 ```c
 struct v2f
@@ -95,8 +95,8 @@ struct v2f
 }
 ```
 
- - SV_POSITION : sv 是 system value的简写，system 代表屏幕
- - 同样可以根据需要，输出更多的需要的数据
+- SV_POSITION : sv 是 system value的简写，system 代表屏幕
+- 同样可以根据需要，输出更多的需要的数据
 
 ```c
 struct v2f
@@ -110,7 +110,7 @@ struct v2f
 }
 ```
 
- - 可变数据浮点数
+- 可变数据浮点数
     - float 高精度 ， 一般 32 bit
     - half 中精度 ， 一般 16 bit
     - fixed 低精度 ， 一般 11 bit
@@ -121,8 +121,8 @@ struct v2f
 
 ## 片元函数    
 
- - 用于 画 你的对象
- - 将输入的 v2f结构体 和输出数据绘制到 屏幕上
+- 用于 画 你的对象
+- 将输入的 v2f结构体 和输出数据绘制到 屏幕上
 
 ```c
 fixed4 frag (v2f i) : SV_Target
@@ -133,7 +133,7 @@ fixed4 frag (v2f i) : SV_Target
 }
 ```
 
- - SV_Target : 输出到 屏幕上的一个像素点
+- SV_Target : 输出到 屏幕上的一个像素点
 
 <h2 id="8b96d0b90c9fc07c078397b6e8e3525f"></h2>
 
@@ -145,23 +145,23 @@ fixed4 frag (v2f i) : SV_Target
 
 # Shader 简介
 
- - SubShader 
+- SubShader 
     - 每个shader可以有多个 SubShader , 一般会根据我运行的平台的不同而去使用不同的 SubShader
- - Tags 
+- Tags 
     - 告知 SubShader 如何，何时去渲染物体
     - eg. "RenderType"
     - eg. "LightMode"="ForwardBase"   光照模式
- - Pass
+- Pass
     - 每个 SubShader 可以有多个 Pass, eg. 有个pass处理外套的光照，有个pass处理钩边
     - 每个Pass 会单独占用一个draw call
- - CGPROGRAM / ENDCG
+- CGPROGRAM / ENDCG
     - `#pragma vertex vert`
         - 声明 vertex 函数 `vert`
     - `#pragma fragment frag` 
     - `#include "UnityCG.cginc"` 引入库
     - `float4 _TintColor;`  
         - 在 CG 中实例化 shader Properties
- - FallBack 
+- FallBack 
     - 后备方案
 
 <h2 id="78162069390d96b9230a2f222f902b54"></h2>
@@ -169,8 +169,8 @@ fixed4 frag (v2f i) : SV_Target
 
 # 内置函数
 
- - Texture Blending - lerp
- - Texture Cutout : 渐渐消失的效果
+- Texture Blending - lerp
+- Texture Cutout : 渐渐消失的效果
 
 ```c
 _Cutout_Value( "Cutout Value" , Range(0.0, 1.0))=0.5 
@@ -179,12 +179,12 @@ float4 cutoutTextureColor = tex2D(_Cutout_Texture, IN.cutoutUV);
 clip( cutoutTextureColor.rgb - _Cutout_Value ) ;
 ```
 
- - Normal Extrusion
+- Normal Extrusion
     - vertex 坐标受到法线方向的 挤压
     - 变胖子或瘦子
- - animation clip 动画控制shader
+- animation clip 动画控制shader
     - eg. set `Skinned Mesh Render.Material._Wave_Distance` 
- - 脚本控制
+- 脚本控制
 
 
 

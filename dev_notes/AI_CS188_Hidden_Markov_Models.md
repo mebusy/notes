@@ -46,7 +46,7 @@ Now let's say I want to eat the orange ghost. If you could somehow take these nu
 
 ## Markov Models
 
- - A **Markov Model** is a chain-structured Bayes' net (BN)
+- A **Markov Model** is a chain-structured Bayes' net (BN)
     - Each node is identically distributed (stationarity)
     - Value of X at a given time is called the **state**
     - As a Bayes' net
@@ -63,12 +63,12 @@ Now let's say I want to eat the orange ghost. If you could somehow take these nu
 
 ### Conditional Independence
 
- - Basic conditional independence:
+- Basic conditional independence:
     - Past and future independent of the present
         - the past anything before the current state and future anything beyond the current state are independent given the current state
     - Each time step only depends on the previous
     - This is called the (first order) Markov property
- - Note that the chain is just a (growable) BN
+- Note that the chain is just a (growable) BN
     - We can always use generic BN reasoning on it if we truncate the chain at a fixed length
 
 ---
@@ -86,9 +86,9 @@ But hidden Markov model says 2 things: I know how the world changes in a time st
 
 ---
 
- - Markov chains not so useful for most agents 
+- Markov chains not so useful for most agents 
     - need observations to update your beliefs
- - Hidden Markov models (HMMs)
+- Hidden Markov models (HMMs)
     - Underlying Markov chain over states *S*
     - You observe outpus (effects) at each time step
     - As a Bayes' net :
@@ -103,15 +103,15 @@ But hidden Markov model says 2 things: I know how the world changes in a time st
 
 ### Example : Weather HMM 
 
- - the hidden variable: where or not it's raining -- True or False
- - the observed variable: an umbrella
+- the hidden variable: where or not it's raining -- True or False
+- the observed variable: an umbrella
 
 So what do we need to define the HMM ? 
  
- - we need 1 function which says how rain on one day depends on the previous day. 
+- we need 1 function which says how rain on one day depends on the previous day. 
     - ![](../imgs/cs188_HMM_example_weather_define_func1.png)
     - This is the rain to sun transition probability 
- - we also need a function says given rain and separately given sun, what's probability of seeing an umbrella
+- we also need a function says given rain and separately given sun, what's probability of seeing an umbrella
     - ![](../imgs/cs188_HMM_example_weather_define_func2.png)
     - That is called emission model. This tells you what probability of seeing various evidences values is  for each underlying state. 
     - In this case it says that when it's raining you see the umbrella 90% of time , but when it's not raining you still see it 20% of time. 
@@ -124,7 +124,7 @@ So from a single observation of an umbrella you don't know very much , but if da
 
 ---
 
- - An HMM is defined by:
+- An HMM is defined by:
     - Initial distribution:  P(X₁)
     - Transitions:  P(X|X₋₁)
         - how the world evolved in a single time step
@@ -138,17 +138,17 @@ So from a single observation of an umbrella you don't know very much , but if da
 
 ### Example: GhostBusters HMM
 
- - P(X₁) = uniform
+- P(X₁) = uniform
     - ![](../imgs/cs188_HMM_example_ghostbuster_x1.png)
     - in the course demo, it is  0.02 that you see everywhere on map.
- - P(X|X') = usually move clockwise, but sometimes move in a random direction or stay in place
+- P(X|X') = usually move clockwise, but sometimes move in a random direction or stay in place
     - ![](../imgs/cs188_HMM_example_ghostbuster_ghost.png)
     - ![](../imgs/cs188_HMM_example_ghostbuster_x2.png)
         - for that red square , it's 50% precent probability of moving right , 1/6 probability that you'll stand, 1/6 probability to go in other direction.
     - Where do these conditional probabilities come from ?
         - This is your assumptions about the world , you might learn them from data, for now that's just an input.
     - That's what happens from that one state.  But you generally don't know what state you're in, and you need to sum over all the options , that's  the forward algorithm was about.
- - P(Rᵢⱼ|X) = same sensor model as before: red means close, green means far away.
+- P(Rᵢⱼ|X) = same sensor model as before: red means close, green means far away.
     - somewhere there has to be specified precisely the probability of reading at a certain position given the underlying state. 
     - ![](../imgs/cs188_HMM_example_ghostbuster_sonar.png)
     - so it might say if you read at (3,3) and the ghost is there , your probability of getting red is 0.9. Those facts live in the emission model , they say how the evidence directly relates to the state at that time. 
@@ -162,12 +162,12 @@ So from a single observation of an umbrella you don't know very much , but if da
 
 ### HMM Conditional Independence 
 
- - HMMs have 2 import independence properties
+- HMMs have 2 import independence properties
     - Markov hidden process:  future depends on past  via the present 
         -  same as MM. 
     - Current observation independent of all else given current state
         - given X₃ , E₃ is independent of all everything else X₃.
- - Quiz: does this mean that evidence variables are guaranteed to be independent ?
+- Quiz: does this mean that evidence variables are guaranteed to be independent ?
     - If I don't observe anything I could say : Is the evidence I see at time₁ independent of the evidence I see at time₂ ? 
     - It is like the umbrella on tuesday is independent of the umbrella on Wednesday. 
     - So It seems like it shouldn't be. The evidence variables are absolutely not independent. They're only conditionally independent. 
@@ -191,7 +191,7 @@ We perform a first dynamics update ,and fill in the resulting belief distributio
  0 | 0.415
  1 | 0.585
 
- - 0.415 = 0.7\*0.4+0.3\*0.45
+- 0.415 = 0.7\*0.4+0.3\*0.45
 
 We incorporate the evidenc E₁=b. We fill in the evidence-weighted distribution P(E₁=b|X₁)·B'(X₁), and and the (normalized) belief distribution B(X₁).
 
@@ -209,15 +209,15 @@ For every HMM there is a hidden state -- which is usually the thing you want to 
 
 You get the evidence at every time and you usually want to figure out the state at every time.  
 
- - Speech recognition HMMs:
+- Speech recognition HMMs:
     - Observations are acoustic signals (continuous valued)
     - States are specific positions in specific words (so, tens of thousands)
 
- - Machine translation HMMs:
+- Machine translation HMMs:
     - Observations are words (tens of thousands)
     - States are translation options
 
- - Robot tracking:
+- Robot tracking:
     - Observations are range readings (continuous)
     - States are positions on a map (continuous)
 
@@ -232,10 +232,10 @@ Now we are going to talk about how to keep track of what you believe about a var
 
 The task is to figure out at any given time what do I believe is happening in the hidden state ( B<sub>t</sub>(X) ) given all the evidence from the first time step all the way up to the current time. 
 
- - Filtering, or monitoring, is the task of tracking the distribution B<sub>t</sub>(X) = P<sub>t</sub>(X<sub>t</sub> | e₁, …, e<sub>t</sub>) (the belief state) over time
- - We start with B₁(X) in an initial setting, usually uniform
- - As time passes, or we get observations, we update B(X)
- - The Kalman filter was invented in the 60’s and first implemented as a method of trajectory estimation for the Apollo program
+- Filtering, or monitoring, is the task of tracking the distribution B<sub>t</sub>(X) = P<sub>t</sub>(X<sub>t</sub> | e₁, …, e<sub>t</sub>) (the belief state) over time
+- We start with B₁(X) in an initial setting, usually uniform
+- As time passes, or we get observations, we update B(X)
+- The Kalman filter was invented in the 60’s and first implemented as a method of trajectory estimation for the Apollo program
 
 ---
 
@@ -252,8 +252,8 @@ It is going down the corridor and all do is shoot out lasers in each direction a
 
 ![](../imgs/cs188_hmm_example_RobotLocalization_map.png)
 
- - Sensor model: can read in which directions there is a wall, never more than 1 mistake
- - Motion model: may not execute action with small prob.
+- Sensor model: can read in which directions there is a wall, never more than 1 mistake
+- Motion model: may not execute action with small prob.
 
 
 So it knows there's a wall right here , but no wall in front of me. And if it gets a reading that says there's wall on my left and right but not in front or behind, then suddenly it shouldn't think it's anywhere in this building.  Where should I think it is? It is kind of think it's in the corridors, corridors look like that. It's the sensor model , formly is conditioned on my current position, I need say a distribution over readings.  Let's image that instead of the continuous readings , the readings are wall or not in each direction.
@@ -264,8 +264,8 @@ So if I sense that is a wall above and below I should have pretty high  probabil
 
 ![](../imgs/cs188_hmm_example_rl_t1.png)
 
- - t=1
- - Lighter grey: was possible to get the reading, but less likely b/c required 1 mistake
+- t=1
+- Lighter grey: was possible to get the reading, but less likely b/c required 1 mistake
 
 ---
  
@@ -297,13 +297,13 @@ One is time passes.  You go from X at a certain time to X at the next time.  The
 
 But if all you had was a single time slice, you had X₁ and you saw evidence at time₁ E₁ , and you want to compute what's probability over my hidden state X₁ given my evidence E₁. So you just want to compute this conditional probability : P(X₁|e₁).  
 
- - I know P(X₁) , this is what before I see the evidence. 
- - Now I also know a distribution that tells me how the evidence relates to X₁ : P( E₁ | X₁ ). 
+- I know P(X₁) , this is what before I see the evidence. 
+- Now I also know a distribution that tells me how the evidence relates to X₁ : P( E₁ | X₁ ). 
  
 That's not quite what I want. What I want is P(X₁|e₁). 
 
- - X is capital because it's a vector here. I need one of these numbers for each value of X.
- - e is lowercase because there's a specific value , it's scalar. 
+- X is capital because it's a vector here. I need one of these numbers for each value of X.
+- e is lowercase because there's a specific value , it's scalar. 
 
 ```
 P(X₁|e₁) = P(X₁,e₁)/P(e₁)
@@ -338,7 +338,7 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 ---
 
- - Those 2 pieces assembled to do everything you need in HMMs. 
+- Those 2 pieces assembled to do everything you need in HMMs. 
 
 ---
 
@@ -347,20 +347,20 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 ## Passage of Time  (case 2)
 
- - Assume we have current belief P(X | evidence to date)
+- Assume we have current belief P(X | evidence to date)
     - B(X<sub>t</sub>) = P(X<sub>t</sub>|e<sub>1:t</sub>)
- - Then, after one time step passes:
+- Then, after one time step passes:
     - ![](../imgs/cs188_hmm_passage_of_time.png)
         - step1: 条件概率的 全概率展开 (case 2)
         - step2: 条件概率版 product rule
         - step3: independent 
     - you take your input P(X<sub>t</sub>|e<sub>1:t</sub>)  ,  which is your current beliefs. You take them multiply them by the transition probabilities , and then you sum out all the sources and now you have the probabilities over all of the targets. 
- - Or, compactly :
+- Or, compactly :
     - ![](../imgs/cs188_hmm_passage_of_time_compactly.png)
     - it says: you want to know the probability tomorrow of being at some particular X<sub>t+1</sub>. You consider how likely it is to get to X<sub>t+1</sub> from each locations (X'). So you want to know how likely it is that I'll end up at this particular X<sub>t+1</sub> , you consider all the places that could get you there , in one time step. and you say : what's the probability of being , here at A and then moving there , what's the probability ? and whatelse if at B, C, ... 
         - ![](../imgs/cs188_hmm_passage_of_time_ABCD.png)
     - that is this, you  summer(∑) all of the places you could have been , you look how likely it is that you were there ( B(x<sub>t</sub>) ) to begin with , times how likely it is had you been there to get to X'.  
- - Basic idea: beliefs get “pushed” through the transitions
+- Basic idea: beliefs get “pushed” through the transitions
     - With the “B” notation, we have to be careful about what time step t the belief is about, and what evidence it includes
 
 ---
@@ -370,10 +370,10 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 ### Example: Passage of Time
 
- - As time passes, uncertainty “accumulates”
+- As time passes, uncertainty “accumulates”
     - ![](../imgs/cs188_hmm_example_passage_of_time.png)
     - (Transition model: ghosts usually go clockwise)
- - That's basically your robot knows what's going on today and sooner or later if you never get any more evidence , the robot will become more and more confused until it has no idea what's going on. 
+- That's basically your robot knows what's going on today and sooner or later if you never get any more evidence , the robot will become more and more confused until it has no idea what's going on. 
     - ![](../imgs/cs188_hmm_example_passage_of_time_robot.png)
 
 
@@ -384,19 +384,19 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 ## Observation  (case 1)
 
- - Assume we have current belief P(X | previous evidence):
+- Assume we have current belief P(X | previous evidence):
     - B'(X<sub>t+1</sub>) = P(X<sub>t+1</sub>|e<sub>1:t</sub>)
     - I have a belief vector that says here's my probability distribution over what's going on at a centain time BEFORE I see my evidence. 
- - Then , after the evidence tomorrow comes in: 
+- Then , after the evidence tomorrow comes in: 
     - ![](../imgs/cs188_hmm_observation.png)
         - take you current vector which represents the various probabilities right now , for each probability multiply by the evidence factor. So if the evidence is totally inconsistent with that state then even if somthing had high probability suddenly it might get zero out if it can't produce the evidence. 
         - so you go to each probability of each state you multiply each one by the evidence.  
         - so the blue thing is your probability before you saw your evidence , you weighted by the evidence, and then this vector doesn't add to 1 anymore. So you re-normalized it now it adds up to 1 again , now the red thing is including the evidence you just saw. 
- - Or:
+- Or:
     - ![](../imgs/cs188_hmm_observation_compactly.png)
     - you take your vector (blue) , you do point product with the evidence vector, and you normalize them.  Now you have your new beliefs.  
- - Basic idea: beliefs “reweighted” by likelihood of evidence
- - Unlike passage of time, we have to renormalize
+- Basic idea: beliefs “reweighted” by likelihood of evidence
+- Unlike passage of time, we have to renormalize
 
 ---
 
@@ -405,8 +405,8 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 ### Example of Observation 
 
- - As we get observations, beliefs get reweighted, uncertainty “decreases”
- - ![](../imgs/cs188_hmm_example_observation.png)
+- As we get observations, beliefs get reweighted, uncertainty “decreases”
+- ![](../imgs/cs188_hmm_example_observation.png)
 
 ---
 
@@ -424,11 +424,11 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 ## The Forward Algorithm
 
- - We are given evidence at each time and want to know
+- We are given evidence at each time and want to know
     - B<sub>t</sub> (X) = P(X<sub>t</sub>|e<sub>1:t</sub>)
- - We can derive the following updates:
+- We can derive the following updates:
     - ![](../imgs/cs188_hmm_the_forawrd_algorithm.png)
- - This is exactly variable elimination with order X₁,X₂,...
+- This is exactly variable elimination with order X₁,X₂,...
 
 The forward algorithm is a dynamic program for computing at each time slice , the distribution over the state at that time given all the evidence to date. 
 
@@ -439,19 +439,19 @@ The forward algorithm is a dynamic program for computing at each time slice , th
 
 ## Online Belief Updates
 
- - Every time step, we start with current P(X | evidence)
- - We update for time:
+- Every time step, we start with current P(X | evidence)
+- We update for time:
     - ![](../imgs/cs188_hmm_online_belief_update_time.png)
- - We update for evidence:
+- We update for evidence:
     - ![](../imgs/cs188_hmm_online_belief_update_evidence.png)
- - The forward algorithm does both at once (and doesn’t normalize)
+- The forward algorithm does both at once (and doesn’t normalize)
 
 <h2 id="dc8ab069265738c8965ed6fe1ffb2ea5"></h2>
 
 
 ## Example : Ghost Buster 
 
- - model
+- model
     - state X:  cell in tiled map , eg.(2,3)
     - transition model: P(X' | X )
         - Pr( ghost is at position p at time t + 1 | ghost is at position oldPos at time t )
@@ -460,14 +460,14 @@ The forward algorithm is a dynamic program for computing at each time slice , th
         - estimated Manhattan distance to the ghost
         - that is , how close ghost is
     - emission model: P( noisyDistance | TrueDistance )
- - Observation : got a sensor reading
+- Observation : got a sensor reading
     - for each position *p* (it a state )  in all legal positions 
         - calculate pacman's  manhattan distance  to *p* state -- *trueDistance*
         - newBelief[p] = self.beliefs[p] * emissionModel[trueDistance] 
     - eventually , re-normalize , and update self.beliefs 
         - newBelief.normalize()  
         - self.beliefs = newBelief   
- - Time Elapse: the ghost may move
+- Time Elapse: the ghost may move
     - note: you don’t know exactly where is the ghost , you need compute the distribution , for all possible positions
     - for each position *oldPos* (it a state )  in all legal positions 
         - you may get the distribution : newPostDist  -- P( newPos | oldPos )
@@ -503,11 +503,11 @@ We are going to replace the idea of a probability distribution that for each pos
 
 ![](../imgs/cs188_hmm_particle_filtering_pic.png)
 
- - Filtering: approximate solution
- - Sometimes |X| is too big to use exact inference
+- Filtering: approximate solution
+- Sometimes |X| is too big to use exact inference
     - |X| may be too big to even store B(X)
     - E.g. X is continuous
- - Solution: approximate inference
+- Solution: approximate inference
     - Track samples of X, not all values
         - instead of keeping track of a map from X to real numbers , I'm gonna keep track of a list of samples.
         - here are 10 samples each red dot is a sample 
@@ -516,8 +516,8 @@ We are going to replace the idea of a probability distribution that for each pos
     - Time per step is linear in the number of samples
     - But: number needed may be large
     - In memory: list of particles, not states
- - This is how robot localization works in practice
- - Particle is just new name for sample
+- This is how robot localization works in practice
+- Particle is just new name for sample
 
 ---
 
@@ -528,16 +528,16 @@ We are going to replace the idea of a probability distribution that for each pos
 
 ![](../imgs/cs188_hmm_particle_filtering_repr.png)
 
- - Our representation of P(X) is now a list of N particles (samples)
+- Our representation of P(X) is now a list of N particles (samples)
     - Generally, N << |X|
     - Storing map from X to counts would defeat the point
     - here instead of writing 9 numbers which is 1 probability for each square I'm gonna have maybe 10 particles. 
         - Each particle has a specific value of X , eg. green particle (3,3), and it's not the only particle that represents that hypothesis , we actually have 5 completely different particle that all predicting the same state. 
         - so what's the probability of (3,3) ?   50% ! It's probably wrong but that's what the particles say.
- - P(x) approximated by number of particles with value x
+- P(x) approximated by number of particles with value x
     - So, many x may have P(x) = 0! 
     - More particles, more accuracy
- - For now, all particles have a weight of 1
+- For now, all particles have a weight of 1
 
 ---
 
@@ -552,16 +552,16 @@ Now what do I do ?  I might start with my particles uniform or I have some parti
 
 ![](../imgs/cs188_hmm_particle_filtering_elapse_time.png)
 
- - Each particle is moved by sampling its next position from the transition model
+- Each particle is moved by sampling its next position from the transition model
     - `x' = sample( P(X'|x) )`
     - This is like prior sampling -- samples’ frequencies reflect the transition probabilities
     - Here, most samples move clockwise, but some move in another direction or stay in place
- - 解释:
+- 解释:
     - I have a transition function `P(X'|x)`  that says from that specific square here is where I go in with what probability. 
     - Now this is one particle and I can't do all of the things that might happen. So I flip a coin, this is a sampling. I take this particle and I pick one of the things that might evolve into , and I pick in proportion to the conditional proabability given by the transition function. So I get a new sampe `x'`, which might be in the same place or it might go couterclockwise. and if I do that to each one of these 10 particles I might get these 10 particles(bottom of pic) out. 
     - I don't create particles , don't destroy particles, I picked them up 1 by 1 and I simulate what might happen to that particle in the next time step.
     - so there  might be 5 particles on (3,3) but they might not all get the same future because I flip a coin for each one. They might spread out in this case they do.
- - This captures the passage of time
+- This captures the passage of time
     - If enough samples, close to exact values before and after (consistent)
     - so someone gives me a HMM, that means they've given me the transition probabilities. I take my particles and each particle get simulated. That is like letting time pass in my model.   That's how in particle filtering time passes.
 
@@ -576,12 +576,12 @@ What happens when I get evidence ?  It's a little tricky.
 
 ![](../imgs/cs188_hmm_particle_filtering_observe.png)
 
- - Slightly trickier:
+- Slightly trickier:
     - Don’t sample observation, fix it
     - Similar to likelihood weighting, downweight samples based on the evidence
         - w(x) = P(e|x)
         - B(X) ∝ P(e|X)B'(x)
- - As before, the probabilities don’t sum to one, since all have been downweighted (in fact they now sum to (N times) an approximation of P(e))
+- As before, the probabilities don’t sum to one, since all have been downweighted (in fact they now sum to (N times) an approximation of P(e))
 
 
 Let's say here are my 10 particles . What happens when I get evidence that there's a reading of red meaning the ghost is close right here in this square (3,2).  We'll remember how evidence works in the that case: I take each of my probabilities and I downweighted by the probability of the evidence.  In that analog of that here is to take each of your particles and give it a weight that reflects how likely the evidence is from that location.  So this green particle at (3,2) maybe the probability of seeing red if you actually are at (3,2) is 0.9.  So this is a reasonable hypothesis.  But this guy at top-left square has a very low probability of seeing this reading. 
@@ -603,15 +603,15 @@ There's one more trick. If I did this my samples would kind of go all over the p
 ![](../imgs/cs188_hmm_particle_filtering_resample.png)
 
 
- - Rather than tracking weighted samples, we resample
+- Rather than tracking weighted samples, we resample
     - we're not going to track these samples under their weights. So I line up my 10 weighted samples , and I get 10 new ones according to my distribution. 
     - So we're going to get 10 new particles , and for each new particle we're gonna pick one of the old ones in proportion to their weights. 
     - That means (3,2) had a pretty high weight. So even though we get rid of all the old particles there going to be a lot of new ones which choose (3,2).
     - So you go from the position like in top of pic, where part of the information of the distribution is in the location of the hypothesis -- the particles, and part of it is in their weights. You now have a new sampling ( bottom of pic ) , where all of the information is in their location -- they are now equally weighted. Where did the weights go? They went into the multiplicities -- the fact (3,2) has a high weight leads to more particles get clone from it , and  (1,3) has a low weight that's reflected in the fact that probably it's not going to get chosen for the new team. 
- - N times, we choose from our weighted sample distribution (i.e. draw with replacement)
- - This is equivalent to renormalizing the distribution
+- N times, we choose from our weighted sample distribution (i.e. draw with replacement)
+- This is equivalent to renormalizing the distribution
     - procedurally the idea is when you see evidence in your particle filter , you line up your particles , you weight them by the evidence and then you clone new particles through your old particles , and now the weights are all gone. 
- - Now the update is complete for this time step, continue with the next one
+- Now the update is complete for this time step, continue with the next one
 
 ---
 
@@ -620,7 +620,7 @@ There's one more trick. If I did this my samples would kind of go all over the p
 
 ## Recap: Particle Filtering
 
- - Particles: track samples of states rather than an explicit distribution
+- Particles: track samples of states rather than an explicit distribution
 
 ![](../imgs/cs188_hmm_particle_filtering_recap.png)
 
@@ -649,8 +649,8 @@ Implementation
 
 ---
  
- - Note: for partical filtering , you no need to store beliefs,  current belief is stored in  particles
- - **difference** :
+- Note: for partical filtering , you no need to store beliefs,  current belief is stored in  particles
+- **difference** :
     - sample
         - Forward Algorithm : you consider all possible positions
         - particle filtering :  you consider just particles.
@@ -663,18 +663,18 @@ Implementation
 
 Question:
 
- - use a particle filter to track the state of a robot that is lost in the small map below
+- use a particle filter to track the state of a robot that is lost in the small map below
     - ![](../imgs/cs188_hmm_example_quiz_robotmap.png)
- - robot state: 1 ≤ X<sub>t</sub> ≤ 10
- - particles: approximate our belief over this state with N = 8 particles
- - transition: At each timestep, the robot either stays in place, or moves to any one of its neighboring locations, all with equal probability
+- robot state: 1 ≤ X<sub>t</sub> ≤ 10
+- particles: approximate our belief over this state with N = 8 particles
+- transition: At each timestep, the robot either stays in place, or moves to any one of its neighboring locations, all with equal probability
     - eg. if the robot starts in state X<sub>t</sub> = 2 , the next state X<sub>t+1</sub> can be any element of { 1 , 2 , 3 , 10 } , and each occurs with probability 1/4 .  
- - evidence: a sensor on the robot gives a reading E<sub>t</sub> ∈ {H,T,C,D}, corresponding to the type of state the robot is in. The possible types are:
+- evidence: a sensor on the robot gives a reading E<sub>t</sub> ∈ {H,T,C,D}, corresponding to the type of state the robot is in. The possible types are:
     - **Hallway (H)** for states bordered by two parallel walls (4,9).
     - **Corner (C)** for states bordered by two orthogonal walls (3,5,8,10).
     - **Tee (T)** for states bordered by one wall (2,6).
     - **Dead End (D)** for states bordered by three walls (1,7).
- - The sensor is not very reliable: it reports the correct type with probability 1/2 , but gives erroneous readings the rest of the time, with probability 1/6 for each of the three other possible readings.
+- The sensor is not very reliable: it reports the correct type with probability 1/2 , but gives erroneous readings the rest of the time, with probability 1/6 for each of the three other possible readings.
  
 ---
 
@@ -694,7 +694,7 @@ T | T | 0.5
 
 step1: Initialize particles by sampling from initial state distribution, for t=0.
 
- - sample the starting positions for our particles , by generating a random number rᵢ sampled uniformly from [ 0 , 1).
+- sample the starting positions for our particles , by generating a random number rᵢ sampled uniformly from [ 0 , 1).
 
 Particle | p₁ | p₂ | p₃ | p₄ | p₅ | p₆ | p₇ | p₈
 --- | --- | --- | --- | --- | --- | --- | --- | ---
@@ -704,7 +704,7 @@ Location | 10 | 5 | 7 | 9 | 3 | 1 | 5 | 2
 
 step2: Time update from t=0 → t=1.
 
- - 移动每个粒子
+- 移动每个粒子
     - eg. p₈ 在 location 2，可能的移动为 { 1 , 2 , 3 , 10 }， 产生另一个 random number ，来执行移动
 
 
@@ -715,8 +715,8 @@ Location | 10 | 4 | 7 | 10 | 3 | 2 | 5 | 1
 
 step3: Incorporating Evidence at t = 1 : E₁ = D 
 
- - Weight according to evidence , weight = P( e | X )
- - 当证据出现时，step2 做的预测 ，可能性会出现变化
+- Weight according to evidence , weight = P( e | X )
+- 当证据出现时，step2 做的预测 ，可能性会出现变化
 
 
 Particle | p₁ | p₂ | p₃ | p₄ | p₅ | p₆ | p₇ | p₈
@@ -725,9 +725,9 @@ Weight | 1/6 | 1/6 | 0.5 | 1/6 | 1/6 | 1/6 | 1/6 | 0.5
 
 step4: Resample according to weights 
 
- - normalize weights 
- - 计算 cumulative weights 
- - 生成 uniform random ,  sample new particle
+- normalize weights 
+- 计算 cumulative weights 
+- 生成 uniform random ,  sample new particle
 
 
 Particle | p₁ | p₂ | p₃ | p₄ | p₅ | p₆ | p₇ | p₈

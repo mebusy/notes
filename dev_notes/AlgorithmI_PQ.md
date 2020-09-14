@@ -31,19 +31,19 @@
 
 ### Complete binary tree
 
- - Binary tree. Empty or node with links to left and right binary trees.
- - Complete tree. Perfectly balanced, except for bottom level.
+- Binary tree. Empty or node with links to left and right binary trees.
+- Complete tree. Perfectly balanced, except for bottom level.
 
 <h2 id="05a360d5d6f9939aabfd6bd00823d80e"></h2>
 
 
 ### Binary heap representations
 
- - Binary heap. Array representation of a heap-ordered complete binary tree.
- - Heap-ordered binary tree.
+- Binary heap. Array representation of a heap-ordered complete binary tree.
+- Heap-ordered binary tree.
     - Keys in nodes
     - Parent's key no smaller than children's key
- - Array representation.
+- Array representation.
     - Indices start at 1.
     - Take nodes in **level** order
     - No explicit links needed !
@@ -55,8 +55,8 @@
 
 ### Binary heap properties
 
- - Proposition. Largest key is a[1], which is root of binary tree.
- - Proposition. Can use array indices to move through tree.
+- Proposition. Largest key is a[1], which is root of binary tree.
+- Proposition. Can use array indices to move through tree.
     - Parent of node at k is at k/2.
     - Children of node at k are at 2k and 2k+1.
     - a[0] 不使用
@@ -67,8 +67,8 @@
 
 ### Promotion in a heap
 
- - Scenario. Child's key becomes **larger** key than its parent's key.
- - To eliminate the violation:
+- Scenario. Child's key becomes **larger** key than its parent's key.
+- To eliminate the violation:
     - Exchange key in child with key in parent.
     - Repeat until heap order restored.
 
@@ -85,8 +85,8 @@ private void swim(int k) {
 }
 ```
 
- - Peter principle. Node promoted to level of incompetence.
- - swim/sink 都需要递归检查
+- Peter principle. Node promoted to level of incompetence.
+- swim/sink 都需要递归检查
     - swim 用于 insertion
     - sink 用于 delete max
 
@@ -95,9 +95,9 @@ private void swim(int k) {
 
 ### Insertion in a heap
 
- - Insert. Add node at end, then swim it up.
+- Insert. Add node at end, then swim it up.
     - 添加新node到PQ最后，然后 swim到正确位置
- - Cost. At most 1 + lg N compares.
+- Cost. At most 1 + lg N compares.
 
 ![](../imgs/algorI_pq_insertion.png)
 
@@ -115,8 +115,8 @@ public void insert(Key x) {
 
 ### Demotion in a heap
 
- - Scenario. Parent's key becomes **smaller** than one (or both) of its children's.
- - To eliminate the violation:
+- Scenario. Parent's key becomes **smaller** than one (or both) of its children's.
+- To eliminate the violation:
     - Exchange key in parent with key in larger child. 
         - why not the smaller one ? Power struggle. Better subordinate promoted
     - Repeat until heap order restored.
@@ -143,10 +143,10 @@ private void sink(int k) {
 
 ### Delete the maximum in a heap
 
- - Delete max.
+- Delete max.
     - Exchange root with node at end, then sink it down.
     - 交换根节点 到最后一个节点， 然后新的根节点 sink 到正确位置
- - Cost. At most 2 lg N compares.
+- Cost. At most 2 lg N compares.
 
 ![](../imgs/algorI_pq_deletemax.png)
 
@@ -168,7 +168,7 @@ public Key delMax() {
 
 ### Priority queues implementation cost summary
 
- - order-of-growth of running time for priority queue with N items
+- order-of-growth of running time for priority queue with N items
 
 implementation | insert | del max | max 
 --- | --- | --- | --- 
@@ -183,20 +183,20 @@ Fibonacci | 1 | log N⁺ | 1
 
 ### Binary heap considerations
 
- - Immutability of keys
- - Underflow and overflow
+- Immutability of keys
+- Underflow and overflow
     - Underflow: throw exception if deleting from empty PQ
     - Overflow: add no-arg constructor and use resizing array
- - Minimum-oriented priority queue
+- Minimum-oriented priority queue
     - Replace less() with greater()
     - Implement greater().
- - Other operations.
+- Other operations.
     - Remove an arbitrary item
     - Change the priority of an item
     - can implement with sink() and swim() [stay tuned]
     
 
- - resize array
+- resize array
     - grow : If array is full, create a new array of twice the size, and copy items
         - `if (N == s.length) resize(2 * s.length);`
     - sink: halve size of array s[] when array is one-quarter full.

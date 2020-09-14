@@ -61,7 +61,7 @@ basetwo('10010')实际上等价于调用int('10010', base=2)
 
 ## 1.2 wraps
 
- - 装饰器会遗失被装饰函数的__name__和__doc__等属性，可以使用@wraps来恢复。
+- 装饰器会遗失被装饰函数的__name__和__doc__等属性，可以使用@wraps来恢复。
 
 ```python
 from functools import wraps
@@ -103,7 +103,7 @@ itertools 提供了非常有用的用于操作迭代对象的函数
 
 ### count  无限迭代器
 
- - count(start=0, step=1) 会返回一个无限的整数iterator
+- count(start=0, step=1) 会返回一个无限的整数iterator
 
 ```python
 from itertools import count
@@ -120,7 +120,7 @@ from itertools import count
 
 ### cycle  序列无限重复迭代 
 
- - cycle(iterable) 
+- cycle(iterable) 
 
 ```python
 >>> from itertools import cycle
@@ -140,7 +140,7 @@ from itertools import count
 
 ### repeat   单个元素无限重复
 
- - repeat(object[, times]) 
+- repeat(object[, times]) 
 
 ```python
 >>> from itertools import repeat
@@ -159,7 +159,7 @@ from itertools import count
 
 ## 2.2 chain 
 
- - itertools.chain( \* iterables)可以将多个iterable组合成一个iterator。
+- itertools.chain( \* iterables)可以将多个iterable组合成一个iterator。
 
 ```python
 >>> from itertools import chain
@@ -167,7 +167,7 @@ from itertools import count
 [1, 2, 3, 'a', 'b', 'c']
 ```
 
- - chain.from_iterable(iterable)和chain类似
+- chain.from_iterable(iterable)和chain类似
     - 但是只是接收单个iterable，然后将这个iterable中的元素组合成一个iterator。
 
 ```python
@@ -181,7 +181,7 @@ from itertools import count
 
 ## 2.3 compress
 
- - compress(data, selectors)
+- compress(data, selectors)
     - 接收两个iterable作为参数,只返回selectors中对应的元素为True的data
     - 当data/selectors之一用尽时停止
 
@@ -197,8 +197,8 @@ from itertools import count
 
 ## 2.4 islice
 
- - islice(iterable, stop) 
- - islice(iterable, start, stop[, step]) 
+- islice(iterable, stop) 
+- islice(iterable, start, stop[, step]) 
     - 与python切片类似， 只是不能对start、start和step使用负值。
 
 ```python
@@ -217,7 +217,7 @@ from itertools import count
 
 ## 2.5 tee
 
- - tee(iterable, n=2) 
+- tee(iterable, n=2) 
     - 返回n个独立的iterator
 
 ```
@@ -232,7 +232,7 @@ from itertools import count
 
 ## 2.6 starmap
 
- - 和 map 类似，只是 把list 中的每个元素 作为迭代器， 迭代结果 作为函数调用参数
+- 和 map 类似，只是 把list 中的每个元素 作为迭代器， 迭代结果 作为函数调用参数
 
 ```python
 >>> from itertools import starmap
@@ -247,7 +247,7 @@ from itertools import count
 
 ## 2.7 takewhile
 
- - takewhile(predicate, iterable) 
+- takewhile(predicate, iterable) 
     - 只要predicate返回True，不停地返回iterable中的元素
     - 知道 predicate返回False
 
@@ -265,7 +265,7 @@ itertools.takewhile(is_even, itertools.count())
 
 ## 2.8 dropwhile
 
- - dropwhile(predicate, iterable) 
+- dropwhile(predicate, iterable) 
     - 和 takewhile 相反
     - 在predicate返回True时舍弃元素，然后返回其余迭代结果
 
@@ -281,7 +281,7 @@ itertools.dropwhile(is_even, itertools.count())
 
 ## 2.9 groupby
 
- - groupby(iterable, key=None)
+- groupby(iterable, key=None)
      - 把iterator中 ***相邻***的***重复***元素挑出来放在一起 
 
 ```python
@@ -309,7 +309,7 @@ B ['B', 'B', 'B']
 
 ### product
 
- - product( \* iterables, repeat=1)
+- product( \* iterables, repeat=1)
     - product(A, B) returns the same as ((x,y) for x in A for y in B)
     - product(A, repeat=4) means the same as product(A, A, A, A)
     - 数数中的 可重复选取 的排列
@@ -326,7 +326,7 @@ B ['B', 'B', 'B']
 
 ### permutations
 
- - permutations(iterable, r=None)
+- permutations(iterable, r=None)
     - 返回长度为r的所有可能的排列 P(n,r)
 
 ```python
@@ -344,7 +344,7 @@ B ['B', 'B', 'B']
 
 ### combinations
 
- - combinations(iterable, r) 
+- combinations(iterable, r) 
     - 返回长度为r的所有可能的组合 C(n,r)
 
 ```python
@@ -362,7 +362,7 @@ B ['B', 'B', 'B']
 
 ### combinations_with_replacement 
 
- - 可重复选取的 组合
+- 可重复选取的 组合
 
 ```python
 >>> from itertools import combinations_with_replacement

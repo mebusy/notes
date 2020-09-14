@@ -21,7 +21,7 @@
 
 Mono for Mac OS X: http://www.mono-project.com/download/
 
- - 使用 Xamarin Studio 运行 U3D 脚本？
+- 使用 Xamarin Studio 运行 U3D 脚本？
     - ![](../imgs/Xamarin_edit_reference.png)
     - .Net Assembly
     - 添加 UnityEngine.dll in
@@ -80,9 +80,9 @@ namespace Tutorial1
 
 ## Add Library Project
 
- - Edit Reference
- - Projects
- - add lib project
+- Edit Reference
+- Projects
+- add lib project
 
 
 Point class in lib project:

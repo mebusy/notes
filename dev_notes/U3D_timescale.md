@@ -10,7 +10,7 @@
 
 ## Time.timeScale
 
- - 受Time.timeScale影响的因素:
+- 受Time.timeScale影响的因素:
     1. 物理模拟. FixedUpdate 
         - 当Time.timeScale=0时，FixedUpdate 函数不会被执行。
     2. Coroutines. 
@@ -21,7 +21,7 @@
     5. Animations.  - 动画
         - 如果我们使用的是Animator，可以设置动画忽略Time.timeScale带来的影响. 只需要把UpdateMode设置为UnScaled Time.
 
- - 不受 Time.timeScale影响的因素:
+- 不受 Time.timeScale影响的因素:
     1. Update - Time.timeScale不会影响Update的调用
     2. OnGUI -OnGui和对应的事件实现原理不基于Time.timeScale，所以也不会受影响。
 
@@ -41,7 +41,7 @@
 
 再次总结： 
 
- - 当想代码受timeScale控制时(如暂停、加速)，可以把代码放在FixedUpdate中，又或者跟Time.time或Time.deltaTime扯上关系；
- - 否则，可以用Time.realtimeSinceStartup(类似正常状态下的Time.time)和Time.unscaleDeltaTime(类似正常状态下的Time.deltaTime)
+- 当想代码受timeScale控制时(如暂停、加速)，可以把代码放在FixedUpdate中，又或者跟Time.time或Time.deltaTime扯上关系；
+- 否则，可以用Time.realtimeSinceStartup(类似正常状态下的Time.time)和Time.unscaleDeltaTime(类似正常状态下的Time.deltaTime)
 
  

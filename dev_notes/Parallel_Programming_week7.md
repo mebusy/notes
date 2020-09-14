@@ -41,26 +41,26 @@
 
 ### Lecture 7.1: Related Programming Models - OpenCL Data Parallelism Model 
 
- - OpenCL programming model
+- OpenCL programming model
 
 <h2 id="a9ded1e5ce5d75814730bb4caaf49419"></h2>
 
 
 #### Background
 
- - OpenCL was initiated by Apple and maintained by the Khronos Group (also home of OpenGL) as an industry standard API
+- OpenCL was initiated by Apple and maintained by the Khronos Group (also home of OpenGL) as an industry standard API
     - For cross-platform parallel programming in CPUs, GPUs, DSPs, FPGAs,… 
- - OpenCL draws heavily on CUDA
+- OpenCL draws heavily on CUDA
     - Easy to learn for CUDA programmers 
- - OpenCL host code is much more complex and tedious due to desire to maximize portability and to minimize burden on vendors
+- OpenCL host code is much more complex and tedious due to desire to maximize portability and to minimize burden on vendors
 
 <h2 id="c7ccad9560480aff2b55dfed320a2552"></h2>
 
 
 #### OpenCL Programs
 
- - An OpenCL “program” is a C program that contains one or more “kernels” and any supporting routines that run on a target device
- - An OpenCL kernel is the basic unit of parallel code that can be executed on a target device
+- An OpenCL “program” is a C program that contains one or more “kernels” and any supporting routines that run on a target device
+- An OpenCL kernel is the basic unit of parallel code that can be executed on a target device
 
 ![](../imgs/openCL_program.png)
 
@@ -69,7 +69,7 @@
 
 #### OpenCL Execution Model
 
- - Integrated host+device app C program
+- Integrated host+device app C program
     - Serial or modestly parallel parts in host C code
     - Highly parallel parts in device SPMD kernel C code
  
@@ -93,10 +93,10 @@ work group | block
 
 #### OpenCL Kernels
 
- - Code that executes on target devices
- - Kernel body is instantiated once for each work item
+- Code that executes on target devices
+- Kernel body is instantiated once for each work item
     - An OpenCL work item is equivalent to a CUDA thread
- - Each OpenCL work item gets a unique index
+- Each OpenCL work item gets a unique index
 
 ```
 // __kernel:  kernel keyword  
@@ -119,7 +119,7 @@ __kernel void vadd(__global const float *a, __global const float *b,
 
 ![](../imgs/openCL_workItems.png)
 
- - An OpenCL kernel is executed by an array of work items
+- An OpenCL kernel is executed by an array of work items
     - All work items run the same code (SPMD)
     - Each work item can call get_global_id() to get its index for computing memory addresses and make control decisions
 
@@ -128,9 +128,9 @@ __kernel void vadd(__global const float *a, __global const float *b,
 
 #### Work Groups: Scalable Cooperation
 
- - Divide monolithic work item array into work groups
+- Divide monolithic work item array into work groups
     - Work items within a work group cooperate via ***shared memory and barrier synchronization***
- - Work items in different work groups cannot cooperate
+- Work items in different work groups cannot cooperate
     - OpenCL equivalent of CUDA Thread Blocks
 
 <h2 id="86b62dec366f72cb574136cfe3f65ffd"></h2>
@@ -157,10 +157,10 @@ get_local_size(0); | Size of each work group in the x dimension | blockDim.x
 
 #### OpenCL Data Parallel Model Summary
 
- - Parallel work is submitted to devices by launching kernels
- - Kernels run over global dimension index ranges (NDRange), broken up into “work groups”, and “work items”
- - Work items executing within the same work group can synchronize with each other with barriers or memory fences
- - Work items in different work groups can’t sync with each other, except by terminating the kernel
+- Parallel work is submitted to devices by launching kernels
+- Kernels run over global dimension index ranges (NDRange), broken up into “work groups”, and “work items”
+- Work items executing within the same work group can synchronize with each other with barriers or memory fences
+- Work items in different work groups can’t sync with each other, except by terminating the kernel
 
 
      
@@ -169,7 +169,7 @@ get_local_size(0); | Size of each work group in the x dimension | blockDim.x
 
 ### Lecture 7.2: Related Programming Models - OpenCL Device Architecture 
 
- -  OpenCL device architecture
+-  OpenCL device architecture
     - Foundation to terminology used in the host code
     - Also needed to understand the memory model for kernels
 
@@ -178,10 +178,10 @@ get_local_size(0); | Size of each work group in the x dimension | blockDim.x
 
 #### OpenCL Hardware Abstraction
 
- - OpenCL exposes CPUs, GPUs, and other Accelerators as “devices”
- - Each device contains one or more “compute units” 
+- OpenCL exposes CPUs, GPUs, and other Accelerators as “devices”
+- Each device contains one or more “compute units” 
     - i.e. cores (cpu side), Streaming Multicprocessors (gpu side), etc...
- - Each compute unit contains one or more SIMD “processing elements”,      - i.e. SP in CUDA
+- Each compute unit contains one or more SIMD “processing elements”,      - i.e. SP in CUDA
     - PE in pic, is equivalent to Streaming processors(SP) 
 
 ![](../imgs/openCLDevice.png)
@@ -205,8 +205,8 @@ global memory | Dynamic allocation; Read/write access | No allocation; Read/writ
 
 #### OpenCL Context
 
- - Contains one or more devices
- - OpenCL device memory objects are associated with a context, not a specific device
+- Contains one or more devices
+- OpenCL device memory objects are associated with a context, not a specific device
 
 ![](../imgs/openCLContext.png)
 
@@ -216,7 +216,7 @@ global memory | Dynamic allocation; Read/write access | No allocation; Read/writ
 
 ### Lecture 7.3: Related Programming Models - OpenCL Host Code Part 1 
 
- - to write OpenCL host code
+- to write OpenCL host code
     - Create OpenCL context
     - Create work queues for task parallelism
     - Device memory Allocation
@@ -229,14 +229,14 @@ global memory | Dynamic allocation; Read/write access | No allocation; Read/writ
 
 #### OpenCL Context
 
- - Contains one or more devices
- - OpenCL memory objects are associated with a context,not a specific device
- - ***clCreateBuffer()*** is the main data object allocation function
+- Contains one or more devices
+- OpenCL memory objects are associated with a context,not a specific device
+- ***clCreateBuffer()*** is the main data object allocation function
     - error if an allocation is too large for any device in the context
     - clCreateBuffer will reserver the space in all devices, if the space is larger than any devices's capacity, it will throw error
- - Each device needs its own work queue(s)
+- Each device needs its own work queue(s)
     - similar to CUDA stream queue 
- - Memory copy transfers are associated with a command queue 
+- Memory copy transfers are associated with a command queue 
     - thus every memory copy operation is associated with a specific device
 
 
@@ -288,7 +288,7 @@ cl_kernel clkern = clCreateKernel(clpgm, "vadd", &clerr);
 
 #### OpenCL Device Memory Allocation
 
- - **clCreateBuffer()**
+- **clCreateBuffer()**
     - Allocates object in the device ***Global Memory***
     - Returns a pointer to the object
     - Requires five parameters
@@ -297,7 +297,7 @@ cl_kernel clkern = clCreateKernel(clpgm, "vadd", &clerr);
         - Size of allocated object
         - Host memory pointer, if used in copy-from-host mode
         - Error code
- - **clReleaseMemObject()**
+- **clReleaseMemObject()**
     - Frees object 
         - Pointer to freed object
 
@@ -306,7 +306,7 @@ cl_kernel clkern = clCreateKernel(clpgm, "vadd", &clerr);
 
 #### OpenCL Device Memory Allocation (cont.)
 
- - Code example: 
+- Code example: 
     - Allocate a 1024 single precision float array
     - Attach the allocated storage to d_a
     - "d_" is often used to indicate a device data structure
@@ -327,7 +327,7 @@ clReleaseMemObject(d_a);
 
 #### OpenCL Device Command Execution
 
- - This pic shows how we be able to execute memory copies and kernel launches and so on, in order to, perform the equivalent of what we have been doing in CUDA
+- This pic shows how we be able to execute memory copies and kernel launches and so on, in order to, perform the equivalent of what we have been doing in CUDA
     - each application is going to be issuing commands into command queues
     - command queue is associated with individual OpenCL devices
 

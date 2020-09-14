@@ -30,10 +30,10 @@
 
 #### Evaluating a hypothesis 
 
- - split the data we have into 2 portions.
+- split the data we have into 2 portions.
     - The 1st portion is going to be our usual training set. (70%)
     - The 2nd portion is going to be our test set. (30%)
- - It there is any sort of ordinary to the data. That should be better to shuffle training/test set randomly.
+- It there is any sort of ordinary to the data. That should be better to shuffle training/test set randomly.
 
 
 <h2 id="8a9c44e950f9cc7463bb7b9ac3d17180"></h2>
@@ -41,8 +41,8 @@
 
 #### training/testing procedure
 
- - Learn parameter θ from training data.
- - use θ to compute test set error 
+- Learn parameter θ from training data.
+- use θ to compute test set error 
     - for linear regression : 
         - error = J(θ) (with out regularization)
     - for logistic regression:   
@@ -55,20 +55,20 @@
 
 #### Model Selection and Train/Validation/Test Sets
 
- - Try serveral models with different degree of polynomial , such as:
+- Try serveral models with different degree of polynomial , such as:
     - d=1, h(x)=θ₀+θ₁x
     - d=2, h(x)=θ₀+θ₁x+θ₂x²
     - ...
     - d=10, h(x)=θ₀+θ₁x+ ... +θ₁₀x¹⁰
 
- - split the data into 3 pieces.
+- split the data into 3 pieces.
     - 1st part, training set  (60%)
     - 2nd part, cross validation (CV) set  (20%)
     - 3rd part, test set  (20%)
 
- - Learn parameter θ from training data.
- - compute CV set error , pick the best model with lowest error.
- - estimate generalization error for test set.
+- Learn parameter θ from training data.
+- compute CV set error , pick the best model with lowest error.
+- estimate generalization error for test set.
     
     
 <h2 id="a52f9a77971bc5c163e9040d5142a50a"></h2>
@@ -85,12 +85,12 @@
 
 BiasVsVariance.png
 
- - Bias(underfit)
+- Bias(underfit)
     - J(θ) of train set will be high,
     - J(θ) of CV also will be high.
     - J_train ≈ J_cv
     
- - Variance(overfit)
+- Variance(overfit)
     - J(θ) of train set will be low,
     - J(θ) of CV also will be high.
     - J_cv >> J_train
@@ -115,10 +115,10 @@ large (eg.100) | heavily penalized → 0 | High Bias(underfit)
 
 #### choosing the regularization parameter λ
 
- - Try serveral different λs. eg. λ=0 , λ=0.01, λ=0.02, λ=0.04  , ... , λ=10.24 (start from no regularization, and with *2 step )
- - minimize J_train(θ) with regularization and computer the parameter θ with each λ
- - computer the J_cv(θ) with the different θ (without regularization), and pick the best θ with lowest error (eg. θ₄)
- - see how θ₄ works on test set (without regularization 既然已经计算出θ了，就不需要正则了).
+- Try serveral different λs. eg. λ=0 , λ=0.01, λ=0.02, λ=0.04  , ... , λ=10.24 (start from no regularization, and with *2 step )
+- minimize J_train(θ) with regularization and computer the parameter θ with each λ
+- computer the J_cv(θ) with the different θ (without regularization), and pick the best θ with lowest error (eg. θ₄)
+- see how θ₄ works on test set (without regularization 既然已经计算出θ了，就不需要正则了).
 
 ---
 
@@ -144,9 +144,9 @@ Plot learning curve give you a better sense of whether there is a bias or varian
 **For** variance problem, if you provide more and more training sample, J_train / J_cv may be `converge` to each other.
 
 --- 
- - learn paramete θ from training subset (i.e., X(1:n,:) and y(1:n))
- - compute the training set error on training subset
- - compute CV set error over the **entire** cross validation set
+- learn paramete θ from training subset (i.e., X(1:n,:) and y(1:n))
+- compute the training set error on training subset
+- compute CV set error over the **entire** cross validation set
 
 使用Learning Curve 确定是bias 还是variance，Jtrain 和 Jcv随着样本数m的增加最终收敛到一起，说明是bias，增加m并不能解决high bias的问题。
 

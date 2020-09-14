@@ -74,17 +74,17 @@ maybe you're a can opener robot and you take the can and you open it , and what'
 
 ![](../imgs/cs188_mdp_grid_war.png)
 
- - Noisy movement: actions do not always go as planned
+- Noisy movement: actions do not always go as planned
     - 80% of the time, the action North takes the agent North ( if there is no wall there)
     - 10% of the time, North takes the agent West; 10% East
     - If there is a wall in the direction the agent would have been taken, the agent stays put
     - similar rules for the other 3 directions
- - The agent receives rewards each time step
+- The agent receives rewards each time step
     - Small “living” reward each step (can be negative)
         - this is sometimes called a living reward or a living penalty based on whether it's positive or negative.
     - Big rewards come at the end (good or bad)
         - terminal utilities, shown as the plus 1 and minus 1(also the exit to game end).
- - Goal: maximize sum of rewards 
+- Goal: maximize sum of rewards 
     - in general the agent is going to involve getting to a big reward and taking it. 
 
 ![](../imgs/cs188_mdp_stochastic_grid_world.png)
@@ -105,7 +105,7 @@ if you take north , you may move left, and it's bad.  So when you plan you're go
 
 ## Markov Decision Processes
 
- - An MDP is defined by:
+- An MDP is defined by:
     - A set of states s ∈ S
     - A set of actions a ∈ A
     - A transition function T(s, a, s’)
@@ -116,7 +116,7 @@ if you take north , you may move left, and it's bad.  So when you plan you're go
     - A start state
     - Maybe a terminal state
 
- - MDPs are non-deterministic search problems
+- MDPs are non-deterministic search problems
     - One way to solve them is with expectimax search
     - We’ll have a new tool soon
 
@@ -125,18 +125,18 @@ MDP is a lot like a search problem.
 
 **UNLIKE** : 
 
- - successor function  (unlike) 
+- successor function  (unlike) 
     - unlike in search , we're going to take the successor function and break it into a few pieces. 
     - We're going to have an idea of actions which are the actions you take like north ,south, east, west. We're then gonna have a transition function . 
     - T(s,a,s')  :  in some state *s* , you take some action *a* , *s'* is a ***possible*** result. The function T(s,a,s')  tells you how likely that result is and in that sense it's a conditional probability. 
     - The transition function is basically the successor function. The differences is now there are lots of differents s's that can happen and they all have various probabilities t associated with them. 
 
- - Reward function (unlike)  
+- Reward function (unlike)  
     - R(s,a,s')  means you get a reward that depends on the state you are in , the action you took, and the outcome. 
     - You might not know your actual reward until you see whether or not you fell into the pit.  
     - In some formulations R will only depend on s and s'. What is this ?  This is basically the cost function from search. In seach the cost would be small and in the case of MDPs in general we want the rewards to be big. 
 
- - Terminal state (unlike)     
+- Terminal state (unlike)     
     - another import difference between MDPs and search problems is  MDP's very ofren go on forever .
 
 MDP is basically taking search that we know and love , and adding the necessary machinery to support the idea that actions can have multiple outcomes. 
@@ -146,10 +146,10 @@ MDP is basically taking search that we know and love , and adding the necessary 
 
 ## What is Markov about MDPs ?
 
- - “Markov” generally means that given the present state, the future and the past are independent
- - For Markov decision processes, “Markov” means action outcomes depend only on the current state
+- “Markov” generally means that given the present state, the future and the past are independent
+- For Markov decision processes, “Markov” means action outcomes depend only on the current state
     - P(S<sub>t+1</sub> = s' | S<sub>t</sub>=s<sub>t</sub>,A<sub>t</sub>=a<sub>t</sub>,S<sub>t-1</sub>=s<sub>t-1</sub>,A<sub>t-1</sub>=a<sub>t-1</sub>,..., S₀=s₀) = P(S<sub>t+1</sub> = s' | S<sub>t</sub>=s<sub>t</sub>,A<sub>t</sub>=a<sub>t</sub>)
- - This is just like search,the probability distribution over your outcomes depends only on the current state and action , not on the whole histroy of how you got there. 
+- This is just like search,the probability distribution over your outcomes depends only on the current state and action , not on the whole histroy of how you got there. 
 
 
  
@@ -160,14 +160,14 @@ So this is important property in MDP is to make sure that you define your transi
 
 ## Policies
 
- - In deterministic single-agent search problems, we wanted an optimal plan, or sequence of actions, from start to a goal
+- In deterministic single-agent search problems, we wanted an optimal plan, or sequence of actions, from start to a goal
     - but it does not work for MDPs. because we don't know what actions are gonna to do.  
     - The relevant idea is not a plan now but a policy. Policy is a mapping from states to actions and tells  in each state what action to take. 
- - For MDPs, we want an optimal policy π<sup>\*</sup> : S → A
+- For MDPs, we want an optimal policy π<sup>\*</sup> : S → A
     - A policy π gives an action for each state, like a recommendation action
     - An optimal policy is one that maximizes expected utility if followed
     - An explicit policy defines a reflex agent
- - Expectimax didn’t compute entire policies
+- Expectimax didn’t compute entire policies
     - It computed the action for a single state only
      
 Expectimax didn't really compute an explicit policy in this sense. What expectimax did for these kinds of problems is from a given state it did a forward-thinking computation that produced one entry of the policy which you then took and wherever you land and you run expectimax again. 
@@ -193,10 +193,10 @@ What happens if we make this living penalty more severe ? check those rest 3 cas
 
 ## Example: Racing
 
- - A robot car wants to travel far, quickly
- - Three states: Cool, Warm, Overheated
- - Two actions: Slow, Fast
- - Going faster gets double reward
+- A robot car wants to travel far, quickly
+- Three states: Cool, Warm, Overheated
+- Two actions: Slow, Fast
+- Going faster gets double reward
 
 
 ![](../imgs/cs188_mpd_racing_car.png)
@@ -223,11 +223,11 @@ It's very like an expectimax tree but we'll see very shortly why we might not wa
 
 ![](../imgs/cs188_mdp_mdpSearchTree.png)
 
- - Each MDP state projects an expectimax-like search tree
+- Each MDP state projects an expectimax-like search tree
     - That is kind of expectimax tree except ...
         1. the probabilities are given to you by the transition function and 
         2. the rewards instead of *being at the bottom* are smeared throughout the tree, they **come to you step-by-step**.
- - Queue State: 
+- Queue State: 
     - when I'm in a state and I take an action I end up in a queue state (green circle) , which you can think of as kind of the pair of the state and the action where I've committed to the action but I haven't done it yet. 
  
  
@@ -245,9 +245,9 @@ For example shown here
 
 you might care whether or not you get these 4 gems step-by-step or all at the end in one big prize. This raises a general question for MDPs: what preferences or utilities should an agent have for rewards sequences. 
 
- - What preferences should an agent have over reward sequences?
- - More or less?  [1,2,2]  or  [2,3,4]
- - Now or later?  [0,0,1]  or  [1,0,0]
+- What preferences should an agent have over reward sequences?
+- More or less?  [1,2,2]  or  [2,3,4]
+- Now or later?  [0,0,1]  or  [1,0,0]
 
 
 <h2 id="339bfa7ae181495413ac7e41d61c714c"></h2>
@@ -255,21 +255,21 @@ you might care whether or not you get these 4 gems step-by-step or all at the en
 
 ## Discounting 
 
- - It’s reasonable to maximize the sum of rewards
- - It’s also reasonable to prefer rewards now to rewards later
- - One solution: values of rewards decay exponentially
+- It’s reasonable to maximize the sum of rewards
+- It’s also reasonable to prefer rewards now to rewards later
+- One solution: values of rewards decay exponentially
     - worth now: 1
     - worth next step : γ
     - worth in two steps : γ²
 
 ---
 
- - How to discount?
+- How to discount?
     - Each time we descend a level, we multiply in the discount once
- - Why discount?
+- Why discount?
     - Sooner rewards probably do have higher utility than later rewards
     - Also helps our algorithms converge
- - Example: discount of 0.5
+- Example: discount of 0.5
     - U([1,2,3]) = 1\*1 + 0.5\*2 + 0.25\*3
     - `U([1,2,3]) < U([3,2,1])`
 
@@ -289,9 +289,9 @@ stick the same reward in front of both
 
 if I liked A better than B now I should like it better shifted into the future as well and vice versa. 
 
- - Theorem: if we assume **stationary preferences**:
+- Theorem: if we assume **stationary preferences**:
     - [a₁,a₂,...] ≻  [b₁,b₂,...]  `<=>` [r, a₁,a₂,...] ≻  [r, b₁,b₂,...] 
- - Then: there are only two ways to define utilities
+- Then: there are only two ways to define utilities
     - Additive utility:    U( [r₀,r₁,r₂,...] ) = r₀ + r₁ + r₂ + ...
     - Discounted utility:  U( [r₀,r₁,r₂,...] ) = r₀ + γ·r₁ + γ²·r₂ + ... 
      
@@ -302,8 +302,8 @@ if I liked A better than B now I should like it better shifted into the future a
 
 ## Infinite Utilities ?!
 
- - Problem: What if the game lasts forever?  Do we get infinite rewards?
- - Solutions:
+- Problem: What if the game lasts forever?  Do we get infinite rewards?
+- Solutions:
     - Finite horizon: (similar to depth-limited search)
         - Terminate episodes after a fixed T steps (e.g. life)
         - Gives nonstationary policies ( π depends on time left)
@@ -319,13 +319,13 @@ Here are multiple possible solutions, in general we're gonna have discounts that
 
 ## Recap: Defining MDPs
 
- - Markov decision processes:
+- Markov decision processes:
     - Set of states S
     - Start state s₀
     - Set of actions A
     - Transitions P(s’|s,a) (or T(s,a,s’))
     - Rewards R(s,a,s’) (and discount γ )
- - MDP quantities so far:
+- MDP quantities so far:
     - Policy = Choice of action for each state
     - Utility = sum of (discounted) rewards
 
@@ -342,13 +342,13 @@ Here are multiple possible solutions, in general we're gonna have discounts that
 
 ![][1]    
 
- - The value (utility) of a state s:
+- The value (utility) of a state s:
     - V<sup>\*</sup>(s) = expected utility starting in s and acting optimally
     - what the star means is  this is the value under optimal action.
- - ***The value (utility) of a q-state (s,a):***
+- ***The value (utility) of a q-state (s,a):***
     - Q<sup>\*</sup>(s,a) = expected utility starting out having taken action a from state s and (thereafter) acting optimally
     - Each action do have a Q-value
- - The optimal policy:
+- The optimal policy:
     - π<sup>\*</sup>(s) = optimal action from state s
 
 
@@ -377,11 +377,11 @@ This shows the Q values. From each state , except for the exit state , you got 4
 
 So we want to be able to compute these values. We'd like to be able to take an MDP and compute these expectimax values for a state and actully we usually do with these algorithms we compute the values for all of the states. We'll see that there are ways to save time by doing all the states at once provided your MDP is small enough that you can actually go through all the states. 
 
- - Fundamental operation: compute the (expectimax) value of a state
+- Fundamental operation: compute the (expectimax) value of a state
     - Expected utility under optimal action
     - Average sum of (discounted) rewards
     - This is just what expectimax computed!
- - Recursive definition of value:
+- Recursive definition of value:
     - ![](../imgs/cs188_mdp_values_of_states.png)
     - Q 可以分解为两部分
         1. reward的期望值 R(s,a), 加上
@@ -397,10 +397,10 @@ So we want to be able to compute these values. We'd like to be able to take an M
 
 ![](../imgs/cs188_mdp_racing_car_search_tree_infinite.png)
 
- - We’re doing way too much work with expectimax!
- - Problem: States are repeated 
+- We’re doing way too much work with expectimax!
+- Problem: States are repeated 
     - Idea: Only compute needed quantities once
- - Problem: Tree goes on forever
+- Problem: Tree goes on forever
     - Idea: Do a depth-limited computation, but with increasing depths until change is small
     - Note: deep parts of the tree eventually don’t matter if γ < 1
     
@@ -410,8 +410,8 @@ So we want to be able to compute these values. We'd like to be able to take an M
 
 ## Time-Limited Values
 
- - Key idea: time-limited values
- - Define V<sub>k</sub>(s) to be the optimal value of *s* if the game ends in *k* more time steps
+- Key idea: time-limited values
+- Define V<sub>k</sub>(s) to be the optimal value of *s* if the game ends in *k* more time steps
     - Equivalently, it’s what a depth-k expectimax would give from s
     - ![](../imgs/cs188_mdp_vk.png)
 
@@ -420,30 +420,30 @@ What's a time step ? It's a reward.
 
 Example: 
 
- - PS: when you achieve the exit, you must take extra "exit" action to end game and get the reward.
+- PS: when you achieve the exit, you must take extra "exit" action to end game and get the reward.
 
 ---
 
- - iteraction 0:
+- iteraction 0:
     - ![](../imgs/cs188_grid_world_it0.png)
     - zeroes everywhere , because exit action need 1 step
- - iteraction 1:
+- iteraction 1:
     - ![](../imgs/cs188_grid_world_it1.png)
- - iteration 2:  
+- iteration 2:  
     - ![](../imgs/cs188_grid_world_it2.png)
     - from the squre between wall and pit, I have time to do very stupid things -- going to the pit and receive a negative -- but that's not the optimal.  The optimal thing is kind of anything else. So I have zero. But if it allowed 3 steps I can get some rewards even from there. 
- - iteration 3:
+- iteration 3:
     - ![](../imgs/cs188_grid_world_it3.png)
- - iteraction 5:
+- iteraction 5:
     - ![](../imgs/cs188_grid_world_it5.png)
 
- - iteration 6: 
+- iteration 6: 
     - ![](../imgs/cs188_grid_world_it6.png)
     - from left-bottom square , I am now possible to  get to a positive reward.
- - iteration 7: 
+- iteration 7: 
     - ![](../imgs/cs188_grid_world_it7.png)
     - from left-bottom square , I can not only get there in the lucky way where nothing goes wrong I can also get there in various ways where something goes wrong once. 
- - iteration 100: 
+- iteration 100: 
     - ![](../imgs/cs188_grid_world_it100.png)
     - most of the states are pretty good. 
     - In right-top square (1.0) , where the only action available is to exit. Upon which you immediately receive a reward of +1, you value is +1. 
@@ -451,9 +451,9 @@ Example:
 
 **Very important points**  about there values and rewards: 
 
- - rewards are for one time step  
- - value are from that point forward to the end of the game or forever if the game doesn't end.
- - reward are instantaneous , values are cumulative.
+- rewards are for one time step  
+- value are from that point forward to the end of the game or forever if the game doesn't end.
+- reward are instantaneous , values are cumulative.
 
 
 
@@ -486,13 +486,13 @@ So you see at the bottom even though the tree has grown immensely it's still onl
 
 ---
 
- - Start with V₀(s) = 0: no time steps left means an expected reward sum of zero
- - Given vector of V<sub>k</sub>(s) values, do one ply of expectimax from each state:
+- Start with V₀(s) = 0: no time steps left means an expected reward sum of zero
+- Given vector of V<sub>k</sub>(s) values, do one ply of expectimax from each state:
     - ![][2]
- - Repeat until convergence
- - Complexity of each iteration: O(S²A)
+- Repeat until convergence
+- Complexity of each iteration: O(S²A)
     - the number of states is the key of computation
- - Theorem: will converge to unique optimal values
+- Theorem: will converge to unique optimal values
     - Basic idea: approximations get refined towards optimal values
     - Policy may converge long before values do
 
@@ -562,13 +562,13 @@ The optimal policy is if you're cool go fast and once you warm up you go slow an
 
 How do we know ?
 
- - How do we know the V<sub>k</sub> vectors are going to converge?
+- How do we know the V<sub>k</sub> vectors are going to converge?
     - First of all we don't. Because if there's no discount and the rewards are all positive and the game never going to end like for racing the values are infinite and you're never going to get there.  
 
 But there are cases where we can show that it will converge. 
 
- - Case 1: If the tree has maximum depth M, then V<sub>M</sub> holds the actual untruncated values
- - Case 2: If the discount is less than 1
+- Case 1: If the tree has maximum depth M, then V<sub>M</sub> holds the actual untruncated values
+- Case 2: If the discount is less than 1
     - as k increases, the values converge
     - Proof: pass
 
@@ -579,28 +579,28 @@ But there are cases where we can show that it will converge.
 
 ### Value Iteration Convergence
 
- - 1 action: go
- - transitioning to each of the next states is equally likely
+- 1 action: go
+- transitioning to each of the next states is equally likely
     - once you are in state with no outgoing arrows , you stay in them for all future times. 
- - reward: 1 for each transition 
+- reward: 1 for each transition 
     - staying in state with no outgoing arrows   gets a reward of zero
- - discount factor = 0.5
- - initialize the value of each state to 0.
+- discount factor = 0.5
+- initialize the value of each state to 0.
 
 ![](../imgs/cs188_value_iteraction_converage1.png)
 
- - After how many iterations of value iteration will the value for state F have become exactly equal to the true optimum? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal.)
+- After how many iterations of value iteration will the value for state F have become exactly equal to the true optimum? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal.)
     - 0
- - After how many iterations of value iteration will the value for state A have become exactly equal to the true optimum? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal.)
+- After how many iterations of value iteration will the value for state A have become exactly equal to the true optimum? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal.)
     - 4
- - How many iterations of value iteration will it take for the values of all states to converge to the true optimal values? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal.)
+- How many iterations of value iteration will it take for the values of all states to converge to the true optimal values? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal.)
     - 4
 
 ![](../imgs/cs188_value_iteraction_converage2.png)
 
- - After how many iterations of value iteration will the value for state B have become exactly equal to the true optimum? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal.)
+- After how many iterations of value iteration will the value for state B have become exactly equal to the true optimum? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal.)
     - inf
- - After how many iterations of value iteration will the value function have become exactly equal to the true optimal values? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal)
+- After how many iterations of value iteration will the value function have become exactly equal to the true optimal values? (Enter inf if the values will never become equal to the true optimal but only converge to the true optimal)
     - inf
 
 
@@ -658,8 +658,8 @@ Right now I'm only doing what π tells me -- not the optimal thing. That means t
 
 Of course the value at the root is presumably going to be worse unless the π(s) is in fact the optimal policy. 
 
- - Expectimax trees max over all actions to compute the optimal values
- - If we fixed some policy π(s), then the tree would be simpler – only one action per state
+- Expectimax trees max over all actions to compute the optimal values
+- If we fixed some policy π(s), then the tree would be simpler – only one action per state
     - … though the tree’s value would depend on which policy we fixed
 
 
@@ -669,16 +669,16 @@ Of course the value at the root is presumably going to be worse unless the π(s)
 
 ### Utilities for a Fixed Policy 
 
- - Another basic operation: compute the utility of a state s under a fixed (generally non-optimal) policy
+- Another basic operation: compute the utility of a state s under a fixed (generally non-optimal) policy
     - To compute the utility for a fixed policy  is easy.
 
 So we imagine we've got some policy π , it presumably bad but we're stuck with it. We're trying to do is compute for every state *s* what score I will get on average if I follow π.  
 
- - Define the utility of a state s, under a fixed policy π:
+- Define the utility of a state s, under a fixed policy π:
     - V<sup>π</sup>(s) : = expected total discounted rewards ***starting in s and following π***
     - the π indicates that we're following π , it used to be a star which meant we were acting optimally.
  
- - Recursive relation (one-step look-ahead / Bellman equation):
+- Recursive relation (one-step look-ahead / Bellman equation):
     - ![](../imgs/cs188_util_fixed_policy.png)
     - **PS**: it's the same kind of bellman equation but the "maximum" is gone, and the action *a* replace by π(s)
     - This is now a linear system of equations. I can always just solve linear equations by sticking them in MATLAB or something.
@@ -717,11 +717,11 @@ Sometimes we actually have a policy we just want to know how good it is but we'r
 
 ### Policy Evaluation
 
- - How do we calculate the V’s for a fixed policy π
- - Idea 1: Turn recursive Bellman equations into updates (like value iteration)
+- How do we calculate the V’s for a fixed policy π
+- Idea 1: Turn recursive Bellman equations into updates (like value iteration)
     - ![](../imgs/cs188_equation_policy_eval.png)
     - Efficiency: O(S²) per iteration
- - Idea 2: Without the maxes, the Bellman equations are just a linear system
+- Idea 2: Without the maxes, the Bellman equations are just a linear system
     - Solve with Matlab (or your favorite linear system solver)
 
 
@@ -784,12 +784,12 @@ On the other hand, Q-Values is kind of weird, they are really nice for this purp
 ![](../imgs/cs188_mdp_compute_action_from_q_values.png)
 
 
- - Let’s imagine we have the optimal q-values:
- - How should we act ?
+- Let’s imagine we have the optimal q-values:
+- How should we act ?
     - The Q-values make it super easy to decide actions. 
     - Completely trivial to decide !
         - **π<sup>\*</sup>(s) = argmaxₐ Q<sup>\*</sup>(s,a)**
- - Important lesson: actions are easier to select from q-values than values!
+- Important lesson: actions are easier to select from q-values than values!
 
 
 <h2 id="93eb2ac210d009dea486d01934ca6116"></h2>
@@ -810,14 +810,14 @@ Just think about why value iteration is not always the the best solution.
 
 What value iteration does is essentially mimics 模仿 the bellman updates. You have iteractions where K gets larger and larger starting at 0. For each iteration you visit each state and for each state you look at each action and for each action you look at each outcome. 
 
- - Problem 1: It’s slow – O(S²A) per iteration
+- Problem 1: It’s slow – O(S²A) per iteration
     - The reason it's slow is each iteration not only looks at every kind of source and target state , so is s² , but also it has to consider each action each time and there're often may actions. 
 
- - Problem 2: The “max” at each state rarely changes
+- Problem 2: The “max” at each state rarely changes
     - Although you've considered all of these actions the maximum often doesn't change. 
     - So for every action other than the one that we had already landed on, that computations was wasted.
  
- - Problem 3: The policy often converges long before the values
+- Problem 3: The policy often converges long before the values
     - once the policy converges, every branch of that expectimax tree that doesn't correspond to an optimal action is wasted computation.
 
 Example (TODO):
@@ -840,26 +840,26 @@ So what can we do?  The idea herer is an algorithm called **policy iteration**.
 
 Policy iteration is an alternative approach and the basic sketch is we're going to have 2 steps that we alternate. 
 
- - Alternative approach for optimal values:
+- Alternative approach for optimal values:
     - **Step 1: Policy evaluation**: calculate utilities for some fixed policy (not optimal utilities!) until convergence
         - It's generally not going to be an optimal policy , but we're going to figure out it's values using policy evaluation. 
     - **Step 2: Policy improvement**: update policy using one-step look-ahead with resulting converged (but not optimal!) utilities as future values
         - Then we take those values and we extract a better policy from them. That called policy improvement. 
     - **3: Repeat steps until policy converges** 
 
- - This is policy iteration
+- This is policy iteration
     - It’s still optimal!
     - Can converge (much) faster under some conditions
 
 
 --- 
 
- - Evaluation: For fixed current policy π,  find values with policy evaluation:
+- Evaluation: For fixed current policy π,  find values with policy evaluation:
     - Iterate until values converge:
         - ![](../imgs/cs188_mdp_policy_iteration_evaluation.png)
         - you might do this 100 times so as to make value converge
         - **when you do this in practice, you don't start the evaluation over at 0, you start it at your old values**.
- - Improvement: For fixed values, get a better policy using policy extraction
+- Improvement: For fixed values, get a better policy using policy extraction
     - One-step look-ahead:
         - ![](../imgs/cs188_mdp_policy_iteration_improvement.png)
         - you only do this once
@@ -885,16 +885,16 @@ Another way of looking at this algorithm is thinking that we're doing value iter
 
 ## Comparison 
 
- - Both value iteration and policy iteration compute the same thing (all optimal values)
- - In value iteration:
+- Both value iteration and policy iteration compute the same thing (all optimal values)
+- In value iteration:
     - Every iteration updates both the values and (implicitly) the policy
     - We don’t track the policy, but taking the max over actions implicitly recomputes it
- - In policy iteration:
+- In policy iteration:
     - We do several passes that update utilities with fixed policy (each pass is fast because we consider only one action, not all of them)
     - After the policy is evaluated, a new policy is chosen (slow like a value iteration pass)
     - The new policy will be better (or we’re done)
- - Both are dynamic programs for solving MDPs
- - Why would you ever do value iteration ? 
+- Both are dynamic programs for solving MDPs
+- Why would you ever do value iteration ? 
     - It's simpler and in cases where there are a small number of actions you might do it. 
 
 <h2 id="ae6ed616074a489e9415c789beb2b2b2"></h2>
@@ -902,11 +902,11 @@ Another way of looking at this algorithm is thinking that we're doing value iter
 
 ## Summary: MDP Algorithms
 
- - So you want to….
+- So you want to….
     - Compute optimal values: use value iteration or policy iteration
     - Compute values for a particular policy: use policy evaluation
     - Turn your values into a policy: use policy extraction (one-step lookahead)
- - These all look the same!
+- These all look the same!
     - They basically are – they are all variations of Bellman updates
     - They all use one-step lookahead expectimax fragments
     - They differ only in whether we plug in a fixed policy or max over actions
@@ -923,9 +923,9 @@ Blue: a good machine, when you pull the handle you get 1$.
 Red: you pull the handle and you're either gonna get 2$(P=75%) or 0$(P=25%).
 You can think this is a MDP.  It's actually a super boring won the state structure isn't very interesting. The interesting thing is the actions.  
 
- - Actions: Blue, Red
- - States: Win, Lose
- - No discount
+- Actions: Blue, Red
+- States: Win, Lose
+- No discount
     -100 time steps
     - Both states have the same value
 
@@ -953,7 +953,7 @@ It doesn't matter which state you're at because the actions do the same thing fr
 
 ## Offline Planning
 
- - Solving MDPs is offline planning
+- Solving MDPs is offline planning
     - You determine all quantities through computation
     - You need to know the details of the MDP
     - You do not actually play the game!
@@ -994,11 +994,11 @@ This is a different setting where there is an MDP that you know red has a payoff
 
 ### What Just Happened?
 
- - That wasn’t planning, it was learning!
+- That wasn’t planning, it was learning!
     - Specifically, reinforcement learning
     - There was an MDP, but you couldn’t solve it with just computation
     - You needed to actually act to figure it out
- - Important ideas in reinforcement learning that came up
+- Important ideas in reinforcement learning that came up
     - Exploration: you have to try unknown actions to get information
     - Exploitation: eventually, you have to use what you know
     - Regret: even if you learn intelligently, you make mistakes
@@ -1011,10 +1011,10 @@ This is a different setting where there is an MDP that you know red has a payoff
 
 ## Asynchronous Value Iteration \*
 
- - In value iteration, we update every state in each iteration
- - Actually, *any* sequences of Bellman updates will converge if every state is visited infinitely often
- - In fact, we can update the policy as seldom or often as we like, and we will still converge
- - Idea: Update states whose value we expect to change:
+- In value iteration, we update every state in each iteration
+- Actually, *any* sequences of Bellman updates will converge if every state is visited infinitely often
+- In fact, we can update the policy as seldom or often as we like, and we will still converge
+- Idea: Update states whose value we expect to change:
     - if | Vᵢ₊₁(s) - Vᵢ(s) | is large then update predecessors of s
 
 

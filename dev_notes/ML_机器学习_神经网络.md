@@ -32,16 +32,16 @@
 
 ![](../imgs/Neural1.png)
 
- - 左边的x , 是 input layer
- - 最右边的 单个圈， 是 output layer
- - 中间的a， hidden layer
- - `aᵢ⁽ʲ⁾`  代表 j层的 第i个单元
- - Θ`⁽ʲ⁾` 第j层 映射到下一层的函数的参数`矩阵`
- - `x₀` 可以不用明写出来
+- 左边的x , 是 input layer
+- 最右边的 单个圈， 是 output layer
+- 中间的a， hidden layer
+- `aᵢ⁽ʲ⁾`  代表 j层的 第i个单元
+- Θ`⁽ʲ⁾` 第j层 映射到下一层的函数的参数`矩阵`
+- `x₀` 可以不用明写出来
  
 ![](../imgs/Neural2.png)
 
- - 如图,Θ`⁽¹⁾` 是个 3x4 矩阵: `S₍ⱼ₊₁₎ x （Sⱼ+1）=3x4`  ; `Sⱼ= j`层的单元数,不包括0单元  
+- 如图,Θ`⁽¹⁾` 是个 3x4 矩阵: `S₍ⱼ₊₁₎ x （Sⱼ+1）=3x4`  ; `Sⱼ= j`层的单元数,不包括0单元  
 
 
 我们把激活函数表示为:
@@ -86,8 +86,8 @@
 ![](../imgs/Neural_network_model.png)
 
 
- - weight: is kind like the strength of those connections
- - bias: is some indication of whether that neuron tends to active or inactive.
+- weight: is kind like the strength of those connections
+- bias: is some indication of whether that neuron tends to active or inactive.
 
 <h2 id="5b0520a9bf5e8d87c0b8c6e58766e184"></h2>
 

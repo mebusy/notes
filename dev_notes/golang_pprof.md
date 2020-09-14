@@ -41,11 +41,11 @@
 
 ### 工具型应用
 
- - 如果你的应用是一次性的，运行一段时间就结束。那么最好的办法，就是在应用退出的时候把 profiling 的报告保存到文件中，进行分析。
- - 对于这种情况，可以使用 runtime/pprof 库。
- - pprof 封装了很好的接口供我们使用.
+- 如果你的应用是一次性的，运行一段时间就结束。那么最好的办法，就是在应用退出的时候把 profiling 的报告保存到文件中，进行分析。
+- 对于这种情况，可以使用 runtime/pprof 库。
+- pprof 封装了很好的接口供我们使用.
 
- - 比如要想进行 CPU Profiling，可以调用 pprof.StartCPUProfile() 方法
+- 比如要想进行 CPU Profiling，可以调用 pprof.StartCPUProfile() 方法
     - 它会对当前应用程序进行 CPU profiling，并写入到提供的参数中（w io.Writer），要停止调用 StopCPUProfile() 即可.
 
 ```go
@@ -60,7 +60,7 @@ if err := pprof.StartCPUProfile(f); err != nil {
 defer pprof.StopCPUProfile()
 ```
 
- - 要获得内存的数据，直接使用 WriteHeapProfile 就行, 不用 start 和 stop 这两个步骤了：
+- 要获得内存的数据，直接使用 WriteHeapProfile 就行, 不用 start 和 stop 这两个步骤了：
 
 ```go
 f, err := os.Create(*memprofile)
@@ -73,10 +73,10 @@ f.Close()
 
 ### 服务型应用
 
- - 如果你的应用是一直运行的，比如 web 应用，那么可以使用 net/http/pprof 库, 它提供 HTTP 服务进行分析
- - 1. [推荐] 如果使用了默认的 http.DefaultServeMux（通常是代码直接使用 `http.ListenAndServe("0.0.0.0:8000", nil)` ) ，只需要添加一行：
+- 如果你的应用是一直运行的，比如 web 应用，那么可以使用 net/http/pprof 库, 它提供 HTTP 服务进行分析
+- 1. [推荐] 如果使用了默认的 http.DefaultServeMux（通常是代码直接使用 `http.ListenAndServe("0.0.0.0:8000", nil)` ) ，只需要添加一行：
     - `import _ "net/http/pprof"`
- - 2. 如果你使用自定义的 Mux，则需要手动注册一些路由规则： 比如
+- 2. 如果你使用自定义的 Mux，则需要手动注册一些路由规则： 比如
     - 不推荐
     - 
     ```go
@@ -87,7 +87,7 @@ f.Close()
     // r.HandleFunc("/debug/pprof/trace", pprof.Trace)
     ```
 
- - 即便你是 第2中情况， 你依然可以 额外启动一个 http 服务 来提供 pprof
+- 即便你是 第2中情况， 你依然可以 额外启动一个 http 服务 来提供 pprof
 
 ```go
 import _ "net/http/pprof 
@@ -100,7 +100,7 @@ go func() {
 ```
 
 
- - 不管哪种方式，你的 HTTP 服务都会多出 `/debug/pprof/` endpoint，访问它会得到类似下面的内容：
+- 不管哪种方式，你的 HTTP 服务都会多出 `/debug/pprof/` endpoint，访问它会得到类似下面的内容：
 
 ```html
 /debug/pprof/
@@ -114,7 +114,7 @@ profiles:
 full goroutine stack dump
 ```
 
- - 这个路径下还有几个子页面：
+- 这个路径下还有几个子页面：
     - /debug/pprof/profile：访问这个链接会自动进行 CPU profiling，持续 30s，并生成一个文件供下载
     - /debug/pprof/heap： Memory Profiling 的路径，访问这个链接会得到一个内存 Profiling 结果的文件
     - /debug/pprof/goroutines：运行的 goroutines 列表，以及调用关系
@@ -126,9 +126,9 @@ full goroutine stack dump
 
 ## 分析 Profiling 
 
- - `go tool pprof` 命令行工具
+- `go tool pprof` 命令行工具
     - 如果要生成调用关系 和 火焰图， 需要安装 graphviz .
- - 使用方式为 `go tool pprof [binary] <source>`
+- 使用方式为 `go tool pprof [binary] <source>`
     - binary 是 应用程序的二进制文件， 用来解析各种符号 
     - source 表示 profile 数据的来源，  可以是本地的文件，也可以是 http 地址， 比如
     - `go tool pprof ./hyperkube http://172.16.3.232:10251/debug/pprof/profile`
@@ -139,9 +139,9 @@ full goroutine stack dump
     - 要想更细致分析，就要精确到代码级别了，看看每行代码的耗时，直接定位到出现性能问题的那行代码。
         - list 命令后面跟着一个正则表达式，就能查看匹配函数的代码以及每行代码的耗时： `list yourCodeRegularExpression`
         - `weblist <regex>`  打开一个页面，同时显示源码 和 汇编代码
- - NOTE：
+- NOTE：
     - 更详细的 pprof 使用方法可以参考 pprof --help 或者 [pprof 文档](https://github.com/google/pprof/tree/master/doc)
- - tips
+- tips
     - 如果应用比较复杂，生成的调用图特别大，看起来很乱，有两个办法可以优化：
         - 使用 web funcName 的方式，只打印和某个函数相关的内容
         - 运行 go tool pprof 命令时加上 `--nodefration=0.05` 参数，表示如果调用的子函数使用的 CPU、memory 不超过 5%，就忽略它，不要显示在图片中
@@ -151,7 +151,7 @@ full goroutine stack dump
 
 ### go 1.10 提供了一个 web UI， 同时支持 火焰图
 
- - 启动 pprof web ui:
+- 启动 pprof web ui:
 
 ```bash
 $ go tool pprof -http=:8080 [binary] profile.out

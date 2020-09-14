@@ -63,8 +63,8 @@
 
 ## Unit 5.1: Code Generation
 
- - when you set out to develop something complicated like a compiler , it always helps to try to simplify matters as mush as possible.
- - So I'm going to make some simplification observations. 
+- when you set out to develop something complicated like a compiler , it always helps to try to simplify matters as mush as possible.
+- So I'm going to make some simplification observations. 
     - the first one is , **each class file is compiled separately**. 
         - Each Jack class file, just like each Java class file, is a separate and standalone compilation unit. 
         - So, the overall task of compiling a multi-class program has been reduced to the more sort of limited task of compiling one class at a time. 
@@ -82,27 +82,27 @@
 
 ![](../imgs/n2t_compiler2_jack_observe.png)
 
- - Compilation challenges
+- Compilation challenges
     - Handling procedural code 
         - variables
         - expressions
         - flow of control
     - Handling objects
     - Handling arrays
- - The challenge: expressing the above semantics in the VM language
+- The challenge: expressing the above semantics in the VM language
 
 <h2 id="af37fa1db159e0c88611301daf974619"></h2>
 
 
 ## Unit 5.2: Handling Variables
 
- - example source code
+- example source code
 
 ```
 sum = x * ( 1+rate )
 ```
 
- - translate to VM code (pseudo) 
+- translate to VM code (pseudo) 
 
 ```
 push x
@@ -113,16 +113,16 @@ push *
 pop sum 
 ```
 
- - for now , let us focus only on the variables
- - we have sum, x, and rate
- - remember that the VM langauge does not have symbolic variables. 
+- for now , let us focus only on the variables
+- we have sum, x, and rate
+- remember that the VM langauge does not have symbolic variables. 
     - it only has things like local , argument, this , that, and so on.
- - So in order to resolve this pseudo VM code into final executable VM code, I have to map these symbolic variables on what we called the virtual memory segments. 
- - In order to generate *actual* VM code, we must know (among other things):
+- So in order to resolve this pseudo VM code into final executable VM code, I have to map these symbolic variables on what we called the virtual memory segments. 
+- In order to generate *actual* VM code, we must know (among other things):
     - Whether each variable is a *field,static,local,or argument*
     - Whether each variable is the *first,second,third...* variable of its kind
 
- - VM code (actual)
+- VM code (actual)
     - (making some arbitrary assumptions about the variable )
 
 ```
@@ -139,19 +139,19 @@ pop local 3
 
 ### Variables
 
- - We have to handle:
+- We have to handle:
     - class-level variables
         - field
         - static
     - subroutine-level variables
         - argument
         - local 
- - Every one of these variables has some properties:
+- Every one of these variables has some properties:
     - name (identifier)
     - type (int, char, boolean, class name)
     - kind (field, static, local, argument)
     - scope (class level subroutine level)
- - Variable properties
+- Variable properties
     - Needed for code generation
     - Can be managed efficiently using a **symbol table**
 
@@ -186,7 +186,7 @@ class Point {
 }
 ```
 
- - note `distance` is a class method, so it will always contain a `this` variable
+- note `distance` is a class method, so it will always contain a `this` variable
 
  name | type | kind | #
 --- | --- | --- | ---
@@ -195,25 +195,25 @@ other | Point | argument | 1
 dx | int | local | 0 
 dy | int | local | 1
 
- - Class-level symbol table:
+- Class-level symbol table:
     - can be reset each time we start compiling a new class
         - in Jack, or Java, or C# , classes are standalone compilation units
- - Subroutine-level symbol table:
+- Subroutine-level symbol table:
     - can be reset each time we start compiling a new subroutine
 
- - It turns out that when you compiling anything in Jack , you always have to maintain just 2 symbol tables.
+- It turns out that when you compiling anything in Jack , you always have to maintain just 2 symbol tables.
     - the class symbol talbe, and the current subroutine symbol table. 
 
- - Handling variable declarations:
+- Handling variable declarations:
     - field/static/var type varName; 
         - Add the variable and its properties to the symbol table
     - parameter list 
- - Handling variable usage:
+- Handling variable usage:
     - example :  `let dx=x-other.getx();`
     - look up the variable in the subroutine-level symbol table; if not found, look it up in the class-level symbol table.
         - if not found, throw an error. 
 
- - so expression `let y=y + dy ` will be translated into VM code :
+- so expression `let y=y + dy ` will be translated into VM code :
 
 ```
 push this 1  // y
@@ -227,13 +227,13 @@ pop this 1   // y
 
 ### Handling nested scoping
 
- - not in Jack, but often in other language like Jave, C ...
- - Some languages feature unlimited nested scoping
- - Can be managed using a linked list of symbol tables.
+- not in Jack, but often in other language like Jave, C ...
+- Some languages feature unlimited nested scoping
+- Can be managed using a linked list of symbol tables.
 
 ![](../imgs/n2t_symbol_tables_4_nested_scoping.png)
 
- - Variable lookup: 
+- Variable lookup: 
     - start in the 1st table
     - if not found , look up the next table, and so on.
 
@@ -250,13 +250,13 @@ pop this 1   // y
 
 ![](../imgs/n2d_compile2_parse_tree.png)
 
- - prefix 
+- prefix 
     - `* a + b c`
     - functional 
- - infix
+- infix
     - `a * (b+c)`
     - human oriented , most source code are infix.
- - postfix 
+- postfix 
     - `a b c + *`
     - stack oriented 
     - **this postfix notation is intimately related to our stack machine, because our stack language is also postfix.**
@@ -272,14 +272,14 @@ pop this 1   // y
 
 ![](../imgs/n2t_compiler2_generate_code_2step.png)
 
- - 生成 parse tree 的代价是很大的，实践中一般不会这么做。
+- 生成 parse tree 的代价是很大的，实践中一般不会这么做。
 
 <h2 id="9469e0355de5f8a8d9d169f7816ba22b"></h2>
 
 
 ### Generating code for expressions: a one-stage approach
 
- - The following algorithm is  going to generate the VM code on the fly without having to create  the whole parse tree in the process.
+- The following algorithm is  going to generate the VM code on the fly without having to create  the whole parse tree in the process.
 
 ![](../imgs/n2t_compiler2_generate_code_1step.png)
 
@@ -291,7 +291,7 @@ pop this 1   // y
 
 ![](../imgs/n2t_compile2_handle_flow.png)
 
- - we have 5 statements
+- we have 5 statements
     - let, do, return are trivial statements to translate
     - translating `while` and `if` are far more challenging.
 
@@ -307,13 +307,13 @@ else
     statement2
 ```
 
- - before I generate code for this statement, I would like to rewrite it using a flow chart.
+- before I generate code for this statement, I would like to rewrite it using a flow chart.
     - the first thing to do is to take the expression and **negate** it. 
     - why to do this negation ? Because once you negate the expression in such a way , code generation becomes far simpler and tighter. 
 
 ![](../imgs/n2t_compile_if_flow_chart.png)  ![](../imgs/n2t_compile_if_vm_code.png)
 
- - where are these labels (L1,L2) come from ?
+- where are these labels (L1,L2) come from ?
     - the compiler generates these labels
 
 
@@ -334,7 +334,7 @@ while (expression)
 
 ### Some (minor) complications
 
- - A program typically contains multiple `if` and `while` statements.
+- A program typically contains multiple `if` and `while` statements.
      - we have to make sure that the compiler generates unique labels
 
 
@@ -348,10 +348,10 @@ while (expression)
 
 ### Handling local and argument variables 
 
- - local, argument
+- local, argument
     - represent *local* and *argument* variables
     - located on the *stack*
- - Implementation
+- Implementation
     - Base addresses: LCL and ARG
     - Managed by the VM implementation
 
@@ -360,11 +360,11 @@ while (expression)
 
 ### Handling object and array data
 
- - this, that
+- this, that
     - represent *object* and *array* data
     - localted on the *heap*
     - you may well have numerous objects and quite a few arrays.
- - Implementation
+- Implementation
     - Base address: THIS and THAT
     - Set using `pointer 0 (this)` , `pointer 1 (that)`  
     - Managed by VM code.
@@ -374,7 +374,7 @@ while (expression)
 
 ### Accessing RAM data
 
- - suppose we wish to access RAM words 8000, 8001, 8002, ...
+- suppose we wish to access RAM words 8000, 8001, 8002, ...
 
 VM code (commands) | VM implementation (resulting effect)
 --- | ---
@@ -391,9 +391,9 @@ push/pop this i | accessing RAM[8000+i]
 
 ### Recap
 
- - Object data is accessed via the `this` segment
- - Array data is accessed via the `that` segment
- - Before we use these segments, we must first anchor them using pointer.
+- Object data is accessed via the `this` segment
+- Array data is accessed via the `that` segment
+- Before we use these segments, we must first anchor them using pointer.
 
 <h2 id="c8ea3a0c16bab7da5fd3f9529c1dd329"></h2>
 
@@ -405,7 +405,7 @@ push/pop this i | accessing RAM[8000+i]
 
 ### The caller's side: compiling new
 
- - source code
+- source code
 
 ```
 var Point p1,p2;
@@ -415,7 +415,7 @@ let p1 = Point.new(2,3);
 let p2 = Point.new(5,7);
 ```
 
- - compiled VM(pseudo) code
+- compiled VM(pseudo) code
 
 ```
 // var Point p1,p2;
@@ -437,7 +437,7 @@ pop p1  // p1 = base address of the new object
 // similar
 ```
 
- - subroutine symbol table
+- subroutine symbol table
 
 name | type | kind | #
 --- | --- | --- | ---
@@ -451,9 +451,9 @@ d  | int   | local | 2
 
 ### Resulting impact
 
- - During compile-time, the compiler maps p1 on local 0 , p2 on local 1, and d on local 2 ?
- - During run-time, the execution of the constructos's code effects the creation of the objects themselves. on the heap.
- - So, object construction is a two-stage affair that happens both during compile time and during runtime.
+- During compile-time, the compiler maps p1 on local 0 , p2 on local 1, and d on local 2 ?
+- During run-time, the execution of the constructos's code effects the creation of the objects themselves. on the heap.
+- So, object construction is a two-stage affair that happens both during compile time and during runtime.
 
 
 <h2 id="8b5d1806c2892f0de925efda271a5e25"></h2>
@@ -461,11 +461,11 @@ d  | int   | local | 2
 
 ### Object construction: the big picture
 
- - A constructor typically does 2 things:
+- A constructor typically does 2 things:
     - Arranges the creation of a new object 
     - Initializes the new object to some initial state
         - Therefore , the constructor's code typically needs access to the object's *fields*.
- - How to access the object's fields ?
+- How to access the object's fields ?
     - The constructor's code can access the object's data using the *this* segment
     - But first , the constructor's code must anchor the *this* segment on the object's data , using pointer
 
@@ -489,7 +489,7 @@ class Point {
 }
 ```
 
- - class-level symbol table
+- class-level symbol table
 
 name | type | kind | #
 --- | --- | --- | --- 
@@ -510,7 +510,7 @@ Well , at this stage the operating system comes to the rescure -- `alloc` functi
 
 
 
- - compiled code
+- compiled code
 
 ```
 // constructor Point new(int ax, int ay) 
@@ -543,7 +543,7 @@ return // returns the base address of the new object
 ```
 
 
- - constructor subroutine symbol table
+- constructor subroutine symbol table
 
 name | type | kind | #
 --- | --- | --- | ---
@@ -556,7 +556,7 @@ ay | int | arg | 1
 
 ## Unit 5.7: Handling Objects: Manipulation
 
- - Manipulation:
+- Manipulation:
     - Compiling `obj.methodCall()`
     - Compiling methods
 
@@ -570,8 +570,8 @@ ay | int | arg | 1
 ... obj.foo(x1,x2,...) ... 
 ```
 
- - The target machine language is *procedural*
- - Therefore , the compiler must rewrite the OO method calls in a procedural style
+- The target machine language is *procedural*
+- Therefore , the compiler must rewrite the OO method calls in a procedural style
 
 
 ```
@@ -603,9 +603,9 @@ call foo
 
 ### Compiling methods
 
- - Methods are designed to operate on the current object(this):
+- Methods are designed to operate on the current object(this):
     - Therefore , each method's code needs access to the object's *fields*
- - How to access the object's fields:
+- How to access the object's fields:
     - The method's code can access the object's i-th field by accessing `this i`
     - But first , the method's code must anchor the `this` segment on the object's data, using pointer
 
@@ -656,7 +656,7 @@ push constant 0
 return
 ```
 
- - for the caller ...
+- for the caller ...
 
 ```
 // do p1.print()
@@ -668,7 +668,7 @@ pop temp 0
 ...
 ```
 
- - Recap
+- Recap
     - Each compiled method must return a value
     - By convention, void methods return a dummy value
     - Callers of void methods are responsible for removing the returned value from the stack.
@@ -683,10 +683,10 @@ pop temp 0
 
 ### Array construction
 
- - `var Array arr;` 
+- `var Array arr;` 
     - it will alloc a variable in local segment ( stack )
     - generates no code, only effects the symbol table
- - `let arr = Array.new(n);`
+- `let arr = Array.new(n);`
     - alloc Array in heap
     - from the caller's prespective , handled exactly loke object construction
 
@@ -695,7 +695,7 @@ pop temp 0
 
 ### this and that ( reminder )
 
- - 2 "portable" virtual memory segments that can be aligned to diferent RAM addresses
+- 2 "portable" virtual memory segments that can be aligned to diferent RAM addresses
 
 
  · | this | that
@@ -732,7 +732,7 @@ push 17
 pop that 0
 ```
 
- - note we only use the entry *0* for that , why we not generate following simple code instead ?
+- note we only use the entry *0* for that , why we not generate following simple code instead ?
 
 ```
 push arr
@@ -741,7 +741,7 @@ push 17
 pop that 2
 ```
 
- - because
+- because
     - The simple code works only for constant offsets (indices) , it  cannot be used when the source is statement, say, “let arr[x] = y” , since the compiler donot its actual value when generating code.
 
 
@@ -755,7 +755,7 @@ push expression2
 pop that 0
 ```
 
- - **Unfortunately, the above VM code does not work** when handle such kind of statement : `a[i] = b[j]  `
+- **Unfortunately, the above VM code does not work** when handle such kind of statement : `a[i] = b[j]  `
 
 ```
 // solution: a[i] = b[j]
@@ -776,7 +776,7 @@ push temp 0
 pop that 0
 ```
 
- - General solution for generting array access code
+- General solution for generting array access code
 
 ```
 // arr[expression1] = expression2   
@@ -798,8 +798,8 @@ push temp 0
 pop that 0
 ```
 
- - If needed ,the evaluation of expression2 can set and use *pointer 1* and *that 0* safely.
- - What about `a[a[i]] = a[b[a[b[j]]]] ` ?
+- If needed ,the evaluation of expression2 can set and use *pointer 1* and *that 0* safely.
+- What about `a[a[i]] = a[b[a[b[j]]]] ` ?
     - No problem.
 
 
@@ -808,30 +808,30 @@ pop that 0
 
 ## Unit 5.9: Standard Mapping Over the Virtual Machine
 
- - Specifies how to map the constructs of the high-level language on the constructs of the virtual machine.
+- Specifies how to map the constructs of the high-level language on the constructs of the virtual machine.
 
 <h2 id="34cb0217bf2a49087396227957b0b082"></h2>
 
 
 ### Files and subroutine mapping
 
- - Each file  filename.jack is compiled into the file fileName.vm
- - Each subroutine *subName* in *fileNname.jack* is compiled into a VM function *fileName.subName*
- - A Jack constructor function with k arguments is compiled into a VM function that operates on k arguments
- - A Jack method with k arguments is compiled into a VM function that operates on k+1 arguments.
+- Each file  filename.jack is compiled into the file fileName.vm
+- Each subroutine *subName* in *fileNname.jack* is compiled into a VM function *fileName.subName*
+- A Jack constructor function with k arguments is compiled into a VM function that operates on k arguments
+- A Jack method with k arguments is compiled into a VM function that operates on k+1 arguments.
 
 <h2 id="c0aae26691e8f3c35ee1b5c4debbd5af"></h2>
 
 
 ### Variables mapping
 
- - The local variables
+- The local variables
     - of a Jack subroutine are mapped on the virtual segment **local** 
- - The argument variables
+- The argument variables
     - of a Jack subroutine are mapped on the virtual segment **argument**
- - The static variables
+- The static variables
     - of a .jack class file are mapped on the virtual memory segment **static** of the compiled .vm class file.
- - The field variables
+- The field variables
     - of the current object are accessed as follows:
         - assumption: pointer 0 has been set to the *this* object.
             - some1 has to do it for us :  the agent that does it is the generated code of the current subroutine. 
@@ -842,7 +842,7 @@ pop that 0
 
 ### Array mapping
 
- - Accessing array entries:
+- Accessing array entries:
     - Access to any array entry `arr[i]` is realized as follows:
         - first set `pointer 1` to the entry's address (arr + i)
         - access the entry by accessing `this 0`
@@ -852,12 +852,12 @@ pop that 0
 
 ### Compiling subroutines
 
- - When compiling a Jack method:
+- When compiling a Jack method:
     - the compiled VM code must set the base of the `this` sgement to `argument 0`
- - When compiling a Jack constructor:
+- When compiling a Jack constructor:
     - the compiled VM code must allocate a memory block for the new object, and then set the base of segment `this` to the new object's base address.
     - the compiled VM code must return the object's base address to the caller.
- - When compiling a void function of a void method
+- When compiling a void function of a void method
     - The compiled VM code must return the value constant 0
 
 <h2 id="71a1ddf989741040972099277b141189"></h2>
@@ -865,12 +865,12 @@ pop that 0
 
 ### Compiling subroutine calls
 
- - Calling a subroutine call `subName(arg1, arg2, ...)`
+- Calling a subroutine call `subName(arg1, arg2, ...)`
     - The caller (a VM function) must push the arguments onto the stack, and then call the subroutine.
- - Calling the called subroutine is a method,
+- Calling the called subroutine is a method,
     - The caller must first push a reference to the object on which the method is supposed to operates;
     - next, the caller must push arg1, arg2, ...  , and then call the method.
- - If the called subroutine is void
+- If the called subroutine is void
     - when compiling the Jack statment `do subName` , following the call the caller must pop(and ignore) the returned value.
 
 
@@ -879,9 +879,9 @@ pop that 0
 
 ### Compiling constants
 
- - null is mapped on the constant 0
- - false is mapped on the constant 0
- - true is mapped on the constant -1
+- null is mapped on the constant 0
+- false is mapped on the constant 0
+- true is mapped on the constant -1
     - -1 can be obtained using `push 1` followed by `neg`
 
 <h2 id="ea475c0e9caccb89cc9510f1eb21667e"></h2>
@@ -889,22 +889,22 @@ pop that 0
 
 ### OS classes and subroutines
 
- - The basic Jack OS is implemented as a set of compiled VM class files:
+- The basic Jack OS is implemented as a set of compiled VM class files:
     - Math.vm, Memory.vm, Screen.vm, Output.vm, Keyboard.vm, String.vm, Array.vm, Sys.vm 
- - All the OS class files must reside in the same directory as the VM files generated by the compiler
- - Any VM function can call any OS VM function for its effect.
+- All the OS class files must reside in the same directory as the VM files generated by the compiler
+- Any VM function can call any OS VM function for its effect.
 
 <h2 id="7320544ffe6fa06e8dac4abeb73d2c0b"></h2>
 
 
 ### Special OS services
 
- - Multiplication is handled using the OS function Math.multiply()
- - Division is handled using the OS function Math.divide()
- - String constants are created using the OS constructor `String.new(length)`
- - String assigments like `x="cc...c"` are handled using a series of calls to `String.appendChar(c)`
- - Object construction requires allocating space for the new object using the OS function Memory.alloc(size)
- - Object recycling is handled using the OS function Memory.deAlloc(object).
+- Multiplication is handled using the OS function Math.multiply()
+- Division is handled using the OS function Math.divide()
+- String constants are created using the OS constructor `String.new(length)`
+- String assigments like `x="cc...c"` are handled using a series of calls to `String.appendChar(c)`
+- Object construction requires allocating space for the new object using the OS function Memory.alloc(size)
+- Object recycling is handled using the OS function Memory.deAlloc(object).
 
 <h2 id="93d9543681348941b2eaf90c6516439c"></h2>
 
@@ -916,11 +916,11 @@ pop that 0
 
 ### Symbol table
 
- - The scope of **static** and **field** variable is the *class* in which they are defined
- - The scope of **local** and **argument** variables is the *subroutine* in which they are defined.
+- The scope of **static** and **field** variable is the *class* in which they are defined
+- The scope of **local** and **argument** variables is the *subroutine* in which they are defined.
 
- - We give each variable a running index within its scope and kind
- - The index starts at 0, increments by 1 each time a new symbol is added to the table, and is reset to 0 when starting a new scope
+- We give each variable a running index within its scope and kind
+- The index starts at 0, increments by 1 each time a new symbol is added to the table, and is reset to 0 when starting a new scope
 
 ---
 
@@ -931,7 +931,7 @@ this | Point | argument | 0
 ... | ... | ... | ... 
 
 
- - Implementation notes
+- Implementation notes
     - The symbol table abstraction can be implemented using 2 seprate *hash tables* :
         - one for the class scope
         - and one for the subroutine scope
@@ -955,7 +955,7 @@ this | Point | argument | 0
 
 ### Symbol table
 
- - Extend the handling of identifiers
+- Extend the handling of identifiers
     - output the identifier's category: 
         - var, argument, static, field, class, subroutine
     - if the identifier's category is `var, argument, static field` , output also the running index assigned to this variable in the symbol table
@@ -990,7 +990,7 @@ push constant  // instruction 2
 return
 ```
 
- - Inspect the VM code, focusing on the 2 instructions highlighted in red. 
+- Inspect the VM code, focusing on the 2 instructions highlighted in red. 
     - instruction 1
         - every subroutine must return a value.
         - the return value of Output.printInt  serves no purpose whatever, so we simply dump it.

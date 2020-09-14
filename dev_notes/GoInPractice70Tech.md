@@ -64,8 +64,8 @@
 
 ### 2.1.1 Command-line flags
 
- - Go flag system won't let you combine multiple flags ( eg. `ls -la` , instead see `la` as one flag ) 
- - standard `flag` package
+- Go flag system won't let you combine multiple flags ( eg. `ls -la` , instead see `la` as one flag ) 
+- standard `flag` package
  
 ```go
 import "flag"
@@ -105,20 +105,20 @@ $ flag_cli –-spanish –name Buttercup
 Hola Buttercup!
 ```
 
- - The `PrintDefaults` function generates help text for flags. 
+- The `PrintDefaults` function generates help text for flags. 
 
 <h2 id="3863b9486b6e97a49ff1790df08b38dc"></h2>
 
 
 ## 2.2 Handling configuration
 
- - json file
+- json file
     - `json.NewDecoder`
- - YAML
+- YAML
     - "github.com/kylelemons/go-gypsy/yaml"
- - INI
+- INI
     - "gopkg.in/gcfg.v1"
- - Configuration via environment variables
+- Configuration via environment variables
     - `os.Getenv("PORT")`
 
 
@@ -146,17 +146,17 @@ func shutdown(res http.ResponseWriter, req *http.Request) {
 }
 ```
 
- - The URL needs to be blocked in production
+- The URL needs to be blocked in production
 
 <h2 id="a07a125760957367633ba77e5ed4530c"></h2>
 
 
 #### TECHNIQUE 5 **Graceful shutdowns using manners**
 
- - To avoid data loss and unexpected behavior, a server may need to do some cleanup on shutdown
- - To handle these, you’ll need to implement your own logic or use a package such as
+- To avoid data loss and unexpected behavior, a server may need to do some cleanup on shutdown
+- To handle these, you’ll need to implement your own logic or use a package such as
     - `github.com/braintree/manners`
- - Braintree, a division of PayPal, created the manners package that gracefully shuts down , while maintaining the same interface for ListenAndServe that the core http package uses. 
+- Braintree, a division of PayPal, created the manners package that gracefully shuts down , while maintaining the same interface for ListenAndServe that the core http package uses. 
     - Internally, the package uses the core http server while keeping track of connections by using WaitGroup from the sync package. 
     -  WaitGroup is designed to keep track of goroutines. The following listing takes a look at a simple manners-based server.
 
@@ -207,31 +207,31 @@ func listenForShutdown(ch <-chan os.Signal) {
 }
 ```
 
- - The server waits only for request handlers to finish before exiting. 
- - If your code has separate goroutines that need to be waited on, that would need to happen separately, using your own implementation of WaitGroup
+- The server waits only for request handlers to finish before exiting. 
+- If your code has separate goroutines that need to be waited on, that would need to happen separately, using your own implementation of WaitGroup
 
 This approach has several advantages, including the following:
 
- - Allows current HTTP requests to complete rather than stopping them midrequest
- - Stops listening on the TCP port while completing the existing requests. 
+- Allows current HTTP requests to complete rather than stopping them midrequest
+- Stops listening on the TCP port while completing the existing requests. 
     - This opens the opportunity for another application to bind to the same port and start serving requests. 
     - If you’re updating versions of an application, one version could shut down while completing its requests, and another version of the application could come online and start serving
 
 A couple of disadvantages also exist under some conditions:
 
- - The manners package works for HTTP connections rather than all TCP connections.
+- The manners package works for HTTP connections rather than all TCP connections.
     - If your application isn’t a web server, the manners package won’t work.
- - In some cases, one version of an application will want to hand off exiting socket connections currently in use to another instance of the same application or another application. For example, if you have long-running socket connections between a server and client applications, the manners package will attempt to wait or interrupt the connections rather than hand them off.  
+- In some cases, one version of an application will want to hand off exiting socket connections currently in use to another instance of the same application or another application. For example, if you have long-running socket connections between a server and client applications, the manners package will attempt to wait or interrupt the connections rather than hand them off.  
 
 <h2 id="daef946a510d0ed9c04cffe18d824726"></h2>
 
 
 ### 2.3.2 Routing web requests
 
- - i.e. `http://example.com/foo#bar?baz=quo`
+- i.e. `http://example.com/foo#bar?baz=quo`
     - the path portion of the URL is `foo`
- - To correctly route requests, a web server needs to be able to quickly and efficiently parse the path portion of a URL.
- - NOTE To differentiate between HTTP methods, check the value of `http.Request.Method`. This contains the method (for example, GET, POST, and so on).
+- To correctly route requests, a web server needs to be able to quickly and efficiently parse the path portion of a URL.
+- NOTE To differentiate between HTTP methods, check the value of `http.Request.Method`. This contains the method (for example, GET, POST, and so on).
 
 ```
 func main() {
@@ -271,19 +271,19 @@ func homePage(res http.ResponseWriter, req *http.Request)
 }
 ```
 
- - NOTE: The `net/url` package, which contains the URL type, has many useful functions for working with URLs.
- - NOTE: To differentiate between HTTP methods, check the value of `http.Request.Method`. This contains the method (for example, GET, POST, and so on).
- - Here you use three handler functions for three paths or path parts.
+- NOTE: The `net/url` package, which contains the URL type, has many useful functions for working with URLs.
+- NOTE: To differentiate between HTTP methods, check the value of `http.Request.Method`. This contains the method (for example, GET, POST, and so on).
+- Here you use three handler functions for three paths or path parts.
     - Any path that isn’t resolved prior to the `/` path will resolve to this one.
- - It’s worth noting that paths ending in `/` can have redirection issues.
+- It’s worth noting that paths ending in `/` can have redirection issues.
     - In this listing, a user who visits `/goodbye` will be automatically redirected to `/goodbye/`.
     - If you have query strings, they may be dropped. For example, `/goodbye?foo=bar` will redirect to `/goodbye/`.
- - The way resolution works by default is important to know as well. 
+- The way resolution works by default is important to know as well. 
     - The handler registered to `/hello` will work only for `/hello`. 
     - The handler registered to `/goodbye/` will be executed for `/goodbye` (with a redirect), `/goodbye/`, `/goodbye/foo`, `/goodbye/foo/bar`, and so on. 
- - The requested URL is a property on `http.Request` as `url.URL`.
- - The `Query` method on the URL returns either the value for the key, or an empty string if no value is available for the key.
- - The http package contains a NotFound helper function that can optionally be used to set the response HTTP code to 404 and send the text 404 page not found.
+- The requested URL is a property on `http.Request` as `url.URL`.
+- The `Query` method on the URL returns either the value for the key, or an empty string if no value is available for the key.
+- The http package contains a NotFound helper function that can optionally be used to set the response HTTP code to 404 and send the text 404 page not found.
     - TIP The http package contains the Error function that can be used to set the HTTP error code and respond with a message. The NotFound function takes advantage of this for the 404 case.
 
 <h2 id="d4af0cb12ed09354dfbb5330e69cf4ab"></h2>
@@ -291,8 +291,8 @@ func homePage(res http.ResponseWriter, req *http.Request)
 
 ####  TECHNIQUE 7 **Handling complex paths with wildcards**
 
- - PROBLEM: Instead of specifying exact paths for each callback, an application may need to sup- port wildcards or other simple patterns.
- - SOLUTION: Go provides the path package with functionality to work with slash-separated paths
+- PROBLEM: Instead of specifying exact paths for each callback, an application may need to sup- port wildcards or other simple patterns.
+- SOLUTION: Go provides the path package with functionality to work with slash-separated paths
     - This package isn’t directly designed to work with URL paths. 
         - Instead, it’s a generic package intended to work with paths of all sorts.
         - In fact, it works well when coupled with an HTTP handler
@@ -354,14 +354,14 @@ func goodbye(res http.ResponseWriter, req *http.Request) {
 }
 ```
 
- - After an instance of the pathResolver has been created, two mappings of HTTP verbs and their paths are added to the resolver
- - The format for these is the HTTP method name followed by a path, with a space separating the two.
+- After an instance of the pathResolver has been created, two mappings of HTTP verbs and their paths are added to the resolver
+- The format for these is the HTTP method name followed by a path, with a space separating the two.
     - You can use an asterisk (`*`) as a wildcard character for the HTTP method or in the path.
- - The pathResolver is set as the handler function for the built-in HTTP server when the server is started
+- The pathResolver is set as the handler function for the built-in HTTP server when the server is started
     - For pathResolver to work as a handler function, it needs to implement the ServeHTTP method and implicitly implement the HandlerFunc interface. 
     - The ServeHTTP method is where path resolving happens.
- - When a request comes into the server, the ServeHTTP method iterates over the paths registered with the pathResolver.
- - You should be aware of the pros and cons of path resolution using the path pack- age. Here are the pros:
+- When a request comes into the server, the ServeHTTP method iterates over the paths registered with the pathResolver.
+- You should be aware of the pros and cons of path resolution using the path pack- age. Here are the pros:
     - pros:
         - Easy to get started with simple path matching.
         - Included in the standard library, the path package is well traveled and tested.
@@ -371,7 +371,7 @@ func goodbye(res http.ResponseWriter, req *http.Request) {
             - To match `foo/bar/baz`, you’d need to look for a path like `foo/*/*`.
         - Because this is a generic path package rather than one specific to URLs, some nice-to-have features are missing.
             - For example, the path `/goodbye/*` is registered. Visiting the path `/goodbye` in a browser will display a Page Not Found message, whereas visiting `/goodbye/` works. 
- - This method is useful for simple path scenarios and it’s one that we, the authors, have successfully used.
+- This method is useful for simple path scenarios and it’s one that we, the authors, have successfully used.
 
 
 <h2 id="4bb8963ed0a77bc17c592a558cd1cc6b"></h2>
@@ -379,26 +379,26 @@ func goodbye(res http.ResponseWriter, req *http.Request) {
 
 ####  TECHNIQUE 8 **URL pattern matching** (TODO)
 
- - PROBLEM: Simple path-based matching isn’t enough for an application that needs to treat a path more like a text string and less like a file path
+- PROBLEM: Simple path-based matching isn’t enough for an application that needs to treat a path more like a text string and less like a file path
     - This is particularly important when matching across a path separator (/).
- - SOLUTION: The built-in `path` package enables simple path-matching schemes, but sometimes you may need to match complex paths or have intimate control over the path. 
+- SOLUTION: The built-in `path` package enables simple path-matching schemes, but sometimes you may need to match complex paths or have intimate control over the path. 
     - For those cases, you can use regular expressions to match your paths.  `"regexp"`
- - page 55  TODO
+- page 55  TODO
 
 <h2 id="ec97b62dff33af2f1b3e7ec9768ab166"></h2>
 
 
 ####  TECHNIQUE 9 **Faster routing (without the work)**
 
- - PROBLEM: The built-in http package isn’t flexible enough, or doesn’t perform well in a particu- lar use case.
- - SOLUTION: Routing URLs to functions is a common problem for web applications. 
+- PROBLEM: The built-in http package isn’t flexible enough, or doesn’t perform well in a particu- lar use case.
+- SOLUTION: Routing URLs to functions is a common problem for web applications. 
     - Therefore, numerous packages have been built and tested, and are commonly used to tackle the problem of routing. 
 
 Popular solutions include the following:
 
- - `github.com/julienschmidt/httprouter`
- - `github.com/gorilla/mux`
- - `github.com/bmizerany/pat`
+- `github.com/julienschmidt/httprouter`
+- `github.com/gorilla/mux`
+- `github.com/bmizerany/pat`
 
 
 <h2 id="16f99609cccf72d44e6fb4b00b7aa9b5"></h2>
@@ -452,9 +452,9 @@ func (w *words) add(word string, n int) {
 
 ####  TECHNIQUE 13 **Using multiple channels**
 
- - You want to use channels to send data from one goroutine to another, and
+- You want to use channels to send data from one goroutine to another, and
     - be able to interrupt that process to exit.  
- - Use `select` and multiple channels. 
+- Use `select` and multiple channels. 
     - It’s a common practice in Go to use channels to signal when something is done or ready to close(eg. a timeout).
 
 <h2 id="a9b7b2027d7d718a120329e6af8c6ba8"></h2>
@@ -462,10 +462,10 @@ func (w *words) add(word string, n int) {
 
 ####  TECHNIQUE 14 **Closing channels**
 
- - write(send) to a closed channel will cause **panic**
+- write(send) to a closed channel will cause **panic**
     - the close function should be **called only by a sender**
- - when receiver has done, it should notify the sender that sender can safely close the channel now
- - implementation:
+- when receiver has done, it should notify the sender that sender can safely close the channel now
+- implementation:
     - sender should take 2 channel, for example:
         - `msg` channel: for messages
         - `done` channel: the other is for notification 
@@ -516,8 +516,8 @@ func send(ch chan<- string, done <-chan bool) {
 
 ####  TECHNIQUE 15 **Locking with buffered channels**
 
- - Use a channel with a buffer size of 1, and share the channel among the goroutines you want to synchronize.
- - 替代 lock
+- Use a channel with a buffer size of 1, and share the channel among the goroutines you want to synchronize.
+- 替代 lock
 
 ```go
 func main() {
@@ -550,15 +550,15 @@ func worker(id int, lock chan bool) {
 ## 4.1 Error handling
 
 
- - `errors.New`  function from the errors package is great for creating simple new errors. 
- - `fmt.Errorf` function in the fmt package gives you the option of using a formatting string on the error message. 
+- `errors.New`  function from the errors package is great for creating simple new errors. 
+- `fmt.Errorf` function in the fmt package gives you the option of using a formatting string on the error message. 
 
 <h2 id="bb9a69e5ffcd34c51ed7ac377377e0b2"></h2>
 
 
 ####  TECHNIQUE 17 Custom error types
 
- - Go’s error type is an interface that looks like the following listing.
+- Go’s error type is an interface that looks like the following listing.
 
 ```go
 type error interface {
@@ -566,8 +566,8 @@ type error interface {
 }
 ```
 
- - Anything that has an Error function returning a string satisfies this interface’s contract.
- - In some cases, you may want your errors to contain more information than a simple string. In such cases, you may choose to create a custom error type.
+- Anything that has an Error function returning a string satisfies this interface’s contract.
+- In some cases, you may want your errors to contain more information than a simple string. In such cases, you may choose to create a custom error type.
     - **Create a type that implements the error interface but provides additional functionality**
 
 Imagine you’re writing a file parser. When the parser encounters a syntax error, it generates an error. Along with having an error message, it’s generally useful to have information about where in the file the error occurred. You could build such an error as shown in the following listing.
@@ -585,17 +585,17 @@ func (p *ParseError) Error() string {
 }
 ```
 
- - This technique is great when you need to return additional information
- - But what if you need one function to return different kinds of errors?
+- This technique is great when you need to return additional information
+- But what if you need one function to return different kinds of errors?
 
 <h2 id="6eacf66e42cd6548ca6f4e4de743a7b2"></h2>
 
 
 ####  TECHNIQUE 18 Error variables
 
- - One complex function may encounter more than one kind of error. 
- - One convention that’s considered good practice in Go (although not in certain other languages) is to create package-scoped error variables that can be returned whenever a certain error occurs. 
- - The best example of this in the Go standard library comes in the io package, which contains errors such as io.EOF and io.ErrNoProgress.
+- One complex function may encounter more than one kind of error. 
+- One convention that’s considered good practice in Go (although not in certain other languages) is to create package-scoped error variables that can be returned whenever a certain error occurs. 
+- The best example of this in the Go standard library comes in the io package, which contains errors such as io.EOF and io.ErrNoProgress.
     - **create errors as package-scoped variables and reference those variables**
 
 ```go
@@ -641,10 +641,10 @@ func main() {
 
 ### 4.2.2 Working with panics
 
- - `panic(interface{})`
+- `panic(interface{})`
     - `panic(nil)`
     - `panic("Oops, I did it again.")`
- - The best thing to pass to a panic is an error. 
+- The best thing to pass to a panic is an error. 
     - Use the error type to make it easy for the recovery function (if there is one).
     - `panic(errors.New("Something bad happened."))`
         - With this method, it’s still easy to print the panic message with print formatters:
@@ -675,16 +675,16 @@ func yikes() {
 }
 ```
 
- - The recover function in Go returns a value (interface{}) if a panic has been raised, but in all other cases it returns nil. 
+- The recover function in Go returns a value (interface{}) if a panic has been raised, but in all other cases it returns nil. 
 
 <h2 id="23ae8dbb31cc7891d0c3de597f0bc523"></h2>
 
 
 ### 4.2.4 Panics and goroutines
 
- - If a panic on a goroutine goes unhandled on that goroutine’s call stack, it crashes the entire program
+- If a panic on a goroutine goes unhandled on that goroutine’s call stack, it crashes the entire program
 
- - a trivial little library (now part of github.com/Masterminds/cookoo) to protect us from accidentally unhandled panics on goroutines.
+- a trivial little library (now part of github.com/Masterminds/cookoo) to protect us from accidentally unhandled panics on goroutines.
 
 ```go
 // GoDoer is a simple parameterless function.
@@ -704,7 +704,7 @@ func Go(todo GoDoer) {
 }
 ```
 
- - to use 
+- to use 
     - `"github.com/Masterminds/cookoo/safely"`
     - `safely.Go( xxxx )`
 
@@ -723,23 +723,23 @@ func Go(todo GoDoer) {
 
 ### 5.2.1 Using Go’s logge
 
- - two built-in packages for logging
+- two built-in packages for logging
     - log
         - provides basic support (mainly in the form of formatting) for writing log messages
     - log/syslog
 
 **log**
 
- - the error messages are all sent to Standard Error
+- the error messages are all sent to Standard Error
     - regardless of whether the message is an actual error or an informational message. 
- - When you call log.Fatalln or any of the other “fatal” calls, the library prints the error message and then calls os.Exit(1)
- - Additionally, log.Panic calls log an error message and then issue a panic
+- When you call log.Fatalln or any of the other “fatal” calls, the library prints the error message and then calls os.Exit(1)
+- Additionally, log.Panic calls log an error message and then issue a panic
 
 **Logging to an arbitrary writer**
 
- - You want to send logging messages to a file or to a network service without having to write your own logging system
- - Initialize a new log.Logger and send log messages to that.
- - log.Logger provides features for sending log data to any io.Writer, which includes things like file handles and network connections (net.Conn).
+- You want to send logging messages to a file or to a network service without having to write your own logging system
+- Initialize a new log.Logger and send log messages to that.
+- log.Logger provides features for sending log data to any io.Writer, which includes things like file handles and network connections (net.Conn).
 
 ```go
 //  Logging to a file
@@ -770,16 +770,16 @@ example 2015/05/12 08:42:51 outfile.go:17: This is a fatal error.
 
 ![](../imgs/GoInPracticeLogComponent.png)
 
- - You can control the prefix field with the second argument to log.New. 
+- You can control the prefix field with the second argument to log.New. 
 
 **Logging to a network resource**
  
- - Streaming logs to a network service is error-prone, but you don’t want to lose log messages if you can avoid it.
- - By using Go’s channels and some buffering, you can vastly improve reliability
+- Streaming logs to a network service is error-prone, but you don’t want to lose log messages if you can avoid it.
+- By using Go’s channels and some buffering, you can vastly improve reliability
 
 Before you can get going on the code, you need something that can simulate a log server. Netcat (nc) is such a simple tool.
 
- - to start a simple TCP server that accepts simple text messages and writes them to the console
+- to start a simple TCP server that accepts simple text messages and writes them to the console
     - `nc -lk 1902`
     - Now you have a listener (-l) listening continuously (-k) on port 1902.
         -  (Some versions of Netcat may also need the –p flag.) 
@@ -802,20 +802,20 @@ func main() {
 }
 ```
 
- - It’s always recommended to close a network connection in a defer block.
- - If nothing else, when a panic occurs (as it will in this demo code), the network buffer will be flushed on close, and you’re less likely to lose critical log messages telling you why the code panicked.
- - Did you notice that we also changed log.Fatalln to a log.Panicln in this example?
+- It’s always recommended to close a network connection in a defer block.
+- If nothing else, when a panic occurs (as it will in this demo code), the network buffer will be flushed on close, and you’re less likely to lose critical log messages telling you why the code panicked.
+- Did you notice that we also changed log.Fatalln to a log.Panicln in this example?
     - the log.Fatal\* functions have an unfortunate side effect: the deferred function isn’t called. 
     - Because log.Fatal\* calls os.Exit, which immediately terminates the program without unwinding the function stack.
 
 **Handling back pressure in network logging**
 
- - Network log services are prone to connection failures and back pressure. This leads to lost log messages and sometimes even service failures.
- - Build a more resilient logger that buffers data.
- - You’re likely to run into two major networking issues:
+- Network log services are prone to connection failures and back pressure. This leads to lost log messages and sometimes even service failures.
+- Build a more resilient logger that buffers data.
+- You’re likely to run into two major networking issues:
     - The logger’s network connection drops (either because the network is down or because the remote logger is down).
     - The connection over which the logs are sent slows down
- - One solution to the back-pressure problem is to switch from TCP to UDP
+- One solution to the back-pressure problem is to switch from TCP to UDP
 
 ```go
     // Adds an explicit timeout
@@ -824,15 +824,15 @@ func main() {
     conn, err := net.DialTimeout("udp", "localhost:1902", timeout)
 ```
 
- - to run the UDP logger , you also need to restart your nc server as a UDP server:
+- to run the UDP logger , you also need to restart your nc server as a UDP server:
     - `nc -luk 1902`
 
- - advantages:
+- advantages:
     - The app is resistant to back pressure and log server outages. 
         - If the log server hiccups, it may lose some UDP packets, but the client won’t be impacted.
     - Sending logs is faster even without back pressure.
     - The code is simple.
- - disadvantages.
+- disadvantages.
     - Log messages can get lost easily
         - UDP doesn’t equip you to know whether a message was received correctly
     - Log messages can be received out of order. 
@@ -858,8 +858,8 @@ Additionally, system administrators are adept at using these log files for analy
 
 **Logging to the syslog**
 
- - You want to send application log messages into the system logger.
- - Configure Go’s syslog package and use it
+- You want to send application log messages into the system logger.
+- Configure Go’s syslog package and use it
     - a dedicated package is available for this: log/syslog
 
 ```go
@@ -910,9 +910,9 @@ Jun 30 08:52:06 technosophos narwhal[76635]: Warning message.
 Jun 30 08:52:06 technosophos narwhal[76635]: Alert message.
 ```
 
- - You logged four messages, but only three are displayed.  The call to syslog.Debug isn’t present. 
- - The reason is that the system log used to run the example is configured to not send debug messages to the log file. 
- - If you wanted to see debug messages, you’d need to alter the configuration of your system’s syslog facility. 
+- You logged four messages, but only three are displayed.  The call to syslog.Debug isn’t present. 
+- The reason is that the system log used to run the example is configured to not send debug messages to the log file. 
+- If you wanted to see debug messages, you’d need to alter the configuration of your system’s syslog facility. 
 
 ---
 
@@ -923,8 +923,8 @@ Jun 30 08:52:06 technosophos narwhal[76635]: Alert message.
 
 **Capturing stack traces**
 
- - You want to fetch a stack trace at a critical point in the application.
- - Use the runtime package, which has several tools.
+- You want to fetch a stack trace at a critical point in the application.
+- Use the runtime package, which has several tools.
 
 If all you need is a trace for debugging, you can easily send one to Standard Output by using the runtime/debug function PrintStack.
 
@@ -957,7 +957,7 @@ func bar() {
 }
 ```
 
- - runtime.Stack 
+- runtime.Stack 
     - 2nd argument ,  Setting it to true will cause Stack to also print out stacks for all running goroutines. 
     - This can be tremendously useful when debugging concurrency problems, but it substantially increases the amount of output. 
 
@@ -998,7 +998,7 @@ func TestHello(t *testing.T) {
 }
 ```
 
- - The most frequently used functions on `testing.T` are as follows:
+- The most frequently used functions on `testing.T` are as follows:
     - `T.Error(args …interface{}) or T.Errorf(msg string, args interface{})`
         - These log a message and then mark the test as failed.
         - The second version allows formatting strings
@@ -1008,9 +1008,9 @@ func TestHello(t *testing.T) {
 
 **Using interfaces for mocking or stubbing**
 
- - You’re writing code that depends on types defined in external libraries, and you want to write test code that can verify that those libraries are correctly used
- - Create interfaces to describe the types you need to test. Use those interfaces in your code, and then write stub or mock implementations for your tests.
- - Say you’re writing software that uses a third-party library that looks like the following listing.
+- You’re writing code that depends on types defined in external libraries, and you want to write test code that can verify that those libraries are correctly used
+- Create interfaces to describe the types you need to test. Use those interfaces in your code, and then write stub or mock implementations for your tests.
+- Say you’re writing software that uses a third-party library that looks like the following listing.
 
 ```go
 // Listing 5.12 The message struct
@@ -1023,7 +1023,7 @@ func (m *Message) Send(email, subject string, body []byte) error {
 }
 ```
 
- - This describes some kind of message-sending system. In your code, you use that library to send a message from your application. 
+- This describes some kind of message-sending system. In your code, you use that library to send a message from your application. 
     - In the course of writing your tests, you want to ensure that the code that sends the message is being called, but you don’t want to send the message.
     - One way to gracefully deal with this is to write your own interface that describes the methods shown in listing 5.12, and have your code use that interface in its declarations instead of directly using the Message type, as the following listing shows.
 
@@ -1055,11 +1055,11 @@ func Alert(m Messager, problem []byte) error {
 
 `Generative testing` is a large and complex topic. But in its most basic form, generative testing refers to the strategy of automatically generating test data in order to both broaden the information tested and overcome our biases when we choose our test data.
 
- - PROBLEM: You want to bulletproof your code against surprising edge cases.
- - SOLUTION: Use Go’s `testing/quick` package to generate testing data.
- - The testing/quick package provides several helpers for rapidly building tests that are more exhaustive than usual
- - These tools aren’t useful in all cases, but sometimes they can help you make your testing process more reliable.
- - Say you have a simple function that pads a given string to a given length (or truncates the string if it’s greater than that length).
+- PROBLEM: You want to bulletproof your code against surprising edge cases.
+- SOLUTION: Use Go’s `testing/quick` package to generate testing data.
+- The testing/quick package provides several helpers for rapidly building tests that are more exhaustive than usual
+- These tools aren’t useful in all cases, but sometimes they can help you make your testing process more reliable.
+- Say you have a simple function that pads a given string to a given length (or truncates the string if it’s greater than that length).
 
 ```
 // Listing 5.18 A padding function
@@ -1077,7 +1077,7 @@ func Pad(s string, max uint) string {
 }
 ```
 
- - Normally, you’d be inclined to write some simple tests for this function, perhaps like the following listing.
+- Normally, you’d be inclined to write some simple tests for this function, perhaps like the following listing.
 
 ```
 func TestPad(t *testing.T) {
@@ -1087,7 +1087,7 @@ func TestPad(t *testing.T) {
 }
 ```
 
- - Unsurprisingly, this test passes. But this is a great function to test with a **generator**. 
+- Unsurprisingly, this test passes. But this is a great function to test with a **generator**. 
     - You know that regardless of the string that’s passed in, you always want a string of exactly the given length.
     - Using the testing/quick function called `Check()`, you can test a much broader range of strings (including those that use characters you might not have thought to test), as shown in the next listing.
 
@@ -1113,11 +1113,11 @@ func TestPadGenerative(t *testing.T) {
 }
 ```
 
- - The "testing/quick".Check function is the heart of your test. 
+- The "testing/quick".Check function is the heart of your test. 
     - It takes a function that you’ve defined and an optional configuration, and then constructs numerous tests.
     - It does this by introspecting the function’s parameters and then generating random test data of the right parameter type. 
     - If you wanted to test longer strings, for example, you could change your fn function to take a uint16 instead of a uint8.
- - Go’s random generator
+- Go’s random generator
     - Go doesn’t automatically seed the "math/rand".Rand generator each time it runs. 
     - If you want different data each run, you can pass a seeded random generator by using  `"testing/quick".Config` . 
     - This is a good way to increase test data coverage, but it comes at the cost of repeatability.
@@ -1130,16 +1130,16 @@ func TestPadGenerative(t *testing.T) {
 
 ## 5.5 Using performance tests and benchmarks
 
- - Nestled inside Go’s `testing` package are some performance-testing features designed to repeatedly run pieces of code and then report on their efficiency.
+- Nestled inside Go’s `testing` package are some performance-testing features designed to repeatedly run pieces of code and then report on their efficiency.
 
 <h2 id="4a6da83e7e1a0713d9cc611981c6f823"></h2>
 
 
 #### TECHNIQUE 29 Benchmarking Go code
 
- - PROBLEM: You have code paths for accomplishing something, and you want to know which way is faster. Is it faster to use text/template for formatting text, or just stick with fmt?
- - SOLUTION: Use the benchmarking feature, `testing.B`, to compare the two.
- - Benchmarks are treated similarly to tests. They go in the same *_test* files that unit tests and examples go in, and they’re executed with the go test command. But their con- struction differs.
+- PROBLEM: You have code paths for accomplishing something, and you want to know which way is faster. Is it faster to use text/template for formatting text, or just stick with fmt?
+- SOLUTION: Use the benchmarking feature, `testing.B`, to compare the two.
+- Benchmarks are treated similarly to tests. They go in the same *_test* files that unit tests and examples go in, and they’re executed with the go test command. But their con- struction differs.
 
 ```
 // Listing 5.21 Benchmark template compile and run
@@ -1168,8 +1168,8 @@ func BenchmarkTemplates(b *testing.B) {
 }
 ```
 
- - *Benchmarks* should be prefixed with `Benchmark` , And instead of receiving a `*testing.T`, a benchmark receives a `*testing.B`.
- - `*testing.B` has several properties specific to benchmarking.
+- *Benchmarks* should be prefixed with `Benchmark` , And instead of receiving a `*testing.T`, a benchmark receives a `*testing.B`.
+- `*testing.B` has several properties specific to benchmarking.
     - The most important is the N struct member. 
 
 ```
@@ -1185,9 +1185,9 @@ BenchmarkTemplates       100000          10102 ns/op
 ok /Users/mbutcher/Code/go-in-practice/chapter5/tests/bench 1.145s
 ```
 
- - To run benchmarks, use the go test tool, but pass it `–bench PATTERN`, where *PATTERN* is a regular expression that matches the benchmarking functions you want to run.
+- To run benchmarks, use the go test tool, but pass it `–bench PATTERN`, where *PATTERN* is a regular expression that matches the benchmarking functions you want to run.
     - The dot (.) tells the benchmarker to run all of the benchmarks.
- - It begins with a low value for b.N: 1. Then it raises the value of b.N (not always exponentially) until the algorithms in the benchmarking suite settle in on an average.
+- It begins with a low value for b.N: 1. Then it raises the value of b.N (not always exponentially) until the algorithms in the benchmarking suite settle in on an average.
 
 
 <h2 id="5ead74fce837c4f613ef8e47066ba7d3"></h2>
@@ -1195,12 +1195,12 @@ ok /Users/mbutcher/Code/go-in-practice/chapter5/tests/bench 1.145s
 
 ####  TECHNIQUE 30 Parallel benchmarks
 
- - One of Go’s strongest points is its goroutine model of concurrent programming. 
- - But for any given piece of code, how can you tell how well it will perform when spread out over multiple goroutines? 
- - Again, the benchmarking tool can help you here.
+- One of Go’s strongest points is its goroutine model of concurrent programming. 
+- But for any given piece of code, how can you tell how well it will perform when spread out over multiple goroutines? 
+- Again, the benchmarking tool can help you here.
 
- - PROBLEM: You want to test how a given piece of code performs when spread over goroutines. Ide- ally, you want to test this with a variable number of CPUs.
- - SOLUTION: A `*testing.B `instance provides a RunParallel method for exactly this purpose. Combined with command-line flags, you can test how well goroutines parallelize.
+- PROBLEM: You want to test how a given piece of code performs when spread over goroutines. Ide- ally, you want to test this with a variable number of CPUs.
+- SOLUTION: A `*testing.B `instance provides a RunParallel method for exactly this purpose. Combined with command-line flags, you can test how well goroutines parallelize.
 
 
 ```
@@ -1224,8 +1224,8 @@ unc BenchmarkParallelTemplates(b *testing.B) {
 }
 ```
 
- - Most of our testing code remains unchanged. But instead of looping over a call to t.Execute() ,  you segment the code a little further.
- - Running `RunParallel` runs the closure on multiple goroutines. 
+- Most of our testing code remains unchanged. But instead of looping over a call to t.Execute() ,  you segment the code a little further.
+- Running `RunParallel` runs the closure on multiple goroutines. 
     - Each one receives an indication, through `pb.Next()`, as to whether it should continue iterating.(Again, the looping feature is required.)
 
 ```
@@ -1238,8 +1238,8 @@ BenchmarkParallelTemplates      5.097s
 ok      _/Users/mbutcher/Code/go-in-practice/chapter5/tests/bench
 ```
 
- - Your parallel version didn’t outperform the regular version. Why? Because the goroutines were all run on the same processor.
- - Let’s specify that you want to see the testing tool run several versions of the same code, using a different number of CPUs each time:
+- Your parallel version didn’t outperform the regular version. Why? Because the goroutines were all run on the same processor.
+- Let’s specify that you want to see the testing tool run several versions of the same code, using a different number of CPUs each time:
 
 ```
 $ go test -bench . -cpu=1,2,4
@@ -1248,7 +1248,7 @@ PASS
 ...
 ```
 
- - In this run, you specify `–cpu=1,2,4`, which tells go test to run the tests with one, two, and then four CPUs, respectively.
+- In this run, you specify `–cpu=1,2,4`, which tells go test to run the tests with one, two, and then four CPUs, respectively.
 
 
 <h2 id="e3ea7a8c7302115e608e0693e71c25e8"></h2>
@@ -1256,9 +1256,9 @@ PASS
 
 ####  TECHNIQUE 31 Detecting race conditions
 
- - PROBLEM: In programs with many goroutines, race conditions could occur. Being able to test for this possibility is desirable.
- - SOLUTION: Use the `–race` flag (sometimes called `go race` or `grace`).
- - Let’s begin with listing 5.22 and make an ill-conceived performance optimization.
+- PROBLEM: In programs with many goroutines, race conditions could occur. Being able to test for this possibility is desirable.
+- SOLUTION: Use the `–race` flag (sometimes called `go race` or `grace`).
+- Let’s begin with listing 5.22 and make an ill-conceived performance optimization.
     - Instead of declaring a new buffer for each goroutine, let’s share one in the following listing.
 
 ```
@@ -1280,8 +1280,8 @@ func BenchmarkParallelOops(b *testing.B) {
 }
 ```
 
- - Now let’s run that code sample.It’s likely that the parallel benchmark will fail:
- - `$ go test -bench . -cpu=1,2,4`
+- Now let’s run that code sample.It’s likely that the parallel benchmark will fail:
+- `$ go test -bench . -cpu=1,2,4`
 
 ```
 BenchmarkParallelOops-2     panic: runtime error: slice bounds out of
@@ -1289,9 +1289,9 @@ BenchmarkParallelOops-2     panic: runtime error: slice bounds out of
      panic: runtime error: slice bounds out of range
 ```
 
- - A look through the stack trace gives a few clues about what happened, but the real underlying cause isn’t clear. 
- - If you add the `–race` flag onto the testing call, Go instru- ments for race conditions, and the information you receive is much more helpful:
- - `go test -bench Oops -race -cpu=1,2,4`
+- A look through the stack trace gives a few clues about what happened, but the real underlying cause isn’t clear. 
+- If you add the `–race` flag onto the testing call, Go instru- ments for race conditions, and the information you receive is much more helpful:
+- `go test -bench Oops -race -cpu=1,2,4`
 
 ```
 WARNING: DATA RACE
@@ -1304,7 +1304,7 @@ Write by goroutine 20:
 ...
 ```
 
- - Now the cause is much clearer: more than one thing tried to use the bytes.Buffer at once.
+- Now the cause is much clearer: more than one thing tried to use the bytes.Buffer at once.
 
 
 

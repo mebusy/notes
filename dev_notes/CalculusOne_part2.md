@@ -109,7 +109,7 @@ You can really think of anti-differentiation as a sort of bridge between the, th
 
 ## How do we handle the fact that there are many antiderivatives?
 
- - f(x) = 2x
+- f(x) = 2x
     - F(x) = x²
     - G(x) = x²+ 17
     - H(x) = x²+ C
@@ -124,22 +124,22 @@ You can really think of anti-differentiation as a sort of bridge between the, th
 
 ### What is the antiderivative of a sum?
 
- - F is an antiderivative of f 
+- F is an antiderivative of f 
     - `∫f(x)dx = F(x)+C`
  
 ---
 
- - if ∫f(x)dx = F(x)+C ,  ∫g(x)dx = G(x)+C
- - then ∫(f(x)+g(x))dx = F(x) + G(x) + C  , 
- - or ∫(f(x)+g(x))dx = ∫f(x)dx + ∫g(x)dx. 
- - The antiderivative of the sum is the sum of the antiderivative . 
+- if ∫f(x)dx = F(x)+C ,  ∫g(x)dx = G(x)+C
+- then ∫(f(x)+g(x))dx = F(x) + G(x) + C  , 
+- or ∫(f(x)+g(x))dx = ∫f(x)dx + ∫g(x)dx. 
+- The antiderivative of the sum is the sum of the antiderivative . 
 
 <h2 id="2b4ad78f06a02378ecd2fb58fa1e0d88"></h2>
 
 
 ### What is an antiderivative for xⁿ ?
 
- - ∫xⁿdx = xⁿ⁺¹/(n+1) + C
+- ∫xⁿdx = xⁿ⁺¹/(n+1) + C
 
 --- 
 
@@ -152,7 +152,7 @@ f(x) = 15x² -4x +3
 = 5x³ - 2x² + 3x + C
 ```
 
- - Constant multiple rule:
+- Constant multiple rule:
     - ∫a·f(x)dx = a·∫f(x)dx
 
 <h2 id="9602e1d6d174f0797eea3631e85257b0"></h2>
@@ -160,7 +160,7 @@ f(x) = 15x² -4x +3
 
 ### What is the most general antiderivative of 1/x?
 
- - The most genral antiderivative of 1/x has the form 
+- The most genral antiderivative of 1/x has the form 
 
 ```
       ⎧ logx + C , if x>0
@@ -168,22 +168,22 @@ F(x)= ⎨
       ⎩ log(-x) + D , if x<0>
 ```
 
- - for constant C and D.
+- for constant C and D.
 
 ---
 
- - Suppose f is a function with **an** antiderivative F ,
- - Then any another antiderivative for f has the form 
+- Suppose f is a function with **an** antiderivative F ,
+- Then any another antiderivative for f has the form 
     - F(x) + C(x)
- - for some **"locally constant"** function C
+- for some **"locally constant"** function C
     - C不仅仅是一个常数，C是一个局部常值函数
     - 关键在于，这个C可以在不同的区间值不通
 
 ---
 
- - 很不幸， Some textbooks write 
+- 很不幸， Some textbooks write 
     - ∫1/xdx = log|x| + C 
- - is fine **provided C is a locally constant function of x**.
+- is fine **provided C is a locally constant function of x**.
 
 
 <h2 id="ef8ce61c6eaaba0c86730eee57732a7a"></h2>
@@ -191,12 +191,12 @@ F(x)= ⎨
 
 ### What are antiderivatives of trigonometric functions?
 
- - ∫cosxdx = sinx + C
- - ∫sinxdx = -cosx + C
- - ∫tanxdx = log(secx) + C
- - ∫secxdx = log|secx + tanx| + C 
+- ∫cosxdx = sinx + C
+- ∫sinxdx = -cosx + C
+- ∫tanxdx = log(secx) + C
+- ∫secxdx = log|secx + tanx| + C 
 
- - anti-differentiation is HARD.
+- anti-differentiation is HARD.
 
 
 <h2 id="f25d9687ab2a19385a54403be540b9fa"></h2>
@@ -204,8 +204,8 @@ F(x)= ⎨
 
 ### What are antiderivatives of eˣ and natural log?
 
- - ∫eˣdx = eˣ + C
- - ∫log(x)dx = x·log(x) - x + C
+- ∫eˣdx = eˣ + C
+- ∫log(x)dx = x·log(x) - x + C
 
 
 <h2 id="884aac3316eafa26375608fe965ec95b"></h2>
@@ -218,9 +218,9 @@ F(x)= ⎨
 
 ### What is the antiderivative of f(mx+b)?
 
- - if we have ∫f(x)dx = F(x) + C 
- - ∫f(mx+b)dx = F(mx+b)/m + C 
- - eg.
+- if we have ∫f(x)dx = F(x) + C 
+- ∫f(mx+b)dx = F(mx+b)/m + C 
+- eg.
     - ∫sin(2x+1)dx = -cos(2x+1)/2 + C  
     - ∫sec²xdx = sin(x)/cos(x)+C , ∫sec²(-5x+7)dx = sin(-5x+7)/cos(-5x+7)/-5 + C = sin(5x-7)/cos(5x-7)/5 +C
      
@@ -229,9 +229,9 @@ F(x)= ⎨
 
 ### What is an antiderivative for e^(-x²) ?
 
- - ∫e<sup>-x²</sup>dx **can not be expressed using elementary functions**.
+- ∫e<sup>-x²</sup>dx **can not be expressed using elementary functions**.
     - elementary function means  polynomials, trig functions, eˣ, log, etc...
- - **many functions are impossible to antidifferentiate**.
+- **many functions are impossible to antidifferentiate**.
 
 
 <h2 id="eed598ddc44da35152d9cd8fa4f72500"></h2>
@@ -244,11 +244,11 @@ F(x)= ⎨
 
 ### Knowing my velocity, what is my position?
 
- - p(t) = position
- - v(t) = velocity
- - p'(t) = v(t)
- - p(t) = ∫v(t)dt
- - eg.
+- p(t) = position
+- v(t) = velocity
+- p'(t) = v(t)
+- p(t) = ∫v(t)dt
+- eg.
     - v(t) = 3-10t
     - p(t) = ∫(3-10t)dt = 3x - 5t² +C 
     - and now , the +C has a prefectly reasonable physical interpretation. If I know my velocity, I know my position as long as I know my initial position. 
@@ -260,12 +260,12 @@ F(x)= ⎨
 
 ### Knowing my acceleration, what is my position?
 
- - a(t) = 8
- - v(t) = ∫a(t)dt = ∫8dt = 8t + C
+- a(t) = 8
+- v(t) = ∫a(t)dt = ∫8dt = 8t + C
     - knowning my acceleration doesn't detemine my velociy, it only detemines my velocity up to some constant. 
     - it could be going really fast or really slow , but still accelerating at the same rate. 
     - C is v(0)
- - p(t) = ∫v(t)dt = ∫(8t + C)dt = ∫8tdt + ∫Cdt = 4t² + Ct + D.  
+- p(t) = ∫v(t)dt = ∫(8t + C)dt = ∫8tdt + ∫Cdt = 4t² + Ct + D.  
     - where C is v(0) , D is p(0)
 
 
@@ -290,15 +290,15 @@ F(x)= ⎨
 There's a visual way to gain some insight into these anti-differentiation problems. 
 
 
- - slop field of function x² - x
+- slop field of function x² - x
     - ![](../imgs/calculusone_slope_field.png)
- - instead of plotting a value at some height, I draw little tiny line segments with that slope.
+- instead of plotting a value at some height, I draw little tiny line segments with that slope.
  
 --- 
 
- - slop field of function xcosx
+- slop field of function xcosx
     - ![](../imgs/calculusone_slope_field_xcosx.png)
- - 利用slop field， 可以大致画出 原函数的图像
+- 利用slop field， 可以大致画出 原函数的图像
     - ![](../imgs/calculusone_slope_field_xsinx+cosx.png)
     - graph for y = xsinx + cosx 
     - +C can move graph up and down.
@@ -358,9 +358,9 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 大图正好是 4个小图的 3倍。 4个小图平铺，等于大图中间部分。
 
- - the length of buttom of big picture is `2k+1`
- - the height of big picture is ∑<sub>n=</sub>ᵏ₁ n = `(k+1)·k/2`
- - so the sum of small pictures is `(2k+1)·(k+1)·k/6`
+- the length of buttom of big picture is `2k+1`
+- the height of big picture is ∑<sub>n=</sub>ᵏ₁ n = `(k+1)·k/2`
+- so the sum of small pictures is `(2k+1)·(k+1)·k/6`
 
 <h2 id="9a72aabb581b21f673d346308b47b1ec"></h2>
 
@@ -390,7 +390,7 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 ![](../imgs/calculusone_integration_ab.png)
 
- - Thm: If *f* is continuous, then *f* is integrable 
+- Thm: If *f* is continuous, then *f* is integrable 
     - means ∫<sub>a,b</sub>f(x)dx  exist.
  
 <h2 id="0b347bc298049db4ffd8970d79c31ef6"></h2>
@@ -403,8 +403,8 @@ There's a visual way to gain some insight into these anti-differentiation proble
 
 ### What is the integral of x^2 from x = 0 to 1?
 
- - What is the ∫<sub>0,1</sub>x²dx ?
- - We divide [0,1] into n pieces,  so each interval is 1/n
+- What is the ∫<sub>0,1</sub>x²dx ?
+- We divide [0,1] into n pieces,  so each interval is 1/n
 
   ∫<sub>0,1</sub>x²dx 
 
@@ -491,18 +491,18 @@ When is A(x) = ∫ˣₐf(t)dt increasing ? Decreasing ?
 
 The integrals are not exactly measuring area, they're measuring **singed area**. 
 
- - f positive
+- f positive
     - A(x) increasing
     - A'(x) > 0
- - f negative 
+- f negative 
     - A(x) decreasing
     - A'(x) < 0
 
 ---
 
- - 利用函数的对称性，我们可以简化 积分计算
- - ∫¹₋₁ sinxdx = 0
- - ∫<sup>2π</sup>₀ cosxdx = 0 
+- 利用函数的对称性，我们可以简化 积分计算
+- ∫¹₋₁ sinxdx = 0
+- ∫<sup>2π</sup>₀ cosxdx = 0 
 
 
 <h2 id="76e5d32d317a3d89cedfea3744cc9d75"></h2>
@@ -515,16 +515,16 @@ The integrals are not exactly measuring area, they're measuring **singed area**.
 
 ## What is the fundamental theorem of calculus?
 
- - Suppose f:[a,b] → ℝ is continuous. let F be the accumulation function , given by 
+- Suppose f:[a,b] → ℝ is continuous. let F be the accumulation function , given by 
     - F(x) = ∫ˣₐ f(t)dt.
- - Then F is continuous on [a,b] , differntiable on (a,b) , and F'(x) = f(x) 
+- Then F is continuous on [a,b] , differntiable on (a,b) , and F'(x) = f(x) 
 
 ![](../imgs/calculus_integrate_fundamental_theorem.png)
 
 --- 
 
 
- - So ∫ˣₐ f(t)dt is an **antiderivative !**
+- So ∫ˣₐ f(t)dt is an **antiderivative !**
 
 Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>₀ f(x)dx 
 
@@ -545,14 +545,14 @@ Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>
 
 ### to evaluate integrals
 
- - we don't case ∫ˣₐ , we really want to calculate ∫ᵇₐ
- - F(b) = ∫ᵇₐ f(t)dt
+- we don't case ∫ˣₐ , we really want to calculate ∫ᵇₐ
+- F(b) = ∫ᵇₐ f(t)dt
     - F(a) = ∫ªₐ f(t)dt = 0 
 
 ---
 
- - Suppose f:[a,b] → ℝ is continuous , and F is an antiderivative of f.
- - Then ∫ᵇₐ f(x)dx = F(b) - F(a)
+- Suppose f:[a,b] → ℝ is continuous , and F is an antiderivative of f.
+- Then ∫ᵇₐ f(x)dx = F(b) - F(a)
 
  
 <h2 id="44c1bf08687574267775be1feeb42efc"></h2>
@@ -560,15 +560,15 @@ Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>
 
 ### What is the integral of sin x dx from x = 0 to x = pi?
 
- - ∫<sup>π</sup>₀ sinxdx = ?
- - -cos(π) - (-cos(0))  = 1 - (-1) = 2
+- ∫<sup>π</sup>₀ sinxdx = ?
+- -cos(π) - (-cos(0))  = 1 - (-1) = 2
 
 <h2 id="2b221d77b3789b96e070d508881cc2fb"></h2>
 
 
 ### What is the integral of x⁴ dx from x = 0 to x = 1?
 
- - ∫¹₀ x⁴dx = (1)⁵/5 - (0)⁵/5 = 0.2
+- ∫¹₀ x⁴dx = (1)⁵/5 - (0)⁵/5 = 0.2
 
  
 <h2 id="2354b07f92446373f273db4940266dd4"></h2>
@@ -583,7 +583,7 @@ Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>
 
 ![](../imgs/calc_integrate_area_between_2_graph.png)
 
- - ∫¹₀ (√x -x²)dx = [ x<sup>3/2</sup>/(3/2) - x³/3  ]¹₀ = 1/3
+- ∫¹₀ (√x -x²)dx = [ x<sup>3/2</sup>/(3/2) - x³/3  ]¹₀ = 1/3
 
 
 <h2 id="c51347a969d83291908d473077d934ca"></h2>
@@ -596,12 +596,12 @@ Suppose that ∫³₀ f(x)dx = 9 , and f(3) = 10 , Approximate ∫<sup>3.3</sup>
 
 ### Why does the Euler method resemble a Riemann sum?
 
- - F(h) = F(0) + h·F'(0) = F(0) + h·f(0)
- - F(2h) = F(h) + h·F'(h) = F(h) + h·f(h) = h·f(0) + h·f(h)
- - F(3h) = F(2h) + h·F'(2h) = F(2h) + h·f(2h) = h·f(0) + h·f(h) + h·f(2h) 
- - ...
- - F(10) = h·f(0) + h·f(h) + h·f(2h) + ... +  h·f(9h)
- - It's Riemann sum!
+- F(h) = F(0) + h·F'(0) = F(0) + h·f(0)
+- F(2h) = F(h) + h·F'(h) = F(h) + h·f(h) = h·f(0) + h·f(h)
+- F(3h) = F(2h) + h·F'(2h) = F(2h) + h·f(2h) = h·f(0) + h·f(h) + h·f(2h) 
+- ...
+- F(10) = h·f(0) + h·f(h) + h·f(2h) + ... +  h·f(9h)
+- It's Riemann sum!
 
 
 <h2 id="2ac4f9dd2d934474613787c8f2541b2a"></h2>
@@ -613,10 +613,10 @@ Integrating | differentiating
 --- | --- 
 summing | *differencing* 
 
- - 1,2,3,4,5,... -- sum -->  0,1,3,6,10,15,... 
- - 0,1,3,6,10,15,...  -- calc difference --> 1,2,3,4,5,...
- - So **differences** between *sum of first k numbers* and *sum of first k-1 numbers*, gives back the original list !
- - d/dx ∫ˣₐ f(t)dt = f(x)
+- 1,2,3,4,5,... -- sum -->  0,1,3,6,10,15,... 
+- 0,1,3,6,10,15,...  -- calc difference --> 1,2,3,4,5,...
+- So **differences** between *sum of first k numbers* and *sum of first k-1 numbers*, gives back the original list !
+- d/dx ∫ˣₐ f(t)dt = f(x)
 
 
 <h2 id="3d25e750b4fc1ef196b9f5374dfb1e5e"></h2>
@@ -624,26 +624,26 @@ summing | *differencing*
 
 ### Physically, why is the fundamental theorem of calculus true?
 
- - v(t) = my velocity at time t
- - ∫ᵇ₀ v(t)dt = distance I traveled t=0 to t=b
+- v(t) = my velocity at time t
+- ∫ᵇ₀ v(t)dt = distance I traveled t=0 to t=b
 
 ---
 
- - Summarizing , the accumulation function of velocity , is displacement
- - The derivative of displacement is velocity. 
+- Summarizing , the accumulation function of velocity , is displacement
+- The derivative of displacement is velocity. 
 
 <h2 id="dd8a004feac789f359b9f1d0c411bf67"></h2>
 
 
 ### What is d/da integral f(x) dx from x = a to x = b?
 
- - we know d/db ∫ᵇₐ f(t)dt = f(b)
- - what happens d/da ∫ᵇₐ f(t)dt  ?
+- we know d/db ∫ᵇₐ f(t)dt = f(b)
+- what happens d/da ∫ᵇₐ f(t)dt  ?
     - -f(a)
 
 ---
 
- - The conventon:
+- The conventon:
     - ∫ᵇₐ f(x)dx  = - ∫ª<sub>b</sub> f(x)dx
  
 
@@ -652,7 +652,7 @@ summing | *differencing*
 
 ### Quiz:
 
- - ∫<sup>6.02</sup>₆ f(x)dx = 0.1 , Approximate f(6) as well as you can given this information 
+- ∫<sup>6.02</sup>₆ f(x)dx = 0.1 , Approximate f(6) as well as you can given this information 
     - ∫<sup>6.02</sup>₆ f(x)dx = f(6) \* 0.02 = 0.1 
     - f(6) = 5
 
@@ -691,7 +691,7 @@ I know you might feel kind of bad, because I don't really see a *2xdx*, I only s
 
 = -1/2·cos(u) + C = -1/2·cos(x²) + C 
 
- - **Every differentiation rule has a corresponding anti-differentiation rule**.
+- **Every differentiation rule has a corresponding anti-differentiation rule**.
   
   ∫f'(g(x))·g'(x)dx , let u=g(x) du=g'(x)dx
 
@@ -703,13 +703,13 @@ I know you might feel kind of bad, because I don't really see a *2xdx*, I only s
 
 ### When I do u-substitution, what should u be?
 
- - How to pick *u* ?
+- How to pick *u* ?
     - look for things you can grab as *du*
     - that is , try to find pieces of the integrand that look like the derivative of something.
 
- - ∫x/(√(4-9x²))dx 
+- ∫x/(√(4-9x²))dx 
     - u = 4-9x²
- - ∫1/(√(4-9x²))dx 
+- ∫1/(√(4-9x²))dx 
     - u = 3/2·x
 
 
@@ -740,9 +740,9 @@ We did it. But I could've finished this problem off in a slightly diferent but e
 
 = 156.
 
- - Method 1 : answer with *x*
+- Method 1 : answer with *x*
     - ∫<sub>x=</sub>ᵇₐ f'(g(x))g'(x)dx = f(g(x)) ］<sub>x=</sub>ᵇₐ
- - Method 2 : endpoints with *u*
+- Method 2 : endpoints with *u*
     - ∫<sub>x=</sub>ᵇₐ f'(g(x))g'(x)dx  = ∫<sub>u=</sub><sup>g(b)</sup><sub>g(a)</sub> f'(u)du =  f(u)  ］<sub>u=</sub><sup>g(b)</sup><sub>g(a)</sub> 
 
 <h2 id="9bd1a0f264093d981b3c1a8170148e94"></h2>
@@ -750,7 +750,7 @@ We did it. But I could've finished this problem off in a slightly diferent but e
 
 ### Might I want to do u-substitution more than once?
 
- - Sometimes you might want to do u substitution more than once. 
+- Sometimes you might want to do u substitution more than once. 
 
   ∫-2cosx sinx cos(cos²x+1)dx
  
@@ -844,7 +844,7 @@ There is a more easy way to do this.
 
 = 3/5·u⁵ - 3/2·u² + C
 
- - This is called **rationalizing substitution**.
+- This is called **rationalizing substitution**.
 
 
 <h2 id="8f940df21711cbfbefdc907d9a92ceba"></h2>
@@ -917,7 +917,7 @@ We know d/dx ∫<sup>x</sup>₀ sintdt = sinx. What I'm asking is what if this e
 
 Define a functin f: ℝ → ℝ , by the rule f(t) = ∫<sup>sint</sup>₀ cosxdx. what is f'(t) ?
 
- - (cost)(cossint)
+- (cost)(cossint)
  
 
 
@@ -932,7 +932,7 @@ F(x) = ∫ˣₐf(t)dt
 F'(x) = f(x)
 
 
- - a, x, t
+- a, x, t
 
 ---
 
@@ -957,7 +957,7 @@ F'(x) = f(x)
 
 **∫f(x)g'(x)dx = f(x)g(x) - ∫f'(x)g(x)dx**
 
- - what this is saying ?
+- what this is saying ?
     - It's saying that I can do `∫f(x)g'(x)dx`  if I can do `∫f'(x)g(x)dx`
 
 let u=f(x), dv = g'(x)dx  
@@ -1073,7 +1073,7 @@ let v=2u , dw = eᵘdu ; dv = 2du , w =  eᵘ
 
 ### What is ∫sin<sup>2n+1</sup>x·cos²ⁿxdx ?
 
- - trick:  You can trade sines for cosines or vice  versa.
+- trick:  You can trade sines for cosines or vice  versa.
     - sin²x + cos²x = 1
 
   ∫sin³x·cos²xdx
@@ -1092,7 +1092,7 @@ let u=cosx, du=-sinxdx
 
 ---
 
- - The trick works as long as we've got an odd power on the sine, or an odd power on  the cosine.
+- The trick works as long as we've got an odd power on the sine, or an odd power on  the cosine.
     - the key is that you can convert that odd power to  `even power` x (sin/cos) 
     - and the `even power` can apply the rule `sin²x + cos²x = 1`
 
@@ -1104,7 +1104,7 @@ let u=cosx, du=-sinxdx
 
 Now we know how the handle odd power of sin/cos. But how to handle even power ?  We need the **Half·Angle Formual**.
 
- - **Half·Angle Formual**
+- **Half·Angle Formual**
     - sin²x = (1-cos(2x))/2
     - cos²x = (1+cos(2x))/2 
     
@@ -1180,9 +1180,9 @@ TODO
 
 ![](../imgs/calculus_compute_area_with_horizontal_rectangle.png)
 
- - height of rectangle : dy
- - width of rectangle: 2√y 
- - area = ∫¹₀ 2√ydy   (Ps. not [-1,1], [-1,1] is for ∫xxxdx  )
+- height of rectangle : dy
+- width of rectangle: 2√y 
+- area = ∫¹₀ 2√ydy   (Ps. not [-1,1], [-1,1] is for ∫xxxdx  )
 
 <h2 id="1eff9e402e1402bf1d1c8984c1387c61"></h2>
 
@@ -1206,9 +1206,9 @@ if I cut this up into horizontal strips, all of my horizontal strips have an ora
 
 ![](../imgs/calculus_integrate_horizontal_strips_example.png)
 
- - height: dy
- - width :  (y²+1)/2 - y²
- - area = ∫¹₀ ((y²+1)/2 - y²) dy
+- height: dy
+- width :  (y²+1)/2 - y²
+- area = ∫¹₀ ((y²+1)/2 - y²) dy
 
 <h2 id="ab458f4b361834dd802e4f40d31b5ebc"></h2>
 
@@ -1315,8 +1315,8 @@ V = ∫¹₀ π(√x²-(x²)²)dx
 
 for each shell :
 
- - h = 1-x²
- - 横截面面积 s = πR²-πr² = π(R+r)(R-r) = π·2x·dx 
+- h = 1-x²
+- 横截面面积 s = πR²-πr² = π(R+r)(R-r) = π·2x·dx 
 
 V = ∫¹₀ π·2x·(1-x²) dx
 
@@ -1369,8 +1369,8 @@ now we pulling the dx outside
 
 So here's the formula that we're going to use ?
 
- - the **arc length** from (a,f(a)) to (b,f(b)) along the graph of y=f(x) is :
- - ∫ᵇₐ √(1+f'(x)²) dx
+- the **arc length** from (a,f(a)) to (b,f(b)) along the graph of y=f(x) is :
+- ∫ᵇₐ √(1+f'(x)²) dx
 
 ---
 

@@ -70,7 +70,7 @@
 
 ![](../imgs/HRL_4_room_problems_structure.png)
 
- - A task-hierarchy decomposing the 4-room task
+- A task-hierarchy decomposing the 4-room task
     - 2 lower-level subtask ared MPDs for a generic room
         - where separate policies are learnt to exit a room to the North and West
         - the arrows indicate transitions to terminal states. 
@@ -84,15 +84,15 @@
 
 ## State Abstraction 
 
- - we can eliminate irrelevant variables , and 
- - where abstract actions "funnel" the agent to a small subset of states.
+- we can eliminate irrelevant variables , and 
+- where abstract actions "funnel" the agent to a small subset of states.
 
 <h2 id="ab4f4d1eab009cf07b82bff65ef8b303"></h2>
 
 
 ### eliminate irrelevant variables
 
- - RL algrithm will learn the same value-function or policy for all redundant states if it were given redundant information
+- RL algrithm will learn the same value-function or policy for all redundant states if it were given redundant information
     - for example , navigating through a red coloured room may be the same as a blue coloured room , but a value function and policy treats each (position-in-room,colour) as a different state. 
     - if colour has no effect on navigation it would simplify the problem by eliminating the colour variable from consideration.
 
@@ -101,7 +101,7 @@
 
 ### Funnelling
 
- - a type of state abstraction where abstract actions move the environment from a large number of initial states to a small number of resulting states
+- a type of state abstraction where abstract actions move the environment from a large number of initial states to a small number of resulting states
     - Funnelling allows the four-room task to be state-abstracted at the root node to just 4 states because, irrespective of the starting position in each room, the abstract actions have the property of moving the agent to another room state.
 
 <h2 id="89bc22afc5ad4a92ab4b96584ba49eb6"></h2>
@@ -109,10 +109,10 @@
 
 ## Value-Function Decomposition
 
- - The task-hierarchy for the four-room task has 2 successful higher-level policies that will find a path out of the house from the South-East Room.
+- The task-hierarchy for the four-room task has 2 successful higher-level policies that will find a path out of the house from the South-East Room.
     - either North-West-North , or West-North-North
     - the latter is the shourter path, but the simple hierarchical RL can not make this distinction.
- - What is needed is a way to decompose the value function for the whole problem over the task-hierarchy.
+- What is needed is a way to decompose the value function for the whole problem over the task-hierarchy.
     - given this decomposition we can take into account the rewards within a subtask when making decision at higher levels.
 
 <h2 id="c1e81f3c2f720c3a2e3a765ba6a11d59"></h2>
@@ -120,13 +120,13 @@
 
 ## Optimality
 
- - Hierarchically Optimal
+- Hierarchically Optimal
     - Policies that are hierarchically optimal are ones that maximise the overall value function consistent with the constraints imposed by the task-hierarchy.
- - Recursively Optimal
+- Recursively Optimal
     - sub-task policies to reach goal terminal states are context free ignoring the needs of their parent tasks. 
     - has the advantage that sub-tasks can be re-used in various contexts
     - but they may not therefore be optimal in each situation
- - Hierarchical Greedy Optimality
+- Hierarchical Greedy Optimality
 
 A hierarchical optimality can be arbitrarily worse than the globally optimal solution and a recursive optimal solution can be arbitrarily worse than a hierarchical optimal solution. 
 
@@ -150,12 +150,12 @@ A hierarchical optimality can be arbitrarily worse than the globally optimal sol
 
 ## 9.3.3 MAXQ
 
- - an approach to HRL where the value function is decomposed over the task hierarchy
- - abstract actions are crafted by classifying subtask terminal states as either goal states or non-goal states
- - Using disincentives for non-goal states, policies are learnt for each subtask to encourage termination in goal states.
- - MAXQ represents the value of a state as a decomposed sum of sub-task completion values plus the expected reward for the immediate primitive action   
+- an approach to HRL where the value function is decomposed over the task hierarchy
+- abstract actions are crafted by classifying subtask terminal states as either goal states or non-goal states
+- Using disincentives for non-goal states, policies are learnt for each subtask to encourage termination in goal states.
+- MAXQ represents the value of a state as a decomposed sum of sub-task completion values plus the expected reward for the immediate primitive action   
     - A completion value is the expected (discounted) cumulative reward to complete the sub-task after taking the next abstract action.
- - abstract action *a* for subtask *m* invokesa child subtask *mₐ*
+- abstract action *a* for subtask *m* invokesa child subtask *mₐ*
     - V<sup>π</sup> (mₐ ,s)
         - The expected **value** of completing subtask mₐ
     - hierarchical policy π 
@@ -168,14 +168,14 @@ A hierarchical optimality can be arbitrarily worse than the globally optimal sol
     - The value of completing subtask mₐ depends on whether *a* is primitive or not.  V<sup>π</sup> (mₐ ,s) = 
         - = Q<sup>π</sup> (mₐ,s,π(s)) , if *a* is abstract
         - = ∑<sub>s'</sub> T(s,a,s')R(s,a,s')  , if *a* is primitive
- - If the path of activated subtasks from root subtask m₀ to primitive action m<sub>k</sub> is m₀,m₁,..., m<sub>k</sub> , and the hierarchical policy specifies that in subtask mᵢ, π(s) = aᵢ , then 
+- If the path of activated subtasks from root subtask m₀ to primitive action m<sub>k</sub> is m₀,m₁,..., m<sub>k</sub> , and the hierarchical policy specifies that in subtask mᵢ, π(s) = aᵢ , then 
     - ![](../imgs/HRL_maxq_value_decomposition_0_k.png)
- - To follow an optimal greedy policy given the hierarchy
+- To follow an optimal greedy policy given the hierarchy
     - V<sup>\*</sup>(mₐ,s) = max<sub>s'</sub> Q<sup>\*</sup>(mₐ,s,a′)
 
 ![](../imgs/HRL_4_room_problems_Value_decompose.png)
 
- - The decomposed value of the agent’s state has three terms
+- The decomposed value of the agent’s state has three terms
     - determined by the two levels in the task-hierarchy plus a primitive action.It is composed by
         1. expected reward for taking the next primitive action to the North , plus
         2. expected reward for completing the lower-level sub-task of leaving the room to the West, plus
@@ -200,11 +200,11 @@ Algorithm 19 performs the equivalent of on-line Q-Learning for completion functi
 > Algorithm 19. MAXQ(m,s) [Dietterich (2000)]
 
 
- - If the action is primitive it learns the expected reward for that action in each state (Line 3)
- - For abstract actions the completion function following the abstract action is updated (Line 12).
- - The learning rate parameter α is gradually reduced to zero in the limit
+- If the action is primitive it learns the expected reward for that action in each state (Line 3)
+- For abstract actions the completion function following the abstract action is updated (Line 12).
+- The learning rate parameter α is gradually reduced to zero in the limit
 
- - Algorithm 19 is a simplified version of the MAXQ algorithm
+- Algorithm 19 is a simplified version of the MAXQ algorithm
     -  For an extended version of the Algorithm, one that accelerates learning and distinguishes goal from non-goal terminal states using **pseduo-rewards** 
 
 
@@ -225,19 +225,19 @@ Require: root node m₀, starting state s₀, V,C
 
 ### HRL Applied to the Four-Room Task
 
- - The designer of the task-hierarchy in Figure 9.5 has recognised several state abstraction opportunities. Recall that the state is described by the tuple (room, position).
+- The designer of the task-hierarchy in Figure 9.5 has recognised several state abstraction opportunities. Recall that the state is described by the tuple (room, position).
 
 ![](../imgs/HRL_f9.5.png)
 
 > Fig. 9.5 A task task-hierarchy for the four-room task. The subtasks are room-leaving actions and can be used in any of the rooms.
 
- - The parent-level root subtask has just four states representing the four rooms. 
- - “X” indicates non-goal terminal states.
+- The parent-level root subtask has just four states representing the four rooms. 
+- “X” indicates non-goal terminal states.
     - **terminal states is either goal  or non-goal !**
 
 ---
 
- - notice that room-leaving abstract actions always terminate in one state
+- notice that room-leaving abstract actions always terminate in one state
 
 
 

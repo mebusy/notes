@@ -81,7 +81,7 @@ https://developers.facebook.com/docs/messenger-platform/getting-started
 
 # debug messager bot with local server
 
- - localtunnel or ngrok
+- localtunnel or ngrok
     - 使用 localtunnel 需要清理掉你本地的 代理服务器设置，不要设置 http-proxy , https-proxy, 否则会出现错误 Tunnel Server is offline 
 
 <h2 id="627aea0b68e33e1e89d82f9b7303f7a1"></h2>
@@ -89,10 +89,10 @@ https://developers.facebook.com/docs/messenger-platform/getting-started
 
 ## localtunnel
 
- - create localtunnel server
+- create localtunnel server
     - https://github.com/localtunnel/server
 
- - or just use provided service
+- or just use provided service
     - `lt -s mebusy -l 10.192.81.132 -p 5757`
 
 
@@ -151,13 +151,13 @@ POST /stack HTTP/1.1
 }
 ```
 
- - test data ,  single event 
+- test data ,  single event 
 
 ```
 curl -X POST http://127.0.0.1:3000/bot -d '{"object":"page","entry":[{"id":"821299701563322","time":1551944314225,"messaging":[{"recipient":{"id":"821299701563322"},"timestamp":1551944314225,"sender":{"id":"2058800797536806"},"game_play":{"game_id":"702997996724334","payload":"{\"timezone\":8,\"nickname\":\"Qi\",\"firstTime\":false,\"top1player\":\"2247834808562963\",\"randomFriendId\":\"2247834808562963\"}","player_id":"2074839315937481"}}]}]}'
 ```
 
- - test data , 两组 entry, 每个 entry 包含2个event; 
+- test data , 两组 entry, 每个 entry 包含2个event; 
     - 有一个event 是 message 
 
 ```

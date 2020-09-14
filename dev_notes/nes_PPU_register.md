@@ -18,7 +18,7 @@
 
 https://wiki.nesdev.com/w/index.php/PPU_registers
 
- - PPU 暴露了8个 内存映射过的 寄存器给CPU, 位于 CPU的地址空间 $2000 - $2007 , 并且 在 $2008-$3FFF 做镜像, 这8k内存都是 PPU I/O区
+- PPU 暴露了8个 内存映射过的 寄存器给CPU, 位于 CPU的地址空间 $2000 - $2007 , 并且 在 $2008-$3FFF 做镜像, 这8k内存都是 PPU I/O区
 
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
@@ -44,8 +44,8 @@ OAMDMA | $4014 | write | aaaa aaaa | OAM DMA high address
 
 ### PPUSTATUS $2002 < read
 
- - 该寄存器反映了PPU内各种功能的状态
- - 它通常用于确定时间
+- 该寄存器反映了PPU内各种功能的状态
+- 它通常用于确定时间
     - 为了确定PPU何时到达屏幕的给定像素，将精灵0的不透明像素放在那里。
 
 ```
@@ -71,7 +71,7 @@ VSO. ....
            pre-render line.
 ```
 
- - Note
+- Note
     - 读取状态寄存器将清除上面提到的D7，
         - 还有PPUSCROLL和PPUADDR使用的address latch。
     - 一旦精灵0命中标志被设置，它将不会被清除，直到下一个VBlank结束。
@@ -82,10 +82,10 @@ VSO. ....
 
 ### PPUADDR ($2006) >> write x2
 
- - The CPU writes to VRAM through a pair of registers on the PPU
+- The CPU writes to VRAM through a pair of registers on the PPU
     - First it loads an address into PPUADDR
     - and then it writes repeatedly to PPUDATA to fill VRAM.
- - For example, to set the VRAM address to $2108:
+- For example, to set the VRAM address to $2108:
     - 选择地址后，通过 PPUDATA 连续写入数据
 
 ```
@@ -101,14 +101,14 @@ VSO. ....
 ----
 
 
- - 开机后，PPU 不一定处于可用状态，CPU需要做一些事情使它工作 ...
+- 开机后，PPU 不一定处于可用状态，CPU需要做一些事情使它工作 ...
 
 <h2 id="2ea9139a25965e25aa6292e0d86f9ebf"></h2>
 
 
 ## PPU power up state
 
- - Initial Register Values
+- Initial Register Values
     - ? = unknown, x = irrelevant, + = often set, U = unchanged
 
 Register | At Power | After Reset
@@ -132,12 +132,12 @@ CHR RAM (external, in Game Pak) | unspecified pattern | unchanged
 
 ### Best practice
 
- - Writes to the following registers are ignored if earlier than ~29658 CPU clocks after reset:
+- Writes to the following registers are ignored if earlier than ~29658 CPU clocks after reset:
     - PPUCTRL, PPUMASK, PPUSCROLL, PPUADDR. 
     - This also means that the PPUSCROLL/PPUADDR latch will not toggle.
- - The other registers work immediately
+- The other registers work immediately
     - PPUSTATUS, OAMADDR, OAMDATA ($2004), PPUDATA, and OAMDMA ($4014).
- - 确保29658个周期过去的最简单方法，这也是 商业NES游戏使用的方式，在您的初始化代码中包含一对如下所示的循环：
+- 确保29658个周期过去的最简单方法，这也是 商业NES游戏使用的方式，在您的初始化代码中包含一对如下所示的循环：
 
 ```
   bit PPUSTATUS  ; clear the VBL flag if it was set at reset time
@@ -154,13 +154,13 @@ vwait2:
 
 ## Init code
 
- - 当NES上电或复位时，程序应在fixed bank中执行以下操作：
+- 当NES上电或复位时，程序应在fixed bank中执行以下操作：
     - Set IRQ ignore bit    
         - 不是必须的, 因为 6502在包括RESET在内的所有中断上设置了该标志, 但是它允许程序代码使用 `JMP ($FFFC)` 来模拟RESET
     - 禁用PPU NMI和渲染
     - 初始化堆栈指针
     - 初始化mapper（如果有的话）
- - 此后的init code可以放在fixed bank, 或 另一个单独的bank , using a bankswitch followed by a JMP:
+- 此后的init code可以放在fixed bank, 或 另一个单独的bank , using a bankswitch followed by a JMP:
     - 禁用十进制模式
         - 由于2A03没有十进制模式，所以不是必须的，但禁用它 可以保持与通用6502调试器的兼容性
     - 如果使用了一个 会产生 IRQ的 mapper( 如 MMC3 , MMC5),  请禁用 [APU timer IRQs](https://wiki.nesdev.com/w/index.php/APU_Frame_Counter)
@@ -173,12 +173,12 @@ vwait2:
 
 ---
 
- - 一些mapper 没有 fixed bank. 
+- 一些mapper 没有 fixed bank. 
     - 因为它们一次切换整个 32k的PRG. 
     - 这些包括AxROM，BxROM，GxROM和MMC1的一些配置。
     - 你必须在每个bank都加入同样的代码，包括 中断向量，bank swith的代码。通常情况下, 位于 $FF00-$FFFF 的页面 包括 中断向量，init code的开始，以及 一个跳板(trampoline) 用来从一个bank的代码 跳到 另一个bank的代码.
 
- - Sample implementation:
+- Sample implementation:
 
 ```
 reset:

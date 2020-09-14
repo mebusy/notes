@@ -22,8 +22,8 @@ nt FastDistance2D(int x, int y)
 ```
 
 
- - `x+y-(mn<<1)-(mn<<2)+(mn<<4)` 实际上就是 `max + min* 0.3125x` 
- - 0.3125 的来历
+- `x+y-(mn<<1)-(mn<<2)+(mn<<4)` 实际上就是 `max + min* 0.3125x` 
+- 0.3125 的来历
     - let a = Max(x,y) ,  x = Min(x,y)
     - sqrt(a²+x²) 以线性函数 a+bx 来拟合，系数 b 即为待确定值 
     - a=5 时的函数图像 :

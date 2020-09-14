@@ -28,19 +28,19 @@
 
 ## Mincut problem
 
- - Input
+- Input
     - An edge-weighted digraph, source vertex s, and target vertex t
     - each edge has a positive capacity
- - Def.
+- Def.
     - A **st-cut (cut)** is a partition of the vertices into two disjoint sets, with s in one set A and t in the other set B. 
- - Def.
+- Def.
     - Its **capacity** is the sum of the capacities of the edges from A to B.
 
 ![](../imgs/algorII_mcut_0.png)
 
 ![](../imgs/algorII_mcut_1.png)
 
- - **Minimum st-cut (mincut) problem**
+- **Minimum st-cut (mincut) problem**
     - Find a cut of minimum capacity
 
 ![](../imgs/algorII_mcut_2.png)
@@ -50,7 +50,7 @@
 
 ### Mincut application
 
- - **"Free world" goal** 
+- **"Free world" goal** 
     - Cut supplies (if cold war turns into real war).
 
 ![](../imgs/algorII_mincut_application.png)
@@ -63,20 +63,20 @@
 
 ## Maxflow problem
 
- - Input. 
+- Input. 
     - An edge-weighted digraph, source vertex s, and target vertex t.
     - each edge has a positive capacity
- - Def.
+- Def.
     - An **st-flow (flow)** is an assignment of values to the edges such that:
         - Capacity constraint: 0 ≤ edge's flow ≤ edge's capacity.
         - Local equilibrium: inflow = outflow at every vertex (except s and t).
 
 ![](../imgs/AlgorII_max_flow.png)
 
- - Def. The **value** of a flow is the inflow at t.
+- Def. The **value** of a flow is the inflow at t.
     - we assume no edge points to s or from t 
     - show as the previous picture, the value = 5 + 10 + 10 = 25.
- - **Maximum st-flow (maxflow) problem**
+- **Maximum st-flow (maxflow) problem**
     - Find a flow of maximum value. 
 
 ![](../imgs/AlgorII_max_flow_problem.png)
@@ -86,7 +86,7 @@
 
 ## Maxflow application
 
- - **Soviet Union goal**
+- **Soviet Union goal**
     - Maximize flow of supplies to Eastern Europe.
  
 ![](../imgs/algroII_maxflow_application.png)
@@ -97,10 +97,10 @@
 
 ## Summary
 
- - Input. A weighted digraph, source vertex s, and target vertex t. 
- - Mincut problem. Find a cut of minimum capacity.
- - Maxflow problem. Find a flow of maximum value.
- - Remarkable fact. These two problems are dual!
+- Input. A weighted digraph, source vertex s, and target vertex t. 
+- Mincut problem. Find a cut of minimum capacity.
+- Maxflow problem. Find a flow of maximum value.
+- Remarkable fact. These two problems are dual!
 
 ---
 
@@ -114,10 +114,10 @@
 
 ## Ford-Fulkerson algorithm
 
- - Initialization. Start with 0 flow. 
+- Initialization. Start with 0 flow. 
     - all edges has 0 flow.
     - the value is 0.
- - Idea: increase flow along augmenting paths
+- Idea: increase flow along augmenting paths
     - **Augmenting path**: Find an undirected path from s to t such that:
         - Can increase flow on forward edges (not full).
         - Can decrease flow on backward edge (not empty). ?

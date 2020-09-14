@@ -12,7 +12,7 @@
 ## ngx_lua 安装,使用
 
 
- - 验证是否链了luajit
+- 验证是否链了luajit
      - linux , `ldd`
          - 
          ```bash
@@ -21,7 +21,7 @@
      - OSX otool
          - `otool -L /usr/local/nginx/sbin/nginx`
 
- - 常用命令
+- 常用命令
      - nginx 修改端口
          - `nginx.conf`
      - nginx 指定配置文件

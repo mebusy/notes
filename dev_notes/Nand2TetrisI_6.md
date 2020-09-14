@@ -43,18 +43,18 @@ Repeat:
 Until end-of-file
 ```
 
- - very simple
+- very simple
 
 <h2 id="5214a8a633c296d1d9d504fc54556692"></h2>
 
 
 ### Symbols
 
- - Used for 
+- Used for 
     - Labels  `JMP loop`
     - Variables   `Load R1, weight`
- - Assembler must replace names with address 
- - use a symbol table < symbol name , memory address >
+- Assembler must replace names with address 
+- use a symbol table < symbol name , memory address >
     - variables:  if in symbol table, use it; otherwise, alloc a new memory , and put the address in symbol table 
     - lable : remember the address of the instruction next to the label declaration.
         - but what if the label is used before declaration ?
@@ -77,12 +77,12 @@ Until end-of-file
 
 ### Translating A-instructions 
 
- - `@value`
- - binary: 0xxxxxxxxxxxxxxx 
- - where *value* is either
+- `@value`
+- binary: 0xxxxxxxxxxxxxxx 
+- where *value* is either
     - a non-negative decimal constant , or 
     - a symbol referring to such a constant
- - Translation to binary
+- Translation to binary
     - if *value* is a decimal constant , generate the 15-bit binary constant
     - if *value* is a symbol, later.
 
@@ -91,9 +91,9 @@ Until end-of-file
 
 ### Translating C-instructions 
 
- - `dest = comp ; jump`
- - `111` a c1 c2 c3 c4 c5 c6 d1 d2 d3 j1 j2 j3 
- - ![](../imgs/n2t_c_instruction_again.png)
+- `dest = comp ; jump`
+- `111` a c1 c2 c3 c4 c5 c6 d1 d2 d3 j1 j2 j3 
+- ![](../imgs/n2t_c_instruction_again.png)
 
 
 <h2 id="ff03d198aff223f51c6fe6743fd2ff49"></h2>
@@ -101,11 +101,11 @@ Until end-of-file
 
 ## 6.4: The Assembly Process - Handling Symbols
 
- - Symbol
+- Symbol
     - Variables
     - Labels
     - pre-defined symbols
- - Use symbol table 
+- Use symbol table 
     1. init symbol table with pre-dfined symbols
     2. first pass ,  add Lable symbols to symbol table
     3. 2nd pass , translate code 
@@ -116,7 +116,7 @@ Until end-of-file
 
 ## 6.6: Project 6 Overview: Programming Option
 
- - Proposed software architecture
+- Proposed software architecture
     - Parse: unpacks each instruction into its underlying fields
     - Code: translates each field into its corresponding binary value
     - SymbolTable: managers the symbol table

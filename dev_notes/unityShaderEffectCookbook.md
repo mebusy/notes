@@ -45,15 +45,15 @@
 
 ## Creating a basic Surface Shader
 
- - Getting Ready ...
+- Getting Ready ...
      - create a `Materials` folder
      - create a shader, create a material
      - edit material, choose the shader you created
      - apply material to an object
 
- - The Surface Shader language is a more component-based way of writing Shaders. 
+- The Surface Shader language is a more component-based way of writing Shaders. 
     - Tasks such as processing your own texture coordinates and transformation matrices have already been done for you
- - See also 
+- See also 
     - For more information on where to  nd a large portion of the built-in Cg functions for Unity
     - go to your Unity install directory and navigate to 
         - `CGIncludes\UnityCG.cginc`
@@ -71,7 +71,7 @@ Properties {
 }
 ```
 
- - from left to right, they are 
+- from left to right, they are 
     - variable name
     - inspector GUI name
     - type 
@@ -80,7 +80,7 @@ Properties {
 ---
 
 Surface Shader property types | ·
- --- | ---
+--- | ---
 Range (min, max) | float property as a slider
 Color | a color picker = (float,float,float,float)
 2D  |   a texture
@@ -89,7 +89,7 @@ Cube  |  a cube map
 Float |  a float value
 Vector |  four-float property
 
- - See also
+- See also
     - https://docs.unity3d.com/Manual/SL-Properties.html
 
 ---
@@ -97,7 +97,7 @@ Vector |  four-float property
 Property attributes
 
 attributes | /
- --- | ---
+--- | ---
 [HideInInspector] | does not show the property value in the material inspector.
 [NoScaleOffset] | material inspector will not show texture tiling/offset fields for texture properties with this attribute.
 [Normal] | indicates that a texture property expects a normal-map.
@@ -147,21 +147,21 @@ inline float4 LightingBasicDiffuse (SurfaceOutput s, fixed3
 
 How it works ?
 
- - The #pragma surface directive tells the Shader which lighting model to use for its calculation
+- The #pragma surface directive tells the Shader which lighting model to use for its calculation
     - when we first create the Shader, the light modle which use is defined in `Lighting.cginc` file
     - We have now told the Shader to look for a lighting model by the name **BasicDiffuse**
- - Creating a new lighting model is done by declaring a new lighting model function. There are 3 types of lighting model functions that you can use:   
+- Creating a new lighting model is done by declaring a new lighting model function. There are 3 types of lighting model functions that you can use:   
     - `half4 Lighting<Your Chosen Name> (SurfaceOutput s, half3 lightDir, half atten){}`
         - This function is used for forward rendering when the view direction is not needed.
     - `half4 Lighting<Your Chosen Name> (SurfaceOutput s, half3 lightDir, half3 viewDir, half atten){}`
         - This function is used in forward rendering when a view direction is needed
     - `half4 Lighting<Your Chosen Name>_PrePass (SurfaceOutput s, half4 light){}`
         - This function is used when you are using deferred rendering for your project
- - To complete the diffuse calculation, we need to multiply `difLight` with 
+- To complete the diffuse calculation, we need to multiply `difLight` with 
     - the s.Albedo value (which comes from our surf function) 
     - with the incoming `_LightColor0.rgb` value (which Unity provides)
     - and then multiply the result of that with (difLight * atten) 
- - finally, return that value as the color. See the following code:
+- finally, return that value as the color. See the following code:
 
 
 [rending path 介绍](renderingPath.md)
@@ -172,9 +172,9 @@ How it works ?
 
 ## Creating a Half Lambert lighting model
 
- - Half Lambert was a technique created by Valve as a way of getting the lighting to show the surface of an object in low-light areas
- - It basically brightens up the diffuse lighting of the Material and wraps the diffuse light around an object's surface
- - It is designed to prevent the rear of an object losing its shape and looking too flat. 
+- Half Lambert was a technique created by Valve as a way of getting the lighting to show the surface of an object in low-light areas
+- It basically brightens up the diffuse lighting of the Material and wraps the diffuse light around an object's surface
+- It is designed to prevent the rear of an object losing its shape and looking too flat. 
 
 
 ![](../imgs/u3d_shader_half_lambert_01.png)
@@ -185,7 +185,7 @@ How it works ?
 
 > The Lambertian dot product lobe (red) vs. the Half Lambertian dot product lobe (blue)
 
- - Using the basic Shader that we created in the last recipe, let's update the diffuse calculation:
+- Using the basic Shader that we created in the last recipe, let's update the diffuse calculation:
 
 ```
     float difLight = dot (s.Normal, lightDir);
@@ -197,8 +197,8 @@ How it works ?
     return col;
 ```
 
- - NO more `max` calcuation for difLight 
- - 原来的 0-1 的值，现在变成了 0.5-1, 整体增强了。
+- NO more `max` calcuation for difLight 
+- 原来的 0-1 的值，现在变成了 0.5-1, 整体增强了。
 
 
 <h2 id="c0ef1ef00afe0d980dc81f7540362639"></h2>
@@ -206,17 +206,17 @@ How it works ?
 
 ## Creating a ramp texture to control diffuse shading
 
- - Another great tool in your Shader writing toolbox is the use of a ramp texture to drive the color of the diffuse lighting.
- - This allows you to accentuate the surface's colors to fake the effects of more bounce light or a more advanced lighting setup. 
- - You see this technique used a lot more for cartoony games
+- Another great tool in your Shader writing toolbox is the use of a ramp texture to drive the color of the diffuse lighting.
+- This allows you to accentuate the surface's colors to fake the effects of more bounce light or a more advanced lighting setup. 
+- You see this technique used a lot more for cartoony games
     - where you need a more artist-driven look to your Shaders and not so much of a physically-accurate lighting model.
  
  ![](http://www.68idc.cn/help/uploads/allimg/150307/1504334Q2_0.jpg)
 
- - To get this started you will need to create a ramp texture
+- To get this started you will need to create a ramp texture
     - any image editing application should be able to make a gradient
     - ![](../imgs/u3d_shader_ramp_texture.png)
- - Simply modify the lighting function so that it includes this new code `ramp` 
+- Simply modify the lighting function so that it includes this new code `ramp` 
 
 ```
 _RampTex("Ramp texture", 2D) = "white" {}
@@ -234,31 +234,31 @@ sampler2D _RampTex;
     return col;
 ```
 
- - tex2D function takes two arguments
+- tex2D function takes two arguments
     - texture property
     - UV
- - 在一般的Blinn/Phong模型中，我们对漫反射的系数是基于入射光和击中的点的法线的角度
+- 在一般的Blinn/Phong模型中，我们对漫反射的系数是基于入射光和击中的点的法线的角度
     - 使用Ramp texture，可以用一张1D的材质图来做为索引表。用来控制漫反射的系数
- - Now it is possible for the artist to have some custom control over how the light looks on the surface of an object.
+- Now it is possible for the artist to have some custom control over how the light looks on the surface of an object.
     - This is why this technique is more commonly seen on a project where you need more of an illustrative look.
- - ![](../imgs/ramEffect.jpg)
+- ![](../imgs/ramEffect.jpg)
 
 <h2 id="394d219380b43a7353afcc1371d66f0d"></h2>
 
 
 ## Creating a faked BRDF using a 2D ramp texture
 
- - We can take the ramp diffuse recipe one step further by using the `view direction` , provided by the lighting functions, to create a more advanced visual look to our lighting.
- - By utilizing the view direction, we will be able to generate some faked `rim lighting` (边缘光照) .
- - If we look at the ramp diffuse technique, we are only using one value to place into the UV lookup of the ramp texture. 
+- We can take the ramp diffuse recipe one step further by using the `view direction` , provided by the lighting functions, to create a more advanced visual look to our lighting.
+- By utilizing the view direction, we will be able to generate some faked `rim lighting` (边缘光照) .
+- If we look at the ramp diffuse technique, we are only using one value to place into the UV lookup of the ramp texture. 
     - This means that we will get a very linear type of lighting effect. 
     - The view vector will provide us with the means to create a more advance texture lookup.
- - In the Cg industry this technique is often referred to as a **BRDF effect**. 
+- In the Cg industry this technique is often referred to as a **BRDF effect**. 
     - BRDF（Bidirectional Reflectance Distribution Function，即双向反射分布函数）
- - BRDF simply means the way in which light is refected off an opaque surface from both the view direction and the light direction.
- - We need gradients for both dimensions of the texture , and apply it to our Ram texture 
+- BRDF simply means the way in which light is refected off an opaque surface from both the view direction and the light direction.
+- We need gradients for both dimensions of the texture , and apply it to our Ram texture 
     - ![](../imgs/BRDF.jpg)
- - How to do it ...
+- How to do it ...
     1. First we need to change our lighting function to include the `viewDir` variable that Unity provides us
         - to get the current view direction  , modify your lighting function to 
         - `half4 Lighting<Your Chosen Name> (SurfaceOutput s, half3 lightDir, half3 viewDir, half atten){}`
@@ -288,8 +288,8 @@ inline float4 LightingBasicDiffuse (SurfaceOutput s, half3 lightDir, half3 viewD
 
 ![](../imgs/BRDF_explain.jpg)
 
- - When using the view direction parameter, we can create a very simple falloff type effect. 
- - You can use this parameter to create a lot of different types of effects: 
+- When using the view direction parameter, we can create a very simple falloff type effect. 
+- You can use this parameter to create a lot of different types of effects: 
     - a bubble type transparency
     - the start of a rim light effect
     - shield effects
@@ -304,24 +304,24 @@ inline float4 LightingBasicDiffuse (SurfaceOutput s, half3 lightDir, half3 viewD
 
 We can also use texture to animate, to blend and really, to drive any other property we want. 
 
- - Scrolling textures by modifying UV values
- - Animating sprite sheets
- - Packing and blending textures
- - Normal mapping
- - Creating procedural textures in the Unity editor
- - Photoshop levels effect
+- Scrolling textures by modifying UV values
+- Animating sprite sheets
+- Packing and blending textures
+- Normal mapping
+- Creating procedural textures in the Unity editor
+- Photoshop levels effect
 
 <h2 id="4555fd02bf1cc2d23dc15f9b5e929dcf"></h2>
 
 
 ## Scrolling textures by modifying UV values
 
- - One of the most common texture techniques used in today's game industry is 
+- One of the most common texture techniques used in today's game industry is 
     - the process of allowing you to scroll their textures over the surface of an object.
     - This allows you to create effects such as **waterfalls, rivers, lava flows, and so on**.
     - It's also a technique that is the basis for creating animated sprite effects.
- - create a new shader and a new matrial
- - 1. The Shader will need two new properties that will allow us to control the speed of the texture scrolling
+- create a new shader and a new matrial
+- 1. The Shader will need two new properties that will allow us to control the speed of the texture scrolling
 
 ```
 Properties {
@@ -337,7 +337,7 @@ fixed _ScrollXSpeed ;
 fixed _ScrollYSpeed ;
 ```
 
- - 2. Modify the surface function to change the UVs being given to the tex2D() function.
+- 2. Modify the surface function to change the UVs being given to the tex2D() function.
     - hen use the built-in `_Time` variable to animate the UVs over time when **Play** is pressed in the editor:
     - `scrolledUV` has to be float2 / fixed2 because the UV values are being passed to us from the Input structure:
         - `struct Input { float2 uv_Maintex };`
@@ -364,16 +364,16 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
 }
 ```
  
- - for more shadow lab builtin values : [SL-BuiltinValues](https://docs.unity3d.com/455/Documentation/Manual/SL-BuiltinValues.html)
+- for more shadow lab builtin values : [SL-BuiltinValues](https://docs.unity3d.com/455/Documentation/Manual/SL-BuiltinValues.html)
 
 <h2 id="13a48b8e3741e7e838ddbd4143b7aedc"></h2>
 
 
 ## Animating sprite sheets
 
- - create a new shader and a new matrial
+- create a new shader and a new matrial
     - Then set up your Material by placing it onto a plane in the Scene view
- - 1. Create new properties 
+- 1. Create new properties 
 
 ```
 Properties {
@@ -390,7 +390,7 @@ float _Speed ;
 
 ```
  
- - get it animated !
+- get it animated !
 
 ```
 void surf (Input IN, inout SurfaceOutputStandard o) {
@@ -418,8 +418,8 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
 }
 ```
 
- - 注意，我们这里使用 `_Time.y` , 这是正常的time值，如果直接使用 `_Time`, 其实是 `_Time.x`, 它是 t/20.
- - There's more...
+- 注意，我们这里使用 `_Time.y` , 这是正常的time值，如果直接使用 `_Time`, 其实是 `_Time.x`, 它是 t/20.
+- There's more...
     - you can move the frame offset selection code to a C# script that talks to the Shader, and have the CPU drive that portion of the code.
 
 ```
@@ -435,27 +435,27 @@ void FixedUpdate() {
 
 ## Packing and blending textures
 
- - Textures are also useful for storing loads of data
+- Textures are also useful for storing loads of data
     - not just pixel colors as we generally tend to think of them, but for storing multiple sets of pixels in both the x and y directions and in the RGBA channels.
     - We can actually pack multiple images into one single RGBA texture and use each of the R, G, B, and A components as individual textures themselves, by extracting each of those components in the Shader code.
 
 ![](../imgs/u3d_shader_rgba_pack.png)
 
- - Why is this helpful?
+- Why is this helpful?
     - Well, in terms of the amount of actual memory your application takes up, textures are a large portion of your application's size.
     - So, to begin reducing the size of your application, we can look at all of the images that we are using in our Shader , and see if we can merge those textures into a single texture.
- - One example of using these packed textures is when you want to blend a set of textures together onto a single surface. 
+- One example of using these packed textures is when you want to blend a set of textures together onto a single surface. 
     - You see this most often in terrain type Shaders, where you need to blend nicely into another texture using some sort of control texture, or the packed texture in this case. 
 
 ---
 
- - create a new shader and a new material
- - gather up 4 textures for a nice terrain Shader,
+- create a new shader and a new material
+- gather up 4 textures for a nice terrain Shader,
     - grass, dirt, rocky dirt, and a rock texture
- - Finally, we will also need a blending texture that is packed with grayscale images. 
+- Finally, we will also need a blending texture that is packed with grayscale images. 
     - This will give us the four blending textures that we can use to direct how the color textures will be placed on the object surface.
     - ![](../imgs/u3d_shader_pack_blendTex.png)
- - 1. We will need five sampler2D objects, or textures, and two color properties
+- 1. We will need five sampler2D objects, or textures, and two color properties
 
 ```
 Properties {
@@ -478,7 +478,7 @@ Properties {
 
 ```
 
- - 2. In order to allow the user to change the tiling rates on a per-texture basis, we will need to modify our Input struct. This will allow us to use the tiling and offset parameters on each texture:
+- 2. In order to allow the user to change the tiling rates on a per-texture basis, we will need to modify our Input struct. This will allow us to use the tiling and offset parameters on each texture:
 
 ```
     struct Input {
@@ -490,7 +490,7 @@ Properties {
     };
 ```
  
- - 3. In the surf function, get the texture information and store them into their own variables so we can work with the data in a clean, easy-to-understand way:
+- 3. In the surf function, get the texture information and store them into their own variables so we can work with the data in a clean, easy-to-understand way:
 
 ```
     // get the pixel data from the blend texture
@@ -505,7 +505,7 @@ Properties {
     float4 aTexData = tex2D( _ATexture, IN.uv_ATexture ) ;
 ```
 
- - 4. Let's blend each of our textures together using the lerp() function.
+- 4. Let's blend each of our textures together using the lerp() function.
     - It takes in three arguments, lerp(value : a, value : b, blend: c). The lerp function takes in two textures and blends them with the  oat value given in the last argument:
 
 ```
@@ -518,7 +518,7 @@ Properties {
     finalColor.a = 1.0 ;
 ```
  
- - 5. Finally, we multiply our blended textures with the color tint values and use the red channel to determine where the two different terrain tint colors go:
+- 5. Finally, we multiply our blended textures with the color tint values and use the red channel to determine where the two different terrain tint colors go:
 
 ```
     // add on our terrain tinting colors
@@ -530,7 +530,7 @@ Properties {
     o.Alpha = finalColor.a;
 ```
 
- - lerp( a , b, f )
+- lerp( a , b, f )
     - Involves linear interpolation:(1 – f )i\* a + b \* f
     - a and b are matching vector or scalar types. 
     - f can be either a scalar or a vector of the same type as a and b.
@@ -543,21 +543,21 @@ Properties {
 
 ## Normal mapping , or "Dot3 bump mapping"
 
- - One of the most common texture techniques used in today's game development pipelines is the use of **normal maps**. 
- - These give us the ability to fake the effect of high-resolution geometry on a low-resolution model.
+- One of the most common texture techniques used in today's game development pipelines is the use of **normal maps**. 
+- These give us the ability to fake the effect of high-resolution geometry on a low-resolution model.
     - A common use of this technique is to greatly enhance the appearance and details of a low polygon model by generating a normal map from a high polygon model or height map.
- - This is because instead of performing lighting calculations on a per-vertex level, we are using each pixel in the normal map as a normal on the model, giving us much more resolution on how the lighting should be, while still maintaining the low polygon count of our object.
- - Unity makes the process of adding normals to your Shaders quite an easy process within the Surface Shader realm, using the *UnpackNormals()* function. Let's see how this is done.
+- This is because instead of performing lighting calculations on a per-vertex level, we are using each pixel in the normal map as a normal on the model, giving us much more resolution on how the lighting should be, while still maintaining the low polygon count of our object.
+- Unity makes the process of adding normals to your Shaders quite an easy process within the Surface Shader realm, using the *UnpackNormals()* function. Let's see how this is done.
 
 ---
 
- - Create a new Material and Shader 
- - create a normal map 
+- Create a new Material and Shader 
+- create a normal map 
     - unity 中，将它的Texture Type改为Normal Map
 
 ---
 
- - 1. get our Properties block set up to have a color tint and a texture
+- 1. get our Properties block set up to have a color tint and a texture
 
 ```
 Properties {
@@ -569,7 +569,7 @@ float4 _MainTint ;
 sampler2D _NormalTex;
 ```
 
- - 2. make sure that we update the Input struct with the proper variable name, so that we can use the model's UVs for the normal map texture.
+- 2. make sure that we update the Input struct with the proper variable name, so that we can use the model's UVs for the normal map texture.
 
 ```
 struct Input {
@@ -577,7 +577,7 @@ struct Input {
 };
 ```
 
- - 3. Finally, we extract the normal information from the normal map texture by using the built-in UnpackNormal() function
+- 3. Finally, we extract the normal information from the normal map texture by using the built-in UnpackNormal() function
     - Then you only have to apply those new normals to the output of the Surface Shader:
 
 ```
@@ -595,20 +595,20 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
 
 --- 
 
- - 将 normal texture 的 wrap mode 改为 `repeat` , 然后修改 
+- 将 normal texture 的 wrap mode 改为 `repeat` , 然后修改 
     - `float3 normalMap = UnpackNormal(  tex2D( _NormalTex , IN.uv_NormalTex * 8  )  ) ;`
     - 可以产生单张 normal map 重复的效果
 
 ---
 
- - There's more...
+- There's more...
     - You can also add some controls to your normal map Shader that lets a user adjust the intensity of the normal map. 
     - This is easily done by modifying the x and y components of the normal map variable, and then adding it all back together.
- - 1. Add another property
+- 1. Add another property
     - `_NormalIntensity ("Normal Map Intensity", Range(0,2)) = 1`
- - 2. declare
+- 2. declare
     - `float _NormalIntensity;`
- - 3. use `_NormalIntensity` in surf function
+- 3. use `_NormalIntensity` in surf function
 
 ```
     float3 normalMap = UnpackNormal(tex2D(_NormalTex, IN.uv_NormalTex));
@@ -629,10 +629,10 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
 
 在Surface Shader中，无论是使用模型自带的法线或者使用法线纹理都是一件比较方便的事
 
- - 使用模型自带的法线
+- 使用模型自带的法线
     - 法线实际上就是在光照模型中使用的，也就是Surface Shader的`Lighting<Your Chosen Name>` 函数 
     - 想要访问法线的话就是使用SurfaceOutput中的的o.Normal即可
- - 使用法线纹理
+- 使用法线纹理
     - 如果使用法线纹理的话，就需要我们在进入光照函数之前修改SurfaceOutput中的的o.Normal
     - `float3 normal = UnpackNormal(tex2D(_NormalTex, IN.uv_NormalTex)); `
     - `o.Normal = normal; // Apply the new normals to the lighting model `
@@ -641,14 +641,14 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
 
 虽然我们使用了同样的 `Lighting<Name>` 函数，但其中normal、lightDir、viewDir所在的坐标系已经被Unity转换过了。
 
- - 第一种方法， 使用的 World Space
- - 第二种方法， 使用的是 **Tangent Space**.
+- 第一种方法， 使用的 World Space
+- 第二种方法， 使用的是 **Tangent Space**.
 
 --- 
 
- - Q1: 为什么法线纹理通常都是偏蓝色的？
+- Q1: 为什么法线纹理通常都是偏蓝色的？
     - 我们通常见到的这种偏蓝色的法线纹理中，存储的是在Tangent Space中的顶点法线方向。
- - Q2: 什么是Tangent Space ? （有时也叫object local coordinate system）
+- Q2: 什么是Tangent Space ? （有时也叫object local coordinate system）
     - 在Tangent Space中，坐标原点就是顶点的位置
     - 其中z轴是该顶点本身的法线方向（N）
     - 这样，另外两个坐标轴就是和该点相切的两条切线
@@ -661,9 +661,9 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
         - 但这并不是法线纹理中存储的最终值，因为一个向量每个维度的取值范围在(-1, 1)，而纹理每个通道的值范围在(0, 1)，因此我们需要做一个映射，即`pixel = (normal + 1) / 2`。
         - 这样，之前的法线值(0, 0, 1)实际上对应了法线纹理中RGB的值为(0.5, 0.5, 1)，而这个颜色也就是法线纹理中那大片的蓝色。
     - **总结一下就是，法线纹理的RGB通道存储了在每个顶点各自的Tangent Space中的法线方向的映射值**
- - Q3: 对法线纹理的采样要使用UnpackNormal函数 ?
+- Q3: 对法线纹理的采样要使用UnpackNormal函数 ?
     - 猜想一方面是为了方便Unity对不同平台做优化和调整，一方面是为了解析不同格式的法线纹理
- - Q4: 把“Texture Type”设置成“Normal Map”后，有一个复选框是“Create from grayscale”，这个是做什么用的
+- Q4: 把“Texture Type”设置成“Normal Map”后，有一个复选框是“Create from grayscale”，这个是做什么用的
     - 这要从法线纹理的种类说起
     - 我们上述提到的法线纹理，也称“Tangent-Space Normal Map”
     - 还有一种法线纹理是从“Grayscale Height Map”中生成的
@@ -676,21 +676,21 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
 
 ## Creating procedural textures in the Unity editor
 
- - Instead of having to manually create some new texture inside an image editing application, you can create a set of pixels in a two-dimensional nature and apply that to a new texture.
- - This technique can be very useful for painting onto an already-existing texture map
+- Instead of having to manually create some new texture inside an image editing application, you can create a set of pixels in a two-dimensional nature and apply that to a new texture.
+- This technique can be very useful for painting onto an already-existing texture map
     - using a dynamically created texture map, to create some interaction between the gamer and the game environment.
- - The process of creating dynamic textures does rely on creating a separate script that processes the texture for you
- - Getting Ready
+- The process of creating dynamic textures does rely on creating a separate script that processes the texture for you
+- Getting Ready
     - 1. Create a new C# script in your Unity project, and name it ProceduralTexture
     - 2. Create an plane in your scene, zero-out its **Position** values, and assign the ProceduralTexture.cs script to it.
     - 3. option: create a new Shader, a new Material,  apply it to plane object  
         - or just use the default material 
 
- - How to do it  ...
+- How to do it  ...
 
 ---
 
- - 1. Create a variable to control the height and width of our texture, and a Texture2D variable to store our generated texture
+- 1. Create a variable to control the height and width of our texture, and a Texture2D variable to store our generated texture
     - We will also need some private variables to store some data while the script is working.
 
 ```c#
@@ -701,7 +701,7 @@ private Material currentMaterial;
 private Vector2 centerPosition;
 ```
 
- - 2. In the Start() function of the script, we need to  rst check to see if the object , to which this script is attached , does in fact have a Material assigned to it. 
+- 2. In the Start() function of the script, we need to  rst check to see if the object , to which this script is attached , does in fact have a Material assigned to it. 
     - If it does, we will call our custom function GenerateParabola() and pass its return value back to our Texture2D variable:
 
 ```c#
@@ -721,7 +721,7 @@ void Start () {
 }
 ```
 
- - 3. `GenerateParabola()` 
+- 3. `GenerateParabola()` 
 
 ```c#
 private Texture2D GenerateParabola() {
@@ -750,9 +750,9 @@ private Texture2D GenerateParabola() {
 
 --- 
 
- - There is more ...
+- There is more ...
 
- - 1. Here is the math to create rings around the center of the texture:
+- 1. Here is the math to create rings around the center of the texture:
 
 ```c#
 ...
@@ -761,7 +761,7 @@ pixelDistance = Mathf.Abs( 1-Mathf.Clamp( pixelDistance, 0f, 1f ) ) ;
 pixelDistance = Mathf.Sin( pixelDistance * 30f ) * pixelDistance  ; // new 
 ```
 
- - 2. The following is the math for creating the dot product of the pixel direction as compared with the right and up world vectors:
+- 2. The following is the math for creating the dot product of the pixel direction as compared with the right and up world vectors:
 
 ```c#
 // effect 2 
@@ -773,7 +773,7 @@ float upDirection = Vector2.Dot(pixelDirection , Vector3.up);
 pixelColor = new Color( rightDirection , leftDirection , upDirection ) ;
 ```
 
- - 3. The following is the math for creating the angle of the pixel direction as compared to world directions:
+- 3. The following is the math for creating the angle of the pixel direction as compared to world directions:
 
 ```c#
 // effect 3 
@@ -794,11 +794,11 @@ pixelColor = new Color( rightDirection , leftDirection , upDirection ) ;
 
 ## Photoshop levels effect
 
- - Getting Ready
+- Getting Ready
     - create a new Shader and Material , and assign it to an plan in a new Unity scene. 
     - prepare a source texture with which to test our level's code 
- - how to do it ...
- - 1. Add the following properties
+- how to do it ...
+- 1. Add the following properties
 
 ```
 Properties {
@@ -819,7 +819,7 @@ float _outWhite ;
 float _outBlack ;
 ```
 
- - 2. function to create leveled pixel
+- 2. function to create leveled pixel
 
 ```
 float getPixelLevel(float pixelColor) {
@@ -839,7 +839,7 @@ float getPixelLevel(float pixelColor) {
 }
 ```
 
- - 3. calculate pixel levels
+- 3. calculate pixel levels
 
 ```
 void surf (Input IN, inout SurfaceOutputStandard o) {
@@ -857,7 +857,7 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
 
 
 
- - see also 
+- see also 
     - [nvidia GPU Gems ch22](https://developer.nvidia.com/gpugems/GPUGems/gpugems_ch22.html)
 
 
@@ -873,21 +873,21 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
 
 ## Introduction
 
- - The specularity of an object surface simply describes how shiny it is.
- - to achieve a realistic Specular effect in your Shaders, you need to include the direction the camera or user is facing the object's surface , and the light direction
+- The specularity of an object surface simply describes how shiny it is.
+- to achieve a realistic Specular effect in your Shaders, you need to include the direction the camera or user is facing the object's surface , and the light direction
  
 <h2 id="f0e044f1515ebbe5f9e5fea7174072ed"></h2>
 
 
 ## Utilizing Unity3D's built-in Specular type
 
- - Unity has already provided us with a Specular function we can use for our Shaders.
- - It is called the **BlinnPhong** Specular lighting model.
- - Getting ready
+- Unity has already provided us with a Specular function we can use for our Shaders.
+- It is called the **BlinnPhong** Specular lighting model.
+- Getting ready
     - Create a new Shader and a new material 
     - Then create a sphere object and place it roughly at world center.
- - how to do it ...
- - 1. adding Properties
+- how to do it ...
+- 1. adding Properties
 
 ```
 Properties {
@@ -898,7 +898,7 @@ Properties {
 }
 ```
 
- - 2. declear variable 
+- 2. declear variable 
     - Notice that we don't need to declare the `_SpecColor` property as a variable
     - This is because Unity has already created this variable for us in the built-in Specular model
 
@@ -908,12 +908,12 @@ float _SpecPower ;
 float4 _MainTint;
 ```
  
- - 3. Our Shader now needs to be told which lighting model we want to use to light our model with
+- 3. Our Shader now needs to be told which lighting model we want to use to light our model with
     - let's add BlinnPhong to our #pragma statement like so:
     - `#pragma surface surf BlinnPhong` 
     - ps. BlinnPhong is not in `surface surf Standard `
 
- - 4. We then need to modify our surf() function to look like the following:
+- 4. We then need to modify our surf() function to look like the following:
 
 ```
 void surf (Input IN, inout SurfaceOutput  o)
@@ -927,9 +927,9 @@ void surf (Input IN, inout SurfaceOutput  o)
 }
 ```
  
- - 5. Now apply a dark color to main tint , and white color to specular color, you will see the effect.
+- 5. Now apply a dark color to main tint , and white color to specular color, you will see the effect.
 
- - How it works ... 
+- How it works ... 
     - Unity has provided us with a lighting model that has already taken the task of creating your Specular lighting for you
     - If you look into the Lighting.cginc file , you will notice that you have Lambert and BlinnPhong lighting models available for you to use.  
     - The moment you compile your Shader with the `#pragma surface surf BlinnPhong`, you are telling the Shader to utilize the BlinnPhong lighting function
@@ -942,13 +942,13 @@ void surf (Input IN, inout SurfaceOutput  o)
 
 ## Creating a Phong Specular type 
 
- - The most basic and performance-friendly Specular type is the **Phong** Specular effect.
- - While it isn't the most realistic in terms of accurately modeling the reflected Specular, it gives a great approximation that performs well in most situations
- - Plus, if your object is further away from the camera and the need for a very accurate Specular isn't needed, this is a great way to provide a Specular effect on your Shaders.
- - In this recipe, we will be covering how to implement the per vertex version of the effect , and also see how to implement the per pixel version using some new parameters in the surface Shader's Input struct. 
- - Getting ready
+- The most basic and performance-friendly Specular type is the **Phong** Specular effect.
+- While it isn't the most realistic in terms of accurately modeling the reflected Specular, it gives a great approximation that performs well in most situations
+- Plus, if your object is further away from the camera and the need for a very accurate Specular isn't needed, this is a great way to provide a Specular effect on your Shaders.
+- In this recipe, we will be covering how to implement the per vertex version of the effect , and also see how to implement the per pixel version using some new parameters in the surface Shader's Input struct. 
+- Getting ready
     - Create a new Shader, Material, and a sphere
- - How to do it ...
+- How to do it ...
 
 ---
 
@@ -1002,15 +1002,15 @@ float _SpecPower;
 
 ## Creating a BlinnPhong Specular type
 
- - **Blinn** is another more efficient way of calculating and estimating specularity.
- - It is done by getting the half vector from the view direction and the light direction. 
- - If you actually look at the built-in BlinnPhong lighting model included in the UnityCG.cginc file, you will notice that it is using the half vector as well
- - It is just a simpler version of the full Phong calculation.
+- **Blinn** is another more efficient way of calculating and estimating specularity.
+- It is done by getting the half vector from the view direction and the light direction. 
+- If you actually look at the built-in BlinnPhong lighting model included in the UnityCG.cginc file, you will notice that it is using the half vector as well
+- It is just a simpler version of the full Phong calculation.
 
- - Getting start 
+- Getting start 
     - create a new shader and material -- CustomBlinnPhong  , and a sphere
 
- - How to do it ...
+- How to do it ...
 
 ---
 
@@ -1062,17 +1062,17 @@ The technique of using Specular textures is seen in most modern game development
 
 This recipe will introduce you to some new concepts, such as
  
- - creating your own Input struct
- - and learning how the data is being passed around from the output struct
- - to the lighting function, to the Input struct, and to the surf() function
+- creating your own Input struct
+- and learning how the data is being passed around from the output struct
+- to the lighting function, to the Input struct, and to the surf() function
 
 ---
 
- - Getting ready
+- Getting ready
     - create a new Shader, Material, and a sphere
     - We will also need a Specular texture to use. Any texture will do as long as it has some nice variation in colors and patterns.
- - How to do it ...
- - 1. Properties
+- How to do it ...
+- 1. Properties
 
 ```
 Properties {
@@ -1094,7 +1094,7 @@ Properties {
     float _SpecPower;
 ```
 
- - 2. Now we have to add our own custom **Output** struct
+- 2. Now we have to add our own custom **Output** struct
     - This will allow us to store more data for use between our surf function and our lighting model.
 
 ```
@@ -1111,7 +1111,7 @@ Properties {
     };
 ```
 
- - 3. Just after the Output struct we just entered, we need to add our custom lighting model
+- 3. Just after the Output struct we just entered, we need to add our custom lighting model
 
 ```
     #pragma surface surf CustomPhong
@@ -1136,7 +1136,7 @@ Properties {
     }
 ```
 
- - 4. Since we are going to be using a texture to modify the values of our base Specular calculation, we need to store another set of UVs for that texture specifically.
+- 4. Since we are going to be using a texture to modify the values of our base Specular calculation, we need to store another set of UVs for that texture specifically.
     - This is done inside the Input struct by placing the word uv in front of the variable's name that is holding the texture. 
 
 ```
@@ -1147,7 +1147,7 @@ Properties {
     };
 ```
 
- - 5. To finish off the Shader, we just need to modify our surf() function with the following code.
+- 5. To finish off the Shader, we just need to modify our surf() function with the following code.
     - This will let us pass the texture information to our lighting model function
     - so that we can use the pixel values of the texture to modify our Specular values in the lighting model function
 
@@ -1167,7 +1167,7 @@ Properties {
     }
 ```
 
- - How it works...
+- How it works...
     - we are now going to modify our Specular with a per-pixel texture, giving our Specular much more visual interest and depth.
     - To do this, we need to be able to pass information from our surface function to our lighting functions. 
         - The reason is that we can't get the UVs of a surface within the lighting function.
@@ -1190,20 +1190,20 @@ struct Output -> Lighting<Name>
 
 ## Metallic versus soft Specular 金属与软镜面
 
- - In this section, we are going to explore a way to create a Shader that gives us the versatility to have a soft Specular as well as a hard Specular. 
- - You will  nd in most productions that you will need to create a nice set of Shaders to perform many tasks.
- - it is common for Shader programmers to create a set of Shaders that can both be used for cloth and for metal in one Shader file.
+- In this section, we are going to explore a way to create a Shader that gives us the versatility to have a soft Specular as well as a hard Specular. 
+- You will  nd in most productions that you will need to create a nice set of Shaders to perform many tasks.
+- it is common for Shader programmers to create a set of Shaders that can both be used for cloth and for metal in one Shader file.
 
 ---
 
- - Getting ready ...
+- Getting ready ...
     - a simple capsule , plane, and directional light in the new scene.
     - Create a new Shader and Material
     - attach the Shader to the Material and attach the Material to the capsule object
     - We are also going to need to get some textures together that will allow an artist to re ne the roughness of the Specular by de ning how blurry and how sharp the Specular should be. 
         - ![](../imgs/u3d_shader_meta_soft.png)
- - How to do it...
- - 1. Properties
+- How to do it...
+- 1. Properties
 
 ```c#
 Properties
@@ -1226,7 +1226,7 @@ Properties
     float4 _SpecularColor;
 ```
 
- - 2. We now need to declare our new lighting model and tell the #pragma statement to look for it:
+- 2. We now need to declare our new lighting model and tell the #pragma statement to look for it:
 
 ```c#
 #pragma surface surf MetallicSoft
@@ -1236,7 +1236,7 @@ inline fixed4 LightingMetallicSoft (SurfaceOutput s, fixed3 lightDir, half3 view
 }
 ```
 
- - 3. At this point we are ready to  fill in our custom lighting model function with our lighting calculations. 
+- 3. At this point we are ready to  fill in our custom lighting model function with our lighting calculations. 
     - We are  rst going to want to generate all of our diffuse and view dependent vectors, as this lighting model is going to make use of them all.
 
 ```c#
@@ -1249,7 +1249,7 @@ float NdotV = saturate(dot(s.Normal, normalize(viewDir)));
 float VdotH = saturate(dot(halfVector, normalize(viewDir)));
 ```
 
- - 4. The next section of code in the Shader takes care of producing the roughness values for our Specular, by using a texture to de ne the Specular shape and to procedurally simulate micro bumps in the surface of the object.
+- 4. The next section of code in the Shader takes care of producing the roughness values for our Specular, by using a texture to de ne the Specular shape and to procedurally simulate micro bumps in the surface of the object.
 
 ```c#
 //Micro facets distribution
@@ -1262,7 +1262,7 @@ float3 G =  min(1.0f, min(G1, G2));
 float roughness = tex2D(_RoughnessTex, float2(NdotH_raw * 0.5 + 0.5, _Roughness)).r;
 ```
 
- - 5. The last element we need for our Specular calculation is a **Fresel** term.
+- 5. The last element we need for our Specular calculation is a **Fresel** term.
     - This will help us mask off the Specular when your view becomes very glancing to the object's surface.
 
 ```c#
@@ -1272,14 +1272,14 @@ fresnel *= (1.0 - _Fresnel);
 fresnel += _Fresnel;
 ```
 
- - 6. Now that we have all the components ready for our Specular, we just need to combine them together to generate our  nal Specular value.
+- 6. Now that we have all the components ready for our Specular, we just need to combine them together to generate our  nal Specular value.
 
 ```c#
 //Create the final spec
 float3 spec = float3(fresnel * G * roughness * roughness) * _SpecPower;
 ```
 
- - 7. To complete the lighting model, we simply need to add our Diffuse terms and our Specular terms together:
+- 7. To complete the lighting model, we simply need to add our Diffuse terms and our Specular terms together:
 
 ```c#
 float4 c;
@@ -1310,13 +1310,13 @@ The following screenshot shows examples of different types of Specular effects o
 
 ![](../imgs/u3d_shader_anisotropoy_example.png)
 
- - Getting ready 
+- Getting ready 
     - Create a new scene with some capsules
     - create a new Shader and Material, and hook them up to our objects
     - Lastly, we will need some sort of normal map that will indicate the directionality of our Anisotropic Specular highlight.
         - ![](../imgs/u3d_shader_anisotropoy_normal_map.png)
- - How to do it ...
- - 1. properties
+- How to do it ...
+- 1. properties
 
 ```
 Properties {
@@ -1338,7 +1338,7 @@ float _Specular;
 float _SpecPower;
 ``` 
 
- - 2. create our lighting function that will produce the correct Anisotropic effect on our surface:
+- 2. create our lighting function that will produce the correct Anisotropic effect on our surface:
 
 ```
 #pragma surface surf Anisotropic
@@ -1372,7 +1372,7 @@ inline fixed4 LightingAnisotropic (SurfaceAnisoOutput s, fixed3 lightDir, half3 
 }
 ```
 
- - 3. We have also given the Anisotropic normal map its own UVs by declaring the following code in the Input struct.
+- 3. We have also given the Anisotropic normal map its own UVs by declaring the following code in the Input struct.
     - This isn't entirely necessary as we could just use the UVs from the main texture, but this gives us independent control over the tiling of our brushed metal effect, so that we can scale it to any size we want.
 
 ```
@@ -1382,7 +1382,7 @@ struct Input  {
 };
 ```
 
- - 4. Finally, we need to use the surf() function to pass the correct data to our lighting function. So we get the per-pixel information from our Anisotropic normal map and set our Specular parameters.
+- 4. Finally, we need to use the surf() function to pass the correct data to our lighting function. So we get the per-pixel information from our Anisotropic normal map and set our Specular parameters.
 
 ```
 void surf (Input IN, inout SurfaceAnisoOutput  o) {

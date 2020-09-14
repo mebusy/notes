@@ -132,5 +132,5 @@ static bool AmIBeingDebugged(void)
 
 2. enable file sharing with itunes
 
- - add `UIFileSharingEnabled` to info.plist, and set "YES"
- - the full name of `UIFileSharingEnabled` is `Application supports iTunes file sharing`
+- add `UIFileSharingEnabled` to info.plist, and set "YES"
+- the full name of `UIFileSharingEnabled` is `Application supports iTunes file sharing`

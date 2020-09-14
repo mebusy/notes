@@ -28,7 +28,7 @@
 
 NES Console
 
- - 6502 CPU 
+- 6502 CPU 
      - 16 bit address bus
      - 64 kB address space
          - 0x0000 - 0xFFFF
@@ -41,26 +41,26 @@ NES Console
          - Status
              - can not write
              - but can read from it to get certain value like if the accumulator overflows and it will put a status there saying that your value has overflowed
- - APU ( Audio Processing Unit )
- - PPU ( Picture Processing Unit  )
+- APU ( Audio Processing Unit )
+- PPU ( Picture Processing Unit  )
      - 16 KB address space
- - Lockout chip
+- Lockout chip
 
 
 Game Cartridge
 
- - CHR ( Charater Memory ) ROM or RAM
+- CHR ( Charater Memory ) ROM or RAM
      - where all your sprite data is stored 
- - PRG ( Program Memory ) ROM
+- PRG ( Program Memory ) ROM
      - where your game code is stored
- - WRAM ( optional ) and battery
- - Lockout chip
+- WRAM ( optional ) and battery
+- Lockout chip
 
 When NES is on ,
 
- - PRG ROM copied to CPU
- - CHR copied to PPU
- - CPU write to the PPU 
+- PRG ROM copied to CPU
+- CHR copied to PPU
+- CPU write to the PPU 
      - to modify the background and the sprites
 
 
@@ -74,14 +74,14 @@ When NES is on ,
 
 from CPU
 
- - buttom 2KB internal RAM 
+- buttom 2KB internal RAM 
      - which can be used for things like variables 
- - next 2KB ?
+- next 2KB ?
      - PPU ports , use for writing to the PPU
- - on the top of it,    APU  and control ports
- - WRAM
- - Cartridge ROM 
- - at the very end of it  , NMI / RESET / IRQ vectors
+- on the top of it,    APU  and control ports
+- WRAM
+- Cartridge ROM 
+- at the very end of it  , NMI / RESET / IRQ vectors
      - NMI , for every frame that gets displayed to the screen , that's going to called and then from there it's going to run all of the code that modified your sprites and backgrounds and upateds the game engine.
      - RESET , gets called whenever the nes starts up , beasts up, and reset button is pressed 
      - IRQ , i haven't used that , it uesd for special circumstances
@@ -89,14 +89,14 @@ from CPU
 
 from PPU 
 
- - 1st 2KB , 
+- 1st 2KB , 
      - the pattern tables , and that's basically all the sprite data
- - name tabels 
+- name tabels 
      - basically the arrangement of all the sprites on the screen that creats the background
- - attribute tabels
+- attribute tabels
      - determines the colors that are used to paint the background 
      - you have multiple name tables and attribute tables  , so you can switch between these to give you different backgourds in your game 
- - sprite palette , backgroud palette
+- sprite palette , backgroud palette
      - you have limited number of colors you can choose from , and that is stored in these palette variables
 
 
@@ -105,14 +105,14 @@ from PPU
 
 # 6502 Assembly
 
- - Directives 
+- Directives 
      - Assembler commands
      - Start with a period
- - Labels
+- Labels
      - Used to organize code
      - Like a BASIC line number (for GOTO)
      - Not intented and followed by a colon
- - Opcodes
+- Opcodes
        - Program instructions
        - Indented 
 
@@ -124,17 +124,17 @@ from PPU
 
 you should take special considerations if your values are going to add to more than 256
 
- - Load / Store
+- Load / Store
      - Load: LDA , LDX, LDY
      - Store:  STA , STX, STY
- - Math
+- Math
      - Add: ADD , CLC
      - Subtract : SBC, SEC
      - Increment:  INC, DEC , INX , INY , DEX , DEY 
      - Shift :  ASL  , LSR 
- - Comparision
+- Comparision
      - CMP , CPX , CPY
- - Control
+- Control
      - JMP
      - BEQ , BNE 
 
@@ -145,7 +145,7 @@ you should take special considerations if your values are going to add to more t
 # Assembly Starter
 
  \ | C   |  6502  | Desc
- --- |:--- |:---  | --- 
+--- |:--- |:---  | --- 
 declare  |  int num;   |   .rsset  $0000  |  where your variable in the memory address
 vars     |               |   num .rs 1      |  reserved 1 byte space 
 ASSIGN     |  num = 42   |   LDA #$2A
@@ -186,12 +186,12 @@ METHODS        |        // draw code     | ; modify sprites
 
 # Sprite
 
- - Can be created with programs like YY-CHR
- - Each sprite tile is 8x8 pixels
- - Each sprite tile can only have 4 unique colors
+- Can be created with programs like YY-CHR
+- Each sprite tile is 8x8 pixels
+- Each sprite tile can only have 4 unique colors
      - actually 3  colors and 1 transparency layer
- - Objects , such as mario , are usually composed of multiple sprite tiles
- - All sprites must fit on a single spritesheet
+- Objects , such as mario , are usually composed of multiple sprite tiles
+- All sprites must fit on a single spritesheet
 
 
 <h2 id="5b9ee9aa42c46ecdbaae966ca84cc8fa"></h2>
@@ -199,12 +199,12 @@ METHODS        |        // draw code     | ; modify sprites
 
 # Palettes
 
- - Less than 60 total colors
+- Less than 60 total colors
      - ![](../imgs/NES_palette.png)
- - PPU IO ports : $2006 , $2007
+- PPU IO ports : $2006 , $2007
      - you write to the palette table by using PPU $2006, $2007 ports
- - Sprite palette: $3F10
- - Background palette :  $3F00
+- Sprite palette: $3F10
+- Background palette :  $3F00
 
 
 <h2 id="a9ded1e5ce5d75814730bb4caaf49419"></h2>
@@ -212,21 +212,21 @@ METHODS        |        // draw code     | ; modify sprites
 
 # Background
 
- - 32x30 tiles (256 * 240)
- - Tiles are 8x8 pixels
- - Four unique colors for every 2x2 tiles
- - Background is static , but can be scrolled
- - Text is usually background tiles
+- 32x30 tiles (256 * 240)
+- Tiles are 8x8 pixels
+- Four unique colors for every 2x2 tiles
+- Background is static , but can be scrolled
+- Text is usually background tiles
 
 <h2 id="47b8dd4685c135e432339d9c07f3502b"></h2>
 
 
 # Controller Input
 
- - Call load on Controller port
+- Call load on Controller port
      - LDA $4016 (player #1)
      - LDA $4017 (player #2)
- - Each call returns the status of the next button
+- Each call returns the status of the next button
      - A,B,Select, Start , Up, Down, Left, Right
 
 
@@ -235,24 +235,24 @@ METHODS        |        // draw code     | ; modify sprites
 
 # Playing Sounds
 
- - APU 5 channels
+- APU 5 channels
      - Square 1, 2  -- Hollow sound
      - Triangle -- Smooth sound
      - Noise  - Explosions
      - DMC     - prerecorded, like voices
- - Write to $4015 to enable sounds
- - $4000 to $4003 modify sound properties
+- Write to $4015 to enable sounds
+- $4000 to $4003 modify sound properties
 
 <h2 id="1ccd04b836dc65aa6c64598136974e04"></h2>
 
 
 # NES ROM Image
 
- - Generate with NES assemble
+- Generate with NES assemble
      - NESASM3
- - Play with NES emulator
+- Play with NES emulator
      - FCEUXD
- - Tools exist for playing on actual NES hardware
+- Tools exist for playing on actual NES hardware
 
 
 

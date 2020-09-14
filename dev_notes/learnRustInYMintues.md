@@ -51,21 +51,21 @@
 
 ## 所有权
 
- - Rust编译器：对于任何给定的对象都只有一个绑定与之对应。
+- Rust编译器：对于任何给定的对象都只有一个绑定与之对应。
     - ![](../imgs/rust_ownership.png)
- - 怎么把 v 传递给另外一个函数呢?
+- 怎么把 v 传递给另外一个函数呢?
     - 借用 (&v), 临时借给其他函数
     - 类似java中的 引用
- - recap 
+- recap 
     - ![](../imgs/rust_ownership2.webp)
- - 同一时刻，
+- 同一时刻，
     - 要么只有一个可变（&mut）借用，
     - 要么有多个不可变（&) 借用，
     - 不能同时存在可变和不可变借用。 
     - 没有人希望 自己在读的时候，对象被别人改变了。
     - ![](../imgs/rust_ownership3.0.webp)
     - ![](../imgs/rust_ownership3.webp)
- - 当大家都在读一个东西的时候，是不能写的。当一个人在写的时候，别人是不能读的。
+- 当大家都在读一个东西的时候，是不能写的。当一个人在写的时候，别人是不能读的。
     - 经典的读写锁问题, Rust在编译器级别做了限制.
 
 <h2 id="637881603c973c4967d77ec4ba147e0c"></h2>
@@ -78,13 +78,13 @@
 
 ### Scalar Types
 
- - integers
+- integers
     - i8,i32,u64,...
- - floating-point numbers
+- floating-point numbers
     - f32,f64
- - Booleanbs
+- Booleanbs
     - bool : true/false
- - characters
+- characters
     - `'z'`
     - Rust’s char type is four bytes in size and represents a Unicode Scalar Value, which means it can represent a lot more than just ASCII.
     - Unicode Scalar Values range from U+0000 to U+D7FF and U+E000 to U+10FFFF inclusive
@@ -94,8 +94,8 @@
 
 ### Compound Types
 
- - Tuple
- - Array
+- Tuple
+- Array
 
 
 <h2 id="d305bbe79fb9dd87a3fda339c8b601b6"></h2>
@@ -108,17 +108,17 @@
 
 ### String 
 
- - String literals ( static str )
+- String literals ( static str )
     -
     ```rust
     let x: &str = "hello world!";
     ```
- - A heap-allocated string
+- A heap-allocated string
     -
     ```rust
     let s: String = "hello world".to_string();
     ```
- - A string slice – an immutable view into another string
+- A string slice – an immutable view into another string
     -
     ```rust
     let s_slice: &str = &s;
@@ -132,18 +132,18 @@
 
 ### Vectors/arrays
 
- - A fixed-size array
+- A fixed-size array
     -
     ```rust
     let four_ints: [i32; 4] = [1, 2, 3, 4];
     ```
- - A dynamic array (vector)
+- A dynamic array (vector)
     -
     ```rust
     let mut vector: Vec<i32> = vec![1, 2, 3, 4];
     vector.push(5);
     ```
- - A slice – an immutable view into a vector or array
+- A slice – an immutable view into a vector or array
     -
     ```rust
     let slice: &[i32] = &vector;
@@ -156,17 +156,17 @@
 
 ### Tuples 
 
- - A fixed-size set of values of possibly different types
+- A fixed-size set of values of possibly different types
     -
     ```rust
     let x: (i32, &str, f64) = (1, "hello", 3.4);
     ```
- - Destructuring `let`
+- Destructuring `let`
     -
     ```rust
     let (a, b, c) = x;
     ```
- - Indexing
+- Indexing
     -
     ```rust
     println!("{}", x.1); // hello
@@ -187,7 +187,7 @@ struct Point {
 let origin: Point = Point { x: 0, y: 0 };
 ```
 
- - A struct with unnamed fields, called a ‘tuple struct’
+- A struct with unnamed fields, called a ‘tuple struct’
     -
     ```rust
     struct Point2(i32, i32);
@@ -323,7 +323,7 @@ match bar {
 
 ### Control flow
 
- - `for` loops/iteration
+- `for` loops/iteration
     -
     ```rust
     let array = [1, 2, 3];
@@ -331,7 +331,7 @@ match bar {
         println!("{}", i);
     }
     ```
- - Ranges
+- Ranges
     -
     ```rust
     for i in 0u32..10 {
@@ -339,7 +339,7 @@ match bar {
     }
     println!(""); // prints `0 1 2 3 4 5 6 7 8 9 `
     ```
- - if
+- if
     -
     ```rust
     if n < 0 {
@@ -350,7 +350,7 @@ match bar {
         print!("{} is zero", n);
     }
     ```
- - if as expression
+- if as expression
     -
     ```rust
     let value = if true {
@@ -359,7 +359,7 @@ match bar {
         "bad"
     };
     ```
- - if let = 
+- if let = 
     -
     ```rust
     if let Coin::Quarter(state) = coin {
@@ -368,7 +368,7 @@ match bar {
         count += 1;
     }
     ```
- - `while` loop
+- `while` loop
     -
     ```rust
     while 1 == 1 {
@@ -378,7 +378,7 @@ match bar {
         break
     }
     ```
- - Infinite loop
+- Infinite loop
     -
     ```rust
     loop {
@@ -393,21 +393,21 @@ match bar {
 
 ## Memory safety & pointers
 
- - 
+- 
 ```rust
 let mut mine: Box<i32> = Box::new(3);
 *mine = 5; // dereference
 ```
- - Owned pointer
+- Owned pointer
     - only one thing can ‘own’ this pointer at a time
     - This means that when the `Box` leaves its scope, it can be automatically deallocated safely. 
- - 
+- 
 ```rust
 let mut now_its_mine = mine;
 *now_its_mine += 2;
 ```
- - Here, `now_its_mine` takes ownership of `mine`. In other words, `mine` is moved.
- - Reference
+- Here, `now_its_mine` takes ownership of `mine`. In other words, `mine` is moved.
+- Reference
     - an immutable pointer that refers to other data
     - While a value is borrowed immutably, it cannot be mutated or moved.
     - A borrow lasts until the end of the scope it was created in.
@@ -420,7 +420,7 @@ let mut now_its_mine = mine;
     println!("{}", var); // Unlike `mine`, `var` can still be used
     println!("{}", *ref_var);
     ```
- - Mutable reference
+- Mutable reference
     - While a value is mutably borrowed, it cannot be accessed at all.
     -
     ```rust
@@ -437,12 +437,12 @@ let mut now_its_mine = mine;
 
 ## Modules
 
- - Modules to Control Scope and Privacy
- - Exposing Paths with the `pub` Keyword
- - Starting Relative Paths with `super`
+- Modules to Control Scope and Privacy
+- Exposing Paths with the `pub` Keyword
+- Starting Relative Paths with `super`
     - construct relative paths that begin in the parent module by using `super` at the start of the path.
- - Bringing Paths into Scope with the `use` Keyword
- - Re-exporting Names with `pub use`
+- Bringing Paths into Scope with the `use` Keyword
+- Re-exporting Names with `pub use`
 
 <details>
 <summary>

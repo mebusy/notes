@@ -26,7 +26,7 @@
 
 ## 7.1 Serving static content
 
- - To handle static files, the http package in the standard library has a series of functions that deal with file serving. 
+- To handle static files, the http package in the standard library has a series of functions that deal with file serving. 
 
 ```
 // Listing 7.1 http package file serving: file_serving.go
@@ -43,10 +43,10 @@ func main() {
 }
 ```
 
- - From a directory on the local filesystem, FileServer will serve files following proper permissions.
- - It’s capable of looking at the `If-Modified-Since` HTTP header and responding with a 304 Not Modified response if the version of the file a user already has matches the one currently being served.
+- From a directory on the local filesystem, FileServer will serve files following proper permissions.
+- It’s capable of looking at the `If-Modified-Since` HTTP header and responding with a 304 Not Modified response if the version of the file a user already has matches the one currently being served.
 
- - When you want to write your own handler to serve files, the ServeFile function in the http package is useful, as shown in the next listing.
+- When you want to write your own handler to serve files, the ServeFile function in the http package is useful, as shown in the next listing.
 
 ```
 // Listing 7.2 Serve file with custom handler: servefile.go
@@ -63,9 +63,9 @@ func readme(res http.ResponseWriter, req *http.Request) {
 }
 ```
 
- - This readme handler serves the content of a file located at ./files/readme.txt by using the ServeFile function. 
- - And like FileServer, ServeFile looks at the If-Modified-Since HTTP header and responds with a 304 Not Modified response if possible.
- - This functionality, along with some of its underpinnings, enables you to serve con- tent by using a variety of techniques.
+- This readme handler serves the content of a file located at ./files/readme.txt by using the ServeFile function. 
+- And like FileServer, ServeFile looks at the If-Modified-Since HTTP header and responds with a 304 Not Modified response if possible.
+- This functionality, along with some of its underpinnings, enables you to serve con- tent by using a variety of techniques.
 
 
 <h2 id="3c5523c5e1abe28dfc6de26a395bb6bf"></h2>
@@ -90,7 +90,7 @@ func main() {
     http.ListenAndServe(":8080", nil)
 ```
 
- - Here, the built-in web server is serving the ./files/ directory at the path /static/ by using the file server from the http package. 
+- Here, the built-in web server is serving the ./files/ directory at the path /static/ by using the file server from the http package. 
 
 
 <h2 id="35df994f14b36fba0672e7b4cff94f9f"></h2>
@@ -103,8 +103,8 @@ func main() {
 
 ### 7.2.1 Introduction to form requests
 
- - When a request is made to a server and it contains form data, that request isn’t processed into a usable structure by default. 
- - The following example shows the simplest way to parse form data and get access to it:
+- When a request is made to a server and it contains form data, that request isn’t processed into a usable structure by default. 
+- The following example shows the simplest way to parse form data and get access to it:
 
 ```go
 func exampleHandler(w http.ResponseWriter, r *http.Request) {
@@ -112,20 +112,20 @@ func exampleHandler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
- - Behind this call to `FormValue`, a lot is going on.
+- Behind this call to `FormValue`, a lot is going on.
     - FormValue starts by parsing the form data into a Go data structure. It’s looking to parse text form data and multipart form data, such as files.
     - After the data is parsed, it looks up the key (form field name) and returns the first value for the key, if one exists.
     - If there’s nothing with this key, an empty string is returned.
- - Although this case makes it look easy, a lot is going on that you may not want, and there are features that you can’t access here.
+- Although this case makes it look easy, a lot is going on that you may not want, and there are features that you can’t access here.
     - For example, what if you want to skip looking for multipart form data and trying to parse it because you know it won’t be present?
     - Or what if a form field has multiple values, and you want to get at all of them?
- - The first step to work with form data is to parse it .
+- The first step to work with form data is to parse it .
     - Inside a request handler are two methods on the Request object that can parse form data into a Go data structure. 
         - The ParseForm method parses fields that contain text. 
         - If you need to work with binary data or files from the form, you need to use ParseMultipartForm.
             - As its name suggests, this method works on multipart form data (a form containing con- tent with different MIME content types).
             - ParseMultipartForm is called by FormValue in the preceding example if parsing hasn’t happened yet.
- - The form data is parsed into two locations:
+- The form data is parsed into two locations:
     - The Form property on the Request object will contain the values from the URL query along with the values submitted as a POST or PUT body. 
         - Each key on Form is an array of values. 
         - The FormValue method on Request can be used to get the first value for a key. 
@@ -146,7 +146,7 @@ func exampleHandler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
- - This listing contains the handling for a simple form. 
+- This listing contains the handling for a simple form. 
     - This simple example works for forms with only text fields. 
     - If a file field were present, it wouldn’t be parsed or accessible.
     - And it works only for form values that have a single response. HTML forms allow for multiple responding values. 
@@ -156,9 +156,9 @@ func exampleHandler(w http.ResponseWriter, r *http.Request) {
 
 #### TECHNIQUE 44 Accessing multiple values for a form field
 
- - PROBLEM: FormValue and PostFormValue each return the first value for a form field. 
+- PROBLEM: FormValue and PostFormValue each return the first value for a form field. 
     - When you have multiple values, how can you access all of them?
- - SOLUTION: Instead of using FormValue and PostFormValue to retrieve a field value, look up the field on the `Form or PostForm properties` on the Request object. Then iterate over all the values.
+- SOLUTION: Instead of using FormValue and PostFormValue to retrieve a field value, look up the field on the `Form or PostForm properties` on the Request object. Then iterate over all the values.
 
 ```
 // Listing 7.11 Parsing a form with multiple values for a field
@@ -176,8 +176,8 @@ func exampleHandler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
- - The default number used when FormValue or PostFormValue needs to call ParseMultipartForm is 32 megabytes.
- - The names field on the PostForm property is used, limiting the values to just those submitted in the POST or PUT body.
+- The default number used when FormValue or PostFormValue needs to call ParseMultipartForm is 32 megabytes.
+- The names field on the PostForm property is used, limiting the values to just those submitted in the POST or PUT body.
 
 <h2 id="8ce582ef69928a1ebfc5d6ba03a524b0"></h2>
 
@@ -189,12 +189,12 @@ func exampleHandler(w http.ResponseWriter, r *http.Request) {
 
 #### TECHNIQUE 45 Uploading a single file
 
- - PROBLEM: When a file is uploaded with a form, how to you process and save it?
- - SOLUTION: When a file is uploaded, process the form as a multipart form by using `ProcessMultipartForm` on the Request object.
+- PROBLEM: When a file is uploaded with a form, how to you process and save it?
+- SOLUTION: When a file is uploaded, process the form as a multipart form by using `ProcessMultipartForm` on the Request object.
     - This picks up the file parts. 
     - Then use the FormFile method on the Request object to access and file fields, uploading a single file.
     - For each file, you can access the metadata and a file object that’s similar to File objects from the os package.
- - Handling a file is nearly as straightforward as handling text form data.
+- Handling a file is nearly as straightforward as handling text form data.
     - The difference lies in the binary file and the metadata surrounding it, such as the filename.
     - The following listing presents a simple file-upload form.
 
@@ -218,10 +218,10 @@ func exampleHandler(w http.ResponseWriter, r *http.Request) {
 </html>
 ```
 
- - This form has some important parts. The form method is POST, and its encoding is in multipart.
+- This form has some important parts. The form method is POST, and its encoding is in multipart.
     - Being multipart allows the text part of the form to be uploaded and processed as text, while the file is handled using its own file type.
     - The input field is typed for a file, which tells browsers to use a file picker and upload the contents of the file. 
- - This form is served and processed by the handler function for the http package in the following listing.
+- This form is served and processed by the handler function for the http package in the following listing.
 
 
 ```
@@ -256,11 +256,11 @@ func fileForm(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
- - The first step used to process the file field is to retrieve it by using the FormFile method on the Request.
+- The first step used to process the file field is to retrieve it by using the FormFile method on the Request.
     - If the form hasn’t been parsed, FormFile will call Parse- MultipartForm. 
     - FormFile then returns a `multipart.File` object, a `*multipart .FileHeader` object, and an error if there is one.
     - The `*multipart.FileHeader` object has a Filename property that it uses here as part of the location on the local filesystem to store the upload.
- - This solution works well for a field with a single file.
+- This solution works well for a field with a single file.
     - HTML forms allow for multi- value fields, and this solution will pick up only the first of the files. 
     - For multivalue file uploads, see the next technique.
 
@@ -270,8 +270,8 @@ func fileForm(w http.ResponseWriter, r *http.Request) {
 
 #### TECHNIQUE 46 Uploading multiple files
 
- - PROBLEM: How do you process the files when multiple files are uploaded to a single file-input field on a form?
- - SOLUTION: Instead of using FormFile,   parse the form and retrieve a slice with the files from the `MultipartForm` property on the Request.  Then iterate over the slice, individually handling each file.
+- PROBLEM: How do you process the files when multiple files are uploaded to a single file-input field on a form?
+- SOLUTION: Instead of using FormFile,   parse the form and retrieve a slice with the files from the `MultipartForm` property on the Request.  Then iterate over the slice, individually handling each file.
 
 ```
 // Listing 7.14 A form with a multiple value file-upload field
@@ -292,7 +292,7 @@ func fileForm(w http.ResponseWriter, r *http.Request) {
 </html>
 ```
 
- - The `multiple` attribute turns a single file-input field into one accepting multiple files. 
+- The `multiple` attribute turns a single file-input field into one accepting multiple files. 
 
 ```go
 // Listing 7.15 Process file form field with multiple files
@@ -338,15 +338,15 @@ func fileForm(w http.ResponseWriter, r *http.Request) {
 
 #### TECHNIQUE 47 Verify uploaded file is allowed type
 
- - When a file is uploaded, it could be any type of file. 
+- When a file is uploaded, it could be any type of file. 
      - The upload field could be expecting an image, a document, or something else altogether.
      - But is that what was uploaded? How would you handle an improper file being uploaded?
- - PROBLEM: How can you detect the type of file uploaded to a file field inside your application?
- - SOLUTION: To get the MIME type for a file, you can use one of a few ways, with varying degrees of trust in the value:
+- PROBLEM: How can you detect the type of file uploaded to a file field inside your application?
+- SOLUTION: To get the MIME type for a file, you can use one of a few ways, with varying degrees of trust in the value:
     - When a file is uploaded, the request headers will have a Content-Type field with either a specific content type, such as image/png, or a general value of application/octet-stream.
     - A file extension is associated with a MIME type and can provide insight into the type of file being uploaded.
     - You can parse the file and detect the content type based on the contents of the file.
- - These first two methods rely on outside parties for accuracy and trust. 
+- These first two methods rely on outside parties for accuracy and trust. 
     - The third solution requires parsing the file and knowing what to look for to map to a content type. This is the most difficult method and uses the most system resources, but is also the most trusted one
 
 
@@ -364,7 +364,7 @@ extension := filepath.Ext(header.Filename)
 type := mime.TypeByExtension(extension)
 ```
  
- - The http package contains the function DetectContentType, capable of detecting the type for a limited number of file types. 
+- The http package contains the function DetectContentType, capable of detecting the type for a limited number of file types. 
     -  These include HTML, text, XML, PDF, PostScript, common image formats, com- pressed files such as RAR, Zip, and GZip, wave audio files, and WebM video files.
 
 ```go
@@ -374,7 +374,7 @@ _ , err = file.Read(buffer)
 filetype := http.DetectContentType(buffer)
 ```
 
- - The buffer is only 512 bytes because DetectContentType looks at only up to the first 512 bytes when determining the type. When it isn’t able to detect a specific type, application/octet-stream is returned.
+- The buffer is only 512 bytes because DetectContentType looks at only up to the first 512 bytes when determining the type. When it isn’t able to detect a specific type, application/octet-stream is returned.
 
 
 <h2 id="226c031cb6a7636b20c3491377c5d1eb"></h2>
@@ -382,10 +382,10 @@ filetype := http.DetectContentType(buffer)
 
 ### 7.2.3 Working with raw multipart data
 
- - The previous file-handling techniques work well when you’re dealing with small files or files as a whole, but limit your ability to work with files while they’re being uploaded.
+- The previous file-handling techniques work well when you’re dealing with small files or files as a whole, but limit your ability to work with files while they’re being uploaded.
     - For example, if you’re writing a proxy and want to immediately transfer the file to another location, the previous techniques will cache large files on the proxy.
- - The Go standard library provides both high-level helper functions for common file-handling situations, and lower-level access that can be used for the less common ones or when you want to define your own handling.
- - Instead of using the ParseMultipartForm method on the Request object inside an http handler function, you can access the raw stream of the request by accessing the underlying `*multipart.Reader` object. 
+- The Go standard library provides both high-level helper functions for common file-handling situations, and lower-level access that can be used for the less common ones or when you want to define your own handling.
+- Instead of using the ParseMultipartForm method on the Request object inside an http handler function, you can access the raw stream of the request by accessing the underlying `*multipart.Reader` object. 
     - This object is accessible by using the MultipartReader method on the Request.
  
 
@@ -394,12 +394,12 @@ filetype := http.DetectContentType(buffer)
 
 #### TECHNIQUE 48 Incrementally saving a file
 
- - Imagine that you’re building a system meant to handle a lot of large file uploads. The files aren’t stored on your API server but are instead stored in a back-end service designed for files
- - Using ParseMultipartForm is going to put those files into the tem- porary files directory on your API server while the uploads are in progress.
- - To support large file uploads with ParseMultipartForm handling, your server would need a large disk cache for the files and careful handling to make sure it doesn’t get full while parallel uploads are happening.
+- Imagine that you’re building a system meant to handle a lot of large file uploads. The files aren’t stored on your API server but are instead stored in a back-end service designed for files
+- Using ParseMultipartForm is going to put those files into the tem- porary files directory on your API server while the uploads are in progress.
+- To support large file uploads with ParseMultipartForm handling, your server would need a large disk cache for the files and careful handling to make sure it doesn’t get full while parallel uploads are happening.
 
- - PROBLEM: You want to save the file, as it’s being uploaded, to a location of your choice. That location could be on the server, on a shared drive, or on another location altogether.
- - SOLUTION: Instead of using `ParseMultipartForm`, read the multipart data from the request as it’s being uploaded. This can be accessed with the `MultipartReader` method on the `Request`.  
+- PROBLEM: You want to save the file, as it’s being uploaded, to a location of your choice. That location could be on the server, on a shared drive, or on another location altogether.
+- SOLUTION: Instead of using `ParseMultipartForm`, read the multipart data from the request as it’s being uploaded. This can be accessed with the `MultipartReader` method on the `Request`.  
     -  As files and other information are coming in, chunk by chunk, save and process the parts rather than wait for uploads to complete.
 
 
@@ -425,7 +425,7 @@ filetype := http.DetectContentType(buffer)
 </html>      
 ```
 
- - 这里，你还是上传一个文件，但是你会额外的设置一个名字
+- 这里，你还是上传一个文件，但是你会额外的设置一个名字
 
 ```go
 // Listing 7.17 Incrementally save uploaded files
@@ -501,22 +501,22 @@ func fileForm(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
- - Because the handler function parses the form, instead of relying on ParseMultipartForm, you have a few elements to set up before working with the form itself.
+- Because the handler function parses the form, instead of relying on ParseMultipartForm, you have a few elements to set up before working with the form itself.
     - For access to the data on the form as it comes in, you’ll need access to a reader. 
     - The MultipartReader method on the Request object returns `*mime.Reader`, which you can use to iterate over the multipart body of the request.
     - This reader consumes input as needed.
     - For the form fields not being handled as files, you need a place to store the values. Here a map is created to store the values.
- - After the setup is complete, the handler iterates over the parts of the multipart message. 
- - The parsing loop can now start handling the parts of the message. 
+- After the setup is complete, the handler iterates over the parts of the multipart message. 
+- The parsing loop can now start handling the parts of the message. 
     - It first checks for the name of the form field by using the FormName method and continues the loop if there’s no name. 
     - Files will have a filename in addition to the name of the field.This can be retrieved by using the FileName method.
     - The existence of a filename is a way to distinguish between file and text-field handling.
- - When there’s no filename, the handler copies the value of the content of the field into a buffer and decrements a size counter that starts at 10 megabytes.
+- When there’s no filename, the handler copies the value of the content of the field into a buffer and decrements a size counter that starts at 10 megabytes.
     - If the size counter runs down to 0, the parser returns and provides an error.
     - This is put in place as a protection against text-field content being too large and consuming too much memory. 
     - 10 MB is quite large and is the default value inside ParseMultipartForm as well. 
     - If no errors occur, the content of the text form field is stored in the values map previously created and the parsing loop continues on the next part.
- - If the parsing loop has reached this point, the form field is a file. A file on the operating system is created to store the contents of the file.
- - After the loop completes, the files are all available on disk and the text fields are available on the values map.
+- If the parsing loop has reached this point, the form field is a file. A file on the operating system is created to store the contents of the file.
+- After the loop completes, the files are all available on disk and the text fields are available on the values map.
 
 

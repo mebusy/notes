@@ -65,10 +65,10 @@ surface helloWorld() {
 }
 ```
 
- - Oi : output opacity ?
- - Os : input opacity 
- - Ci : output color
- - Cs : intput color
+- Oi : output opacity ?
+- Os : input opacity 
+- Ci : output color
+- Cs : intput color
 
 Compile the shader :
 
@@ -102,7 +102,7 @@ surface helloWorld(
 }
 ```
 
- - N is the normal vector
+- N is the normal vector
 
 recompile & render !
 
@@ -138,7 +138,7 @@ surface helloWorld(
 }
 ```
 
- - I : the vector that is coming from the camera all the way to the surface
+- I : the vector that is coming from the camera all the way to the surface
 
 
 
@@ -154,8 +154,8 @@ surface helloWorld(
 
 Throughout the short history of computer graphics, researchers have sought to improve the realism of their synthetic images by finding better ways to render the appearance of surfaces. This work can be divided into *shading* and *texturing*.
 
- - Shading is the process of calculating the color of a pixel or shading sample from user-specified surface properties and the shading model. 
- - Texturing is a method of varying the surface properties from point to point in order to give the appearance of surface detail that is not actually present in the geometry of the surface.
+- Shading is the process of calculating the color of a pixel or shading sample from user-specified surface properties and the shading model. 
+- Texturing is a method of varying the surface properties from point to point in order to give the appearance of surface detail that is not actually present in the geometry of the surface.
 
 Shading models (sometimes called illumination models, lighting models, or reflection models) simulate the interaction of light with surface materials. Shading models are usually based on physics, but they always make a great number of simplifying assumptions. Fully detailed physical models would be overkill for most computer graphics purposes and would involve intractable calculations.
 
@@ -170,8 +170,8 @@ All of the shading models described above are so-called local models, which deal
 
 Most surface shaders can be split into two components called *pattern generation* and the *shading model*.
 
- - Pattern generation defines the texture pattern and sets the values of surface properties that are used by the shading model. 
- - Shading model simulates the behavior of the surface material with respect to diffuse and specular re- flection.
+- Pattern generation defines the texture pattern and sets the values of surface properties that are used by the shading model. 
+- Shading model simulates the behavior of the surface material with respect to diffuse and specular re- flection.
 
 <h2 id="c1c57c5f10d610630830380ed9b332fe"></h2>
 
@@ -196,8 +196,8 @@ color specularcolor = color (1,1,1))
 }
 ```
 
- - Colors are represented by RGB triples ， 0 ~ 1
- - Any RenderMan surface shader can reference a large collection of built-in quan- tities , such as
+- Colors are represented by RGB triples ， 0 ~ 1
+- Any RenderMan surface shader can reference a large collection of built-in quan- tities , such as
      - P , the 3D coordinates of the point on the surface being shaded
      - N , the surface normal at P
          - Because surfaces can be two-sided, it is possible to see the inside of a surface; 
@@ -206,22 +206,22 @@ color specularcolor = color (1,1,1))
      - built-in function *faceforward* ,  simply compares I with N 
          - Flip N so that it faces in the direction opposite to I,
          - If the two vectors I and N point in the same direction (i.e., if their dot product is positive), faceforward returns -N instead of N.
- - The first statement declares and initializes a surface normal vector Nf
+- The first statement declares and initializes a surface normal vector Nf
      - which is normalized and faces toward the camera
- - The second statement declares and initializes a vector V that is normalized and gives the direction to the camera.
- - The third statement sets the output opacity `Oi` to be equal to the input surface opacity `Os`
- - Actually, `Os` is color type,  For an opaque surface, `Os` is color(1,1,1).
- - The final statement in the shader does the interesting work
+- The second statement declares and initializes a vector V that is normalized and gives the direction to the camera.
+- The third statement sets the output opacity `Oi` to be equal to the input surface opacity `Os`
+- Actually, `Os` is color type,  For an opaque surface, `Os` is color(1,1,1).
+- The final statement in the shader does the interesting work
      - The output color `Ci` is set to the product of the opacity and a color. 
      - The color is the sum of an ambient term and a diffuse term multiplied by the input surface color `Cs` , added to a specular term whose color is determined by the parameter *specularcolor*
- - The built-in functions *ambient*, *diffuse*, and *specular* gather up all of the light from multiple light sources according to a particular reflection model. 
+- The built-in functions *ambient*, *diffuse*, and *specular* gather up all of the light from multiple light sources according to a particular reflection model. 
      - diffuse computes the sum of the intensity of each light source multiplied by the dot product of the direction to the light source and the surface normal Nf (which is passed as a parameter to diffuse).
 
 
 The plastic shading model is flexible enough to include the other two most com- mon RenderMan shading models, the "matte" model and the "metal" model, as special cases. 
 
- - The matte model is a perfectly diffuse reflector, which is equivalent to plastic with a Kd of 1 and a Ks of 0. ( 没有高光反射 )
- - The metal model is a perfectly specular reflector ， which is equivalent to plastic with a Kd of 0, a Ks of 1, and a specularcolor the same as Cs.
+- The matte model is a perfectly diffuse reflector, which is equivalent to plastic with a Kd of 1 and a Ks of 0. ( 没有高光反射 )
+- The metal model is a perfectly specular reflector ， which is equivalent to plastic with a Kd of 0, a Ks of 1, and a specularcolor the same as Cs.
      - specularcolor parameter is important ， For example, gold has a gold-colored highlight.
 
 The plastic shader is a good starting point for many procedural texture shaders. We will simply replace the Cs in the last statement of the shader with a new color variable Ct, the texture color that is computed by the pattern generation part of the shader.
@@ -231,7 +231,7 @@ The plastic shader is a good starting point for many procedural texture shaders.
 
 ## Pattern Generation
 
- - usually the hard part
+- usually the hard part
 
 If the texture pattern is simply an image texture, the shader can call the built-in function *texture*:
 
@@ -239,9 +239,9 @@ If the texture pattern is simply an image texture, the shader can call the built
 Ct = texture("name.tx",s,t);
 ```
 
- - texture function looks up pixel values from the specified image texture "name.tx" and performs filtering calculations as needed to prevent aliasing artifacts.
- - texture function has the usual 2D texture space with the texture image in the unit square.
- - built-in variables *s* and *t* are the standard RenderMan texture coordinates range over the interval [0, 1] , 
+- texture function looks up pixel values from the specified image texture "name.tx" and performs filtering calculations as needed to prevent aliasing artifacts.
+- texture function has the usual 2D texture space with the texture image in the unit square.
+- built-in variables *s* and *t* are the standard RenderMan texture coordinates range over the interval [0, 1] , 
 
 The shading language also provides an *environment* function whose 2D texture space is accessed using a 3D direction vector that is converted internally into 2D form to access a latitude-longitude or cube-face environment map.
 
@@ -255,17 +255,17 @@ The RenderMan shading language provides many different built-in coordinate syste
 
 A coordinate system is defined by the concatenated stack of transformation matrices that is in effect at a given point in the hierarchical structure of the RenderMan geometric model.
 
- - current space
+- current space
      - the one in which shading calculations are normally done.
      - In most renderers, current space will turn out to be either *camera* space or *world* space, but you shouldn’t depend on this.
- - world space 
+- world space 
      - the coordinate system in which the overall layout of your scene is defined. 
      - It is the starting point for all other spaces.
- - object space 
+- object space 
      - the one in which the surface being shaded was defined
      - For instance, if the shader is shading a sphere, the object space of the sphere is the coordinate system that was in effect when the *RiSphere* call was made to create the sphere. 
      - Note that an object made up of several surfaces all using the same shader might have different object spaces for each of the surfaces if there are geometric transformations between the surfaces.
- - shader space
+- shader space
      - the coordinate system that existed when the shader was invoked (e.g., by an *RiSurface* call). 
      - This is a very useful space because it can be attached to a user-defined collection of surfaces at an appropriate point in the hierarchy of the geometric model so that all of the related surfaces share the same shader space.
 
@@ -292,10 +292,10 @@ For example, the colors of two texture layers could be added together. Usually, 
 C = mix(C0, C1, f);
 ```
 
- - The number f, between 0 and 1, is used to select one of the colors C0 and C1
- - If f is 0, the result of themixisC0
- - If f is 1, the result isC1
- - If f is between 0 and 1, the re- sult is a linearly interpolated mixture of C0 and C1
+- The number f, between 0 and 1, is used to select one of the colors C0 and C1
+- If f is 0, the result of themixisC0
+- If f is 1, the result isC1
+- If f is between 0 and 1, the re- sult is a linearly interpolated mixture of C0 and C1
 
 
 ```
@@ -316,8 +316,8 @@ A = texture("mytexture"[3],s,t);
 result = C + (1-A) * Ct;
 ```
 
- - C is the image texture color, and A is the alpha channel of the image texture (channel number 3)
- - Since C has already been multiplied by A, the expression C + (1—A)*Ct is the right way to *lerp* between C and Ct.
+- C is the image texture color, and A is the alpha channel of the image texture (channel number 3)
+- Since C has already been multiplied by A, the expression C + (1—A)*Ct is the right way to *lerp* between C and Ct.
 
 Another way to combine simple functions to make complex functions is *functional composition*, using the outputs of one or more simple functions as the inputs of another function. Composition is very powerful and is so fundamental to programming that you really can’t avoid using it.
 
@@ -691,12 +691,12 @@ surface brick(
 }
 ```
 
- - The texture coordinates *scoord* and *tcoord* begin with the values of the standard texture coordinates s and t
- - and then are divided by the dimensions of a brick (including one-half of the mortar around the brick) to obtain new coordinates ss and tt that vary from 0 to 1 within a single brick
- - *scoord* and *tcoord* become the coordinates of the upper-left corner of the brick containing the point being shaded
- - Alternate rows of bricks are offset by one-half brick width to simulate the usual way in which bricks are laid.
- - Having identified which brick contains the point being shaded, as well as the texture coordinates of the point within the brick, it remains to determine whether the point is in the brick proper or in the mortar between the bricks.
- - The rectangular brick shape results from two pulses , a horizontal pulse w and a vertical pulse h . w * h is nonzero only when the point is within the brick region both horizontally and vertically
+- The texture coordinates *scoord* and *tcoord* begin with the values of the standard texture coordinates s and t
+- and then are divided by the dimensions of a brick (including one-half of the mortar around the brick) to obtain new coordinates ss and tt that vary from 0 to 1 within a single brick
+- *scoord* and *tcoord* become the coordinates of the upper-left corner of the brick containing the point being shaded
+- Alternate rows of bricks are offset by one-half brick width to simulate the usual way in which bricks are laid.
+- Having identified which brick contains the point being shaded, as well as the texture coordinates of the point within the brick, it remains to determine whether the point is in the brick proper or in the mortar between the bricks.
+- The rectangular brick shape results from two pulses , a horizontal pulse w and a vertical pulse h . w * h is nonzero only when the point is within the brick region both horizontally and vertically
 
 ![](../imgs/TM_F2.22.png)
 
@@ -914,9 +914,9 @@ Procedural methods could generate remarkably complex and natural-looking texture
 
 The theory of Fourier analysis tells us that functions can be represented as a sum of sinusoidal terms.  The Fourier transform takes a function from the temporal or spatial domain, where it is usually defined, into the *frequency domain*, where it is represented by the amplitude and phase of a series of sinusoidal waves.  When the series of sinusoidal waves is summed together, it reproduces the original function; this is called the *inverse Fourier transform*.
 
- - Spectral synthesis is a rather inefficient implementation of the inverse discrete Fourier transform, 
+- Spectral synthesis is a rather inefficient implementation of the inverse discrete Fourier transform, 
      - which takes a function from the frequency domain back to the spatial domain.  Given the amplitude and phase for each sinusoidal component, we can sum up the waves to get the desired function. 
- - The efficient way to do this is the inverse fast Fourier transform (FFT) algorithm, but that method generates the inverse Fourier transform for a large set of points all at once.
+- The efficient way to do this is the inverse fast Fourier transform (FFT) algorithm, but that method generates the inverse Fourier transform for a large set of points all at once.
       - In an implicit procedural texture we have to generate the inverse Fourier transform for a single sample point, and the best way to do that seems to be a direct summation of the sine wave components.
 
 In procedural texture generation, we usually don’t have all of the frequency domain information needed to reconstruct some function exactly. Instead, we want a function with some known characteristics, usually its power spectrum, and we don’t care too much about the details of its behavior. 
@@ -1015,8 +1015,8 @@ An alternative approach to antialiasing is to supersample the signal at irregula
 
 In summary, to produce an antialiased image with a specified resolution, the most effective strategy is to remove excessively high frequencies from the signal by low-pass filtering before sampling. If it isn’t possible to filter the signal, the best strategy is to stochastically supersample it at as high a rate as is practical, and apply a discrete low-pass filter to the supersamples.
 
- - 先应用 低通滤波 过滤
- - 如果没有解决问题, 采用 随机超采样， 再对超采样部分 使用低通滤波 过滤
+- 先应用 低通滤波 过滤
+- 如果没有解决问题, 采用 随机超采样， 再对超采样部分 使用低通滤波 过滤
 
 The next section discusses ways to build low-pass filtering into procedural textures to eliminate aliasing artifacts.
 
@@ -1041,10 +1041,10 @@ Notice that the width of the mortar grooves appears to vary in different parts o
 
 Various ways to build low-pass filtering into procedural textures: 
 
- - clamping, 
- - analytic prefiltering, 
- - integrals, 
- - and alternative antialiasing methods.
+- clamping, 
+- analytic prefiltering, 
+- integrals, 
+- and alternative antialiasing methods.
 
 Clamping is a special-purpose filtering method that applies only to textures created by spectral synthesis
 
@@ -1115,9 +1115,9 @@ for (f = MINFREQ; f < MAXFREQ; f *= 2)
     value += sin(2*PI*f*s)/f;
 ```
 
- - The loop begins at a frequency of MINFREQ and ends at a frequency less than MAXFREQ
- - doubling the frequency on each successive iteration of the loop
- - The amplitude of each sinusoidal component is the reciprocal of its frequency.
+- The loop begins at a frequency of MINFREQ and ends at a frequency less than MAXFREQ
+- doubling the frequency on each successive iteration of the loop
+- The amplitude of each sinusoidal component is the reciprocal of its frequency.
 
 The following version is antialiased using the simplest form of clamping. The sampling interval in *s* is *swidth*.
 
@@ -1129,7 +1129,7 @@ for (f = MINFREQ; f < cutoff; f *= 2)
     value += sin(2*PI*f*s)/f;
 ```
 
- - In this version the loop stops at a frequency less than *cutoff* , which is the Nyquist frequency for the sampling rate *1/swidth* 
+- In this version the loop stops at a frequency less than *cutoff* , which is the Nyquist frequency for the sampling rate *1/swidth* 
      - 要确保 <= Nyquist frequency/2 , 所以这里是  0.5/swidth
 
 In order to avoid “pops,” sudden changes in the texture as the sampling rate changes (e.g., as we zoom in toward the textured surface), it is important to fade out each component gradually as the Nyquist frequency approaches the component frequency. The following texture function incorporates this gradual fade-out strategy:
@@ -1145,9 +1145,9 @@ fade = clamp(2*(cutoff-f)/cutoff, 0, 1);
 value += fade * sin(2*PI*f*s)/f;
 ```
 
- - The loop ends one component earlier than before
- - and that last component (whose frequency is between 0.5*cutoff and cutoff) is added in after the loop and is scaled by fade.
- - The fade value gradually drops from 1 to 0 as the frequency of the component increases from 0.5*cutoff toward cutoff
+- The loop ends one component earlier than before
+- and that last component (whose frequency is between 0.5*cutoff and cutoff) is added in after the loop and is scaled by fade.
+- The fade value gradually drops from 1 to 0 as the frequency of the component increases from 0.5*cutoff toward cutoff
 
 This is really a result of changes in *swidth* and therefore in *cutoff*, rather than changes in the set of frequency components in the texture pattern.
 
@@ -1325,13 +1325,13 @@ To keep our procedural textures stable and to keep them from aliasing, we need a
 
 The properties of an ideal ***noise*** function are as follows:
 
- - noise is a repeatable pseudorandom function of its inputs.
- - noise has a known range, namely, from −1 to 1.
- - noise is band-limited, with a maximum frequency of about 1.
- - noise doesn’t exhibit obvious periodicities or regular patterns. Such pseudorandom functions are always periodic, but the period can be made very long and therefore the periodicity is not conspicuous.
+- noise is a repeatable pseudorandom function of its inputs.
+- noise has a known range, namely, from −1 to 1.
+- noise is band-limited, with a maximum frequency of about 1.
+- noise doesn’t exhibit obvious periodicities or regular patterns. Such pseudorandom functions are always periodic, but the period can be made very long and therefore the periodicity is not conspicuous.
      - 不明显的表现出周期性
- - noise is *stationary* 静止的 -— that is, its statistical character 统计特性 should be translationally invariant 平移不变 .
- - noise is *isotropic* 各向同性 -— that is, its statistical character should be rotationally invariant 旋转不变.
+- noise is *stationary* 静止的 -— that is, its statistical character 统计特性 should be translationally invariant 平移不变 .
+- noise is *isotropic* 各向同性 -— that is, its statistical character should be rotationally invariant 旋转不变.
 
 
 <h2 id="96cdfd02d5849846686f2eecc6bc24bf"></h2>
@@ -1436,8 +1436,8 @@ vnoise(float x, float y, float z) {  // mark2
 
 
 
- - mark 1: Given this table, it is straightforward to generate the PRN for an integer lattice point with coordinates ix, iy, and iz
- - mark 2: The key decision to be made in implementing value noise is how to interpolate among the lattice PRNs.
+- mark 1: Given this table, it is straightforward to generate the PRN for an integer lattice point with coordinates ix, iy, and iz
+- mark 2: The key decision to be made in implementing value noise is how to interpolate among the lattice PRNs.
 
 A graph of a 1D sample of vnoise is shown in Figure 2.35(a), and an image of a 2D slice of the function is shown in Figure 2.36(a). Figure 2.37(a) shows its power spectrum. The noise obviously meets the criterion of being band-limited; it has no significant energy at frequencies above 1.
 
@@ -1673,12 +1673,12 @@ ss -= sbrick;
 tt -= tbrick;
 ```
 
- - The call to *snoise* uses *tbrick* rather than *tt* so that the noise value is constant over the entire brick. 
+- The call to *snoise* uses *tbrick* rather than *tt* so that the noise value is constant over the entire brick. 
      - Otherwise, the stochastic offset would vary over the height of the brick and make the vertical edges of the brick wavy. 
- - Of course, we had to reorder the calculation of *sbrick* and *tbrick* so that *sbrick* can depend on *tbrick*.
- - Since *snoise* is a gradient noise that is zero at all integer points, the perturbation always would be zero if the shader used `snoise(tbrick)`. 
+- Of course, we had to reorder the calculation of *sbrick* and *tbrick* so that *sbrick* can depend on *tbrick*.
+- Since *snoise* is a gradient noise that is zero at all integer points, the perturbation always would be zero if the shader used `snoise(tbrick)`. 
      - Instead, it uses `snoise(tbrick + 0.5)` to sample the value of the noise halfway between the integer points, where it should have an interesting value. 
- - The 0.1 multiplier on the *snoise* simply controls the size of the irregularity added to the texture. It can be adjusted as desired.
+- The 0.1 multiplier on the *snoise* simply controls the size of the irregularity added to the texture. It can be adjusted as desired.
 
 
 <h2 id="d441872eec16d305851e98aa1b90393c"></h2>
@@ -1790,11 +1790,11 @@ wallpaper(
 }
 ```
 
- - A separate noise value for each cell could be tested to see whether the cell should contain a star.
+- A separate noise value for each cell could be tested to see whether the cell should contain a star.
      - If a star is so far from the center of a cell that it protrudes outside the cell, this shader will clip off the part of the star that is outside the cell.
- - The tests can be done by a pair of nested for loops that iterate over −1, 0, and 1. The nested loops generate nine different values for the cell coordinate pair (scell, tcell). 
+- The tests can be done by a pair of nested for loops that iterate over −1, 0, and 1. The nested loops generate nine different values for the cell coordinate pair (scell, tcell). 
      - The star in each cell is tested against the sample point.
- - The first *noise* call is used to decide whether or not to put a star in the cell. 
+- The first *noise* call is used to decide whether or not to put a star in the cell. 
      - Note that the value of *in_out* can now be as high as 9.
      - The additional *step* call in the last line converts it back to a 0 to 1 range so that the mix will work properly. 
 

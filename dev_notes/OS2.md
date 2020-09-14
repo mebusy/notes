@@ -96,9 +96,9 @@
 
 ## Goals for Today
 
- - Concurrency examples
- - Need for synchronization
- - Examples of valid synchronization
+- Concurrency examples
+- Need for synchronization
+- Examples of valid synchronization
 
 
 <h2 id="d8a1f8a1fb826b53b7b79e3cb43a59da"></h2>
@@ -106,10 +106,10 @@
 
 ## Threaded Web Server
 
- - Advantages of threaded version:
+- Advantages of threaded version:
     - Can share file caches kept in memory, results of CGI scripts, other things
     - Threads are much cheaper to create than processes, so this has a lower per-request overhead
- - What if too many requests come in at once?
+- What if too many requests come in at once?
     - you got more overhead than real computation. You got a million threads going simultaneously the only thing you're doing is swithing all the time. 
 
 <h2 id="8c0fe8bd8957434b18beee61bb24d5a1"></h2>
@@ -117,9 +117,9 @@
 
 ## Thread Pools
 
- - Problem with previous version: Unbounded Threads
+- Problem with previous version: Unbounded Threads
     - When web-site becomes too popular – throughput sinks
- - Instead, allocate a bounded “pool” of threads, representing the maximum level of multiprogramming
+- Instead, allocate a bounded “pool” of threads, representing the maximum level of multiprogramming
 
 
 ```
@@ -144,8 +144,8 @@ slave(queue) {
 }
 ```
 
- - every request that comes in get put in the queue 
- - and there is a finite number of threads here running 
+- every request that comes in get put in the queue 
+- and there is a finite number of threads here running 
     - they go and grab a request off the queue , do something , finish it, grab the next request 
 
 
@@ -159,8 +159,8 @@ slave(queue) {
 
 ### ATM bank server example
 
- - Suppose we wanted to implement a server process to handle requests from an ATM network:
- - How could we speed this up?
+- Suppose we wanted to implement a server process to handle requests from an ATM network:
+- How could we speed this up?
     - More than one request being processed at once
     - Event driven (overlap computation and I/O)
     - Multiple threads (multi-proc, or overlap comp and I/O)
@@ -170,10 +170,10 @@ slave(queue) {
 
 ### Event Driven Version of ATM server
 
- - Suppose we only had one CPU
+- Suppose we only had one CPU
     - Still like to overlap I/O with computation
     - Without threads, we would have to rewrite in event-driven style
- - Example
+- Example
 
 ```
 BankServer() {
@@ -189,9 +189,9 @@ BankServer() {
 }
 ```
 
- - What if we missed a blocking I/O step?
- - What if we have to split code into hundreds of pieces which could be blocking?
- - This technique is used for graphical programming
+- What if we missed a blocking I/O step?
+- What if we have to split code into hundreds of pieces which could be blocking?
+- This technique is used for graphical programming
 
 
 <h2 id="f8799e6f517713b0446f61f6deb8f9e2"></h2>
@@ -199,10 +199,10 @@ BankServer() {
 
 ### Can Threads Make This Easier?
 
- - Threads yield overlapped I/O and computation without “deconstructing” code into non-blocking fragments
+- Threads yield overlapped I/O and computation without “deconstructing” code into non-blocking fragments
     - One thread per request
- - Requests proceeds to completion, blocking as required I/O
- - Unfortunately, shared state can get corrupted:
+- Requests proceeds to completion, blocking as required I/O
+- Unfortunately, shared state can get corrupted:
 
 ```
 Thread 1                    Thread 2
@@ -219,8 +219,8 @@ store r1, acct->balance
 
 ## Problem is at the lowest level
 
- - Most of the time, threads are working on separate data, so scheduling doesn’t matter
- - However, What about (Initially, y = 12):
+- Most of the time, threads are working on separate data, so scheduling doesn’t matter
+- However, What about (Initially, y = 12):
     - What are the possible values of x?  13, 3 , or 5
 
 ```
@@ -229,15 +229,15 @@ x = 1;      y = 2;
 x = y+1;    y = y * 2;
 ```
  
- - Or, what are the possible values of x below?
+- Or, what are the possible values of x below?
 
 ```
 Thread A   Thread B
 x = 1;     x = 2;
 ```
 
- - X could be 1 or 2 (non-deterministic!)
- - Could even be 3 for serial processors:
+- X could be 1 or 2 (non-deterministic!)
+- Could even be 3 for serial processors:
     - Thread A writes 0001, B writes 0010. 
     - if we have a non-atomic load/store ( eg. bigger than a single word )
 
@@ -246,13 +246,13 @@ x = 1;     x = 2;
 
 ## Atomic Operations
 
- - To understand a concurrent program, we need to know what the underlying indivisible operations are!
- - **Atomic Operation**:  an operation that always runs to completion or not at all
+- To understand a concurrent program, we need to know what the underlying indivisible operations are!
+- **Atomic Operation**:  an operation that always runs to completion or not at all
     - It is indivisible: it cannot be stopped in the middle and state cannot be modified by someone else in the middle
     - Fundamental building block – if no atomic operations, then have no way for threads to work together
- - On most machines, memory references and assignments (i.e. loads and stores) of words are atomic
+- On most machines, memory references and assignments (i.e. loads and stores) of words are atomic
     - Consequently – weird example that produces “3” on previous slide can’t happen
- - Many instructions are not atomic
+- Many instructions are not atomic
     - Double-precision floating point store often not atomic
     - VAX and IBM 360 had an instruction to copy a whole array
 
@@ -261,7 +261,7 @@ x = 1;     x = 2;
 
 ## Correctness Requirements
 
- - Threaded programs must work for all interleavings of thread instruction sequences
+- Threaded programs must work for all interleavings of thread instruction sequences
     - Cooperating threads inherently non-deterministic and non-reproducible
     - Really hard to debug unless carefully designed!
 
@@ -270,20 +270,20 @@ x = 1;     x = 2;
 
 ## Definitions
 
- - **Synchronization:**  using atomic operations to ensure cooperation between threads
+- **Synchronization:**  using atomic operations to ensure cooperation between threads
     - For now, only loads and stores are atomic
     - We are going to show that its hard to build anything useful with only reads and writes
- - **Mutual Exclusion**: ensuring that only one thread does a particular thing at a time
+- **Mutual Exclusion**: ensuring that only one thread does a particular thing at a time
     - One thread *excludes* the other while doing its task
- - **Critical Section**: piece of code that only one thread can execute at once. Only one thread at a time will get into this section of code
+- **Critical Section**: piece of code that only one thread can execute at once. Only one thread at a time will get into this section of code
     - Critical section is the result of mutual exclusion
     - Critical section and mutual exclusion are two ways of describing the same thing.
- - **Lock**: prevents someone from doing something
+- **Lock**: prevents someone from doing something
     - Lock before entering critical section and before accessing shared data
     - Unlock when leaving, after accessing shared data
     - Wait if locked
         - Important idea: all synchronization involves waiting
- - For example: fix the milk problem by putting a key on the refrigerator
+- For example: fix the milk problem by putting a key on the refrigerator
     - Lock it and take key if you are going to go buy milk
     - Fixes too much: roommate angry if only wants OJ
     - Of Course – We don’t know how to make a lock yet
@@ -295,7 +295,7 @@ x = 1;     x = 2;
 
 ![](../imgs/os_thread_what_going_to_synchronize.png)
 
- - We are going to implement various higher-level synchronization primitives using atomic operations
+- We are going to implement various higher-level synchronization primitives using atomic operations
     - Everything is pretty painful if only atomic primitives are load and store
     - Need to provide primitives useful at user-level
 
@@ -304,16 +304,16 @@ x = 1;     x = 2;
 
 ## Summary 
 
- - Concurrent threads are a very useful abstraction
+- Concurrent threads are a very useful abstraction
     - Allow transparent overlapping of computation and I/O
     - Allow use of parallel processing when available
- - Concurrent threads introduce problems when accessing shared data
+- Concurrent threads introduce problems when accessing shared data
     - Programs must be insensitive to arbitrary interleavings
     - Without careful design, shared variables can become completely inconsistent
- - Important concept: Atomic Operations
+- Important concept: Atomic Operations
     - An operation that runs to completion or not at all
     - These are the primitives on which to construct various synchronization primitives
- - Showed how to protect a critical section with only atomic load and store => pretty complex!
+- Showed how to protect a critical section with only atomic load and store => pretty complex!
 
 
 ---
@@ -328,10 +328,10 @@ x = 1;     x = 2;
 
 ## Goals for Today
 
- - Hardware Support for Synchronization
- - Higher-level Synchronization Abstractions
+- Hardware Support for Synchronization
+- Higher-level Synchronization Abstractions
     - Semaphores, monitors, and condition variables
- - Programming paradigms for concurrent programs
+- Programming paradigms for concurrent programs
 
 
 <h2 id="0df086f9bba7795a9b18b6e22bbe83e8"></h2>
@@ -339,13 +339,13 @@ x = 1;     x = 2;
 
 ## High-Level Picture
 
- - The abstraction of threads is good:
+- The abstraction of threads is good:
     - Maintains sequential execution model 
     - Allows simple parallelism to overlap I/O and computation
- - Unfortunately, still too complicated to access state shared between threads 
+- Unfortunately, still too complicated to access state shared between threads 
     - Consider “too much milk” example
     - Implementing a concurrent program with only loads and stores would be tricky and error-prone
- - Today, we’ll implement higher-level operations on top of atomic operations provided by hardware
+- Today, we’ll implement higher-level operations on top of atomic operations provided by hardware
     - Develop a “synchronization toolbox”
     - Explore some common programming paradigms
 
@@ -354,11 +354,11 @@ x = 1;     x = 2;
 
 ## Too Much Milk: Solution #4
 
- - Suppose we have some sort of implementation of a lock (more in a moment).
+- Suppose we have some sort of implementation of a lock (more in a moment).
     - **Lock.Acquire()** - wait until lock is free, then grab
     - **Lock.Release()** - Unlock, waking up anyone waitin
     - These must be atomic operations – if two threads are waiting for the lock and both see it’s free, only one succeeds to grab the lock
- - Then, our milk problem is easy:
+- Then, our milk problem is easy:
  
 ```c
 milklock.Acquire();
@@ -367,8 +367,8 @@ if (nomilk)
 milklock.Release();
 ```
  
- - Once again, section of code between Acquire() and Release() called a **“Critical Section”**
- - Of course, you can make this even simpler: suppose you are out of ice cream instead of milk
+- Once again, section of code between Acquire() and Release() called a **“Critical Section”**
+- Of course, you can make this even simpler: suppose you are out of ice cream instead of milk
     - Skip the test since you always need more ice cream.
 
 <h2 id="3d86e0ff4fcefc805340e9ef1efa0675"></h2>
@@ -376,16 +376,16 @@ milklock.Release();
 
 ## How to implement Locks?
 
- - **Lock**: prevents someone from doing something
+- **Lock**: prevents someone from doing something
     - Lock before entering critical section and before accessing shared data
     - Unlock when leaving, after accessing shared data
     - Wait if locked
         - **Important idea: all synchronization involves waiting**
         - **Should** ***sleep*** **if waiting for a long time**
- - Atomic Load/Store: get solution like Milk #3
+- Atomic Load/Store: get solution like Milk #3
     - Looked at this last lecture
     - Pretty complex and error prone
- - Hardware Lock instruction
+- Hardware Lock instruction
     - Is this a good idea? No.
     - What about putting a task to sleep?
         - How do you handle the interface between the hardware and scheduler?
@@ -398,7 +398,7 @@ milklock.Release();
 
 ## Naïve use of Interrupt Enable/Disable
 
- - How can we build multi-instruction atomic operations?
+- How can we build multi-instruction atomic operations?
     - Recall: dispatcher gets control in two ways. 
         - Internal: Thread does something to relinquish the CPU
         - External: Interrupts cause dispatcher to take CPU
@@ -407,10 +407,10 @@ milklock.Release();
         - Preventing external events by disabling interrupts
     - What about a multiprocessor ?
         - It does not. because  we only disabled interrupts on one core.
- - Consequently, naïve Implementation of locks:
+- Consequently, naïve Implementation of locks:
     - `LockAcquire { disable Ints; }`
     - `LockRelease { enable Ints; }`
- - Problems with this approach:
+- Problems with this approach:
     - **Can’t let user do this**!  Consider following:
         - `LockAcquire(); While(TRUE) {;}`
         - interrupts will never go off again , the OS will never grab the CPU back
@@ -425,7 +425,7 @@ milklock.Release();
 
 ## Better Implementation of Locks by Disabling Interrupts
 
- - Key idea: maintain a lock variable in memory and impose mutual exclusion only during operations on that variable
+- Key idea: maintain a lock variable in memory and impose mutual exclusion only during operations on that variable
 
 ```
 int value = FREE;
@@ -454,15 +454,15 @@ Release() {
 }
 ```
 
- - after going to sleep, who re-enable interrupts?
- - It doesn't really work.
+- after going to sleep, who re-enable interrupts?
+- It doesn't really work.
 
 <h2 id="d9057f02e7c606b1524cb5309d285eea"></h2>
 
 
 ## New Lock Implementation: Discussion
 
- - Why do we need to disable interrupts at all?
+- Why do we need to disable interrupts at all?
     - Avoid interruption between checking and setting lock value
     - Otherwise two threads could think that they both have lock
  
@@ -471,15 +471,15 @@ Release() {
 
 ## Interrupt re-enable in going to sleep
 
- - What about re-enabling ints when going to sleep?
- - Before putting thread on the wait queue ?
+- What about re-enabling ints when going to sleep?
+- Before putting thread on the wait queue ?
     - meanwhile at that point somebody else wakes up, releases the lock , comes back , and we put ourselves on the wait queue even though the lock is free now.  
     - Release can check the queue and not wake up thread
- - After putting thread on the wait queue ?
+- After putting thread on the wait queue ?
     - they wake me up from the wait queue by putting me on the ready queue and then I come back here and immediately go to sleep. 
     - Relase puts the thread on the ready queue, but the thread still thinks it needs to go to sleep
     - Misses wakeup and still holds lock ( deadlock ! )
- - Want to put it after sleep(). But how ?
+- Want to put it after sleep(). But how ?
     - we need to bring the kernel in here to help us a little bit. What means that are going to sleep process has to also re-enable interrupts somehow. 
 
 
@@ -488,7 +488,7 @@ Release() {
 
 ## How to Re-enable After Sleep()?
 
- - In Nachos, since ints are disabled when you call sleep:
+- In Nachos, since ints are disabled when you call sleep:
     - Responsibility of the next thread to re-enable ints
     - When the sleeping thread wakes up, returns to acquire and re-enables interrupts
 
@@ -500,11 +500,11 @@ Release() {
 
 ## Interrupt disable and enable across context switches
 
- - An important point about structuring code:
+- An important point about structuring code:
     - In Nachos code you will see lots of comments about assumptions made concerning when interrupts disabled
     - This is an example of where modifications to and assumptions about program state can’t be localized within a small body of code
     - In these cases it is possible for your program to eventually “acquire” bugs as people modify code
- - Other cases where this will be a concern?
+- Other cases where this will be a concern?
     - What about exceptions that occur after lock is acquired? Who releases the lock?
 
 ```c
@@ -513,7 +513,7 @@ a = b / 0;
 mylock.release()
 ```
 
- - many languages have ways of handling non-local exits. Basically situations where you get an exception kind of in the mille of the code and you can arrange so that no matter what way you exit this code , you always execute release code. 
+- many languages have ways of handling non-local exits. Basically situations where you get an exception kind of in the mille of the code and you can arrange so that no matter what way you exit this code , you always execute release code. 
 
 
 <h2 id="fe609fcadb06bc77aa2ec6e7fa11982c"></h2>
@@ -521,19 +521,19 @@ mylock.release()
 
 ## Atomic Read-Modify-Write instructions
 
- - Problems with previous solution:
+- Problems with previous solution:
     - Can’t give lock implementation to users
         - you can't give interrupt disable to the user.
         - they will lock up the machine. 
     - Doesn’t work well on multiprocessor
         - Disabling interrupts on all processors requires messages and would be very time consuming
- - Alternative: atomic instruction sequences
+- Alternative: atomic instruction sequences
     - These instructions read a value from memory and write a new value atomically
     - Hardware is responsible for implementing this correctly
         - on both uniprocessors (not too hard) 
         - and multiprocessors (requires help from cache coherence protocol)
     - that is enough to build locks.
- - Unlike disabling interrupts, can be used on both uniprocessors and multiprocessors
+- Unlike disabling interrupts, can be used on both uniprocessors and multiprocessors
 
 <h2 id="0cb1f961279712e6387eb806706470ef"></h2>
 
@@ -574,14 +574,14 @@ load-linked&store conditional(&address) {
 ```
 
 
- - those combinations are enough sufficiently that we can build locks out of them 
+- those combinations are enough sufficiently that we can build locks out of them 
 
 <h2 id="8bd032d628d2ee230ece8cdf6d2f207f"></h2>
 
 
 ## Implementing Locks with test&set
 
- - Another flawed, but simple solution:
+- Another flawed, but simple solution:
 
 ```
 int value = 0; // Free
@@ -594,11 +594,11 @@ Release() {
 ```
  
 
- - Simple explanation:
+- Simple explanation:
     - If lock is free, test&set reads 0 and sets value=1, so lock is now busy. It returns 0 so while exits.
     - If lock is busy, test&set reads 1 and sets value=1 (no change). It returns 1, so while loop continues 
     - When we set value = 0, someone else can get lock
- - **Busy-Waiting:**  thread consumes cycles while waiting
+- **Busy-Waiting:**  thread consumes cycles while waiting
 
 
 <h2 id="02e4fa8979f9af340f94ff6415ee68ff"></h2>
@@ -606,16 +606,16 @@ Release() {
 
 ## Problem: Busy-Waiting for Lock
 
- - Positives for this solution
+- Positives for this solution
     - Machine can receive interrupts
     - User code can use this lock
     - Works on a multiprocessor
- - Negatives
+- Negatives
     - This is very inefficient because the busy-waiting thread will consume cycles waiting
     - Waiting thread may take cycles away from thread holding lock (no one wins!)
     - **Priority Inversion:**  If busy-waiting thread has higher priority than thread holding lock => no progress!
- - Priority Inversion problem with original Martian rover 
- - For semaphores and monitors, waiting thread may wait for an arbitrary length of time!
+- Priority Inversion problem with original Martian rover 
+- For semaphores and monitors, waiting thread may wait for an arbitrary length of time!
     - Thus even if busy-waiting was OK for locks, definitely not ok for other primitives
     - Homework/exam solutions should not have busy-waiting!
 
@@ -625,7 +625,7 @@ Release() {
 
 ## Better Locks using test&set
 
- - Can we build test&set locks without busy-waiting?
+- Can we build test&set locks without busy-waiting?
     - Can’t entirely, but can minimize
     - Idea: only busy-wait to atomically check lock value
         - 有对象获取锁后，guard 会置为0，其他对象再次尝试获取锁时，如果锁没还有被释放，会sleep()
@@ -658,7 +658,7 @@ Release() {
 }
 ```
 
- - Note: sleep has to be sure to reset the guard variable
+- Note: sleep has to be sure to reset the guard variable
     - Why can’t we do it just before or just after the sleep?
 
  
@@ -667,14 +667,14 @@ Release() {
 
 ## Higher-level Primitives than Locks
  
- - Goal of last couple of lectures:
+- Goal of last couple of lectures:
     - What is the right abstraction for synchronizing threads that share memory?
         - locks are kind of the lowest level primitive that we could ask for. and they don't really do a lot of things cleanly. 
     - Want as high a level primitive as possible
- - Good primitives and practices important!
+- Good primitives and practices important!
     - Since execution is not entirely sequential, really hard to find bugs, since they happen rarely
- - UNIX is pretty stable now, but up until about mid-80s (10 years after started), systems running UNIX would crash every week or so – concurrency bugs
- - Synchronization is a way of coordinating multiple concurrent activities that are using shared state
+- UNIX is pretty stable now, but up until about mid-80s (10 years after started), systems running UNIX would crash every week or so – concurrency bugs
+- Synchronization is a way of coordinating multiple concurrent activities that are using shared state
     - This lecture and the next presents a couple of ways of structuring the sharing
 
 
@@ -683,12 +683,12 @@ Release() {
 
 ## Semaphores
 
- - Semaphores are a kind of generalized lock
+- Semaphores are a kind of generalized lock
     - First defined by Dijkstra in late 60s
     - Main synchronization primitive used in original UNIX
     - Semaphores are really named after the notion of kind of the stop lights that are on train tracks
         - ![](../imgs/os_thread_semaphores.png)
- - Definition: a Semaphore has a non-negative integer value and supports the following two operations:
+- Definition: a Semaphore has a non-negative integer value and supports the following two operations:
     - **P():** an atomic operation that waits for semaphore to become positive, then decrements it by 1  
         - Think of this as the wait() operation
     - **V():** an atomic operation that increments the semaphore by 1, waking up a waiting P, if any 
@@ -702,13 +702,13 @@ Release() {
 
 ### Semaphores Like Integers Except
 
- - Semaphores are like integers, except
+- Semaphores are like integers, except
     - No negative values
     - Only operations allowed are P and V – can’t read or write value, except to set it initially
     - Operations must be atomic
         - Two P’s together can’t decrement value below zero
         - Similarly, thread going to sleep in P won’t miss wakeup from V – even if they both happen at same time
- - Semaphore from railway analogy
+- Semaphore from railway analogy
     - Here is a semaphore initialized to 2 for resource control:
 
 
@@ -723,14 +723,14 @@ Release() {
 
 ### Two Uses of Semaphores
 
- - Mutual Exclusion (initial value = 1)
+- Mutual Exclusion (initial value = 1)
     - Also called “Binary Semaphore”.
     - Can be used for mutual exclusion:
         - semaphore.P();
         - // Critical section goes here
         - semaphore.V();
     - Mutex
- - Scheduling Constraints (initial value = 0)
+- Scheduling Constraints (initial value = 0)
     - Locks are fine for mutual exclusion, but what if you want a thread to wait for something?
     - Example: suppose you had to implement ThreadJoin which must wait for thread to terminiate:
 
@@ -750,17 +750,17 @@ ThreadFinish {
 
 ## Producer-consumer with a bounded buffer
 
- - Problem Definition
+- Problem Definition
     - Producer puts things into a shared buffer
     - Consumer takes them out
     - Need synchronization to coordinate producer/consumer
- - Don’t want producer and consumer to have to work in lockstep, so put a fixed-size buffer between them
+- Don’t want producer and consumer to have to work in lockstep, so put a fixed-size buffer between them
     - Need to synchronize access to this buffer
     - Producer needs to wait if buffer is full
     - Consumer needs to wait if buffer is empty
- - Example 1: GCC compiler
+- Example 1: GCC compiler
     - cpp | cc1 | cc2 | as | ld
- - Example 2: Coke machine
+- Example 2: Coke machine
     - Producer can put limited number of cokes in machine
     - Consumer can’t take cokes out if machine is empty
 
@@ -770,14 +770,14 @@ ThreadFinish {
 
 ### Correctness constraints for solution
 
- - Correctness Constraints:
+- Correctness Constraints:
     - Consumer must wait for producer to fill buffers, if none full (scheduling constraint)
     - Producer must wait for consumer to empty buffers, if all full (scheduling constraint)
     - Only one thread can manipulate buffer queue at a time (mutual exclusion)
- - Remember why we need mutual exclusion
+- Remember why we need mutual exclusion
     - Because computers are stupid
     - Imagine if in real life: the delivery person is filling the machine and somebody comes up and tries to stick their money into the machine
- - General rule of thumb: **Use a separate semaphore for each constraint**
+- General rule of thumb: **Use a separate semaphore for each constraint**
     - Semaphore fullBuffers; // consumer’s constraint
     - Semaphore emptyBuffers;// producer’s constraint
     - Semaphore mutex; // mutual exclusion
@@ -816,14 +816,14 @@ Consumer() {
 
 ### Discussion about Solution
 
- - Why asymmetry?
+- Why asymmetry?
     - Producer does: emptyBuffer.P(), fullBuffer.V()
     - Consumer does: fullBuffer.P(), emptyBuffer.V()
- - Is order of P’s important? Yes! can cause deadlock
+- Is order of P’s important? Yes! can cause deadlock
     - might sleep with lock
- - Is order of V’s important? No.
+- Is order of V’s important? No.
     - it might affect scheduling efficiency. 
- - What if we have 2 producers or 2 consumers?
+- What if we have 2 producers or 2 consumers?
     - Do we need to change anything? No.It works.
 
 
@@ -832,12 +832,12 @@ Consumer() {
 
 ## Motivation for Monitors and Condition Variables
 
- - Semaphores are a huge step up; just think of trying to do the bounded buffer with only loads and stores
+- Semaphores are a huge step up; just think of trying to do the bounded buffer with only loads and stores
     - Problem is that semaphores are dual purpose:
         - They are used for both mutex and scheduling constraints
         - Example: the fact that flipping of P’s in bounded buffer gives deadlock is not immediately obvious. How do you prove correctness to someone?
- - Cleaner idea: Use locks for mutual exclusion and condition variables for scheduling constraints
- - Definition: **Monitor**: a lock and zero or more condition variables for managing concurrent access to shared data
+- Cleaner idea: Use locks for mutual exclusion and condition variables for scheduling constraints
+- Definition: **Monitor**: a lock and zero or more condition variables for managing concurrent access to shared data
     - Some languages like Java provide this natively
     - Most others use actual locks and condition variables
     - Monitor is a programming style or paradigm for building synchronization. It's a pattern. 
@@ -853,21 +853,21 @@ The lock provides mutual exclusion to get in and deal with the condition variabl
 
 ![](../imgs/os_thread_monitor.png)
 
- - **Lock:**  the lock provides mutual exclusion to shared data
+- **Lock:**  the lock provides mutual exclusion to shared data
     - Always acquire before accessing shared data structure
     - Always release after finishing with shared data
     - Lock initially free
- - **Condition Variable:**  a queue of threads waiting for something inside a critical section
+- **Condition Variable:**  a queue of threads waiting for something inside a critical section
     - Key idea: make it possible to go to sleep inside critical section by atomically releasing lock at time we go to sleep
     - Contrast to semaphores: Can’t wait inside critical section
- - lock 保护 sharedata， sharedata 控制访问限制
+- lock 保护 sharedata， sharedata 控制访问限制
 
 <h2 id="8b1e0edd9d2a287d52be6dd022c68c7e"></h2>
 
 
 ### Simple Monitor Example
 
- - Here is an (infinite) synchronized queue
+- Here is an (infinite) synchronized queue
 
 ```
 Lock lock;
@@ -891,25 +891,25 @@ RemoveFromQueue() {
 }
 ```
 
- - this is a very good single condition variable pattern for you guys to think about. 
- - notic how we go to sleep with the lock acquired we wake up and we think about this is when we wake up we have the lock still.
+- this is a very good single condition variable pattern for you guys to think about. 
+- notic how we go to sleep with the lock acquired we wake up and we think about this is when we wake up we have the lock still.
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
 
 
 ## Summary
 
- - Important concept: Atomic Operations
+- Important concept: Atomic Operations
     - An operation that runs to completion or not at all
     - These are the primitives on which to construct various synchronization primitives
- - Talked about hardware atomicity primitives:
+- Talked about hardware atomicity primitives:
     - Disabling of Interrupts, test&set, swap, comp&swap, load-linked/store conditional
- - Showed several constructions of Locks
+- Showed several constructions of Locks
     - Must be very careful not to waste/tie up machine resources
         - Shouldn’t disable interrupts for long
         - Shouldn’t spin wait for long
     - Key idea: Separate lock variable, use hardware mechanisms to protect modifications of that variable
- - Talked about Semaphores, Monitors, and Condition Variables
+- Talked about Semaphores, Monitors, and Condition Variables
     - Higher level constructs that are harder to “screw up”
 
 <h2 id="d82c7cd8bfc967bc3466ba0df7a07b30"></h2>
@@ -922,10 +922,10 @@ RemoveFromQueue() {
 
 ## Goals for Today
 
- - Continue with Synchronization Abstractions
+- Continue with Synchronization Abstractions
     - Monitors and condition variables
- - Readers-Writers problem and solutoin
- - Language Support for Synchronization
+- Readers-Writers problem and solutoin
+- Language Support for Synchronization
 
 
 
@@ -952,7 +952,7 @@ RemoveFromQueue() {
 }
 ```
  
- - Not very interesting use of “Monitor”
+- Not very interesting use of “Monitor”
     - It only uses a lock with no condition variables
     - Cannot put consumer to sleep if no work!
 
@@ -961,17 +961,17 @@ RemoveFromQueue() {
 
 ## Condition Variables
 
- - How do we change the RemoveFromQueue() routine to wait until something is on the queue?
+- How do we change the RemoveFromQueue() routine to wait until something is on the queue?
     - Could do this by keeping a count of the number of things on the queue (with semaphores), but error prone
- - **Condition Variable**:  a queue of threads waiting for something inside a critical section
+- **Condition Variable**:  a queue of threads waiting for something inside a critical section
     - Key idea: allow sleeping inside critical section by atomically releasing lock at time we go to sleep
     - **Contrast to semaphores: Can’t wait inside critical section**
         - semaphore will deadlock
- - Operations:
+- Operations:
     - **Wait(&lock)**:  Atomically release lock and go to sleep. Re-acquire lock later, before returning
     - **Signal()**: Wake up one waiter, if any
     - **Broadcast()**:  Wake up all waiters
- - Rule: Must hold lock when doing condition variable ops!
+- Rule: Must hold lock when doing condition variable ops!
     - In Birrell paper, he says can perform signal() outside of lock – IGNORE HIM (this is only an optimization)
 
 
@@ -1003,9 +1003,9 @@ RemoveFromQueue() {
 }
 ```
 
- - wait() puts you to sleep and releases the lock
- - and before you ever exit wait(), it re-aquire the lock 
- - that magic is inside of implementation of the condition variable 
+- wait() puts you to sleep and releases the lock
+- and before you ever exit wait(), it re-aquire the lock 
+- that magic is inside of implementation of the condition variable 
 
 
 <h2 id="3d8107f1e26613768b14fe6f9d4fd513"></h2>
@@ -1013,7 +1013,7 @@ RemoveFromQueue() {
 
 ## Mesa vs. Hoare monitors
 
- - Need to be careful about precise definition of signal and wait. Consider a piece of our dequeue code:
+- Need to be careful about precise definition of signal and wait. Consider a piece of our dequeue code:
     - why didn't we replace `while` with `if` ?
 
 ```
@@ -1022,7 +1022,7 @@ while (queue.isEmpty()) {
 }
 item = queue.dequeue(); // Get next item
 ```
- - Answer: depends on the type of scheduling
+- Answer: depends on the type of scheduling
     - Hoare-style (most textbooks):
         - Signaler gives lock, CPU to waiter; waiter runs immediately
         - Waiter gives up lock, processor back to signaler when it exits critical section or if it waits again
@@ -1048,7 +1048,7 @@ compare&swap (&address, reg1, reg2) { /* 68000 */
 }
 ```
  
- - Here is an atomic add to linked-list function:
+- Here is an atomic add to linked-list function:
 
 ```
 addToQueue(&object) {
@@ -1061,8 +1061,8 @@ addToQueue(&object) {
          
 ![](../imgs/os_thread_atomic_add_to_linkedlist.png)
 
- - 虚线的链接，是不停尝试的部分
- - 确保没有其他人修改 root的情况下，插入 新节点
+- 虚线的链接，是不停尝试的部分
+- 确保没有其他人修改 root的情况下，插入 新节点
 
 <h2 id="97737c22439d498aa05d01b68a31eee8"></h2>
 
@@ -1071,7 +1071,7 @@ addToQueue(&object) {
 
 ![](../imgs/os_thread_reader_writers_problem.png)
 
- - Motivation: Consider a shared database
+- Motivation: Consider a shared database
     - Two classes of users:
         - Readers – never modify database
         - Writers – read and modify database
@@ -1085,11 +1085,11 @@ addToQueue(&object) {
 
 ### Basic Readers/Writers Solution
 
- - Correctness Constraints:
+- Correctness Constraints:
     - Readers can access database when no writers
     - Writers can access database when no readers or writers
     - Only one thread manipulates state variables at a time
- - Basic structure of a solution:
+- Basic structure of a solution:
     - Reader() 
         - Wait until no writers
         - Access data base
@@ -1134,9 +1134,9 @@ Reader() {
 }
 ```
 
- - `while` is to ensure re-checking  after waking up
- - PS. ++ , -- are not atomic 
- - qestion 1:  someone else can read.
+- `while` is to ensure re-checking  after waking up
+- PS. ++ , -- are not atomic 
+- qestion 1:  someone else can read.
 
 
 <h2 id="99edb23378eeb2cf83d5e76cfc717d25"></h2>
@@ -1170,10 +1170,10 @@ Writer() {
 }
 ```
  
- - question 1: make sure that the reader code can actually at least get in there and generaate waiting readers on the reader code
- - **that is a general rule if you can set up your monitors so that you're not holding the lock for a huge period of time but rather for kind of the minimum that's required**. 
+- question 1: make sure that the reader code can actually at least get in there and generaate waiting readers on the reader code
+- **that is a general rule if you can set up your monitors so that you're not holding the lock for a huge period of time but rather for kind of the minimum that's required**. 
     - it's probably a bettern programming style 
- - question 2: we'd like every reader to be able to wake up. 
+- question 2: we'd like every reader to be able to wake up. 
     - put all of them on to the ready queue
     - but only one at a time because only one can wake up **with** the lock
 
@@ -1182,13 +1182,13 @@ Writer() {
 
 ### Question
 
- - What if we erase the condition check in Reader exit?
+- What if we erase the condition check in Reader exit?
     - ~~if (AR == 0 && WW > 0)~~
     - that is, always call `okToWrite.signal();` when exiting.
     - It still works. 
- - Further, what if we turn the signal() into broadcast()
+- Further, what if we turn the signal() into broadcast()
     - It works. But this is bad code because you're wasting time waking things up only to put them back to sleep again.
- - Finally, what if we use only one condition variable (call it “okToContinue”) instead of two separate ones?
+- Finally, what if we use only one condition variable (call it “okToContinue”) instead of two separate ones?
     - Both readers and writers sleep on this variable
     - Must use broadcast() instead of signal()
 
@@ -1197,12 +1197,12 @@ Writer() {
 
 ## Can we construct Monitors from Semaphores?
 
- - Locking aspect is easy: Just use a mutex
- - Can we implement condition variables this way?
+- Locking aspect is easy: Just use a mutex
+- Can we implement condition variables this way?
     - `Wait() { semaphore.P(); }`
     - `Signal() { semaphore.V(); }`
     - No. semaphores can’t wait inside critical section. It will dead lock
- - Does this work better?
+- Does this work better?
 
 ```
 Wait(Lock lock) {
@@ -1213,7 +1213,7 @@ Wait(Lock lock) {
 Signal() { semaphore.V(); }
 ``` 
  
- - No! Condition vars have no histroy , semaphores have history:
+- No! Condition vars have no histroy , semaphores have history:
     - What if thread signals and no one is waiting ?
         - you could have a loop that signals for a thousand times. 
     - What if thread later waits ?
@@ -1225,10 +1225,10 @@ Signal() { semaphore.V(); }
 
 ## Construction of Monitors from Semaphores (con’t)
 
- - Problem with previous try:
+- Problem with previous try:
     - P and V are commutative – result is the same no matter what order they occur
     - Condition variables are NOT commutative
- - Does this fix the problem?
+- Does this fix the problem?
 
 ```
 Wait(Lock lock) {
@@ -1242,10 +1242,10 @@ Signal() {
 }
 ```
 
- - Does this fix the problem?
+- Does this fix the problem?
     - Not legal to look at contents of semaphore queue
     - There is a race condition – signaler can slip in after lock release and before waiter executes semaphore.P()
- - It is actually possible to do this correctly
+- It is actually possible to do this correctly
     - Complex solution for Hoare scheduling in book
     - Can you come up with simpler Mesa-scheduled solution?  
         - Yes you can. But you can't do it quite like this. 
@@ -1256,10 +1256,10 @@ Signal() {
 
 ## Monitor Conclusion
 
- - Monitors represent the logic of the program
+- Monitors represent the logic of the program
     - Wait if necessary
     - Signal when change something so any waiting threads can proceed
- - Basic structure of monitor-based program:
+- Basic structure of monitor-based program:
 
 ![](../imgs/os_thread_monitor_conclusion.png)
 
@@ -1274,7 +1274,7 @@ Signal() {
 
 ### C++
 
- - Languages with exceptions like C++
+- Languages with exceptions like C++
     - Languages that support exceptions are problematic (easy to make a non-local exit without releasing lock)
     - Consider
 
@@ -1293,8 +1293,8 @@ void DoFoo() {
 }
 ```
 
- - Notice that an exception in DoFoo() will exit without releasing the lock
- - Must catch all exceptions in critical sections
+- Notice that an exception in DoFoo() will exit without releasing the lock
+- Must catch all exceptions in critical sections
     - Catch exceptions, release lock, and re-throw exception:
 
 
@@ -1318,7 +1318,7 @@ void DoFoo() {
 }
 ```
 
- - `Even Better: auto_ptr<T> facility`. See C++ spec
+- `Even Better: auto_ptr<T> facility`. See C++ spec
     - Can deallocate/free lock regardless of exit method
 
 <h2 id="d52387880e1ea22817a72d3759213819"></h2>
@@ -1326,8 +1326,8 @@ void DoFoo() {
 
 ### Java
 
- - Java has explicit support for threads and thread synchronization
- - Bank Account example:
+- Java has explicit support for threads and thread synchronization
+- Bank Account example:
 
 ```
 class Account {
@@ -1343,11 +1343,11 @@ class Account {
 }
 ```
 
- - Every object has an associated lock which gets automatically acquired and released on entry and exit from a **synchronized** method.
+- Every object has an associated lock which gets automatically acquired and released on entry and exit from a **synchronized** method.
 
 ---
 
- - Java also has *synchronized* statements:
+- Java also has *synchronized* statements:
 
 ```
 synchronized (object) {
@@ -1355,8 +1355,8 @@ synchronized (object) {
 }
 ```
 
- - Since every Java object has an associated lock, this type of statement acquires and releases the object’s lock on entry and exit of the body 
- - Works properly even with exceptions:
+- Since every Java object has an associated lock, this type of statement acquires and releases the object’s lock on entry and exit of the body 
+- Works properly even with exceptions:
 
 ```
 synchronized (object) {
@@ -1371,7 +1371,7 @@ void DoFoo() {
 
 ---
 
- - In addition to a lock, every object has ***a single*** condition variable associated with it
+- In addition to a lock, every object has ***a single*** condition variable associated with it
     - How to wait inside a synchronization method of block:
         - void wait(long timeout); // Wait for timeout
         - void wait(long timeout, int nanoseconds); //variant
@@ -1390,7 +1390,7 @@ while (!ATMRequest()) {
 }
 ```
 
- - Not all Java VMs equivalent!
+- Not all Java VMs equivalent!
     - Different scheduling policies, not necessarily preemptive!
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
@@ -1398,21 +1398,21 @@ while (!ATMRequest()) {
 
 ## Summary
 
- - Semaphores: Like integers with restricted interface
+- Semaphores: Like integers with restricted interface
     - Two operations:
         - P(): Wait if zero; decrement when becomes non-zero
         - V(): Increment and wake a sleeping task (if exists)
         - Can initialize value to any non-negative value
     - Use separate semaphore for each constraint
- - Monitors: A lock plus one or more condition variables
+- Monitors: A lock plus one or more condition variables
     - Always acquire lock before accessing shared data
     - Use condition variables to wait inside critical section
         - Three Operations: Wait(), Signal(), and Broadcast() 
- - Readers/Writers
+- Readers/Writers
     - Readers can access database when no writers
     - Writers can access database when no readers
     - Only one thread manipulates state variables at a time
- - Language support for synchronization:
+- Language support for synchronization:
     - Java provides synchronized keyword and one condition- variable per object (with wait() and notify())
 
 ---
@@ -1427,8 +1427,8 @@ while (!ATMRequest()) {
 
 ## Goals for Today
 
- - Language Support for Synchronization
- - Discussion of Deadlocks
+- Language Support for Synchronization
+- Discussion of Deadlocks
     - Conditions for its occurrence
     - Solutions for breaking and avoiding deadlock
 
@@ -1439,25 +1439,25 @@ while (!ATMRequest()) {
 
 ## Resources
 
- - Resources – passive entities needed by threads to do their work
+- Resources – passive entities needed by threads to do their work
     - CPU time, disk space, memory
- - Two types of resources:
+- Two types of resources:
     - Preemptable – can take it away
         - CPU, Embedded security chip
     - Non-preemptable – must leave it with the thread
         - Disk space, plotter, chunk of virtual address space
         - Mutual exclusion – the right to enter a critical section
- - Resources may require exclusive access or may be sharable
+- Resources may require exclusive access or may be sharable
     - Read-only files are typically sharable
     - Printers are not sharable during time of printing
- - One of the major tasks of an operating system is to manage resources
+- One of the major tasks of an operating system is to manage resources
 
 <h2 id="e66cc87dc77acc53b59839e4d32c59f6"></h2>
 
 
 ## Starvation vs Deadlock
 
- - Starvation vs. Deadlock
+- Starvation vs. Deadlock
     - Starvation: thread waits indefinitely
         - Example, low-priority thread waiting for resources  constantly in use by high-priority threads
     - Deadlock: circular waiting for resources
@@ -1474,7 +1474,7 @@ while (!ATMRequest()) {
 
 ## Conditions for Deadlock
 
- - Deadlock not always deterministic – Example 2 mutexes:
+- Deadlock not always deterministic – Example 2 mutexes:
 
 ```
 Thread A    Thread B
@@ -1484,12 +1484,12 @@ y.V();      x.V();
 x.V();      y.V();
 ```
 
- - Deadlock won’t always happen with this code
+- Deadlock won’t always happen with this code
     - Have to have exactly the right timing (“wrong” timing?)
- - Deadlocks occur with multiple resources
+- Deadlocks occur with multiple resources
     - Means you can’t decompose the problem
     - Can’t solve deadlock for each resource independently
- - Example: System with 2 disk drives and two threads
+- Example: System with 2 disk drives and two threads
     - Each thread needs 2 disk drives to function
     - Each thread gets one disk and waits for another one
 
@@ -1500,15 +1500,15 @@ x.V();      y.V();
 
 ![](../imgs/os_thread_deadlock_example_cars.png)
 
- - Each segment of road can be viewed as a resource
+- Each segment of road can be viewed as a resource
     - Car must own the segment under them
     - Must acquire segment that they are moving into
- - For bridge: must acquire both halves 
+- For bridge: must acquire both halves 
     - Traffic only in one direction at a time 
     - Problem occurs when two cars in opposite directions on bridge: each acquires one segment and needs next
- - If a deadlock occurs, it can be resolved if one car backs up (preempt resources and rollback)
+- If a deadlock occurs, it can be resolved if one car backs up (preempt resources and rollback)
     - Several cars may have to be backed up 
- - Starvation is possible
+- Starvation is possible
     - East-going traffic really fast => no one goes west
 
 <h2 id="4fa3ecace35c7a5d85cd17f794cd753c"></h2>
@@ -1518,11 +1518,11 @@ x.V();      y.V();
 
 ![](../imgs/os_thread_deadlock_example_train.png)
 
- - Circular dependency (Deadlock!)
+- Circular dependency (Deadlock!)
     - Each train wants to turn right
     - Blocked by other trains
     - Similar problem to multiprocessor networks
- - Fix? Imagine grid extends in all four directions
+- Fix? Imagine grid extends in all four directions
     - **Force ordering of channels** (tracks)
         - Protocol: Always go east-west first, then north-south
     - Called “dimension ordering” (X then Y)
@@ -1534,15 +1534,15 @@ x.V();      y.V();
 
 ![](../imgs/os_thread_dining_lawyers_problem.png)
 
- - Five chopsticks/Five lawyers (really cheap restaurant)
+- Five chopsticks/Five lawyers (really cheap restaurant)
     - Free-for all: Lawyer will grab any one they can
     - Need two chopsticks to eat
- - What if all grab at same time?
+- What if all grab at same time?
     - Deadlock!
- - How to fix deadlock?
+- How to fix deadlock?
     - Make one of them give up a chopstick (Hah!)
     - Eventually everyone will get chance to eat
- - How to prevent deadlock?
+- How to prevent deadlock?
     - Never let lawyer take last chopstick if no hungry lawyer has two chopsticks afterwards
 
 <h2 id="b0764a5818c0783470ac25ef6f15fa06"></h2>
@@ -1550,13 +1550,13 @@ x.V();      y.V();
 
 ## Four requirements for Deadlock
 
- - Mutual exclusion
+- Mutual exclusion
     - Only one thread at a time can use a resource
- - Hold and wait
+- Hold and wait
     - Thread holding at least one resource is waiting to acquire additional resources held by other threads 
- - No preemption
+- No preemption
     - Resources are released only voluntarily by the thread holding the resource, after thread is finished with it 
- - Circular wait
+- Circular wait
     - There exists a set {T₁, …, T<sub>n</sub>} of waiting threads
         - T₁ is waiting for a resource that is held by T₂
         - T₂ is waiting for a resource that is held by T₃
@@ -1568,14 +1568,14 @@ x.V();      y.V();
 
 ## Resource-Allocation Graph
 
- - System Model
+- System Model
     - A set of Threads T₁, T₂, . . ., T<sub>n</sub>
     - Resource types R₁, R₂, . . ., R<sub>m</sub>
         - CPU cycles, memory space, I/O devices
     - Each resource type Rᵢ has Wᵢ instances
     - Each thread utilizes a resource as follows:
         - Request() / Use() / Release()
- - Resource-Allocation Graph:
+- Resource-Allocation Graph:
     - V is partitioned into two types:
         - T = { T₁, T₂, . . ., T<sub>n</sub> } , the set threads in the system
         - R = { R₁, R₂, . . ., R<sub>m</sub> } , the set of resource types in system
@@ -1584,7 +1584,7 @@ x.V();      y.V();
 
 ![](../imgs/os_thread_resource_allocation_graph.png)
 
- - resources are represented by rectangles
+- resources are represented by rectangles
     - dots inside rectagles are the number of equivalent resources in the system.
         - R₁ is one of them
         - R₂ is 3 of them.  When I say I need R₂ I don't really care which 1 I get. 
@@ -1594,7 +1594,7 @@ x.V();      y.V();
 
 ### Resource Allocation Graph Examples
 
- - Recall:
+- Recall:
     - request edge – directed edge Tᵢ → Rⱼ
     - assignment edge – directed edge  Rⱼ → Tᵢ 
 
@@ -1607,13 +1607,13 @@ x.V();      y.V();
 
 ## Methods for Handling Deadlocks
 
- - Allow system to enter deadlock and then recover
+- Allow system to enter deadlock and then recover
     - Requires deadlock detection algorithm
     - Some technique for forcibly preempting resources and/or terminating tasks
- - Ensure that system will **never** enter a deadlock
+- Ensure that system will **never** enter a deadlock
     - Need to monitor all lock acquisitions
     - Selectively deny those that **might** lead to deadlock
- - Ignore the problem and pretend that deadlocks never occur in the system
+- Ignore the problem and pretend that deadlocks never occur in the system
     - Used by most operating systems, including UNIX
 
 <h2 id="2c61a97575bf39f95051de0065bf4b52"></h2>
@@ -1621,8 +1621,8 @@ x.V();      y.V();
 
 ## Deadlock Detection Algorithm
 
- - Only one of each type of resource => look for loops
- - More General Deadlock Detection Algorithm
+- Only one of each type of resource => look for loops
+- More General Deadlock Detection Algorithm
     - Let [X] represent an m-ary vector of non-negative  integers (quantities of resources of each type):
 
 ```
@@ -1631,7 +1631,7 @@ x.V();      y.V();
 [Alloc_x]: Current resources held by thread X
 ```
 
- - See if tasks can eventually terminate on their own
+- See if tasks can eventually terminate on their own
 
 ```
 [Avail] = [FreeResources]
@@ -1648,28 +1648,28 @@ do {
 } until(done)
 ```
 
- - Nodes left in UNFINISHED => deadlocked
+- Nodes left in UNFINISHED => deadlocked
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
 
 
 ## Summary 
 
- - Starvation vs. Deadlock
+- Starvation vs. Deadlock
     - Starvation: thread waits indefinitely
     - Deadlock: circular waiting for resources
- - Four conditions for deadlocks
+- Four conditions for deadlocks
     - Mutual exclusion
     - Hold and wait
     - No preemption
     - Circular wait
- - Techniques for addressing Deadlock
+- Techniques for addressing Deadlock
     - Allow system to enter deadlock and then recover
     - Ensure that system will never enter a deadlock
     - Ignore the problem and pretend that deadlocks never occur in the system
- - Deadlock detection
+- Deadlock detection
     - Attempts to assess whether waiting graph can ever
- - make progress
+- make progress
     - Next Time: Deadlock prevention
     - Assess, for each allocation, whether it has the potential to lead to deadlock
     - Banker’s algorithm gives one way to assess this
@@ -1685,45 +1685,45 @@ do {
 
 ## Goals for Today
 
- - Preventing Deadlock
- - Scheduling Policy goals
- - Policy Options
- - Implementation Considerations
+- Preventing Deadlock
+- Scheduling Policy goals
+- Policy Options
+- Implementation Considerations
 
 <h2 id="3be29107b16cdcaa715b0e62eec09933"></h2>
 
 
 ## What to do when detect deadlock?
 
- - Terminate thread, force it to give up resources
+- Terminate thread, force it to give up resources
     - In Bridge example, Godzilla picks up a car, hurls it into the river. Deadlock solved!
     - Shoot a dining lawyer
     - But, not always possible – killing a thread holding a mutex leaves world inconsistent
- - Preempt resources without killing off thread 
+- Preempt resources without killing off thread 
     - Take away resources from thread temporarily
     - Doesn’t always fit with semantics of computation
         - for instance, a resource might be a lock in a critical section if we preempt that lock, suddenly there might be two threads in the critical section and then we've got bad computation. Because the whole point of the resource there in the case of lock was to make correct computation. 
- - Roll back actions of deadlocked threads
+- Roll back actions of deadlocked threads
     - Hit the rewind button on TiVo, pretend last few minutes never happened
     - For bridge example, make one car roll backwards (may require others behind him)
     - Common technique in databases (transactions)
     - Of course, if you restart in exactly the same way, may reenter deadlock once again
- - Many operating systems use other options
+- Many operating systems use other options
 
 <h2 id="f3a2b84a9e5ac845742510943ccca3ec"></h2>
 
 
 ## Techniques for Preventing Deadlock
 
- - Infinite resources
+- Infinite resources
     - Include enough resources so that no one ever runs out of resources. Doesn’t have to be infinite, just large
     - Give illusion of infinite resources (e.g. virtual memory)
     - Examples:
         - Bay bridge with 12,000 lanes. Never wait!
         - Infinite disk space (not realistic yet?)
- - No Sharing of resources (totally independent threads)
+- No Sharing of resources (totally independent threads)
     - Not very realistic
- - Don’t allow waiting
+- Don’t allow waiting
     - How the phone company avoids deadlock
         - Call to your Mom in Toledo, works its way through the phone lines, but if blocked get busy signal. 
     - Technique used in Ethernet/some multiprocessor nets
@@ -1733,12 +1733,12 @@ do {
 
 ---
 
- - Make all threads request everything they’ll need at the beginning.
+- Make all threads request everything they’ll need at the beginning.
     - Problem: Predicting future is hard, tend to overestimate resources
     - Example:
         - If need 2 chopsticks, request both at same time
         - Don’t leave home until we know no one is using any intersection between here and where you want to go; only one car on the Bay Bridge at a time
- - Force all threads to request resources in a particular order preventing any cyclic use of resources
+- Force all threads to request resources in a particular order preventing any cyclic use of resources
     - Thus, preventing deadlock
     - Example
         - Make tasks request disk, then memory, then…
@@ -1750,7 +1750,7 @@ do {
 
 ## Banker’s Algorithm for Preventing Deadlock
 
- - Toward right idea: 
+- Toward right idea: 
     - State maximum resource needs in advance
         - 事先计算最多需要多少资源
     - Allow particular thread to proceed if:
@@ -1761,7 +1761,7 @@ do {
             - it doesn't necessarily have to be that nobody needs more than one 
             - all we need to make sure is that somebody can still finish and put enough back that everybody can finish. 
         - it is over conservative
- - Banker’s algorithm (less conservative):
+- Banker’s algorithm (less conservative):
     - Allocate resources dynamically
         - Evaluate each request and grant if some ordering of threads is still deadlock free afterward
             - recalculate graph , take this graph , run it through the deadlock detection algorithm . Does it have a deadlock ? No. okey , you can have it. 
@@ -1775,7 +1775,7 @@ do {
 
 ### Banker’s Algorithm Example
 
- - Banker’s algorithm with dining lawyers
+- Banker’s algorithm with dining lawyers
     - “Safe” (won’t cause deadlock) if when try to grab chopstick either:
         - Not last chopstick
         - Is last chopstick but someone will have two afterwards
@@ -1791,7 +1791,7 @@ do {
 
 ## Summary (Deadlock)
 
- - Four conditions required for deadlocks
+- Four conditions required for deadlocks
     - **Mutual exclusion**
         - Only one thread at a time can use a resource
     - **Hold and wait**
@@ -1800,9 +1800,9 @@ do {
         - Resources are released only voluntarily by the threads
     - **Circular wait**
         - ∃ set { T1, …, Tn} of threads with a cyclic waiting pattern
- - Deadlock detection
+- Deadlock detection
     - Attempts to assess whether waiting graph can ever make progress
- - Deadlock prevention
+- Deadlock prevention
     - Assess, for each allocation, whether it has the potential to lead to deadlock
     - Banker’s algorithm gives one way to assess this
 

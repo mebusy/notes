@@ -42,17 +42,17 @@
 
 假设, 希望把数据集 分成2类:
 
- - 随机初始化两个点,染上不同的颜色(eg.红,蓝) ,called cluster centroids (聚类中心).
- - K-means 迭代算法 做两件事：cluster assignment (簇分配) 和 move centroid step ( 移动聚类中心 )
- - 簇分配: 根据样本 距离两个聚类中心的远近，把样本染为和 较近的聚类中心，相同的颜色。
- - 移动聚类中心: 移动聚类中心 到和它一样颜色的那堆点的均值处。
+- 随机初始化两个点,染上不同的颜色(eg.红,蓝) ,called cluster centroids (聚类中心).
+- K-means 迭代算法 做两件事：cluster assignment (簇分配) 和 move centroid step ( 移动聚类中心 )
+- 簇分配: 根据样本 距离两个聚类中心的远近，把样本染为和 较近的聚类中心，相同的颜色。
+- 移动聚类中心: 移动聚类中心 到和它一样颜色的那堆点的均值处。
 
 K-Means Algorithm 严格的描述:
 
 Input:
 
- - K (number of clusters)
- - Unlabeled trainning set { `x⁽¹⁾,x⁽²⁾, ... ,x⁽ᵐ⁾` } , `x⁽ⁱ⁾ ∊ ℝⁿ`
+- K (number of clusters)
+- Unlabeled trainning set { `x⁽¹⁾,x⁽²⁾, ... ,x⁽ᵐ⁾` } , `x⁽ⁱ⁾ ∊ ℝⁿ`
 
 Iteration;
 
@@ -226,15 +226,15 @@ PCA 之前，一般要先进行 均值归一化 。
 
 #### PCA algorithm
 
- - 数据预处理:  feature scaling/mean normalization
+- 数据预处理:  feature scaling/mean normalization
  
     `x = (feature-value - avg ) / range`
 
- - 计算 covariance matrix 协方差矩阵 ：
+- 计算 covariance matrix 协方差矩阵 ：
  
   ![](../imgs/covariance-matrix.png)
 
- - 计算 协方差矩阵 sigma的 特征向量 eigen vectors
+- 计算 协方差矩阵 sigma的 特征向量 eigen vectors
  
   `[U,S,V]= svd(sigma)`  (octave 奇异值函数,对于正定矩阵,svd比 eig方法更稳定)
   
@@ -242,7 +242,7 @@ PCA 之前，一般要先进行 均值归一化 。
 
   U,S,V都是 nxn矩阵
 
- - 从n 维降到 k 维，只需要 提取 矩阵U的前k个列向量，构成投影平面 `z ∊ ℝᵏ`
+- 从n 维降到 k 维，只需要 提取 矩阵U的前k个列向量，构成投影平面 `z ∊ ℝᵏ`
    
    矩阵U的前k个列向量组成 nxk 的矩阵，记为 `U_reduce=U(:,1:k) ;`
    
@@ -255,13 +255,13 @@ PCA 之前，一般要先进行 均值归一化 。
 
 #### PCA 后面的数学知识点
 
- - n阶方阵， 共有n个特征值
- - 特征值的总和，等于 矩阵对角线之和， 也就是矩阵的迹；特征值之积，等于 矩阵的行列式。
- - `S⁻¹AS = Λ` , A和Λ相似, 矩阵相似 则拥有`相同的特征值` 和`相同数量的特征向量`。
- - 协方差矩阵是正定矩阵
- - 对称矩阵`特征向量正交`
- - 对称矩阵 `A=QΛQ⁻¹ = QΛQᵀ`
- - 对称矩阵 `主元的乘积，等于特征值的乘积`
+- n阶方阵， 共有n个特征值
+- 特征值的总和，等于 矩阵对角线之和， 也就是矩阵的迹；特征值之积，等于 矩阵的行列式。
+- `S⁻¹AS = Λ` , A和Λ相似, 矩阵相似 则拥有`相同的特征值` 和`相同数量的特征向量`。
+- 协方差矩阵是正定矩阵
+- 对称矩阵`特征向量正交`
+- 对称矩阵 `A=QΛQ⁻¹ = QΛQᵀ`
+- 对称矩阵 `主元的乘积，等于特征值的乘积`
 
 ---
 
@@ -306,11 +306,11 @@ X = Z * U_reduceᵀ
 
 几个概念:
 
- - Average squared projection error 平均平方投影误差: PCA 做的就是最小化这个误差
+- Average squared projection error 平均平方投影误差: PCA 做的就是最小化这个误差
 
     `1/m · Σ ‖x⁽ⁱ⁾-x_approx⁽ⁱ⁾‖²`    (i=1,m)
 
- - Total variation in the data 数据总方差: 每个样本向量长度平方的平均值, 既每个训练样本距离原点多远
+- Total variation in the data 数据总方差: 每个样本向量长度平方的平均值, 既每个训练样本距离原点多远
 
     `1/m · Σ ‖x⁽ⁱ⁾‖²`    (i=1,m)
 
@@ -325,13 +325,13 @@ Typically, 选择最小的k， so that:
 
 低效的做法 ：
 
- - try PCA with k=1
- - 计算 U_reduce , z , x_apporx
- - 检查是否满足:
+- try PCA with k=1
+- 计算 U_reduce , z , x_apporx
+- 检查是否满足:
 
  ![][1]
  
- - 如果不满足，继续尝试 k=2,k=3,...
+- 如果不满足，继续尝试 k=2,k=3,...
 
 
 高效的做法 :
@@ -352,14 +352,14 @@ S 是nxn的 奇异值对角矩阵， 上面 平均平方投影误差／数据总
 #### Advice for Applying PCA
 
 
- - 图像压缩
+- 图像压缩
 
  training set x -> PCA -> z , 获得的 U_reduce 以及其它的运算结果，可以直接运用到 validation set 和 test set上。
 
 
- - 可视化 Visualization
+- 可视化 Visualization
  
- -> 2D/3D
+-> 2D/3D
 
 `PS: PCA降维不是简单减少原feature数量, 
 不要用来解决 over-fitting的问题，很多情况下都不管用。`

@@ -46,22 +46,22 @@
 
 Essentials:
 
- - 预防拖延症的方法： Pomodoro 番茄钟工作法
- - Spaced repetition 间隔重复帮助记忆
- - 睡眠清除大脑毒素
- - 在你生气，紧张，害怕的时候，你的章鱼触角会失去一些链接能力。
- - Chucking 三要素: Focused attention ; Understanding ; Practice 
- - 理解对Chucking非常重要
- - 脱离材料，回忆学的内容，Recall 比 Re-read更有效 ; 在常规学习场所外 Recall会更好
- - 避免 Overlearning, 专注于学习的困难部分(deliberate practice)
- - Interleaving 交替学习, 更容易地在不同领域的组块间创造联系。
- - chunk的形成与习惯有关。 习惯4阶段: cue,routine,Reward,belief
- - 把注意力集中在过程而不是结果上, 可以帮助防止拖延症，如 番茄钟工作法。
- - 重置旧习惯的关键是制定一个计划
- - 加上一个新的奖励，可以帮助你克服原先的欲望。只有当你的大脑开始期待那个奖励，旧习惯才能得到重置。
- - 睡前写好任务，征召僵尸帮你完成第二天列表里的任务
- - 计划休息时间和计划工作时间同样重要。
- - 每天先处理困难的工作。
+- 预防拖延症的方法： Pomodoro 番茄钟工作法
+- Spaced repetition 间隔重复帮助记忆
+- 睡眠清除大脑毒素
+- 在你生气，紧张，害怕的时候，你的章鱼触角会失去一些链接能力。
+- Chucking 三要素: Focused attention ; Understanding ; Practice 
+- 理解对Chucking非常重要
+- 脱离材料，回忆学的内容，Recall 比 Re-read更有效 ; 在常规学习场所外 Recall会更好
+- 避免 Overlearning, 专注于学习的困难部分(deliberate practice)
+- Interleaving 交替学习, 更容易地在不同领域的组块间创造联系。
+- chunk的形成与习惯有关。 习惯4阶段: cue,routine,Reward,belief
+- 把注意力集中在过程而不是结果上, 可以帮助防止拖延症，如 番茄钟工作法。
+- 重置旧习惯的关键是制定一个计划
+- 加上一个新的奖励，可以帮助你克服原先的欲望。只有当你的大脑开始期待那个奖励，旧习惯才能得到重置。
+- 睡前写好任务，征召僵尸帮你完成第二天列表里的任务
+- 计划休息时间和计划工作时间同样重要。
+- 每天先处理困难的工作。
 
 <h2 id="4e36467da5395675d149e37f963f3104"></h2>
 
@@ -80,10 +80,10 @@ Essentials:
 
 预防拖延症的方法： Pomodoro 番茄钟工作法
 
- - 25 minutes 专注
- - no interruptions
- - focus
- - reward
+- 25 minutes 专注
+- no interruptions
+- focus
+- reward
 
 
  
@@ -120,9 +120,9 @@ Focus 模式下，我们的注意力就像一只大章鱼，会在必要时把�
 
 组块就是通过 使用 或 意义 链接在一起的信息碎片。复杂的神经活动把简化而抽象的思想组快 结合在一起。
 
- - `Focused attention` 把想要的信息组块化的关键是全神贯注，分心会增加组块化的难度，因为你的大脑并没有完全投入到新信息的组块化中去。 分心做其它事情，会占用章鱼的触角。
- - `Understanding` 组块化的第二步 是你对建立组块的对象有基本的了解。理解就像是强力胶，将潜在的记忆痕迹粘合在一起。`对于数学学科，关上书本，检测自己，能够帮你检验那些你以为你已经明白了的问题`。并加快你的学习速度。很多事情，只有在你自己实际操作和完全掌握的情况下才能建立起神经模型。
- - `Practice` 组块化的第三步，是获取背景知识。背景是指超越最初的问题，看的更宽更远。举例：如果你不知道如何使用某个工具，这个工具对你就没有用处。
+- `Focused attention` 把想要的信息组块化的关键是全神贯注，分心会增加组块化的难度，因为你的大脑并没有完全投入到新信息的组块化中去。 分心做其它事情，会占用章鱼的触角。
+- `Understanding` 组块化的第二步 是你对建立组块的对象有基本的了解。理解就像是强力胶，将潜在的记忆痕迹粘合在一起。`对于数学学科，关上书本，检测自己，能够帮你检验那些你以为你已经明白了的问题`。并加快你的学习速度。很多事情，只有在你自己实际操作和完全掌握的情况下才能建立起神经模型。
+- `Practice` 组块化的第三步，是获取背景知识。背景是指超越最初的问题，看的更宽更远。举例：如果你不知道如何使用某个工具，这个工具对你就没有用处。
  
 <h2 id="fe277330ca69df73206e1dfaaf097fd1"></h2>
 
@@ -137,7 +137,7 @@ Focus 模式下，我们的注意力就像一只大章鱼，会在必要时把�
 
 在我们学习一个新知识时，可能会占用全部4个 working memory slot，当我们这个知识被chuck 化后，可能只会占用1个 slot。
 
- - 在常规学习场所以外回顾材料，通过可以加深你对材料的理解，同时去除对环境的依赖。
+- 在常规学习场所以外回顾材料，通过可以加深你对材料的理解，同时去除对环境的依赖。
 
 
 <h2 id="46d62627b35abfd75ef163f4b042d9d1"></h2>
@@ -154,8 +154,8 @@ Chucks can help you understand new concepts through a process called `transfer`.
 
 两种途径清理或解决问题：
 
- - Sequential 顺序地一步步推理  -> Focus mode
- - Holistic ("Global ") 通过整体性的直觉 -> Diffuse mode
+- Sequential 顺序地一步步推理  -> Focus mode
+- Holistic ("Global ") 通过整体性的直觉 -> Diffuse mode
 
 <h2 id="064516143e195a393abf464c6bfceee9"></h2>
 
@@ -260,10 +260,10 @@ chunk的形成与习惯有关。 习惯是我们的节能机制，它让我们�
 
 信号通常可以分为一下4类：
 
- - location
- - time
- - how you feel
- - reations
+- location
+- time
+- how you feel
+- reations
 
 你有没有在网上检索信息，后来发现自己来浏览网页； 有没有一条短信打断了你的学习，然后花了10分钟才能回到正经事上来？
 
@@ -289,8 +289,8 @@ chunk的形成与习惯有关。 习惯是我们的节能机制，它让我们�
 
 ### Juggling Life and Learning
 
- - weekly list of key tasks
- - Daily "to do" list
+- weekly list of key tasks
+- Daily "to do" list
 
 
 
@@ -309,12 +309,12 @@ chunk的形成与习惯有关。 习惯是我们的节能机制，它让我们�
 
 应对拖延的要点：
 
- - 计划写计划日志，方便追踪何时完成任务，以及检查是否有效
- - 每天给自己规定一些日常和任务，提前一晚制定任务，让这些目标渗入大脑中，以确保成功执行。将你的工作分成一系列小任务，确保你和你的“僵尸状态”可以得到许多奖励。
- - Delay rewards until you finish the task
- - Watch for procrastination cues  留意诱发拖延的信号，尽量呆在一个没有诱发信号的新环境中。
- - Have backup plans for when you still procrastinate
- - Eat your frogs first 每天先处理困难的工作。
+- 计划写计划日志，方便追踪何时完成任务，以及检查是否有效
+- 每天给自己规定一些日常和任务，提前一晚制定任务，让这些目标渗入大脑中，以确保成功执行。将你的工作分成一系列小任务，确保你和你的“僵尸状态”可以得到许多奖励。
+- Delay rewards until you finish the task
+- Watch for procrastination cues  留意诱发拖延的信号，尽量呆在一个没有诱发信号的新环境中。
+- Have backup plans for when you still procrastinate
+- Eat your frogs first 每天先处理困难的工作。
  
 
 <h2 id="4789f23283b3a61f858b641a1bef19a3"></h2>
@@ -368,11 +368,11 @@ Memory Palace Techinque 可以高效地将你要记的东西分类，它包括�
 
 ### Summing up memory
 
- - long term memory, 分时学习，
- - working memory
- - 高度视觉化，空间化的记忆系统
- - 创造有意义的 意群来简化材料
- - 宫殿记忆法
+- long term memory, 分时学习，
+- working memory
+- 高度视觉化，空间化的记忆系统
+- 创造有意义的 意群来简化材料
+- 宫殿记忆法
  
 
 <h2 id="88ee954f42aa06e7b8351c45e96e2ed7"></h2>
@@ -396,9 +396,9 @@ Memory Palace Techinque 可以高效地将你要记的东西分类，它包括�
 
 ### Introduction 
 
- - Learn Using metaphor (隐喻) and analogy (类比)
- - Work profitably with teammates, not undercut your own strengths
- - perform well on tests
+- Learn Using metaphor (隐喻) and analogy (类比)
+- Work profitably with teammates, not undercut your own strengths
+- perform well on tests
 
 逻辑上讲，学习不是线性增长的过程。在构建"知识墙"时可能会受到冲击，一些曾经合理的东西会瞬间变得让人困惑不已。
  
@@ -474,7 +474,7 @@ Testing is itself an extraordinarily powerful, learning experience. 1小时的�
 
 ### Final Helpful Hints for Tests
 
- - 如果有考试焦虑症，深呼吸，迅速把注意力转移到呼吸上
+- 如果有考试焦虑症，深呼吸，迅速把注意力转移到呼吸上
 
 
 

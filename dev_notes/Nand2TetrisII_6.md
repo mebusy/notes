@@ -48,13 +48,13 @@
 
 ### Typical OS Services 
 
- - Language extensions / standard library
+- Language extensions / standard library
     - mathematical operations (abs,sqrt,...)
     - abstract data types (String, Array, ...)
     - input function  (readChar, readLine, ...)
     - textual output (printChar, printString, ...)
     - graphics output (drawLine, drawCircle, ...)
- - System oriented services 
+- System oriented services 
     - memory management (objects, arrays, ...)
     - file system
     - I/O device drivers
@@ -97,7 +97,7 @@
     - ![](../imgs/n2t_os_multiply.png)
 
 
- - Issues:
+- Issues:
     - how to handle negative numbers ?
         - it works fine
     - how to handle overflow ?
@@ -128,8 +128,8 @@ def positive_divide(x,y):
         return 2*q + 1
 ```
 
- - O(logN)
- - Issues:
+- O(logN)
+- Issues:
     - handling negative numbers
         - divide |x| / |y|
         - then set the result's sign
@@ -143,14 +143,14 @@ def positive_divide(x,y):
 
 ### Square root
 
- - The square root function √x has 2 appealing properties:
+- The square root function √x has 2 appealing properties:
     - its inverse function x² can be easily computed
     - it is a monotonically increasing function
- - Therefore:
+- Therefore:
     - squre roots can be computed using *binary search*
     - ![](../imgs/n2t_os_sqrt_root.png)
     - `for j=n/2 ; j>=0; j--`
- - Issus:
+- Issus:
     - the calculation of   `(y+2ʲ)²` can overflwo
     - solution: change the condition  `(y+2ʲ)²<=x`  to `(y+2ʲ)² <=x and (y+2ʲ)² >0`
 
@@ -178,13 +178,13 @@ def sqrt( x ) :
 
 ## 6.4 Memory Access
 
- - class Memory 
+- class Memory 
     - int peek(int addr)
     - void poke(int addr, int value)
     - Array alloc(int size)
     - void deAlloc(Array o)
 
- - The challenge 
+- The challenge 
     - THe OS is written in Jack: how can we access the RAM ?
     -
     ```
@@ -202,12 +202,12 @@ def sqrt( x ) :
 
 ## 6.5 Heap Management 
 
- - The need
+- The need
     - During run-time , programs typically create objects and arrays
     - Objects and arrays are implemented using 
         - reference variables
         - pointing at actual data blocks (in the heap)
- - The challenge
+- The challenge
     - Allocating memory for new objects / arrays 
     - Recycling memory of disposed objects / arrays 
 
@@ -216,9 +216,9 @@ def sqrt( x ) :
 
 ### Object construction and destruction 
 
- - The challenge 
+- The challenge 
     - Implementing *alloc* and *dealloc*
- - The solution 
+- The solution 
     - Heap management 
 
 <h2 id="f998d8459d4a637427aa37907d63fc1a"></h2>
@@ -244,11 +244,11 @@ deAlloc(object):
 
 ### Heap management 
 
- - Use a **linked list** to keep track of available heap segments , which are presently available to us
+- Use a **linked list** to keep track of available heap segments , which are presently available to us
     - ![](../imgs/n2t_heap_manage_linkedlist.png)
- - alloc(size):
+- alloc(size):
     - find a block of size *size* in one of the segments ,remove it from the segment , and give it the client 
- - deAlloc(object):
+- deAlloc(object):
     - append the object/block to the freeList ( i.e. simply append it to the end of the freeList.  )
 
 
@@ -257,7 +257,7 @@ deAlloc(object):
 
 ### Heap management (detailed)
 
- - alloc(size):
+- alloc(size):
     - for an example,  *size* = 3
     - Terminology: if segment size >= *size* + 2 , we say that the segment is *possible*
         - The *2*  is for the overhead fields which are absolutely necessary. 
@@ -270,7 +270,7 @@ deAlloc(object):
         - update the freeList and the fields of *block* to account for the allocation
     - return the base address of the block's data part 
     - ![](../imgs/n2t_heap_manage_alloc.png)
- - deAlloc (object):
+- deAlloc (object):
     - append *object* to the end of the freeList. 
     - ![](../imgs/n2t_heap_manage_dealloc.png)
     - problem:  The more we recycle (deAlloc), the more the freeList becomes fragmented.
@@ -283,7 +283,7 @@ deAlloc(object):
 
 ### Implementation notes
 
- - Implementing the heap / freeList (on Hack platform)
+- Implementing the heap / freeList (on Hack platform)
 
 ```
 class Memory {
@@ -301,9 +301,9 @@ class Memory {
 }
 ```
 
- - The *freeList* can be realized using the *heap* array
- - The *next* and *size* properties of the memory segment beginning in address *adrr* can be realized by `heap[addr-2]` and `heap[addr-1]`.
- - alloc, deAlloc, and deFrag can be realized as operations on the *heap* array.
+- The *freeList* can be realized using the *heap* array
+- The *next* and *size* properties of the memory segment beginning in address *adrr* can be realized by `heap[addr-2]` and `heap[addr-1]`.
+- alloc, deAlloc, and deFrag can be realized as operations on the *heap* array.
 
 
 <h2 id="667ebe3f340a91efe52c4e6e6aa032b0"></h2>
@@ -317,7 +317,7 @@ class Memory {
 
 ### Draw Pixel
 
- - recap
+- recap
     - 8k screen memory map 
     - target screen:   512 pixel * 256 pixel 
     - Jack word:  16 bits
@@ -337,9 +337,9 @@ function void drawPixel(int x, int y) {
 
 ### Line Drawing
 
- - Basic idea: image drawing is implemented through a sequence of *drawLine* operations
- - Challenge: draw lines *fast*
- - Naive idea: 
+- Basic idea: image drawing is implemented through a sequence of *drawLine* operations
+- Challenge: draw lines *fast*
+- Naive idea: 
 
 ```
 // just for an example
@@ -361,7 +361,7 @@ while ( (a<=dx) and (b<=dy) )
 
 ```
 
- - opitmize:
+- opitmize:
     - ![](../imgs/n2t_os_line_drawing.png)
     - `( b/a > dy / dx )` has the same value as `( a*dy < b*dx )`
     - `let diff = a*dy - b*dx`
@@ -380,7 +380,7 @@ while ( (a<=dx) and (b<=dy) )
     - now , it involves only addition and subtraction operations 
         - and can be implemented either in software or hardware.
 
- - Issue :
+- Issue :
     - modify this algorithm for a screen origin (0,0)  at the screen's top-left corner
     - generalize the algorithm to draw lines that go in any direction
     - drawing horizontal and vertical lines should probably be handled as special cases. 
@@ -402,9 +402,9 @@ drawCircle(x,y,r):
 ```
 
 
- - for *drawCircleOutline* , do twice *drawPixel*  instead of *drawLine*
+- for *drawCircleOutline* , do twice *drawPixel*  instead of *drawLine*
     - PS. 不准确  twice *drawPixel* 并不能完全的描出边来，会有断点
- - Issue :
+- Issue :
     - can potentially lead to overflow
     - to handle , limit r to no greater that 181
 
@@ -413,10 +413,10 @@ drawCircle(x,y,r):
 
 ## 6.8: Handling Textual Output
 
- - Textual output:
+- Textual output:
     - Screen : 23 rows of 64 characters , b&w
     - Managed by the Jack OS class *Output*
- - Hack Font
+- Hack Font
     - Each character occupies a fixed 11x8 pixel frame
     - The frame include 2 empty right columns and 1 empty buttom row for character spacing
 
@@ -468,11 +468,11 @@ class Output {
 
 ### Cursor 
 
- - Indicates where the next character will be written
- - Logical / physical implications
- - But Jack platform does not show a cursor at all
+- Indicates where the next character will be written
+- Logical / physical implications
+- But Jack platform does not show a cursor at all
 
- - Manage cursor
+- Manage cursor
     - if asked to display *newline* : move the cursor to the beginning of the next line
     - if asked to display *backspace* : move the cursor one column left
     - if asked to display any other character:  dislay the character , and move the cursor one columen to the right .
@@ -484,12 +484,12 @@ class Output {
 
 ## 6.9 Input
 
- - recap
+- recap
     - 1 word kb map ,  24576 (0x6000)
 
- - keyPressed
+- keyPressed
     - use `Memory.peak` to access the keyboard's memory map
- - readChar
+- readChar
     - 
     ```
     readChar():
@@ -504,7 +504,7 @@ class Output {
         advance the cursor 
     ```
 
- - readLine
+- readLine
     - 
     ```
     readLine():
@@ -526,7 +526,7 @@ class Output {
 
 ## 6.10 String Processing 
 
- - int2string
+- int2string
     - 
     ```
     def int2String(val_pos):
@@ -537,7 +537,7 @@ class Output {
         else:
             return int2String(val_pos/10) + chr(c)
     ```
- - string2int
+- string2int
     - 
     ```
     string2Int(str):
@@ -583,26 +583,26 @@ Class Array {
 }
 ```
 
- - Memory.alloc /  Memory.deAlloc
- - You language support array access, and the implementation of array itself is very simple.
+- Memory.alloc /  Memory.deAlloc
+- You language support array access, and the implementation of array itself is very simple.
 
 <h2 id="7bb88f5cc49596490f9c9dc28dfa46cc"></h2>
 
 
 ## 6.12: The Sys Class
 
- - Hardware contract
+- Hardware contract
     - WHen the computer is reset, execution starts with the instruction in ROM[0]
- - VM contract
+- VM contract
     - The following code should be placed at the top of the ROM, beginning in ROM[0]
     - 
     ```
     sp = 256
     call Sys.init
     ```
- - Jack contract
+- Jack contract
     - Program execution starts with the function `Main.main()`
- - OS contract
+- OS contract
     - Sys.init should initialize the OS, and then call `Main.main()`
 
 ```
@@ -640,8 +640,8 @@ class Sys {
 
 ## 6.13: Project 12: Building the OS
 
- - OS abstraction:  specified by the Jack OS API
- - OS implementation 
+- OS abstraction:  specified by the Jack OS API
+- OS implementation 
     - VM emulator:  features a build-in OS implementation (written in Java)
     - nand2tetris/tools/os:  features an OS implemenetation (written in Jack) , Math.vm , Memory.vm ...
     - your implementation: project 12
@@ -651,11 +651,11 @@ class Sys {
 
 ### Reverse engineering
 
- - Suppose you wish to implement an existing OS
- - The OS consists of *n* executable modules, with high inter-dependency
- - Strategy
+- Suppose you wish to implement an existing OS
+- The OS consists of *n* executable modules, with high inter-dependency
+- Strategy
     - For each module in OS, implement the module separately , using the remaining n-1 executable modules to server it. 
- - Example
+- Example
     - Suppose we want to develop the OS class screen, and test it using some class Main.jack
     - put the files Screen.jack , and Main.jack in some directory
     - compile the directory

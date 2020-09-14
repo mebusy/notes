@@ -70,12 +70,12 @@ location / {
 
 那么产生的效果如下：
 
- - 访问根目录 /， 比如 http://localhost/ 将匹配规则 A
- - 访问 http://localhost/login 将匹配规则 B， **http://localhost/register 则匹配规则 F**
- - 访问 http://localhost/static/a.html 将匹配规则 C
- - 访问 http://localhost/a.gif, http://localhost/b.jpg 将匹配规则 D 和规则 E，但是规则 D 顺序优先，规则 E 不起作用，而 http://localhost/static/c.png 则优先匹配到规则 C
- - 访问 http://localhost/a.PNG 则匹配规则 E，而不会匹配规则 D，因为规则 E 不区分大小写。
- - 访问 http://localhost/category/id/1111 则最终匹配到规则 F，因为以上规则都不匹配，这个时候应该是 nginx 转发请求给后端应用服务器，比如 FastCGI（php），tomcat（jsp），nginx 作为反向代理服务器存在。
+- 访问根目录 /， 比如 http://localhost/ 将匹配规则 A
+- 访问 http://localhost/login 将匹配规则 B， **http://localhost/register 则匹配规则 F**
+- 访问 http://localhost/static/a.html 将匹配规则 C
+- 访问 http://localhost/a.gif, http://localhost/b.jpg 将匹配规则 D 和规则 E，但是规则 D 顺序优先，规则 E 不起作用，而 http://localhost/static/c.png 则优先匹配到规则 C
+- 访问 http://localhost/a.PNG 则匹配规则 E，而不会匹配规则 D，因为规则 E 不区分大小写。
+- 访问 http://localhost/category/id/1111 则最终匹配到规则 F，因为以上规则都不匹配，这个时候应该是 nginx 转发请求给后端应用服务器，比如 FastCGI（php），tomcat（jsp），nginx 作为反向代理服务器存在。
 
 所以实际使用中， 一般至少有三个匹配规则定义，如下：
 
@@ -109,20 +109,20 @@ location / {
 
 ### ReWrite语法
 
- - last – 基本上都用这个 Flag
- - break – 中止 Rewirte，不在继续匹配
- - redirect – 返回临时重定向的 HTTP 状态 302
- - permanent – 返回永久重定向的 HTTP 状态 301
+- last – 基本上都用这个 Flag
+- break – 中止 Rewirte，不在继续匹配
+- redirect – 返回临时重定向的 HTTP 状态 302
+- permanent – 返回永久重定向的 HTTP 状态 301
 
 <h2 id="b69cd322affa5f72ee270ece8cf29113"></h2>
 
 
 ### 可以用来判断的表达式
 
- - -f 和 !-f 用来判断是否存在文件
- - -d 和 !-d 用来判断是否存在目录
- - -e 和 !-e 用来判断是否存在文件或目录
- - -x 和 !-x 用来判断文件是否可执行
+- -f 和 !-f 用来判断是否存在文件
+- -d 和 !-d 用来判断是否存在目录
+- -e 和 !-e 用来判断是否存在文件或目录
+- -x 和 !-x 用来判断文件是否可执行
 
 
 <h2 id="6cee1d1d18aeb9bff5d6d226016c0eef"></h2>
@@ -130,16 +130,16 @@ location / {
 
 ### if 是邪恶的
 
- - 避免使用 if 指令
+- 避免使用 if 指令
      - 当在 location 区块中使用 if 指令的时候会有一些问题, 在某些情况下它并不按照你的预期运行而是做一些完全不同的事情。 而在另一些情况下他甚至会出现段错误。 
     - 在 location 区块里 if 指令下唯一 100% 安全的指令应该只有:  `return …;   rewrite … last;`
 
- - 如何替换掉 if
+- 如何替换掉 if
      - 使用 try_files 如果他适合你的需求
      - 在其他的情况下使用 return … 或者 rewrite … last
      - 还有一些情况可能要把 if 移动到 server 区块下( 只有当其他的 rewrite 模块指令也允许放在的地方才是安全的 )。
  
- - 原因
+- 原因
      - if 指令是 rewrite 模块中的一部分, 是实时生效的指令。 在if里写入一些非rewrite指令, 会导致各种错误。
 
 
@@ -203,8 +203,8 @@ http {
 
 #### 如何安装和配置基础缓存  Basic Caching
 
- - proxy_cache_path 用来设置缓存的路径和配置，
- - proxy_cache 用来启用缓存
+- proxy_cache_path 用来设置缓存的路径和配置，
+- proxy_cache 用来启用缓存
 
 
 ```
@@ -292,10 +292,10 @@ http {
 }
 ```
 
- - proxy_pass 
+- proxy_pass 
      - proxy_pass 后面跟着一个 URL，用来将请求反向代理到 URL 参数指定的服务器上。
      - 例如上面例子中的 proxy_pass https://github.com，则将匹配的请求反向代理到 https://github.com。
- - proxy_set_header
+- proxy_set_header
      - 默认情况下，反向代理不会转发原始请求中的 Host 头部，如果需要转发，就需要加上这句：proxy_set_header Host $host;
      - 除了上面提到的常用配置项，还有 proxy_redirect、proxy_set_body、proxy_limit_rate 等参数
 
@@ -325,7 +325,7 @@ server {
 }
 ```
 
- - upstream 是 Nginx 的 HTTP Upstream 模块，
+- upstream 是 Nginx 的 HTTP Upstream 模块，
      - 这个模块通过一个简单的调度算法来实现客户端 IP 到后端服务器的负载均衡。
      - 在上面的设定中，通过 upstream 指令指定了一个负载均衡器的名称 test.net。 这个名称可以任意指定，在后面需要用到的地方直接调用即可。
 
@@ -338,16 +338,16 @@ upstream 支持的负载均衡算法
 
 Nginx 的负载均衡模块目前支持 6 种调度算法， 后两项属于第三方调度算法。
 
- - 轮询（默认）：每个请求按时间顺序逐一分配到不同的后端服务器，如果后端某台服务器宕机，故障系统被自动剔除，使用户访问不受影响。
+- 轮询（默认）：每个请求按时间顺序逐一分配到不同的后端服务器，如果后端某台服务器宕机，故障系统被自动剔除，使用户访问不受影响。
      - Weight 指定轮询权值，Weight 值越大，分配到的访问机率越高，主要用于后端每个服务器性能不均的情况下。
- - ip_hash：每个请求按访问IP的hash结果分配，
+- ip_hash：每个请求按访问IP的hash结果分配，
      - 这样来自同一个IP的访客固定访问一个后端服务器，有效解决了动态网页存在的session共享问题。
- - fair：这是比上面两个更加智能的负载均衡算法。此种算法可以依据页面大小和加载时间长短智能地进行负载均衡，也就是根据后端服务器的响应时间来分配请求，响应时间短的优先分配。
+- fair：这是比上面两个更加智能的负载均衡算法。此种算法可以依据页面大小和加载时间长短智能地进行负载均衡，也就是根据后端服务器的响应时间来分配请求，响应时间短的优先分配。
      - Nginx本身是不支持fair的，如果需要使用这种调度算法，必须下载Nginx的upstream_fair模块。
- - url_hash：此方法按访问 url 的 hash 结果来分配请求，使每个 url 定向到同一个后端服务器，可以进一步提高后端缓存服务器的效率。
+- url_hash：此方法按访问 url 的 hash 结果来分配请求，使每个 url 定向到同一个后端服务器，可以进一步提高后端缓存服务器的效率。
      - Nginx 本身是不支持 url_hash 的，如果需要使用这种调度算法，必须安装 Nginx 的 hash 软件包。
- - least_conn：最少连接负载均衡算法，简单来说就是每次选择的后端都是当前最少连接的一个 server(这个最少连接不是共享的，是每个 worker 都有自己的一个数组进行记录后端 server 的连接数)。
- - hash：这个 hash 模块又支持两种模式 hash, 一种是普通的 hash, 另一种是一致性 hash(consistent)。
+- least_conn：最少连接负载均衡算法，简单来说就是每次选择的后端都是当前最少连接的一个 server(这个最少连接不是共享的，是每个 worker 都有自己的一个数组进行记录后端 server 的连接数)。
+- hash：这个 hash 模块又支持两种模式 hash, 一种是普通的 hash, 另一种是一致性 hash(consistent)。
 
 
 <h2 id="b1577d4475a60b4aee2a200c3b54108f"></h2>
@@ -355,13 +355,13 @@ Nginx 的负载均衡模块目前支持 6 种调度算法， 后两项属于第�
 
 #### upstream 支持的状态参数
 
- - down：表示当前的server暂时不参与负载均衡。
- - backup：预留的备份机器。
+- down：表示当前的server暂时不参与负载均衡。
+- backup：预留的备份机器。
      - 当其他所有的非 backup 机器出现故障或者忙的时候，才会请求 backup 机器，因此这台机器的压力最轻。
      - 当负载调度算法为 ip_hash 时，后端服务器在负载均衡调度中的状态不能是 backup。
- - max_fails：允许请求失败的次数，默认为 1。
+- max_fails：允许请求失败的次数，默认为 1。
      - 当超过最大次数时，返回 proxy_next_upstream 模块定义的错误。
- - fail_timeout：在经历了 max_fails 次失败后，暂停服务的时间。
+- fail_timeout：在经历了 max_fails 次失败后，暂停服务的时间。
      - max_fails 可以和 fail_timeout 一起使用。
 
 <h2 id="0c23468b07d39fbbf4b89831f45c318d"></h2>
@@ -381,21 +381,21 @@ upstream webservers {
 
 ### Nginx 陷阱和常见错误
 
- - 糟糕的配置: 把 root 放在 location 区块内
- - 重复的 index 指令
- - 用 if 检查文件是否存在
+- 糟糕的配置: 把 root 放在 location 区块内
+- 重复的 index 指令
+- 用 if 检查文件是否存在
      - 使用 if 指令来判断文件是否存在是很可怕的，如果你在使用新版本的 Nginx ， 你应该看看 try_files 。
- - 脚本文件名里面的 FastCGI 路径
+- 脚本文件名里面的 FastCGI 路径
      - 推荐: fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
      - 糟糕: fastcgi_param  SCRIPT_FILENAME    /var/www/yoursite.com/$fastcgi_script_name;
- - 费力的 rewrites
+- 费力的 rewrites
      - 糟糕的配置:     rewrite ^/(.*)$ http://example.com/$1 permanent;
     - 好点儿的配置：    rewrite ^ http://example.com$request_uri? permanent;
     - 更好的配置：    return 301 http://example.com$request_uri;
- - 忽略 http:// 的rewrite
+- 忽略 http:// 的rewrite
      - 糟糕的配置：rewrite ^ example.com permanent;
     - 推荐的配置：rewrite ^ http://example.com permanent;    
- - 代理所有东西
+- 代理所有东西
      - 把 所有东西 都丢给了 PHP 。 Apache 可能要这样做，但在 Nginx 里你不必这样。 
      - 换个思路，try_files 有一个神奇之处，它是按照特定顺序去尝试文件的。 这意味着 Nginx 可以先尝试下静态文件，如果没有才继续往后走。 
      - 这样PHP就不用参与到这个处理中，会快很多。 特别是如果你提供一个1MB图片数千次请求的服务，通过PHP处理还是直接返回静态文件呢？ 
@@ -415,26 +415,26 @@ server {
 }
 ```
 
- - 代理所有东西 Cont.
+- 代理所有东西 Cont.
      - 如果请求的 URI 存在， Nginx 会处理掉； 如果不存在，检查下目录是不是存在，是的话也可以被 Nginx 处理； 只有在 Nginx 不能直接处理请求的URI的时候，才会进入 proxy 这个 location 来处理。
- - 配置的修改没有起效
+- 配置的修改没有起效
      - 浏览器缓存。你的配置可能是对的，但怎么尝试结果总是不对，百思不得其解。 罪魁祸首是你的浏览器缓存。当你下载东西的时候，浏览器做了缓存。
      - 使用 curl 避免
- - VirtualBox
+- VirtualBox
     - 如果你在 VirtualBox 的虚拟机中运行 Nginx ，而它不工作，可能是因为 sendfile() 引起的麻烦。  
     - 只用简单的注释掉 sendfile 指令，或者设置为 off。 该指令大都会写在 Nginx .conf 文件中： `sendfile off;`
- - 丢失（消失）的 HTTP 头
+- 丢失（消失）的 HTTP 头
      - 如果你没有明确的设置 `underscores_in_headers on;` , Nginx 将会自动丢弃带有下划线的 HTTP 头(根据 HTTP 标准，这样做是完全正当的). 
      - 这样做是为了防止头信息映射到 CGI 变量时产生歧义，因为破折号和下划线都会被映射为下划线。
- - 没有使用标准的 Document Root Location
+- 没有使用标准的 Document Root Location
      - 在所有的文件系统中，一些目录永远也不应该被用做数据的托管。这些目录包括 / 和 /root 。 
      - 你永远不应该使用这些目录作为你的 document root。    
      - 服务器很容易变成肉鸡
- - 使用默认的 Document Root
+- 使用默认的 Document Root
      - 不要假设默认的 document root 里面的数据在 升级系统 的时候会原封不动。
- - 使用主机名来解析地址
+- 使用主机名来解析地址
      - `server http://someserver;`
      - 使用主机名对应 IP 地址，而不是主机名。 这可以防止 Nginx 去查找 IP 地址，也去掉了去内部、外部解析程序的依赖。
- - 在 HTTPS 中使用 SSLv3
+- 在 HTTPS 中使用 SSLv3
      - 由于 SSLv3 的 POODLE 漏洞， 建议不要在开启 SSL 的网站使用 SSLv3。 你可以简单粗暴的直接禁止 SSLv3， 用 TLS 来替代：
      - `ssl_protocols TLSv1 TLSv1.1 TLSv1.2;`

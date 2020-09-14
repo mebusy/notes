@@ -57,7 +57,7 @@ It's possible to restrict the instance attributes that can be added through the 
 ...         self.another_attribute = 'two'
 ```
 
- - 注意： B的派生类也必须 显式 定义 `__slots__` , 即便 是空的
+- 注意： B的派生类也必须 显式 定义 `__slots__` , 即便 是空的
     - `__slots__ = {}` 
 
 <h2 id="d697d7eeb396fa20ed1c5109befb2a67"></h2>
@@ -88,7 +88,7 @@ def __getitem__(self,key) :
 
 ## assignment lick c struct 
 
- - using a  setter method  to copy content value 
+- using a  setter method  to copy content value 
 
 <h2 id="ff1e065fdd70b15412dc1f6a216d1405"></h2>
 
@@ -113,7 +113,7 @@ Traceback (most recent call last):
 AttributeError: can't set attribute
 ```
 
- - more simple way ... 
+- more simple way ... 
     - https://github.com/oz123/oz123.github.com/blob/master/media/uploads/readonly_properties.py
     - this `readonly_properties` is  for python3 , if you use python2.7, you may need modify some code 
 

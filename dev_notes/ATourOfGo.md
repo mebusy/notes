@@ -104,8 +104,8 @@
 
 ## Write to a hash
 
- - the nice thing about the writer interface of course is that you can substitute implementations besides OS files. 
- - for example hash functions in go are conventionally presented as writers 
+- the nice thing about the writer interface of course is that you can substitute implementations besides OS files. 
+- for example hash functions in go are conventionally presented as writers 
 
 ```go
     h := crc32.NewIEEE()  // it is itself a writer
@@ -138,18 +138,18 @@
 
 ---
 
- - fmt.Printf sport `%v` , which v means value 
- - how that works ?
- - This takes us to our 2nd topic -- **reflection**
+- fmt.Printf sport `%v` , which v means value 
+- how that works ?
+- This takes us to our 2nd topic -- **reflection**
 
 <h2 id="aea1e492943ccbad7ee270ec1e064758"></h2>
 
 
 # Reflection
 
- - In GO, reflection means that the implementation makes 
+- In GO, reflection means that the implementation makes 
     - type information , basic operations available at run-time 
- - So if you have an unknown value, you can find out its type , the definition of that type, and perform the type's basic operations on that value.
+- So if you have an unknown value, you can find out its type , the definition of that type, and perform the type's basic operations on that value.
 
 <h2 id="364365d77d8399e312d21b4e9e8b3421"></h2>
 
@@ -274,7 +274,7 @@ func main() {
 {Ruby 1995 http://www.ruby-lang.org/en/}
 ```
 
- - Abstracted version 
+- Abstracted version 
 
 ```go
 func do( f func(Lang) ) {
@@ -328,8 +328,8 @@ funct main() {
 
 # Concurrency 
 
- - Goroutines let you run multiple computations simultaneously 
- - Channels let you coordinate the computations , by explicit communication
+- Goroutines let you run multiple computations simultaneously 
+- Channels let you coordinate the computations , by explicit communication
     - chanels communicate and synchronize a single operation.
     - but `Buffering` removes synchronization
 
@@ -345,9 +345,9 @@ funct main() {
 
 (之前的例子，执行顺序乱了)
 
- - Send a channel on a channel , making goroutine wait its turn
- - Receive all messages, then enable them again by sending on a private channel 
- - First we define a mesage type that contains a channel for the reply
+- Send a channel on a channel , making goroutine wait its turn
+- Receive all messages, then enable them again by sending on a private channel 
+- First we define a mesage type that contains a channel for the reply
 
 ```go
 type Message struct {
@@ -356,8 +356,8 @@ type Message struct {
 }
 ```
 
- - str is the message that we want to print 
- - wait channel is like a singaler , the guy will block on the wait channel until person says, ok, I want you to go ahead
+- str is the message that we want to print 
+- wait channel is like a singaler , the guy will block on the wait channel until person says, ok, I want you to go ahead
 
 ```go
 waitForIt := make(chan bool)  // shared between all messages 
@@ -372,17 +372,17 @@ time.Sleep(  xxxxx  )
 
 ## Select
 
- - all channels are evaluated 
- - selection blocks until one communication can proceed , which then dose 
+- all channels are evaluated 
+- selection blocks until one communication can proceed , which then dose 
      - select available 1 randomly
- - A default clause , if present, executes immediately if no channel is ready 
+- A default clause , if present, executes immediately if no channel is ready 
 
 <h2 id="d3d322921184197a4cd2b4f5aa6d2a0f"></h2>
 
 
 ## Timeout using select 
 
- - this will timeout for every conversation
+- this will timeout for every conversation
 
 ```go
 for {
@@ -420,7 +420,7 @@ for {
 
 ## Quit channel 
 
- - instead of using a timeout , we can deterministically to stop it
+- instead of using a timeout , we can deterministically to stop it
 
 ```go
 select {
@@ -456,8 +456,8 @@ func f(left, right chan int) {
 
 # Shape your data flow
 
- - Channels are streams of data 
- - Dealing with multiple streams is the true power of select 
+- Channels are streams of data 
+- Dealing with multiple streams is the true power of select 
 
 ```
 Fan-out
@@ -484,7 +484,7 @@ Funnel
 
 ## Fan-out
 
- - you can use range , if you do , you will receive data all the time until the channel closed , and if it closed then the loop will discontinue and you won't process this last mesage 
+- you can use range , if you do , you will receive data all the time until the channel closed , and if it closed then the loop will discontinue and you won't process this last mesage 
 
 ```go
 func Fanout( int <- chan int , OutA, OutB chan int ) {
@@ -520,9 +520,9 @@ func Turnout ( InA, InB <-chan int, OutA, OutB chan int  ) {
 }
 ```
 
- - if you have a closed channel in there , it tends to be chosen all the time 
- - so if you close one channel , you will always get to that case and you'll never get to the other channel which might still have data 
- - so you can use a quit channel
+- if you have a closed channel in there , it tends to be chosen all the time 
+- so if you close one channel , you will always get to that case and you'll never get to the other channel which might still have data 
+- so you can use a quit channel
 
 <h2 id="b2bc387526f0d4b901fd29516715e9a1"></h2>
 
@@ -552,44 +552,44 @@ func Turnout( Quit <- chan int, InA, InB, OutA, OutB chan int   ) {
 
 ## Where channels fail 
 
- - You can create deadlocks with channels
- - Channels pass around copies, which can impact performace
- - Passing pointers to channel can create race conditions
- - What about "naturally shared" structures lick caches or registries ? Ugly
+- You can create deadlocks with channels
+- Channels pass around copies, which can impact performace
+- Passing pointers to channel can create race conditions
+- What about "naturally shared" structures lick caches or registries ? Ugly
 
 <h2 id="10024b5119b072ac3c3901283130c685"></h2>
 
 
 ### Mutexes are not an optimal solution
 
- - Mutexes are like toilets
+- Mutexes are like toilets
     - The longer you occupy them, the longer the queue gets
- - Read/Write mutexes can only *reduce* the problem
- - using multiple mutexes *will* cause deadlocks sooner or later
- - All-in-all not the solution we're looking for 
+- Read/Write mutexes can only *reduce* the problem
+- using multiple mutexes *will* cause deadlocks sooner or later
+- All-in-all not the solution we're looking for 
 
 <h2 id="2fd7ca192be313bd1de33af3cebab2e3"></h2>
 
 
 ### Atomic operations
 
- - sync.atomic package
- - Store, Load, Add, Swap and CompareAndSwap 
- - Mapped to thread-safe CPU instructions
- - These instructions only work on integer types
- - Only about 10-69x slower than their non-atomic counterparts
+- sync.atomic package
+- Store, Load, Add, Swap and CompareAndSwap 
+- Mapped to thread-safe CPU instructions
+- These instructions only work on integer types
+- Only about 10-69x slower than their non-atomic counterparts
 
 <h2 id="bb67365ed820db3703c5d3d28e5fe0ed"></h2>
 
 
 ### Spinning CAS 
 
- - You need a **state** variable and a **free** constant 
- - Use CAS(CompareAndSwap) in a loop:
+- You need a **state** variable and a **free** constant 
+- Use CAS(CompareAndSwap) in a loop:
     - if state is **not free**,  try again until it is 
     - if state is **free** , set it to something else 
- - if you managed to change the state , you *own* it.
- - sync.mutex use this pattern 
+- if you managed to change the state , you *own* it.
+- sync.mutex use this pattern 
 
 ```go
 type Spinlock struct {
@@ -614,11 +614,11 @@ func( l *Spinlock ) Unlock() {
 
 ### Ticket storage 
 
- - We need an **indexed data structure** (like a slice), a **ticket** and a **done** variable 
- - A function draws a new ticket by adding 1 to the ticket
- - Every ticket number is unique as we nerver decrement
- - Treat the **ticket as an index** to store your data
- - Increase done to extend the *ready to read* range 
+- We need an **indexed data structure** (like a slice), a **ticket** and a **done** variable 
+- A function draws a new ticket by adding 1 to the ticket
+- Every ticket number is unique as we nerver decrement
+- Treat the **ticket as an index** to store your data
+- Increase done to extend the *ready to read* range 
 
 ```go
 type TicketStore struct {
@@ -645,10 +645,10 @@ func (ts *TicketStore) GetDone() []string {  // wait free, return immediately
 
 ### Guidelines for non-blocking code
 
- - Don't switch between atomic and non-atomic functions
+- Don't switch between atomic and non-atomic functions
     - just always use atomic functions 
- - Target and exploit situations which enforce uniqueness 
- - Avoid changing 2 things at a time 
+- Target and exploit situations which enforce uniqueness 
+- Avoid changing 2 things at a time 
     - sometimes you can exploit bit operations
     - sometimes intelligent ordering can do the trick 
     - sometimes it's just not possible at all 
@@ -658,11 +658,11 @@ func (ts *TicketStore) GetDone() []string {  // wait free, return immediately
 
 ## Concurrency in practice 
 
- - Avoid blocking, avoid race conditions 
+- Avoid blocking, avoid race conditions 
     - the easiest way to do that is by using CSP 
- - Use channels to avoid shared state
+- Use channels to avoid shared state
     - Use select to manage channels 
- - Where channels don't work:
+- Where channels don't work:
     - Try to use tools from the sync package first 
     - In simple case or when *really* needed: try lockless code 
 
@@ -709,8 +709,8 @@ func (ts *TicketStore) GetDone() []string {  // wait free, return immediately
 
 ## 4. Methods Vs Functions 
 
- - Methods, by definition, are **bound** to a specific **type**
- - Functions can **accept interfaces** as input 
+- Methods, by definition, are **bound** to a specific **type**
+- Functions can **accept interfaces** as input 
 
 
 **Functions Can Be Used With Interface**
@@ -722,9 +722,9 @@ func (ts *TicketStore) GetDone() []string {  // wait free, return immediately
 
 ## 5. Pointer vs Values 
 
- - It's **not** a question of **performance** (generally) , but on of **shared access**
- - If you want to **share** the value with a function or method, then **use a pointer**
- - if you **don't want** to **share** it, then use **a value** (copy)
+- It's **not** a question of **performance** (generally) , but on of **shared access**
+- If you want to **share** the value with a function or method, then **use a pointer**
+- if you **don't want** to **share** it, then use **a value** (copy)
 
 ![](../imgs/go_mistake_50.png)
 
@@ -733,9 +733,9 @@ func (ts *TicketStore) GetDone() []string {  // wait free, return immediately
 
 ### Pointer Receivers 
 
- - If you want to share a value with it's method, use  a **pointer receiver**
- - Since methods commonly manage state , this is the **common usage**
- - **Not safe** for concurrent access 
+- If you want to share a value with it's method, use  a **pointer receiver**
+- Since methods commonly manage state , this is the **common usage**
+- **Not safe** for concurrent access 
 
 
 
@@ -744,10 +744,10 @@ func (ts *TicketStore) GetDone() []string {  // wait free, return immediately
 
 ### Value Receivers
 
- - If you want to share the **value copied** (not shared), use values 
- - If the type is an empty struct ( stateless, just behavior ) ... then just use value 
- - **safe**  for concurrent aceess 
- - eg. `func(t Time)`
+- If you want to share the **value copied** (not shared), use values 
+- If the type is an empty struct ( stateless, just behavior ) ... then just use value 
+- **safe**  for concurrent aceess 
+- eg. `func(t Time)`
 
 
 <h2 id="5a218a8395e0f66fe41e5bf0dcd1426c"></h2>
@@ -771,13 +771,13 @@ type error interface {
 
 ### Standard Errors 
 
- - `errors.New( "error here" )` is usually sufficient
- - Exported Error Variables can be **easily checked**
+- `errors.New( "error here" )` is usually sufficient
+- Exported Error Variables can be **easily checked**
 
 ![](../imgs/go_mistake_60.png)
 
- - this is fine it works, but how do you compare that ?  usually people use string comparison and that's generally not the best way to do things 
- - so better is to export it with the variable and now we can check values 
+- this is fine it works, but how do you compare that ?  usually people use string comparison and that's generally not the best way to do things 
+- so better is to export it with the variable and now we can check values 
 
 
 ![](../imgs/go_mistake_61.png)
@@ -791,9 +791,9 @@ type error interface {
 
 ### Custom Errors
 
- - Can **provide context** to guarantee consistent feedback
- - Provide a type which can be **different from the error value**
- - Can provide **dynamic values** (based on internal error state)
+- Can **provide context** to guarantee consistent feedback
+- Provide a type which can be **different from the error value**
+- Can provide **dynamic values** (based on internal error state)
 
 
 ![](../imgs/go_mistake_64.png)
@@ -812,26 +812,26 @@ type error interface {
 
 ### Consider Concurrency
 
- - If you provide a library someone will use it **concurrently**
- - Data structures are **not safe** for concurrent access
- - Values aren't safe , you need to **create safe behavior** around them 
+- If you provide a library someone will use it **concurrently**
+- Data structures are **not safe** for concurrent access
+- Values aren't safe , you need to **create safe behavior** around them 
 
 <h2 id="177935b2b4281a7fde890ffeb7a7637a"></h2>
 
 
 ### making it safe 
 
- - **sync package** provides behavior to make a value safe (Atomic/Mutex) 
- - **Channels** coordinate values across goroutines by permitting one go routinue to acces at a time
+- **sync package** provides behavior to make a value safe (Atomic/Mutex) 
+- **Channels** coordinate values across goroutines by permitting one go routinue to acces at a time
 
 <h2 id="a2ff502f00ccab58bb020576288a6ef4"></h2>
 
 
 ### Keeping It Unsafe
 
- - **Safety comes at a cost**
- - Imposes behaviors on consumer 
- - **Proper API** allows consumers to **add safety as needed**
- - Consumers can use channels or mutexes
+- **Safety comes at a cost**
+- Imposes behaviors on consumer 
+- **Proper API** allows consumers to **add safety as needed**
+- Consumers can use channels or mutexes
 
 

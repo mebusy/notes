@@ -28,8 +28,8 @@
 
 解决过拟合的办法:
 
- - 减少feature数量: 手动或使用模型选择算法 来选择保留的feature, 但是这样有可能丢失一些信息
- - 正则化 Regularization: 保留所有feature, 但是降低某些feature(和最终预测关联度比较小的) θⱼ参数的重要性/值 ( 适合有很多feature,每个feature都对预测起一点作用的场合)。
+- 减少feature数量: 手动或使用模型选择算法 来选择保留的feature, 但是这样有可能丢失一些信息
+- 正则化 Regularization: 保留所有feature, 但是降低某些feature(和最终预测关联度比较小的) θⱼ参数的重要性/值 ( 适合有很多feature,每个feature都对预测起一点作用的场合)。
 
 
 

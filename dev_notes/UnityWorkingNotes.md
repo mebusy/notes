@@ -63,7 +63,7 @@ PostProcessBuild 这个 attribute 修饰的 **static** function 会在 Unity 建
 [使用 PostProcessBuild 设定 Unity 产生的 Xcode Project](http://blog.chunfuchao.com/?p=359&cpage=1&variant=zh-cn)
 
 
- - PS: `OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)` 的参数 pathToBuiltProject ， 使用 cmd line编译时，不包含路径 
+- PS: `OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)` 的参数 pathToBuiltProject ， 使用 cmd line编译时，不包含路径 
 
 
 
@@ -400,13 +400,13 @@ base.func( ... )
 
 创建时：
 
- - 加载完后立即AssetBundle.Unload(false),释放AssetBundle文件本身的内存镜像，但不销毁加载的Asset对象
+- 加载完后立即AssetBundle.Unload(false),释放AssetBundle文件本身的内存镜像，但不销毁加载的Asset对象
 
 释放时：
 
- - 如果有Instantiate的对象，用Destroy进行销毁
- - Resources.UnloadUnusedAssets,释放已经没有引用的Asset
- - 如果需要立即释放内存加上GC.Collect()
+- 如果有Instantiate的对象，用Destroy进行销毁
+- Resources.UnloadUnusedAssets,释放已经没有引用的Asset
+- 如果需要立即释放内存加上GC.Collect()
 
 
 ***注意： 尽管guid相同, 不同 ab 实例，会 load出多分asset ，导致内存泄漏***    
@@ -465,9 +465,9 @@ Debug.logger.logEnabled=false;  ???
 
 这是因为你勾选了strip code,一些代码由于检测不到引用就被strip掉了，但是从AssetBundle里加载出来又需要根据ID找到对应代码。
 
- - http://docs.unity3d.com/Manual/ClassIDReference.html 找到ID对应的class
- - 在Assets目录下新建文件link.xml,把不该strip掉的类加进去
- - 有些类比如 AnimatorController(ID-91)属于Editor包里的，不能用link.xm加回来，可以在Resource下建一个空的prefab,在上面挂一个AnimatorController，打包时留下这个prefab就可以确保这个类不被strip掉了。
+- http://docs.unity3d.com/Manual/ClassIDReference.html 找到ID对应的class
+- 在Assets目录下新建文件link.xml,把不该strip掉的类加进去
+- 有些类比如 AnimatorController(ID-91)属于Editor包里的，不能用link.xm加回来，可以在Resource下建一个空的prefab,在上面挂一个AnimatorController，打包时留下这个prefab就可以确保这个类不被strip掉了。
 
 
 ```
@@ -699,15 +699,15 @@ bool bInvalidObj  = gameObject == null || gameObject.Equals(null)  || ReferenceE
 
 ## ScrollView 实践
 
- - scroll content 
+- scroll content 
     - ScrollRect 组建中必须 设置 Content field, UGUI 创建的 scroll view 已自动设好
     - cell item 需要添加到 content 上 , as child
- - content 上一般需要添加
+- content 上一般需要添加
     - Vertical/Horizontal Layout Group 
         - 设置 Child Force Expand
     - Content Size Fitter ( 自动调整 content size )
         - 设置成 Preferred Size 
- - cell item 
+- cell item 
     - 添加 Layout Element
 
 <h2 id="ff5c99f331bda1f9bf2e5016b22ad46e"></h2>
@@ -737,8 +737,8 @@ foreach(KeyValuePair<EventSignal,EventManager.EventFunc> entry in myRegisterEven
 
 ## AES , encrypt by python, decrypt by c# 
 
- - Microsoft's implementation of PKCS7 is a bit different than Python's
- - [python rkcs7](https://raw.githubusercontent.com/janglin/crypto-pkcs7-example/master/pkcs7.py)
+- Microsoft's implementation of PKCS7 is a bit different than Python's
+- [python rkcs7](https://raw.githubusercontent.com/janglin/crypto-pkcs7-example/master/pkcs7.py)
 
 ```python
 # encrypt

@@ -40,15 +40,15 @@
 
 # API
 
- - `http://www.blender.org/api`
- - `http://www.blender.org/api/blender_python_api_2_78c_release`
+- `http://www.blender.org/api`
+- `http://www.blender.org/api/blender_python_api_2_78c_release`
 
 <h2 id="b8836758104839a89ea645e997c6f8cb"></h2>
 
 
 ## 2 The bpy Module
 
- - bpy.ops:  primarily functions for manipulating objects
+- bpy.ops:  primarily functions for manipulating objects
     - bpy.ops.object: manipulating multiple selected objects at the same time
     - bpy.ops.mesh: manipulating vertices, edges, and faces of objects one at a time, typically in Edit Mode
 
@@ -58,30 +58,30 @@ e.g.
 www.blender.org/api/blender_python_ api_2_78c_release/bpy.ops.mesh.html
 ```
 
- - bpy.context:  access objects and areas access objects and areas
+- bpy.context:  access objects and areas access objects and areas
     - give Python developers a means of accessing the *current* data that a user is working with
     - bpy.context.object: last selected object
     - bpy.context.select_objects
     - bpy.context.scene
- - bpy.data: access Blender’s internal data
+- bpy.data: access Blender’s internal data
     - bpy.data.objects 
         - bpy.context will generate references to datablocks of the bpy.data
- - bpy.app
+- bpy.app
     - The handlers submodule contains special functions for triggering custom functions in response to events in Blender
- - bpy.types, bpy.utils, and bpy.props
- - bpy.path: essentially the same as the os.path submodule that ships natively with Python
+- bpy.types, bpy.utils, and bpy.props
+- bpy.path: essentially the same as the os.path submodule that ships natively with Python
     
 <h2 id="f1189fbbb6cb319df8b3a5ad5b3faaef"></h2>
 
 
 ### Selection, Activation, and Specification
 
- - Selection: One, many, or zero objects can be selected at once.
+- Selection: One, many, or zero objects can be selected at once.
     - `bpy.context.selected_objects`
     - `[k.name for k in bpy.context.selected_objects]`
     - `[k.location for k in bpy.context.selected_objects]`
- - Activation: Only a single object can be active at any given time ( Editor mode ?)
- - Specification: (Python only) Python scripts can access objects by their names and write directly to their datablocks.
+- Activation: Only a single object can be active at any given time ( Editor mode ?)
+- Specification: (Python only) Python scripts can access objects by their names and write directly to their datablocks.
 
 
 ```python
@@ -166,7 +166,7 @@ def mySpecifier(objName):
 
 ### Pseudo-Circular Referencing and Abstraction
 
- - bpy.data.objects datablocks were built to nest infinitely
+- bpy.data.objects datablocks were built to nest infinitely
 
 ```python
 # Each line will return the same object type and memory address
@@ -188,15 +188,15 @@ bpy.data.objects['Cube'].data.vertices.data
 bpy.data.objects['Cube'].data.vertices.data.edges.data.materials.data
 ```
 
- - showcases a powerful feature of the Blender Python API.
- - **When we append .data to an object, it returns a reference to the parent datablock**
+- showcases a powerful feature of the Blender Python API.
+- **When we append .data to an object, it returns a reference to the parent datablock**
 
 <h2 id="8b118df4b9feadc9623a9631a0a28cd9"></h2>
 
 
 ### Transformations with bpy
 
- - bpy.ops.transorm
+- bpy.ops.transorm
 
 Listing 2-9. Minimal Toolkit for Creation and Transformation (ut.py)
 
@@ -211,8 +211,8 @@ Visualizing 3/4 Dimensions of Data
 
 [visualize3d.py](https://raw.githubusercontent.com/mebusy/notes/master/codes/blender/visualize3d.py)
 
- - for 4th Dimension , we use scale to represent it
- - for 5th Dimension, we can use different shapes
+- for 4th Dimension , we use scale to represent it
+- for 5th Dimension, we can use different shapes
 
 ---
 
@@ -268,7 +268,7 @@ importlib.reload(ut)
 
 **Instantiating a bmesh Object**
 
- - In general, instantiating a bmesh object requires us to pass a bpy.data.meshes datablock to bmesh.from_edit_mesh() while in Edit Mode.
+- In general, instantiating a bmesh object requires us to pass a bpy.data.meshes datablock to bmesh.from_edit_mesh() while in Edit Mode.
 
 
 Listing 3-4. Instantiating a bmesh Object 
@@ -301,11 +301,11 @@ print(bm)
 
 **Selecting Parts of a 3D Object**
 
- - BMesh.verts 
- - BMesh.edges 
- - BMesh.faces
+- BMesh.verts 
+- BMesh.edges 
+- BMesh.faces
 
- - Notice the numerous calls to  ensure_lookup_table()
+- Notice the numerous calls to  ensure_lookup_table()
     - these functions to remind Blender to keep certain parts of the BMesh object from being garbage-collected between operations
 
 Listing 3-5. Selecting Parts of 3D Objects
@@ -340,7 +340,7 @@ bm.verts[5].select = True
 
 **Basic Transformations**
 
- - Conveniently enough, we can use the same functions we used for Object Mode transformations to operate on individual parts of a 3D object
+- Conveniently enough, we can use the same functions we used for Object Mode transformations to operate on individual parts of a 3D object
 
 ```python
 # Must start in object mode
@@ -440,21 +440,21 @@ bpy.ops.object.mode_set(mode='OBJECT')
 
 ### Note on Indexing and Cross-Compatibility
 
- - 使用硬编码数字下标 访问 vertex, edge , face 会导致 预期外的结果
- - 不同版本的blender 的相同的操作，索引会有差异
+- 使用硬编码数字下标 访问 vertex, edge , face 会导致 预期外的结果
+- 不同版本的blender 的相同的操作，索引会有差异
 
 <h2 id="7b2e81f38f3bd2a976241c54eba419f6"></h2>
 
 
 ### Global and Local Coordinates
 
- - Within the 3D Viewport, we view global coordinates G = T * L always.
- - We can control when Blender applies transformations with bpy.ops.object.transform_apply()
- - This will not change the appearance of the objects, rather it will set L equal to G and set T equal to the identity
- - If we delay execution of bpy. ops.object.transform_apply() by not running it and not exiting Edit Mode, we can maintain two data sets G and L
+- Within the 3D Viewport, we view global coordinates G = T * L always.
+- We can control when Blender applies transformations with bpy.ops.object.transform_apply()
+- This will not change the appearance of the objects, rather it will set L equal to G and set T equal to the identity
+- If we delay execution of bpy. ops.object.transform_apply() by not running it and not exiting Edit Mode, we can maintain two data sets G and L
     - In practice, G is very useful for positioning objects relative to others
     - and L is very easy to loop through to fetch indices.
- - We will build mode-independent functions for accessing these coordinates
+- We will build mode-independent functions for accessing these coordinates
 
 Listing 3-8. Fetching Global and Local Coordinates
 
@@ -485,8 +485,8 @@ class sel:
 
 Listing 3-9. Behavior of Global and Local Coordinates and Transform Apply
 
- - After translating the cube, readers will see the cube move, but the local coordinates will remain the same.
- - After running transform_apply(), the cube will not move, but the local coordinates will update to match the global coordinates.
+- After translating the cube, readers will see the cube move, but the local coordinates will remain the same.
+- After running transform_apply(), the cube will not move, but the local coordinates will update to match the global coordinates.
 
 
 ```python
@@ -626,8 +626,8 @@ A brief algorithm randomly (and sloppily) selects a chunk of space in which the 
 
 ### Specifying a 3D Model
 
- - 3D models are complex digital assets that can be made up of many different components
- - we typically think of the *mesh* as the most important structure that constitutes the shape of the asset
+- 3D models are complex digital assets that can be made up of many different components
+- we typically think of the *mesh* as the most important structure that constitutes the shape of the asset
     - meshes are made of *faces*, which consist of *vertices* arranged by *indices*
     - mesh can contain *normal vectors* or *normals*, which can be specified with the vertices or faces, depending on the file format. 
 
@@ -636,23 +636,23 @@ A brief algorithm randomly (and sloppily) selects a chunk of space in which the 
 
 For the purpose of this chapter, we consider that a basic mesh is defined by its faces and normal vectors
 
- - *Vertices* are real-valued triplets specifying a location in 3D space, typically represented as (x, y, z).
+- *Vertices* are real-valued triplets specifying a location in 3D space, typically represented as (x, y, z).
     - In Blender, the z-axis is the vertical axis
- - *Indices* are positive integer-valued triplets that specify faces using a series of vertices, typically represented as (i, j, k). 
+- *Indices* are positive integer-valued triplets that specify faces using a series of vertices, typically represented as (i, j, k). 
     - Given a list of N vertices indexed as 1, ..., N, a face in 3D space can be specified by a triplet of any three unique integers in 1, ..., N.  
     - the order of the integers is important in determining the direction in which the face is visible. 
     - The concept of indexing reused tuple values is often extended to other tuples such as normals and UVs in practice.
- - **Faces** are determined by integer triplets of indices referencing some three vertices.
+- **Faces** are determined by integer triplets of indices referencing some three vertices.
     - a three-vertex face in 3D space requires a total of nine real-valued data points
     - It is important to note that faces in 3D space are only visible in a single direction. 
     - Note that Blender does not exhibit this single-direction behavior by default, but Blender will not automatically control or correct for it when exporting to other file formats.
- - *Normal Vectors* are real-valued triplets that define how the mesh interacts with lights and cameras in a scene
+- *Normal Vectors* are real-valued triplets that define how the mesh interacts with lights and cameras in a scene
     - At the moment, we are concerned only with normals as they are directly assigned to points rather than normal maps that 3D artists may already by familiar with. 
     - As the name implies, the camera and lighting in a scene interacts with the mesh under the assumption that the normal vectors *lie normal* to the faces it is illuminating.
 
 **Specifying Textures**
 
- - The purpose of textures in 3D models is to map a 2D image onto a 3D surface, typically using an existing
+- The purpose of textures in 3D models is to map a 2D image onto a 3D surface, typically using an existing
  2D art asset
     - The coordinate convention we use for this is the (u, v) coordinate system.
     
@@ -663,29 +663,29 @@ For the purpose of this chapter, we consider that a basic mesh is defined by its
 
 **Wavefront (.obj and .mtl)**
 
- - The Wavefront geometric (.obj) and materials (.mtl) specification formats work in conjunction to specify meshes and textures. 
- - the .obj file can stand on its own to specify solely geometry.
- - The .obj file is very minimal and easy to understand, making it ideal for use as a standard notation for discussing the shapes of 3D objects.
+- The Wavefront geometric (.obj) and materials (.mtl) specification formats work in conjunction to specify meshes and textures. 
+- the .obj file can stand on its own to specify solely geometry.
+- The .obj file is very minimal and easy to understand, making it ideal for use as a standard notation for discussing the shapes of 3D objects.
 
 **STL (STereoLithography)**
 
- - The STL file format is commonly used by engineers and CAD software
- - It is verbose when compared to the .obj format, but comes with a binary specification to compensate for its inefficiency
- - STL supports normal vectors and faces, but does not use indices or support texture coordinates
- - In addition, STL does not support specification of more than three coplanar points
- - Curiously, where most 3D file formats allow normal vectors to be assigned to points, STL only allows normal vectors to be assigned on the face level.
+- The STL file format is commonly used by engineers and CAD software
+- It is verbose when compared to the .obj format, but comes with a binary specification to compensate for its inefficiency
+- STL supports normal vectors and faces, but does not use indices or support texture coordinates
+- In addition, STL does not support specification of more than three coplanar points
+- Curiously, where most 3D file formats allow normal vectors to be assigned to points, STL only allows normal vectors to be assigned on the face level.
 
 
 **PLY (Polygon File Format)**
 
- - This file format was built by Stanford to work with 3D scanning software.
- - The PLY format is essentially a stripped-down version of .obj with additional metadata that only supports vertices and faces, not normal vectors or textures.
+- This file format was built by Stanford to work with 3D scanning software.
+- The PLY format is essentially a stripped-down version of .obj with additional metadata that only supports vertices and faces, not normal vectors or textures.
  
 **Blender (.blend) Files and Interchange Formats**
 
- - Blender’s native file format and in-memory data structures are very complex
- - Blender supports operations on vertices, edges, and faces with noncoplanar vertices
- - All the while, Blender manages complex data related to textures, sounds, animations, rigs, lights, and more. 
+- Blender’s native file format and in-memory data structures are very complex
+- Blender supports operations on vertices, edges, and faces with noncoplanar vertices
+- All the while, Blender manages complex data related to textures, sounds, animations, rigs, lights, and more. 
  
 
 <h2 id="fa11cb7e3dbec33afd8b0c8194461c6a"></h2>
@@ -695,25 +695,25 @@ For the purpose of this chapter, we consider that a basic mesh is defined by its
 
 **Definition of a Cube**
 
- - A cube is a three-dimensional object with six faces consisting of squares of equal lengths. A cube contains
+- A cube is a three-dimensional object with six faces consisting of squares of equal lengths. A cube contains
  6 faces, 12 edges, and 8 vertices. 
- - The square faces of a cube can be treated as compositions of two right triangles with leg lengths equal to the square length
- - Note that any object in 3D space can be defined by float and integer values
+- The square faces of a cube can be treated as compositions of two right triangles with leg lengths equal to the square length
+- Note that any object in 3D space can be defined by float and integer values
     - where floats specify locations and directions in 3D space and integers specify related indices
- - 3D objects also require normal vectors, which can be assigned to vertices or faces
+- 3D objects also require normal vectors, which can be assigned to vertices or faces
 
 **Naive Specification**
 
- - To naively specify a 3D cube, we will specify each of the 6 * 2 = 12 required triangular faces independently of one another 
+- To naively specify a 3D cube, we will specify each of the 6 * 2 = 12 required triangular faces independently of one another 
     - as well as assign an independent normal vector to each point.
     - This should result in 12 * 3 = 36 vertices and 12 * 3 = 36 normal vectors.
- - The naivety of this model is defined by:
+- The naivety of this model is defined by:
     - Needless repetition of vertex coordinates
     - Needless repetition of normal vector directions
     - Needless use of vertex normals in place of face normals
- - In other words, naive 3D specifications do not reuse vertices or normals through indexing by treating every face as a wholly independent triangle.
- - In addition, using vertex normals rather than face normals in simple cases such as a cube can increase waste. 
- - This model would benefit greatly from:
+- In other words, naive 3D specifications do not reuse vertices or normals through indexing by treating every face as a wholly independent triangle.
+- In addition, using vertex normals rather than face normals in simple cases such as a cube can increase waste. 
+- This model would benefit greatly from:
     - Removing repeated vertices
     - Specifying triangular faces as square faces
     - Removing repeated normals and/or using face normals
@@ -751,9 +751,9 @@ f 3//2 4//2 8//2 7//2
 
 The last repetitive characteristic is specification of the normal vector index at each point of each face. 
 
- - this is “theoretical”
- - because .obj files do not actually support face normals, although other common file formats do.
- - We will continue to use the .obj format in this example for sake of consistency, but note that this file with not import
+- this is “theoretical”
+- because .obj files do not actually support face normals, although other common file formats do.
+- We will continue to use the .obj format in this example for sake of consistency, but note that this file with not import
 
 ```
 # Face and normals defined as:
@@ -775,8 +775,8 @@ f (8 4 2 6)//6
 
 **Concentric Normals**
 
- - When generating models and exporting to various interchange and rendering formats, it is very easy for normal vectors to be ignored or misassigned
- - One very common bug we encounter is unexplainable wonky lighting
+- When generating models and exporting to various interchange and rendering formats, it is very easy for normal vectors to be ignored or misassigned
+- One very common bug we encounter is unexplainable wonky lighting
     - The issue typically comes down to normal management and can be solved with a few function calls or button clicks in Blender itself
 
 ![](../imgs/blender_cocentric_normal.png)
@@ -887,10 +887,10 @@ The problems associated with floating-point arithmetic are well-studied in compu
 
 How does one solve this problem given the tools in Blender and its Python API? There are a number of solutions, depending on the particular situation.
 
- - Translate each object by a small and unnoticeable amount (around 0.000001 Blender units) such that the surfaces are no longer coplanar. If the translation has no effect, try translating it by a slightly larger distance.
- - Delete interior faces in Edit Mode.
- - Retool your algorithm to generate non-overlapping surfaces.
- - Use the dissolve and limit dissolve tools in Edit Mode.
+- Translate each object by a small and unnoticeable amount (around 0.000001 Blender units) such that the surfaces are no longer coplanar. If the translation has no effect, try translating it by a slightly larger distance.
+- Delete interior faces in Edit Mode.
+- Retool your algorithm to generate non-overlapping surfaces.
+- Use the dissolve and limit dissolve tools in Edit Mode.
 
 Ultimately, there are many methods for dealing with Z-fighting that all amount to making sure coplanar surfaces no longer exist in your model. We refrain from detailing all of the potential methods.
 
@@ -941,16 +941,16 @@ If we navigate to Header Menu ➤ File ➤ User Preferences ➤ Add-ons, we can 
 
 The detailed of bl_info description here:
 
- - name
- - author
- - location -- The primary location of the add-on’s GUI
+- name
+- author
+- location -- The primary location of the add-on’s GUI
     - Common syntax is Window ➤ Panel ➤ Tab ➤ Section for add-ons in the Tools, Properties, and Toolshelf panels
     - When in doubt, follow conventions established by other add-ons.
- - version -- The version number of the add-on as a tuple.
- - blender -- minimum Blender version numberrequiredtoruntheadd-on
- - description
- - wiki_url -- An URL pointing to the handbook or guide for the add-on specified as a single string.
- - category -- A string specifying one the categories listed in Table 5-1.
+- version -- The version number of the add-on as a tuple.
+- blender -- minimum Blender version numberrequiredtoruntheadd-on
+- description
+- wiki_url -- An URL pointing to the handbook or guide for the add-on specified as a single string.
+- category -- A string specifying one the categories listed in Table 5-1.
 
 Table 5-1. The bl-info Category Options
 
@@ -958,9 +958,9 @@ Table 5-1. The bl-info Category Options
 
 There are a few remaining bl_info options that are less often seen.
 
- - support -- OFFICIAL, COMMUNITY, or TESTING. 
- - tracker_url -- URL pointing to a bug tracker (e.g., GitHub issues or similar).
- - warning -- String specifying some warning that will appear in the user preferences window.
+- support -- OFFICIAL, COMMUNITY, or TESTING. 
+- tracker_url -- URL pointing to a bug tracker (e.g., GitHub issues or similar).
+- warning -- String specifying some warning that will appear in the user preferences window.
 
 ---
 
@@ -970,10 +970,10 @@ In the simplest sense, add-ons allow us to call Blender Python functions by clic
 
 Functions called by the Blender GUI must first be registered as operators of class bpy.types.Operator.
 
- - Take for example SimpleOperator. When we register this class, the call to SimpleOperator.execute() is mapped to a function object in `bpy.ops`. 
- - The function is `bpy.ops`  that it is mapped to is determined by the bl_idname value at the head of the class.
- - Thus, after you run the script in Listing 5-1, you can print an encouraging message by calling `bpy.ops.object.simple_operator()` 
- - The following are the steps to declare an operator in Blender. Refer to the SimpleOperator class definition in Listing 5-1 throughout.
+- Take for example SimpleOperator. When we register this class, the call to SimpleOperator.execute() is mapped to a function object in `bpy.ops`. 
+- The function is `bpy.ops`  that it is mapped to is determined by the bl_idname value at the head of the class.
+- Thus, after you run the script in Listing 5-1, you can print an encouraging message by calling `bpy.ops.object.simple_operator()` 
+- The following are the steps to declare an operator in Blender. Refer to the SimpleOperator class definition in Listing 5-1 throughout.
     1. Declare a class that inherits bpy.types.Operator. This will appear in our code as:
         - `class MyNewOperator(bpy.types.Operator):`
     2. Declare `bl_idname` as a string with class and function name of your choice, separated by a period 
@@ -1013,17 +1013,17 @@ TODO
 
 ## 6 The bgl and blf Modules
 
- - The bgl module is a wrapper for OpenGL functions commonly used by Blender in the 3D Viewport and Blender Game Engine. 
- - The blf module is a small set of functions for displaying text and drawing fonts. 
+- The bgl module is a wrapper for OpenGL functions commonly used by Blender in the 3D Viewport and Blender Game Engine. 
+- The blf module is a small set of functions for displaying text and drawing fonts. 
  
 <h2 id="e6878da0a2f708ad2a8ce73b2a4acb33"></h2>
 
 
 ### Instantaneous Drawing
 
- - The bgl and blf modules cannot be taught in the same way that other Blender Python modules can.
- - When a line or character is drawn on the 3D Viewport by either of these modules, it is only visible for a single frame.
- - To effectively use the bgl and blf modules, we must use them within a handler function that is set to update at every frame change. 
+- The bgl and blf modules cannot be taught in the same way that other Blender Python modules can.
+- When a line or character is drawn on the 3D Viewport by either of these modules, it is only visible for a single frame.
+- To effectively use the bgl and blf modules, we must use them within a handler function that is set to update at every frame change. 
     - Thus, we start with a handler example using non-OpenGL concepts.
 
 <h2 id="629dc07d3baa953d521a2ad76c0b27a7"></h2>
@@ -1058,16 +1058,16 @@ bpy.app.handlers.scene_update_pre.append(tell_time)
 
 ![](../imgs/blender_clock_example.png)
 
- - To instantiate a handler, we declare a function 
+- To instantiate a handler, we declare a function 
     - `def tell_time(dummy):`
- - then add it to one of the possible lists of handlers in Blender
+- then add it to one of the possible lists of handlers in Blender
     - `bpy.app.handlers.scene_update_pre`
- - In actuality, it is a text mesh that is updating many times per second
+- In actuality, it is a text mesh that is updating many times per second
 
 **Managing Handlers**
 
- - `bpy.app.handlers.scene_update_pre`  is a list 
- - so we can use methods such as `append(), pop(), remove(), and clear() ` to manage our handler functions
+- `bpy.app.handlers.scene_update_pre`  is a list 
+- so we can use methods such as `append(), pop(), remove(), and clear() ` to manage our handler functions
 
 ```python
 # Will only work if 'tell_time' is in scope
@@ -1106,9 +1106,9 @@ game_post  | Ending the game engine
 
 **Persistent Handlers**
 
- - If we want handlers to persist after loading a .blend file, we can add the @persistent decorator
- - Normally, handlers are freed when loading a .blend file
- - so certain handlers like bpy.app.handlers.load_post necessitate this decorator
+- If we want handlers to persist after loading a .blend file, we can add the @persistent decorator
+- Normally, handlers are freed when loading a .blend file
+- so certain handlers like bpy.app.handlers.load_post necessitate this decorator
  
 
 Listing 6-3. Printing File Diagnostics on Load
@@ -1138,8 +1138,8 @@ bpy.app.handlers.load_post.append(load_diag)
 
 **Handlers in blf and bgl**
 
- - Now that we have a basic understanding of handlers, we will detail how to draw with OpenGL tools directly on the 3D Viewport. 
- - The handlers used for drawing on the 3D Viewport are not part of `bpy.app.handlers`
+- Now that we have a basic understanding of handlers, we will detail how to draw with OpenGL tools directly on the 3D Viewport. 
+- The handlers used for drawing on the 3D Viewport are not part of `bpy.app.handlers`
     - rather they are undocumented member functions of `bpy.types.SpaceView3D`.
 
 Listing 6-4. Drawing the Name of an Object
@@ -1178,9 +1178,9 @@ def draw_name(context):
 bpy.types.SpaceView3D.draw_handler_add( draw_name, (bpy.context,), 'WINDOW', 'POST_PIXEL')
 ```
 
- - Handlers created with bpy.types.SpaceView3D are not as easily accessible, handlers and are persistent by default. 
- - Unless we create better controls for flicking these handlers on and off, we will have to restart Blender to detach this handler.
- - In the next section, we place this handler in an add-on that allows us to flick it on and off with a button. Also, we store the handler in a bpy.types.Operator so we will not lose our reference to the function after adding it to the handler
+- Handlers created with bpy.types.SpaceView3D are not as easily accessible, handlers and are persistent by default. 
+- Unless we create better controls for flicking these handlers on and off, we will have to restart Blender to detach this handler.
+- In the next section, we place this handler in an add-on that allows us to flick it on and off with a button. Also, we store the handler in a bpy.types.Operator so we will not lose our reference to the function after adding it to the handler
 
 TODO
 
@@ -1205,30 +1205,30 @@ TODO
 
 **Types of Influence in Blender**
 
- - Properties ➤ Materials ➤ Influence.
- - Diffuse textures are for coloring the object
+- Properties ➤ Materials ➤ Influence.
+- Diffuse textures are for coloring the object
     - Diffuse textures can describe the color, intensity, alpha levels, and translucency of objects in Blender
- - Shading textures describe how the object interacts with others in the scene
+- Shading textures describe how the object interacts with others in the scene
     - If we want the object to mirror another, to emit color onto another, or spill ambient light into the scene, we specify the requisite shading properties in Blender.
- - Specular textures describe how the object reacts to light
- - Geometry textures allows the object to affect the geometric appearance of the object.
+- Specular textures describe how the object reacts to light
+- Geometry textures allows the object to affect the geometric appearance of the object.
     - For example, if we supplied black and white stripes to a geometric map and specified a normal map, we would see 3D ridges in our model. 
     - It is important to note that these effects are realized only in rendering, not in the mesh data itself.
 
 
 **Types of Textures in Blender**
 
- - Properties ➤ Materials ➤ Type
- - The Image and Video and Environment Map options can import image and video files.
- - The remaining textures can be parameterized in Blender to achieve the desired result.
+- Properties ➤ Materials ➤ Type
+- The Image and Video and Environment Map options can import image and video files.
+- The remaining textures can be parameterized in Blender to achieve the desired result.
 
 <h2 id="afd66c77848678b6a7739a9cd7b1d0a8"></h2>
 
 
 ### Adding and Configuring Textures
 
- - To map a square image as a texture to a square face of a mesh, wespecifyuvcoordinates[(0, 0), (1, 0), (0, 1), (1, 1)]tothebottom-left,bottom-right,top-left,and top-right points of the mesh, respectively.
- - As shapes of faces become more complicated, so do the processes required to achieve the desired texture mappings.
+- To map a square image as a texture to a square face of a mesh, wespecifyuvcoordinates[(0, 0), (1, 0), (0, 1), (1, 1)]tothebottom-left,bottom-right,top-left,and top-right points of the mesh, respectively.
+- As shapes of faces become more complicated, so do the processes required to achieve the desired texture mappings.
 
 **Loading Textures and Generating UV Mappings**
 
@@ -1241,10 +1241,10 @@ Note: after running this script, view the results by selecting rendered view in 
 
 **Textures Versus Materials in Blender**
 
- - Texture is a broad term in 3D modeling. It can refer to diffuse textures, color textures, gradient textures, bump maps, and more. 
+- Texture is a broad term in 3D modeling. It can refer to diffuse textures, color textures, gradient textures, bump maps, and more. 
     - It is important to note that we can map all of these forms of textures to an object simultaneously.
     - For example, a set of shingles on the roof of a house may require an image texture, a diffuse map, and a bump map in order to appear realistic when rendered.
- - A material in Blender is a collection of texture-related data. 
+- A material in Blender is a collection of texture-related data. 
     - It may include any of the images and maps mentioned previously, and it may include others like normal and alpha maps. 
     - So, we must first build the material from its constituent textures, then assign the material to the object. 
     - Regardless of whether we have one or many textures comprising a material, texture data must be assigned to the material.
@@ -1252,11 +1252,11 @@ Note: after running this script, view the results by selecting rendered view in 
  
 **UV Coordinates and Loops**
 
- - The uv coordinate data layer we aim to access is contained within a loops object
- - Loops can be thought of as 3D polygons that trace a set of vertices of a 3D object.
- - Loops can span multiple faces, but must start and end on the same point.
- - When loops span multiple faces, they are intended to capture a localized set of adjacent faces.
- - Fortunately, loops data objects in Blender have a 1-to-1 correspondence with bmesh.faces[].verts[] objects, which we are used to working with.
+- The uv coordinate data layer we aim to access is contained within a loops object
+- Loops can be thought of as 3D polygons that trace a set of vertices of a 3D object.
+- Loops can span multiple faces, but must start and end on the same point.
+- When loops span multiple faces, they are intended to capture a localized set of adjacent faces.
+- Fortunately, loops data objects in Blender have a 1-to-1 correspondence with bmesh.faces[].verts[] objects, which we are used to working with.
   - In other words, the (u, v) coordinates accessed by bm.faces[f]. loops[v][uv_layer].uv correspond to the (x, y, z) coordinates accessed by bm.faces[f].verts[v].co for any two integers, f and v.
   - It is important to note that two integers f and v may not specify a unique point in 3D space. In a default Blender 2.78c cube, as it appears in the startup file, f:v pairs 0:2, 3:3, and 4:0 all correspond to the point (-1.0, -1.0, -1.0) in 3D space. When the cube is textured, these uv coordinates will typically be unique, because they will all correspond to different parts of the texture map.
 
@@ -1265,10 +1265,10 @@ Note: after running this script, view the results by selecting rendered view in 
 
 ### Removing Unused Textures and Materials
 
- - As we continually test scripts, our materials and textures data can quickly become cluttered without our realizing.
- - Blender will rename textures to my_texture.001, my_texture.002, etc. when we neglect to delete them.
- - Textures and materials must have no users in order to be eligible for deletion. In this case, users refers to the number of objects that currently have it assigned. 
- - To delete textures and materials, we loop through our bpy.data.materials and bpy.data.textures datablocks and call .remove() on those that are not in use.
+- As we continually test scripts, our materials and textures data can quickly become cluttered without our realizing.
+- Blender will rename textures to my_texture.001, my_texture.002, etc. when we neglect to delete them.
+- Textures and materials must have no users in order to be eligible for deletion. In this case, users refers to the number of objects that currently have it assigned. 
+- To delete textures and materials, we loop through our bpy.data.materials and bpy.data.textures datablocks and call .remove() on those that are not in use.
 
 ```python
 import bpy
@@ -1293,9 +1293,9 @@ We introduce and explain how to position lights and cameras in a scene, then cal
 
 **Adding Lights**
 
- - In the 3D Viewport Header, we can navigate to Add ➤ Lamp to select any of Blender’s built-in lights.
- - Using Python tooltips, we can see that they all rely on the function bpy.ops.object.lamp_add(), with the type= parameter determining the type of light. 
- - We have the options SUN, POINT, SPOT, HEMI, and AREA. Each of these types has its own sets of parameters to configure.
+- In the 3D Viewport Header, we can navigate to Add ➤ Lamp to select any of Blender’s built-in lights.
+- Using Python tooltips, we can see that they all rely on the function bpy.ops.object.lamp_add(), with the type= parameter determining the type of light. 
+- We have the options SUN, POINT, SPOT, HEMI, and AREA. Each of these types has its own sets of parameters to configure.
 
 Table 8-1. Types of Lights
 
@@ -1314,8 +1314,8 @@ Rendering a scene requires a camera. To procedurally add a camera, we must posit
 
 The biggest problem we must solve when procedurally generating cameras is determining the distance and field of view such that the entire scene will be captured without appearing too small in the rendering.
 
- - The field of view (FoV) is a pair of two angles (θx , θy) projecting outward from a camera that defines an infinitely extending rectangular pyramid. 
- - To give some perspective, an iPhone 6 camera has a FoV of about (63°, 47°) degrees when in landscape mode. 
+- The field of view (FoV) is a pair of two angles (θx , θy) projecting outward from a camera that defines an infinitely extending rectangular pyramid. 
+- To give some perspective, an iPhone 6 camera has a FoV of about (63°, 47°) degrees when in landscape mode. 
 
 
 ![](../imgs/blender_fov.png)
@@ -1361,16 +1361,16 @@ def scene_bounding_box():
 
 **Rendering an Image**
 
- - Rendering is the process of computing high-resolution imagery and video given 3D data
- - The 3D Viewport is an instantaneous rendering of the 3D data, but it does not represent the same level of quality or definition as a traditional rendering.
- - In Listing 8-4, we render the output of Listing 8-1 using both Blender Render and OpenGL render. 
+- Rendering is the process of computing high-resolution imagery and video given 3D data
+- The 3D Viewport is an instantaneous rendering of the 3D data, but it does not represent the same level of quality or definition as a traditional rendering.
+- In Listing 8-4, we render the output of Listing 8-1 using both Blender Render and OpenGL render. 
     - This example assumes positions the camera to point upward along the x-axis at the median of the scene, from the yz-median of the scene, such that it will capture the whole scene
 
 ![](../imgs/blender_render_img.png)
 
 > Figure 8-6. Blender Render
 
- - We can also render a snapshot of the 3D Viewport using OpenGL render. This will capture basic features of the scene similar to how we see the 3D Viewport in Object Mode with Solid view. 
+- We can also render a snapshot of the 3D Viewport using OpenGL render. This will capture basic features of the scene similar to how we see the 3D Viewport in Object Mode with Solid view. 
     - Note that we can see both the lights and camera, but not the materials, in this view. 
     - When we call bpy.ops.render.opengl(), setting `view_context = True` will cause Blender to use the 3D Viewport camera (the user’s view) rather than the scene camera.
     - ![](../imgs/opengl_render.png)

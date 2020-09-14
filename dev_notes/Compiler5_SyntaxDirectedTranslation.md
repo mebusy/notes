@@ -22,7 +22,7 @@ The techniques are also useful for implementing little languages for specialized
 We associate information with a language construct by attaching *attributes* to the grammar symbol(s) representing the construct, as discussed in Sec­ tion 2.3.2. A syntax-directed definition specifies the values of attributes by associating semantic rules with the grammar productions. For example, an infix-to-postfix translator might have a production and rule 
 
  PRODUCTION | SEMANTIC FULE
- --- | ---
+--- | ---
 E → E₁ + T  |  E.code = E₁.code ‖ T.code ‖ '+'   (5.1)
 
 This production has two nonterminals, E and T; the subscript in E₁ distin­guishes the occurrence of E in the production body from the occurrence of E as the head; Both E and T have a string-valued attribute code. The semantic rule specifies that the string E.code is formed by concatenating E₁.code , T.code, and the character '+'. While the rule makes it explicit that the translation of E is built up from the translations of E₁ , T, and '+', it may be inefficient to implement the translation directly by manipulating strings.
@@ -38,8 +38,8 @@ By convention, semantic actions are enclosed within curly braces. (If curly brac
 
 Between the two notations, 
 
- - syntax-directed definitions can be more readable, and hence more useful for specifications. 
- - However, translation schemes can be more efficient, and hence more useful for implementations. 
+- syntax-directed definitions can be more readable, and hence more useful for specifications. 
+- However, translation schemes can be more efficient, and hence more useful for implementations. 
 
 The most general approach to syntax-directed translation is to construct a parse tree or a syntax tree, and then to compute the values of attributes at the nodes of the tree by visiting the nodes of the tree. In many cases, translation can be done during parsing, without building an explicit tree. We shall therefore study a class of syntax-directed translations called "L-attributed translations" (L for left-to-right), which encompass virtually all translations that can be performed during parsing. We also study a smaller class, called "S-attributed translations" (S for synthesized), which can be performed easily in connection with a bottom-up parse.
 

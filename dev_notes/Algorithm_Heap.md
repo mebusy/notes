@@ -38,8 +38,8 @@
 
 ### Supported Operations
 
- - Tthe no.1 thing you should remember about a given data structure is what operations it supports
- -  and what is the running time you can expect from those operations. 
+- Tthe no.1 thing you should remember about a given data structure is what operations it supports
+-  and what is the running time you can expect from those operations. 
 
 Basically , a heap supports 2 operations
 
@@ -51,9 +51,9 @@ The running time of both heap operation are O(logn) , n = number of objects in h
 
 Additional Operations:
 
- - Heapify ( n batched inserts in O(n) time)
+- Heapify ( n batched inserts in O(n) time)
     - heapify is to initialize a heap in linear time.  If you have N things, obviously you can invoke insert once per each object in O(nlogn) time. But heapify can do it in linear time. 
- - Delete any object ( O(logn) time )
+- Delete any object ( O(logn) time )
 
 
 <h2 id="08cd128c9ca3be690cc6651adce74187"></h2>
@@ -61,8 +61,8 @@ Additional Operations:
 
 ### Application: Sorting
 
- - So the most common reason to use a heap is you notice that your programm is doing repeated minimum computations. 
- - Especially via exhaustive search.
+- So the most common reason to use a heap is you notice that your programm is doing repeated minimum computations. 
+- Especially via exhaustive search.
     - example for sort use heap: HeapSort , O(nlogn)
 
 <h2 id="d47eaadb4edbed6e7e32232a56fe6ab7"></h2>
@@ -70,8 +70,8 @@ Additional Operations:
 
 ### Application: Event Manager
 
- - also called **priority queue** (see python `heapq`)
- - Extract min => yields the next scheduled event.
+- also called **priority queue** (see python `heapq`)
+- Extract min => yields the next scheduled event.
 
 <h2 id="a3edde8e4fb37f8fffb3bb1638ed8c2f"></h2>
 
@@ -80,10 +80,10 @@ Additional Operations:
 
 The way this is gonna work is that you and I gonna play a little game. So on my side , what I'm going to do is I'm going to pass you index cards, on a time,  where there's a number written on each index card. Your responsibility is to tell me at each time step the median of the number that I've passed you so far. So, after I've given you the 1st 11 numbers you should tell me as quickly as possible the sixth smallest number , after I've given 13 numbers you should tell me the 7th smallest number , and so on.
 
- - **I give you**: a sequeue x₁,x₂,...,xn of numbers 1 by 1
- - **You tell me**: at each step i , the median of {x₁,x₂,...,xn }
- - **Constraint**: use O(logi) time at
- - **Tips**: use 2 heap. H low supposed to extract max, H high supposed to extract min, and the key idea is to maintain the invariant that the smallest half of the numbers that you've seen so far are all in the low heap, biggest half are all in the high heap.
+- **I give you**: a sequeue x₁,x₂,...,xn of numbers 1 by 1
+- **You tell me**: at each step i , the median of {x₁,x₂,...,xn }
+- **Constraint**: use O(logi) time at
+- **Tips**: use 2 heap. H low supposed to extract max, H high supposed to extract min, and the key idea is to maintain the invariant that the smallest half of the numbers that you've seen so far are all in the low heap, biggest half are all in the high heap.
 
 
 <h2 id="274729aa40769d044d57c22c1dc27210"></h2>
@@ -101,15 +101,15 @@ The way this is gonna work is that you and I gonna play a little game. So on my 
 
 2 views of heap:
 
- - a tree
- - a array
+- a tree
+- a array
 
 <h2 id="07a0bc991ad48c42bffcdc727ac7e1f7"></h2>
 
 
 ### Tree Implementation
 
- - **Conceptually**: rooted, binary , as complete as possible
+- **Conceptually**: rooted, binary , as complete as possible
     - if it is not a completed tree, push the extra node as far to the left as possible.
     - ![](../imgs/heap_tree.PNG)
 

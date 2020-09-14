@@ -51,11 +51,11 @@ By design, every programming language has precise rules that prescribe the synta
 
 The syntax of programming language constructs can be specified by context-free grammars or BNF (Backus-Naur Form) nota­fition, introduced in Section 2.2 . Grammars offer significant benefits for both language designers and compiler writers.
 
- - A grammar gives a precise, yet easy-to-understand, syntactic specification of a programming language.
- - From certain classes of grammars, we can construct automatically an efficient parser that determines the syntactic structure of a source program. 
+- A grammar gives a precise, yet easy-to-understand, syntactic specification of a programming language.
+- From certain classes of grammars, we can construct automatically an efficient parser that determines the syntactic structure of a source program. 
      - As a side benefit, the parser-construction process can reveal syntactic ambiguities and trouble spots that might have slipped through the initial design phase of a language.
- - The structure imparted to a language by a properly designed grammar is useful for translating source programs into correct object code and for detecting errors.
- - A grammar allows a language to be evolved or developed iteratively, by adding new constructs to perform new tasks. 
+- The structure imparted to a language by a properly designed grammar is useful for translating source programs into correct object code and for detecting errors.
+- A grammar allows a language to be evolved or developed iteratively, by adding new constructs to perform new tasks. 
      - These new constructs can be integrated more easily into an implementation that follows the gram­matical structure of the language.
 
 
@@ -85,14 +85,14 @@ Conceptually, for well-formed programs, the parser constructs a parse tree and p
 
 There are three general types of parsers for grammars: 
 
- - universal, 
+- universal, 
     - such as the Cocke-Younger-Kasami algorithm and Earley's algorithm
     - too inefficient to use in production compilers.
- - top-down, 
+- top-down, 
     - commonly used
     - build parse trees from the top (root) to the bottom (leaves)
     - the input to the parser is scanned from left to right, one symbol at a time.
- - and bottom-up. 
+- and bottom-up. 
     - commonly used
     - build parse trees start from the leaves and work their way up to the root
     - the input to the parser is scanned from left to right, one symbol at a time.
@@ -102,15 +102,15 @@ The most efficient top-down and bottom-up methods work only for sub­classes of 
 > LL : Left to Right, Leftmost derivation
 > LR : Left to Right, Rightmost derivation
 
- - Parsers implemented by hand often use LL grammars; 
+- Parsers implemented by hand often use LL grammars; 
      - for example, the predictive-parsing approach of Section 2.4.2 works for LL grammars.  
- - Parsers for the larger class of LR grammars are usually constructed using automated tools.
+- Parsers for the larger class of LR grammars are usually constructed using automated tools.
 
 In this chapter, we assume that the output of the parser is some represent­ action of the parse tree for the stream of tokens that comes from the lexical analyzer. In practice, there are a number of tasks that might be conducted during parsing, such as 
 
- - collecting information about various tokens into the symbol table, 
- - performing type checking and other kinds of semantic analysis, 
- - and generating intermediate code. 
+- collecting information about various tokens into the symbol table, 
+- performing type checking and other kinds of semantic analysis, 
+- and generating intermediate code. 
 
 We have lumped all of these activities into the "rest of the front end" box in Fig. 4.1. These activities will be covered in detail in subsequent chapters.
 
@@ -169,15 +169,15 @@ A compiler is expected to assist the programmer in locating and tracking down er
 
 Common programming errors can occur at many different levels.
 
- - *Lexical* errors include misspellings of identifiers, keywords, or operators 
+- *Lexical* errors include misspellings of identifiers, keywords, or operators 
      - e.g., the use of an identifier *elipseSize* instead of *ellipseSize*
      - and missing quotes around text intended as a string.
- - *Syntactic* errors include misplaced semicolons or extra or missing braces; 
+- *Syntactic* errors include misplaced semicolons or extra or missing braces; 
      - that is, "{" or "}." 
      - As another example, in C or Java, the appearance of a case statement without an enclosing switch is a syntactic error .
- - *Semantic* errors include type mismatches between operators and operands. 
+- *Semantic* errors include type mismatches between operators and operands. 
      - An example is a return statement in a Java method with result type void.
- - *Logical* errors can be anything from incorrect reasoning on the part of the programmer 
+- *Logical* errors can be anything from incorrect reasoning on the part of the programmer 
      - to the use in a C program of the assignment operator = instead of the comparison operator ==. 
 
 The precision of parsing methods allows syntactic errors to be detected very efficiently. Several parsing methods, such as the LL and LR methods, detect an error as soon as possible; that is, when the stream of tokens from the lexical analyzer cannot be parsed further according to the grammar for the language. 
@@ -188,9 +188,9 @@ Another reason for emphasizing error recovery during parsing is that many errors
 
 The error handler in a parser has goals that are simple to state but challenging to realize:
 
- - Report the presence of errors clearly and accurately.
- - Recover from each error quickly enough to detect subsequent errors.
- - Add minimal overhead to the processing of correct programs.
+- Report the presence of errors clearly and accurately.
+- Recover from each error quickly enough to detect subsequent errors.
+- Add minimal overhead to the processing of correct programs.
 
 Fortunately, common errors are simple ones, and a relatively straightforward error-handling mechanism often suffices.
 
@@ -422,9 +422,9 @@ Analogous definitions hold for rightmost derivations. Rightmost derivations are 
 
 A parse tree (CST)is a graphical representation of a derivation that filters out the order in which productions are applied to replace nonterminals. 
 
- - Each interior node of a parse tree represents the application of a production. 
- - The interior node is labeled with the nonterminal A in the head of the production; 
- - the children of the node are labeled, from left to right, by the symbols in the body of the production 
+- Each interior node of a parse tree represents the application of a production. 
+- The interior node is labeled with the nonterminal A in the head of the production; 
+- the children of the node are labeled, from left to right, by the symbols in the body of the production 
      - by which this A was replaced during the derivation.
 
 For example, the parse tree for -(id + id) in Fig. 4.3, results from the derivation (4.8) as well as derivation (4.9).
@@ -487,8 +487,8 @@ Troublesome constructs can be studied by writing a concise, abstract grammar and
 
 A proof that a grammar G generates a language L has two parts: 
 
- - show that every string generated by G is in L, 
- - and conversely that every string in L can indeed be generated by G.
+- show that every string generated by G is in L, 
+- and conversely that every string in L can indeed be generated by G.
 
 Example 4.12 : Consider the following grammar:
 
@@ -569,8 +569,8 @@ Grammars are capable of describing most, but not all, of the syntax of pro­gram
 
 This section begins with a discussion of how to divide work between a lexical analyzer and a parser. We then consider several transformations that could be applied to get a grammar more suitable for parsing. 
 
- - One technique can elim­inate ambiguity in the grammar, 
- - and other techniques -- left-recursion elimi­nation and left factoring -- are useful for rewriting grammars so they become suitable for top-down parsing. 
+- One technique can elim­inate ambiguity in the grammar, 
+- and other techniques -- left-recursion elimi­nation and left factoring -- are useful for rewriting grammars so they become suitable for top-down parsing. 
 
 We conclude this section by considering some programming language constructs that cannot be described by any grammar.
 
@@ -590,8 +590,8 @@ As we observed in Section 4.2.7, everything that can be described by a regular e
 
 There are no firm guidelines as to what to put into the lexical rules, as op­posed to the syntactic rules. 
 
- - Regular expressions are most useful for describing the structure of constructs such as identifiers, constants, keywords, and white space. 
- - Grammars, on the other hand, are most useful for describing nested structures such as balanced parentheses, matching begin-end's, corresponding if-then-else's, and so on. 
+- Regular expressions are most useful for describing the structure of constructs such as identifiers, constants, keywords, and white space. 
+- Grammars, on the other hand, are most useful for describing nested structures such as balanced parentheses, matching begin-end's, corresponding if-then-else's, and so on. 
 
 These nested structures cannot be described by regular expressions.
 
@@ -711,9 +711,9 @@ The nonterminal S is left recursive because S ⇒ Aa ⇒ Sda, but it is ***not**
 
 Algorithm 4.19 : Eliminating left recursion.
 
- - INPUT: Grammar G with no cycles or ε-productions.
- - OUTPUT: An equivalent grammar with no left recursion.
- - METHOD: Apply the algorithm in Fig. 4.11 to G. 
+- INPUT: Grammar G with no cycles or ε-productions.
+- OUTPUT: An equivalent grammar with no left recursion.
+- METHOD: Apply the algorithm in Fig. 4.11 to G. 
      - Note that the resulting non-left-recursive grammar **may have ε-productions**.
 
 ```
@@ -774,9 +774,9 @@ A' → β₁ | β₂
 
 Algorithm 4.21 : Left factoring a grammar.
 
- - INPUT: Grammar G.
- - OUTPUT: An equivalent left-factored grammar.
- - METHOD: For each nonterminal A, find the longest prefix α common to two or more of its alternatives. If α ≠ ε -- i.e., there is a nontrivial common prefix -- replace all of the A-productions A -> αβ₁ | αβ₂ | ... | αβn | γ , where γ represents all alternatives that do not begin with α,  by 
+- INPUT: Grammar G.
+- OUTPUT: An equivalent left-factored grammar.
+- METHOD: For each nonterminal A, find the longest prefix α common to two or more of its alternatives. If α ≠ ε -- i.e., there is a nontrivial common prefix -- replace all of the A-productions A -> αβ₁ | αβ₂ | ... | αβn | γ , where γ represents all alternatives that do not begin with α,  by 
 
 ```
 A  → aA' | γ
@@ -1011,9 +1011,9 @@ The next algorithm collects the information from FIRST and FOLLOW sets into a pr
 
 **Algorithm 4.31** : Construction of a predictive parsing table.
 
- - INPUT: Grammar G.
- - OUTPUT: Parsing table M.
- - METHOD: For each production A → α of the grammar, do the following:
+- INPUT: Grammar G.
+- OUTPUT: Parsing table M.
+- METHOD: For each production A → α of the grammar, do the following:
 
 TODO
 
@@ -1062,9 +1062,9 @@ The behavior of the parser can be described in terms of its **configurations**, 
 
 ***Algorithm 4.34*** : Table-driven predictive parsing.
 
- - INPUT: A string *w* and a parsing table M for grammar G.
- - OUTPUT: If *w* is ih L(G), a leftmost derivation of *w* ; otherwise, an error indication.
- - METHOD: 
+- INPUT: A string *w* and a parsing table M for grammar G.
+- OUTPUT: If *w* is ih L(G), a leftmost derivation of *w* ; otherwise, an error indication.
+- METHOD: 
 
 
 TODO
@@ -1173,9 +1173,9 @@ We then repeat this process. That is; we locate the handle β<sub>n-1</sub> in �
 
 Shift-reduce parsing is a form of bottom-up parsing in which 
 
- - a stack holds grammar symbols 
- - and an input buffer holds the rest of the string to be parsed. 
- - the handle always appears at the top of the stack just before it is identified as the handle.
+- a stack holds grammar symbols 
+- and an input buffer holds the rest of the string to be parsed. 
+- the handle always appears at the top of the stack just before it is identified as the handle.
 
 We use $ to mark the bottom of the stack and also the right end of the input. Conventionally, when discussing bottom-up parsing, we show the top of the stack on the right, rather than on the left as we did for top-down parsing. Initially, the stack is empty, and the string w is on the input, as follows:
 
@@ -1349,10 +1349,10 @@ LR parsers are table-driven, much like the nonrecursive LL parsers of Sec­ tion
 
 LR parsing is attractive for a variety of reasons:
 
- - LR parsers can be constructed to recognize virtually all programming­ language constructs for which context-free grammars can be written. Non­ LR context-free grammars exist, but these can generally be avoided for typical programming-language constructs.
- - The LR-parsing method is the most general nonbacktracking shift-reduce parsing method known, yet it can be implemented as efficiently as other, more primitive shift-reduce methods (see the bibliographic notes) .
- - An LR parser can detect a syntactic error as soon as it is possible to do so on a left-to-right scan of the input .
- - The class of grammars that can be parsed using LR methods is a proper superset of the class of grammars that can be parsed with predictive or LL methods. For a grammar to be LR(k), we must be able to recognize the occurrence of the right side of a production in a right-sentential form, with k input symbols of lookahead. This requirement is far less stringent than that for LL(k) grammars where we must be able to recognize the use of a production seeing only the first k symbols of what its right side derives. Thus, it should not be surprising that LR grammars can describe more languages than LL grammars.
+- LR parsers can be constructed to recognize virtually all programming­ language constructs for which context-free grammars can be written. Non­ LR context-free grammars exist, but these can generally be avoided for typical programming-language constructs.
+- The LR-parsing method is the most general nonbacktracking shift-reduce parsing method known, yet it can be implemented as efficiently as other, more primitive shift-reduce methods (see the bibliographic notes) .
+- An LR parser can detect a syntactic error as soon as it is possible to do so on a left-to-right scan of the input .
+- The class of grammars that can be parsed using LR methods is a proper superset of the class of grammars that can be parsed with predictive or LL methods. For a grammar to be LR(k), we must be able to recognize the occurrence of the right side of a production in a right-sentential form, with k input symbols of lookahead. This requirement is far less stringent than that for LL(k) grammars where we must be able to recognize the use of a production seeing only the first k symbols of what its right side derives. Thus, it should not be surprising that LR grammars can describe more languages than LL grammars.
 
 The principal drawback of the LR method is that it is too much work to construct an LR parser by hand for a typical programming-language grammar. A specialized tool, an LR parser generator, is needed. Fortunately, many such generators are available, and we shall discuss one of the most commonly used ones, **Yacc**, in Section 4.9.  Such a generator takes a context-free grammar and automatically produces a parser for that grammar. If the grammar contains ambiguities or other constructs that are difficult to parse in a left-to-right scan of the input, then the parser generator locates these constructs and provides detailed diagnostic messages.
 
@@ -1384,12 +1384,12 @@ For example, the item `A → ·XYZ` indicates that we hope to see a string deriv
 
 **Representing Item Sets**
 
- - A parser generator that produces a bottom-up parser may need to rep­resent items and sets of items conveniently. 
- - Note that an item can be represented by a pair of integers, 
+- A parser generator that produces a bottom-up parser may need to rep­resent items and sets of items conveniently. 
+- Note that an item can be represented by a pair of integers, 
      - the first of which is the number of one of the productions of the underlying grammar, 
      - and the second of which is the position of the dot. 
- - Sets of items can be represented by a list of these pairs. 
- - However, as we shall see, the necessary sets of items often include "closure" items, where the dot is at the beginning of the body. These can always be reconstructed from the other items in the set, and we do not have to include them in the list.
+- Sets of items can be represented by a list of these pairs. 
+- However, as we shall see, the necessary sets of items often include "closure" items, where the dot is at the beginning of the body. These can always be reconstructed from the other items in the set, and we do not have to include them in the list.
 
 ---
 
@@ -1455,8 +1455,8 @@ The unambiguous grammar (4.1), which includes productions E → E + T and T → 
 
 There are two reasons why we might prefer to use the ambiguous grammar.
 
- - First, as we shall see, we can easily change the associativity and precedence of the operators + and \* without disturbing the productions of (4.3) or the number of states in the resulting parser. 
- - Second, the parser for the unam­biguous grammar will spend a substantial fraction of its time reducing by the productions E → T and T → F, whose sole function is to enforce associativity and precedence. The parser for the ambiguous grammar (4.3) will not waste time reducing by these *single* productions (productions whose body consists of a single nonterminal).
+- First, as we shall see, we can easily change the associativity and precedence of the operators + and \* without disturbing the productions of (4.3) or the number of states in the resulting parser. 
+- Second, the parser for the unam­biguous grammar will spend a substantial fraction of its time reducing by the productions E → T and T → F, whose sole function is to enforce associativity and precedence. The parser for the ambiguous grammar (4.3) will not waste time reducing by these *single* productions (productions whose body consists of a single nonterminal).
 
 The sets of LR(O) items for the ambiguous expression grammar (4.3) aug­mented by E' → E are shown in Fig. 4.48. Since grammar (4.3) is ambiguous, there will be parsing-action conflicts when we try to produce an LR parsing table from the sets of items. The states corresponding to sets of items I₇ and I₈ generate these conflicts. Suppose we use the SLR approach to constructing the parsing action table. The conflict generated by I₇ between reduction by E → E + E and shift on + or \* cannot be resolved, because + and \* are each in FOLLOW(E). Thus both actions would be called for on inputs + and \*. A similar conflict is generated by I₈, between reduction by E → E \* E and shift on inputs + and \*. In fact , each of our LR parsing table-construction methods will generate these conflicts.
 
@@ -1465,7 +1465,7 @@ The sets of LR(O) items for the ambiguous expression grammar (4.3) aug­mented b
 Consider the input `id + id * id`, which causes a parser based on Fig. 4.48 to enter state 7 after processing `id + id`; in particular the parser reaches a configuration:
 
  PREFIX | STACK | INPUT
- --- | --- | ---
+--- | --- | ---
 E + E | 0 1 4 7 | \* id $
 
 For convenience, the symbols corresponding to the states 1, 4, and 7 are also shown under PREFIX.

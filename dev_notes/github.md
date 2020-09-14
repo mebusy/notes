@@ -31,13 +31,13 @@
 
 ## run html on github
 
- - visit `http://rawgit.com/`
- - 输入你需要执行的 html 网页，会给出两个链接
+- visit `http://rawgit.com/`
+- 输入你需要执行的 html 网页，会给出两个链接
     - https://rawgit.com/mebusy/html5_examples/master/XXXX.html
         - url for production
     - https://cdn.rawgit.com/mebusy/html5_examples/master/XXXX.html
         - url for dev/testing
- - 注意： cdn.rawgit.com 上的文件，第一次访问后会被 永久cache，从而导致 拉取不到最新的文件。
+- 注意： cdn.rawgit.com 上的文件，第一次访问后会被 永久cache，从而导致 拉取不到最新的文件。
     - 所以一般访问的时候，会指定 某个 commit hash  ， 或使用最新的 HEAD
     - `https://cdn.rawgit.com/mebusy/html5_examples/a12340a5d32b0c760ef138301b067fb1153ef94b/00_marchingSquare.html`
     - or `https://cdn.rawgit.com/mebusy/html5_examples/HEAD/00_marchingSquare.html`
@@ -52,7 +52,7 @@
 git cherry-pick [-n] <commit> 
 ```
 
- - `-n` means `no commit `
+- `-n` means `no commit `
 
 <h2 id="e35fc6dbd7673d56c0824c31ff378241"></h2>
 
@@ -82,7 +82,7 @@ git show REVISION:filePath > outFilePath
 git diff | less -r
 ```
 
- - `-r` means `Output "raw" control characters`.
+- `-r` means `Output "raw" control characters`.
 
 
 <h2 id="a9df5d1d20b4eb063767169d82151fdc"></h2>
@@ -138,7 +138,7 @@ git config --global http.sslVerify true
 %21 %23 %24 %26 %27 %28 %29 %2A %2B %2C %2F %3A %3B %3D %3F %40 %5B %5D
 ```
 
- - for example
+- for example
 
 ```
 $ git clone https://myuser:password%21@github.com/myuser/repo.git

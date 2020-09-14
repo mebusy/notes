@@ -35,16 +35,16 @@
 
 # kubectl
 
- - 客户端小版本最多比服务器大1， 比如服务器版本是1.7.8 , 客户端版本可以用 1.8.x 
+- 客户端小版本最多比服务器大1， 比如服务器版本是1.7.8 , 客户端版本可以用 1.8.x 
 
 <h2 id="19ad89bc3e3c9d7ef68b89523eff1987"></h2>
 
 
 ## install
 
- - linux
+- linux
     - https://storage.googleapis.com/kubernetes-release/release/v1.8.4/bin/linux/amd64/kubectl
- - macos:
+- macos:
     - replace `linux` with `darwin` 
 
 ```
@@ -96,8 +96,8 @@ it seems that TKE will automatically use  `tencenthubkey` ?
 
 
 
- - doc: https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/
- - [轻松了解Kubernetes部署功能](http://qinghua.github.io/kubernetes-deployment/)
+- doc: https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/
+- [轻松了解Kubernetes部署功能](http://qinghua.github.io/kubernetes-deployment/)
 
 
 <h2 id="d4b1fc7497d32f6554e52b3a22b5685f"></h2>
@@ -209,7 +209,7 @@ opdemo-64db96d575-5mhgg                   1/1     Running   2          23d
 -o custom-columns=<header>:<jsonpath>[,<header>:<jsonpath>]...
 ```
 
- - each `<header>:<jsonpath>`
+- each `<header>:<jsonpath>`
     - `<header>`  is column name
     - `<jsonpath>` is an expression to specify the resource 
 
@@ -221,8 +221,8 @@ nginx-app-76b6449498-nlnkj
 opdemo-64db96d575-5mhgg
 ```
 
- - 选择 Pod 名称的表达式是metadata.name，这是因为 Pod 的名称被定义在 Pod 资源的 metadata 字段下面的 name 字段中
- - 我们可以在 API 文档或者使用`kubectl explain pod.metadata.name`命令来查看
+- 选择 Pod 名称的表达式是metadata.name，这是因为 Pod 的名称被定义在 Pod 资源的 metadata 字段下面的 name 字段中
+- 我们可以在 API 文档或者使用`kubectl explain pod.metadata.name`命令来查看
 
 现在假如我们要在输出结果中添加另外一列数据，比如显示每个 Pod 正在运行的节点:
 
@@ -271,8 +271,8 @@ $ kubectl get nodes \
   -o custom-columns='NAME:metadata.name,ZONE:metadata.labels.failure-domain\.beta\.kubernetes\.io/zone'
 ```
 
- - 每个节点的可用区都可以通过标签`failure-domain.beta.kubernetes.io/zone`来获得
- - 如果你的 Kubernetes 集群部署在公有云上面（比如 AWS、Azure 或 GCP），那么上面的命令就非常有用了
+- 每个节点的可用区都可以通过标签`failure-domain.beta.kubernetes.io/zone`来获得
+- 如果你的 Kubernetes 集群部署在公有云上面（比如 AWS、Azure 或 GCP），那么上面的命令就非常有用了
 
 
 
@@ -287,7 +287,7 @@ $ kubectl get nodes \
 
 ## 策略
 
- - 访问 COS 某个bucket的策略
+- 访问 COS 某个bucket的策略
 
 ```
 {
@@ -325,8 +325,8 @@ $ kubectl get nodes \
 
 ## ingress 证书 对部分低版本Android设备不兼容，导致 ssl hand shake error.
 
- - 更换证书
- - 检查证书兼容性  https://myssl.com/ 
+- 更换证书
+- 检查证书兼容性  https://myssl.com/ 
 
 
 <h2 id="e8dfbb86e3e1d39df969144ae4d3f06b"></h2>
@@ -334,9 +334,9 @@ $ kubectl get nodes \
 
 ## k8s node 磁盘占用过高查找并清理
 
- - kubectl 查看node 状态 `kubectl describe nodes` .
+- kubectl 查看node 状态 `kubectl describe nodes` .
 
- - 登陆节点，查看硬盘占用
+- 登陆节点，查看硬盘占用
     - 查看总体占用 `df | less`
     - 查看某个path下的占用
         - `ls -Sl`
@@ -375,7 +375,7 @@ kubectl_umc get pods --all-namespaces | awk '{ if ($4!="Running")  print $0_ }'
 
 # cntlm 设置代理 (Centos7)
 
- - 1 install cntlm
+- 1 install cntlm
 
 ```
 1) download from 
@@ -384,7 +384,7 @@ kubectl_umc get pods --all-namespaces | awk '{ if ($4!="Running")  print $0_ }'
 ```
 
 
- - 2 Get password hash 
+- 2 Get password hash 
     - (type your password, press enter and copy the output)
     - modify your username/domain first in `/etc/cntlm.conf`
     - or `cntlm -H -u <Your username> -d cop-domain` ?
@@ -397,7 +397,7 @@ PassNT          DD8F12AC2482B5BC43A6972E7DFD0F78
 PassNTLMv2      934498581AFCBE80CA0457E0FD30B0F9    # Only for user '', domain ''
 ```
 
- - 3 Edit cntlm configuration file(Example for testuser)
+- 3 Edit cntlm configuration file(Example for testuser)
 
 ```
 #vi /etc/cntlm.conf
@@ -414,11 +414,11 @@ NoProxy ...
 Auth NTLM
 ```
 
- - 4 Enable cntlm service at boot , and start it now
+- 4 Enable cntlm service at boot , and start it now
     - `#systemctl enable cntlm`
     - `#systemctl start cntlm`
 
- - 5 Set environment variables (HTTP_PROXY and HTTPS_PROXY)
+- 5 Set environment variables (HTTP_PROXY and HTTPS_PROXY)
     - use:  `127.0.0.1:3128`
 
 ---
@@ -428,23 +428,23 @@ Auth NTLM
 
 # cntlm (Macosx)
 
- - /usr/local/etc/cntlm.conf 
+- /usr/local/etc/cntlm.conf 
     - otherwise it might be in /etc/cntlm.conf
 
- - You can run cntlm in debug mode for testing purpose and see what’s happening:
+- You can run cntlm in debug mode for testing purpose and see what’s happening:
     - `cntlm -f` # Run in foreground, do not fork into daemon mode.
- - If everything is fine you can launch it as a daemon just by typing:
+- If everything is fine you can launch it as a daemon just by typing:
     - `cntlm`
- - To have launchd start cntlm now and restart at startup:
+- To have launchd start cntlm now and restart at startup:
     - `sudo brew services start cntlm`
 
 
- - set proxy env
+- set proxy env
 
 ```
 export http_proxy=http://localhost:3128
 export https_proxy=https://localhost:3128
 ```
 
- - restart 
+- restart 
     - `brew services restart cntlm`

@@ -34,19 +34,19 @@
 
 ## c++ was designed to
  
- - be a “better C”
- - support data abstraction
- - support object-oriented programming
- - support generic programming
+- be a “better C”
+- support data abstraction
+- support object-oriented programming
+- support generic programming
 
 <h2 id="77788ad4d3588a447bc8221cfd8ab87e"></h2>
 
 
 ## character literals
 
- - In C++, character literals are chars
+- In C++, character literals are chars
     - `sizeof('c') == sizeof(char) == 1`
- - In C, character literals are ints
+- In C, character literals are ints
     - `sizeof('c') == sizeof(int)` 
 
 <h2 id="67cc17c836a3c2bde4c392f5bd39faae"></h2>
@@ -54,9 +54,9 @@
 
 ## function declare
 
- - C++ has strict prototyping
+- C++ has strict prototyping
     - `void func(); // function which accepts no arguments`
- - In C
+- In C
     - `void func();` 没有参数说明的函数声明，may accept any number of arguments
 
 <h2 id="2d4635ad816b740565374b69c6438948"></h2>
@@ -64,8 +64,8 @@
 
 ## Function overloading
 
- - C++ supports function overloading
- - c 本身没有函数重载
+- C++ supports function overloading
+- c 本身没有函数重载
     - 但是可以通过可变参数 来部分实现函数重载
 
 <h2 id="20f03e2b40bc44fa78c4d78d46e616e8"></h2>
@@ -73,8 +73,8 @@
 
 ## c headers
 
- - C standard headers are available in C++,
- - but are prefixed with "c" and have no .h suffix.
+- C standard headers are available in C++,
+- but are prefixed with "c" and have no .h suffix.
 
 ```cpp
 #include <cstdio>     
@@ -85,9 +85,9 @@
 
 ## Namespaces
 
- - c++ 
- - Namespaces provide separate scopes for variable, function,  and other declarations.
- - Namespaces can be nested.
+- c++ 
+- Namespaces provide separate scopes for variable, function,  and other declarations.
+- Namespaces can be nested.
 
 ```cpp
 namespace First {
@@ -127,9 +127,9 @@ int main()
 
 ## Input/Output
 
- - C++ input and output uses streams
- - cin, cout, and cerr represent stdin, stdout, and stderr.
- - `<<` is the insertion operator and `>>` is the extraction operator.
+- C++ input and output uses streams
+- cin, cout, and cerr represent stdin, stdout, and stderr.
+- `<<` is the insertion operator and `>>` is the extraction operator.
 
 ```cpp
 #include <iostream> // Include for I/O streams
@@ -157,7 +157,7 @@ int main() {
 
 ## Strings
 
- - Strings in C++ are objects and have many member functions
+- Strings in C++ are objects and have many member functions
 
 ```cpp
 #include <string>
@@ -176,20 +176,20 @@ myString.append(" Dog");
 
 ## References
 
- - In addition to pointers like the ones in C, C++ has _references_.
- - These are pointer types that cannot be reassigned once set and cannot be null.
- - They also have the same syntax as the variable itself:
+- In addition to pointers like the ones in C, C++ has _references_.
+- These are pointer types that cannot be reassigned once set and cannot be null.
+- They also have the same syntax as the variable itself:
     - No \* is needed for dereferencing and
     - & (address of) is not used for assignment.
- - Q: 为什么c++ 有了指针还要引入 引用
+- Q: 为什么c++ 有了指针还要引入 引用
     - C++ inherited pointers from C , so I couldn't remove them without causing serious campatibility.
     - References are useful for serval things, but **the direct reason I introduced them in C++ was to support operator overloading**.
     - 其他好处
         - 不担心 NULL 的问题，写代码方便（不需要 * 来 dereference ）
 
- - Q: 为什么不能用指针实现 operator overloading？
+- Q: 为什么不能用指针实现 operator overloading？
     - 因为 \*pointer 这个表达式很有可能并不是直接取值的意思，因为\* 也可能会被重载
- - 
+- 
 
 ```cpp
 using namespace std;
@@ -217,8 +217,8 @@ barRef += ". Hi!"; // Error, const references cannot be modified.
 
 ## Enums
 
- - Enums are a way to assign a value to a constant most commonly used for 
- - easier visualization and reading of code
+- Enums are a way to assign a value to a constant most commonly used for 
+- easier visualization and reading of code
 
 ```cpp
 enum ECarTypes
@@ -240,7 +240,7 @@ ECarTypes GetPreferredCarType()
 
 ## Classes and object-oriented programming
 
- - Classes are usually declared in header (.h or .hpp) files.
+- Classes are usually declared in header (.h or .hpp) files.
 
 ```cpp
 // Declare a class.
@@ -309,7 +309,7 @@ void OwnedDog::print() const {
 
 ## Initialization and Operator Overloading
 
- - In C++ you can overload the behavior of operators such as `+, -, *, /, etc`.
+- In C++ you can overload the behavior of operators such as `+, -, *, /, etc`.
 
 ```cpp
 #include <iostream>
@@ -351,13 +351,13 @@ Point& Point::operator+=(const Point& rhs) {
 
 ## Templates
 
- - Templates in C++ are more powerful than generic constructs in other languages
- - They also support explicit and partial specialization and functional-style type classes
- - in fact, they are a Turing-complete functional language embedded in C++!
+- Templates in C++ are more powerful than generic constructs in other languages
+- They also support explicit and partial specialization and functional-style type classes
+- in fact, they are a Turing-complete functional language embedded in C++!
 
 ---
 
- - To define a class or function that takes a type parameter:
+- To define a class or function that takes a type parameter:
 
 ```cpp
 template<class T>
@@ -368,7 +368,7 @@ public:
 };
 ```
 
- - During compilation, the compiler actually generates copies of each template with parameters substituted
+- During compilation, the compiler actually generates copies of each template with parameters substituted
 
 ```cpp
 Box<int> intBox;
@@ -379,12 +379,12 @@ Box<Box<int> > boxOfBox;
 // would be parsed as the right shift operator.
 ```
 
- - You will sometimes see `template<typename T>` instead
- - The 'class' keyword and 'typename' keywords are _mostly_ interchangeable in this case. 
+- You will sometimes see `template<typename T>` instead
+- The 'class' keyword and 'typename' keywords are _mostly_ interchangeable in this case. 
 
 --- 
 
- - Similarly, a template function:
+- Similarly, a template function:
 
 ```cpp
 template<class T>
@@ -396,7 +396,7 @@ void barkThreeTimes(const T& input)
 }
 ```
 
- - Template parameters don't have to be classes:
+- Template parameters don't have to be classes:
  
 ```cpp
 template<int Y>
@@ -436,9 +436,9 @@ catch (...) {
 
 ## RAII
 
- - RAII stands for "Resource Acquisition Is Initialization".
- - is the simple concept that a constructor for an object acquires that object's resources and the destructor releases them.
- - To understand how this is useful,  consider a function that uses a C file handle:
+- RAII stands for "Resource Acquisition Is Initialization".
+- is the simple concept that a constructor for an object acquires that object's resources and the destructor releases them.
+- To understand how this is useful,  consider a function that uses a C file handle:
 
 ```c
 void doSomethingWithAFile(const char* filename) {
@@ -452,10 +452,10 @@ void doSomethingWithAFile(const char* filename) {
 }
 ```
 
- - Unfortunately, things are quickly complicated by error handling
- - C programmers often clean this up a little bit using goto:
- - c++ exception handle make things a little cleaner, but still sub-optimal
- - Compare this to the use of C++'s file stream class (fstream)
+- Unfortunately, things are quickly complicated by error handling
+- C programmers often clean this up a little bit using goto:
+- c++ exception handle make things a little cleaner, but still sub-optimal
+- Compare this to the use of C++'s file stream class (fstream)
     - fstream uses its destructor to close the file.
     - Recall from above that destructors are automatically called
     - whenever an object falls out of scope.
@@ -472,8 +472,8 @@ void doSomethingWithAFile(const std::string& filename) {
 } // The file is automatically closed here by the destructor
 ```
 
- - All idiomatic C++ code uses RAII extensively for all resources.
- - Additional examples include
+- All idiomatic C++ code uses RAII extensively for all resources.
+- Additional examples include
     - Memory using unique_ptr and shared_ptr
     - Containers - the standard library linked list, vector (i.e. self-resizing array), hash maps, and so on
         - all automatically destroy their contents when they fall out of scope.
@@ -496,8 +496,8 @@ sort(tester.begin(), tester.end(), [](const pair<int, int>& lhs, const pair<int,
     });
 ```
 
- - `[]` :  kind of `lambda` in python
- - you can not use outside variable in lambda body 
+- `[]` :  kind of `lambda` in python
+- you can not use outside variable in lambda body 
     - you can capture the variable you want to use in `[]`
     - It can be either:
         - 1. a value : [x]
@@ -522,7 +522,7 @@ sort(dog_ids.begin(), dog_ids.end(), [&weight](const int &lhs, const int &rhs) {
 
 ## Range For (C++11 and above)
 
- - same as in java
+- same as in java
 
 ```cpp
 // You can use a range for loop to iterate over a container
@@ -533,7 +533,7 @@ for(int elem: arr){
 }
 ```
 
- - You can use "auto" 
+- You can use "auto" 
 
 ```cpp
 for(auto elem: arr) {
@@ -546,8 +546,8 @@ for(auto elem: arr) {
 
 ## Tuples (C++11 and above)
 
- - Conceptually, Tuples are similar to  old data structures (C-like structs) but instead of having named data members,
- - its elements are accessed by their order in the tuple.
+- Conceptually, Tuples are similar to  old data structures (C-like structs) but instead of having named data members,
+- its elements are accessed by their order in the tuple.
 
 
 ```cpp
@@ -575,7 +575,7 @@ auto concatenated_tuple = tuple_cat(first, second, third);
 
 ## Containers
 
- - Vector (Dynamic array)
+- Vector (Dynamic array)
     - Allow us to Define the Array or list of objects at run time
 
 ```cpp
@@ -594,7 +594,7 @@ for (it = my_vector.begin(); it != my_vector.end(); ++it) {
 }
 ```
 
- - Set
+- Set
 
 ```cpp
 #include<set>
@@ -606,7 +606,7 @@ ST.clear();
 cout << ST.size();  // will print the size of set ST
 ```
 
- - Map
+- Map
 
 ```cpp
 #include<map>

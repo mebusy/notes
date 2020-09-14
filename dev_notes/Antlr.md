@@ -39,10 +39,10 @@
 
 # Example
 
- - 在 Anltr 中，算法的优先级需要通过文法规则的嵌套定义来体现
- - Antlr 中语法定义和词法定义通过规则的第一个字符来区别， 规定语法定义符号的第一个字母小写，而词法定义符号的第一个字母大写。
+- 在 Anltr 中，算法的优先级需要通过文法规则的嵌套定义来体现
+- Antlr 中语法定义和词法定义通过规则的第一个字符来区别， 规定语法定义符号的第一个字母小写，而词法定义符号的第一个字母大写。
     - skip() 是词法分析器类的一个方法 ?
- - Antlr 支持多种目标语言，可以把生成的分析器生成为 Java，C#，C，Python，JavaScript 等多种语言，默认目标语言为 Java
+- Antlr 支持多种目标语言，可以把生成的分析器生成为 Java，C#，C，Python，JavaScript 等多种语言，默认目标语言为 Java
     - 通过 options {language=?;} 来改变目标语言
 
 ```
@@ -125,7 +125,7 @@ public static void main(String[] args) {
 
 # The Definitive ANTLR 4 Reference : Part I 
 
- - `ALL(*)`  
+- `ALL(*)`  
 
 ```
 expr : expr '*' expr // match subexpressions joined with '*' operator 
@@ -134,7 +134,7 @@ expr : expr '*' expr // match subexpressions joined with '*' operator
 ;
 ```
 
- - ANTLR v4 automatically generates parse-tree walkers in the form of *listener* and *visitor* pattern implementations. 
+- ANTLR v4 automatically generates parse-tree walkers in the form of *listener* and *visitor* pattern implementations. 
 
 <h2 id="bc400908d979a205604e4010630b4f6b"></h2>
 
@@ -162,10 +162,10 @@ $ alias grun='java org.antlr.v4.gui.TestRig'
 
 ## 1.2 Executing ANTLR and Testing Recognizers
 
- - list token
+- list token
     - `grun Hello r -tokens`
     - start the TestRig on grammar Hello at rule r
- - print parse tree
+- print parse tree
     - `grun Hello r -tree`
 
 options | desc
@@ -212,11 +212,11 @@ prog: stat+ ;
 
 ## Building a Calculator Using a Visitor
 
- - First, we need to label the alternatives of the rules.
+- First, we need to label the alternatives of the rules.
     - The labels can be any identifier that doesn’t collide with a rule name
- - Without labels on the alternatives, ANTLR generates only one visitor method per rule
- - In our case, we’d like a different visitor method for each alternative so that we can get different “events” for each kind of input phrase. 
- - Labels appear on the right edge of alternatives and start with the # symbol 
+- Without labels on the alternatives, ANTLR generates only one visitor method per rule
+- In our case, we’d like a different visitor method for each alternative so that we can get different “events” for each kind of input phrase. 
+- Labels appear on the right edge of alternatives and start with the # symbol 
 
 ```
 // LabeledExpr.g4
@@ -232,7 +232,7 @@ expr: expr op=('*'|'/') expr    # MulDiv
     ;
 ```
 
- - Next, let’s define some token names for the operator literals so that, later, we can reference token names as Java constants in the visitor.
+- Next, let’s define some token names for the operator literals so that, later, we can reference token names as Java constants in the visitor.
 
 ```
 // LabeledExpr.g4
@@ -262,8 +262,8 @@ public Integer visitAssign(LabeledExprParser.AssignContext ctx) {
 
 ## Building a Translator with a Listener 
 
- - Imagine your boss assigns you to build a tool that generates a Java interface file from the methods in a Java class definition.
- - Preserve whitespace and comments within the bounds of the method signature.
+- Imagine your boss assigns you to build a tool that generates a Java interface file from the methods in a Java class definition.
+- Preserve whitespace and comments within the bounds of the method signature.
 
 <h2 id="8409c9e2ffda1c59af131d49166f5af9"></h2>
 
@@ -275,8 +275,8 @@ public Integer visitAssign(LabeledExprParser.AssignContext ctx) {
 
 ### Embedding Arbitrary Actions in a Grammar
 
- - We can compute values or print things out on-the-fly during parsing if we don’t want the overhead of building a parse tree. 
- - p63
+- We can compute values or print things out on-the-fly during parsing if we don’t want the overhead of building a parse tree. 
+- p63
 
 <h2 id="dd0c712b3dd888f10c8d002c78fd86f1"></h2>
 
@@ -288,12 +288,12 @@ public Integer visitAssign(LabeledExprParser.AssignContext ctx) {
 
 ### Island Grammars: Dealing with Different Formats in the Same File
 
- - All the sample input files we’ve seen so far contain a single language, but there are common file formats that contain multiple languages. 
- - For example, the @author tags and so on inside Java document comments follow a mini language; everything outside the comment is Java code. 
- - These are often called **island grammars**.
- - ANTLR provides a well-known lexer feature called *lexical modes* that lets us deal easily with files containing mixed formats.
+- All the sample input files we’ve seen so far contain a single language, but there are common file formats that contain multiple languages. 
+- For example, the @author tags and so on inside Java document comments follow a mini language; everything outside the comment is Java code. 
+- These are often called **island grammars**.
+- ANTLR provides a well-known lexer feature called *lexical modes* that lets us deal easily with files containing mixed formats.
     - The basic idea is to have the lexer switch back and forth between modes when it sees special sentinel character sequences.
- - XML is a good example.
+- XML is a good example.
     - An XML parser treats everything other than tags and entity references (such as &pound;) as text chunks.
     - When the lexer sees <, it switches to “inside” mode and switches back to the default mode when it sees > or />.
 
@@ -318,17 +318,17 @@ STRING : '"' .*? '"' ;
 
 ### Rewriting the Input Stream
 
- - Let’s build a tool that processes Java source code to insert serialization identifiers, serialVersionUID, for use with java.io.Serializable
+- Let’s build a tool that processes Java source code to insert serialization identifiers, serialVersionUID, for use with java.io.Serializable
     -  (like Eclipse does automatically). 
- - We want to avoid implementing every listener method in a JavaListener interface, generated from a Java grammar by ANTLR, just to capture the text and print it back out.
- - p68
+- We want to avoid implementing every listener method in a JavaListener interface, generated from a Java grammar by ANTLR, just to capture the text and print it back out.
+- p68
 
 <h2 id="4475860fa6324867936f24300f027790"></h2>
 
 
 ### Sending Tokens on Different Channels
 
- - The secret to preserving but ignoring comments and whitespace is to send those tokens to the parser on a “hidden channel.”
+- The secret to preserving but ignoring comments and whitespace is to send those tokens to the parser on a “hidden channel.”
 
 
 ```
@@ -339,8 +339,8 @@ WS  :   [ \r\t\u000C\n]+ -> channel(HIDDEN)
     ;
 ```
 
- - The -> channel(HIDDEN) is a lexer command like the -> skip we discussed before.
- - In this case, it sets the channel number of these tokens so that it’s ignored by the parser. 
+- The -> channel(HIDDEN) is a lexer command like the -> skip we discussed before.
+- In this case, it sets the channel number of these tokens so that it’s ignored by the parser. 
 
 
 

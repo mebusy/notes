@@ -96,7 +96,7 @@
 
 # Extending and Embedding Python
 
- - There are two basic methods for integrating C/C++ with Python
+- There are two basic methods for integrating C/C++ with Python
     - Extension writing.
         - Python access to C/C++.
     - Embedding
@@ -111,14 +111,14 @@ Extending | | Embedding
         C/C++
 ```
 
- - We are primarily concerned with “extension writing”
+- We are primarily concerned with “extension writing”
 
 <h2 id="544164847a4d2632320870de4991022e"></h2>
 
 
 ## Writing Wrapper Functions
 
- - “wrapper” functions are needed to access C/C++
+- “wrapper” functions are needed to access C/C++
     - Wrappers serve as a glue layer between languages.
     - Need to convert function arguments from Python to C.
     - Need to return results in a Python-friendly form
@@ -142,10 +142,10 @@ PyObject *wrap_fact(PyObject *self, PyObject *args) {
 }
 ```
 
- - The conversion of data between Python and C is performed using two functions :
+- The conversion of data between Python and C is performed using two functions :
     - `int PyArg_ParseTuple(PyObject *args, char *format, ...)`
     - `PyObject *Py_BuildValue(char *format, ...)`
- - For each function, the format string contains conversion codes according to the following table :
+- For each function, the format string contains conversion codes according to the following table :
 
 ```c
 s = char *
@@ -160,7 +160,7 @@ O = PyObject *
 |items = Optional arguments
 ```
 
- - These functions are used as follows :
+- These functions are used as follows :
 
 ```
 PyArg_ParseTuple(args,”iid”,&a,&b,&c); // Parse an int,int,double
@@ -169,17 +169,17 @@ Py_BuildValue(“d”,value); // Create a double
 Py_BuildValue(“(ddd)”,a,b,c); // Create a 3-item tuple of doubles
 ```
 
- - Refer to the Python extending and embedding guide for more details.
+- Refer to the Python extending and embedding guide for more details.
 
 <h2 id="83daad0571159bc1a7838aa89101593e"></h2>
 
 
 ## Module Initialization
 
- - All extension modules need to register wrappers with Python
+- All extension modules need to register wrappers with Python
     - An initialization function is called whenever you import an extension module.
     - The initialization function registers new methods with the Python interpreter
- - A simple initialization function :
+- A simple initialization function :
 
 ```c
 static PyMethodDef exampleMethods[] = {
@@ -192,7 +192,7 @@ void initexample() {
 }
 ```
 
- - When using C++, the initialization function must be given C linkage. For example :
+- When using C++, the initialization function must be given C linkage. For example :
     - `extern “C” void initexample() {`
 
 
@@ -225,17 +225,17 @@ void initexample() {
 
 ## Compiling A Python Extension
 
- - There are two methods
+- There are two methods
     - Dynamic Loading
     - Static linking
- - Dynamic Loading
+- Dynamic Loading
     - The extension module is compiled into a shared library or DLL.
     - When you type ‘import’, Python loads and initializes your module on the fly
- - Static Linking
+- Static Linking
     - The extension module is compiled into the Python core
     - The module will become a new “built-in” module
     - Typing ‘import’ simply initializes the module.
- - Given the choice, you should try to use dynamic loading
+- Given the choice, you should try to use dynamic loading
     - It’s usually easier
     - It’s surprisingly powerful if used right.
 
@@ -244,7 +244,7 @@ void initexample() {
 
 ### Dynamic Loading
 
- - Unfortunately, the build process varies on every machine
+- Unfortunately, the build process varies on every machine
 
 ```bash
 // for Linux
@@ -256,19 +256,19 @@ gcc -shared example.o wrapper.o -o examplemodule.so
 
 Also ...
 
- - If your module is named ‘example’, make sure you compile it into a file named ‘example.so’ or ‘examplemodule.so’.
- - You may need to modify the extension to compile properly on all different platforms
- - Not all code can be easily compiled into a shared library (more on that later).
+- If your module is named ‘example’, make sure you compile it into a file named ‘example.so’ or ‘examplemodule.so’.
+- You may need to modify the extension to compile properly on all different platforms
+- Not all code can be easily compiled into a shared library (more on that later).
 
 <h2 id="cf2cd13954bd2180b03ff8a75f315752"></h2>
 
 
 ### Static Linking
 
- - How it works
+- How it works
     - You compile the extension module and link it with the rest of Python to form a new Python executable.
     - C Extensions + Python -> Custom python
- - When would you use it?
+- When would you use it?
     - When running Python on esoteric machines that don’t have shared libraries
     - When building extensions that can’t be linked into a shared library
     - If you had a commonly used extension that you wanted to add to the Python core
@@ -284,7 +284,7 @@ Also ...
 24
 ```
 
- - Summary
+- Summary
     - To write a module, you need to write some wrapper functions
     - To build a module, the wrapper code must be compiled into a shared library or staticly linked into the Python executable (this is the tricky part).
     - Using the module is easy.
@@ -296,13 +296,13 @@ Also ...
 
 ## Wrapping a C Application
 
- - The process
+- The process
     - Write a Python wrapper function for every C function you want to access
     - Create Python versions of C constants (not discussed).
     - Provide access to C variables, structures, and classes as needed.
     - Write an initialization function.
     - Compile the whole mess into a Python module.
- - The problem
+- The problem
     - Imagine doing this for a huge library containing hundreds of functions.
     - Writing wrappers is extremely tedious and error-prone
     - Consider the problems of frequently changing C code
@@ -313,17 +313,17 @@ Also ...
 
 ## Extension Building Tools
 
- - Stub Generators (e.g. Modulator)
+- Stub Generators (e.g. Modulator)
     - Generate wrapper function stubs and provide additional support code
     - You are responsible for filling in the missing pieces and making the module work.
- - Automated tools (e.g. SWIG, GRAD, bgen, etc...)
+- Automated tools (e.g. SWIG, GRAD, bgen, etc...)
     - Automatically generate Python interfaces from an interface specification.
     - May parse C header files or a specialized interface definition language (IDL).
     - Easy to use, but somewhat less flexible than hand-written extensions.
- - Distributed Objects (e.g. ILU)
+- Distributed Objects (e.g. ILU)
     - Concerned with sharing data and methods between languages
     - Distributed systems, CORBA, COM, ILU, etc...
- - Extensions to Python itself (e.g. Extension classes, MESS, etc...)
+- Extensions to Python itself (e.g. Extension classes, MESS, etc...)
     - Aimed at providing a high-level C/C++ API to Python.
     - Allow for powerful creation of new Python types, providing integration with C++, etc...
 
@@ -339,7 +339,7 @@ Also ...
 
 ## An Introduction to SWIG
 
- - SWIG (Simplified Wrapper and Interface Generator)
+- SWIG (Simplified Wrapper and Interface Generator)
     - A compiler that turns ANSI C/C++ declarations into scripting language interfaces.
     - Completely automated (produces a fully working Python extension module).
     - Language neutral. SWIG can also target Tcl, Perl, Guile, MATLAB, etc...
@@ -350,14 +350,14 @@ Also ...
 
 ### SWIG Features
 
- - Core features
+- Core features
     - Parsing of common ANSI C/C++ declarations
     - Support for C structures and C++ classes
     - Comes with a library of useful stuff
     - A wide variety of customization options
     - Language independence (works with Tcl, Perl, MATLAB, and others).
     - Extensive documentation.
- - The SWIG philosophy
+- The SWIG philosophy
     - There’s more than one way to do it (a.k.a. the Perl philosophy)
     - Provide a useful set of primitives.
     - Keep it simple, but allow for special cases
@@ -393,13 +393,13 @@ double Foo;
 #define SPAM 42
 ```
 
- - `%module example`  : Module Name
- - `#include "headers.h" `  : Headers 
- - `int fact(int n);  ... `   : C declarations
- - “interface file” contains the ANSI C declarations of things you want to access,
+- `%module example`  : Module Name
+- `#include "headers.h" `  : Headers 
+- `int fact(int n);  ... `   : C declarations
+- “interface file” contains the ANSI C declarations of things you want to access,
     - but also contains SWIG directives (which are always preceded by ’%’)
- - The %module directive specifies the name of the Python extension module
- - Any code enclosed by %{ ... %} is copied verbatim into the wrapper code generated by SWIG 
+- The %module directive specifies the name of the Python extension module
+- Any code enclosed by %{ ... %} is copied verbatim into the wrapper code generated by SWIG 
     - (this is usually used to include header files and other supporting code).
 
 <h2 id="8450fa703f6d9fddcd5719a64c55e517"></h2>
@@ -407,7 +407,7 @@ double Foo;
 
 ### A Simple SWIG Example (cont...)
 
- - Building a Python Interface
+- Building a Python Interface
 
 ```c
 % swig -python example.i
@@ -418,12 +418,12 @@ Generating wrappers for Python
 % ld -shared example.o example_wrap.o -o examplemodule.so
 ```
 
- - SWIG produces a file `example_wrap.c` that is compiled into a Python module
- - The name of the module and the shared library should match. 
+- SWIG produces a file `example_wrap.c` that is compiled into a Python module
+- The name of the module and the shared library should match. 
 
 ---
 
- - Using the module
+- Using the module
 
 ```python
 >>> import example
@@ -435,27 +435,27 @@ Generating wrappers for Python
 42
 ```
 
- - The process of building a shared library differs on every machine. 
- - All global variables are accessed through a special object ‘cvar’ (for reasons explained shortly).
+- The process of building a shared library differs on every machine. 
+- All global variables are accessed through a special object ‘cvar’ (for reasons explained shortly).
 
 <h2 id="85c023d15ba1b995d3e31c42cd83e4c6"></h2>
 
 
 ## What SWIG Does
 
- - Basic C declarations
+- Basic C declarations
     - C functions become Python functions (or commands).
     - C global variables become attributes of a special Python object ’cvar’.
     - C constants become Python variables.
- - Datatypes
+- Datatypes
     - C built-in datatypes are mapped into the closest Python equivalent.
     - int, long, short `<--->` Python integers.
     - float, double `<--->` Python floats
     - char, char * `<--->` Python strings.
     - void `<--->` None
     - long long, long double ---> Currently unsupported
- - SWIG tries to create an interface that is a natural extension of the underlying C code.
- - Notes
+- SWIG tries to create an interface that is a natural extension of the underlying C code.
+- Notes
     - Python integers are represented as ’long’ values. All integers will be cast to and from type long when converting between C and Python.
     - Python floats are represented as ’double’ values. Single precision floating point values will be cast to type double when converting between the languages.
     - long long and long double are unsupported due to the fact that they can not be accurately represented in Python (the values would be truncated).
@@ -466,18 +466,18 @@ Generating wrappers for Python
 
 ## More on Global Variables
 
- - Why does SWIG access global variables through ’cvar’?
- - "Assignment" in Python
+- Why does SWIG access global variables through ’cvar’?
+- "Assignment" in Python
     - Variable "assignment" in Python is really just a renaming operation. 
     - Variables are references to objects.
     - A C global variable is not a reference to an object, it is an object.
     - To make a long story short, assignment in Python has a meaning that doesn’t translate to assignment of C global variables.
- - Assignment through an object
+- Assignment through an object
     - C global variables are mapped into the attributes of a special Python object
     - Giving a new value to an attribute changes the value of the C global variable
     - By default, the name of this object is ’cvar’, but the name can be changed.
         - `% swig -python -globals myvar example.i`   changes to `mybar` instead
- - Notes
+- Notes
     - If a SWIG module contains no global variables, the ’cvar’ variable will not be created
     - Some care is also in order for using multiple SWIG generated modules
         - if you use the Python ’from module import *’ directive, you will get a namespace collision on the value of ’cvar’ (unless you explicitly changed its name as described above).
@@ -487,15 +487,15 @@ Generating wrappers for Python
 
 ## More on Constants
 
- - The following declarations are turned into Python variables
+- The following declarations are turned into Python variables
     - #define
     - const
     - enum
- - The type of a constant is inferred from syntax (unless given explicitly)
- - Constant expressions are allowed
- - Values must be defined. 
+- The type of a constant is inferred from syntax (unless given explicitly)
+- Constant expressions are allowed
+- Values must be defined. 
     - For example, ’#define FOO BAR’ does not result in a constant unless BAR has already been defined elsewhere.
- - Notes
+- Notes
     - SWIG only creates a constant if a #define directive looks like a constant. 
     - the following directives would create constants
         - #define READ_MODE 1
@@ -511,20 +511,20 @@ Generating wrappers for Python
 
 ## Pointers
 
- - Pointer management is critical!
+- Pointer management is critical!
     - Arrays
     - Objects
     - Most C programs have tons of pointers floating around.
- - The SWIG type-checked pointer model
+- The SWIG type-checked pointer model
     - C pointers are handled as opaque objects
     - Encoded with type-information that is used to perform run-time checking.
     - Pointers to virtually any C/C++ object can be managed by SWIG.
- - Advantages of the pointer model
+- Advantages of the pointer model
     - Conceptually simple
     - Avoids data representation issues (it’s not necessary to marshal objects between a Python and C representation).
     - Efficient (works with large C objects and is fast)
     - It is a good match for most C programs.
- - Notes
+- Notes
     - The pointer model allows you to pass pointers to C objects around inside Python scripts, pass pointers to other C functions, and so forth. 
     - In many cases this can be done without ever knowing the underlying structure of an object or having to convert C data structures into Python data structures.
     - An exception to the rule : **SWIG does not support pointers to C++ member functions**. 
@@ -535,13 +535,13 @@ Generating wrappers for Python
 
 ## Pointer Encoding and Type Checking
 
- - Pointer representation
+- Pointer representation
     - Currently represented by Python strings with an address and type-signature.
     - Pointers are opaque so the precise Python representation doesn’t matter much
- - Type errors result in Python exceptions
+- Type errors result in Python exceptions
     - Type-checking prevents most of the common errors.
     - Has proven to be extremely reliable in practice.
- - Notes
+- Notes
     - The NULL pointer is represented by the string "NULL"
     - Python has a special object "CObject" that can be used to hold pointer values. SWIG does not use this object because it does not currently support type-signatures. 
     - Run-time type-checking is essential for reliable operation because the dynamic nature of Python effectively bypasses all typechecking that would have been performed by the C compiler. The SWIG run-time checker makes up for much of this
@@ -552,13 +552,13 @@ Generating wrappers for Python
 
 ## Array Handling
 
- - Arrays are pointers
+- Arrays are pointers
     - Same model used in C (the "value" of an array is a pointer to the first element).
     - Multidimensional arrays are supported
     - There is no difference between an ordinary pointer and an array.
     - However, SWIG does not perform bounds or size checking
     - C arrays are not the same as Python lists or tuples!
- - Notes
+- Notes
     - Effective use of arrays may require the use of accessor-functions to access individual members (this is described later).
     - If you plan to do alot of array manipulation, you may want to check out the Numeric Python extension.
 
@@ -567,15 +567,15 @@ Generating wrappers for Python
 
 ## Complex Objects
 
- - SWIG manipulates all "complex" objects by reference
+- SWIG manipulates all "complex" objects by reference
     - The definition of an object is not required.
     - Pointers to objects can be freely manipulated
     - Any "unrecognized" datatype is treated as if it were a complex object.
- - Examples :
+- Examples :
     - `double dot_product(Vector *a, Vector *b);`
     - `FILE *fopen(char *, char *);`
     - `Matrix *mat_mul(Matrix *a, Matrix *b);`
- - Notes
+- Notes
     - Whenever SWIG encounters an unknown datatype, it assumes that it is a derived datatype and manipulates it by reference
     - Unlike the C compiler, SWIG will never generate an error about undefined datatypes
     - While this may sound strange, it makes it possible for SWIG to build interfaces with a minimal amount of additional information.
@@ -587,7 +587,7 @@ Generating wrappers for Python
 
 ## Passing Objects by Value
 
- - What if a program passes complex objects by value?
+- What if a program passes complex objects by value?
     - `double dot_product(Vector a, Vector b);`
     - SWIG converts pass-by-value arguments into pointers and creates a wrapper equivalent to the following :
     - This transforms all pass-by-value arguments into pass-by reference.
@@ -598,10 +598,10 @@ double wrap_dot_product(Vector *a, Vector *b) {
 }
 ```
 
- - Is this safe?
+- Is this safe?
     - Works fine with C programs.
     - Seems to work fine with C++ if you aren’t being too clever.
- - Notes
+- Notes
     - Trying to implement pass-by-value directly would be extremely difficult---we would be faced with the problem of trying to find a Python representation of C objects (a problem we would rather avoid).
     - Make sure you tell SWIG about all typedefs. For example,
         - `Real spam(Real a); // Real is unknown. Use as a pointer`
@@ -614,7 +614,7 @@ double wrap_dot_product(Vector *a, Vector *b) {
 
 ## Return by Value
 
- - Return by value is more difficult...
+- Return by value is more difficult...
     - `Vector cross_product(Vector a, Vector b);`
     - What are we supposed to do with the return value?
     - Can’t generate a Python representation of it (well, not easily), can’t throw it away.
@@ -628,11 +628,11 @@ Vector *wrap_cross_product(Vector *a, Vector *b) {
 }
 ```
 
- - Isn’t this a huge memory leak?
+- Isn’t this a huge memory leak?
     - Yes. 
     - It is the user’s responsibility to free the memory used by the result
     - Better to allow such a function (with a leak), than not at all.
- - Notes
+- Notes
     - When SWIG is processing C++ libraries, it uses the default copy constructor instead. For example :
 
 ```c
@@ -647,11 +647,11 @@ Vector *wrap_cross_product(Vector *a, Vector *b) {
 
 ## Renaming and Restricting
 
- - Renaming declarations
+- Renaming declarations
     - The %name directive can be used to change the name of the Python command.
         - `%name(output) void print();`
     - Often used to resolve namespace conflicts between C and Python.
- - Creating read-only variables
+- Creating read-only variables
     - The %readonly and %readwrite directives can be used to change access permissions to variables.
     - Read-only mode stays in effect until it is explicitly disabled.
 
@@ -668,13 +668,13 @@ double spam; // (read only)
 
 ## Code Insertion
 
- - The structure of SWIG’s output
+- The structure of SWIG’s output
     - ![](../imgs/swig_structure_of_swig_output.png)
- - Four directives are available for inserting code
+- Four directives are available for inserting code
     - %{ ... %} inserts code into the header section
     - %init %{ ... %} inserts code into the initialization function
     - %inline %{ ... %} inserts code into the header section and "wraps" it. 
- - Notes
+- Notes
     - These directives insert code verbatim into the output file. This is usually necessary.
     - The syntax of these directives is loosely derived from YACC parser generators which also use %{,%} to insert supporting code.
     - Almost all SWIG applications need to insert supporting code into the wrapper output.
@@ -685,7 +685,7 @@ double spam; // (read only)
 
 ### Code Insertion Examples
 
- - Including the proper header files (extremely common)
+- Including the proper header files (extremely common)
 
 ```c
 %module opengl
@@ -696,7 +696,7 @@ double spam; // (read only)
 // Now list declarations
 ```
 
- - Module specific initialization
+- Module specific initialization
 
 ```c
 %module matlab
@@ -712,7 +712,7 @@ double spam; // (read only)
 
 ## Helper Functions
 
- - Sometimes it is useful to write supporting functions
+- Sometimes it is useful to write supporting functions
     - Creation and destruction of objects.
     - Providing access to arrays.
     - Accessing internal pieces of data structures.
@@ -734,7 +734,7 @@ void darray_set(double *a, int index, double value) {
 %name(delete_darray) free(void *);
 ```
 
- - Notes
+- Notes
     - Helper functions can be placed directly inside an interface file by enclosing them in an %{,%} block
     - Helper functions are commonly used for providing access to various datatypes. 
         - For our example above, we would be able to use the functions from Python as follows. 
@@ -761,7 +761,7 @@ def printelements(a, first, last):
 
 ## Conditional Compilation
 
- - Use C preprocessor directives to control SWIG compilation
+- Use C preprocessor directives to control SWIG compilation
     - The SWIG symbol is defined whenever SWIG is being run.
     - Can be used to make mixed SWIG/C header files
 
@@ -783,7 +783,7 @@ def printelements(a, first, last):
 ...
 ```
 
- - Notes
+- Notes
     - SWIG includes an almost complete implementation of the preprocessor that supports #ifdef, #ifndef, #if, #else, #elif, and #endif directives.
 
 
@@ -792,7 +792,7 @@ def printelements(a, first, last):
 
 ## File Inclusion
 
- - The %include directive
+- The %include directive
     - Includes a file into the current interface file.
     - Allows a large interface to be built out of smaller pieces.
     - Allows for interface libraries and reuse.
@@ -808,9 +808,9 @@ def printelements(a, first, last):
 ```
 
 
- - File inclusion in SWIG is really like an "import." 
+- File inclusion in SWIG is really like an "import." 
     - Files can only be included once and include guards are not required (unlike C header files).
- - Notes
+- Notes
     - Like the C compiler, SWIG library directories can be specified using the -I option. For example :
         - `swig -python -I/home/beazley/SWIG/lib example.i`
     - Two other directives, %extern and %import are also available, but not described in detail. 
@@ -820,13 +820,13 @@ def printelements(a, first, last):
 
 ## Quick Summary
 
- - You now know almost everything you need to know
+- You now know almost everything you need to know
     - C declarations are transformed into Python equivalents
     - C datatypes are mapped to an appropriate Python representation.
     - Pointers can be manipulated and are type-checked.
     - Complex objects are managed by reference.
     - SWIG provides special directives for renaming, inserting code, including files, etc...
- - This forms the foundation for discussing the rest of SWIG
+- This forms the foundation for discussing the rest of SWIG
     - Handling of structures, unions, and classes
     - Using the SWIG library.
     - Python wrapper classes
@@ -845,18 +845,18 @@ def printelements(a, first, last):
 
 ## Building a Python Interface to OpenGL
  
- - OpenGL
+- OpenGL
     - A widely available library/standard for 3D graphics.
     - Consists of more than 300 functions and about 500 constants.
     - Available on most machines (Mesa is a public domain version).
         - http://www.ssec.wisc.edu/~brianp/Mesa.html
- - Interface Building Strategy (in a nutshell)
+- Interface Building Strategy (in a nutshell)
     - Copy the OpenGL header files
     - Modify slightly to make a SWIG interface file
     - Clean up errors and warning messages.
     - Write a few support functions
     - Build it.
- - Why OpenGL?
+- Why OpenGL?
     - It’s a significant library that does something real.
     - It’s available everywhere.
     - Can build a simple Python interface fairly quickly
@@ -897,7 +897,7 @@ def printelements(a, first, last):
 %include glut.i
 ```
 
- - for opengl header files, we use those int `/opt/X11/include/GL`
+- for opengl header files, we use those int `/opt/X11/include/GL`
 
 ```bash
 swig -Wall -python -c++ -I/opt/X11/include/ opengl.i 
@@ -917,17 +917,17 @@ c++ -dynamiclib -lpython -framework OpenGL -framework GLUT opengl_wrap.o   -o _o
 
 ## Manipulating Objects
 
- - The SWIG pointer model (reprise)
+- The SWIG pointer model (reprise)
     - SWIG manages all structures, unions, and classes by reference (i.e. pointers)
     - Most C/C++ programs pass objects around as pointers
     - In many cases, writing wrappers and passing opaque pointers is enough.
     - However, in some cases you might want more than this.
- - Issues
+- Issues
     - How do you create and destroy C/C++ objects in Python ?
     - How do you access the internals of an object in Python?
     - How do you invoke C++ member functions from Python?
     - How do you work with objects in a mixed language environment?
- - Concerns
+- Concerns
     - Don’t want to turn Python into C++.
     - Don’t want to turn C++ into Python (although this would be an improvement).
     - Keep it minimalistic and simple in nature.
@@ -937,7 +937,7 @@ c++ -dynamiclib -lpython -framework OpenGL -framework GLUT opengl_wrap.o   -o _o
 
 ## Creating and Destroying Objects
 
- - Objects can be created and destroyed by writing special functions :
+- Objects can be created and destroyed by writing special functions :
 
 ```c
 typedef struct {
@@ -963,8 +963,8 @@ typedef struct {
 
 ## Accessing the Internals of an Object
 
- - This is also accomplished using accessor functions
- - Admittedly crude, but conceptually simple
+- This is also accomplished using accessor functions
+- Admittedly crude, but conceptually simple
 
 ```c
 %inline %{
@@ -982,8 +982,8 @@ typedef struct {
 
 ## Accessing C++ Member Functions
 
- - You guessed it ....
- - Basically, we just create ANSI C wrappers around C++ methods
+- You guessed it ....
+- Basically, we just create ANSI C wrappers around C++ methods
 
 ```c
 class Stack {
@@ -1011,15 +1011,15 @@ public:
 
 ## Automatic Creation of Accessor Functions
 
- - SWIG automatically generates accessor functions if given structure, union or class definitions.
- - Avoids the tedium of writing the accessor functions yourself
+- SWIG automatically generates accessor functions if given structure, union or class definitions.
+- Avoids the tedium of writing the accessor functions yourself
 
 <h2 id="574b6edb1250ed1ca084e7c6146b7661"></h2>
 
 
 ## Parsing Support for Objects
 
- - SWIG provides parsing support for the following
+- SWIG provides parsing support for the following
     - Basic structure and union definitions.
     - Constructors/destructors.
     - Member functions.
@@ -1027,11 +1027,11 @@ public:
     - Static data.
     - Enumerations.
     - C++ inheritance.
- - Not currently supported (mostly related to C++)
+- Not currently supported (mostly related to C++)
     - Template classes (what is a template in Python?)
     - Operator overloading.
     - Nested classes.
- - However, SWIG can work with incomplete definitions
+- However, SWIG can work with incomplete definitions
     - Just provide the pieces that you want to access
     - SWIG is only concerned with access to objects, not the representation of objects
 
@@ -1040,7 +1040,7 @@ public:
 
 ## Renaming and Restricting Members
 
- - Structure members can be renamed using %name
+- Structure members can be renamed using %name
 
 ```c
 struct Foo {
@@ -1049,7 +1049,7 @@ struct Foo {
 };
 ```
 
- - Access can be restricted using %readonly and %readwrite
+- Access can be restricted using %readonly and %readwrite
 
 ```c
 class Stack {
@@ -1069,7 +1069,7 @@ public:
 
 ## C++ Inheritance and Pointers
 
- - SWIG encodes C++ inheritance hierarchies
+- SWIG encodes C++ inheritance hierarchies
     - The run-time type checker knows the inheritance hierarchy.
     - Type errors will be generated when violations are detected.
     - C++ pointers are properly cast when necessary.
@@ -1079,7 +1079,7 @@ public:
 
 ## Shadow Classes
 
- - Writing a Python wrapper class
+- Writing a Python wrapper class
     - Can encapsulate C structures or C++ classes with a Python class
     - The Python class serves as a wrapper around the underlying C/C++ object (and is said to “shadow” the object).
     - Easily built using pointers and low-level accessor functions.
@@ -1118,12 +1118,12 @@ class Stack:
 
 ## Automatic Shadow Class Generation
 
- - moduelname.py
- - Shadow classes are just an interface extension
+- moduelname.py
+- Shadow classes are just an interface extension
     - They utilize pointers and accessor functions.
     - No changes to Python are required
- - `import example`  will load the Python wrappers (and implicitly load the C extension module as well).
- - `import examplec `   # Load original C interface.
+- `import example`  will load the Python wrappers (and implicitly load the C extension module as well).
+- `import examplec `   # Load original C interface.
 
 <h2 id="8b5a90cd7a0b49ea97f806c8e0a5a605"></h2>
 
@@ -1148,10 +1148,10 @@ class Stack(StackPtr):
 
 ```
 
- - class StackPtr
+- class StackPtr
     - defines the methods available for a generic Stack object (given as a pointer)
     - The constructor for this class simply takes a pointer to an existing object and encapsulates it in a Python class
- - class Stack
+- class Stack
     - This class is used to create a new Stack object.
     - The constructor calls the underlying C/C++ constructor to generate a new object.
 
@@ -1161,7 +1161,7 @@ class Stack(StackPtr):
 
 ## Using a Shadow Class
 
- - This is the easy part--they work just like a normal Python class
+- This is the easy part--they work just like a normal Python class
 
 ```python
 >>> import stack
@@ -1178,7 +1178,7 @@ _1008fe8_Stack_p
 >>>
 ```
 
- - In practice this works pretty well
+- In practice this works pretty well
     - A natural interface to C/C++ structures and classes is provided.
     - C++ classes work like Python classes (you can even inherit from them)
     - The implementation is relatively simple (it’s just a layer over the SWIG pointer mechanism and accessor functions)
@@ -1189,7 +1189,7 @@ _1008fe8_Stack_p
 
 ## Nested Objects
 
- - Shadow classing even works with nested objects
+- Shadow classing even works with nested objects
 
 ```c
 struct Vector {
@@ -1227,14 +1227,14 @@ struct Particle {
 
 ## Managing Object Ownership
 
- - Who owns what?
+- Who owns what?
     - Objects created by Python are owned by Python (and destroyed by Python)
     - Everything else is owned by C/C++.
     - The ownership of an object is controlled by the ‘thisown’ attribute.
         - self.thisown = 1 # Python owns the object
         - self.thisown = 0 # C/C++ owns the object.
     - The owner of an object is responsible for its deletion!
- - Caveat : sometimes you have to explicitly change the ownership
+- Caveat : sometimes you have to explicitly change the ownership
 
 ```c
 struct Node {
@@ -1258,13 +1258,13 @@ def listtonode(l):
     return n
 ```
 
- - In the example, we are saving pointers to objects in the ‘next’ field of each data structure
- - consider the use of the variables ‘n’ and ‘m’ in the Python code above
+- In the example, we are saving pointers to objects in the ‘next’ field of each data structure
+- consider the use of the variables ‘n’ and ‘m’ in the Python code above
     - ‘n’ will be assigned to a new object on each iteration of the loop
     - Any previous value of ‘n’ will be destroyed (because there are no longer any Python references to it)
     - Had we not explicitly changed the ownership of the object, this destruction would have also destroyed the original C object. 
     - This, in turn, would have created a linked list of invalid pointer values---probably not the effect that you wanted.
- - When the ‘thisown’ variable is set to 0
+- When the ‘thisown’ variable is set to 0
     - Python will still destroy ‘n’ on each iteration of the loop, 
     - but this destruction only applies to the Python wrapper class--not the underlying C/C++ object.
 
@@ -1273,7 +1273,7 @@ def listtonode(l):
 
 ## Extending Structures and Classes
 
- - Object extension : A cool trick for building Python interfaces
+- Object extension : A cool trick for building Python interfaces
     - You can provide additional “methods” for use only in Python
     - Debugging.
     - Attach functions to C structures (i.e. object-oriented C programming) .
@@ -1321,7 +1321,7 @@ class Image:
 
 ## Class Extension with SWIG
 
- - The %addmethods directive 
+- The %addmethods directive 
 
 ```c
 %module image
@@ -1343,19 +1343,19 @@ struct Image {
 };
 ```
 
- - Same syntax as C++
- - Just specify the member functions you would like to have (constructors, destructors, member functions).
- - SWIG will combine the added methods with the original structure or class.
+- Same syntax as C++
+- Just specify the member functions you would like to have (constructors, destructors, member functions).
+- SWIG will combine the added methods with the original structure or class.
 
 <h2 id="5e5f583ecb3502f58fd792a7c1a5be43"></h2>
 
 
 ## Adding Methods (cont...)
 
- - Works with both C and C++
+- Works with both C and C++
     - Added methods only affect the Python interface--not the underlying C/C++ code.
     - Does not rely upon inheritance or any C++ magic
- - How it works (in a nutshell)
+- How it works (in a nutshell)
     - SWIG creates an accessor/helper function, but uses the code you supply.
     - The variable ‘self’ contains a pointer to the corresponding C/C++ object.
 
@@ -1377,15 +1377,15 @@ void Image_clear(Image *self, int color) {
 };
 ```
 
- - If no code is supplied, SWIG assumes that you have already written a function with the required name (methods always have a name like ‘Class_method’
- - SWIG treats the added method as if it were part of the original structure/class definition (from Python you will not be able to tell).
+- If no code is supplied, SWIG assumes that you have already written a function with the required name (methods always have a name like ‘Class_method’
+- SWIG treats the added method as if it were part of the original structure/class definition (from Python you will not be able to tell).
 
 <h2 id="5b69b1c47e0bf380ea521d00f471bff4"></h2>
 
 
 ## Adding Special Python Methods
 
- - %addmethods can be used to add Python specific functions
+- %addmethods can be used to add Python specific functions
 
 ```c
 typedef struct {
@@ -1412,9 +1412,9 @@ char *__str__() {
 >>> 
 ```
 
- - Most of Python’s special class methods can be implemented in C/C++ and added to structures or classes.
- - Allows construction of fairly powerful Python interfaces
- - Notes
+- Most of Python’s special class methods can be implemented in C/C++ and added to structures or classes.
+- Allows construction of fairly powerful Python interfaces
+- Notes
     - The use of a static variable above insures that the `char *` returned exists after the function call. 
         - Python will make a copy of the returned string when it converts the result to a Python object.
     - A safer approach would also include some bounds checks on the result string.
@@ -1424,7 +1424,7 @@ char *__str__() {
 
 ## Accessing Arrays of Objects
 
- - Added methods to the rescue...
+- Added methods to the rescue...
 
 ```c
 typedef struct {
@@ -1454,9 +1454,9 @@ Vector *varray(int nitems);
 >>> 
 ```
 
- - Accesing arrays of any kind of object is relatively easy
- - Provides natural access (arrays can be manipulated like you would expect)
- - Similar tricks can be used for slicing, iteration, and so forth
+- Accesing arrays of any kind of object is relatively easy
+- Provides natural access (arrays can be manipulated like you would expect)
+- Similar tricks can be used for slicing, iteration, and so forth
 
 
 
@@ -1466,14 +1466,14 @@ Vector *varray(int nitems);
 
 ## Making Sense of Objects (Summary)
 
- - SWIG uses a layered approach
+- SWIG uses a layered approach
     - Python Shadow Classes
         - High Level Access to C/C++ structures and objects
     - C/C++ Accessor Functions
         - Helper/Accessor functions that provide access to objects
     - ANSI C Wrappers
         - Manipulation of objects as opaque pointer values
- - All three modes are useful and may be mixed in the same program
+- All three modes are useful and may be mixed in the same program
     - Use opaque pointers when access to an object’s internals is unnecessary
     - Use C/C++ accessor functions when occasional access to an object is needed
     -  Use Python shadow classes when you want an interface that closely mimics the underlying C/C++ object.
@@ -1485,16 +1485,16 @@ Vector *varray(int nitems);
 
 # The SWIG Library
 
- - SWIG is packaged with a standard “library”
+- SWIG is packaged with a standard “library”
     - Think of it as the SWIG equivalent of the Python library
- - Contents of the library :
+- Contents of the library :
     - Interface definitions to common C libraries.
     - Utility functions (array creation, pointer manipulation, timers, etc...)
     - SWIG extensions and customization files.
     - Support files (Makefiles, Python scripts, etc...)
- - Using the library is easy--just use the %include directive.
+- Using the library is easy--just use the %include directive.
     -  Code from the library files is simply inserted into your interface
- - eg. library for python , installed via brew
+- eg. library for python , installed via brew
     - `/usr/local/Cellar/swig/3.0.12/share/swig/3.0.12/python/`
 
 ```c
@@ -1523,11 +1523,11 @@ Vector *varray(int nitems);
 
 ## Exception Handling
 
- - Python has a nice exception handling mechanism...we should use it.
+- Python has a nice exception handling mechanism...we should use it.
     - Translating C error conditions into Python exceptions.
     - Catching C++ exceptions.
     - Improving the reliability of our Python modules.
- - The %except directive
+- The %except directive
     - Allows you to define an application specific exception handler
     - Fully configurable (you can do anything you want with it).
     - Exception handling code gets inserted into all of the wrapper functions.
@@ -1549,7 +1549,7 @@ Vector *varray(int nitems);
 
 ### SWIG Exception Library
 
- - SWIG includes a library of generic exception handling functions
+- SWIG includes a library of generic exception handling functions
     - Language independent (works with Python, Tcl, Perl5, etc...)
     - Mainly just a set of macros and utility functions.
 
@@ -1565,11 +1565,11 @@ Vector *varray(int nitems);
 }
 ```
 
- - Other things to note
+- Other things to note
     - Exception handling greatly improves the reliability of C/C++ modules
     - However, C/C++ applications need to be written with error handling in mind.
     - SWIG can be told to look for errors in any number of ways--as long as there is an error mechanism of some sort in the underlying application
- - Notes
+- Notes
     - SWIG is not limited to C++ exceptions or formal exception handling mechanisms. 
     - An exception handling might be something as simple as the following :
         - where check_error() and get_error_msg() are C functions to query the state of an application.
@@ -1589,16 +1589,16 @@ Vector *varray(int nitems);
 
 ## Typemaps
 
- - Typemaps allow you to change the processing of any datatype
+- Typemaps allow you to change the processing of any datatype
     - Handling of input/output values
     - Converting Python objects into C/C++ equivalents (tuples,lists, etc...)
     - Telling SWIG to use new Python types
     - Adding constraint handling (the constraint library is really just typemaps)
- - Very flexible, very powerful
+- Very flexible, very powerful
     - You can do almost anything with typemaps.
     - You can even blow your whole leg off (not to mention your foot).
     - Often the topic of discussion on the SWIG mailing list
- - Caveats
+- Caveats
     - Requires knowledge of Python’s C API to use effectively
     - It’s possible to break SWIG in bizarre ways (an interface with typemaps might not even work).
     - Impossible to cover in full detail here.
@@ -1608,11 +1608,11 @@ Vector *varray(int nitems);
 
 ### Typemaps : In a Nutshell
 
- - What is a typemap?
+- What is a typemap?
     - A special processing rule applied to a particular (datatype,name) pair. 
     - `double spam(int a, int);`
         - => (double,”spam”) (int,”a”) (int,””) 
- - Pattern Matching Rules
+- Pattern Matching Rules
     - SWIG looks at the input and tries to apply rules using a pattern matching scheme
     - Examples :
         - (int,””) # Matchs all integers
@@ -1629,7 +1629,7 @@ Vector *varray(int nitems);
 
 ### The Typemap Library
 
- - typemaps.i
+- typemaps.i
     - A SWIG library file containing a variety of useful typemaps.
     - Handling input/output arguments and other special datatypes.
 
@@ -1654,18 +1654,18 @@ void get_viewport(Image *im, int *width, int *height);
 >>>
 ```
 
- - Hmmm. This is much different than the standard pointer model we saw before
- - Typemaps allow extensive customization!
- - The typemaps.i file contains a number of generally useful typemaps. You should check here before writing a new typemap from scratch.
+- Hmmm. This is much different than the standard pointer model we saw before
+- Typemaps allow extensive customization!
+- The typemaps.i file contains a number of generally useful typemaps. You should check here before writing a new typemap from scratch.
 
 ---
 
- - 假设我们有这样一个函数： `int func1(int *piNum1, int *piNum2, int *piNum3);`
+- 假设我们有这样一个函数： `int func1(int *piNum1, int *piNum2, int *piNum3);`
     - piNum1:  传入后会修改，调用完func1还会继续使用
     - piNum2: 只是传入使用, 不会修改
     - piNum3: 传入后，负责保存结果返回
- - python 中并没有 `int *` 对应的类型
- - 解决方法：使用 typemaps
+- python 中并没有 `int *` 对应的类型
+- 解决方法：使用 typemaps
     - piNum1: 属于INOUT类型
     - piNum2: 属于INPUT类型
     - piNum3: 属于OUTPUT类型
@@ -1675,7 +1675,7 @@ void get_viewport(Image *im, int *width, int *height);
 
 ### Typemap Methods
 
- - Typemaps can be defined for a variety of purposes
+- Typemaps can be defined for a variety of purposes
     - Function input values (“in”)
     - Function output (“out”)
     - Default arguments
@@ -1685,14 +1685,14 @@ void get_viewport(Image *im, int *width, int *height);
     - Constraints.
     - Setting/getting of structure members
     - Parameter initialization. 
- - The SWIG Users Manual has all the gory details.
+- The SWIG Users Manual has all the gory details.
 
 <h2 id="1f391e129e6249db9d09367072969f79"></h2>
 
 
 ### Typemap Applications
 
- - Consider our OpenGL example 
+- Consider our OpenGL example 
     - Needed to manufacture and destroy 4-element arrays using helper functions.
 
 ```python
@@ -1702,7 +1702,7 @@ void get_viewport(Image *im, int *width, int *height);
 >>> delfv4(torus_diffuse)
 ```
 
- - Now a possible typemap implementation
+- Now a possible typemap implementation
     - We define a typemap for converting 4 element tuples to 4 element arrays.
     - Rebuild the OpenGL interface with this typemap
     - Yes, that’s much nicer now...
@@ -1719,15 +1719,15 @@ or simply ...
 
 ### Typemaps : The Bottom Line
 
- - Typemaps can be used to customize SWIG
+- Typemaps can be used to customize SWIG
     - Changing the handling of specific datatypes.
     - Building better interfaces.
     - Doing cool things (consider Mark Hammond’s Python-COM for instance).
- - Typemaps can interface with other Python types
+- Typemaps can interface with other Python types
     - Python lists could be mapped to C arrays.
     - You could provide a different representation of C pointers.
     - It is possible to use the types of other Python extensions (NumPy, extension classes, etc...).
- - Some caution is in order
+- Some caution is in order
     - Typemaps involve writing C/C++ (always risky).
     - Understanding the Python C API goes a long way
     - Typemaps may break other parts of SWIG (shadow classes in particular).
@@ -1744,29 +1744,29 @@ or simply ...
 
 ## Practical Issues
 
- - You’ve had the grand tour, now what?
+- You’ve had the grand tour, now what?
     - Migrating existing applications to Python.
     - Problems and pitfalls in interface generation.
     - Working with shared libraries.
     - Run-time problems.
     - Performance considerations.
     - Debugging a Python extension.
- - Python extension building is only one piece of the puzzle
+- Python extension building is only one piece of the puzzle
 
 <h2 id="672391f1fb8dc7e9b10ffe347c1e43a9"></h2>
 
 
 ## Migrating Applications to Python
 
- - C/C++ code is usually static and rigid
+- C/C++ code is usually static and rigid
     - Perhaps it’s a big monolithic package.
     - Control is usually precisely defined.
     - Example : parse command line options and do something
- - Python/SWIG provides a much more flexible environment
+- Python/SWIG provides a much more flexible environment
     - Can execute any C function in any order
     - Internals are often exposed.
     - This is exactly what we want!
- - Problem
+- Problem
     - Applications may break in mysterious ways
 
 
@@ -1775,16 +1775,16 @@ or simply ...
 
 ### Namespace Conflicts
 
- - C/C++ Namespace collisions
+- C/C++ Namespace collisions
     - A C/C++ application may have a namespace conflict with Python’s implementation
     - Fortunately this is rare since most Python functions start with ‘Py’
     - C/C++ function names may conflict with Python commands.
     - C/C++ libraries may have namespace collisions with themselves
- - Resolving conflicts with Python built-in commands
+- Resolving conflicts with Python built-in commands
     - Use the SWIG %name() to rename functions.
- - Resolving conflicts with the Python C implementation
+- Resolving conflicts with the Python C implementation
     - Change the name of whatever is conflicting (may be able to hide with a macro).
- - Resolving conflicts between different C libraries
+- Resolving conflicts between different C libraries
     - Tough to fix.
     - Dynamic linking may fix the problem
     - Good luck!
@@ -1794,13 +1794,13 @@ or simply ...
 
 ### Linking Problems
 
- - Extensions usually have to be compiled and linked with the same compiler as Python
+- Extensions usually have to be compiled and linked with the same compiler as Python
     - Mismatches may result in dynamic loading errors
     - May just result in a program crash.
- - Third-party libraries may have problems
+- Third-party libraries may have problems
     - Position independent code often needed for dynamic loading
     - If compiled and linked with a weird compiler, you may be out of luck
- - Other components
+- Other components
     - SWIG does not provide Python access to generic shared libraries or DLLs.
     - Nor do COM components work (look at the Python-COM extension).
 
@@ -1809,12 +1809,12 @@ or simply ...
 
 ## More on Shared Libraries
 
- - Shared libraries and C++
+- Shared libraries and C++
     - A little more tricky to build than C libraries
     - Require addition runtime support code (default constructors, exceptions, etc...)
     - Need to initialize static constructors when loaded.
     - Not documented very well.
- - Rules of thumb when building a dynamic C++ extension
+- Rules of thumb when building a dynamic C++ extension
     - Try linking the library with the C++ compiler
     - If that doesn’t work, link against the C++ libraries (if you can find them)
         - `-L/xxxxx`
@@ -1827,7 +1827,7 @@ or simply ...
 
 ### Mixing Shared and Static Libraries
 
- - Linking dynamic Python extensions against static libraries is generally a bad idea :
+- Linking dynamic Python extensions against static libraries is generally a bad idea :
     - When both Python modules are created, they are linked against libspam.a.
 
 ```c
@@ -1857,7 +1857,7 @@ extern void set_spam(int);
 ...
 ```
 
- - What happens :
+- What happens :
     - (hmmm... this probably isn’t what we expected)
 
 ```python
@@ -1873,7 +1873,7 @@ extern void set_spam(int);
 
 ### The Static Library Problem
 
- - Linking against static libraries results in multiple or incomplete copies of a library
+- Linking against static libraries results in multiple or incomplete copies of a library
     - Neither module contains the complete library (the linker only resolves used symbols).
     - Both modules contain a private copy of a variable.
 
@@ -1889,11 +1889,11 @@ int spam;
 void set_spam(int);
 ```
 
- - Consider linking against a big library (like OpenGL, etc...)
+- Consider linking against a big library (like OpenGL, etc...)
     - Significant internal state is managed by each library.
     - Libraries may be resource intensive and have significant interaction with the OS.
     - A recipe for disaster.
- - Solution : use shared libraries
+- Solution : use shared libraries
 
 
 <h2 id="3e73de1c644b3421b6000e3df598210f"></h2>
@@ -1901,11 +1901,11 @@ void set_spam(int);
 
 ### Using Shared Libraries
 
- - If using dynamic loading, use shared libraries
+- If using dynamic loading, use shared libraries
     - The process of building a shared library is the same as building a Python extension
- - Building and linking Python extensions
+- Building and linking Python extensions
     - Compile and link normally, but be sure to link against the shared library.
- - Now it works
+- Now it works
 
 
 ```c
@@ -1924,11 +1924,11 @@ void set_spam(int val) {
 
 ### More Shared Libraries
 
- - Resolving missing libraries
+- Resolving missing libraries
     - You may get an error like this :
         - `ImportError: Fatal Error : cannot not find ‘libspam.so’`
     - The run-time loader is set to look for shared libraries in predefined locations. If your library is located elsewhere, it won’t be found.
- - Solutions
+- Solutions
     - Set `LD_LIBRARY_PATH` to include the locations of your libraries
         - `% setenv LD_LIBRARY_PATH /home/beazley/app/libs`
     - Link the Python module using an ‘rpath’ specifier (better)
@@ -1947,18 +1947,18 @@ void set_spam(int val) {
 
 ## Performance Considerations
 
- - Python introduces a performance penalty
+- Python introduces a performance penalty
     - Decoding
     - Dispatch
     - Execution of wrapper code
     - Returning results
- - These tasks may require thousands of CPU cycles
- - Rules of thumb
+- These tasks may require thousands of CPU cycles
+- Rules of thumb
     - The performance penalty is small if your C/C++ functions do a lot of work.
     - If a function is rarely executed, who cares?
     - Don’t write inner loops or perform lots of fine-grained operations in Python
     - Performance critical kernels in C, everything else can be in Python.
- - From personal experience
+- From personal experience
     - Python inroduces < 1% performance penalty (on number crunching codes).
     - Your mileage may vary.
 
@@ -1967,15 +1967,15 @@ void set_spam(int val) {
 
 ## Debugging Dynamic Modules
 
- - Suppose one of my Python modules crashes. How do I debug it?
+- Suppose one of my Python modules crashes. How do I debug it?
     - There is no executable!
     - What do you run the debugger on?
     - Unfortunately, this is a bigger problem than one might imagine.
- - My strategy
+- My strategy
     - Run the debugger on the Python executable itself.
     - Run the Python program until it crashes
     - Now use the debugger to find out what’s wrong (use as normal).
- - Caveats
+- Caveats
     - Your debugger needs to support shared libraries (fortunately most do these days)
     - Some debuggers may have trouble loading symbol tables and located source code for shared modules.
     - Takes a little practice.
@@ -1992,15 +1992,15 @@ void set_spam(int val) {
 
 ## Topics Not Covered
 
- - Modifying SWIG
+- Modifying SWIG
     - SWIG can be extended with new language modules and capabilities.
     - Python-COM for example
- - Really wild stuff
+- Really wild stuff
     - Implementing C callback functions in Python.
     - Typemaps galore.
- - SWIG documentation system
+- SWIG documentation system
     - It’s being rethought at this time.
- - Use of other Python extensions
+- Use of other Python extensions
     - Modulator
     - ILU
     - NumPY
@@ -2015,7 +2015,7 @@ void set_spam(int val) {
 
 # Notice 
 
- - for singleton purpose class , you should always use is as such way : `CLS.instance().xxx` 
+- for singleton purpose class , you should always use is as such way : `CLS.instance().xxx` 
     - assign `CLS.instance()` to a local variable may cause problem.
 
 

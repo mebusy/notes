@@ -43,7 +43,7 @@
 
 ## 证书测试
 
- - 首先确认网络是否可以 正确连接到 苹果推送服务器
+- 首先确认网络是否可以 正确连接到 苹果推送服务器
 
 ```
 telnet gateway.sandbox.push.apple.com 2195
@@ -52,7 +52,7 @@ Connected to gateway.sandbox.push-apple.com.akadns.net.
 Escape character is '^]'.
 ```
 
- - 试一试用私钥和证书进行SSL加密连接：
+- 试一试用私钥和证书进行SSL加密连接：
 
 ```
 openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert apns-dev-cert.pem -key apns-dev-key-noenc.pem 
@@ -63,7 +63,7 @@ openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert apns-dev-cer
 
 ## 客户端修改
 
- - applicationDidFinishLaunching  方法里，加上3句代码
+- applicationDidFinishLaunching  方法里，加上3句代码
 
 ```Objective-C
 // 注册 APNS 服务
@@ -75,7 +75,7 @@ openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert apns-dev-cer
 ```
 
 
- - AppDelegate 类中加入两个方法 ， 这两个是注册APNS的系统回调方法
+- AppDelegate 类中加入两个方法 ， 这两个是注册APNS的系统回调方法
 
 ```Objective-C
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {        

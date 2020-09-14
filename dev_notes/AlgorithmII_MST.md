@@ -64,26 +64,26 @@
 
 ## introduction
 
- - Given. Undirected graph *G* with positive edge weights (connected).
- - Def. A **spanning tree** of *G* is a subgraph *T* that is both a **tree**  and **spanning** .
+- Given. Undirected graph *G* with positive edge weights (connected).
+- Def. A **spanning tree** of *G* is a subgraph *T* that is both a **tree**  and **spanning** .
     - **tree** means it is connected and acyclic
     - **spanning** means it includes all of the vertices
- - Goal. Find a min weight spanning tree.
+- Goal. Find a min weight spanning tree.
 
 ![](../imgs/algorII_mst_g0.png)
 
 ![](../imgs/algorII_mst_g0_mst.png)
 
- - Brute force. Try all spanning trees?
+- Brute force. Try all spanning trees?
 
 <h2 id="fa051064ee16bea712664bb248654763"></h2>
 
 
 ### Example Problem
 
- - 有一块木板，板上钉上了一些钉子，这些钉子可以由一些细绳连接起来。假设每个钉子可以通过一根或者多根细绳连接起来，那么一定存在这样的情况，即用最少的细绳把所有钉子连接起来
- - 在某地分布着N个村庄，现在需要在N个村庄之间修路，每个村庄之前的距离不同，问怎么修最短的路，将各个村庄连接起来。
- - 以上这些问题都可以归纳为最小生成树问题
+- 有一块木板，板上钉上了一些钉子，这些钉子可以由一些细绳连接起来。假设每个钉子可以通过一根或者多根细绳连接起来，那么一定存在这样的情况，即用最少的细绳把所有钉子连接起来
+- 在某地分布着N个村庄，现在需要在N个村庄之间修路，每个村庄之前的距离不同，问怎么修最短的路，将各个村庄连接起来。
+- 以上这些问题都可以归纳为最小生成树问题
 
 
 <h2 id="a9728ca20b5c52a76d67320f3fe3ec4e"></h2>
@@ -91,10 +91,10 @@
 
 ## greedy algorithm
 
- - Simplifying assumptions.
+- Simplifying assumptions.
     - Edge weights are distinct (no two edge weights are equal).
     - Graph is connected.
- - Consequence
+- Consequence
     - MST exists and is unique.
 
 <h2 id="f027e6426815659632b54ae818592211"></h2>
@@ -102,10 +102,10 @@
 
 ### Cut property
 
- - Def. A **cut** in a graph is a partition of its vertices into two (nonempty) sets.
+- Def. A **cut** in a graph is a partition of its vertices into two (nonempty) sets.
     - 对图切一刀，把顶点分成两份
- - Def. A **crossing edge** connects a vertex in one set with a vertex in the other.
- - Cut property. Given any cut, the crossing edge of min weight is in the MST.
+- Def. A **crossing edge** connects a vertex in one set with a vertex in the other.
+- Cut property. Given any cut, the crossing edge of min weight is in the MST.
     - The cut defines a set of crossing edges. 
     - The minimum weight crossing edge is in the MST.
     - Remember no two edges have the same weight so there's a single edge that has minimum weight in the crossing edges of a cut.
@@ -113,7 +113,7 @@
 
 ![](../imgs/algorII_mst_cut_property.png)
 
- - Proof.
+- Proof.
     - Suppose min-weight crossing edge *e* is not in the MST.
     - Adding *e* to the MST creates a cycle.
     - Some other edge *f* in cycle must be a crossing edge.
@@ -121,7 +121,7 @@
     - Removing *f* and adding *e* is also a spanning tree.
     - Since weight of *e* is less than the weight of *f*, that spanning tree is lower weight.
     - Contradiction.
- - now given that property, we can develop what's called a greedy algorithm
+- now given that property, we can develop what's called a greedy algorithm
 
 <h2 id="5d1da5f08e2888d73349900d4db5c622"></h2>
 
@@ -130,13 +130,13 @@
 
 Easiest algorithm, we can come up with. 
 
- - Start with all edges colored gray.
- - Find cut with no black crossing edges; color its min-weight edge black.
+- Start with all edges colored gray.
+- Find cut with no black crossing edges; color its min-weight edge black.
     - The algorithm's going to color some of the edges black. 
     - And color the minimum-weight edge of that cut black, and just repeat the algorithm. 
     - when you cut, 避开那些已经被染黑的边
     - As we get more and more black edges it's going to be harder to find a cut with no black crossing edges. 
- - Repeat until V - 1 edges are colored black.
+- Repeat until V - 1 edges are colored black.
     - And the claim is that that's going to compute an MST. 
 
 <h2 id="bdd4ba94c65abf3884971d7a8b7cb542"></h2>
@@ -144,8 +144,8 @@ Easiest algorithm, we can come up with.
 
 ### Greedy MST algorithm: correctness proof
 
- - Proposition. The greedy algorithm computes the MST.
- - Proof
+- Proposition. The greedy algorithm computes the MST.
+- Proof
     - Any edge colored black is in the MST (via cut property).
     - Fewer than V - 1 black edges => cut with no black crossing edges.
         - means, when we have fewer than v-1 black edges, there has to be a cut that has no black crossing edges. so that the algorithm doesn't get stuck.
@@ -154,30 +154,30 @@ Easiest algorithm, we can come up with.
 
 ![](../imgs/algorII_mst_greedyalgor_proof.png)
 
- - but how to implementations of the greedy algorithm ?
+- but how to implementations of the greedy algorithm ?
     - how we choose the cut? Which cut are we going to use? And also, how to find the minimum weight edge in the cut?
     - Those could both be expensive operations. And prohibitively expensive for huge graphs. 
- - Efficient implementations. Choose cut? Find min-weight edge?
+- Efficient implementations. Choose cut? Find min-weight edge?
     1. Kruskal's algorithm. [stay tuned]
     2. Prim's algorithm. [stay tuned]
     3. Borüvka's algorithm.
- - Before getting to those, what about removing the two simplifying assumptions? 
+- Before getting to those, what about removing the two simplifying assumptions? 
 
 <h2 id="3d825bc82fff7cd0178bee0eb6d5c38e"></h2>
 
 
 ### Removing two simplifying assumptions
 
- - Q. What if edge weights are not all distinct?
- - A. Greedy MST algorithm still correct if equal weights are present!
+- Q. What if edge weights are not all distinct?
+- A. Greedy MST algorithm still correct if equal weights are present!
     - there's multiple MSTs. 
     - ![](../imgs/algorII_mst_equal_weights.png)
     - our correctness proof fails, but that can be fixed
- - Q. What if graph is not connected?
- - A. Compute minimum spanning forest = MST of each component.
+- Q. What if graph is not connected?
+- A. Compute minimum spanning forest = MST of each component.
     - ![](../imgs/algorII_mst_equal_unconnected.png)
 
- - **Greed is good.**
+- **Greed is good.**
     - Basically what the greedy algorithm gives us is an easy way to prove correctness for specific algorithms. 
     - And then we can prove correctness of a more complicated algorithm. 
     - In general, in algorithm design this is proven to be affective in all kinds of domains. 
@@ -196,7 +196,7 @@ Easiest algorithm, we can come up with.
 ### Kruskal's algorithm
 
 
- - Consider edges in ascending order of weight.
+- Consider edges in ascending order of weight.
     - Add next edge to tree *T* unless doing so would create a cycle
 
 ![](../imgs/algorII_mst_Kruskal.png)
@@ -206,8 +206,8 @@ Easiest algorithm, we can come up with.
 
 ### Kruskal's algorithm: correctness proof
 
- - Proposition. *[Kruskal 1956]* Kruskal's algorithm computes the MST.
- - Proof
+- Proposition. *[Kruskal 1956]* Kruskal's algorithm computes the MST.
+- Proof
     - Kruskal's algorithm is a special case of the greedy MST algorithm
     - Suppose Kruskal's algorithm colors the edge `e = v–w` black.
     - Cut = set of vertices connected to *v* in tree *T*.
@@ -227,8 +227,8 @@ Easiest algorithm, we can come up with.
 
 ### Kruskal's algorithm: implementation challenge
 
- - Challenge. Would adding edge `v–w` to tree *T* create a cycle? If not, add it.
- - How difficult?
+- Challenge. Would adding edge `v–w` to tree *T* create a cycle? If not, add it.
+- How difficult?
     - E + V
     - V 
         - run DFS from v, check if w is reachable 
@@ -242,7 +242,7 @@ Easiest algorithm, we can come up with.
 ![](../imgs/algorII_mst_Kruskal_challenge.png)
 
 
- - Efficient solution. Use the *union-find* data structure.
+- Efficient solution. Use the *union-find* data structure.
  
 ```java
 public class KruskalMST {
@@ -278,8 +278,8 @@ public class KruskalMST {
 
 ### Kruskal's algorithm: running time
 
- - Proposition. Kruskal's algorithm computes MST in time proportional to *ElogE* (in the worst case).
- - Proof
+- Proposition. Kruskal's algorithm computes MST in time proportional to *ElogE* (in the worst case).
+- Proof
 
 operation | frequency | time per op
 --- | --- | ---
@@ -288,7 +288,7 @@ delete-min | E | logE
 union | V | log\*V 
 connected | E | log\*V 
 
- - Remark. If edges are already sorted, order of growth is Elog\*V.
+- Remark. If edges are already sorted, order of growth is Elog\*V.
     - recall: log\*V ≤ 5 in this universe
 
 ---
@@ -303,17 +303,17 @@ connected | E | log\*V
 
 ### Prim's algorithm
 
- - Start with vertex 0 and greedily grow tree *T*.
- - Add to *T* the min weight edge with exactly one endpoint in *T*
+- Start with vertex 0 and greedily grow tree *T*.
+- Add to *T* the min weight edge with exactly one endpoint in *T*
     - grow the tree one edge at a time, and always keeping it connected. 
- - Repeat until V-1 edges
+- Repeat until V-1 edges
 
 ![](../imgs/algorII_mst_prim.png)
 
- - start from vertex 0, the minimum weight edge connect to 0 is 0-7 , so we add it, now we have a MST , it have only 2 vertices 0,7
- - now we have 7 edges connect to our MST, we add the minimum one : 1-7
- - repeat ...
- - finally MST edges: 
+- start from vertex 0, the minimum weight edge connect to 0 is 0-7 , so we add it, now we have a MST , it have only 2 vertices 0,7
+- now we have 7 edges connect to our MST, we add the minimum one : 1-7
+- repeat ...
+- finally MST edges: 
     - 0-7  1-7  0-2  2-3  5-7  4-5  6-2
 
 <h2 id="38cd4863a58c575a66fc80ab33a4b1b0"></h2>
@@ -321,8 +321,8 @@ connected | E | log\*V
 
 ### Prim's algorithm: proof of correctness
 
- - Proposition. [Jarník 1930, Dijkstra 1957, Prim 1959] Prim's algorithm computes the MST.
- - Proof
+- Proposition. [Jarník 1930, Dijkstra 1957, Prim 1959] Prim's algorithm computes the MST.
+- Proof
     - Prim's algorithm is a special case of the greedy MST algorithm.
     - Suppose edge *e* = min weight edge connecting a vertex on the tree to a vertex not on the tree.
     - Cut = set of vertices connected on tree
@@ -336,14 +336,14 @@ connected | E | log\*V
 
 ### Prim's algorithm: implementation challenge
 
- - Challenge. Find the min weight edge with exactly one endpoint in *T*.
- - How difficult?
+- Challenge. Find the min weight edge with exactly one endpoint in *T*.
+- How difficult?
     - E  :  try all edges
     - V 
     - logE : use a priority queue!
     - log\*E
     - 1
- - Lazy solution. Maintain a PQ of **edges** with (at least) one endpoint in *T*.
+- Lazy solution. Maintain a PQ of **edges** with (at least) one endpoint in *T*.
     - Key = edge; priority = weight of edge.
     - Delete-min to determine next edge `e = v–w` to add to *T*.
     - Disregard if both endpoints *v* and *w* are marked (both in *T*).
@@ -359,7 +359,7 @@ connected | E | log\*V
 
 ![](../imgs/algorII_mst_prim_lazy_3.png)
 
- - edge becomes obsolete ( 2-7, 1-2 ) , lazy implementation leaves on PQ.
+- edge becomes obsolete ( 2-7, 1-2 ) , lazy implementation leaves on PQ.
 
 ```java
 public class LazyPrimMST {
@@ -409,8 +409,8 @@ public class LazyPrimMST {
 
 ### Lazy Prim's algorithm: running time
 
- - Proposition. Lazy Prim's algorithm computes the MST in time proportional to `ElogE` and extra space proportional to *E* (in the worst case).
- - Proof
+- Proposition. Lazy Prim's algorithm computes the MST in time proportional to `ElogE` and extra space proportional to *E* (in the worst case).
+- Proof
 
 operation | frequency | binary heap
 --- | --- | --- 
@@ -424,7 +424,7 @@ insert | E | logE
 
 ### Prim's algorithm: eager implementation
 
- - **Eager solution**
+- **Eager solution**
     - Maintain a PQ of vertices connected by an edge to *T*, were priority of vertex *v =* weight of shortest edge connecting *v* to *T*.
         - the Priority Queue is going to have vertices, those are vertices that are not on the tree, but are connected by an edge
         - so the PQ has at most one entry per vertex
@@ -437,7 +437,7 @@ insert | E | logE
         - **decrease priority** of *x* if *v–x* becomes shortest edge connecting x to T
             - after adding edge `0-2` to MST , the priority of vertex 3 should be decreased to 0.17 ( edge 2-3 ) , the priority of vertex 6 will be decreased to 0.40 ( edge 6-2 )
 
- - For this eager implementation, We're going to want the vertices that are connected to the tree by one vertex. And we're going to know the shortest edge connecting that vertex to the tree.
+- For this eager implementation, We're going to want the vertices that are connected to the tree by one vertex. And we're going to know the shortest edge connecting that vertex to the tree.
 
 ![](../imgs/algorII_mst_prim_eager.png)
 
@@ -448,15 +448,15 @@ insert | E | logE
 
 #### Indexed priority queue
 
- - THe problem is , we have keys that the PQ algorithm doesn't really needs to know when we change values of keys.
+- THe problem is , we have keys that the PQ algorithm doesn't really needs to know when we change values of keys.
     - so we have to do that throught the API.
     - and what we're going to do is allow the client to change the key by specifying the index and the new key.
     - and then the implementation will take care of changing the value and updating its data structure to reflect the changed values. 
 
- - since we are working with vertex indexed array and graphs, the priority queue implementation might do the same. 
+- since we are working with vertex indexed array and graphs, the priority queue implementation might do the same. 
     - we'll just associate an index, kind of pass the idea onto the PQ, to make it allow it to implement these operations.
 
- - Associate an index between 0 and N - 1 with each key in a priority queue.
+- Associate an index between 0 and N - 1 with each key in a priority queue.
     - Client can insert and delete-the-minimum.
     - Client can change the key by specifying the index.
 
@@ -486,26 +486,26 @@ int delMin()
 
 #### Implementation
 
- - Start with same code as MinPQ.
- - Maintain parallel arrays keys[], pq[], and qp[] so that:
+- Start with same code as MinPQ.
+- Maintain parallel arrays keys[], pq[], and qp[] so that:
     - keys[i] is the priority of i
     - pq[i] is the index of the key in heap position i
     - qp[i] is the heap position of the key with index i
- - Use swim(qp[i]) implement decreaseKey(i, key).
+- Use swim(qp[i]) implement decreaseKey(i, key).
 
 ![](../imgs/algorII_mst_prim_eger_implementation.png)
 
- - It's important to realize that it's possible to implement this decreased key operation in logarithmic time without ever having to search through everything,  using the idea of indexing.
- - `E + VlogV` can make a difference for a huge graph. 
+- It's important to realize that it's possible to implement this decreased key operation in logarithmic time without ever having to search through everything,  using the idea of indexing.
+- `E + VlogV` can make a difference for a huge graph. 
 
 <h2 id="0ab687c6a13802a6674d5327e3d4177e"></h2>
 
 
 ## QA
 
- - Q: Minimum-weight feedback edge set
+- Q: Minimum-weight feedback edge set
     - A feedback edge set of a graph is a subset of edges that contains at least one edge from every cycle in the graph. If the edges of a feedback edge set are removed, the resulting graph is acyclic. Given an edge-weighted graph, design an efficient algorithm to find a feedback edge set of minimum weight. Assume the edge weights are positive.
- - A: If the weight function is non-negative, then the set of edges not contained in a maximum weight spanning tree is indeed a MWFES. 
+- A: If the weight function is non-negative, then the set of edges not contained in a maximum weight spanning tree is indeed a MWFES. 
 
 
 
@@ -517,9 +517,9 @@ int delMin()
 
 # 4.4 SHORTEST PATHS
 
- - Shortest paths in an edge-weighted digraph
+- Shortest paths in an edge-weighted digraph
     - Given an edge-weighted digraph, find the shortest path from *s* to *t*.
- - Shortest path variants
+- Shortest path variants
     - Which vertices?
         - Single source: from one vertex *s* to every other vertex
         - Source-sink: from one vertex *s* to another *t*.
@@ -531,7 +531,7 @@ int delMin()
     - Cycles?
         - No directed cycles.
         - No "negative cycles."
- - Simplifying assumption. Shortest paths from *s* to each vertex *v* exist.
+- Simplifying assumption. Shortest paths from *s* to each vertex *v* exist.
 
 <h2 id="582ea71a838abce9407ad2a894dbea08"></h2>
 
@@ -543,12 +543,12 @@ int delMin()
 
 ### Data structures for single-source shortest paths
  
- - Goal. Find the shortest path from *s* to every other vertex.
- - Observation. A **shortest-paths tree** (SPT) solution exists. Why?
+- Goal. Find the shortest path from *s* to every other vertex.
+- Observation. A **shortest-paths tree** (SPT) solution exists. Why?
     - if no 2 paths have the same length, then certainly it's going to be such a solution
     - if you've got 2 paths to the same vertex , you can delete the last edge on one of them and keep going 
     - what we want to do is compute a tree.
- - Consequence. Can represent the SPT with two vertex-indexed arrays:
+- Consequence. Can represent the SPT with two vertex-indexed arrays:
     - distTo[v] is length of shortest path from s to v.
     - edgeTo[v] is last edge on shortest path from s to v.
 
@@ -571,7 +571,7 @@ public Iterable<DirectedEdge> pathTo(int v) {
 
 ### Edge relaxation
 
- - Relax edge *e = v→w* .
+- Relax edge *e = v→w* .
     - distTo[v] is length of shortest **known** path from s to v.
     - distTo[w] is length of shortest **known** path from s to w
     - edgeTo[w] is last edge on shortest **known** path from s to w
@@ -594,15 +594,15 @@ private void relax(DirectedEdge e) {
 
 ### Shortest-paths optimality conditions
 
- - Proposition. 
+- Proposition. 
     - Let G be an edge-weighted digraph. Then distTo[] are the shortest path distances from *s* iff:
         - distTo[s] = 0.
         - For each vertex *v*, distTo[v] is the length of some path from *s* to *v*.
         - For each edge *e = v→w*, distTo[w] ≤ distTo[v] + e.weight().
- - Pf. ⇐ [ necessary ]
+- Pf. ⇐ [ necessary ]
     - Suppose that distTo[w] > distTo[v] + e.weight() for some edge *e = v→w*.
     - Then, e gives a path from s to w (through v) of length less than distTo[w].
- - Pf. ⇒ [ sufficient ]
+- Pf. ⇒ [ sufficient ]
     - Suppose that s = v0 → v1 → v2 → ... → vk = w is a shortest path from s to w.
     - Then, ( eᵢ = iᵗʰ edge on shortest path from s to w )
         - distTo[v1] ≤ distTo[v0] + e1.weight()
@@ -627,15 +627,15 @@ Repeat until optimality conditions are satisfied:
     - Relax any edge.
 ```
 
- - Proposition. Generic algorithm computes SPT (if it exists) from s.
- - Pf sketch.
+- Proposition. Generic algorithm computes SPT (if it exists) from s.
+- Pf sketch.
     - Throughout algorithm, distTo[v] is the length of a simple path from s to v (and edgeTo[v] is last edge on path).
     - Each successful relaxation decreases distTo[v] for some v.
     - The entry distTo[v] can decrease at most a finite number of times.
 
 ---
 
- - Efficient implementations. How to choose which edge to relax?
+- Efficient implementations. How to choose which edge to relax?
     - Ex 1. Dijkstra's algorithm (nonnegative weights).
     - Ex 2. Topological sort algorithm (no directed cycles).
     - Ex 3. Bellman-Ford algorithm (no negative cycles).
@@ -646,9 +646,9 @@ Repeat until optimality conditions are satisfied:
 
 ## Dijkstra's algorithm
 
- - Consider vertices in increasing order of distance from s ( vertex that not on the SP-tree and  with the lowest distTo[] value).
+- Consider vertices in increasing order of distance from s ( vertex that not on the SP-tree and  with the lowest distTo[] value).
     - so , our source is 0 in the case showed as pic below, what vertices are closest to the source ?  0-1, 5.0
- - Add vertex to tree and relax all edges pointing from that vertex.
+- Add vertex to tree and relax all edges pointing from that vertex.
 
 ![](../imgs/algorII_sp_dijkstra_0.png)
 
@@ -716,13 +716,13 @@ public class DijkstraSP {
 
 ### Computing spanning trees in graphs
 
- - Dijkstra’s algorithm seem familiar?
+- Dijkstra’s algorithm seem familiar?
     - Prim’s algorithm is essentially the same algorithm.
     - Both are in a family of algorithms that compute a graph’s spanning tree
- - Main distinction: Rule used to choose next vertex for the tree.
+- Main distinction: Rule used to choose next vertex for the tree.
     - Prim’s: Closest vertex to the **tree** (via an undirected edge).
     - Dijkstra’s: Closest vertex to the **source** (via a directed path).
- - Note: DFS and BFS are also in this family of algorithms.
+- Note: DFS and BFS are also in this family of algorithms.
 
 <h2 id="d7c7b1975f92a833609b519faa4ed829"></h2>
 
@@ -734,12 +734,12 @@ public class DijkstraSP {
 
 ### Acyclic edge-weighted digraphs
 
- - Q. Suppose that an edge-weighted digraph has no directed cycles. Is it easier to find shortest paths than in a general digraph?
- - A. Yes!
+- Q. Suppose that an edge-weighted digraph has no directed cycles. Is it easier to find shortest paths than in a general digraph?
+- A. Yes!
 
 ---
 
- - Algorithm
+- Algorithm
     - Consider vertices in topological order.
     - Relax all edges pointing from that vertex.
 
@@ -748,8 +748,8 @@ public class DijkstraSP {
 
 ### Shortest paths in edge-weighted DAGs
 
- - Proposition. Topological sort algorithm computes SPT in any edge- weighted DAG in time proportional to *E + V* .
- - Proof
+- Proposition. Topological sort algorithm computes SPT in any edge- weighted DAG in time proportional to *E + V* .
+- Proof
     - TODO
 
 
@@ -782,7 +782,7 @@ public class AcyclicSP {
 }
 ```
 
- - E+V
+- E+V
     - It process the V vertices in topological order; it relaxes each fo the E edges exactly once.
 
 <h2 id="5ee07047d6bca78383a141e5e8ec77ce"></h2>
@@ -790,13 +790,13 @@ public class AcyclicSP {
 
 #### Application: Content-aware resizing
 
- - Seam carving: [Avidan and Shamir] Resize an image without distortion for display on cell phones and web browsers.
+- Seam carving: [Avidan and Shamir] Resize an image without distortion for display on cell phones and web browsers.
 
 ![](../imgs/algorII_sp_seamcarving1.png)
 
 ![](../imgs/algorII_sp_seamcarving2.png)
 
- - To find vertical seam:
+- To find vertical seam:
     - Grid DAG: vertex = pixel; edge = from pixel to 3 downward neighbors.
         - what we do is to build a huge directed acyclic graph.  Every pixel corresponds to a vertex in this graph. And the edges are gonna be just directed edges from every pixel to its 3 downward neighbors.
     - Weight of pixel = energy function of 8 neighboring pixels.
@@ -806,13 +806,13 @@ public class AcyclicSP {
 ![](../imgs/algorII_sp_seam.png)
 
 
- - To remove vertical seam:
+- To remove vertical seam:
     - Delete pixels on seam (one in each row).
 
 
 ![](../imgs/algorII_sp_seam2.png)
 
- - 实现上，并不需要显式地创建 DirectedEdge 和 EdgeWeightedDigraph 
+- 实现上，并不需要显式地创建 DirectedEdge 和 EdgeWeightedDigraph 
     - 一个energy 矩阵就足够了
     - AcyclicSP 在seamCarving上 效率最高
         - 不同与 Dijkstra算法，AcyclicSP 不能中途claim we have hit the goal , AcyclicSP must finish the loop.
@@ -825,32 +825,32 @@ public class AcyclicSP {
 
 since negative weights are allowd ,we can find longest paths in the edge-weighted DAGs, just by negating all the weights. This is because topologic sort algorithm desn't care whether the weights are positve or negative . 
 
- - Formulate as a shortest paths problem in edge-weighted DAGs.
+- Formulate as a shortest paths problem in edge-weighted DAGs.
     - Negate all weights
     - Find shortest paths.
     - Negate weights in result
- - Key point. Topological sort algorithm works even with negative weights.
+- Key point. Topological sort algorithm works even with negative weights.
 
 <h2 id="2160c4ec3d4551c21c4e80c16718ad43"></h2>
 
 
 #### Longest paths in edge-weighted DAGs: application
 
- - Parallel job scheduling
+- Parallel job scheduling
     - Given a set of jobs with durations and precedence constraints, schedule the jobs (by finding a start time for each) so as to achieve the minimum completion time, while respecting the constraints.
 
 ![](../imgs/algorII_mst_parallel_job_scheduling0.png)
 
 ![](../imgs/algorII_mst_parallel_job_scheduling1.png)
 
- - And so what we want to do is, find a start time for each job. That minimizes the completion time. 
+- And so what we want to do is, find a start time for each job. That minimizes the completion time. 
  
 <h2 id="2f8af766796a78ffe5aa21acf6f9f6b9"></h2>
 
 
 #### Critical path method
 
- - CPM. To solve a parallel job-scheduling problem, create edge-weighted DAG:
+- CPM. To solve a parallel job-scheduling problem, create edge-weighted DAG:
     - Source and sink vertices.
         - the source is begin everything and the sync is end everything. 
     - Two vertices (begin and end) for each job.
@@ -862,9 +862,9 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
 
 ![](../imgs/algorII_mst_CPM1.png)
 
- - we took our scheduling problem and now we have a graph. 
+- we took our scheduling problem and now we have a graph. 
     - And what relates this to what we've been talking about is the longest path from the source to each job. 
- - CPM. Use **longest path** from the source to schedule each job.
+- CPM. Use **longest path** from the source to schedule each job.
 
 ![](../imgs/algorII_mst_CPM2.png)
 
@@ -880,21 +880,21 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
 
 ### Shortest paths with negative weights: failed attempts
 
- - **Dijkstra**. Doesn’t work with negative edge weights.
+- **Dijkstra**. Doesn’t work with negative edge weights.
     - Dijkstra selects vertex 3 immediately after 0. But shortest path from 0 to 3 is 0→1→2→3.
     - ![](../imgs/algorII_mst_neg_dijkstra.png)
- - **Re-weighting**. Add a constant to every edge weight doesn’t work.
+- **Re-weighting**. Add a constant to every edge weight doesn’t work.
     - Adding 9 to each edge weight changes the shortest path from 0→1→2→3 to 0→3.
     - ![](../imgs/algorII_mst_neg_reweight.png)
- - **Conclusion**. Need a different algorithm.
+- **Conclusion**. Need a different algorithm.
 
 <h2 id="d05e7fb4b74623a5da219bc192056e4a"></h2>
 
 
 ### Negative cycles
 
- - Def. A **negative cycle** is a directed cycle whose sum of edge weights is negative.
- - Proposition. A SPT exists iff no negative cycles.
+- Def. A **negative cycle** is a directed cycle whose sum of edge weights is negative.
+- Proposition. A SPT exists iff no negative cycles.
     - assuming all vertices reachable from s
 
 <h2 id="bc4dcba35afdbb28dfbf17b06b64e8d1"></h2>
@@ -921,15 +921,15 @@ for (int i = 0; i < G.V(); i++) {
 }
 ```
 
- - you will get a SPT after running Bellman-Ford algorithm  
+- you will get a SPT after running Bellman-Ford algorithm  
 
 <h2 id="875643e3ddfa7b4322582d5fdb5a16d1"></h2>
 
 
 ### Bellman-Ford algorithm: analysis
 
- - Proposition. Dynamic programming algorithm computes SPT in any edge-weighted digraph with no negative cycles in time proportional to *E × V*.
- - Proof idea. 
+- Proposition. Dynamic programming algorithm computes SPT in any edge-weighted digraph with no negative cycles in time proportional to *E × V*.
+- Proof idea. 
     - After pass i, found shortest path containing at most i edges.
 
 <h2 id="252d97af220bba63a2b709f462d4d19f"></h2>
@@ -937,12 +937,12 @@ for (int i = 0; i < G.V(); i++) {
 
 ### Bellman-Ford algorithm: practical improvement
 
- - Observation. If *distTo[v]* does not change during pass *i*, no need to relax any edge pointing from *v* in pass *i+1*.
+- Observation. If *distTo[v]* does not change during pass *i*, no need to relax any edge pointing from *v* in pass *i+1*.
     - if you didn't change the distance to a vertex during one pass, Then you don't have to worry about its edges in the next pass.
- - FIFO implementation. Maintain **queue** of vertices whose distTo[] changed.
+- FIFO implementation. Maintain **queue** of vertices whose distTo[] changed.
     - be careful to keep at most one copy of each vertex on queue (why?)  
     - Otherwise, you could wind up with situations where the size of the queue, blows up. 
- - Overall effect.
+- Overall effect.
     - The running time is still proportional to *E × V* in worst case.
     - But much faster than that in practice
 
@@ -960,9 +960,9 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
 
 ---
 
- - Remark 1. Directed cycles make the problem harder.
- - Remark 2. Negative weights make the problem harder.
- - Remark 3. Negative cycles makes the problem intractable.
+- Remark 1. Directed cycles make the problem harder.
+- Remark 2. Negative weights make the problem harder.
+- Remark 3. Negative cycles makes the problem intractable.
 
 
 <h2 id="9b60ad9b0b7957c904f64920f0bbfa7d"></h2>
@@ -970,13 +970,13 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
 
 ### Finding a negative cycle
 
- - Observation. If there is a negative cycle, Bellman-Ford gets stuck in loop, updating distTo[] and edgeTo[] entries of vertices in the cycle.
+- Observation. If there is a negative cycle, Bellman-Ford gets stuck in loop, updating distTo[] and edgeTo[] entries of vertices in the cycle.
 
 ![](../imgs/algorII_sp_bellmanFold_stuck.png)
 
- - Proposition. If any vertex *v* is updated in phase V ( means the last phase of Bellman-Ford ), there exists a negative cycle (and can trace back edgeTo[v] entries to find it).
+- Proposition. If any vertex *v* is updated in phase V ( means the last phase of Bellman-Ford ), there exists a negative cycle (and can trace back edgeTo[v] entries to find it).
     - and not only that, edgeTo[v] is the last edge on that cycle. 
- - In practice. Check for negative cycles more frequently.
+- In practice. Check for negative cycles more frequently.
     - In practice actually, you don't have to wait till the last phase. 
     - You can check `distTo` entries for negative cycles, more frequently. 
 
@@ -985,20 +985,20 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
 
 ### Negative cycle application: arbitrage detection
 
- - Negative cycle application: arbitrage detection
+- Negative cycle application: arbitrage detection
 
 ![](../imgs/algorII_sp_arbitrage_detection.png)
 
- - Ex. $1,000 ⇒ 741 Euros ⇒ 1,012.206 Canadian dollars ⇒ $1,007.14497.
- - Currency exchange graph.
+- Ex. $1,000 ⇒ 741 Euros ⇒ 1,012.206 Canadian dollars ⇒ $1,007.14497.
+- Currency exchange graph.
     - Vertex = currency.
     - Edge = transaction, with weight equal to exchange rate.
     - Find a directed cycle whose product of edge weights is > 1
 
 ![](../imgs/algorII_sp_arbitrage_detection2.png)
 
- - Challenge. Express as a negative cycle detection problem.
- - **Model as a negative cycle detection problem by taking logs**
+- Challenge. Express as a negative cycle detection problem.
+- **Model as a negative cycle detection problem by taking logs**
     - Let weight of edge v→w be -ln (exchange rate from currency v to w).
         - 似乎任何底的 log函数都可以...
     - Multiplication turns to addition; > 1 turns to < 0.
@@ -1006,32 +1006,32 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
 
 ![](../imgs/algorII_sp_arbitrage_detection3.png)
 
- - Remark. Fastest algorithm is extraordinarily valuable!
+- Remark. Fastest algorithm is extraordinarily valuable!
 
 <h2 id="6ce3bdc39e544725038e0e87b771db1e"></h2>
 
 
 ## Questions 
 
- - Q: Monotonic shortest path
+- Q: Monotonic shortest path
     - Given an edge-weighted digraph G, design an ElogE algorithm to find a monotonic shortest path from s to every other vertex.
     - A path is monotonic if the sequence of edge weights along the path are either strictly increasing or strictly decreasing.
- - A: relax edges in ascending order to find a best monotonically increasing path; 
+- A: relax edges in ascending order to find a best monotonically increasing path; 
     - relax edges in descending order to find a best monotonically decreasing path.
 
 ---
 
- - Q: Second shortest path
+- Q: Second shortest path
     - Given an edge-weighted digraph and let P be a shortest path from vertex s to vertex t. 
     - Design an ElogV algorithm to find a path other than P from s to t that is as short as possible. Assume all of the edge weights are strictly positive.
- - A: compute the shortest path distances from s to every vertex , and the shortest path distances from every vertex to t.
+- A: compute the shortest path distances from s to every vertex , and the shortest path distances from every vertex to t.
 
 ---
  
- - Q: Shortest path with one skippable edge. 
+- Q: Shortest path with one skippable edge. 
     - Given an edge-weighted digraph, design an ElogV algorithm to find a shortest path from s to t where you can change the weight of any one edge to zero. 
     - Assume the edge weights are nonnegative.
- - A: compute the shortest path from s to every vertex; compute the shortest path from every vertex to t; combine.
+- A: compute the shortest path from s to every vertex; compute the shortest path from every vertex to t; combine.
 
 
 <h2 id="4ccfbaa8088f52afb0f66af1fd3c0489"></h2>
@@ -1039,18 +1039,18 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
 
 ## Shortest paths summary
 
- - Dijkstra’s algorithm.
+- Dijkstra’s algorithm.
     - Nearly linear-time when weights are nonnegative.
     - Generalization encompasses DFS, BFS, and Prim.
- - Acyclic edge-weighted digraphs.
+- Acyclic edge-weighted digraphs.
     - Arise in applications.
     - Faster than Dijkstra’s algorithm.
     - Negative weights are no problem.
- - Negative weights and negative cycles.
+- Negative weights and negative cycles.
     - Arise in applications.
     - If no negative cycles, can find shortest paths via Bellman-Ford.
     - If negative cycles, can find one via Bellman-Ford.
- - Shortest-paths is a broadly useful problem-solving model.
+- Shortest-paths is a broadly useful problem-solving model.
 
 
 

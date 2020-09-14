@@ -50,9 +50,9 @@ Pseudo random numbers:  a series of numbers in a particular range that seems unp
 
 ### Choice of modulus
 
- - We want m to be rather large, since the period can not have more than m elements.
+- We want m to be rather large, since the period can not have more than m elements.
     - Even if we intend to generate only randOm zeros and ones, we should not take m = 2, for then the sequence would at best have the form..., 0,1,0,1,0,1,...
- - Another factor that inffuences our choice of m is speed of generation: 
+- Another factor that inffuences our choice of m is speed of generation: 
     - We want to pick a value so that the computation of (aX<sub>n</sub> + c ) mod m is fast.
     - like 2³².
     - Another alternative is to let m be the largest prime number less than *w* .
@@ -175,7 +175,7 @@ def random(self):
     return (x/30269.0 + y/30307.0 + z/30323.0) % 1.0
 ```
 
- - Wichman-Hill算法通过线性合并不同短周期随机数发生器的输出来产生长周期的随机数序列。
+- Wichman-Hill算法通过线性合并不同短周期随机数发生器的输出来产生长周期的随机数序列。
     - 如果把周期N1和N2的波形加起来那么得到的波形周期为 N = lcm（N1,N2） 
     - 这样，通过结合几个随机数发生器的输出，可以产生一个更长的序列。
 
@@ -185,9 +185,9 @@ def random(self):
 
 ## Distribution
 
- - It's much more useful to have a sequence of numbers with the uniform distribution on the interval 0 to 1. 
- - This is useful because with a sequence of numbers with a uniform distribution on [0,1], we can generate sequences of random numbers according to other distributions use something known as **inverse transform sampling**. 
- - Let's say we want to generate a sequence of random numbers with the normal distribution with mean=162cm, and standard deviation=5cm , to represent the height of an American woman.
+- It's much more useful to have a sequence of numbers with the uniform distribution on the interval 0 to 1. 
+- This is useful because with a sequence of numbers with a uniform distribution on [0,1], we can generate sequences of random numbers according to other distributions use something known as **inverse transform sampling**. 
+- Let's say we want to generate a sequence of random numbers with the normal distribution with mean=162cm, and standard deviation=5cm , to represent the height of an American woman.
     - Probability Density Function --> Cumulative Distribution Function. 
     - we uniformly randomly select a point on the y-axis ( Cumulative Distribution Function graph ) , and then determine the point on the x-axis, it gives that function value. 
 

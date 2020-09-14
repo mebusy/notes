@@ -48,10 +48,10 @@
 
 > Monitor computers in a data center
 
- - `x⁽ⁱ⁾` = features of computer i
- - x₁ = memory use ; x₂ = number of disk access/sec
- - x₃ = CPU load ; x₄ = CPU load / network traffic
- - ...
+- `x⁽ⁱ⁾` = features of computer i
+- x₁ = memory use ; x₂ = number of disk access/sec
+- x₃ = CPU load ; x₄ = CPU load / network traffic
+- ...
 
 <h2 id="532e6903300860673cb95c382b974fd0"></h2>
 
@@ -141,23 +141,23 @@ Say `x∊ℝ`, if x is a distributed Gaussian with mean(均值) `μ` , variance(
 
 我们要考虑的异常检测算法是个非监督问题，使用的是无标签数据。这些带标签的数据，就是我们要找的能够评价异常检测算法的标准方法。
 
- - training set 认为是 无标签数据的正常数据，但可能有一些异常数据也没关系。
- - 假设 CV set 和 test test 中有一些样本都是异常的。
+- training set 认为是 无标签数据的正常数据，但可能有一些异常数据也没关系。
+- 假设 CV set 和 test test 中有一些样本都是异常的。
 
 > example
 
 飞机引擎例子，假设有10000个好的引擎，20个坏的引擎。
 
- - Training set: 6000 good engines，我们将用这6000个数据，来 fit μ₁,...μn, σ₁²,...,σn²
- - CV: 2000 good engines (y=0) , 10 anomalous (y=1)
- - Test: 2000 good engines (y=0) , 10 anomalous (y=1)
+- Training set: 6000 good engines，我们将用这6000个数据，来 fit μ₁,...μn, σ₁²,...,σn²
+- CV: 2000 good engines (y=0) , 10 anomalous (y=1)
+- Test: 2000 good engines (y=0) , 10 anomalous (y=1)
 
 > Algorithm evaluation
 
- - Fit model(x) on `traing set` { x⁽¹⁾,x⁽²⁾,...,x⁽ᵐ⁾ }
- - On a `CV/Test` example x , predict: y=1 if p(x)<ε (anomaly) , y=0 if p(x)>=ε (normal)
- - 因为 CV/Test 数据存在较大的偏斜（skewed）, 一般的预测准确率不能很好的用来评估算法的好快，可能的评估值是 Precision／Recall，F₁-score .
- - CV set 也可以用来 选择参数 ε
+- Fit model(x) on `traing set` { x⁽¹⁾,x⁽²⁾,...,x⁽ᵐ⁾ }
+- On a `CV/Test` example x , predict: y=1 if p(x)<ε (anomaly) , y=0 if p(x)>=ε (normal)
+- 因为 CV/Test 数据存在较大的偏斜（skewed）, 一般的预测准确率不能很好的用来评估算法的好快，可能的评估值是 Precision／Recall，F₁-score .
+- CV set 也可以用来 选择参数 ε
 
  
 <h2 id="f1f47b770f28badf6af9c7627badbfb5"></h2>
@@ -214,10 +214,10 @@ Fraud detection 舞弊检测 | 垃圾邮件
 
 数据中心的例子，假设我们选择了 几个特征：
 
- - x₁ = memory use of compute
- - x₂ = number of disk accesses/sec
- - x₃ = CPU load
- - x₄ = network traffic
+- x₁ = memory use of compute
+- x₂ = number of disk accesses/sec
+- x₃ = CPU load
+- x₄ = network traffic
 
 现在怀疑某台电脑执行某个任务死循环了，这种情况，CPU load会很高，但network 流量很小，这种情况，要检测出异样，只需要添加一个feature x₅= CPU load/network traffic , 正常情况下，   CPU load/network traffic 是线性的；如果陷入死循环， CPU load/network traffic 的值会非常大。
 
@@ -235,9 +235,9 @@ Fraud detection 舞弊检测 | 垃圾邮件
 
 > Multivariate Gaussian Distribution
 
- - x ∊ ℝ , don't model p(x₁),p(x₂) separately. 
- - Model p(x) all in one go.
- - Parameters: `μ ∊ ℝⁿ , Σ ∊ ℝⁿˣⁿ` (covariance matrix 协方差矩阵)
+- x ∊ ℝ , don't model p(x₁),p(x₂) separately. 
+- Model p(x) all in one go.
+- Parameters: `μ ∊ ℝⁿ , Σ ∊ ℝⁿˣⁿ` (covariance matrix 协方差矩阵)
 
 
 `|Σ|` 代表 Σ 的行列式  ( det in Octave )

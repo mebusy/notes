@@ -34,7 +34,7 @@
 
 ## luajit 优化清单
 
- - http://wiki.luajit.org/NYI
+- http://wiki.luajit.org/NYI
 
 
 <h2 id="03849b48cc42973dbda2c89ebdc1ff53"></h2>
@@ -59,7 +59,7 @@ collectgarbage("setpause", 200 )
 collectgarbage("setstepmul", 5000)
 ```
 
- - execute a full gc
+- execute a full gc
 
 ```lua
 collectgarbage()
@@ -79,7 +79,7 @@ math.randomseed(os.time())
 
 ## lua module
 
- - 1
+- 1
 
 ```lua
 local _G = _G
@@ -89,7 +89,7 @@ setmetatable(P, {__index = _G})
 setfenv(1, P)
 ```
 
- - 2
+- 2
 
 ```lua
 module( "MODULE_NAME" , package.seeall )
@@ -183,7 +183,7 @@ return cGameSave
 
 ## iOS ffi 
 
- - https://github.com/mebusy/codeLib/blob/master/integrateLua/useful_luascript/luajit_ffi/ffi_func.lua
+- https://github.com/mebusy/codeLib/blob/master/integrateLua/useful_luascript/luajit_ffi/ffi_func.lua
 
 <h2 id="1bc29b36f623ba82aaf6724fd3b16718"></h2>
 
@@ -254,14 +254,14 @@ end
 
 http://w3.impa.br/~diego/software/luasocket/http.html#request
 
- - simple request
+- simple request
 
 ```lua
 http.request(url [, body])
 ```
 
 
- - generic request 
+- generic request 
 
 ```lua
 #!/usr/bin/env lua
@@ -300,7 +300,7 @@ else
 end
 ```
 
- - 异步 request
+- 异步 request
 
 ```lua
 module( "asyncRequest" , package.seeall )
@@ -355,7 +355,7 @@ end
 
 ## lua-curl
 
- - example 1
+- example 1
 
 ```lua
 local cURL = require("cURL")
@@ -382,7 +382,7 @@ c = cURL.easy{
 c:perform()
 ```
 
- - example 2
+- example 2
 
 ```lua
     local curl = require('cURL')
@@ -395,7 +395,7 @@ c:perform()
     easy:perform():close()
 ```
 
- - more example
+- more example
     - https://www.tuicool.com/articles/yY3Erub
     - http://www.cnblogs.com/moodlxs/archive/2012/10/15/2724318.html
 

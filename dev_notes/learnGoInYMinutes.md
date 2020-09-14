@@ -210,7 +210,7 @@ fmt.Println(*p, *q)   // * follows a pointer. This prints two ints.
 
 ## for
 
- - For is the only loop statement in Go
+- For is the only loop statement in Go
 
 ```go
     // Like if, for doesn't use parens either.
@@ -267,8 +267,8 @@ love:
     // => Add + double two numbers: 24    
 ```
 
- - Decorators are common in other languages
- - Same can be done in Go
+- Decorators are common in other languages
+- Same can be done in Go
     - with function literals that accept arguments
 
 ```go
@@ -317,8 +317,8 @@ type Stringer interface {
 }
 ```
  
- - **A type implements an interface by defining the required methods**
- - **No "implements" declarations**
+- **A type implements an interface by defining the required methods**
+- **No "implements" declarations**
 
 ```go
     // Define a method on type pair. 

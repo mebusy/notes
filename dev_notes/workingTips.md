@@ -107,11 +107,11 @@ chrome: `chrome://net-internals/#proxy`
 
 ## lldb 调试 Segment Fault on MacOSX
  
- - 编译加上 `+g` 选项
- - `ulimit -c unlimited`
- - /cores/core.xxx 文件生成
- - `lldb appname core.15667`
- - 运行， crash后，输入 `bt` 打印跟踪堆栈
+- 编译加上 `+g` 选项
+- `ulimit -c unlimited`
+- /cores/core.xxx 文件生成
+- `lldb appname core.15667`
+- 运行， crash后，输入 `bt` 打印跟踪堆栈
 
 
 <h2 id="dd3177fffb44df0088f08893f1e8b000"></h2>
@@ -124,10 +124,10 @@ chrome: `chrome://net-internals/#proxy`
 youtube-dl -c --write-auto-sub --sub-lang=en --ignore-errors -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' 'https://www.youtube.com/playlist?list=PLKUel_nHsTQ1yX7tQxR_SQRdcOFyXfNAb'
 ```
 
- - 如果视频确定有 premade 字幕， 使用  `--write-sub`
- - ensure you add `' '` to url since some special character may appears in URL has a special meaning in bash
- - `-c` means resume downloading 
- - `--ignore-errors` 忽略下载错误，比如 private vidoe
+- 如果视频确定有 premade 字幕， 使用  `--write-sub`
+- ensure you add `' '` to url since some special character may appears in URL has a special meaning in bash
+- `-c` means resume downloading 
+- `--ignore-errors` 忽略下载错误，比如 private vidoe
 
 <h2 id="a86e10fc913cd54076f6a27289d1d713"></h2>
 
@@ -171,9 +171,9 @@ ffmpeg -i sample.avi -q:a 0 -map a sample.mp3
 ab -r -k -s 120 -n 100000 -c 1500  <url>
 ```
 
- - `-s`  timeout, default is 30sec
- - `-r`  Don't exit on socket receive errors.
- - `-k`  Use HTTP KeepAlive feature
+- `-s`  timeout, default is 30sec
+- `-r`  Don't exit on socket receive errors.
+- `-k`  Use HTTP KeepAlive feature
     - caution: not work with nodejs. it is a bug of ab , since ab is a http 1.0 client. You should add extra `-H "TE: chunked"`
 
 <h2 id="e06944207d65338bc4b5d43aef44aef4"></h2>

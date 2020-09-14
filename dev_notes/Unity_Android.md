@@ -99,10 +99,10 @@ By default, Unity uses **ETC1/RGBA16** texture format for textures that don’t 
 
 ### Features currently not supported by Unity Android
 
- - Graphics
+- Graphics
     - Non-square textures are not supported by the ETC format.
     - Movie Textures are not supported, use a full-screen streaming playback instead
- - Scripting
+- Scripting
     - Dynamic features like **Duck Typing** are not supported. Use #pragma strict for your scripts to force the compiler to report dynamic features as errors.
         - dynamic key word so that 不使用继承的情况下使用了多态 ??? 
     - Video streaming via WWW class is not supported
@@ -120,12 +120,12 @@ macro : `UNITY_ANDROID`
 
 #### Advanced Unity Mobile Scripting
 
- - Device Properties
+- Device Properties
     - SystemInfo.deviceUniqueIdentifier
     - SystemInfo.deviceName
     - SystemInfo.deviceModel 
     - SystemInfo.operatingSystem.
- - Anti-Piracy Check
+- Anti-Piracy Check
     - You can check if your application is genuine (not-hacked) with the Application.genuine property
 
 ---
@@ -170,8 +170,8 @@ AndroidManifest.xml from these folders will get automatically **merged** with th
 
 For specific Android platform (armv7, x86), the libraries (lib*.so) should be placed in the following:
 
- - Assets/Plugins/Android/libs/x86/
- - Assets/Plugins/Android/libs/armeabi-v7a/
+- Assets/Plugins/Android/libs/x86/
+- Assets/Plugins/Android/libs/armeabi-v7a/
 
 <h2 id="538a16b6cc13007d77ca9afa193488ad"></h2>
 
@@ -182,7 +182,7 @@ The Android plugin mechanism also allows Java to be used to enable interaction w
 
 A .jar file containing the .class files for your plugin
 
- - Unity expects Java plugins to be built using JDK v1
+- Unity expects Java plugins to be built using JDK v1
     - `-source 1.6 -target 1.6`
 
 
@@ -237,13 +237,13 @@ emulator --avd A16_4.1.2
 
 ### Android.mk
 
- - jni/**Android.mk**
- - describes your sources and shared libraries to the build system 
- - tiny GNU makefile fragment 
- - defining project-wide settings that Application.mk, the build system, and your environment variables leave undefined. It can also override project-wide settings for specific modules
- - allows you to group your sources into modules. 
+- jni/**Android.mk**
+- describes your sources and shared libraries to the build system 
+- tiny GNU makefile fragment 
+- defining project-wide settings that Application.mk, the build system, and your environment variables leave undefined. It can also override project-wide settings for specific modules
+- allows you to group your sources into modules. 
     - A module is either a *static library*, a *shared library*, or a *standalone executable*
- - can define one or more modules in each **Android.mk** file
+- can define one or more modules in each **Android.mk** file
  
 
 <h2 id="bbc9105ee8508ce6e083a589a351e83a"></h2>
@@ -251,19 +251,19 @@ emulator --avd A16_4.1.2
 
 #### Basics
 
- - **LOCAL_PATH**
+- **LOCAL_PATH**
     - Android.mk file must begin by defining the LOCAL_PATH :
     - `LOCAL_PATH := $(call my-dir)`
     - macro `my-dir` returns the the directory containing the Android.mk file itself
- - **CLEAR_VARS**
+- **CLEAR_VARS**
     - `include $(CLEAR_VARS)`
     - CLEAR_VARS 指向一个特殊的 GNU Makefile (.mk), 这个 mk文件可以帮你 clear many LOCAL_XXX variables for you, such as LOCAL_MODULE, LOCAL_SRC_FILES, and LOCAL_STATIC_LIBRARIES, but not LOCAL_PATH. 
- - **LOCAL_MODULE**
+- **LOCAL_MODULE**
     - `LOCAL_MODULE := hello-jni`  -> libhello-jni.so
- - **LOCAL_SRC_FILES**
+- **LOCAL_SRC_FILES**
     - `LOCAL_SRC_FILES := hello-jni.c`
     - LOCAL_SRC_FILES contain a list of C and/or C++ source files
- - **BUILD_SHARED_LIBRARY**
+- **BUILD_SHARED_LIBRARY**
     - `include $(BUILD_SHARED_LIBRARY)`
     - BUILD_SHARED_LIBRARY 指向一个 GNU makefile, 这个mk文件帮助你 collects all the information you defined in LOCAL_XXX variables.
 
@@ -276,9 +276,9 @@ emulator --avd A16_4.1.2
 
 NDK 保留字:
 
- - Names that begin with LOCAL_, such as `LOCAL_MODULE`
- - Names that begin with PRIVATE_, NDK_, or APP.
- - Lower-case names, such as my-dir.
+- Names that begin with LOCAL_, such as `LOCAL_MODULE`
+- Names that begin with PRIVATE_, NDK_, or APP.
+- Lower-case names, such as my-dir.
 
 
 <h2 id="34a0ad7ce398db363c3bea74d3bf8158"></h2>
@@ -286,26 +286,26 @@ NDK 保留字:
 
 #### NDK-defined variables
 
- - **CLEAR_VARS**
+- **CLEAR_VARS**
     - `include $(CLEAR_VARS)`
     - undefines nearly all LOCAL_XXX variables 
- - **BUILD_SHARED_LIBRARY**
+- **BUILD_SHARED_LIBRARY**
     - `include $(BUILD_SHARED_LIBRARY)`
     - collects all the information you defined in LOCAL_XXX variables
     - LOCAL_MODULE and LOCAL_SRC_FILES must have been defined
     - .so extension
- - **BUILD_STATIC_LIBRARY**
+- **BUILD_STATIC_LIBRARY**
     - `include $(BUILD_STATIC_LIBRARY)`
     - .a extension
- - **PREBUILT_SHARED_LIBRARY**
+- **PREBUILT_SHARED_LIBRARY**
     - specify a prebuilt shared library
     - LOCAL_SRC_FILES must be a single path to a prebuilt shared library, eg. `foo/libfoo.so`
     - You can also reference a prebuilt library in another module by using the LOCAL_PREBUILTS variable
- - **PREBUILT_STATIC_LIBRARY**
- - **TARGET_ARCH**
- - **TARGET_PLATFORM**
- - **TARGET_ARCH_ABI**
- - **TARGET_ABI**
+- **PREBUILT_STATIC_LIBRARY**
+- **TARGET_ARCH**
+- **TARGET_PLATFORM**
+- **TARGET_ARCH_ABI**
+- **TARGET_ABI**
 
 ---
 
@@ -322,52 +322,52 @@ The variables in this section describe your module to the build system, and shou
 
 Variables:
 
- - **LOCAL_PATH**
+- **LOCAL_PATH**
     - give the path of the current file
     - define it at the start of your Android.mk file
     - `LOCAL_PATH := $(call my-dir)`
- - **LOCAL_MODULE**
+- **LOCAL_MODULE**
     - set name of your module 
     - `LOCAL_MODULE := "foo"`
- - **LOCAL_MODULE_FILENAME**
+- **LOCAL_MODULE_FILENAME**
     - optional variable to override the names that the build system uses by default
     - `LOCAL_MODULE_FILENAME := libnewfoo`
     - You cannot override filepath or file extension.
- - **LOCAL_SRC_FILES**
- - **LOCAL_CPP_EXTENSION**
+- **LOCAL_SRC_FILES**
+- **LOCAL_CPP_EXTENSION**
     - optional variable to indicate a file extension other than .cpp for your C++ source files
     - `LOCAL_CPP_EXTENSION := .cxx .cpp .cc`
- - **LOCAL_CPP_FEATURES**
+- **LOCAL_CPP_FEATURES**
     - optional variable to indicate that your code relies on specific C++ features
     - for prebuilt binaries, this variable also declares which features the binary depends on
     - recommend to use this variable instead of enabling -frtti and -fexceptions directly in LOCAL_CPPFLAGS definition.
     - LOCAL_CPP_FEATURES is for each module, whiel LOCAL_CPPFLAGS is for all modules
     - `LOCAL_CPP_FEATURES := rtti features`
- - **LOCAL_C_INCLUDES**
+- **LOCAL_C_INCLUDES**
     - optional variable to specify a list of include search path
     - `LOCAL_C_INCLUDES := $(LOCAL_PATH)//foo`
     - define before LOCAL_CFLAGS or LOCAL_CPPFLAGS
- - **LOCAL_CFLAGS**
+- **LOCAL_CFLAGS**
     - optional variable sets compiler flags
     - `LOCAL_CFLAGS += -I<path>,`
- - **LOCAL_CPPFLAGS** ?
- - **LOCAL_STATIC_LIBRARIES**
+- **LOCAL_CPPFLAGS** ?
+- **LOCAL_STATIC_LIBRARIES**
     - stores the list of static libraries modules on which the current module depends
- - **LOCAL_SHARED_LIBRARIES**
- - **LOCAL_WHOLE_STATIC_LIBRARIES**
+- **LOCAL_SHARED_LIBRARIES**
+- **LOCAL_WHOLE_STATIC_LIBRARIES**
     - 变体
     - useful when there are circular dependencies among several static libraries
- - **LOCAL_LDLIBS**
+- **LOCAL_LDLIBS**
     - 编译模块时要使用的附加的链接器选项
     - example tells the linker to generate a module that links to /system/lib/libz.so at load time:
     - `LOCAL_LDLIBS := -lz` 
- - **LOCAL_LDFLAGS**
+- **LOCAL_LDFLAGS**
     - example uses the ld.bfd linker on ARM/X86 GCC 4.6+, on which ld.gold is the default
     - `LOCAL_LDFLAGS += -fuse-ld=bfd`
- - **LOCAL_ALLOW_UNDEFINED_SYMBOLS**
+- **LOCAL_ALLOW_UNDEFINED_SYMBOLS**
     - undefined reference will throw error when building shared library
     - undefined reference will generate warnning when building static library
- - **LOCAL_ARM_MODE**
+- **LOCAL_ARM_MODE**
     - 默认情况下，arm目标二进制会以 thumb 的形式生成(16位)，
     - 你可以通过设置这个变量为 arm如果你希望你的 module 是以 32 位指令的形式
     - `LOCAL_ARM_MODE := arm`
@@ -383,14 +383,14 @@ Use `$(call <function>)` to evaluate **function macros**;
 
 they return textual information. 
 
- - my-dir
+- my-dir
     - `LOCAL_PATH := $(call my-dir)`
     - this macro really returns is the path of the last makefile, so `include $(LOCAL_PATH)/foo/Android.mk` will influence next `LOCAL_PATH := $(call my-dir)` call
- - all-subdir-makefiles
- - this-makefile 
+- all-subdir-makefiles
+- this-makefile 
     - Returns the path of the current makefile
- - parent-makefile , grand-parent-makefile
- - import-module
+- parent-makefile , grand-parent-makefile
+- import-module
     - A function that allows you to find and include a module's Android.mk file by the name of the module 
     - `$(call import-module,<name>)`
 
@@ -399,16 +399,16 @@ they return textual information.
 
 ### Application.mk
 
- - **APP_OPTIM**
+- **APP_OPTIM**
     - Define this optional variable as either release(default) or debug
     - Declaring **android:debuggable** in your application manifest's `<application>` tag will cause this variable to default to debug instead of release
- - **APP_CFLAGS**
- - **APP_CPPFLAGS**
- - **APP_LDFLAGS**
- - **APP_ABI**
+- **APP_CFLAGS**
+- **APP_CPPFLAGS**
+- **APP_LDFLAGS**
+- **APP_ABI**
     - `APP_ABI := armeabi armeabi-v7a x86 mips` 
- - **APP_PLATFORM**
- - **APP_STL**
+- **APP_PLATFORM**
+- **APP_STL**
     - by default, the NDK build system provides C++ headers for the minimal C++ runtime library (system/lib/libstdc++.so) provided by the Android system
 
 
@@ -460,8 +460,8 @@ using(AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.
 jar cvfM test.jar -C build/intermediates/classes/release/ com/usft
 ```
 
- - 将 build/intermediates/classes/release/ 目录下的com/xxxx 子目录，文件打包成 test.jar 
- - M : 不创建 manifest 文件
- - -C : 指定root目录，这些目录层级不会被打包进jar , com/usft 目录层级会被打包
+- 将 build/intermediates/classes/release/ 目录下的com/xxxx 子目录，文件打包成 test.jar 
+- M : 不创建 manifest 文件
+- -C : 指定root目录，这些目录层级不会被打包进jar , com/usft 目录层级会被打包
 
 ---

@@ -33,7 +33,7 @@
 
 ## The Series Data Structure
 
- - You think of it a cross between a list and a dictionary. 
+- You think of it a cross between a list and a dictionary. 
     - The items are all stored in an order and there's labels with which you can retrieve 
     - ![](../imgs/pandas_series.png)
 
@@ -58,9 +58,9 @@ pd.Series(numbers)
 dtype: int64
 ```
 
- - Underneath panda stores series values in a typed array using the Numpy library. 
+- Underneath panda stores series values in a typed array using the Numpy library. 
     - This offers significant speed-up when processing data versus traditional python lists. 
- - There's some other typing details that exist for performance that are important to know. 
+- There's some other typing details that exist for performance that are important to know. 
     - The most important is how Numpy and thus pandas handle missing data.
     - In Python, we have the none type to indicate a lack of data. 
     - But what do we do if we want to have a typed list like we do in the series object? 
@@ -81,7 +81,7 @@ pd.Series(numbers)
 dtype: float64
 ```
 
- - `NaN` is not `None` , and you can directly compare with `NaN`, use `np.isnan` instead
+- `NaN` is not `None` , and you can directly compare with `NaN`, use `np.isnan` instead
 
 ```python
 import numpy as np
@@ -95,7 +95,7 @@ np.isnan(np.nan)
 True
 ```
 
- - Create from Dictionary
+- Create from Dictionary
 
 ```python
 sports = {'Archery': 'Bhutan',
@@ -114,7 +114,7 @@ s.index
 Index(['Archery', 'Golf', 'Sumo', 'Taekwondo'], dtype='object')
 ```
 
- - You could also separate your index creation from the data by passing in the index as a list explicitly to the series
+- You could also separate your index creation from the data by passing in the index as a list explicitly to the series
 
 ```python
 s = pd.Series(['Tiger', 'Bear', 'Moose'], index=['India', 'America', 'Canada'])
@@ -125,7 +125,7 @@ Canada     Moose
 dtype: object
 ```
 
- - So what happens if your list of values in the index object are not aligned with the keys in your dictionary for creating the series? 
+- So what happens if your list of values in the index object are not aligned with the keys in your dictionary for creating the series? 
 
 ```python
 sports = {'Archery': 'Bhutan',
@@ -145,7 +145,7 @@ dtype: object
 
 ## Querying a Series
 
- - A panda.Series can be queried, either by the index position or the index label. 
+- A panda.Series can be queried, either by the index position or the index label. 
     - To query by numeric location, starting at zero, use the `iloc` attribute.
     - To query by the index label, you can use the `loc` attribute.
 
@@ -175,7 +175,7 @@ s['Golf']  # same as Loc
 'Scotland'
 ```
 
- - So what happens if your index is a list of integers? 
+- So what happens if your index is a list of integers? 
     - This is a bit complicated, and Pandas can't determine automatically whether you're intending to query by index position or index label. 
     - So you need to be careful when using the indexing operator on the series itself. 
     - And the safer option is to be more explicit and use the `iloc` `or` loc attributes directly. 
@@ -196,7 +196,7 @@ dtype: object
 s[0] # This won't call s.iloc[0] but generates an error
 ```
 
- - working with series
+- working with series
     - Pandas and the underlying NumPy libraries support a method of computation called vectorization. 
 
 ```python
@@ -226,7 +226,7 @@ s.head()
 dtype: int64
 ```
 
- - iterate series , slow than broadcasting 
+- iterate series , slow than broadcasting 
 
 ```python
 for label, value in s.iteritems():
@@ -234,7 +234,7 @@ for label, value in s.iteritems():
 s.head()
 ```
 
- - If the value you pass in as the index doesn't exist, then a new entry is added. And keep in mind, indices can have mixed types. While it's important to be aware of the typing going on underneath, Pandas will automatically change the underlying NumPy types as appropriate. 
+- If the value you pass in as the index doesn't exist, then a new entry is added. And keep in mind, indices can have mixed types. While it's important to be aware of the typing going on underneath, Pandas will automatically change the underlying NumPy types as appropriate. 
 
 ```python
 s = pd.Series([1, 2, 3])
@@ -247,7 +247,7 @@ Animal    Bears
 dtype: object
 ```
 
- - Up until now I've shown only examples of a series where the index values were unique. 
+- Up until now I've shown only examples of a series where the index values were unique. 
     - I want to end this lecture by showing an example where index values are not unique, and this makes data frames different, conceptually, that a relational database might be. 
 
 ```python
@@ -297,12 +297,12 @@ Cricket      England
 dtype: object
 ```
 
- - There are a couple of important considerations when using append. 
+- There are a couple of important considerations when using append. 
     - First, Pandas is going to take your series and try to **infer** the best data types to use. 
         - In this example, everything is a string, so there's no problems here. 
     - Second, the append method **doesn't** actually change the underlying series.
         - It instead returns a new series which is made up of the two appended together. 
- - This is actually a significant issue for new Pandas users who are used to objects being changed in place. 
+- This is actually a significant issue for new Pandas users who are used to objects being changed in place. 
     - So watch out for it, not just with append but with other Pandas functions as well.  
 
 ---
@@ -312,7 +312,7 @@ dtype: object
 
 ## The DataFrame Data Structure
 
- - The DataFrame is conceptually a two-dimensional series object
+- The DataFrame is conceptually a two-dimensional series object
     - where there's an index and multiple columns of content, with each column having a label. 
     - In fact, the distinction between a column and a row is really only a conceptual distinction. 
     - And you can think of the DataFrame itself as simply a two-axes labeled array. 
@@ -358,9 +358,9 @@ Store 1     2.5
 Name: Cost, dtype: float64
 ```
 
- - What if we just wanted to do column selection and just get a list of all of the costs? 
- - There is a couple of options.
- - First, you can get a transpose of the DataFrame, using the capital T attribute, which swaps all of the columns and rows. 
+- What if we just wanted to do column selection and just get a list of all of the costs? 
+- There is a couple of options.
+- First, you can get a transpose of the DataFrame, using the capital T attribute, which swaps all of the columns and rows. 
     - This works, but it's pretty ugly. 
 
 ```python
@@ -377,11 +377,11 @@ Store 2         5
 Name: Cost, dtype: object
 ```
 
- - Since iloc and loc are used for row selection, the Panda's developers reserved indexing operator directly on the DataFrame for column selection.
+- Since iloc and loc are used for row selection, the Panda's developers reserved indexing operator directly on the DataFrame for column selection.
     - In a Panda's DataFrame, columns always have a name. 
     - So this selection is always label based, not as confusing as it was when using the square bracket operator on the series objects. 
     - For those familiar with relational databases, this operator is analogous to column projection. 
- - Finally, since the result of using the indexing operators, the DataFrame or series, you can chain operations together.
+- Finally, since the result of using the indexing operators, the DataFrame or series, you can chain operations together.
     - But chaining can come with some costs and is best avoided if you can use another approach. 
     - In particular, chaining tends to cause Pandas to return a copy of the DataFrame instead of a view on the DataFrame.
 
@@ -404,7 +404,7 @@ Store 1 Kevyn   2.5
 Store 2 Vinod   5.0
 ```
 
- - let's talk about dropping data. 
+- let's talk about dropping data. 
     - It's easy to delete data in series and DataFrames, and we can use the drop function to do so
     - The drop function doesn't change the DataFrame by default. And instead, returns to you a copy of the DataFrame with the given rows removed. 
 
@@ -420,7 +420,7 @@ Store 1 2.5     Kitty Litter    Kevyn
 Store 2 5.0     Bird Seed       Vinod
 ```
 
- - Let's make a copy with the copy method and do a drop on it instead. 
+- Let's make a copy with the copy method and do a drop on it instead. 
     - This is a very typical pattern in Pandas, where in place changes to a DataFrame are only done if need be, usually on changes involving indices. 
    
 ```python
@@ -431,11 +431,11 @@ copy_df
 Store   2   5.0     Bird Seed       Vinod
 ```
 
- - Drop has two interesting optional parameters. 
+- Drop has two interesting optional parameters. 
     - The first is called in place, and if it's set to true, the DataFrame will be updated in place, instead of a copy being returned. 
     - The second parameter is the axes, which should be dropped. By default, this value is 0, indicating the row axes. But you could change it to 1 if you want to drop a column. 
 
- - There is a second way to drop a column, however. And that's directly through the use of the indexing operator, using the del keyword. 
+- There is a second way to drop a column, however. And that's directly through the use of the indexing operator, using the del keyword. 
 
 ```python
 del copy_df['Name']
@@ -444,7 +444,7 @@ copy_df
 Store 2     5.0     Bird Seed
 ```
 
- - Finally, adding a new column to the DataFrame is as easy as assigning it to some value.
+- Finally, adding a new column to the DataFrame is as easy as assigning it to some value.
 
 ```python
 df['Location'] = None
@@ -462,15 +462,15 @@ Store 2     5.0     Bird Seed       Vinod   None
 
 ## Dataframe Indexing and Loading
 
- - The common work flow is to read your data into a DataFrame then reduce this DataFrame to the particular columns or rows that you're interested in working with.
- - Panda's toolkit tries to give you views on a DataFrame.
- - so you have to be aware that any changes to the DataFrame you're working on may have an impact on the base data frame you used originally. 
+- The common work flow is to read your data into a DataFrame then reduce this DataFrame to the particular columns or rows that you're interested in working with.
+- Panda's toolkit tries to give you views on a DataFrame.
+- so you have to be aware that any changes to the DataFrame you're working on may have an impact on the base data frame you used originally. 
     - If you want to explicitly use a copy, then you should consider calling the copy method on the DataFrame for it first. 
 
 ---
 
- - like vim, Jupyter notebook can use `!` to run OS shell command.
- - pandas support file format lick csv, excel, html , ... and so on
+- like vim, Jupyter notebook can use `!` to run OS shell command.
+- pandas support file format lick csv, excel, html , ... and so on
 
 ```python
 // read csv
@@ -485,10 +485,10 @@ df.head()
 4   Armenia (ARM)   5   1   2   9   12  6   0   0   0   0   11  1   2   9   12
 ```
 
- - Read csv has a number of parameters that we can use to indicate to Pandas how rows and columns should be labeled. 
+- Read csv has a number of parameters that we can use to indicate to Pandas how rows and columns should be labeled. 
     - let column 0 be index 
     - and skip the first one row
- - but change column index may lead to duplicated column name 
+- but change column index may lead to duplicated column name 
     - Panda will add  .1 and .2 to make things more unique. 
 
 ```python
@@ -503,7 +503,7 @@ Armenia (ARM)   5   1   2   9   12  6   0   0   0   0   11  1   2   9   12
 Australasia (ANZ) [ANZ] 2   3   4   5   12  0   0   0   0   0   2   3   4   5   12
 ```
 
- - But this labeling isn't really as clear as it could be, so we should clean up the data file.
+- But this labeling isn't really as clear as it could be, so we should clean up the data file.
     - Panda stores a list of all of the columns in the .columns attribute.
     - columns attribute. We can change the values of the column names by iterating over this list and calling the rename method of the data frame. 
 
@@ -536,7 +536,7 @@ Armenia (ARM)   5   1   2   9   12  6   0   0   0   0   11  1   2   9   12
 Australasia (ANZ) [ANZ] 2   3   4   5   12  0   0   0   0   0   2   3   4   5   12
 ```
 
- - pandas provide powerful support on excel 
+- pandas provide powerful support on excel 
     - skiprows :  
     - skip_footer : 
     - usecols : specify columns to use
@@ -564,9 +564,9 @@ for i,col in enumerate(df.columns):
 
 ### Boolean masking
 
- - Boolean masking is the heart of fast and efficient querying in NumPy. 
- - A Boolean mask is an array which can be of one dimension like a series, or two dimensions like a data frame, where each of the values in the array are either true or false. 
- - This array is essentially overlaid on top of the data structure that we're querying. 
+- Boolean masking is the heart of fast and efficient querying in NumPy. 
+- A Boolean mask is an array which can be of one dimension like a series, or two dimensions like a data frame, where each of the values in the array are either true or false. 
+- This array is essentially overlaid on top of the data structure that we're querying. 
     - And any cell aligned with the true value will be admitted into our final result, 
     - and any sign aligned with a false value will not. 
 
@@ -607,9 +607,9 @@ Algeria (ALG)   12.0    5.0 2.0 8.0 15.0    3.0 0.0 0.0 0.0 0.0 15.0    5.0 2.0 
 Argentina (ARG) 23.0    18.0    24.0    28.0    70.0    18.0    0.0 0.0 0.0 0.0 41.0    18.0    24.0    28.0    70.0
 ```
 
- - we don't actually have to use the *where* function explicitly
- - pandas  allow the indexing operator to take a Boolean mask as a value instead of just a list of column names. 
- - and you can chain together a bunch of and/or statements in order to create more complex queries, and the result is a single Boolean mask. 
+- we don't actually have to use the *where* function explicitly
+- pandas  allow the indexing operator to take a Boolean mask as a value instead of just a list of column names. 
+- and you can chain together a bunch of and/or statements in order to create more complex queries, and the result is a single Boolean mask. 
 
 
 
@@ -640,8 +640,8 @@ Name: Combined total, dtype: int64
 
 ## Indexing Dataframes
 
- - The index is essentially a row level label,in which case we get numeric values, or they can be set explicitly
- - Set index is a destructive process, it doesn't keep the current index. 
+- The index is essentially a row level label,in which case we get numeric values, or they can be set explicitly
+- Set index is a destructive process, it doesn't keep the current index. 
     - If you want to keep the current index, you need to manually create a new column and copy into it values from the index attribute. 
 
 ```python
@@ -663,13 +663,13 @@ Gold
 
 ```
 
- - You'll see that when we create a new index from an existing column it appears that a new first row has been added with empty values. 
- - This isn't quite what's happening because an empty value is actually rendered either as a none or an NaN if the data type of the column is numeric. 
- - What's actually happened is that the index has a name. 
+- You'll see that when we create a new index from an existing column it appears that a new first row has been added with empty values. 
+- This isn't quite what's happening because an empty value is actually rendered either as a none or an NaN if the data type of the column is numeric. 
+- What's actually happened is that the index has a name. 
     - Whatever the column name was in the Jupiter notebook has just provided this in the output. 
     - 所以这是没问题的？只是显示问题？
  
- - We can get rid of the index completely by calling the function `reset_index`
+- We can get rid of the index completely by calling the function `reset_index`
     - This promotes the index into a column and creates a default numbered index. 
 
 ```python
@@ -683,7 +683,7 @@ Gold    # Summer    Silver  Bronze  Total   # Winter    Gold.1  Silver.1    Bron
 
 - One nice feature of pandas is that it has the option to do **multi-level indexing**
     - This is similar to composite keys in relational database systems. 
- - To create a multi-level index, we simply call set index and give it a list of columns that we're interested in promoting to an index. 
+- To create a multi-level index, we simply call set index and give it a list of columns that we're interested in promoting to an index. 
 
 ```python
 df = pd.read_csv('census.csv')
@@ -722,7 +722,7 @@ df.head()
 
 ![](../imgs/pandas_multi_index.png)
 
- - now how to query this dataframe ?
+- now how to query this dataframe ?
 
 ```python
 df.loc['Michigan', 'Washtenaw County']
@@ -749,8 +749,8 @@ Michigan    Washtenaw County    977 3826    3780    3662    3683    3709    3455
 df = df.append(pd.Series(data={'Cost': 3.00, 'Item Purchased': 'Kitty Food'}, name=('Store 2', 'Kevyn')))
 ```
 
- - name : indicate the combine index
- - data : record data
+- name : indicate the combine index
+- data : record data
 
 <h2 id="ebae125e702774e5fc2e20a8dd47e231"></h2>
 
@@ -762,7 +762,7 @@ df = df.append(pd.Series(data={'Cost': 3.00, 'Item Purchased': 'Kitty Food'}, na
 
 #### 行选择
 
- - Pandas进行行选择一般有三种方法：
+- Pandas进行行选择一般有三种方法：
     - 连续多行的选择用类似于python的列表切片
     - 按照指定的索引选择一行或多行，使用loc[]
     - 按照指定的位置选择一行多多行，使用iloc[]
@@ -795,8 +795,8 @@ t = fandango_drop.iloc[2]  # return Series , cuz only 1 record
 
 ### 列选择
 
- - 列选择比较简单，只要直接把列名传递过去即可
- - 如果有多列的数据，要单独指出列名或列的索引号
+- 列选择比较简单，只要直接把列名传递过去即可
+- 如果有多列的数据，要单独指出列名或列的索引号
 
 ```python
 q = fandango['FILM']   # choose single column
@@ -814,7 +814,7 @@ w = fandango[list(range(5))]  # works
 
 ## Missing Values
 
- - One of the handy functions that Pandas has for working with missing values is the filling function
+- One of the handy functions that Pandas has for working with missing values is the filling function
     - This function takes a number or parameters, for instance, you could pass in a single value which is called a scalar value to change all of the missing data to one value. 
     - another important parameters is `method`. The two common fill values are ffill and bfill.
         - ffill is for forward filling and it updates an na value for a particular cell with the value from the previous row. 

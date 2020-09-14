@@ -47,22 +47,22 @@ jboolean，jbyte，jchar，jshort，jint，jlong，jfloat，jdouble
 
 比如:
 
- - "Ljava/lang/String;" -- `String`
- - "[I"  --  `int[]`
- - "[Ljava/lang/Object;" --  `Object[]`
+- "Ljava/lang/String;" -- `String`
+- "[I"  --  `int[]`
+- "[Ljava/lang/Object;" --  `Object[]`
 
 ***JNI方法描述符，主要就是在括号里放置参数，在括号后面放置返回类型***
 
 如下：
 
- - "()Ljava/lang/String;" --  `String f()` ;
- - "(ILjava/lang/Class;)J" -- `long f(int i, Class c)`;
- - "([B)V"  --  `void String(byte[] bytes)`;
- - "(II)V" -- void Func(int, int);
+- "()Ljava/lang/String;" --  `String f()` ;
+- "(ILjava/lang/Class;)J" -- `long f(int i, Class c)`;
+- "([B)V"  --  `void String(byte[] bytes)`;
+- "(II)V" -- void Func(int, int);
 
 
 Java 类型 |  符号
- -- | -- 
+-- | -- 
 Boolean      |          Z
 Byte         |       B
 Char       |        C

@@ -45,17 +45,17 @@
 
 ## 概要
 
- - JS 的`&& || `更像python里面的 and / or
- - blocks do not have scope (like python); only functions have a scope.
+- JS 的`&& || `更像python里面的 and / or
+- blocks do not have scope (like python); only functions have a scope.
     - 在ECMAScript 6中你可以通过使用let and const 来定义块级别的变量。
- - for...of array
+- for...of array
     - for...in object
- - function, Array 都是 Object, 所以都可以通过new 创建
- - function 有很多手段支持变长参数 
+- function, Array 都是 Object, 所以都可以通过new 创建
+- function 有很多手段支持变长参数 
     - call:  func.apply(null, arg_array ) 
     - or func( ... arg_array )
- - 箭头函数没有自己的this
- - 理解this
+- 箭头函数没有自己的this
+- 理解this
     - JS（ES5）三种函数调用形式：
         - func(p1, p2) 
         - obj.child.method(p1, p2)
@@ -79,7 +79,7 @@
 
 ## Overview
 
- - JavaScript's types are:
+- JavaScript's types are:
     - Number : double-precision 64-bit
     - String
     - Boolean
@@ -92,25 +92,25 @@
     - null
     - undefined
 
- - And there are some built-in Error types as well.
+- And there are some built-in Error types as well.
 
 <h2 id="cbebfa21dbe8e87e788d94a76f073807"></h2>
 
 
 ## Numbers
 
- - Math
+- Math
     - Math.sin(3.5)
- - convert a string to an integer
+- convert a string to an integer
     - parseInt('123', 10); // 123
     - parseInt('010', 10); // 10
         - In older browsers, strings beginning with a "0" are assumed to be in octal
         - but this hasn't been the case since 2013 or so , octal has been removed.
     - parseInt('0x10'); // 16
     - parseInt('11', 2); // 3
- - parse floating point numbers 
+- parse floating point numbers 
     - parseFloat() always uses base 10. 
- - You can also use the unary + operator to convert values to numbers:
+- You can also use the unary + operator to convert values to numbers:
 
 ```
 + '42';   // 42
@@ -118,22 +118,22 @@
 + '0x10'; // 16
 ```
 
- - A special value called `NaN` (short for "Not a Number") is returned if the string is non-numeric:
+- A special value called `NaN` (short for "Not a Number") is returned if the string is non-numeric:
 
 ```
 parseInt('hello', 10); // NaN
 ```
 
- - You can test for NaN using the built-in isNaN() function:
+- You can test for NaN using the built-in isNaN() function:
     - `isNaN(NaN); // true`
- - JavaScript also has the special values Infinity and -Infinity:
+- JavaScript also has the special values Infinity and -Infinity:
 
 ```
 1 / 0; //  Infinity
 -1 / 0; // -Infinity
 ```
 
- - You can test for Infinity, -Infinity and NaN values using the built-in isFinite() function
+- You can test for Infinity, -Infinity and NaN values using the built-in isFinite() function
 
 ```
 isFinite(1 / 0); // false
@@ -146,7 +146,7 @@ isFinite(NaN); // false
 
 ## Strings
 
- - sequences of Unicode characters , More accurately, they are sequences of UTF-16 code units
+- sequences of Unicode characters , More accurately, they are sequences of UTF-16 code units
 
 ```
 'hello'.length; // 5
@@ -160,8 +160,8 @@ isFinite(NaN); // false
 
 ## Other types
 
- - javascript 区分 null 和 undefined
- - boolean  ( support `&& || !` , **`&& ||` 更像python里面的 and / or**  )
+- javascript 区分 null 和 undefined
+- boolean  ( support `&& || !` , **`&& ||` 更像python里面的 and / or**  )
     1. false, 0, empty strings (""), NaN, null, and undefined all become false.
     2. All other values become true.
 
@@ -172,7 +172,7 @@ Boolean('');  // false
 Boolean(234); // true
 ```
 
- - The && and || operators use short-circuit logic
+- The && and || operators use short-circuit logic
 
 ```
 var name = o && o.getName();
@@ -185,7 +185,7 @@ var name = cachedName || (cachedName = getName());
 
 ## Variables
 
- - declared keywords
+- declared keywords
     - let
         - to declare block-level variables.
         - available from the block it is enclosed in.
@@ -213,7 +213,7 @@ for (var myVarVariable = 0; myVarVariable < 5; myVarVariable++) {
 // myVarVariable *is* visible out here
 ```
 
- - An important difference between JavaScript and other languages like Java is that: 
+- An important difference between JavaScript and other languages like Java is that: 
     - **in JavaScript, blocks do not have scope; only functions have a scope**. 
     - So if a variable is defined using var in a compound statement (for example inside an if control structure), it will be visible to the entire function. 
     - However, starting with ECMAScript 2015, let and const declarations allow you to create block-scoped variables.
@@ -223,32 +223,32 @@ for (var myVarVariable = 0; myVarVariable < 5; myVarVariable++) {
 
 ## Operators
 
- - `+, -, *, / , % `
- - `>= , <= , ==`
+- `+, -, *, / , % `
+- `>= , <= , ==`
 
 ```
 '3' + 4 + 5;  // "345"
  3 + 4 + '5'; // "75"
 ```
 
- - `==` operator performs type coercion if you give it different types
+- `==` operator performs type coercion if you give it different types
 
 ```
 123 == '123'; // true
 1 == true; // true
 ```
 
- - To avoid type coercion, use the triple-equals operator:
+- To avoid type coercion, use the triple-equals operator:
 
 ```
 123 === '123'; // false
 1 === true;    // false
 ```
 
- - There are also != and !== operators.
- - `>` , `<` 等等 操作也会 做类型转换
+- There are also != and !== operators.
+- `>` , `<` 等等 操作也会 做类型转换
 
- - bitwise operations also support
+- bitwise operations also support
     - `& | `
     - XOR `^`
     - NOT `~`
@@ -259,7 +259,7 @@ for (var myVarVariable = 0; myVarVariable < 5; myVarVariable++) {
 
 ## Control structures
 
- - JavaScript has a similar set of control structures to other languages in the C family
+- JavaScript has a similar set of control structures to other languages in the C family
 
 <h2 id="015a27f9173988da8d0b60ad7c792c40"></h2>
 
@@ -309,7 +309,7 @@ for (var i = 0; i < 5; i++) {
 
 ### for...of  / for...in
 
- - JavaScript also contains two other prominent for loops: for...of
+- JavaScript also contains two other prominent for loops: for...of
 
 ```
 for (let value of array) {
@@ -318,7 +318,7 @@ for (let value of array) {
 ```
 
 
- - and for...in:
+- and for...in:
 
 ```
 for (let property in object) {
@@ -326,14 +326,14 @@ for (let property in object) {
 }
 ```
 
- - 你也可以使用 for..in 来遍历数组，但是不推荐，原因见下面 Array 一节
+- 你也可以使用 for..in 来遍历数组，但是不推荐，原因见下面 Array 一节
 
 <h2 id="7b8ca31408defce69dd51a57cfeff402"></h2>
 
 
 ### ternary operator
 
- - JavaScript has a ternary operator for conditional expressions:
+- JavaScript has a ternary operator for conditional expressions:
 
 ```
 var allowed = (age > 18) ? 'yes' : 'no';
@@ -344,7 +344,7 @@ var allowed = (age > 18) ? 'yes' : 'no';
 
 ### switch
 
- - The switch statement can be used for multiple branches based on a number or string:
+- The switch statement can be used for multiple branches based on a number or string:
 
 ```
 switch (action) {
@@ -364,9 +364,9 @@ switch (action) {
 
 ## Objects
 
- - JavaScript objects can be thought of as simple collections of name-value pairs
+- JavaScript objects can be thought of as simple collections of name-value pairs
     - As such, they are similar to: Dictionaries in Python.
- - create an empty object:
+- create an empty object:
 
 ```
 var obj = new Object();
@@ -374,7 +374,7 @@ var obj = new Object();
 var obj = {};
 ```
 
- - This syntax is also the **core of JSON format** and should be preferred at all times.
+- This syntax is also the **core of JSON format** and should be preferred at all times.
 
 ```
 var obj = {
@@ -394,7 +394,7 @@ obj.for = 'Simon'; // Syntax error, because 'for' is a reserved word
 obj['for'] = 'Simon'; // works fine
 ```
 
- - The following example creates an object prototype, Person and an instance of that prototype, You.
+- The following example creates an object prototype, Person and an instance of that prototype, You.
 
 ```
 function Person(name, age) {
@@ -425,7 +425,7 @@ var a = ['dog', 'cat', 'hen'];
 a.length; // 3
 ```
 
- - Note that array.length isn't necessarily the number of items in the array. 
+- Note that array.length isn't necessarily the number of items in the array. 
     - the length of the array is one more than the highest index.
 
 ```
@@ -434,11 +434,11 @@ a[100] = 'fox';
 a.length; // 101
 ```
 
- - we can use for...of loop for iterable objects such as arrays:
- - You could also iterate over an array using a for...in loop. 
+- we can use for...of loop for iterable objects such as arrays:
+- You could also iterate over an array using a for...in loop. 
     - But if someone added new properties to Array.prototype, they would also be iterated over by this loop for...in
     - Therefore this loop type is not recommended for arrays.
- - Another way of iterating over an array that was added with ECMAScript 5 is forEach():
+- Another way of iterating over an array that was added with ECMAScript 5 is forEach():
 
 ```
 ['dog', 'cat', 'hen'].forEach(function(currentValue, index, array) {
@@ -446,13 +446,13 @@ a.length; // 101
 });
 ```
 
- - append an item
+- append an item
 
 ```
 a.push(item);
 ```
 
- - [full documentation for array methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+- [full documentation for array methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
 
 ---
 
@@ -477,7 +477,7 @@ a.unshift(item1[, item2[, ...[, itemN]]]) | Prepends items to the start of the a
 
 ## Functions
 
- - The most basic function couldn't be much simpler:
+- The most basic function couldn't be much simpler:
 
 ```
 function add(x, y) {
@@ -486,7 +486,7 @@ function add(x, y) {
 }
 ```
 
- - That may seem a little silly, but functions have access to an additional variable inside their body called *arguments*
+- That may seem a little silly, but functions have access to an additional variable inside their body called *arguments*
 
 ```
 function add() {
@@ -500,7 +500,7 @@ function add() {
 add(2, 3, 4, 5); // 14
 ```
 
- - This is pretty useful, but it does seem a little verbose
+- This is pretty useful, but it does seem a little verbose
     - you can also use **rest parameter operator** to do same thing
 
 ```
@@ -515,7 +515,7 @@ function avg(...args) {
 avg(2, 3, 4, 5); // 3.5
 ```
 
- - but how do you calc average on all array's elements ?
+- but how do you calc average on all array's elements ?
     - you may re-write another function like :
 
 ```
@@ -523,7 +523,7 @@ function avgArray(arr) { ... }
 avgArray([2, 3, 4, 5]); // 3.5 
 ```
 
- - But it would be nice to be able to reuse the function that we've already created.
+- But it would be nice to be able to reuse the function that we've already created.
     - Luckily, JavaScript lets you call a function with an arbitrary array of arguments,
     - using the apply() method of any function object.
 
@@ -531,22 +531,22 @@ avgArray([2, 3, 4, 5]); // 3.5
 avg.apply(null, [2, 3, 4, 5]); // 3.5
 ```
 
- - 你还可以使用 **spread operator**  把数组展开
+- 你还可以使用 **spread operator**  把数组展开
 
 ```
 const numbers = [1, 2, 3];
 avg( ...numbers )
 ```
 
- - anonymous functions
+- anonymous functions
 
 ```
 var avg = function() { ... }
 ```
 
- - It's extremely powerful, as it lets you put a full function definition anywhere that you would normally put an expression. 
+- It's extremely powerful, as it lets you put a full function definition anywhere that you would normally put an expression. 
     - This enables all sorts of clever tricks. 
- - Here's a way of "hiding" some local variables — like block scope in C:
+- Here's a way of "hiding" some local variables — like block scope in C:
 
 ```
 var a = 1;
@@ -561,7 +561,7 @@ a; // 4
 b; // 2
 ```
 
- - 现在带来一个问题： 匿名函数如何递归调用？
+- 现在带来一个问题： 匿名函数如何递归调用？
     - You can use named IIFEs (Immediately Invoked Function Expressions)
     - see `counter` in above codes
 
@@ -584,8 +584,8 @@ var charsInBody = (function counter(elm) {
 
 ## Custom objects
 
- - JavaScript is a prototype-based language that contains no class statement
- - Instead, JavaScript uses functions as classes. 
+- JavaScript is a prototype-based language that contains no class statement
+- Instead, JavaScript uses functions as classes. 
 
 ```
 function makePerson(first, last) {
@@ -603,9 +603,9 @@ s = makePerson('Simon', 'Willison');
 personFullName(s); // "Simon Willison"
 ```
 
- - This works, but it's pretty ugly. 
+- This works, but it's pretty ugly. 
     - **You end up with dozens of functions in your global namespace.**
- - What we really need is a way to attach a function to an object. 
+- What we really need is a way to attach a function to an object. 
     - Since functions are objects, this is easy:
 
 ```
@@ -624,9 +624,9 @@ s.fullName(); // "Simon Willison"
 ```
 
 
- - There's something here we haven't seen before: the **this** keyword
+- There's something here we haven't seen before: the **this** keyword
     - Used inside a function, `this` refers to the current object. 
- - Note that this is a frequent cause of mistakes
+- Note that this is a frequent cause of mistakes
 
 ```
 s = makePerson('Simon', 'Willison');
@@ -634,8 +634,8 @@ var fullName = s.fullName;
 fullName(); // undefined undefined
 ```
 
- - When we call fullName() alone, without using s.fullName(), `this` is bound to the global object.
- - We can take advantage of the this keyword to improve our makePerson function:
+- When we call fullName() alone, without using s.fullName(), `this` is bound to the global object.
+- We can take advantage of the this keyword to improve our makePerson function:
 
 ```
 function Person(first, last) {
@@ -651,16 +651,16 @@ function Person(first, last) {
 var s = new Person('Simon', 'Willison');
 ```
 
- - We have introduced another keyword: **new**.
+- We have introduced another keyword: **new**.
     - new is strongly related to this
     - It creates a brand new empty object,
         - and then calls the function specified,
         - with `this` set to that new object.  
- - Note: function specified with `this` does not return a value but merely modifies the this object. 
+- Note: function specified with `this` does not return a value but merely modifies the this object. 
     - It's `new` that returns the `this` object to the calling site.
- - Functions that are designed to be called by `new` are called constructor functions. 
+- Functions that are designed to be called by `new` are called constructor functions. 
 
- - 我们的 Person 看起来已经不错了。但是每次创建一个  Person 对象，我们就会创建一个全新的 function 对象。
+- 我们的 Person 看起来已经不错了。但是每次创建一个  Person 对象，我们就会创建一个全新的 function 对象。
     - function 应该是共享的才好
 
 ```
@@ -675,7 +675,7 @@ function Person(first, last) {
 }
 ```
 
- - 更好的做法:
+- 更好的做法:
 
 ```
 function Person(first, last) {
@@ -687,10 +687,10 @@ Person.prototype.fullName = function() {
 };
 ```
 
- - **Person.prototype** is an object shared by all instances of Person.
+- **Person.prototype** is an object shared by all instances of Person.
     - 当你尝试 访问 没有设置的 Person属性时， Javascript 都会检查 Person.prototype 看属性是否存在。
 
- - Interestingly, you can also add things to the prototype of built-in JavaScript objects.
+- Interestingly, you can also add things to the prototype of built-in JavaScript objects.
 
 ```
 var s = 'Simon';
@@ -709,7 +709,7 @@ s.reversed(); // nomiS
 'This can now be reversed'.reversed(); // desrever eb won nac sihT
 ```
 
- - the prototype forms part of a chain
+- the prototype forms part of a chain
     - The root of that chain is Object.prototype, whose methods include toString() 
     - This is useful for debugging our Person objects:
 
@@ -723,7 +723,7 @@ Person.prototype.toString = function() {
 s.toString(); // "<Person: Simon Willison>"
 ```
 
- - Remember how avg.apply() had a null first argument? 
+- Remember how avg.apply() had a null first argument? 
     - The first argument to apply() is the object that should be treated as 'this'.
     - For example, here's a trivial implementation of *new*:
 
@@ -743,7 +743,7 @@ var bill = trivialNew(Person, 'William', 'Orange');
 var bill = new Person('William', 'Orange');
 ```
 
- - apply() has a sister function named `call`
+- apply() has a sister function named `call`
     - which again lets you set `this` but takes an expanded argument list as opposed to an array.
 
 ```
@@ -767,8 +767,8 @@ s.lastNameCaps(); // WILLISON
 
 ### arrow function
 
- - An arrow function expression has a shorter syntax than a function expression and does not have its own `this, arguments, super, or new.target`. 
- - These function expressions are best suited for non-method functions, and they cannot be used as constructors.
+- An arrow function expression has a shorter syntax than a function expression and does not have its own `this, arguments, super, or new.target`. 
+- These function expressions are best suited for non-method functions, and they cannot be used as constructors.
 
 ```
 var materials = [
@@ -786,7 +786,7 @@ console.log(materials.map(material => material.length));
 
 ### Class
 
- - 只是语法糖， 并没有引入任何新模型
+- 只是语法糖， 并没有引入任何新模型
 
 <h2 id="12a4166e02c1f403d1f1edab72b67926"></h2>
 
@@ -834,12 +834,12 @@ console.log(Rectangle.name);
 
 #### Class body and method definitions
 
- - Strict mode
+- Strict mode
     - The bodies of class declarations and class expressions are executed in *strict mode* , i.e.:
         - constructor, static and prototype methods, getter and setter functions
- - Constructor
+- Constructor
     - constructor can use the *super* keyword to call the constructor of the super class.
- - Prototype methods
+- Prototype methods
     - see  method definitions
 
 ```
@@ -862,7 +862,7 @@ const square = new Rectangle(10, 10);
 console.log(square.area); // 100
 ```
 
- - Static methods
+- Static methods
     - Static methods are called without instantiating their class and **cannot** be called through a class instance. 
 
 ```
@@ -885,7 +885,7 @@ console.log(Point.distance(p1, p2));
 
 **Instance properties**
 
- - Instance properties must be defined inside of class methods:
+- Instance properties must be defined inside of class methods:
 
 ```
 class Rectangle {
@@ -896,7 +896,7 @@ class Rectangle {
 }
 ```
 
- - Static class-side properties and prototype data properties must be defined outside of the ClassBody declaration:
+- Static class-side properties and prototype data properties must be defined outside of the ClassBody declaration:
 
 ```
 Rectangle.staticWidth = 20;
@@ -929,9 +929,9 @@ var d = new Dog('Mitzie');
 d.speak(); // Mitzie barks.
 ```
 
- - If there is a constructor present in subclass, it needs to first call super() before using "this".
+- If there is a constructor present in subclass, it needs to first call super() before using "this".
 
- - One may also extend traditional function-based "classes":
+- One may also extend traditional function-based "classes":
 
 ```
 function Animal (name) {
@@ -952,7 +952,7 @@ var d = new Dog('Mitzie');
 d.speak(); // Mitzie barks.
 ```
 
- - Note that classes cannot extend regular (non-constructible) objects. 
+- Note that classes cannot extend regular (non-constructible) objects. 
     - If you want to inherit from a regular object, you can instead use `Object.setPrototypeOf()`:
 
 ```
@@ -980,9 +980,9 @@ d.speak(); // Mitzie makes a noise.
 
 #### Species
 
- - You might want to return `Array` objects in your derived array class MyArray. 
- - The species pattern lets you override default constructors.
- - For example, when using methods such as map() that returns the default constructor,
+- You might want to return `Array` objects in your derived array class MyArray. 
+- The species pattern lets you override default constructors.
+- For example, when using methods such as map() that returns the default constructor,
     - you want these methods to return a parent Array object, 
     - instead of the MyArray object. The Symbol.species symbol lets you do this:
 
@@ -1004,7 +1004,7 @@ console.log(mapped instanceof Array);   // true
 
 #### Super class calls with super
 
- - The super keyword is used to call corresponding methods of super class.
+- The super keyword is used to call corresponding methods of super class.
 
 ```
 class Lion extends Cat {

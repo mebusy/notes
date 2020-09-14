@@ -26,11 +26,11 @@
 
 This chapter covers
 
- - Making REST requests
- - Detecting timeouts and resuming downloads
- - Passing errors over HTTP
- - Parsing JSON, including arbitrary JSON structures 
- - Versioning REST APIs
+- Making REST requests
+- Detecting timeouts and resuming downloads
+- Passing errors over HTTP
+- Parsing JSON, including arbitrary JSON structures 
+- Versioning REST APIs
 
 <h2 id="df0d7e0985c9b27af7dc8078bdd935d9"></h2>
 
@@ -42,10 +42,10 @@ This chapter covers
 
 ### 8.1.1 Using the HTTP client
 
- - The HTTP client is found in the `net/http` library within the standard library.
+- The HTTP client is found in the `net/http` library within the standard library.
     - It has helper functions to perform GET, HEAD, and POST requests, can perform virtually any HTTP request, and can be heavily customized.
- - The helper functions are http.Get, http.Head, http.Post, and http.PostForm.
- - With the exception of http.PostForm, each function is for the HTTP verb its name suggests.
+- The helper functions are http.Get, http.Head, http.Post, and http.PostForm.
+- With the exception of http.PostForm, each function is for the HTTP verb its name suggests.
     - http.PostForm handles POST requests when the data being posted should be posted as a form.
 
 
@@ -86,11 +86,11 @@ func main() {
 }
 ```
 
- - Making a request is broken into two separate parts. 
+- Making a request is broken into two separate parts. 
     - The first part is the request, contained in http.Request instances. 
     - The second part is the client that performs a request.
- - The default client has configuration and functionality to handle things like HTTP redirects, cookies, and timeouts.
- - It also has a default transport layer that can be customized.
+- The default client has configuration and functionality to handle things like HTTP redirects, cookies, and timeouts.
+- It also has a default transport layer that can be customized.
 
 ```
 // A simple custom HTTP client with timeout
@@ -110,10 +110,10 @@ res, err := cc.Get("http://goinpracticebook.com")
 
 #### TECHNIQUE 49 Detecting timeouts
 
- - To detect timeouts in the `net` package, the errors returned by it have a Timeout() method that’s set to true in the case of a timeout.
- - Yet, in some cases, a timeout occurs and Timeout() doesn’t return true, or the error you’re working with comes from another package, such as url, and doesn’t have the Timeout() method.
- - PROBLEM: How can network timeouts be reliably detected?
- - SOLUTION: When timeouts occur, a small variety of errors occurs. Check the error for each of these cases to see if it was a timeout.
+- To detect timeouts in the `net` package, the errors returned by it have a Timeout() method that’s set to true in the case of a timeout.
+- Yet, in some cases, a timeout occurs and Timeout() doesn’t return true, or the error you’re working with comes from another package, such as url, and doesn’t have the Timeout() method.
+- PROBLEM: How can network timeouts be reliably detected?
+- SOLUTION: When timeouts occur, a small variety of errors occurs. Check the error for each of these cases to see if it was a timeout.
 
 ```
 // Listing 8.4 Detect a network timeout from error
@@ -149,7 +149,7 @@ func hasTimedOut(err error) bool {
 }
 ```
 
- - This function provides the capability to detect a variety of timeout situations. The following snippet is an example of using that function to check whether an error was caused by a timeout:
+- This function provides the capability to detect a variety of timeout situations. The following snippet is an example of using that function to check whether an error was caused by a timeout:
 
 ```go
 res, err := http.Get("http://example.com/test.zip")
@@ -159,7 +159,7 @@ if err != nil && hasTimedOut(err) {
 }
 ```
 
- - Reliably detecting a timeout is useful, and the next technique highlights this in practice.
+- Reliably detecting a timeout is useful, and the next technique highlights this in practice.
 
 
 <h2 id="9828258f9f00dd06f2a1b4105c62f4d6"></h2>
@@ -167,12 +167,12 @@ if err != nil && hasTimedOut(err) {
 
 ####  TECHNIQUE 50 Timing out and resuming with HTTP
 
- - If a large file is being downloaded and a timeout occurs, starting the download from the beginning isn’t ideal. This is becoming truer with the growth of file sizes.
- - It’d be nice to avoid the extra bandwidth use and time to redownload data.
- - PROBLEM: You want to resume downloading a file, starting from the end of the data already downloaded, after a timeout occurs.
- - SOLUTION: Retry the download again, attempting to use the `Range` HTTP header in which a range of bytes to download is specified.
+- If a large file is being downloaded and a timeout occurs, starting the download from the beginning isn’t ideal. This is becoming truer with the growth of file sizes.
+- It’d be nice to avoid the extra bandwidth use and time to redownload data.
+- PROBLEM: You want to resume downloading a file, starting from the end of the data already downloaded, after a timeout occurs.
+- SOLUTION: Retry the download again, attempting to use the `Range` HTTP header in which a range of bytes to download is specified.
     - This allows you to request a file, starting partway through the file where it left off.
- - DISCUSSION: Servers, such as the one provided in the Go standard library, can support serving parts of a file. 
+- DISCUSSION: Servers, such as the one provided in the Go standard library, can support serving parts of a file. 
     - This is a fairly common feature in file servers, and the interface for specifying ranges has been a standard since 1999, when HTTP 1.1 came out:
 
 ```go
@@ -262,7 +262,7 @@ func download(location string, file *os.File, retries int64) error {
 }
 ```
 
- - Although the download function can handle timeouts in a fairly straightforward man- ner, it can be customized for your cases:
+- Although the download function can handle timeouts in a fairly straightforward man- ner, it can be customized for your cases:
     - If a hash of a file is easily available, a check could be put in to make sure that the final download matches the hash. This integrity check can improve trust in the final download, even if it takes multiple attempts to download the file.
 
 <h2 id="963cdae66bec16a79ef7690052d2047e"></h2>
@@ -270,7 +270,7 @@ func download(location string, file *os.File, retries int64) error {
 
 ## 8.2 Passing and handling errors over HTTP
 
- - The Go standard library provides a rudimentary capability to pass errors. For example, the following listing provides simple HTTP generating an error.
+- The Go standard library provides a rudimentary capability to pass errors. For example, the following listing provides simple HTTP generating an error.
 
 ```go
 package main
@@ -289,7 +289,7 @@ func main() {
 }
 ```
 
- - This simple server always returns the error message An Error Occurred.
+- This simple server always returns the error message An Error Occurred.
     - Along with the custom message, served with a type of text/plain, the HTTP status message is set to 403, correlating to forbidden access.
 
 ```go
@@ -304,8 +304,8 @@ fmt.Println(res.StatusCode)
 
 ### 8.2.1 Generating custom errors
 
- - A plain text error string and an HTTP status code representing an error are often insufficient. 
- - For example, if you’re displaying web pages, you’ll likely want your error pages to be styled like your application or site. 
+- A plain text error string and an HTTP status code representing an error are often insufficient. 
+- For example, if you’re displaying web pages, you’ll likely want your error pages to be styled like your application or site. 
     - Or if you’re building an API server that responds with JSON, you’ll likely want error responses to be in JSON as well.
 
 <h2 id="53341acb9a0f40cb60854a46f49a5bf5"></h2>
@@ -313,13 +313,13 @@ fmt.Println(res.StatusCode)
 
 #### TECHNIQUE 51 Custom HTTP error passing
 
- - You don’t have much room for customization when using the `Error` function within the `http` package. 
+- You don’t have much room for customization when using the `Error` function within the `http` package. 
     - The response type is hardcoded as plain text, and the `X-ContentType-Options` header is set to nosniff. 
     - This header tells some tools, such as Microsoft Internet Explorer and Google Chrome, to not attempt to detect a content type other than what was set. 
     - This leaves little opportunity to provide a custom error, aside from the content of the plain text string.
- - PROBLEM: How can you provide a custom response body and content type when there’s an error?
- - SOLUTION: Instead of using the built-in `Error` function,  use custom functions that send both the correct HTTP status code and the error text as a more appropriate body for your situation.
- - To illustrate how this works, let’s look at an error response in JSON. We’ll keep the same response format as the other REST API responses that provide an application- specific error code in addition to the HTTP error. Although this example is targeted at API responses, the same style applies to web pages.
+- PROBLEM: How can you provide a custom response body and content type when there’s an error?
+- SOLUTION: Instead of using the built-in `Error` function,  use custom functions that send both the correct HTTP status code and the error text as a more appropriate body for your situation.
+- To illustrate how this works, let’s look at an error response in JSON. We’ll keep the same response format as the other REST API responses that provide an application- specific error code in addition to the HTTP error. Although this example is targeted at API responses, the same style applies to web pages.
 
 ```go
 // Listing 8.7 Custom JSON error response
@@ -369,7 +369,7 @@ func main() {
 }
 ```
 
- - This listing is conceptually similar to listing 8.6. The difference is that listing 8.6 returns a string with the error message, and listing 8.7 returns a JSON response like the following:
+- This listing is conceptually similar to listing 8.6. The difference is that listing 8.6 returns a string with the error message, and listing 8.7 returns a JSON response like the following:
 
 ```
 {
@@ -391,10 +391,10 @@ func main() {
 
 #### TECHNIQUE 52 Reading custom errors  TODO
  
- - Any client can work with HTTP status codes to detect an error. 
- - If an application responds with custom errors, such as those generated by technique 51, this presents an API response with a different structure from the expected response in addition to there being an error.
- - PROBLEM: When a custom error with a different structure is returned as an API response, how can you detect that and handle it differently?
- - SOLUTION: When a response is returned, check the HTTP status code and MIME type for a possible error.
+- Any client can work with HTTP status codes to detect an error. 
+- If an application responds with custom errors, such as those generated by technique 51, this presents an API response with a different structure from the expected response in addition to there being an error.
+- PROBLEM: When a custom error with a different structure is returned as an API response, how can you detect that and handle it differently?
+- SOLUTION: When a response is returned, check the HTTP status code and MIME type for a possible error.
     - When one of these returns unexpected values or informs of an error, convert it to an error, return the error, and handle the error.
 
 
@@ -467,9 +467,9 @@ func get(u string) (*http.Response, error) {
 
 #### TECHNIQUE 53 Parsing JSON without knowing the schema
 
- - PROBLEM: How can you parse a JSON data structure into a Go data structure when you don’t know the structure ahead of time?
- - SOLUTION: Parse the JSON into an interface{} instead of a struct. After the JSON is in an inter- face, you can inspect the data and use it.
- - A little-known feature of the `encoding/json` package is the capability to parse arbitrary JSON into an `interface{}`. 
+- PROBLEM: How can you parse a JSON data structure into a Go data structure when you don’t know the structure ahead of time?
+- SOLUTION: Parse the JSON into an interface{} instead of a struct. After the JSON is in an inter- face, you can inspect the data and use it.
+- A little-known feature of the `encoding/json` package is the capability to parse arbitrary JSON into an `interface{}`. 
 
 ```go
 // Listing 8.10 Parse JSON into an interface{}
@@ -519,16 +519,16 @@ func main() {
 }
 ```
 
- - Before you can work with the data, you need to access it as a type other than interface{}.
- - The following is a way to access firstName:
+- Before you can work with the data, you need to access it as a type other than interface{}.
+- The following is a way to access firstName:
 
 ```go
 m := f.(map[string]interface{})
 fmt.Println(m["firstName"])
 ```
 
- - To programmatically walk through the resulting data from the JSON, it’s useful to know how Go treats the data in the conversion. 
- - When the JSON is unmarshaled, the values in JSON are converted into the following Go types:
+- To programmatically walk through the resulting data from the JSON, it’s useful to know how Go treats the data in the conversion. 
+- When the JSON is unmarshaled, the values in JSON are converted into the following Go types:
     - bool for JSON Boolean
     - float64 for JSON numbers
     - []interface{} for JSON arrays
@@ -536,8 +536,8 @@ fmt.Println(m["firstName"])
     - nil for JSON null
     - string for JSON strings
 
- - Knowing this, you can build functionality to walk the data structure. 
- - For example, the following listing shows functions recursively walking the parsed JSON, printing the key names, types, and values.
+- Knowing this, you can build functionality to walk the data structure. 
+- For example, the following listing shows functions recursively walking the parsed JSON, printing the key names, types, and values.
 
 
 ```go
@@ -573,11 +573,11 @@ func printJSON(v interface{}) {
 
 ## 8.4 Versioning REST APIs
 
- - Web services evolve and change, which leads to changes in the APIs used to access or manage them. To provide a stable API contract for API consumers, changes to the API need to be versioned. 
- - APIs are typically versioned by major number changes such as v1, v2, and v3. 
+- Web services evolve and change, which leads to changes in the APIs used to access or manage them. To provide a stable API contract for API consumers, changes to the API need to be versioned. 
+- APIs are typically versioned by major number changes such as v1, v2, and v3. 
     - This number scheme signifies breaking changes to the API. 
     - An application designed to work with v2 of an API won’t be able to consume the v3 API version because it’s too different.
- - But what about API changes that add functionality to an existing API?
+- But what about API changes that add functionality to an existing API?
     - For example, say that functionality is added to the v1 API. 
     - In this case, the API can be incremented with a point version; feature additions can increment the API to v1.1. 
     - This tells developers and applications about the additions.
@@ -588,10 +588,10 @@ func printJSON(v interface{}) {
 
 ####  TECHNIQUE 54 API version in the URL  (TODO)
 
- - PROBLEM: What is an easily accessible method to provide versioned APIs?
- - SOLUTION: Provide the API version in the REST API URL. 
+- PROBLEM: What is an easily accessible method to provide versioned APIs?
+- SOLUTION: Provide the API version in the REST API URL. 
     - For example, instead of providing an API of `https://example.com/api/todos`, add a version to the path so it looks like `https://example.com/api/v1/todos`.
- - ...
+- ...
 
 
 

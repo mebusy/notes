@@ -45,8 +45,8 @@
 
 ### Connecting to a network
 
- - wired connection using the built-in RJ45 connector
- - Wi-Fi connection using a USB Wi-Fi adapter
+- wired connection using the built-in RJ45 connector
+- Wi-Fi connection using a USB Wi-Fi adapter
     - start **Wifi Config** from the desktop
 
 
@@ -55,7 +55,7 @@
 
 ### Using a Web Browse
 
- - **Epiphany** browse is builti-in
+- **Epiphany** browse is builti-in
 
 
 <h2 id="765553e6c7ac8592c389acb9878a050a"></h2>
@@ -63,7 +63,7 @@
 
 ### SSH
 
- - Should change the private host ID keys
+- Should change the private host ID keys
     - Otherwise , they have the same default values.
 
 One you install raspbian on your Pi, you get these default keys ,which are the same as everybody else's default keys.
@@ -77,14 +77,14 @@ sudo rm /etc/ssh/ssh_host_* && sudo dpkg-reconfigure openssh-server
 
 ### Internet Protocal Family
 
- - **IP** (Internet protocal)
+- **IP** (Internet protocal)
     - Host naming scheme , define IP address
     - Host-to-host connection, unreliable
- - **UDP** (Unreliable Datagram Protocal)
+- **UDP** (Unreliable Datagram Protocal)
     - Process-to-process communication
     - Process naming
     - Also unreliable
- - **TCP** (Transmission Control Protocal)
+- **TCP** (Transmission Control Protocal)
     - Process-to-process communication and naming
     - Process naming
     - Reliable communication
@@ -101,8 +101,8 @@ Each domain name must be resolved to an IP address to send packets.
 
 So ,for that we use what's called **domain naming system, DNS**.
 
- - DNS is a hierarchical naming system used to determine IP addresses from domain names
- - Gigantic, distributed tables are accessed by performing a DNS Lookup
+- DNS is a hierarchical naming system used to determine IP addresses from domain names
+- Gigantic, distributed tables are accessed by performing a DNS Lookup
 
 When you visit cnn.com, your web browser sends a message to a DNS server and says and look, what is the address of cnn.com?  And if DNS server knows that address, it sends the IP address back to you. If it doesn't , then it goes and asks another DNS server higher up.  The ip address will store in a local cache to save time.
 
@@ -127,7 +127,7 @@ Name:    baidu.com
 Address: 123.125.114.144
 ```
 
- - #53 is the port
+- #53 is the port
  
 
 <h2 id="2ab4aec4cb63c31debb0851551876d1b"></h2>
@@ -166,8 +166,8 @@ mysock = socket.socket( socket.AF_INET , socket.SOCK_STREAM )
 ```
  
 
- - AF_INET declares Address Family Internet
- - SOCK_STREAM idicates TCP (connection-based)
+- AF_INET declares Address Family Internet
+- SOCK_STREAM idicates TCP (connection-based)
 
 <h2 id="fbc296173c66a5f84aff3a2bf69304a1"></h2>
 
@@ -190,7 +190,7 @@ message = "GET / HTTP/1.1\r\n\r\n"
 mysock.sendall(message)
 ```
 
- - sendall() send the data , and tries until it succeeds.
+- sendall() send the data , and tries until it succeeds.
 
 <h2 id="82c00833b57823a4f596c6d0ba003f8d"></h2>
 
@@ -201,9 +201,9 @@ mysock.sendall(message)
 data = mysock.recv(1024) 
 ```
 
- - recv() returns the data on the socket
+- recv() returns the data on the socket
     - Blocking wait, by default , you can change that
- - python will resize the data buffer for you1
+- python will resize the data buffer for you1
 
 
 <h2 id="18c78f12845c54db7dba0ccd0ed01290"></h2>
@@ -220,7 +220,7 @@ mysock.close()  # free up port
 
 ### Exceptions 
 
- - Errors may happen when working with sockets
+- Errors may happen when working with sockets
     - Socket cannot be opened
     - Data cannot be sent
 
@@ -229,9 +229,9 @@ mysock.close()  # free up port
 
 #### Socket Exceptions
 
- - socket.error
+- socket.error
     - All socket errors
- - gaierror
+- gaierror
     - getaddressinfo() - no host found
 
 
@@ -257,7 +257,7 @@ mysock = socket.socket( socket.AF_INET , socket.SOCK_STREAM )
 mysock.bind( "",1234 ) # mysock.bind( ("",1234) ) 2.7
 ```
 
- - **bind()** : the 1st argument it the host that you want to sssociate it with
+- **bind()** : the 1st argument it the host that you want to sssociate it with
     - "" like a wildcard , it allows it to receive from any host
 
 
@@ -271,9 +271,9 @@ mysock.listen(5)
 conn , addr = mysock.accept()
 ```
 
- - **listen()** starts listening for a connect()
+- **listen()** starts listening for a connect()
     - argument is called **backlog** , it's the number of requests allowed to wait for service.
- - **accept()** accepts a connection request
+- **accept()** accepts a connection request
     - return a connection (for sending/receiving) and an address (IP, port)
 
 <h2 id="c7dbc4fd55364e7eb7d9f6f8b04c3174"></h2>
@@ -313,23 +313,23 @@ mysock.close()
 
 ### Enabling the Camera
 
- - Use **raspi-config** to enable the CSI interface
+- Use **raspi-config** to enable the CSI interface
     - sudo raspi-config 
- - Select *Enable Camera* , done
+- Select *Enable Camera* , done
 
 <h2 id="9e62a134a017a3ddea4fe303a1c83ae4"></h2>
 
 
 ### python-picamera Library
 
- - install the library
+- install the library
     - 
     ```
     sudo apt-get update
     sudo apt-get install python3-picamera
     ```
     
- - Using the library
+- Using the library
     -
     ```
     import picamera
@@ -340,18 +340,18 @@ mysock.close()
  #### Camera Functions
  
  
- - Take a picture
+- Take a picture
     - camera.capture("pict.jpg")
- - Changing camera settings
+- Changing camera settings
     - There are many
     - `camera.hflip = True`
     - `camera.vflip = True`
     - `camera.brightness = 50`
     - `camera.sharpness = 0`
- - View video on RPi screen
+- View video on RPi screen
     - `camera.start_preview()`
     - `camera.stop_preview()`
- - Video Recording
+- Video Recording
     - 
     ```
     camera.start_recording( "vid.h264" )
@@ -373,18 +373,18 @@ conn = mysocket.makefile( 'wb' )
 camera.capture( conn, 'jpeg' )
 ```
 
- - Need a file-like object to capture to 
+- Need a file-like object to capture to 
  
 <h2 id="7a1314d2fcc369c3eb926f232d841e62"></h2>
 
 
 ### Timelapse Photography
 
- - `camera.capture_continuous()`
+- `camera.capture_continuous()`
     - takes photos over time
- - Takes one argument , a file name
- - {counter} and {timestamp} can be substituted
- - ex. "picture{counter}.jpg" produces picture1.jpg, picture2.jpg, etc.
+- Takes one argument , a file name
+- {counter} and {timestamp} can be substituted
+- ex. "picture{counter}.jpg" produces picture1.jpg, picture2.jpg, etc.
 
 
 ```python
@@ -394,6 +394,6 @@ for filename in
     time.sleep(300) # 不知道什么用意
 ```
 
- - Iterate through all images, infinite loop
- - 5 minute delya between images
+- Iterate through all images, infinite loop
+- 5 minute delya between images
 

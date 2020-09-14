@@ -54,13 +54,13 @@
 
 ### Using Minikube to Create a Cluster
  
- - Kubernetes Clusters
+- Kubernetes Clusters
     - Kubernetes coordinates a highly available cluster of computers that are connected to work as a single unit. 
     - Kubernetes automates the distribution and scheduling of application containers across a cluster in a more efficient way
     - A Kubernetes cluster consists of two types of resources:
         - The Master coordinates the cluster
         - Nodes are the workers that run applications
- - Cluster Diagram
+- Cluster Diagram
     - ![](https://d33wubrfki0l68.cloudfront.net/99d9808dcbf2880a996ed50d308a186b5900cec9/40b94/docs/tutorials/kubernetes-basics/public/images/module_01_cluster.svg)
     - The Master is responsible for managing the cluster. 
         - The master coordinates all activities in your cluster, such as 
@@ -74,9 +74,9 @@
         - A Kubernetes cluster that handles production traffic should have a minimum of three nodes.
         - The nodes communicate with the master using the Kubernetes API, which the master exposes. 
         - End users can also use the Kubernetes API directly to interact with the cluster.
- - Minikube
+- Minikube
     - Minikube is a lightweight Kubernetes implementation that creates a VM on your local machine and deploys a simple cluster containing only one node. 
- - kubectl
+- kubectl
     - To interact with Kubernetes we’ll use the command line interface, kubectl. 
 
 ```
@@ -99,19 +99,19 @@ minikube   Ready     <none>    51s       v1.10.0
 
 ### Using kubectl to Create a Deployment
 
- - Kubernetes Deployments
+- Kubernetes Deployments
     - create a Kubernetes Deployment configuration. 
     - The Deployment instructs Kubernetes how to create and update instances of your application.
     - Once you've created a Deployment, the Kubernetes master schedules mentioned application instances onto individual Nodes in the cluster.
     - Once the application instances are created, a Kubernetes Deployment Controller continuously monitors those instances.
         - If the Node hosting an instance goes down or is deleted, the Deployment controller replaces it.
         - **This provides a self-healing mechanism to address machine failure or maintenance.**
- - ![](https://d33wubrfki0l68.cloudfront.net/152c845f25df8e69dd24dd7b0836a289747e258a/4a1d2/docs/tutorials/kubernetes-basics/public/images/module_02_first_app.svg)
- - Deploying your first app on Kubernetes
+- ![](https://d33wubrfki0l68.cloudfront.net/152c845f25df8e69dd24dd7b0836a289747e258a/4a1d2/docs/tutorials/kubernetes-basics/public/images/module_02_first_app.svg)
+- Deploying your first app on Kubernetes
     - When you create a Deployment, you'll need to specify the container image for your application and the number of replicas that you want to run. 
     - You can change that information later by updating your Deployment
 
- - Let’s run our first app on Kubernetes with the `kubctl run` command
+- Let’s run our first app on Kubernetes with the `kubctl run` command
     - The `run` command creates a new deployment.
 
 ```
@@ -123,7 +123,7 @@ NAME                  DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 kubernetes-bootcamp   1         1         1            1           1m
 ```
 
- - View our app
+- View our app
     - Pods that are running inside Kubernetes are running on a private, isolated network.
     - By default they are visible from other pods and services within the same kubernetes cluster, but not outside that network. 
     - When we use kubectl, we're interacting through an API endpoint to communicate with our application.
@@ -134,10 +134,10 @@ $ kubectl proxy
 Starting to serve on 127.0.0.1:8001
 ```
 
- - We now have a connection between our host and the Kubernetes cluster. 
+- We now have a connection between our host and the Kubernetes cluster. 
     - The proxy enables direct access to the API from these terminals.
- - You can see all those APIs hosted through the proxy endpoint, now available at through http://localhost:8001. 
- - For example, we can query the version directly through the API using the curl command:
+- You can see all those APIs hosted through the proxy endpoint, now available at through http://localhost:8001. 
+- For example, we can query the version directly through the API using the curl command:
 
 ```
 $ curl http://localhost:8001/version
@@ -154,8 +154,8 @@ $ curl http://localhost:8001/version
 }
 ```
 
- - The API server will automatically create an endpoint for each pod, based on the pod name, that is also accessible through the proxy.
- - First we need to get the Pod name, and we'll store in the environment variable POD_NAME:
+- The API server will automatically create an endpoint for each pod, based on the pod name, that is also accessible through the proxy.
+- First we need to get the Pod name, and we'll store in the environment variable POD_NAME:
 
 ```
 $ export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
@@ -163,7 +163,7 @@ $ echo Name of the Pod: $POD_NAME
 Name of the Pod: kubernetes-bootcamp-5c69669756-jwzln
 ```
 
- - Now we can make an HTTP request to the application running in that pod:
+- Now we can make an HTTP request to the application running in that pod:
     - The url is the route to the API of the Pod.
 
 ```
@@ -181,7 +181,7 @@ Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-5c69669756-jwzln | 
 
 ### Viewing Pods and Nodes
 
- - Kubernetes Pods
+- Kubernetes Pods
     - When you created a Deployment, Kubernetes created a Pod to host your application instance. 
     - A Pod is a Kubernetes abstraction that represents a group of one or more application containers (such as Docker or rkt), and some shared resources for those containers.
     - Those resources include:
@@ -194,13 +194,13 @@ Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-5c69669756-jwzln | 
         - When we create a Deployment on Kubernetes, that Deployment creates Pods with containers inside them
         - Each Pod is tied to the Node where it is scheduled, and remains there until termination (according to restart policy) or deletion. In case of a Node failure, identical Pods are scheduled on other available Nodes in the cluster.
     - ![](https://d33wubrfki0l68.cloudfront.net/fe03f68d8ede9815184852ca2a4fd30325e5d15a/98064/docs/tutorials/kubernetes-basics/public/images/module_03_pods.svg)
- - Nodes
+- Nodes
     - Every Kubernetes Node runs at least:
         - Kubelet, a process responsible for communication between the Kubernetes Master and the Node; it manages the Pods and the containers running on a machine.
         - A container runtime (like Docker, rkt) responsible for pulling the container image from a registry, unpacking the container, and running the application.
 Containers should only be scheduled together in a single Pod if they are tightly coupled and need to share resources such as disk.
     - ![](https://d33wubrfki0l68.cloudfront.net/5cb72d407cbe2755e581b6de757e0d81760d5b86/a9df9/docs/tutorials/kubernetes-basics/public/images/module_03_nodes.svg)
- - Troubleshooting with kubectl
+- Troubleshooting with kubectl
     - kubectl get - list resources
     - kubectl describe - show detailed information about a resource
     - kubectl logs - print the logs from a container in a pod
@@ -216,9 +216,9 @@ Containers should only be scheduled together in a single Pod if they are tightly
 
 ### Using a Service to Expose Your App
 
- - Although each Pod has a unique IP address, those IPs are not exposed outside the cluster without a Service. 
- - Services allow your applications to receive traffic. 
- - Services can be exposed in different ways by specifying a **type** in the ServiceSpec:
+- Although each Pod has a unique IP address, those IPs are not exposed outside the cluster without a Service. 
+- Services allow your applications to receive traffic. 
+- Services can be exposed in different ways by specifying a **type** in the ServiceSpec:
     - ClusterIP (default) 
         - Exposes the Service on an internal IP in the cluster. This type makes the Service only reachable from within the cluster.
     - NodePort 
@@ -230,12 +230,12 @@ Containers should only be scheduled together in a single Pod if they are tightly
     - ExternalName
         - Exposes the Service using an arbitrary name (specified by externalName in the spec) by returning a CNAME record with the name.
         - No proxy is used. This type requires v1.7 or higher of kube-dns.
- - ![](https://d33wubrfki0l68.cloudfront.net/cc38b0f3c0fd94e66495e3a4198f2096cdecd3d5/ace10/docs/tutorials/kubernetes-basics/public/images/module_04_services.svg)
- - A Service routes traffic across a set of Pods.
+- ![](https://d33wubrfki0l68.cloudfront.net/cc38b0f3c0fd94e66495e3a4198f2096cdecd3d5/ace10/docs/tutorials/kubernetes-basics/public/images/module_04_services.svg)
+- A Service routes traffic across a set of Pods.
     - Services match a set of Pods using labels and selectors, a grouping primitive that allows logical operation on objects in Kubernetes. 
- - ![](https://d33wubrfki0l68.cloudfront.net/b964c59cdc1979dd4e1904c25f43745564ef6bee/f3351/docs/tutorials/kubernetes-basics/public/images/module_04_labels.svg)
- - We have a Service called kubernetes that is created by default when minikube starts the cluster. 
- - To create a new service and expose it to external traffic we’ll use the **expose** command with NodePort as parameter 
+- ![](https://d33wubrfki0l68.cloudfront.net/b964c59cdc1979dd4e1904c25f43745564ef6bee/f3351/docs/tutorials/kubernetes-basics/public/images/module_04_labels.svg)
+- We have a Service called kubernetes that is created by default when minikube starts the cluster. 
+- To create a new service and expose it to external traffic we’ll use the **expose** command with NodePort as parameter 
 
 ```
 $ kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080
@@ -246,7 +246,7 @@ kubernetes            ClusterIP   10.96.0.1        <none>        443/TCP        
 kubernetes-bootcamp   NodePort    10.111.213.124   <none>        8080:31921/TCP   13s
 ```
  
- - Create an environment variable called NODE_PORT that has the value of the Node port assigned:
+- Create an environment variable called NODE_PORT that has the value of the Node port assigned:
 
 ```
 $ export NODE_PORT=$(kubectl get services/kubernetes-bootcamp -o go-template='{{(index .spec.ports 0).nodePort}}')
@@ -263,7 +263,7 @@ Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-5c69669756-t9t9k | 
 
 #### Using labels 
 
- - The Deployment created automatically a label for our Pod.
+- The Deployment created automatically a label for our Pod.
 
 ```
 $ kubectl describe deployment
@@ -276,7 +276,7 @@ Selector:               run=kubernetes-bootcamp
 ...
 ```
 
- - Let’s use this label to query our list of Pods. 
+- Let’s use this label to query our list of Pods. 
 
 ```
 $ kubectl get pods -l run=kubernetes-bootcamp
@@ -288,7 +288,7 @@ NAME                  TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)         
 kubernetes-bootcamp   NodePort   10.111.213.124   <none>        8080:31921/TCP   6m
 ```
 
- - Get the name of the Pod and store it in the POD_NAME environment variable:
+- Get the name of the Pod and store it in the POD_NAME environment variable:
 
 ```
 $ export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
@@ -296,7 +296,7 @@ $ echo Name of the Pod: $POD_NAME
 Name of the Pod: kubernetes-bootcamp-5c69669756-t9t9k
 ```
 
- - To apply a new label we use the label command followed by the object type, object name and the new label:
+- To apply a new label we use the label command followed by the object type, object name and the new label:
 
 ```
 $ kubectl label pod $POD_NAME app=v1
@@ -322,7 +322,7 @@ $ kubectl delete service -l run=kubernetes-bootcamp
 service "kubernetes-bootcamp" deleted
 ```
 
- - pod is still running, can not access from outside of the cluseter
+- pod is still running, can not access from outside of the cluseter
 
 ```
 $ kubectl get po
@@ -350,9 +350,9 @@ Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-5c69669756-t9t9k | 
 
 #### Scaling a deployment
 
- - Running multiple instances of an application will require a way to distribute the traffic to all of them. 
- - Services have an integrated load-balancer that will distribute network traffic to all Pods of an exposed Deployment.
- - Services will monitor continuously the running Pods using endpoints, to ensure the traffic is sent only to available Pods.
+- Running multiple instances of an application will require a way to distribute the traffic to all of them. 
+- Services have an integrated load-balancer that will distribute network traffic to all Pods of an exposed Deployment.
+- Services will monitor continuously the running Pods using endpoints, to ensure the traffic is sent only to available Pods.
 
 ```
 $ kubectl get deployments
@@ -360,7 +360,7 @@ NAME                  DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 kubernetes-bootcamp   1         1         1            1           21s
 ```
 
- - let’s scale the Deployment to 4 replicas. We’ll use the `kubectl scale` command,
+- let’s scale the Deployment to 4 replicas. We’ll use the `kubectl scale` command,
 
 ```
 $ kubectl scale deployments/kubernetes-bootcamp --replicas=4
@@ -391,7 +391,7 @@ $ curl $(minikube ip):$NODE_PORT
 Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-5c69669756-klk9v | v=1
 ```
 
- - We hit a different Pod with every request. This demonstrates that the load-balancing is working.
+- We hit a different Pod with every request. This demonstrates that the load-balancing is working.
 
 <h2 id="321a4150256dc52ed121fe7088de69ee"></h2>
 
@@ -439,7 +439,7 @@ $ kubectl rollout status deployments/kubernetes-bootcamp
 deployment "kubernetes-bootcamp" successfully rolled out
 ```
 
- - Rollback an update
+- Rollback an update
 
 ```
 $ kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=gcr.io/google-samples/kubernetes-bootcamp:v10
@@ -488,8 +488,8 @@ PS: [开启iptables情况下Swarm、kubernetes等组件正常工作的配置](ht
 
 ### Enable br_netfilter Kernel Module
 
- - The br_netfilter module is required for kubernetes installation.
- - Enable this kernel module so that the packets traversing the bridge are processed by iptables for filtering and for port forwarding, and the kubernetes pods across the cluster can communicate with each other.
+- The br_netfilter module is required for kubernetes installation.
+- Enable this kernel module so that the packets traversing the bridge are processed by iptables for filtering and for port forwarding, and the kubernetes pods across the cluster can communicate with each other.
 
 ```
 modprobe br_netfilter
@@ -509,13 +509,13 @@ echo '1' > /proc/sys/net/bridge/bridge-nf-call-ip6tables
 swapoff -a
 ```
 
- - And then edit the '/etc/fstab' file.  Comment the swap line UUID as below
+- And then edit the '/etc/fstab' file.  Comment the swap line UUID as below
 
 ```
 # /dev/mapper/cl-swap     swap                    swap    defaults        0 0  
 ```
 
- - why disable swap ?
+- why disable swap ?
     - The idea of kubernetes is to tightly pack instances to as close to 100% utilized as possible. All deployments should be pinned with CPU/memory limits. So if the scheduler sends a pod to a machine it should never use swap at all. You don't want to swap since it'll slow things down.
     - Its mainly for performance.
     - the idea is if a node only has 3G free to use.. and your new pod wants 4.. its going to go on another node.
@@ -554,16 +554,16 @@ systemctl start kubelet && systemctl enable kubelet
 
 ### Change the cgroup-driver
 
- - We need to make sure the docker-ce and kubernetes are using same 'cgroup'.
+- We need to make sure the docker-ce and kubernetes are using same 'cgroup'.
 
 ```
 docker info | grep -i cgroup
 Cgroup Driver: cgroupfs
 ```
 
- - And you see the docker is using 'cgroupfs' as a cgroup-driver.
+- And you see the docker is using 'cgroupfs' as a cgroup-driver.
 
- - Now run the command below to change the kuberetes cgroup-driver to 'cgroupfs'.
+- Now run the command below to change the kuberetes cgroup-driver to 'cgroupfs'.
 
 ```
 sed -i 's/cgroup-driver=systemd/cgroup-driver=cgroupfs/g' /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
@@ -572,7 +572,7 @@ systemctl daemon-reload
 systemctl restart kubelet
 ```
 
- - 注意，可能  10-kubeadm.conf 文件中没有 cgroup-driver . 
+- 注意，可能  10-kubeadm.conf 文件中没有 cgroup-driver . 
     - 手动添加 `Environment="KUBELET_CGROUP_ARGS=--cgroup-driver=cgroupfs"`
 
 <h2 id="451e4690c07ec59f02a5d699d9e63196"></h2>
@@ -584,16 +584,16 @@ systemctl restart kubelet
 kubeadm init --apiserver-advertise-address=10.192.83.78 --pod-network-cidr=10.244.0.0/16
 ```
 
- - apiserver-advertise-address = determines which IP address Kubernetes should advertise its API server on.
- - pod-network-cidr = specify the range of IP addresses for the pod network. We're using the 'flannel' virtual network. If you want to use another pod network such as weave-net or calico, change the range IP address.
+- apiserver-advertise-address = determines which IP address Kubernetes should advertise its API server on.
+- pod-network-cidr = specify the range of IP addresses for the pod network. We're using the 'flannel' virtual network. If you want to use another pod network such as weave-net or calico, change the range IP address.
 
 
- - when the initialization done, do the things listed 
+- when the initialization done, do the things listed 
     1. Create new '.kube' configuration directory and copy the configuration 'admin.conf'.
     2. deploy the flannel network to the kubernetes cluster using the kubectl command.
         - `kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml`
 
- - for worker node, use `kubeadm join` to join into the cluster
+- for worker node, use `kubeadm join` to join into the cluster
     - use `journalctl -u kubelet` to debug worker if it still in status `NotReady`
 
 
@@ -623,4 +623,4 @@ kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP        69m
 nginx        NodePort    10.97.24.123   <none>        80:31116/TCP   16m
 ```
 
- - Now you will get the nginx pod is now running under cluster IP address '10.97.24.123' port 80, and the node main IP address  on port '31116'.
+- Now you will get the nginx pod is now running under cluster IP address '10.97.24.123' port 80, and the node main IP address  on port '31116'.

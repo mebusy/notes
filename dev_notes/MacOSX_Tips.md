@@ -58,8 +58,8 @@ rm -rf ~/Library/Saved Application State/org.openoffice.script.savedState
 
 ### xxd 
 
- - `xxd  <filename>`   以16进制显示文件内容
- - `xxd -i <filename>`   转成c数组
+- `xxd  <filename>`   以16进制显示文件内容
+- `xxd -i <filename>`   转成c数组
 
 ```
 unsigned char note_txt[] = {
@@ -100,9 +100,9 @@ unsigned int note_txt_len = 61;
 
 ### cal 日历
 
- - `cal` 当月
- - `cal -y` 当年
- - `-j` 参数, day 显示为 当年的第几天
+- `cal` 当月
+- `cal -y` 当年
+- `-j` 参数, day 显示为 当年的第几天
 
 
 <h2 id="a21d96fb754b9ce8455858e14ed36571"></h2>
@@ -152,9 +152,9 @@ ls *.json | xargs -I {}  sh -c  " tr -d '\r' < {}  > {}2 && mv {}2 {} "
 find . -type f -name '*.cpp' -o -name '*.h' -o -name '*.as'  | xargs -I {} grep  -m 1  ReturnToMap "{}" /dev/null
 ```
 
- - `*.ext1` -o `*.ext2` 
- - `/dev/null` is to show the file path
- - ` -m 1`  stop when 1st matching
+- `*.ext1` -o `*.ext2` 
+- `/dev/null` is to show the file path
+- ` -m 1`  stop when 1st matching
 
 use mdfind ...
 
@@ -168,15 +168,15 @@ mdfind -onlyin . "kMDItemDisplayName == *.as || kMDItemDisplayName == *.cpp || k
 grep -r --include \*.h --include \*.cpp --include \*.as ReturnToMap  .
 ```
 
- - ` -m 1` will not works as expect in `-r` mode
+- ` -m 1` will not works as expect in `-r` mode
 
- - or more clean 
+- or more clean 
 
 ```bash
 grep -r --include=*.{h,cpp,as}  ReturnToMap  .
 ```
 
- - add `-w ` if you want matching the whole word 
+- add `-w ` if you want matching the whole word 
 
 
 <h2 id="639aab73c8776e2711502bd23e7dd4de"></h2>

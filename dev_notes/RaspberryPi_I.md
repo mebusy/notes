@@ -44,12 +44,12 @@
 
 Model B+ :
 
- - Broadcom BCM2836 Soc  , 900MHz, 1Gb Ram , arm based
- - Dual Core VideoCore IV , Multimedia Co-Precessor, GPU
- - 40 GPIO pins (General-purpose Input/Output)
- - 4 USB ports
- - Micro SD card slot
- - 3.3V I/O voltage levels
+- Broadcom BCM2836 Soc  , 900MHz, 1Gb Ram , arm based
+- Dual Core VideoCore IV , Multimedia Co-Precessor, GPU
+- 40 GPIO pins (General-purpose Input/Output)
+- 4 USB ports
+- Micro SD card slot
+- 3.3V I/O voltage levels
 
 ![](../imgs/raspberryPi_B+.PNG)
 
@@ -89,9 +89,9 @@ Underneath those files, or behind those, inside the operating system , there's a
 
 The easiest way is to use New Out-Of-Box software (NOOBS).
 
- - Comes preinstalled on microSD bundled with Raspberry Pi boards
- - Otherwise , download it from https://www.raspberrypi.org/downloads/
- - If NOOBS is not preinstalled on micro SD, you'll need to 
+- Comes preinstalled on microSD bundled with Raspberry Pi boards
+- Otherwise , download it from https://www.raspberrypi.org/downloads/
+- If NOOBS is not preinstalled on micro SD, you'll need to 
   1. Format the micro SD (need an SD reader)
   2. Extract the NOOBS downlaod
   3. Put it on the micro SD
@@ -113,34 +113,34 @@ One you have NOOBS on micro SD card , plug that into you Raspberry Pi , then you
 
 ### Raspi-Config
 
- - **raspi-config** is a tool which lets you setup various setup/boot options for the Raspberry Pi.
- - raspi-config will run automatically when you boot the Raspberry Pi with a new micro SD card for first time. You also can run it later to change configuration.
+- **raspi-config** is a tool which lets you setup various setup/boot options for the Raspberry Pi.
+- raspi-config will run automatically when you boot the Raspberry Pi with a new micro SD card for first time. You also can run it later to change configuration.
 
 What's the config option:
 
- - Expand Filesystem - Reformats your micro SD card filesystem to use the rest of their memory.
- - Change User Password - starts with one user acc/pwd:  `pi/raspberry`
- - Enable Boot to Desktop/Scratch  
+- Expand Filesystem - Reformats your micro SD card filesystem to use the rest of their memory.
+- Change User Password - starts with one user acc/pwd:  `pi/raspberry`
+- Enable Boot to Desktop/Scratch  
   1.console is the default boot option  2.Desktop is the graphic interface 3. scratch is a programming environment for kids. 
  
- - Internationalisation(国际化) and Rastrack  - change Locale , Timezone , keyboard Layout. *Rastrack* is the service that allows Raspberry Pi users to find one another , totally optional , approximate location base on IP.
+- Internationalisation(国际化) and Rastrack  - change Locale , Timezone , keyboard Layout. *Rastrack* is the service that allows Raspberry Pi users to find one another , totally optional , approximate location base on IP.
 
 <h2 id="96f8e05d2ec50fb2802a469cfae45b56"></h2>
 
 
 ## Overclocking
 
- - refers to **increasing the clock frequency**
- - refers to **increasing the internal voltage levels**
- - there are serveral different clocks inside a typical device
+- refers to **increasing the clock frequency**
+- refers to **increasing the internal voltage levels**
+- there are serveral different clocks inside a typical device
 
 <h2 id="ff95fa296ce2fde051c9ff77ec518fb9"></h2>
 
 
 ### Impact of Overclocking
 
- - instructions are executed more quickly, roughly one instruction per clock period
- - signals have shorter time in which to travel
+- instructions are executed more quickly, roughly one instruction per clock period
+- signals have shorter time in which to travel
   Signals must travel between storage elements (eg. register ) in a single clock period. So the risk of over-clocking is , the signal data may not reach destination in time if the clock period was decreased too much.
 
 <h2 id="60e76035d1d55222cee3e465d15a17e2"></h2>
@@ -148,9 +148,9 @@ What's the config option:
 
 ### Impact of Increasing Voltage
 
- - Increased voltage swing may increase transistor(晶体管) speed - you have to increase the voltage in order to make signal reach the destination in time if over clocked.
- - power consumpton in proportional to V²
- - Thermals effects may alter timing - The heating can change the timing on certain paths in the circuit.
+- Increased voltage swing may increase transistor(晶体管) speed - you have to increase the voltage in order to make signal reach the destination in time if over clocked.
+- power consumpton in proportional to V²
+- Thermals effects may alter timing - The heating can change the timing on certain paths in the circuit.
 
 ---
 
@@ -171,24 +171,24 @@ Text editors available on Linux for free: Emacs, vi, vim, nano, etc.
 
 View a file:
 
- - cat : print the file
- - head : print the first 10 lines
- - tail : print the last 10 lines (not on MacOS)
+- cat : print the file
+- head : print the first 10 lines
+- tail : print the last 10 lines (not on MacOS)
 
 <h2 id="96fd0f31db825baa802614c9f0f49add"></h2>
 
 
 ### File Permissions
 
- - Files have **owners**
+- Files have **owners**
     - an owner is the user who created the file 
- - File have **access permissions**
+- File have **access permissions**
     - Read(r) , Write(w) , Execute(x) 
- - Different permissions can be assigned according to type
+- Different permissions can be assigned according to type
     1. User: user permissions are the permissions for the file owner
     2. Group: a permission group
     3. Other: all users
- - `ls -l`  : to view file permissions  
+- `ls -l`  : to view file permissions  
     - eg. drwxr-xr-x :  dir(1)user(3)group(3)other(3) 
     
 <h2 id="b6ec7abeb6ae29cc35a4b47475e12afe"></h2>
@@ -200,8 +200,8 @@ view process :  `ps [a]` , if not provide 'a' , it will show only shell itself ,
 
 Shutdown :
 
- - Should not just unplug a Linux machine.
- - Proper shutdown procedure is needed to place data structures in a good state
+- Should not just unplug a Linux machine.
+- Proper shutdown procedure is needed to place data structures in a good state
     - Flush all buffers, close files, etc.
 
 <h2 id="1e3042b2e2a5550b412b37edd1c36b34"></h2>
@@ -219,9 +219,9 @@ After initial login, type "startx". Linux can have it look however you want base
 
 Python is the best supported language for Raspberry Pi.
 
- - Good programming environment built-in
- - Gool APIs available to access Raspberry Pi hardware
- - This course will use python 3
+- Good programming environment built-in
+- Gool APIs available to access Raspberry Pi hardware
+- This course will use python 3
 
 
 <h2 id="5130ecea52dfa86cf8c70e7515c1aa48"></h2>
@@ -229,19 +229,19 @@ Python is the best supported language for Raspberry Pi.
 
 ## General Purpose IO Pins 通用IO引脚
 
- - Dedicated power and ground pins
+- Dedicated power and ground pins
     - which you can use to interface with other devices 
- - 3.3v (1,17) , 5V ( 2,4 ) , Gnd( 6,9,14,20,30,39)
+- 3.3v (1,17) , 5V ( 2,4 ) , Gnd( 6,9,14,20,30,39)
 
 ---
 
- - General Purpose / Multi-Function pins
+- General Purpose / Multi-Function pins
     - you can write code that sits in the high or low, and you can write code that reads the values that are driven on to them from external sources. 
- - GPIO2 (3 , SDA1 I2C) , GPIO3(5 , SCL1 I2C) , GPIO4(7)
- - Pins labeled "GPIOxx" can be used as general purpose I/O
- - Some GPIO pins have 2 names， eg. GPIO2(SDA1 I2C), so we'll call those multi-function pins.
+- GPIO2 (3 , SDA1 I2C) , GPIO3(5 , SCL1 I2C) , GPIO4(7)
+- Pins labeled "GPIOxx" can be used as general purpose I/O
+- Some GPIO pins have 2 names， eg. GPIO2(SDA1 I2C), so we'll call those multi-function pins.
     - SDA / SCL is the communication pins for the I2C protocal
- - UART Pins
+- UART Pins
     - GPIO14(8, UART0_TXD) , GPIO15(10, UART0_RXD)
     - UART is **serial** protocal , single bit, one bit at a time is being transferred. *TX stands for transmit, and RX stands for receive*. If you wanna send serial bit, serial data, UART data from Raspberry Pi to another device, you send it ont the TX , and on the receiving end, you receive it on the RX.
     - TX and RX can be used to communicated to another Raspberry.
@@ -256,8 +256,8 @@ Python is the best supported language for Raspberry Pi.
 
 I2C Pins
 
- - GPIO2 (3 , SDA1 I2C) 
- - GPIO3 (5 , SCL1 I2C)
+- GPIO2 (3 , SDA1 I2C) 
+- GPIO3 (5 , SCL1 I2C)
 
 I2C is a serial communication protocal between two chips or two devices that are relatively close, that can share a clock.  So this is a clocked , a synchronous protocal , so the two devices have to be close enough that they can share the same clock. Typically , on the same board or something like that. They've gotta be physically close.
 
@@ -278,12 +278,12 @@ SPI: Serial parallel interface
 This protocal basically involves four wires, at least four.
 
 
- - Pin 19 ,SPI0_MOSI , is master out , slave in
- - Pin 21 ,SPI0_MISO , is master in , slave out
+- Pin 19 ,SPI0_MOSI , is master out , slave in
+- Pin 21 ,SPI0_MISO , is master in , slave out
     - Pin 19,21, each on of those wires is directional. 
- - Pin 23 ,SPI0_SCLK 
+- Pin 23 ,SPI0_SCLK 
     - that's the clock that all the devices would share 
- - Pin 24 , SPI0_CE0_N ; Pin 26 , SPI0_CE1_N , 
+- Pin 24 , SPI0_CE0_N ; Pin 26 , SPI0_CE1_N , 
     - there's also a chip enable. Chip enable is because with SPI, there can be a master, the single master , talking to many slavers. But it can only talk to one slave at a time. So it needs to assert the chip enable for the particular slave that it's taling to, to let that slave know it is communicating , that slave should wake up and listen. So each slave has to have a chip enable associated with it that the master can assert , can pull down, in order to wake them up and have them listen.
     - SPI0_CE0_N , last N means negative, so it's negatively assertive, meaning you have to pull that wire down so the Raspberry Pi will send that from one to zero to let the client knonw. Only 2 chip enable wire on board, you might need more , depending on how many SPI components are on your bus, how many slave you have on your bus. cuz you need a chip enabled for every single slave.
     
@@ -294,13 +294,13 @@ This protocal basically involves four wires, at least four.
  
 GPIO Access in Python:
 
- - Use the GPIO library
- - import Rpi.GPIO as GPIO
- - Execute your python program as root
- - Tow ways to refer to the pins
+- Use the GPIO library
+- import Rpi.GPIO as GPIO
+- Execute your python program as root
+- Tow ways to refer to the pins
     1. The number of the pins in their order on the board ( the number in circles)
     2. The Broadcom SoC number ( shown in rectangles, after "GPIO" )
- - Selecting Pin Numbering Mode
+- Selecting Pin Numbering Mode
      1. GPIO.setmode(GPIO.BOARD) , use board numbering
      2. GPIO.setmode(GPIO.BCM) , use Broadcom SoC numbering, changes with different versions of Raspberry Pi
 
@@ -359,7 +359,7 @@ GPIO.setup(13, GPIO.IN )
 value = GPIO.input(13)
 ```
 
- - only reads digital inputs
+- only reads digital inputs
     - No analogRead equivalent
     - No analog-to-digital converter
 

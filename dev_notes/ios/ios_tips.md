@@ -62,9 +62,9 @@ security cms -D -i example.mobileprovision
 
 ## 设备版本过高，xcode无法真机debug
 
- - download device support files if you don't want to change your Xcode right now from 
+- download device support files if you don't want to change your Xcode right now from 
     - [here](https://github.com/filsv/iPhoneOSDeviceSupport)
- - And then put at a location.
+- And then put at a location.
     - `/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/`
 
 

@@ -51,7 +51,7 @@
         - arrays that can have as indices not only numbers, but any Lua value except **nil** and **NaN**.
         - Any key with value nil is not considered part of the table.
         - `a.name` as syntactic sugar for `a["name"]`
- - *Tables*, *functions*, *threads*, and (full) *userdata* values are objects: 
+- *Tables*, *functions*, *threads*, and (full) *userdata* values are objects: 
     - variables do not actually contain these values, only references to them.
 
 <h2 id="450e6c4e856637db95564a960db61fa8"></h2>

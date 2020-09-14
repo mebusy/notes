@@ -63,8 +63,8 @@ def MergeSort(lists):
 
 可以看到, 在递归算法 在`某一级`的函数调用中:
 
- - (1)把array分成两个子数组,(2)是两次函数调用, 分治法中,这两部分只是概念上的东西，可以忽略它们的时间消耗; 
- - (3)需要把两个数组合并, 大量的计算都发生在这里，这是我们关心的重点。
+- (1)把array分成两个子数组,(2)是两次函数调用, 分治法中,这两部分只是概念上的东西，可以忽略它们的时间消耗; 
+- (3)需要把两个数组合并, 大量的计算都发生在这里，这是我们关心的重点。
 
 `Merge代码（3）实现如下:`
 
@@ -118,8 +118,8 @@ Total Runing time = 6n x (log₂n +1) = `6n·log₂n + 6n` .
 
 #### Mergesort: practical improvements
 
- - Mergesort has too much overhead for tiny subarrays
- - 对于小数组，eg. len < 8 , use insertion-sort instead
+- Mergesort has too much overhead for tiny subarrays
+- 对于小数组，eg. len < 8 , use insertion-sort instead
  
 
 <h2 id="a3b94ca02e9a48292c9644ca761f6370"></h2>
@@ -338,9 +338,9 @@ def Merge_Count_Inv(left,right):
 
 `思路:`
 
- - 拆成两个子array
- - 计算出 两个子数组的 cloest pair : pair1,pair2
- - 计算两个子数组的 split closest pair pair3, 返回min(D(pair1),D(pair2),D(pair3))
+- 拆成两个子array
+- 计算出 两个子数组的 cloest pair : pair1,pair2
+- 计算两个子数组的 split closest pair pair3, 返回min(D(pair1),D(pair2),D(pair3))
 
 第3部分是难点, 线性处理两个子数组，才能保证这个算法O(nlogn).
 
@@ -577,11 +577,11 @@ def BinarySearch( sorted_list , lo, hi , num ):
 
 > Description QuickSort( array A , length n ):
 
- - if n==1 return
- - p = ChoosePivot( A,n )
- - partition A around p
- - recursively sort  1st part
- - recursively sort  1nd part
+- if n==1 return
+- p = ChoosePivot( A,n )
+- partition A around p
+- recursively sort  1st part
+- recursively sort  1nd part
 
 > Partition algorithm : Partition(A,l,r)
 
@@ -632,8 +632,8 @@ def QuickSort( lists , lo , hi  ):
 
 > 算法分析:
 
- - bad case: 快速排序一个sorted array, 每次选 1st element as pivot, 时间复杂度 O(n²)
- - avarage case: 时间复杂度 O(nlogn) , n+(n-1)+(n-2)+...+1
+- bad case: 快速排序一个sorted array, 每次选 1st element as pivot, 时间复杂度 O(n²)
+- avarage case: 时间复杂度 O(nlogn) , n+(n-1)+(n-2)+...+1
 
 ---
 
@@ -647,8 +647,8 @@ def QuickSort( lists , lo , hi  ):
 
 ### * Randomized Selection
 
- - Input: array with n size
- - Output: iᵗʰ smallest element (第i小得元素)
+- Input: array with n size
+- Output: iᵗʰ smallest element (第i小得元素)
 
 > Method 1: Reduction to Sorting - O(nlogn)
 

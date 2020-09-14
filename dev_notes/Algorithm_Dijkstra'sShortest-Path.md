@@ -34,18 +34,18 @@
 
 Basically what we wanna do is compute something like driving directions. So we're given as input a graph, in the lecture I'm gonna work with directed graph , although the same algorithm would work undirected graphs with cosmetic changes.
 
- - Input: m edges, n vertices
+- Input: m edges, n vertices
     - each edge has non-negative length : le
     - source vertex s
- - Output: for each v ∊ V , compute L(v):= length of a shortest s-v path in G ( "length of path" = sum of edge lengths ).
+- Output: for each v ∊ V , compute L(v):= length of a shortest s-v path in G ( "length of path" = sum of edge lengths ).
 
 ![](../imgs/shortest_path.PNG)
 
 We'll make 2 assumptions for the lectures. One is really just for convenience. The other is really important , without which Dijkstra's algorithm is not correct.
 
- - Assumption 1: [for convenience] ∀ v ∊ V , ∃ an s~>v path.There is a directed path from s to every other vertex v in the graph, otherwise the distance is +∞.
+- Assumption 1: [for convenience] ∀ v ∊ V , ∃ an s~>v path.There is a directed path from s to every other vertex v in the graph, otherwise the distance is +∞.
     - if there is not a path from s->v  then v is not reachable. So you could delete the irrelevant part of the graph and run Dijkstra on what remains. Alternatively Dijkstra will quite naturally figure out which vertices there are paths to from s and which ones there are not.
- - [important] le >=0 , ∀ e ∊ E  ( length of edge is non-negative)
+- [important] le >=0 , ∀ e ∊ E  ( length of edge is non-negative)
 
 
 <h2 id="1eaef9d12a746195ea15ef25ebc3a7c8"></h2>
@@ -98,9 +98,9 @@ MainLoop idea 2
 
 ![](../imgs/Dijkstra_iteration1.PNG)
 
- - 1st iteration: only SV and SW 2 crossing edges, SV scores 1, SW scores 4, so we choose (s,v)
- - 2nd iteration: now there is 3 crossing edges: SW,VW,VT, SW scores 4, SVW scores 3, SVT scores 7 , so we choose (s,v,w)
- - 3rd iteration: now there 2 crossing edges left: VT, WT, SVT score 7, SVWT scores 6 , so the final path is (s,v,w,t)
+- 1st iteration: only SV and SW 2 crossing edges, SV scores 1, SW scores 4, so we choose (s,v)
+- 2nd iteration: now there is 3 crossing edges: SW,VW,VT, SW scores 4, SVW scores 3, SVT scores 7 , so we choose (s,v,w)
+- 3rd iteration: now there 2 crossing edges left: VT, WT, SVT score 7, SVWT scores 6 , so the final path is (s,v,w,t)
 
 <h2 id="3e5d3e41b577901d52f5a80509aae808"></h2>
 
@@ -119,11 +119,11 @@ We can do better by not changing the algorithm but changing how we organize the 
 
 ### Heap Review
 
- - conceptually , a perfectly balanced binary tree 
- - key of node has to be  <= key of children 
+- conceptually , a perfectly balanced binary tree 
+- key of node has to be  <= key of children 
     - this property ensure that the smallest key of them all has to be at the root of this tree.
- - extract-min by swapping up last leaf, bubbling down
- - insert via bubbling up
+- extract-min by swapping up last leaf, bubbling down
+- insert via bubbling up
  
 Heaps are generally logically thought of as a complete binary tree, even though they are usually implemented as a laid-out linear array. 
 
@@ -145,8 +145,8 @@ Because we're storing vertices rather than edges in the heap, we're going to mai
 
 Show as the pic, there are two different edges(I,II) whose tail is in X , and have the same vertex in V-X as their head. So what should the key of this vertex be ? Well, it shoud be the smaller one. So the key value should be 3. The last edge which head in X and tail in V-X is not an eligible edge, so the key is +∞ . 
 
- - Invariant 1: elements in heap = vertices of V-X
- - Invariant 2: for v∉X , key[v] = smallest Dijkstra greedy score of an edge (u,v)∈E  with u∈X .
+- Invariant 1: elements in heap = vertices of V-X
+- Invariant 2: for v∉X , key[v] = smallest Dijkstra greedy score of an edge (u,v)∈E  with u∈X .
     - of +∞ if no such edges exist
     - 在算法执行过程中key的值是在不断逼近最终结果但在过程中不一定就等于长度。
  
@@ -188,10 +188,10 @@ when W extracted from heap( ie. added to X )
 
 ## Running Time Analysis
 
- - (n-1) Extract mins
- - each edge (v,w) triggers at most one delete/insert combo (if v added to X first)
+- (n-1) Extract mins
+- each edge (v,w) triggers at most one delete/insert combo (if v added to X first)
 
 So:
 
- - #of heap operations is O(m+n) = O(m)
- - running time = O(mlogn) 
+- #of heap operations is O(m+n) = O(m)
+- running time = O(mlogn) 

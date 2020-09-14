@@ -26,7 +26,7 @@
 
 ### 7.1.1  About Shader Scripts
 
- - how to inclulde shader source code on a web ?
+- how to inclulde shader source code on a web ?
     1. storing the code in JavaScript string literals  (hard read and edit)
     2. puting shader source code inside `<script>` elements.  For example
 
@@ -42,7 +42,7 @@
 </script>
 ```
 
- - 浏览器不会真正执行这段 script， 因为 不能识别 "x-shader/x-vertex". 
+- 浏览器不会真正执行这段 script， 因为 不能识别 "x-shader/x-vertex". 
     - But it does store the content of the `<script>` element in the DOM data structure. 
     - The content can be retrieved as a string using the standard DOM API.
 
@@ -68,9 +68,9 @@ function getTextContent( elementID ) {
 
 ### 7.1.2  Introducing glMatrix (TODO)
 
- - JavaScript library for 3D transformation : [glMatrix](http://glmatrix.net)
+- JavaScript library for 3D transformation : [glMatrix](http://glmatrix.net)
     - `<script src="gl-matrix-min.js"></script>`
- - a glMatrix *mat4* can be passed to a shader program to specify the value of a GLSL *mat4*, and similarly for the other vector and matrix types.
+- a glMatrix *mat4* can be passed to a shader program to specify the value of a GLSL *mat4*, and similarly for the other vector and matrix types.
 
 ```
 transform = mat4.create();
@@ -78,7 +78,7 @@ vector = vec3.create();
 saveTransform = mat4.clone(modelview);
 ```
 
- - Most other functions do **NOT** create new arrays. Instead, they modify the contents of their first parameter. 
+- Most other functions do **NOT** create new arrays. Instead, they modify the contents of their first parameter. 
     - `mat4.multiply(A,B,C)` will modify A , so that it holds the matrix product of B and C.
     - `mat4.translate(A,B,v)` makes A equal to the product of B and v
         - `mat4.translate( modelview, modelview, [dx,dy,dz] );`  is equivalent to calling `glTranslatef(dx,dy,dz)` in OpenGL
@@ -104,13 +104,13 @@ void main() {
 
 ### 7.1.4  Transforming Normals
 
- - Normal vectors are essential for lighting calculations.
- - 大部分情况下，如果 surface 有一个 transformation, 这个 surface的 normal vectors 也会相应变化。 唯一的例外 translation. 平移一个vector是没有意义的.
- - 你可能猜想，transformation 中的 rotation/scaling 部分，会被作用到 normal vectors上？
+- Normal vectors are essential for lighting calculations.
+- 大部分情况下，如果 surface 有一个 transformation, 这个 surface的 normal vectors 也会相应变化。 唯一的例外 translation. 平移一个vector是没有意义的.
+- 你可能猜想，transformation 中的 rotation/scaling 部分，会被作用到 normal vectors上？
     - 猜想 这是个3x3矩阵，该矩阵是通过从4x4坐标变换矩阵中删除右列和底行而获得的。
     - 很多情况下，这是不正确的。 比如 一个切变矩阵。 ( 仅举例用，实际上很多缩放的情况都有这个问题 )
     - ![](../imgs/cg_7_shear_normal_vector.png)
- - Nevertheless, it is possible to get the correct transformation matrix for normal vectors from the coordinate transformation matrix. 
+- Nevertheless, it is possible to get the correct transformation matrix for normal vectors from the coordinate transformation matrix. 
     - 事实证明，您需要删除第四行和第四列，然后采用所谓的3乘3矩阵的“inverse transpose 逆转置”。 
     - 对normal vector 进行变换不能直接乘以变换矩阵，必须乘以inverse transpose matrix
         - ![](../imgs/cg_normal_transform.png)
@@ -124,7 +124,7 @@ void main() {
 mat3.normalFromMat4( normalMatrix, coordinateMatrix );
 ```
 
- - Since we need normal vectors for lighting calculations, and lighting calculations are done in eye coordinates, the coordinate transformation that we are interested in is usually the modelview transform.
+- Since we need normal vectors for lighting calculations, and lighting calculations are done in eye coordinates, the coordinate transformation that we are interested in is usually the modelview transform.
 
 ```
 attribute vec3 a_coords;   // Untransformed object coordinates.

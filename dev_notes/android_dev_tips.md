@@ -43,7 +43,7 @@ public  static void openAppStore(  final String url ) {
 
 ## whole-archieve prebuilt static library
 
- - use LOCAL_WHOLE_STATIC_LIBRARIES  instead of LOCAL_STATIC_LIBRARIES
+- use LOCAL_WHOLE_STATIC_LIBRARIES  instead of LOCAL_STATIC_LIBRARIES
 
 <h2 id="a8113f0e4f0db0e8f7a49b9697196e90"></h2>
 

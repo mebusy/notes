@@ -24,13 +24,13 @@
 
 # misc 
 
- - 主线程对 CTRL-C signal的响应
+- 主线程对 CTRL-C signal的响应
     1. 无论主线程是否等待其他线程结束执行，如果主线程执行完了所有代码，将不会响应 CTRL-C
     2. 主线程 block 住的情况下，也不会响应 CTRL-C
     3. solution : `while True` in main thread.
- - sys.exit() called in thread is as same as calling "thread.exit()" , it will not kill process.
+- sys.exit() called in thread is as same as calling "thread.exit()" , it will not kill process.
     - solution: maintain a Queue.Queue in mainthread, and threads put `sys.quit()` callback to that queue ,and main thread will call it from the queue.
- - CTRL-C will not terminate the thread , unless it runs as daemon.
+- CTRL-C will not terminate the thread , unless it runs as daemon.
 
 
 

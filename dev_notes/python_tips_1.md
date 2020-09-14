@@ -383,13 +383,13 @@ Python has a locals() function which gives you back a dictionary of local variab
 
 核心风格：避免用下划线作为变量名的开始。
 
- - `_xxx`      
+- `_xxx`      
     - 不能用'from module import \*'导入 
     - **保护变量**，意思是只有 类对象和子类对象自己 能访问到这些变量
- - `__xxx`    
+- `__xxx`    
     - 类中的私有变量名
     - **私有成员**，意思是只有类对象自己能访问，连子类对象也不能访问到这个数据
- - `__xxx__`
+- `__xxx__`
     - 系统定义名字 
     - python里特殊方法专用的标识
 
@@ -613,7 +613,7 @@ unicode 可以使用 u"\uxxxx" 表示，但是当我们从某处获取 "\uxxxx"�
 
 ### 改变脚本本地编码
 
- - 有时候，print 打印某些unicode字符的时候，会报 UnicodeError
+- 有时候，print 打印某些unicode字符的时候，会报 UnicodeError
 
 ```
 reload(sys)
@@ -636,7 +636,7 @@ fp.close()
 
 ### 获取中文字符长度
 
- - 需要转成unicode字符
+- 需要转成unicode字符
 
 ```
 unicode_string = bytes.decode("utf-8")
@@ -750,10 +750,10 @@ arch -i386 python2.7
 
 ### python 并行任务技巧
 
- - 使用带有并发功能的map
- - Dummy是一个多进程包的完整拷贝
- - 唯一不同的是，多进程包使用进程，而dummy使用线程
- - 简言之，IO 密集型任务选择multiprocessing.dummy，CPU 密集型任务选择multiprocessing
+- 使用带有并发功能的map
+- Dummy是一个多进程包的完整拷贝
+- 唯一不同的是，多进程包使用进程，而dummy使用线程
+- 简言之，IO 密集型任务选择multiprocessing.dummy，CPU 密集型任务选择multiprocessing
 
 ```
 from multiprocessing import Pool
@@ -996,7 +996,7 @@ config_path = os.path.join(application_path, config_name)
 
 ### subprocess
 
- - 使用subprocess模块
+- 使用subprocess模块
     - 这个模块比较复杂，可以对子进程做更多控制
     - Popen is nonblocking. call and check_call are blocking
     - `Popen(cmd , shell=True, cwd=  arg) .stdout.readlines()`
@@ -1011,8 +1011,8 @@ config_path = os.path.join(application_path, config_name)
 subprocess.call( cmd.split() +  sys.argv[1:]  , stderr=subprocess.STDOUT ,shell=True )
 ```
 
- - `shell=True` 是在 shell中执行，以便获取环境变量之类的设置
- - 如果需要获取 exit code
+- `shell=True` 是在 shell中执行，以便获取环境变量之类的设置
+- 如果需要获取 exit code
 
 ```
 child = subprocess.Popen( cmd , stdout=subprocess.PIPE , stdin=subprocess.PIPE, stderr=subprocess.STDOUT , shell=True )

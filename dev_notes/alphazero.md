@@ -23,13 +23,13 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
 
 ## Monte Carlo Tree Search
 
- - The go-to algorithm for writing bots to play **discrete**, **deterministic** games with **perfect information** is **Monte Carlo tree search (MCTS)**.
+- The go-to algorithm for writing bots to play **discrete**, **deterministic** games with **perfect information** is **Monte Carlo tree search (MCTS)**.
     - discrete: individually separate and distinct moves and positions
     - deterministic: every move has a set outcome
     - games: players competing against one another
     - perfect information: both players see everything
         - 所以目前无法处理麻将这类游戏，因为这类游戏信息是不完整的 imperfect information
- - The algorithm works as follows. 
+- The algorithm works as follows. 
     - The game-in-progress is in an initial state s₀ , and it's the bot's turn.
         - The bot can choose from a set of actions A.
         - Monte Carlo tree search begins with a tree consisting of a single node for s₀.
@@ -91,23 +91,23 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
 
 ## Efficiency Through Expert Policies
 
- - Games like chess and Go have very large branching factors. 
+- Games like chess and Go have very large branching factors. 
     - In a given game state there are many possible actions to take, 
     - making it very difficult to adequately explore the future game states. 
- - As a result, there are an estimated 
+- As a result, there are an estimated 
     - 10⁴⁶  board states in chess,
     - and Go played on a traditional 19×19 board has around 10¹⁷⁰ 
     - Tic-tac-toe only has 5478 states
- - Move evaluation with vanilla Monte Carlo tree search just isn't efficient enough.
+- Move evaluation with vanilla Monte Carlo tree search just isn't efficient enough.
     - We need a way to further focus our attention to worthwhile moves.  将注意力集中在有价值的动作上 。
- - Suppose we have an *expert policy π* that, for a given state *s*, tells us how likely an expert-level player is to make each possible action.
+- Suppose we have an *expert policy π* that, for a given state *s*, tells us how likely an expert-level player is to make each possible action.
     - For the tic-tac-toe example, this might look like:
     - ![](../imgs/mcts_tictac8.png) 
     - where each Pᵢ = π(aᵢ|s₀) is the probability of choosing the ith action aᵢ given the root state s₀.
     - If the expert policy is really good then we can produce a strong bot by directly drawing our next action according to the probabilities produces by π, by taking the move with the highest probability. 
- - Unfortunately, getting an expert policy is difficult, and verifying that one's policy is optimal is difficult as well.
+- Unfortunately, getting an expert policy is difficult, and verifying that one's policy is optimal is difficult as well.
     - :(
- - Fortunately, one can improve on a policy by using a modified form of Monte Carlo tree search.  可以通过一个修改版来改进策略
+- Fortunately, one can improve on a policy by using a modified form of Monte Carlo tree search.  可以通过一个修改版来改进策略
     - This version will also store the probability of each node according to the policy, and this probability is used to adjust the node's score during selection.
     - The probabilistic upper confidence tree score used by DeepMind is:
         - ![](../imgs/mcts_UTCscore_m.png)
@@ -122,14 +122,14 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
 
 ## Efficiency Through Value Approximation
 
- - A second form of efficiency can be achieved by  avoiding expensive and potentially inaccurate random rollouts. 
+- A second form of efficiency can be achieved by  avoiding expensive and potentially inaccurate random rollouts. 
     - One option is to use the expert policy from the previous section to guide the random rollout.
         - If the policy is good, then the rollout should reflect more realistic, expert-level game progressions and thus more reliably estimate a state's value.
     - A second option is to avoid rollouts altogether, and directly approximate the value of a state with a value approximator function Ŵ(x).    
         - This function takes a state and directly computes a value in [−1,1], without conducting rollouts. 
         - Clearly, if Ŵ is a good approximation of the true value, but can be executed faster than a rollout, then execution time can be saved without sacrificing performance.
- - Value approximation can be used together with an expert policy to speed up Monte Carlo tree search. 
- - A serious concern remains: how does one obtain an expert policy and a value function? 
+- Value approximation can be used together with an expert policy to speed up Monte Carlo tree search. 
+- A serious concern remains: how does one obtain an expert policy and a value function? 
     - Does an algorithm exist for training the expert policy and value function?
 
 
@@ -138,24 +138,24 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
 
 ## The Alpha Zero Neural Net
 
- - The Alpha Zero algorithm produces better and better expert policies and value functions over time by playing games against itself with accelerated Monte Carlo tree search. 
+- The Alpha Zero algorithm produces better and better expert policies and value functions over time by playing games against itself with accelerated Monte Carlo tree search. 
     - Alpha Zero算法通过 加速的蒙特卡罗树搜索 与自身玩游戏，从而产生更好，更好的专家政策和价值功能。
- - The expert policy π and the approximate value function Ŵ  are both represented by deep neural networks. 
- - In fact, to increase efficiency, Alpha Zero uses one neural network f that 
+- The expert policy π and the approximate value function Ŵ  are both represented by deep neural networks. 
+- In fact, to increase efficiency, Alpha Zero uses one neural network f that 
     - takes in the game state and produces 
     - both the probabilities over the next move and the approximate state value. 
     - (Technically, it takes in the previous 8  game states and an indicator telling it whose turn it is.)
- - **f(s) → [p,W]**
- - Leaves in the search tree are **expanded** by *evaluating them with the neural network*. 
+- **f(s) → [p,W]**
+- Leaves in the search tree are **expanded** by *evaluating them with the neural network*. 
     - Each child is initialized with N=0, W=0, and with P corresponding to the prediction from the network. 
     - The value of the expanded node itself is set to the predicted value and this value is then backed up the tree.
     - ![](../imgs/mcts_tictac10.png)
     - 评估一个leaf节点，N=1,W=f(s) -> 扩展节点 -> 初始化 child的值 W=N=0,P=f(s) -> 被 expand的 节点的W,N 向上反向传播
- - Selection and backup are unchanged.
+- Selection and backup are unchanged.
     - during backup a parent's visit counts are incremented and its value is increased according to W.
- - The search tree following another selection, expansion, and backup step is:
+- The search tree following another selection, expansion, and backup step is:
     - ![](../imgs/mcts_tictac11.png)    
- - The core idea of the Alpha Zero algorithm is that the predictions of the neural network can be improved, and the play generated by Monte Carlo tree search can be used to provide the training data. 
+- The core idea of the Alpha Zero algorithm is that the predictions of the neural network can be improved, and the play generated by Monte Carlo tree search can be used to provide the training data. 
     - Alpha Zero算法的核心思想是可以改进神经网络的预测，并且可以使用蒙特卡罗树搜索生成的游戏来提供训练数据。
     - The **policy portion** of the neural network is improved by 
         - training the predicted probabilities p for s₀ 
@@ -188,9 +188,9 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
 
 ## Closing Comments
 
- - The folks at DeepMind contributed a clean and stable learning algorithm that 
+- The folks at DeepMind contributed a clean and stable learning algorithm that 
     - trains game-playing agents efficiently using only data from self-play.
- - While the current Zero algorithm only works for discrete games, it will be interesting 
+- While the current Zero algorithm only works for discrete games, it will be interesting 
     - whether it will be extended to MDPs or  partially observable counterparts in the future. 
 
 
@@ -199,12 +199,12 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
 
 ## Summary
 
- - MCTS 
+- MCTS 
     - for a given status 
         - 1 expanded by all actions  , randomly rollout child node's value W=[-1,0,1], N=1 , 
         - 2 propagate W,N to parents 
         - 3 selecting a leaf node via UCT scores ,  continue iteration.
- - MCTS accelerate
+- MCTS accelerate
     - Expert Policies  , by a modified UCT scores
     - Value Approximation 
 

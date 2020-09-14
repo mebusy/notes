@@ -22,7 +22,7 @@
 >  PS：其实真正的高效的Node Group剔除应多加一层Sequence Node。
 
 
- - 4大类型的Node：
+- 4大类型的Node：
     - Composite Node
         - Selector Node
             - 逻辑或
@@ -48,20 +48,20 @@
         - 行为节点也可能会使用多帧来完成
         - 当行为需要分step/Node间进行时，可引入Blackboard进行简单数据交互
     - 只有Condition Node和Action Node才能成为Leaf Node
- - 节点的返回
+- 节点的返回
     - 任何Node被执行后，必须向其Parent Node报告执行结果：成功 / 失败 / 运行中。
     - **运行中**：表示当前节点还在运行中，下一次调用行为树时任然运行当前节点；
     - **失败**：表示当前节点运行失败；
     - **成功**：表示当前节点运行成功；
- - 这简单的成功 / 失败汇报原则被很巧妙地用于控制整棵树的决策方向。
- - 几乎可以实现所有的决策控制：if, while, and, or, not, counter, time, random, weight random, util...
+- 这简单的成功 / 失败汇报原则被很巧妙地用于控制整棵树的决策方向。
+- 几乎可以实现所有的决策控制：if, while, and, or, not, counter, time, random, weight random, util...
 
 上面的Selector/Sequence准确来说是Liner Selector/Liner Sequence。 AI术语中称为strictly-order：按既定先后顺序迭代。
 
- - Selector和Sequence可以进一步提供非线性迭代的加权随机变种。AI术语中称为partial-order，能使AI避免总出现可预期的结果。
+- Selector和Sequence可以进一步提供非线性迭代的加权随机变种。AI术语中称为partial-order，能使AI避免总出现可预期的结果。
     - Weight Random Selector
     - Weight Random Sequence
- - 更强大的是可以加入Stimulus和Impulse，通过Precondition来判断masks开关。
+- 更强大的是可以加入Stimulus和Impulse，通过Precondition来判断masks开关。
     - Stimulus这类动态安插的Node 会破坏本来易于理解的静态性 
     - 原则就是保持全部Node静态，只是根据事件和环境来检查是否启用Node。
 
@@ -70,7 +70,7 @@
 
 # Source code of BTSK
 
- - `class Behavior`  , base class for actions, conditions, and composites
+- `class Behavior`  , base class for actions, conditions, and composites
     - update() 
         - which is called every frame 
     - onInitialize() 
@@ -80,34 +80,34 @@
     - so this is pretty standard interface as most of you the state machine might be familiar with but the big difference between them is the `Status`
         - the state machine doesn't have a return `Status`, it doesn't know whether it succeeded of failed 
         - but in the behavior tree you know about that.
- - `enum Status` 
+- `enum Status` 
     - BH_INVALILD
     - BH_SUCCESS
     - BH_FAILURE
     - BH_RUNNINg
- - `Behavior::tick` : 
+- `Behavior::tick` : 
     - a helper wraper function that helps make sure that we call all our functions correctly things like `onInitialize` , `update` ...
         - if mStatus == BH_INVALID , call onInitialize 
         - mStatus = update()
         - if mStatus != BH_RUNNING , call onTerminate( mStatus )
         - return mStatus 
- - `struct MockBehavior : public Behavior`
+- `struct MockBehavior : public Behavior`
     - it is in fact a test file so everything is unit tested and that is another tip that I will give you is that you should be really only testing all of your behavior tree. 
     - it have measuring the number of times each function is called and capturing what the behavior returns and forcing a certain weight of status 
 
 ---
 
- - 2 main 'Composite' nodes
+- 2 main 'Composite' nodes
     - Sequences     , i.e. fixed list of statements
     - Selectors     , i.e. conditional branching
- - It's a powerful concept...
+- It's a powerful concept...
     - you can build most trees with these nodes 
     - Thye are the most commonly used nodes
 
 ---
 
- - `class Composite : public Behavior`
- - `class Sequence : public Composite`
+- `class Composite : public Behavior`
+- `class Sequence : public Composite`
     - onInitialized 
         - mCurrentChild = mChildren.begin()
     - update 
@@ -120,7 +120,7 @@
     - return BH_INVALID    , this is unexpected loop exit
 ```
 
- - `class Selector : public Composite`
+- `class Selector : public Composite`
     - update
 
 ```
@@ -131,7 +131,7 @@
     - return BH_INVALID     
 ```
 
- - Memory Problems ?
+- Memory Problems ?
     - With the 1st implementation, you need a completely new tree for each NPC !
 
 ---
@@ -141,24 +141,24 @@
 
 ## Spearate Out Behaviors
 
- - Nodes
+- Nodes
     - Common data shared by all instances
     - The Basic structure of the tree
     - All parameters and other configuration
- - Tasks
+- Tasks
     - Runtime instance-specifc data.
     - Current pointers, counters ,etc
 
 ---
 
- - `class Node` 
+- `class Node` 
     - `Task* create()`
     - `void destory(Task*)`
- - `class Task` 
+- `class Task` 
     - very similar to a behavior , has update/onInitialize/onTerminate
     - constructor: `Task(Node& node)`
     - `Node* m_pNode;`
- - `class Behavior`
+- `class Behavior`
     - `Task* m_pTask`
     - `Node* m_pNode`
     - `Status m_eStatus`
@@ -180,13 +180,13 @@ b.tick();
 CHECK_EQUAL(1, t->m_iInitializeCalled);
 ```
 
- - `class Composite : public Node`
+- `class Composite : public Node`
     - `Nodes m_Children`
- - `class Sequence : public Task`
+- `class Sequence : public Task`
     
 ---
 
- - Disadvantages
+- Disadvantages
     - It's entirely based on poolling
     - There's a whole chain of virtual calls
     - A lot of memory gets touched each traversal 
@@ -201,7 +201,7 @@ CHECK_EQUAL(1, t->m_iInitializeCalled);
 
 ## Part 2.a  DATA-ORIENTED BT
 
- - Memory Allocation
+- Memory Allocation
     - The Policy
         - Use a stack allocator for the whole BT
         - Allocate each node contiguously
@@ -209,10 +209,10 @@ CHECK_EQUAL(1, t->m_iInitializeCalled);
         - Child nodes come after their parent
     - Motivation
         - Keeps cache misses low, etc.
- - bt3
- - `class BehaviorTree`
+- bt3
+- `class BehaviorTree`
     - all the nodes inside there will be allocated one by one in memory
- - Node Indexing
+- Node Indexing
     - The Policy
         - Don't rely on pointers anymore
         - Use indexes or relative offsets
@@ -225,16 +225,16 @@ CHECK_EQUAL(1, t->m_iInitializeCalled);
 
 ## Event-Driven BT
 
- - First Traversal
+- First Traversal
     - All nodes are expaned depth-first
     - Everything happens as before
- - Subsequent Traversals
+- Subsequent Traversals
     - There are no traversals from the root anymore!
     - Child behavior broadcast their status changes
     - Parents respond and adapt locally only
     - Only in the worst case expand again from root.
 
- - new Status code: BH_SUSPENDED
+- new Status code: BH_SUSPENDED
     - which will say that this behavior is active but it doesn't need to be called because it's waiting for something to happen. 
     - so this basically gives us or a performace even though we might not use a data oriented approach and then driven trees can preform data orient once because we have this status code 
     - the magic will happen by a hehavior observer so each behavior will have its own observer , or if you're spliting up your nodes and your tasks then each task will have the task observer , which will notify a parent that it's done and the parent will be able to deal with that as it sees fit 
@@ -245,7 +245,7 @@ CHECK_EQUAL(1, t->m_iInitializeCalled);
 
 ## What's Next
 
- - Disclaimer
+- Disclaimer
     - Nodes not covered:
         - Decorators / Filters
         - Parallels

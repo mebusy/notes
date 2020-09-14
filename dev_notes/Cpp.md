@@ -46,12 +46,12 @@
 
 ## 2.4  Graph as data structure
 
- - Connectitiy matrix (also distances)
+- Connectitiy matrix (also distances)
     - often used for dense graph
- - Edge List Representation 
+- Edge List Representation 
     - often used for sparse graph
     - Most real world problems are relatively sparse
- - Tradeoffs - Graph as an ADT 
+- Tradeoffs - Graph as an ADT 
 
 <h2 id="eabdefffaadf27a2e17eac89b418d03c"></h2>
 
@@ -60,10 +60,10 @@
 
 A representation of a directed graph with n vertices can use a list , for example , an array of n lists of vertices.
 
- - Definition: A representation of a ***directed graph*** with *n* vertices using an array of *n* lists of vertices.
- - List *i* contains vertex *j* if there is an edge from vertex *i* to vertex *j*.
- - A ***weighted graph*** may be represented with a list of vertex / weight pairs.
- - An ***undirected graph*** my be represented by having vertex *j* in the list for vertex *i* , and vertex *i* in the list for vertex *j*.
+- Definition: A representation of a ***directed graph*** with *n* vertices using an array of *n* lists of vertices.
+- List *i* contains vertex *j* if there is an edge from vertex *i* to vertex *j*.
+- A ***weighted graph*** may be represented with a list of vertex / weight pairs.
+- An ***undirected graph*** my be represented by having vertex *j* in the list for vertex *i* , and vertex *i* in the list for vertex *j*.
 
  
 <h2 id="3304451984d7d4ffea5486e84e449302"></h2>
@@ -170,9 +170,9 @@ int main() {
 
 Sorting Algorithm Prototypes
 
- - template<class RandAcc> void sort(RandAcc b, RandAcc e) ;
+- template<class RandAcc> void sort(RandAcc b, RandAcc e) ;
     - quicksort algorithm over elements b to e 
- - template<class RandAcc> void stablesort(RandAcc b, RandAcc e) ;
+- template<class RandAcc> void stablesort(RandAcc b, RandAcc e) ;
     - Stable sorting algorithm over elements b to e
     - elements remain in their relative same position
 
@@ -181,12 +181,12 @@ Sorting Algorithm Prototypes
 
 ## 1.11 Non-mutating Algorithm
 
- - template <class InputIter, Class T> InputIter find ( InputIter b, InputIter e, const T& t ) ;
+- template <class InputIter, Class T> InputIter find ( InputIter b, InputIter e, const T& t ) ;
     - Finds position of t in range b to e
- - template <class InputIter, Class Predicate> InputIter find_if ( InputIter b, InputIter e, Predicate t ) ;
+- template <class InputIter, Class Predicate> InputIter find_if ( InputIter b, InputIter e, Predicate t ) ;
     - Finds position of first element that makes predicate true in range b to e , otherwise position e returned
     - eg. find first element > 1000
- - template <class InputIter, Class Function> void for_each ( InputIter b,InputIter e,  Function f ) ;
+- template <class InputIter, Class Function> void for_each ( InputIter b,InputIter e,  Function f ) ;
     - apply f to each value found in range b to e
     
 
@@ -228,7 +228,7 @@ int main() {
 
 ### lambda c++11
 
- - [] : lambda 
+- [] : lambda 
     - // goest where the function object is required
     - `[](int n) {return n * 5.5;}`   // double returned
         - deduces the return value -- no return void
@@ -240,8 +240,8 @@ int main() {
 
 ### Mutating Function
 
- - template <class InputIter,class OutputIter> 
- - OutputIter copy ( InputIter b1, InputIter e1 , OutputIter b2 );
+- template <class InputIter,class OutputIter> 
+- OutputIter copy ( InputIter b1, InputIter e1 , OutputIter b2 );
     - copying algorithm over elements b1 to e1
         - copy is placed starting at b2
         - Position returned is end of copy
@@ -252,15 +252,15 @@ int main() {
 
 ## 1.13 Numerical algorithms
 
- - Sums
+- Sums
     - template <class InputIter , class T, class BinOp>
     - T accumulate( InputIter b, InputIter e, T t, BinOp bop ) ; 
         - accumulation whose sum is initially t 
         - successive elements from range b to e are summed , with sum = bop(sum, element )
         - so can be not only + but also all binary operation.
- - Inner product
- - Adjacent difference
- - Numerical algorithm function behave as expected on numerical types where + and \* are defined.
+- Inner product
+- Adjacent difference
+- Numerical algorithm function behave as expected on numerical types where + and \* are defined.
 
 
 ```c++
@@ -279,8 +279,8 @@ int main() {
 
 ## 1.14 Functional Objects
 
- - Function objects are clases that have `operator()` defined 
- - `sum = accumulate( v1, v1+3, 0.0 , minus<int>() ) ;  // sum = -7`
+- Function objects are clases that have `operator()` defined 
+- `sum = accumulate( v1, v1+3, 0.0 , minus<int>() ) ;  // sum = -7`
 
 <h2 id="2025d93d18bf7503037e013bbfda141a"></h2>
 
@@ -297,8 +297,8 @@ class gen {
 }
 ```
 
- - `operator()`  means overload function
- - next `()` means parameter in this case is void
+- `operator()`  means overload function
+- next `()` means parameter in this case is void
 
 
 <h2 id="3861b29161427b38210b5fdbbffa7a1b"></h2>
@@ -306,7 +306,7 @@ class gen {
 
 ## 1.15 Define Function Object Classes:  Function Adapters
 
- - Function Adapters
+- Function Adapters
     - Creation of function objects using adaption
     - Negators for negating predicate objects
     - Binders for binding a function argument
@@ -339,19 +339,19 @@ class point3d final : public point { // no further inheritance
 
 ##  2.14 Virtual Function Selection
 
- - normal overrided function in the derived class , got selected based on , not the instance being pointed to , but instead the type of pointer. 
- - Typically base has virtual function and derived has their versions for function
- - Pointer to base class can point at either base or derived class objects
- - Member function selected depends on class of object being pointed at, not on pointer type
- - In absence of derived type member , base class virtual function used by default 
+- normal overrided function in the derived class , got selected based on , not the instance being pointed to , but instead the type of pointer. 
+- Typically base has virtual function and derived has their versions for function
+- Pointer to base class can point at either base or derived class objects
+- Member function selected depends on class of object being pointed at, not on pointer type
+- In absence of derived type member , base class virtual function used by default 
 
 ---
 
- - 派生类对象也“是”基类对象，但两者不同。
+- 派生类对象也“是”基类对象，但两者不同。
     - 派生类对象可以当做基类对象，这是因为派生类包含基类的所有成员。
     - 但是基类对象无法被当做成派生类对象，因为派生类可能具有只有派生类才有的成员。
     - 所以，将派生类指针指向基类对象的时候要进行显示的强制转换，否则会使基类对象中的派生类成员成为未定义的。
- - 总结：基类指针和派生类指针指向基类对象和派生类对象的4中方法：
+- 总结：基类指针和派生类指针指向基类对象和派生类对象的4中方法：
     - 基类指针指向基类对象，简单。只需要通过基类指针简单地调用基类的功能。
     - 派生类指针指向派生类对象，简单。只需要通过派生类指针简单地调用派生类功能。
     - 将基类指针指向派生类对象是安全的，因为派生类对象“是”它的基类的对象。
@@ -373,11 +373,11 @@ class point3d final : public point { // no further inheritance
 
 ### Restrictions on Virtual Functions 
 
- - only non-static member functions virtual 
- - virtual characteristic is inherited 
+- only non-static member functions virtual 
+- virtual characteristic is inherited 
     - derrived class function automatically virtual ,  virtual keyword ont needed
- - Constructors can not be virtual 
- - but destructors can be virtual. 
+- Constructors can not be virtual 
+- but destructors can be virtual. 
  
 
 <h2 id="a86bfb8c341e12c9b614fd2a4c94c24e"></h2>
@@ -390,8 +390,8 @@ explicit my_container (T * b ) : my_container()  {
     ...}
 ```
 
- - explicit : recall , turn off conversion 
- - `: my_container` : derived from other constructor, reuse code
+- explicit : recall , turn off conversion 
+- `: my_container` : derived from other constructor, reuse code
 
 
 <h2 id="fe7f80120156a50493bf86436ed5dedf"></h2>
@@ -407,7 +407,7 @@ class LeafNode: public Node {
 }
 ```
 
- - abstract function is still undetermined , still without definition , we need to override it.
+- abstract function is still undetermined , still without definition , we need to override it.
 
 
 <h2 id="3b7f38abea242fd2c0d2de96986f2551"></h2>
@@ -415,8 +415,8 @@ class LeafNode: public Node {
 
 ## 4.6 Asserts and Exceptions
 
- - Static_asserts added to C++ 11  allow ***compiler*** to statically test conditions
- - `static_assert( bool_constexpr , string )`
+- Static_asserts added to C++ 11  allow ***compiler*** to statically test conditions
+- `static_assert( bool_constexpr , string )`
     - bool_constexpr  : a boolean constant expression evaluated at compile time
     - string : your error message,  string literal that will be a compiler error if bool_constexpr is false 
 
@@ -426,7 +426,7 @@ class LeafNode: public Node {
 
 ## 4.8 Exception 
 
- - `throw your_string_message`
+- `throw your_string_message`
     - eg, `throw "This will Abort";`
 
 ```c++
@@ -442,21 +442,21 @@ try {
 
 ## 4.10 C++11 Standard
 
- - tuple  -- pair and more
- - array  -- fixed length array container
- - forward_list -- single pointer list
- - unordered_map, unordered_set  -- hashing used
- - thread  -- uniform thread interface + other libraries
- - regex  -- regular expressions
- - type traits  -- type characteristics 
+- tuple  -- pair and more
+- array  -- fixed length array container
+- forward_list -- single pointer list
+- unordered_map, unordered_set  -- hashing used
+- thread  -- uniform thread interface + other libraries
+- regex  -- regular expressions
+- type traits  -- type characteristics 
 
 <h2 id="f38f209014f0a6500ff416757a4c9a4d"></h2>
 
 
 ## 4.11 Thread 
 
- - `<thread>`
- - related lib 
+- `<thread>`
+- related lib 
     - `<mutex>`
     - `<future>` 
     - `<atomic>`

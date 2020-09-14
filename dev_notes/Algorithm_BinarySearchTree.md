@@ -71,8 +71,8 @@ deletion | unacceptable  |O(logn) | O(logn) | Really good
 
 ### BST Structure 
 
- - exactly one node per key
- - most basic version
+- exactly one node per key
+- most basic version
     each node has:
     - left child pointer
     - right child pointer 
@@ -83,9 +83,9 @@ deletion | unacceptable  |O(logn) | O(logn) | Really good
 
 ### Search Tree Property 
 
- - any arbitrary node of tree with key x
- - all keys in left subtree < x . (<= if duplicate key allowed)
- - all keys in right subtree > x . (>= if duplicate key allowed)
+- any arbitrary node of tree with key x
+- all keys in left subtree < x . (<= if duplicate key allowed)
+- all keys in right subtree > x . (>= if duplicate key allowed)
 
 
 <h2 id="b19b9a37c91097b32d94e1eef44f2785"></h2>
@@ -93,8 +93,8 @@ deletion | unacceptable  |O(logn) | O(logn) | Really good
 
 ### The Height of a BST
 
- - many possible search trees for a set of keys
- - height could be anywhere from ≈ logn to ≈ n 
+- many possible search trees for a set of keys
+- height could be anywhere from ≈ logn to ≈ n 
     - height=logn , best case perfectly balanced
     - height=n, worst case a chain
 
@@ -201,12 +201,12 @@ In most data structions, deletion is the most difficult operation , and in searc
 To delete a key from a BST
 
 
- - search for k  # find where it is
- - EASY CASE ( k's node has no children )
+- search for k  # find where it is
+- EASY CASE ( k's node has no children )
     - just delete the k's node from tree
- - MEDIUM CASE ( k's node has 1 child )
+- MEDIUM CASE ( k's node has 1 child )
     - delete the node that you want to delete, that creates a hole in the tree, the unique child will take that hole. 
- - DIFFICULT CASE ( k's node has 2 children )
+- DIFFICULT CASE ( k's node has 2 children )
     - compute k's predecessor l
     - SWAP k and l , NOTE definitly new position k has no right child , now k's node has 1 or 0 child , we know how to delete it already.
 
@@ -292,11 +292,11 @@ Example : red-black trees
 
 **Proof**: 
 
- - size n> 2ᵏ-1 , where k = minimum #nodes of root-null path (in a binary tree).
+- size n> 2ᵏ-1 , where k = minimum #nodes of root-null path (in a binary tree).
     - => k<=log₂(n+1) 
- - Thus, in a red-black tree with n nodes, therer is a root-null path with at most log₂(n+1) black nodes.
- - By 4th invariant: **every** root-null path has <=log₂(n+1) black nodes.
- - By 3rd invariant: **every** root-null path has <= 2log₂(n+1) total nodes.
+- Thus, in a red-black tree with n nodes, therer is a root-null path with at most log₂(n+1) black nodes.
+- By 4th invariant: **every** root-null path has <=log₂(n+1) black nodes.
+- By 3rd invariant: **every** root-null path has <= 2log₂(n+1) total nodes.
     - black nodes are a majority of nodes in the tree. So if we know the number of black nodes is small, then because you can't have two reds in a row, the number of total nodes on the path is at most twice as large (BRBRB...).
 
 这些约束强制了红黑树的关键性质: 从根到叶子的最长的可能路径不多于最短的可能路径的两倍长。
@@ -315,9 +315,9 @@ Example : red-black trees
 
 为了保持红黑树的性质，我们可以通过对树进行旋转，即修改树种某些结点的颜色及指针结构，以达到对红黑树进行插入、删除结点等操作时，红黑树依然能保持它特有的性质.
 
- - **KEY PRIMITIVE**: Rotations
+- **KEY PRIMITIVE**: Rotations
     - common to all balanced search tree implementations - red-black, AVL, B+ , etc 
- - **IDEA**: locally re-balance subtrees at a node in O(1) time.
+- **IDEA**: locally re-balance subtrees at a node in O(1) time.
 
 <h2 id="ba0e5a778c4af39fa1f5490facee5426"></h2>
 
@@ -330,9 +330,9 @@ Example : red-black trees
  
 currently x is the parent and y is the child. We want to rewire a few pointers so that y is the parent and x is the child.  Because x<y , So if x will be a child of y, it's got to be the left child.
 
- - x's parent p
+- x's parent p
     - y will inherit x's parent p
- - subtrees A,B,C:
+- subtrees A,B,C:
     - after y becoming x's child , there is 3 child slot left for A,B,C
     - A < x and y, so A should be x's left child (no change)
     - C > x and y, so C should be y's right child (no change)

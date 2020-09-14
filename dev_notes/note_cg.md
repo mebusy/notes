@@ -114,7 +114,7 @@ from 4x4 modelView matrix，去掉第4行，第4列，然后求 逆转置。
 
 ## scene graph
 
- - camera
+- camera
     - start from camera node to get view transform at first
 
 <h2 id="842e3e5fe6c1b834705abd4bcb213342"></h2>

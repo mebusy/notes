@@ -77,15 +77,15 @@ export NDK_ROOT NDK ANDROID_NDK_ROOT
 
 ## 加密
 
- - 加密 `assets/bin/Data/Managed/Assembly-CSharp.dll`
+- 加密 `assets/bin/Data/Managed/Assembly-CSharp.dll`
 
 <h2 id="1872008289c5e25292fe34cb024b7d9e"></h2>
 
 
 ## 解密
 
- - `mono/metadata/image.c`  文件
- - `mono_image_open_from_data_with_name` 方法
+- `mono/metadata/image.c`  文件
+- `mono_image_open_from_data_with_name` 方法
 
 ```
 MonoCLIImageInfo *iinfo;

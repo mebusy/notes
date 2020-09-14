@@ -26,7 +26,7 @@
 
 ### test whether your server supoort CORS
 
- - in chrome  console 
+- in chrome  console 
 
 ```
 var xhr = new XMLHttpRequest();

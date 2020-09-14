@@ -68,14 +68,14 @@ M 是一个一列或两列的矩阵，取决于信道的数量，fs 是采样率
 [y, fs] = audioread (filename, samples, datatype)
 ```
 
- - samples 指定开始帧和结束帧
+- samples 指定开始帧和结束帧
 
 ```
 samples = [1, fs)
 [y, fs] = audioread (filename, samples)
 ```
 
- - 指定 datatype
+- 指定 datatype
 
 ```
 [y,Fs] = audioread(filename,'native')

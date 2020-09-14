@@ -138,8 +138,8 @@ f'(a) = 1/6
  2. 对两个子数组 计算逆序数 X,Y  (*)
  3. 计算 子数组 之间统计关系 Z , 返回 X+Y+Z
 
- - 第3步 牵涉到两个子数组的遍历，复杂度上很难做到线性，这里我们需要参考merge sort的做法，最后处理两个有序数组会简单的多。
- - 所以 第2部需要同时对 子数组排序，并返回  (*) 
+- 第3步 牵涉到两个子数组的遍历，复杂度上很难做到线性，这里我们需要参考merge sort的做法，最后处理两个有序数组会简单的多。
+- 所以 第2部需要同时对 子数组排序，并返回  (*) 
 
 
 
@@ -149,7 +149,7 @@ f'(a) = 1/6
 
 ### 已知顶点，求三角形面积
 
- - 已经三角形的三个顶点：(x1,y1),(x2,y2),(x3,y3),
+- 已经三角形的三个顶点：(x1,y1),(x2,y2),(x3,y3),
     - 求面积:
     -  解： 
 
@@ -159,9 +159,9 @@ f'(a) = 1/6
                  |x3 y3 1|
 ```                     
                      
- - PS。必须补1,不能补0,否则行列式就等于0了
- - 补3个1，其实就是把 三角形平移到原点
- - 如果有个顶点是原点,比如(x1,y1)=(0,0)
+- PS。必须补1,不能补0,否则行列式就等于0了
+- 补3个1，其实就是把 三角形平移到原点
+- 如果有个顶点是原点,比如(x1,y1)=(0,0)
    
 ```                  
      S =  1/2 det|x2,y2|
@@ -173,8 +173,8 @@ f'(a) = 1/6
 
 ### 3维向量a,b,c 是否共面
 
- - (a×b)·c称为abc的混合积，几何意义为abc所形成的平行六面体的体积。
- - a,b,c 如果共面，则 (a×b)·c =0 , 即 a,b,c组成的行列式 为0
+- (a×b)·c称为abc的混合积，几何意义为abc所形成的平行六面体的体积。
+- a,b,c 如果共面，则 (a×b)·c =0 , 即 a,b,c组成的行列式 为0
 
 
 <h2 id="664289c474abb7133d2e064e03c82e62"></h2>
@@ -182,7 +182,7 @@ f'(a) = 1/6
 
 ### 判断两个运动物体 何时碰撞
 
- - Collision prediction.
+- Collision prediction.
     - Particle i: radius sᵢ, position (rxᵢ, ryᵢ), velocity (vxᵢ, vyᵢ).
     - Particle j: radius sⱼ, position (rxⱼ, ryⱼ), velocity (vxⱼ, vyⱼ).
     - Will particles i and j collide? If so, when?
@@ -190,10 +190,10 @@ f'(a) = 1/6
 ![](../imgs/algorithm_time_2particle_collide.png)
 
 
- - Δv=(Δvx, Δvy) = (vxᵢ −vxⱼ, vyᵢ −vyⱼ)
- - Δr=(Δrx, Δry) = (rxᵢ −rxⱼ, ryᵢ −ryⱼ)
+- Δv=(Δvx, Δvy) = (vxᵢ −vxⱼ, vyᵢ −vyⱼ)
+- Δr=(Δrx, Δry) = (rxᵢ −rxⱼ, ryᵢ −ryⱼ)
 
- - collision time :
+- collision time :
     - ![](../imgs/algorithm_time_2particle_collide_solution.png)
     - `d =(Δv⋅Δr)² − (Δv·Δv) (Δr·Δr - σ²)    ,  σ = σᵢ + σⱼ, σ is radius`
 

@@ -41,8 +41,8 @@
 python -m timeit -n 5 -r 5 -s "import julia1" "julia1.calc_pure_python(False, desired_width=1000, max_iterations=300)"
 ```
 
- - n 5  -- loop 5 times , default 10
- - r 5  -- repeat 5 times , default 5
+- n 5  -- loop 5 times , default 10
+- r 5  -- repeat 5 times , default 5
 
 <h2 id="324369ebf4aa30c14eae18ba1231bcd9"></h2>
 
@@ -57,9 +57,9 @@ user 9.64
 sys 0.11
 ```
 
- - real records the wall clock or elapsed time.
- - user records the amount of time the CPU spent on your task outside of kernel functions.
- - sys records the time spent in kernel-level functions.
+- real records the wall clock or elapsed time.
+- user records the amount of time the CPU spent on your task outside of kernel functions.
+- sys records the time spent in kernel-level functions.
 
 By adding user and sys, you get a sense of how much time was spent in the CPU. The difference between this and real might tell you about the amount of time spent waiting for I/O; it might also suggest that your system is busy running other tasks that are distorting your measurements.
 
@@ -88,7 +88,7 @@ python -m cProfile -s cumulative julia1_nopil.py
         1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
 ```
 
- - -s cumulative flag tells cProfile to sort by cumulative time spent inside each function;
+- -s cumulative flag tells cProfile to sort by cumulative time spent inside each function;
     - this gives us a view into the slowest parts of a section of code
 
 
@@ -101,9 +101,9 @@ line_profiler is the strongest tool for identifying the cause of CPU-bound probl
 
 It works by profiling individual func‐ tions on a line-by-line basis, so you should start with cProfile and use the high-level view to guide which functions to profile with line_profiler.
 
- - `pip install line_profiler`
- - 在需要profile 的函数上， 加上 @profile   修饰
- - `python /Library/Python/2.7/site-packages/kernprof.py  -lv diffusion_python.py`
+- `pip install line_profiler`
+- 在需要profile 的函数上， 加上 @profile   修饰
+- `python /Library/Python/2.7/site-packages/kernprof.py  -lv diffusion_python.py`
     - -l for line-by-line (rather than function-level) profiling
     - -v for verbose output. Without -v you receive an .lprof output that you can later analyze with the line_profiler module.
 
@@ -113,7 +113,7 @@ It works by profiling individual func‐ tions on a line-by-line basis, so you s
 
 ## Memory profile 
 
- - install 
+- install 
     - 'pip install memory_profiler'
     - already shipped in mac ?
  
@@ -146,7 +146,7 @@ def binary_search(needle, haystack):
             return midpoint
 ```
 
- - 使用 bisect 可以更简单的实现 2分查找
+- 使用 bisect 可以更简单的实现 2分查找
 
 <h2 id="789315c7d328e462184bae7f5269422f"></h2>
 
@@ -159,22 +159,22 @@ def binary_search(needle, haystack):
 
 ### problem with  Allocating Too Much
 
- - memory allocations are not cheap, must take its time to talk to the operating system in order to allocate the new space.
- - reuse it if possible
+- memory allocations are not cheap, must take its time to talk to the operating system in order to allocate the new space.
+- reuse it if possible
  
 <h2 id="5775736264cc198fd819593e551b8403"></h2>
 
 
 ### Memory Fragmentation
  
- - doing `grid[5][2]` requires us to first do a list lookup for index 5 on the list grid. This will return a pointer to where the data at that location is stored. Then we need to do another list lookup on this returned object, for the element at index 2.
+- doing `grid[5][2]` requires us to first do a list lookup for index 5 on the list grid. This will return a pointer to where the data at that location is stored. Then we need to do another list lookup on this returned object, for the element at index 2.
     - The overhead for one such lookup is not big and can be, in most cases, disregarded.
- - However, if the data we wanted was located in one contiguous block in memory, we could move all of the data in one operation instead of needing two operations for each element. 
- - This is one of the major points with data fragmentation:
+- However, if the data we wanted was located in one contiguous block in memory, we could move all of the data in one operation instead of needing two operations for each element. 
+- This is one of the major points with data fragmentation:
     - when your data is fragmented, you must move each piece over individually instead of moving the entire block over. 
     - This means you are invoking more memory transfer overhead, and you are forcing the CPU to wait while data is being transferred. 
- - The CPU does a good job with mechanisms called branch prediction and pipelining, which try to predict the next instruction and load the relevant portions of memory into the cache while still working on the current instruction. 
- - However, the best way to minimize the effects of the bottle‐ neck is to be smart about how we allocate our memory and how we do our calculations over our data.
+- The CPU does a good job with mechanisms called branch prediction and pipelining, which try to predict the next instruction and load the relevant portions of memory into the cache while still working on the current instruction. 
+- However, the best way to minimize the effects of the bottle‐ neck is to be smart about how we allocate our memory and how we do our calculations over our data.
 
   
 <h2 id="8670a80dcf372e8b7ad9cf6eb3168809"></h2>

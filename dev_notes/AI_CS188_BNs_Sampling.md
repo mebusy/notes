@@ -241,7 +241,7 @@ Return (x1, x2, …, xn)
     - What is the probability that the other coin in that cup is also a quarter ? 
 
 - One way to answer this question is to use essentially BNs inference to find the answer
- - another way to do it is to just run sampling : 2/3
+- another way to do it is to just run sampling : 2/3
 
 ---
 
@@ -375,7 +375,7 @@ In Gibbs Sampling, we don't walk through the network from top to bottom, get a s
     - P( unobserved variables | evidence variables )
     - so we're not going to have to weight samples anymore. We're going to directly get samples from the conditional distribution.  
 - *Rationale*: both upstream and downstream variables condition on evidence.
- - In contrast: likelihood weighting only conditions on upstream evidence, and hence weights obtained in likelihood weighting can sometimes be very small.  Sum of weights over all samples is indicative of how many “effective” samples were obtained, so want high weight.
+- In contrast: likelihood weighting only conditions on upstream evidence, and hence weights obtained in likelihood weighting can sometimes be very small.  Sum of weights over all samples is indicative of how many “effective” samples were obtained, so want high weight.
 
 
 <h2 id="a4d4a785b477b26309b7ec181f443a28"></h2>

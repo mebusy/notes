@@ -10,12 +10,12 @@
 
 # 2D Closest Pair Algorithm
 
- - Problem
+- Problem
     - Given a set of points {p₁, ... , p<sub>n</sub>} find the pair of points {pᵢ,pⱼ} that are closest together.
     - ![](../imgs/algorithm_2d_cloestPair.png)
- - Goal
+- Goal
     - in O(nlgn) time.
- - Solution:
+- Solution:
     - Divide
         - Split the points with line L so that half the points are on each side.
         - Recursively find the pair of points closest in each half.
@@ -59,7 +59,7 @@
             - Recurrence: T(n) ≤ 2T(n/2) + cn
         - Same as MergeSort ⇒  O(n log n) time.
 
- - Improved  Algorithm 
+- Improved  Algorithm 
     1. Divide the set into two equal sized parts by the line l, and recursively compute the minimal distance in each part.
     2. Let d be the minimal of the two minimal distances.
     3. Eliminate points that lie farther than d apart from l

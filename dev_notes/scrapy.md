@@ -23,7 +23,7 @@
 pip install scrapy --user 
 ```
 
- - you need to add  `user python bin path`  to your `PATH` environment
+- you need to add  `user python bin path`  to your `PATH` environment
 
 
 <h2 id="9c680741ecbe4744f41e7c27bcb03bab"></h2>
@@ -50,13 +50,13 @@ pip install scrapy-splash --user
 
 ## Q/A
 
- - Website is not rendered correctly
+- Website is not rendered correctly
     - A: This may because non-working localStorage in Private Mode. This is a common issue 
         - e.g. for websites based on AngularJS. 
     - If rendering doesn’t work, try disabling Private mode
         - docker run ..... `--disable-private-mode`
 
- - under proxy 
+- under proxy 
     1. pass proxy to docker container 
         - see [docker](docker.md) 
     2. set proxy for scrapinghub/splash

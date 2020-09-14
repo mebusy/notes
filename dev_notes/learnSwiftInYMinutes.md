@@ -63,7 +63,7 @@ let piText = "Pi = \(π), Pi 2 = \(π * 2)" // String interpolation
 
 # Optional
 
- - Optionals either contains a value, or contains nil (no value) to indicate that a value is missing.
+- Optionals either contains a value, or contains nil (no value) to indicate that a value is missing.
     - it may be an Optional which contains a value 
     - or it is `nil`
 
@@ -77,7 +77,7 @@ someOptionalString = nil
 
 ## test Optional 
 
- - `If let structure`
+- `If let structure`
     - If let is a special structure in Swift that allows you to check if an Optional rhs holds a value
         - if is does , unwraps and assigns it to the lhs 
 
@@ -92,7 +92,7 @@ if let test = someOptionalString {
 
 ### Tips for optional test
 
- - sometimes more Optional test is painful , try `guart let` , it makes code pretty
+- sometimes more Optional test is painful , try `guart let` , it makes code pretty
 
 ```swift
 func userLogIn() {
@@ -117,7 +117,7 @@ var colorToUse = userChosenColor ?? defaultColor
 
 ## force unwrap 
 
- - use `!` to implicitly unwrapped optional
+- use `!` to implicitly unwrapped optional
 
 ```swift
 var unwrappedString: String! = someOptionalString
@@ -128,9 +128,9 @@ var unwrappedString: String! = someOptionalString
 
 # Any / AnyObject 
 
- - to store a value of any type
- - `AnyObject` == `id` from Objective-C
- - `Any`  also works  with any scalar values ( Class, Int, struct, etc. )
+- to store a value of any type
+- `AnyObject` == `id` from Objective-C
+- `Any`  also works  with any scalar values ( Class, Int, struct, etc. )
 
 ```swift
 var anyVar: Any = 7
@@ -143,8 +143,8 @@ let anyObjectVar: AnyObject = Int(1) as NSNumber
 
 # Collections 
      
- - Array and Dictionary types are structs
- - So `let` and `var` also indicate that they are mutable (var) or immutable (let) when declaring these types
+- Array and Dictionary types are structs
+- So `let` and `var` also indicate that they are mutable (var) or immutable (let) when declaring these types
 
 <h2 id="4410ec34d9e6c1a68100ca0ce033fb17"></h2>
 
@@ -181,7 +181,7 @@ var explicitEmptyMutableDictionary: [String: Float] = [:] // same as above
 
 ## condition
 
- - 条件语句支持 "," (逗号) 子句, 可以用来帮助处理 optional values
+- 条件语句支持 "," (逗号) 子句, 可以用来帮助处理 optional values
 
 ```swift
 let someNumber = Optional<Int>(7)
@@ -219,8 +219,8 @@ for (key, value) in dict {
 
 ##  for loop (range)
 
- - `..<` exclude the last number `[ )`
- - `...` include the last number `[ ]`
+- `..<` exclude the last number `[ )`
+- `...` include the last number `[ ]`
 
 ```swift
 for i in -1...shoppingList.count {
@@ -246,7 +246,7 @@ while i < 1000 {
 
 ### Tips for while count 
 
- - 为了控制 while 的循环次数，这里不得不定义一个变量 i
+- 为了控制 while 的循环次数，这里不得不定义一个变量 i
 
 ```swift
 // Better Code
@@ -269,7 +269,7 @@ repeat {
 
 ## Switch
 
- - Very powerful, support String, object instances, and primitives (Int, Double, etc)
+- Very powerful, support String, object instances, and primitives (Int, Double, etc)
 
 ```swift
 let vegetable = "red pepper"
@@ -323,9 +323,9 @@ let price2 = pricesTuple2.lowestPrice
 
 ## guard statements
 
- - guards provide early exits or breaks
+- guards provide early exits or breaks
     - placing the error handler code near the conditions
- - it places variables it declares , in the same scope as the guard statement
+- it places variables it declares , in the same scope as the guard statement
 
 ```swift
 func testGuard() {
@@ -384,9 +384,9 @@ swapTwoInts(a: &someIntA, b: &someIntB)
 
 # Closures
 
- - Functions are special case closures `({})`
- - `->` separates the arguments and return type
- - `in` separates the closure header from the closure body
+- Functions are special case closures `({})`
+- `->` separates the arguments and return type
+- `in` separates the closure header from the closure body
 
 ```swift
 var numbers = [1, 2, 6]
@@ -428,7 +428,7 @@ var sumUsingClosure: (Int, Int) -> (Int) = { $0 + $1 }
 
 ## Tips : 函数式编程
 
- - 例：获取偶数：
+- 例：获取偶数：
 
 ```swift
 // bad
@@ -450,7 +450,7 @@ print(evens) // [2, 4, 6, 8, 10]
 
 # Structures
  
- - Structures and classes have very similar capabilities
+- Structures and classes have very similar capabilities
 
 ```swift
 struct NamesTable {
@@ -463,7 +463,7 @@ struct NamesTable {
 }
 ```
 
- - Structures have an auto-generated (implicit) designated initializer
+- Structures have an auto-generated (implicit) designated initializer
 
 ```swift
 let namesTable = NamesTable(names: ["Me", "Them"])
@@ -475,7 +475,7 @@ let name = namesTable[1]  // Them
 
 # Error Handling
 
- - The `Error` protocol is used when throwing errors to catch
+- The `Error` protocol is used when throwing errors to catch
 
 ```swift
 enum MyError: Error {
@@ -483,7 +483,7 @@ enum MyError: Error {
     case ReallyBadValue(msg: String)
 ```
 
- - functions marked with `throws` must be called using `try`
+- functions marked with `throws` must be called using `try`
 
 ```swift
 func fakeFetch(value: Int) throws -> String {
@@ -518,7 +518,7 @@ func testTryStuff() {
 
 # Classes
 
- - Classes, structures and its members have three levels of access control
+- Classes, structures and its members have three levels of access control
     - internal (default), public, private
 
 ```swift
@@ -529,8 +529,8 @@ public class Shape {
 }
 ```
 
- - All methods and properties of a class are public
- - If you just need to store data in a structured object, you should use a `struct`
+- All methods and properties of a class are public
+- If you just need to store data in a structured object, you should use a `struct`
 
 ```swift
 internal class Rect: Shape {
@@ -597,8 +597,8 @@ let aShape = mySquare as Shape
 
 ## Tips : 计算属性 vs 方法 
 
- - 上例的 sideLength ／ perimeter 是相互关联的两组数据
- - 与其创建两个相互转换的方法 , 不如使用 计算属性getter/setter 把他们关联起来
+- 上例的 sideLength ／ perimeter 是相互关联的两组数据
+- 与其创建两个相互转换的方法 , 不如使用 计算属性getter/setter 把他们关联起来
 
 
 <h2 id="c6612e94b6339d9a1cc12175bdfef6f5"></h2>
@@ -606,12 +606,12 @@ let aShape = mySquare as Shape
 
 ## init 方法: 构造函数
 
- - init方法是用来创建对象的，有着比较严格的调用方式和实现方式。
- - 初始化方法的顺序. 为了保证所有的属性都被初始化，对init方法里语句的顺序有严格的要求
+- init方法是用来创建对象的，有着比较严格的调用方式和实现方式。
+- 初始化方法的顺序. 为了保证所有的属性都被初始化，对init方法里语句的顺序有严格的要求
     1. 子类要先初始化子类自有的属性
     2. 调用父类的初始化方法
     3. 对父类中需要改变的属性再赋值
- - init的类别
+- init的类别
     1. Designated
         - 不加修饰的init都为designated. 
         - designated初始化方法中要保证所有非Optional的属性都被初始化，子类的init方法也必须都调用父类的Designated init
@@ -629,7 +629,7 @@ let aShape = mySquare as Shape
 
 ## Optional init
 
- - `init` now can return nil
+- `init` now can return nil
 
 ```swift
 // Optional init
@@ -661,8 +661,8 @@ print(myCircle!.getArea())    // 3
 
 # Enums 
 
- - Enums can optionally be of a specific type or on their own
- - They can contain methods like classes
+- Enums can optionally be of a specific type or on their own
+- They can contain methods like classes
 
 ```swift
 enum Suit {
@@ -678,14 +678,14 @@ enum Suit {
 }
 ```
 
- - Enum values allow short hand syntax, no need to type the enum type
+- Enum values allow short hand syntax, no need to type the enum type
     - when the variable is explicitly declared
 
 ```swift
 var suitValue: Suit = .Hearts
 ```
 
- - String enums can have direct raw value assignments
+- String enums can have direct raw value assignments
     - or their raw values will be derived from the Enum field
 
 ```swift
@@ -699,7 +699,7 @@ print("Name: \(BookName.Luke.rawValue)")  // rawLuke
 print("Name: \(BookName.Luke)")           // Luke
 ```
 
- - Enum with associated Values
+- Enum with associated Values
 
 ```swift
 enum Furniture {
@@ -728,9 +728,9 @@ print(chair.description())    // "Chair of Foo with 40 cm"
 
 ## Tips : Enum 类型安全
 
- - eg. switch中 对字符串做匹配，是一种很危险的做法
- - 因为我们不能保证 switch case 中的字符串有没编写正确
- - 使用 enum  可以在编译期间发现你的错误
+- eg. switch中 对字符串做匹配，是一种很危险的做法
+- 因为我们不能保证 switch case 中的字符串有没编写正确
+- 使用 enum  可以在编译期间发现你的错误
 
 <h2 id="9985b4390c40137573e6da05caf85874"></h2>
 
@@ -744,8 +744,8 @@ protocol ShapeGenerator {
 }
 ```
 
- - 使用 @objc 声明的协议允许 optional functions , which allow you to check for conformance
- - 这些函数也必须用 @objc 标记。
+- 使用 @objc 声明的协议允许 optional functions , which allow you to check for conformance
+- 这些函数也必须用 @objc 标记。
 
 ```swift
 @objc protocol TransformShape {
@@ -775,7 +775,7 @@ class MyShape: Rect {
 
 # Extension
 
- - Add extra functionality to an already existing type
+- Add extra functionality to an already existing type
 
 ```swift
 // Tips:  Better Version than define a square function 
@@ -791,8 +791,8 @@ extension Int {
 
 # Generics
 
- - Similar to Java and C#
- - Use the `where` keyword to specify the requirements of the generics.
+- Similar to Java and C#
+- Use the `where` keyword to specify the requirements of the generics.
 
 ```swift
 func findIndex<T: Equatable>(array: [T], valueToFind: T) -> Int? {
@@ -812,9 +812,9 @@ print(foundAtIndex == 2) // true
 
 # Operators
 
- - Custom operators can start with the characters:
+- Custom operators can start with the characters:
     - `  / = - + * % < > ! & | ^ . ~ `
- - or 
+- or 
     - `  Unicode math, symbol, arrow, dingbat, and line/box drawing characters  `
 
 ```swift

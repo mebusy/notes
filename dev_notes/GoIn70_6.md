@@ -35,10 +35,10 @@
 
 # HTML and email template patterns
 
- - In the standard library, Go provides template han- dling for both text and HTML.
- - The HTML handling is built on top of the text tem- plate engine to add HTML-aware intelligence.
+- In the standard library, Go provides template han- dling for both text and HTML.
+- The HTML handling is built on top of the text tem- plate engine to add HTML-aware intelligence.
 
- - It provides a foundation along with the ability to extend and combine templates.
+- It provides a foundation along with the ability to extend and combine templates.
     - For example, you could nest templates or have a template inherit from another one. 
     - This simple and extensible design allows you to use many common template patterns.
 
@@ -48,9 +48,9 @@
 
 ## 6.1 Working with HTML templates
 
- - The html and html/template packages in the standard library provide the foundation for working with HTML.
- - This includes the ability to work with variables and functions in the templates. 
- - The advantage of the html/template package over the text/template package for HTML is the context-aware intelligence that saves developers work.
+- The html and html/template packages in the standard library provide the foundation for working with HTML.
+- This includes the ability to work with variables and functions in the templates. 
+- The advantage of the html/template package over the text/template package for HTML is the context-aware intelligence that saves developers work.
 
 
 <h2 id="6313af959752e16cbeae4d485965926c"></h2>
@@ -58,7 +58,7 @@
 
 ### 6.1.1 Standard library HTML package overview
 
- - Whereas the `html` package provides only a couple of functions to escape and unescape strings for HTML, 
+- Whereas the `html` package provides only a couple of functions to escape and unescape strings for HTML, 
     - the `html/template` package provides a good foundation for working with templates.
  
 
@@ -110,16 +110,16 @@ func main() {
 }
 ```
 
- - The html/template package is used here instead of the text/template package because it’s context-aware and handles some operations for you.
- - Being context-aware is more than knowing that these are HTML templates. The package understands what’s happening inside the templates.
- - Take the following template snippet: `<a href="/user?id={{.Id}}">{{.Content}}</a>`
- - The html/template package expands this intelligently. 
+- The html/template package is used here instead of the text/template package because it’s context-aware and handles some operations for you.
+- Being context-aware is more than knowing that these are HTML templates. The package understands what’s happening inside the templates.
+- Take the following template snippet: `<a href="/user?id={{.Id}}">{{.Content}}</a>`
+- The html/template package expands this intelligently. 
     - For escaping purposes, it adds context-appropriate functionality. The preceding snippet is automatically expanded to look like this:
     - `<a href="/user?id={{.Id | urlquery}}">{{.Content | html}}</a>` 
     - The variables (in this case, .Id and .Content) are piped through appropriate functions to **escape** their content before turning it into the final output.
     - If you were using the text/template package, you would need to add the escaping yourself.
 
- - When you want a variable to be rendered as is, without being escaped, you can use the HTML type in the html/template package.
+- When you want a variable to be rendered as is, without being escaped, you can use the HTML type in the html/template package.
     - Technique 35 provides an example that uses the HTML type to inject data into a template and avoid escaping.
 
 
@@ -128,10 +128,10 @@ func main() {
 
 ### 6.1.2 Adding functionality inside templates
 
- - Templates in Go have functions that can and will be called from within them. As you just saw, the intelligence in the HTML templates adds escaping functions in the right place for you. 
- - Out of the box, the template packages provide fewer than 20 functions, and several are to support this intelligence.
- - For example, consider one of the built-in functions, whose implementation is provided by `fmt.Sprintf`, is `printf`. 
- - The following code shows its use inside a template: `{{"output" | printf "%q"}}`
+- Templates in Go have functions that can and will be called from within them. As you just saw, the intelligence in the HTML templates adds escaping functions in the right place for you. 
+- Out of the box, the template packages provide fewer than 20 functions, and several are to support this intelligence.
+- For example, consider one of the built-in functions, whose implementation is provided by `fmt.Sprintf`, is `printf`. 
+- The following code shows its use inside a template: `{{"output" | printf "%q"}}`
     - The snippet takes the string output and passes it into printf by using the format string %q. The output is the *quoted string* output.
 
 
@@ -140,15 +140,15 @@ func main() {
 
 ####  TECHNIQUE 32 Extending templates with functions
 
- - Although templates provide quite a few features, often you need to extend them with your own functionality. 
- - For example, we’ve often seen the need to display a date and time in an easy-to-read format. 
- - This common request could easily be implemented as part of the template system.
- - PROBLEM
+- Although templates provide quite a few features, often you need to extend them with your own functionality. 
+- For example, we’ve often seen the need to display a date and time in an easy-to-read format. 
+- This common request could easily be implemented as part of the template system.
+- PROBLEM
     - The built-in functions in the templates don’t provide all the functionality you need.
- - SOLUTION
+- SOLUTION
     - Just as Go makes functions available in templates (such as fmt.Sprintf being avail- able in templates as printf), make your own functions available.
 
- - Go actions, the data and commands enclosed in double curly brackets, can have commands that act on the data. 
+- Go actions, the data and commands enclosed in double curly brackets, can have commands that act on the data. 
     - These commands can be chained into pipelines separated by a `|` . 
     - This is the same idea as using pipes from a UNIX-based command- line interface (CLI)
 - Go provides an API to add commands to the **set** available to a template. 
@@ -210,11 +210,11 @@ func main() {
 
 - Rather than referencing an external file, this HTML template is stored as a string in a variable. 
 
- - Because dateFormat isn’t one of the core template functions, it needs to be made available to the template. 
+- Because dateFormat isn’t one of the core template functions, it needs to be made available to the template. 
     - Making custom functions available in templates requires two steps.
         1. a map needs to be created, function name : function 
         2. the function map (here, named funcMap) needs to be passed into `t.Funcs` to make the new function mapping available to templates. 
- - If you’re going to apply the same function set to numerous templates, you can use a Go function to create your templates and add your template functions each time:
+- If you’re going to apply the same function set to numerous templates, you can use a Go function to create your templates and add your template functions each time:
 
 ```
 func parseTemplateString(name, tpl string) *template.Template {
@@ -225,7 +225,7 @@ func parseTemplateString(name, tpl string) *template.Template {
 }
 ```
 
- - This function could be repeatedly used to create a new template object from a template string with your custom template functions included.
+- This function could be repeatedly used to create a new template object from a template string with your custom template functions included.
 
 
 <h2 id="1de21ea456194e25d3eb6be7d9093a72"></h2>
@@ -236,18 +236,18 @@ func parseTemplateString(name, tpl string) *template.Template {
 - Parsing templates that were originally in text into type instances is a bit of work for a Go application. 
     - Parsing a template turns a string of characters into an object model with a variety of nodes and node types that Go knows how to use.
     - The parser in the `text/template/parser` package sits behind functions such as `template.Parse` and `template.ParseFiles`
- - Methods such as the following technique allow you to avoid extra work by using a `text/template/parser` that can speed up your application.
+- Methods such as the following technique allow you to avoid extra work by using a `text/template/parser` that can speed up your application.
 
 <h2 id="98fb0d7ee0f06d754fe01fe1b12afcd3"></h2>
 
 
 #### TECHNIQUE 33 Caching parsed templates
 
- - Go applications, as servers that respond to multiple requests, can generate many responses to requests from many different clients.
- - If for each response the application has to parse a template, a lot of duplicate work is going on.
- - If you can eliminate some of that work at response time, you can speed up your application’s performance.
- - PROBLEM: You want to avoid repeatedly parsing the same template while an application is running.
- - SOLUTION: Parse the template, store the ready-to-use template in a variable, and repeatedly use the same template each time you need to generate the output.
+- Go applications, as servers that respond to multiple requests, can generate many responses to requests from many different clients.
+- If for each response the application has to parse a template, a lot of duplicate work is going on.
+- If you can eliminate some of that work at response time, you can speed up your application’s performance.
+- PROBLEM: You want to avoid repeatedly parsing the same template while an application is running.
+- SOLUTION: Parse the template, store the ready-to-use template in a variable, and repeatedly use the same template each time you need to generate the output.
 
 ```go
 // Listing 6.4 Caching a parsed template: cache_template.go
@@ -289,19 +289,19 @@ func main() {
 
 ### 6.1.4 When template execution breaks
 
- - All software has the potential to fail. Template execution is no exception.
- - When template execution fails, an error is returned. But in some cases, template execution can fail and partial output is displayed to the end user. This can provide an experience you want to avoid.
+- All software has the potential to fail. Template execution is no exception.
+- When template execution fails, an error is returned. But in some cases, template execution can fail and partial output is displayed to the end user. This can provide an experience you want to avoid.
 
 <h2 id="da3141d1f0022f7895b324724f0cdbd7"></h2>
 
 
 #### TECHNIQUE 34 Handling template execution failures
 
- - When templates are executed, the output is written as it walks through the template. 
- - If a function is called, causing an error midway through the template, an error will be returned and execution will stop. 
+- When templates are executed, the output is written as it walks through the template. 
+- If a function is called, causing an error midway through the template, an error will be returned and execution will stop. 
     - But the part of the template before the error would already be displayed to end users.
- - PROBLEM: When an error happens while executing a template, you want to catch the error before anything is displayed to the user. Instead of displaying the partially broken pages, display something more appropriate, such as an error page.
- - SOLUTION: Write the output of the template to a buffer. If no errors occur, write the output of the buffer to end users. Otherwise, handle the error.
+- PROBLEM: When an error happens while executing a template, you want to catch the error before anything is displayed to the user. Instead of displaying the partially broken pages, display something more appropriate, such as an error page.
+- SOLUTION: Write the output of the template to a buffer. If no errors occur, write the output of the buffer to end users. Otherwise, handle the error.
 
 ```
     var b bytes.Buffer
@@ -332,10 +332,10 @@ func main() {
 
 #### TECHNIQUE 35 Nested templates
 
- - Sharing and reusing sections of templates, like code reuse, is a common need. 
- - If you have an application with numerous web pages, you’ll typically find that most elements are common across pages, and some elements are custom.
- - PROBLEM: You want to avoid duplicating the common sections of HTML markup in each template and the maintenance burden that goes along with that. Like the software you’re developing, you want to take advantage of reuse.
- - SOLUTION: Use nested templates to share common sections of HTML. The subtemplates enable reuse for sections of markup, cutting down on duplication.
+- Sharing and reusing sections of templates, like code reuse, is a common need. 
+- If you have an application with numerous web pages, you’ll typically find that most elements are common across pages, and some elements are custom.
+- PROBLEM: You want to avoid duplicating the common sections of HTML markup in each template and the maintenance burden that goes along with that. Like the software you’re developing, you want to take advantage of reuse.
+- SOLUTION: Use nested templates to share common sections of HTML. The subtemplates enable reuse for sections of markup, cutting down on duplication.
 
 ```
 // Listing 6.6 Index template including head template: index.html
@@ -350,7 +350,7 @@ func main() {
 </html>
 ```
 
- - The directive {{template "head.html" .}} has three parts.
+- The directive {{template "head.html" .}} has three parts.
     1. `template` tells the template engine to include another template,
     2. and `head.html` is the name of that template.
     3. The final part is the `.` after head.html.  This is the dataset to pass to the template.
@@ -383,13 +383,13 @@ func diaplayPage(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
- - When the template is executed, *ExecuteTemplate* is used so that the template name to execute can be specified.
- - If *Execute* had been used, as in the previous listings, the first template listed in ParseFiles would be used. 
- - *ExecuteTemplate* provides control over the template file when multiple ones are available.
+- When the template is executed, *ExecuteTemplate* is used so that the template name to execute can be specified.
+- If *Execute* had been used, as in the previous listings, the first template listed in ParseFiles would be used. 
+- *ExecuteTemplate* provides control over the template file when multiple ones are available.
 
 ---
 
- - If you want nest template not from file but strings...
+- If you want nest template not from file but strings...
 
 
 ```go
@@ -432,14 +432,14 @@ func diaplayPage(w http.ResponseWriter, r *http.Request) {
 </html>{{end}}
 ```
 
- - Instead of the entire file being a template, the file contains multiple templates.
- - Each template starts with a `define` or `block` directive and closes with an `end` directive.
+- Instead of the entire file being a template, the file contains multiple templates.
+- Each template starts with a `define` or `block` directive and closes with an `end` directive.
     - The block directive defines and immediately executes a template.
     - The `base` template, which can be referred to by name, invokes other templates but doesn’t necessarily define them.
- - Templates that extend this one, such as listing 6.10, will need to fill in the missing templates. 
+- Templates that extend this one, such as listing 6.10, will need to fill in the missing templates. 
     - In other cases, you may have a section with default content that you want to allow to be overridden by an extending template.
     - Some sections may be optional. For those sections, you can cre- ate empty templates to be used by default.
- - The block directive and ability to redefine template sections that have content was introduced in Go 1.6. Prior to this, you couldn’t redefine templates that had content.
+- The block directive and ability to redefine template sections that have content was introduced in Go 1.6. Prior to this, you couldn’t redefine templates that had content.
 
 ```
 // Listing 6.10 Inheriting required sections: user.html
@@ -453,11 +453,11 @@ func diaplayPage(w http.ResponseWriter, r *http.Request) {
 {{end}}
 ```
 
- - Templates extending the base need to make sure all of the subtemplates without a default are filled out.
+- Templates extending the base need to make sure all of the subtemplates without a default are filled out.
     - Here the title and content sections need to be defined because they’re required. 
     - You’ll notice that the optional sections with empty or default content defined from listing 6.9 don’t need to have sections defined.
 
- - The following listing showcases filling in an optional template in addition to the required sections.
+- The following listing showcases filling in an optional template in addition to the required sections.
 
 ```
 // Listing 6.11 Inheriting with optional section: page.html
@@ -477,7 +477,7 @@ h1 {
 {{end}}
 ```
 
- - Here the `styles` template is defined.  This overrides the default supplied in listing 6.9.
+- Here the `styles` template is defined.  This overrides the default supplied in listing 6.9.
 
 
 <h2 id="b2914c824c6c6300b0bbf668e252aba9"></h2>
@@ -485,17 +485,17 @@ h1 {
 
 #### TECHNIQUE 37 Mapping data types to templates
 
- - The previous two template techniques rendered all the output together. A dataset consisting of the entire page needs to be passed in, and the template setup needs to handle the variations to the full page.
- - An alternative approach is to render parts of the page, such as a user object instance, on its own and then pass the rendered content to a higher-level template.
- - PROBLEM: You want to render an object to HTML and pass the rendered object to a higher-level template, where it can be part of the output.
- - SOLUTION: Use templates to render objects as HTML. Store the HTML in a variable and pass the HTML to higher-level templates wrapped in `template.HTML`, marking it as safe HTML that doesn’t need to be escaped.
+- The previous two template techniques rendered all the output together. A dataset consisting of the entire page needs to be passed in, and the template setup needs to handle the variations to the full page.
+- An alternative approach is to render parts of the page, such as a user object instance, on its own and then pass the rendered content to a higher-level template.
+- PROBLEM: You want to render an object to HTML and pass the rendered object to a higher-level template, where it can be part of the output.
+- SOLUTION: Use templates to render objects as HTML. Store the HTML in a variable and pass the HTML to higher-level templates wrapped in `template.HTML`, marking it as safe HTML that doesn’t need to be escaped.
 
- - There are a couple reasons to have multiple rendering steps.
+- There are a couple reasons to have multiple rendering steps.
     - First, if part of the page is expensive to generate a dataset for or render to HTML, it’s worth not repeating when each page is generated.
     - In a second case, say you have applications with complicated logic and have many pages to render. You could have many templates containing a lot of duplicate markup.
         - If each template were instead scoped to render one thing the templates could be easier to manage. 
 
- - The following listing shows how to render an object from a template, store the HTML, and later inject it into another template.
+- The following listing shows how to render an object from a template, store the HTML, and later inject it into another template.
 
 ```
 // Listing 6.13 A Quote object template: quote.html
@@ -506,7 +506,7 @@ h1 {
 </blockquote>
 ```
 
- - This template, quote.html, is associated with a Quote object. 
+- This template, quote.html, is associated with a Quote object. 
     - The template is used to render the Quote object as HTML and has Quote object fields to render.
     - You’ll notice there are no other elements for a complete page here.
     - Instead those are part of index.html, shown in the following listing.
@@ -578,7 +578,7 @@ func diaplayPage(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
- - WARNING User input HTML should never be considered safe. Always escape user input information, such as information gathered from a form field, before presenting.
+- WARNING User input HTML should never be considered safe. Always escape user input information, such as information gathered from a form field, before presenting.
 
 
 <h2 id="fbc0cec7a75759e1aeb8c7fae504cdc3"></h2>
@@ -586,17 +586,17 @@ func diaplayPage(w http.ResponseWriter, r *http.Request) {
 
 ## 6.2 Using templates for email
 
- - The Go standard library doesn’t provide a special template package for email as it does for HTML.
- - Instead, the text and html template packages provide what you need to send text and HTML email.
+- The Go standard library doesn’t provide a special template package for email as it does for HTML.
+- Instead, the text and html template packages provide what you need to send text and HTML email.
 
 <h2 id="699d7da5fe23a02c72bb3e698f6d583b"></h2>
 
 
 ####  TECHNIQUE 38 Generating email from templates
 
- - PROBLEM: When creating and sending email, you want to incorporate templates.
- - SOLUTION: Use the template packages to generate the email text into a buffer. Pass the generated email in the buffer to the code used to send the email, such as the `smtp` package.
- - The following listing creates email messages from a template and sends them using the `net/smtp` package.
+- PROBLEM: When creating and sending email, you want to incorporate templates.
+- SOLUTION: Use the template packages to generate the email text into a buffer. Pass the generated email in the buffer to the code used to send the email, such as the `smtp` package.
+- The following listing creates email messages from a template and sends them using the `net/smtp` package.
 
 
 ```go
@@ -665,9 +665,9 @@ func main() {
 }
 ```
 
- - You’ll notice the listing is using the text/template package instead of the html/template package used in the previous listings in the chapter. 
- - When you execute the template with a dataset, pass in a buffer to store the ren- dered template. The buffer provides the source of the content to send from the mail client.
- - This concept can be expanded to send a variety of email in a variety of ways.
+- You’ll notice the listing is using the text/template package instead of the html/template package used in the previous listings in the chapter. 
+- When you execute the template with a dataset, pass in a buffer to store the ren- dered template. The buffer provides the source of the content to send from the mail client.
+- This concept can be expanded to send a variety of email in a variety of ways.
     - For example, you could use the html/template package to send HTML email. 
     - Or you could combine this with the other template techniques to create complex templates.
 

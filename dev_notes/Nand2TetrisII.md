@@ -64,7 +64,7 @@
 
 ## 1.0 The Road Ahead
 
- - From high-level to low-level
+- From high-level to low-level
     - `*.jack` -> compile ->
     - `*.vm`  
         - in Java language, we use `java` command to execute the vm code
@@ -72,7 +72,7 @@
     - `xxx.asm` -> assembler ->  
     - `xxx.hack`  
 
- - The road ahead:
+- The road ahead:
     - m1,m2, building a virtual machine
     - m3:  writing a compute game
     - m4,m5: developing a compiler
@@ -83,7 +83,7 @@
 
 ## 1.1 Program Compilation Preview
 
- - Jack compilation 
+- Jack compilation 
     1. Jack program -> Jack compiler -> VM code
     2. VM code
         - a) run on **VM emulator** aside on you PC
@@ -94,10 +94,10 @@
 
 ## 1.2 VM Abstraction: the Stack
 
- - VM code 设计可以选择 偏向 高级语言抽象，或 机器语言抽象
- - 一个平衡的比较好的设计是 Stack machine
+- VM code 设计可以选择 偏向 高级语言抽象，或 机器语言抽象
+- 一个平衡的比较好的设计是 Stack machine
 
- - Stack machine abstraction
+- Stack machine abstraction
     - Architecture : a Stack
     - Commands : a set of operations that can be applied to this architecture
 
@@ -108,17 +108,17 @@
 
 ![](../imgs/n2t_stack.png)
 
- - stack pointer
+- stack pointer
     - points to the location in which the next value is going to be pushed.
- - Stack arithmetic
+- Stack arithmetic
     - ![](../imgs/n2t_stack_arithmetic.png)
     - add: pop the 2 top most values , add them , then push the result back
     - neg: not simply negate , it will first of all pop the top value , negate it on the side and then push the result back.
- - Applying a function *f* on the stack:
+- Applying a function *f* on the stack:
     - pops the argument(s) from the stack
     - computes *f* on the arguments
     - Pushes the result onto the stack
- - Boolean operations
+- Boolean operations
     - ![](../imgs/n2t_stack_boolean_operation.png)
 
 <h2 id="ce74f8cad75b6370e8c76ee00dcb3777"></h2>
@@ -126,9 +126,9 @@
 
 ### Stack arithmetic , the big picture
 
- - Where do these commands come from ?
+- Where do these commands come from ?
     - They come from the compiler. 
- - if you start with a high-level statement like `x=17+19` , the compile is going to translate it into , in this case :
+- if you start with a high-level statement like `x=17+19` , the compile is going to translate it into , in this case :
 
 ```
 push 17
@@ -137,7 +137,7 @@ add
 pop x
 ```
 
- - Abstraction / implementation
+- Abstraction / implementation
     - The high-level language is an abstraction
     - It can be implemented by a stack machine
     - The stack machine is an abstraction 
@@ -148,7 +148,7 @@ pop x
 
 ### The stack machine model 
 
- - Stack machine , manipulated by 4 categories of commands:
+- Stack machine , manipulated by 4 categories of commands:
     - Arithmetic / logical  commands
     - Memory segment commands 
     - Branching commands 
@@ -160,7 +160,7 @@ pop x
 
 ### Arithmetic/Logical commands
 
- - example
+- example
 
 ```
 // d=(2-x)+(y+9)
@@ -188,10 +188,10 @@ or
 
 ![](../imgs/n2t_stack_commands.png)
 
- - boolean
+- boolean
     -  fales : 0, true: -1
 
- - Observation: Any arithmetic of logical expression can be expressed and evaluated by applying some sequence of the above operations on a stack.
+- Observation: Any arithmetic of logical expression can be expressed and evaluated by applying some sequence of the above operations on a stack.
 
 <h2 id="8f3594e14399fa4e216e20e0d2f29607"></h2>
 
@@ -203,7 +203,7 @@ or
 
 ### The big picture 
 
- - Jack statments
+- Jack statments
 
 ```
 static int s1, s2;
@@ -215,7 +215,7 @@ function int bar(int x, inty)
 }
 ```
 
- -  the compiler will translate the `let` statement  into
+-  the compiler will translate the `let` statement  into
 
 ```
 push s1
@@ -224,13 +224,13 @@ add
 pop c
 ```
 
- - something kinds of gets lost in the translation
+- something kinds of gets lost in the translation
     - we need some mechannism to record the different roles of different variables in one's program. 
     - we do this by introducing the notion of **memory segments**.
  
 ![](../imgs/n2t_vm_memory_segment.png)
 
- - now the vm code can be written as 
+- now the vm code can be written as 
 
 ```
 push static 0
@@ -239,27 +239,27 @@ add
 pop local 2
 ```
 
- - something interesting has happened, we lost the variable names in the process. 
- - indeed, the VM does not recognize symbolic variable names. 
+- something interesting has happened, we lost the variable names in the process. 
+- indeed, the VM does not recognize symbolic variable names. 
     - all variables are replaced by references to memory segments. 
     - and this is not something which is unique to our VM. 
- - 如果我们增加一个 virutal segment -- *constant* , it contains just 0,1,2,... 
- - 这样 Stack的 语法就可以 统一成:
+- 如果我们增加一个 virutal segment -- *constant* , it contains just 0,1,2,... 
+- 这样 Stack的 语法就可以 统一成:
 
 ![](../imgs/n2t_memory_segments2.png)
 
- - so why we need `push constant 17` , why can't we just say `push 17` ?
+- so why we need `push constant 17` , why can't we just say `push 17` ?
     - we do that, so we get a consistant syntax. 
     - this is a very small price to pay for this consistency
     - it also makes compilation easier.
 
 ---
 
- - in order to make life interesting , we actually have not 4, but 8 virtual memory segments
+- in order to make life interesting , we actually have not 4, but 8 virtual memory segments
     - local / argument / this / that / constant / static / pointer / temp
- - why we need so many segments
+- why we need so many segments
     - to cover all the features of high-level language
- - all have the same syntax: 
+- all have the same syntax: 
     - push  segment index:  从指定segment 取第index地址的数据，压栈
     - pop   segment index:  出栈， 数据存入 指定segment index地址。
 
@@ -269,8 +269,8 @@ pop local 2
 
 ## 1.4: VM Implementation: the Stack
 
- - if we want to acutally execute the VM code in some concrete way, we have to realize it on some Von Neumann machine.
- - so what do we have to do ?
+- if we want to acutally execute the VM code in some concrete way, we have to realize it on some Von Neumann machine.
+- so what do we have to do ?
     - fist of all, you have to take these 4 or 8 memory segments, and we have to somehow map these memory segments on the single RAM that is available for us. 
     - once we come up with this mapping, we have to do something with the push / pop commands.
     - we have to translate them into a sequences machine labeling instructions that will operate on this world -- that we just built on the RAM.
@@ -280,7 +280,7 @@ pop local 2
 
 ### Stack machine
 
- - Implementation:  
+- Implementation:  
     - Assumptions:
         - SP stored in RAM[0]
         - Stack base addr = 256 , that is , it will start begin in address 256
@@ -303,8 +303,8 @@ M=D
 M=M+1
 ```
 
- - Who will do above work :  vm code -> assembly code?
- - **VM translator** 
+- Who will do above work :  vm code -> assembly code?
+- **VM translator** 
     - A program that translates VM code into machine language
     - Each VM command generates several assembly commands.
 
@@ -332,7 +332,7 @@ addr=LCL+2 , SP--,  *addr=*SP
 You write it !
 ```
 
- - Tip: 
+- Tip: 
     - 访问一个 base + offset 地址 (M1)的内容 ，需要使用全部的A/M/D 三个寄存器
     - 无法把M1的结果很另外一个 base + offset 地址(M2) 做运算
     - 但是 M1 和 可以直接寻址，或 直接寻址基础上 A+1 的地址 (Md)  做 运算
@@ -347,11 +347,11 @@ You write it !
 
 ### Implementing local, argument, this, that 
 
- - The big picture:  
- - When translating the high-level code of some method into VM code, the compile :
+- The big picture:  
+- When translating the high-level code of some method into VM code, the compile :
     - map the method's *local* and *argument* variables onto the local and argument segments
     - map the *object* fields and *array* entries that the method is currently processing onto the this and that segments.
- - local , argument , this and that are implemented precisely the same way.
+- local , argument , this and that are implemented precisely the same way.
 
 ![](../imgs/n2t_impl_local_argu_this_that.png)
 
@@ -361,13 +361,13 @@ You write it !
 
 ### Memory segment: constant
 
- - The big picture:
- - When translating the high-level code of some method into VM code, the compile :
+- The big picture:
+- When translating the high-level code of some method into VM code, the compile :
     - it translate high-level operations involving *constants* into VM operation involving the constant segment.
- - Implementation:
+- Implementation:
     - Supplies the specified constant
     - constant segment 并不真的存在
- - Caution: there is no *pop* for constant, it makes no sense.
+- Caution: there is no *pop* for constant, it makes no sense.
 
 ```
 // VM code
@@ -382,9 +382,9 @@ push constant i
 
 ### Memory segment: static 
 
- - The big picture:
+- The big picture:
     - the compile maps the *static* variables that the method sees onto the static segment.
- - static variables should be seen by all the mothods in a program
+- static variables should be seen by all the mothods in a program
     - Store them in some "global space"
     - Have the VM translator translate each VM reference *static i* (in file Foo.vm)  into an assembly reference *Foo.i*
 
@@ -401,8 +401,8 @@ M=D
 ...
 ```
 
- - Following assembly , the Hack assembler will map these references onto RAM[16],RAM[17], ..., RAM[255]
- - Therefore , the entries of the *static* segment will end up being mapped onto RAM[16], RAM[17], ..., RAM[255] , 
+- Following assembly , the Hack assembler will map these references onto RAM[16],RAM[17], ..., RAM[255]
+- Therefore , the entries of the *static* segment will end up being mapped onto RAM[16], RAM[17], ..., RAM[255] , 
     - in the order in which they appear in the program. 
     - `push static i` , i 和 内存地址并没有直接关系
 
@@ -413,10 +413,10 @@ M=D
 
 ### Memory segment: temp
 
- - The big picture:  The compile
+- The big picture:  The compile
     - sometimes needs to use some variables for temporary storage
     - our VM provides 8 such temporary variables
- - Implementation:
+- Implementation:
     - a fixed, 8-place memory segment 
     - Mapped on RAM locations 5 to 12.
 
@@ -429,16 +429,16 @@ M=D
 
 ### Memory segment: pointer
 
- - the pointer segment is a little bit obscure. 
+- the pointer segment is a little bit obscure. 
     - you can't understand really why we need it until you begin to write the compiler. 
- - The big picture
+- The big picture
     - the compiler generates code that keeps track of the base addresses of the *this* and *that* segments using the *pointer* segment. 
- - Implementing
+- Implementing
     - Pointer is a fixed memory segment. It has only 2 entries -- 0 and 1.
     - `push pointer 0/1`  , `pop pointer 0/1`
     - accessing `pointer 0` should result in accessing THIS
     - accessing `pointer 1` should result in accessing THAT
- - Implementation: Supplies THIS or THAT. 
+- Implementation: Supplies THIS or THAT. 
 
 ```
 // VM code:
@@ -453,16 +453,16 @@ push pointer 0/1
 
 ### VM Language Summary
 
- - Arithmetic / Logical commands
+- Arithmetic / Logical commands
     - add, sub, neg, eq, gt, lt, and, or, not
- - Memory access commands
+- Memory access commands
     - pop segment i
     - push segment i
- - Branching commands
+- Branching commands
     - label *label*
     - goto *label*
     - if-goto *label*
- - Function commands
+- Function commands
     - function *functionName nVars*
     - call *functionName nArgs*
     - return 
@@ -473,7 +473,7 @@ push pointer 0/1
 
 ## 1.7 VM Implementation on the Hack Platform
 
- - Standard VM mapping on the Hack platform
+- Standard VM mapping on the Hack platform
 
 ![](../imgs/n2t_stardard_vm_mapping.png)
 
@@ -482,11 +482,11 @@ push pointer 0/1
 
 ## 1.A Perspective
 
- - out VM vs Java JVM
+- out VM vs Java JVM
     - only 1 datatype : 16 bit integer , why JVM having integer, float, double ...
     - JVM also support multiplication , division , bit-wist operations
- - JVM on Android devices uses another abstract architecture -- register machine.
- - register machine is perhaps less elegant ,less beautiful than stack machine. but arguably, it generates code which is better optimized for processors of mobile devices.
+- JVM on Android devices uses another abstract architecture -- register machine.
+- register machine is perhaps less elegant ,less beautiful than stack machine. but arguably, it generates code which is better optimized for processors of mobile devices.
 
 
 ---
@@ -501,20 +501,20 @@ push pointer 0/1
 
 ## 2.1 Program Contorl
 
- - Branching
- - Functions 
- - Function call-and-return
- - Dynamic memory management
- - Stack processing
- - Pointers
- - Completing the VM implementation
+- Branching
+- Functions 
+- Function call-and-return
+- Dynamic memory management
+- Stack processing
+- Pointers
+- Completing the VM implementation
 
 <h2 id="4e0051bf323aac8e7d110e99cc29e329"></h2>
 
 
 ## 2.2 Branching
 
- - Branching commands
+- Branching commands
     - label *label*
     - goto *label*
         - jumps to execute the commands just after *label*.
@@ -525,7 +525,7 @@ push pointer 0/1
 
 ![](../imgs/n2t_vm_cond_jump.png)
 
- - Implementation:
+- Implementation:
     - simple: the assembly langauge has similar branching commands.
 
 
@@ -534,13 +534,13 @@ push pointer 0/1
 
 ## 2.3 Functions Abstraction
 
- - Functions in the VM language
+- Functions in the VM language
     - ![](../imgs/n2t_funcs_in_VM.png)
- - The VM language features:
+- The VM language features:
     - primitive operations (fixed) : add, sub, ...
     - abstract operations (  extensible) : multiply , sqrt, ...
- - **Applying a primitive operator and calling a function have the same look-and-feel**
- - 注意，图右侧是 伪代码
+- **Applying a primitive operator and calling a function have the same look-and-feel**
+- 注意，图右侧是 伪代码
 
 <h2 id="72a1ff5a098950516d22c2afe18d365a"></h2>
 
@@ -549,13 +549,13 @@ push pointer 0/1
 
 ![](../imgs/n2t_vm_func_definition.png)
 
- - `function mult 2` 
+- `function mult 2` 
     - 2 means the number of **local** variables which will be used !!! 
- - 高级语言的 function 被 compiler 编译成 vm code 后
+- 高级语言的 function 被 compiler 编译成 vm code 后
     - 可以有一个return
     - 也可能有多个return 
     - 也可能没有return ，类似 Sys.init, 函数体是个无限循环
- - compile 翻译的时候，确定 函数 mult 需要用到几个 local 变量
+- compile 翻译的时候，确定 函数 mult 需要用到几个 local 变量
 
 <h2 id="b1c3207ee679f6c197d493f9d4df7b36"></h2>
 
@@ -564,17 +564,17 @@ push pointer 0/1
 
 ![](../imgs/n2t_vm_func_execute.png)
 
- - `call func n` , here *n* means the number arguments 
+- `call func n` , here *n* means the number arguments 
     - 意义， call 之前的参数压栈，是 compiler 生成 vm code时候 要做的的工作之一
     - compiler 同时可以确定 n 的大小
- - after line 0 of `function mult 2` is executed:
+- after line 0 of `function mult 2` is executed:
     - First of all I get an empty stack
     - The 2nd thing that I get is an argument segment. 
         - it contains the exact 2 values that were pushed by the caller
     - then another thing that I get is 2 local variables which initialized to 0. 
         - why do I get 2 local variables ?
         - `function mult 2` , so the VM implementation prepared for me a segment called local. 
- - eventually we push the result to stack , because we want to return this vallue to the caller.
+- eventually we push the result to stack , because we want to return this vallue to the caller.
     - command `return` , the VM implementation knows how to handle return.
     - it takes the top most value in the stack of the callee , and just puts it on the stack of the caller instead of the arguments that were pushed previously.
 
@@ -584,12 +584,12 @@ push pointer 0/1
 
 ### Making the abstraction work: implementation
 
- - For each function **call** during run-time, the implementation has to ...
+- For each function **call** during run-time, the implementation has to ...
     - Pass parameters from the calling function to the called function 
     - Determine the return address within the caller's code
     - Save the caller's return address , stack and memory segments
     - Jump to execute the called function.
- - For each function **return** during run-time, the implementation has to ...
+- For each function **return** during run-time, the implementation has to ...
     - Return to the caller the value computed by the called function
         - here there's an implicit assumption: it is required that the callee always pushes a value before it returns.
     - Recycle the memory resources used by the called functin
@@ -602,9 +602,9 @@ push pointer 0/1
 
 ### Function call and return :  units plan
 
- - 2.4 Implementation preview
- - 2.5 Run-time simulation
- - 2.6 Detailed implementation 
+- 2.4 Implementation preview
+- 2.5 Run-time simulation
+- 2.6 Detailed implementation 
 
 
 
@@ -613,23 +613,23 @@ push pointer 0/1
 
 ## 2.4 Function Call and Return: Implementation Preview
 
- - Function execution
+- Function execution
     - Calling chain:  foo > bar > sqrt > ...
     - For each function in the calling chain during run-time , we must maintain the function's *state*
- - Function's state
+- Function's state
     - During run-time
         - Each function uses a working stack + memory segments
     - The working stack and some of the segments should be:
         - Created when the function starts running
         - Maintained as long as the function is executing
         - Recycled when the function returns 
- - So in general , when a caller calls a callee, we will have now 2 states:
+- So in general , when a caller calls a callee, we will have now 2 states:
     - state of caller
     - state of callee
 
 ![](../imgs/n2t_state_of_caller_callee.png)
 
- - How to maintain the states of all the functions up the calling chain ? 
+- How to maintain the states of all the functions up the calling chain ? 
     - The calling pattern is LIFO , it's a Stack
 
 <h2 id="2376d3570a0a96432c3fea347f900e5a"></h2>
@@ -637,11 +637,11 @@ push pointer 0/1
 
 ### the big picture 
 
- - Example: computing mult(17,212)
+- Example: computing mult(17,212)
 
 ![](../imgs/n2t_vm_func_example_17p212.png)
 
- - Net effect:
+- Net effect:
     - The function's arguments (17,212) were replaced by the function's value (3604)
 
 <h2 id="464cea080754ea13ae81fd5914f5ef36"></h2>
@@ -656,7 +656,7 @@ push pointer 0/1
 
 
 
- - VM implementaion
+- VM implementaion
     1. Sets arg  
         - the ARG pointer should refer to the base address of the argument's segments in the memory
         - ![](../imgs/n2t_vm_func_details_1.png)
@@ -673,9 +673,9 @@ push pointer 0/1
 
 **function**
 
- - we now hit the command `function foo nVars`
+- we now hit the command `function foo nVars`
     - ![](../imgs/n2t_vm_function_0.png)
- - VM implementation:
+- VM implementation:
     - Sets up the local segment of the called function
         - I need *n* local variables , and I also need to initialized them to 0.
         - I push *n* 0s onto the stack , and set LCL.  
@@ -688,9 +688,9 @@ push pointer 0/1
 
 **return**
 
- - now VM implementation has to service the return command.
+- now VM implementation has to service the return command.
     - ![](../imgs/n2t_vm_function_3.png)    
- - VM implementation:  
+- VM implementation:  
     - First of all, we have to take the topmost value from the stack, the return value,  and we have to 
         - **copy the return value onto argument 0**.   See the *net effect* above.
         - ![](../imgs/n2t_vm_function_4.png)   
@@ -712,10 +712,10 @@ push pointer 0/1
 
 ### The global stack 
 
- - block
+- block
     - I can refer to some segment or some subsets of this global stack here, using the term **block** , which I just made up.
     - It is the world of the currently running function.
- - The block contains :
+- The block contains :
     - my argument segment
     - caller frame. 
     - my local segments 
@@ -729,7 +729,7 @@ push pointer 0/1
 
 ## 2.5 Function Call and Return: Run-time Simulation
 
- - Example: factorial         
+- Example: factorial         
 
 ![](../imgs/n2t_example_factorial.png)
 
@@ -748,18 +748,18 @@ push pointer 0/1
 
 ## 2.6: Function Call and Return Implementation
 
- - A function may call another function which historically belongs to a different class.
- - But once everything is compiled into VM code , we lose this notion of classes and what we get is just a long list of functions that have a full name. i.e. Bar.mult
+- A function may call another function which historically belongs to a different class.
+- But once everything is compiled into VM code , we lose this notion of classes and what we get is just a long list of functions that have a full name. i.e. Bar.mult
 
 ![](../imgs/n2t_vm_class_function.png)
 
- - caller's view
+- caller's view
     - Before calling another function , I must push as many arguments as the function expects to get
     - Next, I invoke the function using `call functionName nArgs` 
     - After the called function returns , the argument values have disappeared from the stack ,and a *return value* (that always exists) appears at the top of the statck
     - After the called function returns , all my memory segment are exactly the same as they were before the call.
         - (except that *temp* is undefined and some values of my *static* segment may have changed )
- - callee's view
+- callee's view
     - Before I start executing , my *argument* segment has been initialized with the argument values passed by the caller
     - My *local* variables segment has been allocated and initialized to zeroes
     - My *static* segment has been set to the static segment of the VM file to which I belong.
@@ -769,13 +769,13 @@ push pointer 0/1
         - even if the function prototype is 'void f()' , you also need return a value. You may push a 0 to the stack.
         - it's the caller's responsibility to do something with returned value.
 
- - The VM implementation view
+- The VM implementation view
     - ![](../imgs/n2t_vm_func_class_assembly_code.png)
- - When `Foo.main` call `Bar.mult`,  the VM translator , as we saw in above picture, is going to 
+- When `Foo.main` call `Bar.mult`,  the VM translator , as we saw in above picture, is going to 
     - save the caller's state , the state of the Foo.main function
     - do a few more things to set up for the function call
     - and finally , it's going to say "go to the name of the function "
- - So, presumably , the VM translator at some point will generate a label which is the name of this function
+- So, presumably , the VM translator at some point will generate a label which is the name of this function
     - `(Bar.mult)`
     - this is how we represent the entry point to a function in the translated  assembly code.
 
@@ -787,12 +787,12 @@ push pointer 0/1
 
 ### Handling call
 
- - the caller is running ,doing some work .   and then all of a sudden , we encounter a call .
+- the caller is running ,doing some work .   and then all of a sudden , we encounter a call .
     - ![](../imgs/n2t_vm_function_handel_call1.png)
- - VM command : `call functionName nArgs`
+- VM command : `call functionName nArgs`
     - calls the function, informing that nArgs arguments have been pushed onto the stack
     - call 之前 push arguments 的事情 ， 是 compiler 从 high level language 转 vm code 的时候完成的
- - Assembly code (generated by the translator) :
+- Assembly code (generated by the translator) :
     - the first thing is I push a label onto the stack and later on I'm going to use the same label as the label to which I'm going to return after the callee terminates.
     - then I push LCL to save the state of my local segment 
     - and the ARG  , THIS , THAT
@@ -803,18 +803,18 @@ push pointer 0/1
     - finally , I goto execute the called function.  
     - And now I do something very tricky, I insert into the generated code stream the label that I **pushed before** . 
 
- - ![](../imgs/n2t_vm_function_handel_call4.png)
+- ![](../imgs/n2t_vm_function_handel_call4.png)
 
 <h2 id="9a6ac99285250a3da217d99cc0c32c6b"></h2>
 
 
 ### Handling function
 
- - whenever we hit a function command , the 1st thing the translator does is it takes the function name and generates a lable, and this label will serve as the entry point to the translated assembly code of this function. 
- - and then we simply have to write some assembly code that handles the setting up of the function's execution. 
- - **VM command**: `function functionName nVars` ( starts a function that has nVars local variables )
+- whenever we hit a function command , the 1st thing the translator does is it takes the function name and generates a lable, and this label will serve as the entry point to the translated assembly code of this function. 
+- and then we simply have to write some assembly code that handles the setting up of the function's execution. 
+- **VM command**: `function functionName nVars` ( starts a function that has nVars local variables )
     - ![](../imgs/n2t_vm_handle_function1.png)
- - **Assembly code** (generated by the translatro):
+- **Assembly code** (generated by the translatro):
     - ![](../imgs/n2t_vm_handle_function_asm.png)
     - first of all I take the function name , and generate this label. 
     - and then I repeat nVars times *push 0 to local segment* , now the function can start doing its thing. 
@@ -828,8 +828,8 @@ push pointer 0/1
  
 ---
 
- - **VM command:** return 
- - **Assembly code** :
+- **VM command:** return 
+- **Assembly code** :
     - first of all, I'm going to create some temporary variable, which I call `endFrame`, and I'm going to assign the value of LCL to it. 
     - so the return address must be the content of `M[ endFrame -5 ]` , and I put it in another temporary variable *retAddr*
         - why we need to store it to a temporary variable ? because if the callee has 0 parameter, the next `*ARG=pop()` will overwrite the return address.
@@ -842,7 +842,7 @@ push pointer 0/1
     - and now, I can begin to recover the various segments that I saved on the stack before. 
         - so `THAT` should be M[enfFrame-1] , and `THIS` , `ARG`, `LCL` ... 
     - then I jump to the address that I retrieved before. 
- - ![](../imgs/n2t_vm_function_return_asm.png)
+- ![](../imgs/n2t_vm_function_return_asm.png)
          
       
 <h2 id="a980b1ca368f6fd5ee3ef70efecf227c"></h2>
@@ -850,32 +850,32 @@ push pointer 0/1
 
 ## 2.7 VM Implementation on the Hack Platform
 
- - The big picture: program compilation and translation 
+- The big picture: program compilation and translation 
     1. n .jack files  ->  compiler -> 
     2. n .vm files -> VM translator -> 
     3. single .asm file
- - serveral things got lost in the translation
+- serveral things got lost in the translation
     - Jack -> VM
         - we lost the notion of constructors, methods and functions , because everything became functions.
     - VM -> ASM 
         - we lost the notion of functions . because now we just have a long stream of assembly commands and we have to use assembly in order to capture the semantics of VM code. 
- - In order to implement it on the Hack platform, I have to comply to certain conventions and the first convention is booting. 
+- In order to implement it on the Hack platform, I have to comply to certain conventions and the first convention is booting. 
 
 <h2 id="d31181c15b9b2bfe52e84052376b0c04"></h2>
 
 
 ### Booting 
 
- - What should I do when I turn on the computer ? How will the computer know to execute my program ?
- - So , here are the assumptions that I request to make. 
- - VM programming convention 
+- What should I do when I turn on the computer ? How will the computer know to execute my program ?
+- So , here are the assumptions that I request to make. 
+- VM programming convention 
     - One file in any VM program is exepected to be named `Main.vm` ;
     - on VM function in this file is expected to be named `main`
- - VM implementation convention 
+- VM implementation convention 
     - When the VM implementaion starts running , or it reset , it starts executing the argument-less OS function `Sys.init`
     - `Sys.init` then calls `Main.main` , and enters an infinit loop
     - `Sys.init` is already programmed at the OS level , which is not our business right now.
- - Hardware platform convention
+- Hardware platform convention
     - Bootstrap code
 
 ```
@@ -905,12 +905,12 @@ Call Sys.init
 
 ## 2.9 Project 8
 
- - writeLable
- - writeGoto
- - writeIfGoto
- - writeFunction
- - writeCall
- - writeReturn
+- writeLable
+- writeGoto
+- writeIfGoto
+- writeFunction
+- writeCall
+- writeReturn
 
 
 

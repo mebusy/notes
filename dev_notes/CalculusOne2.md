@@ -41,14 +41,14 @@
 
 ## What is a Sequence?
 
- - 1,1,2,3,5,8,...
- - a₁,a₂,a₃,a₄,a₅,a₆,...
- - a₆=8, a₃=2
- - we use (a<sub>n</sub>) represents the whole sequence
+- 1,1,2,3,5,8,...
+- a₁,a₂,a₃,a₄,a₅,a₆,...
+- a₆=8, a₃=2
+- we use (a<sub>n</sub>) represents the whole sequence
 
 ---
 
- - "arithmetic progression"
+- "arithmetic progression"
     - a sequence with a common difference between the terms. 
     - 5,12,19,26,33,... 
         - a<sub>n</sub> = a₀+d<sub>n</sub>
@@ -66,10 +66,10 @@
 
 ### What is an Geometric Progression?
 
- - A geometric progression, is a sequence with a common ratio between the terms.
+- A geometric progression, is a sequence with a common ratio between the terms.
     - 3,6,12,24,...
- - in a geometric progression, each term is the geometric mean of it's neighbors
- - what is geometric mean ? 
+- in a geometric progression, each term is the geometric mean of it's neighbors
+- what is geometric mean ? 
     - the geometric mean of two numbers, of a and b, is defined to be the square root = √(a·b)
 
 
@@ -83,8 +83,8 @@
 
 ###  How Do Sequences Help with the √2 ?
 
- - x₁ =1
- - x<sub>n+1</sub> =  1/x<sub>n</sub> + x<sub>n</sub>/2
+- x₁ =1
+- x<sub>n+1</sub> =  1/x<sub>n</sub> + x<sub>n</sub>/2
     - x₂ = 3/2
     - x₃ = 17/12 
     - x₅ ≈ 1.41421
@@ -94,9 +94,9 @@
 
 ### When is a Sequence Bounded?
 
- - a<sub>n</sub> is "bounded above" means there is a real number M , so that 
+- a<sub>n</sub> is "bounded above" means there is a real number M , so that 
     - for all n≥0, a<sub>n</sub> ≤ M 
- - a<sub>n</sub> is "bounded below" means there is a real number M , so that 
+- a<sub>n</sub> is "bounded below" means there is a real number M , so that 
     - for all n≥0, a<sub>n</sub> ≥ M 
 
 <h2 id="917d623ac4fa7edff8771aab97f38000"></h2>
@@ -104,11 +104,11 @@
 
 ### When is a Sequence Increasing?
 
- - A sequence (a<sub>n</sub>) is **increaseing** if whenever m > n , then a<sub>m</sub> > a<sub>n</sub>
- - A sequence (a<sub>n</sub>) is **decreaseing** if whenever m > n , then a<sub>m</sub> < a<sub>n</sub>
- - A sequence (a<sub>n</sub>) is **non-increaseing** if whenever m > n , then a<sub>m</sub> ≤ a<sub>n</sub>
- - A sequence (a<sub>n</sub>) is **non-decreaseing** if whenever m > n , then a<sub>m</sub> ≥ a<sub>n</sub>
- - those 4 kind of sequence are  **monotone**
+- A sequence (a<sub>n</sub>) is **increaseing** if whenever m > n , then a<sub>m</sub> > a<sub>n</sub>
+- A sequence (a<sub>n</sub>) is **decreaseing** if whenever m > n , then a<sub>m</sub> < a<sub>n</sub>
+- A sequence (a<sub>n</sub>) is **non-increaseing** if whenever m > n , then a<sub>m</sub> ≤ a<sub>n</sub>
+- A sequence (a<sub>n</sub>) is **non-decreaseing** if whenever m > n , then a<sub>m</sub> ≥ a<sub>n</sub>
+- those 4 kind of sequence are  **monotone**
 
 <h2 id="19362157a1374319e6e61cd62e1be839"></h2>
 
@@ -117,7 +117,7 @@
 
 Here's a theorem that guarantees a sequence converges.
 
- - If the sequence (a<sub>n</sub>) is bounded and monotone, then lim<sub>n→∞</sub> a<sub>n</sub> exists.
+- If the sequence (a<sub>n</sub>) is bounded and monotone, then lim<sub>n→∞</sub> a<sub>n</sub> exists.
 
 
 
@@ -138,8 +138,8 @@ Here's a theorem that guarantees a sequence converges.
 
 Yes !
 
- - 0,-1,1,-2,2,-3,3, ...
- - c<sub>n</sub>= 
+- 0,-1,1,-2,2,-3,3, ...
+- c<sub>n</sub>= 
     - -(n+1)/2 , if n is odd
     - n/2 , if n is even
     - starting with index 0 
@@ -186,23 +186,23 @@ Otherwise, say ∑<sub>k=</sub>ⁿ₁ a<sub>k</sub> diverges.
 
 ### What is a Geometric Series?
 
- - Geometric Series :  ∑<sub>k=</sub><sup>∞</sup>₀ rᵏ
- - let s<sub>n</sub> = ∑<sub>k=</sub><sup>n</sup>₀ rᵏ 
- - (1-r)s<sub>n</sub> = 1·(r⁰+r¹+...+rⁿ) - r·(r¹+r²+...+rⁿ+r<sup>n+1</sup>) = 1-r<sup>n+1</sup> 
- - so if r≠ 1
+- Geometric Series :  ∑<sub>k=</sub><sup>∞</sup>₀ rᵏ
+- let s<sub>n</sub> = ∑<sub>k=</sub><sup>n</sup>₀ rᵏ 
+- (1-r)s<sub>n</sub> = 1·(r⁰+r¹+...+rⁿ) - r·(r¹+r²+...+rⁿ+r<sup>n+1</sup>) = 1-r<sup>n+1</sup> 
+- so if r≠ 1
     - s<sub>n</sub> = (1-r)s<sub>n</sub> / (1-r) = (1-r<sup>n+1</sup> ) / (1-r)
- - so lim<sub>n→∞</sub> s<sub>n</sub> = lim<sub>n→∞</sub> (1-r<sup>n+1</sup> ) / (1-r) 
- - if r>1 or r<-1 ,  lim<sub>n→∞</sub> r<sup>n+1</sup> is infinite
+- so lim<sub>n→∞</sub> s<sub>n</sub> = lim<sub>n→∞</sub> (1-r<sup>n+1</sup> ) / (1-r) 
+- if r>1 or r<-1 ,  lim<sub>n→∞</sub> r<sup>n+1</sup> is infinite
     - if -1`<`r`<`1 ,  lim<sub>n→∞</sub> r<sup>n+1</sup> = 0
- - ![](../imgs/calculus2_series_geometric.png)
+- ![](../imgs/calculus2_series_geometric.png)
 
 <h2 id="0d5f7167ac9f8276415b82b6caf3c128"></h2>
 
 
 ### What is the value of ∑<sub>k=</sub><sup>∞</sup><sub>m</sub> rᵏ ?
 
- - C·∑<sub>k=</sub><sup>∞</sup>₀ rᵏ  = ∑<sub>k=</sub><sup>∞</sup>₀ C·rᵏ  
- - rᵐ·∑<sub>k=</sub><sup>∞</sup>₀ rᵏ = rᵐ/(1-r)    (|r|<1)
+- C·∑<sub>k=</sub><sup>∞</sup>₀ rᵏ  = ∑<sub>k=</sub><sup>∞</sup>₀ C·rᵏ  
+- rᵐ·∑<sub>k=</sub><sup>∞</sup>₀ rᵏ = rᵐ/(1-r)    (|r|<1)
     - = ∑<sub>k=</sub><sup>∞</sup>₀ r<sup>m+k</sup>
 
 
@@ -216,7 +216,7 @@ Otherwise, say ∑<sub>k=</sub>ⁿ₁ a<sub>k</sub> diverges.
 
 ### What is the Sum of a Telescoping Series?
 
- - ∑<sub>k=</sub><sup>∞</sup>₁ 1/((k+1)·k)
+- ∑<sub>k=</sub><sup>∞</sup>₁ 1/((k+1)·k)
 
 = lim<sub>n→∞</sub> ∑<sub>k=</sub>ⁿ₁ (1/k-1/(k+1)) 
 

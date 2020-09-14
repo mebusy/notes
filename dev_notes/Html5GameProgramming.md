@@ -92,8 +92,8 @@ onImageLoad = function() {
 
 ## drawImage
  
- - `var object = object.drawImage( ... )`
- - you can find API details in `webplatform.org`
+- `var object = object.drawImage( ... )`
+- you can find API details in `webplatform.org`
 
 ```
 onImageLoad = function() {
@@ -107,10 +107,10 @@ onImageLoad = function() {
 
 ## 播放动画
 
- - load all animation image assets and place then in the frame array
- - after you images are loaded , you should go through and fill out the rest of the animation function
- - before this you need to have some logic that checks for whether or not the images are loaded 
- - and once all of the frames have been loaded , actually does a call to `setInterval`.
+- load all animation image assets and place then in the frame array
+- after you images are loaded , you should go through and fill out the rest of the animation function
+- before this you need to have some logic that checks for whether or not the images are loaded 
+- and once all of the frames have been loaded , actually does a call to `setInterval`.
 
 
 
@@ -150,8 +150,8 @@ The canvas doesn't actually clear itself each frame.  You need call clearRect to
 
 # Atlas
 
- - it's up to about 6 connection for a modern browse.
- - when the upper limit is reached , the browse will actullay block subsequent requests until an open connection becomes available.
+- it's up to about 6 connection for a modern browse.
+- when the upper limit is reached , the browse will actullay block subsequent requests until an open connection becomes available.
 
 
 usign output from texture packer
@@ -218,7 +218,7 @@ function onKeyDown( event ) {
 
 ## an approache
 
- - Input manager handle the event ,  and keep the input temporarily , for "update procedure" to comsume it later.
+- Input manager handle the event ,  and keep the input temporarily , for "update procedure" to comsume it later.
 
 
 <h2 id="a022a49f29f7b6b5eb70a9139eb9e092"></h2>
@@ -239,7 +239,7 @@ player: init()
 }
 ```
 
- - Directly, the physics body itself exposes a function that allows us to set a linear velocity on it. 
+- Directly, the physics body itself exposes a function that allows us to set a linear velocity on it. 
 
 ```
 function update() {
@@ -409,7 +409,7 @@ removeBody: function(obj) {
 
 一般的游戏， 只需要  Sound -> Gain -> OUTPUT  这条线
 
- - Checking for Compatibility
+- Checking for Compatibility
 
 ```
 try {
@@ -422,7 +422,7 @@ this._mainNode = this._context.createGainNode(0);
 this._mainNode.connect( this._context.destination ) ;
 ```
 
- - Asynchronous Loading
+- Asynchronous Loading
 
 ```
 Loaded --> yes -----------------------> callback
@@ -461,7 +461,7 @@ loadAsync: function( path , callbackFcn ) {
 ``` 
 
 
- - Play Sound
+- Play Sound
 
 ```
 playSound: function(path , settings) {
@@ -483,7 +483,7 @@ playSound: function(path , settings) {
 }
 ```
 
- - Stopping Sounds 
+- Stopping Sounds 
      - eg: stop all sound , while level changing 
      - The way we do that , is by simply disconnection our main node from the node graph ; creating a new one in its place, and connecting it to our output.
 
@@ -495,7 +495,7 @@ stopAll: function() {
 }
 ```
 
- - Muting Sounds
+- Muting Sounds
 
 ```
 togglemute: function() {
@@ -506,7 +506,7 @@ togglemute: function() {
 }
 ```
 
- - Play World Sound  ( 远近效果 )
+- Play World Sound  ( 远近效果 )
 
 ```
 playWorldSound: function( soundURL , x , y ) {
@@ -543,16 +543,16 @@ playWorldSound: function( soundURL , x , y ) {
 
 # Asset Loading
 
- - all file I/O function in JavaScript are by definition asynchronous.
+- all file I/O function in JavaScript are by definition asynchronous.
 
 <h2 id="d6a16019632124a0439c06f64398fa98"></h2>
 
 
 ## Asset Manager
 
- - Cached Asset management
- - Async callbacks on load
- - batches asset loading
+- Cached Asset management
+- Async callbacks on load
+- batches asset loading
 
 
 <h2 id="2dc1bd08d51fab30f5a3b09badc59f30"></h2>
@@ -565,7 +565,7 @@ playWorldSound: function( soundURL , x , y ) {
 
 ## Batches
 
- - to allow us to pass a list of files to load , and receive one callback once they've all been loaded
+- to allow us to pass a list of files to load , and receive one callback once they've all been loaded
 
 ```
 function loadAssets(assetList, callbackFcn) {

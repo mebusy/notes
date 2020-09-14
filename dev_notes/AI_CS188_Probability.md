@@ -36,19 +36,19 @@ demo: ghost busters
 
 ![](../imgs/cs188_prob_ghostbuster.png)
 
- - A ghost is in the grid somewhere
- - Sensor readings tell how close a square is to the ghost
+- A ghost is in the grid somewhere
+- Sensor readings tell how close a square is to the ghost
     - On the ghost: red
     - 1 or 2 away: orange
     - 3 or 4 away: yellow
     - 5+ away: green
- - On top of ghost, we usually get red, but we could get green.   It's a nosiy sense. 
- - Sensors are noisy, but we know P(Color | Distance)
+- On top of ghost, we usually get red, but we could get green.   It's a nosiy sense. 
+- Sensors are noisy, but we know P(Color | Distance)
 
 ---
 
  P( red\|3 )| P( orange\|3 )   | P( yellow\|3 )   |P( green\|3 )
- --- | --- | --- | --- 
+--- | --- | --- | --- 
  0.05 | 0.15 | 0.5 | 0.3 
    
 ---
@@ -107,14 +107,14 @@ When we deal with an uncertainty usually we can split the random variables into 
 **Temperature:  P(T)**
 
  T | P 
- --- | --- 
+--- | --- 
  hot | 0.5
  cold | 0.5
 
 **Weather: P(W)**
 
  W | P 
- --- | --- 
+--- | --- 
  sun | 0.6
  rain | 0.1
  fog | 0.3
@@ -140,10 +140,10 @@ When we deal with an uncertainty usually we can split the random variables into 
 
 The reason we care about joint distribution is because we want to infer things about variables we haven't observed based on observations we made of these observed variables. 
 
- - A joint distribution over a set of random variables: X₁,X₂, ... X<sub>n</sub> specifies a real number for each assignment (or outcome): 
+- A joint distribution over a set of random variables: X₁,X₂, ... X<sub>n</sub> specifies a real number for each assignment (or outcome): 
     - P(X₁=x₁ ,X₂=x₂ , ... , X<sub>n</sub>=x<sub>n</sub>)
     - P(x₁ ,x₂ , ... , x<sub>n</sub>)
- - Size of distribution if n variables with domain sizes d :
+- Size of distribution if n variables with domain sizes d :
     - dⁿ
     - For all but the smallest distributions, impractical to write out!
 
@@ -167,20 +167,20 @@ cold | rain | 0.3
 
 ## Probabilistic Models
 
- - A probabilistic model is a joint distribution over a set of random variables
+- A probabilistic model is a joint distribution over a set of random variables
     - see that ***Distribution over T,W*** in privous paragraph
- - Probabilistic models:
+- Probabilistic models:
     - (Random) variables with domains 
     - Assignments are called outcomes
     - Joint distributions: say whether assignments (outcomes) are likely
     - Normalized: sum to 1.0
     - Ideally: only certain variables directly interact
- - Constraint satisfaction problems:
+- Constraint satisfaction problems:
     - Variables with domains
     - Constraints: state whether assignments are possible
     - Ideally: only certain variables directly interact
 
- - Sometimes the main different is that here you have true/false values saying whether it's allowed to have an association or not. 
+- Sometimes the main different is that here you have true/false values saying whether it's allowed to have an association or not. 
 
 ---
 
@@ -202,8 +202,8 @@ cold | rain | true
 
 corresponds to a sub-table of the original joint distribution  where you consider only a subset of the random variables.
 
- - Marginal distributions are sub-tables which eliminate variables 
- - Marginalization (summing out): Combine collapsed rows by adding
+- Marginal distributions are sub-tables which eliminate variables 
+- Marginalization (summing out): Combine collapsed rows by adding
 
 ![](../imgs/cs188_prob_margial_distribution.png)
 
@@ -216,9 +216,9 @@ corresponds to a sub-table of the original joint distribution  where you conside
 
 ## Conditional Probabilities
 
- - A simple relation between joint and conditional probabilities
+- A simple relation between joint and conditional probabilities
     - In fact, this is taken as the definition of a conditional probability
- - `P(a|b) = P(a,b) / P(b)`
+- `P(a|b) = P(a,b) / P(b)`
 
 
 <h2 id="d22ece9f9682b018dfb17860cc5aedd7"></h2>
@@ -226,7 +226,7 @@ corresponds to a sub-table of the original joint distribution  where you conside
 
 ## Conditional Distribution
 
- - Conditional distributions are probability distributions over some variables given fixed values of others
+- Conditional distributions are probability distributions over some variables given fixed values of others
 
 ![](../imgs/cs188_prob_conditional_distribution.png)
 
@@ -327,7 +327,7 @@ r   |  0.25 / 0.5 = 0.5
 
 --- 
 
- - P(W| winter ,hot)    
+- P(W| winter ,hot)    
     - Q=W , E=winter,hot, H=∅
 
 ---
@@ -351,8 +351,8 @@ r   |  o.05/0.15 = 1/3
 
 ## The Product Rule
 
- - Sometimes have conditional distributions but want the joint
- - P(y) P(x|y) = P(x,y)
+- Sometimes have conditional distributions but want the joint
+- P(y) P(x|y) = P(x,y)
 
 
 
@@ -362,7 +362,7 @@ r   |  o.05/0.15 = 1/3
 
 ## The Chain Rule
 
- - More generally, can always write any joint distribution as an incremental product of conditional distributions
+- More generally, can always write any joint distribution as an incremental product of conditional distributions
 
 ```
 P(x₁,x₂,x₃) = P(x₁)P(x₂|x₁)P(x₃|x₁,x₂)
@@ -380,18 +380,18 @@ That means you have `n!` ways using the chain rule!.
 
 ## Bayes' Rule
 
- - Two ways to factor a joint distribution over two variables:
+- Two ways to factor a joint distribution over two variables:
     - P(x,y) = P(x|y)P(y) = P(y|x)P(x)
- - Dividing 
+- Dividing 
     - ![](../imgs/cs188_prob_bayes_rule.png)
     - gives you the other conditional.
- - Why is this at all helpful?
+- Why is this at all helpful?
      - build one conditional from its reverse
      - Often one conditional is tricky but the other one is simple
      - Foundation of many systems we’ll see later (e.g. ASR, MT)
- - In the running for most important AI equation!
+- In the running for most important AI equation!
 
- - Approximate Bayesian Computation
+- Approximate Bayesian Computation
     - ?? 
 
 <h2 id="534db09beb168ffccbe6a4f375c4c83d"></h2>
@@ -413,9 +413,9 @@ This is an application of bayes' rule.  One thing you'll notice that when you ap
 
 So Bayes' rule can help us make dicisions:  should this person see a doctor or not ?
 
- - M: meningitis, S: stiff neck
- - ![](../imgs/cs188_prob_bayerule_patient.png)
- - P(+m|+s) = P(+s|+m)P(+m) / P(+s) = P(+s|+m)P(+m) / ( P(+s|+m)P(+m) + P(+s|-m)P(-m) ) = 0.8x0.0001 / (0.8x0.0001+0.01x0.999)
+- M: meningitis, S: stiff neck
+- ![](../imgs/cs188_prob_bayerule_patient.png)
+- P(+m|+s) = P(+s|+m)P(+m) / P(+s) = P(+s|+m)P(+m) / ( P(+s|+m)P(+m) + P(+s|-m)P(-m) ) = 0.8x0.0001 / (0.8x0.0001+0.01x0.999)
 
 --- why ? ---
 
@@ -427,9 +427,9 @@ Because the cost of undiagnosed meningitis is really high.
 
 ### Quiz: Bayes's Rule 
 
- - given:
+- given:
     - ![](../imgs/cs188_prob_quiz_bayes_rule.png)
- - What is P(W | dry) ? 
+- What is P(W | dry) ? 
 
 
 P( sun | dry  )  = (0.9\*0.8) / (0.9\*0.8 + 0.3\*0.2) 
@@ -463,12 +463,12 @@ P( rain | dry  ) = 1-P(sun|dry)
 
 ## Independcence
 
- - Two variables are independent `X⊥Y`  in a joint distribution if:
+- Two variables are independent `X⊥Y`  in a joint distribution if:
     - P(X,Y) = P(X)P(Y)
     - ∀<sub>x,y</sub> P(x,y) = P(x)P(y)
     - Says the joint distribution factors into a product of two simple ones
     - Usually variables aren’t independent!
- - Can use independence as a modeling assumption
+- Can use independence as a modeling assumption
     - Independence can be a simplifying assumption
     - Empirical  joint distributions: at best “close” to independent
 

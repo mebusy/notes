@@ -32,10 +32,10 @@ $ git reset --hard HEAD
 
 ## Manually download brew package 
 
- - use `brew --cache` to find the cache folder 
- - homebrew use `brew --cache`\downloads folder to keep downloaded files
+- use `brew --cache` to find the cache folder 
+- homebrew use `brew --cache`\downloads folder to keep downloaded files
     - and use `ln -s` to make a reference at `brew --cache` folder 
- - 目标文件 可以通过如下命令获得
+- 目标文件 可以通过如下命令获得
     - `brew --cache [-s] <package_name>`  ( -s means from source , not bottle )
 
 <h2 id="387e3f4aa69662696cce11325cecc502"></h2>

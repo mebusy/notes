@@ -29,10 +29,10 @@
 
 Advantages:
 
- - temporal abstraction 
- - Transfer / Reusability
- - more powerful / Meaningful
- - state abstraction 
+- temporal abstraction 
+- Transfer / Reusability
+- more powerful / Meaningful
+- state abstraction 
     - when I start breaking things down into these kinds of subproblems I can start focusing on things that are only needed for solving the subproblems.
     - solving one subproblem does not depend on other subproblems. 
 
@@ -45,7 +45,7 @@ Advantages:
 ![](../imgs/iit_rl_51_types_of_optimality_room.png)
 
 
- - 1. hierarchically optimal
+- 1. hierarchically optimal
     - you have to search through policies that respect this hierarchy. 
 
 The best way I can solve this problem of getting out of room 1 is the white policy. 
@@ -60,26 +60,26 @@ Following the white policy in room1 gives me a solution where the individual com
 
 If I come up with a solution where the individual components solved optimally , and then the overal solution is suboptimally. Then I call that 
 
- - 2.  recursively optimal
+- 2.  recursively optimal
     - given that all my sub problems are optimal , and the policies are frozen , what is the best can I do ?
     - I have to put together this optimal sub policies to find something that is best among those polices. So this is a more restricted policy.
- - hierarchically optimal is to say that I have to respect the hierarchy but I need not necessarily solve each component optimally , overall the problem should be optimally solved. 
- - recursively optimal is to say that not only should I respect the hierarchy but for each individual components in the sub hierarchy I should have an optimal solution. 
+- hierarchically optimal is to say that I have to respect the hierarchy but I need not necessarily solve each component optimally , overall the problem should be optimally solved. 
+- recursively optimal is to say that not only should I respect the hierarchy but for each individual components in the sub hierarchy I should have an optimal solution. 
 
 ---
 
- - 3. Flat optimality 
+- 3. Flat optimality 
     - does not respect any of the hierarchical restrictions 
     - it just looks at the most basic actions that are possible in this world , and tries to find what is optimal. 
 
 ---
 
- - so usually fat optimality gives you a more optimal solution than hierarchical optimality , which in turn gives you something better than recursive optimality
- - recursively optimal is great
+- so usually fat optimality gives you a more optimal solution than hierarchical optimality , which in turn gives you something better than recursive optimality
+- recursively optimal is great
     - it is more resuable. 
     - it might not be the best for any particular problem. but across different problems maybe this will be the better one on an average. 
     - so it is always a good idea to solve these things independently 
- - when do want to learn recursively optimal policies ?
+- when do want to learn recursively optimal policies ?
     - I am solving the same problem multiple times , or my recursive optimal is really bad.  
     - it is possible that recursive optimal is bad. for instance, if I put a laser beam horizontally cross room2, so every time you touch the laser you get burned by the laser. Unfortunately still the white policies is recursively optimal
     
@@ -95,7 +95,7 @@ If I come up with a solution where the individual components solved optimally , 
 
 ## SMDP 
 
- - Actions have duration
+- Actions have duration
     - MDP: s<sub>t</sub> --- a<sub>t</sub>--> s<sub>t+1</sub> ( with r<sub>t+1</sub> )
     - SMDP: s<sub>t</sub> --- a<sub>t</sub>--> ... s<sub>t+τ</sub> ( with r<sub>t+τ</sub> )    
         - --- a<sub>t+τ</sub>--> ... s<sub>t+τ+τ'</sub> ( with r<sub>t+τ+τ'</sub> )  
@@ -123,8 +123,8 @@ Ps. here , holding τ seconds then apply action ,  and taking action immediately
 
 SMDP is defined as the tuple <S,A,P,R>
 
- - P: P(s',τ | s, a) 
- - R: E[ v | s,a,s',τ ]
+- P: P(s',τ | s, a) 
+- R: E[ v | s,a,s',τ ]
     - reward could depend on the transition time , or the holding time.
 
 ---
@@ -134,13 +134,13 @@ SMDP is defined as the tuple <S,A,P,R>
 
 ## SMDP Q-Learning
 
- - Q(s<sub>t</sub>,a<sub>t</sub>) = Q(s<sub>t</sub>,a<sub>t</sub>) + α·[ r̄<sub>t+τ</sub> + γ<sup>τ</sup>·max<sub>a'</sub>Q(s'<sub>t</sub>,a') - Q(s<sub>t</sub>,a<sub>t</sub>) ]
+- Q(s<sub>t</sub>,a<sub>t</sub>) = Q(s<sub>t</sub>,a<sub>t</sub>) + α·[ r̄<sub>t+τ</sub> + γ<sup>τ</sup>·max<sub>a'</sub>Q(s'<sub>t</sub>,a') - Q(s<sub>t</sub>,a<sub>t</sub>) ]
 
 The tricky thing here is I have hidden some stuff into this **r̄<sub>t+τ</sub>** , What is r̄<sub>t+τ</sub>  ?  It's the expected reward that I am going to get over the τ time steps. It is not the one instancely happened.  It could be variety of things. Normally that in the classical SMDP framework wo do not tell you how this r̄<sub>t+τ</sub> comes up. So you have some mechanism by which you can generate it. 
 
 But we are more interested in is to actually think of 
 
- - r̄<sub>t+τ</sub> = r<sub>t+1</sub> + γ·r<sub>t+2</sub> + ... + γ<sup>τ-1</sup> ·r<sub>t+τ</sub> 
+- r̄<sub>t+τ</sub> = r<sub>t+1</sub> + γ·r<sub>t+2</sub> + ... + γ<sup>τ-1</sup> ·r<sub>t+τ</sub> 
 
 So notice that SMDP Q-Learning does not actually look into the structure Q(s<sub>t</sub>,a<sub>t</sub>) of a<sub>t</sub>  . It just assumes that this reward comes then I take action a<sub>t</sub>.  So it assumes that a<sub>t</sub> has been learnt already. So what is a<sub>t</sub> here in our room example ?  Goto room2 !  It is not a single simple action, this is what you mean by the `temporal abstraction`.
 
@@ -183,11 +183,11 @@ So Option o=< Iₒ,πₒ,βₒ >
 
 ## Two kinds of options 
 
- - Markov option
+- Markov option
     - πₒ depends only on current state
     - the nice thing about Markov options is I do not have to worry about where I started the option . So if I am in a particular state and I am executing that option then I will take the same action. 
  
- - Semi Markov option
+- Semi Markov option
     - πₒ depends on histroy since the option started
 
 <h2 id="4b519a7a64bf60c84e3429985f71bf7c"></h2>
@@ -196,9 +196,9 @@ So Option o=< Iₒ,πₒ,βₒ >
 # Lec 54 : Learning with Options
 
 
- - SMDP Q-Learning 
+- SMDP Q-Learning 
     - MDP + options gives me SMDP.
- - Inter-option Q-Learning 
+- Inter-option Q-Learning 
     - Q(s,o) 
     - let assume that when I start πₒ , so I do actions a₁,a₂,...a<sub>n</sub> under states s₁,s₂,...s<sub>n</sub> under states . These are the actions I see. 
     - so what can I do ?

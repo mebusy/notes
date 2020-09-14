@@ -216,22 +216,22 @@ android {
 apply plugin: 'java'  
 ```
 
- - 默认情况下，Gradle会在src/main/java中查找你的源码，在src/test/java中查找你的测试代码
- - src/main/resources下的文件都会被打包
- - src/test/resources下的文件会被包含在classpath中用于测试
- - 所有输出的文件都保存在build目录里，
- - 生成的jar包则是在build/libs里面
+- 默认情况下，Gradle会在src/main/java中查找你的源码，在src/test/java中查找你的测试代码
+- src/main/resources下的文件都会被打包
+- src/test/resources下的文件会被包含在classpath中用于测试
+- 所有输出的文件都保存在build目录里，
+- 生成的jar包则是在build/libs里面
 
 <h2 id="8a26c5518717adc00e89670b449413b7"></h2>
 
 
 ### 2. 构建项目
 
- - gradle tasks命令查看任务。
- - gradle build时，Gradle会执行编译，测试，并且将源文件和资源文件打成jar包。
- - clean：删除build目录和其他构建时生成的文件
- - assemble：编译并打包，但不执行单元测试。
- - check：编译并测试代码。
+- gradle tasks命令查看任务。
+- gradle build时，Gradle会执行编译，测试，并且将源文件和资源文件打成jar包。
+- clean：删除build目录和其他构建时生成的文件
+- assemble：编译并打包，但不执行单元测试。
+- check：编译并测试代码。
 
 
 <h2 id="3ce11b7291ca0e81c61b7ac1487baedc"></h2>
@@ -381,8 +381,8 @@ android {
 }
 ```
 
- - A product flavor defines a customized version of the application build by the project
- - It will generate another app for each flavor
+- A product flavor defines a customized version of the application build by the project
+- It will generate another app for each flavor
 
 
 <h2 id="eeb10f0eeabc8c7de151028795fea392"></h2>
@@ -409,12 +409,12 @@ android {
 }
 ```
 
- - The ProGuard plugin is applied automatically by the Android plugin
- - proguard task are created automatically if the **Build Type** sets ***minifyEnabled*** property *true*
- - There are 2 default rules files:
+- The ProGuard plugin is applied automatically by the Android plugin
+- proguard task are created automatically if the **Build Type** sets ***minifyEnabled*** property *true*
+- There are 2 default rules files:
     - proguard-android.txt
     - proguard-android-optimize.txt
- - You can use own proguard rules, or use more 1 proguard rules through **productFlavors**
+- You can use own proguard rules, or use more 1 proguard rules through **productFlavors**
 
 <h2 id="089a24d84135c1eb537e96621be085d5"></h2>
 
@@ -694,8 +694,8 @@ public class Main extends Activity
 
 ## tips 
     
- - native 方法如果定义在 cpp 文件中， 需要 加上 extern "C"
- - link library :
+- native 方法如果定义在 cpp 文件中， 需要 加上 extern "C"
+- link library :
     ```
     ndk {
         ...
@@ -703,8 +703,8 @@ public class Main extends Activity
     }
     ```
 
- - 这个例子中，我们演示了 java 调用 native 方法， c++ 调用 java的情况会更复杂
- - 有时候，我们需要获取 JAVA VM
+- 这个例子中，我们演示了 java 调用 native 方法， c++ 调用 java的情况会更复杂
+- 有时候，我们需要获取 JAVA VM
 
 ```c
 extern "C" {
@@ -715,7 +715,7 @@ extern "C" {
 }
 ```
 
- - PS: JNI_OnLoad 方法 必须于工程的 jni 目录中定义 ，  放在static library 中无效
+- PS: JNI_OnLoad 方法 必须于工程的 jni 目录中定义 ，  放在static library 中无效
 
 
 <h2 id="50a46251dc9b0613fecae34742c7e655"></h2>
@@ -852,7 +852,7 @@ dependencies {
 
 ## Gradle version 2.2 is required. Current version is 2.10
 
- - solution:
+- solution:
     - change `classpath 'com.android.tools.build:gradle:1.3.0'` to ` classpath 'com.android.tools.build:gradle:2.0.0'`
 
 ![](../imgs/gradle_android_PluginVersion.png)
@@ -863,7 +863,7 @@ dependencies {
 
 ## Could not find method runProguard() for arguments
 
- - in `build.gralde` , Instead of "runProguard false" use "minifyEnabled false" 
+- in `build.gralde` , Instead of "runProguard false" use "minifyEnabled false" 
 
 
 <h2 id="a00bb7ae615e786ed0e6d98d43e7248a"></h2>
@@ -871,5 +871,5 @@ dependencies {
 
 ## android logcat filter
 
- - `adb logcat -s TAG1*:I  TAG2:*`
+- `adb logcat -s TAG1*:I  TAG2:*`
 

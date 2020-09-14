@@ -170,8 +170,8 @@ PS. `(x+1)(x-1)/(x-1)`  and `(x+1)` not the same function, 一个在 x=1 处 没
 
 ![](../imgs/CalculusOne_one_side_limit.png)
 
- - If lim<sub>x→a⁺</sub>f(x) != lim<sub>x→a⁻</sub>f(x) , then lim<sub>x→a</sub>f(x)  does not exist.
- - if lim<sub>x→a⁺</sub>f(x) =  lim<sub>x→a⁻</sub>f(x) = L,  then lim<sub>x→a</sub>f(x)  = L .
+- If lim<sub>x→a⁺</sub>f(x) != lim<sub>x→a⁻</sub>f(x) , then lim<sub>x→a</sub>f(x)  does not exist.
+- if lim<sub>x→a⁺</sub>f(x) =  lim<sub>x→a⁻</sub>f(x) = L,  then lim<sub>x→a</sub>f(x)  = L .
 
 ---
 
@@ -184,7 +184,7 @@ f(x) is continuous at *a* , means that input near *a* are sent to outputs near f
 
 more precise :  
 
- - f(x) is continuouse at *a* means that lim<sub>x→a</sub>f(x) = f(a).  That is:
+- f(x) is continuouse at *a* means that lim<sub>x→a</sub>f(x) = f(a).  That is:
     - f(x) is defined at x=a
     - lim<sub>x→a</sub>f(x) exists
     - lim<sub>x→a</sub>f(x) = f(a)
@@ -196,9 +196,9 @@ more precise :
 
 #### Intermediate Value Theorem
 
- - Suppose f(x) is continuous on [a,b] , and y is between f(a) and f(b).
- - Then , there is an x between a and b  , so that f(x) = y .
- - 既： [f(a), f(b)] 之间随机选取一个值 y,  应该存在对应的 x ，使得 f(x) = y.
+- Suppose f(x) is continuous on [a,b] , and y is between f(a) and f(b).
+- Then , there is an x between a and b  , so that f(x) = y .
+- 既： [f(a), f(b)] 之间随机选取一个值 y,  应该存在对应的 x ，使得 f(x) = y.
 
 
 
@@ -209,7 +209,7 @@ more precise :
 
 #### How to approximate √2 ?
 
- - use intermediate value theorem , to try and find x, so that f(x) = x² - 2 = 0
+- use intermediate value theorem , to try and find x, so that f(x) = x² - 2 = 0
 
 ---
 
@@ -225,15 +225,15 @@ more precise :
 
 #### Why is there an x so that f(x) = x
 
- - f(x) cts on [0,1],  0 ≤ x ≤ 1 ; Then there is an x , 0 ≤ x ≤ 1 , and f(x) = x. 
- - 称这个点 (x, f(x)) 为函数的不动点
- - Proof:
+- f(x) cts on [0,1],  0 ≤ x ≤ 1 ; Then there is an x , 0 ≤ x ≤ 1 , and f(x) = x. 
+- 称这个点 (x, f(x)) 为函数的不动点
+- Proof:
     - g(x) = f(x) - x is cts
     - g(0) = f(0) - 0 ≥ 0
     - g(1) = f(1) - 1 ≤ 0
     - by IVT , find x  , so that g(x) = 0, that is f(x) - x = 0 => f(x) = x.
 
- - 应用：
+- 应用：
     - f(x) = cosx 
     - ![](../imgs/CalcusOne_cosx_equal_x.png)
 
@@ -245,14 +245,14 @@ more precise :
 
 #### What means lim<sub>x→a</sub>f(x) = ∞ ?
 
- - f(x) is as large as you like , if provide x is close enough to a.
+- f(x) is as large as you like , if provide x is close enough to a.
 
 
- - 极限不存在 case 
+- 极限不存在 case 
     - 极限无穷大 
     - 左右极限不相等
     - 在正负无穷之间来回震荡
- - 极限无穷大 是 极限值收敛于无穷。但左右极限不等、震荡仍判定为极限不存在。
+- 极限无穷大 是 极限值收敛于无穷。但左右极限不等、震荡仍判定为极限不存在。
 
 ---
 
@@ -261,9 +261,9 @@ more precise :
 
 #### What means lim<sub>x→∞</sub>f(x) = L ?
     
- - f(x) is as close as you want to L , provided x is large enough.
+- f(x) is as close as you want to L , provided x is large enough.
 
- - 求 lim<sub>x→∞</sub> 2x/(x+1) 
+- 求 lim<sub>x→∞</sub> 2x/(x+1) 
     - 这里无法再使用 商的极限法则，因为分子分母的极限都不存在
     - 但是可以 通过 分子分母都 乘上 1/x 来求解， 结果为 2.  ( 测试：代入 1000， 10000 ，其结果接近2 )
     - x→∞ ,∞/∞型极限， 算法中 big O的思想
@@ -295,12 +295,12 @@ The ***derivative*** of f at the point x is defined to be :
 
 ![](../imgs/Calculus1_derivative_def2.png) , or  ![](../imgs/Calculus1_derivative_def3.png)
 
- - If the derivative of f exists at x , we say that the function is **differentiable** at x.
- - If the derivative of f exists at x ,  whenever x is between a and b, then we say that f is **defferentiable** on (a,b).
- - The **derivative** of f at the point x , is written as f'(x).
+- If the derivative of f exists at x , we say that the function is **differentiable** at x.
+- If the derivative of f exists at x ,  whenever x is between a and b, then we say that f is **defferentiable** on (a,b).
+- The **derivative** of f at the point x , is written as f'(x).
     - ![](../imgs/Calculus1_derivative_written.png)
 
- - **Derivative is slope !**
+- **Derivative is slope !**
 
 <h2 id="f4d55e88765552127f1f67cba00e367f"></h2>
 
@@ -311,7 +311,7 @@ When I say a function is differentiable , what I really mean is that when I zoom
 
 f'(0) = lim<sub>x→0</sub> |h|/h , DNE.
 
- - Why should you care about differentiable function at all ?
+- Why should you care about differentiable function at all ?
     - If a terrible looking function is differentiable , if I zoom in on some point, the thing looks like a straight line. 
     - Calculus is all about replacing the curved objects that we can't understand with straight line , which we have some hope of understanding.
 
@@ -341,7 +341,7 @@ f(2.01) = f(2) + 0.01·f'(2) = 4 + 0.01·6 = 4.06.
 
 #### Why is sqrt(9999) so close to 99.995? 
 
- - √9999 = √(10000-1) ≈ √10000 - 1·(derivate at 10000) = 100 - 1· 1/(2·100) = 100 - 0.005 = 99.995
+- √9999 = √(10000-1) ≈ √10000 - 1·(derivate at 10000) = 100 - 1· 1/(2·100) = 100 - 0.005 = 99.995
 
 
 <h2 id="e89d54795bc4804fe364603cdb6baed4"></h2>
@@ -367,9 +367,9 @@ It means that if the sign of f'(x) is negative , f(x+h) is decreasing , otherwis
 
 #### Why is a differentiable function necessarily continuous ?
 
- - Theorem :  if *f* is differentiable at *a* , then *f* is continuous at *a*.
+- Theorem :  if *f* is differentiable at *a* , then *f* is continuous at *a*.
     - 可微必(原)连续
- - Proof:
+- Proof:
     - if f'(a) exist , then  lim<sub>x→a</sub> (f(x)-f(a)) = 0·f'(a) = 0 
     - that means  f(x) = f(a) , while lim<sub>x→a</sub> , it is the definition of continuity. 
 
@@ -378,10 +378,10 @@ It means that if the sign of f'(x) is negative , f(x+h) is decreasing , otherwis
 
 #### 可微分、连续与可导的关系？
 
- - 一元函数：
+- 一元函数：
     - 可导必 连续，连续推不出可导，
     - 可导与可微等价。
- - 多元函数：
+- 多元函数：
     - 可偏导与连续之间没有联系，也就是说可偏导推不出连续，连续推不出可偏导。
     - 可微必可偏导，可微必连续，可偏导推不出可微，但若一阶偏导具有连续性则可推出可微。
         - 某点处偏导数存在与否与该点连续性无关.（即使所有偏导数都存在也不能保证该点连续）.
@@ -396,7 +396,7 @@ It means that if the sign of f'(x) is negative , f(x+h) is decreasing , otherwis
 
 ### How do I find the derivative ?
 
- - `d/dx xⁿ = n·xⁿ⁻¹`
+- `d/dx xⁿ = n·xⁿ⁻¹`
 
 ---
 
@@ -461,7 +461,7 @@ If g(a) ≠ 0 , and
 
 ### How can I find extreme values ?
 
- - If either f'(c) does not exist , or f'(c) = 0 , call *c* a ***critical point*** of f.
+- If either f'(c) does not exist , or f'(c) = 0 , call *c* a ***critical point*** of f.
  
 ![](../imgs/calculusone_derivative_func_graph.png)
 
@@ -485,7 +485,7 @@ f(x) = 1 + x + x²/2 + x³/6 + x⁴/24 + ...  = eˣ
 
 ### What is the Chain Rule
 
- - d/dx g(f(x)) = g'(f(x))·f'(x)
+- d/dx g(f(x)) = g'(f(x))·f'(x)
     - d/dx g(f(x))  :  change in g(f(x)) / change in x
     - g'(f(x)) :   change in g(f(x)) / change in f(x)
     - f'(x)  :  change in f(x) / change in x
@@ -498,9 +498,9 @@ f(x) = 1 + x + x²/2 + x³/6 + x⁴/24 + ...  = eˣ
 
 ### How do I find the tangent line to a curve ?
 
- - x³ + y³ - 9xy = 0 
- - ![](../imgs/CalclusOne_graph_leaf.png)
- - This in NOT the graph of a function, it's really a relation , a equation.
+- x³ + y³ - 9xy = 0 
+- ![](../imgs/CalclusOne_graph_leaf.png)
+- This in NOT the graph of a function, it's really a relation , a equation.
 
 ```
 x³ + y³ - 9xy = 0    
@@ -515,11 +515,11 @@ dy/dx = (- 3x² + 9y) / ( 3y² - 9x )
 
 ### How do I find the derivative of an inverse function ?
 
- - What is inverse function ?
+- What is inverse function ?
     - f⁻¹(f(x)) = f⁻¹(y) = x
     - inverse function 就是 互换了 x轴 和 y轴
     - ![](../imgs/calculusOne_inverse_function_exmaple.png)
- - What is the derivative of an inverse function ?
+- What is the derivative of an inverse function ?
     - ![](../imgs/calculusOne_derivative_inverse_function.png)
     - since derivate is just the slope, and inverse function exchange the x axis and y axis, so 
     - if the derivative of *f(x)* is m , then the derivative of *f⁻¹(y)*  = 1/m.  注意：这里 x，y并不相等
@@ -615,7 +615,7 @@ x 4222234741
 = ?
 ``` 
 
- - Quarter Squares
+- Quarter Squares
     - a·b = (a+b)²/4 - (a-b)²/4 
     - eg.  3·2 = (3+2)²/4 - (3-2)²/4 = 6 
 
@@ -629,8 +629,8 @@ n | n²/4
 
 --- 
 
- - Admittedly, people don't talk too much about quarter squares nowadays.
- - What you've probably heard a lot more about is logaritms.
+- Admittedly, people don't talk too much about quarter squares nowadays.
+- What you've probably heard a lot more about is logaritms.
     - log(a·b) = loga + logb
     - you can this log to multiply very quickly, provide you have a log table. 
 
@@ -646,7 +646,7 @@ n | n²/4
 
 #### justify the power fule 
 
- - negative n
+- negative n
     - d/dx (1/x) = -1/x²
     - d/dx (x⁻ⁿ) = -n·x<sup>-(n+1)</sup>  
     - works as well
@@ -672,7 +672,7 @@ d/dx( f(x)g(x) ) = g(x)·f'(x) + f(x)·g'(x)
 
 #### How do we prove the quotient rule 
 
- - use chain rule
+- use chain rule
 
 
 ---
@@ -713,17 +713,17 @@ cotθ = 1/tanθ
 
 ![](../imgs/calculusone_derivative_sin_cos.png)
 
- - θ increased by h 
- - point ( cosθ, sinθ ) moved to ( cos(θ+h) , sin(θ+h) )
+- θ increased by h 
+- point ( cosθ, sinθ ) moved to ( cos(θ+h) , sin(θ+h) )
     - sin(θ+h) = sin(θ) + h·cosθ
         - sinθ increased by h·cosθ 
     - cos(θ+h) = cos(θ) - h·sinθ
         - cosθ decreased by h·sinθ
- - conclusion
+- conclusion
     - d/dθ sinθ = cosθ
     - d/dθ cosθ = -sinθ
 
- - if you differentiate sine  4 times, you get back to itself.  
+- if you differentiate sine  4 times, you get back to itself.  
 
 
 <h2 id="15e9049322f847921aec14fca99d40e3"></h2>
@@ -731,7 +731,7 @@ cotθ = 1/tanθ
 
 #### What is the derivative of tan x ?
 
- - use quotient rule
+- use quotient rule
 
 ```
 d/dθ tanθ = ( cosθcosθ - sinθ (-sinθ) )/cos²θ = 1/cos²θ = sec²θ
@@ -742,10 +742,10 @@ d/dθ tanθ = ( cosθcosθ - sinθ (-sinθ) )/cos²θ = 1/cos²θ = sec²θ
 
 #### What is the derivative of sin(x²) ?
 
- - chain rule
+- chain rule
     - d/dθ = cos(x²)·2x 
- - |sin(x²)| ≤ 1
- - cos(x²)·2x can be as large as you like !
+- |sin(x²)| ≤ 1
+- cos(x²)·2x can be as large as you like !
 
 <h2 id="31210310e2f1c1dbdf248f691b4948c9"></h2>
 
@@ -777,11 +777,11 @@ arcsin | [-π/2, π/2]
 arccos | [0, π]
 arctan | [-π/2, π/2] 
 
- - what is the arcxxx ?
+- what is the arcxxx ?
     - θ = arccos(1/2) , is just to say that θ is the length of the arc whose cosine is 1/2. 
     - ![](../imgs/calculusone_arccos.png)
 
- - draw picture to help you under stand  inverse trig function 
+- draw picture to help you under stand  inverse trig function 
     - ![](../imgs/calculusone_trig_draw_helper_func.png)
 
 <h2 id="4d4582f7a62b4c18562eab93a499b2ab"></h2>
@@ -789,9 +789,9 @@ arctan | [-π/2, π/2]
 
 #### What are the derivatives of inverse trig functions ?
 
- - d/dx arcsin x = ?
- - let f(x) = arcsin x 
- - so f(sinx) = x , assuming arcsin is differentiable :
+- d/dx arcsin x = ?
+- let f(x) = arcsin x 
+- so f(sinx) = x , assuming arcsin is differentiable :
 
 ```
 f'(sinx) = 1
@@ -810,7 +810,7 @@ f'(x) = 1/√(1-x²)
 --- 
 
  trig function | derivateive 
- --- | ---
+--- | ---
  arcsin | 1/√(1-x²)
  arccos | -1/√(1-x²) 
  arctan | 1/(1+x²)
@@ -827,9 +827,9 @@ f'(x) = 1/√(1-x²)
 
 #### Why do sin / cos  oscillate ?
 
- - kind of accelerate = - position 
+- kind of accelerate = - position 
     - f''(t) = -f(t)
- - the reason why thess function (cos / sin ) are bouncing up and down like this, is because in every case , the function's 2nd derivative is negative its value. 
+- the reason why thess function (cos / sin ) are bouncing up and down like this, is because in every case , the function's 2nd derivative is negative its value. 
     - when the function is positive, the 2nd derivative is negative , pulling it down
     - when the function is negative , the 2nd derivative is positive , pushing it back
 
@@ -838,7 +838,7 @@ f'(x) = 1/√(1-x²)
 
 #### How can I approximate sin1 ?
 
- - tips 1:
+- tips 1:
     -  sin(x) ≈ x , if x is small ( eg.x < 0.4 )
 
 ```
@@ -848,7 +848,7 @@ f(0+h) = f(0) + h·f'(0) ≈ 0 + h = h
 sin(h) ≈ h
 ```
 
- - tips 2:
+- tips 2:
     - sin(2x) = 2·sin(x)·cos(x)
     - sin(2x) = 2·sin(x)·√(1-sin²(x))
 
@@ -873,8 +873,8 @@ sin 1 ≈  0.84147...
 
 #### How can we multiply numbers with trigonometry?
 
- - ***cosα cosβ = (cos( α + β ) + cos( α - β )) /2***
- - 0.17 · 0.37 = ?  查表法 again....
+- ***cosα cosβ = (cos( α + β ) + cos( α - β )) /2***
+- 0.17 · 0.37 = ?  查表法 again....
 
 ---
 
@@ -905,23 +905,23 @@ lim<sub>x→a</sub> f(x)/g(x) =  lim<sub>x→a</sub> ( f(a) + f'(a)·(x-a) ) / (
 
 #### How can L'Hopital Rule help with limits not of the form 0/0 ?
 
- - L'Hopital Rule also works for ∞ / ∞
+- L'Hopital Rule also works for ∞ / ∞
  
 lim<sub>x→∞</sub> (2x²+1)/(3x²-x) =  lim<sub>x→∞</sub> 4x / (6x-1) = lim<sub>x→∞</sub> 4/6 = 2/3
 
- - for 0·∞ ,  try to transform other forms to "0/0" or "∞/∞"
+- for 0·∞ ,  try to transform other forms to "0/0" or "∞/∞"
 
 lim<sub>x→∞</sub> (sin(1/x)·x ) = lim<sub>x→∞</sub> sin(1/x) / (1/x) = cos(1/x)·(-1/x²) / (-1/x²) = cos(1/x) = 1
 
- - 1<sup>∞</sup>
+- 1<sup>∞</sup>
 
 ![](../imgs/calculusone_limit_e.png)
 
- - ∞⁰
+- ∞⁰
 
 ![](../imgs/calculusone_limit_x_1_x.png)
 
- - ∞ - ∞
+- ∞ - ∞
 
 lim<sub>x→∞</sub> ( √(x²+x) -x  ) = lim<sub>x→∞</sub> ( x·( √(1 + 1/x) -1  ) ) 
 
@@ -953,15 +953,15 @@ form | solution
 
 #### Why shouldn't I fall in love with L'Hopital
 
- - lim<sub>x→∞</sub> (x+sinx)/x 
- - if you L'Hopital rule to solve it, you will get lim<sub>x→∞</sub> (1+cosx) / 1  , that limit does not exist.
- - But it indeed has limit :
+- lim<sub>x→∞</sub> (x+sinx)/x 
+- if you L'Hopital rule to solve it, you will get lim<sub>x→∞</sub> (1+cosx) / 1  , that limit does not exist.
+- But it indeed has limit :
 
 lim<sub>x→∞</sub> (x+sinx)/x  = lim<sub>x→∞</sub> (x/x + sinx/x) = 1 + lim<sub>x→∞</sub>sinx/x  = 1 
 
 
 
- - When you're doing those limit problems , don't forget that you can just algebraically manipulate things. There might be an easier way than bring out L'Hopital . 
+- When you're doing those limit problems , don't forget that you can just algebraically manipulate things. There might be an easier way than bring out L'Hopital . 
 
 ---
 
@@ -975,14 +975,14 @@ lim<sub>x→∞</sub> (x+sinx)/x  = lim<sub>x→∞</sub> (x/x + sinx/x) = 1 + l
 
 #### 影子长度的变化速率
 
- - the lamp is 3 meters high
- - man is 2 meters high
- - man is walking on speed 2meters/second
- - what is the changing rate of length of  shadow ?
+- the lamp is 3 meters high
+- man is 2 meters high
+- man is walking on speed 2meters/second
+- what is the changing rate of length of  shadow ?
 
 --- 
 
- - 4 steps to solve this problem
+- 4 steps to solve this problem
     1. draw picture
     2. list euqation
     3. differentiate
@@ -1003,20 +1003,20 @@ amazing? 影子长度变化的速率 是人行走速度的两倍, 与当前灯�
 
 #### How long until the gray goo destroys Earth ?
 
- - gray goo can converts anything it touches into more of itself
- - the rate of growth of this gray goo is proportional to its current size
- - f(t) = amount of gray goo
- - f'(t) = rate of change of gray goo
- - f'(t) = f(t)
- - What are the units of the derivative ?
+- gray goo can converts anything it touches into more of itself
+- the rate of growth of this gray goo is proportional to its current size
+- f(t) = amount of gray goo
+- f'(t) = rate of change of gray goo
+- f'(t) = f(t)
+- What are the units of the derivative ?
     - f(t) in grams
     - f'(t) in grams per second
- - assume f(0) = 1g
- - so what is f(t) ?
+- assume f(0) = 1g
+- so what is f(t) ?
     - we already known such a function:  f(t) = eᵗ
- - how much gray goo is there after 10 seconds ?
+- how much gray goo is there after 10 seconds ?
     - f(10) = e¹⁰ ≈ 22 kg
- - how long will it take until the entire Earth is converted into gray goo ? 
+- how long will it take until the entire Earth is converted into gray goo ? 
     - the mass of the Earth is about 6·10²⁷g
     - f(t) = eᵗ  = 6·10²⁷g 
     - t = log(6·10²⁷) = log6 + 27·log10 = 1.8 + 27·2.3 ≈ 63.9 second
@@ -1029,7 +1029,7 @@ amazing? 影子长度变化的速率 是人行走速度的两倍, 与当前灯�
 
 ## Optimization
 
- - What is the extreme value theorem ? 
+- What is the extreme value theorem ? 
     - If a function f is continuous on the closed interval [a,b] , then
     - f attains a manimum value 
     - f attains a minimum value
@@ -1057,7 +1057,7 @@ amazing? 影子长度变化的速率 是人行走速度的两倍, 与当前灯�
 
 #### Why bother considering points where the function is not differentiable?
 
- - find max and min value of f(x) = x - |x² - 2x|  , on the interval [0,3]
+- find max and min value of f(x) = x - |x² - 2x|  , on the interval [0,3]
 
 
 ```
@@ -1070,7 +1070,7 @@ f'(x) =⎧ 1 - (2x-2) , if x² - 2x > 0 , // no '=' here, because x=2 not differ
        ⎩ -1+ 2x ,  if 0 <x <2
 ```
 
- - crit points
+- crit points
     - f'(x) = 0  : x=1/2
     - f not differentiable : x=2
     - end point : x=0 , x=2
@@ -1097,13 +1097,13 @@ f'(x) =⎧ 1 - (2x-2) , if x² - 2x > 0 , // no '=' here, because x=2 not differ
 
 #### How large can xy be if x + y = 24?
 
- - f(x) = x·(24-x) = 24x -x²
- - f'(x) = 24 - 2x = 0 
- - x = 12 
+- f(x) = x·(24-x) = 24x -x²
+- f'(x) = 24 - 2x = 0 
+- x = 12 
  
 --- 
 
- - Arithmetic Mean - Geometric Mean (AM-GM) Inequality
+- Arithmetic Mean - Geometric Mean (AM-GM) Inequality
     - (a+b)/2 ≥ √(ab) 
     - with equality iff a==b
 
@@ -1121,12 +1121,12 @@ f'(x) =⎧ 1 - (2x-2) , if x² - 2x > 0 , // no '=' here, because x=2 not differ
 
 ![](../imgs/calculusone_optmization_in_action.png)
 
- - break up the stick into 2 pieces , each from a wall to this corner 
+- break up the stick into 2 pieces , each from a wall to this corner 
     - the bottom piece has the length:  a·cscθ
     - the other one has the length:  b·secθ
- - the length of the whole stick is : 
+- the length of the whole stick is : 
     - l(θ) =  a·cscθ + b·secθ 
- - what's the constraint in this problem ?
+- what's the constraint in this problem ?
     - 0 < θ < π/2
 
 ```
@@ -1154,8 +1154,8 @@ l(θ) = (a<sup>2/3</sup> + b<sup>2/3</sup> )<sup>3/2</sup>
 
 ![](../imgs/calculusone_optimizatiio_action_ladder_clear_a_fence.png)
 
- - 需要多长的梯子 ， 才能够到 谷仓？
- - 本质上，和上面的 stick 通过 corner 是一样的
+- 需要多长的梯子 ， 才能够到 谷仓？
+- 本质上，和上面的 stick 通过 corner 是一样的
 
 
 
@@ -1169,19 +1169,19 @@ l(θ) = (a<sup>2/3</sup> + b<sup>2/3</sup> )<sup>3/2</sup>
 
 ### What is linear approximation?
 
- - I want to understand some graph of a function that's very curved. 
- - And that's hard to do. 
- - But, if I zoom in close enough on the functions graph right, if the function's differentiable, then when I zoom in
- - that graph looks like a **straight line**. 
- - That's the idea of linear approximation , also the key idea of Calculus.
+- I want to understand some graph of a function that's very curved. 
+- And that's hard to do. 
+- But, if I zoom in close enough on the functions graph right, if the function's differentiable, then when I zoom in
+- that graph looks like a **straight line**. 
+- That's the idea of linear approximation , also the key idea of Calculus.
 
 <h2 id="7c6a8204a5f714d468fe8081285355a5"></h2>
 
 
 ### What happens if I repeat linear approximation?
 
- - Problem: f'(x) = f(x) , f(0) = 1
- - Goal:  f(1) 
+- Problem: f'(x) = f(x) , f(0) = 1
+- Goal:  f(1) 
  
 We can easily get that f(1)=e . But the point here isn't to the say that answer is e. The point is going to be to try to approximate this quantity without actually knowing the value of e. 
 
@@ -1203,7 +1203,7 @@ f(1) ≈ f(0.5) + 0.5·f'(0.5)
 
 ---
 
- - Euler Method
+- Euler Method
     - the repated linear approximation called **Euler Method**
     - f(h) ≈ f(0) + h·f'(0)
     - f(2h) ≈ f(h) + h·f'(h)
@@ -1215,10 +1215,10 @@ f(1) ≈ f(0.5) + 0.5·f'(0.5)
         - sometimes you'll see using the middle point: `f(h) ≈ f(0) + h·f'(h/2)`
 
 
- - Quiz:
- - You are interested in the function f which satisfies the differential equation 
- - f'(x) = -0.5x² - 0.5f(x) , and which satisfies f(-3) =0 .
- - Use repeated linear approximation (otherwise known as Euler's Method) to approximate the value of this function at x=−1 , using a step size of 1/2
+- Quiz:
+- You are interested in the function f which satisfies the differential equation 
+- f'(x) = -0.5x² - 0.5f(x) , and which satisfies f(-3) =0 .
+- Use repeated linear approximation (otherwise known as Euler's Method) to approximate the value of this function at x=−1 , using a step size of 1/2
 
 ```
 >>> reduce( lambda x,y: x + 0.5*( -0.5*y*y - 0.5*x  ) , [ 0,-3,-2.5,-2,-1.5 ] )
@@ -1231,10 +1231,10 @@ f(1) ≈ f(0.5) + 0.5·f'(0.5)
 
 ### What does dx mean by itself?
 
- - **dx** means differential 
- - **dy** is change in the linearizatioin of y
+- **dx** means differential 
+- **dy** is change in the linearizatioin of y
     - or the linear approximation, or the tangent line aporiximation.
- - your **dy**'s had better include a **dx**.
+- your **dy**'s had better include a **dx**.
  
 
 ![](../imgs/calculusone_mean_of_dx.png)
@@ -1243,10 +1243,10 @@ f(1) ≈ f(0.5) + 0.5·f'(0.5)
 
 ---
 
- - y =f(x)
- - dy = f'(x)dx 
- - d(u+v) = du + dv
- - d(uv) = (du)v + u(dv)
+- y =f(x)
+- dy = f'(x)dx 
+- d(u+v) = du + dv
+- d(uv) = (du)v + u(dv)
 
 
 <h2 id="29eb2cfc0d83cf930b4725a033faa957"></h2>
@@ -1254,13 +1254,13 @@ f(1) ≈ f(0.5) + 0.5·f'(0.5)
 
 ### What is Newton's method?
 
- - The problem:  A "nice" function f  , nice means differentiable
+- The problem:  A "nice" function f  , nice means differentiable
     - Find x so that f(x) = 0 
         - Now in practice, this is way too much to ask for
     - Find x so that f(x) close to 0. 
- - We have already done this , using the Intermediate Value Theorem
+- We have already done this , using the Intermediate Value Theorem
     -  The downside to this bisection method is just speed, it takes a really long time
- - So a different method, called Newton's method, is much faster than this bisection trick
+- So a different method, called Newton's method, is much faster than this bisection trick
 
 ![](../imgs/calculusone_newton_method.png)
 
@@ -1277,9 +1277,9 @@ We're going to start by thinking about this red line.
 
 ![](../imgs/calculusone_newton_method2.png)
 
- - the point slope form Of the red line:
+- the point slope form Of the red line:
     - `y-f(x₀) = f'(x₀)·(x-x₀)`
- - Newton's method tells me that I should use that linear approximation to the graph, figure out where the linear approximation crosses the x axis 
+- Newton's method tells me that I should use that linear approximation to the graph, figure out where the linear approximation crosses the x axis 
     - So to do that , I'm going to set y = 0
     - 0-f(x₀) = f'(x₀)·(x-x₀)
     - that'll tell me where the red line crosses the x axis, if I solve this equation for x
@@ -1294,28 +1294,28 @@ assuming f'(x₀) != 0
   x₀ - f(x₀)/f'(x₀) = x        
 ```
 
- - so x₁ is this:
+- so x₁ is this:
     - x₁ = x₀ - f(x₀)/f'(x₀)
- - I can now write down the step by step process for Newtons method just using a formula
+- I can now write down the step by step process for Newtons method just using a formula
     1. Initial guess x₀
     2. new guess x₁ = x₀ - f(x₀)/f'(x₀) 
     3. x₂ = x₁ - f(x₁)/f'(x₁)
     4. x₃ = x₂ - f(x₂)/f'(x₂) 
     5. ... **x<sub>n+1</sub> = x<sub>n</sub> - f(x<sub>n</sub> )/f'(x<sub>n</sub> )**
- - The problem is that I can't promise you that Newton's method will actually work. 
+- The problem is that I can't promise you that Newton's method will actually work. 
 
 <h2 id="879ea81194965f98ad54f853de07cfcc"></h2>
 
 
 #### What is a root of the polynomial x^5 + x^2 - 1?
 
- - here's the function where I want to find a root
+- here's the function where I want to find a root
     - f(x) = x⁵ + x² -1 
- - I want to find some input that makes this function equal to 0
+- I want to find some input that makes this function equal to 0
     - 没有公式可以求 这个函数的根
     - f(0) = -1, f(1) = 1 
     - So there has to be some input between 0 and 1 where this function's output is equal to 0
- - f'(x) = 5x⁴ + 2x 
+- f'(x) = 5x⁴ + 2x 
     - x₀ = 1
     - x₁ = x₀ - f(x₀)/f'(x₀)  = 1 - 1/7 = 6/7 
         - f(x₁) = (6/7)⁵ + (6/7)² -1 ≈ 0.197
@@ -1323,7 +1323,7 @@ assuming f'(x₀) != 0
         - f(x₂) ≈ 0.014
     - x₃ ≈ 0.809
         - f(x₃) ≈ 0.000085
- - So
+- So
     - the intermediate value theorem promises me that there is a root
     - Newton's method, or this bi-section algorithm permits me to get better and better approximations to that root
 
@@ -1335,22 +1335,22 @@ assuming f'(x₀) != 0
 
 #### How can Newton's method help me to divide quickly?
 
- - What if I wanted to calculate 1/b ?
- - Newton's method is really a trick for finding zeroes of a function
+- What if I wanted to calculate 1/b ?
+- Newton's method is really a trick for finding zeroes of a function
     - so to approximate 1/b, what I really want to find is a function *f* , so that f(1/b) = 0.
     - There's a ton of different choices that are possible for such a function
         - f(x) = 1/x -b 
- - f'(x) = -1/x²
+- f'(x) = -1/x²
 
 ![](../imgs/calculusone_newton_method_1overb.png)
 
- - Then, we'll make this even more concrete. Let's set b = 7 
+- Then, we'll make this even more concrete. Let's set b = 7 
     - x₀ = 1/10
     - x₁ = 1/10·(2-7·1/10) = 13/100
     - x₂ = 13/100·(2-7·13/100) = 1417/10000
     - x₃ = 14284777 / 100000000
- - so 1/7 ≈ 0.14285...
- - This method has name: **Newton-Raphson Division**
+- so 1/7 ≈ 0.14285...
+- This method has name: **Newton-Raphson Division**
 
 
 <h2 id="026a3eab15b6e17796de6766b2dd65a7"></h2>
@@ -1358,21 +1358,21 @@ assuming f'(x₀) != 0
 
 ### What is the mean value theorem?
 
- - Suppose *f* is continuous on [a,b] , and differentiable on (a,b) ; then
- - there exists *c* in (a,b) , so that 
- - **f'(c) = ( f(b)-f(a) ) / (b-a)**
+- Suppose *f* is continuous on [a,b] , and differentiable on (a,b) ; then
+- there exists *c* in (a,b) , so that 
+- **f'(c) = ( f(b)-f(a) ) / (b-a)**
 
 ---
 
- - here is one interpretation:
+- here is one interpretation:
     - if that function is giving you position , and the input to that function is time
     - so the derivative of that function is velocity
     - then that formula is saying that your average velocity is achieved , at some point, instantaneously
         - ( f(b)-f(a) ) / (b-a) 是平均速度，f'(c) 是瞬时速度
         - 在某个时刻，你的瞬时速度等于 (a,b)的平均速度 
- - ![](../imgs/calculusone_mean_value_theorem.png)
+- ![](../imgs/calculusone_mean_value_theorem.png)
     - mean value theorem means the slope of those 2 lines are same.
- - The mean-value theorem is often told as a story about somebody driving a car
+- The mean-value theorem is often told as a story about somebody driving a car
     - At noon, you're in some city A, and at 1 p.m. You're driving your car and you've arrived in a city B, which is 100 miles away from city A.
     - the Mean Value Theorem tells you that at some point during your journey, your speedometer said 100 miles per hour.
 
@@ -1383,11 +1383,11 @@ assuming f'(x₀) != 0
 
 ### Why does f'(x) > 0 imply that f is increasing?
 
- - Theorem:
+- Theorem:
     - Suppose f'(x) =0 on open interval , then *f* is constant on the interval.
     - Suppose f'(x) >0 on open interval , then *f* is increasing.
     - Suppose f'(x) <0 on open interval , then *f* is decreasing.
- - using MVT to proof
+- using MVT to proof
 
 
 <h2 id="f6711d50b4e944e25e93746abfaaa570"></h2>
@@ -1395,8 +1395,8 @@ assuming f'(x₀) != 0
 
 ### Should I bother to find the point c in the mean value theorem?
 
- - The power of the mean value theorem lies not in the fact that you can actually go out and compute the value c
- - The power lies in the fact, the mean value theorem tells you that it's possible , that you know there's a value of c out there, without you having actually go and find it. 
+- The power of the mean value theorem lies not in the fact that you can actually go out and compute the value c
+- The power lies in the fact, the mean value theorem tells you that it's possible , that you know there's a value of c out there, without you having actually go and find it. 
 
 
 

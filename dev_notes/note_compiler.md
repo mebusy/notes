@@ -33,7 +33,7 @@
 <details>
 <summary>很长的范式，我们怎么能得到一个 最小范式呢？</summary>
 
- - NP-hard 
+- NP-hard 
 </details>
 
 定理: 所有的布尔函数，都可以只用 AND,NOT 操作表示
@@ -53,12 +53,12 @@ NAND: 可以使用仅包含 NAND操作的表达式来表示任何布尔函数。
 
 ## Assembler
 
- - 汇编器
+- 汇编器
     1. 处理指令    
         - `dest=comp;jump`  => binary machine code 
     2. 处理符号 symbol 
 
- - 汇编语言中会出现 Symbol , 汇编器 要负责把 symbol 转成地址
+- 汇编语言中会出现 Symbol , 汇编器 要负责把 symbol 转成地址
     1. Variables : `Load R1, weight`
         - 使用一个 symbol table <symbol name , memory address>
         - 如果 label 在 表中，直接使用; 如果不在，分配一个新的地址(static memory of Hack RAM), 并将 条目<symbol,address> 放入表中
@@ -74,7 +74,7 @@ NAND: 可以使用仅包含 NAND操作的表达式来表示任何布尔函数。
 
 ## Virtual Machine
 
- - The stack machine model
+- The stack machine model
     - Arithmetic / logical commands
         - add,sub,neg, eq,gt,lt,and,or,not
     - Memory segment commands
@@ -91,7 +91,7 @@ NAND: 可以使用仅包含 NAND操作的表达式来表示任何布尔函数。
             - 这个时候，我应该有 一个空的堆栈，caller 已经把 *n*个参数压入了 argument segment, local segement中有两个 local variabel which initialized to 0.
             - *return*: 最后，把结果压入堆栈
         - 调用: `call mult n`  ( here n means the number of arguments ) 
- - VM Implementation
+- VM Implementation
     - Misc
         - you may create LABEL in order to do branch
         - goto / if-goto / VM Lable
@@ -114,14 +114,14 @@ NAND: 可以使用仅包含 NAND操作的表达式来表示任何布尔函数。
 
 ## Code Generation
 
- - 简化问题
+- 简化问题
     1. 每个class 独立编译
     2. 每个类分为2部分: 类成员 和函数
- - 这个 mutiple class的编译 简化为 同一时间处理一个 subroutine
+- 这个 mutiple class的编译 简化为 同一时间处理一个 subroutine
  
 ---
 
- - 变量
+- 变量
     - 为了生成VM code, 我们需要知道变量:
         - which kind ?  field,static(class level) ,  argument,local(subroutine level)
         - index in segment ?
@@ -143,25 +143,25 @@ pointCount | int | static | 0
 this  | Point | argument | 0 (argument 0 in every method)
 
 
- - 表达式
+- 表达式
     - Jack VM is based on Stack.  Postfix is Stack oriented.
     - 所以，后序遍历  parse tree 生成表达式的 VM code.
- - Flow of Control
+- Flow of Control
     - 同时生成 VM label 用于跳转
     - **IF** 
         - 先把 if条件 取反(not) , 生成代码更简单紧凑
     - **WHILE**
         - 同if, 先 条件 取反
- - Compiling constructors
+- Compiling constructors
     - 编译器 调用 系统函数 申请内存空间
- - Compiling method calls
+- Compiling method calls
     - VM 是过程语言，所以编译器 需要把 OO调用 obj.foo(x1,x2,...) 重写成 foo(obj,x1,x2,...)
- - Compiling methods
+- Compiling methods
     - access the object's fields:  
         - access the object's i-th field by accessing `this i`
         - But first, anchor the *this* segment on the object's data
     - compile method must return a value, caller of *void*  is responsible for removing the returned value from the stack
- - Handling Arrays
+- Handling Arrays
     - use 'pointer 1' and 'that 0'
 
 

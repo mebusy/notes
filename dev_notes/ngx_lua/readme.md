@@ -8,8 +8,8 @@
 
 
 
- ---
+---
 
- - [openResty notes](../openResty_notes.md)
- - [HTTP status code](https://github.com/openresty/lua-nginx-module#http-status-constants)
+- [openResty notes](../openResty_notes.md)
+- [HTTP status code](https://github.com/openresty/lua-nginx-module#http-status-constants)
   

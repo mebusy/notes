@@ -47,11 +47,11 @@
 
 ## 3.1 The Jack Language in a nutshell
 
- - A simple, Java-like language 
- - Object-based , no inheritance
- - Multi-purpose
- - Lends itself to interactive apps
- - Can be learned in about an hour
+- A simple, Java-like language 
+- Object-based , no inheritance
+- Multi-purpose
+- Lends itself to interactive apps
+- Can be learned in about an hour
 
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
@@ -59,8 +59,8 @@
 
 ### Example 
 
- - ![](../imgs/n2t_jack_example_1.png)
- - ![](../imgs/n2t_jack_example_2.png)
+- ![](../imgs/n2t_jack_example_1.png)
+- ![](../imgs/n2t_jack_example_2.png)
     - entry:  Main.main
     - flow of control:
         - if / if ... else
@@ -88,7 +88,7 @@
 
 ## 3.2 Object-Based Programming
 
- - Jack 的基本数据类型，数值方面的，只有int ，所有有必要扩充一下数值类型，比如 rational number.
+- Jack 的基本数据类型，数值方面的，只有int ，所有有必要扩充一下数值类型，比如 rational number.
 
 ![](../imgs/n2t_factionAPI.png)
 
@@ -97,24 +97,24 @@
 
 ### OO programming: building a class
 
- - filed, aka property, aka member variable
- - In Jack the only way to access field values from outside the class is through *accessor* methods.
+- filed, aka property, aka member variable
+- In Jack the only way to access field values from outside the class is through *accessor* methods.
 
 ![](../imgs/n2t_jack_oop_1.png)
 
- - functions are equivalent to static methods in JAVA. 
- - Jack constructor must return  the base address or must return an object of the type( i.e. this)
+- functions are equivalent to static methods in JAVA. 
+- Jack constructor must return  the base address or must return an object of the type( i.e. this)
     - Java construtors do exactly the same but they do it implicity. You don't have to say `return this`  in Java but actually , compiler will do it. 
- - Jack method must call `return`  as well
+- Jack method must call `return`  as well
 
 ![](../imgs/n2t_jack_oop_2.png)
 
 ![](../imgs/v2t_jack_dispose.png)
 
- - dispose method is implemented using a call to the host OS -- `Memory.deAlloc(this)`
+- dispose method is implemented using a call to the host OS -- `Memory.deAlloc(this)`
     - which takes an address in memory and disposes the memory block 
     - the memory resouces will be freed.
- - GC
+- GC
     - Jack has no garbage collection
     - Objects must be disposed explicitly
     - every jack class with `at least` one constructor must have a dispose() method.
@@ -137,11 +137,11 @@
 
 ## 3.3 List Processing 
 
- - List definition
+- List definition
     - the atom `null` , or
     - an atom , followed by a list 
- - Notation: `(atom, list)`
- - Examples:
+- Notation: `(atom, list)`
+- Examples:
 
 ```lisp
 null
@@ -149,12 +149,12 @@ null
 (2, (3, (5,null)))
 ```
 
- - so the list is kind of a linked list, but it is indeed  one object 
- - ![](../imgs/n2t_list_example.png)
- - The list (2, (3, (5,null)))  commonly abbreviated as (2,3,5)
- - so how to create and manipulate such collection objects.
+- so the list is kind of a linked list, but it is indeed  one object 
+- ![](../imgs/n2t_list_example.png)
+- The list (2, (3, (5,null)))  commonly abbreviated as (2,3,5)
+- so how to create and manipulate such collection objects.
 
- - List API (partial)
+- List API (partial)
 
 ```
 /** Represents a linked list of integers */ 
@@ -248,7 +248,7 @@ class List {
 
 ![](../imgs/n2t_list_representation.png)
 
- - who makes the magic work ?
+- who makes the magic work ?
     - high-level: the constructor
     - low-level: when compiling the constructor, the compiler plants calls to OS routines that find , and allocate , avaiable memory space for the new object.
 
@@ -257,7 +257,7 @@ class List {
 
 ## 3.4 Jack Language Specification: Syntax
 
- - Syntax elements
+- Syntax elements
     - white space / comments
     - keywords
         - class, constructor, method , function  // program components
@@ -287,14 +287,14 @@ class List {
 
 ## 3.5 Jack Language Specification: Data Types
 
- - Primitive types
+- Primitive types
     - int
         - non-negative  , 16-bit, 0~32767
     - boolean
         - true / false
     - char 
         - Unicode character
- - Class types
+- Class types
     - OS types: String, Array
     - User-defined types: Fraction, List, .. 
 
@@ -304,14 +304,14 @@ class List {
 
 ### Type conversions 
 
- - characters and integers are converted into each other , as needed:
+- characters and integers are converted into each other , as needed:
     - `var char c;  let c=65;   // 'A' `
     - `var String s; let s="A"; let c=s.charAt(0); `
     - Note that the idiom `c='A'` is **NOT** supported by the Jack Language. 
- - An integer can be assigned to a reference variables, in which case it is treated as a memory address
+- An integer can be assigned to a reference variables, in which case it is treated as a memory address
     - `var Array arr;   let arr=5000; `
     - 很危险，但对编写OS可以带来很大帮助
- - An object can be converted into an Array, and vice versa
+- An object can be converted into an Array, and vice versa
 
 ```
 var Fraction x; 
@@ -330,9 +330,9 @@ do x.print()   // 2/5
 
 ## 3.6  Jack Language Specification: Classes
 
- - Each class `Foo` is stored in a separate Foo.jack file
- - The class name's 1st character must be an uppercase letter
- - syntactics requirement 
+- Each class `Foo` is stored in a separate Foo.jack file
+- The class name's 1st character must be an uppercase letter
+- syntactics requirement 
     - field and static variables , if they exists, must appear before the subroutine declarations. 
 
 ```
@@ -343,7 +343,7 @@ class Foo {
 }
 ```
 
- - 2 kinds of classes
+- 2 kinds of classes
     - 1. Classes that provide functionality
         - Math class API (example)  
             - Provides various mathematical operations
@@ -363,11 +363,11 @@ class Foo {
 
 ### Jack's standard class library / OS
 
- - OS purpose:
+- OS purpose:
     - Closes gaps between high-level programs and the host hardware
     - Provides efficient implementations of commonly-used functions
     - Provides efficient implementations of commonly-used ADT's.  (abstract data type ?)
- - OS implementation
+- OS implementation
     - A collection of classes
     - Similar to Java's standard class library , in spirit
 
@@ -391,11 +391,11 @@ constructor | method | function  type subroutineName ( parameter-list ) {
 }
 ```
 
- - Subroutine types and return values
+- Subroutine types and return values
     - Method and function type can be either `void` , a primitive data type, or a class name
     - Each subroutine must return a value 
 
- - Jack subroutines
+- Jack subroutines
     - Constructors: create new objects
         - 0,1, or more in a class
         - Common name : `new`
@@ -409,7 +409,7 @@ constructor | method | function  type subroutineName ( parameter-list ) {
 
 ###  Variables
 
- - variable types
+- variable types
     - static variables
         - class-level variables, can be manipulated by the class subroutines
     - field variables
@@ -419,7 +419,7 @@ constructor | method | function  type subroutineName ( parameter-list ) {
     - parameter variables
         - used to pass values to subroutines , behave like local variables
 
- - variables must be ...
+- variables must be ...
     - Declared before they are used
     - Typed
     
@@ -442,7 +442,7 @@ constructor | method | function  type subroutineName ( parameter-list ) {
 
 ### Arrays
 
- - Jack arrays are ...
+- Jack arrays are ...
     - instance (objects) of the OS class Array
     - not typed
     - uni-dimensional
@@ -461,16 +461,16 @@ arr[2] = Fraction.new(314,100);
 
 ### End note:  peculiar features of Jack
 
- - `let`
+- `let`
     - must be used in assigments: `let x=0;`
- - `do`
+- `do`
     - must be used for calling a method or a function outside an expression:  `do reduce();`
- - The body of a statement must be within curly brackets , even if it contains a single statement:
+- The body of a statement must be within curly brackets , even if it contains a single statement:
     - `if (a>0) {return a} else {return -a};`   ?? is the syntax correct ?
- - All subroutine must end with a `return`
- - **No operator priority**.
+- All subroutine must end with a `return`
+- **No operator priority**.
     - you have to use parentheses
- - The language is weakly typed
+- The language is weakly typed
 
 
 <h2 id="ea8f8eda96399f023a058048c72c5017"></h2>
@@ -483,18 +483,18 @@ arr[2] = Fraction.new(314,100);
 
 ### Handling output: text 
 
- - Textual apps:
+- Textual apps:
     - Screen: 23 rows of 64 characters, b&w
     - Font: featured by the Jack OS
     - Output: Jack OS Output class
- - ![](../imgs/n2t_jack_output_api.png)
+- ![](../imgs/n2t_jack_output_api.png)
 
 <h2 id="fb89fc7b0d2a50d38e81c914c3c46bb9"></h2>
 
 
 ### Handling output: Graphics
 
- - Graphical apps:
+- Graphical apps:
     - Screen: 256 rows of 512 pixels, b&w
     - Output: Jack OS Screen class ( or do your own )
     - bit 0 means white , bit 1 means black
@@ -506,7 +506,7 @@ arr[2] = Fraction.new(314,100);
 
 ### Handling inputs
 
- - Input devices:
+- Input devices:
     - Standard keyboard
     - Input programming:  use the OS Keyboard class
 
@@ -519,7 +519,7 @@ arr[2] = Fraction.new(314,100);
 
 ![](../imgs/n2t_jack_character_set.png)
 
- - `Keyboard.keypress()`
+- `Keyboard.keypress()`
     - return the code of the currently pressed key, or 0 when no key is pressed
 
 <h2 id="91fab7d79331b0dcc5185669d547fcce"></h2>
@@ -529,7 +529,7 @@ arr[2] = Fraction.new(314,100);
 
 ![](../imgs/n2t_jack_Math_api.png)
 
- - 写 jack 程序的时候，你不需要 Math.multiply , Math.divide 这个两个方法， 你可以直接使用 \*, / 
+- 写 jack 程序的时候，你不需要 Math.multiply , Math.divide 这个两个方法， 你可以直接使用 \*, / 
     - 这两个方法在写Jack compiler 的时候会有帮助
 
 <h2 id="ff3a5ab1439e7a90255a2c10fddd0fcb"></h2>
@@ -556,11 +556,11 @@ Class Array {
 
 ### The Jack OS: Memory 
 
- - Let Jack programs to access the host RAM directly
+- Let Jack programs to access the host RAM directly
 
 ![](../imgs/n2t_jack_Memory_api.png)
 
- - alloc / dealloc 
+- alloc / dealloc 
     - used to create memory blocks and dispose them when they are no longer needed. 
 
 <h2 id="57092613dcfb42997a85b6a86e6bbea9"></h2>

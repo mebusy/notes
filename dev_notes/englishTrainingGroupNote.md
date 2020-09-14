@@ -28,36 +28,36 @@
 
 ## vocabulary
 
- - To learn how 2 use new words in sentence
+- To learn how 2 use new words in sentence
 
 <h2 id="51da34ead8ca9d50a1216c0dfe4351b0"></h2>
 
 
 ## tense
 
- - do
- - be doing 
+- do
+- be doing 
     - started , not finished
- - 
- - did
- - was doing 
- - 
- - have done
+- 
+- did
+- was doing 
+- 
+- have done
     - a state , last up to now
     - I have lost my keys, **and Now** I can't open the door.
- - have been doing 
+- have been doing 
     -you may just use `have done` instead
- - 
- - ~~had done~~
+- 
+- ~~had done~~
     - forget this , use `did` instead
- - ~~had been doing~~
- - 
- - will do
+- ~~had been doing~~
+- 
+- will do
     - **less ensure** about future, kind of `maybe`
     - **make a decision**
         - eg. you go to a restaurant , and saw the menu , and make a decsion
             - I will have a roasted chicken.
- - be going to
+- be going to
     - **ensure** about future
     - be clear about what to do , already **have an idea**, no extra decision any more
     - eg. I'm going to travel to Thailand next week.
@@ -69,9 +69,9 @@
 
 ## pronunciation 
 
- - stress on verb, noun.
- - `(I'm travalling) (to Thailand) (next week).`
- - last word of a sentence always stress.
+- stress on verb, noun.
+- `(I'm travalling) (to Thailand) (next week).`
+- last word of a sentence always stress.
 
 --- 
 
@@ -90,7 +90,7 @@
 
 ## UNIT 17. Have and have got
 
- - A. Have and have got (= **possess**, own etc.)
+- A. Have and have got (= **possess**, own etc.)
     - We often use have got rather than have alone. So you can say:
         - We've got a new car. or We have a new car.
         - Ann has got two sisters. or Ann has two sisters.
@@ -108,7 +108,7 @@
         - In past questions and negative sentences we normally use did/didn't:
             - Did they have a car when they were living in London?
             - I didn't have a watch, so I didn't know the time.
- - B. Have breakfast/have a bath/have a good time etc.
+- B. Have breakfast/have a bath/have a good time etc.
     - Have (but not 'have got') is also used for many **actions and experiences**. For example:
         - have breakfast/dinner/a cup of coffee/a cigarette etc.
         - have a bath/a shower/a swim/a rest/a party/a holiday/a nice time etc.

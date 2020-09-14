@@ -55,27 +55,27 @@
 ![](../imgs/os_process_scheduling.png)
 
 
- - Earlier, we talked about the life-cycle of a thread
+- Earlier, we talked about the life-cycle of a thread
     - Active threads work their way from Ready queue to Running to various waiting queues.
- - Question: How is the OS to decide which of several tasks to take off a queue?
+- Question: How is the OS to decide which of several tasks to take off a queue?
     - Obvious queue to worry about is ready queue
     - Others can be scheduled as well, however
- - **Scheduling:**  deciding which threads are given access to resources from moment to moment 
+- **Scheduling:**  deciding which threads are given access to resources from moment to moment 
 
 <h2 id="2419f2fbd020f118b23694c1f0e47206"></h2>
 
 
 ## Scheduling Assumptions
 
- - CPU scheduling big area of research in early 70’s
- - Many implicit assumptions for CPU scheduling:
+- CPU scheduling big area of research in early 70’s
+- Many implicit assumptions for CPU scheduling:
     - One program per user
     - One thread per program
     - Programs are independent
- - Clearly, these are unrealistic but they simplify the problem so it can be solved
+- Clearly, these are unrealistic but they simplify the problem so it can be solved
     - For instance: is “fair” about fairness among users or programs? 
         - If I run one compilation job and you run five, you get five times as much CPU on many operating systems
- - The high-level goal: Dole out CPU time to optimize some desired parameters of system
+- The high-level goal: Dole out CPU time to optimize some desired parameters of system
     - so the first thing is to define the policy
     - user1 -> user2 -> user3 -> user1 -> user2 ...
     - Time ------> 
@@ -95,7 +95,7 @@ This peak is waying there's a lot of short bursts and some long bursts.
 
 ![](../imgs/os_thread_cpu_burst.png)
 
- - Execution model: programs alternate between bursts of CPU and I/O
+- Execution model: programs alternate between bursts of CPU and I/O
     - Program typically uses the CPU for some period of time, then does I/O, then uses CPU again
     - Each scheduling decision is about which job to give to the CPU for use by its next CPU burst
     - With timeslicing, thread may be forced to give up CPU before finishing current CPU burst
@@ -105,20 +105,20 @@ This peak is waying there's a lot of short bursts and some long bursts.
 
 ## Scheduling Policy Goals/Criteria
 
- - Minimize Response Time
+- Minimize Response Time
     - Minimize elapsed time to do an operation (or job)
     - Response time is what the user sees:
         - Time to echo a keystroke in editor
         - Time to compile a program
         - Real-time Tasks: Must meet deadlines imposed by World
- - Maximize Throughput
+- Maximize Throughput
     - Maximize operations (or jobs) per second
     - Throughput related to response time, but not identical:
         - Minimizing response time will lead to more context switching than if you only maximized throughput
     - Two parts to maximizing throughput
         - Minimize overhead (for example, context-switching)
         - Efficient use of resources (CPU, disk, memory, etc)
- - Fairness
+- Fairness
     - Share CPU among users in some equitable way
     - Fairness is not minimizing average response time:
         - Better average response time by making system less fair
@@ -128,11 +128,11 @@ This peak is waying there's a lot of short bursts and some long bursts.
 
 ## First-Come, First-Served (FCFS) Scheduling
 
- - First-Come, First-Served (FCFS)
+- First-Come, First-Served (FCFS)
     - Also “First In, First Out” (FIFO) or “Run until done”
         - In early systems, FCFS meant one program scheduled until done (including I/O)
         - Now, means keep CPU until thread blocks
- - Example:
+- Example:
 
 ```
 Process     Burst Time
@@ -141,26 +141,26 @@ P2          3
 P3          3
 ```  
 
- - Example cont.
+- Example cont.
     - Suppose processes arrive in the order: P1 , P2 , P3 The Gantt Chart for the schedule is:
         - ![](../imgs/os_cpu_scheduling_gantt_chart.png)
     - Waiting time for P1 = 0; P2 = 24; P3 = 27
     - Average waiting time: (0 + 24 + 27)/3 = 17
     - Average Completion time: (24 + 27 + 30)/3 = 27
- - Convoy effect: short process behind long process
+- Convoy effect: short process behind long process
 
 ---
 
- - Example continued:
+- Example continued:
     - Suppose that processes arrive in order: P2 , P3 , P1 Now, the Gantt chart for the schedule is:
         - ![](../imgs/os_cpu_scheduling_gantt_chart2.png)
     - Waiting time for P1 = 6; P2 = 0; P3 = 3 
     - Average waiting time: (6 + 0 + 3)/3 = 3
     - Average Completion time: (3 + 6 + 30)/3 = 13
- - In second case:
+- In second case:
     - average waiting time is much better (before it was 17)
     - Average completion time is better (before it was 27) 
- - FIFO Pros and Cons:
+- FIFO Pros and Cons:
     - Simple (+)
     - Short jobs get stuck behind long ones (-)
         - Safeway: Getting milk, always stuck behind cart full of small items. Upside: get to read about space aliens
@@ -170,17 +170,17 @@ P3          3
 
 ## Round Robin (RR)
 
- - FCFS Scheme: Potentially bad for short jobs!
+- FCFS Scheme: Potentially bad for short jobs!
     - Depends on submit order
     - If you are first in line at supermarket with milk, you don’t care who is behind you, on the other hand…
- - Round Robin Scheme
+- Round Robin Scheme
     - Each process gets a small unit of CPU time (time quantum), usually 10-100 milliseconds
     - After quantum expires, the process is preempted and added to the end of the ready queue.
     - n processes in ready queue and time quantum is q => 
         - Each process gets 1/ n of the CPU time 
         - In chunks of at most q time units
         - No process waits more than ( n-1)q time units
- - Performance
+- Performance
     - q large => FCFS
     - q small => Interleaved (really small => hyperthreading?)
     - q must be large with respect to context switch, otherwise overhead is too high (all overhead)
@@ -198,7 +198,7 @@ P3          68
 P4          24
 ```
 
- - Example:
+- Example:
     - The Gantt chart is:
         - ![](../imgs/os_cpu_scheduling_gantt_chart_rr.png)
 
@@ -208,7 +208,7 @@ P4          24
         - P4=(48-0)+(108-68)=88
     - Average waiting time = (72+20+85+88)/4=66¼
     - Average completion time = (125+28+153+112)/4 = 104½
- - Thus, Round-Robin Pros and Cons:
+- Thus, Round-Robin Pros and Cons:
     - Better for short jobs, Fair (+)
     - Context-switching time adds up for long jobs (-)
 
@@ -217,14 +217,14 @@ P4          24
 
 ### Round-Robin Discussion
 
- - How do you choose time slice?
+- How do you choose time slice?
     - What if too big?
         - Response time suffers
     - What if infinite (∞ ) ?
         - Get back FIFO
     - What if time slice too small?
         - Throughput suffers! 
- - Actual choices of timeslice:
+- Actual choices of timeslice:
     - Initially, UNIX timeslice one second:
         - Worked ok when UNIX was used by one or two people.
         - What if three compilations going on? 3 seconds to echo each keystroke!
@@ -238,10 +238,10 @@ P4          24
 
 ## Comparisons between FCFS and Round Robin
 
- - Assuming zero-cost context-switching time, is RR always better than FCFS?
- - Simple example:
+- Assuming zero-cost context-switching time, is RR always better than FCFS?
+- Simple example:
     - 10 jobs, each take 100s of CPU time RR scheduler quantum of 1s All jobs start at the same time
- - Completion Times:
+- Completion Times:
     - ![](../imgs/os_cpu_scheduling_FCFS_vs_RR.png)
     - Both RR and FCFS finish at the same time
     - Average response time is much worse under RR!
@@ -256,7 +256,7 @@ P4          24
 
 ![](../imgs/os_cpu_scheduling_FCFS_vs_RR2.png)
 
- - The short jobs really benefit from round-robin , the long jobs don't. 
+- The short jobs really benefit from round-robin , the long jobs don't. 
 
 
 
@@ -265,16 +265,16 @@ P4          24
 
 ## Summary (Scheduling)
 
- - **Scheduling:** selecting a waiting process from the ready queue and allocating the CPU to it
- - **FCFS Scheduling:**
+- **Scheduling:** selecting a waiting process from the ready queue and allocating the CPU to it
+- **FCFS Scheduling:**
     - Run threads to completion in order of submission
     - Pros: Simple
     - Cons: Short jobs get stuck behind long ones
- - **Round-Robin Scheduling:**
+- **Round-Robin Scheduling:**
     - Give each thread a small amount of CPU time when it executes; cycle between all ready threads
     - Pros: Better for short jobs
     - Cons: Poor when jobs are same length 
- - **Shortest Job First (SJF)/Shortest Remaining Time First (SRTF):**
+- **Shortest Job First (SJF)/Shortest Remaining Time First (SRTF):**
     - Run whatever job has the least amount of computation to do/least remaining amount of computation to do
     - Pros: Optimal (average response time) 
     - Cons: Hard to predict future, Unfair
@@ -290,14 +290,14 @@ P4          24
 
 ## What if we Knew the Future?
 
- - Could we always mirror best FCFS?
- - Shortest Job First (SJF):
+- Could we always mirror best FCFS?
+- Shortest Job First (SJF):
     - Run whatever job has the least amount of computation to do
     - Sometimes called “Shortest Time to Completion First” (STCF)
- - Shortest Remaining Time First (SRTF):
+- Shortest Remaining Time First (SRTF):
     - Preemptive version of SJF: if job arrives and has a shorter time to completion than the remaining time on the current job, immediately preempt CPU
     - Sometimes called “Shortest Remaining Time to Completion First” (SRTCF)
- - These can be applied either to a whole program or the current CPU burst of each program
+- These can be applied either to a whole program or the current CPU burst of each program
     - Idea is to get short jobs out of the system
     - Big effect on short jobs, only small effect on long ones
     - Result is better average response time
@@ -307,10 +307,10 @@ P4          24
 
 ## Discussion
 
- - SJF/SRTF are the best you can do at minimizing average response time
+- SJF/SRTF are the best you can do at minimizing average response time
     - Provably optimal (SJF among non-preemptive, SRTF among preemptive) 
     - Since SRTF is always at least as good as SJF, focus on SRTF
- - Comparison of SRTF with FCFS and RR
+- Comparison of SRTF with FCFS and RR
     - What if all jobs the same length?
         - SRTF becomes the same as FCFS (i.e. FCFS is best can do if all jobs the same length)
     - What if jobs have varying length?
@@ -323,24 +323,24 @@ P4          24
 
 ![](../imgs/os_scheduling_benefits_of_SRTF.png)
 
- - 单核 ，存在cpu密集型计算的场景
- - Three jobs:
+- 单核 ，存在cpu密集型计算的场景
+- Three jobs:
     - A,B: both CPU bound, run for week
     - C: I/O bound, loop 1ms CPU, 9ms disk I/O
     - If only one at a time, C uses 90% of the disk, A or B could use 100% of the CPU
- - With FIFO:
+- With FIFO:
     - Once A or B get in, keep CPU for two weeks
- - What about RR or SRTF?
+- What about RR or SRTF?
     - Easier to see with a timeline
  
 
 ![](../imgs/os_scheduling_benefits_of_SRTF2.png)
 
- - RR , 100ms 
+- RR , 100ms 
     - low disk utilization.  If you are copying a file, it will take a long time
- - RR,  1ms
+- RR,  1ms
     - 90% disk utilization , but too much wakeups
- - SRTF 
+- SRTF 
     - 90% disk utilization , but B need to wait a week to start , is it a bad thing ?
     - It could be a good thing , it could be a bad thing. It depends on what your goals are.  
         - It's a good thing because the average response time between A and B is better than if we swapped all the time.
@@ -352,13 +352,13 @@ So clearly we're going to approximate SRTF. The real question is how to approxim
 
 ## Predicting the Length of the Next CPU Burst
 
- - **Adaptive:** Changing policy based on past behavior
+- **Adaptive:** Changing policy based on past behavior
     - CPU scheduling, in virtual memory, in file systems, etc
     - Works because programs have predictable behavior
         - If program was I/O bound in past, likely in future
         - If computer behavior were random, wouldn’t help
     - it isn't really guessing the future well, it itn't really predicting the future. What it is it's gueessing the future based on the past. 
- - Example: SRTF with estimated burst length
+- Example: SRTF with estimated burst length
     - Use an estimator function on previous bursts: 
         - Let t<sub>n-1</sub> , t<sub>n-2</sub> , t<sub>n-3</sub> , etc. be previous CPU burst lengths.
         - Estimate next burst τ<sub>n</sub> = f(t<sub>n-1</sub>, t<sub>n-2</sub>, t<sub>n-3</sub>, … )
@@ -375,14 +375,14 @@ So clearly we're going to approximate SRTF. The real question is how to approxim
 
 ![](../imgs/os_scheduling_SRTF_predicting.png)
 
- - Another method for exploiting past behavior
+- Another method for exploiting past behavior
     - First used in CTSS
     - **Multiple queues, each with different priority**
         - Higher priority queues often considered “foreground” tasks
     - **Each queue has its own scheduling algorithm**
         - e.g. foreground – RR, background – FCFS
         - Sometimes multiple RR priorities with quantum increasing exponentially (highest:1ms, next:2ms, next: 4ms, etc)
- - Adjust each job’s priority as follows (details vary)
+- Adjust each job’s priority as follows (details vary)
     - Job starts in highest priority queue
     - If timeout expires, drop one level
         - the quantum runs out, means it run for 8 milliseconds , and I take the CPU away, at that point we decide that this job is a longer running thing than we wanted on top level , and we put it down to the next level. 
@@ -399,19 +399,19 @@ It is like a sorting where we sort of have really fast short things up top and l
 Now we have many different queues. How do we schedule all the different queues?  We could pick something from the first q always over the second queue always over the 3rd queue. Problem with that is we have a starvation problem because the thing in the bottom never gets to run. 
 
 
- - Result approximates SRTF:
+- Result approximates SRTF:
     - CPU bound jobs drop like a rock
     - Short-running I/O bound jobs stay near top
- - Scheduling must be done between the queues
+- Scheduling must be done between the queues
     - **Fixed priority scheduling:**
         - serve all from highest priority, then next priority, etc.
     - **Time slice:**
         - each queue gets a certain amount of CPU time
         - e.g., 70% to highest, 20% next, 10% lowest
- - **Countermeasure:** user action that can foil intent of the OS designer
+- **Countermeasure:** user action that can foil intent of the OS designer
     - For multilevel feedback, put in a bunch of meaningless I/O to keep job’s priority high
     - Of course, if everyone did this, wouldn’t work!
- - Example of Othello program:
+- Example of Othello program:
     - Playing against competitor, so key was to do computing at higher priority the competitors. 
         - Put in printf’s, ran much faster!
 
@@ -423,13 +423,13 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
 
 ## Scheduling Fairness
 
- - What about fairness?
+- What about fairness?
     - Strict fixed-priority scheduling between queues is unfair (run highest, then next, etc):
         - long running jobs may never get CPU
         - In Multics, shut down machine, found 10-year-old job
     - Must give long-running jobs a fraction of the CPU even when there are shorter jobs to run
     - **Tradeoff: fairness gained by hurting avg response time!**
- - How to implement fairness?
+- How to implement fairness?
     - Could give each queue some fraction of the CPU 
         - What if one long-running job and 100 short-running ones?
         - Like express lanes in a supermarket -- sometimes express lanes get so long, get better service by going into one of the other lines       
@@ -443,14 +443,14 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
 
 ## Lottery Scheduling
 
- - Yet another alternative: Lottery Scheduling
+- Yet another alternative: Lottery Scheduling
     - Give each job some number of lottery tickets
     - On each time slice, randomly pick a winning ticket
     - On average, CPU time is proportional to number of tickets given to each job
- - How to assign tickets?
+- How to assign tickets?
     - To approximate SRTF, short running jobs get more, long running jobs get fewer
     - To avoid starvation, every job gets at least one ticket (everyone makes progress)
- - Advantage over strict priority scheduling: behaves gracefully as load changes
+- Advantage over strict priority scheduling: behaves gracefully as load changes
     - Adding or deleting a job affects all jobs proportionally, independent of how many tickets each job possesses 
 
 <h2 id="cf0f12552ddb45c69e45ed54dc2f5ff1"></h2>
@@ -458,7 +458,7 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
 
 ### Lottery Scheduling Example
 
- - Lottery Scheduling Example
+- Lottery Scheduling Example
     - Assume short jobs get 10 tickets, long jobs get 1 ticket
         - ![](../imgs/os_scheduling_lottery_example.png)
     - What if too many short jobs to give reasonable response time? 
@@ -470,11 +470,11 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
 
 ## How to Evaluate a Scheduling algorithm?
 
- - Deterministic modeling
+- Deterministic modeling
     - takes a predetermined workload and compute the performance of each algorithm for that workload
- - Queueing models
+- Queueing models
     - Mathematical approach for handling stochastic workloads
- - Implementation/Simulation:
+- Implementation/Simulation:
     - Build system which allows actual algorithms to be run against actual data. Most flexible/general.
 
 ![](../imgs/os_scheduling_evaluate.png)
@@ -485,15 +485,15 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
 
 ## A Final Word On Scheduling
 
- - When do the details of the scheduling policy and fairness really matter?
+- When do the details of the scheduling policy and fairness really matter?
     - When there aren’t enough resources to go around
- - When should you simply buy a faster computer?
+- When should you simply buy a faster computer?
     - (Or network link, or expanded highway, or …)
     - One approach: Buy it when it will pay for itself in improved response time
         - Assuming you’re paying for worse response time in reduced productivity, customer angst, etc…
         - Might think that you should buy a faster X when X is utilized 100%, but usually, response time goes to infinity as utilization => 100%
         - ![](../imgs/os_scheduling_response_vs_utilization.png)
- - An interesting implication of this curve:
+- An interesting implication of this curve:
     - Most scheduling algorithms work fine in the “linear” portion of the load curve, fail otherwise
     - Argues for buying a faster X when hit “knee” of curve
 
@@ -504,11 +504,11 @@ Windows and serval UNIX variants all have sort of techniques whereby when they n
 
 So we've talking about virtualizing the CPU with our scheduling algorithms. So lets to virtualize other things.
 
- - Physical Reality: Different Processes/Threads share the same hardware
+- Physical Reality: Different Processes/Threads share the same hardware
     - Need to multiplex CPU (Just finished: scheduling)
     - Need to multiplex use of Memory (Today)
     - Need to multiplex disk and devices (later in term)
- - Why worry about memory sharing?
+- Why worry about memory sharing?
     - The complete working state of a process and/or kernel is defined by its data in memory (and registers)
     - Consequently, cannot just let different threads of control use the same memory
         - Physics: two different pieces of data cannot occupy the same locations in memory
@@ -519,16 +519,16 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 ## Important Aspects of Memory Multiplexing
 
- - **Controlled overlap:**
+- **Controlled overlap:**
     - Separate state of threads should not collide in physical memory. Obviously, unexpected overlap causes chaos!
     - Conversely, would like the ability to overlap when desired (for communication)
- - **Translation:**
+- **Translation:**
     - Ability to translate accesses from one address space (virtual) to a different one (physical)
     - When translation exists, processor uses virtual addresses, physical memory uses physical addresses
     - Side effects:
         - Can be used to avoid overlap
         - Can be used to give uniform view of memory to programs
- - **Protection:**
+- **Protection:**
     - Prevent access to private memory of other processes
         - Different pages of memory can be given special behavior (Read Only, Invisible to user programs, etc).
         - Kernel data protected from User programs
@@ -539,7 +539,7 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 ## Binding of Instructions and Data to Memory
 
- - Binding of instructions and data to addresses:
+- Binding of instructions and data to addresses:
     - Choose addresses for instructions and data from the standpoint of the processor
     - ![](../imgs/os_virtualize_resource_binding_inst_data_to_mem.png)
         - notice there are no actual addresses. All there are symbols. 
@@ -556,14 +556,14 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 ![](../imgs/os_virtualize_resource_multi_step_processing.png)
 
- - Preparation of a program for execution involves components at:
+- Preparation of a program for execution involves components at:
     - Compile time (i.e. “gcc”)
     - Link/Load time (unix “ld” does link)
     - Execution time (e.g. dynamic libs)
- - Addresses can be bound to final values anywhere in this path
+- Addresses can be bound to final values anywhere in this path
     - Depends on hardware support 
     - Also depends on operating system
- - Dynamic Libraries
+- Dynamic Libraries
     - Linking postponed until execution
     - Small piece of code, stub, used to locate the appropriate memory- resident library routine
     - Stub replaces itself with the address of the routine, and executes routine
@@ -574,21 +574,21 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 ## Multiprogramming (First Version)
 
- - Multiprogramming without Translation or Protection
+- Multiprogramming without Translation or Protection
     - Must somehow prevent address overlap between threads
         - ![](../imgs/os_virtualize_resource_memory_address_ver1.png)
     - Trick: Use Loader/Linker: Adjust addresses while program loaded into memory (loads, stores, jumps)
         - Everything adjusted to memory location of program
         - Translation done by a linker-loader
         - Was pretty common in early days
- - With this solution, no protection: bugs in any program can cause other programs to crash or even the OS
+- With this solution, no protection: bugs in any program can cause other programs to crash or even the OS
 
 <h2 id="3743788a25e4eae2c8ffbd8b73cb741d"></h2>
 
 
 ## Multiprogramming (Version with Protection)
 
- - Can we protect programs from each other without translation?
+- Can we protect programs from each other without translation?
     - ![](../imgs/os_virtualize_resource_memory_address_ver2.png)
     - Yes: use two special registers Base and Limit to prevent user from straying outside designated area
         - If user tries to access an illegal address, cause an error
@@ -604,7 +604,7 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 
 
- - Could use base/limit for **dynamic address translation** (often called “segmentation”):
+- Could use base/limit for **dynamic address translation** (often called “segmentation”):
     - Alter address of every load/store by adding “base”
     - User allowed to read/write within segment
         - Accesses are relative to segment so don’t have to be relocated when program moved to different segment
@@ -620,28 +620,28 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 ![](../imgs/os_virtualize_resource_memory_address_segmentation_issue.png)
 
- - Fragmentation problem
+- Fragmentation problem
     - Not every process is the same size
     - Over time, memory space becomes fragmented
- - Hard to do inter-process sharing
+- Hard to do inter-process sharing
     - Want to share code segments when possible
     - Want to share memory between processes
     - Helped by by providing multiple segments per process
- - Need enough physical memory for every process
+- Need enough physical memory for every process
 
 <h2 id="e8f5488c454d6ab1f3f774b77bb9e83a"></h2>
 
 
 ## Multiprogramming (Translation and Protection version 2) 
 
- - Problem: Run multiple applications in such a way that they are protected from one another
- - Goals: 
+- Problem: Run multiple applications in such a way that they are protected from one another
+- Goals: 
     - Isolate processes and kernel from one another
     - Allow flexible translation that:
         - Doesn’t lead to fragmentation
         - Allows easy sharing between processes
         - Allows only part of process to be resident in physical memory
- - (Some of the required) Hardware Mechanisms:
+- (Some of the required) Hardware Mechanisms:
     - General Address Translation
         - Flexible: Can fit physical chunks of memory into arbitrary places in users address space
         - Not limited to small number of segments
@@ -665,16 +665,16 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 ![](../imgs/os_memory_address_2views_of_memory.png)
 
- - Recall: Address Space:
+- Recall: Address Space:
     - All the addresses and state a process can touch
     - Each process and kernel has different address space
- - Consequently: two views of memory:
+- Consequently: two views of memory:
     - View from the CPU (what program sees, virtual memory)
     - View fom memory (physical memory)
     - Translation box converts between the two views
- - Translation helps to implement protection
+- Translation helps to implement protection
     - If task A cannot even gain access to task B’s data, no way for A to adversely affect B
- - With translation, every program can be linked/loaded into same region of user address space
+- With translation, every program can be linked/loaded into same region of user address space
     - so you always started address 0
     - Overlap avoided through translation, not relocation
 
@@ -683,7 +683,7 @@ So we've talking about virtualizing the CPU with our scheduling algorithms. So l
 
 ## Example of Translation Table Format
 
- - Two-level Page Tables 32-bit address:
+- Two-level Page Tables 32-bit address:
 
 10 | 10 | 12
 --- | --- | ---
@@ -691,14 +691,14 @@ p1 index | p2 index | page offset
 
 ![](../imgs/os_memory_address_translation_example.png)
 
- - Page: a unit of memory translatable by memory management unit (MMU)
+- Page: a unit of memory translatable by memory management unit (MMU)
     - Typically 1K – 8K
- - Page table structure in memory
+- Page table structure in memory
     - **Each user has different page table**
- - Address Space switch: change pointer to base of table (hardware register)
+- Address Space switch: change pointer to base of table (hardware register)
     - Hardware traverses page table (for many architectures)
     - MIPS uses software to traverse table
- - these blue bubbles actually are page tables like this in memory one for every processes. 
+- these blue bubbles actually are page tables like this in memory one for every processes. 
 
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
@@ -706,17 +706,17 @@ p1 index | p2 index | page offset
 
 ## Summary
 
- - Shortest Job First (SJF)/Shortest Remaining Time First (SRTF):
+- Shortest Job First (SJF)/Shortest Remaining Time First (SRTF):
     - Run whatever job has the least amount of computation to do/least remaining amount of computation to do
     - Pros: Optimal (average response time)
     - Cons: Hard to predict future, Unfair
- - Multi-Level Feedback Scheduling:
+- Multi-Level Feedback Scheduling:
     - Multiple queues of different priorities
     - Automatic promotion/demotion of process priority in order to approximate SJF/SRTF
- - Lottery Scheduling:
+- Lottery Scheduling:
     - Give each thread a priority-dependent number of tokens (short tasks => more tokens)
     - Reserve a minimum number of tokens for every thread to ensure forward progress/fairness
- - Evaluation of mechanisms:
+- Evaluation of mechanisms:
     - Analytical, Queuing Theory, Simulation
 
 <h2 id="17f8807634b643b8281b1e4a680d5ced"></h2>
@@ -724,17 +724,17 @@ p1 index | p2 index | page offset
 
 ## Summary (2)
 
- - Memory is a resource that must be shared
+- Memory is a resource that must be shared
     - Controlled Overlap: only shared when appropriate
     - Translation: Change Virtual Addresses into Physical Addresses
     - Protection: Prevent unauthorized Sharing of resources
- - Simple Protection through Segmentation
+- Simple Protection through Segmentation
     - Base+limit registers restrict memory accessible to user
     - Can be used to translate as well
- - Full translation of addresses through Memory Management Unit (MMU)
+- Full translation of addresses through Memory Management Unit (MMU)
     - Every Access translated through page table
     - Changing of page tables only available to user
- - Dual-Mode
+- Dual-Mode
     - TODO
 
 

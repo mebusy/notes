@@ -57,8 +57,8 @@
 
 Manager of managers
 
- - MainManager costomizes and manages all the submanagers
- - Submanagers operate as singletons and can easily address each other or colaborate.
+- MainManager costomizes and manages all the submanagers
+- Submanagers operate as singletons and can easily address each other or colaborate.
 
 **Submanagers**:
 
@@ -77,9 +77,9 @@ MenuManager | Controls all menus' animations,contents, and behaviors.
 
 ### Mid-size project must have
 
- - LevelManager
- - PoolManager
- - SaveManager
+- LevelManager
+- PoolManager
+- SaveManager
 
 <h2 id="3d9687e9851018a33e09bce2e1d5f2ec"></h2>
 
@@ -107,9 +107,9 @@ Application.LoadLevel(1);
 
 #### LevelManager Design
 
- - Compose a configuration table
- - Create a new API:  `LevelManager.LoadNext();`
- - manager the transitions between two levels easily
+- Compose a configuration table
+- Create a new API:  `LevelManager.LoadNext();`
+- manager the transitions between two levels easily
 
 ---
 
@@ -120,13 +120,13 @@ Application.LoadLevel(1);
 
 *A simple pool design*:
 
- - Maintain a list of dormant(暂时不用的) objects 
+- Maintain a list of dormant(暂时不用的) objects 
 ```
 private List<GameObject> dormantObjects = new List<GameObject>();
 ```
 
- - The list contains all different types of game objects/perfabs
- - Spawn(), Despawn(), Trim() 
+- The list contains all different types of game objects/perfabs
+- Spawn(), Despawn(), Trim() 
 
 ```
 pubic GameObject Spawn( GameObject go ) {
@@ -171,7 +171,7 @@ public void Trim() {
 
 **A better design:
 
- - PoolManger   // top pool manager
+- PoolManger   // top pool manager
     - SpawnPool  // for a type of prefabs
         - PrefaPool // for a prefab
             - Active instances
@@ -183,16 +183,16 @@ public void Trim() {
 
 #### Design Rules for PoolManager
 
- - As a singleston.
- - Manage multiple SpawnPools.
+- As a singleston.
+- Manage multiple SpawnPools.
 
 For prefab pool:
 
- - Create a PrefabPool for each prefab.
- - Maintain a list of activated objects and another list of deactive objects.
- - Centrally manager the Load/Unload process here.
- - Avoid setting an instance limitation number
- - if really necessary, follow the following rules:
+- Create a PrefabPool for each prefab.
+- Maintain a list of activated objects and another list of deactive objects.
+- Centrally manager the Load/Unload process here.
+- Avoid setting an instance limitation number
+- if really necessary, follow the following rules:
     - Waits for 'cullDelay' in seconds and culls the 'despawned' list if above amount
     - cull less 5 instances each time
     - start a separate coroutine to do the culling work.
@@ -208,9 +208,9 @@ For prefab pool:
 
 #### The structure of a binding -1
 
- - Basic Structure 
+- Basic Structure 
     - `IBinder.Bind<Key>().To<Value>();`
- - The key triggers the value
+- The key triggers the value
 
 <h2 id="21457396df568ec61eb723910e9908c9"></h2>
 
@@ -228,9 +228,9 @@ class | dependent class | the instantiation of one class trigger the instantiati
 
 #### Dispatcher
 
- - Simple format
+- Simple format
     - dispatcher.Dispatch( AttackEvent.FIRE_MISSILE ); 
- - Event + Data
+- Event + Data
     - dispatcher.Dispatch( AttackEvent.FIRE_MISSILE, orientation )
 
 <h2 id="8e1a806151a9cee8e8b4c10fe349cb5d"></h2>
@@ -251,8 +251,8 @@ context.injectionBinder.Bind<IWeapon>().To<Gun>();
 context.injectionBinder.Bind<IWeapon>().To<Cannon>();
 ```
 
- - If you inject something, you have to map it, otherwise , it will result in null pointer errors
- - Injection employs reflection, which is slow.
+- If you inject something, you have to map it, otherwise , it will result in null pointer errors
+- Injection employs reflection, which is slow.
 
 <h2 id="7ca55e8342451a007833f065b4c75e4c"></h2>
 
@@ -278,12 +278,12 @@ where to get ?
 
 #### Coding Standards
 
- - Use C#
- - Naming conventions
+- Use C#
+- Naming conventions
     - Use descriptive name 
- - Logical folder structure
+- Logical folder structure
     - Use named empty game objects as scene folders
- - Use cache
+- Use cache
     - Cache component references , `GetComponent<ComponentName>()` is slow 
     - Cache objects references , GameObject.Find() is very slow
     - Memory allocation with object pools
@@ -294,17 +294,17 @@ where to get ?
 
 #### Art Resource Standards
 
- - Reasonable & strict
- - Automatic tools
+- Reasonable & strict
+- Automatic tools
 
 <h2 id="b9991783ef30c7d06ad857557bb20049"></h2>
 
 
 #### Unity Test Tools
 
- - Published by Unity
- - Asset Store
- - Free
+- Published by Unity
+- Asset Store
+- Free
 
 ---
 
@@ -320,23 +320,23 @@ Asset: Mesh,Material,Texture, Audio,etc...
 
 ### 资源管理方式
 
- - Assets
+- Assets
     - 只有被引用的资源会被打包
     - 适合存放静态资源
     - 不能动态加载
- - Resources
+- Resources
     - 支持动态加载
     - Resources.assets文件 (2G限制)
     - 随安装包完全下载，无法动态更新
- - StreamingAssets
+- StreamingAssets
     - 保持文件原始格式
         - 比如可以存放原始的jpg文件，而不导入成内部格式
     - 随安装包完全下载，无法动态更新
     - Application.streamingAssetsPath
- - AssetBundle
+- AssetBundle
 
   \ | 动态加载 | 动态更新 | 本地缓存
- --- | --- | --- | ---
+--- | --- | --- | ---
 Assets |  No | No | N/A
 Resources | Yes | No | N/A
 AssetBundle | Yes | Yes | Yes
@@ -347,10 +347,10 @@ StreamingAssets | Yes | No | N/A
 
 ### AssetBundle
 
- - Asset 的集合
- - 压缩(缺省)
- - 动态加载
- - 动态更新
+- Asset 的集合
+- 压缩(缺省)
+- 动态加载
+- 动态更新
 
 <h2 id="5cfc2d7c7c797a4e568807fe9df63ed3"></h2>
 
@@ -359,10 +359,10 @@ StreamingAssets | Yes | No | N/A
 
 依赖关系导致资源重复
 
- - Cube-> Mat <- Cylinder
- - Asset Bundle 1
+- Cube-> Mat <- Cylinder
+- Asset Bundle 1
     - Cube + Mat 
- - Asset Bundle 2
+- Asset Bundle 2
     - Cylinder + Mat
 
 <h2 id="691d7e829bd0714d1dc6e0d6311f5cff"></h2>
@@ -370,20 +370,20 @@ StreamingAssets | Yes | No | N/A
 
 ### 依赖关系打包
 
- - Asset Bundle 1 : Cube
- - Asset Bundle 2 : Cylinder
- - Asset Bundle 3 : Mat
+- Asset Bundle 1 : Cube
+- Asset Bundle 2 : Cylinder
+- Asset Bundle 3 : Mat
 
 <h2 id="3fd245fa883dfc9a0ce44e3c1abbcd57"></h2>
 
 
 ### 打包策略
 
- - 尽可能的减少冗余资源
+- 尽可能的减少冗余资源
     - 减少 AppSize , 减少网络下载流量
- - 分类打包
+- 分类打包
     - 按类型, 或者用途打包 
- - AssetBundle 大小尽量不超过1M
+- AssetBundle 大小尽量不超过1M
     - 较少 IO 压力 
 
 <h2 id="df63e981899751ec1fe89935f7d158d1"></h2>
@@ -454,10 +454,10 @@ public static string[] AssetDatabase.GetDependencies(string)
 
 ### AssetBundle 加载
 
- - new WWW
- - WWW.LoadFromCacheOrDownload
- - AssetBundle.CreateFromMemory
- - AssetBundle.CreateFromFile
+- new WWW
+- WWW.LoadFromCacheOrDownload
+- AssetBundle.CreateFromMemory
+- AssetBundle.CreateFromFile
 
 <h2 id="625e28fa6d71960fc514d89869bcb1e9"></h2>
 
@@ -494,18 +494,18 @@ AssetBundleManifest.BuildAssetBundles
 
 #### 更优的依赖关系打包
 
- - 仍需通过依赖关系图去分析
- - 生成Asset 到AssetBundle的关系映射
- - 分析结果生成AssetBundleBuild
+- 仍需通过依赖关系图去分析
+- 生成Asset 到AssetBundle的关系映射
+- 分析结果生成AssetBundleBuild
 
 <h2 id="10c9f5aa564a4bdc1d7cbe4b7be38881"></h2>
 
 
 #### 5.0的简化过程
 
- - 不再需要push / pop 依赖关系
- - 不需要通过图的遍历逐个生成AB包
- - 只需要找到入度为0和 入度>=2 的资源节点，一次性发送到BuildAssetBundles 处理
+- 不再需要push / pop 依赖关系
+- 不需要通过图的遍历逐个生成AB包
+- 只需要找到入度为0和 入度>=2 的资源节点，一次性发送到BuildAssetBundles 处理
 
 <h2 id="d4ea68cba6ddcd63f2befa525816a682"></h2>
 

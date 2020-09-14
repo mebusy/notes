@@ -92,7 +92,7 @@ $ go build && \
 Hello world, version:
 ```
 
- - Override go build
+- Override go build
 
 ```bash
 $ export GIT_COMMIT=$(git rev-list -1 HEAD)

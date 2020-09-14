@@ -59,10 +59,10 @@
 
 ### 36.3.3 Global variables
 
- - there is no direct way to map variable assignment in C (a==b) to variable assignment in Python
+- there is no direct way to map variable assignment in C (a==b) to variable assignment in Python
     - because for python, variables are just names that refer to some object
- - To provide access to C global variables, SWIG creates a special object called `cvar' that is added to each SWIG generated module.`
- - If a variable is declared as *const*, it is wrapped as a read-only variable. 
+- To provide access to C global variables, SWIG creates a special object called `cvar' that is added to each SWIG generated module.`
+- If a variable is declared as *const*, it is wrapped as a read-only variable. 
     - To make ordinary variables read-only, you can use the *%immutable* directive. For example:
 
 ```
@@ -74,7 +74,7 @@
 %mutable;
 ```
 
- - If you just want to make a specific variable immutable, supply a declaration name. For example:
+- If you just want to make a specific variable immutable, supply a declaration name. For example:
 
 ```
 %{
@@ -90,8 +90,8 @@ extern char *path;      // Read-only (due to %immutable)
 
 ### 36.3.4 Constants and enums
 
- - C/C++ constants are installed as Python objects containing the appropriate value.
- - To create a constant, use #define, enum , or the %constant directive. For example:
+- C/C++ constants are installed as Python objects containing the appropriate value.
+- To create a constant, use #define, enum , or the %constant directive. For example:
 
 ```
 #define PI 3.14159
@@ -103,8 +103,8 @@ enum Beverage { ALE, LAGER, STOUT, PILSNER };
 %constant const char *path = "/usr/local";
 ```
 
- - Note: declarations declared as const are wrapped as read-only variables and will be accessed using the cvar object described in the previous section
- - Constants are not guaranteed to remain constant in Python---the name of the constant could be accidentally reassigned to refer to some other object. 
+- Note: declarations declared as const are wrapped as read-only variables and will be accessed using the cvar object described in the previous section
+- Constants are not guaranteed to remain constant in Python---the name of the constant could be accidentally reassigned to refer to some other object. 
     - Unfortunately, there is no easy way for SWIG to generate code that prevents this. You will just have to be careful.
 
 <h2 id="6c5d46b4c027b854d6f3b7b4a039ee27"></h2>
@@ -112,7 +112,7 @@ enum Beverage { ALE, LAGER, STOUT, PILSNER };
 
 ### 36.3.5 Pointers
 
- - the '0' or NULL pointer is always represented by None, no matter what type swig is addressing. In the previous example, you can call:
+- the '0' or NULL pointer is always represented by None, no matter what type swig is addressing. In the previous example, you can call:
     - `example.fclose(None)`
  
 <h2 id="9e239ae42956495be216233b838ca77d"></h2>
@@ -120,7 +120,7 @@ enum Beverage { ALE, LAGER, STOUT, PILSNER };
 
 ### 36.3.6 Structures
 
- - If you wrap a C structure, it is wrapped by a Python class. 
+- If you wrap a C structure, it is wrapped by a Python class. 
 
 ```c++
 struct Vector {
@@ -133,15 +133,15 @@ struct Vector {
 >>> v.x = 3.5
 ```
 
- - This pointer can be passed around to functions that expect to receive an int \* (just like C). 
- - You can also set the value of an array member using another pointer. For example:
+- This pointer can be passed around to functions that expect to receive an int \* (just like C). 
+- You can also set the value of an array member using another pointer. For example:
 
 ```python
 >>> c = example.Bar()
 >>> c.x = b.x             # Copy contents of b.x to c.x
 ```
 
- - When a member of a structure is itself a structure, it is handled as a pointer. For example, suppose you have two structures like this:
+- When a member of a structure is itself a structure, it is handled as a pointer. For example, suppose you have two structures like this:
 
 ```c++
 struct Foo {
@@ -197,8 +197,8 @@ Static member variables are currently accessed as global variables. This means, 
 
 ### 36.3.10 C++ overloaded functions
 
- - C++ overloaded functions, methods, and constructors are mostly supported by SWIG
- - Overloading support is not quite as flexible as in C++. Sometimes there are methods that SWIG can't disambiguate. For example:
+- C++ overloaded functions, methods, and constructors are mostly supported by SWIG
+- Overloading support is not quite as flexible as in C++. Sometimes there are methods that SWIG can't disambiguate. For example:
 
 ```c++
 void spam(int);
@@ -210,14 +210,14 @@ void foo(Bar *b);
 void foo(Bar &b);
 ```
 
- - If declarations such as these appear, you will get a warning message
+- If declarations such as these appear, you will get a warning message
 
 ```
 example.i:12: Warning 509: Overloaded method spam(short) effectively ignored,
 example.i:11: Warning 509: as it is shadowed by spam(int).
 ```
 
- - To fix this, you either need to ignore or rename one of the methods. For example:
+- To fix this, you either need to ignore or rename one of the methods. For example:
 
 ```
 %rename(spam_short) spam(short);
@@ -238,7 +238,7 @@ void spam(short);   // Ignored
 
 ### 36.3.11 C++ operators
 
- - Certain C++ overloaded operators can be handled automatically by SWIG
+- Certain C++ overloaded operators can be handled automatically by SWIG
 
 ```c++
 Complex &operator=(const Complex &c);
@@ -250,7 +250,7 @@ Complex operator*(const Complex &c) const;
 Complex operator-() const;
 ```
 
- - One restriction with operator overloading support is that SWIG is not able to fully handle operators that aren't defined as part of the class. For example, if you had code like this
+- One restriction with operator overloading support is that SWIG is not able to fully handle operators that aren't defined as part of the class. For example, if you had code like this
 
 ```c++
 class Complex {
@@ -260,14 +260,14 @@ class Complex {
 };
 ```
 
- - then SWIG ignores it and issues a warning. You can still wrap the operator, but you may have to encapsulate it in a special function. For example:
+- then SWIG ignores it and issues a warning. You can still wrap the operator, but you may have to encapsulate it in a special function. For example:
 
 ```
 %rename(Complex_add_dc) operator+(double, const Complex &);
 ```
 
- - There are ways to make this operator appear as part of the class using the %extend directive. Keep reading.
- - Also, be aware that certain operators don't map cleanly to Python. 
+- There are ways to make this operator appear as part of the class using the %extend directive. Keep reading.
+- Also, be aware that certain operators don't map cleanly to Python. 
     - For instance, overloaded assignment operators don't map to Python semantics and will be ignored.
 
 <h2 id="2329b407fe1d5482f5e412a6502ecebe"></h2>
@@ -275,7 +275,7 @@ class Complex {
 
 ### 36.3.12 C++ namespaces
 
- - SWIG is aware of C++ namespaces, but namespace names do not appear in the module nor do namespaces result in a module that is broken up into submodules or packages.
+- SWIG is aware of C++ namespaces, but namespace names do not appear in the module nor do namespaces result in a module that is broken up into submodules or packages.
 
 ```
 %module example
@@ -297,7 +297,7 @@ It works in Python as follows:
 >>> v = example.Vector()
 ```
 
- - If your program has more than one namespace, name conflicts (if any) can be resolved using %rename
+- If your program has more than one namespace, name conflicts (if any) can be resolved using %rename
 
 ```
 %rename(Bar_spam) Bar::spam;
@@ -309,7 +309,7 @@ namespace Bar {
 }
 ```
  
- - If you have more than one namespace and your want to keep their symbols separate, consider wrapping them as separate SWIG modules.
+- If you have more than one namespace and your want to keep their symbols separate, consider wrapping them as separate SWIG modules.
 
 
 <h2 id="3ae5ee54a6d57c34cf29f39e935f13d2"></h2>
@@ -317,9 +317,9 @@ namespace Bar {
 
 ### 36.3.13 C++ templates
 
- - C++ templates don't present a huge problem for SWIG.
- - However, in order to create wrappers, you have to tell SWIG to create wrappers for a particular template instantiation
- - To do this, you use the %template directive. For example:
+- C++ templates don't present a huge problem for SWIG.
+- However, in order to create wrappers, you have to tell SWIG to create wrappers for a particular template instantiation
+- To do this, you use the %template directive. For example:
 
 ```
 %module example
@@ -362,8 +362,8 @@ struct pair {
 
 #### 36.3.14.2 Generic Smart Pointers
 
- - In certain C++ programs, it is common to use classes that have been wrapped by so-called "smart pointers."
- - Generally, this involves the use of a template class that implements operator->() like this:
+- In certain C++ programs, it is common to use classes that have been wrapped by so-called "smart pointers."
+- Generally, this involves the use of a template class that implements operator->() like this:
 
 ```
 template<class T> class SmartPtr {
@@ -423,8 +423,8 @@ Now, in Python, everything should just "work":
 
 ### 36.5.1 Enabling directors
 
- - The director feature is disabled by default
- - To use directors you must make two changes to the interface file
+- The director feature is disabled by default
+- To use directors you must make two changes to the interface file
 
 First, add the "directors" option to the %module directive, like this:
 
@@ -1062,11 +1062,11 @@ For instance, you will be able to do this in Python:
 49995000
 ```
 
- - The array "object" created by %array_class() does not encapsulate pointers inside a special array object. In fact, there is no bounds checking or safety of any kind (just like in C). 
- - Because of this, the arrays created by this library are extremely low-level indeed.
- - You can't iterate over them nor can you even query their length. 
- - In fact, any valid memory address can be accessed if you want (negative indices, indices beyond the end of the array, etc.). 
- - Needless to say, this approach is not going to suit all applications . On the other hand, this low-level approach is extremely efficient and well suited for applications in which you need to create buffers, package binary data, etc.
+- The array "object" created by %array_class() does not encapsulate pointers inside a special array object. In fact, there is no bounds checking or safety of any kind (just like in C). 
+- Because of this, the arrays created by this library are extremely low-level indeed.
+- You can't iterate over them nor can you even query their length. 
+- In fact, any valid memory address can be accessed if you want (negative indices, indices beyond the end of the array, etc.). 
+- Needless to say, this approach is not going to suit all applications . On the other hand, this low-level approach is extremely efficient and well suited for applications in which you need to create buffers, package binary data, etc.
 
 <h2 id="c5928dddfc2c9487ddc042e45caa4576"></h2>
 
@@ -1102,9 +1102,9 @@ int parity(char *data, int size, int initial);
 
 ### 36.7.5 Default arguments
 
- - C++ default argument code generation is documented in the main Default arguments section
- - There is also an optional Python specific feature that can be used called the python:cdefaultargs feature flag
- - By default, SWIG attempts to convert C++ default argument values into Python values and generates code into the Python layer containing these values.
+- C++ default argument code generation is documented in the main Default arguments section
+- There is also an optional Python specific feature that can be used called the python:cdefaultargs feature flag
+- By default, SWIG attempts to convert C++ default argument values into Python values and generates code into the Python layer containing these values.
 
 For example:
 
@@ -1194,9 +1194,9 @@ extern int fact(int n);
 %}
 ```
 
- - In this case, the "in" method refers to the conversion of input arguments to C/C++
- - The datatype int is the datatype to which the typemap will be applied.  
- - In this code a number of special variable prefaced by a $ are used
+- In this case, the "in" method refers to the conversion of input arguments to C/C++
+- The datatype int is the datatype to which the typemap will be applied.  
+- In this code a number of special variable prefaced by a $ are used
     - The $1 variable is placeholder for a local variable of type int
     - The $input variable is the input object of type PyObject *
 
@@ -1226,7 +1226,7 @@ extern int fact(int nonnegative);
 %}
 ```
  
- - In this case, the typemap code is only attached to arguments that exactly match int nonnegative.
+- In this case, the typemap code is only attached to arguments that exactly match int nonnegative.
 
 When you define a typemap for int, that typemap applies to int and qualified variations such as const int. In addition, the typemap system follows typedef declarations. For example:
 
@@ -1252,7 +1252,7 @@ Typemaps can also be defined for groups of consecutive arguments. For example:
 int count(char c, char *str, int len);
 ```
 
- - When a multi-argument typemap is defined, the arguments are always handled as a single Python object. This allows the function to be used like this
+- When a multi-argument typemap is defined, the arguments are always handled as a single Python object. This allows the function to be used like this
     - notice how the length parameter is omitted
 
 ```

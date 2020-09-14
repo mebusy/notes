@@ -147,18 +147,18 @@ systemctl restart crond
 
 ### 配置文件中一些指令说明
 
- - compress                                   
+- compress                                   
     - 通过gzip 压缩转储以后的日志
- - copytruncate                              
+- copytruncate                              
     - 用于还在打开中的日志文件，把当前日志备份并截断；是先拷贝再清空的方式，拷贝和清空之间有一个时间差，可能会丢失部分日志数据。
     - create选项此时被忽略
- - missingok                                 
+- missingok                                 
     - 如果日志丢失，不报错继续滚动下一个日志
- - notifempty                               
+- notifempty                               
     - 当日志文件为空时，不进行轮转
- - dateext                                  
+- dateext                                  
     - 使用当期日期作为命名格式
- - sharedscripts                           
+- sharedscripts                           
     - 运行postrotate脚本，作用是在所有日志都轮转后统一执行一次脚本。如果没有配置这个，那么每个日志轮转后都会执行一次脚本
 
 
@@ -167,7 +167,7 @@ systemctl restart crond
 
 ### stdout/stderr 重定向日志问题
 
- - 类似 `app &> log.log`
+- 类似 `app &> log.log`
     - 这类日志文件， logrotate 的 truncate 不能生效，需要 使用追加的方式  `>>`
     - i.e. `app >> app.log 2>&1`
 
@@ -177,7 +177,7 @@ systemctl restart crond
 
 ### nginx 日志清理后， 日志不再生成的问题
 
- - 需要发送 USE1 信号给 nginx master 进程重新打开日志文件
+- 需要发送 USE1 信号给 nginx master 进程重新打开日志文件
 
 ```bash
 $ kill -USR1 `ps axu | grep "nginx: master process" | grep -v grep | awk '{print $2}'`

@@ -28,7 +28,7 @@
 
 ### Why is Starcraft Hard?
 
- - The game of Starcraft is:
+- The game of Starcraft is:
     - Adversarial
     - Long Horizon
     - Partially Observable
@@ -40,7 +40,7 @@
         - so your braching factor is huge for your actions because you have a lot of units that could be doing something at any given time 
     - Resource-rich
     -  …
- - No single algorithm (e.g. minimax) will solve it off-the-shelf!
+- No single algorithm (e.g. minimax) will solve it off-the-shelf!
     
 
 <h2 id="8ae5d98a904e4bd489a504ec2b2154da"></h2>
@@ -48,16 +48,16 @@
 
 ### The Berkeley Overmind
 
- - Search: path planning
- - CSPs: base layout
- - Minimax: targeting
- - Learning: micro control
- - Inference: tracking units
+- Search: path planning
+- CSPs: base layout
+- Minimax: targeting
+- Learning: micro control
+- Inference: tracking units
     - sending scouts to gather evidence
- - Scheduling: resources
+- Scheduling: resources
     - think about what resources you need in which order you need to generate them to be successful 
     - it is essentially constraint satisfaction problem solving
- - Hierarchical control
+- Hierarchical control
     - plan at different layers 
     - at a high level you plan maybe what you're going to build next and so forth
     - at a low level you then instantiate how you build it , what resources you need and so forth 
@@ -69,11 +69,11 @@
 
 ![](../imgs/cs188_application_starcraft_search_for_pathing.png)
 
- - you are the red unit , the greens are enemy 
- - you wanna arrive to top-up screen
- - What's problem here ?
+- you are the red unit , the greens are enemy 
+- you wanna arrive to top-up screen
+- What's problem here ?
     - the shortest path is very a deadly path
- - this is al search , this is planning ahead , that doesn't just have a cost for length of the path, but also a cost for how dangerous 
+- this is al search , this is planning ahead , that doesn't just have a cost for length of the path, but also a cost for how dangerous 
 
  
 <h2 id="6f47e9d670285b5ac6e4db3ff10372d1"></h2>

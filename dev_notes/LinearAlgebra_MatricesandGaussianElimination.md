@@ -268,8 +268,8 @@ Matrix form Ax = b:
  |-2  7  2| |w|   | 9|
 ```
 
- - Ax is a **combination of the columns of A**
- - **An m by n matrix multiplies an n-dimensional vector** 
+- Ax is a **combination of the columns of A**
+- **An m by n matrix multiplies an n-dimensional vector** 
     - and produces an m-dimensional vector
 
 <h2 id="8afd4d0866e9cda428c450f1f4723feb"></h2>
@@ -289,9 +289,9 @@ E = |-2  1  0|
     | 0  0  1|
 ```
 
- - This elementary matrix Eᵢⱼ includes ***-l*** in row i, column j.
- - The elementary matrix Eᵢⱼ ***subtracts l*** times row j from row i. 
- - ij , means i-lj
+- This elementary matrix Eᵢⱼ includes ***-l*** in row i, column j.
+- The elementary matrix Eᵢⱼ ***subtracts l*** times row j from row i. 
+- ij , means i-lj
 
 
 ```
@@ -306,12 +306,12 @@ E₃₁ = | 0  1  0|   has E₃₁·b = |  b₂  |
 
 ### Matrix Multiplication
 
- - (EA times x) equals (E times Ax). 
- - **Multiplication by columns** 
+- (EA times x) equals (E times Ax). 
+- **Multiplication by columns** 
     -  When B contains several columns b1, b2, b3, the columns of AB should be Abl, Ab2, Ab3! 
     - AB = A [ b1 b2 b3 ] = [ Ab1 Ab2 Ab3 ]
     - **Every column of AB is a combination of the columns of A**.
- - The i,j entry of AB is the inner product of the `iᵗʰ row of A` and the `jᵗʰ column of B`.
+- The i,j entry of AB is the inner product of the `iᵗʰ row of A` and the `jᵗʰ column of B`.
 
 We summarize these three different ways to look at matrix multiplication:
 
@@ -324,11 +324,11 @@ We summarize these three different ways to look at matrix multiplication:
 
 Some rules:
 
- - Matrix multiplication is associative: 
+- Matrix multiplication is associative: 
     - **(AB)C = A(BC)**. Just write ABC
- - Matrix operations are distributive:
+- Matrix operations are distributive:
     - **A(B+C) =AB+AC and (B+C)D=BD+CD**
- - Matrix multiplication is not commutative: 
+- Matrix multiplication is not commutative: 
     - Usually **FE != EF**.
     - FE == EF only works when one is identity matrix
 
@@ -366,7 +366,7 @@ The matrices E for step 1, F for step 2, and G for step 3. They are called ***el
 
 Then another most important question is exactly the opposite ***How can we undo the steps of Gaussian elimination?***
 
- - **From U back to A:**
+- **From U back to A:**
     - E⁻¹F⁻¹G⁻¹U=A , is LU=A 
 
 Now we recognize the **matrix L that takes U back to A**. It is called L, because it is lower triangular. And it has a special property that can be seen only by multiplying the three inverse matrices in the right order:
@@ -377,7 +377,7 @@ The special thing is that the entries below the diagonal are the multipliers *l*
 
 ***The numbers kᵢⱼ fit right into the matrix L that takes U back to A.***
 
- - ***Triangular factorization A = LU with no exchanges of rows.***
+- ***Triangular factorization A = LU with no exchanges of rows.***
     - L is lower triangular, with 1 on the diagonal. 
     - The multipliers lᵢⱼ  (taken from elimination, *-1 ?) are below the diagonal.
     - U is the upper triangular matrix which appears after forward elimination.
@@ -391,8 +391,8 @@ The special thing is that the entries below the diagonal are the multipliers *l*
 
 **Ax = b**  ->  LUx = b  ->  Ux = L⁻¹b  ->  **Ux = c**
 
- - First , Lc = b
- - then , Ux = c
+- First , Lc = b
+- then , Ux = c
  
 **The triangular factorization can be written A = LDU, where L and U have *1* on the diagonal and D is the diagonal matrix of pivots.**
 
@@ -457,12 +457,12 @@ A good elimination code saves L and U and P.
 
 Those matrices carry the information that originally came in A - and they carry it in a more usable form. Ax = b reduces to two triangular systems. This is the practical equivalent of the calculation we do next to find the inverse matrix A⁻¹ and the solution x = A⁻¹b.
 
- - LU分解不借助 行交换的关键是是 中间不能出现 0 pivot
+- LU分解不借助 行交换的关键是是 中间不能出现 0 pivot
   - 但是对最后一个 pivot 没有 非0的要求
   - 因为奇异矩阵也有LU分解
   - 实际上，如果一个秩为k的矩阵的前k个顺序主子式不为零，那么它就可以进行LU分解(消元不break down)，但反之则不然
 
- - PS. 如果不要求 U 的主元都 非0, 则 PA = LU 对任何矩阵都存在
+- PS. 如果不要求 U 的主元都 非0, 则 PA = LU 对任何矩阵都存在
      - U 就是 echelon 形式
 
 <h2 id="4d72fafca6d677bb749ef5048ba77fa6"></h2>
@@ -478,7 +478,7 @@ Inverse matrix :
 
 There is no stupid matrix that satisfy : A⁻¹·0 = x.
 
- - **A⁻¹A = I , AA⁻¹ = I**
+- **A⁻¹A = I , AA⁻¹ = I**
     1. The inverse exists if and only if elimination produces n pivots 
     2. The matrix A cannot have two different inverse
     3. If A is invertible, the one and only solution to Ax = b is x = A⁻¹b
@@ -488,8 +488,8 @@ There is no stupid matrix that satisfy : A⁻¹·0 = x.
     6. A diagonal matrix has an inverse.
         - ![](../imgs/diagonal_inverse.png)
 
- - **Inverse of AB:  (AB)⁻¹ = B⁻¹A⁻¹**
- - **Inverse of ABC:  (ABC)⁻¹ = C⁻¹B⁻¹A⁻¹**
+- **Inverse of AB:  (AB)⁻¹ = B⁻¹A⁻¹**
+- **Inverse of ABC:  (ABC)⁻¹ = C⁻¹B⁻¹A⁻¹**
 
 <h2 id="5dd7a646b2bb1011c052239ac7a3ce0a"></h2>
 
@@ -513,15 +513,15 @@ Instead of stopping at U and switching to back-substitution , it continues by su
 
 Example 1: Using the Gauss-Jordan Method to Find A⁻¹:
 
- - 1st step: forward elimination
+- 1st step: forward elimination
     - ![](../imgs/Gauss_Jordan1.png)
     - This completes the first half -- forward elimination. 
         - The upper triangular U appears in the first three columns.
         - The other three columns are the same as L⁻¹.
- - 2nd step: Creating zeros above the pivots, we reach A⁻¹
+- 2nd step: Creating zeros above the pivots, we reach A⁻¹
     - Now the second half will go from U to I (multiplying by U⁻¹).  That takes L⁻¹ to U⁻¹L⁻¹ which is A⁻¹.
     - ![](../imgs/Gauss_Jordan2.png)
- - last step: we divided the rows by their pivots 2 and -8. 
+- last step: we divided the rows by their pivots 2 and -8. 
     - The coefficient matrix in the left-hand half became the identity.
     - Since A went to I, the same operations on the right-hand half must have carried I into A⁻¹. 
         - why ?
@@ -664,9 +664,9 @@ The final result is the LDU = LDLᵀ factorization of A. Notice the pivots!
 
 *The L and U factors of a tridiagonal matrix are bidiagonal.*
 
- - The pivots 2/1, 3/2, 4/3, 5/4, 6/5 are all positive. Their product is the determinant of A: det A = 6. 
- - The pivots are obviously converging to 1, as n gets large.
- - Such matrices make a computer very happy.
+- The pivots 2/1, 3/2, 4/3, 5/4, 6/5 are all positive. Their product is the determinant of A: det A = 6. 
+- The pivots are obviously converging to 1, as n gets large.
+- Such matrices make a computer very happy.
  
 These sparse factors L and U completely change the usual operation count. *The cost of solving a tridiagonal system is proportional to n.*
 

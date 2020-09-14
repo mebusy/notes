@@ -78,7 +78,7 @@ When you take an action you see what happens but you don't see everything that m
 ![](../imgs/cs188_rl_1.png)
 
 
- - Basic idea:
+- Basic idea:
     - Receive feedback in the form of ***rewards***
     - Agent’s utility is defined by the reward function
     - Must (learn to) act so as to ***maximize expected rewards***
@@ -101,13 +101,13 @@ For the race car example -- you still know whether you'er cool , warmer, overhea
 
 What you don't know is what fast and slow do. So far all you know fast is the best idea ever or slow is the best idea ever.  You try some things maybe you end up going too slow or maybe you overheat. And you have to try things again and slowly learn what these actions do from each state. 
 
- - Still assume a Markov decision process (MDP):
+- Still assume a Markov decision process (MDP):
     - A set of states s ∈ S
     - A set of actions (per state) A
     - A model T(s,a,s’)
     - A reward function R(s,a,s’)
- - Still looking for a policy π(s)
- - New twist: ***don’t know T or R***
+- Still looking for a policy π(s)
+- New twist: ***don’t know T or R***
     - I.e. we don’t know which states are good or what the actions do
     - Must actually try actions and states out to learn
     
@@ -117,10 +117,10 @@ What you don't know is what fast and slow do. So far all you know fast is the be
 
 ## Offline (MDPs) vs. Online (RL)
 
- - Offline Solution
+- Offline Solution
     - Offline solution is when you know what your actions will do and in computation in simulation in your head you think about consequences , you realize the jumping into the pit is a bad idea because you know it has negative reward. so you never actually do it. 
     - ![](../imgs/cs188_rl_online_solution.png)
- - Online Learning
+- Online Learning
     - When you do online learning , you have to actually jump into the pit before you know it is bad. you might imagine that over time this increases the cost of the robots. 
     - ![](../imgs/cs188_rl_online_learning.png)
 
@@ -140,7 +140,7 @@ So how do we do that ?
 
 When we try to build a model we try to figure out what the transitions and rewards do , and then pretend that's the truth. 
  
- - Model-based Idea:
+- Model-based Idea:
     - Learn an approximate model based on experiences
     - Solve for values as if the learned model were correct
 
@@ -151,11 +151,11 @@ Overtime we count them up -- some of them happen more and some of them happen le
 
 So we're going to act for a while , we're gonna accumulate counts of various things , we're gonna turn them into probabilities. Once that's all done we have a transition function T and a rewards function R. They're probably not correct but they are structurally what we need to run things like value iteration. So we learned a MDP. And then we solve it.
 
- - Step 1: Learn empirical MDP model
+- Step 1: Learn empirical MDP model
     - Count outcomes s' for each s, a
     - Normalize to give an estimate of T̂(s,a,s')
     - Discover each  R̂(s,a,s') when we experience (s, a, s')
- - Step 2: Solve the learned MDP
+- Step 2: Solve the learned MDP
     - For example, use value iteration, as before
 
 
@@ -167,9 +167,9 @@ Now there are a lot of small points here that are very important like how do you
 
 ### Example : Model-Based Learning 
 
- - Input Policy π , Assume: λ = 1
+- Input Policy π , Assume: λ = 1
     - ![][1]
- - Observed Episodes (Training) , and  Learned Model
+- Observed Episodes (Training) , and  Learned Model
     - ![][2]
   
 
@@ -219,7 +219,7 @@ We could do what is called "model-free" approaches here. We average the samples 
 
 This is the high level view of model-based vs model-free. In model-based you learn the probability distributions and then you reduce it the case of solving a known MDP. In model-free case we just take our sample as they come and average them together. 
 
- - Goal: Compute expected age of cs188 students
+- Goal: Compute expected age of cs188 students
     - Known P(A) : E[A] =  ∑ₐ P(a)·a
     - Unknown P(A): instead collect samples [a₁, a₂, … a<sub>n</sub>]
         - Model Based
@@ -270,12 +270,12 @@ This is policy evaluation. We're watching or executing a fixed policy and we're 
 ![](../imgs/cs188_passive_RL_1.png)
 
 
- - Simplified task: policy evaluation
+- Simplified task: policy evaluation
     - Input: a fixed policy π(s)
     - You don’t know the transitions T(s,a,s’)
     - You don’t know the rewards R(s,a,s’)
     - ***Goal: learn the state values***
- - In this case:
+- In this case:
     - Learner is “along for the ride”
     - No choice about what actions to take
     - Just execute the policy and learn from experience
@@ -300,12 +300,12 @@ The simplest way you could imagine doing model-free is what's called **direct ev
 
 The idea of direct evaluation is super simple. All we're gonna do is watch action unfold. We're going to act according to π and every time we visit a state we're going to write down what the sum of discounted rewards the utility turned out to be in the end. In acting we will have been in many states , and for each one we might have been there many times , we're just going to record what happend, not in one step but all the way to the end. When we average those samples together , that will be an average achieved score for that state --that is the value. If we do it long enough we'll get the right answer. It's called direct evaluation. 
 
- - Goal: Compute values for each state under π
- - Idea: Average together observed sample values
+- Goal: Compute values for each state under π
+- Idea: Average together observed sample values
     - Act according to π
     - Every time you visit a state, write down what the sum of discounted rewards turned out to be
     - Average those samples
- - This is called direct evaluation
+- This is called direct evaluation
   
 
 <h2 id="539ea74ae630f5a093e0d00dd1d6d4c3"></h2>
@@ -348,14 +348,14 @@ So somehow even though this is going to work in the limit , we've thrown out a h
 
 ## Problems with Direct Evaluation 
 
- - What’s good about direct evaluation?
+- What’s good about direct evaluation?
     - It’s easy to understand
     - It doesn’t require any knowledge of T, R
     - It eventually computes the correct average values, using just sample transitions
 
 They are not optimal values , they are values for the policy being executed ,  it does the right thing in the end.
 
- - What bad about it?
+- What bad about it?
     - It wastes information about state connections
         - because it never really considers correlations between states.
         - when you're in E, you always go through C. Or when you're in B, you go through C. But somehow B's value is 8 , and for E value is -2. But really they should be the same.
@@ -385,9 +385,9 @@ We already know how to take averages without knowing the weights. We look at sam
 
 ## Sample-Based Policy Evaluation ?
 
- - We want to improve our estimate of V by computing these averages:
+- We want to improve our estimate of V by computing these averages:
     - ![](../imgs/cs188_rl_policy_evaluation.png)
- - Idea: Take samples of outcomes s’ (by doing the action!) and average
+- Idea: Take samples of outcomes s’ (by doing the action!) and average
     - maybe this approach ...
     - ![](../imgs/cs188_rl_wrong_sample_based_pv.png)
 
@@ -404,7 +404,7 @@ So that a big idea of --
 
 ## Temporal Difference Learning 
 
- - Big idea: learn from every experience!
+- Big idea: learn from every experience!
     - Update V(s) each time we experience a transition (s, a, s’, r)
     - ![](../imgs/cs188_rl_td_learning.png)
     - Likely outcomes s’ will contribute updates more often
@@ -423,7 +423,7 @@ So on one hand we think we're going to get V(s) that's what our past experience 
 
 So how do we take the average of one thing ?
 
- - Temporal difference learning of values
+- Temporal difference learning of values
     - Policy still fixed, still doing evaluation!
     - Move values toward value of whatever successor occurs: running average
     - ![](../imgs/cs188_rl_td_learning_update.png)
@@ -545,12 +545,12 @@ In full reinforcement learning we would like to be able to compute optimal polic
 ---
 
 
- - Full reinforcement learning: optimal policies (like value iteration)
+- Full reinforcement learning: optimal policies (like value iteration)
     - You don’t know the transitions T(s,a,s’)
     - You don’t know the rewards R(s,a,s’)
     - *You choose the actions now*
     - ***Goal: learn the optimal policy / values***
- - In this case:
+- In this case:
     - Learner makes choices!
     - Fundamental tradeoff:  exploitation vs. exploration 
         - of doing things that are known to be pretty good  versus learning about things like what happens when I jump off the cliff. 
@@ -563,14 +563,14 @@ In full reinforcement learning we would like to be able to compute optimal polic
 
 ## Detour: Q-Value Iteration
 
- - Value iteration: find successive (depth-limited) values
+- Value iteration: find successive (depth-limited) values
     - Start with V₀(s) = 0, which we know is right
     - Given V<sub>k</sub>, calculate the depth k+1 values for all states:
         - ![](../imgs/cs188_mdp_calc_formular.png)
 
 We can't do this update with samples because it's not an average but Max. And the only thing we can do with samples is computing averages of things. 
 
- - But Q-values are more useful, so compute them instead
+- But Q-values are more useful, so compute them instead
     - Start with Q₀(s,a) = 0, which we know is right
     - Given Q<sub>k</sub>, calculate the depth k+1 q-values for all q-states:
         - ![][3]
@@ -590,7 +590,7 @@ We can't do this update with samples because it's not an average but Max. And th
 
 Q-Learning is the key algorithm that allows us to do a lot of great things with reinforcement learning. 
 
- - Q-Learning: sample-based Q-value iteration
+- Q-Learning: sample-based Q-value iteration
     - ![][3]
 
 Every time we're in a state *s* , we take some action *a*. When we do that we're going to learning something about how good (s,a) is. So what we're going to maintain a table that looks something like this. 
@@ -599,7 +599,7 @@ For every state and every action , it's going to maintain a number which is the 
 
 We're going to get some sample on the basis of the action we picked , the key learning algorithm doesn't actually care how the action was chosen , it does the same update no matter how it was chosen.   We get a sample -- we were in *s* we choose action *a* -- we are going to learn something about Q of (s,a) -- that is how good is that action from the state.  We landed in s' this time and we received a reward *r* . 
 
- - Learn Q(s,a) values as you go
+- Learn Q(s,a) values as you go
     - Receive a sample (s,a,s’,r)
     - Consider your old estimate: ***Q(s,a)***
     - Consider your new sample estimate:
@@ -617,9 +617,9 @@ We're going to get some sample on the basis of the action we picked , the key le
 
 ## Q-Learning Properties 
 
- - Amazing result: Q-learning converges to optimal policy -- even if you’re acting suboptimally!
- - This is called ***off-policy learning***
- - Caveats:
+- Amazing result: Q-learning converges to optimal policy -- even if you’re acting suboptimally!
+- This is called ***off-policy learning***
+- Caveats:
     - You have to explore enough
     - You have to eventually make the learning rate small enough
         - … but not decrease it too quickly
@@ -644,17 +644,17 @@ We're going to get some sample on the basis of the action we picked , the key le
 
 ![](../imgs/cs188_rl_flappybird.png)
 
- - State space
+- State space
     - Discretized vertical distance from lower pipe
     - Discretized horizontal distance from next pair of pipes
     - Life: Dead or Living
- - Actions
+- Actions
     - Click
     - Do nothing
- - Rewards
+- Rewards
     +1 if Flappy Bird still alive
     -1000 if Flappy Bird is dead
- - 6-7 hours of Q-learning
+- 6-7 hours of Q-learning
 
 
 <h2 id="29c79992d5caf68d44b3fb65e9b012fd"></h2>
@@ -677,11 +677,11 @@ Unknown MDP: Model-Free | Compute V<sup>\*</sup>, Q<sup>\*</sup>, π<sup>\*</sup
 
 ## Model-free (temporal difference) learning
 
- - Experience world through episodes
+- Experience world through episodes
     - like a stream
     - (s,a,r,s',a',r',s'',a'',r'',s''',... )
- - Update estimates each transition (s,a,r,s')
- - Over time, updates will mimic Bellman updates
+- Update estimates each transition (s,a,r,s')
+- Over time, updates will mimic Bellman updates
 
 
 
@@ -701,13 +701,13 @@ You meet this all the time in your daily life.  Some new restaurant opens and yo
 
 Q-learning did not specify how we select actions. It just required that they have sufficient variety to converge to the optimal policy and q values. Now we're talking about how to select actions in a way that will enable q-learning to its magic. 
 
- - Several schemes for forcing exploration
+- Several schemes for forcing exploration
     - Simplest: random actions ( ε-greedy)
     - Every time step, flip a coin
     - With (small) probability ε , act randomly
     - With (large) probability 1-ε , act on current policy
 
- - Problems with random actions?
+- Problems with random actions?
     - You do eventually explore the space, but keep thrashing around once learning is done
     - One solution: lower ε  over time
     - Another solution: exploration functions ( better way )
@@ -737,7 +737,7 @@ So one solution here is we just lower ε over time , and let the randomness decr
 
 ## Exploration Functions 
 
- - When to explore?
+- When to explore?
     - Random actions: explore a fixed amount 
         - the kind of explore uniformly everywhere. Every state has an equal chance of doing an exploration action.  
     - Better idea: explore areas whose badness is not (yet) established, eventually stop exploring
@@ -751,7 +751,7 @@ So how can we encode this?  we'd like something that forces us to explore whose 
 
 ---
 
- - Exploration function
+- Exploration function
     - Takes a value estimate u and a visit count n, and returns an optimistic utility, e.g. `f(u,n) = u + k/n`
         - Regular Q-Update: ![](../imgs/cs188_rl_explor_func_regular.png)
         - Modified Q-Update: ![](../imgs/cs188_rl_explor_func_modified.png)
@@ -774,8 +774,8 @@ A: it's hard to know.
 
 ---
 
- - ***α == 0 :  stop learning*** 
- - ***ε == 0 :  disable exploration***
+- ***α == 0 :  stop learning*** 
+- ***ε == 0 :  disable exploration***
 
 --- 
 
@@ -794,7 +794,7 @@ where τ is a temperature parameter that is decreased over time.
 
 ## Regret 
 
- - Even if you learn the optimal policy, you still make mistakes along the way!
+- Even if you learn the optimal policy, you still make mistakes along the way!
 
 The basic idea of *regret* is even though you learn the optimal policy eventually  , because your transitions and rewards are initially unknown it's inevitable that you will make some mistakes along the way.  So you don't get to be the wise optimal robot without making some mistakes in your youth. 
 
@@ -802,7 +802,7 @@ The basic idea of *regret* is even though you learn the optimal policy eventuall
 
 So for example here this robot it's wise it's optimal and it's remembering back to its youth where it jumped into that fire pit , now it knows not to do that and you can think of this as regret. But a certain amount of fire pit jumping is inevitable because you just had no way of knowing whether or not it was a fire pit until you try it. 
 
- - Regret is a measure of your total mistake cost: 
+- Regret is a measure of your total mistake cost: 
     - the difference between your (expected) rewards, including youthful suboptimality, and optimal (expected) rewards
 
 There's this idea that there's a total volume of mistakes you made compared to having the optimal policy , we'd like to minimize that. 
@@ -832,11 +832,11 @@ The basic idea we'er going to have is called approximate q-learning. And boils d
 
 So we want to be able to generalize across states because there's just so many of them. 
 
- - Basic Q-Learning keeps a table of all q-values
+- Basic Q-Learning keeps a table of all q-values
 
 In basic q-learning -- if you think about the algorithm -- it keeps a table of all of the q-values. That looks something like this: where you have your agent and for every cell of grid world and for every action you have a number that you're storing. That's fine when there aren't too many q states. 
 
- - In realistic situations, we cannot possibly learn about every single state!
+- In realistic situations, we cannot possibly learn about every single state!
     - Too many states to visit them all in training
     - Too many states to hold the q-tables in memory
 
@@ -846,7 +846,7 @@ In general for a game like pac-man , if you had the q tables it would just be th
 
 ![](../imgs/cs188_rl_q_table_pacman.png)
 
- - Instead, we want to generalize:
+- Instead, we want to generalize:
     - Learn about some small number of training states from experience
     - Generalize that experience to new, similar situations
     - This is a fundamental idea in machine learning, and we’ll see it over and over again
@@ -862,11 +862,11 @@ This is actually a fundamental idea of machine learning. We'll see it over and o
 
 ### Example: Pacman
 
- - Let’s say we discover through experience that this state is bad:
+- Let’s say we discover through experience that this state is bad:
     - ![](../imgs/cs188_rl_generalize_pacman1.png)
- - In naïve q-learning, we know nothing about this state:
+- In naïve q-learning, we know nothing about this state:
     - ![](../imgs/cs188_rl_generalize_pacman2.png)
- - Or even this one!
+- Or even this one!
     - ![](../imgs/cs188_rl_generalize_pacman3.png)
     - It's missing a dot. It's a totally different state as far as q-learning is concerned.  
 
@@ -886,7 +886,7 @@ So what's the solution ? You actually know the solution because you already impl
 The solution is to take a state , and rather than thinking about it as its own black box whose q-values are special and unlike any other states' q-values INSTEAD we say really boiled down to a small number of properties which we will call features. 
 
 
- - Solution: describe a state using a vector of features (properties)
+- Solution: describe a state using a vector of features (properties)
     - Features are functions from states to real numbers (often 0/1) that capture important properties of the state
     - Example features:
         - Distance to closest ghost
@@ -912,11 +912,11 @@ Of course now we're going to have to describe q-states which gives us features l
 
 This gives you linear value functions. 
 
- - Using a feature representation, we can write a q function (or value function) for any state using a few weights:
+- Using a feature representation, we can write a q function (or value function) for any state using a few weights:
     - V(s) = w₁f₁(s) + w₂f₂(s) + ... + w<sub>n</sub>f<sub>n</sub>(s) 
     - Q(s,a) = w₁f₁(s,a) + w₂f₂(s,a) + ... + w<sub>n</sub>f<sub>n</sub>(s,a) 
- - **Advantage**: our experience is summed up in a few powerful numbers
- - **Disadvantage**: states may share features but actually be very different in value!
+- **Advantage**: our experience is summed up in a few powerful numbers
+- **Disadvantage**: states may share features but actually be very different in value!
     - keep in mind that, if you don't have enough features, it could be that 2 states, as far as the features are concerned, are identical. That means you can not distinguish them anymore with your Q function. So you look at your features, and if you find 2 states that you think are really,really different. And one is really good, the other is really bad. But they have the exact same feature values, there's no way your approximate Q-learning agent can distinguish them anymore.
     - for example if there are 2 ghosts close to you it matters a lot whether they're on either side of you or both on the same side. 
 
@@ -931,7 +931,7 @@ How are we going to do q-learning with these q-functions ?
 
 The first part of q-learning algorithm doesn't actually care where the q-value came from. It says give me a transition so that I can learn. And you do it. Then you take a difference . I say alright I thought I was going to get Q of (s,a) -- that was my old guess on one hand and on the other hand I now think I'm going to get this reward + my estimate of the value of the landing state which is max over its actions.  You compute this kind of error term -- the difference what you thought you were going to get and what you actually seem to be about to get on the basis of this one step ahead experience. 
 
- - Q-learning with linear Q-functions:
+- Q-learning with linear Q-functions:
     - transition = (s,a,r,s')
     - ![](../imgs/cs188_rl_a_exact_qs.png)
         - For an exact q-learner the update looks like this.  This is just an algebraic rewrite of the update that says take α of one and (1-α) of the other. This can delay calculation of α. 
@@ -951,10 +951,10 @@ That looks like you've got these sliders like how bad is a ghost. And whenever y
 
 The intuitive interpretation is adjusting these weights . So if something bad happens all of the features that are active get a penalty and so on. 
 
- - Intuitive interpretation:
+- Intuitive interpretation:
     - Adjust weights of active features
     - E.g., if something unexpectedly bad happens, blame the features that were on: disprefer all states with that state’s features
- - Formal justification: online least squares
+- Formal justification: online least squares
 
 
 ---
@@ -964,28 +964,28 @@ The intuitive interpretation is adjusting these weights . So if something bad ha
 
 ### Example : Q-Pacman
 
- - dot feature
+- dot feature
     - how close will I be to the dot if I take action *a* , and I'll take the reciprocal of that distance.
     - so a big number means I'm basically getting close to a dot.
- - ghost feature
+- ghost feature
     - similar thing , if I close to a ghost , f<sub>ghost</sub> gets bigger 
 
 ![](../imgs/cs188_rl_qpacman_s.png)
 
- - Q(s,a) = 4.0·f<sub>dot</sub>(s,a) - 1.0·f<sub>ghost</sub>(s,a)
- - f<sub>dot</sub>(s, NORTH) = 0.5 
+- Q(s,a) = 4.0·f<sub>dot</sub>(s,a) - 1.0·f<sub>ghost</sub>(s,a)
+- f<sub>dot</sub>(s, NORTH) = 0.5 
     - because the closest dot is 2 away ???   , after having executed action a in state s
- - f<sub>ghost</sub>(s,NORTH) = 1.0 
+- f<sub>ghost</sub>(s,NORTH) = 1.0 
     - because the closest ghost is 1 away , after having executed action a in state s
- - Q(s,NORTH) = +1
+- Q(s,NORTH) = +1
     - We compute that approximate Q is +1 for this Q state (s,NORTH).
 
 What does that mean ? That means that according to our approximate q-value we think our score for the game from this point forward is going to be +1. Well what happens?  You move north you die.  You receive a -500 reward and you end up in a state where the game is over and therefore the Q values are 0 by definition. 
 
- - a = NORTH , r = -500 => 
- - ![](../imgs/cs188_rl_qpacman_sp.png)   
- - ![](../imgs/cs188_rl_qpacman_3.png)
- - Q(s', . ) = 0
+- a = NORTH , r = -500 => 
+- ![](../imgs/cs188_rl_qpacman_sp.png)   
+- ![](../imgs/cs188_rl_qpacman_3.png)
+- Q(s', . ) = 0
 
 
 So now we think hard we say well I used to think before I had this experience that this state on the left was worth +1. Apparently that isn't what happened this time. This time it looks like I'm on track for the -500 I received plus a future discounted reward of 0 because the game ended. 
@@ -994,7 +994,7 @@ Alright so I compare there 2 things, it looks like I overestimated by 501 , so m
 
 Ans so I do this update: the weights mostly stay the same but I move them in the appropriate direction by an amount that is proportional to my error -- the learning rate α , it's a step size here -- and the activation of the feature. 
 
- - difference = -501  =>
+- difference = -501  =>
     - w<sub>dot</sub>   ←  4.0 + α·[-501]·0.5
     - w<sub>ghost</sub> ← -1.0 + α·[-501]·1.0
 
@@ -1002,7 +1002,7 @@ So the ghost feature was more active here than the dot feature. So it's gonna re
 
 When I execute these updates I end up with a new Q function  which has the same functional form uses the same features but has different weights. We like dots slightly less  and we really don't like ghosts now because they were right there when all the bad stuff happended. 
 
- - Q(s,a) = 3.0·f<sub>dot</sub>(s,a) - 3.0·f<sub>ghost</sub>(s,a)   
+- Q(s,a) = 3.0·f<sub>dot</sub>(s,a) - 3.0·f<sub>ghost</sub>(s,a)   
 
 Now we'll continue acting but it seems reasonable that this is what we learn. We still like the dots but now we're more scared of ghosts. Seems like a good outcome.  Let's see what happends in practice. 
 
@@ -1014,11 +1014,11 @@ What's nice about this is you learned so quickly from even 1 experience you can 
 
 ### Another example
 
- - Q-function:  Q(s,a) = w₁f₁(s,a) + w₂f₂(s,a)
- - with
+- Q-function:  Q(s,a) = w₁f₁(s,a) + w₂f₂(s,a)
+- with
     - f₁(s,a) = 1/ ( manhanttan distance to nearest dot after executing action *a* in *s* )
     - f₂(s,a) = ( manhanttan distance to nearest ghost after executing action *a* in *s* ) 
- - initial w₁ = 1, w₂ = 10
+- initial w₁ = 1, w₂ = 10
  
 For the state s shown below, which action should pacman take ? Assume that the red and blue ghosts are both sitting on top of a dot. 
  
@@ -1026,11 +1026,11 @@ For the state s shown below, which action should pacman take ? Assume that the r
 
 So there 2 action available :
 
- - WEST 
+- WEST 
     - f₁(s,West) = 1 
     - f₂(s,West) = 3
     - Q(s,West) = 1\*1 + 10\*3 = 31
- - SOUTH  
+- SOUTH  
     - f₁(s,South) = 1 
     - f₂(s,South) = 1
     - Q(s,South) = 1\*1 + 10\*1 = 11
@@ -1049,15 +1049,15 @@ So far we don't know the value of this sample. We need calculate the value of st
 
 In s' , 2 actions are available : 
 
- - Q(s' , West ) = 11
- - Q(s' , East ) = 11 
- - V(s') = 11
+- Q(s' , West ) = 11
+- Q(s' , East ) = 11 
+- V(s') = 11
 
 So the value of the sample = `r + γ·V(s') = 9 + 11 = 20`. And `difference` = 20 - Q(s, West) = -11 
 
- - 你猜测 Q(s,West) 可以获得 31收益， 实际并不是这样，出现了 α·-11 的收益偏差。
- - 这里计算 difference 使用了一个小技巧, 先不加入 α 的计算。 等最后更新 weights的时候，再加入α 的计算 
- - 你也可以使用 bellman update 正常计算 α[ difference ] 。
+- 你猜测 Q(s,West) 可以获得 31收益， 实际并不是这样，出现了 α·-11 的收益偏差。
+- 这里计算 difference 使用了一个小技巧, 先不加入 α 的计算。 等最后更新 weights的时候，再加入α 的计算 
+- 你也可以使用 bellman update 正常计算 α[ difference ] 。
  
 ```
 Q(s,a) = (1-α)Q(s,a) + α[ r + γV(s') ] 
@@ -1069,8 +1069,8 @@ Q(s,a) = (1-α)Q(s,a) + α[ r + γV(s') ]
 
 Now we should add the difference to weights:
 
- - w₁ = w₁ + α·difference· f₁(s,West) = 1 + 0.5 * -11 * 1 = -4.5
- - w₂ = w₂ + α·difference· f₂(s,West) = 10 + 0.5 * -11 * 3 = -6.5
+- w₁ = w₁ + α·difference· f₁(s,West) = 1 + 0.5 * -11 * 1 = -4.5
+- w₂ = w₂ + α·difference· f₂(s,West) = 10 + 0.5 * -11 * 3 = -6.5
 
 
 <h2 id="25f9c7fa3b50aebe5125112ac1187777"></h2>
@@ -1078,9 +1078,9 @@ Now we should add the difference to weights:
 
 ### 总结
 
- - 根据Q-function ， 可以计算出每个 state 的 Q-Value 
- - 任意 sample (s,a,r,s') , 计算 sample value 和 Q(s,a) 的差值
- - update weights by difference. 
+- 根据Q-function ， 可以计算出每个 state 的 Q-Value 
+- 任意 sample (s,a,r,s') , 计算 sample value 和 Q(s,a) 的差值
+- update weights by difference. 
 
 
 
@@ -1197,10 +1197,10 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 ## Q-Learning 的问题
 
- - 如果state 很多，我们维护这么大的一个 q-value table
+- 如果state 很多，我们维护这么大的一个 q-value table
     - Feature-Based Representations 是一个解决方法
     - 但是如果输入是一张 raw pic , 不容易从 picture 中提取 feature
- - Neural Network可以很好对图片提取特征信息，进行抽象，分类等
+- Neural Network可以很好对图片提取特征信息，进行抽象，分类等
 
 <h2 id="61f0ce8542a3f21f795b45c4c133c04c"></h2>
 
@@ -1209,8 +1209,8 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 ![](../imgs/rl_deep_ql.png)
 
- - Deep Q Learning 依然是Q Learning , 只是用神经网络去代替了Q Table
- - 还有一种更加 End to End的方法，叫做Policy Gradient
+- Deep Q Learning 依然是Q Learning , 只是用神经网络去代替了Q Table
+- 还有一种更加 End to End的方法，叫做Policy Gradient
 
 <h2 id="d4680878cbefd1ce084325dd933e82f9"></h2>
 
@@ -1251,18 +1251,18 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 ## Deep Deterministic Policy Gradient
 
- - 动作网络 Actor Network 用于直接估计动作
+- 动作网络 Actor Network 用于直接估计动作
     - 就像低配版 Policy Gradient中的 Policy Network，输入State，给出动作值 Actions
     - 从Critic Network 对应 Actions 输入计算出的导数来进行更新。
- - 校正网络 Critic Network 用来估计Q值
+- 校正网络 Critic Network 用来估计Q值
     - 输入 State 的同时还输入由Actor Network 产生的 Actions，给出相应的 Q 值
     - 并不断的用 bellman equation来进行更新 
- - 动作方程 actor function 表示为: μ(s|θ<sup>μ</sup>)
- - 校正方程 critic function 表示为: Q(s,a | θ<sup>Q</sup> ) 
- - Cost function J 对于\theta的导数为：
+- 动作方程 actor function 表示为: μ(s|θ<sup>μ</sup>)
+- 校正方程 critic function 表示为: Q(s,a | θ<sup>Q</sup> ) 
+- Cost function J 对于\theta的导数为：
     - ![](../imgs/rl_DDPG_derivative_J_theta.png)
- - 这个算法将对动作的Q值估计和策略估计给分离，让 agent 能够在探索更多的同时保持对一个确定策略的学习，让整个网络学习变得更容易。
- - 其他 更有利于网络的收敛 的小技巧 （小，但是很有用）
+- 这个算法将对动作的Q值估计和策略估计给分离，让 agent 能够在探索更多的同时保持对一个确定策略的学习，让整个网络学习变得更容易。
+- 其他 更有利于网络的收敛 的小技巧 （小，但是很有用）
     - Replay Buffer
         - 近乎于无限大的缓存，每次进行动作以后得到的 状态-动作-反馈- 新状态 (s<sub>t</sub>,a<sub>t</sub>, r<sub>t</sub>,s<sub>t+1</sub> ) 都会被保存到这个缓存中去
         - 不同于之前直接拿游戏进行过程中得到的 (s<sub>t</sub>,a<sub>t</sub>, r<sub>t</sub>,s<sub>t+1</sub> )  来进行训练
@@ -1315,14 +1315,14 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 ![](../imgs/rl_pg_update_step.png)
 
- - 观测的信息通过神经网络分析, 选出了左边的行为
- - 我们直接进行反向传递, 使之下次被选的可能性增加.
- - 但是奖惩信息却告诉我们, 这次的行为是不好的, 那我们的动作可能性增加的幅度 随之被减低.
- - 这样就能靠奖励来左右我们的神经网络反向传递
- - 再来举个例子, 假如这次的观测信息让神经网络选择了右边的行为, 
- - 右边的行为随之想要进行反向传递, 使右边的行为下次被多选一点,
- - 这时, 奖惩信息也来了, 告诉我们这是好行为, 那我们就在这次反向传递的时候加大力度, 让它下次被多选的幅度更猛烈! 这
- - 这就是 Policy Gradients 的核心思想
+- 观测的信息通过神经网络分析, 选出了左边的行为
+- 我们直接进行反向传递, 使之下次被选的可能性增加.
+- 但是奖惩信息却告诉我们, 这次的行为是不好的, 那我们的动作可能性增加的幅度 随之被减低.
+- 这样就能靠奖励来左右我们的神经网络反向传递
+- 再来举个例子, 假如这次的观测信息让神经网络选择了右边的行为, 
+- 右边的行为随之想要进行反向传递, 使右边的行为下次被多选一点,
+- 这时, 奖惩信息也来了, 告诉我们这是好行为, 那我们就在这次反向传递的时候加大力度, 让它下次被多选的幅度更猛烈! 这
+- 这就是 Policy Gradients 的核心思想
 
 
 

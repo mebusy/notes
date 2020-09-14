@@ -49,25 +49,25 @@
 
 ### Tokenizing (first approximation)
 
- - Source file :  
+- Source file :  
     - stream of characters 
- - after tokenizing :
+- after tokenizing :
     - stream of tokens
- - A *token* is a string of characters that has a meaning 
+- A *token* is a string of characters that has a meaning 
 
 <h2 id="f7236a026647622e46d365447d25d104"></h2>
 
 
 ### Jack tokens 
 
- - keyword
+- keyword
     - class, char, while, ...
- - symbol 
+- symbol 
     - `{}`, `/`, `=`
- - integer constant
+- integer constant
     - 0 ... 32767
- - string constant
- - identifier
+- string constant
+- identifier
 
 
 <h2 id="af703fb4c8a243566c3896834a1b2860"></h2>
@@ -92,16 +92,16 @@
 
 ## Unit 4.3: Grammars
 
- - The artifact that defines in what order we can put tokens together legibly is called **grammar**
- - A *grammar* is a set of rules, descriing how tokens can be combined to create valid language constructs
- - Each *rule* consists of a left-hand side , listing a template's name , and a right-hand side , describing how the template is composed:
+- The artifact that defines in what order we can put tokens together legibly is called **grammar**
+- A *grammar* is a set of rules, descriing how tokens can be combined to create valid language constructs
+- Each *rule* consists of a left-hand side , listing a template's name , and a right-hand side , describing how the template is composed:
     - Terminal rule: right-hand side includes constants only
     - Non-terminal rule: all other rules 
 
 ![](../imgs/n2t_jack_grammar_subset.png)
 
 
- - Parsing:
+- Parsing:
     - determining if a given input conforms to a grammar
     - In the process, uncovering the grammatical structure of the given input 
 
@@ -162,12 +162,12 @@ Guild lines for compilcation engine :
 
 ### Some observations about grammars and parsing 
 
- - LL grammar: can be parsed by a recursive descent parser **without backtracking**
+- LL grammar: can be parsed by a recursive descent parser **without backtracking**
     - LL is quite friendly : once you start to parse something, you never have to go back .
     - When you make a decision that what you have is a while statement of if statement , you don't have to kind of retract your progress and find out that you made a mistake and you had to parse it in a different way. 
- - LL(k) parser:  a parser that needs to look ahead **at most** k tokens in order to determine which rule is applicable. 
+- LL(k) parser:  a parser that needs to look ahead **at most** k tokens in order to determine which rule is applicable. 
     - ie. `x*foo , x*foo[12], x*foo.val`  , when the current token is `foo` ,  we don't know whether `foo` is a variable / array / object , we need at most 1 token more.
- - The grammar that we saw so far is LL(1). 
+- The grammar that we saw so far is LL(1). 
 
 
 <h2 id="87609c9974b897143d9c161013658dba"></h2>
@@ -180,7 +180,7 @@ Guild lines for compilcation engine :
 
 ### Lexical elements
 
- - 5 categories of terminla elements (tokens)
+- 5 categories of terminla elements (tokens)
 
 ![](../imgs/n2t_jack_grammar_lexical_elements.png)
 
@@ -189,8 +189,8 @@ Guild lines for compilcation engine :
 
 ### Program Structure 
 
- - A Jack program is a collection of *classes*, each appearing in a separate file , and each compiled separately.  
- - Each class is structured as follows:
+- A Jack program is a collection of *classes*, each appearing in a separate file , and each compiled separately.  
+- Each class is structured as follows:
 
 ![](../imgs/n2t_jack_grammar_program_structure.png)
 
@@ -221,7 +221,7 @@ Guild lines for compilcation engine :
 
 ## Unit 4.7: The Jack Analyzer
 
- - If we encounter a terminalElement xxx , then the parser generates the output :
+- If we encounter a terminalElement xxx , then the parser generates the output :
 
 ```
 <terminalElement>
@@ -229,7 +229,7 @@ Guild lines for compilcation engine :
 </terminalElement>
 ```
 
- - where terminalElement should be replaced by 
+- where terminalElement should be replaced by 
     - keyword
     - symbol
     - integerContant
@@ -238,7 +238,7 @@ Guild lines for compilcation engine :
  
 ---
 
- - if we encounter a nonTerminal element , then the parser generates the output: 
+- if we encounter a nonTerminal element , then the parser generates the output: 
 
 ```
 <nonTerminal>
@@ -247,11 +247,11 @@ Guild lines for compilcation engine :
 ```
 
 
- - there is a exception for the nonTermial element 
+- there is a exception for the nonTermial element 
     - when encounter **type, class name, subroutine name, variable name, statement, or subroutine call** ,
     - the parser handles it, without generate any XML associated with them
 
- - Example: handling let x = 17 ;  
+- Example: handling let x = 17 ;  
     - In rule  'let' varName '=' expression ';' 
     - here x should be a varName ,  but parser will not generate a varName XML tag, instead , it dive into the identifier , which is the right-hand side of the varName rule.
 
@@ -264,7 +264,7 @@ Guild lines for compilcation engine :
         ...
 ```
 
- - we skip generate `varName` tag. and we decided to do it because , some of the rules are very simple, i.e. `varName: identifier`. 
+- we skip generate `varName` tag. and we decided to do it because , some of the rules are very simple, i.e. `varName: identifier`. 
 
 <h2 id="c10d27680d52f2dd231d982814e6a3ca"></h2>
 
@@ -285,10 +285,10 @@ Guild lines for compilcation engine :
 $ JackAnalyzer input
 ```
 
- - input:  
+- input:  
     - filename.jack
     - directoryName  , contain one or more .jack files
- - output:
+- output:
     - fileName.xml  , if the input is a single file
     - one .xml file for every .jack file, stored in same directory ,  if input is a directory.
 
@@ -297,8 +297,8 @@ $ JackAnalyzer input
 
 ### JackAnalyzer : In action 
 
- - *JackTokenizer* will handle the *Lexical elements* of Jack grammar
- - and the reset of the grammer will be handled by *CompilcationEngine*
+- *JackTokenizer* will handle the *Lexical elements* of Jack grammar
+- and the reset of the grammer will be handled by *CompilcationEngine*
     - program structure , statements , expressions
 
 <h2 id="20aaf3f62aefee4c503d7b70b2918b04"></h2>
@@ -337,8 +337,8 @@ tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
 
 ## Unit 4.9: Project 10: Building a Syntax Analyzer
 
- - for xml file, start and endwith   `<tokens> ... </tokens>` tags.
- - <, > , " , and & ,  are outputed as  `&lt;`   `&gt;`   `&quot;`  `&amp`
+- for xml file, start and endwith   `<tokens> ... </tokens>` tags.
+- <, > , " , and & ,  are outputed as  `&lt;`   `&gt;`   `&quot;`  `&amp`
  
 ---
 
@@ -352,18 +352,18 @@ tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
 
 ## Lexical Analyzer
 
- - create automata for Tokens 
+- create automata for Tokens 
     1. regular expression -> NFA -> DFA
     2. manully create NFA -> DFA
         - for some regular expression features, such lick  non-greedy matching
- - use DFA matching algorihtm  find all tokens 
+- use DFA matching algorihtm  find all tokens 
 
 <h2 id="9568075dac382b9105b467d296a453a9"></h2>
 
 
 ## Syntax Analyzer 
 
- - regular expression -> CFG
+- regular expression -> CFG
     - Change A|B to grammar
         - G -> A
         - G -> B
@@ -390,20 +390,20 @@ tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
 
 ### 二义性，有的文法需要 LL(2)
 
- - `('subroutineCall', 'identifier') `
+- `('subroutineCall', 'identifier') `
     - ` [('subroutineName', "'('", 'expressionList', "')'"), ('CLASS_VAR_NAME', "'.'", 'subroutineName', "'('", 'expressionList', "')'")]`
- - `('CLASS_VAR_NAME', 'identifier') `
+- `('CLASS_VAR_NAME', 'identifier') `
     - `[('className',), ('varName',)]`
- - `('term', 'identifier') `
+- `('term', 'identifier') `
     - `[('varName',), ('varName', 'ARRAY_SUB'), ('subroutineCall',)]`
 
 --- 
 
- - 当出现 二义性 文法是， 即 predict-table 条目中，出现多个 production时， 向前多看1个symbol(LL2)， 选择 唯一匹配的一个 production
- - 但是 有时，出现 多个production 向前多看1个symbol(LL2) 后 都匹配的情况
+- 当出现 二义性 文法是， 即 predict-table 条目中，出现多个 production时， 向前多看1个symbol(LL2)， 选择 唯一匹配的一个 production
+- 但是 有时，出现 多个production 向前多看1个symbol(LL2) 后 都匹配的情况
     - 像上面的 CLASS_VAR_NAME 
     - 或者 ` [('varName',), ('varName', 'ARRAY_SUB') ]` 这类
- - 当出现上面的这种情况， 选择一个 匹配 symbol 最多的 production ( 如果都相等，任意选择 )
+- 当出现上面的这种情况， 选择一个 匹配 symbol 最多的 production ( 如果都相等，任意选择 )
 
 
 

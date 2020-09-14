@@ -29,9 +29,9 @@
 该方法计算对网络中所有权重计算损失函数的梯度。这个梯度会反馈给最优化方法，用来更新权值以最小化损失函数。
 随便提一下BP网络的强大威力：
 
- - 1）任何的布尔函数都可以由两层单元的网络准确表示，但是所需的隐藏层神经元的数量随网络输入数量呈指数级增长；
- - 2）任意连续函数都可由一个两层的网络以任意精度逼近。这里的两层网络是指隐藏层使用sigmoid单元、输出层使用非阈值的线性单元；
- - 3）任意函数都可由一个三层的网络以任意精度逼近。其两层隐藏层使用sigmoid单元、输出层使用非阈值的线性单元。
+- 1）任何的布尔函数都可以由两层单元的网络准确表示，但是所需的隐藏层神经元的数量随网络输入数量呈指数级增长；
+- 2）任意连续函数都可由一个两层的网络以任意精度逼近。这里的两层网络是指隐藏层使用sigmoid单元、输出层使用非阈值的线性单元；
+- 3）任意函数都可由一个三层的网络以任意精度逼近。其两层隐藏层使用sigmoid单元、输出层使用非阈值的线性单元。
 
 
 <h2 id="b68af9a6b20fafa771e0f2abd6ebe283"></h2>
@@ -41,9 +41,9 @@
 
 一些标记:
 
- - L 标记 神经网络的总层数
- - S₄ 表示第4层的单元数，不包括偏差单元 `bias unit`
- - k 表示第几个输出单元
+- L 标记 神经网络的总层数
+- S₄ 表示第4层的单元数，不包括偏差单元 `bias unit`
+- k 表示第几个输出单元
 
 ---
 
@@ -58,7 +58,7 @@ logistic regression cost function:
 
 注意，对于训练集的每一个样本，都需要对输出层所有的输出单元计算cost并求和。
 
- - 使用前向传播计算出 h(x), 如果有多个输出单元，h(x)是一个向量: `h(x) ∊ ℝᴷ`, `(h(x))ᵢ = iᵗʰ output`
+- 使用前向传播计算出 h(x), 如果有多个输出单元，h(x)是一个向量: `h(x) ∊ ℝᴷ`, `(h(x))ᵢ = iᵗʰ output`
    ```
     % step 1
     a_1 = [ ones( m , 1)  X ];
@@ -71,7 +71,7 @@ logistic regression cost function:
     
     hx=a_3;   
    ```
- - 左侧部分是对K个输出单元的代价函数的求和并累加, 使用和 one-vs-all的一样的方法处理y:
+- 左侧部分是对K个输出单元的代价函数的求和并累加, 使用和 one-vs-all的一样的方法处理y:
    ```
    % step 2
     J=0;
@@ -80,7 +80,7 @@ logistic regression cost function:
     end
    ```
 
- - 右侧的正则化项，需要累加除输出层外的 所有层的 Θ, 
+- 右侧的正则化项，需要累加除输出层外的 所有层的 Θ, 
    
    eg: 三层神经网络，需要处理`Θ⁽¹⁾ , Θ⁽²⁾ ` , 且一般不处理 bias unit的权
 
@@ -129,9 +129,9 @@ logistic regression cost function:
 
 ![](../imgs/Neural2_step_2_delta.png)
 
- - 没有 `δ⁽¹⁾`, 因为第1层 是training set中的feature
- - 反向传播的名字，来源于 从输出层开始计算，依次反向推算
- - 最后一个公式，提供了计算 激励值a 导数的方法, !!!重要!!!
+- 没有 `δ⁽¹⁾`, 因为第1层 是training set中的feature
+- 反向传播的名字，来源于 从输出层开始计算，依次反向推算
+- 最后一个公式，提供了计算 激励值a 导数的方法, !!!重要!!!
    
    `g'(z) = d/dz(g(z)) = g(z)(1-g(z))`
    
@@ -288,10 +288,10 @@ Theta1 = rand(10,11)*(2*INIT_EPSILON)-INIT_EPSILON;
 
 #### 训练神经网络
 
- - 随机初始化权值
- - 对每一个`x⁽ⁱ⁾` 使用前向传播算法计算 `h(x⁽ⁱ⁾)` (输出结果)
- - 计算代价函数 J(Θ) , 这里J(Θ)是非凸函数non-convex`
- - 使用反向传播算法计算 J(Θ) 对Θ的偏导数
+- 随机初始化权值
+- 对每一个`x⁽ⁱ⁾` 使用前向传播算法计算 `h(x⁽ⁱ⁾)` (输出结果)
+- 计算代价函数 J(Θ) , 这里J(Θ)是非凸函数non-convex`
+- 使用反向传播算法计算 J(Θ) 对Θ的偏导数
 
 
     计算grad 代码:
@@ -326,43 +326,43 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
 
 # What is backpropagation really doing?
 
- - Right now, all we're gonna do is to focus our attention on 1 single example:  the image of 2 (handwriting)
- - What effect should this one training example have ?  How the weights and biases get adjusted ?
- - Let's say we're at a point where the network is not well trained yet, so the activations in the output layer are gonna look pretty random. 
- - ![](../imgs/ml_backpropagation_100.png)
- - Now we can't directly change those activations, we only have influence on the weights and biases.  But it is helpful to keep track of which adjustments we wish should take place to that output layer. 
- - And since we want it to classify the image as a 2, we want that 3rd value to get nudged up, while all of the others get nudged down.
+- Right now, all we're gonna do is to focus our attention on 1 single example:  the image of 2 (handwriting)
+- What effect should this one training example have ?  How the weights and biases get adjusted ?
+- Let's say we're at a point where the network is not well trained yet, so the activations in the output layer are gonna look pretty random. 
+- ![](../imgs/ml_backpropagation_100.png)
+- Now we can't directly change those activations, we only have influence on the weights and biases.  But it is helpful to keep track of which adjustments we wish should take place to that output layer. 
+- And since we want it to classify the image as a 2, we want that 3rd value to get nudged up, while all of the others get nudged down.
     - Moreover, the sizes of these nudges should be proportional to how far away each current value is from its target value.  
     - For example, the increasing to that number 2 neurons activation is more important than the decreasing to the number 8 neuron which is already pretty close to where it should be. 
     - ![](../imgs/ml_bpg_101.png)
- - So zooming in further, let's focus just on this neuron, the one whose activation we wish to increase.  
+- So zooming in further, let's focus just on this neuron, the one whose activation we wish to increase.  
     - ![](../imgs/ml_bpg_102.png)
- - Remember that activation is defined as a certain weighted sum of all of the activations in the previous layer, plus a bias. 
+- Remember that activation is defined as a certain weighted sum of all of the activations in the previous layer, plus a bias. 
     - ![](../imgs/ml_bpg_103.png)
- - So there are 3 different avenues that can team up together to help increase that activation:
+- So there are 3 different avenues that can team up together to help increase that activation:
     - Increase b
     - Increase wᵢ  ( in proportion to aᵢ )
     - Change aᵢ from the previous layer ( in proportion to wᵢ )
- - Focusing just on how the weights should be adjusted, notice how the weights actually have differing levels of influence: 
+- Focusing just on how the weights should be adjusted, notice how the weights actually have differing levels of influence: 
     - the connections with the brightest neurons from the preceding layer have the biggest effect since those weights are multiplied by larger activation values. 
     - ![](../imgs/ml_bpg_104.png)
     - So if you were to increase one of those weights, it actually has a stronger influence on the ultimate cose function, than increasing the weights of connections with dimmer neurons, at least as far as this one training example is concerned. 
- - Remember when we talked about gradient descent, we don't just care about whether each component should get nudged up or down, we care about which ones give you the most bang for you buck.
+- Remember when we talked about gradient descent, we don't just care about whether each component should get nudged up or down, we care about which ones give you the most bang for you buck.
     - This , by the way, is at least somewhat reminiscent of a theory in neuron science for how biological networks of neurons learn **Hebbian Theory** -- offen summed up in the phrase ""neurons that fire together wire together". 
     - Here, the biggest increases to weights, the biggest strengthening of connections, happends between neurons which are the most active, and the ones which we wisht to become more active. 
     - ![](../imgs/ml_bpg_105.png)
     - In a sense, the neurons that are firing while seeing a 2, get more strongly linked to those firing when thinking about a 2. 
- - The 3rd way that we can help increase this neuron's activation is by changing all the activations in the previous layer. 
+- The 3rd way that we can help increase this neuron's activation is by changing all the activations in the previous layer. 
     - Namely, if everything connected to that digit 2 neuron with a positive weight got brighter , and everything connected with a negative weight got dimmer, then that digit 2 neuron would become more active. 
     - Of course, we cannot directly influence those activations, we only have control over the weights and biases.  
- - keep in mind, zooming out one step here, this is only what that digit 2 output neuron wants.  Remember, we also want all of the other neurons in the last layer to become less active. And each of those other output neurons has its own thoughts about what should happen to that second-to-last layer.    
+- keep in mind, zooming out one step here, this is only what that digit 2 output neuron wants.  Remember, we also want all of the other neurons in the last layer to become less active. And each of those other output neurons has its own thoughts about what should happen to that second-to-last layer.    
     - ![](../imgs/ml_bpg_106.png)
     - So the desire of this digit 2 neuron , is added together with the desires of all the other output neurons, for what should happen to this second-to-last layer. Again, in proportion to the corresponding weights, and in proportion to how much each of those neurons needs to change. 
- - This right here is where the idea of propagating backwards comes in. 
+- This right here is where the idea of propagating backwards comes in. 
     - By adding together all these desired effects, you basically get a list of nudges that you want to happen to the second-to-last layer. 
     - And once you have those, you can recursively apply the same process to the relevant weights and biases that determin those values, repeating the same process and moving backwards through the network. 
     - ![](../imgs/ml_bpg_107.png)
- - And zooming out a bit further, remember that this is all just how a single training example wishes to nudge each one of those weights and biases.
+- And zooming out a bit further, remember that this is all just how a single training example wishes to nudge each one of those weights and biases.
     - If we only listen to what that 2 wanted ,  the network would ultimately be incentivized just to classify all images as a 2. 
     - So what you do is you go through this same backprop routine for every other training example, recording how each of them would like to change the weights and biases, and you averaged together those desired changes. 
     - ![](../imgs/ml_bpg_108.png)
@@ -371,8 +371,8 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
 
 ---
 
- - Let's just sum it up .
- - Backpropagation is the algorithm for determining how a single training example would like to nudge the weights and biades,  not just in terms of whether they should go up or down, but in terms of what relative proportions to those changes cause the most rapid decrease to the cost.
+- Let's just sum it up .
+- Backpropagation is the algorithm for determining how a single training example would like to nudge the weights and biades,  not just in terms of whether they should go up or down, but in terms of what relative proportions to those changes cause the most rapid decrease to the cost.
 
 
 <h2 id="55fc63612f8fefdee49a1ba4e2d4b86c"></h2>

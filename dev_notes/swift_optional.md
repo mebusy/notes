@@ -130,7 +130,7 @@ if let isPNG = imagePaths["star"]?.hasSuffix(".png") {
 }
 ```
 
- - 这里通过在`imagePath["star"]`后面添加?来获取star所对应的图片路径
+- 这里通过在`imagePath["star"]`后面添加?来获取star所对应的图片路径
    - 如果不存在就直接是nil,
    - 如果存在则返回对应的path，然后紧接着调用path的hasSuffix方法。
 

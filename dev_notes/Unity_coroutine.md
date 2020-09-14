@@ -41,7 +41,7 @@ MonoBehaviour.enabled = false 协程会照常运行,但 gameObject.SetActive(fal
 yield 后面可以有的表达式：
 
 表达式 | 说明
- --- | ---
+--- | ---
 null | the coroutine executes the next time that it is eligible
 WaitForEndOfFrame | the coroutine executes on the frame, after all of the rendering and GUI is complete
 WaitForFixedUpdate | causes this coroutine to execute at the next physics step, after all physics is calculated

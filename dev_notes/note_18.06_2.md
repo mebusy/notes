@@ -107,17 +107,17 @@ Determinant is signed.
 p4 ~ p10
 </summary>
 
- - p4: property 2 also said , dup rows => det=0 
- - p5: elimination ( - k rowi from rowj ) doesn't change det.
+- p4: property 2 also said , dup rows => det=0 
+- p5: elimination ( - k rowi from rowj ) doesn't change det.
     - 数学上，减去的这部分 使用p3 可以分离出去，这部分的det 为0.
     - 集合上，平行四边形,底不变发生切变，面积不变
- - p6: zero row => det=0.
+- p6: zero row => det=0.
     - p3b, in case a=0,b=0 , K·det=det => det=0.
- - p7: triangular matrix, det = product of pivots
- - p8: If A is singular, then det A = 0. If A is invertible, then det A ≠ 0.
- - p9: det AB = detA * detB  (very valuable property)
+- p7: triangular matrix, det = product of pivots
+- p8: If A is singular, then det A = 0. If A is invertible, then det A ≠ 0.
+- p9: det AB = detA * detB  (very valuable property)
     - detA⁻¹
- - p10: detAᵀ = detA 
+- p10: detAᵀ = detA 
     - 行列式，所有行的性质，对列同样有效
 
 </details>
@@ -134,13 +134,13 @@ p4 ~ p10
 
 ## Formula for detA ( n! terms )
 
- - use property 3 to break down each row 
+- use property 3 to break down each row 
     - [a b c] = [a 0 0] + [0 b 0] + [0 0 c]
- - the determinant of A can be expanded into nⁿ terms 
- - a lot terms has 0 det,  they can be removed.
- - The nonzero terms have to come in different columns and rows. 
+- the determinant of A can be expanded into nⁿ terms 
+- a lot terms has 0 det,  they can be removed.
+- The nonzero terms have to come in different columns and rows. 
     - ![](../imgs/LA_det_3x3_6terms.png)
- - ![](../imgs/LA_det_bigFormula.png)
+- ![](../imgs/LA_det_bigFormula.png)
  
 <h2 id="d02910574d79a0726db429910342d33e"></h2>
 
@@ -550,7 +550,7 @@ F₁₀₀ ≈ c₁·(1.61803)¹⁰⁰.   ( the other terms involves c₂ is ign
 
 ## Recap 
 
- - eigenvalue λ
+- eigenvalue λ
     1. nxn matrix has n eigenvalues
     2. eigenvalue is allowed to be 0 ( i.e. projection matrix )
     3. sum of λ's  equals the trace of matrix,  
@@ -560,7 +560,7 @@ F₁₀₀ ≈ c₁·(1.61803)¹⁰⁰.   ( the other terms involves c₂ is ign
     6. repeated λ **MAY or may NOT** result in missing eigenvectors
     7. eigenvalue could be complex number.
         - Symmetric matrix's eigenvalues are all real. 
- - eigenvector 
+- eigenvector 
     1. Eigenvectors of sysmmetric matrix are orthogonal.  (doesn't all eigenvectors orthogonal )
     2. A matrix may have no eigenvectors.  ( ? any example ? )
 

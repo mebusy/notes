@@ -37,7 +37,7 @@
 
 ## NopCloser
 
- - 包装一个io.Reader，返回一个io.ReadCloser，而相应的Close方法啥也不做，只是返回nil
+- 包装一个io.Reader，返回一个io.ReadCloser，而相应的Close方法啥也不做，只是返回nil
 
 ```go
 rc, ok := body.(io.ReadCloser)
@@ -51,7 +51,7 @@ if !ok && body != nil {
 
 ## ReadAll
 
- - 一次性读取io.Reader中的数
+- 一次性读取io.Reader中的数
 
 ```go
 func ReadAll(r io.Reader) ([]byte, error)
@@ -62,7 +62,7 @@ func ReadAll(r io.Reader) ([]byte, error)
 
 ## ReadDir 
 
- - 读取目录并返回排好序的文件和子目录名（[]os.FileInfo)
+- 读取目录并返回排好序的文件和子目录名（[]os.FileInfo)
 
 <h2 id="123f94d76ec25eba686b6bebaa54ff9f"></h2>
 
@@ -73,15 +73,15 @@ func ReadAll(r io.Reader) ([]byte, error)
 func WriteFile(filename string, data []byte, perm os.FileMode) error
 ```
 
- - WriteFile 当文件不存在时会创建一个（文件权限由perm指定
+- WriteFile 当文件不存在时会创建一个（文件权限由perm指定
 
 <h2 id="7645f5ea033085c383ae54528cdec0b5"></h2>
 
 
 ## TempDir / TempFile
 
- - 操作系统中一般都会提供临时目录，比如linux下的/tmp目录（通过os.TempDir()可以获取到)
- - 有时候，我们自己需要创建临时目录
+- 操作系统中一般都会提供临时目录，比如linux下的/tmp目录（通过os.TempDir()可以获取到)
+- 有时候，我们自己需要创建临时目录
     - 比如 通过TempDir创建一个临时目录，用于存放编译过程的临时文件
     
 ```go
@@ -89,8 +89,8 @@ b.work, err = ioutil.TempDir("", "go-build")
 f1, err := ioutil.TempFile("", "gofmt")
 ```
 
- - 第一个参数如果为空，表明在系统默认的临时目录（os.TempDir）中创建临时目录
- - 第二个参数指定临时目录名的前缀，该函数返回临时目录的路径
+- 第一个参数如果为空，表明在系统默认的临时目录（os.TempDir）中创建临时目录
+- 第二个参数指定临时目录名的前缀，该函数返回临时目录的路径
 
 注意：创建者创建的临时文件和临时目录要负责删除这些临时目录和文件。如删除临时文件：
 
@@ -106,8 +106,8 @@ defer func() {
 
 ## Discard 变量
 
- - Discard 对应的类型（type devNull int）实现了io.Writer接口
- - 同时，为了优化io.Copy到Discard，避免不必要的工作，实现了io.ReaderFrom接口。
+- Discard 对应的类型（type devNull int）实现了io.Writer接口
+- 同时，为了优化io.Copy到Discard，避免不必要的工作，实现了io.ReaderFrom接口。
 
 devNull 在实现io.Writer接口时，只是简单的返回
 
@@ -131,7 +131,7 @@ func (devNull) Write(p []byte) (int, error) {
 
 ## 3.1 sort
 
- - sort.Interface
+- sort.Interface
 
 ```go
 type Interface interface {
@@ -150,22 +150,22 @@ type Interface interface {
 
 ### Reverse()
 
- - Reverse()返回的一个sort.Interface接口类型
+- Reverse()返回的一个sort.Interface接口类型
 
 <h2 id="eda22ee94ca4659a94510e901fc6b03a"></h2>
 
 
 ### Search()
 
- - 使用“二分查找”算法
- - 数组必须已经升序排序
+- 使用“二分查找”算法
+- 数组必须已经升序排序
 
 <h2 id="98e48d4176430b53d9240ea51e7a71bd"></h2>
 
 
 ### sort包已经支持的内部数据类型排序
 
- - sort包原生支持[]int、[]float64和[]string三种内建数据类型切片的排序操作
+- sort包原生支持[]int、[]float64和[]string三种内建数据类型切片的排序操作
     - 即不必我们自己实现相关的Len()、Less()和Swap()方法。
 
 ```go
@@ -238,8 +238,8 @@ heap.Pop(h)
 
 ### 3.3.2 list 链表
 
- - 链表就是一个有prev和next指针的数组了。
- - 它维护两个type，(注意，这里不是interface)
+- 链表就是一个有prev和next指针的数组了。
+- 它维护两个type，(注意，这里不是interface)
 
 ```go
 type Element struct {
@@ -268,7 +268,7 @@ type List struct {
 
 ### 3.3.3 ring
 
- - ring 不需要像list一样保持list和element两个结构，只需要保持一个结构就行
+- ring 不需要像list一样保持list和element两个结构，只需要保持一个结构就行
 
 ```go
 type Ring struct {
@@ -277,8 +277,8 @@ type Ring struct {
 }
 ```
 
- - 初始化环的时候，需要定义好环的大小，然后对环的每个元素进行赋值
- - 环还提供一个Do方法，能便利一遍环，对每个元素执行一个function
+- 初始化环的时候，需要定义好环的大小，然后对环的每个元素进行赋值
+- 环还提供一个Do方法，能便利一遍环，对每个元素执行一个function
 
 ```go
     ring := ring.New(3)

@@ -68,23 +68,23 @@
 
 #### Partition and Summarize
 
- - A commonly used strategy for processing large input data sets
+- A commonly used strategy for processing large input data sets
     - There is no required order of processing elements in a data set (associative 结合 and commutative 可 交换)
         - associative: `(A*B)*C = A*(B*C)`  
         - commutative: `a+b = b+a`
     - Partition the data set into smaller chunks
     - Have each thread to process a chunk
     - Use a reduction tree to summarize the results from each chunk into the final answer
- - Google and Hadoop MapReduce frameworks support this strategy
- - We will focus on the reduction tree step for now.
+- Google and Hadoop MapReduce frameworks support this strategy
+- We will focus on the reduction tree step for now.
 
 <h2 id="cf261a00e1b4f2b9a8f4dd4b1f2f00fa"></h2>
 
 
 #### Reduction enables other techniques
 
- - Reduction is also needed to clean up after some commonly used parallelizing transformations
- - Privatization
+- Reduction is also needed to clean up after some commonly used parallelizing transformations
+- Privatization
     - Multiple threads write into an output location 
     - Replicate the output location into many locations so that each thread has a private output location
     - Use a reduction tree to combine the values of private locations into the original output location
@@ -94,13 +94,13 @@
 
 #### What is a reduction computation?
 
- - Mathmatically a reduction is a computation that summarize a set of input values into one value using a “reduction operation”
+- Mathmatically a reduction is a computation that summarize a set of input values into one value using a “reduction operation”
     - Max
     - Min
     - Sum
     - Product
     - all those operators are both associative and commutative , so that's we can use reduction. 
- - Often with user defined reduction operation function as long as the operation
+- Often with user defined reduction operation function as long as the operation
     - Is associative and commutative
     - Has a well-defined identity value (e.g., 0 for sum)
 
@@ -111,12 +111,12 @@
 
 We can write a fairly efficient sequential reduction program by following this procedure: 
 
- - Initialize the result as an identity value for the reduction operation
+- Initialize the result as an identity value for the reduction operation
     - Smallest possible value for max reduction
     - Largest possible value for min reduction
     - 0 for sum reduction
     - 1 for product reduction
- - Iterate through the input and perform the reduction operation between the result value and the current input value
+- Iterate through the input and perform the reduction operation between the result value and the current input value
     - N reduction operations performed for N input values
 
 <h2 id="d4047f39a5dfe14c06d3bd67fc2c0c02"></h2>
@@ -140,7 +140,7 @@ perferms N-1 Operations in log(N)
 
 #### A Quick Analysis
 
- - For N input values, the reduction tree performs
+- For N input values, the reduction tree performs
     - (1/2)N + (1/4)N + (1/8)N + … (1)N = (1- (1/N))N = N-1 operations 
     - In Log (N) steps – 1,000,000 input values take 20 steps
         - Assuming that we have enough execution resources 
@@ -164,10 +164,10 @@ perferms N-1 Operations in log(N)
 
 #### Parallel Sum Reduction
 
- - Parallel implementation:
+- Parallel implementation:
     - Recursively half # of threads, add two values per thread in each step 
     - Takes log(n) steps for n elements, requires n/2 threads
- - Assume an in-place reduction using shared memory
+- Assume an in-place reduction using shared memory
     - The original vector is in device global memory
     - The shared memory is used to hold a partial sum vector
     - Each step brings the partial sum vector closer to the sum
@@ -187,18 +187,18 @@ perferms N-1 Operations in log(N)
 
 #### A Naive Thread Index to Data Mapping
 
- - Each thread is responsible of an even-index location of the partial sum vector
- - After each step, half of the threads are no longer needed
- - One of the inputs is always from the location of responsibility
- - In each step, one of the inputs comes from an increasing distance away
+- Each thread is responsible of an even-index location of the partial sum vector
+- After each step, half of the threads are no longer needed
+- One of the inputs is always from the location of responsibility
+- In each step, one of the inputs comes from an increasing distance away
 
 <h2 id="6a3a05ba1420deecba6fcec0f888a3ce"></h2>
 
 
 #### A Simple Thread Block Design
 
- - Each thread block takes 2* BlockDim.x input elements
- - Each thread loads 2 elements into shared memory
+- Each thread block takes 2* BlockDim.x input elements
+- Each thread loads 2 elements into shared memory
 
 ```
 #shared memory,deal data 2 times #threads in a block
@@ -228,7 +228,7 @@ for (unsigned int stride = 1; stride <= blockDim.x; stride *= 2) {
 
 Why do we need `__syncthreads()`?
 
- - `__syncthreads()` are needed to ensure that all elements of each version of partial sums have been generated before we proceed to the next step
+- `__syncthreads()` are needed to ensure that all elements of each version of partial sums have been generated before we proceed to the next step
     - 1st call is to ensure all datas loaded
     - next call is to ensure all sum in this step done
 
@@ -238,10 +238,10 @@ Why do we need `__syncthreads()`?
 
 #### Back to the Global Picture
 
- - At the end of the kernel, Thread 0 in each thread block writes the sum of the thread block in partialSum[0] into a vector indexed by the blockIdx.x
- - There can be a large number of such sums if the original vector is very large
+- At the end of the kernel, Thread 0 in each thread block writes the sum of the thread block in partialSum[0] into a vector indexed by the blockIdx.x
+- There can be a large number of such sums if the original vector is very large
     - The host code may iterate and launch another kernel 
- - If there are only a small number of sums, the host can simply transfer the data back and add them together.
+- If there are only a small number of sums, the host can simply transfer the data back and add them together.
 
 <h2 id="9c4fcd7e9f05381d1cd36268b6b9ed1f"></h2>
 
@@ -253,10 +253,10 @@ Why do we need `__syncthreads()`?
 
 #### Some Observations on the naïve reduction kernel
 
- - In each iteration, two control flow paths will be sequentially traversed for each warp
+- In each iteration, two control flow paths will be sequentially traversed for each warp
     - Threads that perform addition and threads that do not  
     - Threads that do not perform addition still consume execution resources
- - Half or fewer of threads will be executing after the first step
+- Half or fewer of threads will be executing after the first step
     - All odd-index threads are disabled after first step
     - After the 5th step, entire warps in each block will fail the if test, poor resource utilization but no divergence
         - This can go on for a while, up to 6 more steps (stride = 32, 64, 128, 256, 512, 1024), where each active warp only has one productive thread until all warps in a block retire.
@@ -266,10 +266,10 @@ Why do we need `__syncthreads()`?
 
 #### Thread Index Usage Matters
 
- - In some algorithms, one can shift the index usage to improve the divergence behavior
+- In some algorithms, one can shift the index usage to improve the divergence behavior
     - Commutative and associative operators
- - Always compact the partial sums into the front locations in the partialSum[] array
- - Keep the active threads consecutive
+- Always compact the partial sums into the front locations in the partialSum[] array
+- Keep the active threads consecutive
         
 <h2 id="ef3182056377764da7c1a9a822b66541"></h2>
 
@@ -297,7 +297,7 @@ for (unsigned int stride = blockDim.x; stride > 0; stride /= 2)
 
 #### A Quick Analysis
 
- - For a 1024 thread block
+- For a 1024 thread block
     - No divergence in the first 5 steps
         - 1024, 512, 256, 128, 64, 32 consecutive threads are active in each step 
         - All threads in each warp either all active or all inactive
@@ -333,13 +333,13 @@ Inclusive: all elements in the cumulative
 
 #### An Inclusive Scan Application Example
 
- - Assume that we have a 100-inch sausage to feed 10 person
- - We know how much each person wants in inches 
+- Assume that we have a 100-inch sausage to feed 10 person
+- We know how much each person wants in inches 
     - [3 5 2 7 28 4 3 0 8 1]
- - How do we cut the sausage quickly? 
- - How much will be left
- - Method 1: cut the sections sequentially: 3 inches first, 5 inches second, 2 inches third, etc. 
- - Method 2: calculate prefix sum:
+- How do we cut the sausage quickly? 
+- How much will be left
+- Method 1: cut the sections sequentially: 3 inches first, 5 inches second, 2 inches third, etc. 
+- Method 2: calculate prefix sum:
     - [3, 8, 10, 17, 45, 49, 52, 52, 60, 61] (39 inches left)
     - 现在我们知道每次切割下刀的位置，这样就可以用10把刀同时切割
 
@@ -348,18 +348,18 @@ Inclusive: all elements in the cumulative
 
 #### Typical Applications of Scan
 
- - Scan is a simple and useful parallel building block
+- Scan is a simple and useful parallel building block
     - Convert recurrences from sequential :
 ```
 for(j=1;j<n;j++)
     out[j] = out[j-1] + f(j);
 ```
- - into parallel:
+- into parallel:
 ```
 forall(j) { temp[j] = f(j) };
 scan(out, temp);
 ```
- - Useful for many parallel algorithms:
+- Useful for many parallel algorithms:
     - Radix sort,Quicksort,String comparison,Lexical analysis,Stream compaction,Polynomial evaluation,Solving recurrences,Tree operations,Histograms, ....
 
 <h2 id="20ec4d167d8798728069d999936fe733"></h2>
@@ -367,21 +367,21 @@ scan(out, temp);
 
 #### Other Applications
 
- - Assigning camp slots
- - Assigning farmer market space
- - Allocating memory to parallel threads
- - Allocating memory buffer for communication channels
- - ...
+- Assigning camp slots
+- Assigning farmer market space
+- Allocating memory to parallel threads
+- Allocating memory buffer for communication channels
+- ...
 
 <h2 id="613761fdbf6491219db20c19d42aac9c"></h2>
 
 
 #### An Inclusive Sequential Addition Scan
 
- - Given a sequence [x₀, x₁, x₂, ... ]
- - Calculate output [y₀, y₁, y₂, ... ]
- - Such that: y₀=x₀, y₁=x₀+x₁, y₂=x₀+x₁+x₂, ...
- - Using a recursive definition: `yᵢ= yᵢ₋₁ + xᵢ`
+- Given a sequence [x₀, x₁, x₂, ... ]
+- Calculate output [y₀, y₁, y₂, ... ]
+- Such that: y₀=x₀, y₁=x₀+x₁, y₂=x₀+x₁+x₂, ...
+- Using a recursive definition: `yᵢ= yᵢ₋₁ + xᵢ`
 
 <h2 id="a64e5c3e49a52ec193d3027296c4839e"></h2>
 
@@ -398,16 +398,16 @@ for (i = 1; i < Max_i; i++)
 
 Computationally efficient:
 
- - N additions needed for N elements - O(N)
- - Only slightly more expensive than sequential reduction.
+- N additions needed for N elements - O(N)
+- Only slightly more expensive than sequential reduction.
 
 <h2 id="bc02aadae515035b9956a8fe671eca93"></h2>
 
 
 #### A Naive Inclusive Parallel Scan
 
- - Assign one thread to calculate each y element
- - Have every thread to add up all x elements needed for the y element:
+- Assign one thread to calculate each y element
+- Have every thread to add up all x elements needed for the y element:
     - thread 0 do y₀=x₀, thread 1 do y₁=x₀+x₁, ...
 
 this is really naive and ridiculous.
@@ -433,12 +433,12 @@ this is really naive and ridiculous.
 
 ![](../imgs/parallelScanAlgorithm.png)
 
- - Active threads stride to n-1 (n-stride threads)
- - Thread j adds elements j and `j-stride` from shared memory and writes result into element j in shared memory
+- Active threads stride to n-1 (n-stride threads)
+- Thread j adds elements j and `j-stride` from shared memory and writes result into element j in shared memory
     - 1次迭代，结果是2个数的和
     - 2次迭代，结果是4个数的和(2+2)
     - 3次迭代，结果是8个数的和(4+4)
- - Requires barrier synchronization, once before read and once before write
+- Requires barrier synchronization, once before read and once before write
     - 因为 add的结果会破坏输入数据，所以在write之前需要一次同步。 
 
 <h2 id="dffe84b2187f1e40e27cdeacefeefacb"></h2>
@@ -446,7 +446,7 @@ this is really naive and ridiculous.
 
 #### Handling Dependencies
 
- - During every iteration, each thread can overwrite the input of another thread.
+- During every iteration, each thread can overwrite the input of another thread.
     - Barrier synchronization to ensure all inputs have been properly generated
     - All threads secure input operand 操作数 that can be overwritten by another thread
     - Barrier synchronization to ensure that all threads have secured their inputs
@@ -489,13 +489,13 @@ __global__ void scan_kernel(float *X, float *Y, int InputSize) {
 
 #### Work Efficiency Considerations
 
- - This Scan executes log(n) parallel iterations
+- This Scan executes log(n) parallel iterations
     - The steps do (n-1), (n-2), (n- 4),..(n- n/2) adds each 
     - Total adds: n * log(n) - (n-1)  O(n*log(n)) work
- - This scan algorithm is not work efficient
+- This scan algorithm is not work efficient
     - Sequential scan algorithm does n adds
     - A factor of log(n) can hurt: 10x for 1024 elements!
- - ***A parallel algorithm can be slower than a sequential one when execution resources are saturated from low work efficiency***.
+- ***A parallel algorithm can be slower than a sequential one when execution resources are saturated from low work efficiency***.
 
  
 <h2 id="ca5e0cd6c706332a25e7d1ecbf3344a5"></h2>
@@ -503,20 +503,20 @@ __global__ void scan_kernel(float *X, float *Y, int InputSize) {
 
 ### Lecture 4.6: Parallel Computation Patterns - A Work-Efficient Parallel Scan Kernel 
 
- - Two-phased balanced tree traversal
- - Aggressive reuse of computation results
- - Reducing control divergence with more complex thread index to data index mapping
+- Two-phased balanced tree traversal
+- Aggressive reuse of computation results
+- Reducing control divergence with more complex thread index to data index mapping
 
 <h2 id="d9bdb0942bdb7d67ba698a9e5b01c726"></h2>
 
 
 #### Improving Efficiency
 
- - Balanced Trees
+- Balanced Trees
     - Form a balanced binary tree on the input data and sweep it to and from the root
     - Tree is not an actual data structure, but a concept to determine what each thread does at each step
         - at each iteration or each step which thread should be taking action and how the action should be done?
- - For scan:
+- For scan:
     - Traverse down from leaves to root building partial sums at internal nodes in the tree 
         - building a partial sum at the intermediate internal nodes in the tree
         - at each step whenever we compute a partial sum, we will be updating one of the data elements in the shared memory
@@ -530,7 +530,7 @@ __global__ void scan_kernel(float *X, float *Y, int InputSize) {
 
 ![](../imgs/parallel_scan_reduction.png)
 
- - start by having all the elements in the shared memory array
+- start by having all the elements in the shared memory array
 
 <h2 id="0371410754a0b5e9631ddc1c1382fec7"></h2>
 
@@ -559,10 +559,10 @@ for (int stride = 1;stride <= BLOCK_SIZE; stride *= 2) {
 
 #### Parallel Scan - Post Reduction Reverse Phase
 
- - after we have all these partial results in these element positions
- - we will start to sweep back from the root back to the leaves
- - the point of the computation is to as quickly as possible assemble the final result from the partial sums.
- - allows us to do just one more step and bring everyone to the final value.
+- after we have all these partial results in these element positions
+- we will start to sweep back from the root back to the leaves
+- the point of the computation is to as quickly as possible assemble the final result from the partial sums.
+- allows us to do just one more step and bring everyone to the final value.
 
 ![](../imgs/parallel_scan_post_reduction.png)
 
@@ -571,7 +571,7 @@ for (int stride = 1;stride <= BLOCK_SIZE; stride *= 2) {
 
 #### Putting it together
  
- - 16 elements case
+- 16 elements case
 
 ![](../imgs/parallel_scan_put_together.png)
 
@@ -606,21 +606,21 @@ if (i < InputSize) Y[i] = XY[threadIdx.x];
 
 ### Lecture 4.7: Parallel Computation Patterns - More on Parallel Scan
 
- - Exclusive scan
- - Handling large input vectors
+- Exclusive scan
+- Handling large input vectors
  
 <h2 id="f6f7f1fff77178ee96105850c0e22231"></h2>
 
 
 #### Work Analysis of the Work Efficient Kernel
 
- - kernel executes log(n) parallel iterations in the reduction step
+- kernel executes log(n) parallel iterations in the reduction step
     - The iterations do n/2, n/4,..1 adds 
     - Total adds: (n-1) → O(n) work
- - It executes log(n)-1 parallel iterations in the post reduction reverse step
+- It executes log(n)-1 parallel iterations in the post reduction reverse step
     - The iterations do 2-1, 4-1, …. n/2-1 adds
     - Total adds: (n-2) – (log(n)-1) → O(n) work
- - The total number of adds is no more than twice of that done in the efficient sequential algorithm
+- The total number of adds is no more than twice of that done in the efficient sequential algorithm
     - The benefit of parallelism can easily overcome the 2X work when there is sufficient hardware 
     
 
@@ -629,10 +629,10 @@ if (i < InputSize) Y[i] = XY[threadIdx.x];
 
 #### Some Tradeoffs
 
- - The work efficient scan kernel is normally more desirable
+- The work efficient scan kernel is normally more desirable
     - Better Energy efficiency
     - Less execution resource requirement
- - However, the work inefficient kernel could be better for absolute performance due to its single-step nature if
+- However, the work inefficient kernel could be better for absolute performance due to its single-step nature if
     - There is sufficient execution resource 
     
 
@@ -655,17 +655,17 @@ and returns the array:
 
 Example:
 
- - if ⊕ is addition
- - array:  [3 1 7  0  4  1  6  3]
- - return: [0 3 4 11 11 15 16 22]
+- if ⊕ is addition
+- array:  [3 1 7  0  4  1  6  3]
+- return: [0 3 4 11 11 15 16 22]
  
 <h2 id="96e50a65e67dd5e28805f5dcc664fd7f"></h2>
 
 
 #### Why Exclusive Scan
 
- - To find the beginning address of allocated buffers
- - Inclusive and exclusive scans can be easily derived from each other; it is a matter of convenience
+- To find the beginning address of allocated buffers
+- Inclusive and exclusive scans can be easily derived from each other; it is a matter of convenience
     -            [3 1 7 0 4 1 6 3]
     - exclusive: [0 3  4 11 11 15 16 22]
     - inclusive: [3 4 11 11 15 16 22 25]
@@ -676,13 +676,13 @@ Example:
 
 #### A simple exclusive scan kernel
 
- - Adapt an inclusive, work in-efficient scan kernel
- - Block 0:
+- Adapt an inclusive, work in-efficient scan kernel
+- Block 0:
     - Thread 0 loads 0 into XY[0]
     - Other threads load X[threadIdx.x-1] into XY[threadIdx.x]
- - All other blocks:
+- All other blocks:
     - All thread load X[blockIdx.x*blockDim.x+threadIdx.x-1] into XY[threadIdex.x] 
- - Similar adaption for work efficient scan kernel but pay attention that each thread loads two elements
+- Similar adaption for work efficient scan kernel but pay attention that each thread loads two elements
     - Only one zero should be loaded
     - All elements should be shifted by only one position
 
@@ -691,12 +691,12 @@ Example:
 
 #### Handling large Input Vectors
 
- - Build on the work efficient scan kernel 
- - Have each section of 2*blockDim.x elements assigned to a block
- - Have each block write the sum of its section into a ***Sum[]*** array indexed by blockIdx.x
- - Run the scan kernel on the ***Sum[]*** array
- - Add the scanned ***Sum[]*** array values to the elements of corresponding sections
- - Adaptation of work inefficient kernel is similar.
+- Build on the work efficient scan kernel 
+- Have each section of 2*blockDim.x elements assigned to a block
+- Have each block write the sum of its section into a ***Sum[]*** array indexed by blockIdx.x
+- Run the scan kernel on the ***Sum[]*** array
+- Add the scanned ***Sum[]*** array values to the elements of corresponding sections
+- Adaptation of work inefficient kernel is similar.
 
 
 

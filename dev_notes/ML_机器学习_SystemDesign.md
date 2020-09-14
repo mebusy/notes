@@ -38,8 +38,8 @@ eg. **deal, buy, discount** ,(likely to be spam) **andrew, now**,(likely to be n
 
 We set the feature to 1 if the feature (word) appears in email , while set to 0 if it doesn't appear in email.
 
- - Xⱼ=1 , if word j appears in email
- - Xⱼ=0 , otherwise
+- Xⱼ=1 , if word j appears in email
+- Xⱼ=0 , otherwise
 
 **Note: In practice, take most frequently occurring n words( 10k < n < 50k ) in training set , rather than manually pick 100 words.**
 
@@ -50,10 +50,10 @@ We set the feature to 1 if the feature (word) appears in email , while set to 0 
 
 #### how 2 spend your time to make it have low error
 
- - collect lots of data , eg. "honeypot" project
- - develop sophisticated features based on email routing infomation(from email header)
- - develop sophisticated features for message body
- - develop sophisticated algorithm to detect misspellings.
+- collect lots of data , eg. "honeypot" project
+- develop sophisticated features based on email routing infomation(from email header)
+- develop sophisticated features for message body
+- develop sophisticated algorithm to detect misspellings.
 
 
 <h2 id="7f9ed9579be60a55e194a10a58934676"></h2>
@@ -133,8 +133,8 @@ Algorithm1 | 0.5 | 0.4  |0.45|0.444
 Algorithm2 | 0.7 | 0.1  |0.4|0.175
 Algorithm3 | 0.02 | 1.0 |0.51|0.0392
 
- - 最差的情况， P=0 or R=0, F₁Score=0 ,
- - 最好的情况， P=1 and R=1, F₁Score =1.
+- 最差的情况， P=0 or R=0, F₁Score=0 ,
+- 最好的情况， P=1 and R=1, F₁Score =1.
 
 
  

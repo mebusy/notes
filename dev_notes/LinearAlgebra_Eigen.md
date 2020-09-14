@@ -81,13 +81,13 @@ At the initial time t = 0, u equals u(0) because e⁰ = 1. The derivative of e�
 
 We shall take a direct approach to systems, and look for solutions with the *same exponential dependence* on *t* just found in the scalar case:
 
- - v(t) = e<sup>λ</sup>ᵗy
+- v(t) = e<sup>λ</sup>ᵗy
 
- - w(t) = e<sup>λ</sup>ᵗz &nbsp;&nbsp;&nbsp;&nbsp;(5)
+- w(t) = e<sup>λ</sup>ᵗz &nbsp;&nbsp;&nbsp;&nbsp;(5)
 
 or in vector notation:
 
- - u(t) = e<sup>λ</sup>ᵗx. &nbsp;&nbsp;&nbsp;&nbsp;(6)
+- u(t) = e<sup>λ</sup>ᵗx. &nbsp;&nbsp;&nbsp;&nbsp;(6)
 
 This is the whole key to differential equations du/dt = Au:  ***Look for pure exponential solutions***. Substituting v = e<sup>λ</sup>ᵗy and w = e<sup>λ</sup>ᵗz into the equation, we find
 
@@ -131,8 +131,8 @@ Notice that Ax = λx is a nonlinear equation; λ multiplies x. If we could disco
 The identity matrix keeps matrices and vectors straight; the equation (A - λ)x = 0 is
 shorter, but mixed up. This is the key to the problem:
 
- - ***The vector x is in the nullspace of A - λI***.
- - ***The number λ, is chosen so that A - λI has a nullspace***.
+- ***The vector x is in the nullspace of A - λI***.
+- ***The number λ, is chosen so that A - λI has a nullspace***.
 
 Of course every matrix has a nullspace. We want a *nonzero* eigenvector x.  The goal is to build u(t) out of exponentials e<sup>λ</sup>ᵗx , and we are interested only in those particular values λ for which there is a nonzero eigenvector x.  To be of any use, the nullspace of A - λI must contain vectors other than zero. In short, A - λI ***must be singular***.
 
@@ -468,8 +468,8 @@ A = ⎡3 1⎤  and A = ⎡2 -1⎤.
 
 Their eigenvalues are 3, 3 and 1, 1. They are not singular! The problem is the shortage of eigenvectors -- which are needed for S. That needs to be emphasized:
 
- - ***Diagonalizability of A depends on enough eigenvectors***. 
- - ***Invertibility of A depends on nonzero eigenvalues***.
+- ***Diagonalizability of A depends on enough eigenvectors***. 
+- ***Invertibility of A depends on nonzero eigenvalues***.
 
 There is no connection between diagonalizability (n independent eigenvectors) and invertibility (no zero eigenvalues). 
 
@@ -838,10 +838,10 @@ This is true no matter what the initial distribution may have been ! If the year
 
 **5I**  A Markov matrix A has all aᵢⱼ > 0, with each column adding to 1.
 
- - λ₁ = 1 is an eigenvalue of A.
- - Its eigenvector x₁ is nonnegative -- and it is a steady state, since Ax₁ = x₁.
- - The other eigenvalues satisfy |λᵢ| ≤ 1
- - If A or any power of A has all *positive* entries, these other |λᵢ|  are below 1. The solution Aᵏu₀ approaches a multiple of x₁ -- which is the steady state u∞. 
+- λ₁ = 1 is an eigenvalue of A.
+- Its eigenvector x₁ is nonnegative -- and it is a steady state, since Ax₁ = x₁.
+- The other eigenvalues satisfy |λᵢ| ≤ 1
+- If A or any power of A has all *positive* entries, these other |λᵢ|  are below 1. The solution Aᵏu₀ approaches a multiple of x₁ -- which is the steady state u∞. 
 
 We note that many authors transpose the matrix so its rows add to 1.
 

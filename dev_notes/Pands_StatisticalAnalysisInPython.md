@@ -20,7 +20,7 @@
 
 ## Distributions
 
- - numpy 提供了大量的方法，可以帮助模拟分布
+- numpy 提供了大量的方法，可以帮助模拟分布
 
 ```python
 import pandas as pd
@@ -52,8 +52,8 @@ print('{} tornadoes back to back in {} years'.format(two_days_in_a_row, 1000000/
 
 ## More Distributions
 
- - expected value
- - variance
+- expected value
+- variance
     - Variance is a measure of how badly values of  samples are spread out from the mean.
 
 <h2 id="9b3ddce31a3cfefd07476ea6ac4e9049"></h2>
@@ -61,10 +61,10 @@ print('{} tornadoes back to back in {} years'.format(two_days_in_a_row, 1000000/
 
 ### five different characteristics of distributions
 
- - 1. distribution central tendency
+- 1. distribution central tendency
     - where the bulk of probability is in the distribution
     - the measures we would use for this are mode, median, or mean
- - 2. variability
+- 2. variability
     - There are a couple of ways we can speak of this. 
     - The standard deviation is one, the interquartile range is another.
         - The standard deviation is simply a measure of how different each item, in our sample, is from the mean. 
@@ -75,7 +75,7 @@ np.std(distribution)`
 0.99370704889590811
 ```
 
- - 3. kurtosis 
+- 3. kurtosis 
     - the shape of the tales of the distribution 
     - A negative value means the curve is slightly more flat than a normal distribution,  and a positive value means the curve is slightly more peaky than a normal distribution. 
 
@@ -85,7 +85,7 @@ stats.kurtosis(distribution)
 -0.0481732500281975
 ```
 
- - 4. Skew
+- 4. Skew
     - We could also move out of the normal distributions and push the peak of the curve one way or the other.And this is called the skew. 
 
 ![](../imgs/pandas_distribution_skew.png)
@@ -103,7 +103,7 @@ stats.skew(chi_squared_df5)
 1.1655454249202595
 ```
 
- - 5. modality. 
+- 5. modality. 
     - So far, all of the distributions I've shown have a single high point, a peak. But what if we have multiple peaks? 
 
 ![](../imgs/pandas_distribtuion_bimodal.png)
@@ -118,7 +118,7 @@ stats.skew(chi_squared_df5)
 
 ## Hypothesis Testing in Python
 
- - Hypothesis : A statement we can test
+- Hypothesis : A statement we can test
     - Alternativ hypothesis: Our idea, e.g. there is a difference between groups
     - Null hypothesis: The alternative of our idea, e,g. there is no difference between groups
 
@@ -147,10 +147,10 @@ assignment6_grade    43.844384
 dtype: float64
 ```
  
- - the difference seems very small ?
+- the difference seems very small ?
  
 
- - Critical Value alpha
+- Critical Value alpha
     - The threshold as to how much chance you are willing to accept
     - Typical values in social sciences are 0.1 , 0.05, or 0.01
 
@@ -160,14 +160,14 @@ stats.ttest_ind(early['assignment1_grade'], late['assignment1_grade'])
 Ttest_indResult(statistic=1.400549944897566, pvalue=0.16148283016060577)
 ```
 
- - The result is a two with a test statistic and a p-value. 
- - The p-value here is much larger than our 0.05. 
+- The result is a two with a test statistic and a p-value. 
+- The p-value here is much larger than our 0.05. 
     - So we cannot reject the null hypothesis, which is that the two populations are the same. 
     - we would say that there's no statistically significant difference between these two sample means. 
 
 ---
 
- - **p-hacking** , or Dredging
+- **p-hacking** , or Dredging
     - Doing many tests until you find one which is of statistical significance
     - At a confidence level of 0.05, we expect to find one positive result I time out of 20 tests
     - Remedies:

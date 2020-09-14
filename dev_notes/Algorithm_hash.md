@@ -32,7 +32,7 @@
 
 # 概览: 摘自算法导论
 
- - 映射方法
+- 映射方法
     1. 除法
         - `h(k)= k mod m`
         - pick m to be a ***prime*** , not too close to a power of 2 or 10
@@ -43,7 +43,7 @@
         - A is an odd integer `2ʷ⁻¹ < A < 2ʷ`
         - Don't pick A too close to 2ʷ⁻¹ or 2ʷ
  
- - 映射冲突解决方法
+- 映射冲突解决方法
     - 链表法
         - 在冲突位置添加新节点
     - open addressing
@@ -58,12 +58,12 @@
             - if the table is half full, then the expected number of probes is 1/(1-0.5)=2  
             - if the table is 90% full, then the expected number of probes is 1/(1-0.9)=10
  
- - Universal hashing
+- Universal hashing
     - hash函数的弱点: 总能找到一组key, 使得hashing到同一个slot i
     - 解决方案: choose the hash function at random, independently of the keys
     - the chance of a collision between x and y is 1/m if we choose h randomly from H.
 
- - 构造 Universal hashing
+- 构造 Universal hashing
     - let `m` be prime
     - `k=<k₀,k₁,...kᵣ>` , 0 <= kᵢ < m
         - decompose key k into r+1 digits
@@ -77,7 +77,7 @@
     - Fact from number theory
         - Theorem: let m be prime. For any z ∈ Zm such that z ≠ 0, there exists a unique z⁻¹ ∈ Zm , such that `z·z⁻¹=1 (mod m)`
         
- - Perfect hashing
+- Perfect hashing
     - 给定一组键集,构建一个静态hash table, 如果要查某个key是否在表中，在最坏的情况下，怎么做的做好。
     - eg: 假定表中存的是1000个最常用英文单词，判断一个单词是否是常用单词，我要的不是预期的性能，我要确保最坏情况的性能。有没有相应的建表方法，能让我快速的查找。
     - Given n keys, construct a static hash table of size m=O(n) (不需要很大的表)，使得在最坏的情况下，查找的时间是O(1).
@@ -121,7 +121,7 @@
 
 要统计最热门查询，首先就是要统计每个Query出现的次数，然后根据统计结果，找出Top 10。所以我们可以基于这个思路分两步来设计该算法。
 
- - 第一步：Query统计
+- 第一步：Query统计
     Query统计有以下俩个方法，可供选择：
     1. 直接排序法
         - 一千万条记录，每条记录是255Byte，很显然要占据2.375G内存，直接排序无法满足内存需求
@@ -129,7 +129,7 @@
         - 排完序之后我们再对已经有序的Query文件进行遍历，统计每个Query出现的次数，再次写入文件中。
     2. Hash Table法
         - 维护一个Key为Query字串，Value为该Query出现次数的HashTable 
- - 第二步：找出Top 10
+- 第二步：找出Top 10
     - 算法一：普通排序
     - 算法二：堆排序
 
@@ -153,16 +153,16 @@ All operations in O(1) time!
 
 **Applications**:
 
- - de-duplication  处理重复条目
- - the 2-SUM problem 
+- de-duplication  处理重复条目
+- the 2-SUM problem 
     - Input: unsorted array A  of n integers  
     - determine whether or not there are two numbers x,y = t
     - Naive solution: O(n²)
     - Better :  (1) sort A ( O(nlogn) ) .  (2) for each x in A , look t-x in A via binary seach ( O(nlogn) )
     - Amazing ： (1） insert elements into hash table H ,O(n).  (2) for each x in A, look up t-x in H , O(n)
- - symbol tables in compilers
- - black list
- - search algorithms , eg. in a chess playing program , the game tree exploration
+- symbol tables in compilers
+- black list
+- search algorithms , eg. in a chess playing program , the game tree exploration
     - use hash table to avoid exploring any configuration more than once.
 
 <h2 id="92ffd2c2de9bc0f3039d04a65c39a0ee"></h2>
@@ -191,13 +191,13 @@ All operations in O(1) time!
 
 Collision: distinct x,y∈U, such that h(x)=h(y)
 
- - Solution#1: separate chaining
+- Solution#1: separate chaining
     - keep a link list in each bucket
     - 1 -> A
     - 2 -> nil
     - 3 -> B -> D
     - 4 -> C
- - Solution#2: open addressing
+- Solution#2: open addressing
     - only 1 object per bucket
     - hash function replaced by probe sequence hs₁(x),h₂(x),...
     
@@ -251,11 +251,11 @@ hash函数选择，针对字符串，整数，排列，具体相应的hash方法
 
 ## Hash Tables: Implementation Details, Part II
 
- -  **Note**: in hash table with chaining, Insert is θ(1)
+-  **Note**: in hash table with chaining, Insert is θ(1)
     - insert new object x at front of list in A[h(x)]
     - O( list length ) for Insert / Delete
- - **Point**: performance depends on the choice of hash function
- - Properties of a *Good* Has Function:
+- **Point**: performance depends on the choice of hash function
+- Properties of a *Good* Has Function:
     1. should lead to good performance 
         - ie, should "spread data out" 
         - gold standard: completely random hashing
@@ -320,9 +320,9 @@ Google的爬虫每天需要抓取大量的网页。于是就有一个问题：�
 
 在传统的Bloom Filter中，我们有：
 
- - 集合S：其大小为n。也就是说，集合中有n个不同元素。
- - 可用内存B：B被当成位数组bitmap来使用，大小为m。（有m个bit）。
- - 哈希函数：有k个独立的、均匀分布的哈希函数。
+- 集合S：其大小为n。也就是说，集合中有n个不同元素。
+- 可用内存B：B被当成位数组bitmap来使用，大小为m。（有m个bit）。
+- 哈希函数：有k个独立的、均匀分布的哈希函数。
 
 Bloom Filter的做法是：初始时，所有比特位都初始化为0。对于集合中的每个元素，利用k个哈希函数，对它哈希得到k个位置，将bitmap中的对应的k个位置置为1。
 
@@ -363,9 +363,9 @@ more space efficient
 
 ### Application
 
- - Original: early spellchecker
- - Canonical: list of forbidden passwords
- - Modern: network routers
+- Original: early spellchecker
+- Canonical: list of forbidden passwords
+- Modern: network routers
     - limit memory need to be super-fast
 
 <h2 id="fcec44f1a0d81c1745f18badee25e351"></h2>
@@ -395,9 +395,9 @@ return True <=> A[hi(x)] = 1 for every i=1,2,...,k
 
 Note: 
 
- - no false negatives
+- no false negatives
     - if x was inserted, lookup(x) guaranteed to success
- - but false postive
+- but false postive
     - if all k hi(x) is already set to 1 by other insertions.
 
 <h2 id="f103c4b9b2bd171e07dae9ebf1ebdade"></h2>

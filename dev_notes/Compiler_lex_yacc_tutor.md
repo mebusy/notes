@@ -41,7 +41,7 @@ cc lex.yy.c y.tab.c –obas.exe  # compile/link
 
 ```
 
- - The first %% is always required, as there must always be a rules section.
+- The first %% is always required, as there must always be a rules section.
      - if we don’t specify any rules then the default action is to match everything and copy it to output
      - Defaults for input and output are stdin and stdout
 
@@ -69,13 +69,13 @@ int main(void) {
 ```
 
 
- - Two patterns have been specified in the rules section.  “.” and “\n”
+- Two patterns have been specified in the rules section.  “.” and “\n”
     - Each pattern must begin in column one
         - Anything not starting in column one is copied verbatim to the generated C file
         - 比如 上边的注释都会 copy 到 源文件中
      - followed by whitespace (space, tab or newline) and an optional action associated with the pattern. (eg, **ECHO** )
      - The action may be a single C statement, or multiple C statements, enclosed in braces.
- - Several macros and variables are predefined by lex. 
+- Several macros and variables are predefined by lex. 
      - **ECHO** is a macro that writes code matched by the pattern. 
      - This is the default action for any unmatched strings. 
      - Typically, ECHO is defined as:
@@ -126,7 +126,7 @@ int main(int argc, char *argv[]) {
 
 > Some implementations of lex predefine and calculate **yylineno**. 
 
- - The definitions section is composed of substitutions, code, and start states.
+- The definitions section is composed of substitutions, code, and start states.
      - Code in the definitions section is simply copied as-is to the top of the generated C file and must be bracketed with **“%{“** and **“%}”** markers
      - Substitutions simplify pattern-matching rules , For example, we may define digits and letters:
          ```
@@ -143,9 +143,9 @@ int main(int argc, char *argv[]) {
 
 # Yacc
 
- - To parse an expression
- - Instead of starting with a single nonterminal (start symbol) and generating an expression from a grammar
- - we need to reduce an expression to a single nonterminal.
+- To parse an expression
+- Instead of starting with a single nonterminal (start symbol) and generating an expression from a grammar
+- we need to reduce an expression to a single nonterminal.
 
 This is known as bottom-up or shift-reduce parsing and uses a stack for storing terms.  
 
@@ -159,9 +159,9 @@ This is known as bottom-up or shift-reduce parsing and uses a stack for storing 
 ... subroutines ...
 ```
 
- - The definitions section consists of token declarations and C code bracketed by “%{“ and “%}”. 
- - The BNF grammar is placed in the rules section and 
- - user subroutines are added in the subroutines section. 
+- The definitions section consists of token declarations and C code bracketed by “%{“ and “%}”. 
+- The BNF grammar is placed in the rules section and 
+- user subroutines are added in the subroutines section. 
 
 Here is the definitions section for the yacc input file:
 
@@ -216,9 +216,9 @@ int yywrap(void) {
 
 > 只匹配 数字, +/-, 空白， 换行， 其他字符报错
 
- - Internally yacc maintains two stacks in memory; a parse stack and a value stack. 
- - The parse stack contains terminals and nonterminals that represent the current parsing state. 
- - The value stack is an array of YYSTYPE elements and associates a value with each element in the parse stack. 
+- Internally yacc maintains two stacks in memory; a parse stack and a value stack. 
+- The parse stack contains terminals and nonterminals that represent the current parsing state. 
+- The value stack is an array of YYSTYPE elements and associates a value with each element in the parse stack. 
 
 For example when lex returns an INTEGER token yacc shifts this token to the parse stack. At the same time the corresponding yylval is shifted to the value stack. The parse and value stacks are always synchronized so finding a value related to a token on the stack is easily accomplished. Here is the yacc input specification for our calculator:
 
@@ -288,9 +288,9 @@ This example still has an ambiguous grammar. Although yacc will issue shift-redu
 
 # Practice, Part II
 
- - + arithmetic operators multiply and divide. 
- - + Parentheses may be used to over-ride operator precedence, 
- - + single-character variables may be specified in assignment statements.
+- + arithmetic operators multiply and divide. 
+- + Parentheses may be used to over-ride operator precedence, 
+- + single-character variables may be specified in assignment statements.
 
 
 The lexical analyzer returns **VARIABLE** and **INTEGER** tokens. 
@@ -334,8 +334,8 @@ int yywrap(void) {
 
 The input specification for yacc follows. 
 
- - We may specify %left, for left-associative or %right for right associative. 
- - The last definition listed has the highest precedence. 
+- We may specify %left, for left-associative or %right for right associative. 
+- The last definition listed has the highest precedence. 
      - Using this simple technique we are able to disambiguate our grammar.
 
 ```
@@ -389,9 +389,9 @@ This version of the calculator is substantially more complex than previous versi
 
 In addition a syntax tree is constructed during parsing. After parsing we walk the syntax tree to produce output. Three versions of the tree walk routine are supplied:
 
- - an interpreter that executes statements during the tree walk
- - a compiler that generates code for a hypothetical stack-based machine
- - a version that generates a syntax tree of the original program
+- an interpreter that executes statements during the tree walk
+- a compiler that generates code for a hypothetical stack-based machine
+- a version that generates a syntax tree of the original program
 
 To make things more concrete, here is a sample program,
 
@@ -405,8 +405,8 @@ while (x < 3) {
 
 The include file contains declarations for the syntax tree and symbol table. 
 
- - Symbol table (**sym**) allows for single-character variable names. 
- - A node in the syntax tree may hold a constant (**conNodeType**), an identifier (**idNodeType**), or an internal node with an operator (**oprNodeType**). 
+- Symbol table (**sym**) allows for single-character variable names. 
+- A node in the syntax tree may hold a constant (**conNodeType**), an identifier (**idNodeType**), or an internal node with an operator (**oprNodeType**). 
 
 A union encapsulates all three variants and **nodeType.type** is used to determine which structure we have.
 

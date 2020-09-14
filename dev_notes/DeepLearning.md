@@ -91,9 +91,9 @@ Cross-entropy is not symmetric :   D(S,L) != D(L,S)
 
 ![](../imgs/DL_cross_entropy.png)
 
- - We have an input , it's going to be turned into logits using a linear model
- - We're then going to feed the logits , which are scores , into a softmax to turn them into probobilities
- - Then we're going to compare those probabilities to the one hot encoded labels using the cross entropy function.
+- We have an input , it's going to be turned into logits using a linear model
+- We're then going to feed the logits , which are scores , into a softmax to turn them into probobilities
+- Then we're going to compare those probabilities to the one hot encoded labels using the cross entropy function.
 
 This entire setting is often called multinominal logistic classification.
 
@@ -172,8 +172,8 @@ Draw the weights randomly from a Gaussian distribution with mean zero and standa
 
 The sigma value determines the order of magnitude of you outputs at the initial point of your optimization.  Because of the softmax on top of it, the order of magnitude also determines the peakiness of your initial probability distribution.
 
- - A large sigma means that your distribution will have large peaks. It's going to be very opinionated.
- - A small sigma means that your distribution is very uncertain about things.
+- A large sigma means that your distribution will have large peaks. It's going to be very opinionated.
+- A small sigma means that your distribution is very uncertain about things.
 
 It's usually better to begin with an uncertain distribution and let the optimization become more confident as the train progress.
 
@@ -187,12 +187,12 @@ It's usually better to begin with an uncertain distribution and let the optimiza
 
 Now we actually have everythings we need to actually train this classifier.
 
- - We've got our training data `X` 
+- We've got our training data `X` 
      - which is normalized to have zerom mean (pixels - 128)/128 , and unit variance.
- - We multiply `X` by a large matrix `W` 
+- We multiply `X` by a large matrix `W` 
      - `W` is intialized with random weights
- - We apply the softmax and then the cross entropy loss 
- - and we calculate the average of this loss over the entire traning data.
+- We apply the softmax and then the cross entropy loss 
+- and we calculate the average of this loss over the entire traning data.
 
 --- ASSIGNMENT
 
@@ -269,7 +269,7 @@ docker run hello-world
 NO_PROXY=`` docker run -p 8888:8888 --name tensorflow-udacity -it gcr.io/tensorflow/udacity-assignments:0.6.0
 ```
 
- - docker-machine ip default :  docker host IP
+- docker-machine ip default :  docker host IP
 
 访问:
 
@@ -297,9 +297,9 @@ machine learning 竞赛网站
 
 ## Linear Model Limited
 
- - Linear operations are really nice 
+- Linear operations are really nice 
      - Big matrix multiplies are exactly what GPUs were design for
- - The derivative of a linear function is nice too , it's a constant !
+- The derivative of a linear function is nice too , it's a constant !
 
 
 <h2 id="9be412d16c60d2fa986ffc1f194643c0"></h2>
@@ -315,8 +315,8 @@ Instead of having a single matrix multiplier as our classifier , we're going to 
 
 We now have two matrices. 
 
- - one going from the inputs to the RELUs ,
- - and another one connecting the RELUs to the classifier.
+- one going from the inputs to the RELUs ,
+- and another one connecting the RELUs to the classifier.
 
 Our function is now nonlinear thanks to the RELU in the middle , and we now have a new knob that we can tune , this number H ( in blue ) which corresponds to the number of RELU units that we have in the classifier. We can make it as big as we want.
 
@@ -331,7 +331,7 @@ One reason to build this network by stacking simple operations is that it makes 
 
 The key mathematical insight is the chain rule : `[g( f(x ))]' = g'( f(x) ) * f'(x)  ` . 
 
- - if you have 2 functions that get composed , that is , one is applied to the output of the other , then the chain rule tells you that you can compute the derivatives of that function simply by taking the product of the derivatives of the components.
+- if you have 2 functions that get composed , that is , one is applied to the output of the other , then the chain rule tells you that you can compute the derivatives of that function simply by taking the product of the derivatives of the components.
 
 As long as you know how to write the derivatives of your individual functions , there is a simple graphical way to combine them together and compute the derivative for the whole function.
 
@@ -339,8 +339,8 @@ As long as you know how to write the derivatives of your individual functions , 
 
 There's even better news for the compute scientist in you.  There is a way to write this chain rule that is very efficient computationally.
 
- - efficient data pipeline !
- - lots of data reuse !
+- efficient data pipeline !
+- lots of data reuse !
 
 <h2 id="d93c592036c29f14635824ddf09aab87"></h2>
 
@@ -383,9 +383,9 @@ You can make it bigger , more complex , by increasing the size of that hidden la
 
 Instead , you can also add more layers and make your model deeper.  There are lots of good reasons to do that.
 
- - one is parameter efficiency
+- one is parameter efficiency
      - You can typically get much more performance with fewer parameters by going deeper rather than wider.
- - another 1 is that a lot of natual phenomena that you might be interested in , tend to have a hierarchical structure which deep model naturally capture.
+- another 1 is that a lot of natual phenomena that you might be interested in , tend to have a hierarchical structure which deep model naturally capture.
 
 
 <h2 id="949b893e589d45ecfe63894272b7b754"></h2>
@@ -548,9 +548,9 @@ The math just works. You just add up the derivatives from all of the possible lo
 
 To improve a simple convnet
 
- - POOLING
- - 1x1 Convolutions
- - INCEPTION
+- POOLING
+- 1x1 Convolutions
+- INCEPTION
 
 The 1st improvement is a better way to reduce the spatial extent of your feature maps in the convolutional pyramid.  Until now, we've used striding to shift the filters by a few pixel each time and reduce the future map size.  This is a very aggressive way to downsample an image.  It removes a lot of information. 
 
@@ -560,10 +560,10 @@ The most common is max pooling.  At every point in the feature map, look at a sm
 
 ![](../imgs/DL_max_pooling.png)
 
- - ADVANTAGE
+- ADVANTAGE
      - **PARAMETER-FREE** , it doesn't add to your number of parameters. So you don't risk an increasing over fitting.
      - **OFTEN MORE ACCURATE**
- - DISADVANTAGE
+- DISADVANTAGE
      - MORE EXPENSIVE
      - MORE HYPER PARAMETERS
          - POOLING SIZE

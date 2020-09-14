@@ -34,8 +34,8 @@ To make transition easier from earlier Unity versions, Unity will try to set def
 
 eg.
 
- - Assets/**/Editor - Plugin will be set only compatible with Editor, and won’t be used when building to platform.
- - Assets/Plugins/iOS - Plugin will be set only compatible with iOS.
+- Assets/**/Editor - Plugin will be set only compatible with Editor, and won’t be used when building to platform.
+- Assets/Plugins/iOS - Plugin will be set only compatible with iOS.
 
  
 <h2 id="334c3c4f311455f3445d04c4b67a2dbd"></h2>
@@ -64,11 +64,11 @@ As an example, the command line for the Mono C# compiler, mcs, might look like t
 mcs -r:/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll -target:library ClassesForDLL.cs 
 ```
 
- - -r option specifies a path to a library to be included in the build
+- -r option specifies a path to a library to be included in the build
     - in this case the UnityEngine library
- - -target option specifies which type of build is required
+- -target option specifies which type of build is required
     - the word “library” is used to select a DLL build
- - Assuming all goes well, the resulting DLL file will appear shortly in the same folder as the source file.
+- Assuming all goes well, the resulting DLL file will appear shortly in the same folder as the source file.
 
 <h2 id="ccb1d2c22ab430836b0ac9c8fd75cef7"></h2>
 
@@ -184,12 +184,12 @@ extern "C" void UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API
 ```
 
 
- - extern "C"
+- extern "C"
     - If you are using C++ (.cpp) or Objective-C (.mm) to implement the plugin then you must ensure the functions are declared with C linkage to avoid name mangling issues.
- - A plugin should export ***UnityPluginLoad*** and ***UnityPluginUnload***
- - A plugin can access generic graphics device functionality by getting the IUnityGraphics interface.
+- A plugin should export ***UnityPluginLoad*** and ***UnityPluginUnload***
+- A plugin can access generic graphics device functionality by getting the IUnityGraphics interface.
     - IUnityGraphics interface provides a way to register a callback.
- - TODO
+- TODO
 
 ---
 
@@ -232,12 +232,12 @@ This means we have to DllImport at least one function in some active script.
     }    
 ```
 
- - [DllImport ("**__Internal**")]
+- [DllImport ("**__Internal**")]
     - use __Internal for statically linked
- - must be **static extern** ?
- - GL.IssuePluginEvent
+- must be **static extern** ?
+- GL.IssuePluginEvent
     - call native function from the **render thread**.
     - Such callbacks can now also be added to CommandBuffers via CommandBuffer.IssuePluginEvent.
- - TODO
+- TODO
 
 

@@ -46,7 +46,7 @@ yum -y install mono-complete
 # mono-core mono-devel ? I forgot the exact command ...
 ```
 
- - build c# project 
+- build c# project 
 
 ```bash
 xbuild /p:Configuration=Release xxx.sln
@@ -156,21 +156,21 @@ net.ipv4.tcp_tw_recycle = 1
 
 ## 文件描述符数
 
- - 查看系统最大打开文件描述符数:
+- 查看系统最大打开文件描述符数:
 
 ```
 $ cat /proc/sys/fs/file-max
 791606
 ```
 
- - 单个进程能打开的最大文件描述符数:
+- 单个进程能打开的最大文件描述符数:
 
 ```
 $ ulimit -n
 200000
 ```
 
- - Centos7 修改 ulimit
+- Centos7 修改 ulimit
 
 ```
 $ vi /etc/security/limits.conf
@@ -264,7 +264,7 @@ usr sys idl wai hiq siq| read  writ| recv  send|  in   out | int   csw
   0   0 100   0   0   0|   0     0 | 371B  826B|   0     0 | 200   211 
 ```
 
- - To display information provided by vmstat,
+- To display information provided by vmstat,
     - Process stats
     - Memory stats
 
@@ -272,13 +272,13 @@ usr sys idl wai hiq siq| read  writ| recv  send|  in   out | int   csw
 $ dstat --vmstat
 ```
 
- - to monitor a single program that is using the most CPU and consuming the most amount of memory.
+- to monitor a single program that is using the most CPU and consuming the most amount of memory.
 
 ```
 $ dstat -c --top-cpu -dn --top-mem
 ```
 
- - you can also store the output of dstat in a .csv 
+- you can also store the output of dstat in a .csv 
     - Here, we are displaying the time, cpu, mem, system load stats with a one second delay between 5 updates (counts).
 
 ```
@@ -291,20 +291,20 @@ $ dstat --time --cpu --mem --load --output report.csv 1 5
 
 ## ab test 
 
- - install ab
+- install ab
 
 ```
 yum -y install httpd-tools 
 ```
 
- - ab test
+- ab test
 
 ```
 $ echo "{ \"channel\": \"official\"}" > post.json
 $ ab -k -r -n 500000 -c 20000 -T "application/json" -p post.json  -H "userID: debugUserID" -H "Authorization: 7eb0f0a9798af24a883f4859db88a634"  http://10.192.8.17:9000/announcement
 ```
 
- - also see [ab useage](workingTips.md)
+- also see [ab useage](workingTips.md)
 
 
 <h2 id="182779261a101fea13d68ad6ca885ef8"></h2>
@@ -312,10 +312,10 @@ $ ab -k -r -n 500000 -c 20000 -T "application/json" -p post.json  -H "userID: de
 
 ## systemctl autorun script 
 
- - 服务又分为系统服务（system）和用户服务（user）。
+- 服务又分为系统服务（system）和用户服务（user）。
     - 系统服务：开机不登陆就能运行的程序（常用于开机自启）。
     - 用户服务：需要登陆以后才能运行的程序。
- - 配置文件目录
+- 配置文件目录
     - systemctl脚本目录：/usr/lib/systemd/ 
     - 系统服务目录：/usr/lib/systemd/system/ 
     - 用户服务目录：/usr/lib/systemd/system/
@@ -326,7 +326,7 @@ $ ab -k -r -n 500000 -c 20000 -T "application/json" -p post.json  -H "userID: de
 
 ### 创建脚本
 
- - 1 写脚本 autorun.sh
+- 1 写脚本 autorun.sh
 
 ```
 !# vi autorun.sh 
@@ -336,21 +336,21 @@ echo "This is a sample script to test auto run during boot" > ./script.out
 echo "The time the script run was -->  `date`" >> ./script.out
 ```
 
- - 2 检查权限
+- 2 检查权限
 
 ```
 # ls -lrt ./autorun.sh
 -rw-r--r-- 1 root root 150 Sep  4 11:45 ./autorun.sh
 ```
 
- - 3 添加执行权限
+- 3 添加执行权限
 
 ```
 # ls -lrt ./autorun.sh
 -rwxr-xr-x 1 root root 150 Sep  4 11:45 ./autorun.sh
 ```
 
- - 注意： 因为是服务调用的脚本，如果脚本中有相对路径的使用，需要注意
+- 注意： 因为是服务调用的脚本，如果脚本中有相对路径的使用，需要注意
     - 下面的代码可以得到 脚本所在的目录
 
 ```
@@ -398,22 +398,22 @@ Created symlink from /etc/systemd/system/default.target.wants/uwsgimind.service 
 # systemctl start uwsgimind.service
 ```
 
- - reboot 测试
+- reboot 测试
 
 ```
 # systemctl reboot
 ```
 
- - 查看日志:
+- 查看日志:
 
 ```
 journalctl -e -f -u uwsgimind.service
 ```
 
- - e : start at end
- - f : follow  
- - u : unit 
- - `-e -f` 类似 `tail -f `
+- e : start at end
+- f : follow  
+- u : unit 
+- `-e -f` 类似 `tail -f `
 
 ```bash
 说明: 
@@ -431,7 +431,7 @@ journalctl -e -f -u uwsgimind.service
 
 ### Example 
 
- - uwsgi 自带的 uwsgi.service
+- uwsgi 自带的 uwsgi.service
 
 ```bash
 [Unit]
@@ -454,7 +454,7 @@ NotifyAccess=all
 WantedBy=multi-user.target
 ```
 
- - 自定义的一个service
+- 自定义的一个service
 
 ```
 [Unit]
@@ -480,7 +480,7 @@ WantedBy=default.target
 
 ## how the see the log of a running process which is redirected to `/dev/null` ?
 
- - `tail -f /proc/<pid>/fd/1`
+- `tail -f /proc/<pid>/fd/1`
     - where 
     - 1 = stdout, 2 = stderr
 

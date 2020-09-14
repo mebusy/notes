@@ -74,9 +74,9 @@ def f(a, b, *args, option=True):
     ...
 ```
 
- - option comes after `*args`.
- - The only way to access `option` is to explicitly call `f(a, b, option=True)`
- - You can write just a `*` if you don't want to collect `*args`.
+- option comes after `*args`.
+- The only way to access `option` is to explicitly call `f(a, b, option=True)`
+- You can write just a `*` if you don't want to collect `*args`.
 
 ```python
 def f(a, b, *, option=True):
@@ -126,27 +126,27 @@ TypeError: sum() takes 2 positional arguments but 3 were given
 
 ## Feature 7: yield from
 
- - Pretty great if you use generators
- - Instead of writing
+- Pretty great if you use generators
+- Instead of writing
 
 ```python
 for i in gen():
     yield i
 ```
 
- - Just write
+- Just write
 
 ```python
 yield from gen()
 ```
 
- - Easily refactor generators into subgenerators.
+- Easily refactor generators into subgenerators.
 
 ---
 
- - Makes it easier to turn everything into a generator. See "Feature 5: Everything is an iterator" above for why you should do this.
- - Instead of accumulating a list, just yield or yield from.
- - for an example, we will create a list with dup numbers , like [0,0,1,1,2,2,3,3,...]
+- Makes it easier to turn everything into a generator. See "Feature 5: Everything is an iterator" above for why you should do this.
+- Instead of accumulating a list, just yield or yield from.
+- for an example, we will create a list with dup numbers , like [0,0,1,1,2,2,3,3,...]
 
 ```python
 # bad
@@ -179,8 +179,8 @@ def dup(n):
 
 ## Feature 9: Standard library additions
 
- - faulthandler
- - ipaddress
+- faulthandler
+- ipaddress
 
 ```python
 >>> ipaddress.ip_address('192.168.0.1')
@@ -189,7 +189,7 @@ IPv4Address('192.168.0.1')
 IPv6Address('2001:db8::')
 ```
 
- - functools.lru_cache
+- functools.lru_cache
     - A LRU cache decorator for your functions.
 
 ```python
@@ -201,7 +201,7 @@ def get_pep(num):
 CacheInfo(hits=3, misses=8, maxsize=32, currsize=8)
 ```
 
- - enum
+- enum
     - Finally, an enumerated type in the standard library.
 
 ```python
@@ -226,19 +226,19 @@ def f(a: stuff, b: stuff = 2) -> result:
     ...
 ```
 
- - Annotations can be arbitrary Python objects.
- - Python doesn't do anything with the annotations other than put them in an `__annotations__` dictionary.
+- Annotations can be arbitrary Python objects.
+- Python doesn't do anything with the annotations other than put them in an `__annotations__` dictionary.
 
 <h2 id="698af8e97e5d339b9bc0208c5cd2cde1"></h2>
 
 
 ## Feature 11: Unicode and bytes
 
- - In Python 2, str acts like bytes of data.
- - There is also unicode type to represent Unicode strings.  
- - In Python 3, str is a string.  
- - bytes are bytes.  
- - There is no unicode. str strings are Unicode.
+- In Python 2, str acts like bytes of data.
+- There is also unicode type to represent Unicode strings.  
+- In Python 3, str is a string.  
+- bytes are bytes.  
+- There is no unicode. str strings are Unicode.
 
 <h2 id="cf11c0ff8d4c3fcefe67a49a11e934b1"></h2>
 

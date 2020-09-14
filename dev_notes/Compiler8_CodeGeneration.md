@@ -44,15 +44,15 @@ Compilers that need to produce efficient target programs, include an op­timizat
 
 A code generator has three primary tasks: 
 
- - instruction selection
- - register allqcation and assignment
- - instruction ordering
+- instruction selection
+- register allqcation and assignment
+- instruction ordering
 
 The importance of these tasks is outlined in Section 8.1. 
 
- - Instruction selection involves choosing appro­priate target-machine instructions to implement the IR statements. 
- - Register allocation and assignment involves deciding what values to keep in which reg­isters. 
- - Instruction ordering involves deciding in what order to schedule the execution of instructions.
+- Instruction selection involves choosing appro­priate target-machine instructions to implement the IR statements. 
+- Register allocation and assignment involves deciding what values to keep in which reg­isters. 
+- Instruction ordering involves deciding in what order to schedule the execution of instructions.
 
 This chapter presents algorithms that code generators can use to trans­late the IR into a sequence of target language instructions for simple register machines. The algorithms will be illustrated by using the machine model in Sec­tion 8.2. Chapter 10 covers the problem of code generation for complex modern machines that support a great deal of parallelism within a single instruction.
 
@@ -86,10 +86,10 @@ The input to the code generator is the intermediate representation of the source
 
 The many choices for the IR include 
 
- - three-address representations such as quadruples, triples, indirect triples; 
- - virtual machine representations such as bytecodes and stack-machine code; 
- - linear representations such as postfix no­tation; 
- - and graphical representations such as syntax trees and DAG's. 
+- three-address representations such as quadruples, triples, indirect triples; 
+- virtual machine representations such as bytecodes and stack-machine code; 
+- linear representations such as postfix no­tation; 
+- and graphical representations such as syntax trees and DAG's. 
 
 Many of the algorithms in this chapter are couched in terms of the representations considered in Chapter 6: three-address code, trees, and DAG's. 
 
@@ -134,9 +134,9 @@ In this chapter, we shall use a very simple RISC-like computer as our target mac
                                                                                                                                                                                                                                                                                                                                                                                         
 The code generator must map the IR program into a code sequence that can be executed by the target machine. The complexity of performing this mapping is determined by a factors such as
 
- - the level of the IR
- - the nature of the instruction-set architecture
- - the desired quality of the generated code.
+- the level of the IR
+- the nature of the instruction-set architecture
+- the desired quality of the generated code.
 
 If the IR is high level, the code generator may translate each IR statement into a sequence of machine instructions using code templates. Such statement­-by-statement code generation, however, often produces poor code that needs further optimization. 
 
@@ -246,35 +246,35 @@ Our target computer models a three-address machine with load and store oper­ati
 
 The underlying computer is a byte-addressable machine with n general-purpose reg­isters, R0 , R1 , . . . , Rn - 1 . A full-fledged assembly language would have scores of instructions. To avoid hiding the concepts in a myriad of details, we shall use a very limited set of instructions and assume that all operands are integers. Most instructions consists of an operator, followed by a target, followed by a list of source operands. A label may precede an instruction. We assume the following kinds of instructions are available:
 
- - *Load* operations: The instruction LD *dst*, *addr* loads the value in location *addr* into location *dst*. 
+- *Load* operations: The instruction LD *dst*, *addr* loads the value in location *addr* into location *dst*. 
      - This instruction denotes the assignment `dst = addr`. The most common form of this instruction is `LD r, x` which loads the value in location x into register r. An instruction of the form LD r1 , r2 is a *register-to-register copy* in which the contents of register r2 are copied into register r1.
      - load 也可以 memory-to-memory 吗?
- - *Store* operations: The instruction ST *x*, *r* stores the value in register r into the location x. 
+- *Store* operations: The instruction ST *x*, *r* stores the value in register r into the location x. 
      - This instruction denotes the assignment x = r.
- - *Computation* operations of the form *OP dst, src1 , src2* , where *OP* is a op­erator like ADD or SUB, and *dst*, *src1* , and *src2* are locations, not necessarily distinct. 
+- *Computation* operations of the form *OP dst, src1 , src2* , where *OP* is a op­erator like ADD or SUB, and *dst*, *src1* , and *src2* are locations, not necessarily distinct. 
      - The effect of this machine instruction is to apply the operation represented by OP to the values in locations src1 and src2, and place the result of this operation in location *dst*. 
      - For example, SUB r1 , r2 , r3 com­putes r1 = r2 - r3. Any value formerly stored in r1 is lost, but if r1 is r2 or r3, the old value is read first. 
      - Unary operators that take only one operand do not have a *src2* .
- - *Unconditional jumps:* The instruction BR L cause control to branch to the manchine instruction with label *L* . (BR stands for *branch*)
- - *Conditional jumps* of the form *Bcond r, L* , where *r* is a register, *L* is a label, and *cond* stands for any of the common tests on values in the register *r*. 
+- *Unconditional jumps:* The instruction BR L cause control to branch to the manchine instruction with label *L* . (BR stands for *branch*)
+- *Conditional jumps* of the form *Bcond r, L* , where *r* is a register, *L* is a label, and *cond* stands for any of the common tests on values in the register *r*. 
      - For example, `BLTZ r, L` causes a jump to label *L* if the value in register *r* is less than zero, and allows control to pass to the next machine instruction if not.
 
 
 We assume our target machine has a variety of addressing modes:
 
- - In instructions, a location can be a variable name *x* referring to the mem­ory location that is reserved for *x* (that is, the l-value of x).
- - A location can also be an indexed address of the form a(r), where *a* is a variable and *r* is a register. 
+- In instructions, a location can be a variable name *x* referring to the mem­ory location that is reserved for *x* (that is, the l-value of x).
+- A location can also be an indexed address of the form a(r), where *a* is a variable and *r* is a register. 
      - The memory location denoted by a(r) is computed by taking the I=l-value of *a* and adding to it the value in register *r*. 
      - For example, the instruction LD R1, a(R2) has the effect of setting R1 = contents(a + contents(R2)), where contents(x) denotes the contents of the register or memory location represented by *x*. 
      - This addressing mode is useful for accessing arrays, where *a* is the base address of the array (that is, the address of the first element), and *r* holds the number of bytes past that address we wish to go to reach one of the elements of array *a*.
- - A memory location can be an integer indexed by a register. 
+- A memory location can be an integer indexed by a register. 
      - For ex­ample, LD R1, 100(R2) has the effect of setting R1 = contents(100 + contents(R2)), that is, of loading into R1 the value in the memory loca­tion obtained by adding 100 to the contents of register R2. 
      - This feature is useful for following pointers, as we shall see in the example below.
- - We also allow two indirect addressing modes: 
+- We also allow two indirect addressing modes: 
      - *\*r* means the memory lo­cation found in the location represented by the contents of register *r* , 
      - and *100(r) means the memory location found in the location obtained by adding 100 to the contents of *r*. 
          - For example, LD R1, *100(R2) has the effect of setting R1 = contents(contents(100 + contents(R2))), that is, of loading into R1 the value in the memory location stored in the memory location obtained by adding 100 to the contents of register R2.
- - Finally, we allow an immediate constant addressing mode. The constant is prefixed by `#`. 
+- Finally, we allow an immediate constant addressing mode. The constant is prefixed by `#`. 
      - The instruction LD R1 , #100 loads the integer 100 into register R1, and ADD R1 , R1 , #100 adds the integer 100 into register R1.
 
 Comments at the end of instructions are preceded by // .
@@ -351,11 +351,11 @@ Determining the actual cost of compiling and running a program is a com­plex pr
 
 For the remainder of this chapter, we shall assume each target-language instruction has an associated cost. For simplicity, we take the cost of an in­ struction to be one plus the costs associated with the addressing modes of the operands. This cost corresponds to the length in words of the instruction. Addressing modes involving registers have zero additional cost, while those in­ volving a memory location or constant in them have an additional cost of one, because such operands have to be stored in the words following the instruction. Some examples:
 
- - The instruction LD R0 , R1 copies the contents of register R1 into register R0. 
+- The instruction LD R0 , R1 copies the contents of register R1 into register R0. 
      - This instruction has a cost of one because no additional memory words are required.
- - The instruction LD R0 , M loads the contents of memory location M into register RO. 
+- The instruction LD R0 , M loads the contents of memory location M into register RO. 
      - The cost is two since the address of memory location M is in the word following the instruction.
- - The instruction LD R1 , *100 (R2) loads into register R1 the value given by contents(contents(100 + contents(R2))). 
+- The instruction LD R1 , *100 (R2) loads into register R1 the value given by contents(contents(100 + contents(R2))). 
      - The cost is three because the constant 100 is stored in the word following the instruction.
 
 
@@ -389,10 +389,10 @@ In this section, we show how names in the IR can be converted into addresses in 
 
 To illustrate code generation for simplified procedure calls and returns, we shall focus on the following three-address statements:
 
- - call *calee*
- - return
- - halt
- - action, which is a placeholder for other three-address statements.
+- call *calee*
+- return
+- halt
+- action, which is a placeholder for other three-address statements.
 
 The size and layout of activation records are determined by the code gener­ator via the information about names stored in the symbol table. We shall first illustrate how to store the return address in an activation record on a procedure call and how to return control to it after the procedure call. For convenience, we assume the first location in the activation holds the return address.
 
@@ -404,8 +404,8 @@ BR callee.codeArea
                         // <-  #here + 20  assumed ?
 ```
 
- - The ST instruction saves the return address at the beginning of the activation record for *callee*, 
- - and the BR transfers control to the target code for the called procedure *callee*. 
+- The ST instruction saves the return address at the beginning of the activation record for *callee*, 
+- and the BR transfers control to the target code for the called procedure *callee*. 
 
 The attribute before callee.staticArea is a constant that gives the address of the beginning of the activation record for *callee*, and the attribute *callee*. codeArea is a constant referring to the address of the first instruction of the called procedure *callee* in the Code area of the run-time memory.
 
@@ -553,9 +553,9 @@ Our first job is to partition a sequence of three-address instructions into basi
 
 Algorithm 8.5 : Partitioning three-address instructions into basic blocks.
 
- - INPUT: A sequence of three-address instructions.
- - OUTPUT: A list of the basic blocks for that sequence in which each instruction is assigned to exactly one basic block.
- - METHOD : 
+- INPUT: A sequence of three-address instructions.
+- OUTPUT: A list of the basic blocks for that sequence in which each instruction is assigned to exactly one basic block.
+- METHOD : 
      - First, we determine those instructions in the intermediate code that are leaders, that is, the first instructions in some basic block. The instruction just past the end of the intermediate program is not included as a leader. The rules for finding leaders are:
          - 1. The first three-address instruction in the intermediate code is a leader.
          - 2. Any instruction that is the target of a conditional or unconditional jump is a leader.
@@ -614,9 +614,9 @@ Our algorithm to determine liveness and next-use information makes a back­ward 
 
 Algorithm8.7: Determining the liveness and next-use information for each statement in a basic block.
 
- - INPUT: A basic block B of three-address statements. We assume that the symbol table initially shows all nontemporary variables in B as being live on exit.
- - OUTPUT: At each statement i: x = y + z in B, we attach to i the liveness and next-use information of x, y, and z .
- - METHOD: We start at the last statement in B and scan backwards to the beginning of B. At each statement i: x = y + z in B, we do the following:
+- INPUT: A basic block B of three-address statements. We assume that the symbol table initially shows all nontemporary variables in B as being live on exit.
+- OUTPUT: At each statement i: x = y + z in B, we attach to i the liveness and next-use information of x, y, and z .
+- METHOD: We start at the last statement in B and scan backwards to the beginning of B. At each statement i: x = y + z in B, we do the following:
      - 1. Attach to statement i the information currently found in the symbol table regarding the next use and liveness of *x* , *y*, and *y* .
      - 2. In the symbol table, set *x* to "not live" and "no next use."
      - 3. In the symbol table, set *y* and *z* to "live" and the next uses of *y* and *z* to *i*.
@@ -632,16 +632,16 @@ Here we have used + as a symbol representing any operator. If the three-address 
 
 Once an intermediate-code program is partitioned into basic blocks, we repre­sent the flow of control between them by a flow graph. The nodes of the flow graph are the basic blocks. There is an edge from block B to block C if and only if it is possible for the first instruction in block C to immediately follow the last instruction in block B. There are two ways that such an edge could be justified:
 
- - There is a conditional or unconditional jump from the end of B to the beginning of C.
- - C immediately follows B in the original order of the three-address instruc­tions, and B does not end in an unconditional jump.
+- There is a conditional or unconditional jump from the end of B to the beginning of C.
+- C immediately follows B in the original order of the three-address instruc­tions, and B does not end in an unconditional jump.
 
 We say that B is a predecessor of C, and C is a successor of B.
 
 Often we add two nodes, called the *entry* and *exit*, that do not correspond to executable intermediate instructions. 
 
- - There is an edge from the *entry* to the first executable node of the flow graph, that is, to the basic block that comes from the first instruction of the intermediate code. 
+- There is an edge from the *entry* to the first executable node of the flow graph, that is, to the basic block that comes from the first instruction of the intermediate code. 
      - entry -> 最先开始的代码块
- - There is an edge to the *exit* from any basic block that contains an instruction that could be the last executed instruction of the program. 
+- There is an edge to the *exit* from any basic block that contains an instruction that could be the last executed instruction of the program. 
      - 可能最后执行的代码块 -> exit 
      - If the final instruction of the program is not an unconditional jump, then the block containing the final instruction of the program is one predecessor of the *exit*, but so is any basic block that has a jump to code that is not part of the program.
 
@@ -715,10 +715,10 @@ Many important techniques for local optimization begin by transforming a basic b
 
 The DAG representation of a basic block lets us perform several code­ improving transformations on the code represented by the block.
 
- - a) We can eliminate local common subexpressions, that is, instructions that compute a value that has already been computed.
- - b) We can eliminate dead code, that is, instructions that compute a value that is never used.
- - c) We can reorder statements that do not depend on one another; such reordering may reduce the time a temporary value needs to be preserved in a register.
- - d) We can apply algebraic laws to reorder operands of three-address instruc­tions, and sometimes thereby simplify the computation.
+- a) We can eliminate local common subexpressions, that is, instructions that compute a value that has already been computed.
+- b) We can eliminate dead code, that is, instructions that compute a value that is never used.
+- c) We can reorder statements that do not depend on one another; such reordering may reduce the time a temporary value needs to be preserved in a register.
+- d) We can apply algebraic laws to reorder operands of three-address instruc­tions, and sometimes thereby simplify the computation.
 
 ---
 
@@ -740,10 +740,10 @@ In this section, we shall consider an algorithm that generates code for a single
 
 One of the primary issues during code generation is deciding how to use registers to best advantage. There are four principal uses of registers:
 
- - In most machine architectures, some or all of the operands of an operation must be in registers in order to perform the operation.
- - Registers make good temporaries -- places to hold the result of a subex­pression while a larger expression is being evaluated, or more generally, a place to hold a variable that is used only within a single basic block.
- - Registers are used to hold (global) values that are computed in one basic block and used in other blocks, for example, a loop index that is incre­mented going around the loop and is used several times within the loop.
- - Registers are often used to help with run-time storage management, for example, to manage the run-time stack, including the maintenance of stack pointers and possibly the top elements of the stack itself.
+- In most machine architectures, some or all of the operands of an operation must be in registers in order to perform the operation.
+- Registers make good temporaries -- places to hold the result of a subex­pression while a larger expression is being evaluated, or more generally, a place to hold a variable that is used only within a single basic block.
+- Registers are used to hold (global) values that are computed in one basic block and used in other blocks, for example, a loop index that is incre­mented going around the loop and is used several times within the loop.
+- Registers are often used to help with run-time storage management, for example, to manage the run-time stack, including the maintenance of stack pointers and possibly the top elements of the stack itself.
 
 These are competing needs, since the number of registers available is limited.
 
@@ -751,9 +751,9 @@ The algorithm in this section assumes that some set of registers is available to
 
 We assume that the basic block has already been transformed into a preferred sequence of three-address instructions, by transformations such as combining common subexpressions. We further assume that for each operator, there is exactly one machine instruc­tion that takes the necessary operands in registers and performs that operation, leaving the result in a register. The machine instructions are of the form
 
- - LD reg, mem
- - ST mem, reg
- - OP reg, reg, reg
+- LD reg, mem
+- ST mem, reg
+- OP reg, reg, reg
 
 ---
 

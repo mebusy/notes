@@ -120,10 +120,10 @@ def test_square_root():
 
 ### Built-in assert
 
- - indentification 告诉你是哪个断言失败
- - location 代码位置
- - optional 打开/关闭
- - standardize 
+- indentification 告诉你是哪个断言失败
+- location 代码位置
+- optional 打开/关闭
+- standardize 
  
 
 <h2 id="6fe12c93f80b1a26f8fe0ce2c9aed837"></h2>
@@ -147,15 +147,15 @@ precondition 的设置,可以迅速的判断出出错的上游。
 
 ### assertion can be turned off
 
- - python -O turn assertion **off**
- - c/c++ -DNDEBUG turn assertion **off**
- - jave -ea turn assertion **on**
+- python -O turn assertion **off**
+- c/c++ -DNDEBUG turn assertion **off**
+- jave -ea turn assertion **on**
 
 **因为assertion是可以关闭的**, 所以一定要确保 完全去掉assertion语句不会影响到逻辑。
 
- - 错误写法: 
+- 错误写法: 
     - assert map.remove(location)==True
- - 正确写法：
+- 正确写法：
     - localRemoved = map.remove(location)
     - assert localRemoved
 
@@ -182,14 +182,14 @@ if deposit <0:
 
 支持观点:
 
- - failing is better than bad data
- - Eases debugging
- - defect in the field are hard to debug
+- failing is better than bad data
+- Eases debugging
+- defect in the field are hard to debug
  
 反对观点:
 
- - Performance
- - Not User Friendly
+- Performance
+- Not User Friendly
 
 
 <h2 id="5b7ede48bf46b290a97e0fbb33f3363a"></h2>
@@ -215,8 +215,8 @@ def traceit( ... ):
 
 c/c++ 程序中，如何防止 访问未分配内存的区域?
 
- - electric fense , x86
- - Valgrind , x86
+- electric fense , x86
+- Valgrind , x86
 
 
 
@@ -247,13 +247,13 @@ Define variants , precondition, postcondition 不是一件简单的事情，好�
 def trace_it( frame, event, arg )
 ```
 
- - event
+- event
     - "call" 
     - "return" 
- - frame
+- frame
     - frame.f_code.co_name 就是正在运行的函数名
     - frame.f_locals  所有的局部变量
- - arg
+- arg
     - 如果 event是 "return", 传到arg里的就是返回值
 
 跟踪 call square_root 和 return square_root , 以分析获得 precondition 和 postcondition.
@@ -294,9 +294,9 @@ return sqaure_root():
 
 To Automated Simplification , we need:
 
- - a strategy that does the simplification for us
+- a strategy that does the simplification for us
     - basically it tell us how to simplify 
- - an automated test
+- an automated test
     - check whether our simplification succeeded of not 
 
 <h2 id="c093d57f7de50dfd6a62bf459fa158db"></h2>
@@ -403,11 +403,11 @@ This is the **Phi Coefficient**.
 
 ## 7. Overview
 
- - Track the problem
- - Reproduce it
- - Automate + Simplify
- - Find possible infection origins
- - Foucs on most likely origins
- - Isolate the infection chains
- - Correct the defect
+- Track the problem
+- Reproduce it
+- Automate + Simplify
+- Find possible infection origins
+- Foucs on most likely origins
+- Isolate the infection chains
+- Correct the defect
  

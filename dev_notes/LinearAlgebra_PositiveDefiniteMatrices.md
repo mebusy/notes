@@ -170,9 +170,9 @@ A = ⎡a b⎤  is positive definite when a > 0 and ac - b² > 0.
 
 From those conditions, ***both eigenvalues are positive***.  
 
- - Their product λ₁λ₂ is the determinant ac - b² > 0, so the eigenvalues are either both positive or both negative. 
+- Their product λ₁λ₂ is the determinant ac - b² > 0, so the eigenvalues are either both positive or both negative. 
      - c must be positive
- - They must be positive because their sum is the trace a + c > 0.
+- They must be positive because their sum is the trace a + c > 0.
 
 Looking at a and ac - b², it is even possible to spot the appearance of the ***pivots***. They turned up when we decomposed xᵀAx into a sum of squares:
 
@@ -286,17 +286,17 @@ The least-squares choice x̂ is the solution of RᵀRx̂ = Rᵀb.  That matrix A
 
 **6C**: The symmetric matrix A is positive definite if and only if
 
- - (V) There is a matrix R with independent columns such that A = RᵀR.
+- (V) There is a matrix R with independent columns such that A = RᵀR.
 
 *The key is to recognize xᵀAx as xᵀRᵀRx = (Rx)ᵀ(Rx).*  This squared length ‖Rx‖² is positive (unless x = 0), because R has independent columns. (If x is nonzero then Rx is nonzero.) Thus xᵀRᵀRx  > 0 and RᵀR is positive definite.
 
 It remains to find an R for which A = RᵀR . We have almost done this twice already:
 
- - **Elimination**: A = LDLᵀ = (L√D)(√DLᵀ) . So take R = √DLᵀ .
+- **Elimination**: A = LDLᵀ = (L√D)(√DLᵀ) . So take R = √DLᵀ .
 
 This ***Cholesky decomposition*** has the pivots split evenly between L and Lᵀ.
 
- - **Eigenvalues**: A = QΛQᵀ = (Q√Λ)(√ΛQᵀ).  So take R = √ΛQᵀ   (3)
+- **Eigenvalues**: A = QΛQᵀ = (Q√Λ)(√ΛQᵀ).  So take R = √ΛQᵀ   (3)
 
 A third possibility is R = Q√ΛQᵀ , the ***symmetric positive definite square root*** of A. 
 
@@ -565,10 +565,10 @@ Because U , V are both orthogonal , so UᵀU = I, VᵀV = I .
 
 **Remark 2** U and V give orthonormal bases for *all four fundamental subspaces*:
 
- - first   r  columns of U:  column space of A
- - first  m-r columns of U:  left nullspace of A
- - first   r  columns of V:  row space of A
- - first  n-r columns of V:  nullspace of A
+- first   r  columns of U:  column space of A
+- first  m-r columns of U:  left nullspace of A
+- first   r  columns of V:  row space of A
+- first  n-r columns of V:  nullspace of A
 
 **Remark 3** The SVD chooses those bases in an extremely special way. They are more than just orthonormal. *When A multiplies a column vⱼ of V, it produces σⱼ times a
 column of U*. That comes directly from AV = UΣ, looked at a column at a time.

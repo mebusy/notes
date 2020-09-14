@@ -7,7 +7,7 @@
 
 ----
 
- - 为rust crates.io换上国内中科大的源
+- 为rust crates.io换上国内中科大的源
 
 ```
 vi ~/.cargo/config

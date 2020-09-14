@@ -47,7 +47,7 @@ https://inst.eecs.berkeley.edu/~cs61a/sp17/
 
 # Lecture #22: The Scheme Language
 
- - LISP
+- LISP
     - Every­thing is an expression
         - 不再有语句和表达式的区别
     - Every expression is either a single value or a list
@@ -67,7 +67,7 @@ https://inst.eecs.berkeley.edu/~cs61a/sp17/
 
 ## Data Types
 
- - **atoms**
+- **atoms**
     - The classical atoms:
         - Numbers: integer, floating-point, complex, rational.
         - Symbols.
@@ -78,7 +78,7 @@ https://inst.eecs.berkeley.edu/~cs61a/sp17/
         - Vectors: Python lists.
         - Strings
         - Characters: Like Python 1-element strings
- - **pairs**
+- **pairs**
     - Pairs are like **two-element** Python lists , where the elements are (recursively) Scheme values.
 
 <h2 id="ff7efcbd2c8fd9b8cba790b8fab435f9"></h2>
@@ -86,11 +86,11 @@ https://inst.eecs.berkeley.edu/~cs61a/sp17/
 
 ## Symbol notion
 
- - Lisp最早是被设计来处理符号数据(如公式)。这些符号通常递归的被定义( an exp = op + subexps ). 
- - the notion of a symbol:
+- Lisp最早是被设计来处理符号数据(如公式)。这些符号通常递归的被定义( an exp = op + subexps ). 
+- the notion of a symbol:
     - Essentially a constant string
     - Two symbols with the same “spelling” (string) are by default the same object (but usually, case is ignored).
- - The main operation on symbols is **equality**.
+- The main operation on symbols is **equality**.
     - e.g. `a bumblebee numb3rs * + / wide-ranging !?@*!!`
 
 <h2 id="cb96f9780994826abf6a3408f7583d0f"></h2>
@@ -98,9 +98,9 @@ https://inst.eecs.berkeley.edu/~cs61a/sp17/
 
 ## Pairs and Lists
 
- - The Scheme notation for the pair
+- The Scheme notation for the pair
     - (V1 . V2)
- - Lists are so prevalent that there is a standard abbreviation:
+- Lists are so prevalent that there is a standard abbreviation:
 
 Abbreviation | Means
 --- | ---
@@ -108,7 +108,7 @@ Abbreviation | Means
 (V1 V2 · · · Vn) | (V1 . (V2 . (· · · (Vn . ()))))
 (V1 V2 · · · Vn−1 . Vn) | (V1 . (V2 . (· · · (Vn−1 . Vn))))
 
- - one can build practically any data structure out of pair
+- one can build practically any data structure out of pair
     - In Scheme, the main one is the (linked) list
     - ![](../imgs/scheme_linklist.png)
 
@@ -117,9 +117,9 @@ Abbreviation | Means
 
 ## Programs
 
- - Scheme expressions and programs are **instances of Lisp data structures**  (“Scheme programs are Scheme data”).
- - At the bottom, numerals, booleans, characters, and strings are expressions that stand for themselves.
- - Most lists (aka forms) stand for function calls:
+- Scheme expressions and programs are **instances of Lisp data structures**  (“Scheme programs are Scheme data”).
+- At the bottom, numerals, booleans, characters, and strings are expressions that stand for themselves.
+- Most lists (aka forms) stand for function calls:
     - `(OP E1 · · · En)`
 
 <h2 id="73015b3208cdee70a4497235463b63d7"></h2>
@@ -127,22 +127,22 @@ Abbreviation | Means
 
 ## Quotation
 
- - Since programs are data, we have a problem:
+- Since programs are data, we have a problem:
     - How do we say, eg., “Set the variable x to the three-element list (+ 1 2)” 
     - without it meaning “Set the variable x to the value 3?”
- - In English, we call this a **use vs. mention distinction**
- - For this, we need a special form -- a construct that does **not** simply evaluate its operands.
- - `(quote E)` yields E itself as the value, without evaluating it as a Scheme expression:
+- In English, we call this a **use vs. mention distinction**
+- For this, we need a special form -- a construct that does **not** simply evaluate its operands.
+- `(quote E)` yields E itself as the value, without evaluating it as a Scheme expression:
     - `(quote (+ 1 2))` =>  `(+ 1 2) `
- - 简化版本 `'(xxx)'`
+- 简化版本 `'(xxx)'`
 
 <h2 id="e6091496efcb3055adfb2de2bdc185aa"></h2>
 
 
 ## Special Forms
  
- - `(quote E)` is a sample of **special form** : an exception to the general rule for evaluting functional forms
- - A few other special forms also have meanings that generally do not involve simply evaluating their operands:
+- `(quote E)` is a sample of **special form** : an exception to the general rule for evaluting functional forms
+- A few other special forms also have meanings that generally do not involve simply evaluating their operands:
     - `(if (> x y) x y) ; like python A if X else B`
     - `(and (integer?) (> x y) (< x z)) ; like python and `  
     - `(or (not (integer? x)) (< x L) (> x U)) ; Like Python ’or’`
@@ -156,7 +156,7 @@ Abbreviation | Means
 
 ## Traditional Conditionals
 
- - the fancy traditional Lisp conditional form: `cond`
+- the fancy traditional Lisp conditional form: `cond`
     - cond: chains a series of tests to select a result
         - suport `else` , but a cond-clause that starts with else must be the last cond-clause.
 
@@ -169,7 +169,7 @@ scm> (cond ((< x 1) ’small)
 big
 ```
 
- - which is the Lisp version of Python’s 
+- which is the Lisp version of Python’s 
 
 ```python
 "small" if x < 1 else "medium" if x < 3 else "large" if x < 5 else "big"
@@ -180,9 +180,9 @@ big
 
 ## Symbols
 
- - When evaluated as a program, a symbol acts like a variable name.
- - Variables are bound in environments, just as in Python, although the syntax differs.
- - To define a new symbol, either use it as a parameter name (later), or use the “define” special form:
+- When evaluated as a program, a symbol acts like a variable name.
+- Variables are bound in environments, just as in Python, although the syntax differs.
+- To define a new symbol, either use it as a parameter name (later), or use the “define” special form:
     - This (re)defines the symbols in the current environment.
 
 ```python
@@ -190,7 +190,7 @@ big
 (define pi**2 (* pi pi))
 ```
 
- - To assign a new value to an existing binding, use the **set!** special form:
+- To assign a new value to an existing binding, use the **set!** special form:
     - `(set! pi 3)`
     - pi must be defined (not like Python).
 
@@ -199,8 +199,8 @@ big
 
 ## Function Evaluation
 
- - Function evaluation is just like Python
- - To create a new function, we use the **lambda** special form:
+- Function evaluation is just like Python
+- To create a new function, we use the **lambda** special form:
 
 ```scheme
 scm> ( (lambda (x y) (+ (* x x) (* y y))) 3 4)
@@ -211,7 +211,7 @@ scm> (fib 5)
 5
 ```
 
- - 把一个lambda 赋给一个 symbol 太常见了，这么写略繁琐
+- 把一个lambda 赋给一个 symbol 太常见了，这么写略繁琐
 
 ```scheme
 scm> (define (fib n)
@@ -239,7 +239,7 @@ scm> (< 2 4 8)  ; chain compare like python
 
 ## Lists and Pair
 
- - Pairs (and therefore lists) have a basic constructor and accessors
+- Pairs (and therefore lists) have a basic constructor and accessors
     - cons : constructor
     - car : **C**ontents of the **A**ddress part of **R**egister number
     - cdr : **C**ontents of the **D**ecrement part of **R**egister number,
@@ -247,7 +247,7 @@ scm> (< 2 4 8)  ; chain compare like python
     - ctr : Contents of the Tag part of Register number
     - cadr :
     - cadar : ... 
- - between the first letter ('c') and the last ('r'),
+- between the first letter ('c') and the last ('r'),
     - a 'a' means "the car of" and a 'd' means "the cdr of".
     - so
         - cadr is "the car of the cdr",
@@ -272,14 +272,14 @@ scm> (cdddr L) ; (cdr (cdr (cdr L)))
 ()
 ```
 
- - And one that is especially for lists:
+- And one that is especially for lists:
 
 ```scheme
 scm> (list (+ 1 2) 'a 4)
 (3 a 4)
 ```
 
- - we can use the quote form to construct a malformed list
+- we can use the quote form to construct a malformed list
 
 ```scheme
 scm> '(1 2 3)
@@ -317,8 +317,8 @@ scm> (length '(1 2 3 4 5))
 
 ## Binding Constructs: Let
 
- - Sometimes, you’d like to introduce local variables or named constants
- - The let special form does this:
+- Sometimes, you’d like to introduce local variables or named constants
+- The let special form does this:
 
 ```scheme
 scm> (define x 17)
@@ -328,21 +328,21 @@ scm> (let ((x 5)
 24
 ```
 
- - This is a derived form, equivalent to:
+- This is a derived form, equivalent to:
     - 想象 let 是在给你定义参数
 
 ```scheme
 scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
 ```
 
- - TODO, 为什么 最后加法x 的值是17 ？
+- TODO, 为什么 最后加法x 的值是17 ？
 
 <h2 id="e1a227edacf151ee8c1e87954ba4500f"></h2>
 
 
 ## Loops and Tail Recursion
 
- - In Scheme, **tail-recursive functions must work like iterations**
+- In Scheme, **tail-recursive functions must work like iterations**
 
 ```scheme
 (define (sum init L)
@@ -362,35 +362,35 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
 
 ## Recursion and Iteration
 
- - **tail recursions** . From the reference manual:
+- **tail recursions** . From the reference manual:
     - Implementations of Scheme must be **properly tail-recursive**.
     - Procedure calls that occur in certain syntactic contexts called **tail contexts** are tail calls.
     - Scheme implementation is properly tail-recursive if it supports an **unbounded number of [simultaneously] active tail calls**
- - First, let’s define what that means
+- First, let’s define what that means
 
 <h2 id="74dae5a65b8fd0bab9b522eb1c9c2527"></h2>
 
 
 ## Tail Contexts
 
- - Basically, an expression is in a **tail context** , if 
+- Basically, an expression is in a **tail context** , if 
     - it is evaluated last in a function body  (函数中最后一个求值
     - and provides the value of a call to that function. (并为该函数提供了一个返回值))
- - A function is **tail-recursive** if
+- A function is **tail-recursive** if
     - all function calls , in its body , that can result in a recursive call on that same function , **are in tail contexts**.
- - In effect, Scheme turns recursive calls of such functions into iterations   instead of simply returning
+- In effect, Scheme turns recursive calls of such functions into iterations   instead of simply returning
     - by **replacing** those calls with one of the function’s tail-context expressions
- - This decreases the memory , devoted to keeping track of which functions are running and who called them , to a constant. 
+- This decreases the memory , devoted to keeping track of which functions are running and who called them , to a constant. 
 
 <h2 id="770e07c293ee0357cd556a06bc0fc1ec"></h2>
 
 
 ## Tail Contexts in Scheme
 
- - The “bases” are
+- The “bases” are
     - (lambda (ARGUMENTS) EXPR1 EXPR2 ... **EXPRn**)
     - (define (NAME ARGMENTS) EXPR1 EXPR2 ... **EXPRn**)
- - If an expression is in a tail context, then certain parts of it become tail contexts all by themselves
+- If an expression is in a tail context, then certain parts of it become tail contexts all by themselves
     - ![](../imgs/cs61a_scheme_tail_content_in_tail_exp.png)
 
 <h2 id="8bb2b661f426ca5570b35c4b87fc2daf"></h2>
@@ -467,7 +467,7 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
 
 ## Tail-Recursive Length?
 
- - On several occasions, we’ve computed the length of a linked list like this:
+- On several occasions, we’ve computed the length of a linked list like this:
 
 ```scheme
 ;; The length of list L
@@ -477,9 +477,9 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
         (+ 1 (length (cdr L)))))
 ```
 
- - but this is not tail recursive. How do we make it so?
+- but this is not tail recursive. How do we make it so?
 
- - **Try a helper method:** 
+- **Try a helper method:** 
 
 ```scheme
 ;; The length of list L
@@ -496,11 +496,11 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
 
 ## Standard List Searches: assoc, etc.
  
- - The functions `assq`, `assv`, and `assoc` classically serve the purpose of Python dictionaries
- - An **association list** is a list of key/value pairs. The pyhton dictionary `{1:5, 3:6, 0:2}` might be represented
+- The functions `assq`, `assv`, and `assoc` classically serve the purpose of Python dictionaries
+- An **association list** is a list of key/value pairs. The pyhton dictionary `{1:5, 3:6, 0:2}` might be represented
     - `( (1 . 5) (3 . 6) (0 . 2) )`
- - The `assx` functions access this list, returning the pair whose **car** matches a key argument.
- - The difference between the methods is that
+- The `assx` functions access this list, returning the pair whose **car** matches a key argument.
+- The difference between the methods is that
     - `assq` compares using `eq?` (Python `is`).
     - `assv` uses `eqv?` (which is like Python `==` on numbers and like `is` otherwise).
     - `assoc` uses `equal?` (does “deep” comparison of lists).
@@ -583,15 +583,15 @@ naive solution
         (cons (f (car L)) (map2 f (cdr L)))))
 ```
 
- - NOT tail-recursive
+- NOT tail-recursive
 
 <h2 id="fcc0a353dd69f799df1a6e166f3d4989"></h2>
 
 
 ### Making map tail recursive
 
- - Need to pass along the partial results and add to them
- - Problem: `cons` adds to the **front** of a list, so we end up with a *reverse* of what we want
+- Need to pass along the partial results and add to them
+- Problem: `cons` adds to the **front** of a list, so we end up with a *reverse* of what we want
 
 ```scheme
 (define (map2 f L)
@@ -604,15 +604,15 @@ naive solution
     (reverse2 (map+ '() L)))
 ```
 
- - What about **reverse**
+- What about **reverse**
 
 <h2 id="5a7dba29cc36ba1d802d68d560975854"></h2>
 
 
 ### And Finally, Reverse
 
- - Actually, we can use the very problem that `cons` creates to solve it!
- - That is, consing items from a list from left to right results in a reversed list:
+- Actually, we can use the very problem that `cons` creates to solve it!
+- That is, consing items from a list from left to right results in a reversed list:
 
 ```scheme
 (define (reverse2 L)
@@ -629,7 +629,7 @@ naive solution
 
 ## Another Example
 
- - Consider the problem of shuffling together two lists, L1 and L2.
+- Consider the problem of shuffling together two lists, L1 and L2.
     - The result consists of the first item of L1, then the first of L2, then the second of L1, etc.
     - until one or the other list has no more values.
 

@@ -50,11 +50,11 @@
 
 # Calculus
 
- - [Calculus One](CalculusOne.md) 
- - [Calculus One: Part II](CalculusOne_part2.md)
- - [微积分总览](微积分总览.md) 
- - [essenceOfCalculus](essenceOfCalculus.md )
- - [偏导数](partial_derivative.md)
+- [Calculus One](CalculusOne.md) 
+- [Calculus One: Part II](CalculusOne_part2.md)
+- [微积分总览](微积分总览.md) 
+- [essenceOfCalculus](essenceOfCalculus.md )
+- [偏导数](partial_derivative.md)
 
 
 <h2 id="0d2765b30694ee9f4fb7be2ae3b676dc"></h2>
@@ -62,9 +62,9 @@
 
 # Probability 
 
- - [台大概率笔记](TaiwanU_probability.md)
- - [台大概率笔记2](TaiwanU_probability2.md) 
- - [随机数](Dev_Random.md) , [random number](random_number.md)
+- [台大概率笔记](TaiwanU_probability.md)
+- [台大概率笔记2](TaiwanU_probability2.md) 
+- [随机数](Dev_Random.md) , [random number](random_number.md)
 
 
 <h2 id="682352d7b7d88f46edac62cd97b58db1"></h2>

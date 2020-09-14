@@ -29,11 +29,11 @@
 
 # 2. 内置类型
 
- - 空值: None
- - 数字: bool, int, long, float, complex
- - 序列: str, unicode, list, tuple
- - 字典: dict
- - 集合: set, frozenset
+- 空值: None
+- 数字: bool, int, long, float, complex
+- 序列: str, unicode, list, tuple
+- 字典: dict
+- 集合: set, frozenset
 
 <h2 id="cf71bcea952f7eaa06fcd87a3e27aac0"></h2>
 
@@ -45,10 +45,10 @@
 
 ### int 
 
- - 64位平台上，int类型是 64位整数
+- 64位平台上，int类型是 64位整数
     - sys.maxint 
     - 是 c语言 long 的扩展
- - 整数是虚拟机 特殊照顾对象
+- 整数是虚拟机 特殊照顾对象
     - **small_ints** : 对于小整数，Python使用小整数对象池**small_ints** (固定数组) 缓存了`[-5，257）`之间的整数，该范围内的整数在Python系统中是共享的。
     - **PyIntBlock** : 对于超出了范围的其他整数，Python同样提供了专门的缓冲池，供这些所谓的大整数使用，避免每次使用的时候都要不断的malloc分配内存带来的效率损耗。这块内存空间就是**PyIntBlock**
         - 两个单链表 :  
@@ -60,7 +60,7 @@
     - PyIntBlock 内存不会返还给操作系统，直至进程结束。
         - PyIntObject对象销毁时，它所占用的内存并不会释放，而是继续被Python使用，进而将free_list表头指向了这个要被销毁的对象上。
     - PyIntBlock 设计上像一个简化的 arena , 但不像 arena 那样有机会释放内存，它会⼀直存在
- - summary: 
+- summary: 
     - 不管大小 PyIntObject 都存储在 PyIntBlock 中
     - 小整数被全局变量 small_ints 持有，除了直接使用整数下标快速访问外，还导致它们的引用计数永远不可能为 0
 
@@ -75,7 +75,7 @@ True
 False
 ```
 
- - 因 PyIntBlock 内存只复用不释放，同时持有大量整数对象将导致内存暴涨，且不会在这些对象被回收后释放内存，造成事实上的内存泄露
+- 因 PyIntBlock 内存只复用不释放，同时持有大量整数对象将导致内存暴涨，且不会在这些对象被回收后释放内存，造成事实上的内存泄露
     - 用range 创建一个巨大的数字列表，这就需要足够多的 PyIntBlock 为数字对象提供存储空间
     - xrange 则不会，每次迭代后，数字对象被回收，其占用的内存空闲出来并被复用，内存也就不会暴涨了。
 
@@ -85,9 +85,9 @@ False
 
 ### long 
 
- - 当超出 int 限制时， 会自动转换成 long
- - 作为变长对象，只要有内存足够， 可以存储无法想象的 天文数字。
- - 使用long 的机会不多，Python 也就没有必要专门为其设计优化策略
+- 当超出 int 限制时， 会自动转换成 long
+- 作为变长对象，只要有内存足够， 可以存储无法想象的 天文数字。
+- 使用long 的机会不多，Python 也就没有必要专门为其设计优化策略
 
 ```python
 1 << 3000
@@ -106,10 +106,10 @@ typedef struct {
 } PyFloatObject;
 ```
 
- - 在内存管理上，float 也采用 PyFloatBlock 模式 , 基本上和 PyIntBlock 相同
+- 在内存管理上，float 也采用 PyFloatBlock 模式 , 基本上和 PyIntBlock 相同
     - 但没有特殊的 "小浮点数"
- - 使用双精度浮点数 (double)，不能 "精确" 表示某些十进制的小数值
- - 尤其是 "四舍五入 (round)" 的 结果，可能和预想不同。
+- 使用双精度浮点数 (double)，不能 "精确" 表示某些十进制的小数值
+- 尤其是 "四舍五入 (round)" 的 结果，可能和预想不同。
 
 ```python
 >>> 0.1*3 == 0.3
@@ -118,7 +118,7 @@ False
 2.67
 ```
 
- - 如果需要，可用 Decimal 代替，它能精确控制运算精度、有效数位和 round 的结果。
+- 如果需要，可用 Decimal 代替，它能精确控制运算精度、有效数位和 round 的结果。
 
 ```python
 >>> from decimal import Decimal, ROUND_UP, ROUND_DOWN
@@ -135,20 +135,20 @@ Decimal('2.67')
 
 ## 2.2 字符串
 
- - 不可变类型，保存字符序列或二进制数据
- - 使用 intern 机制 节约内存 , 同时提升效率
+- 不可变类型，保存字符序列或二进制数据
+- 使用 intern 机制 节约内存 , 同时提升效率
     - 短字符串存储在 arena 区域 ( 也做池化？ )
     - 对空字符串和 str、unicode 单字符做了 intern池化 和 永久缓存处理 。 
     - str没有缓存机制(只有池化),unicode 则保留 1024 个宽字符长度 ≤8 的复用对象。    
     - 内部包含 hash 值，str 另有标记用来判断是否被池化 
- - 当池化的字符串不再有引用时，将被回收
+- 当池化的字符串不再有引用时，将被回收
 
 <h2 id="cc6c35a3e0f97fb9747905dc13e9b625"></h2>
 
 
 ### 编码
 
- - Python 2.x 默认采用 ASCII 编码 
+- Python 2.x 默认采用 ASCII 编码 
 
 ```python
 >>> import sys, locale
@@ -156,14 +156,14 @@ Decimal('2.67')
 'ascii'
 ```
 
- - 可以改变编码
+- 可以改变编码
 
 ```python
 reload(sys) # setdefaultencoding 在被初始化时被 site.py 删掉了
 sys.setdefaultencoding('utf8') 
 ```
 
- - str、unicode 都提供了 encode 和 decode 编码转换 法
+- str、unicode 都提供了 encode 和 decode 编码转换 法
     - encode: 将默认编码转换为其他编码
     - decode: 将默认或者指定编码字符串转换为 unicode
 
@@ -200,8 +200,8 @@ u'\u4e2d\u56fd\u4eba'
 '\xe4\xb8\xad\xe5\x9b\xbd\xe4\xba\xba'
 ```
 
- - 标准库另有 codecs 模块 来处理更复杂的编码转换， 如大小端和 BOM头。
- - 另有 string.Template 模板可供使 。string 模块还定义了各种常 的字符序列。
+- 标准库另有 codecs 模块 来处理更复杂的编码转换， 如大小端和 BOM头。
+- 另有 string.Template 模板可供使 。string 模块还定义了各种常 的字符序列。
 
 ```python
 >>> from string import letters, digits, Template
@@ -220,7 +220,7 @@ u'\u4e2d\u56fd\u4eba'
 
 ### 池化  intern
 
- - 用 intern() 函数可以把运行期动态生成的字符串池化。
+- 用 intern() 函数可以把运行期动态生成的字符串池化。
 
 ```python
 >>> s = "".join(["a", "b", "c"])
@@ -248,20 +248,20 @@ True
 
 ### join vs '+' 
 
- - join 计算总长度后，⼀次性分配存储内存
+- join 计算总长度后，⼀次性分配存储内存
 
 <h2 id="007ed57d03ecfc2092e2457f0ca04afe"></h2>
 
 
 ## 2.3 列表
 
- - 功能上列表 (list) 类似 Vector，实现上是 数组
+- 功能上列表 (list) 类似 Vector，实现上是 数组
     - 列表对象 和 存储元素指针的数组 是分开的两块内存，后者在堆上分配
     - 虚拟机会保留 80 个列表 复用对象，但其元素指针数组会被释放
     - 列表会动态调整指针数组大小，预分配内存多于实际元素数量
- - append / pop : O(1)
- - insert / remove : O(n)
- - list 动态扩容 很影响效率。 解决方案： 预先申请足够大的地方，然后用 set_item 方式赋值，
+- append / pop : O(1)
+- insert / remove : O(n)
+- list 动态扩容 很影响效率。 解决方案： 预先申请足够大的地方，然后用 set_item 方式赋值，
 
 ```python
 >>> import timeit
@@ -295,15 +295,15 @@ True
 
 ## 2.4 元组
 
- - 只读对象，元组和元素指针数组内存是一次性连续分配的
- - 虚拟机缓存 n 个元素数量 < 20 的元组复用对象。
+- 只读对象，元组和元素指针数组内存是一次性连续分配的
+- 虚拟机缓存 n 个元素数量 < 20 的元组复用对象。
 
 <h2 id="bf25b61d72e7938907598910a7bb49f7"></h2>
 
 
 ## 2.5 字典
 
- - 字典 (dict) 采用开放地址法的哈希表实现
+- 字典 (dict) 采用开放地址法的哈希表实现
     - 自带元素容量为 8 的 smalltable，只有 "超出" 时才到堆上额外分配元素表内存。
     - 虚拟机缓存 80 个字典复用对象，但在堆上分配的元素表内存会被释放
     - 按需动态调整容量。扩容或收缩操作都将重新分配内存，重新哈希。
@@ -378,10 +378,10 @@ dict_items([('a', 1), ('b', 2)])
 
 ## 2.6 集合
 
- - 不重复对象: 除了不是同一对象外，还包括 "值" 不能相同
- - 集合只能存储可哈希对象， 
- - 有只读版本 frozenset
- - 集合和字典、列表最大的不同除了元素不重复外，还支持集合运算
+- 不重复对象: 除了不是同一对象外，还包括 "值" 不能相同
+- 集合只能存储可哈希对象， 
+- 有只读版本 frozenset
+- 集合和字典、列表最大的不同除了元素不重复外，还支持集合运算
 
 <h2 id="2e4bd807b1c6821e16305c1f609403e2"></h2>
 
@@ -397,7 +397,7 @@ dict_items([('a', 1), ('b', 2)])
 
 ### 复合类型里, 只有 tuple、frozenset 是可哈希对象
 
- - 如果想把自定义类型放入集合，需要保证 hash 和 equal 的结果都相同才能去重。 
+- 如果想把自定义类型放入集合，需要保证 hash 和 equal 的结果都相同才能去重。 
 
 ```python
 >>> class User(object):

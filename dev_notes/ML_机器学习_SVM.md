@@ -60,8 +60,8 @@ SVM 在学习复杂的非线性方程时，提供了一种更清晰更强大的�
 
 在逻辑回归中，我们一般使用 θᵀx >=0 来区分正负样本，SVM 中，区分会更加严格：
 
- - y=1, θᵀx >=1 
- - y=0, θᵀx <= -1
+- y=1, θᵀx >=1 
+- y=0, θᵀx <= -1
 
 ---
 
@@ -146,8 +146,8 @@ SVM 使用完全不同的做法，来创建 新的feature (假设我们要创建
 
 = ![](../imgs/SVM_similarity.png)
 
- - 当 x 接近 landmark 的时候， f ≈1
- - 当 x 远离 landmark 的时候， f ≈0
+- 当 x 接近 landmark 的时候， f ≈1
+- 当 x 远离 landmark 的时候， f ≈0
 
 所以， f 是 度量 x 与 landmark l 远近程序的值。
 
@@ -185,13 +185,13 @@ SVM 的代码函数变为 (其中,n=m) :
 
 C( = 1/λ ):
 
- - Large C : lower bias , high variance
- - Small C : higher bias, low variance
+- Large C : lower bias , high variance
+- Small C : higher bias, low variance
 
 σ² :
 
- - Large σ² : Features fᵢ vary more smoothly. High bias, lower variance.
- - Small σ² : Features fᵢ vary sharply. Lower bias, higher variance.
+- Large σ² : Features fᵢ vary more smoothly. High bias, lower variance.
+- Small σ² : Features fᵢ vary sharply. Lower bias, higher variance.
  
 <h2 id="fc8227001da7daa8afa88151aa3948d2"></h2>
 
@@ -207,14 +207,14 @@ use SVM software package (eg. `liblinear` , `libsvm` , ... ) to solve for parame
 
 尽管可以使用一些现成的 SVM 软件，你依然需要处理:
 
- - 选择 parameter C
- - 选择 核函数 similarity function 
+- 选择 parameter C
+- 选择 核函数 similarity function 
 
- - eg. no kernel ( "linear kernel" ) :
+- eg. no kernel ( "linear kernel" ) :
  
  当 feature n 很大，但是 样本m 很小的时候， 一个线性分类器更适合，linear kernelwill Predict "y=1" if θᵀx >=0 。
 
- - Gaussian kernel:
+- Gaussian kernel:
  
  当 feature n 不大， 样本 m很大的时候，可以选择 高斯核函数. 使用高斯核函数，需要先 feature scaling(重要) , 再实现 kernel 方法，以及选择 σ² 参数。 
 
@@ -228,7 +228,7 @@ function sim = gaussianKernel(x1, x2, sigma)
 end
 ```
 
- - 其他 kernel 
+- 其他 kernel 
 
  kernel 需要满足 墨塞尔定理 Mercer's Theorem.
  
@@ -247,9 +247,9 @@ end
 
 n = number of features , m = number of traning examples
 
- - n >> m , (n=10k, m=10~1000)  使用 `逻辑回归，或  SVM without a kernel (linear kernel)`, 因为没有足够的数据来拟合非常复杂的非线性函数
- - n < m , (n=1~1000, m=10~10k) use `SVM with Gaussian kernel`
- - n << m , (n=1~1000, m=50k+ ) 增加够多的feature, 使用`逻辑回归或SVM without kernel` 。 这种情况，使用 高斯核SVM会很慢。
+- n >> m , (n=10k, m=10~1000)  使用 `逻辑回归，或  SVM without a kernel (linear kernel)`, 因为没有足够的数据来拟合非常复杂的非线性函数
+- n < m , (n=1~1000, m=10~10k) use `SVM with Gaussian kernel`
+- n << m , (n=1~1000, m=50k+ ) 增加够多的feature, 使用`逻辑回归或SVM without kernel` 。 这种情况，使用 高斯核SVM会很慢。
 
 
 
@@ -263,14 +263,14 @@ n = number of features , m = number of traning examples
 
 #### Processing emails
 
- - 全部转为 小写
- - 去掉 html 标签，如果有的话
- - 正规化 url， 所有的 url 地址，统一替换为  httpaddr
- - 正规化 邮件地址， 所有的邮件地址，统一替换为  emailaddr
- - 正规化 数字 ， 所以数字替换为 number
- - 正规化 $ 符号 为 dollar
- - 词干化 word stemming:  所有单词 简化为他们的 stemmed form。 eg. "discount", "discounts", "discounted" and "discounting" are all replaced with “discount” . Sometimes, the Stemmer actually strips off additional characters from the end, so “include”, “includes”, “included”, and “including” are all replaced with “includ”.
- - 去掉非字符:  非字符 和标点符号 被去除。所有的 空白（tab, newline, space）都被处理成单个 space 字符。
+- 全部转为 小写
+- 去掉 html 标签，如果有的话
+- 正规化 url， 所有的 url 地址，统一替换为  httpaddr
+- 正规化 邮件地址， 所有的邮件地址，统一替换为  emailaddr
+- 正规化 数字 ， 所以数字替换为 number
+- 正规化 $ 符号 为 dollar
+- 词干化 word stemming:  所有单词 简化为他们的 stemmed form。 eg. "discount", "discounts", "discounted" and "discounting" are all replaced with “discount” . Sometimes, the Stemmer actually strips off additional characters from the end, so “include”, “includes”, “included”, and “including” are all replaced with “includ”.
+- 去掉非字符:  非字符 和标点符号 被去除。所有的 空白（tab, newline, space）都被处理成单个 space 字符。
  
 
 <h2 id="25905cc6484f60a1d812453a49e5e156"></h2>

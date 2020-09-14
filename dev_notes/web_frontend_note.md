@@ -20,14 +20,14 @@
 
 ## reactJS
 
- - create project
+- create project
 
 ```
 npm install -g create-react-app
 create-react-app my-app
 ```
 
- - run project
+- run project
 
 ```
 npm start
@@ -39,13 +39,13 @@ http://localhost:3000
 
 ## Ant.design
 
- - after you create reactJS app, `cd ` to project folder, then  run :
+- after you create reactJS app, `cd ` to project folder, then  run :
 
 ```
 yarn add antd
 ```
 
- - use antd
+- use antd
     - - 修改 src/App.css，在文件顶部引入 antd/dist/antd.css。
 
 ```
