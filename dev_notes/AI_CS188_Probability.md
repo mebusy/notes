@@ -23,6 +23,10 @@
 
 ...menuend
 
+# Summary
+
+- ![](../imgs/cs188_prob_recap.png)
+
 
 <h2 id="0d2765b30694ee9f4fb7be2ae3b676dc"></h2>
 

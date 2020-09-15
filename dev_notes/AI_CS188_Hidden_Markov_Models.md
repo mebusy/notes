@@ -36,9 +36,15 @@
 
 # Hidden Markov Model 
 
+HMM, a special kind of Bayes net, that sees a particularly large amount of use compared to most Bayes nets.
+
 This pacman can eat ghost but first he has to find them. So soon as pacman start moving , you will see in the bottom colord numbers , which are kind of noisy readings of how far the ghosts are. 
 
 Now let's say I want to eat the orange ghost. If you could somehow take these numbers over time and combine them with your model of how the world works --  means where are the walls, where are the maze -- and also your model of how the ghosts move , and figure out where they are. 
+
+## Probability Recap
+
+- ![](../imgs/cs188_prob_recap.png)
 
 
 <h2 id="d656a155bed68a7dec83cd56ff973bbc"></h2>
