@@ -17,7 +17,7 @@
 ## Redis 分布式锁
 
 - v3.1
-    - `SET resource_name my_random_value NX PX 30000`
+    - `SET resource_name my_random_value NX PX 30`
 
 ```redis
 tryLock(){  
