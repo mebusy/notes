@@ -160,7 +160,10 @@ eksctl create nodegroup --cluster <cluster name> \
 - 切换集群
     - 
     ```bash
+    # 1 update kube config
     aws eks update-kubeconfig --name  TEST  --region cn-northwest-1
+    # 2 switch context
+    kubectl --context=<cluster context> ..
     ```
 
 <h2 id="0fb3db388cb28547e6b0d17ca0c608b5"></h2>
