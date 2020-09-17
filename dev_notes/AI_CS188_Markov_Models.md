@@ -18,25 +18,58 @@
 
 # Markov Models
 
+Markov Model, a special kind of Bayes net, that sees a particularly large amount of use compared to most Bayes nets.
+
+## Probability Recap
+
+- ![](../imgs/cs188_prob_recap.png)
+
+
+## Reasoning over Time or Space
+
+- Often, we want to reason about a sequence of observations
+    - Speech recognition
+    - Robot localization
+    - User attention
+    - Medical monitoring
+- Need to introduce time ( or space ) into our models
+
+
 
 <h2 id="d656a155bed68a7dec83cd56ff973bbc"></h2>
 
 
 ## Markov Models
 
-Markov model means sequence of random variables. 
+- A **Markov Model** is a chain-structured Bayes' net (BN)
+    - Each node is identically distributed (stationarity)
+    - Value of X at a given time is called the **state**
+        - ![](../imgs/cs188_markov_model_state_x.png)
+    - As a Bayes' net
+        - P(X₁)
+        - P(X<sub>t</sub> | X<sub>t-1</sub>)
+    - Parameters: called **transition probability** or dynamics, specify how the state evolves over time (also, initial state probabilities)
+        - this is the model how the world changes
+    - Stationarity assumption: transition probabilities the same at all times
+        - this means transition probabilities P(x<sub>t</sub> | x<sub>t-1</sub> ) don't depend on time, they are always the same. 
+    - Same as MDP transition model , but no choice of action
+        - here is no action, you just watching 
 
-- Value of X at a given time is called the state
-    - X₁ -> X₂ -> X₃ -> X₄ -> ...
-    - X₁ has an influence on X₂ going to be , X₂ has an influcence on X₃ going to be , ... 
-    - P(X₁)
-    - P(X<sub>t</sub> | X<sub>t-1</sub>) 
 
-- Parameters: called ***transition probabilities*** or dynamics, specify how the state evolves over time (also, initial state probabilities)
-- Stationarity assumption: transition probabilities the same at all times
-    - this means transition probabilities P(x<sub>t</sub> | x<sub>t-1</sub> ) don't depend on time, they are always the same. 
-- Same as MDP transition model, but no choice of action
-    
+### Conditional Independence
+
+- Basic conditional independence:
+    - Past and future independent given the present
+        - Bayes Net D-separation
+    - Each time step only depends on the previous
+        - to predict what happens at the next time, just knowing the current time is the best thing. Knowing more things about the past is not going to help you.
+    - This is called the (first order) Markov property
+        - You might say, well, what if it doesn't apply in my situation? What if my situation, the state of the next time, depends on the state of the current time and the state of the previous time?
+        - Well, to still be able to fit in this format and to really fit the notion of state, you should then combine the state of the current time and the state of the previous time in one bigger state variable that you now call your state.
+- Note that the chain is just a (growable) BN
+    - We can always use generic BN reasoning on it if we truncate the chain at a fixed length. But in this chapter we will use some variations of this algorithm that are easy to derive from first principles for Markov models, and that have equivalance simplifications of the sampling and variable elimination algorithms.
+
+
 <h2 id="2549029b268b93144235df84effeb97d"></h2>
 
 
@@ -95,30 +128,29 @@ This case let's look at just 4 variables.
 
 ![](../imgs/cs188_markov_chain_example_weather.png)
 
-- States: X = {rain, sun}
+- States: X = {rain,sun}
 - Initial distribution: 1.0 sun
+- CPT P(X<sub>t</sub> | X<sub>t-1</sub>)
 
----
-
- t-1 | t | P(X<sub>t</sub>\|X<sub>t-1</sub>):
---- | --- | --- 
-sun | sun | 0.9
-sun | rain | 0.1
-rain | sun | 0.3
+X<sub>t-1</sub> | X<sub>t</sub> \| P(X<sub>t</sub> | X<sub>t-1</sub>)
+--- | --- | ---
+sun  | sun  | 0.9
+sun  | rain | 0.1
+rain | sun  | 0.3
 rain | rain | 0.7
 
----
-
 - Two new ways of representing the same CPT
-    - ![](../imgs/cs188_markov_chain_example_weather_2_new_repr.png)
- 
+    - ![](../imgs/cs188_HMM_2_representation.png)
 - What is the probability distribution after one step : P(X₂=sun) ?
-
-``` 
-P(X₂=sun) = P(X₂=sun,X₁=sun) + P(X₂=sun,X₁=rain)
-          = P(X₂=sun|X₁=sun)·P(X₁=sun) + P(X₂=sun|X₁=rain)·P(X₁=rain)
-          = 0.9·1 + 0.3·0 = 0.9
-```
+    ```python
+    P(X₂=sun) = P(X₂=sun,X₁=sun) + P(X₂=sun,X₁=rain)
+              = P(X₂=sun|X₁=sun)·P(X₁=sun) + P(X₂=sun|X₁=rain)·P(X₁=rain)
+              = 0.9·1 + 0.3·0 = 0.9
+    ```
+    - test
+    ```
+    someting test
+    ```
 
 <h2 id="cd0df25e7ecc8f5591d125ef5318fae1"></h2>
 

@@ -36,30 +36,27 @@
 
 # Hidden Markov Model 
 
-HMM, a special kind of Bayes net, that sees a particularly large amount of use compared to most Bayes nets.
-
 This pacman can eat ghost but first he has to find them. So soon as pacman start moving , you will see in the bottom colord numbers , which are kind of noisy readings of how far the ghosts are. 
 
 Now let's say I want to eat the orange ghost. If you could somehow take these numbers over time and combine them with your model of how the world works --  means where are the walls, where are the maze -- and also your model of how the ghosts move , and figure out where they are. 
-
-## Probability Recap
-
-- ![](../imgs/cs188_prob_recap.png)
 
 
 <h2 id="d656a155bed68a7dec83cd56ff973bbc"></h2>
 
 
-## Markov Models
+## Markov Models (Recap)
 
 - A **Markov Model** is a chain-structured Bayes' net (BN)
     - Each node is identically distributed (stationarity)
     - Value of X at a given time is called the **state**
+        - ![](../imgs/cs188_markov_model_state_x.png)
     - As a Bayes' net
         - P(X₁)
         - P(X<sub>t</sub> | X<sub>t-1</sub>)
     - Parameters: called **transition probability** or dynamics, specify how the state evolves over time (also, initial state probabilities)
         - this is the model how the world changes
+    - Stationarity assumption: transition probabilities the same at all times
+        - this means transition probabilities P(x<sub>t</sub> | x<sub>t-1</sub> ) don't depend on time, they are always the same. 
     - Same as MDP transition model , but no choice of action
         - here is no action, you just watching 
 
@@ -67,17 +64,21 @@ Now let's say I want to eat the orange ghost. If you could somehow take these nu
 <h2 id="0f1513d04ac32269de73d0f17465488e"></h2>
 
 
-### Conditional Independence
+### Conditional Independence (Recap)
 
 - Basic conditional independence:
-    - Past and future independent of the present
-        - the past anything before the current state and future anything beyond the current state are independent given the current state
+    - Past and future independent given the present
+        - Bayes Net D-separation
     - Each time step only depends on the previous
+        - to predict what happens at the next time, just knowing the current time is the best thing. Knowing more things about the past is not going to help you.
     - This is called the (first order) Markov property
+        - You might say, well, what if it doesn't apply in my situation? What if my situation, the state of the next time, depends on the state of the current time and the state of the previous time?
+        - Well, to still be able to fit in this format and to really fit the notion of state, you should then combine the state of the current time and the state of the previous time in one bigger state variable that you now call your state.
 - Note that the chain is just a (growable) BN
-    - We can always use generic BN reasoning on it if we truncate the chain at a fixed length
+    - We can always use generic BN reasoning on it if we truncate the chain at a fixed length. But in this chapter we will use some variations of this algorithm that are easy to derive from first principles for Markov models, and that have equivalance simplifications of the sampling and variable elimination algorithms.
 
 ---
+
 
 <h2 id="94d2b6fed9dd768fe2edec7e6c85546f"></h2>
 
