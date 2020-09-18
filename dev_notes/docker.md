@@ -2105,6 +2105,9 @@ docker run -d --restart unless-stopped -p 6379:6379 --name redis-cache-2.8 -d re
 
 # 4.0
 docker run -d --restart unless-stopped -p 6379:6379 --name redis-cache-4 -d redis:4.0 redis-server --save '' --appendonly no --maxmemory 1G --maxmemory-policy allkeys-lru
+
+# 4.0,  快找，prod
+docker run -d --restart unless-stopped -p 63791:6379 --name redis-cache-4-prod -d redis:4.0 redis-server --appendonly no --maxmemory 1G --maxmemory-policy allkeys-lru --rename-command FLUSHALL "" --rename-command FLUSHDB "" --rename-command CONFIG CONFIG_73e99d --rename-command KEYS ""
 ```
 
 - with password:  `--requirepass <yourpassword>` 
