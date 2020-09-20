@@ -132,7 +132,7 @@ This case let's look at just 4 variables.
 - Initial distribution: 1.0 sun
 - CPT P(X<sub>t</sub> | X<sub>t-1</sub>)
 
-X<sub>t-1</sub> | X<sub>t</sub> \| P(X<sub>t</sub> | X<sub>t-1</sub>)
+X<sub>t-1</sub> | X<sub>t</sub> | P(X<sub>t</sub> \| X<sub>t-1</sub>)
 --- | --- | ---
 sun  | sun  | 0.9
 sun  | rain | 0.1
@@ -147,10 +147,7 @@ rain | rain | 0.7
               = P(X₂=sun|X₁=sun)·P(X₁=sun) + P(X₂=sun|X₁=rain)·P(X₁=rain)
               = 0.9·1 + 0.3·0 = 0.9
     ```
-    - test
-    ```
-    someting test
-    ```
+
 
 <h2 id="cd0df25e7ecc8f5591d125ef5318fae1"></h2>
 
@@ -200,14 +197,25 @@ rain | 1-p | ... | 0.25
     - Influence of the initial distribution gets less and less over time.
     - The distribution we end up in is independent of the initial distribution
 - Stationary distribution:
-    - The distribution we end up with is called the stationary distribution           of the chain
+    - The distribution we end up with is called the **stationary distribution P<sub>∞</sub>** of the chain
     - It satisfies  ![](../imgs/cs188_markov_stationary_distributions.png)
 
 - As the property of markov matrix , it will converge to 0.94868/0.31623 = 3:1, that means:
     - P<sub>∞</sub>(sun) = 3/4
     - P<sub>∞</sub>(rain) = 1/4 
 
-```
+### Still the Weather Example 
+
+X<sub>t-1</sub> | X<sub>t</sub> | P(X<sub>t</sub> \| X<sub>t-1</sub>)
+--- | --- | ---
+sun  | sun  | 0.9
+sun  | rain | 0.1
+rain | sun  | 0.3
+rain | rain | 0.7
+
+- Question: What's P(X) at time t=infinity?
+
+```octave
 octave:6> a = [ 0.9 0.3 ; 0.1 0.7 ]
 a =
 
