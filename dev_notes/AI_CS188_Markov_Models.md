@@ -94,9 +94,9 @@ This case let's look at just 4 variables.
 - From the chain rule, every joint distribution over X₁, X₂, X₃, X₄ , can can be written as:
     - P(X₁, X₂, X₃, X₄) = P(X₁)·P(X₂|X₁)·P(X₃|X₁,X₂)·P(X₄|X₁,X₂,X₃)  
 - Assuming that
-    - X₃ ⊥ X₁|X₂  
+    - X₃ ⫫ X₁|X₂  
         - What dose that mean ?  That means that once somebody tells you the value of X₂,  you write the distribution of X₃ ; somebody then tells you what X₁ is and the distribution of X₃ doesn't change -- stays the same. 
-    - X₄ ⊥ X₁,X₂ | X₃ 
+    - X₄ ⫫ X₁,X₂ | X₃ 
 - results in the expression posited on the previous slide: 
     - P(X₁, X₂, X₃, X₄) = P(X₁)·P(X₂|X₁)·P(X₃|X₂)·P(X₄|X₃)
 
@@ -111,8 +111,8 @@ This case let's look at just 4 variables.
 
 ### Implied Conditional Independencies 
 
-- We assumed : `X₃ ⊥ X₁|X₂`  , and `X₄ ⊥ X₁,X₂ | X₃` 
-- We also have :  `X₁ ⊥ X₃,X₄ |X₂`
+- We assumed : `X₃ ⫫ X₁|X₂`  , and `X₄ ⫫ X₁,X₂ | X₃` 
+- We also have :  `X₁ ⫫ X₃,X₄ |X₂`
 - proof:
     - ![](../imgs/cs188_markov_implied_conditional_probability.png)
 - Additional explicit assumption
@@ -124,7 +124,7 @@ This case let's look at just 4 variables.
 <h2 id="a3e9d92d013e8bd559c093cbca5a7684"></h2>
 
 
-### Example Markov Chain : Weather
+## Example Markov Chain : Weather
 
 ![](../imgs/cs188_markov_chain_example_weather.png)
 
@@ -132,7 +132,7 @@ This case let's look at just 4 variables.
 - Initial distribution: 1.0 sun
 - CPT P(X<sub>t</sub> | X<sub>t-1</sub>)
 
-X<sub>t-1</sub> | X<sub>t</sub> \| P(X<sub>t</sub> | X<sub>t-1</sub>)
+X<sub>t-1</sub> | X<sub>t</sub> | P(X<sub>t</sub> \| X<sub>t-1</sub>)
 --- | --- | ---
 sun  | sun  | 0.9
 sun  | rain | 0.1
@@ -147,37 +147,75 @@ rain | rain | 0.7
               = P(X₂=sun|X₁=sun)·P(X₁=sun) + P(X₂=sun|X₁=rain)·P(X₁=rain)
               = 0.9·1 + 0.3·0 = 0.9
     ```
-    - test
-    ```
-    someting test
-    ```
+
 
 <h2 id="cd0df25e7ecc8f5591d125ef5318fae1"></h2>
 
 
-### Mini-Forward Algorithm
+## Mini-Forward Algorithm
 
 - Question: What’s P(X) on some day t?
 - ![](../imgs/cs188_markov_forward_simulation.png)
+- What is actually going on here, think about the Markov model.
+    - You have X₁,X₂. It's a Bayes net with two variables. You have all the distributions, all the tables. You have instantiated a distribution for the initial time X₁. And now you're running variable elimination to get the distribution for X₂. So you're trying to compute P(X₂) in this Bayes net.
+
+
+## Exmaple Run of Mini-Forward Algorithm
+
+- From initial observation of sun
+
+·  | (X₁) | (X₂) | (X₃) | (X₄) | ... | (X<sub>∞</sub>)
+--- | --- | --- | --- | --- | --- | ---
+sun  | 1.0 | 0.9 | 0.84 | 0.804 | ... | 0.75
+rain | 0.0 | 0.1 | 0.16 | 0.196 | ... | 0.25
+
+- If we run it long enough, it will converge onto 0.75,0.25.
+- From initial observation of ran
+
+·  | (X₁) | (X₂) | (X₃) | (X₄) | ... | (X<sub>∞</sub>)
+--- | --- | --- | --- | --- | --- | ---
+sun  | 0.0 | 0.3 | 0.48 | 0.588 | ... | 0.75
+rain | 1.0 | 0.7 | 0.52 | 0.412 | ... | 0.25
+
+- We actually end up with the same distribution at time *t* equals infinity.
+    - Just like value iteration, policy iteration, it doesn't matter how you initialize your values, because it decays over time by the discount factor.
+- From yet another initial distribution P(X₁)
+
+
+·  | (X₁) | ... | (X<sub>∞</sub>)
+--- | --- | --- | ---
+sun  | p   | ... | 0.75
+rain | 1-p | ... | 0.25
 
 
 <h2 id="cff3dc4ffa629a6c5051471a4665a6c7"></h2>
 
 
-### Stationary Distributions
+## Stationary Distributions
 
 - For most chains:
     - Influence of the initial distribution gets less and less over time.
     - The distribution we end up in is independent of the initial distribution
 - Stationary distribution:
-    - The distribution we end up with is called the stationary distribution           of the chain
+    - The distribution we end up with is called the **stationary distribution P<sub>∞</sub>** of the chain
     - It satisfies  ![](../imgs/cs188_markov_stationary_distributions.png)
 
 - As the property of markov matrix , it will converge to 0.94868/0.31623 = 3:1, that means:
     - P<sub>∞</sub>(sun) = 3/4
     - P<sub>∞</sub>(rain) = 1/4 
 
-```
+### Still the Weather Example 
+
+X<sub>t-1</sub> | X<sub>t</sub> | P(X<sub>t</sub> \| X<sub>t-1</sub>)
+--- | --- | ---
+sun  | sun  | 0.9
+sun  | rain | 0.1
+rain | sun  | 0.3
+rain | rain | 0.7
+
+- Question: What's P(X) at time t=infinity?
+
+```octave
 octave:6> a = [ 0.9 0.3 ; 0.1 0.7 ]
 a =
 
