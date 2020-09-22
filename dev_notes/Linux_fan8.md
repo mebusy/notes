@@ -569,4 +569,23 @@ CPPFLAGS | c++编译器选项
     - 这里就要用到 Autotools 工具了.
 
 
+# A brief introduction to Makefiles
+
+```makefile
+all: output
+output: input1 input2 input3
+    command --output $@ --inputs $^
+```
+
+CMake will turn it into 
+
+```makefile
+all: output
+output: input1 input2 input3
+    command --output output --inputs input1 input2 input3
+```
+
+
+
+
 
