@@ -81,5 +81,50 @@ import "C"
 - Recursion allowd across the chasm
 - Implemented in GO, C and Assembly
 
+## copy between C and Go
+
+- C.CString uses C heap, you must free it
+
+```go
+package print
+
+// #include <stdio.h>
+// #include <stdlib.h>
+import "C"
+import "unsafe"
+
+func Print(s string) {
+    cs := C.CString(s)
+    defer C.free(unsafe.Pointer(cs))
+    C.fputs(cs, (*C.FILE)(C.stdout))
+}
+```
+
+- A few special functions convert between Go and C types by making copies of the data. In pseudo-Go definitions:
+
+```go
+// Go string to C string
+// The C string is allocated in the C heap using malloc.
+// It is the caller's responsibility to arrange for it to be freed, 
+// such as by calling C.free (be sure to include stdlib.h
+// if C.free is needed).
+func C.CString(string) *C.char
+
+// Go []byte slice to C array
+// The C array is allocated in the C heap using malloc.
+// It is the caller's responsibility to arrange for it to be
+// freed, such as by calling C.free (be sure to include stdlib.h
+// if C.free is needed).
+func C.CBytes([]byte) unsafe.Pointer
+
+// C string to Go string
+func C.GoString(*C.char) string
+
+// C data with explicit length to Go string
+func C.GoStringN(*C.char, C.int) string
+
+// C data with explicit length to Go []byte
+func C.GoBytes(unsafe.Pointer, C.int) []byte
+```
 
 
