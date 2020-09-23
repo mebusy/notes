@@ -81,6 +81,13 @@ import "C"
 - Recursion allowd across the chasm
 - Implemented in GO, C and Assembly
 
+## Concurrency considerations
+
+- Go multiplexes goroutines to GOMAXPROCS threads
+- "Once a goroutine enters cgo , it's considered blocking, so not counted in $GOMAXPROCS limit and ... scheduler might need to **create new OS thread** to host other ready goroutines"
+- 8 goroutines * GOMAXPROCS=1 , Go to C used all 
+- 800k goroutines of GO to C got "pthread_create failed" (pure Go no problem)
+
 ## copy between C and Go
 
 - C.CString uses C heap, you must free it
@@ -126,5 +133,32 @@ func C.GoStringN(*C.char, C.int) string
 // C data with explicit length to Go []byte
 func C.GoBytes(unsafe.Pointer, C.int) []byte
 ```
+
+## Call Go from Interpreter language
+
+Darwin -> .dylib
+
+windows .dll ?
+
+others: .so
+
+c-shared
+
+
+# Unsafe 
+
+## 指针 - unsafe 包的灵魂
+
+语言环境 | 无类型指针 | 数值化指针
+--- | --- | --- 
+Go | `var p unsafe.Pointer = nil` | `var q uintptr = uintptr(p)`
+C  | `void *p = NULL;`  | `uintptr_t q = (unitptr_t)(p);` (c99)
+
+- unsafe.Pointer 是Go指针和C指针 转化的媒介
+- uintptr 是 Go  转化数值和指针的 中介
+
+
+
+
 
 
