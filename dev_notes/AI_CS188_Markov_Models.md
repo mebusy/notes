@@ -250,11 +250,32 @@ Diagonal Matrix
     - Transitions:
         - With prob. c, uniform jump to a random page
         - With prob. 1-c, follow a random outlink
+    - So page rank is a number assigned to each node in the web graph. Google came up with a way for a computer to just crawl the internet and assign the page ranks automatically. The computer will start anywhere on the internet, at random. And then when you're on a page with a bunch of out links, you click one of them at random. You follow that one. And then you repeat this process. And as you repeat this, you're actually following a Markov model. Google compute the stationary distribution.
 - Stationary distribution
     - Will spend more time on highly reachable pages
-        - E.g. many ways to get to the Acrobat Reader download page
+    - E.g. many ways to get to the Acrobat Reader download page
     - Somewhat robust to link spam
     - Google 1.0 returned the set of pages containing all your keywords in decreasing rank, now all search engines use link analysis along with many other factors (rank actually getting less important over time)
+
+
+## Application of Stationary Distribution: Gibbs Sampling
+
+- Each joint instantiation over all hidden and query varialbes is a state: { X₁, ..., X<sub>n</sub> } = H ∪ Q
+
+- Transitions:
+    - with probability 1/n resample variable Xⱼ according to
+    - P( Xⱼ | X₁,X₂,...,X<sub>j-1</sub>, X<sub>j+1</sub>, ..., X<sub>n</sub>, e₁,...e<sub>m</sub> )
+
+- Stationary distribution:
+    - Conditional distribution  P( X₁,X₂,..., X<sub>n</sub> | e₁,...e<sub>m</sub> )
+    - Means that when running Gibbs sampling long enough we get a sample from the desired distribution
+    - Requires some proof to show this is true!
+
+---
+
+## Hidden Markov Models
+
+Typically, you need more than just a Markov model, you need something called hidden Markov model.
 
 
 
