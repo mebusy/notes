@@ -299,3 +299,9 @@ export JAVA_HOME=$JAVA_8_HOME
 # just for example, using NDK r20
 $NDK/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-readelf -A <.so file>
 ```
+
+## Find dependency of android shared library
+
+```bash
+$NDK/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-readelf  -d ../dist/Android/libs/armeabi-v7a/libgo.so
+```
