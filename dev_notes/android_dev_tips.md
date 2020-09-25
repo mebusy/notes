@@ -291,3 +291,11 @@ alias java9='export JAVA_HOME=$JAVA_9_HOME'
 #default java8
 export JAVA_HOME=$JAVA_8_HOME
 ```
+
+
+## How to determine ABI of Android .so file 
+
+```bash
+# just for example, using NDK r20
+$NDK/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-readelf ../
+```
