@@ -297,5 +297,5 @@ export JAVA_HOME=$JAVA_8_HOME
 
 ```bash
 # just for example, using NDK r20
-$NDK/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-readelf ../
+$NDK/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-readelf -A <.so file>
 ```
