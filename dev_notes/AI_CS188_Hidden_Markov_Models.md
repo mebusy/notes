@@ -36,10 +36,17 @@
 
 # Hidden Markov Model 
 
-This pacman can eat ghost but first he has to find them. So soon as pacman start moving , you will see in the bottom colord numbers , which are kind of noisy readings of how far the ghosts are. 
+## Pacman-Sonar (P4)
+
+![](../imgs/cs188_pacman_sonar.png)
+
+This pacman can eat ghost but first he has to find them. So soon as pacman start moving , you will see in the bottom colored numbers , which are kind of noisy readings of how far the ghosts are. 
 
 Now let's say I want to eat the orange ghost. If you could somehow take these numbers over time and combine them with your model of how the world works --  means where are the walls, where are the maze -- and also your model of how the ghosts move , and figure out where they are. 
 
+The ghosts' location is falling in Markov model, but we're also having measurements, and these measurements we don't have in the Markov model. 
+
+Once we have a hidden Markov model, we'll also have measurements.
 
 <h2 id="d656a155bed68a7dec83cd56ff973bbc"></h2>
 
@@ -100,8 +107,9 @@ But hidden Markov model says 2 things: I know how the world changes in a time st
     - You observe outpus (effects) at each time step
     - As a Bayes' net :
         - ![](../imgs/cs188_HMM_hmm.png)
-        - structure:  1 hidden variable , and 1 observed variable 
-        - what we're gonna have is that every time there's ganna be a hidden variable that structure like a markov chain and each time the evidence depends only on the state unobserved but only on the state at that time (E | X). 
+        - structure:  1 hidden variable(X) , and 1 observed variable(E)
+        - in HMM, we don't get to observe the hidden state -- X, but the hope is that by observing the evidence variables, we can somehow infer a posterior distribution over the hidden states that allows us to do something interesting.
+        - what we're gonna have is that every time there's ganna be a hidden variable. that structure like a markov chain and each time the evidence depends only on the state unobserved but only on the state at that time (E | X) ( Bayes net D-separation )
 
 ---
 
@@ -110,8 +118,29 @@ But hidden Markov model says 2 things: I know how the world changes in a time st
 
 ### Example : Weather HMM 
 
-- the hidden variable: where or not it's raining -- True or False
-- the observed variable: an umbrella
+![](../imgs/cs188_HMM_example_weather_new.png)
+
+The sad grad student HMM. 
+
+There's a grad student. He is just in the basement at all times. They don't come out of that basement. But luck has it, every now and then Professor stops by and say hi to them. And sometimes, professor has an umbrella, sometimes not. And that, for the grad student, is a way to extract information about whether today might be a sunny day or a rainy day.
+
+- hidden variable: where or not it's raining -- True or False
+- observed variable: an umbrella
+
+- Now, there's mulitple distributions involved.
+    - the initial state distribution 
+        - initially sunny or rainy
+    - a distribution of for next day
+        - like we saw in the Markov Model, the transition model.
+    - a distribution for evidence given current state
+        - the probability of various evidence values given the underlying state , which we then used to predict the opposite -- something about X.
+
+
+- So an HMM is defined by:
+    - **Initial distribution:  P(X₁)**
+    - **Transitions:  P(X<sub>t</sub>|X<sub>t-1</sub>)**
+    - **Emissions:   P(E<sub>t</sub>|X<sub>t</sub>)**
+
 
 So what do we need to define the HMM ? 
  
@@ -122,21 +151,12 @@ So what do we need to define the HMM ?
     - ![](../imgs/cs188_HMM_example_weather_define_func2.png)
     - That is called emission model. This tells you what probability of seeing various evidences values is  for each underlying state. 
     - In this case it says that when it's raining you see the umbrella 90% of time , but when it's not raining you still see it 20% of time. 
-
----
-
-![](../imgs/cs188_HMM_example_weather.png)
+- equivalent to 
+    - ![](../imgs/cs188_HMM_example_weather_new_distribution.png)
+- We have HMM:
+    - ![](../imgs/cs188_HMM_example_weather.png)
 
 So from a single observation of an umbrella you don't know very much , but if day after day you're seeing the umbrella you start to kind of gain some confidence.
-
----
-
-- An HMM is defined by:
-    - Initial distribution:  P(X₁)
-    - Transitions:  P(X|X₋₁)
-        - how the world evolved in a single time step
-    - Emissions:   P(E|X)
-        - the probability of various evidence values given the underlying state , which we then used to predict the opposite -- something about x.
 
 ---
 
@@ -154,7 +174,7 @@ So from a single observation of an umbrella you don't know very much , but if da
         - for that red square , it's 50% precent probability of moving right , 1/6 probability that you'll stand, 1/6 probability to go in other direction.
     - Where do these conditional probabilities come from ?
         - This is your assumptions about the world , you might learn them from data, for now that's just an input.
-    - That's what happens from that one state.  But you generally don't know what state you're in, and you need to sum over all the options , that's  the forward algorithm was about.
+    - That's what happens from that one state.  **But you generally don't know what state you're in**, and you need to sum over all the options , that's  the forward algorithm was about.
 - P(Rᵢⱼ|X) = same sensor model as before: red means close, green means far away.
     - somewhere there has to be specified precisely the probability of reading at a certain position given the underlying state. 
     - ![](../imgs/cs188_HMM_example_ghostbuster_sonar.png)
