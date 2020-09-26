@@ -145,8 +145,6 @@ others: .so
 c-shared
 
 
-# Unsafe 
-
 ## 指针 - unsafe 包的灵魂
 
 语言环境 | 无类型指针 | 数值化指针
@@ -156,6 +154,55 @@ C  | `void *p = NULL;`  | `uintptr_t q = (unitptr_t)(p);` (c99)
 
 - unsafe.Pointer 是Go指针和C指针 转化的媒介
 - uintptr 是 Go  转化数值和指针的 中介
+
+
+# Examples
+
+## macOS/iOS: Writing to NSLog using Golang (using Cgo)
+
+```go
+// example.go
+package myapp
+
+import "log"
+
+  ...
+
+mobilelog := MobileLogger{}
+logger := log.New(mobilelog, "", 0)
+```
+
+```go
+// mobilelogger.go
+package myapp
+
+/*
+#cgo CFLAGS: -x objective-c
+#cgo LDFLAGS: -framework Foundation
+#import <Foundation/Foundation.h>
+void Log(const char *text) {
+  NSString *nss = [NSString stringWithUTF8String:text];
+  NSLog(@"%@", nss);
+}
+*/
+import "C"
+import "unsafe"
+
+type MobileLogger struct {
+}
+
+func (nsl MobileLogger) Write(p []byte) (n int, err error) {
+	p = append(p, 0)
+	cstr := (*C.char)(unsafe.Pointer(&p[0]))
+	C.Log(cstr)
+	return len(p), nil
+}
+```
+
+
+
+
+
 
 
 
