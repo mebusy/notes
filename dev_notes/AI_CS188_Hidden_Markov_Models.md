@@ -180,7 +180,13 @@ So from a single observation of an umbrella you don't know very much , but if da
     - ![](../imgs/cs188_HMM_example_ghostbuster_sonar.png)
     - so it might say if you read at (3,3) and the ghost is there , your probability of getting red is 0.9. Those facts live in the emission model , they say how the evidence directly relates to the state at that time. 
     - ![](../imgs/cs188_HMM_example_ghostbuster_model.png)
-    
+
+- The dynamics of HMM: alternation between *time passing* and *measurement*, *time passing* and *measurement*, ...
+    - Time passes
+        - which tends to diffuse where the ghost probability mass is
+    - measurement
+        - which tends to help us concentrate where the ghosts might be.
+    - This is the HMM process in action.
 
 ---
 
@@ -189,15 +195,19 @@ So from a single observation of an umbrella you don't know very much , but if da
 
 ### HMM Conditional Independence 
 
+Let's think about the independence assumptions we make in this model.
+
 - HMMs have 2 import independence properties
-    - Markov hidden process:  future depends on past  via the present 
+    - Markov hidden process:  future depends on past via the present 
+        - that is, knowing a state at a given time separates past from future.
         -  same as MM. 
     - Current observation independent of all else given current state
-        - given X₃ , E₃ is independent of all everything else X₃.
+        - given X₃ , E₃ is independent of all anything else we could find out once we know X₃. It's just X₃ directly influences our measurement, and nothing else has any influence anymore.
 - Quiz: does this mean that evidence variables are guaranteed to be independent ?
     - If I don't observe anything I could say : Is the evidence I see at time₁ independent of the evidence I see at time₂ ? 
     - It is like the umbrella on tuesday is independent of the umbrella on Wednesday. 
     - So It seems like it shouldn't be. The evidence variables are absolutely not independent. They're only conditionally independent. 
+    - for example, from E₁ to E₄, there is an active path, it consist of a common cause , and a causal chains. And nothing is observed in-between.
 
 
 ---
@@ -206,6 +216,12 @@ So from a single observation of an umbrella you don't know very much , but if da
 
 
 ### HMM example
+
+
+<details>
+<summary>
+Not used in CS188 Fall 2018 lecture
+</summary>
 
 The prior probability P(X₀), dynamics model P(X<sub>t+1</sub>|X<sub>t</sub> ), and sensor model P(E<sub>t</sub>|X<sub>t</sub>) are as follows:
 
@@ -224,6 +240,7 @@ We incorporate the evidenc E₁=b. We fill in the evidence-weighted distribution
 
 ![](../imgs/cs188_hmm_example_edx_e.png)
 
+</details>
 
 ---
 
@@ -257,11 +274,11 @@ You get the evidence at every time and you usually want to figure out the state 
 
 Now we are going to talk about how to keep track of what you believe about a variable X -- the state variable -- as evidence comes it and time passes, and from this we'll build up the full-forward algorithm. 
 
-The task is to figure out at any given time what do I believe is happening in the hidden state ( B<sub>t</sub>(X) ) given all the evidence from the first time step all the way up to the current time. 
 
 - Filtering, or monitoring, is the task of tracking the distribution B<sub>t</sub>(X) = P<sub>t</sub>(X<sub>t</sub> | e₁, …, e<sub>t</sub>) (the belief state) over time
+    - B<sub>t</sub>(X) : belief state over state , which is a conditional of X<sub>t</sub> given all evidence up to time t.
 - We start with B₁(X) in an initial setting, usually uniform
-- As time passes, or we get observations, we update B(X)
+- As **time passes**, or we **get observations**, we update B(X)
 - The Kalman filter was invented in the 60’s and first implemented as a method of trajectory estimation for the Apollo program
 
 ---
@@ -279,32 +296,51 @@ It is going down the corridor and all do is shoot out lasers in each direction a
 
 ![](../imgs/cs188_hmm_example_RobotLocalization_map.png)
 
-- Sensor model: can read in which directions there is a wall, never more than 1 mistake
+- Sensor model: can read in which directions there is a wall or not, it makes at most 1 error.
 - Motion model: may not execute action with small prob.
 
 
-So it knows there's a wall right here , but no wall in front of me. And if it gets a reading that says there's wall on my left and right but not in front or behind, then suddenly it shouldn't think it's anywhere in this building.  Where should I think it is? It is kind of think it's in the corridors, corridors look like that. It's the sensor model , formly is conditioned on my current position, I need say a distribution over readings.  Let's image that instead of the continuous readings , the readings are wall or not in each direction.
+So it knows there's a wall right here, but no wall in front of me. And if it gets a reading that says there's wall on my left and right but not in front or behind, then suddenly it shouldn't think it's anywhere in this building.  Where should I think it is? It is kind of think it's in the corridors, corridors look like that. It's the sensor model , formly is conditioned on my current position, I need say a distribution over readings.  Let's image that instead of the continuous readings , the readings are wall or not in each direction.
 
 ---
 
-So if I sense that is a wall above and below I should have pretty high  probability of my belief distribution of being in the dark gray squares. I should have some smaller probability of being in the lighter grey square.  
+We first do a sensor reading.
+
+So if I sense that is a wall above and below I should have pretty high probability of my belief distribution of being in the dark gray squares. I should have some smaller probability of being in the lighter grey square.  
 
 ![](../imgs/cs188_hmm_example_rl_t1.png)
 
 - t=1
 - Lighter grey: was possible to get the reading, but less likely b/c required 1 mistake
 
+Then the robot will move to the right. We'll have a transtion model for that. It't not guaranteed to move one to the right, but with high probability, it will.
+
+Then we get another sensor reading.
+
+![](../imgs/cs188_hmm_example_rl_t2.png)
+
+- t=2
+
 ---
+
+Then moves again, also does a sensory update, 
  
 Time passes. 
 
 As I continue reading north and south walls , what will happen is there will be fewer and fewer places which are consistent with my history of readings.
 
 
-![](../imgs/cs188_hmm_example_rl_t2.png)
 ![](../imgs/cs188_hmm_example_rl_t3.png)
+
+- t=3
+
 ![](../imgs/cs188_hmm_example_rl_t4.png)
+
+- t=4
+
 ![](../imgs/cs188_hmm_example_rl_t5.png)
+
+- t=5
 
 ---
 
@@ -313,55 +349,67 @@ As I continue reading north and south walls , what will happen is there will be 
 
 ## Inference: Base Cases
 
+So, what are the base cases ?
+
 Inference in Markov model is acutally the approximate inference .
 
 Let's do the base cases. There's really 2 things that happen in HMMs. 
 
-One is time passes.  You go from X at a certain time to X at the next time.  The other thing happens you see evidence.  There things are interleaved. 
+1. One is time passes.
+    - You go from X<sub>t</sub> to X<sub>t+1</sub> to.  
+2. The other thing happens you see evidence.
+
+There things are interleaved. 
+
+---
 
 ![](../imgs/cs188_hmm_base_case1.png)
 
 
-But if all you had was a single time slice, you had X₁ and you saw evidence at time₁ E₁ , and you want to compute what's probability over my hidden state X₁ given my evidence E₁. So you just want to compute this conditional probability : P(X₁|e₁).  
+But if all you had was a single time slice, you had X₁ and you saw evidence at time₁ E₁ , and you want to compute what's probability over my hidden state X₁ given my evidence E₁. So you just want to compute this conditional probability : P(X₁|e₁).
 
 - I know P(X₁) , this is what before I see the evidence. 
-- Now I also know a distribution that tells me how the evidence relates to X₁ : P( E₁ | X₁ ). 
+- I also know a distribution that tells me how the evidence relates to X₁ : P( E₁|X₁ ). 
  
 That's not quite what I want. What I want is P(X₁|e₁). 
 
-- X is capital because it's a vector here. I need one of these numbers for each value of X.
-- e is lowercase because there's a specific value , it's scalar. 
 
-```
+```bash
 P(X₁|e₁) = P(X₁,e₁)/P(e₁)
          = P(e₁|X₁)·P(X₁) /P(e₁) 
 ```
 
-The above manipulation I just did has nothing to do with HMMs. Now what I don't know is `P(e₁)`. But that is a constant as I vary X (not understand!).
+We're interested over X₁. e₁ is not a variable. Anything that does not involve X₁ we can just remove if it's just multiplied in. It say it's proportional to this.
 
-So as you saw with the variable elimination I can just ignore it. So the actual reasoning goes something a little bit more cpmpactly . 
-
-I'm instead going to compute P( X₁,e₁ ) and normalize in the end. I know how to compute it -- `P(X₁,e₁) = P(e₁|X₁)·P(X₁)`. So I compute all of these products: current probability times evidence probability. And then once I have that whole vector of those I re-normalize and now I have the conditional distribution of P(X₁|e₁). That is what happens when you incorporate evidence: you take your current vector of probabilities P(X₁) ,you multiply each one by the appropriate evidence factor and then you renormalize it. 
-
-```
+```bash
 P(x₁|e₁) = P(x₁,e₁)/P(e₁)
          ∝ P(x₁,e₁)
          = P(x₁)·P(e₁|x₁)
 ```
 
-大家都无视 P(e₁) ， 最后重新 normalize 
+What would be the reulst of this calculation ?
+
+x₁ | ∝ P(x₁,e₁)A | P(x₁)
+--- | ---  | ---
+0  | 0.2 |  0.4
+1  | 0.3 |  0.6
+
+
+
+I'm instead going to compute P( X₁,e₁ ) and normalize in the end. I know how to compute it -- `P(X₁,e₁) = P(e₁|X₁)·P(X₁)`. So I compute all of these products: current probability times evidence probability. And then once I have that whole vector of those I re-normalize and now I have the conditional distribution of P(X₁|e₁). That is what happens when you incorporate evidence: you take your current vector of probabilities P(X₁) ,you multiply each one by the appropriate evidence factor and then you **renormalize** it. 
 
 ---
 
-The other base case is this.
-
 ![](../imgs/cs188_hmm_base_case2.png)
+
+The other base case is transition over time. This is the markov model update.
+
 
 You have a distribution over X₁ and rather than seeing evidence , time passes by one step. Well in this case I know P(X₁) , and I know P(X₂|X₁) . But I want is P(X₂).
 
 ![](../imgs/cs188_hmm_base_case_2_formulation.png)
 
-全概率模型
+That's exactly what we've been doing in the first half of lecture.
 
 ---
 
@@ -372,22 +420,24 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 <h2 id="3fd013cbb540e9c1e999d77ef692dc16"></h2>
 
 
-## Passage of Time  (case 2)
+## Passage of Time  (base case 2)
 
-- Assume we have current belief P(X | evidence to date)
+- **Assume we have current belief P(X | evidence to date)**
     - B(X<sub>t</sub>) = P(X<sub>t</sub>|e<sub>1:t</sub>)
-- Then, after one time step passes:
+- **Then, after one time step passes:**
     - ![](../imgs/cs188_hmm_passage_of_time.png)
-        - step1: 条件概率的 全概率展开 (case 2)
-        - step2: 条件概率版 product rule
-        - step3: independent 
-    - you take your input P(X<sub>t</sub>|e<sub>1:t</sub>)  ,  which is your current beliefs. You take them multiply them by the transition probabilities , and then you sum out all the sources and now you have the probabilities over all of the targets. 
-- Or, compactly :
+        - step1: The reason we bring in X<sub>t</sub> is because we assume recursively that we already know the B(X<sub>t</sub>). So by bringing in X<sub>t</sub>, we might be able to build us something we already have.
+        - step2: conditional product rule
+        - step3: independent. 
+            - We don't have the all of these available -- the red one we already have available, the black one we don't. What do we need to do? We need to somehow make an assumption. The HMM gives us the assumption: P(X<sub>t+1</sub> | x<sub>t</sub>, e<sub>1:t</sub>) does not depend on evidence e<sub>1:t</sub>. So we can get rid of that.
+            - Now we have quantities we know. P(x<sub>t</sub>|e<sub>1:t</sub>) recursively comes from the previous computaion B(X<sub>t</sub>), P(X<sub>t+1</sub> | x<sub>t</sub>) is in our dynamics model.
+    - you take your input P(X<sub>t</sub>|e<sub>1:t</sub>),  which is your current beliefs. You take them multiply by the transition probabilities,  and then you sum out all the sources and now you have the probabilities over all of the targets. 
+- **Or, compactly :**
     - ![](../imgs/cs188_hmm_passage_of_time_compactly.png)
     - it says: you want to know the probability tomorrow of being at some particular X<sub>t+1</sub>. You consider how likely it is to get to X<sub>t+1</sub> from each locations (X'). So you want to know how likely it is that I'll end up at this particular X<sub>t+1</sub> , you consider all the places that could get you there , in one time step. and you say : what's the probability of being , here at A and then moving there , what's the probability ? and whatelse if at B, C, ... 
         - ![](../imgs/cs188_hmm_passage_of_time_ABCD.png)
     - that is this, you  summer(∑) all of the places you could have been , you look how likely it is that you were there ( B(x<sub>t</sub>) ) to begin with , times how likely it is had you been there to get to X'.  
-- Basic idea: beliefs get “pushed” through the transitions
+- **Basic idea: beliefs get “pushed” through the transitions**
     - With the “B” notation, we have to be careful about what time step t the belief is about, and what evidence it includes
 
 ---
@@ -397,11 +447,13 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 ### Example: Passage of Time
 
-- As time passes, uncertainty “accumulates”
+- **As time passes, uncertainty “accumulates”**
     - ![](../imgs/cs188_hmm_example_passage_of_time.png)
     - (Transition model: ghosts usually go clockwise)
-- That's basically your robot knows what's going on today and sooner or later if you never get any more evidence , the robot will become more and more confused until it has no idea what's going on. 
-    - ![](../imgs/cs188_hmm_example_passage_of_time_robot.png)
+
+That's basically your robot knows what's going on today and sooner or later if you never get any more evidence , the robot will become more and more confused until it has no idea what's going on. 
+
+- ![](../imgs/cs188_hmm_example_passage_of_time_robot.png)
 
 
 --- 
@@ -409,19 +461,23 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 <h2 id="2690e7eb741e31d792c0834583a6dcc9"></h2>
 
 
-## Observation  (case 1)
+## Observation  (base case 1)
 
-- Assume we have current belief P(X | previous evidence):
+![](../imgs/cs188_hmm_base_case1.png)
+
+- Assume we have current belief before the evidence P(X | previous evidence):
     - B'(X<sub>t+1</sub>) = P(X<sub>t+1</sub>|e<sub>1:t</sub>)
     - I have a belief vector that says here's my probability distribution over what's going on at a centain time BEFORE I see my evidence. 
 - Then , after the evidence tomorrow comes in: 
     - ![](../imgs/cs188_hmm_observation.png)
-        - take you current vector which represents the various probabilities right now , for each probability multiply by the evidence factor. So if the evidence is totally inconsistent with that state then even if somthing had high probability suddenly it might get zero out if it can't produce the evidence. 
-        - so you go to each probability of each state you multiply each one by the evidence.  
-        - so the blue thing is your probability before you saw your evidence , you weighted by the evidence, and then this vector doesn't add to 1 anymore. So you re-normalized it now it adds up to 1 again , now the red thing is including the evidence you just saw. 
+    - the evidence e<sub>t+1</sub> does not depend on any past evidence if we know X<sub>t+1</sub>. That's an assumption.
+    - so the blue thing is your probability before you saw your evidence, your current belief 
+        - the black thing is our measurement model 
+        - you weighted by the evidence, and then this vector doesn't add to 1 anymore. So you re-normalized it now it adds up to 1 again , now the red thing is including the evidence you just saw. 
 - Or:
     - ![](../imgs/cs188_hmm_observation_compactly.png)
-    - you take your vector (blue) , you do point product with the evidence vector, and you normalize them.  Now you have your new beliefs.  
+    - if the evidence is very compatible with the next state, then the probability mass will go up for that next state, otherwise it goes down.
+    - you take your vector (blue) , you do point product with the evidence vector, and you normalize them.  Now you have your new beliefs.
 - Basic idea: beliefs “reweighted” by likelihood of evidence
 - Unlike passage of time, we have to renormalize
 
@@ -444,6 +500,9 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 ![](../imgs/cs1188_hmm_example_wather_hmm_2.png)
 
+There's another way to write this, in one big update.
+
+
 ---
 
 <h2 id="6dbc07cd7c694bd7ba7917098b848d8b"></h2>
@@ -451,10 +510,21 @@ You have a distribution over X₁ and rather than seeing evidence , time passes 
 
 ## The Forward Algorithm
 
+Rather than doing a time update and doing an evidence update, I'm going to just do one update.
+
 - We are given evidence at each time and want to know
     - B<sub>t</sub> (X) = P(X<sub>t</sub>|e<sub>1:t</sub>)
 - We can derive the following updates:
     - ![](../imgs/cs188_hmm_the_forawrd_algorithm.png)
+    - step1: get rid of */P(e<sub>1:t</sub>)*
+    - step2: bring in x<sub>t-1</sub> and sum out. because we want a recursive update equation as a function of what we had at the previous time.
+    - step3: decompose into transition model and measurement model.
+        - P( x<sub>t-1</sub>, x<sub>t</sub>, e<sub>1:t</sub> )
+        - = P( x<sub>t-1</sub>, e<sub>1:t-1</sub> )P( x<sub>t</sub>, e<sub>t</sub> | x<sub>t-1</sub>, e<sub>1:t-1</sub> ) = P( x<sub>t-1</sub>, e<sub>1:t-1</sub> )P( x<sub>t</sub>, e<sub>t</sub> | x<sub>t-1</sub> )
+        - = P( x<sub>t-1</sub>, e<sub>1:t-1</sub> )P( e<sub>t</sub> | x<sub>t-1</sub>, x<sub>t</sub> )P( x<sub>t</sub> | x<sub>t-1</sub> )
+        - = P( x<sub>t-1</sub>, e<sub>1:t-1</sub> )P( e<sub>t</sub> | x<sub>t</sub> )P( x<sub>t</sub> | x<sub>t-1</sub> )
+    - step4: reorganize a little bit
+
 - This is exactly variable elimination with order X₁,X₂,...
 
 The forward algorithm is a dynamic program for computing at each time slice , the distribution over the state at that time given all the evidence to date. 
@@ -465,6 +535,8 @@ The forward algorithm is a dynamic program for computing at each time slice , th
 
 
 ## Online Belief Updates
+
+Online belief update, which is most common, is where you would essentially just do these thing.
 
 - Every time step, we start with current P(X | evidence)
 - We update for time:

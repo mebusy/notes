@@ -116,7 +116,7 @@ This case let's look at just 4 variables.
 - proof:
     - ![](../imgs/cs188_markov_implied_conditional_probability.png)
 - Additional explicit assumption
-    - P(X<sub>t</sub>|X<sub>t-1</sub>) is the same for all t   // TODO  why ?
+    - P(X<sub>t</sub>|X<sub>t-1</sub>) is the same for all t
 
 
 
