@@ -45,6 +45,7 @@ Markov Model, a special kind of Bayes net, that sees a particularly large amount
     - Each node is identically distributed (stationarity)
     - Value of X at a given time is called the **state**
         - ![](../imgs/cs188_markov_model_state_x.png)
+        - **so you have some variable X that replicates at every time step**
     - As a Bayes' net
         - P(X₁)
         - P(X<sub>t</sub> | X<sub>t-1</sub>)
@@ -53,7 +54,7 @@ Markov Model, a special kind of Bayes net, that sees a particularly large amount
     - Stationarity assumption: transition probabilities the same at all times
         - this means transition probabilities P(x<sub>t</sub> | x<sub>t-1</sub> ) don't depend on time, they are always the same. 
     - Same as MDP transition model , but no choice of action
-        - here is no action, you just watching 
+        - here is no action, you are just interested in watching how its value evovles probabilistically over time, for example, what's the probability of rain 5 days after it was sunny ?
 
 
 ### Conditional Independence

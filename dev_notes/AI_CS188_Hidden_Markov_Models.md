@@ -584,6 +584,19 @@ Online belief update, which is most common, is where you would essentially just 
 
 ## Particle Filtering 
 
+<details>
+<summary>
+<I>Particle filtering is really a useful technique.</I>
+</summary>
+
+HMM is basic idea of reasoning about underlying phenomenon over time on the basis of noisy observations. HMM is really important.
+
+Particle filtering partially is something we do in the real world, because it's efficient. Especially when your event spaces are very large or continuous or infinite. It is a very powerful technique.
+
+But it's also a really useful way of understanding what's happending in the exact case. Because sometimes, it's easier to think about tracking a particular particle or a particular sample instead of tracking the exact space in aggregate.
+
+</details>
+
 Let's thought about something different. Let's say you look at that, and you say all right I get these  variable eliminations,  I can compute big tables of probability distribution over X , and I can do these online , I can do these on step-by-step update. But there's actually a couple problems. 
 
 One question is there's enough sums and products that can kind of become a little unclear what the equations doing until you're familiar with it. That's a temporary problem but there are permanent problems as well with the exact inference. 
