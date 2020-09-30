@@ -103,6 +103,26 @@ kubectl_tke --context=<ContextName>  get nodes
 kubectl -n <namespace> rollout restart deployment <deployment-name>
 ```
 
+### search log in all pods
+
+```bash
+NAMESPACE="your-namespace"
+SELECTOR="k8s-app=xxxxxxx"
+CMD="cat logs/app.log" 
+TEXT="GET /callback"
+
+if [ "$1" != ""  ]
+then
+    TEXT=$1
+fi
+
+for pod in `kubectl -n $NAMESPACE get po --no-headers --selector=$SELECTOR  -o custom-columns='NAME:metadata.name'`
+do
+    echo -------------- seaching $pod
+    kubectl -n $NAMESPACE exec -it $pod -- $CMD   | grep "$TEXT"
+done
+```
+
 
 ### other usage
 
