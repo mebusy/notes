@@ -59,27 +59,54 @@ mv ./kubectl /usr/local/bin/kubectl
 
 ## use kubectl
 
-```
-1. list pods
-kubectl -n umc-dunkshot-prod2 get po
+### #list only pod name,  and no column name
 
-  only name:
+```bash
+#list only pod name,  and no column name
 kubectl get po --no-headers -o custom-columns=:.metadata.name
+```
 
-2. exec
-kubectl exec -ti -n <namespace> <name of workernode> <command>
-i.e. kubectl exec -ti -n <namespace> <name of workernode>
+### find pod by ip
 
-3.
-kubectl -n umc-dunkshot-dev2 get svc
-
-4. find pod by ip
+```bash
+# find pod by ip
 kubectl get po --all-namespaces -o wide | grep 10.0.0.39
+```
 
-5. get yaml 
+### get yaml 
+
+```bash
+# get yaml 
 kubectl ... get ...  -o yaml --export 
+```
+
+### full service name across namespaces
+
+```bash
+# full service name across namespaces
+<service-name>.<namespace-name>.svc.cluster.local
+```
+
+### Specify a Context 
+
+```bash
+# list all context
+kubectl config get-contexts
+
+# specify context
+kubectl_tke --context=<ContextName>  get nodes
+```
+
+### restart deployment
+
+```bash
+kubectl -n <namespace> rollout restart deployment <deployment-name>
+```
 
 
+### other usage
+
+```bash
 7. ImagePullSecret ( 如果需要从外部pull 镜像的话需要设置, in deployment)
     - qcloudregistrykey , 
 
@@ -90,14 +117,7 @@ it seems that TKE will automatically use  `tencenthubkey` ?
 
    kubectl get secret <secret-name> --namespace=A --export -o yaml | kubectl apply --namespace=B -f -
 
-9. full service name across namespaces
-    <service-name>.<namespace-name>.svc.cluster.local
 ```
-
-
-
-- doc: https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/
-- [轻松了解Kubernetes部署功能](http://qinghua.github.io/kubernetes-deployment/)
 
 
 <h2 id="d4b1fc7497d32f6554e52b3a22b5685f"></h2>
@@ -106,37 +126,6 @@ it seems that TKE will automatically use  `tencenthubkey` ?
 ## kubectl cheatsheet
 
 [cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-
-<h2 id="8daa29dd6dc24f597382f05f82206a96"></h2>
-
-
-## kubectl delete po by selector
-
-```
-kubectl -n <namespace> delete po --selector=<selector-key>=<selector-value>
-```
-
-<h2 id="cdd368345c1399226f29c445f2d344f7"></h2>
-
-
-## restart deployment
-
-```
-kubectl -n <namespace> rollout restart deployment <deployment-name>
-```
-
-<h2 id="bd251ed977799cf91b83164dbb4e6bab"></h2>
-
-
-## Specify a Context 
-
-```bash
-# list all context
-kubectl config get-contexts
-
-# specify context
-kubectl_tke --context=<ContextName>  get nodes
-```
 
 
 <h2 id="a65165eaad917e08dbaab4ca345c9140"></h2>
@@ -188,62 +177,12 @@ example: when this pod restart , before it really ready,  make 1 another service
 ```
 
 
-<h2 id="32a13011ccded1584ff2253d3356b336"></h2>
-
-
-## 使用自定义列格式化输出
-
-kubectl get 命令默认输出格式, 包含的信息比较有限
-
-```bash
-$ kubectl get pods
-NAME                                      READY   STATUS    RESTARTS   AGE
-nginx-app-76b6449498-86b55                1/1     Running   0          23d
-nginx-app-76b6449498-nlnkj                1/1     Running   0          23d
-opdemo-64db96d575-5mhgg                   1/1     Running   2          23d
-```
-
-自定义列输出的用法如下：
-
-```bash
--o custom-columns=<header>:<jsonpath>[,<header>:<jsonpath>]...
-```
-
-- each `<header>:<jsonpath>`
-    - `<header>`  is column name
-    - `<jsonpath>` is an expression to specify the resource 
-
-```bash
-$ kubectl get pods -o custom-columns='NAME:metadata.name'
-NAME
-nginx-app-76b6449498-86b55
-nginx-app-76b6449498-nlnkj
-opdemo-64db96d575-5mhgg
-```
-
-- 选择 Pod 名称的表达式是metadata.name，这是因为 Pod 的名称被定义在 Pod 资源的 metadata 字段下面的 name 字段中
-- 我们可以在 API 文档或者使用`kubectl explain pod.metadata.name`命令来查看
-
-现在假如我们要在输出结果中添加另外一列数据，比如显示每个 Pod 正在运行的节点:
-
-```bash
-$ kubectl get pods \
-  -o custom-columns='NAME:metadata.name,NODE:spec.nodeName'
-NAME                                      NODE
-nginx-app-76b6449498-86b55                ydzs-node2
-nginx-app-76b6449498-nlnkj                ydzs-node1
-opdemo-64db96d575-5mhgg                   ydzs-node2
-```
-
 <h2 id="f0cfc2eb04f3c904ba876b4ff5e36744"></h2>
 
 
 ## JSONPath 表达式
 
 ```bash
-# 选择一个列表的所有元素
-$ kubectl get pods -o custom-columns='DATA:spec.containers[*].image'
-
 # 选择一个列表的指定元素
 $ kubectl get pods -o custom-columns='DATA:spec.containers[0].image'
 
@@ -448,3 +387,6 @@ export https_proxy=https://localhost:3128
 
 - restart 
     - `brew services restart cntlm`
+
+
+
