@@ -146,5 +146,37 @@ func oppoVerifySignature( signString string, sig string ) error {
 }
 ```
 
+## SHA256WithRSA 公钥验证
 
+```go
+/*
+* 发送方: signString -> private key 签名 -> sig
+* 接收方: signString -> sha1rsa + publickey 
+*/
+func VerifySignatureSHA256withRSA( channel, signString string, sig string ) error {
+    // public key
+    k := conf.CHANNELS[channel].APP_IAP_PUBLIC
+
+    key, _ := base64.StdEncoding.DecodeString(k)
+    re, err := x509.ParsePKIXPublicKey(key)
+    pub := re.(*rsa.PublicKey)
+    if err != nil {
+        log.Println(err)
+        return err
+    }
+
+    h := sha256.New()
+    h.Write(  []byte(signString) )
+    digest := h.Sum(nil)
+
+    ds, _ := base64.StdEncoding.DecodeString(sig)
+    err = rsa.VerifyPKCS1v15(pub, crypto.SHA256, digest, ds)
+    // fmt.Println("verify:", err)
+    if err != nil {
+        log.Println(err)
+        return err
+    }
+    return nil
+}
+```
 
