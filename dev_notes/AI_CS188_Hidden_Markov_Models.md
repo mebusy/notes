@@ -379,7 +379,9 @@ P(X₁|e₁) = P(X₁,e₁)/P(e₁)
          = P(e₁|X₁)·P(X₁) /P(e₁) 
 ```
 
-We're interested over X₁. e₁ is not a variable. Anything that does not involve X₁ we can just remove if it's just multiplied in. It say it's proportional to this.
+We're interested over X₁. e₁ is not a variable. Anything that does not involve X₁ we can just remove if it's just multiplied in, because this constant *e₁* is present for each value of x₁. It say it's proportional to this.
+
+And I can do the computation being off by that constant and then renormalize at the end.
 
 ```bash
 P(x₁|e₁) = P(x₁,e₁)/P(e₁)
@@ -387,7 +389,9 @@ P(x₁|e₁) = P(x₁,e₁)/P(e₁)
          = P(x₁)·P(e₁|x₁)
 ```
 
-What would be the reulst of this calculation ?
+That says for each value X, they get weighted by the probability of the evidence given that underlying state.
+
+What would be the result of this calculation ?
 
 x₁ | ∝ P(x₁,e₁)A | P(x₁)
 --- | ---  | ---
@@ -426,8 +430,9 @@ That's exactly what we've been doing in the first half of lecture.
     - B(X<sub>t</sub>) = P(X<sub>t</sub>|e<sub>1:t</sub>)
 - **Then, after one time step passes:**
     - ![](../imgs/cs188_hmm_passage_of_time.png)
-        - step1: The reason we bring in X<sub>t</sub> is because we assume recursively that we already know the B(X<sub>t</sub>). So by bringing in X<sub>t</sub>, we might be able to build us something we already have.
-        - step2: conditional product rule
+        - step1: The reason we bring in x<sub>t</sub> is because we assume recursively that we already know the B(X<sub>t</sub>). So by bringing in x<sub>t</sub>, we might be able to build us something we already have.
+            - **so I can introduce x<sub>t</sub>, and sum it out at the same time. This is just introducing a variable.**
+        - step2: conditional chain rule
         - step3: independent. 
             - We don't have the all of these available -- the red one we already have available, the black one we don't. What do we need to do? We need to somehow make an assumption. The HMM gives us the assumption: P(X<sub>t+1</sub> | x<sub>t</sub>, e<sub>1:t</sub>) does not depend on evidence e<sub>1:t</sub>. So we can get rid of that.
             - Now we have quantities we know. P(x<sub>t</sub>|e<sub>1:t</sub>) recursively comes from the previous computaion B(X<sub>t</sub>), P(X<sub>t+1</sub> | x<sub>t</sub>) is in our dynamics model.
@@ -470,6 +475,9 @@ That's basically your robot knows what's going on today and sooner or later if y
     - I have a belief vector that says here's my probability distribution over what's going on at a centain time BEFORE I see my evidence. 
 - Then , after the evidence tomorrow comes in: 
     - ![](../imgs/cs188_hmm_observation.png)
+    - step1: conditional probability rule
+    - step3: chain rule
+    - step4: conditional independent
     - the evidence e<sub>t+1</sub> does not depend on any past evidence if we know X<sub>t+1</sub>. That's an assumption.
     - so the blue thing is your probability before you saw your evidence, your current belief 
         - the black thing is our measurement model 
@@ -479,7 +487,7 @@ That's basically your robot knows what's going on today and sooner or later if y
     - if the evidence is very compatible with the next state, then the probability mass will go up for that next state, otherwise it goes down.
     - you take your vector (blue) , you do point product with the evidence vector, and you normalize them.  Now you have your new beliefs.
 - Basic idea: beliefs “reweighted” by likelihood of evidence
-- Unlike passage of time, we have to renormalize
+- **Unlike passage of time, we have to renormalize**
 
 ---
 
@@ -597,13 +605,15 @@ But it's also a really useful way of understanding what's happending in the exac
 
 </details>
 
-Let's thought about something different. Let's say you look at that, and you say all right I get these  variable eliminations,  I can compute big tables of probability distribution over X , and I can do these online , I can do these on step-by-step update. But there's actually a couple problems. 
+Let's thought about something different. Let's say you look at a HMM problem, and you say all right I get these  variable eliminations,  I can compute big tables of probability distribution over X , and I can do these online , I can do these on step-by-step update. But there's actually a couple problems. 
 
 One question is there's enough sums and products that can kind of become a little unclear what the equations doing until you're familiar with it. That's a temporary problem but there are permanent problems as well with the exact inference. 
 
+One is sometimes the space X is really really big and there's almost no chance that you're at anywhere except a couple locations. 
+
 ![](../imgs/cs188_hmm_particle_filtering_map.png)
 
-One is sometimes the space X is really really big and there's almost no chance that you're at anywhere except a couple locations. So think about you discrete tile compus down to 100 cm x 100 cm , and you have a robot that's right here . You started here and you run it for a minute but you kind of don't know if it's going to be 3 feet of 7 feet in that direction.  But youk know that it's not going to kind of be in sproul plaza. So you have the giant state-space , you're only using a small little piece of it and so somehow we like to not have to have our computation be proportional to the number of states and in fact is proportional to the O(n²).  
+So think about you discrete tile compus down to 100 cm x 100 cm , and you have a robot that's right here . You started here and you run it for a minute but you kind of don't know if it's going to be 3 feet of 7 feet in that direction.  But youk know that it's not going to kind of be in sproul plaza. So you have the giant state-space , you're only using a small little piece of it and so somehow we like to not have to have our computation be proportional to the number of states ( O(n²) ).
 
 Secondly there are more complicated versions of HMMs called dynamic business for which inference actually gets quite difficult. 
 
