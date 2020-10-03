@@ -1,9 +1,8 @@
 
 
-<h2 id="410d3f5a2938bf0efb5fb0b5ef6ca702"></h2>
 
 
-## Particle Filtering 
+# Particle Filtering 
 
 <details>
 <summary>
@@ -34,24 +33,26 @@ So what are we gonna do ?
 
 We are going to replace the idea of a probability distribution that for each possible value of X returns your number -- was a lookup table for every state you get a numbe. Instead we're going to keep around a collection of hypotheses that may or may not be correct , and the hypotheses are going to embody a distribution as samples. So it's going to look something like this :  you got a map ,and instead of each 10cm² piece of that map,  having a tiny probability attached on it, I'm just going to have 300 places I might be. Now if I look these samples I don't exactly know where I am. Each sample says something different but I would guess that I'm somewhere in the upper right. And that's the idea.
 
----
 
-![](../imgs/cs188_hmm_particle_filtering_pic.png)
+## Particle Filtering 
 
 - Filtering: approximate solution
+    - *Remember filtering is one name for the problem where I ask given all of my evidence, what is the current hidden variable X<sub>t</sub>? Where is the robot now?*
 - Sometimes |X| is too big to use exact inference
     - |X| may be too big to even store B(X)
     - E.g. X is continuous
 - Solution: approximate inference
     - Track samples of X, not all values
-        - instead of keeping track of a map from X to real numbers , I'm gonna keep track of a list of samples.
+        - I can't enumerate all the pairs or triples of real numbers. Instead of keeping track of a map from X to real numbers , I'm gonna keep track of a list of samples.
         - here are 10 samples each red dot is a sample 
         - and in this case my samples live on some but not all of the location on the grid. 
     - Samples are called particles
     - Time per step is linear in the number of samples
+        - I'm going to do operations on these samples to give me new samples, and I'm going to do it basically by scanning over the old samples.
     - But: number needed may be large
     - In memory: list of particles, not states
 - This is how robot localization works in practice
+    - ![](../imgs/cs188_hmm_particle_filtering_pic.png)
 - Particle is just new name for sample
 
 ---
@@ -61,13 +62,13 @@ We are going to replace the idea of a probability distribution that for each pos
 
 ### Prepresentation: Particles
 
-![](../imgs/cs188_hmm_particle_filtering_repr.png)
 
 - Our representation of P(X) is now a list of N particles (samples)
     - Generally, `N << |X|`
     - Storing map from X to counts would defeat the point
+    - ![](../imgs/cs188_hmm_particle_filtering_repr.png)
     - here instead of writing 9 numbers which is 1 probability for each square I'm gonna have maybe 10 particles. 
-        - Each particle has a specific value of X , eg. green particle (3,3), and it's not the only particle that represents that hypothesis , we actually have 5 completely different particle that all predicting the same state. 
+        - **Each particle has a specific value of X** , eg. green particle (3,3), and it's not the only particle that represents that hypothesis , we actually have 5 completely different particle that all predicting the same state. 
         - so what's the probability of (3,3) ?   50% ! It's probably wrong but that's what the particles say.
 - P(x) approximated by number of particles with value x
     - So, many x may have P(x) = 0! 
@@ -81,24 +82,24 @@ We are going to replace the idea of a probability distribution that for each pos
 
 ### Particle Filtering : Elapse Time 
 
-Now what do I do ?  I might start with my particles uniform or I have some particular belief and when time passes I need to move these particles around to reflect that. So I pick up each particle -- let's pick up the green one , a hypothesis of (3,3) -- where will it be next time in the next time slice? Well I grab my transition model -- which might say counterclockwise motion with high  probability -- , so I grap this particle and I say you're no longer a distribution, you're a single value of X , you maybe wrong but you'er a single value of X and for that particular value of X. 
+Now what do I do ?  I might start with my particles uniform or I have some particular belief and when time passes I need to move these particles around to reflect that. 
+
+So I pick up each particle -- let's pick up the green one , a hypothesis of (3,3) -- where will it be next time ? 
+
+Well I grab my transition model -- which might say counterclockwise motion with high probability -- , so I grap this particle and I say you're no longer a distribution, you're a single value of X, you maybe wrong but you're a single value of X and for that particular value of X. 
 
 
-
-![](../imgs/cs188_hmm_particle_filtering_elapse_time.png)
 
 - Each particle is moved by sampling its next position from the transition model
     - `x' = sample( P(X'|x) )`
     - This is like prior sampling -- samples’ frequencies reflect the transition probabilities
     - Here, most samples move clockwise, but some move in another direction or stay in place
-- 解释:
-    - I have a transition function `P(X'|x)`  that says from that specific square here is where I go in with what probability. 
-    - Now this is one particle and I can't do all of the things that might happen. So I flip a coin, this is a sampling. I take this particle and I pick one of the things that might evolve into , and I pick in proportion to the conditional proabability given by the transition function. So I get a new sampe `x'`, which might be in the same place or it might go couterclockwise. and if I do that to each one of these 10 particles I might get these 10 particles(bottom of pic) out. 
-    - I don't create particles , don't destroy particles, I picked them up 1 by 1 and I simulate what might happen to that particle in the next time step.
-    - so there  might be 5 particles on (3,3) but they might not all get the same future because I flip a coin for each one. They might spread out in this case they do.
+    - ![](../imgs/cs188_hmm_particle_filtering_elapse_time.png)
+        - *I don't create particles , don't destroy particles, I picked them up 1 by 1 and I simulate what might happen to that particle in the next time step.*
+        - *so there  might be 5 particles on (3,3) but they might not all get the same future because I flip a coin for each one. They might spread out in this case they do*.
 - This captures the passage of time
     - If enough samples, close to exact values before and after (consistent)
-    - so someone gives me a HMM, that means they've given me the transition probabilities. I take my particles and each particle get simulated. That is like letting time pass in my model.   That's how in particle filtering time passes.
+    - *so someone gives me a HMM, that means they've given me the transition probabilities. I take my particles and each particle get simulated. That is like letting time pass in my model.   That's how in particle filtering time passes.*
 
 ---
 
@@ -109,7 +110,6 @@ Now what do I do ?  I might start with my particles uniform or I have some parti
 
 What happens when I get evidence ?  It's a little tricky.
 
-![](../imgs/cs188_hmm_particle_filtering_observe.png)
 
 - Slightly trickier:
     - Don’t sample observation, fix it
@@ -118,14 +118,11 @@ What happens when I get evidence ?  It's a little tricky.
         - B(X) ∝ P(e|X)B'(x)
 - As before, the probabilities don’t sum to one, since all have been downweighted (in fact they now sum to (N times) an approximation of P(e))
 
+![](../imgs/cs188_hmm_particle_filtering_observe.png)
 
-Let's say here are my 10 particles . What happens when I get evidence that there's a reading of red meaning the ghost is close right here in this square (3,2).  We'll remember how evidence works in the that case: I take each of my probabilities and I downweighted by the probability of the evidence.  In that analog of that here is to take each of your particles and give it a weight that reflects how likely the evidence is from that location.  So this green particle at (3,2) maybe the probability of seeing red if you actually are at (3,2) is 0.9.  So this is a reasonable hypothesis.  But this guy at top-left square has a very low probability of seeing this reading. 
+Let's say here are my 10 particles . What happens when I get evidence that there's a reading of red meaning the ghost is close right here in this square (3,2).  We'll remember how evidence works in that case: I take each of my probabilities and I downweighted by the probability of the evidence.  In that analog of that here is to take each of your particles and give it a weight that reflects how likely the evidence is from that location.  So this green particle at (3,2) maybe the probability of seeing red if you actually are at (3,2) is 0.9.  So this is a reasonable hypothesis.  But this guy at top-left square has a very low probability of seeing this reading. 
 
----
-
-So when time passed I just picked a future -- just like regular sampling , but here I'm stuck with the observation I have. So instead of generating it I force each sample to accept this future and some of them accept with a high probability and some of them accept with a low probability , and now there tiny little samples that have small weight. 
-
-There's one more trick. If I did this my samples would kind of go all over the place , and rather than clustering in the high probability regions , they just kind of drift around and some of them will get big weights and some of them will get small. So I'd like to as samples become very small , I'd like to kind of naturally and correctly have samples move over to where they're needed. And the way that works is even though I'm strictly speaking multiplying the each sample by the evidence weight is enough to incorporate the evidence I want to get back to unweighted samples that we're kind of the look where samples all have the same weight and tend to cluster in high probability regions.
+So we get new samples weighted from the old samples. 
 
  
 ---
@@ -139,13 +136,15 @@ There's one more trick. If I did this my samples would kind of go all over the p
 
 
 - Rather than tracking weighted samples, we resample
-    - we're not going to track these samples under their weights. So I line up my 10 weighted samples , and I get 10 new ones according to my distribution. 
-    - So we're going to get 10 new particles , and for each new particle we're gonna pick one of the old ones in proportion to their weights. 
-    - That means (3,2) had a pretty high weight. So even though we get rid of all the old particles there going to be a lot of new ones which choose (3,2).
-    - So you go from the position like in top of pic, where part of the information of the distribution is in the location of the hypothesis -- the particles, and part of it is in their weights. You now have a new sampling ( bottom of pic ) , where all of the information is in their location -- they are now equally weighted. Where did the weights go? They went into the multiplicities -- the fact (3,2) has a high weight leads to more particles get clone from it , and  (1,3) has a low weight that's reflected in the fact that probably it's not going to get chosen for the new team. 
+    - we're not going to track these weighted samples, they are no good to me, because their weigths are starting to shrink. And if I do this for too long, their weights will all go to zero.
+
 - N times, we choose from our weighted sample distribution (i.e. draw with replacement)
+    - So what I'll do is to create new particles. The new particles, I sample with replacement(放回抽样) from the old weightned samples, are now equally weighted. 
+    - (3,2) had a pretty high weight. So even though we get rid of all the old particles there going to be a lot of new ones which choose (3,2).
+
 - This is equivalent to renormalizing the distribution
     - procedurally the idea is when you see evidence in your particle filter , you line up your particles , you weight them by the evidence and then you clone new particles through your old particles , and now the weights are all gone. 
+
 - Now the update is complete for this time step, continue with the next one
 
 ---
@@ -159,21 +158,24 @@ There's one more trick. If I did this my samples would kind of go all over the p
 
 ![](../imgs/cs188_hmm_particle_filtering_recap.png)
 
-You have some belief function. It is represented by a list of particles of things that might be true , and they are all kind of the particles represent your distribution at samples. 
+- You have some belief function. It is represented by a list of particles of things that might be true , and they are all kind of the particles represent your distribution at samples. 
 
-When time passes, you take your particles and you don't add or delete particles. For each one you pick a future for it through simulation -- you flip coin. That's like prior sampling. 
+- When time **elapsed**, you take your particles and you don't add or delete particles. For each one you pick a future for it through simulation -- you flip coin. That's like prior sampling. 
 
-When evidence comes in , you weight the particles based on a factor from the evidence , so some particles get shrunk down to almost zero, other particles that match the evidence still have a pretty substantial weight. 
+- When evidence comes in , you **weight** the particles based on a factor from the evidence , so some particles get shrunk down to almost zero, other particles that match the evidence still have a pretty substantial weight. 
 
-Then you decide you don't actually want these weighted particles. So you resample and new() particles and each one clones an old particle , that means some old particles now kind of have multiplicity and some of them are gone. 
+- Then you decide you don't actually want these weighted particles. So you **resample** , and you get a new set of unweighted particles.
+
+
+
+
+
 
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
 
-## Example 
-
-Implementation
+## Implementation
 
  1. Initialize particles by sampling from initial state distribution
  2. Repeat
@@ -181,6 +183,8 @@ Implementation
     2. Weight according to evidence
         - corner case: When all your particles receive zero weight based on the evidence, you should resample all particles to initial distribution
     3. Resample according to weights
+
+
 
 ---
  
@@ -192,11 +196,9 @@ Implementation
     - time elapse
         - Forward Algorithm : you consider how likely it is to get to X<sub>t+1</sub> from each locations (X'). 
         - particle filtering : you just roll a dice, and move particle to next most likely position.
-        
 
----
 
-Question:
+## Question:
 
 - use a particle filter to track the state of a robot that is lost in the small map below
     - ![](../imgs/cs188_hmm_example_quiz_robotmap.png)

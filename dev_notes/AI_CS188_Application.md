@@ -18,6 +18,48 @@
 # Application 
 
 
+## Robot Localization
+
+- We know the map, but not the robot's position
+- Observations may be vectors of range finder readings
+- State space and readings are typically continuous( works basically like a very fine grid ) and so we cannot store B(X)
+- Particle filtering is a main technique.
+
+![](../imgs/cs188_hmm_appli_robot_loc.png)
+
+You'll notice that **the number of particles is adaptive**. You start with a bunch of particles(40000) because you have to cover all these hypotheses (all positions). But once you basically know where you are, you can just keep a cloud of hypotheses around you. You just blanket your nearby area with random samples( 100-1000 ).
+
+But you got to be really careful, remember that lone particle?
+
+
+## Robot Mapping
+
+- SLAM: Simultaneous Localization And Mapping
+    - We do not know the map or our location
+        - This is where your hypothesis is not "I'm here on a known map", but "I'm here and I think the map looks like this". So you don't know the map.
+    - State consists of position AND map!
+        - Each particle is a map that you are drawing with a dot on it.
+        - Instead of a grid of these things, there's some high dimensional space of maps and dots on them.
+    - Main techniques: Kalman filtering(Gaussian HMMs) and particle methods.
+
+![](../imgs/cs188_hmm_appli_robot_mapping.png)
+
+
+### Dynamic Bayes Nets
+
+![](../imgs/cs_188_dynamic_bayes_net.png)
+
+- We want to track multiple variables over time, using multiple sources of evidence.
+    - ![](../imgs/cs188_dbns.png)
+- Idea: repeat a fixed Bayes net structure at each time
+- Variables from time *t* can condition on those from *t-1*.
+
+
+
+
+
+
+
 <h2 id="8a6f8fa384efc23dcdcc19e7384bdc45"></h2>
 
 
