@@ -11,6 +11,8 @@
     - [AsyncTask](#97f8fab067a9df19dd2e8b75c5989fff)
     - [Update Eclipse project to ant](#64556a6168b58f000bc4bd5146c16844)
     - [MacOSX multiple Java version](#1346a911b293f1e15ae203e43f3af6b1)
+    - [How to determine ABI of Android .so file](#bd8841fe31193f151e81534a3c94b0d7)
+    - [Find dependency of android shared library](#965580fe8a8a7a0a7ce16fce7262e029)
 
 ...menuend
 
@@ -293,12 +295,18 @@ export JAVA_HOME=$JAVA_8_HOME
 ```
 
 
+<h2 id="bd8841fe31193f151e81534a3c94b0d7"></h2>
+
+
 ## How to determine ABI of Android .so file 
 
 ```bash
 # just for example, using NDK r20
 $NDK/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-readelf -A <.so file>
 ```
+
+<h2 id="965580fe8a8a7a0a7ce16fce7262e029"></h2>
+
 
 ## Find dependency of android shared library
 

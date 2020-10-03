@@ -5,6 +5,7 @@
     - [Java's SHA256withRSA in GO way](#2aab9f8f7b040df1b0b94142b2d0a157)
         - ["crypto/md5"](#e825ff9cfb339d337f0bd935d0df0a14)
     - [SHA1WithRSA 公钥验签](#445d8588e7c1da8fc65aa336369ad632)
+    - [SHA256WithRSA 公钥验证](#0ba4261ccbb4f819fba76d40a078bc26)
 
 ...menuend
 
@@ -145,6 +146,9 @@ func oppoVerifySignature( signString string, sig string ) error {
     return nil
 }
 ```
+
+<h2 id="0ba4261ccbb4f819fba76d40a078bc26"></h2>
+
 
 ## SHA256WithRSA 公钥验证
 

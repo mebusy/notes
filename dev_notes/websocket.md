@@ -1,7 +1,25 @@
+...menustart
+
+- [github.com/gorilla/websocket](#6fa1b8e5c3878c9c6185055837bd2fde)
+    - [Overview](#3b878279a04dc47d60932cb294d96259)
+    - [Control Messages](#cfbf5a3d7314f33620de8b7105a40090)
+    - [Concurrency](#3e48afddb0c5521684b8d2687b0869d6)
+    - [Origin Considerations](#d09a4b59e096374b40568f20866ee2b1)
+    - [Buffers](#4c19ddb10d5a902842dda06a62c3d601)
+    - [API](#db974238714ca8de634a7ce1d083a14f)
+
+...menuend
+
+
+<h2 id="6fa1b8e5c3878c9c6185055837bd2fde"></h2>
+
 
 # github.com/gorilla/websocket
 
 [package websocket](https://pkg.go.dev/github.com/gorilla/websocket)
+
+<h2 id="3b878279a04dc47d60932cb294d96259"></h2>
+
 
 ## Overview
 
@@ -62,6 +80,9 @@
     - connection NextWriter method to get an io.WriteCloser
     - connection NextReader method to get an io.Reader and read until io.EOF is returned
 
+<h2 id="cfbf5a3d7314f33620de8b7105a40090"></h2>
+
+
 ## Control Messages
 
 - three types of control messages: close, ping and pong
@@ -81,14 +102,23 @@
     }
     ```
 
+<h2 id="3e48afddb0c5521684b8d2687b0869d6"></h2>
+
+
 ## Concurrency
 
 - **Connections support one concurrent reader and one concurrent writer**.
+
+<h2 id="d09a4b59e096374b40568f20866ee2b1"></h2>
+
 
 ## Origin Considerations
 
 - The Upgrader calls the function specified in the CheckOrigin field to check the origin.
 - If the CheckOrigin field is nil, then the Upgrader uses a safe default: fail the handshake if the Origin request header is present and the Origin host is not equal to the Host request header.
+
+<h2 id="4c19ddb10d5a902842dda06a62c3d601"></h2>
+
 
 ## Buffers
 
@@ -102,6 +132,9 @@
 - A write buffer pool is useful when the application has a modest number writes over a large number of connections. 
     - when buffers are pooled, a larger buffer size has a reduced impact on total memory use and has the benefit of reducing system calls and frame overhead.
 
+
+
+<h2 id="db974238714ca8de634a7ce1d083a14f"></h2>
 
 
 ## API

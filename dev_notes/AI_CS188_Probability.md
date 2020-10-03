@@ -1,5 +1,6 @@
 ...menustart
 
+- [Summary](#290612199861c31d1036b185b4e69b75)
 - [Probability](#0d2765b30694ee9f4fb7be2ae3b676dc)
     - [Uncertainty](#9df64ea44035467d4b3b1d3137556ccb)
     - [Random Variables](#8a93f7814e04aeb4a3435d0667b581d7)
@@ -22,6 +23,10 @@
     - [Conditional Independence](#0f1513d04ac32269de73d0f17465488e)
 
 ...menuend
+
+
+<h2 id="290612199861c31d1036b185b4e69b75"></h2>
+
 
 # Summary
 

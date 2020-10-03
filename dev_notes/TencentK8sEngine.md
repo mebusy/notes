@@ -4,13 +4,17 @@
 - [kubectl](#0f12ee5c9f1dd90158580f1c292b0d37)
     - [install](#19ad89bc3e3c9d7ef68b89523eff1987)
     - [use kubectl](#773c2c719c95cc40967b0e945ada8898)
+        - [#list only pod name,  and no column name](#7ec1be1882d584532184cc1609283eb3)
+        - [find pod by ip](#083e4e9d5085b330f59f1e5032b9e408)
+        - [get yaml](#27b7cb2760c21e097eef0e0c787ff402)
+        - [full service name across namespaces](#f105d78fa5298a8e02f51a22ac6da980)
+        - [Specify a Context](#bd251ed977799cf91b83164dbb4e6bab)
+        - [restart deployment](#cdd368345c1399226f29c445f2d344f7)
+        - [search log in all pods](#7740cb2915e67ffc07500ca7d0dc086f)
+        - [other usage](#4b091e7bf24f9e193323877b35ece5fb)
     - [kubectl cheatsheet](#d4b1fc7497d32f6554e52b3a22b5685f)
-    - [kubectl delete po by selector](#8daa29dd6dc24f597382f05f82206a96)
-    - [restart deployment](#cdd368345c1399226f29c445f2d344f7)
-    - [Specify a Context](#bd251ed977799cf91b83164dbb4e6bab)
     - [role , rolebinding](#a65165eaad917e08dbaab4ca345c9140)
     - [postStart / preStop event handle](#3cfc0b587c5bea5919d967aa0c0f7629)
-    - [使用自定义列格式化输出](#32a13011ccded1584ff2253d3356b336)
     - [JSONPath 表达式](#f0cfc2eb04f3c904ba876b4ff5e36744)
 - [腾讯云 用户管理](#7616e9353ba2c3c55eb7063e51fc65fb)
     - [策略](#66914536facf5b30973b236fb814d23f)
@@ -59,12 +63,18 @@ mv ./kubectl /usr/local/bin/kubectl
 
 ## use kubectl
 
+<h2 id="7ec1be1882d584532184cc1609283eb3"></h2>
+
+
 ### #list only pod name,  and no column name
 
 ```bash
 #list only pod name,  and no column name
 kubectl get po --no-headers -o custom-columns=:.metadata.name
 ```
+
+<h2 id="083e4e9d5085b330f59f1e5032b9e408"></h2>
+
 
 ### find pod by ip
 
@@ -73,6 +83,9 @@ kubectl get po --no-headers -o custom-columns=:.metadata.name
 kubectl get po --all-namespaces -o wide | grep 10.0.0.39
 ```
 
+<h2 id="27b7cb2760c21e097eef0e0c787ff402"></h2>
+
+
 ### get yaml 
 
 ```bash
@@ -80,12 +93,18 @@ kubectl get po --all-namespaces -o wide | grep 10.0.0.39
 kubectl ... get ...  -o yaml --export 
 ```
 
+<h2 id="f105d78fa5298a8e02f51a22ac6da980"></h2>
+
+
 ### full service name across namespaces
 
 ```bash
 # full service name across namespaces
 <service-name>.<namespace-name>.svc.cluster.local
 ```
+
+<h2 id="bd251ed977799cf91b83164dbb4e6bab"></h2>
+
 
 ### Specify a Context 
 
@@ -97,11 +116,17 @@ kubectl config get-contexts
 kubectl_tke --context=<ContextName>  get nodes
 ```
 
+<h2 id="cdd368345c1399226f29c445f2d344f7"></h2>
+
+
 ### restart deployment
 
 ```bash
 kubectl -n <namespace> rollout restart deployment <deployment-name>
 ```
+
+<h2 id="7740cb2915e67ffc07500ca7d0dc086f"></h2>
+
 
 ### search log in all pods
 
@@ -122,6 +147,9 @@ do
     kubectl -n $NAMESPACE exec -it $pod -- $CMD   | grep "$TEXT"
 done
 ```
+
+
+<h2 id="4b091e7bf24f9e193323877b35ece5fb"></h2>
 
 
 ### other usage

@@ -1,3 +1,22 @@
+...menustart
+
+- [cgo](#63e64fb7f6bfcedd6708e1b75126a6fb)
+- [Cgo - Go under the hood](#6f4f121d679c89cf32d0ea88934c99db)
+    - [go build](#cec36a9a2bd92e12e683c99d23b3a0fc)
+    - [for callback](#83fec9a1c38557a5a493e84ac0a99521)
+    - [Crossing the Chasem](#97f750032375877e095f758fc45a1867)
+    - [Concurrency considerations](#eabd481c8a039ec36866de41247519f8)
+    - [copy between C and Go](#5025b13f57d84277bcce817a407505ee)
+    - [Call Go from Interpreter language](#16ad6798ad517309b1d4959fd9f2bfa2)
+    - [指针 - unsafe 包的灵魂](#ed562296a9c5bcbe2d40b6a97f745940)
+- [Examples](#ff7c0fcd6a31e735a61c001f75426961)
+    - [macOS/iOS: Writing to NSLog using Golang (using Cgo)](#6895f5e89997716a5baf9162b803b053)
+
+...menuend
+
+
+<h2 id="63e64fb7f6bfcedd6708e1b75126a6fb"></h2>
+
 
 # cgo
 
@@ -50,7 +69,13 @@ import "C"
 
 ```
 
+<h2 id="6f4f121d679c89cf32d0ea88934c99db"></h2>
+
+
 # Cgo - Go under the hood
+
+<h2 id="cec36a9a2bd92e12e683c99d23b3a0fc"></h2>
+
 
 ## go build
 
@@ -62,10 +87,16 @@ import "C"
 
 - `#cgo` pseodu directives and environment variables to flag compiler and linker
 
+<h2 id="83fec9a1c38557a5a493e84ac0a99521"></h2>
+
+
 ## for callback
 
 - Go can keep the c function pointer, but can not directly call it.
     - go need to call a c wrapper function which actually take the function pointer and call it.
+
+
+<h2 id="97f750032375877e095f758fc45a1867"></h2>
 
 
 ## Crossing the Chasem
@@ -81,12 +112,18 @@ import "C"
 - Recursion allowd across the chasm
 - Implemented in GO, C and Assembly
 
+<h2 id="eabd481c8a039ec36866de41247519f8"></h2>
+
+
 ## Concurrency considerations
 
 - Go multiplexes goroutines to GOMAXPROCS threads
 - "Once a goroutine enters cgo , it's considered blocking, so not counted in $GOMAXPROCS limit and ... scheduler might need to **create new OS thread** to host other ready goroutines"
 - 8 goroutines * GOMAXPROCS=1 , Go to C used all 
 - 800k goroutines of GO to C got "pthread_create failed" (pure Go no problem)
+
+<h2 id="5025b13f57d84277bcce817a407505ee"></h2>
+
 
 ## copy between C and Go
 
@@ -134,6 +171,9 @@ func C.GoStringN(*C.char, C.int) string
 func C.GoBytes(unsafe.Pointer, C.int) []byte
 ```
 
+<h2 id="16ad6798ad517309b1d4959fd9f2bfa2"></h2>
+
+
 ## Call Go from Interpreter language
 
 Darwin -> .dylib
@@ -143,6 +183,9 @@ windows .dll ?
 others: .so
 
 c-shared
+
+
+<h2 id="ed562296a9c5bcbe2d40b6a97f745940"></h2>
 
 
 ## 指针 - unsafe 包的灵魂
@@ -156,7 +199,13 @@ C  | `void *p = NULL;`  | `uintptr_t q = (unitptr_t)(p);` (c99)
 - uintptr 是 Go  转化数值和指针的 中介
 
 
+<h2 id="ff7c0fcd6a31e735a61c001f75426961"></h2>
+
+
 # Examples
+
+<h2 id="6895f5e89997716a5baf9162b803b053"></h2>
+
 
 ## macOS/iOS: Writing to NSLog using Golang (using Cgo)
 

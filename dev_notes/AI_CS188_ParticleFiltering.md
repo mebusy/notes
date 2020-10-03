@@ -1,5 +1,19 @@
+...menustart
+
+- [Particle Filtering](#410d3f5a2938bf0efb5fb0b5ef6ca702)
+    - [Particle Filtering](#410d3f5a2938bf0efb5fb0b5ef6ca702)
+        - [Prepresentation: Particles](#66e6211dd1d94379d2e996793264b1b9)
+        - [Particle Filtering : Elapse Time](#853995ed6d9bf9986864449b043774f2)
+        - [Particle Filtering: Observe](#48c6c2f783c106c655abca3552e166b3)
+        - [Particle Filtering: Resample](#988c88ad650c59ea6c4f609059420535)
+    - [Recap: Particle Filtering](#5d32a4d32d2126113fcc6cc88fde5a32)
+    - [Implementation](#b672f52ade975e864ae6b58722c03689)
+    - [Question:](#41e94aa2ea70937dbbcc787d8d5f1a2a)
+
+...menuend
 
 
+<h2 id="410d3f5a2938bf0efb5fb0b5ef6ca702"></h2>
 
 
 # Particle Filtering 
@@ -32,6 +46,9 @@ Secondly there are more complicated versions of HMMs called dynamic business for
 So what are we gonna do ?
 
 We are going to replace the idea of a probability distribution that for each possible value of X returns your number -- was a lookup table for every state you get a numbe. Instead we're going to keep around a collection of hypotheses that may or may not be correct , and the hypotheses are going to embody a distribution as samples. So it's going to look something like this :  you got a map ,and instead of each 10cm² piece of that map,  having a tiny probability attached on it, I'm just going to have 300 places I might be. Now if I look these samples I don't exactly know where I am. Each sample says something different but I would guess that I'm somewhere in the upper right. And that's the idea.
+
+
+<h2 id="410d3f5a2938bf0efb5fb0b5ef6ca702"></h2>
 
 
 ## Particle Filtering 
@@ -172,7 +189,7 @@ So we get new samples weighted from the old samples.
 
 
 
-<h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
+<h2 id="b672f52ade975e864ae6b58722c03689"></h2>
 
 
 ## Implementation
@@ -196,6 +213,9 @@ So we get new samples weighted from the old samples.
     - time elapse
         - Forward Algorithm : you consider how likely it is to get to X<sub>t+1</sub> from each locations (X'). 
         - particle filtering : you just roll a dice, and move particle to next most likely position.
+
+
+<h2 id="41e94aa2ea70937dbbcc787d8d5f1a2a"></h2>
 
 
 ## Question:

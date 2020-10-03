@@ -1,8 +1,9 @@
 ...menustart
 
 - [Hidden Markov Model](#70359ede2a47ed4a3c8ca9b6521d7629)
-    - [Markov Models](#d656a155bed68a7dec83cd56ff973bbc)
-        - [Conditional Independence](#0f1513d04ac32269de73d0f17465488e)
+    - [Pacman-Sonar (P4)](#e134a8fe2a3d65ce80a1a1ec8fd98778)
+    - [Markov Models (Recap)](#978327ecd03dbcbb86123b16a4a31213)
+        - [Conditional Independence (Recap)](#8d531d5e630e66648acaf2c680a347b7)
     - [Hidden Markov Models](#94d2b6fed9dd768fe2edec7e6c85546f)
         - [Example : Weather HMM](#c7624bc33d3af36dde93578541120635)
         - [Example: GhostBusters HMM](#29e2fd6f91ff2c795e0611725208492a)
@@ -12,21 +13,14 @@
     - [Filtering / Monitoring](#7d5a5544b159698a3c0d234ed796ab6c)
         - [Example:  Robot Localization](#8eb802f81a304b8d30bbde98a9341934)
     - [Inference: Base Cases](#6cdd6a9a5085ef26dcbe01cba728e9fa)
-    - [Passage of Time  (case 2)](#3fd013cbb540e9c1e999d77ef692dc16)
+    - [Passage of Time  (base case 2)](#a5335b4e1f44edbd59567e52c2e1b023)
         - [Example: Passage of Time](#25cfc18fb11a92c7484035257a6e5d7d)
-    - [Observation  (case 1)](#2690e7eb741e31d792c0834583a6dcc9)
+    - [Observation  (base case 1)](#e4e6a729de1544729d52e53710929278)
         - [Example of Observation](#22a77e6cdda4b68b0d0175942f8c991b)
         - [Example: Weather HMM](#75fc03589b48053de414b7e5d43b25a6)
     - [The Forward Algorithm](#6dbc07cd7c694bd7ba7917098b848d8b)
     - [Online Belief Updates](#dec94cde56942725d8a224ed9c065de2)
     - [Example : Ghost Buster](#dc8ab069265738c8965ed6fe1ffb2ea5)
-    - [Particle Filtering](#410d3f5a2938bf0efb5fb0b5ef6ca702)
-        - [Prepresentation: Particles](#66e6211dd1d94379d2e996793264b1b9)
-        - [Particle Filtering : Elapse Time](#853995ed6d9bf9986864449b043774f2)
-        - [Particle Filtering: Observe](#48c6c2f783c106c655abca3552e166b3)
-        - [Particle Filtering: Resample](#988c88ad650c59ea6c4f609059420535)
-    - [Recap: Particle Filtering](#5d32a4d32d2126113fcc6cc88fde5a32)
-    - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
 
 ...menuend
 
@@ -35,6 +29,9 @@
 
 
 # Hidden Markov Model 
+
+<h2 id="e134a8fe2a3d65ce80a1a1ec8fd98778"></h2>
+
 
 ## Pacman-Sonar (P4)
 
@@ -48,7 +45,7 @@ The ghosts' location is falling in Markov model, but we're also having measureme
 
 Once we have a hidden Markov model, we'll also have measurements.
 
-<h2 id="d656a155bed68a7dec83cd56ff973bbc"></h2>
+<h2 id="978327ecd03dbcbb86123b16a4a31213"></h2>
 
 
 ## Markov Models (Recap)
@@ -68,7 +65,7 @@ Once we have a hidden Markov model, we'll also have measurements.
         - here is no action, you just watching 
 
 
-<h2 id="0f1513d04ac32269de73d0f17465488e"></h2>
+<h2 id="8d531d5e630e66648acaf2c680a347b7"></h2>
 
 
 ### Conditional Independence (Recap)
@@ -421,7 +418,7 @@ That's exactly what we've been doing in the first half of lecture.
 
 ---
 
-<h2 id="3fd013cbb540e9c1e999d77ef692dc16"></h2>
+<h2 id="a5335b4e1f44edbd59567e52c2e1b023"></h2>
 
 
 ## Passage of Time  (base case 2)
@@ -463,7 +460,7 @@ That's basically your robot knows what's going on today and sooner or later if y
 
 --- 
 
-<h2 id="2690e7eb741e31d792c0834583a6dcc9"></h2>
+<h2 id="e4e6a729de1544729d52e53710929278"></h2>
 
 
 ## Observation  (base case 1)

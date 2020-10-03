@@ -2,15 +2,14 @@
 
 - [numpy tips](#c2bfb8f194cb52abbd9cc9397dafc5d4)
     - [Combining Arrays](#84df0f6a0e96bb96e66fdba51a103ad5)
-    - [Math Functions](#1f1ef887de84fa2b7f644b5878b4e6ce)
-    - [Indexing / Slicing](#6b17874075ca37cc84a6c0d09e623e1c)
     - [Iterating Over Arrays](#f32b904edd83a21e8b374913f5631504)
-    - [数据 slice](#1ae1043e3a38472916094e5c042464ed)
-    - [数据过滤](#86260398567c0091b1c262ef98512bd6)
-    - [数据 拼接](#6ab51568114b14d4784a1fa07f6717b5)
-    - [数据转换](#3c30b3189b43008ec08418c0d6afc49f)
 - [SciPy 2019](#e7bb3b7194c96eb93fb9a2777411aca8)
     - [Array Slicing](#458a3cb8ba7cd1c7a812c577db825242)
+    - [Fancy Indexing](#d5dddb265184f7c2f2d357bcefb39a2c)
+    - [Creating Array](#0bb4ab4184972d9ff27e7631e4f7ed1f)
+    - [Computations with Arrays](#91e2425ec5af8da6651503b23010be25)
+    - [Memory](#4789f23283b3a61f858b641a1bef19a3)
+    - [Flattening Arrays](#cadf8b38e0efdb666556ad014aec3e01)
 
 ...menuend
 
@@ -75,10 +74,6 @@
 - Use .astype to cast to a specific type.
     - `z = z.astype('f')`
 
-<h2 id="1f1ef887de84fa2b7f644b5878b4e6ce"></h2>
-
-
-
 <h2 id="f32b904edd83a21e8b374913f5631504"></h2>
 
 
@@ -135,6 +130,9 @@ numpy 可以把多个维度的slicing 放在一个方括号内...
     - use `r.copy` to create a copy that will not affect the original array
         - `r_copy = r.copy()`
 
+<h2 id="d5dddb265184f7c2f2d357bcefb39a2c"></h2>
+
+
 ## Fancy Indexing 
 
 Also called masking or boolean indexing , or logical indexing.
@@ -149,6 +147,9 @@ Fancy Indexing in 2-D
 
 
 **Unlike sliciing, fancy indexing creates copies instead of a view into original array.**
+
+
+<h2 id="0bb4ab4184972d9ff27e7631e4f7ed1f"></h2>
 
 
 ## Creating Array
@@ -166,6 +167,9 @@ Fancy Indexing in 2-D
            [ 0.,  1.,  0.],
            [ 0.,  0.,  1.]])
     ```
+
+
+<h2 id="91e2425ec5af8da6651503b23010be25"></h2>
 
 
 ## Computations with Arrays
@@ -213,6 +217,9 @@ Fancy Indexing in 2-D
         ```
         - Coordinates are returned as a tuple of arrays, one for each axis
 
+<h2 id="4789f23283b3a61f858b641a1bef19a3"></h2>
+
+
 ## Memory
 
 ```bash
@@ -239,6 +246,9 @@ Fancy Indexing in 2-D
     - shape: (2,2)
     - striders: (24,16)
 - when you using fancy indexing, numpy give up, and is gonna create a new array.
+
+
+<h2 id="cadf8b38e0efdb666556ad014aec3e01"></h2>
 
 
 ## Flattening Arrays

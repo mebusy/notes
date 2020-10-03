@@ -1,14 +1,21 @@
 ...menustart
 
 - [Markov Models](#d656a155bed68a7dec83cd56ff973bbc)
+    - [Probability Recap](#e9171aa010f3fa5d166ecf151b1de19c)
+    - [Reasoning over Time or Space](#b8edf9c2f97f0adf550e21090016b328)
     - [Markov Models](#d656a155bed68a7dec83cd56ff973bbc)
+        - [Conditional Independence](#0f1513d04ac32269de73d0f17465488e)
         - [Joint Distribution of a Markov Model](#2549029b268b93144235df84effeb97d)
         - [Chain Rule and Markov Models](#1584c0069936b81fd7e2d00d4dc7186a)
         - [Implied Conditional Independencies](#5627b13e1756dc92c82a9b3998e04960)
-        - [Example Markov Chain : Weather](#a3e9d92d013e8bd559c093cbca5a7684)
-        - [Mini-Forward Algorithm](#cd0df25e7ecc8f5591d125ef5318fae1)
-        - [Stationary Distributions](#cff3dc4ffa629a6c5051471a4665a6c7)
+    - [Example Markov Chain : Weather](#a3e9d92d013e8bd559c093cbca5a7684)
+    - [Mini-Forward Algorithm](#cd0df25e7ecc8f5591d125ef5318fae1)
+    - [Exmaple Run of Mini-Forward Algorithm](#ae8a34b505e071da4ab4c6a36da4f594)
+    - [Stationary Distributions](#cff3dc4ffa629a6c5051471a4665a6c7)
+        - [Still the Weather Example](#9ee0b726bfd7b5e9fbe84c468ace55c1)
     - [Application of Stationary Distribution: Web Link Analysis](#485984b095c6416cdcac20510c1c3a37)
+    - [Application of Stationary Distribution: Gibbs Sampling](#a80042cc44b2a1b2b7d6193bb4083c58)
+    - [Hidden Markov Models](#94d2b6fed9dd768fe2edec7e6c85546f)
 
 ...menuend
 
@@ -20,9 +27,15 @@
 
 Markov Model, a special kind of Bayes net, that sees a particularly large amount of use compared to most Bayes nets.
 
+<h2 id="e9171aa010f3fa5d166ecf151b1de19c"></h2>
+
+
 ## Probability Recap
 
 - ![](../imgs/cs188_prob_recap.png)
+
+
+<h2 id="b8edf9c2f97f0adf550e21090016b328"></h2>
 
 
 ## Reasoning over Time or Space
@@ -55,6 +68,9 @@ Markov Model, a special kind of Bayes net, that sees a particularly large amount
         - this means transition probabilities P(x<sub>t</sub> | x<sub>t-1</sub> ) don't depend on time, they are always the same. 
     - Same as MDP transition model , but no choice of action
         - here is no action, you are just interested in watching how its value evovles probabilistically over time, for example, what's the probability of rain 5 days after it was sunny ?
+
+
+<h2 id="0f1513d04ac32269de73d0f17465488e"></h2>
 
 
 ### Conditional Independence
@@ -161,6 +177,9 @@ rain | rain | 0.7
     - You have X₁,X₂. It's a Bayes net with two variables. You have all the distributions, all the tables. You have instantiated a distribution for the initial time X₁. And now you're running variable elimination to get the distribution for X₂. So you're trying to compute P(X₂) in this Bayes net.
 
 
+<h2 id="ae8a34b505e071da4ab4c6a36da4f594"></h2>
+
+
 ## Exmaple Run of Mini-Forward Algorithm
 
 - From initial observation of sun
@@ -204,6 +223,9 @@ rain | 1-p | ... | 0.25
 - As the property of markov matrix , it will converge to 0.94868/0.31623 = 3:1, that means:
     - P<sub>∞</sub>(sun) = 3/4
     - P<sub>∞</sub>(rain) = 1/4 
+
+<h2 id="9ee0b726bfd7b5e9fbe84c468ace55c1"></h2>
+
 
 ### Still the Weather Example 
 
@@ -259,6 +281,9 @@ Diagonal Matrix
     - Google 1.0 returned the set of pages containing all your keywords in decreasing rank, now all search engines use link analysis along with many other factors (rank actually getting less important over time)
 
 
+<h2 id="a80042cc44b2a1b2b7d6193bb4083c58"></h2>
+
+
 ## Application of Stationary Distribution: Gibbs Sampling
 
 - Each joint instantiation over all hidden and query varialbes is a state: { X₁, ..., X<sub>n</sub> } = H ∪ Q
@@ -273,6 +298,9 @@ Diagonal Matrix
     - Requires some proof to show this is true!
 
 ---
+
+<h2 id="94d2b6fed9dd768fe2edec7e6c85546f"></h2>
+
 
 ## Hidden Markov Models
 
