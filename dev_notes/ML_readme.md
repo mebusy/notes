@@ -40,6 +40,7 @@
  14. [20 Decision Diagram](AI_CS188_DecisionDiagrams.md)
  7. [13 Markov Models](AI_CS188_Markov_Models.md)
  8. [14 HMM](AI_CS188_Hidden_Markov_Models.md)
+ 8. [14.5 Particle Filtering](AI_CS188_ParticleFiltering.md)
  9. [15 Application of HMM](AI_CS188_ApplicationOfHMM.md)
  15. [21 MK: Naive Bayes](AI_CS188_ML_NaiveBayes.md)
  16. [24 Application](AI_CS188_Application.md)
