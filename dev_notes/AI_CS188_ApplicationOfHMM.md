@@ -4,12 +4,11 @@
     - [Robot Localization](#cb8f3326ecf05b343100368b1fce61b4)
     - [Robot Mapping](#456efe59f69acce2f3949ed5ec0af420)
     - [Dynamic Bayes Nets (DBNs)](#e2237c4bb83f0a39f439746f01a1814f)
-    - [DBN Particle Filters](#8b6016f7e9c11348859d14b1b2968de6)
+        - [DBN Particle Filters](#8b6016f7e9c11348859d14b1b2968de6)
     - [Most Likely Explanation](#acde5ccfd9d402faf86e320b802cdf2e)
         - [HMMs: MLE Queries](#a6f1a19a2e48162ea4decdd5eebe0d71)
         - [State Trellis](#9505b7524724df56002d7434a8ab6d4d)
         - [Forward / Viterbi Algorithms](#d1b64f8404dac1019eb7a414a8e5f21c)
-    - [Speech Recognition](#9a29398560f1a8666e7f69250d88245e)
 
 ...menuend
 
@@ -41,6 +40,9 @@ You just blanket your nearby area with random samples( 100-1000 ).
 
 But you got to be really careful, remember that lone particle?
 
+
+
+<h2 id="456efe59f69acce2f3949ed5ec0af420"></h2>
 
 
 ## Robot Mapping

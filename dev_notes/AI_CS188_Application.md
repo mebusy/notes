@@ -1,9 +1,6 @@
 ...menustart
 
 - [Application](#e498749f3c42246d50b15c81c101d988)
-    - [Robot Localization](#cb8f3326ecf05b343100368b1fce61b4)
-    - [Robot Mapping](#456efe59f69acce2f3949ed5ec0af420)
-        - [Dynamic Bayes Nets](#454b37c010b6257ca4e55d1017b11b5f)
     - [Starcraft](#8a6f8fa384efc23dcdcc19e7384bdc45)
         - [Why is Starcraft Hard?](#1fb75cfb7fe7923ca2bab57e2ebead57)
         - [The Berkeley Overmind](#8ae5d98a904e4bd489a504ec2b2154da)
