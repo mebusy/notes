@@ -25,32 +25,38 @@
 
 ## Robot Localization 
 
-- In robot localization:
-    - We know the map, but not the robot’s position
-    - Observations may be vectors of range finder readings
-    - State space and readings are typically continuous (works basically like a very fine grid) and so we cannot store B(X)
-    - Particle filtering is a main technique
- 
+- We know the map, but not the robot’s position
+- Observations may be vectors of range finder readings
+- State space and readings are typically continuous (works basically like a very fine grid) and so we cannot store B(X)
+- Particle filtering is a main technique
+
 
 ![](../imgs/cs188_hmm_app_robot_localization.png)
 
-- eg. 初始 40000 particles 
-- 随着evidence 收集，当大量 particle 聚集到一处时， 在 resample 的时候，可以减少 particle 的数量
+You'll notice that **the number of particles is adaptive**. You start with a bunch of particles(40000) because you have to cover all these hypotheses (all positions). But once you basically know where you are, you can just keep a cloud of hypotheses around you. 
+
+That is , With more evidence collected, a large number of particles are gathered in one place, then the number of particles can be reduced during resample.
+
+You just blanket your nearby area with random samples( 100-1000 ).
+
+But you got to be really careful, remember that lone particle?
 
 
-<h2 id="456efe59f69acce2f3949ed5ec0af420"></h2>
 
-
-## Robot Mapping 
-
-You can not just localize the robot , you can also build a map at the same time. 
+## Robot Mapping
 
 - SLAM: Simultaneous Localization And Mapping
     - We do not know the map or our location
+        - This is where your hypothesis is not "I'm here on a known map", but "I'm here and I think the map looks like this". So you don't know the map.
     - State consists of position AND map!
-        - there is many many possible maps of a place you haven't seen 
-        - as the robot moves it'll get a measurement it'll see how compatible is this measurement with the map and with my localtion in that map. 
-    - Main techniques: Kalman filtering (Gaussian HMMs) and particle methods
+        - Each particle is a map that you are drawing with a dot on it.
+        - Instead of a grid of these things, there's some high dimensional space of maps and dots on them.
+    - Main techniques: Kalman filtering(Gaussian HMMs) and particle methods.
+
+![](../imgs/cs188_hmm_appli_robot_mapping.png)
+
+
+
 
 ---
 
@@ -59,7 +65,9 @@ You can not just localize the robot , you can also build a map at the same time.
 
 ## Dynamic Bayes Nets (DBNs)
 
-DBNs are a special form of HMM. At each time it can be more than one variable that's in the state and more than one variable that's in the evidence. 
+![](../imgs/cs_188_dynamic_bayes_net.png)
+
+DBNs are a special form of HMM. At each time it can be **more than one variable** that's in the **state** and **more than one variable** that's in the **evidence**. 
 
 ![](../imgs/cs188_hmm_app_DBNs.png)
 
@@ -69,6 +77,8 @@ Then as time passes somehow the way to transition to next time where they might 
 
 
 ![](../imgs/cs188_hmm_app_DBNs_trans.png)
+
+---
 
 - We want to track multiple variables over time, using multiple sources of evidence
 - Idea: Repeat a fixed Bayes net structure at each time
@@ -80,12 +90,12 @@ You can think G<sub>t</sub>ª , G<sub>t</sub>ᵇ combined as a big state, and th
 <h2 id="8b6016f7e9c11348859d14b1b2968de6"></h2>
 
 
-## DBN Particle Filters
+### DBN Particle Filters
 
-You can again rul particle filtering in these. 
+You can again run particle filtering in these. 
 
 - A particle is a complete sample for a time step
-    - you don't have a particle per ghost , you have a particle for the entire state. there's 2 ghosts , one particle encodes location of both ghosts.
+    - you don't have a particle per ghost , you have **a particle for the entire state**. there's 2 ghosts , one particle encodes location of both ghosts.
 - Initialize: Generate prior samples for the t=1 Bayes net
     - Example particle: G₁ª = (3,3) G₁ᵇ = (5,3)
 - Elapse time: Sample a successor for each particle 
@@ -103,20 +113,25 @@ Why is it important that your particles contain both ghost at once? You can imag
 
 ## Most Likely Explanation
 
-quite important 
-
-A different way of doing inference. 
+New technique that actually in practice can be quite important. It's a different way of doing inference. 
 
 ![](../imgs/cs188_hmm_MLE.png)
 
 So far what we've looked at is something that computes the distribution over possible states at the current time , given all the evidence we've seen so far.
 
-Sometimes what you want to do is you see all the evidence and based on all the evidence you've seen you want to reconstruct the most likely sequence of events that explains that whole sequence of evidence.  What is the most likely sequence of states given the evidence I have observed ?  
+Sometimes what you want to do is you see all the evidence, and based on all the evidence you've seen, you want to reconstruct the most likely sequence of events that explains that whole sequence of evidence.  What is the most likely sequence of states given the evidence I have observed ?
 
 <h2 id="a6f1a19a2e48162ea4decdd5eebe0d71"></h2>
 
 
 ### HMMs: MLE Queries
+
+- HMMs defined by
+    - States X
+    - Observations E
+    - Initial distribution: P(X₁)
+    - Transitions: P(X | X<sub>x-1</sub>)
+    - Emissions: P(E|X)
 
 We're given an HMM still , and the query is what's the most likely explanation of the evidence we have observed. 
 
@@ -140,10 +155,13 @@ We're given an HMM still , and the query is what's the most likely explanation o
 - Each path is a sequence of states
     - then you can start looking at path in this graph.
     - each path encodes the sequence of states , there are many many paths
-    - if you multiply the weights , to put each of these edges together, for a given path, that gives us the probability of that particular state sequence jointly with the evidence. 
-- The product of weights on a path is that sequence’s probability along with the evidence
-    - the path with highest probability , is the most likely explanation of the sequence of evidence we observe
+- The product of weights on a path is that **sequence’s probability** along with the evidence
+    - if you multiply the weights, to put each of these edges together, for a given path, that gives us the probability of that particular state sequence jointly with the evidence. 
+    - the path with highest probability, is the most likely explanation of the sequence of evidence we observe
 - Forward algorithm computes sums of paths, Viterbi computes best paths
+
+There are many paths 2ᴺ. So we don't want to do this naive enumeration of all paths. I wanna do something more efficient, and it'll be very similar to the forward algorithm. But in principle the naive approach would find you the correct solution just expensive.
+
 
 <h2 id="d1b64f8404dac1019eb7a414a8e5f21c"></h2>
 
@@ -156,43 +174,10 @@ We're given an HMM still , and the query is what's the most likely explanation o
 - Forward Algorithm (Sum)
     - ![](../imgs/cs188_hmm_app_forward_algorithm.png)
     - recursive computation 
-    - we keep track of the probability of x<sub>t</sub> jointly with all the evidence so far . 
+    - we keep track of the probability of x<sub>t</sub> jointly with all the evidence so far. We could compute that from the same form at the previous time as **f<sub>t-1</sub>[x<sub>t-1</sub>]**
 - Viterbi Algorithm (Max)
     - ![](../imgs/cs188_hmm_app_viterbi_algorithm.png)
     - changed ∑ to max
-
----
-
-<h2 id="9a29398560f1a8666e7f69250d88245e"></h2>
-
-
-## Speech Recognition
-
-
-
-
-
-
-
-
-    
-     
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ---
