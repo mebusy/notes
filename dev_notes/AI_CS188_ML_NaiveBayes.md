@@ -79,6 +79,11 @@
     - Shape Patterns: NumComponents, AspectRatio, NumLoops
     - ...
 
+## Other Classification Tasks
+
+- Classification: given input x, predict labels(classes) y
+- Classification is an important commercial technique.
+
 <h2 id="e080178592b7b3e0a141aaf2e841797e"></h2>
 
 
@@ -100,6 +105,7 @@
 
 - Naïve Bayes: Assume all features are independent effects of the label
     - ![][1] 
+    - what we will do is we will assume that there is one special node, it's going to be the label. Here, that's written out as Y. And that label's domain will be various digits 0-9.
 - Simple digit recognition version:
     - One feature (variable) Fᵢⱼ for each grid position `<i,j>`
     - Feature values are on / off, based on whether intensity is more or less than 0.5 in underlying image
@@ -120,8 +126,10 @@
     - P(Y,F₁...F<sub>n<sub>) = P(Y)·∏ᵢP(Fᵢ|Y)
         - from |Y|x|F|ⁿ values
         - to n x |F| x |Y| parameters
+        - A general Naive Bayes model places a joint distrubtion of the variable Y which is you class, and some number of features which you get to define F₁...F<sub>n<sub>.
 - We only have to specify how each feature depends on the class
-- Total number of parameters is linear in n
+    - we're going to get that from data.
+- Total number of parameters is **linear** in *n*
 - Model is very simplistic, but often works anyway
 
 <h2 id="56fd5f361e6690802d9a291400491091"></h2>
