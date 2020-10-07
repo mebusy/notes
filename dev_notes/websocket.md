@@ -129,9 +129,15 @@
 - Buffers are held for the lifetime of the connection by default.
     - If the Dialer or Upgrader WriteBufferPool field is set, then a connection holds the write buffer only when writing a message.
     - *sync.Pool
+    ```go
+    var upgrader = websocket.Upgrader{
+    ReadBufferSize:  512, // comments these 2 lines if you want use default upgrader
+    // WriteBufferSize: 1024,
+    WriteBufferPool: &sync.Pool{},
+    }
+    ```
 - A write buffer pool is useful when the application has a modest number writes over a large number of connections. 
     - when buffers are pooled, a larger buffer size has a reduced impact on total memory use and has the benefit of reducing system calls and frame overhead.
-
 
 
 <h2 id="db974238714ca8de634a7ce1d083a14f"></h2>
@@ -146,4 +152,28 @@
 
 - func (*Conn) WriteControl
     - WriteControl writes a control message with the given deadline. The allowed message types are CloseMessage, PingMessage and PongMessage.
+
+
+## Optimization
+
+- Each connection in the **naive** solution comsumes ~20K.
+    - Mem = conns · ( goroutine + buf<sub>net/http</sub> + buf<sub>gorilla/ws</sub> ) 
+    - That is, 1M CCU would consume over 20G of RAM
+- Optimization
+    1. goroutine 
+        - knowing when data exists on the wire would allow us to reuse goroutines and reduce memory footprint
+        - epoll
+    2. buffers allocations
+        - gorilla/websocket keeps a reference to the underlying buffers given by Hijack()
+        - use `https://github.com/gobwas/ws` instead
+
+- Recap
+    - Ulimit: Increase the cap of NOFILE resource
+    - Epoll(Async I/O): Reduce the high load of goroutines
+    - Gobwas: More performant ws library to reduce buffer allocations
+    - Conntrack table: Increase the cap of total concurrent connections in the OS
+        - `echo 2621440 > /proc/sys/net/netfilter/nf_conntrack_max `  ?
+
+
+
 
