@@ -188,7 +188,9 @@
         - Each position is identically distributed
         - All positions share the same conditional probs P(W|Y)
         - Why make this assumption?
+            - e.g. for the purposes of detecting spam versus ham, it doesn't really matter whether a word occurs at position 23 or 24.
     - Called “bag-of-words” because model is insensitive to word order or reordering
+        - and that means for a naive bayes model for text, the only thing you actually have to learn is for each class, what is the histogram of works. What is the probability distribution of words in that class?
 
 <h2 id="6b03991376723e26480509d0419c1d80"></h2>
 
