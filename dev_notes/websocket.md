@@ -170,10 +170,13 @@
 - Recap
     - Ulimit: Increase the cap of NOFILE resource
     - Epoll(Async I/O): Reduce the high load of goroutines
+        - epoll is available only on linux, solution [epoller](https://github.com/smallnest/epoller)
     - Gobwas: More performant ws library to reduce buffer allocations
     - Conntrack table: Increase the cap of total concurrent connections in the OS
         - `echo 2621440 > /proc/sys/net/netfilter/nf_conntrack_max `  ?
-
+    - other reading
+        - [A Million WebSockets and Go](https://www.freecodecamp.org/news/million-websockets-and-go-cc58418460bb/)
+        - [github 1M websockets](https://github.com/eranyanay/1m-go-websockets)
 
 
 
