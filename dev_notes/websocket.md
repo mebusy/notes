@@ -177,6 +177,8 @@
     - other reading
         - [A Million WebSockets and Go](https://www.freecodecamp.org/news/million-websockets-and-go-cc58418460bb/)
         - [github 1M websockets](https://github.com/eranyanay/1m-go-websockets)
+        - [goroutine pool](https://github.com/panjf2000/ants)
+
 
 
 
