@@ -97,7 +97,7 @@ a | b | c | d
 
  a | b | c | d
 --- | --- | --- | ---
-[cast,smart pointer](dev_notes/cpp_cast_smart.md) | [cpp note](dev_notes/cpp_notes.md) |
+[cast,smart pointer](dev_notes/cpp_cast_smart.md) | [cpp RAII](dev_notes/cppRAII.md) |  [cpp note](dev_notes/cpp_notes.md) |
 [cpp guide in CS144](dev_notes/cpp_cs144_guide.md) | [c++ Core Guidelines](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) |
 
 

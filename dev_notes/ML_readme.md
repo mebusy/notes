@@ -33,6 +33,7 @@
     3. [6~7 AdversarialSearch](AI_CS188_AdversarialSearch.md)
     4. [8~9 MDP](AI_CS188_MDP.md)
     5. [10-11 Reinforcement Learning](AI_CS188_ReinforcementLearning.md)
+
 - Inferrence
     6. [12 Probability](AI_CS188_Probability.md)
     11. [16 BNs Representation](AI_CS188_NayesNets.md)
@@ -44,6 +45,7 @@
     8. [14 HMM](AI_CS188_Hidden_Markov_Models.md)
     9. [14.5 Particle Filtering](AI_CS188_ParticleFiltering.md)
     10. [15 Application of HMM](AI_CS188_ApplicationOfHMM.md)
+
 - Machine Learning
     16. [21 MK: Naive Bayes](AI_CS188_ML_NaiveBayes.md)
     17. [24 Application](AI_CS188_Application.md)

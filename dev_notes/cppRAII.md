@@ -165,7 +165,7 @@ Whenever you write a destructor, you probably need to write a copy constructor *
         // this demonstrates the copy and swap idiom.
         // we need to write swap.
 
-        // reuse constructor initialize
+        // reuse copy constructor
         NaiveVector copy = rhs;
         copy.swap(*this);
         return *this;
@@ -179,6 +179,7 @@ Whenever you write a destructor, you probably need to write a copy constructor *
     2. A **copy constructor** to copy the resource
     3. A **copy assignment operator** to free the left-hand resource and copy the right-hand one.
 - Use the copy-and-swap idiom to implement assignent
+    - the stardard library also provide swap method ?
 
 ## Why copy and swap ?
 
@@ -316,6 +317,280 @@ public:
 
 ## Prefer Rule of Zero when possible
 
+There are 2 kinds of well-designed value-semantic C++ classes:
+
+- **Business-logic classes** that do not manually manage any resources, and follow the Rule of Zero.
+    - They delegate the job of resource management to data member of types such as `std::string`
+- **Resource-management clases** (small, single-purpose) that follow the Rule of Three.
+    - Acquire the resource in each constructor; free the resource in your destructor; copy-and-sway in your assignment operator.
+
+
+## Introducing rvalue references
+
+- C++11 introduces **rvalue reference** type
+- The references we've seen so far are **lvalue** references.
+
+- `int&` is an **lvalue reference** to an int
+- `int&&` (two ampersands) is an **rvalue reference** to an int
+- As a general rule, lvalue reference parameters do not bind to rvalues, and rvalue reference parameters do not bind to lvalues.
+- Special case for backward compatibility: a const lvalue reference will happily bind to an rvalue.
+
+```cpp
+void f(int&):   f(i);   // OK   
+                f(42);  // ERROR
+void g(int&&);  g(i);   // ERROR
+                g(42);  // OK
+void h(const int&); h(i);   // OK
+                    h(42);  // OK!
+```
+
+
+## Rvalues won't be missed
+
+Combine this with overload resolution...
+
+```cpp
+void foo(const std::string&); // takes lvalues
+void foo(std::string&&);      // takes rvalues
+
+std::string s = "hello";
+foo(s);             // call foo #1
+foo(s+" world");    // expressing call foo #2
+foo("hi");          // call foo #2
+foo(std::move(s));  // call foo #2
+```
+
+The most common application of rvalue references is the **move constructor**.
+
+```cpp
+class NativeVector {
+    // copy constructor
+    NaiveVector(const NaiveVector& rhs) {
+        // new int is slow
+        ptr_ = new int[rhs.size_];
+        size_ = rhs.size_;
+        // std::copy is slow
+        std::copy(rhs.ptr_, rhs.ptr_+size_ , ptr_;
+    }
+    // The move constructor doesn;t need to do either
+    // of those slow things!
+    NaiveVector(NaiveVector&& rhs) {
+        ptr_ = std::exchange( rhs.ptr_, nullptr );
+        size_ = std::exchange( rhs.size_, 0);
+    }
+};
+```
+
+- Each STL container type has a move constructor in addition to its copy constructor.
+
+
+## The Rule of Five 
+
+- If your class directly manages some kind of resource(such as a new'ed pointer), then you may need to hand-write **five** special member functions for correctness and performance:
+    1. A **destructor** to free the resource
+    2. A **copy constructor** to copy the resource
+    3. A **copy assignment operator** to free the left-hand resource and copy the right-hand one.
+    4. A **move constructor** to transfer ownership of the resource
+    5. A **move assignment operator** to free the left-hand resource and transfer ownership of the right-hand one.
+
+## Copy-and-swawp leads to duplication(code)
+
+How do I write a MOVE assignment operator using copy-and-swap?
+
+Rather than write these 2 assignment operators, whose code is almost identical ...
+
+```cpp
+    NaiveVector& operator=(const NaiveVector& rhs) {
+        // reuse copy constructor
+        NaiveVector copy(rhs);
+        copy.swap(*this);
+        return *this;
+    }
+    NaiveVector& operator=(const NaiveVector& rhs) {
+        // reuse the move constructor
+        NaiveVector copy(std::move(rhs));
+        copy.swap(*this);
+        return *this;
+    }
+```
+
+## By-value assignment operator ?
+
+So we had some duplication here. We had 2 bits of code that looked exactly the same. 
+
+And c++ gives us a tool for eliminating code that looks exactly the same. It's templates... But that would be crazy. We're not going to do templates.
+
+What if we just wrote one assignment operator and leave the copy up to our caller? 
+
+I'm not aware of any problems with this idiom. However, it is relatively uncommon; writing copy assignment and move assignment separately is more frequently seen. In particular, the STL always writes them separately.
+
+```cpp
+    NaiveVector& NaiveVector::operator=(NaiveVector copy) {
+        copy.swap(*this);
+        return *this;
+    }
+```
+
+## The Rule of Four ( and a half )
+
+- If your class directly manages some kind of resource(such as a new'ed pointer), then you may need to hand-write **four** special member functions for correctness and performance:
+    1. A **destructor** to free the resource
+    2. A **copy constructor** to copy the resource
+    3. A **move constructor** to transfer ownership of the resource
+    4. A **by-value assignment operator** to free the left-hand resource and transfer ownership of the right-hand one.
+        - A nonmumber **swap** function, and ideally a mumber version too
+
+## No longer naive vector
+
+```cpp
+#include <utility>
+#include <algorithm>
+
+class Vec {
+    int *ptr_ ;
+    size_t size_ ;
+
+public:
+    // copy constructor
+    Vec(const Vec& rhs) {
+        ptr_ = new int[rhs.size_];
+        size_ = rhs.size_ ;
+        std::copy( rhs.ptr_, rhs.ptr_ + size_, ptr_ );
+    }
+    ~Vec() {
+        delete [] ptr_;
+    }
+
+    // move constructor
+    Vec(Vec&& rhs) noexcept {                    // rvalue reference c++11
+        ptr_ = std::exchange( rhs.ptr_, nullptr ); // std::exchange  c++14
+        size_ = std::exchange( rhs.size_, 0 );
+    }
+
+    // by-value assignment operator
+    Vec& operator=(Vec copy) {
+        copy.swap(*this);
+        return *this;
+    }
+
+    // two-argument swap, to make your type efficiently "std::swappable"
+    friend void swap( Vec& a, Vec& b ) noexcept {
+        a.swap(b);
+    }
+    // member swap too for simplicity
+    void swap(Vec& rhs) noexcept {
+        using std::swap;
+        swap(ptr_, rhs.ptr_ );
+        swap(size_, rhs.size_);
+    }
+} ;
+```
+
+## Closer-to-Rule-of-Zero vector
+
+```cpp
+#include <utility>
+#include <algorithm>
+
+class Vec {
+    std::unique_ptr<int[]> uptr_ ;
+    size_t size_ ;
+
+public:
+    // copy constructor
+    Vec(const Vec& rhs) {
+        uptr_ = std::make_unique<int[]>(rhs.size_);
+        size_ = rhs.size_ ;
+        // need do some special for copy resource
+        // because unique_ptr is not copyable by design
+        // std::copy( rhs.ptr_, rhs.ptr_ + size_, ptr_ );
+    }
+    ~Vec() = default;
+
+    // move constructor
+    Vec(Vec&& rhs) noexcept = default;
+
+    // no changed
+    // by-value assignment operator 
+    Vec& operator=(Vec copy) {
+        copy.swap(*this);
+        return *this;
+    }
+
+    // no changed
+    // two-argument swap, to make your type efficiently "std::swappable"
+    friend void swap( Vec& a, Vec& b ) {
+        a.swap(b);
+    }
+
+    // nochanged
+    // member swap too for simplicity
+    void swap(Vec& rhs) noexcept {
+        using std::swap;
+        swap(uptr_, rhs.uptr_ );
+        swap(size_, rhs.size_);
+    }
+} ;
+```
+
+## True Rule-of-Zero Vector 
+
+```cpp
+#include <vector>
+
+class Vec {
+    std::vector<int> vec_ ;
+
+    // copy constructor
+    Vec(const Vec& rhs) = default;
+    // move constructor
+    Vec(Vec&& rhs) noexcept = default;
+    // by-value assignment operator 
+    Vec& operator=(const Vec& rhs) = default;
+    Vec& operator=(Vec&& rhs) = default;
+    ~Vec() = default;
+
+    // two-argument swap, to make your type efficiently "std::swappable"
+    friend void swap( Vec& a, Vec& b ) {
+        a.swap(b);
+    }
+    // member swap too for simplicity
+    void swap(Vec& rhs) noexcept {
+        vec_.swap(rhs.vec_) ;
+    }
+} ;
+```
+
+You have not your default constructor now, but you can totally have other constructors.
+
+## Examples of resource management
+
+unique_ptr manages a raw pointer to a uniquely owned heap allocation.
+
+- **Destructor** frees the resource
+    - call `delete` on the raw pointer
+- **Copy constructor** copies the resource
+    - Copying doesn't make sense. We `=delete` this member function
+- **Move constructor** transfers ownership of the resource
+    - Transfers the raw pointer, then nulls out the right-hand side
+- **Copy assignment operator** frees the left-hand resource and copies the right-hand one
+    - Copying doesn't make sense. We `=delete` this member function
+- **Move assignment operator** frees the left-hand resource and transfers ownership of the right-hand one
+    - Calls `delete` on the left-hand ptr, transfers, then nulls out the right-hand ptr
+
+
+shared_ptr manages a reference count.
+
+- **Destructor** frees the resource
+    - Decrements the refcount (and maybe cleans up if the refcount is now zero)
+- **Copy constructor** copies the resource
+    - Increments the refcount
+- **Move constructor** transfers ownership of the resource
+    - Leaves the refcount the same, then disengages the right-hand side
+- **Copy assignment operator** frees the left-hand resource and copies the right-hand one
+    - Decrements the old refcount, increments the new refcount
+- **Move assignment operator** frees the left-hand resource and transfers ownership of the right-hand one
+    - Decrements the oldf refcount, then disengages the right-hand side.
 
 
 
