@@ -268,6 +268,56 @@ So, how are we going to fix that? Do I want "RAIIPtr" to be copyable?
 
 ## Deleted special member functions
 
+We can improve our RAIIPtr by making it **non-copyable**.
+
+When a function definition has the body `=delete;` instead of a curly-braced compound statement, the compiler will rejuect calls to that function at compile time.
+
+
+```cpp
+struct RAIIPtr {
+    int *ptr_;
+    RAIIPtr(int *p) : ptr_(p) {}
+    ~RAIIPtr() { delete [] ptr_ ; }
+
+    RAIIPtr( const RAIIPtr& ) = delete;
+    RAIIPtr& operator=(const RAIIPtr&) = delete;
+};
+```
+
+What else can we do with a member function besides deleting ?
+
+## Defaulted special member functions
+
+When a special member function has the body `=default;` instead of a curly-braced compound statement, the compiler will create a defaulted version of that function, just as were implicitly generated.
+
+**Explicitly defaulting** your special members can help your code to be self-documenting.
+    - "Yes, I considered the fact that I might need a copy constructor, or I might need an assignment operator, or I might need a destructor... and I have decided that the default ones work fine."
+
+```cpp
+class Book {
+public:
+    Book(const Book&) = default;
+    Book& operator=(const Book&) = default;
+    ~Book() = default;
+}
+
+
+```
+
+## The Rule of Zeor
+
+- If you class does not directly manage any resource, but merely uses library components such as vector and string, then you should strive to write **NO** special member functions. Default them all!
+    - Let the compiler implicitly generate a defaulted destructor
+    - Let the compiler generate the copy constructor
+    - Let the compiler generate the copy assignment operator
+    - (But your own swap might improve performance)
+        - if you write your own friend, overload, non-member `swap` with 2 arguments, then standard library algorithms will can that `swap`.
+
+
+## Prefer Rule of Zero when possible
+
+
+
 
 
 
