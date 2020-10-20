@@ -61,7 +61,7 @@ ldflags
 --- |   ---     |   ---
 -w  |   禁用 DRAWF 调试信息
 -s  |   禁用符号表
--X  |   修改字符串符号值    |   -X main.VER '0.99'
+-X  |   修改字符串符号值    |   -X 'main.VER "0.99"'
 
 
     go build -ldflags "-s -w" 可以减小 生成文件的大小
