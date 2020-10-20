@@ -96,7 +96,7 @@ Hello world, version:
 
 ```bash
 $ export GIT_COMMIT=$(git rev-list -1 HEAD)
-$ go build -ldflags "-X main.GitCommit=$GIT_COMMIT"
+$ go build -ldflags "-X 'main.GitCommit=$GIT_COMMIT'"
 $ ./git-tester
 Hello world, version: 67b05a31758848e1e5237ad5ae1dc11c22d4e71e
 ```
