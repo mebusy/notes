@@ -101,6 +101,12 @@ $ ./git-tester
 Hello world, version: 67b05a31758848e1e5237ad5ae1dc11c22d4e71e
 ```
 
+- for multiple override 
+
+```bash
+go build -v -ldflags "-w -X 'main.GitCommit=$GIT_COMMIT' -X 'pvp_server/api.MsgDefDoc=$MSG_DEF' "
+```
+
 <h2 id="39e51e767418357eef4ac9bcb4330f50"></h2>
 
 
