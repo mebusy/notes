@@ -262,6 +262,14 @@ CREATE USER 'new_user'@'%' IDENTIFIED BY 'new_user_pwd';
 GRANT ALL PRIVILEGES  ON db_test.* TO 'new_user'@'%' WITH GRANT OPTION;
 ```
 
+## Convert a timestamp to seconds(GMT)
+
+不同时区的数据库，存放的date 受时区影响, UNIX_TIMESTAMP方法不是我们想要的...
+
+```mysql
+SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , "2020-05-01 12:05:55" );
+```
+
 --- 
 
 <MySQL技术内幕(InnoDB存储引擎)第2版>
