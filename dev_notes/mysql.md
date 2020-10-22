@@ -281,6 +281,12 @@ GRANT ALL PRIVILEGES  ON db_test.* TO 'new_user'@'%' WITH GRANT OPTION;
 SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , "2020-05-01 12:05:55" );
 ```
 
+## 三元表达式
+
+```mysql
+... status=if(status="created","paid",status)
+```
+
 --- 
 
 <MySQL技术内幕(InnoDB存储引擎)第2版>
