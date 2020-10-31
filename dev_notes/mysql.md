@@ -237,10 +237,21 @@ select COALESCE(AVG(distance), 0) as baseline from records where uuid=?
 ```mysql
 select COALESCE( sum(orderAmount), 0 )  from payment_vivosdk   
 where 
-	uuid="test-User-0" and 
-	paidtime >= ( select COALESCE( AVG(startTime), -1) from tbl_rechargeAcc where activity_kind = 2 and endTime > 969393337  ) and 
-	paidtime <= ( select COALESCE( AVG(deadline),  -1) from tbl_rechargeAcc where activity_kind = 2 and endTime > 969393337  ) 
+    uuid="test-User-0" and 
+    paidtime >= ( select COALESCE( AVG(startTime), -1) from tbl_rechargeAcc where activity_kind = 2 and endTime > 969393337  ) and 
+    paidtime <= ( select COALESCE( AVG(deadline),  -1) from tbl_rechargeAcc where activity_kind = 2 and endTime > 969393337  ) 
 ```
+
+## CASE ... WHEN ... ELSE...
+
+```mysql
+    WHERE m.p1 = ? OR m.p2 = ?  ORDER by   CASE 
+        when (m.p1=?) and ((withdraw&1)<>0) then match_id - 10000000
+        when (m.p2=?) and ((withdraw&2)<>0) then match_id - 10000000
+        ELSE  match_id END   DESC LIMIT 20
+```
+
+
 
 <h2 id="c4606a5312075cb8424b31a364e46848"></h2>
 
@@ -260,6 +271,20 @@ mysql -uroot -ppwd  < dumpfile
 ```mysql
 CREATE USER 'new_user'@'%' IDENTIFIED BY 'new_user_pwd';
 GRANT ALL PRIVILEGES  ON db_test.* TO 'new_user'@'%' WITH GRANT OPTION;
+```
+
+## Convert a timestamp to seconds(GMT)
+
+不同时区的数据库，存放的date 受时区影响, UNIX_TIMESTAMP方法不是我们想要的...
+
+```mysql
+SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , "2020-05-01 12:05:55" );
+```
+
+## 三元表达式
+
+```mysql
+... status=if(status="created","paid",status)
 ```
 
 --- 

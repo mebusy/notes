@@ -198,3 +198,33 @@ function addEvent() {
 `
 ```
 
+## get the content of a file
+
+```html
+<!DOCTYPE html>
+<html>
+<title>
+get file content test
+</title>
+<body>
+
+<p>Upload your file</p>
+
+<script>
+async function readText(event) {
+  const file = event.target.files.item(0)
+  const text = await file.text();
+
+  console.log( text );
+
+  // document.getElementById("output").innerText = text
+}
+</script>
+
+<input type="file" onchange="readText(event)" />
+<!-- <pre id="output"></pre> -->
+
+</body>
+</html>
+```
+

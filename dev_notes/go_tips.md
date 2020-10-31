@@ -1094,6 +1094,29 @@ const (
 - a common used format : "20060102150405"
 
 
+## Forward request
+
+```go
+    if REQ_NEED_PROXY {
+        url, _ := url.Parse( "https://xxxxxx" )
+        proxy := httputil.NewSingleHostReverseProxy(url)
+
+        r.URL.Host = url.Host
+        r.URL.Scheme = "https"
+        r.Header.Set("X-Forwarded-Host", r.Header.Get("Host"))
+        r.Host = url.Host
+        // the body has been read ?
+        // r.Body = ioutil.NopCloser(bytes.NewBuffer([]byte(body)))
+        // if different uri path
+        // r.URL.Path = "/new/uri/path"
+
+        // Note that ServeHttp is non blocking and uses a go routine under the hood
+        proxy.ServeHTTP(w, r)
+        return
+    }
+
+```
+
 
 
 
