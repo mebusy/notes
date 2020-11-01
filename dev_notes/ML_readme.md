@@ -49,7 +49,8 @@
 - Machine Learning
 20. [MK: Naive Bayes](AI_CS188_ML_NaiveBayes.md)
 21. [Perceptrons and Logistic Regression](AI_CS188_Perceptron_and_Logistic.md)
-22. [24 Application](AI_CS188_Application.md)
+22. [Optimiaztion and Neural Nets](AI_CS188_OptimizationAndNeuralNets.md)
+24. [24 Application](AI_CS188_Application.md)
 
 
 
