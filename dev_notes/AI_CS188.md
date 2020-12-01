@@ -1173,7 +1173,7 @@ PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitiv
 
 - A* uses both backward costs and (estimates of) forward costs
 - A* is optimal with admissible / consistent heuristics
-- Heuristic design is key: often use *relaxed* problems
+- Heuristic design **key**: often use *relaxed* problems
 
 
 <h2 id="1388b32869f8288febeb18f8ec802b42"></h2>
