@@ -77,6 +77,7 @@
     - [CGO_ENALBE=1 情况下, 实现纯静态连接](#12f3c642086ddb0279f69574a34db7ef)
     - [BASH: auto add current path to GOPATH when opening a new terminal window](#b052a32a028f65a554fd6d75ca2cb331)
     - [go time format](#d631c51d63e223eda44e441f1ce4c0ac)
+    - [Forward request](#bbe3c11f7255c4f712e9f80c6eca7997)
 
 ...menuend
 
@@ -1092,6 +1093,9 @@ const (
 ```
 
 - a common used format : "20060102150405"
+
+
+<h2 id="bbe3c11f7255c4f712e9f80c6eca7997"></h2>
 
 
 ## Forward request

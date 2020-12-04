@@ -13,8 +13,11 @@
     - [`select ... limit offset , n ` is slow when offset  is higher](#5c7924ade1a946ba9a0af0cc562c127b)
     - [use default value if select get no result](#7b83de8606257483382081d2e0e808de)
     - [Sub query example](#60df3279b8377ba6468528ab017f1dc0)
+    - [CASE ... WHEN ... ELSE...](#06eb0ebfd08b098bd2c0529968e05930)
     - [restore database from dump file](#c4606a5312075cb8424b31a364e46848)
     - [Create a `new_user` and Grant all privileges on db `db_test`](#c3b5d31eac469e51b08ec13a8edc866e)
+    - [Convert a timestamp to seconds(GMT)](#551a3f8ce4409963ec6de228ccc44ae0)
+    - [三元表达式](#6ada22780ed552c34465864a2648f7e9)
 - [第1章  MySQL 体系结构和存储引擎](#6a1a36d328d46ab67d6d4af4b7f9191a)
     - [1.1 配置文件](#bdf6b309174103a16017dcf95cfd0efa)
     - [1.3 MySQL 存储引擎](#d515f90f3281ec25eef39dd7a232630f)
@@ -242,6 +245,9 @@ where
     paidtime <= ( select COALESCE( AVG(deadline),  -1) from tbl_rechargeAcc where activity_kind = 2 and endTime > 969393337  ) 
 ```
 
+<h2 id="06eb0ebfd08b098bd2c0529968e05930"></h2>
+
+
 ## CASE ... WHEN ... ELSE...
 
 ```mysql
@@ -273,6 +279,9 @@ CREATE USER 'new_user'@'%' IDENTIFIED BY 'new_user_pwd';
 GRANT ALL PRIVILEGES  ON db_test.* TO 'new_user'@'%' WITH GRANT OPTION;
 ```
 
+<h2 id="551a3f8ce4409963ec6de228ccc44ae0"></h2>
+
+
 ## Convert a timestamp to seconds(GMT)
 
 不同时区的数据库，存放的date 受时区影响, UNIX_TIMESTAMP方法不是我们想要的...
@@ -280,6 +289,9 @@ GRANT ALL PRIVILEGES  ON db_test.* TO 'new_user'@'%' WITH GRANT OPTION;
 ```mysql
 SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , "2020-05-01 12:05:55" );
 ```
+
+<h2 id="6ada22780ed552c34465864a2648f7e9"></h2>
+
 
 ## 三元表达式
 

@@ -6,6 +6,7 @@
     - [http request from JS](#b63638704f9953ca8cb4512dcf01b2a2)
     - [button click -> javascript](#8ee1ccd085896dae59d2585a43f6ad61)
     - [form submit -> javascript](#5746a56c4e47f39b4dbc05035350625c)
+    - [get the content of a file](#14d95bde54c8e5595aeb776fe1cfc950)
 
 ...menuend
 
@@ -197,6 +198,9 @@ function addEvent() {
 </script>
 `
 ```
+
+<h2 id="14d95bde54c8e5595aeb776fe1cfc950"></h2>
+
 
 ## get the content of a file
 

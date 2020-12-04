@@ -7,6 +7,7 @@
     - [Origin Considerations](#d09a4b59e096374b40568f20866ee2b1)
     - [Buffers](#4c19ddb10d5a902842dda06a62c3d601)
     - [API](#db974238714ca8de634a7ce1d083a14f)
+    - [Optimization](#15970c4fdbca1fc48c5b412d94e798c0)
 
 ...menuend
 
@@ -152,6 +153,9 @@
 
 - func (*Conn) WriteControl
     - WriteControl writes a control message with the given deadline. The allowed message types are CloseMessage, PingMessage and PongMessage.
+
+
+<h2 id="15970c4fdbca1fc48c5b412d94e798c0"></h2>
 
 
 ## Optimization

@@ -42,7 +42,8 @@
 
 ---
 
-- 3Brown1Blue  [Essence of LA](3blue1brown.md)
+- 3Brown1Blue
+    - [Essence of LA](3blue1brown.md)
 
 
 <h2 id="0349a55a6a70f89e604c28892ce24d82"></h2>
@@ -87,18 +88,5 @@
 - [Tricks](Tricks.md)
 - [softmax implementation](softmax.md)
 - [prime number](math_prime.md)
-
-
-
-<h2 id="d2bcb78d5ac194c66f434e9fbcb3565e"></h2>
-
-
-# Discrete Mathematics
-
- 1. [数理逻辑:基本概念](DiscreteMathematics.md)
- 2. [数理逻辑:命题逻辑及形式系统](DiscreteMathematics_week2.md)
- 3. [图论](DiscreteMathematics_Week7.md)
-
-
 
 

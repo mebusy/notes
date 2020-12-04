@@ -1,3 +1,16 @@
+...menustart
+
+- [21. Perceptrons and Logistic Regression](#277ba134a739723dd3ce2fadba0049b6)
+    - [Linear Classifiers](#4727939f11f24b71ad69e2a47a4fe29a)
+    - [Logistic Regression](#3261e6107adbefc58955de2aa613847a)
+    - [Summary](#290612199861c31d1036b185b4e69b75)
+- [22. Optimization and Neural Nets](#4326581683ec73f1aae5aa12f468a692)
+
+...menuend
+
+
+<h2 id="277ba134a739723dd3ce2fadba0049b6"></h2>
+
 
 # 21. Perceptrons and Logistic Regression
 
@@ -11,6 +24,9 @@ If you want a full probabilistic model you're not going to get it with the motho
 
 
 [lecture pdf](https://github.com/mebusy/cs188_fa18/blob/master/fa18_cs188_lectures_pdf/FA18_cs188_lecture21_perceptron_and_logistic_regression_1pp.pdf)
+
+<h2 id="4727939f11f24b71ad69e2a47a4fe29a"></h2>
+
 
 ## Linear Classifiers
 
@@ -30,7 +46,13 @@ Example: multiclass decision example
 ![](../imgs/cs188_perceptron_learn_weight_ex.png)
 
 
+<h2 id="3261e6107adbefc58955de2aa613847a"></h2>
+
+
 ## Logistic Regression
+
+
+<h2 id="290612199861c31d1036b185b4e69b75"></h2>
 
 
 ## Summary
@@ -39,6 +61,9 @@ Example: multiclass decision example
 - Logistic Regression and probabilistic decisions
 - Multiclass Logistic Regression 
     - Softmax
+
+
+<h2 id="4326581683ec73f1aae5aa12f468a692"></h2>
 
 
 # 22. Optimization and Neural Nets

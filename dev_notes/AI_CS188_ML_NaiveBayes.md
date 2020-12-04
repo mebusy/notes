@@ -4,6 +4,7 @@
     - [Classification](#5c9335b28e6277ddbe0137f04e5e58a7)
         - [Example: Spam Filter](#a21106d371e3b781cefa4ea3fb2d4265)
         - [Example: Digit Recognition](#de03e1744be4ca06ea00adc90983e302)
+    - [Other Classification Tasks](#8e9eeeddb52ac3e456921e66a08c707d)
     - [Model-Based Classification](#e080178592b7b3e0a141aaf2e841797e)
     - [Naïve Bayes for Digits](#f5547915f2e7052183052cf6dbad10ce)
     - [General Naïve Bayes](#e27a6ed5d3c268f25d469754df7657a9)
@@ -78,6 +79,9 @@
     - Pixels: (6,8)=ON
     - Shape Patterns: NumComponents, AspectRatio, NumLoops
     - ...
+
+<h2 id="8e9eeeddb52ac3e456921e66a08c707d"></h2>
+
 
 ## Other Classification Tasks
 
