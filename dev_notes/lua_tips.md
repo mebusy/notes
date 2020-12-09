@@ -438,6 +438,26 @@ end
 28800
 ```
 
+## os.data and timezone
+
+- os.date : use `!` to set GMT timezone
+
+```bash
+> print( os.date("!%Y-%m-%d-%H")  )  # UTC 
+2020-12-09-07
+> print( os.date("%Y-%m-%d-%H")  )    # localtime +8
+2020-12-09-15
+```
+
+- os.time() is timezone independent, for convert to Beijing time
+
+```bash
+> os.date("!%Y-%m-%d-%H" , os.time() + 3600*8 )
+2020-12-09-15
+```
+
+
+
 <h2 id="f3d96fbe7760483bbb08625d5a30024e"></h2>
 
 
