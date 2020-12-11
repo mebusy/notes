@@ -336,7 +336,8 @@ Asset: Mesh,Material,Texture, Audio,etc...
 - AssetBundle
 
 
-  · | 动态加载 | 动态更新 | 本地缓存
+
+· | 动态加载 | 动态更新 | 本地缓存
 --- | --- | --- | ---
 Assets |  No | No | N/A
 Resources | Yes | No | N/A
