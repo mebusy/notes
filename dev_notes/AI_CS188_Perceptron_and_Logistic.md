@@ -25,49 +25,4 @@ If you want a full probabilistic model you're not going to get it with the motho
 
 [lecture pdf](https://github.com/mebusy/cs188_fa18/blob/master/fa18_cs188_lectures_pdf/FA18_cs188_lecture21_perceptron_and_logistic_regression_1pp.pdf)
 
-<h2 id="4727939f11f24b71ad69e2a47a4fe29a"></h2>
-
-
-## Linear Classifiers
-
-
-Q: How do we find w ?
-
-It's going to be a little different from most things we've seen so far. We're gonna have an iterative algorithm that doesn't just look at the data and says, here is the result, but will loop over the data, look at all the data multiple times until finally it found something it's happy with.
-
-So it will do an update, update, update, till finally it converges. A bit like the local search we did in CSPs where you wouldn't right away find a solution but try to improve it over time till finally find something good.
-
-Q: Is this related to feature-based Q-learning?
-
-In many ways it is. In feature-based Q learning, we had notion of the Q value is weight vector times feature vector. In Q-learning, we wanted the result of that inner product to be a Q value. Here, the way we use the resulting inner product is to make a decision as to whether it's positive or negative.  There's a lot of similarity. But the learning is very different. Because in Q-learning, we learn with an approximation to the Bellman equation based on samples, and here we learn essentially throuth supervison. So we get a lot of signal here. In Q-learning you have to bootstrap, and you were doing it based on some estimate of what the Q value would be at the next state. That was kind of approximate. Whereas here somebody tells you, this data point, this f of x, should have a positive label.
-
-Example: multiclass decision example 
-
-![](../imgs/cs188_perceptron_learn_weight_ex.png)
-
-
-<h2 id="3261e6107adbefc58955de2aa613847a"></h2>
-
-
-## Logistic Regression
-
-
-<h2 id="290612199861c31d1036b185b4e69b75"></h2>
-
-
-## Summary
-
-- Perceptron won't work on Non-Separable dataset
-- Logistic Regression and probabilistic decisions
-- Multiclass Logistic Regression 
-    - Softmax
-
-
-<h2 id="4326581683ec73f1aae5aa12f468a692"></h2>
-
-
-# 22. Optimization and Neural Nets
-
-
-
 

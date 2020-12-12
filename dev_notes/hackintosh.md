@@ -130,8 +130,7 @@ sudo -E perl -pi -e "s/\Mac-00BE6ED71E35EB86/\Mac-*YourBoardID*/" /System/Librar
     - Note: If you're using Clover legacy, the USB should must be MBR.
     - Note: Some BIOS implementations require GPT, some require MBR (many allow both). If you can't get BIOS to recognize your USB for booting, try GPT instead of MBR.
 - Clover
-    1. download [Clover installer](http://sourceforge.net/projects/cloverefiboot) 
-        - or [CloverHackyColor](https://github.com/CloverHackyColor/CloverBootloader/releases)
+    1. download [Clover installer](https://github.com/CloverHackyColor/CloverBootloader/releases) 
     2. run Clover installer
         - if using MBR, select the target of the install to "CLOVER EFI" using "Change Install Location"
         - select "Customize" (the default is a legacy install -- we need to change it)
