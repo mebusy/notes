@@ -17,6 +17,22 @@
 
 # Application 
 
+[Application pdf](https://github.com/mebusy/cs188_fa18/blob/master/fa18_cs188_lectures_pdf/FA18_cs188_lecture24_advanced_applications_robotics_1pp.pdf)
+
+## So Far: Foundational Methods
+
+real world applications
+
+- Search
+    - is very prevalent in language processing
+    - adversarial games
+- Learning 
+    - to acquire behaviors
+    - robot, flight
+- Dealing with uncertainty
+    - self-driving cars
+
+
 
 
 

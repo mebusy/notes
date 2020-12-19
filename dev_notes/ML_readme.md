@@ -47,9 +47,10 @@
 10. [15 Application of HMM](AI_CS188_ApplicationOfHMM.md)
 
 - Machine Learning
-20. [MK: Naive Bayes](AI_CS188_ML_NaiveBayes.md)
-21. [Perceptrons and Logistic Regression](AI_CS188_Perceptron_and_Logistic.md)
-22. [Optimiaztion and Neural Nets](AI_CS188_OptimizationAndNeuralNets.md)
+20. [20 MK: Naive Bayes](AI_CS188_ML_NaiveBayes.md)
+21. [21 Perceptrons and Logistic Regression](AI_CS188_Perceptron_and_Logistic.md)
+22. [22 Optimiaztion and Neural Nets](AI_CS188_OptimizationAndNeuralNets.md)
+23. [23 DecisionTrees](AI_CS188_DecisionTrees.md)
 24. [24 Application](AI_CS188_Application.md)
 
 
