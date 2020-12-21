@@ -278,12 +278,7 @@ Does it need specifiy root user ?
 
 </details>
 
-<h2 id="2343f1ca2f25f0a3692f4d8e079d3ba3"></h2>
 
-
-## active native bluetooth , kert for clover
-
-https://github.com/zxystd/IntelBluetoothFirmware
 
 
 
@@ -388,6 +383,14 @@ sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
 # Catalina:*
 sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
 ```
+
+
+## Intel Blueteeth-Wifi card
+
+- [wifi](https://github.com/OpenIntelWireless/itlwm)
+    - itlwm 
+- [blueteeth](https://github.com/zxystd/IntelBluetoothFirmware)
+
 
 
 
