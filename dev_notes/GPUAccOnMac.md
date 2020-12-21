@@ -29,7 +29,7 @@
 - TensofFlow docker 
     ```bash
     docker pull tensorflow/tensorflow:latest
-    docker run --rm -v /scripts:`pwd`  tensorflow/tensorflow:latest python /scripts/tf_test.py
+    docker run --rm -v `pwd`:/scripts  tensorflow/tensorflow:latest python /scripts/tf_test.py
     ```
 
 
