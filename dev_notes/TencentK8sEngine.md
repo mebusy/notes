@@ -135,8 +135,8 @@ NAMESPACE="your-namespace"
 SELECTOR="k8s-app=xxxxxxx"
 TEXT="GET /callback"
 
-yesterday=`python -c 'import datetime;import time; print datetime.datetime.utcfromtimestamp( time.time() - 3600*24 ).strftime("%Y%m%d")'`
-tdbyesterday=`python -c 'import datetime;import time; print datetime.datetime.utcfromtimestamp( time.time() - 3600*24*2 ).strftime("%Y%m%d")'`
+yesterday=`python -c 'import datetime;import time; print datetime.datetime.utcfromtimestamp( time.time() - 3600*24*0 ).strftime("%Y%m%d")'`
+tdbyesterday=`python -c 'import datetime;import time; print datetime.datetime.utcfromtimestamp( time.time() - 3600*24*1 ).strftime("%Y%m%d")'`
 
 
 if [ "$1" != ""  ]
