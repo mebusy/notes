@@ -218,5 +218,11 @@ openssl rsa -in config/private_old.pem -out config/private.pem -des3
 curl ifconfig.co
 ```
 
+## MacOSX add Printer in Windows LAN
+
+- Advanced
+    - Type: Windows printer via spoolss
+    - URL: `smb://<printer's IP or domain name>/<printer name>`
+
 
 
