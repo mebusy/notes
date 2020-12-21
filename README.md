@@ -172,6 +172,7 @@ a | b | c | d
 [mdfind](dev_notes/mdfind.md) | 
 [roguelike note](dev_notes/roguelike_note.md) | 
 [bit operation](dev_notes/bitop.md) |
+[GPU Acceleration on MacOSX](dev_notes/GPUAccOnMac.md) |
 
 
 [在线数学公式生成](http://codecogs.com/latex/eqneditor.php)
