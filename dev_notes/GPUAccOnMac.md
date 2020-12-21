@@ -9,7 +9,7 @@
     - [Deep Learning on a Mac with AMD GPU](https://fabrice-daniel.medium.com/deep-learning-on-a-mac-with-amd-gpu-4be1f18944a)
 
 - Mac-optimized TensorFlow
-    - CATUION: much slower than  tensorflow docker verison, no idea why...
+    - **CATUION**: much slower than  tensorflow docker verison, no idea why...
     - To get started, visit Apple’s [GitHub repo](https://blog.tensorflow.org/2020/11/accelerating-tensorflow-performance-on-mac.html) for instructions to download and install the Mac-optimized TensorFlow 2.4 fork.
     ```bash
     python3.8 -m venv tf_osx
@@ -31,8 +31,6 @@
     docker pull tensorflow/tensorflow:latest
     docker run --rm -v `pwd`:/scripts  tensorflow/tensorflow:latest python /scripts/tf_test.py
     ```
-
-
 
 
 
