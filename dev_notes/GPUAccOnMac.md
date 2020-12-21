@@ -23,7 +23,7 @@
     from tensorflow.python.compiler.mlcompute import mlcompute
 
     # Select CPU device.
-    mlcompute.set_mlc_device(device_name=‘cpu’) # Available options are 'cpu', 'gpu', and ‘any'.
+    mlcompute.set_mlc_device(device_name='cpu') # Available options are 'cpu', 'gpu', and ‘any'.
     ```
 
 - TensofFlow docker 

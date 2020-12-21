@@ -133,8 +133,11 @@ kubectl -n <namespace> rollout restart deployment <deployment-name>
 ```bash
 NAMESPACE="your-namespace"
 SELECTOR="k8s-app=xxxxxxx"
-CMD="cat logs/app.log" 
 TEXT="GET /callback"
+
+yesterday=`python -c 'import datetime;import time; print datetime.datetime.utcfromtimestamp( time.time() - 3600*24 ).strftime("%Y%m%d")'`
+tdbyesterday=`python -c 'import datetime;import time; print datetime.datetime.utcfromtimestamp( time.time() - 3600*24*2 ).strftime("%Y%m%d")'`
+
 
 if [ "$1" != ""  ]
 then
@@ -144,7 +147,13 @@ fi
 for pod in `kubectl -n $NAMESPACE get po --no-headers --selector=$SELECTOR  -o custom-columns='NAME:metadata.name'`
 do
     echo -------------- seaching $pod
-    kubectl -n $NAMESPACE exec -it $pod -- $CMD   | grep "$TEXT"
+    # archived gz file by logrotate
+    echo "\t" , app.log-$yesterday.gz
+    kubectl -n $NAMESPACE exec -it $pod -- gunzip -k -c logs/app.log-$yesterday.gz   | grep "$TEXT"
+    echo "\t" , app.log-$tdbyesterday.gz
+    kubectl -n $NAMESPACE exec -it $pod -- gunzip -k -c logs/app.log-$tdbyesterday.gz   | grep "$TEXT"
+    echo "\t" , app.log
+    kubectl -n $NAMESPACE exec -it $pod -- cat logs/app.log   | grep "$TEXT"
 done
 ```
 
