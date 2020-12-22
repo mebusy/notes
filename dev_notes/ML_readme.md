@@ -54,6 +54,11 @@
 24. [24 Application](AI_CS188_Application.md)
 
 
+**TensorFlow2**
+
+- [Intro2 TensorFlow 2](tensorflow2.md)
+
+
 
 **Others**
 
