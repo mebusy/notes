@@ -6,6 +6,118 @@
 [pdf slides](../codes/tf2/tf2_slides.pdf)
 
 
+## Training
+
+
+### Model design: Keras
+
+- Sequential API
+    - if you're a total novice to deep learning, you can start with something called Sequential API,
+        - which is by far the easiest and clearest way to develop a deep learning model today.
+    - for building a stack of layers
+    - you can call things like `compile` (compile time check, to make sure all your layers are compatible) and `fit`
+    ```python
+    model = keras.Sequential()
+    model.add(layers.Dense(32, activation='relu', input_shape=(784,)))
+    model.add(layers.Dense(32, activation='relu'))
+    model.add(layers.Dense(32, activation='softmax'))
+    ```
+- Functional API
+    - such like Conv2D, MaxPooling2D, ...
+    - for building DAGs --- Directed Graphs
+    - A multi-input model
+        1. Use a CNN to embed the image
+        2. Use a LSTM to embed the question
+        3. Concatenate
+        4. Classify with Dense layers, per usual
+    - ![](../imgs/tf2_function_api_0.png)
+    - to plot such a graph
+    ```python
+    from tensorflow.keras.utils import plot_model
+    plot_model(vqa_model, to_file='model.png')
+    ```
+- Subclassing:  write everything from scratch
+    ```python
+    class MyModel(tf.keras.Model):
+        def __init__(self, num_classes=10):
+            super(MyModel, self).__init__(name='my_model')
+            # in the constuctor you define your layers
+            self.dense_1 = layers.Dense(32, activation='relu')
+            self.dense_2 = layers.Dense(num_classes,activation='softmax')
+        def call(self, inputs):
+            # the `call` method describe how these layers are chained togerther
+            # Define your forward pass here
+            x = self.dense_1(inputs)
+            return self.dense_2(x)
+    ```
+
+
+### Helpful references
+
+- Guides
+    - tensorflow.org/guide/keras/overview
+    - tensorflow.org/guide/keras/functional
+    - tensorflow.org/guide/keras/train_and_evaluate
+    - tensorflow.org/guide/keras/custom_layers_and_models
+- Examples
+    - tensorflow.org/tutorials/images/segmentation
+    - tensorflow.org/tutorials/generative/pix2pix
+    - tensorflow.org/tutorials/generative/adversarial_fgsm
+
+
+### Training Models
+
+- `model.fit()`
+    - Quich experiment
+- `model.fit()` + callback
+    - Customize your training loop 
+    - Add checkpointing, 
+    - early stopping, 
+    - TensorBoard monitoring, 
+    - send Slack notifications..
+    ```python
+    model.fit(data,
+          epochs=10,
+          validation_data=val_data,
+          callbacks=[EarlyStopping(),
+                     TensorBoard(),
+                     ModelCheckpoint()])
+    ```
+- `model.train_on_batch()`, + callbacks
+    - Custom training loop using built-in optimizers and losses 
+    - e.g. GANs
+- Custom training loop with `GradientTape`
+    - Complete control
+    - e.g. new optimization algorithm; easily modify gradients as you go.
+    - A linear regression example: 
+        - we have some function that's taking features and labels as input
+        - whenever we'redong training in deep learning, we're doing gradident descent, the first step in doing gradident descent is getting the gradients.
+        - the way all frameworks do this is by backpropagation. And the implementation in TensorFlow is we start recording operations on a tape.
+    ```python
+    @tf.function
+    def train_step(features, labels):  # here we create a tape, and we're recording what's happening beneath that tape
+        with tf.GradientTape() as tape:
+            logits = model(features, training=True) # forward the features through the model
+            loss = loss_fn(labels, logits) # compute loss use function `loss_fn`
+
+        # getting the gradients of the loss with respect to all the variables in the model
+        # if you print that out, you will see exactly what the gradients are.
+        grads = tape.gradient(loss, model.trainable_variables)
+        # here we're doing gradient descent manually. We're applying them on an optimizer.
+        optimizer.apply_gradients(zip(grads, model.trainable_variables))
+        return loss
+    ```
+    - This is a custom training loop from scratch. What this means is, in `model.fit()` you can use optimizers like `RMSprop` and `Adam` and all this stuff.
+        - But if you'd like to write like xxx optimizer, you can go ahead and write it in Python. And it will fit right in with your model.
+        - So this is great for research.
+    - `ft.function`
+        - you never need to write it. your code will work the same.
+        - but if you do want a graph in TensorFlow 2.0, of if you want to compile your code and have it run faster, you can write that `tf.function` annotation.
+        - TensorFlow2 will trace your computation, compile it, and run it faster later. jit !!!
+
+
+### DEMO
+
 <details>
 <summary>
 Linear Regression Demo:
@@ -154,3 +266,130 @@ plt.show()
 ```
 
 </details>
+
+--- 
+
+
+### DataSets
+
+So in terms of datasets, basically you have 2 options in TensorFlow 2, Keras datasets(you can find in Keras.io) and TensorFlow Datasets.
+
+Keras datasets are good to start with. They're in Numpy format. And they're usually really tiny. They fit into memory no problem.
+
+TensorFlow datasets are  enormous collection of research data. 
+
+If you're downloading a data set in TensorFlow data format, the datasets not going to be NumPy. It's going to be in tf.data, a high-performance format for data.
+
+If you are using TensorFlow data sets, you have to be very, very careful to benchmark your input pipeline. If you just import a dataset and try to call `model.fit` on the dataset, it might be slow.  It's important to take your time and make sure that your data pipeline can read images off disk and things like that efficiently. **Either load your dataset into memory( `in_memory=True` ), or write a performant input pipeline to load it off disk.**
+
+TensorFlow alo has a `cache()` function, it use either an in-memory cache, or a cache file, to avoid repeated work.
+
+Here is some code for ft.data. And maybe we have an image dataset, and we have some code to preprocess the images. And let's pretent that preprocessing code is expensive and we don't want to run it every time, on every epoch.  What you can do is you can add this `cache` line at the end.
+
+```python
+# Caching is important to avoid repeated work
+# Use either an in-memory cache, or a cache file
+def preprocess(img):
+  img = tf.cast(image, tf.float32)
+  img = (img / 127.5) - 1
+  img = tf.image.resize(img, [286, 286])
+  # ...
+  return img
+
+# `cache` without any papameters will cache it into RAM.
+#   provided file path, it will cache to files.
+image_ds = image_ds.map(
+    preprocess, num_parallel_calls=AUTOTUNE).cache()
+```
+
+
+### Distribution
+
+One thing that's awesome in TensorFlow 2.0 , if you're an expert, you'll care about is **distributed training**.
+
+If you're doing multimachine, multi-GPU synchronous data training, you don't need to change the code of your model.
+
+Your model:
+
+```python
+model = tf.keras.applications.ResNet50()
+optimizer = tf.keras.optimizers.SGD(learning_rate=0.1)
+model.compile(..., optimizer=optimizer)
+model.fit(train_dataset, epochs=10)
+```
+
+Distribute-aware:
+
+```python
+strategy = tf.distribute.MirroredStrategy()
+with strategy.scope(): Distribute-aware
+    # your model, without any changes
+    model = tf.keras.applications.ResNet50()
+    optimizer = tf.keras.optimizers.SGD(learning_rate=0.1)
+    model.compile(..., optimizer=optimizer)
+    # model.fit is distribute aware and will work
+    model.fit(train_dataset, epochs=10)
+```
+
+- Strategy
+    - MirroredStrategy
+    - MirroredMultiWorker
+        - if you have a network with multiple machines on it.
+
+
+## Deployment
+
+TensorFlow 2 is going beyond Python. It's really awesome especially if you're leaning or you have students, 
+
+- Deploying models in the browse with TensorFlow.js
+- Deploying them on Android and iOS using TensorFlow Lite, or TensorFlow Lite Micro on recently Arduino.
+
+For example, when you have trained a regular Python model, if you want to deploy it to Anduino,  you don't need to know anything special about TensorFlow Lite to do it.
+
+```python
+# Convert the model to the TFLite format without quantization
+converter = tf.lite.TFLiteConverter.from_keras_model(model)
+tflite_model = converter.convert()
+# Save the model to disk
+open("gesture_model.tflite", "wb").write(tflite_model)
+# Check the size
+import os
+basic_model_size = os.path.getsize("gesture_model.tflite")
+print("Model is %d bytes" % basic_model_size)
+```
+
+##  Keras, tf.keras, NumPy
+
+- In TF2, instead of writing “import keras” you write “from tensorflow import keras”.
+- You can also use TensorFlow 2.0 a lot like you would use Numpy.
+    - Basically wheneven you see something like tensor, just replace that in your head with NumPy ndarray.
+    ```python
+    >>> x = tf.constant([[5, 2], [1, 3]])
+    >>> print(x)
+    tf.Tensor(
+    [[5 2]
+     [1 3]], shape=(2, 2), dtype=int32)
+    >>> x.numpy()
+    array([[5, 2],
+       [1, 3]], dtype=int32)
+    >>> a = tf.random.normal(shape=(2, 2)) 
+    >>> b = tf.random.normal(shape=(2, 2)) 
+    >>> c = a+ b
+    >>> d = tf.square(c)
+    ```
+
+
+## Terms
+
+- Dense Layer
+    - Dense implements the operation: output = activation(dot(input, kernel) + bias)
+    - kernel is a weights matrix created
+    - bias is a bias vector
+- Optimizers 
+    - Optimizers are the extended class, which include added information to train a specific model. The optimizer class is initialized with given parameters but it is important to remember that no Tensor is needed. The optimizers are used for improving speed and performance for training a specific model.
+
+
+
+
+
+
