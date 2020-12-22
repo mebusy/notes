@@ -1,10 +1,6 @@
 ...menustart
 
 - [21. Perceptrons and Logistic Regression](#277ba134a739723dd3ce2fadba0049b6)
-    - [Linear Classifiers](#4727939f11f24b71ad69e2a47a4fe29a)
-    - [Logistic Regression](#3261e6107adbefc58955de2aa613847a)
-    - [Summary](#290612199861c31d1036b185b4e69b75)
-- [22. Optimization and Neural Nets](#4326581683ec73f1aae5aa12f468a692)
 
 ...menuend
 

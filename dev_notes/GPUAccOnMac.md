@@ -1,3 +1,12 @@
+...menustart
+
+- [GPU Accelerate on MacOSX](#f88f43a8872da34078eb729e5ff44e7c)
+
+...menuend
+
+
+<h2 id="f88f43a8872da34078eb729e5ff44e7c"></h2>
+
 
 # GPU Accelerate on MacOSX
 

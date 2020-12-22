@@ -19,6 +19,7 @@
     - [c access lua  Global  variable](#52d1c0a8e0957b2df01bb1ae04d48fad)
     - [UTC_ISO_8601totime](#4f32e37b3035e200ef8423edee6f5402)
     - [get time zone](#544369429982c1f0dbf82a4b37ca3663)
+    - [os.data and timezone](#6c487925d181796c6f77c2d67406e2ce)
     - [bit operation](#f3d96fbe7760483bbb08625d5a30024e)
 
 ...menuend
@@ -437,6 +438,9 @@ end
 > print( os.difftime( os.time(), os.time(os.date("!*t", os.time()  )))  )
 28800
 ```
+
+<h2 id="6c487925d181796c6f77c2d67406e2ce"></h2>
+
 
 ## os.data and timezone
 

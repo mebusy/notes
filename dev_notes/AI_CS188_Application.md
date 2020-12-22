@@ -1,6 +1,7 @@
 ...menustart
 
 - [Application](#e498749f3c42246d50b15c81c101d988)
+    - [So Far: Foundational Methods](#c685cae5eb85421bc5bfe19350022e75)
     - [Starcraft](#8a6f8fa384efc23dcdcc19e7384bdc45)
         - [Why is Starcraft Hard?](#1fb75cfb7fe7923ca2bab57e2ebead57)
         - [The Berkeley Overmind](#8ae5d98a904e4bd489a504ec2b2154da)
@@ -18,6 +19,9 @@
 # Application 
 
 [Application pdf](https://github.com/mebusy/cs188_fa18/blob/master/fa18_cs188_lectures_pdf/FA18_cs188_lecture24_advanced_applications_robotics_1pp.pdf)
+
+<h2 id="c685cae5eb85421bc5bfe19350022e75"></h2>
+
 
 ## So Far: Foundational Methods
 

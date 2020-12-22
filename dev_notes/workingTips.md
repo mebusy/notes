@@ -17,6 +17,7 @@
     - [change .pem password](#60a277f978363c21b4ced8cb1ea9c06f)
     - [Python NTLM proxyserver](#3f1c0d7e44459f6410faabec903ea4ac)
     - [获取外网ip](#869d7745a2b610e3fcd5afed798f8986)
+    - [MacOSX add Printer in Windows LAN](#c792dc1d6bbb6c2565d0dd1a20020b86)
 
 ...menuend
 
@@ -217,6 +218,9 @@ openssl rsa -in config/private_old.pem -out config/private.pem -des3
 ```bash
 curl ifconfig.co
 ```
+
+<h2 id="c792dc1d6bbb6c2565d0dd1a20020b86"></h2>
+
 
 ## MacOSX add Printer in Windows LAN
 

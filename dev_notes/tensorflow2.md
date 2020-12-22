@@ -1,3 +1,22 @@
+...menustart
+
+- [Introduction to TensorFlow 2.0: Easier for beginners, and more powerful for experts](#eb38201f17f85fa8cd88b72593cd9cf2)
+    - [Training](#cf270e40d273f9e7fd7c3061729060c3)
+        - [Model design: Keras](#379998c229b09fb16b3859eee59409b1)
+        - [Helpful references](#aaa24f6c70e138d437c490f97c52c8a3)
+        - [Training Models](#d221a3c13a964a30bc621ee76eeff9cd)
+        - [DEMO](#bd6dbd063f5ab7394879e3c08781cd72)
+        - [DataSets](#deb6d7f18b91dc52f2998b02414e2208)
+        - [Distribution](#f0bac093bb884df2891d32385d053788)
+    - [Deployment](#ea355214fd4bc7c57f471bd92918879b)
+    - [Keras, tf.keras, NumPy](#b0370f35e9505d9b8de1d25ab4abfdf6)
+    - [Terms](#6f1bf85c9ebb3c7fa26251e1e335e032)
+
+...menuend
+
+
+<h2 id="eb38201f17f85fa8cd88b72593cd9cf2"></h2>
+
 
 # Introduction to TensorFlow 2.0: Easier for beginners, and more powerful for experts
 
@@ -6,7 +25,13 @@
 [pdf slides](../codes/tf2/tf2_slides.pdf)
 
 
+<h2 id="cf270e40d273f9e7fd7c3061729060c3"></h2>
+
+
 ## Training
+
+
+<h2 id="379998c229b09fb16b3859eee59409b1"></h2>
 
 
 ### Model design: Keras
@@ -52,6 +77,9 @@
     ```
 
 
+<h2 id="aaa24f6c70e138d437c490f97c52c8a3"></h2>
+
+
 ### Helpful references
 
 - Guides
@@ -63,6 +91,9 @@
     - tensorflow.org/tutorials/images/segmentation
     - tensorflow.org/tutorials/generative/pix2pix
     - tensorflow.org/tutorials/generative/adversarial_fgsm
+
+
+<h2 id="d221a3c13a964a30bc621ee76eeff9cd"></h2>
 
 
 ### Training Models
@@ -114,6 +145,9 @@
         - you never need to write it. your code will work the same.
         - but if you do want a graph in TensorFlow 2.0, of if you want to compile your code and have it run faster, you can write that `tf.function` annotation.
         - TensorFlow2 will trace your computation, compile it, and run it faster later. jit !!!
+
+
+<h2 id="bd6dbd063f5ab7394879e3c08781cd72"></h2>
 
 
 ### DEMO
@@ -270,6 +304,9 @@ plt.show()
 --- 
 
 
+<h2 id="deb6d7f18b91dc52f2998b02414e2208"></h2>
+
+
 ### DataSets
 
 So in terms of datasets, basically you have 2 options in TensorFlow 2, Keras datasets(you can find in Keras.io) and TensorFlow Datasets.
@@ -301,6 +338,9 @@ def preprocess(img):
 image_ds = image_ds.map(
     preprocess, num_parallel_calls=AUTOTUNE).cache()
 ```
+
+
+<h2 id="f0bac093bb884df2891d32385d053788"></h2>
 
 
 ### Distribution
@@ -337,6 +377,9 @@ with strategy.scope(): Distribute-aware
         - if you have a network with multiple machines on it.
 
 
+<h2 id="ea355214fd4bc7c57f471bd92918879b"></h2>
+
+
 ## Deployment
 
 TensorFlow 2 is going beyond Python. It's really awesome especially if you're leaning or you have students, 
@@ -358,6 +401,9 @@ basic_model_size = os.path.getsize("gesture_model.tflite")
 print("Model is %d bytes" % basic_model_size)
 ```
 
+<h2 id="b0370f35e9505d9b8de1d25ab4abfdf6"></h2>
+
+
 ##  Keras, tf.keras, NumPy
 
 - In TF2, instead of writing “import keras” you write “from tensorflow import keras”.
@@ -377,6 +423,9 @@ print("Model is %d bytes" % basic_model_size)
     >>> c = a+ b
     >>> d = tf.square(c)
     ```
+
+
+<h2 id="6f1bf85c9ebb3c7fa26251e1e335e032"></h2>
 
 
 ## Terms
