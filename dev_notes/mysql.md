@@ -918,7 +918,7 @@ https://mp.weixin.qq.com/s/p7NTu1NpAgt9frOg-ivVIA
     - `where a like "%001"`   索引失效
     - `where a like "001%"`   索引失效, 走range类型的索引
 9. 使用 `or` 关键字没有注意
-    - or关键字会 可能会让索引失效(**自行explain 测试一下**)，可以用union代替
+    - or关键字大部分情况下都会导致索引失效(**自行explain 测试一下**)，可以用union代替
     ```mysql
     (select * from test1 where   code = '001') union (select * from test1 where  height = 8);
     ```
