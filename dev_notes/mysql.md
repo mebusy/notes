@@ -879,5 +879,76 @@ mysql> SELECT * from v_t;
     - `SELECT ... FROM TABLE WHERE a=xxx ORDER BY c`
 
 
+## 索引的正确打开方式
+
+https://mp.weixin.qq.com/s/p7NTu1NpAgt9frOg-ivVIA
+
+### 索引失效常见原因
+
+联合索引(a,b,c)
+
+1. 不满足最左前缀原则
+    - `where a=x and b=y and c=z`   使用索引
+        - where条件后的字段包含了联合索引的所有索引字段，并且顺序和 索引字段顺序 一直，效率最高
+    - `where a=x`  使用索引 
+        - 只用了 一个索引字段a
+    - `where a=x b=y`  使用索引
+        - 只用到 索引字段 a,b
+    - `where a=x c=z`  使用索引
+        - 索引字段出现断层, 只用到 索引字段 a
+    - `where b=y`  不使用
+    - `where c=z`  不使用
+    - `where b=y c=z` 不使用
+2. 范围索引列 没有放在最后
+    - **注意：范围查询放最后，指的是联合索引中的范围列放在最后**
+    - `where a=x and b>=y and c=z`  只用到a,b 两个索引
+    - `where a=x and c=z and b>=y `  只用到a,b 两个索引
+3. 使用了 `select *`
+    - 如果select的列都是索引列a,b,c，则被称为覆盖索引， 不需要回表，更高效
+4. 索引列上有计算
+    - 和5条一样，附加了额外的计算后，原来的索引就没有意义了
+5. 索引列上 使用了函数
+6. 字符类型没有加引号
+    - 如果索引列是 字符串, where 语句中使用的是 数字类型， 类型不匹配会导致索引失效
+    - **类型不匹配导致索引丢失问题，是我们平时工作中非常容易忽视的问题，一定要引起足够的重视**
+7. 用 `is null` 和 `is not null` 没注意字段是否允许为空
+    - 如果字段 **不允许为空**，则is null 和 is not null这两种情况索引都会失效
+    - 如果字段 **允许为空**，则is null走ref类型的索引，而is not null走range类型的索引
+8. like 查询左边有 %
+    - `where a like "%001"`   索引失效
+    - `where a like "001%"`   索引失效, 走range类型的索引
+9. 使用 `or` 关键字没有注意
+    - or关键字会让索引失效，可以用union代替 ( `where a=x or a=y` 会走索引 ？ )
+    ```mysql
+    (select * from test1 where   code = '001') union (select * from test1 where  height = 8);
+    ```
+    - **不确定正确性，自行explain 测试一下**
+
+
+### 索引失效的常见误区
+
+1. 使用not in会导致索引失效
+    - 5.7中这种情况sql执行结果是全表扫描
+    - 而5.8中使用了range类型索引
+2. 使用不等于号 `!=, <>` 会导致索引失效
+    - 5.7中这种情况sql执行结果是全表扫描
+        - 使用 ` > and < ` 解决
+    - 而5.8中使用了range类型索引
+3. order by索引字段顺序不当导致索引失效
+    - 有没有使用索引跟where后面的条件有关，而跟order by 后面的字段没关系
+    - **但是** order by 字段 可能会导致 *Using filesort*，即按文件重排序
+        - 一般是联合索引中索引字段的顺序，跟sql中where条件及order by 不一致导致的，只要顺序调整一致就不会出现这个问题
+
+
+### 避坑口诀
+
+```
+全职匹配我最爱，最左前缀要遵守
+带头大哥不能死，中间兄弟不能断
+索引列上少计算，范围列后全失效
+like百分写最右，覆盖索引不写*
+不等空值还有or，索引影响要注意；
+字符字段引号不能丢，sql优化有诀窍。
+```
 
 
