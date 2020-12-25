@@ -145,6 +145,7 @@
         - you never need to write it. your code will work the same.
         - but if you do want a graph in TensorFlow 2.0, of if you want to compile your code and have it run faster, you can write that `tf.function` annotation.
         - TensorFlow2 will trace your computation, compile it, and run it faster later. jit !!!
+        - AutoGraph, a source-to-source python transformer,  make this possible. 
 
 
 <h2 id="bd6dbd063f5ab7394879e3c08781cd72"></h2>
