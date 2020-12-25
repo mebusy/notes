@@ -438,6 +438,17 @@ print("Model is %d bytes" % basic_model_size)
     - Optimizers are the extended class, which include added information to train a specific model. The optimizer class is initialized with given parameters but it is important to remember that no Tensor is needed. The optimizers are used for improving speed and performance for training a specific model.
 
 
+# TensorFlow2 ecosystem
+
+- TF Probability , for Bayes modeling
+- TF Agents , for Reinforcement Learning
+- TF Text  , for text proprocessing
+- TF Federated or TF Privacy , for privacy or insecure
+
+
+# Examples
+
+[image caption](https://www.tensorflow.org/tutorials/text/image_captioning)
 
 
 
