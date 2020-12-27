@@ -372,6 +372,15 @@ cd ~/Library/Caches
 rm -R com.apple.parsecd
 ```
 
+## Big Sur
+
+```bash
+launchctl unload -w  /System/Library/LaunchAgents/com.apple.triald.plist
+launchctl unload -w  /System/Library/LaunchAgents/com.apple.proactiveeventtrackerd.plist
+
+rm -R com.apple.proactive.eventtracker
+```
+
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
 
