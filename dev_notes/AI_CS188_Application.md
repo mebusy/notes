@@ -33,8 +33,10 @@ real world applications
 - Learning 
     - to acquire behaviors
     - robot, flight
+        - [berkeley Deep RL: virtual stuntman](https://bair.berkeley.edu/blog/2018/04/10/virtual-stuntman/)
 - Dealing with uncertainty
     - self-driving cars
+
 
 
 

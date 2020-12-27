@@ -439,7 +439,7 @@ print("Model is %d bytes" % basic_model_size)
     - Optimizers are the extended class, which include added information to train a specific model. The optimizer class is initialized with given parameters but it is important to remember that no Tensor is needed. The optimizers are used for improving speed and performance for training a specific model.
 
 
-# TensorFlow2 ecosystem
+## TensorFlow2 ecosystem
 
 - TF Probability , for Bayes modeling
 - TF Agents , for Reinforcement Learning
@@ -447,9 +447,58 @@ print("Model is %d bytes" % basic_model_size)
 - TF Federated or TF Privacy , for privacy or insecure
 
 
-# Examples
+## Examples
 
 [image caption](https://www.tensorflow.org/tutorials/text/image_captioning)
+
+
+---
+
+# TF-Agents
+
+## Implementing an Enviroment
+
+If you were to implement a problem, or enviroment yourself, you would subclass the TF-Agents by environment class,
+
+
+```python
+class CartPole( tf_agents.py_environment.PyEnvironment ):
+    def observation_spec(self): "Defines the Observations"
+    def action_spec(self): "Define the Actions"
+    def _reset(sefl): 
+        "Reset the env , and return an initial time_step(reward, observation)."
+    def _step(sefl, action):
+        "Apply the action and return the next time_step(reward, observation)"
+```
+
+## Loading Gym CartPole
+
+For some particular problem, you don't have to do that. We support OpenAi, which is a very popular framework for environments in Python. And you can simple load CartPole from that.
+
+```python
+# load the environment
+env = suite_gym.load( "CartPole-V1" )
+
+# define a policy
+policy = ActorPolicy( ... )
+
+time_step = env.reset()
+episode_return = 0.0
+
+# start playing
+while not time_step.is_last():
+    policy_step = policy.action( time_step )
+    time_step = env.ste( policy_step.action )
+    eposode_return += time_step.reward
+```
+
+
+[CartPole Problem Using TF-Agents](https://towardsdatascience.com/cartpole-problem-using-tf-agents-build-your-first-reinforcement-learning-application-3e6006adeba7)
+
+https://github.com/tensorflow/agents
+
+
+
 
 
 

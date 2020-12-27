@@ -78,6 +78,11 @@ sudo -E perl -pi -e "s/\Mac-00BE6ED71E35EB86/\Mac-*YourBoardID*/" /System/Librar
 
 ## NUC8i5BEK BISO setting
 
+<details>
+<summary>
+BIOS 077
+</summary>
+
 - « Intel VT for directed I/VO (VT-d) » ： disabled
 - « Secure Boot » ： disabled
 - « Fast Boot » ： disabled
@@ -88,6 +93,27 @@ sudo -E perl -pi -e "s/\Mac-00BE6ED71E35EB86/\Mac-*YourBoardID*/" /System/Librar
 - Devices->Video, « IGD Minimum Memory » set to 64mb
 - Devices->Video, « IGD Aperture Size » set to MAX
 - disable reader-card
+
+</details>
+
+
+<details>
+<summary>
+BIOS 085
+</summary>
+
+https://github.com/zearp/Nucintosh
+
+- Devices -> USB -> Port Device Charging Mode: off
+    - wifi -> disable
+    - readcard -> disable
+- Security -> Thunderbolt Security Level: Legacy Mode
+- Power -> Wake on LAN from S4/S5: Stay Off
+- Boot -> Boot Configuration -> Network Boot: Disable
+- Boot -> Secure Boot -> Disable
+
+</details>
+
 
 <h2 id="fca6772f09655f60d2a1571eb468f4b5"></h2>
 
