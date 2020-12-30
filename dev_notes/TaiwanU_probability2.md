@@ -999,17 +999,23 @@ Y = 10 | 0.05 | 0.1 | 0.15
 - Z = X + Y 的几率分布？
 - Ex: 老张面店只卖牛肉面跟豆腐脑已知每天的面销量 𝑿碗与豆腐脑销量𝒀碗的联合机率分布 p<sub>X,Y</sub>(x,y). 兄弟们约老张收摊后喝酒小聚。老婆规定老张洗完碗后才能赴约。 请问老张洗碗数量的机率分布是?
     - ![](../imgs/TU_prob2_9.1_01.png)
+    - 第二行公式: 如果是处理 一般的问题， 比如X 可能为负数...
+    - 第三行公式：若是以Y为主...
 - Ex: 小明写国文作业的时间 𝑿 与算术作业 𝒀 的联合 机率分布 f<sub>X,Y</sub>(x,y) 。兄弟们约小明喝酒小聚 老妈规定小明写完作业后才能赴约。请问小明兄弟要等多久时间 的机率分布是? 
     - ![](../imgs/TU_prob2_9.1_02.png)
-
+    - 连续随机变量的情况，求和变积分
 - 若 X,Y独立？
     - ![](../imgs/TU_prob2_9.1_03.png)
+    - 如果你知道X，Y的PMF，而且X，Y独立，那么X+Y的新的PMF就是等于 X的PMF，Y的PMF两个在做 
+        - discrete convolution: p<sub>X</sub>(z)*p<sub>Y</sub>(z)
 - 如果有不止 两个随机变量？
     - X = X₁+X₂+...+X<sub>n</sub>
-    - ![](../imgs/TU_prob2_9.1_04.png)
+    - 若 X₁+X₂+...+X<sub>n</sub> 独立:
+        - ![](../imgs/TU_prob2_9.1_04.png)
 
 - Convolution 很难算，怎么办?
-    - 因为有限制条件，比如 X+Y=3
+    - MGF !!!
+    - 如果你会用 MGF的话，哇，convolution 太简单了，甚至有时候算都不用算.
 
 <h2 id="09fcfdc987674ca8b8ddac2800de6f82"></h2>
 
@@ -1023,6 +1029,9 @@ Y = 10 | 0.05 | 0.1 | 0.15
     - 原来这个函数都是在x这个世界，因为他们都是x的函数，我们现在要把它转换到一个新世界S, MGF 就是在S世界改造出来的结果。
         - 把 x 这个函数，转换过去变成s这个函数
         - 我有 X₁的PMF了，我就可以算 X₁的任何函数的期望值了
+            - Φ<sub>X₁</sub> = E[ e<sup>sX₁</sup> ] = ∑<sub>x=</sub><sup>∞</sup><sub>-∞</sub>e<sup>sx</sup>·p<sub>X₁</sub>(x)
+        - 然后把 Φ<sub>X₁</sub>, Φ<sub>X₂</sub> 相乘，再逆转换 就得到我们要的结果了。
+    - 为什么MGF可以做到这个？ 数据学推导出来的...
 - MGF 也可以应用到多个随机变数和
     - ![](../imgs/TU_prob2_9.2_03.png)
     - ![](../imgs/TU_prob2_9.2_04.png)
@@ -1035,14 +1044,18 @@ Y = 10 | 0.05 | 0.1 | 0.15
 
 - MGF ɸ<sub>X</sub>(s) 定义:
     - ![](../imgs/TU_prob2_9.2_05.png)
-    - 所以這是為什麼就叫 ɸ<sub>X</sub>(s) 叫moment generating function, 因為只要有了它，你就可以生成任何一個moment，
 - 逆转换怎么做 ?
-    - 通常靠查表法
+    - 通常靠查表法 
+    - [Table of Common Distributions](https://www.stat.tamu.edu/~twehrly/611/distab.pdf)
+    - [Table of Common Distributions course note](https://github.com/mebusy/course_note/blob/master/course_TaiwanU_probability%20part2%20done/distab.pdf)
 - 我说 MGF 为什么叫 MGF 呢 
     - 还记得什么叫 moment吗？ E[Xⁿ] 叫做 nth moment
     - ɸ<sub>X</sub>(s) 跟 moment 有关系吗 ?
-    - ![](../imgs/TU_prob2_9.2_06.png)
-    - ![](../imgs/TU_prob2_9.2_07.png)
+    - 离散case
+        - ![](../imgs/TU_prob2_9.2_06.png)
+    - 连续case
+        - ![](../imgs/TU_prob2_9.2_07.png)
+    - 所以這是為什麼就叫 ɸ<sub>X</sub>(s) 叫moment generating function, 因為只要有了它，你就可以生成任何一個moment，
 
 
 <h2 id="f8dbbf3c577f493b3b6ff0bffd301e3f"></h2>
@@ -1050,11 +1063,79 @@ Y = 10 | 0.05 | 0.1 | 0.15
 
 ### MFG重要性质
 
-- 
-    - 上面的期望值里，s不是随机变量，s只是一个变量,可以用期望值运算中拿出来
+- MGF 怎么做运算
+- Y = aX + b
+    - = ɸ<sub>Y</sub>(s) = E[e<sup>sY</sup>] = E[e<sup>s(aX+b)</sup>] 
+    - = E[e<sup>saX</sup>·e<sup>sb</sup>]
+    - = e<sup>sb</sup>·E[e<sup>saX</sup>]
+    - = e<sup>sb</sup> · ɸ<sub>X</sub>(as)
+
+- 上面的期望值里，s不是随机变量，s只是一个变量,可以用期望值运算中拿出来
 
 
+### 常见离散概率分布 之 MGF
 
+- X~Bernoulli(p):  p<sub>X</sub>(0) = 1-p, p(1)=p
+    - ɸ<sub>X</sub>(s) = E[e<sup>sX</sup>] = E[e<sup>s·0</sup>]·p(0) + E[e<sup>s·1</sup>]·p(1)
+    - = 1·(1-p) + e<sup>s</sup>·p 
+    - = 1-p + pe<sup>s</sup>
+- X~BIN(n,p): 做n次实验，成功的次数
+    - ⇒ X = X₁+X₂+ ... +X<sub>n</sub>, Xᵢ独立，Xᵢ~Bernoulli(p)
+        - 原来 BIN的随机变数，可以表示成n个Bernoulli 随机变数之和
+    - ⇒ ɸ<sub>X</sub>(s) = (1-p + pe<sup>s</sup>)ⁿ
+- X~Geometric(p):
+    - TODO
+- X~Pascal(k,p): 看到第k次成功，花的总实验次数
+    - ⇒ X = X₁+X₂+ ... +X<sub>n</sub>, Xᵢ独立，Xᵢ~Geometric(p)
+        - 第一次成功花了多少次 + 第2次成功花了多少次 + ... 第k次成功花了多少次
+    - TODO , ( ɸ<sub>Xᵢ</sub>(s) )ᵏ
+- X~Poisson(a):
+    - TODO
+- X~UNIF(a,b):
+    - TODO
+
+
+### 常见连续概率分布之 MGF
+
+
+- X~Exponential(λ):
+    - TODO
+- X~Erlang(n,λ):
+    - ⇒ X = X₁+X₂+ ... +X<sub>n</sub>, Xᵢ独立，Xᵢ~Exponential(p)
+
+- X~UNIF(a,b):
+    - TODO
+- X~Gaussian(μ,σ):  (  N( μ,σ² ) )
+    - e<sup>μs+σ/2·s²</sup>
+
+
+## 9.3 多个随机变数之和
+
+### 独立随机变数之和
+
+- X₁,X₂, ...独立， 且各自都有一摸一样的概率分布，表示为
+    - {Xᵢ}, I.I.D
+    - Independently and Identically Distributed
+- X = X₁+X₂+ ... +X<sub>n</sub>, **n为常数**, 请问X的几率分布?
+    - 离散: p<sub>X</sub>(x) = p<sub>X₁</sub>(x)*p<sub>X₁</sub>(x)*...*p<sub>X₁</sub>(x)  (做卷积)
+    - 连续: f<sub>X</sub>(x) = f<sub>X₁</sub>(x)*f<sub>X₁</sub>(x)*...*f<sub>X₁</sub>(x)  (做卷积)
+    - ɸ<sub>X</sub>(s) = ( ɸ<sub>X₁</sub>(s) )ⁿ
+
+- Ex: 将太的寿司
+    - 寿司饭团的理想重量是13g， 将太出当学徒，每次抓饭量为 正态分布，μ=14,σ=3。师傅要将太每天练习做 100个寿司才能休息，做完的寿司都得自己吃掉。请问将太每天吃的饭量的几率分布？
+    - Xᵢ: 第i个寿司的饭量，{Xᵢ} I.I.D.
+    - Xᵢ~N(14,9) ⇒ ɸ<sub>X₁</sub>(s) = e<sup>μs+σ/2·s²</sup> = e<sup>14s+9/2·s²</sup>
+    - X = X₁+X₂+ ... +X₁₀₀
+        - ⇒ ɸ<sub>X</sub>(s) = ( ɸ<sub>X₁</sub>(s) )¹⁰⁰ = ( e<sup>14s+9/2·s²</sup> )¹⁰⁰ = e<sup>1400s+900/2·s²</sup> -> N(1400,900)
+        - ⇒ X~N(1400,900)
+
+### 随机个数个 独立随机变数之和
+
+- X₁,X₂,... I.I.D.
+    - X = X₁+X₂+ ... +X<sub>N</sub>
+    - 若N本身也是**随机变数，其几率分布已知**， 那X的几率分布找的到吗？
+- N: p<sub>N</sub>(n) 已知
+    - ⇒ ɸ<sub>N</sub>(s֮) = ∑<sub>n=0</sub><sup>∞</sup> e<sup>s֮n</sup>·p<sub>N</sub>(n)
 
 
 
