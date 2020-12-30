@@ -1031,4 +1031,21 @@ echo result: $result
 
 ```
 
+### memoize decorator
+
+1. [implementation in Python Decorator Library](https://wiki.python.org/moin/PythonDecoratorLibrary#Memoize)
+2. From python 3.2, `functools.lru_cache`
+    - By default, it only caches the 128 most recently used calls, but you can set the `maxsize` to None to indicate that the cache should never expire:
+    ```python
+    import functools
+
+    @functools.lru_cache(maxsize=None)
+    def fib(num):
+        if num < 2:
+            return num
+        else:
+            return fib(num-1) + fib(num-2)
+    ```
+
+
 
