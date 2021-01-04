@@ -320,7 +320,7 @@ pylab.show()
 - Z ~ N( 0,1 )
     - ![](../imgs/TU_probability_std_norm_pdf.png)
     - ![](../imgs/TU_probability_std_norm_pdf_graph.png)
-- CDF 表示为:
+- CDF 表示为Φ(z) :
     - ![](../imgs/TU_probability_std_norm_cdf.png)
     - 积不出来，只能以数值方法近似出来后建表 给人家查
     - 网络上或是工程计算器上常能找到
