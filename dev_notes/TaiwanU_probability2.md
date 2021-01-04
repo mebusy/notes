@@ -682,14 +682,14 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
 - 连续g(x) = aX² + b
     - Ex: Y = 2X²+1, X~UNIF(-1,7), 求 Y的PDF
     - 不要好高骛远，先算CDF
-    - F<sub>Y</sup>(y) = P(Y=2X²+1≤y)
+    - F<sub>Y</sub>(y) = P(Y=2X²+1≤y)
         - = P(X²≤(y-1)/2)
         - = P( -√((y-1)/2) ≤ X ≤ √((y-1)/2) )
+        - = ∫<sub>-z</sub><sup>z</sup>f<sub>X</sub>(x)dx  , 令 z = √((y-1)/2)
     - 需要注意积分的范围, 这里注意 Y > 3的情况
         - y≤3: F<sub>Y</sub>(y) = ∫<sub>-z</sub><sup>z</sup>1/8dx = 
         - y>3: F<sub>Y</sub>(y) = ∫<sub>-1</sub><sup>z</sup>1/8dx =
         - 微分得到 f<sub>Y</sub>(y)
-        - = ∫<sub>-z</sub><sup>z</sup>f<sub>X</sub>(x)dx  , 令 z = √((y-1)/2)
 
 <h2 id="33f8148fbbdcedb32e214651afcff8d9"></h2>
 
