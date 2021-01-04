@@ -1178,7 +1178,102 @@ if __name__ == '__main__':
     - X = X₁+X₂+ ... +X<sub>N</sub>
     - 若N本身也是**随机变数，其几率分布已知**， 那X的几率分布找的到吗？
 - N: p<sub>N</sub>(n) 已知
+    - 我们可以得到它的 MGF, 这里我们用 s֮ 来代替s ( 因为ɸ<sub>X</sub> 会用到s )
     - ⇒ ɸ<sub>N</sub>(s֮) = ∑<sub>n=0</sub><sup>∞</sup> e<sup>s֮n</sup>·p<sub>N</sub>(n)
+- ɸ<sub>X</sub> = E[ e<sup>sX</sup> ] = E[ e<sup>sX₁</sup> + e<sup>sX₂</sup> + ... + e<sup>sX<sub>N</sub></sup> ]
+    - = E[ e<sup>sX₁</sup> · e<sup>sX₂</sup> · ... · e<sup>sX<sub>N</sub></sup> ]
+        - N 虽然是个随机变量，但是你可以先把它留着，先把N当成一个常数
+        - 这N个东西相乘再取期望值， 可以变成 各自的期望值 相乘, 只要它们独立，就有这样的特性
+        - 但是因因为N是随机变量,  所以最好还要对 N 做一次取期望值
+    - = E<sub>N</sub>[ E[e<sup>sX₁</sup>] · E[e<sup>sX₂</sup>] · ... · E[e<sup>sX<sub>N</sub></sup>] ]
+    - = E<sub>N</sub> [ (ɸ<sub>X₁</sub>(s))ᴺ ] = ∑<sub>n=0</sub><sup>∞</sup> (ɸ<sub>X₁</sub>(s))ⁿ·p<sub>N</sub>(n)
+    - = ∑<sub>n=0</sub><sup>∞</sup> e<sup>ln(ɸ<sub>X₁</sub>(s))n</sup> ·p<sub>N</sub>(n)
+        - 当 s֮ = (ln ɸ<sub>X₁</sub>(s) ),  则  ɸ<sub>N</sub>(s֮)  = ɸ<sub>X</sub> 
+    - = ɸ<sub>N</sub>( ln ɸ<sub>X₁</sub>(s) )
+        - 即，通过 N 和 X₁ 的MGF 可以合成 X 的MGF
 
+- EX: 如果不景气呢
+    - 因为不景气，师傅的生意有一搭没一搭，没那么多钱让将太挥霍。每天可以联系的寿司数量是有当天生意决定的。每天可以联系寿司数量是一个 Poisson分布，期望值为75； 将太功夫依然没有长进，每次抓的饭量为常态分布，μ=14,σ=4(退步了)。 请问将太每天吃的饭量的概率分布。
+    - N~POI(75) =>  ɸ<sub>N</sub>(s֮) = e<sup>75(e<sup>s֮</sup> -1)</sup>
+    - X = X₁+X₂+ ... +X<sub>N</sub> ~ N(14,16) => ɸ<sub>X₁</sub>(s) = e<sup>14s+8s²</sup>
+    - ɸ<sub>X</sub>(s) = ɸ<sub>N</sub>( ln ɸ<sub>X₁</sub>(s) ) 
+        - = e<sup>75(e<sup>ln ɸ<sub>X₁</sub>(s)</sup> -1)</sup> 
+        - = e<sup>75( ɸ<sub>X₁</sub>(s) -1)</sup>
+        - = e<sup>75( e<sup>14s+8s²</sup> -1)</sup>
+
+
+## 9.4 中央極限定理-萬佛朝宗
+
+
+- 数个独立 UNIF 随机变量之和 的 PDF
+    - ![](../imgs/TU_prob2_9.4_multi_unif.png)
+- 数个独立 EXP 随机变量之和 的 PDF
+    - ![](../imgs/TU_prob2_9.4_multi_exp.png)
+- 数个独立 Laplace 随机变量之和 的 PDF
+    - ![](../imgs/TU_prob2_9.4_multi_lap.png)
+
+- 我们，如果是连续的随机变数， 你n个I.I.D 加起来以后，你新的PDF 看起来 会越来越像 常态分布。
+
+- 数个独立 Uniform **离散**随机变数之和
+    - ![](../imgs/TU_prob2_9.4_multi_uniform.png)
+- 数个独立 Geometric **离散**随机变数之和
+    - ![](../imgs/TU_prob2_9.4_multi_geo.png)
+
+
+- 中央极限定律 ( Central Limit Theorem )
+    - 若 X₁+X₂+ ... +X<sub>n</sub> 为 I.I.D,
+    - 则当 n 越接近 ∞ 时:
+    - ![](../imgs/TU_prob2_9.4_clt.png)
+
+
+### 中央极限定律(CLT)的应用
+
+- 当要处理多个独立的随机变量I.I.D的 和时，我们可以 CLT 将其机率分布近似为 常态分布后计算机率
+    - 因为很多随机变数如果加在一起，你一定要去计算出exact概率分布，那它可能不好算
+    - 虽然可以使用 MGF，但有时候你转换做不出的话， 你就没有办法算出它的 PMF/PDF
+    - ex: 电路杂讯 ~N
+- 另若某机率分布等同于多个独立随机变量 的和，此机率分布便可以用常态分布近似 之，再计算概率
+    - ex: X~BIN(100,0.3)
+        - X = X₁+X₂+ ... +X₁₀₀, {Xᵢ} I.I.D. , Xᵢ~Berinoulli(0.3)
+        - 会非常接近常态分布, 所以也可以使用 常态分布来 近似计算概率分布
+
+- Ex: 天团五五六六有百万粉丝。每位粉丝各自独立， 但有 0.2 的机率会买天团发片的 CD。若是天团 发精选辑，请问天团精选辑发售超过 200800 张之机率为何?
+    - X~BIN( 1000000, 0.2 ) => P( X>200800 )  计算量非常大
+    - X = X₁+X₂+ ... +X₁₀₀, {Xᵢ} I.I.D. , Xᵢ~Berinoulli(0.2) 
+        - => μ<sub>X</sub> = 0.2 * 1000000 = 200000
+        - => σ²<sub>X</sub> = 0.16 * 1000000 = 160000
+        - By CLT =>  X~N( 200000, 160000 )
+        - P(X>200800) = P( (X-200000)/400 > (200800-200000)/400  ) = P( Z > 2 ) ( Z ~N(0,1) )
+    - scipy 
+        ```python
+        1 - stats.norm.cdf( 200800 , 200000, 400 )
+        >>> 0.02275013194817921
+        1 - stats.norm.cdf( 2 )  # N(0,1)
+        >>> 0.02275013194817921
+        1 - stats.binom.cdf( 200800, 1000000 , 0.2 )
+        >>> 0.022723129753990712
+        ```
+
+- 若X是**离散**的随机变数和...
+    - 我们可以算得更精确!
+    - De Moivre - Laplace Formula:
+    - ![](../imgs/TU_prob2_9.4_dem_lap.png)
+    - 要计算 X 落在 k₁,k₂之间的几率，加一个修正项0.5， 不要直接算。 即 计算  k₁-0.5, k₂+0.5 之间的几率
+    - ![](../imgs/TU_prob2_9.4_dem_lap_0.png)
+        - 这里ɸ是指norm cdf?
+    - ![](../imgs/TU_prob2_9.4_dem_lap_1.png)  ![](../imgs/TU_prob2_9.4_dem_lap_2.png)
+        - 加上 ±0.5, 把两个小绿块计算进去
+- Ex: 萱萱为 5566 忠实粉丝，帮粉友去 20 家店 买 CD。每家店限购一张，缺货机率 0.5。 请问萱萱买到 7 张之机率为 ?
+    - X~BIN( 20, 0.5) => Xᵢ~Berinoulli(0.5)
+    - => X~N( 20*0.5, 20*0.25 ) = N(10,5)
+    - => P(7) = P(7≤X≤7) = ![](../imgs/TU_prob2_9.4_dem_lap_3.png)
+    - scipy
+        ```python
+        >>> stats.binom.pmf( 7, 20, 0.5 )
+        0.07392883300781268
+        >>> stats.norm.cdf( (7.5-10)/(5**0.5) ) - stats.norm.cdf( (6.5-10)/(5**0.5) )
+        0.07301380459316678
+        ```
+---
 
 
